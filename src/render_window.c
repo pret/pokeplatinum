@@ -23,8 +23,8 @@
 #include "sprite_system.h"
 #include "sprite_transfer.h"
 #include "sys_task.h"
+#include "sys_task_extensions.h"
 #include "sys_task_manager.h"
-#include "unk_0200679C.h"
 
 #include "res/graphics/signposts/field_board.naix"
 #include "res/graphics/windows/pl_winframe.naix"

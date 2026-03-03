@@ -130,7 +130,7 @@ res/graphics/sprite_templates/underground_map_transition.cldat,/data/uground_cla
 res/graphics/sprite_templates/underground_map_transition_pltts.resdat,/data/uground_pltt.resdat
 res/graphics/sprite_templates/underground_map_transition_dawn_pltts.resdat,/data/uground_pltt2.resdat
 res/prebuilt/data/ugroundeffect.naix,/data/ugroundeffect.naix
-res/prebuilt/data/ugroundeffect.narc,/data/ugroundeffect.narc
+res/graphics/sprite_templates/underground_map_transition_templates.narc,/data/ugroundeffect.narc
 res/graphics/underground_top_screen/underground_top_screen.narc,/data/underg_radar.narc
 res/prebuilt/data/utility.bin,/data/utility.bin
 res/prebuilt/data/weather_sys.narc,/data/weather_sys.narc

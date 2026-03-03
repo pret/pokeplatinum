@@ -313,7 +313,7 @@ void UndergroundTalk_Start(int linkNetID, ExitCallback exitCallback, FieldSystem
     menu->state = TALK_MENU_STATE_INIT;
     menu->linkRequestedState = 0;
     menu->sentGift.dummy = 0;
-    menu->sentGift.goodID = 0;
+    menu->sentGift.goodID = UG_GOOD_NONE;
     menu->sentGift.recipientNetID = menu->linkNetID;
 
     Sound_PlayEffect(SEQ_SE_CONFIRM);
@@ -734,7 +734,7 @@ static void UndergroundTalk_Main(SysTask *sysTask, void *data)
     case TALK_MENU_STATE_GIFT_SELECTED:
         menu->giftMenu = NULL;
 
-        if (sCurrentTalkMenu->sentGift.goodID == 0) {
+        if (sCurrentTalkMenu->sentGift.goodID == UG_GOOD_NONE) {
             UndergroundTalk_PrintMessage(menu, UndergroundCommon_Text_NextTimeWillBeFine);
             menu->state = TALK_MENU_STATE_DO_SOMETHING_ELSE_PROMPT_AFTER_TEXT;
         } else if (CommInfo_PlayerHasGiftPenalty(menu->linkNetID)) {

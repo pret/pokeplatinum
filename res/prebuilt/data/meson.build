@@ -86,7 +86,6 @@ prebuilt_files = [
     'ug_hole.NCGR',
     'ug_radar.narc',
     'ugroundeffect.naix',
-    'ugroundeffect.narc',
     'UTF16.dat',
     'utility.bin',
     'weather_sys.narc',

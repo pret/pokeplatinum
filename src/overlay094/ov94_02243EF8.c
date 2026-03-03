@@ -12,9 +12,9 @@
 #include "heap.h"
 #include "sound_playback.h"
 #include "sprite.h"
+#include "sys_task_extensions.h"
 #include "sys_task_manager.h"
 #include "touch_screen.h"
-#include "unk_0200679C.h"
 
 typedef struct AvatarAnimationData {
     int state;

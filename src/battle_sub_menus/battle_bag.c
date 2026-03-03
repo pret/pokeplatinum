@@ -32,11 +32,11 @@
 #include "sprite_system.h"
 #include "string_gf.h"
 #include "string_template.h"
+#include "sys_task_extensions.h"
 #include "sys_task_manager.h"
 #include "system.h"
 #include "text.h"
 #include "touch_screen.h"
-#include "unk_0200679C.h"
 
 #include "res/text/bank/battle_bag.h"
 #include "res/text/bank/common_strings.h"

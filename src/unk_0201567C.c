@@ -6,8 +6,8 @@
 #include "bg_window.h"
 #include "hardware_palette.h"
 #include "palette.h"
+#include "sys_task_extensions.h"
 #include "sys_task_manager.h"
-#include "unk_0200679C.h"
 
 static void sub_0201576C(SysTask *param0, void *param1);
 static u8 sub_020157E4(UnkStruct_020157E4 *param0);

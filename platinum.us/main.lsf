@@ -29,7 +29,7 @@ Static main
 	Object main.nef.p/src_sound_playback.c.o
 	Object main.nef.p/src_sound_chatot.c.o
 	Object main.nef.p/src_game_overlay.c.o
-	Object main.nef.p/src_unk_0200679C.c.o
+	Object main.nef.p/src_sys_task_extensions.c.o
 	Object main.nef.p/src_overlay_manager.c.o
 	Object main.nef.p/src_narc.c.o
 	Object main.nef.p/src_graphics.c.o
@@ -244,7 +244,7 @@ Static main
 	Object main.nef.p/src_unk_0205B33C.c.o
 	Object main.nef.p/src_unk_0205C22C.c.o
 	Object main.nef.p/src_appearance.c.o
-	Object main.nef.p/src_unk_0205CA94.c.o
+	Object main.nef.p/src_underground_map_transition.c.o
 	Object main.nef.p/src_field_message.c.o
 	Object main.nef.p/src_map_tile_behavior.c.o
 	Object main.nef.p/src_unk_0205DFC4.c.o

@@ -114,7 +114,7 @@ void Underground_HandleDailyEvents(SaveData *saveData, int daysPassed);
 void Underground_ProgressGiftPenalty(SaveData *saveData, s32 minutes, BOOL hasTimePenalty);
 void Underground_UpdateGiftPenaltyState(SaveData *saveData);
 void Underground_SetGiftPenaltyPrimedFlag(SaveData *saveData);
-void Underground_ClearGiftPenaltyFlag(SaveData *saveData);
+void Underground_ClearGiftPenaltyPrimedFlag(SaveData *saveData);
 BOOL Underground_CanExchangeGifts(SaveData *saveData);
 void Underground_SetUnusedCollectedOrbFlag(Underground *underground);
 void Underground_StoreRegisteredFlagOwnerInfo(Underground *underground, const TrainerInfo *info);

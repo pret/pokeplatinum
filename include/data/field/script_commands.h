@@ -423,7 +423,7 @@ const ScrCmdFunc gFieldScriptCommands[] = {
     ScriptCommandTableEntry(SCRCMD_18C,                                                  ScrCmd_18C)
     ScriptCommandTableEntry(SCRCMD_SHOWSAVINGICON,                                       ScrCmd_ShowSavingIcon)
     ScriptCommandTableEntry(SCRCMD_HIDESAVINGICON,                                       ScrCmd_HideSavingIcon)
-    ScriptCommandTableEntry(SCRCMD_18F,                                                  ScrCmd_18F)
+    ScriptCommandTableEntry(SCRCMD_STORESAVERESULT,                                      ScrCmd_StoreSaveResult)
     ScriptCommandTableEntry(SCRCMD_WAITABPRESSTIME,                                      ScrCmd_WaitABPressTime)
     ScriptCommandTableEntry(SCRCMD_SELECTMOVETUTORPOKEMON,                               ScrCmd_SelectMoveTutorPokemon)
     ScriptCommandTableEntry(SCRCMD_OPENPARTYMENUFORUNIONROOMBATTLE,                      ScrCmd_OpenPartyMenuForUnionRoomBattle)

@@ -273,7 +273,7 @@ void Underground_SetGiftPenaltyPrimedFlag(SaveData *saveData)
     }
 }
 
-void Underground_ClearGiftPenaltyFlag(SaveData *saveData)
+void Underground_ClearGiftPenaltyPrimedFlag(SaveData *saveData)
 {
     Underground *underground = SaveData_GetUnderground(saveData);
 

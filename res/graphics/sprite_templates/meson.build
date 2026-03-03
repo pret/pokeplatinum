@@ -219,6 +219,26 @@ underground_map_transition_dawn_resdat = custom_target('underground_map_transiti
     depfile: 'underground_map_transition_dawn_resdat.d',
 )
 
+underground_map_transition_templates_narc = custom_target('underground_map_transition_templates.narc',
+    output: [
+        'underground_map_transition_templates.narc',
+        'underground_map_transition_templates.naix',
+    ],
+    input: [
+        copy_gen.process(underground_map_transition_resdat),
+        copy_gen.process(underground_map_transition_dawn_resdat),
+    ],
+    command: [
+        nitroarc_exe,
+        '--create',
+        '--index',
+        '--files-from', files('underground_map_transition_templates.order'),
+        '--file', '@OUTPUT0@',
+        '--exclude=*.h',
+        '@PRIVATE_DIR@',
+    ],
+)
+
 
 nitrofs_files += party_menu_resdat
 nitrofs_files += poffin_case_resdat
@@ -228,6 +248,7 @@ nitrofs_files += tower_records_resdat
 nitrofs_files += town_map_resdat
 nitrofs_files += underground_map_transition_resdat
 nitrofs_files += underground_map_transition_dawn_resdat
+nitrofs_files += underground_map_transition_templates_narc
 
 naix_headers += party_menu_resdat[5]
 naix_headers += poffin_case_resdat[5]
@@ -236,3 +257,4 @@ naix_headers += shop_menu_resdat[5]
 naix_headers += tower_records_resdat[5]
 naix_headers += town_map_resdat[5]
 naix_headers += underground_map_transition_resdat[5]
+naix_headers += underground_map_transition_templates_narc[1]

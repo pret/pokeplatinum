@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "constants/field/map_load.h"
+#include "constants/field_base_tiles.h"
 #include "constants/heap.h"
 #include "constants/overworld_weather.h"
 
@@ -62,14 +63,16 @@
 #include "terrain_collision_manager.h"
 #include "trainer_info.h"
 #include "underground.h"
+#include "underground_map_transition.h"
 #include "unk_0203D1B8.h"
 #include "unk_020553DC.h"
 #include "unk_020559DC.h"
 #include "unk_0205B33C.h"
 #include "unk_0205C22C.h"
-#include "unk_0205CA94.h"
 #include "unk_02070428.h"
 #include "vars_flags.h"
+
+#include "res/text/bank/pokemon_center_2f_attendants.h"
 
 FS_EXTERN_OVERLAY(underground);
 
@@ -109,27 +112,38 @@ typedef struct MapChangeWarpData {
     Location nextLocation;
 } MapChangeWarpData;
 
-typedef struct MapChangeUndergroundData {
-    int state;
-    int unk_04;
-    int mapId;
-    int unk_0C;
-    int unk_10;
-    int unk_14;
-    BOOL unk_18;
-    u16 unk_1C;
-    SaveInfoWindow *saveInfoWin;
-    Window unk_24;
-    String *unk_34;
-    u8 unk_38;
-    Menu *unk_3C;
-} MapChangeUndergroundData;
-
 typedef struct MapChangeUnionData {
     int state;
     BOOL unk_04;
     Location location;
 } MapChangeUnionData;
+
+enum EnterUndergroundState {
+    ENTER_UNDERGROUND_INIT = 0,
+    ENTER_UNDERGROUND_INIT_CONFIRM_COMMS_MENU,
+    ENTER_UNDERGROUND_CONFIRM_COMMS,
+    ENTER_UNDERGROUND_SAVE,
+    ENTER_UNDERGROUND_CHECK_SAVE_RESULT,
+    ENTER_UNDERGROUND_CANCEL,
+    ENTER_UNDERGROUND_FADE_OUT_BGM,
+    ENTER_UNDERGROUND_HOLE_ANIM,
+    ENTER_UNDERGROUND_FINISH_MAP,
+    ENTER_UNDERGROUND_LOAD_UNDERGROUND,
+    ENTER_UNDERGROUND_START_MAP,
+    ENTER_UNDERGROUND_DESCEND_ANIM,
+    ENTER_UNDERGROUND_END,
+};
+
+enum ExitUndergroundState {
+    EXIT_UNDERGROUND_INIT = 0,
+    EXIT_UNDERGROUND_FADE_OUT_BGM,
+    EXIT_UNDERGROUND_ASCEND_ANIM,
+    EXIT_UNDERGROUND_FINISH_MAP,
+    EXIT_UNDERGROUND_LOAD_OVERWORLD,
+    EXIT_UNDERGROUND_START_MAP,
+    EXIT_UNDERGROUND_HOLE_ANIM,
+    EXIT_UNDERGROUND_END,
+};
 
 static BOOL FieldTask_ChangeMap(FieldTask *task);
 static BOOL FieldTask_LoadNewGameSpawn(FieldTask *task);
@@ -152,7 +166,7 @@ static BOOL FieldTransition_FinishMapFieldWarp(FieldTask *task);
 static void FieldTransition_StartMapAndFadeInFieldWarp(FieldTask *task);
 static BOOL FieldTransition_StartMapAndFadeInFieldWarpSub(FieldTask *task);
 static void FieldTask_FadeInFieldWarp(FieldTask *task);
-static BOOL sub_0205444C(FieldTask *task, int param1);
+static BOOL FieldTask_StartUndergroundMapTransition(FieldTask *task, enum UGMapTransition param1);
 
 static const MapLoadMode sMapLoadMode[] = {
     { 0x1, FALSE, FALSE, 0x0, FALSE, 0x1, 0x0, 0xC4000 },
@@ -162,14 +176,14 @@ static const MapLoadMode sMapLoadMode[] = {
     { 0x1, TRUE, TRUE, 0x0, TRUE, 0x1, 0x1, 0xA0000 }
 };
 
-static const WindowTemplate Unk_020EC3A0 = {
-    0x3,
-    0x19,
-    0xD,
-    0x6,
-    0x4,
-    0xD,
-    0x21F
+static const WindowTemplate sYesNoWindowTemplate = {
+    .bgLayer = BG_LAYER_MAIN_3,
+    .tilemapLeft = 25,
+    .tilemapTop = 13,
+    .width = YES_NO_MENU_TILE_W,
+    .height = YES_NO_MENU_TILE_H,
+    .palette = 13,
+    .baseTile = BASE_TILE_YES_NO_MENU
 };
 
 static void sub_020530C8(FieldSystem *fieldSystem)
@@ -426,7 +440,7 @@ static void sub_020534BC(FieldSystem *fieldSystem)
 
 static void Location_SetToPlayerLocation(Location *location, const FieldSystem *fieldSystem)
 {
-    Location_Set(location, fieldSystem->location->mapId, -1, Player_GetXPos(fieldSystem->playerAvatar), Player_GetZPos(fieldSystem->playerAvatar), 1);
+    Location_Set(location, fieldSystem->location->mapId, WARP_ID_NONE, Player_GetXPos(fieldSystem->playerAvatar), Player_GetZPos(fieldSystem->playerAvatar), DIR_SOUTH);
 }
 
 static BOOL FieldSystem_IsSaveInUnionRoom(const FieldSystem *fieldSystem)
@@ -1072,158 +1086,144 @@ void FieldSystem_StartMapChangeWarpTask(FieldSystem *fieldSystem, int param1, in
     FieldSystem_CreateTask(fieldSystem, FieldTask_MapChangeWarp, mapChangeWarpData);
 }
 
-void *sub_02053FAC(FieldSystem *fieldSystem)
+MapChangeUndergroundContext *MapChangeUndergroundContext_New(FieldSystem *fieldSystem)
 {
-    MapChangeUndergroundData *mapChangeUndergroundData;
+    MapChangeUndergroundContext *ctx;
     Location *location = FieldOverworldState_GetSpecialLocation(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
-    mapChangeUndergroundData = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(MapChangeUndergroundData));
-    mapChangeUndergroundData->state = 0;
-    mapChangeUndergroundData->unk_04 = 0;
+    ctx = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(MapChangeUndergroundContext));
+    ctx->state = 0;
+    ctx->transitionState = 0;
 
     if (fieldSystem->mapLoadType == MAP_LOAD_TYPE_UNDERGROUND) {
-        mapChangeUndergroundData->mapId = location->mapId;
-        mapChangeUndergroundData->unk_0C = -1;
-        mapChangeUndergroundData->unk_10 = location->x;
-        mapChangeUndergroundData->unk_14 = location->z;
+        ctx->mapId = location->mapId;
+        ctx->dummy = -1;
+        ctx->destX = location->x;
+        ctx->destZ = location->z;
     } else {
         Location_SetToPlayerLocation(location, fieldSystem);
-        mapChangeUndergroundData->mapId = MAP_HEADER_UNDERGROUND;
-        mapChangeUndergroundData->unk_0C = -1;
+        ctx->mapId = MAP_HEADER_UNDERGROUND;
+        ctx->dummy = -1;
 
-        {
-            int v2, v3;
-            int v4, v5;
+        int matrixX = location->x / MAP_TILES_COUNT_X - 1;
+        int matrixZ = location->z / MAP_TILES_COUNT_Z - 6;
 
-            v4 = (location->x / 32) - 1;
-            v5 = (location->z / 32) - 6;
+        GF_ASSERT(matrixX >= 0);
+        GF_ASSERT(matrixZ >= 0);
 
-            GF_ASSERT(v4 >= 0);
-            GF_ASSERT(v5 >= 0);
+        int x = matrixX % 2 == 0 ? 8 : 23;
+        int z = matrixZ % 2 == 0 ? 8 : 23;
 
-            if (v4 % 2 == 0) {
-                v2 = 8;
-            } else {
-                v2 = 23;
-            }
-
-            if (v5 % 2 == 0) {
-                v3 = 8;
-            } else {
-                v3 = 23;
-            }
-
-            v4 = (v4 / 2) + 1;
-            v5 = (v5 / 2) + 2 + 1;
-            mapChangeUndergroundData->unk_10 = v4 * 32 + v2;
-            mapChangeUndergroundData->unk_14 = v5 * 32 + v3;
-        }
+        matrixX = matrixX / 2 + SECRET_BASE_WIDTH / MAP_TILES_COUNT_X;
+        matrixZ = matrixZ / 2 + SECRET_BASE_DEPTH * 2 / MAP_TILES_COUNT_Z + 1;
+        ctx->destX = matrixX * MAP_TILES_COUNT_X + x;
+        ctx->destZ = matrixZ * MAP_TILES_COUNT_Z + z;
     }
 
-    return mapChangeUndergroundData;
+    return ctx;
 }
 
 void FieldTask_SetUndergroundMapChange(FieldSystem *fieldSystem)
 {
-    MapChangeUndergroundData *mapChangeUndergroundData = sub_02053FAC(fieldSystem);
+    MapChangeUndergroundContext *ctx = MapChangeUndergroundContext_New(fieldSystem);
 
-    if (mapChangeUndergroundData == NULL) {
+    if (ctx == NULL) {
         return;
     }
 
-    FieldSystem_CreateTask(fieldSystem, FieldMapChange_GetMapChangeUndergroundTask(fieldSystem), mapChangeUndergroundData);
+    FieldSystem_CreateTask(fieldSystem, FieldMapChange_GetMapChangeUndergroundTask(fieldSystem), ctx);
 }
 
 BOOL FieldTask_MapChangeToUnderground(FieldTask *task)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
-    MapChangeUndergroundData *mapChangeUndergroundData = FieldTask_GetEnv(task);
+    MapChangeUndergroundContext *ctx = FieldTask_GetEnv(task);
 
-    switch (mapChangeUndergroundData->state) {
-    case 0:
+    switch (ctx->state) {
+    case ENTER_UNDERGROUND_INIT:
         MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEMON_CENTER_2F_ATTENDANTS, HEAP_ID_FIELD2);
 
-        mapChangeUndergroundData->unk_34 = MessageLoader_GetNewString(msgLoader, 124);
+        ctx->string = MessageLoader_GetNewString(msgLoader, PokeCenter2FAttendants_Text_CommsWillBeLaunched);
         MessageLoader_Free(msgLoader);
 
-        FieldMessage_AddWindow(fieldSystem->bgConfig, &mapChangeUndergroundData->unk_24, 3);
-        FieldMessage_DrawWindow(&mapChangeUndergroundData->unk_24, SaveData_GetOptions(fieldSystem->saveData));
-        mapChangeUndergroundData->unk_38 = FieldMessage_Print(&mapChangeUndergroundData->unk_24, mapChangeUndergroundData->unk_34, SaveData_GetOptions(fieldSystem->saveData), 1);
-        mapChangeUndergroundData->state = 1;
+        FieldMessage_AddWindow(fieldSystem->bgConfig, &ctx->window, BG_LAYER_MAIN_3);
+        FieldMessage_DrawWindow(&ctx->window, SaveData_GetOptions(fieldSystem->saveData));
+        ctx->printerID = FieldMessage_Print(&ctx->window, ctx->string, SaveData_GetOptions(fieldSystem->saveData), TRUE);
+        ctx->state = ENTER_UNDERGROUND_INIT_CONFIRM_COMMS_MENU;
         break;
-    case 1:
-        if (FieldMessage_FinishedPrinting(mapChangeUndergroundData->unk_38) == 1) {
-            String_Free(mapChangeUndergroundData->unk_34);
-            LoadStandardWindowGraphics(fieldSystem->bgConfig, BG_LAYER_MAIN_3, 1024 - (18 + 12) - 9, 11, 0, HEAP_ID_FIELD2);
-            mapChangeUndergroundData->unk_3C = Menu_MakeYesNoChoice(fieldSystem->bgConfig, &Unk_020EC3A0, 1024 - (18 + 12) - 9, 11, 11);
-            mapChangeUndergroundData->state = 2;
+    case ENTER_UNDERGROUND_INIT_CONFIRM_COMMS_MENU:
+        if (FieldMessage_FinishedPrinting(ctx->printerID) == TRUE) {
+            String_Free(ctx->string);
+            LoadStandardWindowGraphics(fieldSystem->bgConfig, BG_LAYER_MAIN_3, BASE_TILE_STANDARD_WINDOW_FRAME, 11, STANDARD_WINDOW_SYSTEM, HEAP_ID_FIELD2);
+            ctx->menu = Menu_MakeYesNoChoice(fieldSystem->bgConfig, &sYesNoWindowTemplate, BASE_TILE_STANDARD_WINDOW_FRAME, 11, HEAP_ID_FIELD2);
+            ctx->state = ENTER_UNDERGROUND_CONFIRM_COMMS;
         }
         break;
-    case 2:
-        switch (Menu_ProcessInputAndHandleExit(mapChangeUndergroundData->unk_3C, 11)) {
-        case 0:
-            Window_EraseMessageBox(&mapChangeUndergroundData->unk_24, 0);
-            Window_Remove(&mapChangeUndergroundData->unk_24);
-            mapChangeUndergroundData->state = 3;
+    case ENTER_UNDERGROUND_CONFIRM_COMMS:
+        switch (Menu_ProcessInputAndHandleExit(ctx->menu, HEAP_ID_FIELD2)) {
+        case MENU_YES:
+            Window_EraseMessageBox(&ctx->window, FALSE);
+            Window_Remove(&ctx->window);
+            ctx->state = ENTER_UNDERGROUND_SAVE;
             break;
-        case 0xfffffffe:
-            Window_EraseMessageBox(&mapChangeUndergroundData->unk_24, 0);
-            Window_Remove(&mapChangeUndergroundData->unk_24);
-            mapChangeUndergroundData->state = 5;
+        case MENU_CANCEL:
+            Window_EraseMessageBox(&ctx->window, FALSE);
+            Window_Remove(&ctx->window);
+            ctx->state = ENTER_UNDERGROUND_CANCEL;
         }
         break;
-    case 3:
+    case ENTER_UNDERGROUND_SAVE:
         if (SaveData_OverwriteCheck(fieldSystem->saveData)) {
             ScriptManager_Start(task, SCRIPT_ID(COMMON_SCRIPTS, 34), NULL, NULL);
         } else {
             Underground_SetGiftPenaltyPrimedFlag(fieldSystem->saveData);
-            mapChangeUndergroundData->saveInfoWin = SaveInfoWindow_New(fieldSystem, HEAP_ID_FIELD2, BG_LAYER_MAIN_3);
-            SaveInfoWindow_Draw(mapChangeUndergroundData->saveInfoWin);
-            mapChangeUndergroundData->unk_1C = 0;
-            ScriptManager_Start(task, SCRIPT_ID(COMMON_SCRIPTS, 5), NULL, &mapChangeUndergroundData->unk_1C);
+            ctx->saveInfoWin = SaveInfoWindow_New(fieldSystem, HEAP_ID_FIELD2, BG_LAYER_MAIN_3);
+            SaveInfoWindow_Draw(ctx->saveInfoWin);
+            ctx->saveResult = 0;
+            ScriptManager_Start(task, SCRIPT_ID(COMMON_SCRIPTS, 5), NULL, &ctx->saveResult);
         }
 
-        mapChangeUndergroundData->state = 4;
+        ctx->state = ENTER_UNDERGROUND_CHECK_SAVE_RESULT;
         break;
-    case 4:
+    case ENTER_UNDERGROUND_CHECK_SAVE_RESULT:
         if (SaveData_OverwriteCheck(fieldSystem->saveData)) {
-            mapChangeUndergroundData->state = 5;
+            ctx->state = ENTER_UNDERGROUND_CANCEL;
         } else {
-            SaveInfoWindow_Erase(mapChangeUndergroundData->saveInfoWin);
-            SaveInfoWindow_Free(mapChangeUndergroundData->saveInfoWin);
+            SaveInfoWindow_Erase(ctx->saveInfoWin);
+            SaveInfoWindow_Free(ctx->saveInfoWin);
 
-            if (mapChangeUndergroundData->unk_1C == 0) {
-                mapChangeUndergroundData->state = 5;
+            if (ctx->saveResult == 0) {
+                ctx->state = ENTER_UNDERGROUND_CANCEL;
             } else {
-                mapChangeUndergroundData->state = 6;
+                ctx->state = ENTER_UNDERGROUND_FADE_OUT_BGM;
             }
         }
         break;
-    case 5:
+    case ENTER_UNDERGROUND_CANCEL:
         MapObjectMan_UnpauseAllMovement(fieldSystem->mapObjMan);
-        Heap_Free(mapChangeUndergroundData);
-        return 1;
-    case 6:
+        Heap_Free(ctx);
+        return TRUE;
+    case ENTER_UNDERGROUND_FADE_OUT_BGM:
         Sound_FadeOutBGM(0, 30);
-        mapChangeUndergroundData->state++;
+        ctx->state++;
         break;
-    case 7:
-        if (sub_0205444C(task, 0)) {
-            mapChangeUndergroundData->state++;
+    case ENTER_UNDERGROUND_HOLE_ANIM:
+        if (FieldTask_StartUndergroundMapTransition(task, UG_MAP_TRANSITION_ENTER_START)) {
+            ctx->state++;
         }
         break;
-    case 8:
+    case ENTER_UNDERGROUND_FINISH_MAP:
         FieldTransition_FinishMap(task);
-        mapChangeUndergroundData->state++;
+        ctx->state++;
         break;
-    case 9:
+    case ENTER_UNDERGROUND_LOAD_UNDERGROUND:
         fieldSystem->mapLoadType = MAP_LOAD_TYPE_UNDERGROUND;
-        Overlay_LoadByID(FS_OVERLAY_ID(underground), 2);
+        Overlay_LoadByID(FS_OVERLAY_ID(underground), OVERLAY_LOAD_ASYNC);
         CommManUnderground_InitUnderground(fieldSystem);
-        FieldTask_ChangeMapToLocation(task, mapChangeUndergroundData->mapId, -1, mapChangeUndergroundData->unk_10, mapChangeUndergroundData->unk_14, 1);
-        mapChangeUndergroundData->state++;
+        FieldTask_ChangeMapToLocation(task, ctx->mapId, WARP_ID_NONE, ctx->destX, ctx->destZ, DIR_SOUTH);
+        ctx->state++;
         break;
-    case 10:
+    case ENTER_UNDERGROUND_START_MAP:
         if (Sound_IsFadeActive()) {
             break;
         }
@@ -1231,66 +1231,65 @@ BOOL FieldTask_MapChangeToUnderground(FieldTask *task)
         Sound_SetScene(SOUND_SCENE_NONE);
         Sound_ClearSpecialBGM(fieldSystem);
         FieldTransition_StartMap(task);
-        mapChangeUndergroundData->state++;
+        ctx->state++;
         break;
-    case 11:
-        if (sub_0205444C(task, 1)) {
+    case ENTER_UNDERGROUND_DESCEND_ANIM:
+        if (FieldTask_StartUndergroundMapTransition(task, UG_MAP_TRANSITION_ENTER_ARRIVE)) {
             CommManUnderground_EnterUnderground();
             fieldSystem->ugTopScreenCtx = UndergroundTopScreen_StartTask(fieldSystem);
             BrightnessController_StartTransition(30, 0, -16, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ, BRIGHTNESS_SUB_SCREEN);
-            mapChangeUndergroundData->state++;
+            ctx->state++;
         }
         break;
-    case 12:
+    case ENTER_UNDERGROUND_END:
         if (BrightnessController_IsTransitionComplete(BRIGHTNESS_SUB_SCREEN)) {
             SecretBases_SetEntranceGraphicsEnabled(TRUE);
-            Heap_Free(mapChangeUndergroundData);
-            return 1;
+            Heap_Free(ctx);
+            return TRUE;
         }
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
 BOOL FieldTask_MapChangeFromUnderground(FieldTask *task)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
-    MapChangeUndergroundData *mapChangeUndergroundData = FieldTask_GetEnv(task);
-    int v2 = 0;
+    MapChangeUndergroundContext *ctx = FieldTask_GetEnv(task);
 
-    switch (mapChangeUndergroundData->state) {
-    case 0:
+    switch (ctx->state) {
+    case EXIT_UNDERGROUND_INIT:
         SecretBases_SetEntranceGraphicsEnabled(FALSE);
         CommManUnderground_ExitUnderground();
         UndergroundTopScreen_EndTask(fieldSystem->ugTopScreenCtx);
         BrightnessController_StartTransition(30, -16, 0, GX_BLEND_PLANEMASK_BG0, BRIGHTNESS_SUB_SCREEN);
-        mapChangeUndergroundData->state++;
+        ctx->state++;
         break;
-    case 1:
+    case EXIT_UNDERGROUND_FADE_OUT_BGM:
         if (BrightnessController_IsTransitionComplete(BRIGHTNESS_SUB_SCREEN)) {
             if (fieldSystem->ugTopScreenCtx == NULL && !CommSys_IsInitialized()) {
                 Sound_FadeOutBGM(0, 30);
-                mapChangeUndergroundData->state++;
+                ctx->state++;
             }
         }
         break;
-    case 2:
-        if (sub_0205444C(task, 2)) {
-            mapChangeUndergroundData->state++;
+    case EXIT_UNDERGROUND_ASCEND_ANIM:
+        if (FieldTask_StartUndergroundMapTransition(task, UG_MAP_TRANSITION_EXIT_START)) {
+            ctx->state++;
         }
         break;
-    case 3:
+    case EXIT_UNDERGROUND_FINISH_MAP:
         FieldTransition_FinishMap(task);
-        mapChangeUndergroundData->state++;
+        ctx->state++;
         break;
-    case 4:
+    case EXIT_UNDERGROUND_LOAD_OVERWORLD:
         fieldSystem->mapLoadType = MAP_LOAD_TYPE_OVERWORLD;
         Overlay_UnloadByID(FS_OVERLAY_ID(underground));
-        FieldTask_ChangeMapToLocation(task, mapChangeUndergroundData->mapId, -1, mapChangeUndergroundData->unk_10, mapChangeUndergroundData->unk_14, 1);
-        mapChangeUndergroundData->state++;
+        FieldTask_ChangeMapToLocation(task, ctx->mapId, WARP_ID_NONE, ctx->destX, ctx->destZ, DIR_SOUTH);
+        ctx->state++;
         break;
-    case 5:
+    case EXIT_UNDERGROUND_START_MAP:
         if (Sound_IsFadeActive()) {
             break;
         }
@@ -1298,20 +1297,19 @@ BOOL FieldTask_MapChangeFromUnderground(FieldTask *task)
         Sound_SetScene(SOUND_SCENE_NONE);
         Sound_ClearSpecialBGM(fieldSystem);
         FieldTransition_StartMap(task);
-        mapChangeUndergroundData->state++;
+        ctx->state++;
         break;
-    case 6:
-        if (sub_0205444C(task, 3)) {
-            mapChangeUndergroundData->state++;
+    case EXIT_UNDERGROUND_HOLE_ANIM:
+        if (FieldTask_StartUndergroundMapTransition(task, UG_MAP_TRANSITION_EXIT_ARRIVE)) {
+            ctx->state++;
         }
         break;
-    case 7:
-        Heap_Free(mapChangeUndergroundData);
-        return 1;
-        break;
+    case EXIT_UNDERGROUND_END:
+        Heap_Free(ctx);
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 FieldTaskFunc FieldMapChange_GetMapChangeUndergroundTask(const FieldSystem *fieldSystem)
@@ -1321,32 +1319,32 @@ FieldTaskFunc FieldMapChange_GetMapChangeUndergroundTask(const FieldSystem *fiel
     } else if (fieldSystem->mapLoadType == MAP_LOAD_TYPE_UNDERGROUND) {
         return FieldTask_MapChangeFromUnderground;
     } else {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         return NULL;
     }
 }
 
-static BOOL sub_0205444C(FieldTask *task, int param1)
+static BOOL FieldTask_StartUndergroundMapTransition(FieldTask *task, enum UGMapTransition transition)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
-    MapChangeUndergroundData *mapChangeUndergroundData = FieldTask_GetEnv(task);
-    BOOL ret = 0;
+    MapChangeUndergroundContext *ctx = FieldTask_GetEnv(task);
+    BOOL isDone = FALSE;
 
-    switch (mapChangeUndergroundData->unk_04) {
+    switch (ctx->transitionState) {
     case 0:
-        mapChangeUndergroundData->unk_18 = 0;
-        sub_0205CFDC(fieldSystem, param1, &mapChangeUndergroundData->unk_18);
-        mapChangeUndergroundData->unk_04++;
+        ctx->animationDone = FALSE;
+        UndergroundMapTransition_StartTransition(fieldSystem, transition, &ctx->animationDone);
+        ctx->transitionState++;
         break;
     case 1:
-        if (mapChangeUndergroundData->unk_18) {
-            mapChangeUndergroundData->unk_04 = 0;
-            ret = 1;
+        if (ctx->animationDone) {
+            ctx->transitionState = 0;
+            isDone = TRUE;
         }
         break;
     }
 
-    return ret;
+    return isDone;
 }
 
 static BOOL sub_02054494(FieldTask *task)

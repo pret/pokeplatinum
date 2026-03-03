@@ -2304,9 +2304,9 @@
     .short SCRCMD_HIDESAVINGICON
     .endm
 
-    .macro ScrCmd_18F arg0
-    .short SCRCMD_18F
-    .short \arg0
+    .macro StoreSaveResult result
+    .short SCRCMD_STORESAVERESULT
+    .short \result
     .endm
 
     .macro WaitABPressTime frames

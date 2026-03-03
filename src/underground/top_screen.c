@@ -25,9 +25,9 @@
 #include "sprite_transfer.h"
 #include "sprite_util.h"
 #include "string_gf.h"
+#include "sys_task_extensions.h"
 #include "sys_task_manager.h"
 #include "text.h"
-#include "unk_0200679C.h"
 
 #include "res/graphics/trap_effects/trap_effects.naix"
 #include "res/graphics/underground_top_screen/underground_top_screen.naix"

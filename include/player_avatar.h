@@ -24,7 +24,7 @@ enum PlayerAvatarFlagUnk00 {
     UNK_00_0 = (1 << 0),
     UNK_00_1 = (1 << 1),
     UNK_00_2 = (1 << 2),
-    UNK_00_IS_ON_CYCLING_ROAD = (1 << 3),
+    UNK_00_ON_CYCLING_ROAD = (1 << 3),
     UNK_00_ESCAPED_FROM_DEEP_MUD = (1 << 4),
     UNK_00_5 = (1 << 5),
     UNK_00_6 = (1 << 6),
@@ -75,7 +75,7 @@ void sub_0205EB08(PlayerAvatar *playerAvatar, int param1);
 int PlayerAvatar_MoveState(const PlayerAvatar *playerAvatar);
 void sub_0205EB10(PlayerAvatar *playerAvatar, int param1);
 int Player_MoveState(const PlayerAvatar *playerAvatar);
-void PlayerAvatar_SetVisible(PlayerAvatar *playerAvatar, BOOL hidden);
+void PlayerAvatar_SetVisible(PlayerAvatar *playerAvatar, BOOL visible);
 void PlayerAvatar_SetMapObject(PlayerAvatar *playerAvatar, MapObject *param1);
 MapObject *Player_MapObject(PlayerAvatar *playerAvatar);
 const MapObject *PlayerAvatar_ConstMapObject(const PlayerAvatar *playerAvatar);
@@ -124,8 +124,8 @@ void sub_0205EF6C(PlayerAvatar *playerAvatar, int param1);
 BOOL sub_0205EF84(PlayerAvatar *playerAvatar);
 void sub_0205EF98(PlayerAvatar *playerAvatar, int param1);
 BOOL sub_0205EFB0(PlayerAvatar *playerAvatar);
-void PlayerAvatar_SetFlagIsOnCyclingRoad(PlayerAvatar *playerAvatar, int param1);
-BOOL PlayerAvatar_GetFlagIsOnCyclingRoad(PlayerAvatar *playerAvatar);
+void PlayerAvatar_SetOnCyclingRoad(PlayerAvatar *playerAvatar, BOOL flag);
+BOOL PlayerAvatar_IsOnCyclingRoad(PlayerAvatar *playerAvatar);
 void PlayerAvatar_SetEscapedFromDeepMud(PlayerAvatar *playerAvatar, BOOL flag);
 BOOL PlayerAvatar_CheckEscapedFromDeepMud(PlayerAvatar *playerAvatar);
 void sub_0205F01C(PlayerAvatar *playerAvatar, BOOL param1);

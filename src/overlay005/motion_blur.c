@@ -4,8 +4,8 @@
 #include <string.h>
 
 #include "sys_task.h"
+#include "sys_task_extensions.h"
 #include "sys_task_manager.h"
-#include "unk_0200679C.h"
 
 #define MOTION_BLUR_INIT_BLEND_COEFF_A 16
 #define MOTION_BLUR_INIT_BLEND_COEFF_B 0

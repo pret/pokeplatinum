@@ -155,7 +155,7 @@ typedef struct ScriptManager {
     int playerDir;
     MapObject *targetObject;
     MapObject *cameraObject;
-    u16 *saveType; // the result of the check to determine what type of save is required in ScrCmd_CheckSaveType
+    u16 *saveType; // only defined if ScrCmd_StoreSaveResult is called; 0 here can mean overwrite or that the player canceled
     ScriptContext *ctx[NUM_SCRIPT_CONTEXTS];
     StringTemplate *strTemplate;
     String *msgBuf;

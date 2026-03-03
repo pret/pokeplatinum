@@ -498,7 +498,7 @@ static BOOL ScrCmd_SetObjectEventDir(ScriptContext *ctx);
 static BOOL ScrCmd_SetWarpEventPos(ScriptContext *ctx);
 static BOOL ScrCmd_SetBgEventPos(ScriptContext *ctx);
 static BOOL ScrCmd_18C(ScriptContext *ctx);
-static BOOL ScrCmd_18F(ScriptContext *ctx);
+static BOOL ScrCmd_StoreSaveResult(ScriptContext *ctx);
 static BOOL ScrCmd_LoadDoorAnimation(ScriptContext *ctx);
 static BOOL ScrCmd_WaitForAnimation(ScriptContext *ctx);
 static BOOL ScrCmd_UnloadAnimation(ScriptContext *ctx);
@@ -3736,7 +3736,7 @@ static BOOL ScrCmd_SetCyclingBGM(ScriptContext *ctx)
 
 static BOOL ScrCmd_ForceBicycling(ScriptContext *ctx)
 {
-    PlayerAvatar_SetFlagIsOnCyclingRoad(ctx->fieldSystem->playerAvatar, ScriptContext_ReadByte(ctx));
+    PlayerAvatar_SetOnCyclingRoad(ctx->fieldSystem->playerAvatar, ScriptContext_ReadByte(ctx));
     return FALSE;
 }
 
@@ -4640,13 +4640,13 @@ static BOOL ScrCmd_18C(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_18F(ScriptContext *ctx)
+static BOOL ScrCmd_StoreSaveResult(ScriptContext *ctx)
 {
     u16 **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_SAVE_TYPE);
-    u16 v1 = ScriptContext_GetVar(ctx);
+    u16 saveResult = ScriptContext_GetVar(ctx);
 
     if (*v0 != NULL) {
-        **v0 = v1;
+        **v0 = saveResult;
     }
 
     return FALSE;

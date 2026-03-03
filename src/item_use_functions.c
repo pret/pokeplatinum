@@ -344,7 +344,7 @@ static void UseExplorerKitFromMenu(ItemMenuUseContext *usageContext, const ItemU
     FieldSystem_StartFieldMap(fieldSystem);
 
     menu->callback = FieldTask_MapChangeToUnderground;
-    menu->taskData = sub_02053FAC(fieldSystem);
+    menu->taskData = MapChangeUndergroundContext_New(fieldSystem);
     menu->state = START_MENU_STATE_NEW_TASK;
 
     fieldSystem->menuCursorPos = 0;
@@ -352,10 +352,10 @@ static void UseExplorerKitFromMenu(ItemMenuUseContext *usageContext, const ItemU
 
 static BOOL UseExplorerKitInField(ItemFieldUseContext *usageContext)
 {
-    void *v0 = sub_02053FAC(usageContext->fieldSystem);
+    MapChangeUndergroundContext *ctx = MapChangeUndergroundContext_New(usageContext->fieldSystem);
 
     MapObjectMan_PauseAllMovement(usageContext->fieldSystem->mapObjMan);
-    FieldSystem_CreateTask(usageContext->fieldSystem, FieldTask_MapChangeToUnderground, v0);
+    FieldSystem_CreateTask(usageContext->fieldSystem, FieldTask_MapChangeToUnderground, ctx);
 
     usageContext->fieldSystem->menuCursorPos = 0;
     return FALSE;
@@ -367,11 +367,11 @@ static enum ItemUseCheckResult CanUseExplorerKit(const ItemUseContext *usageCont
         return ITEM_USE_CANNOT_USE_GENERIC;
     }
 
-    if (!(MapHeader_IsOnMainMatrix(usageContext->mapHeaderID))) {
+    if (!MapHeader_IsOnMainMatrix(usageContext->mapHeaderID)) {
         return ITEM_USE_CANNOT_USE_GENERIC;
     }
 
-    if (PlayerAvatar_GetFlagIsOnCyclingRoad(usageContext->playerAvatar) == TRUE) {
+    if (PlayerAvatar_IsOnCyclingRoad(usageContext->playerAvatar) == TRUE) {
         return ITEM_USE_CANNOT_USE_GENERIC;
     }
 
@@ -380,7 +380,7 @@ static enum ItemUseCheckResult CanUseExplorerKit(const ItemUseContext *usageCont
         return ITEM_USE_CANNOT_USE_GENERIC;
     }
 
-    if (PlayerAvatar_GetPlayerState(usageContext->playerAvatar) == 0x2) {
+    if (PlayerAvatar_GetPlayerState(usageContext->playerAvatar) == PLAYER_STATE_SURFING) {
         return ITEM_USE_CANNOT_USE_GENERIC;
     }
 
@@ -392,15 +392,12 @@ static enum ItemUseCheckResult CanUseExplorerKit(const ItemUseContext *usageCont
         return ITEM_USE_CANNOT_USE_GENERIC;
     }
 
-    {
-        u16 v0, v1;
+    u16 x = Player_GetXPos(usageContext->fieldSystem->playerAvatar);
+    u16 z = Player_GetZPos(usageContext->fieldSystem->playerAvatar);
 
-        v0 = Player_GetXPos(usageContext->fieldSystem->playerAvatar);
-        v1 = Player_GetZPos(usageContext->fieldSystem->playerAvatar);
-
-        if (MapHeaderData_IsAnyObjectEventAtPos(usageContext->fieldSystem, v0, v1) == FALSE) {
-            return ITEM_USE_CANNOT_USE_GENERIC;
-        }
+    // doesn't match as !MapHeaderData_IsPosFreeOfObjectEvents
+    if (MapHeaderData_IsPosFreeOfObjectEvents(usageContext->fieldSystem, x, z) == FALSE) {
+        return ITEM_USE_CANNOT_USE_GENERIC;
     }
 
     return ITEM_USE_CAN_USE;
@@ -477,7 +474,7 @@ static enum ItemUseCheckResult CanUseBicycle(const ItemUseContext *usageContext)
         return ITEM_USE_CANNOT_DISMOUNT;
     }
 
-    if (PlayerAvatar_GetFlagIsOnCyclingRoad(usageContext->playerAvatar) == TRUE) {
+    if (PlayerAvatar_IsOnCyclingRoad(usageContext->playerAvatar) == TRUE) {
         return ITEM_USE_CANNOT_DISMOUNT;
     }
 

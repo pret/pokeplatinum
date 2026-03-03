@@ -732,18 +732,18 @@ BOOL sub_0205EFB0(PlayerAvatar *playerAvatar)
     return FALSE;
 }
 
-void PlayerAvatar_SetFlagIsOnCyclingRoad(PlayerAvatar *playerAvatar, int flag)
+void PlayerAvatar_SetOnCyclingRoad(PlayerAvatar *playerAvatar, BOOL flag)
 {
     if (flag == TRUE) {
-        PlayerAvatar_SetFlagUnk_00(playerAvatar, UNK_00_IS_ON_CYCLING_ROAD);
+        PlayerAvatar_SetFlagUnk_00(playerAvatar, UNK_00_ON_CYCLING_ROAD);
     } else {
-        PlayerAvatar_ClearFlagUnk_00(playerAvatar, UNK_00_IS_ON_CYCLING_ROAD);
+        PlayerAvatar_ClearFlagUnk_00(playerAvatar, UNK_00_ON_CYCLING_ROAD);
     }
 }
 
-BOOL PlayerAvatar_GetFlagIsOnCyclingRoad(PlayerAvatar *playerAvatar)
+BOOL PlayerAvatar_IsOnCyclingRoad(PlayerAvatar *playerAvatar)
 {
-    if (PlayerAvatar_GetFlagUnk_00(playerAvatar, UNK_00_IS_ON_CYCLING_ROAD)) {
+    if (PlayerAvatar_GetFlagUnk_00(playerAvatar, UNK_00_ON_CYCLING_ROAD)) {
         return TRUE;
     }
 

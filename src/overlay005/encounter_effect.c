@@ -37,8 +37,8 @@
 #include "sprite_transfer.h"
 #include "sprite_util.h"
 #include "sys_task.h"
+#include "sys_task_extensions.h"
 #include "sys_task_manager.h"
-#include "unk_0200679C.h"
 #include "unk_02054884.h"
 
 enum ScreenFlashState {

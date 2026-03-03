@@ -805,7 +805,7 @@ void UndergroundMan_UnpauseResources(void)
 void UndergroundMan_FreeAllResources(void)
 {
     if (sUndergroundMan != NULL) {
-        Underground_ClearGiftPenaltyFlag(sUndergroundMan->fieldSystem->saveData);
+        Underground_ClearGiftPenaltyPrimedFlag(sUndergroundMan->fieldSystem->saveData);
         SecretBasesEnv_Free();
         TrapsEnv_Free();
         CommPlayerMan_Delete(TRUE);

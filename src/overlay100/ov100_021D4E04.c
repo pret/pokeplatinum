@@ -14,8 +14,8 @@
 #include "inlines.h"
 #include "screen_scroll_manager.h"
 #include "sys_task.h"
+#include "sys_task_extensions.h"
 #include "sys_task_manager.h"
-#include "unk_0200679C.h"
 
 typedef void (*UnkFuncPtr_ov104_0223F174)(void *);
 
