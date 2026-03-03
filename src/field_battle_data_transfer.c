@@ -401,7 +401,7 @@ void FieldBattleDTO_InitWithPartyOrder(FieldBattleDTO *dto, const FieldSystem *f
         int unionAppearance = TrainerInfo_Appearance(trainerInfo);
         int unionGender = TrainerInfo_Gender(trainerInfo);
 
-        dto->trainer[BATTLER_PLAYER_1].header.trainerType = Appearance_GetTrainerClass(unionGender, unionAppearance, 1);
+        dto->trainer[BATTLER_PLAYER_1].header.trainerType = Appearance_GetData(unionGender, unionAppearance, APPEARANCE_DATA_TRAINER_CLASS_2);
         CharCode_Copy(dto->trainer[BATTLER_PLAYER_1].name, TrainerInfo_Name(dto->trainerInfo[BATTLER_PLAYER_1]));
         dto->trainer[BATTLER_PLAYER_2] = dto->trainer[BATTLER_PLAYER_1];
     } else {

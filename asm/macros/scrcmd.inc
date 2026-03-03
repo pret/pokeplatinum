@@ -1991,7 +1991,7 @@
     .short 340
     .endm
 
-    .macro GetAppearanceVariantTrainerClass variant, destVar
+    .macro GetTrainerInfoTrainerClass variant, destVar
     .short 341
     .short \variant
     .short \destVar

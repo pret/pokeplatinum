@@ -247,7 +247,7 @@ BOOL ScrCmd_BufferTrainerClassFromAppearance(ScriptContext *ctx)
     StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 templateArg = ScriptContext_ReadByte(ctx);
 
-    int trainerClass = Appearance_GetTrainerClass(TrainerInfo_Gender(trainerInfo), TrainerInfo_Appearance(trainerInfo), 2);
+    int trainerClass = Appearance_GetData(TrainerInfo_Gender(trainerInfo), TrainerInfo_Appearance(trainerInfo), APPEARANCE_DATA_TRAINER_CLASS_1);
     StringTemplate_SetTrainerClassNameWithArticle(*strTemplate, templateArg, trainerClass);
 
     return FALSE;

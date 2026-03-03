@@ -12,7 +12,13 @@
 #define APPEARANCES_COUNT 8
 #define VARIANTS_COUNT    4
 
-static const int sTrainerAppearances[][3] = {
+typedef struct Appearance {
+    int index;
+    int class1;
+    int class2;
+} Appearance;
+
+static const Appearance sTrainerAppearances[APPEARANCES_COUNT * 2] = {
     // male appearances
     { 3, TRAINER_CLASS_SCHOOL_KID_MALE, TRAINER_CLASS_SCHOOL_KID_MALE },
     { 5, TRAINER_CLASS_BUG_CATCHER, TRAINER_CLASS_BUG_CATCHER },
@@ -34,7 +40,7 @@ static const int sTrainerAppearances[][3] = {
     { 63, TRAINER_CLASS_LADY, TRAINER_CLASS_LADY }
 };
 
-static const int sAppearanceShuffleTable[][VARIANTS_COUNT] = {
+static const int sAppearanceShuffleTable[APPEARANCES_COUNT][VARIANTS_COUNT] = {
     { 0, 1, 2, 3 },
     { 1, 6, 7, 0 },
     { 2, 3, 4, 5 },
@@ -52,7 +58,7 @@ void Appearance_LoadVariants(u32 trainerId, int trainerGender, StringTemplate *s
 
     for (variant = 0; variant < VARIANTS_COUNT; variant++) {
         int appearanceIndex = sAppearanceShuffleTable[rnd][variant] + APPEARANCES_COUNT * trainerGender;
-        StringTemplate_SetTrainerClassName(stringTemplate, variant, sTrainerAppearances[appearanceIndex][1]);
+        StringTemplate_SetTrainerClassName(stringTemplate, variant, sTrainerAppearances[appearanceIndex].class1);
     }
 }
 
@@ -61,15 +67,13 @@ int Appearance_CalculateFromTrainerInfo(u32 trainerId, int trainerGender, u32 va
     int rnd = trainerId % APPEARANCES_COUNT;
     int appearanceIndex = sAppearanceShuffleTable[rnd][variant] + APPEARANCES_COUNT * trainerGender;
 
-    return sTrainerAppearances[appearanceIndex][0];
+    return sTrainerAppearances[appearanceIndex].index;
 }
 
 static int GetAppearanceIndex(int gender, int appearance)
 {
-    int i;
-
-    for (i = 0; i < APPEARANCES_COUNT; i++) {
-        if (sTrainerAppearances[i + gender * APPEARANCES_COUNT][0] == appearance) {
+    for (int i = 0; i < APPEARANCES_COUNT; i++) {
+        if (sTrainerAppearances[i + gender * APPEARANCES_COUNT].index == appearance) {
             return i + gender * APPEARANCES_COUNT;
         }
     }
@@ -82,25 +86,21 @@ int Appearance_GetIndex(int gender, int appearance)
     return GetAppearanceIndex(gender, appearance);
 }
 
-int Appearance_GetTrainerClass(int gender, int appearance, int param2)
+int Appearance_GetData(int gender, int appearance, enum AppearanceDataParam param)
 {
     int appearanceIndex = GetAppearanceIndex(gender, appearance);
 
-    switch (param2) {
-    case 0:
+    switch (param) {
+    case APPEARANCE_DATA_INDEX:
         return appearanceIndex;
-        break;
-    case 2:
-        return sTrainerAppearances[appearanceIndex][1];
-        break;
-    case 1:
-        return sTrainerAppearances[appearanceIndex][2];
-        break;
+    case APPEARANCE_DATA_TRAINER_CLASS_1:
+        return sTrainerAppearances[appearanceIndex].class1;
+    case APPEARANCE_DATA_TRAINER_CLASS_2:
+        return sTrainerAppearances[appearanceIndex].class2;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
+        return 0;
     }
-
-    return 0;
 }
 
 u16 *sub_0205CA4C(enum HeapID heapID)

@@ -30,7 +30,7 @@ void sub_02073700(SaveData *saveData, int param1, UnkStruct_ov96_0223B450_sub1 *
     param2->unk_BA = (u8)WiFiHistory_GetCountry(wiFiHistory);
     param2->unk_BB = (u8)WiFiHistory_GetRegion(wiFiHistory);
     param2->unk_C8_val1_1 = TrainerInfo_Gender(v1);
-    param2->unk_C9 = Appearance_GetTrainerClass(param2->unk_C8_val1_1, TrainerInfo_Appearance(v1), 1);
+    param2->unk_C9 = Appearance_GetData(param2->unk_C8_val1_1, TrainerInfo_Appearance(v1), APPEARANCE_DATA_TRAINER_CLASS_2);
 
     for (v0 = 0; v0 < 3; v0++) {
         MI_CpuCopy8(sub_0202D498(saveData, 0 + v0), &(param2->unk_CA[8 * v0]), 8);

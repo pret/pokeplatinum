@@ -64,7 +64,7 @@ OreburghCityPokecenter1F_WhichKindOfTrainerWouldYouLikeToBe:
     SetVar VAR_0x8008, VAR_RESULT
     GoToIfEq VAR_0x8008, 4, OreburghCityPokecenter1F_OKThenIllJustTalkToYouLater
     GoToIfEq VAR_0x8008, -2, OreburghCityPokecenter1F_OKThenIllJustTalkToYouLater
-    GetAppearanceVariantTrainerClass VAR_0x8004, VAR_0x8005
+    GetTrainerInfoTrainerClass VAR_0x8004, VAR_0x8005
     BufferTrainerClassNameWithArticle 0, VAR_0x8005
     CapitalizeFirstLetter 0
     Message OreburghCityPokecenter1F_Text_AskThisIsTheKindOfTrainerYouWantToBe

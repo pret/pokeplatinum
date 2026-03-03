@@ -1216,7 +1216,7 @@ int sub_0205BF44(UnkStruct_0205B43C *param0, StringTemplate *param1)
         int v4 = TrainerInfo_Appearance(param0->unk_08);
         int v5 = TrainerInfo_Gender(param0->unk_08);
 
-        StringTemplate_SetTrainerClassName(param1, 0, Appearance_GetTrainerClass(v5, v4, 2));
+        StringTemplate_SetTrainerClassName(param1, 0, Appearance_GetData(v5, v4, APPEARANCE_DATA_TRAINER_CLASS_1));
 
         return 168;
     }
@@ -1373,7 +1373,7 @@ void *sub_0205C17C(UnkStruct_0205B43C *param0)
     param0->unk_188[0] = TrainerCard_New(HEAP_ID_SYSTEM);
     param0->unk_188[1] = TrainerCard_New(HEAP_ID_SYSTEM);
 
-    TrainerCard_Init(FALSE, FALSE, 0, Appearance_GetTrainerClass(TrainerInfo_Gender(param0->unk_08), TrainerInfo_Appearance(param0->unk_08), 0), param0->fieldSystem, param0->unk_184);
+    TrainerCard_Init(FALSE, FALSE, 0, Appearance_GetData(TrainerInfo_Gender(param0->unk_08), TrainerInfo_Appearance(param0->unk_08), 0), param0->fieldSystem, param0->unk_184);
 
     return (void *)param0->unk_188[CommSys_CurNetId() ^ 1];
 }
