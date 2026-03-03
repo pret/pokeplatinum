@@ -19,9 +19,9 @@
 
 #include "heap.h"
 #include "math_util.h"
+#include "sys_task_extensions.h"
 #include "sys_task_manager.h"
 #include "touch_screen.h"
-#include "unk_0200679C.h"
 
 typedef struct {
     UnkStruct_ov22_02259560 *unk_00;

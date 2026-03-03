@@ -21,9 +21,9 @@
 #include "heap.h"
 #include "math_util.h"
 #include "sound_playback.h"
+#include "sys_task_extensions.h"
 #include "sys_task_manager.h"
 #include "system.h"
-#include "unk_0200679C.h"
 
 typedef struct {
     UnkStruct_ov22_0225A0E4 *unk_00;

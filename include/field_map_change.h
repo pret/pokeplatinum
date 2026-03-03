@@ -2,10 +2,30 @@
 #define POKEPLATINUM_FIELD_MAP_CHANGE_H
 
 #include "field/field_system_decl.h"
+#include "overlay005/save_info_window.h"
 #include "overlay006/field_warp.h"
 
+#include "bg_window.h"
 #include "field_task.h"
 #include "location.h"
+#include "menu.h"
+#include "string.h"
+
+typedef struct MapChangeUndergroundContext {
+    int state;
+    int transitionState;
+    int mapId;
+    int dummy;
+    int destX;
+    int destZ;
+    BOOL animationDone;
+    u16 saveResult;
+    SaveInfoWindow *saveInfoWin;
+    Window window;
+    String *string;
+    u8 printerID;
+    Menu *menu;
+} MapChangeUndergroundContext;
 
 void FieldMapChange_Set3DDisplay(FieldSystem *fieldSystem);
 void FieldMapChange_UpdateGameData(FieldSystem *fieldSystem, BOOL param1);
@@ -22,7 +42,7 @@ void FieldTask_StartMapChangeFly(FieldSystem *fieldSystem, int mapId, int warpId
 void FieldTask_ChangeMapChangeFly(FieldTask *task, int mapId, int warpId, int x, int z, int dir);
 void FieldTask_ChangeMapByFieldWarp(FieldTask *task, const Location *location, enum FieldWarpType param2);
 void FieldSystem_StartMapChangeWarpTask(FieldSystem *fieldSystem, int param1, int param2);
-void *sub_02053FAC(FieldSystem *fieldSystem);
+MapChangeUndergroundContext *MapChangeUndergroundContext_New(FieldSystem *fieldSystem);
 void FieldTask_SetUndergroundMapChange(FieldSystem *fieldSystem);
 BOOL FieldTask_MapChangeToUnderground(FieldTask *task);
 BOOL FieldTask_MapChangeFromUnderground(FieldTask *task);

@@ -14,8 +14,8 @@
 #include "graphics.h"
 #include "heap.h"
 #include "sys_task.h"
+#include "sys_task_extensions.h"
 #include "sys_task_manager.h"
-#include "unk_0200679C.h"
 
 typedef struct {
     UnkStruct_ov22_022597BC *unk_00;
