@@ -885,7 +885,7 @@ pokeplatinum_c = files(
     'main_menu/ov97_02233814.c',
     'main_menu/gba_migrator.c',
     'main_menu/ov97_02235D18.c',
-    'main_menu/ov97_0223635C.c',
+    'main_menu/gba_player.c',
     'main_menu/gba_pokemon.c',
     'main_menu/distribution_cartridge.c',
     'main_menu/main_menu_util.c',
