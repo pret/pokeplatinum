@@ -195,7 +195,7 @@ typedef struct WonderCardFlipAnimManager {
 } WonderCardFlipAnimManager;
 
 typedef struct WonderCardsAppWindowTemplate {
-    int screen;
+    enum WonderCardsAppScreen screen;
     int tilemapLeft;
     int tilemapTop;
     int width;
