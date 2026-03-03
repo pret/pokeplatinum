@@ -1,10 +1,11 @@
-#include "main_menu/ov97_0223635C.h"
+#include "main_menu/gba_player.h"
 
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/gba/global.h"
+
 #include "main_menu/ov97_02235D18.h"
-#include "main_menu/struct_ov97_0223635C.h"
 
 u32 GetGBAPlayerTrainerId(void)
 {

@@ -1465,7 +1465,7 @@ Overlay main_menu
 	Object main.nef.p/src_main_menu_ov97_02233814.c.o
 	Object main.nef.p/src_main_menu_gba_migrator.c.o
 	Object main.nef.p/src_main_menu_ov97_02235D18.c.o
-	Object main.nef.p/src_main_menu_ov97_0223635C.c.o
+	Object main.nef.p/src_main_menu_gba_player.c.o
 	Object main.nef.p/src_main_menu_gba_pokemon.c.o
 	Object main.nef.p/src_main_menu_distribution_cartridge.c.o
 	Object main.nef.p/src_main_menu_main_menu_util.c.o
