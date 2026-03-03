@@ -601,7 +601,7 @@ static void ov97_0222C47C(UnkStruct_ov97_0222C388 *param0)
     MainMenuUtil_InitSpriteLoader();
     MainMenuUtil_LoadSprite(NARC_INDEX_GRAPHIC__MYSTERY, download_arrow_NCGR_lz, download_arrow_NCLR, download_arrow_cell_NCER_lz, download_arrow_anim_NANR_lz, DS_SCREEN_MAIN);
 
-    param0->unk_3170 = MainMenuUtil_InitSprite(0, param0->unk_3170, HW_LCD_WIDTH / 2, 76, 1);
+    param0->unk_3170 = MainMenuUtil_InitSprite(DS_SCREEN_MAIN, param0->unk_3170, HW_LCD_WIDTH / 2, 76, 1);
 
     ov97_0222C578(param0);
 }
