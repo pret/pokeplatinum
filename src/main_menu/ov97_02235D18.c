@@ -115,7 +115,7 @@ typedef struct {
 
 typedef struct {
     u8 unk_00[4084];
-    u16 unk_FF4; //GBASectorID
+    u16 unk_FF4; // GBASectorID
     u16 unk_FF6;
     u32 unk_FF8;
     u32 unk_FFC;
