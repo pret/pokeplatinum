@@ -5,7 +5,6 @@
 
 #include "struct_decls/font_oam.h"
 #include "struct_decls/struct_02012744_decl.h"
-#include "struct_defs/contest.h"
 #include "struct_defs/struct_020127E8.h"
 
 #include "overlay017/struct_ov17_0224A1EC.h"
@@ -25,6 +24,7 @@
 #include "text.h"
 #include "touch_screen.h"
 #include "unk_02012744.h"
+#include "unk_020933F8.h"
 #include "unk_02094EDC.h"
 
 #include "res/text/bank/contest_dance_competition.h"

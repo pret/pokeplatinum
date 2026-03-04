@@ -8,7 +8,6 @@
 #include "generated/pokemon_contest_ranks.h"
 #include "generated/pokemon_contest_types.h"
 
-#include "struct_defs/contest.h"
 #include "struct_defs/struct_020951B0.h"
 #include "struct_defs/struct_020954F0.h"
 #include "struct_defs/struct_020F568C.h"

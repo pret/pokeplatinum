@@ -9,7 +9,6 @@
 
 #include "struct_decls/font_oam.h"
 #include "struct_decls/struct_02012744_decl.h"
-#include "struct_defs/contest.h"
 #include "struct_defs/struct_020127E8.h"
 
 #include "overlay017/ov17_02252A70.h"
@@ -35,6 +34,7 @@
 #include "sys_task_manager.h"
 #include "text.h"
 #include "unk_02012744.h"
+#include "unk_020933F8.h"
 
 FS_EXTERN_OVERLAY(overlay11);
 FS_EXTERN_OVERLAY(battle_anim);

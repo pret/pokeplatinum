@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/contest.h"
 #include "struct_defs/struct_020954F0.h"
 
 #include "battle_anim/is_form_symmetrical.h"
@@ -42,6 +41,7 @@
 #include "text.h"
 #include "unk_02012744.h"
 #include "unk_0208C098.h"
+#include "unk_020933F8.h"
 #include "unk_02094EDC.h"
 
 #include "res/text/bank/contest_text.h"

@@ -13,7 +13,6 @@
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0202440C_decl.h"
-#include "struct_defs/contest.h"
 #include "struct_defs/contest_camera_flash_task.h"
 #include "struct_defs/contest_player_mon_dto.h"
 #include "struct_defs/image_clips.h"
@@ -58,6 +57,7 @@
 #include "tv_episode_segment.h"
 #include "unk_020298BC.h"
 #include "unk_020363E8.h"
+#include "unk_020933F8.h"
 #include "unk_02094EDC.h"
 #include "unk_02095AF0.h"
 #include "vars_flags.h"

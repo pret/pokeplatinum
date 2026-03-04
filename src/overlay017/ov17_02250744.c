@@ -5,8 +5,6 @@
 
 #include "constants/narc.h"
 
-#include "struct_defs/contest.h"
-
 #include "overlay017/ov17_0223F118.h"
 #include "overlay017/struct_ov17_0224FCA0.h"
 #include "overlay017/struct_ov17_022507C4.h"

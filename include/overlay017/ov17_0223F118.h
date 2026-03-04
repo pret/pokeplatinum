@@ -2,7 +2,6 @@
 #define POKEPLATINUM_OV17_0223F118_H
 
 #include "struct_decls/struct_02012744_decl.h"
-#include "struct_defs/contest.h"
 
 #include "overlay017/struct_ov17_0223F2E4.h"
 #include "overlay017/struct_ov17_0223F6E8.h"
@@ -14,6 +13,7 @@
 #include "sprite_system.h"
 #include "string_gf.h"
 #include "text.h"
+#include "unk_020933F8.h"
 
 G3DPipelineBuffers *ov17_0223F140(enum HeapID heapID);
 void ov17_0223F1E0(G3DPipelineBuffers *param0);

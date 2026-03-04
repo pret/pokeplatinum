@@ -3,8 +3,6 @@
 
 #include "constants/contests.h"
 
-#include "struct_defs/contest.h"
-
 #include "overlay017/struct_ov17_0223D60C.h"
 #include "overlay017/struct_ov17_022476F8.h"
 #include "overlay017/struct_ov17_02247A48_sub1.h"
@@ -15,6 +13,7 @@
 
 #include "g3d_pipeline.h"
 #include "sys_task_manager.h"
+#include "unk_020933F8.h"
 
 typedef struct {
     Contest *unk_00;
