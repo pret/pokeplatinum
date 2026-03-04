@@ -1570,7 +1570,7 @@ Overlay overlay104
 	Object main.nef.p/src_overlay104_ov104_0223E894.c.o
 }
 
-Overlay overlay105
+Overlay battle_factory_app
 {
 	After overlay104
 	Object main.nef.p/src_applications_frontier_battle_factory_main.c.o

@@ -15,13 +15,13 @@ BattleFactoryAppPokeballSprite *BattleFactoryAppPokeballSprite_New(BattleFactory
     BattleFactoryAppPokeballSprite *ballSprite = Heap_Alloc(heapID, sizeof(BattleFactoryAppPokeballSprite));
     memset(ballSprite, 0, sizeof(BattleFactoryAppPokeballSprite));
 
-    ballSprite->isSelected = 0;
-    ballSprite->x = x;
-    ballSprite->y = y;
+    ballSprite->isSelected = FALSE;
+    ballSprite->restingX = x;
+    ballSprite->restingY = y;
     ballSprite->sprite = BattleFactoryApp_InitSprite(spriteMan, 0, ANIM_ID_BALL_STATIC, 0, 0, FALSE);
 
     BattleFactoryAppPokeballSprite_SetPosition(ballSprite, x, y);
-    Sprite_SetExplicitPalette(ballSprite->sprite, 1);
+    Sprite_SetExplicitPalette(ballSprite->sprite, PALETTE_POKEBALL_NOT_SELECTED);
 
     return ballSprite;
 }
@@ -39,7 +39,7 @@ void BattleFactoryAppPokeballSprite_SetDrawFlag(BattleFactoryAppPokeballSprite *
     Sprite_SetDrawFlag(ballSprite->sprite, draw);
 }
 
-VecFx32 BattleFactoryAppPokeballSprite_SetAndGetPosition(BattleFactoryAppPokeballSprite *ballSprite, int x, int y)
+VecFx32 BattleFactoryAppPokeballSprite_ShiftPosition(BattleFactoryAppPokeballSprite *ballSprite, int x, int y)
 {
     VecFx32 position = *Sprite_GetPosition(ballSprite->sprite);
     position.x += x * FX32_ONE;
@@ -84,7 +84,7 @@ void BattleFactoryAppPokeballSprite_UnselectMon(BattleFactoryAppPokeballSprite *
     BattleFactoryAppPokeballSprite_SetSelected(ballSprite, FALSE);
 }
 
-void ov105_02245F5C(BattleFactoryAppPokeballSprite *ballSprite)
+void BattleFactoryAppPokeballSprite_SetPositionForConveyorStart(BattleFactoryAppPokeballSprite *ballSprite)
 {
     const VecFx32 *oldPos = BattleFactoryAppPokeballSprite_GetPosition(ballSprite);
 
@@ -95,14 +95,14 @@ void ov105_02245F5C(BattleFactoryAppPokeballSprite *ballSprite)
     Sprite_SetPosition(ballSprite->sprite, &newPos);
 }
 
-int BattleFactoryAppPokeballSprite_GetX(BattleFactoryAppPokeballSprite *ballSprite)
+int BattleFactoryAppPokeballSprite_GetRestingPointX(BattleFactoryAppPokeballSprite *ballSprite)
 {
-    return ballSprite->x;
+    return ballSprite->restingX;
 }
 
-int BattleFactoryAppPokeballSprite_GetY(BattleFactoryAppPokeballSprite *ballSprite)
+int BattleFactoryAppPokeballSprite_GetRestingPointY(BattleFactoryAppPokeballSprite *ballSprite)
 {
-    return ballSprite->y;
+    return ballSprite->restingY;
 }
 
 void BattleFactoryAppPokeballSprite_SetAnim(BattleFactoryAppPokeballSprite *ballSprite, u32 animID)
