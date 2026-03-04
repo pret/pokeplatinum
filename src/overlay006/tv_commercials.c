@@ -148,11 +148,7 @@ static BOOL TVCommercial_IsEligible_HasFiveBadges(FieldSystem *fieldSystem)
 {
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(fieldSystem->saveData);
 
-    if (TrainerInfo_BadgeCount(trainerInfo) >= 5) {
-        return TRUE;
-    } else {
-        return FALSE;
-    }
+    return TrainerInfo_BadgeCount(trainerInfo) >= 5;
 }
 
 static BOOL TVCommercial_IsEligible_LocalDexCompleted(FieldSystem *fieldSystem)
