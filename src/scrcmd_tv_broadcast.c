@@ -20,7 +20,7 @@
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
 #include "overlay006/ov6_022465FC.h"
-#include "overlay006/ov6_02246A30.h"
+#include "overlay006/tv_commercials.h"
 #include "savedata/save_table.h"
 
 #include "field_script_context.h"
@@ -53,50 +53,50 @@ static int TVInterview_LoadMessage(int param0, FieldSystem *fieldSystem, StringT
 static void TVInterview_SaveResponse(FieldSystem *fieldSystem, int segmentID, u16 customMessageWord, u16 unused);
 static BOOL TVInterview_IsEligible(FieldSystem *fieldSystem, int param1);
 
-BOOL ScrCmd_CallTVBroadcast(ScriptContext *param0)
+BOOL ScrCmd_CallTVBroadcast(ScriptContext *ctx)
 {
-    switch (ScriptContext_ReadHalfWord(param0)) {
+    switch (ScriptContext_ReadHalfWord(ctx)) {
     case TV_BROADCAST_CALL_CHECK_STATUS: {
-        u16 *statusDestVar = ScriptContext_GetVarPointer(param0);
+        u16 *statusDestVar = ScriptContext_GetVarPointer(ctx);
 
-        *statusDestVar = TVBroadcast_GetPendingBroadcastType(param0->fieldSystem);
+        *statusDestVar = TVBroadcast_GetPendingBroadcastType(ctx->fieldSystem);
     } break;
     case TV_BROADCAST_CALL_LOAD_FRAMING_MESSAGE: {
-        u16 framingMessageType = ScriptContext_ReadHalfWord(param0);
-        u16 *bankDestVar = ScriptContext_GetVarPointer(param0);
-        u16 *messageDestVar = ScriptContext_GetVarPointer(param0);
+        u16 framingMessageType = ScriptContext_ReadHalfWord(ctx);
+        u16 *bankDestVar = ScriptContext_GetVarPointer(ctx);
+        u16 *messageDestVar = ScriptContext_GetVarPointer(ctx);
 
         *bankDestVar = TEXT_BANK_TV_PROGRAMS;
-        *messageDestVar = TVBroadcast_GetProgramFramingMessage(param0->fieldSystem, framingMessageType);
+        *messageDestVar = TVBroadcast_GetProgramFramingMessage(ctx->fieldSystem, framingMessageType);
     } break;
     case TV_BROADCAST_CALL_LOAD_SEGMENT: {
-        StringTemplate **template = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
-        u16 segmentID = ScriptContext_GetVar(param0);
-        u16 *bankDestVar = ScriptContext_GetVarPointer(param0);
-        u16 *messageDestVar = ScriptContext_GetVarPointer(param0);
+        StringTemplate **template = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
+        u16 segmentID = ScriptContext_GetVar(ctx);
+        u16 *bankDestVar = ScriptContext_GetVarPointer(ctx);
+        u16 *messageDestVar = ScriptContext_GetVarPointer(ctx);
 
-        TVBroadcast_LoadSegmentMessage(param0->fieldSystem, *template, segmentID, bankDestVar, messageDestVar);
+        TVBroadcast_LoadSegmentMessage(ctx->fieldSystem, *template, segmentID, bankDestVar, messageDestVar);
     } break;
     case TV_BROADCAST_CALL_FINISH_PROGRAM:
-        FieldSystem_SetTVProgramFinished(param0->fieldSystem);
+        FieldSystem_SetTVProgramFinished(ctx->fieldSystem);
         break;
     case TV_BROADCAST_CALL_LOAD_COMMERCIAL: {
-        u16 *bankDestVar = ScriptContext_GetVarPointer(param0);
-        u16 *messageDestVar = ScriptContext_GetVarPointer(param0);
+        u16 *bankDestVar = ScriptContext_GetVarPointer(ctx);
+        u16 *messageDestVar = ScriptContext_GetVarPointer(ctx);
 
         *bankDestVar = TEXT_BANK_TV_COMMERCIALS;
-        *messageDestVar = ov6_02246B40(param0->fieldSystem);
+        *messageDestVar = TVBroadcast_GetProgramCommercialMessage(ctx->fieldSystem);
     } break;
     case TV_BROADCAST_CALL_UNUSED: {
-        u16 v10 = ScriptContext_GetVar(param0);
-        u16 v11 = ScriptContext_GetVar(param0);
-        u16 *v12 = ScriptContext_GetVarPointer(param0);
+        u16 v10 = ScriptContext_GetVar(ctx);
+        u16 v11 = ScriptContext_GetVar(ctx);
+        u16 *v12 = ScriptContext_GetVarPointer(ctx);
 
-        *v12 = ov6_022468B0(param0->fieldSystem, v10, v11);
+        *v12 = ov6_022468B0(ctx->fieldSystem, v10, v11);
     } break;
     case TV_BROADCAST_CALL_GET_NEXT_SEGMENT_ID: {
-        u16 *segmentDestVar = ScriptContext_GetVarPointer(param0);
-        *segmentDestVar = ov6_02246920(param0->fieldSystem);
+        u16 *segmentDestVar = ScriptContext_GetVarPointer(ctx);
+        *segmentDestVar = ov6_02246920(ctx->fieldSystem);
     } break;
     }
 

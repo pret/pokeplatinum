@@ -462,7 +462,7 @@ pokeplatinum_c = files(
     'overlay006/npc_trade.c',
     'overlay006/ov6_02246444.c',
     'overlay006/ov6_022465FC.c',
-    'overlay006/ov6_02246A30.c',
+    'overlay006/tv_commercials.c',
     'overlay006/special_dates.c',
     'overlay006/repel_step_update.c',
     'overlay006/healing_machine_animation/pokecenter.c',

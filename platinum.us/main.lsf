@@ -574,7 +574,7 @@ Overlay overlay6
 	Object main.nef.p/src_overlay006_npc_trade.c.o
 	Object main.nef.p/src_overlay006_ov6_02246444.c.o
 	Object main.nef.p/src_overlay006_ov6_022465FC.c.o
-	Object main.nef.p/src_overlay006_ov6_02246A30.c.o
+	Object main.nef.p/src_overlay006_tv_commercials.c.o
 	Object main.nef.p/src_overlay006_special_dates.c.o
 	Object main.nef.p/src_overlay006_repel_step_update.c.o
 	Object main.nef.p/src_overlay006_healing_machine_animation_pokecenter.c.o
