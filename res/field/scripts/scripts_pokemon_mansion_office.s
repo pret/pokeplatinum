@@ -285,12 +285,7 @@ _037C:
     EndMovement
 
 _0388:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    Message 18
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    EventMessage 18
     End
 
 _0399:

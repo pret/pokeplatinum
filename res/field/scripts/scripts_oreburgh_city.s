@@ -262,23 +262,11 @@ OreburghCity_Movement_RivalWalkOnSpotWest:
     EndMovement
 
 OreburghCity_Hiker:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message OreburghCity_Text_UpAheadTheresAHugeMountainThatTowersAboveEverything
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage OreburghCity_Text_UpAheadTheresAHugeMountainThatTowersAboveEverything
     End
 
 OreburghCity_Worker1:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message OreburghCity_Text_TheseVentsExchangeTheHotAirDownBelowWithTheFreshAirOutside
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage OreburghCity_Text_TheseVentsExchangeTheHotAirDownBelowWithTheFreshAirOutside
     End
 
 OreburghCity_Worker2:
@@ -309,23 +297,11 @@ OreburghCity_BagIsFull:
     End
 
 OreburghCity_Worker3:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message OreburghCity_Text_ThisPileOfDirtySandIsCalledASlagHeap
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage OreburghCity_Text_ThisPileOfDirtySandIsCalledASlagHeap
     End
 
 OreburghCity_Worker4:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message OreburghCity_Text_ChopChopMachopChopChopAwayOnRocks
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage OreburghCity_Text_ChopChopMachopChopChopAwayOnRocks
     End
 
 OreburghCity_TriggerYoungster:
@@ -507,13 +483,7 @@ OreburghCity_Movement_YoungsterWalkToPlayerZ751:
     EndMovement
 
 OreburghCity_BattleGirl1:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message OreburghCity_Text_TMsAreSingleUseOnlyButHMsCanBeUsedOverAndOver
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage OreburghCity_Text_TMsAreSingleUseOnlyButHMsCanBeUsedOverAndOver
     End
 
 OreburghCity_SchoolKidF:
@@ -535,33 +505,15 @@ OreburghCity_TheGymLeaderIsYoungButHesTheMinesSafetySupervisor:
     End
 
 OreburghCity_Guitarist:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message OreburghCity_Text_HaveYouSeenTheVents
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage OreburghCity_Text_HaveYouSeenTheVents
     End
 
 OreburghCity_PokefanF:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message OreburghCity_Text_EveryonesProudOfTheMine
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage OreburghCity_Text_EveryonesProudOfTheMine
     End
 
 OreburghCity_Camper:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message OreburghCity_Text_WhenIRunAroundWithMyRunningShoesOnImTheCenterOfAttention
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage OreburghCity_Text_WhenIRunAroundWithMyRunningShoesOnImTheCenterOfAttention
     End
 
 OreburghCity_MapSign:
@@ -581,52 +533,19 @@ OreburghCity_ScrollingSignOreburghMine:
     End
 
 OreburghCity_Machop1:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    WaitFanfare SEQ_SE_CONFIRM
-    PlayCry SPECIES_MACHOP
-    Message OreburghCity_Text_MachopMachoChopo
-    WaitCry
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    PokemonCryAndMessage SPECIES_MACHOP, OreburghCity_Text_MachopMachoChopo
     End
 
 OreburghCity_BattleGirl2:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message OreburghCity_Text_ThatsWhatFossilsAre
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage OreburghCity_Text_ThatsWhatFossilsAre
     End
 
 OreburghCity_Machop3:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    WaitFanfare SEQ_SE_CONFIRM
-    PlayCry SPECIES_MACHOP
-    Message OreburghCity_Text_MachopPigyooh
-    WaitCry
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    PokemonCryAndMessage SPECIES_MACHOP, OreburghCity_Text_MachopPigyooh
     End
 
 OreburghCity_Machop2:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    WaitFanfare SEQ_SE_CONFIRM
-    PlayCry SPECIES_MACHOP
-    Message OreburghCity_Text_MachopGwoohGogogooh
-    WaitCry
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    PokemonCryAndMessage SPECIES_MACHOP, OreburghCity_Text_MachopGwoohGogogooh
     End
 
     .balign 4, 0

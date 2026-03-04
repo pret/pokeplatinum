@@ -13,33 +13,15 @@
     ScriptEntryEnd
 
 PoketchCo3F_NinjaBoy:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message PoketchCo3F_Text_TheresAGirlsModelAndABoysModel
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage PoketchCo3F_Text_TheresAGirlsModelAndABoysModel
     End
 
 PoketchCo3F_PokefanF:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message PoketchCo3F_Text_MyHusbandsThePresident
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage PoketchCo3F_Text_MyHusbandsThePresident
     End
 
 PoketchCo3F_ExpertF:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message PoketchCo3F_Text_PeopleEverywhereMakePoketchApps
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage PoketchCo3F_Text_PeopleEverywhereMakePoketchApps
     End
 
 PoketchCo3F_PCSouthWest:

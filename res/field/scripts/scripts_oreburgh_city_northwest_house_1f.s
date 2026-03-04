@@ -8,33 +8,15 @@
     ScriptEntryEnd
 
 OreburghCityNorthwestHouse1F_BreederM:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message OreburghCityNorthwestHouse1F_Text_ThereAreEightGymLeadersInTheSinnohRegion
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage OreburghCityNorthwestHouse1F_Text_ThereAreEightGymLeadersInTheSinnohRegion
     End
 
 OreburghCityNorthwestHouse1F_Youngster:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message OreburghCityNorthwestHouse1F_Text_AGymLeaderIsntLikeJustAnyTrainerYouMeet
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage OreburghCityNorthwestHouse1F_Text_AGymLeaderIsntLikeJustAnyTrainerYouMeet
     End
 
 OreburghCityNorthwestHouse1F_PokefanF:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message OreburghCityNorthwestHouse1F_Text_RoarkLetsUsTrainOurPokemonInTheMine
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage OreburghCityNorthwestHouse1F_Text_RoarkLetsUsTrainOurPokemonInTheMine
     End
 
     .balign 4, 0

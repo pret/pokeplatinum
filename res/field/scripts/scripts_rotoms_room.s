@@ -484,12 +484,7 @@ RotomsRoom_CloseMessage:
     End
 
 RotomsRoom_MysteriousNotebook:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    Message RotomsRoom_Text_ThereIsAMysteriousNotebookHere
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    EventMessage RotomsRoom_Text_ThereIsAMysteriousNotebookHere
     End
 
 _07BB:

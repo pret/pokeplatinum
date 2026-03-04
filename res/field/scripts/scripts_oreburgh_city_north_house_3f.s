@@ -8,33 +8,15 @@
     ScriptEntryEnd
 
 OreburghCityNorthHouse3F_PokefanF:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message OreburghCityNorthHouse3F_Text_DuringTheDaytimeEveryoneGoesOffToTheMine
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage OreburghCityNorthHouse3F_Text_DuringTheDaytimeEveryoneGoesOffToTheMine
     End
 
 OreburghCityNorthHouse3F_Worker:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message OreburghCityNorthHouse3F_Text_WellKeepDiggingCoal
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage OreburghCityNorthHouse3F_Text_WellKeepDiggingCoal
     End
 
 OreburghCityNorthHouse3F_Twin:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message OreburghCityNorthHouse3F_Text_EveryoneIncludingLotsOfPokemonDugTheBigUndergroundMaze
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage OreburghCityNorthHouse3F_Text_EveryoneIncludingLotsOfPokemonDugTheBigUndergroundMaze
     End
 
     .balign 4, 0

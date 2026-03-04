@@ -6,13 +6,7 @@
     ScriptEntryEnd
 
 SandgemTownPokecenter2F_Lass:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message SandgemTownPokecenter2F_Text_WhatKindOfTrainersSignWillGetPeopleLaughing
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage SandgemTownPokecenter2F_Text_WhatKindOfTrainersSignWillGetPeopleLaughing
     End
 
     .balign 4, 0

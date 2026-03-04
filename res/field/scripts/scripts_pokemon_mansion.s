@@ -353,13 +353,7 @@ _04C0:
     EndMovement
 
 _04C8:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 29
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 29
     End
 
     .balign 4, 0

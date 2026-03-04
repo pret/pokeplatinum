@@ -20,23 +20,11 @@ OreburghMineB1F_ShowHiker:
     Return
 
 OreburghMineB1F_Worker:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message OreburghMineB1F_Text_EveryoneThatWorksInTheCoalMineKeepsTheirOwnPokemonWithThem
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage OreburghMineB1F_Text_EveryoneThatWorksInTheCoalMineKeepsTheirOwnPokemonWithThem
     End
 
 OreburghMineB1F_Twin:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message OreburghMineB1F_Text_IFoundWhatIThoughtWereSomeRocksThenTheyStartedMoving
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage OreburghMineB1F_Text_IFoundWhatIThoughtWereSomeRocksThenTheyStartedMoving
     End
 
 OreburghMineB1F_Hiker:

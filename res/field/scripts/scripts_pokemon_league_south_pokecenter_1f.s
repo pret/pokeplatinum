@@ -19,43 +19,19 @@ PokemonLeagueSouthPokecenter1F_Nurse:
     End
 
 PokemonLeagueSouthPokecenter1F_UnusedVendor2:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Common_VendorGreeting
-    CloseMessageWithoutErasing
-    PokeMartCommon
-    ReleaseAll
+    PokeMartCommonWithGreeting
     End
 
 PokemonLeagueSouthPokecenter1F_UnusedVendor3:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Common_VendorGreeting
-    CloseMessageWithoutErasing
-    PokeMartSpecialties MART_SPECIALTIES_ID_POKEMON_LEAGUE
-    ReleaseAll
+    PokeMartSpecialtiesWithGreeting MART_SPECIALTIES_ID_POKEMON_LEAGUE
     End
 
 PokemonLeagueSouthPokecenter1F_Pokefan:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message PokemonLeagueSouthPokecenter1F_Text_TheObjectiveIsToReachThePokemonLeague
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage PokemonLeagueSouthPokecenter1F_Text_TheObjectiveIsToReachThePokemonLeague
     End
 
 PokemonLeagueSouthPokecenter1F_AceTrainer:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message PokemonLeagueSouthPokecenter1F_Text_VictoryRoadConfusesMe
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage PokemonLeagueSouthPokecenter1F_Text_VictoryRoadConfusesMe
     End
 
     .balign 4, 0

@@ -226,13 +226,7 @@ GameCorner_CoinsClerk_SaveTM64:
     End
 
 GameCorner_LadyExplainSlotMachines:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message GameCorner_Text_IllEplainHowTheSlotMachinesWorkAtThisGameCorner
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage GameCorner_Text_IllEplainHowTheSlotMachinesWorkAtThisGameCorner
     End
 
 GameCorner_OldMan20Coins:
@@ -302,64 +296,30 @@ GameCorner_Farmer_CannotAddCoins:
     End
 
 GameCorner_Worker:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message GameCorner_Text_IWantCoinsOfCourse
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage GameCorner_Text_IWantCoinsOfCourse
     End
 
 GameCorner_LadyPokeBalls:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message GameCorner_Text_WhenAPokeBallAppears
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage GameCorner_Text_WhenAPokeBallAppears
     End
 
 GameCorner_Guitarist:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message GameCorner_Text_AFriendInMyGroupScoredATonOfCoinsHere
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage GameCorner_Text_AFriendInMyGroupScoredATonOfCoinsHere
     End
 
 GameCorner_MaylenesDad:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message GameCorner_Text_SighNothingGoingMyWayToday
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage GameCorner_Text_SighNothingGoingMyWayToday
     End
 
 GameCorner_SignBonusRounds:
     GoToIfGt VAR_CONSECUTIVE_BONUS_ROUND_WINS, 999, GameCorner_SignBonusRounds_GreaterThan999
     BufferNumber 0, VAR_CONSECUTIVE_BONUS_ROUND_WINS
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    Message GameCorner_Text_ShootFor10
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    EventMessage GameCorner_Text_ShootFor10
     End
 
 GameCorner_SignBonusRounds_GreaterThan999:
     BufferNumber 0, 999
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    Message GameCorner_Text_ShootFor10
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    EventMessage GameCorner_Text_ShootFor10
     End
 
 GameCorner_Looker:

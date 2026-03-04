@@ -6,13 +6,7 @@
     ScriptEntryEnd
 
 OreburghCityPokecenterB1F_BattleGirl:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message OreburghCityPokecenterB1F_Text_IWantToBecomeFriendsWithAnExperiencedTrainerIReallyAdmire
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage OreburghCityPokecenterB1F_Text_IWantToBecomeFriendsWithAnExperiencedTrainerIReallyAdmire
     End
 
     .balign 4, 0

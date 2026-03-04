@@ -36,39 +36,19 @@ _0057:
     End
 
 _005F:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    Message 3
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    EventMessage 3
     End
 
 _0070:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    Message 4
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    EventMessage 4
     End
 
 _0081:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    Message 5
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    EventMessage 5
     End
 
 _0092:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    Message 6
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    EventMessage 6
     End
 
     .balign 4, 0

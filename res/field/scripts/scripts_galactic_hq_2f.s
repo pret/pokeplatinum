@@ -43,48 +43,23 @@ _0074:
     End
 
 _007A:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    Message 7
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    EventMessage 7
     End
 
 _008B:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    Message 8
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    EventMessage 8
     End
 
 _009C:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    Message 9
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    EventMessage 9
     End
 
 _00AD:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    Message 10
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    EventMessage 10
     End
 
 _00BE:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    Message 11
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    EventMessage 11
     End
 
 _00CF:

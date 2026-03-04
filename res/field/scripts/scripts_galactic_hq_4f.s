@@ -150,12 +150,7 @@ _01BC:
     EndMovement
 
 _01C4:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    Message 8
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    EventMessage 8
     End
 
 _01D5:

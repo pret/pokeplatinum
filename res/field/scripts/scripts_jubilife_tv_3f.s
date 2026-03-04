@@ -37,23 +37,11 @@ JubilifeTV3F_Movement_BeautyFaceWestGlobalRankingRoom:
     EndMovement
 
 JubilifeTV3F_Beauty2:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message JubilifeTV3F_Text_TheMoreTradesIMakeTheBetterMyOddsOfWinningThePokemonLottery
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage JubilifeTV3F_Text_TheMoreTradesIMakeTheBetterMyOddsOfWinningThePokemonLottery
     End
 
 JubilifeTV3F_GymGuide1:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message JubilifeTV3F_Text_RecordsAreFineThings
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage JubilifeTV3F_Text_RecordsAreFineThings
     End
 
 JubilifeTV3F_GymGuide2:

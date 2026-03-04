@@ -141,13 +141,7 @@ _0204:
     End
 
 _020A:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 12
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 12
     End
 
 _021D:

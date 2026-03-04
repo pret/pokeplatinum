@@ -54,13 +54,7 @@ SunyshoreMarket_PokemonAlreadyHasEffortRibbon:
     End
 
 SunyshoreMarket_Sailor:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message SunyshoreMarket_Text_BestKnownForSeals
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage SunyshoreMarket_Text_BestKnownForSeals
     End
 
 SunyshoreMarket_SealShop:
@@ -150,13 +144,7 @@ SunyshoreMarket_PokefanM_SecondWeekHalfMessage:
     End
 
 SunyshoreMarket_BattleGirl:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message SunyshoreMarket_Text_HugeFanOfWiFiPlaza
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage SunyshoreMarket_Text_HugeFanOfWiFiPlaza
     End
 
     .balign 4, 0

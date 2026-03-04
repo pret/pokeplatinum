@@ -5175,6 +5175,58 @@
     GoToIfEq \destVarID, FALSE, \offset
     .endm
 
+    .macro NPCMessage messageID
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    FacePlayer
+    Message \messageID
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
+    .endm
+
+    .macro EventMessage messageID
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    Message \messageID
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
+    .endm
+
+    .macro PokemonCryAndMessage species, messageID, unused=0
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    FacePlayer
+    WaitFanfare SEQ_SE_CONFIRM
+    PlayCry \species, \unused
+    Message \messageID
+    WaitCry
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
+    .endm 
+
+    .macro PokeMartCommonWithGreeting unused=1
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    FacePlayer
+    Common_VendorGreeting
+    CloseMessageWithoutErasing
+    PokeMartCommon \unused
+    ReleaseAll
+    .endm
+
+    .macro PokeMartSpecialtiesWithGreeting martID
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    FacePlayer
+    Common_VendorGreeting
+    CloseMessageWithoutErasing
+    PokeMartSpecialties \martID
+    ReleaseAll
+    .endm
+
     /* CallCommonScript aliases below */
 
     .macro Common_HandleSignpostInput

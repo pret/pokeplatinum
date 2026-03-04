@@ -10,52 +10,23 @@
     ScriptEntryEnd
 
 PastoriaCityMart_CommonVendor:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Common_VendorGreeting
-    CloseMessageWithoutErasing
-    PokeMartCommon
-    ReleaseAll
+    PokeMartCommonWithGreeting
     End
 
 PastoriaCityMart_SpecialtyVendor:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Common_VendorGreeting
-    CloseMessageWithoutErasing
-    PokeMartSpecialties MART_SPECIALTIES_ID_PASTORIA
-    ReleaseAll
+    PokeMartSpecialtiesWithGreeting MART_SPECIALTIES_ID_PASTORIA
     End
 
 PastoriaCityMart_BugCatcher:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message PastoriaCityMart_Text_CroagunkIsOfficialCityMascot
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage PastoriaCityMart_Text_CroagunkIsOfficialCityMascot
     End
 
 PastoriaCityMart_SchoolGirl:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message PastoriaCityMart_Text_AreYouUsingBallCapsules
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage PastoriaCityMart_Text_AreYouUsingBallCapsules
     End
 
 PastoriaCityMart_CroagunkCarving:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    Message PastoriaCityMart_Text_LooksLikeItsSeepingPoison
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    EventMessage PastoriaCityMart_Text_LooksLikeItsSeepingPoison
     End
 
     .balign 4, 0

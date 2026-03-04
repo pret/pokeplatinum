@@ -90,50 +90,17 @@ OreburghMineB2F_UnusedMovement3:
     EndMovement
 
 OreburghMineB2F_Machop1:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    WaitFanfare SEQ_SE_CONFIRM
-    PlayCry SPECIES_MACHOP
-    Message OreburghMineB2F_Text_MachopMaaacho
-    WaitCry
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    PokemonCryAndMessage SPECIES_MACHOP, OreburghMineB2F_Text_MachopMaaacho
     End
 
 OreburghMineB2F_Machop3:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    WaitFanfare SEQ_SE_CONFIRM
-    PlayCry SPECIES_MACHOP
-    Message OreburghMineB2F_Text_MachopChopChop
-    WaitCry
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    PokemonCryAndMessage SPECIES_MACHOP, OreburghMineB2F_Text_MachopChopChop
     End
 
 OreburghMineB2F_Machop2:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    WaitFanfare SEQ_SE_CONFIRM
-    PlayCry SPECIES_MACHOP
-    Message OreburghMineB2F_Text_MachopChopmacho
-    WaitCry
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    PokemonCryAndMessage SPECIES_MACHOP, OreburghMineB2F_Text_MachopChopmacho
     End
 
 OreburghMineB2F_Worker:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message OreburghMineB2F_Text_IMetTheseMachopOnRoute207
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage OreburghMineB2F_Text_IMetTheseMachopOnRoute207
     End

@@ -18,23 +18,11 @@ EternaCityHerbShop_Vendor:
     End
 
 EternaCityHerbShop_ExpertF:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message EternaCityHerbShop_Text_YourPokemonWontLikeThem
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage EternaCityHerbShop_Text_YourPokemonWontLikeThem
     End
 
 EternaCityHerbShop_ExpertM:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message EternaCityHerbShop_Text_NonBitterWouldBeMedicalBreakthrough
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage EternaCityHerbShop_Text_NonBitterWouldBeMedicalBreakthrough
     End
 
     .balign 4, 0

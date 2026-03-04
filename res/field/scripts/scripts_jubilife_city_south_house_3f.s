@@ -6,13 +6,7 @@
     ScriptEntryEnd
 
 JubilifeCitySouthHouse3F_PokefanM:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message JubilifeCitySouthHouse3F_WhenIGiveMyPokemonNicknamesItsLikeTheyreMyVeryOwn
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage JubilifeCitySouthHouse3F_WhenIGiveMyPokemonNicknamesItsLikeTheyreMyVeryOwn
     End
 
     .balign 4, 0

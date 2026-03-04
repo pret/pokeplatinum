@@ -446,21 +446,9 @@ JubilifeTV2FGallery_ItsAFrameForHoldingAPokemonPortraitPhoto:
     End
 
 JubilifeTV2FGallery_PokemonBreederM:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message JubilifeTV2FGallery_Text_TheyDisplayPhotosFromTrainersYouBeenMixinRecordsWithRight
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage JubilifeTV2FGallery_Text_TheyDisplayPhotosFromTrainersYouBeenMixinRecordsWithRight
     End
 
 JubilifeTV2FGallery_Twin:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message JubilifeTV2FGallery_Text_SomeoneGaveMeANewBackdropWhenIWentToTheGlobalTerminal
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage JubilifeTV2FGallery_Text_SomeoneGaveMeANewBackdropWhenIWentToTheGlobalTerminal
     End

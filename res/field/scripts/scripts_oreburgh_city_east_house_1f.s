@@ -8,33 +8,15 @@
     ScriptEntryEnd
 
 OreburghCityEastHouse1F_PokefanM:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message OreburghCityEastHouse1F_Text_WhyNotTryTrainingInTheOreburghMine
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage OreburghCityEastHouse1F_Text_WhyNotTryTrainingInTheOreburghMine
     End
 
 OreburghCityEastHouse1F_Hiker:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message OreburghCityEastHouse1F_Text_IAlwaysHaveARottenTimeTryingToDecideWhichMovesMyPokemonShouldLearn
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage OreburghCityEastHouse1F_Text_IAlwaysHaveARottenTimeTryingToDecideWhichMovesMyPokemonShouldLearn
     End
 
 OreburghCityEastHouse1F_AceTrainerM:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message OreburghCityEastHouse1F_Text_YouRemindMeSoMuchOfTheTimeIGotMyFirstPokemon
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage OreburghCityEastHouse1F_Text_YouRemindMeSoMuchOfTheTimeIGotMyFirstPokemon
     End
 
     .balign 4, 0

@@ -37,16 +37,7 @@ OreburghCityNorthwestHouse3F_BagIsFull:
     End
 
 OreburghCityNorthwestHouse3F_Psyduck:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    WaitFanfare SEQ_SE_CONFIRM
-    PlayCry SPECIES_PSYDUCK
-    Message OreburghCityNorthwestHouse3F_Text_PsyduckDuuuck
-    WaitCry
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    PokemonCryAndMessage SPECIES_PSYDUCK, OreburghCityNorthwestHouse3F_Text_PsyduckDuuuck
     End
 
     .balign 4, 0

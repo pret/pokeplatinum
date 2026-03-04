@@ -6,13 +6,7 @@
     ScriptEntryEnd
 
 OreburghCitySouthHouse_Worker:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message OreburghCitySouthHouse_Text_YoureTakingATourOfOurCoalMine
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage OreburghCitySouthHouse_Text_YoureTakingATourOfOurCoalMine
     End
 
     .balign 4, 0

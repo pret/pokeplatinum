@@ -62,21 +62,9 @@ OreburghCityNorthHouse1F_ThanksToPokemonIGotToBeFriendsWithYou:
     End
 
 OreburghCityNorthHouse1F_ExpertF:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message OreburghCityNorthHouse1F_Text_APokemonObtainedInATradeGrowsQuickly
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage OreburghCityNorthHouse1F_Text_APokemonObtainedInATradeGrowsQuickly
     End
 
 OreburghCityNorthHouse1F_PokemonBreederM:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message OreburghCityNorthHouse1F_Text_WhenYouTradeAPokemonTheItemItsHoldingIsTradedAsWell
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage OreburghCityNorthHouse1F_Text_WhenYouTradeAPokemonTheItemItsHoldingIsTradedAsWell
     End

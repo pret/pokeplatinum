@@ -9,49 +9,19 @@
     ScriptEntryEnd
 
 PoketchCo2F_PokefanM:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message PoketchCo2F_Text_WellTryToThinkLikeATrainerAndFindWhatPoketchAppsWouldBeGood
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage PoketchCo2F_Text_WellTryToThinkLikeATrainerAndFindWhatPoketchAppsWouldBeGood
     End
 
 PoketchCo2F_OldMan:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message PoketchCo2F_Text_PokemonWatchThatsPoketchForShort
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage PoketchCo2F_Text_PokemonWatchThatsPoketchForShort
     End
 
 PoketchCo2F_Clefairy:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    WaitFanfare SEQ_SE_CONFIRM
-    PlayCry SPECIES_CLEFAIRY
-    Message PoketchCo2F_Text_ClefairyCleffy
-    WaitCry
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    PokemonCryAndMessage SPECIES_CLEFAIRY, PoketchCo2F_Text_ClefairyCleffy
     End
 
 PoketchCo2F_Pachirisu:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    WaitFanfare SEQ_SE_CONFIRM
-    PlayCry SPECIES_PACHIRISU
-    Message PoketchCo2F_Text_PachirisuPatchii
-    WaitCry
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    PokemonCryAndMessage SPECIES_PACHIRISU, PoketchCo2F_Text_PachirisuPatchii
     End
 
     .balign 4, 0

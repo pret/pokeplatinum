@@ -18,23 +18,11 @@ OreburghCityPokecenter1F_Nurse:
     End
 
 OreburghCityPokecenter1F_NinjaBoy:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message OreburghCityPokecenter1F_Text_YayIGotAPalPadAtThePokemonWiFiClubDownstairs
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage OreburghCityPokecenter1F_Text_YayIGotAPalPadAtThePokemonWiFiClubDownstairs
     End
 
 OreburghCityPokecenter1F_AceTrainerF:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message OreburghCityPokecenter1F_Text_SwitchOnThePCAtAnyPokemonCenter
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage OreburghCityPokecenter1F_Text_SwitchOnThePCAtAnyPokemonCenter
     End
 
 OreburghCityPokecenter1F_Psychic:
@@ -106,23 +94,11 @@ OreburghCityPokecenter1F_WhatOrWhoIsThisTeamGalactic:
     End
 
 OreburghCityPokecenter1F_KidWithNDSWest:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message OreburghCityPokecenter1F_Text_NowYouCanCaptureItAsABattleVideoUsingAVsRecorder
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage OreburghCityPokecenter1F_Text_NowYouCanCaptureItAsABattleVideoUsingAVsRecorder
     End
 
 OreburghCityPokecenter1F_KidWithNDSEast:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message OreburghCityPokecenter1F_Text_CoolYouHaveAVsRecorder
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage OreburghCityPokecenter1F_Text_CoolYouHaveAVsRecorder
     End
 
     .balign 4, 0
