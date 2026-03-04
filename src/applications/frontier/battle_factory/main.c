@@ -62,6 +62,10 @@
 
 FS_EXTERN_OVERLAY(overlay104);
 
+#define NUM_INITIAL_SELECT_OPTIONS 6
+#define PARTY_SIZE_SOLO            3
+#define PARTY_SIZE_MULTI           2
+
 #define MENU_OPTION_SUMMARY  0
 #define MENU_OPTION_RENT     1
 #define MENU_OPTION_CANCEL   2
@@ -125,19 +129,19 @@ typedef struct BattleFactoryApp {
     String *menuStr[4];
     u16 unused2[8];
     BgConfig *bgConfig;
-    Window windows[10];
+    Window windows[NUM_FACTORY_APP_WINDOWS];
     MenuTemplate menuTemplate;
     Menu *menu;
     StringList strList[4];
     PaletteData *plttData;
     G3DPipelineBuffers *g3dPipeline;
     PokemonSpriteManager *monSpriteMan;
-    PokemonSprite *monSprites[3];
+    PokemonSprite *monSprites[MATH_MAX(PARTY_SIZE_SOLO, PARTY_SIZE_MULTI)];
     Options *options;
     SaveData *saveData;
     PokemonSummary *monSummary;
     BattleFactoryAppSpriteManager spriteMan;
-    BattleFactoryAppPokeballSprite *ballSprites[6];
+    BattleFactoryAppPokeballSprite *ballSprites[NUM_INITIAL_SELECT_OPTIONS];
     BattleFactoryAppCursor *monCursor;
     BattleFactoryAppCursor *menuCursor;
     BattleFactoryAppPanelSprite *bluePanelSprite;
@@ -150,8 +154,8 @@ typedef struct BattleFactoryApp {
     NARC *narc;
     u16 commPayload[60];
     u16 partnerTradedMon;
-    u16 partnerMonSpecies[2];
-    u16 partnenMonGenders[2];
+    u16 partnerMonSpecies[PARTY_SIZE_MULTI];
+    u16 partnenMonGenders[PARTY_SIZE_MULTI];
     u8 numTradeResultMsgReceived;
     u8 partnerListingUpdateNeeded;
     u32 unused3;
@@ -253,7 +257,7 @@ static void DummyCreatePayload(BattleFactoryApp *app, u16 cmd);
 static void CreateUpdateSelectionPayload(BattleFactoryApp *app, u16 cmd, u16 unused);
 static void CreateTradeResultPayload(BattleFactoryApp *app, u16 cmd, u16 tradedMon);
 
-static const CoordinatesU16 sInitialSelectionPokeballPositions[] = {
+static const CoordinatesU16 sInitialSelectionPokeballPositions[NUM_INITIAL_SELECT_OPTIONS] = {
     { 24, 112 },
     { 64, 112 },
     { 104, 112 },
@@ -262,25 +266,25 @@ static const CoordinatesU16 sInitialSelectionPokeballPositions[] = {
     { 224, 112 }
 };
 
-static const CoordinatesU16 sExchangeSelectPokeballPositions[] = {
+static const CoordinatesU16 sExchangeSelectPokeballPositions[PARTY_SIZE_SOLO] = {
     { 64, 112 },
     { 120, 112 },
     { 176, 112 }
 };
 
-static const CoordinatesU16 sExchangeSelectMultiPokeballPositions[] = {
+static const CoordinatesU16 sExchangeSelectMultiPokeballPositions[PARTY_SIZE_MULTI] = {
     { 96, 112 },
     { 152, 112 }
 };
 
-static const CoordinatesU16 sReceiveSelectMultiPokeballPositions[] = {
+static const CoordinatesU16 sReceiveSelectMultiPokeballPositions[PARTY_SIZE_MULTI * 2] = {
     { 40, 112 },
     { 96, 112 },
     { 152, 112 },
     { 208, 112 }
 };
 
-static const CoordinatesS16 sInitialSelectCursorPositions[] = {
+static const CoordinatesS16 sInitialSelectCursorPositions[NUM_INITIAL_SELECT_OPTIONS] = {
     { 24, 112 },
     { 64, 112 },
     { 104, 112 },
@@ -289,7 +293,7 @@ static const CoordinatesS16 sInitialSelectCursorPositions[] = {
     { 224, 112 }
 };
 
-static const CoordinatesS16 sExchangeSelectCursorPositions[] = {
+static const CoordinatesS16 sExchangeSelectCursorPositions[PARTY_SIZE_SOLO + 1] = {
     { 64, 112 },
     { 120, 112 },
     { 176, 112 },
@@ -303,7 +307,7 @@ static const u8 sExchangeSelectCursorAnimIDs[NELEMS(sExchangeSelectCursorPositio
     ANIM_ID_MENU_CURSOR
 };
 
-static const CoordinatesS16 sExchangeSelectMultiCursorPositions[] = {
+static const CoordinatesS16 sExchangeSelectMultiCursorPositions[PARTY_SIZE_MULTI + 1] = {
     { 96, 112 },
     { 152, 112 },
     { 212, 144 }
@@ -315,7 +319,7 @@ static const u8 sExchangeSelectMultiCursorAnimIDs[NELEMS(sExchangeSelectMultiCur
     ANIM_ID_MENU_CURSOR
 };
 
-static const CoordinatesS16 sReceiveSelectCursorPositions[] = {
+static const CoordinatesS16 sReceiveSelectCursorPositions[PARTY_SIZE_SOLO + 2] = {
     { 64, 112 },
     { 120, 112 },
     { 176, 112 },
@@ -331,7 +335,7 @@ static const u8 sReceiveSelectCursorAnimIDs[NELEMS(sReceiveSelectCursorPositions
     ANIM_ID_MENU_CURSOR
 };
 
-static const CoordinatesS16 sReceiveSelectMultiCursorPositions[] = {
+static const CoordinatesS16 sReceiveSelectMultiCursorPositions[PARTY_SIZE_MULTI * 2 + 2] = {
     { 40, 112 },
     { 96, 112 },
     { 152, 112 },
@@ -1871,7 +1875,7 @@ static BOOL State_ChangeExchangeToReceiveSelect(BattleFactoryApp *app)
         }
         break;
     case 4:
-        if (ConveyPokeballsOntoScreen(app) == TRUE) {
+        if (ConveyPokeballsOntoScreen(app) == 1) {
             Sound_StopEffect(SEQ_SE_DP_ELEBETA2, 0);
             Sound_PlayEffect(SEQ_SE_DP_KASYA);
 
@@ -2519,7 +2523,7 @@ static void PrintPartnersName(BattleFactoryApp *app, Window *window, u32 xOffset
     TrainerInfo_NameString(trainerInfo, name);
 
     TextColor color;
-    if (TrainerInfo_Gender(trainerInfo) == GENDER_MALE) {
+    if (TrainerInfo_Gender(trainerInfo) == 0) {
         color = TEXT_COLOR(7, 8, 0);
     } else {
         color = TEXT_COLOR(3, 4, 0);

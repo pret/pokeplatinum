@@ -14,6 +14,7 @@ enum BattleFactoryAppWindows {
     WINDOW_MENU,
     WINDOW_PARTNERS_MON_NAME_1,
     WINDOW_PARTNERS_MON_NAME_2,
+    NUM_FACTORY_APP_WINDOWS,
 };
 
 void BattleFactoryApp_InitWindows(BgConfig *bgConfig, Window *windows);

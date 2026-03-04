@@ -104,7 +104,7 @@ void BattleFactoryApp_InitWindows(BgConfig *bgConfig, Window *windows)
         }
     };
 
-    for (u8 i = 0; i < 10; i++) {
+    for (u8 i = 0; i < NUM_FACTORY_APP_WINDOWS; i++) {
         Window_AddFromTemplate(bgConfig, &windows[i], &sWinTemplates[i]);
         Window_FillTilemap(&windows[i], 0);
     }
@@ -112,7 +112,7 @@ void BattleFactoryApp_InitWindows(BgConfig *bgConfig, Window *windows)
 
 void BattleFactoryApp_FreeWindows(Window *windows)
 {
-    for (u16 i = 0; i < 10; i++) {
+    for (u16 i = 0; i < NUM_FACTORY_APP_WINDOWS; i++) {
         Window_Remove(&windows[i]);
     }
 }
