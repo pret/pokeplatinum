@@ -134,7 +134,7 @@ static const SpriteResourceCapacities Unk_ov17_02252DB0 = {
     0x8
 };
 
-int ActingCompetitionInit(ApplicationManager *appMan, int *param1)
+int ActingCompetition_Init(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov17_02246F24 *v0;
 
@@ -256,7 +256,7 @@ int ActingCompetitionInit(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-int ActingCompetitionMain(ApplicationManager *appMan, int *param1)
+int ActingCompetition_Main(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov17_02246F24 *v0 = ApplicationManager_Data(appMan);
     int v1;
@@ -310,7 +310,7 @@ int ActingCompetitionMain(ApplicationManager *appMan, int *param1)
     return 0;
 }
 
-int ActingCompetitionExit(ApplicationManager *appMan, int *param1)
+int ActingCompetition_Exit(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov17_02246F24 *v0 = ApplicationManager_Data(appMan);
     int v1;

@@ -214,7 +214,7 @@ static const SpriteResourceCapacities Unk_ov17_02252FF0 = {
     0x8
 };
 
-int DanceCompetitionInit(ApplicationManager *appMan, int *param1)
+int DanceCompetition_Init(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov17_0224DF54 *v0;
 
@@ -328,7 +328,7 @@ int DanceCompetitionInit(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-int DanceCompetitionMain(ApplicationManager *appMan, int *param1)
+int DanceCompetition_Main(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov17_0224DF54 *v0 = ApplicationManager_Data(appMan);
     int v1;
@@ -382,7 +382,7 @@ int DanceCompetitionMain(ApplicationManager *appMan, int *param1)
     return 0;
 }
 
-int DanceCompetitionExit(ApplicationManager *appMan, int *param1)
+int DanceCompetition_Exit(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov17_0224DF54 *v0 = ApplicationManager_Data(appMan);
     int v1;

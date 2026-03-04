@@ -89,37 +89,37 @@ static int CalcMonContestFame(Pokemon *mon, enum PokemonContestType contestType)
 static void sub_020939E0(Contest *contest, int isGameCompleted, int isNatDexObtained);
 
 const ApplicationManagerTemplate ActingCompetitionAppTemplate = {
-    ActingCompetitionInit,
-    ActingCompetitionMain,
-    ActingCompetitionExit,
+    ActingCompetition_Init,
+    ActingCompetition_Main,
+    ActingCompetition_Exit,
     FS_OVERLAY_ID(overlay17)
 };
 
 const ApplicationManagerTemplate DanceCompetitionAppTemplate = {
-    DanceCompetitionInit,
-    DanceCompetitionMain,
-    DanceCompetitionExit,
+    DanceCompetition_Init,
+    DanceCompetition_Main,
+    DanceCompetition_Exit,
     FS_OVERLAY_ID(overlay17)
 };
 
 const ApplicationManagerTemplate VisualCompetitionScoringAppTemplate = {
-    VisualCompetitonScoringInit,
-    VisualCompetitionScoringMain,
-    VisualCompetitionScoringExit,
+    VisualCompetitonScoring_Init,
+    VisualCompetitionScoring_Main,
+    VisualCompetitionScoring_Exit,
     FS_OVERLAY_ID(overlay17)
 };
 
 const ApplicationManagerTemplate ContestFinalScoringAppTemplate = {
-    ContestFinalScoringInit,
-    ContestFinalScoringMain,
-    ContestFinalScoringExit,
+    ContestFinalScoring_Init,
+    ContestFinalScoring_Main,
+    ContestFinalScoring_Exit,
     FS_OVERLAY_ID(overlay17)
 };
 
 const ApplicationManagerTemplate VisualCompetitionAppTemplate = {
-    VisualCompetitionInit,
-    VisualCompetitionMain,
-    VisualCompetitionExit,
+    VisualCompetition_Init,
+    VisualCompetition_Main,
+    VisualCompetition_Exit,
     FS_OVERLAY_ID(overlay22)
 };
 
