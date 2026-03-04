@@ -125,7 +125,7 @@ __attribute__((aligned(4))) static const u16 Unk_ov17_02254AB4[] = {
     0xF
 };
 
-int ContestFinalScoringInit(ApplicationManager *appMan, int *param1)
+int ContestFinalScoring_Init(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov17_0224FCA0 *v0;
 
@@ -218,7 +218,7 @@ int ContestFinalScoringInit(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-int ContestFinalScoringMain(ApplicationManager *appMan, int *param1)
+int ContestFinalScoring_Main(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov17_0224FCA0 *v0 = ApplicationManager_Data(appMan);
     int v1;
@@ -270,7 +270,7 @@ int ContestFinalScoringMain(ApplicationManager *appMan, int *param1)
     return 0;
 }
 
-int ContestFinalScoringExit(ApplicationManager *appMan, int *param1)
+int ContestFinalScoring_Exit(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov17_0224FCA0 *v0 = ApplicationManager_Data(appMan);
     int v1;

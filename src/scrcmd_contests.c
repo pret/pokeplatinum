@@ -56,7 +56,7 @@ static BOOL ScriptContext_ResumeWhenContestSynced(ScriptContext *ctx)
     return Contest_IsSyncState(*contest, ctx->data[0]);
 }
 
-BOOL ScrCmd_ContestNew(ScriptContext *ctx)
+BOOL ScrCmd_NewContest(ScriptContext *ctx)
 {
     String *trainerName;
     Pokemon *mon;
@@ -364,13 +364,13 @@ static BOOL ScriptContext_IsContestCameraFlashTaskDone(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_HBlankSystem_Stop(ScriptContext *ctx)
+BOOL ScrCmd_StopHBlank(ScriptContext *ctx)
 {
     HBlankSystem_Stop(ctx->fieldSystem->unk_04->hBlankSystem);
     return FALSE;
 }
 
-BOOL ScrCmd_HBlankSystem_Start(ScriptContext *ctx)
+BOOL ScrCmd_StartHBlank(ScriptContext *ctx)
 {
     HBlankSystem_Start(ctx->fieldSystem->unk_04->hBlankSystem);
     return FALSE;

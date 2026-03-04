@@ -115,7 +115,7 @@ static const SpriteResourceCapacities Unk_ov17_02252EC8 = {
     0x8
 };
 
-int VisualCompetitonScoringInit(ApplicationManager *appMan, int *param1)
+int VisualCompetitonScoring_Init(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov17_02247A48 *v0;
 
@@ -220,7 +220,7 @@ int VisualCompetitonScoringInit(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-int VisualCompetitionScoringMain(ApplicationManager *appMan, int *param1)
+int VisualCompetitionScoring_Main(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov17_02247A48 *v0 = ApplicationManager_Data(appMan);
     int v1;
@@ -279,7 +279,7 @@ int VisualCompetitionScoringMain(ApplicationManager *appMan, int *param1)
     return 0;
 }
 
-int VisualCompetitionScoringExit(ApplicationManager *appMan, int *param1)
+int VisualCompetitionScoring_Exit(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov17_02247A48 *v0 = ApplicationManager_Data(appMan);
     int v1;

@@ -403,7 +403,7 @@ int ov22_02256098(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-int VisualCompetitionInit(ApplicationManager *appMan, int *param1)
+int VisualCompetition_Init(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov22_02255D44 *v0;
     u32 v1;
@@ -468,7 +468,7 @@ int VisualCompetitionInit(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-int VisualCompetitionMain(ApplicationManager *appMan, int *param1)
+int VisualCompetition_Main(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov22_02255D44 *v0 = ApplicationManager_Data(appMan);
     int v1 = 0;
@@ -627,7 +627,7 @@ int VisualCompetitionMain(ApplicationManager *appMan, int *param1)
     return v1;
 }
 
-int VisualCompetitionExit(ApplicationManager *appMan, int *param1)
+int VisualCompetition_Exit(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov22_02255D44 *v0 = ApplicationManager_Data(appMan);
     u32 v1;

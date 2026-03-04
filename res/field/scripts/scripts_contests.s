@@ -538,7 +538,7 @@ ContestRegistration_ReceptionistLinkContest_End:
     End
 
 ContestRegistration_StartContest:
-    ContestNew VAR_0x8004, VAR_0x8005, VAR_0x8007, VAR_MAP_LOCAL_2
+    NewContest VAR_0x8004, VAR_0x8005, VAR_0x8007, VAR_MAP_LOCAL_2
     CallIfEq VAR_MAP_LOCAL_3, CONTEST_MODE_LINK, ContestRegistration_SetupLinkContest
     GoToIfEq VAR_MAP_LOCAL_3, CONTEST_MODE_PRACTICE, ContestRegistration_RegisteredForPractice
     GetContestRegistrationEntryNum VAR_RESULT
@@ -683,10 +683,10 @@ Contest_DoContest:
     Warp MAP_HEADER_CONTEST_HALL_STAGE_ONGOING_CONTEST, 0, 29, 7, 0
     LockAutoScrollForLinkContests
     GetContestMode VAR_MAP_LOCAL_3
-    HBlankSystem_Stop
+    StopHBlank
     FadeScreenIn
     WaitFadeScreen
-    HBlankSystem_Start
+    StartHBlank
     StartContestCommSync 3
     WaitForCommSyncState 3
     PlayFanfare SEQ_SE_DP_CON_F007
@@ -744,10 +744,10 @@ Contest_DoContest:
     WaitForCommSyncState 4
     PlayFanfare SEQ_SE_DP_CON_F007
     WaitTime 30, VAR_RESULT
-    HBlankSystem_Stop
+    StopHBlank
     FadeScreen FADE_SCREEN_CMD_STEPS, FADE_SCREEN_SPEED_FAST, FADE_TYPE_UNK_20, COLOR_BLACK
     WaitFadeScreen
-    HBlankSystem_Start
+    StartHBlank
     DestroyNetworkIcon
     RunContestApplication
     LockAutoScrollForLinkContests
@@ -763,7 +763,7 @@ Contest_DoContest:
     Call OngoingContest_PlayApplause
     WaitForContestCameraFlashTask
     MessageSynchronized ContestRegistration_Text_Congratulations2
-    ScrCmd_GetShouldSkipAwardCeremony VAR_RESULT
+    GetShouldSkipAwardCeremony VAR_RESULT
     GoToIfEq VAR_RESULT, TRUE, OngoingContest_EndContest
     BufferWinningContestantTrainerName 0
     BufferWinningContestantMonName 1
@@ -800,10 +800,10 @@ OngoingContest_EndContest:
     ScrCmd_2BB
     WaitTime 10, VAR_RESULT
     DestroyNetworkIcon
-    HBlankSystem_Stop
+    StopHBlank
     FadeScreen FADE_SCREEN_CMD_STEPS, FADE_SCREEN_SPEED_FAST, FADE_TYPE_UNK_20, COLOR_BLACK
     WaitFadeScreen
-    HBlankSystem_Start
+    StartHBlank
     GetContestInfo VAR_0x8004, VAR_0x8005, VAR_0x8007, VAR_MAP_LOCAL_2
     GetFirstTimeVictoryAccessory VAR_0x8004
     LockTextSpeed

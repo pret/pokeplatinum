@@ -1523,7 +1523,7 @@
     .short \syncState
     .endm
 
-    .macro ContestNew contestRank, contestType, competitionType, partySlot
+    .macro NewContest contestRank, contestType, competitionType, partySlot
     .short 250
     .short \contestRank
     .short \contestType
@@ -1536,7 +1536,7 @@
     .short \mapID
     .endm
 
-    .macro ScrCmd_BufferJudgeName judgeID, idx
+    .macro BufferJudgeName judgeID, idx
     .short 252
     .short \judgeID
     .short \idx
@@ -1657,15 +1657,15 @@
     .short 274
     .endm
 
-    .macro HBlankSystem_Stop
+    .macro StopHBlank
     .short 275
     .endm
 
-    .macro HBlankSystem_Start
+    .macro StartHBlank
     .short 276
     .endm
 
-    .macro ScrCmd_GetShouldSkipAwardCeremony destSkipAwardCeremony
+    .macro GetShouldSkipAwardCeremony destSkipAwardCeremony
     .short 277
     .short \destSkipAwardCeremony
     .endm

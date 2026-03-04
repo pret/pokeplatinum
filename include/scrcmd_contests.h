@@ -5,7 +5,7 @@
 
 BOOL ScrCmd_StartContestCommSync(ScriptContext *ctx);
 BOOL ScrCmd_WaitForCommSyncState(ScriptContext *ctx);
-BOOL ScrCmd_ContestNew(ScriptContext *ctx);
+BOOL ScrCmd_NewContest(ScriptContext *ctx);
 BOOL ScrCmd_EndContest(ScriptContext *ctx);
 BOOL ScrCmd_BufferJudgeName(ScriptContext *ctx);
 BOOL ScrCmd_BufferContestantTrainerName(ScriptContext *ctx);
@@ -32,8 +32,8 @@ BOOL ScrCmd_LockAutoScrollForLinkContests(ScriptContext *ctx);
 BOOL ScrCmd_LockTextSpeed(ScriptContext *ctx);
 BOOL ScrCmd_StartContestCameraFlashTask(ScriptContext *ctx);
 BOOL ScrCmd_WaitForContestCameraFlashTask(ScriptContext *ctx);
-BOOL ScrCmd_HBlankSystem_Stop(ScriptContext *ctx);
-BOOL ScrCmd_HBlankSystem_Start(ScriptContext *ctx);
+BOOL ScrCmd_StopHBlank(ScriptContext *ctx);
+BOOL ScrCmd_StartHBlank(ScriptContext *ctx);
 BOOL ScrCmd_GetShouldSkipAwardCeremony(ScriptContext *ctx);
 BOOL ScrCmd_ShowLinkContestRecords(ScriptContext *ctx);
 
