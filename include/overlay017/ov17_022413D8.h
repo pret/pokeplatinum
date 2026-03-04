@@ -4,8 +4,6 @@
 #include "generated/pokemon_contest_ranks.h"
 #include "generated/pokemon_contest_types.h"
 
-#include "struct_defs/contest.h"
-
 #include "overlay017/struct_ov17_0223F88C.h"
 #include "overlay017/struct_ov17_0224145C.h"
 #include "overlay017/struct_ov17_0224365C.h"
@@ -17,6 +15,7 @@
 #include "narc.h"
 #include "palette.h"
 #include "sprite_system.h"
+#include "unk_020933F8.h"
 
 enum ActingCompetitionMessagesID {
     ACTING_COMPETITION_MESSAGE_NONE,

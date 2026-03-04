@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/contest.h"
 #include "struct_defs/struct_020954F0.h"
 
 #include "overlay006/struct_ov6_02248BE8.h"
@@ -14,6 +13,7 @@
 #include "heap.h"
 #include "pokemon.h"
 #include "string_gf.h"
+#include "unk_020933F8.h"
 
 typedef struct {
     u8 unk_00;

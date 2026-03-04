@@ -1,7 +1,6 @@
 #ifndef POKEPLATINUM_OV6_022489E4_H
 #define POKEPLATINUM_OV6_022489E4_H
 
-#include "struct_defs/contest.h"
 #include "struct_defs/struct_020954F0.h"
 
 #include "overlay006/struct_ov6_02248BE8.h"
@@ -9,6 +8,7 @@
 
 #include "pokemon.h"
 #include "string_gf.h"
+#include "unk_020933F8.h"
 
 void ov6_022489E4(int param0, int param1, void *param2, void *param3);
 BOOL ov6_02248A64(Contest *param0);
