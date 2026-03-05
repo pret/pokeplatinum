@@ -2,57 +2,57 @@
 #include "res/text/bank/floaroma_town_middle_house.h"
 
 
-    ScriptEntry _000E
-    ScriptEntry _0021
-    ScriptEntry _00A9
+    ScriptEntry FloaromaTownMiddleHouse_PokemonBreederF
+    ScriptEntry FloaromaTownMiddleHouse_Twin
+    ScriptEntry FloaromaTownMiddleHouse_Clefairy
     ScriptEntryEnd
 
-_000E:
-    NPCMessage 0
+FloaromaTownMiddleHouse_PokemonBreederF:
+    NPCMessage FloaromaTownMiddleHouse_Text_FloaromaTownWasABarrenDesolateHillLongAgo
     End
 
-_0021:
+FloaromaTownMiddleHouse_Twin:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x0083, _0094
-    Message 1
+    GoToIfSet FLAG_RECEIVED_FLOAROMA_TOWN_MIDDLE_HOUSE_TM88, FloaromaTownMiddleHouse_WhenAPokemonUsesPluckItEatsABerryHeldByItsFoe
+    Message FloaromaTownMiddleHouse_Text_DoYouThinkItsCuteHowPokemonPluckBerries
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _0062
-    GoToIfEq VAR_RESULT, MENU_NO, _0057
+    GoToIfEq VAR_RESULT, MENU_YES, FloaromaTownMiddleHouse_HeresTheTMForTheMovePluck
+    GoToIfEq VAR_RESULT, MENU_NO, FloaromaTownMiddleHouse_OhIGuessIJustLikeWeirdThings
     End
 
-_0057:
-    Message 3
+FloaromaTownMiddleHouse_OhIGuessIJustLikeWeirdThings:
+    Message FloaromaTownMiddleHouse_Text_OhIGuessIJustLikeWeirdThings
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0062:
-    Message 2
+FloaromaTownMiddleHouse_HeresTheTMForTheMovePluck:
+    Message FloaromaTownMiddleHouse_Text_HeresTheTMForTheMovePluck
     SetVar VAR_0x8004, ITEM_TM88
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _009F
-    SetFlag FLAG_UNK_0x0083
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, FloaromaTownMiddleHouse_BagIsFull
+    SetFlag FLAG_RECEIVED_FLOAROMA_TOWN_MIDDLE_HOUSE_TM88
     Common_GiveItemQuantityNoLineFeed
     CloseMessage
     ReleaseAll
     End
 
-_0094:
-    Message 4
+FloaromaTownMiddleHouse_WhenAPokemonUsesPluckItEatsABerryHeldByItsFoe:
+    Message FloaromaTownMiddleHouse_Text_WhenAPokemonUsesPluckItEatsABerryHeldByItsFoe
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_009F:
+FloaromaTownMiddleHouse_BagIsFull:
     Common_MessageBagIsFull
     CloseMessage
     ReleaseAll
     End
 
-_00A9:
-    PokemonCryAndMessage SPECIES_CLEFAIRY, 5
+FloaromaTownMiddleHouse_Clefairy:
+    PokemonCryAndMessage SPECIES_CLEFAIRY, FloaromaTownMiddleHouse_Text_ClefairyRii
     End

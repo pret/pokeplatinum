@@ -2278,11 +2278,11 @@
     .short \z
     .endm
 
-    .macro ScrCmd_18B arg0, arg1, arg2
+    .macro SetBgEventPos index, x, z
     .short 395
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \index
+    .short \x
+    .short \z
     .endm
 
     .macro ScrCmd_18C arg0, arg1

@@ -1,174 +1,175 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/valley_windworks_outside.h"
+#include "res/field/events/events_valley_windworks_outside.h"
 
 
-    ScriptEntry _0024
-    ScriptEntry _008A
-    ScriptEntry _00CF
-    ScriptEntry _0150
-    ScriptEntry _01A8
-    ScriptEntry _01BF
-    ScriptEntry _0022
-    ScriptEntry _0201
+    ScriptEntry ValleyWindworksOutside_OnTransition
+    ScriptEntry ValleyWindworksOutside_OnLoad
+    ScriptEntry ValleyWindworksOutside_GruntM
+    ScriptEntry ValleyWindworksOutside_Door
+    ScriptEntry ValleyWindworksOutside_LandmarkSignValleyWindworks
+    ScriptEntry ValleyWindworksOutside_Drifloon
+    ScriptEntry ValleyWindworksOutside_OnResume
+    ScriptEntry ValleyWindworksOutside_OnFrameLooker
     ScriptEntryEnd
 
-_0022:
+ValleyWindworksOutside_OnResume:
     End
 
-_0024:
-    CallIfEq VAR_UNK_0x40CF, 2, _0082
-    CallIfSet FLAG_UNK_0x010F, _00BB
-    CallIfUnset FLAG_UNK_0x010F, _00C5
-    GoToIfLt VAR_UNK_0x4089, 2, _007C
-    GoToIfSet FLAG_UNK_0x0AA8, _007C
+ValleyWindworksOutside_OnTransition:
+    CallIfEq VAR_VALLEY_WINDWORKS_TEAM_GALACTIC_STATE, 2, ValleyWindworksOutside_IncreaseTeamGalacticValleyWindworksState
+    CallIfSet FLAG_UNLOCKED_VALLEY_WINDWORKS_DOOR, ValleyWindworksOutside_SetDoorBgEvent
+    CallIfUnset FLAG_UNLOCKED_VALLEY_WINDWORKS_DOOR, ValleyWindworksOutside_SetDoorWarpEvent
+    GoToIfLt VAR_VALLEY_WINDWORKS_STATE, 2, ValleyWindworksOutside_HideDrifloon
+    GoToIfSet FLAG_WON_AGAINST_VALLEY_WINDWORKS_OUTSIDE_DRIFLOON, ValleyWindworksOutside_HideDrifloon
     GetDayOfWeek VAR_MAP_LOCAL_0
-    GoToIfNe VAR_MAP_LOCAL_0, 5, _007C
-    GoTo _0076
+    GoToIfNe VAR_MAP_LOCAL_0, 5, ValleyWindworksOutside_HideDrifloon
+    GoTo ValleyWindworksOutside_ShowDrifloon
 
-_0076:
-    ClearFlag FLAG_UNK_0x020B
+ValleyWindworksOutside_ShowDrifloon:
+    ClearFlag FLAG_HIDE_VALLEY_WINDWORKS_OUTSIDE_DRIFLOON
     End
 
-_007C:
-    SetFlag FLAG_UNK_0x020B
+ValleyWindworksOutside_HideDrifloon:
+    SetFlag FLAG_HIDE_VALLEY_WINDWORKS_OUTSIDE_DRIFLOON
     End
 
-_0082:
-    SetVar VAR_UNK_0x40CF, 3
+ValleyWindworksOutside_IncreaseTeamGalacticValleyWindworksState:
+    SetVar VAR_VALLEY_WINDWORKS_TEAM_GALACTIC_STATE, 3
     Return
 
-_008A:
-    CallIfSet FLAG_UNK_0x010F, _00BB
-    CallIfUnset FLAG_UNK_0x010F, _00C5
-    GoToIfSet FLAG_MAP_LOCAL, _00AD
+ValleyWindworksOutside_OnLoad:
+    CallIfSet FLAG_UNLOCKED_VALLEY_WINDWORKS_DOOR, ValleyWindworksOutside_SetDoorBgEvent
+    CallIfUnset FLAG_UNLOCKED_VALLEY_WINDWORKS_DOOR, ValleyWindworksOutside_SetDoorWarpEvent
+    GoToIfSet FLAG_MAP_LOCAL, ValleyWindworksOutside_RemoveDrifloon
     End
 
-_00AD:
-    SetFlag FLAG_UNK_0x020B
-    RemoveObject 4
+ValleyWindworksOutside_RemoveDrifloon:
+    SetFlag FLAG_HIDE_VALLEY_WINDWORKS_OUTSIDE_DRIFLOON
+    RemoveObject LOCALID_DRIFLOON
     ClearFlag FLAG_MAP_LOCAL
     End
 
-_00BB:
-    ScrCmd_18B 1, 243, 0x28A
+ValleyWindworksOutside_SetDoorBgEvent:
+    SetBgEventPos 1, 243, 650
     Return
 
-_00C5:
-    SetWarpEventPos 0, 243, 0x28A
+ValleyWindworksOutside_SetDoorWarpEvent:
+    SetWarpEventPos 0, 243, 650
     Return
 
-_00CF:
+ValleyWindworksOutside_GruntM:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 0
+    Message ValleyWindworksOutside_Text_DontYouDareGoIntoTheValleyWindworksYoullHaveToBattleMeForIt
     CloseMessage
     StartTrainerBattle TRAINER_GALACTIC_GRUNT_VALLEY_WINDWORKS_1
     CheckWonBattle VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, _0133
-    Message 1
+    GoToIfEq VAR_RESULT, FALSE, ValleyWindworksOutside_BlackOutGrunt
+    Message ValleyWindworksOutside_Text_IsntThatJustGreatGettingOwnedBySomeKid
     CloseMessage
-    ApplyMovement 0, _013C
+    ApplyMovement LOCALID_GRUNT_M, ValleyWindworksOutside_Movement_GruntMWalkOnSpotNorth
     WaitMovement
     LoadDoorAnimation 7, 20, 19, 14, ANIMATION_TAG_DOOR_1
     PlayDoorOpenAnimation ANIMATION_TAG_DOOR_1
     WaitForAnimation ANIMATION_TAG_DOOR_1
-    ApplyMovement 0, _0144
+    ApplyMovement LOCALID_GRUNT_M, ValleyWindworksOutside_Movement_GruntMEnterBuilding
     WaitMovement
     PlayDoorCloseAnimation ANIMATION_TAG_DOOR_1
     WaitForAnimation ANIMATION_TAG_DOOR_1
     UnloadAnimation ANIMATION_TAG_DOOR_1
-    Message 4
-    RemoveObject 0
+    Message ValleyWindworksOutside_Text_Kerchunk
+    RemoveObject LOCALID_GRUNT_M
     CloseMessage
     ReleaseAll
     End
 
-_0133:
+ValleyWindworksOutside_BlackOutGrunt:
     BlackOutFromBattle
     ReleaseAll
     End
 
     .balign 4, 0
-_013C:
+ValleyWindworksOutside_Movement_GruntMWalkOnSpotNorth:
     WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
-_0144:
+ValleyWindworksOutside_Movement_GruntMEnterBuilding:
     WalkNormalNorth
     SetInvisible
     EndMovement
 
-_0150:
+ValleyWindworksOutside_Door:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    GoToIfSet FLAG_UNK_0x009F, _016C
-    Message 5
+    GoToIfSet FLAG_OBTAINED_FLOAROMA_MEADOW_WORKS_KEY, ValleyWindworksOutside_AskOpenDoor
+    Message ValleyWindworksOutside_Text_ItsLockedFromInside
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_016C:
-    BufferItemName 0, 0x1B6
-    Message 6
+ValleyWindworksOutside_AskOpenDoor:
+    BufferItemName 0, ITEM_WORKS_KEY
+    Message ValleyWindworksOutside_Text_ItsLockedFromInsideUseTheWorksKey
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _01A2
-    SetFlag FLAG_UNK_0x010F
-    Call _00BB
-    SetWarpEventPos 0, 243, 0x28E
-    Message 7
+    GoToIfEq VAR_RESULT, MENU_NO, ValleyWindworksOutside_AskOpenDoorEnd
+    SetFlag FLAG_UNLOCKED_VALLEY_WINDWORKS_DOOR
+    Call ValleyWindworksOutside_SetDoorBgEvent
+    SetWarpEventPos 0, 243, 654
+    Message ValleyWindworksOutside_Text_KerchunkTheDoorToValleyWindworksOpened
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_01A2:
+ValleyWindworksOutside_AskOpenDoorEnd:
     CloseMessage
     ReleaseAll
     End
 
-_01A8:
-    ShowLandmarkSign 9
+ValleyWindworksOutside_LandmarkSignValleyWindworks:
+    ShowLandmarkSign ValleyWindworksOutside_Text_ValleyWindworksEcologicalWindDrivenEnergy
     End
 
-_01BF:
+ValleyWindworksOutside_Drifloon:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     PlayCry SPECIES_DRIFLOON
-    Message 8
+    Message ValleyWindworksOutside_Text_Floooooon
     CloseMessage
     WaitCry
     SetFlag FLAG_MAP_LOCAL
     StartLegendaryBattle SPECIES_DRIFLOON, 15
     ClearFlag FLAG_MAP_LOCAL
     CheckWonBattle VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, _01FB
-    SetFlag FLAG_UNK_0x0AA8
+    GoToIfEq VAR_RESULT, FALSE, ValleyWindworksOutside_BlackOutDrifloon
+    SetFlag FLAG_WON_AGAINST_VALLEY_WINDWORKS_OUTSIDE_DRIFLOON
     ReleaseAll
     End
 
-_01FB:
+ValleyWindworksOutside_BlackOutDrifloon:
     BlackOutFromBattle
     ReleaseAll
     End
 
-_0201:
+ValleyWindworksOutside_OnFrameLooker:
     LockAll
-    ApplyMovement 6, _02D8
-    ApplyMovement LOCALID_PLAYER, _02AC
+    ApplyMovement LOCALID_LOOKER, ValleyWindworksOutside_Movement_LookerNoticeAndWalkToPlayer
+    ApplyMovement LOCALID_PLAYER, ValleyWindworksOutside_Movement_PlayerFaceLookerWest
     WaitMovement
-    Message 2
+    Message ValleyWindworksOutside_Text_IShallInvestigateInside
     CloseMessage
-    ApplyMovement LOCALID_PLAYER, _02BC
-    ApplyMovement 6, _02EC
+    ApplyMovement LOCALID_PLAYER, ValleyWindworksOutside_Movement_PlayerMoveAwayFromDoor
+    ApplyMovement LOCALID_LOOKER, ValleyWindworksOutside_Movement_LookerWalkToDoor
     WaitMovement
     LoadDoorAnimation 7, 20, 19, 14, ANIMATION_TAG_DOOR_1
     PlayDoorOpenAnimation ANIMATION_TAG_DOOR_1
     WaitForAnimation ANIMATION_TAG_DOOR_1
-    ApplyMovement 6, _0300
+    ApplyMovement LOCALID_LOOKER, ValleyWindworksOutside_Movement_LookerEnterBuilding
     WaitMovement
     PlayDoorCloseAnimation ANIMATION_TAG_DOOR_1
     WaitForAnimation ANIMATION_TAG_DOOR_1
@@ -177,45 +178,45 @@ _0201:
     LoadDoorAnimation 7, 20, 19, 14, ANIMATION_TAG_DOOR_1
     PlayDoorOpenAnimation ANIMATION_TAG_DOOR_1
     WaitForAnimation ANIMATION_TAG_DOOR_1
-    ApplyMovement 6, _0310
+    ApplyMovement LOCALID_LOOKER, ValleyWindworksOutside_Movement_LookerExitBuilding
     WaitMovement
     PlayDoorCloseAnimation ANIMATION_TAG_DOOR_1
     WaitForAnimation ANIMATION_TAG_DOOR_1
     UnloadAnimation ANIMATION_TAG_DOOR_1
-    ApplyMovement 6, _031C
+    ApplyMovement LOCALID_LOOKER, ValleyWindworksOutside_Movement_LookerWalkOnSpotSouth
     WaitMovement
-    Message 3
+    Message ValleyWindworksOutside_Text_IHaveReceivedTipsThatTheTeamGalacticHideoutIsInEternaCity
     CloseMessage
-    ApplyMovement LOCALID_PLAYER, _02C8
-    ApplyMovement 6, _0324
+    ApplyMovement LOCALID_PLAYER, ValleyWindworksOutside_Movement_PlayerWatchLookerLeave
+    ApplyMovement LOCALID_LOOKER, ValleyWindworksOutside_Movement_LookerLeave
     WaitMovement
-    RemoveObject 6
-    SetVar VAR_UNK_0x411E, 2
+    RemoveObject LOCALID_LOOKER
+    SetVar VAR_VALLEY_WINDWORKS_LOOKER_STATE, 2
     ReleaseAll
     End
 
     .balign 4, 0
-_02AC:
+ValleyWindworksOutside_Movement_PlayerFaceLookerWest:
     Delay8 5
     Delay4
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_02BC:
+ValleyWindworksOutside_Movement_PlayerMoveAwayFromDoor:
     WalkNormalSouth
     WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
-_02C8:
+ValleyWindworksOutside_Movement_PlayerWatchLookerLeave:
     Delay8
     WalkOnSpotNormalWest
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_02D8:
+ValleyWindworksOutside_Movement_LookerNoticeAndWalkToPlayer:
     EmoteExclamationMark
     Delay8
     WalkFastNorth 4
@@ -223,7 +224,7 @@ _02D8:
     EndMovement
 
     .balign 4, 0
-_02EC:
+ValleyWindworksOutside_Movement_LookerWalkToDoor:
     Delay8
     Delay4
     WalkNormalEast
@@ -231,25 +232,25 @@ _02EC:
     EndMovement
 
     .balign 4, 0
-_0300:
+ValleyWindworksOutside_Movement_LookerEnterBuilding:
     WalkNormalNorth
     SetInvisible
     FaceSouth
     EndMovement
 
     .balign 4, 0
-_0310:
+ValleyWindworksOutside_Movement_LookerExitBuilding:
     SetVisible
     WalkFastSouth
     EndMovement
 
     .balign 4, 0
-_031C:
+ValleyWindworksOutside_Movement_LookerWalkOnSpotSouth:
     WalkOnSpotFastSouth
     EndMovement
 
     .balign 4, 0
-_0324:
+ValleyWindworksOutside_Movement_LookerLeave:
     WalkFastWest
     WalkFastSouth
     WalkFastSouth 6

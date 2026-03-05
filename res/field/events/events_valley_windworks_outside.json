@@ -19,11 +19,11 @@
     ],
     "object_events": [
         {
-            "id": "VALLEY_WINDWORKS_OUTSIDE_GRUNT_M_0",
+            "id": "LOCALID_GRUNT_M",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x018E",
+            "hidden_flag": "FLAG_HIDE_VALLEY_WINDWORKS_OUTSIDE_GRUNT_M",
             "script": 3,
             "initial_dir": 1,
             "data": [
@@ -36,7 +36,7 @@
             "y": 0
         },
         {
-            "id": "VALLEY_WINDWORKS_OUTSIDE_SIGNBOARD_1",
+            "id": "LOCALID_SIGNBOARD",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -51,12 +51,12 @@
             "y": 0
         },
         {
-            "id": "VALLEY_WINDWORKS_OUTSIDE_ARROW_SIGNPOST_2",
+            "id": "LOCALID_ARROW_SIGNPOST",
             "clone_id": 6,
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x015B",
+            "hidden_flag": "MAP_HEADER_ROUTE_205_SOUTH",
             "script": 65535,
             "initial_dir": 0,
             "data": [
@@ -84,11 +84,11 @@
             "y": 0
         },
         {
-            "id": "VALLEY_WINDWORKS_OUTSIDE_DRIFLOON_4",
+            "id": "LOCALID_DRIFLOON",
             "graphics_id": "OBJ_EVENT_GFX_DRIFLOON",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x020B",
+            "hidden_flag": "FLAG_HIDE_VALLEY_WINDWORKS_OUTSIDE_DRIFLOON",
             "script": 6,
             "initial_dir": 1,
             "data": [
@@ -116,11 +116,11 @@
             "y": 0
         },
         {
-            "id": "VALLEY_WINDWORKS_OUTSIDE_LOOKER_6",
+            "id": "LOCALID_LOOKER",
             "graphics_id": "OBJ_EVENT_GFX_LOOKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x01FA",
+            "hidden_flag": "FLAG_HIDE_VALLEY_WINDWORKS_OUTSIDE_LOOKER",
             "script": 0,
             "initial_dir": 0,
             "data": [

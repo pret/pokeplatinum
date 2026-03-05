@@ -110,7 +110,7 @@ _01D2:
     End
 
 _01E7:
-    ScrCmd_18B 0, 58, 0x2C9
+    SetBgEventPos 0, 58, 0x2C9
     SetWarpEventPos 5, 59, 0x2C8
     Return
 

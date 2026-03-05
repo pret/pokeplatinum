@@ -2,14 +2,14 @@
 #include "res/text/bank/floaroma_town_southeast_house.h"
 
 
-    ScriptEntry _000A
-    ScriptEntry _001D
+    ScriptEntry FloaromaTownSoutheastHouse_PokefanM
+    ScriptEntry FloaromaTownSoutheastHouse_PokefanF
     ScriptEntryEnd
 
-_000A:
-    NPCMessage 0
+FloaromaTownSoutheastHouse_PokefanM:
+    NPCMessage FloaromaTownSoutheastHouse_Text_SomeKindsOfPokemonAppearOnlyIfTheyreAttractedByHoney
     End
 
-_001D:
-    NPCMessage 1
+FloaromaTownSoutheastHouse_PokefanF:
+    NPCMessage FloaromaTownSoutheastHouse_Text_PokemonHaveAnAcuteSenseOfSmell
     End
