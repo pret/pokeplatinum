@@ -261,7 +261,6 @@ pokeplatinum_c = files(
     'tv_episode_segment.c',
     'unk_0206F314.c',
     'unk_02070428.c',
-    'unk_0207064C.c',
     'field_move_tasks.c',
     'unk_020711C8.c',
     'overworld_anim_manager.c',

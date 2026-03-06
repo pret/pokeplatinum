@@ -6,9 +6,9 @@
 #include "pokemon.h"
 #include "sys_task_manager.h"
 
-SysTask *SysTask_HMCutIn_New(FieldSystem *fieldSystem, BOOL isNotFly, Pokemon *shownPokemon, int playerGender);
-int CheckHMCutInFinished(SysTask *cutInTask);
-void SysTask_HMCutIn_SetTaskDone(SysTask *cutInTask);
+SysTask *HMCutIn_StartTask(FieldSystem *fieldSystem, BOOL isNotFly, Pokemon *shownPokemon, int playerGender);
+int HMCutIn_IsFinished(SysTask *cutInTask);
+void HMCutIn_EndTask(SysTask *cutInTask);
 SysTask *FieldTask_FlyLanding_InitTask(FieldSystem *fieldSystem, int playerGender);
 int FlyLanding_IsAnimFinished(SysTask *sysTask);
 void FlyLanding_SetTaskDone(SysTask *sysTask);
