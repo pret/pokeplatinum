@@ -2,7 +2,7 @@
   "key": 44594,
   "messages": [
     {
-      "id": "pl_msg_00000571_00000",
+      "id": "FloaromaTownPokecenter1F_Text_IfYouveGotPokemonWithYouItsSafeToGoOffTravelingAlone",
       "en_US": [
         "If you’ve got Pokémon with you,\n",
         "it’s safe for even a kid like you\f",
@@ -10,7 +10,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000571_00001",
+      "id": "FloaromaTownPokecenter1F_Text_IHadABattleTheOtherDayAndMyPokemonsHPGotLow",
       "en_US": [
         "I had a battle the other day, and my\n",
         "Pokémon’s HP got low.\r",
@@ -20,7 +20,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000571_00002",
+      "id": "FloaromaTownPokecenter1F_Text_ThereveBeenProblemsWithTheElectricPowerLately",
       "en_US": [
         "There’ve been problems with the\n",
         "electric power lately.\r",
@@ -29,7 +29,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000571_00003",
+      "id": "FloaromaTownPokecenter1F_Text_ItsALongWayFromHereToEternaCity",
       "en_US": [
         "It’s a long way from here to Eterna\n",
         "City.\r",
@@ -38,7 +38,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000571_00004",
+      "id": "FloaromaTownPokecenter1F_Text_PoPoPokemonIWantToBecomeMoreLikeAPikachu",
       "en_US": [
         "Po-Po-Pokémon!\r",
         "I want to become more like a PIKACHU!\n",
@@ -46,15 +46,15 @@
       ]
     },
     {
-      "id": "pl_msg_00000571_00005",
+      "id": "FloaromaTownPokecenter1F_Text_PiPikachu",
       "en_US": "Pi-Pikachu!\r"
     },
     {
-      "id": "pl_msg_00000571_00006",
+      "id": "FloaromaTownPokecenter1F_Text_PiPikachu2",
       "en_US": "Pi-Pikachu!"
     },
     {
-      "id": "pl_msg_00000571_00007",
+      "id": "FloaromaTownPokecenter1F_Text_ICanMakeStaticElectricityButImNotVeryMuchLikeAPokemonYet",
       "en_US": [
         "I can make static electricity, but I’m\n",
         "not very much like a Pokémon yet.\r",

@@ -8,7 +8,7 @@
     InitScriptEntryEnd
 
 InitScriptFrameTable:
-    InitScriptGoToIfEqual VAR_UNK_0x411E, 1, 8
+    InitScriptGoToIfEqual VAR_VALLEY_WINDWORKS_LOOKER_STATE, 1, 8
     InitScriptFrameTableEnd
 
     InitScriptEnd

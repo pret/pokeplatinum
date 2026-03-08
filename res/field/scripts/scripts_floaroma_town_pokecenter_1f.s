@@ -1,38 +1,39 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/floaroma_town_pokecenter_1f.h"
+#include "res/field/events/events_floaroma_town_pokecenter_1f.h"
 
 
-    ScriptEntry _0012
-    ScriptEntry _001E
-    ScriptEntry _0031
-    ScriptEntry _0044
+    ScriptEntry FloaromaTownPokecenter1F_Nurse
+    ScriptEntry FloaromaTownPokecenter1F_PokefanM
+    ScriptEntry FloaromaTownPokecenter1F_BattleGirl
+    ScriptEntry FloaromaTownPokecenter1F_AceTrainerF
     ScriptEntryEnd
 
-_0012:
-    Common_CallPokecenterNurse 2
+FloaromaTownPokecenter1F_Nurse:
+    Common_CallPokecenterNurse LOCALID_POKECENTER_NURSE
     End
 
-_001E:
-    NPCMessage 0
+FloaromaTownPokecenter1F_PokefanM:
+    NPCMessage FloaromaTownPokecenter1F_Text_IfYouveGotPokemonWithYouItsSafeToGoOffTravelingAlone
     End
 
-_0031:
-    NPCMessage 1
+FloaromaTownPokecenter1F_BattleGirl:
+    NPCMessage FloaromaTownPokecenter1F_Text_IHadABattleTheOtherDayAndMyPokemonsHPGotLow
     End
 
-_0044:
+FloaromaTownPokecenter1F_AceTrainerF:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfGe VAR_UNK_0x40CF, 2, _0064
-    Message 2
+    GoToIfGe VAR_VALLEY_WINDWORKS_TEAM_GALACTIC_STATE, 2, FloaromaTownPokecenter1F_ItsALongWayFromHereToEternaCity
+    Message FloaromaTownPokecenter1F_Text_ThereveBeenProblemsWithTheElectricPowerLately
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0064:
-    Message 3
+FloaromaTownPokecenter1F_ItsALongWayFromHereToEternaCity:
+    Message FloaromaTownPokecenter1F_Text_ItsALongWayFromHereToEternaCity
     WaitABXPadPress
     CloseMessage
     ReleaseAll
