@@ -3,6 +3,9 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/field_base_tiles.h"
+#include "constants/menu.h"
+#include "constants/scrcmd.h"
 #include "generated/game_records.h"
 #include "generated/items.h"
 #include "generated/species.h"
@@ -15,7 +18,6 @@
 #include "field/field_system.h"
 #include "overlay005/ov5_021EB1A0.h"
 #include "overlay005/ov5_021ECE40.h"
-#include "overlay005/struct_ov5_021F6704_decl.h"
 
 #include "bag.h"
 #include "berry_patch_graphics.h"
@@ -55,323 +57,294 @@
 #include "vars_flags.h"
 
 #include "res/text/bank/battle_tower.h"
+#include "res/text/bank/menu_entries.h"
+
+#define MAX_LIST_ENTRIES 120
 
 typedef struct {
     s16 unk_00;
     s16 unk_02;
 } UnkStruct_ov5_02200C90;
 
-struct UnkStruct_ov5_021F6704_t {
+typedef struct BattleHallRecordSelector {
     FieldSystem *fieldSystem;
-    SysTask *unk_04;
-    Window unk_08;
-    Window *unk_18;
-    String *unk_1C[120];
-    MessageLoader *unk_1FC;
-    StringTemplate *unk_200;
-    u8 unk_204;
-    u8 unk_205;
-    u8 unk_206;
-    u8 unk_207_0 : 1;
-    u8 unk_207_1 : 1;
-    u8 unk_207_2 : 6;
-    u8 unk_208;
-    u8 unk_209;
-    u8 unk_20A;
-    u8 unk_20B;
-    u16 *unk_20C;
-    u16 *unk_210;
-    u16 *unk_214;
-    u16 *unk_218;
-    ListMenuTemplate unk_21C;
-    ListMenu *unk_23C;
-    u16 unk_240;
-    u16 unk_242;
-    StringList unk_244[120];
-    u16 unk_604[120];
-    u16 unk_6F4;
-};
+    SysTask *task;
+    Window window;
+    Window *unusedWin;
+    String *strs[MAX_LIST_ENTRIES];
+    MessageLoader *msgLoader;
+    StringTemplate *strTemplate;
+    u8 startupDelay;
+    u8 unused[2];
+    u8 alwaysTrue : 1;
+    u8 alwaysFalse : 1;
+    u8 tilemapLeft;
+    u8 tilemapTop;
+    u8 unused2;
+    u8 numOptions;
+    u32 unused3;
+    u16 *resultPtr;
+    u16 *listPos;
+    u16 *cursorPos;
+    ListMenuTemplate menuTemplate;
+    ListMenu *listMenu;
+    u32 unused4;
+    StringList strList[MAX_LIST_ENTRIES];
+    u16 unused5[MAX_LIST_ENTRIES];
+    u16 menuPos;
+} BattleHallRecordSelector;
 
-static u16 *ov5_021F65FC(enum HeapID heapID, int fileIndex, int *pokedexLength);
-BOOL ScrCmd_2DE(ScriptContext *ctx);
-static BOOL ov5_021F65D4(ScriptContext *ctx);
+static BattleHallRecordSelector *BattleHallRecordSelecter_New(FieldSystem *fieldSystem, u8 tilemapLeft, u8 tilemapTop, u8 menuPosInit, u8 alwaysTrue, u16 *resultPtr, StringTemplate *strTemplate, Window *unused, MessageLoader *msgLoader, u16 *listPos, u16 *cursorPos);
+static void BattleHallRecordSelector_Init(FieldSystem *fieldSystem, BattleHallRecordSelector *selector, u8 tilemapLeft, u8 tilemapTop, u8 menuPosInit, u8 alwaysTrue, u16 *resultPtr, StringTemplate *strTemplate, Window *unused, MessageLoader *msgLoader, u16 *listPos, u16 *cursorPos);
+static void BattleHallRecordSelector_OpenMenu(BattleHallRecordSelector *selector);
+static void BattleHallRecordSelector_Process(SysTask *task, void *context);
+static BOOL BattleHallRecordSelector_WaitForSelection(ScriptContext *ctx);
+static void BattleHallRecordSelector_Free(BattleHallRecordSelector *selector);
+static u16 *BattleHallRecordSelector_GetSpeciesList(enum HeapID heapID, int fileIndex, int *numElements);
+static void BattleHallRecordSelector_AddOption(BattleHallRecordSelector *selector, u32 entryID, u32 unused, u32 value);
+static void BattleHallRecordSelector_UpdateMessageLoader(BattleHallRecordSelector *selector, MessageLoader *msgLoader);
+static void BattleHallRecordSelector_AddToMenu(BattleHallRecordSelector *selector, u32 entryID, u32 unused, u32 value);
+static void BattleHallRecordSelector_InitListMenuTemplate(BattleHallRecordSelector *selector);
+static void UpdateItemColor(ListMenu *menu, u32 item, u8 yOffset);
+static void UpdateListPosition(ListMenu *listMenu, u32 item, u8 onInit);
+
 static void ov5_021F70CC(Pokemon *param0, int *param1, int *param2);
-BOOL ScrCmd_300(ScriptContext *ctx);
-BOOL ScrCmd_301(ScriptContext *ctx);
-BOOL ScrCmd_30F(ScriptContext *ctx);
-BOOL ScrCmd_2F1(ScriptContext *ctx);
-static void ov5_021F661C(UnkStruct_ov5_021F6704 *param0, MessageLoader *param1);
-static void ov5_021F6624(FieldSystem *fieldSystem, UnkStruct_ov5_021F6704 *param1, u8 param2, u8 param3, u8 param4, u8 param5, u16 *param6, StringTemplate *param7, Window *param8, MessageLoader *param9, u16 *param10, u16 *param11);
-UnkStruct_ov5_021F6704 *ov5_021F6704(FieldSystem *fieldSystem, u8 param1, u8 param2, u8 param3, u8 param4, u16 *param5, StringTemplate *param6, Window *param7, MessageLoader *param8, u16 *param9, u16 *param10);
-void ov5_021F6760(UnkStruct_ov5_021F6704 *param0, u32 param1, u32 param2, u32 param3);
-static void ov5_021F6768(UnkStruct_ov5_021F6704 *param0);
-static void ov5_021F6830(UnkStruct_ov5_021F6704 *param0, u32 param1, u32 param2, u32 param3);
-static void ov5_021F68BC(UnkStruct_ov5_021F6704 *param0);
-static void ov5_021F69CC(ListMenu *param0, u32 param1, u8 param2);
-static void ov5_021F69F0(ListMenu *param0, u32 param1, u8 param2);
-static void ov5_021F6A34(SysTask *param0, void *param1);
-static void ov5_021F6AD4(UnkStruct_ov5_021F6704 *param0);
 
-static u16 Unk_ov5_0220210C[] = {
-    0x12,
-    0x13,
-    0x14,
-    0x15,
-    0x16,
-    0x17,
-    0x18,
-    0x19,
-    0x1A
+// TODO Create zukan_data.naix and populate constants here
+static u16 sAlphabeticalSpeciesLists[] = {
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26
 };
 
-BOOL ScrCmd_2DE(ScriptContext *ctx)
+BOOL ScrCmd_ShowBattleHallRecordMonSelectionMenu(ScriptContext *ctx)
 {
-    int v0;
-    BattleFrontierStage *v1;
-    u16 v2;
-    u16 *v3;
-    int v4, v5;
-    MessageLoader *v6;
-    MessageLoader *v7;
+    int resultCode;
+    BattleFrontierStage *frontierStage;
+    u16 *speciesList;
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    UnkStruct_ov5_021F6704 *v9;
-    StringTemplate **v10 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
-    u16 v11 = ScriptContext_GetVar(ctx);
-    u16 v12 = ScriptContext_GetVar(ctx);
-    u16 v13 = ScriptContext_ReadHalfWord(ctx);
-    u16 v14 = ScriptContext_ReadHalfWord(ctx);
-    u16 v15 = ScriptContext_ReadHalfWord(ctx);
+    StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
+    u16 challengeType = ScriptContext_GetVar(ctx);
+    u16 letterGroup = ScriptContext_GetVar(ctx);
+    u16 resultVar = ScriptContext_ReadHalfWord(ctx);
+    u16 listPosVar = ScriptContext_ReadHalfWord(ctx);
+    u16 cursorPosVar = ScriptContext_ReadHalfWord(ctx);
 
-    ctx->data[0] = v13;
+    ctx->data[0] = resultVar;
 
-    v6 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_FIELD3);
-    v9 = ov5_021F6704(fieldSystem, 20, 1, 0, 1, FieldSystem_GetVarPointer(fieldSystem, v13), *v10, FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_WINDOW), v6, FieldSystem_GetVarPointer(fieldSystem, v14), FieldSystem_GetVarPointer(fieldSystem, v15));
-    v1 = sub_020308A0(fieldSystem->saveData, HEAP_ID_FIELD2, &v0);
+    MessageLoader *monMsgLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_FIELD3);
+    BattleHallRecordSelector *selector = BattleHallRecordSelecter_New(fieldSystem, 20, 1, 0, TRUE, FieldSystem_GetVarPointer(fieldSystem, resultVar), *strTemplate, FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_WINDOW), monMsgLoader, FieldSystem_GetVarPointer(fieldSystem, listPosVar), FieldSystem_GetVarPointer(fieldSystem, cursorPosVar));
+    frontierStage = sub_020308A0(fieldSystem->saveData, HEAP_ID_FIELD2, &resultCode);
 
-    if (v0 == 1) {
-        v3 = ov5_021F65FC(32, Unk_ov5_0220210C[v12], &v5);
+    if (resultCode == LOAD_RESULT_OK) {
+        int speciesListSize;
+        speciesList = BattleHallRecordSelector_GetSpeciesList(HEAP_ID_FIELD3, sAlphabeticalSpeciesLists[letterGroup], &speciesListSize);
 
-        for (v4 = 0; v4 < v5; v4++) {
-            v2 = sub_020308BC(fieldSystem->saveData, v1, sub_0205E584(v11), v3[v4]);
+        for (int i = 0; i < speciesListSize; i++) {
+            u16 streak = sub_020308BC(fieldSystem->saveData, frontierStage, sub_0205E584(challengeType), speciesList[i]);
 
-            if (v2 != 0) {
-                ov5_021F6760(v9, v3[v4], 0xff, v3[v4]);
+            if (streak != 0) {
+                BattleHallRecordSelector_AddOption(selector, speciesList[i], 0xff, speciesList[i]);
             }
         }
 
-        Heap_Free(v3);
+        Heap_Free(speciesList);
     }
 
-    if (v1 != NULL) {
-        Heap_Free(v1);
+    if (frontierStage != NULL) {
+        Heap_Free(frontierStage);
     }
 
-    v7 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MENU_ENTRIES, HEAP_ID_FIELD3);
+    MessageLoader *menuMsgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MENU_ENTRIES, HEAP_ID_FIELD3);
 
-    ov5_021F661C(v9, v7);
-    ov5_021F6760(v9, 12, 0xff, 0xfffe);
+    BattleHallRecordSelector_UpdateMessageLoader(selector, menuMsgLoader);
+    BattleHallRecordSelector_AddOption(selector, MenuEntries_Text_ListMenu_Exit, 0xff, (u16)MENU_CANCEL);
 
-    MessageLoader_Free(v7);
+    MessageLoader_Free(menuMsgLoader);
 
-    ov5_021F661C(v9, v6);
-    ov5_021F6768(v9);
+    BattleHallRecordSelector_UpdateMessageLoader(selector, monMsgLoader);
+    BattleHallRecordSelector_OpenMenu(selector);
 
-    ScriptContext_Pause(ctx, ov5_021F65D4);
-    MessageLoader_Free(v6);
+    ScriptContext_Pause(ctx, BattleHallRecordSelector_WaitForSelection);
+    MessageLoader_Free(monMsgLoader);
 
-    return 1;
+    return TRUE;
 }
 
-static BOOL ov5_021F65D4(ScriptContext *ctx)
+static BOOL BattleHallRecordSelector_WaitForSelection(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    u16 *v1 = FieldSystem_GetVarPointer(fieldSystem, ctx->data[0]);
+    u16 *selection = FieldSystem_GetVarPointer(fieldSystem, ctx->data[0]);
 
-    if (*v1 == 0xEEEE) {
-        return 0;
+    if (*selection == LIST_MENU_NO_SELECTION_YET) {
+        return FALSE;
     }
 
-    return 1;
+    return TRUE;
 }
 
-static u16 *ov5_021F65FC(enum HeapID heapID, int fileIndex, int *pokedexLength)
+static u16 *BattleHallRecordSelector_GetSpeciesList(enum HeapID heapID, int fileIndex, int *numElements)
 {
-    u32 pokedexSize;
-    u16 *pokedex = LoadMemberFromNARC_OutFileSize(NARC_INDEX_APPLICATION__ZUKANLIST__ZKN_DATA__ZUKAN_DATA, fileIndex, 0, heapID, 0, &pokedexSize);
-    *pokedexLength = pokedexSize / (sizeof(u16));
+    u32 speciesListSize;
+    u16 *speciesList = LoadMemberFromNARC_OutFileSize(NARC_INDEX_APPLICATION__ZUKANLIST__ZKN_DATA__ZUKAN_DATA, fileIndex, 0, heapID, 0, &speciesListSize);
+    *numElements = speciesListSize / sizeof(u16);
 
-    return pokedex;
+    return speciesList;
 }
 
-static void ov5_021F661C(UnkStruct_ov5_021F6704 *param0, MessageLoader *param1)
+static void BattleHallRecordSelector_UpdateMessageLoader(BattleHallRecordSelector *selector, MessageLoader *msgLoader)
 {
-    param0->unk_1FC = param1;
-    return;
+    selector->msgLoader = msgLoader;
 }
 
-static void ov5_021F6624(FieldSystem *fieldSystem, UnkStruct_ov5_021F6704 *param1, u8 param2, u8 param3, u8 param4, u8 param5, u16 *param6, StringTemplate *param7, Window *param8, MessageLoader *param9, u16 *param10, u16 *param11)
+static void BattleHallRecordSelector_Init(FieldSystem *fieldSystem, BattleHallRecordSelector *selector, u8 tilemapLeft, u8 tilemapTop, u8 menuPosInit, u8 alwaysTrue, u16 *resultPtr, StringTemplate *strTemplate, Window *unused, MessageLoader *msgLoader, u16 *listPos, u16 *cursorPos)
 {
-    int v0;
+    int i;
 
-    param1->unk_1FC = param9;
-    param1->unk_207_1 = 0;
-    param1->unk_200 = param7;
-    param1->fieldSystem = fieldSystem;
-    param1->unk_210 = param6;
+    selector->msgLoader = msgLoader;
+    selector->alwaysFalse = FALSE;
+    selector->strTemplate = strTemplate;
+    selector->fieldSystem = fieldSystem;
+    selector->resultPtr = resultPtr;
 
-    *param1->unk_210 = 0;
+    *selector->resultPtr = 0;
 
-    param1->unk_214 = param10;
-    param1->unk_218 = param11;
-    param1->unk_207_0 = param5;
-    param1->unk_206 = param4;
-    param1->unk_208 = param2;
-    param1->unk_209 = param3;
-    param1->unk_20B = 0;
-    param1->unk_18 = param8;
-    param1->unk_204 = 3;
-    param1->unk_6F4 = param4;
+    selector->listPos = listPos;
+    selector->cursorPos = cursorPos;
+    selector->alwaysTrue = alwaysTrue;
+    selector->unused[1] = menuPosInit;
+    selector->tilemapLeft = tilemapLeft;
+    selector->tilemapTop = tilemapTop;
+    selector->numOptions = 0;
+    selector->unusedWin = unused;
+    selector->startupDelay = 3;
+    selector->menuPos = menuPosInit;
 
-    for (v0 = 0; v0 < 120; v0++) {
-        param1->unk_244[v0].entry = NULL;
-        param1->unk_244[v0].index = 0;
-        param1->unk_604[v0] = 0xff;
+    for (i = 0; i < MAX_LIST_ENTRIES; i++) {
+        selector->strList[i].entry = NULL;
+        selector->strList[i].index = 0;
+        selector->unused5[i] = 0xff;
     }
 
-    for (v0 = 0; v0 < 120; v0++) {
-        param1->unk_1C[v0] = String_Init(40 * 2, HEAP_ID_FIELD1);
+    for (i = 0; i < MAX_LIST_ENTRIES; i++) {
+        selector->strs[i] = String_Init(80, HEAP_ID_FIELD1);
     }
 
-    *param1->unk_210 = 0xEEEE;
-    return;
+    *selector->resultPtr = LIST_MENU_NO_SELECTION_YET;
 }
 
-UnkStruct_ov5_021F6704 *ov5_021F6704(FieldSystem *fieldSystem, u8 param1, u8 param2, u8 param3, u8 param4, u16 *param5, StringTemplate *param6, Window *param7, MessageLoader *param8, u16 *param9, u16 *param10)
+static BattleHallRecordSelector *BattleHallRecordSelecter_New(FieldSystem *fieldSystem, u8 tilemapLeft, u8 tilemapTop, u8 menuPosInit, u8 alwaysTrue, u16 *resultPtr, StringTemplate *strTemplate, Window *unused, MessageLoader *msgLoader, u16 *listPos, u16 *cursorPos)
 {
-    UnkStruct_ov5_021F6704 *v0;
-    int v1;
+    BattleHallRecordSelector *selector = Heap_Alloc(HEAP_ID_FIELD1, sizeof(BattleHallRecordSelector));
 
-    v0 = Heap_Alloc(HEAP_ID_FIELD1, sizeof(UnkStruct_ov5_021F6704));
-
-    if (v0 == NULL) {
+    if (selector == NULL) {
         return NULL;
     }
 
-    memset(v0, 0, sizeof(UnkStruct_ov5_021F6704));
-    ov5_021F6624(fieldSystem, v0, param1, param2, param3, param4, param5, param6, param7, param8, param9, param10);
+    memset(selector, 0, sizeof(BattleHallRecordSelector));
+    BattleHallRecordSelector_Init(fieldSystem, selector, tilemapLeft, tilemapTop, menuPosInit, alwaysTrue, resultPtr, strTemplate, unused, msgLoader, listPos, cursorPos);
 
-    return v0;
+    return selector;
 }
 
-void ov5_021F6760(UnkStruct_ov5_021F6704 *param0, u32 param1, u32 param2, u32 param3)
+static void BattleHallRecordSelector_AddOption(BattleHallRecordSelector *selector, u32 entryID, u32 unused, u32 value)
 {
-    ov5_021F6830(param0, param1, param2, param3);
-    return;
+    BattleHallRecordSelector_AddToMenu(selector, entryID, unused, value);
 }
 
-static void ov5_021F6768(UnkStruct_ov5_021F6704 *param0)
+static void BattleHallRecordSelector_OpenMenu(BattleHallRecordSelector *selector)
 {
-    if (param0->unk_20B > 8) {
-        Window_Add(param0->fieldSystem->bgConfig, &param0->unk_08, 3, param0->unk_208, param0->unk_209, 11, 8 * 2, 13, 1);
+    if (selector->numOptions > 8) {
+        Window_Add(selector->fieldSystem->bgConfig, &selector->window, BG_LAYER_MAIN_3, selector->tilemapLeft, selector->tilemapTop, 11, 16, 13, 1);
     } else {
-        Window_Add(param0->fieldSystem->bgConfig, &param0->unk_08, 3, param0->unk_208, param0->unk_209, 11, param0->unk_20B * 2, 13, 1);
+        Window_Add(selector->fieldSystem->bgConfig, &selector->window, BG_LAYER_MAIN_3, selector->tilemapLeft, selector->tilemapTop, 11, selector->numOptions * 2, 13, 1);
     }
 
-    LoadStandardWindowGraphics(param0->fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 0, HEAP_ID_FIELD1);
-    Window_DrawStandardFrame(&param0->unk_08, 1, 1024 - (18 + 12) - 9, 11);
-    ov5_021F68BC(param0);
+    LoadStandardWindowGraphics(selector->fieldSystem->bgConfig, BG_LAYER_MAIN_3, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_11, STANDARD_WINDOW_SYSTEM, HEAP_ID_FIELD1);
+    Window_DrawStandardFrame(&selector->window, TRUE, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_11);
+    BattleHallRecordSelector_InitListMenuTemplate(selector);
 
-    param0->unk_23C = ListMenu_New((const ListMenuTemplate *)&param0->unk_21C, *param0->unk_214, *param0->unk_218, HEAP_ID_FIELD1);
-    param0->unk_04 = SysTask_Start(ov5_021F6A34, param0, 0);
-
-    return;
+    selector->listMenu = ListMenu_New(&selector->menuTemplate, *selector->listPos, *selector->cursorPos, HEAP_ID_FIELD1);
+    selector->task = SysTask_Start(BattleHallRecordSelector_Process, selector, 0);
 }
 
-static void ov5_021F6830(UnkStruct_ov5_021F6704 *param0, u32 param1, u32 param2, u32 param3)
+static void BattleHallRecordSelector_AddToMenu(BattleHallRecordSelector *selector, u32 entryID, u32 unused, u32 value)
 {
-    int v0;
-    void *v1;
+    String *string = String_Init(80, HEAP_ID_FIELD1);
 
-    {
-        String *v2 = String_Init(40 * 2, HEAP_ID_FIELD1);
+    MessageLoader_GetString(selector->msgLoader, entryID, string);
+    StringTemplate_Format(selector->strTemplate, selector->strs[selector->numOptions], string);
+    selector->strList[selector->numOptions].entry = selector->strs[selector->numOptions];
+    String_Free(string);
 
-        MessageLoader_GetString(param0->unk_1FC, param1, v2);
-        StringTemplate_Format(param0->unk_200, param0->unk_1C[param0->unk_20B], v2);
-        param0->unk_244[param0->unk_20B].entry = (const void *)param0->unk_1C[param0->unk_20B];
-        String_Free(v2);
-    }
-
-    if (param3 == 0xfa) {
-        param0->unk_244[param0->unk_20B].index = 0xfffffffd;
+    if (value == LIST_MENU_BUILDER_HEADER) {
+        selector->strList[selector->numOptions].index = MENU_HEADER;
     } else {
-        param0->unk_244[param0->unk_20B].index = param3;
+        selector->strList[selector->numOptions].index = value;
     }
 
-    param0->unk_604[param0->unk_20B] = param2;
-    param0->unk_20B++;
-
-    return;
+    selector->unused5[selector->numOptions] = unused;
+    selector->numOptions++;
 }
 
-static void ov5_021F68BC(UnkStruct_ov5_021F6704 *param0)
+static void BattleHallRecordSelector_InitListMenuTemplate(BattleHallRecordSelector *selector)
 {
-    param0->unk_21C.choices = param0->unk_244;
-    param0->unk_21C.cursorCallback = ov5_021F69F0;
-    param0->unk_21C.printCallback = ov5_021F69CC;
-    param0->unk_21C.window = &param0->unk_08;
-    param0->unk_21C.count = param0->unk_20B;
-    param0->unk_21C.maxDisplay = 8;
-    param0->unk_21C.headerXOffset = 1;
-    param0->unk_21C.textXOffset = 12;
-    param0->unk_21C.cursorXOffset = 2;
-    param0->unk_21C.yOffset = 1;
-    param0->unk_21C.textColorFg = 1;
-    param0->unk_21C.textColorBg = 15;
-    param0->unk_21C.textColorShadow = 2;
-    param0->unk_21C.letterSpacing = 0;
-    param0->unk_21C.lineSpacing = 0;
-    param0->unk_21C.pagerMode = PAGER_MODE_LEFT_RIGHT_PAD;
-    param0->unk_21C.fontID = FONT_SYSTEM;
-    param0->unk_21C.cursorType = 0;
-    param0->unk_21C.parent = (void *)param0;
-
-    return;
+    selector->menuTemplate.choices = selector->strList;
+    selector->menuTemplate.cursorCallback = UpdateListPosition;
+    selector->menuTemplate.printCallback = UpdateItemColor;
+    selector->menuTemplate.window = &selector->window;
+    selector->menuTemplate.count = selector->numOptions;
+    selector->menuTemplate.maxDisplay = 8;
+    selector->menuTemplate.headerXOffset = 1;
+    selector->menuTemplate.textXOffset = 12;
+    selector->menuTemplate.cursorXOffset = 2;
+    selector->menuTemplate.yOffset = 1;
+    selector->menuTemplate.textColorFg = 1;
+    selector->menuTemplate.textColorBg = 15;
+    selector->menuTemplate.textColorShadow = 2;
+    selector->menuTemplate.letterSpacing = 0;
+    selector->menuTemplate.lineSpacing = 0;
+    selector->menuTemplate.pagerMode = PAGER_MODE_LEFT_RIGHT_PAD;
+    selector->menuTemplate.fontID = FONT_SYSTEM;
+    selector->menuTemplate.cursorType = 0;
+    selector->menuTemplate.parent = selector;
 }
 
-static void ov5_021F69CC(ListMenu *param0, u32 param1, u8 param2)
+static void UpdateItemColor(ListMenu *menu, u32 item, u8 yOffset)
 {
-    if (param1 == 0xfffffffd) {
-        ListMenu_SetAltTextColors(param0, 3, 15, 4);
+    if (item == MENU_HEADER) {
+        ListMenu_SetAltTextColors(menu, 3, 15, 4);
     } else {
-        ListMenu_SetAltTextColors(param0, 1, 15, 2);
+        ListMenu_SetAltTextColors(menu, 1, 15, 2);
     }
 }
 
-static void ov5_021F69F0(ListMenu *param0, u32 param1, u8 param2)
+static void UpdateListPosition(ListMenu *listMenu, u32 item, u8 onInit)
 {
-    u32 v0, v1;
-    u16 v2 = 0;
-    u16 v3 = 0;
-    UnkStruct_ov5_021F6704 *v4 = (UnkStruct_ov5_021F6704 *)ListMenu_GetAttribute(param0, 19);
+    u16 listPos = 0;
+    u16 cursorPos = 0;
+    BattleHallRecordSelector *selector = (BattleHallRecordSelector *)ListMenu_GetAttribute(listMenu, LIST_MENU_PARENT);
 
-    ListMenu_GetListAndCursorPos(param0, &v2, &v3);
+    ListMenu_GetListAndCursorPos(listMenu, &listPos, &cursorPos);
 
-    if ((v4->unk_214 != NULL) && (v4->unk_218 != NULL)) {
-        *v4->unk_214 = v2;
-        *v4->unk_218 = v3;
+    if (selector->listPos != NULL && selector->cursorPos != NULL) {
+        *selector->listPos = listPos;
+        *selector->cursorPos = cursorPos;
     }
-
-    return;
 }
 
-static void ov5_021F6A34(SysTask *param0, void *param1)
+static void BattleHallRecordSelector_Process(SysTask *task, void *context)
 {
-    u16 v0;
-    u32 v1;
-    UnkStruct_ov5_021F6704 *v2 = (UnkStruct_ov5_021F6704 *)param1;
+    BattleHallRecordSelector *selector = context;
 
-    if (v2->unk_204 != 0) {
-        v2->unk_204--;
+    if (selector->startupDelay != 0) {
+        selector->startupDelay--;
         return;
     }
 
@@ -379,56 +352,50 @@ static void ov5_021F6A34(SysTask *param0, void *param1)
         return;
     }
 
-    v1 = ListMenu_ProcessInput(v2->unk_23C);
-    v0 = v2->unk_6F4;
+    u32 input = ListMenu_ProcessInput(selector->listMenu);
+    u16 oldPos = selector->menuPos;
 
-    ListMenu_CalcTrueCursorPos(v2->unk_23C, &v2->unk_6F4);
+    ListMenu_CalcTrueCursorPos(selector->listMenu, &selector->menuPos);
 
-    if (v0 != v2->unk_6F4) {
+    if (oldPos != selector->menuPos) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 
-    switch (v1) {
-    case 0xffffffff:
+    switch (input) {
+    case MENU_NOTHING_CHOSEN:
         break;
-    case 0xfffffffe:
-        if (v2->unk_207_0 == 1) {
+    case MENU_CANCEL:
+        if (selector->alwaysTrue == TRUE) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
-            *v2->unk_210 = 0xfffe;
-            ov5_021F6AD4(param1);
+            *selector->resultPtr = MENU_CANCEL;
+            BattleHallRecordSelector_Free(selector);
         }
         break;
     default:
         Sound_PlayEffect(SEQ_SE_CONFIRM);
-        *v2->unk_210 = v1;
-        ov5_021F6AD4(param1);
+        *selector->resultPtr = input;
+        BattleHallRecordSelector_Free(selector);
         break;
     }
-
-    return;
 }
 
-static void ov5_021F6AD4(UnkStruct_ov5_021F6704 *param0)
+static void BattleHallRecordSelector_Free(BattleHallRecordSelector *selector)
 {
-    int v0;
-
     Sound_PlayEffect(SEQ_SE_CONFIRM);
-    ListMenu_Free(param0->unk_23C, NULL, NULL);
-    Window_EraseStandardFrame(param0->unk_21C.window, 0);
-    Window_Remove(&param0->unk_08);
+    ListMenu_Free(selector->listMenu, NULL, NULL);
+    Window_EraseStandardFrame(selector->menuTemplate.window, FALSE);
+    Window_Remove(&selector->window);
 
-    for (v0 = 0; v0 < 120; v0++) {
-        String_Free(param0->unk_1C[v0]);
+    for (int i = 0; i < MAX_LIST_ENTRIES; i++) {
+        String_Free(selector->strs[i]);
     }
 
-    if (param0->unk_207_1 == 1) {
-        MessageLoader_Free(param0->unk_1FC);
+    if (selector->alwaysFalse == TRUE) {
+        MessageLoader_Free(selector->msgLoader);
     }
 
-    SysTask_Done(param0->unk_04);
-    Heap_Free(param0);
-
-    return;
+    SysTask_Done(selector->task);
+    Heap_Free(selector);
 }
 
 static const u16 sHighestIVMessageIndices[] = {

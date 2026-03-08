@@ -28,6 +28,7 @@
 
 #include "applications/bag/application.h"
 #include "applications/diploma.h"
+#include "applications/frontier/records/main.h"
 #include "applications/journal_display/journal_controller.h"
 #include "applications/move_reminder.h"
 #include "applications/naming_screen.h"
@@ -69,7 +70,6 @@
 #include "overlay096/ov96_0223B6A0.h"
 #include "overlay099/ov99_021D0D80.h"
 #include "overlay101/ov101_021D0D80.h"
-#include "overlay110/ov110_021D0D80.h"
 #include "overlay111/ov111_021D0D80.h"
 #include "savedata/save_table.h"
 #include "trainer_card_screen/trainer_card_screen.h"
@@ -164,7 +164,7 @@ FS_EXTERN_OVERLAY(overlay95);
 FS_EXTERN_OVERLAY(overlay96);
 FS_EXTERN_OVERLAY(overlay99);
 FS_EXTERN_OVERLAY(overlay101);
-FS_EXTERN_OVERLAY(overlay110);
+FS_EXTERN_OVERLAY(frontier_records_app);
 FS_EXTERN_OVERLAY(overlay111);
 FS_EXTERN_OVERLAY(dw_warp);
 
@@ -1667,29 +1667,29 @@ void *FieldSystem_ShowDiploma(FieldSystem *fieldSystem, enum HeapID heapID, BOOL
     return diplomaData;
 }
 
-void *sub_0203E564(FieldSystem *fieldSystem, u8 param1, u8 param2, u16 param3, enum HeapID heapID)
+void *FieldSystem_OpenBattleFrontierRecord(FieldSystem *fieldSystem, u8 challengeType, u8 facility, u16 species, enum HeapID heapID)
 {
-    UnkStruct_0203E564 *v0;
+    FrontierRecordsAppArgs *args;
 
-    FS_EXTERN_OVERLAY(overlay110);
+    FS_EXTERN_OVERLAY(frontier_records_app);
 
-    static ApplicationManagerTemplate v1 = {
-        ov110_021D0D80,
-        ov110_021D0E9C,
-        ov110_021D0EF0,
-        FS_OVERLAY_ID(overlay110)
+    static ApplicationManagerTemplate template = {
+        BattleFrontierRecordsApp_Init,
+        BattleFrontierRecordsApp_Main,
+        BattleFrontierRecordsApp_Exit,
+        FS_OVERLAY_ID(frontier_records_app)
     };
 
-    v0 = Heap_Alloc(heapID, sizeof(UnkStruct_0203E564));
+    args = Heap_Alloc(heapID, sizeof(FrontierRecordsAppArgs));
 
-    v0->unk_04 = param1;
-    v0->unk_05 = param2;
-    v0->unk_06 = param3;
-    v0->saveData = fieldSystem->saveData;
+    args->challengeType = challengeType;
+    args->facility = facility;
+    args->species = species;
+    args->saveData = fieldSystem->saveData;
 
-    FieldSystem_StartChildProcess(fieldSystem, &v1, v0);
+    FieldSystem_StartChildProcess(fieldSystem, &template, args);
 
-    return v0;
+    return args;
 }
 
 PartyMenu *FieldSystem_OpenPartyMenu_SelectForItemUsage(FieldSystem *fieldSystem, enum HeapID heapID, enum Item item)

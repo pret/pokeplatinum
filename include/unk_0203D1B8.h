@@ -104,7 +104,7 @@ BOOL sub_0203E348(FieldSystem *fieldSystem, UnkStruct_0203E348 *param1);
 void sub_0203E414(FieldTask *task, int slotMachineID);
 void AccessoryShop_Init(FieldTask *task);
 void *FieldSystem_ShowDiploma(FieldSystem *fieldSystem, enum HeapID heapID, BOOL isNatDex);
-void *sub_0203E564(FieldSystem *fieldSystem, u8 param1, u8 param2, u16 param3, enum HeapID heapID);
+void *FieldSystem_OpenBattleFrontierRecord(FieldSystem *fieldSystem, u8 param1, u8 param2, u16 param3, enum HeapID heapID);
 void *sub_0203E608(FieldSystem *fieldSystem, enum HeapID heapID);
 void *FieldSystem_OpenSummaryScreenTeachMove(int unused, FieldSystem *fieldSystem, u16 partySlot, u16 move);
 void sub_0203E6C0(FieldSystem *fieldSystem, int param1, int param2);

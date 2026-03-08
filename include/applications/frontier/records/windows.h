@@ -1,0 +1,50 @@
+#ifndef POKEPLATINUM_OV110_021D2124_H
+#define POKEPLATINUM_OV110_021D2124_H
+
+#include "bg_window.h"
+
+#define WINDOW_GROUP_FACTORY 0
+#define WINDOW_GROUP_HALL    1
+#define WINDOW_GROUP_CASTLE  2
+#define WINDOW_GROUP_ARCADE  3
+#define WINDOW_GROUP_TOWER   4
+
+// Common to all facilities
+#define WINDOW_HEADER 0
+
+// Factory
+#define WINDOW_FACTORY_LEVEL_50_HEADER   1
+#define WINDOW_FACTORY_LEVEL_50_LATEST   2
+#define WINDOW_FACTORY_LEVEL_50_RECORD   3
+#define WINDOW_FACTORY_OPEN_LEVEL_HEADER 4
+#define WINDOW_FACTORY_OPEN_LEVEL_LATEST 5
+#define WINDOW_FACTORY_OPEN_LEVEL_RECORD 6
+
+// Hall
+#define WINDOW_HALL_MON_NAME 1
+#define WINDOW_HALL_LATEST   2
+#define WINDOW_HALL_RECORD   3
+
+// Castle
+#define WINDOW_CASTLE_POINTS  1
+#define WINDOW_CASTLES_LATEST 2
+#define WINDOW_CASTLES_RECORD 3
+
+// Arcade
+#define WINDOW_ARCADE_LATEST 1
+#define WINDOW_ARCADE_RECORD 2
+
+// Tower
+#define WINDOW_TOWER_MULTI_W_TRAINER 1
+#define WINDOW_TOWER_SOLO_LATEST     2
+#define WINDOW_TOWER_SOLO_RECORD     3
+#define WINDOW_TOWER_MULTI_LATEST    4
+#define WINDOW_TOWER_MULTI_RECORD    5
+#define WINDOW_TOWER_MULTI_W_FRIEND  6
+#define WINDOW_TOWER_W_FRIEND_LATEST 7
+#define WINDOW_TOWER_W_FRIEND_RECORD 8
+
+void FrontierRecordsApp_InitWindows(BgConfig *bgConfig, Window *window, u8 facility);
+void FrontierRecordsApp_FreeWindows(Window *windows, u8 facility);
+
+#endif // POKEPLATINUM_OV110_021D2124_H
