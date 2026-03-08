@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_0202440C_decl.h"
-#include "struct_decls/struct_0202E8C0_decl.h"
 #include "struct_defs/dress_up_photo.h"
 #include "struct_defs/image_clips.h"
 
@@ -17,12 +16,12 @@
 #include "communication_information.h"
 #include "communication_system.h"
 #include "heap.h"
+#include "rankings.h"
 #include "record_mixed_rng.h"
 #include "savedata.h"
 #include "unk_020298BC.h"
 #include "unk_0202D05C.h"
 #include "unk_0202E2CC.h"
-#include "unk_0202E840.h"
 #include "unk_02073700.h"
 
 typedef struct {
@@ -115,7 +114,7 @@ static void *ov59_021D3088(SaveData *saveData, enum HeapID heapID, u32 param2)
 
 static void ov59_021D3090(const UnkStruct_ov59_021D2FBC *param0)
 {
-    UnkStruct_0202E8C0 *v0 = sub_0202E8C0(param0->saveData);
+    Rankings *v0 = SaveData_GetRankings(param0->saveData);
 
     sub_0202ED0C(param0->saveData, param0->unk_0C, param0->unk_08, param0->unk_10, param0->heapID);
 }
@@ -140,7 +139,7 @@ static const UnkStruct_ov59_021D33FC Unk_ov59_021D33FC[] = {
     { (UnkFuncPtr_ov59_021D33FC)ov59_021D2B4C, (UnkFuncPtr_ov59_021D33FC_1)ov59_021D2C70, NULL },
     { (UnkFuncPtr_ov59_021D33FC)ov59_021D2B54, (UnkFuncPtr_ov59_021D33FC_1)ov59_021D2CB4, NULL },
     { (UnkFuncPtr_ov59_021D33FC)ov59_021D2B44, (UnkFuncPtr_ov59_021D33FC_1)ov59_021D2C28, NULL },
-    { (UnkFuncPtr_ov59_021D33FC)sub_0202E91C, (UnkFuncPtr_ov59_021D33FC_1)ov59_021D3088, ov59_021D3090 },
+    { (UnkFuncPtr_ov59_021D33FC)RankingsEntries_Size, (UnkFuncPtr_ov59_021D33FC_1)ov59_021D3088, ov59_021D3090 },
     { (UnkFuncPtr_ov59_021D33FC)sub_0202D05C, (UnkFuncPtr_ov59_021D33FC_1)ov59_021D30B4, ov59_021D30DC },
     { (UnkFuncPtr_ov59_021D33FC)ov59_021D2B4C, (UnkFuncPtr_ov59_021D33FC_1)ov59_021D2D3C, ov59_021D3028 },
     { (UnkFuncPtr_ov59_021D33FC)ov59_021D2B54, (UnkFuncPtr_ov59_021D33FC_1)ov59_021D2D80, ov59_021D3048 },

@@ -137,7 +137,7 @@ Static main
 	Object main.nef.p/src_mystery_gift.c.o
 	Object main.nef.p/src_hall_of_fame_entries.c.o
 	Object main.nef.p/src_unk_0202E2CC.c.o
-	Object main.nef.p/src_unk_0202E840.c.o
+	Object main.nef.p/src_rankings.c.o
 	Object main.nef.p/src_unk_0202EEC0.c.o
 	Object main.nef.p/src_link_contest_records.c.o
 	Object main.nef.p/src_unk_0202F180.c.o
@@ -273,7 +273,7 @@ Static main
 	Object main.nef.p/src_unk_0206C660.c.o
 	Object main.nef.p/src_cutscenes_boat_cutscene_boat_cutscene.c.o
 	Object main.nef.p/src_tv_episode_segment.c.o
-	Object main.nef.p/src_unk_0206F314.c.o
+	Object main.nef.p/src_rankings_machine.c.o
 	Object main.nef.p/src_unk_02070428.c.o
 	Object main.nef.p/src_unk_0207064C.c.o
 	Object main.nef.p/src_field_move_tasks.c.o

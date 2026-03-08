@@ -800,7 +800,7 @@ BOOL ScrCmd_30F(ScriptContext *param0)
 
     switch (v3) {
     case 13:
-        if (GameRecords_GetRecordValue(v1, RECORD_UNK_029) < 1) {
+        if (GameRecords_GetRecordValue(v1, RECORD_BATTLE_TOWER_VICTORIES) < 1) {
             *v4 = 0;
         }
 
