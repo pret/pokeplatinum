@@ -11,6 +11,7 @@
 #include "field/field_system.h"
 #include "savedata/save_table.h"
 
+#include "appearance.h"
 #include "berry_data.h"
 #include "field_script_context.h"
 #include "field_system.h"
@@ -29,7 +30,6 @@
 #include "string_template.h"
 #include "system_vars.h"
 #include "trainer_info.h"
-#include "unk_0205C980.h"
 #include "unk_0205DFC4.h"
 #include "vars_flags.h"
 
@@ -247,7 +247,7 @@ BOOL ScrCmd_BufferTrainerClassFromAppearance(ScriptContext *ctx)
     StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 templateArg = ScriptContext_ReadByte(ctx);
 
-    int trainerClass = sub_0205CA14(TrainerInfo_Gender(trainerInfo), TrainerInfo_Appearance(trainerInfo), 2);
+    int trainerClass = Appearance_GetData(TrainerInfo_Gender(trainerInfo), TrainerInfo_Appearance(trainerInfo), APPEARANCE_DATA_TRAINER_CLASS_1);
     StringTemplate_SetTrainerClassNameWithArticle(*strTemplate, templateArg, trainerClass);
 
     return FALSE;

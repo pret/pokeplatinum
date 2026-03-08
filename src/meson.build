@@ -230,7 +230,7 @@ pokeplatinum_c = files(
     'unk_0205A0D8.c',
     'unk_0205B33C.c',
     'unk_0205C22C.c',
-    'unk_0205C980.c',
+    'appearance.c',
     'unk_0205CA94.c',
     'field_message.c',
     'map_tile_behavior.c',
