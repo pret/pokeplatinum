@@ -2571,7 +2571,7 @@ static void BoxAppMan_GiveItemFromBagAction(BoxApplicationManager *boxAppMan, u3
         POCKET_BERRIES,
         POCKET_BATTLE_ITEMS,
         POCKET_KEY_ITEMS,
-        -1
+        POCKET_LIST_END
     };
     static u32 item;
 

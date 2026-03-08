@@ -9,9 +9,9 @@
 #include "field_task.h"
 #include "string_gf.h"
 
-#define USE_ITEM_TASK_MENU  0
-#define USE_ITEM_TASK_FIELD 1
-#define USE_ITEM_TASK_CHECK 2
+#define ITEM_FUNC_USE_FROM_MENU 0
+#define ITEM_FUNC_USE_IN_FIELD  1
+#define ITEM_FUNC_CHECK_CAN_USE 2
 
 enum ItemUseCheckResult {
     ITEM_USE_CANNOT_USE_GENERIC = -1,
@@ -70,8 +70,8 @@ typedef struct UnkStruct_02068EFC {
     u16 unk_16;
 } UnkStruct_02068EFC;
 
-u32 GetItemUseFunction(u16 param0, u16 param1);
-void sub_0206842C(FieldSystem *fieldSystem, ItemUseContext *param1);
+u32 ItemUseFunction_Get(u16 funcType, u16 functionIdx);
+void ItemUseContext_Init(FieldSystem *fieldSystem, ItemUseContext *param1);
 BOOL BerryPatch_IsEmpty(const ItemUseContext *usageContext);
 BOOL sub_02069238(FieldSystem *fieldSystem);
 
