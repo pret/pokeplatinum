@@ -530,7 +530,7 @@ void *sub_0203D5C8(int param0, FieldSystem *fieldSystem, int param2)
     v0->showContest = PokemonSummaryScreen_ShowContestData(fieldSystem->saveData);
     v0->chatotCry = NULL;
 
-    PokemonSummaryScreen_FlagVisiblePages(v0, allSummaryScreenPages);
+    PokemonSummaryScreen_FlagVisiblePages(v0, gAllSummaryScreenPages);
     PokemonSummaryScreen_SetPlayerProfile(v0, SaveData_GetTrainerInfo(fieldSystem->saveData));
     FieldSystem_StartChildProcess(fieldSystem, &gPokemonSummaryScreenApp, v0);
 

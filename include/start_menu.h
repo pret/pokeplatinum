@@ -53,7 +53,7 @@ enum StartMenuState {
     START_MENU_STATE_SAVED,
 };
 
-extern const u8 allSummaryScreenPages[];
+extern const u8 gAllSummaryScreenPages[];
 
 BOOL FieldSystem_IsInValidLocation(FieldSystem *fieldSystem);
 void StartMenu_Open(FieldSystem *fieldSystem);

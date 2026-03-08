@@ -243,7 +243,7 @@ static const u8 sAllPockets[] = {
     POCKET_LIST_END,
 };
 
-const u8 allSummaryScreenPages[] = {
+const u8 gAllSummaryScreenPages[] = {
     SUMMARY_PAGE_INFO,
     SUMMARY_PAGE_MEMO,
     SUMMARY_PAGE_SKILLS,
@@ -974,7 +974,7 @@ BOOL StartMenu_ExitPartyMenu(FieldTask *fieldTask)
         summary->showContest = PokemonSummaryScreen_ShowContestData(fieldSystem->saveData);
         summary->chatotCry = NULL;
 
-        PokemonSummaryScreen_FlagVisiblePages(summary, allSummaryScreenPages);
+        PokemonSummaryScreen_FlagVisiblePages(summary, gAllSummaryScreenPages);
         PokemonSummaryScreen_SetPlayerProfile(summary, SaveData_GetTrainerInfo(fieldSystem->saveData));
         FieldSystem_OpenSummaryScreen(fieldSystem, summary);
 
