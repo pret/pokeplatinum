@@ -1725,6 +1725,7 @@ void BattleAnimScriptFunc_NightShadeDefender(BattleAnimSystem *system)
 
     // BUG: This should be
     // ctx->shake.data[XY_PARAM_SHAKE_EXTENT_X] *= dir;
+    // ctx->shake.data[XY_PARAM_SHAKE_PREV_X] *= dir;
     ctx->shake.x += dir;
 
     PokemonSprite_StartFade(
