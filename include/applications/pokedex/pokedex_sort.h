@@ -3,11 +3,10 @@
 
 #include "constants/heap.h"
 
-#include "struct_decls/pokedexdata_decl.h"
-
 #include "applications/pokedex/pokedex_sort_data.h"
 #include "applications/pokedex/species_caught_status.h"
 
+#include "pokedex.h"
 #include "string_gf.h"
 #include "trainer_info.h"
 

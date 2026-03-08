@@ -1,8 +1,6 @@
 #ifndef POKEPLATINUM_PC_BOXES_H
 #define POKEPLATINUM_PC_BOXES_H
 
-#include "struct_decls/pc_boxes_decl.h"
-
 #include "pokemon.h"
 #include "string_gf.h"
 
@@ -16,6 +14,14 @@
 #define PC_BOX_NAME_BUFFER_LEN    20
 
 #define USE_CURRENT_BOX -1
+
+typedef struct PCBoxes {
+    u32 currentBoxID;
+    BoxPokemon boxMons[MAX_PC_BOXES][MAX_MONS_PER_BOX];
+    u16 names[MAX_PC_BOXES][PC_BOX_NAME_BUFFER_LEN];
+    u8 wallpapers[MAX_PC_BOXES];
+    u8 unlockedWallpapers;
+} PCBoxes;
 
 void PCBoxes_Init(PCBoxes *pcBoxes);
 u32 PCBoxes_SaveSize(void);

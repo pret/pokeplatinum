@@ -23,8 +23,6 @@
 #include "generated/save_types.h"
 #include "generated/signpost_commands.h"
 
-#include "struct_decls/pc_boxes_decl.h"
-#include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_02014EC4_decl.h"
 #include "struct_decls/struct_0202440C_decl.h"
 #include "struct_decls/struct_0203A790_decl.h"

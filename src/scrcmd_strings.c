@@ -2,11 +2,8 @@
 
 #include <nitro.h>
 #include <nitro/code16.h>
-#include <string.h>
 
 #include "constants/narc.h"
-
-#include "struct_decls/pc_boxes_decl.h"
 
 #include "field/field_system.h"
 #include "savedata/save_table.h"

@@ -7,7 +7,6 @@
 #include "constants/species.h"
 #include "constants/string.h"
 
-#include "struct_decls/pc_boxes_decl.h"
 #include "struct_defs/chatot_cry.h"
 
 #include "applications/bag/application.h"

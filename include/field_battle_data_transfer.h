@@ -5,8 +5,6 @@
 #include "generated/evolution_methods.h"
 #include "generated/map_headers.h"
 
-#include "struct_decls/pc_boxes_decl.h"
-#include "struct_decls/pokedexdata_decl.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/trainer.h"
 #include "struct_defs/wi_fi_history.h"
@@ -19,6 +17,8 @@
 #include "journal.h"
 #include "pal_pad.h"
 #include "party.h"
+#include "pc_boxes.h"
+#include "pokedex.h"
 #include "poketch.h"
 #include "rtc.h"
 #include "savedata.h"

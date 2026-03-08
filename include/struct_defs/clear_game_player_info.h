@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_CLEAR_GAME_PLAYER_INFO_H
 #define POKEPLATINUM_CLEAR_GAME_PLAYER_INFO_H
 
-#include "struct_decls/pokedexdata_decl.h"
+#include "pokedex.h"
 
 typedef struct ClearGamePlayerInfo {
     int gender;

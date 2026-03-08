@@ -1,9 +1,6 @@
 #include "scrcmd_jubilife_lottery.h"
 
 #include <nitro.h>
-#include <string.h>
-
-#include "struct_decls/pc_boxes_decl.h"
 
 #include "field/field_system.h"
 #include "savedata/save_table.h"

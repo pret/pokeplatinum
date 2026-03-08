@@ -12,7 +12,6 @@
 #include "generated/items.h"
 #include "generated/species.h"
 
-#include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/struct_0205EC34.h"

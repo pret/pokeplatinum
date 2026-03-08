@@ -1,8 +1,7 @@
 #ifndef POKEPLATINUM_GAME_RECORDS_H
 #define POKEPLATINUM_GAME_RECORDS_H
 
-#include "struct_decls/pokedexdata_decl.h"
-
+#include "pokedex.h"
 #include "savedata.h"
 
 #define NUM_U32_RECORDS 71
