@@ -8,7 +8,6 @@
 
 #include "underground/defs.h"
 
-// TODO: make this error if it doesn't contain an entry for every trap
 static const SpherePrice sTrapPrices[] = {
     [TRAP_NONE] = { .sphereType = SPHERE_NONE, .minSize = 0, .maxSize = 0 },
     [TRAP_MOVE_UP] = { .sphereType = SPHERE_BLUE, .minSize = 3, .maxSize = 6 },
@@ -45,6 +44,7 @@ static const SpherePrice sTrapPrices[] = {
     [TRAP_RADAR_DUMMY] = { .sphereType = SPHERE_NONE, .minSize = 0, .maxSize = 0 },
     [TRAP_DIGGER_DRILL] = { .sphereType = RANDOM_SPHERE_TYPE, .minSize = 15, .maxSize = 20 }
 };
+SDK_COMPILER_ASSERT(NELEMS(sTrapPrices) == TRAP_MAX);
 
 // params need to be const to match
 const u8 Trap_GetSpherePriceType(const enum Trap trapID)
