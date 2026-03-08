@@ -4717,7 +4717,7 @@ static int ov9_0224CCB8(DistWorldSystem *param0, UnkStruct_ov9_0224CBD8 *param1)
     v2 = GetConnectionsForMap(v2->nextID);
     param1->unk_0C = v2->currID;
 
-    ov5_021D12D0(param0->fieldSystem, param1->unk_0C);
+    FieldMap_ChangeZoneDistortionWorld(param0->fieldSystem, param1->unk_0C);
     ov9_0224BF18(param0, v2->nextID);
     LandDataManager_DistortionWorldEndWithoutFreeing(fieldSystem->landDataMan);
 
@@ -4841,7 +4841,7 @@ static int ov9_0224CEBC(DistWorldSystem *param0, UnkStruct_ov9_0224CBD8 *param1)
 
     param1->unk_0C = v2->currID;
 
-    ov5_021D12D0(param0->fieldSystem, param1->unk_0C);
+    FieldMap_ChangeZoneDistortionWorld(param0->fieldSystem, param1->unk_0C);
     ov9_0224BEB4(param0, param1->unk_0C);
 
     if (v1->unk_10 == NULL) {
