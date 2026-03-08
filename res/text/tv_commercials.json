@@ -2,42 +2,42 @@
   "key": 25039,
   "messages": [
     {
-      "id": "pl_msg_00000623_00000",
+      "id": "TVCommercial_Text_PokemonCenter",
       "en_US": [
         "Commercial: Pokémon Center.\n",
         "Always by your side."
       ]
     },
     {
-      "id": "pl_msg_00000623_00001",
+      "id": "TVCommercial_Text_PokemonMart",
       "en_US": [
         "Commercial: Pokémon Mart.\n",
         "Where smiling faces gather."
       ]
     },
     {
-      "id": "pl_msg_00000623_00002",
+      "id": "TVCommercial_Text_JubilifeTV",
       "en_US": [
         "Commercial: The preceding program has\n",
         "been brought to you by Jubilife TV!"
       ]
     },
     {
-      "id": "pl_msg_00000623_00003",
+      "id": "TVCommercial_Text_TrainersSchool",
       "en_US": [
         "Commercial: For better treatment of\n",
         "Pokémon--Trainers’ School."
       ]
     },
     {
-      "id": "pl_msg_00000623_00004",
+      "id": "TVCommercial_Text_Poketch",
       "en_US": [
         "Commercial: Where there is Pokétch,\n",
         "there is joy."
       ]
     },
     {
-      "id": "pl_msg_00000623_00005",
+      "id": "TVCommercial_Text_PoketchCompany",
       "en_US": [
         "Commercial: Add to your smiles!\n",
         "New Pokétch apps are available now!\r",
@@ -46,14 +46,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000623_00006",
+      "id": "TVCommercial_Text_PickAPeckOfColorsFlowerShop",
       "en_US": [
         "Commercial: Let us color your life.\n",
         "Pick a Peck of Colors Flower Shop."
       ]
     },
     {
-      "id": "pl_msg_00000623_00007",
+      "id": "TVCommercial_Text_RadRickshawCycleShop",
       "en_US": [
         "Commercial: Third gear! Fourth gear!\n",
         "Shift it up, down, all the way around!\r",
@@ -62,7 +62,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000623_00008",
+      "id": "TVCommercial_Text_HearthomeCityContests",
       "en_US": [
         "Commercial: The pinnacle of beauty!\n",
         "Overflowing elegance!\r",
@@ -71,7 +71,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000623_00009",
+      "id": "TVCommercial_Text_HearthomeAmitySquare",
       "en_US": [
         "Commercial: Enjoy a relaxing time\n",
         "alone with that special Pokémon...\r",
@@ -79,7 +79,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000623_00010",
+      "id": "TVCommercial_Text_VeilstoneDepartmentStore",
       "en_US": [
         "Commercial: Visit the Veilstone\n",
         "Department Store.\r",
@@ -87,7 +87,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000623_00011",
+      "id": "TVCommercial_Text_VeilstoneGameCorner",
       "en_US": [
         "Commercial: Line up the slots,\n",
         "and rack up some Coins!\r",
@@ -96,21 +96,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000623_00012",
+      "id": "TVCommercial_Text_SolaceonsPokemonDayCare",
       "en_US": [
         "Commercial: Your Pokémon raised with\n",
         "love at Solaceon’s Pokémon Day Care."
       ]
     },
     {
-      "id": "pl_msg_00000623_00013",
+      "id": "TVCommercial_Text_HotelGrandLake",
       "en_US": [
         "Commercial: A different class.\n",
         "Hotel Grand Lake."
       ]
     },
     {
-      "id": "pl_msg_00000623_00014",
+      "id": "TVCommercial_Text_GreatMarshSafariGame",
       "en_US": [
         "Commercial: A nature preserve where\n",
         "exotic Pokémon roam.\r",
@@ -119,14 +119,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000623_00015",
+      "id": "TVCommercial_Text_SnowpointCity",
       "en_US": [
         "Commercial: Want to see some snow?\n",
         "Visit the snowbound Snowpoint City!"
       ]
     },
     {
-      "id": "pl_msg_00000623_00016",
+      "id": "TVCommercial_Text_SunyshoreMarket",
       "en_US": [
         "Commercial: Sunyshore’s hot spot!\n",
         "Sinnoh’s kitchen!\r",
@@ -135,7 +135,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000623_00017",
+      "id": "TVCommercial_Text_GlobalTradeStation",
       "en_US": [
         "Commercial: Link with the world and join\n",
         "new circles of friends!\r",
@@ -144,14 +144,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000623_00018",
+      "id": "TVCommercial_Text_PalPark",
       "en_US": [
         "Commercial: Pokémon! Pokémon!\n",
         "We’re full of Pokémon at the Pal Park!"
       ]
     },
     {
-      "id": "pl_msg_00000623_00019",
+      "id": "TVCommercial_Text_BattleZone_1",
       "en_US": [
         "Commercial: High-speed ferry service\n",
         "to and from the Battle Zone!\r",
@@ -160,7 +160,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000623_00020",
+      "id": "TVCommercial_Text_BattleZone_2",
       "en_US": [
         "Commercial: An endless challenge for\n",
         "Trainers and Pokémon alike...\r",
@@ -169,28 +169,28 @@
       ]
     },
     {
-      "id": "pl_msg_00000623_00021",
+      "id": "TVCommercial_Text_RibbonSyndicate",
       "en_US": [
         "Commercial: Sublimely sophisticated...\n",
         "The Ribbon Syndicate--members only."
       ]
     },
     {
-      "id": "pl_msg_00000623_00022",
+      "id": "TVCommercial_Text_TeamGalactic_1",
       "en_US": [
         "Commercial: Our peace for your world.\n",
         "Team Galactic."
       ]
     },
     {
-      "id": "pl_msg_00000623_00023",
+      "id": "TVCommercial_Text_TeamGalactic_2",
       "en_US": [
         "Commercial: Find peace in our world!\n",
         "Team Galactic."
       ]
     },
     {
-      "id": "pl_msg_00000623_00024",
+      "id": "TVCommercial_Text_UnionRoom",
       "en_US": [
         "Commercial: Meet friends and Pokémon\n",
         "using DS Wireless Communications.\r",
@@ -199,7 +199,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000623_00025",
+      "id": "TVCommercial_Text_NintendoWFC",
       "en_US": [
         "Commercial: Meet friends and Pokémon\n",
         "over Nintendo WFC.\r",
@@ -208,7 +208,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000623_00026",
+      "id": "TVCommercial_Text_BattleTower_1",
       "en_US": [
         "Commercial: If what you seek is the\n",
         "best in battling...\r",
@@ -219,7 +219,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000623_00027",
+      "id": "TVCommercial_Text_BattleTower_2",
       "en_US": [
         "Commercial: Do you know the true\n",
         "face of the Battle Tower?\r",
@@ -231,7 +231,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000623_00028",
+      "id": "TVCommercial_Text_SSSpiral",
       "en_US": [
         "Commercial: To the distant seas beyond\n",
         "reach by surfing!\r",
@@ -240,7 +240,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000623_00029",
+      "id": "TVCommercial_Text_BattleHall",
       "en_US": [
         "Commercial: The place where your\n",
         "favorite Pokémon can be no. 1...\r",
@@ -251,7 +251,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000623_00030",
+      "id": "TVCommercial_Text_BattleCastle",
       "en_US": [
         "Commercial: Castle Points!\n",
         "Collect them and use them!\r",
@@ -260,7 +260,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000623_00031",
+      "id": "TVCommercial_Text_BattleArcade",
       "en_US": [
         "Commercial: Life is random.\n",
         "Everything is pure chance.\r",
@@ -271,7 +271,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000623_00032",
+      "id": "TVCommercial_Text_BattleFactory",
       "en_US": [
         "Commercial: Do you know how to get the\n",
         "most out of your Pokémon?\r",
@@ -282,7 +282,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000623_00033",
+      "id": "TVCommercial_Text_GlobalTerminal",
       "en_US": [
         "Commercial: The Global Terminal.\n",
         "Jubilife’s new landmark.\r",
@@ -293,7 +293,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000623_00034",
+      "id": "TVCommercial_Text_WiFiPlaza",
       "en_US": [
         "Commercial: Come on! Come on!\n",
         "Everyone gathers at the Wi-Fi Plaza.\r",
