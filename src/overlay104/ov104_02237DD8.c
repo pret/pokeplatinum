@@ -207,7 +207,7 @@ UnkStruct_ov104_0223BFFC *ov104_02237DD8(SaveData *saveData, u16 param1, u8 para
     }
 
     v2 = SaveData_GetParty(v9->saveData);
-    v6 = ov104_0223BD70(v9->unk_10, 0);
+    v6 = BattleArcade_GetPartySize(v9->unk_10, 0);
 
     for (v7 = 0; v7 < v6; v7++) {
         Party_AddPokemon(v9->unk_70, Party_GetPokemonBySlotIndex(v2, v9->unk_2C[v7]));
@@ -246,7 +246,7 @@ static void ov104_02238080(UnkStruct_ov104_0223BFFC *param0)
 {
     ov104_0223BD28(param0->unk_10, ov104_0223C124(param0), param0->unk_78, (7 * 2));
 
-    ov104_0222E4BC(ov104_0223BDA4(param0->unk_10, 1), param0->unk_78[param0->unk_11], param0->unk_78[param0->unk_11 + 7], param0->unk_314, param0->unk_330, param0->unk_31C, param0->unk_320, BattleArcade_IsMultiPlayerChallenge(param0->unk_10));
+    ov104_0222E4BC(BattleArcade_GetOpponentPartySize(param0->unk_10, 1), param0->unk_78[param0->unk_11], param0->unk_78[param0->unk_11 + 7], param0->unk_314, param0->unk_330, param0->unk_31C, param0->unk_320, BattleArcade_IsMultiPlayerChallenge(param0->unk_10));
 
     u16 v0 = ov104_0223C124(param0);
 
@@ -372,7 +372,7 @@ void ov104_02238278(UnkStruct_ov104_0223BFFC *param0, u8 param1)
     UnkStruct_020304A0 *v8 = param0->unk_08;
     UnkStruct_020305B8 *v9 = sub_020305B8(param0->saveData);
 
-    v1 = ov104_0223BDA4(param0->unk_10, 1);
+    v1 = BattleArcade_GetOpponentPartySize(param0->unk_10, 1);
 
     v2[0] = param0->unk_10;
     sub_020304CC(param0->unk_08, 0, 0, 0, v2);
@@ -488,7 +488,7 @@ void ov104_022384DC(UnkStruct_ov104_0223BFFC *param0)
     int v0, v1, v2;
     u8 v3;
 
-    ov104_0222E4BC(ov104_0223BDA4(param0->unk_10, 1), param0->unk_78[param0->unk_11], param0->unk_78[param0->unk_11 + 7], param0->unk_314, param0->unk_330, param0->unk_31C, param0->unk_320, BattleArcade_IsMultiPlayerChallenge(param0->unk_10));
+    ov104_0222E4BC(BattleArcade_GetOpponentPartySize(param0->unk_10, 1), param0->unk_78[param0->unk_11], param0->unk_78[param0->unk_11 + 7], param0->unk_314, param0->unk_330, param0->unk_31C, param0->unk_320, BattleArcade_IsMultiPlayerChallenge(param0->unk_10));
 
     for (v0 = 0; v0 < 4; v0++) {
         (void)0;
@@ -529,7 +529,7 @@ int ov104_02238538(UnkStruct_ov104_0223BFFC *param0, Party *param1, Party *param
     int v1;
     Pokemon *v2;
     int v3 = 0;
-    v0 = ov104_0223BD70(param0->unk_10, 0);
+    v0 = BattleArcade_GetPartySize(param0->unk_10, 0);
 
     v3 += ov104_02238584(param0, param1, param2, v0);
 
@@ -666,8 +666,8 @@ void ov104_02238764(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104_0223C4CC *
     int v2;
     Pokemon *v3;
 
-    v0 = ov104_0223BD70(param0->unk_10, 1);
-    v1 = ov104_0223BDA4(param0->unk_10, 1);
+    v0 = BattleArcade_GetPartySize(param0->unk_10, 1);
+    v1 = BattleArcade_GetOpponentPartySize(param0->unk_10, 1);
 
     if (param2 == 0) {
         for (v2 = 0; v2 < v0; v2++) {
@@ -691,8 +691,8 @@ void ov104_02238814(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104_0223C4CC *
     u8 v0, v1;
     int v2;
 
-    v0 = ov104_0223BD70(param0->unk_10, 1);
-    v1 = ov104_0223BDA4(param0->unk_10, 1);
+    v0 = BattleArcade_GetPartySize(param0->unk_10, 1);
+    v1 = BattleArcade_GetOpponentPartySize(param0->unk_10, 1);
 
     if (param2 == 0) {
         for (v2 = 0; v2 < v0; v2++) {
@@ -709,7 +709,7 @@ void ov104_02238814(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104_0223C4CC *
 
 void ov104_0223886C(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104_0223C4CC *param1, u16 param2, u16 param3)
 {
-    u8 v0 = ov104_0223BD70(param0->unk_10, 1);
+    u8 v0 = BattleArcade_GetPartySize(param0->unk_10, 1);
 
     if (param3 >= v0) {
         return;
@@ -726,7 +726,7 @@ void ov104_0223886C(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104_0223C4CC *
 
 void ov104_022388A4(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104_0223C4CC *param1, u16 param2, u16 param3)
 {
-    u8 v0 = ov104_0223BDA4(param0->unk_10, 1);
+    u8 v0 = BattleArcade_GetOpponentPartySize(param0->unk_10, 1);
 
     if (param3 >= v0) {
         return;
@@ -747,8 +747,8 @@ void ov104_022388DC(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104_0223C4CC *
     int v2;
     Pokemon *v3;
 
-    v0 = ov104_0223BD70(param0->unk_10, 1);
-    v1 = ov104_0223BDA4(param0->unk_10, 1);
+    v0 = BattleArcade_GetPartySize(param0->unk_10, 1);
+    v1 = BattleArcade_GetOpponentPartySize(param0->unk_10, 1);
 
     if (param2 == 0) {
         for (v2 = 0; v2 < v0; v2++) {
@@ -780,8 +780,8 @@ void ov104_022389A0(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104_0223C4CC *
     u8 v0, v1;
     int v2;
 
-    v0 = ov104_0223BD70(param0->unk_10, 1);
-    v1 = ov104_0223BDA4(param0->unk_10, 1);
+    v0 = BattleArcade_GetPartySize(param0->unk_10, 1);
+    v1 = BattleArcade_GetOpponentPartySize(param0->unk_10, 1);
 
     if (param2 == 0) {
         for (v2 = 0; v2 < v0; v2++) {
@@ -802,8 +802,8 @@ void ov104_022389F4(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104_0223C4CC *
     u8 v1, v2;
     Pokemon *mon;
 
-    v1 = ov104_0223BD70(param0->unk_10, 1);
-    v2 = ov104_0223BDA4(param0->unk_10, 1);
+    v1 = BattleArcade_GetPartySize(param0->unk_10, 1);
+    v2 = BattleArcade_GetOpponentPartySize(param0->unk_10, 1);
 
     if (param2 == 0) {
         if (slot >= v1) {
@@ -1054,10 +1054,10 @@ void ov104_02238B88(UnkStruct_ov104_0223BFFC *param0, u8 param1)
 
     if (param1 < 9) {
         v1 = param0->unk_74;
-        v0 = ov104_0223BDA4(param0->unk_10, 1);
+        v0 = BattleArcade_GetOpponentPartySize(param0->unk_10, 1);
     } else {
         v1 = param0->unk_70;
-        v0 = ov104_0223BD70(param0->unk_10, 1);
+        v0 = BattleArcade_GetPartySize(param0->unk_10, 1);
     }
 
     v2 = Unk_ov104_02241A38[param1];
