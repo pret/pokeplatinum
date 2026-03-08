@@ -75,8 +75,8 @@ enum PartyMenuExitCodes {
     PARTY_MENU_EXIT_CODE_SUMMARY,
     PARTY_MENU_EXIT_CODE_2,
     PARTY_MENU_EXIT_CODE_GIVE_ITEM,
-    PARTY_MENU_EXIT_CODE_LEARNED_MOVE,
-    PARTY_MENU_EXIT_CODE_FORGET_MOVE,
+    PARTY_MENU_EXIT_CODE_OVERWRITE_MOVE_TM_HM,
+    PARTY_MENU_EXIT_CODE_OVERWRITE_MOVE_LEVEL_UP,
     PARTY_MENU_EXIT_CODE_MAIL,
     PARTY_MENU_EXIT_CODE_READ_MAIL,
     PARTY_MENU_EXIT_CODE_EVOLVE_BY_ITEM,
@@ -225,7 +225,7 @@ typedef struct PartyMenu {
     u8 minSelectionSlots : 4;
     u8 maxSelectionSlots : 4;
     u8 reqLevel;
-    int unk_34;
+    int levelUpMoveIndex;
     u16 evoTargetSpecies;
     u8 padding_3A[2];
     int evoType;

@@ -2072,7 +2072,7 @@ static int ItemActionFunc_Use(BagController *controller)
     BagUI_CloseItemActionsMenu(controller);
 
     s32 itemUseFuncIdx = Item_LoadParam(controller->bagCtx->selectedItem, ITEM_PARAM_FIELD_USE_FUNC, HEAP_ID_BAG);
-    ItemCheckUseFunc checkFunc = (ItemCheckUseFunc)GetItemUseFunction(USE_ITEM_TASK_CHECK, itemUseFuncIdx);
+    ItemCheckUseFunc checkFunc = (ItemCheckUseFunc)ItemUseFunction_Get(ITEM_FUNC_CHECK_CAN_USE, itemUseFuncIdx);
 
     if (checkFunc != NULL) {
         enum ItemUseCheckResult checkResult = checkFunc(controller->bagCtx->itemUseCtx);
@@ -2319,7 +2319,7 @@ static int ItemActionFunc_CheckTag(BagController *controller)
 {
     BagUI_CloseItemActionsMenu(controller);
     App_StartScreenFade(TRUE, HEAP_ID_BAG);
-    controller->bagCtx->exitCode = BAG_EXIT_CODE_SHOW_BERRY_DATA;
+    controller->bagCtx->exitCode = BAG_EXIT_CODE_CHECK_BERRY_TAG;
 
     return BAG_APP_STATE_EXIT;
 }

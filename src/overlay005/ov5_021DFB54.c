@@ -1715,13 +1715,13 @@ static void MonRideTask_Init(FieldSystem *fieldSystem, Pokemon *partyMon, MonRid
 
 static void NewMonRideCutIn(FieldSystem *fieldSystem, MonRideTask *monRideTask)
 {
-    monRideTask->HMCutInTask = SysTask_HMCutIn_New(fieldSystem, 0, monRideTask->partyMon, monRideTask->playerGender);
+    monRideTask->HMCutInTask = HMCutIn_StartTask(fieldSystem, 0, monRideTask->partyMon, monRideTask->playerGender);
 }
 
 static BOOL CheckMonRideCutInFinished(MonRideTask *monRideTask)
 {
-    if (CheckHMCutInFinished(monRideTask->HMCutInTask) == TRUE) {
-        SysTask_HMCutIn_SetTaskDone(monRideTask->HMCutInTask);
+    if (HMCutIn_IsFinished(monRideTask->HMCutInTask) == TRUE) {
+        HMCutIn_EndTask(monRideTask->HMCutInTask);
         return TRUE;
     }
 
