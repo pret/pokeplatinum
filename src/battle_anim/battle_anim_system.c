@@ -12,12 +12,12 @@
 
 #include "struct_decls/battle_system.h"
 #include "struct_defs/chatot_cry.h"
+#include "struct_defs/move_animation.h"
 
 #include "battle/battle_anim_battler_context.h"
 #include "battle/battle_background_reference.h"
 #include "battle/battle_system.h"
 #include "battle/pokemon_sprite_data.h"
-#include "battle/struct_ov16_02265BBC.h"
 #include "battle_anim/battle_anim_helpers.h"
 #include "battle_anim/battle_anim_util.h"
 #include "battle_anim/battle_particle_util.h"
@@ -438,7 +438,7 @@ BOOL BattleAnimSystem_StartMove(BattleAnimSystem *system, MoveAnimation *param1,
     system->context->terrain = param1->terrain;
     system->context->attacker = param1->attacker;
     system->context->defender = param1->defender;
-    system->context->transformed = param1->transformed;
+    system->context->isTransformed = param1->isTransformed;
     system->context->spriteSystem = battlerContext->spriteSystem;
 
     GF_ASSERT(battlerContext->spriteSystem != NULL);
@@ -3610,7 +3610,7 @@ static void BattleAnimScriptCmd_PlayPokemonCry(BattleAnimSystem *system)
         form,
         pan,
         volume,
-        system->context->transformed,
+        system->context->isTransformed,
         system->heapID);
 }
 
@@ -3945,7 +3945,7 @@ UnkStruct_ov12_02223764 *ov12_022234F8(BattleSystem *battleSys, enum HeapID heap
             v2->pokemonSpriteDataArray[v0] = BattleSystem_GetPokemonSpriteDataByIndex(battleSys, v0);
         }
 
-        ov16_0223F87C(battleSys, &(v2->unk_44[0]));
+        BattleSystem_SetBattlerTypes(battleSys, &(v2->unk_44[0]));
         ov16_0223F8AC(battleSys, &(v2->unk_48[0]));
     }
 
