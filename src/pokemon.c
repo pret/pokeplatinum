@@ -511,7 +511,7 @@ void sub_02074088(Pokemon *mon, u16 monSpecies, u8 monLevel, u8 monIVs, u8 gende
     Pokemon_InitWith(mon, monSpecies, monLevel, monIVs, TRUE, monPersonality, OTID_NOT_SET, 0);
 }
 
-u32 sub_02074128(u16 monSpecies, u8 param1, u8 param2)
+u32 sub_02074128(u16 monSpecies, u8 gender, u8 param2)
 {
     u8 monGenderChance = SpeciesData_GetSpeciesValue(monSpecies, SPECIES_DATA_GENDER_RATIO);
 
@@ -523,8 +523,7 @@ u32 sub_02074128(u16 monSpecies, u8 param1, u8 param2)
         result = param2;
         break;
     default:
-        // TODO gender enum value?
-        if (param1 == 0) {
+        if (gender == GENDER_MALE) {
             result = 25 * ((monGenderChance / 25) + 1);
             result += param2;
         } else {

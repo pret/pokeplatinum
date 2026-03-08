@@ -1,8 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_OV17_02246F24_H
 #define POKEPLATINUM_STRUCT_OV17_02246F24_H
 
-#include "struct_defs/struct_02095C48.h"
-
 #include "overlay017/struct_ov17_0223BCE8.h"
 #include "overlay017/struct_ov17_0223F88C.h"
 #include "overlay017/struct_ov17_02246F24_sub1.h"
@@ -12,9 +10,10 @@
 
 #include "g3d_pipeline.h"
 #include "sys_task_manager.h"
+#include "unk_020933F8.h"
 
 typedef struct {
-    UnkStruct_02095C48 *unk_00;
+    Contest *unk_00;
     SysTask *unk_04;
     G3DPipelineBuffers *unk_08;
     UnkStruct_ov17_0223F88C unk_0C;

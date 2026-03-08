@@ -91,7 +91,6 @@
 #include "unk_02097624.h"
 #include "vars_flags.h"
 
-#include "constdata/const_020EA02C.h"
 #include "res/graphics/start_menu/start_menu.naix"
 #include "res/text/bank/start_menu.h"
 
@@ -246,16 +245,16 @@ static const u8 Unk_020EA020[] = {
     0xff,
 };
 
-const u8 Unk_020EA02C[] = {
-    0x0,
-    0x1,
-    0x2,
-    0x4,
-    0x3,
-    0x5,
-    0x6,
-    0x7,
-    0x8,
+const u8 ContestMonSummaryPages[] = {
+    SUMMARY_PAGE_INFO,
+    SUMMARY_PAGE_MEMO,
+    SUMMARY_PAGE_SKILLS,
+    SUMMARY_PAGE_CONDITION,
+    SUMMARY_PAGE_BATTLE_MOVES,
+    SUMMARY_PAGE_CONTEST_MOVES,
+    SUMMARY_PAGE_RIBBONS,
+    SUMMARY_PAGE_EXIT,
+    SUMMARY_PAGE_MAX
 };
 
 static const u8 Unk_020EA01C[] = {
@@ -1031,7 +1030,7 @@ BOOL StartMenu_ExitPartyMenu(FieldTask *taskMan)
         summary->showContest = PokemonSummaryScreen_ShowContestData(fieldSystem->saveData);
         summary->chatotCry = NULL;
 
-        PokemonSummaryScreen_FlagVisiblePages(summary, Unk_020EA02C);
+        PokemonSummaryScreen_FlagVisiblePages(summary, ContestMonSummaryPages);
         PokemonSummaryScreen_SetPlayerProfile(summary, SaveData_GetTrainerInfo(fieldSystem->saveData));
         FieldSystem_OpenSummaryScreen(fieldSystem, summary);
 

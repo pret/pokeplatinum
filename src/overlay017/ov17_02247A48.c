@@ -150,9 +150,9 @@ void ov17_02247A48(UnkStruct_ov17_02247A48 *param0)
 
     v0.unk_00 = Unk_ov17_02254488;
     v0.unk_04 = NELEMS(Unk_ov17_02254488);
-    v0.unk_06 = param0->unk_00->unk_00.unk_113;
+    v0.playerContestantID = param0->unk_00->unk_00.playerContestantID;
     v0.unk_08 = param0->unk_00->unk_00.unk_10C;
-    v0.unk_07 = param0->unk_00->isLinkContest;
+    v0.isLinkContest = param0->unk_00->isLinkContest;
 
     ov17_0224F18C(&param0->unk_4F8, &v0);
 }
@@ -189,7 +189,7 @@ static void ov17_02247AC4(UnkStruct_ov17_0224F30C *param0, void *param1, const U
 
     v0->unk_F14 = 1;
 
-    if (sub_02094EDC(v0->unk_00) == 0) {
+    if (sub_02094EDC(v0->unk_00) == FALSE) {
         ov17_0224F26C(param0, param2, NULL, 0);
     }
 }
@@ -224,7 +224,7 @@ static void ov17_02247B00(UnkStruct_ov17_0224F30C *param0, void *param1, const U
         }
     }
 
-    v3 = Pokemon_DPSpriteYOffset(v0->unk_0C.unk_00->unk_00[v1->unk_00], 2);
+    v3 = Pokemon_DPSpriteYOffset(v0->unk_0C.unk_00->contestMons[v1->unk_00], 2);
 
     {
         UnkStruct_ov22_0225AF8C v5;
@@ -268,7 +268,7 @@ static void ov17_02247C5C(SysTask *param0, void *param1)
         break;
     case 1:
         G2_SetWnd0InsidePlane(GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, 1);
-        v1 = Pokemon_DPSpriteYOffset(v0->unk_00->unk_0C.unk_00->unk_00[v0->unk_11], 2);
+        v1 = Pokemon_DPSpriteYOffset(v0->unk_00->unk_0C.unk_00->contestMons[v0->unk_11], 2);
         ov22_0225B158(v0->unk_00->unk_F18[v0->unk_11].unk_00, v0->unk_00->unk_F18[v0->unk_11].unk_04, v0->unk_00->unk_F18[v0->unk_11].unk_08, v1);
         ov22_0225B074(v0->unk_00->unk_F18[v0->unk_11].unk_00, 1);
         v0->unk_10++;
@@ -333,7 +333,7 @@ static void ov17_02247DC8(SysTask *param0, void *param1)
         v0->unk_10++;
         break;
     case 1:
-        v1 = Pokemon_DPSpriteYOffset(v0->unk_00->unk_0C.unk_00->unk_00[v0->unk_11], 2);
+        v1 = Pokemon_DPSpriteYOffset(v0->unk_00->unk_0C.unk_00->contestMons[v0->unk_11], 2);
         v0->unk_18 += 0x100;
 
         if (v0->unk_18 >= ((96 - 32) << 8)) {
@@ -442,16 +442,16 @@ static void ov17_02247F8C(SysTask *param0, void *param1)
         {
             s16 v2, v3, v4, v5;
 
-            v4 = sub_02094E98(v0->unk_00->unk_00) % ((256 - 32 - 32) / 2);
-            v5 = sub_02094E98(v0->unk_00->unk_00) % ((192 - 32 - 32) / 2);
+            v4 = Contest_GetRNGNext(v0->unk_00->unk_00) % ((256 - 32 - 32) / 2);
+            v5 = Contest_GetRNGNext(v0->unk_00->unk_00) % ((192 - 32 - 32) / 2);
 
-            if (sub_02094E98(v0->unk_00->unk_00) & 1) {
+            if (Contest_GetRNGNext(v0->unk_00->unk_00) & 1) {
                 v2 = 128 + v4;
             } else {
                 v2 = 128 - v4;
             }
 
-            if (sub_02094E98(v0->unk_00->unk_00) & 1) {
+            if (Contest_GetRNGNext(v0->unk_00->unk_00) & 1) {
                 v3 = 96 + v5;
             } else {
                 v3 = 96 - v5;
@@ -459,7 +459,7 @@ static void ov17_02247F8C(SysTask *param0, void *param1)
 
             if (v0->unk_13 > 0) {
                 if ((((v0->unk_16 < 128) && (v2 < 128)) || ((v0->unk_16 > 128) && (v2 > 128))) && (((v0->unk_18 < 96) && (v3 < 96)) || ((v0->unk_18 > 96) && (v3 > 96)))) {
-                    if (sub_02094E98(v0->unk_00->unk_00) & 1) {
+                    if (Contest_GetRNGNext(v0->unk_00->unk_00) & 1) {
                         if (v2 < 128) {
                             v2 = 128 + v4;
                         } else {
@@ -527,7 +527,7 @@ static void ov17_0224814C(UnkStruct_ov17_0224F30C *param0, void *param1, const U
 static void ov17_02248198(SysTask *param0, void *param1)
 {
     UnkStruct_ov17_02248198 *v0 = param1;
-    int v1 = Pokemon_DPSpriteYOffset(v0->unk_00->unk_0C.unk_00->unk_00[v0->unk_11], 2);
+    int monYOffset = Pokemon_DPSpriteYOffset(v0->unk_00->unk_0C.unk_00->contestMons[v0->unk_11], 2);
 
     switch (v0->unk_10) {
     case 0:
@@ -542,7 +542,7 @@ static void ov17_02248198(SysTask *param0, void *param1)
             v0->unk_10++;
         }
 
-        ov22_0225B158(v0->unk_00->unk_F18[v0->unk_11].unk_00, v0->unk_14 >> 8, v0->unk_18 >> 8, v1);
+        ov22_0225B158(v0->unk_00->unk_F18[v0->unk_11].unk_00, v0->unk_14 >> 8, v0->unk_18 >> 8, monYOffset);
         break;
     default:
         ov22_0225B020(v0->unk_00->unk_F18[v0->unk_11].unk_00);
@@ -578,7 +578,7 @@ static void ov17_022482B0(SysTask *param0, void *param1)
 {
     UnkStruct_ov17_022482B0 *v0 = param1;
 
-    switch (v0->unk_10) {
+    switch (v0->state) {
     case 0:
 
         if (v0->unk_14 > 0) {
@@ -639,7 +639,7 @@ static void ov17_022482B0(SysTask *param0, void *param1)
             v0->unk_14 = 0;
 
             if (v0->unk_11 >= NELEMS(Unk_ov17_02254468)) {
-                v0->unk_10++;
+                v0->state++;
             }
         }
         break;
@@ -675,7 +675,7 @@ static void ov17_02248464(SysTask *param0, void *param1)
 {
     UnkStruct_ov17_02248464 *v0 = param1;
 
-    switch (v0->unk_10) {
+    switch (v0->state) {
     case 0:
 
         if (v0->unk_14 > 0) {
@@ -742,7 +742,7 @@ static void ov17_02248464(SysTask *param0, void *param1)
             v0->unk_14 = 0;
 
             if (v0->unk_11 >= NELEMS(Unk_ov17_02254468)) {
-                v0->unk_10++;
+                v0->state++;
             }
         }
 
@@ -781,18 +781,18 @@ static void ov17_02248648(SysTask *param0, void *param1)
 {
     UnkStruct_ov17_02248744 *v0 = param1;
 
-    switch (v0->unk_10) {
+    switch (v0->state) {
     case 0:
         ov17_022478D0(v0->unk_00, v0->unk_11);
         v0->unk_14 = PokemonSprite_GetAttribute(v0->unk_00->unk_0C.unk_18, MON_SPRITE_X_CENTER) * 0x100;
         v0->unk_18 = PokemonSprite_GetAttribute(v0->unk_00->unk_0C.unk_18, MON_SPRITE_Y_CENTER) * 0x100;
-        v0->unk_10++;
+        v0->state++;
     case 1:
         v0->unk_14 -= 0x400;
 
         if (v0->unk_14 <= (230 * 0x100)) {
             v0->unk_14 = 230 * 0x100;
-            v0->unk_10++;
+            v0->state++;
         }
 
         PokemonSprite_SetAttribute(v0->unk_00->unk_0C.unk_18, MON_SPRITE_X_CENTER, v0->unk_14 / 0x100);
@@ -832,18 +832,18 @@ static void ov17_02248744(SysTask *param0, void *param1)
 {
     UnkStruct_ov17_02248744 *v0 = param1;
 
-    switch (v0->unk_10) {
+    switch (v0->state) {
     case 0:
         GF_ASSERT(v0->unk_00->unk_0C.unk_18 != NULL);
         v0->unk_14 = PokemonSprite_GetAttribute(v0->unk_00->unk_0C.unk_18, MON_SPRITE_X_CENTER) * 0x100;
         v0->unk_18 = PokemonSprite_GetAttribute(v0->unk_00->unk_0C.unk_18, MON_SPRITE_Y_CENTER) * 0x100;
-        v0->unk_10++;
+        v0->state++;
     case 1:
         v0->unk_14 += 0x400;
 
         if (v0->unk_14 >= (320 * 0x100)) {
             v0->unk_14 = 320 * 0x100;
-            v0->unk_10++;
+            v0->state++;
         }
 
         PokemonSprite_SetAttribute(v0->unk_00->unk_0C.unk_18, MON_SPRITE_X_CENTER, v0->unk_14 / 0x100);
@@ -878,9 +878,9 @@ static void ov17_022487FC(UnkStruct_ov17_0224F30C *param0, void *param1, const U
     v2->unk_11 = v1->unk_00;
     v2->unk_2C.unk_00 = v0;
     v2->unk_38.unk_00 = v0;
-    v2->unk_38.unk_0E = v1->unk_00;
+    v2->unk_38.contestantID = v1->unk_00;
     v2->unk_48.unk_00 = v0;
-    v2->unk_14.unk_10 = v0->unk_0C.unk_00->unk_00[v1->unk_00];
+    v2->unk_14.mon = v0->unk_0C.unk_00->contestMons[v1->unk_00];
 
     SysTask_Start(ov17_02248860, v2, 30000);
 }
@@ -889,7 +889,7 @@ static void ov17_02248860(SysTask *param0, void *param1)
 {
     UnkStruct_ov17_02248860 *v0 = param1;
 
-    switch (v0->unk_10) {
+    switch (v0->state) {
     case 0:
         SysTask_Start(ov17_02248A24, &v0->unk_2C, (30000 + 10));
         SysTask_Start(ov17_02248BE0, &v0->unk_48, (30000 + 10));
@@ -898,30 +898,30 @@ static void ov17_02248860(SysTask *param0, void *param1)
             UnkStruct_ov22_0225AF8C v1;
             int v2;
 
-            v2 = Pokemon_DPSpriteYOffset(v0->unk_38.unk_00->unk_0C.unk_00->unk_00[v0->unk_38.unk_0E], 2);
+            v2 = Pokemon_DPSpriteYOffset(v0->unk_38.unk_00->unk_0C.unk_00->contestMons[v0->unk_38.contestantID], 2);
             MI_CpuClear8(&v1, sizeof(UnkStruct_ov22_0225AF8C));
 
             v1.heapID = HEAP_ID_22;
             v1.unk_04 = 128;
             v1.unk_08 = (96 - 32) + v2;
-            v0->unk_38.unk_00->unk_F18[v0->unk_38.unk_0E].unk_00 = ov22_0225AFD4(&v1, v0->unk_38.unk_00->unk_00->unk_00.unk_E8[v0->unk_38.unk_0E]);
+            v0->unk_38.unk_00->unk_F18[v0->unk_38.contestantID].unk_00 = ov22_0225AFD4(&v1, v0->unk_38.unk_00->unk_00->unk_00.unk_E8[v0->unk_38.contestantID]);
 
-            ov22_0225B074(v0->unk_38.unk_00->unk_F18[v0->unk_38.unk_0E].unk_00, 0);
+            ov22_0225B074(v0->unk_38.unk_00->unk_F18[v0->unk_38.contestantID].unk_00, 0);
         }
 
-        v0->unk_10++;
+        v0->state++;
         break;
     case 1:
         if (v0->unk_2C.unk_09 == 1) {
             SysTask_Start(ov17_022489C8, &v0->unk_14, (30000 + 10));
             SysTask_Start(ov17_02248AA4, &v0->unk_38, (30000 + 10));
-            v0->unk_10++;
+            v0->state++;
         }
         break;
     case 2:
         if ((v0->unk_14.unk_15 == 1) && (v0->unk_38.unk_0D == 1) && (v0->unk_48.unk_0D == 1)) {
             Sound_PlayEffect(SEQ_SE_DP_CON_007);
-            v0->unk_10++;
+            v0->state++;
         }
         break;
     default:
@@ -932,31 +932,29 @@ static void ov17_02248860(SysTask *param0, void *param1)
     }
 }
 
-static void ov17_02248990(SPLEmitter *param0)
+static void Contest_SetEmitterPos(SPLEmitter *emitter)
 {
-    {
-        VecFx32 v0 = { 0, 0, 0 };
-        SPLEmitter_SetPos(param0, &v0);
-    }
+    VecFx32 v0 = { 0, 0, 0 };
+    SPLEmitter_SetPos(emitter, &v0);
 }
 
 static void ov17_022489C8(SysTask *param0, void *param1)
 {
     UnkStruct_ov17_022489C8 *v0 = param1;
 
-    switch (v0->unk_14) {
+    switch (v0->state) {
     case 0:
         v0->unk_00.unk_00 = 0;
-        v0->unk_00.unk_08 = v0->unk_10;
+        v0->unk_00.unk_08 = v0->mon;
         v0->unk_0C = ov12_02236004(HEAP_ID_22, &v0->unk_00);
         ov12_02236320(v0->unk_0C);
-        ov12_02236384(v0->unk_0C, ov17_02248990);
-        v0->unk_14++;
+        ov12_02236384(v0->unk_0C, Contest_SetEmitterPos);
+        v0->state++;
         break;
     case 1:
         if (ov12_022363C4(v0->unk_0C) == 0) {
             ov12_02236428(v0->unk_0C);
-            v0->unk_14++;
+            v0->state++;
         }
         break;
     default:
@@ -990,16 +988,16 @@ static void ov17_02248A24(SysTask *param0, void *param1)
         v1.paletteSys = v0->unk_00->unk_0C.unk_44;
         v1.bgPrio = 1;
 
-        v0->unk_04 = ov12_02237728(&v1);
+        v0->ballRotation = ov12_02237728(&v1);
     }
         v0->unk_08++;
         break;
     case 2:
-        if (ov12_022377F8(v0->unk_04) == 1) {
+        if (ov12_022377F8(v0->ballRotation) == 1) {
             break;
         }
     default:
-        ov12_0223783C(v0->unk_04);
+        ov12_0223783C(v0->ballRotation);
         v0->unk_09 = 1;
         SysTask_Done(param0);
         return;
@@ -1010,19 +1008,18 @@ static void ov17_02248AA4(SysTask *param0, void *param1)
 {
     UnkStruct_ov17_02248AA4 *v0 = param1;
     s32 v1;
-    s32 v2, v3;
 
-    v1 = Pokemon_DPSpriteYOffset(v0->unk_00->unk_0C.unk_00->unk_00[v0->unk_0E], 2);
+    v1 = Pokemon_DPSpriteYOffset(v0->unk_00->unk_0C.unk_00->contestMons[v0->contestantID], 2);
 
     switch (v0->unk_0C) {
     case 0: {
         v0->unk_04 = 0;
         v0->unk_08 = 0;
-        ov22_0225B0EC(v0->unk_00->unk_F18[v0->unk_0E].unk_00, 0, 0, FX32_ONE);
+        ov22_0225B0EC(v0->unk_00->unk_F18[v0->contestantID].unk_00, 0, 0, FX32_ONE);
 
-        v0->unk_00->unk_F18[v0->unk_0E].unk_04 = 128;
-        v0->unk_00->unk_F18[v0->unk_0E].unk_08 = (96 - 32) + 80 / 2;
-        ov22_0225B074(v0->unk_00->unk_F18[v0->unk_0E].unk_00, 1);
+        v0->unk_00->unk_F18[v0->contestantID].unk_04 = 128;
+        v0->unk_00->unk_F18[v0->contestantID].unk_08 = (96 - 32) + 80 / 2;
+        ov22_0225B074(v0->unk_00->unk_F18[v0->contestantID].unk_00, 1);
     }
         v0->unk_0C++;
     case 1:
@@ -1034,13 +1031,13 @@ static void ov17_02248AA4(SysTask *param0, void *param1)
             v0->unk_08 = FX32_ONE;
         }
 
-        ov22_0225B0EC(v0->unk_00->unk_F18[v0->unk_0E].unk_00, v0->unk_04, v0->unk_08, FX32_ONE);
-        ov22_0225B158(v0->unk_00->unk_F18[v0->unk_0E].unk_00, v0->unk_00->unk_F18[v0->unk_0E].unk_04, v0->unk_00->unk_F18[v0->unk_0E].unk_08, v1);
+        ov22_0225B0EC(v0->unk_00->unk_F18[v0->contestantID].unk_00, v0->unk_04, v0->unk_08, FX32_ONE);
+        ov22_0225B158(v0->unk_00->unk_F18[v0->contestantID].unk_00, v0->unk_00->unk_F18[v0->contestantID].unk_04, v0->unk_00->unk_F18[v0->contestantID].unk_08, v1);
 
         if (v0->unk_04 >= FX32_ONE) {
-            v2 = Pokemon_GetValue(v0->unk_00->unk_0C.unk_00->unk_00[v0->unk_0E], MON_DATA_SPECIES, NULL);
-            v3 = Pokemon_GetValue(v0->unk_00->unk_0C.unk_00->unk_00[v0->unk_0E], MON_DATA_FORM, NULL);
-            PlayCryWithParams(v0->unk_00->unk_00->unk_14C[v0->unk_0E], 0, v2, v3, 0, 127, NULL, 22);
+            s32 species = Pokemon_GetValue(v0->unk_00->unk_0C.unk_00->contestMons[v0->contestantID], MON_DATA_SPECIES, NULL);
+            s32 form = Pokemon_GetValue(v0->unk_00->unk_0C.unk_00->contestMons[v0->contestantID], MON_DATA_FORM, NULL);
+            PlayCryWithParams(v0->unk_00->unk_00->chatotCry[v0->contestantID], POKECRY_NORMAL, species, form, 0, 127, NULL, HEAP_ID_22);
             v0->unk_0C++;
         }
         break;

@@ -240,7 +240,7 @@ static BOOL sub_0205A2FC(void)
     v1 = CommSys_ConnectedCount();
 
     for (v0 = 0; v0 < v1; v0++) {
-        if (sub_02036564(v0) == 94) {
+        if (CommTool_GetSyncNo(v0) == 94) {
             return 1;
         }
     }

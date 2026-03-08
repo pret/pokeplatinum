@@ -126,7 +126,7 @@ BOOL CommTiming_IsSyncState(u8 syncState)
     return FALSE;
 }
 
-int sub_02036564(int netId)
+int CommTool_GetSyncNo(int netId)
 {
     return sCommTool->syncNo[netId];
 }

@@ -2,7 +2,7 @@
   "key": 51967,
   "messages": [
     {
-      "id": "pl_msg_00000218_00000",
+      "id": "ContestResults_Text_JudgingCompleted",
       "en_US": [
         "Dexter: That’s it, folks!\n",
         "All judging has been completed!\r",
@@ -12,28 +12,28 @@
       ]
     },
     {
-      "id": "pl_msg_00000218_00001",
+      "id": "ContestResults_Text_VisualCompetitionResults",
       "en_US": [
         "First, the results of the Visual\n",
         "Competition!\r"
       ]
     },
     {
-      "id": "pl_msg_00000218_00002",
+      "id": "ContestResults_Text_DanceCompetitionResults",
       "en_US": [
         "Next, let’s have the results of the\n",
         "Dance Competition!\r"
       ]
     },
     {
-      "id": "pl_msg_00000218_00003",
+      "id": "ContestResults_Text_ActingCompetitionResults",
       "en_US": [
         "And finally, here are the results of\n",
         "the Acting Competition!\r"
       ]
     },
     {
-      "id": "pl_msg_00000218_00004",
+      "id": "ContestResults_Text_TheWinnerIs",
       "en_US": [
         "Dexter: The winner is...\n",
         "Entry number {STRVAR_1 50, 0, 0}!\r",
@@ -42,7 +42,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000218_00005",
+      "id": "ContestResults_Text_AnnounceIndividualCategories",
       "en_US": [
         "And now, it’s time to announce the\n",
         "results of the individual categories!\r"

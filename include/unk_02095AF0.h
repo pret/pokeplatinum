@@ -2,12 +2,13 @@
 #define POKEPLATINUM_UNK_02095AF0_H
 
 #include "struct_defs/struct_02029C88.h"
-#include "struct_defs/struct_02095C48.h"
 #include "struct_defs/struct_02095C60.h"
 
+#include "unk_020933F8.h"
+
 void sub_02095AF0(void *param0);
-BOOL sub_02095B5C(UnkStruct_02095C48 *param0, int param1, const UnkStruct_02029C88 *param2);
-BOOL sub_02095BEC(UnkStruct_02095C48 *param0, UnkStruct_02029C88 **param1);
+BOOL sub_02095B5C(Contest *param0, int param1, const UnkStruct_02029C88 *param2);
+BOOL sub_02095BEC(Contest *param0, UnkStruct_02029C88 **param1);
 BOOL sub_02095C60(UnkStruct_02095C60 *param0, u32 param1);
 BOOL sub_02095CA8(UnkStruct_02095C60 *param0, int param1);
 

@@ -5,11 +5,11 @@
 #include <string.h>
 
 #include "generated/items.h"
+#include "generated/pokemon_contest_types.h"
 
 #include "struct_decls/font_oam.h"
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_defs/struct_020127E8.h"
-#include "struct_defs/struct_02095C48.h"
 
 #include "overlay017/ov17_02252A70.h"
 #include "overlay017/struct_ov17_0223F2E4.h"
@@ -34,6 +34,7 @@
 #include "sys_task_manager.h"
 #include "text.h"
 #include "unk_02012744.h"
+#include "unk_020933F8.h"
 
 FS_EXTERN_OVERLAY(overlay11);
 FS_EXTERN_OVERLAY(battle_anim);
@@ -102,7 +103,7 @@ void ov17_0223F1E0(G3DPipelineBuffers *param0)
     G3DPipelineBuffers_Free(param0);
 }
 
-void ov17_0223F1E8(enum HeapID heapID, BgConfig *param1, SpriteManager *param2, UnkStruct_02012744 *param3, UnkStruct_ov17_0223F2E4 *param4, const String *param5, enum Font param6, TextColor param7, int param8, int param9, int param10, int param11, int param12, int param13, int param14)
+void ov17_0223F1E8(enum HeapID heapID, BgConfig *param1, SpriteManager *param2, UnkStruct_02012744 *param3, UnkStruct_ov17_0223F2E4 *param4, const String *message, enum Font param6, TextColor param7, int param8, int param9, int param10, int param11, int param12, int param13, int param14)
 {
     UnkStruct_020127E8 v0;
     Window v1;
@@ -113,7 +114,7 @@ void ov17_0223F1E8(enum HeapID heapID, BgConfig *param1, SpriteManager *param2, 
     int v7 = 0;
 
     {
-        v5 = Font_CalcStringWidth(param6, param5, v7);
+        v5 = Font_CalcStringWidth(param6, message, v7);
         v6 = v5 / 8;
 
         if (FX_ModS32(v5, 8) != 0) {
@@ -124,7 +125,7 @@ void ov17_0223F1E8(enum HeapID heapID, BgConfig *param1, SpriteManager *param2, 
     {
         Window_Init(&v1);
         Window_AddToTopLeftCorner(param1, &v1, v6, 16 / 8, 0, 0);
-        Text_AddPrinterWithParamsColorAndSpacing(&v1, param6, param5, 0, 0, TEXT_SPEED_NO_TRANSFER, param7, v7, 0, NULL);
+        Text_AddPrinterWithParamsColorAndSpacing(&v1, param6, message, 0, 0, TEXT_SPEED_NO_TRANSFER, param7, v7, 0, NULL);
     }
 
     v3 = sub_02012898(&v1, NNS_G2D_VRAM_TYPE_2DMAIN, heapID);
@@ -179,16 +180,16 @@ void ov17_0223F2F8(UnkStruct_ov17_0223F2E4 *param0, int param1, int param2, int 
     FontOAM_SetXY(param0->unk_00, param1, param2);
 }
 
-String *ov17_0223F310(u32 param0, enum HeapID heapID)
+String *Contest_GetJudgeName(u32 judgeNameMessageID, enum HeapID heapID)
 {
-    MessageLoader *v0 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_CONTEST_JUDGE_NAMES, heapID);
-    String *v1 = MessageLoader_GetNewString(v0, param0);
+    MessageLoader *judgeNames = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_CONTEST_JUDGE_NAMES, heapID);
+    String *judgeName = MessageLoader_GetNewString(judgeNames, judgeNameMessageID);
 
-    MessageLoader_Free(v0);
-    return v1;
+    MessageLoader_Free(judgeNames);
+    return judgeName;
 }
 
-void ov17_0223F334(UnkStruct_02095C48 *param0, int param1)
+void ov17_0223F334(Contest *param0, int param1)
 {
     u8 *v0;
     int v1;
@@ -202,89 +203,89 @@ void ov17_0223F334(UnkStruct_02095C48 *param0, int param1)
     Heap_Free(v0);
 }
 
-void ov17_0223F374(UnkStruct_02095C48 *param0)
+void ov17_0223F374(Contest *contest)
 {
-    int v0, v1, v2, v3, v4;
-    u32 v5;
-    s32 v6, v7;
+    int i, primaryContestStat, secondayContestStat1, secondayContestStat2, sheen;
+    u32 item;
+    s32 itemModifier, contestStatScore;
 
-    for (v0 = 0; v0 < 4; v0++) {
-        v5 = Pokemon_GetValue(param0->unk_00.unk_00[v0], MON_DATA_HELD_ITEM, NULL);
-        v6 = 100;
+    for (i = 0; i < CONTEST_NUM_PARTICIPANTS; i++) {
+        item = Pokemon_GetValue(contest->unk_00.contestMons[i], MON_DATA_HELD_ITEM, NULL);
+        itemModifier = 100;
 
-        switch (param0->unk_00.contestType) {
-        case 0:
-            v1 = Pokemon_GetValue(param0->unk_00.unk_00[v0], MON_DATA_COOL, NULL);
-            v2 = Pokemon_GetValue(param0->unk_00.unk_00[v0], MON_DATA_TOUGH, NULL);
-            v3 = Pokemon_GetValue(param0->unk_00.unk_00[v0], MON_DATA_BEAUTY, NULL);
+        switch (contest->unk_00.contestType) {
+        case CONTEST_TYPE_COOL:
+            primaryContestStat = Pokemon_GetValue(contest->unk_00.contestMons[i], MON_DATA_COOL, NULL);
+            secondayContestStat1 = Pokemon_GetValue(contest->unk_00.contestMons[i], MON_DATA_TOUGH, NULL);
+            secondayContestStat2 = Pokemon_GetValue(contest->unk_00.contestMons[i], MON_DATA_BEAUTY, NULL);
 
-            switch (v5) {
+            switch (item) {
             case ITEM_RED_SCARF:
-                v6 = 110;
+                itemModifier = 110;
                 break;
             case ITEM_BLUE_SCARF:
             case ITEM_YELLOW_SCARF:
-                v6 = 105;
+                itemModifier = 105;
                 break;
             }
             break;
-        case 1:
-            v1 = Pokemon_GetValue(param0->unk_00.unk_00[v0], MON_DATA_BEAUTY, NULL);
-            v2 = Pokemon_GetValue(param0->unk_00.unk_00[v0], MON_DATA_COOL, NULL);
-            v3 = Pokemon_GetValue(param0->unk_00.unk_00[v0], MON_DATA_CUTE, NULL);
+        case CONTEST_TYPE_BEAUTY:
+            primaryContestStat = Pokemon_GetValue(contest->unk_00.contestMons[i], MON_DATA_BEAUTY, NULL);
+            secondayContestStat1 = Pokemon_GetValue(contest->unk_00.contestMons[i], MON_DATA_COOL, NULL);
+            secondayContestStat2 = Pokemon_GetValue(contest->unk_00.contestMons[i], MON_DATA_CUTE, NULL);
 
-            switch (v5) {
+            switch (item) {
             case ITEM_BLUE_SCARF:
-                v6 = 110;
+                itemModifier = 110;
                 break;
             case ITEM_RED_SCARF:
             case ITEM_PINK_SCARF:
-                v6 = 105;
+                itemModifier = 105;
                 break;
             }
             break;
-        case 2:
-            v1 = Pokemon_GetValue(param0->unk_00.unk_00[v0], MON_DATA_CUTE, NULL);
-            v2 = Pokemon_GetValue(param0->unk_00.unk_00[v0], MON_DATA_BEAUTY, NULL);
-            v3 = Pokemon_GetValue(param0->unk_00.unk_00[v0], MON_DATA_SMART, NULL);
+        case CONTEST_TYPE_CUTE:
+            primaryContestStat = Pokemon_GetValue(contest->unk_00.contestMons[i], MON_DATA_CUTE, NULL);
+            secondayContestStat1 = Pokemon_GetValue(contest->unk_00.contestMons[i], MON_DATA_BEAUTY, NULL);
+            secondayContestStat2 = Pokemon_GetValue(contest->unk_00.contestMons[i], MON_DATA_SMART, NULL);
 
-            switch (v5) {
+            switch (item) {
             case ITEM_PINK_SCARF:
-                v6 = 110;
+                itemModifier = 110;
                 break;
             case ITEM_BLUE_SCARF:
             case ITEM_GREEN_SCARF:
-                v6 = 105;
+                itemModifier = 105;
                 break;
             }
             break;
-        case 3:
-            v1 = Pokemon_GetValue(param0->unk_00.unk_00[v0], MON_DATA_SMART, NULL);
-            v2 = Pokemon_GetValue(param0->unk_00.unk_00[v0], MON_DATA_CUTE, NULL);
-            v3 = Pokemon_GetValue(param0->unk_00.unk_00[v0], MON_DATA_TOUGH, NULL);
+        case CONTEST_TYPE_SMART:
+            primaryContestStat = Pokemon_GetValue(contest->unk_00.contestMons[i], MON_DATA_SMART, NULL);
+            secondayContestStat1 = Pokemon_GetValue(contest->unk_00.contestMons[i], MON_DATA_CUTE, NULL);
+            secondayContestStat2 = Pokemon_GetValue(contest->unk_00.contestMons[i], MON_DATA_TOUGH, NULL);
 
-            switch (v5) {
+            switch (item) {
             case ITEM_GREEN_SCARF:
-                v6 = 110;
+                itemModifier = 110;
                 break;
             case ITEM_PINK_SCARF:
             case ITEM_YELLOW_SCARF:
-                v6 = 105;
+                itemModifier = 105;
                 break;
             }
             break;
-        case 4:
-            v1 = Pokemon_GetValue(param0->unk_00.unk_00[v0], MON_DATA_TOUGH, NULL);
-            v2 = Pokemon_GetValue(param0->unk_00.unk_00[v0], MON_DATA_SMART, NULL);
-            v3 = Pokemon_GetValue(param0->unk_00.unk_00[v0], MON_DATA_COOL, NULL);
+        case CONTEST_TYPE_TOUGH:
+            primaryContestStat = Pokemon_GetValue(contest->unk_00.contestMons[i], MON_DATA_TOUGH, NULL);
+            secondayContestStat1 = Pokemon_GetValue(contest->unk_00.contestMons[i], MON_DATA_SMART, NULL);
+            secondayContestStat2 = Pokemon_GetValue(contest->unk_00.contestMons[i], MON_DATA_COOL, NULL);
 
-            switch (v5) {
+            switch (item) {
             case ITEM_YELLOW_SCARF:
-                v6 = 110;
+                itemModifier = 110;
                 break;
             case ITEM_GREEN_SCARF:
             case ITEM_RED_SCARF:
-                v6 = 105;
+                itemModifier = 105;
                 break;
             }
 
@@ -294,11 +295,11 @@ void ov17_0223F374(UnkStruct_02095C48 *param0)
             return;
         }
 
-        v4 = Pokemon_GetValue(param0->unk_00.unk_00[v0], MON_DATA_SHEEN, NULL);
-        v7 = v1 + ((v2 + v3 + v4) / 2);
-        v7 = v7 * v6 / 100;
+        sheen = Pokemon_GetValue(contest->unk_00.contestMons[i], MON_DATA_SHEEN, NULL);
+        contestStatScore = primaryContestStat + ((secondayContestStat1 + secondayContestStat2 + sheen) / 2);
+        contestStatScore = contestStatScore * itemModifier / 100;
 
-        param0->unk_00.unk_118[v0].unk_00 = v7;
+        contest->unk_00.unk_118[i].unk_00 = contestStatScore;
     }
 }
 

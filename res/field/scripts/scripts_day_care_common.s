@@ -131,8 +131,8 @@ _01B9:
     OpenPartyMenuForDaycare VAR_RESULT
     ScrCmd_291 VAR_0x8000, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _01DE
-    ScrCmd_196 VAR_0x8000
-    ScrCmd_197 VAR_RESULT
+    SetMonSummary VAR_0x8000
+    GetMonPartySlot VAR_RESULT
     GoTo _01B9
 
 _01DE:

@@ -15,11 +15,11 @@
 #include "unk_02094EDC.h"
 
 typedef struct {
-    u16 unk_00;
+    u16 moveID;
     s16 unk_02;
     s16 unk_04[3];
-    u8 unk_0A;
-    u8 unk_0B;
+    u8 moveContestEffect;
+    u8 moveContestType;
 } UnkStruct_ov17_02246F9C_sub1;
 
 typedef struct {
@@ -36,35 +36,35 @@ typedef struct {
 } UnkStruct_ov17_02253C30;
 
 static void ov17_02246F24(UnkStruct_ov17_02246F24 *param0, UnkStruct_ov17_02246F9C *param1, int param2);
-static void ov17_02246F9C(UnkStruct_ov17_02246F24 *param0, UnkStruct_ov17_02246F9C *param1, int param2, u16 *param3, u8 *param4);
-static int ov17_022472F8(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4);
-static int ov17_02247308(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4);
-static int ov17_02247320(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4);
-static int ov17_02247338(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4);
-static int ov17_02247350(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4);
-static int ov17_02247368(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4);
-static int ov17_02247380(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4);
-static int ov17_02247398(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4);
-static int ov17_022473B0(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4);
-static int ov17_022473C8(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4);
-static int ov17_022473E0(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4);
-static int ov17_022473F8(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4);
-static int ov17_02247424(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4);
-static int ov17_02247454(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4);
-static int ov17_02247474(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4);
-static int ov17_02247490(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4);
-static int ov17_022474D8(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4);
-static int ov17_02247520(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4);
-static int ov17_02247538(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4);
-static int ov17_02247550(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4);
-static int ov17_0224757C(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4);
-static int ov17_022475A8(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4);
-static int ov17_022475D4(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4);
-static int ov17_02247600(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4);
-static int ov17_0224762C(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4);
-static int ov17_02247658(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4);
-static int ov17_02247684(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4);
-static int ov17_022476B0(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4);
+static void ov17_02246F9C(UnkStruct_ov17_02246F24 *param0, UnkStruct_ov17_02246F9C *param1, int contestantID, u16 *destMoveID, u8 *param4);
+static int ov17_022472F8(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int contestType);
+static int ov17_02247308(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int contestType);
+static int ov17_02247320(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int contestType);
+static int ov17_02247338(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int contestType);
+static int ov17_02247350(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int contestType);
+static int ov17_02247368(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int contestType);
+static int ov17_02247380(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int contestType);
+static int ov17_02247398(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int contestType);
+static int ov17_022473B0(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int contestType);
+static int ov17_022473C8(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int contestType);
+static int ov17_022473E0(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int contestType);
+static int ov17_022473F8(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int contestType);
+static int ov17_02247424(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int contestType);
+static int ov17_02247454(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int contestType);
+static int ov17_02247474(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int contestType);
+static int ov17_02247490(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int contestType);
+static int ov17_022474D8(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int contestType);
+static int ov17_02247520(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int contestType);
+static int ov17_02247538(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int contestType);
+static int ov17_02247550(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int contestType);
+static int ov17_0224757C(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int contestType);
+static int ov17_022475A8(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int contestType);
+static int ov17_022475D4(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int contestType);
+static int ov17_02247600(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int contestType);
+static int ov17_0224762C(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int contestType);
+static int ov17_02247658(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int contestType);
+static int ov17_02247684(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int contestType);
+static int ov17_022476B0(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int contestType);
 
 static int (*const Unk_ov17_02253BBC[])(UnkStruct_ov17_022472F8 *, int, UnkStruct_ov17_02246F9C *, u8 *, int) = {
     NULL,
@@ -1258,38 +1258,37 @@ static const UnkStruct_ov17_02253C30 Unk_ov17_02253C30[] = {
 
 void ov17_02246ECC(UnkStruct_ov17_02246F24 *param0, UnkStruct_ov17_0223BE58 *param1)
 {
-    int v0;
     UnkStruct_ov17_02246F9C *v1 = Heap_Alloc(HEAP_ID_21, sizeof(UnkStruct_ov17_02246F9C));
 
-    for (v0 = param0->unk_00->unk_00.unk_117; v0 < 4; v0++) {
-        ov17_02246F24(param0, v1, v0);
-        ov17_02246F9C(param0, v1, v0, &param1->unk_00[v0], &param1->unk_08[v0]);
+    for (int contestantID = param0->unk_00->unk_00.connectionCount; contestantID < CONTEST_NUM_PARTICIPANTS; contestantID++) {
+        ov17_02246F24(param0, v1, contestantID);
+        ov17_02246F9C(param0, v1, contestantID, &param1->moveIDs[contestantID], &param1->unk_08[contestantID]);
     }
 
     Heap_Free(v1);
 }
 
-static void ov17_02246F24(UnkStruct_ov17_02246F24 *param0, UnkStruct_ov17_02246F9C *param1, int param2)
+static void ov17_02246F24(UnkStruct_ov17_02246F24 *param0, UnkStruct_ov17_02246F9C *param1, int contestantID)
 {
     int v0;
 
     MI_CpuClear8(param1, sizeof(UnkStruct_ov17_02246F9C));
 
     for (v0 = 0; v0 < LEARNED_MOVES_MAX; v0++) {
-        param1->unk_00[v0].unk_00 = Pokemon_GetValue(param0->unk_00->unk_00.unk_00[param2], MON_DATA_MOVE1 + v0, NULL);
+        param1->unk_00[v0].moveID = Pokemon_GetValue(param0->unk_00->unk_00.contestMons[contestantID], MON_DATA_MOVE1 + v0, NULL);
 
-        if (ov17_02243A98(&param0->unk_220, param2, param1->unk_00[v0].unk_00) == 1) {
-            param1->unk_00[v0].unk_0A = MoveTable_LoadParam(param1->unk_00[v0].unk_00, MOVEATTRIBUTE_CONTEST_EFFECT);
-            param1->unk_00[v0].unk_0B = MoveTable_LoadParam(param1->unk_00[v0].unk_00, MOVEATTRIBUTE_CONTEST_TYPE);
+        if (ov17_02243A98(&param0->unk_220, contestantID, param1->unk_00[v0].moveID) == TRUE) {
+            param1->unk_00[v0].moveContestEffect = MoveTable_LoadParam(param1->unk_00[v0].moveID, MOVEATTRIBUTE_CONTEST_EFFECT);
+            param1->unk_00[v0].moveContestType = MoveTable_LoadParam(param1->unk_00[v0].moveID, MOVEATTRIBUTE_CONTEST_TYPE);
         } else {
-            param1->unk_00[v0].unk_00 = 0;
+            param1->unk_00[v0].moveID = MOVE_NONE;
         }
     }
 
-    param1->unk_30 = param0->unk_00->unk_00.unk_FC[param2];
+    param1->unk_30 = param0->unk_00->unk_00.unk_FC[contestantID];
 }
 
-static void ov17_02246F9C(UnkStruct_ov17_02246F24 *param0, UnkStruct_ov17_02246F9C *param1, int param2, u16 *param3, u8 *param4)
+static void ov17_02246F9C(UnkStruct_ov17_02246F24 *param0, UnkStruct_ov17_02246F9C *param1, int contestantID, u16 *destMoveID, u8 *param4)
 {
     int v0, v1, v2, v3, v4;
     UnkStruct_ov17_022472F8 *v5;
@@ -1299,7 +1298,7 @@ static void ov17_02246F9C(UnkStruct_ov17_02246F24 *param0, UnkStruct_ov17_02246F
     v5 = &param0->unk_220;
 
     for (v1 = 0; v1 < 4; v1++) {
-        if (v5->unk_01[v1] == param2) {
+        if (v5->unk_01[v1] == contestantID) {
             break;
         }
     }
@@ -1313,7 +1312,7 @@ static void ov17_02246F9C(UnkStruct_ov17_02246F24 *param0, UnkStruct_ov17_02246F
                 v7[v4] = 0;
             }
 
-            v2 = Unk_ov17_02253BBC[Unk_ov17_02253C30[v1].unk_01](v5, param2, param1, v7, param0->unk_00->unk_00.contestType);
+            v2 = Unk_ov17_02253BBC[Unk_ov17_02253C30[v1].unk_01](v5, contestantID, param1, v7, param0->unk_00->unk_00.contestType);
 
             if (v2 == 1) {
                 switch (Unk_ov17_02253C30[v1].unk_03) {
@@ -1331,16 +1330,16 @@ static void ov17_02246F9C(UnkStruct_ov17_02246F24 *param0, UnkStruct_ov17_02246F
                     break;
                 }
 
-                v6 = Unk_ov17_02253C30[v1].unk_04[param0->unk_00->unk_00.unk_FC[param2]];
+                v6 = Unk_ov17_02253C30[v1].unk_04[param0->unk_00->unk_00.unk_FC[contestantID]];
 
-                if (param0->unk_00->unk_00.unk_FC[param2] != 0) {
+                if (param0->unk_00->unk_00.unk_FC[contestantID] != 0) {
                     v6 += Unk_ov17_02253C30[v1].unk_04[0];
                 }
 
                 switch (Unk_ov17_02253C30[v1].unk_02) {
                 case 240:
                     for (v3 = 0; v3 < 4; v3++) {
-                        if (param0->unk_00->unk_00.contestType == param1->unk_00[v3].unk_0B) {
+                        if (param0->unk_00->unk_00.contestType == param1->unk_00[v3].moveContestType) {
                             param1->unk_00[v3].unk_02 += v6;
 
                             for (v4 = 0; v4 < (1 + 2); v4++) {
@@ -1353,7 +1352,7 @@ static void ov17_02246F9C(UnkStruct_ov17_02246F24 *param0, UnkStruct_ov17_02246F
                     break;
                 case 241:
                     for (v3 = 0; v3 < 4; v3++) {
-                        if (sub_02095734(param1->unk_00[v3].unk_0A) >= 10 * 2) {
+                        if (sub_02095734(param1->unk_00[v3].moveContestEffect) >= 10 * 2) {
                             param1->unk_00[v3].unk_02 += v6;
 
                             for (v4 = 0; v4 < (1 + 2); v4++) {
@@ -1366,7 +1365,7 @@ static void ov17_02246F9C(UnkStruct_ov17_02246F24 *param0, UnkStruct_ov17_02246F
                     break;
                 default:
                     for (v3 = 0; v3 < 4; v3++) {
-                        if (Unk_ov17_02253C30[v1].unk_02 == param1->unk_00[v3].unk_0A) {
+                        if (Unk_ov17_02253C30[v1].unk_02 == param1->unk_00[v3].moveContestEffect) {
                             param1->unk_00[v3].unk_02 += v6;
 
                             for (v4 = 0; v4 < (1 + 2); v4++) {
@@ -1387,14 +1386,14 @@ static void ov17_02246F9C(UnkStruct_ov17_02246F24 *param0, UnkStruct_ov17_02246F
         int v10, v11, v12, v13, v14, v15;
 
         for (v1 = 0; v1 < 4; v1++) {
-            v8[v1] = sub_02094E98(param0->unk_00);
+            v8[v1] = Contest_GetRNGNext(param0->unk_00);
         }
 
         for (v1 = 0; v1 < (1 + 2); v1++) {
-            v9[v1] = sub_02094E98(param0->unk_00);
+            v9[v1] = Contest_GetRNGNext(param0->unk_00);
         }
 
-        for (v10 = 0; param1->unk_00[v10].unk_00 == 0; v10++) {
+        for (v10 = 0; param1->unk_00[v10].moveID == MOVE_NONE; v10++) {
             (void)0;
         }
 
@@ -1402,7 +1401,7 @@ static void ov17_02246F9C(UnkStruct_ov17_02246F24 *param0, UnkStruct_ov17_02246F
         v13 = param1->unk_00[v10].unk_02;
 
         for (v1 = v10 + 1; v1 < 4; v1++) {
-            if (param1->unk_00[v1].unk_00 != 0) {
+            if (param1->unk_00[v1].moveID != MOVE_NONE) {
                 v12 = param1->unk_00[v1].unk_02;
 
                 if ((v12 > v13) || ((v12 == v13) && (v8[v1] > v8[v11]))) {
@@ -1433,10 +1432,10 @@ static void ov17_02246F9C(UnkStruct_ov17_02246F24 *param0, UnkStruct_ov17_02246F
                     0,
                 };
 
-                v18 = sub_02094E98(param0->unk_00) & 0xff;
+                v18 = Contest_GetRNGNext(param0->unk_00) & 0xff;
 
                 if (v18 < v20[param0->unk_00->unk_00.contestRank]) {
-                    v19 = param0->unk_220.unk_0E[param0->unk_00->unk_00.unk_113];
+                    v19 = param0->unk_220.unk_0E[param0->unk_00->unk_00.playerContestantID];
                     param1->unk_00[v15].unk_04[v19] -= 100;
                 }
             }
@@ -1456,15 +1455,15 @@ static void ov17_02246F9C(UnkStruct_ov17_02246F24 *param0, UnkStruct_ov17_02246F
 
         v14 = v11;
 
-        *param3 = param1->unk_00[v15].unk_00;
+        *destMoveID = param1->unk_00[v15].moveID;
         *param4 = v14;
 
-        GF_ASSERT((*param3) != 0);
+        GF_ASSERT((*destMoveID) != MOVE_NONE);
         GF_ASSERT((*param4) < (1 + 2));
     }
 }
 
-static int ov17_022472F8(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4)
+static int ov17_022472F8(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int contestType)
 {
     if (param0->unk_00 == 4) {
         return 1;
@@ -1473,21 +1472,21 @@ static int ov17_022472F8(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_
     return 0;
 }
 
-static int ov17_02247308(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4)
+static int ov17_02247308(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int contestType)
 {
-    if (param0->unk_30.unk_A0[param1].unk_00_16 != 0) {
+    if (param0->unk_30.unk_A0[param1].contestMoveEffect != CONTEST_EFFECT_NONE) {
         return 1;
     }
 
     return 0;
 }
 
-static int ov17_02247320(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4)
+static int ov17_02247320(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int contestType)
 {
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        if (param2->unk_00[v0].unk_0A == 5) {
+        if (param2->unk_00[v0].moveContestEffect == CONTEST_EFFECT_BASIC) {
             return 1;
         }
     }
@@ -1495,12 +1494,12 @@ static int ov17_02247320(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_
     return 0;
 }
 
-static int ov17_02247338(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4)
+static int ov17_02247338(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int contestType)
 {
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        if (param2->unk_00[v0].unk_0A == 9) {
+        if (param2->unk_00[v0].moveContestEffect == CONTEST_EFFECT_ALL_SAME_JUDGE) {
             return 1;
         }
     }
@@ -1508,12 +1507,12 @@ static int ov17_02247338(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_
     return 0;
 }
 
-static int ov17_02247350(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4)
+static int ov17_02247350(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int contestType)
 {
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        if (param2->unk_00[v0].unk_0A == 12) {
+        if (param2->unk_00[v0].moveContestEffect == CONTEST_EFFECT_STEAL_VOLTAGE) {
             return 1;
         }
     }
@@ -1521,12 +1520,12 @@ static int ov17_02247350(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_
     return 0;
 }
 
-static int ov17_02247368(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4)
+static int ov17_02247368(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int contestType)
 {
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        if (param2->unk_00[v0].unk_0A == 15) {
+        if (param2->unk_00[v0].moveContestEffect == CONTEST_EFFECT_DOUBLE_FINAL_ACT) {
             return 1;
         }
     }
@@ -1534,12 +1533,12 @@ static int ov17_02247368(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_
     return 0;
 }
 
-static int ov17_02247380(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4)
+static int ov17_02247380(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int contestType)
 {
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        if (param2->unk_00[v0].unk_0A == 17) {
+        if (param2->unk_00[v0].moveContestEffect == CONTEST_EFFECT_FIRST_PERFORMANCE_ADVANTAGE) {
             return 1;
         }
     }
@@ -1547,12 +1546,12 @@ static int ov17_02247380(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_
     return 0;
 }
 
-static int ov17_02247398(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4)
+static int ov17_02247398(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int contestType)
 {
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        if (param2->unk_00[v0].unk_0A == 18) {
+        if (param2->unk_00[v0].moveContestEffect == CONTEST_EFFECT_FINAL_PERFORMANCE_ADVANTAGE) {
             return 1;
         }
     }
@@ -1560,12 +1559,12 @@ static int ov17_02247398(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_
     return 0;
 }
 
-static int ov17_022473B0(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4)
+static int ov17_022473B0(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int contestType)
 {
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        if (param2->unk_00[v0].unk_0A == 19) {
+        if (param2->unk_00[v0].moveContestEffect == CONTEST_EFFECT_NO_VOLTAGE_DOWN) {
             return 1;
         }
     }
@@ -1573,12 +1572,12 @@ static int ov17_022473B0(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_
     return 0;
 }
 
-static int ov17_022473C8(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4)
+static int ov17_022473C8(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int contestType)
 {
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        if (param2->unk_00[v0].unk_0A == 20) {
+        if (param2->unk_00[v0].moveContestEffect == CONTEST_EFFECT_TWO_VOLTAGE_IN_A_ROW_ADVANTAGE) {
             return 1;
         }
     }
@@ -1586,12 +1585,12 @@ static int ov17_022473C8(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_
     return 0;
 }
 
-static int ov17_022473E0(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4)
+static int ov17_022473E0(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int contestType)
 {
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        if (param2->unk_00[v0].unk_0A == 21) {
+        if (param2->unk_00[v0].moveContestEffect == CONTEST_EFFECT_HIGH_SCORE_LATER_TURN) {
             return 1;
         }
     }
@@ -1599,7 +1598,7 @@ static int ov17_022473E0(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_
     return 0;
 }
 
-static int ov17_022473F8(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4)
+static int ov17_022473F8(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int contestType)
 {
     int v0, v1;
 
@@ -1618,7 +1617,7 @@ static int ov17_022473F8(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_
     return 0;
 }
 
-static int ov17_02247424(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4)
+static int ov17_02247424(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int contestType)
 {
     int v0, v1;
 
@@ -1639,12 +1638,12 @@ static int ov17_02247424(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_
     return 0;
 }
 
-static int ov17_02247454(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4)
+static int ov17_02247454(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int contestType)
 {
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        if ((param2->unk_00[v0].unk_0A == 4) && (param2->unk_00[v0].unk_0B == param4)) {
+        if ((param2->unk_00[v0].moveContestEffect == CONTEST_EFFECT_2_HEARTS_WHEN_VOLTAGE_UP) && (param2->unk_00[v0].moveContestType == contestType)) {
             return 1;
         }
     }
@@ -1652,12 +1651,12 @@ static int ov17_02247454(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_
     return 0;
 }
 
-static int ov17_02247474(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4)
+static int ov17_02247474(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int contestType)
 {
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        if (param2->unk_00[v0].unk_0B == param4) {
+        if (param2->unk_00[v0].moveContestType == contestType) {
             return 1;
         }
     }
@@ -1665,12 +1664,12 @@ static int ov17_02247474(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_
     return 0;
 }
 
-static int ov17_02247490(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4)
+static int ov17_02247490(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int contestType)
 {
     int v0, v1;
 
     for (v0 = 0; v0 < 4; v0++) {
-        if (param2->unk_00[v0].unk_0B == param4) {
+        if (param2->unk_00[v0].moveContestType == contestType) {
             break;
         }
     }
@@ -1695,12 +1694,12 @@ static int ov17_02247490(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_
     return 0;
 }
 
-static int ov17_022474D8(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4)
+static int ov17_022474D8(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int contestType)
 {
     int v0, v1;
 
     for (v0 = 0; v0 < 4; v0++) {
-        if (param2->unk_00[v0].unk_0B == param4) {
+        if (param2->unk_00[v0].moveContestType == contestType) {
             break;
         }
     }
@@ -1725,12 +1724,12 @@ static int ov17_022474D8(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_
     return 0;
 }
 
-static int ov17_02247520(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4)
+static int ov17_02247520(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int contestType)
 {
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        if (param2->unk_00[v0].unk_0A == 8) {
+        if (param2->unk_00[v0].moveContestEffect == CONTEST_EFFECT_VOLTAGE) {
             return 1;
         }
     }
@@ -1738,12 +1737,12 @@ static int ov17_02247520(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_
     return 0;
 }
 
-static int ov17_02247538(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4)
+static int ov17_02247538(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int contestType)
 {
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        if (param2->unk_00[v0].unk_0A == 13) {
+        if (param2->unk_00[v0].moveContestEffect == CONTEST_EFFECT_SUPPRESS_VOLTAGE) {
             return 1;
         }
     }
@@ -1751,7 +1750,7 @@ static int ov17_02247538(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_
     return 0;
 }
 
-static int ov17_02247550(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4)
+static int ov17_02247550(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int contestType)
 {
     int v0, v1 = 0;
 
@@ -1769,7 +1768,7 @@ static int ov17_02247550(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_
     return 0;
 }
 
-static int ov17_0224757C(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4)
+static int ov17_0224757C(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int contestType)
 {
     int v0, v1 = 0;
 
@@ -1787,7 +1786,7 @@ static int ov17_0224757C(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_
     return 0;
 }
 
-static int ov17_022475A8(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4)
+static int ov17_022475A8(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int contestType)
 {
     int v0, v1 = 0;
 
@@ -1805,7 +1804,7 @@ static int ov17_022475A8(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_
     return 0;
 }
 
-static int ov17_022475D4(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4)
+static int ov17_022475D4(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int contestType)
 {
     int v0, v1;
 
@@ -1822,7 +1821,7 @@ static int ov17_022475D4(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_
     return 1;
 }
 
-static int ov17_02247600(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4)
+static int ov17_02247600(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int contestType)
 {
     int v0;
 
@@ -1839,7 +1838,7 @@ static int ov17_02247600(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_
     return 1;
 }
 
-static int ov17_0224762C(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4)
+static int ov17_0224762C(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int contestType)
 {
     int v0, v1 = 0;
 
@@ -1857,7 +1856,7 @@ static int ov17_0224762C(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_
     return 0;
 }
 
-static int ov17_02247658(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4)
+static int ov17_02247658(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int contestType)
 {
     int v0, v1 = 0;
 
@@ -1875,7 +1874,7 @@ static int ov17_02247658(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_
     return 0;
 }
 
-static int ov17_02247684(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4)
+static int ov17_02247684(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int contestType)
 {
     int v0, v1 = 0;
 
@@ -1893,12 +1892,12 @@ static int ov17_02247684(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_
     return 0;
 }
 
-static int ov17_022476B0(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4)
+static int ov17_022476B0(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int contestType)
 {
     int v0, v1;
 
     for (v0 = 0; v0 < 4; v0++) {
-        if (param2->unk_00[v0].unk_0B == param4) {
+        if (param2->unk_00[v0].moveContestType == contestType) {
             break;
         }
     }

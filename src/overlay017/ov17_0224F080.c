@@ -43,20 +43,20 @@ u8 ov17_0224F0A0(int param0)
     return Unk_ov17_02254A88[param0];
 }
 
-enum NarcID ov17_0224F0B8(void)
+enum NarcID Contest_GetContestGraphicsNarcID(void)
 {
     return NARC_INDEX_CONTEST__GRAPHIC__CONTEST_OBJ;
 }
 
 void ov17_0224F0BC(SpriteSystem *param0, SpriteManager *param1, NNS_G2D_VRAM_TYPE param2, int param3, u32 param4)
 {
-    SpriteSystem_LoadCharResObj(param0, param1, ov17_0224F0B8(), ov17_0224F080(param3), TRUE, param2, param4);
+    SpriteSystem_LoadCharResObj(param0, param1, Contest_GetContestGraphicsNarcID(), ov17_0224F080(param3), TRUE, param2, param4);
 }
 
 void ov17_0224F0F0(SpriteSystem *param0, SpriteManager *param1, u32 param2, u32 param3)
 {
-    SpriteSystem_LoadCellResObj(param0, param1, ov17_0224F0B8(), ov17_0224F098(), TRUE, param2);
-    SpriteSystem_LoadAnimResObj(param0, param1, ov17_0224F0B8(), ov17_0224F09C(), TRUE, param3);
+    SpriteSystem_LoadCellResObj(param0, param1, Contest_GetContestGraphicsNarcID(), ov17_0224F098(), TRUE, param2);
+    SpriteSystem_LoadAnimResObj(param0, param1, Contest_GetContestGraphicsNarcID(), ov17_0224F09C(), TRUE, param3);
 }
 
 void ov17_0224F138(SpriteManager *param0, u32 param1)

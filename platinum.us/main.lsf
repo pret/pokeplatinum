@@ -184,7 +184,7 @@ Static main
 	Object main.nef.p/src_script_manager.c.o
 	Object main.nef.p/src_scrcmd.c.o
 	Object main.nef.p/src_scrcmd_shop.c.o
-	Object main.nef.p/src_unk_02046C7C.c.o
+	Object main.nef.p/src_scrcmd_contests.c.o
 	Object main.nef.p/src_scrcmd_strings.c.o
 	Object main.nef.p/src_scrcmd_jubilife_lottery.c.o
 	Object main.nef.p/src_scrcmd_sound.c.o
