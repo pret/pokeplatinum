@@ -1,9 +1,22 @@
 project('libcrypto', ['c', 'nasm'])
 
+nitrosdk_dep = dependency('NitroSDK',
+    default_options: {
+        'mwrap_sdk': '2.0/sp1p2',
+        'sp1p3_conditionals': true
+    }
+)
+
 asm_args = [
     '-proc', 'arm5TE',
     '-16',
     '-gccinc'
+]
+
+c_args = [
+    '-nothumb',
+    '-wrap:sdk', '1.2/sp2p3',
+    '-wrap:noipa'
 ]
 
 public_includes = include_directories('include')
@@ -16,7 +29,7 @@ libcrypto_static_srcs = files(
 libcrypto_ov97_srcs = files(
     'asm/rc4s-arm4cw.s',
     'asm/sign.s',
-    'asm/util.s'
+    'src/util.c'
 )
 
 libcrypto_static = static_library('crypto_static',
@@ -27,8 +40,11 @@ libcrypto_static = static_library('crypto_static',
 
 libcrypto_ov97 = static_library('crypto_ov97',
     sources: libcrypto_ov97_srcs,
+    c_args: c_args,
     nasm_args: asm_args,
-    pic: false
+    pic: false,
+    include_directories: [public_includes],
+    dependencies: [nitrosdk_dep]
 )
 
 libcrypto_dep = declare_dependency(

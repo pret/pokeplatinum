@@ -1,14 +1,18 @@
-#ifndef POKEPLATINUM_UTIL_H
-#define POKEPLATINUM_UTIL_H
+#ifndef POKEPLATINUM_CRYPTO_UTIL_H
+#define POKEPLATINUM_CRYPTO_UTIL_H
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-void CRYPTO_SetAllocator(void *(* param0)(u32), void (* param1)(void *));
+#include <nitro/types.h>
+
+void *CRYPTOi_MyAlloc(u32 size);
+void CRYPTOi_MyFree(void *ptr);
+void CRYPTO_SetAllocator(void *(* allocFunc)(u32), void (* freeFunc)(void *));
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif // POKEPLATINUM_UTIL_H
+#endif // POKEPLATINUM_CRYPTO_UTIL_H
