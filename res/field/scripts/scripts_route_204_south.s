@@ -2,21 +2,21 @@
 #include "res/text/bank/route_204_south.h"
 
 
-    ScriptEntry _000E
-    ScriptEntry _0021
-    ScriptEntry _0038
+    ScriptEntry Route204South_Youngster
+    ScriptEntry Route204South_ArrowSignpostJubilifeCity
+    ScriptEntry Route204South_LandmarkSignRavagedPath
     ScriptEntryEnd
 
-_000E:
-    NPCMessage 0
+Route204South_Youngster:
+    NPCMessage Route204South_Text_ThereAreBouldersBlockingTheWayInsideTheCavern
     End
 
-_0021:
-    ShowArrowSign 1
+Route204South_ArrowSignpostJubilifeCity:
+    ShowArrowSign Route204South_Text_Rt204JubilifeCity
     End
 
-_0038:
-    ShowLandmarkSign 2
+Route204South_LandmarkSignRavagedPath:
+    ShowLandmarkSign Route204South_Text_RavagedPath
     End
 
     .balign 4, 0

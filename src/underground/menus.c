@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "constants/heap.h"
+#include "constants/start_menu.h"
 #include "generated/traps.h"
 
 #include "field/field_system.h"
@@ -91,30 +92,11 @@ enum UndergroundMenuState {
     UNDERGROUND_MENU_STATE_GOOD_SELECTED,
 };
 
-enum MenuIconAnimState {
-    ICON_ANIM_NONE = 0,
-    ICON_ANIM_SWELL,
-    ICON_ANIM_WIGGLE,
-    ICON_ANIM_COUNT,
-};
-
-enum MenuIconPalette {
-    ICON_GRAYSCALE = 0,
-    ICON_COLORED,
-};
-
-enum UndergroundMenuSpriteTemplate {
-    UNDERGROUND_MENU_CURSOR_TEMPLATE = 0,
-    UNDERGROUND_MENU_ICON_TEMPLATE,
-};
-
 #define UNDERGROUND_MENU_MAX_DISPLAY 6
 
 #define UNDERGROUND_TRAP_DESCRIPTIONS_START UndergroundTraps_Text_MoveTrapUpDescription
 #define UNDERGROUND_ITEM_DESCRIPTIONS_START UndergroundItems_Text_PrismSphereDescription
 #define UNDERGROUND_GOOD_DESCRIPTIONS_START UndergroundGoods_Text_CloseDescription
-
-#define ICON_CURSOR_INDEX 0
 
 typedef void (*SelectedOptionCallback)(UndergroundMenu *);
 typedef void (*OpenMenuFn)(UndergroundMenu *);
@@ -172,18 +154,20 @@ static const WindowTemplate sYesNoWindowTemplate = {
     .baseTile = BASE_TILE_YES_NO_MENU
 };
 
+// clang-format off
 static const struct {
     u32 bankEntry;
     u32 callback;
 } sUndergroundMenuOptions[] = {
-    [UNDERGROUND_START_MENU_OPTION_TRAPS] = { .bankEntry = UndergroundCommon_Text_Traps, .callback = (u32)UndergroundMenu_OpenTrapsMenu },
-    [UNDERGROUND_START_MENU_OPTION_SPHERES] = { .bankEntry = UndergroundCommon_Text_Spheres, .callback = (u32)UndergroundMenu_OpenSpheresMenu },
-    [UNDERGROUND_START_MENU_OPTION_GOODS] = { .bankEntry = UndergroundCommon_Text_Goods, .callback = (u32)UndergroundMenu_OpenGoodsMenu },
-    [UNDERGROUND_START_MENU_OPTION_TREASURES] = { .bankEntry = UndergroundCommon_Text_Treasures, .callback = (u32)UndergroundMenu_OpenTreasuresMenu },
-    [UNDERGROUND_START_MENU_OPTION_TRAINER] = { .bankEntry = UndergroundCommon_Text_TrainerNameTemplate, .callback = (u32)UndergroundMenu_OpenTrainerRecords },
-    [UNDERGROUND_START_MENU_OPTION_GO_UP] = { .bankEntry = UndergroundCommon_Text_GoUp, .callback = (u32)UndergroundMenu_GoUpCallback },
-    [UNDERGROUND_START_MENU_OPTION_CLOSE] = { .bankEntry = UndergroundCommon_Text_Close, .callback = (u32)UndergroundMenu_CloseCallback }
+    [UNDERGROUND_START_MENU_OPTION_TRAPS]     = { .bankEntry = UndergroundCommon_Text_Traps,          .callback = (u32)UndergroundMenu_OpenTrapsMenu      },
+    [UNDERGROUND_START_MENU_OPTION_SPHERES]   = { .bankEntry = UndergroundCommon_Text_Spheres,        .callback = (u32)UndergroundMenu_OpenSpheresMenu    },
+    [UNDERGROUND_START_MENU_OPTION_GOODS]     = { .bankEntry = UndergroundCommon_Text_Goods,          .callback = (u32)UndergroundMenu_OpenGoodsMenu      },
+    [UNDERGROUND_START_MENU_OPTION_TREASURES] = { .bankEntry = UndergroundCommon_Text_Treasures,      .callback = (u32)UndergroundMenu_OpenTreasuresMenu  },
+    [UNDERGROUND_START_MENU_OPTION_TRAINER]   = { .bankEntry = UndergroundCommon_Text_PlayerTemplate, .callback = (u32)UndergroundMenu_OpenTrainerRecords },
+    [UNDERGROUND_START_MENU_OPTION_GO_UP]     = { .bankEntry = UndergroundCommon_Text_GoUp,           .callback = (u32)UndergroundMenu_GoUpCallback       },
+    [UNDERGROUND_START_MENU_OPTION_CLOSE]     = { .bankEntry = UndergroundCommon_Text_Close,          .callback = (u32)UndergroundMenu_CloseCallback      }
 };
+// clang-format on
 
 static const ListMenuTemplate sListMenuTemplate = {
     .choices = NULL,
@@ -208,25 +192,25 @@ static const ListMenuTemplate sListMenuTemplate = {
 };
 
 static const SpriteTemplate sSpriteTemplates[] = {
-    [UNDERGROUND_MENU_CURSOR_TEMPLATE] = {
+    [CURSOR_TEMPLATE] = {
         .x = 204,
         .y = 20,
         .z = 0,
-        .animIdx = 0,
+        .animIdx = ICON_ANIM_NONE,
         .priority = 1,
-        .plttIdx = 1,
+        .plttIdx = PALETTE_COLORED,
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
         .resources = { 0x38C0, 0x38C0, 0x38C0, 0x38C0, 0x0, 0x0 },
         .bgPriority = 0,
         .vramTransfer = FALSE,
     },
-    [UNDERGROUND_MENU_ICON_TEMPLATE] = {
+    [ICON_TEMPLATE] = {
         .x = 174,
         .y = 20,
         .z = 0,
-        .animIdx = 0,
+        .animIdx = ICON_ANIM_NONE,
         .priority = 0,
-        .plttIdx = 0,
+        .plttIdx = PALETTE_GRAYSCALE,
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
         .resources = { 0x38C1, 0x38C0, 0x38C1, 0x38C1, 0x0, 0x0 },
         .bgPriority = 0,
@@ -255,9 +239,9 @@ static void UndergroundMenu_InitStartMenuSprites(UndergroundMenu *menu, u8 *opti
     SpriteResourceManager_LoadAnimation(&menu->spriteManager, narc, cursor_anim_NANR, FALSE, 14528);
     SpriteResourceManager_LoadTiles(&menu->spriteManager, narc, cursor_NCGR, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 14528);
 
-    menu->sprites[ICON_CURSOR_INDEX] = SpriteResourceManager_CreateManagedSprite(&menu->spriteManager, &sSpriteTemplates[UNDERGROUND_MENU_CURSOR_TEMPLATE]);
+    menu->sprites[CURSOR_SPRITE_INDEX] = SpriteResourceManager_CreateManagedSprite(&menu->spriteManager, &sSpriteTemplates[CURSOR_TEMPLATE]);
 
-    UndergroundMenu_SetStartMenuCursorPos(menu->sprites[ICON_CURSOR_INDEX]->sprite, menu->menuCursorPos);
+    UndergroundMenu_SetStartMenuCursorPos(menu->sprites[CURSOR_SPRITE_INDEX]->sprite, menu->menuCursorPos);
 
     SpriteResourceManager_LoadCell(&menu->spriteManager, narc, underground_icons_cell_NCER, FALSE, 14529);
     SpriteResourceManager_LoadAnimation(&menu->spriteManager, narc, underground_icons_anim_NANR, FALSE, 14529);
@@ -266,7 +250,7 @@ static void UndergroundMenu_InitStartMenuSprites(UndergroundMenu *menu, u8 *opti
     NARC_dtor(narc);
 
     for (u32 i = 0; i < menuOptionCount; i++) {
-        SpriteTemplate template = sSpriteTemplates[UNDERGROUND_MENU_ICON_TEMPLATE];
+        SpriteTemplate template = sSpriteTemplates[ICON_TEMPLATE];
         template.y += 24 * i;
         template.animIdx = optionList[i] * ICON_ANIM_COUNT;
 
@@ -276,7 +260,7 @@ static void UndergroundMenu_InitStartMenuSprites(UndergroundMenu *menu, u8 *opti
         Sprite_SetAffineScaleEx(menu->sprites[i + 1]->sprite, &scale, AFFINE_OVERWRITE_MODE_NORMAL);
     }
 
-    UndergroundMenu_SetIconAnimationAndPalette(menu->sprites[menu->menuCursorPos + 1]->sprite, ICON_ANIM_WIGGLE, ICON_COLORED);
+    UndergroundMenu_SetIconAnimationAndPalette(menu->sprites[menu->menuCursorPos + 1]->sprite, ICON_ANIM_WIGGLE, PALETTE_COLORED);
     menu->spriteCount = menuOptionCount + 1;
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, TRUE);
 }
@@ -315,8 +299,8 @@ static void UndergroundMenu_SetIconAnimationAndPalette(Sprite *sprite, u16 anim,
 
 static void UndergroundMenu_ChangeActiveMenuIcon(UndergroundMenu *menu, u16 oldIndex, u16 index)
 {
-    UndergroundMenu_SetIconAnimationAndPalette(menu->sprites[oldIndex + 1]->sprite, ICON_ANIM_NONE, ICON_GRAYSCALE);
-    UndergroundMenu_SetIconAnimationAndPalette(menu->sprites[index + 1]->sprite, ICON_ANIM_SWELL, ICON_COLORED);
+    UndergroundMenu_SetIconAnimationAndPalette(menu->sprites[oldIndex + 1]->sprite, ICON_ANIM_NONE, PALETTE_GRAYSCALE);
+    UndergroundMenu_SetIconAnimationAndPalette(menu->sprites[index + 1]->sprite, ICON_ANIM_SWELL, PALETTE_COLORED);
 }
 
 static void UndergroundMenu_TryTransitionIconAnimationToWiggle(Sprite *sprite)
@@ -326,7 +310,7 @@ static void UndergroundMenu_TryTransitionIconAnimationToWiggle(Sprite *sprite)
     }
 
     if (!Sprite_IsAnimated(sprite)) {
-        UndergroundMenu_SetIconAnimationAndPalette(sprite, ICON_ANIM_WIGGLE, ICON_COLORED);
+        UndergroundMenu_SetIconAnimationAndPalette(sprite, ICON_ANIM_WIGGLE, PALETTE_COLORED);
     }
 }
 
@@ -489,13 +473,13 @@ void UndergroundMenu_Start(ExitCallback exitCallback, FieldSystem *fieldSystem)
     UndergroundMan_SetCurrentSysTask(menu, menu->sysTask, UndergroundMenu_ResetBrightnessAndExit);
 }
 
-#define ADD_OPTION(__menuOption)          \
-    do {                                  \
-        list[optionCount] = __menuOption; \
-        optionCount++;                    \
+#define ADD_OPTION(__menuOption)             \
+    do {                                     \
+        listOut[optionCount] = __menuOption; \
+        optionCount++;                       \
     } while (0)
 
-static u32 UndergroundMenu_MakeList(u8 *list)
+static u32 UndergroundMenu_MakeStartMenuOptionList(u8 *listOut)
 {
     u32 optionCount = 0;
     ADD_OPTION(UNDERGROUND_START_MENU_OPTION_TRAPS);
@@ -513,7 +497,7 @@ static void UndergroundMenu_InitStartMenu(UndergroundMenu *menu)
     MenuTemplate template;
     const int trainerOptionIndex = UNDERGROUND_START_MENU_OPTION_TRAINER;
     u8 optionList[UNDERGROUND_START_MENU_OPTION_COUNT];
-    UndergroundMenu_MakeList(optionList);
+    UndergroundMenu_MakeStartMenuOptionList(optionList);
     menu->menuOptions = StringList_New(NELEMS(sUndergroundMenuOptions), HEAP_ID_FIELD1);
 
     Window_Add(menu->fieldSystem->bgConfig, &menu->primaryWindow, BG_LAYER_MAIN_3, 20, 1, 11, NELEMS(sUndergroundMenuOptions) * 3, 13, BASE_TILE_STANDARD_WINDOW_FRAME - 11 * 22);
@@ -646,7 +630,7 @@ static BOOL UndergroundMenu_HandleStartMenu(SysTask *sysTask, void *data)
     menu->menuCursorPos = Menu_GetCursorPos(menu->menu);
 
     if (prevPos != menu->menuCursorPos) {
-        UndergroundMenu_SetStartMenuCursorPos(menu->sprites[ICON_CURSOR_INDEX]->sprite, menu->menuCursorPos);
+        UndergroundMenu_SetStartMenuCursorPos(menu->sprites[CURSOR_SPRITE_INDEX]->sprite, menu->menuCursorPos);
         UndergroundMenu_ChangeActiveMenuIcon(menu, prevPos, menu->menuCursorPos);
         menu->fieldSystem->menuCursorPos = menu->menuCursorPos;
     }

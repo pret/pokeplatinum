@@ -1,11 +1,11 @@
 #ifndef POKEPLATINUM_UNK_0209747C_H
 #define POKEPLATINUM_UNK_0209747C_H
 
-#include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_02014EC4_decl.h"
 #include "struct_decls/struct_0209747C_decl.h"
 #include "struct_defs/sentence.h"
 
+#include "pokedex.h"
 #include "savedata.h"
 
 UnkStruct_0209747C *sub_0209747C(u32 param0, u32 param1, SaveData *saveData, enum HeapID heapID);

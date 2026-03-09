@@ -11,7 +11,7 @@
     ],
     "object_events": [
         {
-            "id": "ROUTE_205_SOUTH_HIKER_DANIEL",
+            "id": "LOCALID_HIKER_DANIEL",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -28,7 +28,7 @@
             "y": 5
         },
         {
-            "id": "ROUTE_205_SOUTH_AROMA_LADY_ELIZABETH",
+            "id": "LOCALID_AROMA_LADY_ELIZABETH",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
             "movement_type": "MOVEMENT_TYPE_ROTATE_COUNTERCLOCKWISE",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -45,7 +45,7 @@
             "y": 5
         },
         {
-            "id": "ROUTE_205_SOUTH_CAMPER_JACOB",
+            "id": "LOCALID_CAMPER_JACOB",
             "graphics_id": "OBJ_EVENT_GFX_CAMPER",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_SOUTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -62,7 +62,7 @@
             "y": 6
         },
         {
-            "id": "ROUTE_205_SOUTH_PICNICKER_SIENA",
+            "id": "LOCALID_PICNICKER_SIENA",
             "graphics_id": "OBJ_EVENT_GFX_PICNICKER",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -79,7 +79,7 @@
             "y": 7
         },
         {
-            "id": "ROUTE_205_SOUTH_HIKER_NICHOLAS",
+            "id": "LOCALID_HIKER_NICHOLAS",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -96,7 +96,7 @@
             "y": 7
         },
         {
-            "id": "ROUTE_205_SOUTH_BATTLE_GIRL_KELSEY",
+            "id": "LOCALID_BATTLE_GIRL_KELSEY",
             "graphics_id": "OBJ_EVENT_GFX_BATTLE_GIRL",
             "movement_type": "MOVEMENT_TYPE_WALK_WEST_SOUTH_EAST_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -113,7 +113,7 @@
             "y": 7
         },
         {
-            "id": "ROUTE_205_SOUTH_ARROW_SIGNPOST_6",
+            "id": "LOCALID_ARROW_SIGNPOST_FLOAROMA_TOWN",
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -130,7 +130,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_205_SOUTH_ARROW_SIGNPOST_7",
+            "id": "LOCALID_ARROW_SIGNPOST_ETERNA_FOREST",
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -147,7 +147,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_205_SOUTH_BUG_CATCHER_8",
+            "id": "LOCALID_BUG_CATCHER",
             "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
             "movement_type": "MOVEMENT_TYPE_WANDER_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -162,7 +162,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_205_SOUTH_TRAINER_TIPS_SIGNPOST_9",
+            "id": "LOCALID_TRAINER_TIPS_SIGNPOST",
             "graphics_id": "OBJ_EVENT_GFX_TRAINER_TIPS_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -207,11 +207,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_205_SOUTH_GRUNT_M_12",
+            "id": "LOCALID_GRUNT_M_EAST",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x01A2",
+            "hidden_flag": "FLAG_HIDE_ROUTE_205_SOUTH_GRUNTS",
             "script": 4,
             "initial_dir": 1,
             "data": [],
@@ -222,11 +222,11 @@
             "y": 5
         },
         {
-            "id": "ROUTE_205_SOUTH_GRUNT_M_13",
+            "id": "LOCALID_GRUNT_M_WEST",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x01A2",
+            "hidden_flag": "FLAG_HIDE_ROUTE_205_SOUTH_GRUNTS",
             "script": 4,
             "initial_dir": 1,
             "data": [],
@@ -237,8 +237,8 @@
             "y": 5
         },
         {
-            "id": "ROUTE_205_SOUTH_UNK_100_14",
-            "graphics_id": "OBJ_EVENT_GFX_UNK_100",
+            "id": "LOCALID_BERRY_SOIL_1",
+            "graphics_id": "OBJ_EVENT_GFX_BERRY_SOIL",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
@@ -254,8 +254,8 @@
             "y": 0
         },
         {
-            "id": "ROUTE_205_SOUTH_UNK_100_15",
-            "graphics_id": "OBJ_EVENT_GFX_UNK_100",
+            "id": "LOCALID_BERRY_SOIL_2",
+            "graphics_id": "OBJ_EVENT_GFX_BERRY_SOIL",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
@@ -271,8 +271,8 @@
             "y": 0
         },
         {
-            "id": "ROUTE_205_SOUTH_UNK_100_16",
-            "graphics_id": "OBJ_EVENT_GFX_UNK_100",
+            "id": "LOCALID_BERRY_SOIL_3",
+            "graphics_id": "OBJ_EVENT_GFX_BERRY_SOIL",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
@@ -288,8 +288,8 @@
             "y": 0
         },
         {
-            "id": "ROUTE_205_SOUTH_UNK_100_17",
-            "graphics_id": "OBJ_EVENT_GFX_UNK_100",
+            "id": "LOCALID_BERRY_SOIL_4",
+            "graphics_id": "OBJ_EVENT_GFX_BERRY_SOIL",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
@@ -305,11 +305,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_205_SOUTH_TWIN_18",
+            "id": "LOCALID_LITTLE_GIRL",
             "graphics_id": "OBJ_EVENT_GFX_TWIN",
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x01F8",
+            "hidden_flag": "FLAG_HIDE_ROUTE_205_SOUTH_LITTLE_GIRL",
             "script": 5,
             "initial_dir": 3,
             "data": [],
@@ -320,12 +320,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_205_SOUTH_SIGNBOARD_19",
+            "id": "LOCALID_SIGNBOARD",
             "clone_id": 11,
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x01AA",
+            "hidden_flag": "MAP_HEADER_FLOAROMA_TOWN",
             "script": 65535,
             "initial_dir": 0,
             "data": [
@@ -338,7 +338,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_205_SOUTH_PICNICKER_KARINA",
+            "id": "LOCALID_PICNICKER_KARINA",
             "graphics_id": "OBJ_EVENT_GFX_PICNICKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -355,7 +355,7 @@
             "y": 7
         },
         {
-            "id": "ROUTE_205_SOUTH_CAMPER_ZACKARY",
+            "id": "LOCALID_CAMPER_ZACKARY",
             "graphics_id": "OBJ_EVENT_GFX_CAMPER",
             "movement_type": "MOVEMENT_TYPE_WALK_EAST_SOUTH_WEST_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -372,7 +372,7 @@
             "y": 6
         },
         {
-            "id": "ROUTE_205_SOUTH_VENT_22",
+            "id": "LOCALID_VENT_1",
             "graphics_id": "OBJ_EVENT_GFX_VENT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -387,7 +387,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_205_SOUTH_VENT_23",
+            "id": "LOCALID_VENT_2",
             "graphics_id": "OBJ_EVENT_GFX_VENT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -402,7 +402,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_205_SOUTH_VENT_24",
+            "id": "LOCALID_VENT_3",
             "graphics_id": "OBJ_EVENT_GFX_VENT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -417,7 +417,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_205_SOUTH_VENT_25",
+            "id": "LOCALID_VENT_4",
             "graphics_id": "OBJ_EVENT_GFX_VENT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -432,7 +432,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_205_SOUTH_VENT_26",
+            "id": "LOCALID_VENT_5",
             "graphics_id": "OBJ_EVENT_GFX_VENT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -447,7 +447,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_205_SOUTH_VENT_27",
+            "id": "LOCALID_VENT_6",
             "graphics_id": "OBJ_EVENT_GFX_VENT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -462,7 +462,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_205_SOUTH_VENT_28",
+            "id": "LOCALID_VENT_7",
             "graphics_id": "OBJ_EVENT_GFX_VENT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -507,11 +507,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_205_SOUTH_YOUNGSTER_31",
+            "id": "LOCALID_YOUNGSTER",
             "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x017F",
+            "hidden_flag": "FLAG_HIDE_ROUTE_205_SOUTH_YOUNGSTER",
             "script": 3,
             "initial_dir": 0,
             "data": [],
@@ -550,7 +550,7 @@
             "y": 0,
             "width": 1,
             "length": 6,
-            "var": "VAR_UNK_0x4089",
+            "var": "VAR_VALLEY_WINDWORKS_STATE",
             "value": 0
         },
         {
@@ -560,7 +560,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": "VAR_UNK_0x4089",
+            "var": "VAR_VALLEY_WINDWORKS_STATE",
             "value": 1
         }
     ]

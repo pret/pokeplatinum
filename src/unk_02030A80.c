@@ -8,6 +8,7 @@
 #include "struct_defs/struct_02030A80.h"
 #include "struct_defs/wi_fi_history.h"
 
+#include "appearance.h"
 #include "charcode_util.h"
 #include "heap.h"
 #include "pokemon.h"
@@ -20,7 +21,6 @@
 #include "unk_02014A84.h"
 #include "unk_02014D38.h"
 #include "unk_0202C858.h"
-#include "unk_0205C980.h"
 #include "unk_020996D0.h"
 
 UnkStruct_02030A80 *sub_02030A80(enum HeapID heapID)
@@ -67,7 +67,7 @@ void sub_02030AA0(UnkStruct_02030A80 *param0, SaveData *saveData)
     MiscSaveBlock_IntroMsg(v3, &param0->unk_20_val1);
 
     param0->unk_15 = v8.birthday.month;
-    param0->unk_16 = sub_0205CA14(TrainerInfo_Gender(v0), TrainerInfo_Appearance(v0), 0);
+    param0->unk_16 = Appearance_GetData(TrainerInfo_Gender(v0), TrainerInfo_Appearance(v0), APPEARANCE_DATA_INDEX);
     param0->unk_19 = GAME_VERSION;
     param0->language = GAME_LANGUAGE;
     param0->unk_7C.unk_00 = SaveData_CalculateChecksum(saveData, param0, sizeof(UnkStruct_02030A80) - (sizeof(UnkStruct_0202F298_sub1)));

@@ -243,7 +243,7 @@ Static main
 	Object main.nef.p/src_unk_0205A0D8.c.o
 	Object main.nef.p/src_unk_0205B33C.c.o
 	Object main.nef.p/src_unk_0205C22C.c.o
-	Object main.nef.p/src_unk_0205C980.c.o
+	Object main.nef.p/src_appearance.c.o
 	Object main.nef.p/src_unk_0205CA94.c.o
 	Object main.nef.p/src_field_message.c.o
 	Object main.nef.p/src_map_tile_behavior.c.o
@@ -275,7 +275,6 @@ Static main
 	Object main.nef.p/src_tv_episode_segment.c.o
 	Object main.nef.p/src_unk_0206F314.c.o
 	Object main.nef.p/src_unk_02070428.c.o
-	Object main.nef.p/src_unk_0207064C.c.o
 	Object main.nef.p/src_field_move_tasks.c.o
 	Object main.nef.p/src_unk_020711C8.c.o
 	Object main.nef.p/src_overworld_anim_manager.c.o
@@ -1570,7 +1569,7 @@ Overlay overlay104
 	Object main.nef.p/src_overlay104_ov104_0223E894.c.o
 }
 
-Overlay overlay105
+Overlay battle_factory_app
 {
 	After overlay104
 	Object main.nef.p/src_applications_frontier_battle_factory_main.c.o

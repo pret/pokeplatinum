@@ -2,62 +2,62 @@
 #include "res/text/bank/flower_shop.h"
 
 
-    ScriptEntry _000E
-    ScriptEntry _006E
-    ScriptEntry _00A9
+    ScriptEntry FlowerShop_PokemonBreederF
+    ScriptEntry FlowerShop_Lass
+    ScriptEntry FlowerShop_Beauty
     ScriptEntryEnd
 
-_000E:
+FlowerShop_PokemonBreederF:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x0AAA, _0059
-    Message 0
+    GoToIfSet FLAG_OBTAINED_FLOWER_SHOP_BERRY, FlowerShop_PleasePlantThatBerryInSoftEarthySoil
+    Message FlowerShop_Text_ASingleBerryWillGrowIntoAPlantThatMakesSeveralBerries
     GetRandom VAR_0x8004, 5
     AddVar VAR_0x8004, ITEM_CHERI_BERRY /* Cheri, Chesto, Pecha, Rawst or Aspear */
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0064
-    SetFlag FLAG_UNK_0x0AAA
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, FlowerShop_BagIsFull
+    SetFlag FLAG_OBTAINED_FLOWER_SHOP_BERRY
     Common_GiveItemQuantityNoLineFeed
     CloseMessage
     ReleaseAll
     End
 
-_0059:
-    Message 1
+FlowerShop_PleasePlantThatBerryInSoftEarthySoil:
+    Message FlowerShop_Text_PleasePlantThatBerryInSoftEarthySoil
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0064:
+FlowerShop_BagIsFull:
     Common_MessageBagIsFull
     CloseMessage
     ReleaseAll
     End
 
-_006E:
+FlowerShop_Lass:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x0080, _009E
-    Message 2
-    SetVar VAR_0x8004, 0x1C0
+    GoToIfSet FLAG_RECEIVED_FLOWER_SHOP_SPRAYDUCK, FlowerShop_UseThatSprayduckToWaterTheSoilWhereYouvePlantedBerries
+    Message FlowerShop_Text_TrainerPleaseWaterBerriesUsingThisSprayduckWateringCan
+    SetVar VAR_0x8004, ITEM_SPRAYDUCK
     SetVar VAR_0x8005, 1
-    SetFlag FLAG_UNK_0x0080
+    SetFlag FLAG_RECEIVED_FLOWER_SHOP_SPRAYDUCK
     Common_GiveItemQuantityNoLineFeed
     CloseMessage
     ReleaseAll
     End
 
-_009E:
-    Message 3
+FlowerShop_UseThatSprayduckToWaterTheSoilWhereYouvePlantedBerries:
+    Message FlowerShop_Text_UseThatSprayduckToWaterTheSoilWhereYouvePlantedBerries
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_00A9:
+FlowerShop_Beauty:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer

@@ -1,11 +1,10 @@
 #ifndef POKEPLATINUM_GTS_SCREENS_SELECT_POKEMON_H
 #define POKEPLATINUM_GTS_SCREENS_SELECT_POKEMON_H
 
-#include "struct_decls/pc_boxes_decl.h"
-
 #include "overlay094/gts_application_state.h"
 
 #include "party.h"
+#include "pc_boxes.h"
 #include "pokemon.h"
 
 int GTSApplication_SelectPokemon_Init(GTSApplicationState *param0, int param1);

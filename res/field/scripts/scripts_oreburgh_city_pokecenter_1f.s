@@ -29,7 +29,7 @@ OreburghCityPokecenter1F_Psychic:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_CHOSE_TRAINER_CLASS, OreburghCityPokecenter1F_HowAboutTellingMeWhatKindOfTrainerYouLike
+    GoToIfSet FLAG_CHOSE_UNION_ROOM_APPEARANCE, OreburghCityPokecenter1F_HowAboutTellingMeWhatKindOfTrainerYouLike
     Message OreburghCityPokecenter1F_Text_WhatIsYourFavoriteKindOfTrainerCanYouTellMe
     GoTo OreburghCityPokecenter1F_WhichKindOfTrainerWouldYouLikeToBe
 
@@ -52,7 +52,7 @@ OreburghCityPokecenter1F_WhichKindOfTrainerWouldYouLikeToBe:
     SetVar VAR_0x8008, VAR_RESULT
     GoToIfEq VAR_0x8008, 4, OreburghCityPokecenter1F_OKThenIllJustTalkToYouLater
     GoToIfEq VAR_0x8008, -2, OreburghCityPokecenter1F_OKThenIllJustTalkToYouLater
-    ScrCmd_155 VAR_0x8004, VAR_0x8005
+    GetTrainerInfoTrainerClass VAR_0x8004, VAR_0x8005
     BufferTrainerClassNameWithArticle 0, VAR_0x8005
     CapitalizeFirstLetter 0
     Message OreburghCityPokecenter1F_Text_AskThisIsTheKindOfTrainerYouWantToBe
@@ -70,9 +70,9 @@ OreburghCityPokecenter1F_OKThenIllJustTalkToYouLater:
 OreburghCityPokecenter1F_SetTrainerClass:
     BufferTrainerClassNameWithArticle 0, VAR_0x8005
     Message OreburghCityPokecenter1F_Text_ISeeSoThisIsTheKindOfTrainerYouLike
-    SetFlag FLAG_CHOSE_TRAINER_CLASS
-    ScrCmd_29C VAR_0x8004, VAR_0x8005
-    ScrCmd_156 VAR_0x8005
+    SetFlag FLAG_CHOSE_UNION_ROOM_APPEARANCE
+    CalculateTrainerInfoAppearance VAR_0x8004, VAR_0x8005
+    SetTrainerInfoAppearance VAR_0x8005
     GoTo OreburghCityPokecenter1F_OKThenIllJustTalkToYouLater
 
 OreburghCityPokecenter1F_Gentleman:

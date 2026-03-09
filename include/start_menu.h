@@ -1,26 +1,74 @@
 #ifndef POKEPLATINUM_UNK_0203A9C8_H
 #define POKEPLATINUM_UNK_0203A9C8_H
 
-#include "struct_defs/struct_020708E0.h"
-
 #include "field/field_system_decl.h"
+#include "overlay005/sprite_resource_manager.h"
 
+#include "bg_window.h"
+#include "field_move_tasks.h"
 #include "field_task.h"
+#include "item_use_functions.h"
+#include "menu.h"
+#include "string_list.h"
 
-BOOL sub_0203A9C8(FieldSystem *fieldSystem);
-void StartMenu_Init(struct FieldSystem_t *fieldSystem);
-void sub_0203AA78(struct FieldSystem_t *fieldSystem);
-void sub_0203AABC(FieldSystem *fieldSystem);
+#define MAX_START_MENU_OPTIONS 7
+
+typedef struct StartMenu {
+    Window primaryWindow;
+    Window secondaryWindow;
+    Menu *menu;
+    StringList *menuOptions;
+    u16 cursorPos;
+    u16 state;
+    u32 input;
+    u8 options[MAX_START_MENU_OPTIONS];
+    SpriteResourceManager spriteManager;
+    ManagedSprite *sprites[MAX_START_MENU_OPTIONS + 1];
+    u32 spriteCount;
+    u32 hideOptionFlags;
+    BOOL inUnionRoom;
+    FieldTaskFunc callback;
+    ItemUseContext itemUseCtx;
+    FieldMoveContext fieldMoveContext;
+    void *taskData;
+    void *additionalTaskContext;
+} StartMenu;
+
+enum StartMenuState {
+    START_MENU_STATE_INIT = 0,
+    START_MENU_STATE_SELECT,
+    START_MENU_STATE_APP_START,
+    START_MENU_STATE_APP_RUN,
+    START_MENU_STATE_SAVE,
+    START_MENU_STATE_SAVE_WAIT,
+    START_MENU_STATE_EVOLVE_INIT,
+    START_MENU_STATE_EVOLVE,
+    START_MENU_STATE_8,
+    START_MENU_STATE_9,
+    START_MENU_STATE_NEW_TASK,
+    START_MENU_STATE_EXIT_WITH_NEW_TASK,
+    START_MENU_STATE_REINIT,
+    START_MENU_STATE_END,
+    START_MENU_STATE_REINIT_WAIT_FOR_FADE,
+    START_MENU_STATE_SAVED,
+};
+
+extern const u8 gAllSummaryScreenPages[];
+
+BOOL FieldSystem_IsInValidLocation(FieldSystem *fieldSystem);
 void StartMenu_Open(FieldSystem *fieldSystem);
+void StartMenu_OpenUnionRoom(FieldSystem *fieldSystem);
+void StartMenu_OpenColosseum(FieldSystem *fieldSystem);
+void StartMenu_OpenFromScript(FieldSystem *fieldSystem);
 void StartMenu_SetCallback(StartMenu *menu, void *callback);
-BOOL StartMenu_ExitPartyMenu(FieldTask *taskMan);
-BOOL sub_0203C3F4(FieldTask *param0);
-BOOL sub_0203C434(FieldTask *param0);
-BOOL sub_0203C50C(FieldTask *param0);
+BOOL StartMenu_ExitPartyMenu(FieldTask *fieldTask);
+BOOL StartMenu_ExitTownMap(FieldTask *fieldTask);
+BOOL StartMenu_FlyDestinationSelected(FieldTask *fieldTask);
+BOOL StartMenu_ExitJournal(FieldTask *fieldTask);
 void *sub_0203C540(u16 param0, u8 param1, u8 param2);
-BOOL StartMenu_ExitMail(FieldTask *taskMan);
-BOOL sub_0203C710(FieldTask *param0);
-BOOL sub_0203C750(FieldTask *param0);
-BOOL sub_0203C784(FieldTask *param0);
+BOOL StartMenu_ExitMail(FieldTask *fieldTask);
+BOOL StartMenu_ExitPoffinCase(FieldTask *fieldTask);
+BOOL StartMenu_ExitPalPad(FieldTask *fieldTask);
+BOOL StartMenu_ExitVsRecorder(FieldTask *fieldTask);
 
 #endif // POKEPLATINUM_UNK_0203A9C8_H

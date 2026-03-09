@@ -14,7 +14,7 @@
       "en_US": "BAG"
     },
     {
-      "id": "StartMenu_Text_Player",
+      "id": "StartMenu_Text_PlayerTemplate",
       "en_US": "{STRVAR_1 3, 0, 0}"
     },
     {

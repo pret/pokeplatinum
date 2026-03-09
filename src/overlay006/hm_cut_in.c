@@ -1035,16 +1035,16 @@ static void HidePlayerMapObj(FieldSystem *fieldSystem, BOOL hidden)
     MapObject_SetHidden(playerMapObject, hidden);
 }
 
-SysTask *SysTask_HMCutIn_New(FieldSystem *fieldSystem, BOOL isNotFly, Pokemon *shownPokemon, int playerGender)
+SysTask *HMCutIn_StartTask(FieldSystem *fieldSystem, BOOL isFly, Pokemon *shownPokemon, int playerGender)
 {
     SysTask *task;
     HMCutIn *cutIn = CreateHMCutIn(fieldSystem);
 
     cutIn->mon = shownPokemon;
     cutIn->playerGender = playerGender;
-    cutIn->_1 = isNotFly;
+    cutIn->_1 = isFly;
 
-    if (isNotFly == FALSE) {
+    if (isFly == FALSE) {
         task = SysTask_Start(SysTask_CutIn, cutIn, 133);
     } else {
         task = SysTask_Start(SysTask_CutInFly, cutIn, 133);
@@ -1053,13 +1053,13 @@ SysTask *SysTask_HMCutIn_New(FieldSystem *fieldSystem, BOOL isNotFly, Pokemon *s
     return task;
 }
 
-int CheckHMCutInFinished(SysTask *cutInTask)
+int HMCutIn_IsFinished(SysTask *cutInTask)
 {
     HMCutIn *cutIn = SysTask_GetParam(cutInTask);
     return cutIn->isFinished;
 }
 
-void SysTask_HMCutIn_SetTaskDone(SysTask *cutInTask)
+void HMCutIn_EndTask(SysTask *cutInTask)
 {
     HMCutIn *cutIn = SysTask_GetParam(cutInTask);
 

@@ -2,14 +2,14 @@
 #include "res/text/bank/floaroma_meadow_house.h"
 
 
-    ScriptEntry _000A
-    ScriptEntry _001D
+    ScriptEntry FloaromaMeadowHouse_Hiker
+    ScriptEntry FloaromaMeadowHouse_NinjaBoy
     ScriptEntryEnd
 
-_000A:
-    NPCMessage 0
+FloaromaMeadowHouse_Hiker:
+    NPCMessage FloaromaMeadowHouse_Text_TheFlowersThatGrowInTheFieldsHereAreSpecial
     End
 
-_001D:
-    NPCMessage 1
+FloaromaMeadowHouse_NinjaBoy:
+    NPCMessage FloaromaMeadowHouse_Text_IfYouPutHoneyOnATreeCheckBackLaterToSeeIfItsRustlings
     End
