@@ -455,23 +455,20 @@ static BOOL FieldMap_ChangeZone(FieldSystem *fieldSystem)
     return TRUE;
 }
 
-void ov5_021D12D0(FieldSystem *fieldSystem, u32 param1)
+void FieldMap_ChangeZoneDistortionWorld(FieldSystem *fieldSystem, u32 mapId)
 {
-    u32 mapId;
-    FieldOverworldState *fieldState;
+    u32 oldMapId = fieldSystem->location->mapId;
+    FieldOverworldState *fieldState = SaveData_GetFieldOverworldState(fieldSystem->saveData);
 
-    mapId = fieldSystem->location->mapId;
-    fieldState = SaveData_GetFieldOverworldState(fieldSystem->saveData);
+    fieldSystem->location->mapId = mapId;
 
-    fieldSystem->location->mapId = param1;
-
-    MapHeaderData_Load(fieldSystem, param1);
+    MapHeaderData_Load(fieldSystem, mapId);
     FieldMapChange_UpdateGameDataDistortionWorld(fieldSystem, 1);
 
     int objEventCount = MapHeaderData_GetNumObjectEvents(fieldSystem);
     const ObjectEvent *objEventList = MapHeaderData_GetObjectEvents(fieldSystem);
 
-    sub_0206184C(fieldSystem->mapObjMan, mapId, param1, objEventCount, objEventList);
+    sub_0206184C(fieldSystem->mapObjMan, oldMapId, mapId, objEventCount, objEventList);
 
     Sound_TryFadeOutToBGM(fieldSystem, Sound_GetOverrideBGM(fieldSystem, fieldSystem->location->mapId), 1);
     sub_0203A418(fieldSystem);
