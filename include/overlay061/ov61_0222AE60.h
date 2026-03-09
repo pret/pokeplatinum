@@ -1,7 +1,6 @@
 #ifndef POKEPLATINUM_OV61_0222AE60_H
 #define POKEPLATINUM_OV61_0222AE60_H
 
-#include "struct_decls/pc_boxes_decl.h"
 #include "struct_decls/struct_02030A80_decl.h"
 #include "struct_defs/dress_up_photo.h"
 
@@ -10,6 +9,7 @@
 #include "overlay061/struct_ov61_0222AFCC.h"
 #include "overlay062/struct_ov62_02239DA4.h"
 
+#include "pc_boxes.h"
 #include "savedata.h"
 
 void ov61_0222AE60(SaveData *saveData, const DressUpPhoto *photo, UnkStruct_ov61_0222AE80 *param2);

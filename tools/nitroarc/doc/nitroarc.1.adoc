@@ -102,6 +102,8 @@ evaluated.
   be replaced by an ASCII underscore in the respective preprocessor token. e.g.,
   a member file located at “/path/to/file” will write “#define path_to_file”,
   followed by a single ASCII space (‘ ’) and its member index on the same line.
+  If a member file is included in the archive multiple times, then occurrences
+  past the first will be suffixed with the number of previous occurrences.
 
 *-N, --named*::
   Mirror the local filesystem from _DIRECTORY_ in _ARCHIVE_, with _DIRECTORY_

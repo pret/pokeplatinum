@@ -240,7 +240,7 @@ static int ProcessTouchScreenAction(PoffinManager *app)
 
 static BOOL State_SelectPoffin(PoffinManager *app)
 {
-    u32 menuSelection = LIST_NOTHING_CHOSEN;
+    u32 menuSelection = MENU_NOTHING_CHOSEN;
 
     if (app->poffinMenu == NULL) {
         return FALSE;
@@ -259,7 +259,7 @@ static BOOL State_SelectPoffin(PoffinManager *app)
         return FALSE;
     }
 
-    if (menuSelection == LIST_NOTHING_CHOSEN) {
+    if (menuSelection == MENU_NOTHING_CHOSEN) {
         return FALSE;
     }
 
@@ -274,8 +274,8 @@ static BOOL State_SelectPoffin(PoffinManager *app)
         Sound_PlayEffect(SEQ_SE_CONFIRM);
 
         switch (menuSelection) {
-        case LIST_NOTHING_CHOSEN:
-        case LIST_CANCEL:
+        case MENU_NOTHING_CHOSEN:
+        case MENU_CANCEL:
         case POFFIN_LIST_SENTINEL:
             app->selectedPoffin = POFFIN_LIST_SENTINEL;
             app->givePoffin = FALSE;
@@ -324,8 +324,8 @@ static BOOL State_SelectAction(PoffinManager *app)
             PoffinManager_ShowDiscardQuestion(app);
             app->state = STATE_INIT_DELETE_POFFIN_CONFIRM;
             break;
-        case LIST_NOTHING_CHOSEN:
-        case LIST_CANCEL:
+        case MENU_NOTHING_CHOSEN:
+        case MENU_CANCEL:
         default:
             PoffinManager_FreeActionMenu(app);
             PoffinCaseApp_UpdateListSprites(app, 0);
@@ -351,12 +351,12 @@ static BOOL State_InitDeletePoffinConfirm(PoffinManager *app)
 static BOOL State_ConfirmDeletePoffin(PoffinManager *app)
 {
     switch (Menu_ProcessInputAndHandleExit(app->yesNoMenu, app->heapID)) {
-    case 0:
+    case MENU_YES:
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         PoffinManager_ShowThrownOutMessage(app);
         app->state = STATE_DELETE_POFFIN;
         return FALSE;
-    case MENU_CANCELED:
+    case MENU_CANCEL:
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         Window_EraseMessageBox(&app->windows[2], FALSE);
         app->state = STATE_INIT_ACTION_MENU;

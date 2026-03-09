@@ -8,7 +8,6 @@
 #include "underground/defs.h"
 #include "underground/mining.h"
 
-// TODO: make this error if it doesn't contain an entry for every treasure
 static const SpherePrice sTreasurePrices[] = {
     [MINING_TREASURE_NONE] = { .sphereType = SPHERE_NONE, .minSize = 0, .maxSize = 0 },
     [MINING_SMALL_PRISM_SPHERE] = { .sphereType = SPHERE_NONE, .minSize = 0, .maxSize = 0 },
@@ -71,6 +70,7 @@ static const SpherePrice sTreasurePrices[] = {
     [MINING_TREASURE_DREAD_PLATE] = { .sphereType = SPHERE_RED, .minSize = 70, .maxSize = 80 },
     [MINING_TREASURE_IRON_PLATE] = { .sphereType = SPHERE_PRISM, .minSize = 70, .maxSize = 80 }
 };
+SDK_COMPILER_ASSERT(NELEMS(sTreasurePrices) == MINING_TREASURE_MAX);
 
 u8 Treasure_GetSpherePriceType(int treasureID)
 {

@@ -17,15 +17,16 @@
 
 #include "game_opening/const_ov77_021D742C.h"
 #include "main_menu/gba_convert_string.h"
+#include "main_menu/gba_player.h"
 #include "main_menu/gba_pokemon.h"
 #include "main_menu/gba_save.h"
 #include "main_menu/main_menu_util.h"
 #include "main_menu/ov97_02235D18.h"
-#include "main_menu/ov97_0223635C.h"
 #include "savedata/save_table.h"
 
 #include "bg_window.h"
 #include "char_transfer.h"
+#include "charcode.h"
 #include "font.h"
 #include "game_options.h"
 #include "graphics.h"
@@ -128,12 +129,12 @@ typedef struct {
     int unk_18;
     int unk_1C;
     int unk_20;
-    int unk_24;
+    int bgLayer;
     int unk_28;
     TextColor unk_2C;
     TextColor unk_30;
     int messageEntryID;
-    u16 *unk_38;
+    charcode_t *unk_38;
     String *unk_3C;
     StringTemplate *unk_40;
     int unk_44;
@@ -195,7 +196,7 @@ typedef struct {
     Window unk_4FC;
     int unk_50C;
     int unk_510;
-    u32 unk_514[14580];
+    GBASaveSlot saveSlot;
     GBAPokemonStorage *pokemonStorage;
     int currentBox;
     int fullSelectionTimer; // Used track how long to wait until fade out once all 6 mon have been selected.
@@ -476,7 +477,7 @@ static void ov97_02233DD0(GBAMigrator *migrator, UnkStruct_ov97_02233DAC *param1
     }
 
     if (param1->unk_00->bgConfig == NULL) {
-        Window_Add(migrator->bgConfig, param1->unk_00, param1->unk_24, param1->unk_08, param1->unk_0C, param1->unk_10, param1->unk_14, 15, param1->unk_20);
+        Window_Add(migrator->bgConfig, param1->unk_00, param1->bgLayer, param1->unk_08, param1->unk_0C, param1->unk_10, param1->unk_14, 15, param1->unk_20);
     }
 
     if (!(param2 & 0x2)) {
@@ -1178,7 +1179,7 @@ static void ov97_02234A2C(GBAMigrator *migrator, int boxNum)
     v0.messageEntryID = -1;
     v0.unk_18 = 0;
     v0.unk_1C = 0;
-    v0.unk_24 = 1;
+    v0.bgLayer = BG_LAYER_MAIN_1;
     v0.unk_28 = 1;
     v0.unk_2C = TEXT_COLOR(1, 2, 0);
     v0.unk_20 = 0xA0;
@@ -1230,7 +1231,7 @@ static void PrintGBABoxMonInfo(GBAMigrator *migrator, GBABoxPokemon *gbaBoxMon)
     v4.unk_0C = 0;
     v4.unk_10 = 32;
     v4.unk_14 = 4;
-    v4.unk_24 = 1;
+    v4.bgLayer = BG_LAYER_MAIN_1;
     v4.unk_28 = 1;
     v4.unk_20 = (14 * 2 + 0xA0);
     v4.unk_2C = TEXT_COLOR(15, 2, 0);
@@ -1478,7 +1479,7 @@ static void ov97_02234ECC(GBAMigrator *migrator)
     migrator->unk_490.unk_0C = 1;
     migrator->unk_490.unk_10 = 27;
     migrator->unk_490.unk_14 = 4;
-    migrator->unk_490.unk_24 = 0;
+    migrator->unk_490.bgLayer = BG_LAYER_MAIN_0;
     migrator->unk_490.unk_28 = 1;
     migrator->unk_490.unk_20 = 0 + 1;
     migrator->unk_490.unk_2C = TEXT_COLOR(1, 2, 15);
@@ -1871,7 +1872,7 @@ static int GBAMigrator_Main(ApplicationManager *appMan, int *state)
     switch (*state) {
     case GBA_MIGRATOR_STATE_0:
         ResetLoadedGBACartInfo();
-        migrator->unk_50C = ov97_02235D2C(migrator->unk_514);
+        migrator->unk_50C = ov97_02235D2C(&migrator->saveSlot);
 
         if (migrator->unk_50C == 0) {
             migrator->unk_510 = ov97_022360D8();

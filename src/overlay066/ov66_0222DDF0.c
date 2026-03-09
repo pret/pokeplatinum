@@ -9,7 +9,6 @@
 #include "generated/journal_online_events.h"
 #include "generated/species.h"
 
-#include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_02014FB0_decl.h"
 #include "struct_decls/struct_02030EC4_decl.h"
 #include "struct_decls/struct_0207E060_decl.h"

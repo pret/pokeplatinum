@@ -12,13 +12,7 @@
     ScriptEntryEnd
 
 Route203_Lass:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message Route203_Text_YourFavoritePokemonShouldBePlacedAtTheTop
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage Route203_Text_YourFavoritePokemonShouldBePlacedAtTheTop
     End
 
 Route203_ArrowSignpostJubilifeCity:

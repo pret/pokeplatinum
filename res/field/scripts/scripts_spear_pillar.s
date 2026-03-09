@@ -150,33 +150,15 @@ _0204:
     EndMovement
 
 _0210:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 2
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 2
     End
 
 _0223:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 44
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 44
     End
 
 _0236:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 43
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 43
     End
 
 _0249:

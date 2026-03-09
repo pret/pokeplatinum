@@ -1,7 +1,6 @@
 #include "encounter.h"
 
 #include <nitro.h>
-#include <string.h>
 
 #include "constants/battle.h"
 #include "constants/heap.h"
@@ -10,7 +9,6 @@
 #include "generated/map_headers.h"
 #include "generated/trainer_score_events.h"
 
-#include "struct_decls/pc_boxes_decl.h"
 #include "struct_decls/struct_0202440C_decl.h"
 
 #include "field/field_system.h"

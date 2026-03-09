@@ -19,13 +19,7 @@ JubilifeTV2F_SetFlagHideJubilifeTV2FReporter:
     End
 
 JubilifeTV2F_Idol:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message JubilifeTV2F_Text_WhatAccessoriesWillGoWellWithMyDressToday
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage JubilifeTV2F_Text_WhatAccessoriesWillGoWellWithMyDressToday
     End
 
 JubilifeTV2F_GymGuide:
@@ -68,13 +62,7 @@ JubilifeTV2F_SetAccessoryPiplupMask:
     Return
 
 JubilifeTV2F_Roughneck:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message JubilifeTV2F_Text_TheRoomAtTheBackIsOurDreamyFittingRoom
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage JubilifeTV2F_Text_TheRoomAtTheBackIsOurDreamyFittingRoom
     End
 
     .balign 4, 0

@@ -1,8 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_BOX_APPLICATION_H
 #define POKEPLATINUM_STRUCT_BOX_APPLICATION_H
 
-#include "struct_decls/pc_boxes_decl.h"
-
 #include "applications/pc_boxes/box_cursor.h"
 #include "applications/pc_boxes/box_customization.h"
 #include "applications/pc_boxes/box_mon_selection.h"
@@ -13,6 +11,7 @@
 #include "applications/pc_boxes/struct_box_menu.h"
 
 #include "party.h"
+#include "pc_boxes.h"
 
 typedef struct BoxApplication {
     const PCBoxes *pcBoxes;

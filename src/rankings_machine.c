@@ -356,8 +356,8 @@ static int RankingsMachine_HandleRecordsListInput(RankingsMachineManager *machin
     Sound_PlayEffect(SEQ_SE_CONFIRM);
 
     switch (input) {
-    case LIST_NOTHING_CHOSEN:
-    case LIST_CANCEL:
+    case MENU_NOTHING_CHOSEN:
+    case MENU_CANCEL:
     case 0xFFFF:
         RankingsMachine_RemoveRecordsList(machineMan);
         return STATE_FREE;
@@ -470,7 +470,7 @@ static int RankingsMachine_AskDeleteRanking(RankingsMachineManager *machineMan)
         case MENU_YES:
             machineMan->deleteState++;
             break;
-        case LIST_CANCEL:
+        case MENU_CANCEL:
             machineMan->deleteState = 0xFF;
             break;
         }

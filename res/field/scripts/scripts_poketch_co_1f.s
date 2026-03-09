@@ -143,31 +143,13 @@ PoketchCo1F_DoYouThinkIShouldSolicitNewPoketchIdeas:
     End
 
 PoketchCo1F_ScientistM:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message PoketchCo1F_Text_OhYouCanBeSureIWillKeepDevelopingPoketchApps
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage PoketchCo1F_Text_OhYouCanBeSureIWillKeepDevelopingPoketchApps
     End
 
 PoketchCo1F_Receptionist:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message PoketchCo1F_Text_WelcomeToThePoketchCompany
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage PoketchCo1F_Text_WelcomeToThePoketchCompany
     End
 
 PoketchCo1F_Lass:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message PoketchCo1F_Text_HeyDoYouWatchTV
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage PoketchCo1F_Text_HeyDoYouWatchTV
     End

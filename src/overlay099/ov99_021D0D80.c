@@ -167,7 +167,7 @@ int ov99_021D0D80(ApplicationManager *appMan, int *param1)
 
     BrightnessController_SetScreenBrightness(-16, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, BRIGHTNESS_BOTH_SCREENS);
     SetScreenMasterBrightness(DS_SCREEN_MAIN, 0);
-    SetScreenMasterBrightness(1, 0);
+    SetScreenMasterBrightness(DS_SCREEN_SUB, 0);
 
     Bg_ToggleLayer(BG_LAYER_MAIN_1, 1);
     Bg_ToggleLayer(BG_LAYER_SUB_1, 1);

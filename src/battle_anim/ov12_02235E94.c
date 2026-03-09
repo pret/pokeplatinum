@@ -31,6 +31,8 @@
 #include "unk_0202C9F4.h"
 #include "unk_02097B18.h"
 
+#include "res/graphics/battle/sprites.naix"
+
 typedef struct {
     int unk_00;
     int unk_04;
@@ -119,28 +121,30 @@ static BOOL ov12_02236F10(BallRotation *param0);
 static BOOL ov12_02237694(BallRotation *param0);
 static BOOL ov12_02237474(BallRotation *param0);
 
-static const int Unk_ov12_0223AF00[][4] = {
-    { 0x120, 0x5C, 0x11F, 0x11E },
-    { 0x123, 0x5D, 0x122, 0x121 },
-    { 0x126, 0x5E, 0x125, 0x124 },
-    { 0x11D, 0x5B, 0x11C, 0x11B },
-    { 0x129, 0x5F, 0x128, 0x127 },
-    { 0x12C, 0x60, 0x12B, 0x12A },
-    { 0x12F, 0x61, 0x12E, 0x12D },
-    { 0x132, 0x62, 0x131, 0x130 },
-    { 0x135, 0x63, 0x134, 0x133 },
-    { 0x138, 0x64, 0x137, 0x136 },
-    { 0x13B, 0x65, 0x13A, 0x139 },
-    { 0x13E, 0x66, 0x13D, 0x13C },
-    { 0x144, 0x68, 0x143, 0x142 },
-    { 0x147, 0x69, 0x146, 0x145 },
-    { 0x141, 0x67, 0x140, 0x13F },
-    { 0x14A, 0x6A, 0x149, 0x148 },
-    { 0x14D, 0x6B, 0x14C, 0x14B },
-    { 0x153, 0x6D, 0x152, 0x151 },
-    { 0x150, 0x6C, 0x14F, 0x14E },
-    { 0x150, 0x6C, 0x14F, 0x14E }
+// clang-format off
+static const int sBallThrowGraphics[][4] = {
+    { ball_throws_master_ball_NCGR_lz,  ball_throws_master_ball_NCLR,  ball_throws_shared_cell_NCER_lz_2,  ball_throws_shared_anim_NANR_lz_1          },
+    { ball_throws_ultra_ball_NCGR_lz,   ball_throws_ultra_ball_NCLR,   ball_throws_shared_cell_NCER_lz_3,  ball_throws_shared_anim_NANR_lz_2          },
+    { ball_throws_great_ball_NCGR_lz,   ball_throws_great_ball_NCLR,   ball_throws_shared_cell_NCER_lz_4,  ball_throws_shared_anim_NANR_lz_3          },
+    { ball_throws_poke_ball_NCGR_lz,    ball_throws_poke_ball_NCLR,    ball_throws_shared_cell_NCER_lz_1,  ball_throws_shared_anim_NANR_lz            },
+    { ball_throws_safari_ball_NCGR_lz,  ball_throws_safari_ball_NCLR,  ball_throws_shared_cell_NCER_lz_5,  ball_throws_shared_anim_NANR_lz_4          },
+    { ball_throws_net_ball_NCGR_lz,     ball_throws_net_ball_NCLR,     ball_throws_shared_cell_NCER_lz_6,  ball_throws_shared_anim_NANR_lz_5          },
+    { ball_throws_dive_ball_NCGR_lz,    ball_throws_dive_ball_NCLR,    ball_throws_shared_cell_NCER_lz_7,  ball_throws_shared_anim_NANR_lz_6          },
+    { ball_throws_nest_ball_NCGR_lz,    ball_throws_nest_ball_NCLR,    ball_throws_shared_cell_NCER_lz_8,  ball_throws_shared_anim_NANR_lz_7          },
+    { ball_throws_repeat_ball_NCGR_lz,  ball_throws_repeat_ball_NCLR,  ball_throws_shared_cell_NCER_lz_9,  ball_throws_shared_anim_NANR_lz_8          },
+    { ball_throws_timer_ball_NCGR_lz,   ball_throws_timer_ball_NCLR,   ball_throws_shared_cell_NCER_lz_10, ball_throws_shared_anim_NANR_lz_9          },
+    { ball_throws_luxury_ball_NCGR_lz,  ball_throws_luxury_ball_NCLR,  ball_throws_shared_cell_NCER_lz_11, ball_throws_shared_anim_NANR_lz_10         },
+    { ball_throws_premier_ball_NCGR_lz, ball_throws_premier_ball_NCLR, ball_throws_shared_cell_NCER_lz_12, ball_throws_shared_anim_NANR_lz_11         },
+    { ball_throws_dusk_ball_NCGR_lz,    ball_throws_dusk_ball_NCLR,    ball_throws_shared_cell_NCER_lz_14, ball_throws_quick_dusk_heal_anim_NANR_lz_1 },
+    { ball_throws_heal_ball_NCGR_lz,    ball_throws_heal_ball_NCLR,    ball_throws_shared_cell_NCER_lz_15, ball_throws_quick_dusk_heal_anim_NANR_lz_2 },
+    { ball_throws_quick_ball_NCGR_lz,   ball_throws_quick_ball_NCLR,   ball_throws_shared_cell_NCER_lz_13, ball_throws_quick_dusk_heal_anim_NANR_lz   },
+    { ball_throws_cherish_ball_NCGR_lz, ball_throws_cherish_ball_NCLR, ball_throws_shared_cell_NCER_lz_16, ball_throws_shared_anim_NANR_lz_12         },
+    { ball_throws_park_ball_NCGR_lz,    ball_throws_park_ball_NCLR,    ball_throws_shared_cell_NCER_lz_17, ball_throws_shared_anim_NANR_lz_13         },
+    { ball_throws_mud_NCGR_lz,          ball_throws_mud_NCLR,          ball_throws_mud_cell_NCER_lz,       ball_throws_mud_anim_NANR_lz               },
+    { ball_throws_bait_NCGR_lz,         ball_throws_bait_NCLR,         ball_throws_shared_cell_NCER_lz_18, ball_throws_bait_anim_NANR_lz              },
+    { ball_throws_bait_NCGR_lz,         ball_throws_bait_NCLR,         ball_throws_shared_cell_NCER_lz_18, ball_throws_bait_anim_NANR_lz              },
 };
+// clang-format on
 
 static const int Unk_ov12_0223AD70[][2] = {
     { 0x1, 0x5 },
@@ -319,7 +323,7 @@ static int ov12_02235FB4(int param0)
 static int ov12_02235FC8(int param0, int param1)
 {
     int v0 = ov12_02235E94(param0);
-    return Unk_ov12_0223AF00[v0][param1];
+    return sBallThrowGraphics[v0][param1];
 }
 
 UnkStruct_ov12_02235FE0 *ov12_02235FE0(enum HeapID heapID)

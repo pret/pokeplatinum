@@ -1,14 +1,12 @@
 #ifndef POKEPLATINUM_STRUCT_OV5_021ED0A4_H
 #define POKEPLATINUM_STRUCT_OV5_021ED0A4_H
 
-#include "struct_decls/struct_02020C44_decl.h"
 #include "struct_decls/struct_02061830_decl.h"
 
 #include "overlay005/resource_heap.h"
-#include "overlay005/struct_ov5_021DF84C.h"
-#include "overlay005/struct_ov5_021ED110.h"
 #include "overlay005/struct_ov5_021EDF3C.h"
 
+#include "billboard.h"
 #include "resource_collection.h"
 
 typedef struct UnkStruct_ov5_021ED0A4_t {
@@ -23,8 +21,8 @@ typedef struct UnkStruct_ov5_021ED0A4_t {
     int unk_20[8];
     int unk_40[8];
     int unk_60[32];
-    UnkStruct_02020C44 *unk_E0;
-    UnkStruct_ov5_021DF84C *unk_E4;
+    BillboardList *unk_E0;
+    BillboardResources *unk_E4;
     ResourceCollection *unk_E8;
     ResourceCollection *unk_EC;
     TextureResourceManager *unk_F0;

@@ -3,7 +3,6 @@
 #include "generated/text_banks.h"
 
 #include "struct_decls/battle_system.h"
-#include "struct_decls/pc_boxes_decl.h"
 
 #include "battle/battle_lib.h"
 #include "battle/battle_system.h"

@@ -2,7 +2,7 @@
   "key": 3454,
   "messages": [
     {
-      "id": "pl_msg_00000471_00000",
+      "id": "Route205South_Text_HelpHelpTrainerPleaseIWantToSeeMyPapa",
       "en_US": [
         "Help, help, Trainer!\n",
         "Please, I want to see my papa.\r",
@@ -17,14 +17,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000471_00001",
+      "id": "Route205South_Text_IWantToSeeMyPapaHesAtTheValleyWindworks",
       "en_US": [
         "Please, Trainer! I want to see my papa.\n",
         "He’s at the Valley Windworks..."
       ]
     },
     {
-      "id": "pl_msg_00000471_00002",
+      "id": "Route205South_Text_WeTeamGalacticAreConductingResearchInTheEternaForest",
       "en_US": [
         "We, Team Galactic, are conducting\n",
         "research in the Eterna Forest!\r",
@@ -32,7 +32,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000471_00003",
+      "id": "Route205South_Text_OurResearchInvolvesCatchingPokemonInTheFloweryMeadowsOfFloaroma1",
       "en_US": [
         "Our research involves catching Pokémon\n",
         "in the flowery meadows of Floaroma.\r",
@@ -42,7 +42,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000471_00004",
+      "id": "Route205South_Text_OurResearchInvolvesCatchingPokemonInTheFloweryMeadowsOfFloaroma2",
       "en_US": [
         "Our research involves catching Pokémon\n",
         "in the flowery meadows of Floaroma.\r",
@@ -52,7 +52,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000471_00005",
+      "id": "Route205South_Text_ManyPoisonTypePokemonMakeTheEternaForestTheirHome",
       "en_US": [
         "Many Poison-type Pokémon make the\n",
         "Eterna Forest their home.\r",
@@ -62,7 +62,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000471_00006",
+      "id": "Route205South_Text_IfYouSlatherSweetHoneyOnASweetSmellingTree",
       "en_US": [
         "If you slather sweet Honey on\n",
         "a sweet-smelling tree...\r",
@@ -71,21 +71,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000471_00007",
+      "id": "Route205South_Text_Rt205FloaromaTown",
       "en_US": [
         "Rt. 205\n",
         "Floaroma Town"
       ]
     },
     {
-      "id": "pl_msg_00000471_00008",
+      "id": "Route205South_Text_Rt205EternaForest",
       "en_US": [
         "Rt. 205\n",
         "Eterna Forest"
       ]
     },
     {
-      "id": "pl_msg_00000471_00009",
+      "id": "Route205South_Text_TrainerTipsTheItemsPlacedInYourBagAreAutomaticallySorted",
       "en_US": [
         "Trainer Tips!\r",
         "The items placed in your Bag are\n",

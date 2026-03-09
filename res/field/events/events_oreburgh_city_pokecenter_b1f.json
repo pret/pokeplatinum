@@ -2,7 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
-            "id": "OREBURGH_CITY_POKECENTER_B1FWIFI_PLAZA_ATTENDANT_F_0",
+            "id": "LOCALID_WIFI_PLAZA_ATTENDANT_F",
             "graphics_id": "OBJ_EVENT_GFX_WIFI_PLAZA_ATTENDANT_F",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -17,7 +17,7 @@
             "y": 0
         },
         {
-            "id": "OREBURGH_CITY_POKECENTER_B1F_TEALA_1",
+            "id": "LOCALID_TEALA_MIDDLE",
             "graphics_id": "OBJ_EVENT_GFX_TEALA",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -32,7 +32,7 @@
             "y": 0
         },
         {
-            "id": "OREBURGH_CITY_POKECENTER_B1F_TEALA_2",
+            "id": "LOCALID_TEALA_EAST",
             "graphics_id": "OBJ_EVENT_GFX_TEALA",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -47,7 +47,7 @@
             "y": 0
         },
         {
-            "id": "OREBURGH_CITY_POKECENTER_B1F_BATTLE_GIRL_3",
+            "id": "LOCALID_BATTLE_GIRL",
             "graphics_id": "OBJ_EVENT_GFX_BATTLE_GIRL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",

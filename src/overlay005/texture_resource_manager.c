@@ -3,10 +3,10 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "billboard_vram_transfer.h"
 #include "heap.h"
 #include "narc.h"
 #include "particle_system.h"
-#include "unk_0201DD00.h"
 #include "vram_transfer.h"
 
 typedef struct {
@@ -93,13 +93,13 @@ static int TextureResourceManager_LoadSingleTexture(FieldTextureManager *texture
         return -1;
     }
 
-    textureManager->textureSlots[slotIndex].textureData = sub_0201DF50(textureResource, textureManager->dataHeader->animationData[textureIndex].name);
+    textureManager->textureSlots[slotIndex].textureData = GetTextureDataBufferFromResourceName(textureResource, textureManager->dataHeader->animationData[textureIndex].name);
 
     if (textureManager->textureSlots[slotIndex].textureData == NULL) {
         return -1;
     }
 
-    textureManager->textureSlots[slotIndex].textureSize = sub_0201DFE4(textureResource, textureManager->dataHeader->animationData[textureIndex].name);
+    textureManager->textureSlots[slotIndex].textureSize = CalcTextureDataSizeFromResourceName(textureResource, textureManager->dataHeader->animationData[textureIndex].name);
     sprintf(debugString, "data/fld_anime%d.bin", textureIndex);
     textureManager->textureSlots[slotIndex].animationData = &(textureManager->dataHeader->animationData[textureIndex]);
     textureManager->textureSlots[slotIndex].narcData = NARC_AllocAndReadWholeMember(narc, textureIndex + 1, 4);
@@ -129,7 +129,7 @@ void TextureResourceManager_Free(FieldTextureManager *textureManager)
                 textureSlot->currentFrame = 0;
             }
 
-            VramTransfer_Request(NNS_GFD_DST_3D_TEX_VRAM, (u32)textureSlot->textureData, sub_0201DEAC(textureSlot->textureResource, textureSlot->animationData->animationData[textureSlot->currentFrame][0]), textureSlot->textureSize);
+            VramTransfer_Request(NNS_GFD_DST_3D_TEX_VRAM, (u32)textureSlot->textureData, GetTextureDataVRAMBuffer(textureSlot->textureResource, textureSlot->animationData->animationData[textureSlot->currentFrame][0]), textureSlot->textureSize);
         } else {
             textureSlot->frameCounter++;
         }

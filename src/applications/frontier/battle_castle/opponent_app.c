@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "constants/graphics.h"
-#include "constants/scrcmd.h"
 
 #include "struct_decls/struct_020302DC_decl.h"
 #include "struct_decls/struct_0203041C_decl.h"
@@ -560,9 +559,9 @@ static BOOL State_MainAppFlow(BattleCastleOpponentApp *app)
         ListMenu_CalcTrueCursorPos(app->listMenu, &app->menuPos);
 
         switch (input) {
-        case LIST_NOTHING_CHOSEN:
+        case MENU_NOTHING_CHOSEN:
             break;
-        case LIST_CANCEL:
+        case MENU_CANCEL:
             CloseListMenu(app);
             PrintMonSelectionStrings(app);
             app->subState = MAIN_SUBSTATE_INIT;
@@ -644,7 +643,7 @@ static BOOL State_MainAppFlow(BattleCastleOpponentApp *app)
             }
             break;
         case MENU_NO:
-        case MENU_CANCELED:
+        case MENU_CANCEL:
             FreeSimpleMenu(app);
             CloseMessageBox(&app->windows[OPPONENT_APP_WINDOW_MSG_BOX]);
             OpenMonOptionsMenu(app);
@@ -687,7 +686,7 @@ static BOOL State_MainAppFlow(BattleCastleOpponentApp *app)
             }
             break;
         case 2:
-        case MENU_CANCELED:
+        case MENU_CANCEL:
             FreeSimpleMenu(app);
             CloseMessageBox(&app->windows[OPPONENT_APP_WINDOW_MSG_BOX]);
             OpenMonOptionsMenu(app);
@@ -728,7 +727,7 @@ static BOOL State_MainAppFlow(BattleCastleOpponentApp *app)
             }
             break;
         case MENU_NO:
-        case MENU_CANCELED:
+        case MENU_CANCEL:
             FreeSimpleMenu(app);
             CloseMessageBox(&app->windows[OPPONENT_APP_WINDOW_MSG_BOX]);
             OpenMonOptionsMenu(app);
@@ -742,9 +741,9 @@ static BOOL State_MainAppFlow(BattleCastleOpponentApp *app)
         ListMenu_CalcTrueCursorPos(app->listMenu, &app->menuPos);
 
         switch (input) {
-        case LIST_NOTHING_CHOSEN:
+        case MENU_NOTHING_CHOSEN:
             break;
-        case LIST_CANCEL:
+        case MENU_CANCEL:
             CloseMessageBox(&app->windows[OPPONENT_APP_WINDOW_MSG_BOX]);
             FreeListMenu2(app);
             OpenMonOptionsMenu(app);
@@ -821,7 +820,7 @@ static BOOL State_MainAppFlow(BattleCastleOpponentApp *app)
             }
             break;
         case MENU_NO:
-        case MENU_CANCELED:
+        case MENU_CANCEL:
             FreeSimpleMenu(app);
             OpenSummaryMenu(app);
             app->subState = MAIN_SUBSTATE_SUMMARY_MENU;
@@ -840,7 +839,7 @@ static BOOL State_MainAppFlow(BattleCastleOpponentApp *app)
             }
             break;
         case MENU_NO:
-        case MENU_CANCELED:
+        case MENU_CANCEL:
             FreeSimpleMenu(app);
             OpenSummaryMenu(app);
             app->subState = MAIN_SUBSTATE_SUMMARY_MENU;
@@ -877,7 +876,7 @@ static BOOL State_MainAppFlow(BattleCastleOpponentApp *app)
             }
             break;
         case MENU_NO:
-        case MENU_CANCELED:
+        case MENU_CANCEL:
             FreeSimpleMenu(app);
             OpenSummaryMenu(app);
             app->subState = MAIN_SUBSTATE_SUMMARY_MENU;
@@ -1697,7 +1696,7 @@ static const u32 sMonMenuEntries[][2] = {
     { BattleCastleOpponentApp_Text_Check, MENU_ENTRY_CHECK },
     { BattleCastleOpponentApp_Text_Level, MENU_ENTRY_LEVEL },
     { BattleCastleOpponentApp_Text_Summary, MENU_ENTRY_SUMMARY },
-    { BattleCastleOpponentApp_Text_Cancel, MENU_CANCELED }
+    { BattleCastleOpponentApp_Text_Cancel, MENU_CANCEL }
 };
 
 static const u32 sMonMenuDescriptions[] = {
@@ -1752,7 +1751,7 @@ static const u32 sSummaryMenuEntries[][2] = {
     { BattleCastleOpponentApp_Text_Summary2, MENU_ENTRY_STATS },
     { BattleCastleOpponentApp_Text_Moves, MENU_ENTRY_MOVES },
     { BattleCastleOpponentApp_Text_RankUp, MENU_ENTRY_RANK_UP_SUMMARY },
-    { BattleCastleOpponentApp_Text_Cancel3, MENU_CANCELED }
+    { BattleCastleOpponentApp_Text_Cancel3, MENU_CANCEL }
 };
 
 static const u16 sSummaryMenuDescriptions[][2] = {

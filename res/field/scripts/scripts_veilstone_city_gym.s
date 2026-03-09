@@ -122,30 +122,15 @@ VeilstoneGym_GymStatueAfterBadge:
     End
 
 VeilstoneGym_LeftPoster:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    Message VeilstoneGym_Text_GoodDeedEveryDay
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    EventMessage VeilstoneGym_Text_GoodDeedEveryDay
     End
 
 VeilstoneGym_RightPoster:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    Message VeilstoneGym_Text_TreasureEveryEncounter
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    EventMessage VeilstoneGym_Text_TreasureEveryEncounter
     End
 
 VeilstoneGym_MiddlePoster:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    Message VeilstoneGym_Text_OneDayAtATime
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    EventMessage VeilstoneGym_Text_OneDayAtATime
     End
 
     .balign 4, 0

@@ -260,12 +260,7 @@ LakeVerity_Movement_PlayerFaceWest:
     EndMovement
 
 LakeVerity_GruntM:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    Message LakeVerity_Text_OuchWhatsWithThisOldTimer
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    EventMessage LakeVerity_Text_OuchWhatsWithThisOldTimer
     End
 
     .balign 4, 0

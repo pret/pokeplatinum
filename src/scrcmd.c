@@ -23,8 +23,6 @@
 #include "generated/save_types.h"
 #include "generated/signpost_commands.h"
 
-#include "struct_decls/pc_boxes_decl.h"
-#include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_02014EC4_decl.h"
 #include "struct_decls/struct_0202440C_decl.h"
 #include "struct_decls/struct_0203A790_decl.h"
@@ -94,6 +92,7 @@
 #include "savedata/save_table.h"
 #include "underground/vendors.h"
 
+#include "appearance.h"
 #include "bag.h"
 #include "bg_window.h"
 #include "camera.h"
@@ -207,7 +206,6 @@
 #include "unk_0205749C.h"
 #include "unk_0205B33C.h"
 #include "unk_0205C22C.h"
-#include "unk_0205C980.h"
 #include "unk_0205DFC4.h"
 #include "unk_020655F4.h"
 #include "unk_02069BE0.h"
@@ -483,9 +481,9 @@ static BOOL ScrCmd_145(ScriptContext *ctx);
 static BOOL sub_02043A4C(ScriptContext *ctx);
 static BOOL ScrCmd_153(ScriptContext *ctx);
 static BOOL ScrCmd_LoadTrainerAppearances(ScriptContext *ctx);
-static BOOL ScrCmd_155(ScriptContext *ctx);
-static BOOL ScrCmd_29C(ScriptContext *ctx);
-static BOOL ScrCmd_156(ScriptContext *ctx);
+static BOOL ScrCmd_GetTrainerInfoTrainerClass(ScriptContext *ctx);
+static BOOL ScrCmd_CalculateTrainerInfoAppearance(ScriptContext *ctx);
+static BOOL ScrCmd_SetTrainerInfoAppearance(ScriptContext *ctx);
 static BOOL ScrCmd_2BA(ScriptContext *ctx);
 static BOOL ScrCmd_BlackOutFromBattle2(ScriptContext *ctx);
 static BOOL ScrCmd_14C(ScriptContext *ctx);
@@ -501,7 +499,7 @@ static BOOL ScrCmd_SetPosition(ScriptContext *ctx);
 static BOOL ScrCmd_SetObjectEventMovementType(ScriptContext *ctx);
 static BOOL ScrCmd_SetObjectEventDir(ScriptContext *ctx);
 static BOOL ScrCmd_SetWarpEventPos(ScriptContext *ctx);
-static BOOL ScrCmd_18B(ScriptContext *ctx);
+static BOOL ScrCmd_SetBgEventPos(ScriptContext *ctx);
 static BOOL ScrCmd_18C(ScriptContext *ctx);
 static BOOL ScrCmd_18F(ScriptContext *ctx);
 static BOOL ScrCmd_LoadDoorAnimation(ScriptContext *ctx);
@@ -1108,8 +1106,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_SetCommPlayerDir,
     ScrCmd_153,
     ScrCmd_LoadTrainerAppearances,
-    ScrCmd_155,
-    ScrCmd_156,
+    ScrCmd_GetTrainerInfoTrainerClass,
+    ScrCmd_SetTrainerInfoAppearance,
     ScrCmd_CheckPokedexAcquired,
     ScrCmd_GivePokedex,
     ScrCmd_CheckRunningShoesAcquired,
@@ -1162,7 +1160,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_SetObjectEventMovementType,
     ScrCmd_SetObjectEventDir,
     ScrCmd_SetWarpEventPos,
-    ScrCmd_18B,
+    ScrCmd_SetBgEventPos,
     ScrCmd_18C,
     ScrCmd_ShowSavingIcon,
     ScrCmd_HideSavingIcon,
@@ -1435,7 +1433,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_299,
     ScrCmd_29A,
     ScrCmd_29B,
-    ScrCmd_29C,
+    ScrCmd_CalculateTrainerInfoAppearance,
     ScrCmd_AddMenuEntry,
     ScrCmd_29E,
     ScrCmd_29F,
@@ -2619,7 +2617,7 @@ static BOOL ScriptContext_WaitForYesNoResult(ScriptContext *ctx)
         return FALSE;
     }
 
-    if (result == 0) {
+    if (result == MENU_YES) {
         *destVar = MENU_YES;
     } else {
         *destVar = MENU_NO;
@@ -4526,7 +4524,7 @@ static BOOL ScrCmd_0C5(ScriptContext *ctx)
     u16 v2 = ScriptContext_GetVar(ctx);
 
     Pokemon *v0 = Party_GetPokemonBySlotIndex(SaveData_GetParty(ctx->fieldSystem->saveData), v2);
-    *v1 = SysTask_HMCutIn_New(ctx->fieldSystem, 0, v0, PlayerAvatar_Gender(ctx->fieldSystem->playerAvatar));
+    *v1 = HMCutIn_StartTask(ctx->fieldSystem, 0, v0, PlayerAvatar_Gender(ctx->fieldSystem->playerAvatar));
 
     ScriptContext_Pause(ctx, sub_02042C80);
     return TRUE;
@@ -4536,8 +4534,8 @@ static BOOL sub_02042C80(ScriptContext *ctx)
 {
     void **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
 
-    if (CheckHMCutInFinished(*v0) == TRUE) {
-        SysTask_HMCutIn_SetTaskDone(*v0);
+    if (HMCutIn_IsFinished(*v0) == TRUE) {
+        HMCutIn_EndTask(*v0);
         return TRUE;
     }
 
@@ -5287,42 +5285,42 @@ static BOOL ScrCmd_153(ScriptContext *ctx)
 
 static BOOL ScrCmd_LoadTrainerAppearances(ScriptContext *ctx)
 {
-    TrainerInfo *v0 = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(ctx->fieldSystem));
-    StringTemplate **v1 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
+    TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(ctx->fieldSystem));
+    StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
 
-    TrainerInfo_LoadAppearanceVariants(TrainerInfo_ID(v0), TrainerInfo_Gender(v0), *v1);
+    Appearance_LoadVariants(TrainerInfo_ID(trainerInfo), TrainerInfo_Gender(trainerInfo), *strTemplate);
     return FALSE;
 }
 
-static BOOL ScrCmd_155(ScriptContext *ctx)
+static BOOL ScrCmd_GetTrainerInfoTrainerClass(ScriptContext *ctx)
 {
-    TrainerInfo *v0 = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(ctx->fieldSystem));
-    u16 v1 = ScriptContext_GetVar(ctx);
-    u16 *v2 = ScriptContext_GetVarPointer(ctx);
+    TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(ctx->fieldSystem));
+    u16 variant = ScriptContext_GetVar(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *v2 = TrainerInfo_GetAppearanceIndex(TrainerInfo_ID(v0), TrainerInfo_Gender(v0), v1);
-    *v2 = sub_0205CA14(TrainerInfo_Gender(v0), *v2, 2);
-
-    return FALSE;
-}
-
-static BOOL ScrCmd_29C(ScriptContext *ctx)
-{
-    TrainerInfo *v0 = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(ctx->fieldSystem));
-    u16 v1 = ScriptContext_GetVar(ctx);
-    u16 *v2 = ScriptContext_GetVarPointer(ctx);
-
-    *v2 = TrainerInfo_GetAppearanceIndex(TrainerInfo_ID(v0), TrainerInfo_Gender(v0), v1);
+    *destVar = Appearance_CalculateFromTrainerInfo(TrainerInfo_ID(trainerInfo), TrainerInfo_Gender(trainerInfo), variant);
+    *destVar = Appearance_GetData(TrainerInfo_Gender(trainerInfo), *destVar, APPEARANCE_DATA_TRAINER_CLASS_1);
 
     return FALSE;
 }
 
-static BOOL ScrCmd_156(ScriptContext *ctx)
+static BOOL ScrCmd_CalculateTrainerInfoAppearance(ScriptContext *ctx)
 {
-    TrainerInfo *v0 = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(ctx->fieldSystem));
-    u16 v1 = ScriptContext_GetVar(ctx);
+    TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(ctx->fieldSystem));
+    u16 variant = ScriptContext_GetVar(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    TrainerInfo_SetAppearance(v0, v1);
+    *destVar = Appearance_CalculateFromTrainerInfo(TrainerInfo_ID(trainerInfo), TrainerInfo_Gender(trainerInfo), variant);
+
+    return FALSE;
+}
+
+static BOOL ScrCmd_SetTrainerInfoAppearance(ScriptContext *ctx)
+{
+    TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(ctx->fieldSystem));
+    u16 appearance = ScriptContext_GetVar(ctx);
+
+    TrainerInfo_SetAppearance(trainerInfo, appearance);
     return FALSE;
 }
 
@@ -5463,13 +5461,13 @@ static BOOL ScrCmd_SetWarpEventPos(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_18B(ScriptContext *ctx)
+static BOOL ScrCmd_SetBgEventPos(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_GetVar(ctx);
-    u16 v1 = ScriptContext_GetVar(ctx);
-    u16 v2 = ScriptContext_GetVar(ctx);
+    u16 index = ScriptContext_GetVar(ctx);
+    u16 x = ScriptContext_GetVar(ctx);
+    u16 z = ScriptContext_GetVar(ctx);
 
-    MapHeaderData_SetBgEventPos(ctx->fieldSystem, v0, v1, v2);
+    MapHeaderData_SetBgEventPos(ctx->fieldSystem, index, x, z);
     return FALSE;
 }
 

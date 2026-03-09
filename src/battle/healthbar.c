@@ -10,6 +10,7 @@
 #include "generated/string_padding_mode.h"
 
 #include "battle/battle_system.h"
+#include "graphics/battle/sprites.naix"
 
 #include "assert.h"
 #include "bg_window.h"
@@ -186,7 +187,7 @@ void ov16_02268498(Healthbar *healthbar);
 static void ov16_022684BC(SysTask *task, void *data);
 static void Healthbar_EnableArrow(Healthbar *healthbar, BOOL enable);
 
-__attribute__((aligned(4))) static const s8 sArrowOffsetX[] = {
+ALIGN_4 static const s8 sArrowOffsetX[] = {
     [HEALTHBAR_TYPE_PLAYER_SOLO] = 72,
     [HEALTHBAR_TYPE_ENEMY_SOLO] = 0,
     [HEALTHBAR_TYPE_PLAYER_SLOT_1] = 72,
@@ -410,40 +411,9 @@ static const VRAMTransfer Unk_ov16_0226F3D4[] = {
     { 0x0, 0x0 },
 };
 
-#define HEALTHBAR_MAIN_PALETTE_NCLR   71
-#define HEALTHBAR_SAFARI_PALETTE_NCLR 81
-
 #define HEALTHBAR_MAIN_PALETTE_RESID    20006
 #define HEALTHBAR_EFFECTS_PALETTE_RESID 20007
 #define HEALTHBAR_SAFARI_PALETTE_RESID  20008
-
-enum HealthbarGfxResourceID {
-    HEALTHBAR_UNK_B7_NANR = 183,
-    HEALTHBAR_UNK_B8_NCER,
-    HEALTHBAR_UNK_B9_NCER,
-    HEALTHBAR_SOLO_ENEMY_NANR,
-    HEALTHBAR_SOLO_ENEMY_NCER,
-    HEALTHBAR_SOLO_ENEMY_NCGR,
-    HEALTHBAR_SOLO_PLAYER_NANR,
-    HEALTHBAR_SOLO_PLAYER_NCER,
-    HEALTHBAR_SOLO_PLAYER_NCGR,
-    HEALTHBAR_ENEMY_SLOT_1_NANR,
-    HEALTHBAR_ENEMY_SLOT_1_NCER,
-    HEALTHBAR_ENEMY_SLOT_1_NCGR,
-    HEALTHBAR_ENEMY_SLOT_2_NANR,
-    HEALTHBAR_ENEMY_SLOT_2_NCER,
-    HEALTHBAR_ENEMY_SLOT_2_NCGR,
-    HEALTHBAR_PLAYER_SLOT_1_NANR,
-    HEALTHBAR_PLAYER_SLOT_1_NCER,
-    HEALTHBAR_PLAYER_SLOT_1_NCGR,
-    HEALTHBAR_PLAYER_SLOT_2_NANR,
-    HEALTHBAR_PLAYER_SLOT_2_NCER,
-    HEALTHBAR_PLAYER_SLOT_2_NCGR,
-
-    HEALTHBAR_SAFARI_NCGR = 253,
-    HEALTHBAR_SAFARI_NCER,
-    HEALTHBAR_SAFARI_NANR,
-};
 
 static const SpriteTemplate sHealthbarTemplate_SoloPlayer = {
     .x = HEALTHBAR_X_OFFSET_SOLO_PLAYER,
@@ -454,10 +424,10 @@ static const SpriteTemplate sHealthbarTemplate_SoloPlayer = {
     .plttIdx = 0,
     .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     .resources = {
-        HEALTHBAR_SOLO_PLAYER_NCGR,
+        healthbox_player_singles_NCGR_lz,
         HEALTHBAR_MAIN_PALETTE_RESID,
-        HEALTHBAR_SOLO_PLAYER_NCER,
-        HEALTHBAR_SOLO_PLAYER_NANR,
+        healthbox_tall_cell_NCER_lz,
+        misc_single_frame_anim_NANR_lz_6,
         SPRITE_RESOURCE_NONE,
         SPRITE_RESOURCE_NONE,
     },
@@ -474,10 +444,10 @@ static const SpriteTemplate sHealthbarTemplate_SoloEnemy = {
     .plttIdx = 0,
     .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     .resources = {
-        HEALTHBAR_SOLO_ENEMY_NCGR,
+        healthbox_enemy_NCGR_lz,
         HEALTHBAR_MAIN_PALETTE_RESID,
-        HEALTHBAR_SOLO_ENEMY_NCER,
-        HEALTHBAR_SOLO_ENEMY_NANR,
+        healthbox_short_cell_NCER_lz,
+        misc_single_frame_anim_NANR_lz_5,
         SPRITE_RESOURCE_NONE,
         SPRITE_RESOURCE_NONE,
     },
@@ -494,10 +464,10 @@ static const SpriteTemplate sHealthbarTemplate_PlayerSlot1 = {
     .plttIdx = 0,
     .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     .resources = {
-        HEALTHBAR_PLAYER_SLOT_1_NCGR,
+        healthbox_player_doubles_NCGR_lz,
         HEALTHBAR_MAIN_PALETTE_RESID,
-        HEALTHBAR_PLAYER_SLOT_1_NCER,
-        HEALTHBAR_PLAYER_SLOT_1_NANR,
+        healthbox_short_cell_NCER_lz_3,
+        misc_single_frame_anim_NANR_lz_9,
         SPRITE_RESOURCE_NONE,
         SPRITE_RESOURCE_NONE,
     },
@@ -514,10 +484,10 @@ static const SpriteTemplate sHealthbarTemplate_EnemySlot1 = {
     .plttIdx = 0,
     .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     .resources = {
-        HEALTHBAR_ENEMY_SLOT_1_NCGR,
+        healthbox_enemy_NCGR_lz_1,
         HEALTHBAR_MAIN_PALETTE_RESID,
-        HEALTHBAR_ENEMY_SLOT_1_NCER,
-        HEALTHBAR_ENEMY_SLOT_1_NANR,
+        healthbox_short_cell_NCER_lz_1,
+        misc_single_frame_anim_NANR_lz_7,
         SPRITE_RESOURCE_NONE,
         SPRITE_RESOURCE_NONE,
     },
@@ -534,10 +504,10 @@ static const SpriteTemplate sHealthbarTemplate_PlayerSlot2 = {
     .plttIdx = 0,
     .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     .resources = {
-        HEALTHBAR_PLAYER_SLOT_2_NCGR,
+        healthbox_player_doubles_NCGR_lz_1,
         HEALTHBAR_MAIN_PALETTE_RESID,
-        HEALTHBAR_PLAYER_SLOT_2_NCER,
-        HEALTHBAR_PLAYER_SLOT_2_NANR,
+        healthbox_short_cell_NCER_lz_4,
+        misc_single_frame_anim_NANR_lz_10,
         SPRITE_RESOURCE_NONE,
         SPRITE_RESOURCE_NONE,
     },
@@ -554,10 +524,10 @@ static const SpriteTemplate sHealthbarTemplate_EnemySlot2 = {
     .plttIdx = 0,
     .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     .resources = {
-        HEALTHBAR_ENEMY_SLOT_2_NCGR,
+        healthbox_enemy_NCGR_lz_2,
         HEALTHBAR_MAIN_PALETTE_RESID,
-        HEALTHBAR_ENEMY_SLOT_2_NCER,
-        HEALTHBAR_ENEMY_SLOT_2_NANR,
+        healthbox_short_cell_NCER_lz_2,
+        misc_single_frame_anim_NANR_lz_8,
         SPRITE_RESOURCE_NONE,
         SPRITE_RESOURCE_NONE,
     },
@@ -574,10 +544,10 @@ static const SpriteTemplate sHealthbarTemplate_Unk_ov16_0226F514 = {
     .plttIdx = 0,
     .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     .resources = {
-        HEALTHBAR_UNK_B9_NCER,
+        healthbox_arrows_wide_NCGR_lz,
         HEALTHBAR_MAIN_PALETTE_RESID,
-        HEALTHBAR_UNK_B8_NCER,
-        HEALTHBAR_UNK_B7_NANR,
+        healthbox_arrows_wide_cell_NCER_lz,
+        healthbox_arrows_wide_anim_NANR_lz,
         SPRITE_RESOURCE_NONE,
         SPRITE_RESOURCE_NONE,
     },
@@ -594,10 +564,10 @@ static const SpriteTemplate sHealthbarTemplate_NoPlayerMon = {
     .plttIdx = 0,
     .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     .resources = {
-        HEALTHBAR_SAFARI_NCGR,
+        healthbox_safari_NCGR_lz,
         HEALTHBAR_SAFARI_PALETTE_RESID,
-        HEALTHBAR_SAFARI_NCER,
-        HEALTHBAR_SAFARI_NANR,
+        healthbox_safari_cell_NCER_lz,
+        misc_single_frame_anim_NANR_lz_15,
         SPRITE_RESOURCE_NONE,
         SPRITE_RESOURCE_NONE,
     },
@@ -605,20 +575,20 @@ static const SpriteTemplate sHealthbarTemplate_NoPlayerMon = {
     .vramTransfer = FALSE,
 };
 
-#include "res/graphics/battle/healthbar_parts.4bpp.h"
+#include "res/graphics/battle/healthbox/healthbar_parts.4bpp.h"
 
 void Healthbar_LoadResources(SpriteSystem *spriteSys, SpriteManager *spriteMan, NARC *narc, PaletteData *palette, enum HealthbarType healthbarType)
 {
     const SpriteTemplate *template = Healthbar_SpriteTemplate(healthbarType);
 
     SpriteSystem_LoadCharResObjFromOpenNarc(spriteSys, spriteMan, narc, template->resources[SPRITE_RESOURCE_CHAR], TRUE, NNS_G2D_VRAM_TYPE_2DMAIN, template->resources[SPRITE_RESOURCE_CHAR]);
-    SpriteSystem_LoadPaletteBufferFromOpenNarc(palette, PLTTBUF_MAIN_OBJ, spriteSys, spriteMan, narc, 71, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, HEALTHBAR_MAIN_PALETTE_RESID);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(palette, PLTTBUF_MAIN_OBJ, spriteSys, spriteMan, narc, healthbox_primary_NCLR, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, HEALTHBAR_MAIN_PALETTE_RESID);
     SpriteSystem_LoadCellResObjFromOpenNarc(spriteSys, spriteMan, narc, template->resources[SPRITE_RESOURCE_CELL], TRUE, template->resources[SPRITE_RESOURCE_CELL]);
     SpriteSystem_LoadAnimResObjFromOpenNarc(spriteSys, spriteMan, narc, template->resources[SPRITE_RESOURCE_ANIM], TRUE, template->resources[SPRITE_RESOURCE_ANIM]);
-    SpriteSystem_LoadPaletteBufferFromOpenNarc(palette, PLTTBUF_MAIN_OBJ, spriteSys, spriteMan, narc, 71, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, HEALTHBAR_EFFECTS_PALETTE_RESID);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(palette, PLTTBUF_MAIN_OBJ, spriteSys, spriteMan, narc, healthbox_primary_NCLR, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, HEALTHBAR_EFFECTS_PALETTE_RESID);
 
     if (healthbarType == HEALTHBAR_TYPE_SAFARI_ZONE || healthbarType == HEALTHBAR_TYPE_PAL_PARK) {
-        SpriteSystem_LoadPaletteBufferFromOpenNarc(palette, PLTTBUF_MAIN_OBJ, spriteSys, spriteMan, narc, 81, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, HEALTHBAR_SAFARI_PALETTE_RESID);
+        SpriteSystem_LoadPaletteBufferFromOpenNarc(palette, PLTTBUF_MAIN_OBJ, spriteSys, spriteMan, narc, healthbox_safari_NCLR, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, HEALTHBAR_SAFARI_PALETTE_RESID);
     }
 }
 
@@ -628,7 +598,7 @@ static void Healthbar_LoadMainPalette(SpriteSystem *spriteSys, SpriteManager *ha
 
     if (template != NULL) {
         SpriteSystem_LoadCharResObjFromOpenNarc(spriteSys, handler, narc, template->resources[SPRITE_RESOURCE_CHAR], TRUE, NNS_G2D_VRAM_TYPE_2DMAIN, template->resources[SPRITE_RESOURCE_CHAR]);
-        SpriteSystem_LoadPaletteBufferFromOpenNarc(palette, PLTTBUF_MAIN_OBJ, spriteSys, handler, narc, 71, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, HEALTHBAR_MAIN_PALETTE_RESID);
+        SpriteSystem_LoadPaletteBufferFromOpenNarc(palette, PLTTBUF_MAIN_OBJ, spriteSys, handler, narc, healthbox_primary_NCLR, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, HEALTHBAR_MAIN_PALETTE_RESID);
         SpriteSystem_LoadCellResObjFromOpenNarc(spriteSys, handler, narc, template->resources[SPRITE_RESOURCE_CELL], TRUE, template->resources[SPRITE_RESOURCE_CELL]);
         SpriteSystem_LoadAnimResObjFromOpenNarc(spriteSys, handler, narc, template->resources[SPRITE_RESOURCE_ANIM], TRUE, template->resources[SPRITE_RESOURCE_ANIM]);
     }

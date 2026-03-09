@@ -2,42 +2,21 @@
 #include "res/text/bank/oreburgh_city_west_house.h"
 
 
-    ScriptEntry _000E
-    ScriptEntry _0021
-    ScriptEntry _0034
+    ScriptEntry OreburghCityWestHouse_Youngster
+    ScriptEntry OreburghCityWestHouse_PokefanF
+    ScriptEntry OreburghCityWestHouse_Pikachu
     ScriptEntryEnd
 
-_000E:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 0
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+OreburghCityWestHouse_Youngster:
+    NPCMessage OreburghCityWestHouse_Text_HaveYouEverSeenOrHeardAboutDifferentlyColoredPokemon
     End
 
-_0021:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 1
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+OreburghCityWestHouse_PokefanF:
+    NPCMessage OreburghCityWestHouse_Text_YouKnowHowPokemonHaveDifferentNaturesLikeWeHavePersonalities
     End
 
-_0034:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    WaitFanfare SEQ_SE_CONFIRM
-    PlayCry SPECIES_PIKACHU
-    Message 2
-    WaitCry
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+OreburghCityWestHouse_Pikachu:
+    PokemonCryAndMessage SPECIES_PIKACHU, OreburghCityWestHouse_Text_PikachuPikaaah
     End
 
     .balign 4, 0

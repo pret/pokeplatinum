@@ -1,79 +1,82 @@
 #include "type_icon.h"
 
-#include <nitro.h>
-#include <string.h>
-
 #include "constants/narc.h"
 #include "generated/move_classes.h"
-
-#include "pch/global_pch.h"
+#include "generated/pokemon_contest_types.h"
+#include "generated/pokemon_types.h"
 
 #include "palette.h"
 #include "sprite_system.h"
 
+#include "res/graphics/battle/sprites.naix"
+
+// clang-format off
 ALIGN_4 static const u32 sMoveTypeIconIndex[] = {
-    0xEA, // 0 to 17 are pokemon types
-    0xE1,
-    0xE3,
-    0xEB,
-    0xE5,
-    0xED,
-    0xE7,
-    0xE4,
-    0xEE,
-    0xEC,
-    0xE2,
-    0xF1,
-    0xE9,
-    0xDE,
-    0xDF,
-    0xE6,
-    0xDD,
-    0xE0,
-    0xF0, // 18 to 22 are contest types
-    0xDB,
-    0xDC,
-    0xE8,
-    0xEF
+    [TYPE_NORMAL]   = type_icons_normal_NCGR_lz,
+    [TYPE_FIGHTING] = type_icons_fighting_NCGR_lz,
+    [TYPE_FLYING]   = type_icons_flying_NCGR_lz,
+    [TYPE_POISON]   = type_icons_poison_NCGR_lz,
+    [TYPE_GROUND]   = type_icons_ground_NCGR_lz,
+    [TYPE_ROCK]     = type_icons_rock_NCGR_lz,
+    [TYPE_BUG]      = type_icons_bug_NCGR_lz,
+    [TYPE_GHOST]    = type_icons_ghost_NCGR_lz,
+    [TYPE_STEEL]    = type_icons_steel_NCGR_lz,
+    [TYPE_MYSTERY]  = type_icons_mystery_NCGR_lz,
+    [TYPE_FIRE]     = type_icons_fire_NCGR_lz,
+    [TYPE_WATER]    = type_icons_water_NCGR_lz,
+    [TYPE_GRASS]    = type_icons_grass_NCGR_lz,
+    [TYPE_ELECTRIC] = type_icons_electric_NCGR_lz,
+    [TYPE_PSYCHIC]  = type_icons_psychic_NCGR_lz,
+    [TYPE_ICE]      = type_icons_ice_NCGR_lz,
+    [TYPE_DRAGON]   = type_icons_dragon_NCGR_lz,
+    [TYPE_DARK]     = type_icons_dark_NCGR_lz,
+
+    [NUM_POKEMON_TYPES + CONTEST_TYPE_COOL]   = type_icons_cool_NCGR_lz,
+    [NUM_POKEMON_TYPES + CONTEST_TYPE_BEAUTY] = type_icons_beauty_NCGR_lz,
+    [NUM_POKEMON_TYPES + CONTEST_TYPE_CUTE]   = type_icons_cute_NCGR_lz,
+    [NUM_POKEMON_TYPES + CONTEST_TYPE_SMART]  = type_icons_smart_NCGR_lz,
+    [NUM_POKEMON_TYPES + CONTEST_TYPE_TOUGH]  = type_icons_tough_NCGR_lz,
 };
 
 ALIGN_4 static const u8 sMoveTypeIconPaletteIndex[] = {
-    0x0, // 0 to 17 are pokemon types
-    0x0,
-    0x1,
-    0x1,
-    0x0,
-    0x0,
-    0x2,
-    0x1,
-    0x0,
-    0x2,
-    0x0,
-    0x1,
-    0x2,
-    0x0,
-    0x1,
-    0x1,
-    0x2,
-    0x0,
-    0x0, // 18 to 22 are contest types
-    0x1,
-    0x1,
-    0x2,
-    0x0
+    [TYPE_NORMAL]   = 0,
+    [TYPE_FIGHTING] = 0,
+    [TYPE_FLYING]   = 1,
+    [TYPE_POISON]   = 1,
+    [TYPE_GROUND]   = 0,
+    [TYPE_ROCK]     = 0,
+    [TYPE_BUG]      = 2,
+    [TYPE_GHOST]    = 1,
+    [TYPE_STEEL]    = 0,
+    [TYPE_MYSTERY]  = 2,
+    [TYPE_FIRE]     = 0,
+    [TYPE_WATER]    = 1,
+    [TYPE_GRASS]    = 2,
+    [TYPE_ELECTRIC] = 0,
+    [TYPE_PSYCHIC]  = 1,
+    [TYPE_ICE]      = 1,
+    [TYPE_DRAGON]   = 2,
+    [TYPE_DARK]     = 0,
+
+    [NUM_POKEMON_TYPES + CONTEST_TYPE_COOL]   = 0,
+    [NUM_POKEMON_TYPES + CONTEST_TYPE_BEAUTY] = 1,
+    [NUM_POKEMON_TYPES + CONTEST_TYPE_CUTE]   = 1,
+    [NUM_POKEMON_TYPES + CONTEST_TYPE_SMART]  = 2,
+    [NUM_POKEMON_TYPES + CONTEST_TYPE_TOUGH]  = 0,
 };
 
 ALIGN_4 static const u32 sMoveCategoryIconIndex[] = {
-    0xF4,
-    0xF6,
-    0xF5
+    [CLASS_PHYSICAL] = type_icons_physical_NCGR_lz,
+    [CLASS_SPECIAL]  = type_icons_special_NCGR_lz,
+    [CLASS_STATUS]   = type_icons_status_NCGR_lz,
 };
 
 ALIGN_4 static const u8 sMoveCategoryIconPaletteIndex[] = {
-    0x0,
-    0x1,
-    0x0
+    [CLASS_PHYSICAL] = 0,
+    [CLASS_SPECIAL]  = 1,
+    [CLASS_STATUS]   = 0,
 };
+// clang-format on
 
 u32 TypeIcon_GetChar(enum PokemonType moveType)
 {
@@ -83,17 +86,17 @@ u32 TypeIcon_GetChar(enum PokemonType moveType)
 
 u32 TypeIcon_GetPlttSrc(void)
 {
-    return 74;
+    return type_icons_shared_NCLR;
 }
 
 u32 TypeIcon_GetCell(void)
 {
-    return 242;
+    return type_icons_cell_NCER_lz;
 }
 
 u32 TypeIcon_GetAnim(void)
 {
-    return 243;
+    return misc_single_frame_anim_NANR_lz_14;
 }
 
 u8 TypeIcon_GetPltt(enum PokemonType moveType)

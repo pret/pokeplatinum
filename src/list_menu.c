@@ -65,7 +65,7 @@ u32 ListMenu_ProcessInput(ListMenu *menu)
     }
 
     if (JOY_NEW(PAD_BUTTON_B)) {
-        return LIST_CANCEL;
+        return MENU_CANCEL;
     }
 
     if (JOY_REPEAT(PAD_KEY_UP)) {
@@ -73,7 +73,7 @@ u32 ListMenu_ProcessInput(ListMenu *menu)
             menu->lastAction = LIST_MENU_ACTION_MOVE_UP;
         }
 
-        return LIST_NOTHING_CHOSEN;
+        return MENU_NOTHING_CHOSEN;
     }
 
     if (JOY_REPEAT(PAD_KEY_DOWN)) {
@@ -81,7 +81,7 @@ u32 ListMenu_ProcessInput(ListMenu *menu)
             menu->lastAction = LIST_MENU_ACTION_MOVE_DOWN;
         }
 
-        return LIST_NOTHING_CHOSEN;
+        return MENU_NOTHING_CHOSEN;
     }
 
     u16 pageUp, pageDown;
@@ -108,7 +108,7 @@ u32 ListMenu_ProcessInput(ListMenu *menu)
             menu->lastAction = LIST_MENU_ACTION_PAGE_UP;
         }
 
-        return LIST_NOTHING_CHOSEN;
+        return MENU_NOTHING_CHOSEN;
     }
 
     if (pageDown) {
@@ -116,10 +116,10 @@ u32 ListMenu_ProcessInput(ListMenu *menu)
             menu->lastAction = LIST_MENU_ACTION_PAGE_DOWN;
         }
 
-        return LIST_NOTHING_CHOSEN;
+        return MENU_NOTHING_CHOSEN;
     }
 
-    return LIST_NOTHING_CHOSEN;
+    return MENU_NOTHING_CHOSEN;
 }
 
 void ListMenu_Free(ListMenu *menu, u16 *outListPos, u16 *outCursorPos)
@@ -176,7 +176,7 @@ u32 ListMenu_TestInput(ListMenu *menu, ListMenuTemplate *template, u16 listPos, 
         *outCursorPos = menu->cursorPos;
     }
 
-    return LIST_NOTHING_CHOSEN;
+    return MENU_NOTHING_CHOSEN;
 }
 
 void ListMenu_SetAltTextColors(ListMenu *menu, u8 fg, u8 bg, u8 shadow)
@@ -295,7 +295,7 @@ u32 ListMenu_GetAttribute(ListMenu *menu, u8 attribute)
         break;
 
     default:
-        result = LIST_NOTHING_CHOSEN;
+        result = MENU_NOTHING_CHOSEN;
     }
 
     return result;
@@ -343,7 +343,7 @@ static void PrintEntries(ListMenu *menu, u16 startIndex, u16 lineOffset, u16 lin
 
     for (int line = 0; line < lineCount; line++) {
         u8 xOffset;
-        if (menu->template.choices[startIndex].index != LIST_HEADER) {
+        if (menu->template.choices[startIndex].index != MENU_HEADER) {
             xOffset = menu->template.textXOffset;
         } else {
             xOffset = menu->template.headerXOffset;
@@ -416,7 +416,7 @@ static u8 UpdateOffsetsForScroll(ListMenu *menu, u8 movingDown)
         if (listPos == 0) {
             while (cursorPos > 0) {
                 cursorPos--;
-                if (menu->template.choices[listPos + cursorPos].index != LIST_HEADER) {
+                if (menu->template.choices[listPos + cursorPos].index != MENU_HEADER) {
                     menu->cursorPos = cursorPos;
                     return 1;
                 }
@@ -427,7 +427,7 @@ static u8 UpdateOffsetsForScroll(ListMenu *menu, u8 movingDown)
 
         while (cursorPos > newListPos) {
             cursorPos--;
-            if (menu->template.choices[listPos + cursorPos].index != LIST_HEADER) {
+            if (menu->template.choices[listPos + cursorPos].index != MENU_HEADER) {
                 menu->cursorPos = cursorPos;
                 return 1;
             }
@@ -448,7 +448,7 @@ static u8 UpdateOffsetsForScroll(ListMenu *menu, u8 movingDown)
             while (cursorPos < (menu->template.maxDisplay - 1)) {
                 cursorPos++;
 
-                if (menu->template.choices[listPos + cursorPos].index != LIST_HEADER) {
+                if (menu->template.choices[listPos + cursorPos].index != MENU_HEADER) {
                     menu->cursorPos = cursorPos;
                     return 1;
                 }
@@ -460,7 +460,7 @@ static u8 UpdateOffsetsForScroll(ListMenu *menu, u8 movingDown)
         while (cursorPos < newListPos) {
             cursorPos++;
 
-            if (menu->template.choices[listPos + cursorPos].index != LIST_HEADER) {
+            if (menu->template.choices[listPos + cursorPos].index != MENU_HEADER) {
                 menu->cursorPos = cursorPos;
                 return 1;
             }
@@ -524,7 +524,7 @@ static u8 UpdateSelectedRow(ListMenu *menu, u8 updateCursor, u8 scrollCount, u8 
             }
 
             linesScrolled++;
-        } while (menu->template.choices[menu->listPos + menu->cursorPos].index == LIST_HEADER);
+        } while (menu->template.choices[menu->listPos + menu->cursorPos].index == MENU_HEADER);
     }
 
     if (updateCursor) {

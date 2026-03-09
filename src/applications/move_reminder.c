@@ -867,10 +867,10 @@ static int MoveReminder_State_ProcessMainInput(MoveReminderController *controlle
     MoveReminder_DrawArrows(controller);
 
     switch (input) {
-    case LIST_NOTHING_CHOSEN:
+    case MENU_NOTHING_CHOSEN:
         break;
 
-    case LIST_CANCEL:
+    case MENU_CANCEL:
         Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         MoveReminder_DrawMoveSelector(controller, controller->data->cursorPos, 1);
         MoveReminder_HideScrollArrows(controller);
@@ -916,9 +916,9 @@ static int MoveReminder_State_DrawYesNoMenu(MoveReminderController *controller)
 static int MoveReminder_State_ProcessYesNoInput(MoveReminderController *controller)
 {
     switch (Menu_ProcessInputAndHandleExit(controller->yesNoMenu, HEAP_ID_MOVE_REMINDER)) {
-    case 0:
+    case MENU_YES:
         return sYesNoCallbacks[controller->yesNoCallback].yesCallback(controller);
-    case LIST_CANCEL:
+    case MENU_CANCEL:
         return sYesNoCallbacks[controller->yesNoCallback].noCallback(controller);
     }
 
@@ -984,7 +984,7 @@ static void MoveReminder_DrawMovesInfo(MoveReminderController *controller)
         if (move != LEVEL_UP_MOVESET_TERMINATOR) {
             MoveReminder_DrawBattleMovesText(controller, move);
         } else {
-            MoveReminder_DrawBattleMovesText(controller, LIST_CANCEL);
+            MoveReminder_DrawBattleMovesText(controller, MENU_CANCEL);
         }
     } else {
         Bg_ScheduleScroll(controller->bgConfig, BG_LAYER_MAIN_2, 0, 256);
@@ -1002,7 +1002,7 @@ static void MoveReminder_DrawMovesInfo(MoveReminderController *controller)
         if (move != LEVEL_UP_MOVESET_TERMINATOR) {
             MoveReminder_DrawContestMovesText(controller, move);
         } else {
-            MoveReminder_DrawContestMovesText(controller, LIST_CANCEL);
+            MoveReminder_DrawContestMovesText(controller, MENU_CANCEL);
         }
 
         ManagedSprite_SetDrawFlag(controller->managedSprites[MOVE_REMINDER_SPRITE_CATEGORY], FALSE);
@@ -1093,7 +1093,7 @@ static void MoveReminder_InitListMenu(MoveReminderController *controller)
         if (controller->data->moves[i] != LEVEL_UP_MOVESET_TERMINATOR) {
             StringList_AddFromMessageBank(controller->stringList, moveNamesLoader, controller->data->moves[i], controller->data->moves[i]);
         } else {
-            StringList_AddFromMessageBank(controller->stringList, controller->messageLoader, MoveReminder_Text_Cancel, LIST_CANCEL);
+            StringList_AddFromMessageBank(controller->stringList, controller->messageLoader, MoveReminder_Text_Cancel, MENU_CANCEL);
             break;
         }
     }
@@ -1145,7 +1145,7 @@ static void MoveReminder_DrawBattleMovesText(MoveReminderController *controller,
     Window_FillTilemap(&controller->windows[MOVE_REMINDER_WIN_MOVE_PP], 0);
     ManagedSprite_SetDrawFlag(controller->managedSprites[MOVE_REMINDER_SPRITE_CATEGORY], FALSE);
 
-    if (move != LIST_CANCEL) {
+    if (move != MENU_CANCEL) {
         u32 power = MoveTable_LoadParam(move, MOVEATTRIBUTE_POWER);
         if (power <= 1) {
             MessageLoader_GetString(controller->messageLoader, MoveReminder_Text_Dashes, controller->string);
@@ -1194,7 +1194,7 @@ static void MoveReminder_DrawContestMovesText(MoveReminderController *controller
 {
     Window_FillTilemap(&controller->windows[MOVE_REMINDER_WIN_MOVE_CONTEST_DESCRIPTION], 0);
 
-    if (move != LIST_CANCEL) {
+    if (move != MENU_CANCEL) {
         u32 entryID = sub_0209577C(MoveTable_LoadParam(move, MOVEATTRIBUTE_CONTEST_EFFECT));
         MessageLoader *moveDescLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_CONTEST_EFFECTS, HEAP_ID_MOVE_REMINDER);
 

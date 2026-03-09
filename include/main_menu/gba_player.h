@@ -1,0 +1,7 @@
+#ifndef POKEPLATINUM_MAIN_MENU_GBA_PLAYER_H
+#define POKEPLATINUM_MAIN_MENU_GBA_PLAYER_H
+
+u32 GetGBAPlayerTrainerId(void);
+u8 *GetGBAPlayerName(void);
+
+#endif // POKEPLATINUM_MAIN_MENU_GBA_PLAYER_H

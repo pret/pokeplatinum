@@ -76,33 +76,15 @@ VeilstoneStore4F_AttendantMantykeDoll:
     End
 
 VeilstoneStore4F_NinjaBoy:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message VeilstoneStore4F_Text_ChuckAQuickBallOrTimerBall
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage VeilstoneStore4F_Text_ChuckAQuickBallOrTimerBall
     End
 
 VeilstoneStore4F_Pokefan:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message VeilstoneStore4F_Text_ThatBoySaysHeIsTrainingHisImage
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage VeilstoneStore4F_Text_ThatBoySaysHeIsTrainingHisImage
     End
 
 VeilstoneStore4F_SchoolBoy:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message VeilstoneStore4F_Text_NeedAnotherCopyOfGameToChallengePapa
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage VeilstoneStore4F_Text_NeedAnotherCopyOfGameToChallengePapa
     End
 
 VeilstoneStore4F_TopDecorVendor:
@@ -126,10 +108,5 @@ VeilstoneStore4F_BottomDecorVendor:
     End
 
 VeilstoneStore4F_Directory:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    Message VeilstoneStore4F_Text_Directory
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    EventMessage VeilstoneStore4F_Text_Directory
     End

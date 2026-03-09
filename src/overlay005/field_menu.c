@@ -237,9 +237,9 @@ static void MenuSysTaskCallback(SysTask *sysTask, void *param)
     switch (selectedEntry) {
     case MENU_NOTHING_CHOSEN:
         break;
-    case MENU_CANCELED:
+    case MENU_CANCEL:
         if (menuManager->canExitWithB == TRUE) {
-            *menuManager->selectedOptionPtr = MENU_CANCELED;
+            *menuManager->selectedOptionPtr = MENU_CANCEL;
             FieldMenuManager_DeleteWithMenu(menuManager);
         }
         break;
@@ -360,7 +360,7 @@ static void _FieldMenuManager_AddListMenuEntry(FieldMenuManager *menuManager, u3
     String_Free(fmtString);
 
     if (entryIndex == LIST_MENU_BUILDER_HEADER) {
-        menuManager->listMenuChoicesStrings[menuManager->optionsCount].index = LIST_HEADER;
+        menuManager->listMenuChoicesStrings[menuManager->optionsCount].index = MENU_HEADER;
     } else {
         menuManager->listMenuChoicesStrings[menuManager->optionsCount].index = entryIndex;
     }
@@ -414,7 +414,7 @@ static void FieldMenuManager_InitListMenuTemplate(FieldMenuManager *menuManager)
 
 static void ListMenuPrintCallback(ListMenu *listMenu, u32 index, u8 yOffset)
 {
-    if (index == LIST_HEADER) {
+    if (index == MENU_HEADER) {
         ListMenu_SetAltTextColors(listMenu, 3, 15, 4);
     } else {
         ListMenu_SetAltTextColors(listMenu, 1, 15, 2);
@@ -462,12 +462,12 @@ static void ListMenuSysTaskCallback(SysTask *sysTask, void *param)
     }
 
     switch (selectedOption) {
-    case LIST_NOTHING_CHOSEN:
+    case MENU_NOTHING_CHOSEN:
         break;
-    case LIST_CANCEL:
+    case MENU_CANCEL:
         if (menuManager->canExitWithB == TRUE) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
-            *menuManager->selectedOptionPtr = LIST_CANCEL;
+            *menuManager->selectedOptionPtr = MENU_CANCEL;
             FieldMenuManager_DeleteWithListMenu(param);
         }
         break;

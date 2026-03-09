@@ -2,14 +2,11 @@
 #define POKEPLATINUM_CONSTANTS_SCRCMD_H
 
 #include "constants/accessories.h"
+#include "constants/menu.h"
 #include "generated/backdrops.h"
 
 #define BERRY_WATERING_START 0
 #define BERRY_WATERING_END   1
-
-#define MENU_YES    0
-#define MENU_NO     1
-#define MENU_CANCEL -2
 
 #define LOCALID_CAMERA   0xF1
 #define LOCALID_FOLLOWER 0xF2

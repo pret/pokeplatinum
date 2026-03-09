@@ -195,7 +195,7 @@ typedef struct WonderCardFlipAnimManager {
 } WonderCardFlipAnimManager;
 
 typedef struct WonderCardsAppWindowTemplate {
-    int screen;
+    enum WonderCardsAppScreen screen;
     int tilemapLeft;
     int tilemapTop;
     int width;
@@ -1123,9 +1123,9 @@ static void ProcessStateTransitionMenuInput(ApplicationManager *appMan, enum Won
     u32 input = ListMenu_ProcessInput(appData->listMenu);
 
     switch (input) {
-    case LIST_NOTHING_CHOSEN:
+    case MENU_NOTHING_CHOSEN:
         break;
-    case LIST_CANCEL:
+    case MENU_CANCEL:
         Sound_PlayEffect(SEQ_SE_CONFIRM);
 
         if (onCancelStateTransition) {

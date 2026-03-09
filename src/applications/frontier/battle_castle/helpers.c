@@ -33,7 +33,7 @@ u8 BattleCastleApp_GetRank(SaveData *saveData, u8 challengeType, u8 rankType)
 
 void BattleCastleApp_PlaySound(u32 input, u16 seqID)
 {
-    if (input != LIST_NOTHING_CHOSEN) {
+    if (input != MENU_NOTHING_CHOSEN) {
         Sound_PlayEffect(seqID);
     }
 }

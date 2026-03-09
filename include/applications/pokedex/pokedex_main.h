@@ -3,8 +3,6 @@
 
 #include <nnsys.h>
 
-#include "struct_decls/pokedexdata_decl.h"
-
 #include "applications/pokedex/pokedex_app.h"
 #include "applications/pokedex/pokedex_graphics.h"
 #include "applications/pokedex/pokedex_sort_data.h"
@@ -16,6 +14,7 @@
 #include "bg_window.h"
 #include "heap.h"
 #include "overlay_manager.h"
+#include "pokedex.h"
 #include "pokedex_memory.h"
 #include "sprite.h"
 #include "string_gf.h"

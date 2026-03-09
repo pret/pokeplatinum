@@ -1133,23 +1133,11 @@ _0DDC:
     EndMovement
 
 Route201_BreederM:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message Route201_Text_WildPokemonLurkInTallGrass
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage Route201_Text_WildPokemonLurkInTallGrass
     End
 
 Route201_SchoolKidM:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message Route201_Text_ThatLedgeIsOneWay
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage Route201_Text_ThatLedgeIsOneWay
     End
 
 Route201_Lass:
@@ -1199,13 +1187,7 @@ Route201_BagIsFull:
     End
 
 Route201_ProfRowan:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message Route201_Text_RowanGoOnChooseAPokemon
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage Route201_Text_RowanGoOnChooseAPokemon
     End
 
 Route201_TriggerLetsCatchThatLegendaryPokemon:

@@ -174,7 +174,7 @@
       "en_US": "NO"
     },
     {
-      "id": "pl_msg_00000361_00043",
+      "id": "MenuEntries_Text_TrainerAppearancesExit",
       "en_US": "EXIT"
     },
     {
@@ -202,19 +202,19 @@
       "en_US": "BATTLE"
     },
     {
-      "id": "pl_msg_00000361_00050",
+      "id": "MenuEntries_Text_TrainerAppearanceVariant1",
       "en_US": "{STRVAR_1 3, 0, 0}"
     },
     {
-      "id": "pl_msg_00000361_00051",
+      "id": "MenuEntries_Text_TrainerAppearanceVariant2",
       "en_US": "{STRVAR_1 3, 1, 0}"
     },
     {
-      "id": "pl_msg_00000361_00052",
+      "id": "MenuEntries_Text_TrainerAppearanceVariant3",
       "en_US": "{STRVAR_1 3, 2, 0}"
     },
     {
-      "id": "pl_msg_00000361_00053",
+      "id": "MenuEntries_Text_TrainerAppearanceVariant4",
       "en_US": "{STRVAR_1 3, 3, 0}"
     },
     {

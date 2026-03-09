@@ -2,7 +2,7 @@
   "key": 1054,
   "messages": [
     {
-      "id": "pl_msg_00000573_00000",
+      "id": "FloaromaTownSoutheastHouse_Text_SomeKindsOfPokemonAppearOnlyIfTheyreAttractedByHoney",
       "en_US": [
         "Some kinds of Pokémon appear only\n",
         "if they’re attracted by the sweet\f",
@@ -10,7 +10,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000573_00001",
+      "id": "FloaromaTownSoutheastHouse_Text_PokemonHaveAnAcuteSenseOfSmell",
       "en_US": [
         "Pokémon must have an acute sense\n",
         "of smell.\r",

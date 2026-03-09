@@ -724,7 +724,7 @@
       "en_US": "TREASURES"
     },
     {
-      "id": "UndergroundCommon_Text_TrainerNameTemplate",
+      "id": "UndergroundCommon_Text_PlayerTemplate",
       "en_US": "{STRVAR_1 1, 1, 0}"
     },
     {

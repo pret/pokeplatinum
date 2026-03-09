@@ -11,10 +11,10 @@
 
 #include "applications/frontier/battle_castle/opponent_app.h"
 #include "applications/frontier/battle_castle/self_app.h"
+#include "applications/frontier/battle_factory/main.h"
 #include "applications/frontier/battle_hall/main.h"
 #include "overlay104/ov104_0222ECE8.h"
 #include "overlay104/ov104_0223C164.h"
-#include "overlay105/ov105_02241AE0.h"
 #include "overlay108/ov108_02241AE0.h"
 
 #include "communication_system.h"
@@ -47,10 +47,10 @@ static const CommCmdTable Unk_020F8BF0[] = {
     { ov104_0222F1C4, CommPacketSizeOf_Variable, NULL },
     { ov104_0222F210, CommPacketSizeOf_Variable, NULL },
     { ov104_0222F31C, CommPacketSizeOf_Variable, NULL },
-    { ov105_0224569C, CommPacketSizeOf_Variable, NULL },
-    { ov105_02245744, CommPacketSizeOf_Variable, NULL },
-    { ov105_022457B8, CommPacketSizeOf_Variable, NULL },
-    { ov105_022458A4, CommPacketSizeOf_Variable, NULL },
+    { BattleFactoryApp_DummyCommCommand, CommPacketSizeOf_Variable, NULL },
+    { BattleFactoryApp_HandleSelectionUpdateCmd, CommPacketSizeOf_Variable, NULL },
+    { BattleFactoryApp_DummyCommCommand2, CommPacketSizeOf_Variable, NULL },
+    { BattleFactoryApp_HandleTradeResultCmd, CommPacketSizeOf_Variable, NULL },
     { ov104_0222ECE8, CommPacketSizeOf_Variable, NULL },
     { ov104_0222ED2C, CommPacketSizeOf_Variable, NULL },
     { ov104_0222ED74, CommPacketSizeOf_Variable, NULL },

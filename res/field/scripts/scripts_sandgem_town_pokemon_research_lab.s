@@ -445,67 +445,32 @@ _0592:
     End
 
 SandgemTownLab_BookshelfAdventureRuleNo1:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    Message SandgemTownLab_Text_AdventureRuleNo1
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    EventMessage SandgemTownLab_Text_AdventureRuleNo1
     End
 
 SandgemTownLab_BookshelfAdventureRuleNo2:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    Message SandgemTownLab_Text_AdventureRuleNo2
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    EventMessage SandgemTownLab_Text_AdventureRuleNo2
     End
 
 SandgemTownLab_BookshelfBooks:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    Message SandgemTownLab_Text_ItsCrammedFullOfBooks
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    EventMessage SandgemTownLab_Text_ItsCrammedFullOfBooks
     End
 
 SandgemTownLab_BookshelfReferenceMaterial:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    Message SandgemTownLab_Text_ThereALotOfReferenceMaterial
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    EventMessage SandgemTownLab_Text_ThereALotOfReferenceMaterial
     End
 
 SandgemTownLab_PC:
     BufferPlayerName 0
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    Message SandgemTownLab_Text_PlayerCheckedThePC
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    EventMessage SandgemTownLab_Text_PlayerCheckedThePC
     End
 
 _05EC:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    Message SandgemTownLab_Text_ResearchMaterialsAreCarefullyTuckedAway
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    EventMessage SandgemTownLab_Text_ResearchMaterialsAreCarefullyTuckedAway
     End
 
 SandgemTownLab_Refrigerator:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    Message SandgemTownLab_Text_TheRefrigeratorIsFilledWithTastySweets
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    EventMessage SandgemTownLab_Text_TheRefrigeratorIsFilledWithTastySweets
     End
 
 SandgemTownLab_ShowCompleteLocalDex:

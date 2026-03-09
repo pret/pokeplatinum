@@ -2,7 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
-            "id": "OREBURGH_CITY_POKECENTER_1F_PSYCHIC_0",
+            "id": "LOCALID_PSYCHIC",
             "graphics_id": "OBJ_EVENT_GFX_PSYCHIC",
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -17,7 +17,7 @@
             "y": 0
         },
         {
-            "id": "OREBURGH_CITY_POKECENTER_1F_ACE_TRAINER_F_1",
+            "id": "LOCALID_ACE_TRAINER_F",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -32,7 +32,7 @@
             "y": 0
         },
         {
-            "id": "OREBURGH_CITY_POKECENTER_1F_NINJA_BOY_2",
+            "id": "LOCALID_NINJA_BOY",
             "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
             "movement_type": "MOVEMENT_TYPE_WANDER_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -47,7 +47,7 @@
             "y": 0
         },
         {
-            "id": "OREBURGH_CITY_POKECENTER_1F_POKECENTER_NURSE_3",
+            "id": "LOCALID_POKECENTER_NURSE",
             "graphics_id": "OBJ_EVENT_GFX_POKECENTER_NURSE",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -62,7 +62,7 @@
             "y": 0
         },
         {
-            "id": "OREBURGH_CITY_POKECENTER_1F_GENTLEMAN_4",
+            "id": "LOCALID_GENTLEMAN",
             "graphics_id": "OBJ_EVENT_GFX_GENTLEMAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -77,7 +77,7 @@
             "y": 0
         },
         {
-            "id": "OREBURGH_CITY_POKECENTER_1F_UNK_111_5",
+            "id": "LOCALID_DAILY_TRAINER_1",
             "graphics_id": "OBJ_EVENT_GFX_POKECENTER_DAILY_TRAINER_1",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -92,7 +92,7 @@
             "y": 0
         },
         {
-            "id": "OREBURGH_CITY_POKECENTER_1F_UNK_112_6",
+            "id": "LOCALID_DAILY_TRAINER_2",
             "graphics_id": "OBJ_EVENT_GFX_POKECENTER_DAILY_TRAINER_2",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -107,7 +107,7 @@
             "y": 0
         },
         {
-            "id": "OREBURGH_CITY_POKECENTER_1F_KID_WITH_NDS_7",
+            "id": "LOCALID_KID_WITH_NDS_WEST",
             "graphics_id": "OBJ_EVENT_GFX_KID_WITH_NDS",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -122,7 +122,7 @@
             "y": 0
         },
         {
-            "id": "OREBURGH_CITY_POKECENTER_1F_KID_WITH_NDS_8",
+            "id": "LOCALID_KID_WITH_NDS_EAST",
             "graphics_id": "OBJ_EVENT_GFX_KID_WITH_NDS",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",

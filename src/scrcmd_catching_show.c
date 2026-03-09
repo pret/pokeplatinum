@@ -1,12 +1,9 @@
 #include "scrcmd_catching_show.h"
 
 #include <nitro.h>
-#include <string.h>
 
 #include "generated/catching_show_points_category.h"
 
-#include "struct_decls/pc_boxes_decl.h"
-#include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_02024440_decl.h"
 
 #include "savedata/save_table.h"

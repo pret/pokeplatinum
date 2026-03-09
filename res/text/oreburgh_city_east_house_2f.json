@@ -2,7 +2,7 @@
   "key": 58422,
   "messages": [
     {
-      "id": "pl_msg_00000082_00000",
+      "id": "OreburghCityEastHouse2F_Text_TheOreburghMineIsOperatedWithTheUtmostCare",
       "en_US": [
         "The Oreburgh Mine is operated\n",
         "with the utmost care.\r",
@@ -11,7 +11,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000082_00001",
+      "id": "OreburghCityEastHouse2F_Text_HereIWantYouToHaveThis",
       "en_US": [
         "Wow... Your Pokémon’s eyes are\n",
         "twinkling brightly!\r",
@@ -20,7 +20,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000082_00002",
+      "id": "OreburghCityEastHouse2F_Text_YouKnowHowPokemonStayInsideTheirPokeBalls",
       "en_US": [
         "You know how Pokémon stay inside\n",
         "their Poké Balls?\r",
@@ -29,7 +29,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000082_00003",
+      "id": "OreburghCityEastHouse2F_Text_CoalIsCarriedOutOfTheOreburghMineOnAFullyAutomatedSystem",
       "en_US": [
         "Coal is carried out of Oreburgh Mine on\n",
         "a fully automated system.\r",

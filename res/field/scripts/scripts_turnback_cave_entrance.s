@@ -19,21 +19,11 @@ _001C:
 
 _002A:
     GoToIfSet FLAG_CAUGHT_GIRATINA, _0046
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    Message 0
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    EventMessage 0
     End
 
 _0046:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    Message 1
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    EventMessage 1
     End
 
     .balign 4, 0

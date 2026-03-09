@@ -89,13 +89,7 @@ _00C1:
     End
 
 _00CC:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 8
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 8
     End
 
 _00DF:
@@ -149,12 +143,7 @@ _016C:
     EndMovement
 
 _0174:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    Message 12
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    EventMessage 12
     End
 
     .balign 4, 0

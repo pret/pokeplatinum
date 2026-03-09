@@ -439,13 +439,7 @@ _0620:
     EndMovement
 
 _0634:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 36
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 36
     End
 
 _0647:
@@ -468,12 +462,7 @@ _0669:
     End
 
 _0674:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    Message 40
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    EventMessage 40
     End
 
 _0685:
@@ -533,13 +522,7 @@ _0741:
     End
 
 _0747:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 37
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 37
     End
 
     .balign 4, 0

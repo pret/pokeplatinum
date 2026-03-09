@@ -360,7 +360,7 @@ static void UndergroundTalk_Exit(SysTask *sysTask, TalkMenu *menu)
     }
 
     if (menu->giftMenu) {
-        UndergroundMenu_Exit(menu->giftMenu, LIST_CANCEL);
+        UndergroundMenu_Exit(menu->giftMenu, MENU_CANCEL);
         UndergroundMan_ClearCurrentSysTaskInfo();
     }
 
@@ -431,8 +431,8 @@ static BOOL UndergroundTalk_HandleQuestionsMenu(SysTask *sysTask, void *data)
     }
 
     switch (input) {
-    case LIST_CANCEL:
-    case LIST_NOTHING_CHOSEN:
+    case MENU_CANCEL:
+    case MENU_NOTHING_CHOSEN:
         return FALSE;
         break;
     default:
@@ -496,8 +496,8 @@ static BOOL UndergroundTalk_HandleAnswersMenu(SysTask *sysTask, void *data)
     }
 
     switch (input) {
-    case LIST_NOTHING_CHOSEN:
-    case LIST_CANCEL:
+    case MENU_NOTHING_CHOSEN:
+    case MENU_CANCEL:
         return FALSE;
     default:
         Sound_PlayEffect(SEQ_SE_CONFIRM);
@@ -549,7 +549,7 @@ static void UndergroundTalk_HandleGiftConfirmMenu(SysTask *unused, TalkMenu *men
         return;
     }
 
-    if (input == 0) {
+    if (input == MENU_YES) {
         menu->sentGift.recipientNetID = menu->linkNetID;
         CommSys_SendDataFixedSize(77, &menu->sentGift);
         menu->state = TALK_MENU_STATE_GIFT_OFFERED;
@@ -568,13 +568,13 @@ static BOOL UndergroundTalk_HandleTalkMenu(SysTask *sysTask, void *data)
     UndergroundTalk_UpdateCursorPos(menu);
 
     if (CommSys_CheckError()) {
-        input = LIST_CANCEL;
+        input = MENU_CANCEL;
     }
 
     switch (input) {
-    case LIST_NOTHING_CHOSEN:
+    case MENU_NOTHING_CHOSEN:
         return FALSE;
-    case LIST_CANCEL:
+    case MENU_CANCEL:
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         UndergroundTalk_CancelTalk(menu);
         UndergroundTalk_CloseTalkMenu(sysTask, menu);
@@ -908,7 +908,7 @@ static void UndergroundTalk_Main(SysTask *sysTask, void *data)
         }
 
         if (menu->giftMenu) {
-            UndergroundMenu_Exit(menu->giftMenu, LIST_CANCEL);
+            UndergroundMenu_Exit(menu->giftMenu, MENU_CANCEL);
             UndergroundMan_ClearCurrentSysTaskInfo();
             UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetItemNameTextPrinter());
             menu->giftMenu = NULL;
@@ -937,7 +937,7 @@ static void UndergroundTalkResponse_HandleConfirmTrainerCaseMenu(SysTask *unused
         return;
     }
 
-    if (input == 0) {
+    if (input == MENU_YES) {
         UndergroundTalkResponse_RequestLinkTalkStateUpdate(menu, TALK_MENU_STATE_START_CASE_EXCHANGE);
         UndergroundRecords_SendRecord(menu->linkNetID);
         menu->state = RESPONSE_MENU_STATE_START_CASE_EXCHANGE;
@@ -957,7 +957,7 @@ static void UndergroundTalkResponse_HandleAcceptGiftMenu(SysTask *unused, Respon
         return;
     }
 
-    if (input == 0) {
+    if (input == MENU_YES) {
         if (UndergroundInventory_TryAddGoodBag(menu->receivedGift.goodID)) {
             UndergroundRecord_IncrementGiftsReceived(SaveData_GetUndergroundRecord(FieldSystem_GetSaveData(menu->fieldSystem)));
             Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2);
@@ -1071,13 +1071,13 @@ static BOOL UndergroundTalkResponse_HandleAnswersMenu(SysTask *sysTask, void *da
     }
 
     if (CommSys_CheckError()) {
-        input = LIST_CANCEL;
+        input = MENU_CANCEL;
     }
 
     switch (input) {
-    case LIST_NOTHING_CHOSEN:
+    case MENU_NOTHING_CHOSEN:
         return FALSE;
-    case LIST_CANCEL:
+    case MENU_CANCEL:
         input = ANSWER_INDEX_CANCEL;
     default:
         Sound_PlayEffect(SEQ_SE_CONFIRM);
