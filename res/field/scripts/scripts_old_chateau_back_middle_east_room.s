@@ -1,33 +1,34 @@
 #include "macros/scrcmd.inc"
+#include "res/field/events/events_old_chateau_back_middle_east_room.h"
 
 
-    ScriptEntry _000A
-    ScriptEntry _002E
+    ScriptEntry OldChateauBackMiddleEastRoom_OnTransition
+    ScriptEntry OldChateauBackMiddleEastRoom_OnFrameTwinLeave
     ScriptEntryEnd
 
-_000A:
-    ScrCmd_292 25, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, 1, _0022
-    SetFlag FLAG_UNK_0x027C
+OldChateauBackMiddleEastRoom_OnTransition:
+    CheckShouldShowGhost 25, VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, 1, OldChateauBackMiddleEastRoom_ShowTwin
+    SetFlag FLAG_HIDE_OLD_CHATEAU_BACK_MIDDLE_EAST_ROOM_TWIN
     End
 
-_0022:
-    ClearFlag FLAG_UNK_0x027C
-    SetVar VAR_UNK_0x4111, 1
+OldChateauBackMiddleEastRoom_ShowTwin:
+    ClearFlag FLAG_HIDE_OLD_CHATEAU_BACK_MIDDLE_EAST_ROOM_TWIN
+    SetVar VAR_OLD_CHATEAU_BACK_MIDDLE_EAST_ROOM_TWIN_STATE, 1
     End
 
-_002E:
+OldChateauBackMiddleEastRoom_OnFrameTwinLeave:
     LockAll
-    ApplyMovement 1, _004C
+    ApplyMovement LOCALID_TWIN, OldChateauBackMiddleEastRoom_Movement_TwinLeave
     WaitMovement
-    SetFlag FLAG_UNK_0x027C
-    RemoveObject 1
-    SetVar VAR_UNK_0x4111, 0
+    SetFlag FLAG_HIDE_OLD_CHATEAU_BACK_MIDDLE_EAST_ROOM_TWIN
+    RemoveObject LOCALID_TWIN
+    SetVar VAR_OLD_CHATEAU_BACK_MIDDLE_EAST_ROOM_TWIN_STATE, 0
     ReleaseAll
     End
 
     .balign 4, 0
-_004C:
+OldChateauBackMiddleEastRoom_Movement_TwinLeave:
     Delay16
     FaceSouth
     Delay16

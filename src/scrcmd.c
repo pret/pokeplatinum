@@ -676,7 +676,7 @@ static BOOL ScrCmd_28D(ScriptContext *ctx);
 static BOOL ScrCmd_28E(ScriptContext *ctx);
 static BOOL sub_02041FF8(ScriptContext *ctx);
 static BOOL ScrCmd_GetLeagueVictories(ScriptContext *ctx);
-static BOOL ScrCmd_292(ScriptContext *ctx);
+static BOOL ScrCmd_CheckShouldShowGhost(ScriptContext *ctx);
 static BOOL ScrCmd_OpenPartyMenuForDaycare(ScriptContext *ctx);
 static BOOL ScrCmd_291(ScriptContext *ctx);
 static BOOL ScrCmd_29E(ScriptContext *ctx);
@@ -1425,7 +1425,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_GetLeagueVictories,
     ScrCmd_OpenPartyMenuForDaycare,
     ScrCmd_291,
-    ScrCmd_292,
+    ScrCmd_CheckShouldShowGhost,
     ScrCmd_GetUndergroundTalkCounter,
     ScrCmd_ShowBattlePoints,
     ScrCmd_HideBattlePoints,
@@ -7169,21 +7169,21 @@ static BOOL ScrCmd_291(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_292(ScriptContext *ctx)
+static BOOL ScrCmd_CheckShouldShowGhost(ScriptContext *ctx)
 {
-    u8 v1 = ScriptContext_ReadByte(ctx);
-    u16 *v2 = ScriptContext_GetVarPointer(ctx);
+    u8 chance = ScriptContext_ReadByte(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    if (v1 > 100) {
-        v1 = 100;
+    if (chance > 100) {
+        chance = 100;
     }
 
-    u16 v0 = LCRNG_Next() % 101;
+    u16 rand = LCRNG_Next() % 101;
 
-    if (v0 <= v1) {
-        *v2 = 1;
+    if (rand <= chance) {
+        *destVar = TRUE;
     } else {
-        *v2 = 0;
+        *destVar = FALSE;
     }
 
     return FALSE;

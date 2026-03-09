@@ -11,7 +11,7 @@
     ],
     "object_events": [
         {
-            "id": "ROUTE_205_NORTH_FISHERMAN_ANDREW",
+            "id": "LOCALID_FISHERMAN_ANDREW",
             "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -26,7 +26,7 @@
             "y": 7
         },
         {
-            "id": "ROUTE_205_NORTH_FISHERMAN_JOSEPH",
+            "id": "LOCALID_FISHERMAN_JOSEPH",
             "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -41,7 +41,7 @@
             "y": 7
         },
         {
-            "id": "ROUTE_205_NORTH_FISHERMAN_ZACHARY",
+            "id": "LOCALID_FISHERMAN_ZACHARY",
             "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -56,7 +56,7 @@
             "y": 7
         },
         {
-            "id": "ROUTE_205_NORTH_ARROW_SIGNPOST_3",
+            "id": "LOCALID_ARROW_SIGNPOST_ETERNA_FOREST",
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -73,7 +73,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_205_NORTH_ARROW_SIGNPOST_4",
+            "id": "LOCALID_ARROW_SIGNPOST_ETERNA_CITY",
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -90,7 +90,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_205_NORTH_FISHERMAN_5",
+            "id": "LOCALID_FISHERMAN",
             "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -120,7 +120,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_205_NORTH_UNK_100_7",
+            "id": "LOCALID_BERRY_SOIL_1",
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -137,7 +137,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_205_NORTH_UNK_100_8",
+            "id": "LOCALID_BERRY_SOIL_2",
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -154,7 +154,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_205_NORTH_UNK_100_9",
+            "id": "LOCALID_BERRY_SOIL_3",
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -171,7 +171,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_205_NORTH_UNK_100_10",
+            "id": "LOCALID_BERRY_SOIL_4",
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -188,12 +188,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_205_NORTH_MAP_SIGNPOST_11",
+            "id": "LOCALID_MAP_SIGNPOST",
             "clone_id": 7,
             "graphics_id": "OBJ_EVENT_GFX_MAP_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0041",
+            "hidden_flag": "MAP_HEADER_ETERNA_CITY",
             "script": 65535,
             "initial_dir": 0,
             "data": [

@@ -2,14 +2,14 @@
   "key": 58463,
   "messages": [
     {
-      "id": "pl_msg_00000281_00000",
+      "id": "OldChateauBackMiddleWestRoom_Text_TheTVHasAnOddlyMalevolentFeel",
       "en_US": [
         "The TV has an oddly malevolent feel...\n",
         "It’s as if it is staring..."
       ]
     },
     {
-      "id": "pl_msg_00000281_00001",
+      "id": "OldChateauBackMiddleWestRoom_Text_ThereAppearsToBeAPokemonWantToThumpTheTV",
       "en_US": [
         "Inside the TV...\n",
         "There appears to be a Pokémon?...\r",
@@ -18,11 +18,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000281_00002",
+      "id": "OldChateauBackMiddleWestRoom_Text_PlayerThumpedTheTVSet",
       "en_US": "{STRVAR_1 3, 0, 0} thumped the TV set!\r"
     },
     {
-      "id": "pl_msg_00000281_00003",
+      "id": "OldChateauBackMiddleWestRoom_Text_RotomDisappearedIntoTheTVSet",
       "en_US": "ROTOM disappeared into the TV set..."
     }
   ]

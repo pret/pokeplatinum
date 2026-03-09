@@ -6,7 +6,7 @@
     InitScriptEntryEnd
 
 InitScriptFrameTable:
-    InitScriptGoToIfEqual VAR_UNK_0x40CD, 1, 12
+    InitScriptGoToIfEqual VAR_ETERNA_FOREST_CHERYL_OLD_CHATEAU_CUTSCENE_STATE, 1, 12
     InitScriptFrameTableEnd
 
     InitScriptEnd

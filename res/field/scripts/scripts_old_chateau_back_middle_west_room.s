@@ -2,54 +2,54 @@
 #include "res/text/bank/old_chateau_back_middle_west_room.h"
 
 
-    ScriptEntry _0006
+    ScriptEntry OldChateauBackMiddleWestRoom_TV
     ScriptEntryEnd
 
-_0006:
+OldChateauBackMiddleWestRoom_TV:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    GoToIfSet FLAG_UNK_0x0149, _009C
-    GoToIfSet FLAG_UNK_0x0AB0, _009C
+    GoToIfSet FLAG_CAUGHT_OLD_CHATEAU_ROTOM, OldChateauBackMiddleWestRoom_TheTVHasAnOddlyMalevolentFeel
+    GoToIfSet FLAG_BATTLED_OLD_CHATEAU_ROTOM, OldChateauBackMiddleWestRoom_TheTVHasAnOddlyMalevolentFeel
     GetTimeOfDay VAR_RESULT
-    GoToIfLt VAR_RESULT, 3, _009C
-    Message 1
+    GoToIfLt VAR_RESULT, TIMEOFDAY_NIGHT, OldChateauBackMiddleWestRoom_TheTVHasAnOddlyMalevolentFeel
+    Message OldChateauBackMiddleWestRoom_Text_ThereAppearsToBeAPokemonWantToThumpTheTV
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _0096
+    GoToIfEq VAR_RESULT, MENU_NO, OldChateauBackMiddleWestRoom_End
     BufferPlayerName 0
-    Message 2
+    Message OldChateauBackMiddleWestRoom_Text_PlayerThumpedTheTVSet
     CloseMessage
     PlayCry SPECIES_ROTOM
     WaitCry
-    SetFlag FLAG_UNK_0x0AB0
+    SetFlag FLAG_BATTLED_OLD_CHATEAU_ROTOM
     StartWildBattle SPECIES_ROTOM, 20
     CheckWonBattle VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, _00A7
+    GoToIfEq VAR_RESULT, FALSE, OldChateauBackMiddleWestRoom_BlackOut
     CheckDidNotCapture VAR_RESULT
-    GoToIfEq VAR_RESULT, TRUE, _008B
-    SetFlag FLAG_UNK_0x0149
+    GoToIfEq VAR_RESULT, TRUE, OldChateauBackMiddleWestRoom_RotomDisappearedIntoTheTVSet
+    SetFlag FLAG_CAUGHT_OLD_CHATEAU_ROTOM
     ReleaseAll
     End
 
-_008B:
-    Message 3
+OldChateauBackMiddleWestRoom_RotomDisappearedIntoTheTVSet:
+    Message OldChateauBackMiddleWestRoom_Text_RotomDisappearedIntoTheTVSet
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0096:
+OldChateauBackMiddleWestRoom_End:
     CloseMessage
     ReleaseAll
     End
 
-_009C:
-    Message 0
+OldChateauBackMiddleWestRoom_TheTVHasAnOddlyMalevolentFeel:
+    Message OldChateauBackMiddleWestRoom_Text_TheTVHasAnOddlyMalevolentFeel
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_00A7:
+OldChateauBackMiddleWestRoom_BlackOut:
     BlackOutFromBattle
     ReleaseAll
     End

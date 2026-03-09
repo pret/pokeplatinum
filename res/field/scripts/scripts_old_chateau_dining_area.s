@@ -1,41 +1,42 @@
 #include "macros/scrcmd.inc"
+#include "res/field/events/events_old_chateau_dining_area.h"
 
 
-    ScriptEntry _000A
-    ScriptEntry _002E
+    ScriptEntry OldChateauDiningArea_OnTransition
+    ScriptEntry OldChateauDiningArea_OnFrameOldManLeave
     ScriptEntryEnd
 
-_000A:
-    ScrCmd_292 10, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, 1, _0022
-    SetFlag FLAG_UNK_0x027B
+OldChateauDiningArea_OnTransition:
+    CheckShouldShowGhost 10, VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, 1, OldChateauDiningArea_ShowOldMan
+    SetFlag FLAG_HIDE_OLD_CHATEAU_DINING_AREA_OLD_MAN
     End
 
-_0022:
-    ClearFlag FLAG_UNK_0x027B
-    SetVar VAR_UNK_0x4110, 1
+OldChateauDiningArea_ShowOldMan:
+    ClearFlag FLAG_HIDE_OLD_CHATEAU_DINING_AREA_OLD_MAN
+    SetVar VAR_OLD_CHATEAU_DINING_AREA_OLD_MAN_STATE, 1
     End
 
-_002E:
+OldChateauDiningArea_OnFrameOldManLeave:
     LockAll
-    ApplyMovement LOCALID_PLAYER, _0054
-    ApplyMovement 0, _0064
+    ApplyMovement LOCALID_PLAYER, OldChateauDiningArea_Movement_PlayerWatchOldManLeave
+    ApplyMovement LOCALID_OLD_MAN, OldChateauDiningArea_Movement_OldManLeave
     WaitMovement
-    SetFlag FLAG_UNK_0x027B
-    RemoveObject 0
-    SetVar VAR_UNK_0x4110, 0
+    SetFlag FLAG_HIDE_OLD_CHATEAU_DINING_AREA_OLD_MAN
+    RemoveObject LOCALID_OLD_MAN
+    SetVar VAR_OLD_CHATEAU_DINING_AREA_OLD_MAN_STATE, 0
     ReleaseAll
     End
 
     .balign 4, 0
-_0054:
+OldChateauDiningArea_Movement_PlayerWatchOldManLeave:
     WalkNormalNorth
     Delay32
     FaceWest
     EndMovement
 
     .balign 4, 0
-_0064:
+OldChateauDiningArea_Movement_OldManLeave:
     Delay8
     FaceWest
     Delay16
