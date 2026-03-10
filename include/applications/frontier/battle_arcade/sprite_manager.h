@@ -23,7 +23,7 @@ typedef struct {
     SpriteResource *resources[11][MAX_SPRITE_RESOURCE_GEN4];
 } BattleArcadeAppSpriteManager;
 
-void BattleArcadeApp_InitSpriteManager(BattleArcadeAppSpriteManager *spriteMan, Party *party, Party *opponentParty, u8 param3);
+void BattleArcadeApp_InitSpriteManager(BattleArcadeAppSpriteManager *spriteMan, Party *party, Party *opponentParty, u8 isMultiPlayerChallenge);
 Sprite *BattleArcadeApp_InitSprite(BattleArcadeAppSpriteManager *spriteMan, u32 charResourceID, u32 plttResourceID, u32 cellResourceID, u32 animID, u32 priority, int resourcePriority, u8 onSubScreen);
 void BattleArcadeApp_FreeSprites(BattleArcadeAppSpriteManager *spriteMan);
 

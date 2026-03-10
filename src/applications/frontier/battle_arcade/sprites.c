@@ -24,7 +24,7 @@ BattleArcadeAppSprite *BattleArcadeAppSprite_New(BattleArcadeAppSpriteManager *s
     pos.y = y * FX32_ONE;
 
     if (onSubScreen == TRUE) {
-        pos.y += FX32_CONST(192);
+        pos.y += FX32_CONST(HW_LCD_HEIGHT);
     }
 
     Sprite_SetPosition(appSprite->sprite, &pos);
@@ -53,7 +53,7 @@ void BattleArcadeAppSprite_SetPosition(BattleArcadeAppSprite *appSprite, u16 x, 
     pos.y = y * FX32_ONE;
 
     if (appSprite->onSubScreen == TRUE) {
-        pos.y += FX32_CONST(192);
+        pos.y += FX32_CONST(HW_LCD_HEIGHT);
     }
 
     Sprite_SetPosition(appSprite->sprite, &pos);

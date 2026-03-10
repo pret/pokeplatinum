@@ -79,7 +79,7 @@ Sprite *BattleArcadeApp_InitSprite(BattleArcadeAppSpriteManager *spriteMan, u32 
         spriteTemplate.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
     } else {
         spriteTemplate.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
-        spriteTemplate.position.y += FX32_CONST(192);
+        spriteTemplate.position.y += FX32_CONST(HW_LCD_HEIGHT);
     }
 
     Sprite *sprite = SpriteList_AddAffine(&spriteTemplate);
@@ -113,7 +113,12 @@ void BattleArcadeApp_FreeSprites(BattleArcadeAppSpriteManager *spriteMan)
 
 static void InitCharPlttTransferBuffers(void)
 {
-    CharTransferTemplate transferTemplate = { 32, 1024, 1024, HEAP_ID_BATTLE_ARCADE_APP };
+    CharTransferTemplate transferTemplate = {
+        .maxTasks = 32,
+        .sizeMain = 1024,
+        .sizeSub = 1024,
+        HEAP_ID_BATTLE_ARCADE_APP
+    };
 
     CharTransfer_InitWithVramModes(&transferTemplate, GX_OBJVRAMMODE_CHAR_1D_32K, GX_OBJVRAMMODE_CHAR_1D_32K);
 

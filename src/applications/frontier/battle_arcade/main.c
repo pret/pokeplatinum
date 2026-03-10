@@ -131,7 +131,7 @@ static const struct {
     [ARCADE_EFFECT_GET_1_BP] =         { 0, 0, 0, 1, 1, 1, 1 },
     [ARCADE_EFFECT_NO_BATTLE] =        { 0, 0, 0, 0, 1, 1, 1 },
     [ARCADE_EFFECT_NO_EVENT] =         { 1, 1, 1, 1, 1, 1, 1 },
-    [ARCADE_EFFECT_GET_3_BP] =         { 0, 0, 0, 0, 0, 0, 1 }
+    [ARCADE_EFFECT_GET_3_BP] =         { 0, 0, 0, 0, 0, 0, 1 },
 };
 // clang-format on
 
@@ -286,7 +286,7 @@ BOOL BattleArcadeApp_Init(ApplicationManager *appMan, int *state)
 {
     Overlay_LoadByID(FS_OVERLAY_ID(overlay104), OVERLAY_LOAD_ASYNC);
     InitGraphicsPlane();
-    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_BATTLE_ARCADE_APP, 0x20000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_BATTLE_ARCADE_APP, HEAP_SIZE_BATTLE_ARCADE_APP);
 
     BattleArcadeApp *app = ApplicationManager_NewData(appMan, sizeof(BattleArcadeApp), HEAP_ID_BATTLE_ARCADE_APP);
     memset(app, 0, sizeof(BattleArcadeApp));
