@@ -9,41 +9,17 @@
     ScriptEntryEnd
 
 HearthomeCityMart_CommonVendor:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Common_VendorGreeting
-    CloseMessageWithoutErasing
-    PokeMartCommon
-    ReleaseAll
+    PokeMartCommonWithGreeting
     End
 
 HearthomeCityMart_SpecialtyVendor:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Common_VendorGreeting
-    CloseMessageWithoutErasing
-    PokeMartSpecialties MART_SPECIALTIES_ID_HEARTHOME
-    ReleaseAll
+    PokeMartSpecialtiesWithGreeting MART_SPECIALTIES_ID_HEARTHOME
     End
 
 HearthomeCityMart_Hiker:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message HearthomeCityMart_Text_CantBuyRevivesWithTwoBadges
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage HearthomeCityMart_Text_CantBuyRevivesWithTwoBadges
     End
 
 HearthomeCityMart_Beauty:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message HearthomeCityMart_Text_FindAccessoriesInAmitySquare
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage HearthomeCityMart_Text_FindAccessoriesInAmitySquare
     End

@@ -1168,89 +1168,38 @@ _1304:
     Return
 
 BattleTower_ParasolLady:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message BattleTower_Text_UsedToLiveInHoenn
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage BattleTower_Text_UsedToLiveInHoenn
     End
 
 BattleTower_Jogger:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message BattleTower_Text_WiFiBattleRoomsAreFullOfSurprises
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage BattleTower_Text_WiFiBattleRoomsAreFullOfSurprises
     End
 
 BattleTower_Idol:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message BattleTower_Text_TheyProfileYouOnTV
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage BattleTower_Text_TheyProfileYouOnTV
     End
 
 BattleTower_RichBoy:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message BattleTower_Text_ITrainedMyLittleGuy
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage BattleTower_Text_ITrainedMyLittleGuy
     End
 
 BattleTower_Pikachu1:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message BattleTower_Text_PikachuDotDotDot
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage BattleTower_Text_PikachuDotDotDot
     End
 
 BattleTower_Artist:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message BattleTower_Text_YouLookPowerful
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage BattleTower_Text_YouLookPowerful
     End
 
 BattleTower_SchoolKid:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message BattleTower_Text_ThereAreManyToughTrainers
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage BattleTower_Text_ThereAreManyToughTrainers
     End
 
 _13AD:
     End
 
 BattleTower_Pikachu2:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    WaitFanfare SEQ_SE_CONFIRM
-    PlayCry SPECIES_PIKACHU
-    Message BattleTower_Text_PikachuPichuu
-    WaitCry
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    PokemonCryAndMessage SPECIES_PIKACHU, BattleTower_Text_PikachuPichuu
     End
 
 _13CE:

@@ -720,13 +720,7 @@ _0BB2:
     Return
 
 _0BC0:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 207
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 207
     End
 
 _0BD3:

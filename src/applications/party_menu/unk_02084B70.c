@@ -743,13 +743,13 @@ static int sub_02085C50(void *applicationPtr)
             Sound_PlayEffect(SEQ_SE_CONFIRM);
             PartyMenu_RemoveContextWindow(application);
             application->unk_B13 = 3;
-            application->partyMenu->unk_34 = 0;
+            application->partyMenu->levelUpMoveIndex = 0;
         }
         break;
     case 3:
         mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
 
-        switch (Pokemon_LevelUpMove(mon, &application->partyMenu->unk_34, &application->partyMenu->learnedMove)) {
+        switch (Pokemon_LevelUpMove(mon, &application->partyMenu->levelUpMoveIndex, &application->partyMenu->learnedMove)) {
         case 0x0:
             application->unk_B13 = 6;
             break;
@@ -864,7 +864,7 @@ static int sub_02085FB4(void *applicationPtr)
     String_Free(string);
     PartyMenu_PrintLongMessage(application, PRINT_MESSAGE_PRELOADED, FALSE);
 
-    application->partyMenu->menuSelectionResult = PARTY_MENU_EXIT_CODE_FORGET_MOVE;
+    application->partyMenu->menuSelectionResult = PARTY_MENU_EXIT_CODE_OVERWRITE_MOVE_LEVEL_UP;
     application->unk_B0E = 25;
 
     return 24;
@@ -1057,7 +1057,7 @@ static int sub_02086438(void *applicationPtr)
     String_Free(string);
     PartyMenu_PrintLongMessage(application, PRINT_MESSAGE_PRELOADED, FALSE);
 
-    application->partyMenu->menuSelectionResult = PARTY_MENU_EXIT_CODE_LEARNED_MOVE;
+    application->partyMenu->menuSelectionResult = PARTY_MENU_EXIT_CODE_OVERWRITE_MOVE_TM_HM;
     application->unk_B0E = 25;
 
     return 24;

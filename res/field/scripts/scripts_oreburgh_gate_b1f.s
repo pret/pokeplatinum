@@ -6,13 +6,7 @@
     ScriptEntryEnd
 
 OreburghGateB1F_CyclistF:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message OreburghGateB1F_Text_DoYouSeeThoseBumpsOnTheGround
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage OreburghGateB1F_Text_DoYouSeeThoseBumpsOnTheGround
     End
 
     .balign 4, 0

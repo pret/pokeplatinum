@@ -1,11 +1,8 @@
 #include "applications/pc_boxes/ov19_021D79F8.h"
 
 #include <nitro.h>
-#include <string.h>
 
 #include "generated/species.h"
-
-#include "struct_decls/pc_boxes_decl.h"
 
 #include "applications/pc_boxes/box_app_manager.h"
 #include "applications/pc_boxes/box_application.h"

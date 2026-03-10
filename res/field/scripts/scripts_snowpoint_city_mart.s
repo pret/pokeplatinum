@@ -9,41 +9,17 @@
     ScriptEntryEnd
 
 SnowpointCityMart_CommonVendor:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Common_VendorGreeting
-    CloseMessageWithoutErasing
-    PokeMartCommon
-    ReleaseAll
+    PokeMartCommonWithGreeting
     End
 
 SnowpointCityMart_SpecialtyVendor:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Common_VendorGreeting
-    CloseMessageWithoutErasing
-    PokeMartSpecialties MART_SPECIALTIES_ID_SNOWPOINT
-    ReleaseAll
+    PokeMartSpecialtiesWithGreeting MART_SPECIALTIES_ID_SNOWPOINT
     End
 
 SnowpointCityMart_Youngster:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message SnowpointCityMart_Text_UsingTmsForEliteFour
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage SnowpointCityMart_Text_UsingTmsForEliteFour
     End
 
 SnowpointCityMart_SnowpointLady:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message SnowpointCityMart_Text_KeepSomeIceHeals
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage SnowpointCityMart_Text_KeepSomeIceHeals
     End

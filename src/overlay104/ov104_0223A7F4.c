@@ -82,7 +82,7 @@ static int ov104_0223A7F4(u8 param0, int param1, int param2);
 const UnkStruct_ov104_0224028C *ov104_0223A8A8(int param0, int param1);
 const UnkStruct_ov104_0224028C *ov104_0223A8F4(int param0, int param1);
 void ov104_0223A860(u8 param0, int param1, u16 param2[], u8 param3);
-u8 ov104_0223AA50(u8 param0);
+u8 BattleFactory_GetPartySize(u8 param0);
 u8 ov104_0223AA74(u8 param0, BOOL param1);
 static u32 ov104_0223AD74(u8 param0);
 u8 ov104_0223ADA0(UnkStruct_ov104_0223ADA0 *param0);
@@ -259,14 +259,14 @@ BOOL ov104_0223A918(const u16 param0[], const u16 param1[], int param2, int para
     return 0;
 }
 
-u8 ov104_0223AA50(u8 param0)
+u8 BattleFactory_GetPartySize(u8 challengeType)
 {
-    switch (param0) {
-    case 0:
-    case 1:
+    switch (challengeType) {
+    case FRONTIER_CHALLENGE_SINGLE:
+    case FRONTIER_CHALLENGE_DOUBLE:
         return 3;
-    case 2:
-    case 3:
+    case FRONTIER_CHALLENGE_MULTI:
+    case FRONTIER_CHALLENGE_MULTI_WFC:
         return 2;
     }
 
@@ -338,7 +338,7 @@ FieldBattleDTO *ov104_0223ABA0(UnkStruct_ov104_0223ADA0 *param0, UnkStruct_ov104
     Pokemon *v5;
     FrontierTrainerDataDTO v6;
 
-    v2 = ov104_0223AA50(param0->unk_04);
+    v2 = BattleFactory_GetPartySize(param0->unk_04);
     v3 = ov104_0223AA74(param0->unk_04, 0);
 
     Party_HealAllMembers(param0->unk_4D4);

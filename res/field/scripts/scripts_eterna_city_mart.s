@@ -10,45 +10,21 @@
     ScriptEntryEnd
 
 EternaCityMart_CommonVendor:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Common_VendorGreeting
-    CloseMessageWithoutErasing
-    PokeMartCommon
-    ReleaseAll
+    PokeMartCommonWithGreeting
     End
 
 EternaCityMart_SpecialtyVendor:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Common_VendorGreeting
-    CloseMessageWithoutErasing
-    PokeMartSpecialties MART_SPECIALTIES_ID_ETERNA_MART
-    ReleaseAll
+    PokeMartSpecialtiesWithGreeting MART_SPECIALTIES_ID_ETERNA_MART
     End
 
 EternaCityMart_Guitarist:
     BufferItemName 0, ITEM_SUPER_POTION //Unused?
     BufferItemName 1, ITEM_TM03         //Unused?
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message EternaCityMart_Text_GardeniaIsTooMuch
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage EternaCityMart_Text_GardeniaIsTooMuch
     End
 
 EternaCityMart_Hiker:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message EternaCityMart_Text_EscapeRopeIsIndispensable
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage EternaCityMart_Text_EscapeRopeIsIndispensable
     End
 
     .balign 4, 0

@@ -510,73 +510,31 @@ BattleCastle_UnusedMovement2:
     EndMovement
 
 _0788:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 46
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 46
     End
 
 _079B:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 47
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 47
     End
 
 _07AE:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 48
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 48
     End
 
 _07C1:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 49
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 49
     End
 
 _07D4:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 50
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 50
     End
 
 _07E7:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 51
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 51
     End
 
 _07FA:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 52
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 52
     End
 
     .balign 4, 0

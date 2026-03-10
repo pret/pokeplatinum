@@ -13,6 +13,7 @@
 #include "overlay059/ov59_021D2F88.h"
 #include "overlay059/struct_ov59_021D109C.h"
 
+#include "appearance.h"
 #include "bg_window.h"
 #include "char_transfer.h"
 #include "communication_information.h"
@@ -54,7 +55,6 @@
 #include "unk_020393C8.h"
 #include "unk_0205B33C.h"
 #include "unk_0205C22C.h"
-#include "unk_0205C980.h"
 #include "unk_020961E8.h"
 #include "vram_transfer.h"
 
@@ -1655,7 +1655,7 @@ static void ov59_021D2860(NNSG2dCharacterData *param0[2], NNSG2dPaletteData *par
     int v0;
     u8 *v1, *v2;
 
-    v0 = sub_0205CA0C(param4, param3);
+    v0 = Appearance_GetIndex(param4, param3);
 
     v1 = (u8 *)param0[1]->pRawData;
     v2 = (u8 *)param1[1]->pRawData;

@@ -2,7 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
-            "id": "FLOAROMA_TOWN_POKEMON_BREEDER_F_0",
+            "id": "LOCALID_POKEMON_BREEDER_F",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -17,7 +17,7 @@
             "y": 5
         },
         {
-            "id": "FLOAROMA_TOWN_LASS_1",
+            "id": "LOCALID_LASS_WEST",
             "graphics_id": "OBJ_EVENT_GFX_LASS",
             "movement_type": "MOVEMENT_TYPE_WANDER_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -32,7 +32,7 @@
             "y": 5
         },
         {
-            "id": "FLOAROMA_TOWN_SCHOOL_KID_M_2",
+            "id": "LOCALID_SCHOOL_KID_M",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -47,7 +47,7 @@
             "y": 5
         },
         {
-            "id": "FLOAROMA_TOWN_BEAUTY_3",
+            "id": "LOCALID_BEAUTY",
             "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -62,7 +62,7 @@
             "y": 5
         },
         {
-            "id": "FLOAROMA_TOWN_LASS_4",
+            "id": "LOCALID_LASS_EAST",
             "graphics_id": "OBJ_EVENT_GFX_LASS",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -77,8 +77,8 @@
             "y": 5
         },
         {
-            "id": "FLOAROMA_TOWN_UNK_100_5",
-            "graphics_id": "OBJ_EVENT_GFX_UNK_100",
+            "id": "LOCALID_BERRY_SOIL_WEST",
+            "graphics_id": "OBJ_EVENT_GFX_BERRY_SOIL",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
@@ -92,8 +92,8 @@
             "y": 0
         },
         {
-            "id": "FLOAROMA_TOWN_UNK_100_6",
-            "graphics_id": "OBJ_EVENT_GFX_UNK_100",
+            "id": "LOCALID_BERRY_SOIL_EAST",
+            "graphics_id": "OBJ_EVENT_GFX_BERRY_SOIL",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
@@ -109,11 +109,11 @@
             "y": 0
         },
         {
-            "id": "FLOAROMA_TOWN_GRUNT_M_7",
+            "id": "LOCALID_GRUNT_M_WEST",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x01A1",
+            "hidden_flag": "FLAG_HIDE_FLOAROMA_TOWN_GRUNTS",
             "script": 2,
             "initial_dir": 3,
             "data": [],
@@ -124,11 +124,11 @@
             "y": 5
         },
         {
-            "id": "FLOAROMA_TOWN_GRUNT_M_8",
+            "id": "LOCALID_GRUNT_M_EAST",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x01A1",
+            "hidden_flag": "FLAG_HIDE_FLOAROMA_TOWN_GRUNTS",
             "script": 2,
             "initial_dir": 2,
             "data": [],
@@ -139,7 +139,7 @@
             "y": 5
         },
         {
-            "id": "FLOAROMA_TOWN_MAP_SIGNPOST_9",
+            "id": "LOCALID_MAP_SIGNPOST",
             "graphics_id": "OBJ_EVENT_GFX_MAP_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -156,7 +156,7 @@
             "y": 0
         },
         {
-            "id": "FLOAROMA_TOWN_SIGNBOARD_10",
+            "id": "LOCALID_SIGNBOARD_FLOWER_SHOP",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -171,7 +171,7 @@
             "y": 0
         },
         {
-            "id": "FLOAROMA_TOWN_SIGNBOARD_11",
+            "id": "LOCALID_SIGNBOARD_FLOAROMA_MEADOW",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -188,7 +188,7 @@
             "y": 0
         },
         {
-            "id": "FLOAROMA_TOWN_CAMPER_12",
+            "id": "LOCALID_CAMPER",
             "graphics_id": "OBJ_EVENT_GFX_CAMPER",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",

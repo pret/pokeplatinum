@@ -255,9 +255,9 @@ BOOL Battle_Main(ApplicationManager *appMan, int *param1)
         v2 = Battle_FindEvolvingPartyMember(v0, &v1, &v3);
 
         if (v2) {
-            Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_73, 0x30000);
+            Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_EVOLUTION, HEAP_SIZE_EVOLUTION);
             v4 = Party_GetPokemonBySlotIndex(v0->parties[0], v1);
-            v0->unk_170 = Evolution_Begin(v0->parties[0], v4, v2, v0->options, v0->visitedContestHall, v0->pokedex, v0->bag, v0->records, v0->poketch, v3, 0x1 | 0x2, HEAP_ID_73);
+            v0->unk_170 = Evolution_Begin(v0->parties[0], v4, v2, v0->options, v0->visitedContestHall, v0->pokedex, v0->bag, v0->records, v0->poketch, v3, 0x1 | 0x2, HEAP_ID_EVOLUTION);
             *param1 = 14;
         } else {
             *param1 = 15;
@@ -268,7 +268,7 @@ BOOL Battle_Main(ApplicationManager *appMan, int *param1)
 
         if (Evolution_IsDone(v5) == 1) {
             Evolution_Free(v5);
-            Heap_Destroy(HEAP_ID_73);
+            Heap_Destroy(HEAP_ID_EVOLUTION);
             *param1 = 13;
         }
     } break;

@@ -1,7 +1,6 @@
 #ifndef POKEPLATINUM_OV61_0222B008_H
 #define POKEPLATINUM_OV61_0222B008_H
 
-#include "struct_decls/pc_boxes_decl.h"
 #include "struct_decls/struct_02030A80_decl.h"
 #include "struct_defs/dress_up_photo.h"
 
@@ -16,6 +15,7 @@
 
 #include "gds.h"
 #include "message.h"
+#include "pc_boxes.h"
 #include "savedata.h"
 #include "string_gf.h"
 #include "string_template.h"

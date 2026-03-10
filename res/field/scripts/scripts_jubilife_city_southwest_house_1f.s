@@ -8,36 +8,15 @@
     ScriptEntryEnd
 
 JubilifeCitySouthwestHouse1F_Youngster:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message JubilifeCitySouthwestHouse1F_Text_IGotMyPikachuThroughATradeFromSomeone
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage JubilifeCitySouthwestHouse1F_Text_IGotMyPikachuThroughATradeFromSomeone
     End
 
 JubilifeCitySouthwestHouse1F_Pikachu:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    WaitFanfare SEQ_SE_CONFIRM
-    PlayCry SPECIES_PIKACHU
-    Message JubilifeCitySouthwestHouse1F_Text_PikachuPikapikapikaaah
-    WaitCry
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    PokemonCryAndMessage SPECIES_PIKACHU, JubilifeCitySouthwestHouse1F_Text_PikachuPikapikapikaaah
     End
 
 JubilifeCitySouthwestHouse1F_MiddleAgedMan:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message JubilifeCitySouthwestHouse1F_Text_IfEveryoneAroundTheWorldHadPokemon
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage JubilifeCitySouthwestHouse1F_Text_IfEveryoneAroundTheWorldHadPokemon
     End
 
     .balign 4, 0

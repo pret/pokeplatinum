@@ -42,13 +42,13 @@ BOOL ov5_021F101C(FieldTask *param0)
         break;
     case 2: {
         int v5 = PlayerAvatar_Gender(fieldSystem->playerAvatar);
-        v3->unk_00 = SysTask_HMCutIn_New(fieldSystem, 0, v1->unk_00, v5);
+        v3->unk_00 = HMCutIn_StartTask(fieldSystem, 0, v1->unk_00, v5);
     }
         (*v2)++;
         break;
     case 3:
-        if (CheckHMCutInFinished(v3->unk_00)) {
-            SysTask_HMCutIn_SetTaskDone(v3->unk_00);
+        if (HMCutIn_IsFinished(v3->unk_00)) {
+            HMCutIn_EndTask(v3->unk_00);
             (*v2)++;
         }
         break;

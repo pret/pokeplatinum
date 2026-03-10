@@ -7,21 +7,9 @@
     ScriptEntryEnd
 
 OreburghCityMiddleHouse_SchoolKidF:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message OreburghCityMiddleHouse_Text_RoarkIsAUserOfRockTypePokemon
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage OreburghCityMiddleHouse_Text_RoarkIsAUserOfRockTypePokemon
     End
 
 OreburghCityMiddleHouse_Hiker:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message OreburghCityMiddleHouse_Text_RoarkIsOurTownsGymLeader
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage OreburghCityMiddleHouse_Text_RoarkIsOurTownsGymLeader
     End

@@ -5,23 +5,27 @@
 
 #include "coordinates.h"
 
+#define CURSOR_MODE_MON_ONLY     0
+#define CURSOR_MODE_MENU_ONLY    1
+#define CURSOR_MODE_MON_AND_MENU 2
+
 typedef struct BattleFactoryAppCursorSprite {
-    u8 unk_00;
-    u8 unk_01;
+    u8 numSlots;
+    u8 cursorMode;
     u8 currentSlot;
-    u8 unk_03;
+    u8 selectionActive;
     const CoordinatesS16 *positions;
     const u8 *animIDs;
     Sprite *sprite;
-    u8 unk_10;
+    u8 numBallSlots;
 } BattleFactoryAppCursor;
 
-BattleFactoryAppCursor *BattleFactoryAppCursor_New(BattleFactoryAppSpriteManager *spriteMan, u8 param1, u8 param2, u8 param3, u8 startingSlot, const CoordinatesS16 *positions, const u8 *animIDs);
+BattleFactoryAppCursor *BattleFactoryAppCursor_New(BattleFactoryAppSpriteManager *spriteMan, u8 numSlots, u8 numBallSlots, u8 cursorMode, u8 startingSlot, const CoordinatesS16 *positions, const u8 *animIDs);
 void *BattleFactoryAppCursor_Free(BattleFactoryAppCursor *cursor);
 void BattleFactoryAppCursor_SetDrawFlag(BattleFactoryAppCursor *cursor, BOOL draw);
-void ov105_02246080(BattleFactoryAppCursor *cursor);
+void BattleFactoryAppCursor_ProcessInput(BattleFactoryAppCursor *cursor);
 u8 BattleFactoryAppCursor_GetCurrentSlot(BattleFactoryAppCursor *cursor);
-void ov105_022461A4(BattleFactoryAppCursor *cursor, int param1);
+void UpdateMonCursorState(BattleFactoryAppCursor *cursor, BOOL selectionActive);
 void BattleFactoryAppCursor_UpdatePosition(BattleFactoryAppCursor *cursor, u8 slot);
 
 #endif // POKEPLATINUM_APPLICATIONS_BATTLE_FACTORY_CURSOR_H

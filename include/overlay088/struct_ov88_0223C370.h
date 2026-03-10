@@ -1,7 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_OV88_0223C370_H
 #define POKEPLATINUM_STRUCT_OV88_0223C370_H
 
-#include "struct_decls/pokedexdata_decl.h"
 #include "struct_defs/wi_fi_history.h"
 
 #include "field/field_system_decl.h"
@@ -11,6 +10,7 @@
 #include "journal.h"
 #include "pal_pad.h"
 #include "party.h"
+#include "pokedex.h"
 #include "pokemon.h"
 #include "savedata.h"
 #include "trainer_info.h"

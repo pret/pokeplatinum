@@ -2,7 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
-            "id": "ROUTE_204_NORTH_BUG_CATCHER_BRANDON",
+            "id": "LOCALID_BUG_CATCHER_BRANDON",
             "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
             "movement_type": "MOVEMENT_TYPE_WALK_BACK_AND_FORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -19,7 +19,7 @@
             "y": 5
         },
         {
-            "id": "ROUTE_204_NORTH_AROMA_LADY_TAYLOR",
+            "id": "LOCALID_AROMA_LADY_TAYLOR",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -36,7 +36,7 @@
             "y": 5
         },
         {
-            "id": "ROUTE_204_NORTH_TWIN_LIV",
+            "id": "LOCALID_TWIN_LIV",
             "graphics_id": "OBJ_EVENT_GFX_TWIN",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -54,7 +54,7 @@
             "y": 5
         },
         {
-            "id": "ROUTE_204_NORTH_TWIN_LIZ",
+            "id": "LOCALID_TWIN_LIZ",
             "graphics_id": "OBJ_EVENT_GFX_TWIN",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -72,7 +72,7 @@
             "y": 5
         },
         {
-            "id": "ROUTE_204_NORTH_YOUNGSTER_4",
+            "id": "LOCALID_YOUNGSTER_NORTH",
             "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
             "movement_type": "MOVEMENT_TYPE_WANDER_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -87,7 +87,7 @@
             "y": 5
         },
         {
-            "id": "ROUTE_204_NORTH_ARROW_SIGNPOST_5",
+            "id": "LOCALID_ARROW_SIGNPOST",
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -104,7 +104,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_204_NORTH_SIGNBOARD_6",
+            "id": "LOCALID_SIGNBOARD",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -119,7 +119,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_204_NORTH_YOUNGSTER_7",
+            "id": "LOCALID_YOUNGSTER_SOUTH",
             "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
             "movement_type": "MOVEMENT_TYPE_WANDER_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -134,7 +134,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_204_NORTH_CUT_TREE_8",
+            "id": "LOCALID_CUT_TREE",
             "graphics_id": "OBJ_EVENT_GFX_CUT_TREE",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -164,7 +164,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_204_NORTH_ACE_TRAINER_F_10",
+            "id": "LOCALID_ACE_TRAINER_F",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",

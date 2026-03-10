@@ -293,13 +293,7 @@ _03F8:
     EndMovement
 
 PalParkLobby_RecordUnused:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message PalParkLobby_Text_TheCurrentRecordHolderIsXWithYPoints
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage PalParkLobby_Text_TheCurrentRecordHolderIsXWithYPoints
     End
 
 PalParkLobby_Daughter:
@@ -335,44 +329,20 @@ PalParkLobby_Daughter_IHopeYouDoBetterNextTime:
 
 PalParkLobby_Dad:
     BufferPlayerName 0
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message PalParkLobby_Text_PlayerMyDaughterIsABigFanOfYours
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage PalParkLobby_Text_PlayerMyDaughterIsABigFanOfYours
     End
 
 PalParkLobby_ShowWatcherBoy:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message PalParkLobby_Text_WeGetToSeeRareAndExoticPokemon
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage PalParkLobby_Text_WeGetToSeeRareAndExoticPokemon
     End
 
 PalParkLobby_ComplaintsLady:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message PalParkLobby_Text_RarePokemonTakeLongerToAppear
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage PalParkLobby_Text_RarePokemonTakeLongerToAppear
     End
 
 PalParkLobby_RecordGuy:
     Call PalParkLobby_BufferRecord
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message PalParkLobby_Text_TheCurrentRecordHolderIsXWithYPoints
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage PalParkLobby_Text_TheCurrentRecordHolderIsXWithYPoints
     End
 
 PalParkLobby_Oak:

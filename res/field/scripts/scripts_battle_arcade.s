@@ -515,101 +515,43 @@ BattleArcade_UnusedMovement2:
     EndMovement
 
 _079C:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 46
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 46
     End
 
 _07AF:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 47
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 47
     End
 
 _07C2:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 48
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 48
     End
 
 _07D5:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 49
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 49
     End
 
 _07E8:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 50
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 50
     End
 
 _07FB:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 51
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 51
     End
 
 _080E:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 52
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 52
     End
 
 _0821:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 53
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 53
     End
 
 _0834:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    Message 54
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    EventMessage 54
     End
 
 _0845:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    Message 55
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    EventMessage 55
     End
 
     .balign 4, 0

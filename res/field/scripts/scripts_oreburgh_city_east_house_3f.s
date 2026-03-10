@@ -7,21 +7,9 @@
     ScriptEntryEnd
 
 OreburghCityEastHouse3F_ScientistM:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message OreburghCityEastHouse3F_Text_TheCoalMineHeresFullyAutomated
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage OreburghCityEastHouse3F_Text_TheCoalMineHeresFullyAutomated
     End
 
 OreburghCityEastHouse3F_AceTrainerM:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message OreburghCityEastHouse3F_Text_YouRemindMeSoMuchOfTheTimeIGotMyFirstPokemon
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage OreburghCityEastHouse3F_Text_YouRemindMeSoMuchOfTheTimeIGotMyFirstPokemon
     End

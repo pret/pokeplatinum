@@ -8,33 +8,15 @@
     ScriptEntryEnd
 
 JubilifeTV4F_MiddleAgedMan:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message JubilifeTV4F_Text_YourExploitsAreFantastic
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage JubilifeTV4F_Text_YourExploitsAreFantastic
     End
 
 JubilifeTV4F_Receptionist:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message JubilifeTV4F_Text_ParticipationForAllIsOurTVNetworksMotto
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage JubilifeTV4F_Text_ParticipationForAllIsOurTVNetworksMotto
     End
 
 JubilifeTV4F_PokemonBreederF:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message JubilifeTV4F_Text_WerePromotingTheThemeSmilesAreDreamy
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage JubilifeTV4F_Text_WerePromotingTheThemeSmilesAreDreamy
     End
 
     .balign 4, 0

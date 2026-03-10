@@ -8,36 +8,15 @@
     ScriptEntryEnd
 
 OreburghCityWestHouse_Youngster:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message OreburghCityWestHouse_Text_HaveYouEverSeenOrHeardAboutDifferentlyColoredPokemon
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage OreburghCityWestHouse_Text_HaveYouEverSeenOrHeardAboutDifferentlyColoredPokemon
     End
 
 OreburghCityWestHouse_PokefanF:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message OreburghCityWestHouse_Text_YouKnowHowPokemonHaveDifferentNaturesLikeWeHavePersonalities
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage OreburghCityWestHouse_Text_YouKnowHowPokemonHaveDifferentNaturesLikeWeHavePersonalities
     End
 
 OreburghCityWestHouse_Pikachu:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    WaitFanfare SEQ_SE_CONFIRM
-    PlayCry SPECIES_PIKACHU
-    Message OreburghCityWestHouse_Text_PikachuPikaaah
-    WaitCry
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    PokemonCryAndMessage SPECIES_PIKACHU, OreburghCityWestHouse_Text_PikachuPikaaah
     End
 
     .balign 4, 0

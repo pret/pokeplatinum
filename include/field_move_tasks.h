@@ -6,6 +6,7 @@
 #include "field/field_system_decl.h"
 
 #include "field_task.h"
+#include "pokemon.h"
 
 typedef struct FieldMoveContext {
     u32 mapId;
@@ -45,9 +46,21 @@ enum TaskOrError {
     FIELD_MOVE_ERROR,
 };
 
-typedef void (*FieldMoveTaskContext)(FieldMovePokemon *, const FieldMoveContext *);
+typedef struct FlyContext {
+    FieldSystem *fieldSystem;
+    int state;
+    u16 mapID;
+    s16 x;
+    s16 z;
+    Pokemon *mon;
+    SysTask *cutInTask;
+} FlyContext;
+
+typedef void (*FieldMoveTask)(FieldMovePokemon *, const FieldMoveContext *);
 typedef enum FieldMoveError (*FieldMoveErrContext)(const FieldMoveContext *);
 
+FlyContext *FlyContext_New(enum HeapID heapID, FieldSystem *fieldSystem, Pokemon *mon, u16 mapID, s16 x, s16 z);
+BOOL FieldMoves_FlyTask(FieldTask *fieldTask);
 void *FieldMove_GetTaskOrError(u16 taskOrError, u16 fieldMove);
 void FieldMoves_SetUsableMoves(FieldSystem *fieldSystem, FieldMoveContext *fieldMoveContext);
 

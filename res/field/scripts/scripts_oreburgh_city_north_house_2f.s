@@ -8,23 +8,11 @@
     ScriptEntryEnd
 
 OreburghCityNorthHouse2F_Guitarist:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message OreburghCityNorthHouse2F_Text_AllPokemonHaveASpecialPowerCalledAnAbility
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage OreburghCityNorthHouse2F_Text_AllPokemonHaveASpecialPowerCalledAnAbility
     End
 
 OreburghCityNorthHouse2F_PokemonBreederF:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message OreburghCityNorthHouse2F_Text_MyFavoritePokemonAbilityIsMyPachirisusPickup
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage OreburghCityNorthHouse2F_Text_MyFavoritePokemonAbilityIsMyPachirisusPickup
     End
 
 OreburghCityNorthHouse2F_Collector:

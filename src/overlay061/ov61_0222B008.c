@@ -4,7 +4,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/pc_boxes_decl.h"
 #include "struct_defs/dress_up_photo.h"
 #include "struct_defs/struct_02030A80.h"
 
@@ -28,6 +27,7 @@
 #include "gds.h"
 #include "heap.h"
 #include "message.h"
+#include "pc_boxes.h"
 #include "play_time.h"
 #include "save_player.h"
 #include "string_gf.h"

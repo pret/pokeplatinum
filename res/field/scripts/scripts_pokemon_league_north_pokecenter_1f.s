@@ -98,23 +98,11 @@ PokemonLeagueNorthPokecenter1F_Movement_DoorGuardMoveAwayEastWest:
     EndMovement
 
 PokemonLeagueNorthPokecenter1F_VendorCommon:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Common_VendorGreeting
-    CloseMessageWithoutErasing
-    PokeMartCommon
-    ReleaseAll
+    PokeMartCommonWithGreeting
     End
 
 PokemonLeagueNorthPokecenter1F_VendorSpecial:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Common_VendorGreeting
-    CloseMessageWithoutErasing
-    PokeMartSpecialties MART_SPECIALTIES_ID_POKEMON_LEAGUE
-    ReleaseAll
+    PokeMartSpecialtiesWithGreeting MART_SPECIALTIES_ID_POKEMON_LEAGUE
     End
 
 PokemonLeagueNorthPokecenter1F_RivalTrigger:
@@ -252,23 +240,11 @@ PokemonLeagueNorthPokecenter1F_Movement_RivalLeaveWest:
     EndMovement
 
 PokemonLeagueNorthPokecenter1F_AceTrainerF:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message PokemonLeagueNorthPokecenter1F_Text_ImNeverGivingUp
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage PokemonLeagueNorthPokecenter1F_Text_ImNeverGivingUp
     End
 
 PokemonLeagueNorthPokecenter1F_Guitarist:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message PokemonLeagueNorthPokecenter1F_Text_ExperienceItForYourself
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage PokemonLeagueNorthPokecenter1F_Text_ExperienceItForYourself
     End
 
 PokemonLeagueNorthPokecenter1F_Nurse:

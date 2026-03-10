@@ -1,13 +1,10 @@
 #include "scrcmd_party.h"
 
 #include <nitro.h>
-#include <string.h>
 
 #include "constants/heap.h"
 #include "generated/natures.h"
 #include "generated/species.h"
-
-#include "struct_decls/pc_boxes_decl.h"
 
 #include "field/field_system.h"
 #include "overlay005/daycare.h"

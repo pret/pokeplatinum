@@ -53,12 +53,7 @@ TwinleafTownRivalHouse2F_Movement_PlayerMoveAwayFromStairs:
     EndMovement
 
 TwinleafTownRivalHouse2F_Wii:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    Message TwinleafTownRivalHouse2F_Text_ItsAWii
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    EventMessage TwinleafTownRivalHouse2F_Text_ItsAWii
     End
 
 TwinleafTownRivalHouse2F_PC:

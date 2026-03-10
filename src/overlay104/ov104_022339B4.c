@@ -235,7 +235,7 @@ static void ov104_02233F1C(UnkStruct_ov104_0223ADA0 *param0)
     u16 v6[6];
     u32 v7[6];
 
-    u8 v3 = ov104_0223AA50(param0->unk_04);
+    u8 v3 = BattleFactory_GetPartySize(param0->unk_04);
 
     for (v0 = 0; v0 < (7 * 2); v0++) {
         param0->unk_18[v0] = (u16)sub_02030030(param0->unk_4F4, 3, v0, NULL);
@@ -343,7 +343,7 @@ void ov104_02234148(UnkStruct_ov104_0223ADA0 *param0, u8 param1)
     UnkStruct_020300F4 *v14 = sub_020300F4(param0->saveData);
 
     frontier = SaveData_GetBattleFrontier(param0->saveData);
-    v3 = ov104_0223AA50(param0->unk_04);
+    v3 = BattleFactory_GetPartySize(param0->unk_04);
     v4 = ov104_0223AA74(param0->unk_04, 1);
 
     v5[0] = param0->unk_05;
@@ -469,7 +469,7 @@ void ov104_0223449C(UnkStruct_ov104_0223ADA0 *param0)
     Pokemon *v3;
     const UnkStruct_ov104_0224028C *v4;
 
-    v1 = ov104_0223AA50(param0->unk_04);
+    v1 = BattleFactory_GetPartySize(param0->unk_04);
     v2 = ov104_0223AA74(param0->unk_04, 1);
 
     Party_Init(param0->unk_4D4);
@@ -560,7 +560,7 @@ void ov104_0223470C(UnkStruct_ov104_0223ADA0 *param0)
     Pokemon *v3;
     int v4;
 
-    v1 = ov104_0223AA50(param0->unk_04);
+    v1 = BattleFactory_GetPartySize(param0->unk_04);
     v2 = ov104_0223AA74(param0->unk_04, 1);
 
     Party_Init(param0->unk_4D8);

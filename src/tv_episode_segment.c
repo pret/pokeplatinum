@@ -12,7 +12,6 @@
 #include "generated/natures.h"
 #include "generated/pokemon_stats.h"
 
-#include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0202440C_decl.h"
 #include "struct_defs/dress_up_photo.h"
 #include "struct_defs/image_clips.h"

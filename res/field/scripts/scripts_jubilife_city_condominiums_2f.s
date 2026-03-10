@@ -7,21 +7,9 @@
     ScriptEntryEnd
 
 JubilifeCityCondominiums2F_BugCatcher:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message JubilifeCityCondominiums2F_Text_ILikeHowPokemonCanUseAttacks
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage JubilifeCityCondominiums2F_Text_ILikeHowPokemonCanUseAttacks
     End
 
 JubilifeCityCondominiums2F_PokemonBreederM:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message JubilifeCityCondominiums2F_Text_DidYouBuySomeHealBallsAtThePokeMart
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage JubilifeCityCondominiums2F_Text_DidYouBuySomeHealBallsAtThePokeMart
     End

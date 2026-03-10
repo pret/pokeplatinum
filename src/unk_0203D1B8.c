@@ -106,6 +106,7 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "savedata_misc.h"
+#include "start_menu.h"
 #include "string_gf.h"
 #include "system_data.h"
 #include "system_flags.h"
@@ -129,7 +130,6 @@
 #include "unk_02098218.h"
 #include "vars_flags.h"
 
-#include "constdata/const_020EA02C.h"
 #include "constdata/const_020EA328.h"
 #include "constdata/const_020EA358.h"
 #include "constdata/const_020F2FCC.h"
@@ -258,7 +258,7 @@ static const u8 Unk_020EA164[] = {
     0xff
 };
 
-void sub_0203D1E4(FieldSystem *fieldSystem, void *param1)
+void sub_0203D1E4(FieldSystem *fieldSystem, BagContext *param1)
 {
     FS_EXTERN_OVERLAY(bag);
 
@@ -272,30 +272,30 @@ void sub_0203D1E4(FieldSystem *fieldSystem, void *param1)
     FieldSystem_StartChildProcess(fieldSystem, &Unk_ov84_02241130, param1);
 }
 
-void *sub_0203D20C(FieldSystem *fieldSystem, ItemUseContext *param1)
+BagContext *FieldSystem_OpenBag(FieldSystem *fieldSystem, ItemUseContext *itemUseCtx)
 {
-    Bag *v0 = SaveData_GetBag(fieldSystem->saveData);
-    void *v1 = BagContext_CreateWithPockets(v0, Unk_020EA164, HEAP_ID_FIELD2);
+    Bag *bag = SaveData_GetBag(fieldSystem->saveData);
+    BagContext *bagCtx = BagContext_CreateWithPockets(bag, Unk_020EA164, HEAP_ID_FIELD2);
 
-    BagContext_Init(v1, fieldSystem->saveData, 0, fieldSystem->bagCursor);
-    BagContext_SetMapLoadType(v1, fieldSystem->mapLoadType);
+    BagContext_Init(bagCtx, fieldSystem->saveData, 0, fieldSystem->bagCursor);
+    BagContext_SetMapLoadType(bagCtx, fieldSystem->mapLoadType);
 
-    if (PlayerAvatar_GetPlayerState(fieldSystem->playerAvatar) == 0x1) {
-        BagContext_SetIsCycling(v1);
+    if (PlayerAvatar_GetPlayerState(fieldSystem->playerAvatar) == PLAYER_STATE_CYCLING) {
+        BagContext_SetIsCycling(bagCtx);
     }
 
-    BagContext_SetItemUseContext(v1, param1);
-    sub_0203D1E4(fieldSystem, v1);
+    BagContext_SetItemUseContext(bagCtx, itemUseCtx);
+    sub_0203D1E4(fieldSystem, bagCtx);
 
-    return v1;
+    return bagCtx;
 }
 
 void *FieldSystem_CreateBagContext(FieldSystem *fieldSystem, int pocketType)
 {
     void *bagContext;
     static const u8 *pocketList;
-    static const u8 berriesPockets[] = { POCKET_BERRIES, 255 };
-    static const u8 itemsPockets[] = { POCKET_ITEMS, 255 };
+    static const u8 berriesPockets[] = { POCKET_BERRIES, POCKET_LIST_END };
+    static const u8 itemsPockets[] = { POCKET_ITEMS, POCKET_LIST_END };
     Bag *bag = SaveData_GetBag(fieldSystem->saveData);
 
     switch (pocketType) {
@@ -530,7 +530,7 @@ void *sub_0203D5C8(int param0, FieldSystem *fieldSystem, int param2)
     v0->showContest = PokemonSummaryScreen_ShowContestData(fieldSystem->saveData);
     v0->chatotCry = NULL;
 
-    PokemonSummaryScreen_FlagVisiblePages(v0, Unk_020EA02C);
+    PokemonSummaryScreen_FlagVisiblePages(v0, gAllSummaryScreenPages);
     PokemonSummaryScreen_SetPlayerProfile(v0, SaveData_GetTrainerInfo(fieldSystem->saveData));
     FieldSystem_StartChildProcess(fieldSystem, &gPokemonSummaryScreenApp, v0);
 
@@ -1271,7 +1271,7 @@ void FieldSystem_OpenTrainerCardScreen(FieldSystem *fieldSystem, TrainerCard *tr
     FieldSystem_StartChildProcess(fieldSystem, &template, trainerCard);
 }
 
-BOOL sub_0203E0AC(FieldSystem *fieldSystem, void *param1)
+BOOL FieldSystem_OpenPokedex(FieldSystem *fieldSystem, PokedexOverlayArgs *args)
 {
     FS_EXTERN_OVERLAY(pokedex);
 
@@ -1282,8 +1282,8 @@ BOOL sub_0203E0AC(FieldSystem *fieldSystem, void *param1)
         FS_OVERLAY_ID(pokedex)
     };
 
-    FieldSystem_StartChildProcess(fieldSystem, &template, param1);
-    return 1;
+    FieldSystem_StartChildProcess(fieldSystem, &template, args);
+    return TRUE;
 }
 
 void FieldSystem_LaunchChooseStarterApp(FieldSystem *fieldSystem, ChooseStarterData *chooseStarterData)

@@ -32,33 +32,15 @@ JubilifeTV3FGroupRankingRoom_RecordMachineContests:
     End
 
 JubilifeTV3FGroupRankingRoom_Youngster:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message JubilifeTV3FGroupRankingRoom_Text_YouCanSeeTheRankingsOfPeopleInYourGroupHere
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage JubilifeTV3FGroupRankingRoom_Text_YouCanSeeTheRankingsOfPeopleInYourGroupHere
     End
 
 JubilifeTV3FGroupRankingRoom_BattleGirl:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message JubilifeTV3FGroupRankingRoom_Text_TheseRankingsAreNifty
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage JubilifeTV3FGroupRankingRoom_Text_TheseRankingsAreNifty
     End
 
 JubilifeTV3FGroupRankingRoom_Worker:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message JubilifeTV3FGroupRankingRoom_Text_SorryImStillFineTuningThisThingyHere
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage JubilifeTV3FGroupRankingRoom_Text_SorryImStillFineTuningThisThingyHere
     End
 
     .balign 4, 0

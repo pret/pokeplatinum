@@ -197,7 +197,7 @@ static const u8 sShop_BagPockets[] = {
     POCKET_MAIL,
     POCKET_BATTLE_ITEMS,
     POCKET_KEY_ITEMS,
-    -1
+    POCKET_LIST_END,
 };
 
 static const WindowTemplate sShop_FrontierCurrMoneyWindowTemplate = {

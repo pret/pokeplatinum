@@ -645,7 +645,7 @@ BOOL ov104_0222F238(UnkStruct_ov104_0223ADA0 *param0)
     v5 = 60;
     v3 = param0->unk_504;
     v2 = 0;
-    v0 = ov104_0223AA50(param0->unk_04);
+    v0 = BattleFactory_GetPartySize(param0->unk_04);
 
     for (v1 = 0; v1 < v0; v1++) {
         v8 = Party_GetPokemonBySlotIndex(param0->unk_4D4, v1);
@@ -698,7 +698,7 @@ void ov104_0222F31C(int param0, int param1, void *param2, void *param3)
         return;
     }
 
-    v2 = ov104_0223AA50(v6->unk_04);
+    v2 = BattleFactory_GetPartySize(v6->unk_04);
 
     for (v0 = 0; v0 < v2; v0++) {
         v6->unk_584[v0] = v7[v0];

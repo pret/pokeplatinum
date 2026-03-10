@@ -16,11 +16,13 @@
 #include "applications/party_menu/defs.h"
 #include "applications/pc_boxes/pokemon_storage_session.h"
 #include "applications/poffin_case/main.h"
+#include "applications/pokedex/pokedex_main.h"
 #include "applications/pokemon_summary_screen/main.h"
 #include "applications/town_map/main.h"
 #include "field/field_system_decl.h"
 #include "overlay090/struct_ov90_021D0D80.h"
 
+#include "bag_context.h"
 #include "field_battle_data_transfer.h"
 #include "field_move_tasks.h"
 #include "field_task.h"
@@ -31,8 +33,8 @@
 #include "trainer_card.h"
 
 void FieldSystem_StartBattleProcess(FieldSystem *fieldSystem, FieldBattleDTO *dto);
-void sub_0203D1E4(FieldSystem *fieldSystem, void *param1);
-void *sub_0203D20C(FieldSystem *fieldSystem, ItemUseContext *param1);
+void sub_0203D1E4(FieldSystem *fieldSystem, BagContext *param1);
+BagContext *FieldSystem_OpenBag(FieldSystem *fieldSystem, ItemUseContext *param1);
 void *FieldSystem_CreateBagContext(FieldSystem *fieldSystem, int pocketType);
 u16 BagContext_GetSelectedItem(void *bagContext);
 void sub_0203D2E4(FieldSystem *fieldSystem, void *param1);
@@ -85,7 +87,7 @@ void sub_0203DFE8(
     u16 *param6);
 void sub_0203E09C(FieldSystem *fieldSystem, TrainerCard *param1);
 void FieldSystem_OpenTrainerCardScreen(FieldSystem *fieldSystem, TrainerCard *trainerCard);
-BOOL sub_0203E0AC(FieldSystem *fieldSystem, void *param1);
+BOOL FieldSystem_OpenPokedex(FieldSystem *fieldSystem, PokedexOverlayArgs *args);
 void FieldSystem_LaunchChooseStarterApp(FieldSystem *fieldSystem, ChooseStarterData *param1);
 void sub_0203E0D0(FieldSystem *fieldSystem);
 void FieldSystem_LaunchGTSApp(FieldSystem *fieldSystem, BOOL connectToWiFi);

@@ -28,7 +28,7 @@
 
 FS_EXTERN_OVERLAY(overlay63);
 FS_EXTERN_OVERLAY(overlay104);
-FS_EXTERN_OVERLAY(overlay105);
+FS_EXTERN_OVERLAY(battle_factory_app);
 
 typedef struct UnkStruct_0209B75C_t {
     UnkStruct_ov104_02230BE4 *unk_00;
@@ -225,14 +225,14 @@ static void sub_0209B8E8(UnkStruct_0209B75C *param0)
 static void sub_0209B924(void)
 {
     Overlay_LoadByID(FS_OVERLAY_ID(overlay104), 2);
-    Overlay_LoadByID(FS_OVERLAY_ID(overlay105), 2);
+    Overlay_LoadByID(FS_OVERLAY_ID(battle_factory_app), 2);
     Overlay_LoadByID(FS_OVERLAY_ID(overlay63), 2);
 }
 
 static void sub_0209B94C(void)
 {
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay104));
-    Overlay_UnloadByID(FS_OVERLAY_ID(overlay105));
+    Overlay_UnloadByID(FS_OVERLAY_ID(battle_factory_app));
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay63));
 }
 

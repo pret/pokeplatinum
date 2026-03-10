@@ -9,41 +9,17 @@
     ScriptEntryEnd
 
 FloaromaTownMart_CommonVendor:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Common_VendorGreeting
-    CloseMessageWithoutErasing
-    PokeMartCommon
-    ReleaseAll
+    PokeMartCommonWithGreeting
     End
 
 FloaromaTownMart_SpecialtyVendor:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Common_VendorGreeting
-    CloseMessageWithoutErasing
-    PokeMartSpecialties MART_SPECIALTIES_ID_FLOAROMA
-    ReleaseAll
+    PokeMartSpecialtiesWithGreeting MART_SPECIALTIES_ID_FLOAROMA
     End
 
 FloaromaTownMart_Beauty:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message FloaromaTownMart_Text_DressUpPokemonWithAccessories
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage FloaromaTownMart_Text_DressUpPokemonWithAccessories
     End
 
 FloaromaTownMart_SchoolGirl:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message FloaromaTownMart_Text_CantBuyBerriesAtMarts
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage FloaromaTownMart_Text_CantBuyBerriesAtMarts
     End

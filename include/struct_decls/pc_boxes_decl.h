@@ -1,6 +1,0 @@
-#ifndef POKEPLATINUM_PC_BOXES_DECL_H
-#define POKEPLATINUM_PC_BOXES_DECL_H
-
-typedef struct PCBoxes PCBoxes;
-
-#endif // POKEPLATINUM_PC_BOXES_DECL_H

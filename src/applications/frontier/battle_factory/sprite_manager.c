@@ -22,7 +22,7 @@ void BattleFactoryApp_InitSpriteManager(BattleFactoryAppSpriteManager *sprites)
     NNS_G2dInitOamManagerModule();
     RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, HEAP_ID_BATTLE_FACTORY_APP);
 
-    sprites->spriteList = SpriteList_InitRendering(9, &sprites->unk_04, HEAP_ID_BATTLE_FACTORY_APP);
+    sprites->spriteList = SpriteList_InitRendering(9, &sprites->g2dRenderer, HEAP_ID_BATTLE_FACTORY_APP);
 
     for (int i = 0; i < MAX_SPRITE_RESOURCE_GEN4; i++) {
         sprites->resourceCollection[i] = SpriteResourceCollection_New(sCapacities[i], i, HEAP_ID_BATTLE_FACTORY_APP);

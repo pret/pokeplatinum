@@ -16,12 +16,7 @@ PokemonLeague_SignboardVictoryRoad:
     End
 
 PokemonLeague_Statue:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    Message PokemonLeague_Text_PokemonLeagueThePinnacleOfTrainerdom
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    EventMessage PokemonLeague_Text_PokemonLeagueThePinnacleOfTrainerdom
     End
 
     .balign 4, 0

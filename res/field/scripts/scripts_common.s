@@ -1364,33 +1364,15 @@ _12A8:
     End
 
 CommonScript_Vent:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message CommonStrings_Text_ItsAnAirVentThatExchangesTheUndergroundTunnelsAir
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage CommonStrings_Text_ItsAnAirVentThatExchangesTheUndergroundTunnelsAir
     End
 
 _12CD:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message pl_msg_00000213_00070
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage pl_msg_00000213_00070
     End
 
 _12E0:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message pl_msg_00000213_00071
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage pl_msg_00000213_00071
     End
 
 _12F3:
@@ -1457,13 +1439,7 @@ _139D:
     End
 
 _13AB:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message pl_msg_00000213_00082
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage pl_msg_00000213_00082
     End
 
 CommonScript_PrintPlateObtainedMessage:

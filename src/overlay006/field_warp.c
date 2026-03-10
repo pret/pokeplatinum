@@ -387,7 +387,7 @@ static enum FieldWarpStateResult StartFieldMoveCutIn(FieldTask *task, FieldSyste
 {
     int gender = PlayerAvatar_Gender(fieldSystem->playerAvatar);
 
-    fieldWarp->cutInTask = SysTask_HMCutIn_New(fieldSystem, 0, fieldWarp->mon, gender);
+    fieldWarp->cutInTask = HMCutIn_StartTask(fieldSystem, 0, fieldWarp->mon, gender);
     fieldWarp->state++;
 
     return STATE_RESULT_NEXT_STATE;
@@ -395,11 +395,11 @@ static enum FieldWarpStateResult StartFieldMoveCutIn(FieldTask *task, FieldSyste
 
 static enum FieldWarpStateResult FinishFieldMoveCutIn(FieldTask *task, FieldSystem *fieldSystem, FieldWarp *fieldWarp)
 {
-    if (CheckHMCutInFinished(fieldWarp->cutInTask) == FALSE) {
+    if (HMCutIn_IsFinished(fieldWarp->cutInTask) == FALSE) {
         return STATE_RESULT_NEXT_STATE;
     }
 
-    SysTask_HMCutIn_SetTaskDone(fieldWarp->cutInTask);
+    HMCutIn_EndTask(fieldWarp->cutInTask);
     fieldWarp->state++;
     return STATE_RESULT_REPEAT_STATE;
 }

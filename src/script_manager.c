@@ -404,8 +404,8 @@ void FieldSystem_ShowStartMenu(FieldSystem *fieldSystem)
 {
     ScriptManager *scriptManager = FieldTask_GetEnv(fieldSystem->task);
 
-    if (sub_0203A9C8(fieldSystem) == TRUE) {
-        scriptManager->function = StartMenu_Open;
+    if (FieldSystem_IsInValidLocation(fieldSystem) == TRUE) {
+        scriptManager->function = StartMenu_OpenFromScript;
     }
 }
 

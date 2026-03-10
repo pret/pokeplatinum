@@ -279,41 +279,17 @@ _034C:
     EndMovement
 
 _0358:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 32
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 32
     End
 
 _036B:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 33
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 33
     End
 
 _037E:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 34
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 34
     End
 
 _0391:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 35
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 35
     End

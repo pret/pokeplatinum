@@ -9,41 +9,17 @@
     ScriptEntryEnd
 
 SolaceonTownMart_CommonVendor:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Common_VendorGreeting
-    CloseMessageWithoutErasing
-    PokeMartCommon
-    ReleaseAll
+    PokeMartCommonWithGreeting
     End
 
 SolaceonTownMart_SpecialtyVendor:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Common_VendorGreeting
-    CloseMessageWithoutErasing
-    PokeMartSpecialties MART_SPECIALTIES_ID_SOLACEON
-    ReleaseAll
+    PokeMartSpecialtiesWithGreeting MART_SPECIALTIES_ID_SOLACEON
     End
 
 SolaceonTownMart_NinjaBoy:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message SolaceonTownMart_Text_NeedPCToSealPokeBalls
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage SolaceonTownMart_Text_NeedPCToSealPokeBalls
     End
 
 SolaceonTownMart_Pokefan:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message SolaceonTownMart_Text_ConsiderSuperRepels
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage SolaceonTownMart_Text_ConsiderSuperRepels
     End

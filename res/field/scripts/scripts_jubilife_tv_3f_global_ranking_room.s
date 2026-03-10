@@ -33,41 +33,17 @@ JubilifeTV3FGlobalRankingRoom_RecordMachineContests:
     End
 
 JubilifeTV3FGlobalRankingRoom_AceTrainerF:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message JubilifeTV3FGlobalRankingRoom_Text_SomeoneBrokeMyPokemonCatchingRecord
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage JubilifeTV3FGlobalRankingRoom_Text_SomeoneBrokeMyPokemonCatchingRecord
     End
 
 JubilifeTV3FGlobalRankingRoom_Collector:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message JubilifeTV3FGlobalRankingRoom_Text_IBetItdFeelGreatIfICouldBeNumberOneHere
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage JubilifeTV3FGlobalRankingRoom_Text_IBetItdFeelGreatIfICouldBeNumberOneHere
     End
 
 JubilifeTV3FGlobalRankingRoom_Fisherman:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message JubilifeTV3FGlobalRankingRoom_Text_ImTryingForTheWorldRecordAtPokemonFishing
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage JubilifeTV3FGlobalRankingRoom_Text_ImTryingForTheWorldRecordAtPokemonFishing
     End
 
 JubilifeTV3FGlobalRankingRoom_Worker:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message JubilifeTV3FGlobalRankingRoom_Text_SorryImStillFineTuningThisThingyHere
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage JubilifeTV3FGlobalRankingRoom_Text_SorryImStillFineTuningThisThingyHere
     End

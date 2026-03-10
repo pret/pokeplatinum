@@ -1,6 +1,0 @@
-#ifndef POKEPLATINUM_STRUCT_0200B144_DECL_H
-#define POKEPLATINUM_STRUCT_0200B144_DECL_H
-
-typedef struct MessageLoader_t MessageLoader;
-
-#endif // POKEPLATINUM_STRUCT_0200B144_DECL_H

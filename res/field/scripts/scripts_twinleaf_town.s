@@ -469,13 +469,7 @@ TwinleafTown_Movement_RivalEnterHouse:
     EndMovement
 
 TwinleafTown_Collector:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message TwinleafTown_Text_TechnologyBlowsMeAway
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage TwinleafTown_Text_TechnologyBlowsMeAway
     End
 
 TwinleafTown_BreederF:

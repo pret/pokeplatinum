@@ -435,12 +435,7 @@ _057A:
     End
 
 _0585:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    Message 12
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    EventMessage 12
     End
 
 _0596:

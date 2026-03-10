@@ -4,8 +4,6 @@
 
 #include "constants/heap.h"
 
-#include "struct_decls/pokedexdata_decl.h"
-
 #include "applications/pokedex/pokedex_sort_data.h"
 #include "applications/pokedex/sorted_pokedex.h"
 #include "applications/pokedex/species_caught_status.h"

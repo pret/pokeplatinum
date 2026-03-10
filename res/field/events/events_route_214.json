@@ -246,8 +246,8 @@
             "y": 0
         },
         {
-            "id": "ROUTE_214_UNK_100_13",
-            "graphics_id": "OBJ_EVENT_GFX_UNK_100",
+            "id": "ROUTE_214_BERRY_SOIL_13",
+            "graphics_id": "OBJ_EVENT_GFX_BERRY_SOIL",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
@@ -263,8 +263,8 @@
             "y": 0
         },
         {
-            "id": "ROUTE_214_UNK_100_14",
-            "graphics_id": "OBJ_EVENT_GFX_UNK_100",
+            "id": "ROUTE_214_BERRY_SOIL_14",
+            "graphics_id": "OBJ_EVENT_GFX_BERRY_SOIL",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
@@ -280,8 +280,8 @@
             "y": 0
         },
         {
-            "id": "ROUTE_214_UNK_100_15",
-            "graphics_id": "OBJ_EVENT_GFX_UNK_100",
+            "id": "ROUTE_214_BERRY_SOIL_15",
+            "graphics_id": "OBJ_EVENT_GFX_BERRY_SOIL",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
@@ -297,8 +297,8 @@
             "y": 0
         },
         {
-            "id": "ROUTE_214_UNK_100_16",
-            "graphics_id": "OBJ_EVENT_GFX_UNK_100",
+            "id": "ROUTE_214_BERRY_SOIL_16",
+            "graphics_id": "OBJ_EVENT_GFX_BERRY_SOIL",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",

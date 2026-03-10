@@ -9,23 +9,11 @@
     ScriptEntryEnd
 
 OreburghCityNorthwestHouse2F_Worker:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message OreburghCityNorthwestHouse2F_Text_GivingNicknamesToPokemonIsTheWayToGo
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage OreburghCityNorthwestHouse2F_Text_GivingNicknamesToPokemonIsTheWayToGo
     End
 
 OreburghCityNorthwestHouse2F_SchoolKidF:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message OreburghCityNorthwestHouse2F_Text_ButHeNamedOurPsyduckYellowJustBecauseOfItsColor
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage OreburghCityNorthwestHouse2F_Text_ButHeNamedOurPsyduckYellowJustBecauseOfItsColor
     End
 
 OreburghCityNorthwestHouse2F_Lass:
@@ -58,16 +46,7 @@ OreburghCityNorthwestHouse2F_TheDuskBallIsAPokeBallDesignedForUseInDarkness:
     End
 
 OreburghCityNorthwestHouse2F_Psyduck:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    WaitFanfare SEQ_SE_CONFIRM
-    PlayCry SPECIES_PSYDUCK
-    Message OreburghCityNorthwestHouse2F_Text_YellowDuuuck
-    WaitCry
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    PokemonCryAndMessage SPECIES_PSYDUCK, OreburghCityNorthwestHouse2F_Text_YellowDuuuck
     End
 
     .balign 4, 0

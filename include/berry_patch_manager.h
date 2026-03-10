@@ -3,10 +3,11 @@
 
 #include "constants/heap.h"
 
-#include "struct_decls/berry_patch_manager_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 
 #include "field/field_system_decl.h"
+
+#include "berry_patches.h"
 
 enum BerryWateringState {
     BERRY_WATERING_STATE_INIT = 0, // Initial state - setting up watering mode
@@ -22,6 +23,14 @@ enum BerryPatchFlags {
     BERRY_PATCH_FLAG_CAN_MULCH = 0x2, // Patch can have mulch applied
     BERRY_PATCH_FLAG_HAS_BERRY = 0x4, // Patch has berry growing
 };
+
+typedef struct BerryPatchManager {
+    enum HeapID heapID;
+    BerryGrowthData *growthData;
+    NNSG3dRenderObj renderObj;
+    NNSG3dResMdl *model;
+    NNSG3dResFileHeader *resource;
+} BerryPatchManager;
 
 BerryPatchManager *BerryPatchManager_New(FieldSystem *fieldSystem, enum HeapID heapID);
 void BerryPatchManager_Free(BerryPatchManager *manager);

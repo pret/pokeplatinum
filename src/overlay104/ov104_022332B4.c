@@ -32,7 +32,7 @@
 
 #include "constdata/const_020EA358.h"
 
-FS_EXTERN_OVERLAY(overlay105);
+FS_EXTERN_OVERLAY(battle_factory_app);
 
 #include <nitro/code16.h>
 
@@ -82,13 +82,13 @@ BOOL FrontierScrCmd_5F(FrontierScriptContext *param0)
     UnkStruct_ov104_02234130 *v2;
     UnkStruct_ov104_02230BE4 *v3 = sub_0209B970(param0->unk_00->unk_00);
 
-    FS_EXTERN_OVERLAY(overlay105);
+    FS_EXTERN_OVERLAY(battle_factory_app);
 
     static const ApplicationManagerTemplate v4 = {
         BattleFactoryApp_Init,
         BattleFactoryApp_Main,
         BattleFactoryApp_Exit,
-        FS_OVERLAY_ID(overlay105)
+        FS_OVERLAY_ID(battle_factory_app)
     };
 
     v1 = sub_0209B978(param0->unk_00->unk_00);
@@ -141,13 +141,13 @@ BOOL FrontierScrCmd_62(FrontierScriptContext *param0)
     UnkStruct_ov104_02234130 *v2;
     UnkStruct_ov104_02230BE4 *v3 = sub_0209B970(param0->unk_00->unk_00);
 
-    FS_EXTERN_OVERLAY(overlay105);
+    FS_EXTERN_OVERLAY(battle_factory_app);
 
     static const ApplicationManagerTemplate v4 = {
         BattleFactoryApp_Init,
         BattleFactoryApp_Main,
         BattleFactoryApp_Exit,
-        FS_OVERLAY_ID(overlay105)
+        FS_OVERLAY_ID(battle_factory_app)
     };
 
     v1 = sub_0209B978(param0->unk_00->unk_00);
@@ -367,7 +367,7 @@ BOOL FrontierScrCmd_67(FrontierScriptContext *param0)
         ov104_0222E278(&(v4->unk_34[1]), v4->unk_18[v4->unk_06 + 7], HEAP_ID_FIELD2, 178);
         break;
     case 34:
-        v6 = ov104_0223AA50(v4->unk_04);
+        v6 = BattleFactory_GetPartySize(v4->unk_04);
 
         for (v10 = 0; v10 < v6; v10++) {
             v3 = Party_GetPokemonBySlotIndex(v4->unk_4D4, v10);

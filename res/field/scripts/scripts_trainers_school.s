@@ -105,46 +105,22 @@ _0148:
     EndMovement
 
 _0154:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 4
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 4
     End
 
 _0167:
     End
 
 _0169:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 6
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 6
     End
 
 _017C:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 8
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 8
     End
 
 _018F:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 7
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 7
     End
 
 _01A2:
@@ -381,12 +357,7 @@ _0496:
     End
 
 _049C:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    Message 27
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    EventMessage 27
     End
 
     .balign 4, 0

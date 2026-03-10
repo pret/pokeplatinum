@@ -639,96 +639,39 @@ BattleHall_UnusedMovement2:
     EndMovement
 
 BattleHall_Hiker:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message BattleHall_Text_StartWithHardMatchups
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage BattleHall_Text_StartWithHardMatchups
     End
 
 BattleHall_SnowpointNPC:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message BattleHall_Text_TryForARecord
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage BattleHall_Text_TryForARecord
     End
 
 BattleHall_Twin:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message BattleHall_Text_PachirisusACutie
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage BattleHall_Text_PachirisusACutie
     End
 
 BattleHall_Pachirisu:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    WaitFanfare SEQ_SE_CONFIRM
-    PlayCry SPECIES_PACHIRISU
-    Message BattleHall_Text_Pachirisu
-    WaitCry
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    PokemonCryAndMessage SPECIES_PACHIRISU, BattleHall_Text_Pachirisu
     End
 
 BattleHall_ExpertM:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message BattleHall_Text_TryDifferentPokemon
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage BattleHall_Text_TryDifferentPokemon
     End
 
 BattleHall_Idol:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message BattleHall_Text_TrySameSpeciesDifferentMoves
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage BattleHall_Text_TrySameSpeciesDifferentMoves
     End
 
 BattleHall_PokefanF:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message BattleHall_Text_CroagunkHasTwoTypes
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage BattleHall_Text_CroagunkHasTwoTypes
     End
 
 BattleHall_Maid:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message BattleHall_Text_MysteriousMaid
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage BattleHall_Text_MysteriousMaid
     End
 
 BattleHall_BugCatcher:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message BattleHall_Text_CompeteWithAFriend
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage BattleHall_Text_CompeteWithAFriend
     End
 
 BattleHall_RecordKeeper:

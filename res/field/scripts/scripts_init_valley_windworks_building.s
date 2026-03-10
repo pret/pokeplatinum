@@ -6,7 +6,7 @@
     InitScriptEntryEnd
 
 InitScriptFrameTable:
-    InitScriptGoToIfEqual VAR_UNK_0x40CF, 0, 2
+    InitScriptGoToIfEqual VAR_VALLEY_WINDWORKS_TEAM_GALACTIC_STATE, 0, 2
     InitScriptFrameTableEnd
 
     InitScriptEnd

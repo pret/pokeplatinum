@@ -8,33 +8,15 @@
     ScriptEntryEnd
 
 JubilifeCitySouthHouse2F_Youngster:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message JubilifeCitySouthHouse2F_SomeKindsOfPokemonEvolveWhenTheyGetStrongerFromBattling
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage JubilifeCitySouthHouse2F_SomeKindsOfPokemonEvolveWhenTheyGetStrongerFromBattling
     End
 
 JubilifeCitySouthHouse2F_PokefanF:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message JubilifeCitySouthHouse2F_EvolutionMakesPokemonJustThatMuchMoreFascinating
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage JubilifeCitySouthHouse2F_EvolutionMakesPokemonJustThatMuchMoreFascinating
     End
 
 JubilifeCitySouthHouse2F_PokemonBreederF:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message JubilifeCitySouthHouse2F_DidntProfRowanConductResearchWithProfOak
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage JubilifeCitySouthHouse2F_DidntProfRowanConductResearchWithProfOak
     End
 
     .balign 4, 0

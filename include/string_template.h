@@ -4,11 +4,11 @@
 #include "generated/abilities.h"
 #include "generated/genders.h"
 
-#include "struct_decls/pc_boxes_decl.h"
 #include "struct_defs/pokemon.h"
 #include "struct_defs/trainer.h"
 
 #include "enums.h"
+#include "pc_boxes.h"
 #include "savedata.h"
 #include "string_gf.h"
 #include "trainer_info.h"

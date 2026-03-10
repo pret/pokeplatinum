@@ -424,7 +424,7 @@ int sub_0205F588(PlayerAvatar *playerAvatar)
     return 0;
 }
 
-void sub_0205F5E4(PlayerAvatar *playerAvatar, int param1)
+void sub_0205F5E4(PlayerAvatar *playerAvatar, int dir)
 {
     MapObject *mapObj;
 
@@ -433,11 +433,11 @@ void sub_0205F5E4(PlayerAvatar *playerAvatar, int param1)
 
     mapObj = Player_MapObject(playerAvatar);
 
-    MapObject_TryFace(mapObj, param1);
+    MapObject_TryFace(mapObj, dir);
     sub_02062A0C(mapObj, 0x0);
     MapObject_UpdateCoords(mapObj);
     sub_020656DC(mapObj);
-    LocalMapObj_SetAnimationCode(mapObj, MovementAction_TurnActionTowardsDir(param1, MOVEMENT_ACTION_FACE_NORTH));
+    LocalMapObj_SetAnimationCode(mapObj, MovementAction_TurnActionTowardsDir(dir, MOVEMENT_ACTION_FACE_NORTH));
 }
 
 static int sub_0205F62C(PlayerAvatar *playerAvatar, int param1)
@@ -2426,12 +2426,12 @@ void sub_02061674(PlayerAvatar *playerAvatar, int param1, int *param2, int *para
     (*param4) += v0->unk_04;
 }
 
-u32 PlayerAvatar_GetDistortionTileBehaviour(PlayerAvatar *playerAvatar, int param1)
+u32 PlayerAvatar_GetDistortionFacingTileBehaviour(PlayerAvatar *playerAvatar, int distortionDir)
 {
     u32 v0;
 
     if (PlayerAvatar_DistortionGravityChanged(playerAvatar) == FALSE) {
-        v0 = sub_0206156C(playerAvatar, param1);
+        v0 = sub_0206156C(playerAvatar, distortionDir);
     } else {
         MapObject *mapObj = Player_MapObject(playerAvatar);
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
@@ -2439,7 +2439,7 @@ u32 PlayerAvatar_GetDistortionTileBehaviour(PlayerAvatar *playerAvatar, int para
         int y = MapObject_GetY(mapObj) / 2;
         int z = MapObject_GetZ(mapObj);
 
-        sub_02061674(playerAvatar, param1, &x, &y, &z);
+        sub_02061674(playerAvatar, distortionDir, &x, &y, &z);
         DistWorld_GetTileBehaviorOnCurrentFloatingPlatform(fieldSystem, x, y, z, &v0);
     }
 

@@ -9,13 +9,7 @@
     ScriptEntryEnd
 
 OreburghCityEastHouse2F_Gentleman:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message OreburghCityEastHouse2F_Text_TheOreburghMineIsOperatedWithTheUtmostCare
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage OreburghCityEastHouse2F_Text_TheOreburghMineIsOperatedWithTheUtmostCare
     End
 
 OreburghCityEastHouse2F_Youngster:
@@ -49,13 +43,7 @@ OreburghCityEastHouse2F_Unused:
     End
 
 OreburghCityEastHouse2F_ScientistM:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message OreburghCityEastHouse2F_Text_CoalIsCarriedOutOfTheOreburghMineOnAFullyAutomatedSystem
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage OreburghCityEastHouse2F_Text_CoalIsCarriedOutOfTheOreburghMineOnAFullyAutomatedSystem
     End
 
     .balign 4, 0

@@ -18,6 +18,7 @@
 #include "overlay063/struct_ov63_0222BB38_decl.h"
 #include "overlay064/struct_ov64_022302EC.h"
 
+#include "appearance.h"
 #include "ascii_util.h"
 #include "bag.h"
 #include "bg_window.h"
@@ -61,7 +62,6 @@
 #include "unk_0202ACE0.h"
 #include "unk_0203061C.h"
 #include "unk_0203909C.h"
-#include "unk_0205C980.h"
 #include "unk_020890F4.h"
 #include "vars_flags.h"
 #include "vram_transfer.h"
@@ -3147,7 +3147,7 @@ static void ov64_02231164(UnkStruct_ov64_02230F98 *param0, UnkStruct_ov64_0222E0
     UnkStruct_ov5_021DE5D0 v3;
     u32 v0 = sub_0202AD2C(wifiList, param1->unk_08.unk_04[param1->unk_07], 8);
     u32 v1 = sub_0202AD2C(wifiList, param1->unk_08.unk_04[param1->unk_07], 7);
-    sub_02076AAC(sub_0205CA14(v0, v1, 1), 2, &v3);
+    sub_02076AAC(Appearance_GetData(v0, v1, APPEARANCE_DATA_TRAINER_CLASS_2), 2, &v3);
 
     void *buffer = Heap_Alloc(heapID, 0xC80);
     CharacterSprite_LoadTiledData(v3.narcID, v3.unk_14, heapID, 0, 0, 10, 10, buffer);

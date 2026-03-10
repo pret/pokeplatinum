@@ -77,33 +77,15 @@ VeilstoneStore2F_AttendantXAccuracy:
     End
 
 VeilstoneStore2F_Lady:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message VeilstoneStore2F_Text_MatchingDressesForMeAndMyPokemon
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage VeilstoneStore2F_Text_MatchingDressesForMeAndMyPokemon
     End
 
 VeilstoneStore2F_BugCatcher1:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message VeilstoneStore2F_Text_GivingHPUpToKricketot
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage VeilstoneStore2F_Text_GivingHPUpToKricketot
     End
 
 VeilstoneStore2F_BugCatcher2:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message VeilstoneStore2F_Text_GettingTheCarbos
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage VeilstoneStore2F_Text_GettingTheCarbos
     End
 
 VeilstoneStore2F_PoketchVendor:
@@ -138,42 +120,19 @@ VeilstoneStore2F_PoketchVendorDeclined:
     End
 
 VeilstoneStore2F_Unused:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message VeilstoneStore2F_Text_GivingCounterAppAsPromotion
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage VeilstoneStore2F_Text_GivingCounterAppAsPromotion
     End
 
 VeilstoneStore2F_TopVendor:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Common_VendorGreeting
-    CloseMessageWithoutErasing
-    PokeMartSpecialties MART_SPECIALTIES_ID_VEILSTONE_2F_UP
-    ReleaseAll
+    PokeMartSpecialtiesWithGreeting MART_SPECIALTIES_ID_VEILSTONE_2F_UP
     End
 
 VeilstoneStore2F_MiddleVendor:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Common_VendorGreeting
-    CloseMessageWithoutErasing
-    PokeMartSpecialties MART_SPECIALTIES_ID_VEILSTONE_2F_MID
-    ReleaseAll
+    PokeMartSpecialtiesWithGreeting MART_SPECIALTIES_ID_VEILSTONE_2F_MID
     End
 
 VeilstoneStore2F_Directory:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    Message VeilstoneStore2F_Text_Directory
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    EventMessage VeilstoneStore2F_Text_Directory
     End
 
     .balign 4, 0

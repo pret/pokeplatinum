@@ -1991,15 +1991,15 @@
     .short 340
     .endm
 
-    .macro ScrCmd_155 arg0, arg1
+    .macro GetTrainerInfoTrainerClass variant, destVar
     .short 341
-    .short \arg0
-    .short \arg1
+    .short \variant
+    .short \destVar
     .endm
 
-    .macro ScrCmd_156 arg0
+    .macro SetTrainerInfoAppearance appearance
     .short 342
-    .short \arg0
+    .short \appearance
     .endm
 
     .macro CheckPokedexAcquired destVarID
@@ -2278,11 +2278,11 @@
     .short \z
     .endm
 
-    .macro ScrCmd_18B arg0, arg1, arg2
+    .macro SetBgEventPos index, x, z
     .short 395
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \index
+    .short \x
+    .short \z
     .endm
 
     .macro ScrCmd_18C arg0, arg1
@@ -3981,10 +3981,10 @@
     .short \arg3
     .endm
 
-    .macro ScrCmd_29C arg0, arg1
+    .macro CalculateTrainerInfoAppearance variant, destVar
     .short 668
-    .short \arg0
-    .short \arg1
+    .short \variant
+    .short \destVar
     .endm
 
     .macro AddMenuEntry entryStringID, entryIndex
@@ -5173,6 +5173,58 @@
     .macro GoToIfCannotFitItem item, count, destVarID, offset
     CanFitItem \item, \count, \destVarID
     GoToIfEq \destVarID, FALSE, \offset
+    .endm
+
+    .macro NPCMessage messageID
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    FacePlayer
+    Message \messageID
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
+    .endm
+
+    .macro EventMessage messageID
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    Message \messageID
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
+    .endm
+
+    .macro PokemonCryAndMessage species, messageID, unused=0
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    FacePlayer
+    WaitFanfare SEQ_SE_CONFIRM
+    PlayCry \species, \unused
+    Message \messageID
+    WaitCry
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
+    .endm 
+
+    .macro PokeMartCommonWithGreeting unused=1
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    FacePlayer
+    Common_VendorGreeting
+    CloseMessageWithoutErasing
+    PokeMartCommon \unused
+    ReleaseAll
+    .endm
+
+    .macro PokeMartSpecialtiesWithGreeting martID
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    FacePlayer
+    Common_VendorGreeting
+    CloseMessageWithoutErasing
+    PokeMartSpecialties \martID
+    ReleaseAll
     .endm
 
     /* CallCommonScript aliases below */

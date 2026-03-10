@@ -7,21 +7,9 @@
     ScriptEntryEnd
 
 SandgemTownHouse_BreederM:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message SandgemTownHouse_Text_PokemonGrowStrongerFromBattlingOtherPokemon
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage SandgemTownHouse_Text_PokemonGrowStrongerFromBattlingOtherPokemon
     End
 
 SandgemTownHouse_BreederF:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message SandgemTownHouse_Text_AGoodTrainerTakesCareToNotLetTheirPokemonFaint
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage SandgemTownHouse_Text_AGoodTrainerTakesCareToNotLetTheirPokemonFaint
     End

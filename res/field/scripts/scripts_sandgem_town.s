@@ -663,43 +663,19 @@ SandgemTown_Movement_CounterpartLeave:
     EndMovement
 
 SandgemTown_Youngster:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message SandgemTown_Text_PokemonAreSoCool
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage SandgemTown_Text_PokemonAreSoCool
     End
 
 SandgemTown_PokemonBreederM:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message SandgemTown_Text_TheThingYouHaveItsAPokedexIsntIt
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage SandgemTown_Text_TheThingYouHaveItsAPokedexIsntIt
     End
 
 SandgemTown_PokemonBreederF:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message SandgemTown_Text_IdBetterSaveThis
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage SandgemTown_Text_IdBetterSaveThis
     End
 
 SandgemTown_Unused:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message SandgemTown_Text_ProfessorRowansComeBackToTown
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage SandgemTown_Text_ProfessorRowansComeBackToTown
     End
 
 SandgemTown_MapSign:

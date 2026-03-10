@@ -2,26 +2,14 @@
 #include "res/text/bank/floaroma_meadow_house.h"
 
 
-    ScriptEntry _000A
-    ScriptEntry _001D
+    ScriptEntry FloaromaMeadowHouse_Hiker
+    ScriptEntry FloaromaMeadowHouse_NinjaBoy
     ScriptEntryEnd
 
-_000A:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 0
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+FloaromaMeadowHouse_Hiker:
+    NPCMessage FloaromaMeadowHouse_Text_TheFlowersThatGrowInTheFieldsHereAreSpecial
     End
 
-_001D:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 1
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+FloaromaMeadowHouse_NinjaBoy:
+    NPCMessage FloaromaMeadowHouse_Text_IfYouPutHoneyOnATreeCheckBackLaterToSeeIfItsRustlings
     End
