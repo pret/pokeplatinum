@@ -128,7 +128,6 @@ nitrodwc_dep = dependency('NitroDWC',
 )
 
 libvct_dep = dependency('libvct')
-libcrypto_dep = dependency('libcrypto')
 libsyscall_dep = dependency('libsyscall')
 ppwlobby_dep = dependency('ppwlobby')
 
@@ -187,6 +186,7 @@ main = executable('main',
     c_pch: 'include/pch/global_pch.h',
     include_directories: [
         public_includes,
+        libcrypto_public_includes,
         libgds_public_includes,
         libspl_public_includes,
     ],

@@ -5,9 +5,9 @@
 extern "C" {
 #endif
 
-#include <crypto/util.h>
-#include <crypto/sign.h>
 #include <crypto/rc4.h>
+#include <crypto/sign.h>
+#include <crypto/util.h>
 
 #ifdef __cplusplus
 }

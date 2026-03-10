@@ -7,9 +7,7 @@ extern "C" {
 
 #include <nitro/types.h>
 
-void *CRYPTOi_MyAlloc(u32 size);
-void CRYPTOi_MyFree(void *ptr);
-void CRYPTO_SetAllocator(void *(* allocFunc)(u32), void (* freeFunc)(void *));
+void CRYPTO_SetAllocator(void *(*allocFunc)(u32), void (*freeFunc)(void *));
 
 #ifdef __cplusplus
 }

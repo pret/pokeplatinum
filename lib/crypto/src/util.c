@@ -1,12 +1,15 @@
 #include "crypto/util.h"
 
-#include <nitro/types.h>
 #include <nitro/os.h>
+#include <nitro/types.h>
 
-static void(* sFreeFunc)(void *ptr);
-static void *(* sAllocFunc)(u32 size);
+#include "crypto_internal.h"
 
-void *CRYPTOi_MyAlloc(u32 size) {
+static void (*sFreeFunc)(void *ptr);
+static void *(*sAllocFunc)(u32 size);
+
+void *CRYPTOi_MyAlloc(u32 size)
+{
     if (sAllocFunc) {
         return sAllocFunc(size);
     } else {
@@ -14,7 +17,8 @@ void *CRYPTOi_MyAlloc(u32 size) {
     }
 }
 
-void CRYPTOi_MyFree(void *ptr){
+void CRYPTOi_MyFree(void *ptr)
+{
     if (sFreeFunc) {
         sFreeFunc(ptr);
     } else {
@@ -22,7 +26,8 @@ void CRYPTOi_MyFree(void *ptr){
     }
 }
 
-void CRYPTO_SetAllocator(void *(* allocFunc)(u32), void (* freeFunc)(void *)) {
+void CRYPTO_SetAllocator(void *(*allocFunc)(u32), void (*freeFunc)(void *))
+{
     sAllocFunc = allocFunc;
     sFreeFunc = freeFunc;
 }
