@@ -1601,13 +1601,13 @@ Overlay battle_castle_app
 	Object main.nef.p/src_applications_frontier_battle_castle_windows.c.o
 }
 
-Overlay overlay108
+Overlay battle_arcade_app
 {
 	After overlay104
-	Object main.nef.p/src_overlay108_ov108_02241AE0.c.o
-	Object main.nef.p/src_overlay108_ov108_02243030.c.o
-	Object main.nef.p/src_overlay108_ov108_0224351C.c.o
-	Object main.nef.p/src_overlay108_ov108_02243630.c.o
+	Object main.nef.p/src_applications_frontier_battle_arcade_main.c.o
+	Object main.nef.p/src_applications_frontier_battle_arcade_sprite_manager.c.o
+    Object main.nef.p/src_applications_frontier_battle_arcade_sprites.c.o
+	Object main.nef.p/src_applications_frontier_battle_arcade_windows.c.o
 }
 
 Overlay overlay109
