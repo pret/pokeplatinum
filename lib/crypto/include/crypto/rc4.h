@@ -7,20 +7,22 @@ extern "C" {
 
 #include <nitro/types.h>
 
-typedef struct CRYPTORC4Context_t {
+#define RC4_S_SIZE 256
+
+typedef struct CRYPTORC4Context {
     u8 i, j;
     u8 padd[2];
-    u8 s[256];
+    u8 s[RC4_S_SIZE];
 } CRYPTORC4Context;
 
-typedef struct CRYPTORC4FastContext_t {
+typedef struct CRYPTORC4FastContext {
     u32 i, j;
-    u32 s[256];
+    u32 s[RC4_S_SIZE];
 } CRYPTORC4FastContext;
 
-void CRYPTO_RC4Init(CRYPTORC4Context *, const void *, u32);
+void CRYPTO_RC4Init(CRYPTORC4Context *ctx, const void *key, u32 keyLength);
 void CRYPTO_RC4Encrypt(CRYPTORC4Context *, const void *, u32, void *);
-void CRYPTO_RC4FastInit(CRYPTORC4FastContext *, const void *, u32);
+void CRYPTO_RC4FastInit(CRYPTORC4FastContext *ctx, const void *key, u32 keyLength);
 void CRYPTO_RC4FastEncrypt(CRYPTORC4FastContext *, const void *, u32, void *);
 
 static inline void CRYPTO_RC4Decrypt(CRYPTORC4Context *param0, const void *param1, u32 param2, void *param3)
