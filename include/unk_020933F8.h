@@ -76,7 +76,7 @@ int Contest_GetContestMode(Contest *contest);
 void Contest_GetContestInfo(Contest *contest, u16 *contestRank, u16 *contestType, u16 *competitionType, u16 *monPartySlot);
 void Contest_LockAutoScrollForLinkContests(Contest *contest);
 void Contest_LockTextSpeed(Contest *unused);
-BOOL Contest_PlayerMonAlreadyHasRibbon(Contest *contest);
+BOOL Contest_CheckPlayerMonHasRibbon(Contest *contest);
 void Contest_SetRibbonName(Contest *contest, StringTemplate *string, u32 idx, int unused);
 u32 Contest_CalcFirstTimeVictoryAccessoryReward(Contest *contest);
 void Contest_StartCameraFlashTask(Contest *contest, int contestantEntryNum);

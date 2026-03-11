@@ -1035,7 +1035,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_GetContestantObjEventGFX,
     ScrCmd_GetContestantMonContestFame,
     ScrCmd_GetContestMode,
-    ScrCmd_PlayerMonAlreadyHasRibbon,
+    ScrCmd_CheckPlayerMonHasRibbon,
     ScrCmd_SetRibbonName,
     ScrCmd_GetFirstTimeVictoryAccessory,
     ScrCmd_GetContestInfo,

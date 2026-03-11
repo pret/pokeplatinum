@@ -26,9 +26,9 @@
 #include "unk_020933F8.h"
 #include "vars_flags.h"
 
-static BOOL ScriptContext_ResumeWhenContestSynced(ScriptContext *ctx);
-static BOOL ScriptContext_IsContestCommTaskDone(ScriptContext *ctx);
-static BOOL ScriptContext_IsContestCameraFlashTaskDone(ScriptContext *ctx);
+static BOOL ResumeWhenContestSynced(ScriptContext *ctx);
+static BOOL IsContestCommTaskDone(ScriptContext *ctx);
+static BOOL IsContestCameraFlashTaskDone(ScriptContext *ctx);
 
 BOOL ScrCmd_StartContestCommSync(ScriptContext *ctx)
 {
@@ -46,11 +46,11 @@ BOOL ScrCmd_WaitForCommSyncState(ScriptContext *ctx)
 
     ctx->data[0] = syncState;
 
-    ScriptContext_Pause(ctx, ScriptContext_ResumeWhenContestSynced);
+    ScriptContext_Pause(ctx, ResumeWhenContestSynced);
     return TRUE;
 }
 
-static BOOL ScriptContext_ResumeWhenContestSynced(ScriptContext *ctx)
+static BOOL ResumeWhenContestSynced(ScriptContext *ctx)
 {
     void **contest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
     return Contest_IsSyncState(*contest, ctx->data[0]);
@@ -156,12 +156,12 @@ BOOL ScrCmd_WaitForLinkContestSetup(ScriptContext *ctx)
     void **contest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
 
     Contest_SetUpLinkContest(*contest);
-    ScriptContext_Pause(ctx, ScriptContext_IsContestCommTaskDone);
+    ScriptContext_Pause(ctx, IsContestCommTaskDone);
 
     return TRUE;
 }
 
-static BOOL ScriptContext_IsContestCommTaskDone(ScriptContext *ctx)
+static BOOL IsContestCommTaskDone(ScriptContext *ctx)
 {
     void **contest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
     return Contest_IsCommTaskDone(*contest);
@@ -292,12 +292,12 @@ BOOL ScrCmd_GetContestInfo(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_PlayerMonAlreadyHasRibbon(ScriptContext *ctx)
+BOOL ScrCmd_CheckPlayerMonHasRibbon(ScriptContext *ctx)
 {
     void **contest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
     u16 *destHasRibbon = ScriptContext_GetVarPointer(ctx);
 
-    *destHasRibbon = Contest_PlayerMonAlreadyHasRibbon(*contest);
+    *destHasRibbon = Contest_CheckPlayerMonHasRibbon(*contest);
     return FALSE;
 }
 
@@ -349,11 +349,11 @@ BOOL ScrCmd_WaitForContestCameraFlashTask(ScriptContext *ctx)
 {
     void **contest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
 
-    ScriptContext_Pause(ctx, ScriptContext_IsContestCameraFlashTaskDone);
+    ScriptContext_Pause(ctx, IsContestCameraFlashTaskDone);
     return TRUE;
 }
 
-static BOOL ScriptContext_IsContestCameraFlashTaskDone(ScriptContext *ctx)
+static BOOL IsContestCameraFlashTaskDone(ScriptContext *ctx)
 {
     void **contest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
 

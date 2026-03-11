@@ -1625,7 +1625,7 @@
     .short \destContestMode
     .endm
 
-    .macro PlayerMonAlreadyHasRibbon destHasRibbon
+    .macro CheckPlayerMonHasRibbon destHasRibbon
     .short 269
     .short \destHasRibbon
     .endm

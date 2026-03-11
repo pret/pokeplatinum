@@ -1,6 +1,7 @@
 #ifndef POKEPLATINUM_OV17_022413D8_H
 #define POKEPLATINUM_OV17_022413D8_H
 
+#include "generated/moves.h"
 #include "generated/pokemon_contest_ranks.h"
 #include "generated/pokemon_contest_types.h"
 
@@ -64,7 +65,8 @@ enum ActingCompetitionMessagesID {
     ACTING_COMPETITION_MESSAGE_JUDGING_IS_OVER,
     ACTING_COMPETITION_MESSAGE_EMPTY11,
     ACTING_COMPETITION_MESSAGE_BEGIN_PRACTICE,
-    ACTING_COMPETITION_MESSAGE_COMMUNICATING_PLEASE_STAND_BY
+    ACTING_COMPETITION_MESSAGE_COMMUNICATING_PLEASE_STAND_BY,
+    ACTING_COMPETITION_MESSAGE_MAX,
 };
 
 void ov17_022413D8(void);
@@ -99,7 +101,7 @@ BOOL ov17_022424A8(UnkStruct_ov17_0223F88C *param0, int param1);
 void ov17_022424D4(UnkStruct_ov17_0223F88C *param0, int param1, int param2);
 void ov17_022426E8(UnkStruct_ov17_02246F24 *param0, int param1, u8 *param2);
 void ov17_02242DA8(UnkStruct_ov17_02246F24 *param0);
-void ov17_02242E5C(UnkStruct_ov17_02246F24 *param0, u32 actingMessagesID, const UnkStruct_ov17_022449B8 *param2, const void *param3);
+void ov17_02242E5C(UnkStruct_ov17_02246F24 *param0, enum ActingCompetitionMessagesID actingMessagesID, const UnkStruct_ov17_022449B8 *param2, const void *param3);
 void ov17_02242E9C(UnkStruct_ov17_02246F24 *param0, int contestMoveEffect, int param2, const UnkStruct_ov17_022449B8 *param3, const void *param4);
 int ov17_02242ECC(UnkStruct_ov17_02246F24 *param0);
 void ov17_02242EE4(UnkStruct_ov17_02246F24 *param0, int param1);
@@ -121,7 +123,7 @@ void ov17_022436D0(UnkStruct_ov17_02246F24 *param0, int param1, int param2, int 
 u32 Contest_GetActingCompetitionMessageIntroAnnouncement(enum PokemonContestType contestType);
 u32 Contest_GetActingCompetitionMessageGoodMoveType(enum PokemonContestType contestType);
 u32 Contest_GetActingCompetitionMessageBadMoveType(enum PokemonContestType contestType);
-void ov17_022439C8(Contest *param0, int contestantID, int moveID, UnkStruct_ov17_022439C8 *param3);
+void ov17_022439C8(Contest *param0, int contestantID, enum Move moveID, UnkStruct_ov17_022439C8 *param3);
 BOOL ov17_02243A98(UnkStruct_ov17_022472F8 *param0, int contestantID, int moveID);
 
 #endif // POKEPLATINUM_OV17_022413D8_H

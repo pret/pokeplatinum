@@ -25,7 +25,7 @@ BOOL ScrCmd_GetContestantObjEventGFX(ScriptContext *ctx);
 BOOL ScrCmd_GetContestantMonContestFame(ScriptContext *ctx);
 BOOL ScrCmd_GetContestMode(ScriptContext *ctx);
 BOOL ScrCmd_GetContestInfo(ScriptContext *ctx);
-BOOL ScrCmd_PlayerMonAlreadyHasRibbon(ScriptContext *ctx);
+BOOL ScrCmd_CheckPlayerMonHasRibbon(ScriptContext *ctx);
 BOOL ScrCmd_SetRibbonName(ScriptContext *ctx);
 BOOL ScrCmd_GetFirstTimeVictoryAccessory(ScriptContext *ctx);
 BOOL ScrCmd_LockAutoScrollForLinkContests(ScriptContext *ctx);

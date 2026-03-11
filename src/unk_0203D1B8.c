@@ -108,7 +108,6 @@
 #include "savedata.h"
 #include "savedata_misc.h"
 #include "start_menu.h"
-#include "start_menu.h"
 #include "string_gf.h"
 #include "system_data.h"
 #include "system_flags.h"

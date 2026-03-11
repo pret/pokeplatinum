@@ -40,7 +40,7 @@
     Entry(SCRIPT_ID_OFFSET_FIELD_MOVES,                    scripts_field_moves,                    TEXT_BANK_FIELD_MOVES) \
     Entry(SCRIPT_ID_OFFSET_POKEDEX_RATINGS,                scripts_pokedex_ratings,                TEXT_BANK_POKEDEX_RATINGS) \
     Entry(9900,                                            scripts_unk_0397,                       TEXT_BANK_COMMON_STRINGS) \
-    Entry(SCRIPT_ID_OFFSET_CONTEST_REGISTRATION,           scripts_contests,                        TEXT_BANK_CONTEST_REGISTRATION) \
+    Entry(SCRIPT_ID_OFFSET_CONTESTS,                       scripts_contests,                       TEXT_BANK_CONTEST_REGISTRATION) \
     Entry(SCRIPT_ID_OFFSET_FOLLOWER_PARTNERS,              scripts_follower_partners,              TEXT_BANK_FOLLOWER_PARTNERS) \
     Entry(SCRIPT_ID_OFFSET_INIT_NEW_GAME,                  scripts_init_new_game,                  TEXT_BANK_COMMON_STRINGS) \
     Entry(SCRIPT_ID_OFFSET_DAY_CARE_COMMON,                scripts_day_care_common,                TEXT_BANK_DAY_CARE_COMMON) \

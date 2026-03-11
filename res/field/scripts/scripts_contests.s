@@ -768,7 +768,7 @@ Contest_DoContest:
     BufferWinningContestantTrainerName 0
     BufferWinningContestantMonName 1
     SetRibbonName 2
-    PlayerMonAlreadyHasRibbon VAR_RESULT
+    CheckPlayerMonHasRibbon VAR_RESULT
     GoToIfEq VAR_RESULT, 0, OngoingContest_AwardCeremony
     MessageSynchronized ContestRegistration_Text_WeExpectGreatThingsFromWinningTeam
     GoTo OngoingContest_EndContest

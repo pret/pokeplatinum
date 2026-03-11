@@ -26,6 +26,7 @@
 #include "overlay017/ov17_0223DAD0.h"
 #include "overlay017/ov17_0224F4D4.h"
 #include "overlay022/ov22_02255D44.h"
+#include "pch/global_pch.h"
 #include "savedata/save_table.h"
 
 #include "assert.h"
@@ -124,22 +125,22 @@ const ApplicationManagerTemplate VisualCompetitionAppTemplate = {
 
 #define CAMERA_FLASH_FRAME_DELAY_ARRAY_TERMINATOR 0xFF
 
-__attribute__((aligned(4))) static const u8 sNormalRankCameraFrameDelays[][3] = {
+ALIGN_4 static const u8 sNormalRankCameraFrameDelays[][3] = {
     { 0x14, 0x14, CAMERA_FLASH_FRAME_DELAY_ARRAY_TERMINATOR },
     { 0xF, 0x19, CAMERA_FLASH_FRAME_DELAY_ARRAY_TERMINATOR }
 };
 
-__attribute__((aligned(4))) static const u8 sGreatRankCameraFrameDelays[][4] = {
+ALIGN_4 static const u8 sGreatRankCameraFrameDelays[][4] = {
     { 0xA, 0xA, 0x1E, CAMERA_FLASH_FRAME_DELAY_ARRAY_TERMINATOR },
     { 0xF, 0xF, 0xF, CAMERA_FLASH_FRAME_DELAY_ARRAY_TERMINATOR }
 };
 
-__attribute__((aligned(4))) static const u8 sUltraRankCameraFrameDelays[][5] = {
+ALIGN_4 static const u8 sUltraRankCameraFrameDelays[][5] = {
     { 0xA, 0x8, 0x14, 0x1C, CAMERA_FLASH_FRAME_DELAY_ARRAY_TERMINATOR },
     { 0xF, 0xF, 0x8, 0x8, CAMERA_FLASH_FRAME_DELAY_ARRAY_TERMINATOR }
 };
 
-__attribute__((aligned(4))) static const u8 sLinkMasterRankCameraFrameDelays[][6] = {
+ALIGN_4 static const u8 sLinkMasterRankCameraFrameDelays[][6] = {
     { 0x8, 0x8, 0x8, 0x8, 0x1E, CAMERA_FLASH_FRAME_DELAY_ARRAY_TERMINATOR },
     { 0xF, 0xF, 0x8, 0x8, 0x14, CAMERA_FLASH_FRAME_DELAY_ARRAY_TERMINATOR }
 };
@@ -1278,11 +1279,11 @@ void Contest_LockTextSpeed(Contest *contest)
     LockTextSpeed();
 }
 
-BOOL Contest_PlayerMonAlreadyHasRibbon(Contest *contest)
+BOOL Contest_CheckPlayerMonHasRibbon(Contest *contest)
 {
     u32 monDataRibbon = CalcMonDataRibbon(contest->unk_00.contestRank, contest->unk_00.contestType);
 
-    if (Pokemon_GetValue(contest->playerMon, monDataRibbon, NULL) == 0) {
+    if (Pokemon_GetValue(contest->playerMon, monDataRibbon, NULL) == FALSE) {
         return FALSE;
     }
 

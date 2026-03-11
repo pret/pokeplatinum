@@ -319,7 +319,7 @@ typedef struct ActingCompetitionMessage {
     u8 useInstantText;
 } ActingCompetitionMessage;
 
-static const ActingCompetitionMessage sActingCompetitionMessages[] = {
+static const ActingCompetitionMessage sActingCompetitionMessages[ACTING_COMPETITION_MESSAGE_MAX] = {
     [ACTING_COMPETITION_MESSAGE_NONE] = { 0x0, 0x0, 0x0 },
     [ACTING_COMPETITION_MESSAGE_CHOOSE_JUDGE] = { Contest_Text_ChooseJudge, 0x5, TRUE },
     [ACTING_COMPETITION_MESSAGE_WHICH_MOVE_IS_YOUR_CHOICE] = { Contest_Text_WhichMoveIsYourChoice, 0x5, TRUE },
@@ -1517,7 +1517,7 @@ static void ov17_02242DC0(UnkStruct_ov17_02246F24 *param0, MessageLoader *messag
     String_Free(v0);
 }
 
-void ov17_02242E5C(UnkStruct_ov17_02246F24 *param0, u32 actingMessagesID, const UnkStruct_ov17_022449B8 *param2, const void *param3)
+void ov17_02242E5C(UnkStruct_ov17_02246F24 *param0, enum ActingCompetitionMessagesID actingMessagesID, const UnkStruct_ov17_022449B8 *param2, const void *param3)
 {
     GF_ASSERT(actingMessagesID < NELEMS(sActingCompetitionMessages));
 
@@ -2082,7 +2082,7 @@ u32 Contest_GetActingCompetitionMessageBadMoveType(enum PokemonContestType conte
     return ActingMessagesMoveTypeVoltageDown[contestType];
 }
 
-void ov17_022439C8(Contest *param0, int contestantID, int moveID, UnkStruct_ov17_022439C8 *param3)
+void ov17_022439C8(Contest *param0, int contestantID, enum Move moveID, UnkStruct_ov17_022439C8 *param3)
 {
     MI_CpuClear8(param3, sizeof(UnkStruct_ov17_022439C8));
 
