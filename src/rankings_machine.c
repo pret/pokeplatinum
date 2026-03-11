@@ -42,6 +42,10 @@
 #define MANAGED_SPRITE_CURSOR        0
 #define MANAGED_SPRITE_DELETE_WINDOW 1
 
+#define RANKINGS_WINDOW_WIDTH     8
+#define RANKINGS_WINDOW_HEIGHT    2
+#define BASE_TILE_RANKINGS_WINDOW (BASE_TILE_STANDARD_WINDOW_FRAME - MESSAGE_WINDOW_TILE_COUNT - YES_NO_MENU_TILE_COUNT - RANKINGS_WINDOW_WIDTH * RANKINGS_WINDOW_HEIGHT)
+
 typedef struct RankingsMachineText {
     MessageLoader *msgLoader;
     StringTemplate *strTemplate;
@@ -653,9 +657,9 @@ static void RankingsMachine_InitBg(RankingsMachineManager *machineMan)
     LoadMessageBoxGraphics(machineMan->bgConfig, BG_LAYER_MAIN_3, BASE_TILE_SCROLLING_MESSAGE_BOX, 10, machineMan->frame, machineMan->heapID);
     LoadStandardWindowGraphics(machineMan->bgConfig, BG_LAYER_MAIN_3, BASE_TILE_STANDARD_WINDOW_FRAME, 11, 0, machineMan->heapID);
     LoadStandardWindowGraphics(machineMan->bgConfig, BG_LAYER_MAIN_1, BASE_TILE_STANDARD_WINDOW_FRAME, 11, 0, machineMan->heapID);
-    Font_LoadTextPalette(0, 13 * 32, machineMan->heapID);
-    Font_LoadScreenIndicatorsPalette(0, 12 * 32, machineMan->heapID);
-    Window_Add(machineMan->bgConfig, &machineMan->msgBoxWindow, 3, 2, 19, 27, 4, 12, ((1024 - (18 + 12) - 9) - 27 * 4));
+    Font_LoadTextPalette(0, 13 * PALETTE_SIZE_BYTES, machineMan->heapID);
+    Font_LoadScreenIndicatorsPalette(0, 12 * PALETTE_SIZE_BYTES, machineMan->heapID);
+    Window_Add(machineMan->bgConfig, &machineMan->msgBoxWindow, BG_LAYER_MAIN_3, 2, 19, 27, 4, 12, BASE_TILE_STANDARD_WINDOW_FRAME - MESSAGE_WINDOW_TILE_COUNT);
     Window_FillTilemap(&machineMan->msgBoxWindow, PIXEL_FILL(15));
 }
 
@@ -895,11 +899,11 @@ static void RankingsMachine_PrintRecordRankings(RankingsMachineManager *machineM
 
 static void RankingsMachine_ShowRankingList(RankingsMachineManager *machineMan, u16 cursorPos)
 {
-    Window_Add(machineMan->bgConfig, &machineMan->listWindow, 1, 4, 1, 24, 12, 13, 1);
+    Window_Add(machineMan->bgConfig, &machineMan->listWindow, BG_LAYER_MAIN_1, 4, 1, 24, 12, 13, 1);
     Window_DrawStandardFrame(&machineMan->listWindow, 1, BASE_TILE_STANDARD_WINDOW_FRAME, 11);
     RankingsMachine_PrintRecordRankings(machineMan, FALSE);
     ManagedSprite_SetDrawFlag(machineMan->managedSprites[MANAGED_SPRITE_DELETE_WINDOW], TRUE);
-    Window_Add(machineMan->bgConfig, &machineMan->rankingsWindow, 3, 8, 14, 8, 2, 13, ((((1024 - (18 + 12) - 9) - 27 * 4) - 6 * 4) - (8 * 2)));
+    Window_Add(machineMan->bgConfig, &machineMan->rankingsWindow, BG_LAYER_MAIN_3, 8, 14, 8, 2, 13, BASE_TILE_RANKINGS_WINDOW);
     Window_FillTilemap(&machineMan->rankingsWindow, PIXEL_FILL(0));
     Text_AddPrinterWithParamsAndColor(&machineMan->rankingsWindow, FONT_SYSTEM, machineMan->text.deleteRecord, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
     Bg_ScheduleTilemapTransfer(machineMan->bgConfig, BG_LAYER_MAIN_3);
