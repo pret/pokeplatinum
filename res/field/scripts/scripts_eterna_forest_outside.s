@@ -2,42 +2,42 @@
 #include "res/text/bank/eterna_forest_outside.h"
 
 
-    ScriptEntry _0012
-    ScriptEntry _0058
-    ScriptEntry _006F
-    ScriptEntry _0018
+    ScriptEntry EternaForestOutside_OnTransition
+    ScriptEntry EternaForestOutside_Unused2
+    ScriptEntry EternaForestOutside_Unused3
+    ScriptEntry EternaForestOutside_PokemonBreederF
     ScriptEntryEnd
 
-_0012:
+EternaForestOutside_OnTransition:
     SetFlag FLAG_FIRST_ARRIVAL_ETERNA_FOREST
     End
 
-_0018:
+EternaForestOutside_PokemonBreederF:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x012A, _004D
+    GoToIfSet FLAG_OBTAINED_ETERNA_FOREST_OUTSIDE_ACCESSORY_BIG_TREE, EternaForestOutside_ICollectBerriesAndTradeThemForAccessoriesInFloaromaTown
     SetVar VAR_0x8004, ACCESSORY_BIG_TREE
     BufferAccessoryName 0, VAR_0x8004
-    Message 0
+    Message EternaForestOutside_Text_OhAreYouCollectingAccessoriesIveGotSomethingForYou
     SetVar VAR_0x8005, 1
     Common_GiveAccessoryWaitForConfirm
-    SetFlag FLAG_UNK_0x012A
+    SetFlag FLAG_OBTAINED_ETERNA_FOREST_OUTSIDE_ACCESSORY_BIG_TREE
     CloseMessage
     ReleaseAll
     End
 
-_004D:
-    Message 1
+EternaForestOutside_ICollectBerriesAndTradeThemForAccessoriesInFloaromaTown:
+    Message EternaForestOutside_Text_ICollectBerriesAndTradeThemForAccessoriesInFloaromaTown
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0058:
-    ShowLandmarkSign 2
+EternaForestOutside_Unused2:
+    ShowLandmarkSign EternaForestOutside_Text_Dummy2
     End
 
-_006F:
-    ShowScrollingSign 3
+EternaForestOutside_Unused3:
+    ShowScrollingSign EternaForestOutside_Text_Dummy3
     End

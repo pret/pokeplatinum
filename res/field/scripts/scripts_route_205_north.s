@@ -2,21 +2,21 @@
 #include "res/text/bank/route_205_north.h"
 
 
-    ScriptEntry _000E
-    ScriptEntry _0021
-    ScriptEntry _0038
+    ScriptEntry Route205North_Fisherman
+    ScriptEntry Route205North_ArrowSignpostEternaForest
+    ScriptEntry Route205North_ArrowSignpostEternaCity
     ScriptEntryEnd
 
-_000E:
-    NPCMessage 0
+Route205North_Fisherman:
+    NPCMessage Route205North_Text_ToSitBackAndFishCasually
     End
 
-_0021:
-    ShowArrowSign 1
+Route205North_ArrowSignpostEternaForest:
+    ShowArrowSign Route205North_Text_Rt205EternaForest
     End
 
-_0038:
-    ShowArrowSign 2
+Route205North_ArrowSignpostEternaCity:
+    ShowArrowSign Route205North_Text_Rt205EternaCity
     End
 
     .balign 4, 0

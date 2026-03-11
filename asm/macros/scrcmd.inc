@@ -3927,10 +3927,10 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_292 arg0, arg1
+    .macro CheckShouldShowGhost percentChance, destVar
     .short 658
-    .byte \arg0
-    .short \arg1
+    .byte \percentChance
+    .short \destVar
     .endm
 
     .macro GetUndergroundTalkCounter destVarID
