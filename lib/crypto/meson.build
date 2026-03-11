@@ -34,8 +34,8 @@ libcrypto_ov97 = static_library('crypto_ov97',
     c_args: libcrypto_c_args,
     nasm_args: asm_args,
     pic: false,
-    include_directories: [libcrypto_public_includes],
-    dependencies: [nitrosdk_dep]
+    include_directories: libcrypto_public_includes,
+    dependencies: nitrosdk_dep
 )
 
 libcrypto_dep = declare_dependency(

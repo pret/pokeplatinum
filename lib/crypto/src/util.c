@@ -13,7 +13,7 @@ void *CRYPTOi_MyAlloc(u32 size)
     if (sAllocFunc) {
         return sAllocFunc(size);
     } else {
-        return OS_AllocFromHeap(OS_ARENA_MAIN, -1, size);
+        return OS_AllocFromHeap(OS_ARENA_MAIN, OS_CURRENT_HEAP_HANDLE, size);
     }
 }
 
@@ -22,7 +22,7 @@ void CRYPTOi_MyFree(void *ptr)
     if (sFreeFunc) {
         sFreeFunc(ptr);
     } else {
-        OS_FreeToHeap(OS_ARENA_MAIN, -1, ptr);
+        OS_FreeToHeap(OS_ARENA_MAIN, OS_CURRENT_HEAP_HANDLE, ptr);
     }
 }
 
