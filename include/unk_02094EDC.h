@@ -8,9 +8,9 @@
 #include "battle/pokemon_sprite_data.h"
 #include "overlay006/struct_ov6_02248BE8.h"
 
+#include "contest.h"
 #include "pokemon.h"
 #include "pokemon_sprite.h"
-#include "unk_020933F8.h"
 
 BOOL sub_02094EDC(Contest *contest);
 void sub_02094F04(Contest *contest, enum HeapID heapID, int param2, enum PokemonContestType contestType, enum PokemonContestRank contestRank, int competitionType, BOOL isGameCompleted, BOOL isNatDexObtained);

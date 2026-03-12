@@ -10,10 +10,10 @@
 
 #include "chatot_cry.h"
 #include "communication_system.h"
+#include "contest.h"
 #include "heap.h"
 #include "pokemon.h"
 #include "string_gf.h"
-#include "unk_020933F8.h"
 
 typedef struct {
     u8 unk_00;

@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_020933F8_H
-#define POKEPLATINUM_UNK_020933F8_H
+#ifndef POKEPLATINUM_CONTEST_H
+#define POKEPLATINUM_CONTEST_H
 
 #include "struct_defs/contest_camera_flash_task.h"
 #include "struct_defs/contest_player_mon_dto.h"
@@ -17,7 +17,6 @@
 #include "string_template.h"
 #include "sys_task_manager.h"
 #include "trainer_info.h"
-#include "unk_020933F8.h"
 
 typedef struct Contest {
     UnkStruct_02095C48_sub1 unk_00;
@@ -86,4 +85,4 @@ void Contest_EndContest(Contest *contest, SaveData *saveData, u32 mapID, Journal
 u16 Contest_GetRNGNext(Contest *contest);
 u16 Contest_GetSeededRNGNext(u32 seed, u32 *destRNGVal);
 
-#endif // POKEPLATINUM_UNK_020933F8_H
+#endif // POKEPLATINUM_CONTEST_H

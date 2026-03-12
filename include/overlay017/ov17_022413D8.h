@@ -13,10 +13,10 @@
 #include "overlay017/struct_ov17_02246F24.h"
 #include "overlay017/struct_ov17_022472F8.h"
 
+#include "contest.h"
 #include "narc.h"
 #include "palette.h"
 #include "sprite_system.h"
-#include "unk_020933F8.h"
 
 enum ActingCompetitionMessagesID {
     ACTING_COMPETITION_MESSAGE_NONE,

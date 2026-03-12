@@ -13,10 +13,10 @@
 #include "overlay017/struct_ov17_0224EDE0.h"
 
 #include "communication_system.h"
+#include "contest.h"
 #include "heap.h"
 #include "unk_020298BC.h"
 #include "unk_02032798.h"
-#include "unk_020933F8.h"
 
 static void sub_02095B2C(int param0, int param1, void *param2, void *param3);
 static u8 *sub_02095B04(int param0, void *param1, int param2);

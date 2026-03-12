@@ -16,6 +16,7 @@
 #include "overlay006/struct_ov6_02248BE8.h"
 
 #include "character_sprite.h"
+#include "contest.h"
 #include "graphics.h"
 #include "heap.h"
 #include "math_util.h"
@@ -26,7 +27,6 @@
 #include "render_text.h"
 #include "string_gf.h"
 #include "unk_020298BC.h"
-#include "unk_020933F8.h"
 
 #include "res/text/bank/contest_effects.h"
 #include "res/text/bank/contest_text.h"

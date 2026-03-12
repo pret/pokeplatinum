@@ -13,10 +13,10 @@
 #include "overlay017/struct_ov17_0224EDE0.h"
 #include "overlay017/struct_ov17_0224F30C.h"
 
+#include "contest.h"
 #include "g3d_pipeline.h"
 #include "particle_system.h"
 #include "sys_task_manager.h"
-#include "unk_020933F8.h"
 
 typedef struct UnkStruct_ov17_0224DF54_t {
     Contest *unk_00;

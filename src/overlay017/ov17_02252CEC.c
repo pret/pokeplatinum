@@ -11,7 +11,7 @@
 #include "overlay017/struct_ov17_0224F30C.h"
 #include "overlay017/struct_ov17_0224FCA0.h"
 
-#include "unk_020933F8.h"
+#include "contest.h"
 
 void ov17_02252CEC(int param0, int param1, void *param2, void *param3)
 {

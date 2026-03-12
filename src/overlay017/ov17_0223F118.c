@@ -19,6 +19,7 @@
 #include "bg_window.h"
 #include "brightness_controller.h"
 #include "char_transfer.h"
+#include "contest.h"
 #include "font.h"
 #include "g3d_pipeline.h"
 #include "game_overlay.h"
@@ -34,7 +35,6 @@
 #include "sys_task_manager.h"
 #include "text.h"
 #include "unk_02012744.h"
-#include "unk_020933F8.h"
 
 FS_EXTERN_OVERLAY(overlay11);
 FS_EXTERN_OVERLAY(battle_anim);

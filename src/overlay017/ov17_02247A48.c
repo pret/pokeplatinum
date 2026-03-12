@@ -36,6 +36,7 @@
 #include "assert.h"
 #include "bg_window.h"
 #include "brightness_controller.h"
+#include "contest.h"
 #include "graphics.h"
 #include "heap.h"
 #include "palette.h"
@@ -47,7 +48,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
-#include "unk_020933F8.h"
 #include "unk_02094EDC.h"
 
 static int ov17_02247A88(UnkStruct_ov17_0224F30C *param0, void *param1, int param2, void *param3);

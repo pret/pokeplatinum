@@ -8,9 +8,9 @@
 #include "overlay017/struct_ov17_0224FECC.h"
 #include "overlay017/struct_ov17_022507C4.h"
 
+#include "contest.h"
 #include "g3d_pipeline.h"
 #include "sys_task_manager.h"
-#include "unk_020933F8.h"
 
 typedef struct {
     Contest *unk_00;

@@ -10,8 +10,8 @@
 #include "overlay017/struct_ov17_02246540.h"
 #include "overlay017/struct_ov17_02246F24.h"
 
+#include "contest.h"
 #include "move_table.h"
-#include "unk_020933F8.h"
 #include "unk_02094EDC.h"
 
 typedef int (*UnkFuncPtr_ov17_02253AF8)(UnkStruct_ov17_02246F24 *, UnkStruct_ov17_02246540 *, int, int, int);

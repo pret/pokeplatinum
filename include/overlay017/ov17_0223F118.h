@@ -8,12 +8,12 @@
 #include "overlay017/struct_ov17_0223F744.h"
 
 #include "bg_window.h"
+#include "contest.h"
 #include "g3d_pipeline.h"
 #include "palette.h"
 #include "sprite_system.h"
 #include "string_gf.h"
 #include "text.h"
-#include "unk_020933F8.h"
 
 G3DPipelineBuffers *ov17_0223F140(enum HeapID heapID);
 void ov17_0223F1E0(G3DPipelineBuffers *param0);

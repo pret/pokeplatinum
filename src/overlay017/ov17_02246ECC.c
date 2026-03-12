@@ -8,10 +8,10 @@
 #include "overlay017/struct_ov17_02246F24.h"
 #include "overlay017/struct_ov17_022472F8.h"
 
+#include "contest.h"
 #include "heap.h"
 #include "move_table.h"
 #include "pokemon.h"
-#include "unk_020933F8.h"
 #include "unk_02094EDC.h"
 
 typedef struct {

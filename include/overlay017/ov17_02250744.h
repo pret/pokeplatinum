@@ -5,8 +5,8 @@
 #include "overlay017/struct_ov17_022507C4.h"
 #include "overlay017/struct_ov17_022508E4.h"
 
+#include "contest.h"
 #include "narc.h"
-#include "unk_020933F8.h"
 
 enum ContestAnnouncerMessagesIDs {
     CONTEST_ANNOUNCER_MESSAGE_NONE,

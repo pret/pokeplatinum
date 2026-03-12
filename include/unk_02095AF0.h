@@ -4,7 +4,7 @@
 #include "struct_defs/struct_02029C88.h"
 #include "struct_defs/struct_02095C60.h"
 
-#include "unk_020933F8.h"
+#include "contest.h"
 
 void sub_02095AF0(void *param0);
 BOOL sub_02095B5C(Contest *param0, int param1, const UnkStruct_02029C88 *param2);

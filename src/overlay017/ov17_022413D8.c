@@ -20,6 +20,7 @@
 
 #include "assert.h"
 #include "bg_window.h"
+#include "contest.h"
 #include "game_options.h"
 #include "graphics.h"
 #include "heap.h"
@@ -41,7 +42,6 @@
 #include "text.h"
 #include "unk_02012744.h"
 #include "unk_0208C098.h"
-#include "unk_020933F8.h"
 #include "unk_02094EDC.h"
 
 #include "res/text/bank/contest_text.h"
