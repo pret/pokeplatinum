@@ -43,7 +43,7 @@
     ],
     "object_events": [
         {
-            "id": "ETERNA_CITY_POKEMON_BREEDER_M_0",
+            "id": "LOCALID_POKEMON_BREEDER_M",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -58,7 +58,7 @@
             "y": 7
         },
         {
-            "id": "ETERNA_CITY_EXPERT_M_1",
+            "id": "LOCALID_EXPERT_M",
             "graphics_id": "OBJ_EVENT_GFX_EXPERT_M",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -73,7 +73,7 @@
             "y": 7
         },
         {
-            "id": "ETERNA_CITY_NINJA_BOY_2",
+            "id": "LOCALID_NINJA_BOY",
             "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -88,11 +88,11 @@
             "y": 7
         },
         {
-            "id": "ETERNA_CITY_GRUNT_M_3",
+            "id": "LOCALID_GRUNT_M_1",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x01FD",
+            "hidden_flag": "FLAG_HIDE_ETERNA_CITY_GALACTIC_GRUNTS",
             "script": 2,
             "initial_dir": 1,
             "data": [],
@@ -103,11 +103,11 @@
             "y": 7
         },
         {
-            "id": "ETERNA_CITY_GRUNT_M_4",
+            "id": "LOCALID_GRUNT_M_2",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x01FD",
+            "hidden_flag": "FLAG_HIDE_ETERNA_CITY_GALACTIC_GRUNTS",
             "script": 3,
             "initial_dir": 3,
             "data": [],
@@ -118,7 +118,7 @@
             "y": 7
         },
         {
-            "id": "ETERNA_CITY_GYM_SIGNPOST_5",
+            "id": "LOCALID_GYM_SIGNPOST",
             "graphics_id": "OBJ_EVENT_GFX_GYM_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -135,7 +135,7 @@
             "y": 0
         },
         {
-            "id": "ETERNA_CITY_SIGNBOARD_6",
+            "id": "LOCALID_SIGNBOARD_RAD_RICKSHAWS_CYCLE_SHOP",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -152,7 +152,7 @@
             "y": 0
         },
         {
-            "id": "ETERNA_CITY_MAP_SIGNPOST_7",
+            "id": "LOCALID_MAP_SIGNPOST_WEST",
             "graphics_id": "OBJ_EVENT_GFX_MAP_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -169,7 +169,7 @@
             "y": 0
         },
         {
-            "id": "ETERNA_CITY_SIGNBOARD_8",
+            "id": "LOCALID_SIGNBOARD_TEAM_GALACTIC_ETERNA_BUILDING",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -186,7 +186,7 @@
             "y": 0
         },
         {
-            "id": "ETERNA_CITY_MAP_SIGNPOST_9",
+            "id": "LOCALID_MAP_SIGNPOST_EAST",
             "graphics_id": "OBJ_EVENT_GFX_MAP_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -203,7 +203,7 @@
             "y": 0
         },
         {
-            "id": "ETERNA_CITY_POKEMON_BREEDER_F_10",
+            "id": "LOCALID_POKEMON_BREEDER_F_1",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -218,7 +218,7 @@
             "y": 7
         },
         {
-            "id": "ETERNA_CITY_ACE_TRAINER_F_11",
+            "id": "LOCALID_ACE_TRAINER_F",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_WANDER_NORTH_AND_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -233,11 +233,11 @@
             "y": 7
         },
         {
-            "id": "ETERNA_CITY_CYNTHIA_12",
+            "id": "LOCALID_CYNTHIA",
             "graphics_id": "OBJ_EVENT_GFX_CYNTHIA",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0180",
+            "hidden_flag": "FLAG_HIDE_ETERNA_CITY_CYNTHIA",
             "script": 28,
             "initial_dir": 2,
             "data": [],
@@ -248,7 +248,7 @@
             "y": 7
         },
         {
-            "id": "ETERNA_CITY_ARROW_SIGNPOST_13",
+            "id": "LOCALID_ARROW_SIGNPOST_13",
             "clone_id": 4,
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
@@ -266,7 +266,7 @@
             "y": 0
         },
         {
-            "id": "ETERNA_CITY_CUT_TREE_14",
+            "id": "LOCALID_CUT_TREE_1",
             "graphics_id": "OBJ_EVENT_GFX_CUT_TREE",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -281,7 +281,7 @@
             "y": 0
         },
         {
-            "id": "ETERNA_CITY_CUT_TREE_15",
+            "id": "LOCALID_CUT_TREE_2",
             "graphics_id": "OBJ_EVENT_GFX_CUT_TREE",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -296,7 +296,7 @@
             "y": 0
         },
         {
-            "id": "ETERNA_CITY_CUT_TREE_16",
+            "id": "LOCALID_CUT_TREE_3",
             "graphics_id": "OBJ_EVENT_GFX_CUT_TREE",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -311,7 +311,7 @@
             "y": 0
         },
         {
-            "id": "ETERNA_CITY_CUT_TREE_17",
+            "id": "LOCALID_CUT_TREE_4",
             "graphics_id": "OBJ_EVENT_GFX_CUT_TREE",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -326,7 +326,7 @@
             "y": 0
         },
         {
-            "id": "ETERNA_CITY_VENT_18",
+            "id": "LOCALID_VENT_1",
             "graphics_id": "OBJ_EVENT_GFX_VENT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -341,7 +341,7 @@
             "y": 0
         },
         {
-            "id": "ETERNA_CITY_VENT_19",
+            "id": "LOCALID_VENT_2",
             "graphics_id": "OBJ_EVENT_GFX_VENT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -356,7 +356,7 @@
             "y": 0
         },
         {
-            "id": "ETERNA_CITY_VENT_20",
+            "id": "LOCALID_VENT_3",
             "graphics_id": "OBJ_EVENT_GFX_VENT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -401,11 +401,11 @@
             "y": 0
         },
         {
-            "id": "ETERNA_CITY_GRUNT_M_23",
+            "id": "LOCALID_GRUNT_M_3",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x01FD",
+            "hidden_flag": "FLAG_HIDE_ETERNA_CITY_GALACTIC_GRUNTS",
             "script": 4,
             "initial_dir": 3,
             "data": [],
@@ -416,7 +416,7 @@
             "y": 7
         },
         {
-            "id": "ETERNA_CITY_BUG_CATCHER_24",
+            "id": "LOCALID_BUG_CATCHER_1",
             "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -431,12 +431,12 @@
             "y": 7
         },
         {
-            "id": "ETERNA_CITY_ARROW_SIGNPOST_25",
+            "id": "LOCALID_ARROW_SIGNPOST_25",
             "clone_id": 7,
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x016D",
+            "hidden_flag": "MAP_HEADER_ROUTE_211_WEST",
             "script": 65535,
             "initial_dir": 0,
             "data": [
@@ -449,7 +449,7 @@
             "y": 0
         },
         {
-            "id": "ETERNA_CITY_SIGNBOARD_26",
+            "id": "LOCALID_SIGNBOARD_UNDERGROUND_MANS_HOUSE",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -466,7 +466,7 @@
             "y": 0
         },
         {
-            "id": "ETERNA_CITY_SIGNBOARD_27",
+            "id": "LOCALID_SIGNBOARD_ETERNA_CONDOMINIUMS",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -483,7 +483,7 @@
             "y": 0
         },
         {
-            "id": "ETERNA_CITY_POKEMON_BREEDER_F_28",
+            "id": "LOCALID_POKEMON_BREEDER_F_2",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -498,7 +498,7 @@
             "y": 7
         },
         {
-            "id": "ETERNA_CITY_VENT_29",
+            "id": "LOCALID_VENT_4",
             "graphics_id": "OBJ_EVENT_GFX_VENT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -513,7 +513,7 @@
             "y": 0
         },
         {
-            "id": "ETERNA_CITY_BUG_CATCHER_30",
+            "id": "LOCALID_BUG_CATCHER_2",
             "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -528,11 +528,11 @@
             "y": 0
         },
         {
-            "id": "ETERNA_CITY_GARDENIA_31",
+            "id": "LOCALID_GARDENIA",
             "graphics_id": "OBJ_EVENT_GFX_GARDENIA",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0218",
+            "hidden_flag": "FLAG_HIDE_ETERNA_CITY_GARDENIA",
             "script": 24,
             "initial_dir": 1,
             "data": [],
@@ -543,11 +543,11 @@
             "y": 7
         },
         {
-            "id": "ETERNA_CITY_CYRUS_32",
+            "id": "LOCALID_CYRUS",
             "graphics_id": "OBJ_EVENT_GFX_CYRUS",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0189",
+            "hidden_flag": "FLAG_HIDE_ETERNA_CITY_CYRUS",
             "script": 0,
             "initial_dir": 0,
             "data": [],
@@ -558,11 +558,11 @@
             "y": 7
         },
         {
-            "id": "ETERNA_CITY_RIVAL_33",
+            "id": "LOCALID_RIVAL",
             "graphics_id": "OBJ_EVENT_GFX_BARRY",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x018C",
+            "hidden_flag": "FLAG_HIDE_ETERNA_CITY_RIVAL",
             "script": 0,
             "initial_dir": 0,
             "data": [],
@@ -655,7 +655,7 @@
             "y": 0,
             "width": 1,
             "length": 4,
-            "var": "VAR_UNK_0x407A",
+            "var": "VAR_ETERNA_CITY_STATE",
             "value": 0
         },
         {
@@ -665,7 +665,7 @@
             "y": 0,
             "width": 5,
             "length": 1,
-            "var": "VAR_UNK_0x4114",
+            "var": "VAR_ETERNA_CITY_BLOCK_EXITS_STATE",
             "value": 1
         },
         {
@@ -675,7 +675,7 @@
             "y": 0,
             "width": 1,
             "length": 3,
-            "var": "VAR_UNK_0x4114",
+            "var": "VAR_ETERNA_CITY_BLOCK_EXITS_STATE",
             "value": 1
         },
         {
@@ -685,7 +685,7 @@
             "y": 0,
             "width": 3,
             "length": 1,
-            "var": "VAR_UNK_0x407A",
+            "var": "VAR_ETERNA_CITY_STATE",
             "value": 1
         },
         {
@@ -695,7 +695,7 @@
             "y": 0,
             "width": 1,
             "length": 5,
-            "var": "VAR_UNK_0x407A",
+            "var": "VAR_ETERNA_CITY_STATE",
             "value": 3
         },
         {
@@ -705,7 +705,7 @@
             "y": 0,
             "width": 1,
             "length": 6,
-            "var": "VAR_UNK_0x407A",
+            "var": "VAR_ETERNA_CITY_STATE",
             "value": 4
         },
         {
@@ -715,7 +715,7 @@
             "y": 0,
             "width": 1,
             "length": 3,
-            "var": "VAR_UNK_0x407A",
+            "var": "VAR_ETERNA_CITY_STATE",
             "value": 1
         }
     ]

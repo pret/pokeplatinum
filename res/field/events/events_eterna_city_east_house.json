@@ -2,7 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
-            "id": "ETERNA_CITY_EAST_HOUSE_EXPERT_M_0",
+            "id": "LOCALID_EXPERT_M",
             "graphics_id": "OBJ_EVENT_GFX_EXPERT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -17,7 +17,7 @@
             "y": 0
         },
         {
-            "id": "ETERNA_CITY_EAST_HOUSE_EXPERT_F_1",
+            "id": "LOCALID_EXPERT_F",
             "graphics_id": "OBJ_EVENT_GFX_EXPERT_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -32,7 +32,7 @@
             "y": 0
         },
         {
-            "id": "ETERNA_CITY_EAST_HOUSE_POKEMON_BREEDER_M_2",
+            "id": "LOCALID_POKEMON_BREEDER_M",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",

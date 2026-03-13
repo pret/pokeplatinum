@@ -1952,9 +1952,9 @@
     .short 331
     .endm
 
-    .macro ScrCmd_14C arg0
+    .macro SetWarpId warpId
     .short 332
-    .short \arg0
+    .short \warpId
     .endm
 
     .macro GetPlayerGender destVarID

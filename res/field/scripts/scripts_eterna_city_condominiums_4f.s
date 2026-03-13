@@ -2,32 +2,32 @@
 #include "res/text/bank/eterna_city_condominiums_4f.h"
 
 
-    ScriptEntry _0006
+    ScriptEntry EternaCityCondominiums4F_ExpertF
     ScriptEntryEnd
 
-_0006:
+EternaCityCondominiums4F_ExpertF:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x0076, _004B
-    Message 0
+    GoToIfSet FLAG_RECEIVED_ETERNA_CITY_CONDOMINIUMS_4F_TM04, EternaCityCondominiums4F_FolksLikeMeHaveALongHistoryWeCanLookBackOn
+    Message EternaCityCondominiums4F_Text_IveHadThisTMRecycleForSuchALongTimeNow
     SetVar VAR_0x8004, ITEM_TM04
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0056
-    SetFlag FLAG_UNK_0x0076
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, EternaCityCondominiums4F_BagIsFull
+    SetFlag FLAG_RECEIVED_ETERNA_CITY_CONDOMINIUMS_4F_TM04
     Common_GiveItemQuantityNoLineFeed
     CloseMessage
     ReleaseAll
     End
 
-_004B:
-    Message 1
+EternaCityCondominiums4F_FolksLikeMeHaveALongHistoryWeCanLookBackOn:
+    Message EternaCityCondominiums4F_Text_FolksLikeMeHaveALongHistoryWeCanLookBackOn
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0056:
+EternaCityCondominiums4F_BagIsFull:
     Common_MessageBagIsFull
     CloseMessage
     ReleaseAll

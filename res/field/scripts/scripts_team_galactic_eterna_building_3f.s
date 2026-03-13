@@ -2,16 +2,16 @@
 #include "res/text/bank/team_galactic_eterna_building_3f.h"
 
 
-    ScriptEntry _000A
-    ScriptEntry _001D
+    ScriptEntry TeamGalacticEternaBuilding3F_GruntM
+    ScriptEntry TeamGalacticEternaBuilding3F_Sign
     ScriptEntryEnd
 
-_000A:
-    NPCMessage 0
+TeamGalacticEternaBuilding3F_GruntM:
+    NPCMessage TeamGalacticEternaBuilding3F_Text_OrdinaryPeopleLikeYouCantUnderstandTeamGalacticGrandDesigns
     End
 
-_001D:
-    EventMessage 1
+TeamGalacticEternaBuilding3F_Sign:
+    EventMessage TeamGalacticEternaBuilding3F_Text_QuestionNotAndFollowThisPathTheRoadToSuccess
     End
 
     .balign 4, 0
