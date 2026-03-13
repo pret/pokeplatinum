@@ -393,7 +393,7 @@ BattleTower *BattleTower_Init(SaveData *saveData, u16 param1, u16 challengeMode)
             battleTower->roomNum = sub_0202D3B4(battleTower->unk_74, battleTower->challengeMode, 0);
         }
 
-        battleTower->unk_20 = GameRecords_GetRecordValue(v5, RECORD_UNK_029);
+        battleTower->unk_20 = GameRecords_GetRecordValue(v5, RECORD_BATTLE_TOWER_VICTORIES);
     }
 
     if (battleTower->challengeMode == BATTLE_TOWER_MODE_6) {
@@ -626,11 +626,11 @@ void BattleTower_UpdateGameRecords(BattleTower *battleTower, SaveData *saveData)
         sub_0202D414(battleTower->unk_74, 8 + battleTower->challengeMode, 2);
     }
 
-    GameRecords_AddToRecordValue(v5, RECORD_UNK_029, battleTower->unk_0D);
+    GameRecords_AddToRecordValue(v5, RECORD_BATTLE_TOWER_VICTORIES, battleTower->unk_0D);
     sub_0202D3B4(battleTower->unk_74, battleTower->challengeMode, 2);
 
     if (battleTower->challengeMode != BATTLE_TOWER_MODE_6) {
-        GameRecords_AddToRecordValue(SaveData_GetGameRecords(saveData), RECORD_UNK_015, 1);
+        GameRecords_AddToRecordValue(SaveData_GetGameRecords(saveData), RECORD_BATTLE_TOWER_CHALLENGES, 1);
     }
 
     sub_0204ACC8(battleTower);
@@ -683,11 +683,11 @@ void BattleTower_UpdateGameRecordsAndJournal(BattleTower *battleTower, SaveData 
     v3 = sub_02030698(frontier, v1, sub_0205E6A8(v1));
     v4 = sub_02030848(frontier, v1, sub_0205E6A8(v1), v0);
 
-    GameRecords_AddToRecordValue(v6, RECORD_UNK_029, 7);
+    GameRecords_AddToRecordValue(v6, RECORD_BATTLE_TOWER_VICTORIES, 7);
     sub_0202D3B4(battleTower->unk_74, battleTower->challengeMode, 3);
 
     if (battleTower->challengeMode != BATTLE_TOWER_MODE_6) {
-        GameRecords_AddToRecordValue(v6, RECORD_UNK_015, 1);
+        GameRecords_AddToRecordValue(v6, RECORD_BATTLE_TOWER_CHALLENGES, 1);
     }
 
     GameRecords_IncrementTrainerScore(v6, TRAINER_SCORE_EVENT_UNK_14);

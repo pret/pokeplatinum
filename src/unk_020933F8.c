@@ -1596,7 +1596,7 @@ void sub_02094C44(UnkStruct_02095C48 *param0, SaveData *saveData, u32 param2, Jo
         sub_0206CF14(broadcast, param0->unk_1974, param0->unk_00.contestType, param0->unk_00.contestRank, param0->unk_00.unk_118[param0->unk_00.unk_113].unk_08 + 1);
 
         GameRecords *v5 = SaveData_GetGameRecords(param0->saveData);
-        GameRecords_IncrementRecordValue(v5, RECORD_UNK_090);
+        GameRecords_IncrementRecordValue(v5, RECORD_SUPER_CONTEST_PARTICIPATIONS);
 
         if (sub_02094790(param0) == 0) {
             GameRecords_IncrementRecordValue(v5, RECORD_SUPER_CONTEST_WINS);
@@ -1604,7 +1604,7 @@ void sub_02094C44(UnkStruct_02095C48 *param0, SaveData *saveData, u32 param2, Jo
         }
 
         if (v0 == 1) {
-            GameRecords_IncrementRecordValue(v5, RECORD_UNK_094);
+            GameRecords_IncrementRecordValue(v5, RECORD_RIBBONS_WON);
         }
 
         int i;
@@ -1617,7 +1617,7 @@ void sub_02094C44(UnkStruct_02095C48 *param0, SaveData *saveData, u32 param2, Jo
         LinkContestRecords_IncrementSavaData(param0->saveData, param0->unk_00.contestType, param0->unk_00.unk_118[param0->unk_00.unk_113].unk_08);
 
         GameRecords *records = SaveData_GetGameRecords(param0->saveData);
-        GameRecords_IncrementRecordValue(records, RECORD_UNK_091);
+        GameRecords_IncrementRecordValue(records, RECORD_LINK_CONTEST_PARTICIPATIONS);
 
         if (sub_02094790(param0) == 0) {
             GameRecords_IncrementRecordValue(records, RECORD_LINK_CONTEST_WINS);

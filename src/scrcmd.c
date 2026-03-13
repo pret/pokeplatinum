@@ -136,6 +136,7 @@
 #include "pokemon.h"
 #include "pokeradar.h"
 #include "poketch.h"
+#include "rankings_machine.h"
 #include "render_window.h"
 #include "roaming_pokemon.h"
 #include "rtc.h"
@@ -209,7 +210,6 @@
 #include "unk_020655F4.h"
 #include "unk_02069BE0.h"
 #include "unk_0206C660.h"
-#include "unk_0206F314.h"
 #include "unk_02070428.h"
 #include "unk_020722AC.h"
 #include "unk_0207DA28.h"
@@ -549,7 +549,7 @@ static BOOL ScrCmd_ShowObject(ScriptContext *ctx);
 static BOOL ScrCmd_HideObject(ScriptContext *ctx);
 static BOOL ScrCmd_1B3(ScriptContext *ctx);
 static BOOL ScrCmd_1B4(ScriptContext *ctx);
-static BOOL ScrCmd_1B5(ScriptContext *ctx);
+static BOOL ScrCmd_StartRankingsMachine(ScriptContext *ctx);
 static BOOL ScrCmd_GetTimeOfDay(ScriptContext *ctx);
 static BOOL ScrCmd_GetRandom(ScriptContext *ctx);
 static BOOL ScrCmd_GetRandom2(ScriptContext *ctx);
@@ -1202,7 +1202,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_HideObject,
     ScrCmd_1B3,
     ScrCmd_1B4,
-    ScrCmd_1B5,
+    ScrCmd_StartRankingsMachine,
     ScrCmd_GetTimeOfDay,
     ScrCmd_GetRandom,
     ScrCmd_GetRandom2,
@@ -5767,11 +5767,11 @@ static BOOL ScrCmd_1B4(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_1B5(ScriptContext *ctx)
+static BOOL ScrCmd_StartRankingsMachine(ScriptContext *ctx)
 {
-    u16 listIndex = ScriptContext_GetVar(ctx);
+    u16 machineID = ScriptContext_GetVar(ctx);
 
-    sub_020703FC(ctx->task, listIndex);
+    RankingsMachine_InitFieldTask(ctx->task, machineID);
     return TRUE;
 }
 

@@ -2503,9 +2503,9 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_1B5 listIndex
+    .macro StartRankingsMachine machineID
     .short 437
-    .short \listIndex
+    .short \machineID
     .endm
 
     .macro GetTimeOfDay destVarID
