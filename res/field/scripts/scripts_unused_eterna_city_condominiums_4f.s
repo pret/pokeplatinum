@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/bank/eterna_city_condominiums_4f.h"
+#include "res/text/bank/unused_eterna_city_condominiums_4f.h"
 
 
     ScriptEntry EternaCityCondominiums4F_ExpertF
