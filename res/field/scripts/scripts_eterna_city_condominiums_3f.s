@@ -2,26 +2,26 @@
 #include "res/text/bank/eterna_city_condominiums_3f.h"
 
 
-    ScriptEntry _0012
-    ScriptEntry _0025
-    ScriptEntry _0038
-    ScriptEntry _004B
+    ScriptEntry EternaCityCondominiums3F_BugCatcher
+    ScriptEntry EternaCityCondominiums3F_PokefanM
+    ScriptEntry EternaCityCondominiums3F_SchoolKidM
+    ScriptEntry EternaCityCondominiums3F_NinjaBoy
     ScriptEntryEnd
 
-_0012:
-    NPCMessage 0
+EternaCityCondominiums3F_BugCatcher:
+    NPCMessage EternaCityCondominiums3F_Text_IGatheredUpALotOfBerriesSoImTradingThemInForAccessories
     End
 
-_0025:
-    NPCMessage 1
+EternaCityCondominiums3F_PokefanM:
+    NPCMessage EternaCityCondominiums3F_Text_BadgesFromGymsOrContestWins
     End
 
-_0038:
-    NPCMessage 2
+EternaCityCondominiums3F_SchoolKidM:
+    NPCMessage EternaCityCondominiums3F_Text_HahahaIveGotYouNowImGonnaTakeYourFlag
     End
 
-_004B:
-    NPCMessage 3
+EternaCityCondominiums3F_NinjaBoy:
+    NPCMessage EternaCityCondominiums3F_Text_YouCantCatchMeISetSomeTraps
     End
 
     .balign 4, 0

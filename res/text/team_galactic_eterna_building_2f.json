@@ -2,14 +2,14 @@
   "key": 5143,
   "messages": [
     {
-      "id": "pl_msg_00000093_00000",
+      "id": "TeamGalacticEternaBuilding2F_Text_TeamGalacticIsWorkingHardToFindNewEnergySourcesForTheFuture",
       "en_US": [
         "Team Galactic is working hard to find\n",
         "new energy sources for the future!"
       ]
     },
     {
-      "id": "pl_msg_00000093_00001",
+      "id": "TeamGalacticEternaBuilding2F_Text_WeAreConductingResearchOnNewFormsOfEnergy",
       "en_US": [
         "We are conducting research on new\n",
         "forms of energy!\r",
@@ -18,7 +18,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000093_00002",
+      "id": "TeamGalacticEternaBuilding2F_Text_LetUsMakeProgressTogether",
       "en_US": [
         "Let us make progress together!\n",
         "             Team Galactic"

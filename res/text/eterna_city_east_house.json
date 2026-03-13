@@ -2,7 +2,7 @@
   "key": 5171,
   "messages": [
     {
-      "id": "pl_msg_00000104_00000",
+      "id": "EternaCityEastHouse_Text_EternaCameToBeLongAgoInHonorOfAncientPokemon",
       "en_US": [
         "Eterna came to be long ago in honor\n",
         "of ancient Pokémon.\r",
@@ -13,7 +13,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000104_00001",
+      "id": "EternaCityEastHouse_Text_HaveYouSeenThePokemonStatue",
       "en_US": [
         "Have you seen the Pokémon statue?\r",
         "When I was a wee child, it used to be\n",
@@ -21,7 +21,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000104_00002",
+      "id": "EternaCityEastHouse_Text_SomeoneRippedOffTheDescriptivePlateFromThePokemonStatueWantToKnowWhatItSaid",
       "en_US": [
         "Sheesh! \n",
         "What’s the world coming to?!\r",
@@ -33,7 +33,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000104_00003",
+      "id": "EternaCityEastHouse_Text_TheFirstInscriptionWentLikeThisWantToHearAboutTheOtherInscription",
       "en_US": [
         "The first inscription went like this,\n",
         "sort of.\r",
@@ -50,7 +50,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000104_00004",
+      "id": "EternaCityEastHouse_Text_TheSecondInscriptionWentSortOfLikeThis",
       "en_US": [
         "The second inscription went sort of\n",
         "like this.\r",
@@ -71,7 +71,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000104_00005",
+      "id": "EternaCityEastHouse_Text_WellIfYoureNotInterestedDontFeelObligatedOrAnything",
       "en_US": [
         "Well, if you’re not interested, don’t\n",
         "feel obligated or anything."

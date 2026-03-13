@@ -2,7 +2,7 @@
   "key": 37946,
   "messages": [
     {
-      "id": "pl_msg_00000103_00000",
+      "id": "EternaCitySouthHouse_Text_HowIsYourPokedexComingAlong",
       "en_US": [
         "Oak: Ah, it’s you! Good to see you!\n",
         "How is your Pokédex coming along?\r",
@@ -12,7 +12,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000103_00001",
+      "id": "EternaCitySouthHouse_Text_AnAcquaintanceFromKantoHasSentSomethingQuiteInteresting",
       "en_US": [
         "Oak: Ah, yes!\r",
         "An acquaintance from Kanto has sent\n",
@@ -22,7 +22,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000103_00002",
+      "id": "EternaCitySouthHouse_Text_IUnderstandThereIsAPokemonThatEvolvesWhenItIsTradedWhileHoldingThatUpGrade",
       "en_US": [
         "I understand there is a Pokémon that\n",
         "evolves when it is traded while holding\f",
@@ -30,7 +30,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000103_00003",
+      "id": "EternaCitySouthHouse_Text_IveHeardThatThereHaveBeenSightingsOfArticunoZapdosAndMoltres",
       "en_US": [
         "Incidentally, and this is an entirely\n",
         "different topic...\r",
@@ -45,7 +45,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000103_00004",
+      "id": "EternaCitySouthHouse_Text_ArticunoZapdosAndMoltresAreExtremelyRareEvenInKanto",
       "en_US": [
         "Oak: ARTICUNO, ZAPDOS, and MOLTRES\n",
         "are extremely rare even in Kanto.\r",
@@ -58,7 +58,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000103_00005",
+      "id": "EternaCitySouthHouse_Text_YouveCaughtArticunoZapdosAndMoltresAllowMeToExamineYourPokedex",
       "en_US": [
         "Oak: Ah, it’s you!\n",
         "How goes it?\r",

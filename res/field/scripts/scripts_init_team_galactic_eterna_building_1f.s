@@ -6,7 +6,7 @@
     InitScriptEntryEnd
 
 InitScriptFrameTable:
-    InitScriptGoToIfEqual VAR_UNK_0x411D, 0, 5
+    InitScriptGoToIfEqual VAR_TEAM_GALACTIC_ETERNA_BUILDING_1F_STATE, 0, 5
     InitScriptFrameTableEnd
 
     InitScriptEnd
