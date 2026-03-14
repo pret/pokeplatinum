@@ -394,7 +394,7 @@ static Contest *Contest_New(void)
 
     contest->unk_00.playerContestantID = PLAYER_CONTESTANT_ID;
     contest->unk_00.connectionCount = 1;
-    contest->unk_00.NPCCount = CONTEST_NUM_PARTICIPANTS - 1;
+    contest->unk_00.npcCount = CONTEST_NUM_PARTICIPANTS - 1;
 
     return contest;
 }
@@ -494,11 +494,11 @@ static void sub_020939E0(Contest *contest, int isGameCompleted, int isNatDexObta
 
     sub_02094F04(contest, HEAP_ID_FIELD2, v0, contest->unk_00.contestType, contest->unk_00.contestRank, contest->unk_00.competitionType, isGameCompleted, isNatDexObtained);
 
+    // starts at 1, because 0 was already initialized for player
     for (i = 1; i < CONTEST_NUM_PARTICIPANTS; i++) {
         sub_02095380(&contest->unk_00.unk_10[i], contest->unk_00.contestMons[i], HEAP_ID_20);
     }
 
-    // starts at 1, because 0 was already initialized for player
     for (i = 1; i < CONTEST_NUM_PARTICIPANTS; i++) {
         if (contest->unk_00.trainerNames[i] == NULL) {
             contest->unk_00.trainerNames[i] = String_Init(8, HEAP_ID_20);
@@ -1024,7 +1024,7 @@ BOOL Contest_SetUpLinkContest(Contest *contest)
     }
 
     contest->unk_00.unk_114 = netID;
-    contest->unk_00.NPCCount = CONTEST_NUM_PARTICIPANTS - connectionCount;
+    contest->unk_00.npcCount = CONTEST_NUM_PARTICIPANTS - connectionCount;
     contest->unk_00.connectionCount = connectionCount;
     contest->unk_00.playerContestantID = netID;
     contest->unk_00.unk_115 = 110;
@@ -1310,7 +1310,7 @@ void Contest_SetRibbonName(Contest *contest, StringTemplate *string, u32 idx, in
         ribbonID = RIBBON_TOUGH + contest->unk_00.contestRank;
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         return;
     }
 
@@ -1459,11 +1459,7 @@ void Contest_StartCameraFlashTask(Contest *contest, int contestantEntryNum)
 
 BOOL Contest_CameraFlashTaskDone(Contest *contest)
 {
-    if (contest->cameraFlashTask == NULL) {
-        return TRUE;
-    }
-
-    return FALSE;
+    return contest->cameraFlashTask == NULL;
 }
 
 static void SysTask_DoContestCameraFlash(SysTask *sysTask, void *contestParam)

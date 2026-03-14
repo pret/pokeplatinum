@@ -32,7 +32,7 @@ typedef struct {
     u8 playerContestantID;
     u8 unk_114;
     u8 unk_115;
-    u8 NPCCount;
+    u8 npcCount;
     u8 connectionCount;
     UnkStruct_02095C48_sub1_sub1 unk_118[CONTEST_NUM_PARTICIPANTS];
 } UnkStruct_02095C48_sub1;
