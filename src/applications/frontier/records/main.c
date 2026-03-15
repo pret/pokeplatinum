@@ -154,6 +154,7 @@ int BattleFrontierRecordsApp_Main(ApplicationManager *appMan, int *state)
         if (State_FadeOutApp(app) == TRUE) {
             return TRUE;
         }
+        break;
     }
 
     return FALSE;

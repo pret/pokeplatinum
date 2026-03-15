@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_OV110_021D2124_H
-#define POKEPLATINUM_OV110_021D2124_H
+#ifndef POKEPLATINUM_APPLICATIONS_FRONTIER_RECORDS_WINDOWS_H
+#define POKEPLATINUM_APPLICATIONS_FRONTIER_RECORDS_WINDOWS_H
 
 #include "bg_window.h"
 
@@ -47,4 +47,4 @@
 void FrontierRecordsApp_InitWindows(BgConfig *bgConfig, Window *window, u8 facility);
 void FrontierRecordsApp_FreeWindows(Window *windows, u8 facility);
 
-#endif // POKEPLATINUM_OV110_021D2124_H
+#endif // POKEPLATINUM_APPLICATIONS_FRONTIER_RECORDS_WINDOWS_H

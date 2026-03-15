@@ -67,7 +67,7 @@ static const WindowTemplate sFactoryWinTemplates[] = {
         .height = 2,
         .palette = 13,
         .baseTile = 317,
-    }
+    },
 };
 
 static const WindowTemplate sHallWinTemplates[] = {
@@ -106,7 +106,7 @@ static const WindowTemplate sHallWinTemplates[] = {
         .height = 2,
         .palette = 13,
         .baseTile = 169,
-    }
+    },
 };
 
 static const WindowTemplate sCastleWinTemplates[] = {
@@ -145,7 +145,7 @@ static const WindowTemplate sCastleWinTemplates[] = {
         .height = 2,
         .palette = 13,
         .baseTile = 137,
-    }
+    },
 };
 
 static const WindowTemplate sArcadeWinTemplates[] = {
@@ -175,7 +175,7 @@ static const WindowTemplate sArcadeWinTemplates[] = {
         .height = 2,
         .palette = 13,
         .baseTile = 113,
-    }
+    },
 };
 
 static const WindowTemplate sTowerWinTemplates[] = {
@@ -259,13 +259,13 @@ static const WindowTemplate sTowerWinTemplates[] = {
         .height = 2,
         .palette = 13,
         .baseTile = 317,
-    }
+    },
 };
 
 static const struct {
     const WindowTemplate *templates;
     u32 count;
-} sWinTemplates[5] = {
+} sWinTemplates[] = {
     [WINDOW_GROUP_FACTORY] = { sFactoryWinTemplates, NELEMS(sFactoryWinTemplates) },
     [WINDOW_GROUP_HALL] = { sHallWinTemplates, NELEMS(sHallWinTemplates) },
     [WINDOW_GROUP_CASTLE] = { sCastleWinTemplates, NELEMS(sCastleWinTemplates) },
