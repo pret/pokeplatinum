@@ -1617,11 +1617,11 @@ Overlay overlay109
 	Object main.nef.p/src_overlay109_ov109_021D3D50.c.o
 }
 
-Overlay overlay110
+Overlay frontier_records_app
 {
 	After main
-	Object main.nef.p/src_overlay110_ov110_021D0D80.c.o
-	Object main.nef.p/src_overlay110_ov110_021D2124.c.o
+	Object main.nef.p/src_applications_frontier_records_main.c.o
+	Object main.nef.p/src_applications_frontier_records_windows.c.o
 }
 
 Overlay overlay111

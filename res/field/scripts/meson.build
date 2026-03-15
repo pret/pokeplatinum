@@ -533,7 +533,7 @@ scr_seq_files = files(
     'scripts_safari_game.s',
     'scripts_vs_seeker.s',
     'scripts_scratch_off_cards.s',
-    'scripts_battle_tower_records.s',
+    'scripts_battle_frontier_records.s',
     'scripts_day_care_common.s',
     'scripts_init_jubilife_city.s',
     'scripts_init_jubilife_city_mart.s',

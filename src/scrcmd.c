@@ -714,7 +714,7 @@ static BOOL ScrCmd_Unused_2CE(ScriptContext *ctx);
 static BOOL ScrCmd_SaveExtraData(ScriptContext *ctx);
 static BOOL ScrCmd_CheckIsMiscSaveInit(ScriptContext *ctx);
 static BOOL ScrCmd_PokeMartFrontier(ScriptContext *ctx);
-BOOL ScrCmd_2C8(ScriptContext *ctx);
+static BOOL ScrCmd_OpenFrontierRecordsApp(ScriptContext *ctx);
 BOOL ScrCmd_2E2(ScriptContext *ctx);
 BOOL ScrCmd_2E3(ScriptContext *ctx);
 BOOL ScrCmd_2E4(ScriptContext *ctx);
@@ -1477,7 +1477,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_2C5,
     ScrCmd_2C6,
     ScrCmd_2C7,
-    ScrCmd_2C8,
+    ScrCmd_OpenFrontierRecordsApp,
     ScrCmd_InitPersistedMapFeaturesForEternaGym,
     ScrCmd_AdvanceEternaGymClock,
     ScrCmd_CountRepeatedSpeciesInParty,
@@ -1499,7 +1499,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_2DB,
     ScrCmd_2DC,
     ScrCmd_FindPartySlotWithSpecies,
-    ScrCmd_2DE,
+    ScrCmd_ShowBattleHallRecordMonSelectionMenu,
     ScrCmd_CalcAmitySquareBerryAndAccessoryManOptionID,
     ScrCmd_CheckAmitySquareManGiftIsAccessory,
     ScrCmd_GetAmitySquareBerryOrAccessoryIDFromMan,
@@ -7538,14 +7538,14 @@ static BOOL ScrCmd_PokeMartFrontier(ScriptContext *ctx)
     return TRUE;
 }
 
-BOOL ScrCmd_2C8(ScriptContext *ctx)
+static BOOL ScrCmd_OpenFrontierRecordsApp(ScriptContext *ctx)
 {
-    void **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
-    u16 v1 = ScriptContext_GetVar(ctx);
-    u16 v2 = ScriptContext_GetVar(ctx);
-    u16 v3 = ScriptContext_GetVar(ctx);
+    void **partyData = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
+    u16 challengeType = ScriptContext_GetVar(ctx);
+    u16 facility = ScriptContext_GetVar(ctx);
+    u16 species = ScriptContext_GetVar(ctx);
 
-    *v0 = sub_0203E564(ctx->fieldSystem, v1, v2, v3, HEAP_ID_FIELD3);
+    *partyData = FieldSystem_OpenBattleFrontierRecord(ctx->fieldSystem, challengeType, facility, species, HEAP_ID_FIELD3);
     ScriptContext_Pause(ctx, sub_02041CC8);
 
     return TRUE;

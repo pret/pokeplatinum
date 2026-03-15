@@ -3,7 +3,7 @@
 
 #include "field_script_context.h"
 
-BOOL ScrCmd_2DE(ScriptContext *param0);
+BOOL ScrCmd_ShowBattleHallRecordMonSelectionMenu(ScriptContext *ctx);
 BOOL ScrCmd_JudgeStats(ScriptContext *ctx);
 BOOL ScrCmd_31D(ScriptContext *param0);
 BOOL ScrCmd_TryRevertPokemonForm(ScriptContext *param0);
@@ -17,13 +17,13 @@ BOOL ScrCmd_GetPartyMonForm2(ScriptContext *ctx);
 BOOL ScrCmd_30F(ScriptContext *param0);
 BOOL ScrCmd_Dummy316(ScriptContext *ctx);
 BOOL ScrCmd_32C(ScriptContext *param0);
-BOOL ScrCmd_32D(ScriptContext *param0);
-BOOL ScrCmd_32E(ScriptContext *param0);
-BOOL ScrCmd_331(ScriptContext *param0);
-BOOL ScrCmd_332(ScriptContext *param0);
-BOOL ScrCmd_338(ScriptContext *param0);
-BOOL ScrCmd_339(ScriptContext *param0);
+BOOL ScrCmd_32D(ScriptContext *ctx);
+BOOL ScrCmd_32E(ScriptContext *ctx);
+BOOL ScrCmd_331(ScriptContext *ctx);
+BOOL ScrCmd_332(ScriptContext *ctx);
+BOOL ScrCmd_338(ScriptContext *ctx);
+BOOL ScrCmd_339(ScriptContext *ctx);
 BOOL ScrCmd_LogLinkInfoInWiFiHistory(ScriptContext *ctx);
-BOOL ScrCmd_333(ScriptContext *param0);
+BOOL ScrCmd_333(ScriptContext *ctx);
 
 #endif // POKEPLATINUM_OV5_021F6454_H

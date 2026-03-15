@@ -4235,11 +4235,11 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_2C8 arg0, arg1, arg2
+    .macro OpenFrontierRecordsApp challengeType, facility, species
     .short 712
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \challengeType
+    .short \facility
+    .short \species
     .endm
 
     .macro InitPersistedMapFeaturesForEternaGym
@@ -4360,13 +4360,13 @@
     .short \species
     .endm
 
-    .macro ScrCmd_2DE arg0, arg1, arg2, arg3, arg4
+    .macro ShowBattleHallRecordMonSelectionMenu challengeType, letterGroup, result, listPos, cursorPos
     .short 734
-    .short \arg0
-    .short \arg1
-    .short \arg2
-    .short \arg3
-    .short \arg4
+    .short \challengeType
+    .short \letterGroup
+    .short \result
+    .short \listPos
+    .short \cursorPos
     .endm
 
     .macro CalcAmitySquareBerryAndAccessoryManOptionID destBerryAndAccessoryManOptionID

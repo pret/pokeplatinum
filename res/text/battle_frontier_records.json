@@ -1,0 +1,184 @@
+{
+  "key": 14833,
+  "messages": [
+    {
+      "id": "BattleFrontierRecords_Text_WhichRecord",
+      "en_US": "Which record would you like to see?"
+    },
+    {
+      "id": "BattleFrontierRecords_Text_Single",
+      "en_US": "SINGLE"
+    },
+    {
+      "id": "BattleFrontierRecords_Text_Double",
+      "en_US": "DOUBLE"
+    },
+    {
+      "id": "BattleFrontierRecords_Text_Multi",
+      "en_US": "MULTI"
+    },
+    {
+      "id": "BattleFrontierRecords_Text_Cancel",
+      "en_US": "CANCEL"
+    },
+    {
+      "id": "BattleFrontierRecords_Text_Exit",
+      "en_US": "EXIT"
+    },
+    {
+      "id": "BattleFrontierRecords_Text_WhichPokemon",
+      "en_US": [
+        "Which Pokémon’s record would you like\n",
+        "to see?\r"
+      ]
+    },
+    {
+      "id": "BattleFrontierRecords_Text_OnChallengeNow",
+      "en_US": "{STRVAR_1 0, 0, 0} is on a challenge now!"
+    },
+    {
+      "id": "BattleFrontierRecords_Text_ABC",
+      "en_US": "ABC"
+    },
+    {
+      "id": "BattleFrontierRecords_Text_DEF",
+      "en_US": "DEF"
+    },
+    {
+      "id": "BattleFrontierRecords_Text_GHI",
+      "en_US": "GHI"
+    },
+    {
+      "id": "BattleFrontierRecords_Text_JKL",
+      "en_US": "JKL"
+    },
+    {
+      "id": "BattleFrontierRecords_Text_MNO",
+      "en_US": "MNO"
+    },
+    {
+      "id": "BattleFrontierRecords_Text_PQR",
+      "en_US": "PQR"
+    },
+    {
+      "id": "BattleFrontierRecords_Text_STU",
+      "en_US": "STU"
+    },
+    {
+      "id": "BattleFrontierRecords_Text_VWX",
+      "en_US": "VWX"
+    },
+    {
+      "id": "BattleFrontierRecords_Text_YZ",
+      "en_US": "YZ"
+    },
+    {
+      "id": "BattleFrontierRecords_Text_Dummy1",
+      "garbage": 1
+    },
+    {
+      "id": "BattleFrontierRecords_Text_Cancel2",
+      "en_US": "CANCEL"
+    },
+    {
+      "id": "BattleFrontierRecords_Text_Dummy3",
+      "garbage": 5
+    },
+    {
+      "id": "BattleFrontierRecords_Text_Dummy4",
+      "garbage": 3
+    },
+    {
+      "id": "BattleFrontierRecords_Text_BattleTower",
+      "en_US": "Battle Tower"
+    },
+    {
+      "id": "BattleFrontierRecords_Text_BattleFactory",
+      "en_US": "Battle Factory"
+    },
+    {
+      "id": "BattleFrontierRecords_Text_BattleCastle",
+      "en_US": "Battle Castle"
+    },
+    {
+      "id": "BattleFrontierRecords_Text_BattleHall",
+      "en_US": "Battle Hall"
+    },
+    {
+      "id": "BattleFrontierRecords_Text_BattleArcade",
+      "en_US": "Battle Arcade"
+    },
+    {
+      "id": "BattleFrontierRecords_Text_SingleRecord",
+      "en_US": "Single Record"
+    },
+    {
+      "id": "BattleFrontierRecords_Text_DoubleRecord",
+      "en_US": "Double Record"
+    },
+    {
+      "id": "BattleFrontierRecords_Text_MultiRecord",
+      "en_US": "Multi Record"
+    },
+    {
+      "id": "BattleFrontierRecords_Text_Prev",
+      "en_US": "PREV"
+    },
+    {
+      "id": "BattleFrontierRecords_Text_Current",
+      "en_US": "CURRENT"
+    },
+    {
+      "id": "BattleFrontierRecords_Text_Record",
+      "en_US": "RECORD"
+    },
+    {
+      "id": "BattleFrontierRecords_Text_MultiWithTrainer",
+      "en_US": "Multi w/Trainer"
+    },
+    {
+      "id": "BattleFrontierRecords_Text_MultiWithFriend",
+      "en_US": "Multi w/friend"
+    },
+    {
+      "id": "BattleFrontierRecords_Text_Level50",
+      "en_US": "Level 50"
+    },
+    {
+      "id": "BattleFrontierRecords_Text_OpenLevel",
+      "en_US": "Open Level"
+    },
+    {
+      "id": "BattleFrontierRecords_Text_RentalTrade",
+      "en_US": "Rental/Trade"
+    },
+    {
+      "id": "BattleFrontierRecords_Text_CastlePoints",
+      "en_US": "Castle Points"
+    },
+    {
+      "id": "BattleFrontierRecords_Text_WinStreak",
+      "en_US": "Win streak: {STRVAR_1 53, 0, 0}"
+    },
+    {
+      "id": "BattleFrontierRecords_Text_MonsRecord",
+      "en_US": "{STRVAR_1 0, 0, 0}’s record"
+    },
+    {
+      "id": "BattleFrontierRecords_Text_Number",
+      "en_US": "{STRVAR_1 53, 0, 0}"
+    },
+    {
+      "id": "BattleFrontierRecords_Text_CP",
+      "en_US": "{STRVAR_1 53, 0, 0} CP"
+    },
+    {
+      "id": "BattleFrontierRecords_Text_WinStreakTemplate",
+      "en_US": "Win streak: {STRVAR_1 53, 0, 0}"
+    },
+    {
+      "id": "BattleFrontierRecords_Text_GamesCleared",
+      "en_US": "Games cleared: {STRVAR_1 53, 0, 0}"
+    }
+  ]
+}
