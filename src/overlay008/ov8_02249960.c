@@ -73,6 +73,8 @@
 #define ETERNA_CLOCK_TOP_BOUND    7
 #define ETERNA_CLOCK_RIGHT_BOUND  (ETERNA_CLOCK_LEFT_BOUND + ETERNA_CLOCK_DIAMETER - 1)
 #define ETERNA_CLOCK_BOTTOM_BOUND (ETERNA_CLOCK_TOP_BOUND + ETERNA_CLOCK_DIAMETER - 1)
+#define ETERNA_CLOCK_CENTER_X     11
+#define ETERNA_CLOCK_CENTER_Z     13
 #define ETERNA_GYM_FOUNTAIN_Z     19
 #define ETERNA_GYM_WIDTH          21
 
@@ -2271,16 +2273,16 @@ static const u32 sEternaGymClockModelIds[2] = {
     eterna_gym_model_clock_minute_hand_nsbmd
 };
 
-static const VecFx32 Unk_ov8_0224C7A0[2] = {
+static const VecFx32 sEternaGymClockHandsCenter[2] = {
     {
-        ((11 << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1),
+        MAP_OBJECT_COORD_TO_FX32(ETERNA_CLOCK_CENTER_X),
         FX32_ONE * 12,
-        ((13 << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1),
+        MAP_OBJECT_COORD_TO_FX32(ETERNA_CLOCK_CENTER_Z),
     },
     {
-        ((11 << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1),
+        MAP_OBJECT_COORD_TO_FX32(ETERNA_CLOCK_CENTER_X),
         FX32_ONE * 13,
-        ((13 << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1),
+        MAP_OBJECT_COORD_TO_FX32(ETERNA_CLOCK_CENTER_Z),
     }
 };
 
@@ -2484,7 +2486,7 @@ void EternaGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
 
     UnkStruct_ov8_0224AF58 *v4 = v2->unk_0C;
     const u32 *modelId = sEternaGymClockModelIds;
-    const VecFx32 *position = Unk_ov8_0224C7A0;
+    const VecFx32 *position = sEternaGymClockHandsCenter;
     const VecFx32 rotation = { 0, 0, 0 };
 
     for (int i = 0; i < 2; i++, v4++, modelId++, position++) {
