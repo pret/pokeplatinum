@@ -4,7 +4,6 @@
 #include "constants/heap.h"
 #include "generated/trainer_message_types.h"
 
-#include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 
 #include "field/field_system.h"
@@ -15,6 +14,7 @@
 #include "inlines.h"
 #include "map_object.h"
 #include "party.h"
+#include "player_avatar.h"
 #include "script_manager.h"
 #include "sound.h"
 #include "sys_task_manager.h"

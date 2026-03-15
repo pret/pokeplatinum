@@ -1,15 +1,36 @@
 #ifndef POKEPLATINUM_UNK_0203A6DC_H
 #define POKEPLATINUM_UNK_0203A6DC_H
 
-#include "struct_decls/struct_0203A790_decl.h"
-#include "struct_decls/struct_0203A79C_decl.h"
 #include "struct_defs/struct_0205EC34.h"
 
 #include "field/field_system_decl.h"
 
 #include "location.h"
+#include "map_object.h"
 #include "overworld_map_history.h"
 #include "savedata.h"
+
+typedef struct FieldOverworldState {
+    Location player;
+    Location entrance;
+    Location previous;
+    Location special;
+    Location exit;
+    u16 bgm;
+    u16 weather;
+    u16 warpId;
+    u8 cameraType;
+    OverworldMapHistory mapHistory;
+    PlayerData playerData;
+    u16 poisonSteps;
+    u16 safariSteps;
+    u16 safariBalls;
+    u8 padding_9A[6];
+} FieldOverworldState;
+
+typedef struct FieldOverworldSave {
+    MapObjectSave unk_00[64];
+} FieldOverworldSave;
 
 int FieldOverworldState_Size(void);
 int FieldOverworldSave_Size(void);

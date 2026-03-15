@@ -12,7 +12,6 @@
 #include "constants/species.h"
 
 #include "struct_decls/struct_02015920_decl.h"
-#include "struct_decls/struct_02024440_decl.h"
 #include "struct_defs/struct_02015958.h"
 
 #include "game_opening/const_ov77_021D742C.h"

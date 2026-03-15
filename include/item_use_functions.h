@@ -1,12 +1,11 @@
 #ifndef POKEPLATINUM_ITEM_USE_FUNCTIONS_H
 #define POKEPLATINUM_ITEM_USE_FUNCTIONS_H
 
-#include "struct_decls/struct_0205E884_decl.h"
-
 #include "field/field_system_decl.h"
 
 #include "bg_window.h"
 #include "field_task.h"
+#include "player_avatar.h"
 #include "string_gf.h"
 
 #define ITEM_FUNC_USE_FROM_MENU 0

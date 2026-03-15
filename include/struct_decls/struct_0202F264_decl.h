@@ -1,6 +1,0 @@
-#ifndef POKEPLATINUM_STRUCT_0202F264_DECL_H
-#define POKEPLATINUM_STRUCT_0202F264_DECL_H
-
-typedef struct BattleRecording BattleRecording;
-
-#endif // POKEPLATINUM_STRUCT_0202F264_DECL_H
