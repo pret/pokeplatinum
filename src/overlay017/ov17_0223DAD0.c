@@ -20,6 +20,7 @@
 
 #include "bg_window.h"
 #include "camera.h"
+#include "contest.h"
 #include "font.h"
 #include "game_options.h"
 #include "game_overlay.h"
@@ -48,7 +49,6 @@
 #include "unk_02012744.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
-#include "unk_020933F8.h"
 #include "unk_02094EDC.h"
 #include "vram_transfer.h"
 
@@ -158,7 +158,7 @@ static const UnkStruct_ov17_02253084 Unk_ov17_02253084[] = {
 static const struct {
     u32 unk_00;
     u32 unk_04;
-} Unk_ov17_0225312C[4][5] = {
+} Unk_ov17_0225312C[CONTEST_MAX_RANKS][CONTEST_TYPE_MAX] = {
     { 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 },
     { 0x1, 0x0, 0x1, 0x0, 0x1, 0x0, 0x1, 0x0, 0x1, 0x0 },
     { 0x2, 0x1, 0x3, 0x1, 0x4, 0x0, 0x5, 0x0, 0x6, 0x0 },
@@ -214,7 +214,7 @@ static const SpriteResourceCapacities Unk_ov17_02252FF0 = {
     0x8
 };
 
-int ov17_0223DAD0(ApplicationManager *appMan, int *param1)
+int DanceCompetition_Init(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov17_0224DF54 *v0;
 
@@ -279,9 +279,9 @@ int ov17_0223DAD0(ApplicationManager *appMan, int *param1)
     v0->unk_14.unk_44 = PokemonSpriteManager_New(HEAP_ID_23);
     ov17_0223E450();
 
-    v0->unk_14.unk_84 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_CONTEST_DANCE_COMPETITION, HEAP_ID_23);
+    v0->unk_14.danceMessageLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_CONTEST_DANCE_COMPETITION, HEAP_ID_23);
     v0->unk_14.unk_88 = StringTemplate_Default(HEAP_ID_23);
-    v0->unk_14.unk_8C = String_Init(2 * 160, HEAP_ID_23);
+    v0->unk_14.danceMessage = String_Init(2 * 160, HEAP_ID_23);
     v0->unk_14.unk_94 = sub_02012744(3 * 3, HEAP_ID_23);
 
     {
@@ -328,12 +328,12 @@ int ov17_0223DAD0(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-int ov17_0223DDD4(ApplicationManager *appMan, int *param1)
+int DanceCompetition_Main(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov17_0224DF54 *v0 = ApplicationManager_Data(appMan);
     int v1;
 
-    sub_02094E98(v0->unk_00);
+    Contest_GetRNGNext(v0->unk_00);
 
     switch (*param1) {
     case 0:
@@ -342,7 +342,7 @@ int ov17_0223DDD4(ApplicationManager *appMan, int *param1)
         }
         break;
     case 1:
-        if (sub_02094EDC(v0->unk_00) == 1) {
+        if (sub_02094EDC(v0->unk_00) == TRUE) {
             v1 = Unk_ov17_02253050[v0->unk_1096](v0, &v0->unk_1B1C);
 
             if ((v1 == 1) || (v1 == 2)) {
@@ -364,7 +364,7 @@ int ov17_0223DDD4(ApplicationManager *appMan, int *param1)
         ov17_0224F35C(&v0->unk_109C);
         ov17_0224F3D8(&v0->unk_109C, v0);
 
-        if ((v0->unk_1B24 == 1) && (ov17_0224F3D0(&v0->unk_109C) == 0) && (sub_02094EDC(v0->unk_00) == 0)) {
+        if ((v0->unk_1B24 == 1) && (ov17_0224F3D0(&v0->unk_109C) == 0) && (sub_02094EDC(v0->unk_00) == FALSE)) {
             *param1 = 2;
             MI_CpuClear8(&v0->unk_1B1C, sizeof(UnkStruct_ov17_0223E838));
             StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_30, FADE_TYPE_UNK_30, COLOR_BLACK, 6, 1, HEAP_ID_23);
@@ -382,7 +382,7 @@ int ov17_0223DDD4(ApplicationManager *appMan, int *param1)
     return 0;
 }
 
-int ov17_0223DF0C(ApplicationManager *appMan, int *param1)
+int DanceCompetition_Exit(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov17_0224DF54 *v0 = ApplicationManager_Data(appMan);
     int v1;
@@ -429,9 +429,9 @@ int ov17_0223DF0C(ApplicationManager *appMan, int *param1)
     PaletteData_FreeBuffer(v0->unk_14.unk_90, 2);
     PaletteData_FreeBuffer(v0->unk_14.unk_90, 3);
     PaletteData_Free(v0->unk_14.unk_90);
-    String_Free(v0->unk_14.unk_8C);
+    String_Free(v0->unk_14.danceMessage);
     StringTemplate_Free(v0->unk_14.unk_88);
-    MessageLoader_Free(v0->unk_14.unk_84);
+    MessageLoader_Free(v0->unk_14.danceMessageLoader);
     Heap_Free(v0->unk_14.unk_60);
     SysTask_Done(v0->unk_04);
 
@@ -697,19 +697,19 @@ static void ov17_0223E450(void)
 
 static void ov17_0223E458(UnkStruct_ov17_0224DF54 *param0)
 {
-    int v0;
+    int i;
 
     GF_ASSERT(param0->unk_00 != NULL);
 
-    for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_A3C.unk_00[v0] = 4 - 1 - v0;
-        param0->unk_A3C.unk_05[v0] = 4 - 1 - v0;
+    for (i = 0; i < CONTEST_NUM_PARTICIPANTS; i++) {
+        param0->unk_A3C.unk_00[i] = 4 - 1 - i;
+        param0->unk_A3C.unk_05[i] = 4 - 1 - i;
     }
 
     ov17_0224CFB8(param0);
 
-    for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_14.unk_A14[v0] = ov17_0224CFA8(Pokemon_GetValue(param0->unk_00->unk_00.unk_00[v0], MON_DATA_SPECIES, NULL));
+    for (i = 0; i < CONTEST_NUM_PARTICIPANTS; i++) {
+        param0->unk_14.unk_A14[i] = ov17_0224CFA8(Pokemon_GetValue(param0->unk_00->unk_00.contestMons[i], MON_DATA_SPECIES, NULL));
     }
 }
 
@@ -887,7 +887,7 @@ static int ov17_0223E838(UnkStruct_ov17_0224DF54 *param0, UnkStruct_ov17_0223E83
         }
         break;
     default:
-        if (ov17_0224F4B8(&param0->unk_109C, param0->unk_00->unk_00.unk_117, param0->unk_00->unk_00.unk_113, param0->unk_00->unk_00.unk_10C) == 1) {
+        if (ov17_0224F4B8(&param0->unk_109C, param0->unk_00->unk_00.connectionCount, param0->unk_00->unk_00.playerContestantID, param0->unk_00->unk_00.unk_10C) == 1) {
             return 1;
         }
         break;
@@ -902,10 +902,10 @@ static int ov17_0223E8AC(UnkStruct_ov17_0224DF54 *param0, UnkStruct_ov17_0223E83
     case 0:
         param0->unk_A6C.unk_37 = 0;
         param0->unk_A6C.unk_38 = 0;
-        param0->unk_A6C.unk_30.unk_00 = param0->unk_00->unk_00.unk_113;
+        param0->unk_A6C.unk_30.contestantID = param0->unk_00->unk_00.playerContestantID;
         param0->unk_A6C.unk_30.unk_04 = ov17_0224C57C(param0->unk_00->unk_00.contestRank);
 
-        if (sub_0209590C(param0->unk_00) == 1) {
+        if (Contest_IsPracticeCompetition(param0->unk_00) == TRUE) {
             param0->unk_A6C.unk_36 = 2;
         } else {
             param0->unk_A6C.unk_36 = 1;
@@ -916,7 +916,7 @@ static int ov17_0223E8AC(UnkStruct_ov17_0224DF54 *param0, UnkStruct_ov17_0223E83
         }
         break;
     case 1:
-        if (ov17_0224F4B8(&param0->unk_109C, param0->unk_00->unk_00.unk_117, param0->unk_00->unk_00.unk_113, param0->unk_00->unk_00.unk_10C) == 1) {
+        if (ov17_0224F4B8(&param0->unk_109C, param0->unk_00->unk_00.connectionCount, param0->unk_00->unk_00.playerContestantID, param0->unk_00->unk_00.unk_10C) == 1) {
             param1->unk_00++;
         }
         break;
@@ -936,7 +936,7 @@ static int ov17_0223E954(UnkStruct_ov17_0224DF54 *param0, UnkStruct_ov17_0223E83
         }
         break;
     default:
-        if (ov17_0224F4B8(&param0->unk_109C, param0->unk_00->unk_00.unk_117, param0->unk_00->unk_00.unk_113, param0->unk_00->unk_00.unk_10C) == 1) {
+        if (ov17_0224F4B8(&param0->unk_109C, param0->unk_00->unk_00.connectionCount, param0->unk_00->unk_00.playerContestantID, param0->unk_00->unk_00.unk_10C) == 1) {
             return 1;
         }
         break;
@@ -982,7 +982,7 @@ static int ov17_0223E9A4(UnkStruct_ov17_0224DF54 *param0, UnkStruct_ov17_0223E83
         }
         break;
     case 2:
-        if (ov17_0224F4B8(&param0->unk_109C, param0->unk_00->unk_00.unk_117, param0->unk_00->unk_00.unk_113, param0->unk_00->unk_00.unk_10C) == 1) {
+        if (ov17_0224F4B8(&param0->unk_109C, param0->unk_00->unk_00.connectionCount, param0->unk_00->unk_00.playerContestantID, param0->unk_00->unk_00.unk_10C) == 1) {
             param1->unk_00++;
         }
         break;
@@ -992,7 +992,7 @@ static int ov17_0223E9A4(UnkStruct_ov17_0224DF54 *param0, UnkStruct_ov17_0223E83
         }
         break;
     case 4:
-        if (ov17_0224F4B8(&param0->unk_109C, param0->unk_00->unk_00.unk_117, param0->unk_00->unk_00.unk_113, param0->unk_00->unk_00.unk_10C) == 1) {
+        if (ov17_0224F4B8(&param0->unk_109C, param0->unk_00->unk_00.connectionCount, param0->unk_00->unk_00.playerContestantID, param0->unk_00->unk_00.unk_10C) == 1) {
             param1->unk_00++;
         }
         break;
@@ -1005,18 +1005,18 @@ static int ov17_0223E9A4(UnkStruct_ov17_0224DF54 *param0, UnkStruct_ov17_0223E83
 
 static int ov17_0223EBB0(UnkStruct_ov17_0224DF54 *param0, UnkStruct_ov17_0223E838 *param1)
 {
-    int v0;
+    int contestantID;
 
     switch (param1->unk_00) {
     case 0:
         param0->unk_A6C.unk_00 = param0->unk_A3C.unk_00[param0->unk_A3C.unk_04];
 
-        for (v0 = 0; v0 < 4; v0++) {
-            param0->unk_A6C.unk_02[v0] = param0->unk_A3C.unk_05[v0];
+        for (contestantID = 0; contestantID < CONTEST_NUM_PARTICIPANTS; contestantID++) {
+            param0->unk_A6C.unk_02[contestantID] = param0->unk_A3C.unk_05[contestantID];
         }
 
-        for (v0 = param0->unk_00->unk_00.unk_117; v0 < 4; v0++) {
-            param0->unk_A6C.unk_14[v0] = sub_02094E98(param0->unk_00);
+        for (contestantID = param0->unk_00->unk_00.connectionCount; contestantID < CONTEST_NUM_PARTICIPANTS; contestantID++) {
+            param0->unk_A6C.unk_14[contestantID] = Contest_GetRNGNext(param0->unk_00);
         }
 
         param1->unk_00++;
@@ -1037,7 +1037,7 @@ static int ov17_0223EC20(UnkStruct_ov17_0224DF54 *param0, UnkStruct_ov17_0223E83
         }
         break;
     default:
-        if (ov17_0224F4B8(&param0->unk_109C, param0->unk_00->unk_00.unk_117, param0->unk_00->unk_00.unk_113, param0->unk_00->unk_00.unk_10C) == 1) {
+        if (ov17_0224F4B8(&param0->unk_109C, param0->unk_00->unk_00.connectionCount, param0->unk_00->unk_00.playerContestantID, param0->unk_00->unk_00.unk_10C) == 1) {
             return 1;
         }
         break;
@@ -1055,7 +1055,7 @@ static int ov17_0223EC74(UnkStruct_ov17_0224DF54 *param0, UnkStruct_ov17_0223E83
         }
         break;
     default:
-        if (ov17_0224F4B8(&param0->unk_109C, param0->unk_00->unk_00.unk_117, param0->unk_00->unk_00.unk_113, param0->unk_00->unk_00.unk_10C) == 1) {
+        if (ov17_0224F4B8(&param0->unk_109C, param0->unk_00->unk_00.connectionCount, param0->unk_00->unk_00.playerContestantID, param0->unk_00->unk_00.unk_10C) == 1) {
             return 1;
         }
         break;
@@ -1073,7 +1073,7 @@ static int ov17_0223ECC8(UnkStruct_ov17_0224DF54 *param0, UnkStruct_ov17_0223E83
         }
         break;
     default:
-        if (ov17_0224F4B8(&param0->unk_109C, param0->unk_00->unk_00.unk_117, param0->unk_00->unk_00.unk_113, param0->unk_00->unk_00.unk_10C) == 1) {
+        if (ov17_0224F4B8(&param0->unk_109C, param0->unk_00->unk_00.connectionCount, param0->unk_00->unk_00.playerContestantID, param0->unk_00->unk_00.unk_10C) == 1) {
             return 1;
         }
         break;
@@ -1090,7 +1090,7 @@ static int ov17_0223ED1C(UnkStruct_ov17_0224DF54 *param0, UnkStruct_ov17_0223E83
             return 1;
         }
 
-        param0->unk_A6C.unk_30.unk_00 = param0->unk_A3C.unk_05[1];
+        param0->unk_A6C.unk_30.contestantID = param0->unk_A3C.unk_05[1];
         param0->unk_A6C.unk_30.unk_04 = ov17_0224C57C(param0->unk_00->unk_00.contestRank);
         param0->unk_A6C.unk_36 = 0;
 
@@ -1099,7 +1099,7 @@ static int ov17_0223ED1C(UnkStruct_ov17_0224DF54 *param0, UnkStruct_ov17_0223E83
         }
         break;
     default:
-        if (ov17_0224F4B8(&param0->unk_109C, param0->unk_00->unk_00.unk_117, param0->unk_00->unk_00.unk_113, param0->unk_00->unk_00.unk_10C) == 1) {
+        if (ov17_0224F4B8(&param0->unk_109C, param0->unk_00->unk_00.connectionCount, param0->unk_00->unk_00.playerContestantID, param0->unk_00->unk_00.unk_10C) == 1) {
             return 1;
         }
         break;
@@ -1135,7 +1135,7 @@ static int ov17_0223ED9C(UnkStruct_ov17_0224DF54 *param0, UnkStruct_ov17_0223E83
         }
         break;
     case 2:
-        if (ov17_0224F4B8(&param0->unk_109C, param0->unk_00->unk_00.unk_117, param0->unk_00->unk_00.unk_113, param0->unk_00->unk_00.unk_10C) == 1) {
+        if (ov17_0224F4B8(&param0->unk_109C, param0->unk_00->unk_00.connectionCount, param0->unk_00->unk_00.playerContestantID, param0->unk_00->unk_00.unk_10C) == 1) {
             param1->unk_00++;
         }
         break;
@@ -1161,7 +1161,7 @@ static int ov17_0223EE54(UnkStruct_ov17_0224DF54 *param0, UnkStruct_ov17_0223E83
         }
         break;
     case 1:
-        if (ov17_0224F4B8(&param0->unk_109C, param0->unk_00->unk_00.unk_117, param0->unk_00->unk_00.unk_113, param0->unk_00->unk_00.unk_10C) == 1) {
+        if (ov17_0224F4B8(&param0->unk_109C, param0->unk_00->unk_00.connectionCount, param0->unk_00->unk_00.playerContestantID, param0->unk_00->unk_00.unk_10C) == 1) {
             param1->unk_00++;
         }
         break;
@@ -1217,12 +1217,12 @@ static int ov17_0223EEB8(UnkStruct_ov17_0224DF54 *param0, UnkStruct_ov17_0223E83
         param0->unk_A6C.unk_37 = 0;
         param0->unk_A6C.unk_38 = 0;
         v1 = param0->unk_00->unk_156[0];
-        param0->unk_A6C.unk_30.unk_00 = v1;
+        param0->unk_A6C.unk_30.contestantID = v1;
 
-        switch (param0->unk_00->unk_00.unk_111) {
-        case 0:
-        case 1:
-        case 2:
+        switch (param0->unk_00->unk_00.competitionType) {
+        case CONTEST_COMPETITION_UNK0:
+        case CONTEST_COMPETITION_UNK1:
+        case CONTEST_COMPETITION_LINK_OR_OFFICIAL:
             param0->unk_A6C.unk_36 = 6;
             break;
         default:
@@ -1237,7 +1237,7 @@ static int ov17_0223EEB8(UnkStruct_ov17_0224DF54 *param0, UnkStruct_ov17_0223E83
         }
         break;
     case 2:
-        if (ov17_0224F4B8(&param0->unk_109C, param0->unk_00->unk_00.unk_117, param0->unk_00->unk_00.unk_113, param0->unk_00->unk_00.unk_10C) == 1) {
+        if (ov17_0224F4B8(&param0->unk_109C, param0->unk_00->unk_00.connectionCount, param0->unk_00->unk_00.playerContestantID, param0->unk_00->unk_00.unk_10C) == 1) {
             param1->unk_00++;
         }
         break;
@@ -1266,7 +1266,7 @@ static int ov17_0223F03C(UnkStruct_ov17_0224DF54 *param0, UnkStruct_ov17_0223E83
         }
         break;
     default:
-        if (ov17_0224F4B8(&param0->unk_109C, param0->unk_00->unk_00.unk_117 - param0->unk_00->unk_15B - 1, param0->unk_00->unk_00.unk_113, param0->unk_00->unk_00.unk_10C) == 1) {
+        if (ov17_0224F4B8(&param0->unk_109C, param0->unk_00->unk_00.connectionCount - param0->unk_00->unk_15B - 1, param0->unk_00->unk_00.playerContestantID, param0->unk_00->unk_00.unk_10C) == 1) {
             return 3;
         }
         break;

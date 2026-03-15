@@ -2,9 +2,9 @@
 #define POKEPLATINUM_STRUCT_OV17_0224DF54_SUB1_H
 
 typedef struct {
-    u8 unk_00[4];
+    u8 unk_00[CONTEST_NUM_PARTICIPANTS];
     u8 unk_04;
-    u8 unk_05[4];
+    u8 unk_05[CONTEST_NUM_PARTICIPANTS];
     s16 unk_0A[4];
     u32 unk_14;
     u32 unk_18;

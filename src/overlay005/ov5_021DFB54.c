@@ -124,9 +124,9 @@ typedef struct StuckInDeepMudTaskEnv {
 typedef struct {
     FieldSystem *fieldSystem;
     PlayerAvatar *playerAvatar;
-    MapObject *unk_08;
+    MapObject *playerObject;
     int unk_0C;
-    int unk_10;
+    int playerGender;
     SysTask *unk_14;
 } UnkStruct_ov5_021E0DE0;
 
@@ -1527,8 +1527,8 @@ static void ov5_021E0DE0(FieldSystem *fieldSystem)
 
     v0->fieldSystem = fieldSystem;
     v0->playerAvatar = fieldSystem->playerAvatar;
-    v0->unk_08 = Player_MapObject(v0->playerAvatar);
-    v0->unk_10 = PlayerAvatar_Gender(v0->playerAvatar);
+    v0->playerObject = Player_MapObject(v0->playerAvatar);
+    v0->playerGender = PlayerAvatar_Gender(v0->playerAvatar);
 
     FieldTask_InitCall(fieldSystem->task, ov5_021E0E10, v0);
 }
@@ -1539,17 +1539,17 @@ static BOOL ov5_021E0E10(FieldTask *param0)
 
     switch (v0->unk_0C) {
     case 0:
-        v0->unk_14 = MapObject_StartAnimation(v0->unk_08, Unk_ov5_021F9B9C);
+        v0->unk_14 = MapObject_StartAnimation(v0->playerObject, Unk_ov5_021F9B9C);
         v0->unk_0C++;
         break;
     case 1:
         if (MapObject_HasAnimationEnded(v0->unk_14) == 1) {
-            int v1 = Player_MoveStateFromGender(0x12, v0->unk_10);
+            int v1 = Player_MoveStateFromGender(0x12, v0->playerGender);
 
             PlayerAvatar_Redraw(v0->playerAvatar, v1);
             MapObject_FinishAnimation(v0->unk_14);
 
-            v0->unk_14 = MapObject_StartAnimation(v0->unk_08, Unk_ov5_021F9C00);
+            v0->unk_14 = MapObject_StartAnimation(v0->playerObject, Unk_ov5_021F9C00);
             v0->unk_0C++;
         }
         break;

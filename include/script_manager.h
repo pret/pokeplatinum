@@ -105,7 +105,7 @@ enum ScriptContextType {
 #define SCRIPT_ID_OFFSET_DAY_CARE_COMMON               9500
 #define SCRIPT_ID_OFFSET_INIT_NEW_GAME                 9600
 #define SCRIPT_ID_OFFSET_FOLLOWER_PARTNERS             9700
-#define SCRIPT_ID_OFFSET_CONTEST_REGISTRATION          9800
+#define SCRIPT_ID_OFFSET_CONTESTS                      9800
 #define SCRIPT_ID_OFFSET_POKEDEX_RATINGS               9950
 #define SCRIPT_ID_OFFSET_FIELD_MOVES                   10000
 #define SCRIPT_ID_OFFSET_TV_BROADCAST                  10100

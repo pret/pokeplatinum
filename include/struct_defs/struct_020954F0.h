@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_020954F0_H
 
 typedef struct {
-    u16 unk_00;
+    u16 judgeNameMessageID;
     u8 padding_02[2];
     u16 unk_04_0 : 2;
     u16 unk_04_2 : 2;

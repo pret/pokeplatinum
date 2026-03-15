@@ -12,6 +12,7 @@
 #include "overlay017/struct_ov17_0224FECC.h"
 
 #include "bg_window.h"
+#include "contest.h"
 #include "font.h"
 #include "game_overlay.h"
 #include "graphics.h"
@@ -36,7 +37,6 @@
 #include "unk_02012744.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
-#include "unk_020933F8.h"
 #include "unk_02094EDC.h"
 #include "vram_transfer.h"
 
@@ -125,7 +125,7 @@ __attribute__((aligned(4))) static const u16 Unk_ov17_02254AB4[] = {
     0xF
 };
 
-int ov17_0224F4D4(ApplicationManager *appMan, int *param1)
+int ContestFinalScoring_Init(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov17_0224FCA0 *v0;
 
@@ -187,8 +187,8 @@ int ov17_0224F4D4(ApplicationManager *appMan, int *param1)
 
     ov17_0224FDDC();
 
-    v0->unk_10.unk_B4 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_CONTEST_RESULTS, HEAP_ID_24);
-    v0->unk_10.unk_B8 = StringTemplate_Default(HEAP_ID_24);
+    v0->unk_10.contestResultsMessages = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_CONTEST_RESULTS, HEAP_ID_24);
+    v0->unk_10.contestResultsTemplate = StringTemplate_Default(HEAP_ID_24);
     v0->unk_10.unk_BC = String_Init(2 * 160, HEAP_ID_24);
     v0->unk_10.unk_C4 = sub_02012744(10, HEAP_ID_24);
 
@@ -218,12 +218,12 @@ int ov17_0224F4D4(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-int ov17_0224F754(ApplicationManager *appMan, int *param1)
+int ContestFinalScoring_Main(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov17_0224FCA0 *v0 = ApplicationManager_Data(appMan);
     int v1;
 
-    sub_02094E98(v0->unk_00);
+    Contest_GetRNGNext(v0->unk_00);
 
     switch (*param1) {
     case 0:
@@ -234,7 +234,7 @@ int ov17_0224F754(ApplicationManager *appMan, int *param1)
         }
         break;
     case 1:
-        if (sub_02094EDC(v0->unk_00) == 1) {
+        if (sub_02094EDC(v0->unk_00) == TRUE) {
             v1 = Unk_ov17_02254B54[v0->unk_84E](v0, &v0->unk_1270);
 
             if ((v1 == 1) || (v1 == 2)) {
@@ -270,7 +270,7 @@ int ov17_0224F754(ApplicationManager *appMan, int *param1)
     return 0;
 }
 
-int ov17_0224F86C(ApplicationManager *appMan, int *param1)
+int ContestFinalScoring_Exit(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov17_0224FCA0 *v0 = ApplicationManager_Data(appMan);
     int v1;
@@ -310,8 +310,8 @@ int ov17_0224F86C(ApplicationManager *appMan, int *param1)
     PaletteData_Free(v0->unk_10.unk_C0);
 
     String_Free(v0->unk_10.unk_BC);
-    StringTemplate_Free(v0->unk_10.unk_B8);
-    MessageLoader_Free(v0->unk_10.unk_B4);
+    StringTemplate_Free(v0->unk_10.contestResultsTemplate);
+    MessageLoader_Free(v0->unk_10.contestResultsMessages);
 
     Heap_Free(v0->unk_10.unk_20);
     SysTask_Done(v0->unk_04);
@@ -621,19 +621,17 @@ static int ov17_0224FECC(UnkStruct_ov17_0224FCA0 *param0, UnkStruct_ov17_0224FEC
     case 0:
         ov17_02251A1C(param0);
 
-        {
-            int v1;
+        int contestantID;
 
-            for (v1 = 0; v1 < 4; v1++) {
-                if (param0->unk_00->unk_00.unk_118[v1].unk_08 == 0) {
-                    break;
-                }
+        for (contestantID = 0; contestantID < CONTEST_NUM_PARTICIPANTS; contestantID++) {
+            if (param0->unk_00->unk_00.unk_118[contestantID].contestPlacement == 0) {
+                break;
             }
-
-            GF_ASSERT(v1 != 4);
-
-            param0->unk_434.unk_02 = v1;
         }
+
+        GF_ASSERT(contestantID != CONTEST_NUM_PARTICIPANTS);
+
+        param0->unk_434.winningContestantID = contestantID;
 
         for (v0 = 0; v0 < 4; v0++) {
             param0->unk_434.unk_03[v0] = param0->unk_39A.unk_35[v0];
@@ -658,7 +656,7 @@ static int ov17_0224FECC(UnkStruct_ov17_0224FCA0 *param0, UnkStruct_ov17_0224FEC
         }
         break;
     case 2:
-        if (ov17_0224F4B8(&param0->unk_85C, param0->unk_00->unk_00.unk_117, param0->unk_00->unk_00.unk_113, param0->unk_00->unk_00.unk_10C) == 1) {
+        if (ov17_0224F4B8(&param0->unk_85C, param0->unk_00->unk_00.connectionCount, param0->unk_00->unk_00.playerContestantID, param0->unk_00->unk_00.unk_10C) == 1) {
             param1->unk_00++;
         }
         break;
@@ -676,15 +674,15 @@ static int ov17_02250000(UnkStruct_ov17_0224FCA0 *param0, UnkStruct_ov17_0224FEC
         param0->unk_434.unk_0F = 0;
         param0->unk_434.unk_11 = 0;
         param0->unk_434.unk_10 = 0;
-        param0->unk_434.unk_08.unk_00 = param0->unk_39A.unk_30[0];
-        param0->unk_434.unk_0E = 1;
+        param0->unk_434.unk_08.contestantID = param0->unk_39A.unk_30[0];
+        param0->unk_434.announcerMessagesID = CONTEST_ANNOUNCER_MESSAGE_JUDGING_COMPLETED;
 
         if (ov17_0224F30C(&param0->unk_85C, param0, 5, &param0->unk_434) == 1) {
             param1->unk_00++;
         }
         break;
     case 1:
-        if (ov17_0224F4B8(&param0->unk_85C, param0->unk_00->unk_00.unk_117, param0->unk_00->unk_00.unk_113, param0->unk_00->unk_00.unk_10C) == 1) {
+        if (ov17_0224F4B8(&param0->unk_85C, param0->unk_00->unk_00.connectionCount, param0->unk_00->unk_00.playerContestantID, param0->unk_00->unk_00.unk_10C) == 1) {
             param1->unk_00++;
         }
         break;
@@ -704,7 +702,7 @@ static int ov17_02250084(UnkStruct_ov17_0224FCA0 *param0, UnkStruct_ov17_0224FEC
         }
         break;
     case 1:
-        if (ov17_0224F4B8(&param0->unk_85C, param0->unk_00->unk_00.unk_117, param0->unk_00->unk_00.unk_113, param0->unk_00->unk_00.unk_10C) == 1) {
+        if (ov17_0224F4B8(&param0->unk_85C, param0->unk_00->unk_00.connectionCount, param0->unk_00->unk_00.playerContestantID, param0->unk_00->unk_00.unk_10C) == 1) {
             param1->unk_00++;
         }
         break;
@@ -722,14 +720,14 @@ static int ov17_022500E8(UnkStruct_ov17_0224FCA0 *param0, UnkStruct_ov17_0224FEC
         param0->unk_434.unk_0F = 0;
         param0->unk_434.unk_11 = 1;
         param0->unk_434.unk_10 = 1;
-        param0->unk_434.unk_0E = 6;
+        param0->unk_434.announcerMessagesID = CONTEST_ANNOUNCER_MESSAGE_INDIVIDUAL_CATEGORIES;
 
         if (ov17_0224F30C(&param0->unk_85C, param0, 5, &param0->unk_434) == 1) {
             param1->unk_00++;
         }
         break;
     case 1:
-        if (ov17_0224F4B8(&param0->unk_85C, param0->unk_00->unk_00.unk_117, param0->unk_00->unk_00.unk_113, param0->unk_00->unk_00.unk_10C) == 1) {
+        if (ov17_0224F4B8(&param0->unk_85C, param0->unk_00->unk_00.connectionCount, param0->unk_00->unk_00.playerContestantID, param0->unk_00->unk_00.unk_10C) == 1) {
             param1->unk_00++;
         }
         break;
@@ -751,12 +749,12 @@ static int ov17_02250178(UnkStruct_ov17_0224FCA0 *param0, UnkStruct_ov17_0224FEC
 {
     switch (param1->unk_00) {
     case 0:
-        switch (param0->unk_00->unk_00.unk_111) {
-        case 2:
-        case 1:
-        case 0:
-        case 3:
-        case 4:
+        switch (param0->unk_00->unk_00.competitionType) {
+        case CONTEST_COMPETITION_LINK_OR_OFFICIAL:
+        case CONTEST_COMPETITION_UNK1:
+        case CONTEST_COMPETITION_UNK0:
+        case CONTEST_COMPETITION_PRACTICE_VISUAL:
+        case CONTEST_COMPETITION_VISUAL:
             break;
         default:
             return 1;
@@ -765,14 +763,14 @@ static int ov17_02250178(UnkStruct_ov17_0224FCA0 *param0, UnkStruct_ov17_0224FEC
         param0->unk_434.unk_0F = 0;
         param0->unk_434.unk_11 = 1;
         param0->unk_434.unk_10 = 1;
-        param0->unk_434.unk_0E = 2;
+        param0->unk_434.announcerMessagesID = CONTEST_ANNOUNCER_MESSAGE_VISUAL_COMPETITION_RESULTS;
 
         if (ov17_0224F30C(&param0->unk_85C, param0, 5, &param0->unk_434) == 1) {
             param1->unk_00++;
         }
         break;
     case 1:
-        if (ov17_0224F4B8(&param0->unk_85C, param0->unk_00->unk_00.unk_117, param0->unk_00->unk_00.unk_113, param0->unk_00->unk_00.unk_10C) == 1) {
+        if (ov17_0224F4B8(&param0->unk_85C, param0->unk_00->unk_00.connectionCount, param0->unk_00->unk_00.playerContestantID, param0->unk_00->unk_00.unk_10C) == 1) {
             param1->unk_00++;
         }
         break;
@@ -784,7 +782,7 @@ static int ov17_02250178(UnkStruct_ov17_0224FCA0 *param0, UnkStruct_ov17_0224FEC
         }
         break;
     case 3:
-        if (ov17_0224F4B8(&param0->unk_85C, param0->unk_00->unk_00.unk_117, param0->unk_00->unk_00.unk_113, param0->unk_00->unk_00.unk_10C) == 1) {
+        if (ov17_0224F4B8(&param0->unk_85C, param0->unk_00->unk_00.connectionCount, param0->unk_00->unk_00.playerContestantID, param0->unk_00->unk_00.unk_10C) == 1) {
             param1->unk_00++;
         }
         break;
@@ -806,11 +804,11 @@ static int ov17_02250284(UnkStruct_ov17_0224FCA0 *param0, UnkStruct_ov17_0224FEC
 {
     switch (param1->unk_00) {
     case 0:
-        switch (param0->unk_00->unk_00.unk_111) {
-        case 2:
-        case 1:
-        case 5:
-        case 6:
+        switch (param0->unk_00->unk_00.competitionType) {
+        case CONTEST_COMPETITION_LINK_OR_OFFICIAL:
+        case CONTEST_COMPETITION_UNK1:
+        case CONTEST_COMPETITION_PRACTICE_DANCE:
+        case CONTEST_COMPETITION_DANCE:
             break;
         default:
             return 1;
@@ -819,16 +817,16 @@ static int ov17_02250284(UnkStruct_ov17_0224FCA0 *param0, UnkStruct_ov17_0224FEC
         param0->unk_434.unk_0F = 0;
         param0->unk_434.unk_11 = 1;
         param0->unk_434.unk_10 = 1;
-        param0->unk_434.unk_08.unk_00 = param0->unk_39A.unk_30[0];
-        param0->unk_434.unk_08.unk_04 = sub_020958FC(param0->unk_39A.unk_30[0]) + 1;
-        param0->unk_434.unk_0E = 3;
+        param0->unk_434.unk_08.contestantID = param0->unk_39A.unk_30[0];
+        param0->unk_434.unk_08.contestantEntryNum = Contest_ContestantIDToContestantEntryNum(param0->unk_39A.unk_30[0]) + 1;
+        param0->unk_434.announcerMessagesID = CONTEST_ANNOUNCER_MESSAGE_DANCE_COMPETITION_RESULTS;
 
         if (ov17_0224F30C(&param0->unk_85C, param0, 5, &param0->unk_434) == 1) {
             param1->unk_00++;
         }
         break;
     case 1:
-        if (ov17_0224F4B8(&param0->unk_85C, param0->unk_00->unk_00.unk_117, param0->unk_00->unk_00.unk_113, param0->unk_00->unk_00.unk_10C) == 1) {
+        if (ov17_0224F4B8(&param0->unk_85C, param0->unk_00->unk_00.connectionCount, param0->unk_00->unk_00.playerContestantID, param0->unk_00->unk_00.unk_10C) == 1) {
             param1->unk_00++;
         }
         break;
@@ -840,7 +838,7 @@ static int ov17_02250284(UnkStruct_ov17_0224FCA0 *param0, UnkStruct_ov17_0224FEC
         }
         break;
     case 3:
-        if (ov17_0224F4B8(&param0->unk_85C, param0->unk_00->unk_00.unk_117, param0->unk_00->unk_00.unk_113, param0->unk_00->unk_00.unk_10C) == 1) {
+        if (ov17_0224F4B8(&param0->unk_85C, param0->unk_00->unk_00.connectionCount, param0->unk_00->unk_00.playerContestantID, param0->unk_00->unk_00.unk_10C) == 1) {
             param1->unk_00++;
         }
         break;
@@ -862,11 +860,11 @@ static int ov17_022503B0(UnkStruct_ov17_0224FCA0 *param0, UnkStruct_ov17_0224FEC
 {
     switch (param1->unk_00) {
     case 0:
-        switch (param0->unk_00->unk_00.unk_111) {
-        case 2:
-        case 0:
-        case 7:
-        case 8:
+        switch (param0->unk_00->unk_00.competitionType) {
+        case CONTEST_COMPETITION_LINK_OR_OFFICIAL:
+        case CONTEST_COMPETITION_UNK0:
+        case CONTEST_COMPETITION_PRACTICE_ACTING:
+        case CONTEST_COMPETITION_ACTING:
             break;
         default:
             return 1;
@@ -875,16 +873,16 @@ static int ov17_022503B0(UnkStruct_ov17_0224FCA0 *param0, UnkStruct_ov17_0224FEC
         param0->unk_434.unk_0F = 0;
         param0->unk_434.unk_11 = 1;
         param0->unk_434.unk_10 = 1;
-        param0->unk_434.unk_08.unk_00 = param0->unk_39A.unk_30[0];
-        param0->unk_434.unk_08.unk_04 = sub_020958FC(param0->unk_39A.unk_30[0]) + 1;
-        param0->unk_434.unk_0E = 4;
+        param0->unk_434.unk_08.contestantID = param0->unk_39A.unk_30[0];
+        param0->unk_434.unk_08.contestantEntryNum = Contest_ContestantIDToContestantEntryNum(param0->unk_39A.unk_30[0]) + 1;
+        param0->unk_434.announcerMessagesID = CONTEST_ANNOUNCER_MESSAGE_ACTING_COMPETITION_RESULTS;
 
         if (ov17_0224F30C(&param0->unk_85C, param0, 5, &param0->unk_434) == 1) {
             param1->unk_00++;
         }
         break;
     case 1:
-        if (ov17_0224F4B8(&param0->unk_85C, param0->unk_00->unk_00.unk_117, param0->unk_00->unk_00.unk_113, param0->unk_00->unk_00.unk_10C) == 1) {
+        if (ov17_0224F4B8(&param0->unk_85C, param0->unk_00->unk_00.connectionCount, param0->unk_00->unk_00.playerContestantID, param0->unk_00->unk_00.unk_10C) == 1) {
             param1->unk_00++;
         }
         break;
@@ -896,7 +894,7 @@ static int ov17_022503B0(UnkStruct_ov17_0224FCA0 *param0, UnkStruct_ov17_0224FEC
         }
         break;
     case 3:
-        if (ov17_0224F4B8(&param0->unk_85C, param0->unk_00->unk_00.unk_117, param0->unk_00->unk_00.unk_113, param0->unk_00->unk_00.unk_10C) == 1) {
+        if (ov17_0224F4B8(&param0->unk_85C, param0->unk_00->unk_00.connectionCount, param0->unk_00->unk_00.playerContestantID, param0->unk_00->unk_00.unk_10C) == 1) {
             param1->unk_00++;
         }
         break;
@@ -923,7 +921,7 @@ static int ov17_022504E4(UnkStruct_ov17_0224FCA0 *param0, UnkStruct_ov17_0224FEC
         }
         break;
     case 1:
-        if (ov17_0224F4B8(&param0->unk_85C, param0->unk_00->unk_00.unk_117, param0->unk_00->unk_00.unk_113, param0->unk_00->unk_00.unk_10C) == 1) {
+        if (ov17_0224F4B8(&param0->unk_85C, param0->unk_00->unk_00.connectionCount, param0->unk_00->unk_00.playerContestantID, param0->unk_00->unk_00.unk_10C) == 1) {
             param1->unk_00++;
         }
         break;
@@ -941,16 +939,16 @@ static int ov17_02250548(UnkStruct_ov17_0224FCA0 *param0, UnkStruct_ov17_0224FEC
         param0->unk_434.unk_0F = 0;
         param0->unk_434.unk_11 = 1;
         param0->unk_434.unk_10 = 1;
-        param0->unk_434.unk_08.unk_00 = param0->unk_434.unk_02;
-        param0->unk_434.unk_08.unk_04 = sub_020958FC(param0->unk_434.unk_02) + 1;
-        param0->unk_434.unk_0E = 5;
+        param0->unk_434.unk_08.contestantID = param0->unk_434.winningContestantID;
+        param0->unk_434.unk_08.contestantEntryNum = Contest_ContestantIDToContestantEntryNum(param0->unk_434.winningContestantID) + 1;
+        param0->unk_434.announcerMessagesID = CONTEST_ANNOUNCER_MESSAGE_WINNER_IS;
 
         if (ov17_0224F30C(&param0->unk_85C, param0, 5, &param0->unk_434) == 1) {
             param1->unk_00++;
         }
         break;
     case 1:
-        if (ov17_0224F4B8(&param0->unk_85C, param0->unk_00->unk_00.unk_117, param0->unk_00->unk_00.unk_113, param0->unk_00->unk_00.unk_10C) == 1) {
+        if (ov17_0224F4B8(&param0->unk_85C, param0->unk_00->unk_00.connectionCount, param0->unk_00->unk_00.playerContestantID, param0->unk_00->unk_00.unk_10C) == 1) {
             param1->unk_00++;
         }
         break;
@@ -960,7 +958,7 @@ static int ov17_02250548(UnkStruct_ov17_0224FCA0 *param0, UnkStruct_ov17_0224FEC
         }
         break;
     case 3:
-        if (ov17_0224F4B8(&param0->unk_85C, param0->unk_00->unk_00.unk_117, param0->unk_00->unk_00.unk_113, param0->unk_00->unk_00.unk_10C) == 1) {
+        if (ov17_0224F4B8(&param0->unk_85C, param0->unk_00->unk_00.connectionCount, param0->unk_00->unk_00.playerContestantID, param0->unk_00->unk_00.unk_10C) == 1) {
             param1->unk_00++;
         }
         break;
@@ -977,15 +975,15 @@ static int ov17_0225062C(UnkStruct_ov17_0224FCA0 *param0, UnkStruct_ov17_0224FEC
         param0->unk_434.unk_0F = 0;
         param0->unk_434.unk_11 = 0;
         param0->unk_434.unk_10 = 0;
-        param0->unk_434.unk_08.unk_00 = param0->unk_39A.unk_30[0];
-        param0->unk_434.unk_0E = 0;
+        param0->unk_434.unk_08.contestantID = param0->unk_39A.unk_30[0];
+        param0->unk_434.announcerMessagesID = CONTEST_ANNOUNCER_MESSAGE_NONE;
 
         if (ov17_0224F30C(&param0->unk_85C, param0, 5, &param0->unk_434) == 1) {
             param1->unk_00++;
         }
         break;
     case 1:
-        if (ov17_0224F4B8(&param0->unk_85C, param0->unk_00->unk_00.unk_117, param0->unk_00->unk_00.unk_113, param0->unk_00->unk_00.unk_10C) == 1) {
+        if (ov17_0224F4B8(&param0->unk_85C, param0->unk_00->unk_00.connectionCount, param0->unk_00->unk_00.playerContestantID, param0->unk_00->unk_00.unk_10C) == 1) {
             param1->unk_00++;
         }
         break;
@@ -1005,7 +1003,7 @@ static int ov17_022506AC(UnkStruct_ov17_0224FCA0 *param0, UnkStruct_ov17_0224FEC
         }
         break;
     case 1:
-        if (ov17_0224F4B8(&param0->unk_85C, param0->unk_00->unk_00.unk_117, param0->unk_00->unk_00.unk_113, param0->unk_00->unk_00.unk_10C) == 1) {
+        if (ov17_0224F4B8(&param0->unk_85C, param0->unk_00->unk_00.connectionCount, param0->unk_00->unk_00.playerContestantID, param0->unk_00->unk_00.unk_10C) == 1) {
             param1->unk_00++;
         }
         break;
@@ -1015,7 +1013,7 @@ static int ov17_022506AC(UnkStruct_ov17_0224FCA0 *param0, UnkStruct_ov17_0224FEC
         }
         break;
     default:
-        if (ov17_0224F4B8(&param0->unk_85C, param0->unk_00->unk_00.unk_117, param0->unk_00->unk_00.unk_113, param0->unk_00->unk_00.unk_10C) == 1) {
+        if (ov17_0224F4B8(&param0->unk_85C, param0->unk_00->unk_00.connectionCount, param0->unk_00->unk_00.playerContestantID, param0->unk_00->unk_00.unk_10C) == 1) {
             return 3;
         }
 

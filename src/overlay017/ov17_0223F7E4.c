@@ -6,7 +6,6 @@
 #include "struct_decls/font_oam.h"
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_defs/struct_020127E8.h"
-#include "struct_defs/struct_02095C48.h"
 
 #include "overlay017/ov17_0223F118.h"
 #include "overlay017/ov17_02241270.h"
@@ -20,6 +19,7 @@
 #include "assert.h"
 #include "bg_window.h"
 #include "char_transfer.h"
+#include "contest.h"
 #include "font.h"
 #include "graphics.h"
 #include "heap.h"
@@ -39,6 +39,8 @@
 #include "touch_screen.h"
 #include "unk_02012744.h"
 #include "unk_02094EDC.h"
+
+#include "res/text/bank/contest_text.h"
 
 typedef struct {
     s8 unk_00;
@@ -107,12 +109,12 @@ typedef struct {
     UnkStruct_ov17_02240BF4 unk_50[4];
     UnkStruct_ov17_02240BF4 unk_A0[4];
     UnkStruct_ov17_02240BF4 unk_F0[3];
-    u8 unk_12C[4];
-    u8 unk_130[4];
+    u8 moveContestEffect[LEARNED_MOVES_MAX];
+    u8 moveContestType[LEARNED_MOVES_MAX];
 } UnkStruct_ov17_0223FF38;
 
 typedef struct UnkStruct_ov17_0223F7E4_t {
-    UnkStruct_02095C48 *unk_00;
+    Contest *unk_00;
     UnkStruct_ov17_0223F88C *unk_04;
     UnkStruct_ov17_022472F8 *unk_08;
     void *unk_0C;
@@ -160,7 +162,7 @@ typedef struct {
         };
         u16 unk_0C_val2[4];
     };
-    const TouchScreenRect *unk_14;
+    const TouchScreenRect *touchScreenRect;
     const int *unk_18;
     const u8 *unk_1C;
     int (*unk_20)(UnkStruct_ov17_0223F7E4 *param0, int param1);
@@ -180,7 +182,7 @@ static void ov17_022402A8(UnkStruct_ov17_0223F7E4 *param0);
 static void ov17_022404B0(UnkStruct_ov17_0223F7E4 *param0);
 static void ov17_022402E8(UnkStruct_ov17_0223F7E4 *param0, u16 param1[]);
 static void ov17_02240388(UnkStruct_ov17_0223F7E4 *param0);
-static void ov17_02240424(UnkStruct_ov17_0223F7E4 *param0, int param1, int param2);
+static void ov17_02240424(UnkStruct_ov17_0223F7E4 *param0, int moveContestType, int moveSlot);
 static void ov17_022404A8(UnkStruct_ov17_0223F7E4 *param0);
 static void ov17_022404CC(SysTaskFunc param0, UnkStruct_ov17_0223F7E4 *param1);
 static void ov17_022404FC(UnkStruct_ov17_0223F7E4 *param0);
@@ -188,11 +190,11 @@ static void ov17_0224051C(SysTask *param0, void *param1);
 static void ov17_02240658(SysTask *param0, void *param1);
 static void ov17_022411E4(SysTask *param0, void *param1);
 static void ov17_02241220(SysTask *param0, void *param1);
-static void ov17_02240138(UnkStruct_ov17_0223F7E4 *param0, UnkStruct_ov17_02240138 *param1, const String *param2, int param3, u32 param4, int param5, int param6, int param7, int param8, int param9, UnkStruct_ov17_02240BF4 *param10);
+static void ov17_02240138(UnkStruct_ov17_0223F7E4 *param0, UnkStruct_ov17_02240138 *param1, const String *string, enum Font font, u32 param4, int param5, int param6, int x, int y, int param9, UnkStruct_ov17_02240BF4 *param10);
 static void ov17_02240260(UnkStruct_ov17_0223F7E4 *param0);
 void ov17_0223F80C(BgConfig *param0);
 void ov17_0223F864(BgConfig *param0);
-void *ov17_0223F88C(UnkStruct_02095C48 *param0, UnkStruct_ov17_0223F88C *param1, UnkStruct_ov17_022472F8 *param2);
+void *ov17_0223F88C(Contest *param0, UnkStruct_ov17_0223F88C *param1, UnkStruct_ov17_022472F8 *param2);
 void ov17_0223F960(UnkStruct_ov17_0223F7E4 *param0);
 void ov17_0223F9C4(UnkStruct_ov17_0223F7E4 *param0, int param1, int param2, void *param3);
 int ov17_0223FAF8(UnkStruct_ov17_0223F7E4 *param0);
@@ -605,7 +607,7 @@ void ov17_0223F864(BgConfig *param0)
     }
 }
 
-void *ov17_0223F88C(UnkStruct_02095C48 *param0, UnkStruct_ov17_0223F88C *param1, UnkStruct_ov17_022472F8 *param2)
+void *ov17_0223F88C(Contest *param0, UnkStruct_ov17_0223F88C *param1, UnkStruct_ov17_022472F8 *param2)
 {
     UnkStruct_ov17_0223F7E4 *v0;
     NARC *v1;
@@ -739,20 +741,20 @@ int ov17_0223FAF8(UnkStruct_ov17_0223F7E4 *param0)
 
     v4 = &Unk_ov17_02253558[param0->unk_2C8];
 
-    if (v4->unk_14 == NULL) {
-        return 0xffffffff;
+    if (v4->touchScreenRect == NULL) {
+        return TOUCHSCREEN_INPUT_NONE;
     }
 
     GF_ASSERT(v4->unk_18 != NULL);
 
-    v1 = TouchScreen_CheckRectanglePressed(v4->unk_14);
+    v1 = TouchScreen_CheckRectanglePressed(v4->touchScreenRect);
 
-    if (v1 == 0xffffffff) {
+    if (v1 == TOUCHSCREEN_INPUT_NONE) {
         v1 = ov17_02240C90(param0);
         v5++;
     }
 
-    if (v1 == 0xffffffff) {
+    if (v1 == TOUCHSCREEN_INPUT_NONE) {
         v0 = 0xffffffff;
         v3 = 0xff;
     } else {
@@ -793,92 +795,89 @@ BOOL ov17_0223FBC0(UnkStruct_ov17_0223F7E4 *param0)
 
 static void ov17_0223FBD4(UnkStruct_ov17_0223F7E4 *param0, int param1, int param2)
 {
-    String *v0, *v1;
-    u32 v2 = sub_02095848(param0->unk_04->unk_00->contestRank, param0->unk_04->unk_00->unk_111, param0->unk_00->isLinkContest);
-    u32 v3 = sub_020958C4(param0->unk_04->unk_00->contestType, param0->unk_04->unk_00->unk_111);
-    v0 = MessageLoader_GetNewString(param0->unk_04->unk_38, v2);
-    v1 = MessageLoader_GetNewString(param0->unk_04->unk_38, v3);
+    String *contestRankString, *contestTypeString;
+    u32 contestRankMessageID = Contest_GetContestRankTitleMessageID(param0->unk_04->unk_00->contestRank, param0->unk_04->unk_00->competitionType, param0->unk_00->isLinkContest);
+    u32 contestTypeMessageID = Contest_GetFullContestTypeMessageID(param0->unk_04->unk_00->contestType, param0->unk_04->unk_00->competitionType);
+    contestRankString = MessageLoader_GetNewString(param0->unk_04->contestTextMessageLoader, contestRankMessageID);
+    contestTypeString = MessageLoader_GetNewString(param0->unk_04->contestTextMessageLoader, contestTypeMessageID);
 
-    ov17_02240138(param0, &param0->unk_40[0], v0, FONT_SYSTEM, TEXT_COLOR(1, 2, 0), 0, 33008, 128, 8 * 0x10 - 1, 1, NULL);
-    ov17_02240138(param0, &param0->unk_40[1], v1, FONT_SYSTEM, TEXT_COLOR(1, 2, 0), 0, 33008, 128, 8 * 0x14 - 1, 1, NULL);
+    ov17_02240138(param0, &param0->unk_40[0], contestRankString, FONT_SYSTEM, TEXT_COLOR(1, 2, 0), 0, 33008, 128, 8 * 0x10 - 1, 1, NULL);
+    ov17_02240138(param0, &param0->unk_40[1], contestTypeString, FONT_SYSTEM, TEXT_COLOR(1, 2, 0), 0, 33008, 128, 8 * 0x14 - 1, 1, NULL);
 
-    String_Free(v0);
-    String_Free(v1);
+    String_Free(contestRankString);
+    String_Free(contestTypeString);
     PaletteData_LoadBufferFromFile(param0->unk_04->unk_50, 45, 38, 21, 1, 0x20, 2 * 16, 16 * param0->unk_04->unk_00->contestType);
 }
 
 static void ov17_0223FCAC(UnkStruct_ov17_0223F7E4 *param0, int param1, int param2)
 {
-    u16 v0[LEARNED_MOVES_MAX], v1[4];
-    int v2;
+    u16 moveList[LEARNED_MOVES_MAX];
+    u16 moveContestEffects[LEARNED_MOVES_MAX];
+    int i;
     String *v3;
     String *v4, *v5;
     u32 v6, v7;
     UnkStruct_ov17_0223FF38 *v8 = &param0->unk_18C;
     param0->unk_2C9 = 0xff;
 
-    for (v2 = 0; v2 < LEARNED_MOVES_MAX; v2++) {
-        v0[v2] = Pokemon_GetValue(param0->unk_04->unk_00->unk_00[param0->unk_04->unk_00->unk_113], MON_DATA_MOVE1 + v2, NULL);
+    for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+        moveList[i] = Pokemon_GetValue(param0->unk_04->unk_00->contestMons[param0->unk_04->unk_00->playerContestantID], MON_DATA_MOVE1 + i, NULL);
 
-        if (v0[v2] != 0) {
-            v1[v2] = v8->unk_12C[v2];
+        if (moveList[i] != MOVE_NONE) {
+            moveContestEffects[i] = v8->moveContestEffect[i];
         } else {
-            v1[v2] = 0;
+            moveContestEffects[i] = 0;
         }
 
-        ov17_02240138(param0, &param0->unk_40[0 + v2], NULL, FONT_SUBSCREEN, TEXT_COLOR(1, 7, 8), 0, 33008, Unk_ov17_02253278[v2][0], Unk_ov17_02253278[v2][1], 0, &v8->unk_00[v2]);
-        ov17_02240138(param0, &param0->unk_40[4 + v2], NULL, FONT_SYSTEM, TEXT_COLOR(1, 2, 0), 0, 33008, Unk_ov17_02253314[v2][0][0], Unk_ov17_02253314[v2][0][1], 0, &v8->unk_50[v2]);
-        ov17_02240138(param0, &param0->unk_40[8 + v2], NULL, FONT_SYSTEM, TEXT_COLOR(1, 2, 0), 0, 33008, Unk_ov17_02253314[v2][1][0], Unk_ov17_02253314[v2][1][1], 0, &v8->unk_A0[v2]);
+        ov17_02240138(param0, &param0->unk_40[0 + i], NULL, FONT_SUBSCREEN, TEXT_COLOR(1, 7, 8), 0, 33008, Unk_ov17_02253278[i][0], Unk_ov17_02253278[i][1], 0, &v8->unk_00[i]);
+        ov17_02240138(param0, &param0->unk_40[4 + i], NULL, FONT_SYSTEM, TEXT_COLOR(1, 2, 0), 0, 33008, Unk_ov17_02253314[i][0][0], Unk_ov17_02253314[i][0][1], 0, &v8->unk_50[i]);
+        ov17_02240138(param0, &param0->unk_40[8 + i], NULL, FONT_SYSTEM, TEXT_COLOR(1, 2, 0), 0, 33008, Unk_ov17_02253314[i][1][0], Unk_ov17_02253314[i][1][1], 0, &v8->unk_A0[i]);
 
-        if (v0[v2] == 0) {
-            sub_020129D0(param0->unk_40[0 + v2].unk_00, 0);
-            sub_020129D0(param0->unk_40[4 + v2].unk_00, 0);
-            sub_020129D0(param0->unk_40[8 + v2].unk_00, 0);
-        }
-    }
-
-    {
-        for (v2 = 0; v2 < 4; v2++) {
-            if (v0[v2] != 0) {
-                int v9;
-
-                v9 = v8->unk_130[v2];
-                ov17_02240424(param0, v9, v2);
-            } else {
-                ov17_02240424(param0, -1, v2);
-            }
+        if (moveList[i] == MOVE_NONE) {
+            sub_020129D0(param0->unk_40[0 + i].unk_00, 0);
+            sub_020129D0(param0->unk_40[4 + i].unk_00, 0);
+            sub_020129D0(param0->unk_40[8 + i].unk_00, 0);
         }
     }
 
-    for (v2 = 0; v2 < 4; v2++) {
-        if ((v0[v2] != 0) && (ov17_02243A98(param0->unk_08, param0->unk_04->unk_00->unk_113, v0[v2]) == 0)) {
-            PaletteData_LoadBuffer(param0->unk_04->unk_50, &param0->unk_34[1][0x8 * 16], 1, (4 + v2) * 16, 0x20);
+    for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+        if (moveList[i] != MOVE_NONE) {
+            int moveContestType;
+
+            moveContestType = v8->moveContestType[i];
+            ov17_02240424(param0, moveContestType, i);
+        } else {
+            ov17_02240424(param0, -1, i);
+        }
+    }
+
+    for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+        if (moveList[i] != MOVE_NONE && ov17_02243A98(param0->unk_08, param0->unk_04->unk_00->playerContestantID, moveList[i]) == 0) {
+            PaletteData_LoadBuffer(param0->unk_04->unk_50, &param0->unk_34[1][0x8 * 16], 1, (4 + i) * 16, 0x20);
 
             GF_ASSERT(param0->unk_2C9 == 0xff);
-            param0->unk_2C9 = v2;
+            param0->unk_2C9 = i;
         }
     }
 
-    ov17_022402E8(param0, v0);
+    ov17_022402E8(param0, moveList);
 
-    {
-        int v10;
-        int v11, v12;
+    int v10;
+    int v11, v12;
 
-        for (v2 = 0; v2 < 4; v2++) {
-            if (v0[v2] == 0) {
-                continue;
-            }
+    for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+        if (moveList[i] == MOVE_NONE) {
+            continue;
+        }
 
-            v10 = sub_02095734(v1[v2]);
-            v11 = MATH_IAbs(v10) / 10;
+        v10 = sub_02095734(moveContestEffects[i]);
+        v11 = MATH_IAbs(v10) / 10;
 
-            GF_ASSERT(v11 <= 6);
+        GF_ASSERT(v11 <= 6);
 
-            for (v12 = 0; v12 < v11; v12++) {
-                GF_ASSERT(param0->unk_12C[v2][v12] == NULL);
-                param0->unk_12C[v2][v12] = ov17_0224136C(param0->unk_04->unk_18, param0->unk_04->unk_1C, Unk_ov17_02253334[v2][0] + 8 * v12, Unk_ov17_02253334[v2][1], v10);
-            }
+        for (v12 = 0; v12 < v11; v12++) {
+            GF_ASSERT(param0->unk_12C[i][v12] == NULL);
+            param0->unk_12C[i][v12] = ov17_0224136C(param0->unk_04->unk_18, param0->unk_04->unk_1C, Unk_ov17_02253334[i][0] + 8 * v12, Unk_ov17_02253334[i][1], v10);
         }
     }
 }
@@ -887,7 +886,7 @@ static void ov17_0223FF38(UnkStruct_ov17_0223F7E4 *param0, int param1, int param
 {
     int v0;
     BgConfig *v1;
-    String *v2;
+    String *message;
     UnkStruct_ov17_0223FF38 *v3 = &param0->unk_18C;
     v1 = param0->unk_04->unk_24;
 
@@ -895,24 +894,24 @@ static void ov17_0223FF38(UnkStruct_ov17_0223F7E4 *param0, int param1, int param
         ov17_02240138(param0, &param0->unk_40[0 + v0], NULL, FONT_SUBSCREEN, TEXT_COLOR(1, 9, 0xa), 0, 33008, Unk_ov17_0225325C[v0][0], Unk_ov17_0225325C[v0][1], 1, &v3->unk_F0[v0]);
     }
 
-    v2 = MessageLoader_GetNewString(param0->unk_04->unk_38, 53);
+    message = MessageLoader_GetNewString(param0->unk_04->contestTextMessageLoader, Contest_Text_Exit);
 
-    ov17_02240138(param0, &param0->unk_40[0 + v0], v2, FONT_SUBSCREEN, TEXT_COLOR(1, 9, 0xa), 0, 33008, 128, 0x14 * 8 + 4, 1, NULL);
-    String_Free(v2);
+    ov17_02240138(param0, &param0->unk_40[0 + v0], message, FONT_SUBSCREEN, TEXT_COLOR(1, 9, 0xa), 0, 33008, 128, 0x14 * 8 + 4, 1, NULL);
+    String_Free(message);
 
     param0->unk_128 = ov17_022412C0(param0->unk_04->unk_18, param0->unk_04->unk_1C, param0->unk_04->unk_00->unk_10E);
 }
 
-static int ov17_0223FFF4(UnkStruct_ov17_0223F7E4 *param0, int param1, int param2)
+static int ov17_0223FFF4(UnkStruct_ov17_0223F7E4 *param0, int moveSlot, int param2)
 {
     u32 v0;
-    int v1;
+    int moveID;
     const s16 *v2;
     const UnkStruct_ov17_02253388 *v3;
 
-    v0 = param1;
+    v0 = moveSlot;
 
-    switch (param1) {
+    switch (moveSlot) {
     case 0xffffffff:
     default:
         return 0xffffffff;
@@ -920,9 +919,9 @@ static int ov17_0223FFF4(UnkStruct_ov17_0223F7E4 *param0, int param1, int param2
     case 1:
     case 2:
     case 3:
-        v1 = Pokemon_GetValue(param0->unk_04->unk_00->unk_00[param0->unk_04->unk_00->unk_113], MON_DATA_MOVE1 + param1, NULL);
+        moveID = Pokemon_GetValue(param0->unk_04->unk_00->contestMons[param0->unk_04->unk_00->playerContestantID], MON_DATA_MOVE1 + moveSlot, NULL);
 
-        if ((v1 == 0) || (param0->unk_2C9 == (param1 - 0))) {
+        if (moveID == MOVE_NONE || param0->unk_2C9 == moveSlot) {
             return 0xffffffff;
         }
 
@@ -937,9 +936,9 @@ static int ov17_0223FFF4(UnkStruct_ov17_0223F7E4 *param0, int param1, int param2
     param0->unk_2CC.unk_04_val1.unk_0C = v2;
     param0->unk_2CC.unk_04_val1.unk_10 = v3;
     param0->unk_2CC.unk_04_val1.unk_18 = 2;
-    param0->unk_2CC.unk_04_val1.unk_14 = param1;
+    param0->unk_2CC.unk_04_val1.unk_14 = moveSlot;
 
-    return param1;
+    return moveSlot;
 }
 
 static int ov17_02240094(UnkStruct_ov17_0223F7E4 *param0, int param1, int param2)
@@ -983,10 +982,10 @@ static int ov17_02240094(UnkStruct_ov17_0223F7E4 *param0, int param1, int param2
     return param1;
 }
 
-static void ov17_02240138(UnkStruct_ov17_0223F7E4 *param0, UnkStruct_ov17_02240138 *param1, const String *param2, int param3, u32 param4, int param5, int param6, int param7, int param8, int param9, UnkStruct_ov17_02240BF4 *param10)
+static void ov17_02240138(UnkStruct_ov17_0223F7E4 *param0, UnkStruct_ov17_02240138 *param1, const String *string, enum Font font, u32 textColor, int param5, int param6, int x, int y, int param9, UnkStruct_ov17_02240BF4 *param10)
 {
     UnkStruct_020127E8 v0;
-    Window v1;
+    Window window;
     CharTransferAllocation v2;
     int v3;
     FontOAM *v4;
@@ -1000,37 +999,37 @@ static void ov17_02240138(UnkStruct_ov17_0223F7E4 *param0, UnkStruct_ov17_022401
     v6 = param0->unk_04->unk_1C;
 
     if (param10 == NULL) {
-        ov17_02240C60(param2, param3, &v7, &v8);
+        ov17_02240C60(string, font, &v7, &v8);
     } else {
         v7 = param10->unk_12;
         v8 = param10->unk_10;
     }
 
     if (param10 == NULL) {
-        Window_Init(&v1);
-        Window_AddToTopLeftCorner(v5, &v1, v8, 16 / 8, 0, 0);
-        Text_AddPrinterWithParamsColorAndSpacing(&v1, param3, param2, 0, 0, TEXT_SPEED_NO_TRANSFER, param4, 0, 0, NULL);
+        Window_Init(&window);
+        Window_AddToTopLeftCorner(v5, &window, v8, 16 / 8, 0, 0);
+        Text_AddPrinterWithParamsColorAndSpacing(&window, font, string, 0, 0, TEXT_SPEED_NO_TRANSFER, textColor, 0, 0, NULL);
     } else {
-        v1 = param10->unk_00;
+        window = param10->unk_00;
     }
 
-    v3 = sub_02012898(&v1, NNS_G2D_VRAM_TYPE_2DSUB, HEAP_ID_21);
+    v3 = sub_02012898(&window, NNS_G2D_VRAM_TYPE_2DSUB, HEAP_ID_21);
     CharTransfer_AllocRange(v3, 1, NNS_G2D_VRAM_TYPE_2DSUB, &v2);
 
     if (param9 == 1) {
-        param7 -= v7 / 2;
+        x -= v7 / 2;
     }
 
-    param8 += (((192 + 80) << FX32_SHIFT) >> FX32_SHIFT) - 8;
+    y += (((192 + 80) << FX32_SHIFT) >> FX32_SHIFT) - 8;
 
     v0.unk_00 = param0->unk_3C;
-    v0.unk_04 = &v1;
+    v0.unk_04 = &window;
     v0.unk_08 = SpriteManager_GetSpriteList(v6);
     v0.unk_0C = SpriteManager_FindPlttResourceProxy(v6, param6);
     v0.unk_10 = NULL;
     v0.unk_14 = v2.offset;
-    v0.unk_18 = param7;
-    v0.unk_1C = param8;
+    v0.unk_18 = x;
+    v0.unk_1C = y;
     v0.unk_20 = 0;
     v0.unk_24 = 100;
     v0.unk_28 = NNS_G2D_VRAM_TYPE_2DSUB;
@@ -1039,10 +1038,10 @@ static void ov17_02240138(UnkStruct_ov17_0223F7E4 *param0, UnkStruct_ov17_022401
     v4 = sub_020127E8(&v0);
 
     sub_02012AC0(v4, param5);
-    FontOAM_SetXY(v4, param7, param8);
+    FontOAM_SetXY(v4, x, y);
 
     if (param10 == NULL) {
-        Window_Remove(&v1);
+        Window_Remove(&window);
     }
 
     param1->unk_00 = v4;
@@ -1087,7 +1086,7 @@ static void ov17_022402A8(UnkStruct_ov17_0223F7E4 *param0)
 
 static void ov17_022402E8(UnkStruct_ov17_0223F7E4 *param0, u16 param1[])
 {
-    int v0;
+    int i;
     SpriteSystem *v1;
     SpriteManager *v2;
     SpriteTemplate v3;
@@ -1097,18 +1096,18 @@ static void ov17_022402E8(UnkStruct_ov17_0223F7E4 *param0, u16 param1[])
     v2 = param0->unk_04->unk_1C;
     v3 = Unk_ov17_02253354;
 
-    for (v0 = 0; v0 < 4; v0++) {
-        GF_ASSERT(param0->unk_118[v0] == NULL);
+    for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+        GF_ASSERT(param0->unk_118[i] == NULL);
 
-        if (param1[v0] != 0) {
-            v4 = param0->unk_18C.unk_130[v0];
+        if (param1[i] != 0) {
+            v4 = param0->unk_18C.moveContestType[i];
 
-            v3.resources[0] = 33014 + v0;
-            v3.x = Unk_ov17_02253298[v0][0];
-            v3.y = Unk_ov17_02253298[v0][1];
+            v3.resources[0] = 33014 + i;
+            v3.x = Unk_ov17_02253298[i][0];
+            v3.y = Unk_ov17_02253298[i][1];
 
-            param0->unk_118[v0] = ov17_0224F154(v1, v2, v4, &v3);
-            ManagedSprite_SetPositionXYWithSubscreenOffset(param0->unk_118[v0], v3.x, v3.y, (192 + 80) << FX32_SHIFT);
+            param0->unk_118[i] = ov17_0224F154(v1, v2, v4, &v3);
+            ManagedSprite_SetPositionXYWithSubscreenOffset(param0->unk_118[i], v3.x, v3.y, (192 + 80) << FX32_SHIFT);
         }
     }
 }
@@ -1152,7 +1151,7 @@ static void ov17_022403B0(UnkStruct_ov17_0223F7E4 *param0, const s16 *param1, co
     Bg_ScheduleTilemapTransfer(v2, 4);
 }
 
-static void ov17_02240424(UnkStruct_ov17_0223F7E4 *param0, int param1, int param2)
+static void ov17_02240424(UnkStruct_ov17_0223F7E4 *param0, int moveContestType, int moveSlot)
 {
     const u16 *const v0[] = {
         &Unk_ov17_022534B8[16 * 3],
@@ -1162,11 +1161,11 @@ static void ov17_02240424(UnkStruct_ov17_0223F7E4 *param0, int param1, int param
         &Unk_ov17_022534B8[16 * 0],
     };
 
-    if (param1 != -1) {
-        PaletteData_LoadBuffer(param0->unk_04->unk_50, v0[param1], 1, (4 + param2) * 16, 0x20);
+    if (moveContestType != -1) {
+        PaletteData_LoadBuffer(param0->unk_04->unk_50, v0[moveContestType], 1, (4 + moveSlot) * 16, 0x20);
     } else {
-        ov17_022403B0(param0, &Unk_ov17_02253248[param2], &Unk_ov17_02253408[param2], 2, 0);
-        PaletteData_LoadBuffer(param0->unk_04->unk_50, &param0->unk_34[1][0x8 * 16], 1, (4 + param2) * 16, 0x20);
+        ov17_022403B0(param0, &Unk_ov17_02253248[moveSlot], &Unk_ov17_02253408[moveSlot], 2, 0);
+        PaletteData_LoadBuffer(param0->unk_04->unk_50, &param0->unk_34[1][0x8 * 16], 1, (4 + moveSlot) * 16, 0x20);
     }
 }
 
@@ -1265,13 +1264,13 @@ static void ov17_02240658(SysTask *param0, void *param1)
     int v2, v3;
     int v4, v5, v6;
     int v7, v8;
-    u16 v9[LEARNED_MOVES_MAX];
+    u16 learnedMoves[LEARNED_MOVES_MAX];
     int v10, v11;
 
     v1 = v0->unk_04->unk_24;
 
     for (v10 = 0; v10 < LEARNED_MOVES_MAX; v10++) {
-        v9[v10] = Pokemon_GetValue(v0->unk_04->unk_00->unk_00[v0->unk_04->unk_00->unk_113], MON_DATA_MOVE1 + v10, NULL);
+        learnedMoves[v10] = Pokemon_GetValue(v0->unk_04->unk_00->contestMons[v0->unk_04->unk_00->playerContestantID], MON_DATA_MOVE1 + v10, NULL);
     }
 
     switch (v0->unk_2CC.unk_04_val1.unk_14) {
@@ -1280,7 +1279,7 @@ static void ov17_02240658(SysTask *param0, void *param1)
         v5 = 4;
         v6 = 8;
         v7 = 0;
-        v8 = v9[0];
+        v8 = learnedMoves[0];
         v11 = 0;
         break;
     case 1:
@@ -1288,7 +1287,7 @@ static void ov17_02240658(SysTask *param0, void *param1)
         v5 = 5;
         v6 = 9;
         v7 = 1;
-        v8 = v9[1];
+        v8 = learnedMoves[1];
         v11 = 1;
         break;
     case 2:
@@ -1296,7 +1295,7 @@ static void ov17_02240658(SysTask *param0, void *param1)
         v5 = 6;
         v6 = 10;
         v7 = 2;
-        v8 = v9[2];
+        v8 = learnedMoves[2];
         v11 = 2;
         break;
     case 3:
@@ -1304,7 +1303,7 @@ static void ov17_02240658(SysTask *param0, void *param1)
         v5 = 7;
         v6 = 11;
         v7 = 3;
-        v8 = v9[3];
+        v8 = learnedMoves[3];
         v11 = 3;
         break;
     default:
@@ -1480,45 +1479,45 @@ static void ov17_022409F4(UnkStruct_ov17_0223F7E4 *param0)
     }
 }
 
-void ov17_02240A80(UnkStruct_ov17_0223F7E4 *param0, u16 param1[])
+void ov17_02240A80(UnkStruct_ov17_0223F7E4 *param0, u16 moves[])
 {
     UnkStruct_ov17_0223FF38 *v0;
     int v1;
     String *v2;
-    String *v3, *v4, *v5;
-    u32 v6, v7;
+    String *lineOneEffectMessage, *lineTwoEffectMessage, *judgeName;
+    u32 lineOneEffectMessageID, lineTwoEffectMessageID;
 
     v0 = &param0->unk_18C;
 
-    for (v1 = 0; v1 < 4; v1++) {
-        if (param1[v1] != 0) {
-            v0->unk_12C[v1] = MoveTable_LoadParam(param1[v1], MOVEATTRIBUTE_CONTEST_EFFECT);
-            v0->unk_130[v1] = MoveTable_LoadParam(param1[v1], MOVEATTRIBUTE_CONTEST_TYPE);
+    for (v1 = 0; v1 < LEARNED_MOVES_MAX; v1++) {
+        if (moves[v1] != 0) {
+            v0->moveContestEffect[v1] = MoveTable_LoadParam(moves[v1], MOVEATTRIBUTE_CONTEST_EFFECT);
+            v0->moveContestType[v1] = MoveTable_LoadParam(moves[v1], MOVEATTRIBUTE_CONTEST_TYPE);
         } else {
-            v0->unk_12C[v1] = 0;
-            v0->unk_130[v1] = 0;
+            v0->moveContestEffect[v1] = 0;
+            v0->moveContestType[v1] = 0;
         }
 
-        v2 = MessageUtil_MoveName(param1[v1], HEAP_ID_21);
+        v2 = MessageUtil_MoveName(moves[v1], HEAP_ID_21);
 
         ov17_02240BF4(param0, v2, FONT_SUBSCREEN, &v0->unk_00[v1], TEXT_COLOR(1, 7, 8));
         String_Free(v2);
-        LoadTwoLineContestEffectMessages(v0->unk_12C[v1], &v6, &v7);
+        Contest_LoadTwoLineContestEffectMessages(v0->moveContestEffect[v1], &lineOneEffectMessageID, &lineTwoEffectMessageID);
 
-        v3 = MessageLoader_GetNewString(param0->unk_04->unk_40, v6);
-        v4 = MessageLoader_GetNewString(param0->unk_04->unk_40, v7);
+        lineOneEffectMessage = MessageLoader_GetNewString(param0->unk_04->contestEffectMessages, lineOneEffectMessageID);
+        lineTwoEffectMessage = MessageLoader_GetNewString(param0->unk_04->contestEffectMessages, lineTwoEffectMessageID);
 
-        ov17_02240BF4(param0, v3, FONT_SYSTEM, &v0->unk_50[v1], TEXT_COLOR(1, 2, 0));
-        ov17_02240BF4(param0, v4, FONT_SYSTEM, &v0->unk_A0[v1], TEXT_COLOR(1, 2, 0));
+        ov17_02240BF4(param0, lineOneEffectMessage, FONT_SYSTEM, &v0->unk_50[v1], TEXT_COLOR(1, 2, 0));
+        ov17_02240BF4(param0, lineTwoEffectMessage, FONT_SYSTEM, &v0->unk_A0[v1], TEXT_COLOR(1, 2, 0));
 
-        String_Free(v3);
-        String_Free(v4);
+        String_Free(lineOneEffectMessage);
+        String_Free(lineTwoEffectMessage);
     }
 
     for (v1 = 0; v1 < (1 + 2); v1++) {
-        v5 = ov17_0223F310(param0->unk_04->unk_00->unk_C0[v1].unk_00, HEAP_ID_21);
-        ov17_02240BF4(param0, v5, FONT_SUBSCREEN, &v0->unk_F0[v1], TEXT_COLOR(1, 9, 0xa));
-        String_Free(v5);
+        judgeName = Contest_GetJudgeName(param0->unk_04->unk_00->unk_C0[v1].judgeNameMessageID, HEAP_ID_21);
+        ov17_02240BF4(param0, judgeName, FONT_SUBSCREEN, &v0->unk_F0[v1], TEXT_COLOR(1, 9, 0xa));
+        String_Free(judgeName);
     }
 
     {
@@ -1602,7 +1601,7 @@ static int ov17_02240D04(UnkStruct_ov17_0223F7E4 *param0, int param1)
     v2 = &Unk_ov17_02253558[param0->unk_2C8];
 
     for (v4 = 0; v4 < LEARNED_MOVES_MAX; v4++) {
-        v7[v4] = Pokemon_GetValue(param0->unk_04->unk_00->unk_00[param0->unk_04->unk_00->unk_113], MON_DATA_MOVE1 + v4, NULL);
+        v7[v4] = Pokemon_GetValue(param0->unk_04->unk_00->contestMons[param0->unk_04->unk_00->playerContestantID], MON_DATA_MOVE1 + v4, NULL);
     }
 
     if (param1 == 1) {
@@ -1618,7 +1617,7 @@ static int ov17_02240D04(UnkStruct_ov17_0223F7E4 *param0, int param1)
             v3 = Unk_ov17_0225323C[v0->unk_01][v0->unk_02];
         }
 
-        ov17_02252C78(param0->unk_2FC, v2->unk_14[v3].rect.left + 8, v2->unk_14[v3].rect.right - 8, v2->unk_14[v3].rect.top + 8, v2->unk_14[v3].rect.bottom - 8, (192 + 80) << FX32_SHIFT);
+        ov17_02252C78(param0->unk_2FC, v2->touchScreenRect[v3].rect.left + 8, v2->touchScreenRect[v3].rect.right - 8, v2->touchScreenRect[v3].rect.top + 8, v2->touchScreenRect[v3].rect.bottom - 8, (192 + 80) << FX32_SHIFT);
         return 0xffffffff;
     }
 
@@ -1632,7 +1631,7 @@ static int ov17_02240D04(UnkStruct_ov17_0223F7E4 *param0, int param1)
     case PAD_KEY_LEFT:
     case PAD_KEY_RIGHT:
         v3 = Unk_ov17_0225323C[v0->unk_01][v0->unk_02];
-        ov17_02252C78(param0->unk_2FC, v2->unk_14[v3].rect.left + 8, v2->unk_14[v3].rect.right - 8, v2->unk_14[v3].rect.top + 8, v2->unk_14[v3].rect.bottom - 8, (192 + 80) << FX32_SHIFT);
+        ov17_02252C78(param0->unk_2FC, v2->touchScreenRect[v3].rect.left + 8, v2->touchScreenRect[v3].rect.right - 8, v2->touchScreenRect[v3].rect.top + 8, v2->touchScreenRect[v3].rect.bottom - 8, (192 + 80) << FX32_SHIFT);
         break;
     case PAD_BUTTON_A:
         return Unk_ov17_0225323C[v0->unk_01][v0->unk_02];
@@ -1676,7 +1675,7 @@ static int ov17_02240EA4(UnkStruct_ov17_0223F7E4 *param0, int param1)
         v0->unk_02 = v6->unk_02;
         v0->unk_01 = v6->unk_03;
         v3 = Unk_ov17_02253240[v0->unk_01][v0->unk_02];
-        ov17_02252C78(param0->unk_2FC, v2->unk_14[v3].rect.left + 8, v2->unk_14[v3].rect.right - 8, v2->unk_14[v3].rect.top + 8, v2->unk_14[v3].rect.bottom - 8, (192 + 80) << FX32_SHIFT);
+        ov17_02252C78(param0->unk_2FC, v2->touchScreenRect[v3].rect.left + 8, v2->touchScreenRect[v3].rect.right - 8, v2->touchScreenRect[v3].rect.top + 8, v2->touchScreenRect[v3].rect.bottom - 8, (192 + 80) << FX32_SHIFT);
         return 0xffffffff;
     }
 
@@ -1689,7 +1688,7 @@ static int ov17_02240EA4(UnkStruct_ov17_0223F7E4 *param0, int param1)
     case PAD_KEY_LEFT:
     case PAD_KEY_RIGHT:
         v3 = Unk_ov17_02253240[v0->unk_01][v0->unk_02];
-        ov17_02252C78(param0->unk_2FC, v2->unk_14[v3].rect.left + 8, v2->unk_14[v3].rect.right - 8, v2->unk_14[v3].rect.top + 8, v2->unk_14[v3].rect.bottom - 8, (192 + 80) << FX32_SHIFT);
+        ov17_02252C78(param0->unk_2FC, v2->touchScreenRect[v3].rect.left + 8, v2->touchScreenRect[v3].rect.right - 8, v2->touchScreenRect[v3].rect.top + 8, v2->touchScreenRect[v3].rect.bottom - 8, (192 + 80) << FX32_SHIFT);
         break;
     case PAD_BUTTON_A:
         return Unk_ov17_02253240[v0->unk_01][v0->unk_02];

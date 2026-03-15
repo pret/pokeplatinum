@@ -3,6 +3,9 @@
 
 #include <nitro/gx.h>
 
+#include "generated/pokemon_contest_ranks.h"
+#include "generated/pokemon_contest_types.h"
+
 #include "overlay017/struct_ov17_0224A1EC.h"
 #include "overlay017/struct_ov17_0224ABFC.h"
 #include "overlay017/struct_ov17_0224B058.h"
@@ -17,9 +20,9 @@
 #include "pokemon_sprite.h"
 #include "sprite_system.h"
 
-s16 ov17_0224A0FC(int param0);
-s16 ov17_0224A10C(int param0);
-s16 ov17_0224A120(int param0);
+s16 ov17_0224A0FC(int contestantID);
+s16 ov17_0224A10C(int contestantID);
+s16 ov17_0224A120(int contestantID);
 void ov17_0224A134(UnkStruct_ov17_0224DF54 *param0);
 void ov17_0224A1EC(UnkStruct_ov17_0224A1EC *param0);
 void ov17_0224A20C(SpriteSystem *param0, SpriteManager *param1);
@@ -84,7 +87,7 @@ void ov17_0224C47C(UnkStruct_ov17_0224B058 *param0, int param1);
 void ov17_0224C49C(UnkStruct_ov17_0224C384 *param0, u32 param1, u32 param2, int param3);
 void ov17_0224C540(UnkStruct_ov17_0224C384 *param0);
 void ov17_0224C54C(UnkStruct_ov17_0224C384 *param0, int param1);
-int ov17_0224C57C(int param0);
+int ov17_0224C57C(enum PokemonContestRank contestRank);
 void ov17_0224C5A0(UnkStruct_ov17_0224DF54 *param0, u32 param1, const UnkStruct_ov17_0224C0C0 *param2);
 void ov17_0224C640(UnkStruct_ov17_0224DF54 *param0);
 s64 ov17_0224C660(UnkStruct_ov17_0224DF54 *param0, const UnkStruct_ov17_02253084 *param1, int param2);

@@ -12,6 +12,6 @@ int ov17_0224F30C(UnkStruct_ov17_0224F30C *param0, void *param1, int param2, voi
 BOOL ov17_0224F35C(UnkStruct_ov17_0224F30C *param0);
 BOOL ov17_0224F3D0(UnkStruct_ov17_0224F30C *param0);
 int ov17_0224F3D8(UnkStruct_ov17_0224F30C *param0, void *param1);
-BOOL ov17_0224F4B8(UnkStruct_ov17_0224F30C *param0, int param1, int param2, int param3);
+BOOL ov17_0224F4B8(UnkStruct_ov17_0224F30C *param0, int connectionCount, int playerContestantID, int param3);
 
 #endif // POKEPLATINUM_OV17_0224F18C_H

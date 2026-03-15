@@ -3,6 +3,9 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "generated/pokemon_contest_ranks.h"
+#include "generated/pokemon_contest_types.h"
+
 #include "overlay017/ov17_0223DAD0.h"
 #include "overlay017/ov17_0224CFB8.h"
 #include "overlay017/struct_ov17_0224D69C.h"
@@ -11,11 +14,11 @@
 #include "overlay017/struct_ov17_0224EDE0.h"
 #include "overlay017/struct_ov17_02253084.h"
 
-#include "unk_020933F8.h"
+#include "contest.h"
 
-static int ov17_0224EBE0(int param0, int param1);
-static int ov17_0224EC24(int param0, int param1, int param2, int param3, int param4, int param5, int param6);
-static int ov17_0224ECC4(int param0, int param1, int param2, int param3, int param4, int param5, int param6, int param7);
+static int ov17_0224EBE0(int contestRank, int param1);
+static int ov17_0224EC24(int contestRank, int contestType, int param2, int param3, int param4, int param5, int param6);
+static int ov17_0224ECC4(int contestRank, int contestType, int param2, int param3, int param4, int param5, int param6, int param7);
 static void ov17_0224EDE0(UnkStruct_ov17_0224DF54 *param0, UnkStruct_ov17_0224E958 *param1, u32 param2, u32 param3, u32 param4, const UnkStruct_ov17_02253084 *param5, UnkStruct_ov17_0224D69C *param6);
 static void ov17_0224EE90(UnkStruct_ov17_0224DF54 *param0, UnkStruct_ov17_0224E958 *param1, u32 param2, u32 param3, u32 param4, const UnkStruct_ov17_02253084 *param5, UnkStruct_ov17_0224D69C *param6);
 
@@ -33,11 +36,11 @@ __attribute__((aligned(4))) static const u8 Unk_ov17_02254A84[] = {
     0x0
 };
 
-void ov17_0224E930(UnkStruct_ov17_0224E958 *param0, int param1, int param2, u32 param3, int param4)
+void ov17_0224E930(UnkStruct_ov17_0224E958 *param0, int contestantID, int param2, u32 param3, int param4)
 {
     MI_CpuClear8(param0, sizeof(UnkStruct_ov17_0224E958));
 
-    param0->unk_37 = param1;
+    param0->unk_37 = contestantID;
     param0->unk_38 = param2;
     param0->unk_30 = param3;
     param0->unk_39 = param4;
@@ -78,8 +81,8 @@ void ov17_0224E990(UnkStruct_ov17_0224DF54 *param0, UnkStruct_ov17_0224E958 *par
     }
 
     switch (param0->unk_00->unk_00.contestRank) {
-    case 0:
-    case 1:
+    case CONTEST_RANK_NORMAL:
+    case CONTEST_RANK_GREAT:
         v8 = 0;
         v1 = v10 / 2 / 2;
         v6 = param3;
@@ -98,7 +101,7 @@ void ov17_0224E990(UnkStruct_ov17_0224DF54 *param0, UnkStruct_ov17_0224E958 *par
     v3 = 0;
 
     while (TRUE) {
-        v2 = sub_02094EA0(param1->unk_30, &param1->unk_30) % v1;
+        v2 = Contest_GetSeededRNGNext(param1->unk_30, &param1->unk_30) % v1;
 
         if (v2 == 0) {
             continue;
@@ -112,7 +115,7 @@ void ov17_0224E990(UnkStruct_ov17_0224DF54 *param0, UnkStruct_ov17_0224E958 *par
                     continue;
                 }
 
-                if ((v2 & 1) && ((sub_02094EA0(param1->unk_30, &param1->unk_30) & 0xff) < 128)) {
+                if ((v2 & 1) && ((Contest_GetSeededRNGNext(param1->unk_30, &param1->unk_30) & 0xff) < 128)) {
                     continue;
                 }
             }
@@ -140,7 +143,7 @@ void ov17_0224E990(UnkStruct_ov17_0224DF54 *param0, UnkStruct_ov17_0224E958 *par
     for (v0 = 0; v0 < param0->unk_A3C.unk_2E; v0++) {
         s32 v11;
 
-        v11 = param1->unk_00_val1.unk_00[v0] + (sub_02094EA0(param1->unk_30, &param1->unk_30) % (2 + v4)) - (1 + v4 / 2);
+        v11 = param1->unk_00_val1.unk_00[v0] + (Contest_GetSeededRNGNext(param1->unk_30, &param1->unk_30) % (2 + v4)) - (1 + v4 / 2);
 
         if (v11 < 0) {
             v11 = 0;
@@ -158,35 +161,35 @@ void ov17_0224E990(UnkStruct_ov17_0224DF54 *param0, UnkStruct_ov17_0224E958 *par
         int v12;
 
         v12 = Unk_ov17_02254A84[param0->unk_00->unk_00.contestRank];
-        param1->unk_00_val1.unk_20[0] = 0 + (sub_02094EA0(param1->unk_30, &param1->unk_30) % 4);
+        param1->unk_00_val1.unk_20[0] = 0 + (Contest_GetSeededRNGNext(param1->unk_30, &param1->unk_30) % 4);
 
         for (v0 = 1; v0 < param0->unk_A3C.unk_2E; v0++) {
-            if ((v0 < param0->unk_A3C.unk_2E - 1) && (v12 > sub_02094EA0(param1->unk_30, &param1->unk_30) % 100)) {
+            if ((v0 < param0->unk_A3C.unk_2E - 1) && (v12 > Contest_GetSeededRNGNext(param1->unk_30, &param1->unk_30) % 100)) {
                 param1->unk_00_val1.unk_20[v0] = param1->unk_00_val1.unk_20[v0 - 1];
             } else {
-                param1->unk_00_val1.unk_20[v0] = 0 + (sub_02094EA0(param1->unk_30, &param1->unk_30) % 4);
+                param1->unk_00_val1.unk_20[v0] = 0 + (Contest_GetSeededRNGNext(param1->unk_30, &param1->unk_30) % 4);
             }
         }
     }
 }
 
-static int ov17_0224EBE0(int param0, int param1)
+static int ov17_0224EBE0(int contestRank, int param1)
 {
     int v0;
 
     GF_ASSERT(NELEMS(Unk_ov17_02254A80) > param1);
     v0 = Unk_ov17_02254A80[param1];
 
-    switch (param0) {
-    case 0:
+    switch (contestRank) {
+    case CONTEST_RANK_NORMAL:
         v0 *= 2;
         break;
-    case 1:
+    case CONTEST_RANK_GREAT:
         break;
-    case 2:
+    case CONTEST_RANK_ULTRA:
         v0 /= 2;
         break;
-    case 3:
+    case CONTEST_RANK_MASTER:
     default:
         v0 /= 3;
         break;
@@ -195,7 +198,7 @@ static int ov17_0224EBE0(int param0, int param1)
     return v0;
 }
 
-static int ov17_0224EC24(int param0, int param1, int param2, int param3, int param4, int param5, int param6)
+static int ov17_0224EC24(int contestRank, int contestType, int param2, int param3, int param4, int param5, int param6)
 {
     int v0 = 0;
 
@@ -219,23 +222,23 @@ static int ov17_0224EC24(int param0, int param1, int param2, int param3, int par
 
     v0 = Unk_ov17_02254A80[param2];
 
-    switch (param0) {
-    case 0:
+    switch (contestRank) {
+    case CONTEST_RANK_NORMAL:
         v0 *= 2;
         break;
-    case 1:
+    case CONTEST_RANK_GREAT:
         v0 *= 2;
         break;
-    case 2:
-        if ((param6 == 1) && ((param1 == 2) || (param1 == 3))) {
+    case CONTEST_RANK_ULTRA:
+        if ((param6 == 1) && (contestType == CONTEST_TYPE_CUTE || contestType == CONTEST_TYPE_SMART)) {
             v0 = v0 * 3;
         } else {
             v0 += v0 / 2;
         }
         break;
-    case 3:
+    case CONTEST_RANK_MASTER:
     default:
-        if ((param6 == 1) && ((param1 == 2) || (param1 == 3))) {
+        if ((param6 == 1) && (contestType == CONTEST_TYPE_CUTE || contestType == CONTEST_TYPE_SMART)) {
             v0 = v0 * 2 + v0 / 2;
         }
         break;
@@ -248,7 +251,7 @@ static int ov17_0224EC24(int param0, int param1, int param2, int param3, int par
     return v0;
 }
 
-static int ov17_0224ECC4(int param0, int param1, int param2, int param3, int param4, int param5, int param6, int param7)
+static int ov17_0224ECC4(int contestRank, int contestType, int param2, int param3, int param4, int param5, int param6, int param7)
 {
     int v0 = 0;
 
@@ -291,23 +294,23 @@ static int ov17_0224ECC4(int param0, int param1, int param2, int param3, int par
         }
     }
 
-    switch (param0) {
-    case 0:
+    switch (contestRank) {
+    case CONTEST_RANK_NORMAL:
         v0 *= 2;
         break;
-    case 1:
+    case CONTEST_RANK_GREAT:
         v0 *= 2;
         break;
-    case 2:
-        if ((param7 == 1) && ((param1 == 2) || (param1 == 3))) {
+    case CONTEST_RANK_ULTRA:
+        if ((param7 == 1) && (contestType == CONTEST_TYPE_CUTE || contestType == CONTEST_TYPE_SMART)) {
             v0 *= 2;
         } else {
             v0 += v0 / 2;
         }
         break;
-    case 3:
+    case CONTEST_RANK_MASTER:
     default:
-        if ((param7 == 1) && ((param1 == 2) || (param1 == 3))) {
+        if ((param7 == 1) && (contestType == CONTEST_TYPE_CUTE || contestType == CONTEST_TYPE_SMART)) {
             v0 += v0 / 2;
         }
         break;
@@ -400,7 +403,7 @@ static void ov17_0224EE90(UnkStruct_ov17_0224DF54 *param0, UnkStruct_ov17_0224E9
         v6 = ov17_0224EC24(param0->unk_00->unk_00.contestRank, param0->unk_00->unk_00.contestType, param1->unk_39, v1->unk_06, v10, param0->unk_A3C.unk_2F, param0->unk_1B26);
         v7 = ov17_0224ECC4(param0->unk_00->unk_00.contestRank, param0->unk_00->unk_00.contestType, param1->unk_39, v1->unk_06, v10, v1->unk_03, v9, param0->unk_1B26);
         v4 = (v1->unk_06 * v2 + 10000 / 2) / 10000;
-        v5 = (sub_02094EA0(param1->unk_30, &param1->unk_30) % (2 + v6)) - (1 + v6 / 2);
+        v5 = (Contest_GetSeededRNGNext(param1->unk_30, &param1->unk_30) % (2 + v6)) - (1 + v6 / 2);
 
         if (v5 + (s32)v4 < 0) {
             v4 = 0;
@@ -408,9 +411,9 @@ static void ov17_0224EE90(UnkStruct_ov17_0224DF54 *param0, UnkStruct_ov17_0224E9
             v4 += v5;
         }
 
-        if ((sub_02094EA0(param1->unk_30, &param1->unk_30) % 100) < (0 + v6 + v7)) {
+        if ((Contest_GetSeededRNGNext(param1->unk_30, &param1->unk_30) % 100) < (0 + v6 + v7)) {
             do {
-                v8 = 0 + (sub_02094EA0(param1->unk_30, &param1->unk_30) % 4);
+                v8 = 0 + (Contest_GetSeededRNGNext(param1->unk_30, &param1->unk_30) % 4);
             } while (ov17_0224DD28(v8) == v1->unk_03);
         } else {
             v8 = ov17_0224DD5C(v1->unk_03);

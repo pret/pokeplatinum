@@ -7,10 +7,10 @@
 #include "pokemon_sprite.h"
 
 typedef struct {
-    Pokemon *unk_00;
+    Pokemon *mon;
     PokemonSprite *unk_04;
     UnkStruct_ov17_0224B09C *unk_08;
-    u8 unk_0C;
+    u8 contestantID;
     u8 unk_0D;
     u16 unk_0E;
     s32 unk_10;

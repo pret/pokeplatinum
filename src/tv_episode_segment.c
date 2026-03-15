@@ -16,7 +16,6 @@
 #include "struct_defs/dress_up_photo.h"
 #include "struct_defs/image_clips.h"
 #include "struct_defs/special_encounter.h"
-#include "struct_defs/struct_0202E7D8.h"
 #include "struct_defs/struct_0202E7E4.h"
 #include "struct_defs/struct_0202E7F0.h"
 #include "struct_defs/struct_0202E7FC.h"
@@ -25,6 +24,7 @@
 #include "struct_defs/struct_0202E81C.h"
 #include "struct_defs/struct_0202E828.h"
 #include "struct_defs/struct_0202E834.h"
+#include "struct_defs/tv_episode_segment_contest_hall_showcased_pokemon.h"
 
 #include "applications/poketch/poketch_system.h"
 #include "field/field_system.h"
@@ -252,7 +252,7 @@ typedef struct TVEpisodeSegment_ThePoketchWatch {
 } TVEpisodeSegment_ThePoketchWatch;
 
 typedef struct TVEpisodeSegment_ContestHall {
-    UnkStruct_0202E7D8 unk_00;
+    TVEpisodeSegment_ContestHall_ShowcasedPokemon showcasedPokemon;
     u16 customMessageWord;
 } TVEpisodeSegment_ContestHall;
 
@@ -536,15 +536,15 @@ static void sub_0206CED0(enum HeapID heapID, Pokemon *mon, u8 *param2, u16 *para
     }
 }
 
-void sub_0206CF14(TVBroadcast *broadcast, Pokemon *param1, int param2, int param3, int param4)
+void TVBroadcast_SetContestHallShowInfo(TVBroadcast *broadcast, Pokemon *mon, enum PokemonContestType contestType, enum PokemonContestRank contestRank, int contestPlacement)
 {
-    UnkStruct_0202E7D8 *v0 = sub_0202E7D8(broadcast);
+    TVEpisodeSegment_ContestHall_ShowcasedPokemon *showcasedPokemon = TVBroadcast_GetShowcasedPokemon(broadcast);
 
-    v0->unk_00 = 1;
-    TVEpisodeSegment_CopyPokemonValues(param1, &v0->unk_02, &v0->unk_04, &v0->language, &v0->unk_06);
-    v0->unk_08 = param2;
-    v0->unk_07 = param3;
-    v0->unk_09 = param4;
+    showcasedPokemon->unk_00 = 1;
+    TVEpisodeSegment_CopyPokemonValues(mon, &showcasedPokemon->species, &showcasedPokemon->gender, &showcasedPokemon->language, &showcasedPokemon->metGame);
+    showcasedPokemon->contestType = contestType;
+    showcasedPokemon->contestRank = contestRank;
+    showcasedPokemon->contestPlacement = contestPlacement;
 
     SaveData_SetChecksum(SAVE_TABLE_ENTRY_TV_BROADCAST);
 }
@@ -1730,10 +1730,10 @@ void FieldSystem_SaveTVEpisodeSegment_ContestHall(FieldSystem *fieldSystem, u16 
 {
     TVEpisodeSegment segments;
     TVEpisodeSegment_ContestHall *contestHall = &segments.contestHall;
-    UnkStruct_0202E7D8 *v2 = sub_0202E7D8(SaveData_GetTVBroadcast(fieldSystem->saveData));
+    TVEpisodeSegment_ContestHall_ShowcasedPokemon *showcasedPokemon = TVBroadcast_GetShowcasedPokemon(SaveData_GetTVBroadcast(fieldSystem->saveData));
 
-    contestHall->unk_00 = *v2;
-    v2->unk_00 = 0;
+    contestHall->showcasedPokemon = *showcasedPokemon;
+    showcasedPokemon->unk_00 = 0;
     contestHall->customMessageWord = customMessageWord;
 
     SaveData_SetChecksum(SAVE_TABLE_ENTRY_TV_BROADCAST);
@@ -1744,14 +1744,14 @@ static int TVEpisodeSegment_LoadMessage_ContestHall(FieldSystem *fieldSystem, St
 {
     TVEpisodeSegment_ContestHall *contestHall = ov6_02246498(param2);
 
-    TVEpisodeSegment_SetTemplatePokemonSpecies(template, 0, contestHall->unk_00.unk_02, contestHall->unk_00.unk_04, contestHall->unk_00.language, contestHall->unk_00.unk_06);
-    StringTemplate_SetContestTypeName(template, 1, Contest_GetContestTypeMessageID(contestHall->unk_00.unk_08));
-    StringTemplate_SetContestRankName(template, 2, Contest_GetRankMessageID(contestHall->unk_00.unk_07));
-    StringTemplate_SetNumber(template, 3, contestHall->unk_00.unk_09, 1, PADDING_MODE_NONE, CHARSET_MODE_EN);
+    TVEpisodeSegment_SetTemplatePokemonSpecies(template, 0, contestHall->showcasedPokemon.species, contestHall->showcasedPokemon.gender, contestHall->showcasedPokemon.language, contestHall->showcasedPokemon.metGame);
+    StringTemplate_SetContestTypeName(template, 1, Contest_GetContestTypeMessageID(contestHall->showcasedPokemon.contestType));
+    StringTemplate_SetContestRankName(template, 2, Contest_GetRankMessageID(contestHall->showcasedPokemon.contestRank));
+    StringTemplate_SetNumber(template, 3, contestHall->showcasedPokemon.contestPlacement, 1, PADDING_MODE_NONE, CHARSET_MODE_EN);
     TVEpisodeSegment_SetTemplateTrainerName(template, 4, param2);
     StringTemplate_SetCustomMessageWord(template, 5, contestHall->customMessageWord);
 
-    if (contestHall->unk_00.unk_09 == TRUE) {
+    if (contestHall->showcasedPokemon.contestPlacement == 1) {
         return TVProgramInterviews_Text_ContestHall_Win;
     } else {
         return TVProgramInterviews_Text_ContestHall_Lose;
@@ -1761,7 +1761,7 @@ static int TVEpisodeSegment_LoadMessage_ContestHall(FieldSystem *fieldSystem, St
 static BOOL TVEpisodeSegment_IsEligible_ContestHall(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
 {
     TVEpisodeSegment_ContestHall *contestHall = ov6_02246498(param1);
-    return Pokedex_HasSeenSpecies(SaveData_GetPokedex(fieldSystem->saveData), contestHall->unk_00.unk_02);
+    return Pokedex_HasSeenSpecies(SaveData_GetPokedex(fieldSystem->saveData), contestHall->showcasedPokemon.species);
 }
 
 void FieldSystem_SaveTVEpisodeSegment_RightOnPhotoCorner(FieldSystem *fieldSystem, u16 customMessageWord)
