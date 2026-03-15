@@ -4660,14 +4660,14 @@
     .short 784
     .endm
 
-    .macro ScrCmd_311 arg0
+    .macro AddDistortionWorldMapObject mapObjLocalID
     .short 785
-    .short \arg0
+    .short \mapObjLocalID
     .endm
 
-    .macro ScrCmd_312 arg0
+    .macro DeleteDistortionWorldMapObject mapObjLocalID
     .short 786
-    .short \arg0
+    .short \mapObjLocalID
     .endm
 
     .macro CheckHeapMemory assertUnchangedFreeMemory

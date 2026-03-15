@@ -76,8 +76,8 @@ _00C4:
     GoToIfEq VAR_RESULT, BATTLE_RESULT_PLAYER_FLED, _014E
     GoToIfEq VAR_RESULT, BATTLE_RESULT_ENEMY_FLED, _014E
     GoToIfEq VAR_RESULT, BATTLE_RESULT_CAPTURED_MON, _016E
-    ScrCmd_311 130
-    ScrCmd_311 129
+    AddDistortionWorldMapObject 130
+    AddDistortionWorldMapObject 129
     ApplyMovement 129, _0250
     WaitMovement
     Message 3
@@ -86,8 +86,8 @@ _00C4:
     GoTo _0194
 
 _014E:
-    ScrCmd_311 130
-    ScrCmd_311 129
+    AddDistortionWorldMapObject 130
+    AddDistortionWorldMapObject 129
     ApplyMovement 129, _0250
     WaitMovement
     Message 3
@@ -99,8 +99,8 @@ _016E:
     SetFlag FLAG_CAUGHT_GIRATINA
     SetFlag FLAG_HIDE_TURNBACK_CAVE_GIRATINA_ROOM_GIRATINA
     ClearFlag FLAG_UNK_0x0278
-    ScrCmd_311 130
-    ScrCmd_311 129
+    AddDistortionWorldMapObject 130
+    AddDistortionWorldMapObject 129
     ApplyMovement 129, _0250
     WaitMovement
     Message 3
@@ -122,7 +122,7 @@ _0194:
     CloseMessage
     ApplyMovement 130, _0274
     WaitMovement
-    ScrCmd_312 130
+    DeleteDistortionWorldMapObject 130
     ApplyFreeCameraMovement _0288
     WaitMovement
     RestoreCamera
