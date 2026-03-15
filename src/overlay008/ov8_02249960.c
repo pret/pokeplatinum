@@ -11,10 +11,10 @@
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061830_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
+#include "struct_defs/eterna_gym_clock_persisted_feature.h"
 #include "struct_defs/struct_02071B10.h"
 #include "struct_defs/struct_02071B30.h"
 #include "struct_defs/struct_02071B6C.h"
-#include "struct_defs/struct_02071BD0.h"
 #include "struct_defs/struct_02071BF8.h"
 #include "struct_defs/struct_02071C18.h"
 
@@ -67,6 +67,14 @@
 
 #include "res/field/props/models/prop_models.naix"
 #include "res/text/bank/eterna_city_gym.h"
+
+#define ETERNA_CLOCK_DIAMETER     13
+#define ETERNA_CLOCK_LEFT_BOUND   5
+#define ETERNA_CLOCK_TOP_BOUND    7
+#define ETERNA_CLOCK_RIGHT_BOUND  (ETERNA_CLOCK_LEFT_BOUND + ETERNA_CLOCK_DIAMETER - 1)
+#define ETERNA_CLOCK_BOTTOM_BOUND (ETERNA_CLOCK_TOP_BOUND + ETERNA_CLOCK_DIAMETER - 1)
+#define ETERNA_GYM_FOUNTAIN_Z     19
+#define ETERNA_GYM_WIDTH          21
 
 typedef struct {
     int unk_00;
@@ -136,26 +144,26 @@ typedef struct {
 } UnkStruct_ov8_0224E740;
 
 typedef struct {
-    s16 unk_00;
-    s16 unk_02;
-} UnkStruct_ov8_0224C774;
+    s16 hour;
+    s16 minute;
+} EternaGymClockTime;
 
 typedef struct {
-    s16 unk_00;
-    s16 unk_02;
-    int unk_04;
-} UnkStruct_ov8_0224C7F0;
+    s16 x;
+    s16 z;
+    int isJumpAxisNorthSouth;
+} EternaClockHourHandJumpTile;
 
 typedef struct {
     VecFx32 unk_00;
-    u32 unk_0C;
+    u32 modelId; // unused, only written to, never read from
     u16 unk_10;
     MapProp *unk_14;
 } UnkStruct_ov8_0224AF58;
 
 typedef struct {
-    fx32 unk_00;
-    fx32 unk_04;
+    fx32 fxHour;
+    fx32 fxMinute;
     int unk_08;
     UnkStruct_ov8_0224AF58 unk_0C[2];
     FieldSystem *fieldSystem;
@@ -179,7 +187,7 @@ typedef struct {
     fx32 unk_08;
     fx32 unk_0C;
     FieldSystem *fieldSystem;
-    UnkStruct_02071BD0 *unk_14;
+    EternaGymClockPersistedFeature *eternaClockPersisted;
     UnkStruct_ov8_0224AF00 *unk_18;
     UnkStruct_ov8_0224B28C unk_1C;
     u32 unk_40;
@@ -2258,9 +2266,9 @@ static BOOL ov8_0224ADE8(FieldTask *param0)
     return 0;
 }
 
-static const u32 Unk_ov8_0224C700[2] = {
-    0x219,
-    0x218
+static const u32 sEternaGymClockModelIds[2] = {
+    eterna_gym_model_clock_hour_hand_nsbmd,
+    eterna_gym_model_clock_minute_hand_nsbmd
 };
 
 static const VecFx32 Unk_ov8_0224C7A0[2] = {
@@ -2291,36 +2299,108 @@ static const u16 Unk_ov8_0224C7B8[12] = {
     0xEAD3
 };
 
-static const UnkStruct_ov8_0224C774 Unk_ov8_0224C774[5] = {
-    { 0x7, 0x19 },
-    { 0x6, 0xF },
-    { 0x9, 0xF },
-    { 0x0, 0x2D },
-    { 0x0, 0x1E }
+static const EternaGymClockTime sEternaGymClockTimes[ETERNA_CLOCK_MAX] = {
+    [ETERNA_CLOCK_INITIAL] = { 7, 25 },
+    [ETERNA_CLOCK_DEFEATED_FIRST_TRAINER] = { 6, 15 },
+    [ETERNA_CLOCK_DEFEATED_SECOND_TRAINER] = { 9, 15 },
+    [ETERNA_CLOCK_DEFEATED_THIRD_TRAINER] = { 0, 45 },
+    [ETERNA_CLOCK_DEFEATED_GYM_LEADER] = { 0, 30 }
 };
 
-static const UnkStruct_ov8_0224C7F0 Unk_ov8_0224C7F0[5] = {
-    { -1, -1, 2 },
-    { 0xB, 0x12, 1 },
-    { 0x6, 0xD, 0 },
-    { 0xB, 0x8, 1 },
-    { 0xB, 0x8, 1 }
+static const EternaClockHourHandJumpTile sEternaGymHourHandJumpTiles[ETERNA_CLOCK_MAX] = {
+    [ETERNA_CLOCK_INITIAL] = { -1, -1, 2 },
+    [ETERNA_CLOCK_DEFEATED_FIRST_TRAINER] = { 11, 18, TRUE },
+    [ETERNA_CLOCK_DEFEATED_SECOND_TRAINER] = { 6, 13, FALSE },
+    [ETERNA_CLOCK_DEFEATED_THIRD_TRAINER] = { 11, 8, TRUE },
+    [ETERNA_CLOCK_DEFEATED_GYM_LEADER] = { 11, 8, TRUE }
 };
 
-static __attribute__((aligned(4))) const u8 Unk_ov8_0224CCE8[5][169] = {
-    { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0 },
-    { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0 },
-    { 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0 },
-    { 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0 },
-    { 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0 },
+// clang-format off
+static ALIGN_4 const u8 sEternaGymClockCollision[ETERNA_CLOCK_MAX][ETERNA_CLOCK_DIAMETER * ETERNA_CLOCK_DIAMETER] = {
+    [ETERNA_CLOCK_INITIAL] = { 
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0,
+    },
+    [ETERNA_CLOCK_DEFEATED_FIRST_TRAINER] = { 
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
+        1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0,
+        1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0,
+        1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0,
+        1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0,
+        1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0,
+        1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1,
+        0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0,
+    },
+    [ETERNA_CLOCK_DEFEATED_SECOND_TRAINER] =  { 
+        0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
+        0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
+        0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0,
+        0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
+        0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0,
+    },
+    [ETERNA_CLOCK_DEFEATED_THIRD_TRAINER] = { 
+        0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0,
+        1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1,
+        0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0,
+        0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0,
+        0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0,
+        0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0,
+        0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
+        0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0,
+    },
+    [ETERNA_CLOCK_DEFEATED_GYM_LEADER] = { 
+        0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0,
+        1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1,
+        0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0,
+        0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0,
+        0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0,
+        0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0,
+        0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0,
+        0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0,
+        0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0,
+        1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1,
+        0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0,
+    },
 };
+// clang-format on
 
-static __attribute__((aligned(4))) const u8 Unk_ov8_0224CA5C[5][21] = {
-    { 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1 },
-    { 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1 },
-    { 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-    { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-    { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
+static ALIGN_4 const u8 sEternaGymFountainCollision[ETERNA_CLOCK_MAX][21] = {
+    [ETERNA_CLOCK_INITIAL] = { 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1 },
+    [ETERNA_CLOCK_DEFEATED_FIRST_TRAINER] = { 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1 },
+    [ETERNA_CLOCK_DEFEATED_SECOND_TRAINER] = { 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+    [ETERNA_CLOCK_DEFEATED_THIRD_TRAINER] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+    [ETERNA_CLOCK_DEFEATED_GYM_LEADER] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
 };
 
 static void SetEternaGymFlowerClockState(FieldSystem *fieldSystem, u16 state)
@@ -2335,19 +2415,19 @@ static u32 GetEternaGymFlowerClockState(FieldSystem *fieldSystem)
 
 static void ov8_0224AF00(UnkStruct_ov8_0224AF00 *param0, fx32 param1)
 {
-    param0->unk_04 += param1;
+    param0->fxMinute += param1;
 
-    while (param0->unk_04 >= (FX32_ONE * 60)) {
-        param0->unk_04 -= (FX32_ONE * 60);
-        param0->unk_00 += (FX32_ONE * 1);
+    while (param0->fxMinute >= (FX32_ONE * 60)) {
+        param0->fxMinute -= (FX32_ONE * 60);
+        param0->fxHour += (FX32_ONE * 1);
     }
 
-    while (param0->unk_04 < 0) {
-        param0->unk_04 += (FX32_ONE * 60);
-        param0->unk_00 += (FX32_ONE * 1);
+    while (param0->fxMinute < 0) {
+        param0->fxMinute += (FX32_ONE * 60);
+        param0->fxHour += (FX32_ONE * 1);
     }
 
-    param0->unk_00 %= (FX32_ONE * 12);
+    param0->fxHour %= (FX32_ONE * 12);
 }
 
 static void ov8_0224AF58(UnkStruct_ov8_0224AF58 *param0)
@@ -2362,14 +2442,14 @@ static void ov8_0224AF58(UnkStruct_ov8_0224AF58 *param0)
 
 static void ov8_0224AF84(UnkStruct_ov8_0224AF00 *param0)
 {
-    int v0, v1;
+    int hour, minute;
     UnkStruct_ov8_0224AF58 *v2 = &param0->unk_0C[1];
-    v1 = ((param0->unk_04) / FX32_ONE);
+    minute = ((param0->fxMinute) / FX32_ONE);
 
-    if ((v1 % 15) == 0) {
-        v2->unk_00.y = Unk_ov8_0224C7B8[v1 / 5];
+    if ((minute % 15) == 0) {
+        v2->unk_00.y = Unk_ov8_0224C7B8[minute / 5];
     } else {
-        v2->unk_00.y = ((v1) * ((((360 / 60) * 0xffff) / 360) + 1));
+        v2->unk_00.y = ((minute) * ((((360 / 60) * 0xffff) / 360) + 1));
     }
 
     v2->unk_00.y += (-0x4000 * 1);
@@ -2377,12 +2457,12 @@ static void ov8_0224AF84(UnkStruct_ov8_0224AF00 *param0)
 
     ov8_0224AF58(v2);
 
-    v0 = ((param0->unk_00) / FX32_ONE);
+    hour = ((param0->fxHour) / FX32_ONE);
     v2 = &param0->unk_0C[0];
-    v2->unk_00.y = Unk_ov8_0224C7B8[v0];
+    v2->unk_00.y = Unk_ov8_0224C7B8[hour];
 
     if (param0->unk_08 == 1) {
-        v2->unk_00.y += (((5 * ((((360 / 60) * 0xffff) / 360) + 1)) / 60) * (v1));
+        v2->unk_00.y += (((5 * ((((360 / 60) * 0xffff) / 360) + 1)) / 60) * (minute));
     }
 
     v2->unk_00.y += (0x4000 * 2);
@@ -2393,51 +2473,43 @@ static void ov8_0224AF84(UnkStruct_ov8_0224AF00 *param0)
 
 void EternaGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
 {
-    PersistedMapFeatures *v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
-    UnkStruct_02071BD0 *v1 = PersistedMapFeatures_GetBuffer(v0, DYNAMIC_MAP_FEATURES_ETERNA_GYM);
+    PersistedMapFeatures *persistedFeatures = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+    EternaGymClockPersistedFeature *eternaClockPersisted = PersistedMapFeatures_GetBuffer(persistedFeatures, DYNAMIC_MAP_FEATURES_ETERNA_GYM);
     UnkStruct_ov8_0224AF00 *v2 = Heap_Alloc(HEAP_ID_FIELD1, sizeof(UnkStruct_ov8_0224AF00));
 
     memset(v2, 0, sizeof(UnkStruct_ov8_0224AF00));
     fieldSystem->unk_04->dynamicMapFeaturesData = v2;
 
-    {
-        v2->fieldSystem = fieldSystem;
+    v2->fieldSystem = fieldSystem;
+
+    UnkStruct_ov8_0224AF58 *v4 = v2->unk_0C;
+    const u32 *modelId = sEternaGymClockModelIds;
+    const VecFx32 *position = Unk_ov8_0224C7A0;
+    const VecFx32 rotation = { 0, 0, 0 };
+
+    for (int i = 0; i < 2; i++, v4++, modelId++, position++) {
+        v4->modelId = *modelId;
+
+        v4->unk_10 = MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->areaDataManager, *modelId, position, &rotation, fieldSystem->mapPropAnimMan);
+
+        v4->unk_14 = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, *modelId);
     }
 
+    int v8[3] = { 2, 2, 0 };
+
+    eternaClockPersisted->clockState = GetEternaGymFlowerClockState(fieldSystem);
+
     {
-        int v3;
-        UnkStruct_ov8_0224AF58 *v4 = v2->unk_0C;
-        const u32 *v5 = Unk_ov8_0224C700;
-        const VecFx32 *v6 = Unk_ov8_0224C7A0;
-        const VecFx32 v7 = { 0, 0, 0 };
+        const EternaGymClockTime *clockTime = &sEternaGymClockTimes[eternaClockPersisted->clockState];
 
-        for (v3 = 0; v3 < 2; v3++, v4++, v5++, v6++) {
-            v4->unk_0C = *v5;
+        v2->fxHour = (FX32_ONE * (clockTime->hour));
+        v2->fxMinute = (FX32_ONE * (clockTime->minute));
 
-            v4->unk_10 = MapPropManager_LoadOne(
-                fieldSystem->mapPropManager, fieldSystem->areaDataManager, *v5, v6, &v7, fieldSystem->mapPropAnimMan);
-
-            v4->unk_14 = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, *v5);
-        }
+        ov8_0224AF84(v2);
     }
 
-    {
-        int v8[3] = { 2, 2, 0 };
-
-        v1->unk_00 = GetEternaGymFlowerClockState(fieldSystem);
-
-        {
-            const UnkStruct_ov8_0224C774 *v9 = &Unk_ov8_0224C774[v1->unk_00];
-
-            v2->unk_00 = (FX32_ONE * (v9->unk_00));
-            v2->unk_04 = (FX32_ONE * (v9->unk_02));
-
-            ov8_0224AF84(v2);
-        }
-
-        if (v1->unk_00 < 3) {
-            ov5_021F4098(fieldSystem, v8[v1->unk_00]);
-        }
+    if (eternaClockPersisted->clockState < ETERNA_CLOCK_DEFEATED_THIRD_TRAINER) {
+        ov5_021F4098(fieldSystem, v8[eternaClockPersisted->clockState]);
     }
 }
 
@@ -2449,32 +2521,31 @@ void EternaGym_DynamicMapFeaturesFree(FieldSystem *fieldSystem)
     fieldSystem->unk_04->dynamicMapFeaturesData = NULL;
 }
 
-BOOL EternaGym_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileZ, const fx32 height, BOOL *isColliding)
+BOOL EternaGym_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileZ, const fx32 height, BOOL *isCollidingParam)
 {
-    BOOL v0;
-    int v1, v2, v3;
-    PersistedMapFeatures *v4 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
-    UnkStruct_02071BD0 *v5 = PersistedMapFeatures_GetBuffer(v4, DYNAMIC_MAP_FEATURES_ETERNA_GYM);
-    v1 = v5->unk_00;
-    v0 = 0;
+    int localX, accumulatedLocalZ;
+    PersistedMapFeatures *persistedFeatures = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+    EternaGymClockPersistedFeature *eternaClockPersisted = PersistedMapFeatures_GetBuffer(persistedFeatures, DYNAMIC_MAP_FEATURES_ETERNA_GYM);
+    int clockState = eternaClockPersisted->clockState;
+    BOOL isColliding = FALSE;
 
-    *isColliding = 0;
+    *isCollidingParam = FALSE;
 
-    if (((tileZ >= 7) && (tileZ <= (7 + 13 - 1))) && ((tileX >= 5) && (tileX <= (5 + 13 - 1)))) {
-        v2 = tileX - 5;
-        v3 = (tileZ - 7) * 13;
-        v0 = Unk_ov8_0224CCE8[v1][v3 + v2];
-        *isColliding = v0;
+    if (tileZ >= ETERNA_CLOCK_TOP_BOUND && tileZ <= ETERNA_CLOCK_BOTTOM_BOUND && tileX >= ETERNA_CLOCK_LEFT_BOUND && tileX <= ETERNA_CLOCK_RIGHT_BOUND) {
+        localX = tileX - ETERNA_CLOCK_LEFT_BOUND;
+        accumulatedLocalZ = (tileZ - ETERNA_CLOCK_TOP_BOUND) * ETERNA_CLOCK_DIAMETER;
+        isColliding = sEternaGymClockCollision[clockState][accumulatedLocalZ + localX];
+        *isCollidingParam = isColliding;
     }
 
-    if ((v0 == 0) && ((tileZ >= 19) && (tileZ <= (19 + 1 - 1))) && ((tileX >= 1) && (tileX <= (1 + 21 - 1)))) {
-        v2 = tileX - 1;
-        v3 = (tileZ - 19) * 21;
-        v0 = Unk_ov8_0224CA5C[v1][v3 + v2];
-        *isColliding = v0;
+    if (isColliding == FALSE && tileZ >= ETERNA_GYM_FOUNTAIN_Z && tileZ <= ETERNA_GYM_FOUNTAIN_Z && tileX >= 1 && tileX <= ETERNA_GYM_WIDTH) {
+        localX = tileX - 1;
+        accumulatedLocalZ = (tileZ - ETERNA_GYM_FOUNTAIN_Z) * ETERNA_GYM_WIDTH; // tileZ is guaranteed to be equal to ETERNA_GYM_FOUNTAIN_Z, so this is always equivalent to 0
+        isColliding = sEternaGymFountainCollision[clockState][accumulatedLocalZ + localX];
+        *isCollidingParam = isColliding;
     }
 
-    return v0;
+    return isColliding;
 }
 
 static void ov8_0224B18C(FieldSystem *fieldSystem, UnkStruct_ov8_0224B28C *param1, int param2, int param3)
@@ -2635,16 +2706,16 @@ static BOOL ov8_0224B2E8(UnkStruct_ov8_0224B28C *param0)
 static BOOL ov8_0224B370(UnkStruct_ov8_0224AF00 *param0, const fx32 param1, const fx32 param2)
 {
     BOOL v0 = 1;
-    fx32 v1 = param0->unk_00;
-    fx32 v2 = param0->unk_04;
+    fx32 v1 = param0->fxHour;
+    fx32 v2 = param0->fxMinute;
 
     if ((v1 != param1) || (v2 != param2)) {
         fx32 v3, v4;
 
         ov8_0224AF00(param0, (FX32_ONE * 2));
 
-        v3 = param0->unk_00;
-        v4 = param0->unk_04;
+        v3 = param0->fxHour;
+        v4 = param0->fxMinute;
 
         if (v3 == param1) {
             if (v2 > v4) {
@@ -2659,11 +2730,11 @@ static BOOL ov8_0224B370(UnkStruct_ov8_0224AF00 *param0, const fx32 param1, cons
             }
         }
 
-        param0->unk_00 = v3;
-        param0->unk_04 = v4;
+        param0->fxHour = v3;
+        param0->fxMinute = v4;
     }
 
-    if ((param0->unk_00 != param1) || (param0->unk_04 != param2)) {
+    if ((param0->fxHour != param1) || (param0->fxMinute != param2)) {
         v0 = 0;
     }
 
@@ -2675,7 +2746,7 @@ static BOOL ov8_0224B3D4(FieldTask *param0)
     BOOL v0;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
     UnkStruct_ov8_0224B67C *v2 = FieldTask_GetEnv(param0);
-    UnkStruct_02071BD0 *v3 = v2->unk_14;
+    EternaGymClockPersistedFeature *eternaClockPersisted = v2->eternaClockPersisted;
     UnkStruct_ov8_0224AF00 *v4 = v2->unk_18;
 
     switch (v2->unk_00) {
@@ -2699,22 +2770,22 @@ static BOOL ov8_0224B3D4(FieldTask *param0)
         Sound_PlayEffect(SEQ_SE_PL_TOKEI21);
         v2->unk_00++;
     case 3:
-        if (v3->unk_00 == 4) {
-            if ((v4->unk_00 == v2->unk_08) && (v4->unk_04 > v2->unk_0C)) {
-                v4->unk_00 = (FX32_ONE * 11);
+        if (eternaClockPersisted->clockState == ETERNA_CLOCK_DEFEATED_GYM_LEADER) {
+            if ((v4->fxHour == v2->unk_08) && (v4->fxMinute > v2->unk_0C)) {
+                v4->fxHour = (FX32_ONE * 11);
             }
         }
 
         v0 = ov8_0224B370(v4, v2->unk_08, v2->unk_0C);
 
-        if (v3->unk_00 == 4) {
-            const UnkStruct_ov8_0224C774 *v5 = &Unk_ov8_0224C774[v3->unk_00];
+        if (eternaClockPersisted->clockState == ETERNA_CLOCK_DEFEATED_GYM_LEADER) {
+            const EternaGymClockTime *clockTime = &sEternaGymClockTimes[eternaClockPersisted->clockState];
 
-            v4->unk_00 = (FX32_ONE * (v5->unk_00));
+            v4->fxHour = (FX32_ONE * (clockTime->hour));
         }
 
-        if (v4->unk_00 == v2->unk_08) {
-            if ((v4->unk_04 <= v2->unk_0C) || (v3->unk_00 == 4)) {
+        if (v4->fxHour == v2->unk_08) {
+            if ((v4->fxMinute <= v2->unk_0C) || (eternaClockPersisted->clockState == ETERNA_CLOCK_DEFEATED_GYM_LEADER)) {
                 v4->unk_08 = 0;
             }
         } else {
@@ -2724,7 +2795,7 @@ static BOOL ov8_0224B3D4(FieldTask *param0)
         ov8_0224AF84(v4);
 
         if (v0 == 1) {
-            Sound_StopEffect(1355, 0);
+            Sound_StopEffect(SEQ_SE_PL_TOKEI21, 0);
             Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2);
             v2->unk_00++;
         }
@@ -2738,9 +2809,8 @@ static BOOL ov8_0224B3D4(FieldTask *param0)
 
         v2->unk_04 = 0;
 
-        if ((v3->unk_00 == 2) || (v3->unk_00 == 3)) {
-            ov8_0224B2B4(
-                &v2->unk_1C, 0, 11, 19, 2, 1);
+        if ((eternaClockPersisted->clockState == ETERNA_CLOCK_DEFEATED_SECOND_TRAINER) || (eternaClockPersisted->clockState == ETERNA_CLOCK_DEFEATED_THIRD_TRAINER)) {
+            ov8_0224B2B4(&v2->unk_1C, 0, 11, 19, 2, 1);
             v2->unk_00 = 7;
         } else {
             ov8_0224B28C(&v2->unk_1C);
@@ -2760,13 +2830,12 @@ static BOOL ov8_0224B3D4(FieldTask *param0)
         if (ov8_0224B2E8(&v2->unk_1C) == 1) {
             int v6 = 20, v7 = 19, v8 = 3;
 
-            if (v3->unk_00 == 3) {
+            if (eternaClockPersisted->clockState == ETERNA_CLOCK_DEFEATED_THIRD_TRAINER) {
                 v6 = 2;
                 v8 = 2;
             }
 
-            ov8_0224B2B4(
-                &v2->unk_1C, 1, v6, v7, v8, 1);
+            ov8_0224B2B4(&v2->unk_1C, 1, v6, v7, v8, 1);
             v2->unk_00++;
         } else {
             break;
@@ -2783,9 +2852,9 @@ static BOOL ov8_0224B3D4(FieldTask *param0)
         if (v2->unk_04 >= 4) {
             v2->unk_04 = 0;
 
-            if (v3->unk_00 == 2) {
+            if (eternaClockPersisted->clockState == ETERNA_CLOCK_DEFEATED_SECOND_TRAINER) {
                 ov5_021F416C(fieldSystem, 1);
-            } else if (v3->unk_00 == 3) {
+            } else if (eternaClockPersisted->clockState == ETERNA_CLOCK_DEFEATED_THIRD_TRAINER) {
                 ov5_021F416C(fieldSystem, 0);
             }
 
@@ -2832,58 +2901,53 @@ static BOOL ov8_0224B3D4(FieldTask *param0)
     return 0;
 }
 
-BOOL ov8_0224B67C(FieldSystem *fieldSystem, Window *param1, MessageLoader *param2, String *param3)
+BOOL EternaGym_AdvanceClockState(FieldSystem *fieldSystem, Window *param1, MessageLoader *param2, String *param3)
 {
-    PersistedMapFeatures *v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
-    UnkStruct_02071BD0 *v1 = PersistedMapFeatures_GetBuffer(v0, DYNAMIC_MAP_FEATURES_ETERNA_GYM);
+    PersistedMapFeatures *persistedFeatures = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+    EternaGymClockPersistedFeature *eternaClockPersisted = PersistedMapFeatures_GetBuffer(persistedFeatures, DYNAMIC_MAP_FEATURES_ETERNA_GYM);
 
-    if (v1->unk_00 >= 4) {
-        return 0;
+    if (eternaClockPersisted->clockState >= ETERNA_CLOCK_DEFEATED_GYM_LEADER) {
+        return FALSE;
     }
 
-    v1->unk_00++;
-    SetEternaGymFlowerClockState(fieldSystem, v1->unk_00);
+    eternaClockPersisted->clockState++;
+    SetEternaGymFlowerClockState(fieldSystem, eternaClockPersisted->clockState);
 
-    {
-        UnkStruct_ov8_0224B67C *v2;
-        UnkStruct_ov8_0224AF00 *v3 = fieldSystem->unk_04->dynamicMapFeaturesData;
-        const UnkStruct_ov8_0224C774 *v4 = &Unk_ov8_0224C774[v1->unk_00];
+    UnkStruct_ov8_0224B67C *v2;
+    UnkStruct_ov8_0224AF00 *v3 = fieldSystem->unk_04->dynamicMapFeaturesData;
+    const EternaGymClockTime *clockTime = &sEternaGymClockTimes[eternaClockPersisted->clockState];
 
-        v2 = Heap_Alloc(HEAP_ID_FIELD2, sizeof(UnkStruct_ov8_0224B67C));
-        memset(v2, 0, sizeof(UnkStruct_ov8_0224B67C));
+    v2 = Heap_Alloc(HEAP_ID_FIELD2, sizeof(UnkStruct_ov8_0224B67C));
+    memset(v2, 0, sizeof(UnkStruct_ov8_0224B67C));
 
-        v2->unk_44 = param1;
-        v2->unk_48 = param2;
-        v2->unk_4C = param3;
-        v2->unk_08 = (FX32_ONE * (v4->unk_00));
-        v2->unk_0C = (FX32_ONE * (v4->unk_02));
-        v2->fieldSystem = fieldSystem;
-        v2->unk_14 = v1;
-        v2->unk_18 = v3;
+    v2->unk_44 = param1;
+    v2->unk_48 = param2;
+    v2->unk_4C = param3;
+    v2->unk_08 = FX32_ONE * clockTime->hour;
+    v2->unk_0C = FX32_ONE * clockTime->minute;
+    v2->fieldSystem = fieldSystem;
+    v2->eternaClockPersisted = eternaClockPersisted;
+    v2->unk_18 = v3;
 
-        FieldTask_InitCall(fieldSystem->task, ov8_0224B3D4, v2);
-    }
+    FieldTask_InitCall(fieldSystem->task, ov8_0224B3D4, v2);
 
-    return 1;
+    return TRUE;
 }
 
 BOOL EternaGym_IsHourHandJumpTile(FieldSystem *fieldSystem, int tileX, int tileZ, int direction)
 {
-    PersistedMapFeatures *v0;
-    UnkStruct_02071BD0 *v1;
-    const UnkStruct_ov8_0224C7F0 *v2;
+    PersistedMapFeatures *persistedFeatures = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+    EternaGymClockPersistedFeature *eternaClockPersisted = PersistedMapFeatures_GetBuffer(persistedFeatures, DYNAMIC_MAP_FEATURES_ETERNA_GYM);
+    const EternaClockHourHandJumpTile *hourHandJumpTile = &sEternaGymHourHandJumpTiles[eternaClockPersisted->clockState];
 
-    v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
-    v1 = PersistedMapFeatures_GetBuffer(v0, DYNAMIC_MAP_FEATURES_ETERNA_GYM);
-    v2 = &Unk_ov8_0224C7F0[v1->unk_00];
-
-    if ((v2->unk_00 == tileX) && (v2->unk_02 == tileZ)) {
-        if (((v2->unk_04 == 0) && ((direction == 2) || (direction == 3))) || ((v2->unk_04 == 1) && ((direction == 0) || (direction == 1)))) {
-            return 1;
+    if (hourHandJumpTile->x == tileX && hourHandJumpTile->z == tileZ) {
+        if ((hourHandJumpTile->isJumpAxisNorthSouth == FALSE && (direction == DIR_WEST || direction == DIR_EAST))
+            || (hourHandJumpTile->isJumpAxisNorthSouth == TRUE && (direction == DIR_NORTH || direction == DIR_SOUTH))) {
+            return TRUE;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
 static const UnkStruct_ov8_0224C90C Unk_ov8_0224C90C[9] = {

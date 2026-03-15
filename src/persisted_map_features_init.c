@@ -6,10 +6,10 @@
 #include "constants/field/dynamic_map_features.h"
 #include "constants/great_marsh_tram.h"
 
+#include "struct_defs/eterna_gym_clock_persisted_feature.h"
 #include "struct_defs/struct_02071B10.h"
 #include "struct_defs/struct_02071B30.h"
 #include "struct_defs/struct_02071B6C.h"
-#include "struct_defs/struct_02071BD0.h"
 #include "struct_defs/struct_02071BF8.h"
 #include "struct_defs/struct_02071C18.h"
 #include "struct_defs/struct_02071C34.h"
@@ -112,8 +112,8 @@ void PersistedMapFeatures_InitForEternaGym(FieldSystem *fieldSystem)
     PersistedMapFeatures *persistedMapFeatures = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
     PersistedMapFeatures_InitWithID(persistedMapFeatures, DYNAMIC_MAP_FEATURES_ETERNA_GYM);
 
-    UnkStruct_02071BD0 *data = PersistedMapFeatures_GetBuffer(persistedMapFeatures, DYNAMIC_MAP_FEATURES_ETERNA_GYM);
-    memset(data, 0, sizeof(UnkStruct_02071BD0));
+    EternaGymClockPersistedFeature *data = PersistedMapFeatures_GetBuffer(persistedMapFeatures, DYNAMIC_MAP_FEATURES_ETERNA_GYM);
+    memset(data, 0, sizeof(EternaGymClockPersistedFeature));
 }
 
 void PersistedMapFeatures_InitForVeilstoneGym(FieldSystem *fieldSystem)
