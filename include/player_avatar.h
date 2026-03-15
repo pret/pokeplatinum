@@ -5,7 +5,6 @@
 
 #include "constants/player_avatar.h"
 
-#include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061830_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_defs/struct_0205EC34.h"
@@ -36,6 +35,25 @@ enum PlayerAvatarFlagUnk00 {
     UNK_00_11 = (1 << 11),
     UNK_00_12 = (1 << 12)
 };
+
+typedef struct PlayerAvatar {
+    u32 unk_00;
+    u32 unk_04;
+    u32 unk_08;
+    int unk_0C;
+    u32 unk_10;
+    int unk_14;
+    int unk_18;
+    int unk_1C;
+    int gender;
+    int speed;
+    enum FaceDirection faceLeftOrRight;
+    enum FaceDirection faceUpOrDown;
+    MapObject *mapObject;
+    OverworldAnimManager *surfMountAnimMan;
+    PlayerData *player;
+    const PlayerData *playerConst;
+} PlayerAvatar;
 
 PlayerAvatar *PlayerAvatar_Init(const MapObjectManager *param0, int param1, int param2, int param3, int param4, int param5, int param6, PlayerData *param7);
 PlayerAvatar *sub_0205E820(const MapObjectManager *param0, PlayerData *param1, int gender);

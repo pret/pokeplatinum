@@ -1,6 +1,0 @@
-#ifndef POKEPLATINUM_STRUCT_0203A790_DECL_H
-#define POKEPLATINUM_STRUCT_0203A790_DECL_H
-
-typedef struct FieldOverworldState FieldOverworldState;
-
-#endif // POKEPLATINUM_STRUCT_0203A790_DECL_H

@@ -3,7 +3,6 @@
 
 #include "struct_decls/struct_0205B43C_decl.h"
 #include "struct_decls/struct_0205C22C_decl.h"
-#include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061830_decl.h"
 #include "struct_decls/struct_02095E80_decl.h"
 #include "struct_defs/battle_tower.h"
@@ -36,6 +35,7 @@
 #include "map_header_data.h"
 #include "map_matrix.h"
 #include "overlay_manager.h"
+#include "player_avatar.h"
 #include "pokedex_memory.h"
 #include "pokeradar.h"
 #include "savedata.h"

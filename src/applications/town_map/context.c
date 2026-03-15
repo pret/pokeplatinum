@@ -4,8 +4,6 @@
 #include "generated/first_arrival_to_zones.h"
 #include "generated/town_map_description_flag_types.h"
 
-#include "struct_decls/struct_0203A790_decl.h"
-
 #include "applications/town_map/main.h"
 #include "field/field_system.h"
 
