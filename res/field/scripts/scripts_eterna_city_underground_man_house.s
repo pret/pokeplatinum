@@ -172,7 +172,7 @@ EternaCityUndergroundManHouse_MissionGoUnderground:
     GoToIfUnset FLAG_ENTERED_UNDERGROUND, EternaCityUndergroundManHouse_DidNotYetCompleteMissionGoUnderground
     SetVar VAR_CURRENT_UNDERGROUND_MISSION, 1
     ClearFlag FLAG_HAS_ACTIVE_UNDERGROUND_MISSION
-    Message EternaCityUndergroundManHouse_Text_ISeeThatYouveGoveDownToTheUndergroundTunnelsTakeTheseAsRewards
+    Message EternaCityUndergroundManHouse_Text_ISeeThatYouveGoneDownToTheUndergroundTunnelsTakeTheseAsRewards
     SetVar VAR_0x8004, TRAP_MOVE_UP
     SetVar VAR_0x8005, 1
     Common_ObtainUndergroundTrap
@@ -482,7 +482,7 @@ EternaCityUndergroundManHouse_PCHeadingsMenu:
     AddMenuEntryImm MenuEntries_Text_UndergroundManHousePCHeading_Traps, 2
     AddMenuEntryImm MenuEntries_Text_UndergroundManHousePCHeading_Goods, 3
     AddMenuEntryImm MenuEntries_Text_UndergroundManHousePCHeading_Treasures, 4
-    AddMenuEntryImm MenuEntries_Text_Exit2, 5
+    AddMenuEntryImm MenuEntries_Text_ListMenu_Exit, 5
     ShowMenu
     SetVar VAR_0x8008, VAR_RESULT
     GoToIfEq VAR_0x8008, 0, EternaCityUndergroundManHouse_PCHeadingFlags

@@ -281,7 +281,7 @@ void FieldMapChange_UpdateGameData(FieldSystem *fieldSystem, BOOL noWarp)
         u16 warpId = GetMapBlackOutWarpId(mapId);
 
         if (warpId != 0) {
-            FieldOverworldState_SetWarpId(fieldState, warpId);
+            FieldOverworldState_SetBlackOutWarpId(fieldState, warpId);
         }
     }
 
@@ -319,7 +319,7 @@ void FieldMapChange_UpdateGameDataDistortionWorld(FieldSystem *fieldSystem, BOOL
         u16 warpId = GetMapBlackOutWarpId(mapId);
 
         if (warpId != 0) {
-            FieldOverworldState_SetWarpId(fieldState, warpId);
+            FieldOverworldState_SetBlackOutWarpId(fieldState, warpId);
         }
     }
 

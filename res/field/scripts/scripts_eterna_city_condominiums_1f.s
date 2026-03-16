@@ -31,7 +31,7 @@ EternaCityCondominiums1F_TryGiveNickname:
     GoToIfEq VAR_RESULT, 0xFF, EternaCityCondominiums1F_ISeePleaseComeVisitAgain
     SetVar VAR_0x8005, VAR_RESULT
     GetPartyMonSpecies VAR_0x8005, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, EternaCityCondominiums1F_SelectedEgg
+    GoToIfEq VAR_RESULT, SPECIES_NONE, EternaCityCondominiums1F_SelectedEgg
     CheckIsPartyMonOutsider VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, TRUE, EternaCityCondominiums1F_SelectedOutsiderPokemon
     BufferPartyMonNickname 0, VAR_0x8005

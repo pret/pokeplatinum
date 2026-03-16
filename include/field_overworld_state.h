@@ -24,8 +24,8 @@ void FieldOverworldState_SetSpecialLocation(FieldOverworldState *fieldState, Loc
 u16 *FieldOverworldState_GetSpecialBGM(FieldOverworldState *fieldState);
 u16 FieldOverworldState_GetWeather(const FieldOverworldState *fieldState);
 void FieldOverworldState_SetWeather(FieldOverworldState *fieldState, u16 weather);
-u16 FieldOverworldState_GetWarpId(const FieldOverworldState *fieldState);
-void FieldOverworldState_SetWarpId(FieldOverworldState *fieldState, u16 warpId);
+u16 FieldOverworldState_GetBlackOutWarpId(const FieldOverworldState *fieldState);
+void FieldOverworldState_SetBlackOutWarpId(FieldOverworldState *fieldState, u16 warpId);
 OverworldMapHistory *FieldOverworldState_GetMapHistory(FieldOverworldState *fieldState);
 int FieldOverworldState_GetCameraType(const FieldOverworldState *fieldState);
 void FieldOverworldState_SetCameraType(FieldOverworldState *fieldState, int type);

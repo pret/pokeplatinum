@@ -1952,7 +1952,7 @@
     .short 331
     .endm
 
-    .macro SetWarpId warpId
+    .macro SetBlackOutWarpId warpId
     .short 332
     .short \warpId
     .endm

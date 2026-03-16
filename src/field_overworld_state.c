@@ -22,7 +22,7 @@ typedef struct FieldOverworldState {
     Location exit;
     u16 bgm;
     u16 weather;
-    u16 warpId;
+    u16 blackOutWarpId;
     u8 cameraType;
     OverworldMapHistory mapHistory;
     PlayerData playerData;
@@ -58,7 +58,7 @@ void FieldOverworldState_Init(FieldOverworldState *fieldState)
     OverworldMapHistory_Clear(&fieldState->mapHistory);
     PlayerData_Init(&fieldState->playerData);
 
-    fieldState->warpId = FieldOverworldState_GetDefaultWarpID();
+    fieldState->blackOutWarpId = FieldOverworldState_GetDefaultWarpID();
 }
 
 Location *FieldOverworldState_GetPlayerLocation(FieldOverworldState *fieldState)
@@ -107,14 +107,14 @@ void FieldOverworldState_SetWeather(FieldOverworldState *fieldState, u16 weather
     fieldState->weather = weather;
 }
 
-u16 FieldOverworldState_GetWarpId(const FieldOverworldState *fieldState)
+u16 FieldOverworldState_GetBlackOutWarpId(const FieldOverworldState *fieldState)
 {
-    return fieldState->warpId;
+    return fieldState->blackOutWarpId;
 }
 
-void FieldOverworldState_SetWarpId(FieldOverworldState *fieldState, u16 warpId)
+void FieldOverworldState_SetBlackOutWarpId(FieldOverworldState *fieldState, u16 blackOutWarpId)
 {
-    fieldState->warpId = warpId;
+    fieldState->blackOutWarpId = blackOutWarpId;
 }
 
 OverworldMapHistory *FieldOverworldState_GetMapHistory(FieldOverworldState *fieldState)
