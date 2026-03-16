@@ -90,7 +90,7 @@ static void sub_020608E4(PlayerAvatar *playerAvatar, MapObject *mapObj, int para
 static void sub_02060A60(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2, u16 param3, u16 param4);
 static void sub_02060AA0(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2, u16 param3, u16 param4);
 static u32 sub_02060C24(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2);
-static int PlayerAvatar_IsJumpTile(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction);
+static int PlayerAvatar_WillJump(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction);
 static int sub_02060D98(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2);
 static int sub_02060E40(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2);
 static int sub_02060EE4(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2);
@@ -1689,7 +1689,7 @@ u32 sub_02060B7C(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction)
         v0 |= (1 << 1);
     }
 
-    if (PlayerAvatar_IsJumpTile(playerAvatar, mapObj, direction)) {
+    if (PlayerAvatar_WillJump(playerAvatar, mapObj, direction)) {
         v0 |= (1 << 2);
     }
 
@@ -1756,7 +1756,7 @@ static u32 sub_02060C24(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
     return v1;
 }
 
-static int PlayerAvatar_IsJumpTile(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction)
+static int PlayerAvatar_WillJump(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction)
 {
     if (direction != DIR_NONE) {
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);

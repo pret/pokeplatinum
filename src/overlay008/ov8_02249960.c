@@ -78,6 +78,8 @@
 #define ETERNA_GYM_FOUNTAIN_Z     19
 #define ETERNA_GYM_WIDTH          21
 
+#define ETERNA_CLOCK_NO_HOUR_HAND_JUMP { -1, -1, 2 }
+
 typedef struct {
     int unk_00;
 } UnkStruct_ov8_0224997C;
@@ -158,7 +160,7 @@ typedef struct {
 
 typedef struct {
     VecFx32 unk_00;
-    u32 modelId; // unused, only written to, never read from
+    u32 dummyModelID;
     u16 unk_10;
     MapProp *unk_14;
 } UnkStruct_ov8_0224AF58;
@@ -2302,19 +2304,50 @@ static const u16 Unk_ov8_0224C7B8[12] = {
 };
 
 static const EternaGymClockTime sEternaGymClockTimes[ETERNA_CLOCK_MAX] = {
-    [ETERNA_CLOCK_INITIAL] = { 7, 25 },
-    [ETERNA_CLOCK_DEFEATED_FIRST_TRAINER] = { 6, 15 },
-    [ETERNA_CLOCK_DEFEATED_SECOND_TRAINER] = { 9, 15 },
-    [ETERNA_CLOCK_DEFEATED_THIRD_TRAINER] = { 0, 45 },
-    [ETERNA_CLOCK_DEFEATED_GYM_LEADER] = { 0, 30 }
+    [ETERNA_CLOCK_INITIAL] = {
+        .hour = 7,
+        .minute = 25,
+    },
+    [ETERNA_CLOCK_DEFEATED_FIRST_TRAINER] = {
+        .hour = 6,
+        .minute = 15,
+    },
+    [ETERNA_CLOCK_DEFEATED_SECOND_TRAINER] = {
+        .hour = 9,
+        .minute = 15,
+    },
+    [ETERNA_CLOCK_DEFEATED_THIRD_TRAINER] = {
+        .hour = 0,
+        .minute = 45,
+    },
+    [ETERNA_CLOCK_DEFEATED_GYM_LEADER] = {
+        .hour = 0,
+        .minute = 30,
+    }
 };
 
 static const EternaClockHourHandJumpTile sEternaGymHourHandJumpTiles[ETERNA_CLOCK_MAX] = {
-    [ETERNA_CLOCK_INITIAL] = { -1, -1, 2 },
-    [ETERNA_CLOCK_DEFEATED_FIRST_TRAINER] = { 11, 18, TRUE },
-    [ETERNA_CLOCK_DEFEATED_SECOND_TRAINER] = { 6, 13, FALSE },
-    [ETERNA_CLOCK_DEFEATED_THIRD_TRAINER] = { 11, 8, TRUE },
-    [ETERNA_CLOCK_DEFEATED_GYM_LEADER] = { 11, 8, TRUE }
+    [ETERNA_CLOCK_INITIAL] = ETERNA_CLOCK_NO_HOUR_HAND_JUMP,
+    [ETERNA_CLOCK_DEFEATED_FIRST_TRAINER] = {
+        .x = 11,
+        .z = 18,
+        .isJumpAxisNorthSouth = TRUE,
+    },
+    [ETERNA_CLOCK_DEFEATED_SECOND_TRAINER] = {
+        .x = 6,
+        .z = 13,
+        .isJumpAxisNorthSouth = FALSE,
+    },
+    [ETERNA_CLOCK_DEFEATED_THIRD_TRAINER] = {
+        .x = 11,
+        .z = 8,
+        .isJumpAxisNorthSouth = TRUE,
+    },
+    [ETERNA_CLOCK_DEFEATED_GYM_LEADER] = {
+        .x = 11,
+        .z = 8,
+        .isJumpAxisNorthSouth = TRUE,
+    }
 };
 
 // clang-format off
@@ -2490,7 +2523,7 @@ void EternaGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
     const VecFx32 rotation = { 0, 0, 0 };
 
     for (int i = 0; i < 2; i++, v4++, modelId++, position++) {
-        v4->modelId = *modelId;
+        v4->dummyModelID = *modelId;
 
         v4->unk_10 = MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->areaDataManager, *modelId, position, &rotation, fieldSystem->mapPropAnimMan);
 
@@ -2499,19 +2532,17 @@ void EternaGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
 
     int v8[3] = { 2, 2, 0 };
 
-    eternaClockPersisted->clockState = GetEternaGymFlowerClockState(fieldSystem);
+    eternaClockPersisted->state = GetEternaGymFlowerClockState(fieldSystem);
 
-    {
-        const EternaGymClockTime *clockTime = &sEternaGymClockTimes[eternaClockPersisted->clockState];
+    const EternaGymClockTime *clockTime = &sEternaGymClockTimes[eternaClockPersisted->state];
 
-        v2->fxHour = (FX32_ONE * (clockTime->hour));
-        v2->fxMinute = (FX32_ONE * (clockTime->minute));
+    v2->fxHour = FX32_ONE * clockTime->hour;
+    v2->fxMinute = FX32_ONE * clockTime->minute;
 
-        ov8_0224AF84(v2);
-    }
+    ov8_0224AF84(v2);
 
-    if (eternaClockPersisted->clockState < ETERNA_CLOCK_DEFEATED_THIRD_TRAINER) {
-        ov5_021F4098(fieldSystem, v8[eternaClockPersisted->clockState]);
+    if (eternaClockPersisted->state < ETERNA_CLOCK_DEFEATED_THIRD_TRAINER) {
+        ov5_021F4098(fieldSystem, v8[eternaClockPersisted->state]);
     }
 }
 
@@ -2523,28 +2554,28 @@ void EternaGym_DynamicMapFeaturesFree(FieldSystem *fieldSystem)
     fieldSystem->unk_04->dynamicMapFeaturesData = NULL;
 }
 
-BOOL EternaGym_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileZ, const fx32 height, BOOL *isCollidingParam)
+BOOL EternaGym_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileZ, const fx32 height, BOOL *outIsColliding)
 {
     int localX, accumulatedLocalZ;
     PersistedMapFeatures *persistedFeatures = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
     EternaGymClockPersistedFeature *eternaClockPersisted = PersistedMapFeatures_GetBuffer(persistedFeatures, DYNAMIC_MAP_FEATURES_ETERNA_GYM);
-    int clockState = eternaClockPersisted->clockState;
+    int clockState = eternaClockPersisted->state;
     BOOL isColliding = FALSE;
 
-    *isCollidingParam = FALSE;
+    *outIsColliding = FALSE;
 
     if (tileZ >= ETERNA_CLOCK_TOP_BOUND && tileZ <= ETERNA_CLOCK_BOTTOM_BOUND && tileX >= ETERNA_CLOCK_LEFT_BOUND && tileX <= ETERNA_CLOCK_RIGHT_BOUND) {
         localX = tileX - ETERNA_CLOCK_LEFT_BOUND;
         accumulatedLocalZ = (tileZ - ETERNA_CLOCK_TOP_BOUND) * ETERNA_CLOCK_DIAMETER;
         isColliding = sEternaGymClockCollision[clockState][accumulatedLocalZ + localX];
-        *isCollidingParam = isColliding;
+        *outIsColliding = isColliding;
     }
 
     if (isColliding == FALSE && tileZ >= ETERNA_GYM_FOUNTAIN_Z && tileZ <= ETERNA_GYM_FOUNTAIN_Z && tileX >= 1 && tileX <= ETERNA_GYM_WIDTH) {
         localX = tileX - 1;
         accumulatedLocalZ = (tileZ - ETERNA_GYM_FOUNTAIN_Z) * ETERNA_GYM_WIDTH; // tileZ is guaranteed to be equal to ETERNA_GYM_FOUNTAIN_Z, so this is always equivalent to 0
         isColliding = sEternaGymFountainCollision[clockState][accumulatedLocalZ + localX];
-        *isCollidingParam = isColliding;
+        *outIsColliding = isColliding;
     }
 
     return isColliding;
@@ -2772,7 +2803,7 @@ static BOOL ov8_0224B3D4(FieldTask *param0)
         Sound_PlayEffect(SEQ_SE_PL_TOKEI21);
         v2->unk_00++;
     case 3:
-        if (eternaClockPersisted->clockState == ETERNA_CLOCK_DEFEATED_GYM_LEADER) {
+        if (eternaClockPersisted->state == ETERNA_CLOCK_DEFEATED_GYM_LEADER) {
             if ((v4->fxHour == v2->unk_08) && (v4->fxMinute > v2->unk_0C)) {
                 v4->fxHour = (FX32_ONE * 11);
             }
@@ -2780,14 +2811,14 @@ static BOOL ov8_0224B3D4(FieldTask *param0)
 
         v0 = ov8_0224B370(v4, v2->unk_08, v2->unk_0C);
 
-        if (eternaClockPersisted->clockState == ETERNA_CLOCK_DEFEATED_GYM_LEADER) {
-            const EternaGymClockTime *clockTime = &sEternaGymClockTimes[eternaClockPersisted->clockState];
+        if (eternaClockPersisted->state == ETERNA_CLOCK_DEFEATED_GYM_LEADER) {
+            const EternaGymClockTime *clockTime = &sEternaGymClockTimes[eternaClockPersisted->state];
 
             v4->fxHour = (FX32_ONE * (clockTime->hour));
         }
 
         if (v4->fxHour == v2->unk_08) {
-            if ((v4->fxMinute <= v2->unk_0C) || (eternaClockPersisted->clockState == ETERNA_CLOCK_DEFEATED_GYM_LEADER)) {
+            if ((v4->fxMinute <= v2->unk_0C) || (eternaClockPersisted->state == ETERNA_CLOCK_DEFEATED_GYM_LEADER)) {
                 v4->unk_08 = 0;
             }
         } else {
@@ -2811,7 +2842,7 @@ static BOOL ov8_0224B3D4(FieldTask *param0)
 
         v2->unk_04 = 0;
 
-        if ((eternaClockPersisted->clockState == ETERNA_CLOCK_DEFEATED_SECOND_TRAINER) || (eternaClockPersisted->clockState == ETERNA_CLOCK_DEFEATED_THIRD_TRAINER)) {
+        if ((eternaClockPersisted->state == ETERNA_CLOCK_DEFEATED_SECOND_TRAINER) || (eternaClockPersisted->state == ETERNA_CLOCK_DEFEATED_THIRD_TRAINER)) {
             ov8_0224B2B4(&v2->unk_1C, 0, 11, 19, 2, 1);
             v2->unk_00 = 7;
         } else {
@@ -2832,7 +2863,7 @@ static BOOL ov8_0224B3D4(FieldTask *param0)
         if (ov8_0224B2E8(&v2->unk_1C) == 1) {
             int v6 = 20, v7 = 19, v8 = 3;
 
-            if (eternaClockPersisted->clockState == ETERNA_CLOCK_DEFEATED_THIRD_TRAINER) {
+            if (eternaClockPersisted->state == ETERNA_CLOCK_DEFEATED_THIRD_TRAINER) {
                 v6 = 2;
                 v8 = 2;
             }
@@ -2854,9 +2885,9 @@ static BOOL ov8_0224B3D4(FieldTask *param0)
         if (v2->unk_04 >= 4) {
             v2->unk_04 = 0;
 
-            if (eternaClockPersisted->clockState == ETERNA_CLOCK_DEFEATED_SECOND_TRAINER) {
+            if (eternaClockPersisted->state == ETERNA_CLOCK_DEFEATED_SECOND_TRAINER) {
                 ov5_021F416C(fieldSystem, 1);
-            } else if (eternaClockPersisted->clockState == ETERNA_CLOCK_DEFEATED_THIRD_TRAINER) {
+            } else if (eternaClockPersisted->state == ETERNA_CLOCK_DEFEATED_THIRD_TRAINER) {
                 ov5_021F416C(fieldSystem, 0);
             }
 
@@ -2908,16 +2939,16 @@ BOOL EternaGym_AdvanceClockState(FieldSystem *fieldSystem, Window *param1, Messa
     PersistedMapFeatures *persistedFeatures = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
     EternaGymClockPersistedFeature *eternaClockPersisted = PersistedMapFeatures_GetBuffer(persistedFeatures, DYNAMIC_MAP_FEATURES_ETERNA_GYM);
 
-    if (eternaClockPersisted->clockState >= ETERNA_CLOCK_DEFEATED_GYM_LEADER) {
+    if (eternaClockPersisted->state >= ETERNA_CLOCK_DEFEATED_GYM_LEADER) {
         return FALSE;
     }
 
-    eternaClockPersisted->clockState++;
-    SetEternaGymFlowerClockState(fieldSystem, eternaClockPersisted->clockState);
+    eternaClockPersisted->state++;
+    SetEternaGymFlowerClockState(fieldSystem, eternaClockPersisted->state);
 
     UnkStruct_ov8_0224B67C *v2;
     UnkStruct_ov8_0224AF00 *v3 = fieldSystem->unk_04->dynamicMapFeaturesData;
-    const EternaGymClockTime *clockTime = &sEternaGymClockTimes[eternaClockPersisted->clockState];
+    const EternaGymClockTime *clockTime = &sEternaGymClockTimes[eternaClockPersisted->state];
 
     v2 = Heap_Alloc(HEAP_ID_FIELD2, sizeof(UnkStruct_ov8_0224B67C));
     memset(v2, 0, sizeof(UnkStruct_ov8_0224B67C));
@@ -2940,7 +2971,7 @@ BOOL EternaGym_IsHourHandJumpTile(FieldSystem *fieldSystem, int tileX, int tileZ
 {
     PersistedMapFeatures *persistedFeatures = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
     EternaGymClockPersistedFeature *eternaClockPersisted = PersistedMapFeatures_GetBuffer(persistedFeatures, DYNAMIC_MAP_FEATURES_ETERNA_GYM);
-    const EternaClockHourHandJumpTile *hourHandJumpTile = &sEternaGymHourHandJumpTiles[eternaClockPersisted->clockState];
+    const EternaClockHourHandJumpTile *hourHandJumpTile = &sEternaGymHourHandJumpTiles[eternaClockPersisted->state];
 
     if (hourHandJumpTile->x == tileX && hourHandJumpTile->z == tileZ) {
         if ((hourHandJumpTile->isJumpAxisNorthSouth == FALSE && (direction == DIR_WEST || direction == DIR_EAST))

@@ -2,7 +2,7 @@
 #define POKEPLATINUM_ETERNA_GYM_CLOCK_PERSISTED_FEATURE_H
 
 enum EternaClockState {
-    ETERNA_CLOCK_INITIAL,
+    ETERNA_CLOCK_INITIAL = 0,
     ETERNA_CLOCK_DEFEATED_FIRST_TRAINER,
     ETERNA_CLOCK_DEFEATED_SECOND_TRAINER,
     ETERNA_CLOCK_DEFEATED_THIRD_TRAINER,
@@ -10,8 +10,8 @@ enum EternaClockState {
     ETERNA_CLOCK_MAX,
 };
 
-typedef struct {
-    u32 clockState;
+typedef struct EternaGymClockPersistedFeature {
+    u32 state;
 } EternaGymClockPersistedFeature;
 
 #endif // POKEPLATINUM_ETERNA_GYM_CLOCK_PERSISTED_FEATURE_H
