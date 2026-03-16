@@ -545,8 +545,8 @@ _0770:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfUnset FLAG_UNK_0x0082, _07A5
-    GoToIfGe VAR_UNK_0x408C, 1, _07A5
+    GoToIfUnset FLAG_RECEIVED_BICYCLE, _07A5
+    GoToIfGe VAR_ROUTE_207_COUNTERPART_TRIGGER_STATE, 1, _07A5
     Message 34
     WaitABXPadPress
     CloseMessage

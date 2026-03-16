@@ -19,7 +19,7 @@
     ],
     "object_events": [
         {
-            "id": "ROUTE_206_CYCLIST_AXEL",
+            "id": "LOCALID_CYCLIST_AXEL",
             "graphics_id": "OBJ_EVENT_GFX_CYCLIST_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -36,7 +36,7 @@
             "y": 9
         },
         {
-            "id": "ROUTE_206_CYCLIST_MEGAN",
+            "id": "LOCALID_CYCLIST_MEGAN",
             "graphics_id": "OBJ_EVENT_GFX_CYCLIST_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -53,7 +53,7 @@
             "y": 8
         },
         {
-            "id": "ROUTE_206_CYCLIST_JAMES",
+            "id": "LOCALID_CYCLIST_JAMES",
             "graphics_id": "OBJ_EVENT_GFX_CYCLIST_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -70,7 +70,7 @@
             "y": 7
         },
         {
-            "id": "ROUTE_206_CYCLIST_NICOLE",
+            "id": "LOCALID_CYCLIST_NICOLE",
             "graphics_id": "OBJ_EVENT_GFX_CYCLIST_F",
             "movement_type": "MOVEMENT_TYPE_WALK_BACK_AND_FORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -87,7 +87,7 @@
             "y": 7
         },
         {
-            "id": "ROUTE_206_CYCLIST_JOHN",
+            "id": "LOCALID_CYCLIST_JOHN",
             "graphics_id": "OBJ_EVENT_GFX_CYCLIST_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -104,7 +104,7 @@
             "y": 6
         },
         {
-            "id": "ROUTE_206_CYCLIST_KAYLA",
+            "id": "LOCALID_CYCLIST_KAYLA",
             "graphics_id": "OBJ_EVENT_GFX_CYCLIST_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -121,7 +121,7 @@
             "y": 3
         },
         {
-            "id": "ROUTE_206_CYCLIST_RYAN",
+            "id": "LOCALID_CYCLIST_RYAN",
             "graphics_id": "OBJ_EVENT_GFX_CYCLIST_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -138,7 +138,7 @@
             "y": 4
         },
         {
-            "id": "ROUTE_206_CYCLIST_RACHEL",
+            "id": "LOCALID_CYCLIST_RACHEL",
             "graphics_id": "OBJ_EVENT_GFX_CYCLIST_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -155,7 +155,7 @@
             "y": 4
         },
         {
-            "id": "ROUTE_206_ARROW_SIGNPOST_8",
+            "id": "LOCALID_ARROW_SIGNPOST_OREBURGH_CITY",
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -172,7 +172,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_206_ARROW_SIGNPOST_9",
+            "id": "LOCALID_ARROW_SIGNPOST_ETERNA_CITY",
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -189,7 +189,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_206_CUT_TREE_10",
+            "id": "LOCALID_CUT_TREE_1",
             "graphics_id": "OBJ_EVENT_GFX_CUT_TREE",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -204,7 +204,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_206_CUT_TREE_11",
+            "id": "LOCALID_CUT_TREE_2",
             "graphics_id": "OBJ_EVENT_GFX_CUT_TREE",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -219,7 +219,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_206_CUT_TREE_12",
+            "id": "LOCALID_CUT_TREE_3",
             "graphics_id": "OBJ_EVENT_GFX_CUT_TREE",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -264,7 +264,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_206_BERRY_SOIL_15",
+            "id": "LOCALID_BERRY_SOIL_1",
             "graphics_id": "OBJ_EVENT_GFX_BERRY_SOIL",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -281,7 +281,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_206_BERRY_SOIL_16",
+            "id": "LOCALID_BERRY_SOIL_2",
             "graphics_id": "OBJ_EVENT_GFX_BERRY_SOIL",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -298,7 +298,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_206_BERRY_SOIL_17",
+            "id": "LOCALID_BERRY_SOIL_3",
             "graphics_id": "OBJ_EVENT_GFX_BERRY_SOIL",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -315,7 +315,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_206_BERRY_SOIL_18",
+            "id": "LOCALID_BERRY_SOIL_4",
             "graphics_id": "OBJ_EVENT_GFX_BERRY_SOIL",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -332,12 +332,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_206_TRAINER_TIPS_SIGNPOST_19",
+            "id": "LOCALID_TRAINER_TIPS_SIGNPOST",
             "clone_id": 8,
             "graphics_id": "OBJ_EVENT_GFX_TRAINER_TIPS_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0161",
+            "hidden_flag": "MAP_HEADER_ROUTE_207",
             "script": 65535,
             "initial_dir": 0,
             "data": [],
@@ -378,7 +378,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_206_HIKER_THEODORE",
+            "id": "LOCALID_HIKER_THEODORE",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_SOUTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -395,7 +395,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_206_HIKER_23",
+            "id": "LOCALID_HIKER",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",

@@ -1255,9 +1255,9 @@
     .byte \rideBike
     .endm
 
-    .macro ScrCmd_0C9 arg0
+    .macro SetPlayerAvatarFlagIsOnCyclingRoad flag
     .short 201
-    .byte \arg0
+    .byte \flag
     .endm
 
     .macro GetPlayerState destVarID
@@ -4193,7 +4193,7 @@
     .short \destVar
     .endm
 
-    .macro ScrCmd_2BF
+    .macro SetCyclingBGM
     .short 703
     .endm
 

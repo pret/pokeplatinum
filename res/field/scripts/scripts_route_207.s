@@ -1,111 +1,113 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/menu_entries.h"
 #include "res/text/bank/route_207.h"
+#include "res/field/events/events_route_207.h"
 
 
-    ScriptEntry _001E
-    ScriptEntry _004E
-    ScriptEntry _01B0
-    ScriptEntry _01C3
-    ScriptEntry _01EC
-    ScriptEntry _0203
-    ScriptEntry _021A
+    ScriptEntry Route207_OnTransition
+    ScriptEntry Route207_TriggerCounterpart
+    ScriptEntry Route207_Unused
+    ScriptEntry Route207_CyclistM
+    ScriptEntry Route207_ArrowSignpostMtCoronet
+    ScriptEntry Route207_ArrowSignpostOreburghCity
+    ScriptEntry Route207_TrainerTips
     ScriptEntryEnd
 
-_001E:
+Route207_OnTransition:
     GetPlayerGender VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, GENDER_MALE, _003E
-    GoToIfEq VAR_MAP_LOCAL_0, GENDER_FEMALE, _0046
+    GoToIfEq VAR_MAP_LOCAL_0, GENDER_MALE, Route207_SetCounterpartGraphicsDawn
+    GoToIfEq VAR_MAP_LOCAL_0, GENDER_FEMALE, Route207_SetCounterpartGraphicsLucas
     End
 
-_003E:
-    SetVar VAR_OBJ_GFX_ID_0, 97
+Route207_SetCounterpartGraphicsDawn:
+    SetVar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_PLAYER_F
     End
 
-_0046:
-    SetVar VAR_OBJ_GFX_ID_0, 0
+Route207_SetCounterpartGraphicsLucas:
+    SetVar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_PLAYER_M
     End
 
-_004E:
+Route207_TriggerCounterpart:
     LockAll
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    SetObjectEventPos 18, 0x14B, VAR_0x8005
-    Call _008E
-    ApplyMovement 18, _0194
+    SetObjectEventPos LOCALID_COUNTERPART, 331, VAR_0x8005
+    Call Route207_ShowCounterpart
+    ApplyMovement LOCALID_COUNTERPART, Route207_Movement_CounterpartNoticePlayer
     WaitMovement
     Common_SetCounterpartBGM
-    ApplyMovement 18, _01A0
+    ApplyMovement LOCALID_COUNTERPART, Route207_Movement_CounterpartWalkToPlayer
     WaitMovement
-    ApplyMovement LOCALID_PLAYER, _0174
+    ApplyMovement LOCALID_PLAYER, Route207_Movement_PlayerFaceCounterpart
     WaitMovement
-    GoTo _009C
+    GoTo Route207_Counterpart
     End
 
-_008E:
-    ClearFlag FLAG_UNK_0x01CC
-    AddObject 18
-    LockObject 18
+Route207_ShowCounterpart:
+    ClearFlag FLAG_HIDE_ROUTE_207_COUNTERPART
+    AddObject LOCALID_COUNTERPART
+    LockObject LOCALID_COUNTERPART
     Return
 
-_009C:
+Route207_Counterpart:
     GetPlayerGender VAR_RESULT
-    GoToIfEq VAR_RESULT, GENDER_MALE, _00B3
-    GoTo _00F1
+    GoToIfEq VAR_RESULT, GENDER_MALE, Route207_Dawn
+    GoTo Route207_Lucas
 
-_00B3:
+Route207_Dawn:
     BufferPlayerName 0
-    Message 0
+    Message Route207_Text_DawnPlayerChooseWhichHandYouWant
     InitGlobalTextListMenu 30, 13, 0, VAR_RESULT, NO_EXIT_ON_B
     SetMenuXOriginToRight
-    AddListMenuEntry 137, 0
-    AddListMenuEntry 138, 1
+    AddListMenuEntry MenuEntries_Text_CounterpartHand_Right, 0
+    AddListMenuEntry MenuEntries_Text_CounterpartHand_Left, 1
     ShowListMenu
-    Message 1
-    Call _012F
-    Message 2
-    Call _0145
-    Message 3
-    GoTo _0156
+    Message Route207_Text_DawnISeeYouWantTheVsSeeker
+    Call Route207_GiveVsSeeker
+    Message Route207_Text_DawnYouCanHaveThisTooThen
+    Call Route207_GivePoketchAppDowsingMachine
+    Message Route207_Text_DawnTheDowsingMachineIsSomethingYouShouldTouchOften
+    GoTo Route207_CounterpartLeave
 
-_00F1:
+Route207_Lucas:
     BufferPlayerName 0
-    Message 4
+    Message Route207_Text_LucasPlayerIllShareWithYouChooseAHand
     InitGlobalTextListMenu 30, 13, 0, VAR_RESULT, NO_EXIT_ON_B
     SetMenuXOriginToRight
-    AddListMenuEntry 137, 0
-    AddListMenuEntry 138, 1
+    AddListMenuEntry MenuEntries_Text_CounterpartHand_Right, 0
+    AddListMenuEntry MenuEntries_Text_CounterpartHand_Left, 1
     ShowListMenu
-    Message 5
-    Call _012F
-    Message 6
-    Call _0145
-    Message 7
-    GoTo _0156
+    Message Route207_Text_LucasOhYeahYouWantTheVsSeeker
+    Call Route207_GiveVsSeeker
+    Message Route207_Text_LucasYouCanHaveThisTooThen
+    Call Route207_GivePoketchAppDowsingMachine
+    Message Route207_Text_LucasTheDowsingMachineIsJustTryTouchingIt
+    GoTo Route207_CounterpartLeave
 
-_012F:
+Route207_GiveVsSeeker:
     SetFlag FLAG_UNLOCKED_VS_SEEKER_LVL_1
     SetVar VAR_0x8004, ITEM_VS_SEEKER
     SetVar VAR_0x8005, 1
     Common_GiveItemQuantity
     Return
 
-_0145:
+Route207_GivePoketchAppDowsingMachine:
     SetVar VAR_0x8004, POKETCH_APPID_DOWSINGMACHINE
     Common_GivePoketchApp
     BufferPoketchAppName 1, POKETCH_APPID_DOWSINGMACHINE
     Return
 
-_0156:
+Route207_CounterpartLeave:
     CloseMessage
-    ApplyMovement 18, _01A8
+    ApplyMovement LOCALID_COUNTERPART, Route207_Movement_CounterpartLeave
     WaitMovement
-    RemoveObject 18
+    RemoveObject LOCALID_COUNTERPART
     Common_FadeToDefaultMusic
-    SetVar VAR_UNK_0x408C, 1
+    SetVar VAR_ROUTE_207_COUNTERPART_TRIGGER_STATE, 1
     ReleaseAll
     End
 
     .balign 4, 0
-_0174:
+Route207_Movement_PlayerFaceCounterpart:
     WalkOnSpotNormalWest
     EndMovement
 
@@ -120,53 +122,53 @@ Route207_UnusedMovement2:
     EndMovement
 
     .balign 4, 0
-_0194:
+Route207_Movement_CounterpartNoticePlayer:
     WalkNormalEast 3
     EmoteExclamationMark
     EndMovement
 
     .balign 4, 0
-_01A0:
+Route207_Movement_CounterpartWalkToPlayer:
     WalkNormalEast 5
     EndMovement
 
     .balign 4, 0
-_01A8:
+Route207_Movement_CounterpartLeave:
     WalkNormalWest 8
     EndMovement
 
-_01B0:
-    NPCMessage 8
+Route207_Unused:
+    NPCMessage Route207_Text_Dummy8
     End
 
-_01C3:
+Route207_CyclistM:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x0082, _01E1
-    Message 9
+    GoToIfSet FLAG_RECEIVED_BICYCLE, Route207_ChangeToThe4thGearAndTakeARun
+    Message Route207_Text_ThatSlopesTooSlippery
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_01E1:
-    Message 10
+Route207_ChangeToThe4thGearAndTakeARun:
+    Message Route207_Text_ChangeToThe4thGearAndTakeARun
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_01EC:
-    ShowArrowSign 11
+Route207_ArrowSignpostMtCoronet:
+    ShowArrowSign Route207_Text_Rt207MtCoronet
     End
 
-_0203:
-    ShowArrowSign 12
+Route207_ArrowSignpostOreburghCity:
+    ShowArrowSign Route207_Text_Rt207OreburghCity
     End
 
-_021A:
-    ShowScrollingSign 13
+Route207_TrainerTips:
+    ShowScrollingSign Route207_Text_TrainerTipsPokemonMayBecomeImmobilizedIfTheyAreAsleepOrParalyzed
     End
 
     .balign 4, 0

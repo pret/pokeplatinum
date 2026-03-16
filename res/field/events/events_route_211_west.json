@@ -19,7 +19,7 @@
     ],
     "object_events": [
         {
-            "id": "ROUTE_211_WEST_BIRD_KEEPER_ALEXANDRA",
+            "id": "LOCALID_BIRD_KEEPER_ALEXANDRA",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -36,7 +36,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_211_WEST_HIKER_LOUIS",
+            "id": "LOCALID_HIKER_LOUIS",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -53,7 +53,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_211_WEST_NINJA_BOY_ZACH",
+            "id": "LOCALID_NINJA_BOY_ZACH",
             "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
             "movement_type": "MOVEMENT_TYPE_DISGUISE_ROCK",
             "trainer_type": "TRAINER_TYPE_VIEW_ALL_DIRECTIONS",
@@ -70,7 +70,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_211_WEST_ARROW_SIGNPOST_3",
+            "id": "LOCALID_ARROW_SIGNPOST_MT_CORONET",
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -87,7 +87,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_211_WEST_ROCK_SMASH_4",
+            "id": "LOCALID_ROCK_SMASH_1",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -117,7 +117,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_211_WEST_MAP_SIGNPOST_6",
+            "id": "LOCALID_MAP_SIGNPOST",
             "clone_id": 9,
             "graphics_id": "OBJ_EVENT_GFX_MAP_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
@@ -135,7 +135,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_211_WEST_ARROW_SIGNPOST_7",
+            "id": "LOCALID_ARROW_SIGNPOST_ETERNA_CITY",
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",

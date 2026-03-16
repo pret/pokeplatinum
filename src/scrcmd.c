@@ -416,7 +416,7 @@ static BOOL sub_02042C80(ScriptContext *ctx);
 static BOOL ScrCmd_0C6(ScriptContext *ctx);
 static BOOL ScrCmd_CheckPlayerOnBike(ScriptContext *ctx);
 static BOOL ScrCmd_SetPlayerBike(ScriptContext *ctx);
-static BOOL ScrCmd_0C9(ScriptContext *ctx);
+static BOOL ScrCmd_SetPlayerAvatarFlagIsOnCyclingRoad(ScriptContext *ctx);
 static BOOL ScrCmd_GetPlayerState(ScriptContext *ctx);
 static BOOL ScrCmd_SetPlayerState(ScriptContext *ctx);
 static BOOL ScrCmd_ChangePlayerState(ScriptContext *ctx);
@@ -699,7 +699,7 @@ static BOOL ResumeOnSelectionOrDisconnect(ScriptContext *ctx);
 static BOOL ScrCmd_ShowUnionRoomMenu(ScriptContext *ctx);
 static BOOL ScrCmd_2BB(ScriptContext *ctx);
 static BOOL ScrCmd_GetTrainerCardLevel(ScriptContext *ctx);
-static BOOL ScrCmd_2BF(ScriptContext *ctx);
+static BOOL ScrCmd_SetCyclingBGM(ScriptContext *ctx);
 static BOOL ScrCmd_OpenSaveInfo(ScriptContext *ctx);
 static BOOL ScrCmd_CloseSaveInfo(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_2C3(ScriptContext *ctx);
@@ -966,7 +966,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_0C6,
     ScrCmd_CheckPlayerOnBike,
     ScrCmd_SetPlayerBike,
-    ScrCmd_0C9,
+    ScrCmd_SetPlayerAvatarFlagIsOnCyclingRoad,
     ScrCmd_GetPlayerState,
     ScrCmd_SetPlayerState,
     ScrCmd_ChangePlayerState,
@@ -1468,7 +1468,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_CheckDidNotCapture,
     ScrCmd_StartLegendaryBattle,
     ScrCmd_GetTrainerCardLevel,
-    ScrCmd_2BF,
+    ScrCmd_SetCyclingBGM,
     ScrCmd_MessageAutoScroll,
     ScrCmd_OpenSaveInfo,
     ScrCmd_CloseSaveInfo,
@@ -4574,15 +4574,15 @@ static BOOL ScrCmd_SetPlayerBike(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_2BF(ScriptContext *ctx)
+static BOOL ScrCmd_SetCyclingBGM(ScriptContext *ctx)
 {
     Sound_SetSpecialBGM(ctx->fieldSystem, SEQ_PL_BICYCLE);
     return FALSE;
 }
 
-static BOOL ScrCmd_0C9(ScriptContext *ctx)
+static BOOL ScrCmd_SetPlayerAvatarFlagIsOnCyclingRoad(ScriptContext *ctx)
 {
-    sub_0205EFC4(ctx->fieldSystem->playerAvatar, ScriptContext_ReadByte(ctx));
+    PlayerAvatar_SetFlagIsOnCyclingRoad(ctx->fieldSystem->playerAvatar, ScriptContext_ReadByte(ctx));
     return FALSE;
 }
 
