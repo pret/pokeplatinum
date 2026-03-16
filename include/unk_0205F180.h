@@ -16,7 +16,7 @@ void sub_0205F490(PlayerAvatar *playerAvatar);
 void sub_0205F56C(PlayerAvatar *playerAvatar);
 int sub_0205F588(PlayerAvatar *playerAvatar);
 void sub_0205F5E4(PlayerAvatar *playerAvatar, int dir);
-u32 sub_02060B7C(PlayerAvatar *playerAvatar, MapObject *param1, int param2);
+u32 sub_02060B7C(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction);
 u32 sub_020611FC(PlayerAvatar *playerAvatar, MapObject *param1, int param2);
 enum FaceDirection PlayerAvatar_CalcFaceDirection(PlayerAvatar *playerAvatar, u16 pressedKeys, u16 heldKeys);
 BOOL PlayerAvatar_IsAnimationSetOrWalkOnSpotSlow(PlayerAvatar *playerAvatar);

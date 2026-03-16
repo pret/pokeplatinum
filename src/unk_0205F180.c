@@ -89,7 +89,7 @@ static void sub_020608E4(PlayerAvatar *playerAvatar, MapObject *mapObj, int para
 static void sub_02060A60(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2, u16 param3, u16 param4);
 static void sub_02060AA0(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2, u16 param3, u16 param4);
 static u32 sub_02060C24(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2);
-static int sub_02060CE4(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2);
+static int PlayerAvatar_WillJump(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction);
 static int sub_02060D98(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2);
 static int sub_02060E40(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2);
 static int sub_02060EE4(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2);
@@ -1671,15 +1671,15 @@ static void sub_02060B64(PlayerAvatar *playerAvatar, MapObject *mapObj, enum Mov
     LocalMapObj_SetAnimationCode(mapObj, movementAction);
 }
 
-u32 sub_02060B7C(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2)
+u32 sub_02060B7C(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction)
 {
     u32 v0 = 0, v1;
-    v1 = sub_02060C24(playerAvatar, mapObj, param2);
+    v1 = sub_02060C24(playerAvatar, mapObj, direction);
 
     if (v1 & ((1 << 1) | (1 << 3))) {
         v0 |= (1 << 0);
 
-        if (sub_02060E40(playerAvatar, mapObj, param2)) {
+        if (sub_02060E40(playerAvatar, mapObj, direction)) {
             v0 |= (1 << 3);
         }
     }
@@ -1688,27 +1688,27 @@ u32 sub_02060B7C(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2)
         v0 |= (1 << 1);
     }
 
-    if (sub_02060CE4(playerAvatar, mapObj, param2)) {
+    if (PlayerAvatar_WillJump(playerAvatar, mapObj, direction)) {
         v0 |= (1 << 2);
     }
 
-    if (sub_02060D98(playerAvatar, mapObj, param2)) {
+    if (sub_02060D98(playerAvatar, mapObj, direction)) {
         v0 |= (1 << 7);
     }
 
-    if (sub_02060EE4(playerAvatar, mapObj, param2) == 1) {
+    if (sub_02060EE4(playerAvatar, mapObj, direction) == 1) {
         v0 |= (1 << 4);
     }
 
-    if (sub_02060F4C(playerAvatar, mapObj, param2) == 1) {
+    if (sub_02060F4C(playerAvatar, mapObj, direction) == 1) {
         v0 |= (1 << 5);
     }
 
-    if (sub_02060FA8(playerAvatar, mapObj, param2) == 1) {
+    if (sub_02060FA8(playerAvatar, mapObj, direction) == 1) {
         v0 |= (1 << 6) | (1 << 0);
     }
 
-    if (sub_02061058(playerAvatar, mapObj, param2) == 1) {
+    if (sub_02061058(playerAvatar, mapObj, direction) == 1) {
         v0 |= (1 << 0);
     }
 
@@ -1755,46 +1755,46 @@ static u32 sub_02060C24(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
     return v1;
 }
 
-static int sub_02060CE4(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2)
+static int PlayerAvatar_WillJump(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction)
 {
-    if (param2 != -1) {
+    if (direction != DIR_NONE) {
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
-        int v1 = MapObject_GetX(mapObj) + MapObject_GetDxFromDir(param2);
-        int v2 = MapObject_GetZ(mapObj) + MapObject_GetDzFromDir(param2);
+        int x = MapObject_GetX(mapObj) + MapObject_GetDxFromDir(direction);
+        int z = MapObject_GetZ(mapObj) + MapObject_GetDzFromDir(direction);
 
-        if (DynamicMapFeatures_WillPlayerJumpEternaGymClock(fieldSystem, v1, v2, 0, param2) == 1) {
-            return 1;
+        if (DynamicMapFeatures_WillPlayerJumpEternaGymClock(fieldSystem, x, z, 0, direction) == TRUE) {
+            return TRUE;
         }
 
         {
-            u8 v3 = TerrainCollisionManager_GetTileBehavior(fieldSystem, v1, v2);
+            u8 tileBehavior = TerrainCollisionManager_GetTileBehavior(fieldSystem, x, z);
 
-            switch (param2) {
-            case 0:
-                if (TileBehavior_IsJumpNorth(v3) == 1) {
-                    return 1;
+            switch (direction) {
+            case DIR_NORTH:
+                if (TileBehavior_IsJumpNorth(tileBehavior) == TRUE) {
+                    return TRUE;
                 }
                 break;
-            case 1:
-                if (TileBehavior_IsJumpSouth(v3) == 1) {
-                    return 1;
+            case DIR_SOUTH:
+                if (TileBehavior_IsJumpSouth(tileBehavior) == TRUE) {
+                    return TRUE;
                 }
                 break;
-            case 2:
-                if (TileBehavior_IsJumpWest(v3) == 1) {
-                    return 1;
+            case DIR_WEST:
+                if (TileBehavior_IsJumpWest(tileBehavior) == TRUE) {
+                    return TRUE;
                 }
                 break;
-            case 3:
-                if (TileBehavior_IsJumpEast(v3) == 1) {
-                    return 1;
+            case DIR_EAST:
+                if (TileBehavior_IsJumpEast(tileBehavior) == TRUE) {
+                    return TRUE;
                 }
                 break;
             }
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
 static int sub_02060D98(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2)

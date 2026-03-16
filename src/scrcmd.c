@@ -7447,7 +7447,7 @@ static BOOL ScrCmd_AdvanceEternaGymClock(ScriptContext *ctx)
     String **msgBuf = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MESSAGE_BUF);
     Window *window = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_WINDOW);
 
-    ov8_0224B67C(fieldSystem, window, ctx->loader, *msgBuf);
+    EternaGym_AdvanceClockState(fieldSystem, window, ctx->loader, *msgBuf);
     return TRUE;
 }
 
