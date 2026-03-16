@@ -1,64 +1,64 @@
 #include "macros/scrcmd.inc"
 
 
-    ScriptEntry _000A
-    ScriptEntry _0022
+    ScriptEntry MtCoronet6F_OnTransition
+    ScriptEntry MtCoronet6F_OnLoad
     ScriptEntryEnd
 
-_000A:
-    GoToIfSet FLAG_UNK_0x0132, _0040
-    GoToIfUnset FLAG_UNK_0x0132, _004A
+MtCoronet6F_OnTransition:
+    GoToIfSet FLAG_SPEAR_PILLAR_IS_DISTORTED, MtCoronet6F_SetWarpEventSpearPillarDistorted
+    GoToIfUnset FLAG_SPEAR_PILLAR_IS_DISTORTED, MtCoronet6F_TrySetWarpEventSpearPillarDialgaPalkia
     End
 
-_0022:
-    Call _0118
-    GoToIfSet FLAG_UNK_0x0132, _0040
-    GoToIfUnset FLAG_UNK_0x0132, _004A
+MtCoronet6F_OnLoad:
+    Call MtCoronet6F_SetDefaultWarpEvents
+    GoToIfSet FLAG_SPEAR_PILLAR_IS_DISTORTED, MtCoronet6F_SetWarpEventSpearPillarDistorted
+    GoToIfUnset FLAG_SPEAR_PILLAR_IS_DISTORTED, MtCoronet6F_TrySetWarpEventSpearPillarDialgaPalkia
     End
 
-_0040:
+MtCoronet6F_SetWarpEventSpearPillarDistorted:
     SetWarpEventPos 2, 7, 5
     End
 
-_004A:
-    GoToIfGe VAR_EXITED_DISTORTION_WORLD_STATE, 2, _0069
-    GoTo _005F
+MtCoronet6F_TrySetWarpEventSpearPillarDialgaPalkia:
+    GoToIfGe VAR_EXITED_DISTORTION_WORLD_STATE, 2, MtCoronet6F_TrySetWarpEventSpearPillarDialga
+    GoTo MtCoronet6F_SetWarpEventSpearPillar
     End
 
-_005F:
+MtCoronet6F_SetWarpEventSpearPillar:
     SetWarpEventPos 1, 7, 5
     End
 
-_0069:
-    GoToIfUnset FLAG_UNK_0x0145, _005F
-    GoToIfSet FLAG_CAUGHT_DIALGA, _00BC
-    GoToIfGe VAR_SPEAR_PILLAR_DIALGA_STATE, 1, _00BC
+MtCoronet6F_TrySetWarpEventSpearPillarDialga:
+    GoToIfUnset FLAG_UNK_0x0145, MtCoronet6F_SetWarpEventSpearPillar
+    GoToIfSet FLAG_CAUGHT_DIALGA, MtCoronet6F_TrySetWarpEventSpearPillarPalkia
+    GoToIfGe VAR_SPEAR_PILLAR_DIALGA_STATE, 1, MtCoronet6F_TrySetWarpEventSpearPillarPalkia
     CheckItem ITEM_ADAMANT_ORB, 1, VAR_MAP_LOCAL_1
-    GoToIfEq VAR_MAP_LOCAL_1, 1, _0104
+    GoToIfEq VAR_MAP_LOCAL_1, 1, MtCoronet6F_SetWarpEventSpearPillarDialga
     CheckPartyHasHeldItem ITEM_ADAMANT_ORB, VAR_MAP_LOCAL_1
-    GoToIfEq VAR_MAP_LOCAL_1, 1, _0104
-    GoTo _00BC
+    GoToIfEq VAR_MAP_LOCAL_1, 1, MtCoronet6F_SetWarpEventSpearPillarDialga
+    GoTo MtCoronet6F_TrySetWarpEventSpearPillarPalkia
     End
 
-_00BC:
-    GoToIfSet FLAG_CAUGHT_PALKIA, _005F
-    GoToIfGe VAR_SPEAR_PILLAR_PALKIA_STATE, 1, _005F
+MtCoronet6F_TrySetWarpEventSpearPillarPalkia:
+    GoToIfSet FLAG_CAUGHT_PALKIA, MtCoronet6F_SetWarpEventSpearPillar
+    GoToIfGe VAR_SPEAR_PILLAR_PALKIA_STATE, 1, MtCoronet6F_SetWarpEventSpearPillar
     CheckItem ITEM_LUSTROUS_ORB, 1, VAR_MAP_LOCAL_1
-    GoToIfEq VAR_MAP_LOCAL_1, 1, _010E
+    GoToIfEq VAR_MAP_LOCAL_1, 1, MtCoronet6F_SetWarpEventSpearPillarPalkia
     CheckPartyHasHeldItem ITEM_LUSTROUS_ORB, VAR_MAP_LOCAL_1
-    GoToIfEq VAR_MAP_LOCAL_1, 1, _010E
-    GoTo _005F
+    GoToIfEq VAR_MAP_LOCAL_1, 1, MtCoronet6F_SetWarpEventSpearPillarPalkia
+    GoTo MtCoronet6F_SetWarpEventSpearPillar
     End
 
-_0104:
+MtCoronet6F_SetWarpEventSpearPillarDialga:
     SetWarpEventPos 3, 7, 5
     End
 
-_010E:
+MtCoronet6F_SetWarpEventSpearPillarPalkia:
     SetWarpEventPos 4, 7, 5
     End
 
-_0118:
+MtCoronet6F_SetDefaultWarpEvents:
     SetWarpEventPos 1, 1, 5
     SetWarpEventPos 2, 1, 5
     SetWarpEventPos 3, 1, 5

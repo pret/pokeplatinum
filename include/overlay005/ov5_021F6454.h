@@ -16,7 +16,7 @@ BOOL ScrCmd_301(ScriptContext *param0);
 BOOL ScrCmd_GetPartyMonForm2(ScriptContext *ctx);
 BOOL ScrCmd_30F(ScriptContext *param0);
 BOOL ScrCmd_Dummy316(ScriptContext *ctx);
-BOOL ScrCmd_32C(ScriptContext *param0);
+BOOL ScrCmd_ActivateRegiRuinsDot(ScriptContext *param0);
 BOOL ScrCmd_32D(ScriptContext *ctx);
 BOOL ScrCmd_32E(ScriptContext *ctx);
 BOOL ScrCmd_331(ScriptContext *ctx);

@@ -79,11 +79,11 @@
             "y": 0
         },
         {
-            "id": "MT_CORONET_2F_CAVE_PAINTING_4",
+            "id": "LOCALID_CAVE_PAINTING",
             "graphics_id": "OBJ_EVENT_GFX_CAVE_PAINTING",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0235",
+            "hidden_flag": "FLAG_HIDE_MT_CORONET_2F_CAVE_PAINTING",
             "script": 1,
             "initial_dir": 0,
             "data": [],
@@ -94,11 +94,11 @@
             "y": 0
         },
         {
-            "id": "MT_CORONET_2F_LOOKER_5",
+            "id": "LOCALID_LOOKER",
             "graphics_id": "OBJ_EVENT_GFX_LOOKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x029F",
+            "hidden_flag": "FLAG_HIDE_MT_CORONET_2F_LOOKER",
             "script": 3,
             "initial_dir": 2,
             "data": [],
@@ -109,11 +109,11 @@
             "y": 0
         },
         {
-            "id": "MT_CORONET_2F_CAVE_PAINTING_SHARDS_LEFT_6",
+            "id": "LOCALID_CAVE_PAINTING_SHARDS_LEFT",
             "graphics_id": "OBJ_EVENT_GFX_CAVE_PAINTING_SHARDS_LEFT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0182",
+            "hidden_flag": "FLAG_HIDE_MT_CORONET_2F_CAVE_PAINTING_SHARDS",
             "script": 4,
             "initial_dir": 0,
             "data": [],
@@ -124,11 +124,11 @@
             "y": 0
         },
         {
-            "id": "MT_CORONET_2F_CAVE_PAINTING_SHARDS_RIGHT_7",
+            "id": "LOCALID_CAVE_PAINTING_SHARDS_RIGHT",
             "graphics_id": "OBJ_EVENT_GFX_CAVE_PAINTING_SHARDS_RIGHT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0182",
+            "hidden_flag": "FLAG_HIDE_MT_CORONET_2F_CAVE_PAINTING_SHARDS",
             "script": 4,
             "initial_dir": 0,
             "data": [],
@@ -139,7 +139,7 @@
             "y": 0
         },
         {
-            "id": "MT_CORONET_2F_STRENGTH_BOULDER_8",
+            "id": "LOCALID_STRENGTH_BOULDER",
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -200,7 +200,7 @@
             "y": 0,
             "width": 1,
             "length": 3,
-            "var": "VAR_UNK_0x40A9",
+            "var": "VAR_MT_CORONET_2F_STATE",
             "value": 1
         }
     ]

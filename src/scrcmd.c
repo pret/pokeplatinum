@@ -1576,7 +1576,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_329,
     ScrCmd_32A,
     ScrCmd_CheckPartyHasFatefulEncounterRegigigas,
-    ScrCmd_32C,
+    ScrCmd_ActivateRegiRuinsDot,
     ScrCmd_32D,
     ScrCmd_32E,
     ScrCmd_CheckPartyHasHeldItem,

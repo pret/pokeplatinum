@@ -45,6 +45,7 @@
 #include "constants/init_script_types.h"
 #include "constants/items.h"
 #include "constants/map_object.h"
+#include "constants/regi_ruins.h"
 #include "constants/roamer_states.h"
 #include "constants/savedata/vars_flags.h"
 #include "constants/scrcmd.h"
@@ -4813,12 +4814,12 @@
     .short \destVar
     .endm
 
-    .macro ScrCmd_32C arg0, arg1, arg2, arg3
+    .macro ActivateRegiRuinsDot destVar, dotType, x, z
     .short 812
-    .short \arg0
-    .short \arg1
-    .short \arg2
-    .short \arg3
+    .short \destVar
+    .short \dotType
+    .short \x
+    .short \z
     .endm
 
     .macro ScrCmd_32D
