@@ -6,7 +6,7 @@ typedef struct {
     s16 unk_02;
     s16 unk_04;
     s16 unk_06;
-    u8 unk_08;
+    u8 contestPlacement;
     u8 padding_09[3];
 } UnkStruct_02095C48_sub1_sub1;
 

@@ -1,17 +1,26 @@
 #ifndef POKEPLATINUM_OV17_02250744_H
 #define POKEPLATINUM_OV17_02250744_H
 
-#include "struct_defs/struct_02095C48.h"
-
 #include "overlay017/struct_ov17_0224FCA0.h"
 #include "overlay017/struct_ov17_022507C4.h"
 #include "overlay017/struct_ov17_022508E4.h"
 
+#include "contest.h"
 #include "narc.h"
+
+enum ContestAnnouncerMessagesIDs {
+    CONTEST_ANNOUNCER_MESSAGE_NONE,
+    CONTEST_ANNOUNCER_MESSAGE_JUDGING_COMPLETED,
+    CONTEST_ANNOUNCER_MESSAGE_VISUAL_COMPETITION_RESULTS,
+    CONTEST_ANNOUNCER_MESSAGE_DANCE_COMPETITION_RESULTS,
+    CONTEST_ANNOUNCER_MESSAGE_ACTING_COMPETITION_RESULTS,
+    CONTEST_ANNOUNCER_MESSAGE_WINNER_IS,
+    CONTEST_ANNOUNCER_MESSAGE_INDIVIDUAL_CATEGORIES
+};
 
 void ov17_02250744(UnkStruct_ov17_0224FCA0 *param0);
 void ov17_022507C4(UnkStruct_ov17_022507C4 *param0);
-void ov17_02250968(UnkStruct_ov17_0224FCA0 *param0, u32 param1, const UnkStruct_ov17_022508E4 *param2);
+void ov17_02250968(UnkStruct_ov17_0224FCA0 *param0, u32 announcerMessagesID, const UnkStruct_ov17_022508E4 *param2);
 int ov17_0225099C(UnkStruct_ov17_0224FCA0 *param0);
 void ov17_022509AC(UnkStruct_ov17_0224FCA0 *param0);
 void ov17_02250A84(UnkStruct_ov17_0224FCA0 *param0);
@@ -36,8 +45,8 @@ void ov17_022513C0(UnkStruct_ov17_0224FCA0 *param0);
 void ov17_022513F4(UnkStruct_ov17_0224FCA0 *param0, int param1, int param2, int param3, int param4);
 void ov17_02251544(UnkStruct_ov17_0224FCA0 *param0);
 void ov17_02251598(UnkStruct_ov17_0224FCA0 *param0, int param1, u8 *param2);
-void ov17_02251718(UnkStruct_ov17_0224FCA0 *param0, int param1, int param2, u8 *param3);
-void ov17_02251930(UnkStruct_02095C48 *param0, int param1, s16 param2[]);
+void ov17_02251718(UnkStruct_ov17_0224FCA0 *param0, int contestantID, int param2, u8 *param3);
+void ov17_02251930(Contest *param0, int param1, s16 param2[]);
 void ov17_02251A1C(UnkStruct_ov17_0224FCA0 *param0);
 
 #endif // POKEPLATINUM_OV17_02250744_H

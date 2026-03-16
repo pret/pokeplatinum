@@ -1144,7 +1144,7 @@ Route201_Lass:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_HAS_POKEDEX, Route201_IfYourPokemonsHPIsLowGoToAPokemonCenter»
+    GoToIfSet FLAG_HAS_POKEDEX, Route201_IfYourPokemonsHPIsLowGoToAPokemonCenter
     Message Route201_Text_IfYourPokemonsHPIsLowGoHome
     GoTo Route201_LassCloseMessage
 
@@ -1154,7 +1154,7 @@ Route201_LassCloseMessage:
     ReleaseAll
     End
 
-Route201_IfYourPokemonsHPIsLowGoToAPokemonCenter»:
+Route201_IfYourPokemonsHPIsLowGoToAPokemonCenter:
     Message Route201_Text_IfYourPokemonsHPIsLowGoToAPokemonCenter
     GoTo Route201_LassCloseMessage
 

@@ -9,7 +9,6 @@
 #include "struct_defs/struct_0202E4D4.h"
 #include "struct_defs/struct_0202E768.h"
 #include "struct_defs/struct_0202E794.h"
-#include "struct_defs/struct_0202E7D8.h"
 #include "struct_defs/struct_0202E7E4.h"
 #include "struct_defs/struct_0202E7F0.h"
 #include "struct_defs/struct_0202E7FC.h"
@@ -18,6 +17,7 @@
 #include "struct_defs/struct_0202E81C.h"
 #include "struct_defs/struct_0202E828.h"
 #include "struct_defs/struct_0202E834.h"
+#include "struct_defs/tv_episode_segment_contest_hall_showcased_pokemon.h"
 
 #include "inlines.h"
 #include "rtc.h"
@@ -429,9 +429,9 @@ int sub_0202E7D0(int param0)
     return param0 | 0x80;
 }
 
-UnkStruct_0202E7D8 *sub_0202E7D8(TVBroadcast *broadcast)
+TVEpisodeSegment_ContestHall_ShowcasedPokemon *TVBroadcast_GetShowcasedPokemon(TVBroadcast *broadcast)
 {
-    return &broadcast->unk_AD4;
+    return &broadcast->showcasedPokemon;
 }
 
 UnkStruct_0202E7E4 *sub_0202E7E4(TVBroadcast *broadcast)

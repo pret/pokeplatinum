@@ -210,7 +210,7 @@ scripts_fight_area_middle_house
 scripts_fight_area_south_house
 scripts_unk_0210
 scripts_common
-scripts_contest_registration
+scripts_contests
 scripts_pokemon_center_2f_attendants
 scripts_oreburgh_mine_b1f
 scripts_oreburgh_mine_b2f
@@ -498,7 +498,7 @@ scripts_unk_0496
 scripts_safari_game
 scripts_vs_seeker
 scripts_scratch_off_cards
-scripts_battle_tower_records
+scripts_battle_frontier_records
 scripts_day_care_common
 scripts_init_jubilife_city
 scripts_init_jubilife_city_mart

@@ -3,12 +3,12 @@
 
 #include "generated/movement_actions.h"
 
-#include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 
 #include "overlay005/land_data_manager_decl.h"
 
 #include "location.h"
+#include "player_avatar.h"
 
 void PlayerAvatar_MoveControl(PlayerAvatar *playerAvatar, const LandDataManager *param1, int param2, u16 param3, u16 param4, BOOL param5);
 int PlayerAvatar_CheckStartMove(PlayerAvatar *playerAvatar, int param1);

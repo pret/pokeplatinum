@@ -16,8 +16,8 @@ void ov17_0224F18C(UnkStruct_ov17_0224F30C *param0, const UnkStruct_ov17_02243C2
 
     param0->unk_00 = param1->unk_00;
     param0->unk_04 = param1->unk_04;
-    param0->unk_06 = param1->unk_06;
-    param0->unk_07 = param1->unk_07;
+    param0->unk_06 = param1->playerContestantID;
+    param0->unk_07 = param1->isLinkContest;
     param0->unk_08 = param1->unk_08;
 }
 
@@ -200,13 +200,13 @@ int ov17_0224F3D8(UnkStruct_ov17_0224F30C *param0, void *param1)
     return 0;
 }
 
-BOOL ov17_0224F4B8(UnkStruct_ov17_0224F30C *param0, int param1, int param2, int param3)
+BOOL ov17_0224F4B8(UnkStruct_ov17_0224F30C *param0, int connectionCount, int playerContestantID, int param3)
 {
-    if (param2 != param3) {
+    if (playerContestantID != param3) {
         return 1;
     }
 
-    if (param0->unk_A15 >= param1) {
+    if (param0->unk_A15 >= connectionCount) {
         return 1;
     }
 

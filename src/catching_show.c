@@ -8,8 +8,6 @@
 #include "generated/pal_park_land_area.h"
 #include "generated/trainer_score_events.h"
 
-#include "struct_decls/struct_02024440_decl.h"
-
 #include "field/field_system.h"
 #include "savedata/save_table.h"
 

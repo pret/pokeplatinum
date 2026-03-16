@@ -1,21 +1,23 @@
 #ifndef POKEPLATINUM_STRUCT_OV6_02248BE8_H
 #define POKEPLATINUM_STRUCT_OV6_02248BE8_H
 
+#include "constants/moves.h"
+
 typedef struct {
     u32 unk_00;
     u32 unk_04;
     u16 unk_08;
     u16 unk_0A;
-    u16 unk_0C[4];
+    u16 unk_0C[LEARNED_MOVES_MAX];
     u16 unk_14;
     u16 unk_16;
     u16 unk_18;
-    u8 unk_1A;
-    u8 unk_1B;
-    u8 unk_1C;
-    u8 unk_1D;
-    u8 unk_1E;
-    u8 unk_1F;
+    u8 cool;
+    u8 beauty;
+    u8 cute;
+    u8 smart;
+    u8 tough;
+    u8 sheen;
     u16 unk_20_0 : 3;
     u16 unk_20_3 : 1;
     u16 unk_20_4 : 1;

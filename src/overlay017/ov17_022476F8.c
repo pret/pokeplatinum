@@ -6,7 +6,6 @@
 #include "overlay017/struct_ov17_022476F8.h"
 #include "overlay017/struct_ov17_0224792C.h"
 #include "overlay017/struct_ov17_02247A48.h"
-#include "overlay017/struct_ov17_0225442C.h"
 
 #include "bg_window.h"
 #include "game_options.h"
@@ -23,6 +22,18 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
+
+#include "res/text/bank/contest_visual_competition.h"
+
+enum VisualContestMessageFormatting {
+    VISUAL_CONTEST_MESSAGE_FORMAT_NONE,
+    VISUAL_CONTEST_MESSAGE_FORMAT_STRING_NICKNAME
+};
+
+typedef struct VisualContestMessage {
+    u16 messageID;
+    u8 stringTemplateFormatting;
+} VisualContestMessage;
 
 typedef struct {
     u8 *unk_00;
@@ -47,22 +58,22 @@ static const SpriteTemplate Unk_ov17_022543F8 = {
     0x0
 };
 
-static const UnkStruct_ov17_0225442C Unk_ov17_0225442C[] = {
-    { 0x0, 0x0 },
-    { 0x0, 0x0 },
-    { 0x11, 0x0 },
-    { 0x1, 0x1 },
-    { 0x2, 0x1 },
-    { 0x3, 0x1 },
-    { 0x4, 0x1 },
-    { 0x5, 0x0 },
-    { 0x6, 0x0 },
-    { 0x7, 0x0 },
-    { 0x8, 0x0 },
-    { 0x9, 0x0 },
-    { 0xA, 0x0 },
-    { 0xB, 0x0 },
-    { 0xC, 0x0 }
+static const VisualContestMessage Unk_ov17_0225442C[] = {
+    { 0x0, 0x0 }, // unused
+    { VisualCompetition_Text_LetsBeginTheVisualCompetition, VISUAL_CONTEST_MESSAGE_FORMAT_NONE },
+    { VisualCompetition_Text_PracticeSession, VISUAL_CONTEST_MESSAGE_FORMAT_NONE },
+    { VisualCompetition_Text_EntryNumberOne, VISUAL_CONTEST_MESSAGE_FORMAT_STRING_NICKNAME },
+    { VisualCompetition_Text_EntryNumberTwo, VISUAL_CONTEST_MESSAGE_FORMAT_STRING_NICKNAME },
+    { VisualCompetition_Text_EntryNumberThree, VISUAL_CONTEST_MESSAGE_FORMAT_STRING_NICKNAME },
+    { VisualCompetition_Text_EntryNumberFour, VISUAL_CONTEST_MESSAGE_FORMAT_STRING_NICKNAME },
+    { VisualCompetition_Text_DanceCompetitionIsNext, VISUAL_CONTEST_MESSAGE_FORMAT_NONE },
+    { VisualCompetition_Text_Empty1, VISUAL_CONTEST_MESSAGE_FORMAT_NONE },
+    { VisualCompetition_Text_Empty2, VISUAL_CONTEST_MESSAGE_FORMAT_NONE },
+    { VisualCompetition_Text_Empty3, VISUAL_CONTEST_MESSAGE_FORMAT_NONE },
+    { VisualCompetition_Text_Empty4, VISUAL_CONTEST_MESSAGE_FORMAT_NONE },
+    { VisualCompetition_Text_Empty5, VISUAL_CONTEST_MESSAGE_FORMAT_NONE },
+    { VisualCompetition_Text_Empty6, VISUAL_CONTEST_MESSAGE_FORMAT_NONE },
+    { VisualCompetition_Text_Empty7, VISUAL_CONTEST_MESSAGE_FORMAT_NONE }
 };
 
 void include_ov17_022476F8(void);
@@ -176,18 +187,18 @@ void ov17_02247918(UnkStruct_ov17_02247A48 *param0)
     param0->unk_0C.unk_18 = NULL;
 }
 
-static void ov17_0224792C(UnkStruct_ov17_02247A48 *param0, int param1, const UnkStruct_ov17_0224792C *param2)
+static void ov17_VisualContest_FormatString(UnkStruct_ov17_02247A48 *param0, enum VisualContestMessageFormatting stringTemplateFormatting, const UnkStruct_ov17_0224792C *param2)
 {
-    if (param1 != 0) {
+    if (stringTemplateFormatting != 0) {
         GF_ASSERT(param2 != NULL);
     }
 
-    switch (param1) {
-    case 0:
+    switch (stringTemplateFormatting) {
+    case VISUAL_CONTEST_MESSAGE_FORMAT_NONE:
         break;
-    case 1:
-        StringTemplate_SetString(param0->unk_0C.unk_3C, 0, param0->unk_00->unk_00.unk_D8[param2->unk_00], param0->unk_00->unk_00.unk_F8[param2->unk_00], 1, GAME_LANGUAGE);
-        StringTemplate_SetNickname(param0->unk_0C.unk_3C, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
+    case VISUAL_CONTEST_MESSAGE_FORMAT_STRING_NICKNAME:
+        StringTemplate_SetString(param0->unk_0C.unk_3C, 0, param0->unk_00->unk_00.trainerNames[param2->contestantID], param0->unk_00->unk_00.trainerGenders[param2->contestantID], 1, GAME_LANGUAGE);
+        StringTemplate_SetNickname(param0->unk_0C.unk_3C, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->contestMons[param2->contestantID]));
         break;
     default:
         GF_ASSERT(FALSE);
@@ -195,37 +206,35 @@ static void ov17_0224792C(UnkStruct_ov17_02247A48 *param0, int param1, const Unk
     }
 }
 
-static void ov17_02247990(UnkStruct_ov17_02247A48 *param0, MessageLoader *param1, u32 param2, int param3, const UnkStruct_ov17_0224792C *param4)
+static void ov17_02247990(UnkStruct_ov17_02247A48 *param0, MessageLoader *param1, u32 messageID, enum VisualContestMessageFormatting stringTemplateFormatting, const UnkStruct_ov17_0224792C *param4)
 {
-    String *v0;
-    int v1;
+    String *message;
+    int textDelay;
 
     if (param0->unk_00->isLinkContest == FALSE) {
-        v1 = Options_TextFrameDelay(param0->unk_00->options);
+        textDelay = Options_TextFrameDelay(param0->unk_00->options);
     } else {
-        v1 = TEXT_SPEED_FAST;
+        textDelay = TEXT_SPEED_FAST;
     }
 
-    v0 = MessageLoader_GetNewString(param1, param2);
-    ov17_0224792C(param0, param3, param4);
+    message = MessageLoader_GetNewString(param1, messageID);
+    ov17_VisualContest_FormatString(param0, stringTemplateFormatting, param4);
 
-    StringTemplate_Format(param0->unk_0C.unk_3C, param0->unk_0C.unk_40, v0);
+    StringTemplate_Format(param0->unk_0C.unk_3C, param0->unk_0C.unk_40, message);
     Window_FillTilemap(&param0->unk_0C.unk_28[0], 0xff);
 
-    param0->unk_0C.unk_C4 = Text_AddPrinterWithParams(&param0->unk_0C.unk_28[0], FONT_MESSAGE, param0->unk_0C.unk_40, 0, 0, v1, NULL);
-    String_Free(v0);
+    param0->unk_0C.unk_C4 = Text_AddPrinterWithParams(&param0->unk_0C.unk_28[0], FONT_MESSAGE, param0->unk_0C.unk_40, 0, 0, textDelay, NULL);
+    String_Free(message);
 }
 
 void ov17_02247A08(UnkStruct_ov17_02247A48 *param0, u32 param1, const UnkStruct_ov17_0224792C *param2)
 {
-    u32 v0, v1;
-
     GF_ASSERT(param1 < NELEMS(Unk_ov17_0225442C));
 
-    v0 = Unk_ov17_0225442C[param1].unk_00;
-    v1 = Unk_ov17_0225442C[param1].unk_02;
+    u32 messageID = Unk_ov17_0225442C[param1].messageID;
+    enum VisualContestMessageFormatting stringTemplateFormatting = Unk_ov17_0225442C[param1].stringTemplateFormatting;
 
-    ov17_02247990(param0, param0->unk_0C.unk_38, v0, v1, param2);
+    ov17_02247990(param0, param0->unk_0C.visualCompetitionMessages, messageID, stringTemplateFormatting, param2);
 }
 
 int ov17_02247A3C(UnkStruct_ov17_02247A48 *param0)

@@ -1,0 +1,198 @@
+{
+  "key": 40969,
+  "messages": [
+    {
+      "id": "RankingsMachine_Text_SingleBattlesRecordTitle",
+      "en_US": "SINGLE BATTLES"
+    },
+    {
+      "id": "RankingsMachine_Text_DoubleBattlesRecordTitle",
+      "en_US": "DOUBLE BATTLES"
+    },
+    {
+      "id": "RankingsMachine_Text_MultiBattlesRecordTitle",
+      "en_US": "MULTI BATTLES"
+    },
+    {
+      "id": "RankingsMachine_Text_LinkMultiBattlesRecordTitle",
+      "en_US": "LINK MULTI BATTLES"
+    },
+    {
+      "id": "RankingsMachine_Text_WiFiBattleRoomRecordTitle",
+      "en_US": "WI-FI BATTLE ROOM"
+    },
+    {
+      "id": "RankingsMachine_Text_AvgWinStreakRecordTitle",
+      "en_US": "AVG WIN STREAK"
+    },
+    {
+      "id": "RankingsMachine_Text_PokemonDefeatedRecordTitle",
+      "en_US": "POKéMON DEFEATED"
+    },
+    {
+      "id": "RankingsMachine_Text_PokemonCaughtRecordTitle",
+      "en_US": "POKéMON CAUGHT"
+    },
+    {
+      "id": "RankingsMachine_Text_PokemonEggsRecordTitle",
+      "en_US": "POKéMON EGGS"
+    },
+    {
+      "id": "RankingsMachine_Text_EncounteredWhileFishingRecordTitle",
+      "en_US": "ENCOUNTERED WHILE FISHING"
+    },
+    {
+      "id": "RankingsMachine_Text_ContestWinsRecordTitle",
+      "en_US": "CONTEST WINS"
+    },
+    {
+      "id": "RankingsMachine_Text_ContestWinPercentRecordTitle",
+      "en_US": "CONTEST WIN %"
+    },
+    {
+      "id": "RankingsMachine_Text_RibbonsRecordTitle",
+      "en_US": "RIBBONS"
+    },
+    {
+      "id": "RankingsMachine_Text_Exit",
+      "en_US": "EXIT"
+    },
+    {
+      "id": "RankingsMachine_Text_RecordEntryInfo",
+      "en_US": "{STRVAR_1 50, 0, 0}. {STRVAR_1 3, 1, 0}"
+    },
+    {
+      "id": "RankingsMachine_Text_BattleWinsValue",
+      "en_US": "{STRVAR_1 53, 0, 0} wins"
+    },
+    {
+      "id": "RankingsMachine_Text_AvgWinStreakValue",
+      "en_US": "{STRVAR_1 50, 0, 0} wins"
+    },
+    {
+      "id": "RankingsMachine_Text_RibbonsValue",
+      "en_US": "{STRVAR_1 54, 0, 0}"
+    },
+    {
+      "id": "RankingsMachine_Text_PokemonHatchedValue",
+      "en_US": "{STRVAR_1 55, 0, 0}"
+    },
+    {
+      "id": "RankingsMachine_Text_PokemonCaughtValue",
+      "en_US": "{STRVAR_1 55, 0, 0}"
+    },
+    {
+      "id": "RankingsMachine_Text_ContestWinPercentValue",
+      "en_US": "{STRVAR_1 52, 0, 0}%"
+    },
+    {
+      "id": "RankingsMachine_Text_ContestWinsValue",
+      "en_US": "{STRVAR_1 53, 0, 0}"
+    },
+    {
+      "id": "RankingsMachine_Text_WhichRecordWouldYouLikeToSee",
+      "en_US": "Which record would you like to see?"
+    },
+    {
+      "id": "RankingsMachine_Text_SingleBattlesRecordExplanation",
+      "en_US": [
+        "The Battle Tower’s win-streak record\n",
+        "in Single Battles."
+      ]
+    },
+    {
+      "id": "RankingsMachine_Text_DoubleBattlesRecordExplanation",
+      "en_US": [
+        "The Battle Tower’s win-streak record\n",
+        "in Double Battles."
+      ]
+    },
+    {
+      "id": "RankingsMachine_Text_MultiBattlesRecordExplanation",
+      "en_US": [
+        "The Battle Tower’s win-streak record\n",
+        "in Multi Battles."
+      ]
+    },
+    {
+      "id": "RankingsMachine_Text_LinkMultiBattlesRecordExplanation",
+      "en_US": [
+        "The Battle Tower’s win-streak record\n",
+        "in Link Multi Battles."
+      ]
+    },
+    {
+      "id": "RankingsMachine_Text_WiFiBattlesRecordExplanation",
+      "en_US": [
+        "The Battle Tower’s win-streak record\n",
+        "in Wi-Fi Battles."
+      ]
+    },
+    {
+      "id": "RankingsMachine_Text_AvgWinStreakRecordExplanation",
+      "en_US": [
+        "The average win-streak record\n",
+        "at the Battle Tower."
+      ]
+    },
+    {
+      "id": "RankingsMachine_Text_PokemonDefeatedRecordExplanation",
+      "en_US": "The number of Pokémon defeated."
+    },
+    {
+      "id": "RankingsMachine_Text_PokemonCaughtRecordExplanation",
+      "en_US": [
+        "The number of Pokémon caught using\n",
+        "Poké Balls."
+      ]
+    },
+    {
+      "id": "RankingsMachine_Text_PokemonEggsRecordExplanation",
+      "en_US": [
+        "The number of Pokémon that were\n",
+        "hatched from Eggs."
+      ]
+    },
+    {
+      "id": "RankingsMachine_Text_EncounteredWhileFishingRecordExplanation",
+      "en_US": [
+        "The number of Pokémon that were\n",
+        "caught fishing."
+      ]
+    },
+    {
+      "id": "RankingsMachine_Text_ContestWinsRecordExplanation",
+      "en_US": "The number of Contest wins."
+    },
+    {
+      "id": "RankingsMachine_Text_ContestWinPercentRecordExplanation",
+      "en_US": "The winning percentage of Contests."
+    },
+    {
+      "id": "RankingsMachine_Text_RibbonsRecordExplanation",
+      "en_US": [
+        "The number of Ribbons won in\n",
+        "Contests."
+      ]
+    },
+    {
+      "id": "RankingsMachine_Text_DeleteRecord",
+      "en_US": "DEL RECORD"
+    },
+    {
+      "id": "RankingsMachine_Text_SelectTheRecordYouWantToDeleteThenPressA",
+      "en_US": [
+        "Select the record you want to\n",
+        "delete, then press the A Button."
+      ]
+    },
+    {
+      "id": "RankingsMachine_Text_AskDeleteThisRecord",
+      "en_US": "Delete this record?"
+    },
+    {
+      "id": "RankingsMachine_Text_YourOwnRecordCantBeDeleted",
+      "en_US": "Your own record can’t be deleted."
+    }
+  ]
+}

@@ -5,9 +5,9 @@
 
 typedef struct {
     SaveData *saveData;
-    u8 unk_04;
-    u8 unk_05;
-    u16 unk_06;
-} UnkStruct_0203E564;
+    u8 challengeType;
+    u8 facility;
+    u16 species;
+} FrontierRecordsAppArgs;
 
 #endif // POKEPLATINUM_STRUCT_0203E564_H

@@ -60,6 +60,8 @@
 #define BATTLE_ARCADE_APP_MAIN_TILES                   120
 #define BATTLE_ARCADE_APP_SUB_TILEMAP                  121
 #define BATTLE_ARCADE_APP_SUB_TILES                    122
+#define BATTLE_FRONTIER_RECORDS_APP_TILEMAP            123
+#define BATTLE_FRONTIER_RECORDS_APP_TILES              124
 #define BATTLE_FRONTIER_APP_SUB_SCREEN_TILES           125
 #define BATTLE_FRONTIER_APP_SUB_SCREEN_TILEMAP         126
 #define BATTLE_FACTORY_PLTT                            129
@@ -77,6 +79,7 @@
 #define BATTLE_ARCADE_CORRIDOR_PLTT                    143
 #define Battle_ARCADE_APP_SUB_PLTT                     168
 #define BATTLE_ARCADE_BATTLE_ROOM_HP_SCREEN_PLTT       169
+#define BATTLE_FRONTIER_RECORDS_APP_PLTT               170
 #define BATTLE_FRONTIER_APP_SUB_SCREEN_PLTT            171
 
 #endif

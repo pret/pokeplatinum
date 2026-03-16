@@ -5,11 +5,6 @@
 
 #include "savedata.h"
 
-typedef struct WiFiQuestions_t {
-    u32 unk_00;
-    u32 unk_04;
-} WiFiQuestions;
-
 int WiFiQuestion_SaveSize(void)
 {
     return sizeof(WiFiQuestions);

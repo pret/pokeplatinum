@@ -7,8 +7,6 @@
 
 #include "constants/graphics.h"
 
-#include "struct_decls/struct_02030EC4_decl.h"
-
 #include "overlay066/ov66_0222DDF0.h"
 #include "overlay066/ov66_02231428.h"
 #include "overlay066/ov66_022324F0.h"

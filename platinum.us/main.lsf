@@ -137,7 +137,7 @@ Static main
 	Object main.nef.p/src_mystery_gift.c.o
 	Object main.nef.p/src_hall_of_fame_entries.c.o
 	Object main.nef.p/src_unk_0202E2CC.c.o
-	Object main.nef.p/src_unk_0202E840.c.o
+	Object main.nef.p/src_rankings.c.o
 	Object main.nef.p/src_unk_0202EEC0.c.o
 	Object main.nef.p/src_link_contest_records.c.o
 	Object main.nef.p/src_unk_0202F180.c.o
@@ -184,7 +184,7 @@ Static main
 	Object main.nef.p/src_script_manager.c.o
 	Object main.nef.p/src_scrcmd.c.o
 	Object main.nef.p/src_scrcmd_shop.c.o
-	Object main.nef.p/src_unk_02046C7C.c.o
+	Object main.nef.p/src_scrcmd_contests.c.o
 	Object main.nef.p/src_scrcmd_strings.c.o
 	Object main.nef.p/src_scrcmd_jubilife_lottery.c.o
 	Object main.nef.p/src_scrcmd_sound.c.o
@@ -273,7 +273,7 @@ Static main
 	Object main.nef.p/src_unk_0206C660.c.o
 	Object main.nef.p/src_cutscenes_boat_cutscene_boat_cutscene.c.o
 	Object main.nef.p/src_tv_episode_segment.c.o
-	Object main.nef.p/src_unk_0206F314.c.o
+	Object main.nef.p/src_rankings_machine.c.o
 	Object main.nef.p/src_unk_02070428.c.o
 	Object main.nef.p/src_field_move_tasks.c.o
 	Object main.nef.p/src_unk_020711C8.c.o
@@ -325,7 +325,7 @@ Static main
 	Object main.nef.p/src_applications_pokemon_summary_screen_subscreen.c.o
 	Object main.nef.p/src_ribbon.c.o
 	Object main.nef.p/src_unk_02092494.c.o
-	Object main.nef.p/src_unk_020933F8.c.o
+	Object main.nef.p/src_contest.c.o
 	Object main.nef.p/src_unk_02094EDC.c.o
 	Object main.nef.p/src_unk_02095AF0.c.o
 	Object main.nef.p/src_unk_02095CD4.c.o
@@ -1617,11 +1617,11 @@ Overlay overlay109
 	Object main.nef.p/src_overlay109_ov109_021D3D50.c.o
 }
 
-Overlay overlay110
+Overlay frontier_records_app
 {
 	After main
-	Object main.nef.p/src_overlay110_ov110_021D0D80.c.o
-	Object main.nef.p/src_overlay110_ov110_021D2124.c.o
+	Object main.nef.p/src_applications_frontier_records_main.c.o
+	Object main.nef.p/src_applications_frontier_records_windows.c.o
 }
 
 Overlay overlay111

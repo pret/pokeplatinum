@@ -6,8 +6,8 @@
 typedef struct {
     UnkStruct_ov17_022449B8 unk_00;
     UnkStruct_ov17_022449B8 unk_06;
-    u8 unk_0C;
-    u8 unk_0D;
+    u8 actingMessagesID;
+    u8 actingMessagesID2;
     u8 unk_0E;
     u8 unk_0F;
 } UnkStruct_ov17_022463C4;

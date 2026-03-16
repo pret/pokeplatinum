@@ -7,7 +7,6 @@
 #include "constants/heap.h"
 #include "constants/overworld_weather.h"
 
-#include "struct_decls/struct_0203A790_decl.h"
 #include "struct_defs/map_load_mode.h"
 #include "struct_defs/struct_0205EC34.h"
 

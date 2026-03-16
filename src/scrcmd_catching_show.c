@@ -4,8 +4,6 @@
 
 #include "generated/catching_show_points_category.h"
 
-#include "struct_decls/struct_02024440_decl.h"
-
 #include "savedata/save_table.h"
 
 #include "catching_show.h"

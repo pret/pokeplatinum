@@ -5,8 +5,6 @@
 
 #include "constants/charcode.h"
 
-#include "struct_decls/struct_0205E884_decl.h"
-
 #include "field/field_system.h"
 #include "underground/manager.h"
 #include "underground/struct_underground_top_screen_context_decl.h"

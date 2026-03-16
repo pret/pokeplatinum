@@ -19,25 +19,6 @@
 #include "map_object_move.h"
 #include "overworld_anim_manager.h"
 
-typedef struct PlayerAvatar {
-    u32 unk_00;
-    u32 unk_04;
-    u32 unk_08;
-    int unk_0C;
-    u32 unk_10;
-    int unk_14;
-    int unk_18;
-    int unk_1C;
-    int gender;
-    int speed;
-    enum FaceDirection faceLeftOrRight;
-    enum FaceDirection faceUpOrDown;
-    MapObject *mapObject;
-    OverworldAnimManager *surfMountAnimMan;
-    PlayerData *player;
-    const PlayerData *playerConst;
-} PlayerAvatar;
-
 static PlayerAvatar *PlayerAvatar_Alloc(void);
 static void sub_0205E91C(PlayerAvatar *playerAvatar, int param1, int param2, PlayerData *param3);
 static void PlayerAvatar_AddMapObject(PlayerAvatar *playerAvatar, const MapObjectManager *param1, int param2, int param3, int param4, int param5);

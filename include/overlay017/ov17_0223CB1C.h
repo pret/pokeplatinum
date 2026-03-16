@@ -3,8 +3,8 @@
 
 #include "overlay_manager.h"
 
-int ov17_0223CB1C(ApplicationManager *appMan, int *param1);
-int ov17_0223CDDC(ApplicationManager *appMan, int *param1);
-int ov17_0223CF8C(ApplicationManager *appMan, int *param1);
+int VisualCompetitonScoring_Init(ApplicationManager *appMan, int *param1);
+int VisualCompetitionScoring_Main(ApplicationManager *appMan, int *param1);
+int VisualCompetitionScoring_Exit(ApplicationManager *appMan, int *param1);
 
 #endif // POKEPLATINUM_OV17_0223CB1C_H

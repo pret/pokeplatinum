@@ -23,7 +23,7 @@ typedef struct {
     SpriteManager *unk_20;
     BgConfig *unk_24;
     Window unk_28[1];
-    MessageLoader *unk_38;
+    MessageLoader *visualCompetitionMessages;
     StringTemplate *unk_3C;
     String *unk_40;
     PaletteData *unk_44;

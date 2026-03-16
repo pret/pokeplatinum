@@ -1,6 +1,9 @@
 #ifndef POKEPLATINUM_TV_EPISODE_SEGMENT_H
 #define POKEPLATINUM_TV_EPISODE_SEGMENT_H
 
+#include "generated/pokemon_contest_ranks.h"
+#include "generated/pokemon_contest_types.h"
+
 #include "struct_decls/struct_0202440C_decl.h"
 
 #include "field/field_system_decl.h"
@@ -14,7 +17,7 @@
 
 int TVEpisodeSegment_LoadMessage(int programTypeID, FieldSystem *fieldSystem, StringTemplate *template, UnkStruct_ov6_022465F4 *param3, u16 *bankDestVar);
 BOOL TVEpisodeSegment_IsEligible(int programTypeID, FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param2);
-void sub_0206CF14(TVBroadcast *broadcast, Pokemon *param1, int param2, int param3, int param4);
+void TVBroadcast_SetContestHallShowInfo(TVBroadcast *broadcast, Pokemon *mon, enum PokemonContestType contestType, enum PokemonContestRank contestRank, int contestPlacement);
 void sub_0206CF48(TVBroadcast *broadcast, Pokemon *param1, enum HeapID heapID);
 void FieldSystem_SaveTVEpisodeSegment_PlantingAndWateringShow(FieldSystem *fieldSystem, u16 berryItemID, u8 yieldRating, u16 yieldAmount);
 void sub_0206CF9C(TVBroadcast *broadcast, int param1);

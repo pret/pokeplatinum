@@ -5,8 +5,6 @@
 
 #include "generated/journal_location_events.h"
 
-#include "struct_decls/struct_0203A790_decl.h"
-
 #include "field/field_system.h"
 #include "overlay005/map_object_anim_cmd.h"
 #include "overlay005/ov5_021F0EB0.h"

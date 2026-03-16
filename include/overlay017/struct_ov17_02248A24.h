@@ -6,7 +6,7 @@
 
 typedef struct {
     UnkStruct_ov17_02247A48 *unk_00;
-    BallRotation *unk_04;
+    BallRotation *ballRotation;
     u8 unk_08;
     u8 unk_09;
     u8 unk_0A;
