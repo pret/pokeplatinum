@@ -221,7 +221,6 @@
 #include "unk_0209C194.h"
 #include "vars_flags.h"
 
-#include "constdata/const_020EAB80.h"
 #include "constdata/const_020F8BE0.h"
 #include "res/text/bank/mystery_gift_phrase.h"
 
@@ -1605,7 +1604,7 @@ const ScrCmdFunc gFieldScriptCommands[] = {
     ScrCmd_BufferFloorNumber,
 };
 
-const u32 Unk_020EAB80 = NELEMS(gFieldScriptCommands);
+const u32 gNumFieldScriptCommands = NELEMS(gFieldScriptCommands);
 
 static BOOL ScrCmd_Noop(ScriptContext *ctx)
 {

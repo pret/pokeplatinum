@@ -28,6 +28,7 @@ struct ScriptContext {
 };
 
 extern const ScrCmdFunc gFieldScriptCommands[];
+extern const u32 gNumFieldScriptCommands;
 
 #define ScriptContext_ReadByte(ctx) (*(ctx->scriptPtr++))
 

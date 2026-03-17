@@ -25,7 +25,6 @@
 #include "trainer_data.h"
 #include "vars_flags.h"
 
-#include "constdata/const_020EAB80.h"
 #include "res/field/scripts/scr_seq.naix"
 
 // clang-format off
@@ -209,7 +208,7 @@ ScriptContext *ScriptContext_CreateAndStart(FieldSystem *fieldSystem, u16 script
 
     GF_ASSERT(ctx != NULL);
 
-    ScriptContext_Init(ctx, gFieldScriptCommands, Unk_020EAB80);
+    ScriptContext_Init(ctx, gFieldScriptCommands, gNumFieldScriptCommands);
     ScriptContext_LoadAndStart(fieldSystem, ctx, scriptID, 0);
 
     return ctx;
