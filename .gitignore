@@ -21,6 +21,7 @@
 /subprojects/meson-*/
 /subprojects/nitrorom/
 /subprojects/metroskrew/
+/subprojects/yyjson-*/
 /subprojects/.wraplock
 
 # Legacy mwrap compiler

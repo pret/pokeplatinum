@@ -311,6 +311,31 @@ datagen_cpp_commands = [
     for file in (homedir / "tools" / "datagen").rglob("*.cpp")
 ]
 
+dataproc_c_commands = [
+    {
+        "directory": builddir,
+        "arguments": [
+            "gcc",
+            f"-I{homedir}/subprojects/yyjson-0.12.0/src",
+            f"-I{homedir}/tools/nitroarc/lib/include",
+            f"-I{homedir}/tools/dataproc/lib/include",
+            f"-I{homedir}/include",
+            f"-I{builddir}",
+            "-std=gnu17",
+            "-Wall",
+            "-Wextra",
+            "-Wpedantic",
+            "-Wconversion",
+            "-Wno-sign-conversion",
+            "-o",
+            file.with_suffix(".o"),
+            file.resolve(),
+        ],
+        "file": file.resolve(),
+    }
+    for file in (homedir / "tools" / "dataproc").rglob("*.c")
+]
+
 with open("compile_commands.json", "w") as ofp:
     json.dump(
         asm_commands
@@ -322,7 +347,8 @@ with open("compile_commands.json", "w") as ofp:
         + ppwlobby_c_commands
         + c_commands
         + datagen_cpp_commands
-        + nitroarc_c_commands,
+        + nitroarc_c_commands
+        + dataproc_c_commands,
         ofp,
         default=str,
         indent=4,
