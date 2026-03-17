@@ -222,7 +222,6 @@
 #include "vars_flags.h"
 
 #include "constdata/const_020EAB80.h"
-#include "constdata/const_020EAC58.h"
 #include "constdata/const_020F8BE0.h"
 #include "res/text/bank/mystery_gift_phrase.h"
 
@@ -763,7 +762,7 @@ static const WindowTemplate sYesNoWindowTemplate = {
     .baseTile = 0x21F,
 };
 
-const ScrCmdFunc Unk_020EAC58[] = {
+const ScrCmdFunc gFieldScriptCommands[] = {
     ScrCmd_Noop,
     ScrCmd_Dummy,
     ScrCmd_End,
@@ -1606,7 +1605,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_BufferFloorNumber,
 };
 
-const u32 Unk_020EAB80 = NELEMS(Unk_020EAC58);
+const u32 Unk_020EAB80 = NELEMS(gFieldScriptCommands);
 
 static BOOL ScrCmd_Noop(ScriptContext *ctx)
 {

@@ -10,6 +10,7 @@
 #include "data/field/hidden_items.h"
 #include "field/field_system.h"
 
+#include "field_script_context.h"
 #include "field_task.h"
 #include "heap.h"
 #include "map_header.h"
@@ -25,7 +26,6 @@
 #include "vars_flags.h"
 
 #include "constdata/const_020EAB80.h"
-#include "constdata/const_020EAC58.h"
 #include "res/field/scripts/scr_seq.naix"
 
 // clang-format off
@@ -209,7 +209,7 @@ ScriptContext *ScriptContext_CreateAndStart(FieldSystem *fieldSystem, u16 script
 
     GF_ASSERT(ctx != NULL);
 
-    ScriptContext_Init(ctx, Unk_020EAC58, Unk_020EAB80);
+    ScriptContext_Init(ctx, gFieldScriptCommands, Unk_020EAB80);
     ScriptContext_LoadAndStart(fieldSystem, ctx, scriptID, 0);
 
     return ctx;
