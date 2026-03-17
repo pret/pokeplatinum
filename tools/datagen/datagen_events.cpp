@@ -17,8 +17,6 @@
 #include <cstdlib>
 #include <filesystem>
 #include <iostream>
-#include <optional>
-#include <regex>
 #include <string>
 
 #include "datagen.h"

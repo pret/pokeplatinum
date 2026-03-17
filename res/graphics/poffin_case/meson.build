@@ -67,11 +67,10 @@ tilemaps = copy_gen.process(files(
     'sub_tilemap.NSCR',
 ))
 
-poffin_case_order = files('poffin_case.order')
 poffin_case_narc = custom_target('poru_gra.narc',
     output: [
         'poru_gra.narc',
-        'poru_gra.naix.h',
+        'poru_gra.naix',
     ],
     input: [
         nclr,
@@ -83,12 +82,13 @@ poffin_case_narc = custom_target('poru_gra.narc',
         tilemaps,
     ],
     command: [
-        narc_exe, 'create',
-        '--naix',
-        '--order', poffin_case_order,
-        '--output', '@OUTPUT0@',
+        nitroarc_exe,
+        '--create',
+        '--index',
+        '--files-from', files('poffin_case.order'),
+        '--file', '@OUTPUT0@',
         '@PRIVATE_DIR@',
-    ]
+    ],
 )
 nitrofs_files += poffin_case_narc
 naix_headers += poffin_case_narc[1]

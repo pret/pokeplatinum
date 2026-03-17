@@ -2,14 +2,14 @@
   "key": 44018,
   "messages": [
     {
-      "id": "pl_msg_00000068_00000",
+      "id": "OreburghCityPokecenter1F_Text_YayIGotAPalPadAtThePokemonWiFiClubDownstairs",
       "en_US": [
         "Yay! I got a Pal Pad at the\n",
         "Pokémon Wi-Fi Club downstairs!"
       ]
     },
     {
-      "id": "pl_msg_00000068_00001",
+      "id": "OreburghCityPokecenter1F_Text_SwitchOnThePCAtAnyPokemonCenter",
       "en_US": [
         "Switch on the PC at any Pokémon\n",
         "Center.\r",
@@ -20,7 +20,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000068_00002",
+      "id": "OreburghCityPokecenter1F_Text_WhatIsYourFavoriteKindOfTrainerCanYouTellMe",
       "en_US": [
         "Hmmm...!\r",
         "What is your favorite kind of Trainer?\n",
@@ -28,21 +28,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000068_00003",
+      "id": "OreburghCityPokecenter1F_Text_WhichKindOfTrainerWouldYouLikeToBe",
       "en_US": [
         "Which kind of Trainer would you like\n",
         "to be?"
       ]
     },
     {
-      "id": "pl_msg_00000068_00004",
+      "id": "OreburghCityPokecenter1F_Text_AskThisIsTheKindOfTrainerYouWantToBe",
       "en_US": [
         "{STRVAR_1 14, 0, 0} is the kind of Trainer\n",
         "you want to be?"
       ]
     },
     {
-      "id": "pl_msg_00000068_00005",
+      "id": "OreburghCityPokecenter1F_Text_ISeeSoThisIsTheKindOfTrainerYouLike",
       "en_US": [
         "I see! So {STRVAR_1 14, 0, 0} is the kind\n",
         "of Trainer you like.\r",
@@ -51,11 +51,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000068_00006",
+      "id": "OreburghCityPokecenter1F_Text_OKThenIllJustTalkToYouLater",
       "en_US": "OK, then I’ll just talk to you later!"
     },
     {
-      "id": "pl_msg_00000068_00007",
+      "id": "OreburghCityPokecenter1F_Text_HowAboutTellingMeWhatKindOfTrainerYouLike",
       "en_US": [
         "Hello! You’ve been mistaken for\n",
         "{STRVAR_1 14, 0, 0}, haven’t you?\r",
@@ -66,7 +66,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000068_00008",
+      "id": "OreburghCityPokecenter1F_Text_WhatOrWhoIsThisTeamGalacticItsAMystery",
       "en_US": [
         "Hmmm!\n",
         "What, or who, is this Team Galactic?!\r",
@@ -79,7 +79,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000068_00009",
+      "id": "OreburghCityPokecenter1F_Text_WhatOrWhoIsThisTeamGalactic",
       "en_US": [
         "Hmmm!\n",
         "What, or who, is this Team Galactic?!\r",
@@ -90,7 +90,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000068_00010",
+      "id": "OreburghCityPokecenter1F_Text_NowYouCanCaptureItAsABattleVideoUsingAVsRecorder",
       "en_US": [
         "You know how you can battle a friend\n",
         "using wireless communications?\r",
@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000068_00011",
+      "id": "OreburghCityPokecenter1F_Text_CoolYouHaveAVsRecorder",
       "en_US": [
         "Cool!\n",
         "You have a Vs. Recorder!\r",
@@ -108,7 +108,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000068_00012",
+      "id": "OreburghCityPokecenter1F_Text_HiImGraceTheIdolSoShallWeBattle",
       "en_US": [
         "Hi, I’m Grace, the Idol! I’m just back\n",
         "from a show in Oreburgh Mine!\r",
@@ -116,21 +116,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000068_00013",
+      "id": "OreburghCityPokecenter1F_Text_IllLetYouJoinMyFanClubIfYouCanBeatMe",
       "en_US": [
         "I’ll let you join my fan club if you can\n",
         "beat me!\r"
       ]
     },
     {
-      "id": "pl_msg_00000068_00014",
+      "id": "OreburghCityPokecenter1F_Text_YouWontAcceptMyChallengeButImAnIdol",
       "en_US": [
         "You won’t accept my challenge?!\n",
         "But I’m an Idol..."
       ]
     },
     {
-      "id": "pl_msg_00000068_00015",
+      "id": "OreburghCityPokecenter1F_Text_WellThatsMeAndMyPokemon",
       "en_US": [
         "Well, that’s me and my Pokémon!\n",
         "I hope you’ll support us!\r",

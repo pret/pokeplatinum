@@ -456,7 +456,7 @@
     .endm
 
     /*
-     * selectedOptionVar is set to 0xeeee as part of initializing a FieldMenuManager.
+     * selectedOptionVar is set to 0xEEEE as part of initializing a FieldMenuManager.
      * Once ShowMenu or one of its variants is used, selectedOptionVar is set to the
      * entryIndex of the option the player selected.
      */
@@ -470,7 +470,7 @@
     .endm
 
     /*
-     * selectedOptionVar is set to 0xeeee as part of initializing a FieldMenuManager.
+     * selectedOptionVar is set to 0xEEEE as part of initializing a FieldMenuManager.
      * Once ShowMenu or one of its variants is used, selectedOptionVar is set to the
      * entryIndex of the option the player selected.
      */
@@ -499,7 +499,7 @@
     .endm
 
     /*
-     * selectedOptionVar is set to 0xeeee as part of initializing a FieldMenuManager.
+     * selectedOptionVar is set to 0xEEEE as part of initializing a FieldMenuManager.
      * Once ShowListMenu or one of its variants is used, selectedOptionVar is set to the
      * entryIndex of the option the player selected.
      */
@@ -513,7 +513,7 @@
     .endm
 
     /*
-     * selectedOptionVar is set to 0xeeee as part of initializing a FieldMenuManager.
+     * selectedOptionVar is set to 0xEEEE as part of initializing a FieldMenuManager.
      * Once ShowListMenu or one of its variants is used, selectedOptionVar is set to the
      * entryIndex of the option the player selected.
      */
@@ -1239,7 +1239,7 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_0C6
+    .macro ChangeIntoContestAttire
     .short 198
     .endm
 
@@ -1513,161 +1513,161 @@
     .short 247
     .endm
 
-    .macro ScrCmd_0F8 arg0
+    .macro StartContestCommSync syncNo
     .short 248
-    .short \arg0
+    .short \syncNo
     .endm
 
-    .macro ScrCmd_0F9 arg0
+    .macro WaitForCommSyncState syncState
     .short 249
-    .short \arg0
+    .short \syncState
     .endm
 
-    .macro ScrCmd_0FA arg0, arg1, arg2, arg3
+    .macro NewContest contestRank, contestType, competitionType, partySlot
     .short 250
-    .short \arg0
-    .short \arg1
-    .short \arg2
-    .short \arg3
+    .short \contestRank
+    .short \contestType
+    .short \competitionType
+    .short \partySlot
     .endm
 
-    .macro ScrCmd_0FB arg0
+    .macro EndContest mapID
     .short 251
-    .short \arg0
+    .short \mapID
     .endm
 
-    .macro ScrCmd_0FC arg0, arg1
+    .macro BufferJudgeName judgeID, idx
     .short 252
-    .short \arg0
-    .short \arg1
+    .short \judgeID
+    .short \idx
     .endm
 
-    .macro ScrCmd_0FD arg0, arg1
+    .macro BufferContestantTrainerName contestantEntryNum, idx
     .short 253
-    .short \arg0
-    .short \arg1
+    .short \contestantEntryNum
+    .short \idx
     .endm
 
-    .macro ScrCmd_0FE arg0, arg1
+    .macro BufferContestantMonName contestantEntryNum, idx
     .short 254
-    .short \arg0
-    .short \arg1
+    .short \contestantEntryNum
+    .short \idx
     .endm
 
-    .macro ScrCmd_0FF arg0, arg1
+    .macro BufferContestRegistrationEntryNumber entryNum, strNumIdx
     .short 255
-    .short \arg0
-    .short \arg1
+    .short \entryNum
+    .short \strNumIdx
     .endm
 
-    .macro ScrCmd_100
+    .macro WaitForLinkContestSetup
     .short 256
     .endm
 
-    .macro ScrCmd_101
+    .macro RunContestApplication
     .short 257
     .endm
 
-    .macro ScrCmd_102 arg0
+    .macro BufferContestRank idx
     .short 258
-    .short \arg0
+    .short \idx
     .endm
 
-    .macro ScrCmd_103 arg0
+    .macro BufferContestType idx
     .short 259
-    .short \arg0
+    .short \idx
     .endm
 
-    .macro ScrCmd_104 arg0
+    .macro BufferWinningContestantTrainerName idx
     .short 260
-    .short \arg0
+    .short \idx
     .endm
 
-    .macro ScrCmd_105 arg0
+    .macro SetTrue destTrue
     .short 261
-    .short \arg0
+    .short \destTrue
     .endm
 
-    .macro ScrCmd_106 arg0
+    .macro BufferWinningContestantMonName idx
     .short 262
-    .short \arg0
+    .short \idx
     .endm
 
-    .macro ScrCmd_107 arg0
+    .macro GetPlayerContestPlacement destPlayerContestPlacement
     .short 263
-    .short \arg0
+    .short \destPlayerContestPlacement
     .endm
 
-    .macro ScrCmd_108 arg0
+    .macro GetWinningContestantEntryNum destWinningContestantEntryNum
     .short 264
-    .short \arg0
+    .short \destWinningContestantEntryNum
     .endm
 
-    .macro ScrCmd_109 arg0
+    .macro GetContestRegistrationEntryNum destVarContestantEntryNum
     .short 265
-    .short \arg0
+    .short \destVarContestantEntryNum
     .endm
 
-    .macro ScrCmd_10A arg0, arg1
+    .macro GetContestantObjEventGFX contestantEntryNum, destContestantObjEventGFX
     .short 266
-    .short \arg0
-    .short \arg1
+    .short \contestantEntryNum
+    .short \destContestantObjEventGFX
     .endm
 
-    .macro ScrCmd_10B arg0, arg1
+    .macro GetContestantMonContestFame contestantEntryNum, destMonContestFame
     .short 267
-    .short \arg0
-    .short \arg1
+    .short \contestantEntryNum
+    .short \destMonContestFame
     .endm
 
-    .macro ScrCmd_10C arg0
+    .macro GetContestMode destContestMode
     .short 268
-    .short \arg0
+    .short \destContestMode
     .endm
 
-    .macro ScrCmd_10D arg0
+    .macro CheckPlayerMonHasRibbon destHasRibbon
     .short 269
-    .short \arg0
+    .short \destHasRibbon
     .endm
 
-    .macro ScrCmd_10E arg0
+    .macro SetRibbonName idx
     .short 270
-    .short \arg0
+    .short \idx
     .endm
 
-    .macro ScrCmd_10F arg0
+    .macro GetFirstTimeVictoryAccessory destAccessoryID
     .short 271
-    .short \arg0
+    .short \destAccessoryID
     .endm
 
-    .macro ScrCmd_110 arg0, arg1, arg2, arg3
+    .macro GetContestInfo contestRank, contestType, competitionType, monPartySlot
     .short 272
-    .short \arg0
-    .short \arg1
-    .short \arg2
-    .short \arg3
+    .short \contestRank
+    .short \contestType
+    .short \competitionType
+    .short \monPartySlot
     .endm
 
-    .macro ScrCmd_111 arg0
+    .macro StartContestCameraFlashTask contestantEntryNum
     .short 273
-    .short \arg0
+    .short \contestantEntryNum
     .endm
 
-    .macro ScrCmd_112
+    .macro WaitForContestCameraFlashTask
     .short 274
     .endm
 
-    .macro ScrCmd_113
+    .macro StopHBlank
     .short 275
     .endm
 
-    .macro ScrCmd_114
+    .macro StartHBlank
     .short 276
     .endm
 
-    .macro ScrCmd_115 arg0
+    .macro GetShouldSkipAwardCeremony destSkipAwardCeremony
     .short 277
-    .short \arg0
+    .short \destSkipAwardCeremony
     .endm
 
     .macro ShowLinkContestRecords
@@ -1678,7 +1678,7 @@
     .short 279
     .endm
 
-    .macro ScrCmd_118
+    .macro LockTextSpeed
     .short 280
     .endm
 
@@ -1711,7 +1711,7 @@
     .short \destVarID
     .endm
 
-    /* destVar is used to initialize a FieldMenuManager, setting it to 0xeeee, but is otherwise left without a meaningful value */
+    /* destVar is used to initialize a FieldMenuManager, setting it to 0xEEEE, but is otherwise left without a meaningful value */
     .macro ShowCurrentFloor tilemapLeft, tilemapTop, destVarID
     .short 285
     .byte \tilemapLeft
@@ -1991,15 +1991,15 @@
     .short 340
     .endm
 
-    .macro ScrCmd_155 arg0, arg1
+    .macro GetTrainerInfoTrainerClass variant, destVar
     .short 341
-    .short \arg0
-    .short \arg1
+    .short \variant
+    .short \destVar
     .endm
 
-    .macro ScrCmd_156 arg0
+    .macro SetTrainerInfoAppearance appearance
     .short 342
-    .short \arg0
+    .short \appearance
     .endm
 
     .macro CheckPokedexAcquired destVarID
@@ -2278,11 +2278,11 @@
     .short \z
     .endm
 
-    .macro ScrCmd_18B arg0, arg1, arg2
+    .macro SetBgEventPos index, x, z
     .short 395
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \index
+    .short \x
+    .short \z
     .endm
 
     .macro ScrCmd_18C arg0, arg1
@@ -2327,28 +2327,28 @@
     .short \destVar
     .endm
 
-    .macro OpenPartyMenuForContest partySlot, contestRank, contestType, arg3
+    .macro OpenPartyMenuForContest partySlot, contestRank, contestType, useDefaultContestRank
     .short 404
     .short \partySlot
     .short \contestRank
     .short \contestType
-    .short \arg3
+    .short \useDefaultContestRank
     .endm
 
-    .macro ScrCmd_195 arg0, arg1
+    .macro TryEnterContestMon partySlot, menuItemSelection
     .short 405
-    .short \arg0
-    .short \arg1
+    .short \partySlot
+    .short \menuItemSelection
     .endm
 
-    .macro ScrCmd_196 arg0
+    .macro SetMonSummary partySlot
     .short 406
-    .short \arg0
+    .short \partySlot
     .endm
 
-    .macro ScrCmd_197 arg0
+    .macro GetMonPartySlot partySlot
     .short 407
-    .short \arg0
+    .short \partySlot
     .endm
 
     .macro GetPartyMonSpecies partySlot, destVar
@@ -2503,9 +2503,9 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_1B5 listIndex
+    .macro StartRankingsMachine machineID
     .short 437
-    .short \listIndex
+    .short \machineID
     .endm
 
     .macro GetTimeOfDay destVarID
@@ -3927,10 +3927,10 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_292 arg0, arg1
+    .macro CheckShouldShowGhost percentChance, destVar
     .short 658
-    .byte \arg0
-    .short \arg1
+    .byte \percentChance
+    .short \destVar
     .endm
 
     .macro GetUndergroundTalkCounter destVarID
@@ -3981,10 +3981,10 @@
     .short \arg3
     .endm
 
-    .macro ScrCmd_29C arg0, arg1
+    .macro CalculateTrainerInfoAppearance variant, destVar
     .short 668
-    .short \arg0
-    .short \arg1
+    .short \variant
+    .short \destVar
     .endm
 
     .macro AddMenuEntry entryStringID, entryIndex
@@ -4018,7 +4018,7 @@
     .short \arg2
     .endm
 
-    .macro TrySetUnusedUndergroundField item
+    .macro TrySetUnusedCollectedOrbFlag item
     .short 674
     .short \item
     .endm
@@ -4122,7 +4122,7 @@
     .short 688
     .endm
 
-    .macro ScrCmd_2B1
+    .macro DestroyNetworkIcon
     .short 689
     .endm
 
@@ -4235,11 +4235,11 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_2C8 arg0, arg1, arg2
+    .macro OpenFrontierRecordsApp challengeType, facility, species
     .short 712
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \challengeType
+    .short \facility
+    .short \species
     .endm
 
     .macro InitPersistedMapFeaturesForEternaGym
@@ -4360,13 +4360,13 @@
     .short \species
     .endm
 
-    .macro ScrCmd_2DE arg0, arg1, arg2, arg3, arg4
+    .macro ShowBattleHallRecordMonSelectionMenu challengeType, letterGroup, result, listPos, cursorPos
     .short 734
-    .short \arg0
-    .short \arg1
-    .short \arg2
-    .short \arg3
-    .short \arg4
+    .short \challengeType
+    .short \letterGroup
+    .short \result
+    .short \listPos
+    .short \cursorPos
     .endm
 
     .macro CalcAmitySquareBerryAndAccessoryManOptionID destBerryAndAccessoryManOptionID
@@ -5173,6 +5173,58 @@
     .macro GoToIfCannotFitItem item, count, destVarID, offset
     CanFitItem \item, \count, \destVarID
     GoToIfEq \destVarID, FALSE, \offset
+    .endm
+
+    .macro NPCMessage messageID
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    FacePlayer
+    Message \messageID
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
+    .endm
+
+    .macro EventMessage messageID
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    Message \messageID
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
+    .endm
+
+    .macro PokemonCryAndMessage species, messageID, unused=0
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    FacePlayer
+    WaitFanfare SEQ_SE_CONFIRM
+    PlayCry \species, \unused
+    Message \messageID
+    WaitCry
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
+    .endm 
+
+    .macro PokeMartCommonWithGreeting unused=1
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    FacePlayer
+    Common_VendorGreeting
+    CloseMessageWithoutErasing
+    PokeMartCommon \unused
+    ReleaseAll
+    .endm
+
+    .macro PokeMartSpecialtiesWithGreeting martID
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    FacePlayer
+    Common_VendorGreeting
+    CloseMessageWithoutErasing
+    PokeMartSpecialties \martID
+    ReleaseAll
     .endm
 
     /* CallCommonScript aliases below */

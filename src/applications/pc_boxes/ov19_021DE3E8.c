@@ -114,7 +114,7 @@ static void ov19_021DE450(UnkStruct_ov19_021DE3E8 *param0)
         if (v3) {
             int v5;
 
-            v2->mapingType = GX_GetOBJVRamModeChar();
+            v2->mappingType = GX_GetOBJVRamModeChar();
 
             for (v5 = 0; v5 < 3; v5++) {
                 NNS_G2dInitImageProxy(&v1);

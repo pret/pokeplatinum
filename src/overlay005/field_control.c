@@ -9,7 +9,6 @@
 #include "generated/game_records.h"
 #include "generated/trainer_score_events.h"
 
-#include "struct_decls/struct_0203A790_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_defs/daycare.h"
 
@@ -298,7 +297,7 @@ BOOL FieldInput_Process(const FieldInput *input, FieldSystem *fieldSystem)
         }
 
         int distortionDir = PlayerAvatar_GetDistortionDir(fieldSystem->playerAvatar);
-        u32 distortionBehavior = PlayerAvatar_GetDistortionTileBehaviour(fieldSystem->playerAvatar, distortionDir);
+        u32 distortionBehavior = PlayerAvatar_GetDistortionFacingTileBehaviour(fieldSystem->playerAvatar, distortionDir);
         int distortionScript = Field_TileBehaviorToScript(fieldSystem, distortionBehavior);
 
         if (distortionScript != 0xffff) {
@@ -329,9 +328,9 @@ BOOL FieldInput_Process(const FieldInput *input, FieldSystem *fieldSystem)
         return TRUE;
     }
 
-    if (input->menu && sub_0203A9C8(fieldSystem) == TRUE) {
+    if (input->menu && FieldSystem_IsInValidLocation(fieldSystem) == TRUE) {
         Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN);
-        StartMenu_Init(fieldSystem);
+        StartMenu_Open(fieldSystem);
         return TRUE;
     }
 
@@ -420,7 +419,7 @@ BOOL FieldInput_Process_Colosseum(FieldInput *input, FieldSystem *fieldSystem)
 
     if (input->menu) {
         Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN);
-        sub_0203AABC(fieldSystem);
+        StartMenu_OpenColosseum(fieldSystem);
         return TRUE;
     }
 
@@ -477,7 +476,7 @@ BOOL FieldInput_Process_UnionRoom(const FieldInput *input, FieldSystem *fieldSys
 
     if (input->menu && CommSys_ConnectedCount() <= 1) {
         Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN);
-        sub_0203AA78(fieldSystem);
+        StartMenu_OpenUnionRoom(fieldSystem);
         sub_0205BEA8(4);
         sub_02036BA0();
         return TRUE;
@@ -534,7 +533,7 @@ int FieldInput_Process_BattleTower(const FieldInput *input, FieldSystem *fieldSy
 
     if (input->menu) {
         Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN);
-        StartMenu_Init(fieldSystem);
+        StartMenu_Open(fieldSystem);
         return TRUE;
     }
 

@@ -53,23 +53,11 @@ _00B5:
     Return
 
 _00BF:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 25
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 25
     End
 
 _00D2:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 26
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 26
     End
 
 _00E5:
@@ -370,93 +358,40 @@ _04F0:
     EndMovement
 
 _04FC:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 18
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 18
     End
 
 _050F:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 19
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 19
     End
 
 _0522:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 20
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 20
     End
 
 _0535:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 27
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 27
     End
 
 _0548:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 28
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 28
     End
 
 _055B:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 29
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 29
     End
 
 _056E:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    Message 42
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    EventMessage 42
     End
 
 _057F:
     GoToIfSet FLAG_EXPLORER_KIT_RECEIVED, _059D
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 31
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 31
     End
 
 _059D:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 32
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 32
     End
 
 _05B0:

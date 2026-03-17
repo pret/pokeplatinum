@@ -17,11 +17,11 @@
             "y": 1
         },
         {
-            "id": "FULLMOON_ISLAND_FOREST_POKEBALL_1",
+            "id": "LOCALID_ITEM_LUNAR_WING",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0452",
+            "hidden_flag": "FLAG_OBTAINED_FULLMOON_ISLAND_FOREST",
             "script": 7092,
             "initial_dir": 0,
             "data": [],

@@ -11,7 +11,7 @@
 #include "heap.h"
 #include "sys_task_manager.h"
 
-#include "res/graphics/poketch/poketch.naix.h"
+#include "res/graphics/poketch/poketch.naix"
 
 #define MARKED_CELL_TILE_IDX   143
 #define UNMARKED_CELL_TILE_IDX 131

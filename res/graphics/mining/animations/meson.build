@@ -33,11 +33,10 @@ mining_animations_ncers = ncer_gen.process(files('crack_end_cell.json', 'animati
 
 mining_animations_nanrs = nanr_gen.process(files('crack_end_anim.json', 'animations_anim.json'))
 
-mining_animations_order = files('animations.order')
 mining_animations_narc = custom_target('animations.narc',
     output: [
         'animations.narc',
-        'animations.naix.h',
+        'animations.naix',
     ],
     input: [
         mining_animations_ncgrs_converted,
@@ -48,12 +47,13 @@ mining_animations_narc = custom_target('animations.narc',
         mining_animations_nanrs,
     ],
     command: [
-        narc_exe, 'create',
-        '--naix',
-        '--order', mining_animations_order,
-        '--output', '@OUTPUT0@',
+        nitroarc_exe,
+        '--create',
+        '--index',
+        '--files-from', files('animations.order'),
+        '--file', '@OUTPUT0@',
         '@PRIVATE_DIR@',
-    ]
+    ],
 )
 
 nitrofs_files += mining_animations_narc

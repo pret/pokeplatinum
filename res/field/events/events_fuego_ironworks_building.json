@@ -19,11 +19,11 @@
     ],
     "object_events": [
         {
-            "id": "FUEGO_IRONWORKS_BUILDING_POKEBALL_0",
+            "id": "LOCALID_ITEM_TM35",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x046E",
+            "hidden_flag": "FLAG_OBTAINED_FUEGO_IRONWORKS_BUILDING_TM35",
             "script": 7120,
             "initial_dir": 0,
             "data": [],
@@ -34,11 +34,11 @@
             "y": 0
         },
         {
-            "id": "FUEGO_IRONWORKS_BUILDING_POKEBALL_1",
+            "id": "LOCALID_ITEM_CALCIUM",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0470",
+            "hidden_flag": "FLAG_OBTAINED_FUEGO_IRONWORKS_BUILDING_CALCIUM",
             "script": 7122,
             "initial_dir": 0,
             "data": [],
@@ -49,11 +49,11 @@
             "y": 0
         },
         {
-            "id": "FUEGO_IRONWORKS_BUILDING_POKEBALL_2",
+            "id": "LOCALID_ITEM_ROCK_INCENSE",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x046F",
+            "hidden_flag": "FLAG_OBTAINED_FUEGO_IRONWORKS_BUILDING_ROCK_INCENSE",
             "script": 7121,
             "initial_dir": 0,
             "data": [],
@@ -64,11 +64,11 @@
             "y": 0
         },
         {
-            "id": "FUEGO_IRONWORKS_BUILDING_POKEBALL_3",
+            "id": "LOCALID_ITEM_FIRE_STONE",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0471",
+            "hidden_flag": "FLAG_OBTAINED_FUEGO_IRONWORKS_BUILDING_FIRE_STONE",
             "script": 7123,
             "initial_dir": 0,
             "data": [],
@@ -145,11 +145,11 @@
             "y": 0
         },
         {
-            "id": "FUEGO_IRONWORKS_BUILDING_POKEBALL_8",
+            "id": "LOCALID_ITEM_BLUE_SHARD",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x050F",
+            "hidden_flag": "FLAG_OBTAINED_FUEGO_IRONWORKS_BUILDING_BLUE_SHARD",
             "script": 7280,
             "initial_dir": 0,
             "data": [],
@@ -160,11 +160,11 @@
             "y": 0
         },
         {
-            "id": "FUEGO_IRONWORKS_BUILDING_POKEBALL_9",
+            "id": "LOCALID_ITEM_RED_SHARD",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0510",
+            "hidden_flag": "FLAG_OBTAINED_FUEGO_IRONWORKS_BUILDING_RED_SHARD",
             "script": 7281,
             "initial_dir": 0,
             "data": [],
@@ -175,11 +175,11 @@
             "y": 0
         },
         {
-            "id": "FUEGO_IRONWORKS_BUILDING_POKEBALL_10",
+            "id": "LOCALID_ITEM_GREEN_SHARD",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0511",
+            "hidden_flag": "FLAG_OBTAINED_FUEGO_IRONWORKS_BUILDING_GREEN_SHARD",
             "script": 7282,
             "initial_dir": 0,
             "data": [],
@@ -190,11 +190,11 @@
             "y": 0
         },
         {
-            "id": "FUEGO_IRONWORKS_BUILDING_POKEBALL_11",
+            "id": "LOCALID_ITEM_YELLOW_SHARD",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0512",
+            "hidden_flag": "FLAG_OBTAINED_FUEGO_IRONWORKS_BUILDING_YELLOW_SHARD",
             "script": 7283,
             "initial_dir": 0,
             "data": [],

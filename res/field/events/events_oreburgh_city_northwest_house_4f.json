@@ -2,7 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
-            "id": "OREBURGH_CITY_NORTHWEST_HOUSE_4F_NINJA_BOY_0",
+            "id": "LOCALID_NINJA_BOY",
             "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -17,7 +17,7 @@
             "y": 1
         },
         {
-            "id": "OREBURGH_CITY_NORTHWEST_HOUSE_4F_SCHOOL_KID_M_1",
+            "id": "LOCALID_SCHOOL_KID_M",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -32,7 +32,7 @@
             "y": 1
         },
         {
-            "id": "OREBURGH_CITY_NORTHWEST_HOUSE_4F_POKEFAN_F_2",
+            "id": "LOCALID_POKEFAN_F",
             "graphics_id": "OBJ_EVENT_GFX_POKEFAN_F",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",

@@ -6,9 +6,6 @@
 #include "constants/field_base_tiles.h"
 #include "constants/heap.h"
 
-#include "struct_defs/underground.h"
-#include "struct_defs/underground_record.h"
-
 #include "underground/manager.h"
 #include "underground/text_printer.h"
 
@@ -29,7 +26,7 @@
 #include "system.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_0202854C.h"
+#include "underground.h"
 
 #include "res/text/bank/underground_pc.h"
 #include "res/text/bank/underground_records.h"
@@ -244,8 +241,8 @@ void UndergroundRecords_SendRecord(int targetNetID)
     MI_CpuClear8(buffer, size + 1);
     buffer->netID = targetNetID;
 
-    if (trainerScore >= 999999) {
-        trainerScore = 999999;
+    if (trainerScore >= MAX_UNDERGROUND_RECORD_VALUE) {
+        trainerScore = MAX_UNDERGROUND_RECORD_VALUE;
     }
 
     UndergroundRecord_SetTrainerScore(recordsEnv->record, trainerScore);
@@ -260,8 +257,8 @@ void UndergroundRecords_RetrieveTrainerScore(void)
 {
     int trainerScore = GameRecords_GetTrainerScore(SaveData_GetGameRecords(recordsEnv->saveData));
 
-    if (trainerScore >= 999999) {
-        trainerScore = 999999;
+    if (trainerScore >= MAX_UNDERGROUND_RECORD_VALUE) {
+        trainerScore = MAX_UNDERGROUND_RECORD_VALUE;
     }
 
     UndergroundRecord_SetTrainerScore(recordsEnv->record, trainerScore);

@@ -164,11 +164,10 @@ mining_objects_nclrs_pals = nclr_gen.process(mining_objects_pals,
     ],
 )
 
-mining_objects_order = files('objects.order')
 mining_objects_narc = custom_target('objects.narc',
     output: [
         'objects.narc',
-        'objects.naix.h',
+        'objects.naix',
     ],
     input: [
         mining_objects_ncgrs_converted,
@@ -181,12 +180,13 @@ mining_objects_narc = custom_target('objects.narc',
         mining_objects_nclrs_pals,
     ],
     command: [
-        narc_exe, 'create',
-        '--naix',
-        '--order', mining_objects_order,
-        '--output', '@OUTPUT0@',
+        nitroarc_exe,
+        '--create',
+        '--index',
+        '--files-from', files('objects.order'),
+        '--file', '@OUTPUT0@',
         '@PRIVATE_DIR@',
-    ]
+    ],
 )
 
 nitrofs_files += mining_objects_narc

@@ -1,11 +1,9 @@
 #include "overlay061/ov61_0222AE60.h"
 
 #include <nitro.h>
-#include <string.h>
 
 #include "constants/species.h"
 
-#include "struct_decls/pc_boxes_decl.h"
 #include "struct_defs/dress_up_photo.h"
 #include "struct_defs/struct_02030A80.h"
 

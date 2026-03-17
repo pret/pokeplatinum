@@ -37,16 +37,7 @@ _0064:
     End
 
 _006E:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    WaitFanfare SEQ_SE_CONFIRM
-    PlayCry SPECIES_CLEFAIRY
-    Message 2
-    WaitCry
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    PokemonCryAndMessage SPECIES_CLEFAIRY, 2
     End
 
     .balign 4, 0

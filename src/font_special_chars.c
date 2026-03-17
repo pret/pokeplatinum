@@ -9,7 +9,7 @@
 #include "graphics.h"
 #include "heap.h"
 
-#include "res/fonts/pl_font.naix.h"
+#include "res/fonts/pl_font.naix"
 
 #define BG_COLOR_F     (0)
 #define FG_COLOR_F     (1 << 0)

@@ -38,7 +38,7 @@ start_menu_order = files('start_menu.order')
 start_menu_narc = custom_target('start_menu.narc',
     output: [
         'start_menu.narc',
-        'start_menu.naix.h',
+        'start_menu.naix',
     ],
     input: [
         ncgrs,
@@ -47,12 +47,13 @@ start_menu_narc = custom_target('start_menu.narc',
         nclrs,
     ],
     command: [
-        narc_exe, 'create',
-        '--naix',
-        '--order', start_menu_order,
-        '--output', '@OUTPUT0@',
+        nitroarc_exe,
+        '--create',
+        '--index',
+        '--files-from', files('start_menu.order'),
+        '--file', '@OUTPUT0@',
         '@PRIVATE_DIR@',
-    ]
+    ],
 )
 
 nitrofs_files += start_menu_narc

@@ -14,28 +14,6 @@
 #include "savedata.h"
 #include "spawn_locations.h"
 
-typedef struct FieldOverworldState {
-    Location player;
-    Location entrance;
-    Location previous;
-    Location special;
-    Location exit;
-    u16 bgm;
-    u16 weather;
-    u16 warpId;
-    u8 cameraType;
-    OverworldMapHistory mapHistory;
-    PlayerData playerData;
-    u16 poisonSteps;
-    u16 safariSteps;
-    u16 safariBalls;
-    u8 padding_9A[6];
-} FieldOverworldState;
-
-typedef struct UnkStruct_0203A79C_t {
-    MapObjectSave unk_00[64];
-} FieldOverworldSave;
-
 int FieldOverworldState_Size(void)
 {
     return sizeof(FieldOverworldState);

@@ -17,7 +17,6 @@
 #include "generated/genders.h"
 
 #include "struct_decls/battle_system.h"
-#include "struct_decls/pc_boxes_decl.h"
 #include "struct_defs/battle_system.h"
 #include "struct_defs/battler_data.h"
 #include "struct_defs/fraction.h"
@@ -75,7 +74,7 @@
 #include "unk_0201567C.h"
 #include "unk_0208C098.h"
 
-#include "res/battle/scripts/sub_seq.naix.h"
+#include "res/battle/scripts/sub_seq.naix"
 #include "res/text/bank/battle_strings.h"
 
 typedef BOOL (*BtlCmd)(BattleSystem *, BattleContext *);

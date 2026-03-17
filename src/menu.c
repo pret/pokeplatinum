@@ -75,7 +75,7 @@ u32 Menu_ProcessInput(Menu *menu)
 
     if (JOY_NEW(menu->cancelKeys)) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);
-        return MENU_CANCELED;
+        return MENU_CANCEL;
     }
 
     if (JOY_NEW(PAD_KEY_UP)) {
@@ -124,7 +124,7 @@ u32 Menu_ProcessInputWithSound(Menu *menu, u16 sdatID)
 
     if (JOY_NEW(menu->cancelKeys)) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);
-        return MENU_CANCELED;
+        return MENU_CANCEL;
     }
 
     if (JOY_NEW(PAD_KEY_UP)) {
@@ -284,7 +284,7 @@ static u8 TryMovingCursor(Menu *menu, u8 direction)
         }
     }
 
-    if (menu->template.choices[newCursorPos].index == MENU_DUMMY) {
+    if (menu->template.choices[newCursorPos].index == MENU_HEADER) {
         return FALSE;
     }
 
@@ -355,7 +355,7 @@ Menu *Menu_MakeYesNoChoiceWithCursorAt(BgConfig *bgConfig, const WindowTemplate 
     StringList *choices = StringList_New(2, heapID);
 
     StringList_AddFromMessageBank(choices, msgLoader, MenuEntries_Text_Yes, 0);
-    StringList_AddFromMessageBank(choices, msgLoader, MenuEntries_Text_No, MENU_CANCELED);
+    StringList_AddFromMessageBank(choices, msgLoader, MenuEntries_Text_No, MENU_CANCEL);
     MessageLoader_Free(msgLoader);
 
     menuTemplate.choices = choices;

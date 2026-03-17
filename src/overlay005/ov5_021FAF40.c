@@ -3,8 +3,6 @@
 
 #include "generated/object_events_gfx.h"
 
-#include "struct_defs/struct_020217F4.h"
-
 #include "overlay005/berry_graphics_data.h"
 #include "overlay005/berry_graphics_table.h"
 #include "overlay005/const_ov5_021FAF40.h"
@@ -969,7 +967,7 @@ const UnkStruct_ov5_021ED2D0 Unk_ov5_021FB5BC[] = {
     { 0xffff, 0x0 }
 };
 
-static const UnkStruct_020217F4 Unk_ov5_021FB380[] = {
+static const BillboardAnim Unk_ov5_021FB380[] = {
     { 0x0, 0xF, 0x0 },
     { 0x10, 0x1F, 0x0 },
     { 0x20, 0x2F, 0x0 },
@@ -981,7 +979,7 @@ static const UnkStruct_020217F4 Unk_ov5_021FB380[] = {
     { 0x0, 0x0, 0x2 }
 };
 
-static const UnkStruct_020217F4 Unk_ov5_021FB3EC[] = {
+static const BillboardAnim Unk_ov5_021FB3EC[] = {
     { 0x0, 0xF, 0x0 },
     { 0x10, 0x1F, 0x0 },
     { 0x20, 0x2F, 0x0 },
@@ -995,7 +993,7 @@ static const UnkStruct_020217F4 Unk_ov5_021FB3EC[] = {
     { 0x0, 0x0, 0x2 }
 };
 
-static const UnkStruct_020217F4 Unk_ov5_021FB284[] = {
+static const BillboardAnim Unk_ov5_021FB284[] = {
     { 0x0, 0x2, 0x0 },
     { 0x3, 0x5, 0x0 },
     { 0x6, 0x9, 0x0 },
@@ -1003,18 +1001,18 @@ static const UnkStruct_020217F4 Unk_ov5_021FB284[] = {
     { 0x0, 0x0, 0x2 }
 };
 
-static const UnkStruct_020217F4 Unk_ov5_021FB134[] = {
+static const BillboardAnim Unk_ov5_021FB134[] = {
     { 0x0, 0xA, 0x1 },
     { 0x0, 0x0, 0x2 }
 };
 
-static const UnkStruct_020217F4 Unk_ov5_021FB200[] = {
+static const BillboardAnim Unk_ov5_021FB200[] = {
     { 0x0, 0xF, 0x0 },
     { 0x10, 0x1C, 0x0 },
     { 0x0, 0x0, 0x2 }
 };
 
-static const UnkStruct_020217F4 Unk_ov5_021FB2C0[] = {
+static const BillboardAnim Unk_ov5_021FB2C0[] = {
     { 0x0, 0xF, 0x0 },
     { 0x10, 0x1F, 0x0 },
     { 0x20, 0x2F, 0x0 },
@@ -1022,7 +1020,7 @@ static const UnkStruct_020217F4 Unk_ov5_021FB2C0[] = {
     { 0x0, 0x0, 0x2 }
 };
 
-static const UnkStruct_020217F4 Unk_ov5_021FB338[] = {
+static const BillboardAnim Unk_ov5_021FB338[] = {
     { 0x0, 0xF, 0x0 },
     { 0x10, 0x1F, 0x0 },
     { 0x20, 0x2F, 0x0 },
@@ -1031,28 +1029,28 @@ static const UnkStruct_020217F4 Unk_ov5_021FB338[] = {
     { 0x0, 0x0, 0x2 }
 };
 
-static const UnkStruct_020217F4 Unk_ov5_021FB17C[] = {
+static const BillboardAnim Unk_ov5_021FB17C[] = {
     { 0x0, 0x3C, 0x0 },
     { 0x0, 0x0, 0x2 }
 };
 
-static const UnkStruct_020217F4 Unk_ov5_021FB224[] = {
+static const BillboardAnim Unk_ov5_021FB224[] = {
     { 0x0, 0x7, 0x0 },
     { 0x8, 0x10, 0x0 },
     { 0x0, 0x0, 0x2 }
 };
 
-static const UnkStruct_020217F4 Unk_ov5_021FB1AC[] = {
+static const BillboardAnim Unk_ov5_021FB1AC[] = {
     { 0x0, 0x10, 0x0 },
     { 0x0, 0x0, 0x2 }
 };
 
-static const UnkStruct_020217F4 Unk_ov5_021FB1C4[] = {
+static const BillboardAnim Unk_ov5_021FB1C4[] = {
     { 0x0, 0x10, 0x0 },
     { 0x0, 0x0, 0x2 }
 };
 
-static const UnkStruct_020217F4 Unk_ov5_021FB2FC[] = {
+static const BillboardAnim Unk_ov5_021FB2FC[] = {
     { 0x0, 0xF, 0x1 },
     { 0x10, 0x1F, 0x1 },
     { 0x20, 0x2F, 0x1 },
@@ -1060,12 +1058,12 @@ static const UnkStruct_020217F4 Unk_ov5_021FB2FC[] = {
     { 0x0, 0x0, 0x2 }
 };
 
-static const UnkStruct_020217F4 Unk_ov5_021FB104[] = {
+static const BillboardAnim Unk_ov5_021FB104[] = {
     { 0x0, 0x20, 0x0 },
     { 0x0, 0x0, 0x2 }
 };
 
-static const UnkStruct_020217F4 Unk_ov5_021FB248[] = {
+static const BillboardAnim Unk_ov5_021FB248[] = {
     { 0x0, 0xB, 0x1 },
     { 0xC, 0x17, 0x1 },
     { 0x18, 0x23, 0x1 },
@@ -1073,28 +1071,28 @@ static const UnkStruct_020217F4 Unk_ov5_021FB248[] = {
     { 0x0, 0x0, 0x2 }
 };
 
-static const UnkStruct_020217F4 Unk_ov5_021FB11C[] = {
+static const BillboardAnim Unk_ov5_021FB11C[] = {
     { 0x0, 0x8, 0x1 },
     { 0x0, 0x0, 0x2 }
 };
 
-static const UnkStruct_020217F4 Unk_ov5_021FB1DC[] = {
+static const BillboardAnim Unk_ov5_021FB1DC[] = {
     { 0x0, 0x14, 0x1 },
     { 0x15, 0x29, 0x1 },
     { 0x0, 0x0, 0x2 }
 };
 
-static const UnkStruct_020217F4 Unk_ov5_021FB14C[] = {
+static const BillboardAnim Unk_ov5_021FB14C[] = {
     { 0x0, 0x14, 0x0 },
     { 0x0, 0x0, 0x2 }
 };
 
-static const UnkStruct_020217F4 Unk_ov5_021FB164[] = {
+static const BillboardAnim Unk_ov5_021FB164[] = {
     { 0x0, 0x13, 0x0 },
     { 0x0, 0x0, 0x2 }
 };
 
-static const UnkStruct_020217F4 Unk_ov5_021FB194[] = {
+static const BillboardAnim Unk_ov5_021FB194[] = {
     { 0x0, 0x3B, 0x1 },
     { 0x0, 0x0, 0x2 }
 };

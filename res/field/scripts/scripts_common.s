@@ -34,7 +34,7 @@
     ScriptEntry CommonScript_EmptyScript5 @ 0x7E8
     ScriptEntry _1282 @ 0x7E9
     ScriptEntry _12A8 @ 0x7EA
-    ScriptEntry _12BA @ 0x7EB
+    ScriptEntry CommonScript_Vent @ 0x7EB
     ScriptEntry _12CD @ 0x7EC
     ScriptEntry _12E0 @ 0x7ED
     ScriptEntry _12F3 @ 0x7EE
@@ -1363,34 +1363,16 @@ _12A8:
     ReleaseAll
     End
 
-_12BA:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message pl_msg_00000213_00067
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+CommonScript_Vent:
+    NPCMessage CommonStrings_Text_ItsAnAirVentThatExchangesTheUndergroundTunnelsAir
     End
 
 _12CD:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message pl_msg_00000213_00070
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage pl_msg_00000213_00070
     End
 
 _12E0:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message pl_msg_00000213_00071
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage pl_msg_00000213_00071
     End
 
 _12F3:
@@ -1457,13 +1439,7 @@ _139D:
     End
 
 _13AB:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message pl_msg_00000213_00082
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage pl_msg_00000213_00082
     End
 
 CommonScript_PrintPlateObtainedMessage:

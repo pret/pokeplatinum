@@ -67,25 +67,23 @@ field_board_nclrs = nclr_gen.process(field_board_pals,
     ]
 )
 
-field_board_order = files('field_board.order')
-
 field_board_narc = custom_target('field_board.narc',
     output: [
         'field_board.narc',
-        'field_board.naix.h',
+        'field_board.naix',
     ],
     input: [
         field_board_ncgrs,
         field_board_nclrs,
-        field_board_order,
     ],
     command: [
-        narc_exe, 'create',
-        '--naix',
-        '--order', field_board_order,
-        '--output', '@OUTPUT0@',
+        nitroarc_exe,
+        '--create',
+        '--index',
+        '--files-from', files('field_board.order'),
+        '--file', '@OUTPUT0@',
         '@PRIVATE_DIR@',
-    ]
+    ],
 )
 
 nitrofs_files += field_board_narc

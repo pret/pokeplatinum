@@ -89,12 +89,7 @@ _010C:
     End
 
 _0116:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    Message 4
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    EventMessage 4
     End
 
 _0127:

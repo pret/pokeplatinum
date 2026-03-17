@@ -18,7 +18,7 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 
-#include "res/graphics/poketch/poketch.naix.h"
+#include "res/graphics/poketch/poketch.naix"
 
 static void SetupSprites(DaycareCheckerGraphics *graphics, const DaycareStatus *daycareStatus);
 static void UnloadSprites(DaycareCheckerGraphics *graphics);

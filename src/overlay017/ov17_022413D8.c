@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_defs/struct_020954F0.h"
-#include "struct_defs/struct_02095C48.h"
 
 #include "battle_anim/is_form_symmetrical.h"
 #include "overlay017/const_ov17_022536B4.h"
@@ -18,10 +17,10 @@
 #include "overlay017/struct_ov17_022449B8.h"
 #include "overlay017/struct_ov17_02246F24.h"
 #include "overlay017/struct_ov17_022472F8.h"
-#include "overlay017/struct_ov17_022538F0.h"
 
 #include "assert.h"
 #include "bg_window.h"
+#include "contest.h"
 #include "game_options.h"
 #include "graphics.h"
 #include "heap.h"
@@ -44,6 +43,8 @@
 #include "unk_02012744.h"
 #include "unk_0208C098.h"
 #include "unk_02094EDC.h"
+
+#include "res/text/bank/contest_text.h"
 
 typedef struct {
     UnkStruct_ov17_02246F24 *unk_00;
@@ -157,7 +158,7 @@ typedef struct {
 } UnkStruct_ov17_022436D0;
 
 void include_unk_ov17_02253784();
-void ov17_02242EE4(UnkStruct_ov17_02246F24 *param0, int param1);
+void ov17_02242EE4(UnkStruct_ov17_02246F24 *param0, int contestantID);
 void ov17_02242FA4(UnkStruct_ov17_02246F24 *param0);
 void ov17_02242FC0(UnkStruct_ov17_02246F24 *param0);
 void ov17_02242FE8(UnkStruct_ov17_02246F24 *param0);
@@ -312,55 +313,60 @@ static const struct {
     { 0x80, 0x14 },
     { 0xA0, 0x14 }
 };
+typedef struct ActingCompetitionMessage {
+    u16 messageID;
+    u8 unk_02;
+    u8 useInstantText;
+} ActingCompetitionMessage;
 
-static const UnkStruct_ov17_022538F0 Unk_ov17_022538F0[] = {
-    { 0x0, 0x0, 0x0 },
-    { 0x0, 0x5, 0x1 },
-    { 0x1, 0x5, 0x1 },
-    { 0x2, 0x5, 0x1 },
-    { 0x3, 0x1B, 0x0 },
-    { 0x4, 0x0, 0x0 },
-    { 0x5, 0x6, 0x0 },
-    { 0x6, 0x1C, 0x0 },
-    { 0x7, 0x1C, 0x0 },
-    { 0x8, 0x1C, 0x0 },
-    { 0x9, 0x1C, 0x0 },
-    { 0xA, 0x6, 0x0 },
-    { 0xB, 0x6, 0x0 },
-    { 0xC, 0x6, 0x0 },
-    { 0xD, 0x6, 0x0 },
-    { 0xE, 0x6, 0x0 },
-    { 0xF, 0x6, 0x0 },
-    { 0x10, 0x6, 0x0 },
-    { 0x11, 0x6, 0x0 },
-    { 0x12, 0x6, 0x0 },
-    { 0x13, 0x6, 0x0 },
-    { 0x14, 0x6, 0x0 },
-    { 0x15, 0x6, 0x0 },
-    { 0x16, 0x0, 0x0 },
-    { 0x17, 0x0, 0x0 },
-    { 0x18, 0x0, 0x0 },
-    { 0x19, 0x5, 0x0 },
-    { 0x1A, 0x0, 0x0 },
-    { 0x1B, 0x0, 0x0 },
-    { 0x1C, 0x0, 0x0 },
-    { 0x1D, 0x0, 0x0 },
-    { 0x1E, 0x2, 0x0 },
-    { 0x1F, 0x2, 0x0 },
-    { 0x20, 0x2, 0x0 },
-    { 0x21, 0x2, 0x0 },
-    { 0x22, 0x2, 0x0 },
-    { 0x23, 0x0, 0x0 },
-    { 0x24, 0x0, 0x0 },
-    { 0x25, 0x0, 0x0 },
-    { 0x26, 0x0, 0x0 },
-    { 0x27, 0x0, 0x0 },
-    { 0x28, 0x0, 0x0 },
-    { 0x44, 0x0, 0x0 },
-    { 0x45, 0x0, 0x0 },
-    { 0x46, 0x0, 0x0 },
-    { 0x47, 0x0, 0x0 },
-    { 0x48, 0x0, 0x1 }
+static const ActingCompetitionMessage sActingCompetitionMessages[ACTING_COMPETITION_MESSAGE_MAX] = {
+    [ACTING_COMPETITION_MESSAGE_NONE] = { 0x0, 0x0, 0x0 },
+    [ACTING_COMPETITION_MESSAGE_CHOOSE_JUDGE] = { Contest_Text_ChooseJudge, 0x5, TRUE },
+    [ACTING_COMPETITION_MESSAGE_WHICH_MOVE_IS_YOUR_CHOICE] = { Contest_Text_WhichMoveIsYourChoice, 0x5, TRUE },
+    [ACTING_COMPETITION_MESSAGE_LAST_PERFORMANCE_CHOOSE_MOVE] = { Contest_Text_LastPerformanceChooseMove, 0x5, TRUE },
+    [ACTING_COMPETITION_MESSAGE_TO_JUDGE_MON_PERFORMED_MOVE] = { Contest_Text_ToJudgeMonPerformedMove, 0x1B, FALSE },
+    [ACTING_COMPETITION_MESSAGE_SOMEONE_ALREADY_PERFORMED_FOR_JUDGE] = { Contest_Text_SomeoneAlreadyPerformedForJudge, 0x0, FALSE },
+    [ACTING_COMPETITION_MESSAGE_EMPTY1] = { Contest_Text_Empty1, 0x6, FALSE },
+    [ACTING_COMPETITION_MESSAGE_JUDGE_STRONGLY_IMPRESSED] = { Contest_Text_JudgeWasStronglyImpressed, 0x1C, FALSE },
+    [ACTING_COMPETITION_MESSAGE_JUDGE_WAS_IMPRESSED] = { Contest_Text_JudgeWasImpressed, 0x1C, FALSE },
+    [ACTING_COMPETITION_MESSAGE_EVERYONE_PERFORMED_FOR_SAME_JUDGE] = { Contest_Text_EveryonePerformedForSameJudge, 0x1C, FALSE },
+    [ACTING_COMPETITION_MESSAGE_JUDGE_VERY_IMPRESSED] = { Contest_Text_JudgeWasVeryImpressed, 0x1C, FALSE },
+    [ACTING_COMPETITION_MESSAGE_EMPTY2] = { Contest_Text_Empty2, 0x6, FALSE },
+    [ACTING_COMPETITION_MESSAGE_COOL_MOVE_VOLTAGE_UP] = { Contest_Text_CoolMovePerformedVoltageUp, 0x6, FALSE },
+    [ACTING_COMPETITION_MESSAGE_BEAUTY_MOVE_VOLTAGE_UP] = { Contest_Text_BeautyMovePerformedVoltageUp, 0x6, FALSE },
+    [ACTING_COMPETITION_MESSAGE_CUTE_MOVE_VOLTAGE_UP] = { Contest_Text_CuteMovePerformedVoltageUp, 0x6, FALSE },
+    [ACTING_COMPETITION_MESSAGE_SMART_MOVE_VOLTAGE_UP] = { Contest_Text_SmartMovePerformedVoltageUp, 0x6, FALSE },
+    [ACTING_COMPETITION_MESSAGE_TOUGH_MOVE_VOLTAGE_UP] = { Contest_Text_ToughMovePerformedVoltageUp, 0x6, FALSE },
+    [ACTING_COMPETITION_MESSAGE_EMPTY3] = { Contest_Text_Empty3, 0x6, FALSE },
+    [ACTING_COMPETITION_MESSAGE_COOL_MOVE_VOLTAGE_DOWN] = { Contest_Text_CoolMovePerformedVoltageDown, 0x6, FALSE },
+    [ACTING_COMPETITION_MESSAGE_BEAUTY_MOVE_VOLTAGE_DOWN] = { Contest_Text_BeautyMovePerformedVoltageDown, 0x6, FALSE },
+    [ACTING_COMPETITION_MESSAGE_CUTE_MOVE_VOLTAGE_DOWN] = { Contest_Text_CuteMovePerformedVoltageDown, 0x6, FALSE },
+    [ACTING_COMPETITION_MESSAGE_SMART_MOVE_VOLTAGE_DOWN] = { Contest_Text_SmartMovePerformedVoltageDown, 0x6, FALSE },
+    [ACTING_COMPETITION_MESSAGE_TOUGH_MOVE_VOLTAGE_DOWN] = { Contest_Text_ToughMovePerformedVoltageDown, 0x6, FALSE },
+    [ACTING_COMPETITION_MESSAGE_EMPTY4] = { Contest_Text_Empty4, 0x0, FALSE },
+    [ACTING_COMPETITION_MESSAGE_EMPTY5] = { Contest_Text_Empty5, 0x0, FALSE },
+    [ACTING_COMPETITION_MESSAGE_AUDIENCE_IS_PRETTY_EXCITED] = { Contest_Text_AudienceIsGettingPrettyExcited, 0x0, FALSE },
+    [ACTING_COMPETITION_MESSAGE_AUDIENCE_IS_GOING_WILD] = { Contest_Text_AudienceIsGoingWild, 0x5, FALSE },
+    [ACTING_COMPETITION_MESSAGE_EMPTY6] = { Contest_Text_Empty6, 0x0, FALSE },
+    [ACTING_COMPETITION_MESSAGE_EMPTY7] = { Contest_Text_Empty7, 0x0, FALSE },
+    [ACTING_COMPETITION_MESSAGE_EMPTY8] = { Contest_Text_Empty8, 0x0, FALSE },
+    [ACTING_COMPETITION_MESSAGE_EMPTY9] = { Contest_Text_Empty9, 0x0, FALSE },
+    [ACTING_COMPETITION_MESSAGE_MON_DIDNT_STAND_OUT] = { Contest_Text_MonDidntStandOut, 0x2, FALSE },
+    [ACTING_COMPETITION_MESSAGE_MON_ATTRACTED_LITTLE_ATTENTION] = { Contest_Text_MonAttractedALittleAttention, 0x2, FALSE },
+    [ACTING_COMPETITION_MESSAGE_MON_ATTRACTED_DECENT_ATTENTION] = { Contest_Text_MonAttractedDecentAttention, 0x2, FALSE },
+    [ACTING_COMPETITION_MESSAGE_MON_ATTRACTED_A_LOT_OF_ATTENTION] = { Contest_Text_MonAttractedALotOfAttention, 0x2, FALSE },
+    [ACTING_COMPETITION_MESSAGE_MON_COMMANDED_TOTAL_ATTENTION] = { Contest_Text_MonCommandedTotalAttention, 0x2, FALSE },
+    [ACTING_COMPETITION_MESSAGE_TIME_FOR_CUTE_ACTING_COMPETITION] = { Contest_Text_TimeForCuteActingCompetition, 0x0, FALSE },
+    [ACTING_COMPETITION_MESSAGE_EMPTY10] = { Contest_Text_Empty10, 0x0, FALSE },
+    [ACTING_COMPETITION_MESSAGE_TIME_FOR_SMART_ACTING_COMPETITION] = { Contest_Text_TimeForSmartActingCompetition, 0x0, FALSE },
+    [ACTING_COMPETITION_MESSAGE_TIME_FOR_TOUGH_ACTING_COMPETITION] = { Contest_Text_TimeForToughActingCompetition, 0x0, FALSE },
+    [ACTING_COMPETITION_MESSAGE_TIME_FOR_BEAUTY_ACTING_COMPETITION] = { Contest_Text_TimeForBeautyActingCompetition, 0x0, FALSE },
+    [ACTING_COMPETITION_MESSAGE_TIME_FOR_COOL_ACTING_COMPETITION] = { Contest_Text_TimeForCoolActingCompetition, 0x0, FALSE },
+    [ACTING_COMPETITION_MESSAGE_NEXT_TURN_LOWEST_SCORING_PERFORM_FIRST] = { Contest_Text_NextTurnLowestScoringPerformFirst, 0x0, FALSE },
+    [ACTING_COMPETITION_MESSAGE_JUDGING_IS_OVER] = { Contest_Text_JudgingIsOver, 0x0, FALSE },
+    [ACTING_COMPETITION_MESSAGE_EMPTY11] = { Contest_Text_Empty11, 0x0, FALSE },
+    [ACTING_COMPETITION_MESSAGE_BEGIN_PRACTICE] = { Contest_Text_BeginPracticeActingCompetition, 0x0, FALSE },
+    [ACTING_COMPETITION_MESSAGE_COMMUNICATING_PLEASE_STAND_BY] = { Contest_Text_CommunicatingPleaseStandBy, 0x0, TRUE }
 };
 
 __attribute__((aligned(4))) static const int Unk_ov17_022536FC[] = {
@@ -466,52 +472,42 @@ static void ov17_022414C0(SysTask *param0, void *param1)
     }
 }
 
-void ov17_02241524(UnkStruct_ov17_0223F88C *param0, int param1)
+void ov17_02241524(UnkStruct_ov17_0223F88C *param0, int contestantID)
 {
-    PokemonSprite_Delete(param0->unk_08[param1]);
+    PokemonSprite_Delete(param0->unk_08[contestantID]);
 
-    GF_ASSERT(param0->pokemonSpriteDataArray[param1].tiles != NULL);
-    MI_CpuClear8(param0->pokemonSpriteDataArray[param1].tiles, (32 * 10 * 10));
+    GF_ASSERT(param0->pokemonSpriteDataArray[contestantID].tiles != NULL);
+    MI_CpuClear8(param0->pokemonSpriteDataArray[contestantID].tiles, (32 * 10 * 10));
 
-    param0->unk_08[param1] = sub_02095484(param0->unk_04, param1, param0->unk_00->unk_00[param1], 0, &param0->pokemonSpriteDataArray[param1], HEAP_ID_21, (256 - 40) - 32 * param1, (104 + 8) - 32 * param1, -0x200);
+    param0->unk_08[contestantID] = sub_02095484(param0->unk_04, contestantID, param0->unk_00->contestMons[contestantID], 0, &param0->pokemonSpriteDataArray[contestantID], HEAP_ID_21, (256 - 40) - 32 * contestantID, (104 + 8) - 32 * contestantID, -0x200);
 
-    PokemonSprite_SetAttribute(param0->unk_08[param1], MON_SPRITE_HIDE, 1);
-    PokemonSprite_SetAttribute(param0->unk_08[param1], MON_SPRITE_HIDE_2, 1);
+    PokemonSprite_SetAttribute(param0->unk_08[contestantID], MON_SPRITE_HIDE, 1);
+    PokemonSprite_SetAttribute(param0->unk_08[contestantID], MON_SPRITE_HIDE_2, 1);
 
-    {
-        u32 v0, v1;
+    u32 species = Pokemon_GetValue(param0->unk_00->contestMons[contestantID], MON_DATA_SPECIES, NULL);
+    u32 form = Pokemon_GetValue(param0->unk_00->contestMons[contestantID], MON_DATA_FORM, NULL);
 
-        v0 = Pokemon_GetValue(param0->unk_00->unk_00[param1], MON_DATA_SPECIES, NULL);
-        v1 = Pokemon_GetValue(param0->unk_00->unk_00[param1], MON_DATA_FORM, NULL);
-
-        if (IsFormSymmetrical(v0, v1) == 1) {
-            PokemonSprite_SetAttribute(param0->unk_08[param1], MON_SPRITE_FLIP_H, 1);
-        }
+    if (IsFormSymmetrical(species, form) == TRUE) {
+        PokemonSprite_SetAttribute(param0->unk_08[contestantID], MON_SPRITE_FLIP_H, 1);
     }
 }
 
 void ov17_022415E4(UnkStruct_ov17_0223F88C *param0)
 {
-    int v0;
+    for (int i = 0; i < CONTEST_NUM_PARTICIPANTS; i++) {
+        GF_ASSERT(param0->pokemonSpriteDataArray[i].tiles == NULL);
 
-    for (v0 = 0; v0 < 4; v0++) {
-        GF_ASSERT(param0->pokemonSpriteDataArray[v0].tiles == NULL);
+        param0->pokemonSpriteDataArray[i].tiles = Heap_Alloc(HEAP_ID_21, (32 * 10 * 10));
+        param0->unk_08[i] = sub_02095484(param0->unk_04, i, param0->unk_00->contestMons[i], 0, &param0->pokemonSpriteDataArray[i], HEAP_ID_21, (256 - 40) - 32 * i, (104 + 8) - 32 * i, -0x200);
 
-        param0->pokemonSpriteDataArray[v0].tiles = Heap_Alloc(HEAP_ID_21, (32 * 10 * 10));
-        param0->unk_08[v0] = sub_02095484(param0->unk_04, v0, param0->unk_00->unk_00[v0], 0, &param0->pokemonSpriteDataArray[v0], HEAP_ID_21, (256 - 40) - 32 * v0, (104 + 8) - 32 * v0, -0x200);
+        PokemonSprite_SetAttribute(param0->unk_08[i], MON_SPRITE_HIDE, 1);
+        PokemonSprite_SetAttribute(param0->unk_08[i], MON_SPRITE_HIDE_2, 1);
 
-        PokemonSprite_SetAttribute(param0->unk_08[v0], MON_SPRITE_HIDE, 1);
-        PokemonSprite_SetAttribute(param0->unk_08[v0], MON_SPRITE_HIDE_2, 1);
+        u32 species = Pokemon_GetValue(param0->unk_00->contestMons[i], MON_DATA_SPECIES, NULL);
+        u32 form = Pokemon_GetValue(param0->unk_00->contestMons[i], MON_DATA_FORM, NULL);
 
-        {
-            u32 v1, v2;
-
-            v1 = Pokemon_GetValue(param0->unk_00->unk_00[v0], MON_DATA_SPECIES, NULL);
-            v2 = Pokemon_GetValue(param0->unk_00->unk_00[v0], MON_DATA_FORM, NULL);
-
-            if (IsFormSymmetrical(v1, v2) == 1) {
-                PokemonSprite_SetAttribute(param0->unk_08[v0], MON_SPRITE_FLIP_H, 1);
-            }
+        if (IsFormSymmetrical(species, form) == TRUE) {
+            PokemonSprite_SetAttribute(param0->unk_08[i], MON_SPRITE_FLIP_H, 1);
         }
     }
 
@@ -526,12 +522,10 @@ void ov17_022415E4(UnkStruct_ov17_0223F88C *param0)
 
 void ov17_022416E4(UnkStruct_ov17_0223F88C *param0)
 {
-    int v0;
-
-    for (v0 = 0; v0 < 4; v0++) {
-        PokemonSprite_Delete(param0->unk_08[v0]);
-        Heap_Free(param0->pokemonSpriteDataArray[v0].tiles);
-        param0->pokemonSpriteDataArray[v0].tiles = NULL;
+    for (int contestantID = 0; contestantID < CONTEST_NUM_PARTICIPANTS; contestantID++) {
+        PokemonSprite_Delete(param0->unk_08[contestantID]);
+        Heap_Free(param0->pokemonSpriteDataArray[contestantID].tiles);
+        param0->pokemonSpriteDataArray[contestantID].tiles = NULL;
     }
 
     Heap_Free(param0->pokemonSpriteData.tiles);
@@ -637,7 +631,7 @@ static void ov17_02241908(SpriteManager *param0)
     SpriteManager_UnloadAnimObjById(param0, 33004);
 }
 
-void ov17_02241928(UnkStruct_ov17_0223F88C *param0, UnkStruct_02095C48 *param1, NARC *param2)
+void ov17_02241928(UnkStruct_ov17_0223F88C *param0, Contest *param1, NARC *param2)
 {
     int v0;
 
@@ -1360,120 +1354,120 @@ static void ov17_0224290C(UnkStruct_ov17_02246F24 *param0, int param1, const Unk
     case 0:
         break;
     case 1:
-        StringTemplate_SetNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param0->unk_304.unk_00]));
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->contestMons[param0->unk_304.contestantID]));
         break;
     case 2:
-        StringTemplate_SetNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->contestMons[param2->unk_00]));
         break;
     case 3:
-        StringTemplate_SetNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_01]));
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->contestMons[param2->unk_01]));
         break;
     case 4:
-        StringTemplate_SetMoveName(param0->unk_0C.unk_48, 0, param2->unk_02);
+        StringTemplate_SetMoveName(param0->unk_0C.unk_48, 0, param2->moveID);
         break;
     case 5:
         StringTemplate_SetNumber(param0->unk_0C.unk_48, 0, param2->unk_04, 1, 0, 1);
         break;
     case 6:
-        StringTemplate_SetContestJudgeName(param0->unk_0C.unk_48, 0, param0->unk_0C.unk_00->unk_C0[param2->unk_05].unk_00);
+        StringTemplate_SetContestJudgeName(param0->unk_0C.unk_48, 0, param0->unk_0C.unk_00->unk_C0[param2->judgeID].judgeNameMessageID);
         break;
     case 7:
-        StringTemplate_SetNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
-        StringTemplate_SetNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_01]));
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->contestMons[param2->unk_00]));
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->contestMons[param2->unk_01]));
         break;
     case 8:
-        StringTemplate_SetNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
-        StringTemplate_SetMoveName(param0->unk_0C.unk_48, 1, param2->unk_02);
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->contestMons[param2->unk_00]));
+        StringTemplate_SetMoveName(param0->unk_0C.unk_48, 1, param2->moveID);
         break;
     case 9:
-        StringTemplate_SetNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->contestMons[param2->unk_00]));
         StringTemplate_SetNumber(param0->unk_0C.unk_48, 1, param2->unk_04, 1, 0, 1);
         break;
     case 10:
-        StringTemplate_SetNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
-        StringTemplate_SetContestJudgeName(param0->unk_0C.unk_48, 1, param0->unk_0C.unk_00->unk_C0[param2->unk_05].unk_00);
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->contestMons[param2->unk_00]));
+        StringTemplate_SetContestJudgeName(param0->unk_0C.unk_48, 1, param0->unk_0C.unk_00->unk_C0[param2->judgeID].judgeNameMessageID);
         break;
     case 11:
-        StringTemplate_SetNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_01]));
-        StringTemplate_SetNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->contestMons[param2->unk_01]));
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->contestMons[param2->unk_00]));
         break;
     case 12:
-        StringTemplate_SetNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_01]));
-        StringTemplate_SetMoveName(param0->unk_0C.unk_48, 1, param2->unk_02);
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->contestMons[param2->unk_01]));
+        StringTemplate_SetMoveName(param0->unk_0C.unk_48, 1, param2->moveID);
         break;
     case 13:
-        StringTemplate_SetNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_01]));
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->contestMons[param2->unk_01]));
         StringTemplate_SetNumber(param0->unk_0C.unk_48, 1, param2->unk_04, 1, 0, 1);
         break;
     case 14:
-        StringTemplate_SetNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_01]));
-        StringTemplate_SetNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->contestMons[param2->unk_01]));
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->contestMons[param2->unk_00]));
         break;
     case 15:
-        StringTemplate_SetMoveName(param0->unk_0C.unk_48, 0, param2->unk_02);
-        StringTemplate_SetNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
+        StringTemplate_SetMoveName(param0->unk_0C.unk_48, 0, param2->moveID);
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->contestMons[param2->unk_00]));
         break;
     case 16:
-        StringTemplate_SetMoveName(param0->unk_0C.unk_48, 0, param2->unk_02);
-        StringTemplate_SetNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_01]));
+        StringTemplate_SetMoveName(param0->unk_0C.unk_48, 0, param2->moveID);
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->contestMons[param2->unk_01]));
         break;
     case 17:
-        StringTemplate_SetMoveName(param0->unk_0C.unk_48, 0, param2->unk_02);
+        StringTemplate_SetMoveName(param0->unk_0C.unk_48, 0, param2->moveID);
         StringTemplate_SetNumber(param0->unk_0C.unk_48, 1, param2->unk_04, 1, 0, 1);
         break;
     case 18:
-        StringTemplate_SetMoveName(param0->unk_0C.unk_48, 0, param2->unk_02);
-        StringTemplate_SetNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
+        StringTemplate_SetMoveName(param0->unk_0C.unk_48, 0, param2->moveID);
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->contestMons[param2->unk_00]));
         break;
     case 19:
         StringTemplate_SetNumber(param0->unk_0C.unk_48, 0, param2->unk_04, 1, 0, 1);
-        StringTemplate_SetNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->contestMons[param2->unk_00]));
         break;
     case 20:
         StringTemplate_SetNumber(param0->unk_0C.unk_48, 0, param2->unk_04, 1, 0, 1);
-        StringTemplate_SetNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_01]));
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->contestMons[param2->unk_01]));
         break;
     case 21:
         StringTemplate_SetNumber(param0->unk_0C.unk_48, 0, param2->unk_04, 1, 0, 1);
-        StringTemplate_SetMoveName(param0->unk_0C.unk_48, 1, param2->unk_02);
+        StringTemplate_SetMoveName(param0->unk_0C.unk_48, 1, param2->moveID);
         break;
     case 22:
         StringTemplate_SetNumber(param0->unk_0C.unk_48, 0, param2->unk_04, 1, 0, 1);
-        StringTemplate_SetNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->contestMons[param2->unk_00]));
         break;
     case 23:
-        StringTemplate_SetContestJudgeName(param0->unk_0C.unk_48, 0, param0->unk_0C.unk_00->unk_C0[param2->unk_05].unk_00);
-        StringTemplate_SetNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
+        StringTemplate_SetContestJudgeName(param0->unk_0C.unk_48, 0, param0->unk_0C.unk_00->unk_C0[param2->judgeID].judgeNameMessageID);
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->contestMons[param2->unk_00]));
         break;
     case 24:
-        StringTemplate_SetContestJudgeName(param0->unk_0C.unk_48, 0, param0->unk_0C.unk_00->unk_C0[param2->unk_05].unk_00);
-        StringTemplate_SetNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_01]));
+        StringTemplate_SetContestJudgeName(param0->unk_0C.unk_48, 0, param0->unk_0C.unk_00->unk_C0[param2->judgeID].judgeNameMessageID);
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->contestMons[param2->unk_01]));
         break;
     case 25:
-        StringTemplate_SetContestJudgeName(param0->unk_0C.unk_48, 0, param0->unk_0C.unk_00->unk_C0[param2->unk_05].unk_00);
-        StringTemplate_SetMoveName(param0->unk_0C.unk_48, 1, param2->unk_02);
+        StringTemplate_SetContestJudgeName(param0->unk_0C.unk_48, 0, param0->unk_0C.unk_00->unk_C0[param2->judgeID].judgeNameMessageID);
+        StringTemplate_SetMoveName(param0->unk_0C.unk_48, 1, param2->moveID);
         break;
     case 26:
-        StringTemplate_SetContestJudgeName(param0->unk_0C.unk_48, 0, param0->unk_0C.unk_00->unk_C0[param2->unk_05].unk_00);
+        StringTemplate_SetContestJudgeName(param0->unk_0C.unk_48, 0, param0->unk_0C.unk_00->unk_C0[param2->judgeID].judgeNameMessageID);
         StringTemplate_SetNumber(param0->unk_0C.unk_48, 1, param2->unk_04, 1, 0, 1);
         break;
     case 27:
-        StringTemplate_SetNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
-        StringTemplate_SetContestJudgeName(param0->unk_0C.unk_48, 1, param0->unk_0C.unk_00->unk_C0[param2->unk_05].unk_00);
-        StringTemplate_SetMoveName(param0->unk_0C.unk_48, 2, param2->unk_02);
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->contestMons[param2->unk_00]));
+        StringTemplate_SetContestJudgeName(param0->unk_0C.unk_48, 1, param0->unk_0C.unk_00->unk_C0[param2->judgeID].judgeNameMessageID);
+        StringTemplate_SetMoveName(param0->unk_0C.unk_48, 2, param2->moveID);
         break;
     case 28: {
         const UnkStruct_ov17_0224290C *v0 = param3;
         int v1;
 
-        StringTemplate_SetContestJudgeName(param0->unk_0C.unk_48, 0, param0->unk_0C.unk_00->unk_C0[v0->unk_00].unk_00);
+        StringTemplate_SetContestJudgeName(param0->unk_0C.unk_48, 0, param0->unk_0C.unk_00->unk_C0[v0->unk_00].judgeNameMessageID);
 
         for (v1 = 0; v1 < 4; v1++) {
             if (v0->unk_01[v1] == 4) {
                 break;
             }
 
-            StringTemplate_SetNickname(param0->unk_0C.unk_48, 1 + v1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[v0->unk_01[v1]]));
+            StringTemplate_SetNickname(param0->unk_0C.unk_48, 1 + v1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->contestMons[v0->unk_01[v1]]));
         }
     } break;
     default:
@@ -1488,30 +1482,30 @@ void ov17_02242DA8(UnkStruct_ov17_02246F24 *param0)
     Window_CopyToVRAM(&param0->unk_0C.unk_28[0]);
 }
 
-static void ov17_02242DC0(UnkStruct_ov17_02246F24 *param0, MessageLoader *param1, u32 param2, int param3, const UnkStruct_ov17_022449B8 *param4, const void *param5, int param6)
+static void ov17_02242DC0(UnkStruct_ov17_02246F24 *param0, MessageLoader *messageLoader, u32 messageID, int param3, const UnkStruct_ov17_022449B8 *param4, const void *param5, BOOL useInstantText)
 {
     String *v0;
-    u32 v1;
+    u32 textDelay;
 
-    if (param6 == 1) {
-        v1 = TEXT_SPEED_INSTANT;
+    if (useInstantText == TRUE) {
+        textDelay = TEXT_SPEED_INSTANT;
     } else {
         if (param0->unk_00->isLinkContest == FALSE) {
-            v1 = Options_TextFrameDelay(param0->unk_00->options);
+            textDelay = Options_TextFrameDelay(param0->unk_00->options);
         } else {
-            v1 = TEXT_SPEED_FAST;
+            textDelay = TEXT_SPEED_FAST;
         }
     }
 
-    v0 = MessageLoader_GetNewString(param1, param2);
+    v0 = MessageLoader_GetNewString(messageLoader, messageID);
     ov17_0224290C(param0, param3, param4, param5);
 
     StringTemplate_Format(param0->unk_0C.unk_48, param0->unk_0C.unk_4C, v0);
     Window_FillTilemap(&param0->unk_0C.unk_28[0], 0xff);
 
-    param0->unk_0C.unk_210 = Text_AddPrinterWithParams(&param0->unk_0C.unk_28[0], FONT_MESSAGE, param0->unk_0C.unk_4C, 0, 0, v1, NULL);
+    param0->unk_0C.unk_210 = Text_AddPrinterWithParams(&param0->unk_0C.unk_28[0], FONT_MESSAGE, param0->unk_0C.unk_4C, 0, 0, textDelay, NULL);
 
-    if (v1 == 0) {
+    if (textDelay == TEXT_SPEED_INSTANT) {
         param0->unk_0C.unk_210 = 0xff;
         Window_CopyToVRAM(&param0->unk_0C.unk_28[0]);
     }
@@ -1523,25 +1517,23 @@ static void ov17_02242DC0(UnkStruct_ov17_02246F24 *param0, MessageLoader *param1
     String_Free(v0);
 }
 
-void ov17_02242E5C(UnkStruct_ov17_02246F24 *param0, u32 param1, const UnkStruct_ov17_022449B8 *param2, const void *param3)
+void ov17_02242E5C(UnkStruct_ov17_02246F24 *param0, enum ActingCompetitionMessagesID actingMessagesID, const UnkStruct_ov17_022449B8 *param2, const void *param3)
 {
-    u32 v0, v1, v2;
+    GF_ASSERT(actingMessagesID < NELEMS(sActingCompetitionMessages));
 
-    GF_ASSERT(param1 < NELEMS(Unk_ov17_022538F0));
+    u32 messageID = sActingCompetitionMessages[actingMessagesID].messageID;
+    u32 v1 = sActingCompetitionMessages[actingMessagesID].unk_02;
+    u32 useInstantText = sActingCompetitionMessages[actingMessagesID].useInstantText;
 
-    v0 = Unk_ov17_022538F0[param1].unk_00;
-    v1 = Unk_ov17_022538F0[param1].unk_02;
-    v2 = Unk_ov17_022538F0[param1].unk_03;
-
-    ov17_02242DC0(param0, param0->unk_0C.unk_38, v0, v1, param2, param3, v2);
+    ov17_02242DC0(param0, param0->unk_0C.contestTextMessageLoader, messageID, v1, param2, param3, useInstantText);
 }
 
-void ov17_02242E9C(UnkStruct_ov17_02246F24 *param0, int param1, int param2, const UnkStruct_ov17_022449B8 *param3, const void *param4)
+void ov17_02242E9C(UnkStruct_ov17_02246F24 *param0, int contestMoveEffect, int param2, const UnkStruct_ov17_022449B8 *param3, const void *param4)
 {
-    u32 v0, v1;
+    u32 messageID, v1;
 
-    sub_02095790(param1, param2, &v0, &v1);
-    ov17_02242DC0(param0, param0->unk_0C.unk_44, v0, v1, param3, param4, 0);
+    sub_02095790(contestMoveEffect, param2, &messageID, &v1);
+    ov17_02242DC0(param0, param0->unk_0C.contestActingCompetitionMessages, messageID, v1, param3, param4, FALSE);
 }
 
 int ov17_02242ECC(UnkStruct_ov17_02246F24 *param0)
@@ -1553,25 +1545,24 @@ int ov17_02242ECC(UnkStruct_ov17_02246F24 *param0)
     return Text_IsPrinterActive(param0->unk_0C.unk_210);
 }
 
-void ov17_02242EE4(UnkStruct_ov17_02246F24 *param0, int param1)
+void ov17_02242EE4(UnkStruct_ov17_02246F24 *param0, int contestantID)
 {
-    String *v0;
-    TextColor v1;
+    TextColor color;
 
-    v0 = String_Init(12, HEAP_ID_21);
+    String *monName = String_Init(12, HEAP_ID_21);
 
-    Pokemon_GetValue(param0->unk_0C.unk_00->unk_00[param1], MON_DATA_NICKNAME_STRING, v0);
+    Pokemon_GetValue(param0->unk_0C.unk_00->contestMons[contestantID], MON_DATA_NICKNAME_STRING, monName);
 
-    if (param1 == param0->unk_00->unk_00.unk_113) {
-        v1 = TEXT_COLOR(1, 2, 0);
+    if (contestantID == param0->unk_00->unk_00.playerContestantID) {
+        color = TEXT_COLOR(1, 2, 0);
     } else {
-        v1 = TEXT_COLOR(5, 6, 0);
+        color = TEXT_COLOR(5, 6, 0);
     }
 
-    ov17_0223F1E8(HEAP_ID_21, param0->unk_0C.unk_24, param0->unk_0C.unk_1C, param0->unk_0C.unk_54, &param0->unk_0C.unk_1C8[param1], v0, FONT_SYSTEM, v1, 0, 33005, 0, 0, 0, 0, 15);
-    ov17_0223F1E8(HEAP_ID_21, param0->unk_0C.unk_24, param0->unk_0C.unk_1C, param0->unk_0C.unk_54, &param0->unk_0C.unk_180[param1], param0->unk_00->unk_00.unk_D8[param1], FONT_SYSTEM, v1, 0, 33005, 0, 0, 0, 0, 15);
+    ov17_0223F1E8(HEAP_ID_21, param0->unk_0C.unk_24, param0->unk_0C.unk_1C, param0->unk_0C.unk_54, &param0->unk_0C.unk_1C8[contestantID], monName, FONT_SYSTEM, color, 0, 33005, 0, 0, 0, 0, 15);
+    ov17_0223F1E8(HEAP_ID_21, param0->unk_0C.unk_24, param0->unk_0C.unk_1C, param0->unk_0C.unk_54, &param0->unk_0C.unk_180[contestantID], param0->unk_00->unk_00.trainerNames[contestantID], FONT_SYSTEM, color, 0, 33005, 0, 0, 0, 0, 15);
 
-    String_Free(v0);
+    String_Free(monName);
 }
 
 void ov17_02242FA4(UnkStruct_ov17_02246F24 *param0)
@@ -1643,34 +1634,34 @@ void ov17_022430F8(UnkStruct_ov17_0223F88C *param0)
     }
 }
 
-void ov17_02243120(UnkStruct_ov17_02246F24 *param0, UnkStruct_ov17_022449B8 *param1, int param2)
+void ov17_02243120(UnkStruct_ov17_02246F24 *param0, UnkStruct_ov17_022449B8 *param1, int contestantID)
 {
     MI_CpuClear8(param1, sizeof(UnkStruct_ov17_022449B8));
 
-    param1->unk_00 = param2;
-    param1->unk_02 = param0->unk_220.unk_06[param2];
-    param1->unk_05 = param0->unk_220.unk_0E[param2];
+    param1->unk_00 = contestantID;
+    param1->moveID = param0->unk_220.moveIDs[contestantID];
+    param1->judgeID = param0->unk_220.unk_0E[contestantID];
 }
 
 u32 ov17_0224314C(int param0, int param1, UnkStruct_ov17_022449B8 *param2)
 {
-    int v0;
+    int actingMessagesID;
 
     param2->unk_00 = param0;
 
     if (param1 <= 0) {
-        v0 = 31;
+        actingMessagesID = ACTING_COMPETITION_MESSAGE_MON_DIDNT_STAND_OUT;
     } else if (param1 <= 20) {
-        v0 = 32;
+        actingMessagesID = ACTING_COMPETITION_MESSAGE_MON_ATTRACTED_LITTLE_ATTENTION;
     } else if (param1 <= 50) {
-        v0 = 33;
+        actingMessagesID = ACTING_COMPETITION_MESSAGE_MON_ATTRACTED_DECENT_ATTENTION;
     } else if (param1 <= 90) {
-        v0 = 34;
+        actingMessagesID = ACTING_COMPETITION_MESSAGE_MON_ATTRACTED_A_LOT_OF_ATTENTION;
     } else {
-        v0 = 35;
+        actingMessagesID = ACTING_COMPETITION_MESSAGE_MON_COMMANDED_TOTAL_ATTENTION;
     }
 
-    return v0;
+    return actingMessagesID;
 }
 
 int ov17_02243174(int param0)
@@ -2052,101 +2043,101 @@ static void ov17_02243750(SysTask *param0, void *param1)
     }
 }
 
-u32 ov17_02243944(int param0)
+u32 Contest_GetActingCompetitionMessageIntroAnnouncement(enum PokemonContestType contestType)
 {
-    const u16 v0[] = {
-        41,
-        40,
-        36,
-        38,
-        39,
+    const u16 ActingMessagesTimeForContestType[CONTEST_TYPE_MAX] = {
+        ACTING_COMPETITION_MESSAGE_TIME_FOR_COOL_ACTING_COMPETITION,
+        ACTING_COMPETITION_MESSAGE_TIME_FOR_BEAUTY_ACTING_COMPETITION,
+        ACTING_COMPETITION_MESSAGE_TIME_FOR_CUTE_ACTING_COMPETITION,
+        ACTING_COMPETITION_MESSAGE_TIME_FOR_SMART_ACTING_COMPETITION,
+        ACTING_COMPETITION_MESSAGE_TIME_FOR_TOUGH_ACTING_COMPETITION,
     };
 
-    return v0[param0];
+    return ActingMessagesTimeForContestType[contestType];
 }
 
-u32 ov17_02243970(int param0)
+u32 Contest_GetActingCompetitionMessageGoodMoveType(enum PokemonContestType contestType)
 {
-    const u16 v0[] = {
-        12,
-        13,
-        14,
-        15,
-        16,
+    const u16 ActingMessagesMoveTypeVoltageUp[CONTEST_TYPE_MAX] = {
+        ACTING_COMPETITION_MESSAGE_COOL_MOVE_VOLTAGE_UP,
+        ACTING_COMPETITION_MESSAGE_BEAUTY_MOVE_VOLTAGE_UP,
+        ACTING_COMPETITION_MESSAGE_CUTE_MOVE_VOLTAGE_UP,
+        ACTING_COMPETITION_MESSAGE_SMART_MOVE_VOLTAGE_UP,
+        ACTING_COMPETITION_MESSAGE_TOUGH_MOVE_VOLTAGE_UP,
     };
 
-    return v0[param0];
+    return ActingMessagesMoveTypeVoltageUp[contestType];
 }
 
-u32 ov17_0224399C(int param0)
+u32 Contest_GetActingCompetitionMessageBadMoveType(enum PokemonContestType contestType)
 {
-    const u16 v0[] = {
-        18,
-        19,
-        20,
-        21,
-        22,
+    const u16 ActingMessagesMoveTypeVoltageDown[CONTEST_TYPE_MAX] = {
+        ACTING_COMPETITION_MESSAGE_COOL_MOVE_VOLTAGE_DOWN,
+        ACTING_COMPETITION_MESSAGE_BEAUTY_MOVE_VOLTAGE_DOWN,
+        ACTING_COMPETITION_MESSAGE_CUTE_MOVE_VOLTAGE_DOWN,
+        ACTING_COMPETITION_MESSAGE_SMART_MOVE_VOLTAGE_DOWN,
+        ACTING_COMPETITION_MESSAGE_TOUGH_MOVE_VOLTAGE_DOWN,
     };
 
-    return v0[param0];
+    return ActingMessagesMoveTypeVoltageDown[contestType];
 }
 
-void ov17_022439C8(UnkStruct_02095C48 *param0, int param1, int param2, UnkStruct_ov17_022439C8 *param3)
+void ov17_022439C8(Contest *param0, int contestantID, enum Move moveID, UnkStruct_ov17_022439C8 *param3)
 {
     MI_CpuClear8(param3, sizeof(UnkStruct_ov17_022439C8));
 
-    param3->unk_04 = param2;
+    param3->actingAnimationMoveID = moveID;
 
-    switch (param2) {
-    case 76:
-    case 13:
-    case 130:
-    case 143:
-        param3->unk_06 = 1;
+    switch (moveID) {
+    case MOVE_SOLAR_BEAM:
+    case MOVE_RAZOR_WIND:
+    case MOVE_SKULL_BASH:
+    case MOVE_SKY_ATTACK:
+        param3->unk_06 = TRUE;
         break;
-    case 216:
-        param3->unk_08 = 255;
+    case MOVE_RETURN:
+        param3->friendship = 255;
         break;
-    case 218:
-        param3->unk_08 = 0;
+    case MOVE_FRUSTRATION:
+        param3->friendship = 0;
         break;
-    case 174: {
-        int v0, v1;
+    case MOVE_CURSE: {
+        int type1, type2;
 
-        v0 = Pokemon_GetValue(param0->unk_00.unk_00[param1], MON_DATA_TYPE_1, NULL);
-        v1 = Pokemon_GetValue(param0->unk_00.unk_00[param1], MON_DATA_TYPE_2, NULL);
+        type1 = Pokemon_GetValue(param0->unk_00.contestMons[contestantID], MON_DATA_TYPE_1, NULL);
+        type2 = Pokemon_GetValue(param0->unk_00.contestMons[contestantID], MON_DATA_TYPE_2, NULL);
 
-        if ((v0 == TYPE_GHOST) || (v1 == TYPE_GHOST)) {
+        if (type1 == TYPE_GHOST || type2 == TYPE_GHOST) {
             param3->unk_07 = 1;
         } else {
             param3->unk_07 = 0;
         }
     } break;
-    case 119:
-        param3->unk_04 = 1;
+    case MOVE_MIRROR_MOVE:
+        param3->actingAnimationMoveID = MOVE_POUND;
         break;
-    case 267:
-        param3->unk_04 = 161;
+    case MOVE_NATURE_POWER:
+        param3->actingAnimationMoveID = MOVE_TRI_ATTACK;
         break;
-    case 280:
+    case MOVE_BRICK_BREAK:
         param3->unk_07 = 1;
         break;
-    case 467:
-        param3->unk_06 = 1;
+    case MOVE_SHADOW_FORCE:
+        param3->unk_06 = TRUE;
         param3->unk_00 = (0x40 | 0x80 | 0x40000 | 0x20000000);
         break;
     }
 }
 
-int ov17_02243A98(UnkStruct_ov17_022472F8 *param0, int param1, int param2)
+BOOL ov17_02243A98(UnkStruct_ov17_022472F8 *param0, int contestantID, int moveID)
 {
-    if (param2 == 0) {
-        return 0;
+    if (moveID == MOVE_NONE) {
+        return FALSE;
     }
 
-    if ((param2 == param0->unk_26[param1]) && (param0->unk_30.unk_A0[param1].unk_00_0 != param2)) {
-        return 0;
+    if ((moveID == param0->unk_26[contestantID]) && (param0->unk_30.unk_A0[contestantID].moveID != moveID)) {
+        return FALSE;
     }
 
-    return 1;
+    return TRUE;
 }

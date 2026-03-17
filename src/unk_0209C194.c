@@ -31,7 +31,7 @@ typedef struct {
     UnkStruct_0209C194_1 unk_08;
     UnkStruct_0209C194 *unk_28;
     FieldSystem *fieldSystem;
-    PartyMenu *unk_30;
+    PartyMenu *partyMenu;
     PokemonSummary *unk_34;
 } UnkStruct_0209C1EC;
 
@@ -106,7 +106,7 @@ static BOOL sub_0209C280(UnkStruct_0209C1EC *param0)
         } else {
             CommMan_SetErrorHandling(1, 1);
 
-            param0->unk_30 = FieldSystem_OpenPartyMenu_SelectForSpinTrade(param0->fieldSystem, param0->unk_04);
+            param0->partyMenu = FieldSystem_OpenPartyMenu_SelectForSpinTrade(param0->fieldSystem, param0->unk_04);
             param0->unk_28->unk_00 = 1;
             param0->unk_00 = 2;
         }
@@ -118,11 +118,11 @@ static BOOL sub_0209C280(UnkStruct_0209C1EC *param0)
 static BOOL sub_0209C2C0(UnkStruct_0209C1EC *param0)
 {
     if (FieldSystem_IsRunningApplication(param0->fieldSystem) == 0) {
-        int v0 = param0->unk_30->selectedMonSlot;
+        int v0 = param0->partyMenu->selectedMonSlot;
 
-        Heap_Free(param0->unk_30);
+        Heap_Free(param0->partyMenu);
 
-        if (param0->unk_30->menuSelectionResult == 1) {
+        if (param0->partyMenu->menuSelectionResult == 1) {
             param0->unk_34 = sub_0203D670(param0->fieldSystem, HEAP_ID_APPLICATION, SUMMARY_MODE_NORMAL);
             param0->unk_04 = v0;
             param0->unk_34->monIndex = v0;
@@ -143,7 +143,7 @@ static BOOL sub_0209C324(UnkStruct_0209C1EC *param0)
 {
     if (FieldSystem_IsRunningApplication(param0->fieldSystem) == 0) {
         Heap_Free(param0->unk_34);
-        param0->unk_30 = FieldSystem_OpenPartyMenu_SelectForSpinTrade(param0->fieldSystem, param0->unk_04);
+        param0->partyMenu = FieldSystem_OpenPartyMenu_SelectForSpinTrade(param0->fieldSystem, param0->unk_04);
         param0->unk_00 = 2;
     }
 

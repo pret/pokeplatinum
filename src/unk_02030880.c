@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/battle_frontier.h"
 #include "constants/species.h"
 
 #include "struct_defs/battle_frontier.h"
@@ -60,11 +61,11 @@ u16 sub_020308BC(SaveData *saveData, BattleFrontierStage *frontierStage, int cha
     }
 
     switch (challengeType) {
-    case 0:
+    case FRONTIER_CHALLENGE_SINGLE:
         return frontierStage->unk_04.unk_00[species];
-    case 1:
+    case FRONTIER_CHALLENGE_DOUBLE:
         return frontierStage->unk_04.unk_3DE[species];
-    case 2:
+    case FRONTIER_CHALLENGE_MULTI:
         return frontierStage->unk_04.unk_7BC[species];
     }
 

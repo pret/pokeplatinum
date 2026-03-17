@@ -17,7 +17,7 @@
 #include "sys_task_manager.h"
 #include "text.h"
 
-#include "res/graphics/poketch/poketch.naix.h"
+#include "res/graphics/poketch/poketch.naix"
 
 #define ANIM_INDEX_CURSOR          0
 #define ANIM_INDEX_BERRY           7

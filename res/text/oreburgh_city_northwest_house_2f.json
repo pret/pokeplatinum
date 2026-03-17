@@ -2,7 +2,7 @@
   "key": 25615,
   "messages": [
     {
-      "id": "pl_msg_00000071_00000",
+      "id": "OreburghCityNorthwestHouse2F_Text_GivingNicknamesToPokemonIsTheWayToGo",
       "en_US": [
         "Giving nicknames to Pokémon is\n",
         "the way to go.\r",
@@ -11,7 +11,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000071_00001",
+      "id": "OreburghCityNorthwestHouse2F_Text_ButHeNamedOurPsyduckYellowJustBecauseOfItsColor",
       "en_US": [
         "But he named our PSYDUCK “Yellow”\n",
         "just because of its color...\r",
@@ -20,14 +20,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000071_00002",
+      "id": "OreburghCityNorthwestHouse2F_Text_HereTakeThisIfYoudLike",
       "en_US": [
         "Are you catching Pokémon?\n",
         "Here, take this if you’d like.\r"
       ]
     },
     {
-      "id": "pl_msg_00000071_00003",
+      "id": "OreburghCityNorthwestHouse2F_Text_TheDuskBallIsAPokeBallDesignedForUseInDarkness",
       "en_US": [
         "The Dusk Ball is a Poké Ball designed\n",
         "for use in darkness.\r",
@@ -36,7 +36,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000071_00004",
+      "id": "OreburghCityNorthwestHouse2F_Text_YellowDuuuck",
       "en_US": "Yellow: Duuuck?"
     }
   ]

@@ -15,7 +15,7 @@
 #include "heap.h"
 #include "sys_task.h"
 
-#include "res/graphics/poketch/poketch.naix.h"
+#include "res/graphics/poketch/poketch.naix"
 
 #define ANIMATION_INDEX_CURSOR          0
 #define ANIMATION_INDEX_MARKER          1

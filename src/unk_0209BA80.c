@@ -9,13 +9,13 @@
 #include "struct_defs/struct_02039A58.h"
 #include "struct_defs/struct_0209BBA4.h"
 
+#include "applications/frontier/battle_arcade/main.h"
+#include "applications/frontier/battle_castle/opponent_app.h"
+#include "applications/frontier/battle_castle/self_app.h"
+#include "applications/frontier/battle_factory/main.h"
 #include "applications/frontier/battle_hall/main.h"
 #include "overlay104/ov104_0222ECE8.h"
 #include "overlay104/ov104_0223C164.h"
-#include "overlay105/ov105_02241AE0.h"
-#include "overlay107/battle_castle_opponent_app.h"
-#include "overlay107/battle_castle_self_app.h"
-#include "overlay108/ov108_02241AE0.h"
 
 #include "communication_system.h"
 #include "party.h"
@@ -47,10 +47,10 @@ static const CommCmdTable Unk_020F8BF0[] = {
     { ov104_0222F1C4, CommPacketSizeOf_Variable, NULL },
     { ov104_0222F210, CommPacketSizeOf_Variable, NULL },
     { ov104_0222F31C, CommPacketSizeOf_Variable, NULL },
-    { ov105_0224569C, CommPacketSizeOf_Variable, NULL },
-    { ov105_02245744, CommPacketSizeOf_Variable, NULL },
-    { ov105_022457B8, CommPacketSizeOf_Variable, NULL },
-    { ov105_022458A4, CommPacketSizeOf_Variable, NULL },
+    { BattleFactoryApp_DummyCommCommand, CommPacketSizeOf_Variable, NULL },
+    { BattleFactoryApp_HandleSelectionUpdateCmd, CommPacketSizeOf_Variable, NULL },
+    { BattleFactoryApp_DummyCommCommand2, CommPacketSizeOf_Variable, NULL },
+    { BattleFactoryApp_HandleTradeResultCmd, CommPacketSizeOf_Variable, NULL },
     { ov104_0222ECE8, CommPacketSizeOf_Variable, NULL },
     { ov104_0222ED2C, CommPacketSizeOf_Variable, NULL },
     { ov104_0222ED74, CommPacketSizeOf_Variable, NULL },
@@ -67,14 +67,14 @@ static const CommCmdTable Unk_020F8BF0[] = {
     { ov104_0222F6E8, CommPacketSizeOf_Variable, NULL },
     { ov104_0222F730, CommPacketSizeOf_Variable, NULL },
     { ov104_0222F7BC, CommPacketSizeOf_Variable, ov104_0222F84C },
-    { ov107_02245338, CommPacketSizeOf_Variable, NULL },
-    { ov107_022453A0, CommPacketSizeOf_Variable, NULL },
-    { ov107_02245408, CommPacketSizeOf_Variable, NULL },
-    { ov107_02245438, CommPacketSizeOf_Variable, NULL },
-    { ov107_02248910, CommPacketSizeOf_Variable, NULL },
-    { ov107_02248978, CommPacketSizeOf_Variable, NULL },
-    { ov107_022489E0, CommPacketSizeOf_Variable, NULL },
-    { ov107_02248A10, CommPacketSizeOf_Variable, NULL },
+    { BattleCastleSelfApp_HandlePlayerInfoCmd, CommPacketSizeOf_Variable, NULL },
+    { BattleCastleSelfApp_HandlePurchaseInfoCmd, CommPacketSizeOf_Variable, NULL },
+    { BattleCastleSelfApp_HandleUpdateCursorCmd, CommPacketSizeOf_Variable, NULL },
+    { BattleCastleSelfApp_HandleExitAppCmd, CommPacketSizeOf_Variable, NULL },
+    { BattleCastleOpponentApp_HandlePlayerInfoCmd, CommPacketSizeOf_Variable, NULL },
+    { BattleCastleOpponentApp_HandlePurchaseInfoCmd, CommPacketSizeOf_Variable, NULL },
+    { BattleCastleOpponentApp_HandleUpdateCursorCmd, CommPacketSizeOf_Variable, NULL },
+    { BattleCastleOpponentApp_HandleExitAppCmd, CommPacketSizeOf_Variable, NULL },
     { sub_0209BBEC, CommPacketSizeOf_Variable, NULL },
     { sub_0209BC3C, CommPacketSizeOf_Variable, NULL },
     { sub_0209BD28, CommPacketSizeOf_Variable, NULL },
@@ -89,9 +89,9 @@ static const CommCmdTable Unk_020F8BF0[] = {
     { ov104_0222FA5C, CommPacketSizeOf_Variable, NULL },
     { ov104_0222FAA8, CommPacketSizeOf_Variable, NULL },
     { ov104_0222FB34, CommPacketSizeOf_Variable, ov104_0222FBC4 },
-    { ov108_02242AB0, CommPacketSizeOf_Variable, NULL },
-    { ov108_02242B24, CommPacketSizeOf_Variable, NULL },
-    { ov108_02242B84, CommPacketSizeOf_Variable, NULL }
+    { BattleArcadeApp_HandleInitialLayoutCmd, CommPacketSizeOf_Variable, NULL },
+    { BattleArcadeApp_HandleResultCmd, CommPacketSizeOf_Variable, NULL },
+    { BattleArcadeApp_HandleUnusedCmd, CommPacketSizeOf_Variable, NULL }
 };
 
 void sub_0209BA80(void *param0)

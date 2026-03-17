@@ -21,10 +21,10 @@ u32 ov104_0222DD6C(FrontierPokemonDataDTO *param0, u16 param1, u32 param2, u32 p
 void ov104_0222DF40(const FrontierPokemonDataDTO *param0, Pokemon *param1, u8 param2);
 u16 BattleTower_GetObjectIDFromTrainerClass(u8 trainerClass);
 void ov104_0222E134(SaveData *saveData, Pokemon *param1);
-void ov104_0222E1C0(SaveData *saveData, Party *param1, Pokemon *param2);
-void ov104_0222E1D8(Sprite *param0, u8 param1);
-void ov104_0222E204(Sprite *param0, s16 param1, s16 param2, u8 param3);
-u8 ov104_0222E240(u16 param0, u16 param1);
+void ov104_0222E1C0(SaveData *saveData, Party *party, Pokemon *param2);
+void BattleCastle_UpdateMonSpriteAnimID(Sprite *sprite, u8 animID);
+void BattleCastle_UpdateMonSpritePosition(Sprite *sprite, s16 x, s16 y, u8 isSelected);
+u8 BattleCastle_GetPokeIconAnimID(u16 hp, u16 maxHp);
 void ov104_0222E278(FrontierDataDTO *param0, u16 param1, enum HeapID heapID, int param3);
 void ov104_0222E284(FieldBattleDTO *param0, FrontierTrainerDataDTO *param1, int param2, int battlerId, enum HeapID heapID);
 u32 ov104_0222E2F0(FrontierPokemonDataDTO *param0, u16 param1, int param2, u8 param3, u32 param4, int param5, int param6);

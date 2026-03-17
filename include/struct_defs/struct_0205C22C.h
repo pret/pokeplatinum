@@ -3,12 +3,12 @@
 
 #include "struct_decls/struct_0205B43C_decl.h"
 #include "struct_decls/struct_0205C95C_decl.h"
-#include "struct_decls/struct_0205E884_decl.h"
 #include "struct_defs/struct_0205C680.h"
 
 #include "field/field_system_decl.h"
 
 #include "pal_pad.h"
+#include "player_avatar.h"
 #include "sys_task_manager.h"
 
 typedef struct UnkStruct_0205C22C_t {

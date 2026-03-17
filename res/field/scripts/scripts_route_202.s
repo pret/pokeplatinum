@@ -34,13 +34,7 @@ Route202_SetCounterpartPokeRadarPosition:
     Return
 
 Route202_Youngster:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message Route202_Text_SomePokemonOnlyAppearInTheMorning
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage Route202_Text_SomePokemonOnlyAppearInTheMorning
     End
 
 Route202_ArrowSignpostSandgemTown:

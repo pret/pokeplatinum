@@ -1,10 +1,10 @@
 #include "generated/sdat.h"
 #include "constants/battle/battle_anim.h"
-#include "res/battle/particles/battle_particles.naix.h"
-#include "res/graphics/battle/moves/anim_ncer.naix.h"
-#include "res/graphics/battle/moves/anim_nanr.naix.h"
-#include "res/graphics/battle/moves/anim_ncgr.naix.h"
-#include "res/graphics/battle/moves/anim_nclr.naix.h"
+#include "res/battle/particles/battle_particles.naix"
+#include "res/graphics/battle/moves/anim_ncer.naix"
+#include "res/graphics/battle/moves/anim_nanr.naix"
+#include "res/graphics/battle/moves/anim_ncgr.naix"
+#include "res/graphics/battle/moves/anim_nclr.naix"
 
 #include "macros/btlanimfunc.inc"
 
@@ -415,7 +415,7 @@
 
     // Loads a particle system from battle_particles.narc
     // particleSystem: The particle system to load. (0-15)
-    // narcMemberID: The member ID in battle_particles.narc to load (See battle_particles.naix.h)
+    // narcMemberID: The member ID in battle_particles.narc to load (See battle_particles.naix)
     // Note: Advanced use only, use LoadParticleResource instead.
     .macro LoadParticleSystem particleSystem:req, narcMemberID:req
     .long 51
@@ -610,7 +610,7 @@
 
     // Loads a character resource into a sprite manager
     // managerID: ID of the sprite manager to load into (0-3)
-    // narcMemberIndex: Index of the character resource (See wechar.naix.h)
+    // narcMemberIndex: Index of the character resource (See wechar.naix)
     .macro LoadCharResObj managerID:req, narcMemberIndex:req
     .long 74
     .long \managerID
@@ -619,7 +619,7 @@
 
     // Loads a palette resource into a sprite manager
     // managerID: ID of the sprite manager to load into (0-3)
-    // narcMemberIndex: Index of the palette resource (See wepltt.naix.h)
+    // narcMemberIndex: Index of the palette resource (See wepltt.naix)
     // paletteIndex: Index of the palette within the resource to load (0-15)
     .macro LoadPlttRes managerID:req, narcMemberIndex:req, paletteIndex:req
     .long 75
@@ -630,7 +630,7 @@
 
     // Loads a cell resource into a sprite manager
     // managerID: ID of the sprite manager to load into (0-3)
-    // narcMemberIndex: Index of the cell resource (See wecell.naix.h)
+    // narcMemberIndex: Index of the cell resource (See wecell.naix)
     .macro LoadCellResObj managerID:req, narcMemberIndex:req
     .long 76
     .long \managerID
@@ -639,7 +639,7 @@
 
     // Loads an animation resource into a sprite manager
     // managerID: ID of the sprite manager to load into (0-3)
-    // narcMemberIndex: Index of the animation resource (See wecellanm.naix.h)
+    // narcMemberIndex: Index of the animation resource (See wecellanm.naix)
     .macro LoadAnimResObj managerID:req, narcMemberIndex:req
     .long 77
     .long \managerID
@@ -730,7 +730,7 @@
 
     // Loads a particle system from battle_particles.narc
     // particleSystem: The particle system to load. (0-15)
-    // narcMemberID: The member ID in battle_particles.narc to load (See battle_particles.naix.h)
+    // narcMemberID: The member ID in battle_particles.narc to load (See battle_particles.naix)
     .macro LoadParticleResource particleSystem:req, narcMemberID:req
     InitPokemonSpriteManager
     LoadPokemonSpriteDummyResources 0

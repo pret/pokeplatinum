@@ -16,11 +16,13 @@
 #include "applications/party_menu/defs.h"
 #include "applications/pc_boxes/pokemon_storage_session.h"
 #include "applications/poffin_case/main.h"
+#include "applications/pokedex/pokedex_main.h"
 #include "applications/pokemon_summary_screen/main.h"
 #include "applications/town_map/main.h"
 #include "field/field_system_decl.h"
 #include "overlay090/struct_ov90_021D0D80.h"
 
+#include "bag_context.h"
 #include "field_battle_data_transfer.h"
 #include "field_move_tasks.h"
 #include "field_task.h"
@@ -31,8 +33,8 @@
 #include "trainer_card.h"
 
 void FieldSystem_StartBattleProcess(FieldSystem *fieldSystem, FieldBattleDTO *dto);
-void sub_0203D1E4(FieldSystem *fieldSystem, void *param1);
-void *sub_0203D20C(FieldSystem *fieldSystem, ItemUseContext *param1);
+void sub_0203D1E4(FieldSystem *fieldSystem, BagContext *param1);
+BagContext *FieldSystem_OpenBag(FieldSystem *fieldSystem, ItemUseContext *param1);
 void *FieldSystem_CreateBagContext(FieldSystem *fieldSystem, int pocketType);
 u16 BagContext_GetSelectedItem(void *bagContext);
 void sub_0203D2E4(FieldSystem *fieldSystem, void *param1);
@@ -49,9 +51,9 @@ PartyMenu *FieldSystem_OpenPartyMenu_SelectForSpinTrade(FieldSystem *fieldSystem
 PartyMenu *FieldSystem_OpenPartyMenu_SelectForItemUsage(FieldSystem *fieldSystem, enum HeapID heapID, enum Item item);
 
 int PartyMenu_GetSelectedSlot(PartyMenu *partyMenu);
-int sub_0203D438(void *param0);
-int sub_0203D440(void *param0);
-void *sub_0203D5C8(int param0, FieldSystem *fieldSystem, int param2);
+int PartyMenu_GetMenuSelectionResult(PartyMenu *partyMenu);
+int PokemonSummary_GetPartySlot(PokemonSummary *monSummary);
+void *FieldSystem_GetContestMonSummary(int unused, FieldSystem *fieldSystem, int partySlot);
 PokemonSummary *sub_0203D670(FieldSystem *fieldSystem, enum HeapID heapID, int mode);
 void *FieldSystem_OpenSummaryScreenSelectMove(enum HeapID heapID, FieldSystem *fieldSystem, u8 partyIndex);
 int PokemonSummary_GetSelectedMoveSlot(void *summary);
@@ -85,7 +87,7 @@ void sub_0203DFE8(
     u16 *param6);
 void sub_0203E09C(FieldSystem *fieldSystem, TrainerCard *param1);
 void FieldSystem_OpenTrainerCardScreen(FieldSystem *fieldSystem, TrainerCard *trainerCard);
-BOOL sub_0203E0AC(FieldSystem *fieldSystem, void *param1);
+BOOL FieldSystem_OpenPokedex(FieldSystem *fieldSystem, PokedexOverlayArgs *args);
 void FieldSystem_LaunchChooseStarterApp(FieldSystem *fieldSystem, ChooseStarterData *param1);
 void sub_0203E0D0(FieldSystem *fieldSystem);
 void FieldSystem_LaunchGTSApp(FieldSystem *fieldSystem, BOOL connectToWiFi);
@@ -102,7 +104,7 @@ BOOL sub_0203E348(FieldSystem *fieldSystem, UnkStruct_0203E348 *param1);
 void sub_0203E414(FieldTask *task, int slotMachineID);
 void AccessoryShop_Init(FieldTask *task);
 void *FieldSystem_ShowDiploma(FieldSystem *fieldSystem, enum HeapID heapID, BOOL isNatDex);
-void *sub_0203E564(FieldSystem *fieldSystem, u8 param1, u8 param2, u16 param3, enum HeapID heapID);
+void *FieldSystem_OpenBattleFrontierRecord(FieldSystem *fieldSystem, u8 param1, u8 param2, u16 param3, enum HeapID heapID);
 void *sub_0203E608(FieldSystem *fieldSystem, enum HeapID heapID);
 void *FieldSystem_OpenSummaryScreenTeachMove(int unused, FieldSystem *fieldSystem, u16 partySlot, u16 move);
 void sub_0203E6C0(FieldSystem *fieldSystem, int param1, int param2);

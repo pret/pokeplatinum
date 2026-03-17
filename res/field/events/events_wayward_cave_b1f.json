@@ -19,11 +19,11 @@
     ],
     "object_events": [
         {
-            "id": "WAYWARD_CAVE_B1F_POKEBALL_0",
+            "id": "LOCALID_ITEM_GRIP_CLAW",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0420",
+            "hidden_flag": "FLAG_OBTAINED_WAYWARD_CAVE_B1F_GRIP_CLAW",
             "script": 7042,
             "initial_dir": 0,
             "data": [],
@@ -34,11 +34,11 @@
             "y": 0
         },
         {
-            "id": "WAYWARD_CAVE_B1F_POKEBALL_1",
+            "id": "LOCALID_ITEM_MAX_ETHER",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x041E",
+            "hidden_flag": "FLAG_OBTAINED_WAYWARD_CAVE_B1F_MAX_ETHER",
             "script": 7040,
             "initial_dir": 0,
             "data": [],
@@ -49,11 +49,11 @@
             "y": 0
         },
         {
-            "id": "WAYWARD_CAVE_B1F_POKEBALL_2",
+            "id": "LOCALID_ITEM_RARE_CANDY",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x041F",
+            "hidden_flag": "FLAG_OBTAINED_WAYWARD_CAVE_B1F_RARE_CANDY",
             "script": 7041,
             "initial_dir": 0,
             "data": [],

@@ -2,11 +2,11 @@
     "bg_events": [],
     "object_events": [
         {
-            "id": "OLD_CHATEAU_BACK_WEST_ROOM_POKEBALL_0",
+            "id": "LOCALID_ITEM_DREAD_PLATE",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x04ED",
+            "hidden_flag": "FLAG_OBTAINED_OLD_CHATEAU_BACK_WEST_ROOM_DREAD_PLATE",
             "script": 7247,
             "initial_dir": 0,
             "data": [],

@@ -31,11 +31,10 @@ nanrs = nanr_gen.process(anims)
 
 nscrs = copy_gen.process(files('background.NSCR'))
 
-underground_top_screen_order = files('underground_top_screen.order')
 underground_top_screen_narc = custom_target('underground_top_screen.narc',
     output: [
         'underground_top_screen.narc',
-        'underground_top_screen.naix.h',
+        'underground_top_screen.naix',
     ],
     input: [
         ncgrs,
@@ -46,12 +45,13 @@ underground_top_screen_narc = custom_target('underground_top_screen.narc',
         nscrs,
     ],
     command: [
-        narc_exe, 'create',
-        '--naix',
-        '--order', underground_top_screen_order,
-        '--output', '@OUTPUT0@',
+        nitroarc_exe,
+        '--create',
+        '--index',
+        '--files-from', files('underground_top_screen.order'),
+        '--file', '@OUTPUT0@',
         '@PRIVATE_DIR@',
-    ]
+    ],
 )
 
 nitrofs_files += underground_top_screen_narc

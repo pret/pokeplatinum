@@ -11,11 +11,11 @@
     ],
     "object_events": [
         {
-            "id": "IRON_ISLAND_IRON_RUINS_POKEBALL_0",
+            "id": "LOCALID_ITEM_METAL_COAT",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0539",
+            "hidden_flag": "FLAG_OBTAINED_IRON_ISLAND_IRON_RUINS_METAL_COAT",
             "script": 7322,
             "initial_dir": 0,
             "data": [],

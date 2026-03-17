@@ -44,7 +44,7 @@
 #include "unk_020366A0.h"
 #include "unk_0208C098.h"
 
-#include "res/battle/scripts/sub_seq.naix.h"
+#include "res/battle/scripts/sub_seq.naix"
 #include "res/text/bank/battle_strings.h"
 
 #define TRMSG_ACTIVE_BATTLER_HALF_HP_FLAG 2

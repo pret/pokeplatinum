@@ -134,29 +134,11 @@ TeamGalacticEternaBuilding4F_UnusedMovement3:
     EndMovement
 
 _0198:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    WaitFanfare SEQ_SE_CONFIRM
-    PlayCry SPECIES_CLEFAIRY
-    Message 2
-    WaitCry
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    PokemonCryAndMessage SPECIES_CLEFAIRY, 2
     End
 
 _01B7:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    WaitFanfare SEQ_SE_CONFIRM
-    PlayCry SPECIES_BUNEARY
-    Message 5
-    WaitCry
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    PokemonCryAndMessage SPECIES_BUNEARY, 5
     End
 
 _01D6:
@@ -178,10 +160,5 @@ _01F4:
     End
 
 _01FF:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    Message 6
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    EventMessage 6
     End

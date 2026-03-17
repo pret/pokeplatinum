@@ -10,7 +10,6 @@
 #include "generated/object_events_gfx.h"
 
 #include "struct_decls/struct_02061AB4_decl.h"
-#include "struct_defs/struct_020708E0.h"
 #include "struct_defs/struct_020711C8.h"
 
 #include "applications/town_map/main.h"
@@ -43,8 +42,13 @@
 
 #define FIELD_MOVE_FLAG(move) (1 << (move))
 
+enum FlyState {
+    FLY_STATE_START_CUT_IN = 0,
+    FLY_STATE_MAIN,
+};
+
 typedef struct {
-    FieldMoveTaskContext task;
+    FieldMoveTask task;
     FieldMoveErrContext error;
 } FieldMoveTaskOrError;
 
@@ -57,7 +61,7 @@ typedef struct {
 static void FieldMoves_CanUseSurfDistortionWorld(FieldSystem *fieldSystem, FieldMoveContext *param1);
 
 static enum FieldMoveError FieldMoves_CheckFly(const FieldMoveContext *fieldMoveContext);
-static void FieldMoves_SetFlyTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext);
+static void FieldMoves_SetSelectFlyDestinationTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext);
 
 static enum FieldMoveError FieldMoves_CheckTeleport(const FieldMoveContext *fieldMoveContext);
 static void FieldMoves_SetTeleportTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext);
@@ -108,7 +112,7 @@ static BOOL FieldMoves_CutTask(FieldTask *taskMan);
 
 static const FieldMoveTaskOrError fieldMoveTaskOrError[] = {
     { FieldMoves_SetCutTask, FieldMoves_CheckCut },
-    { FieldMoves_SetFlyTask, FieldMoves_CheckFly },
+    { FieldMoves_SetSelectFlyDestinationTask, FieldMoves_CheckFly },
     { FieldMoves_SetSurfTask, FieldMoves_CheckSurf },
     { FieldMoves_SetStrengthTask, FieldMoves_CheckStrength },
     { FieldMoves_SetDefogTask, FieldMoves_CheckDefog },
@@ -167,6 +171,51 @@ static inline BOOL PlayerOutsideLinkRoom(const FieldMoveContext *fieldMoveContex
     }
 
     return TRUE;
+}
+
+FlyContext *FlyContext_New(enum HeapID heapID, FieldSystem *fieldSystem, Pokemon *mon, u16 mapID, s16 x, s16 z)
+{
+    FlyContext *ctx = Heap_AllocAtEnd(heapID, sizeof(FlyContext));
+
+    memset(ctx, 0, sizeof(FlyContext));
+
+    ctx->fieldSystem = fieldSystem;
+    ctx->mon = mon;
+    ctx->mapID = mapID;
+    ctx->x = x;
+    ctx->z = z;
+
+    return ctx;
+}
+
+BOOL FieldMoves_FlyTask(FieldTask *task)
+{
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
+    FlyContext *ctx = FieldTask_GetEnv(task);
+
+    switch (ctx->state) {
+    case FLY_STATE_START_CUT_IN:
+        ctx->cutInTask = HMCutIn_StartTask(ctx->fieldSystem, TRUE, ctx->mon, PlayerAvatar_Gender(ctx->fieldSystem->playerAvatar));
+        ctx->state++;
+        break;
+    case FLY_STATE_MAIN:
+        if (!HMCutIn_IsFinished(ctx->cutInTask)) {
+            break;
+        }
+
+        HMCutIn_EndTask(ctx->cutInTask);
+
+        u16 destination = GetSpawnIdByMapAndCoords(ctx->mapID, ctx->x, ctx->z);
+        GF_ASSERT(destination != MAP_HEADER_EVERYWHERE);
+
+        Location location;
+        Location_InitFly(destination, &location);
+        FieldTask_ChangeMapChangeFly(task, location.mapId, WARP_ID_NONE, location.x, location.z, DIR_SOUTH);
+
+        Heap_Free(ctx);
+    }
+
+    return FALSE;
 }
 
 void *FieldMove_GetTaskOrError(u16 taskOrError, u16 fieldMove)
@@ -246,7 +295,7 @@ static void FieldMoves_CanUseSurfDistortionWorld(FieldSystem *fieldSystem, Field
     u32 currTileBehavior, nextTileBehavior;
 
     distortionDir = PlayerAvatar_GetDistortionDir(fieldSystem->playerAvatar);
-    nextTileBehavior = PlayerAvatar_GetDistortionTileBehaviour(fieldSystem->playerAvatar, distortionDir);
+    nextTileBehavior = PlayerAvatar_GetDistortionFacingTileBehaviour(fieldSystem->playerAvatar, distortionDir);
     currTileBehavior = PlayerAvatar_GetDistortionCurrTileBehaviour(fieldSystem->playerAvatar);
 
     if (PlayerAvatar_CanUseSurf(fieldSystem->playerAvatar, currTileBehavior, nextTileBehavior) == TRUE) {
@@ -297,7 +346,7 @@ static void FieldMoves_SetCutTask(FieldMovePokemon *fieldMoveMon, const FieldMov
 
     menu->callback = FieldMoves_CutTask;
     menu->taskData = taskData;
-    menu->state = START_MENU_STATE_10;
+    menu->state = START_MENU_STATE_NEW_TASK;
 }
 
 static BOOL FieldMoves_CutTask(FieldTask *taskMan)
@@ -337,20 +386,20 @@ static enum FieldMoveError FieldMoves_CheckFly(const FieldMoveContext *fieldMove
     return FIELD_MOVE_ERROR_NONE;
 }
 
-static void FieldMoves_SetFlyTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext)
+static void FieldMoves_SetSelectFlyDestinationTask(FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(fieldMoveMon->fieldTask);
     StartMenu *menu = FieldTask_GetEnv(fieldMoveMon->fieldTask);
 
     u32 *fieldMonID = Heap_Alloc(HEAP_ID_FIELD2, sizeof(u32));
     *fieldMonID = fieldMoveMon->fieldMonId;
-    menu->unk_260 = fieldMonID;
 
+    menu->additionalTaskContext = fieldMonID;
     menu->taskData = Heap_Alloc(HEAP_ID_FIELD2, sizeof(TownMapContext));
 
     TownMapContext_Init(fieldSystem, menu->taskData, TOWN_MAP_MODE_FLY);
     FieldSystem_OpenTownMap(fieldSystem, menu->taskData);
-    StartMenu_SetCallback(menu, sub_0203C434);
+    StartMenu_SetCallback(menu, StartMenu_FlyDestinationSelected);
 }
 
 static enum FieldMoveError FieldMoves_CheckSurf(const FieldMoveContext *fieldMoveContext)
@@ -387,7 +436,7 @@ static void FieldMoves_SetSurfTask(FieldMovePokemon *fieldMoveMon, const FieldMo
 
     menu->callback = FieldMoves_SurfTask;
     menu->taskData = taskData;
-    menu->state = START_MENU_STATE_10;
+    menu->state = START_MENU_STATE_NEW_TASK;
 }
 
 static BOOL FieldMoves_SurfTask(FieldTask *taskMan)
@@ -428,7 +477,7 @@ static void FieldMoves_SetStrengthTask(FieldMovePokemon *fieldMoveMon, const Fie
 
     menu->callback = FieldMoves_StrengthTask;
     menu->taskData = taskData;
-    menu->state = START_MENU_STATE_10;
+    menu->state = START_MENU_STATE_NEW_TASK;
 }
 
 static BOOL FieldMoves_StrengthTask(FieldTask *param0)
@@ -469,7 +518,7 @@ static void FieldMoves_SetDefogTask(FieldMovePokemon *fieldMoveMon, const FieldM
 
     menu->callback = FieldMoves_DefogTask;
     menu->taskData = taskData;
-    menu->state = START_MENU_STATE_10;
+    menu->state = START_MENU_STATE_NEW_TASK;
 }
 
 static BOOL FieldMoves_DefogTask(FieldTask *taskMan)
@@ -514,7 +563,7 @@ static void FieldMoves_SetRockSmashTask(FieldMovePokemon *fieldMoveMon, const Fi
 
     menu->callback = FieldMoves_RockSmashTask;
     menu->taskData = taskData;
-    menu->state = START_MENU_STATE_10;
+    menu->state = START_MENU_STATE_NEW_TASK;
 }
 
 static BOOL FieldMoves_RockSmashTask(FieldTask *taskMan)
@@ -555,7 +604,7 @@ static void FieldMoves_SetWaterfallTask(FieldMovePokemon *fieldMoveMon, const Fi
 
     menu->callback = FieldMoves_WaterfallTask;
     menu->taskData = taskData;
-    menu->state = START_MENU_STATE_10;
+    menu->state = START_MENU_STATE_NEW_TASK;
 }
 
 static BOOL FieldMoves_WaterfallTask(FieldTask *param0)
@@ -600,7 +649,7 @@ static void FieldMoves_SetRockClimbTask(FieldMovePokemon *fieldMoveMon, const Fi
 
     menu->callback = FieldMoves_RockClimbTask;
     menu->taskData = taskData;
-    menu->state = START_MENU_STATE_10;
+    menu->state = START_MENU_STATE_NEW_TASK;
 }
 
 static BOOL FieldMoves_RockClimbTask(FieldTask *taskMan)
@@ -637,7 +686,7 @@ static void FieldMoves_SetFlashTask(FieldMovePokemon *fieldMoveMon, const FieldM
 
     menu->callback = FieldMoves_FlashTask;
     menu->taskData = taskData;
-    menu->state = START_MENU_STATE_10;
+    menu->state = START_MENU_STATE_NEW_TASK;
 }
 
 static BOOL FieldMoves_FlashTask(FieldTask *taskMan)
@@ -684,7 +733,7 @@ static void FieldMoves_SetTeleportTask(FieldMovePokemon *fieldMoveMon, const Fie
 
     menu->callback = FieldMoves_TeleportTask;
     menu->taskData = v2;
-    menu->state = START_MENU_STATE_10;
+    menu->state = START_MENU_STATE_NEW_TASK;
 }
 
 static BOOL FieldMoves_TeleportTask(FieldTask *task)
@@ -727,7 +776,7 @@ static void FieldMoves_SetDigTask(FieldMovePokemon *fieldMoveMon, const FieldMov
 
     v1->callback = FieldMoves_DigTask;
     v1->taskData = v2;
-    v1->state = START_MENU_STATE_10;
+    v1->state = START_MENU_STATE_NEW_TASK;
 }
 
 static BOOL FieldMoves_DigTask(FieldTask *task)
@@ -770,7 +819,7 @@ static void FieldMoves_SetSweetScentTask(FieldMovePokemon *fieldMoveMon, const F
 
     startMenu->callback = ov5_021F101C;
     startMenu->taskData = v2;
-    startMenu->state = START_MENU_STATE_10;
+    startMenu->state = START_MENU_STATE_NEW_TASK;
 
     v4 = JournalEntry_CreateEventUsedMove(LOCATION_EVENT_LURED_POKEMON - LOCATION_EVENT_USED_CUT, fieldSystem->location->mapId, HEAP_ID_FIELD2);
     JournalEntry_SaveData(fieldSystem->journalEntry, v4, JOURNAL_LOCATION);
@@ -795,7 +844,7 @@ static void FieldMoves_SetChatterTask(FieldMovePokemon *fieldMoveMon, const Fiel
 
     menu->callback = FieldMoves_ChatterTask;
     menu->taskData = taskData;
-    menu->state = START_MENU_STATE_10;
+    menu->state = START_MENU_STATE_NEW_TASK;
 }
 
 static BOOL FieldMoves_ChatterTask(FieldTask *taskMan)

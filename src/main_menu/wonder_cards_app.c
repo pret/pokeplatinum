@@ -51,7 +51,7 @@
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
 
-#include "res/graphics/main_menu/main_menu_graphics.naix.h"
+#include "res/graphics/main_menu/main_menu_graphics.naix"
 #include "res/text/bank/mystery_gift_menu.h"
 
 FS_EXTERN_OVERLAY(main_menu);
@@ -195,7 +195,7 @@ typedef struct WonderCardFlipAnimManager {
 } WonderCardFlipAnimManager;
 
 typedef struct WonderCardsAppWindowTemplate {
-    int screen;
+    enum WonderCardsAppScreen screen;
     int tilemapLeft;
     int tilemapTop;
     int width;
@@ -1123,9 +1123,9 @@ static void ProcessStateTransitionMenuInput(ApplicationManager *appMan, enum Won
     u32 input = ListMenu_ProcessInput(appData->listMenu);
 
     switch (input) {
-    case LIST_NOTHING_CHOSEN:
+    case MENU_NOTHING_CHOSEN:
         break;
-    case LIST_CANCEL:
+    case MENU_CANCEL:
         Sound_PlayEffect(SEQ_SE_CONFIRM);
 
         if (onCancelStateTransition) {

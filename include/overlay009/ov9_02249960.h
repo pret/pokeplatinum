@@ -1,18 +1,34 @@
 #ifndef POKEPLATINUM_OV9_02249960_H
 #define POKEPLATINUM_OV9_02249960_H
 
-#include "struct_decls/struct_020216E0_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 
 #include "field/field_system_decl.h"
 #include "overlay009/struct_ov9_0224F6EC_decl.h"
 
+#include "billboard.h"
 #include "field_task.h"
 
 #define GHOST_PROP_GROUP_MAX_COUNT 24
 
 #define DIST_WORLD_PERSISTED_DATA_CURRENT_FLOATING_PLATFORM_SIZE 4
 #define DIST_WORLD_PERSISTED_DATA_CURRENT_FLOATING_PLATFORM_MAX  (1 << DIST_WORLD_PERSISTED_DATA_CURRENT_FLOATING_PLATFORM_SIZE)
+
+enum DistWorldPersistedMovingPlatformFlag {
+    DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_B1F_1 = 0,
+    DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_B2F_1,
+    DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_B3F_1,
+    DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_B4F_1,
+    DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_B4F_2,
+    DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_B5F_3,
+    DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_B3F_2,
+    DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_B5F_1,
+    DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_B4F_3,
+    DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_B6F_1,
+    DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_B7F_1,
+    DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_COUNT,
+    DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_INVALID = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_COUNT,
+};
 
 typedef struct DistWorldPersistedData {
     u32 valid : 1;
@@ -22,7 +38,7 @@ typedef struct DistWorldPersistedData {
     u16 cameraAngleX;
     u16 cameraAngleY;
     u16 cameraAngleZ;
-    u16 unk_0A;
+    u16 movingPlatformFlags;
     u32 unk_0C;
     u8 reserved_10[16];
 } DistWorldPersistedData;
@@ -33,8 +49,8 @@ BOOL DistWorld_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const 
 void DistWorld_UpdateCameraAngle(FieldSystem *fieldSystem);
 void DistWorld_ResetPersistedCameraAngles(FieldSystem *fieldSystem);
 int ov9_0224A520(FieldSystem *fieldSystem, MapObject *param1);
-void ov9_0224A558(FieldSystem *fieldSystem, UnkStruct_020216E0 *param1, int param2);
-void ov9_0224A564(FieldSystem *fieldSystem, const UnkStruct_020216E0 *param1);
+void ov9_0224A558(FieldSystem *fieldSystem, Billboard *param1, int param2);
+void ov9_0224A564(FieldSystem *fieldSystem, const Billboard *param1);
 BOOL ov9_0224A59C(FieldSystem *fieldSystem, int param1);
 BOOL ov9_0224A67C(FieldSystem *fieldSystem, int param1);
 BOOL ov9_0224A71C(FieldSystem *fieldSystem);

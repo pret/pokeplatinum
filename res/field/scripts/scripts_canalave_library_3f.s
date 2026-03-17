@@ -571,12 +571,7 @@ _0694:
     End
 
 _06A2:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    Message 58
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    EventMessage 58
     End
 
     .balign 4, 0

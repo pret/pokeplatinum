@@ -15,7 +15,7 @@
 #include "string_gf.h"
 #include "text.h"
 
-#include "res/fonts/pl_font.naix.h"
+#include "res/fonts/pl_font.naix"
 
 typedef struct {
     TextGlyph curGlyph;

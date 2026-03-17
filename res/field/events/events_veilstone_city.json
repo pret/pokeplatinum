@@ -345,11 +345,11 @@
             "y": 0
         },
         {
-            "id": "VEILSTONE_CITY_POKEBALL_18",
+            "id": "LOCALID_ITEM_FULL_INCENSE",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0463",
+            "hidden_flag": "FLAG_OBTAINED_VEILSTONE_CITY_FULL_INCENSE",
             "script": 7109,
             "initial_dir": 0,
             "data": [],
@@ -360,11 +360,11 @@
             "y": 0
         },
         {
-            "id": "VEILSTONE_CITY_POKEBALL_19",
+            "id": "LOCALID_ITEM_RARE_CANDY",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0464",
+            "hidden_flag": "FLAG_OBTAINED_VEILSTONE_CITY_RARE_CANDY",
             "script": 7110,
             "initial_dir": 0,
             "data": [],
@@ -480,11 +480,11 @@
             "y": 7
         },
         {
-            "id": "VEILSTONE_CITY_POKEBALL_27",
+            "id": "LOCALID_ITEM_STAR_PIECE",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0506",
+            "hidden_flag": "FLAG_OBTAINED_VEILSTONE_CITY_STAR_PIECE",
             "script": 7271,
             "initial_dir": 0,
             "data": [],

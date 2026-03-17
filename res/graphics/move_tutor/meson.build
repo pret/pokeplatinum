@@ -45,12 +45,10 @@ move_tutor_pals = nclr_gen.process(
 
 move_tutor_nscr = copy_gen.process(files('move_tutor_background.NSCR'))
 
-move_tutor_order = files('move_tutor.order')
-
 move_tutor_narc = custom_target('move_tutor.narc',
     output: [
         'move_tutor.narc',
-        'move_tutor.naix.h',
+        'move_tutor.naix',
     ],
     input: [
         move_tutor_tiles,
@@ -61,12 +59,13 @@ move_tutor_narc = custom_target('move_tutor.narc',
         move_tutor_nscr,
     ],
     command: [
-        narc_exe, 'create',
-        '--naix',
-        '--order', move_tutor_order,
-        '--output', '@OUTPUT0@',
+        nitroarc_exe,
+        '--create',
+        '--index',
+        '--files-from', files('move_tutor.order'),
+        '--file', '@OUTPUT0@',
         '@PRIVATE_DIR@',
-    ]
+    ],
 )
 
 nitrofs_files += move_tutor_narc

@@ -3,9 +3,9 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "applications/pokedex/infomain.h"
+#include "applications/pokedex/infomain_foreign.h"
 #include "applications/pokedex/ov21_021D4340.h"
-#include "applications/pokedex/ov21_021DE668.h"
-#include "applications/pokedex/ov21_021E0C68.h"
 #include "applications/pokedex/ov21_021E29DC.h"
 #include "applications/pokedex/pokedex_app.h"
 #include "applications/pokedex/pokedex_data_manager.h"
@@ -17,7 +17,6 @@
 #include "applications/pokedex/pokedex_text.h"
 #include "applications/pokedex/pokedex_text_manager.h"
 #include "applications/pokedex/struct_ov21_021D4660.h"
-#include "applications/pokedex/struct_ov21_021DE6D4.h"
 #include "applications/pokedex/struct_ov21_021E68F4.h"
 
 #include "bg_window.h"
@@ -36,13 +35,13 @@
 #include "unk_02012744.h"
 #include "vram_transfer.h"
 
-#include "res/graphics/pokedex/zukan.naix.h"
+#include "res/graphics/pokedex/zukan.naix"
 #include "res/text/bank/pokedex.h"
 
 typedef struct {
     int *unk_00;
     PokedexSortData *unk_04;
-    UnkStruct_ov21_021DE6D4 *unk_08;
+    InfoMainState *unk_08;
     PokedexScreenManager *unk_0C;
     PokedexScreenManager *unk_10;
     const PokedexScreenManager *unk_14;
@@ -511,9 +510,9 @@ static void ov21_021E1E8C(u32 param0, enum TouchScreenButtonState param1, void *
         case 2:
             if (v2->unk_38 & 1) {
                 if (v2->unk_10 == 0) {
-                    v3 = ov21_021DE6D4(v1->unk_08, 1);
+                    v3 = InfoMain_SetDisplayPosition(v1->unk_08, 1);
                 } else {
-                    ov21_021DE6D8(v1->unk_08, 0);
+                    InfoMain_SetEntryOffset(v1->unk_08, 0);
                     v3 = 1;
                 }
 
@@ -526,9 +525,9 @@ static void ov21_021E1E8C(u32 param0, enum TouchScreenButtonState param1, void *
         case 3:
             if (v2->unk_38 & 2) {
                 if (v2->unk_10 == 1) {
-                    v3 = ov21_021E0CE4(v1->unk_10);
+                    v3 = InfoMainForeign_GetScreenStateCount(v1->unk_10);
                 } else {
-                    ov21_021E0CE8(v1->unk_10, 0);
+                    InfoMainForeign_SetEntryOffset(v1->unk_10, 0);
                     v3 = 1;
                 }
 
@@ -541,9 +540,9 @@ static void ov21_021E1E8C(u32 param0, enum TouchScreenButtonState param1, void *
         case 4:
             if (v2->unk_38 & 4) {
                 if (v2->unk_10 == 2) {
-                    v3 = ov21_021E0CE4(v1->unk_10);
+                    v3 = InfoMainForeign_GetScreenStateCount(v1->unk_10);
                 } else {
-                    ov21_021E0CE8(v1->unk_10, 0);
+                    InfoMainForeign_SetEntryOffset(v1->unk_10, 0);
                     v3 = 1;
                 }
 
@@ -556,9 +555,9 @@ static void ov21_021E1E8C(u32 param0, enum TouchScreenButtonState param1, void *
         case 5:
             if (v2->unk_38 & 8) {
                 if (v2->unk_10 == 3) {
-                    v3 = ov21_021E0CE4(v1->unk_10);
+                    v3 = InfoMainForeign_GetScreenStateCount(v1->unk_10);
                 } else {
-                    ov21_021E0CE8(v1->unk_10, 0);
+                    InfoMainForeign_SetEntryOffset(v1->unk_10, 0);
                     v3 = 1;
                 }
 
@@ -571,9 +570,9 @@ static void ov21_021E1E8C(u32 param0, enum TouchScreenButtonState param1, void *
         case 6:
             if (v2->unk_38 & 16) {
                 if (v2->unk_10 == 4) {
-                    v3 = ov21_021E0CE4(v1->unk_10);
+                    v3 = InfoMainForeign_GetScreenStateCount(v1->unk_10);
                 } else {
-                    ov21_021E0CE8(v1->unk_10, 0);
+                    InfoMainForeign_SetEntryOffset(v1->unk_10, 0);
                     v3 = 1;
                 }
 
@@ -586,9 +585,9 @@ static void ov21_021E1E8C(u32 param0, enum TouchScreenButtonState param1, void *
         case 7:
             if (v2->unk_38 & 32) {
                 if (v2->unk_10 == 5) {
-                    v3 = ov21_021E0CE4(v1->unk_10);
+                    v3 = InfoMainForeign_GetScreenStateCount(v1->unk_10);
                 } else {
-                    ov21_021E0CE8(v1->unk_10, 0);
+                    InfoMainForeign_SetEntryOffset(v1->unk_10, 0);
                     v3 = 1;
                 }
 
@@ -961,28 +960,28 @@ static void ov21_021E275C(UnkStruct_ov21_021E1E74 *param0, UnkStruct_ov21_021E1A
 {
     int v0, v1;
 
-    param1->unk_08->unk_1C = 1;
+    param1->unk_08->playCry = 1;
     *param1->unk_00 |= (1 << 2);
     param0->unk_10 = 0;
 
     v0 = 48;
     v1 = 72;
 
-    param1->unk_08->unk_14 = 2;
+    param1->unk_08->animationMode = 2;
 
     switch (param2) {
     case 0:
-        param1->unk_08->unk_08 = v0;
-        param1->unk_08->unk_0C = v1;
-        param1->unk_08->unk_14 = 1;
+        param1->unk_08->displayPositionX = v0;
+        param1->unk_08->displayPositionY = v1;
+        param1->unk_08->animationMode = 1;
         break;
     case 1:
     case 2:
     case 3:
     case 4:
     case 5:
-        ov21_021E0CD4(param1->unk_10, v0, v1);
-        ov21_021E0CDC(param1->unk_10, 1);
+        InfoMainForeign_SetDisplayPosition(param1->unk_10, v0, v1);
+        InfoMainForeign_SetAnimationMode(param1->unk_10, ANIM_BLEND);
         break;
     default:
         break;
@@ -1000,7 +999,7 @@ static void ov21_021E27C0(UnkStruct_ov21_021E1E74 *param0, UnkStruct_ov21_021E1A
         param0->unk_10 = 0;
         v0 = 48;
         v1 = 72;
-        param1->unk_08->unk_14 = 2;
+        param1->unk_08->animationMode = 2;
         break;
     case 1:
     case 2:
@@ -1012,9 +1011,9 @@ static void ov21_021E27C0(UnkStruct_ov21_021E1E74 *param0, UnkStruct_ov21_021E1A
         v0 = 48;
         v1 = 72;
 
-        ov21_021E0CDC(param1->unk_10, 2);
+        InfoMainForeign_SetAnimationMode(param1->unk_10, ANIM_POSITION);
         v2 = PokedexText_ForeignLanguage(param3 - 1);
-        ov21_021E0CF8(param1->unk_10, v2);
+        InfoMainForeign_SetLanguage(param1->unk_10, v2);
         break;
     default:
         break;
@@ -1022,17 +1021,17 @@ static void ov21_021E27C0(UnkStruct_ov21_021E1E74 *param0, UnkStruct_ov21_021E1A
 
     switch (param2) {
     case 0:
-        param1->unk_08->unk_08 = v0;
-        param1->unk_08->unk_0C = v1;
-        param1->unk_08->unk_14 = 2;
+        param1->unk_08->displayPositionX = v0;
+        param1->unk_08->displayPositionY = v1;
+        param1->unk_08->animationMode = 2;
         break;
     case 1:
     case 2:
     case 3:
     case 4:
     case 5:
-        ov21_021E0CD4(param1->unk_10, v0, v1);
-        ov21_021E0CDC(param1->unk_10, 2);
+        InfoMainForeign_SetDisplayPosition(param1->unk_10, v0, v1);
+        InfoMainForeign_SetAnimationMode(param1->unk_10, ANIM_POSITION);
         break;
     default:
         break;

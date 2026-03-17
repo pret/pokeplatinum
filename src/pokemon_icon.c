@@ -8,7 +8,7 @@
 
 #include "pokemon.h"
 
-#include "res/pokemon/pl_poke_icon.naix.h"
+#include "res/pokemon/pl_poke_icon.naix"
 #include "res/pokemon/species_icon_palettes.h"
 
 static inline u32 IconTilesIndex(u32 icon)

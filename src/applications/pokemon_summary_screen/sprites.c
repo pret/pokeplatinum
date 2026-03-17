@@ -21,7 +21,7 @@
 #include "type_icon.h"
 #include "vram_transfer.h"
 
-#include "res/graphics/pokemon_summary_screen/pl_pst_gra.naix.h"
+#include "res/graphics/pokemon_summary_screen/pl_pst_gra.naix"
 
 static void SetTypeIcon(PokemonSummaryScreen *summaryScreen, u8 spriteIndex, u8 param2, u8 type);
 static void SetMonAndTypeIcons(PokemonSummaryScreen *summaryScreen);

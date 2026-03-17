@@ -2,11 +2,11 @@
     "bg_events": [],
     "object_events": [
         {
-            "id": "VEILSTONE_CITY_GALACTIC_WAREHOUSE_POKEBALL_0",
+            "id": "LOCALID_ITEM_DUSK_STONE",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0465",
+            "hidden_flag": "FLAG_OBTAINED_VEILSTONE_CITY_GALACTIC_WAREHOUSE_DUSK_STONE",
             "script": 7111,
             "initial_dir": 0,
             "data": [],
@@ -17,11 +17,11 @@
             "y": 0
         },
         {
-            "id": "VEILSTONE_CITY_GALACTIC_WAREHOUSE_POKEBALL_1",
+            "id": "LOCALID_ITEM_HM02",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x04E2",
+            "hidden_flag": "FLAG_OBTAINED_VEILSTONE_CITY_GALACTIC_WAREHOUSE_HM02",
             "script": 7236,
             "initial_dir": 0,
             "data": [],

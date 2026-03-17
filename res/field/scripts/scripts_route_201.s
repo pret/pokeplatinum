@@ -1133,30 +1133,18 @@ _0DDC:
     EndMovement
 
 Route201_BreederM:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message Route201_Text_WildPokemonLurkInTallGrass
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage Route201_Text_WildPokemonLurkInTallGrass
     End
 
 Route201_SchoolKidM:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message Route201_Text_ThatLedgeIsOneWay
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage Route201_Text_ThatLedgeIsOneWay
     End
 
 Route201_Lass:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_HAS_POKEDEX, Route201_IfYourPokemonsHPIsLowGoToAPokemonCenter»
+    GoToIfSet FLAG_HAS_POKEDEX, Route201_IfYourPokemonsHPIsLowGoToAPokemonCenter
     Message Route201_Text_IfYourPokemonsHPIsLowGoHome
     GoTo Route201_LassCloseMessage
 
@@ -1166,7 +1154,7 @@ Route201_LassCloseMessage:
     ReleaseAll
     End
 
-Route201_IfYourPokemonsHPIsLowGoToAPokemonCenter»:
+Route201_IfYourPokemonsHPIsLowGoToAPokemonCenter:
     Message Route201_Text_IfYourPokemonsHPIsLowGoToAPokemonCenter
     GoTo Route201_LassCloseMessage
 
@@ -1199,13 +1187,7 @@ Route201_BagIsFull:
     End
 
 Route201_ProfRowan:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message Route201_Text_RowanGoOnChooseAPokemon
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage Route201_Text_RowanGoOnChooseAPokemon
     End
 
 Route201_TriggerLetsCatchThatLegendaryPokemon:

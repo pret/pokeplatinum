@@ -78,7 +78,7 @@ Static main
 	Object main.nef.p/src_text.c.o
 	Object main.nef.p/src_vram_transfer.c.o
 	Object main.nef.p/src_cell_transfer.c.o
-	Object main.nef.p/src_unk_0201DD00.c.o
+	Object main.nef.p/src_billboard_vram_transfer.c.o
 	Object main.nef.p/src_grid_menu_cursor_position.c.o
 	Object main.nef.p/src_ascii_util.c.o
 	Object main.nef.p/src_fx_util.c.o
@@ -88,7 +88,7 @@ Static main
 	Object main.nef.p/src_pltt_transfer.c.o
 	Object main.nef.p/src_gx_layers.c.o
 	Object main.nef.p/src_camera.c.o
-	Object main.nef.p/src_unk_02020AEC.c.o
+	Object main.nef.p/src_billboard.c.o
 	Object main.nef.p/src_sprite.c.o
 	Object main.nef.p/src_touch_screen.c.o
 	Object main.nef.p/src_timer.c.o
@@ -98,7 +98,7 @@ Static main
 	Object main.nef.p/src_font_manager.c.o
 	Object main.nef.p/src_string_gf.c.o
 	Object main.nef.p/src_touch_screen_actions.c.o
-	Object main.nef.p/src_unk_0202414C.c.o
+	Object main.nef.p/src_billboard_gfx_sequence.c.o
 	Object main.nef.p/src_unk_0202419C.c.o
 	Object main.nef.p/src_hardware_palette.c.o
 	Object main.nef.p/src_g3d_pipeline.c.o
@@ -117,7 +117,7 @@ Static main
 	Object main.nef.p/src_persisted_map_features.c.o
 	Object main.nef.p/src_pal_pad.c.o
 	Object main.nef.p/src_mail.c.o
-	Object main.nef.p/src_unk_0202854C.c.o
+	Object main.nef.p/src_underground.c.o
 	Object main.nef.p/src_unk_020298BC.c.o
 	Object main.nef.p/src_poffin.c.o
 	Object main.nef.p/src_unk_0202ACE0.c.o
@@ -137,7 +137,7 @@ Static main
 	Object main.nef.p/src_mystery_gift.c.o
 	Object main.nef.p/src_hall_of_fame_entries.c.o
 	Object main.nef.p/src_unk_0202E2CC.c.o
-	Object main.nef.p/src_unk_0202E840.c.o
+	Object main.nef.p/src_rankings.c.o
 	Object main.nef.p/src_unk_0202EEC0.c.o
 	Object main.nef.p/src_link_contest_records.c.o
 	Object main.nef.p/src_unk_0202F180.c.o
@@ -184,7 +184,7 @@ Static main
 	Object main.nef.p/src_script_manager.c.o
 	Object main.nef.p/src_scrcmd.c.o
 	Object main.nef.p/src_scrcmd_shop.c.o
-	Object main.nef.p/src_unk_02046C7C.c.o
+	Object main.nef.p/src_scrcmd_contests.c.o
 	Object main.nef.p/src_scrcmd_strings.c.o
 	Object main.nef.p/src_scrcmd_jubilife_lottery.c.o
 	Object main.nef.p/src_scrcmd_sound.c.o
@@ -243,7 +243,7 @@ Static main
 	Object main.nef.p/src_unk_0205A0D8.c.o
 	Object main.nef.p/src_unk_0205B33C.c.o
 	Object main.nef.p/src_unk_0205C22C.c.o
-	Object main.nef.p/src_unk_0205C980.c.o
+	Object main.nef.p/src_appearance.c.o
 	Object main.nef.p/src_unk_0205CA94.c.o
 	Object main.nef.p/src_field_message.c.o
 	Object main.nef.p/src_map_tile_behavior.c.o
@@ -273,9 +273,8 @@ Static main
 	Object main.nef.p/src_unk_0206C660.c.o
 	Object main.nef.p/src_cutscenes_boat_cutscene_boat_cutscene.c.o
 	Object main.nef.p/src_tv_episode_segment.c.o
-	Object main.nef.p/src_unk_0206F314.c.o
+	Object main.nef.p/src_rankings_machine.c.o
 	Object main.nef.p/src_unk_02070428.c.o
-	Object main.nef.p/src_unk_0207064C.c.o
 	Object main.nef.p/src_field_move_tasks.c.o
 	Object main.nef.p/src_unk_020711C8.c.o
 	Object main.nef.p/src_overworld_anim_manager.c.o
@@ -326,7 +325,7 @@ Static main
 	Object main.nef.p/src_applications_pokemon_summary_screen_subscreen.c.o
 	Object main.nef.p/src_ribbon.c.o
 	Object main.nef.p/src_unk_02092494.c.o
-	Object main.nef.p/src_unk_020933F8.c.o
+	Object main.nef.p/src_contest.c.o
 	Object main.nef.p/src_unk_02094EDC.c.o
 	Object main.nef.p/src_unk_02095AF0.c.o
 	Object main.nef.p/src_unk_02095CD4.c.o
@@ -564,7 +563,7 @@ Overlay overlay6
 	Object main.nef.p/src_overlay006_wild_encounters.c.o
 	Object main.nef.p/src_overlay006_ov6_022426AC.c.o
 	Object main.nef.p/src_overlay006_great_marsh_binoculars.c.o
-	Object main.nef.p/src_overlay006_ov6_02242AF0.c.o
+	Object main.nef.p/src_overlay006_great_marsh_tram.c.o
 	Object main.nef.p/src_overlay006_great_marsh_daily_encounters.c.o
 	Object main.nef.p/src_overlay006_ov6_02243004.c.o
 	Object main.nef.p/src_overlay006_radar_chain_records.c.o
@@ -796,9 +795,9 @@ Overlay pokedex
 	Object main.nef.p/src_applications_pokedex_ov21_021D94BC.c.o
 	Object main.nef.p/src_applications_pokedex_ov21_021DC9BC.c.o
 	Object main.nef.p/src_applications_pokedex_ov21_021DDD2C.c.o
-	Object main.nef.p/src_applications_pokedex_ov21_021DE668.c.o
+	Object main.nef.p/src_applications_pokedex_infomain.c.o
 	Object main.nef.p/src_applications_pokedex_formmain.c.o
-	Object main.nef.p/src_applications_pokedex_ov21_021E0C68.c.o
+	Object main.nef.p/src_applications_pokedex_infomain_foreign.c.o
 	Object main.nef.p/src_applications_pokedex_ov21_021E1924.c.o
 	Object main.nef.p/src_applications_pokedex_ov21_021E29DC.c.o
 	Object main.nef.p/src_applications_pokedex_ov21_021E3FFC.c.o
@@ -1465,7 +1464,7 @@ Overlay main_menu
 	Object main.nef.p/src_main_menu_ov97_02233814.c.o
 	Object main.nef.p/src_main_menu_gba_migrator.c.o
 	Object main.nef.p/src_main_menu_ov97_02235D18.c.o
-	Object main.nef.p/src_main_menu_ov97_0223635C.c.o
+	Object main.nef.p/src_main_menu_gba_player.c.o
 	Object main.nef.p/src_main_menu_gba_pokemon.c.o
 	Object main.nef.p/src_main_menu_distribution_cartridge.c.o
 	Object main.nef.p/src_main_menu_main_menu_util.c.o
@@ -1540,7 +1539,7 @@ Overlay overlay104
 	Object main.nef.p/src_overlay104_frontier_script_context.c.o
 	Object main.nef.p/src_overlay104_ov104_0222EA90.c.o
 	Object main.nef.p/src_overlay104_ov104_0222ECE8.c.o
-	Object main.nef.p/src_overlay104_ov104_0222FBE4.c.o
+	Object main.nef.p/src_overlay104_frscrcmd.c.o
 	Object main.nef.p/src_overlay104_ov104_02231F74.c.o
 	Object main.nef.p/src_overlay104_ov104_022332B4.c.o
 	Object main.nef.p/src_overlay104_ov104_022339B4.c.o
@@ -1570,16 +1569,16 @@ Overlay overlay104
 	Object main.nef.p/src_overlay104_ov104_0223E894.c.o
 }
 
-Overlay overlay105
+Overlay battle_factory_app
 {
 	After overlay104
-	Object main.nef.p/src_overlay105_ov105_02241AE0.c.o
-	Object main.nef.p/src_overlay105_ov105_02245AAC.c.o
-	Object main.nef.p/src_overlay105_ov105_02245CD0.c.o
-	Object main.nef.p/src_overlay105_ov105_02245DC4.c.o
-	Object main.nef.p/src_overlay105_ov105_02245E54.c.o
-	Object main.nef.p/src_overlay105_ov105_02245FB8.c.o
-	Object main.nef.p/src_overlay105_ov105_02246214.c.o
+	Object main.nef.p/src_applications_frontier_battle_factory_main.c.o
+	Object main.nef.p/src_applications_frontier_battle_factory_sprite_manager.c.o
+	Object main.nef.p/src_applications_frontier_battle_factory_helpers.c.o
+	Object main.nef.p/src_applications_frontier_battle_factory_panel_sprite.c.o
+	Object main.nef.p/src_applications_frontier_battle_factory_pokeball_sprite.c.o
+	Object main.nef.p/src_applications_frontier_battle_factory_cursor.c.o
+	Object main.nef.p/src_applications_frontier_battle_factory_windows.c.o
 }
 
 Overlay battle_hall_app
@@ -1591,24 +1590,24 @@ Overlay battle_hall_app
 	Object main.nef.p/src_applications_frontier_battle_hall_windows.c.o
 }
 
-Overlay overlay107
+Overlay battle_castle_app
 {
 	After overlay104
-	Object main.nef.p/src_overlay107_battle_castle_self_app.c.o
-	Object main.nef.p/src_overlay107_battle_castle_opponent_app.c.o
-	Object main.nef.p/src_overlay107_battle_castle_app_sprite_manager.c.o
-	Object main.nef.p/src_overlay107_battle_castle_app_sprite.c.o
-	Object main.nef.p/src_overlay107_ov107_02249C98.c.o
-	Object main.nef.p/src_overlay107_battle_castle_app_windows.c.o
+	Object main.nef.p/src_applications_frontier_battle_castle_self_app.c.o
+	Object main.nef.p/src_applications_frontier_battle_castle_opponent_app.c.o
+	Object main.nef.p/src_applications_frontier_battle_castle_sprite_manager.c.o
+	Object main.nef.p/src_applications_frontier_battle_castle_sprites.c.o
+	Object main.nef.p/src_applications_frontier_battle_castle_helpers.c.o
+	Object main.nef.p/src_applications_frontier_battle_castle_windows.c.o
 }
 
-Overlay overlay108
+Overlay battle_arcade_app
 {
 	After overlay104
-	Object main.nef.p/src_overlay108_ov108_02241AE0.c.o
-	Object main.nef.p/src_overlay108_ov108_02243030.c.o
-	Object main.nef.p/src_overlay108_ov108_0224351C.c.o
-	Object main.nef.p/src_overlay108_ov108_02243630.c.o
+	Object main.nef.p/src_applications_frontier_battle_arcade_main.c.o
+	Object main.nef.p/src_applications_frontier_battle_arcade_sprite_manager.c.o
+    Object main.nef.p/src_applications_frontier_battle_arcade_sprites.c.o
+	Object main.nef.p/src_applications_frontier_battle_arcade_windows.c.o
 }
 
 Overlay overlay109
@@ -1618,11 +1617,11 @@ Overlay overlay109
 	Object main.nef.p/src_overlay109_ov109_021D3D50.c.o
 }
 
-Overlay overlay110
+Overlay frontier_records_app
 {
 	After main
-	Object main.nef.p/src_overlay110_ov110_021D0D80.c.o
-	Object main.nef.p/src_overlay110_ov110_021D2124.c.o
+	Object main.nef.p/src_applications_frontier_records_main.c.o
+	Object main.nef.p/src_applications_frontier_records_windows.c.o
 }
 
 Overlay overlay111

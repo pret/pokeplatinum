@@ -24,7 +24,7 @@
 #include "sys_task_manager.h"
 #include "text.h"
 
-#include "res/graphics/poketch/poketch.naix.h"
+#include "res/graphics/poketch/poketch.naix"
 #include "res/text/bank/poketch_move_tester.h"
 
 static const PoketchAnimation_AnimationData sPoketchMoveTester_AnimDataButtons[] = {

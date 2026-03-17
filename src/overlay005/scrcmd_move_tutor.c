@@ -367,7 +367,7 @@ BOOL ScrCmd_ShowMoveTutorMoveSelectionMenu(ScriptContext *scriptContext)
     miscMessageLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MENU_ENTRIES, HEAP_ID_FIELD3);
 
     MoveTutorManager_SetMessageLoader(moveTutorManager, miscMessageLoader);
-    MoveTutorManager_AddMenuEntry(moveTutorManager, MenuEntries_Text_Exit, 0xff, (u16)LIST_CANCEL); // cast required to match
+    MoveTutorManager_AddMenuEntry(moveTutorManager, MenuEntries_Text_Exit, 0xff, (u16)MENU_CANCEL); // cast required to match
     MessageLoader_Free(miscMessageLoader);
 
     MoveTutorManager_SetMessageLoader(moveTutorManager, moveNamesLoader);
@@ -533,12 +533,12 @@ static void SysTaskCallback(SysTask *sysTask, void *_moveTutorManager)
     }
 
     switch (selectedEntry) {
-    case LIST_NOTHING_CHOSEN:
+    case MENU_NOTHING_CHOSEN:
         break;
-    case LIST_CANCEL:
+    case MENU_CANCEL:
         if (moveTutorManager->canExitWithB == TRUE) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
-            *moveTutorManager->selectedOptionPtr = LIST_CANCEL;
+            *moveTutorManager->selectedOptionPtr = MENU_CANCEL;
 
             MoveTutorManager_Delete(moveTutorManager);
         }

@@ -2,7 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
-            "id": "OREBURGH_CITY_NORTH_HOUSE_2F_GUITARIST_0",
+            "id": "LOCALID_GUITARIST",
             "graphics_id": "OBJ_EVENT_GFX_GUITARIST",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -17,7 +17,7 @@
             "y": 0
         },
         {
-            "id": "OREBURGH_CITY_NORTH_HOUSE_2F_POKEMON_BREEDER_F_1",
+            "id": "LOCALID_POKEMON_BREEDER_F",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -32,7 +32,7 @@
             "y": 0
         },
         {
-            "id": "OREBURGH_CITY_NORTH_HOUSE_2F_COLLECTOR_2",
+            "id": "LOCALID_COLLECTOR",
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",

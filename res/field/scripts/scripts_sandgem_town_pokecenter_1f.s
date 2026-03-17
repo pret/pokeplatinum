@@ -14,33 +14,15 @@ SandgemTownPokecenter1F_PokecenterNurse:
     End
 
 SandgemTownPokecenter1F_BreederM:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message SandgemTownPokecenter1F_Text_ThatLadyAtTheCounterWillHealYourPokemon
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage SandgemTownPokecenter1F_Text_ThatLadyAtTheCounterWillHealYourPokemon
     End
 
 SandgemTownPokecenter1F_ExpertM:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message SandgemTownPokecenter1F_Text_DoYouSeeThatPCOverThere
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage SandgemTownPokecenter1F_Text_DoYouSeeThatPCOverThere
     End
 
 SandgemTownPokecenter1F_Lass:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message SandgemTownPokecenter1F_Text_TheTopFloorIsTheCommunicationClub
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage SandgemTownPokecenter1F_Text_TheTopFloorIsTheCommunicationClub
     End
 
     .balign 4, 0

@@ -33,7 +33,7 @@
 #include "unk_0208C098.h"
 #include "vram_transfer.h"
 
-#include "res/graphics/poffin_case/feeding_cutscene/cutscene.naix.h"
+#include "res/graphics/poffin_case/feeding_cutscene/cutscene.naix"
 
 #define MON_SPRITE_FAR_SIZE      0x1000
 #define MON_SPRITE_FAR_X         128

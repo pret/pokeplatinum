@@ -272,7 +272,7 @@ _0172:
     End
 
 _01CE:
-    FrontierScrCmd_4A 43
+    IncrementTrainerScore TRAINER_SCORE_EVENT_UNK_43
     SetVar 0x8001, 7
     SetVar 0x8002, 8
     SetVar 0x800F, 232
@@ -357,7 +357,7 @@ _034B:
 _037F:
     SetVar 0x8006, 0
     Message BattleTowerMultiBattleRoom_Text_AwaitingResponseFromFriend
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     FrontierScrCmd_35 5
     CallBattleTowerFunction BT_FUNC_UNK_58, 0, 0x8008
     GoTo _039F
@@ -399,13 +399,13 @@ _0437:
 _0443:
     WaitTime 30, 0x8008
     FrontierScrCmd_3D 0x40D8, 1
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     FrontierScrCmd_35 6
     CallIfEq 0x8004, 100, _04D1
     CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, 0x8008
     CallIfEq 0x8008, 6, _04DF
     FadeScreenOut
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     FrontierScrCmd_35 8
     CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, 0x8008
     CallIfEq 0x8008, 3, _04F7
@@ -440,7 +440,7 @@ _04DF:
     Return
 
 _04F7:
-    FrontierScrCmd_37
+    EndCommunication
     Return
 
 _04FB:
@@ -801,7 +801,7 @@ _0ACD:
     CloseMessage
     Call _0A91
     MessageNoSkip BattleTowerMultiBattleRoom_Text_PleaseWait
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     FrontierScrCmd_35 4
     CloseMessage
     FrontierScrCmd_3F 0
@@ -821,7 +821,7 @@ _0B27:
 _0B4B:
     Message BattleTowerMultiBattleRoom_Text_YouHaveChosenToRetire
     WaitTime 30, 0x8008
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     FrontierScrCmd_35 7
     CloseMessage
     GoTo _0765

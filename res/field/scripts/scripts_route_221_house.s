@@ -92,12 +92,7 @@ _016F:
     End
 
 _017A:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    Message 5
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    EventMessage 5
     End
 
     .balign 4, 0

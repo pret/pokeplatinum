@@ -2,7 +2,7 @@
   "key": 5122,
   "messages": [
     {
-      "id": "pl_msg_00000225_00000",
+      "id": "ValleyWindworksBuilding_Text_YouHaveTheKeyIveGotToAlertTheCommander",
       "en_US": [
         "What?! No way!\n",
         "You have the key?\r",
@@ -13,7 +13,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000225_00001",
+      "id": "ValleyWindworksBuilding_Text_HumphJustYouWaitOurCommanderWillSmooshYou",
       "en_US": [
         "My Pokémon can’t battle anymore.\r",
         "They’re gonna take away my Pokémon\n",
@@ -23,7 +23,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000225_00002",
+      "id": "ValleyWindworksBuilding_Text_MyNameIsMarsLetsHaveABattleToDecideWhatWeShouldDoNext",
       "en_US": [
         "I’m one of Team Galactic’s three\n",
         "Commanders.\r",
@@ -44,7 +44,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000225_00003",
+      "id": "ValleyWindworksBuilding_Text_OopsIMessedThatOneUp",
       "en_US": [
         "Mars: Oops!\n",
         "I messed that one up!\r",
@@ -53,7 +53,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000225_00004",
+      "id": "ValleyWindworksBuilding_Text_LoseToAChildWillYouNowMarsWeShouldBeGoing",
       "en_US": [
         "Charon: My, my.\n",
         "Lose to a child, will you?\r",
@@ -67,7 +67,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000225_00005",
+      "id": "ValleyWindworksBuilding_Text_WillYouShutIt",
       "en_US": [
         "Mars: Will you shut it!\r",
         "The boss is the only person in the world\n",
@@ -78,14 +78,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000225_00006",
+      "id": "ValleyWindworksBuilding_Text_IGuessItsTimeToSayGoodbyeAndLeaveForTheTimeBeing",
       "en_US": [
         "I guess it’s time to say good-bye\n",
         "and leave for the time being!\r"
       ]
     },
     {
-      "id": "pl_msg_00000225_00007",
+      "id": "ValleyWindworksBuilding_Text_ICanFinallySeeMyLittleDaughterAgain",
       "en_US": [
         "Team Galactic...\r",
         "They were saying they had to gather\n",
@@ -101,7 +101,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000225_00008",
+      "id": "ValleyWindworksBuilding_Text_YuckPapaYoureStinkyGoShowerNowStinky",
       "en_US": [
         "Little girl: Papa!\r",
         "Yuck! Papa, you’re stinky!\n",
@@ -109,14 +109,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000225_00009",
+      "id": "ValleyWindworksBuilding_Text_OhSorryAhahaTheyHadMeWorkingNonstop",
       "en_US": [
         "Papa: Oh, sorry! Ahaha!\n",
         "They had me working nonstop!\r"
       ]
     },
     {
-      "id": "pl_msg_00000225_00010",
+      "id": "ValleyWindworksBuilding_Text_IThinkTheBalloonPokemonWillComeVisitingAgain",
       "en_US": [
         "Little girl: Thank you, Trainer!\n",
         "You made those bad people go away!\r",
@@ -125,7 +125,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000225_00011",
+      "id": "ValleyWindworksBuilding_Text_ABalloonPokemonAppearsInFrontOfTheWindworksItsAlwaysACertainDayOfTheWeek",
       "en_US": [
         "Papa: Oh, yes, a balloon Pokémon\n",
         "appears in front of the windworks.\r",
@@ -137,7 +137,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000225_00012",
+      "id": "ValleyWindworksBuilding_Text_TheValleyWindworksUsesTurbinesToCaptureEnergy",
       "en_US": [
         "The Valley Windworks uses turbines\n",
         "to capture energy from winds driven\f",
@@ -147,14 +147,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000225_00013",
+      "id": "ValleyWindworksBuilding_Text_IfTheBalloonPokemonCameTheWindWouldBlowItAway",
       "en_US": [
         "If the balloon Pokémon came,\n",
         "the wind would blow it away!"
       ]
     },
     {
-      "id": "pl_msg_00000225_00014",
+      "id": "ValleyWindworksBuilding_Text_BringersAndTargetsTeamGalactic",
       "en_US": [
         "The bringer of wars...\r",
         "Your target is the energy of the power\n",
@@ -170,7 +170,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000225_00015",
+      "id": "ValleyWindworksBuilding_Text_ThePCScreenIsFilledWithNumbersUponNumbers",
       "en_US": [
         "The PC screen is filled with numbers\n",
         "upon numbers.\r",

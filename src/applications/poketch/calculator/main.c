@@ -1,8 +1,6 @@
 #include <nitro.h>
 #include <nitro/sinit.h>
 
-#include "struct_decls/pokedexdata_decl.h"
-
 #include "applications/poketch/calculator/graphics.h"
 #include "applications/poketch/calculator/value.h"
 #include "applications/poketch/poketch_button.h"

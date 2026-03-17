@@ -2,7 +2,7 @@
   "key": 9230,
   "messages": [
     {
-      "id": "pl_msg_00000223_00000",
+      "id": "OreburghMineB2F_Text_OKStandBackAndWatchThis",
       "en_US": [
         "OK, stand back and watch this.\r",
         "Using the hidden move Rock Smash,\n",
@@ -10,7 +10,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000223_00001",
+      "id": "OreburghMineB2F_Text_FallenBouldersNeedToBeSmashedSoTheyreOutOfTheWay",
       "en_US": [
         "Fallen boulders need to be smashed\n",
         "so they’re out of the way.\r",
@@ -22,19 +22,19 @@
       ]
     },
     {
-      "id": "pl_msg_00000223_00002",
+      "id": "OreburghMineB2F_Text_MachopMaaacho",
       "en_US": "MACHOP: Maaacho!"
     },
     {
-      "id": "pl_msg_00000223_00003",
+      "id": "OreburghMineB2F_Text_MachopChopChop",
       "en_US": "MACHOP: Chopchop!"
     },
     {
-      "id": "pl_msg_00000223_00004",
+      "id": "OreburghMineB2F_Text_MachopChopmacho",
       "en_US": "MACHOP: Chopmacho!"
     },
     {
-      "id": "pl_msg_00000223_00005",
+      "id": "OreburghMineB2F_Text_IMetTheseMachopOnRoute207",
       "en_US": [
         "I met these MACHOP on Route 207.\r",
         "They’ve now become my most trusted\n",

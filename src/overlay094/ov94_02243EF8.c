@@ -7,6 +7,7 @@
 #include "overlay094/application.h"
 #include "overlay094/gts_application_state.h"
 
+#include "appearance.h"
 #include "graphics.h"
 #include "heap.h"
 #include "sound_playback.h"
@@ -14,7 +15,6 @@
 #include "sys_task_manager.h"
 #include "touch_screen.h"
 #include "unk_0200679C.h"
-#include "unk_0205C980.h"
 
 typedef struct AvatarAnimationData {
     int state;
@@ -302,7 +302,7 @@ static void ov94_02244378(NNSG2dCharacterData *param0, NNSG2dPaletteData *param1
     int v0;
     u8 *v1, *v2;
 
-    v0 = sub_0205CA0C(param4, param3);
+    v0 = Appearance_GetIndex(param4, param3);
     v1 = (u8 *)param0->pRawData;
     v2 = (u8 *)param1->pRawData;
 

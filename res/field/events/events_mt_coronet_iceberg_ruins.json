@@ -11,11 +11,11 @@
     ],
     "object_events": [
         {
-            "id": "MT_CORONET_ICEBERG_RUINS_POKEBALL_0",
+            "id": "LOCALID_ITEM_NEVERMELTICE",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x053A",
+            "hidden_flag": "FLAG_OBTAINED_MT_CORONET_ICEBERG_RUINS_NEVERMELTICE",
             "script": 7323,
             "initial_dir": 0,
             "data": [],

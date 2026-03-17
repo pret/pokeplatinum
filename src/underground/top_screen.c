@@ -5,8 +5,6 @@
 
 #include "constants/charcode.h"
 
-#include "struct_decls/struct_0205E884_decl.h"
-
 #include "field/field_system.h"
 #include "underground/manager.h"
 #include "underground/struct_underground_top_screen_context_decl.h"
@@ -31,8 +29,8 @@
 #include "text.h"
 #include "unk_0200679C.h"
 
-#include "res/graphics/trap_effects/trap_effects.naix.h"
-#include "res/graphics/underground_top_screen/underground_top_screen.naix.h"
+#include "res/graphics/trap_effects/trap_effects.naix"
+#include "res/graphics/underground_top_screen/underground_top_screen.naix"
 
 #define MAX_QUEUE_SIZE 32
 

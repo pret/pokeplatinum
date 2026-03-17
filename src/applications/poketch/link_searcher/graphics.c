@@ -18,7 +18,7 @@
 #include "sys_task_manager.h"
 #include "text.h"
 
-#include "res/graphics/poketch/poketch.naix.h"
+#include "res/graphics/poketch/poketch.naix"
 #include "res/text/bank/poketch_link_searcher.h"
 
 #define SPRITE_DS           0

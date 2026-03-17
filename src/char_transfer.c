@@ -567,12 +567,12 @@ static CharTransferTask *FindTransferTaskByResourceID(int resourceID)
 static GXOBJVRamModeChar UpdateMappingTypeFromHardware(CharTransferTask *task, NNS_G2D_VRAM_TYPE vramType)
 {
     if (vramType == NNS_G2D_VRAM_TYPE_2DMAIN) {
-        task->data->mapingType = GX_GetOBJVRamModeChar();
+        task->data->mappingType = GX_GetOBJVRamModeChar();
     } else {
-        task->data->mapingType = GXS_GetOBJVRamModeChar();
+        task->data->mappingType = GXS_GetOBJVRamModeChar();
     }
 
-    return task->data->mapingType;
+    return task->data->mappingType;
 }
 
 static void SetBaseAddresses(CharTransferTask *task, u32 baseAddrMain, u32 baseAddrSub)
@@ -647,7 +647,7 @@ static void LoadImageMapping(CharTransferTask *task)
 {
     NNS_G2dInitImageProxy(&task->imageProxy);
 
-    if (task->vramType != NNS_G2D_VRAM_TYPE_MAX) {
+    if (task->vramType != NNS_G2D_VRAM_TYPE_2DBOTH) {
         LoadImageMappingForScreen(task, task->vramType);
     } else {
         LoadImageMappingForScreen(task, NNS_G2D_VRAM_TYPE_2DMAIN);
@@ -679,7 +679,7 @@ static void LoadImageVramTransfer(CharTransferTask *task)
 {
     NNS_G2dInitImageProxy(&task->imageProxy);
 
-    if (task->vramType != NNS_G2D_VRAM_TYPE_MAX) {
+    if (task->vramType != NNS_G2D_VRAM_TYPE_2DBOTH) {
         LoadImageVramTransferForScreen(task, task->vramType);
     } else {
         LoadImageVramTransferForScreen(task, NNS_G2D_VRAM_TYPE_2DMAIN);

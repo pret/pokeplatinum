@@ -312,7 +312,7 @@ u8 Item_BerryNumber(u16 item);
  * @param berry
  * @return The item for the berry number, or ITEM_RETURN_ID if none exists.
  */
-u16 Item_ForBerryNumber(u8 item);
+u16 Item_ForBerryNumber(u8 berry);
 
 /**
  * @brief Check if a given item is herbal medicine.

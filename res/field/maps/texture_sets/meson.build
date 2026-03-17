@@ -1,4 +1,9 @@
-map_texture_set_files = copy_gen.process(files(
+map_texture_set_gen = generator(copy_exe,
+    arguments: [ '@INPUT@', '@OUTPUT@', ],
+    output: '@BASENAME@'
+)
+
+map_texture_set_files = map_texture_set_gen.process(files(
     'map_texture_set_000.nsbtx',
     'map_texture_set_001.nsbtx',
     'map_texture_set_002.nsbtx',
@@ -75,21 +80,20 @@ map_texture_set_files = copy_gen.process(files(
     'map_texture_set_073.nsbtx'
 ))
 
-map_texture_set_order = files('map_texture_set.order')
 map_texture_set_narc = custom_target('map_tex_set.narc',
     output: [
         'map_tex_set.narc',
+        'map_tex_set.naix',
     ],
-    input: [
-        map_texture_set_files,
-        map_texture_set_order,
-    ],
+    input: map_texture_set_files,
     command: [
-        narc_exe, 'create',
-        '--order', map_texture_set_order,
-        '--output', '@OUTPUT0@',
+        nitroarc_exe,
+        '--create',
+        '--index',
+        '--files-from', files('map_texture_sets.order'),
+        '--file', '@OUTPUT0@',
         '@PRIVATE_DIR@',
-    ]
+    ],
 )
 
 nitrofs_files += map_texture_set_narc

@@ -7,7 +7,7 @@
 #include "heap.h"
 #include "narc.h"
 
-#include "res/graphics/poketch/poketch.naix.h"
+#include "res/graphics/poketch/poketch.naix"
 
 void PoketchUnavailableScreen_Init(BgConfig *bgConfig)
 {

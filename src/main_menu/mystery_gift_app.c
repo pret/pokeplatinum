@@ -59,7 +59,7 @@
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
 
-#include "res/graphics/main_menu/main_menu_graphics.naix.h"
+#include "res/graphics/main_menu/main_menu_graphics.naix"
 #include "res/text/bank/mystery_gift_menu.h"
 #include "res/text/bank/unk_0695.h"
 
@@ -976,9 +976,9 @@ static void ProcessStateTransitionMenuInput(ApplicationManager *appMan, enum Mys
     u32 input = ListMenu_ProcessInput(appData->listMenu);
 
     switch (input) {
-    case LIST_NOTHING_CHOSEN:
+    case MENU_NOTHING_CHOSEN:
         break;
-    case LIST_CANCEL:
+    case MENU_CANCEL:
         Sound_PlayEffect(SEQ_SE_CONFIRM);
 
         if (onCancel) {

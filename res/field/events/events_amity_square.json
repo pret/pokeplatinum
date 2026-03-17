@@ -32,11 +32,11 @@
             "y": 0
         },
         {
-            "id": "AMITY_SQUARE_POKEBALL_2",
+            "id": "LOCALID_ITEM_TM45",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0429",
+            "hidden_flag": "FLAG_OBTAINED_AMITY_SQUARE_TM45",
             "script": 7051,
             "initial_dir": 0,
             "data": [],
@@ -47,11 +47,11 @@
             "y": 0
         },
         {
-            "id": "AMITY_SQUARE_POKEBALL_3",
+            "id": "LOCALID_ITEM_TM43",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x042A",
+            "hidden_flag": "FLAG_OBTAINED_AMITY_SQUARE_TM43",
             "script": 7052,
             "initial_dir": 0,
             "data": [],
@@ -62,11 +62,11 @@
             "y": 0
         },
         {
-            "id": "AMITY_SQUARE_POKEBALL_4",
+            "id": "LOCALID_ITEM_SPOOKY_PLATE",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x042B",
+            "hidden_flag": "FLAG_OBTAINED_AMITY_SQUARE_SPOOKY_PLATE",
             "script": 7053,
             "initial_dir": 0,
             "data": [],
@@ -212,11 +212,11 @@
             "y": 0
         },
         {
-            "id": "AMITY_SQUARE_POKEBALL_14",
+            "id": "LOCALID_ITEM_AMULET_COIN",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x04F0",
+            "hidden_flag": "FLAG_OBTAINED_AMITY_SQUARE_AMULET_COIN",
             "script": 7250,
             "initial_dir": 0,
             "data": [],

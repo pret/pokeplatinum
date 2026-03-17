@@ -24,6 +24,6 @@ void ov104_0223BAB8(UnkStruct_ov104_0223BA10 *param0);
 u16 ov104_0223BB60(UnkStruct_ov104_0223BA10 *param0);
 void ov104_0223BB84(BgConfig *param0, UnkStruct_ov104_0223BA10 *param1, u32 param2);
 u16 ov104_0223BC24(u16 param0);
-void ov104_0223BC2C(BattleFrontier *frontier, u8 param1, int param2);
+void ov104_0223BC2C(BattleFrontier *frontier, u8 challengeType, int castlePoints);
 
 #endif // POKEPLATINUM_OV104_0223B6F4_H

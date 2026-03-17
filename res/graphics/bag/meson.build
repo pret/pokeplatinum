@@ -111,12 +111,9 @@ sprites_ncgr_8bpp = ncgr_gen.process(
 )
 
 bag_graphics_narc = custom_target('bag_graphics.narc',
-    command: [
-        narc_exe, 'create',
-        '--naix',
-        '--order', files('bag_graphics.order'),
-        '--output', '@OUTPUT0@',
-        '@PRIVATE_DIR@',
+    output: [
+        'bag_graphics.narc',
+        'bag_graphics.naix',
     ],
     input: [
         tilemaps_nscr,
@@ -131,9 +128,13 @@ bag_graphics_narc = custom_target('bag_graphics.narc',
         sprites_ncgr_cell,
         sprites_ncgr_8bpp,
     ],
-    output: [
-        'bag_graphics.narc',
-        'bag_graphics.naix.h',
+    command: [
+        nitroarc_exe,
+        '--create',
+        '--index',
+        '--files-from', files('bag_graphics.order'),
+        '--file', '@OUTPUT0@',
+        '@PRIVATE_DIR@',
     ],
 )
 

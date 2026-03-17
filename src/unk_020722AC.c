@@ -104,7 +104,7 @@ typedef struct {
     UnkStruct_02097728 *unk_1A8;
     Mailbox *mailbox;
     Bag *bag;
-    PartyMenu *unk_1B4;
+    PartyMenu *partyMenu;
 } UnkStruct_02072334;
 
 typedef struct {
@@ -155,7 +155,7 @@ static int sub_0207340C(UnkStruct_02072334 *param0);
 static int sub_02073438(UnkStruct_02072334 *param0, int param1);
 static int sub_02073480(UnkStruct_02072334 *param0);
 static int sub_020734F4(UnkStruct_02072334 *param0, u8 param1);
-static int sub_02073524(UnkStruct_02072334 *param0, int param1);
+static int sub_02073524(UnkStruct_02072334 *param0, int mode);
 static int sub_020735E8(UnkStruct_02072334 *param0);
 
 static const ListMenuTemplate Unk_020F0504 = {
@@ -510,7 +510,7 @@ static void sub_02072754(SysTask *param0, void *param1)
         sub_020734F4(v2, 1);
         break;
     case 1:
-        if (!sub_02073524(v2, 14)) {
+        if (!sub_02073524(v2, PARTY_MENU_MODE_MAILBOX)) {
             return;
         }
         break;
@@ -524,8 +524,8 @@ static void sub_02072754(SysTask *param0, void *param1)
             return;
         }
 
-        v0 = v2->unk_1B4->selectedMonSlot;
-        Heap_Free(v2->unk_1B4);
+        v0 = v2->partyMenu->selectedMonSlot;
+        Heap_Free(v2->partyMenu);
 
         if (v0 == 7) {
             sub_02072EA4(v2, v2->unk_0C, NULL);
@@ -597,14 +597,14 @@ static void sub_02072878(SysTask *param0, void *param1)
         break;
     case 1:
 
-        if (!sub_02073524(v4, 9)) {
+        if (!sub_02073524(v4, PARTY_MENU_MODE_GIVE_ITEM)) {
             return;
         }
 
-        v1 = v4->unk_1B4->selectedMonSlot;
-        v2 = v4->unk_1B4->menuSelectionResult;
+        v1 = v4->partyMenu->selectedMonSlot;
+        v2 = v4->partyMenu->menuSelectionResult;
 
-        Heap_Free(v4->unk_1B4);
+        Heap_Free(v4->partyMenu);
 
         if ((v2 != 6) || (v1 == 7)) {
             v4->unk_0C = sub_020726B4;
@@ -630,11 +630,11 @@ static void sub_02072878(SysTask *param0, void *param1)
         v4->unk_0C = sub_02072370;
         break;
     case 3:
-        if (!sub_02073524(v4, 11)) {
+        if (!sub_02073524(v4, PARTY_MENU_MODE_GIVE_MAIL)) {
             return;
         }
 
-        Heap_Free(v4->unk_1B4);
+        Heap_Free(v4->partyMenu);
         sub_020730B8(v4, v4->unk_17, v4->unk_13B_6);
         v4->unk_13B_6 = 0;
         break;
@@ -1212,7 +1212,7 @@ static int sub_02073524(UnkStruct_02072334 *param0, int mode)
         }
 
         FieldSystem_StartChildProcess(param0->fieldSystem, &gPokemonPartyAppTemplate, partyMenu);
-        param0->unk_1B4 = partyMenu;
+        param0->partyMenu = partyMenu;
         param0->unk_12++;
         break;
     case 1:

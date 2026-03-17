@@ -265,11 +265,10 @@ palettes_nclr = nclr_gen.process(palettes_pal,
     ],
 )
 
-pokedex_order = files('pokedex.order')
 pokedex_graphics_narc = custom_target('zukan.narc',
     output: [
         'zukan.narc',
-        'zukan.naix.h',
+        'zukan.naix',
     ],
     input: [
         tiles_ncgr_4bpp,
@@ -283,15 +282,15 @@ pokedex_graphics_narc = custom_target('zukan.narc',
         sprites_ncer,
         sprites_nanr,
         palettes_nclr,
-        pokedex_order,
     ],
     command: [
-        narc_exe, 'create',
-        '--naix',
-        '--order', pokedex_order,
-        '--output', '@OUTPUT0@',
+        nitroarc_exe,
+        '--create',
+        '--index',
+        '--files-from', files('pokedex.order'),
+        '--file', '@OUTPUT0@',
         '@PRIVATE_DIR@',
-    ]
+    ],
 )
 
 nitrofs_files += pokedex_graphics_narc

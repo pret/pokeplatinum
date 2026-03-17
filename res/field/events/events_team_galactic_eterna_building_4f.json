@@ -71,11 +71,11 @@
             "y": 0
         },
         {
-            "id": "TEAM_GALACTIC_ETERNA_BUILDING_4F_POKEBALL_4",
+            "id": "LOCALID_ITEM_REVIVE",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x050C",
+            "hidden_flag": "FLAG_OBTAINED_TEAM_GALACTIC_ETERNA_BUILDING_4F_REVIVE",
             "script": 7277,
             "initial_dir": 0,
             "data": [],
@@ -86,11 +86,11 @@
             "y": 0
         },
         {
-            "id": "TEAM_GALACTIC_ETERNA_BUILDING_4F_POKEBALL_5",
+            "id": "LOCALID_ITEM_BLUE_SHARD",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x04FF",
+            "hidden_flag": "FLAG_OBTAINED_TEAM_GALACTIC_ETERNA_BUILDING_4F_BLUE_SHARD",
             "script": 7264,
             "initial_dir": 0,
             "data": [],
@@ -101,11 +101,11 @@
             "y": 0
         },
         {
-            "id": "TEAM_GALACTIC_ETERNA_BUILDING_4F_POKEBALL_6",
+            "id": "LOCALID_ITEM_UPGRADE",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0500",
+            "hidden_flag": "FLAG_OBTAINED_TEAM_GALACTIC_ETERNA_BUILDING_4F_UPGRADE",
             "script": 7265,
             "initial_dir": 0,
             "data": [],

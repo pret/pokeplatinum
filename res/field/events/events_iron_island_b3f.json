@@ -2,11 +2,11 @@
     "bg_events": [],
     "object_events": [
         {
-            "id": "IRON_ISLAND_B3F_POKEBALL_0",
+            "id": "LOCALID_ITEM_SHINY_STONE",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0486",
+            "hidden_flag": "FLAG_OBTAINED_IRON_ISLAND_B3F_SHINY_STONE",
             "script": 7144,
             "initial_dir": 0,
             "data": [],

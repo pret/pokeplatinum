@@ -4,18 +4,16 @@
 
 #include "constants/field/field_effect_renderer.h"
 
-#include "struct_decls/struct_020216E0_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
-#include "struct_defs/struct_020217F4.h"
 
 #include "overlay005/field_effect_manager.h"
 #include "overlay005/ov5_021ECC20.h"
 
 #include "berry_patch_manager.h"
+#include "billboard.h"
 #include "map_object.h"
 #include "overworld_anim_manager.h"
 #include "simple3d.h"
-#include "unk_02020AEC.h"
 
 // Berry patch moisture effect resource IDs
 #define BERRY_PATCH_MOISTURE_RESOURCE_COUNT 3
@@ -60,7 +58,7 @@ typedef struct BerryPatchSparkleEffect {
     int animationFrame;
     BOOL isAnimating;
     BerryPatchSparkleEffectContext context;
-    UnkStruct_020216E0 *graphicsObject;
+    Billboard *graphicsObject;
 } BerryPatchSparkleEffect;
 
 static void BerryPatchGraphicsManager_InitResources(BerryPatchGraphicsManager *manager);
@@ -75,7 +73,7 @@ static void BerryPatchEffectCounter_CheckDisable(BerryPatchEffectCounter *counte
 static const OverworldAnimManagerFuncs sBerryPatchMoistureEffectDefinition;
 static const OverworldAnimManagerFuncs sBerryPatchSparkleEffectDefinition;
 static const u32 sBerryPatchMoistureResourceIDs[BERRY_PATCH_MOISTURE_RESOURCE_COUNT];
-static const UnkStruct_020217F4 sBerryPatchSparkleEffectData[];
+static const BillboardAnim sBerryPatchSparkleEffectData[];
 
 void *BerryPatchGraphicsManager_New(FieldEffectManager *fieldEffMan)
 {
@@ -300,7 +298,7 @@ static void BerryPatchSparkleEffect_Free(OverworldAnimManager *effect, void *con
 {
     BerryPatchSparkleEffect *sparkleEffect = context;
 
-    sub_020211FC(sparkleEffect->graphicsObject);
+    Billboard_Delete(sparkleEffect->graphicsObject);
     BerryPatchEffectCounter_Decrement(sparkleEffect->context.effectCounter);
     BerryPatchEffectCounter_CheckDisable(sparkleEffect->context.effectCounter);
 }
@@ -320,10 +318,10 @@ static void BerryPatchSparkleEffect_Update(OverworldAnimManager *effect, void *c
             return;
         }
 
-        sub_02021380(sparkleEffect->graphicsObject, 0);
+        Billboard_SetFrameNum(sparkleEffect->graphicsObject, 0);
     }
 
-    if (sub_02021368(sparkleEffect->graphicsObject, animationSpeeds[sparkleEffect->animationFrame]) != 1) {
+    if (Billboard_AdvanceAnim(sparkleEffect->graphicsObject, animationSpeeds[sparkleEffect->animationFrame]) != 1) {
         return;
     }
 
@@ -336,7 +334,7 @@ static void BerryPatchSparkleEffect_Render(OverworldAnimManager *effect, void *c
     BerryPatchSparkleEffect *sparkleEffect = context;
 
     OverworldAnimManager_GetPosition(effect, &position);
-    sub_020212A8(sparkleEffect->graphicsObject, &position);
+    Billboard_SetPos(sparkleEffect->graphicsObject, &position);
 }
 
 static const OverworldAnimManagerFuncs sBerryPatchSparkleEffectDefinition = {
@@ -355,7 +353,7 @@ static const u32 sBerryPatchMoistureResourceIDs[BERRY_PATCH_MOISTURE_RESOURCE_CO
 
 // Sparkle effect configuration data for berry patches
 // Each entry defines: { model_variant, animation_frame_count, effect_type }
-static const UnkStruct_020217F4 sBerryPatchSparkleEffectData[] = {
+static const BillboardAnim sBerryPatchSparkleEffectData[] = {
     { 0, 9, 1 }, // Animated sparkle effect (9 animation frames, type 1)
     { 0, 0, 2 } // Static sparkle effect (no animation, type 2)
 };

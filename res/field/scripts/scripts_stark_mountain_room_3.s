@@ -66,13 +66,7 @@ StarkMountainRoom3_UnusedMovement3:
 
 _00D0:
     BufferPlayerName 1
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 18
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 18
     End
 
 _00E6:

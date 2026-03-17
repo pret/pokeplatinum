@@ -15,7 +15,7 @@
 #include "sys_task_manager.h"
 #include "text.h"
 
-#include "res/graphics/poketch/poketch.naix.h"
+#include "res/graphics/poketch/poketch.naix"
 
 #define MON_ANIM_DATA(r, c)                                        \
     {                                                              \

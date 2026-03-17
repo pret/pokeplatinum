@@ -2,7 +2,7 @@
   "key": 25627,
   "messages": [
     {
-      "id": "pl_msg_00000074_00000",
+      "id": "OreburghCityNorthHouse1F_Text_WouldYouBeWillingToTradeYourMachopForMyAbra",
       "en_US": [
         "Listen, listen. Do you have a Pokémon\n",
         "called MACHOP?\r",
@@ -11,7 +11,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000074_00001",
+      "id": "OreburghCityNorthHouse1F_Text_BeNiceToMyAbra",
       "en_US": [
         "Be nice to my ABRA!\r",
         "I’ll be sure to look after your MACHOP\n",
@@ -19,11 +19,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000074_00002",
+      "id": "OreburghCityNorthHouse1F_Text_WhatIAskedForWasAMachop",
       "en_US": "What I asked for was a MACHOP..."
     },
     {
-      "id": "pl_msg_00000074_00003",
+      "id": "OreburghCityNorthHouse1F_Text_IfYouChangeYourMindIllBeRightHereWaiting",
       "en_US": [
         "Oh, OK...\n",
         "Well, I can’t make you trade me.\r",
@@ -32,14 +32,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000074_00004",
+      "id": "OreburghCityNorthHouse1F_Text_ThanksToPokemonIGotToBeFriendsWithYou",
       "en_US": [
         "Thanks to Pokémon, I got to be\n",
         "friends with you!"
       ]
     },
     {
-      "id": "pl_msg_00000074_00005",
+      "id": "OreburghCityNorthHouse1F_Text_APokemonObtainedInATradeGrowsQuickly",
       "en_US": [
         "A Pokémon obtained in a trade grows\n",
         "quickly.\r",
@@ -50,7 +50,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000074_00006",
+      "id": "OreburghCityNorthHouse1F_Text_WhenYouTradeAPokemonTheItemItsHoldingIsTradedAsWell",
       "en_US": [
         "When you trade a Pokémon, the item it’s\n",
         "holding is traded as well.\r",

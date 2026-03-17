@@ -2,7 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
-            "id": "OREBURGH_CITY_NORTHWEST_HOUSE_2F_WORKER_0",
+            "id": "LOCALID_WORKER",
             "graphics_id": "OBJ_EVENT_GFX_WORKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -17,7 +17,7 @@
             "y": 1
         },
         {
-            "id": "OREBURGH_CITY_NORTHWEST_HOUSE_2F_SCHOOL_KID_F_1",
+            "id": "LOCALID_SCHOOL_KID_F",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -32,7 +32,7 @@
             "y": 1
         },
         {
-            "id": "OREBURGH_CITY_NORTHWEST_HOUSE_2F_LASS_2",
+            "id": "LOCALID_LASS",
             "graphics_id": "OBJ_EVENT_GFX_LASS",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -47,7 +47,7 @@
             "y": 1
         },
         {
-            "id": "OREBURGH_CITY_NORTHWEST_HOUSE_2F_PSYDUCK_3",
+            "id": "LOCALID_PSYDUCK",
             "graphics_id": "OBJ_EVENT_GFX_PSYDUCK",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",

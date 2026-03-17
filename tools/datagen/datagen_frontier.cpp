@@ -9,9 +9,10 @@
  */
 
 #include <cstdlib>
-#include <cstring>
 #include <exception>
+#include <iostream>
 #include <map>
+#include <vector>
 
 #include "datagen.h"
 
@@ -36,29 +37,23 @@ static void BuildFrontierMonLookupTable(const std::vector<std::string> pokemonRe
     }
 }
 
-static void ParseSetIDs(const rapidjson::Value &member, u16 *trdata)
+static void PackFrontierTrainer(const rapidjson::Document &doc, NarcBuilder &builder)
 {
-    int i, numSets = 0;
-    for (const auto &value : member.GetArray()) {
-        trdata[2 + i++] = MapSetnameToId[value.GetString()];
+    auto sets = doc["availableSets"].GetArray();
+    int dataSize = 2 + sets.Size();
 
-        if (value != "none_1") {
-            numSets++;
-        }
-    }
-    trdata[1] = numSets;
-}
-
-static void PackFrontierTrainer(const rapidjson::Document &doc, vfs_pack_ctx *pl_btdtrVFS)
-{
-    int dataSize = 2 + doc["availableSets"].GetArray().Size();
-    u16 trdata[dataSize] = { 0 };
-
+    std::vector<u16> trdata;
+    trdata.resize(dataSize, 0);
     trdata[0] = LookupConst(doc["class"].GetString(), TrainerClass);
 
-    ParseSetIDs(doc["availableSets"], trdata);
+    for (int i = 0; i < sets.Size(); i++) {
+        const auto &value = std::string(sets[i].GetString());
+        if (value != "none_1") trdata[1]++;
 
-    narc_pack_file_copy(pl_btdtrVFS, reinterpret_cast<unsigned char *>(&trdata), sizeof(trdata));
+        trdata[2 + i] = MapSetnameToId[value];
+    }
+
+    builder.append(reinterpret_cast<std::byte *>(trdata.data()), trdata.size() * sizeof(u16));
 }
 
 static void ParseMoves(const rapidjson::Value &moves, BattleFrontierPokemonData &data)
@@ -129,8 +124,8 @@ int main(int argc, char **argv)
 
     BuildFrontierMonLookupTable(pokemonRegistry);
 
-    vfs_pack_ctx *pl_btdtrVFS = narc_pack_start();
-    vfs_pack_ctx *pl_btdpmVFS = narc_pack_start();
+    NarcBuilder pl_btdtr { trainerRegistry.size() };
+    NarcBuilder pl_btdpm { pokemonRegistry.size() };
     rapidjson::Document namesTextBank(rapidjson::kObjectType);
     namesTextBank.AddMember("key", 26501, namesTextBank.GetAllocator());
     rapidjson::Document messagesTextBank(rapidjson::kObjectType);
@@ -144,7 +139,7 @@ int main(int argc, char **argv)
         LoadJson(doc, trainerDataPath);
 
         try {
-            PackFrontierTrainer(doc, pl_btdtrVFS);
+            PackFrontierTrainer(doc, pl_btdtr);
 
             std::string trName = doc["name"].GetString();
             rapidjson::Value nameMessage(rapidjson::kObjectType);
@@ -187,16 +182,15 @@ int main(int argc, char **argv)
 
         try {
             BattleFrontierPokemonData pmdata = ParseFrontierPokemon(doc);
-
-            narc_pack_file_copy(pl_btdpmVFS, reinterpret_cast<unsigned char *>(&pmdata), sizeof(pmdata));
+            pl_btdpm.append(reinterpret_cast<std::byte *>(&pmdata), sizeof(pmdata));
         } catch (const std::exception &e) {
             std::cerr << e.what() << std::endl;
             std::exit(EXIT_FAILURE);
         }
     }
 
-    PackNarc(pl_btdtrVFS, outputRoot / "pl_btdtr.narc");
-    PackNarc(pl_btdpmVFS, outputRoot / "pl_btdpm.narc");
+    pl_btdtr.write(outputRoot / "pl_btdtr.narc");
+    pl_btdpm.write(outputRoot / "pl_btdpm.narc");
 
     char writeBuffer[65536];
 

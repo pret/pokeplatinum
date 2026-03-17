@@ -16,7 +16,7 @@
 #include "poketch_memory.h"
 #include "sys_task_manager.h"
 
-#include "res/graphics/poketch/poketch.naix.h"
+#include "res/graphics/poketch/poketch.naix"
 
 #define WINDOW_WIDTH_TILES  20
 #define WINDOW_HEIGHT_TILES 19

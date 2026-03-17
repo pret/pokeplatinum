@@ -12,7 +12,7 @@
 #include "struct_defs/battle_tower.h"
 
 #include "overlay104/frontier_script_context.h"
-#include "overlay104/ov104_0222FBE4.h"
+#include "overlay104/frscrcmd.h"
 #include "overlay104/ov104_02231F74.h"
 #include "overlay104/ov104_022394A4.h"
 #include "overlay104/ov104_0223A0C4.h"
@@ -58,7 +58,7 @@ BOOL FrontierScrCmd_CallBattleTowerFunction(FrontierScriptContext *ctx)
         *destVar = BattleTower_GiveBattlePointsReward(battleTower);
         broadcast = SaveData_GetTVBroadcast(v8->saveData);
         sub_0206D0C8(broadcast, *destVar);
-        GameRecords_AddToRecordValue(SaveData_GetGameRecords(v8->saveData), RECORD_UNK_068, *destVar);
+        GameRecords_AddToRecordValue(SaveData_GetGameRecords(v8->saveData), RECORD_BATTLE_POINTS_RECEIVED, *destVar);
         break;
     case BT_FUNC_GET_PARTNER_PARAM:
         *destVar = BattleTower_GetPartnerParam(battleTower, functionArgument);

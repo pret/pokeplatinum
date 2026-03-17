@@ -1,11 +1,13 @@
 #ifndef POKEPLATINUM_STRUCT_OV17_0224FCA0_SUB1_H
 #define POKEPLATINUM_STRUCT_OV17_0224FCA0_SUB1_H
 
+#include "constants/contests.h"
+
 #include "struct_defs/struct_02095C48_sub1_sub1.h"
 
 typedef struct {
-    UnkStruct_02095C48_sub1_sub1 unk_00[4];
-    u8 unk_30[4];
+    UnkStruct_02095C48_sub1_sub1 unk_00[CONTEST_NUM_PARTICIPANTS];
+    u8 unk_30[CONTEST_NUM_PARTICIPANTS];
     u8 unk_34;
     u8 unk_35[4];
     s16 unk_3A[4];

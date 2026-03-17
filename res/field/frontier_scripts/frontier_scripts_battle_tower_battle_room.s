@@ -598,7 +598,7 @@ _082D:
 _086E:
     CloseMessage
     Call _04C8
-    FrontierScrCmd_48 59
+    IncrementRecordValue RECORD_UNK_059
     FrontierScrCmd_47 1
     FrontierScrCmd_87
     FrontierScrCmd_88 0x800C

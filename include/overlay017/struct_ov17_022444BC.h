@@ -4,8 +4,8 @@
 #include "overlay017/struct_ov17_022449B8.h"
 
 typedef struct {
-    u16 unk_00;
-    u8 unk_02;
+    u16 moveID;
+    u8 contestMoveEffect;
     u8 unk_03;
     u8 unk_04;
     s16 unk_06;

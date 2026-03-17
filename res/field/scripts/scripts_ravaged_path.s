@@ -1,10 +1,10 @@
 #include "macros/scrcmd.inc"
 
 
-    ScriptEntry _0006
+    ScriptEntry RavagedPath_OnTransition
     ScriptEntryEnd
 
-_0006:
+RavagedPath_OnTransition:
     SetFlag FLAG_FIRST_ARRIVAL_RAVAGED_PATH
     End
 

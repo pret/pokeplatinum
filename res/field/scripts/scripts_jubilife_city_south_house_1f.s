@@ -8,36 +8,15 @@
     ScriptEntryEnd
 
 JubilifeCitySouthHouse1F_AceTrainerM:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message JubilifeCitySouthHouse1F_PokemonAreWonderfulDeeplyMysteriousCreatures
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage JubilifeCitySouthHouse1F_PokemonAreWonderfulDeeplyMysteriousCreatures
     End
 
 JubilifeCitySouthHouse1F_Lass:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message JubilifeCitySouthHouse1F_TalkToEveryoneYouSee
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage JubilifeCitySouthHouse1F_TalkToEveryoneYouSee
     End
 
 JubilifeCitySouthHouse1F_Pachirisu:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    WaitFanfare SEQ_SE_CONFIRM
-    PlayCry SPECIES_PACHIRISU
-    Message JubilifeCitySouthHouse1F_PachirisuKukkuuh
-    WaitCry
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    PokemonCryAndMessage SPECIES_PACHIRISU, JubilifeCitySouthHouse1F_PachirisuKukkuuh
     End
 
     .balign 4, 0

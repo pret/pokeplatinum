@@ -17,7 +17,7 @@ enum AGBGameSet {
     AGB_SET_EMERALD,
 };
 
-int ov97_02235D2C(void *param0);
+int ov97_02235D2C(GBASaveSlot *saveSlot);
 void ResetLoadedGBACartInfo(void);
 int GBACart_GetAGBGameType(void);
 int GBACart_GetLanguage(void);
@@ -26,6 +26,6 @@ BOOL ov97_02236280(void);
 int ov97_022362C8(void);
 int ov97_02236308(void);
 GBAPokemonStorage *GetGBAPokemonStorage(void);
-void *GetGBASaveBlock2(void);
+GBASaveBlock2 *GetGBASaveBlock2(void);
 
 #endif // POKEPLATINUM_MAIN_MENU_02235D18_H

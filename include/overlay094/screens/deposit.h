@@ -1,14 +1,13 @@
 #ifndef POKEPLATINUM_GTS_SCREENS_DEPOSIT_H
 #define POKEPLATINUM_GTS_SCREENS_DEPOSIT_H
 
-#include "struct_decls/pokedexdata_decl.h"
-
 #include "overlay094/gts_application_state.h"
 #include "overlay094/struct_ov94_02242AAC.h"
 
 #include "bg_window.h"
 #include "list_menu.h"
 #include "message.h"
+#include "pokedex.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "text.h"

@@ -264,83 +264,35 @@ GlobalTerminal1f_GTS_Exit_BadEgg:
     End
 
 _0374:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message pl_msg_00000046_00010
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage pl_msg_00000046_00010
     End
 
 _0387:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message pl_msg_00000046_00011
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage pl_msg_00000046_00011
     End
 
 _039A:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message pl_msg_00000046_00012
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage pl_msg_00000046_00012
     End
 
 _03AD:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message pl_msg_00000046_00013
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage pl_msg_00000046_00013
     End
 
 _03C0:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message pl_msg_00000046_00014
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage pl_msg_00000046_00014
     End
 
 _03D3:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message pl_msg_00000046_00015
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage pl_msg_00000046_00015
     End
 
 _03E6:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message pl_msg_00000046_00016
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage pl_msg_00000046_00016
     End
 
 _03F9:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message pl_msg_00000046_00017
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage pl_msg_00000046_00017
     End
 
 _040C:
@@ -424,23 +376,11 @@ _0515:
     End
 
 _0520:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message pl_msg_00000046_00032
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage pl_msg_00000046_00032
     End
 
 _0533:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message pl_msg_00000046_00033
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage pl_msg_00000046_00033
     End
 
 _0546:
@@ -590,12 +530,7 @@ _074A:
     Return
 
 _074C:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    Message pl_msg_00000046_00041
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    EventMessage pl_msg_00000046_00041
     End
 
     .balign 4, 0

@@ -3,11 +3,13 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "generated/pokemon_contest_types.h"
+
 #include "overlay017/struct_ov17_022472F8.h"
 
 #include "move_table.h"
 
-__attribute__((aligned(4))) static const s8 Unk_ov17_022539C8[][5] = {
+__attribute__((aligned(4))) static const s8 Unk_ov17_022539C8[CONTEST_TYPE_MAX][CONTEST_TYPE_MAX] = {
     { 0xA, 0x0, 0xFFFFFFFFFFFFFFF6, 0xFFFFFFFFFFFFFFF6, 0x0 },
     { 0x0, 0xA, 0x0, 0xFFFFFFFFFFFFFFF6, 0xFFFFFFFFFFFFFFF6 },
     { 0xFFFFFFFFFFFFFFF6, 0x0, 0xA, 0x0, 0xFFFFFFFFFFFFFFF6 },
@@ -41,13 +43,13 @@ int ov17_02243AE4(int param0)
     return v0[param0];
 }
 
-int ov17_02243AF0(int param0, int param1, int param2, int param3)
+int ov17_02243AF0(int contestType, int moveID, int unused1, int unused2)
 {
-    int v0;
+    int moveContestType;
     int v1;
 
-    v0 = MoveTable_LoadParam(param1, MOVEATTRIBUTE_CONTEST_TYPE);
-    v1 = Unk_ov17_022539C8[param0][v0];
+    moveContestType = MoveTable_LoadParam(moveID, MOVEATTRIBUTE_CONTEST_TYPE);
+    v1 = Unk_ov17_022539C8[contestType][moveContestType];
 
     return v1;
 }

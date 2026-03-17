@@ -11,11 +11,11 @@
     ],
     "object_events": [
         {
-            "id": "IRON_ISLAND_B2F_RIGHT_ROOM_POKEBALL_0",
+            "id": "LOCALID_ITEM_ELIXIR",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0480",
+            "hidden_flag": "FLAG_OBTAINED_IRON_ISLAND_B2F_RIGHT_ROOM_ELIXIR",
             "script": 7138,
             "initial_dir": 0,
             "data": [],
@@ -26,11 +26,11 @@
             "y": 0
         },
         {
-            "id": "IRON_ISLAND_B2F_RIGHT_ROOM_POKEBALL_1",
+            "id": "LOCALID_ITEM_TM23",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0481",
+            "hidden_flag": "FLAG_OBTAINED_IRON_ISLAND_B2F_RIGHT_ROOM_TM23",
             "script": 7139,
             "initial_dir": 0,
             "data": [],

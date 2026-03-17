@@ -2,6 +2,8 @@
 
 #include <nitro.h>
 
+#include "constants/battle_frontier.h"
+
 #include "struct_decls/struct_0203026C_decl.h"
 
 #include "communication_system.h"
@@ -32,7 +34,7 @@ void sub_0204FA50(SaveData *saveData, UnkStruct_0203026C *param1, u8 challengeTy
     v1[0] = 0;
     sub_02030280(param1, 5, challengeType, 0, v1);
 
-    if (challengeType == 3) {
+    if (challengeType == FRONTIER_CHALLENGE_MULTI_WFC) {
         sub_020306E4(SaveData_GetBattleFrontier(saveData), 106, sub_0205E6A8(106), 0);
     }
 

@@ -3,18 +3,16 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020216E0_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
-#include "struct_defs/struct_020217F4.h"
 
 #include "field/field_system.h"
 #include "overlay005/field_effect_manager.h"
 #include "overlay005/ov5_021ECC20.h"
 
+#include "billboard.h"
 #include "map_object.h"
 #include "overworld_anim_manager.h"
 #include "sound_playback.h"
-#include "unk_02020AEC.h"
 
 void include_unk_ov5_02200B98(void);
 
@@ -45,7 +43,7 @@ typedef struct {
     VecFx32 unk_18;
     VecFx32 unk_24;
     UnkStruct_ov5_021F5D8C unk_30;
-    UnkStruct_020216E0 *unk_40;
+    Billboard *unk_40;
 } UnkStruct_ov5_021F5C4C;
 
 static void ov5_021F5A34(UnkStruct_ov5_021F5A34 *param0);
@@ -64,12 +62,12 @@ static void ov5_021F5BD0(UnkStruct_ov5_021F5A34 *param0);
 static void ov5_021F5BE0(UnkStruct_ov5_021F5A34 *param0);
 static void ov5_021F5BF0(UnkStruct_ov5_021F5A34 *param0, int param1);
 static void ov5_021F5C04(UnkStruct_ov5_021F5A34 *param0, int param1);
-static UnkStruct_020216E0 *ov5_021F5C18(FieldEffectManager *param0, int param1, VecFx32 *param2, u32 param3);
+static Billboard *ov5_021F5C18(FieldEffectManager *param0, int param1, VecFx32 *param2, u32 param3);
 
 static const OverworldAnimManagerFuncs Unk_ov5_02200B98;
 static const OverworldAnimManagerFuncs Unk_ov5_02200B84;
 static const OverworldAnimManagerFuncs Unk_ov5_02200BAC;
-const UnkStruct_020217F4 Unk_ov5_02200BC0[];
+const BillboardAnim Unk_ov5_02200BC0[];
 
 void *ov5_021F5A10(FieldEffectManager *param0)
 {
@@ -226,13 +224,13 @@ static void ov5_021F5C04(UnkStruct_ov5_021F5A34 *param0, int param1)
     }
 }
 
-static UnkStruct_020216E0 *ov5_021F5C18(FieldEffectManager *param0, int param1, VecFx32 *param2, u32 param3)
+static Billboard *ov5_021F5C18(FieldEffectManager *param0, int param1, VecFx32 *param2, u32 param3)
 {
     int v0[2] = { 1, 12 };
-    UnkStruct_020216E0 *v1 = ov5_021DF84C(param0, v0[param1], param2);
+    Billboard *v1 = ov5_021DF84C(param0, v0[param1], param2);
 
     if (param3 == 1) {
-        NNSG3dResMdl *v2 = sub_020213F4(v1);
+        NNSG3dResMdl *v2 = Billboard_GetModel(v1);
         NNS_G3dMdlSetMdlFogEnableFlagAll(v2, 0);
     }
 
@@ -252,7 +250,7 @@ void ov5_021F5C58(OverworldAnimManager *param0)
     v0->unk_10 = 1;
 
     if (v0->unk_40 != NULL) {
-        sub_02021320(v0->unk_40, 0);
+        Billboard_SetDrawFlag(v0->unk_40, 0);
     }
 }
 
@@ -319,7 +317,7 @@ static void ov5_021F5D38(OverworldAnimManager *param0, void *param1)
 {
     UnkStruct_ov5_021F5C4C *v0 = param1;
 
-    sub_020211FC(v0->unk_40);
+    Billboard_Delete(v0->unk_40);
 
     ov5_021F5A90(v0->unk_30.unk_08, v0->unk_30.unk_00);
     ov5_021F5C04(v0->unk_30.unk_08, v0->unk_30.unk_00);
@@ -340,7 +338,7 @@ static void ov5_021F5D54(OverworldAnimManager *param0, void *param1)
     v0.y += v1->unk_18.y;
     v0.z += v1->unk_18.z;
 
-    sub_020212A8(v1->unk_40, &v0);
+    Billboard_SetPos(v1->unk_40, &v0);
 }
 
 OverworldAnimManager *ov5_021F5D8C(MapObject *param0, int param1, int param2, int param3)
@@ -484,11 +482,11 @@ static void ov5_021F5F24(OverworldAnimManager *param0, void *param1)
         break;
     case 2:
         v0->unk_40 = ov5_021F5C18(v0->unk_30.unk_04, v0->unk_30.unk_00, &v2, v0->unk_30.unk_08->unk_06);
-        sub_02021320(v0->unk_40, 0);
+        Billboard_SetDrawFlag(v0->unk_40, 0);
         v0->unk_00++;
         break;
     case 3:
-        sub_02021320(v0->unk_40, 1);
+        Billboard_SetDrawFlag(v0->unk_40, 1);
         v0->unk_10 = 0;
 
         if (OverworldAnimManager_GetID(param0) == 1) {
@@ -546,7 +544,7 @@ static const OverworldAnimManagerFuncs Unk_ov5_02200BAC = {
     ov5_021F5D54
 };
 
-static const UnkStruct_020217F4 Unk_ov5_02200BC0[] = {
+static const BillboardAnim Unk_ov5_02200BC0[] = {
     { 0x0, 0x1, 0x0 },
     { 0x0, 0x0, 0x2 }
 };

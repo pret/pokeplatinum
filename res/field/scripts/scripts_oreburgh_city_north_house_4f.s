@@ -1,8 +1,8 @@
 #include "macros/scrcmd.inc"
 
 
-    ScriptEntry _0006
+    ScriptEntry OreburghCityNorthHouse4F_Collector
     ScriptEntryEnd
 
-_0006:
+OreburghCityNorthHouse4F_Collector:
     End

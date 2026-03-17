@@ -1,10 +1,12 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "applications/frontier/battle_castle/opponent_app.h"
+#include "applications/frontier/battle_castle/self_app.h"
 #include "overlay104/frontier_script_context.h"
+#include "overlay104/frscrcmd.h"
 #include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/ov104_0222E63C.h"
-#include "overlay104/ov104_0222FBE4.h"
 #include "overlay104/ov104_02231F74.h"
 #include "overlay104/ov104_022361B4.h"
 #include "overlay104/ov104_0223B6F4.h"
@@ -13,8 +15,6 @@
 #include "overlay104/struct_ov104_0223597C.h"
 #include "overlay104/struct_ov104_0223BA10.h"
 #include "overlay104/struct_ov104_0223C4CC.h"
-#include "overlay107/battle_castle_opponent_app.h"
-#include "overlay107/battle_castle_self_app.h"
 
 #include "communication_system.h"
 #include "field_battle_data_transfer.h"
@@ -30,7 +30,7 @@
 
 #include "constdata/const_020EA358.h"
 
-FS_EXTERN_OVERLAY(overlay107);
+FS_EXTERN_OVERLAY(battle_castle_app);
 
 #include <nitro/code16.h>
 
@@ -84,13 +84,13 @@ BOOL FrontierScrCmd_9A(FrontierScriptContext *param0)
     UnkStruct_ov104_0223597C *v2;
     UnkStruct_ov104_02230BE4 *v3 = sub_0209B970(param0->unk_00->unk_00);
 
-    FS_EXTERN_OVERLAY(overlay107);
+    FS_EXTERN_OVERLAY(battle_castle_app);
 
     static const ApplicationManagerTemplate v4 = {
         BattleCastleSelfApp_Init,
         BattleCastleSelfApp_Main,
         BattleCastleSelfApp_Exit,
-        FS_OVERLAY_ID(overlay107)
+        FS_OVERLAY_ID(battle_castle_app)
     };
 
     v1 = sub_0209B978(param0->unk_00->unk_00);
@@ -112,13 +112,13 @@ BOOL FrontierScrCmd_A4(FrontierScriptContext *param0)
     UnkStruct_ov104_0223597C *v2;
     UnkStruct_ov104_02230BE4 *v3 = sub_0209B970(param0->unk_00->unk_00);
 
-    FS_EXTERN_OVERLAY(overlay107);
+    FS_EXTERN_OVERLAY(battle_castle_app);
 
     static const ApplicationManagerTemplate v4 = {
         NULL,
         NULL,
         NULL,
-        FS_OVERLAY_ID(overlay107)
+        FS_OVERLAY_ID(battle_castle_app)
     };
 
     v1 = sub_0209B978(param0->unk_00->unk_00);
@@ -188,13 +188,13 @@ BOOL FrontierScrCmd_9D(FrontierScriptContext *param0)
     UnkStruct_ov104_0223597C *v2;
     UnkStruct_ov104_02230BE4 *v3 = sub_0209B970(param0->unk_00->unk_00);
 
-    FS_EXTERN_OVERLAY(overlay107);
+    FS_EXTERN_OVERLAY(battle_castle_app);
 
     static const ApplicationManagerTemplate v4 = {
         BattleCastleOpponentApp_Init,
         BattleCastleOpponentApp_Main,
         BattleCastleOpponentApp_Exit,
-        FS_OVERLAY_ID(overlay107)
+        FS_OVERLAY_ID(battle_castle_app)
     };
 
     v1 = sub_0209B978(param0->unk_00->unk_00);

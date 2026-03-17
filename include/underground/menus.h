@@ -5,8 +5,6 @@
 #include "generated/sphere_types.h"
 #include "generated/traps.h"
 
-#include "struct_defs/underground.h"
-
 #include "field/field_system_decl.h"
 #include "overlay005/sprite_resource_manager.h"
 #include "underground/item_list_menu.h"
@@ -21,6 +19,7 @@
 #include "string_list.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
+#include "underground.h"
 
 enum UndergroundStartMenuOption {
     UNDERGROUND_START_MENU_OPTION_TRAPS = 0,

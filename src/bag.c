@@ -326,7 +326,7 @@ void *BagContext_CreateWithPockets(Bag *bag, const u8 *pockets, enum HeapID heap
 
     bagContext = BagContext_New(heapID);
 
-    for (i = 0; pockets[i] != 0xff; i++) {
+    for (i = 0; pockets[i] != POCKET_LIST_END; i++) {
         switch (pockets[i]) {
         case POCKET_KEY_ITEMS:
             BagContext_InitPocket(bagContext, bag->keyItems, POCKET_KEY_ITEMS, i);

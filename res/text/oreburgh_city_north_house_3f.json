@@ -2,7 +2,7 @@
   "key": 25619,
   "messages": [
     {
-      "id": "pl_msg_00000076_00000",
+      "id": "OreburghCityNorthHouse3F_Text_DuringTheDaytimeEveryoneGoesOffToTheMine",
       "en_US": [
         "During the daytime, everyone goes off\n",
         "to the mine.\r",
@@ -11,14 +11,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000076_00001",
+      "id": "OreburghCityNorthHouse3F_Text_WellKeepDiggingCoal",
       "en_US": [
         "We’ll keep digging coal.\n",
         "The world needs energy!"
       ]
     },
     {
-      "id": "pl_msg_00000076_00002",
+      "id": "OreburghCityNorthHouse3F_Text_EveryoneIncludingLotsOfPokemonDugTheBigUndergroundMaze",
       "en_US": [
         "Everyone, including lots of Pokémon,\n",
         "dug the big underground maze!"

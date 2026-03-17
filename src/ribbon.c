@@ -5,7 +5,7 @@
 
 #include "constants/pokemon.h"
 
-#include "res/graphics/pokemon_summary_screen/pl_pst_gra.naix.h"
+#include "res/graphics/pokemon_summary_screen/pl_pst_gra.naix"
 #include "res/text/bank/ribbon_names.h"
 
 typedef struct {

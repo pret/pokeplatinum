@@ -23,13 +23,7 @@ _001A:
     End
 
 _0032:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 1
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 1
     End
 
     .balign 4, 0

@@ -76,12 +76,10 @@ naming_screen_nscr_lzs = lz_gen.process(naming_screen_nscrs,
     ]
 )
 
-naming_screen_order = files('naming_screen.order')
-
 naming_screen_narc = custom_target('namein.narc',
     output: [
         'namein.narc',
-        'namein.naix.h',
+        'namein.naix',
     ],
     input: [
         naming_screen_ncgr_lzs,
@@ -90,15 +88,15 @@ naming_screen_narc = custom_target('namein.narc',
         naming_screen_ncer_lzs,
         naming_screen_nanr_lzs,
         naming_screen_nscr_lzs,
-        naming_screen_order,
     ],
     command: [
-        narc_exe, 'create',
-        '--naix',
-        '--order', naming_screen_order,
-        '--output', '@OUTPUT0@',
+        nitroarc_exe,
+        '--create',
+        '--index',
+        '--files-from', files('naming_screen.order'),
+        '--file', '@OUTPUT0@',
         '@PRIVATE_DIR@',
-    ]
+    ],
 )
 
 nitrofs_files += naming_screen_narc

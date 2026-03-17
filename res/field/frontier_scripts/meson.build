@@ -1,4 +1,3 @@
-relative_source_root = fs.relative_to(meson.project_source_root(), meson.project_build_root())
 relative_build_dir = fs.relative_to(meson.current_build_dir(), meson.project_build_root())
 
 fr_script_target_name = 'fr_script.narc'
@@ -7,7 +6,7 @@ fr_script_private_dir = relative_build_dir / fr_script_target_name + '.p'
 fr_script_narc = custom_target('fr_script.narc',
     output: [
         'fr_script.narc',
-        'fr_script.naix.h',
+        'fr_script.naix',
     ],
     input: [
         script_bin_gen.process(files(
@@ -29,10 +28,11 @@ fr_script_narc = custom_target('fr_script.narc',
         ), extra_args: ['--out-dir', fr_script_private_dir]),
     ],
     command: [
-        narc_exe, 'create',
-        '--naix',
-        '--order', files('fr_script.order'),
-        '--output', '@OUTPUT0@',
+        nitroarc_exe,
+        '--create',
+        '--index',
+        '--files-from', files('fr_script.order'),
+        '--file', '@OUTPUT0@',
         '@PRIVATE_DIR@',
     ],
 )

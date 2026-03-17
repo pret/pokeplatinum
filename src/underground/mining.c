@@ -9,9 +9,6 @@
 #include "generated/trainer_score_events.h"
 #include "generated/traps.h"
 
-#include "struct_defs/underground.h"
-#include "struct_defs/underground_record.h"
-
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
 #include "overlay005/hblank_system.h"
@@ -64,15 +61,15 @@
 #include "text.h"
 #include "trainer_info.h"
 #include "tv_episode_segment.h"
-#include "unk_0202854C.h"
+#include "underground.h"
 #include "unk_020393C8.h"
 #include "vars_flags.h"
 #include "vram_transfer.h"
 
-#include "res/graphics/mining/animations/animations.naix.h"
-#include "res/graphics/mining/interface/interface.naix.h"
-#include "res/graphics/mining/objects/objects.naix.h"
-#include "res/graphics/trap_effects/trap_effects.naix.h"
+#include "res/graphics/mining/animations/animations.naix"
+#include "res/graphics/mining/interface/interface.naix"
+#include "res/graphics/mining/objects/objects.naix"
+#include "res/graphics/trap_effects/trap_effects.naix"
 #include "res/text/bank/underground_common.h"
 
 #define MAX_BURIED_OBJECTS 8
@@ -1132,7 +1129,7 @@ static void Mining_ConfirmStartMiningTask(SysTask *sysTask, void *unused)
         u8 confirmResult;
         if (input == MENU_NOTHING_CHOSEN) {
             return;
-        } else if (input == 0) {
+        } else if (input == MENU_YES) {
             confirmResult = TRUE;
         } else {
             confirmResult = FALSE;

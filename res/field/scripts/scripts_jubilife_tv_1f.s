@@ -20,13 +20,7 @@ JubilifeTV1F_Unused1:
     End
 
 JubilifeTV1F_GymGuide:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message JubilifeTV1F_Text_WhyDontYouTryDressingUpYourPokemonNow
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage JubilifeTV1F_Text_WhyDontYouTryDressingUpYourPokemonNow
     End
 
 JubilifeTV1F_Unused2:
@@ -184,36 +178,18 @@ JubilifeTV1F_PleaseDoVisitAgain:
     End
 
 JubilifeTV1F_Beauty:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message JubilifeTV1F_Text_TheyKeepTrackOfOfficialRecordsHere
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage JubilifeTV1F_Text_TheyKeepTrackOfOfficialRecordsHere
     End
 
 JubilifeTV1F_MiddleAgedMan:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message JubilifeTV1F_Text_ImGoingToGetCommercialsShownOnTV
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage JubilifeTV1F_Text_ImGoingToGetCommercialsShownOnTV
     End
 
 JubilifeTV1F_Unused3:
     End
 
 JubilifeTV1F_AceTrainerM:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message JubilifeTV1F_Text_TheTVStationInterviewsAllSortsOfTrainersForItsShows
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage JubilifeTV1F_Text_TheTVStationInterviewsAllSortsOfTrainersForItsShows
     End
 
     .balign 4, 0

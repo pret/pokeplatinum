@@ -2,12 +2,9 @@
 
 #include <dwc.h>
 #include <nitro.h>
-#include <string.h>
 
 #include "generated/items.h"
 #include "generated/species.h"
-
-#include "struct_decls/pc_boxes_decl.h"
 
 #include "global/utility.h"
 #include "overlay094/application.h"

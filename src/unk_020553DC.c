@@ -5,9 +5,6 @@
 
 #include "generated/trainer_classes.h"
 
-#include "struct_decls/struct_0203A790_decl.h"
-#include "struct_decls/struct_0205E884_decl.h"
-
 #include "field/field_system.h"
 
 #include "field_overworld_state.h"

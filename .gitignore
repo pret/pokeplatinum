@@ -15,15 +15,13 @@
 /subprojects/libpng-*/
 /subprojects/zlib-*/
 /subprojects/packagecache
-/subprojects/constgen/
 /subprojects/SDATTool/
-/subprojects/knarc/
-/subprojects/narc/
 /subprojects/metang/
 /subprojects/rapidjson-*/
 /subprojects/meson-*/
 /subprojects/nitrorom/
 /subprojects/metroskrew/
+/subprojects/.wraplock
 
 # Legacy mwrap compiler
 /tools/cw/mwrap

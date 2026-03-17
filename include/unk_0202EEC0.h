@@ -1,9 +1,15 @@
 #ifndef POKEPLATINUM_UNK_0202EEC0_H
 #define POKEPLATINUM_UNK_0202EEC0_H
 
-#include "struct_decls/struct_02024440_decl.h"
-
 #include "pokemon.h"
+
+typedef struct MigratedPokemon {
+    Pokemon mons[CATCHING_SHOW_MONS];
+    u32 gbaTrainerIds[MAX_GBA_TRANSFER_HISTORY];
+    s64 timeStamps[MAX_GBA_TRANSFER_HISTORY];
+    s64 rtcOffset;
+    u8 macAddress[6];
+} MigratedPokemon;
 
 int MigratedPokemon_SaveSize(void);
 void PalParkTransfer_Init(MigratedPokemon *transferData);

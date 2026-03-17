@@ -5,8 +5,6 @@
 
 #include "generated/text_banks.h"
 
-#include "struct_decls/struct_0203A790_decl.h"
-
 #include "field/field_system.h"
 
 #include "bg_window.h"

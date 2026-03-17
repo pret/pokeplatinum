@@ -391,73 +391,31 @@ FightArea_UnusedMovement5:
     EndMovement
 
 _049C:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 31
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 31
     End
 
 _04AF:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 33
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 33
     End
 
 _04C2:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 34
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 34
     End
 
 _04D5:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 35
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 35
     End
 
 _04E8:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 36
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 36
     End
 
 _04FB:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 37
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 37
     End
 
 _050E:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 41
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 41
     End
 
 _0521:
@@ -671,23 +629,11 @@ _07D0:
     EndMovement
 
 _07DC:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 29
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 29
     End
 
 _07EF:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 30
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 30
     End
 
 _0802:
@@ -732,53 +678,23 @@ _085C:
     EndMovement
 
 _0864:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 24
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 24
     End
 
 _0877:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 25
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 25
     End
 
 _088A:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 26
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 26
     End
 
 _089D:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 27
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 27
     End
 
 _08B0:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 28
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 28
     End
 
     .balign 0

@@ -108,55 +108,55 @@ static void ov104_02239D1C(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param
 {
     u8 v0;
 
-    param1->unk_A8 = Heap_Alloc(HEAP_ID_FIELD2, sizeof(PartyMenu));
-    MI_CpuClearFast(param1->unk_A8, sizeof(PartyMenu));
+    param1->partyMenu = Heap_Alloc(HEAP_ID_FIELD2, sizeof(PartyMenu));
+    MI_CpuClearFast(param1->partyMenu, sizeof(PartyMenu));
 
-    param1->unk_A8->party = SaveData_GetParty(param1->saveData);
-    param1->unk_A8->bag = SaveData_GetBag(param1->saveData);
-    param1->unk_A8->mailbox = SaveData_GetMailbox(param1->saveData);
-    param1->unk_A8->options = SaveData_GetOptions(param1->saveData);
-    param1->unk_A8->type = PARTY_MENU_TYPE_BASIC;
+    param1->partyMenu->party = SaveData_GetParty(param1->saveData);
+    param1->partyMenu->bag = SaveData_GetBag(param1->saveData);
+    param1->partyMenu->mailbox = SaveData_GetMailbox(param1->saveData);
+    param1->partyMenu->options = SaveData_GetOptions(param1->saveData);
+    param1->partyMenu->type = PARTY_MENU_TYPE_BASIC;
 
     if (param1->unk_A0 == 1) {
-        param1->unk_A8->mode = 17;
+        param1->partyMenu->mode = PARTY_MENU_MODE_BATTLE_TOWER;
     } else if (param1->unk_A0 == 5) {
-        param1->unk_A8->mode = 22;
+        param1->partyMenu->mode = PARTY_MENU_MODE_BATTLE_HALL;
     } else if (param1->unk_A0 == 4) {
-        param1->unk_A8->mode = 23;
+        param1->partyMenu->mode = PARTY_MENU_MODE_BATTLE_CASTLE;
     } else if (param1->unk_A0 == 6) {
-        param1->unk_A8->mode = 23;
+        param1->partyMenu->mode = PARTY_MENU_MODE_BATTLE_CASTLE;
     } else {
         GF_ASSERT(0);
     }
 
-    param1->unk_A8->fieldSystem = fieldSystem;
-    param1->unk_A8->selectedMonSlot = param1->unk_9F;
+    param1->partyMenu->fieldSystem = fieldSystem;
+    param1->partyMenu->selectedMonSlot = param1->unk_9F;
 
     for (v0 = 0; v0 < 2; v0++) {
-        param1->unk_A8->selectionOrder[v0] = param1->unk_A1[v0];
+        param1->partyMenu->selectionOrder[v0] = param1->unk_A1[v0];
     }
 
     if (param1->unk_A0 == 1) {
-        param1->unk_A8->minSelectionSlots = 2;
-        param1->unk_A8->maxSelectionSlots = 2;
-        param1->unk_A8->reqLevel = 100;
+        param1->partyMenu->minSelectionSlots = 2;
+        param1->partyMenu->maxSelectionSlots = 2;
+        param1->partyMenu->reqLevel = 100;
     } else if (param1->unk_A0 == 5) {
-        param1->unk_A8->minSelectionSlots = 1;
-        param1->unk_A8->maxSelectionSlots = 1;
-        param1->unk_A8->reqLevel = 30;
+        param1->partyMenu->minSelectionSlots = 1;
+        param1->partyMenu->maxSelectionSlots = 1;
+        param1->partyMenu->reqLevel = 30;
     } else if (param1->unk_A0 == 4) {
-        param1->unk_A8->minSelectionSlots = 2;
-        param1->unk_A8->maxSelectionSlots = 2;
-        param1->unk_A8->reqLevel = 100;
+        param1->partyMenu->minSelectionSlots = 2;
+        param1->partyMenu->maxSelectionSlots = 2;
+        param1->partyMenu->reqLevel = 100;
     } else if (param1->unk_A0 == 6) {
-        param1->unk_A8->minSelectionSlots = 2;
-        param1->unk_A8->maxSelectionSlots = 2;
-        param1->unk_A8->reqLevel = 100;
+        param1->partyMenu->minSelectionSlots = 2;
+        param1->partyMenu->maxSelectionSlots = 2;
+        param1->partyMenu->reqLevel = 100;
     } else {
         GF_ASSERT(0);
     }
 
-    sub_0209B988(param0, &gPokemonPartyAppTemplate, param1->unk_A8, 0, NULL);
+    sub_0209B988(param0, &gPokemonPartyAppTemplate, param1->partyMenu, 0, NULL);
     return;
 }
 
@@ -164,7 +164,7 @@ static void ov104_02239F38(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param
 {
     int v0;
 
-    switch (param1->unk_A8->selectedMonSlot) {
+    switch (param1->partyMenu->selectedMonSlot) {
     case 7:
         *param1->unk_B0 = 4;
         param1->unk_9D = 4;
@@ -177,11 +177,11 @@ static void ov104_02239F38(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param
         break;
     }
 
-    MI_CpuCopy8(param1->unk_A8->selectionOrder, param1->unk_A1, 2);
-    param1->unk_9F = param1->unk_A8->selectedMonSlot;
-    Heap_Free(param1->unk_A8);
+    MI_CpuCopy8(param1->partyMenu->selectionOrder, param1->unk_A1, 2);
+    param1->unk_9F = param1->partyMenu->selectedMonSlot;
+    Heap_Free(param1->partyMenu);
 
-    param1->unk_A8 = NULL;
+    param1->partyMenu = NULL;
     *param1->unk_B0 = 2;
     param1->unk_9D = 2;
 

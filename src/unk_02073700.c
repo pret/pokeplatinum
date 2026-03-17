@@ -7,12 +7,12 @@
 
 #include "overlay096/struct_ov96_0223B450_sub1.h"
 
+#include "appearance.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "trainer_info.h"
 #include "unk_0202C858.h"
 #include "unk_0202D05C.h"
-#include "unk_0205C980.h"
 
 void sub_02073700(SaveData *saveData, int param1, UnkStruct_ov96_0223B450_sub1 *param2)
 {
@@ -30,7 +30,7 @@ void sub_02073700(SaveData *saveData, int param1, UnkStruct_ov96_0223B450_sub1 *
     param2->unk_BA = (u8)WiFiHistory_GetCountry(wiFiHistory);
     param2->unk_BB = (u8)WiFiHistory_GetRegion(wiFiHistory);
     param2->unk_C8_val1_1 = TrainerInfo_Gender(v1);
-    param2->unk_C9 = sub_0205CA14(param2->unk_C8_val1_1, TrainerInfo_Appearance(v1), 1);
+    param2->unk_C9 = Appearance_GetData(param2->unk_C8_val1_1, TrainerInfo_Appearance(v1), APPEARANCE_DATA_TRAINER_CLASS_2);
 
     for (v0 = 0; v0 < 3; v0++) {
         MI_CpuCopy8(sub_0202D498(saveData, 0 + v0), &(param2->unk_CA[8 * v0]), 8);

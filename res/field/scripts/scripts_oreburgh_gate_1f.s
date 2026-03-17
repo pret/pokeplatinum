@@ -1,73 +1,74 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/oreburgh_gate_1f.h"
+#include "res/field/events/events_oreburgh_gate_1f.h"
 
 
-    ScriptEntry _000E
-    ScriptEntry _0014
-    ScriptEntry _007B
+    ScriptEntry OreburghGate1F_OnTransition
+    ScriptEntry OreburghGate1F_Hiker
+    ScriptEntry OreburghGate1F_HikerTrigger
     ScriptEntryEnd
 
-_000E:
+OreburghGate1F_OnTransition:
     SetFlag FLAG_FIRST_ARRIVAL_OREBURGH_GATE
     End
 
-_0014:
+OreburghGate1F_Hiker:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     CheckBadgeAcquired BADGE_ID_COAL, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _003A
-    Message 2
+    GoToIfEq VAR_RESULT, FALSE, OreburghGate1F_HikerGiveHM
+    Message OreburghGate1F_Text_NowYouCanUseTheHiddenMoveRockSmashOnSmallBoulders
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_003A:
-    GoToIfSet FLAG_UNK_0x0093, _0064
-    Message 0
+OreburghGate1F_HikerGiveHM:
+    GoToIfSet FLAG_RECEIVED_HM06, OreburghGate1F_ThatHiddenMachineContainsRockSmash
+    Message OreburghGate1F_Text_SoLetMeMakeAGiftOfThisHiddenMachineToYou
     SetVar VAR_0x8004, ITEM_HM06
     SetVar VAR_0x8005, 1
     Common_GiveItemQuantity
-    Call _006F
-    GoTo _0064
+    Call OreburghGate1F_SetFlagReceivedHM06
+    GoTo OreburghGate1F_ThatHiddenMachineContainsRockSmash
 
-_0064:
-    Message 1
+OreburghGate1F_ThatHiddenMachineContainsRockSmash:
+    Message OreburghGate1F_Text_ThatHiddenMachineContainsRockSmash
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_006F:
-    SetFlag FLAG_UNK_0x0093
-    SetVar VAR_UNK_0x4093, 2
+OreburghGate1F_SetFlagReceivedHM06:
+    SetFlag FLAG_RECEIVED_HM06
+    SetVar VAR_OREBURGH_GATE_1F_HIKER_STATE, 2
     Return
 
-_007B:
+OreburghGate1F_HikerTrigger:
     LockAll
-    ApplyMovement 10, _00C0
-    ApplyMovement LOCALID_PLAYER, _00B4
+    ApplyMovement LOCALID_HIKER, OreburghGate1F_Movement_HikerWalkToPlayer
+    ApplyMovement LOCALID_PLAYER, OreburghGate1F_Movement_PlayerFaceHiker
     WaitMovement
-    Message 0
+    Message OreburghGate1F_Text_SoLetMeMakeAGiftOfThisHiddenMachineToYou
     SetVar VAR_0x8004, ITEM_HM06
     SetVar VAR_0x8005, 1
     Common_GiveItemQuantity
-    Call _006F
-    Message 1
+    Call OreburghGate1F_SetFlagReceivedHM06
+    Message OreburghGate1F_Text_ThatHiddenMachineContainsRockSmash
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
     .balign 4, 0
-_00B4:
+OreburghGate1F_Movement_PlayerFaceHiker:
     Delay8
     WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
-_00C0:
+OreburghGate1F_Movement_HikerWalkToPlayer:
     WalkOnSpotNormalSouth
     EmoteExclamationMark
     WalkNormalSouth

@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/battle_frontier.h"
+
 #include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/struct_ov104_02230BE4.h"
 #include "overlay104/struct_ov104_0223B5C0.h"
@@ -1769,9 +1771,9 @@ u8 BattleHall_CursorPosToType(u8 cursorPos)
     return sBattleHallAppGridOrder[cursorPos];
 }
 
-BOOL BattleFrontier_IsMultiPlayerChallenge(u8 challengeMode)
+BOOL BattleHall_IsMultiPlayerChallenge(u8 challengeType)
 {
-    return challengeMode == 2 || challengeMode == 3;
+    return challengeType == FRONTIER_CHALLENGE_MULTI || challengeType == FRONTIER_CHALLENGE_MULTI_WFC;
 }
 
 u8 ov104_0223B5C0(UnkStruct_ov104_0223B5C0 *param0)
@@ -1849,7 +1851,7 @@ u16 ov104_0223B64C(UnkStruct_ov104_0223B5C0 *param0)
             return v3;
         }
     } else {
-        if (BattleFrontier_IsMultiPlayerChallenge(param0->unk_04) == 1) {
+        if (BattleHall_IsMultiPlayerChallenge(param0->unk_04) == 1) {
             if (v2 > param0->unk_D84[0]) {
                 return v2;
             } else {

@@ -113,11 +113,11 @@
             "y": 0
         },
         {
-            "id": "GALACTIC_HQ_LABORATORY_POKEBALL_2",
+            "id": "LOCALID_ITEM_FULL_RESTORE",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x051F",
+            "hidden_flag": "FLAG_OBTAINED_GALACTIC_HQ_LABORATORY_FULL_RESTORE",
             "script": 7296,
             "initial_dir": 0,
             "data": [],

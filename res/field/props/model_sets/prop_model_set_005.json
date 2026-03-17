@@ -1,0 +1,25 @@
+{
+    "mapPropModels": [
+        "prop_model_004_nsbmd",
+        "prop_model_005_nsbmd",
+        "prop_model_008_nsbmd",
+        "prop_model_039_nsbmd",
+        "prop_model_040_nsbmd",
+        "honey_tree_nsbmd",
+        "pokecenter_door_nsbmd",
+        "prop_model_188_nsbmd",
+        "prop_model_189_nsbmd",
+        "prop_model_190_nsbmd",
+        "prop_model_191_nsbmd",
+        "prop_model_264_nsbmd",
+        "prop_model_193_nsbmd",
+        "prop_model_194_nsbmd",
+        "gym_door_nsbmd",
+        "prop_model_306_nsbmd",
+        "veilstone_dpt_store_door_nsbmd",
+        "prop_model_443_nsbmd",
+        "brown_wooden_door_nsbmd",
+        "blue_wooden_door_nsbmd",
+        "blue_door_nsbmd"
+    ]
+}

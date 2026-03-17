@@ -1,12 +1,10 @@
 #ifndef POKEPLATINUM_UNDERGROUND_RECORDS_H
 #define POKEPLATINUM_UNDERGROUND_RECORDS_H
 
-#include "struct_defs/underground.h"
-#include "struct_defs/underground_record.h"
-
 #include "bg_window.h"
 #include "savedata.h"
 #include "trainer_info.h"
+#include "underground.h"
 
 typedef void (*ExitRecordScreenCallback)(void *);
 

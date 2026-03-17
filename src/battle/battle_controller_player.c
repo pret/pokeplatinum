@@ -44,7 +44,7 @@
 #include "sound_playback.h"
 #include "trainer_info.h"
 
-#include "res/battle/scripts/sub_seq.naix.h"
+#include "res/battle/scripts/sub_seq.naix"
 
 enum BattleControllerState {
     STATE_PROCESSING = 0,

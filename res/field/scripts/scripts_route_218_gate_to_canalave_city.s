@@ -177,13 +177,7 @@ _01FC:
     EndMovement
 
 _0208:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 0
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 0
     End
 
     .balign 4, 0

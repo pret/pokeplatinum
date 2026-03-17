@@ -20,7 +20,7 @@
 #include "sys_task_manager.h"
 #include "system.h"
 
-#include "res/graphics/poketch/poketch.naix.h"
+#include "res/graphics/poketch/poketch.naix"
 
 #define TIME_STEPS_PER_FRAME 16
 

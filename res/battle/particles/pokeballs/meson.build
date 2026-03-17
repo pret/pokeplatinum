@@ -122,18 +122,19 @@ ball_particle_files = files(
 ball_particles_narc = custom_target('ball_particles.narc',
     output: [
         'ball_particles.narc',
-        'ball_particles.naix.h',
+        'ball_particles.naix',
     ],
     input: copy_gen.process(
         ball_particle_files,
     ),
     command: [
-        narc_exe, 'create',
-        '--naix',
-        '--order', files('ball_particles.order'),
-        '--output', '@OUTPUT0@',
+        nitroarc_exe,
+        '--create',
+        '--index',
+        '--files-from', files('ball_particles.order'),
+        '--file', '@OUTPUT0@',
         '@PRIVATE_DIR@',
-    ]
+    ],
 )
 
 nitrofs_files += ball_particles_narc

@@ -2,7 +2,7 @@
   "key": 51110,
   "messages": [
     {
-      "id": "pl_msg_00000224_00000",
+      "id": "ValleyWindworksOutside_Text_DontYouDareGoIntoTheValleyWindworksYoullHaveToBattleMeForIt",
       "en_US": [
         "Don’t you dare go into the Valley\n",
         "Windworks.\r",
@@ -15,7 +15,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000224_00001",
+      "id": "ValleyWindworksOutside_Text_IsntThatJustGreatGettingOwnedBySomeKid",
       "en_US": [
         "Isn’t that just great.\n",
         "Getting owned by some kid.\r",
@@ -30,7 +30,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000224_00002",
+      "id": "ValleyWindworksOutside_Text_IShallInvestigateInside",
       "en_US": [
         "Looker: Ah, yes.\n",
         "It is you, yes.\r",
@@ -46,7 +46,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000224_00003",
+      "id": "ValleyWindworksOutside_Text_IHaveReceivedTipsThatTheTeamGalacticHideoutIsInEternaCity",
       "en_US": [
         "Looker: Magnificent! Yes, it is!\n",
         "What you have said, it is all true!\r",
@@ -60,33 +60,33 @@
       ]
     },
     {
-      "id": "pl_msg_00000224_00004",
+      "id": "ValleyWindworksOutside_Text_Kerchunk",
       "en_US": "Ker-chunk!\r"
     },
     {
-      "id": "pl_msg_00000224_00005",
+      "id": "ValleyWindworksOutside_Text_ItsLockedFromInside",
       "en_US": "It’s locked from inside!"
     },
     {
-      "id": "pl_msg_00000224_00006",
+      "id": "ValleyWindworksOutside_Text_ItsLockedFromInsideUseTheWorksKey",
       "en_US": [
         "It’s locked from inside!\r",
         "Use the Works Key?"
       ]
     },
     {
-      "id": "pl_msg_00000224_00007",
+      "id": "ValleyWindworksOutside_Text_KerchunkTheDoorToValleyWindworksOpened",
       "en_US": [
         "Ker-chunk!\r",
         "The door to Valley Windworks opened!"
       ]
     },
     {
-      "id": "pl_msg_00000224_00008",
+      "id": "ValleyWindworksOutside_Text_Floooooon",
       "en_US": "Floooooon!\r"
     },
     {
-      "id": "pl_msg_00000224_00009",
+      "id": "ValleyWindworksOutside_Text_ValleyWindworksEcologicalWindDrivenEnergy",
       "en_US": [
         "Valley Windworks\n",
         "Ecological, Wind-Driven Energy"

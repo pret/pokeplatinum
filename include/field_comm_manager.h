@@ -2,11 +2,11 @@
 #define POKEPLATINUM_UNK_0205964C_H
 
 #include "struct_defs/struct_0205964C.h"
-#include "struct_defs/underground.h"
 
 #include "field/field_system_decl.h"
 
 #include "savedata.h"
+#include "underground.h"
 
 typedef struct FieldCommunicationManager {
     TrainerCard *trainerCard[4];

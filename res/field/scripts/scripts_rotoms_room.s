@@ -41,11 +41,11 @@ RotomsRoom_InitFlags:
     End
 
 _00A5:
-    ScrCmd_18B 0, 4, 1
-    ScrCmd_18B 1, 4, 1
-    ScrCmd_18B 2, 4, 1
-    ScrCmd_18B 3, 4, 1
-    ScrCmd_18B 4, 4, 1
+    SetBgEventPos 0, 4, 1
+    SetBgEventPos 1, 4, 1
+    SetBgEventPos 2, 4, 1
+    SetBgEventPos 3, 4, 1
+    SetBgEventPos 4, 4, 1
     End
 
 RotomsRoom_InitShowMicrowaveOven:
@@ -484,12 +484,7 @@ RotomsRoom_CloseMessage:
     End
 
 RotomsRoom_MysteriousNotebook:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    Message RotomsRoom_Text_ThereIsAMysteriousNotebookHere
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    EventMessage RotomsRoom_Text_ThereIsAMysteriousNotebookHere
     End
 
 _07BB:

@@ -19,7 +19,7 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 
-#include "res/graphics/poketch/poketch.naix.h"
+#include "res/graphics/poketch/poketch.naix"
 
 #define POKE_ICON_TILE_COUNT 16
 #define POKE_ICON_SIZE_BYTES (POKE_ICON_TILE_COUNT * TILE_SIZE_4BPP)

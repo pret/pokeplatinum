@@ -3,11 +3,10 @@
 
 #include <nitro/fx/fx.h>
 
-#include "struct_decls/struct_0205E884_decl.h"
-
 #include "overlay005/field_effect_manager.h"
 
 #include "overworld_anim_manager.h"
+#include "player_avatar.h"
 #include "simple3d.h"
 
 void *ov5_021F8560(FieldEffectManager *param0);

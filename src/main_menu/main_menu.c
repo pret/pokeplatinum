@@ -7,8 +7,6 @@
 #include "generated/string_padding_mode.h"
 #include "generated/text_banks.h"
 
-#include "struct_decls/pokedexdata_decl.h"
-
 #include "game_opening/const_ov77_021D742C.h"
 #include "main_menu/application_template.h"
 #include "main_menu/distribution_cartridge.h"
@@ -49,7 +47,7 @@
 #include "unk_0209A74C.h"
 #include "vram_transfer.h"
 
-#include "res/graphics/main_menu/main_menu_graphics.naix.h"
+#include "res/graphics/main_menu/main_menu_graphics.naix"
 #include "res/text/bank/main_menu_alerts.h"
 #include "res/text/bank/main_menu_options.h"
 #include "res/text/bank/unk_0695.h"

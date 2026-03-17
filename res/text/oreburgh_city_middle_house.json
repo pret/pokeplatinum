@@ -2,7 +2,7 @@
   "key": 58386,
   "messages": [
     {
-      "id": "pl_msg_00000078_00000",
+      "id": "OreburghCityMiddleHouse_Text_RoarkIsAUserOfRockTypePokemon",
       "en_US": [
         "Roark is a user of Rock-type Pokémon.\r",
         "Don’t you think Rock-type Pokémon are\n",
@@ -10,7 +10,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000078_00001",
+      "id": "OreburghCityMiddleHouse_Text_RoarkIsOurTownsGymLeader",
       "en_US": [
         "Roark is our town’s Gym Leader.\r",
         "He may be young, but he keeps the\n",

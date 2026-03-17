@@ -5,8 +5,6 @@
 
 #include "generated/goods.h"
 
-#include "struct_defs/underground.h"
-
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
 #include "overlay005/area_data.h"
@@ -26,7 +24,7 @@
 #include "sound_playback.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0202854C.h"
+#include "underground.h"
 
 #include "res/text/bank/underground_base_decoration.h"
 
@@ -389,7 +387,7 @@ static BOOL BaseDecoration_DecorateTask(FieldTask *task)
             Underground *underground = SaveData_GetUnderground(ctx->fieldSystem->saveData);
             u32 input = DecorationGoodsMenu_GetLastInput(ctx->decorationGoodsMenu);
 
-            if (input == LIST_CANCEL) {
+            if (input == MENU_CANCEL) {
                 BaseDecoration_UpdateState(DECORATION_STATE_MAIN_MENU, ctx);
                 return TRUE;
             }

@@ -8,8 +8,6 @@
 #include "generated/game_records.h"
 #include "generated/movement_actions.h"
 
-#include "struct_decls/struct_020216E0_decl.h"
-#include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061830_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 
@@ -28,6 +26,7 @@
 #include "overlay009/ov9_02249960.h"
 #include "overlay009/struct_ov9_0224F6EC_decl.h"
 
+#include "billboard.h"
 #include "encounter.h"
 #include "field_battle_data_transfer.h"
 #include "field_task.h"
@@ -124,9 +123,9 @@ typedef struct StuckInDeepMudTaskEnv {
 typedef struct {
     FieldSystem *fieldSystem;
     PlayerAvatar *playerAvatar;
-    MapObject *unk_08;
+    MapObject *playerObject;
     int unk_0C;
-    int unk_10;
+    int playerGender;
     SysTask *unk_14;
 } UnkStruct_ov5_021E0DE0;
 
@@ -164,7 +163,7 @@ static void MonRideTask_Init(FieldSystem *fieldSystem, Pokemon *partyMon, MonRid
 static void NewMonRideCutIn(FieldSystem *fieldSystem, MonRideTask *monRideTask);
 static BOOL CheckMonRideCutInFinished(MonRideTask *monRideTask);
 static void PlayerAvatar_Redraw(PlayerAvatar *playerAvatar, int param1);
-static void ov5_021E10C0(void *param0, const UnkStruct_020216E0 *param1);
+static void ov5_021E10C0(void *param0, const Billboard *param1);
 static MapObject *ov5_021E10D4(PlayerAvatar *playerAvatar, int param1);
 static void *MonRideTaskEnv_New(int size);
 static void MonRideTaskEnv_Free(void *taskEnv);
@@ -1527,8 +1526,8 @@ static void ov5_021E0DE0(FieldSystem *fieldSystem)
 
     v0->fieldSystem = fieldSystem;
     v0->playerAvatar = fieldSystem->playerAvatar;
-    v0->unk_08 = Player_MapObject(v0->playerAvatar);
-    v0->unk_10 = PlayerAvatar_Gender(v0->playerAvatar);
+    v0->playerObject = Player_MapObject(v0->playerAvatar);
+    v0->playerGender = PlayerAvatar_Gender(v0->playerAvatar);
 
     FieldTask_InitCall(fieldSystem->task, ov5_021E0E10, v0);
 }
@@ -1539,17 +1538,17 @@ static BOOL ov5_021E0E10(FieldTask *param0)
 
     switch (v0->unk_0C) {
     case 0:
-        v0->unk_14 = MapObject_StartAnimation(v0->unk_08, Unk_ov5_021F9B9C);
+        v0->unk_14 = MapObject_StartAnimation(v0->playerObject, Unk_ov5_021F9B9C);
         v0->unk_0C++;
         break;
     case 1:
         if (MapObject_HasAnimationEnded(v0->unk_14) == 1) {
-            int v1 = Player_MoveStateFromGender(0x12, v0->unk_10);
+            int v1 = Player_MoveStateFromGender(0x12, v0->playerGender);
 
             PlayerAvatar_Redraw(v0->playerAvatar, v1);
             MapObject_FinishAnimation(v0->unk_14);
 
-            v0->unk_14 = MapObject_StartAnimation(v0->unk_08, Unk_ov5_021F9C00);
+            v0->unk_14 = MapObject_StartAnimation(v0->playerObject, Unk_ov5_021F9C00);
             v0->unk_0C++;
         }
         break;
@@ -1715,13 +1714,13 @@ static void MonRideTask_Init(FieldSystem *fieldSystem, Pokemon *partyMon, MonRid
 
 static void NewMonRideCutIn(FieldSystem *fieldSystem, MonRideTask *monRideTask)
 {
-    monRideTask->HMCutInTask = SysTask_HMCutIn_New(fieldSystem, 0, monRideTask->partyMon, monRideTask->playerGender);
+    monRideTask->HMCutInTask = HMCutIn_StartTask(fieldSystem, 0, monRideTask->partyMon, monRideTask->playerGender);
 }
 
 static BOOL CheckMonRideCutInFinished(MonRideTask *monRideTask)
 {
-    if (CheckHMCutInFinished(monRideTask->HMCutInTask) == TRUE) {
-        SysTask_HMCutIn_SetTaskDone(monRideTask->HMCutInTask);
+    if (HMCutIn_IsFinished(monRideTask->HMCutInTask) == TRUE) {
+        HMCutIn_EndTask(monRideTask->HMCutInTask);
         return TRUE;
     }
 
@@ -1736,7 +1735,7 @@ static void PlayerAvatar_Redraw(PlayerAvatar *playerAvatar, int param1)
     } else {
         int v1;
         FieldSystem *fieldSystem;
-        UnkStruct_020216E0 *v3;
+        Billboard *v3;
 
         fieldSystem = MapObject_FieldSystem(v0);
         v1 = ov9_0224A520(fieldSystem, v0);
@@ -1748,7 +1747,7 @@ static void PlayerAvatar_Redraw(PlayerAvatar *playerAvatar, int param1)
     }
 }
 
-static void ov5_021E10C0(void *param0, const UnkStruct_020216E0 *param1)
+static void ov5_021E10C0(void *param0, const Billboard *param1)
 {
     PlayerAvatar *playerAvatar = param0;
     MapObject *v1 = Player_MapObject(playerAvatar);

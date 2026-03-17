@@ -2,7 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
-            "id": "OREBURGH_CITY_MIDDLE_HOUSE_SCHOOL_KID_F_0",
+            "id": "LOCALID_SCHOOL_KID_F",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_F",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -17,7 +17,7 @@
             "y": 0
         },
         {
-            "id": "OREBURGH_CITY_MIDDLE_HOUSE_HIKER_1",
+            "id": "LOCALID_HIKER",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",

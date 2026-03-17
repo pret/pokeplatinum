@@ -2,7 +2,7 @@
   "key": 18331,
   "messages": [
     {
-      "id": "pl_msg_00000065_00000",
+      "id": "OreburghCity_Text_TheGymLeadersGoneOffToTheCoalMine",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: Hunh?\r",
         "Oh, it’s you, {STRVAR_1 3, 1, 0}!\n",
@@ -21,7 +21,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000065_00001",
+      "id": "OreburghCity_Text_IToldYouTheGymLeaderWentDownToTheOreburghMine",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: I told you, the Gym\n",
         "Leader went down to the Oreburgh Mine.\r",
@@ -30,11 +30,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000065_00002",
+      "id": "OreburghCity_Text_BigThud",
       "en_US": "{SIZE 200}Thud!!{SIZE 100}\r"
     },
     {
-      "id": "pl_msg_00000065_00003",
+      "id": "OreburghCity_Text_EternaCityIsTheNextPlaceWithAGymThatGivesAwayBadgesRight",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: Whoops! {STRVAR_1 3, 1, 0}!\n",
         "You got the Gym Badge, huh?\r",
@@ -43,7 +43,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000065_00004",
+      "id": "OreburghCity_Text_IWentToRoute207ButYouCantGoThereWithoutABicycle",
       "en_US": [
         "So, yeah, I went to Route 207, but\n",
         "you can’t go there without a Bicycle.\r",
@@ -52,7 +52,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000065_00005",
+      "id": "OreburghCity_Text_NextStopTheEternaGymBadge",
       "en_US": [
         "So, I’m going back to Jubilife City.\n",
         "Next stop, the Eterna Gym Badge!\r",
@@ -62,7 +62,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000065_00006",
+      "id": "OreburghCity_Text_IllTakeYouToThePokemonGym",
       "en_US": [
         "Howdy, Trainer!\r",
         "Huh? Uh-oh!\n",
@@ -72,14 +72,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000065_00007",
+      "id": "OreburghCity_Text_HuhTheresSomeoneThere",
       "en_US": [
         "Huh?\n",
         "There’s someone there."
       ]
     },
     {
-      "id": "pl_msg_00000065_00008",
+      "id": "OreburghCity_Text_IsThatGuyInFrontOfTheGymYourFriend",
       "en_US": [
         "Is that guy in front of the Gym\n",
         "your friend?\r",
@@ -87,14 +87,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000065_00009",
+      "id": "OreburghCity_Text_TheGymLeadersWaitingForYou",
       "en_US": [
         "Oh, hi, you’re back!\n",
         "The Gym Leader’s waiting for you."
       ]
     },
     {
-      "id": "pl_msg_00000065_00010",
+      "id": "OreburghCity_Text_CanISeeYourTrainerCase",
       "en_US": [
         "Can I see your Trainer Case?\r",
         "It’s got the Gym Badge you just\n",
@@ -102,14 +102,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000065_00011",
+      "id": "OreburghCity_Text_TheGymLeaderWentOffToWorkInTheMine",
       "en_US": [
         "The Gym Leader went off to work in\n",
         "the mine."
       ]
     },
     {
-      "id": "pl_msg_00000065_00012",
+      "id": "OreburghCity_Text_TheGymLeaderIsYoungButHesTheMinesSafetySupervisor",
       "en_US": [
         "The Gym Leader is young, but he’s\n",
         "the mine’s safety supervisor.\r",
@@ -118,7 +118,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000065_00013",
+      "id": "OreburghCity_Text_EveryonesProudOfTheMine",
       "en_US": [
         "Everyone’s proud of the mine.\r",
         "They’re digging for coal under the\n",
@@ -127,7 +127,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000065_00014",
+      "id": "OreburghCity_Text_UpAheadTheresAHugeMountainThatTowersAboveEverything",
       "en_US": [
         "Up ahead there’s a huge mountain\n",
         "that towers above everything.\r",
@@ -136,14 +136,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000065_00015",
+      "id": "OreburghCity_Text_HaveYouSeenTheVents",
       "en_US": [
         "Have you seen the vents?\n",
         "They release steam from down below."
       ]
     },
     {
-      "id": "pl_msg_00000065_00016",
+      "id": "OreburghCity_Text_TheseVentsExchangeTheHotAirDownBelowWithTheFreshAirOutside",
       "en_US": [
         "These vents exchange the hot air\n",
         "down below with the fresh air outside.\r",
@@ -152,7 +152,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000065_00017",
+      "id": "OreburghCity_Text_HereTakeOneOfThese",
       "en_US": [
         "There’s no question. This is hard,\n",
         "hard work.\r",
@@ -162,14 +162,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000065_00018",
+      "id": "OreburghCity_Text_FeelingHaleAndHeartyPutsASmileOnMyFace",
       "en_US": [
         "Feeling hale and hearty puts a smile\n",
         "on my face. And that makes me happy."
       ]
     },
     {
-      "id": "pl_msg_00000065_00019",
+      "id": "OreburghCity_Text_ThisPileOfDirtySandIsCalledASlagHeap",
       "en_US": [
         "This pile of dirty sand is called\n",
         "a slag heap.\r",
@@ -177,14 +177,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000065_00020",
+      "id": "OreburghCity_Text_ChopChopMachopChopChopAwayOnRocks",
       "en_US": [
         "Chop, chop, MACHOP!\n",
         "Chop, chop away on rocks! ~♫"
       ]
     },
     {
-      "id": "pl_msg_00000065_00021",
+      "id": "OreburghCity_Text_TMsAreSingleUseOnlyButHMsCanBeUsedOverAndOver",
       "en_US": [
         "TMs are single use only, but HMs\n",
         "can be used over and over.\r",
@@ -193,7 +193,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000065_00022",
+      "id": "OreburghCity_Text_WhenIRunAroundWithMyRunningShoesOnImTheCenterOfAttention",
       "en_US": [
         "When I run around with my Running\n",
         "Shoes on, I’m the center of attention!\r",
@@ -202,7 +202,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000065_00023",
+      "id": "OreburghCity_Text_ThatsWhatFossilsAre",
       "en_US": [
         "Natural time capsules buried many,\n",
         "many years ago...\r",
@@ -210,26 +210,26 @@
       ]
     },
     {
-      "id": "pl_msg_00000065_00024",
+      "id": "OreburghCity_Text_MachopMachoChopo",
       "en_US": "MACHOP: Macho! Chopo!"
     },
     {
-      "id": "pl_msg_00000065_00025",
+      "id": "OreburghCity_Text_MachopPigyooh",
       "en_US": "MACHOP: Pigyooh!"
     },
     {
-      "id": "pl_msg_00000065_00026",
+      "id": "OreburghCity_Text_MachopGwoohGogogooh",
       "en_US": "MACHOP: Gwooh! Gogogooh!"
     },
     {
-      "id": "pl_msg_00000065_00027",
+      "id": "OreburghCity_Text_MapSign",
       "en_US": [
         "Oreburgh City\n",
         "City of Energy"
       ]
     },
     {
-      "id": "pl_msg_00000065_00028",
+      "id": "OreburghCity_Text_OreburgCityPokemonGymCallMeRoarkTheRock",
       "en_US": [
         "Oreburgh City Pokémon Gym\n",
         "Leader: Roark\f",
@@ -237,14 +237,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000065_00029",
+      "id": "OreburghCity_Text_OreburghMiningMuseumCoalMiningAndYou",
       "en_US": [
         "Oreburgh Mining Museum\n",
         "“Coal Mining and You!”"
       ]
     },
     {
-      "id": "pl_msg_00000065_00030",
+      "id": "OreburghCity_Text_OreburghMineBewareOfBusyPokemon",
       "en_US": [
         "Oreburgh Mine\n",
         "Beware of Busy Pokémon!"

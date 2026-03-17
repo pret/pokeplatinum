@@ -4,10 +4,11 @@ mmodel_narc = custom_target('mmodel.narc',
     output: 'mmodel.narc',
     input: mmodel_files_targets,
     command: [
-        narc_exe, 'create',
-        '--output', '@OUTPUT0@',
+        nitroarc_exe,
+        '--create',
+        '--file', '@OUTPUT0@',
         '@OUTDIR@/mmodel',
-    ]
+    ],
 )
 
 nitrofs_files += mmodel_narc

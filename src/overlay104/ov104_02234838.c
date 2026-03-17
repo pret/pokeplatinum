@@ -5,8 +5,8 @@
 
 #include "applications/frontier/battle_hall/main.h"
 #include "overlay104/frontier_script_context.h"
+#include "overlay104/frscrcmd.h"
 #include "overlay104/ov104_0222DCE0.h"
-#include "overlay104/ov104_0222FBE4.h"
 #include "overlay104/ov104_02231F74.h"
 #include "overlay104/ov104_02234DB4.h"
 #include "overlay104/ov104_0223AF58.h"
@@ -243,7 +243,7 @@ BOOL FrontierScrCmd_91(FrontierScriptContext *param0)
         sub_0209BA80(v3);
         break;
     case 30:
-        *v11 = BattleFrontier_IsMultiPlayerChallenge(v3->unk_04);
+        *v11 = BattleHall_IsMultiPlayerChallenge(v3->unk_04);
         break;
     case 17:
         *v11 = v3->unk_04;

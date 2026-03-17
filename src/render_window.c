@@ -26,8 +26,8 @@
 #include "sys_task_manager.h"
 #include "unk_0200679C.h"
 
-#include "res/graphics/signposts/field_board.naix.h"
-#include "res/graphics/windows/pl_winframe.naix.h"
+#include "res/graphics/signposts/field_board.naix"
+#include "res/graphics/windows/pl_winframe.naix"
 
 #define SIGNPOST_BORDER_LEFT_SIZE  1
 #define SIGNPOST_BORDER_RIGHT_SIZE 2

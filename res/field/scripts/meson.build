@@ -245,7 +245,7 @@ scr_seq_files = files(
     'scripts_fight_area_south_house.s',
     'scripts_unk_0210.s',
     'scripts_common.s',
-    'scripts_contest_registration.s',
+    'scripts_contests.s',
     'scripts_pokemon_center_2f_attendants.s',
     'scripts_oreburgh_mine_b1f.s',
     'scripts_oreburgh_mine_b2f.s',
@@ -533,7 +533,7 @@ scr_seq_files = files(
     'scripts_safari_game.s',
     'scripts_vs_seeker.s',
     'scripts_scratch_off_cards.s',
-    'scripts_battle_tower_records.s',
+    'scripts_battle_frontier_records.s',
     'scripts_day_care_common.s',
     'scripts_init_jubilife_city.s',
     'scripts_init_jubilife_city_mart.s',
@@ -1159,22 +1159,21 @@ scr_seq_files = files(
     'scripts_route_230.s',
 )
 
-scr_seq_narc_order = files('scripts.order')
-
 scr_seq_narc = custom_target('scr_seq.narc',
     output: [
         'scr_seq.narc',
-        'scr_seq.naix.h',
+        'scr_seq.naix',
     ],
     input: field_script_bin_gen.process(
         scr_seq_files,
         extra_args: ['--depfile', '--out-dir', scr_seq_private_dir]
     ),
     command: [
-        narc_exe, 'create',
-        '--naix',
-        '--order', scr_seq_narc_order,
-        '--output', '@OUTPUT0@',
+        nitroarc_exe,
+        '--create',
+        '--index',
+        '--files-from', files('scripts.order'),
+        '--file', '@OUTPUT0@',
         '@PRIVATE_DIR@',
     ],
 )

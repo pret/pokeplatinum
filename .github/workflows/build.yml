@@ -22,7 +22,7 @@ jobs:
       - name: Install Software
         run: |
           sudo apt-get update -y
-          sudo apt-get install -y bison flex g++ gcc-arm-none-eabi git make ninja-build pkg-config python3 wget xz-utils
+          sudo apt-get install -y --no-install-recommends bison flex g++ gcc-arm-none-eabi git make ninja-build pkg-config python3 wget xz-utils
 
       - name: Checkout Repo
         uses: actions/checkout@v2

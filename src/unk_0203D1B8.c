@@ -5,6 +5,7 @@
 
 #include "constants/heap.h"
 #include "generated/game_records.h"
+#include "generated/pokemon_contest_ranks.h"
 #include "generated/pokemon_contest_types.h"
 #include "generated/trainer_score_events.h"
 
@@ -28,6 +29,7 @@
 
 #include "applications/bag/application.h"
 #include "applications/diploma.h"
+#include "applications/frontier/records/main.h"
 #include "applications/journal_display/journal_controller.h"
 #include "applications/move_reminder.h"
 #include "applications/naming_screen.h"
@@ -69,7 +71,6 @@
 #include "overlay096/ov96_0223B6A0.h"
 #include "overlay099/ov99_021D0D80.h"
 #include "overlay101/ov101_021D0D80.h"
-#include "overlay110/ov110_021D0D80.h"
 #include "overlay111/ov111_021D0D80.h"
 #include "savedata/save_table.h"
 #include "trainer_card_screen/trainer_card_screen.h"
@@ -106,6 +107,7 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "savedata_misc.h"
+#include "start_menu.h"
 #include "string_gf.h"
 #include "system_data.h"
 #include "system_flags.h"
@@ -129,7 +131,6 @@
 #include "unk_02098218.h"
 #include "vars_flags.h"
 
-#include "constdata/const_020EA02C.h"
 #include "constdata/const_020EA328.h"
 #include "constdata/const_020EA358.h"
 #include "constdata/const_020F2FCC.h"
@@ -164,7 +165,7 @@ FS_EXTERN_OVERLAY(overlay95);
 FS_EXTERN_OVERLAY(overlay96);
 FS_EXTERN_OVERLAY(overlay99);
 FS_EXTERN_OVERLAY(overlay101);
-FS_EXTERN_OVERLAY(overlay110);
+FS_EXTERN_OVERLAY(frontier_records_app);
 FS_EXTERN_OVERLAY(overlay111);
 FS_EXTERN_OVERLAY(dw_warp);
 
@@ -172,7 +173,7 @@ FS_EXTERN_OVERLAY(dw_warp);
 
 typedef struct {
     enum HeapID heapID;
-    PartyMenu *unk_04;
+    PartyMenu *partyMenu;
     PokemonSummary *unk_08;
 } UnkStruct_0203D444;
 
@@ -258,7 +259,7 @@ static const u8 Unk_020EA164[] = {
     0xff
 };
 
-void sub_0203D1E4(FieldSystem *fieldSystem, void *param1)
+void sub_0203D1E4(FieldSystem *fieldSystem, BagContext *param1)
 {
     FS_EXTERN_OVERLAY(bag);
 
@@ -272,30 +273,30 @@ void sub_0203D1E4(FieldSystem *fieldSystem, void *param1)
     FieldSystem_StartChildProcess(fieldSystem, &Unk_ov84_02241130, param1);
 }
 
-void *sub_0203D20C(FieldSystem *fieldSystem, ItemUseContext *param1)
+BagContext *FieldSystem_OpenBag(FieldSystem *fieldSystem, ItemUseContext *itemUseCtx)
 {
-    Bag *v0 = SaveData_GetBag(fieldSystem->saveData);
-    void *v1 = BagContext_CreateWithPockets(v0, Unk_020EA164, HEAP_ID_FIELD2);
+    Bag *bag = SaveData_GetBag(fieldSystem->saveData);
+    BagContext *bagCtx = BagContext_CreateWithPockets(bag, Unk_020EA164, HEAP_ID_FIELD2);
 
-    BagContext_Init(v1, fieldSystem->saveData, 0, fieldSystem->bagCursor);
-    BagContext_SetMapLoadType(v1, fieldSystem->mapLoadType);
+    BagContext_Init(bagCtx, fieldSystem->saveData, 0, fieldSystem->bagCursor);
+    BagContext_SetMapLoadType(bagCtx, fieldSystem->mapLoadType);
 
-    if (PlayerAvatar_GetPlayerState(fieldSystem->playerAvatar) == 0x1) {
-        BagContext_SetIsCycling(v1);
+    if (PlayerAvatar_GetPlayerState(fieldSystem->playerAvatar) == PLAYER_STATE_CYCLING) {
+        BagContext_SetIsCycling(bagCtx);
     }
 
-    BagContext_SetItemUseContext(v1, param1);
-    sub_0203D1E4(fieldSystem, v1);
+    BagContext_SetItemUseContext(bagCtx, itemUseCtx);
+    sub_0203D1E4(fieldSystem, bagCtx);
 
-    return v1;
+    return bagCtx;
 }
 
 void *FieldSystem_CreateBagContext(FieldSystem *fieldSystem, int pocketType)
 {
     void *bagContext;
     static const u8 *pocketList;
-    static const u8 berriesPockets[] = { POCKET_BERRIES, 255 };
-    static const u8 itemsPockets[] = { POCKET_ITEMS, 255 };
+    static const u8 berriesPockets[] = { POCKET_BERRIES, POCKET_LIST_END };
+    static const u8 itemsPockets[] = { POCKET_ITEMS, POCKET_LIST_END };
     Bag *bag = SaveData_GetBag(fieldSystem->saveData);
 
     switch (pocketType) {
@@ -418,16 +419,14 @@ PartyMenu *FieldSystem_OpenPartyMenu_SelectForDaycare(int param0, FieldSystem *f
     return partyMenu;
 }
 
-int sub_0203D438(void *param0)
+int PartyMenu_GetMenuSelectionResult(PartyMenu *partyMenu)
 {
-    PartyMenu *partyMenu = param0;
     return partyMenu->menuSelectionResult;
 }
 
-int sub_0203D440(void *param0)
+int PokemonSummary_GetPartySlot(PokemonSummary *monSummary)
 {
-    PokemonSummary *v0 = param0;
-    return v0->monIndex;
+    return monSummary->monIndex;
 }
 
 static BOOL sub_0203D444(FieldTask *param0)
@@ -438,12 +437,12 @@ static BOOL sub_0203D444(FieldTask *param0)
 
     switch (*v2) {
     case 0:
-        FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, v1->unk_04);
+        FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, v1->partyMenu);
         *v2 = 1;
         break;
     case 1:
         if (!FieldSystem_IsRunningApplication(fieldSystem)) {
-            switch (v1->unk_04->selectedMonSlot) {
+            switch (v1->partyMenu->selectedMonSlot) {
             case 7:
                 sub_0205BAAC(2);
                 *v2 = 4;
@@ -459,7 +458,7 @@ static BOOL sub_0203D444(FieldTask *param0)
         break;
     case 2:
         v1->unk_08 = sub_0203D670(fieldSystem, v1->heapID, SUMMARY_MODE_NORMAL);
-        v1->unk_08->monIndex = v1->unk_04->selectedMonSlot;
+        v1->unk_08->monIndex = v1->partyMenu->selectedMonSlot;
         FieldSystem_OpenSummaryScreen(fieldSystem, v1->unk_08);
         *v2 = 3;
         break;
@@ -489,24 +488,24 @@ PartyMenu *FieldSystem_OpenPartyMenu_SelectForUnionRoomBattle(FieldTask *taskMan
     partyMenu->maxSelectionSlots = 2;
     partyMenu->reqLevel = 30;
     partyMenu->battleRegulation = NULL;
-    v0->unk_04 = partyMenu;
+    v0->partyMenu = partyMenu;
 
     FieldTask_InitCall(taskMan, sub_0203D444, v0);
 
     return partyMenu;
 }
 
-PartyMenu *FieldSystem_OpenPartyMenu_SelectForContest(int unused, FieldSystem *fieldSystem, enum PokemonContestType contestType, int contestRank, int param4, int selectedMonSlot)
+PartyMenu *FieldSystem_OpenPartyMenu_SelectForContest(int unused, FieldSystem *fieldSystem, enum PokemonContestType contestType, int contestRank, int useDefaultContestRank, int selectedMonSlot)
 {
     PartyMenu *partyMenu = PartyMenu_New(HEAP_ID_FIELD2, fieldSystem, PARTY_MENU_TYPE_BASIC, PARTY_MENU_MODE_CONTEST);
     partyMenu->selectedMonSlot = selectedMonSlot;
     partyMenu->unk_29 = 2;
     partyMenu->contestType = contestType;
 
-    if (param4 == 0) {
+    if (useDefaultContestRank == FALSE) {
         partyMenu->contestRank = contestRank;
     } else {
-        partyMenu->contestRank = 0;
+        partyMenu->contestRank = CONTEST_RANK_NORMAL;
     }
 
     FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMenu);
@@ -514,27 +513,27 @@ PartyMenu *FieldSystem_OpenPartyMenu_SelectForContest(int unused, FieldSystem *f
     return partyMenu;
 }
 
-void *sub_0203D5C8(int param0, FieldSystem *fieldSystem, int param2)
+void *FieldSystem_GetContestMonSummary(int unused, FieldSystem *fieldSystem, int partySlot)
 {
-    PokemonSummary *v0 = Heap_Alloc(HEAP_ID_FIELD2, sizeof(PokemonSummary));
+    PokemonSummary *monSummary = Heap_Alloc(HEAP_ID_FIELD2, sizeof(PokemonSummary));
 
-    v0->monData = SaveData_GetParty(fieldSystem->saveData);
-    v0->options = SaveData_GetOptions(fieldSystem->saveData);
-    v0->dataType = SUMMARY_DATA_PARTY_MON;
-    v0->monIndex = param2;
-    v0->monMax = Party_GetCurrentCount(v0->monData);
-    v0->move = 0;
-    v0->mode = SUMMARY_MODE_NORMAL;
-    v0->specialRibbons = SaveData_GetRibbons(fieldSystem->saveData);
-    v0->dexMode = SaveData_GetDexMode(fieldSystem->saveData);
-    v0->showContest = PokemonSummaryScreen_ShowContestData(fieldSystem->saveData);
-    v0->chatotCry = NULL;
+    monSummary->monData = SaveData_GetParty(fieldSystem->saveData);
+    monSummary->options = SaveData_GetOptions(fieldSystem->saveData);
+    monSummary->dataType = SUMMARY_DATA_PARTY_MON;
+    monSummary->monIndex = partySlot;
+    monSummary->monMax = Party_GetCurrentCount(monSummary->monData);
+    monSummary->move = 0;
+    monSummary->mode = SUMMARY_MODE_NORMAL;
+    monSummary->specialRibbons = SaveData_GetRibbons(fieldSystem->saveData);
+    monSummary->dexMode = SaveData_GetDexMode(fieldSystem->saveData);
+    monSummary->showContest = PokemonSummaryScreen_ShowContestData(fieldSystem->saveData);
+    monSummary->chatotCry = NULL;
 
-    PokemonSummaryScreen_FlagVisiblePages(v0, Unk_020EA02C);
-    PokemonSummaryScreen_SetPlayerProfile(v0, SaveData_GetTrainerInfo(fieldSystem->saveData));
-    FieldSystem_StartChildProcess(fieldSystem, &gPokemonSummaryScreenApp, v0);
+    PokemonSummaryScreen_FlagVisiblePages(monSummary, gAllSummaryScreenPages);
+    PokemonSummaryScreen_SetPlayerProfile(monSummary, SaveData_GetTrainerInfo(fieldSystem->saveData));
+    FieldSystem_StartChildProcess(fieldSystem, &gPokemonSummaryScreenApp, monSummary);
 
-    return v0;
+    return monSummary;
 }
 
 PartyMenu *FieldSystem_OpenPartyMenu_SelectForSpinTrade(FieldSystem *fieldSystem, int selectedMonSlot)
@@ -1271,7 +1270,7 @@ void FieldSystem_OpenTrainerCardScreen(FieldSystem *fieldSystem, TrainerCard *tr
     FieldSystem_StartChildProcess(fieldSystem, &template, trainerCard);
 }
 
-BOOL sub_0203E0AC(FieldSystem *fieldSystem, void *param1)
+BOOL FieldSystem_OpenPokedex(FieldSystem *fieldSystem, PokedexOverlayArgs *args)
 {
     FS_EXTERN_OVERLAY(pokedex);
 
@@ -1282,8 +1281,8 @@ BOOL sub_0203E0AC(FieldSystem *fieldSystem, void *param1)
         FS_OVERLAY_ID(pokedex)
     };
 
-    FieldSystem_StartChildProcess(fieldSystem, &template, param1);
-    return 1;
+    FieldSystem_StartChildProcess(fieldSystem, &template, args);
+    return TRUE;
 }
 
 void FieldSystem_LaunchChooseStarterApp(FieldSystem *fieldSystem, ChooseStarterData *chooseStarterData)
@@ -1667,29 +1666,29 @@ void *FieldSystem_ShowDiploma(FieldSystem *fieldSystem, enum HeapID heapID, BOOL
     return diplomaData;
 }
 
-void *sub_0203E564(FieldSystem *fieldSystem, u8 param1, u8 param2, u16 param3, enum HeapID heapID)
+void *FieldSystem_OpenBattleFrontierRecord(FieldSystem *fieldSystem, u8 challengeType, u8 facility, u16 species, enum HeapID heapID)
 {
-    UnkStruct_0203E564 *v0;
+    FrontierRecordsAppArgs *args;
 
-    FS_EXTERN_OVERLAY(overlay110);
+    FS_EXTERN_OVERLAY(frontier_records_app);
 
-    static ApplicationManagerTemplate v1 = {
-        ov110_021D0D80,
-        ov110_021D0E9C,
-        ov110_021D0EF0,
-        FS_OVERLAY_ID(overlay110)
+    static ApplicationManagerTemplate template = {
+        BattleFrontierRecordsApp_Init,
+        BattleFrontierRecordsApp_Main,
+        BattleFrontierRecordsApp_Exit,
+        FS_OVERLAY_ID(frontier_records_app)
     };
 
-    v0 = Heap_Alloc(heapID, sizeof(UnkStruct_0203E564));
+    args = Heap_Alloc(heapID, sizeof(FrontierRecordsAppArgs));
 
-    v0->unk_04 = param1;
-    v0->unk_05 = param2;
-    v0->unk_06 = param3;
-    v0->saveData = fieldSystem->saveData;
+    args->challengeType = challengeType;
+    args->facility = facility;
+    args->species = species;
+    args->saveData = fieldSystem->saveData;
 
-    FieldSystem_StartChildProcess(fieldSystem, &v1, v0);
+    FieldSystem_StartChildProcess(fieldSystem, &template, args);
 
-    return v0;
+    return args;
 }
 
 PartyMenu *FieldSystem_OpenPartyMenu_SelectForItemUsage(FieldSystem *fieldSystem, enum HeapID heapID, enum Item item)

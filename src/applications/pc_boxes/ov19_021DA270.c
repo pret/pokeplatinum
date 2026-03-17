@@ -138,7 +138,7 @@ void ov19_021DA428(UnkStruct_ov19_021DA384 *param0, BoxPokemon *boxMon, s32 para
     NARC_ReadFromMember(param0->unk_48, param7->unk_28, 0, ((4 * 4) * 0x20 + 0x80), param0->unk_4C);
     NNS_G2dGetUnpackedCharacterData(param0->unk_4C, &v0);
 
-    v0->mapingType = GX_GetOBJVRamModeChar();
+    v0->mappingType = GX_GetOBJVRamModeChar();
     v0->szByte = (4 * 4) * 0x20;
 
     NNS_G2dLoadImage1DMapping(v0, param6 * 0x20, NNS_G2D_VRAM_TYPE_2DMAIN, &(param7->unk_04));
@@ -172,7 +172,7 @@ void ov19_021DA548(UnkStruct_ov19_021DA384 *param0, BoxPokemon *boxMon, u32 para
     NNS_G2dInitImageProxy(&(param10->unk_04));
     NNS_G2dGetUnpackedCharacterData(param4, &v0);
 
-    v0->mapingType = GX_GetOBJVRamModeChar();
+    v0->mappingType = GX_GetOBJVRamModeChar();
     v0->szByte = (4 * 4) * 0x20;
 
     NNS_G2dLoadImage1DMapping(v0, param9 * 0x20, NNS_G2D_VRAM_TYPE_2DMAIN, &(param10->unk_04));
@@ -257,7 +257,7 @@ void ov19_021DA754(UnkStruct_ov19_021DA384 *param0, UnkStruct_ov19_021DCD18 *par
 
         NARC_ReadFromMember(param0->unk_48, param1->unk_28, 0, ((4 * 4) * 0x20 + 0x80), param0->unk_4C);
         NNS_G2dGetUnpackedCharacterData(param0->unk_4C, &v0);
-        v0->mapingType = GX_GetOBJVRamModeChar();
+        v0->mappingType = GX_GetOBJVRamModeChar();
         v0->szByte = (4 * 4) * 0x20;
 
         NNS_G2dLoadImage1DMapping(v0, param2 * 0x20, NNS_G2D_VRAM_TYPE_2DMAIN, &(param1->unk_04));

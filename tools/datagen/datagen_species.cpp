@@ -34,6 +34,7 @@
  */
 #include <algorithm>
 #include <cctype>
+#include <cstddef>
 #include <cstdlib>
 #include <filesystem>
 #include <iostream>
@@ -452,40 +453,32 @@ static void EmitIconPaletteData(rapidjson::Document &root, std::ofstream &ofs, s
         << ",\n";
 }
 
-static void PackHeights(vfs_pack_ctx *vfs, rapidjson::Document &root, u8 genderRatio)
+static void PackHeights(NarcBuilder &builder, rapidjson::Document &root, u8 genderRatio)
 {
-    u8 *backFemale, *backMale, *frontFemale, *frontMale;
     const rapidjson::Value &backOffsets = root["back"]["y_offset"];
     const rapidjson::Value &frontOffsets = root["front"]["y_offset"];
 
+    std::byte backFemale, backMale, frontFemale, frontMale;
     u32 femaleSize = 1, maleSize = 1;
 
     if (genderRatio == GENDER_RATIO_FEMALE_ONLY) {
-        backMale = static_cast<u8 *>(malloc(0));
-        frontMale = static_cast<u8 *>(malloc(0));
         maleSize = 0;
     } else {
-        backMale = static_cast<u8 *>(malloc(1));
-        frontMale = static_cast<u8 *>(malloc(1));
-        *backMale = backOffsets["male"].GetUint();
-        *frontMale = frontOffsets["male"].GetUint();
+        backMale = static_cast<std::byte>(backOffsets["male"].GetUint());
+        frontMale = static_cast<std::byte>(frontOffsets["male"].GetUint());
     }
 
     if (genderRatio == GENDER_RATIO_MALE_ONLY || genderRatio == GENDER_RATIO_NO_GENDER) {
-        backFemale = static_cast<u8 *>(malloc(0));
-        frontFemale = static_cast<u8 *>(malloc(0));
         femaleSize = 0;
     } else {
-        backFemale = static_cast<u8 *>(malloc(1));
-        frontFemale = static_cast<u8 *>(malloc(1));
-        *backFemale = backOffsets["female"].GetUint();
-        *frontFemale = frontOffsets["female"].GetUint();
+        backFemale = static_cast<std::byte>(backOffsets["female"].GetUint());
+        frontFemale = static_cast<std::byte>(frontOffsets["female"].GetUint());
     }
 
-    narc_pack_file(vfs, backFemale, femaleSize);
-    narc_pack_file(vfs, backMale, maleSize);
-    narc_pack_file(vfs, frontFemale, femaleSize);
-    narc_pack_file(vfs, frontMale, maleSize);
+    builder.append(&backFemale, femaleSize);
+    builder.append(&backMale, maleSize);
+    builder.append(&frontFemale, femaleSize);
+    builder.append(&frontMale, maleSize);
 }
 
 static SpriteAnimFrame ParseSpriteAnimationFrame(const rapidjson::Value &frame)
@@ -696,10 +689,10 @@ int main(int argc, char **argv)
                  << "static const u8 sPokemonIconPaletteIndex[] = {\n";
 
     // Prepare VFSes for each NARC to be output.
-    vfs_pack_ctx *personalVFS = narc_pack_start();
-    vfs_pack_ctx *evoVFS = narc_pack_start();
-    vfs_pack_ctx *wotblVFS = narc_pack_start();
-    vfs_pack_ctx *heightVFS = narc_pack_start();
+    NarcBuilder personal { speciesRegistry.size() };
+    NarcBuilder evo { speciesRegistry.size() };
+    NarcBuilder wotbl { speciesRegistry.size() };
+    NarcBuilder height { 4 * SPECIES_EGG }; // NOTE: using SPECIES_EGG as an effective NatDex number
     std::vector<SpeciesPalPark> palParkData;
     std::vector<u16> offspringData;
     std::vector<SpeciesSpriteData> speciesSpriteData;
@@ -726,9 +719,9 @@ int main(int argc, char **argv)
             TryEmitFootprint(doc, species, footprint_sizes, footprint_types);
             EmitIconPaletteData(doc, iconPalettes, species, personalValue, iconRegistry);
 
-            narc_pack_file_copy(personalVFS, reinterpret_cast<unsigned char *>(&data), sizeof(data));
-            narc_pack_file_copy(evoVFS, reinterpret_cast<unsigned char *>(&evos), sizeof(evos));
-            narc_pack_file_copy(wotblVFS, reinterpret_cast<unsigned char *>(&sizedLearnset.learnset), sizedLearnset.size);
+            personal.append(reinterpret_cast<std::byte *>(&data), sizeof(data));
+            evo.append(reinterpret_cast<std::byte *>(&evos), sizeof(evos));
+            wotbl.append(reinterpret_cast<std::byte *>(&sizedLearnset.learnset), sizedLearnset.size);
 
             if (palPark.has_value()) {
                 palParkData.emplace_back(palPark.value());
@@ -748,7 +741,7 @@ int main(int argc, char **argv)
                 }
 
                 u8 genderRatio = species != "none" ? data.genderRatio : GENDER_RATIO_FEMALE_50; // treat SPECIES_NONE as if it has two genders.
-                PackHeights(heightVFS, doc, genderRatio);
+                PackHeights(height, doc, genderRatio);
 
                 SpeciesSpriteData speciesSprite = ParseSpeciesSpriteData(doc);
                 speciesSpriteData.emplace_back(speciesSprite);
@@ -786,12 +779,13 @@ int main(int argc, char **argv)
                  << "#endif // POKEPLATINUM_GENERATED_SPECIES_ICON_PALETTES_H\n";
     iconPalettes.close();
 
-    PackNarc(personalVFS, outputRoot / "pl_personal.narc");
-    PackNarc(evoVFS, outputRoot / "evo.narc");
-    PackNarc(wotblVFS, outputRoot / "wotbl.narc");
-    PackNarc(heightVFS, outputRoot / "height.narc");
-    PackSingleFileNarc(palParkData, outputRoot / "ppark.narc");
-    PackSingleFileNarc(speciesSpriteData, outputRoot / "pl_poke_data.narc");
+    personal.write(outputRoot / "pl_personal.narc");
+    evo.write(outputRoot / "evo.narc");
+    wotbl.write(outputRoot / "wotbl.narc");
+    height.write(outputRoot / "height.narc");
+
+    NarcBuilder::write(palParkData, outputRoot / "ppark.narc");
+    NarcBuilder::write(speciesSpriteData, outputRoot / "pl_poke_data.narc");
     PackOffspring(offspringData, outputRoot / "pms.narc");
     return EXIT_SUCCESS;
 }

@@ -18,23 +18,11 @@
     ScriptEntryEnd
 
 VeilstoneStore5F_BugCatcher:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message VeilstoneStore5F_Text_GrabADrinkAndUnwind
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage VeilstoneStore5F_Text_GrabADrinkAndUnwind
     End
 
 VeilstoneStore5F_MiddleAgedWoman:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message VeilstoneStore5F_Text_TheyConsiderMeARegular
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage VeilstoneStore5F_Text_TheyConsiderMeARegular
     End
 
 VeilstoneStore5F_Collector1:
@@ -65,22 +53,11 @@ VeilstoneStore5F_Collector1BagIsFull:
     End
 
 VeilstoneStore5F_Collector2:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message VeilstoneStore5F_Text_TwoBuffGuysSideBySide
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage VeilstoneStore5F_Text_TwoBuffGuysSideBySide
     End
 
 VeilstoneStore5F_Directory:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    Message VeilstoneStore5F_Text_Directory
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    EventMessage VeilstoneStore5F_Text_Directory
     End
 
 VeilstoneStore5F_VendingMachine:

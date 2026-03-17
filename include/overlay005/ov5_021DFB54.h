@@ -1,12 +1,11 @@
 #ifndef POKEPLATINUM_OV5_021DFB54_H
 #define POKEPLATINUM_OV5_021DFB54_H
 
-#include "struct_decls/struct_0205E884_decl.h"
-
 #include "field/field_system_decl.h"
 
 #include "field_task.h"
 #include "location.h"
+#include "player_avatar.h"
 #include "sys_task_manager.h"
 
 void PlayerAvatar_SetTransitionState(PlayerAvatar *playerAvatar, u32 param1);

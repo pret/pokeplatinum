@@ -457,13 +457,7 @@ JubilifeCity_HaveYouPaidAVisitToTheTVStation:
     End
 
 JubilifeCity_AceTrainerM3:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message JubilifeCity_Text_PastHereIsTheGlobalTerminal
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage JubilifeCity_Text_PastHereIsTheGlobalTerminal
     End
 
 JubilifeCity_TriggerGTSGreeterBlockPlayer:
@@ -1254,33 +1248,15 @@ JubilifeCity_APersonThatLikesTheWaterTypeMustBeSomewhatCool:
     End
 
 JubilifeCity_Twin:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message JubilifeCity_Text_DidYouSeeMeOnTV
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage JubilifeCity_Text_DidYouSeeMeOnTV
     End
 
 JubilifeCity_AceTrainerM1:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message JubilifeCity_Text_HiyaWheredYouComeFrom
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage JubilifeCity_Text_HiyaWheredYouComeFrom
     End
 
 JubilifeCity_AceTrainerF:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message JubilifeCity_Text_WhenYouWalkWithYourPokemonTheyGraduallyGrowFriendlier
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage JubilifeCity_Text_WhenYouWalkWithYourPokemonTheyGraduallyGrowFriendlier
     End
 
 JubilifeCity_ExpertM1:
@@ -1308,13 +1284,7 @@ JubilifeCity_OhYoureNotKnowledgeable:
     End
 
 JubilifeCity_SchoolKidM2:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message JubilifeCity_Text_AtMostYouCanHaveSixPokemonWithYou
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage JubilifeCity_Text_AtMostYouCanHaveSixPokemonWithYou
     End
 
 JubilifeCity_MapSign:
@@ -1650,23 +1620,11 @@ JubilifeCity_YouShouldStickAround:
     End
 
 JubilifeCity_KidWithNDS1:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message JubilifeCity_Text_ImTradingPokemonWithMyBuddy
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage JubilifeCity_Text_ImTradingPokemonWithMyBuddy
     End
 
 JubilifeCity_KidWithNDS2:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message JubilifeCity_TextIMadeMyPokemonHoldAnItemBeforeTradingIt
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage JubilifeCity_TextIMadeMyPokemonHoldAnItemBeforeTradingIt
     End
 
 JubilifeCity_TriggerLookerPalPad:

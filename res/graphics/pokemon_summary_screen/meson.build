@@ -209,11 +209,10 @@ palettes_nclr_8bpp = nclr_gen.process(palettes_pal_8bpp,
     ],
 )
 
-pokemon_summary_screen_order = files('pokemon_summary_screen.order')
 pokemon_summary_screen_narc = custom_target('pl_pst_gra.narc',
     output: [
         'pl_pst_gra.narc',
-        'pl_pst_gra.naix.h',
+        'pl_pst_gra.naix',
     ],
     input: [
         tiles_ncgr,
@@ -224,15 +223,15 @@ pokemon_summary_screen_narc = custom_target('pl_pst_gra.narc',
         sprites_nanr,
         palettes_nclr_4bpp,
         palettes_nclr_8bpp,
-        pokemon_summary_screen_order,
     ],
     command: [
-        narc_exe, 'create',
-        '--naix',
-        '--order', pokemon_summary_screen_order,
-        '--output', '@OUTPUT0@',
+        nitroarc_exe,
+        '--create',
+        '--index',
+        '--files-from', files('pokemon_summary_screen.order'),
+        '--file', '@OUTPUT0@',
         '@PRIVATE_DIR@',
-    ]
+    ],
 )
 
 nitrofs_files += pokemon_summary_screen_narc

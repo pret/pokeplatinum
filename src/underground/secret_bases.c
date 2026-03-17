@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/field/map_prop.h"
 #include "constants/field_base_tiles.h"
 #include "constants/heap.h"
 #include "constants/map_object.h"
@@ -11,9 +10,6 @@
 #include "generated/movement_actions.h"
 #include "generated/trainer_score_events.h"
 #include "generated/traps.h"
-
-#include "struct_defs/underground.h"
-#include "struct_defs/underground_record.h"
 
 #include "field/field_system.h"
 #include "overlay005/map_prop.h"
@@ -60,7 +56,7 @@
 #include "system_flags.h"
 #include "terrain_collision_manager.h"
 #include "trainer_info.h"
-#include "unk_0202854C.h"
+#include "underground.h"
 #include "unk_02030EE0.h"
 #include "unk_02033200.h"
 #include "unk_020366A0.h"
@@ -68,7 +64,8 @@
 #include "unk_020655F4.h"
 #include "vars_flags.h"
 
-#include "res/graphics/trap_effects/trap_effects.naix.h"
+#include "res/field/props/models/prop_models.naix"
+#include "res/graphics/trap_effects/trap_effects.naix"
 #include "res/text/bank/underground_capture_flag.h"
 #include "res/text/bank/underground_common.h"
 
@@ -938,7 +935,7 @@ static void SecretBases_ExitBasePromptTask(SysTask *sysTask, void *data)
     case EXIT_PROMPT_STATE_CONFIRM:
         input = Menu_ProcessInputAndHandleExit(ctx->menu, HEAP_ID_FIELD1);
 
-        if (input == 0) {
+        if (input == MENU_YES) {
             ctx->menu = NULL;
             ctx->state = EXIT_PROMPT_STATE_EXIT_AND_END;
         } else if (input != MENU_NOTHING_CHOSEN) {
@@ -955,7 +952,7 @@ static void SecretBases_ExitBasePromptTask(SysTask *sysTask, void *data)
     case EXIT_PROMPT_STATE_CONFIRM_DOOR_CLOSED:
         input = Menu_ProcessInputAndHandleExit(ctx->menu, HEAP_ID_FIELD1);
 
-        if (input == 0) {
+        if (input == MENU_YES) {
             ctx->menu = NULL;
             UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_CommsWillBeLaunched, FALSE, NULL);
             ctx->state = EXIT_PROMPT_STATE_OPEN_COMMS_CONFIRM_MENU;
@@ -973,7 +970,7 @@ static void SecretBases_ExitBasePromptTask(SysTask *sysTask, void *data)
     case EXIT_PROMPT_STATE_CONFIRM_COMMS:
         input = Menu_ProcessInputAndHandleExit(ctx->menu, HEAP_ID_FIELD1);
 
-        if (input == 0) {
+        if (input == MENU_YES) {
             ctx->menu = NULL;
             ctx->state = EXIT_PROMPT_STATE_EXIT_AND_END;
         } else if (input != MENU_NOTHING_CHOSEN) {
@@ -1137,7 +1134,7 @@ static void SecretBases_EnterBasePromptTask(SysTask *sysTask, void *data)
     case ENTER_PROMPT_STATE_CONFIRM_OTHER_BASE:
         input = Menu_ProcessInputAndHandleExit(ctx->menu, HEAP_ID_FIELD1);
 
-        if (input == 0) {
+        if (input == MENU_YES) {
             ctx->menu = NULL;
             ctx->state = ENTER_PROMPT_STATE_ENTER_AFTER_TEXT;
         } else if (input != MENU_NOTHING_CHOSEN) {
@@ -1159,7 +1156,7 @@ static void SecretBases_EnterBasePromptTask(SysTask *sysTask, void *data)
     case ENTER_PROMPT_STATE_CONFIRM_OWN_BASE:
         input = Menu_ProcessInputAndHandleExit(ctx->menu, HEAP_ID_FIELD1);
 
-        if (input == 0) {
+        if (input == MENU_YES) {
             ctx->menu = NULL;
 
             if (UndergroundPlayer_IsHoldingFlag(ctx->baseOwnerNetID) || (SecretBases_CountPlayersInBase(ctx->baseOwnerNetID, 0) > 0)) {
@@ -1545,7 +1542,7 @@ static void SecretBases_DrawBaseEntrancesTask(SysTask *unused, void *unused1)
             position.y = 0;
             position.z = entranceZ * MAP_OBJECT_TILE_SIZE + MAP_OBJECT_TILE_SIZE / 2;
 
-            secretBasesEnv->baseEntrancePropIdxs[netID] = MapPropManager_LoadOne(secretBasesEnv->fieldSystem->mapPropManager, secretBasesEnv->fieldSystem->areaDataManager, MAP_PROP_MODEL_SECRET_BASE_ENTRANCE_NORTH + dir, &position, NULL, secretBasesEnv->fieldSystem->mapPropAnimMan);
+            secretBasesEnv->baseEntrancePropIdxs[netID] = MapPropManager_LoadOne(secretBasesEnv->fieldSystem->mapPropManager, secretBasesEnv->fieldSystem->areaDataManager, secret_base_entrance_north_nsbmd + dir, &position, NULL, secretBasesEnv->fieldSystem->mapPropAnimMan);
         }
     }
 }
@@ -1864,7 +1861,7 @@ static void SecretBases_DiggerDrillTask(SysTask *sysTask, void *data)
     case DRILL_STATE_CONFIRM:
         u32 input = Menu_ProcessInputAndHandleExit(ctx->menu, HEAP_ID_FIELD1);
 
-        if (input == 0) {
+        if (input == MENU_YES) {
             ctx->state = DRILL_STATE_REMOVE_DRILL;
             ctx->menu = NULL;
         } else if (input != MENU_NOTHING_CHOSEN) {
@@ -2377,7 +2374,7 @@ static void SecretBases_UpdatePCMapProp(FlagRankUpContext *ctx)
     position = MapProp_GetPosition(mapProp);
 
     MapPropManager_ClearOne(0, secretBasesEnv->fieldSystem->mapPropManager);
-    MapPropManager_LoadOne(secretBasesEnv->fieldSystem->mapPropManager, secretBasesEnv->fieldSystem->areaDataManager, MAP_PROP_MODEL_SECRET_BASE_PC_BRONZE_FLAG + ctx->prevFlagRank, &position, NULL, secretBasesEnv->fieldSystem->mapPropAnimMan);
+    MapPropManager_LoadOne(secretBasesEnv->fieldSystem->mapPropManager, secretBasesEnv->fieldSystem->areaDataManager, secret_base_pc_bronze_flag_nsbmd + ctx->prevFlagRank, &position, NULL, secretBasesEnv->fieldSystem->mapPropAnimMan);
 }
 
 static void SecretBases_EndFlagRankUpTask(SysTask *sysTask, void *ctx)

@@ -14,75 +14,35 @@
     ScriptEntryEnd
 
 _0026:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    Message 0
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    EventMessage 0
     End
 
 _0037:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    Message 1
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    EventMessage 1
     End
 
 _0048:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    Message 2
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    EventMessage 2
     End
 
 _0059:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    Message 3
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    EventMessage 3
     End
 
 _006A:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    Message 4
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    EventMessage 4
     End
 
 _007B:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    Message 5
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    EventMessage 5
     End
 
 _008C:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    Message 6
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    EventMessage 6
     End
 
 _009D:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    Message 7
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    EventMessage 7
     End
 
 _00AE:

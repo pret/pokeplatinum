@@ -13,7 +13,7 @@
 #include "narc.h"
 #include "string_gf.h"
 
-#include "res/graphics/item_icons/item_icon.naix.h"
+#include "res/graphics/item_icons/item_icon.naix"
 
 typedef struct ItemArchiveIDs {
     u16 dataID; // Member file index in pl_item_data.narc; TODO: Use NAIX generated from pl_item_data

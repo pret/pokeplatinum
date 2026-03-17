@@ -1,11 +1,9 @@
 #include "berry_patch_manager.h"
 
 #include <nitro.h>
-#include <string.h>
 
 #include "constants/items.h"
 
-#include "struct_decls/berry_patch_manager_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 
 #include "field/field_system.h"
@@ -30,14 +28,6 @@
 #include "terrain_collision_manager.h"
 #include "tv_episode_segment.h"
 #include "unk_020655F4.h"
-
-struct BerryPatchManager {
-    enum HeapID heapID;
-    BerryGrowthData *growthData;
-    NNSG3dRenderObj renderObj;
-    NNSG3dResMdl *model;
-    NNSG3dResFileHeader *resource;
-};
 
 typedef struct BerryWateringTask {
     enum BerryWateringState state;

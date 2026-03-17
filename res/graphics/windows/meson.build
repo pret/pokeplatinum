@@ -62,12 +62,10 @@ pl_winframe_nclrs = nclr_gen.process(pl_winframe_pals,
 pl_winframe_ncers = ncer_gen.process(files('pokemon_preview_cell.json'))
 pl_winframe_nanrs = nanr_gen.process(files('pokemon_preview_anim.json'))
 
-pl_winframe_order = files('pl_winframe.order')
-
 pl_winframe_narc = custom_target('pl_winframe.narc',
     output: [
         'pl_winframe.narc',
-        'pl_winframe.naix.h',
+        'pl_winframe.naix',
     ],
     input: [
         pl_winframe_ncgrs_sopc_v101,
@@ -75,15 +73,15 @@ pl_winframe_narc = custom_target('pl_winframe.narc',
         pl_winframe_nclrs,
         pl_winframe_ncers,
         pl_winframe_nanrs,
-        pl_winframe_order,
     ],
     command: [
-        narc_exe, 'create',
-        '--naix',
-        '--order', pl_winframe_order,
-        '--output', '@OUTPUT0@',
+        nitroarc_exe,
+        '--create',
+        '--index',
+        '--files-from', files('pl_winframe.order'),
+        '--file', '@OUTPUT0@',
         '@PRIVATE_DIR@',
-    ]
+    ],
 )
 
 nitrofs_files += pl_winframe_narc

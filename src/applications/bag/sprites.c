@@ -19,8 +19,8 @@
 #include "type_icon.h"
 #include "vram_transfer.h"
 
-#include "res/graphics/bag/bag_graphics.naix.h"
-#include "res/graphics/shop_menu/shop_gra.naix.h"
+#include "res/graphics/bag/bag_graphics.naix"
+#include "res/graphics/shop_menu/shop_gra.naix"
 
 static void InitSpriteSystem(BagController *controller);
 static void LoadSpriteResources(BagController *controller);

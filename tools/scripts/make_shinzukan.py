@@ -67,7 +67,12 @@ with open(target_fname, 'wb+') as target_file:
         shinzukan[i*2 + 1] = (pokedex[i] >> 8) & 0xff
     target_file.write(bytes(shinzukan))
 
-subprocess.run([args.narc, 'create', '--output', output_dir / 'shinzukan.narc', private_dir])
+subprocess.run([
+    args.narc,
+    '--create',
+    '--file', output_dir / 'shinzukan.narc',
+    private_dir
+])
 
 # generate header for dex size constants
 NUM_NATIONAL = len(Species)

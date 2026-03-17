@@ -6,8 +6,6 @@
 #include "constants/battle.h"
 #include "constants/rtc.h"
 
-#include "struct_decls/pc_boxes_decl.h"
-#include "struct_decls/pokedexdata_decl.h"
 #include "struct_defs/battler_data.h"
 #include "struct_defs/trainer.h"
 
@@ -29,6 +27,8 @@
 #include "pal_pad.h"
 #include "palette.h"
 #include "party.h"
+#include "pc_boxes.h"
+#include "pokedex.h"
 #include "pokemon_anim.h"
 #include "poketch.h"
 #include "render_window.h"

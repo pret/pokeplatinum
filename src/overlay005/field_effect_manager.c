@@ -5,20 +5,14 @@
 
 #include "constants/field/field_effect_renderer.h"
 
-#include "struct_decls/struct_02020C44_decl.h"
-#include "struct_decls/struct_020216E0_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
-#include "struct_defs/struct_020217F4.h"
-#include "struct_defs/struct_02024184.h"
 
 #include "field/field_system.h"
 #include "overlay005/area_light.h"
 #include "overlay005/field_effect_renderer.h"
 #include "overlay005/resource_heap.h"
-#include "overlay005/struct_ov5_021DF7F8.h"
-#include "overlay005/struct_ov5_021DF84C.h"
-#include "overlay005/struct_ov5_021EDDAC.h"
 
+#include "billboard.h"
 #include "heap.h"
 #include "map_object.h"
 #include "narc.h"
@@ -27,8 +21,6 @@
 #include "simple3d.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02020AEC.h"
-#include "unk_0202414C.h"
 
 typedef struct UnkStruct_ov5_021DF8FC_t {
     enum HeapID heapID;
@@ -36,17 +28,17 @@ typedef struct UnkStruct_ov5_021DF8FC_t {
     u16 unk_06;
     u16 unk_08;
     u16 unk_0A;
-    UnkStruct_02020C44 *unk_0C;
+    BillboardList *unk_0C;
     ResourceHeap *modelResHeap;
     ResourceHeap *metadataResHeap;
     TextureResourceManager *texResMan;
     UnkStruct_ov5_021DF8C8 *unk_1C;
-    UnkStruct_ov5_021DF84C *unk_20;
+    BillboardResources *unk_20;
 } UnkStruct_ov5_021DF8FC;
 
 typedef struct UnkStruct_ov5_021DF8C8_t {
     u32 unk_00;
-    UnkStruct_ov5_021DF84C *unk_04;
+    BillboardResources *unk_04;
 } UnkStruct_ov5_021DF8C8;
 
 typedef struct FieldEffectTexture {
@@ -75,9 +67,9 @@ static void ov5_021DF754(FieldEffectManager *param0, enum HeapID heapID, u32 par
 static void ov5_021DF7C4(FieldEffectManager *fieldEffMan);
 static void ov5_021DF8C8(FieldEffectManager *fieldEffMan, UnkStruct_ov5_021DF8FC *graphicsManager, u32 objectCount);
 static void ov5_021DF8FC(UnkStruct_ov5_021DF8FC *graphicsManager);
-static UnkStruct_ov5_021DF84C *ov5_021DF9B4(UnkStruct_ov5_021DF8FC *graphicsManager, u32 id);
+static BillboardResources *ov5_021DF9B4(UnkStruct_ov5_021DF8FC *graphicsManager, u32 id);
 static void ov5_021DF910(UnkStruct_ov5_021DF8FC *graphicsManager, u32 id);
-static UnkStruct_ov5_021DF84C *ov5_021DF930(UnkStruct_ov5_021DF8FC *graphicsManager, u32 id, void *modelData, UnkStruct_02024184 *textureData, void *textureResource, TextureResource *texture, const UnkStruct_020217F4 *effectData);
+static BillboardResources *ov5_021DF930(UnkStruct_ov5_021DF8FC *graphicsManager, u32 id, void *modelData, BillboardGfxSequence *textureData, void *textureResource, TextureResource *texture, const BillboardAnim *effectData);
 static void UploadTextureResourceToVRamDuringVBlank(FieldEffectManager *fieldEffMan, u32 texID, TextureResourceManager *texResMan);
 static void UploadTextureResourceToVRamTask(SysTask *task, void *context);
 static void DiscardTextureDataTask(SysTask *task, void *context);
@@ -373,7 +365,7 @@ void FieldEffectManager_FinishAnimManager(OverworldAnimManager *animMan)
 static void ov5_021DF754(FieldEffectManager *param0, enum HeapID heapID, u32 param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8)
 {
     UnkStruct_ov5_021DF8FC *v0;
-    UnkStruct_ov5_021EDDAC v1;
+    BillboardListParams v1;
 
     v0 = FieldEffectManager_HeapAllocInit(param0, (sizeof(UnkStruct_ov5_021DF8FC)), 0, 0);
     param0->unk_20 = v0;
@@ -389,9 +381,9 @@ static void ov5_021DF754(FieldEffectManager *param0, enum HeapID heapID, u32 par
 
     ov5_021DF8C8(param0, v0, param2);
 
-    v1.unk_00 = param2;
+    v1.maxElements = param2;
     v1.heapID = GetHeapID(param0);
-    v0->unk_0C = sub_02020C44(&v1);
+    v0->unk_0C = BillboardList_New(&v1);
 }
 
 static void ov5_021DF7C4(FieldEffectManager *fieldEffMan)
@@ -399,7 +391,7 @@ static void ov5_021DF7C4(FieldEffectManager *fieldEffMan)
     UnkStruct_ov5_021DF8FC *v0 = fieldEffMan->unk_20;
 
     if (v0 != NULL) {
-        sub_02020CCC(v0->unk_0C);
+        BillboardList_Delete(v0->unk_0C);
         ov5_021DF8FC(v0);
         ResourceHeap_Free(v0->modelResHeap);
         ResourceHeap_Free(v0->metadataResHeap);
@@ -410,48 +402,48 @@ static void ov5_021DF7C4(FieldEffectManager *fieldEffMan)
     }
 }
 
-UnkStruct_020216E0 *ov5_021DF7F8(FieldEffectManager *param0, const UnkStruct_ov5_021DF84C *param1, const VecFx32 *param2)
+Billboard *ov5_021DF7F8(FieldEffectManager *param0, const BillboardResources *param1, const VecFx32 *param2)
 {
-    UnkStruct_ov5_021DF7F8 v0;
-    UnkStruct_020216E0 *v1;
-    UnkStruct_02020C44 *v2;
+    BillboardTemplate v0;
+    Billboard *v1;
+    BillboardList *v2;
     VecFx32 v3 = { FX32_ONE, FX32_ONE, FX32_ONE };
 
     v2 = param0->unk_20->unk_0C;
 
-    v0.unk_00 = v2;
-    v0.unk_04 = param1;
-    v0.unk_08 = *param2;
-    v0.unk_14 = v3;
+    v0.list = v2;
+    v0.resources = param1;
+    v0.pos = *param2;
+    v0.scale = v3;
 
-    v1 = sub_0202119C(&v0);
+    v1 = BillboardList_Append(&v0);
     GF_ASSERT(v1 != NULL);
 
     if (v1 != NULL) {
-        NNS_G3dMdlSetMdlFogEnableFlagAll(sub_020213F4(v1), 1);
-        AreaLight_UseGlobalModelAttributes(sub_020213F4(v1));
+        NNS_G3dMdlSetMdlFogEnableFlagAll(Billboard_GetModel(v1), 1);
+        AreaLight_UseGlobalModelAttributes(Billboard_GetModel(v1));
     }
 
     return v1;
 }
 
-UnkStruct_020216E0 *ov5_021DF84C(FieldEffectManager *param0, u32 param1, const VecFx32 *param2)
+Billboard *ov5_021DF84C(FieldEffectManager *param0, u32 param1, const VecFx32 *param2)
 {
-    UnkStruct_ov5_021DF84C *v0 = ov5_021DF9B4(param0->unk_20, param1);
+    BillboardResources *v0 = ov5_021DF9B4(param0->unk_20, param1);
     return ov5_021DF7F8(param0, v0, param2);
 }
 
-UnkStruct_ov5_021DF84C *ov5_021DF864(FieldEffectManager *param0, u32 param1, u32 param2, u32 param3, u32 param4, int param5, const UnkStruct_020217F4 *param6)
+BillboardResources *ov5_021DF864(FieldEffectManager *param0, u32 param1, u32 param2, u32 param3, u32 param4, int param5, const BillboardAnim *param6)
 {
     void *v0, *v1, *v2;
-    UnkStruct_02024184 v3;
+    BillboardGfxSequence v3;
     TextureResource *v4;
-    UnkStruct_ov5_021DF84C *v5;
+    BillboardResources *v5;
     UnkStruct_ov5_021DF8FC *v6 = param0->unk_20;
     v0 = ResourceHeap_GetItemData(v6->modelResHeap, param2);
     v2 = ResourceHeap_GetItemData(v6->metadataResHeap, param3);
 
-    sub_02024184(v2, &v3);
+    BillboardGfxSequence_SetData(v2, &v3);
 
     v4 = TextureResourceManager_FindTextureResource(v6->texResMan, param4);
     GF_ASSERT(v4 != NULL);
@@ -469,10 +461,10 @@ UnkStruct_ov5_021DF84C *ov5_021DF864(FieldEffectManager *param0, u32 param1, u32
 
 static void ov5_021DF8C8(FieldEffectManager *param0, UnkStruct_ov5_021DF8FC *param1, u32 param2)
 {
-    UnkStruct_ov5_021DF84C *v0;
+    BillboardResources *v0;
     UnkStruct_ov5_021DF8C8 *v1;
 
-    v0 = FieldEffectManager_HeapAlloc(param0, sizeof(UnkStruct_ov5_021DF84C) * param2, 0);
+    v0 = FieldEffectManager_HeapAlloc(param0, sizeof(BillboardResources) * param2, 0);
     param1->unk_20 = v0;
 
     v1 = FieldEffectManager_HeapAlloc(param0, (sizeof(UnkStruct_ov5_021DF8C8)) * param2, 0);
@@ -511,9 +503,9 @@ static void ov5_021DF910(UnkStruct_ov5_021DF8FC *param0, u32 param1)
     GF_ASSERT(FALSE);
 }
 
-static UnkStruct_ov5_021DF84C *ov5_021DF930(UnkStruct_ov5_021DF8FC *param0, u32 param1, void *param2, UnkStruct_02024184 *param3, void *param4, TextureResource *param5, const UnkStruct_020217F4 *param6)
+static BillboardResources *ov5_021DF930(UnkStruct_ov5_021DF8FC *param0, u32 param1, void *param2, BillboardGfxSequence *param3, void *param4, TextureResource *param5, const BillboardAnim *param6)
 {
-    UnkStruct_ov5_021DF84C *v0 = NULL;
+    BillboardResources *v0 = NULL;
 
     {
         u32 v1 = param0->unk_04;
@@ -544,23 +536,23 @@ static UnkStruct_ov5_021DF84C *ov5_021DF930(UnkStruct_ov5_021DF8FC *param0, u32 
     }
 
     GF_ASSERT(v0 != NULL);
-    memset(v0, 0, sizeof(UnkStruct_ov5_021DF84C));
+    memset(v0, 0, sizeof(BillboardResources));
 
-    v0->unk_00 = param2;
-    v0->unk_0C = *param3;
-    v0->unk_04 = param4;
+    v0->modelRes = param2;
+    v0->gfxSequence = *param3;
+    v0->texture = param4;
 
     if (param5 != NULL) {
-        v0->unk_1C = TextureResource_GetTexKey(param5);
-        v0->unk_20 = TextureResource_GetTex4x4Key(param5);
-        v0->unk_24 = TextureResource_GetPaletteKey(param5);
+        v0->texKey = TextureResource_GetTexKey(param5);
+        v0->tex4x4Key = TextureResource_GetTex4x4Key(param5);
+        v0->plttKey = TextureResource_GetPaletteKey(param5);
     }
 
-    v0->unk_08 = param6;
+    v0->anims = param6;
     return v0;
 }
 
-static UnkStruct_ov5_021DF84C *ov5_021DF9B4(UnkStruct_ov5_021DF8FC *param0, u32 param1)
+static BillboardResources *ov5_021DF9B4(UnkStruct_ov5_021DF8FC *param0, u32 param1)
 {
     u32 v0 = param0->unk_04;
     UnkStruct_ov5_021DF8C8 *v1 = param0->unk_1C;

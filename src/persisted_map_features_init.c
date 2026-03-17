@@ -16,7 +16,7 @@
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
-#include "overlay006/ov6_02242AF0.h"
+#include "overlay006/great_marsh_tram.h"
 #include "overlay009/ov9_02249960.h"
 
 #include "field_system.h"

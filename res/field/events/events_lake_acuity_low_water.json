@@ -17,11 +17,11 @@
             "y": 0
         },
         {
-            "id": "LAKE_ACUITY_LOW_WATER_POKEBALL_1",
+            "id": "LOCALID_ITEM_TM14",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x04E7",
+            "hidden_flag": "FLAG_OBTAINED_LAKE_ACUITY_TM14",
             "script": 7241,
             "initial_dir": 0,
             "data": [],

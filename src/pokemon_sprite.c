@@ -11,7 +11,7 @@
 #include "palette.h"
 #include "pokemon_sprite.h"
 
-#include "res/pokemon/pl_otherpoke.naix.h"
+#include "res/pokemon/pl_otherpoke.naix"
 
 #define MAX_SPINDA_SPOTS       4
 #define SPINDA_SPOT_COORDS_END 0xFF
@@ -429,7 +429,7 @@ void *PokemonSpriteManager_New(enum HeapID heapID)
     NNS_G2dGetUnpackedCharacterData(shadowsNCGR, &charData);
 
     monSpriteMan->charData.pixelFmt = charData->pixelFmt;
-    monSpriteMan->charData.mapingType = charData->mapingType;
+    monSpriteMan->charData.mappingType = charData->mappingType;
     monSpriteMan->charData.characterFmt = charData->characterFmt;
     rawCharData = charData->pRawData;
 
@@ -1328,7 +1328,7 @@ static void BufferPokemonSpriteCharData(PokemonSpriteManager *monSpriteMan)
             NNS_G2dGetUnpackedCharacterData(ncgrFile, &charData);
 
             monSpriteMan->charData.pixelFmt = charData->pixelFmt;
-            monSpriteMan->charData.mapingType = charData->mapingType;
+            monSpriteMan->charData.mappingType = charData->mappingType;
             monSpriteMan->charData.characterFmt = charData->characterFmt;
 
             rawCharData = charData->pRawData;

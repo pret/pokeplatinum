@@ -5,8 +5,6 @@
 
 #include "constants/field_base_tiles.h"
 
-#include "struct_defs/underground.h"
-
 #include "field/field_system.h"
 #include "underground/item_list_menu.h"
 #include "underground/manager.h"
@@ -23,7 +21,7 @@
 #include "string_list.h"
 #include "string_template.h"
 #include "text.h"
-#include "unk_0202854C.h"
+#include "underground.h"
 
 #include "res/text/bank/underground_base_decoration.h"
 #include "res/text/bank/underground_goods.h"
@@ -187,13 +185,13 @@ static void DecorationMenu_HandleInput(DecorationMenu *menu)
     DecorationMenu_UpdateCursorPos(menu);
 
     if (input == DECORATION_OPTION_CANCEL) {
-        input = LIST_CANCEL;
+        input = MENU_CANCEL;
     }
 
     switch (input) {
-    case LIST_NOTHING_CHOSEN:
+    case MENU_NOTHING_CHOSEN:
         return;
-    case LIST_CANCEL:
+    case MENU_CANCEL:
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         menu->lastInput = input;
         menu->state = DECORATION_MENU_STATE_OPTION_SELECTED;
@@ -293,7 +291,7 @@ static void DecorationGoodsMenu_HandleInput(DecorationGoodsMenu *menu)
     u32 trueInput = input >> 1;
 
     if (menu->goodsCount == trueInput) {
-        trueInput = LIST_CANCEL;
+        trueInput = MENU_CANCEL;
     }
 
     u16 listPos, cursorPos;
@@ -301,10 +299,10 @@ static void DecorationGoodsMenu_HandleInput(DecorationGoodsMenu *menu)
     DecorationGoodsMenu_UpdateScrollPrompts(menu->scrollPrompts, listPos, ListMenu_GetAttribute(menu->itemListMenu->listMenu, LIST_MENU_COUNT), ListMenu_GetAttribute(menu->itemListMenu->listMenu, LIST_MENU_MAX_DISPLAY));
 
     switch (input) {
-    case LIST_NOTHING_CHOSEN:
+    case MENU_NOTHING_CHOSEN:
         return;
-    case LIST_CANCEL:
-        menu->lastInput = LIST_CANCEL;
+    case MENU_CANCEL:
+        menu->lastInput = MENU_CANCEL;
         menu->state = DECORATION_GOODS_MENU_STATE_OPTION_SELECTED;
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         break;

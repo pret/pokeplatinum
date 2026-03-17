@@ -2,7 +2,7 @@
 
 #include <nitro.h>
 
-#include "constants/scrcmd.h"
+#include "constants/battle_frontier.h"
 
 #include "applications/frontier/battle_hall/sprite_manager.h"
 #include "applications/frontier/battle_hall/sprites.h"
@@ -267,7 +267,7 @@ BOOL BattleHallApp_Init(ApplicationManager *appMan, int *state)
 
     LoadAssets(app);
 
-    if (BattleFrontier_IsMultiPlayerChallenge(app->challengeType) == TRUE) {
+    if (BattleHall_IsMultiPlayerChallenge(app->challengeType) == TRUE) {
         sub_0209BA80(app);
     }
 
@@ -304,7 +304,7 @@ BOOL BattleHallApp_Main(ApplicationManager *appMan, int *state)
             } else if (app->summaryScreenOpened == TRUE) {
                 ChangeState(app, state, STATE_MON_SUMMARY);
                 return FALSE;
-            } else if (BattleFrontier_IsMultiPlayerChallenge(app->challengeType) == TRUE) {
+            } else if (BattleHall_IsMultiPlayerChallenge(app->challengeType) == TRUE) {
                 ChangeState(app, state, STATE_SYNC_BEFORE_EXIT);
             } else {
                 ChangeState(app, state, STATE_FADE_OUT);
@@ -316,7 +316,7 @@ BOOL BattleHallApp_Main(ApplicationManager *appMan, int *state)
             if (app->selectionCanceled == TRUE) {
                 app->selectionCanceled = FALSE;
                 ChangeState(app, state, STATE_SELECT_BATTLE);
-            } else if (BattleFrontier_IsMultiPlayerChallenge(app->challengeType) == TRUE) {
+            } else if (BattleHall_IsMultiPlayerChallenge(app->challengeType) == TRUE) {
                 ChangeState(app, state, STATE_SYNC_BEFORE_EXIT);
             } else {
                 ChangeState(app, state, STATE_FADE_OUT);
@@ -364,7 +364,7 @@ static BOOL State_FadeInApp(BattleHallApp *app)
 {
     switch (app->subState) {
     case 0:
-        if (!app->isSynced && BattleFrontier_IsMultiPlayerChallenge(app->challengeType) == TRUE) {
+        if (!app->isSynced && BattleHall_IsMultiPlayerChallenge(app->challengeType) == TRUE) {
             CommTool_ClearReceivedTempDataAllPlayers();
             CommTiming_StartSync(112);
         }
@@ -372,7 +372,7 @@ static BOOL State_FadeInApp(BattleHallApp *app)
         app->subState++;
         break;
     case 1:
-        if (!app->isSynced && BattleFrontier_IsMultiPlayerChallenge(app->challengeType) == TRUE) {
+        if (!app->isSynced && BattleHall_IsMultiPlayerChallenge(app->challengeType) == TRUE) {
             if (CommTiming_IsSyncState(112) == TRUE) {
                 CommTool_ClearReceivedTempDataAllPlayers();
                 app->isSynced = TRUE;
@@ -459,7 +459,7 @@ static BOOL State_SelectNextBattle(BattleHallApp *app)
 
                 Sound_PlayEffect(SEQ_SE_DP_DECIDE);
 
-                if (!BattleFrontier_IsMultiPlayerChallenge(app->challengeType)) {
+                if (!BattleHall_IsMultiPlayerChallenge(app->challengeType)) {
                     ChangeCellBackground(app->bgConfig, app->cursorPos, CELL_BACKGROUND_SELECTED);
                     Bg_ScheduleTilemapTransfer(app->bgConfig, BG_LAYER_MAIN_3);
                 }
@@ -473,7 +473,7 @@ static BOOL State_SelectNextBattle(BattleHallApp *app)
         app->openMenuDelay--;
 
         if (app->openMenuDelay == 0) {
-            if (!BattleFrontier_IsMultiPlayerChallenge(app->challengeType)) {
+            if (!BattleHall_IsMultiPlayerChallenge(app->challengeType)) {
                 DrawMessageWithYesNoMenu(app);
                 app->subState = SELECT_STATE_PROCESS_YES_NO;
                 break;
@@ -508,7 +508,7 @@ static BOOL State_SelectNextBattle(BattleHallApp *app)
             }
             break;
         case MENU_NO:
-        case MENU_CANCELED:
+        case MENU_CANCEL:
             FreeYesNoMenu(app);
             DeselectCell(app);
             app->subState = SELECT_STATE_MAKE_PICK;
@@ -642,7 +642,7 @@ static BOOL State_MultiplayerConfirmSelection(BattleHallApp *app)
             app->subState = MCONFIRM_STATE_SEND_CONFIRM_COMM;
             break;
         case MENU_NO:
-        case MENU_CANCELED:
+        case MENU_CANCEL:
             FreeYesNoMenu(app);
             app->subState = MCONFIRM_STATE_SEND_CANCELED_COMM;
             break;
@@ -1380,7 +1380,7 @@ static u8 GetCursorPos(u8 cursorPos)
 
 static BOOL NextOpponentIsHallMatron(BattleHallApp *app)
 {
-    if (app->challengeType == 0) {
+    if (app->challengeType == FRONTIER_CHALLENGE_SINGLE) {
         if (app->currentStreak == 50 || app->currentStreak == 170) {
             return TRUE;
         }
@@ -1396,7 +1396,7 @@ static BOOL IsHallMatronBattleAvailable(BattleHallApp *app)
 
 BOOL SendCommMessage(BattleHallApp *app, u16 cmd, u16 arg)
 {
-    if (!BattleFrontier_IsMultiPlayerChallenge(app->challengeType)) {
+    if (!BattleHall_IsMultiPlayerChallenge(app->challengeType)) {
         return FALSE;
     }
 

@@ -15,7 +15,7 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 
-#include "res/graphics/poketch/poketch.naix.h"
+#include "res/graphics/poketch/poketch.naix"
 
 #define BUTTON_WIDTH_TILES  5
 #define BUTTON_HEIGHT_TILES 11

@@ -32,11 +32,11 @@
             "y": 0
         },
         {
-            "id": "GALACTIC_HQ_B2F_POKEBALL_2",
+            "id": "LOCALID_ITEM_TM36",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x049A",
+            "hidden_flag": "FLAG_OBTAINED_GALACTIC_HQ_B2F_TM36",
             "script": 7164,
             "initial_dir": 0,
             "data": [],
@@ -81,11 +81,11 @@
             "y": 0
         },
         {
-            "id": "GALACTIC_HQ_B2F_POKEBALL_5",
+            "id": "LOCALID_ITEM_GALACTIC_KEY",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x04E3",
+            "hidden_flag": "FLAG_OBTAINED_GALACTIC_HQ_B2F_GALACTIC_KEY",
             "script": 7237,
             "initial_dir": 0,
             "data": [],
@@ -126,11 +126,11 @@
             "y": 0
         },
         {
-            "id": "GALACTIC_HQ_B2F_POKEBALL_8",
+            "id": "LOCALID_ITEM_ZINC",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x04EA",
+            "hidden_flag": "FLAG_OBTAINED_GALACTIC_HQ_B2F_ZINC",
             "script": 7244,
             "initial_dir": 0,
             "data": [],

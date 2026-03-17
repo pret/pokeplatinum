@@ -1,10 +1,9 @@
 #ifndef POKEPLATINUM_KEYBOARD_H
 #define POKEPLATINUM_KEYBOARD_H
 
-#include "struct_decls/pc_boxes_decl.h"
-
 #include "game_options.h"
 #include "overlay_manager.h"
+#include "pc_boxes.h"
 #include "string_gf.h"
 
 enum NamingScreenType {

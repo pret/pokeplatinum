@@ -27,11 +27,11 @@
     ],
     "object_events": [
         {
-            "id": "VICTORY_ROAD_1F_POKEBALL_0",
+            "id": "LOCALID_ITEM_RARE_CANDY",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x04AD",
+            "hidden_flag": "FLAG_OBTAINED_VICTORY_ROAD_1F_RARE_CANDY",
             "script": 7183,
             "initial_dir": 0,
             "data": [],
@@ -42,11 +42,11 @@
             "y": 0
         },
         {
-            "id": "VICTORY_ROAD_1F_POKEBALL_1",
+            "id": "LOCALID_ITEM_MAX_REPEL",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x04AC",
+            "hidden_flag": "FLAG_OBTAINED_VICTORY_ROAD_1F_MAX_REPEL",
             "script": 7182,
             "initial_dir": 0,
             "data": [],
@@ -57,11 +57,11 @@
             "y": 0
         },
         {
-            "id": "VICTORY_ROAD_1F_POKEBALL_2",
+            "id": "LOCALID_ITEM_TM41",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x04AB",
+            "hidden_flag": "FLAG_OBTAINED_VICTORY_ROAD_1F_TM41",
             "script": 7181,
             "initial_dir": 0,
             "data": [],
@@ -72,11 +72,11 @@
             "y": 0
         },
         {
-            "id": "VICTORY_ROAD_1F_POKEBALL_3",
+            "id": "LOCALID_ITEM_RAZOR_CLAW",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x04AF",
+            "hidden_flag": "FLAG_OBTAINED_VICTORY_ROAD_1F_RAZOR_CLAW",
             "script": 7185,
             "initial_dir": 0,
             "data": [],
@@ -87,11 +87,11 @@
             "y": 0
         },
         {
-            "id": "VICTORY_ROAD_1F_POKEBALL_4",
+            "id": "LOCALID_ITEM_ZINC",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x04AE",
+            "hidden_flag": "FLAG_OBTAINED_VICTORY_ROAD_1F_ZINC",
             "script": 7184,
             "initial_dir": 0,
             "data": [],

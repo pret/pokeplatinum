@@ -203,33 +203,6 @@ libvct_c_commands = [
     for file in (homedir / "subprojects/libvct-1.3.1").rglob("*.c")
 ]
 
-libcrypto_c_commands = [
-    {
-        "directory": builddir,
-        "arguments": arm9_c_flags
-        + [
-            f"-I{cwlibcdir}",
-            f"-I{cwextrasdir}",
-            f"-I{cwlibcarmdir}",
-            f"-I{cwextrasarmdir}",
-            f"-I{homedir}/subprojects/NitroSDK-4.2.30001/include",
-            f"-I{builddir}/subprojects/NitroSDK-4.2.30001/gen",
-            f"-I{homedir}/subprojects/NitroSystem-071126.1/include",
-            f"-I{homedir}/subprojects/NitroWiFi-2.1.30003/include",
-            f"-I{homedir}/subprojects/NitroDWC-2.2.30008/include",
-            f"-I{homedir}/subprojects/NitroDWC-2.2.30008/include/gs",
-            f"-I{homedir}/subprojects/NitroDWC-2.2.30008/include/base",
-            f"-I{homedir}/subprojects/libvct-1.3.1/include",
-            f"-I{homedir}/subprojects/libcrypto/include",
-            "-o",
-            file.with_suffix(".o"),
-            file.resolve(),
-        ],
-        "file": file.resolve(),
-    }
-    for file in (homedir / "subprojects/libcrypto").rglob("*.c")
-]
-
 ppwlobby_c_commands = [
     {
         "directory": builddir,
@@ -247,7 +220,7 @@ ppwlobby_c_commands = [
             f"-I{homedir}/subprojects/NitroDWC-2.2.30008/include/gs",
             f"-I{homedir}/subprojects/NitroDWC-2.2.30008/include/base",
             f"-I{homedir}/subprojects/libvct-1.3.1/include",
-            f"-I{homedir}/subprojects/libcrypto/include",
+            f"-I{homedir}/lib/crypto/include",
             f"-I{homedir}/subprojects/ppwlobby/include",
             "-o",
             file.with_suffix(".o"),
@@ -276,8 +249,8 @@ c_commands = [
             f"-I{homedir}/subprojects/NitroDWC-2.2.30008/include/gs",
             f"-I{homedir}/subprojects/NitroDWC-2.2.30008/include/base",
             f"-I{homedir}/subprojects/libvct-1.3.1/include",
-            f"-I{homedir}/subprojects/libcrypto/include",
             f"-I{homedir}/subprojects/ppwlobby/include",
+            f"-I{homedir}/lib/crypto/include",
             f"-I{homedir}/lib/gds/include",
             f"-I{homedir}/lib/spl/include",
             f"-iquote{homedir}",
@@ -296,13 +269,34 @@ c_commands = [
     for file in (homedir / "src").rglob("*.c")
 ]
 
+nitroarc_c_commands = [
+    {
+        "directory": builddir,
+        "arguments": [
+            "gcc",
+            f"-I{homedir}/tools/nitroarc/lib/include",
+            "-std=c99",
+            "-Wall",
+            "-Wextra",
+            "-Wpedantic",
+            "-Wconversion",
+            "-Wno-sign-conversion",
+            "-o",
+            file.with_suffix(".o"),
+            file.resolve(),
+        ],
+        "file": file.resolve(),
+    }
+    for file in (homedir / "tools" / "nitroarc").rglob("*.c")
+]
+
 datagen_cpp_commands = [
     {
         "directory": builddir,
         "arguments": [
             "g++",
-            f"-I{homedir}/subprojects/narc/lib/include",  # NARC packing
             f"-I{homedir}/subprojects/rapidjson-1.1.0/include",  # JSON parser
+            f"-I{homedir}/tools/nitroarc/lib/include",  # NARC packing
             f"-I{homedir}/tools/datagen",  # base header file
             f"-I{homedir}/include",  # source includes
             f"-I{builddir}",  # metang-generated headers (constants)
@@ -325,10 +319,10 @@ with open("compile_commands.json", "w") as ofp:
         + nitrowifi_c_commands
         + nitrodwc_c_commands
         + libvct_c_commands
-        + libcrypto_c_commands
         + ppwlobby_c_commands
         + c_commands
-        + datagen_cpp_commands,
+        + datagen_cpp_commands
+        + nitroarc_c_commands,
         ofp,
         default=str,
         indent=4,

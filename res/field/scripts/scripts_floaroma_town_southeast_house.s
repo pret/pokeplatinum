@@ -2,26 +2,14 @@
 #include "res/text/bank/floaroma_town_southeast_house.h"
 
 
-    ScriptEntry _000A
-    ScriptEntry _001D
+    ScriptEntry FloaromaTownSoutheastHouse_PokefanM
+    ScriptEntry FloaromaTownSoutheastHouse_PokefanF
     ScriptEntryEnd
 
-_000A:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 0
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+FloaromaTownSoutheastHouse_PokefanM:
+    NPCMessage FloaromaTownSoutheastHouse_Text_SomeKindsOfPokemonAppearOnlyIfTheyreAttractedByHoney
     End
 
-_001D:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 1
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+FloaromaTownSoutheastHouse_PokefanF:
+    NPCMessage FloaromaTownSoutheastHouse_Text_PokemonHaveAnAcuteSenseOfSmell
     End

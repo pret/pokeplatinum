@@ -2,11 +2,11 @@
     "bg_events": [],
     "object_events": [
         {
-            "id": "RAVAGED_PATH_ROCK_SMASH_0",
+            "id": "LOCALID_ROCK_SMASH_1",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0020",
+            "hidden_flag": "FLAG_HIDE_OBSTACLE_1",
             "script": 10001,
             "initial_dir": 0,
             "data": [],
@@ -17,11 +17,11 @@
             "y": 0
         },
         {
-            "id": "RAVAGED_PATH_ROCK_SMASH_1",
+            "id": "LOCALID_ROCK_SMASH_2",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0021",
+            "hidden_flag": "FLAG_HIDE_OBSTACLE_2",
             "script": 10001,
             "initial_dir": 0,
             "data": [],
@@ -32,11 +32,11 @@
             "y": 0
         },
         {
-            "id": "RAVAGED_PATH_ROCK_SMASH_2",
+            "id": "LOCALID_ROCK_SMASH_3",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0022",
+            "hidden_flag": "FLAG_HIDE_OBSTACLE_3",
             "script": 10001,
             "initial_dir": 0,
             "data": [],
@@ -47,11 +47,11 @@
             "y": 0
         },
         {
-            "id": "RAVAGED_PATH_ROCK_SMASH_3",
+            "id": "LOCALID_ROCK_SMASH_4",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0023",
+            "hidden_flag": "FLAG_HIDE_OBSTACLE_4",
             "script": 10001,
             "initial_dir": 0,
             "data": [],
@@ -62,11 +62,11 @@
             "y": 0
         },
         {
-            "id": "RAVAGED_PATH_ROCK_SMASH_4",
+            "id": "LOCALID_ROCK_SMASH_5",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0024",
+            "hidden_flag": "FLAG_HIDE_OBSTACLE_5",
             "script": 10001,
             "initial_dir": 0,
             "data": [],
@@ -77,11 +77,11 @@
             "y": 0
         },
         {
-            "id": "RAVAGED_PATH_ROCK_SMASH_5",
+            "id": "LOCALID_ROCK_SMASH_6",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0025",
+            "hidden_flag": "FLAG_HIDE_OBSTACLE_6",
             "script": 10001,
             "initial_dir": 0,
             "data": [],
@@ -92,11 +92,11 @@
             "y": 0
         },
         {
-            "id": "RAVAGED_PATH_ROCK_SMASH_6",
+            "id": "LOCALID_ROCK_SMASH_7",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0026",
+            "hidden_flag": "FLAG_HIDE_OBSTACLE_7",
             "script": 10001,
             "initial_dir": 0,
             "data": [],
@@ -107,11 +107,11 @@
             "y": 0
         },
         {
-            "id": "RAVAGED_PATH_ROCK_SMASH_7",
+            "id": "LOCALID_ROCK_SMASH_8",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0027",
+            "hidden_flag": "FLAG_HIDE_OBSTACLE_8",
             "script": 10001,
             "initial_dir": 0,
             "data": [],
@@ -122,11 +122,11 @@
             "y": 0
         },
         {
-            "id": "RAVAGED_PATH_ROCK_SMASH_8",
+            "id": "LOCALID_ROCK_SMASH_9",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0028",
+            "hidden_flag": "FLAG_HIDE_OBSTACLE_9",
             "script": 10001,
             "initial_dir": 0,
             "data": [],
@@ -137,11 +137,11 @@
             "y": 0
         },
         {
-            "id": "RAVAGED_PATH_ROCK_SMASH_9",
+            "id": "LOCALID_ROCK_SMASH_10",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0029",
+            "hidden_flag": "FLAG_HIDE_OBSTACLE_10",
             "script": 10001,
             "initial_dir": 0,
             "data": [],
@@ -152,11 +152,11 @@
             "y": 0
         },
         {
-            "id": "RAVAGED_PATH_ROCK_SMASH_10",
+            "id": "LOCALID_ROCK_SMASH_11",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x002A",
+            "hidden_flag": "FLAG_HIDE_OBSTACLE_11",
             "script": 10001,
             "initial_dir": 0,
             "data": [],
@@ -167,11 +167,11 @@
             "y": 0
         },
         {
-            "id": "RAVAGED_PATH_ROCK_SMASH_11",
+            "id": "LOCALID_ROCK_SMASH_12",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x002B",
+            "hidden_flag": "FLAG_HIDE_OBSTACLE_12",
             "script": 10001,
             "initial_dir": 0,
             "data": [],
@@ -182,11 +182,11 @@
             "y": 0
         },
         {
-            "id": "RAVAGED_PATH_ROCK_SMASH_12",
+            "id": "LOCALID_ROCK_SMASH_13",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x002C",
+            "hidden_flag": "FLAG_HIDE_OBSTACLE_13",
             "script": 10001,
             "initial_dir": 0,
             "data": [],
@@ -197,11 +197,11 @@
             "y": 0
         },
         {
-            "id": "RAVAGED_PATH_ROCK_SMASH_13",
+            "id": "LOCALID_ROCK_SMASH_14",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x002D",
+            "hidden_flag": "FLAG_HIDE_OBSTACLE_14",
             "script": 10001,
             "initial_dir": 0,
             "data": [],
@@ -212,11 +212,11 @@
             "y": 0
         },
         {
-            "id": "RAVAGED_PATH_ROCK_SMASH_14",
+            "id": "LOCALID_ROCK_SMASH_15",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x002E",
+            "hidden_flag": "FLAG_HIDE_OBSTACLE_15",
             "script": 10001,
             "initial_dir": 0,
             "data": [],
@@ -227,11 +227,11 @@
             "y": 0
         },
         {
-            "id": "RAVAGED_PATH_ROCK_SMASH_15",
+            "id": "LOCALID_ROCK_SMASH_16",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x002F",
+            "hidden_flag": "FLAG_HIDE_OBSTACLE_16",
             "script": 10001,
             "initial_dir": 0,
             "data": [],
@@ -242,11 +242,11 @@
             "y": 0
         },
         {
-            "id": "RAVAGED_PATH_ROCK_SMASH_16",
+            "id": "LOCALID_ROCK_SMASH_17",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0030",
+            "hidden_flag": "FLAG_HIDE_OBSTACLE_17",
             "script": 10001,
             "initial_dir": 0,
             "data": [],
@@ -257,11 +257,11 @@
             "y": 0
         },
         {
-            "id": "RAVAGED_PATH_ROCK_SMASH_17",
+            "id": "LOCALID_ROCK_SMASH_18",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0031",
+            "hidden_flag": "FLAG_HIDE_OBSTACLE_18",
             "script": 10001,
             "initial_dir": 0,
             "data": [],
@@ -272,11 +272,11 @@
             "y": 0
         },
         {
-            "id": "RAVAGED_PATH_ROCK_SMASH_18",
+            "id": "LOCALID_ROCK_SMASH_19",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0032",
+            "hidden_flag": "FLAG_HIDE_OBSTACLE_19",
             "script": 10001,
             "initial_dir": 0,
             "data": [],
@@ -287,11 +287,11 @@
             "y": 0
         },
         {
-            "id": "RAVAGED_PATH_ROCK_SMASH_19",
+            "id": "LOCALID_ROCK_SMASH_20",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0033",
+            "hidden_flag": "FLAG_HIDE_OBSTACLE_20",
             "script": 10001,
             "initial_dir": 0,
             "data": [],
@@ -302,11 +302,11 @@
             "y": 0
         },
         {
-            "id": "RAVAGED_PATH_ROCK_SMASH_20",
+            "id": "LOCALID_ROCK_SMASH_21",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0034",
+            "hidden_flag": "FLAG_HIDE_OBSTACLE_21",
             "script": 10001,
             "initial_dir": 0,
             "data": [],
@@ -317,11 +317,11 @@
             "y": 0
         },
         {
-            "id": "RAVAGED_PATH_ROCK_SMASH_21",
+            "id": "LOCALID_ROCK_SMASH_22",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0035",
+            "hidden_flag": "FLAG_HIDE_OBSTACLE_22",
             "script": 10001,
             "initial_dir": 0,
             "data": [],
@@ -332,11 +332,11 @@
             "y": 0
         },
         {
-            "id": "RAVAGED_PATH_ROCK_SMASH_22",
+            "id": "LOCALID_ROCK_SMASH_23",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0036",
+            "hidden_flag": "FLAG_HIDE_OBSTACLE_23",
             "script": 10001,
             "initial_dir": 0,
             "data": [],
@@ -347,11 +347,11 @@
             "y": 0
         },
         {
-            "id": "RAVAGED_PATH_ROCK_SMASH_23",
+            "id": "LOCALID_ROCK_SMASH_24",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0037",
+            "hidden_flag": "FLAG_HIDE_OBSTACLE_24",
             "script": 10001,
             "initial_dir": 0,
             "data": [],
@@ -362,11 +362,11 @@
             "y": 0
         },
         {
-            "id": "RAVAGED_PATH_ROCK_SMASH_24",
+            "id": "LOCALID_ROCK_SMASH_25",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0038",
+            "hidden_flag": "FLAG_HIDE_OBSTACLE_25",
             "script": 10001,
             "initial_dir": 0,
             "data": [],
@@ -377,11 +377,11 @@
             "y": 0
         },
         {
-            "id": "RAVAGED_PATH_ROCK_SMASH_25",
+            "id": "LOCALID_ROCK_SMASH_26",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0039",
+            "hidden_flag": "FLAG_HIDE_OBSTACLE_26",
             "script": 10001,
             "initial_dir": 0,
             "data": [],
@@ -392,11 +392,11 @@
             "y": 0
         },
         {
-            "id": "RAVAGED_PATH_ROCK_SMASH_26",
+            "id": "LOCALID_ROCK_SMASH_27",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x003A",
+            "hidden_flag": "FLAG_HIDE_OBSTACLE_27",
             "script": 10001,
             "initial_dir": 0,
             "data": [],
@@ -407,11 +407,11 @@
             "y": 0
         },
         {
-            "id": "RAVAGED_PATH_POKEBALL_27",
+            "id": "LOCALID_ITEM_TM39",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0401",
+            "hidden_flag": "FLAG_OBTAINED_RAVAGED_PATH_TM39",
             "script": 7011,
             "initial_dir": 0,
             "data": [],
@@ -422,11 +422,11 @@
             "y": 0
         },
         {
-            "id": "RAVAGED_PATH_POKEBALL_28",
+            "id": "LOCALID_ITEM_LUCK_INCENSE",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0402",
+            "hidden_flag": "FLAG_OBTAINED_RAVAGED_PATH_LUCK_INCENSE",
             "script": 7012,
             "initial_dir": 0,
             "data": [],
@@ -437,11 +437,11 @@
             "y": 0
         },
         {
-            "id": "RAVAGED_PATH_POKEBALL_29",
+            "id": "LOCALID_ITEM_TM03",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0403",
+            "hidden_flag": "FLAG_OBTAINED_RAVAGED_PATH_TM03",
             "script": 7013,
             "initial_dir": 0,
             "data": [],
@@ -452,11 +452,11 @@
             "y": 0
         },
         {
-            "id": "RAVAGED_PATH_POKEBALL_30",
+            "id": "LOCALID_ITEM_POTION",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x04F1",
+            "hidden_flag": "FLAG_OBTAINED_RAVAGED_PATH_POTION",
             "script": 7251,
             "initial_dir": 0,
             "data": [],

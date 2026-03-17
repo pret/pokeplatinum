@@ -36,12 +36,7 @@ TwinleafTownPlayerHouse2F_OnFrame_ConcludeSpecialProgram:
     End
 
 TwinleafTownPlayerHouse2F_Wii:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    Message TwinleafTownPlayerHouse2F_Text_ItsAWii
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    EventMessage TwinleafTownPlayerHouse2F_Text_ItsAWii
     End
 
 TwinleafTownPlayerHouse2F_PC:
@@ -59,12 +54,7 @@ TwinleafTownPlayerHouse2F_ScrollingSign:
     End
 
 TwinleafTownPlayerHouse2F_TV:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    Message TwinleafTownPlayerHouse2F_Text_MomBoughThisTVAsAGift
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    EventMessage TwinleafTownPlayerHouse2F_Text_MomBoughThisTVAsAGift
     End
 
 TwinleafTownPlayerHouse2F_RivalTriggerNorth:

@@ -2,21 +2,16 @@
 #include "res/text/bank/old_chateau.h"
 
 
-    ScriptEntry _000A
-    ScriptEntry _0010
+    ScriptEntry OldChateau_OnTransition
+    ScriptEntry OldChateau_Statue
     ScriptEntryEnd
 
-_000A:
+OldChateau_OnTransition:
     SetFlag FLAG_FIRST_ARRIVAL_OLD_CHATEAU
     End
 
-_0010:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    Message 0
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+OldChateau_Statue:
+    EventMessage OldChateau_Text_ItAppearsAsIfItIsGlaring
     End
 
     .balign 4, 0

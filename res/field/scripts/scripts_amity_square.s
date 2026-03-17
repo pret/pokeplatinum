@@ -610,92 +610,35 @@ _08D0:
     EndMovement
 
 AmitySquare_DrifloonMan:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message AmitySquare_Text_TheseRuinsAreFromALongLongTimeAgo
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage AmitySquare_Text_TheseRuinsAreFromALongLongTimeAgo
     End
 
 AmitySquare_Drifloon:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    WaitFanfare SEQ_SE_CONFIRM
-    PlayCry SPECIES_DRIFLOON
-    Message AmitySquare_Text_DrifloonFoon
-    WaitCry
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    PokemonCryAndMessage SPECIES_DRIFLOON, AmitySquare_Text_DrifloonFoon
     End
 
 AmitySquare_HappinyWoman:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message AmitySquare_Text_IComeHereWithMyHappinyEverySingleDay
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage AmitySquare_Text_IComeHereWithMyHappinyEverySingleDay
     End
 
 AmitySquare_Happiny:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message AmitySquare_Text_HappinyAppearsToBeDrowsy
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage AmitySquare_Text_HappinyAppearsToBeDrowsy
     End
 
 AmitySquare_PikachuMan:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message AmitySquare_Text_OohIJustCantBelieveIt
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage AmitySquare_Text_OohIJustCantBelieveIt
     End
 
 AmitySquare_Pikachu:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    WaitFanfare SEQ_SE_CONFIRM
-    PlayCry SPECIES_PIKACHU
-    Message AmitySquare_Text_PikachuPikkaPika
-    WaitCry
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    PokemonCryAndMessage SPECIES_PIKACHU, AmitySquare_Text_PikachuPikkaPika
     End
 
 AmitySquare_ClefairyGirl:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message AmitySquare_Text_YouShouldTalkToYourPokemon
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage AmitySquare_Text_YouShouldTalkToYourPokemon
     End
 
 AmitySquare_Clefairy:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    WaitFanfare SEQ_SE_CONFIRM
-    PlayCry SPECIES_CLEFAIRY
-    Message AmitySquare_Text_ThereIsSomethingShinyInClefairysHands
-    WaitCry
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    PokemonCryAndMessage SPECIES_CLEFAIRY, AmitySquare_Text_ThereIsSomethingShinyInClefairysHands
     End
 
 AmitySquare_CheckPartyHasSpecies:

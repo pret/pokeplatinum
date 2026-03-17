@@ -14,7 +14,7 @@
 #include "heap.h"
 #include "sys_task_manager.h"
 
-#include "res/graphics/poketch/poketch.naix.h"
+#include "res/graphics/poketch/poketch.naix"
 
 #define ANIM_HAND_RIGHT_UP     0
 #define ANIM_HAND_RIGHT_DOWN   1

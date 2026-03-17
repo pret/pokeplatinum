@@ -5,8 +5,6 @@
 
 #include "generated/first_arrival_to_zones.h"
 
-#include "struct_decls/pokedexdata_decl.h"
-
 #include "field/field_system.h"
 
 #include "inlines.h"

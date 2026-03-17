@@ -468,10 +468,10 @@ static void LoadImageMappingAndSetVramMode(void *ncgrBuffer, enum ImageMappingLa
 
             switch (vramType) {
             case NNS_G2D_VRAM_TYPE_2DMAIN:
-                tiles->mapingType = GX_GetOBJVRamModeChar();
+                tiles->mappingType = GX_GetOBJVRamModeChar();
                 break;
             case NNS_G2D_VRAM_TYPE_2DSUB:
-                tiles->mapingType = GXS_GetOBJVRamModeChar();
+                tiles->mappingType = GXS_GetOBJVRamModeChar();
                 break;
             }
 

@@ -156,12 +156,9 @@ bottom_screen_bg_nclr = custom_target('bottom_screen_bg_nclr',
 )
 
 town_map_graphics_narc = custom_target('town_map_graphics.narc',
-    command: [
-        narc_exe, 'create',
-        '--naix',
-        '--order', files('town_map_graphics.order'),
-        '--output', '@OUTPUT0@',
-        '@PRIVATE_DIR@',
+    output: [
+        'town_map_graphics.narc',
+        'town_map_graphics.naix',
     ],
     input: [
         tilemaps_nscr,
@@ -174,9 +171,13 @@ town_map_graphics_narc = custom_target('town_map_graphics.narc',
         copy_gen.process(top_screen_sprites_nclr),
         copy_gen.process(bottom_screen_bg_nclr),
     ],
-    output: [
-        'town_map_graphics.narc',
-        'town_map_graphics.naix.h',
+    command: [
+        nitroarc_exe,
+        '--create',
+        '--index',
+        '--files-from', files('town_map_graphics.order'),
+        '--file', '@OUTPUT0@',
+        '@PRIVATE_DIR@',
     ],
 )
 

@@ -202,7 +202,7 @@ the repository](#2-downloading-the-repository).
 1. Enable 32-bit installations using `dpkg`:
 
     ```bash
-    sudo dpkg --add-architecture i386
+    sudo dpkg --add-architecture i386 && sudo apt update
     ```
 
 2. Install the following packages via `apt`:

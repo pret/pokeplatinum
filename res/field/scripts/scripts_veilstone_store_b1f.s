@@ -24,63 +24,27 @@
     ScriptEntryEnd
 
 VeilstoneStoreB1F_Gentleman:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message VeilstoneStoreB1F_Text_IBoughtAllTheRageCandyBars
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage VeilstoneStoreB1F_Text_IBoughtAllTheRageCandyBars
     End
 
 VeilstoneStoreB1F_Socialite1:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message VeilstoneStoreB1F_Text_HopelessAtCookingPoffins
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage VeilstoneStoreB1F_Text_HopelessAtCookingPoffins
     End
 
 VeilstoneStoreB1F_Socialite2:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message VeilstoneStoreB1F_Text_FlavorsOfPoffinsAffectConditionOfPokemon
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage VeilstoneStoreB1F_Text_FlavorsOfPoffinsAffectConditionOfPokemon
     End
 
 VeilstoneStoreB1F_Attendant1:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message VeilstoneStoreB1F_Text_Welcome
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage VeilstoneStoreB1F_Text_Welcome
     End
 
 VeilstoneStoreB1F_Attendant2:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message VeilstoneStoreB1F_Text_WeHaveBerriesOnSale
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage VeilstoneStoreB1F_Text_WeHaveBerriesOnSale
     End
 
 VeilstoneStoreB1F_RageCandyBarVendor:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message VeilstoneStoreB1F_Text_AllSoldOut
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage VeilstoneStoreB1F_Text_AllSoldOut
     End
 
 VeilstoneStoreB1F_ProfRowan:
@@ -110,13 +74,7 @@ VeilstoneStoreB1F_ProfRowanClose:
     End
 
 VeilstoneStoreB1F_BerryVendor:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Common_VendorGreeting
-    CloseMessageWithoutErasing
-    PokeMartSpecialties MART_SPECIALTIES_ID_VEILSTONE_B1F
-    ReleaseAll
+    PokeMartSpecialtiesWithGreeting MART_SPECIALTIES_ID_VEILSTONE_B1F
     End
 
 VeilstoneStoreB1F_LavaCookieVendor:
@@ -456,12 +414,7 @@ VeilstoneStoreB1F_IncrementDepartmentStoreRegularCounter:
     Return
 
 VeilstoneStoreB1F_Directory:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    Message VeilstoneStoreB1F_Text_Directory
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    EventMessage VeilstoneStoreB1F_Text_Directory
     End
 
     .balign 4, 0

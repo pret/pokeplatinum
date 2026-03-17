@@ -15,7 +15,7 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 
-#include "res/fonts/pl_font.naix.h"
+#include "res/fonts/pl_font.naix"
 
 static enum RenderResult TextPrinter_Render(TextPrinter *printer);
 static u8 Text_CreatePrinterTask(SysTaskFunc taskFunc, TextPrinter *printer, u32 priority);
