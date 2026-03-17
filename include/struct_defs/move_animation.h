@@ -3,7 +3,7 @@
 
 #include "constants/battle.h"
 
-typedef struct {
+typedef struct MoveAnimation {
     u8 command;
     u8 unk_01;
     u16 move;

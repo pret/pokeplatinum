@@ -870,53 +870,53 @@ void BattleController_EmitShowBagMenu(BattleSystem *battleSys, BattleContext *ba
 
     if (BattleSystem_GetBattleType(battleSys) == BATTLE_TYPE_AI_PARTNER) {
         if ((battleCtx->battlersSwitchingMask & FlagIndex(1)) == 0 && (battleCtx->battlersSwitchingMask & FlagIndex(3)) == 0) {
-            message.hasTwoOpponents = 1;
-            message.semiInvulnerable = 0;
-            message.substitute = 0;
+            message.hasTwoOpponents = TRUE;
+            message.semiInvulnerable = FALSE;
+            message.substitute = FALSE;
         } else if ((battleCtx->battlersSwitchingMask & FlagIndex(1)) == 0) {
-            message.hasTwoOpponents = 0;
+            message.hasTwoOpponents = FALSE;
 
             if (battleCtx->battleMons[1].moveEffectsMask & MOVE_EFFECT_SEMI_INVULNERABLE) {
-                message.semiInvulnerable = 1;
-                message.substitute = 0;
+                message.semiInvulnerable = TRUE;
+                message.substitute = FALSE;
             } else if (battleCtx->battleMons[1].statusVolatile & VOLATILE_CONDITION_SUBSTITUTE) {
-                message.semiInvulnerable = 0;
-                message.substitute = 1;
+                message.semiInvulnerable = FALSE;
+                message.substitute = TRUE;
             } else {
-                message.semiInvulnerable = 0;
-                message.substitute = 0;
+                message.semiInvulnerable = FALSE;
+                message.substitute = FALSE;
             }
         } else {
-            message.hasTwoOpponents = 0;
+            message.hasTwoOpponents = FALSE;
 
             if (battleCtx->battleMons[3].moveEffectsMask & MOVE_EFFECT_SEMI_INVULNERABLE) {
-                message.semiInvulnerable = 1;
-                message.substitute = 0;
+                message.semiInvulnerable = TRUE;
+                message.substitute = FALSE;
             } else if (battleCtx->battleMons[3].statusVolatile & VOLATILE_CONDITION_SUBSTITUTE) {
-                message.semiInvulnerable = 0;
-                message.substitute = 1;
+                message.semiInvulnerable = FALSE;
+                message.substitute = TRUE;
             } else {
-                message.semiInvulnerable = 0;
-                message.substitute = 0;
+                message.semiInvulnerable = FALSE;
+                message.substitute = FALSE;
             }
         }
     } else if (BattleSystem_GetBattleType(battleSys) == (BATTLE_TYPE_SINGLES | BATTLE_TYPE_WILD_MON)) { // Was (0x0 | 0x0). Is this what they intended?
-        message.hasTwoOpponents = 0;
+        message.hasTwoOpponents = FALSE;
 
         if (battleCtx->battleMons[1].moveEffectsMask & MOVE_EFFECT_SEMI_INVULNERABLE) {
-            message.semiInvulnerable = 1;
-            message.substitute = 0;
+            message.semiInvulnerable = TRUE;
+            message.substitute = FALSE;
         } else if (battleCtx->battleMons[1].statusVolatile & VOLATILE_CONDITION_SUBSTITUTE) {
-            message.semiInvulnerable = 0;
-            message.substitute = 1;
+            message.semiInvulnerable = FALSE;
+            message.substitute = TRUE;
         } else {
-            message.semiInvulnerable = 0;
-            message.substitute = 0;
+            message.semiInvulnerable = FALSE;
+            message.substitute = FALSE;
         }
     } else {
-        message.hasTwoOpponents = 0;
-        message.semiInvulnerable = 0;
-        message.substitute = 0;
+        message.hasTwoOpponents = FALSE;
+        message.semiInvulnerable = FALSE;
+        message.substitute = FALSE;
     }
 
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &message, sizeof(BagMenuMessage));
