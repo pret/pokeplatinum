@@ -41,7 +41,7 @@ IcebergRuins_Statue:
 
 IcebergRuins_EncounterRegice:
     PlayCry SPECIES_REGICE
-    Message IcebergRuins_Text_Jakiih
+    Message IcebergRuins_Text_RegiceCry
     WaitCry
     CloseMessage
     StartLegendaryBattle SPECIES_REGICE, 30

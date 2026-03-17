@@ -886,7 +886,7 @@ BOOL ScrCmd_ActivateRegiRuinsDot(ScriptContext *ctx)
 
     switch (dotType) {
     case DOT_TYPE_IRON_RUINS:
-        allDotsEnabled = 127;
+        allDotsEnabled = 0x7F;
 
         for (i = 0; i < NELEMS(sDotCoordinatesIronRuins); i++) {
             if (x == sDotCoordinatesIronRuins[i].x && z == sDotCoordinatesIronRuins[i].z) {
@@ -897,7 +897,7 @@ BOOL ScrCmd_ActivateRegiRuinsDot(ScriptContext *ctx)
         }
         break;
     case DOT_TYPE_ICEBERG_RUINS:
-        allDotsEnabled = 127;
+        allDotsEnabled = 0x7F;
 
         for (i = 0; i < NELEMS(sDotCoordinatesIcebergRuins); i++) {
             if (x == sDotCoordinatesIcebergRuins[i].x && z == sDotCoordinatesIcebergRuins[i].z) {
@@ -908,7 +908,7 @@ BOOL ScrCmd_ActivateRegiRuinsDot(ScriptContext *ctx)
         }
         break;
     case DOT_TYPE_ROCK_PEAK_RUINS:
-        allDotsEnabled = 127;
+        allDotsEnabled = 0x7F;
 
         for (i = 0; i < NELEMS(sDotCoordinatesRockPeakRuins); i++) {
             if (x == sDotCoordinatesRockPeakRuins[i].x && z == sDotCoordinatesRockPeakRuins[i].z) {

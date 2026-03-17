@@ -41,7 +41,7 @@ IronRuins_Statue:
 
 IronRuins_EncounterRegisteel:
     PlayCry SPECIES_REGISTEEL
-    Message IronRuins_Text_Jijizejizoh
+    Message IronRuins_Text_RegisteelCry
     WaitCry
     CloseMessage
     StartLegendaryBattle SPECIES_REGISTEEL, 30

@@ -10,7 +10,7 @@ MtCoronet1FTunnelRoom_GruntM:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message MtCoronet1FTunnelRoom_Text_YeahRightYoureAbsolutelyRightImHopelesslyLost
+    Message MtCoronet1FTunnelRoom_Text_ImHopelesslyLost
     WaitABXPadPress
     CloseMessage
     ApplyMovement LOCALID_GRUNT_M, MtCoronet1FTunnelRoom_Movement_GruntMFaceNorth

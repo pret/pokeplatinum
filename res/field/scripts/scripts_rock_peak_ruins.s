@@ -41,7 +41,7 @@ RockPeakRuins_Statue:
 
 RockPeakRuins_EncounterRegirock:
     PlayCry SPECIES_REGIROCK
-    Message RockPeakRuins_Text_ZazaZariZa
+    Message RockPeakRuins_Text_RegirockCry
     WaitCry
     CloseMessage
     StartLegendaryBattle SPECIES_REGIROCK, 30
