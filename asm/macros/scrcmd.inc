@@ -1255,7 +1255,7 @@
     .byte \rideBike
     .endm
 
-    .macro SetPlayerAvatarFlagIsOnCyclingRoad flag
+    .macro ForceBicycling flag
     .short 201
     .byte \flag
     .endm

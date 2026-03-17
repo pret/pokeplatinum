@@ -14,7 +14,7 @@ Route206_OnTransition:
     End
 
 Route206_OnResume:
-    CallIfSet FLAG_ON_CYCLING_ROAD, Route206_SetPlayerAvatarFlagIsOnCyclingRoad
+    CallIfSet FLAG_ON_CYCLING_ROAD, Route206_ForceBicycling
     GetPreviousMapID VAR_MAP_LOCAL_0
     GoToIfEq VAR_MAP_LOCAL_0, MAP_HEADER_ROUTE_206_CYCLING_ROAD_NORTH_GATE, Route206_TrySetFlagsCyclingRoad
     GoToIfEq VAR_MAP_LOCAL_0, MAP_HEADER_ROUTE_206_CYCLING_ROAD_SOUTH_GATE, Route206_TrySetFlagsCyclingRoad
@@ -33,14 +33,14 @@ Route206_SetFlagsCyclingRoad:
     SetFlag FLAG_UNK_0x0003
     SetFlag FLAG_ON_CYCLING_ROAD
     SetCyclingBGM
-    SetPlayerAvatarFlagIsOnCyclingRoad TRUE
+    ForceBicycling TRUE
     End
 
 Route206_OnResumeEnd:
     End
 
-Route206_SetPlayerAvatarFlagIsOnCyclingRoad:
-    SetPlayerAvatarFlagIsOnCyclingRoad TRUE
+Route206_ForceBicycling:
+    ForceBicycling TRUE
     Return
 
 Route206_Hiker:

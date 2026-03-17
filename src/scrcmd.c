@@ -416,7 +416,7 @@ static BOOL sub_02042C80(ScriptContext *ctx);
 static BOOL ScrCmd_0C6(ScriptContext *ctx);
 static BOOL ScrCmd_CheckPlayerOnBike(ScriptContext *ctx);
 static BOOL ScrCmd_SetPlayerBike(ScriptContext *ctx);
-static BOOL ScrCmd_SetPlayerAvatarFlagIsOnCyclingRoad(ScriptContext *ctx);
+static BOOL ScrCmd_ForceBicycling(ScriptContext *ctx);
 static BOOL ScrCmd_GetPlayerState(ScriptContext *ctx);
 static BOOL ScrCmd_SetPlayerState(ScriptContext *ctx);
 static BOOL ScrCmd_ChangePlayerState(ScriptContext *ctx);
@@ -966,7 +966,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_0C6,
     ScrCmd_CheckPlayerOnBike,
     ScrCmd_SetPlayerBike,
-    ScrCmd_SetPlayerAvatarFlagIsOnCyclingRoad,
+    ScrCmd_ForceBicycling,
     ScrCmd_GetPlayerState,
     ScrCmd_SetPlayerState,
     ScrCmd_ChangePlayerState,
@@ -4580,7 +4580,7 @@ static BOOL ScrCmd_SetCyclingBGM(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_SetPlayerAvatarFlagIsOnCyclingRoad(ScriptContext *ctx)
+static BOOL ScrCmd_ForceBicycling(ScriptContext *ctx)
 {
     PlayerAvatar_SetFlagIsOnCyclingRoad(ctx->fieldSystem->playerAvatar, ScriptContext_ReadByte(ctx));
     return FALSE;
