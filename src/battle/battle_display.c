@@ -12,6 +12,7 @@
 #include "generated/battle_boot_states.h"
 #include "generated/battle_message_tags.h"
 #include "generated/items.h"
+#include "generated/trainer_classes.h"
 
 #include "struct_decls/battle_system.h"
 #include "struct_defs/battler_data.h"
@@ -254,11 +255,7 @@ void BattleDisplay_InitTaskSetEncounter(BattleSystem *battleSys, BattlerData *ba
         ManagedSprite_SetPositionXY(monEncounterData->unk_0C->unk_00, gEncounterCoords[battlerData->battlerType & BATTLER_THEM][0], 128 + 8);
     }
 
-    if (message->isShiny) {
-        isShiny = TRUE;
-    } else {
-        isShiny = FALSE;
-    }
+    isShiny = !!message->isShiny;
 
     BuildPokemonSpriteTemplate(&spriteTemplate, message->species, message->gender, monEncounterData->face, isShiny, message->formNum, message->personality);
 
@@ -351,11 +348,7 @@ void BattleDisplay_InitTaskShowEncounter(BattleSystem *battleSys, BattlerData *b
         monShowData->face = FACE_BACK;
     }
 
-    if (message->isShiny) {
-        isShiny = TRUE;
-    } else {
-        isShiny = FALSE;
-    }
+    isShiny = !!message->isShiny;
 
     BuildPokemonSpriteTemplate(&monShowData->spriteTemplate, message->species, message->gender, monShowData->face, isShiny, message->formNum, message->personality);
 
@@ -400,11 +393,7 @@ void BattleDisplay_InitTaskShowPokemon(BattleSystem *battleSys, BattlerData *bat
         monShowData->face = FACE_BACK;
     }
 
-    if (message->isShiny) {
-        isShiny = TRUE;
-    } else {
-        isShiny = FALSE;
-    }
+    isShiny = !!message->isShiny;
 
     BuildPokemonSpriteTemplate(&monShowData->spriteTemplate, message->species, message->gender, monShowData->face, isShiny, message->formNum, message->personality);
 
@@ -1734,7 +1723,7 @@ void BattleDisplay_PlayMusic(BattleSystem *battleSys, BattlerData *battlerData, 
 
 static void Task_SetEncounter(SysTask *task, void *data)
 {
-    MonEncounterData *monEncounterData = (MonEncounterData *)data;
+    MonEncounterData *monEncounterData = data;
     BattleAnimSystem *v1 = BattleSystem_GetBattleAnimSystem(monEncounterData->battleSys);
     s16 v2, v3;
 
@@ -1874,7 +1863,7 @@ static void Task_SetEncounter(SysTask *task, void *data)
 
 static void Task_SetGiratinaEncounter(SysTask *task, void *data)
 {
-    MonEncounterData *monEncounterData = (MonEncounterData *)data;
+    MonEncounterData *monEncounterData = data;
     BattleAnimSystem *v1 = BattleSystem_GetBattleAnimSystem(monEncounterData->battleSys);
     s16 v2, v3;
 
@@ -1965,7 +1954,7 @@ const u8 Unk_ov16_0226F174[] = {
 
 static void Task_ShowEncounter(SysTask *task, void *data)
 {
-    MonShowData *monShowData = (MonShowData *)data;
+    MonShowData *monShowData = data;
 
     switch (monShowData->state) {
     case 0:
@@ -2170,7 +2159,7 @@ static void Task_ShowEncounter(SysTask *task, void *data)
 
 static void Task_ShowPokemon(SysTask *task, void *data)
 {
-    MonShowData *monShowData = (MonShowData *)data;
+    MonShowData *monShowData = data;
     BattleAnimSystem *v1 = BattleSystem_GetBattleAnimSystem(monShowData->battleSys);
 
     switch (monShowData->state) {
@@ -2386,7 +2375,7 @@ static void Task_ShowPokemon(SysTask *task, void *data)
 
 static void Task_ReturnPokemon(SysTask *task, void *data)
 {
-    MonReturnData *monReturnData = (MonReturnData *)data;
+    MonReturnData *monReturnData = data;
     BattleAnimSystem *v1 = BattleSystem_GetBattleAnimSystem(monReturnData->battleSys);
 
     switch (monReturnData->state) {
@@ -2511,7 +2500,7 @@ static void Task_ReturnPokemon(SysTask *task, void *data)
 
 static void Task_OpenCaptureBall(SysTask *task, void *data)
 {
-    OpenCaptureBallData *captureOpenBallData = (OpenCaptureBallData *)data;
+    OpenCaptureBallData *captureOpenBallData = data;
 
     switch (captureOpenBallData->state) {
     case 0:
@@ -2538,7 +2527,7 @@ static void Task_OpenCaptureBall(SysTask *task, void *data)
 
 static void Task_SetTrainerEncounter(SysTask *task, void *data)
 {
-    TrainerEncounterData *trainerEncounterData = (TrainerEncounterData *)data;
+    TrainerEncounterData *trainerEncounterData = data;
     s16 v1, v2, v3, v4;
     u32 battleType = BattleSystem_GetBattleType(trainerEncounterData->battleSys);
 
@@ -2665,7 +2654,7 @@ static void Task_SetTrainerEncounter(SysTask *task, void *data)
 
 static void Task_ThrowTrainerBall(SysTask *task, void *data)
 {
-    TrainerThrowBallData *trainerThrowBallData = (TrainerThrowBallData *)data;
+    TrainerThrowBallData *trainerThrowBallData = data;
     s16 v1, v2;
     int v3;
     u32 battleType;
@@ -2949,7 +2938,7 @@ static void Task_ThrowTrainerBall(SysTask *task, void *data)
 
 static void Task_SlideTrainerOut(SysTask *task, void *data)
 {
-    SlideTrainerOutData *slideTrainerOutData = (SlideTrainerOutData *)data;
+    SlideTrainerOutData *slideTrainerOutData = data;
     s16 v1;
     s16 v2;
 
@@ -2992,7 +2981,7 @@ static void Task_SlideTrainerOut(SysTask *task, void *data)
 
 static void Task_SlideTrainerIn(SysTask *task, void *data)
 {
-    SlideTrainerInData *slideTrainerInData = (SlideTrainerInData *)data;
+    SlideTrainerInData *slideTrainerInData = data;
     s16 v1, v2;
 
     switch (slideTrainerInData->state) {
@@ -3108,7 +3097,7 @@ static void Task_PlayerSetCommandSelection(SysTask *task, void *data)
     int v5;
     Healthbar *healthbar;
 
-    commandSetData = (CommandSetData *)data;
+    commandSetData = data;
     v1 = BattleSystem_GetBgConfig(commandSetData->battleSys);
     v2 = ov16_0223E02C(commandSetData->battleSys);
     battlerData = BattleSystem_GetBattlerData(commandSetData->battleSys, commandSetData->battler);
@@ -3358,7 +3347,7 @@ static void Task_PlayerSetCommandSelection(SysTask *task, void *data)
 
 static void Task_TrainerSetCommandSelection(SysTask *task, void *data)
 {
-    CommandSetData *commandSetData = (CommandSetData *)data;
+    CommandSetData *commandSetData = data;
     int v1 = TrainerAI_PickCommand(commandSetData->battleSys, commandSetData->battler);
 
     ov16_022656D4(commandSetData->battleSys, commandSetData->battler, v1);
@@ -3370,7 +3359,7 @@ static void Task_TrainerSetCommandSelection(SysTask *task, void *data)
 
 static void Task_LinkSetCommandSelection(SysTask *task, void *data)
 {
-    CommandSetData *commandSetData = (CommandSetData *)data;
+    CommandSetData *commandSetData = data;
 
     BattleController_EmitClearCommand(commandSetData->battleSys, commandSetData->battler, commandSetData->command);
     Heap_Free(data);
@@ -3395,7 +3384,7 @@ static const u8 Unk_ov16_0226F194[][2] = {
 
 static void Task_SafariPokemonSetCommandSelection(SysTask *task, void *data)
 {
-    CommandSetData *commandSetData = (CommandSetData *)data;
+    CommandSetData *commandSetData = data;
     int v1;
     u16 v2;
     u8 v3 = BattleSystem_GetSafariEscapeCount(commandSetData->battleSys);
@@ -3417,7 +3406,7 @@ static void Task_SafariPokemonSetCommandSelection(SysTask *task, void *data)
 
 static void Task_PalParkPokemonSetCommandSelection(SysTask *task, void *data)
 {
-    CommandSetData *commandSetData = (CommandSetData *)data;
+    CommandSetData *commandSetData = data;
 
     ov16_022656D4(commandSetData->battleSys, commandSetData->battler, 4);
     BattleController_EmitClearCommand(commandSetData->battleSys, commandSetData->battler, commandSetData->command);
@@ -3428,7 +3417,7 @@ static void Task_PalParkPokemonSetCommandSelection(SysTask *task, void *data)
 
 static void Task_RecordingSetCommandSelection(SysTask *task, void *data)
 {
-    CommandSetData *commandSetData = (CommandSetData *)data;
+    CommandSetData *commandSetData = data;
     u8 v1;
 
     if (ov16_0223F530(commandSetData->battleSys, commandSetData->battler, &v1) == 1) {
@@ -3448,7 +3437,7 @@ static void Task_RecordingSetCommandSelection(SysTask *task, void *data)
 
 static void Task_PlayerShowMoveSelectMenu(SysTask *task, void *data)
 {
-    MoveSelectMenuData *moveSelectMenuData = (MoveSelectMenuData *)data;
+    MoveSelectMenuData *moveSelectMenuData = data;
     BgConfig *v1 = BattleSystem_GetBgConfig(moveSelectMenuData->battleSys);
     UnkStruct_ov16_02268A14 *v2;
     int v3;
@@ -3543,7 +3532,7 @@ static void Task_PlayerShowMoveSelectMenu(SysTask *task, void *data)
 
 static void Task_TrainerShowMoveSelectMenu(SysTask *task, void *data)
 {
-    MoveSelectMenuData *moveSelectMenuData = (MoveSelectMenuData *)data;
+    MoveSelectMenuData *moveSelectMenuData = data;
     BattleContext *v1;
     int v2;
     u32 battleType = BattleSystem_GetBattleType(moveSelectMenuData->battleSys);
@@ -3592,7 +3581,7 @@ static void Task_TrainerShowMoveSelectMenu(SysTask *task, void *data)
 
 static void Task_LinkShowMoveSelectMenu(SysTask *task, void *data)
 {
-    MoveSelectMenuData *moveSelectMenuData = (MoveSelectMenuData *)data;
+    MoveSelectMenuData *moveSelectMenuData = data;
 
     BattleController_EmitClearCommand(moveSelectMenuData->battleSys, moveSelectMenuData->battler, moveSelectMenuData->command);
     Heap_Free(data);
@@ -3601,7 +3590,7 @@ static void Task_LinkShowMoveSelectMenu(SysTask *task, void *data)
 
 static void Task_RecordingShowMoveSelectMenu(SysTask *task, void *data)
 {
-    MoveSelectMenuData *moveSelectMenuData = (MoveSelectMenuData *)data;
+    MoveSelectMenuData *moveSelectMenuData = data;
     u8 v1;
 
     if (ov16_0223F530(moveSelectMenuData->battleSys, moveSelectMenuData->battler, &v1) == 1) {
@@ -3631,7 +3620,7 @@ static void Task_RecordingShowMoveSelectMenu(SysTask *task, void *data)
 
 static void Task_PlayerShowTargetSelectMenu(SysTask *task, void *data)
 {
-    TargetSelectMenuData *targetSelectMenuData = (TargetSelectMenuData *)data;
+    TargetSelectMenuData *targetSelectMenuData = data;
     BgConfig *v1 = BattleSystem_GetBgConfig(targetSelectMenuData->battleSys);
     UnkStruct_ov16_02268A14 *v2;
     int v3;
@@ -3729,7 +3718,7 @@ static void Task_PlayerShowTargetSelectMenu(SysTask *task, void *data)
 
 static void Task_TrainerShowTargetSelectMenu(SysTask *task, void *data)
 {
-    TargetSelectMenuData *targetSelectMenuData = (TargetSelectMenuData *)data;
+    TargetSelectMenuData *targetSelectMenuData = data;
     BattleContext *v1;
     int v2;
 
@@ -3747,7 +3736,7 @@ static void Task_TrainerShowTargetSelectMenu(SysTask *task, void *data)
 
 static void Task_LinkShowTargetSelectMenu(SysTask *task, void *data)
 {
-    TargetSelectMenuData *targetSelectMenuData = (TargetSelectMenuData *)data;
+    TargetSelectMenuData *targetSelectMenuData = data;
 
     BattleController_EmitClearCommand(targetSelectMenuData->battleSys, targetSelectMenuData->battler, targetSelectMenuData->command);
 
@@ -3757,7 +3746,7 @@ static void Task_LinkShowTargetSelectMenu(SysTask *task, void *data)
 
 static void Task_RecordingShowTargetSelectMenu(SysTask *task, void *data)
 {
-    TargetSelectMenuData *targetSelectMenuData = (TargetSelectMenuData *)data;
+    TargetSelectMenuData *targetSelectMenuData = data;
     u8 v1;
 
     if (ov16_0223F530(targetSelectMenuData->battleSys, targetSelectMenuData->battler, &v1) == 1) {
@@ -3807,7 +3796,7 @@ static void Task_RecordingShowTargetSelectMenu(SysTask *task, void *data)
 
 static void Task_PlayerShowBagMenu(SysTask *task, void *data)
 {
-    BagMenuData *bagMenuData = (BagMenuData *)data;
+    BagMenuData *bagMenuData = data;
     PaletteData *v1 = BattleSystem_GetPaletteData(bagMenuData->battleSys);
 
     switch (bagMenuData->state) {
@@ -4326,7 +4315,7 @@ static void Task_PlayerShowBagMenu(SysTask *task, void *data)
 
 static void Task_TrainerShowBagMenu(SysTask *task, void *data)
 {
-    BagMenuData *bagMenuData = (BagMenuData *)data;
+    BagMenuData *bagMenuData = data;
     BattleItemUse v1;
 
     v1.item = 1;
@@ -4343,7 +4332,7 @@ static void Task_TrainerShowBagMenu(SysTask *task, void *data)
 
 static void Task_LinkShowBagMenu(SysTask *task, void *data)
 {
-    BagMenuData *bagMenuData = (BagMenuData *)data;
+    BagMenuData *bagMenuData = data;
 
     BattleController_EmitClearCommand(bagMenuData->battleSys, bagMenuData->battler, bagMenuData->command);
 
@@ -4356,7 +4345,7 @@ static void Task_LinkShowBagMenu(SysTask *task, void *data)
 
 static void Task_RecordingShowBagMenu(SysTask *task, void *data)
 {
-    BagMenuData *bagMenuData = (BagMenuData *)data;
+    BagMenuData *bagMenuData = data;
     BattleItemUse v1;
     u8 v2;
 
@@ -4391,7 +4380,7 @@ static void Task_RecordingShowBagMenu(SysTask *task, void *data)
 
 static void Task_PlayerShowPartyMenu(SysTask *task, void *data)
 {
-    PartyMenuData *partyMenuData = (PartyMenuData *)data;
+    PartyMenuData *partyMenuData = data;
     PaletteData *v1 = BattleSystem_GetPaletteData(partyMenuData->battleSys);
 
     switch (partyMenuData->state) {
@@ -4543,7 +4532,7 @@ static void Task_PlayerShowPartyMenu(SysTask *task, void *data)
 
 static void Task_TrainerShowPartyMenu(SysTask *task, void *data)
 {
-    PartyMenuData *partyMenuData = (PartyMenuData *)data;
+    PartyMenuData *partyMenuData = data;
     int v1;
     Party *v2;
     Pokemon *v3;
@@ -4584,7 +4573,7 @@ static void Task_TrainerShowPartyMenu(SysTask *task, void *data)
 
 static void Task_LinkShowPartyMenu(SysTask *task, void *data)
 {
-    PartyMenuData *partyMenuData = (PartyMenuData *)data;
+    PartyMenuData *partyMenuData = data;
 
     BattleController_EmitClearCommand(partyMenuData->battleSys, partyMenuData->battler, partyMenuData->command);
 
@@ -4594,7 +4583,7 @@ static void Task_LinkShowPartyMenu(SysTask *task, void *data)
 
 static void Task_RecordingShowPartyMenu(SysTask *task, void *data)
 {
-    PartyMenuData *partyMenuData = (PartyMenuData *)data;
+    PartyMenuData *partyMenuData = data;
     u8 v1;
 
     if (ov16_0223F530(partyMenuData->battleSys, partyMenuData->battler, &v1) == 1) {
@@ -4764,7 +4753,7 @@ static void Task_PlayerShowYesNoMenu(SysTask *task, void *data)
 
 static void Task_TrainerShowYesNoMenu(SysTask *task, void *data)
 {
-    YesNoMenuData *yesNoMenuData = (YesNoMenuData *)data;
+    YesNoMenuData *yesNoMenuData = data;
 
     BattleController_EmitClearCommand(yesNoMenuData->battleSys, yesNoMenuData->battler, yesNoMenuData->command);
 
@@ -4774,7 +4763,7 @@ static void Task_TrainerShowYesNoMenu(SysTask *task, void *data)
 
 static void Task_LinkShowYesNoMenu(SysTask *task, void *data)
 {
-    YesNoMenuData *yesNoMenuData = (YesNoMenuData *)data;
+    YesNoMenuData *yesNoMenuData = data;
 
     BattleController_EmitClearCommand(yesNoMenuData->battleSys, yesNoMenuData->battler, yesNoMenuData->command);
 
@@ -4784,7 +4773,7 @@ static void Task_LinkShowYesNoMenu(SysTask *task, void *data)
 
 static void Task_RecordingShowYesNoMenu(SysTask *task, void *data)
 {
-    YesNoMenuData *yesNoMenuData = (YesNoMenuData *)data;
+    YesNoMenuData *yesNoMenuData = data;
     u8 v1;
 
     if (ov16_0223F530(yesNoMenuData->battleSys, yesNoMenuData->battler, &v1) == 1) {
@@ -4804,7 +4793,7 @@ static void Task_RecordingShowYesNoMenu(SysTask *task, void *data)
 
 static void Task_SetMoveAnimation(SysTask *task, void *data)
 {
-    SetMoveAnimationData *setMoveAnimationData = (SetMoveAnimationData *)data;
+    SetMoveAnimationData *setMoveAnimationData = data;
 
     switch (setMoveAnimationData->state) {
     case 0:
@@ -4905,7 +4894,7 @@ static void Task_SetMoveAnimation(SysTask *task, void *data)
 
 static void Task_FlickerBattler(SysTask *task, void *data)
 {
-    FlickerBattlerData *flickerBattlerData = (FlickerBattlerData *)data;
+    FlickerBattlerData *flickerBattlerData = data;
     int hide;
 
     if (flickerBattlerData->counter < 6) {
@@ -4996,7 +4985,7 @@ static void Task_UpdateExpGauge(SysTask *task, void *data)
 
 static void Task_PlayFaintingSequence(SysTask *task, void *data)
 {
-    FaintingSequenceData *faintingSequenceData = (FaintingSequenceData *)data;
+    FaintingSequenceData *faintingSequenceData = data;
     BattleAnimSystem *v1 = BattleSystem_GetBattleAnimSystem(faintingSequenceData->battleSys);
     int v2;
     int v3;
@@ -5116,7 +5105,7 @@ static void Task_PlayFaintingSequence(SysTask *task, void *data)
 
 static void Task_FadeOut(SysTask *task, void *data)
 {
-    FadeOutData *fadeOutData = (FadeOutData *)data;
+    FadeOutData *fadeOutData = data;
     PaletteData *v1 = BattleSystem_GetPaletteData(fadeOutData->battleSys);
     PokemonSpriteManager *v2 = BattleSystem_GetPokemonSpriteManager(fadeOutData->battleSys);
 
@@ -5142,7 +5131,7 @@ static void Task_FadeOut(SysTask *task, void *data)
 
 static void Task_ToggleVanish(SysTask *task, void *data)
 {
-    ToggleVanishData *toggleVanishData = (ToggleVanishData *)data;
+    ToggleVanishData *toggleVanishData = data;
     BattleAnimSystem *v1 = BattleSystem_GetBattleAnimSystem(toggleVanishData->battleSys);
 
     switch (toggleVanishData->state) {
@@ -5204,7 +5193,7 @@ static void Task_ToggleVanish(SysTask *task, void *data)
 
 static void Task_PlayLevelUpAnimation(SysTask *task, void *data)
 {
-    PlayLevelUpAnimationData *playLevelUpAnimationData = (PlayLevelUpAnimationData *)data;
+    PlayLevelUpAnimationData *playLevelUpAnimationData = data;
 
     switch (playLevelUpAnimationData->state) {
     case 0:
@@ -5240,7 +5229,7 @@ static void Task_WaitForBattleMessagePrint(SysTask *task, void *data)
 
 static void Task_WaitForAlertMessagePrint(SysTask *task, void *data)
 {
-    AlertMsgData *alertMsgData = (AlertMsgData *)data;
+    AlertMsgData *alertMsgData = data;
 
     switch (alertMsgData->state) {
     case 0:
@@ -5444,7 +5433,7 @@ static void ov16_02263014(SysTask *task, void *data)
 
 static void Task_ForgetMove(SysTask *task, void *data)
 {
-    ForgetMoveData *forgetMoveData = (ForgetMoveData *)data;
+    ForgetMoveData *forgetMoveData = data;
     PaletteData *v1 = BattleSystem_GetPaletteData(forgetMoveData->battleSys);
 
     switch (forgetMoveData->state) {
@@ -5500,7 +5489,7 @@ static void Task_ForgetMove(SysTask *task, void *data)
 
 static void Task_SetMosaic(SysTask *task, void *data)
 {
-    SetMosaicData *setMosaicData = (SetMosaicData *)data;
+    SetMosaicData *setMosaicData = data;
     int v1;
 
     switch (setMosaicData->state) {
@@ -5633,7 +5622,7 @@ static void Task_HidePartyGauge(SysTask *task, void *data)
 
 static void Task_SpriteToOAM(SysTask *task, void *data)
 {
-    SpriteToOAMData *spriteToOAMData = (SpriteToOAMData *)data;
+    SpriteToOAMData *spriteToOAMData = data;
 
     switch (spriteToOAMData->state) {
     case 0:
@@ -5651,7 +5640,7 @@ static void Task_SpriteToOAM(SysTask *task, void *data)
 
 static void Task_OAMToSprite(SysTask *task, void *data)
 {
-    OAMToSpriteData *oamToSpriteData = (OAMToSpriteData *)data;
+    OAMToSpriteData *oamToSpriteData = data;
 
     GF_ASSERT(oamToSpriteData->battlerData->unk_88 != NULL);
 
@@ -6538,8 +6527,8 @@ static void ov16_0226474C(BattleSystem *battleSys)
 static u8 ov16_02264768(BattleSystem *battleSys, u8 battler, u8 trainerClass)
 {
     if (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_LINK) {
-        if (TrainerInfo_GameCode(BattleSystem_GetTrainerInfo(battleSys, battler)) == 0 && trainerClass <= 1) {
-            trainerClass += 103;
+        if (TrainerInfo_GameCode(BattleSystem_GetTrainerInfo(battleSys, battler)) == 0 && trainerClass <= TRAINER_CLASS_PLAYER_FEMALE) {
+            trainerClass += TRAINER_CLASS_DP_PLAYER_MALE_2;
         }
     }
 
