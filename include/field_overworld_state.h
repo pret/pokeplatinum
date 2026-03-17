@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_0203A6DC_H
-#define POKEPLATINUM_UNK_0203A6DC_H
+#ifndef POKEPLATINUM_FIELD_OVERWORLD_STATE_H
+#define POKEPLATINUM_FIELD_OVERWORLD_STATE_H
 
 #include "struct_defs/struct_0205EC34.h"
 
@@ -59,4 +59,4 @@ FieldOverworldSave *SaveData_GetFieldOverworldSave(SaveData *saveData);
 void FieldSystem_SaveObjects(FieldSystem *fieldSystem);
 void FieldSystem_LoadObjects(FieldSystem *fieldSystem);
 
-#endif // POKEPLATINUM_UNK_0203A6DC_H
+#endif // POKEPLATINUM_FIELD_OVERWORLD_STATE_H
