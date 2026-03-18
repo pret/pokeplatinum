@@ -127,6 +127,6 @@ PokemonSprite *BattlerData_GetPokemonSprite(BattlerData *battlerData);
 Healthbar *BattlerData_GetHealthbar(BattlerData *battlerData);
 UnkStruct_ov16_0226C378 *ov16_02263B0C(BattlerData *battlerData);
 void ov16_02263B10(BattlerData *battlerData);
-void ov16_02263B20(BattlerData *battlerData, int param1);
+void ov16_02263B20(BattlerData *battlerData, BOOL draw);
 
 #endif // POKEPLATINUM_BATTLE_BATTLE_DISPLAY_H

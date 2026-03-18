@@ -112,7 +112,7 @@ static void BtlIOCmd_SubmitResult(BattleSystem *battleSys, BattlerData *battlerD
 static void BtlIOCmd_ClearMessageBox(BattleSystem *battleSys, BattlerData *battlerData);
 static void ZeroDataBuffer(BattlerData *battlerData);
 
-extern const u8 Unk_ov16_0226F174[];
+extern const u8 sBallThrowTypes[];
 
 BattlerData *ov16_0225BFFC(BattleSystem *battleSys, UnkStruct_ov16_0223C2C0 *param1)
 {
@@ -140,7 +140,7 @@ void ov16_0225C038(BattleSystem *battleSys, BattlerData *battlerData, int ballID
         return;
     }
 
-    ballThrow.type = Unk_ov16_0226F174[battlerData->battlerType];
+    ballThrow.type = sBallThrowTypes[battlerData->battlerType];
     ballThrow.heapID = HEAP_ID_BATTLE;
     ballThrow.mode = 4;
     ballThrow.target = battlerData->battler;

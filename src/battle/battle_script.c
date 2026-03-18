@@ -10779,7 +10779,7 @@ static void BattleScript_CatchMonTask(SysTask *task, void *inData)
             ov16_0223B53C(data->battleSys);
             ov16_022686BC(ov16_0223E020(data->battleSys, 0), 0);
             ov16_022686BC(ov16_0223E020(data->battleSys, 1), 0);
-            ov16_02263B20(BattleSystem_GetBattlerData(data->battleSys, 0), 0);
+            ov16_02263B20(BattleSystem_GetBattlerData(data->battleSys, 0), FALSE);
 
             v12.unk_00 = BattleSystem_GetBgConfig(data->battleSys);
             v12.unk_04 = BattleSystem_GetPaletteData(data->battleSys);
@@ -10831,7 +10831,7 @@ static void BattleScript_CatchMonTask(SysTask *task, void *inData)
 
             ov12_0223783C(data->ballRotation);
             PokemonSpriteManager_DeleteAll(monSpriteMan);
-            ov16_02263B20(BattleSystem_GetBattlerData(data->battleSys, 0), 0);
+            ov16_02263B20(BattleSystem_GetBattlerData(data->battleSys, 0), FALSE);
             ov16_0223B53C(data->battleSys);
             ov16_0223B578(data->battleSys);
             Pokemon_BuildSpriteTemplate(&monSpriteTemplate, mon, 2);
