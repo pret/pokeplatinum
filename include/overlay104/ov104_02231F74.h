@@ -14,6 +14,22 @@
 #include "string_template.h"
 #include "sys_task_manager.h"
 
+typedef struct FrontierAnimCmd {
+    u16 action;
+    u16 count;
+} FrontierAnimCmd;
+
+typedef struct FrontierAnimData {
+    u8 state;
+    u8 elapsed;
+    s16 delay;
+    u16 localID;
+    u8 *totalMovementCount;
+    const FrontierAnimCmd *animCmd;
+    UnkStruct_ov63_0222D77C *unk_10;
+    UnkStruct_ov104_0223C634 *frontierObj;
+} FrontierAnimData;
+
 void FrontierShowMessage(FrontierScriptManager *scriptMan, const MessageLoader *msgLoader, u16 messageID, u8 canSpeedUp, FrontierMessageOptions *msgOptions);
 void Frontier_CloseMessage(FrontierScriptManager *scriptMan);
 FrontierMenuManager *FrontierMenuManager_New(FrontierScriptManager *scriptMan, u8 anchorX, u8 anchorY, u8 initalCursorPos, u8 canExitWithB, u16 *selectedOptionPtr, StringTemplate *strTemplate, MessageLoader *msgLoader);
@@ -23,8 +39,8 @@ FrontierMenuManager *FrontierMenuManager_New2(FrontierScriptManager *scriptMan, 
 void FrontierMenuManager_AddListMenuEntry(FrontierMenuManager *menuManager, u32 entry, u32 altTextEntryID, u32 index);
 void FrontierMenuManager_ShowListMenu(FrontierMenuManager *menuManager);
 void FrontierMenuManager_FreeListMenu(FrontierMenuManager *menuManager);
-void ov104_02232B78(SysTask *param0, void *param1);
-void ov104_02232C80(UnkStruct_ov63_0222CCB8 *param0, UnkStruct_ov63_0222BEC0 *param1, int param2, int param3);
+void FrontierObject_DoAnimation(SysTask *task, void *data);
+void ov104_02232C80(UnkStruct_ov63_0222CCB8 *param0, UnkStruct_ov63_0222BEC0 *param1, int param2, int action);
 void ov104_02232CE0(FrontierGraphics *param0, Pokemon *param1, enum HeapID heapID, int param3, int param4, int param5, int param6, int param7, int param8, u16 param9);
 void ov104_02232E80(FrontierGraphics *param0, int param1);
 void ov104_02232EC0(FrontierGraphics *param0);

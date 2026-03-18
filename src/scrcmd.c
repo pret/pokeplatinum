@@ -2036,10 +2036,10 @@ static BOOL ScrCmd_ApplyMovement(ScriptContext *ctx)
         return FALSE;
     }
 
-    SysTask *v1 = MapObject_StartAnimation(object, (MapObjectAnimCmd *)(ctx->scriptPtr + movementOffset));
-    u8 *v2 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_MOVEMENT_COUNT);
-    (*v2)++;
-    sub_02040F28(ctx->fieldSystem, v1, NULL);
+    SysTask *task = MapObject_StartAnimation(object, (MapObjectAnimCmd *)(ctx->scriptPtr + movementOffset));
+    u8 *movementCount = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_MOVEMENT_COUNT);
+    (*movementCount)++;
+    sub_02040F28(ctx->fieldSystem, task, NULL);
     return FALSE;
 }
 

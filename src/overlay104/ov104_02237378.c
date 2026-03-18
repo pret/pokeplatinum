@@ -492,7 +492,7 @@ BOOL FrontierScrCmd_BF(FrontierScriptContext *param0)
                 Sprite *v27;
 
                 v26 = ov104_0223D5A8(param0->scriptMan->unk_00, v19);
-                v25 = ov63_0222D050(v26->unk_04);
+                v25 = ov63_0222D050(v26->sprite);
 
                 PaletteData_Blend(v15->plttData, 2, v25 * 16, 16, v18, 0x0);
             }

@@ -269,7 +269,7 @@ void ov104_0223C634(FrontierGraphics *param0)
                 v1->unk_08.unk_02 = ov63_0222BF90(v1->unk_00, 5);
                 v1->unk_08.unk_06 = ov63_0222BF90(v1->unk_00, 0);
                 v1->unk_08.unk_08 = ov63_0222BF90(v1->unk_00, 1);
-                v1->unk_08.unk_0B = ov63_0222CFFC(v1->unk_04);
+                v1->unk_08.unk_0B = ov63_0222CFFC(v1->sprite);
             }
         }
     }
@@ -722,7 +722,7 @@ static void ov104_0223CEEC(FrontierGraphics *param0)
         for (v0 = 0; v0 < 32; v0++) {
             if (v1[v0].unk_00 != NULL) {
                 ov63_0222BF08(v1[v0].unk_00);
-                GF_ASSERT(v1[v0].unk_38 == NULL);
+                GF_ASSERT(v1[v0].movementTask == NULL);
             }
         }
     }
@@ -900,9 +900,9 @@ void ov104_0223D200(FrontierGraphics *param0, UnkStruct_ov63_0222BEC0 *param1)
     for (v0 = 0; v0 < 32; v0++) {
         if (v1[v0].unk_00 == param1) {
             ov63_0222BF08(v1[v0].unk_00);
-            ov63_0222CECC(v1[v0].unk_04);
+            ov63_0222CECC(v1[v0].sprite);
 
-            GF_ASSERT(v1[v0].unk_38 == NULL);
+            GF_ASSERT(v1[v0].movementTask == NULL);
             MI_CpuClear8(&v1[v0], sizeof(UnkStruct_ov104_0223C634));
 
             v1[v0].unk_08.unk_04 = 0xffff;
@@ -923,7 +923,7 @@ void ov104_0223D258(FrontierGraphics *param0, u16 param1, UnkStruct_ov63_0222BEC
             }
 
             if (param3 != NULL) {
-                *param3 = v1[v0].unk_04;
+                *param3 = v1[v0].sprite;
             }
 
             return;
@@ -1081,7 +1081,7 @@ static void ov104_0223D584(UnkStruct_0209B75C *param0, int param1, UnkStruct_ov6
     UnkStruct_ov104_0223C634 *v0 = sub_0209B9D4(param0, param1);
 
     v0->unk_00 = param2;
-    v0->unk_04 = param3;
+    v0->sprite = param3;
     v0->unk_08 = *param4;
 }
 

@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/battle_frontier_movements.h"
 #include "constants/field_base_tiles.h"
 #include "constants/narc.h"
 
@@ -19,7 +20,6 @@
 #include "overlay104/frontier_script_manager.h"
 #include "overlay104/struct_ov104_0222FEDC.h"
 #include "overlay104/struct_ov104_02230BE4.h"
-#include "overlay104/struct_ov104_02232B78.h"
 #include "overlay104/struct_ov104_0223319C.h"
 #include "overlay104/struct_ov104_022331E8.h"
 
@@ -616,121 +616,123 @@ void FrontierMenuManager_FreeListMenu(FrontierMenuManager *menuManager)
     FreeManagerWithListMenu(menuManager, FALSE);
 }
 
-__attribute__((aligned(4))) static const u8 Unk_ov104_0223F9A4[] = {
-    0x1,
-    0x2,
-    0x4,
-    0x8,
-    0xF,
-    0x10,
-    0x20
+// clang-format off
+static const u8 sFrontierMovementDelayLengths[] = {
+    [FRONTIER_MOVEMENT_DELAY_1 - FRONTIER_MOVEMENT_DELAY_OFFSET] =  1,
+    [FRONTIER_MOVEMENT_DELAY_2 - FRONTIER_MOVEMENT_DELAY_OFFSET] =  2,
+    [FRONTIER_MOVEMENT_DELAY_4 - FRONTIER_MOVEMENT_DELAY_OFFSET] =  4,
+    [FRONTIER_MOVEMENT_DELAY_8 - FRONTIER_MOVEMENT_DELAY_OFFSET] =  8,
+    [FRONTIER_MOVEMENT_DELAY_15 - FRONTIER_MOVEMENT_DELAY_OFFSET] = 15,
+    [FRONTIER_MOVEMENT_DELAY_16 - FRONTIER_MOVEMENT_DELAY_OFFSET] = 16,
+    [FRONTIER_MOVEMENT_DELAY_32 - FRONTIER_MOVEMENT_DELAY_OFFSET] = 32
 };
 
-static UnkStruct_ov104_022419A0 Unk_ov104_022419A0[] = {
-    { 0x0, 0x0 },
-    { 0x0, 0x1 },
-    { 0x0, 0x2 },
-    { 0x0, 0x3 },
-    { 0x2, 0x0 },
-    { 0x2, 0x1 },
-    { 0x2, 0x2 },
-    { 0x2, 0x3 },
-    { 0x6, 0x0 },
-    { 0x6, 0x1 },
-    { 0x6, 0x2 },
-    { 0x6, 0x3 },
-    { 0x7, 0x0 },
-    { 0x7, 0x1 },
-    { 0x7, 0x2 },
-    { 0x7, 0x3 },
-    { 0xA, 0x0 },
-    { 0xA, 0x1 },
-    { 0xA, 0x2 },
-    { 0xA, 0x3 },
-    { 0xB, 0x0 },
-    { 0xB, 0x1 },
-    { 0xB, 0x2 },
-    { 0xB, 0x3 },
-    { 0x8, 0x0 },
-    { 0x8, 0x1 },
-    { 0x8, 0x2 },
-    { 0x8, 0x3 },
-    { 0x9, 0x0 },
-    { 0x9, 0x1 },
-    { 0x9, 0x2 },
-    { 0x9, 0x3 }
+static UnkStruct_ov104_022419A0 sFrontierMovementActions[] = {
+    [FRONTIER_MOVEMENT_FACE_NORTH] =                { 0x0, 0x0 },
+    [FRONTIER_MOVEMENT_FACE_SOUTH] =                { 0x0, 0x1 },
+    [FRONTIER_MOVEMENT_FACE_WEST] =                 { 0x0, 0x2 },
+    [FRONTIER_MOVEMENT_FACE_EAST] =                 { 0x0, 0x3 },
+    [FRONTIER_MOVEMENT_WALK_NORTH] =                { 0x2, 0x0 },
+    [FRONTIER_MOVEMENT_WALK_SOUTH] =                { 0x2, 0x1 },
+    [FRONTIER_MOVEMENT_WALK_WEST] =                 { 0x2, 0x2 },
+    [FRONTIER_MOVEMENT_WALK_EAST] =                 { 0x2, 0x3 },
+    [FRONTIER_MOVEMENT_WALK_SLOW_NORTH] =           { 0x6, 0x0 },
+    [FRONTIER_MOVEMENT_WALK_SLOW_SOUTH] =           { 0x6, 0x1 },
+    [FRONTIER_MOVEMENT_WALK_SLOW_WEST] =            { 0x6, 0x2 },
+    [FRONTIER_MOVEMENT_WALK_SLOW_EAST] =            { 0x6, 0x3 },
+    [FRONTIER_MOVEMENT_WALK_FAST_NORTH] =           { 0x7, 0x0 },
+    [FRONTIER_MOVEMENT_WALK_FAST_SOUTH] =           { 0x7, 0x1 },
+    [FRONTIER_MOVEMENT_WALK_FAST_WEST] =            { 0x7, 0x2 },
+    [FRONTIER_MOVEMENT_WALK_FAST_EAST] =            { 0x7, 0x3 },
+    [FRONTIER_MOVEMENT_WALK_ON_SPOT_NORTH] =        { 0xA, 0x0 },
+    [FRONTIER_MOVEMENT_WALK_ON_SPOT_SOUTH] =        { 0xA, 0x1 },
+    [FRONTIER_MOVEMENT_WALK_ON_SPOT_WEST] =         { 0xA, 0x2 },
+    [FRONTIER_MOVEMENT_WALK_ON_SPOT_EAST] =         { 0xA, 0x3 },
+    [FRONTIER_MOVEMENT_WALK_ON_SPOT_SLOW_NORTH] =   { 0xB, 0x0 },
+    [FRONTIER_MOVEMENT_WALK_ON_SPOT_SLOW_SOUTH] =   { 0xB, 0x1 },
+    [FRONTIER_MOVEMENT_WALK_ON_SPOT_SLOW_WEST] =    { 0xB, 0x2 },
+    [FRONTIER_MOVEMENT_WALK_ON_SPOT_SLOW_EAST] =    { 0xB, 0x3 },
+    [FRONTIER_MOVEMENT_WALK_ON_SPOT_FAST_NORTH] =   { 0x8, 0x0 },
+    [FRONTIER_MOVEMENT_WALK_ON_SPOT_FAST_SOUTH] =   { 0x8, 0x1 },
+    [FRONTIER_MOVEMENT_WALK_ON_SPOT_FAST_WEST] =    { 0x8, 0x2 },
+    [FRONTIER_MOVEMENT_WALK_ON_SPOT_FAST_EAST] =    { 0x8, 0x3 },
+    [FRONTIER_MOVEMENT_WALK_ON_SPOT_FASTER_NORTH] = { 0x9, 0x0 },
+    [FRONTIER_MOVEMENT_WALK_ON_SPOT_FASTER_SOUTH] = { 0x9, 0x1 },
+    [FRONTIER_MOVEMENT_WALK_ON_SPOT_FASTER_WEST] =  { 0x9, 0x2 },
+    [FRONTIER_MOVEMENT_WALK_ON_SPOT_FASTER_EAST] =  { 0x9, 0x3 }
 };
+// clang-format on
 
-void ov104_02232B78(SysTask *param0, void *param1)
+void FrontierObject_DoAnimation(SysTask *task, void *data)
 {
-    UnkStruct_ov104_02232B78 *v0 = param1;
+    FrontierAnimData *animData = data;
     UnkStruct_ov63_0222CCB8 v1;
-    u16 v2 = v0->unk_0C->unk_00;
-    u16 v3 = v0->unk_0C->unk_02;
+    u16 action = animData->animCmd->action;
+    u16 count = animData->animCmd->count;
 
-    switch (v0->unk_00) {
+    switch (animData->state) {
     case 0:
-        if (v2 == 0xFD13) {
-            v0->unk_00 = 2;
+        if (action == FRONTIER_MOVEMENT_END_MOVEMENT) {
+            animData->state = 2;
             break;
         }
     case 1:
-        if (ov63_0222BF90(v0->unk_14->unk_00, 5) == 0) {
-            if ((v2 >= (32 + 0)) && (v2 <= (32 + 6))) {
-                v0->unk_02++;
+        if (ov63_0222BF90(animData->frontierObj->unk_00, 5) == 0) {
+            if (action >= FRONTIER_MOVEMENT_DELAY_1 && action <= FRONTIER_MOVEMENT_DELAY_32) {
+                animData->delay++;
 
-                if (v0->unk_02 >= Unk_ov104_0223F9A4[v2 - (32 + 0)]) {
-                    v0->unk_02 = 0;
-                    v0->unk_0C++;
+                if (animData->delay >= sFrontierMovementDelayLengths[action - FRONTIER_MOVEMENT_DELAY_OFFSET]) {
+                    animData->delay = 0;
+                    animData->animCmd++;
                 }
                 break;
-            } else if ((v2 >= (32 + 7)) && (v2 < ((32 + 7) + 2))) {
-                switch (v2) {
-                case ((32 + 7) + 0):
-                    ov63_0222D008(v0->unk_14->unk_04, 1);
+            } else if (action >= FRONTIER_MOVEMENT_WARP_IN && action < NUM_FRONTIER_MOVEMENTS) {
+                switch (action) {
+                case FRONTIER_MOVEMENT_WARP_IN:
+                    ov63_0222D008(animData->frontierObj->sprite, TRUE);
                     break;
-                case ((32 + 7) + 1):
-                    ov63_0222D008(v0->unk_14->unk_04, 0);
+                case FRONTIER_MOVEMENT_WARP_OUT:
+                    ov63_0222D008(animData->frontierObj->sprite, FALSE);
                     break;
                 default:
                     GF_ASSERT(0);
                     break;
                 }
 
-                v0->unk_0C++;
+                animData->animCmd++;
                 break;
             }
 
-            ov104_02232C80(&v1, v0->unk_14->unk_00, v0->unk_04, v2);
-            ov63_0222D7C8(v0->unk_10, &v1);
+            ov104_02232C80(&v1, animData->frontierObj->unk_00, animData->localID, action);
+            ov63_0222D7C8(animData->unk_10, &v1);
 
-            v0->unk_01++;
+            animData->elapsed++;
 
-            if (v0->unk_01 >= v3) {
-                v0->unk_01 = 0;
-                v0->unk_0C++;
+            if (animData->elapsed >= count) {
+                animData->elapsed = 0;
+                animData->animCmd++;
             }
 
-            v0->unk_00 = 0;
+            animData->state = 0;
         }
         break;
     case 2:
-        if (ov63_0222BF90(v0->unk_14->unk_00, 5) == 0) {
-            (*(v0->unk_08))--;
-            v0->unk_14->unk_38 = NULL;
-            Heap_Free(v0);
-            SysTask_Done(param0);
+        if (ov63_0222BF90(animData->frontierObj->unk_00, 5) == 0) {
+            (*animData->totalMovementCount)--;
+            animData->frontierObj->movementTask = NULL;
+            Heap_Free(animData);
+            SysTask_Done(task);
             return;
         }
         break;
     }
 }
 
-void ov104_02232C80(UnkStruct_ov63_0222CCB8 *param0, UnkStruct_ov63_0222BEC0 *param1, int param2, int param3)
+void ov104_02232C80(UnkStruct_ov63_0222CCB8 *param0, UnkStruct_ov63_0222BEC0 *param1, int param2, int action)
 {
     param0->unk_07 = param2;
-    param0->unk_06 = Unk_ov104_022419A0[param3].unk_02;
-    param0->unk_04 = Unk_ov104_022419A0[param3].unk_00;
+    param0->unk_06 = sFrontierMovementActions[action].unk_02;
+    param0->unk_04 = sFrontierMovementActions[action].unk_00;
 
     if ((param0->unk_04 == 2) || (param0->unk_04 == 3) || (param0->unk_04 == 6)) {
         param0->unk_00 = ov63_0222C0F0(param1);

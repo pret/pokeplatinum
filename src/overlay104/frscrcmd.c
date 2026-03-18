@@ -38,8 +38,6 @@
 #include "overlay104/ov104_0223E894.h"
 #include "overlay104/struct_ov104_0222FEDC.h"
 #include "overlay104/struct_ov104_02230BE4.h"
-#include "overlay104/struct_ov104_02232B78.h"
-#include "overlay104/struct_ov104_02232B78_sub1.h"
 #include "overlay104/struct_ov104_0223319C.h"
 #include "overlay104/struct_ov104_022331E8.h"
 #include "overlay104/struct_ov104_0223C634.h"
@@ -166,10 +164,10 @@ static BOOL FrontierScrCmd_22(FrontierScriptContext *ctx);
 static BOOL FrontierScrCmd_23(FrontierScriptContext *ctx);
 static BOOL FrontierScrCmd_24(FrontierScriptContext *ctx);
 static BOOL FrontierScrCmd_25(FrontierScriptContext *ctx);
-static BOOL FrontierScrCmd_28(FrontierScriptContext *ctx);
-static void ov104_0223056C(u16 param0, UnkStruct_ov104_0223C634 *param1, const UnkStruct_ov104_02232B78_sub1 *param2, UnkStruct_ov63_0222D77C *param3, u8 *param4, enum HeapID heapID);
-static BOOL FrontierScrCmd_29(FrontierScriptContext *ctx);
-static BOOL ov104_022305C8(FrontierScriptContext *ctx);
+static BOOL FrontierScrCmd_ApplyMovement(FrontierScriptContext *ctx);
+static void FrontierSystem_StartAnimation(u16 localID, UnkStruct_ov104_0223C634 *object, const FrontierAnimCmd *animCmd, UnkStruct_ov63_0222D77C *param3, u8 *movementCount, enum HeapID heapID);
+static BOOL FrontierScrCmd_WaitMovement(FrontierScriptContext *ctx);
+static BOOL WaitForMovement(FrontierScriptContext *ctx);
 static BOOL FrontierScrCmd_InitNewBattleRecording(FrontierScriptContext *ctx);
 static BOOL FrontierScrCmd_6D(FrontierScriptContext *ctx);
 static BOOL ov104_022309DC(FrontierScriptContext *ctx);
@@ -896,56 +894,51 @@ static BOOL FrontierScrCmd_Dummy27(FrontierScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL FrontierScrCmd_28(FrontierScriptContext *ctx)
+static BOOL FrontierScrCmd_ApplyMovement(FrontierScriptContext *ctx)
 {
-    FrontierScriptManager *v0 = ctx->scriptMan;
-    FrontierGraphics *v1 = sub_0209B974(v0->unk_00);
-    u8 *v2;
-    u16 v3 = FrontierScriptContext_GetVar(ctx);
-    u32 offset = (s32)FrontierScriptContext_ReadWord(ctx);
-    UnkStruct_ov104_0223C634 *v5 = ov104_0223D5A8(v0->unk_00, v3);
+    FrontierScriptManager *scriptMan = ctx->scriptMan;
+    FrontierGraphics *graphics = sub_0209B974(scriptMan->unk_00);
+    u16 localID = FrontierScriptContext_GetVar(ctx);
+    u32 offset = FrontierScriptContext_ReadWord(ctx);
+    UnkStruct_ov104_0223C634 *object = ov104_0223D5A8(scriptMan->unk_00, localID);
 
-    if (v5 == NULL) {
+    if (object == NULL) {
         GF_ASSERT(0);
     }
 
-    v2 = (u8 *)(ctx->scriptPtr + offset);
-    ov104_0223056C(v3, v5, (UnkStruct_ov104_02232B78_sub1 *)v2, v1->unk_30, &v0->unk_59, v0->heapID);
-    v0->unk_59++;
+    FrontierAnimCmd *animCmd = (FrontierAnimCmd *)(ctx->scriptPtr + offset);
+    FrontierSystem_StartAnimation(localID, object, animCmd, graphics->unk_30, &scriptMan->movementCount, scriptMan->heapID);
+    scriptMan->movementCount++;
 
     return FALSE;
 }
 
-static void ov104_0223056C(u16 param0, UnkStruct_ov104_0223C634 *param1, const UnkStruct_ov104_02232B78_sub1 *param2, UnkStruct_ov63_0222D77C *param3, u8 *param4, enum HeapID heapID)
+static void FrontierSystem_StartAnimation(u16 localID, UnkStruct_ov104_0223C634 *object, const FrontierAnimCmd *animCmd, UnkStruct_ov63_0222D77C *param3, u8 *movementCount, enum HeapID heapID)
 {
-    UnkStruct_ov104_02232B78 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov104_02232B78));
-    MI_CpuClear8(v0, sizeof(UnkStruct_ov104_02232B78));
+    FrontierAnimData *data = Heap_Alloc(heapID, sizeof(FrontierAnimData));
+    MI_CpuClear8(data, sizeof(FrontierAnimData));
 
-    v0->unk_14 = param1;
-    v0->unk_0C = param2;
-    v0->unk_10 = param3;
-    v0->unk_04 = param0;
-    v0->unk_08 = param4;
+    data->frontierObj = object;
+    data->animCmd = animCmd;
+    data->unk_10 = param3;
+    data->localID = localID;
+    data->totalMovementCount = movementCount;
 
-    GF_ASSERT(param1->unk_38 == NULL);
-    param1->unk_38 = SysTask_Start(ov104_02232B78, v0, 60000 + 100);
+    GF_ASSERT(object->movementTask == NULL);
+    object->movementTask = SysTask_Start(FrontierObject_DoAnimation, data, 60100);
 }
 
-static BOOL FrontierScrCmd_29(FrontierScriptContext *ctx)
+static BOOL FrontierScrCmd_WaitMovement(FrontierScriptContext *ctx)
 {
-    FrontierScriptContext_Pause(ctx, ov104_022305C8);
+    FrontierScriptContext_Pause(ctx, WaitForMovement);
     return TRUE;
 }
 
-static BOOL ov104_022305C8(FrontierScriptContext *ctx)
+static BOOL WaitForMovement(FrontierScriptContext *ctx)
 {
-    FrontierScriptManager *v0 = ctx->scriptMan;
+    FrontierScriptManager *scriptMan = ctx->scriptMan;
 
-    if (v0->unk_59 == 0) {
-        return TRUE;
-    }
-
-    return FALSE;
+    return scriptMan->movementCount == 0;
 }
 
 static BOOL FrontierScrCmd_2A(FrontierScriptContext *ctx)
