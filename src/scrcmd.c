@@ -68,11 +68,11 @@
 #include "overlay005/size_contest.h"
 #include "overlay005/vs_seeker.h"
 #include "overlay006/elevator_animation.h"
+#include "overlay006/great_marsh_tram.h"
 #include "overlay006/healing_machine_animation.h"
 #include "overlay006/hm_cut_in.h"
 #include "overlay006/npc_trade.h"
 #include "overlay006/ov6_0223E140.h"
-#include "overlay006/ov6_02242AF0.h"
 #include "overlay006/ov6_02243004.h"
 #include "overlay006/ov6_02247830.h"
 #include "overlay006/ov6_02247F5C.h"
@@ -415,7 +415,7 @@ static BOOL sub_02042C80(ScriptContext *ctx);
 static BOOL ScrCmd_ChangeIntoContestAttire(ScriptContext *ctx);
 static BOOL ScrCmd_CheckPlayerOnBike(ScriptContext *ctx);
 static BOOL ScrCmd_SetPlayerBike(ScriptContext *ctx);
-static BOOL ScrCmd_0C9(ScriptContext *ctx);
+static BOOL ScrCmd_ForceBicycling(ScriptContext *ctx);
 static BOOL ScrCmd_GetPlayerState(ScriptContext *ctx);
 static BOOL ScrCmd_SetPlayerState(ScriptContext *ctx);
 static BOOL ScrCmd_ChangePlayerState(ScriptContext *ctx);
@@ -698,7 +698,7 @@ static BOOL ResumeOnSelectionOrDisconnect(ScriptContext *ctx);
 static BOOL ScrCmd_ShowUnionRoomMenu(ScriptContext *ctx);
 static BOOL ScrCmd_2BB(ScriptContext *ctx);
 static BOOL ScrCmd_GetTrainerCardLevel(ScriptContext *ctx);
-static BOOL ScrCmd_2BF(ScriptContext *ctx);
+static BOOL ScrCmd_SetCyclingBGM(ScriptContext *ctx);
 static BOOL ScrCmd_OpenSaveInfo(ScriptContext *ctx);
 static BOOL ScrCmd_CloseSaveInfo(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_2C3(ScriptContext *ctx);
@@ -726,8 +726,8 @@ static BOOL ScrCmd_2FB(ScriptContext *ctx);
 static BOOL ScrCmd_2FC(ScriptContext *ctx);
 static BOOL ScrCmd_GetRotomFormsInSave(ScriptContext *ctx);
 static BOOL ScrCmd_IncrementTrainerScore(ScriptContext *ctx);
-static BOOL ScrCmd_311(ScriptContext *ctx);
-static BOOL ScrCmd_312(ScriptContext *ctx);
+static BOOL ScrCmd_AddDistortionWorldMapObject(ScriptContext *ctx);
+static BOOL ScrCmd_DeleteDistortionWorldMapObject(ScriptContext *ctx);
 static BOOL ScrCmd_ResetDistortionWorldPersistedCameraAngles(ScriptContext *ctx);
 static BOOL ScrCmd_CheckHeapMemory(ScriptContext *ctx);
 static BOOL ScrCmd_StartGiratinaOriginBattle(ScriptContext *ctx);
@@ -965,7 +965,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_ChangeIntoContestAttire,
     ScrCmd_CheckPlayerOnBike,
     ScrCmd_SetPlayerBike,
-    ScrCmd_0C9,
+    ScrCmd_ForceBicycling,
     ScrCmd_GetPlayerState,
     ScrCmd_SetPlayerState,
     ScrCmd_ChangePlayerState,
@@ -1467,7 +1467,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_CheckDidNotCapture,
     ScrCmd_StartLegendaryBattle,
     ScrCmd_GetTrainerCardLevel,
-    ScrCmd_2BF,
+    ScrCmd_SetCyclingBGM,
     ScrCmd_MessageAutoScroll,
     ScrCmd_OpenSaveInfo,
     ScrCmd_CloseSaveInfo,
@@ -1549,8 +1549,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_30E,
     ScrCmd_30F,
     ScrCmd_310,
-    ScrCmd_311,
-    ScrCmd_312,
+    ScrCmd_AddDistortionWorldMapObject,
+    ScrCmd_DeleteDistortionWorldMapObject,
     ScrCmd_CheckHeapMemory,
     ScrCmd_GetBattleResult,
     ScrCmd_315,
@@ -1576,7 +1576,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_329,
     ScrCmd_32A,
     ScrCmd_CheckPartyHasFatefulEncounterRegigigas,
-    ScrCmd_32C,
+    ScrCmd_ActivateRegiRuinsDot,
     ScrCmd_32D,
     ScrCmd_32E,
     ScrCmd_CheckPartyHasHeldItem,
@@ -4573,15 +4573,15 @@ static BOOL ScrCmd_SetPlayerBike(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_2BF(ScriptContext *ctx)
+static BOOL ScrCmd_SetCyclingBGM(ScriptContext *ctx)
 {
     Sound_SetSpecialBGM(ctx->fieldSystem, SEQ_PL_BICYCLE);
     return FALSE;
 }
 
-static BOOL ScrCmd_0C9(ScriptContext *ctx)
+static BOOL ScrCmd_ForceBicycling(ScriptContext *ctx)
 {
-    sub_0205EFC4(ctx->fieldSystem->playerAvatar, ScriptContext_ReadByte(ctx));
+    PlayerAvatar_SetFlagIsOnCyclingRoad(ctx->fieldSystem->playerAvatar, ScriptContext_ReadByte(ctx));
     return FALSE;
 }
 
@@ -7840,21 +7840,21 @@ static BOOL ScrCmd_IncrementTrainerScore(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_311(ScriptContext *ctx)
+static BOOL ScrCmd_AddDistortionWorldMapObject(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    u16 v1 = ScriptContext_GetVar(ctx);
+    u16 mapObjLocalID = ScriptContext_GetVar(ctx);
 
-    ov9_0224F158(fieldSystem, v1);
+    DistWorld_AddMapObjectWithLocalID(fieldSystem, mapObjLocalID);
     return FALSE;
 }
 
-static BOOL ScrCmd_312(ScriptContext *ctx)
+static BOOL ScrCmd_DeleteDistortionWorldMapObject(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    u16 v1 = ScriptContext_GetVar(ctx);
+    u16 mapObjLocalID = ScriptContext_GetVar(ctx);
 
-    ov9_0224F16C(fieldSystem, v1);
+    DistWorld_DeleteMapObjectWithLocalID(fieldSystem, mapObjLocalID);
     return FALSE;
 }
 

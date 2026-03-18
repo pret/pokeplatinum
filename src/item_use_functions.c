@@ -371,7 +371,7 @@ static enum ItemUseCheckResult CanUseExplorerKit(const ItemUseContext *usageCont
         return ITEM_USE_CANNOT_USE_GENERIC;
     }
 
-    if (sub_0205EFDC(usageContext->playerAvatar) == TRUE) {
+    if (PlayerAvatar_GetFlagIsOnCyclingRoad(usageContext->playerAvatar) == TRUE) {
         return ITEM_USE_CANNOT_USE_GENERIC;
     }
 
@@ -477,7 +477,7 @@ static enum ItemUseCheckResult CanUseBicycle(const ItemUseContext *usageContext)
         return ITEM_USE_CANNOT_DISMOUNT;
     }
 
-    if (sub_0205EFDC(usageContext->playerAvatar) == TRUE) {
+    if (PlayerAvatar_GetFlagIsOnCyclingRoad(usageContext->playerAvatar) == TRUE) {
         return ITEM_USE_CANNOT_DISMOUNT;
     }
 

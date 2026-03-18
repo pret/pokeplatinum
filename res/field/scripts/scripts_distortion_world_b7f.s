@@ -71,7 +71,7 @@ _00EE:
     ApplyMovement 129, _0314
     ApplyMovement 128, _02DC
     WaitMovement
-    ScrCmd_312 129
+    DeleteDistortionWorldMapObject 129
     ApplyMovement 128, _02BC
     WaitMovement
     GetPlayerMapPos VAR_0x8004, VAR_0x8005

@@ -1,148 +1,149 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/wayward_cave_1f.h"
+#include "res/field/events/events_wayward_cave_1f.h"
 
 
-    ScriptEntry _0012
-    ScriptEntry _002B
-    ScriptEntry _00E0
-    ScriptEntry _00E2
+    ScriptEntry WaywardCave1F_OnTransition
+    ScriptEntry WaywardCave1F_Mira
+    ScriptEntry WaywardCave1F_Unused
+    ScriptEntry WaywardCave1F_TriggerExit
     ScriptEntryEnd
 
-_0012:
+WaywardCave1F_OnTransition:
     SetFlag FLAG_FIRST_ARRIVAL_WAYWARD_CAVE
-    GoToIfUnset FLAG_TRAVELED_WITH_MIRA, _0023
+    GoToIfUnset FLAG_TRAVELED_WITH_MIRA, WaywardCave1F_ResetFollowerMiraState
     End
 
-_0023:
-    SetVar VAR_UNK_0x4091, 0
+WaywardCave1F_ResetFollowerMiraState:
+    SetVar VAR_WAYWARD_CAVE_1F_FOLLOWER_MIRA_STATE, 0
     End
 
-_002B:
+WaywardCave1F_Mira:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     SetPlayerBike FALSE
-    GoToIfGe VAR_UNK_0x4091, 1, _0095
+    GoToIfGe VAR_WAYWARD_CAVE_1F_FOLLOWER_MIRA_STATE, 1, WaywardCave1F_MiraMessage
     BufferPlayerName 0
-    CallIfUnset FLAG_UNK_0x00E0, _008B
-    CallIfSet FLAG_UNK_0x00E0, _0090
+    CallIfUnset FLAG_TALKED_TO_WAYWARD_CAVE_1F_MIRA, WaywardCave1F_ImMiraPleaseTakeMeToTheExit
+    CallIfSet FLAG_TALKED_TO_WAYWARD_CAVE_1F_MIRA, WaywardCave1F_MyNameIsMiraILikeYourName
     BufferPlayerName 0
     PlaySound SEQ_GONIN
-    Message 1
+    Message WaywardCave1F_Text_PlayerDecidedToGoWithMira
     WaitSound
-    SetFlag FLAG_UNK_0x00E0
-    SetVar VAR_UNK_0x4091, 1
-    Message 2
+    SetFlag FLAG_TALKED_TO_WAYWARD_CAVE_1F_MIRA
+    SetVar VAR_WAYWARD_CAVE_1F_FOLLOWER_MIRA_STATE, 1
+    Message WaywardCave1F_Text_IllKeepYourPokemonHealthyAllTheTime
     WaitABXPadPress
     CloseMessage
     SetVar VAR_PARTNER_TRAINER_ID, TRAINER_MIRA_WAYWARD_CAVE
     SetHasPartner
-    SetMovementType 4, 48
+    SetMovementType LOCALID_MIRA, MOVEMENT_TYPE_FOLLOW_PLAYER
     ReleaseAll
     End
 
-_008B:
-    Message 0
+WaywardCave1F_ImMiraPleaseTakeMeToTheExit:
+    Message WaywardCave1F_Text_ImMiraPleaseTakeMeToTheExit
     Return
 
-_0090:
-    Message 3
+WaywardCave1F_MyNameIsMiraILikeYourName:
+    Message WaywardCave1F_Text_MyNameIsMiraILikeYourName
     Return
 
-_0095:
-    GoToIfGe VAR_FOLLOWER_MIRA_TIMES_TALKED, 2, _00C4
-    GoToIfEq VAR_FOLLOWER_MIRA_TIMES_TALKED, 1, _00BB
+WaywardCave1F_MiraMessage:
+    GoToIfGe VAR_FOLLOWER_MIRA_TIMES_TALKED, 2, WaywardCave1F_PlayerDidYouGetToBeSoGoodBecauseYoureAlwaysWithPokemon
+    GoToIfEq VAR_FOLLOWER_MIRA_TIMES_TALKED, 1, WaywardCave1F_ThisCaveItsSoEasyToGetConfused
     BufferPlayerName 0
-    Message 9
-    GoTo _00D2
+    Message WaywardCave1F_Text_ILikeHelpfulPokemonMovesLikeGrowlAndMinimize
+    GoTo WaywardCave1F_IncreaseFollowerMiraTimesTalked
 
-_00BB:
-    Message 10
-    GoTo _00D2
+WaywardCave1F_ThisCaveItsSoEasyToGetConfused:
+    Message WaywardCave1F_Text_ThisCaveItsSoEasyToGetConfused
+    GoTo WaywardCave1F_IncreaseFollowerMiraTimesTalked
 
-_00C4:
+WaywardCave1F_PlayerDidYouGetToBeSoGoodBecauseYoureAlwaysWithPokemon:
     BufferPlayerName 0
-    Message 11
+    Message WaywardCave1F_Text_PlayerDidYouGetToBeSoGoodBecauseYoureAlwaysWithPokemon
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_00D2:
+WaywardCave1F_IncreaseFollowerMiraTimesTalked:
     AddVar VAR_FOLLOWER_MIRA_TIMES_TALKED, 1
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_00E0:
+WaywardCave1F_Unused:
     End
 
-_00E2:
+WaywardCave1F_TriggerExit:
     LockAll
     ClearHasPartner
-    SetMovementType 4, 16
+    SetMovementType LOCALID_MIRA, MOVEMENT_TYPE_LOOK_WEST
     GetPlayerDir VAR_RESULT
-    GoToIfEq VAR_RESULT, 2, _0103
-    GoTo _011B
+    GoToIfEq VAR_RESULT, DIR_WEST, WaywardCave1F_NoticeExitWest
+    GoTo WaywardCave1F_NoticeExitSouth
 
-_0103:
-    ApplyMovement LOCALID_PLAYER, _0194
-    ApplyMovement 4, _01D8
+WaywardCave1F_NoticeExitWest:
+    ApplyMovement LOCALID_PLAYER, WaywardCave1F_Movement_PlayerWalkOnSpotEast
+    ApplyMovement LOCALID_MIRA, WaywardCave1F_Movement_MiraWalkOnSpotWestExclamationMark
     WaitMovement
-    GoTo _0133
+    GoTo WaywardCave1F_OhTheresTheExitThankYou
 
-_011B:
-    ApplyMovement LOCALID_PLAYER, _019C
-    ApplyMovement 4, _01E4
+WaywardCave1F_NoticeExitSouth:
+    ApplyMovement LOCALID_PLAYER, WaywardCave1F_Movement_PlayerWalkOnSpotNorth
+    ApplyMovement LOCALID_MIRA, WaywardCave1F_Movement_MiraWalkOnSpotSouthExclamationMark
     WaitMovement
-    GoTo _0133
+    GoTo WaywardCave1F_OhTheresTheExitThankYou
 
-_0133:
+WaywardCave1F_OhTheresTheExitThankYou:
     BufferPlayerName 0
-    Message 5
+    Message WaywardCave1F_Text_OhTheresTheExitThankYou
     CloseMessage
     GetPlayerDir VAR_RESULT
-    GoToIfEq VAR_RESULT, 3, _0152
-    GoTo _016A
+    GoToIfEq VAR_RESULT, DIR_EAST, WaywardCave1F_MiraWalkWestLeave
+    GoTo WaywardCave1F_MiraWalkSouthLeave
 
-_0152:
-    ApplyMovement LOCALID_PLAYER, _01A4
-    ApplyMovement 4, _01F0
+WaywardCave1F_MiraWalkWestLeave:
+    ApplyMovement LOCALID_PLAYER, WaywardCave1F_Movement_PlayerWalkNorthOnSpotSouth
+    ApplyMovement LOCALID_MIRA, WaywardCave1F_Movement_MiraWalkWestLeave
     WaitMovement
-    GoTo _0182
+    GoTo WaywardCave1F_RemoveMira
 
-_016A:
-    ApplyMovement LOCALID_PLAYER, _01B0
-    ApplyMovement 4, _0200
+WaywardCave1F_MiraWalkSouthLeave:
+    ApplyMovement LOCALID_PLAYER, WaywardCave1F_Movement_PlayerWalkEastOnSpotWest
+    ApplyMovement LOCALID_MIRA, WaywardCave1F_Movement_MiraWalkSouthLeave
     WaitMovement
-    GoTo _0182
+    GoTo WaywardCave1F_RemoveMira
 
-_0182:
-    RemoveObject 4
+WaywardCave1F_RemoveMira:
+    RemoveObject LOCALID_MIRA
     SetFlag FLAG_TRAVELED_WITH_MIRA
-    SetVar VAR_UNK_0x4091, 2
+    SetVar VAR_WAYWARD_CAVE_1F_FOLLOWER_MIRA_STATE, 2
     ReleaseAll
     End
 
     .balign 4, 0
-_0194:
+WaywardCave1F_Movement_PlayerWalkOnSpotEast:
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_019C:
+WaywardCave1F_Movement_PlayerWalkOnSpotNorth:
     WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
-_01A4:
+WaywardCave1F_Movement_PlayerWalkNorthOnSpotSouth:
     WalkNormalNorth
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_01B0:
+WaywardCave1F_Movement_PlayerWalkEastOnSpotWest:
     WalkNormalEast
     WalkOnSpotNormalWest
     EndMovement
@@ -159,26 +160,26 @@ WaywardCave1F_UnusedMovement2:
     EndMovement
 
     .balign 4, 0
-_01D8:
+WaywardCave1F_Movement_MiraWalkOnSpotWestExclamationMark:
     WalkOnSpotNormalWest
     EmoteExclamationMark
     EndMovement
 
     .balign 4, 0
-_01E4:
+WaywardCave1F_Movement_MiraWalkOnSpotSouthExclamationMark:
     WalkOnSpotNormalSouth
     EmoteExclamationMark
     EndMovement
 
     .balign 4, 0
-_01F0:
+WaywardCave1F_Movement_MiraWalkWestLeave:
     Delay8 3
     WalkNormalWest
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_0200:
+WaywardCave1F_Movement_MiraWalkSouthLeave:
     Delay8 3
     WalkNormalSouth
     WalkOnSpotNormalSouth

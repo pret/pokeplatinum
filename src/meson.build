@@ -451,7 +451,7 @@ pokeplatinum_c = files(
     'overlay006/wild_encounters.c',
     'overlay006/ov6_022426AC.c',
     'overlay006/great_marsh_binoculars.c',
-    'overlay006/ov6_02242AF0.c',
+    'overlay006/great_marsh_tram.c',
     'overlay006/great_marsh_daily_encounters.c',
     'overlay006/ov6_02243004.c',
     'overlay006/radar_chain_records.c',

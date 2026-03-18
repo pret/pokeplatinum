@@ -2,148 +2,148 @@
 #include "res/text/bank/iceberg_ruins.h"
 
 
-    ScriptEntry _0026
-    ScriptEntry _003D
-    ScriptEntry _012D
-    ScriptEntry _0148
-    ScriptEntry _0163
-    ScriptEntry _017E
-    ScriptEntry _0199
-    ScriptEntry _01B4
-    ScriptEntry _01CF
+    ScriptEntry IcebergRuins_OnTransition
+    ScriptEntry IcebergRuins_Statue
+    ScriptEntry IcebergRuins_DotNorth
+    ScriptEntry IcebergRuins_DotFarWest
+    ScriptEntry IcebergRuins_DotMiddleWest
+    ScriptEntry IcebergRuins_DotMiddle
+    ScriptEntry IcebergRuins_DotMiddleEast
+    ScriptEntry IcebergRuins_DotFarEast
+    ScriptEntry IcebergRuins_DotSouth
     ScriptEntryEnd
 
-_0026:
-    GoToIfLt VAR_UNK_0x406A, 0x118, _0035
+IcebergRuins_OnTransition:
+    GoToIfLt VAR_ICEBERG_RUINS_STATE, RUINS_STATE_DID_NOT_CATCH_REGI, IcebergRuins_ResetState
     End
 
-_0035:
-    SetVar VAR_UNK_0x406A, 0
+IcebergRuins_ResetState:
+    SetVar VAR_ICEBERG_RUINS_STATE, 0
     End
 
-_003D:
+IcebergRuins_Statue:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfEq VAR_UNK_0x406A, 0x122, _00ED
-    GoToIfEq VAR_UNK_0x406A, 0x118, _00F8
-    GoToIfUnset FLAG_GAME_COMPLETED, _010F
+    GoToIfEq VAR_ICEBERG_RUINS_STATE, RUINS_STATE_CAUGHT_REGI, IcebergRuins_CaughtRegiceStatueStoppedEmanatingPower
+    GoToIfEq VAR_ICEBERG_RUINS_STATE, RUINS_STATE_DID_NOT_CATCH_REGI, IcebergRuins_DidNotCatchRegiceStatueStoppedEmanatingPower
+    GoToIfUnset FLAG_GAME_COMPLETED, IcebergRuins_ItsAStatueOfAPokemonBecomeStrongerYouMust
     CheckPartyHasFatefulEncounterRegigigas VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _011A
-    GoToIfEq VAR_UNK_0x406A, 0x10E, _00AE
-    GoToIfLt VAR_UNK_0x406A, 0x104, _011A
+    GoToIfEq VAR_RESULT, 0, IcebergRuins_ItsAStatueOfAPokemon
+    GoToIfEq VAR_ICEBERG_RUINS_STATE, RUINS_STATE_ACTIVATED_STATUE, IcebergRuins_EncounterRegice
+    GoToIfLt VAR_ICEBERG_RUINS_STATE, RUINS_STATE_ACTIVATED_ALL_DOTS, IcebergRuins_ItsAStatueOfAPokemon
     WaitFanfare SEQ_SE_CONFIRM
     ScrCmd_29F 1
-    SetVar VAR_UNK_0x406A, 0x10E
-    Message 1
-    GoTo _0125
+    SetVar VAR_ICEBERG_RUINS_STATE, RUINS_STATE_ACTIVATED_STATUE
+    Message IcebergRuins_Text_SomethingChangedInTheAir
+    GoTo IcebergRuins_StatueEnd
     End
 
-_00AE:
+IcebergRuins_EncounterRegice:
     PlayCry SPECIES_REGICE
-    Message 2
+    Message IcebergRuins_Text_RegiceCry
     WaitCry
     CloseMessage
     StartLegendaryBattle SPECIES_REGICE, 30
     CheckWonBattle VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, _0109
+    GoToIfEq VAR_RESULT, FALSE, IcebergRuins_BlackOut
     CheckDidNotCapture VAR_RESULT
-    GoToIfEq VAR_RESULT, TRUE, _00F8
-    SetVar VAR_UNK_0x406A, 0x122
+    GoToIfEq VAR_RESULT, TRUE, IcebergRuins_DidNotCatchRegiceStatueStoppedEmanatingPower
+    SetVar VAR_ICEBERG_RUINS_STATE, RUINS_STATE_CAUGHT_REGI
     ReleaseAll
     End
 
-_00ED:
-    Message 3
-    GoTo _0125
+IcebergRuins_CaughtRegiceStatueStoppedEmanatingPower:
+    Message IcebergRuins_Text_ThePokemonStatueHasStoppedEmanatingPower
+    GoTo IcebergRuins_StatueEnd
     End
 
-_00F8:
-    SetVar VAR_UNK_0x406A, 0x118
-    Message 3
-    GoTo _0125
+IcebergRuins_DidNotCatchRegiceStatueStoppedEmanatingPower:
+    SetVar VAR_ICEBERG_RUINS_STATE, RUINS_STATE_DID_NOT_CATCH_REGI
+    Message IcebergRuins_Text_ThePokemonStatueHasStoppedEmanatingPower
+    GoTo IcebergRuins_StatueEnd
     End
 
-_0109:
+IcebergRuins_BlackOut:
     BlackOutFromBattle
     ReleaseAll
     End
 
-_010F:
-    Message 4
-    GoTo _0125
+IcebergRuins_ItsAStatueOfAPokemonBecomeStrongerYouMust:
+    Message IcebergRuins_Text_ItsAStatueOfAPokemonBecomeStrongerYouMust
+    GoTo IcebergRuins_StatueEnd
     End
 
-_011A:
-    Message 0
-    GoTo _0125
+IcebergRuins_ItsAStatueOfAPokemon:
+    Message IcebergRuins_Text_ItsAStatueOfAPokemon
+    GoTo IcebergRuins_StatueEnd
     End
 
-_0125:
+IcebergRuins_StatueEnd:
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_012D:
+IcebergRuins_DotNorth:
     SetVar VAR_MAP_LOCAL_1, 1
-    GoToIfGe VAR_UNK_0x406A, 0x104, _020D
-    GoTo _01EA
+    GoToIfGe VAR_ICEBERG_RUINS_STATE, RUINS_STATE_ACTIVATED_ALL_DOTS, IcebergRuins_DotEnd
+    GoTo IcebergRuins_ActivateDot
     End
 
-_0148:
+IcebergRuins_DotFarWest:
     SetVar VAR_MAP_LOCAL_2, 1
-    GoToIfGe VAR_UNK_0x406A, 0x104, _020D
-    GoTo _01EA
+    GoToIfGe VAR_ICEBERG_RUINS_STATE, RUINS_STATE_ACTIVATED_ALL_DOTS, IcebergRuins_DotEnd
+    GoTo IcebergRuins_ActivateDot
     End
 
-_0163:
+IcebergRuins_DotMiddleWest:
     SetVar VAR_MAP_LOCAL_3, 1
-    GoToIfGe VAR_UNK_0x406A, 0x104, _020D
-    GoTo _01EA
+    GoToIfGe VAR_ICEBERG_RUINS_STATE, RUINS_STATE_ACTIVATED_ALL_DOTS, IcebergRuins_DotEnd
+    GoTo IcebergRuins_ActivateDot
     End
 
-_017E:
+IcebergRuins_DotMiddle:
     SetVar VAR_MAP_LOCAL_4, 1
-    GoToIfGe VAR_UNK_0x406A, 0x104, _020D
-    GoTo _01EA
+    GoToIfGe VAR_ICEBERG_RUINS_STATE, RUINS_STATE_ACTIVATED_ALL_DOTS, IcebergRuins_DotEnd
+    GoTo IcebergRuins_ActivateDot
     End
 
-_0199:
+IcebergRuins_DotMiddleEast:
     SetVar VAR_MAP_LOCAL_5, 1
-    GoToIfGe VAR_UNK_0x406A, 0x104, _020D
-    GoTo _01EA
+    GoToIfGe VAR_ICEBERG_RUINS_STATE, RUINS_STATE_ACTIVATED_ALL_DOTS, IcebergRuins_DotEnd
+    GoTo IcebergRuins_ActivateDot
     End
 
-_01B4:
+IcebergRuins_DotFarEast:
     SetVar VAR_MAP_LOCAL_6, 1
-    GoToIfGe VAR_UNK_0x406A, 0x104, _020D
-    GoTo _01EA
+    GoToIfGe VAR_ICEBERG_RUINS_STATE, RUINS_STATE_ACTIVATED_ALL_DOTS, IcebergRuins_DotEnd
+    GoTo IcebergRuins_ActivateDot
     End
 
-_01CF:
+IcebergRuins_DotSouth:
     SetVar VAR_MAP_LOCAL_7, 1
-    GoToIfGe VAR_UNK_0x406A, 0x104, _020D
-    GoTo _01EA
+    GoToIfGe VAR_ICEBERG_RUINS_STATE, RUINS_STATE_ACTIVATED_ALL_DOTS, IcebergRuins_DotEnd
+    GoTo IcebergRuins_ActivateDot
     End
 
-_01EA:
+IcebergRuins_ActivateDot:
     LockAll
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    ScrCmd_32C VAR_UNK_0x406A, 0x24E, VAR_0x8004, VAR_0x8005
-    GoToIfGe VAR_UNK_0x406A, 0x104, _020F
+    ActivateRegiRuinsDot VAR_ICEBERG_RUINS_STATE, DOT_TYPE_ICEBERG_RUINS, VAR_0x8004, VAR_0x8005
+    GoToIfGe VAR_ICEBERG_RUINS_STATE, RUINS_STATE_ACTIVATED_ALL_DOTS, IcebergRuins_ActivateStatue
     ReleaseAll
     End
 
-_020D:
+IcebergRuins_DotEnd:
     End
 
-_020F:
-    GoToIfUnset FLAG_GAME_COMPLETED, _020D
+IcebergRuins_ActivateStatue:
+    GoToIfUnset FLAG_GAME_COMPLETED, IcebergRuins_DotEnd
     WaitFanfare SEQ_SE_CONFIRM
     ScrCmd_29F 1
-    SetVar VAR_UNK_0x406A, 0x10E
-    Message 1
+    SetVar VAR_ICEBERG_RUINS_STATE, RUINS_STATE_ACTIVATED_STATUE
+    Message IcebergRuins_Text_SomethingChangedInTheAir
     WaitABXPadPress
     CloseMessage
     ReleaseAll

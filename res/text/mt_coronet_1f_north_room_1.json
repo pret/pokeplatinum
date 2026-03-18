@@ -2,7 +2,7 @@
   "key": 24590,
   "messages": [
     {
-      "id": "pl_msg_00000233_00000",
+      "id": "MtCoronet1FNorthRoom1_Text_TheresNoWayOfGettingToThePeakOfMtCoronetFromThisSide",
       "en_US": [
         "There’s no way of getting to the\n",
         "peak of Mt. Coronet from this side!\r",
@@ -15,7 +15,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000233_00001",
+      "id": "MtCoronet1FNorthRoom1_Text_TheFogIsSoThickAheadICantEvenSeeMyOwnHand",
       "en_US": [
         "Grunt 1: The fog is so thick ahead\n",
         "I can’t even see my own hand!\r",
@@ -23,7 +23,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000233_00002",
+      "id": "MtCoronet1FNorthRoom1_Text_HahThePokemonTheyGaveMeCantUseDefogEither",
       "en_US": [
         "Grunt 2: Hah? The Pokémon they gave me\n",
         "can’t use Defog, either.\r",

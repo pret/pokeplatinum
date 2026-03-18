@@ -2383,7 +2383,7 @@ static int PlayerAvatar_IsUnderCyclingRoad(PlayerAvatar *playerAvatar, u32 param
         return FALSE;
     }
 
-    if (sub_0205EFDC(playerAvatar) == 0) {
+    if (PlayerAvatar_GetFlagIsOnCyclingRoad(playerAvatar) == 0) {
         return FALSE;
     }
 

@@ -185,7 +185,7 @@ _01FB:
     BufferPlayerName 0
     Message 11
     CloseMessage
-    ClearFlag FLAG_UNK_0x0295
+    ClearFlag FLAG_HIDE_MT_CORONET_1F_NORTH_ROOM_1_GRUNT_F
     SetFlag FLAG_FREED_GALACTIC_HQ_POKEMON
     ScrCmd_25F
     WaitTime 30, VAR_RESULT
@@ -248,9 +248,9 @@ _030E:
     RemoveObject 0
     FadeScreenIn
     WaitFadeScreen
-    SetFlag FLAG_UNK_0x0235
-    ClearFlag FLAG_UNK_0x0182
-    SetVar VAR_UNK_0x40A9, 1
+    SetFlag FLAG_HIDE_MT_CORONET_2F_CAVE_PAINTING
+    ClearFlag FLAG_HIDE_MT_CORONET_2F_CAVE_PAINTING_SHARDS
+    SetVar VAR_MT_CORONET_2F_STATE, 1
     ReleaseAll
     End
 

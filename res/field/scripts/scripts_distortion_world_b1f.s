@@ -21,7 +21,7 @@ _0012:
     ApplyMovement 128, _00B4
     ApplyMovement LOCALID_PLAYER, _0080
     WaitMovement
-    ScrCmd_312 128
+    DeleteDistortionWorldMapObject 128
     SetVar VAR_DISTORTION_WORLD_PROGRESS, 3
     ReleaseAll
     End
@@ -32,11 +32,11 @@ _004B:
     Message 1
     CloseMessage
     WaitCry
-    ScrCmd_311 129
+    AddDistortionWorldMapObject 129
     ApplyMovement LOCALID_PLAYER, _0090
     ApplyMovement 129, _00D8
     WaitMovement
-    ScrCmd_312 129
+    DeleteDistortionWorldMapObject 129
     ReleaseAll
     End
 

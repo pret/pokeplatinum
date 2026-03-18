@@ -2162,7 +2162,7 @@ static void ov16_0226A12C(UnkStruct_ov16_02268A14 *param0, int param1, int param
     ov16_0226B20C(param0, v3, 0);
     ov16_0226A698(param0);
     ov16_0226AAF8(param0);
-    ov16_0223F87C(param0->battleSys, v10);
+    BattleSystem_SetBattlerTypes(param0->battleSys, v10);
     ov16_0223F858(param0->battleSys, v11);
 
     v4 = String_Init(12 + 2 + (5 * 2), HEAP_ID_BATTLE);

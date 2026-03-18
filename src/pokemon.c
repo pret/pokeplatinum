@@ -3381,17 +3381,17 @@ void sub_0207697C(PokemonSpriteTemplate *param0, u16 param1)
     param0->personality = 0;
 }
 
-static const SpriteTemplate Unk_020F05E4 = {
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    NNS_G2D_VRAM_TYPE_2DMAIN,
-    { 0x4E2F, 0x4E2A, 0x4E27, 0x4E27, 0xffffffff, 0xffffffff },
-    0x2,
-    0x1
+static const SpriteTemplate sSpriteTemplateTrainer = {
+    .x = 0,
+    .y = 0,
+    .z = 0,
+    .animIdx = 0,
+    .priority = 0,
+    .plttIdx = 0,
+    .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
+    .resources = { 0x4E2F, 0x4E2A, 0x4E27, 0x4E27, 0xffffffff, 0xffffffff },
+    .bgPriority = 2,
+    .vramTransfer = TRUE,
 };
 
 static const int Unk_020F0588[] = {
@@ -3403,46 +3403,46 @@ static const int Unk_020F0588[] = {
     0x1
 };
 
-ManagedSprite *sub_02076994(SpriteSystem *param0, SpriteManager *param1, PaletteData *param2, int param3, int param4, int param5, int param6, int param7, enum HeapID heapID)
+ManagedSprite *SpriteSystem_NewManagedSpriteTrainer(SpriteSystem *spriteSys, SpriteManager *spriteMan, PaletteData *paletteData, int x, int y, int trainerClass, int face, int battlerType, enum HeapID heapID)
 {
-    SpriteTemplate v0;
-    ManagedSprite *v1;
+    SpriteTemplate spriteTemplate;
+    ManagedSprite *managedSprite;
     NARC *narc;
     UnkStruct_ov5_021DE5D0 v3;
     int v4 = 1;
 
-    sub_02076AAC(param5, param6, &v3);
+    sub_02076AAC(trainerClass, face, &v3);
 
     // TODO enum values?
-    if (param5 == 102) {
+    if (trainerClass == 102) {
         v4 = 2;
     }
 
     narc = NARC_ctor(v3.narcID, heapID);
 
-    SpriteSystem_LoadCharResObjFromOpenNarc(param0, param1, narc, v3.unk_04, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 20015 + param7);
-    SpriteSystem_LoadPaletteBufferFromOpenNarc(param2, PLTTBUF_MAIN_OBJ, param0, param1, narc, v3.unk_08, FALSE, v4, NNS_G2D_VRAM_TYPE_2DMAIN, 20010 + param7);
-    SpriteSystem_LoadCellResObjFromOpenNarc(param0, param1, narc, v3.unk_0C, FALSE, 20007 + param7);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(param0, param1, narc, v3.unk_10, FALSE, 20007 + param7);
+    SpriteSystem_LoadCharResObjFromOpenNarc(spriteSys, spriteMan, narc, v3.unk_04, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 20015 + battlerType);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(paletteData, PLTTBUF_MAIN_OBJ, spriteSys, spriteMan, narc, v3.unk_08, FALSE, v4, NNS_G2D_VRAM_TYPE_2DMAIN, 20010 + battlerType);
+    SpriteSystem_LoadCellResObjFromOpenNarc(spriteSys, spriteMan, narc, v3.unk_0C, FALSE, 20007 + battlerType);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(spriteSys, spriteMan, narc, v3.unk_10, FALSE, 20007 + battlerType);
     NARC_dtor(narc);
 
-    v0 = Unk_020F05E4;
+    spriteTemplate = sSpriteTemplateTrainer;
 
     // TODO enum values?
-    v0.resources[0] = 20015 + param7;
-    v0.resources[1] = 20010 + param7;
-    v0.resources[2] = 20007 + param7;
-    v0.resources[3] = 20007 + param7;
-    v0.priority = Unk_020F0588[param7];
+    spriteTemplate.resources[0] = 20015 + battlerType;
+    spriteTemplate.resources[1] = 20010 + battlerType;
+    spriteTemplate.resources[2] = 20007 + battlerType;
+    spriteTemplate.resources[3] = 20007 + battlerType;
+    spriteTemplate.priority = Unk_020F0588[battlerType];
 
-    v1 = SpriteSystem_NewSprite(param0, param1, &v0);
+    managedSprite = SpriteSystem_NewSprite(spriteSys, spriteMan, &spriteTemplate);
 
-    Sprite_SetExplicitPaletteOffsetAutoAdjust(v1->sprite, 0);
-    ManagedSprite_SetPositionXY(v1, param3, param4);
-    ManagedSprite_TickFrame(v1);
-    ManagedSprite_SetAnimateFlag(v1, 1);
+    Sprite_SetExplicitPaletteOffsetAutoAdjust(managedSprite->sprite, 0);
+    ManagedSprite_SetPositionXY(managedSprite, x, y);
+    ManagedSprite_TickFrame(managedSprite);
+    ManagedSprite_SetAnimateFlag(managedSprite, TRUE);
 
-    return v1;
+    return managedSprite;
 }
 
 void sub_02076AAC(int param0, int param1, UnkStruct_ov5_021DE5D0 *param2)

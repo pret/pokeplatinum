@@ -271,7 +271,7 @@ BOOL ov16_0223F7A4(BattleSystem *battleSys);
 void BattleSystem_ShowStopPlaybackButton(BattleSystem *battleSys);
 u8 BattleSystem_GetRecordedChatter(BattleSystem *battleSys, int battler);
 void ov16_0223F858(BattleSystem *battleSys, u8 *param1);
-void ov16_0223F87C(BattleSystem *battleSys, u8 *param1);
+void BattleSystem_SetBattlerTypes(BattleSystem *battleSys, u8 *battlerTypes);
 void ov16_0223F8AC(BattleSystem *battleSys, PokemonSprite **monSprites);
 void BattleSystem_SetGaugePriority(BattleSystem *battleSys, int param1);
 

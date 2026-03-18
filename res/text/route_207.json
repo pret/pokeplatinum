@@ -2,7 +2,7 @@
   "key": 40580,
   "messages": [
     {
-      "id": "pl_msg_00000477_00000",
+      "id": "Route207_Text_DawnPlayerChooseWhichHandYouWant",
       "en_US": [
         "Dawn: Hi, {STRVAR_1 3, 0, 0}!\n",
         "How’s your Pokédex coming along?\r",
@@ -15,7 +15,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000477_00001",
+      "id": "Route207_Text_DawnISeeYouWantTheVsSeeker",
       "en_US": [
         "Dawn: I see...\n",
         "You want the Vs. Seeker.\r",
@@ -24,7 +24,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000477_00002",
+      "id": "Route207_Text_DawnYouCanHaveThisTooThen",
       "en_US": [
         "Dawn: Using that Vs. Seeker, you can\n",
         "find Trainers who want a rematch\f",
@@ -38,7 +38,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000477_00003",
+      "id": "Route207_Text_DawnTheDowsingMachineIsSomethingYouShouldTouchOften",
       "en_US": [
         "Dawn: The {STRVAR_1 24, 1, 0} is\n",
         "something you should touch often.\r",
@@ -52,7 +52,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000477_00004",
+      "id": "Route207_Text_LucasPlayerIllShareWithYouChooseAHand",
       "en_US": [
         "Lucas: Hey, {STRVAR_1 3, 0, 0}!\n",
         "How’s your Pokédex coming along?\r",
@@ -66,7 +66,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000477_00005",
+      "id": "Route207_Text_LucasOhYeahYouWantTheVsSeeker",
       "en_US": [
         "Lucas: Oh yeah.\n",
         "You want the Vs. Seeker.\r",
@@ -75,7 +75,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000477_00006",
+      "id": "Route207_Text_LucasYouCanHaveThisTooThen",
       "en_US": [
         "Lucas: Using that Vs. Seeker, you can\n",
         "find Trainers who want to battle with\f",
@@ -89,7 +89,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000477_00007",
+      "id": "Route207_Text_LucasTheDowsingMachineIsJustTryTouchingIt",
       "en_US": [
         "Lucas: The {STRVAR_1 24, 1, 0} is...\n",
         "Just try touching it.\r",
@@ -102,11 +102,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000477_00008",
+      "id": "Route207_Text_Dummy8",
       "garbage": 59
     },
     {
-      "id": "pl_msg_00000477_00009",
+      "id": "Route207_Text_ThatSlopesTooSlippery",
       "en_US": [
         "That slope’s too slippery.\n",
         "You’ll need a Bike to get up.\r",
@@ -115,28 +115,28 @@
       ]
     },
     {
-      "id": "pl_msg_00000477_00010",
+      "id": "Route207_Text_ChangeToThe4thGearAndTakeARun",
       "en_US": [
         "Change to the 4th gear and take a run.\n",
         "That’ll shoot you right up that slope."
       ]
     },
     {
-      "id": "pl_msg_00000477_00011",
+      "id": "Route207_Text_Rt207MtCoronet",
       "en_US": [
         "Rt. 207\n",
         "Mt. Coronet"
       ]
     },
     {
-      "id": "pl_msg_00000477_00012",
+      "id": "Route207_Text_Rt207OreburghCity",
       "en_US": [
         "Rt. 207\n",
         "Oreburgh City"
       ]
     },
     {
-      "id": "pl_msg_00000477_00013",
+      "id": "Route207_Text_TrainerTipsPokemonMayBecomeImmobilizedIfTheyAreAsleepOrParalyzed",
       "en_US": [
         "Trainer Tips\r",
         "Pokémon may become immobilized if\n",

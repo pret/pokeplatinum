@@ -2,7 +2,7 @@
   "key": 25710,
   "messages": [
     {
-      "id": "pl_msg_00000322_00000",
+      "id": "IronRuins_Text_ItsAStatueOfAPokemon",
       "en_US": [
         "It’s a statue of a Pokémon.\n",
         "It seems to exude power...\r",
@@ -12,7 +12,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000322_00001",
+      "id": "IronRuins_Text_SomethingChangedInTheAir",
       "en_US": [
         "Something changed in the air...\r",
         "An indescribable power is emanating\n",
@@ -20,18 +20,18 @@
       ]
     },
     {
-      "id": "pl_msg_00000322_00002",
+      "id": "IronRuins_Text_RegisteelCry",
       "en_US": "Ji-ji-ze-ji-zoh.\r"
     },
     {
-      "id": "pl_msg_00000322_00003",
+      "id": "IronRuins_Text_ThePokemonStatueHasStoppedEmanatingPower",
       "en_US": [
         "The Pokémon statue has stopped\n",
         "emanating power."
       ]
     },
     {
-      "id": "pl_msg_00000322_00004",
+      "id": "IronRuins_Text_ItsAStatueOfAPokemonBecomeStrongerYouMust",
       "en_US": [
         "It’s a statue of a Pokémon.\n",
         "It seems to exude power...\r",

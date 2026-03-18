@@ -1129,7 +1129,7 @@ static void ov16_0223C2C0(BattleSystem *battleSys, FieldBattleDTO *dto)
                 battleSys->maxBattlers = i;
 
                 for (i = 0; i < 4; i++) {
-                    ov16_02263730(battleSys, battleSys->battlers[i]);
+                    BattlerData_SetTaskFuncs(battleSys, battleSys->battlers[i]);
                     Party_Copy(dto->parties[i], battleSys->parties[i]);
                 }
 
@@ -1156,7 +1156,7 @@ static void ov16_0223C2C0(BattleSystem *battleSys, FieldBattleDTO *dto)
                 battleSys->maxBattlers = i;
 
                 for (i = 0; i < 4; i++) {
-                    ov16_02263730(battleSys, battleSys->battlers[i]);
+                    BattlerData_SetTaskFuncs(battleSys, battleSys->battlers[i]);
                     Party_Copy(dto->parties[i], battleSys->parties[i]);
                 }
 
@@ -1178,7 +1178,7 @@ static void ov16_0223C2C0(BattleSystem *battleSys, FieldBattleDTO *dto)
                     v2.unk_00 = i;
                     v2.unk_01 = Unk_ov16_0226E264[v6][i];
                     battleSys->battlers[i] = ov16_0225BFFC(battleSys, &v2);
-                    ov16_02263730(battleSys, battleSys->battlers[i]);
+                    BattlerData_SetTaskFuncs(battleSys, battleSys->battlers[i]);
                 }
 
                 battleSys->maxBattlers = i;
@@ -1209,7 +1209,7 @@ static void ov16_0223C2C0(BattleSystem *battleSys, FieldBattleDTO *dto)
                     v2.unk_00 = i;
                     v2.unk_01 = Unk_ov16_0226E260[v6][i];
                     battleSys->battlers[i] = ov16_0225BFFC(battleSys, &v2);
-                    ov16_02263730(battleSys, battleSys->battlers[i]);
+                    BattlerData_SetTaskFuncs(battleSys, battleSys->battlers[i]);
                 }
 
                 battleSys->maxBattlers = i;
@@ -1238,7 +1238,7 @@ static void ov16_0223C2C0(BattleSystem *battleSys, FieldBattleDTO *dto)
                 v2.unk_00 = i;
                 v2.unk_01 = Unk_ov16_0226E560[i];
                 battleSys->battlers[i] = ov16_0225BFFC(battleSys, &v2);
-                ov16_02263730(battleSys, battleSys->battlers[i]);
+                BattlerData_SetTaskFuncs(battleSys, battleSys->battlers[i]);
             }
 
             battleSys->maxBattlers = i;
@@ -1276,7 +1276,7 @@ static void ov16_0223C2C0(BattleSystem *battleSys, FieldBattleDTO *dto)
             v2.unk_00 = i;
             v2.unk_01 = Unk_ov16_0226E560[i];
             battleSys->battlers[i] = ov16_0225BFFC(battleSys, &v2);
-            ov16_02263730(battleSys, battleSys->battlers[i]);
+            BattlerData_SetTaskFuncs(battleSys, battleSys->battlers[i]);
         }
 
         battleSys->maxBattlers = i;
@@ -1304,7 +1304,7 @@ static void ov16_0223C2C0(BattleSystem *battleSys, FieldBattleDTO *dto)
             v2.unk_00 = i;
             v2.unk_01 = Unk_ov16_0226E560[i];
             battleSys->battlers[i] = ov16_0225BFFC(battleSys, &v2);
-            ov16_02263730(battleSys, battleSys->battlers[i]);
+            BattlerData_SetTaskFuncs(battleSys, battleSys->battlers[i]);
         }
 
         battleSys->maxBattlers = i;
@@ -1338,7 +1338,7 @@ static void ov16_0223C2C0(BattleSystem *battleSys, FieldBattleDTO *dto)
             v2.unk_00 = i;
             v2.unk_01 = Unk_ov16_0226E25C[i];
             battleSys->battlers[i] = ov16_0225BFFC(battleSys, &v2);
-            ov16_02263730(battleSys, battleSys->battlers[i]);
+            BattlerData_SetTaskFuncs(battleSys, battleSys->battlers[i]);
         }
 
         battleSys->maxBattlers = i;
@@ -1570,7 +1570,7 @@ static void ov16_0223CF8C(SysTask *param0, void *param1)
     for (v3 = 0; v3 < v4; v3++) {
         battlerData = BattleSystem_GetBattlerData(battleSys, v3);
 
-        if (((BattlerData_GetBootState(battlerData) == 0x0) && ((BattleSystem_GetBattleStatusMask(battleSys) & 0x10) == 0)) || ((BattleSystem_GetBattlerSide(battleSys, v3) == 0) && (BattleSystem_GetBattleStatusMask(battleSys) & 0x10))) {
+        if (((BattlerData_GetBootState(battlerData) == BATTLER_BOOT_STATE_NORMAL) && ((BattleSystem_GetBattleStatusMask(battleSys) & 0x10) == 0)) || ((BattleSystem_GetBattlerSide(battleSys, v3) == 0) && (BattleSystem_GetBattleStatusMask(battleSys) & 0x10))) {
             healthbar = BattlerData_GetHealthbar(battlerData);
 
             if (healthbar != NULL) {

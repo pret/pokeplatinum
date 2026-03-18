@@ -2,7 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
-            "id": "ROUTE_206_CYCLING_ROAD_NORTH_GATE_CASHIER_M_0",
+            "id": "LOCALID_CASHIER_M_EAST",
             "graphics_id": "OBJ_EVENT_GFX_CASHIER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -17,7 +17,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_206_CYCLING_ROAD_NORTH_GATE_CASHIER_M_1",
+            "id": "LOCALID_CASHIER_M_WEST",
             "graphics_id": "OBJ_EVENT_GFX_CASHIER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -32,11 +32,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_206_CYCLING_ROAD_NORTH_GATE_SCIENTIST_M_2",
+            "id": "LOCALID_SCIENTIST_M",
             "graphics_id": "OBJ_EVENT_GFX_SCIENTIST_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0222",
+            "hidden_flag": "FLAG_HIDE_ROUTE_206_CYCLING_ROAD_NORTH_GATE_SCIENTIST_M",
             "script": 5,
             "initial_dir": 1,
             "data": [],

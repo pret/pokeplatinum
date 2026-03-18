@@ -2,148 +2,148 @@
 #include "res/text/bank/rock_peak_ruins.h"
 
 
-    ScriptEntry _0026
-    ScriptEntry _003D
-    ScriptEntry _012D
-    ScriptEntry _0148
-    ScriptEntry _0163
-    ScriptEntry _017E
-    ScriptEntry _0199
-    ScriptEntry _01B4
-    ScriptEntry _01CF
+    ScriptEntry RockPeakRuins_OnTransition
+    ScriptEntry RockPeakRuins_Statue
+    ScriptEntry RockPeakRuins_DotNorthWest
+    ScriptEntry RockPeakRuins_DotNorthEast
+    ScriptEntry RockPeakRuins_DotWest
+    ScriptEntry RockPeakRuins_DotMiddle
+    ScriptEntry RockPeakRuins_DotEast
+    ScriptEntry RockPeakRuins_DotSouthWest
+    ScriptEntry RockPeakRuins_DotSouthEast
     ScriptEntryEnd
 
-_0026:
-    GoToIfLt VAR_UNK_0x406B, 0x118, _0035
+RockPeakRuins_OnTransition:
+    GoToIfLt VAR_ROCK_PEAK_RUINS_STATE, RUINS_STATE_DID_NOT_CATCH_REGI, RockPeakRuins_ResetState
     End
 
-_0035:
-    SetVar VAR_UNK_0x406B, 0
+RockPeakRuins_ResetState:
+    SetVar VAR_ROCK_PEAK_RUINS_STATE, 0
     End
 
-_003D:
+RockPeakRuins_Statue:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfEq VAR_UNK_0x406B, 0x122, _00ED
-    GoToIfEq VAR_UNK_0x406B, 0x118, _00F8
-    GoToIfUnset FLAG_GAME_COMPLETED, _010F
+    GoToIfEq VAR_ROCK_PEAK_RUINS_STATE, RUINS_STATE_CAUGHT_REGI, RockPeakRuins_CaughtRegirockStatueStoppedEmanatingPower
+    GoToIfEq VAR_ROCK_PEAK_RUINS_STATE, RUINS_STATE_DID_NOT_CATCH_REGI, RockPeakRuins_DidNotCatchRegirockStatueStoppedEmanatingPower
+    GoToIfUnset FLAG_GAME_COMPLETED, RockPeakRuins_ItsAStatueOfAPokemonItSeemsToExudePower
     CheckPartyHasFatefulEncounterRegigigas VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _011A
-    GoToIfEq VAR_UNK_0x406B, 0x10E, _00AE
-    GoToIfLt VAR_UNK_0x406B, 0x104, _011A
+    GoToIfEq VAR_RESULT, 0, RockPeakRuins_ItsAStatueOfAPokemonFromSomewhereSomethingSpokeOut
+    GoToIfEq VAR_ROCK_PEAK_RUINS_STATE, RUINS_STATE_ACTIVATED_STATUE, RockPeakRuins_EncounterRegirock
+    GoToIfLt VAR_ROCK_PEAK_RUINS_STATE, RUINS_STATE_ACTIVATED_ALL_DOTS, RockPeakRuins_ItsAStatueOfAPokemonFromSomewhereSomethingSpokeOut
     WaitFanfare SEQ_SE_CONFIRM
     ScrCmd_29F 1
-    SetVar VAR_UNK_0x406B, 0x10E
-    Message 1
-    GoTo _0125
+    SetVar VAR_ROCK_PEAK_RUINS_STATE, RUINS_STATE_ACTIVATED_STATUE
+    Message RockPeakRuins_Text_SomethingChangedInTheAir
+    GoTo RockPeakRuins_StatueEnd
     End
 
-_00AE:
+RockPeakRuins_EncounterRegirock:
     PlayCry SPECIES_REGIROCK
-    Message 2
+    Message RockPeakRuins_Text_RegirockCry
     WaitCry
     CloseMessage
     StartLegendaryBattle SPECIES_REGIROCK, 30
     CheckWonBattle VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, _0109
+    GoToIfEq VAR_RESULT, FALSE, RockPeakRuins_BlackOut
     CheckDidNotCapture VAR_RESULT
-    GoToIfEq VAR_RESULT, TRUE, _00F8
-    SetVar VAR_UNK_0x406B, 0x122
+    GoToIfEq VAR_RESULT, TRUE, RockPeakRuins_DidNotCatchRegirockStatueStoppedEmanatingPower
+    SetVar VAR_ROCK_PEAK_RUINS_STATE, RUINS_STATE_CAUGHT_REGI
     ReleaseAll
     End
 
-_00ED:
-    Message 3
-    GoTo _0125
+RockPeakRuins_CaughtRegirockStatueStoppedEmanatingPower:
+    Message RockPeakRuins_Text_ThePokemonStatueHasStoppedEmanatingPower
+    GoTo RockPeakRuins_StatueEnd
     End
 
-_00F8:
-    SetVar VAR_UNK_0x406B, 0x118
-    Message 3
-    GoTo _0125
+RockPeakRuins_DidNotCatchRegirockStatueStoppedEmanatingPower:
+    SetVar VAR_ROCK_PEAK_RUINS_STATE, RUINS_STATE_DID_NOT_CATCH_REGI
+    Message RockPeakRuins_Text_ThePokemonStatueHasStoppedEmanatingPower
+    GoTo RockPeakRuins_StatueEnd
     End
 
-_0109:
+RockPeakRuins_BlackOut:
     BlackOutFromBattle
     ReleaseAll
     End
 
-_010F:
-    Message 4
-    GoTo _0125
+RockPeakRuins_ItsAStatueOfAPokemonItSeemsToExudePower:
+    Message RockPeakRuins_Text_ItsAStatueOfAPokemonItSeemsToExudePower
+    GoTo RockPeakRuins_StatueEnd
     End
 
-_011A:
-    Message 0
-    GoTo _0125
+RockPeakRuins_ItsAStatueOfAPokemonFromSomewhereSomethingSpokeOut:
+    Message RockPeakRuins_Text_ItsAStatueOfAPokemonFromSomewhereSomethingSpokeOut
+    GoTo RockPeakRuins_StatueEnd
     End
 
-_0125:
+RockPeakRuins_StatueEnd:
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_012D:
+RockPeakRuins_DotNorthWest:
     SetVar VAR_MAP_LOCAL_1, 1
-    GoToIfGe VAR_UNK_0x406B, 0x104, _020D
-    GoTo _01EA
+    GoToIfGe VAR_ROCK_PEAK_RUINS_STATE, RUINS_STATE_ACTIVATED_ALL_DOTS, RockPeakRuins_DotEnd
+    GoTo RockPeakRuins_ActivateDot
     End
 
-_0148:
+RockPeakRuins_DotNorthEast:
     SetVar VAR_MAP_LOCAL_2, 1
-    GoToIfGe VAR_UNK_0x406B, 0x104, _020D
-    GoTo _01EA
+    GoToIfGe VAR_ROCK_PEAK_RUINS_STATE, RUINS_STATE_ACTIVATED_ALL_DOTS, RockPeakRuins_DotEnd
+    GoTo RockPeakRuins_ActivateDot
     End
 
-_0163:
+RockPeakRuins_DotWest:
     SetVar VAR_MAP_LOCAL_3, 1
-    GoToIfGe VAR_UNK_0x406B, 0x104, _020D
-    GoTo _01EA
+    GoToIfGe VAR_ROCK_PEAK_RUINS_STATE, RUINS_STATE_ACTIVATED_ALL_DOTS, RockPeakRuins_DotEnd
+    GoTo RockPeakRuins_ActivateDot
     End
 
-_017E:
+RockPeakRuins_DotMiddle:
     SetVar VAR_MAP_LOCAL_4, 1
-    GoToIfGe VAR_UNK_0x406B, 0x104, _020D
-    GoTo _01EA
+    GoToIfGe VAR_ROCK_PEAK_RUINS_STATE, RUINS_STATE_ACTIVATED_ALL_DOTS, RockPeakRuins_DotEnd
+    GoTo RockPeakRuins_ActivateDot
     End
 
-_0199:
+RockPeakRuins_DotEast:
     SetVar VAR_MAP_LOCAL_5, 1
-    GoToIfGe VAR_UNK_0x406B, 0x104, _020D
-    GoTo _01EA
+    GoToIfGe VAR_ROCK_PEAK_RUINS_STATE, RUINS_STATE_ACTIVATED_ALL_DOTS, RockPeakRuins_DotEnd
+    GoTo RockPeakRuins_ActivateDot
     End
 
-_01B4:
+RockPeakRuins_DotSouthWest:
     SetVar VAR_MAP_LOCAL_6, 1
-    GoToIfGe VAR_UNK_0x406B, 0x104, _020D
-    GoTo _01EA
+    GoToIfGe VAR_ROCK_PEAK_RUINS_STATE, RUINS_STATE_ACTIVATED_ALL_DOTS, RockPeakRuins_DotEnd
+    GoTo RockPeakRuins_ActivateDot
     End
 
-_01CF:
+RockPeakRuins_DotSouthEast:
     SetVar VAR_MAP_LOCAL_7, 1
-    GoToIfGe VAR_UNK_0x406B, 0x104, _020D
-    GoTo _01EA
+    GoToIfGe VAR_ROCK_PEAK_RUINS_STATE, RUINS_STATE_ACTIVATED_ALL_DOTS, RockPeakRuins_DotEnd
+    GoTo RockPeakRuins_ActivateDot
     End
 
-_01EA:
+RockPeakRuins_ActivateDot:
     LockAll
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    ScrCmd_32C VAR_UNK_0x406B, 0x250, VAR_0x8004, VAR_0x8005
-    GoToIfGe VAR_UNK_0x406B, 0x104, _020F
+    ActivateRegiRuinsDot VAR_ROCK_PEAK_RUINS_STATE, DOT_TYPE_ROCK_PEAK_RUINS, VAR_0x8004, VAR_0x8005
+    GoToIfGe VAR_ROCK_PEAK_RUINS_STATE, RUINS_STATE_ACTIVATED_ALL_DOTS, RockPeakRuins_ActivateStatue
     ReleaseAll
     End
 
-_020D:
+RockPeakRuins_DotEnd:
     End
 
-_020F:
-    GoToIfUnset FLAG_GAME_COMPLETED, _020D
+RockPeakRuins_ActivateStatue:
+    GoToIfUnset FLAG_GAME_COMPLETED, RockPeakRuins_DotEnd
     WaitFanfare SEQ_SE_CONFIRM
     ScrCmd_29F 1
-    SetVar VAR_UNK_0x406B, 0x10E
-    Message 1
+    SetVar VAR_ROCK_PEAK_RUINS_STATE, RUINS_STATE_ACTIVATED_STATUE
+    Message RockPeakRuins_Text_SomethingChangedInTheAir
     WaitABXPadPress
     CloseMessage
     ReleaseAll

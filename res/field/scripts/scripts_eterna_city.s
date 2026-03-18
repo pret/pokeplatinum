@@ -547,7 +547,7 @@ EternaCity_BugCatcher2:
     LockAll
     FacePlayer
     GoToIfUnset FLAG_RECEIVED_BICYCLE, EternaCity_ItFeelsGreatRidingABikeWithTheWindInYourFaceDoesntIt
-    GoToIfGe VAR_UNK_0x408C, 1, EternaCity_ItFeelsGreatRidingABikeWithTheWindInYourFaceDoesntIt
+    GoToIfGe VAR_ROUTE_207_COUNTERPART_TRIGGER_STATE, 1, EternaCity_ItFeelsGreatRidingABikeWithTheWindInYourFaceDoesntIt
     Message EternaCity_Text_OhWowYouGotABicycle2
     WaitABXPadPress
     CloseMessage

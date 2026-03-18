@@ -45,6 +45,7 @@
 #include "constants/init_script_types.h"
 #include "constants/items.h"
 #include "constants/map_object.h"
+#include "constants/regi_ruins.h"
 #include "constants/roamer_states.h"
 #include "constants/savedata/vars_flags.h"
 #include "constants/scrcmd.h"
@@ -1255,9 +1256,9 @@
     .byte \rideBike
     .endm
 
-    .macro ScrCmd_0C9 arg0
+    .macro ForceBicycling flag
     .short 201
-    .byte \arg0
+    .byte \flag
     .endm
 
     .macro GetPlayerState destVarID
@@ -4193,7 +4194,7 @@
     .short \destVar
     .endm
 
-    .macro ScrCmd_2BF
+    .macro SetCyclingBGM
     .short 703
     .endm
 
@@ -4660,14 +4661,14 @@
     .short 784
     .endm
 
-    .macro ScrCmd_311 arg0
+    .macro AddDistortionWorldMapObject mapObjLocalID
     .short 785
-    .short \arg0
+    .short \mapObjLocalID
     .endm
 
-    .macro ScrCmd_312 arg0
+    .macro DeleteDistortionWorldMapObject mapObjLocalID
     .short 786
-    .short \arg0
+    .short \mapObjLocalID
     .endm
 
     .macro CheckHeapMemory assertUnchangedFreeMemory
@@ -4813,12 +4814,12 @@
     .short \destVar
     .endm
 
-    .macro ScrCmd_32C arg0, arg1, arg2, arg3
+    .macro ActivateRegiRuinsDot destVar, dotType, x, z
     .short 812
-    .short \arg0
-    .short \arg1
-    .short \arg2
-    .short \arg3
+    .short \destVar
+    .short \dotType
+    .short \x
+    .short \z
     .endm
 
     .macro ScrCmd_32D

@@ -2,25 +2,25 @@
   "key": 36554,
   "messages": [
     {
-      "id": "pl_msg_00000475_00000",
+      "id": "Route206CyclingRoadSouthGate_Text_Dummy0",
       "garbage": 46
     },
     {
-      "id": "pl_msg_00000475_00001",
+      "id": "Route206CyclingRoadSouthGate_Text_CyclingRoadIsOpenOnlyToCyclists",
       "en_US": [
         "Cycling Road is open only to cyclists.\n",
         "You must be on a Bicycle.\r"
       ]
     },
     {
-      "id": "pl_msg_00000475_00002",
+      "id": "Route206CyclingRoadSouthGate_Text_LearnHowToShiftGearsAndYoullBeAbleToRideAnywhere",
       "en_US": [
         "Learn how to shift gears, and you’ll\n",
         "be able to ride anywhere."
       ]
     },
     {
-      "id": "pl_msg_00000475_00003",
+      "id": "Route206CyclingRoadSouthGate_Text_WhatsABicycleWithoutThisYouveGotToHaveAFlag",
       "en_US": [
         "What’s a Bicycle without this?\r",
         "You’ve got to have a Flag!\n",
@@ -28,7 +28,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000475_00004",
+      "id": "Route206CyclingRoadSouthGate_Text_GoThroughMtCoronetFromHereAndYouCanGetToHearthomeCity",
       "en_US": [
         "Go through Mt. Coronet from here,\n",
         "and you can get to Hearthome City.\r",

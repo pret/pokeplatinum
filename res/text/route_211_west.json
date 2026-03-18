@@ -2,18 +2,18 @@
   "key": 40311,
   "messages": [
     {
-      "id": "pl_msg_00000487_00000",
+      "id": "Route211West_Text_Dummy0",
       "garbage": 78
     },
     {
-      "id": "pl_msg_00000487_00001",
+      "id": "Route211West_Text_Rt211MtCoronet",
       "en_US": [
         "Rt. 211\n",
         "Mt. Coronet"
       ]
     },
     {
-      "id": "pl_msg_00000487_00002",
+      "id": "Route211West_Text_Rt211EternaCity",
       "en_US": [
         "Rt. 211\n",
         "Eterna City"

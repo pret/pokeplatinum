@@ -2,7 +2,7 @@
   "key": 25726,
   "messages": [
     {
-      "id": "pl_msg_00000324_00000",
+      "id": "RockPeakRuins_Text_ItsAStatueOfAPokemonFromSomewhereSomethingSpokeOut",
       "en_US": [
         "It’s a statue of a Pokémon.\n",
         "It seems to exude power...\r",
@@ -12,7 +12,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000324_00001",
+      "id": "RockPeakRuins_Text_SomethingChangedInTheAir",
       "en_US": [
         "Something changed in the air...\r",
         "An indescribable power is emanating\n",
@@ -20,18 +20,18 @@
       ]
     },
     {
-      "id": "pl_msg_00000324_00002",
+      "id": "RockPeakRuins_Text_RegirockCry",
       "en_US": "Zaza zari za...\r"
     },
     {
-      "id": "pl_msg_00000324_00003",
+      "id": "RockPeakRuins_Text_ThePokemonStatueHasStoppedEmanatingPower",
       "en_US": [
         "The Pokémon statue has stopped\n",
         "emanating power."
       ]
     },
     {
-      "id": "pl_msg_00000324_00004",
+      "id": "RockPeakRuins_Text_ItsAStatueOfAPokemonItSeemsToExudePower",
       "en_US": [
         "It’s a statue of a Pokémon.\n",
         "It seems to exude power..."

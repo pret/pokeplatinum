@@ -2,7 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
-            "id": "ROUTE_206_CYCLING_ROAD_SOUTH_GATE_CASHIER_M_0",
+            "id": "LOCALID_CASHIER_M_WEST",
             "graphics_id": "OBJ_EVENT_GFX_CASHIER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -17,7 +17,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_206_CYCLING_ROAD_SOUTH_GATE_CASHIER_M_1",
+            "id": "LOCALID_CASHIER_M_EAST",
             "graphics_id": "OBJ_EVENT_GFX_CASHIER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -32,7 +32,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_206_CYCLING_ROAD_SOUTH_GATE_BATTLE_GIRL_2",
+            "id": "LOCALID_BATTLE_GIRL",
             "graphics_id": "OBJ_EVENT_GFX_BATTLE_GIRL",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_SOUTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",

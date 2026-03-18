@@ -43,7 +43,7 @@ typedef struct BattleMessageInfo {
 
 typedef struct UISetupMessage {
     int command;
-    u32 unk_04;
+    u32 seed;
 } UISetupMessage;
 
 typedef struct MonEncounterMessage {
@@ -79,7 +79,7 @@ typedef struct MonShowMessage {
     u16 nickname[MON_NAME_LEN + 1];
     u8 padding_46[2];
     int partnerPartySlot;
-    int notSubstitute;
+    int isSubstitute;
     u16 battleMonSpecies[MAX_BATTLERS];
     u8 battleMonGenders[MAX_BATTLERS];
     u8 battleMonIsShiny[MAX_BATTLERS];
@@ -91,7 +91,7 @@ typedef struct MonReturnMessage {
     u8 command;
     u8 yOffset;
     u16 capturedBall;
-    int notSubstitute;
+    int isSubstitute;
     u16 battleMonSpecies[MAX_BATTLERS];
     u8 battleMonGenders[MAX_BATTLERS];
     u8 battleMonIsShiny[MAX_BATTLERS];
@@ -99,11 +99,11 @@ typedef struct MonReturnMessage {
     u32 battleMonPersonalities[MAX_BATTLERS];
 } MonReturnMessage;
 
-typedef struct CaptureOpenBallMessage {
+typedef struct OpenCaptureBallMessage {
     u8 command;
     u8 yOffset;
     u16 ball;
-} CaptureOpenBallMessage;
+} OpenCaptureBallMessage;
 
 typedef struct TrainerEncounterMessage {
     u8 command;
@@ -135,7 +135,7 @@ typedef struct CommandSetMessage {
     s16 curHP;
     u16 maxHP;
     u8 ballStatusBattler;
-    u8 unk_29;
+    u8 switchingOrCanPickCommandMask;
     u16 padding_2A;
 } CommandSetMessage;
 
@@ -157,7 +157,7 @@ typedef struct TargetSelectMenuMessage {
 
 typedef struct BagMenuMessage {
     u8 command;
-    u8 unk_01;
+    u8 hasTwoOpponents;
     u8 semiInvulnerable;
     u8 substitute;
     u8 partySlots[MAX_BATTLERS];
@@ -169,7 +169,7 @@ typedef struct PartyMenuMessage {
     u8 command;
     u8 battler;
     u8 listMode;
-    u8 doubles;
+    u8 doublesSelection;
     u8 selectedPartySlot[MAX_BATTLERS];
     u8 partyOrder[MAX_BATTLERS][MAX_PARTY_SIZE];
     int canSwitch;
@@ -179,7 +179,7 @@ typedef struct PartyMenuMessage {
 
 typedef struct YesNoMenuMessage {
     u8 command;
-    u8 yesnoType;
+    u8 yesNoType;
     u16 promptMsg;
     int move;
     int nickname;
@@ -217,8 +217,8 @@ typedef struct FaintingSequenceMessage {
     u16 species;
     u32 personality;
     u8 form;
-    u8 notSubstitute;
-    u8 notTransformed;
+    u8 isSubstitute;
+    u8 isTransformed;
     u8 unk_0B;
     u16 monSpecies[MAX_BATTLERS];
     u8 monGenders[MAX_BATTLERS];
@@ -236,7 +236,7 @@ typedef struct PlaySoundMessage {
 typedef struct ToggleVanishMessage {
     u8 command;
     u8 toggle;
-    u8 notSubstitute;
+    u8 isSubstitute;
     u8 padding_03;
     u16 species[MAX_BATTLERS];
     u8 gender[MAX_BATTLERS];
@@ -328,7 +328,7 @@ typedef struct ForgetMoveMessage {
 
 typedef struct MosaicSetMessage {
     u8 command;
-    u8 unk_01;
+    u8 intensity;
     u8 wait;
     u8 padding_03;
 } MosaicSetMessage;

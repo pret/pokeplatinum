@@ -5,6 +5,7 @@
 
 #include "constants/field_base_tiles.h"
 #include "constants/menu.h"
+#include "constants/regi_ruins.h"
 #include "constants/scrcmd.h"
 #include "generated/game_records.h"
 #include "generated/items.h"
@@ -61,10 +62,10 @@
 
 #define MAX_LIST_ENTRIES 120
 
-typedef struct {
-    s16 unk_00;
-    s16 unk_02;
-} UnkStruct_ov5_02200C90;
+typedef struct RegiDotCoordinates {
+    s16 x;
+    s16 z;
+} RegiDotCoordinates;
 
 typedef struct BattleHallRecordSelector {
     FieldSystem *fieldSystem;
@@ -845,82 +846,82 @@ BOOL ScrCmd_Dummy316(ScriptContext *ctx)
     return TRUE;
 }
 
-static const UnkStruct_ov5_02200C90 Unk_ov5_02200C90[] = {
-    { 0x4, 0x7 },
-    { 0x5, 0x5 },
-    { 0x5, 0x9 },
-    { 0x7, 0x7 },
-    { 0x9, 0x5 },
-    { 0x9, 0x9 },
-    { 0xA, 0x7 }
+static const RegiDotCoordinates sDotCoordinatesIronRuins[] = {
+    { 4, 7 },
+    { 5, 5 },
+    { 5, 9 },
+    { 7, 7 },
+    { 9, 5 },
+    { 9, 9 },
+    { 10, 7 }
 };
 
-static const UnkStruct_ov5_02200C90 Unk_ov5_02200CAC[] = {
-    { 0x3, 0x7 },
-    { 0x5, 0x7 },
-    { 0x7, 0x5 },
-    { 0x7, 0x7 },
-    { 0x7, 0x9 },
-    { 0x9, 0x7 },
-    { 0xB, 0x7 }
+static const RegiDotCoordinates sDotCoordinatesIcebergRuins[] = {
+    { 3, 7 },
+    { 5, 7 },
+    { 7, 5 },
+    { 7, 7 },
+    { 7, 9 },
+    { 9, 7 },
+    { 11, 7 }
 };
 
-static const UnkStruct_ov5_02200C90 Unk_ov5_02200CC8[] = {
-    { 0x5, 0x5 },
-    { 0x5, 0x7 },
-    { 0x5, 0x9 },
-    { 0x7, 0x7 },
-    { 0x9, 0x5 },
-    { 0x9, 0x7 },
-    { 0x9, 0x9 }
+static const RegiDotCoordinates sDotCoordinatesRockPeakRuins[] = {
+    { 5, 5 },
+    { 5, 7 },
+    { 5, 9 },
+    { 7, 7 },
+    { 9, 5 },
+    { 9, 7 },
+    { 9, 9 }
 };
 
-BOOL ScrCmd_32C(ScriptContext *param0)
+BOOL ScrCmd_ActivateRegiRuinsDot(ScriptContext *ctx)
 {
-    int v0, v1;
-    u16 *v2 = ScriptContext_GetVarPointer(param0);
-    u16 v3 = ScriptContext_GetVar(param0);
-    u16 v4 = ScriptContext_GetVar(param0);
-    u16 v5 = ScriptContext_GetVar(param0);
+    int i, allDotsEnabled;
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    u16 dotType = ScriptContext_GetVar(ctx);
+    u16 x = ScriptContext_GetVar(ctx);
+    u16 z = ScriptContext_GetVar(ctx);
 
-    switch (v3) {
-    case 588:
-        v1 = 127;
+    switch (dotType) {
+    case DOT_TYPE_IRON_RUINS:
+        allDotsEnabled = 0x7F;
 
-        for (v0 = 0; v0 < (NELEMS(Unk_ov5_02200C90)); v0++) {
-            if ((v4 == Unk_ov5_02200C90[v0].unk_00) && (v5 == Unk_ov5_02200C90[v0].unk_02)) {
+        for (i = 0; i < NELEMS(sDotCoordinatesIronRuins); i++) {
+            if (x == sDotCoordinatesIronRuins[i].x && z == sDotCoordinatesIronRuins[i].z) {
                 Sound_PlayEffect(SEQ_SE_PL_JUMP2);
-                *v2 |= (1 << v0);
+                *destVar |= (1 << i);
                 break;
             }
         }
         break;
-    case 590:
-        v1 = 127;
+    case DOT_TYPE_ICEBERG_RUINS:
+        allDotsEnabled = 0x7F;
 
-        for (v0 = 0; v0 < (NELEMS(Unk_ov5_02200CAC)); v0++) {
-            if ((v4 == Unk_ov5_02200CAC[v0].unk_00) && (v5 == Unk_ov5_02200CAC[v0].unk_02)) {
+        for (i = 0; i < NELEMS(sDotCoordinatesIcebergRuins); i++) {
+            if (x == sDotCoordinatesIcebergRuins[i].x && z == sDotCoordinatesIcebergRuins[i].z) {
                 Sound_PlayEffect(SEQ_SE_PL_JUMP2);
-                *v2 |= (1 << v0);
+                *destVar |= (1 << i);
                 break;
             }
         }
         break;
-    case 592:
-        v1 = 127;
+    case DOT_TYPE_ROCK_PEAK_RUINS:
+        allDotsEnabled = 0x7F;
 
-        for (v0 = 0; v0 < (NELEMS(Unk_ov5_02200CC8)); v0++) {
-            if ((v4 == Unk_ov5_02200CC8[v0].unk_00) && (v5 == Unk_ov5_02200CC8[v0].unk_02)) {
+        for (i = 0; i < NELEMS(sDotCoordinatesRockPeakRuins); i++) {
+            if (x == sDotCoordinatesRockPeakRuins[i].x && z == sDotCoordinatesRockPeakRuins[i].z) {
                 Sound_PlayEffect(SEQ_SE_PL_JUMP2);
-                *v2 |= (1 << v0);
+                *destVar |= (1 << i);
                 break;
             }
         }
         break;
     }
 
-    if (*v2 == v1) {
-        *v2 = 260;
+    if (*destVar == allDotsEnabled) {
+        *destVar = RUINS_STATE_ACTIVATED_ALL_DOTS;
     }
 
     return 0;
