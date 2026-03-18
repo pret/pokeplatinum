@@ -3,12 +3,31 @@
 
 typedef struct CoordinatesS16 {
     s16 x;
-    s16 y;
+    union {
+        s16 y;
+        s16 z;
+    };
 } CoordinatesS16;
 
 typedef struct CoordinatesU16 {
     u16 x;
-    u16 y;
+    union {
+        u16 y;
+        u16 z;
+    };
 } CoordinatesU16;
+
+typedef struct CoordinatesInt {
+    int x;
+    union {
+        int y;
+        int z;
+    };
+} CoordinatesInt;
+
+typedef struct CoordinatesFX32 {
+    fx32 x;
+    fx32 y;
+} CoordinatesFX32;
 
 #endif // POKEPLATINUM_COORDINATES_H

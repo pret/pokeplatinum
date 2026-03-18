@@ -15,6 +15,7 @@
 
 #include "comm_player_manager.h"
 #include "communication_system.h"
+#include "coordinates.h"
 #include "field_system.h"
 #include "game_records.h"
 #include "heap.h"
@@ -158,7 +159,7 @@ void Spheres_AdvanceBuriedSphereSparkleTimer(void)
     }
 }
 
-static Coordinates *Spheres_GetCoordinatesOfBuriedSphereAtOrderedIndex(Coordinates *coordinates, int index)
+static CoordinatesU16 *Spheres_GetCoordinatesOfBuriedSphereAtOrderedIndex(CoordinatesU16 *coordinates, int index)
 {
     if (spheresEnv->buriedSpheresByCoordinates[index] == NULL) {
         return NULL;
@@ -172,7 +173,7 @@ static Coordinates *Spheres_GetCoordinatesOfBuriedSphereAtOrderedIndex(Coordinat
 
 static void Spheres_AddBuriedSphereToCoordinatesOrdering(BuriedSphere *sphere)
 {
-    Coordinates coordinates = {
+    CoordinatesU16 coordinates = {
         .x = sphere->x,
         .z = sphere->z
     };
@@ -221,7 +222,7 @@ static BuriedSphere *Spheres_Dummy(BuriedSphere *sphere)
 
 static BuriedSphere *Spheres_GetBuriedSphereAtCoordinates(int x, int z)
 {
-    Coordinates coordinates = {
+    CoordinatesU16 coordinates = {
         .x = x,
         .z = z
     };
@@ -286,7 +287,7 @@ void TouchRadarSearch_Init(TouchRadarSearchContext *ctx, int radius)
     ctx->iterator = 0;
 }
 
-BOOL TouchRadarSearch_GetNextCoords(TouchRadarSearchContext *ctx, TouchRadarCoordinates *out)
+BOOL TouchRadarSearch_GetNextCoords(TouchRadarSearchContext *ctx, CoordinatesS16 *out)
 {
     int i;
     int iterator = ctx->iterator;

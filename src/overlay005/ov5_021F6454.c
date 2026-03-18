@@ -24,6 +24,7 @@
 #include "berry_patch_graphics.h"
 #include "bg_window.h"
 #include "billboard.h"
+#include "coordinates.h"
 #include "field_script_context.h"
 #include "font.h"
 #include "game_records.h"
@@ -61,11 +62,6 @@
 #include "res/text/bank/menu_entries.h"
 
 #define MAX_LIST_ENTRIES 120
-
-typedef struct RegiDotCoordinates {
-    s16 x;
-    s16 z;
-} RegiDotCoordinates;
 
 typedef struct BattleHallRecordSelector {
     FieldSystem *fieldSystem;
@@ -846,34 +842,34 @@ BOOL ScrCmd_Dummy316(ScriptContext *ctx)
     return TRUE;
 }
 
-static const RegiDotCoordinates sDotCoordinatesIronRuins[] = {
-    { 4, 7 },
-    { 5, 5 },
-    { 5, 9 },
-    { 7, 7 },
-    { 9, 5 },
-    { 9, 9 },
-    { 10, 7 }
+static const CoordinatesS16 sDotCoordinatesIronRuins[] = {
+    { .x = 4, .z = 7 },
+    { .x = 5, .z = 5 },
+    { .x = 5, .z = 9 },
+    { .x = 7, .z = 7 },
+    { .x = 9, .z = 5 },
+    { .x = 9, .z = 9 },
+    { .x = 10, .z = 7 }
 };
 
-static const RegiDotCoordinates sDotCoordinatesIcebergRuins[] = {
-    { 3, 7 },
-    { 5, 7 },
-    { 7, 5 },
-    { 7, 7 },
-    { 7, 9 },
-    { 9, 7 },
-    { 11, 7 }
+static const CoordinatesS16 sDotCoordinatesIcebergRuins[] = {
+    { .x = 3, .z = 7 },
+    { .x = 5, .z = 7 },
+    { .x = 7, .z = 5 },
+    { .x = 7, .z = 7 },
+    { .x = 7, .z = 9 },
+    { .x = 9, .z = 7 },
+    { .x = 11, .z = 7 }
 };
 
-static const RegiDotCoordinates sDotCoordinatesRockPeakRuins[] = {
-    { 5, 5 },
-    { 5, 7 },
-    { 5, 9 },
-    { 7, 7 },
-    { 9, 5 },
-    { 9, 7 },
-    { 9, 9 }
+static const CoordinatesS16 sDotCoordinatesRockPeakRuins[] = {
+    { .x = 5, .z = 5 },
+    { .x = 5, .z = 7 },
+    { .x = 5, .z = 9 },
+    { .x = 7, .z = 7 },
+    { .x = 9, .z = 5 },
+    { .x = 9, .z = 7 },
+    { .x = 9, .z = 9 }
 };
 
 BOOL ScrCmd_ActivateRegiRuinsDot(ScriptContext *ctx)

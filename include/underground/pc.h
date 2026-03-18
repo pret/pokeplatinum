@@ -4,8 +4,10 @@
 #include "underground/defs.h"
 #include "underground/menus.h"
 
-int UndergroundPC_GetPCOwnerNetIDAtCoordinates(Coordinates *coordinates, int dir);
-BOOL UndergroundPC_TryUsePC(int netID, Coordinates *coordinates);
+#include "coordinates.h"
+
+int UndergroundPC_GetPCOwnerNetIDAtCoordinates(CoordinatesU16 *coordinates, int dir);
+BOOL UndergroundPC_TryUsePC(int netID, CoordinatesU16 *coordinates);
 void UndergroundPC_ProcessPCInteraction(int unused0, int unused1, void *data, void *data2);
 int CommPacketSizeOf_PCInteraction(void);
 void UndergroundPC_ProcessTakeFlagAttempt(int unused0, int unused1, void *data, void *unused3);

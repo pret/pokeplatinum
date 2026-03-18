@@ -71,11 +71,6 @@ typedef struct MessageQueue {
     charcode_t tempStringChars[TEMP_STRING_SIZE];
 } MessageQueue;
 
-typedef struct PlayerCoordinates {
-    int x;
-    int z;
-} PlayerCoordinates;
-
 typedef struct PlayerMarkerData {
     int x;
     int z;
@@ -91,7 +86,7 @@ typedef struct OtherMarkerData {
 
 struct UndergroundTopScreenContext_t {
     int state;
-    PlayerCoordinates playerCoords[MAX_CONNECTED_PLAYERS];
+    CoordinatesInt playerCoords[MAX_CONNECTED_PLAYERS];
     PlayerMarkerData playerMarkers[MAX_CONNECTED_PLAYERS];
     OtherMarkerData otherMarkers[MAX_RADAR_BLIPS + 1];
     FieldSystem *parent;
@@ -114,8 +109,8 @@ static int positionsDummy[MAX_CONNECTED_PLAYERS][2];
 
 static void UndergroundTopScreen_InitBackgrounds(BgConfig *bgConfig, Window *window);
 static void UndergroundMap_InitSpriteResources(UndergroundTopScreenContext *ctx);
-static void UndergroundMap_FetchPlayerPositions(PlayerAvatar *const playerAvatar, PlayerCoordinates playerCoords[], PlayerMarkerData markerData[]);
-static void UndergroundMap_InitPlayerPositions(PlayerCoordinates playerCoords[], PlayerMarkerData markerData[]);
+static void UndergroundMap_FetchPlayerPositions(PlayerAvatar *const playerAvatar, CoordinatesInt playerCoords[], PlayerMarkerData markerData[]);
+static void UndergroundMap_InitPlayerPositions(CoordinatesInt playerCoords[], PlayerMarkerData markerData[]);
 static void UndergroundMap_DrawPlayerMarkers(PlayerMarkerData markerData[], Sprite *sprites[]);
 static void UndergroundTopScreen_FreeBackgrounds(BgConfig *bgConfig);
 static void UndergroundTopScreen_HandleMessageQueue(BgConfig *unused, Window *window, int *printerID, int *state, int *timer, MessageQueue *queue);
@@ -251,7 +246,7 @@ static void UndergroundTopScreen_Task(SysTask *sysTask, void *data)
     }
 }
 
-static void UndergroundMap_InitPlayerPositions(PlayerCoordinates playerCoords[], PlayerMarkerData markerData[])
+static void UndergroundMap_InitPlayerPositions(CoordinatesInt playerCoords[], PlayerMarkerData markerData[])
 {
     for (int netID = 0; netID < MAX_CONNECTED_PLAYERS; netID++) {
         playerCoords[netID].x = 0;
@@ -265,7 +260,7 @@ static void UndergroundMap_InitPlayerPositions(PlayerCoordinates playerCoords[],
     }
 }
 
-static void UndergroundMap_FetchPlayerPositions(PlayerAvatar *const playerAvatar, PlayerCoordinates playerCoords[], PlayerMarkerData markerData[])
+static void UndergroundMap_FetchPlayerPositions(PlayerAvatar *const playerAvatar, CoordinatesInt playerCoords[], PlayerMarkerData markerData[])
 {
     for (int netID = 0; netID < MAX_CONNECTED_PLAYERS; netID++) {
         playerCoords[netID].x = CommPlayer_GetXIfActive(netID);

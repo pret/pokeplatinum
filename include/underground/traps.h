@@ -9,6 +9,7 @@
 #include "underground/defs.h"
 
 #include "bg_window.h"
+#include "coordinates.h"
 #include "string_gf.h"
 
 void TrapsEnv_Init(void *dest, FieldSystem *fieldSystem);
@@ -34,8 +35,8 @@ void Traps_ReceiveLoadTrapsResult(int unused0, int unused1, void *data, void *un
 int CommPacketSizeOf_LoadTrapsResult(void);
 BOOL Traps_HaveLinksReceivedPlacedTraps(void);
 void Traps_ClearLinksReceivedPlacedTraps(void);
-int CommPacketSizeOf_Coordinates(void);
-BOOL Traps_TryDisengageTrap(int netID, Coordinates *unused, u8 flags);
+int CommPacketSizeOf_CoordinatesU16(void);
+BOOL Traps_TryDisengageTrap(int netID, CoordinatesU16 *unused, u8 flags);
 int CommPacketSizeOf_TriggeredTrap(void);
 void Traps_ProcessDisengagedTrap(int unused0, int unused1, void *data, void *unused3);
 BOOL Traps_IsTrapAtCoordinates(int x, int z);

@@ -30,6 +30,7 @@
 #include "comm_player_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
+#include "coordinates.h"
 #include "field_map_change.h"
 #include "field_system.h"
 #include "field_task.h"
@@ -2303,7 +2304,7 @@ static enum Good SecretBases_GetGoodWithCollisionAtCoordinates(SecretBase *secre
     return UG_GOOD_NONE;
 }
 
-BOOL SecretBases_CheckForInteractableGood(int netID, Coordinates *coordinates)
+BOOL SecretBases_CheckForInteractableGood(int netID, CoordinatesU16 *coordinates)
 {
     int x = coordinates->x;
     int z = coordinates->z;

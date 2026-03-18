@@ -27,6 +27,7 @@
 #include "comm_player_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
+#include "coordinates.h"
 #include "field_system.h"
 #include "field_task.h"
 #include "game_records.h"
@@ -121,11 +122,6 @@ typedef struct TrapRadarResult {
     u8 netID;
 } TrapRadarResult;
 
-typedef struct fx32Coordinates {
-    fx32 x;
-    fx32 y;
-} fx32Coordinates;
-
 typedef struct TrapRadarContext {
     TrapRadarResult results[MAX_PLACED_TRAPS + MAX_SPAWNED_TRAPS];
     u8 index;
@@ -182,7 +178,7 @@ typedef struct LeafTrapContext {
     int state;
     int printerID;
     u16 leafAngleIdx[MAX_TRAP_EFFECT_SPRITES];
-    Coordinates2D leafCoords[MAX_TRAP_EFFECT_SPRITES];
+    CoordinatesU16 leafCoords[MAX_TRAP_EFFECT_SPRITES];
     u8 micBlowIntensities[40];
     u8 micBlowDelay[MAX_TRAP_EFFECT_SPRITES];
     u8 blowIntensityIndex;
@@ -242,7 +238,7 @@ typedef struct BubbleTrapContext {
     int printerID;
     u8 bubbleSizes[MAX_BUBBLES];
     u16 bubbleAngleIdx[MAX_BUBBLES];
-    fx32Coordinates bubbleCoords[MAX_BUBBLES];
+    CoordinatesFX32 bubbleCoords[MAX_BUBBLES];
     BOOL isBubblePopped[MAX_BUBBLES];
     u16 bubbleScaleTimer[MAX_BUBBLES];
     u8 timer;
@@ -1016,7 +1012,7 @@ int CommPacketSizeOf_AllTrapsPlacedPlayer(void)
     return sizeof(BuriedTrap) * MAX_PLACED_TRAPS;
 }
 
-static Coordinates *Traps_GetCoordinatesOfBuriedTrapAtOrderedIndex(Coordinates *coordinates, int index)
+static CoordinatesU16 *Traps_GetCoordinatesOfBuriedTrapAtOrderedIndex(CoordinatesU16 *coordinates, int index)
 {
     if (trapsEnv->buriedTrapsByCoordinates[index] == NULL) {
         return NULL;
@@ -1030,7 +1026,7 @@ static Coordinates *Traps_GetCoordinatesOfBuriedTrapAtOrderedIndex(Coordinates *
 
 static void Traps_AddBuriedTrapToCoordinatesOrdering(BuriedTrap *trap)
 {
-    Coordinates coordinates = {
+    CoordinatesU16 coordinates = {
         .x = trap->x,
         .z = trap->z
     };
@@ -1480,12 +1476,12 @@ void Traps_ClearLinksReceivedPlacedTraps(void)
     trapsEnv->linksReceivedPlacedTraps = FALSE;
 }
 
-int CommPacketSizeOf_Coordinates(void)
+int CommPacketSizeOf_CoordinatesU16(void)
 {
-    return sizeof(Coordinates);
+    return sizeof(CoordinatesU16);
 }
 
-BOOL Traps_TryDisengageTrap(int netID, Coordinates *unused, u8 flags)
+BOOL Traps_TryDisengageTrap(int netID, CoordinatesU16 *unused, u8 flags)
 {
     Underground *underground = SaveData_GetUnderground(FieldSystem_GetSaveData(trapsEnv->fieldSystem));
 
@@ -1594,7 +1590,7 @@ static int Traps_GetBuriedTrapSetterNetID(BuriedTrap *trap)
 
 static BuriedTrap *Traps_GetTrapAtCoordinates(int x, int z)
 {
-    Coordinates coordinates = {
+    CoordinatesU16 coordinates = {
         .x = x,
         .z = z
     };
@@ -2372,7 +2368,7 @@ static void Traps_EndSmokeTrapEffectClient(int netID, BOOL allowToolStepBack)
 }
 
 // returns true when less than 13 tiles of smoke remain
-static BOOL Traps_ProcessSmoke(Coordinates2D *touchCoordinates, BgConfig *bgConfig, SmokeTrapContext *ctx)
+static BOOL Traps_ProcessSmoke(CoordinatesU16 *touchCoordinates, BgConfig *bgConfig, SmokeTrapContext *ctx)
 {
     int smokeTilesLeft = 0;
     u8 *tilemap = Bg_GetTilemapBuffer(bgConfig, BG_LAYER_MAIN_2);
@@ -2514,10 +2510,10 @@ static void Traps_SmokeTrapClientTask(SysTask *sysTask, void *data)
         break;
     case SMOKE_TRAP_STATE_MAIN:
         if (gSystem.touchHeld) {
-            Coordinates2D touchCoordinates;
-
-            touchCoordinates.x = gSystem.touchX;
-            touchCoordinates.y = gSystem.touchY;
+            CoordinatesU16 touchCoordinates = {
+                .x = gSystem.touchX,
+                .y = gSystem.touchY
+            };
 
             if (Traps_ProcessSmoke(&touchCoordinates, ctx->bgConfig, ctx)) {
                 if (ctx->isTool) {

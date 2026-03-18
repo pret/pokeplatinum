@@ -7,17 +7,13 @@
 
 #include "field/field_system_decl.h"
 
+#include "coordinates.h"
 #include "string_gf.h"
 
 typedef struct TouchRadarSearchContext {
     u16 iterator;
     u16 radius;
 } TouchRadarSearchContext;
-
-typedef struct TouchRadarCoordinates {
-    s16 x;
-    s16 z;
-} TouchRadarCoordinates;
 
 void SpheresEnv_Init(void *dest, FieldSystem *fieldSystem);
 int SpheresEnv_Size(void);
@@ -27,7 +23,7 @@ void SpheresEnv_Free(void);
 void Spheres_AdvanceBuriedSphereSparkleTimer(void);
 void Spheres_ProcessRetrieveBuriedSphereRequest(int unused, int unused2, void *src, void *unused3);
 void TouchRadarSearch_Init(TouchRadarSearchContext *ctx, int radius);
-BOOL TouchRadarSearch_GetNextCoords(TouchRadarSearchContext *ctx, TouchRadarCoordinates *out);
+BOOL TouchRadarSearch_GetNextCoords(TouchRadarSearchContext *ctx, CoordinatesS16 *out);
 void Spheres_TryBurySphere(enum SphereType sphereType, int sphereSize, int x, int z);
 BOOL Spheres_IsMiningItemSphere(int miningItemID);
 BOOL Spheres_IsBuriedSphereAtCoordinates(int x, int z);

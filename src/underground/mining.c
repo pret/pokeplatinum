@@ -27,6 +27,7 @@
 #include "comm_player_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
+#include "coordinates.h"
 #include "field_system.h"
 #include "field_task.h"
 #include "game_records.h"
@@ -803,7 +804,7 @@ void MiningEnv_Free(void)
     }
 }
 
-BOOL Mining_CheckForMiningSpotInteract(int netID, Coordinates *coordinates)
+BOOL Mining_CheckForMiningSpotInteract(int netID, CoordinatesU16 *coordinates)
 {
     MiningSpot *miningSpot = Mining_GetMiningSpotAtCoordinates(coordinates->x, coordinates->z);
     u8 buffer = netID;
