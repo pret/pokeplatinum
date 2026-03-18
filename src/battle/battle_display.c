@@ -16,6 +16,7 @@
 
 #include "struct_decls/battle_system.h"
 #include "struct_defs/battler_data.h"
+#include "struct_defs/fraction.h"
 #include "struct_defs/move_animation.h"
 #include "struct_defs/sprite_animation_frame.h"
 #include "struct_defs/trainer.h"
@@ -1401,7 +1402,7 @@ void BattleDisplay_SetAlertMessage(BattleSystem *battleSys, BattlerData *battler
         ov16_022661B0(battleSys, battlerData->battler);
         BattleController_EmitClearCommand(battleSys, battlerData->battler, message->command);
     } else {
-        if ((BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_LINK) == 0) {
+        if ((BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_LINK) == FALSE) {
             ov16_022661B0(battleSys, battlerData->battler);
         }
 
@@ -1995,20 +1996,15 @@ static void Task_ShowEncounter(SysTask *task, void *data)
         monShowData->unk_10 = NULL;
 
         if (BattleSystem_GetBattleType(monShowData->battleSys) & BATTLE_TYPE_2vs2) {
-            if ((BattleSystem_GetBattleStatusMask(monShowData->battleSys) & BATTLE_STATUS_RECORDED) == FALSE) {
-                if (monShowData->battlerType == BATTLER_TYPE_PLAYER_SIDE_SLOT_1) {
-                    monShowData->unk_10 = ov12_02223764(monShowData->battleSys, HEAP_ID_BATTLE);
-                }
+            if ((BattleSystem_GetBattleStatusMask(monShowData->battleSys) & BATTLE_STATUS_RECORDED) == FALSE
+                && monShowData->battlerType == BATTLER_TYPE_PLAYER_SIDE_SLOT_1) {
+                monShowData->unk_10 = ov12_02223764(monShowData->battleSys, HEAP_ID_BATTLE);
             }
-        } else {
-            if ((BattleSystem_GetBattleStatusMask(monShowData->battleSys) & BATTLE_STATUS_RECORDED) == FALSE) {
-                if (ov16_0223ED60(monShowData->battleSys) == 1 && monShowData->battlerType == BATTLER_TYPE_PLAYER_SIDE_SLOT_1) {
-                    monShowData->unk_10 = ov12_02223764(monShowData->battleSys, HEAP_ID_BATTLE);
-                } else if (monShowData->battlerType == BATTLER_TYPE_SOLO_PLAYER) {
-                    monShowData->unk_10 = ov12_02223764(monShowData->battleSys, HEAP_ID_BATTLE);
-                } else {
-                    (void)0;
-                }
+        } else if ((BattleSystem_GetBattleStatusMask(monShowData->battleSys) & BATTLE_STATUS_RECORDED) == FALSE) {
+            if (ov16_0223ED60(monShowData->battleSys) == 1 && monShowData->battlerType == BATTLER_TYPE_PLAYER_SIDE_SLOT_1) {
+                monShowData->unk_10 = ov12_02223764(monShowData->battleSys, HEAP_ID_BATTLE);
+            } else if (monShowData->battlerType == BATTLER_TYPE_SOLO_PLAYER) {
+                monShowData->unk_10 = ov12_02223764(monShowData->battleSys, HEAP_ID_BATTLE);
             }
         }
 
@@ -3444,7 +3440,7 @@ static void Task_LinkSetCommandSelection(SysTask *task, void *data)
     SysTask_Done(task);
 }
 
-static const u8 sFleeRateMultipliers[][2] = {
+static const Fraction sFleeRateMultipliers[] = {
     { 10, 40 },
     { 10, 35 },
     { 10, 30 },
@@ -3457,7 +3453,7 @@ static const u8 sFleeRateMultipliers[][2] = {
     { 25, 10 },
     { 30, 10 },
     { 35, 10 },
-    { 40, 10 }
+    { 40, 10 },
 };
 
 static void Task_SafariPokemonSetCommandSelection(SysTask *task, void *data)
@@ -3466,7 +3462,7 @@ static void Task_SafariPokemonSetCommandSelection(SysTask *task, void *data)
     u8 escapeCount = BattleSystem_GetSafariEscapeCount(commandSetData->battleSys);
     u16 species = BattleMon_Get(BattleSystem_GetBattleContext(commandSetData->battleSys), commandSetData->battler, BATTLEMON_SPECIES, NULL);
     int fleeRate = SpeciesData_GetSpeciesValue(species, SPECIES_DATA_SAFARI_FLEE_RATE);
-    fleeRate = fleeRate * sFleeRateMultipliers[escapeCount][0] / sFleeRateMultipliers[escapeCount][1];
+    fleeRate = fleeRate * sFleeRateMultipliers[escapeCount].numerator / sFleeRateMultipliers[escapeCount].denominator;
 
     if (BattleSystem_RandNext(commandSetData->battleSys) % 255 <= fleeRate) {
         ov16_022656D4(commandSetData->battleSys, commandSetData->battler, 4);
@@ -5073,8 +5069,8 @@ static void Task_PlayFaintingSequence(SysTask *task, void *data)
         faintingSequenceData->state++;
     case 8:
         height = LoadPokemonSpriteYOffset(faintingSequenceData->species, faintingSequenceData->gender, faintingSequenceData->face, faintingSequenceData->form, faintingSequenceData->personality);
-        height = 80 - height;
-        PokemonSprite_SetPartialDraw(faintingSequenceData->monSprite, 0, 0, 80, height);
+        height = MON_SPRITE_FRAME_HEIGHT - height;
+        PokemonSprite_SetPartialDraw(faintingSequenceData->monSprite, 0, 0, MON_SPRITE_FRAME_WIDTH, height);
         faintingSequenceData->state++;
         break;
     case 9:
@@ -5362,16 +5358,16 @@ static void ov16_02263014(SysTask *task, void *data)
         }
 
         if (v0->unk_15 == 28) {
-            MI_CpuCopy16(ov16_0223F204(v0->battleSys), PaletteData_GetUnfadedBuffer(paletteData, 0), 0x20 * 7);
+            MI_CpuCopy16(ov16_0223F204(v0->battleSys), PaletteData_GetUnfadedBuffer(paletteData, 0), PALETTE_SIZE_BYTES * 7);
 
             if (BattleSystem_GetBattleType(v0->battleSys) == BATTLE_TYPE_AI_PARTNER) {
-                MI_CpuCopy16(ov16_0223F210(v0->battleSys), PaletteData_GetUnfadedBuffer(paletteData, 2), 0x20 * 5);
+                MI_CpuCopy16(ov16_0223F210(v0->battleSys), PaletteData_GetUnfadedBuffer(paletteData, 2), PALETTE_SIZE_BYTES * 5);
             } else if (BattleSystem_GetBattleType(v0->battleSys) & BATTLE_TYPE_DOUBLES) {
-                MI_CpuCopy16(ov16_0223F210(v0->battleSys), PaletteData_GetUnfadedBuffer(paletteData, 2), 0x20 * 7);
+                MI_CpuCopy16(ov16_0223F210(v0->battleSys), PaletteData_GetUnfadedBuffer(paletteData, 2), PALETTE_SIZE_BYTES * 7);
             } else if (BattleSystem_GetBattleType(v0->battleSys) & BATTLE_TYPE_TRAINER) {
-                MI_CpuCopy16(ov16_0223F210(v0->battleSys), PaletteData_GetUnfadedBuffer(paletteData, 2), 0x20 * 5);
+                MI_CpuCopy16(ov16_0223F210(v0->battleSys), PaletteData_GetUnfadedBuffer(paletteData, 2), PALETTE_SIZE_BYTES * 5);
             } else {
-                MI_CpuCopy16(ov16_0223F210(v0->battleSys), PaletteData_GetUnfadedBuffer(paletteData, 2), 0x20 * 4);
+                MI_CpuCopy16(ov16_0223F210(v0->battleSys), PaletteData_GetUnfadedBuffer(paletteData, 2), PALETTE_SIZE_BYTES * 4);
             }
 
             PaletteData_StartFade(paletteData, PLTTBUF_MAIN_BG_F, 0xF3FF, 0, 16, 0, fadeTarget);
@@ -5400,16 +5396,16 @@ static void ov16_02263014(SysTask *task, void *data)
         ov12_02237F74(v0->unk_04);
         v0->unk_14++;
     case 5:
-        MI_CpuCopy16(ov16_0223F204(v0->battleSys), PaletteData_GetUnfadedBuffer(paletteData, 0), 0x20 * 7);
+        MI_CpuCopy16(ov16_0223F204(v0->battleSys), PaletteData_GetUnfadedBuffer(paletteData, 0), PALETTE_SIZE_BYTES * 7);
 
         if (BattleSystem_GetBattleType(v0->battleSys) == BATTLE_TYPE_AI_PARTNER) {
-            MI_CpuCopy16(ov16_0223F210(v0->battleSys), PaletteData_GetUnfadedBuffer(paletteData, 2), 0x20 * 5);
+            MI_CpuCopy16(ov16_0223F210(v0->battleSys), PaletteData_GetUnfadedBuffer(paletteData, 2), PALETTE_SIZE_BYTES * 5);
         } else if (BattleSystem_GetBattleType(v0->battleSys) & BATTLE_TYPE_DOUBLES) {
-            MI_CpuCopy16(ov16_0223F210(v0->battleSys), PaletteData_GetUnfadedBuffer(paletteData, 2), 0x20 * 7);
+            MI_CpuCopy16(ov16_0223F210(v0->battleSys), PaletteData_GetUnfadedBuffer(paletteData, 2), PALETTE_SIZE_BYTES * 7);
         } else if (BattleSystem_GetBattleType(v0->battleSys) & BATTLE_TYPE_TRAINER) {
-            MI_CpuCopy16(ov16_0223F210(v0->battleSys), PaletteData_GetUnfadedBuffer(paletteData, 2), 0x20 * 5);
+            MI_CpuCopy16(ov16_0223F210(v0->battleSys), PaletteData_GetUnfadedBuffer(paletteData, 2), PALETTE_SIZE_BYTES * 5);
         } else {
-            MI_CpuCopy16(ov16_0223F210(v0->battleSys), PaletteData_GetUnfadedBuffer(paletteData, 2), 0x20 * 4);
+            MI_CpuCopy16(ov16_0223F210(v0->battleSys), PaletteData_GetUnfadedBuffer(paletteData, 2), PALETTE_SIZE_BYTES * 4);
         }
 
         PaletteData_StartFade(paletteData, PLTTBUF_MAIN_BG_F, 0xFFFF, 0, 0, 0, 0x7FFF);
@@ -5924,12 +5920,12 @@ static void LoadRecallMessage(BattleSystem *battleSys, BattlerData *battlerData,
 {
     if (battlerData->battlerType & BATTLER_THEM) {
         if (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_LINK) {
-            battleMsg->id = BattleStrings_Text_TrainerWithdrewPokemon;
+            battleMsg->id = BattleStrings_Text_LinkTrWithdrewPokemon;
             battleMsg->tags = TAG_TRNAME_NICKNAME;
             battleMsg->params[0] = battlerData->battler;
             battleMsg->params[1] = battlerData->battler | (message->partySlot << 8);
         } else {
-            battleMsg->id = BattleStrings_Text_TrainerWithClassWithdrewPokemon;
+            battleMsg->id = BattleStrings_Text_TrWithdrewPokemon;
             battleMsg->tags = TAG_TRCLASS_TRNAME_NICKNAME;
             battleMsg->params[0] = battlerData->battler;
             battleMsg->params[1] = battlerData->battler;
@@ -5960,14 +5956,14 @@ static void LoadRecallMessage(BattleSystem *battleSys, BattlerData *battlerData,
 static void LoadSendOutMessage(BattleSystem *battleSys, BattlerData *battlerData, SendOutMsgMessage *message, BattleMessage *battleMsg)
 {
     if (battlerData->battlerType & BATTLER_THEM) {
-        if ((BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_LINK) == 0) {
-            battleMsg->id = BattleStrings_Text_TrainerWithClassSentOutPokemon;
+        if ((BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_LINK) == FALSE) {
+            battleMsg->id = BattleStrings_Text_TrSentOutPokemon;
             battleMsg->tags = TAG_TRCLASS_TRNAME_NICKNAME;
             battleMsg->params[0] = battlerData->battler;
             battleMsg->params[1] = battlerData->battler;
             battleMsg->params[2] = battlerData->battler | (message->partySlot << 8);
         } else {
-            battleMsg->id = BattleStrings_Text_TrainerSentOutPokemon;
+            battleMsg->id = BattleStrings_Text_LinkTrSentOutPokemon;
             battleMsg->tags = TAG_TRNAME_NICKNAME;
             battleMsg->params[0] = battlerData->battler;
             battleMsg->params[1] = battlerData->battler | (message->partySlot << 8);
@@ -6010,32 +6006,32 @@ static void LoadBattleStartMessage(BattleSystem *battleSys, BattlerData *unused,
 
     if (battleType & BATTLE_TYPE_LINK) {
         if (battleType & BATTLE_TYPE_FRONTIER) {
-            battleMsg->id = BattleStrings_Text_YouAreChallengedByTrainer1WithClassAndTrainer2WithClass;
+            battleMsg->id = BattleStrings_Text_YouAreChallengedByTr1AndTr2;
             battleMsg->tags = TAG_TRCLASS_TRNAME_TRCLASS_TRNAME;
             battleMsg->params[0] = battler1;
             battleMsg->params[1] = battler1;
             battleMsg->params[2] = battler2;
             battleMsg->params[3] = battler2;
         } else if (battleType & BATTLE_TYPE_2vs2) {
-            battleMsg->id = BattleStrings_Text_YouAreChallengedByTrainer1AndTrainer2;
+            battleMsg->id = BattleStrings_Text_YouAreChallengedByLinkTr1AndLinkTr2;
             battleMsg->tags = TAG_TRNAME_TRNAME;
             battleMsg->params[0] = battler1;
             battleMsg->params[1] = battler2;
         } else {
-            battleMsg->id = BattleStrings_Text_YouAreChallengedByTrainer;
+            battleMsg->id = BattleStrings_Text_YouAreChallengedByLinkTr;
             battleMsg->tags = TAG_TRNAME;
             battleMsg->params[0] = battler1;
         }
     } else {
         if (battleType & BATTLE_TYPE_TAG || battleType & BATTLE_TYPE_2vs2) {
-            battleMsg->id = BattleStrings_Text_YouAreChallengedByTrainer1WithClassAndTrainer2WithClass;
+            battleMsg->id = BattleStrings_Text_YouAreChallengedByTr1AndTr2;
             battleMsg->tags = TAG_TRCLASS_TRNAME_TRCLASS_TRNAME;
             battleMsg->params[0] = battler1;
             battleMsg->params[1] = battler1;
             battleMsg->params[2] = battler2;
             battleMsg->params[3] = battler2;
         } else {
-            battleMsg->id = BattleStrings_Text_YouAreChallengedByTrainerWithClass;
+            battleMsg->id = BattleStrings_Text_YouAreChallengedByTr;
             battleMsg->tags = TAG_TRCLASS_TRNAME;
             battleMsg->params[0] = battler1;
             battleMsg->params[1] = battler1;
@@ -6060,7 +6056,7 @@ static void LoadLeadMonMessage(BattleSystem *battleSys, BattlerData *battlerData
 
         if (battleType & BATTLE_TYPE_LINK) {
             if (battleType & BATTLE_TYPE_FRONTIER) {
-                battleMsg->id = BattleStrings_Text_Trainer1WithClassSentOutPokemon1Trainer2WithClassSentOutPokemon2;
+                battleMsg->id = BattleStrings_Text_Tr1SentOutPokemon1Tr2SentOutPokemon2;
                 battleMsg->tags = TAG_TRCLASS_TRNAME_NICKNAME_TRCLASS_TRNAME_NICKNAME;
                 battleMsg->params[0] = battler1;
                 battleMsg->params[1] = battler1;
@@ -6069,27 +6065,27 @@ static void LoadLeadMonMessage(BattleSystem *battleSys, BattlerData *battlerData
                 battleMsg->params[4] = battler2;
                 battleMsg->params[5] = battler2 | (message->partySlot[battler2] << 8);
             } else if (battleType & BATTLE_TYPE_2vs2) {
-                battleMsg->id = BattleStrings_Text_Trainer1SentOutPokemon1Trainer2SentOutPokemon2;
+                battleMsg->id = BattleStrings_Text_LinkTr1SentOutPokemon1LinkTr2SentOutPokemon2;
                 battleMsg->tags = TAG_TRNAME_NICKNAME_TRNAME_NICKNAME;
                 battleMsg->params[0] = battler1;
                 battleMsg->params[1] = battler1 | (message->partySlot[battler1] << 8);
                 battleMsg->params[2] = battler2;
                 battleMsg->params[3] = battler2 | (message->partySlot[battler2] << 8);
             } else if (battleType & BATTLE_TYPE_DOUBLES) {
-                battleMsg->id = BattleStrings_Text_TrainerSentOutPokemon1AndPokemon2;
+                battleMsg->id = BattleStrings_Text_LinkTrSentOutPokemon1AndPokemon2;
                 battleMsg->tags = TAG_TRNAME_NICKNAME_NICKNAME;
                 battleMsg->params[0] = battler1;
                 battleMsg->params[1] = battler1 | (message->partySlot[battler1] << 8);
                 battleMsg->params[2] = battler2 | (message->partySlot[battler2] << 8);
             } else {
-                battleMsg->id = BattleStrings_Text_TrainerSentOutPokemon;
+                battleMsg->id = BattleStrings_Text_LinkTrSentOutPokemon;
                 battleMsg->tags = TAG_TRNAME_NICKNAME;
                 battleMsg->params[0] = battler1;
                 battleMsg->params[1] = battler1 | (message->partySlot[battler1] << 8);
             }
         } else {
             if (battleType & BATTLE_TYPE_TAG || battleType & BATTLE_TYPE_2vs2) {
-                battleMsg->id = BattleStrings_Text_Trainer1WithClassSentOutPokemon1Trainer2WithClassSentOutPokemon2;
+                battleMsg->id = BattleStrings_Text_Tr1SentOutPokemon1Tr2SentOutPokemon2;
                 battleMsg->tags = TAG_TRCLASS_TRNAME_NICKNAME_TRCLASS_TRNAME_NICKNAME;
                 battleMsg->params[0] = battler1;
                 battleMsg->params[1] = battler1;
@@ -6098,14 +6094,14 @@ static void LoadLeadMonMessage(BattleSystem *battleSys, BattlerData *battlerData
                 battleMsg->params[4] = battler2;
                 battleMsg->params[5] = battler2 | (message->partySlot[battler2] << 8);
             } else if (battleType & BATTLE_TYPE_DOUBLES) {
-                battleMsg->id = BattleStrings_Text_TrainerWithClassSentOutPokemon1AndPokemon2;
+                battleMsg->id = BattleStrings_Text_TrSentOutPokemon1AndPokemon2;
                 battleMsg->tags = TAG_TRCLASS_TRNAME_NICKNAME_NICKNAME;
                 battleMsg->params[0] = battler1;
                 battleMsg->params[1] = battler1;
                 battleMsg->params[2] = battler1 | (message->partySlot[battler1] << 8);
                 battleMsg->params[3] = battler2 | (message->partySlot[battler2] << 8);
             } else {
-                battleMsg->id = BattleStrings_Text_TrainerWithClassSentOutPokemon;
+                battleMsg->id = BattleStrings_Text_TrSentOutPokemon;
                 battleMsg->tags = TAG_TRCLASS_TRNAME_NICKNAME;
                 battleMsg->params[0] = battler1;
                 battleMsg->params[1] = battler1;
@@ -6149,7 +6145,7 @@ static void LoadLeadMonMessage(BattleSystem *battleSys, BattlerData *battlerData
 
         if (battleType & BATTLE_TYPE_LINK) {
             if (battleType & BATTLE_TYPE_2vs2) {
-                battleMsg->id = BattleStrings_Text_TrainerSentOutPokemon1GoPokemon2;
+                battleMsg->id = BattleStrings_Text_LinkTrSentOutPokemon1GoPokemon2;
                 battleMsg->tags = TAG_TRNAME_NICKNAME_NICKNAME;
                 battleMsg->params[0] = battler1;
                 battleMsg->params[1] = battler1 | (message->partySlot[battler1] << 8);
@@ -6166,7 +6162,7 @@ static void LoadLeadMonMessage(BattleSystem *battleSys, BattlerData *battlerData
             }
         } else {
             if (battleType & BATTLE_TYPE_2vs2) {
-                battleMsg->id = BattleStrings_Text_TrainerWithClassSentOutPokemon1GoPokemon2;
+                battleMsg->id = BattleStrings_Text_TrSentOutPokemon1GoPokemon2;
                 battleMsg->tags = TAG_TRCLASS_TRNAME_NICKNAME_NICKNAME;
                 battleMsg->params[0] = battler1;
                 battleMsg->params[1] = battler1;
@@ -6204,36 +6200,36 @@ static void LoadResultMessage(BattleSystem *battleSys, BattlerData *battlerData,
     switch (battleResultMask) {
     case BATTLE_RESULT_WIN:
         if (battleType & BATTLE_TYPE_2vs2) {
-            battleMsg->id = BattleStrings_Text_PlayerDefeatedTrainer1AndTrainer2;
+            battleMsg->id = BattleStrings_Text_PlayerDefeatedLinkTr1AndLinkTr2;
             battleMsg->tags = TAG_TRNAME_TRNAME;
             battleMsg->params[0] = battler1;
             battleMsg->params[1] = battler2;
         } else {
-            battleMsg->id = BattleStrings_Text_PlayerDefeatedTrainer;
+            battleMsg->id = BattleStrings_Text_PlayerDefeatedLinkTr;
             battleMsg->tags = TAG_TRNAME;
             battleMsg->params[0] = battler1;
         }
         break;
     case BATTLE_RESULT_LOSE:
         if (battleType & BATTLE_TYPE_2vs2) {
-            battleMsg->id = BattleStrings_Text_PlayerLostAgainstTrainer1AndTrainer2;
+            battleMsg->id = BattleStrings_Text_PlayerLostAgainstLinkTr1AndLinkTr2;
             battleMsg->tags = TAG_TRNAME_TRNAME;
             battleMsg->params[0] = battler1;
             battleMsg->params[1] = battler2;
         } else {
-            battleMsg->id = BattleStrings_Text_PlayerLostAgainstTrainer;
+            battleMsg->id = BattleStrings_Text_PlayerLostAgainstLinkTr;
             battleMsg->tags = TAG_TRNAME;
             battleMsg->params[0] = battler1;
         }
         break;
     case BATTLE_RESULT_DRAW:
         if (battleType & BATTLE_TYPE_2vs2) {
-            battleMsg->id = BattleStrings_Text_PlayerBattledToADrawAgainstTrainer1AndTrainer2;
+            battleMsg->id = BattleStrings_Text_PlayerDrewAgainstLinkTr1AndLinkTr2;
             battleMsg->tags = TAG_TRNAME_TRNAME;
             battleMsg->params[0] = battler1;
             battleMsg->params[1] = battler2;
         } else {
-            battleMsg->id = BattleStrings_Text_PlayerBattledToADrawAgainstTrainer;
+            battleMsg->id = BattleStrings_Text_PlayerDrewAgainstLinkTr;
             battleMsg->tags = TAG_TRNAME;
             battleMsg->params[0] = battler1;
         }
@@ -6266,16 +6262,16 @@ static void LoadEscapeMessage(BattleSystem *battleSys, BattlerData *battlerData,
         BattleSystem_SetResultMask(battleSys, BATTLE_RESULT_LOSE | BATTLE_RESULT_TRY_FLEE | BATTLE_RESULT_TRY_FLEE_WAIT);
     } else {
         if (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_2vs2) {
-            battleMsg->id = BattleStrings_Text_Trainer1AndTrainer2Fled;
+            battleMsg->id = BattleStrings_Text_LinkTr1AndLinkTr2Fled;
             battleMsg->tags = TAG_TRNAME_TRNAME;
             battleMsg->params[0] = BattleSystem_GetBattlerOfType(battleSys, BATTLER_TYPE_ENEMY_SIDE_SLOT_1);
             battleMsg->params[1] = BattleSystem_GetBattlerOfType(battleSys, BATTLER_TYPE_ENEMY_SIDE_SLOT_2);
         } else if (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_DOUBLES) {
-            battleMsg->id = BattleStrings_Text_TrainerFled;
+            battleMsg->id = BattleStrings_Text_LinkTrFled;
             battleMsg->tags = TAG_TRNAME;
             battleMsg->params[0] = BattleSystem_GetBattlerOfType(battleSys, BATTLER_TYPE_ENEMY_SIDE_SLOT_1);
         } else {
-            battleMsg->id = BattleStrings_Text_TrainerFled;
+            battleMsg->id = BattleStrings_Text_LinkTrFled;
             battleMsg->tags = TAG_TRNAME;
             battleMsg->params[0] = BattleSystem_GetBattlerOfType(battleSys, BATTLER_TYPE_SOLO_ENEMY);
         }
@@ -6286,7 +6282,7 @@ static void LoadEscapeMessage(BattleSystem *battleSys, BattlerData *battlerData,
 
 static void LoadForfeitMessage(BattleSystem *battleSys, BattlerData *battlerData, BattleMessage *battleMsg)
 {
-    battleMsg->id = BattleStrings_Text_TrainerForfeitedTheMatch;
+    battleMsg->id = BattleStrings_Text_PlayerForfeitedTheMatch;
     battleMsg->tags = TAG_TRNAME;
 
     if (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_LINK) {

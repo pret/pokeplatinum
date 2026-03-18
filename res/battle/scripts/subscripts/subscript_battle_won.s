@@ -17,7 +17,7 @@ _015:
     CompareVarToValue OPCODE_FLAG_SET, BTLVAR_BATTLE_TYPE, BATTLE_TYPE_2vs2, _087
     CompareVarToValue OPCODE_FLAG_SET, BTLVAR_BATTLE_TYPE, BATTLE_TYPE_TAG, _087
     // Player defeated {0} {1}!
-    PrintMessage BattleStrings_Text_PlayerDefeatedTrainerWithClass, TAG_TRCLASS_TRNAME, BTLSCR_ENEMY_SLOT_1, BTLSCR_ENEMY_SLOT_1
+    PrintMessage BattleStrings_Text_PlayerDefeatedTr, TAG_TRCLASS_TRNAME, BTLSCR_ENEMY_SLOT_1, BTLSCR_ENEMY_SLOT_1
     Wait 
     WaitButtonABTime 15
     TrainerSlideIn BTLSCR_ENEMY_SLOT_1, BATTLER_TYPE_SOLO_ENEMY
@@ -43,7 +43,7 @@ _084:
 
 _087:
     // Player beat {0} {1} and {2} {3}!
-    PrintMessage BattleStrings_Text_PlayerBeatTrainerWithClassAndTrainerWithClass, TAG_TRCLASS_TRNAME_TRCLASS_TRNAME, BTLSCR_ENEMY_SLOT_1, BTLSCR_ENEMY_SLOT_1, BTLSCR_ENEMY_SLOT_2, BTLSCR_ENEMY_SLOT_2
+    PrintMessage BattleStrings_Text_PlayerBeatTr1AndTr2, TAG_TRCLASS_TRNAME_TRCLASS_TRNAME, BTLSCR_ENEMY_SLOT_1, BTLSCR_ENEMY_SLOT_1, BTLSCR_ENEMY_SLOT_2, BTLSCR_ENEMY_SLOT_2
     Wait 
     WaitButtonABTime 15
     TrainerSlideIn BTLSCR_ENEMY_SLOT_1, BATTLER_TYPE_SOLO_ENEMY

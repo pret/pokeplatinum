@@ -4,7 +4,7 @@
 _000:
     CompareVarToValue OPCODE_FLAG_SET, BTLVAR_BATTLE_TYPE, BATTLE_TYPE_PAL_PARK, _015
     // {0} used one {1}!
-    PrintMessage BattleStrings_Text_TrainerUsedOneItem, TAG_TRNAME_ITEM, BTLSCR_ATTACKER, BTLSCR_MSG_TEMP
+    PrintMessage BattleStrings_Text_PlayerUsedOneItem, TAG_TRNAME_ITEM, BTLSCR_ATTACKER, BTLSCR_MSG_TEMP
     Wait 
     ThrowPokeball BTLSCR_PLAYER, BTLSCR_THROW_SAFARI_BALL
     GoTo _023
