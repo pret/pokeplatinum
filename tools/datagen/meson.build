@@ -16,25 +16,6 @@ datagen_cpp_args = [
     '-O3',
 ]
 
-datagen_species_exe = executable(
-    'datagen-species',
-    sources: [
-        files('datagen_species.cpp'),
-        c_consts_generators,
-    ],
-    cpp_args: datagen_cpp_args,
-    implicit_include_directories: true,
-    include_directories: [
-        public_includes,
-        toplevel_includes,
-    ],
-    dependencies: [
-        nitroarc_dep,
-        rapidjson_dep,
-    ],
-    native: true,
-)
-
 datagen_trainer_exe = executable(
     'datagen-trainer',
     sources: [

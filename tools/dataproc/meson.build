@@ -24,3 +24,36 @@ dataproc_dep = declare_dependency(
         native: true,
     ),
 )
+
+repo_include = meson.global_source_root() / 'include'
+repo_build = meson.global_build_root()
+dataproc_templates_dir = meson.current_source_dir() / 'data'
+
+commonproc_dep = declare_dependency(
+    link_with: static_library(
+        'commonproc',
+        sources: files('src/common.c', 'src/enum.c'),
+
+        c_args: [
+            dataproc_cflags,
+            f'-DREPO_INCLUDE="@repo_include@"',
+            f'-DREPO_BUILD="@repo_build@"',
+            f'-DTEMPLATES_DIR="@dataproc_templates_dir@"',
+        ],
+
+        dependencies: [ dataproc_dep, nitroarc_dep ],
+        native: true,
+    ),
+    dependencies: [ dataproc_dep, nitroarc_dep ],
+)
+
+speciesproc_exe = executable(
+    'speciesproc',
+    sources: [ files('src/speciesproc.c'), c_consts_generators ],
+
+    c_args: dataproc_cflags,
+
+    include_directories: [ public_includes, toplevel_includes ],
+    dependencies: commonproc_dep,
+    native: true,
+)
