@@ -6,12 +6,11 @@
 #include "constants/heap.h"
 
 #include "functypes/funcptr_0209B988.h"
-#include "overlay104/ov104_0222E63C.h"
+#include "overlay104/frontier_script_manager.h"
+#include "overlay104/frontier_script_manager_decl.h"
 #include "overlay104/ov104_0223C2D4.h"
 #include "overlay104/struct_ov104_0222E8C8.h"
 #include "overlay104/struct_ov104_02230BE4.h"
-#include "overlay104/struct_ov104_022320B4_decl.h"
-#include "overlay104/struct_ov104_022320B4_t.h"
 #include "overlay104/struct_ov104_0223C4CC.h"
 #include "overlay104/struct_ov104_0223C634.h"
 #include "overlay104/struct_ov104_0223C688.h"
@@ -36,7 +35,7 @@ typedef struct UnkStruct_0209B75C_t {
     void *unk_08;
     UnkFuncPtr_0209B988 unk_0C;
     u8 unk_10;
-    UnkStruct_ov104_022320B4 *unk_14;
+    FrontierScriptManager *unk_14;
     UnkStruct_ov104_0223C4CC *unk_18;
     u8 unk_1C;
     u8 unk_1D;
@@ -81,8 +80,8 @@ int sub_0209B6F8(ApplicationManager *appMan, int *param1)
     v0->unk_00 = ApplicationManager_Args(appMan);
     GF_ASSERT(v0->unk_00 != NULL);
 
-    v0->unk_14 = ov104_0222E63C(v0, HEAP_ID_FIELD2, v0->unk_00->unk_24);
-    ov104_0222E748(v0->unk_14, v0->unk_00->unk_24, 0);
+    v0->unk_14 = FrontierScriptManager_New(v0, HEAP_ID_FIELD2, v0->unk_00->unk_24);
+    FrontierScriptManager_Load(v0->unk_14, v0->unk_00->unk_24, 0);
 
     sub_0209B8C8(v0);
 
@@ -162,15 +161,15 @@ int sub_0209B75C(ApplicationManager *appMan, int *param1)
         sub_0209B8C8(v0);
 
         if (v0->unk_20 == 0xffff) {
-            ov104_0222E86C(v0->unk_14, v0->unk_00->unk_24, HEAP_ID_FIELD2);
+            FrontierScriptManager_UpdateMessageLoader(v0->unk_14, v0->unk_00->unk_24, HEAP_ID_FIELD2);
         } else {
             UnkStruct_ov104_0222E8C8 *v2;
 
             v2 = ov104_0222E8C8(v0->unk_14, HEAP_ID_FIELD2);
-            ov104_0222E710(v0->unk_14);
+            FrontierScriptManager_Free(v0->unk_14);
 
-            v0->unk_14 = ov104_0222E63C(v0, HEAP_ID_FIELD2, v0->unk_00->unk_24);
-            ov104_0222E748(v0->unk_14, v0->unk_00->unk_24, v0->unk_20);
+            v0->unk_14 = FrontierScriptManager_New(v0, HEAP_ID_FIELD2, v0->unk_00->unk_24);
+            FrontierScriptManager_Load(v0->unk_14, v0->unk_00->unk_24, v0->unk_20);
             ov104_0222E8E8(v0->unk_14, v2);
         }
 
@@ -186,7 +185,7 @@ int sub_0209B8A4(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_0209B75C *v0 = ApplicationManager_Data(appMan);
 
-    ov104_0222E710(v0->unk_14);
+    FrontierScriptManager_Free(v0->unk_14);
 
     sub_0209B8D8(v0);
     ApplicationManager_FreeData(appMan);

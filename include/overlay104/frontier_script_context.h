@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_FRONTIER_SCRIPT_CONTEXT_H
 #define POKEPLATINUM_FRONTIER_SCRIPT_CONTEXT_H
 
-#include "overlay104/struct_ov104_022320B4_decl.h"
+#include "overlay104/frontier_script_manager_decl.h"
 
 #include "message.h"
 
@@ -11,7 +11,7 @@ typedef BOOL (*FrontierScrCmdFunc)(FrontierScriptContext *);
 typedef BOOL (*FrontierShouldResumeScriptFunc)(FrontierScriptContext *);
 
 struct FrontierScriptContext {
-    UnkStruct_ov104_022320B4 *unk_00;
+    FrontierScriptManager *scriptMan;
     u32 unk_04;
     u16 unk_08[8];
     u8 stackPointer;

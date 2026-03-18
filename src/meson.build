@@ -919,7 +919,7 @@ pokeplatinum_c = files(
     'overlay101/ov101_021D94D8.c',
     'applications/diploma.c',
     'overlay104/ov104_0222DCE0.c',
-    'overlay104/ov104_0222E63C.c',
+    'overlay104/frontier_script_manager.c',
     'overlay104/frontier_script_context.c',
     'overlay104/ov104_0222EA90.c',
     'overlay104/ov104_0222ECE8.c',

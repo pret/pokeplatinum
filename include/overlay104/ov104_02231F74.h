@@ -6,8 +6,8 @@
 #include "overlay063/struct_ov63_0222BEC0_decl.h"
 #include "overlay063/struct_ov63_0222CCB8.h"
 #include "overlay104/frontier_script_context.h"
+#include "overlay104/frontier_script_manager_decl.h"
 #include "overlay104/struct_ov104_0222FEDC.h"
-#include "overlay104/struct_ov104_022320B4_decl.h"
 #include "overlay104/struct_ov104_0223C4CC_decl.h"
 
 #include "bg_window.h"
@@ -21,7 +21,7 @@
 #define FRONTIER_MENU_ENTRIES_MAX 28
 
 typedef struct FrontierMenuManager {
-    UnkStruct_ov104_022320B4 *unk_00;
+    FrontierScriptManager *scriptMan;
     SysTask *sysTask;
     Window window;
     Window *parent;
@@ -54,13 +54,13 @@ typedef struct FrontierMenuManager {
     u16 cursorPos;
 } FrontierMenuManager;
 
-void FrontierShowMessage(UnkStruct_ov104_022320B4 *param0, const MessageLoader *msgLoader, u16 messageID, u8 canSpeedUp, FrontierMessageOptions *msgOptions);
-void Frontier_CloseMessage(UnkStruct_ov104_022320B4 *param0);
-FrontierMenuManager *FrontierMenuManager_New(UnkStruct_ov104_022320B4 *param0, u8 anchorX, u8 anchorY, u8 initialCursorPos, u8 CanExitWithB, u16 *selectedOptionPtr, StringTemplate *strTemplate, MessageLoader *msgLoader);
+void FrontierShowMessage(FrontierScriptManager *param0, const MessageLoader *msgLoader, u16 messageID, u8 canSpeedUp, FrontierMessageOptions *msgOptions);
+void Frontier_CloseMessage(FrontierScriptManager *scriptMan);
+FrontierMenuManager *FrontierMenuManager_New(FrontierScriptManager *scriptMan, u8 anchorX, u8 anchorY, u8 initalCursorPos, u8 canExitWithB, u16 *selectedOptionPtr, StringTemplate *strTemplate, MessageLoader *msgLoader);
 void FrontierMenuManager_AddMenuEntry(FrontierMenuManager *menuManager, u32 entryID, u32 altTextEntryID, u32 index);
 void FrontierMenuManager_ShowMenu(FrontierMenuManager *menuManager);
-FrontierMenuManager *FrontierMenuManager_New2(UnkStruct_ov104_022320B4 *param0, u8 anchorX, u8 anchorY, u8 initialCursorPos, u8 CanExitWithB, u16 *selectedOptionPtr, StringTemplate *strTemplate, MessageLoader *msgLoader);
-void FrontierMenuManager_AddListMenuEntry(FrontierMenuManager *menuManager, u32 entryID, u32 altTextEntryID, u32 index);
+FrontierMenuManager *FrontierMenuManager_New2(FrontierScriptManager *scriptMan, u8 anchorX, u8 anchorY, u8 initialCursorPos, u8 canExitWithB, u16 *selectedOptionPtr, StringTemplate *strTemplate, MessageLoader *msgLoader);
+void FrontierMenuManager_AddListMenuEntry(FrontierMenuManager *menuManager, u32 entry, u32 altTextEntryID, u32 index);
 void FrontierMenuManager_ShowListMenu(FrontierMenuManager *menuManager);
 void FrontierMenuManager_FreeListMenu(FrontierMenuManager *menuManager);
 void ov104_02232B78(SysTask *param0, void *param1);
@@ -75,8 +75,8 @@ void ov104_02232FEC(UnkStruct_ov104_0223C4CC *param0);
 void ov104_0223307C(UnkStruct_ov104_0223C4CC *param0);
 ManagedSprite *ov104_022330AC(UnkStruct_ov104_0223C4CC *param0, int param1, int param2);
 void ov104_022330F0(UnkStruct_ov104_0223C4CC *param0, ManagedSprite *param1);
-void ov104_022330FC(FrontierScriptContext *param0, u16 *param1);
-void ov104_0223310C(FrontierScriptContext *param0, u16 *param1, u32 param2);
+void ov104_022330FC(FrontierScriptContext *ctx, u16 *args);
+void ov104_0223310C(FrontierScriptContext *ctx, u16 *args, u32 bankID);
 void ov104_0223319C(SysTask *param0, void *param1);
 void ov104_022331E8(SysTask *param0, void *param1);
 void FrontierMenuManager_SetHorizontalAnchor(FrontierMenuManager *menuManager, BOOL anchorRight);

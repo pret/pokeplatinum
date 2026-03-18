@@ -10,12 +10,11 @@
 #include "struct_decls/struct_0203041C_decl.h"
 #include "struct_defs/battle_frontier.h"
 
+#include "overlay104/frontier_script_manager.h"
+#include "overlay104/frontier_script_manager_decl.h"
 #include "overlay104/ov104_0222DCE0.h"
-#include "overlay104/ov104_0222E63C.h"
 #include "overlay104/ov104_0222ECE8.h"
 #include "overlay104/ov104_0223B6F4.h"
-#include "overlay104/struct_ov104_022320B4_decl.h"
-#include "overlay104/struct_ov104_022320B4_t.h"
 #include "overlay104/struct_ov104_0223597C.h"
 #include "overlay104/struct_ov104_0223BA10.h"
 #include "overlay104/struct_ov104_0223C4CC.h"
@@ -53,11 +52,11 @@ void ov104_02236BF8(UnkStruct_ov104_0223BA10 *param0);
 void ov104_02236C50(UnkStruct_ov104_0223BA10 *param0);
 int ov104_02236D10(UnkStruct_ov104_0223BA10 *param0);
 BOOL ov104_02236F70(UnkStruct_ov104_0223BA10 *param0, u16 param1, u16 param2);
-void ov104_02236FC0(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_0223BA10 *param1);
-void ov104_022370E0(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_0223BA10 *param1);
-void ov104_02237180(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_0223BA10 *param1);
+void ov104_02236FC0(FrontierScriptManager *param0, UnkStruct_ov104_0223BA10 *param1);
+void ov104_022370E0(FrontierScriptManager *param0, UnkStruct_ov104_0223BA10 *param1);
+void ov104_02237180(FrontierScriptManager *param0, UnkStruct_ov104_0223BA10 *param1);
 static void ov104_022370C0(BgConfig *param0, Window *param1);
-static void ov104_02237284(UnkStruct_ov104_022320B4 *param0, Window *param1, TrainerInfo *param2, u16 param3);
+static void ov104_02237284(FrontierScriptManager *param0, Window *param1, TrainerInfo *param2, u16 param3);
 u16 ov104_02237338(UnkStruct_ov104_0223BA10 *param0);
 
 UnkStruct_ov104_0223BA10 *ov104_022361B4(SaveData *saveData, u16 param1, u8 param2, u16 param3, u16 param4, u16 param5, u16 *param6)
@@ -182,7 +181,7 @@ static void ov104_02236528(UnkStruct_ov104_0223BA10 *param0)
         param0->unk_394[i][3] = Pokemon_GetValue(mon, MON_DATA_MOVE4_PP, NULL);
     }
 
-    ov104_0223B760(param0->unk_10, ov104_0223BB60(param0), param0->unk_30, (7 * 2));
+    ov104_0223B760(param0->unk_10, ov104_0223BB60(param0), param0->unk_30, 7 * 2);
 
     ov104_0222E4BC(ov104_0223B7DC(param0->unk_10, 1), param0->unk_30[param0->unk_11], param0->unk_30[param0->unk_11 + 7], param0->unk_26C, param0->unk_288, param0->unk_274, param0->unk_278, BattleCastle_IsMultiPlayerChallenge(param0->unk_10));
 
@@ -675,7 +674,7 @@ BOOL ov104_02236F70(UnkStruct_ov104_0223BA10 *param0, u16 param1, u16 param2)
     return v0;
 }
 
-void ov104_02236FC0(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_0223BA10 *param1)
+void ov104_02236FC0(FrontierScriptManager *param0, UnkStruct_ov104_0223BA10 *param1)
 {
     UnkStruct_ov104_0223C4CC *v0 = ov104_0222E924(param0);
 
@@ -684,14 +683,14 @@ void ov104_02236FC0(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_0223BA10 *
 
     if (BattleCastle_IsMultiPlayerChallenge(param1->unk_10) == 0) {
         param0->unk_A8 = Window_New(HEAP_ID_FIELD2, 1);
-        Window_Add(v0->unk_00, param0->unk_A8, 1, 1, 1, 10, 4, 14, (((((1024 - (18 + 12)) - 9) - (27 * 4)) - (11 * 22)) - (10 * 4)));
+        Window_Add(v0->unk_00, param0->unk_A8, 1, 1, 1, 10, 4, 14, ((((1024 - (18 + 12)) - 9) - (27 * 4)) - (11 * 22)) - (10 * 4));
         ov104_022370C0(v0->unk_00, param0->unk_A8);
     } else {
         param0->unk_A8 = Window_New(HEAP_ID_FIELD2, 1);
         param0->unk_AC = Window_New(HEAP_ID_FIELD2, 1);
 
-        Window_Add(v0->unk_00, param0->unk_A8, 1, 1, 1, 10, 4, 14, (((((1024 - (18 + 12)) - 9) - (27 * 4)) - (11 * 22)) - (10 * 4)));
-        Window_Add(v0->unk_00, param0->unk_AC, 1, 21, 1, 10, 4, 14, ((((((1024 - (18 + 12)) - 9) - (27 * 4)) - (11 * 22)) - (10 * 4)) - (10 * 4)));
+        Window_Add(v0->unk_00, param0->unk_A8, 1, 1, 1, 10, 4, 14, ((((1024 - (18 + 12)) - 9) - (27 * 4)) - (11 * 22)) - (10 * 4));
+        Window_Add(v0->unk_00, param0->unk_AC, 1, 21, 1, 10, 4, 14, (((((1024 - (18 + 12)) - 9) - (27 * 4)) - (11 * 22)) - (10 * 4)) - (10 * 4));
 
         ov104_022370C0(v0->unk_00, param0->unk_A8);
         ov104_022370C0(v0->unk_00, param0->unk_AC);
@@ -703,13 +702,13 @@ void ov104_02236FC0(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_0223BA10 *
 
 static void ov104_022370C0(BgConfig *param0, Window *param1)
 {
-    Window_DrawStandardFrame(param1, 1, ((1024 - (18 + 12)) - 9), 12);
+    Window_DrawStandardFrame(param1, 1, (1024 - (18 + 12)) - 9, 12);
     Window_FillTilemap(param1, 15);
 
     return;
 }
 
-void ov104_022370E0(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_0223BA10 *param1)
+void ov104_022370E0(FrontierScriptManager *param0, UnkStruct_ov104_0223BA10 *param1)
 {
     Window *v0;
     Window *v1;
@@ -743,7 +742,7 @@ void ov104_022370E0(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_0223BA10 *
     return;
 }
 
-void ov104_02237180(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_0223BA10 *param1)
+void ov104_02237180(FrontierScriptManager *param0, UnkStruct_ov104_0223BA10 *param1)
 {
     u16 v0, v1;
 
@@ -770,11 +769,11 @@ void ov104_02237180(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_0223BA10 *
     return;
 }
 
-static void ov104_02237284(UnkStruct_ov104_022320B4 *param0, Window *param1, TrainerInfo *param2, u16 param3)
+static void ov104_02237284(FrontierScriptManager *param0, Window *param1, TrainerInfo *param2, u16 param3)
 {
     MessageLoader *v0;
-    String *v1 = String_Init((10 * 2), param0->heapID);
-    String *v2 = String_Init((10 * 2), param0->heapID);
+    String *v1 = String_Init(10 * 2, param0->heapID);
+    String *v2 = String_Init(10 * 2, param0->heapID);
 
     v0 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BATTLE_CASTLE_SELF_APP, HEAP_ID_FIELD2);
 
