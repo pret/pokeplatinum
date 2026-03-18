@@ -32,7 +32,7 @@ _034:
 _036:
     SwitchAndUpdateMon BTLSCR_SWITCHED_MON
     // {0} {1} is about to send in {2}. Will you switch your Pokémon?{YESNO 0}
-    PrintMessage BattleStrings_Text_OpponentIsAboutToSendInPokemonWillYouSwitchYourPokemonYesNo, TAG_TRCLASS_TRNAME_NICKNAME_TRNAME, BTLSCR_SWITCHED_MON, BTLSCR_SWITCHED_MON, BTLSCR_SWITCHED_MON, BTLSCR_PLAYER
+    PrintMessage BattleStrings_Text_WillYouSwitchYourPokemon, TAG_TRCLASS_TRNAME_NICKNAME_TRNAME, BTLSCR_SWITCHED_MON, BTLSCR_SWITCHED_MON, BTLSCR_SWITCHED_MON, BTLSCR_PLAYER
     Wait 
     YesNoMenu YES_NO_CHANGE_MON
     WaitYesNoResult _051, _064
