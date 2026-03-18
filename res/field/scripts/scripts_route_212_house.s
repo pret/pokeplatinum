@@ -128,7 +128,7 @@ _0224:
     End
 
 _0245:
-    PayShardsCost VAR_0x8003
+    PayShardCost VAR_0x8003
     ResetMoveSlot VAR_0x8000, VAR_0x8002, VAR_0x8003
     GoTo _0264
     End

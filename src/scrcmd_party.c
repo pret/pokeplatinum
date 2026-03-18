@@ -263,7 +263,7 @@ BOOL ScrCmd_FindPartySlotWithNature(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_GetFriendshipByPartySlot(ScriptContext *ctx)
+BOOL ScrCmd_GetPartyMonFriendship(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u16 *destVar = ScriptContext_GetVarPointer(ctx);

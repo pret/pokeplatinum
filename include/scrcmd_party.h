@@ -15,7 +15,7 @@ BOOL ScrCmd_CountPartyMonsBelowLevelThreshold(ScriptContext *ctx);
 BOOL ScrCmd_GetPartyMonLevel(ScriptContext *ctx);
 BOOL ScrCmd_GetPartyMonNature(ScriptContext *ctx);
 BOOL ScrCmd_FindPartySlotWithNature(ScriptContext *ctx);
-BOOL ScrCmd_GetFriendshipByPartySlot(ScriptContext *ctx);
+BOOL ScrCmd_GetPartyMonFriendship(ScriptContext *ctx);
 BOOL ScrCmd_IncreasePartyMonFriendship(ScriptContext *ctx);
 BOOL ScrCmd_DecreasePartyMonFriendship_Unused(ScriptContext *ctx);
 BOOL ScrCmd_GetPartyMonContestStat(ScriptContext *ctx);

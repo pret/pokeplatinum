@@ -149,7 +149,7 @@ _0256:
     End
 
 _0277:
-    PayShardsCost VAR_0x8003
+    PayShardCost VAR_0x8003
     ResetMoveSlot VAR_0x8000, VAR_0x8002, VAR_0x8003
     GoTo _0296
     End

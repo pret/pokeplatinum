@@ -1640,9 +1640,9 @@ _1672:
     ShowMoveTutorMoveSelectionMenu 0xFF, VAR_0x8004, VAR_RESULT
     SetVar VAR_0x8003, VAR_RESULT
     GoToIfEq VAR_0x8003, -2, _16A4
-    ShowShardsCost 21, 1, VAR_0x8003, VAR_RESULT
+    ShowShardCost 21, 1, VAR_0x8003, VAR_RESULT
     WaitABPress
-    CloseShardsCostWindow
+    CloseShardCostWindow
     GoTo _16A4
     End
 

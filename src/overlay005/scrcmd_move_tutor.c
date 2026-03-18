@@ -161,7 +161,7 @@ BOOL ScrCmd_CheckCanAffordMove(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_PayShardsCost(ScriptContext *ctx)
+BOOL ScrCmd_PayShardCost(ScriptContext *ctx)
 {
     int teachableMovesIndex;
     u8 redCost, blueCost, yellowCost, greenCost;
@@ -570,7 +570,7 @@ static void MoveTutorManager_Delete(MoveTutorManager *moveTutorManager)
     Heap_Free(moveTutorManager);
 }
 
-BOOL ScrCmd_ShowShardsCost(ScriptContext *ctx)
+BOOL ScrCmd_ShowShardCost(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
