@@ -2,11 +2,11 @@
 #include "res/text/bank/eterna_city_pokecenter_2f.h"
 
 
-    ScriptEntry _0006
+    ScriptEntry EternaCityPokecenter2F_SchoolKidM
     ScriptEntryEnd
 
-_0006:
-    NPCMessage 0
+EternaCityPokecenter2F_SchoolKidM:
+    NPCMessage EternaCityPokecenter2F_Text_MultiBattlesAreTheUltimateInPulsePoundingAction
     End
 
     .balign 4, 0

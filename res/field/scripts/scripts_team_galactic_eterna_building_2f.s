@@ -2,21 +2,21 @@
 #include "res/text/bank/team_galactic_eterna_building_2f.h"
 
 
-    ScriptEntry _000E
-    ScriptEntry _0021
-    ScriptEntry _0034
+    ScriptEntry TeamGalacticEternaBuilding2F_GruntM
+    ScriptEntry TeamGalacticEternaBuilding2F_GruntF
+    ScriptEntry TeamGalacticEternaBuilding2F_Sign
     ScriptEntryEnd
 
-_000E:
-    NPCMessage 0
+TeamGalacticEternaBuilding2F_GruntM:
+    NPCMessage TeamGalacticEternaBuilding2F_Text_TeamGalacticIsWorkingHardToFindNewEnergySourcesForTheFuture
     End
 
-_0021:
-    NPCMessage 1
+TeamGalacticEternaBuilding2F_GruntF:
+    NPCMessage TeamGalacticEternaBuilding2F_Text_WeAreConductingResearchOnNewFormsOfEnergy
     End
 
-_0034:
-    EventMessage 2
+TeamGalacticEternaBuilding2F_Sign:
+    EventMessage TeamGalacticEternaBuilding2F_Text_LetUsMakeProgressTogether
     End
 
     .balign 4, 0

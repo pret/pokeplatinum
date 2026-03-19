@@ -2,63 +2,63 @@
 #include "res/text/bank/cycle_shop.h"
 
 
-    ScriptEntry _0016
-    ScriptEntry _005D
-    ScriptEntry _007C
-    ScriptEntry _00A5
-    ScriptEntry _00B6
+    ScriptEntry CycleShop_PokefanM
+    ScriptEntry CycleShop_Clefairy
+    ScriptEntry CycleShop_Youngster
+    ScriptEntry CycleShop_Manual
+    ScriptEntry CycleShop_Catalog
     ScriptEntryEnd
 
-_0016:
+CycleShop_PokefanM:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_RECEIVED_BICYCLE, _0052
-    Message 0
+    GoToIfSet FLAG_RECEIVED_BICYCLE, CycleShop_ThisIsTheLatestModelSoIllReadTheOperatingManualToYou
+    Message CycleShop_Text_ThanksForRescuingMeThisIsSomethingToShowMyThanks
     SetVar VAR_0x8004, ITEM_BICYCLE
     SetVar VAR_0x8005, 1
     Common_GiveItemQuantity
     SetFlag FLAG_RECEIVED_BICYCLE
-    SetVar VAR_UNK_0x4114, 1
-    ScrCmd_14C 9
-    GoTo _0052
+    SetVar VAR_ETERNA_CITY_BLOCK_EXITS_STATE, 1
+    SetBlackOutWarpId 9
+    GoTo CycleShop_ThisIsTheLatestModelSoIllReadTheOperatingManualToYou
     End
 
-_0052:
-    Message 1
+CycleShop_ThisIsTheLatestModelSoIllReadTheOperatingManualToYou:
+    Message CycleShop_Text_ThisIsTheLatestModelSoIllReadTheOperatingManualToYou
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_005D:
-    PokemonCryAndMessage SPECIES_CLEFAIRY, 2
+CycleShop_Clefairy:
+    PokemonCryAndMessage SPECIES_CLEFAIRY, CycleShop_Text_ClefairyPipPiih
     End
 
-_007C:
+CycleShop_Youngster:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x0081, _009A
-    Message 3
+    GoToIfSet FLAG_TEAM_GALACTIC_LEFT_ETERNA_BUILDING, CycleShop_WhatWasTeamGalacticTryingToDoWithOtherPeoplesPokemon
+    Message CycleShop_Text_TheManagersGoneOffToTheTeamGalacticBuildingAndHasntReturned
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_009A:
-    Message 4
+CycleShop_WhatWasTeamGalacticTryingToDoWithOtherPeoplesPokemon:
+    Message CycleShop_Text_WhatWasTeamGalacticTryingToDoWithOtherPeoplesPokemon
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_00A5:
-    EventMessage 5
+CycleShop_Manual:
+    EventMessage CycleShop_Text_ThereIsAManualOnTheLatestModelBicycle
     End
 
-_00B6:
-    EventMessage 6
+CycleShop_Catalog:
+    EventMessage CycleShop_Text_TheresACatalogFromTheHoennRegionOnItsPopularBikes
     End
 
     .balign 4, 0

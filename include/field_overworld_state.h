@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_0203A6DC_H
-#define POKEPLATINUM_UNK_0203A6DC_H
+#ifndef POKEPLATINUM_FIELD_OVERWORLD_STATE_H
+#define POKEPLATINUM_FIELD_OVERWORLD_STATE_H
 
 #include "struct_defs/struct_0205EC34.h"
 
@@ -18,7 +18,7 @@ typedef struct FieldOverworldState {
     Location exit;
     u16 bgm;
     u16 weather;
-    u16 warpId;
+    u16 blackOutWarpId;
     u8 cameraType;
     OverworldMapHistory mapHistory;
     PlayerData playerData;
@@ -45,8 +45,8 @@ void FieldOverworldState_SetSpecialLocation(FieldOverworldState *fieldState, Loc
 u16 *FieldOverworldState_GetSpecialBGM(FieldOverworldState *fieldState);
 u16 FieldOverworldState_GetWeather(const FieldOverworldState *fieldState);
 void FieldOverworldState_SetWeather(FieldOverworldState *fieldState, u16 weather);
-u16 FieldOverworldState_GetWarpId(const FieldOverworldState *fieldState);
-void FieldOverworldState_SetWarpId(FieldOverworldState *fieldState, u16 warpId);
+u16 FieldOverworldState_GetBlackOutWarpId(const FieldOverworldState *fieldState);
+void FieldOverworldState_SetBlackOutWarpId(FieldOverworldState *fieldState, u16 warpId);
 OverworldMapHistory *FieldOverworldState_GetMapHistory(FieldOverworldState *fieldState);
 int FieldOverworldState_GetCameraType(const FieldOverworldState *fieldState);
 void FieldOverworldState_SetCameraType(FieldOverworldState *fieldState, int type);
@@ -59,4 +59,4 @@ FieldOverworldSave *SaveData_GetFieldOverworldSave(SaveData *saveData);
 void FieldSystem_SaveObjects(FieldSystem *fieldSystem);
 void FieldSystem_LoadObjects(FieldSystem *fieldSystem);
 
-#endif // POKEPLATINUM_UNK_0203A6DC_H
+#endif // POKEPLATINUM_FIELD_OVERWORLD_STATE_H

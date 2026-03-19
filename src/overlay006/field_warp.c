@@ -232,7 +232,7 @@ static enum FieldWarpStateResult ChangeMap(FieldTask *task, FieldSystem *fieldSy
     if (fieldWarp->warpType == FIELD_WARP_TYPE_TELEPORT) {
         Location location;
 
-        u16 warpId = FieldOverworldState_GetWarpId(fieldState);
+        u16 warpId = FieldOverworldState_GetBlackOutWarpId(fieldState);
         Location_InitFly(warpId, &location);
         FieldTask_ChangeMapByFieldWarp(task, &location, fieldWarp->warpType);
     } else {

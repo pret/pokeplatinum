@@ -485,7 +485,7 @@ static BOOL ScrCmd_CalculateTrainerInfoAppearance(ScriptContext *ctx);
 static BOOL ScrCmd_SetTrainerInfoAppearance(ScriptContext *ctx);
 static BOOL ScrCmd_2BA(ScriptContext *ctx);
 static BOOL ScrCmd_BlackOutFromBattle2(ScriptContext *ctx);
-static BOOL ScrCmd_14C(ScriptContext *ctx);
+static BOOL ScrCmd_SetBlackOutWarpId(ScriptContext *ctx);
 static BOOL ScrCmd_GetPlayerGender(ScriptContext *ctx);
 static BOOL ScrCmd_HealParty(ScriptContext *ctx);
 static BOOL ScrCmd_Dummy14F(ScriptContext *ctx);
@@ -1096,7 +1096,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_PokeMartDecor,
     ScrCmd_PokeMartSeal,
     ScrCmd_BlackOutFromBattle2,
-    ScrCmd_14C,
+    ScrCmd_SetBlackOutWarpId,
     ScrCmd_GetPlayerGender,
     ScrCmd_HealParty,
     ScrCmd_Dummy14F,
@@ -5329,12 +5329,12 @@ static BOOL ScrCmd_BlackOutFromBattle2(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_14C(ScriptContext *ctx)
+static BOOL ScrCmd_SetBlackOutWarpId(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_GetVar(ctx);
+    u16 warpId = ScriptContext_GetVar(ctx);
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
-    FieldOverworldState_SetWarpId(SaveData_GetFieldOverworldState(fieldSystem->saveData), v0);
+    FieldOverworldState_SetBlackOutWarpId(SaveData_GetFieldOverworldState(fieldSystem->saveData), warpId);
     return FALSE;
 }
 

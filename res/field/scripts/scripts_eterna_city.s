@@ -1,274 +1,275 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/eterna_city.h"
 #include "res/text/bank/special_met_location_names.h"
+#include "res/field/events/events_eterna_city.h"
 
 
-    ScriptEntry _01BF
-    ScriptEntry _04FC
-    ScriptEntry _050F
-    ScriptEntry _0522
-    ScriptEntry _00BF
-    ScriptEntry _00E5
-    ScriptEntry _00D2
-    ScriptEntry _010E
-    ScriptEntry _0535
-    ScriptEntry _0548
-    ScriptEntry _055B
-    ScriptEntry _0137
-    ScriptEntry _014E
-    ScriptEntry _0163
-    ScriptEntry _017A
-    ScriptEntry _0191
-    ScriptEntry _01A8
-    ScriptEntry _056E
-    ScriptEntry _057F
-    ScriptEntry _05B0
-    ScriptEntry _0072
-    ScriptEntry _0770
-    ScriptEntry _07BA
-    ScriptEntry _08FC
-    ScriptEntry _0954
-    ScriptEntry _0D00
-    ScriptEntry _0FDC
-    ScriptEntry _0EB4
+    ScriptEntry EternaCity_TriggerCynthiaGiveCut
+    ScriptEntry EternaCity_GruntM1
+    ScriptEntry EternaCity_GruntM2
+    ScriptEntry EternaCity_GruntM3
+    ScriptEntry EternaCity_PokemonBreederM
+    ScriptEntry EternaCity_PokemonBreederF1
+    ScriptEntry EternaCity_Unused7
+    ScriptEntry EternaCity_BugCatcher1
+    ScriptEntry EternaCity_AceTrainerF
+    ScriptEntry EternaCity_ExpertM
+    ScriptEntry EternaCity_NinjaBoy
+    ScriptEntry EternaCity_MapSign
+    ScriptEntry EternaCity_GymSignpost
+    ScriptEntry EternaCity_LandmarkSignRadRickshawsCycleShop
+    ScriptEntry EternaCity_LandmarkSignTeamGalacticEternaBuilding
+    ScriptEntry EternaCity_LandmarkSignUndergroundMansHouse
+    ScriptEntry EternaCity_LandmarkSignEternaCondominiums
+    ScriptEntry EternaCity_Statue
+    ScriptEntry EternaCity_PokemonBreederF2
+    ScriptEntry EternaCity_TriggerBlockExitSouth
+    ScriptEntry EternaCity_OnTransition
+    ScriptEntry EternaCity_BugCatcher2
+    ScriptEntry EternaCity_TriggerBlockExitWest
+    ScriptEntry EternaCity_Gardenia
+    ScriptEntry EternaCity_TriggerRival
+    ScriptEntry EternaCity_TriggerCynthiaTryGiveEgg
+    ScriptEntry EternaCity_TriggerCynthiaBlockBikeShop
+    ScriptEntry EternaCity_Cynthia
     ScriptEntryEnd
 
-_0072:
-    CallIfEq VAR_UNK_0x407A, 4, _00B5
+EternaCity_OnTransition:
+    CallIfEq VAR_ETERNA_CITY_STATE, 4, EternaCity_SetCynthiaPositionForGiveEgg
     CheckItem ITEM_BICYCLE, 1, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, 1, _0096
+    GoToIfEq VAR_MAP_LOCAL_0, TRUE, EternaCity_CheckShouldBlockExits
     End
 
-_0096:
+EternaCity_CheckShouldBlockExits:
     CheckItem ITEM_EXPLORER_KIT, 1, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, 1, _00AD
+    GoToIfEq VAR_MAP_LOCAL_0, TRUE, EternaCity_SetVarDontBlockExits
     End
 
-_00AD:
-    SetVar VAR_UNK_0x4114, 0
+EternaCity_SetVarDontBlockExits:
+    SetVar VAR_ETERNA_CITY_BLOCK_EXITS_STATE, 0
     End
 
-_00B5:
-    SetObjectEventPos 12, 0x133, 0x21D
+EternaCity_SetCynthiaPositionForGiveEgg:
+    SetObjectEventPos LOCALID_CYNTHIA, 307, 541
     Return
 
-_00BF:
-    NPCMessage 25
+EternaCity_PokemonBreederM:
+    NPCMessage EternaCity_Text_IfYoureVisitingEternaYouNeedToGetYourselfABicycle
     End
 
-_00D2:
-    NPCMessage 26
+EternaCity_Unused7:
+    NPCMessage EternaCity_Text_OhYourPokemonAreRatherFetching
     End
 
-_00E5:
+EternaCity_PokemonBreederF1:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x0081, _0103
-    Message 21
+    GoToIfSet FLAG_TEAM_GALACTIC_LEFT_ETERNA_BUILDING, EternaCity_WithTeamGalacticGoneWhatsGoingToHappenToTheirBuilding
+    Message EternaCity_Text_SinceThatTeamGalacticBuildingWentUp
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0103:
-    Message 22
+EternaCity_WithTeamGalacticGoneWhatsGoingToHappenToTheirBuilding:
+    Message EternaCity_Text_WithTeamGalacticGoneWhatsGoingToHappenToTheirBuilding
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_010E:
+EternaCity_BugCatcher1:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x0081, _012C
-    Message 23
+    GoToIfSet FLAG_TEAM_GALACTIC_LEFT_ETERNA_BUILDING, EternaCity_DoYouUseYourBikesKickstand
+    Message EternaCity_Text_MyFriendSaidTeamGalacticTookHisFavoritePokemonAway
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_012C:
-    Message 24
+EternaCity_DoYouUseYourBikesKickstand:
+    Message EternaCity_Text_DoYouUseYourBikesKickstand
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0137:
-    ShowMapSign 36
+EternaCity_MapSign:
+    ShowMapSign EternaCity_Text_EternaCityHistoryLiving
     End
 
-_014E:
-    ShowScrollingSign 37
+EternaCity_GymSignpost:
+    ShowScrollingSign EternaCity_Text_EternaCityPokemonGymLeaderGardeniaMasterOfVividPlantPokemon
     End
 
-_0163:
-    ShowLandmarkSign 38
+EternaCity_LandmarkSignRadRickshawsCycleShop:
+    ShowLandmarkSign EternaCity_Text_RadRickshawsCycleShopGetOnAndRide
     End
 
-_017A:
-    ShowLandmarkSign 39
+EternaCity_LandmarkSignTeamGalacticEternaBuilding:
+    ShowLandmarkSign EternaCity_Text_TeamGalacticEternaBuildingWeWantYourPokemon
     End
 
-_0191:
-    ShowLandmarkSign 40
+EternaCity_LandmarkSignUndergroundMansHouse:
+    ShowLandmarkSign EternaCity_Text_UndergroundMansHouseGoinDownForAdventure
     End
 
-_01A8:
-    ShowLandmarkSign 41
+EternaCity_LandmarkSignEternaCondominiums:
+    ShowLandmarkSign EternaCity_Text_EternaCondominiumsNameRatingServicesAvailable
     End
 
-_01BF:
+EternaCity_TriggerCynthiaGiveCut:
     LockAll
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    GoToIfEq VAR_0x8005, 0x20A, _01FD
-    GoToIfEq VAR_0x8005, 0x20B, _0256
-    GoToIfEq VAR_0x8005, 0x20C, _0266
-    GoToIfEq VAR_0x8005, 0x20D, _0276
+    GoToIfEq VAR_0x8005, 522, EternaCity_SetCynthiaPositionForGiveCutZ522
+    GoToIfEq VAR_0x8005, 523, EternaCity_SetCynthiaPositionForGiveCutZ523
+    GoToIfEq VAR_0x8005, 524, EternaCity_SetCynthiaPositionForGiveCutZ524
+    GoToIfEq VAR_0x8005, 525, EternaCity_SetCynthiaPositionForGiveCutZ525
     End
 
-_01FD:
-    GoToIfEq VAR_0x8004, 0x130, _0226
-    GoToIfEq VAR_0x8004, 0x131, _0236
-    GoToIfEq VAR_0x8004, 0x132, _0246
+EternaCity_SetCynthiaPositionForGiveCutZ522:
+    GoToIfEq VAR_0x8004, 304, EternaCity_SetCynthiaPositionForGiveCutX304
+    GoToIfEq VAR_0x8004, 305, EternaCity_SetCynthiaPositionForGiveCutX305
+    GoToIfEq VAR_0x8004, 306, EternaCity_SetCynthiaPositionForGiveCutX306
     End
 
-_0226:
-    SetObjectEventPos 12, 0x139, 0x20C
-    GoTo _0286
+EternaCity_SetCynthiaPositionForGiveCutX304:
+    SetObjectEventPos LOCALID_CYNTHIA, 313, 524
+    GoTo EternaCity_CynthiaGiveCut
     End
 
-_0236:
-    SetObjectEventPos 12, 0x13A, 0x20C
-    GoTo _0286
+EternaCity_SetCynthiaPositionForGiveCutX305:
+    SetObjectEventPos LOCALID_CYNTHIA, 314, 524
+    GoTo EternaCity_CynthiaGiveCut
     End
 
-_0246:
-    SetObjectEventPos 12, 0x13B, 0x20C
-    GoTo _0286
+EternaCity_SetCynthiaPositionForGiveCutX306:
+    SetObjectEventPos LOCALID_CYNTHIA, 315, 524
+    GoTo EternaCity_CynthiaGiveCut
     End
 
-_0256:
-    SetObjectEventPos 12, 0x139, 0x20B
-    GoTo _0286
+EternaCity_SetCynthiaPositionForGiveCutZ523:
+    SetObjectEventPos LOCALID_CYNTHIA, 313, 523
+    GoTo EternaCity_CynthiaGiveCut
     End
 
-_0266:
-    SetObjectEventPos 12, 0x139, 0x20C
-    GoTo _0286
+EternaCity_SetCynthiaPositionForGiveCutZ524:
+    SetObjectEventPos LOCALID_CYNTHIA, 313, 524
+    GoTo EternaCity_CynthiaGiveCut
     End
 
-_0276:
-    SetObjectEventPos 12, 0x139, 0x20D
-    GoTo _0286
+EternaCity_SetCynthiaPositionForGiveCutZ525:
+    SetObjectEventPos LOCALID_CYNTHIA, 313, 525
+    GoTo EternaCity_CynthiaGiveCut
     End
 
-_0286:
-    ClearFlag FLAG_UNK_0x0180
-    AddObject 12
-    LockObject 12
-    CallIfEq VAR_0x8005, 0x20A, _034B
-    CallIfNe VAR_0x8005, 0x20A, _0361
+EternaCity_CynthiaGiveCut:
+    ClearFlag FLAG_HIDE_ETERNA_CITY_CYNTHIA
+    AddObject LOCALID_CYNTHIA
+    LockObject LOCALID_CYNTHIA
+    CallIfEq VAR_0x8005, 522, EternaCity_EnterCynthiaForGiveCutZ522
+    CallIfNe VAR_0x8005, 522, EternaCity_EnterCynthiaForGiveCutNotZ522
     BufferPlayerName 0
-    Message 6
+    Message EternaCity_Text_OhThatDeviceYouHaveItIsAPokedex
     CloseMessage
-    CallIfEq VAR_0x8005, 0x20A, _0377
-    CallIfNe VAR_0x8005, 0x20A, _0383
-    Message 7
+    CallIfEq VAR_0x8005, 522, EternaCity_CynthiaWalkOnSpotEastNorth
+    CallIfNe VAR_0x8005, 522, EternaCity_CynthiaWalkOnSpotEastWest
+    Message EternaCity_Text_TryUsingThisItShouldBeHelpful
     SetVar VAR_0x8004, ITEM_HM01
     SetVar VAR_0x8005, 1
     Common_GiveItemQuantity
-    Message 8
+    Message EternaCity_Text_RememberTheHiddenMoveCutCanBeUsedInTheField
     CloseMessage
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    GoToIfEq VAR_0x8005, 0x20A, _0322
-    GoToIfEq VAR_0x8005, 0x20B, _03DD
-    GoToIfEq VAR_0x8005, 0x20C, _03F7
-    GoToIfEq VAR_0x8005, 0x20D, _0411
+    GoToIfEq VAR_0x8005, 522, EternaCity_CynthiaLeaveAfterCutZ522
+    GoToIfEq VAR_0x8005, 523, EternaCity_CynthiaLeaveAfterCutZ523
+    GoToIfEq VAR_0x8005, 524, EternaCity_CynthiaLeaveAfterCutZ524
+    GoToIfEq VAR_0x8005, 525, EternaCity_CynthiaLeaveAfterCutZ525
     End
 
-_0322:
-    GoToIfEq VAR_0x8004, 0x130, _038F
-    GoToIfEq VAR_0x8004, 0x131, _03A9
-    GoToIfEq VAR_0x8004, 0x132, _03C3
+EternaCity_CynthiaLeaveAfterCutZ522:
+    GoToIfEq VAR_0x8004, 304, EternaCity_CynthiaLeaveAfterCutX304
+    GoToIfEq VAR_0x8004, 305, EternaCity_CynthiaLeaveAfterCutX305
+    GoToIfEq VAR_0x8004, 306, EternaCity_CynthiaLeaveAfterCutX306
     End
 
-_034B:
-    ApplyMovement 12, _043C
+EternaCity_EnterCynthiaForGiveCutZ522:
+    ApplyMovement LOCALID_CYNTHIA, EternaCity_Movement_CynthiaNoticeAndWalkUpToPlayerZ522
     WaitMovement
-    ApplyMovement LOCALID_PLAYER, _04D4
+    ApplyMovement LOCALID_PLAYER, EternaCity_Movement_PlayerWalkOnSpotSouth
     WaitMovement
     Return
 
-_0361:
-    ApplyMovement 12, _0450
+EternaCity_EnterCynthiaForGiveCutNotZ522:
+    ApplyMovement LOCALID_CYNTHIA, EternaCity_Movement_CynthiaNoticeAndWalkUpToPlayerNotZ522
     WaitMovement
-    ApplyMovement LOCALID_PLAYER, _04DC
-    WaitMovement
-    Return
-
-_0377:
-    ApplyMovement 12, _0460
+    ApplyMovement LOCALID_PLAYER, EternaCity_Movement_PlayerWalkOnSpotEast
     WaitMovement
     Return
 
-_0383:
-    ApplyMovement 12, _0470
+EternaCity_CynthiaWalkOnSpotEastNorth:
+    ApplyMovement LOCALID_CYNTHIA, EternaCity_Movement_CynthiaWalkOnSpotEastNorth
     WaitMovement
     Return
 
-_038F:
-    ApplyMovement 12, _0480
-    ApplyMovement LOCALID_PLAYER, _04E4
+EternaCity_CynthiaWalkOnSpotEastWest:
+    ApplyMovement LOCALID_CYNTHIA, EternaCity_Movement_CynthiaWalkOnSpotEastWest
     WaitMovement
-    GoTo _042B
+    Return
+
+EternaCity_CynthiaLeaveAfterCutX304:
+    ApplyMovement LOCALID_CYNTHIA, EternaCity_Movement_CynthiaLeaveAfterCutX304
+    ApplyMovement LOCALID_PLAYER, EternaCity_Movement_PlayerWatchCynthiaLeaveAfterCutZ522
+    WaitMovement
+    GoTo EternaCity_CynthiaGiveCutEnd
     End
 
-_03A9:
-    ApplyMovement 12, _048C
-    ApplyMovement LOCALID_PLAYER, _04E4
+EternaCity_CynthiaLeaveAfterCutX305:
+    ApplyMovement LOCALID_CYNTHIA, EternaCity_Movement_CynthiaLeaveAfterCutX305
+    ApplyMovement LOCALID_PLAYER, EternaCity_Movement_PlayerWatchCynthiaLeaveAfterCutZ522
     WaitMovement
-    GoTo _042B
+    GoTo EternaCity_CynthiaGiveCutEnd
     End
 
-_03C3:
-    ApplyMovement 12, _0498
-    ApplyMovement LOCALID_PLAYER, _04E4
+EternaCity_CynthiaLeaveAfterCutX306:
+    ApplyMovement LOCALID_CYNTHIA, EternaCity_Movement_CynthiaLeaveAfterCutX306
+    ApplyMovement LOCALID_PLAYER, EternaCity_Movement_PlayerWatchCynthiaLeaveAfterCutZ522
     WaitMovement
-    GoTo _042B
+    GoTo EternaCity_CynthiaGiveCutEnd
     End
 
-_03DD:
-    ApplyMovement 12, _04A4
-    ApplyMovement LOCALID_PLAYER, _04F0
+EternaCity_CynthiaLeaveAfterCutZ523:
+    ApplyMovement LOCALID_CYNTHIA, EternaCity_Movement_CynthiaLeaveAfterCutZ523
+    ApplyMovement LOCALID_PLAYER, EternaCity_Movement_PlayerWatchCynthiaLeaveAfterCutNotZ522
     WaitMovement
-    GoTo _042B
+    GoTo EternaCity_CynthiaGiveCutEnd
     End
 
-_03F7:
-    ApplyMovement 12, _04B4
-    ApplyMovement LOCALID_PLAYER, _04F0
+EternaCity_CynthiaLeaveAfterCutZ524:
+    ApplyMovement LOCALID_CYNTHIA, EternaCity_Movement_CynthiaLeaveAfterCutZ524
+    ApplyMovement LOCALID_PLAYER, EternaCity_Movement_PlayerWatchCynthiaLeaveAfterCutNotZ522
     WaitMovement
-    GoTo _042B
+    GoTo EternaCity_CynthiaGiveCutEnd
     End
 
-_0411:
-    ApplyMovement 12, _04C4
-    ApplyMovement LOCALID_PLAYER, _04F0
+EternaCity_CynthiaLeaveAfterCutZ525:
+    ApplyMovement LOCALID_CYNTHIA, EternaCity_Movement_CynthiaLeaveAfterCutZ525
+    ApplyMovement LOCALID_PLAYER, EternaCity_Movement_PlayerWatchCynthiaLeaveAfterCutNotZ522
     WaitMovement
-    GoTo _042B
+    GoTo EternaCity_CynthiaGiveCutEnd
     End
 
-_042B:
-    RemoveObject 12
-    SetVar VAR_UNK_0x407A, 2
+EternaCity_CynthiaGiveCutEnd:
+    RemoveObject LOCALID_CYNTHIA
+    SetVar VAR_ETERNA_CITY_STATE, 2
     ReleaseAll
     End
 
     .balign 4, 0
-_043C:
+EternaCity_Movement_CynthiaNoticeAndWalkUpToPlayerZ522:
     WalkNormalWest 4
     EmoteExclamationMark
     WalkNormalWest 5
@@ -276,203 +277,203 @@ _043C:
     EndMovement
 
     .balign 4, 0
-_0450:
+EternaCity_Movement_CynthiaNoticeAndWalkUpToPlayerNotZ522:
     WalkNormalWest 4
     EmoteExclamationMark
     WalkNormalWest 4
     EndMovement
 
     .balign 4, 0
-_0460:
+EternaCity_Movement_CynthiaWalkOnSpotEastNorth:
     WalkOnSpotNormalEast
     Delay8 2
     WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
-_0470:
+EternaCity_Movement_CynthiaWalkOnSpotEastWest:
     WalkOnSpotNormalEast
     Delay8 2
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_0480:
+EternaCity_Movement_CynthiaLeaveAfterCutX304:
     WalkNormalWest 5
     WalkNormalSouth 10
     EndMovement
 
     .balign 4, 0
-_048C:
+EternaCity_Movement_CynthiaLeaveAfterCutX305:
     WalkNormalWest 6
     WalkNormalSouth 10
     EndMovement
 
     .balign 4, 0
-_0498:
+EternaCity_Movement_CynthiaLeaveAfterCutX306:
     WalkNormalWest 7
     WalkNormalSouth 10
     EndMovement
 
     .balign 4, 0
-_04A4:
+EternaCity_Movement_CynthiaLeaveAfterCutZ523:
     WalkNormalSouth
     WalkNormalWest 6
     WalkNormalSouth 10
     EndMovement
 
     .balign 4, 0
-_04B4:
+EternaCity_Movement_CynthiaLeaveAfterCutZ524:
     WalkNormalSouth
     WalkNormalWest 6
     WalkNormalSouth 10
     EndMovement
 
     .balign 4, 0
-_04C4:
+EternaCity_Movement_CynthiaLeaveAfterCutZ525:
     WalkNormalNorth
     WalkNormalWest 6
     WalkNormalSouth 11
     EndMovement
 
     .balign 4, 0
-_04D4:
+EternaCity_Movement_PlayerWalkOnSpotSouth:
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_04DC:
+EternaCity_Movement_PlayerWalkOnSpotEast:
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_04E4:
+EternaCity_Movement_PlayerWatchCynthiaLeaveAfterCutZ522:
     Delay8
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_04F0:
+EternaCity_Movement_PlayerWatchCynthiaLeaveAfterCutNotZ522:
     Delay8 2
     WalkOnSpotNormalWest
     EndMovement
 
-_04FC:
-    NPCMessage 18
+EternaCity_GruntM1:
+    NPCMessage EternaCity_Text_HeyYouThereKidStayAwayFromThatPokemonStatue
     End
 
-_050F:
-    NPCMessage 19
+EternaCity_GruntM2:
+    NPCMessage EternaCity_Text_HeyYouYeahYouTrainer
     End
 
-_0522:
-    NPCMessage 20
+EternaCity_GruntM3:
+    NPCMessage EternaCity_Text_HaveYouSeenOurBuilding
     End
 
-_0535:
-    NPCMessage 27
+EternaCity_AceTrainerF:
+    NPCMessage EternaCity_Text_TheySayThisIsAnOldCity
     End
 
-_0548:
-    NPCMessage 28
+EternaCity_ExpertM:
+    NPCMessage EternaCity_Text_EternaCitysNotAnythingLikeItWasBefore
     End
 
-_055B:
-    NPCMessage 29
+EternaCity_NinjaBoy:
+    NPCMessage EternaCity_Text_TheySayThisIsAnAwesomePokemonThatPeopleSawLongAgo
     End
 
-_056E:
-    EventMessage 42
+EternaCity_Statue:
+    EventMessage EternaCity_Text_ItsEternaCitysPokemonStatue
     End
 
-_057F:
-    GoToIfSet FLAG_EXPLORER_KIT_RECEIVED, _059D
-    NPCMessage 31
+EternaCity_PokemonBreederF2:
+    GoToIfSet FLAG_EXPLORER_KIT_RECEIVED, EternaCity_GoingUndergroundWithTheExplorerKitIsABlastIsntIt
+    NPCMessage EternaCity_Text_OhDontTellMeYouDontHaveAnExplorerKit2
     End
 
-_059D:
-    NPCMessage 32
+EternaCity_GoingUndergroundWithTheExplorerKitIsABlastIsntIt:
+    NPCMessage EternaCity_Text_GoingUndergroundWithTheExplorerKitIsABlastIsntIt
     End
 
-_05B0:
+EternaCity_TriggerBlockExitSouth:
     LockAll
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    CallIfEq VAR_0x8004, 0x12F, _0657
-    CallIfEq VAR_0x8004, 0x130, _0663
-    CallIfEq VAR_0x8004, 0x131, _066F
-    CallIfEq VAR_0x8004, 0x132, _067B
-    CallIfEq VAR_0x8004, 0x133, _0687
-    ApplyMovement LOCALID_PLAYER, _0760
+    CallIfEq VAR_0x8004, 303, EternaCity_PokemonBreederFBlockExitSouthX303
+    CallIfEq VAR_0x8004, 304, EternaCity_PokemonBreederFBlockExitSouthX304
+    CallIfEq VAR_0x8004, 305, EternaCity_PokemonBreederFBlockExitSouthX305
+    CallIfEq VAR_0x8004, 306, EternaCity_PokemonBreederFBlockExitSouthX306
+    CallIfEq VAR_0x8004, 307, EternaCity_PokemonBreederFBlockExitSouthX307
+    ApplyMovement LOCALID_PLAYER, EternaCity_Movement_PlayerWalkOnSpotWestToFacePokemonBreederF
     WaitMovement
-    Message 30
+    Message EternaCity_Text_OhDontTellMeYouDontHaveAnExplorerKit
     CloseMessage
-    CallIfEq VAR_0x8004, 0x12F, _0693
-    CallIfEq VAR_0x8004, 0x130, _0695
-    CallIfEq VAR_0x8004, 0x131, _06A1
-    CallIfEq VAR_0x8004, 0x132, _06AD
-    CallIfEq VAR_0x8004, 0x133, _06B9
-    ApplyMovement LOCALID_PLAYER, _0768
+    CallIfEq VAR_0x8004, 303, EternaCity_PokemonBreederFMoveBackX303
+    CallIfEq VAR_0x8004, 304, EternaCity_PokemonBreederFMoveBackX304
+    CallIfEq VAR_0x8004, 305, EternaCity_PokemonBreederFMoveBackX305
+    CallIfEq VAR_0x8004, 306, EternaCity_PokemonBreederFMoveBackX306
+    CallIfEq VAR_0x8004, 307, EternaCity_PokemonBreederFMoveBackX307
+    ApplyMovement LOCALID_PLAYER, EternaCity_Movement_PlayerWalkNorth
     WaitMovement
     ReleaseAll
     End
 
-_0657:
-    ApplyMovement 28, _06C8
+EternaCity_PokemonBreederFBlockExitSouthX303:
+    ApplyMovement LOCALID_POKEMON_BREEDER_F_2, EternaCity_Movement_PokemonBreederFBlockExitSouthX303
     WaitMovement
     Return
 
-_0663:
-    ApplyMovement 28, _06D8
+EternaCity_PokemonBreederFBlockExitSouthX304:
+    ApplyMovement LOCALID_POKEMON_BREEDER_F_2, EternaCity_Movement_PokemonBreederFBlockExitSouthX304
     WaitMovement
     Return
 
-_066F:
-    ApplyMovement 28, _06EC
+EternaCity_PokemonBreederFBlockExitSouthX305:
+    ApplyMovement LOCALID_POKEMON_BREEDER_F_2, EternaCity_Movement_PokemonBreederFBlockExitSouthX305
     WaitMovement
     Return
 
-_067B:
-    ApplyMovement 28, _0700
+EternaCity_PokemonBreederFBlockExitSouthX306:
+    ApplyMovement LOCALID_POKEMON_BREEDER_F_2, EternaCity_Movement_PokemonBreederFBlockExitSouthX306
     WaitMovement
     Return
 
-_0687:
-    ApplyMovement 28, _0714
+EternaCity_PokemonBreederFBlockExitSouthX307:
+    ApplyMovement LOCALID_POKEMON_BREEDER_F_2, EternaCity_Movement_PokemonBreederFBlockExitSouthX307
     WaitMovement
     Return
 
-_0693:
+EternaCity_PokemonBreederFMoveBackX303:
     Return
 
-_0695:
-    ApplyMovement 28, _0730
+EternaCity_PokemonBreederFMoveBackX304:
+    ApplyMovement LOCALID_POKEMON_BREEDER_F_2, EternaCity_Movement_PokemonBreederFMoveBackX304
     WaitMovement
     Return
 
-_06A1:
-    ApplyMovement 28, _073C
+EternaCity_PokemonBreederFMoveBackX305:
+    ApplyMovement LOCALID_POKEMON_BREEDER_F_2, EternaCity_Movement_PokemonBreederFMoveBackX305
     WaitMovement
     Return
 
-_06AD:
-    ApplyMovement 28, _0748
+EternaCity_PokemonBreederFMoveBackX306:
+    ApplyMovement LOCALID_POKEMON_BREEDER_F_2, EternaCity_Movement_PokemonBreederFMoveBackX306
     WaitMovement
     Return
 
-_06B9:
-    ApplyMovement 28, _0754
+EternaCity_PokemonBreederFMoveBackX307:
+    ApplyMovement LOCALID_POKEMON_BREEDER_F_2, EternaCity_Movement_PokemonBreederFMoveBackX307
     WaitMovement
     Return
 
     .balign 4, 0
-_06C8:
+EternaCity_Movement_PokemonBreederFBlockExitSouthX303:
     WalkOnSpotFastEast
     EmoteExclamationMark
     Delay4
     EndMovement
 
     .balign 4, 0
-_06D8:
+EternaCity_Movement_PokemonBreederFBlockExitSouthX304:
     WalkOnSpotFastEast
     EmoteExclamationMark
     Delay4
@@ -480,7 +481,7 @@ _06D8:
     EndMovement
 
     .balign 4, 0
-_06EC:
+EternaCity_Movement_PokemonBreederFBlockExitSouthX305:
     WalkOnSpotFastEast
     EmoteExclamationMark
     Delay4
@@ -488,7 +489,7 @@ _06EC:
     EndMovement
 
     .balign 4, 0
-_0700:
+EternaCity_Movement_PokemonBreederFBlockExitSouthX306:
     WalkOnSpotFastEast
     EmoteExclamationMark
     Delay4
@@ -496,7 +497,7 @@ _0700:
     EndMovement
 
     .balign 4, 0
-_0714:
+EternaCity_Movement_PokemonBreederFBlockExitSouthX307:
     WalkOnSpotFastEast
     EmoteExclamationMark
     Delay4
@@ -508,183 +509,183 @@ EternaCity_UnusedMovement:
     EndMovement
 
     .balign 4, 0
-_0730:
+EternaCity_Movement_PokemonBreederFMoveBackX304:
     WalkNormalWest
     WalkOnSpotFastEast
     EndMovement
 
     .balign 4, 0
-_073C:
+EternaCity_Movement_PokemonBreederFMoveBackX305:
     WalkNormalWest 2
     WalkOnSpotFastEast
     EndMovement
 
     .balign 4, 0
-_0748:
+EternaCity_Movement_PokemonBreederFMoveBackX306:
     WalkNormalWest 3
     WalkOnSpotFastEast
     EndMovement
 
     .balign 4, 0
-_0754:
+EternaCity_Movement_PokemonBreederFMoveBackX307:
     WalkNormalWest 4
     WalkOnSpotFastEast
     EndMovement
 
     .balign 4, 0
-_0760:
+EternaCity_Movement_PlayerWalkOnSpotWestToFacePokemonBreederF:
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_0768:
+EternaCity_Movement_PlayerWalkNorth:
     WalkNormalNorth
     EndMovement
 
-_0770:
+EternaCity_BugCatcher2:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfUnset FLAG_RECEIVED_BICYCLE, _07A5
-    GoToIfGe VAR_ROUTE_207_COUNTERPART_TRIGGER_STATE, 1, _07A5
-    Message 34
+    GoToIfUnset FLAG_RECEIVED_BICYCLE, EternaCity_ItFeelsGreatRidingABikeWithTheWindInYourFaceDoesntIt
+    GoToIfGe VAR_ROUTE_207_COUNTERPART_TRIGGER_STATE, 1, EternaCity_ItFeelsGreatRidingABikeWithTheWindInYourFaceDoesntIt
+    Message EternaCity_Text_OhWowYouGotABicycle2
     WaitABXPadPress
     CloseMessage
-    ApplyMovement 30, _0898
+    ApplyMovement LOCALID_BUG_CATCHER_2, EternaCity_Movement_BugCatcher2FaceSouth
     WaitMovement
     ReleaseAll
     End
 
-_07A5:
-    Message 35
+EternaCity_ItFeelsGreatRidingABikeWithTheWindInYourFaceDoesntIt:
+    Message EternaCity_Text_ItFeelsGreatRidingABikeWithTheWindInYourFaceDoesntIt
     WaitABXPadPress
     CloseMessage
-    ApplyMovement 30, _0898
+    ApplyMovement LOCALID_BUG_CATCHER_2, EternaCity_Movement_BugCatcher2FaceSouth
     WaitMovement
     ReleaseAll
     End
 
-_07BA:
+EternaCity_TriggerBlockExitWest:
     LockAll
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    CallIfEq VAR_0x8005, 0x214, _0823
-    CallIfEq VAR_0x8005, 0x215, _082F
-    CallIfEq VAR_0x8005, 0x216, _083B
-    ApplyMovement LOCALID_PLAYER, _0890
+    CallIfEq VAR_0x8005, 532, EternaCity_BugCatcher2BlockExitWestZ532
+    CallIfEq VAR_0x8005, 533, EternaCity_BugCatcher2BlockExitWestZ533
+    CallIfEq VAR_0x8005, 534, EternaCity_BugCatcher2BlockExitWestZ534
+    ApplyMovement LOCALID_PLAYER, EternaCity_Movement_PlayerFaceNorth
     WaitMovement
-    Message 33
+    Message EternaCity_Text_OhWowYouGotABicycle
     CloseMessage
-    CallIfEq VAR_0x8005, 0x214, _0847
-    CallIfEq VAR_0x8005, 0x215, _085B
-    CallIfEq VAR_0x8005, 0x216, _086F
+    CallIfEq VAR_0x8005, 532, EternaCity_PushBackPlayerZ532
+    CallIfEq VAR_0x8005, 533, EternaCity_PushBackPlayerZ533
+    CallIfEq VAR_0x8005, 534, EternaCity_PushBackPlayerZ534
     ReleaseAll
     End
 
-_0823:
-    ApplyMovement 30, _08A0
+EternaCity_BugCatcher2BlockExitWestZ532:
+    ApplyMovement LOCALID_BUG_CATCHER_2, EternaCity_Movement_BugCatcher2BlockExitWestZ532
     WaitMovement
     Return
 
-_082F:
-    ApplyMovement 30, _08AC
+EternaCity_BugCatcher2BlockExitWestZ533:
+    ApplyMovement LOCALID_BUG_CATCHER_2, EternaCity_Movement_BugCatcher2BlockExitWestZ533
     WaitMovement
     Return
 
-_083B:
-    ApplyMovement 30, _08BC
+EternaCity_BugCatcher2BlockExitWestZ534:
+    ApplyMovement LOCALID_BUG_CATCHER_2, EternaCity_Movement_BugCatcher2BlockExitWestZ534
     WaitMovement
     Return
 
-_0847:
-    ApplyMovement 30, _08CC
-    ApplyMovement LOCALID_PLAYER, _0884
+EternaCity_PushBackPlayerZ532:
+    ApplyMovement LOCALID_BUG_CATCHER_2, EternaCity_Movement_BugCatcher2PushPlayerAndMoveBackZ532
+    ApplyMovement LOCALID_PLAYER, EternaCity_Movement_PlayerGetPushedBack
     WaitMovement
     Return
 
-_085B:
-    ApplyMovement 30, _08DC
-    ApplyMovement LOCALID_PLAYER, _0884
+EternaCity_PushBackPlayerZ533:
+    ApplyMovement LOCALID_BUG_CATCHER_2, EternaCity_Movement_BugCatcher2PushPlayerAndMoveBackZ533
+    ApplyMovement LOCALID_PLAYER, EternaCity_Movement_PlayerGetPushedBack
     WaitMovement
     Return
 
-_086F:
-    ApplyMovement 30, _08EC
-    ApplyMovement LOCALID_PLAYER, _0884
+EternaCity_PushBackPlayerZ534:
+    ApplyMovement LOCALID_BUG_CATCHER_2, EternaCity_Movement_BugCatcher2PushPlayerAndMoveBackZ534
+    ApplyMovement LOCALID_PLAYER, EternaCity_Movement_PlayerGetPushedBack
     WaitMovement
     Return
 
     .balign 4, 0
-_0884:
+EternaCity_Movement_PlayerGetPushedBack:
     WalkNormalEast
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_0890:
+EternaCity_Movement_PlayerFaceNorth:
     FaceNorth
     EndMovement
 
     .balign 4, 0
-_0898:
+EternaCity_Movement_BugCatcher2FaceSouth:
     FaceSouth
     EndMovement
 
     .balign 4, 0
-_08A0:
+EternaCity_Movement_BugCatcher2BlockExitWestZ532:
     FaceSouth
     EmoteExclamationMark
     EndMovement
 
     .balign 4, 0
-_08AC:
+EternaCity_Movement_BugCatcher2BlockExitWestZ533:
     FaceSouth
     EmoteExclamationMark
     WalkNormalSouth
     EndMovement
 
     .balign 4, 0
-_08BC:
+EternaCity_Movement_BugCatcher2BlockExitWestZ534:
     FaceSouth
     EmoteExclamationMark
     WalkNormalSouth 2
     EndMovement
 
     .balign 4, 0
-_08CC:
+EternaCity_Movement_BugCatcher2PushPlayerAndMoveBackZ532:
     WalkNormalSouth
     WalkNormalNorth
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_08DC:
+EternaCity_Movement_BugCatcher2PushPlayerAndMoveBackZ533:
     WalkNormalSouth
     WalkNormalNorth 2
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_08EC:
+EternaCity_Movement_BugCatcher2PushPlayerAndMoveBackZ534:
     WalkNormalSouth
     WalkNormalNorth 3
     WalkOnSpotNormalSouth
     EndMovement
 
-_08FC:
+EternaCity_Gardenia:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     BufferRivalName 0
-    Message 17
+    Message EternaCity_Text_HiImGardeniaImThisTownsGymLeader
     CloseMessage
-    ApplyMovement 31, _0944
+    ApplyMovement LOCALID_GARDENIA, EternaCity_Movement_GardeniaWalkOnSpotNorth
     WaitMovement
     LoadDoorAnimation 9, 17, 24, 18, ANIMATION_TAG_DOOR_1
     PlayDoorOpenAnimation ANIMATION_TAG_DOOR_1
     WaitForAnimation ANIMATION_TAG_DOOR_1
-    ApplyMovement 31, _094C
+    ApplyMovement LOCALID_GARDENIA, EternaCity_Movement_GardeniaEnterGym
     WaitMovement
-    RemoveObject 31
+    RemoveObject LOCALID_GARDENIA
     PlayDoorCloseAnimation ANIMATION_TAG_DOOR_1
     WaitForAnimation ANIMATION_TAG_DOOR_1
     UnloadAnimation ANIMATION_TAG_DOOR_1
@@ -692,161 +693,161 @@ _08FC:
     End
 
     .balign 4, 0
-_0944:
+EternaCity_Movement_GardeniaWalkOnSpotNorth:
     WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
-_094C:
+EternaCity_Movement_GardeniaEnterGym:
     WalkNormalNorth
     EndMovement
 
-_0954:
+EternaCity_TriggerRival:
     LockAll
     ScrCmd_32D
     ScrCmd_331
-    SetObjectEventPos 33, 0x12B, 0x215
-    ClearFlag FLAG_UNK_0x018C
-    AddObject 33
-    LockObject 33
+    SetObjectEventPos LOCALID_RIVAL, 299, 533
+    ClearFlag FLAG_HIDE_ETERNA_CITY_RIVAL
+    AddObject LOCALID_RIVAL
+    LockObject LOCALID_RIVAL
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    GoToIfEq VAR_0x8005, 0x20B, _099D
-    GoToIfEq VAR_0x8005, 0x20C, _09B7
-    GoToIfEq VAR_0x8005, 0x20D, _09D1
+    GoToIfEq VAR_0x8005, 523, EternaCity_RivalRunIntoPlayerZ523
+    GoToIfEq VAR_0x8005, 524, EternaCity_RivalRunIntoPlayerZ524
+    GoToIfEq VAR_0x8005, 525, EternaCity_RivalRunIntoPlayerZ525
     End
 
-_099D:
-    ApplyMovement 33, _0B58
-    ApplyMovement LOCALID_PLAYER, _0BDC
+EternaCity_RivalRunIntoPlayerZ523:
+    ApplyMovement LOCALID_RIVAL, EternaCity_Movement_RivalRunIntoPlayerZ523
+    ApplyMovement LOCALID_PLAYER, EternaCity_Movement_PlayerGetPushedByRivalZ523
     WaitMovement
-    GoTo _09EB
+    GoTo EternaCity_YouCameToSeeThePokemonStatueRight
     End
 
-_09B7:
-    ApplyMovement 33, _0B64
-    ApplyMovement LOCALID_PLAYER, _0BFC
+EternaCity_RivalRunIntoPlayerZ524:
+    ApplyMovement LOCALID_RIVAL, EternaCity_Movement_RivalRunIntoPlayerZ524
+    ApplyMovement LOCALID_PLAYER, EternaCity_Movement_PlayerGetPushedByRivalZ524
     WaitMovement
-    GoTo _09EB
+    GoTo EternaCity_YouCameToSeeThePokemonStatueRight
     End
 
-_09D1:
-    ApplyMovement 33, _0B70
-    ApplyMovement LOCALID_PLAYER, _0C1C
+EternaCity_RivalRunIntoPlayerZ525:
+    ApplyMovement LOCALID_RIVAL, EternaCity_Movement_RivalRunIntoPlayerZ525
+    ApplyMovement LOCALID_PLAYER, EternaCity_Movement_PlayerGetPushedByRivalZ525
     WaitMovement
-    GoTo _09EB
+    GoTo EternaCity_YouCameToSeeThePokemonStatueRight
     End
 
-_09EB:
+EternaCity_YouCameToSeeThePokemonStatueRight:
     PlayFanfare SEQ_SE_DP_WALL_HIT2
-    Message 0
+    Message EternaCity_Text_BigThud
     CloseMessage
     Common_SetRivalBGM
     BufferRivalName 0
     BufferPlayerName 1
-    Message 1
+    Message EternaCity_Text_YouCameToSeeThePokemonStatueRight
     CloseMessage
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    GoToIfEq VAR_0x8005, 0x20B, _0A32
-    GoToIfEq VAR_0x8005, 0x20C, _0A5E
-    GoToIfEq VAR_0x8005, 0x20D, _0A8A
+    GoToIfEq VAR_0x8005, 523, EternaCity_WalkToStatueZ523
+    GoToIfEq VAR_0x8005, 524, EternaCity_WalkToStatueZ524
+    GoToIfEq VAR_0x8005, 525, EternaCity_WalkToStatueZ525
     End
 
-_0A32:
-    ApplyMovement 33, _0B7C
-    ApplyMovement LOCALID_PLAYER, _0C3C
+EternaCity_WalkToStatueZ523:
+    ApplyMovement LOCALID_RIVAL, EternaCity_Movement_RivalWalkInFrontOfPlayerZ523
+    ApplyMovement LOCALID_PLAYER, EternaCity_Movement_PlayerFaceRivalZ523
     WaitMovement
-    ApplyMovement 33, _0BB0
-    ApplyMovement LOCALID_PLAYER, _0C74
+    ApplyMovement LOCALID_RIVAL, EternaCity_Movement_RivalWalkToStatueZ523Or525
+    ApplyMovement LOCALID_PLAYER, EternaCity_Movement_PlayerWalkToStatueZ523
     WaitMovement
-    GoTo _0AB6
+    GoTo EternaCity_Cyrus
     End
 
-_0A5E:
-    ApplyMovement 33, _0B8C
-    ApplyMovement LOCALID_PLAYER, _0C4C
+EternaCity_WalkToStatueZ524:
+    ApplyMovement LOCALID_RIVAL, EternaCity_Movement_RivalWalkInFrontOfPlayerZ524
+    ApplyMovement LOCALID_PLAYER, EternaCity_Movement_PlayerFaceRivalZ524
     WaitMovement
-    ApplyMovement 33, _0BB8
-    ApplyMovement LOCALID_PLAYER, _0C88
+    ApplyMovement LOCALID_RIVAL, EternaCity_Movement_RivalWalkToStatueZ524
+    ApplyMovement LOCALID_PLAYER, EternaCity_Movement_PlayerWalkToStatueZ524
     WaitMovement
-    GoTo _0AB6
+    GoTo EternaCity_Cyrus
     End
 
-_0A8A:
-    ApplyMovement 33, _0BA0
-    ApplyMovement LOCALID_PLAYER, _0C64
+EternaCity_WalkToStatueZ525:
+    ApplyMovement LOCALID_RIVAL, EternaCity_Movement_RivalWalkInFrontOfPlayerZ525
+    ApplyMovement LOCALID_PLAYER, EternaCity_Movement_PlayerFaceRivalZ525
     WaitMovement
-    ApplyMovement 33, _0BB0
-    ApplyMovement LOCALID_PLAYER, _0C98
+    ApplyMovement LOCALID_RIVAL, EternaCity_Movement_RivalWalkToStatueZ523Or525
+    ApplyMovement LOCALID_PLAYER, EternaCity_Movement_PlayerWalkToStatueZ525
     WaitMovement
-    GoTo _0AB6
+    GoTo EternaCity_Cyrus
     End
 
-_0AB6:
+EternaCity_Cyrus:
     BufferRivalName 0
-    Message 2
+    Message EternaCity_Text_WhatThe
     CloseMessage
     Common_FadeToDefaultMusic2
     ScrCmd_32E
     ScrCmd_332
-    AddFreeCamera 0x143, 0x20C
-    ApplyFreeCameraMovement _0CD4
+    AddFreeCamera 323, 524
+    ApplyFreeCameraMovement EternaCity_Movement_CameraPanEast
     WaitMovement
-    Message 3
+    Message EternaCity_Text_SoThisIsEternasPokemonStatue
     CloseMessage
     WaitTime 15, VAR_RESULT
-    ApplyMovement 32, _0CE4
-    ApplyFreeCameraMovement _0CDC
+    ApplyMovement LOCALID_CYRUS, EternaCity_Movement_CyrusWalkToPlayer
+    ApplyFreeCameraMovement EternaCity_Movement_CameraPanWest
     WaitMovement
     RestoreCamera
-    Message 4
+    Message EternaCity_Text_PardonMeStandAside
     CloseMessage
-    ApplyMovement 32, _0CF4
-    ApplyMovement 33, _0BC0
-    ApplyMovement LOCALID_PLAYER, _0CAC
+    ApplyMovement LOCALID_CYRUS, EternaCity_Movement_CyrusLeave
+    ApplyMovement LOCALID_RIVAL, EternaCity_Movement_RivalWatchCyrusLeave
+    ApplyMovement LOCALID_PLAYER, EternaCity_Movement_PlayerMoveAsideAndWatchCyrusLeave
     WaitMovement
-    RemoveObject 32
+    RemoveObject LOCALID_CYRUS
     WaitTime 35, VAR_RESULT
-    ApplyMovement 33, _0BD4
-    ApplyMovement LOCALID_PLAYER, _0CC0
+    ApplyMovement LOCALID_RIVAL, EternaCity_Movement_RivalFacePlayer
+    ApplyMovement LOCALID_PLAYER, EternaCity_Movement_PlayerFaceRival
     WaitMovement
     BufferRivalName 0
-    Message 5
+    Message EternaCity_Text_GoCheckOutThePokemonStatueSeeYouAround
     CloseMessage
-    ApplyMovement 33, _0BCC
-    ApplyMovement LOCALID_PLAYER, _0CC8
+    ApplyMovement LOCALID_RIVAL, EternaCity_Movement_RivalLeave
+    ApplyMovement LOCALID_PLAYER, EternaCity_Movement_PlayerWatchRivalLeave
     WaitMovement
-    RemoveObject 33
-    SetVar VAR_UNK_0x407A, 1
+    RemoveObject LOCALID_RIVAL
+    SetVar VAR_ETERNA_CITY_STATE, 1
     ReleaseAll
     End
 
     .balign 4, 0
-_0B58:
+EternaCity_Movement_RivalRunIntoPlayerZ523:
     WalkFastNorth 10
     WalkFastEast 4
     EndMovement
 
     .balign 4, 0
-_0B64:
+EternaCity_Movement_RivalRunIntoPlayerZ524:
     WalkFastNorth 9
     WalkFastEast 4
     EndMovement
 
     .balign 4, 0
-_0B70:
+EternaCity_Movement_RivalRunIntoPlayerZ525:
     WalkFastNorth 8
     WalkFastEast 4
     EndMovement
 
     .balign 4, 0
-_0B7C:
+EternaCity_Movement_RivalWalkInFrontOfPlayerZ523:
     WalkNormalSouth
     WalkNormalEast
     WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
-_0B8C:
+EternaCity_Movement_RivalWalkInFrontOfPlayerZ524:
     WalkNormalSouth
     WalkNormalEast 2
     WalkNormalNorth
@@ -854,40 +855,40 @@ _0B8C:
     EndMovement
 
     .balign 4, 0
-_0BA0:
+EternaCity_Movement_RivalWalkInFrontOfPlayerZ525:
     WalkNormalNorth
     WalkNormalEast
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_0BB0:
+EternaCity_Movement_RivalWalkToStatueZ523Or525:
     WalkNormalEast 19
     EndMovement
 
     .balign 4, 0
-_0BB8:
+EternaCity_Movement_RivalWalkToStatueZ524:
     WalkNormalEast 18
     EndMovement
 
     .balign 4, 0
-_0BC0:
+EternaCity_Movement_RivalWatchCyrusLeave:
     Delay8 3
     WalkOnSpotFastWest
     EndMovement
 
     .balign 4, 0
-_0BCC:
+EternaCity_Movement_RivalLeave:
     WalkFastWest 12
     EndMovement
 
     .balign 4, 0
-_0BD4:
+EternaCity_Movement_RivalFacePlayer:
     WalkFastSouth
     EndMovement
 
     .balign 4, 0
-_0BDC:
+EternaCity_Movement_PlayerGetPushedByRivalZ523:
     Delay4 10
     Delay2
     Delay1
@@ -898,7 +899,7 @@ _0BDC:
     EndMovement
 
     .balign 4, 0
-_0BFC:
+EternaCity_Movement_PlayerGetPushedByRivalZ524:
     Delay4 9
     Delay2
     Delay1
@@ -909,7 +910,7 @@ _0BFC:
     EndMovement
 
     .balign 4, 0
-_0C1C:
+EternaCity_Movement_PlayerGetPushedByRivalZ525:
     Delay4 8
     Delay2
     Delay1
@@ -920,14 +921,14 @@ _0C1C:
     EndMovement
 
     .balign 4, 0
-_0C3C:
+EternaCity_Movement_PlayerFaceRivalZ523:
     Delay8
     Delay4
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_0C4C:
+EternaCity_Movement_PlayerFaceRivalZ524:
     Delay8
     Delay4
     WalkOnSpotNormalSouth
@@ -936,14 +937,14 @@ _0C4C:
     EndMovement
 
     .balign 4, 0
-_0C64:
+EternaCity_Movement_PlayerFaceRivalZ525:
     Delay8
     Delay4
     WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
-_0C74:
+EternaCity_Movement_PlayerWalkToStatueZ523:
     WalkNormalSouth
     WalkNormalEast 18
     WalkNormalSouth
@@ -951,14 +952,14 @@ _0C74:
     EndMovement
 
     .balign 4, 0
-_0C88:
+EternaCity_Movement_PlayerWalkToStatueZ524:
     WalkNormalEast 18
     WalkNormalSouth
     WalkNormalEast
     EndMovement
 
     .balign 4, 0
-_0C98:
+EternaCity_Movement_PlayerWalkToStatueZ525:
     WalkNormalNorth
     WalkNormalEast 18
     WalkNormalSouth
@@ -966,7 +967,7 @@ _0C98:
     EndMovement
 
     .balign 4, 0
-_0CAC:
+EternaCity_Movement_PlayerMoveAsideAndWatchCyrusLeave:
     WalkNormalSouth
     WalkOnSpotNormalEast
     Delay8 2
@@ -974,137 +975,137 @@ _0CAC:
     EndMovement
 
     .balign 4, 0
-_0CC0:
+EternaCity_Movement_PlayerFaceRival:
     WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
-_0CC8:
+EternaCity_Movement_PlayerWatchRivalLeave:
     Delay8
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_0CD4:
+EternaCity_Movement_CameraPanEast:
     WalkNormalEast 4
     EndMovement
 
     .balign 4, 0
-_0CDC:
+EternaCity_Movement_CameraPanWest:
     WalkNormalWest 4
     EndMovement
 
     .balign 4, 0
-_0CE4:
+EternaCity_Movement_CyrusWalkToPlayer:
     WalkNormalWest 3
     WalkNormalNorth
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_0CF4:
+EternaCity_Movement_CyrusLeave:
     Delay8 2
     WalkNormalWest 14
     EndMovement
 
-_0D00:
+EternaCity_TriggerCynthiaTryGiveEgg:
     LockAll
-    SetObjectEventDir 12, DIR_EAST
-    SetObjectEventMovementType 12, MOVEMENT_TYPE_LOOK_EAST
+    SetObjectEventDir LOCALID_CYNTHIA, DIR_EAST
+    SetObjectEventMovementType LOCALID_CYNTHIA, MOVEMENT_TYPE_LOOK_EAST
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    GoToIfEq VAR_0x8005, 0x21C, _0D64
-    GoToIfEq VAR_0x8005, 0x21D, _0D7A
-    GoToIfEq VAR_0x8005, 0x21E, _0D90
-    GoToIfEq VAR_0x8005, 0x21F, _0DA6
-    GoToIfEq VAR_0x8005, 0x220, _0DBC
-    GoToIfEq VAR_0x8005, 0x221, _0DD2
+    GoToIfEq VAR_0x8005, 540, EternaCity_SetCynthiaPositionForGiveEggZ540
+    GoToIfEq VAR_0x8005, 541, EternaCity_SetCynthiaPositionForGiveEggZ541
+    GoToIfEq VAR_0x8005, 542, EternaCity_SetCynthiaPositionForGiveEggZ542
+    GoToIfEq VAR_0x8005, 543, EternaCity_SetCynthiaPositionForGiveEggZ543
+    GoToIfEq VAR_0x8005, 544, EternaCity_SetCynthiaPositionForGiveEggZ544
+    GoToIfEq VAR_0x8005, 545, EternaCity_SetCynthiaPositionForGiveEggZ545
     End
 
-_0D64:
-    SetObjectEventPos 12, 0x130, 0x224
-    Call _0DE8
-    GoTo _0DF6
+EternaCity_SetCynthiaPositionForGiveEggZ540:
+    SetObjectEventPos LOCALID_CYNTHIA, 304, 548
+    Call EternaCity_ShowCynthia
+    GoTo EternaCity_CynthiaTryGiveEgg
     End
 
-_0D7A:
-    SetObjectEventPos 12, 0x130, 0x225
-    Call _0DE8
-    GoTo _0DF6
+EternaCity_SetCynthiaPositionForGiveEggZ541:
+    SetObjectEventPos LOCALID_CYNTHIA, 304, 549
+    Call EternaCity_ShowCynthia
+    GoTo EternaCity_CynthiaTryGiveEgg
     End
 
-_0D90:
-    SetObjectEventPos 12, 0x130, 0x226
-    Call _0DE8
-    GoTo _0DF6
+EternaCity_SetCynthiaPositionForGiveEggZ542:
+    SetObjectEventPos LOCALID_CYNTHIA, 304, 550
+    Call EternaCity_ShowCynthia
+    GoTo EternaCity_CynthiaTryGiveEgg
     End
 
-_0DA6:
-    SetObjectEventPos 12, 0x130, 0x227
-    Call _0DE8
-    GoTo _0DF6
+EternaCity_SetCynthiaPositionForGiveEggZ543:
+    SetObjectEventPos LOCALID_CYNTHIA, 304, 551
+    Call EternaCity_ShowCynthia
+    GoTo EternaCity_CynthiaTryGiveEgg
     End
 
-_0DBC:
-    SetObjectEventPos 12, 0x130, 0x228
-    Call _0DE8
-    GoTo _0DF6
+EternaCity_SetCynthiaPositionForGiveEggZ544:
+    SetObjectEventPos LOCALID_CYNTHIA, 304, 552
+    Call EternaCity_ShowCynthia
+    GoTo EternaCity_CynthiaTryGiveEgg
     End
 
-_0DD2:
-    SetObjectEventPos 12, 0x130, 0x229
-    Call _0DE8
-    GoTo _0DF6
+EternaCity_SetCynthiaPositionForGiveEggZ545:
+    SetObjectEventPos LOCALID_CYNTHIA, 304, 553
+    Call EternaCity_ShowCynthia
+    GoTo EternaCity_CynthiaTryGiveEgg
     End
 
-_0DE8:
-    ClearFlag FLAG_UNK_0x0180
-    AddObject 12
-    LockObject 12
+EternaCity_ShowCynthia:
+    ClearFlag FLAG_HIDE_ETERNA_CITY_CYNTHIA
+    AddObject LOCALID_CYNTHIA
+    LockObject LOCALID_CYNTHIA
     Return
 
-_0DF6:
-    ApplyMovement 12, _0E88
+EternaCity_CynthiaTryGiveEgg:
+    ApplyMovement LOCALID_CYNTHIA, EternaCity_Movement_CynthiaNoticeAndWalkUpToPlayer
     WaitMovement
-    ApplyMovement LOCALID_PLAYER, _0EAC
+    ApplyMovement LOCALID_PLAYER, EternaCity_Movement_PlayerWalkOnSpotWestToFaceCynthia
     WaitMovement
-    Message 9
+    Message EternaCity_Text_IWantedYouToHaveThisPokemonEggWillYouAcceptIt
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _0E75
+    GoToIfEq VAR_RESULT, MENU_NO, EternaCity_RefusedEgg
     GetPartyCount VAR_RESULT
-    GoToIfGe VAR_RESULT, 6, _0E67
-    Call _0E4B
-    ApplyMovement 12, _0EA0
+    GoToIfGe VAR_RESULT, 6, EternaCity_PartyIsFull
+    Call EternaCity_GiveTogepiEgg
+    ApplyMovement LOCALID_CYNTHIA, EternaCity_Movement_CynthiaLeaveAfterEgg
     WaitMovement
-    RemoveObject 12
-    GoTo _0E83
+    RemoveObject LOCALID_CYNTHIA
+    GoTo EternaCity_CynthiaTryGiveEggEnd
     End
 
-_0E4B:
+EternaCity_GiveTogepiEgg:
     PlaySound SEQ_FANFA4
     WaitSound
-    Message 10
-    Message 16
+    Message EternaCity_Text_ThatsWonderfulThePokemonInsideTheEggIsHappyToo
+    Message EternaCity_Text_KeepThatEggWithYouInYourPartyOfPokemon
     CloseMessage
     GiveEgg SPECIES_TOGEPI, SPECIAL_METLOC_NAME_CYNTHIA
-    SetVar VAR_UNK_0x407A, 5
+    SetVar VAR_ETERNA_CITY_STATE, 5
     Return
 
-_0E67:
-    Call _0FBE
-    GoTo _0E83
+EternaCity_PartyIsFull:
+    Call EternaCity_OhYouDontHaveRoomForThisEgg
+    GoTo EternaCity_CynthiaTryGiveEggEnd
     End
 
-_0E75:
-    Call _0FCD
-    GoTo _0E83
+EternaCity_RefusedEgg:
+    Call EternaCity_OhYouDontNeedToFeelObligated
+    GoTo EternaCity_CynthiaTryGiveEggEnd
     End
 
-_0E83:
+EternaCity_CynthiaTryGiveEggEnd:
     ReleaseAll
     End
 
     .balign 4, 0
-_0E88:
+EternaCity_Movement_CynthiaNoticeAndWalkUpToPlayer:
     WalkNormalNorth 3
     EmoteExclamationMark
     WalkNormalNorth 5
@@ -1113,184 +1114,184 @@ _0E88:
     EndMovement
 
     .balign 4, 0
-_0EA0:
+EternaCity_Movement_CynthiaLeaveAfterEgg:
     WalkNormalWest 3
     WalkNormalSouth 9
     EndMovement
 
     .balign 4, 0
-_0EAC:
+EternaCity_Movement_PlayerWalkOnSpotWestToFaceCynthia:
     WalkOnSpotNormalWest
     EndMovement
 
-_0EB4:
+EternaCity_Cynthia:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfEq VAR_UNK_0x407A, 4, _0ECD
+    GoToIfEq VAR_ETERNA_CITY_STATE, 4, EternaCity_CynthiaTryAgainGiveEgg
     ReleaseAll
     End
 
-_0ECD:
-    Message 14
+EternaCity_CynthiaTryAgainGiveEgg:
+    Message EternaCity_Text_WillYouAcceptThisPokemonEgg
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _0FAC
+    GoToIfEq VAR_RESULT, MENU_NO, EternaCity_RefusedEggAgain
     GetPartyCount VAR_RESULT
-    GoToIfGe VAR_RESULT, 6, _0F9E
-    Call _0E4B
+    GoToIfGe VAR_RESULT, 6, EternaCity_PartyIsFullAgain
+    Call EternaCity_GiveTogepiEgg
     GetPlayerDir VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _0F32
-    GoToIfEq VAR_RESULT, 1, _0F4C
-    GoToIfEq VAR_RESULT, 2, _0F66
-    GoToIfEq VAR_RESULT, 3, _0F78
+    GoToIfEq VAR_RESULT, DIR_NORTH, EternaCity_CynthiaLeaveAfterEggNorth
+    GoToIfEq VAR_RESULT, DIR_SOUTH, EternaCity_CynthiaLeaveAfterEggSouth
+    GoToIfEq VAR_RESULT, DIR_WEST, EternaCity_CynthiaLeaveAfterEggWest
+    GoToIfEq VAR_RESULT, DIR_EAST, EternaCity_CynthiaLeaveAfterEggEast
     End
 
-_0F32:
-    ApplyMovement 12, _10BC
-    ApplyMovement LOCALID_PLAYER, _10E0
+EternaCity_CynthiaLeaveAfterEggNorth:
+    ApplyMovement LOCALID_CYNTHIA, EternaCity_Movement_CynthiaLeaveNorthSouthWest
+    ApplyMovement LOCALID_PLAYER, EternaCity_Movement_PlayerWatchCynthiaLeaveNorthSouth
     WaitMovement
-    GoTo _0F92
+    GoTo EternaCity_RemoveCynthia
     End
 
-_0F4C:
-    ApplyMovement 12, _10BC
-    ApplyMovement LOCALID_PLAYER, _10E0
+EternaCity_CynthiaLeaveAfterEggSouth:
+    ApplyMovement LOCALID_CYNTHIA, EternaCity_Movement_CynthiaLeaveNorthSouthWest
+    ApplyMovement LOCALID_PLAYER, EternaCity_Movement_PlayerWatchCynthiaLeaveNorthSouth
     WaitMovement
-    GoTo _0F92
+    GoTo EternaCity_RemoveCynthia
     End
 
-_0F66:
-    ApplyMovement 12, _10BC
+EternaCity_CynthiaLeaveAfterEggWest:
+    ApplyMovement LOCALID_CYNTHIA, EternaCity_Movement_CynthiaLeaveNorthSouthWest
     WaitMovement
-    GoTo _0F92
+    GoTo EternaCity_RemoveCynthia
     End
 
-_0F78:
-    ApplyMovement 12, _10C8
-    ApplyMovement LOCALID_PLAYER, _10EC
+EternaCity_CynthiaLeaveAfterEggEast:
+    ApplyMovement LOCALID_CYNTHIA, EternaCity_Movement_CynthiaLeaveNorthSouthEast
+    ApplyMovement LOCALID_PLAYER, EternaCity_Movement_PlayerWatchCynthiaLeaveEast
     WaitMovement
-    GoTo _0F92
+    GoTo EternaCity_RemoveCynthia
     End
 
-_0F92:
-    RemoveObject 12
-    GoTo _0FBA
+EternaCity_RemoveCynthia:
+    RemoveObject LOCALID_CYNTHIA
+    GoTo EternaCity_CynthiaTryAgainGiveEggEnd
     End
 
-_0F9E:
-    Call _0FBE
-    GoTo _0FBA
+EternaCity_PartyIsFullAgain:
+    Call EternaCity_OhYouDontHaveRoomForThisEgg
+    GoTo EternaCity_CynthiaTryAgainGiveEggEnd
     End
 
-_0FAC:
-    Call _0FCD
-    GoTo _0FBA
+EternaCity_RefusedEggAgain:
+    Call EternaCity_OhYouDontNeedToFeelObligated
+    GoTo EternaCity_CynthiaTryAgainGiveEggEnd
     End
 
-_0FBA:
+EternaCity_CynthiaTryAgainGiveEggEnd:
     ReleaseAll
     End
 
-_0FBE:
-    SetVar VAR_UNK_0x407A, 4
-    Message 11
+EternaCity_OhYouDontHaveRoomForThisEgg:
+    SetVar VAR_ETERNA_CITY_STATE, 4
+    Message EternaCity_Text_OhYouDontHaveRoomForThisEgg
     WaitABXPadPress
     CloseMessage
     Return
 
-_0FCD:
-    Message 12
+EternaCity_OhYouDontNeedToFeelObligated:
+    Message EternaCity_Text_OhYouDontNeedToFeelObligated
     WaitABXPadPress
     CloseMessage
-    SetVar VAR_UNK_0x407A, 4
+    SetVar VAR_ETERNA_CITY_STATE, 4
     Return
 
-_0FDC:
+EternaCity_TriggerCynthiaBlockBikeShop:
     LockAll
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    GoToIfEq VAR_0x8005, 0x21C, _1034
-    GoToIfEq VAR_0x8005, 0x21D, _1046
-    GoToIfEq VAR_0x8005, 0x21E, _1058
-    GoToIfEq VAR_0x8005, 0x21F, _106A
-    GoToIfEq VAR_0x8005, 0x220, _107C
-    GoToIfEq VAR_0x8005, 0x221, _108E
+    GoToIfEq VAR_0x8005, 540, EternaCity_CynthiaWalkOnSpotEastZ540
+    GoToIfEq VAR_0x8005, 541, EternaCity_CynthiaWalkOnSpotEastZ541
+    GoToIfEq VAR_0x8005, 542, EternaCity_CynthiaWalkOnSpotEastZ542
+    GoToIfEq VAR_0x8005, 543, EternaCity_CynthiaWalkOnSpotEastZ543
+    GoToIfEq VAR_0x8005, 544, EternaCity_CynthiaWalkOnSpotEastZ544
+    GoToIfEq VAR_0x8005, 545, EternaCity_CynthiaWalkOnSpotEastZ545
     End
 
-_1034:
-    ApplyMovement 12, _10B4
+EternaCity_CynthiaWalkOnSpotEastZ540:
+    ApplyMovement LOCALID_CYNTHIA, EternaCity_Movement_CynthiaWalkOnSpotEast
     WaitMovement
-    GoTo _10A0
+    GoTo EternaCity_DontLeaveWithoutThisPokemonEgg
     End
 
-_1046:
-    ApplyMovement 12, _10B4
+EternaCity_CynthiaWalkOnSpotEastZ541:
+    ApplyMovement LOCALID_CYNTHIA, EternaCity_Movement_CynthiaWalkOnSpotEast
     WaitMovement
-    GoTo _10A0
+    GoTo EternaCity_DontLeaveWithoutThisPokemonEgg
     End
 
-_1058:
-    ApplyMovement 12, _10B4
+EternaCity_CynthiaWalkOnSpotEastZ542:
+    ApplyMovement LOCALID_CYNTHIA, EternaCity_Movement_CynthiaWalkOnSpotEast
     WaitMovement
-    GoTo _10A0
+    GoTo EternaCity_DontLeaveWithoutThisPokemonEgg
     End
 
-_106A:
-    ApplyMovement 12, _10B4
+EternaCity_CynthiaWalkOnSpotEastZ543:
+    ApplyMovement LOCALID_CYNTHIA, EternaCity_Movement_CynthiaWalkOnSpotEast
     WaitMovement
-    GoTo _10A0
+    GoTo EternaCity_DontLeaveWithoutThisPokemonEgg
     End
 
-_107C:
-    ApplyMovement 12, _10B4
+EternaCity_CynthiaWalkOnSpotEastZ544:
+    ApplyMovement LOCALID_CYNTHIA, EternaCity_Movement_CynthiaWalkOnSpotEast
     WaitMovement
-    GoTo _10A0
+    GoTo EternaCity_DontLeaveWithoutThisPokemonEgg
     End
 
-_108E:
-    ApplyMovement 12, _10B4
+EternaCity_CynthiaWalkOnSpotEastZ545:
+    ApplyMovement LOCALID_CYNTHIA, EternaCity_Movement_CynthiaWalkOnSpotEast
     WaitMovement
-    GoTo _10A0
+    GoTo EternaCity_DontLeaveWithoutThisPokemonEgg
     End
 
-_10A0:
-    Message 13
+EternaCity_DontLeaveWithoutThisPokemonEgg:
+    Message EternaCity_Text_DontLeaveWithoutThisPokemonEgg
     CloseMessage
-    ApplyMovement LOCALID_PLAYER, _10D8
+    ApplyMovement LOCALID_PLAYER, EternaCity_Movement_PlayerWalkNormalWest
     WaitMovement
     ReleaseAll
     End
 
     .balign 4, 0
-_10B4:
+EternaCity_Movement_CynthiaWalkOnSpotEast:
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_10BC:
+EternaCity_Movement_CynthiaLeaveNorthSouthWest:
     WalkNormalWest 3
     WalkNormalSouth 9
     EndMovement
 
     .balign 4, 0
-_10C8:
+EternaCity_Movement_CynthiaLeaveNorthSouthEast:
     WalkNormalSouth
     WalkNormalWest 3
     WalkNormalSouth 8
     EndMovement
 
     .balign 4, 0
-_10D8:
+EternaCity_Movement_PlayerWalkNormalWest:
     WalkNormalWest
     EndMovement
 
     .balign 4, 0
-_10E0:
+EternaCity_Movement_PlayerWatchCynthiaLeaveNorthSouth:
     Delay8
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_10EC:
+EternaCity_Movement_PlayerWatchCynthiaLeaveEast:
     Delay8 2
     Delay4
     WalkOnSpotNormalWest

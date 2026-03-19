@@ -1,176 +1,178 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/eterna_city_underground_man_house.h"
+#include "res/text/bank/menu_entries.h"
+#include "res/field/events/events_eterna_city_underground_man_house.h"
 #include "generated/goods.h"
 #include "generated/sphere_types.h"
 #include "generated/traps.h"
 
 
-    ScriptEntry _001A
-    ScriptEntry _0634
-    ScriptEntry _0647
-    ScriptEntry _0674
-    ScriptEntry _0685
-    ScriptEntry _0747
+    ScriptEntry EternaCityUndergroundManHouse_UndergroundMan
+    ScriptEntry EternaCityUndergroundManHouse_Youngster
+    ScriptEntry EternaCityUndergroundManHouse_ScientistM
+    ScriptEntry EternaCityUndergroundManHouse_Sign
+    ScriptEntry EternaCityUndergroundManHouse_PC
+    ScriptEntry EternaCityUndergroundManHouse_BugCatcher
     ScriptEntryEnd
 
-_001A:
+EternaCityUndergroundManHouse_UndergroundMan:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfGe VAR_UNK_0x40B6, 9, _00B2
-    GoToIfSet FLAG_UNK_0x0113, _0164
-    GoToIfSet FLAG_EXPLORER_KIT_RECEIVED, _007E
-    Message 0
+    GoToIfGe VAR_CURRENT_UNDERGROUND_MISSION, 9, EternaCityUndergroundManHouse_FromNowOnYouAreTheSpelunkingMaster
+    GoToIfSet FLAG_ACCEPTED_UNDERGROUND_MAN_AS_MENTOR, EternaCityUndergroundManHouse_GoToCurrentMission
+    GoToIfSet FLAG_EXPLORER_KIT_RECEIVED, EternaCityUndergroundManHouse_LetMeMentorYouAsYouBecomeAFullFledgedSpelunker
+    Message EternaCityUndergroundManHouse_Text_YouCanCallMeTheUndergroundManIllMakeAGiftOfThisToYou
     SetVar VAR_0x8004, ITEM_EXPLORER_KIT
     SetVar VAR_0x8005, 1
     Common_GiveItemQuantity
     SetFlag FLAG_EXPLORER_KIT_RECEIVED
-    ClearFlag FLAG_UNK_0x0111
-    Message 1
+    ClearFlag FLAG_HAS_ACTIVE_UNDERGROUND_MISSION
+    Message EternaCityUndergroundManHouse_Text_LetMeMentorYouIntoBecomingAFullFledgedSpelunker
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _009C
-    SetFlag FLAG_UNK_0x0113
-    GoTo _0164
+    GoToIfEq VAR_RESULT, MENU_NO, EternaCityUndergroundManHouse_ICantForceYouToAcceptMyProposalIfYoureNotInclined
+    SetFlag FLAG_ACCEPTED_UNDERGROUND_MAN_AS_MENTOR
+    GoTo EternaCityUndergroundManHouse_GoToCurrentMission
 
-_007E:
-    Message 2
+EternaCityUndergroundManHouse_LetMeMentorYouAsYouBecomeAFullFledgedSpelunker:
+    Message EternaCityUndergroundManHouse_Text_LetMeMentorYouAsYouBecomeAFullFledgedSpelunker
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _009C
-    SetFlag FLAG_UNK_0x0113
-    GoTo _0164
+    GoToIfEq VAR_RESULT, MENU_NO, EternaCityUndergroundManHouse_ICantForceYouToAcceptMyProposalIfYoureNotInclined
+    SetFlag FLAG_ACCEPTED_UNDERGROUND_MAN_AS_MENTOR
+    GoTo EternaCityUndergroundManHouse_GoToCurrentMission
 
-_009C:
-    Message 3
+EternaCityUndergroundManHouse_ICantForceYouToAcceptMyProposalIfYoureNotInclined:
+    Message EternaCityUndergroundManHouse_Text_ICantForceYouToAcceptMyProposalIfYoureNotInclined
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_00A7:
-    Message 29
+EternaCityUndergroundManHouse_SoMySpelunkerAreYouGoingUndergroundWithYourFriends:
+    Message EternaCityUndergroundManHouse_Text_SoMySpelunkerAreYouGoingUndergroundWithYourFriends
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_00B2:
-    Message 33
+EternaCityUndergroundManHouse_FromNowOnYouAreTheSpelunkingMaster:
+    Message EternaCityUndergroundManHouse_Text_FromNowOnYouAreTheSpelunkingMaster
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_00BD:
-    SetFlag FLAG_UNK_0x0111
-    Message 4
+EternaCityUndergroundManHouse_StartMissionGoUnderground:
+    SetFlag FLAG_HAS_ACTIVE_UNDERGROUND_MISSION
+    Message EternaCityUndergroundManHouse_Text_IWillTeachYouByAssigningMissionsFirstGoUnderground
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_00CC:
-    SetFlag FLAG_UNK_0x0111
-    Message 8
+EternaCityUndergroundManHouse_StartMissionDigUpTreasureOrSpheres:
+    SetFlag FLAG_HAS_ACTIVE_UNDERGROUND_MISSION
+    Message EternaCityUndergroundManHouse_Text_ForMyNextTestIWantYouToDigUpSomeTreasureOrSpheresForMe
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_00DB:
-    SetFlag FLAG_UNK_0x0111
-    Message 12
+EternaCityUndergroundManHouse_StartMissionBurySpheres:
+    SetFlag FLAG_HAS_ACTIVE_UNDERGROUND_MISSION
+    Message EternaCityUndergroundManHouse_Text_IWantYouToGoBuryTheseStrangeSpheresInTheUnderground
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_00EA:
-    SetFlag FLAG_UNK_0x0111
-    Message 16
+EternaCityUndergroundManHouse_StartMissionMakeASecretBase:
+    SetFlag FLAG_HAS_ACTIVE_UNDERGROUND_MISSION
+    Message EternaCityUndergroundManHouse_Text_YourNextAssignmentIsGoMakeYourOwnSecretBase
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_00F9:
-    SetFlag FLAG_UNK_0x0111
-    Message 20
+EternaCityUndergroundManHouse_StartMissionDecorateASecretBase:
+    SetFlag FLAG_HAS_ACTIVE_UNDERGROUND_MISSION
+    Message EternaCityUndergroundManHouse_Text_ForMyFinalTestIWantYouToDecorateYourSecretBase
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0108:
-    SetFlag FLAG_UNK_0x0111
-    Message 24
+EternaCityUndergroundManHouse_StartMissionStealAFlag:
+    SetFlag FLAG_HAS_ACTIVE_UNDERGROUND_MISSION
+    Message EternaCityUndergroundManHouse_Text_IfYouInsistThereIsOneMoreThingIShouldTellYou
     CloseMessage
-    Call _057F
-    Message 25
+    Call EternaCityUndergroundManHouse_UndergroundManWalkAround
+    Message EternaCityUndergroundManHouse_Text_StealYourFriendsFlagIfYouCanDoThatIWillPermitYouToMoveBoulders
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0122:
-    Message 5
+EternaCityUndergroundManHouse_DidNotYetCompleteMissionGoUnderground:
+    Message EternaCityUndergroundManHouse_Text_ToGetDownToTheUndergroundTunnelsYouNeedOnlyToUseYourExplorerKit
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_012D:
-    Message 9
+EternaCityUndergroundManHouse_DidNotYetCompleteMissionDigUpTreasureOrSpheres:
+    Message EternaCityUndergroundManHouse_Text_YouveNotLocatedAnyTreasureOrSpheresYet
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0138:
-    Message 13
+EternaCityUndergroundManHouse_DidNotYetCompleteMissionBurySpheres:
+    Message EternaCityUndergroundManHouse_Text_YouveNotBuriedTheSpheresYet
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0143:
-    Message 17
+EternaCityUndergroundManHouse_DidNotYetCompleteMissionMakeASecretBase:
+    Message EternaCityUndergroundManHouse_Text_HmYouDontKnowHowToUseTheDiggerDrill
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_014E:
-    Message 21
+EternaCityUndergroundManHouse_DidNotYetCompleteMissionDecorateYourSecretBase:
+    Message EternaCityUndergroundManHouse_Text_AhHaveIFinallyManagedToStumpYou
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0159:
-    Message 26
+EternaCityUndergroundManHouse_DidNotYetCompleteMissionStealAFlag:
+    Message EternaCityUndergroundManHouse_Text_IfYouManageToStealAFlagYouBeSureToComeShowMe
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0164:
-    GoToIfEq VAR_UNK_0x40B6, 0, _01DF
-    GoToIfEq VAR_UNK_0x40B6, 1, _023D
-    GoToIfEq VAR_UNK_0x40B6, 2, _029B
-    GoToIfEq VAR_UNK_0x40B6, 3, _02D9
-    GoToIfEq VAR_UNK_0x40B6, 4, _0347
-    GoToIfEq VAR_UNK_0x40B6, 5, _03D9
-    GoToIfEq VAR_UNK_0x40B6, 6, _0448
-    GoToIfEq VAR_UNK_0x40B6, 7, _04A9
-    GoToIfEq VAR_UNK_0x40B6, 8, _050A
-    GoTo _00B2
+EternaCityUndergroundManHouse_GoToCurrentMission:
+    GoToIfEq VAR_CURRENT_UNDERGROUND_MISSION, 0, EternaCityUndergroundManHouse_MissionGoUnderground
+    GoToIfEq VAR_CURRENT_UNDERGROUND_MISSION, 1, EternaCityUndergroundManHouse_MissionDigUpTreasureOrSpheres
+    GoToIfEq VAR_CURRENT_UNDERGROUND_MISSION, 2, EternaCityUndergroundManHouse_MissionBurySpheres
+    GoToIfEq VAR_CURRENT_UNDERGROUND_MISSION, 3, EternaCityUndergroundManHouse_MissionMakeASecretBase
+    GoToIfEq VAR_CURRENT_UNDERGROUND_MISSION, 4, EternaCityUndergroundManHouse_MissionDecorateYourSecretBase
+    GoToIfEq VAR_CURRENT_UNDERGROUND_MISSION, 5, EternaCityUndergroundManHouse_MissionStealAFlag
+    GoToIfEq VAR_CURRENT_UNDERGROUND_MISSION, 6, EternaCityUndergroundManHouse_MissionStealThreeFlags
+    GoToIfEq VAR_CURRENT_UNDERGROUND_MISSION, 7, EternaCityUndergroundManHouse_MissionStealTenFlags
+    GoToIfEq VAR_CURRENT_UNDERGROUND_MISSION, 8, EternaCityUndergroundManHouse_MissionStealFiftyFlags
+    GoTo EternaCityUndergroundManHouse_FromNowOnYouAreTheSpelunkingMaster
 
-_01DF:
-    GoToIfUnset FLAG_UNK_0x0111, _00BD
-    GoToIfUnset FLAG_ENTERED_UNDERGROUND, _0122
-    SetVar VAR_UNK_0x40B6, 1
-    ClearFlag FLAG_UNK_0x0111
-    Message 6
+EternaCityUndergroundManHouse_MissionGoUnderground:
+    GoToIfUnset FLAG_HAS_ACTIVE_UNDERGROUND_MISSION, EternaCityUndergroundManHouse_StartMissionGoUnderground
+    GoToIfUnset FLAG_ENTERED_UNDERGROUND, EternaCityUndergroundManHouse_DidNotYetCompleteMissionGoUnderground
+    SetVar VAR_CURRENT_UNDERGROUND_MISSION, 1
+    ClearFlag FLAG_HAS_ACTIVE_UNDERGROUND_MISSION
+    Message EternaCityUndergroundManHouse_Text_ISeeThatYouveGoneDownToTheUndergroundTunnelsTakeTheseAsRewards
     SetVar VAR_0x8004, TRAP_MOVE_UP
     SetVar VAR_0x8005, 1
     Common_ObtainUndergroundTrap
@@ -180,18 +182,18 @@ _01DF:
     SetVar VAR_0x8004, TRAP_LEAF
     SetVar VAR_0x8005, 1
     Common_ObtainUndergroundTrap
-    Message 7
+    Message EternaCityUndergroundManHouse_Text_ThoseAreCalledTraps
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_023D:
-    GoToIfUnset FLAG_UNK_0x0111, _00CC
-    GoToIfUnset FLAG_DIGGING_FOR_FOSSILS, _012D
-    SetVar VAR_UNK_0x40B6, 2
-    ClearFlag FLAG_UNK_0x0111
-    Message 10
+EternaCityUndergroundManHouse_MissionDigUpTreasureOrSpheres:
+    GoToIfUnset FLAG_HAS_ACTIVE_UNDERGROUND_MISSION, EternaCityUndergroundManHouse_StartMissionDigUpTreasureOrSpheres
+    GoToIfUnset FLAG_DIGGING_FOR_FOSSILS, EternaCityUndergroundManHouse_DidNotYetCompleteMissionDigUpTreasureOrSpheres
+    SetVar VAR_CURRENT_UNDERGROUND_MISSION, 2
+    ClearFlag FLAG_HAS_ACTIVE_UNDERGROUND_MISSION
+    Message EternaCityUndergroundManHouse_Text_YouDugUpWhatIWasLookingForTakeTheseAsYourReward
     SetVar VAR_0x8004, SPHERE_PRISM
     SetVar VAR_0x8005, 1
     Common_ObtainUndergroundSphere
@@ -201,33 +203,33 @@ _023D:
     SetVar VAR_0x8004, SPHERE_BLUE
     SetVar VAR_0x8005, 1
     Common_ObtainUndergroundSphere
-    Message 11
+    Message EternaCityUndergroundManHouse_Text_DigInTheWallsOfTheUndergroundTunnelsToUnearthHiddenStuff
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_029B:
-    GoToIfUnset FLAG_UNK_0x0111, _00DB
-    GoToIfUnset FLAG_SPHERE_ACQUIRED, _0138
-    SetVar VAR_UNK_0x40B6, 3
-    ClearFlag FLAG_UNK_0x0111
-    Message 14
+EternaCityUndergroundManHouse_MissionBurySpheres:
+    GoToIfUnset FLAG_HAS_ACTIVE_UNDERGROUND_MISSION, EternaCityUndergroundManHouse_StartMissionBurySpheres
+    GoToIfUnset FLAG_SPHERE_ACQUIRED, EternaCityUndergroundManHouse_DidNotYetCompleteMissionBurySpheres
+    SetVar VAR_CURRENT_UNDERGROUND_MISSION, 3
+    ClearFlag FLAG_HAS_ACTIVE_UNDERGROUND_MISSION
+    Message EternaCityUndergroundManHouse_Text_YouveBuriedYourSpheresThisIsYourReward
     SetVar VAR_0x8004, TRAP_DIGGER_DRILL
     SetVar VAR_0x8005, 1
     Common_ObtainUndergroundTrap
-    Message 15
+    Message EternaCityUndergroundManHouse_Text_YouMayHaveSeenThemAlreadyButTheseAreSphereCollectors
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_02D9:
-    GoToIfUnset FLAG_UNK_0x0111, _00EA
-    GoToIfUnset FLAG_CREATED_SECRET_BASE, _0143
-    SetVar VAR_UNK_0x40B6, 4
-    ClearFlag FLAG_UNK_0x0111
-    Message 18
+EternaCityUndergroundManHouse_MissionMakeASecretBase:
+    GoToIfUnset FLAG_HAS_ACTIVE_UNDERGROUND_MISSION, EternaCityUndergroundManHouse_StartMissionMakeASecretBase
+    GoToIfUnset FLAG_CREATED_SECRET_BASE, EternaCityUndergroundManHouse_DidNotYetCompleteMissionMakeASecretBase
+    SetVar VAR_CURRENT_UNDERGROUND_MISSION, 4
+    ClearFlag FLAG_HAS_ACTIVE_UNDERGROUND_MISSION
+    Message EternaCityUndergroundManHouse_Text_AhYouveMadeYourSecretBaseTakeTheseAsYourReward
     SetVar VAR_0x8004, UG_GOOD_PLAIN_TABLE
     SetVar VAR_0x8005, 1
     Common_SendToUndergroundPCWithLinefeed
@@ -240,174 +242,174 @@ _02D9:
     SetVar VAR_0x8004, UG_GOOD_BUNEARY_DOLL
     SetVar VAR_0x8005, 1
     Common_SendToUndergroundPCWithLinefeed
-    Message 19
+    Message EternaCityUndergroundManHouse_Text_IncidentallyADiggerDrillCanBeUsedOnlyOnce
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0347:
-    GoToIfUnset FLAG_UNK_0x0111, _00F9
-    GoToIfUnset FLAG_DECORATED_SECRET_BASE, _014E
-    SetVar VAR_UNK_0x40B6, 5
-    ClearFlag FLAG_UNK_0x0111
-    ClearFlag FLAG_UNK_0x00FC
-    Message 22
-    Call _037F
-    Message 23
+EternaCityUndergroundManHouse_MissionDecorateYourSecretBase:
+    GoToIfUnset FLAG_HAS_ACTIVE_UNDERGROUND_MISSION, EternaCityUndergroundManHouse_StartMissionDecorateASecretBase
+    GoToIfUnset FLAG_DECORATED_SECRET_BASE, EternaCityUndergroundManHouse_DidNotYetCompleteMissionDecorateYourSecretBase
+    SetVar VAR_CURRENT_UNDERGROUND_MISSION, 5
+    ClearFlag FLAG_HAS_ACTIVE_UNDERGROUND_MISSION
+    ClearFlag FLAG_UNDERGROUND_MAN_COULDNT_GIVE_REWARD
+    Message EternaCityUndergroundManHouse_Text_AhYouveEvenManagedToDecorateYourSecretBaseThisIsYourReward
+    Call EternaCityUndergroundManHouse_SendStarterDollToUndergroundPC
+    Message EternaCityUndergroundManHouse_Text_ThereAreWaysOfCollectingMoreDecorationGoods
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_037F:
+EternaCityUndergroundManHouse_SendStarterDollToUndergroundPC:
     GetPlayerStarterSpecies VAR_RESULT
-    GoToIfEq VAR_RESULT, SPECIES_CHIMCHAR, _03A3
-    GoToIfEq VAR_RESULT, SPECIES_TURTWIG, _03B5
-    GoTo _03C7
+    GoToIfEq VAR_RESULT, SPECIES_CHIMCHAR, EternaCityUndergroundManHouse_SendChimcharDollToUndergroundPC
+    GoToIfEq VAR_RESULT, SPECIES_TURTWIG, EternaCityUndergroundManHouse_SendTurtwigDollToUndergroundPC
+    GoTo EternaCityUndergroundManHouse_SendPiplupDollToUndergroundPC
 
-_03A3:
+EternaCityUndergroundManHouse_SendChimcharDollToUndergroundPC:
     SetVar VAR_0x8004, UG_GOOD_CHIMCHAR_DOLL
     SetVar VAR_0x8005, 1
     Common_SendToUndergroundPCWithLinefeed
     Return
 
-_03B5:
+EternaCityUndergroundManHouse_SendTurtwigDollToUndergroundPC:
     SetVar VAR_0x8004, UG_GOOD_TURTWIG_DOLL
     SetVar VAR_0x8005, 1
     Common_SendToUndergroundPCWithLinefeed
     Return
 
-_03C7:
+EternaCityUndergroundManHouse_SendPiplupDollToUndergroundPC:
     SetVar VAR_0x8004, UG_GOOD_PIPLUP_DOLL
     SetVar VAR_0x8005, 1
     Common_SendToUndergroundPCWithLinefeed
     Return
 
-_03D9:
-    GoToIfUnset FLAG_UNK_0x0111, _0108
-    GoToIfUnset FLAG_DELIVERED_STOLEN_FLAG, _0159
-    CallIfSet FLAG_UNK_0x00FC, _057A
-    CallIfUnset FLAG_UNK_0x00FC, _0443
+EternaCityUndergroundManHouse_MissionStealAFlag:
+    GoToIfUnset FLAG_HAS_ACTIVE_UNDERGROUND_MISSION, EternaCityUndergroundManHouse_StartMissionStealAFlag
+    GoToIfUnset FLAG_DELIVERED_STOLEN_FLAG, EternaCityUndergroundManHouse_DidNotYetCompleteMissionStealAFlag
+    CallIfSet FLAG_UNDERGROUND_MAN_COULDNT_GIVE_REWARD, EternaCityUndergroundManHouse_HmThisBelongsToYou
+    CallIfUnset FLAG_UNDERGROUND_MAN_COULDNT_GIVE_REWARD, EternaCityUndergroundManHouse_YouveCapturedAFlagThisIsYourReward
     SetVar VAR_0x8004, UG_GOOD_PRETTY_GEM
     SetVar VAR_0x8005, 1
     CheckHasRoomForGoodsInPC VAR_0x8004, VAR_0x8005, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _056B
+    GoToIfEq VAR_RESULT, 0, EternaCityUndergroundManHouse_UndergroundPCIsFull
     Common_SendToUndergroundPCWithLinefeed
-    SetVar VAR_UNK_0x40B6, 6
-    ClearFlag FLAG_UNK_0x0111
-    ClearFlag FLAG_UNK_0x00FC
-    Message 28
+    SetVar VAR_CURRENT_UNDERGROUND_MISSION, 6
+    ClearFlag FLAG_HAS_ACTIVE_UNDERGROUND_MISSION
+    ClearFlag FLAG_UNDERGROUND_MAN_COULDNT_GIVE_REWARD
+    Message EternaCityUndergroundManHouse_Text_ThereReallyIsNothingElseThatICanTeachYou
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0443:
-    Message 27
+EternaCityUndergroundManHouse_YouveCapturedAFlagThisIsYourReward:
+    Message EternaCityUndergroundManHouse_Text_YouveCapturedAFlagThisIsYourReward
     Return
 
-_0448:
+EternaCityUndergroundManHouse_MissionStealThreeFlags:
     GetCapturedFlagCount VAR_RESULT
-    GoToIfLt VAR_RESULT, 3, _00A7
-    CallIfSet FLAG_UNK_0x00FC, _057A
-    CallIfUnset FLAG_UNK_0x00FC, _04A4
+    GoToIfLt VAR_RESULT, 3, EternaCityUndergroundManHouse_SoMySpelunkerAreYouGoingUndergroundWithYourFriends
+    CallIfSet FLAG_UNDERGROUND_MAN_COULDNT_GIVE_REWARD, EternaCityUndergroundManHouse_HmThisBelongsToYou
+    CallIfUnset FLAG_UNDERGROUND_MAN_COULDNT_GIVE_REWARD, EternaCityUndergroundManHouse_AhYouveCapturedThreeFlagsTakeThisAsYourReward
     SetVar VAR_0x8004, UG_GOOD_SHINY_GEM
     SetVar VAR_0x8005, 1
     CheckHasRoomForGoodsInPC VAR_0x8004, VAR_0x8005, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _056B
+    GoToIfEq VAR_RESULT, 0, EternaCityUndergroundManHouse_UndergroundPCIsFull
     Common_SendToUndergroundPC
-    SetVar VAR_UNK_0x40B6, 7
-    ClearFlag FLAG_UNK_0x00FC
+    SetVar VAR_CURRENT_UNDERGROUND_MISSION, 7
+    ClearFlag FLAG_UNDERGROUND_MAN_COULDNT_GIVE_REWARD
     CloseMessage
     ReleaseAll
     End
 
-_04A4:
-    Message 30
+EternaCityUndergroundManHouse_AhYouveCapturedThreeFlagsTakeThisAsYourReward:
+    Message EternaCityUndergroundManHouse_Text_AhYouveCapturedThreeFlagsTakeThisAsYourReward
     Return
 
-_04A9:
+EternaCityUndergroundManHouse_MissionStealTenFlags:
     GetCapturedFlagCount VAR_RESULT
-    GoToIfLt VAR_RESULT, 10, _00A7
-    CallIfSet FLAG_UNK_0x00FC, _057A
-    CallIfUnset FLAG_UNK_0x00FC, _0505
+    GoToIfLt VAR_RESULT, 10, EternaCityUndergroundManHouse_SoMySpelunkerAreYouGoingUndergroundWithYourFriends
+    CallIfSet FLAG_UNDERGROUND_MAN_COULDNT_GIVE_REWARD, EternaCityUndergroundManHouse_HmThisBelongsToYou
+    CallIfUnset FLAG_UNDERGROUND_MAN_COULDNT_GIVE_REWARD, EternaCityUndergroundManHouse_AhYouveCapturedTenFlagsTakeThisAsYourReward
     SetVar VAR_0x8004, UG_GOOD_MYSTIC_GEM
     SetVar VAR_0x8005, 1
     CheckHasRoomForGoodsInPC VAR_0x8004, VAR_0x8005, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _056B
+    GoToIfEq VAR_RESULT, 0, EternaCityUndergroundManHouse_UndergroundPCIsFull
     Common_SendToUndergroundPC
-    SetVar VAR_UNK_0x40B6, 8
-    ClearFlag FLAG_UNK_0x00FC
+    SetVar VAR_CURRENT_UNDERGROUND_MISSION, 8
+    ClearFlag FLAG_UNDERGROUND_MAN_COULDNT_GIVE_REWARD
     CloseMessage
     ReleaseAll
     End
 
-_0505:
-    Message 31
+EternaCityUndergroundManHouse_AhYouveCapturedTenFlagsTakeThisAsYourReward:
+    Message EternaCityUndergroundManHouse_Text_AhYouveCapturedTenFlagsTakeThisAsYourReward
     Return
 
-_050A:
+EternaCityUndergroundManHouse_MissionStealFiftyFlags:
     GetCapturedFlagCount VAR_RESULT
-    GoToIfLt VAR_RESULT, 50, _00A7
-    CallIfSet FLAG_UNK_0x00FC, _057A
-    CallIfUnset FLAG_UNK_0x00FC, _0566
+    GoToIfLt VAR_RESULT, 50, EternaCityUndergroundManHouse_SoMySpelunkerAreYouGoingUndergroundWithYourFriends
+    CallIfSet FLAG_UNDERGROUND_MAN_COULDNT_GIVE_REWARD, EternaCityUndergroundManHouse_HmThisBelongsToYou
+    CallIfUnset FLAG_UNDERGROUND_MAN_COULDNT_GIVE_REWARD, EternaCityUndergroundManHouse_MyGoodnessYouveCapturedFiftyFlagsTakeThisAsYourReward
     SetVar VAR_0x8004, UG_GOOD_GLITTER_GEM
     SetVar VAR_0x8005, 1
     CheckHasRoomForGoodsInPC VAR_0x8004, VAR_0x8005, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _056B
+    GoToIfEq VAR_RESULT, 0, EternaCityUndergroundManHouse_UndergroundPCIsFull
     Common_SendToUndergroundPC
-    SetVar VAR_UNK_0x40B6, 9
-    ClearFlag FLAG_UNK_0x00FC
+    SetVar VAR_CURRENT_UNDERGROUND_MISSION, 9
+    ClearFlag FLAG_UNDERGROUND_MAN_COULDNT_GIVE_REWARD
     CloseMessage
     ReleaseAll
     End
 
-_0566:
-    Message 32
+EternaCityUndergroundManHouse_MyGoodnessYouveCapturedFiftyFlagsTakeThisAsYourReward:
+    Message EternaCityUndergroundManHouse_Text_MyGoodnessYouveCapturedFiftyFlagsTakeThisAsYourReward
     Return
 
-_056B:
-    SetFlag FLAG_UNK_0x00FC
-    Message 34
+EternaCityUndergroundManHouse_UndergroundPCIsFull:
+    SetFlag FLAG_UNDERGROUND_MAN_COULDNT_GIVE_REWARD
+    Message EternaCityUndergroundManHouse_Text_OhYourUndergroundPCAppearsToBeFull
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_057A:
-    Message 35
+EternaCityUndergroundManHouse_HmThisBelongsToYou:
+    Message EternaCityUndergroundManHouse_Text_HmThisBelongsToYou
     Return
 
-_057F:
+EternaCityUndergroundManHouse_UndergroundManWalkAround:
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    GoToIfEq VAR_0x8004, 5, _05B2
-    GoToIfEq VAR_0x8004, 7, _05BE
-    GoToIfEq VAR_0x8005, 4, _05CA
-    GoTo _05D6
+    GoToIfEq VAR_0x8004, 5, EternaCityUndergroundManHouse_UndergroundManWalkAroundFaceWest
+    GoToIfEq VAR_0x8004, 7, EternaCityUndergroundManHouse_UndergroundManWalkAroundFaceEast
+    GoToIfEq VAR_0x8005, 4, EternaCityUndergroundManHouse_UndergroundManWalkAroundFaceNorth
+    GoTo EternaCityUndergroundManHouse_UndergroundManWalkAroundFaceSouth
 
-_05B2:
-    ApplyMovement 2, _05E4
+EternaCityUndergroundManHouse_UndergroundManWalkAroundFaceWest:
+    ApplyMovement LOCALID_UNDERGROUND_MAN, EternaCityUndergroundManHouse_Movement_UndergroundManWalkAroundFaceWest
     WaitMovement
     Return
 
-_05BE:
-    ApplyMovement 2, _05F8
+EternaCityUndergroundManHouse_UndergroundManWalkAroundFaceEast:
+    ApplyMovement LOCALID_UNDERGROUND_MAN, EternaCityUndergroundManHouse_Movement_UndergroundManWalkAroundFaceEast
     WaitMovement
     Return
 
-_05CA:
-    ApplyMovement 2, _060C
+EternaCityUndergroundManHouse_UndergroundManWalkAroundFaceNorth:
+    ApplyMovement LOCALID_UNDERGROUND_MAN, EternaCityUndergroundManHouse_Movement_UndergroundManWalkAroundFaceNorth
     WaitMovement
     Return
 
-_05D6:
-    ApplyMovement 2, _0620
+EternaCityUndergroundManHouse_UndergroundManWalkAroundFaceSouth:
+    ApplyMovement LOCALID_UNDERGROUND_MAN, EternaCityUndergroundManHouse_Movement_UndergroundManWalkAroundFaceSouth
     WaitMovement
     Return
 
     .balign 4, 0
-_05E4:
+EternaCityUndergroundManHouse_Movement_UndergroundManWalkAroundFaceWest:
     WalkSlowNorth
     WalkSlowSouth 2
     WalkSlowNorth
@@ -415,7 +417,7 @@ _05E4:
     EndMovement
 
     .balign 4, 0
-_05F8:
+EternaCityUndergroundManHouse_Movement_UndergroundManWalkAroundFaceEast:
     WalkSlowNorth
     WalkSlowSouth 2
     WalkSlowNorth
@@ -423,7 +425,7 @@ _05F8:
     EndMovement
 
     .balign 4, 0
-_060C:
+EternaCityUndergroundManHouse_Movement_UndergroundManWalkAroundFaceNorth:
     WalkSlowWest
     WalkSlowEast 2
     WalkSlowWest
@@ -431,98 +433,98 @@ _060C:
     EndMovement
 
     .balign 4, 0
-_0620:
+EternaCityUndergroundManHouse_Movement_UndergroundManWalkAroundFaceSouth:
     WalkSlowWest
     WalkSlowEast 2
     WalkSlowWest
     WalkOnSpotFastSouth
     EndMovement
 
-_0634:
-    NPCMessage 36
+EternaCityUndergroundManHouse_Youngster:
+    NPCMessage EternaCityUndergroundManHouse_Text_TheUndergroundTunnelsGoEverywhere
     End
 
-_0647:
+EternaCityUndergroundManHouse_ScientistM:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x00BD, _0669
-    SetFlag FLAG_UNK_0x00BD
-    Message 38
+    GoToIfSet FLAG_TALKED_TO_UNDERGROUND_MAN_HOUSE_SCIENTIST_M, EternaCityUndergroundManHouse_OhYoudLikeMoreAdviceOnDiggingUpTreasureAndSpheres
+    SetFlag FLAG_TALKED_TO_UNDERGROUND_MAN_HOUSE_SCIENTIST_M
+    Message EternaCityUndergroundManHouse_Text_LetsDigUpSomeTreasure
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0669:
-    Message 39
+EternaCityUndergroundManHouse_OhYoudLikeMoreAdviceOnDiggingUpTreasureAndSpheres:
+    Message EternaCityUndergroundManHouse_Text_OhYoudLikeMoreAdviceOnDiggingUpTreasureAndSpheres
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0674:
-    EventMessage 40
+EternaCityUndergroundManHouse_Sign:
+    EventMessage EternaCityUndergroundManHouse_Text_NewAndOnSaleUndergroundRadar
     End
 
-_0685:
+EternaCityUndergroundManHouse_PC:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    Message 41
-    GoTo _0696
+    Message EternaCityUndergroundManHouse_Text_ShortcutToTheUndergroundIsOnTheScreen
+    GoTo EternaCityUndergroundManHouse_PCHeadingsMenu
     End
 
-_0696:
-    Message 42
+EternaCityUndergroundManHouse_PCHeadingsMenu:
+    Message EternaCityUndergroundManHouse_Text_WhichHeadingWouldYouLikeToRead
     InitGlobalTextMenu 1, 1, 0, VAR_RESULT
-    AddMenuEntryImm 180, 0
-    AddMenuEntryImm 181, 1
-    AddMenuEntryImm 182, 2
-    AddMenuEntryImm 183, 3
-    AddMenuEntryImm 184, 4
-    AddMenuEntryImm 12, 5
+    AddMenuEntryImm MenuEntries_Text_UndergroundManHousePCHeading_Flags, 0
+    AddMenuEntryImm MenuEntries_Text_UndergroundManHousePCHeading_Spheres, 1
+    AddMenuEntryImm MenuEntries_Text_UndergroundManHousePCHeading_Traps, 2
+    AddMenuEntryImm MenuEntries_Text_UndergroundManHousePCHeading_Goods, 3
+    AddMenuEntryImm MenuEntries_Text_UndergroundManHousePCHeading_Treasures, 4
+    AddMenuEntryImm MenuEntries_Text_ListMenu_Exit, 5
     ShowMenu
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, 0, _070A
-    GoToIfEq VAR_0x8008, 1, _0715
-    GoToIfEq VAR_0x8008, 2, _0720
-    GoToIfEq VAR_0x8008, 3, _072B
-    GoToIfEq VAR_0x8008, 4, _0736
-    GoTo _0741
+    GoToIfEq VAR_0x8008, 0, EternaCityUndergroundManHouse_PCHeadingFlags
+    GoToIfEq VAR_0x8008, 1, EternaCityUndergroundManHouse_PCHeadingSpheres
+    GoToIfEq VAR_0x8008, 2, EternaCityUndergroundManHouse_PCHeadingTraps
+    GoToIfEq VAR_0x8008, 3, EternaCityUndergroundManHouse_PCHeadingGoods
+    GoToIfEq VAR_0x8008, 4, EternaCityUndergroundManHouse_PCHeadingTreasures
+    GoTo EternaCityUndergroundManHouse_PCEnd
     End
 
-_070A:
-    Message 43
-    GoTo _0696
+EternaCityUndergroundManHouse_PCHeadingFlags:
+    Message EternaCityUndergroundManHouse_Text_AFlagCanBeFoundInEverySecretBase
+    GoTo EternaCityUndergroundManHouse_PCHeadingsMenu
     End
 
-_0715:
-    Message 44
-    GoTo _0696
+EternaCityUndergroundManHouse_PCHeadingSpheres:
+    Message EternaCityUndergroundManHouse_Text_InTheUndergroundTunnelsYouCanDigUpPrettyStonesThatAreCalledSpheres
+    GoTo EternaCityUndergroundManHouse_PCHeadingsMenu
     End
 
-_0720:
-    Message 45
-    GoTo _0696
+EternaCityUndergroundManHouse_PCHeadingTraps:
+    Message EternaCityUndergroundManHouse_Text_ThereAreTrapsThatCanBePutDownInTheUndergroundTunnels
+    GoTo EternaCityUndergroundManHouse_PCHeadingsMenu
     End
 
-_072B:
-    Message 46
-    GoTo _0696
+EternaCityUndergroundManHouse_PCHeadingGoods:
+    Message EternaCityUndergroundManHouse_Text_GoodsAreFurnitureAndDecorativeItemsForSecretBases
+    GoTo EternaCityUndergroundManHouse_PCHeadingsMenu
     End
 
-_0736:
-    Message 47
-    GoTo _0696
+EternaCityUndergroundManHouse_PCHeadingTreasures:
+    Message EternaCityUndergroundManHouse_Text_TreasuresAreRareItemsThatAppearWhileDiggingUnderground
+    GoTo EternaCityUndergroundManHouse_PCHeadingsMenu
     End
 
-_0741:
+EternaCityUndergroundManHouse_PCEnd:
     CloseMessage
     ReleaseAll
     End
 
-_0747:
-    NPCMessage 37
+EternaCityUndergroundManHouse_BugCatcher:
+    NPCMessage EternaCityUndergroundManHouse_Text_AllIEverUnearthAreArmorFossils
     End
 
     .balign 4, 0

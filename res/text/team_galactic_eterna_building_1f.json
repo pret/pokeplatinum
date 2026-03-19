@@ -2,7 +2,7 @@
   "key": 5147,
   "messages": [
     {
-      "id": "pl_msg_00000092_00000",
+      "id": "TeamGalacticEternaBuilding1F_Text_HelloItIsMe",
       "en_US": [
         "Looker: Hello! It is me! Me!\n",
         "Hahaha! I have startled you, yes?\r",
@@ -13,7 +13,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000092_00001",
+      "id": "TeamGalacticEternaBuilding1F_Text_IncidentallyYouAreAFirstRateTrainer",
       "en_US": [
         "...Incidentally, you are a first-rate\n",
         "Trainer. Of that, I am very aware.\r",
@@ -29,7 +29,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000092_00002",
+      "id": "TeamGalacticEternaBuilding1F_Text_NowIHaveBeenConductingMyInvestigationIntoTeamGalactic",
       "en_US": [
         "Looker: Now, I have been conducting\n",
         "my investigation into Team Galactic.\r",
@@ -47,7 +47,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000092_00003",
+      "id": "TeamGalacticEternaBuilding1F_Text_WelcomeToTeamGalacticAreYouHereToDonateYourPokemon",
       "en_US": [
         "Welcome to Team Galactic. Are you\n",
         "here to donate your Pokémon?\r",
@@ -58,22 +58,22 @@
       ]
     },
     {
-      "id": "pl_msg_00000092_00004",
+      "id": "TeamGalacticEternaBuilding1F_Text_AsAGroupTeamGalacticHasItsSightsSetOnTheStarsNotOnThisWorld",
       "en_US": [
         "As a group, Team Galactic has its sights\n",
         "set on the stars, not on this world!"
       ]
     },
     {
-      "id": "pl_msg_00000092_00005",
+      "id": "TeamGalacticEternaBuilding1F_Text_ThePathYouChoseLeadsToGlory",
       "en_US": "The path you chose leads to glory."
     },
     {
-      "id": "pl_msg_00000092_00006",
+      "id": "TeamGalacticEternaBuilding1F_Text_PlayerUsedTheSecretKey",
       "en_US": "{STRVAR_1 3, 0, 0} used the {STRVAR_1 8, 1, 0}!\r"
     },
     {
-      "id": "pl_msg_00000092_00007",
+      "id": "TeamGalacticEternaBuilding1F_Text_ItsTheEntranceToASecretRoom",
       "en_US": "It’s the entrance to a secret room!"
     }
   ]

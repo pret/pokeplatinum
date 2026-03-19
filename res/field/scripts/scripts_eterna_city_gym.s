@@ -172,7 +172,7 @@ EternaGym_AromaLadyJenna:
     FacePlayer
     GoToIfGe VAR_ETERNA_GYM_TRAINERS_BEATEN, 2, EternaGym_AromaLadyJennaBeaten
     PlayTrainerEncounterBGM TRAINER_AROMA_LADY_JENNA
-    SetVar VAR_0x8007, ETERNA_CITY_GYM_AROMA_LADY_JENNA
+    SetVar VAR_0x8007, LOCALID_AROMA_LADY_JENNA
     Call EternaGym_LookTowardsPlayer
     Message EternaGym_Text_AromaLadyJennaBeforeBattle
     CloseMessage
@@ -200,7 +200,7 @@ EternaGym_AromaLadyAngela:
     FacePlayer
     GoToIfGe VAR_ETERNA_GYM_TRAINERS_BEATEN, 3, EternaGym_AromaLadyAngelaBeaten
     PlayTrainerEncounterBGM TRAINER_AROMA_LADY_ANGELA
-    SetVar VAR_0x8007, ETERNA_CITY_GYM_AROMA_LADY_ANGELA
+    SetVar VAR_0x8007, LOCALID_AROMA_LADY_ANGELA
     Call EternaGym_LookTowardsPlayer
     Message EternaGym_Text_AromaLadyAngelaBeforeBattle
     CloseMessage

@@ -2,7 +2,7 @@
   "key": 11027,
   "messages": [
     {
-      "id": "pl_msg_00000089_00000",
+      "id": "EternaCityPokecenter1F_Text_WhenAPokemonFaintsItJustMeansItDoesntHaveThePowerToBattle",
       "en_US": [
         "When a Pokémon faints, it just means\n",
         "it doesn’t have the power to battle.\r",
@@ -11,7 +11,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000089_00001",
+      "id": "EternaCityPokecenter1F_Text_TeamGalacticTookMyPokemonAway",
       "en_US": [
         "Team Galactic took my Pokémon away.\n",
         "They took other people’s, too.\r",
@@ -21,7 +21,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000089_00002",
+      "id": "EternaCityPokecenter1F_Text_IGotMyPokemonBack",
       "en_US": [
         "I got my Pokémon back!\r",
         "I’m so happy, I feel like riding my Bike\n",
@@ -29,11 +29,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000089_00003",
+      "id": "EternaCityPokecenter1F_Text_BunearyBunbun",
       "en_US": "BUNEARY: Bunbun!"
     },
     {
-      "id": "pl_msg_00000089_00004",
+      "id": "EternaCityPokecenter1F_Text_ThisPoketchAppWillShowHowCloseYourPokemonFeelToYou",
       "en_US": [
         "Hi, you cute little Trainer!\n",
         "What kinds of Pokémon are with you?\r",
@@ -42,14 +42,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000089_00005",
+      "id": "EternaCityPokecenter1F_Text_IfYouSpendEnoughTimeWithThemAllPokemonWillOpenUpToYou",
       "en_US": [
         "If you spend enough time with them,\n",
         "all Pokémon will open up to you."
       ]
     },
     {
-      "id": "pl_msg_00000089_00006",
+      "id": "EternaCityPokecenter1F_Text_WhatKindsOfPokemonAreWithYouOhYourPokemon",
       "en_US": [
         "Hi, you cute little Trainer!\n",
         "What kinds of Pokémon are with you?\r",
@@ -57,28 +57,28 @@
       ]
     },
     {
-      "id": "pl_msg_00000089_00007",
+      "id": "EternaCityPokecenter1F_Text_ItSeemsToLikeYou",
       "en_US": [
         "It seems to like you.\n",
         "It must be happy being with you."
       ]
     },
     {
-      "id": "pl_msg_00000089_00008",
+      "id": "EternaCityPokecenter1F_Text_ItsBecomingComfortableAroundYouIThink",
       "en_US": [
         "It’s becoming comfortable around\n",
         "you, I think."
       ]
     },
     {
-      "id": "pl_msg_00000089_00009",
+      "id": "EternaCityPokecenter1F_Text_HmmItNeedsToGetUsedToYouMore",
       "en_US": [
         "Hmm...\n",
         "It needs to get used to you more."
       ]
     },
     {
-      "id": "pl_msg_00000089_00010",
+      "id": "EternaCityPokecenter1F_Text_WereLookingForATrainerWhosTravelingWithAtLeastTwoPokemon",
       "en_US": [
         "Two Pokémon!\n",
         "That’s what we need.\r",
@@ -87,28 +87,28 @@
       ]
     },
     {
-      "id": "pl_msg_00000089_00011",
+      "id": "EternaCityPokecenter1F_Text_OhWouldYouLikeToBattleAgainstTheBothOfUs",
       "en_US": [
         "Oh! Would you like to battle against the\n",
         "both of us?"
       ]
     },
     {
-      "id": "pl_msg_00000089_00012",
+      "id": "EternaCityPokecenter1F_Text_YoureLiveOnCameraButTryToActNaturalOK",
       "en_US": [
         "You’re live on camera, but try to act\n",
         "natural, OK?\r"
       ]
     },
     {
-      "id": "pl_msg_00000089_00013",
+      "id": "EternaCityPokecenter1F_Text_OKThatsHowItIsHuh",
       "en_US": [
         "OK, that’s how it is, huh.\n",
         "Can’t do anything about that."
       ]
     },
     {
-      "id": "pl_msg_00000089_00014",
+      "id": "EternaCityPokecenter1F_Text_WheeWasntThatBattleSmokingHot",
       "en_US": [
         "Whee!\n",
         "Wasn’t that battle smoking hot?\r",
@@ -117,7 +117,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000089_00015",
+      "id": "EternaCityPokecenter1F_Text_OhDearYouOnlyHaveOnePokemonWithYou",
       "en_US": [
         "Oh, dear!\n",
         "You only have one Pokémon with you?\r",
@@ -126,28 +126,28 @@
       ]
     },
     {
-      "id": "pl_msg_00000089_00016",
+      "id": "EternaCityPokecenter1F_Text_GiggleCouldYouWinAgainstBothOfUs",
       "en_US": [
         "Giggle!\n",
         "Could you win against both of us?\n"
       ]
     },
     {
-      "id": "pl_msg_00000089_00017",
+      "id": "EternaCityPokecenter1F_Text_WellThoroughlyCheckOutYourAbilitiesAsATrainer",
       "en_US": [
         "We’ll thoroughly check out your\n",
         "abilities as a Trainer!\r"
       ]
     },
     {
-      "id": "pl_msg_00000089_00018",
+      "id": "EternaCityPokecenter1F_Text_OhYouHaventHealedYourPokemonMaybe",
       "en_US": [
         "Oh? You haven’t healed your Pokémon,\n",
         "maybe?"
       ]
     },
     {
-      "id": "pl_msg_00000089_00019",
+      "id": "EternaCityPokecenter1F_Text_ThatWasAGoodMatch",
       "en_US": [
         "That was a good match.\r",
         "It adds flair and drama when many\n",

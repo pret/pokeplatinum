@@ -208,7 +208,7 @@ BOOL FieldTask_BlackOutFromBattle(FieldTask *task)
 
         Location location;
         FieldOverworldState *fieldState = SaveData_GetFieldOverworldState(fieldSystem->saveData);
-        u16 warpId = FieldOverworldState_GetWarpId(fieldState);
+        u16 warpId = FieldOverworldState_GetBlackOutWarpId(fieldState);
 
         Location_InitBlackOut(warpId, &location);
         Location_InitFly(warpId, FieldOverworldState_GetExitLocation(fieldState));
@@ -240,7 +240,7 @@ BOOL FieldTask_BlackOutFromBattle(FieldTask *task)
     case 5:
         BrightnessController_SetScreenBrightness(0, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, BRIGHTNESS_BOTH_SCREENS);
 
-        if (FieldOverworldState_GetDefaultWarpID() == FieldOverworldState_GetWarpId(SaveData_GetFieldOverworldState(fieldSystem->saveData))) {
+        if (FieldOverworldState_GetDefaultWarpID() == FieldOverworldState_GetBlackOutWarpId(SaveData_GetFieldOverworldState(fieldSystem->saveData))) {
             ScriptManager_Start(task, SCRIPT_ID(COMMON_SCRIPTS, 20), NULL, NULL);
         } else {
             ScriptManager_Start(task, SCRIPT_ID(COMMON_SCRIPTS, 21), NULL, NULL);
