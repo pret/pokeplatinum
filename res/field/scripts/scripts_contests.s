@@ -158,9 +158,9 @@ _01B1:
     Return
 
 _01BE:
-    SetObjectEventPos LOCALID_RICH_BOY, 24, 6
-    SetObjectEventMovementType LOCALID_RICH_BOY, MOVEMENT_TYPE_LOOK_SOUTH
-    SetObjectEventDir LOCALID_RICH_BOY, DIR_SOUTH
+    SetObjectEventPos CONTEST_HALL_LOBBY_RICH_BOY, 24, 6
+    SetObjectEventMovementType CONTEST_HALL_LOBBY_RICH_BOY, MOVEMENT_TYPE_LOOK_SOUTH
+    SetObjectEventDir CONTEST_HALL_LOBBY_RICH_BOY, DIR_SOUTH
     Return
 
 _01D4:
@@ -579,7 +579,7 @@ ContestRegistration_OfficialContestDoor:
     Call ContestRegistration_OpenDoor
     WaitMovement
     ApplyMovement LOCALID_PLAYER, ContestRegistration_Movement_PlayerToOfficialContestDoor
-    ApplyMovement LOCALID_RECEPTIONIST_OFFICIAL_CONTEST, ContestRegistration_Movement_OfficialContestReceptionistToPlayer
+    ApplyMovement CONTEST_HALL_LOBBY_RECEPTIONIST_OFFICIAL_CONTEST, ContestRegistration_Movement_OfficialContestReceptionistToPlayer
     WaitMovement
     Call ContestRegistration_CloseDoor
     WaitMovement
@@ -593,7 +593,7 @@ ContestRegistration_LinkContestDoor:
     Call ContestRegistration_OpenDoor
     WaitMovement
     ApplyMovement LOCALID_PLAYER, ContestRegistration_Movement_PlayerToLinkContestDoor
-    ApplyMovement LOCALID_RECEPTIONIST_LINK_CONTEST, ContestRegistration_Movement_LinkContestReceptionistToPlayer
+    ApplyMovement CONTEST_HALL_LOBBY_RECEPTIONIST_LINK_CONTEST, ContestRegistration_Movement_LinkContestReceptionistToPlayer
     WaitMovement
     Call ContestRegistration_CloseDoor
     WaitMovement
@@ -605,7 +605,7 @@ ContestRegistration_PracticeContestDoor:
     Call ContestRegistration_OpenDoor
     WaitMovement
     ApplyMovement LOCALID_PLAYER, ContestRegistration_Movement_ApproachPracticeContestDoor
-    ApplyMovement LOCALID_RECEPTIONIST_PRACTICE_CONTEST, ContestRegistration_Movement_PracticeReceptionistToPlayer
+    ApplyMovement CONTEST_HALL_LOBBY_RECEPTIONIST_PRACTICE_CONTEST, ContestRegistration_Movement_PracticeReceptionistToPlayer
     WaitMovement
     Call ContestRegistration_CloseDoor
     WaitMovement
