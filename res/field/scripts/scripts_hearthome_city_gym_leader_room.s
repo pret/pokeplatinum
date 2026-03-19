@@ -17,8 +17,8 @@ HearthomeGym_TryRemoveBollards:
 
 HearthomeGym_RemoveBollards:
     SetFlag FLAG_HIDE_HEARTHOME_GYM_BOLLARDS
-    RemoveObject HEARTHOME_CITY_GYM_LEADER_ROOM_BOLLARD_2
-    RemoveObject HEARTHOME_CITY_GYM_LEADER_ROOM_BOLLARD_1
+    RemoveObject LOCALID_BOLLARD_2
+    RemoveObject LOCALID_BOLLARD_1
     ClearFlag FLAG_MAP_LOCAL
     End
 
@@ -34,22 +34,22 @@ HearthomeGym_Fantina:
     End
 
 HearthomeGym_FantinaPrepareSpinFaceSouth:
-    ApplyMovement HEARTHOME_CITY_GYM_LEADER_ROOM_FANTINA, HearthomeGym_FantinaSpinFaceSouth
+    ApplyMovement LOCALID_FANTINA, HearthomeGym_FantinaSpinFaceSouth
     WaitMovement
     GoTo HearthomeGym_FantinaMain
 
 HearthomeGym_FantinaPrepareSpinFaceNorth:
-    ApplyMovement HEARTHOME_CITY_GYM_LEADER_ROOM_FANTINA, HearthomeGym_FantinaSpinFaceNorth
+    ApplyMovement LOCALID_FANTINA, HearthomeGym_FantinaSpinFaceNorth
     WaitMovement
     GoTo HearthomeGym_FantinaMain
 
 HearthomeGym_FantinaPrepareSpinFaceEast:
-    ApplyMovement HEARTHOME_CITY_GYM_LEADER_ROOM_FANTINA, HearthomeGym_FantinaSpinFaceEast
+    ApplyMovement LOCALID_FANTINA, HearthomeGym_FantinaSpinFaceEast
     WaitMovement
     GoTo HearthomeGym_FantinaMain
 
 HearthomeGym_FantinaPrepareSpinFaceWest:
-    ApplyMovement HEARTHOME_CITY_GYM_LEADER_ROOM_FANTINA, HearthomeGym_FantinaSpinFaceWest
+    ApplyMovement LOCALID_FANTINA, HearthomeGym_FantinaSpinFaceWest
     WaitMovement
     GoTo HearthomeGym_FantinaMain
 

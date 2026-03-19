@@ -2,7 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
-            "id": "HEARTHOME_CITY_NORTHEAST_HOUSE_1F_POKEFAN_F_0",
+            "id": "LOCALID_POKEFAN_F",
             "graphics_id": "OBJ_EVENT_GFX_POKEFAN_F",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -17,7 +17,7 @@
             "y": 0
         },
         {
-            "id": "HEARTHOME_CITY_NORTHEAST_HOUSE_1F_BABY_IN_PRAM_1",
+            "id": "LOCALID_BABY_IN_PRAM",
             "graphics_id": "OBJ_EVENT_GFX_BABY_IN_PRAM",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -32,7 +32,7 @@
             "y": 0
         },
         {
-            "id": "HEARTHOME_CITY_NORTHEAST_HOUSE_1F_PIKACHU_2",
+            "id": "LOCALID_PIKACHU",
             "graphics_id": "OBJ_EVENT_GFX_PIKACHU",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -47,7 +47,7 @@
             "y": 0
         },
         {
-            "id": "HEARTHOME_CITY_NORTHEAST_HOUSE_1F_BATTLE_GIRL_3",
+            "id": "LOCALID_BATTLE_GIRL",
             "graphics_id": "OBJ_EVENT_GFX_BATTLE_GIRL",
             "movement_type": "MOVEMENT_TYPE_WANDER_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -62,7 +62,7 @@
             "y": 0
         },
         {
-            "id": "HEARTHOME_CITY_NORTHEAST_HOUSE_1F_NINJA_BOY_4",
+            "id": "LOCALID_NINJA_BOY",
             "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
             "movement_type": "MOVEMENT_TYPE_WANDER_NORTH_AND_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -77,7 +77,7 @@
             "y": 0
         },
         {
-            "id": "HEARTHOME_CITY_NORTHEAST_HOUSE_1F_TWIN_5",
+            "id": "LOCALID_TWIN",
             "graphics_id": "OBJ_EVENT_GFX_TWIN",
             "movement_type": "MOVEMENT_TYPE_WANDER_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -92,7 +92,7 @@
             "y": 0
         },
         {
-            "id": "HEARTHOME_CITY_NORTHEAST_HOUSE_1F_LASS_6",
+            "id": "LOCALID_LASS",
             "graphics_id": "OBJ_EVENT_GFX_LASS",
             "movement_type": "MOVEMENT_TYPE_WANDER_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -107,7 +107,7 @@
             "y": 0
         },
         {
-            "id": "HEARTHOME_CITY_NORTHEAST_HOUSE_1F_SCHOOL_KID_M_7",
+            "id": "LOCALID_SCHOOL_KID_M",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",

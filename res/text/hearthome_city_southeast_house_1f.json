@@ -2,7 +2,7 @@
   "key": 1027,
   "messages": [
     {
-      "id": "pl_msg_00000114_00000",
+      "id": "HearthomeCitySoutheastHouse1F_Text_ThereAreTheContests",
       "en_US": [
         "There are the Contests!\n",
         "Then, we have Amity Square!\r",
@@ -11,7 +11,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000114_00001",
+      "id": "HearthomeCitySoutheastHouse1F_Text_ICouldCaptivateTheWholeWorld",
       "en_US": [
         "People all over the world follow\n",
         "Pokémon Contests.\r",
@@ -20,14 +20,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000114_00002",
+      "id": "HearthomeCitySoutheastHouse1F_Text_MyShroomishFindsBerries",
       "en_US": [
         "My SHROOMISH finds Berries and things\n",
         "when we go to Amity Square."
       ]
     },
     {
-      "id": "pl_msg_00000114_00003",
+      "id": "HearthomeCitySoutheastHouse1F_Text_ShroomishCryPofwaaah",
       "en_US": "SHROOMISH: Pofwaaah!"
     }
   ]

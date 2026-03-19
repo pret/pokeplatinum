@@ -2,7 +2,7 @@
   "key": 33858,
   "messages": [
     {
-      "id": "pl_msg_00000126_00000",
+      "id": "HearthomeCityNorthwestHouse_Text_MyNamesBebeDoYouWantEevee",
       "en_US": [
         "Hiya!\n",
         "Oh, you’re a Trainer!\r",
@@ -20,14 +20,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000126_00001",
+      "id": "HearthomeCityNorthwestHouse_Text_SoDoYouWantEevee",
       "en_US": [
         "Bebe: So, how about it?\n",
         "Do you want that Pokémon EEVEE?"
       ]
     },
     {
-      "id": "pl_msg_00000126_00002",
+      "id": "HearthomeCityNorthwestHouse_Text_PleaseBeGoodToIt",
       "en_US": [
         "Bebe: Here you go!\r",
         "That EEVEE, I got it from a good friend\n",
@@ -40,18 +40,18 @@
       ]
     },
     {
-      "id": "pl_msg_00000126_00003",
+      "id": "HearthomeCityNorthwestHouse_Text_PlayerAcceptedTheEevee",
       "en_US": "{STRVAR_1 3, 0, 0} accepted the EEVEE!\r"
     },
     {
-      "id": "pl_msg_00000126_00004",
+      "id": "HearthomeCityNorthwestHouse_Text_WouldYouLikeToNicknameEevee",
       "en_US": [
         "Would you like to give a nickname\n",
         "to the EEVEE that Bebe gave you?"
       ]
     },
     {
-      "id": "pl_msg_00000126_00005",
+      "id": "HearthomeCityNorthwestHouse_Text_YouCantTakeAnyMorePokemon",
       "en_US": [
         "Bebe: Here you go!\r",
         "Wait, I can’t do that! You can’t take\n",
@@ -61,14 +61,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000126_00006",
+      "id": "HearthomeCityNorthwestHouse_Text_GuessIllRaiseItMyself",
       "en_US": [
         "Bebe: Oh, OK...\n",
         "Guess I’ll have to raise it myself."
       ]
     },
     {
-      "id": "pl_msg_00000126_00007",
+      "id": "HearthomeCityNorthwestHouse_Text_BillDevelopedTheBasicStorageSystem",
       "en_US": [
         "Bebe: My buddy Bill developed the\n",
         "basic Pokémon Box storage system.\r",
@@ -77,7 +77,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000126_00008",
+      "id": "HearthomeCityNorthwestHouse_Text_NowThatsANationalDex",
       "en_US": [
         "Bebe: Oh? Now that’s a National Pokédex\n",
         "I’m seeing. Good for you!\r",

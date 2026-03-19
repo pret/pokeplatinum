@@ -154,13 +154,13 @@ ContestHallLobby_HideReporter:
     End
 
 _01B1:
-    GoToIfSet FLAG_UNK_0x0159, _01BE
+    GoToIfSet FLAG_TALKED_TO_CONTEST_HALL_LOBBY_RICH_BOY, _01BE
     Return
 
 _01BE:
-    SetObjectEventPos CONTEST_HALL_LOBBY_RICH_BOY, 24, 6
-    SetObjectEventMovementType CONTEST_HALL_LOBBY_RICH_BOY, MOVEMENT_TYPE_LOOK_SOUTH
-    SetObjectEventDir CONTEST_HALL_LOBBY_RICH_BOY, DIR_SOUTH
+    SetObjectEventPos LOCALID_RICH_BOY, 24, 6
+    SetObjectEventMovementType LOCALID_RICH_BOY, MOVEMENT_TYPE_LOOK_SOUTH
+    SetObjectEventDir LOCALID_RICH_BOY, DIR_SOUTH
     Return
 
 _01D4:
@@ -579,7 +579,7 @@ ContestRegistration_OfficialContestDoor:
     Call ContestRegistration_OpenDoor
     WaitMovement
     ApplyMovement LOCALID_PLAYER, ContestRegistration_Movement_PlayerToOfficialContestDoor
-    ApplyMovement CONTEST_HALL_LOBBY_RECEPTIONIST_OFFICIAL_CONTEST, ContestRegistration_Movement_OfficialContestReceptionistToPlayer
+    ApplyMovement LOCALID_RECEPTIONIST_OFFICIAL_CONTEST, ContestRegistration_Movement_OfficialContestReceptionistToPlayer
     WaitMovement
     Call ContestRegistration_CloseDoor
     WaitMovement
@@ -593,7 +593,7 @@ ContestRegistration_LinkContestDoor:
     Call ContestRegistration_OpenDoor
     WaitMovement
     ApplyMovement LOCALID_PLAYER, ContestRegistration_Movement_PlayerToLinkContestDoor
-    ApplyMovement CONTEST_HALL_LOBBY_RECEPTIONIST_LINK_CONTEST, ContestRegistration_Movement_LinkContestReceptionistToPlayer
+    ApplyMovement LOCALID_RECEPTIONIST_LINK_CONTEST, ContestRegistration_Movement_LinkContestReceptionistToPlayer
     WaitMovement
     Call ContestRegistration_CloseDoor
     WaitMovement
@@ -605,7 +605,7 @@ ContestRegistration_PracticeContestDoor:
     Call ContestRegistration_OpenDoor
     WaitMovement
     ApplyMovement LOCALID_PLAYER, ContestRegistration_Movement_ApproachPracticeContestDoor
-    ApplyMovement CONTEST_HALL_LOBBY_RECEPTIONIST_PRACTICE_CONTEST, ContestRegistration_Movement_PracticeReceptionistToPlayer
+    ApplyMovement LOCALID_RECEPTIONIST_PRACTICE_CONTEST, ContestRegistration_Movement_PracticeReceptionistToPlayer
     WaitMovement
     Call ContestRegistration_CloseDoor
     WaitMovement
@@ -670,7 +670,7 @@ ContestRegistration_StartPracticeContest:
     End
 
 Contest_DoContest:
-    ClearFlag FLAG_UNK_0x0220
+    ClearFlag FLAG_HIDE_HEARTHOME_HIKER_3
     SetVar VAR_ONGOING_CONTEST, TRUE
     Call OngoingContest_GetContestantGFX
     PlayFanfare SEQ_SE_DP_KAIDAN2

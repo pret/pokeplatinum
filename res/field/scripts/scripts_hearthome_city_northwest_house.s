@@ -2,94 +2,94 @@
 #include "res/text/bank/hearthome_city_northwest_house.h"
 
 
-    ScriptEntry _0006
+    ScriptEntry HearthomeCityNorthwestHouse_Bebe
     ScriptEntryEnd
 
-_0006:
+HearthomeCityNorthwestHouse_Bebe:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x0131, _0105
-    GoToIfSet FLAG_MET_BEBE, _0033
+    GoToIfSet FLAG_RECEIVED_HEARTHOME_CITY_NORTHWEST_HOUSE_EEVEE, HearthomeCityNorthwestHouse_AlreadyReceivedEevee
+    GoToIfSet FLAG_MET_BEBE, HearthomeCityNorthwestHouse_SoDoYouWantEevee
     SetFlag FLAG_MET_BEBE
-    Message 0
-    GoTo _003E
+    Message HearthomeCityNorthwestHouse_Text_MyNamesBebeDoYouWantEevee
+    GoTo HearthomeCityNorthwestHouse_AcceptEeveeYesNoMenu
     End
 
-_0033:
-    Message 1
-    GoTo _003E
+HearthomeCityNorthwestHouse_SoDoYouWantEevee:
+    Message HearthomeCityNorthwestHouse_Text_SoDoYouWantEevee
+    GoTo HearthomeCityNorthwestHouse_AcceptEeveeYesNoMenu
     End
 
-_003E:
+HearthomeCityNorthwestHouse_AcceptEeveeYesNoMenu:
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _0057
-    GoTo _00FA
+    GoToIfEq VAR_RESULT, MENU_YES, HearthomeCityNorthwestHouse_AcceptEevee
+    GoTo HearthomeCityNorthwestHouse_DeclineEevee
     End
 
-_0057:
+HearthomeCityNorthwestHouse_AcceptEevee:
     GetPartyCount VAR_RESULT
-    GoToIfEq VAR_RESULT, 6, _00EF
-    Message 2
+    GoToIfEq VAR_RESULT, 6, HearthomeCityNorthwestHouse_PartyIsFull
+    Message HearthomeCityNorthwestHouse_Text_PleaseBeGoodToIt
     PlaySound SEQ_FANFA4
     BufferPlayerName 0
-    Message 3
+    Message HearthomeCityNorthwestHouse_Text_PlayerAcceptedTheEevee
     WaitSound
     GivePokemon SPECIES_EEVEE, 20, ITEM_NONE, VAR_RESULT
-    SetFlag FLAG_UNK_0x0131
-    Message 4
+    SetFlag FLAG_RECEIVED_HEARTHOME_CITY_NORTHWEST_HOUSE_EEVEE
+    Message HearthomeCityNorthwestHouse_Text_WouldYouLikeToNicknameEevee
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _00A8
-    GoToIfEq VAR_RESULT, MENU_NO, _00E9
+    GoToIfEq VAR_RESULT, MENU_YES, HearthomeCityNorthwestHouse_GiveNickname
+    GoToIfEq VAR_RESULT, MENU_NO, HearthomeCityNorthwestHouse_DontGiveNickname
     End
 
-_00A8:
+HearthomeCityNorthwestHouse_GiveNickname:
     CloseMessage
     GetPartyCount VAR_MAP_LOCAL_0
     SubVar VAR_MAP_LOCAL_0, 1
     FadeScreenOut
     WaitFadeScreen
     OpenPokemonNamingScreen VAR_MAP_LOCAL_0, VAR_RESULT
-    CallIfNe VAR_RESULT, 1, _00E3
+    CallIfNe VAR_RESULT, 1, HearthomeCityNorthwestHouse_IncrementRecordPokemonNicknamed
     FadeScreenIn
     WaitFadeScreen
     ReleaseAll
     End
 
-_00E3:
+HearthomeCityNorthwestHouse_IncrementRecordPokemonNicknamed:
     IncrementGameRecord RECORD_POKEMON_NICKNAMED
     Return
 
-_00E9:
+HearthomeCityNorthwestHouse_DontGiveNickname:
     CloseMessage
     ReleaseAll
     End
 
-_00EF:
-    Message 5
+HearthomeCityNorthwestHouse_PartyIsFull:
+    Message HearthomeCityNorthwestHouse_Text_YouCantTakeAnyMorePokemon
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_00FA:
-    Message 6
+HearthomeCityNorthwestHouse_DeclineEevee:
+    Message HearthomeCityNorthwestHouse_Text_GuessIllRaiseItMyself
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0105:
+HearthomeCityNorthwestHouse_AlreadyReceivedEevee:
     GetNationalDexEnabled VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _0122
-    Message 7
+    GoToIfEq VAR_RESULT, TRUE, HearthomeCityNorthwestHouse_NowThatsANationalDex
+    Message HearthomeCityNorthwestHouse_Text_BillDevelopedTheBasicStorageSystem
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0122:
-    Message 8
+HearthomeCityNorthwestHouse_NowThatsANationalDex:
+    Message HearthomeCityNorthwestHouse_Text_NowThatsANationalDex
     WaitABXPadPress
     CloseMessage
     ReleaseAll

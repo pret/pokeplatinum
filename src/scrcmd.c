@@ -378,7 +378,7 @@ static BOOL ScrCmd_0A6(ScriptContext *ctx);
 static BOOL ScrCmd_ShowDressUpPhoto(ScriptContext *ctx);
 static BOOL ScrCmd_0A8(ScriptContext *ctx);
 static BOOL ScrCmd_DressUpPhotoHasData(ScriptContext *ctx);
-static BOOL ScrCmd_12F(ScriptContext *ctx);
+static BOOL ScrCmd_ContestPhotoHasData(ScriptContext *ctx);
 static BOOL ScrCmd_SetDressUpPhotoTitle(ScriptContext *ctx);
 static BOOL ScrCmd_OpenSealCapsuleEditor(ScriptContext *ctx);
 static BOOL ScrCmd_OpenRegionMap(ScriptContext *ctx);
@@ -1067,7 +1067,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_CheckSaveType,
     ScrCmd_TrySaveGame,
     ScrCmd_DressUpPhotoHasData,
-    ScrCmd_12F,
+    ScrCmd_ContestPhotoHasData,
     ScrCmd_SetDressUpPhotoTitle,
     ScrCmd_131,
     ScrCmd_CheckPoketchEnabled,
@@ -4016,19 +4016,19 @@ static BOOL ScrCmd_DressUpPhotoHasData(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_12F(ScriptContext *ctx)
+static BOOL ScrCmd_ContestPhotoHasData(ScriptContext *ctx)
 {
-    int v1 = ScriptContext_ReadHalfWord(ctx);
-    u16 *v2 = ScriptContext_GetVarPointer(ctx);
+    int slot = ScriptContext_ReadHalfWord(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    BOOL v0 = ImageClipsSlotHasData(ctx->fieldSystem, 1, v1);
+    BOOL result = ImageClipsSlotHasData(ctx->fieldSystem, 1, slot);
 
-    if (v0 == TRUE) {
-        *v2 = 1;
+    if (result == TRUE) {
+        *destVar = TRUE;
         return TRUE;
     }
 
-    *v2 = 0;
+    *destVar = FALSE;
     return TRUE;
 }
 

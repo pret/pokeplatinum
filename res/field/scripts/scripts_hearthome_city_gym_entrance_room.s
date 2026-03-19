@@ -65,11 +65,11 @@ HearthomeGym_GymStatueAfterBadge:
 
 HearthomeGym_GymGuide_InitialVisit:
     LockAll
-    ApplyMovement HEARTHOME_CITY_GYM_ENTRANCE_ROOM_GYM_GUIDE, HearthomeGym_GymGuideMoveToPlayer
+    ApplyMovement LOCALID_GYM_GUIDE, HearthomeGym_GymGuideMoveToPlayer
     WaitMovement
     Message HearthomeGym_Text_GymGuideInitialVisit
     CloseMessage
-    ApplyMovement HEARTHOME_CITY_GYM_ENTRANCE_ROOM_GYM_GUIDE, HearthomeGym_GymGuideReturnToPosition
+    ApplyMovement LOCALID_GYM_GUIDE, HearthomeGym_GymGuideReturnToPosition
     WaitMovement
     SetVar VAR_HAS_ENTERED_HEARTHOME_GYM_BEFORE, TRUE
     ReleaseAll

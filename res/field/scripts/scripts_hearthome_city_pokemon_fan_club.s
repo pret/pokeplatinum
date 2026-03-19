@@ -2,130 +2,130 @@
 #include "res/text/bank/hearthome_city_pokemon_fan_club.h"
 
 
-    ScriptEntry _0039
-    ScriptEntry _0098
-    ScriptEntry _0155
-    ScriptEntry _0174
-    ScriptEntry _0193
-    ScriptEntry _001A
+    ScriptEntry HearthomeCityPokemonFanClub_Gentleman
+    ScriptEntry HearthomeCityPokemonFanClub_Beauty
+    ScriptEntry HearthomeCityPokemonFanClub_Psyduck
+    ScriptEntry HearthomeCityPokemonFanClub_Buneary
+    ScriptEntry HearthomeCityPokemonFanClub_Clefairy
+    ScriptEntry HearthomeCityPokemonFanClub_OnTransition
     ScriptEntryEnd
 
-_001A:
+HearthomeCityPokemonFanClub_OnTransition:
     CheckTVInterviewEligible TV_PROGRAM_SEGMENT_YOUR_POKEMON_CORNER, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, 0, _0033
-    ClearFlag FLAG_UNK_0x0210
+    GoToIfEq VAR_MAP_LOCAL_0, FALSE, HearthomeCityPokemonFanClub_HideReporter
+    ClearFlag FLAG_HIDE_HEARTHOME_CITY_POKEMON_FAN_CLUB_REPORTER
     End
 
-_0033:
-    SetFlag FLAG_UNK_0x0210
+HearthomeCityPokemonFanClub_HideReporter:
+    SetFlag FLAG_HIDE_HEARTHOME_CITY_POKEMON_FAN_CLUB_REPORTER
     End
 
-_0039:
+HearthomeCityPokemonFanClub_Gentleman:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x008D, _0083
-    Message 0
+    GoToIfSet FLAG_RECEIVED_HEARTHOME_CITY_POKEMON_FAN_CLUB_POFFIN_CASE, HearthomeCityPokemonFanClub_WeAreTheNumberOneFanClub
+    Message HearthomeCityPokemonFanClub_Text_IAmTheChairman
     SetVar VAR_0x8004, ITEM_POFFIN_CASE
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _008E
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, HearthomeCityPokemonFanClub_BagIsFull
     Common_GiveItemQuantity
-    SetFlag FLAG_UNK_0x008D
-    Message 1
+    SetFlag FLAG_RECEIVED_HEARTHOME_CITY_POKEMON_FAN_CLUB_POFFIN_CASE
+    Message HearthomeCityPokemonFanClub_Text_FillItWithPoffins
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0083:
-    Message 2
+HearthomeCityPokemonFanClub_WeAreTheNumberOneFanClub:
+    Message HearthomeCityPokemonFanClub_Text_WeAreTheNumberOneFanClub
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_008E:
+HearthomeCityPokemonFanClub_BagIsFull:
     Common_MessageBagIsFull
     CloseMessage
     ReleaseAll
     End
 
-_0098:
+HearthomeCityPokemonFanClub_Beauty:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GetFirstNonEggInParty VAR_0x8000
     BufferPartyMonNickname 0, VAR_0x8000
-    Message 3
+    Message HearthomeCityPokemonFanClub_Text_OhYourPokemon
     GetPartyMonFriendship VAR_RESULT, VAR_0x8000
-    GoToIfGe VAR_RESULT, 0xFF, _0108
-    GoToIfGe VAR_RESULT, 200, _0113
-    GoToIfGe VAR_RESULT, 150, _011E
-    GoToIfGe VAR_RESULT, 100, _0129
-    GoToIfGe VAR_RESULT, 50, _0134
-    GoToIfGe VAR_RESULT, 1, _013F
-    GoTo _014A
+    GoToIfGe VAR_RESULT, 255, HearthomeCityPokemonFanClub_Friendship255
+    GoToIfGe VAR_RESULT, 200, HearthomeCityPokemonFanClub_Friendship200To254
+    GoToIfGe VAR_RESULT, 150, HearthomeCityPokemonFanClub_Friendship150To199
+    GoToIfGe VAR_RESULT, 100, HearthomeCityPokemonFanClub_Friendship100To149
+    GoToIfGe VAR_RESULT, 50, HearthomeCityPokemonFanClub_Friendship50To99
+    GoToIfGe VAR_RESULT, 1, HearthomeCityPokemonFanClub_Friendship1To49
+    GoTo HearthomeCityPokemonFanClub_Friendship0
     End
 
-_0108:
-    Message 4
+HearthomeCityPokemonFanClub_Friendship255:
+    Message HearthomeCityPokemonFanClub_Text_ItSimplyAdoresYou
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0113:
-    Message 5
+HearthomeCityPokemonFanClub_Friendship200To254:
+    Message HearthomeCityPokemonFanClub_Text_ItsVeryFriendlyTowardYou
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_011E:
-    Message 6
+HearthomeCityPokemonFanClub_Friendship150To199:
+    Message HearthomeCityPokemonFanClub_Text_ItsQuiteFriendlyToYou
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0129:
-    Message 7
+HearthomeCityPokemonFanClub_Friendship100To149:
+    Message HearthomeCityPokemonFanClub_Text_ItsWarmingUpToYou
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0134:
-    Message 8
+HearthomeCityPokemonFanClub_Friendship50To99:
+    Message HearthomeCityPokemonFanClub_Text_ItsFeelingNeutralTowardYou
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_013F:
-    Message 9
+HearthomeCityPokemonFanClub_Friendship1To49:
+    Message HearthomeCityPokemonFanClub_Text_ItSeemsToDislikeYouALittle
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_014A:
-    Message 10
+HearthomeCityPokemonFanClub_Friendship0:
+    Message HearthomeCityPokemonFanClub_Text_ThisOneReallyHasntTakenTooKindlyToYou
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0155:
-    PokemonCryAndMessage SPECIES_PSYDUCK, 11
+HearthomeCityPokemonFanClub_Psyduck:
+    PokemonCryAndMessage SPECIES_PSYDUCK, HearthomeCityPokemonFanClub_Text_PsyduckCryGuaGwah
     End
 
-_0174:
-    PokemonCryAndMessage SPECIES_BUNEARY, 12
+HearthomeCityPokemonFanClub_Buneary:
+    PokemonCryAndMessage SPECIES_BUNEARY, HearthomeCityPokemonFanClub_Text_BunearyCryKukuuh
     End
 
-_0193:
-    PokemonCryAndMessage SPECIES_CLEFAIRY, 13
+HearthomeCityPokemonFanClub_Clefairy:
+    PokemonCryAndMessage SPECIES_CLEFAIRY, HearthomeCityPokemonFanClub_Text_ClefairyCryPipPiiih
     End
 
     .balign 4, 0

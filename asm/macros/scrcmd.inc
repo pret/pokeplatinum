@@ -1811,10 +1811,10 @@
     .short \destVar
     .endm
 
-    .macro ScrCmd_12F arg0, arg1
+    .macro ContestPhotoHasData slot, destVar
     .short 303
-    .short \arg0
-    .short \arg1
+    .short \slot
+    .short \destVar
     .endm
 
     .macro SetDressUpPhotoTitle word

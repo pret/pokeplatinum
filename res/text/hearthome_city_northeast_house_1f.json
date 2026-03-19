@@ -2,7 +2,7 @@
   "key": 1099,
   "messages": [
     {
-      "id": "pl_msg_00000123_00000",
+      "id": "HearthomeCityNortheastHouse1F_Text_ThatMakesYouPapaAndMama",
       "en_US": [
         "Well, now, you’re a Trainer?\r",
         "That makes you both papa and mama\n",
@@ -14,11 +14,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000123_00001",
+      "id": "HearthomeCityNortheastHouse1F_Text_KuufuFuu",
       "en_US": "Kuufu fuu!"
     },
     {
-      "id": "pl_msg_00000123_00002",
+      "id": "HearthomeCityNortheastHouse1F_Text_BabiesAndPokemonGetAlong",
       "en_US": [
         "Babies and Pokémon get along\n",
         "perfectly together.\r",
@@ -27,28 +27,28 @@
       ]
     },
     {
-      "id": "pl_msg_00000123_00003",
+      "id": "HearthomeCityNortheastHouse1F_Text_ImGoingToBeATrainerToo",
       "en_US": [
         "When I get bigger, I’m going to be\n",
         "a Trainer, too!"
       ]
     },
     {
-      "id": "pl_msg_00000123_00004",
+      "id": "HearthomeCityNortheastHouse1F_Text_IWantToBecomeACoordinator",
       "en_US": [
         "When I grow up, I want to become\n",
         "a Pokémon coordinator."
       ]
     },
     {
-      "id": "pl_msg_00000123_00005",
+      "id": "HearthomeCityNortheastHouse1F_Text_NoOneEvenNoticesMe",
       "en_US": [
         "...My sisters make so much noise, no\n",
         "one even notices me."
       ]
     },
     {
-      "id": "pl_msg_00000123_00006",
+      "id": "HearthomeCityNortheastHouse1F_Text_WowYoureAPokemonTrainer",
       "en_US": [
         "Oh, wow, you’re a Pokémon Trainer.\r",
         "Having lots of Pokémon around is\n",
@@ -58,11 +58,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000123_00007",
+      "id": "HearthomeCityNortheastHouse1F_Text_Dummy7",
       "garbage": 43
     },
     {
-      "id": "pl_msg_00000123_00008",
+      "id": "HearthomeCityNortheastHouse1F_Text_PikachuCryPikapii",
       "en_US": "PIKACHU: Pikapii?"
     }
   ]

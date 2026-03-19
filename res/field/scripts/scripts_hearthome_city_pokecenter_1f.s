@@ -1,27 +1,28 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/hearthome_city_pokecenter_1f.h"
+#include "res/field/events/events_hearthome_city_pokecenter_1f.h"
 
 
-    ScriptEntry _0012
-    ScriptEntry _001E
-    ScriptEntry _0031
-    ScriptEntry _0044
+    ScriptEntry HearthomeCityPokecenter1F_Nurse
+    ScriptEntry HearthomeCityPokecenter1F_Youngster
+    ScriptEntry HearthomeCityPokecenter1F_Socialite
+    ScriptEntry HearthomeCityPokecenter1F_Guitarist
     ScriptEntryEnd
 
-_0012:
-    Common_CallPokecenterNurse 0
+HearthomeCityPokecenter1F_Nurse:
+    Common_CallPokecenterNurse LOCALID_POKECENTER_NURSE
     End
 
-_001E:
-    NPCMessage 0
+HearthomeCityPokecenter1F_Youngster:
+    NPCMessage HearthomeCityPokecenter1F_Text_HaveYouCheckedTheGlobalTerminal
     End
 
-_0031:
-    NPCMessage 1
+HearthomeCityPokecenter1F_Socialite:
+    NPCMessage HearthomeCityPokecenter1F_Text_DoYouHaveAPoffinCase
     End
 
-_0044:
-    NPCMessage 3
+HearthomeCityPokecenter1F_Guitarist:
+    NPCMessage HearthomeCityPokecenter1F_Text_FantinaLikesContestsToo
     End
 
     .balign 4, 0

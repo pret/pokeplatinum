@@ -2,7 +2,7 @@
   "key": 35866,
   "messages": [
     {
-      "id": "pl_msg_00000130_00000",
+      "id": "ForeignBuilding_Text_ThereDoISeeMyFather",
       "en_US": [
         "And there do I see my father.\n",
         "My son. My life.\r",
@@ -11,7 +11,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000130_00001",
+      "id": "ForeignBuilding_Text_CraftingFatiguesOnesSpirit",
       "en_US": [
         "The art of crafting things fatigues\n",
         "one’s spirit.\r",
@@ -21,7 +21,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000130_00002",
+      "id": "ForeignBuilding_Text_PeopleAndPokemonMakeEveryoneComeTogether",
       "en_US": [
         "When people and Pokémon join hands,\n",
         "everyone’s happy.\r",
@@ -30,7 +30,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000130_00003",
+      "id": "ForeignBuilding_Text_ThatPeopleAreLonelyIsOnlyNatural",
       "en_US": [
         "That people are lonely is only natural.\n",
         "It gives me compassion for others.\r",
@@ -42,7 +42,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000130_00004",
+      "id": "ForeignBuilding_Text_ThereAreWordsThatNotEveryoneCanDescribe",
       "en_US": [
         "There are still words that not everyone\n",
         "can describe...\f",
@@ -50,7 +50,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000130_00005",
+      "id": "ForeignBuilding_Text_ItsOnlyNaturalWeAreDifferent",
       "en_US": [
         "Pokémon... People... It’s only natural\n",
         "that we are all so very different.\r",
@@ -61,7 +61,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000130_00006",
+      "id": "ForeignBuilding_Text_TheStrongMustShowRestraint",
       "en_US": [
         "If the strong and able do too much,\n",
         "they limit the contributions of others.\r",
@@ -71,7 +71,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000130_00007",
+      "id": "ForeignBuilding_Text_WeCannotReadMinds",
       "en_US": [
         "We cannot read the minds of others,\n",
         "which causes us to feel fear and doubt.\r",
@@ -80,7 +80,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000130_00008",
+      "id": "ForeignBuilding_Text_BalanceIsWhatsNeeded",
       "en_US": [
         "Mind and matter.\r",
         "It’s no good if one is stronger than\n",

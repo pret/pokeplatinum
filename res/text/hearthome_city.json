@@ -2,7 +2,7 @@
   "key": 18307,
   "messages": [
     {
-      "id": "pl_msg_00000106_00000",
+      "id": "HearthomeCity_Text_ThankGoodnessYoureHere",
       "en_US": [
         "Oh, thank goodness that you happened\n",
         "to be there!\r",
@@ -11,14 +11,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000106_00001",
+      "id": "HearthomeCity_Text_BackIntoThePokeBall",
       "en_US": [
         "Baby BUNEARY, back into the Poké\n",
         "Ball you go!\r"
       ]
     },
     {
-      "id": "pl_msg_00000106_00002",
+      "id": "HearthomeCity_Text_ImKeira",
       "en_US": [
         "I’m Keira!\n",
         "I’m a Pokémon Contest Judge.\r",
@@ -27,7 +27,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000106_00003",
+      "id": "HearthomeCity_Text_ComeBackAnotherTime",
       "en_US": [
         "Hey, there!\n",
         "How’s it going, Trainer?\r",
@@ -44,7 +44,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000106_00004",
+      "id": "HearthomeCity_Text_LetsGetTheShowStarted",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: Ta-daah!\n",
         "Kept me waiting again, {STRVAR_1 3, 1, 0}!\r",
@@ -57,7 +57,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000106_00005",
+      "id": "HearthomeCity_Text_WaaahILostAgain",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: Waaah!\n",
         "What are you saying? I lost again?!\r",
@@ -82,7 +82,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000106_00006",
+      "id": "HearthomeCity_Text_TheyFoundAnEggAtTheDayCare",
       "en_US": [
         "Did you know?\r",
         "They found an Egg at the Day Care in\n",
@@ -90,7 +90,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000106_00007",
+      "id": "HearthomeCity_Text_TheyFindEggsInJohtoToo",
       "en_US": [
         "Did you know?\r",
         "They find Eggs in the far-off Johto\n",
@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000106_00008",
+      "id": "HearthomeCity_Text_EitherTheGymOrAContest",
       "en_US": [
         "You’re a Trainer, are you?\r",
         "You’ve got two choices of challenges,\n",
@@ -106,7 +106,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000106_00009",
+      "id": "HearthomeCity_Text_AtTheLostTowerPeopleUnburdenThemselves",
       "en_US": [
         "At the Lost Tower, people unburden\n",
         "themselves of unbearable sorrow...\r",
@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000106_00010",
+      "id": "HearthomeCity_Text_ThisPlaceIsBeautiful",
       "en_US": [
         "This place is beautiful.\n",
         "Perhaps even too much so.\r",
@@ -124,7 +124,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000106_00011",
+      "id": "HearthomeCity_Text_ICantDecideWhatAccessories",
       "en_US": [
         "I can’t decide what Accessories I\n",
         "should dress up Pokémon with.\r",
@@ -132,7 +132,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000106_00012",
+      "id": "HearthomeCity_Text_HowManyPokemonAreThere",
       "en_US": [
         "I get to see Pokémon all day long,\n",
         "but there sure are many kinds.\r",
@@ -140,14 +140,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000106_00013",
+      "id": "HearthomeCity_Text_IUsedAFireStoneToEvolve",
       "en_US": [
         "I used a Fire Stone on my Pokémon,\n",
         "and it evolved!"
       ]
     },
     {
-      "id": "pl_msg_00000106_00014",
+      "id": "HearthomeCity_Text_MayIShowYouToTheContestHall",
       "en_US": [
         "I’m visiting here all the way from\n",
         "the Hoenn region.\r",
@@ -162,35 +162,35 @@
       ]
     },
     {
-      "id": "pl_msg_00000106_00015",
+      "id": "HearthomeCity_Text_PleaseFollowMe",
       "en_US": [
         "Ah.\n",
         "Please follow me.\r"
       ]
     },
     {
-      "id": "pl_msg_00000106_00016",
+      "id": "HearthomeCity_Text_ThisIsTheContestHall",
       "en_US": [
         "This is the Contest Hall.\n",
         "Please, do go inside."
       ]
     },
     {
-      "id": "pl_msg_00000106_00017",
+      "id": "HearthomeCity_Text_ItMakesMeHappy",
       "en_US": [
         "It makes me happy knowing I’ve\n",
         "helped another person."
       ]
     },
     {
-      "id": "pl_msg_00000106_00018",
+      "id": "HearthomeCity_Text_IDoApologize",
       "en_US": [
         "Oh, I do apologize.\n",
         "I should mind my own business."
       ]
     },
     {
-      "id": "pl_msg_00000106_00019",
+      "id": "HearthomeCity_Text_INoticeThingsLikeStairs",
       "en_US": [
         "When I take my baby out in his stroller,\n",
         "I see the town in a different way.\r",
@@ -199,11 +199,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000106_00020",
+      "id": "HearthomeCity_Text_Apapapu",
       "en_US": "Apapapu!"
     },
     {
-      "id": "pl_msg_00000106_00021",
+      "id": "HearthomeCity_Text_IWentForAStrollWithPachirisu",
       "en_US": [
         "I went for a stroll in Amity Square\n",
         "with my PACHIRISU today.\r",
@@ -214,11 +214,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000106_00022",
+      "id": "HearthomeCity_Text_PachirisuCryKyukyuuh",
       "en_US": "PACHIRISU: Kyukyuuh!"
     },
     {
-      "id": "pl_msg_00000106_00023",
+      "id": "HearthomeCity_Text_SometimesEggsAreFoundAtTheDayCare",
       "en_US": [
         "I have a professor friend, and this is\n",
         "what he told me.\r",
@@ -232,7 +232,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000106_00024",
+      "id": "HearthomeCity_Text_TheyCallMeMrGoods",
       "en_US": [
         "They call me Mr. Goods.\r",
         "No one knows my real name.\n",
@@ -242,18 +242,18 @@
       ]
     },
     {
-      "id": "pl_msg_00000106_00025",
+      "id": "HearthomeCity_Text_Hmhmhmhm",
       "en_US": [
         "Hm!\n",
         "Hmhmhmhm?!\r"
       ]
     },
     {
-      "id": "pl_msg_00000106_00026",
+      "id": "HearthomeCity_Text_Dummy26",
       "garbage": 19
     },
     {
-      "id": "pl_msg_00000106_00027",
+      "id": "HearthomeCity_Text_TalkToMeSomeOtherTime",
       "en_US": [
         "I was going to give you something,\n",
         "but I just gave a rare thing away.\r",
@@ -262,15 +262,15 @@
       ]
     },
     {
-      "id": "pl_msg_00000106_00028",
+      "id": "HearthomeCity_Text_Dummy28",
       "garbage": 13
     },
     {
-      "id": "pl_msg_00000106_00029",
+      "id": "HearthomeCity_Text_Dummy29",
       "garbage": 23
     },
     {
-      "id": "pl_msg_00000106_00030",
+      "id": "HearthomeCity_Text_YourUndergroundPCIsFull",
       "en_US": [
         "Oh? Your underground PC appears\n",
         "to be full.\r",
@@ -279,18 +279,18 @@
       ]
     },
     {
-      "id": "pl_msg_00000106_00031",
+      "id": "HearthomeCity_Text_Dummy31",
       "garbage": 45
     },
     {
-      "id": "pl_msg_00000106_00032",
+      "id": "HearthomeCity_Text_TalkToMeSomeOtherTime2",
       "en_US": [
         "I’ll find something rare for you,\n",
         "so talk to me some other time."
       ]
     },
     {
-      "id": "pl_msg_00000106_00033",
+      "id": "HearthomeCity_Text_YourAdventureHasGoneGlobal",
       "en_US": [
         "Oh!\n",
         "How impressive!\r",
@@ -301,7 +301,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000106_00034",
+      "id": "HearthomeCity_Text_ConqueredAllGyms",
       "en_US": [
         "Oh!\n",
         "How impressive!\r",
@@ -312,7 +312,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000106_00035",
+      "id": "HearthomeCity_Text_ConqueredMasterRankCuteContest",
       "en_US": [
         "Oh!\n",
         "How impressive!\r",
@@ -323,7 +323,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000106_00036",
+      "id": "HearthomeCity_Text_ConqueredMasterRankCoolContest",
       "en_US": [
         "Oh!\n",
         "How impressive!\r",
@@ -334,7 +334,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000106_00037",
+      "id": "HearthomeCity_Text_ConqueredMasterRankBeautyContest",
       "en_US": [
         "Oh!\n",
         "How impressive!\r",
@@ -345,7 +345,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000106_00038",
+      "id": "HearthomeCity_Text_ConqueredMasterRankToughContest",
       "en_US": [
         "Oh!\n",
         "How impressive!\r",
@@ -356,7 +356,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000106_00039",
+      "id": "HearthomeCity_Text_ConqueredMasterRankSmartContest",
       "en_US": [
         "Oh!\n",
         "How impressive!\r",
@@ -367,7 +367,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000106_00040",
+      "id": "HearthomeCity_Text_YouveMetManyPeopleUnderground",
       "en_US": [
         "Oh!\n",
         "How impressive!\r",
@@ -378,7 +378,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000106_00041",
+      "id": "HearthomeCity_Text_YouveGivenAwayManyItemsUnderground",
       "en_US": [
         "Oh!\n",
         "How impressive!\r",
@@ -389,7 +389,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000106_00042",
+      "id": "HearthomeCity_Text_YouveDugUpManyFossilsUnderground",
       "en_US": [
         "Oh!\n",
         "How impressive!\r",
@@ -400,7 +400,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000106_00043",
+      "id": "HearthomeCity_Text_YouveSetManyTrapsUnderground",
       "en_US": [
         "Oh!\n",
         "How impressive!\r",
@@ -411,7 +411,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000106_00044",
+      "id": "HearthomeCity_Text_YouveBeaten10TrainersInARowBattleTower",
       "en_US": [
         "Oh!\n",
         "How impressive!\r",
@@ -422,7 +422,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000106_00045",
+      "id": "HearthomeCity_Text_YouveBeaten50TrainersInARowBattleTower",
       "en_US": [
         "Oh!\n",
         "How impressive!\r",
@@ -433,7 +433,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000106_00046",
+      "id": "HearthomeCity_Text_YouveBeaten100TrainersInARowBattleTower",
       "en_US": [
         "Oh!\n",
         "How incredible!\r",
@@ -444,7 +444,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000106_00047",
+      "id": "HearthomeCity_Text_WhatPokemonWillMyChildBefriend",
       "en_US": [
         "I can feel the baby stroller getting\n",
         "heavier each and every day.\r",
@@ -453,11 +453,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000106_00048",
+      "id": "HearthomeCity_Text_PapaMama",
       "en_US": "Papa! Mama!"
     },
     {
-      "id": "pl_msg_00000106_00049",
+      "id": "HearthomeCity_Text_ILivedInTotalSeclusion",
       "en_US": [
         "I lived in total seclusion up in\n",
         "the mountains for thirty years!\r",
@@ -466,7 +466,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000106_00050",
+      "id": "HearthomeCity_Text_IdLikeToLiveInHearthome",
       "en_US": [
         "I’d like to live in Hearthome when\n",
         "I get married.\r",
@@ -475,7 +475,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000106_00051",
+      "id": "HearthomeCity_Text_IPutMyVsSeekerThroughALot",
       "en_US": [
         "I put my Vs. Seeker through its paces\n",
         "a lot.\r",
@@ -486,14 +486,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000106_00052",
+      "id": "HearthomeCity_Text_MapSign",
       "en_US": [
         "Hearthome City\n",
         "Warm & Kind"
       ]
     },
     {
-      "id": "pl_msg_00000106_00053",
+      "id": "HearthomeCity_Text_SignHearthomeCityPokemonGym",
       "en_US": [
         "Hearthome City Pokémon Gym\n",
         "Leader: Fantina\f",
@@ -501,49 +501,49 @@
       ]
     },
     {
-      "id": "pl_msg_00000106_00054",
+      "id": "HearthomeCity_Text_SignPokemonContestHall",
       "en_US": [
         "Pokémon Contest Hall\n",
         "Calling All Enthusiasts!"
       ]
     },
     {
-      "id": "pl_msg_00000106_00055",
+      "id": "HearthomeCity_Text_SignPokemonFanClub",
       "en_US": [
         "Pokémon Fan Club\n",
         "All Trainers Welcome"
       ]
     },
     {
-      "id": "pl_msg_00000106_00056",
+      "id": "HearthomeCity_Text_SignRt208Rt212",
       "en_US": [
         "Rt. 208\n",
         "Rt. 212"
       ]
     },
     {
-      "id": "pl_msg_00000106_00057",
+      "id": "HearthomeCity_Text_SignRt209SolaceonTown",
       "en_US": [
         "Rt. 209\n",
         "Solaceon Town"
       ]
     },
     {
-      "id": "pl_msg_00000106_00058",
+      "id": "HearthomeCity_Text_SignAmitySquareWestGate",
       "en_US": [
         "Amity Square West Gate\n",
         "Stroll with Your Pokémon!"
       ]
     },
     {
-      "id": "pl_msg_00000106_00059",
+      "id": "HearthomeCity_Text_SignAmitySquareEastGate",
       "en_US": [
         "Amity Square East Gate\n",
         "Stroll with Your Pokémon!"
       ]
     },
     {
-      "id": "pl_msg_00000106_00060",
+      "id": "HearthomeCity_Text_SignThePoffinHouse",
       "en_US": [
         "The Poffin House\n",
         "Delicious Poffins--Smiles for All"

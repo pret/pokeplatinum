@@ -2,14 +2,14 @@
   "key": 1067,
   "messages": [
     {
-      "id": "pl_msg_00000119_00000",
+      "id": "HearthomeCityEastGateToAmitySquare_Text_TakeCutePokemonForAStroll",
       "en_US": [
         "You can take a cute Pokémon out for\n",
         "a stroll in Amity Square."
       ]
     },
     {
-      "id": "pl_msg_00000119_00001",
+      "id": "HearthomeCityEastGateToAmitySquare_Text_TheyRefusedEntryToMyPokemon",
       "en_US": [
         "I’m appalled!\n",
         "They refused entry to my Pokémon!\r",

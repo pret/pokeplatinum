@@ -2,51 +2,51 @@
 #include "res/text/bank/hearthome_city_northeast_house_1f.h"
 
 
-    ScriptEntry _0026
-    ScriptEntry _0039
-    ScriptEntry _004A
-    ScriptEntry _005D
-    ScriptEntry _0070
-    ScriptEntry _0083
-    ScriptEntry _0096
-    ScriptEntry _00A9
-    ScriptEntry _00BC
+    ScriptEntry HearthomeCityNortheastHouse1F_PokefanF
+    ScriptEntry HearthomeCityNortheastHouse1F_BabyInPram
+    ScriptEntry HearthomeCityNortheastHouse1F_BattleGirl
+    ScriptEntry HearthomeCityNortheastHouse1F_NinjaBoy
+    ScriptEntry HearthomeCityNortheastHouse1F_Twin
+    ScriptEntry HearthomeCityNortheastHouse1F_SchoolKidM
+    ScriptEntry HearthomeCityNortheastHouse1F_Lass
+    ScriptEntry HearthomeCityNortheastHouse1F_Unused
+    ScriptEntry HearthomeCityNortheastHouse1F_Pikachu
     ScriptEntryEnd
 
-_0026:
-    NPCMessage 0
+HearthomeCityNortheastHouse1F_PokefanF:
+    NPCMessage HearthomeCityNortheastHouse1F_Text_ThatMakesYouPapaAndMama
     End
 
-_0039:
-    EventMessage 1
+HearthomeCityNortheastHouse1F_BabyInPram:
+    EventMessage HearthomeCityNortheastHouse1F_Text_KuufuFuu
     End
 
-_004A:
-    NPCMessage 2
+HearthomeCityNortheastHouse1F_BattleGirl:
+    NPCMessage HearthomeCityNortheastHouse1F_Text_BabiesAndPokemonGetAlong
     End
 
-_005D:
-    NPCMessage 3
+HearthomeCityNortheastHouse1F_NinjaBoy:
+    NPCMessage HearthomeCityNortheastHouse1F_Text_ImGoingToBeATrainerToo
     End
 
-_0070:
-    NPCMessage 4
+HearthomeCityNortheastHouse1F_Twin:
+    NPCMessage HearthomeCityNortheastHouse1F_Text_IWantToBecomeACoordinator
     End
 
-_0083:
-    NPCMessage 5
+HearthomeCityNortheastHouse1F_SchoolKidM:
+    NPCMessage HearthomeCityNortheastHouse1F_Text_NoOneEvenNoticesMe
     End
 
-_0096:
-    NPCMessage 6
+HearthomeCityNortheastHouse1F_Lass:
+    NPCMessage HearthomeCityNortheastHouse1F_Text_WowYoureAPokemonTrainer
     End
 
-_00A9:
-    NPCMessage 7
+HearthomeCityNortheastHouse1F_Unused:
+    NPCMessage HearthomeCityNortheastHouse1F_Text_Dummy7
     End
 
-_00BC:
-    PokemonCryAndMessage SPECIES_PIKACHU, 8
+HearthomeCityNortheastHouse1F_Pikachu:
+    PokemonCryAndMessage SPECIES_PIKACHU, HearthomeCityNortheastHouse1F_Text_PikachuCryPikapii
     End
 
     .balign 4, 0

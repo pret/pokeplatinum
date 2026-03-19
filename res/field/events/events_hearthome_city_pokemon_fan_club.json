@@ -2,7 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
-            "id": "HEARTHOME_CITY_POKEMON_FAN_CLUB_GENTLEMAN_0",
+            "id": "LOCALID_GENTLEMAN",
             "graphics_id": "OBJ_EVENT_GFX_GENTLEMAN",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -17,7 +17,7 @@
             "y": 0
         },
         {
-            "id": "HEARTHOME_CITY_POKEMON_FAN_CLUB_BEAUTY_1",
+            "id": "LOCALID_BEAUTY",
             "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -32,7 +32,7 @@
             "y": 0
         },
         {
-            "id": "HEARTHOME_CITY_POKEMON_FAN_CLUB_PSYDUCK_2",
+            "id": "LOCALID_PSYDUCK",
             "graphics_id": "OBJ_EVENT_GFX_PSYDUCK",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -47,7 +47,7 @@
             "y": 0
         },
         {
-            "id": "HEARTHOME_CITY_POKEMON_FAN_CLUB_BUNEARY_3",
+            "id": "LOCALID_BUNEARY",
             "graphics_id": "OBJ_EVENT_GFX_BUNEARY",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -62,7 +62,7 @@
             "y": 0
         },
         {
-            "id": "HEARTHOME_CITY_POKEMON_FAN_CLUB_CLEFAIRY_4",
+            "id": "LOCALID_CLEFAIRY",
             "graphics_id": "OBJ_EVENT_GFX_CLEFAIRY",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -77,11 +77,11 @@
             "y": 0
         },
         {
-            "id": "HEARTHOME_CITY_POKEMON_FAN_CLUB_REPORTER_5",
+            "id": "LOCALID_REPORTER",
             "graphics_id": "OBJ_EVENT_GFX_REPORTER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0210",
+            "hidden_flag": "FLAG_HIDE_HEARTHOME_CITY_POKEMON_FAN_CLUB_REPORTER",
             "script": 10153,
             "initial_dir": 3,
             "data": [],
