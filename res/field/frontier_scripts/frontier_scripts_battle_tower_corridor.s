@@ -153,9 +153,9 @@ _00D0:
     .short 0xFD13
 
 _00E2:
-    CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, 0x8008
-    GoToIfEq 0x8008, 4, _0145
-    GoToIfEq 0x8008, 5, _0145
+    CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, VAR_0x8008
+    GoToIfEq VAR_0x8008, 4, _0145
+    GoToIfEq VAR_0x8008, 5, _0145
     GoTo _0153
     End
 
@@ -165,27 +165,27 @@ _010C:
     FrontierScrCmd_2A _0028
     FrontierScrCmd_2C _002C
     FadeScreenIn
-    FrontierScrCmd_3E 0x40DC, 0x8001
-    GoToIfEq 0x8001, 1, _0161
+    FrontierScrCmd_3E VAR_UNK_0x40DC, VAR_0x8001
+    GoToIfEq VAR_0x8001, 1, _0161
     End
 
 _0145:
-    SetVar 0x800F, 235
+    SetVar FR_VAR_0x800F, 235
     GoTo _010C
     End
 
 _0153:
-    SetVar 0x800F, 231
+    SetVar FR_VAR_0x800F, 231
     GoTo _010C
     End
 
 _0161:
     Call _01A2
-    GetRandom 0x8008, 4
-    SetVar 0x8010, 0x8008
-    GoToIfEq 0x8010, 1, _01E4
-    GoToIfEq 0x8010, 2, _01FE
-    GoToIfEq 0x8010, 3, _0218
+    GetRandom VAR_0x8008, 4
+    SetVar FR_VAR_0x8010, VAR_0x8008
+    GoToIfEq FR_VAR_0x8010, 1, _01E4
+    GoToIfEq FR_VAR_0x8010, 2, _01FE
+    GoToIfEq FR_VAR_0x8010, 3, _0218
     GoTo _01CA
     End
 
@@ -234,7 +234,7 @@ _0232:
     FrontierScrCmd_2B 1
     FrontierScrCmd_25 0
     FrontierScrCmd_25 1
-    FrontierScrCmd_23 0x800F
+    FrontierScrCmd_23 FR_VAR_0x800F
     FrontierScrCmd_04 7, 0
     End
 

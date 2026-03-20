@@ -215,27 +215,27 @@ _0138:
     .short 0xFD13
 
 _0142:
-    FrontierScrCmd_3E 0x40DD, 0x8001
+    FrontierScrCmd_3E VAR_UNK_0x40DD, VAR_0x8001
     Call _0278
     Call _0344
-    SetVar 0x800F, 232
+    SetVar FR_VAR_0x800F, 232
     PlaySoundEffect SEQ_SE_DP_DOOR10
     FrontierScrCmd_2A _009C
     FrontierScrCmd_2C _00A0
     FrontierScrCmd_2F 1
-    CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, 0x8008
-    GoToIfEq 0x8008, 3, _01B0
-    GoToIfEq 0x8008, 6, _01B0
-    SetVar 0x8002, 3
-    SetVar 0x8003, 4
+    CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, VAR_0x8008
+    GoToIfEq VAR_0x8008, 3, _01B0
+    GoToIfEq VAR_0x8008, 6, _01B0
+    SetVar VAR_0x8002, 3
+    SetVar VAR_0x8003, 4
     FrontierScrCmd_22 _0008
     FrontierScrCmd_24 _0024
     GoTo _01D0
     End
 
 _01B0:
-    SetVar 0x8002, 5
-    SetVar 0x8003, 6
+    SetVar VAR_0x8002, 5
+    SetVar VAR_0x8003, 6
     FrontierScrCmd_22 _0018
     FrontierScrCmd_24 _0060
     GoTo _01D0
@@ -250,17 +250,17 @@ _01D0:
     FrontierScrCmd_2D 0
     FrontierScrCmd_2D 1
     FrontierScrCmd_2B 1
-    CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, 0x8008
-    GoToIfEq 0x8008, 3, _0250
-    GoToIfEq 0x8008, 6, _0250
+    CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, VAR_0x8008
+    GoToIfEq VAR_0x8008, 3, _0250
+    GoToIfEq VAR_0x8008, 6, _0250
     FrontierScrCmd_25 0
     FrontierScrCmd_25 1
     FrontierScrCmd_25 2
     FrontierScrCmd_25 3
     FrontierScrCmd_25 4
-    FrontierScrCmd_23 0x800F
-    FrontierScrCmd_23 0x800B
-    FrontierScrCmd_23 0x800C
+    FrontierScrCmd_23 FR_VAR_0x800F
+    FrontierScrCmd_23 VAR_0x800B
+    FrontierScrCmd_23 VAR_0x800C
     GoTo _0270
     End
 
@@ -270,7 +270,7 @@ _0250:
     FrontierScrCmd_25 2
     FrontierScrCmd_25 5
     FrontierScrCmd_25 6
-    FrontierScrCmd_23 0x800F
+    FrontierScrCmd_23 FR_VAR_0x800F
     GoTo _0270
     End
 
@@ -279,10 +279,10 @@ _0270:
     End
 
 _0278:
-    GoToIfEq 0x8001, 0, _02AA
-    GoToIfEq 0x8000, 1, _02AC
-    CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, 0, 0x800B
-    CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, 1, 0x800C
+    GoToIfEq VAR_0x8001, 0, _02AA
+    GoToIfEq VAR_0x8000, 1, _02AC
+    CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, 0, VAR_0x800B
+    CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, 1, VAR_0x800C
     GoTo _02AA
     End
 
@@ -290,8 +290,8 @@ _02AA:
     Return
 
 _02AC:
-    CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, 0, 0x800B
-    CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, 1, 0x800C
+    CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, 0, VAR_0x800B
+    CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, 1, VAR_0x800C
     Return
 
 _02BE:
@@ -303,29 +303,29 @@ _02BE:
     FrontierScrCmd_28 1, _00B8
     FrontierScrCmd_28 2, _00B8
     FrontierScrCmd_29
-    FrontierScrCmd_28 0x8002, _00C8
-    FrontierScrCmd_28 0x8003, _00C8
+    FrontierScrCmd_28 VAR_0x8002, _00C8
+    FrontierScrCmd_28 VAR_0x8003, _00C8
     FrontierScrCmd_29
     Return
 
 _02FC:
     FrontierScrCmd_28 1, _00F8
-    FrontierScrCmd_28 0x8002, _00D4
+    FrontierScrCmd_28 VAR_0x8002, _00D4
     FrontierScrCmd_28 2, _0118
-    FrontierScrCmd_28 0x8003, _00E0
+    FrontierScrCmd_28 VAR_0x8003, _00E0
     FrontierScrCmd_29
     Return
 
 _0320:
     FrontierScrCmd_28 1, _0138
     FrontierScrCmd_28 2, _0138
-    FrontierScrCmd_28 0x8002, _00EC
-    FrontierScrCmd_28 0x8003, _00EC
+    FrontierScrCmd_28 VAR_0x8002, _00EC
+    FrontierScrCmd_28 VAR_0x8003, _00EC
     FrontierScrCmd_29
     Return
 
 _0344:
-    CallIfNe 0x8001, 0, _0353
+    CallIfNe VAR_0x8001, 0, _0353
     Return
 
 _0353:
