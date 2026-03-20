@@ -5,56 +5,16 @@
 
 #include "overlay063/struct_ov63_0222BEC0_decl.h"
 #include "overlay063/struct_ov63_0222CCB8.h"
-#include "overlay104/frontier_script_context.h"
-#include "overlay104/frontier_script_manager_decl.h"
+#include "overlay104/defs.h"
 #include "overlay104/struct_ov104_0222FEDC.h"
 #include "overlay104/struct_ov104_0223C4CC_decl.h"
 
-#include "bg_window.h"
-#include "list_menu.h"
-#include "menu.h"
 #include "message.h"
 #include "sprite.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
 
-#define FRONTIER_MENU_ENTRIES_MAX 28
-
-typedef struct FrontierMenuManager {
-    FrontierScriptManager *scriptMan;
-    SysTask *sysTask;
-    Window window;
-    Window *parent;
-    String *choiceStringBuffers[FRONTIER_MENU_ENTRIES_MAX];
-    MessageLoader *msgLoader;
-    StringTemplate *strTemplate;
-    u8 sysTaskDelay;
-    u8 unused;
-    u8 initialCursorPos;
-    u8 canExitWithB : 1;
-    u8 freeMsgLoaderOnDelete : 1;
-    u8 unused2 : 4;
-    u8 anchorRight : 1;
-    u8 anchorBottom : 1;
-    u8 anchorX;
-    u8 anchorY;
-    u8 unused3;
-    u8 optionCount;
-    u16 *unused4;
-    u16 *selectedOptionPtr;
-    MenuTemplate menuTemplate;
-    Menu *menu;
-    StringList menuChoiceStrings[FRONTIER_MENU_ENTRIES_MAX];
-    ListMenuTemplate listMenuTemplate;
-    ListMenu *listMenu;
-    u16 unused5;
-    u16 listMenuAltTextIndex;
-    StringList listMenuChoiceStrings[FRONTIER_MENU_ENTRIES_MAX];
-    u16 choicesAltTextEntryIDs[FRONTIER_MENU_ENTRIES_MAX];
-    u16 cursorPos;
-} FrontierMenuManager;
-
-void FrontierShowMessage(FrontierScriptManager *param0, const MessageLoader *msgLoader, u16 messageID, u8 canSpeedUp, FrontierMessageOptions *msgOptions);
+void FrontierShowMessage(FrontierScriptManager *scriptMan, const MessageLoader *msgLoader, u16 messageID, u8 canSpeedUp, FrontierMessageOptions *msgOptions);
 void Frontier_CloseMessage(FrontierScriptManager *scriptMan);
 FrontierMenuManager *FrontierMenuManager_New(FrontierScriptManager *scriptMan, u8 anchorX, u8 anchorY, u8 initalCursorPos, u8 canExitWithB, u16 *selectedOptionPtr, StringTemplate *strTemplate, MessageLoader *msgLoader);
 void FrontierMenuManager_AddMenuEntry(FrontierMenuManager *menuManager, u32 entryID, u32 altTextEntryID, u32 index);

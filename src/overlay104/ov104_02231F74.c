@@ -14,9 +14,9 @@
 #include "overlay063/ov63_0222D77C.h"
 #include "overlay063/struct_ov63_0222BEC0_decl.h"
 #include "overlay063/struct_ov63_0222CCB8.h"
+#include "overlay104/defs.h"
 #include "overlay104/frontier_script_context.h"
 #include "overlay104/frontier_script_manager.h"
-#include "overlay104/frontier_script_manager_decl.h"
 #include "overlay104/struct_ov104_0222FEDC.h"
 #include "overlay104/struct_ov104_02230BE4.h"
 #include "overlay104/struct_ov104_02232B78.h"
@@ -87,17 +87,17 @@ static void ListMenuSysTaskCallback(SysTask *task, void *data);
 static void FreeManagerWithListMenu(FrontierMenuManager *menuManager, u8 playSound);
 static void UpdateListMenuAltText(FrontierMenuManager *menuManager);
 
-void FrontierShowMessage(FrontierScriptManager *param0, const MessageLoader *msgLoader, u16 messageID, u8 canSpeedUp, FrontierMessageOptions *msgOptions)
+void FrontierShowMessage(FrontierScriptManager *scriptMan, const MessageLoader *msgLoader, u16 messageID, u8 canSpeedUp, FrontierMessageOptions *msgOptions)
 {
     u8 renderDelay;
     u8 autoScroll;
     u8 font;
 
-    OpenMessageBox(param0);
-    GetMessage(param0, msgLoader, messageID);
+    OpenMessageBox(scriptMan);
+    GetMessage(scriptMan, msgLoader, messageID);
 
     if (msgOptions == NULL) {
-        UnkStruct_ov104_0223C4CC *v3 = ov104_0222E924(param0);
+        UnkStruct_ov104_0223C4CC *v3 = ov104_0222E924(scriptMan);
         UnkStruct_ov104_02230BE4 *v4 = sub_0209B970(v3->unk_08);
 
         renderDelay = Options_TextFrameDelay(v4->options);
@@ -109,7 +109,7 @@ void FrontierShowMessage(FrontierScriptManager *param0, const MessageLoader *msg
         font = msgOptions->font;
     }
 
-    PrintMessage(param0, font, renderDelay, canSpeedUp, autoScroll);
+    PrintMessage(scriptMan, font, renderDelay, canSpeedUp, autoScroll);
 }
 
 static void OpenMessageBox(FrontierScriptManager *scriptMan)

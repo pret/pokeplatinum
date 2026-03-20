@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_FRSCRCMD_H
 #define POKEPLATINUM_FRSCRCMD_H
 
-#include "overlay104/frontier_script_context.h"
+#include "overlay104/defs.h"
 
 extern const FrontierScrCmdFunc gFrontierScrCmdFuncs[];
 extern const u32 gFrontierScrCmdFuncsCount;

@@ -4,8 +4,8 @@
 
 #include "struct_decls/struct_0209B75C_decl.h"
 
+#include "overlay104/defs.h"
 #include "overlay104/frontier_script_context.h"
-#include "overlay104/frontier_script_manager_decl.h"
 #include "overlay104/frscrcmd.h"
 #include "overlay104/ov104_0222EA90.h"
 #include "overlay104/ov104_0223D860.h"
@@ -52,7 +52,7 @@ BOOL ov104_0222E6A8(FrontierScriptManager *scriptMan)
     }
 
     if (scriptMan->unk_38 == 0) {
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < (int)NELEMS(scriptMan->ctx); i++) {
             FrontierScriptContext *ctx = scriptMan->ctx[i];
 
             if (ctx != NULL) {
@@ -67,11 +67,7 @@ BOOL ov104_0222E6A8(FrontierScriptManager *scriptMan)
         ov104_0223D8C4(scriptMan->unk_00);
     }
 
-    if (scriptMan->numSetContexts == 0) {
-        return TRUE;
-    }
-
-    return FALSE;
+    return scriptMan->numSetContexts == 0;
 }
 
 void FrontierScriptManager_Free(FrontierScriptManager *scriptMan)
@@ -110,7 +106,7 @@ void FrontierScriptManager_Load(FrontierScriptManager *scriptMan, int scene, int
 
 static BOOL FrontierScriptManager_SetContext(FrontierScriptManager *scriptMan, FrontierScriptContext *ctx)
 {
-    for (int i = 0; i < 8; i++) {
+    for (int i = 0; i < (int)NELEMS(scriptMan->ctx); i++) {
         if (scriptMan->ctx[i] == NULL) {
             scriptMan->ctx[i] = ctx;
             scriptMan->numSetContexts++;
@@ -159,7 +155,7 @@ void FrontierScriptManager_UpdateMessageLoader(FrontierScriptManager *scriptMan,
 
     MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, newBankID, heapID);
 
-    for (int i = 0; i < 8; i++) {
+    for (int i = 0; i < (int)NELEMS(scriptMan->ctx); i++) {
         FrontierScriptContext *ctx = scriptMan->ctx[i];
 
         if (ctx != NULL) {

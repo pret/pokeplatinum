@@ -10,8 +10,8 @@
 #include "struct_decls/struct_0203041C_decl.h"
 #include "struct_defs/battle_frontier.h"
 
+#include "overlay104/defs.h"
 #include "overlay104/frontier_script_manager.h"
-#include "overlay104/frontier_script_manager_decl.h"
 #include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/ov104_0222ECE8.h"
 #include "overlay104/ov104_0223B6F4.h"

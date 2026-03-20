@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV104_02234838_H
 #define POKEPLATINUM_OV104_02234838_H
 
-#include "overlay104/frontier_script_context.h"
+#include "overlay104/defs.h"
 
 BOOL FrontierScrCmd_8B(FrontierScriptContext *param0);
 BOOL FrontierScrCmd_8C(FrontierScriptContext *param0);

@@ -9,8 +9,8 @@
 #include "struct_defs/battle_tower.h"
 #include "struct_defs/struct_0209BBA4.h"
 
+#include "overlay104/defs.h"
 #include "overlay104/frontier_script_context.h"
-#include "overlay104/frontier_script_manager.h"
 #include "overlay104/frscrcmd.h"
 #include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/ov104_02239C58.h"

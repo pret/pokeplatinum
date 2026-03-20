@@ -1,31 +1,7 @@
 #ifndef POKEPLATINUM_FRONTIER_SCRIPT_CONTEXT_H
 #define POKEPLATINUM_FRONTIER_SCRIPT_CONTEXT_H
 
-#include "overlay104/frontier_script_manager_decl.h"
-
-#include "message.h"
-
-typedef struct FrontierScriptContext FrontierScriptContext;
-
-typedef BOOL (*FrontierScrCmdFunc)(FrontierScriptContext *);
-typedef BOOL (*FrontierShouldResumeScriptFunc)(FrontierScriptContext *);
-
-struct FrontierScriptContext {
-    FrontierScriptManager *scriptMan;
-    u32 unk_04;
-    u16 unk_08[8];
-    u8 stackPointer;
-    u8 state;
-    const u8 *scriptPtr;
-    const u8 *stack[20];
-    const FrontierScrCmdFunc *cmdTable;
-    u32 cmdTableSize;
-    u16 data[4];
-    MessageLoader *msgLoader;
-    u8 *scripts;
-    FrontierShouldResumeScriptFunc shouldResume;
-    u8 comparisonResult;
-};
+#include "overlay104/defs.h"
 
 #define FrontierScriptContext_ReadByte(ctx) (*(ctx->scriptPtr++))
 

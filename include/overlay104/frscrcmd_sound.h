@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_FRSCRCMD_SOUND_H
 #define POKEPLATINUM_FRSCRCMD_SOUND_H
 
-#include "overlay104/frontier_script_context.h"
+#include "overlay104/defs.h"
 
 BOOL FrontierScrCmd_PlaySoundEffect(FrontierScriptContext *ctx);
 BOOL FrontierScrCmd_StopSoundEffect(FrontierScriptContext *ctx);

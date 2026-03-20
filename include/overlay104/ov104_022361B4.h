@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV104_022361B4_H
 #define POKEPLATINUM_OV104_022361B4_H
 
-#include "overlay104/frontier_script_manager_decl.h"
+#include "overlay104/defs.h"
 #include "overlay104/struct_ov104_0223BA10.h"
 
 #include "savedata.h"
