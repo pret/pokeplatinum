@@ -449,7 +449,7 @@ pokeplatinum_c = files(
     'overlay005/field_effect_renderer.c',
     'overlay006/ov6_0223E140.c',
     'overlay006/wild_encounters.c',
-    'overlay006/ov6_022426AC.c',
+    'overlay006/great_marsh_lookout_sprite.c',
     'overlay006/great_marsh_binoculars.c',
     'overlay006/great_marsh_tram.c',
     'overlay006/great_marsh_daily_encounters.c',

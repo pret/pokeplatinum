@@ -561,7 +561,7 @@ Overlay overlay6
 	After overlay5
 	Object main.nef.p/src_overlay006_ov6_0223E140.c.o
 	Object main.nef.p/src_overlay006_wild_encounters.c.o
-	Object main.nef.p/src_overlay006_ov6_022426AC.c.o
+	Object main.nef.p/src_overlay006_great_marsh_lookout_sprite.c.o
 	Object main.nef.p/src_overlay006_great_marsh_binoculars.c.o
 	Object main.nef.p/src_overlay006_great_marsh_tram.c.o
 	Object main.nef.p/src_overlay006_great_marsh_daily_encounters.c.o
