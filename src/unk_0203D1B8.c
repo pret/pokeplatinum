@@ -43,7 +43,7 @@
 #include "applications/pokedex/pokedex_main.h"
 #include "applications/pokemon_summary_screen/main.h"
 #include "applications/town_map/main.h"
-#include "battle/ov16_0223B140.h"
+#include "battle/battle_main.h"
 #include "choose_starter/choose_starter_app.h"
 #include "cutscenes/boat_cutscene.h"
 #include "cutscenes/hall_of_fame.h"

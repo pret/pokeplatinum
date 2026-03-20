@@ -25,11 +25,11 @@
 #include "battle/battle_controller.h"
 #include "battle/battle_display.h"
 #include "battle/battle_lib.h"
+#include "battle/battle_main.h"
 #include "battle/battle_message.h"
 #include "battle/battle_script.h"
 #include "battle/battle_system.h"
 #include "battle/common.h"
-#include "battle/ov16_0223B140.h"
 #include "battle/struct_ov16_0224DDA8.h"
 
 #include "bag.h"

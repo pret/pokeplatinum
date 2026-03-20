@@ -20,7 +20,6 @@
 #include "battle/message_defs.h"
 #include "battle/ov16_02264798.h"
 #include "battle/party_gauge.h"
-#include "battle/struct_ov16_0223C2C0.h"
 #include "battle/struct_ov16_02268A14_decl.h"
 #include "battle_anim/ov12_02235E94.h"
 #include "battle_anim/ov12_022380BC.h"
@@ -39,8 +38,8 @@
 
 typedef void (*BattleCommandPtr)(BattleSystem *, BattlerData *);
 
-BattlerData *ov16_0225BFFC(BattleSystem *battleSys, UnkStruct_ov16_0223C2C0 *param1);
-void ov16_0225C0DC(BattleSystem *battleSys, BattlerData *battlerData);
+BattlerData *BattlerData_New(BattleSystem *battleSys, BattlerInitData *battlerInitData);
+void BattleSystem_ExecuteBattlerCommand(BattleSystem *battleSys, BattlerData *battlerData);
 void ov16_0225C104(BattleSystem *battleSys, BattlerData *battlerData, int param2);
 void ov16_0225C038(BattleSystem *battleSys, BattlerData *battlerData, int ballID, int unused);
 static void BtlIOCmd_None(BattleSystem *battleSys, BattlerData *battlerData);
@@ -114,15 +113,15 @@ static void ZeroDataBuffer(BattlerData *battlerData);
 
 extern const u8 sBallThrowTypes[];
 
-BattlerData *ov16_0225BFFC(BattleSystem *battleSys, UnkStruct_ov16_0223C2C0 *param1)
+BattlerData *BattlerData_New(BattleSystem *battleSys, BattlerInitData *battlerInitData)
 {
     BattlerData *battlerData;
 
     battlerData = Heap_Alloc(HEAP_ID_BATTLE, sizeof(BattlerData));
     MI_CpuClearFast(battlerData, sizeof(BattlerData));
 
-    battlerData->battler = param1->unk_00;
-    battlerData->battlerType = param1->unk_01;
+    battlerData->battler = battlerInitData->battler;
+    battlerData->battlerType = battlerInitData->battlerType;
     battlerData->narc = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, HEAP_ID_BATTLE);
 
     return battlerData;
@@ -228,7 +227,7 @@ static const BattleCommandPtr sBattleCommands[] = {
     [BATTLE_COMMAND_CLEAR_MESSAGE_BOX] = BtlIOCmd_ClearMessageBox
 };
 
-void ov16_0225C0DC(BattleSystem *battleSys, BattlerData *battlerData)
+void BattleSystem_ExecuteBattlerCommand(BattleSystem *battleSys, BattlerData *battlerData)
 {
     if (battlerData->data[0]) {
         battlerData->unk_1A4 = 0;

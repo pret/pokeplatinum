@@ -521,7 +521,7 @@ pokeplatinum_c = files(
     'battle_sub_menus/battle_bag_buttons.c',
     'battle_sub_menus/battle_sub_menu_cursor.c',
     'battle/trainer_ai/trainer_ai.c',
-    'battle/ov16_0223B140.c',
+    'battle/battle_main.c',
     'battle/battle_system.c',
     'battle/battle_script.c',
     'battle/battle_controller_player.c',
