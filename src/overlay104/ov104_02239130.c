@@ -170,12 +170,12 @@ BOOL FrontierScrCmd_85(FrontierScriptContext *param0)
     return 1;
 }
 
-BOOL FrontierScrCmd_86(FrontierScriptContext *param0)
+BOOL FrontierScrCmd_FreeBattleTower(FrontierScriptContext *param0)
 {
     BattleTower *battleTower = sub_0209B978(param0->scriptMan->unk_00);
     BattleTower_Free(battleTower);
 
-    return 0;
+    return FALSE;
 }
 
 BOOL FrontierScrCmd_87(FrontierScriptContext *param0)
@@ -195,21 +195,17 @@ BOOL FrontierScrCmd_87(FrontierScriptContext *param0)
     return 1;
 }
 
-BOOL FrontierScrCmd_88(FrontierScriptContext *param0)
+BOOL FrontierScrCmd_CheckWonBattleTowerBattle(FrontierScriptContext *ctx)
 {
-    BattleTower *battleTower;
-    FieldBattleDTO *v1;
-    u16 *v2;
+    BattleTower *battleTower = sub_0209B978(ctx->scriptMan->unk_00);
+    u16 *destVar = FrontierScriptContext_TryGetVarPointer(ctx);
+    FieldBattleDTO *dto = battleTower->unk_8D0;
 
-    battleTower = sub_0209B978(param0->scriptMan->unk_00);
-    v2 = FrontierScriptContext_TryGetVarPointer(param0);
-    v1 = battleTower->unk_8D0;
+    battleTower->unk_8CC = CheckPlayerWonBattle(dto->resultMask);
+    *destVar = battleTower->unk_8CC;
 
-    battleTower->unk_8CC = CheckPlayerWonBattle(v1->resultMask);
-    *v2 = battleTower->unk_8CC;
-
-    FieldBattleDTO_Free(v1);
-    return 0;
+    FieldBattleDTO_Free(dto);
+    return FALSE;
 }
 
 BOOL FrontierScrCmd_89(FrontierScriptContext *param0)

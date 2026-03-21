@@ -1752,7 +1752,7 @@ static BOOL ov62_02242D90(UnkStruct_0208C06C *param0)
     switch (param0->unk_08) {
     case 0:
         if (sub_0202F250()) {
-            sub_0202F22C();
+            BattleRecording_Free();
         }
 
         v0->unk_4E0 = Unk_ov62_02249298;
@@ -2988,7 +2988,7 @@ static BOOL ov62_02244720(UnkStruct_0208C06C *param0)
             Bg_ClearTilemap(param0->unk_14.unk_10, 7);
 
             if (sub_0202F250() == 1) {
-                sub_0202F22C();
+                BattleRecording_Free();
             }
         } else {
             PaletteData_BlendMulti(param0->unk_14.unk_14, 1, 0x2, v0->unk_08, param0->unk_14.unk_44);
@@ -3258,7 +3258,7 @@ static BOOL ov62_02244CD4(UnkStruct_0208C06C *param0)
                 Bg_ClearTilemap(param0->unk_14.unk_10, 7);
 
                 if (sub_0202F250() == 1) {
-                    sub_0202F22C();
+                    BattleRecording_Free();
                 }
             } else {
                 PaletteData_BlendMulti(param0->unk_14.unk_14, 1, 0x2, v0->unk_08, param0->unk_14.unk_44);
@@ -3501,7 +3501,7 @@ static BOOL ov62_0224536C(UnkStruct_0208C06C *param0)
             return 0;
         }
 
-        sub_0202F22C();
+        BattleRecording_Free();
         ov62_02231B8C(param0);
 
         if (ov61_0222BB48(ov62_0224112C(param0), &v1) == 1) {
@@ -4326,7 +4326,7 @@ static BOOL ov62_0224613C(UnkStruct_0208C06C *param0)
             Bg_ClearTilemap(param0->unk_14.unk_10, 7);
 
             if (sub_0202F250() == 1) {
-                sub_0202F22C();
+                BattleRecording_Free();
             }
         } else {
             PaletteData_BlendMulti(param0->unk_14.unk_14, 1, 0x2, v0->unk_08, param0->unk_14.unk_44);

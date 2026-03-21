@@ -1084,7 +1084,7 @@ _0662:
     FrontierScrCmd_3E VAR_MAP_LOCAL_2, VAR_0x8004
     FrontierScrCmd_3E VAR_MAP_LOCAL_5, VAR_0x8005
     FrontierScrCmd_3E VAR_MAP_LOCAL_6, VAR_0x8006
-    FrontierScrCmd_6C
+    InitNewBattleRecording
     FrontierScrCmd_B8 VAR_0x8003, VAR_0x8001, VAR_0x8004, VAR_0x8005, VAR_0x8006, VAR_0x8008
     GetPlayerObjEventGfx VAR_0x8007
     FrontierScrCmd_BF 28, 0, 0, VAR_0x8008
@@ -3183,7 +3183,7 @@ _2C5A:
 _2C78:
     FrontierScrCmd_3D VAR_UNK_0x40BF, 2
     FrontierScrCmd_BF 10, 0, 0, VAR_0x8008
-    FrontierScrCmd_6F
+    FreeBattleRecording
     FrontierScrCmd_BA
     Call _2E9C
     FadeScreenOut
@@ -3302,7 +3302,7 @@ _2E1A:
     CallIfEq VAR_0x8008, 2, _2E80
     FrontierScrCmd_BF 17, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 3, _2E90
-    FrontierScrCmd_6F
+    FreeBattleRecording
     FrontierScrCmd_BA
     FrontierScrCmd_02
 
@@ -3317,7 +3317,7 @@ _2E86:
     Return
 
 _2E90:
-    FrontierScrCmd_6F
+    FreeBattleRecording
     FrontierScrCmd_BA
     FrontierScrCmd_04 14, 1
     End

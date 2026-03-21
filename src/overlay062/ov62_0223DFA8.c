@@ -523,7 +523,7 @@ static BOOL ov62_0223E510(UnkStruct_0208C06C *param0)
             Heap_Free(v0);
 
             if (sub_0202F250() == 1) {
-                sub_0202F22C();
+                BattleRecording_Free();
             }
         } else {
             PaletteData_BlendMulti(param0->unk_14.unk_14, 1, 0x2, v0->unk_08, param0->unk_14.unk_44);
@@ -1205,7 +1205,7 @@ static BOOL ov62_0223F760(UnkStruct_0208C06C *param0)
     switch (param0->unk_08) {
     case 0:
         if (sub_0202F250()) {
-            sub_0202F22C();
+            BattleRecording_Free();
         }
 
         v0->unk_1FDC = Unk_ov62_02248FD8;

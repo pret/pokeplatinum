@@ -224,8 +224,8 @@ _0142:
     FrontierScrCmd_2C _00A0
     FrontierScrCmd_2F 1
     CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, VAR_0x8008
-    GoToIfEq VAR_0x8008, 3, _01B0
-    GoToIfEq VAR_0x8008, 6, _01B0
+    GoToIfEq VAR_0x8008, BATTLE_TOWER_MODE_LINK_MULTI, _01B0
+    GoToIfEq VAR_0x8008, BATTLE_TOWER_MODE_6, _01B0
     SetVar VAR_0x8002, 3
     SetVar VAR_0x8003, 4
     FrontierScrCmd_22 _0008
@@ -251,8 +251,8 @@ _01D0:
     FrontierScrCmd_2D 1
     FrontierScrCmd_2B 1
     CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, VAR_0x8008
-    GoToIfEq VAR_0x8008, 3, _0250
-    GoToIfEq VAR_0x8008, 6, _0250
+    GoToIfEq VAR_0x8008, BATTLE_TOWER_MODE_LINK_MULTI, _0250
+    GoToIfEq VAR_0x8008, BATTLE_TOWER_MODE_6, _0250
     FrontierScrCmd_25 0
     FrontierScrCmd_25 1
     FrontierScrCmd_25 2
@@ -281,8 +281,8 @@ _0270:
 _0278:
     GoToIfEq VAR_0x8001, 0, _02AA
     GoToIfEq VAR_0x8000, 1, _02AC
-    CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, 0, VAR_0x800B
-    CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, 1, VAR_0x800C
+    CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, BT_PARAM_PLAYER_GRAPHICS_ID, VAR_0x800B
+    CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, BT_PARAM_PARTNER_GRAPHICS_ID, VAR_0x800C
     GoTo _02AA
     End
 
@@ -290,8 +290,8 @@ _02AA:
     Return
 
 _02AC:
-    CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, 0, VAR_0x800B
-    CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, 1, VAR_0x800C
+    CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, BT_PARAM_PLAYER_GRAPHICS_ID, VAR_0x800B
+    CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, BT_PARAM_PARTNER_GRAPHICS_ID, VAR_0x800C
     Return
 
 _02BE:

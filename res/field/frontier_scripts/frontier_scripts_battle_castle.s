@@ -678,7 +678,7 @@ _043C:
     FrontierScrCmd_22 _001C
     FrontierScrCmd_24 _0078
     FadeScreenIn
-    FrontierScrCmd_6C
+    InitNewBattleRecording
     FrontierScrCmd_97 VAR_0x8003, VAR_0x8001, VAR_0x8004, VAR_0x8005, VAR_0x8006, VAR_0x8008
     FrontierScrCmd_A0 35, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _0480
@@ -1778,7 +1778,7 @@ _1720:
 _173E:
     FrontierScrCmd_3D VAR_UNK_0x40BC, 2
     FrontierScrCmd_A0 10, 0, 0, VAR_0x8008
-    FrontierScrCmd_6F
+    FreeBattleRecording
     FrontierScrCmd_99
     Call _195E
     FadeScreenOut
@@ -1897,7 +1897,7 @@ _18F4:
     CallIfEq VAR_0x8008, 2, _1942
     FrontierScrCmd_A0 17, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 3, _1952
-    FrontierScrCmd_6F
+    FreeBattleRecording
     FrontierScrCmd_99
     FrontierScrCmd_02
 
@@ -1912,7 +1912,7 @@ _1948:
     Return
 
 _1952:
-    FrontierScrCmd_6F
+    FreeBattleRecording
     FrontierScrCmd_99
     FrontierScrCmd_04 14, 1
     End

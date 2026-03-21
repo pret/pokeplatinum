@@ -207,7 +207,7 @@ static int sub_0208BC08(ApplicationManager *appMan, int *param1)
     UnkStruct_0208BC3C *v0 = ApplicationManager_Data(appMan);
 
     if (sub_0202F250() == 1) {
-        sub_0202F22C();
+        BattleRecording_Free();
     }
 
     Heap_Free(v0->unk_14);

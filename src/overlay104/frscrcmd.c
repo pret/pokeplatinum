@@ -171,12 +171,12 @@ static BOOL FrontierScrCmd_28(FrontierScriptContext *ctx);
 static void ov104_0223056C(u16 param0, UnkStruct_ov104_0223C634 *param1, const UnkStruct_ov104_02232B78_sub1 *param2, UnkStruct_ov63_0222D77C *param3, u8 *param4, enum HeapID heapID);
 static BOOL FrontierScrCmd_29(FrontierScriptContext *ctx);
 static BOOL ov104_022305C8(FrontierScriptContext *ctx);
-static BOOL FrontierScrCmd_6C(FrontierScriptContext *ctx);
+static BOOL FrontierScrCmd_InitNewBattleRecording(FrontierScriptContext *ctx);
 static BOOL FrontierScrCmd_6D(FrontierScriptContext *ctx);
 static BOOL ov104_022309DC(FrontierScriptContext *ctx);
 static int ov104_02230A2C(u16 param0, u16 param1);
 static BOOL FrontierScrCmd_6E(FrontierScriptContext *ctx);
-static BOOL FrontierScrCmd_6F(FrontierScriptContext *ctx);
+static BOOL FrontierScrCmd_FreeBattleRecording(FrontierScriptContext *ctx);
 static BOOL FrontierScrCmd_70(FrontierScriptContext *ctx);
 static BOOL FrontierScrCmd_72(FrontierScriptContext *ctx);
 static BOOL WaitForSaveStateFinish(FrontierScriptContext *ctx);
@@ -403,10 +403,10 @@ const FrontierScrCmdFunc gFrontierScrCmdFuncs[] = {
     FrontierScrCmd_69,
     FrontierScrCmd_6A,
     FrontierScrCmd_6B,
-    FrontierScrCmd_6C,
+    FrontierScrCmd_InitNewBattleRecording,
     FrontierScrCmd_6D,
     FrontierScrCmd_6E,
-    FrontierScrCmd_6F,
+    FrontierScrCmd_FreeBattleRecording,
     FrontierScrCmd_70,
     FrontierScrCmd_71,
     FrontierScrCmd_72,
@@ -429,9 +429,9 @@ const FrontierScrCmdFunc gFrontierScrCmdFuncs[] = {
     FrontierScrCmd_RemoteBattlePoints,
     FrontierScrCmd_CallBattleTowerFunction,
     FrontierScrCmd_85,
-    FrontierScrCmd_86,
+    FrontierScrCmd_FreeBattleTower,
     FrontierScrCmd_87,
-    FrontierScrCmd_88,
+    FrontierScrCmd_CheckWonBattleTowerBattle,
     FrontierScrCmd_89,
     FrontierScrCmd_8A,
     FrontierScrCmd_8B,
@@ -477,7 +477,7 @@ const FrontierScrCmdFunc gFrontierScrCmdFuncs[] = {
     FrontierScrCmd_B3,
     FrontierScrCmd_B4,
     FrontierScrCmd_B5,
-    FrontierScrCmd_B6,
+    FrontierScrCmd_SetBattleTowerNull,
     FrontierScrCmd_SetWiFiListHostFriendCurrentDate,
     FrontierScrCmd_B8,
     FrontierScrCmd_B9,
@@ -1386,12 +1386,12 @@ static void ov104_02230950(void *namingScreenArgs)
     NamingScreenArgs_Free(namingScreenArgs);
 }
 
-static BOOL FrontierScrCmd_6C(FrontierScriptContext *ctx)
+static BOOL FrontierScrCmd_InitNewBattleRecording(FrontierScriptContext *ctx)
 {
-    int v0;
+    int resultCode;
     UnkStruct_ov104_02230BE4 *v1 = sub_0209B970(ctx->scriptMan->unk_00);
 
-    sub_0202F1F8(v1->saveData, HEAP_ID_FIELD2, &v0);
+    BattleRecording_New(v1->saveData, HEAP_ID_FIELD2, &resultCode);
     return FALSE;
 }
 
@@ -1569,9 +1569,9 @@ static BOOL FrontierScrCmd_6E(FrontierScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL FrontierScrCmd_6F(FrontierScriptContext *ctx)
+static BOOL FrontierScrCmd_FreeBattleRecording(FrontierScriptContext *ctx)
 {
-    sub_0202F22C();
+    BattleRecording_Free();
     return FALSE;
 }
 
@@ -1899,12 +1899,11 @@ static BOOL FrontierScrCmd_Dummy3C(FrontierScriptContext *ctx)
 
 BOOL FrontierScrCmd_3D(FrontierScriptContext *ctx)
 {
-    u16 *destVar;
     u16 destVarID = FrontierScriptContext_ReadHalfWord(ctx);
     u16 value = FrontierScriptContext_GetVar(ctx);
     UnkStruct_ov104_02230BE4 *v3 = sub_0209B970(ctx->scriptMan->unk_00);
 
-    destVar = VarsFlags_GetVarAddress(SaveData_GetVarsFlags(v3->saveData), destVarID);
+    u16 *destVar = VarsFlags_GetVarAddress(SaveData_GetVarsFlags(v3->saveData), destVarID);
     *destVar = value;
 
     return FALSE;
@@ -1912,12 +1911,11 @@ BOOL FrontierScrCmd_3D(FrontierScriptContext *ctx)
 
 BOOL FrontierScrCmd_3E(FrontierScriptContext *ctx)
 {
-    u16 *srcVar;
     u16 srcVarID = FrontierScriptContext_ReadHalfWord(ctx);
     u16 *destVar = FrontierScriptContext_TryGetVarPointer(ctx);
     UnkStruct_ov104_02230BE4 *v3 = sub_0209B970(ctx->scriptMan->unk_00);
 
-    srcVar = VarsFlags_GetVarAddress(SaveData_GetVarsFlags(v3->saveData), srcVarID);
+    u16 *srcVar = VarsFlags_GetVarAddress(SaveData_GetVarsFlags(v3->saveData), srcVarID);
     *destVar = *srcVar;
 
     return FALSE;

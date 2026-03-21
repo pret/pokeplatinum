@@ -256,13 +256,13 @@ _016C:
     .short 0xFD13
 
 _0172:
-    FrontierScrCmd_6C
+    InitNewBattleRecording
     Call _0BCF
     Call _0C15
     SetVar VAR_0x8006, 0
     CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, VAR_0x8008
-    GoToIfEq VAR_0x8008, 3, _01CE
-    GoToIfEq VAR_0x8008, 6, _01CE
+    GoToIfEq VAR_0x8008, BATTLE_TOWER_MODE_LINK_MULTI, _01CE
+    GoToIfEq VAR_0x8008, BATTLE_TOWER_MODE_6, _01CE
     SetVar VAR_0x8001, 5
     SetVar VAR_0x8002, 6
     SetVar FR_VAR_0x800F, 232
@@ -292,8 +292,8 @@ _0226:
     FrontierScrCmd_3D VAR_UNK_0x40DE, 3
     Call _025C
     CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, VAR_0x8008
-    GoToIfEq VAR_0x8008, 3, _0270
-    GoToIfEq VAR_0x8008, 6, _0270
+    GoToIfEq VAR_0x8008, BATTLE_TOWER_MODE_LINK_MULTI, _0270
+    GoToIfEq VAR_0x8008, BATTLE_TOWER_MODE_6, _0270
     GoTo _0965
     End
 
@@ -375,10 +375,10 @@ _039F:
     End
 
 _03DD:
-    FrontierScrCmd_6F
+    FreeBattleRecording
     CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, VAR_0x8008
-    GoToIfEq VAR_0x8008, 3, _0437
-    GoToIfEq VAR_0x8008, 6, _0443
+    GoToIfEq VAR_0x8008, BATTLE_TOWER_MODE_LINK_MULTI, _0437
+    GoToIfEq VAR_0x8008, BATTLE_TOWER_MODE_6, _0443
     WaitTime 30, VAR_0x8008
     FrontierScrCmd_3D VAR_UNK_0x40D8, 1
     FadeScreenOut
@@ -403,12 +403,12 @@ _0443:
     FrontierScrCmd_35 6
     CallIfEq VAR_0x8004, 100, _04D1
     CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, VAR_0x8008
-    CallIfEq VAR_0x8008, 6, _04DF
+    CallIfEq VAR_0x8008, BATTLE_TOWER_MODE_6, _04DF
     FadeScreenOut
     ClearReceivedTempDataAllPlayers
     FrontierScrCmd_35 8
     CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, VAR_0x8008
-    CallIfEq VAR_0x8008, 3, _04F7
+    CallIfEq VAR_0x8008, BATTLE_TOWER_MODE_LINK_MULTI, _04F7
     FrontierScrCmd_25 0
     FrontierScrCmd_25 1
     FrontierScrCmd_25 2
@@ -417,7 +417,7 @@ _0443:
     FrontierScrCmd_23 FR_VAR_0x800F
     FrontierScrCmd_23 VAR_0x800A
     CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, VAR_0x8008
-    GoToIfEq VAR_0x8008, 6, _04D5
+    GoToIfEq VAR_0x8008, BATTLE_TOWER_MODE_6, _04D5
     FrontierScrCmd_02
 
 _04D1:
@@ -425,7 +425,7 @@ _04D1:
     Return
 
 _04D5:
-    FrontierScrCmd_B6
+    SetBattleTowerNull
     FrontierScrCmd_04 14, 1
     End
 
@@ -570,7 +570,7 @@ _06E7:
 _0707:
     FrontierScrCmd_3D VAR_UNK_0x40D8, 2
     CallBattleTowerFunction BT_FUNC_UNK_39, 0, VAR_0x8008
-    FrontierScrCmd_86
+    FreeBattleTower
     Message BattleTowerMultiBattleRoom_Text_ThanksForParticipating
     ShowSavingIcon
     FrontierScrCmd_72 VAR_0x8008
@@ -579,7 +579,7 @@ _0707:
     WaitSoundEffect SEQ_SE_DP_SAVE
     FadeScreenOut
     CloseMessage
-    FrontierScrCmd_6F
+    FreeBattleRecording
     CallBattleTowerFunction BT_FUNC_RESET_SYSTEM, 0, VAR_0x8008
     End
 
@@ -604,8 +604,8 @@ _077B:
 
 _0789:
     CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, VAR_0x8008
-    GoToIfEq VAR_0x8008, 3, _07B3
-    GoToIfEq VAR_0x8008, 6, _07B3
+    GoToIfEq VAR_0x8008, BATTLE_TOWER_MODE_LINK_MULTI, _07B3
+    GoToIfEq VAR_0x8008, BATTLE_TOWER_MODE_6, _07B3
     GoTo _07DF
     End
 
@@ -636,8 +636,8 @@ _0817:
     PlayFanfare SEQ_PL_POINTGET3
     WaitFanfare
     CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, VAR_0x8008
-    GoToIfEq VAR_0x8008, 3, _0869
-    GoToIfEq VAR_0x8008, 6, _0869
+    GoToIfEq VAR_0x8008, BATTLE_TOWER_MODE_LINK_MULTI, _0869
+    GoToIfEq VAR_0x8008, BATTLE_TOWER_MODE_6, _0869
     CloseMessage
     GoTo _03DD
     End
@@ -651,8 +651,8 @@ _0869:
 _087B:
     SetVar VAR_0x8004, 0
     CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, VAR_0x8008
-    GoToIfEq VAR_0x8008, 3, _08AB
-    GoToIfEq VAR_0x8008, 6, _08AB
+    GoToIfEq VAR_0x8008, BATTLE_TOWER_MODE_LINK_MULTI, _08AB
+    GoToIfEq VAR_0x8008, BATTLE_TOWER_MODE_6, _08AB
     GoTo _08E9
     End
 
@@ -677,8 +677,8 @@ _08E9:
     ShowYesNoMenu VAR_0x8008, MENU_NO
     CallIfEq VAR_0x8008, 0, _0955
     CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, VAR_0x8008
-    GoToIfEq VAR_0x8008, 3, _08D7
-    GoToIfEq VAR_0x8008, 6, _08D7
+    GoToIfEq VAR_0x8008, BATTLE_TOWER_MODE_LINK_MULTI, _08D7
+    GoToIfEq VAR_0x8008, BATTLE_TOWER_MODE_6, _08D7
     CloseMessage
     GoTo _0945
     End
@@ -756,7 +756,7 @@ _0A1B:
     Call _0A91
     FrontierScrCmd_3F 0
     FrontierScrCmd_87
-    FrontierScrCmd_88 VAR_0x8003
+    CheckWonBattleTowerBattle VAR_0x8003
     FadeScreenIn
     Return
 
@@ -806,7 +806,7 @@ _0ACD:
     CloseMessage
     FrontierScrCmd_3F 0
     FrontierScrCmd_87
-    FrontierScrCmd_88 VAR_0x8003
+    CheckWonBattleTowerBattle VAR_0x8003
     FadeScreenIn
     Return
 
@@ -849,16 +849,16 @@ _0BCF:
     FrontierScrCmd_3E VAR_UNK_0x40DE, VAR_0x8008
     GoToIfEq VAR_0x8008, 0, _0C01
     GoToIfEq VAR_0x8000, 1, _0C03
-    CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, 0, VAR_0x8009
-    CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, 1, VAR_0x800A
+    CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, BT_PARAM_PLAYER_GRAPHICS_ID, VAR_0x8009
+    CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, BT_PARAM_PARTNER_GRAPHICS_ID, VAR_0x800A
     Return
 
 _0C01:
     Return
 
 _0C03:
-    CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, 0, VAR_0x8009
-    CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, 1, VAR_0x800A
+    CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, BT_PARAM_PLAYER_GRAPHICS_ID, VAR_0x8009
+    CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, BT_PARAM_PARTNER_GRAPHICS_ID, VAR_0x800A
     Return
 
 _0C15:
@@ -885,7 +885,7 @@ _0C55:
 
 _0C57:
     CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, VAR_0x8008
-    GoToIfEq VAR_0x8008, 3, _0C74
+    GoToIfEq VAR_0x8008, BATTLE_TOWER_MODE_LINK_MULTI, _0C74
     SetVar VAR_0x8008, 0
     Return
 

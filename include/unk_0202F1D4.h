@@ -11,8 +11,8 @@
 
 int BattleRecording_SaveSize(void);
 void BattleRecording_Init(BattleRecording *param0);
-void sub_0202F1F8(SaveData *saveData, enum HeapID heapID, int *param2);
-void sub_0202F22C(void);
+void BattleRecording_New(SaveData *saveData, enum HeapID heapID, int *resultCode);
+void BattleRecording_Free(void);
 BOOL sub_0202F250(void);
 BattleRecording *sub_0202F264(void);
 void *sub_0202F27C(void);

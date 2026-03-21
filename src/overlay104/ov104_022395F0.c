@@ -371,11 +371,11 @@ static BOOL ov104_02239C20(FrontierScriptContext *param0)
     return 1;
 }
 
-BOOL FrontierScrCmd_B6(FrontierScriptContext *param0)
+BOOL FrontierScrCmd_SetBattleTowerNull(FrontierScriptContext *ctx)
 {
-    BattleTower *battleTower = sub_0209B978(param0->scriptMan->unk_00);
+    BattleTower *battleTower = sub_0209B978(ctx->scriptMan->unk_00);
     BattleTower_Free(battleTower);
     battleTower = NULL;
 
-    return 0;
+    return FALSE;
 }

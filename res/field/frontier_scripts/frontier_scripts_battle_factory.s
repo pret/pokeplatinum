@@ -513,7 +513,7 @@ _0320:
 _033E:
     FrontierScrCmd_22 _0020
     FrontierScrCmd_24 _0088
-    FrontierScrCmd_6C
+    InitNewBattleRecording
     FrontierScrCmd_5C VAR_0x8003, VAR_0x8001, VAR_0x8002
     FrontierScrCmd_67 31, 0, 0, VAR_0x8008
     FrontierScrCmd_67 28, 0, 0, VAR_0x8008
@@ -1344,7 +1344,7 @@ _115C:
     CloseMessage
     FadeScreenOut
     FrontierScrCmd_67 32, 0, 0, VAR_0x8008
-    FrontierScrCmd_6F
+    FreeBattleRecording
     FrontierScrCmd_5E
     FrontierScrCmd_67 7, 0, 0, VAR_0x8008
     End
@@ -1457,7 +1457,7 @@ _1303:
     FrontierScrCmd_67 29, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 3, _1368
     FrontierScrCmd_67 32, 0, 0, VAR_0x8008
-    FrontierScrCmd_6F
+    FreeBattleRecording
     FrontierScrCmd_5E
     FrontierScrCmd_02
 
@@ -1473,7 +1473,7 @@ _135E:
 
 _1368:
     FrontierScrCmd_67 32, 0, 0, VAR_0x8008
-    FrontierScrCmd_6F
+    FreeBattleRecording
     FrontierScrCmd_5E
     FrontierScrCmd_04 14, 1
     End
