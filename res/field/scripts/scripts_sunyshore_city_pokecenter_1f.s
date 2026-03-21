@@ -17,7 +17,7 @@ _001E:
     End
 
 _0031:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfBadgeAcquired BADGE_ID_BEACON, _0057

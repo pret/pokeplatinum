@@ -12,7 +12,7 @@ _000E:
     End
 
 _001A:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     BufferTMHMMoveName 0, ITEM_HM03

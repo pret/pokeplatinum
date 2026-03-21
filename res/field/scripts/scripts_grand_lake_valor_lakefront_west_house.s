@@ -6,7 +6,7 @@
     ScriptEntryEnd
 
 _0006:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x0001, _00D3
@@ -29,8 +29,8 @@ _0057:
     SetFlag FLAG_LOCAL_DEX_DIPLOMA_RECEIVED
     SetFlag FLAG_UNK_0x0001
     Message 1
-    PlaySound SEQ_FANFA4
-    WaitSound
+    PlayFanfare SEQ_FANFA4
+    WaitFanfare
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
@@ -46,8 +46,8 @@ _0095:
     SetFlag FLAG_NATIONAL_DEX_DIPLOMA_RECEIVED
     SetFlag FLAG_UNK_0x0001
     Message 2
-    PlaySound SEQ_FANFA4
-    WaitSound
+    PlayFanfare SEQ_FANFA4
+    WaitFanfare
     CloseMessage
     FadeScreenOut
     WaitFadeScreen

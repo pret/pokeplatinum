@@ -70,7 +70,7 @@ Route206CyclingRoadNorthGate_TriggerClearFlagForceBikingInGate:
     End
 
 Route206CyclingRoadNorthGate_ScientistM:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_RECEIVED_ROUTE_206_CYCLING_ROAD_NORTH_GATE_EXP_SHARE, Route206CyclingRoadNorthGate_APokemonHoldingAnExpShareWillGetSomeOfTheExpPointsFromBattle

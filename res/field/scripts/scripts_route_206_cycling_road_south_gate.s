@@ -65,7 +65,7 @@ Route206CyclingRoadSouthGate_TriggerClearFlagForceBikingInGate:
     End
 
 Route206CyclingRoadSouthGate_BattleGirl:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_RECEIVED_ROUTE_206_CYCLING_ROAD_SOUTH_GATE_ACCESSORY_FLAG, Route206CyclingRoadSouthGate_GoThroughMtCoronetFromHereAndYouCanGetToHearthomeCity

@@ -22,7 +22,7 @@ SunyshoreGymRoom3_BottomButtons:
     End
 
 SunyshoreGymRoom3_Volkner:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfBadgeAcquired BADGE_ID_BEACON, SunyshoreGymRoom3_VolknerAlreadyHaveBeaconBadge
@@ -35,8 +35,8 @@ SunyshoreGymRoom3_Volkner:
     Message SunyshoreGymRoom3_Text_BeatVolkner
     BufferPlayerName 0
     Message SunyshoreGymRoom3_Text_VolknerReceiveBeaconBadge
-    PlaySound SEQ_BADGE
-    WaitSound
+    PlayFanfare SEQ_BADGE
+    WaitFanfare
     GiveBadge BADGE_ID_BEACON
     IncrementTrainerScore2 TRAINER_SCORE_EVENT_BADGE_EARNED
     SetTrainerFlag TRAINER_ACE_TRAINER_ZACHERY

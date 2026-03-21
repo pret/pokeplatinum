@@ -12,7 +12,7 @@ MtCoronet1FNorthRoom1_GruntF:
     End
 
 MtCoronet1FNorthRoom1_GruntM:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     ApplyMovement LOCALID_GRUNT_M_1, MtCoronet1FNorthRoom1_Movement_GruntM1WalkOnSpotSouth
     WaitMovement

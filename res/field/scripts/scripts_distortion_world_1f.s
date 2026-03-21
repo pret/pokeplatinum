@@ -14,7 +14,7 @@ _0016:
     End
 
 _001A:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     Message 7
     ShowYesNoMenu VAR_RESULT
@@ -27,7 +27,7 @@ _003A:
     BufferPlayerName 0
     Message 8
     CloseMessage
-    PlayFanfare SEQ_SE_PL_SYUWA
+    PlaySE SEQ_SE_PL_SYUWA
     SetPartyGiratinaForm GIRATINA_FORM_ALTERED
     FadeScreenOut
     WaitFadeScreen

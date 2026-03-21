@@ -14,7 +14,7 @@ _0016:
     End
 
 _001C:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x0AA0, _0067
@@ -43,7 +43,7 @@ _0072:
     End
 
 _007C:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfEq VAR_MAP_LOCAL_0, 1, _00ED
@@ -88,7 +88,7 @@ _00FD:
     End
 
 _0108:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 7
@@ -121,7 +121,7 @@ _0180:
     CallIfEq VAR_0x8000, 2, _02B9
     CallIfEq VAR_0x8000, 3, _02C7
     UpdateMoneyDisplay
-    PlayFanfare SEQ_SE_DP_REGI
+    PlaySE SEQ_SE_DP_REGI
     AddItem VAR_0x8001, 1, VAR_RESULT
     BufferItemName 0, VAR_0x8001
     Message 10
@@ -196,7 +196,7 @@ _02C7:
     Return
 
 _02D5:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 13

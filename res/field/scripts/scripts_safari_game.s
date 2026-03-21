@@ -35,7 +35,7 @@ SafariGame_InitTram:
 
 SafariGame_OutOfSteps:
     LockAll
-    PlayFanfare SEQ_SE_DP_PINPON
+    PlaySE SEQ_SE_DP_PINPON
     Message SafariGame_Text_TimesUp
     WaitABPress
     CloseMessage
@@ -58,7 +58,7 @@ SafariGame_OutOfSafariBalls_Battle:
 
 SafariGame_OutOfSafariBalls_Field:
     LockAll
-    PlayFanfare SEQ_SE_DP_PINPON
+    PlaySE SEQ_SE_DP_PINPON
     Message SafariGame_Text_OutOfSafariBalls
     WaitABPress
     CloseMessage
@@ -74,7 +74,7 @@ SafariGame_OutOfSafariBalls_Field:
 
 SafariGame_OutOfRoomForPokemon:
     LockAll
-    PlayFanfare SEQ_SE_DP_PINPON
+    PlaySE SEQ_SE_DP_PINPON
     Message SafariGame_Text_OutOfRoomForPokemon
     WaitABPress
     CloseMessage

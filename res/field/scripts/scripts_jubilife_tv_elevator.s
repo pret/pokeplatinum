@@ -7,7 +7,7 @@
     ScriptEntryEnd
 
 JubilifeTVElevator_TalkElevatorOperator:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GetFloorsAbove VAR_ELEVATOR_FLOORS_ABOVE
@@ -119,7 +119,7 @@ JubilifeTVElevator_ElevatorAnimation:
     CloseMessage
     ApplyMovement 0, JubilifeTVElevator_LookDown
     WaitMovement
-    WaitFanfare SEQ_SE_CONFIRM
+    WaitSE SEQ_SE_CONFIRM
     PlayElevatorAnimation VAR_0x8004, 4
     Return
 

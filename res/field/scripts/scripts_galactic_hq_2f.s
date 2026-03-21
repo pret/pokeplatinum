@@ -12,7 +12,7 @@
     ScriptEntryEnd
 
 _001E:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     Message 0
     ShowYesNoMenu VAR_RESULT
@@ -25,8 +25,8 @@ _003E:
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
-    PlaySound SEQ_ASA
-    WaitSound
+    PlayFanfare SEQ_ASA
+    WaitFanfare
     HealParty
     FadeScreenIn
     WaitFadeScreen
@@ -63,7 +63,7 @@ _00BE:
     End
 
 _00CF:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 3

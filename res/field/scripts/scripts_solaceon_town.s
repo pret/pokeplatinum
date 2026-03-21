@@ -33,7 +33,7 @@ _004F:
     End
 
 _0062:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfBadgeAcquired BADGE_ID_RELIC, _0088
@@ -63,7 +63,7 @@ _00B9:
     End
 
 _00CC:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     CheckPoketchAppRegistered POKETCH_APPID_POKEMONHISTORY, VAR_RESULT

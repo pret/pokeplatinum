@@ -359,7 +359,7 @@ Route202_Movement_PlayerWalkWestIntoTallGrass:
     EndMovement
 
 Route202_Counterpart:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     BufferPlayerName 0

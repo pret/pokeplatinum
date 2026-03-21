@@ -27,7 +27,7 @@ JubilifeTV1F_Unused2:
     End
 
 JubilifeTV1F_AceTrainerSnowF:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfNe VAR_LOTTERY_PRIZE_ITEM, 0, JubilifeTV1F_GiveStoredLotteryPrize

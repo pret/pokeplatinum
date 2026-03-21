@@ -10,7 +10,7 @@
     ScriptEntryEnd
 
 JubilifeTV3F_Beauty1:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ApplyMovement LOCALID_BEAUTY_1, JubilifeTV3F_Movement_BeautyFaceEastGroupRankingRoom
@@ -45,7 +45,7 @@ JubilifeTV3F_GymGuide1:
     End
 
 JubilifeTV3F_GymGuide2:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message JubilifeTV3F_Text_WillYouTellMeYourOpinionOnTV

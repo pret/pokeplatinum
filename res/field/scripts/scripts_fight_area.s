@@ -130,8 +130,8 @@ _0198:
     Message 12
     ClearFlag FLAG_UNK_0x01E3
     AddObject 26
-    StopFanfare SEQ_SE_CONFIRM
-    PlayFanfare SEQ_SE_DP_WALL_HIT2
+    StopSE SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_DP_WALL_HIT2
     MessageInstant 13
     ApplyMovement 26, _03B4
     ApplyMovement 7, _0380
@@ -153,9 +153,9 @@ _0198:
     CloseMessage
     ApplyMovement 26, _03D4
     WaitMovement
-    PlayFanfare SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2
     RemoveObject 26
-    WaitFanfare SEQ_SE_DP_KAIDAN2
+    WaitSE SEQ_SE_DP_KAIDAN2
     BufferRivalName 0
     Message 18
     Message 19
@@ -419,7 +419,7 @@ _050E:
     End
 
 _0521:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     BufferItemName 0, ITEM_SUPER_ROD
@@ -465,7 +465,7 @@ _05B3:
     End
 
 _05CA:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     FacePlayer
@@ -497,7 +497,7 @@ _0606:
 _0646:
     ApplyMovement 18, _06B0
     WaitMovement
-    PlayFanfare SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2
     ApplyMovement 18, _06BC
     WaitMovement
     Return
@@ -505,7 +505,7 @@ _0646:
 _0660:
     ApplyMovement LOCALID_PLAYER, _06C4
     WaitMovement
-    PlayFanfare SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2
     ApplyMovement LOCALID_PLAYER, _06BC
     WaitMovement
     Return
@@ -513,7 +513,7 @@ _0660:
 _067A:
     ApplyMovement LOCALID_PLAYER, _06D0
     WaitMovement
-    PlayFanfare SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2
     ApplyMovement LOCALID_PLAYER, _06BC
     WaitMovement
     Return
@@ -521,7 +521,7 @@ _067A:
 _0694:
     ApplyMovement LOCALID_PLAYER, _06E0
     WaitMovement
-    PlayFanfare SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2
     ApplyMovement LOCALID_PLAYER, _06BC
     WaitMovement
     Return
@@ -558,7 +558,7 @@ _06E0:
     EndMovement
 
 _06F0:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ApplyMovement 7, _07A0
@@ -637,7 +637,7 @@ _07EF:
     End
 
 _0802:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 5
@@ -649,7 +649,7 @@ _0802:
     End
 
 _081F:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 6
@@ -661,7 +661,7 @@ _081F:
     End
 
 _083C:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 21

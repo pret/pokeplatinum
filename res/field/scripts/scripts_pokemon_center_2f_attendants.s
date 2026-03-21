@@ -81,7 +81,7 @@ _0100:
     EndMovement
 
 _0108:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     CheckPartyHasBadEgg VAR_RESULT
@@ -371,7 +371,7 @@ _0538:
     EndMovement
 
 _0544:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     CheckPartyHasBadEgg VAR_RESULT
@@ -469,7 +469,7 @@ _06A0:
     End
 
 _06B4:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     SetFlag FLAG_UNK_0x00AA

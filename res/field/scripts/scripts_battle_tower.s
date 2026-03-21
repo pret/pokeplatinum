@@ -111,7 +111,7 @@ _0192:
     Return
 
 _01AC:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     SetVar VAR_MAP_LOCAL_1, 0
@@ -174,7 +174,7 @@ _0272:
 
 BattleTower_SingleDoubleBattleRoomAttendant:
     LockAll
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     SetBattleTowerNull
     Message BattleTower_Text_GuideToSingleDoubleBattleRooms
     GoTo BattleTower_AskTakeBattleRoomChallenge
@@ -436,8 +436,8 @@ BattleTower_TrySaveGame:
     ShowSavingIcon
     TrySaveGame VAR_RESULT
     HideSavingIcon
-    PlayFanfare SEQ_SE_DP_SAVE
-    WaitFanfare SEQ_SE_DP_SAVE
+    PlaySE SEQ_SE_DP_SAVE
+    WaitSE SEQ_SE_DP_SAVE
     Return
 
 BattleTower_WarpToElevator:
@@ -489,7 +489,7 @@ _07B9:
 
 BattleTower_WiFiBattleRoomAttendant:
     LockAll
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     SetBattleTowerNull
     CallBattleTowerFunction BT_FUNC_UNK_12, 0, VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _0922
@@ -656,7 +656,7 @@ _0AC3:
 
 BattleTower_MultiBattleRoomAttendant:
     LockAll
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     SetBattleTowerNull
     Message BattleTower_Text_GuideToMultiBattleRooms
     GoTo BattleTower_AskTakeMultiBattleRoomChallenge
@@ -906,8 +906,8 @@ _0F53:
 
 _0F73:
     Message BattleTower_Text_CongratulationsOnAchievingYour50WinStreak
-    PlaySound SEQ_FANFA1
-    WaitSound
+    PlayFanfare SEQ_FANFA1
+    WaitFanfare
     Return
 
 _0F7E:
@@ -925,8 +925,8 @@ _0F7E:
 _0FD6:
     Message BattleTower_Text_BeatenAllSevenTrainers
     Message BattleTower_Text_CongratulationsOnAchievingYour50WinStreak
-    PlaySound SEQ_FANFA1
-    WaitSound
+    PlayFanfare SEQ_FANFA1
+    WaitFanfare
     GoTo _1177
     End
 
@@ -955,8 +955,8 @@ _102B:
 _1048:
     BufferNumber 0, VAR_MAP_LOCAL_0
     Message BattleTower_Text_CongratulationsOnAchievingRank
-    PlaySound SEQ_FANFA1
-    WaitSound
+    PlayFanfare SEQ_FANFA1
+    WaitFanfare
     GoTo _11F5
     End
 
@@ -969,8 +969,8 @@ _105E:
 _107B:
     BufferNumber 0, VAR_MAP_LOCAL_0
     Message BattleTower_Text_AwardRibbonToParticipatingPokemon
-    PlaySound SEQ_FANFA1
-    WaitSound
+    PlayFanfare SEQ_FANFA1
+    WaitFanfare
     GoTo _11F5
     End
 
@@ -1004,8 +1004,8 @@ _10F5:
     CallBattleTowerFunction BT_FUNC_UNK_48, 0, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _10BC
     Message BattleTower_Text_CongratulationsOnDefeatingTowerTycoon
-    PlaySound SEQ_FANFA1
-    WaitSound
+    PlayFanfare SEQ_FANFA1
+    WaitFanfare
     GoTo _10BC
     End
 
@@ -1013,8 +1013,8 @@ _1135:
     Message BattleTower_Text_CommemorativePrint
     BufferPlayerName 0
     Message BattleTower_Text_SilverPrintWasAddedToVsRecorder
-    PlaySound SEQ_FANFA4
-    WaitSound
+    PlayFanfare SEQ_FANFA4
+    WaitFanfare
     SetVar VAR_BATTLE_TOWER_PRINT_STATE, 2
     Return
 
@@ -1022,8 +1022,8 @@ _114C:
     Message BattleTower_Text_CommemorativePrint
     BufferPlayerName 0
     Message BattleTower_Text_GoldPrintWasAddedToVsRecorder
-    PlaySound SEQ_FANFA4
-    WaitSound
+    PlayFanfare SEQ_FANFA4
+    WaitFanfare
     SetVar VAR_BATTLE_TOWER_PRINT_STATE, 4
     Common_CheckAllFrontierGoldPrintsObtained
     Return
@@ -1117,7 +1117,7 @@ _1278:
     EndMovement
 
 _1280:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     SetVar VAR_0x8000, 0
     SetVar VAR_0x8001, 0
@@ -1125,7 +1125,7 @@ _1280:
     End
 
 _129A:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     SetVar VAR_0x8000, 0
     SetVar VAR_0x8001, 1
@@ -1133,7 +1133,7 @@ _129A:
     End
 
 _12B4:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     SetVar VAR_0x8000, 0
     SetVar VAR_0x8001, 2
@@ -1141,7 +1141,7 @@ _12B4:
     End
 
 _12CE:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     ScrCmd_1E4 VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _12F9
@@ -1209,7 +1209,7 @@ _13CE:
     End
 
 BattleTower_StatsJudge:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     CallIfUnset FLAG_TALKED_TO_STATS_JUDGE, BattleTower_JudgeExplanation

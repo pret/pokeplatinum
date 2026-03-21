@@ -55,7 +55,7 @@ ContestHallLobby_OnFrameFirstEntry:
     BufferPlayerName 0
     Message ContestHallLobby_Text_WereYouSurprisedToSeeMe
     CloseMessage
-    PlaySound SEQ_FANFA4
+    PlayFanfare SEQ_FANFA4
     GetPlayerGender VAR_RESULT
     GoToIfEq VAR_RESULT, GENDER_MALE, ContestHallLobby_PlayerObtainedATuxedo
     GoTo ContestHallLobby_PlayerObtainedADress
@@ -72,16 +72,16 @@ ContestHallLobby_PlayerObtainedADress:
     End
 
 ContestHallLobby_MomLeave:
-    WaitSound
+    WaitFanfare
     Message ContestHallLobby_Text_ImSureItWillLookGoodOnYou
     CloseMessage
     WaitTime 15, VAR_RESULT
     ApplyMovement LOCALID_PLAYER, ContestHallLobby_Movement_PlayerWatchMomLeave
     ApplyMovement LOCALID_MOM, ContestHallLobby_Movement_MomLeave
     WaitMovement
-    PlayFanfare SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2
     RemoveObject LOCALID_MOM
-    WaitFanfare SEQ_SE_DP_KAIDAN2
+    WaitSE SEQ_SE_DP_KAIDAN2
     SetFlag FLAG_CONTEST_HALL_VISITED
     ReleaseAll
     End
@@ -176,7 +176,7 @@ ContestHallLobby_Movement_PlayerFaceMom:
     EndMovement
 
 ContestHallLobby_Frame0:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     ContestPhotoHasData 0, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, ContestHallLobby_ItsAPhotoFrame
@@ -190,7 +190,7 @@ ContestHallLobby_Frame0:
     End
 
 ContestHallLobby_Frame1:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     ContestPhotoHasData 1, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, ContestHallLobby_ItsAPhotoFrame
@@ -204,7 +204,7 @@ ContestHallLobby_Frame1:
     End
 
 ContestHallLobby_Frame2:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     ContestPhotoHasData 2, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, ContestHallLobby_ItsAPhotoFrame
@@ -218,7 +218,7 @@ ContestHallLobby_Frame2:
     End
 
 ContestHallLobby_Frame3:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     ContestPhotoHasData 3, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, ContestHallLobby_ItsAPhotoFrame
@@ -232,7 +232,7 @@ ContestHallLobby_Frame3:
     End
 
 ContestHallLobby_Frame4:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     ContestPhotoHasData 4, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, ContestHallLobby_ItsAPhotoFrame
@@ -265,7 +265,7 @@ ContestHallLobby_SchoolKidF:
     End
 
 ContestHallLobby_RichBoy:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfUnset FLAG_TALKED_TO_CONTEST_HALL_LOBBY_RICH_BOY, ContestHallLobby_RichBoyFirstInteraction
@@ -329,10 +329,10 @@ ContestHallLobby_IDontSeeAPoffinCase:
 
 ContestHallLobby_GiveMildPoffin:
     GivePoffin VAR_RESULT, 60, 30, 30, 30, 30, 40
-    PlaySound SEQ_FANFA4
+    PlayFanfare SEQ_FANFA4
     BufferPlayerName 0
     Message ContestHallLobby_Text_PlayerReceivedAMildPoffin
-    WaitSound
+    WaitFanfare
     Message ContestHallLobby_Text_TheMildPoffinWasPutAway
     Return
 
@@ -363,7 +363,7 @@ ContestHallLobby_Movement_RichBoyWalkAwayFromCounterWest:
     EndMovement
 
 ContestHallLobby_Fantina:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     WaitTime 30, VAR_RESULT
@@ -436,9 +436,9 @@ ContestHallLobby_FantinaLeaveEast:
     End
 
 ContestHallLobby_RemoveFantina:
-    PlayFanfare SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2
     RemoveObject LOCALID_FANTINA
-    WaitFanfare SEQ_SE_DP_KAIDAN2
+    WaitSE SEQ_SE_DP_KAIDAN2
     SetFlag FLAG_HIDE_HEARTHOME_CITY_GYM_GUIDE
     ReleaseAll
     End

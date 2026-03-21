@@ -13,7 +13,7 @@ OreburghCityEastHouse2F_Gentleman:
     End
 
 OreburghCityEastHouse2F_Youngster:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_RECEIVED_OREBURGH_CITY_EAST_HOUSE_2F_GREAT_BALL, OreburghCityEastHouse2F_YouKnowHowPokemonStayInsideTheirPokeBalls

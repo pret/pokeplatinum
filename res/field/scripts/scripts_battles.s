@@ -935,7 +935,7 @@
     ScriptEntryEnd
 
 _0E86:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GetTrainerID VAR_0x8004

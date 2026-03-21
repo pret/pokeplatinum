@@ -8,7 +8,7 @@
     ScriptEntryEnd
 
 EternaCityCondominiums1F_ExpertM:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message EternaCityCondominiums1F_Text_WantMeToRateTheNicknamesOfYourPokemon
@@ -92,7 +92,7 @@ EternaCityCondominiums1F_GaveSameNickname:
     End
 
 EternaCityCondominiums1F_NinjaBoy:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_TRADED_FOR_CHARAP_CHATOT, EternaCityCondominiums1F_DidThatChatotITradedYouTotallyLearnThatChatterMove
@@ -147,7 +147,7 @@ EternaCityCondominiums1F_DidThatChatotITradedYouTotallyLearnThatChatterMove:
     End
 
 EternaCityCondominiums1F_PokefanM:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GetTimeOfDay VAR_RESULT

@@ -30,7 +30,7 @@ _0053:
     End
 
 _0059:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     SetVar VAR_MAP_LOCAL_3, 0
@@ -39,7 +39,7 @@ _0059:
     End
 
 _0075:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     SetVar VAR_MAP_LOCAL_3, 0
@@ -226,7 +226,7 @@ _038E:
     CallIfEq VAR_BATTLE_FACTORY_CHALLENGE_TYPE, FRONTIER_CHALLENGE_SINGLE, _042E
     CallIfEq VAR_BATTLE_FACTORY_CHALLENGE_TYPE, FRONTIER_CHALLENGE_DOUBLE, _0449
     CallIfEq VAR_BATTLE_FACTORY_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI, _0464
-    PlayFanfare SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2
     GoTo _03C1
     End
 
@@ -409,8 +409,8 @@ _05D7:
     ShowSavingIcon
     TrySaveGame VAR_RESULT
     HideSavingIcon
-    PlayFanfare SEQ_SE_DP_SAVE
-    WaitFanfare SEQ_SE_DP_SAVE
+    PlaySE SEQ_SE_DP_SAVE
+    WaitSE SEQ_SE_DP_SAVE
     Return
 
 _05E9:
@@ -435,8 +435,8 @@ _063C:
     Message 13
     BufferPlayerName 0
     Message 15
-    PlaySound SEQ_FANFA4
-    WaitSound
+    PlayFanfare SEQ_FANFA4
+    WaitFanfare
     SetVar VAR_BATTLE_FACTORY_PRINT_STATE, 2
     Return
 
@@ -444,8 +444,8 @@ _0653:
     Message 13
     BufferPlayerName 0
     Message 14
-    PlaySound SEQ_FANFA4
-    WaitSound
+    PlayFanfare SEQ_FANFA4
+    WaitFanfare
     SetVar VAR_BATTLE_FACTORY_PRINT_STATE, 4
     Common_CheckAllFrontierGoldPrintsObtained
     Return

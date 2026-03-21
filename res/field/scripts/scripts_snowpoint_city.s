@@ -62,7 +62,7 @@ _00AC:
     EndMovement
 
 _00B4:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GetNationalDexEnabled VAR_RESULT
@@ -146,7 +146,7 @@ _01AD:
     End
 
 _01C0:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfGe VAR_UNK_0x407F, 1, _01E0
@@ -176,7 +176,7 @@ _0215:
     End
 
 _022A:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfUnset FLAG_GAME_COMPLETED, _0260
@@ -279,7 +279,7 @@ _0348:
 _035C:
     ApplyMovement 8, _0390
     WaitMovement
-    PlayFanfare SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2
     ApplyMovement 8, _039C
     WaitMovement
     Return
@@ -287,7 +287,7 @@ _035C:
 _0376:
     ApplyMovement LOCALID_PLAYER, _03A4
     WaitMovement
-    PlayFanfare SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2
     ApplyMovement LOCALID_PLAYER, _039C
     WaitMovement
     Return

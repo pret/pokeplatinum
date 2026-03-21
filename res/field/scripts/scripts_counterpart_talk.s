@@ -6,7 +6,7 @@
     ScriptEntryEnd
 
 _0006:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GetPlayerGender VAR_0x8004

@@ -8,7 +8,7 @@
     ScriptEntryEnd
 
 _000E:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x0AAC, _00D5
@@ -31,8 +31,8 @@ _000E:
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
-    PlayFanfare SEQ_SE_DP_FW367
-    WaitFanfare SEQ_SE_DP_FW367
+    PlaySE SEQ_SE_DP_FW367
+    WaitSE SEQ_SE_DP_FW367
     FadeScreenIn
     WaitFadeScreen
     BufferPartyMonNickname 0, VAR_MAP_LOCAL_0

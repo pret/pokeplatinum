@@ -12,7 +12,7 @@ Route222EastHouse_OnLoad:
     End
 
 Route222EastHouse_Fisherman:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     CheckPartyHasSpecies VAR_RESULT, SPECIES_REMORAID

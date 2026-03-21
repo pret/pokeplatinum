@@ -103,7 +103,7 @@ BattleTowerBattleSalon_Enter:
     End
 
 BattleTowerBattleSalon_Attendant:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     BufferPlayerName 0
@@ -151,7 +151,7 @@ BattleTowerBattleSalon_BufferSpeciesAndMoveNames:
     Return
 
 BattleTowerBattleSalon_Cheryl:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfEq VAR_UNK_0x40DF, 2, BattleTowerBattleSalon_CherylDontTeamUp
@@ -183,7 +183,7 @@ BattleTowerBattleSalon_CherylTeamUp:
     End
 
 BattleTowerBattleSalon_Mira:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfEq VAR_UNK_0x40DF, 2, BattleTowerBattleSalon_MiraDontTeamUp
@@ -212,7 +212,7 @@ BattleTowerBattleSalon_MiraTeamUp:
     End
 
 BattleTowerBattleSalon_Riley:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfEq VAR_UNK_0x40DF, 2, BattleTowerBattleSalon_RileyDontTeamUp
@@ -239,7 +239,7 @@ BattleTowerBattleSalon_RileyTeamUp:
     End
 
 BattleTowerBattleSalon_Marley:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfEq VAR_UNK_0x40DF, 2, BattleTowerBattleSalon_MarleyDontTeamUp
@@ -266,7 +266,7 @@ BattleTowerBattleSalon_MarleyTeamUp:
     End
 
 BattleTowerBattleSalon_Buck:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfEq VAR_UNK_0x40DF, 2, BattleTowerBattleSalon_BuckDontTeamUp

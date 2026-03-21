@@ -35,14 +35,14 @@ PokemonLeagueNorthPokecenter1F_MoveDoorGuardAwayFromDoor:
     End
 
 PokemonLeagueNorthPokecenter1F_DoorGuard:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_POKEMON_LEAGUE_DOOR_GUARD_MOVED_AWAY, PokemonLeagueNorthPokecenter1F_DoorGuardAfterMovingAway
     Message PokemonLeagueNorthPokecenter1F_Text_LetUsExamineYourGymBadges
     CloseMessage
-    PlaySound SEQ_BADGE
-    WaitSound
+    PlayFanfare SEQ_BADGE
+    WaitFanfare
     GetPlayerDir VAR_RESULT
     GoToIfEq VAR_RESULT, DIR_NORTH, PokemonLeagueNorthPokecenter1F_DoorGuardMoveAwayEastSouth
     GoToIfEq VAR_RESULT, DIR_WEST, PokemonLeagueNorthPokecenter1F_DoorGuardMoveAwayWest
@@ -183,9 +183,9 @@ PokemonLeagueNorthPokecenter1F_RivalLeaveWest:
     GoTo PokemonLeagueNorthPokecenter1F_RemoveRival
 
 PokemonLeagueNorthPokecenter1F_RemoveRival:
-    PlayFanfare SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2
     RemoveObject LOCALID_RIVAL
-    WaitFanfare SEQ_SE_DP_KAIDAN2
+    WaitSE SEQ_SE_DP_KAIDAN2
     SetVar VAR_RIVAL_BEAT_SUNYSHORE_GYM, 1
     ReleaseAll
     End

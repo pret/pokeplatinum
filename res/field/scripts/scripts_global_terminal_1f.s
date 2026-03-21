@@ -88,7 +88,7 @@ _00F2:
     End
 
 GlobalTerminal1f_GTS_Clerk_Talk:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     CheckPartyHasBadEgg VAR_RESULT
@@ -296,7 +296,7 @@ _03F9:
     End
 
 _040C:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     SetVar VAR_0x8005, 3
     GoTo _0420
@@ -336,7 +336,7 @@ _048B:
     End
 
 _0496:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     SetVar VAR_0x8005, 4
     GoTo _04AA
@@ -384,7 +384,7 @@ _0533:
     End
 
 _0546:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     CheckPartyHasBadEgg VAR_RESULT
@@ -437,7 +437,7 @@ _05F9:
     End
 
 _0601:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message pl_msg_00000046_00029
@@ -462,7 +462,7 @@ _0647:
     End
 
 _0652:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     CheckItem ITEM_FASHION_CASE, 1, VAR_RESULT

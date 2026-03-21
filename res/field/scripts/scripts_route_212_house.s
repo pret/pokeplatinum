@@ -27,7 +27,7 @@ _0042:
     End
 
 _0053:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 0
@@ -88,15 +88,15 @@ _012F:
     GetPartyMonMove VAR_RESULT, VAR_0x8000, VAR_0x8002
     BufferMoveName 1, VAR_RESULT
     Message 13
-    PlayFanfare SEQ_SE_DP_KON
-    WaitFanfare SEQ_SE_DP_KON
+    PlaySE SEQ_SE_DP_KON
+    WaitSE SEQ_SE_DP_KON
     WaitTime 30, VAR_RESULT
     Message 14
     WaitTime 32, VAR_RESULT
-    PlaySound SEQ_FANFA1
+    PlayFanfare SEQ_FANFA1
     BufferMoveName 1, VAR_0x8003
     Message 15
-    WaitSound
+    WaitFanfare
     WaitTime 16, VAR_RESULT
     GoTo _0245
     End
@@ -121,8 +121,8 @@ _0224:
     BufferPartyMonNickname 0, VAR_0x8000
     BufferMoveName 1, VAR_0x8003
     Message 8
-    PlaySound SEQ_FANFA1
-    WaitSound
+    PlayFanfare SEQ_FANFA1
+    WaitFanfare
     WaitTime 16, VAR_RESULT
     GoTo _0245
     End

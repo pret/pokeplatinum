@@ -546,18 +546,18 @@
     .endm
 
     // Plays a sound effect without interrupting the current music
-    .macro PlayFanfare seqID
-    .short SCRCMD_PLAYFANFARE
+    .macro PlaySE seqID
+    .short SCRCMD_PLAYSE
     .short \seqID
     .endm
 
-    .macro StopFanfare seqID
-    .short SCRCMD_STOPFANFARE
+    .macro StopSE seqID
+    .short SCRCMD_STOPSE
     .short \seqID
     .endm
 
-    .macro WaitFanfare seqID
-    .short SCRCMD_WAITFANFARE
+    .macro WaitSE seqID
+    .short SCRCMD_WAITSE
     .short \seqID
     .endm
 
@@ -572,13 +572,13 @@
     .endm
 
     // Pauses the current music and then plays a sound effect
-    .macro PlaySound seqID
-    .short SCRCMD_PLAYSOUND
+    .macro PlayFanfare seqID
+    .short SCRCMD_PLAYFANFARE
     .short \seqID
     .endm
 
-    .macro WaitSound
-    .short SCRCMD_WAITSOUND
+    .macro WaitFanfare
+    .short SCRCMD_WAITFANFARE
     .endm
 
     .macro PlayMusic seqID
@@ -5179,7 +5179,7 @@
     .endm
 
     .macro NPCMessage messageID
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message \messageID
@@ -5189,7 +5189,7 @@
     .endm
 
     .macro EventMessage messageID
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     Message \messageID
     WaitABXPadPress
@@ -5198,20 +5198,20 @@
     .endm
 
     .macro PokemonCryAndMessage species, messageID, unused=0
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    WaitFanfare SEQ_SE_CONFIRM
+    WaitSE SEQ_SE_CONFIRM
     PlayCry \species, \unused
     Message \messageID
     WaitCry
     WaitABXPadPress
     CloseMessage
     ReleaseAll
-    .endm 
+    .endm
 
     .macro PokeMartCommonWithGreeting unused=1
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Common_VendorGreeting
@@ -5221,7 +5221,7 @@
     .endm
 
     .macro PokeMartSpecialtiesWithGreeting martID
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Common_VendorGreeting

@@ -11,7 +11,7 @@
     ScriptEntryEnd
 
 OreburghMineB2F_Roark:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoTo OreburghMineB2F_RoarkTurnBackEast

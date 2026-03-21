@@ -23,7 +23,7 @@ _0026:
     End
 
 _0051:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 4

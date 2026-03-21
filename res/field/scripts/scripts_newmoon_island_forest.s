@@ -35,8 +35,8 @@ _006B:
 
 _0079:
     LockAll
-    PlayFanfare SEQ_SE_CONFIRM
-    WaitFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
+    WaitSE SEQ_SE_CONFIRM
     Message 0
     CloseMessage
     SetFlag FLAG_MAP_LOCAL

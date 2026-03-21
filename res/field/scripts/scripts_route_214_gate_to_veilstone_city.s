@@ -24,7 +24,7 @@ _0062:
     End
 
 _0068:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GetUnownFormsSeenCount VAR_MAP_LOCAL_0

@@ -17,7 +17,7 @@ _0025:
     End
 
 _0038:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     BufferPlayerName 0
     Message 3
@@ -27,7 +27,7 @@ _0038:
     End
 
 _004C:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 0

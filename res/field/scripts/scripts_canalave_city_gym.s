@@ -13,7 +13,7 @@ CanalaveGym_Init:
     End
 
 CanalaveGym_Byron:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfBadgeAcquired BADGE_ID_MINE, CanalaveGym_ByronAfterBadge
@@ -26,8 +26,8 @@ CanalaveGym_Byron:
     Message CanalaveGym_Text_BeatByron
     BufferPlayerName 0
     Message CanalaveGym_Text_ByronReceiveMineBadge
-    PlaySound SEQ_BADGE
-    WaitSound
+    PlayFanfare SEQ_BADGE
+    WaitFanfare
     GiveBadge BADGE_ID_MINE
     IncrementTrainerScore2 TRAINER_SCORE_EVENT_BADGE_EARNED
     SetTrainerFlag TRAINER_BLACK_BELT_DAVID
@@ -83,7 +83,7 @@ CanalaveGym_Lostbattle:
     End
 
 CanalaveGym_GymGuide:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfBadgeAcquired BADGE_ID_MINE, CanalaveGym_GymGuideAfterBadge
@@ -102,7 +102,7 @@ CanalaveGym_GymGuideAfterBadge:
     End
 
 CanalaveGym_GymStatue:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     GoToIfBadgeAcquired BADGE_ID_MINE, CanalaveGym_GymStatueAfterBadge
     BufferRivalName 0

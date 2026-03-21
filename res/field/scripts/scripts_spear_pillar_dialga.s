@@ -29,7 +29,7 @@ _0075:
     Return
 
 _0077:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     GoToIfGe VAR_SPEAR_PILLAR_DIALGA_STATE, 1, _00F4
     GoToIfSet FLAG_CAUGHT_DIALGA, _00F4

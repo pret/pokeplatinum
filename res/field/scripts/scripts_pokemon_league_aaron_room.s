@@ -8,7 +8,7 @@
     ScriptEntryEnd
 
 PokemonLeagueAaronRoom_Aaron:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_DEFEATED_AARON, PokemonLeagueAaronRoom_AaronPostBattle
@@ -20,7 +20,7 @@ PokemonLeagueAaronRoom_Aaron:
     CheckWonBattle VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, PokemonLeagueAaronRoom_BlackOut
     SetFlag FLAG_DEFEATED_AARON
-    PlayFanfare SEQ_SE_DP_KI_GASYAN
+    PlaySE SEQ_SE_DP_KI_GASYAN
     RemoveObject LOCALID_EXIT_DOOR
     CallIfUnset FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, PokemonLeagueAaronRoom_CreateJournalEventDefeatedAaron
     CallIfSet FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, PokemonLeagueAaronRoom_CreateJournalEventDefeatedRematchAaron
@@ -62,7 +62,7 @@ PokemonLeagueAaronRoom_OnFrame:
     LockAll
     ApplyMovement LOCALID_PLAYER, PokemonLeagueAaronRoom_Movement_PlayerEnterRoom
     WaitMovement
-    PlayFanfare SEQ_SE_DP_KI_GASYAN
+    PlaySE SEQ_SE_DP_KI_GASYAN
     ClearFlag FLAG_HIDE_POKEMON_LEAGUE_AARON_ROOM_ENTRANCE_DOOR
     AddObject LOCALID_ENTRANCE_DOOR
     SetVar VAR_MAP_LOCAL_1, 1

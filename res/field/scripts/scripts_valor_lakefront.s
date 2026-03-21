@@ -42,7 +42,7 @@ _008B:
     End
 
 _009D:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     GoToIfSet FLAG_UNK_0x0106, _013A
     Message 0
@@ -463,7 +463,7 @@ _061F:
     End
 
 _0632:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     CheckItem ITEM_SUITE_KEY, 1, VAR_RESULT

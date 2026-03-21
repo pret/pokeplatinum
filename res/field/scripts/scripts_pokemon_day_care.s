@@ -16,7 +16,7 @@ _001B:
     Return
 
 _0021:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     CheckPoketchAppRegistered POKETCH_APPID_DAYCARECHECKER, VAR_RESULT

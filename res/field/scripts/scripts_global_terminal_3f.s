@@ -65,7 +65,7 @@ _0103:
     End
 
 _0105:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     SetVar VAR_0x8005, 2
     GoTo _0119

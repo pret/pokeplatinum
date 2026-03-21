@@ -41,7 +41,7 @@ _0091:
     End
 
 _00A4:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     GoToIfEq VAR_UNK_0x408A, 1, _0102
     CheckItem ITEM_ODD_KEYSTONE, 1, VAR_RESULT
@@ -73,7 +73,7 @@ _0102:
     GoTo _0185
 
 _014D:
-    WaitFanfare SEQ_SE_CONFIRM
+    WaitSE SEQ_SE_CONFIRM
     PlayCry SPECIES_SPIRITOMB
     Message 9
     WaitCry
@@ -133,7 +133,7 @@ _01BC:
     End
 
 _01C7:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     SetVar VAR_0x8004, ITEM_GOOD_ROD

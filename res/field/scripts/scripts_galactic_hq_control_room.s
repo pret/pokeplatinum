@@ -32,7 +32,7 @@ _0055:
     End
 
 _0059:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_FREED_GALACTIC_HQ_POKEMON, _0109
@@ -110,7 +110,7 @@ _0140:
     EndMovement
 
 _014C:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     GoToIfSet FLAG_FREED_GALACTIC_HQ_POKEMON, _0168
     Message 13
@@ -127,7 +127,7 @@ _0168:
     End
 
 _0173:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     GoToIfSet FLAG_FREED_GALACTIC_HQ_POKEMON, _018F
     Message 14
@@ -144,7 +144,7 @@ _018F:
     End
 
 _019A:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     GoToIfSet FLAG_FREED_GALACTIC_HQ_POKEMON, _01B6
     Message 15
@@ -170,7 +170,7 @@ _01C5:
     End
 
 _01C7:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     GoToIfSet FLAG_FREED_GALACTIC_HQ_POKEMON, _0347
     Message 10
@@ -181,7 +181,7 @@ _01C7:
 
 _01FB:
     SetVar VAR_UNK_0x410D, 0
-    PlayFanfare SEQ_SE_DP_BUTTON3
+    PlaySE SEQ_SE_DP_BUTTON3
     BufferPlayerName 0
     Message 11
     CloseMessage
@@ -337,7 +337,7 @@ _03EA:
     End
 
 _03FD:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     GoToIfSet FLAG_UNK_0x00AD, _0450
     ApplyMovement 4, _0470

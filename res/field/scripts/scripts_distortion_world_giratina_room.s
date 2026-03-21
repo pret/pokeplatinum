@@ -28,7 +28,7 @@ _0033:
     End
 
 _0041:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     Message 13
     ShowYesNoMenu VAR_RESULT
@@ -43,7 +43,7 @@ _0061:
     CloseMessage
     EnableHiddenLocation HIDDEN_LOCATION_SPRING_PATH
     SetVar VAR_EXITED_DISTORTION_WORLD_STATE, 1
-    PlayFanfare SEQ_SE_PL_SYUWA
+    PlaySE SEQ_SE_PL_SYUWA
     FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_SENDOFF_SPRING, 0, 32, 17, 1
@@ -60,7 +60,7 @@ _009E:
     End
 
 _00C4:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     PlayCry SPECIES_GIRATINA
     Message 2

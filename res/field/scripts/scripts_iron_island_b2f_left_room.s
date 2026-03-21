@@ -44,9 +44,9 @@ _0064:
     CallIfUnset FLAG_UNK_0x00E1, _00E9
     CallIfSet FLAG_UNK_0x00E1, _00EE
     BufferPlayerName 0
-    PlaySound SEQ_GONIN
+    PlayFanfare SEQ_GONIN
     Message 1
-    WaitSound
+    WaitFanfare
     SetFlag FLAG_UNK_0x00E1
     SetVar VAR_UNK_0x4092, 1
     Message 2
@@ -238,8 +238,8 @@ _02F9:
 _031C:
     GetPartyCount VAR_RESULT
     GoToIfEq VAR_RESULT, 6, _0353
-    PlaySound SEQ_FANFA4
-    WaitSound
+    PlayFanfare SEQ_FANFA4
+    WaitFanfare
     Message 12
     GiveEgg SPECIES_RIOLU, SPECIAL_METLOC_NAME_RILEY
     SetFlag FLAG_UNK_0x01E5
@@ -387,7 +387,7 @@ _0466:
     End
 
 _0468:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x00E2, _0504

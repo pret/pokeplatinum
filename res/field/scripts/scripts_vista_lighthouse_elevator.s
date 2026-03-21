@@ -35,11 +35,11 @@ VistaLighthouseElevator_ElevatorDown:
     End
 
 VistaLighthouseElevator_ElevatorAnimation:
-    WaitFanfare SEQ_SE_CONFIRM
+    WaitSE SEQ_SE_CONFIRM
     PlayElevatorAnimation VAR_0x8004, 4
     ApplyMovement LOCALID_PLAYER, VistaLighthouseElevator_WalkOut
     WaitMovement
-    PlayFanfare SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2
     Return
 
     .balign 4, 0

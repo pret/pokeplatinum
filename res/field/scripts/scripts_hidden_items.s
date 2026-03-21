@@ -289,7 +289,7 @@
     ScriptEntryEnd
 
 _0472:
-    WaitFanfare SEQ_SE_CONFIRM
+    WaitSE SEQ_SE_CONFIRM
     SetVar VAR_0x8004, VAR_0x8000
     SetVar VAR_0x8005, VAR_0x8001
     SetVar VAR_0x8006, VAR_0x8002
@@ -312,7 +312,7 @@ _04B0:
     End
 
 _04E2:
-    WaitSound
+    WaitFanfare
     CheckItemIsPlate VAR_0x8004, VAR_RESULT
     CallIfEq VAR_RESULT, 1, _0667
     BufferPlayerName 0

@@ -170,7 +170,7 @@ _029A:
     Return
 
 _029C:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     BufferRivalName 0
@@ -204,7 +204,7 @@ _0307:
     Return
 
 _030C:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     BufferPlayerName 1
@@ -287,7 +287,7 @@ _042D:
     Return
 
 _0432:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, _0483
@@ -319,7 +319,7 @@ _0497:
     Return
 
 _049C:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     BufferRivalName 0
@@ -353,7 +353,7 @@ _0507:
     Return
 
 _050C:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, _055D
@@ -385,7 +385,7 @@ _0571:
     Return
 
 _0576:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, _05C7
@@ -417,7 +417,7 @@ _05DB:
     Return
 
 _05E0:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, _0631
@@ -450,7 +450,7 @@ _0645:
 
 _064A:
     GoToIfEq VAR_RESORT_VILLA_VISITOR, 14, _0A50
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     BufferPlayerName 1
@@ -483,7 +483,7 @@ _06BF:
     Return
 
 _06C4:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, _0715
@@ -517,7 +517,7 @@ _072F:
     Return
 
 _0734:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, _0785
@@ -550,7 +550,7 @@ _0799:
 
 _079E:
     GoToIfEq VAR_RESORT_VILLA_VISITOR, 14, _0A50
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, _07FC
@@ -583,7 +583,7 @@ _0810:
 
 _0815:
     GoToIfEq VAR_RESORT_VILLA_VISITOR, 13, _088C
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, _0873
@@ -615,7 +615,7 @@ _0887:
     Return
 
 _088C:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, _08DB
     CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 1, _08E2
@@ -668,7 +668,7 @@ _093C:
     EndMovement
 
 _0944:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, _0995
@@ -700,7 +700,7 @@ _09A9:
     Return
 
 _09AE:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, _09FD
     CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 1, _0A04
@@ -742,7 +742,7 @@ _0A39:
     Return
 
 _0A50:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     BufferPlayerName 1
     ApplyMovement 10, _0AE0
@@ -796,13 +796,13 @@ _0AEC:
 
 _0AF4:
     LockAll
-    PlayFanfare SEQ_SE_DP_DOOR_OPEN
+    PlaySE SEQ_SE_DP_DOOR_OPEN
     ClearFlag FLAG_UNK_0x02B0
     SetObjectEventPos 6, 11, 11
     SetObjectEventMovementType 6, MOVEMENT_TYPE_LOOK_NORTH
     SetObjectEventDir 6, DIR_NORTH
     AddObject 6
-    WaitFanfare SEQ_SE_DP_DOOR_OPEN
+    WaitSE SEQ_SE_DP_DOOR_OPEN
     ApplyMovement LOCALID_PLAYER, _0B3C
     ApplyMovement 6, _0B4C
     WaitMovement
@@ -827,13 +827,13 @@ _0B4C:
 
 _0B5C:
     LockAll
-    PlayFanfare SEQ_SE_DP_DOOR_OPEN
+    PlaySE SEQ_SE_DP_DOOR_OPEN
     ClearFlag FLAG_UNK_0x02B3
     SetObjectEventPos 9, 11, 11
     SetObjectEventMovementType 9, MOVEMENT_TYPE_LOOK_NORTH
     SetObjectEventDir 9, DIR_NORTH
     AddObject 9
-    WaitFanfare SEQ_SE_DP_DOOR_OPEN
+    WaitSE SEQ_SE_DP_DOOR_OPEN
     ApplyMovement LOCALID_PLAYER, _0BAC
     ApplyMovement 9, _0BA4
     WaitMovement
@@ -856,13 +856,13 @@ _0BAC:
 
 _0BBC:
     LockAll
-    PlayFanfare SEQ_SE_DP_DOOR_OPEN
+    PlaySE SEQ_SE_DP_DOOR_OPEN
     ClearFlag FLAG_UNK_0x02B6
     SetObjectEventPos 10, 11, 11
     SetObjectEventMovementType 10, MOVEMENT_TYPE_LOOK_NORTH
     SetObjectEventDir 10, DIR_NORTH
     AddObject 10
-    WaitFanfare SEQ_SE_DP_DOOR_OPEN
+    WaitSE SEQ_SE_DP_DOOR_OPEN
     ApplyMovement LOCALID_PLAYER, _0C14
     ApplyMovement 10, _0C04
     WaitMovement
@@ -887,13 +887,13 @@ _0C14:
 
 _0C24:
     LockAll
-    PlayFanfare SEQ_SE_DP_DOOR_OPEN
+    PlaySE SEQ_SE_DP_DOOR_OPEN
     ClearFlag FLAG_UNK_0x02B8
     SetObjectEventPos 12, 11, 11
     SetObjectEventMovementType 12, MOVEMENT_TYPE_LOOK_NORTH
     SetObjectEventDir 12, DIR_NORTH
     AddObject 12
-    WaitFanfare SEQ_SE_DP_DOOR_OPEN
+    WaitSE SEQ_SE_DP_DOOR_OPEN
     ApplyMovement LOCALID_PLAYER, _0C78
     ApplyMovement 12, _0C6C
     WaitMovement
@@ -916,49 +916,49 @@ _0C78:
     EndMovement
 
 _0C88:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     Message 99
     GoTo _0E5D
     End
 
 _0C99:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     Message 100
     GoTo _0E5D
     End
 
 _0CAA:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     Message 101
     GoTo _0E5D
     End
 
 _0CBB:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     Message 102
     GoTo _0E5D
     End
 
 _0CCC:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     Message 103
     GoTo _0E5D
     End
 
 _0CDD:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     Message 104
     GoTo _0E5D
     End
 
 _0CEE:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     PlayMusic SEQ_PL_AUDIO
     Message 105
@@ -966,14 +966,14 @@ _0CEE:
     End
 
 _0D03:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     Message 106
     GoTo _0E5D
     End
 
 _0D14:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     GoToIfSet FLAG_VILLA_FURNITURE_MUSIC_BOX, _0D63
     Message 107
@@ -981,14 +981,14 @@ _0D14:
     End
 
 _0D30:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     Message 108
     GoTo _0E5D
     End
 
 _0D41:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     BufferPlayerName 0
     Message 109
@@ -996,7 +996,7 @@ _0D41:
     End
 
 _0D55:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     GoTo _0D63
     End
@@ -1036,21 +1036,21 @@ Villa_Unused:
     Return
 
 _0DD1:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     Message 111
     GoTo _0E5D
     End
 
 _0DE2:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     Message 112
     GoTo _0E5D
     End
 
 _0DF3:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     PlayMusic SEQ_PL_PIANO
     Message 113
@@ -1058,35 +1058,35 @@ _0DF3:
     End
 
 _0E08:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     Message 114
     GoTo _0E5D
     End
 
 _0E19:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     Message 115
     GoTo _0E5D
     End
 
 _0E2A:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     Message 116
     GoTo _0E5D
     End
 
 _0E3B:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     Message 117
     GoTo _0E5D
     End
 
 _0E4C:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     Message 118
     GoTo _0E5D
@@ -1122,7 +1122,7 @@ _0EA7:
     End
 
 _0EB4:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ShowMoney 21, 1
@@ -1163,7 +1163,7 @@ _0EF6:
     Return
 
 Villa_BuyFurniture:
-    PlayFanfare SEQ_SE_DP_REGI
+    PlaySE SEQ_SE_DP_REGI
     CallIfEq VAR_0x8002, 0, Villa_BuyFurniture_Table
     CallIfEq VAR_0x8002, 1, Villa_BuyFurniture_BigSofa
     CallIfEq VAR_0x8002, 2, Villa_BuyFurniture_SmallSofa
@@ -1185,7 +1185,7 @@ Villa_BuyFurniture:
     CallIfEq VAR_0x8002, 18, Villa_BuyFurniture_TeaSet
     CallIfEq VAR_0x8002, 19, Villa_BuyFurniture_Chandelier
     UpdateMoneyDisplay
-    WaitFanfare SEQ_SE_DP_REGI
+    WaitSE SEQ_SE_DP_REGI
     HideMoney
     ScrCmd_30D VAR_0x8002
     Return
@@ -1304,15 +1304,15 @@ _1263:
     CloseMessage
     ApplyMovement 1, _1468
     WaitMovement
-    PlayFanfare SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2
     RemoveObject 1
     Return
 
 _12A3:
     ClearFlag FLAG_UNK_0x02A7
     AddObject 1
-    PlayFanfare SEQ_SE_DP_DOOR_OPEN
-    WaitFanfare SEQ_SE_DP_DOOR_OPEN
+    PlaySE SEQ_SE_DP_DOOR_OPEN
+    WaitSE SEQ_SE_DP_DOOR_OPEN
     ApplyMovement 1, _145C
     WaitMovement
     Return
@@ -1345,8 +1345,8 @@ _1312:
 _1316:
     ClearFlag FLAG_UNK_0x02A8
     AddObject 0
-    PlayFanfare SEQ_SE_DP_DOOR_OPEN
-    WaitFanfare SEQ_SE_DP_DOOR_OPEN
+    PlaySE SEQ_SE_DP_DOOR_OPEN
+    WaitSE SEQ_SE_DP_DOOR_OPEN
     ApplyMovement 0, _145C
     WaitMovement
     Return
@@ -1370,8 +1370,8 @@ _1367:
 _1374:
     ClearFlag FLAG_UNK_0x02A9
     AddObject 2
-    PlayFanfare SEQ_SE_DP_DOOR_OPEN
-    WaitFanfare SEQ_SE_DP_DOOR_OPEN
+    PlaySE SEQ_SE_DP_DOOR_OPEN
+    WaitSE SEQ_SE_DP_DOOR_OPEN
     ApplyMovement 2, _145C
     WaitMovement
     Return
@@ -1395,8 +1395,8 @@ _13C5:
 _13D2:
     ClearFlag FLAG_UNK_0x02AE
     AddObject 5
-    PlayFanfare SEQ_SE_DP_DOOR_OPEN
-    WaitFanfare SEQ_SE_DP_DOOR_OPEN
+    PlaySE SEQ_SE_DP_DOOR_OPEN
+    WaitSE SEQ_SE_DP_DOOR_OPEN
     ApplyMovement 5, _145C
     WaitMovement
     Return
@@ -1421,8 +1421,8 @@ _1429:
 _1436:
     ClearFlag FLAG_UNK_0x02B8
     AddObject 12
-    PlayFanfare SEQ_SE_DP_DOOR_OPEN
-    WaitFanfare SEQ_SE_DP_DOOR_OPEN
+    PlaySE SEQ_SE_DP_DOOR_OPEN
+    WaitSE SEQ_SE_DP_DOOR_OPEN
     ApplyMovement 12, _145C
     WaitMovement
     Return
@@ -1555,7 +1555,7 @@ _161C:
     EndMovement
 
 _1624:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     ShowMoney 21, 1
     BufferPlayerName 1

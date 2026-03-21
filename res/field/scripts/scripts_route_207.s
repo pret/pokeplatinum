@@ -142,7 +142,7 @@ Route207_Unused:
     End
 
 Route207_CyclistM:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_RECEIVED_BICYCLE, Route207_ChangeToThe4thGearAndTakeARun

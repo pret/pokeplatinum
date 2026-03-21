@@ -21,7 +21,7 @@
     ScriptEntryEnd
 
 FieldMoves_CutTree:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     FindPartySlotWithMove VAR_RESULT, MOVE_CUT
@@ -125,7 +125,7 @@ _0221:
     Return
 
 FieldMoves_Rock:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     FindPartySlotWithMove VAR_RESULT, MOVE_ROCK_SMASH
@@ -181,7 +181,7 @@ _02FD:
     End
 
 FieldMoves_Boulder:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Strength 2, VAR_RESULT
@@ -244,7 +244,7 @@ FieldMoves_UseStrengthFromMenu:
     GoTo _0675
 
 FieldMoves_RockyWall:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FindPartySlotWithMove VAR_RESULT, MOVE_ROCK_CLIMB
     GoToIfEq VAR_RESULT, 6, _0469
@@ -297,7 +297,7 @@ FieldMoves_UseRockClimbFromMenu:
     End
 
 FieldMoves_Water:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     CheckHasPartner VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _0512
@@ -340,7 +340,7 @@ FieldMoves_UseSurfFromMenu:
     End
 
 FieldMoves_Fog_Unused:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FindPartySlotWithMove VAR_RESULT, MOVE_DEFOG
     GoToIfEq VAR_RESULT, 6, _05B4
@@ -383,7 +383,7 @@ FieldMoves_UseDefogFromMenu:
     CloseMessage
     ScrCmd_0C5 VAR_0x8000
     Defog 1
-    PlayFanfare SEQ_SE_DP_FBRADE
+    PlaySE SEQ_SE_DP_FBRADE
     ScrCmd_0C4
     GetCurrentMapID VAR_0x8004
     CreateJournalEvent LOCATION_EVENT_USED_DEFOG, VAR_0x8004, 0, 0, 0
@@ -415,7 +415,7 @@ _0675:
     End
 
 FieldMoves_Waterfall:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FindPartySlotWithMove VAR_RESULT, MOVE_WATERFALL
     GoToIfEq VAR_RESULT, 6, _06C3

@@ -13,7 +13,7 @@ EternaForestOutside_OnTransition:
     End
 
 EternaForestOutside_PokemonBreederF:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_OBTAINED_ETERNA_FOREST_OUTSIDE_ACCESSORY_BIG_TREE, EternaForestOutside_ICollectBerriesAndTradeThemForAccessoriesInFloaromaTown

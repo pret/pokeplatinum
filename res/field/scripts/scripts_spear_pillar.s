@@ -182,8 +182,8 @@ _0249:
     BufferRivalName 0
     BufferPlayerName 1
     Message 10
-    PlaySound SEQ_ASA
-    WaitSound
+    PlayFanfare SEQ_ASA
+    WaitFanfare
     HealParty
     Message 11
     Message 12
@@ -374,7 +374,7 @@ _0508:
     FadeOutBGM 0, 30
     ScrCmd_20D 0, VAR_RESULT
     WaitTime 10, VAR_RESULT
-    PlayFanfare SEQ_SE_PL_KUSARI
+    PlaySE SEQ_SE_PL_KUSARI
     WaitTime 20, VAR_RESULT
     PlayMusic SEQ_THE_EVENT02
     SetSubScene63

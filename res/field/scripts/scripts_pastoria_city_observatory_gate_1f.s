@@ -38,7 +38,7 @@ _006A:
 _008C:
     Message 1
     GoToIfNotEnoughMoney 500, _0141
-    PlayFanfare SEQ_SE_DP_REGI
+    PlaySE SEQ_SE_DP_REGI
     RemoveMoney 500
     UpdateMoneyDisplay
     Message 2
@@ -66,7 +66,7 @@ _0102:
     SetVar VAR_UNK_0x40DA, 1
     StartSafariGame
     SetSpecialLocation MAP_HEADER_PASTORIA_CITY_OBSERVATORY_GATE_1F, 2, 5, 2, DIR_SOUTH
-    PlayFanfare SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2
     FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_GREAT_MARSH_6, 0, 68, 116, 0
@@ -206,7 +206,7 @@ _0298:
     End
 
 _02BF:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 12
@@ -230,7 +230,7 @@ _02F5:
     End
 
 _0300:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x00A3, _031E

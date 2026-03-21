@@ -22,7 +22,7 @@ IronRuins_ResetState:
     End
 
 IronRuins_Statue:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfEq VAR_IRON_RUINS_STATE, RUINS_STATE_CAUGHT_REGI, IronRuins_CaughtRegisteelStatueStoppedEmanatingPower
@@ -32,7 +32,7 @@ IronRuins_Statue:
     GoToIfEq VAR_RESULT, 0, IronRuins_ItsAStatueOfAPokemon
     GoToIfEq VAR_IRON_RUINS_STATE, RUINS_STATE_ACTIVATED_STATUE, IronRuins_EncounterRegisteel
     GoToIfLt VAR_IRON_RUINS_STATE, RUINS_STATE_ACTIVATED_ALL_DOTS, IronRuins_ItsAStatueOfAPokemon
-    WaitFanfare SEQ_SE_CONFIRM
+    WaitSE SEQ_SE_CONFIRM
     ScrCmd_29F 1
     SetVar VAR_IRON_RUINS_STATE, RUINS_STATE_ACTIVATED_STATUE
     Message IronRuins_Text_SomethingChangedInTheAir
@@ -140,7 +140,7 @@ IronRuins_DotEnd:
 
 IronRuins_ActivateStatue:
     GoToIfUnset FLAG_GAME_COMPLETED, IronRuins_DotEnd
-    WaitFanfare SEQ_SE_CONFIRM
+    WaitSE SEQ_SE_CONFIRM
     ScrCmd_29F 1
     SetVar VAR_IRON_RUINS_STATE, RUINS_STATE_ACTIVATED_STATUE
     Message IronRuins_Text_SomethingChangedInTheAir

@@ -6,7 +6,7 @@
     ScriptEntryEnd
 
 TwinleafTownRivalHouse1F_RivalsMom:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_HAS_POKEDEX, TwinleafTownRivalHouse1F_RivalTookOffLikeARocketAsUsual

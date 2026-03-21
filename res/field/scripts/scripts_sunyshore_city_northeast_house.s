@@ -7,7 +7,7 @@
     ScriptEntryEnd
 
 _0006:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x0AA4, _006A
@@ -79,9 +79,9 @@ _010E:
     BufferPartyMonSpecies 1, VAR_0x8002
     BufferPlayerName 2
     Message 4
-    PlaySound SEQ_FANFA1
+    PlayFanfare SEQ_FANFA1
     Message 5
-    WaitSound
+    WaitFanfare
     Message 6
     GoTo _012B
 

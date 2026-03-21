@@ -21,7 +21,7 @@ _0032:
     End
 
 _0038:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 1
@@ -94,9 +94,9 @@ _0166:
     Message 5
     BufferPlayerName 0
     BufferItemName 1, 0x1B7
-    PlaySound SEQ_FANFA4
+    PlayFanfare SEQ_FANFA4
     Message 6
-    WaitSound
+    WaitFanfare
     RemoveItem ITEM_OLD_CHARM, 1, VAR_RESULT
     SetFlag FLAG_UNK_0x00A6
     Message 7
@@ -205,7 +205,7 @@ _0264:
     EndMovement
 
 _026C:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x00A6, _0289

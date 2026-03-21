@@ -46,7 +46,7 @@ _009D:
     End
 
 _00AE:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FadeScreenOut
     WaitFadeScreen

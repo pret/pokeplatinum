@@ -13,7 +13,7 @@
     ScriptEntryEnd
 
 VeilstoneStore4F_Attendant:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     CheckIsDepartmentStoreRegular VAR_RESULT
@@ -88,7 +88,7 @@ VeilstoneStore4F_SchoolBoy:
     End
 
 VeilstoneStore4F_TopDecorVendor:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Common_VendorGreeting
@@ -98,7 +98,7 @@ VeilstoneStore4F_TopDecorVendor:
     End
 
 VeilstoneStore4F_BottomDecorVendor:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Common_VendorGreeting

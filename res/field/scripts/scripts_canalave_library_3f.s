@@ -129,7 +129,7 @@ _0184:
     WaitMovement
     BufferPlayerName 0
     Message 18
-    WaitFanfare SEQ_SE_CONFIRM
+    WaitSE SEQ_SE_CONFIRM
     MessageInstant 19
     ScrCmd_29F 1
     Message 20
@@ -173,12 +173,12 @@ _0184:
     WaitMovement
     Message 25
     CloseMessage
-    StopFanfare SEQ_SE_CONFIRM
+    StopSE SEQ_SE_CONFIRM
     ApplyMovement 2, _0308
     WaitMovement
-    PlayFanfare SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2
     RemoveObject 2
-    StopFanfare SEQ_SE_DP_KAIDAN2
+    StopSE SEQ_SE_DP_KAIDAN2
     SetVar VAR_CANALAVE_STATE, 4
     SetVar VAR_CANALAVE_LIBRARY_STATE, 2
     SetFlag FLAG_UNK_0x00A8
@@ -333,7 +333,7 @@ _03E0:
     EndMovement
 
 _03E8:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x00A8, _0406
@@ -351,7 +351,7 @@ _0406:
     End
 
 _0411:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x00A8, _042F
@@ -369,7 +369,7 @@ _042F:
     End
 
 _043A:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     Message 30
     ShowYesNoMenu VAR_RESULT
@@ -393,7 +393,7 @@ _0471:
     End
 
 _047C:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     Message 33
     ShowYesNoMenu VAR_RESULT
@@ -417,7 +417,7 @@ _04B3:
     End
 
 _04BE:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     Message 36
     ShowYesNoMenu VAR_RESULT
@@ -441,7 +441,7 @@ _04F5:
     End
 
 _0500:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     Message 39
     ShowYesNoMenu VAR_RESULT
@@ -471,7 +471,7 @@ _0537:
     End
 
 _056A:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     Message 44
     ShowYesNoMenu VAR_RESULT
@@ -501,7 +501,7 @@ _05A1:
     End
 
 _05D4:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     Message 49
     ShowYesNoMenu VAR_RESULT
@@ -525,7 +525,7 @@ _060B:
     End
 
 _0616:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     Message 52
     Message 53

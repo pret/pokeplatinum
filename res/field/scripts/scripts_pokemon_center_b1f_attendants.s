@@ -68,7 +68,7 @@ _00D8:
     EndMovement
 
 _00F4:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 5
@@ -111,7 +111,7 @@ _0163:
     End
 
 _01A3:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     CheckPartyHasBadEgg VAR_RESULT
@@ -338,7 +338,7 @@ _043C:
     End
 
 _048E:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_323 VAR_RESULT

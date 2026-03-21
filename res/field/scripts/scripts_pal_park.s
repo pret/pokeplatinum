@@ -15,21 +15,21 @@ _001A:
     End
 
 PalPark_Trigger_Countdown:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     MessageInstant PalPark_Text_LetTheCountdownBegin
     WaitTime 30, VAR_RESULT
     MessageInstant PalPark_Text_Three
-    PlayFanfare SEQ_SE_DP_DECIDE
+    PlaySE SEQ_SE_DP_DECIDE
     WaitTime 30, VAR_RESULT
     MessageInstant PalPark_Text_Two
-    PlayFanfare SEQ_SE_DP_DECIDE
+    PlaySE SEQ_SE_DP_DECIDE
     WaitTime 30, VAR_RESULT
     MessageInstant PalPark_Text_One
-    PlayFanfare SEQ_SE_DP_DECIDE
+    PlaySE SEQ_SE_DP_DECIDE
     WaitTime 30, VAR_RESULT
     MessageInstant PalPark_Text_Start
-    PlayFanfare SEQ_SE_DP_CON_016
+    PlaySE SEQ_SE_DP_CON_016
     WaitTime 30, VAR_RESULT
     SetInCatchingShowFlag
     SetVar VAR_PAL_PARK_STATE, 1
@@ -48,14 +48,14 @@ PalPark_Unused:
     End
 
 PalPark_Trigger_CaughtAllPokemon:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
-    PlayFanfare SEQ_SE_DP_PINPON
+    PlaySE SEQ_SE_DP_PINPON
     BufferPlayerName 0
     Message PalPark_Text_DingDongCongratulations
     PlayMusic SEQ_SILENCE_DUNGEON
-    PlaySound SEQ_FANFA4
-    WaitSound
+    PlayFanfare SEQ_FANFA4
+    WaitFanfare
     CloseMessage
     ReleaseAll
     SetVar VAR_PAL_PARK_STATE, 1
@@ -63,7 +63,7 @@ PalPark_Trigger_CaughtAllPokemon:
     End
 
 PalPark_RetireFromMenu:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     Message PalPark_Text_WouldYouLikeToRetire
     ShowYesNoMenu VAR_RESULT
@@ -79,7 +79,7 @@ PalPark_RetireFromMenu_WarpOut:
     End
 
 PalPark_Trigger_RetireFromGate:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     Call PalPark_AskPlayerRetireFromCatchingShow
     CloseMessage
@@ -101,7 +101,7 @@ _0124:
     EndMovement
 
 PalPark_Worker:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Call PalPark_AskPlayerRetireFromCatchingShow

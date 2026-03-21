@@ -142,7 +142,7 @@ _0257:
     End
 
 _026A:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 21
@@ -152,7 +152,7 @@ _026A:
     End
 
 _027E:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     FadeScreenOut
@@ -165,7 +165,7 @@ _027E:
     End
 
 _02A6:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 23
@@ -210,7 +210,7 @@ _0360:
     LockAll
     ApplyMovement LOCALID_PLAYER, _0398
     WaitMovement
-    PlayFanfare SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2
     FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_BATTLE_HALL, 0, 25, 9, 2
@@ -227,7 +227,7 @@ _03A0:
     LockAll
     ApplyMovement LOCALID_PLAYER, _03D8
     WaitMovement
-    PlayFanfare SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2
     FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_BATTLE_CASTLE, 0, 21, 9, 2
@@ -244,7 +244,7 @@ _03E0:
     LockAll
     ApplyMovement LOCALID_PLAYER, _0418
     WaitMovement
-    PlayFanfare SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2
     FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_BATTLE_ARCADE, 0, 1, 6, 3
@@ -261,7 +261,7 @@ _0420:
     LockAll
     ApplyMovement LOCALID_PLAYER, _0458
     WaitMovement
-    PlayFanfare SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2
     FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_BATTLE_FACTORY, 0, 1, 7, 3

@@ -26,7 +26,7 @@ _005B:
     End
 
 _0070:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x013F, _00B5

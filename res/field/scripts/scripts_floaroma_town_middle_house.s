@@ -12,7 +12,7 @@ FloaromaTownMiddleHouse_PokemonBreederF:
     End
 
 FloaromaTownMiddleHouse_Twin:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_RECEIVED_FLOAROMA_TOWN_MIDDLE_HOUSE_TM88, FloaromaTownMiddleHouse_WhenAPokemonUsesPluckItEatsABerryHeldByItsFoe

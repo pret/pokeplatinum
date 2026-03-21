@@ -11,7 +11,7 @@ _000A:
     End
 
 _001D:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     SetVar VAR_0x8004, ITEM_OLD_ROD

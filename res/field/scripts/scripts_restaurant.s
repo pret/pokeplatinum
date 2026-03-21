@@ -183,7 +183,7 @@ _031E:
     End
 
 _0331:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     CheckTrainerFlag TRAINER_ARTIST_ISMAEL
     GoToIfDefeated TRAINER_ARTIST_ISMAEL, _046C
@@ -305,7 +305,7 @@ _04CF:
     Return
 
 _04DB:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     CheckTrainerFlag TRAINER_BEAUTY_HARLEY
     GoToIfDefeated TRAINER_BEAUTY_HARLEY, _0616
@@ -427,7 +427,7 @@ _0679:
     Return
 
 _0685:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     CheckTrainerFlag TRAINER_RICH_BOY_ROMAN
     GoToIfDefeated TRAINER_RICH_BOY_ROMAN, _07C0
@@ -549,7 +549,7 @@ _0823:
     Return
 
 _082F:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     CheckTrainerFlag TRAINER_LADY_KYLIE
     GoToIfDefeated TRAINER_LADY_KYLIE, _096A
@@ -671,7 +671,7 @@ _09CD:
     Return
 
 _09D9:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     CheckTrainerFlag TRAINER_GENTLEMAN_LEONARDO
     GoToIfDefeated TRAINER_GENTLEMAN_LEONARDO, _0B14
@@ -793,7 +793,7 @@ _0B77:
     Return
 
 _0B83:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     CheckTrainerFlag TRAINER_SOCIALITE_REBECCA
     GoToIfDefeated TRAINER_SOCIALITE_REBECCA, _0CBE
@@ -915,7 +915,7 @@ _0D21:
     Return
 
 _0D2D:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     CheckTrainerFlag TRAINER_COLLECTOR_EUGENE
     GoToIfDefeated TRAINER_COLLECTOR_EUGENE, _0E68
@@ -1037,7 +1037,7 @@ _0ECB:
     Return
 
 _0ED7:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     CheckTrainerFlag TRAINER_AROMA_LADY_ALISON
     GoToIfDefeated TRAINER_AROMA_LADY_ALISON, _1012
@@ -1159,7 +1159,7 @@ _1075:
     Return
 
 _1081:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     CheckTrainerFlag TRAINER_SCHOOL_KID_ESTEBAN
     GoToIfDefeated TRAINER_SCHOOL_KID_ESTEBAN, _11BC
@@ -1281,7 +1281,7 @@ _121F:
     Return
 
 _122B:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     CheckTrainerFlag TRAINER_POKEFAN_MEREDITH
     GoToIfDefeated TRAINER_POKEFAN_MEREDITH, _1366
@@ -1403,7 +1403,7 @@ _13C9:
     Return
 
 _13D5:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     CheckTrainerFlag TRAINER_VETERAN_EMANUEL
     GoToIfDefeated TRAINER_VETERAN_EMANUEL, _1510
@@ -1525,7 +1525,7 @@ _1573:
     Return
 
 _157F:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     CheckTrainerFlag TRAINER_LASS_BLYTHE
     GoToIfDefeated TRAINER_LASS_BLYTHE, _16BA
@@ -1647,7 +1647,7 @@ _171D:
     Return
 
 _1729:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     CheckTrainerFlag TRAINER_CAMERAMAN_DARRYL
     GoToIfDefeated TRAINER_CAMERAMAN_DARRYL, _1864
@@ -1769,7 +1769,7 @@ _18C7:
     Return
 
 _18D3:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     CheckTrainerFlag TRAINER_REPORTER_VALERIE
     GoToIfDefeated TRAINER_REPORTER_VALERIE, _1A0E
@@ -1891,7 +1891,7 @@ _1A71:
     Return
 
 _1A7D:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     CheckTrainerFlag TRAINER_PI_KENDRICK
     GoToIfDefeated TRAINER_PI_KENDRICK, _1BB8
@@ -2013,7 +2013,7 @@ _1C1B:
     Return
 
 _1C27:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     CheckTrainerFlag TRAINER_BEAUTY_GABRIELLA
     GoToIfDefeated TRAINER_BEAUTY_GABRIELLA, _1D62
@@ -2135,7 +2135,7 @@ _1DC5:
     Return
 
 _1DD1:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     CheckTrainerFlag TRAINER_SCIENTIST_EMILIO
     GoToIfDefeated TRAINER_SCIENTIST_EMILIO, _1F0C
@@ -2257,7 +2257,7 @@ _1F6F:
     Return
 
 _1F7B:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     CheckTrainerFlag TRAINER_BREEDER_KAYLEE
     GoToIfDefeated TRAINER_BREEDER_KAYLEE, _20B6

@@ -9,7 +9,7 @@
     ScriptEntry _01DC
 
 _0014:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GetPlayerDir VAR_RESULT
@@ -50,8 +50,8 @@ _0096:
     Message 1
     BufferPlayerName 0
     Message 2
-    PlaySound SEQ_BADGE
-    WaitSound
+    PlayFanfare SEQ_BADGE
+    WaitFanfare
     GiveBadge BADGE_ID_RELIC
     IncrementTrainerScore2 TRAINER_SCORE_EVENT_BADGE_EARNED
     SetTrainerFlag TRAINER_CAMPER_DREW

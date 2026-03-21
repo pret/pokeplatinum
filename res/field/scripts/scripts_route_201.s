@@ -1141,7 +1141,7 @@ Route201_SchoolKidM:
     End
 
 Route201_Lass:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_HAS_POKEDEX, Route201_IfYourPokemonsHPIsLowGoToAPokemonCenter
@@ -1159,7 +1159,7 @@ Route201_IfYourPokemonsHPIsLowGoToAPokemonCenter:
     GoTo Route201_LassCloseMessage
 
 Route201_Cashier:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_GOT_POTION_FROM_ROUTE_201_CASHIER, Route201_YouCanFindMartsInCitiesAndMajorTowns

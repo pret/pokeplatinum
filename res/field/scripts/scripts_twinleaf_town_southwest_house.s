@@ -7,7 +7,7 @@
     ScriptEntryEnd
 
 TwinleafTownSouthwestHouse_ExpertF:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_HAS_POKEDEX, TwinleafTownSouthwestHouse_ProfRowanGaveYouAPokedexDidHe
@@ -25,7 +25,7 @@ TwinleafTownSouthwestHouse_ProfRowanGaveYouAPokedexDidHe:
     End
 
 TwinleafTownSouthwestHouse_Twin:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     BufferPlayerName 0

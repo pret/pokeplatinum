@@ -49,7 +49,7 @@ _006F:
     End
 
 _0096:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 5
@@ -97,8 +97,8 @@ _016D:
 _017D:
     BufferPlayerName 0
     Message 8
-    PlaySound SEQ_ASA
-    WaitSound
+    PlayFanfare SEQ_ASA
+    WaitFanfare
     HealParty
     WaitMovement
     Message 9
@@ -125,7 +125,7 @@ _01CE:
     End
 
 _01DA:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     GoToIfGe VAR_DISTORTION_WORLD_PROGRESS, 10, _01F8
     Message 3

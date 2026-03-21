@@ -30,7 +30,7 @@ _0053:
     End
 
 _0059:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     SetVar VAR_MAP_LOCAL_3, 0
@@ -39,7 +39,7 @@ _0059:
     End
 
 _0075:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     SetVar VAR_MAP_LOCAL_3, 0
@@ -274,7 +274,7 @@ _049D:
     CallIfEq VAR_BATTLE_CASTLE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_SINGLE, _053D
     CallIfEq VAR_BATTLE_CASTLE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_DOUBLE, _0558
     CallIfEq VAR_BATTLE_CASTLE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI, _0573
-    PlayFanfare SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2
     GoTo _04D0
     End
 
@@ -452,8 +452,8 @@ _06CB:
     ShowSavingIcon
     TrySaveGame VAR_RESULT
     HideSavingIcon
-    PlayFanfare SEQ_SE_DP_SAVE
-    WaitFanfare SEQ_SE_DP_SAVE
+    PlaySE SEQ_SE_DP_SAVE
+    WaitSE SEQ_SE_DP_SAVE
     Return
 
 _06DD:
@@ -478,8 +478,8 @@ _072E:
     Message 35
     BufferPlayerName 0
     Message 37
-    PlaySound SEQ_FANFA4
-    WaitSound
+    PlayFanfare SEQ_FANFA4
+    WaitFanfare
     SetVar VAR_BATTLE_CASTLE_PRINT_STATE, 2
     Return
 
@@ -487,8 +487,8 @@ _0745:
     Message 35
     BufferPlayerName 0
     Message 36
-    PlaySound SEQ_FANFA4
-    WaitSound
+    PlayFanfare SEQ_FANFA4
+    WaitFanfare
     SetVar VAR_BATTLE_CASTLE_PRINT_STATE, 4
     Common_CheckAllFrontierGoldPrintsObtained
     Return

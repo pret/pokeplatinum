@@ -47,7 +47,7 @@ _00AA:
     Return
 
 _00B8:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x012D, _00D6
@@ -67,7 +67,7 @@ _00D6:
 
 _00E4:
     GoToIfSet FLAG_UNK_0x012D, _022D
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     SetVar VAR_UNK_0x408D, 1
@@ -445,7 +445,7 @@ _05EC:
     EndMovement
 
 _05F4:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x012D, _061C
