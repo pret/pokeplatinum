@@ -1,7 +1,6 @@
 prebuilt_files = [
     'bag_gra.narc',
     'box.narc',
-    'btower.narc',
     'bucket.narc',
     'demo_trade.narc',
     'dendou_demo.narc',

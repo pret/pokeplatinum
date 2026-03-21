@@ -1,6 +1,7 @@
 subdir('bag')
 subdir('battle')
 subdir('diploma')
+subdir('frontier')
 subdir('item_icons')
 subdir('main_menu')
 subdir('mining')

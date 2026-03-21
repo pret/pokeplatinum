@@ -189,7 +189,7 @@ res/prebuilt/poketool/waza/waza_tbl.narc,/poketool/waza/waza_tbl.narc
 res/field/scripts/scr_seq.narc,/fielddata/script/scr_seq.narc
 res/prebuilt/graphic/bag_gra.narc,/graphic/bag_gra.narc
 res/prebuilt/graphic/box.narc,/graphic/box.narc
-res/prebuilt/graphic/btower.narc,/graphic/btower.narc
+res/graphics/frontier/tower/records.narc,/graphic/btower.narc
 res/prebuilt/graphic/bucket.narc,/graphic/bucket.narc
 res/graphics/options_menu/config_gra.narc,/graphic/config_gra.narc
 res/prebuilt/graphic/demo_trade.narc,/graphic/demo_trade.narc
