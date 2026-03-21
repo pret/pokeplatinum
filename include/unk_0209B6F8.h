@@ -4,7 +4,7 @@
 #include "struct_decls/struct_0209B75C_decl.h"
 
 #include "functypes/funcptr_0209B988.h"
-#include "overlay104/ov104_0223C2D4.h"
+#include "overlay104/frontier_graphics.h"
 #include "overlay104/struct_ov104_02230BE4.h"
 #include "overlay104/struct_ov104_0223C634.h"
 #include "overlay104/struct_ov104_0223C688.h"

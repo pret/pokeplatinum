@@ -1,4 +1,4 @@
-#include "overlay104/ov104_0223C2D4.h"
+#include "overlay104/frontier_graphics.h"
 
 #include <nitro.h>
 
@@ -20,9 +20,9 @@
 #include "overlay063/union_ov63_0222BDAC.h"
 #include "overlay065/struct_ov65_0223582C.h"
 #include "overlay065/struct_ov65_022376D0.h"
+#include "overlay104/frontier_particle_system.h"
 #include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/ov104_0222EA90.h"
-#include "overlay104/ov104_0223D5D0.h"
 #include "overlay104/ov104_0223D768.h"
 #include "overlay104/struct_ov104_02230BE4.h"
 #include "overlay104/struct_ov104_0223C634.h"

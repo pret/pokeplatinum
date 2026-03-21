@@ -6,7 +6,7 @@
 #include "overlay063/struct_ov63_0222BEC0_decl.h"
 #include "overlay063/struct_ov63_0222CCB8.h"
 #include "overlay104/defs.h"
-#include "overlay104/ov104_0223C2D4.h"
+#include "overlay104/frontier_graphics.h"
 #include "overlay104/struct_ov104_0222FEDC.h"
 
 #include "message.h"

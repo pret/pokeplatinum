@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV104_02237DD8_H
 #define POKEPLATINUM_OV104_02237DD8_H
 
-#include "overlay104/ov104_0223C2D4.h"
+#include "overlay104/frontier_graphics.h"
 #include "overlay104/struct_ov104_0223BFFC.h"
 
 #include "party.h"

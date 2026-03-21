@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_OV104_0223D5D0_H
-#define POKEPLATINUM_OV104_0223D5D0_H
+#ifndef POKEPLATINUM_FRONTIER_PARTICLE_SYSTEM_H
+#define POKEPLATINUM_FRONTIER_PARTICLE_SYSTEM_H
 
 #include "particle_system.h"
 
@@ -19,4 +19,4 @@ void FrontierParticleSystem_FreeParticleSystem(FrontierParticleSystem *fps, int 
 ParticleSystem *FrontierParticleSystem_GetParticleSystem(FrontierParticleSystem *fps, int index);
 BOOL FrontierParticleSystem_NoActiveEmitters(FrontierParticleSystem *fps);
 
-#endif // POKEPLATINUM_OV104_0223D5D0_H
+#endif // POKEPLATINUM_FRONTIER_PARTICLE_SYSTEM_H

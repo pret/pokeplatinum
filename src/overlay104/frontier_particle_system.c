@@ -1,4 +1,4 @@
-#include "overlay104/ov104_0223D5D0.h"
+#include "overlay104/frontier_particle_system.h"
 
 #include <nitro.h>
 

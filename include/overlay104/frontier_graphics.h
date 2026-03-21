@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_OV104_0223C2D4_H
-#define POKEPLATINUM_OV104_0223C2D4_H
+#ifndef POKEPLATINUM_FRONTIER_GRAPHICS_H
+#define POKEPLATINUM_FRONTIER_GRAPHICS_H
 
 #include "struct_decls/struct_0209B75C_decl.h"
 
@@ -12,7 +12,7 @@
 #include "overlay063/struct_ov63_0222D1C0_decl.h"
 #include "overlay063/struct_ov63_0222D77C_decl.h"
 #include "overlay063/struct_ov63_0222D848_decl.h"
-#include "overlay104/ov104_0223D5D0.h"
+#include "overlay104/frontier_particle_system.h"
 #include "overlay104/struct_ov104_0223319C.h"
 #include "overlay104/struct_ov104_022331E8.h"
 #include "overlay104/struct_ov104_0223C634.h"
@@ -79,4 +79,4 @@ u32 ov104_0223D3A4(FrontierGraphics *param0, u16 param1);
 void ov104_0223D554(FrontierGraphics *param0, s16 *param1, s16 *param2);
 UnkStruct_ov104_0223C634 *ov104_0223D5A8(UnkStruct_0209B75C *param0, int param1);
 
-#endif // POKEPLATINUM_OV104_0223C2D4_H
+#endif // POKEPLATINUM_FRONTIER_GRAPHICS_H

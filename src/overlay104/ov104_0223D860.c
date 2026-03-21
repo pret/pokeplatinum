@@ -7,8 +7,8 @@
 
 #include "overlay063/ov63_0222D77C.h"
 #include "overlay063/struct_ov63_0222CCB8.h"
+#include "overlay104/frontier_graphics.h"
 #include "overlay104/ov104_02231F74.h"
-#include "overlay104/ov104_0223C2D4.h"
 #include "overlay104/struct_ov104_0223C634.h"
 #include "overlay104/struct_ov104_0223D8F0.h"
 

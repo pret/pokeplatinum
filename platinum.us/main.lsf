@@ -1560,8 +1560,8 @@ Overlay overlay104
 	Object main.nef.p/src_overlay104_ov104_0223B6F4.c.o
 	Object main.nef.p/src_overlay104_ov104_0223BCBC.c.o
 	Object main.nef.p/src_overlay104_ov104_0223C164.c.o
-	Object main.nef.p/src_overlay104_ov104_0223C2D4.c.o
-	Object main.nef.p/src_overlay104_ov104_0223D5D0.c.o
+	Object main.nef.p/src_overlay104_frontier_graphics.c.o
+	Object main.nef.p/src_overlay104_frontier_particle_system.c.o
 	Object main.nef.p/src_overlay104_ov104_0223D768.c.o
 	Object main.nef.p/src_overlay104_ov104_0223D860.c.o
 	Object main.nef.p/src_overlay104_ov104_0223D9E4.c.o

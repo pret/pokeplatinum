@@ -7,8 +7,8 @@
 
 #include "functypes/funcptr_0209B988.h"
 #include "overlay104/defs.h"
+#include "overlay104/frontier_graphics.h"
 #include "overlay104/frontier_script_manager.h"
-#include "overlay104/ov104_0223C2D4.h"
 #include "overlay104/struct_ov104_0222E8C8.h"
 #include "overlay104/struct_ov104_02230BE4.h"
 #include "overlay104/struct_ov104_0223C634.h"

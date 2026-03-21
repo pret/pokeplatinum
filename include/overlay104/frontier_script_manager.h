@@ -6,7 +6,7 @@
 #include "struct_decls/struct_0209B75C_decl.h"
 
 #include "overlay104/defs.h"
-#include "overlay104/ov104_0223C2D4.h"
+#include "overlay104/frontier_graphics.h"
 #include "overlay104/struct_ov104_0222E8C8.h"
 
 FrontierScriptManager *FrontierScriptManager_New(UnkStruct_0209B75C *param0, enum HeapID heapID, int scene);
