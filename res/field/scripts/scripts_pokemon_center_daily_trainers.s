@@ -318,7 +318,7 @@ PokemonCenterDailyTrainers_BattleDeclinedSecondNPC:
     End
 
 PokemonCenterDailyTrainers_CloseMessage:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

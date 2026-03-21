@@ -64,7 +64,7 @@ VeilstoneStore1F_Socialite:
 VeilstoneStore1F_Socialite_AfterMaskGiven:
     BufferAccessoryName 0, VAR_VEILSTONE_STORE_MASK
     Message VeilstoneStore1F_Text_GiveADifferentLookForContests
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

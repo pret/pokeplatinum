@@ -34,7 +34,7 @@ WaywardCave1F_Mira:
     SetFlag FLAG_TALKED_TO_WAYWARD_CAVE_1F_MIRA
     SetVar VAR_WAYWARD_CAVE_1F_FOLLOWER_MIRA_STATE, 1
     Message WaywardCave1F_Text_IllKeepYourPokemonHealthyAllTheTime
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     SetVar VAR_PARTNER_TRAINER_ID, TRAINER_MIRA_WAYWARD_CAVE
     SetHasPartner
@@ -64,14 +64,14 @@ WaywardCave1F_ThisCaveItsSoEasyToGetConfused:
 WaywardCave1F_PlayerDidYouGetToBeSoGoodBecauseYoureAlwaysWithPokemon:
     BufferPlayerName 0
     Message WaywardCave1F_Text_PlayerDidYouGetToBeSoGoodBecauseYoureAlwaysWithPokemon
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 WaywardCave1F_IncreaseFollowerMiraTimesTalked:
     AddVar VAR_FOLLOWER_MIRA_TIMES_TALKED, 1
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

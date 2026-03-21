@@ -24,14 +24,14 @@ _0021:
     Message 0
     SetVar VAR_0x8004, POKETCH_APPID_DAYCARECHECKER
     Common_GivePoketchApp
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _0051:
     Message 1
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

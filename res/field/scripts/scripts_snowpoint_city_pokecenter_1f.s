@@ -37,7 +37,7 @@ _0067:
     CallIfEq VAR_0x8000, 3, _00E0
     BufferPlayerName 0
     Message 0
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -60,7 +60,7 @@ _00E0:
 _00EC:
     BufferPlayerName 0
     Message 1
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

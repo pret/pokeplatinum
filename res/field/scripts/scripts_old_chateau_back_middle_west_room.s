@@ -32,7 +32,7 @@ OldChateauBackMiddleWestRoom_TV:
 
 OldChateauBackMiddleWestRoom_RotomDisappearedIntoTheTVSet:
     Message OldChateauBackMiddleWestRoom_Text_RotomDisappearedIntoTheTVSet
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -44,7 +44,7 @@ OldChateauBackMiddleWestRoom_End:
 
 OldChateauBackMiddleWestRoom_TheTVHasAnOddlyMalevolentFeel:
     Message OldChateauBackMiddleWestRoom_Text_TheTVHasAnOddlyMalevolentFeel
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

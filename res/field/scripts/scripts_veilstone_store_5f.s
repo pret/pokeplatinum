@@ -41,7 +41,7 @@ VeilstoneStore5F_Collector1:
 
 VeilstoneStore5F_Collector1AfterItemGiven:
     Message VeilstoneStore5F_Text_SticksToTheFoeAndInflictsDamage
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -165,7 +165,7 @@ VeilstoneStore5F_VendingMachineBagIsFull:
     End
 
 VeilstoneStore5F_VendingMachineClose:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     HideMoney
     ReleaseAll

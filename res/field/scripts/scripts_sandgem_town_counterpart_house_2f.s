@@ -10,7 +10,7 @@ SandgemTownCounterpartHouse2F_PC:
     LockAll
     BufferPlayerName 0
     Message SandgemTownCounterpartHouse2F_Text_PlayerCheckedThePCScreen
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

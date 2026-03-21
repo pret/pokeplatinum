@@ -470,7 +470,7 @@ AmitySquare_FollowerMon_SeemsToBeEnjoyingTheWalk:
 
 AmitySquare_FollowerMon_End:
     WaitCry
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -584,7 +584,7 @@ AmitySquare_YouMaySpendAllTheTimeYouLikeInAmitySquare:
     Return
 
 AmitySquare_WestReceptionist_End:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ApplyMovement 0, _08C8
     WaitMovement
@@ -592,7 +592,7 @@ AmitySquare_WestReceptionist_End:
     End
 
 AmitySquare_EastReceptionist_End:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ApplyMovement 1, _08D0
     WaitMovement
@@ -951,7 +951,7 @@ AmitySquare_GiftMan_AccessoryGift:
 
 AmitySquare_GiftMan_DeclinedGift:
     Message AmitySquare_Text_OhItsNoProblemToMe
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -970,7 +970,7 @@ AmitySquare_GiftMan_CannotFitItem:
 AmitySquare_GiftMan_ReceivedGift:
     SetFlag FLAG_AMITY_SQUARE_MAN_GIFT_RECEIVED
     Message AmitySquare_Text_HahahahPerhapsIllSeeYouAgainTomorrow
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

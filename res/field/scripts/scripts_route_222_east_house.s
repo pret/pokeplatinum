@@ -40,14 +40,14 @@ Route222EastHouse_Fisherman:
     Common_GiveItemQuantity
     UpdateSizeContestRecord VAR_0x8002
     Message Route222EastHouse_Text_WillDreamOfBiggerRemoraid
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 Route222EastHouse_NoRemoraid:
     Message Route222EastHouse_Text_DreamtLargeRemoraid
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -55,7 +55,7 @@ Route222EastHouse_NoRemoraid:
 Route222EastHouse_TiedRecord:
     BufferSizeContestRecord 0, 1, SPECIES_REMORAID
     Message Route222EastHouse_Text_RememberThisSize
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -64,28 +64,28 @@ Route222EastHouse_SmallerThanRecord:
     BufferPartyPokemonSize 0, 1, VAR_0x8002
     BufferSizeContestRecord 2, 3, SPECIES_REMORAID
     Message Route222EastHouse_Text_KnowAGenius
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 Route222EastHouse_ShowedOtherSpecies:
     Message Route222EastHouse_Text_DidYouListen
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 Route222EastHouse_BagFull:
     Message Route222EastHouse_Text_BagJammedFull
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 Route222EastHouse_ShowNoPokemon:
     Message Route222EastHouse_Text_DenyMeasureRemoraid
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

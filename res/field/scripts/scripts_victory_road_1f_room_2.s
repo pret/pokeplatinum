@@ -71,7 +71,7 @@ _00EC:
     SetFlag FLAG_UNK_0x00DF
     SetVar VAR_UNK_0x4090, 1
     Message 2
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     SetVar VAR_PARTNER_TRAINER_ID, TRAINER_MARLEY_VICTORY_ROAD
     SetHasPartner

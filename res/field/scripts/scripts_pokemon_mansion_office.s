@@ -40,7 +40,7 @@ _0067:
 
 _009F:
     Message 0
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -54,7 +54,7 @@ _00AA:
 
 _00CD:
     Message 4
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -92,7 +92,7 @@ _0155:
     GetTrophyGardenSlot1Species VAR_0x8000
     BufferSpeciesNameFromVar 0, VAR_0x8000, 0, 0
     Message 10
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -185,7 +185,7 @@ _0244:
 _0257:
     Message 15
     SetFlag FLAG_UNK_0x0164
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ApplyMovement 2, _01CC
     WaitMovement
@@ -199,7 +199,7 @@ _0270:
     GetRandom VAR_RESULT, 2
     CallIfEq VAR_RESULT, 0, _02BE
     CallIfEq VAR_RESULT, 1, _02C3
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ApplyMovement 2, _01CC
     WaitMovement
@@ -218,7 +218,7 @@ _02C8:
     GetRandom VAR_RESULT, 2
     CallIfEq VAR_RESULT, 0, _02FA
     CallIfEq VAR_RESULT, 1, _02FF
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ApplyMovement 2, _01CC
     WaitMovement
@@ -237,7 +237,7 @@ _0304:
     GetTrophyGardenSlot1Species VAR_0x8000
     BufferSpeciesNameFromVar 0, VAR_0x8000, 0, 0
     Message 14
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ApplyMovement 2, _01CC
     WaitMovement
@@ -249,7 +249,7 @@ _0325:
     LockAll
     FacePlayer
     Message 16
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ApplyMovement 3, _0344
     WaitMovement
@@ -322,7 +322,7 @@ _0408:
     End
 
 _0416:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

@@ -24,7 +24,7 @@ FloaromaTownMiddleHouse_Twin:
 
 FloaromaTownMiddleHouse_OhIGuessIJustLikeWeirdThings:
     Message FloaromaTownMiddleHouse_Text_OhIGuessIJustLikeWeirdThings
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -42,7 +42,7 @@ FloaromaTownMiddleHouse_HeresTheTMForTheMovePluck:
 
 FloaromaTownMiddleHouse_WhenAPokemonUsesPluckItEatsABerryHeldByItsFoe:
     Message FloaromaTownMiddleHouse_Text_WhenAPokemonUsesPluckItEatsABerryHeldByItsFoe
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

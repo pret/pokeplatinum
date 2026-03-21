@@ -15,14 +15,14 @@ TwinleafTownNortheastHouse_Guitarist:
 TwinleafTownNortheastHouse_YoureOffToHangWithRivalAgainRight:
     BufferRivalName 0
     Message TwinleafTownNortheastHouse_Text_YoureOffToHangWithRivalAgainRight
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 TwinleafTownNortheastHouse_IWentOnAnAdventureALongTimeAgo:
     Message TwinleafTownNortheastHouse_Text_IWentOnAnAdventureALongTimeAgo
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

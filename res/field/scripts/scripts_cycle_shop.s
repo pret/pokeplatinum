@@ -26,7 +26,7 @@ CycleShop_PokefanM:
 
 CycleShop_ThisIsTheLatestModelSoIllReadTheOperatingManualToYou:
     Message CycleShop_Text_ThisIsTheLatestModelSoIllReadTheOperatingManualToYou
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -41,14 +41,14 @@ CycleShop_Youngster:
     FacePlayer
     GoToIfSet FLAG_TEAM_GALACTIC_LEFT_ETERNA_BUILDING, CycleShop_WhatWasTeamGalacticTryingToDoWithOtherPeoplesPokemon
     Message CycleShop_Text_TheManagersGoneOffToTheTeamGalacticBuildingAndHasntReturned
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 CycleShop_WhatWasTeamGalacticTryingToDoWithOtherPeoplesPokemon:
     Message CycleShop_Text_WhatWasTeamGalacticTryingToDoWithOtherPeoplesPokemon
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

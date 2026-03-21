@@ -470,7 +470,7 @@ VeilstoneCity_DawnAcceptTeamUp:
 
 VeilstoneCity_DawnDeclineTeamUp:
     Message VeilstoneCity_Text_DawnIllBeWaiting
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -488,7 +488,7 @@ VeilstoneCity_LucasAcceptTeamUp:
 
 VeilstoneCity_LucasDeclineTeamUp:
     Message VeilstoneCity_Text_LucasIllBeWaiting
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -972,7 +972,7 @@ _0C77:
 
 _0CBC:
     Message 51
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -1035,14 +1035,14 @@ _0D5C:
     FacePlayer
     GoToIfBadgeAcquired BADGE_ID_COBBLE, _0D82
     Message VeilstoneCity_Text_ThisIsGalacticWarehouse1
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _0D82:
     Message 14
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -1053,14 +1053,14 @@ _0D8D:
     FacePlayer
     GoToIfBadgeAcquired BADGE_ID_COBBLE, _0DB3
     Message 13
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _0DB3:
     Message 15
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -1150,7 +1150,7 @@ _0EF4:
 
 _0F0B:
     Message 40
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     Common_FadeToDefaultMusic4
     ReleaseAll
@@ -1287,7 +1287,7 @@ VeilstoneCity_DeoxysMeteoriteSpeed:
     ChangeDeoxysForm DEOXYS_FORM_SPEED
     PlayCry SPECIES_DEOXYS
     Message VeilstoneCity_Text_MeteoriteSpeed
-    WaitABXPadPress
+    WaitButton
     WaitCry
     CloseMessage
     ReleaseAll
@@ -1301,7 +1301,7 @@ VeilstoneCity_DeoxysMeteoriteDefense:
     ChangeDeoxysForm DEOXYS_FORM_DEFENSE
     PlayCry SPECIES_DEOXYS
     Message VeilstoneCity_Text_MeteoriteDefense
-    WaitABXPadPress
+    WaitButton
     WaitCry
     CloseMessage
     ReleaseAll
@@ -1315,7 +1315,7 @@ VeilstoneCity_DeoxysMeteoriteAttack:
     ChangeDeoxysForm DEOXYS_FORM_ATTACK
     PlayCry SPECIES_DEOXYS
     Message VeilstoneCity_Text_MeteoriteAttack
-    WaitABXPadPress
+    WaitButton
     WaitCry
     CloseMessage
     ReleaseAll
@@ -1329,7 +1329,7 @@ VeilstoneCity_DeoxysMeteoriteNormal:
     ChangeDeoxysForm DEOXYS_FORM_NORMAL
     PlayCry SPECIES_DEOXYS
     Message VeilstoneCity_Text_MeteoriteNormal
-    WaitABXPadPress
+    WaitButton
     WaitCry
     CloseMessage
     ReleaseAll
@@ -1337,7 +1337,7 @@ VeilstoneCity_DeoxysMeteoriteNormal:
 
 VeilstoneCity_MeteoriteFromTheStars:
     Message VeilstoneCity_Text_MeteoriteFromTheStars
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -1400,7 +1400,7 @@ _122B:
     End
 
 _1236:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

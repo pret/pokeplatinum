@@ -80,7 +80,7 @@ IronRuins_ItsAStatueOfAPokemon:
     End
 
 IronRuins_StatueEnd:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -144,7 +144,7 @@ IronRuins_ActivateStatue:
     ScrCmd_29F 1
     SetVar VAR_IRON_RUINS_STATE, RUINS_STATE_ACTIVATED_STATUE
     Message IronRuins_Text_SomethingChangedInTheAir
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

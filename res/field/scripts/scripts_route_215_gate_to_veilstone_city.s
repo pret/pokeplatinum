@@ -11,14 +11,14 @@ _0006:
     FacePlayer
     GoToIfSet FLAG_UNK_0x0107, _0024
     Message 0
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _0024:
     Message 1
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

@@ -31,7 +31,7 @@ TwinleafTownRivalHouse1F_DidYouComeCallingOnRival:
     GoTo TwinleafTownRivalHouse1F_Release
 
 TwinleafTownRivalHouse1F_Release:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -39,7 +39,7 @@ TwinleafTownRivalHouse1F_Release:
 TwinleafTownRivalHouse1F_YouveBecomeFriendsWithAPokemonToo:
     BufferRivalName 1
     Message TwinleafTownRivalHouse1F_Text_YouveBecomeFriendsWithAPokemonToo
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -47,7 +47,7 @@ TwinleafTownRivalHouse1F_YouveBecomeFriendsWithAPokemonToo:
 TwinleafTownRivalHouse1F_HeShouldBeOutOnRoute201ByNow:
     BufferRivalName 1
     Message TwinleafTownRivalHouse1F_Text_HeShouldBeOutOnRoute201ByNow
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -56,7 +56,7 @@ TwinleafTownRivalHouse1F_ThatKidRocketedOffAgainLikeUsual:
     SetFlag FLAG_UNK_0x006E
     BufferRivalName 1
     Message TwinleafTownRivalHouse1F_Text_ThatKidRocketedOffAgainLikeUsual
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -64,7 +64,7 @@ TwinleafTownRivalHouse1F_ThatKidRocketedOffAgainLikeUsual:
 TwinleafTownRivalHouse1F_RivalTookOffLikeARocketAsUsual:
     BufferRivalName 1
     Message TwinleafTownRivalHouse1F_Text_RivalTookOffLikeARocketAsUsual
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

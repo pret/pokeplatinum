@@ -43,14 +43,14 @@ EternaCityCondominiums1F_TryGiveNickname:
 
 EternaCityCondominiums1F_ISeePleaseComeVisitAgain:
     Message EternaCityCondominiums1F_Text_ISeePleaseComeVisitAgain
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 EternaCityCondominiums1F_SelectedEgg:
     Message EternaCityCondominiums1F_Text_AnEggCanGoByNoOtherName
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -58,7 +58,7 @@ EternaCityCondominiums1F_SelectedEgg:
 EternaCityCondominiums1F_SelectedOutsiderPokemon:
     BufferPartyMonNickname 0, VAR_0x8005
     Message EternaCityCondominiums1F_Text_NicknameIsItThatIsATrulyImpeccableName
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -78,7 +78,7 @@ EternaCityCondominiums1F_GiveNewNickname:
     IncrementGameRecord RECORD_POKEMON_NICKNAMED
     BufferPartyMonNickname 0, VAR_0x8005
     Message EternaCityCondominiums1F_Text_ThisPokemonShallBeKnownAsNicknameItIsABetterNameThanBefore
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -86,7 +86,7 @@ EternaCityCondominiums1F_GiveNewNickname:
 EternaCityCondominiums1F_GaveSameNickname:
     BufferPartyMonNickname 0, VAR_0x8005
     Message EternaCityCondominiums1F_Text_ThisPokemonShallBeKnownAsNicknameItLooksNoDifferentFromBefore
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -119,7 +119,7 @@ EternaCityCondominiums1F_TryTrade:
     FinishNpcTrade
     SetFlag FLAG_TRADED_FOR_CHARAP_CHATOT
     Message EternaCityCondominiums1F_Text_YesSoAwesomeABuizel
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -127,21 +127,21 @@ EternaCityCondominiums1F_TryTrade:
 EternaCityCondominiums1F_WhatITotallyWantIsABuizel:
     FinishNpcTrade
     Message EternaCityCondominiums1F_Text_WhatITotallyWantIsABuizel
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 EternaCityCondominiums1F_OhOKTotallyGotIt:
     Message EternaCityCondominiums1F_Text_OhOKTotallyGotIt
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 EternaCityCondominiums1F_DidThatChatotITradedYouTotallyLearnThatChatterMove:
     Message EternaCityCondominiums1F_Text_DidThatChatotITradedYouTotallyLearnThatChatterMove
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -157,14 +157,14 @@ EternaCityCondominiums1F_PokefanM:
 
 EternaCityCondominiums1F_HiImTheBuildingSuperintented:
     Message EternaCityCondominiums1F_Text_HiImTheBuildingSuperintented
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 EternaCityCondominiums1F_ImBuildingSuperintendentMantain24HourWatchZZZ:
     Message EternaCityCondominiums1F_Text_ImBuildingSuperintendentMantain24HourWatchZZZ
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

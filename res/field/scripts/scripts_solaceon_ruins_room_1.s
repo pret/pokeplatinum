@@ -14,7 +14,7 @@ _0010:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     MessageUnown 0
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

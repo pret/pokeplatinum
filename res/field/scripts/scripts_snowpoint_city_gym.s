@@ -54,7 +54,7 @@ SnowpointGym_CandiceTryGiveTM72:
     BufferItemName 0, VAR_0x8004
     BufferTMHMMoveName 1, VAR_0x8004
     Message SnowpointGym_Text_CandiceExplainTM72
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -68,7 +68,7 @@ SnowpointGym_CandiceCannotGiveTM72:
 SnowpointGym_CandiceAfterBadge:
     GoToIfUnset FLAG_OBTAINED_CANDICE_TM72, SnowpointGym_CandiceTryGiveTM72
     Message SnowpointGym_Text_CandiceAfterBadge
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -84,7 +84,7 @@ SnowpointGym_GymGuide:
     FacePlayer
     GoToIfBadgeAcquired BADGE_ID_ICICLE, SnowpointGym_GymGuideAfterBadge
     Message SnowpointGym_Text_GymGuideBeforeBadge
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -92,7 +92,7 @@ SnowpointGym_GymGuide:
 SnowpointGym_GymGuideAfterBadge:
     BufferPlayerName 0
     Message SnowpointGym_Text_GymGuideAfterBadge
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -104,7 +104,7 @@ SnowpointGym_GymStatue:
     BufferRivalName 0
     BufferRivalName 1
     Message SnowpointGym_Text_GymStatueBeforeBadge
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -114,7 +114,7 @@ SnowpointGym_GymStatueAfterBadge:
     BufferPlayerName 1
     BufferRivalName 2
     Message SnowpointGym_Text_GymStatueAfterBadge
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

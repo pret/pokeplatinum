@@ -31,14 +31,14 @@ _001B:
 
 _006D:
     Message 33
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _0078:
     Message 32
-    WaitABXPadPress
+    WaitButton
     GoTo _001B
     End
 
@@ -60,7 +60,7 @@ _0097:
 
 _00AF:
     Message 8
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

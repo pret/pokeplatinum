@@ -78,7 +78,7 @@ ResortAreaRibbonSyndicateElevator_GoingUpMessage:
 
 ResortAreaRibbonSyndicateElevator_HereWeAreMessage:
     Message ResortAreaRibbonSyndicateElevator_Text_HereWeAre
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -94,7 +94,7 @@ ResortAreaRibbonSyndicateElevator_SelectCurrentFloor:
     SetVar VAR_ELEVATOR_FLOORS_ABOVE, -1
     WaitTime 1, VAR_RESULT
     Message ResortAreaRibbonSyndicateElevator_Text_SameFloor
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

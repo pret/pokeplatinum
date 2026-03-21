@@ -15,14 +15,14 @@ _000A:
     Message 0
     SetVar VAR_0x8004, POKETCH_APPID_ANALOGWATCH
     Common_GivePoketchApp
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _003A:
     Message 1
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

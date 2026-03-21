@@ -57,7 +57,7 @@ CanalaveGym_ByronTryGiveTM91:
     BufferItemName 0, VAR_0x8004
     BufferTMHMMoveName 1, VAR_0x8004
     Message CanalaveGym_Text_ByronExplainTM91
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -72,7 +72,7 @@ CanalaveGym_ByronAfterBadge:
     GoToIfUnset FLAG_OBTAINED_BYRON_TM91, CanalaveGym_ByronTryGiveTM91
     BufferRivalName 1
     Message CanalaveGym_Text_ByronAfterBadge
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -88,7 +88,7 @@ CanalaveGym_GymGuide:
     FacePlayer
     GoToIfBadgeAcquired BADGE_ID_MINE, CanalaveGym_GymGuideAfterBadge
     Message CanalaveGym_Text_GymGuideBeforeBadge
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -96,7 +96,7 @@ CanalaveGym_GymGuide:
 CanalaveGym_GymGuideAfterBadge:
     BufferPlayerName 0
     Message CanalaveGym_Text_GymGuideAfterBadge
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -108,7 +108,7 @@ CanalaveGym_GymStatue:
     BufferRivalName 0
     BufferRivalName 1
     Message CanalaveGym_Text_GymStatueBeforeBadge
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -118,7 +118,7 @@ CanalaveGym_GymStatueAfterBadge:
     BufferPlayerName 1
     BufferRivalName 2
     Message CanalaveGym_Text_GymStatueAfterBadge
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

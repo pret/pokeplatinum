@@ -338,14 +338,14 @@ _03E8:
     FacePlayer
     GoToIfSet FLAG_UNK_0x00A8, _0406
     Message 26
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _0406:
     Message 27
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -356,14 +356,14 @@ _0411:
     FacePlayer
     GoToIfSet FLAG_UNK_0x00A8, _042F
     Message 28
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _042F:
     Message 29
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -380,14 +380,14 @@ _043A:
 _0463:
     BufferPlayerName 0
     Message 31
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _0471:
     Message 32
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -404,14 +404,14 @@ _047C:
 _04A5:
     BufferPlayerName 0
     Message 34
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _04B3:
     Message 35
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -428,14 +428,14 @@ _04BE:
 _04E7:
     BufferPlayerName 0
     Message 37
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _04F5:
     Message 38
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -452,7 +452,7 @@ _0500:
 _0529:
     BufferPlayerName 0
     Message 40
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -465,7 +465,7 @@ _0537:
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, _0529
     Message 43
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -482,7 +482,7 @@ _056A:
 _0593:
     BufferPlayerName 0
     Message 45
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -495,7 +495,7 @@ _05A1:
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, _0593
     Message 48
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -512,14 +512,14 @@ _05D4:
 _05FD:
     BufferPlayerName 0
     Message 50
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _060B:
     Message 51
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -543,21 +543,21 @@ _0616:
 
 _0673:
     Message 55
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _067E:
     Message 56
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _0689:
     Message 57
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -565,7 +565,7 @@ _0689:
 _0694:
     BufferPlayerName 0
     Message 54
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

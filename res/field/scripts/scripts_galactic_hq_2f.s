@@ -32,7 +32,7 @@ _003E:
     WaitFadeScreen
     BufferPlayerName 0
     Message 2
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -83,7 +83,7 @@ _010A:
     End
 
 _0118:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

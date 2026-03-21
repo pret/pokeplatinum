@@ -17,7 +17,7 @@ _001A:
     FacePlayer
     BufferTMHMMoveName 0, ITEM_HM03
     Message 0
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

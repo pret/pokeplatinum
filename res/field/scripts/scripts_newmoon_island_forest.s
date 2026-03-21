@@ -51,7 +51,7 @@ _00BC:
     SetFlag FLAG_UNK_0x0241
     GoToIfEq VAR_UNK_0x40F8, 2, _00E3
     Message 3
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

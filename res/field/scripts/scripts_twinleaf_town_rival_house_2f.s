@@ -61,7 +61,7 @@ TwinleafTownRivalHouse2F_PC:
     LockAll
     BufferPlayerName 0
     Message TwinleafTownRivalHouse2F_Text_PCAdventureRules
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

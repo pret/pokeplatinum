@@ -13,7 +13,7 @@ _0006:
     SetFlag FLAG_UNK_0x00A9
     BufferRivalName 0
     Message 0
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -21,7 +21,7 @@ _0006:
 _002B:
     BufferRivalName 0
     Message 1
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

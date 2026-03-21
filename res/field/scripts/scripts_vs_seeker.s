@@ -32,7 +32,7 @@ _0059:
     GoTo _0068
 
 _0068:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

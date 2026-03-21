@@ -22,14 +22,14 @@ _004C:
     SetFlag FLAG_UNK_0x00F7
     SetFlag FLAG_UNK_0x0AA7
     Message 0
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _005F:
     Message 1
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -87,7 +87,7 @@ _010E:
 
 _012B:
     Message 7
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -95,7 +95,7 @@ _012B:
 _0136:
     BufferPartyMonSpecies 1, VAR_0x8002
     Message 8
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -238,7 +238,7 @@ _0396:
 
 _03EA:
     Message 9
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

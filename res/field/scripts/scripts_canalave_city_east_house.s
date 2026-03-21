@@ -62,7 +62,7 @@ _0105:
     Message 8
     PlayFanfare SEQ_WASURE
     WaitFanfare
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     End
 
@@ -78,7 +78,7 @@ _0125:
 
 _0130:
     Message 3
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

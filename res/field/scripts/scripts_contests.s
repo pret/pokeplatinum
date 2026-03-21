@@ -224,7 +224,7 @@ ContestRegistration_Receptionists_ContestMenuExit:
     SetVar VAR_UNK_0x40D5, 0
     ClearFlag FLAG_COMMUNICATION_CLUB_ACCESSIBLE
     Message ContestRegistration_Text_LookForwardToYourParticipationAnotherTime
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -664,7 +664,7 @@ ContestRegistration_StartPracticeContest:
     Call ContestRegistration_AssessPracticeResults
     GoToIfEq VAR_RESULT, MENU_YES, ContestRegistration_StartContest
     Message ContestRegistration_Text_WeLookForwardToYourNextVisit1
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -834,7 +834,7 @@ OngoingContest_OfficialContest_ReturnToContestRegistration:
     Common_GiveAccessory
 ContestRegistration_ThankYouForParticipating:
     Message ContestRegistration_Text_ThankYouForParticipating
-    WaitABXPadPress
+    WaitButton
     CloseMessage
 ContestRegistration_End:
     End
@@ -1089,7 +1089,7 @@ ContestRegistration_ReceptionistPracticeContest_PracticeCategoryMenu_ActingSelec
 
 ContestRegistration_ReceptionistPracticeContest_Exit2:
     Message ContestRegistration_Text_WeLookForwardToYourNextVisit3
-    WaitABXPadPress
+    WaitButton
     GoTo ContestRegistration_Receptionists_End
     End
 
@@ -1132,7 +1132,7 @@ ContestRegistration_Unused5:
 
 ContestRegistration_Unused6:
     Message ContestRegistration_Text_Unused6
-    WaitABXPadPress
+    WaitButton
     GoTo ContestRegistration_Receptionists_End
     End
 
@@ -1193,7 +1193,7 @@ ContestRegistration_ReceptionistPracticeContest_SelectContestTypeTough:
 
 ContestRegistration_ReceptionistPracticeContest_Exit3:
     Message ContestRegistration_Text_WeLookForwardToYourNextVisit4
-    WaitABXPadPress
+    WaitButton
     GoTo ContestRegistration_Receptionists_End
     End
 
@@ -1396,7 +1396,7 @@ ContestRegistration_Unused7:
 
 ContestRegistration_ReceptionistPracticeContest_Exit:
     Message ContestRegistration_Text_WeLookForwardToYourNextVisit1
-    WaitABXPadPress
+    WaitButton
 ContestRegistration_Receptionists_End:
     CloseMessage
     ReleaseAll

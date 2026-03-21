@@ -81,7 +81,7 @@ Route206CyclingRoadSouthGate_BattleGirl:
 
 Route206CyclingRoadSouthGate_GoThroughMtCoronetFromHereAndYouCanGetToHearthomeCity:
     Message Route206CyclingRoadSouthGate_Text_GoThroughMtCoronetFromHereAndYouCanGetToHearthomeCity
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

@@ -294,7 +294,7 @@ static BOOL ScrCmd_MessageSynchronized(ScriptContext *ctx);
 static BOOL ScriptContext_WaitForFinishedPrinting(ScriptContext *ctx);
 static BOOL ScrCmd_WaitABPress(ScriptContext *ctx);
 static BOOL ScriptContext_CheckABPress(ScriptContext *ctx);
-static BOOL ScrCmd_WaitABXPadPress(ScriptContext *ctx);
+static BOOL ScrCmd_WaitButton(ScriptContext *ctx);
 static BOOL ScriptContext_CheckABXPadPress(ScriptContext *ctx);
 static BOOL ScrCmd_WaitABPadPress(ScriptContext *ctx);
 static BOOL ScriptContext_CheckABPadPress(ScriptContext *ctx);
@@ -1411,7 +1411,7 @@ static BOOL ScriptContext_DecrementABPressTimer(ScriptContext *ctx)
     return ctx->data[0] == 0;
 }
 
-static BOOL ScrCmd_WaitABXPadPress(ScriptContext *ctx)
+static BOOL ScrCmd_WaitButton(ScriptContext *ctx)
 {
     ScriptContext_Pause(ctx, ScriptContext_CheckABXPadPress);
     return TRUE;

@@ -39,7 +39,7 @@ BerryTree_PlantedStateNoWater:
     BufferItemNameWithArticle 0, VAR_0x8000
     CapitalizeFirstLetter 0
     Message BerryTrees_Text_BerryWasPlantedHereAfterHarvest
-    WaitABXPadPress
+    WaitButton
     GoTo BerryTree_CloseAndEnd
 
 BerryTree_SproutedState:
@@ -52,7 +52,7 @@ BerryTree_SproutedState:
 BerryTree_SproutedStateNoWater:
     BufferBerryName 0, VAR_0x8000
     Message BerryTrees_Text_BerryPlantHasSproutedAfterHarvest
-    WaitABXPadPress
+    WaitButton
     GoTo BerryTree_CloseAndEnd
 
 BerryTree_GrowingState:
@@ -65,7 +65,7 @@ BerryTree_GrowingState:
 BerryTree_GrowingStateNoWater:
     BufferBerryName 0, VAR_0x8000
     Message BerryTrees_Text_BerryPlantIsGrowingBiggerAfterHarvest
-    WaitABXPadPress
+    WaitButton
     GoTo BerryTree_CloseAndEnd
 
 BerryTree_BloomingState:
@@ -78,7 +78,7 @@ BerryTree_BloomingState:
 BerryTree_BloomingStateNoWater:
     BufferBerryName 0, VAR_0x8000
     Message BerryTrees_Text_BerryPlantIsInBloomAfterHarvest
-    WaitABXPadPress
+    WaitButton
     GoTo BerryTree_CloseAndEnd
 
 BerryTree_CheckPlayerHasSprayduck:
@@ -116,7 +116,7 @@ BerryTree_OfferWatering:
     CloseMessage
     SetBerryWateringState BERRY_WATERING_START
     Message BerryTrees_Text_ThereAllHappy
-    WaitABXPadPress
+    WaitButton
     SetBerryWateringState BERRY_WATERING_END
     GoTo BerryTree_CloseAndEnd
 
@@ -158,7 +158,7 @@ BerryTree_ShowBerriesStoredMessage:
     GetItemPocket VAR_0x8000, VAR_RESULT
     BufferPocketName 3, VAR_RESULT
     Message BerryTrees_Text_PlayerPutAwayBerriesInBagPocket
-    WaitABXPadPress
+    WaitButton
     GoTo BerryTree_CloseAndEnd
 
 BerryTree_CheckBagSpace:
@@ -170,7 +170,7 @@ BerryTree_ShowMultipleBerriesBagFullMessage:
     BufferItemNamePlural 0, VAR_0x8000
 BerryTree_ShowBagFullMessage:
     Message BerryTrees_Text_BagIsFullBerriesCouldntBeTaken
-    WaitABXPadPress
+    WaitButton
     GoTo BerryTree_CloseAndEnd
 
 BerryTree_HandleHarvestDeclined:
@@ -189,7 +189,7 @@ BerryTree_ShowLeftBerriesMessage:
     BufferItemNamePlural 1, VAR_0x8000
     Message BerryTrees_Text_PlayerLeftBerriesWhereTheyWere
 BerryTree_EndLeftBerryMessage:
-    WaitABXPadPress
+    WaitButton
     GoTo BerryTree_CloseAndEnd
 
 BerryTree_CheckExistingMulch:
@@ -262,7 +262,7 @@ BerryTree_ApplyMulch:
 BerryTree_ShowMulchAppliedMessage:
     BufferItemName 0, VAR_0x8005
     Message BerryTrees_Text_MulchWasScatteredOnSoilAfterHarvest
-    WaitABXPadPress
+    WaitButton
     GoTo BerryTree_CloseAndEnd
 
 BerryTree_OfferPlantBerry:
@@ -281,7 +281,7 @@ BerryTree_OpenBerryMenu:
     GoToIfEq VAR_RESULT, 0, BerryTree_ReleaseAndEnd
     BufferItemName 0, VAR_RESULT
     Message BerryTrees_Text_BerryWasPlantedInSoftSoil
-    WaitABXPadPress
+    WaitButton
     RemoveItem VAR_RESULT, 1, VAR_0x8004
     PlantBerry VAR_RESULT
     GoTo BerryTree_CloseAndEnd
@@ -294,14 +294,14 @@ BerryTree_ReleaseAndEnd:
 
 BerryTree_ShowEmptySoilMessage:
     Message BerryTrees_Text_SoftEarthySoilAfterHarvest
-    WaitABXPadPress
+    WaitButton
     GoTo BerryTree_CloseAndEnd
 
 BerryTree_ShowMulchExistsMessage:
     GetBerryMulchType VAR_RESULT
     BufferItemName 0, VAR_RESULT
     Message BerryTrees_Text_MulchHasBeenLaidDownAfterHarvest
-    WaitABXPadPress
+    WaitButton
     GoTo BerryTree_CloseAndEnd
 
 BerryTree_PlantBerryScript:
@@ -310,7 +310,7 @@ BerryTree_PlantBerryScript:
     FacePlayer
     BufferItemName 0, VAR_0x8000
     Message BerryTrees_Text_BerryWasPlantedInSoftSoil
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     RemoveItem VAR_0x8000, 1, VAR_0x8004
     PlantBerry VAR_0x8000
@@ -321,7 +321,7 @@ BerryTree_WaterBerryScript:
     LockAll
     SetBerryWateringState BERRY_WATERING_START
     Message BerryTrees_Text_ThereAllHappy
-    WaitABXPadPress
+    WaitButton
     SetBerryWateringState BERRY_WATERING_END
     CloseMessage
     ReleaseAll

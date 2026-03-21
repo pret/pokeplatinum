@@ -247,7 +247,7 @@ ContestHallLobby_Frame4:
 
 ContestHallLobby_ItsAPhotoFrame:
     Message ContestHallLobby_Text_ItsAPhotoFrame
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -272,7 +272,7 @@ ContestHallLobby_RichBoy:
     GoToIfUnset FLAG_RECEIVED_CONTEST_HALL_LOBBY_MILD_POFFIN, ContestHallLobby_HasNotReceivedPoffinYet
 ContestHallLobby_ItTakesPracticeToWinContests:
     Message ContestHallLobby_Text_ItTakesPracticeToWinContests
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -286,14 +286,14 @@ ContestHallLobby_HasNotReceivedPoffinYet:
     Call ContestHallLobby_GiveMildPoffin
     SetFlag FLAG_RECEIVED_CONTEST_HALL_LOBBY_MILD_POFFIN
     Message ContestHallLobby_Text_FeedThatPoffinToAPokemon2
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 ContestHallLobby_PoffinCaseIsFull:
     Message ContestHallLobby_Text_YourPoffinCasesFull
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

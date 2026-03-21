@@ -153,7 +153,7 @@ GlobalTerminal1f_CheckPartyCount:
 
 GlobalTerminal1f_GTS_Exit_NotEnoughPokemon:
     Message pl_msg_00000046_00009
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -206,7 +206,7 @@ GlobalTerminal1f_GTS_Exit:
 GlobalTerminal1f_GTS_Clerk_EndTalk:
     SetVar VAR_UNK_0x40D5, 0
     Message pl_msg_00000046_00006
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -230,7 +230,7 @@ GlobalTerminal1f_CheckFreeBoxSlot:
 
 GlobalTerminal1f_GTS_Exit_NoSpace:
     Message pl_msg_00000046_00008
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -258,7 +258,7 @@ _0360:
 
 GlobalTerminal1f_GTS_Exit_BadEgg:
     CallCommonScript 0x2338 @ CommonScript_HasBadEgg; outputs pl_msg_00000221_00127
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -431,7 +431,7 @@ _05EE:
     End
 
 _05F9:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -449,14 +449,14 @@ _0601:
     ScrCmd_30E VAR_0x8004
     GoToIfEq VAR_0x8004, 0, _0647
     Message pl_msg_00000046_00030
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _0647:
     Message pl_msg_00000046_00031
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -508,7 +508,7 @@ _06FD:
     End
 
 _0708:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

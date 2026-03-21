@@ -80,7 +80,7 @@ IcebergRuins_ItsAStatueOfAPokemon:
     End
 
 IcebergRuins_StatueEnd:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -144,7 +144,7 @@ IcebergRuins_ActivateStatue:
     ScrCmd_29F 1
     SetVar VAR_ICEBERG_RUINS_STATE, RUINS_STATE_ACTIVATED_STATUE
     Message IcebergRuins_Text_SomethingChangedInTheAir
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

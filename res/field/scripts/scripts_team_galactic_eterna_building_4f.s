@@ -148,14 +148,14 @@ TeamGalacticEternaBuilding4F_PokefanM:
     FacePlayer
     GoToIfSet FLAG_TEAM_GALACTIC_LEFT_ETERNA_BUILDING, TeamGalacticEternaBuilding4F_ICantThankYouEnoughRightNowButCruiseByMyCycleShopOK
     Message TeamGalacticEternaBuilding4F_Text_WhatIsItWithThisTeamGalactic
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 TeamGalacticEternaBuilding4F_ICantThankYouEnoughRightNowButCruiseByMyCycleShopOK:
     Message TeamGalacticEternaBuilding4F_Text_ICantThankYouEnoughRightNowButCruiseByMyCycleShopOK
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

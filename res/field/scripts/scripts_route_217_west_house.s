@@ -13,14 +13,14 @@ _0006:
     CheckItem ITEM_HM08, 1, VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _0044
     Message 0
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _0039:
     Message 2
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

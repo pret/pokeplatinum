@@ -81,7 +81,7 @@ OreburghMineB1F_OhYouHaveAnOveradundanceOfThings:
     End
 
 OreburghMineB1F_HikerEnd:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

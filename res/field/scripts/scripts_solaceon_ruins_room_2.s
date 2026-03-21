@@ -14,7 +14,7 @@ _0006:
     CheckItem ITEM_HM05, 1, VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _0044
     Message 0
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -53,14 +53,14 @@ _00AE:
 _00B8:
     SetFlag FLAG_UNK_0x00E8
     Message 4
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _00C7:
     Message 5
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

@@ -29,7 +29,7 @@ EternaForestOutside_PokemonBreederF:
 
 EternaForestOutside_ICollectBerriesAndTradeThemForAccessoriesInFloaromaTown:
     Message EternaForestOutside_Text_ICollectBerriesAndTradeThemForAccessoriesInFloaromaTown
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

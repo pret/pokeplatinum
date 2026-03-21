@@ -55,7 +55,7 @@ FlowerParadise_Shaymin:
 
 FlowerParadise_ShayminDisappearedAmongTheFlowers:
     Message FlowerParadise_Text_ShayminDisappearedAmongTheFlowers
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ClearFlag FLAG_HIDE_FLOWER_PARADISE_SHAYMIN
     ReleaseAll

@@ -95,7 +95,7 @@ _0182:
 
 _018D:
     Message 5
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

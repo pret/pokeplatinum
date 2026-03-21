@@ -18,7 +18,7 @@ _0027:
     GoToIfUnset FLAG_UNK_0x00A7, _0040
     BufferPlayerName 0
     Message 15
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -429,7 +429,7 @@ _0538:
 
 _057A:
     Message 9
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

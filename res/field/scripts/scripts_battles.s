@@ -980,7 +980,7 @@ _0F5B:
     OpenMessage
     GetTrainerMessageTypes VAR_0x8000, VAR_0x8001, VAR_0x8002
     PrintTrainerDialogue VAR_0x8004, VAR_0x8001
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

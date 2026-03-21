@@ -114,7 +114,7 @@ _01BB:
 _01C3:
     WaitMovement
     Message 10
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     End
 
@@ -129,14 +129,14 @@ _01DA:
     LockAll
     GoToIfGe VAR_DISTORTION_WORLD_PROGRESS, 10, _01F8
     Message 3
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _01F8:
     Message 11
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

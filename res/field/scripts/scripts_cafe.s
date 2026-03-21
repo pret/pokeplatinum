@@ -79,7 +79,7 @@ _013E:
 
 _0143:
     Message 3
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     HideMoney
     ReleaseAll
@@ -87,7 +87,7 @@ _0143:
 
 _0150:
     Message 4
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     HideMoney
     ReleaseAll
@@ -95,7 +95,7 @@ _0150:
 
 _015D:
     Message 5
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     HideMoney
     ReleaseAll
@@ -107,14 +107,14 @@ _016A:
     FacePlayer
     GoToIfSet FLAG_UNK_0x0107, _0188
     Message 10
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _0188:
     Message 11
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

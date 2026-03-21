@@ -290,7 +290,7 @@ _046A:
     GoTo _0473
 
 _0473:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     SetVar VAR_CANALAVE_STATE, 5
     ClearFlag FLAG_HIDE_LAKE_VERITY_LOW_WATER_COUNTERPART
@@ -358,7 +358,7 @@ _050F:
     GoTo _0518
 
 _0518:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -376,7 +376,7 @@ _053C:
     GoTo _0545
 
 _0545:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -548,7 +548,7 @@ _080C:
 
 _0847:
     Message 29
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -634,14 +634,14 @@ _0938:
 
 _0943:
     Message 33
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _094E:
     Message 34
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -687,7 +687,7 @@ _09BC:
     GoToIfNe VAR_RESULT, 6, CanalaveCity_RIVAL_EnterLibrary
     BufferRivalName 0
     Message 3
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

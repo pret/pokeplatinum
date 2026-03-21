@@ -34,7 +34,7 @@ _003E:
 
 _006B:
     Message 1
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     HideMoney
     ReleaseAll

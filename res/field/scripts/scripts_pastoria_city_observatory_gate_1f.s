@@ -217,14 +217,14 @@ _02BF:
 
 _02EA:
     Message 13
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _02F5:
     Message 14
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -244,7 +244,7 @@ _031E:
     End
 
 _0329:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

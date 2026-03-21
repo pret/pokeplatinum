@@ -14,7 +14,7 @@ _000A:
     GetPartyMonNature VAR_0x8004, VAR_RESULT
     BufferNatureName 0, VAR_0x8004
     Message 0
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

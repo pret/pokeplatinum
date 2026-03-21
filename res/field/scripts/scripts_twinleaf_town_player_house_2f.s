@@ -44,7 +44,7 @@ TwinleafTownPlayerHouse2F_PC:
     LockAll
     BufferPlayerName 0
     Message TwinleafTownPlayerHouse2F_Text_PCPokemonBasics
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

@@ -47,14 +47,14 @@ JubilifeTV1F_AskCheckLuckyNumberAgain:
 
 JubilifeTV1F_YouveAlreadyDrawnALotoTicketToday:
     Message JubilifeTV1F_Text_YouveAlreadyDrawnALotoTicketToday
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 JubilifeTV1F_OhISeePleaseDoVisitUsAgain:
     Message JubilifeTV1F_Text_OhISeePleaseDoVisitUsAgain
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -72,7 +72,7 @@ JubilifeTV1F_CheckTodaysLuckyNumber:
 
 JubilifeTV1F_NoMatch:
     Message JubilifeTV1F_Text_ImSorryYouDidntGetAMatch
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -157,7 +157,7 @@ JubilifeTV1F_GiveLotteryPrize:
 JubilifeTV1F_OhYouSeemToHaveNoRoomForThis:
     SetVar VAR_LOTTERY_PRIZE_ITEM, VAR_0x8002
     Message JubilifeTV1F_Text_OhYouSeemToHaveNoRoomForThis
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -172,7 +172,7 @@ JubilifeTV1F_PleaseDoVisitAgain:
     SetVar VAR_LOTTERY_PRIZE_ITEM, 0
     SetFlag FLAG_OBTAINED_LOTTERY_PRIZE
     Message JubilifeTV1F_Text_PleaseDoVisitAgain
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

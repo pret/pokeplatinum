@@ -32,14 +32,14 @@ HearthomeCityPokemonFanClub_Gentleman:
     Common_GiveItemQuantity
     SetFlag FLAG_RECEIVED_HEARTHOME_CITY_POKEMON_FAN_CLUB_POFFIN_CASE
     Message HearthomeCityPokemonFanClub_Text_FillItWithPoffins
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 HearthomeCityPokemonFanClub_WeAreTheNumberOneFanClub:
     Message HearthomeCityPokemonFanClub_Text_WeAreTheNumberOneFanClub
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -69,49 +69,49 @@ HearthomeCityPokemonFanClub_Beauty:
 
 HearthomeCityPokemonFanClub_Friendship255:
     Message HearthomeCityPokemonFanClub_Text_ItSimplyAdoresYou
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 HearthomeCityPokemonFanClub_Friendship200To254:
     Message HearthomeCityPokemonFanClub_Text_ItsVeryFriendlyTowardYou
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 HearthomeCityPokemonFanClub_Friendship150To199:
     Message HearthomeCityPokemonFanClub_Text_ItsQuiteFriendlyToYou
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 HearthomeCityPokemonFanClub_Friendship100To149:
     Message HearthomeCityPokemonFanClub_Text_ItsWarmingUpToYou
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 HearthomeCityPokemonFanClub_Friendship50To99:
     Message HearthomeCityPokemonFanClub_Text_ItsFeelingNeutralTowardYou
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 HearthomeCityPokemonFanClub_Friendship1To49:
     Message HearthomeCityPokemonFanClub_Text_ItSeemsToDislikeYouALittle
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 HearthomeCityPokemonFanClub_Friendship0:
     Message HearthomeCityPokemonFanClub_Text_ThisOneReallyHasntTakenTooKindlyToYou
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

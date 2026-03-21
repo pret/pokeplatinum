@@ -75,7 +75,7 @@ _00FD:
 
 _0130:
     Message 8
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -128,7 +128,7 @@ _0184:
 
 _01AF:
     Message 8
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

@@ -49,14 +49,14 @@ _0095:
     FacePlayer
     GoToIfSet FLAG_UNK_0x00D7, _00B3
     Message 10
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _00B3:
     Message 11
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -132,7 +132,7 @@ _01AB:
     End
 
 _01B6:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -208,7 +208,7 @@ _02CB:
     BufferRivalName 0
     BufferPlayerName 1
     Message 3
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

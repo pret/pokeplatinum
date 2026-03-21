@@ -125,7 +125,7 @@ JubilifeTVElevator_ElevatorAnimation:
 
 JubilifeTVElevator_HereWeAreMessage:
     Message JubilifeTVElevator_Text_HereWeAre
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -134,7 +134,7 @@ JubilifeTVElevator_SameFloorMessage:
     SetVar VAR_ELEVATOR_FLOORS_ABOVE, -1
     WaitTime 1, VAR_RESULT
     Message JubilifeTVElevator_Text_SameFloor
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -143,7 +143,7 @@ JubilifeTVElevator_SelectNoFloor:
     SetVar VAR_ELEVATOR_FLOORS_ABOVE, -1
     WaitTime 1, VAR_RESULT
     Message JubilifeTVElevator_Text_LookForward
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

@@ -36,7 +36,7 @@ _0025:
 _0073:
     BufferPlayerName 0
     Message 0
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -59,7 +59,7 @@ _0081:
 
 _00C6:
     Message 3
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

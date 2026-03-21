@@ -27,14 +27,14 @@ _0039:
     FadeScreenIn
     WaitFadeScreen
     Message 1
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _0066:
     Message 2
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -65,7 +65,7 @@ _00AD:
     WaitFadeScreen
     BufferPlayerName 0
     Message 6
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

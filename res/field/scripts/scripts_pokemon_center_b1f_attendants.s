@@ -52,7 +52,7 @@ _0086:
 _00C6:
     SetVar VAR_UNK_0x40D4, 1
     Message 4
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -79,7 +79,7 @@ _00F4:
 
 _0118:
     Message 4
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -159,14 +159,14 @@ _0245:
 
 _0261:
     Message 12
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _026C:
     Message 8
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -315,7 +315,7 @@ _0424:
 
 _0430:
     CallCommonScript 0x2338
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -373,7 +373,7 @@ _0508:
     End
 
 _0513:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

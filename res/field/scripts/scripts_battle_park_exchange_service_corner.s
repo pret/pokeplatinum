@@ -67,7 +67,7 @@ BattleParkExchangeServiceCorner_Unused2:
 
 BattleParkExchangeServiceCorner_Unused3:
     Message 6
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     HideBattlePoints
     ReleaseAll
@@ -133,7 +133,7 @@ _01F1:
     LockAll
     Message 11
     Message 12
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

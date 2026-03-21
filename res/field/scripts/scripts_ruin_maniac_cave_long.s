@@ -17,14 +17,14 @@ _0010:
     GetUnownFormsSeenCount VAR_RESULT
     GoToIfGe VAR_RESULT, 26, _0034
     Message 0
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _0034:
     Message 1
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

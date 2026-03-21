@@ -32,7 +32,7 @@ _0038:
 
 _0063:
     Message 3
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -100,7 +100,7 @@ _0166:
     RemoveItem ITEM_OLD_CHARM, 1, VAR_RESULT
     SetFlag FLAG_UNK_0x00A6
     Message 7
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -190,7 +190,7 @@ _022C:
 _024A:
     SetVar VAR_UNK_0x40F1, 1
     Message 0
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     Return
 
@@ -215,7 +215,7 @@ _026C:
 
 _0289:
     Message 8
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -236,7 +236,7 @@ _0294:
     SetFlag FLAG_UNK_0x0299
     WaitTime 12, VAR_RESULT
     Message 11
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

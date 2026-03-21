@@ -31,7 +31,7 @@ _0021:
     WaitMovement
     BufferPlayerName 0
     Message 2
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     SetVar VAR_EXITED_DISTORTION_WORLD_STATE, 2
     SetVar VAR_SANDGEM_TOWN_LAB_STATE, 2
@@ -81,7 +81,7 @@ _00E0:
     End
 
 _00EB:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

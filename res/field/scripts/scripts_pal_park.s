@@ -42,7 +42,7 @@ PalPark_Trigger_Countdown:
 PalPark_Unused:
     SetInCatchingShowFlag
     SetVar VAR_PAL_PARK_STATE, 1
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -131,14 +131,14 @@ PalPark_AskPlayerRetireFromCatchingShow:
     GoToIfEq VAR_RESULT, GENDER_FEMALE, PalPark_NotRetireFromCatchingShow_Female
     BufferPlayerName 0
     Message PalPark_Text_ThatTheSpirit_Male
-    WaitABXPadPress
+    WaitButton
     SetVar VAR_RESULT, FALSE
     Return
 
 PalPark_NotRetireFromCatchingShow_Female:
     BufferPlayerName 0
     Message PalPark_Text_ThatTheSpirit_Female
-    WaitABXPadPress
+    WaitButton
     SetVar VAR_RESULT, FALSE
     Return
 

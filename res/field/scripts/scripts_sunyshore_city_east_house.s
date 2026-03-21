@@ -13,7 +13,7 @@ _0006:
     GoToIfGe VAR_UNK_0x40B5, 1, _002C
     SetVar VAR_UNK_0x40B5, 1
     Message 0
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -31,7 +31,7 @@ _006B:
     FindPartySlotWithNature VAR_0x8000, NATURE_SERIOUS
     GoToIfNe VAR_0x8000, 0xFF, _00C5
     Message 1
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -40,7 +40,7 @@ _0089:
     FindPartySlotWithNature VAR_0x8000, NATURE_NAIVE
     GoToIfNe VAR_0x8000, 0xFF, _00E5
     Message 2
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -49,7 +49,7 @@ _00A7:
     FindPartySlotWithNature VAR_0x8000, NATURE_QUIRKY
     GoToIfNe VAR_0x8000, 0xFF, _0105
     Message 3
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -60,7 +60,7 @@ _00C5:
     Message 4
     SetVar VAR_0x8004, POKETCH_APPID_CALENDAR
     Common_GivePoketchApp
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -71,7 +71,7 @@ _00E5:
     Message 5
     SetVar VAR_0x8004, POKETCH_APPID_DOTART
     Common_GivePoketchApp
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -82,14 +82,14 @@ _0105:
     Message 6
     SetVar VAR_0x8004, POKETCH_APPID_ROULETTE
     Common_GivePoketchApp
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _0125:
     Message 7
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

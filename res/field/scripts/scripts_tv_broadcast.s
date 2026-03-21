@@ -22,14 +22,14 @@ TVBroadcast_Interact:
 TVBroadcast_PlayCommercial:
     LoadTVCommercial VAR_0x8004, VAR_0x8005
     MessageFromBank VAR_0x8004, VAR_0x8005
-    WaitABXPadPress
+    WaitButton
     GoTo TVBroadcast_End
     End
 
 TVBroadcast_FinishProgram:
     LoadTVFarewell VAR_0x8004, VAR_0x8005
     MessageFromBank VAR_0x8004, VAR_0x8005
-    WaitABXPadPress
+    WaitButton
     FinishTVProgram
     GoTo TVBroadcast_End
     End
@@ -51,7 +51,7 @@ TVBroadcast_FinishProgram_Early:
     TVBroadcastDummy VAR_0x8004, VAR_0x8005
     MessageFromBank VAR_0x8004, VAR_0x8005
     FinishTVProgram
-    WaitABXPadPress
+    WaitButton
     GoTo TVBroadcast_End
     End
 
@@ -62,7 +62,7 @@ TVBroadcast_PlaySegment:
     LoadTVSegment VAR_0x8006, VAR_0x8004, VAR_0x8005
     TVBroadcastDummy VAR_0x8006, VAR_0x8004, VAR_0x8005
     MessageFromBank VAR_0x8004, VAR_0x8005
-    WaitABXPadPress
+    WaitButton
     GoTo TVBroadcast_End
     End
 

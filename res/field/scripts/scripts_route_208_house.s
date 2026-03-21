@@ -31,7 +31,7 @@ _001C:
 
 _0067:
     Message 1
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -60,14 +60,14 @@ _00C7:
     SetVar VAR_MAP_LOCAL_0, 1
     SetVar VAR_0x8004, POKETCH_APPID_BERRYSEARCHER
     Common_GivePoketchApp
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _00E2:
     Message 4
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -75,14 +75,14 @@ _00E2:
 _00ED:
     BufferPoketchAppName 0, POKETCH_APPID_BERRYSEARCHER
     Message 5
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _00FD:
     Message 6
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -129,7 +129,7 @@ _0180:
     GoTo _0229
 
 _0229:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     HideMoney
     ReleaseAll

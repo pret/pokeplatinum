@@ -59,7 +59,7 @@ SandgemTownLab_CheckShouldRatePokedex:
     GoToIfGe VAR_SANDGEM_TOWN_STATE, 2, SandgemTownLab_CheckPokedexRatings
     BufferPlayerName 0
     Message SandgemTownLab_Text_GoOnYourGrandAdventureAwaitsYou
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -71,7 +71,7 @@ SandgemTownLab_CheckPokedexRatings:
 SandgemTownLab_IfYouSeeCynthiaGiveHerMyBestRegards:
     BufferPlayerName 0
     Message SandgemTownLab_Text_IfYouSeeCynthiaGiveHerMyBestRegards
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -105,7 +105,7 @@ SandgemTownLab_WhyNotObtainSunyshoresBadge:
     GetLocalDexSeenCount VAR_RESULT
     BufferNumber 1, VAR_RESULT
     Message SandgemTownLab_Text_WhyNotObtainSunyshoresBadge
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     SetFlag FLAG_HIDE_VALOR_LAKEFRONT_COLLECTOR
     SetVar VAR_UNK_0x4112, 1
@@ -393,7 +393,7 @@ SandgemTownLab_ScientistM:
     GoToIfEq VAR_RESULT, TRUE, SandgemTownLab_YouveBeenGreatForTheProfsResearch
     BufferCounterpartName 0
     Message SandgemTownLab_Text_ImCounterpartsFather
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -401,14 +401,14 @@ SandgemTownLab_ScientistM:
 SandgemTownLab_YouveBeenGreatForTheProfsResearch:
     BufferCounterpartName 0
     Message SandgemTownLab_Text_YouveBeenGreatForTheProfsResearch
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 SandgemTownLab_ImStunnedByYourGreatness:
     Message SandgemTownLab_Text_ImStunnedByYourGreatness
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -422,21 +422,21 @@ SandgemTownLab_ScientistF:
     GetNationalDexEnabled VAR_RESULT
     GoToIfEq VAR_RESULT, TRUE, SandgemTownLab_ProfessorRowanHasBeenStudyingPokedexSystems
     Message SandgemTownLab_Text_ItsAnHonorToBeAnAssistant
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 SandgemTownLab_ProfessorRowanHasBeenStudyingPokedexSystems:
     Message SandgemTownLab_Text_ProfessorRowanHasBeenStudyingPokedexSystems
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 SandgemTownLab_HearingWhatWasHappeningGaveMeShivers:
     Message SandgemTownLab_Text_HearingWhatWasHappeningGaveMeShivers
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -495,7 +495,7 @@ SandgemTownLab_AskYouveComeToShowMeYourProgressOnThePokedex:
 
 SandgemTownLab_WhatsWrong:
     Message SandgemTownLab_Text_WhatsWrong
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -563,7 +563,7 @@ SandgemTownLab_EnableNationalDex:
     SetVar VAR_0x8005, 1
     Common_GiveItemQuantity
     Message SandgemTownLab_Text_ThatsThePokemonRadar
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -585,7 +585,7 @@ SandgemTownLab_FemaleYouShouldVisitThePalParkToo:
 
 SandgemTownLab_ThereAreManyMorePokemon:
     Message SandgemTownLab_Text_ThereAreManyMorePokemon
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

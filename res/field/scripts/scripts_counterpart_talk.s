@@ -22,7 +22,7 @@ _0027:
 _003A:
     CallIfEq VAR_0x8004, GENDER_MALE, _005C
     CallIfEq VAR_0x8004, GENDER_FEMALE, _0064
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -193,7 +193,7 @@ _037C:
     End
 
 _03A1:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

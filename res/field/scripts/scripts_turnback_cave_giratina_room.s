@@ -48,7 +48,7 @@ _0084:
 
 _0090:
     Message 1
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

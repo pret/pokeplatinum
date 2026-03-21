@@ -384,7 +384,7 @@ LakeVerityLowWater_ProfRowan:
     SetFlag FLAG_TALKED_TO_LAKE_VERITY_LOW_WATER_PROF_ROWAN
     BufferPlayerName 0
     Message LakeVerityLowWater_Text_RowanNoLegendaryPokemonHowWasLakeValor
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -392,7 +392,7 @@ LakeVerityLowWater_ProfRowan:
 LakeVerityLowWater_RowanHowWasLakeValor:
     BufferPlayerName 0
     Message LakeVerityLowWater_Text_RowanHowWasLakeValor
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -416,7 +416,7 @@ LakeVerityLowWater_LucasHowsLakeValor:
     GoTo LakeVerityLowWater_CloseMessage
 
 LakeVerityLowWater_CloseMessage:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

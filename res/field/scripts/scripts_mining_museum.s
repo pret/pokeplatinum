@@ -202,14 +202,14 @@ MiningMuseum_SingleFossilRevival:
 MiningMuseum_ExtractingPokemon:
     SetFlag FLAG_UNK_0x0001
     Message MiningMuseum_Text_ExtractingPokemonLeave
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 MiningMuseum_DeclinedRevival:
     Message MiningMuseum_Text_DeclinedFossilRevival
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -257,21 +257,21 @@ MiningMuseum_NoNickname:
 
 MiningMuseum_PartyFull:
     Message MiningMuseum_Text_PartyFull
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 MiningMuseum_NoFossils:
     Message MiningMuseum_Text_BringFossilsToMe
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 MiningMuseum_NotYetReady:
     Message MiningMuseum_Text_NotYetReady
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

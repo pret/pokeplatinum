@@ -50,7 +50,7 @@ _0064:
     SetFlag FLAG_UNK_0x00E1
     SetVar VAR_UNK_0x4092, 1
     Message 2
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     SetVar VAR_PARTNER_TRAINER_ID, TRAINER_RILEY_IRON_ISLAND
     SetHasPartner
@@ -246,7 +246,7 @@ _031C:
     ClearFlag FLAG_UNK_0x00E2
     Call _0371
     Message 15
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     Return
 
@@ -254,7 +254,7 @@ _0353:
     SetFlag FLAG_UNK_0x00E2
     SetVar VAR_UNK_0x4092, 2
     Message 13
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     Return
 
@@ -418,14 +418,14 @@ _04E0:
 
 _04EB:
     Message 22
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _04F6:
     AddVar VAR_UNK_0x40E3, 1
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -438,7 +438,7 @@ _0504:
 
 _0513:
     Message 15
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

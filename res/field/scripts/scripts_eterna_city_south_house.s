@@ -94,7 +94,7 @@ EternaCitySouthHouse_DidNotCatchAllRoamingLegendaryBirds:
     Return
 
 EternaCitySouthHouse_ProfOakEnd:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

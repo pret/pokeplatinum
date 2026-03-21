@@ -21,7 +21,7 @@ _0014:
     ScrCmd_22B
     SetFlag FLAG_UNK_0x00F6
     Message 1
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -49,7 +49,7 @@ _0060:
     FinishNpcTrade
     SetFlag FLAG_UNK_0x00F5
     Message 3
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -57,21 +57,21 @@ _0060:
 _00C4:
     FinishNpcTrade
     Message 4
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _00D1:
     Message 5
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _00DC:
     Message 6
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

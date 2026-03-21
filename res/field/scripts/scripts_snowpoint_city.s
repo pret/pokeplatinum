@@ -71,7 +71,7 @@ _00B4:
 
 _00D4:
     Message 1
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -80,7 +80,7 @@ _00DF:
     GoToIfUnset FLAG_GAME_COMPLETED, _00D4
     GoToIfEq VAR_UNK_0x407F, 0, _0102
     Message 2
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -110,7 +110,7 @@ _011B:
     WaitMovement
     SetVar VAR_UNK_0x407F, 1
     Message 4
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     Return
 
@@ -151,14 +151,14 @@ _01C0:
     FacePlayer
     GoToIfGe VAR_UNK_0x407F, 1, _01E0
     Message 7
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _01E0:
     Message 8
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -188,14 +188,14 @@ _022A:
 
 _0260:
     Message 13
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _026B:
     Message 12
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

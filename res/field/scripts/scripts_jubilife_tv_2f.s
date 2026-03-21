@@ -44,7 +44,7 @@ JubilifeTV2F_GymGuide:
 JubilifeTV2F_IHopeYouGetIntoCollectingAccessoriesForYourPokemon:
     BufferAccessoryName 0, VAR_ACCESSORY_STARTER_MASK
     Message JubilifeTV2F_Text_IHopeYouGetIntoCollectingAccessoriesForYourPokemon
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

@@ -117,7 +117,7 @@ PalParkLobby_Receptionist_CheckIfCanParticipate:
 
 PalParkLobby_Receptionist_DontParticipate:
     Message PalParkLobby_Text_AwwThatsTooBad
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -173,7 +173,7 @@ PalParkLobby_WalkInAndWarp:
 
 PalParkLobby_Receptionist_NotEnoughMonForCatchingShow:
     Message PalParkLobby_Text_YouDontHaveEnoughPokemonForACatchingShow
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -184,7 +184,7 @@ PalParkLobby_Manual:
 
 PalParkLobby_Receptionist_NotEnoughSpaceInPCBoxes:
     Message PalParkLobby_Text_YouHaveNoRoomForSixMorePokemon
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -308,21 +308,21 @@ PalParkLobby_Daughter:
 
 PalParkLobby_Daughter_ICameToSeePlayersCatchingShow:
     Message PalParkLobby_Text_ICameToSeePlayersCatchingShowWithDaddy
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 PalParkLobby_Daughter_YourCatchingShowWasFantastic:
     Message PalParkLobby_Text_EekPlayerYourCatchingShowWasFantastic
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 PalParkLobby_Daughter_IHopeYouDoBetterNextTime:
     Message PalParkLobby_Text_OhPlayerIHopeYouDoBetterNextTime
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -429,7 +429,7 @@ PalParkLobby_PoketchAppLady:
     Message PalParkLobby_Text_OhASnorlaxItSureLooksLikeItCanEat
     SetVar VAR_0x8004, POKETCH_APPID_KITCHENTIMER
     Common_GivePoketchApp
-    WaitABXPadPress
+    WaitButton
     SetVar VAR_MAP_LOCAL_A, 1
     CloseMessage
     ReleaseAll
@@ -442,7 +442,7 @@ PalParkLobby_PoketchAppLady_CheckKecleon:
     Message PalParkLobby_Text_OhAKecleonHowColorful
     SetVar VAR_0x8004, POKETCH_APPID_COLORCHANGER
     Common_GivePoketchApp
-    WaitABXPadPress
+    WaitButton
     SetVar VAR_MAP_LOCAL_A, 2
     CloseMessage
     ReleaseAll
@@ -451,7 +451,7 @@ PalParkLobby_PoketchAppLady_CheckKecleon:
 PalParkLobby_PoketchAppLady_JustReceivedKitchenTimer:
     BufferPoketchAppName 0, POKETCH_APPID_KITCHENTIMER
     Message PalParkLobby_Text_DoesntThatKitchenTimerMakeYouWantToCookSomething
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -459,21 +459,21 @@ PalParkLobby_PoketchAppLady_JustReceivedKitchenTimer:
 PalParkLobby_PoketchAppLady_JustReceivedColorChanger:
     BufferPoketchAppName 0, POKETCH_APPID_COLORCHANGER
     Message PalParkLobby_Text_ChangingColorsCanChangeYourMoodToo
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 PalParkLobby_PoketchAppLady_DoesntHaveSpecies:
     Message PalParkLobby_Text_WhatWasThatPokemonNameNow
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 PalParkLobby_PoketchAppLady_ReceivedAllPoketchApps:
     Message PalParkLobby_Text_PalParkIsSoScintillatingAreYouTakingTheChallengeToo
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -494,14 +494,14 @@ PalParkLobby_GBASlotGiftLady:
 
 PalParkLobby_GBASlotGiftLady_NoGBAGame:
     Message PalParkLobby_Text_IEspeciallyLookForwardToSeeingPokemonFromKantoAndHoenn
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 PalParkLobby_GBASlotGiftLady_JustReceivedGift:
     Message PalParkLobby_Text_NotOnlyAreThereCatchingShowsThereAreAlsoPokemonContests
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

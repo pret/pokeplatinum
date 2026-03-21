@@ -26,7 +26,7 @@ Route204North_AceTrainerF:
 
 Route204North_CaptivateOnlyWorksAgainstTheOppositeGender:
     Message Route204North_Text_CaptivateOnlyWorksAgainstTheOppositeGender
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

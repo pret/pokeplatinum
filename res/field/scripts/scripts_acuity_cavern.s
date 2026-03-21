@@ -43,7 +43,7 @@ AcuityCavern_Uxie:
 
 AcuityCavern_UxieDisappeared:
     Message AcuityCavern_Text_UxieDisappeared
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

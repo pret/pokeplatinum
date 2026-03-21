@@ -82,7 +82,7 @@ LakeVerity_LucasNeedsYourHelp:
     End
 
 LakeVerity_CloseMessageCounterpartNeedsYourHelp:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -92,7 +92,7 @@ LakeVerity_INeedYouToGoToLakeAcuity:
     BufferPlayerName 0
     BufferRivalName 1
     Message LakeVerity_Text_INeedYouToGoToLakeAcuity
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -120,7 +120,7 @@ LakeVerity_LucasILostToHerButJustBarely:
     End
 
 LakeVerity_CloseMessageCounterpartLostToMars:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -144,7 +144,7 @@ LakeVerity_LucasWhatsTeamGalacticUpTo:
     End
 
 LakeVerity_CloseMessageWhatsTeamGalacticUpTo:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -177,7 +177,7 @@ LakeVerity_WhatTimingYouveGotToHelpLucas:
 
 LakeVerity_CloseMessageYouveGotToHelpCounterpart:
     SetVar VAR_LAKE_VERITY_PROF_ROWAN_STATE, 1
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -225,7 +225,7 @@ LakeVerity_Mars:
     SetVar VAR_LAKE_ACUITY_STATE, 1
     BufferRivalName 0
     Message LakeVerity_Text_WhatIsHappeningAtLakeAcuity
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

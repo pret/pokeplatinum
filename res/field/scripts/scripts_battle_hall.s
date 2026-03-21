@@ -214,7 +214,7 @@ BattleHall_EndChallenge:
 _0355:
     SetVar VAR_BATTLE_HALL_LOBBY_LOAD_ACTION, 0
     Message BattleHall_Text_HopeToSeeYouAgain
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -717,7 +717,7 @@ BattleHall_RecordKeeperIntro:
     End
 
 BattleHall_RecordKeeperEnd:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -793,7 +793,7 @@ BattleHall_Winston1Species:
     End
 
 BattleHall_WinstonEnd:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -869,7 +869,7 @@ BattleHall_Serena1Species:
     End
 
 BattleHall_SerenaEnd:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -913,7 +913,7 @@ BattleHall_Jasmine:
     End
 
 BattleHall_MajorNPCEnd:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

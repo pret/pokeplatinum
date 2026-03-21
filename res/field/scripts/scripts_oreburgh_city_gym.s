@@ -52,7 +52,7 @@ OreburghGym_RoarkGiveTM76:
     BufferItemName 0, VAR_0x8004
     BufferTMHMMoveName 1, VAR_0x8004
     Message OreburghGym_Text_RoarkExplainStealthRock
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -66,7 +66,7 @@ OreburghGym_RoarkGiveTM76BagFull:
 OreburghGym_AlreadyHaveCoalBadge:
     GoToIfUnset FLAG_OBTAINED_ROARK_TM76, OreburghGym_RoarkGiveTM76
     Message OreburghGym_Text_RoarkGymBeaten
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -82,7 +82,7 @@ OreburghGym_GymGuide:
     FacePlayer
     GoToIfBadgeAcquired BADGE_ID_COAL, OreburghGym_GymGuideAfterBadge
     Message OreburghGym_Text_GymGuideBeforeBadge
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -90,7 +90,7 @@ OreburghGym_GymGuide:
 OreburghGym_GymGuideAfterBadge:
     BufferPlayerName 0
     Message OreburghGym_Text_GymGuideAfterBadge
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -102,7 +102,7 @@ OreburghGym_GymStatue:
     BufferRivalName 0
     BufferRivalName 1
     Message OreburghGym_Text_GymStatueBeforeBadge
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -112,7 +112,7 @@ OreburghGym_GymStatueAfterBadge:
     BufferPlayerName 1
     BufferRivalName 2
     Message OreburghGym_Text_GymStatueAfterBadge
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

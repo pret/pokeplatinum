@@ -97,14 +97,14 @@ HearthomeCity_Fisherman:
 
 HearthomeCity_ItMakesMeHappy:
     Message HearthomeCity_Text_ItMakesMeHappy
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 HearthomeCity_IDoApologize:
     Message HearthomeCity_Text_IDoApologize
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -140,7 +140,7 @@ HearthomeCity_WalkToContestHallEast:
 HearthomeCity_ThisIsTheContestHall:
     SetFlag FLAG_UNK_0x0001
     Message HearthomeCity_Text_ThisIsTheContestHall
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -405,21 +405,21 @@ HearthomeCity_NoGoodsToGive:
 
 HearthomeCity_TalkToMeSomeOtherTime:
     Message HearthomeCity_Text_TalkToMeSomeOtherTime
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 HearthomeCity_YourUndergroundPCIsFull:
     Message HearthomeCity_Text_YourUndergroundPCIsFull
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 HearthomeCity_TalkToMeSomeOtherTime2:
     Message HearthomeCity_Text_TalkToMeSomeOtherTime2
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

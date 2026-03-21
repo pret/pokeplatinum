@@ -263,7 +263,7 @@ Route201_GoOnChoosePokemon:
     WaitMovement
     BufferPlayerName 1
     Message Route201_Text_YouCanChooseFirst
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     Common_FadeToDefaultMusic
     SetObjectEventMovementType LOCALID_RIVAL, MOVEMENT_TYPE_LOOK_WEST
@@ -1149,7 +1149,7 @@ Route201_Lass:
     GoTo Route201_LassCloseMessage
 
 Route201_LassCloseMessage:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -1175,7 +1175,7 @@ Route201_Cashier:
 
 Route201_YouCanFindMartsInCitiesAndMajorTowns:
     Message Route201_Text_YouCanFindMartsInCitiesAndMajorTowns
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -1232,7 +1232,7 @@ Route201_RivalRunToPlayerX113:
 Route201_SetRivalPartner:
     BufferRivalName 0
     Message Route201_Text_TogetherWeveGotNothingToFear
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     SetVar VAR_FOLLOWER_RIVAL_STATE, 3
     SetStepFlag

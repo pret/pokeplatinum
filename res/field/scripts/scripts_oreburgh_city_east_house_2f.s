@@ -28,7 +28,7 @@ OreburghCityEastHouse2F_Youngster:
 
 OreburghCityEastHouse2F_YouKnowHowPokemonStayInsideTheirPokeBalls:
     Message OreburghCityEastHouse2F_Text_YouKnowHowPokemonStayInsideTheirPokeBalls
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

@@ -159,13 +159,13 @@ JubilifeTV2FGallery_CheckDressUpPokemonResult:
     GoToIfEq VAR_0x8005, 0, JubilifeTV2FGallery_OhYouCameOutWithoutDoingAnythingHowDisappointing
     SetVar VAR_MAP_LOCAL_1, 1
     Message JubilifeTV2FGallery_Text_OohNiceWorkOhButItNeedsToHaveATitle
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     GoTo JubilifeTV2FGallery_SetDressUpPhotoTitle
 
 JubilifeTV2FGallery_OhYouSillyThingWheresYourSenseOfAdventure:
     Message JubilifeTV2FGallery_Text_OhYouSillyThingWheresYourSenseOfAdventure
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -190,7 +190,7 @@ JubilifeTV2FGallery_SetDressUpPhotoTitle:
     ApplyMovement LOCALID_HIKER, JubilifeTV2FGallery_Movement_HikerFaceEast
     WaitMovement
     Message JubilifeTV2FGallery_Text_IPutYourPhotoUpRightHere
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ApplyMovement LOCALID_HIKER, JubilifeTV2FGallery_Movement_HikerFaceSouth
     WaitMovement
@@ -199,13 +199,13 @@ JubilifeTV2FGallery_SetDressUpPhotoTitle:
 
 JubilifeTV2FGallery_OhNonNonNonItWillBeForlornWithoutATitle:
     Message JubilifeTV2FGallery_Text_OhNonNonNonItWillBeForlornWithoutATitle
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     GoTo JubilifeTV2FGallery_SetDressUpPhotoTitle
 
 JubilifeTV2FGallery_OhYouCameOutWithoutDoingAnythingHowDisappointing:
     Message JubilifeTV2FGallery_Text_OhYouCameOutWithoutDoingAnythingHowDisappointing
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -440,7 +440,7 @@ JubilifeTV2FGallery_Frame10:
 
 JubilifeTV2FGallery_ItsAFrameForHoldingAPokemonPortraitPhoto:
     Message JubilifeTV2FGallery_Text_ItsAFrameForHoldingAPokemonPortraitPhoto
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

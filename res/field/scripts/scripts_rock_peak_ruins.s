@@ -80,7 +80,7 @@ RockPeakRuins_ItsAStatueOfAPokemonFromSomewhereSomethingSpokeOut:
     End
 
 RockPeakRuins_StatueEnd:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -144,7 +144,7 @@ RockPeakRuins_ActivateStatue:
     ScrCmd_29F 1
     SetVar VAR_ROCK_PEAK_RUINS_STATE, RUINS_STATE_ACTIVATED_STATUE
     Message RockPeakRuins_Text_SomethingChangedInTheAir
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

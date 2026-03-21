@@ -43,7 +43,7 @@ _0039:
 
 _00D8:
     Message 7
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     HideCoins
     ReleaseAll
@@ -155,7 +155,7 @@ _0266:
     End
 
 _0276:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

@@ -59,7 +59,7 @@ _00C8:
 
 _00D0:
     Message 1
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ClearFlag FLAG_UNK_0x024E
     ReleaseAll

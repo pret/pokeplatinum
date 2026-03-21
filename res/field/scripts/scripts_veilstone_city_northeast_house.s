@@ -82,7 +82,7 @@ _0109:
     End
 
 _0114:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

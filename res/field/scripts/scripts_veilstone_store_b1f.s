@@ -68,7 +68,7 @@ VeilstoneStoreB1F_ProfRowanAfterSpokenTo:
     End
 
 VeilstoneStoreB1F_ProfRowanClose:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -142,7 +142,7 @@ VeilstoneStoreB1F_LavaCookieVendorComeAgain:
     End
 
 VeilstoneStoreB1F_LavaCookieVendorClose:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     HideMoney
     ReleaseAll
@@ -183,7 +183,7 @@ VeilstoneStoreB1F_PoffinVendorPleaseComeAgain:
     End
 
 VeilstoneStoreB1F_PoffinVendorClose:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     HideMoney
     ReleaseAll
@@ -303,7 +303,7 @@ VeilstoneStoreB1F_Unused:
     End
 
 VeilstoneStoreB1F_PoffinVendorClose2:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     HideMoney
     ReleaseAll
