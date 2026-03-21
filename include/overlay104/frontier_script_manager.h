@@ -6,8 +6,8 @@
 #include "struct_decls/struct_0209B75C_decl.h"
 
 #include "overlay104/defs.h"
+#include "overlay104/ov104_0223C2D4.h"
 #include "overlay104/struct_ov104_0222E8C8.h"
-#include "overlay104/struct_ov104_0223C4CC_decl.h"
 
 FrontierScriptManager *FrontierScriptManager_New(UnkStruct_0209B75C *param0, enum HeapID heapID, int scene);
 BOOL ov104_0222E6A8(FrontierScriptManager *scriptMan);
@@ -17,6 +17,6 @@ void FrontierScriptManager_UpdateMessageLoader(FrontierScriptManager *scriptMan,
 UnkStruct_ov104_0222E8C8 *ov104_0222E8C8(FrontierScriptManager *param0, enum HeapID heapID);
 void ov104_0222E8E8(FrontierScriptManager *param0, UnkStruct_ov104_0222E8C8 *param1);
 u16 *ov104_0222E91C(FrontierScriptManager *param0, int param1);
-UnkStruct_ov104_0223C4CC *ov104_0222E924(FrontierScriptManager *param0);
+FrontierGraphics *FrontierScriptManager_GetGraphics(FrontierScriptManager *scriptMan);
 
 #endif // POKEPLATINUM_FRONTIER_SCRIPT_MANAGER_H

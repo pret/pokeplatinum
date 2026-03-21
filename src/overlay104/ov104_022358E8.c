@@ -13,7 +13,6 @@
 #include "overlay104/struct_ov104_02230BE4.h"
 #include "overlay104/struct_ov104_0223597C.h"
 #include "overlay104/struct_ov104_0223BA10.h"
-#include "overlay104/struct_ov104_0223C4CC.h"
 
 #include "communication_system.h"
 #include "field_battle_data_transfer.h"
@@ -266,7 +265,7 @@ BOOL FrontierScrCmd_A0(FrontierScriptContext *param0)
     u32 v6, v7;
     int v8, v9, v10;
     UnkStruct_ov104_02230BE4 *v11;
-    UnkStruct_ov104_0223C4CC *v12;
+    FrontierGraphics *v12;
     u8 v13[4];
     u8 v14 = FrontierScriptContext_ReadByte(param0);
     u8 v15 = FrontierScriptContext_ReadByte(param0);
@@ -407,8 +406,8 @@ BOOL FrontierScrCmd_A0(FrontierScriptContext *param0)
         *v17 = v3->unk_12;
         break;
     case 36:
-        v12 = ov104_0222E924(param0->scriptMan);
-        ov104_0223BB84(v12->unk_00, v3, 3);
+        v12 = FrontierScriptManager_GetGraphics(param0->scriptMan);
+        ov104_0223BB84(v12->bgConfig, v3, 3);
         break;
     case 37:
         ov104_0222E278(&(v3->unk_4C[0]), v3->unk_30[v3->unk_11], HEAP_ID_FIELD2, 178);

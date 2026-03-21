@@ -17,7 +17,6 @@
 #include "overlay104/struct_ov104_02230BE4.h"
 #include "overlay104/struct_ov104_02238240.h"
 #include "overlay104/struct_ov104_0223BFFC.h"
-#include "overlay104/struct_ov104_0223C4CC.h"
 #include "overlay104/struct_ov104_0223C634.h"
 
 #include "communication_information.h"
@@ -285,7 +284,7 @@ BOOL FrontierScrCmd_BF(FrontierScriptContext *param0)
     u16 v10;
     int v11, v12, v13;
     UnkStruct_ov104_02230BE4 *v14;
-    UnkStruct_ov104_0223C4CC *v15;
+    FrontierGraphics *v15;
     TrainerInfo *v16;
     u8 v17 = FrontierScriptContext_ReadByte(param0);
     u8 v18 = FrontierScriptContext_GetVar(param0);
@@ -294,7 +293,7 @@ BOOL FrontierScrCmd_BF(FrontierScriptContext *param0)
 
     v3 = sub_0209B978(param0->scriptMan->unk_00);
     v14 = sub_0209B970(param0->scriptMan->unk_00);
-    v15 = ov104_0222E924(param0->scriptMan);
+    v15 = FrontierScriptManager_GetGraphics(param0->scriptMan);
 
     switch (v17) {
     case 2:
@@ -485,7 +484,7 @@ BOOL FrontierScrCmd_BF(FrontierScriptContext *param0)
         break;
     case 44:
         if (v18 == 0) {
-            PaletteData_Blend(v15->unk_04, 2, 0, 16 * 16, v18, 0x0);
+            PaletteData_Blend(v15->plttData, 2, 0, 16 * 16, v18, 0x0);
         } else {
             {
                 u32 v25;
@@ -495,7 +494,7 @@ BOOL FrontierScrCmd_BF(FrontierScriptContext *param0)
                 v26 = ov104_0223D5A8(param0->scriptMan->unk_00, v19);
                 v25 = ov63_0222D050(v26->unk_04);
 
-                PaletteData_Blend(v15->unk_04, 2, v25 * 16, 16, v18, 0x0);
+                PaletteData_Blend(v15->plttData, 2, v25 * 16, 16, v18, 0x0);
             }
         }
         break;
@@ -540,8 +539,8 @@ BOOL FrontierScrCmd_BF(FrontierScriptContext *param0)
 static void ov104_02237C0C(FrontierScriptContext *param0, UnkStruct_ov104_0223BFFC *param1, u16 param2)
 {
     FrontierScriptManager *v0 = param0->scriptMan;
-    UnkStruct_ov104_0223C4CC *v1 = ov104_0222E924(param0->scriptMan);
-    ParticleSystem *v2 = ov104_0223D6D0(v1->unk_10, 0);
+    FrontierGraphics *v1 = FrontierScriptManager_GetGraphics(param0->scriptMan);
+    ParticleSystem *v2 = FrontierParticleSystem_GetParticleSystem(v1->particleSys, 0);
     ParticleSystem_CreateEmitterWithCallback(v2, param2, ov104_02237C30, param1);
 
     return;
@@ -644,7 +643,7 @@ BOOL FrontierScrCmd_C5(FrontierScriptContext *param0)
 BOOL FrontierScrCmd_C6(FrontierScriptContext *param0)
 {
     UnkStruct_ov104_0223BFFC *v0;
-    UnkStruct_ov104_0223C4CC *v1 = ov104_0222E924(param0->scriptMan);
+    FrontierGraphics *v1 = FrontierScriptManager_GetGraphics(param0->scriptMan);
     u16 v2 = FrontierScriptContext_GetVar(param0);
     u16 v3 = FrontierScriptContext_GetVar(param0);
     u16 v4 = FrontierScriptContext_GetVar(param0);

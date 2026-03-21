@@ -7,7 +7,6 @@
 
 #include "overlay104/ov104_0223C164.h"
 #include "overlay104/ov104_0223D9E4.h"
-#include "overlay104/struct_ov104_0223C4CC.h"
 
 #include "bg_window.h"
 #include "gx_layers.h"
@@ -16,7 +15,7 @@
 
 #include "res/field/frontier_scripts/fr_script.naix"
 
-typedef void (*UnkFuncPtr_ov104_0223F394)(UnkStruct_ov104_0223C4CC *, void **);
+typedef void (*UnkFuncPtr_ov104_0223F394)(FrontierGraphics *, void **);
 
 typedef struct FrontierScene {
     GXBGMode bgMode;
@@ -38,22 +37,22 @@ typedef struct FrontierScene {
     u16 unused;
 } FrontierScene;
 
-static void ov104_0222EBBC(UnkStruct_ov104_0223C4CC *param0, void **param1);
-static void ov104_0222EBCC(UnkStruct_ov104_0223C4CC *param0, void **param1);
-static void ov104_0222EBD8(UnkStruct_ov104_0223C4CC *param0, void **param1);
-static void ov104_0222EC0C(UnkStruct_ov104_0223C4CC *param0, void **param1);
-static void ov104_0222EC18(UnkStruct_ov104_0223C4CC *param0, void **param1);
-static void ov104_0222EC1C(UnkStruct_ov104_0223C4CC *param0, void **param1);
-static void ov104_0222EC20(UnkStruct_ov104_0223C4CC *param0, void **param1);
-static void ov104_0222EC58(UnkStruct_ov104_0223C4CC *param0, void **param1);
-static void ov104_0222EC5C(UnkStruct_ov104_0223C4CC *param0, void **param1);
-static void ov104_0222EC70(UnkStruct_ov104_0223C4CC *param0, void **param1);
-static void ov104_0222EC74(UnkStruct_ov104_0223C4CC *param0, void **param1);
-static void ov104_0222EC8C(UnkStruct_ov104_0223C4CC *param0, void **param1);
-static void ov104_0222EC90(UnkStruct_ov104_0223C4CC *param0, void **param1);
-static void ov104_0222ECA0(UnkStruct_ov104_0223C4CC *param0, void **param1);
-static void ov104_0222ECAC(UnkStruct_ov104_0223C4CC *param0, void **param1);
-static void ov104_0222ECE4(UnkStruct_ov104_0223C4CC *param0, void **param1);
+static void ov104_0222EBBC(FrontierGraphics *param0, void **param1);
+static void ov104_0222EBCC(FrontierGraphics *param0, void **param1);
+static void ov104_0222EBD8(FrontierGraphics *param0, void **param1);
+static void ov104_0222EC0C(FrontierGraphics *param0, void **param1);
+static void ov104_0222EC18(FrontierGraphics *param0, void **param1);
+static void ov104_0222EC1C(FrontierGraphics *param0, void **param1);
+static void ov104_0222EC20(FrontierGraphics *param0, void **param1);
+static void ov104_0222EC58(FrontierGraphics *param0, void **param1);
+static void ov104_0222EC5C(FrontierGraphics *param0, void **param1);
+static void ov104_0222EC70(FrontierGraphics *param0, void **param1);
+static void ov104_0222EC74(FrontierGraphics *param0, void **param1);
+static void ov104_0222EC8C(FrontierGraphics *param0, void **param1);
+static void ov104_0222EC90(FrontierGraphics *param0, void **param1);
+static void ov104_0222ECA0(FrontierGraphics *param0, void **param1);
+static void ov104_0222ECAC(FrontierGraphics *param0, void **param1);
+static void ov104_0222ECE4(FrontierGraphics *param0, void **param1);
 
 static const FrontierScene sFrontierScenes[] = {
     {
@@ -401,33 +400,33 @@ int GetFrontierSceneValue(int scene, enum FrontierSceneParam sceneParam)
     return 0;
 }
 
-void ov104_0222EB8C(UnkStruct_ov104_0223C4CC *param0, void **param1, int param2)
+void ov104_0222EB8C(FrontierGraphics *param0, void **param1, int sceneID)
 {
-    if (sFrontierScenes[param2].unk_04 != NULL) {
-        sFrontierScenes[param2].unk_04(param0, param1);
+    if (sFrontierScenes[sceneID].unk_04 != NULL) {
+        sFrontierScenes[sceneID].unk_04(param0, param1);
     }
 }
 
-void ov104_0222EBA4(UnkStruct_ov104_0223C4CC *param0, void **param1, int param2)
+void ov104_0222EBA4(FrontierGraphics *param0, void **param1, int param2)
 {
     if (sFrontierScenes[param2].unk_08 != NULL) {
         sFrontierScenes[param2].unk_08(param0, param1);
     }
 }
 
-static void ov104_0222EBBC(UnkStruct_ov104_0223C4CC *param0, void **param1)
+static void ov104_0222EBBC(FrontierGraphics *param0, void **param1)
 {
     *param1 = Heap_Alloc(HEAP_ID_94, 32);
 }
 
-static void ov104_0222EBCC(UnkStruct_ov104_0223C4CC *param0, void **param1)
+static void ov104_0222EBCC(FrontierGraphics *param0, void **param1)
 {
     Heap_Free(*param1);
 }
 
-static void ov104_0222EBD8(UnkStruct_ov104_0223C4CC *param0, void **param1)
+static void ov104_0222EBD8(FrontierGraphics *param0, void **param1)
 {
-    *param1 = ov104_0223D9E4(param0->unk_00, param0->unk_04);
+    *param1 = ov104_0223D9E4(param0->bgConfig, param0->plttData);
 
     Bg_SetPriority(BG_LAYER_MAIN_0, 1);
     Bg_SetPriority(BG_LAYER_MAIN_2, 2);
@@ -437,23 +436,23 @@ static void ov104_0222EBD8(UnkStruct_ov104_0223C4CC *param0, void **param1)
     return;
 }
 
-static void ov104_0222EC0C(UnkStruct_ov104_0223C4CC *param0, void **param1)
+static void ov104_0222EC0C(FrontierGraphics *param0, void **param1)
 {
     ov104_0223DA28(*param1);
     return;
 }
 
-static void ov104_0222EC18(UnkStruct_ov104_0223C4CC *param0, void **param1)
+static void ov104_0222EC18(FrontierGraphics *param0, void **param1)
 {
     return;
 }
 
-static void ov104_0222EC1C(UnkStruct_ov104_0223C4CC *param0, void **param1)
+static void ov104_0222EC1C(FrontierGraphics *param0, void **param1)
 {
     return;
 }
 
-static void ov104_0222EC20(UnkStruct_ov104_0223C4CC *param0, void **param1)
+static void ov104_0222EC20(FrontierGraphics *param0, void **param1)
 {
     Bg_SetPriority(BG_LAYER_MAIN_0, 1);
     Bg_SetPriority(BG_LAYER_MAIN_2, 2);
@@ -465,47 +464,47 @@ static void ov104_0222EC20(UnkStruct_ov104_0223C4CC *param0, void **param1)
     return;
 }
 
-static void ov104_0222EC58(UnkStruct_ov104_0223C4CC *param0, void **param1)
+static void ov104_0222EC58(FrontierGraphics *param0, void **param1)
 {
     return;
 }
 
-static void ov104_0222EC5C(UnkStruct_ov104_0223C4CC *param0, void **param1)
+static void ov104_0222EC5C(FrontierGraphics *param0, void **param1)
 {
     Bg_SetPriority(BG_LAYER_MAIN_2, 3);
     Bg_SetPriority(BG_LAYER_MAIN_3, 2);
     return;
 }
 
-static void ov104_0222EC70(UnkStruct_ov104_0223C4CC *param0, void **param1)
+static void ov104_0222EC70(FrontierGraphics *param0, void **param1)
 {
     return;
 }
 
-static void ov104_0222EC74(UnkStruct_ov104_0223C4CC *param0, void **param1)
+static void ov104_0222EC74(FrontierGraphics *param0, void **param1)
 {
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG0, GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, 20, 20);
     return;
 }
 
-static void ov104_0222EC8C(UnkStruct_ov104_0223C4CC *param0, void **param1)
+static void ov104_0222EC8C(FrontierGraphics *param0, void **param1)
 {
     return;
 }
 
-static void ov104_0222EC90(UnkStruct_ov104_0223C4CC *param0, void **param1)
+static void ov104_0222EC90(FrontierGraphics *param0, void **param1)
 {
-    *param1 = ov104_0223C164(param0->unk_00);
+    *param1 = ov104_0223C164(param0->bgConfig);
     return;
 }
 
-static void ov104_0222ECA0(UnkStruct_ov104_0223C4CC *param0, void **param1)
+static void ov104_0222ECA0(FrontierGraphics *param0, void **param1)
 {
     ov104_0223C23C(*param1);
     return;
 }
 
-static void ov104_0222ECAC(UnkStruct_ov104_0223C4CC *param0, void **param1)
+static void ov104_0222ECAC(FrontierGraphics *param0, void **param1)
 {
     Bg_SetPriority(BG_LAYER_MAIN_1, 0);
     Bg_SetPriority(BG_LAYER_MAIN_0, 2);
@@ -516,7 +515,7 @@ static void ov104_0222ECAC(UnkStruct_ov104_0223C4CC *param0, void **param1)
     return;
 }
 
-static void ov104_0222ECE4(UnkStruct_ov104_0223C4CC *param0, void **param1)
+static void ov104_0222ECE4(FrontierGraphics *param0, void **param1)
 {
     return;
 }

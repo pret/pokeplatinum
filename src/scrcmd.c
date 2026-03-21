@@ -6583,7 +6583,7 @@ static BOOL ScrCmd_2C4(ScriptContext *ctx)
     }
 
     v2->options = SaveData_GetOptions(ctx->fieldSystem->saveData);
-    v2->unk_24 = v1;
+    v2->sceneID = v1;
     v2->saveData = ctx->fieldSystem->saveData;
     v2->unk_1C = ctx->fieldSystem->location->mapId;
     v2->journalEntry = ctx->fieldSystem->journalEntry;

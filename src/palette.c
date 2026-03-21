@@ -454,7 +454,7 @@ u16 PaletteData_GetSelectedBuffersMask(PaletteData *paletteData)
     return paletteData->selectedBuffers;
 }
 
-void PaletteData_SetAutoTransparent(PaletteData *paletteData, int val)
+void PaletteData_SetAutoTransparent(PaletteData *paletteData, BOOL val)
 {
     paletteData->autoTransparent = val;
 }

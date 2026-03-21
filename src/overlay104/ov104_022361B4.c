@@ -17,7 +17,6 @@
 #include "overlay104/ov104_0223B6F4.h"
 #include "overlay104/struct_ov104_0223597C.h"
 #include "overlay104/struct_ov104_0223BA10.h"
-#include "overlay104/struct_ov104_0223C4CC.h"
 
 #include "bg_window.h"
 #include "communication_information.h"
@@ -676,24 +675,24 @@ BOOL ov104_02236F70(UnkStruct_ov104_0223BA10 *param0, u16 param1, u16 param2)
 
 void ov104_02236FC0(FrontierScriptManager *param0, UnkStruct_ov104_0223BA10 *param1)
 {
-    UnkStruct_ov104_0223C4CC *v0 = ov104_0222E924(param0);
+    FrontierGraphics *v0 = FrontierScriptManager_GetGraphics(param0);
 
     GF_ASSERT(param0->unk_A8 == NULL);
     GF_ASSERT(param0->unk_AC == NULL);
 
     if (BattleCastle_IsMultiPlayerChallenge(param1->unk_10) == 0) {
         param0->unk_A8 = Window_New(HEAP_ID_FIELD2, 1);
-        Window_Add(v0->unk_00, param0->unk_A8, 1, 1, 1, 10, 4, 14, ((((1024 - (18 + 12)) - 9) - (27 * 4)) - (11 * 22)) - (10 * 4));
-        ov104_022370C0(v0->unk_00, param0->unk_A8);
+        Window_Add(v0->bgConfig, param0->unk_A8, 1, 1, 1, 10, 4, 14, ((((1024 - (18 + 12)) - 9) - (27 * 4)) - (11 * 22)) - (10 * 4));
+        ov104_022370C0(v0->bgConfig, param0->unk_A8);
     } else {
         param0->unk_A8 = Window_New(HEAP_ID_FIELD2, 1);
         param0->unk_AC = Window_New(HEAP_ID_FIELD2, 1);
 
-        Window_Add(v0->unk_00, param0->unk_A8, 1, 1, 1, 10, 4, 14, ((((1024 - (18 + 12)) - 9) - (27 * 4)) - (11 * 22)) - (10 * 4));
-        Window_Add(v0->unk_00, param0->unk_AC, 1, 21, 1, 10, 4, 14, (((((1024 - (18 + 12)) - 9) - (27 * 4)) - (11 * 22)) - (10 * 4)) - (10 * 4));
+        Window_Add(v0->bgConfig, param0->unk_A8, 1, 1, 1, 10, 4, 14, ((((1024 - (18 + 12)) - 9) - (27 * 4)) - (11 * 22)) - (10 * 4));
+        Window_Add(v0->bgConfig, param0->unk_AC, 1, 21, 1, 10, 4, 14, (((((1024 - (18 + 12)) - 9) - (27 * 4)) - (11 * 22)) - (10 * 4)) - (10 * 4));
 
-        ov104_022370C0(v0->unk_00, param0->unk_A8);
-        ov104_022370C0(v0->unk_00, param0->unk_AC);
+        ov104_022370C0(v0->bgConfig, param0->unk_A8);
+        ov104_022370C0(v0->bgConfig, param0->unk_AC);
     }
 
     ov104_02237180(param0, param1);

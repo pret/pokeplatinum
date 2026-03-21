@@ -22,7 +22,6 @@
 #include "overlay104/struct_ov104_02232B78.h"
 #include "overlay104/struct_ov104_0223319C.h"
 #include "overlay104/struct_ov104_022331E8.h"
-#include "overlay104/struct_ov104_0223C4CC.h"
 
 #include "bg_window.h"
 #include "character_sprite.h"
@@ -97,8 +96,8 @@ void FrontierShowMessage(FrontierScriptManager *scriptMan, const MessageLoader *
     GetMessage(scriptMan, msgLoader, messageID);
 
     if (msgOptions == NULL) {
-        UnkStruct_ov104_0223C4CC *v3 = ov104_0222E924(scriptMan);
-        UnkStruct_ov104_02230BE4 *v4 = sub_0209B970(v3->unk_08);
+        FrontierGraphics *graphics = FrontierScriptManager_GetGraphics(scriptMan);
+        UnkStruct_ov104_02230BE4 *v4 = sub_0209B970(graphics->unk_08);
 
         renderDelay = Options_TextFrameDelay(v4->options);
         autoScroll = AUTO_SCROLL_DISABLED;
@@ -114,11 +113,11 @@ void FrontierShowMessage(FrontierScriptManager *scriptMan, const MessageLoader *
 
 static void OpenMessageBox(FrontierScriptManager *scriptMan)
 {
-    UnkStruct_ov104_0223C4CC *v0 = ov104_0222E924(scriptMan);
+    FrontierGraphics *graphics = FrontierScriptManager_GetGraphics(scriptMan);
 
     if (scriptMan->isMsgBoxOpen == FALSE) {
         Window_Add(
-            v0->unk_00, &scriptMan->msgWindow, BG_LAYER_MAIN_1, 2, 19, 27, 4, 13, BASE_TILE_STANDARD_WINDOW_FRAME - MESSAGE_WINDOW_TILE_COUNT);
+            graphics->bgConfig, &scriptMan->msgWindow, BG_LAYER_MAIN_1, 2, 19, 27, 4, 13, BASE_TILE_STANDARD_WINDOW_FRAME - MESSAGE_WINDOW_TILE_COUNT);
         Window_FillTilemap(&scriptMan->msgWindow, 15);
         Window_DrawMessageBoxWithScrollCursor(&scriptMan->msgWindow, 0, BASE_TILE_SCROLLING_MESSAGE_BOX, 11);
 
@@ -248,7 +247,7 @@ void FrontierMenuManager_AddMenuEntry(FrontierMenuManager *menuManager, u32 entr
 void FrontierMenuManager_ShowMenu(FrontierMenuManager *menuManager)
 {
     u32 menuWidth;
-    UnkStruct_ov104_0223C4CC *v1 = ov104_0222E924(menuManager->scriptMan);
+    FrontierGraphics *graphics = FrontierScriptManager_GetGraphics(menuManager->scriptMan);
 
     menuWidth = CalcMenuWidth(menuManager);
     if (menuWidth % TILE_WIDTH_PIXELS == 0) {
@@ -264,7 +263,7 @@ void FrontierMenuManager_ShowMenu(FrontierMenuManager *menuManager)
         menuManager->anchorY -= menuManager->optionCount * 2;
     }
 
-    Window_Add(v1->unk_00, &menuManager->window, BG_LAYER_MAIN_1, menuManager->anchorX, menuManager->anchorY, menuWidth, menuManager->optionCount * 2, 14, 1);
+    Window_Add(graphics->bgConfig, &menuManager->window, BG_LAYER_MAIN_1, menuManager->anchorX, menuManager->anchorY, menuWidth, menuManager->optionCount * 2, 14, 1);
     Window_DrawStandardFrame(&menuManager->window, TRUE, 985, PLTT_12);
     SetupSingleColumnMenu(menuManager);
     menuManager->menu = Menu_NewSimple(&menuManager->menuTemplate, menuManager->initialCursorPos, menuManager->scriptMan->heapID);
@@ -402,7 +401,7 @@ void FrontierMenuManager_AddListMenuEntry(FrontierMenuManager *menuManager, u32 
 
 void FrontierMenuManager_ShowListMenu(FrontierMenuManager *menuManager)
 {
-    UnkStruct_ov104_0223C4CC *v1 = ov104_0222E924(menuManager->scriptMan);
+    FrontierGraphics *graphics = FrontierScriptManager_GetGraphics(menuManager->scriptMan);
 
     u32 menuWidth = CalcListMenuWidth(menuManager);
     if (menuWidth % TILE_WIDTH_PIXELS == 0) {
@@ -419,12 +418,12 @@ void FrontierMenuManager_ShowListMenu(FrontierMenuManager *menuManager)
         if (menuManager->anchorBottom) {
             menuManager->anchorY -= LIST_MENU_MAX_DISPLAY * 2;
         }
-        Window_Add(v1->unk_00, &menuManager->window, 1, menuManager->anchorX, menuManager->anchorY, menuWidth, 8 * 2, 14, 1);
+        Window_Add(graphics->bgConfig, &menuManager->window, 1, menuManager->anchorX, menuManager->anchorY, menuWidth, 8 * 2, 14, 1);
     } else {
         if (menuManager->anchorBottom) {
             menuManager->anchorY -= menuManager->optionCount * 2;
         }
-        Window_Add(v1->unk_00, &menuManager->window, 1, menuManager->anchorX, menuManager->anchorY, menuWidth, menuManager->optionCount * 2, 14, 1);
+        Window_Add(graphics->bgConfig, &menuManager->window, 1, menuManager->anchorX, menuManager->anchorY, menuWidth, menuManager->optionCount * 2, 14, 1);
     }
     Window_DrawStandardFrame(&menuManager->window, 1, 985, PLTT_12);
     InitListMenuTemplate(menuManager);
@@ -740,11 +739,11 @@ void ov104_02232C80(UnkStruct_ov63_0222CCB8 *param0, UnkStruct_ov63_0222BEC0 *pa
     }
 }
 
-void ov104_02232CE0(UnkStruct_ov104_0223C4CC *param0, Pokemon *param1, enum HeapID heapID, int param3, int param4, int param5, int param6, int param7, int param8, u16 param9)
+void ov104_02232CE0(FrontierGraphics *param0, Pokemon *param1, enum HeapID heapID, int param3, int param4, int param5, int param6, int param7, int param8, u16 param9)
 {
-    SpriteSystem *v0 = param0->unk_34.unk_00;
-    SpriteManager *v1 = param0->unk_34.unk_04;
-    PaletteData *v2 = param0->unk_04;
+    SpriteSystem *v0 = param0->spriteSystem;
+    SpriteManager *v1 = param0->spriteMan;
+    PaletteData *v2 = param0->plttData;
     PokemonSpriteTemplate v3;
     void *v4;
     ManagedSprite *v5;
@@ -821,16 +820,16 @@ void ov104_02232CE0(UnkStruct_ov104_0223C4CC *param0, Pokemon *param1, enum Heap
     param0->unk_80[param3 - 50000] = v5;
 }
 
-void ov104_02232E80(UnkStruct_ov104_0223C4CC *param0, int param1)
+void ov104_02232E80(FrontierGraphics *param0, int param1)
 {
     Sprite_DeleteAndFreeResources(param0->unk_80[param1 - 50000]);
 
     param0->unk_80[param1 - 50000] = NULL;
 
-    SpriteManager_UnloadCharObjById(param0->unk_34.unk_04, param1);
-    SpriteManager_UnloadPlttObjById(param0->unk_34.unk_04, param1);
-    SpriteManager_UnloadCellObjById(param0->unk_34.unk_04, param1);
-    SpriteManager_UnloadAnimObjById(param0->unk_34.unk_04, param1);
+    SpriteManager_UnloadCharObjById(param0->spriteMan, param1);
+    SpriteManager_UnloadPlttObjById(param0->spriteMan, param1);
+    SpriteManager_UnloadCellObjById(param0->spriteMan, param1);
+    SpriteManager_UnloadAnimObjById(param0->spriteMan, param1);
 }
 
 static const SpriteTemplate Unk_ov104_0223F9E0 = {
@@ -859,21 +858,21 @@ static const SpriteTemplate Unk_ov104_0223F9AC = {
     0x0
 };
 
-void ov104_02232EC0(UnkStruct_ov104_0223C4CC *param0)
+void ov104_02232EC0(FrontierGraphics *param0)
 {
-    SpriteSystem_LoadPaletteBuffer(param0->unk_04, PLTTBUF_MAIN_OBJ, param0->unk_34.unk_00, param0->unk_34.unk_04, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconPalettesFileIndex(), FALSE, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 2000);
-    SpriteSystem_LoadCellResObj(param0->unk_34.unk_00, param0->unk_34.unk_04, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIcon32KCellsFileIndex(), FALSE, 2000);
-    SpriteSystem_LoadAnimResObj(param0->unk_34.unk_00, param0->unk_34.unk_04, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIcon32KAnimationFileIndex(), FALSE, 2000);
+    SpriteSystem_LoadPaletteBuffer(param0->plttData, PLTTBUF_MAIN_OBJ, param0->spriteSystem, param0->spriteMan, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconPalettesFileIndex(), FALSE, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 2000);
+    SpriteSystem_LoadCellResObj(param0->spriteSystem, param0->spriteMan, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIcon32KCellsFileIndex(), FALSE, 2000);
+    SpriteSystem_LoadAnimResObj(param0->spriteSystem, param0->spriteMan, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIcon32KAnimationFileIndex(), FALSE, 2000);
 }
 
-void ov104_02232F28(UnkStruct_ov104_0223C4CC *param0)
+void ov104_02232F28(FrontierGraphics *param0)
 {
-    SpriteManager_UnloadCellObjById(param0->unk_34.unk_04, 2000);
-    SpriteManager_UnloadAnimObjById(param0->unk_34.unk_04, 2000);
-    SpriteManager_UnloadPlttObjById(param0->unk_34.unk_04, 2000);
+    SpriteManager_UnloadCellObjById(param0->spriteMan, 2000);
+    SpriteManager_UnloadAnimObjById(param0->spriteMan, 2000);
+    SpriteManager_UnloadPlttObjById(param0->spriteMan, 2000);
 }
 
-ManagedSprite *ov104_02232F4C(UnkStruct_ov104_0223C4CC *param0, Pokemon *param1, int param2, int param3, int param4)
+ManagedSprite *ov104_02232F4C(FrontierGraphics *param0, Pokemon *param1, int param2, int param3, int param4)
 {
     ManagedSprite *v0;
     SpriteTemplate v1;
@@ -881,7 +880,7 @@ ManagedSprite *ov104_02232F4C(UnkStruct_ov104_0223C4CC *param0, Pokemon *param1,
     GF_ASSERT(param2 < (2008 - 2000));
 
     SpriteSystem_LoadCharResObjAtEndWithHardwareMappingType(
-        param0->unk_34.unk_00, param0->unk_34.unk_04, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, Pokemon_IconSpriteIndex(param1), FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 2000 + param2);
+        param0->spriteSystem, param0->spriteMan, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, Pokemon_IconSpriteIndex(param1), FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 2000 + param2);
 
     v1 = Unk_ov104_0223F9E0;
 
@@ -890,7 +889,7 @@ ManagedSprite *ov104_02232F4C(UnkStruct_ov104_0223C4CC *param0, Pokemon *param1,
     v1.y = param4;
     v1.priority = 200;
 
-    v0 = SpriteSystem_NewSprite(param0->unk_34.unk_00, param0->unk_34.unk_04, &v1);
+    v0 = SpriteSystem_NewSprite(param0->spriteSystem, param0->spriteMan, &v1);
 
     Sprite_SetExplicitPaletteOffsetAutoAdjust(v0->sprite, Pokemon_IconPaletteIndex(param1));
     ManagedSprite_TickFrame(v0);
@@ -898,32 +897,32 @@ ManagedSprite *ov104_02232F4C(UnkStruct_ov104_0223C4CC *param0, Pokemon *param1,
     return v0;
 }
 
-void ov104_02232FD4(UnkStruct_ov104_0223C4CC *param0, ManagedSprite *param1, int param2)
+void ov104_02232FD4(FrontierGraphics *param0, ManagedSprite *param1, int param2)
 {
-    SpriteManager_UnloadCharObjById(param0->unk_34.unk_04, 2000 + param2);
+    SpriteManager_UnloadCharObjById(param0->spriteMan, 2000 + param2);
     Sprite_DeleteAndFreeResources(param1);
 }
 
-void ov104_02232FEC(UnkStruct_ov104_0223C4CC *param0)
+void ov104_02232FEC(FrontierGraphics *param0)
 {
     NARC *v0 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PLIST_GRA, HEAP_ID_94);
 
-    SpriteSystem_LoadPaletteBufferFromOpenNarc(param0->unk_04, PLTTBUF_MAIN_OBJ, param0->unk_34.unk_00, param0->unk_34.unk_04, v0, sub_02081934(), FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 2001);
-    SpriteSystem_LoadCellResObjFromOpenNarc(param0->unk_34.unk_00, param0->unk_34.unk_04, v0, sub_02081938(), FALSE, 2001);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(param0->unk_34.unk_00, param0->unk_34.unk_04, v0, sub_0208193C(), FALSE, 2001);
-    SpriteSystem_LoadCharResObjAtEndWithHardwareMappingType(param0->unk_34.unk_00, param0->unk_34.unk_04, 20, sub_02081930(), FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 2009);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(param0->plttData, PLTTBUF_MAIN_OBJ, param0->spriteSystem, param0->spriteMan, v0, sub_02081934(), FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 2001);
+    SpriteSystem_LoadCellResObjFromOpenNarc(param0->spriteSystem, param0->spriteMan, v0, sub_02081938(), FALSE, 2001);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(param0->spriteSystem, param0->spriteMan, v0, sub_0208193C(), FALSE, 2001);
+    SpriteSystem_LoadCharResObjAtEndWithHardwareMappingType(param0->spriteSystem, param0->spriteMan, 20, sub_02081930(), FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 2009);
     NARC_dtor(v0);
 }
 
-void ov104_0223307C(UnkStruct_ov104_0223C4CC *param0)
+void ov104_0223307C(FrontierGraphics *param0)
 {
-    SpriteManager_UnloadCharObjById(param0->unk_34.unk_04, 2009);
-    SpriteManager_UnloadCellObjById(param0->unk_34.unk_04, 2001);
-    SpriteManager_UnloadAnimObjById(param0->unk_34.unk_04, 2001);
-    SpriteManager_UnloadPlttObjById(param0->unk_34.unk_04, 2001);
+    SpriteManager_UnloadCharObjById(param0->spriteMan, 2009);
+    SpriteManager_UnloadCellObjById(param0->spriteMan, 2001);
+    SpriteManager_UnloadAnimObjById(param0->spriteMan, 2001);
+    SpriteManager_UnloadPlttObjById(param0->spriteMan, 2001);
 }
 
-ManagedSprite *ov104_022330AC(UnkStruct_ov104_0223C4CC *param0, int param1, int param2)
+ManagedSprite *ov104_022330AC(FrontierGraphics *param0, int param1, int param2)
 {
     ManagedSprite *v0;
     SpriteTemplate v1;
@@ -934,13 +933,13 @@ ManagedSprite *ov104_022330AC(UnkStruct_ov104_0223C4CC *param0, int param1, int 
     v1.y = param2;
     v1.priority = 300;
 
-    v0 = SpriteSystem_NewSprite(param0->unk_34.unk_00, param0->unk_34.unk_04, &v1);
+    v0 = SpriteSystem_NewSprite(param0->spriteSystem, param0->spriteMan, &v1);
     ManagedSprite_TickFrame(v0);
 
     return v0;
 }
 
-void ov104_022330F0(UnkStruct_ov104_0223C4CC *param0, ManagedSprite *param1)
+void ov104_022330F0(FrontierGraphics *param0, ManagedSprite *param1)
 {
     Sprite_DeleteAndFreeResources(param1);
 }

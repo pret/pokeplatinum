@@ -15,7 +15,6 @@
 #include "overlay104/ov104_0223BCBC.h"
 #include "overlay104/struct_ov104_02238240.h"
 #include "overlay104/struct_ov104_0223BFFC.h"
-#include "overlay104/struct_ov104_0223C4CC.h"
 
 #include "bg_window.h"
 #include "graphics.h"
@@ -53,15 +52,15 @@ void ov104_022384D4(UnkStruct_ov104_0223BFFC *param0);
 void ov104_022384DC(UnkStruct_ov104_0223BFFC *param0);
 int ov104_02238538(UnkStruct_ov104_0223BFFC *param0, Party *param1, Party *param2, int param3);
 static int ov104_02238584(UnkStruct_ov104_0223BFFC *param0, Party *param1, Party *param2, u8 param3);
-void ov104_02238658(void *param0, UnkStruct_ov104_0223C4CC *param1);
-void ov104_02238728(void *param0, UnkStruct_ov104_0223C4CC *param1);
-void ov104_02238764(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104_0223C4CC *param1, u16 param2);
-void ov104_02238814(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104_0223C4CC *param1, u16 param2);
-void ov104_0223886C(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104_0223C4CC *param1, u16 param2, u16 param3);
-void ov104_022388A4(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104_0223C4CC *param1, u16 param2, u16 param3);
-void ov104_022388DC(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104_0223C4CC *param1, u16 param2);
-void ov104_022389A0(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104_0223C4CC *param1, u16 param2);
-void ov104_022389F4(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104_0223C4CC *param1, u16 param2, u16 param3, u16 param4);
+void ov104_02238658(void *param0, FrontierGraphics *param1);
+void ov104_02238728(void *param0, FrontierGraphics *param1);
+void ov104_02238764(UnkStruct_ov104_0223BFFC *param0, FrontierGraphics *param1, u16 param2);
+void ov104_02238814(UnkStruct_ov104_0223BFFC *param0, FrontierGraphics *param1, u16 param2);
+void ov104_0223886C(UnkStruct_ov104_0223BFFC *param0, FrontierGraphics *param1, u16 param2, u16 param3);
+void ov104_022388A4(UnkStruct_ov104_0223BFFC *param0, FrontierGraphics *param1, u16 param2, u16 param3);
+void ov104_022388DC(UnkStruct_ov104_0223BFFC *param0, FrontierGraphics *param1, u16 param2);
+void ov104_022389A0(UnkStruct_ov104_0223BFFC *param0, FrontierGraphics *param1, u16 param2);
+void ov104_022389F4(UnkStruct_ov104_0223BFFC *param0, FrontierGraphics *param1, u16 param2, u16 param3, u16 param4);
 void ov104_02238AB4(u8 param0, u8 param1);
 BOOL ov104_02238B40(UnkStruct_ov104_0223BFFC *param0, u16 param1, u16 param2);
 void ov104_02238278(UnkStruct_ov104_0223BFFC *param0, u8 param1);
@@ -599,7 +598,7 @@ static int ov104_02238584(UnkStruct_ov104_0223BFFC *param0, Party *param1, Party
     return v4;
 }
 
-void ov104_02238658(void *param0, UnkStruct_ov104_0223C4CC *param1)
+void ov104_02238658(void *param0, FrontierGraphics *param1)
 {
     NARC *v0;
     UnkStruct_ov104_0223BFFC *v1 = (UnkStruct_ov104_0223BFFC *)param0;
@@ -607,8 +606,8 @@ void ov104_02238658(void *param0, UnkStruct_ov104_0223C4CC *param1)
     if (v1->unk_13 != 32) {
         v0 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, HEAP_ID_94);
 
-        Graphics_LoadTilesToBgLayerFromOpenNARC(v0, Unk_ov104_0223FBBA[v1->unk_13][0], param1->unk_00, 2, 0, 0, 1, HEAP_ID_94);
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, Unk_ov104_0223FBBA[v1->unk_13][1], param1->unk_00, 2, 0, 0, 1, HEAP_ID_94);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(v0, Unk_ov104_0223FBBA[v1->unk_13][0], param1->bgConfig, 2, 0, 0, 1, HEAP_ID_94);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, Unk_ov104_0223FBBA[v1->unk_13][1], param1->bgConfig, 2, 0, 0, 1, HEAP_ID_94);
 
         {
             NNSG2dPaletteData *v2;
@@ -625,7 +624,7 @@ void ov104_02238658(void *param0, UnkStruct_ov104_0223C4CC *param1)
         }
 
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
-        Bg_ScheduleTilemapTransfer(param1->unk_00, 2);
+        Bg_ScheduleTilemapTransfer(param1->bgConfig, 2);
         NARC_dtor(v0);
     } else {
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
@@ -634,13 +633,13 @@ void ov104_02238658(void *param0, UnkStruct_ov104_0223C4CC *param1)
     return;
 }
 
-void ov104_02238728(void *param0, UnkStruct_ov104_0223C4CC *param1)
+void ov104_02238728(void *param0, FrontierGraphics *param1)
 {
     UnkStruct_ov104_0223BFFC *v1 = (UnkStruct_ov104_0223BFFC *)param0;
     NARC *v0 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, HEAP_ID_94);
 
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 53, param1->unk_00, 3, 0, 0, 1, HEAP_ID_94);
-    Bg_ScheduleTilemapTransfer(param1->unk_00, 3);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 53, param1->bgConfig, 3, 0, 0, 1, HEAP_ID_94);
+    Bg_ScheduleTilemapTransfer(param1->bgConfig, 3);
     NARC_dtor(v0);
 
     return;
@@ -660,7 +659,7 @@ static const UnkStruct_ov104_0223FB18 Unk_ov104_0223FB28[] = {
     { 0xD2, 0x59 }
 };
 
-void ov104_02238764(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104_0223C4CC *param1, u16 param2)
+void ov104_02238764(UnkStruct_ov104_0223BFFC *param0, FrontierGraphics *param1, u16 param2)
 {
     u8 v0, v1;
     int v2;
@@ -686,7 +685,7 @@ void ov104_02238764(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104_0223C4CC *
     return;
 }
 
-void ov104_02238814(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104_0223C4CC *param1, u16 param2)
+void ov104_02238814(UnkStruct_ov104_0223BFFC *param0, FrontierGraphics *param1, u16 param2)
 {
     u8 v0, v1;
     int v2;
@@ -707,7 +706,7 @@ void ov104_02238814(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104_0223C4CC *
     return;
 }
 
-void ov104_0223886C(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104_0223C4CC *param1, u16 param2, u16 param3)
+void ov104_0223886C(UnkStruct_ov104_0223BFFC *param0, FrontierGraphics *param1, u16 param2, u16 param3)
 {
     u8 v0 = BattleArcade_GetPartySize(param0->unk_10, 1);
 
@@ -724,7 +723,7 @@ void ov104_0223886C(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104_0223C4CC *
     return;
 }
 
-void ov104_022388A4(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104_0223C4CC *param1, u16 param2, u16 param3)
+void ov104_022388A4(UnkStruct_ov104_0223BFFC *param0, FrontierGraphics *param1, u16 param2, u16 param3)
 {
     u8 v0 = BattleArcade_GetOpponentPartySize(param0->unk_10, 1);
 
@@ -741,7 +740,7 @@ void ov104_022388A4(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104_0223C4CC *
     return;
 }
 
-void ov104_022388DC(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104_0223C4CC *param1, u16 param2)
+void ov104_022388DC(UnkStruct_ov104_0223BFFC *param0, FrontierGraphics *param1, u16 param2)
 {
     u8 v0, v1;
     int v2;
@@ -775,7 +774,7 @@ void ov104_022388DC(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104_0223C4CC *
     return;
 }
 
-void ov104_022389A0(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104_0223C4CC *param1, u16 param2)
+void ov104_022389A0(UnkStruct_ov104_0223BFFC *param0, FrontierGraphics *param1, u16 param2)
 {
     u8 v0, v1;
     int v2;
@@ -796,7 +795,7 @@ void ov104_022389A0(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104_0223C4CC *
     return;
 }
 
-void ov104_022389F4(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104_0223C4CC *param1, u16 param2, u16 slot, u16 param4)
+void ov104_022389F4(UnkStruct_ov104_0223BFFC *param0, FrontierGraphics *param1, u16 param2, u16 slot, u16 param4)
 {
     u32 item;
     u8 v1, v2;

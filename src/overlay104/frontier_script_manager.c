@@ -10,7 +10,6 @@
 #include "overlay104/ov104_0222EA90.h"
 #include "overlay104/ov104_0223D860.h"
 #include "overlay104/struct_ov104_0222E8C8.h"
-#include "overlay104/struct_ov104_0223C4CC.h"
 
 #include "heap.h"
 #include "message.h"
@@ -194,7 +193,7 @@ u16 *ov104_0222E91C(FrontierScriptManager *param0, int param1)
     return &param0->unk_24.unk_00[param1];
 }
 
-UnkStruct_ov104_0223C4CC *ov104_0222E924(FrontierScriptManager *param0)
+FrontierGraphics *FrontierScriptManager_GetGraphics(FrontierScriptManager *scriptMan)
 {
-    return sub_0209B974(param0->unk_00);
+    return sub_0209B974(scriptMan->unk_00);
 }

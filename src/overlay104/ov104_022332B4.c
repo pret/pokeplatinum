@@ -14,7 +14,6 @@
 #include "overlay104/struct_ov104_02230BE4.h"
 #include "overlay104/struct_ov104_02234130.h"
 #include "overlay104/struct_ov104_0223ADA0.h"
-#include "overlay104/struct_ov104_0223C4CC.h"
 
 #include "bg_window.h"
 #include "field_battle_data_transfer.h"
@@ -216,7 +215,7 @@ BOOL FrontierScrCmd_66(FrontierScriptContext *param0)
 BOOL FrontierScrCmd_67(FrontierScriptContext *param0)
 {
     int v0[18];
-    UnkStruct_ov104_0223C4CC *v1;
+    FrontierGraphics *v1;
     String *v2;
     Pokemon *v3;
     UnkStruct_ov104_0223ADA0 *v4;
@@ -229,7 +228,7 @@ BOOL FrontierScrCmd_67(FrontierScriptContext *param0)
     u16 *v15 = FrontierScriptContext_TryGetVarPointer(param0);
 
     v4 = sub_0209B978(param0->scriptMan->unk_00);
-    v1 = ov104_0222E924(param0->scriptMan);
+    v1 = FrontierScriptManager_GetGraphics(param0->scriptMan);
 
     switch (v12) {
     case 0:
@@ -349,11 +348,11 @@ BOOL FrontierScrCmd_67(FrontierScriptContext *param0)
         *v15 = v4->unk_04;
         break;
     case 30:
-        Bg_ChangeTilemapRectPalette(v1->unk_00, 3, 3, 10, 26, 11, v13);
-        Bg_ScheduleTilemapTransfer(v1->unk_00, 3);
+        Bg_ChangeTilemapRectPalette(v1->bgConfig, 3, 3, 10, 26, 11, v13);
+        Bg_ScheduleTilemapTransfer(v1->bgConfig, 3);
         break;
     case 31:
-        v4->unk_500 = SysTask_Start(ov104_022338B4, ov104_0222E924(param0->scriptMan), 5);
+        v4->unk_500 = SysTask_Start(ov104_022338B4, FrontierScriptManager_GetGraphics(param0->scriptMan), 5);
         break;
     case 32:
         if (v4->unk_500 != NULL) {
@@ -411,14 +410,14 @@ BOOL FrontierScrCmd_67(FrontierScriptContext *param0)
 void ov104_022338B4(SysTask *param0, void *param1)
 {
     int v0;
-    UnkStruct_ov104_0223C4CC *v1 = param1;
+    FrontierGraphics *v1 = param1;
 
-    v0 = Bg_GetYOffset(v1->unk_00, 2);
+    v0 = Bg_GetYOffset(v1->bgConfig, 2);
 
     if (v0 >= 255) {
-        Bg_ScheduleScroll(v1->unk_00, 2, 3, 0);
+        Bg_ScheduleScroll(v1->bgConfig, 2, 3, 0);
     } else {
-        Bg_ScheduleScroll(v1->unk_00, 2, 4, 1);
+        Bg_ScheduleScroll(v1->bgConfig, 2, 4, 1);
     }
 
     return;

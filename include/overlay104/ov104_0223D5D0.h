@@ -1,16 +1,22 @@
 #ifndef POKEPLATINUM_OV104_0223D5D0_H
 #define POKEPLATINUM_OV104_0223D5D0_H
 
-#include "overlay104/struct_ov104_0223D5F0_decl.h"
-
 #include "particle_system.h"
 
-UnkStruct_ov104_0223D5F0 *ov104_0223D5D0(enum HeapID heapID);
-void ov104_0223D5F0(UnkStruct_ov104_0223D5F0 *param0);
-ParticleSystem *ov104_0223D614(UnkStruct_ov104_0223D5F0 *param0, int param1, int param2, int param3);
-void ov104_0223D68C(UnkStruct_ov104_0223D5F0 *param0, int param1);
-int ov104_0223D6A8(void);
-ParticleSystem *ov104_0223D6D0(UnkStruct_ov104_0223D5F0 *param0, int param1);
-BOOL ov104_0223D6E4(UnkStruct_ov104_0223D5F0 *param0);
+#define NUM_FRONTIER_PARTICLE_SYSTEMS 8
+
+typedef struct FrontierParticleSystem {
+    ParticleSystem *particleSys[NUM_FRONTIER_PARTICLE_SYSTEMS];
+    u16 heapID;
+} FrontierParticleSystem;
+
+FrontierParticleSystem *FrontierParticleSystem_New(enum HeapID heapID);
+void FrontierParticleSystem_Free(FrontierParticleSystem *fps);
+BOOL FrontierParticleSystem_Update(void);
+
+ParticleSystem *FrontierParticleSystem_NewParticleSystem(FrontierParticleSystem *fps, int index, int narcIdx, enum CameraProjection projection);
+void FrontierParticleSystem_FreeParticleSystem(FrontierParticleSystem *fps, int index);
+ParticleSystem *FrontierParticleSystem_GetParticleSystem(FrontierParticleSystem *fps, int index);
+BOOL FrontierParticleSystem_NoActiveEmitters(FrontierParticleSystem *fps);
 
 #endif // POKEPLATINUM_OV104_0223D5D0_H

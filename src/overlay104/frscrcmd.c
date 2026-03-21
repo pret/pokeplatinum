@@ -42,7 +42,6 @@
 #include "overlay104/struct_ov104_02232B78_sub1.h"
 #include "overlay104/struct_ov104_0223319C.h"
 #include "overlay104/struct_ov104_022331E8.h"
-#include "overlay104/struct_ov104_0223C4CC.h"
 #include "overlay104/struct_ov104_0223C634.h"
 #include "overlay104/struct_ov104_0223C688.h"
 #include "overlay104/struct_ov104_0223D570.h"
@@ -113,7 +112,7 @@ typedef struct {
 } UnkStruct_ov104_022313FC;
 
 typedef struct {
-    UnkStruct_ov104_0223C4CC *unk_00;
+    FrontierGraphics *unk_00;
     int unk_04;
     int unk_08;
     BOOL unk_0C;
@@ -931,11 +930,11 @@ static BOOL FrontierScrCmd_FreeListMenu(FrontierScriptContext *ctx)
 static BOOL FrontierScrCmd_ShowYesNoMenu(FrontierScriptContext *ctx)
 {
     FrontierScriptManager *scriptMan = ctx->scriptMan;
-    UnkStruct_ov104_0223C4CC *v1 = ov104_0222E924(scriptMan);
+    FrontierGraphics *graphics = FrontierScriptManager_GetGraphics(scriptMan);
     u16 destVarID = FrontierScriptContext_ReadHalfWord(ctx);
     u8 cursorStart = FrontierScriptContext_ReadByte(ctx);
 
-    scriptMan->menu = Menu_MakeYesNoChoiceWithCursorAt(v1->unk_00, &sYesNoWindowTemplate, BASE_TILE_STANDARD_WINDOW_FRAME, 12, cursorStart, scriptMan->heapID);
+    scriptMan->menu = Menu_MakeYesNoChoiceWithCursorAt(graphics->bgConfig, &sYesNoWindowTemplate, BASE_TILE_STANDARD_WINDOW_FRAME, 12, cursorStart, scriptMan->heapID);
     ctx->data[0] = destVarID;
     FrontierScriptContext_Pause(ctx, WaitForYesNoResult);
     return TRUE;
@@ -960,7 +959,7 @@ static BOOL WaitForYesNoResult(FrontierScriptContext *ctx)
 static BOOL FrontierScrCmd_22(FrontierScriptContext *ctx)
 {
     FrontierScriptManager *v0 = ctx->scriptMan;
-    UnkStruct_ov104_0223C4CC *v1 = sub_0209B974(v0->unk_00);
+    FrontierGraphics *v1 = sub_0209B974(v0->unk_00);
     const u8 *currScriptPtr;
     UnkStruct_ov104_0223C688 v3;
     s32 offset = FrontierScriptContext_ReadWord(ctx);
@@ -980,7 +979,7 @@ static BOOL FrontierScrCmd_22(FrontierScriptContext *ctx)
         if (v3.unk_00 == 0xEEEE) {
             UnkStruct_ov104_02230BE4 *v6 = sub_0209B970(v0->unk_00);
             const TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(v6->saveData);
-            v3.unk_00 = ov104_0222E5F0(trainerInfo);
+            v3.unk_00 = BattleFrontier_GetPlayerObjEventGfx(trainerInfo);
 
             ov104_0223D0EC(v1, &v3);
         } else if (v3.unk_00 == 0xEEEF) {
@@ -990,7 +989,7 @@ static BOOL FrontierScrCmd_22(FrontierScriptContext *ctx)
 
                 for (i = 0; i < connectedCount; i++) {
                     trainerInfo = CommInfo_TrainerInfo(i);
-                    v3.unk_00 = ov104_0222E5F0(trainerInfo);
+                    v3.unk_00 = BattleFrontier_GetPlayerObjEventGfx(trainerInfo);
                     ov104_0223D0EC(v1, &v3);
                 }
             } else {
@@ -1008,7 +1007,7 @@ static BOOL FrontierScrCmd_22(FrontierScriptContext *ctx)
 static BOOL FrontierScrCmd_23(FrontierScriptContext *ctx)
 {
     FrontierScriptManager *v0 = ctx->scriptMan;
-    UnkStruct_ov104_0223C4CC *v1 = sub_0209B974(v0->unk_00);
+    FrontierGraphics *v1 = sub_0209B974(v0->unk_00);
     u16 v2 = FrontierScriptContext_GetVar(ctx);
     ov104_0223D148(v1, v2);
 
@@ -1018,7 +1017,7 @@ static BOOL FrontierScrCmd_23(FrontierScriptContext *ctx)
 static BOOL FrontierScrCmd_24(FrontierScriptContext *ctx)
 {
     FrontierScriptManager *v0 = ctx->scriptMan;
-    UnkStruct_ov104_0223C4CC *v1 = sub_0209B974(v0->unk_00);
+    FrontierGraphics *v1 = sub_0209B974(v0->unk_00);
     const u8 *currScriptPtr;
     s32 offset = FrontierScriptContext_ReadWord(ctx);
     UnkStruct_ov104_0223D570 v4;
@@ -1050,12 +1049,12 @@ static BOOL FrontierScrCmd_24(FrontierScriptContext *ctx)
 
             v7 = sub_0209B970(v0->unk_00);
             trainerInfo = SaveData_GetTrainerInfo(v7->saveData);
-            v4.unk_00 = ov104_0222E5F0(trainerInfo);
+            v4.unk_00 = BattleFrontier_GetPlayerObjEventGfx(trainerInfo);
             v5 = (32 - 1);
         } else if (v4.unk_00 == 0xEEEF) {
             int netID = FrontierScriptContext_ReadByte(ctx);
             const TrainerInfo *trainerInfo = CommInfo_TrainerInfo(netID);
-            v4.unk_00 = ov104_0222E5F0(trainerInfo);
+            v4.unk_00 = BattleFrontier_GetPlayerObjEventGfx(trainerInfo);
         } else {
             (void)0;
         }
@@ -1070,7 +1069,7 @@ static BOOL FrontierScrCmd_24(FrontierScriptContext *ctx)
 static BOOL FrontierScrCmd_25(FrontierScriptContext *ctx)
 {
     FrontierScriptManager *v0 = ctx->scriptMan;
-    UnkStruct_ov104_0223C4CC *v1 = sub_0209B974(v0->unk_00);
+    FrontierGraphics *v1 = sub_0209B974(v0->unk_00);
     UnkStruct_ov63_0222BEC0 *v2;
     u16 v3 = FrontierScriptContext_GetVar(ctx);
     v2 = ov63_0222BF18(v1->unk_14, v3);
@@ -1083,7 +1082,7 @@ static BOOL FrontierScrCmd_25(FrontierScriptContext *ctx)
 static BOOL FrontierScrCmd_26(FrontierScriptContext *ctx)
 {
     FrontierScriptManager *v0 = ctx->scriptMan;
-    UnkStruct_ov104_0223C4CC *v1 = sub_0209B974(v0->unk_00);
+    FrontierGraphics *v1 = sub_0209B974(v0->unk_00);
     u16 v2 = FrontierScriptContext_GetVar(ctx);
     u8 v3 = FrontierScriptContext_ReadByte(ctx);
     UnkStruct_ov63_0222CE44 *v4 = NULL;
@@ -1103,7 +1102,7 @@ static BOOL FrontierScrCmd_Dummy27(FrontierScriptContext *ctx)
 static BOOL FrontierScrCmd_28(FrontierScriptContext *ctx)
 {
     FrontierScriptManager *v0 = ctx->scriptMan;
-    UnkStruct_ov104_0223C4CC *v1 = sub_0209B974(v0->unk_00);
+    FrontierGraphics *v1 = sub_0209B974(v0->unk_00);
     u8 *v2;
     u16 v3 = FrontierScriptContext_GetVar(ctx);
     u32 offset = (s32)FrontierScriptContext_ReadWord(ctx);
@@ -1155,7 +1154,7 @@ static BOOL ov104_022305C8(FrontierScriptContext *ctx)
 static BOOL FrontierScrCmd_2A(FrontierScriptContext *ctx)
 {
     FrontierScriptManager *v0 = ctx->scriptMan;
-    UnkStruct_ov104_0223C4CC *v1 = sub_0209B974(v0->unk_00);
+    FrontierGraphics *v1 = sub_0209B974(v0->unk_00);
     const u8 *currScriptPtr;
     s32 offset = FrontierScriptContext_ReadWord(ctx);
     u16 v4;
@@ -1172,7 +1171,7 @@ static BOOL FrontierScrCmd_2A(FrontierScriptContext *ctx)
             break;
         }
 
-        ov104_0223D768(v1->unk_34.unk_00, v1->unk_34.unk_04, narc, v1->unk_04, v4);
+        ov104_0223D768(v1->spriteSystem, v1->spriteMan, narc, v1->plttData, v4);
         ov104_0223D29C(v1, v4);
     }
 
@@ -1185,10 +1184,10 @@ static BOOL FrontierScrCmd_2A(FrontierScriptContext *ctx)
 static BOOL FrontierScrCmd_2B(FrontierScriptContext *ctx)
 {
     FrontierScriptManager *v0 = ctx->scriptMan;
-    UnkStruct_ov104_0223C4CC *v1 = sub_0209B974(v0->unk_00);
+    FrontierGraphics *v1 = sub_0209B974(v0->unk_00);
     u16 v2 = FrontierScriptContext_GetVar(ctx);
 
-    ov104_0223D7EC(v1->unk_34.unk_04, v2);
+    ov104_0223D7EC(v1->spriteMan, v2);
     ov104_0223D2CC(v1, v2);
 
     return FALSE;
@@ -1197,7 +1196,7 @@ static BOOL FrontierScrCmd_2B(FrontierScriptContext *ctx)
 static BOOL FrontierScrCmd_2C(FrontierScriptContext *ctx)
 {
     FrontierScriptManager *v0 = ctx->scriptMan;
-    UnkStruct_ov104_0223C4CC *v1 = sub_0209B974(v0->unk_00);
+    FrontierGraphics *v1 = sub_0209B974(v0->unk_00);
     const u8 *currScriptPtr;
     s32 offset = FrontierScriptContext_ReadWord(ctx);
     u16 v4, x, y, draw, v8, v9;
@@ -1234,7 +1233,7 @@ static BOOL FrontierScrCmd_2D(FrontierScriptContext *ctx)
 {
     FrontierScriptManager *v0 = ctx->scriptMan;
     u16 v1;
-    UnkStruct_ov104_0223C4CC *v2 = sub_0209B974(v0->unk_00);
+    FrontierGraphics *v2 = sub_0209B974(v0->unk_00);
 
     v1 = FrontierScriptContext_GetVar(ctx);
     ov104_0223D348(v2, v1);
@@ -1245,7 +1244,7 @@ static BOOL FrontierScrCmd_2D(FrontierScriptContext *ctx)
 static BOOL FrontierScrCmd_2E(FrontierScriptContext *ctx)
 {
     FrontierScriptManager *v0 = ctx->scriptMan;
-    UnkStruct_ov104_0223C4CC *v1 = sub_0209B974(v0->unk_00);
+    FrontierGraphics *v1 = sub_0209B974(v0->unk_00);
     u16 v2 = FrontierScriptContext_GetVar(ctx);
     u8 draw = FrontierScriptContext_ReadByte(ctx);
     ManagedSprite *managedSprite = ov104_0223D370(v1, v2);
@@ -1259,7 +1258,7 @@ static BOOL FrontierScrCmd_2E(FrontierScriptContext *ctx)
 static BOOL FrontierScrCmd_2F(FrontierScriptContext *ctx)
 {
     FrontierScriptManager *v0 = ctx->scriptMan;
-    UnkStruct_ov104_0223C4CC *v1 = sub_0209B974(v0->unk_00);
+    FrontierGraphics *v1 = sub_0209B974(v0->unk_00);
     u16 v2 = FrontierScriptContext_GetVar(ctx);
     ManagedSprite *managedSprite = ov104_0223D370(v1, v2);
 
@@ -1273,7 +1272,7 @@ static BOOL FrontierScrCmd_30(FrontierScriptContext *ctx)
 {
     ManagedSprite *managedSprite;
     FrontierScriptManager *v1 = ctx->scriptMan;
-    UnkStruct_ov104_0223C4CC *v2 = sub_0209B974(v1->unk_00);
+    FrontierGraphics *v2 = sub_0209B974(v1->unk_00);
     u16 v3 = FrontierScriptContext_GetVar(ctx);
     u16 v4 = FrontierScriptContext_GetVar(ctx);
 
@@ -1294,7 +1293,7 @@ static BOOL FrontierScrCmd_31(FrontierScriptContext *ctx)
     u16 v0 = FrontierScriptContext_GetVar(ctx);
     u16 animID = FrontierScriptContext_GetVar(ctx);
     ManagedSprite *managedSprite;
-    UnkStruct_ov104_0223C4CC *v3 = sub_0209B974(ctx->scriptMan->unk_00);
+    FrontierGraphics *v3 = sub_0209B974(ctx->scriptMan->unk_00);
 
     managedSprite = ov104_0223D370(v3, v0);
 
@@ -1307,7 +1306,7 @@ static BOOL FrontierScrCmd_31(FrontierScriptContext *ctx)
 static BOOL FrontierScrCmd_32(FrontierScriptContext *ctx)
 {
     u16 v0 = FrontierScriptContext_GetVar(ctx);
-    UnkStruct_ov104_0223C4CC *v1 = sub_0209B974(ctx->scriptMan->unk_00);
+    FrontierGraphics *v1 = sub_0209B974(ctx->scriptMan->unk_00);
 
     ov104_0223D378(v1, v0, 0);
     return FALSE;
@@ -1326,7 +1325,7 @@ static BOOL FrontierScrCmd_33(FrontierScriptContext *ctx)
 static BOOL ov104_02230850(FrontierScriptContext *ctx)
 {
     ManagedSprite *managedSprite;
-    UnkStruct_ov104_0223C4CC *v1 = sub_0209B974(ctx->scriptMan->unk_00);
+    FrontierGraphics *v1 = sub_0209B974(ctx->scriptMan->unk_00);
 
     managedSprite = ov104_0223D370(v1, ctx->data[0]);
 
@@ -1971,8 +1970,8 @@ static BOOL ov104_022311BC(UnkStruct_ov104_02231148 *param0)
 
         param0->unk_28 = Window_New(HEAP_ID_FIELD2, 1);
 
-        Window_Add(param0->unk_00->unk_00, param0->unk_28, 1, 0, 0, 32, 32, 0, 0);
-        PaletteData_FillBufferRange(param0->unk_00->unk_04, 0, 2, 0x0, 0, 16);
+        Window_Add(param0->unk_00->bgConfig, param0->unk_28, 1, 0, 0, 32, 32, 0, 0);
+        PaletteData_FillBufferRange(param0->unk_00->plttData, 0, 2, 0x0, 0, 16);
         Window_FillTilemap(param0->unk_28, 0);
         Window_ScheduleCopyToVRAM(param0->unk_28);
 
@@ -2001,7 +2000,7 @@ static BOOL ov104_022311BC(UnkStruct_ov104_02231148 *param0)
             SetScreenColorBrightness(DS_SCREEN_MAIN, COLOR_BLACK);
             SetScreenColorBrightness(DS_SCREEN_SUB, COLOR_BLACK);
             Bg_ClearTilesRange(BG_LAYER_MAIN_1, 32, 0, HEAP_ID_FIELD2);
-            Bg_ClearTilemap(param0->unk_00->unk_00, 1);
+            Bg_ClearTilemap(param0->unk_00->bgConfig, 1);
 
             return FALSE;
         }
@@ -2025,8 +2024,8 @@ static BOOL ov104_022312D8(UnkStruct_ov104_02231148 *param0)
 
         param0->unk_28 = Window_New(HEAP_ID_FIELD2, 1);
 
-        Window_Add(param0->unk_00->unk_00, param0->unk_28, 1, 0, 0, 32, 32, 0, 0);
-        PaletteData_FillBufferRange(param0->unk_00->unk_04, 0, 2, 0x0, 0, 16);
+        Window_Add(param0->unk_00->bgConfig, param0->unk_28, 1, 0, 0, 32, 32, 0, 0);
+        PaletteData_FillBufferRange(param0->unk_00->plttData, 0, 2, 0x0, 0, 16);
         Window_FillTilemap(param0->unk_28, 0);
         Window_ScheduleCopyToVRAM(param0->unk_28);
 
@@ -2058,7 +2057,7 @@ static BOOL ov104_022312D8(UnkStruct_ov104_02231148 *param0)
             SetScreenColorBrightness(DS_SCREEN_SUB, COLOR_BLACK);
 
             Bg_ClearTilesRange(BG_LAYER_MAIN_1, 32, 0, HEAP_ID_FIELD2);
-            Bg_ClearTilemap(param0->unk_00->unk_00, 1);
+            Bg_ClearTilemap(param0->unk_00->bgConfig, 1);
 
             return FALSE;
         }
@@ -2082,10 +2081,10 @@ static void ov104_022313FC(SysTask *param0, void *param1)
     MtxFx22 v5;
     int v6, v7, v8, v9;
 
-    v6 = Bg_GetXOffset2(v3->unk_00->unk_00, 2);
-    v7 = Bg_GetXOffset2(v3->unk_00->unk_00, 2);
-    v8 = Bg_GetXOffset2(v3->unk_00->unk_00, 3);
-    v9 = Bg_GetXOffset2(v3->unk_00->unk_00, 3);
+    v6 = Bg_GetXOffset2(v3->unk_00->bgConfig, 2);
+    v7 = Bg_GetXOffset2(v3->unk_00->bgConfig, 2);
+    v8 = Bg_GetXOffset2(v3->unk_00->bgConfig, 3);
+    v9 = Bg_GetXOffset2(v3->unk_00->bgConfig, 3);
 
     if (v3->unk_10 == 1) {
         v2 = ov104_0223F27C(v4->unk_600);
@@ -2257,8 +2256,8 @@ static BOOL ov104_02231720(UnkStruct_ov104_02231148 *param0)
         param0->unk_10 = 1;
 
         Bg_ToggleLayer(BG_LAYER_MAIN_3, 0);
-        Bg_SetOffset(param0->unk_00->unk_00, 3, 0, 0);
-        Bg_SetOffset(param0->unk_00->unk_00, 3, 3, 0);
+        Bg_SetOffset(param0->unk_00->bgConfig, 3, 0, 0);
+        Bg_SetOffset(param0->unk_00->bgConfig, 3, 3, 0);
 
         param0->unk_04++;
         break;
@@ -2325,8 +2324,8 @@ static BOOL ov104_02231864(UnkStruct_ov104_02231148 *param0)
         param0->unk_10 = 1;
 
         Bg_ToggleLayer(BG_LAYER_MAIN_3, 0);
-        Bg_SetOffset(param0->unk_00->unk_00, 3, 0, 0);
-        Bg_SetOffset(param0->unk_00->unk_00, 3, 3, 0);
+        Bg_SetOffset(param0->unk_00->bgConfig, 3, 0, 0);
+        Bg_SetOffset(param0->unk_00->bgConfig, 3, 3, 0);
 
         param0->unk_04++;
         break;
@@ -2369,11 +2368,11 @@ static BOOL FrontierScrCmd_3F(FrontierScriptContext *ctx)
     v1->unk_14 = sub_0209B978(ctx->scriptMan->unk_00);
     v1->unk_04 = 0;
     v1->unk_08 = ctx->data[0];
-    v1->unk_00 = ov104_0222E924(ctx->scriptMan);
+    v1->unk_00 = FrontierScriptManager_GetGraphics(ctx->scriptMan);
 
     sub_0209B980(ctx->scriptMan->unk_00, v1);
     FrontierScriptContext_Pause(ctx, ov104_02231AA8);
-    PaletteData_FillBufferRange(v1->unk_00->unk_04, 0, 2, 0x0, 0, 1);
+    PaletteData_FillBufferRange(v1->unk_00->plttData, 0, 2, 0x0, 0, 1);
 
     return TRUE;
 }
@@ -2416,12 +2415,12 @@ static BOOL FrontierScrCmd_GetPlayerObjEventGfx(FrontierScriptContext *ctx)
 static BOOL FrontierScrCmd_41(FrontierScriptContext *ctx)
 {
     FrontierScriptManager *v0 = ctx->scriptMan;
-    UnkStruct_ov104_0223C4CC *v1 = sub_0209B974(v0->unk_00);
+    FrontierGraphics *v1 = sub_0209B974(v0->unk_00);
     u16 v2 = FrontierScriptContext_GetVar(ctx);
     u16 v3 = FrontierScriptContext_GetVar(ctx);
     u16 v4 = FrontierScriptContext_GetVar(ctx);
 
-    ov104_0223D614(v1->unk_10, v2, v3, v4);
+    FrontierParticleSystem_NewParticleSystem(v1->particleSys, v2, v3, v4);
 
     return FALSE;
 }
@@ -2429,9 +2428,9 @@ static BOOL FrontierScrCmd_41(FrontierScriptContext *ctx)
 static BOOL FrontierScrCmd_42(FrontierScriptContext *ctx)
 {
     FrontierScriptManager *v0 = ctx->scriptMan;
-    UnkStruct_ov104_0223C4CC *v1 = sub_0209B974(v0->unk_00);
+    FrontierGraphics *v1 = sub_0209B974(v0->unk_00);
     u16 v2 = FrontierScriptContext_GetVar(ctx);
-    ov104_0223D68C(v1->unk_10, v2);
+    FrontierParticleSystem_FreeParticleSystem(v1->particleSys, v2);
 
     return FALSE;
 }
@@ -2439,13 +2438,13 @@ static BOOL FrontierScrCmd_42(FrontierScriptContext *ctx)
 static BOOL FrontierScrCmd_43(FrontierScriptContext *ctx)
 {
     FrontierScriptManager *v0 = ctx->scriptMan;
-    UnkStruct_ov104_0223C4CC *v1 = sub_0209B974(v0->unk_00);
+    FrontierGraphics *v1 = sub_0209B974(v0->unk_00);
     u16 v2, resourceID;
     ParticleSystem *particleSystem;
 
     v2 = FrontierScriptContext_GetVar(ctx);
     resourceID = FrontierScriptContext_GetVar(ctx);
-    particleSystem = ov104_0223D6D0(v1->unk_10, v2);
+    particleSystem = FrontierParticleSystem_GetParticleSystem(v1->particleSys, v2);
 
     ParticleSystem_CreateEmitterWithCallback(particleSystem, resourceID, NULL, NULL);
 
@@ -2461,9 +2460,9 @@ static BOOL FrontierScrCmd_44(FrontierScriptContext *ctx)
 static BOOL ov104_02231BB8(FrontierScriptContext *ctx)
 {
     FrontierScriptManager *v0 = ctx->scriptMan;
-    UnkStruct_ov104_0223C4CC *v1 = sub_0209B974(v0->unk_00);
+    FrontierGraphics *v1 = sub_0209B974(v0->unk_00);
 
-    if (ov104_0223D6E4(v1->unk_10) == 1) {
+    if (FrontierParticleSystem_NoActiveEmitters(v1->particleSys) == 1) {
         return TRUE;
     }
 
@@ -2473,7 +2472,7 @@ static BOOL ov104_02231BB8(FrontierScriptContext *ctx)
 static BOOL FrontierScrCmd_4C(FrontierScriptContext *ctx)
 {
     FrontierScriptManager *v0 = ctx->scriptMan;
-    UnkStruct_ov104_0223C4CC *v1 = sub_0209B974(v0->unk_00);
+    FrontierGraphics *v1 = sub_0209B974(v0->unk_00);
     u16 v2, v3, v4, v5;
     UnkStruct_ov104_0223319C *v6 = &v1->unk_A4;
 
@@ -2507,7 +2506,7 @@ static BOOL FrontierScrCmd_4D(FrontierScriptContext *ctx)
 static BOOL ov104_02231C54(FrontierScriptContext *ctx)
 {
     FrontierScriptManager *v0 = ctx->scriptMan;
-    UnkStruct_ov104_0223C4CC *v1 = sub_0209B974(v0->unk_00);
+    FrontierGraphics *v1 = sub_0209B974(v0->unk_00);
 
     if (v1->unk_A4.unk_00 == NULL) {
         return TRUE;
@@ -2519,7 +2518,7 @@ static BOOL ov104_02231C54(FrontierScriptContext *ctx)
 static BOOL FrontierScrCmd_4E(FrontierScriptContext *ctx)
 {
     FrontierScriptManager *v0 = ctx->scriptMan;
-    UnkStruct_ov104_0223C4CC *v1 = sub_0209B974(v0->unk_00);
+    FrontierGraphics *v1 = sub_0209B974(v0->unk_00);
     u16 v2, v3, v4, v5;
     UnkStruct_ov104_022331E8 *v6 = &v1->unk_B0;
 
@@ -2550,7 +2549,7 @@ static BOOL FrontierScrCmd_4F(FrontierScriptContext *ctx)
 static BOOL ov104_02231CF4(FrontierScriptContext *ctx)
 {
     FrontierScriptManager *v0 = ctx->scriptMan;
-    UnkStruct_ov104_0223C4CC *v1 = sub_0209B974(v0->unk_00);
+    FrontierGraphics *v1 = sub_0209B974(v0->unk_00);
 
     if (v1->unk_B0.unk_00 == NULL) {
         return TRUE;
@@ -2571,7 +2570,7 @@ static BOOL FrontierScrCmd_45(FrontierScriptContext *ctx)
     Party *party;
     Pokemon *mon;
     UnkStruct_ov104_02230BE4 *v2;
-    UnkStruct_ov104_0223C4CC *v3 = ov104_0222E924(ctx->scriptMan);
+    FrontierGraphics *v3 = FrontierScriptManager_GetGraphics(ctx->scriptMan);
     u16 slot = FrontierScriptContext_GetVar(ctx);
     u16 x = FrontierScriptContext_GetVar(ctx);
     u16 y = FrontierScriptContext_GetVar(ctx);
@@ -2591,7 +2590,7 @@ static BOOL FrontierScrCmd_45(FrontierScriptContext *ctx)
 
 static BOOL FrontierScrCmd_46(FrontierScriptContext *ctx)
 {
-    UnkStruct_ov104_0223C4CC *v0 = ov104_0222E924(ctx->scriptMan);
+    FrontierGraphics *v0 = FrontierScriptManager_GetGraphics(ctx->scriptMan);
     u16 v1 = FrontierScriptContext_ReadHalfWord(ctx);
 
     ov104_02232E80(v0, v1);
@@ -2600,12 +2599,12 @@ static BOOL FrontierScrCmd_46(FrontierScriptContext *ctx)
 
 static BOOL FrontierScrCmd_47(FrontierScriptContext *ctx)
 {
-    UnkStruct_ov104_0223C4CC *v0 = ov104_0222E924(ctx->scriptMan);
+    FrontierGraphics *v0 = FrontierScriptManager_GetGraphics(ctx->scriptMan);
     u16 v1 = FrontierScriptContext_ReadHalfWord(ctx);
     s16 v2, v3;
 
     ov104_0223D554(v0, &v2, &v3);
-    ov104_0223DC7C(v1, v0->unk_00, v0->unk_34.unk_00, v0->unk_34.unk_04, v0->unk_04, &ctx->data[0], v2, v3);
+    ov104_0223DC7C(v1, v0->bgConfig, v0->spriteSystem, v0->spriteMan, v0->plttData, &ctx->data[0], v2, v3);
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_BATTLE, SEQ_BATTLE_FRONTIER_BRAIN, 1);
     FrontierScriptContext_Pause(ctx, ov104_02231E14);
 
@@ -2615,7 +2614,7 @@ static BOOL FrontierScrCmd_47(FrontierScriptContext *ctx)
 static BOOL ov104_02231E14(FrontierScriptContext *ctx)
 {
     FrontierScriptManager *v0 = ctx->scriptMan;
-    UnkStruct_ov104_0223C4CC *v1 = sub_0209B974(v0->unk_00);
+    FrontierGraphics *v1 = sub_0209B974(v0->unk_00);
 
     if (ctx->data[0] == 1) {
         return TRUE;

@@ -1,155 +1,122 @@
 #include "overlay104/ov104_0223D5D0.h"
 
 #include <nitro.h>
-#include <string.h>
 
 #include "camera.h"
 #include "heap.h"
 #include "particle_system.h"
 #include "unk_0202419C.h"
 
-typedef struct UnkStruct_ov104_0223D5F0_t {
-    ParticleSystem *unk_00[8];
-    u16 heapID;
-} UnkStruct_ov104_0223D5F0;
+static u32 AllocTexVram(u32 size, BOOL is4x4comp);
+static u32 AllocPaletteVram(u32 size, BOOL is4pltt);
+static void FreeParticleSystem(ParticleSystem *ps);
 
-static u32 ov104_0223D720(u32 param0, BOOL param1);
-static u32 ov104_0223D744(u32 param0, BOOL param1);
-static void ov104_0223D708(ParticleSystem *param0);
-
-UnkStruct_ov104_0223D5F0 *ov104_0223D5D0(enum HeapID heapID)
+FrontierParticleSystem *FrontierParticleSystem_New(enum HeapID heapID)
 {
-    UnkStruct_ov104_0223D5F0 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov104_0223D5F0));
-    MI_CpuClear8(v0, sizeof(UnkStruct_ov104_0223D5F0));
+    FrontierParticleSystem *fps = Heap_Alloc(heapID, sizeof(FrontierParticleSystem));
+    MI_CpuClear8(fps, sizeof(FrontierParticleSystem));
 
-    v0->heapID = heapID;
+    fps->heapID = heapID;
     ParticleSystem_ZeroAll();
 
-    return v0;
+    return fps;
 }
 
-void ov104_0223D5F0(UnkStruct_ov104_0223D5F0 *param0)
+void FrontierParticleSystem_Free(FrontierParticleSystem *fps)
 {
-    int v0;
-    void *v1;
-
-    for (v0 = 0; v0 < (((3 + 1) + 3) + 1); v0++) {
-        if (param0->unk_00[v0] != NULL) {
-            ov104_0223D708(param0->unk_00[v0]);
+    for (int i = 0; i < NUM_FRONTIER_PARTICLE_SYSTEMS; i++) {
+        if (fps->particleSys[i] != NULL) {
+            FreeParticleSystem(fps->particleSys[i]);
         }
     }
 
-    Heap_Free(param0);
+    Heap_Free(fps);
 }
 
-ParticleSystem *ov104_0223D614(UnkStruct_ov104_0223D5F0 *param0, int param1, int param2, int param3)
+ParticleSystem *FrontierParticleSystem_NewParticleSystem(FrontierParticleSystem *fps, int index, int narcIdx, enum CameraProjection projection)
 {
-    ParticleSystem *v0;
-    void *v1;
-    Camera *camera;
-    void *v3;
+    GF_ASSERT(fps->particleSys[index] == NULL);
 
-    GF_ASSERT(param0->unk_00[param1] == NULL);
+    void *heap = Heap_Alloc(fps->heapID, 0x4800);
+    ParticleSystem *ps = ParticleSystem_New(AllocTexVram, AllocPaletteVram, heap, 0x4800, TRUE, fps->heapID);
+    Camera *camera = ParticleSystem_GetCamera(ps);
 
-    v1 = Heap_Alloc(param0->heapID, 0x4800);
-    v0 = ParticleSystem_New(ov104_0223D720, ov104_0223D744, v1, 0x4800, 1, param0->heapID);
-    camera = ParticleSystem_GetCamera(v0);
+    Camera_SetClipping(FX32_ONE, FX32_CONST(900), camera);
+    ParticleSystem_SetCameraProjection(ps, projection);
 
-    Camera_SetClipping(FX32_ONE, FX32_ONE * 900, camera);
-    ParticleSystem_SetCameraProjection(v0, param3);
+    void *resource = ParticleSystem_LoadResourceFromNARC(NARC_INDEX_PARTICLEDATA__PL_FRONTIER__FRONTIER_PARTICLE, narcIdx, fps->heapID);
+    ParticleSystem_SetResource(ps, resource, VRAM_AUTO_RELEASE_TEXTURE_LNK | VRAM_AUTO_RELEASE_PALETTE_LNK, TRUE);
 
-    v3 = ParticleSystem_LoadResourceFromNARC(157, param2, param0->heapID);
-    ParticleSystem_SetResource(v0, v3, (1 << 1) | (1 << 3), 1);
-
-    param0->unk_00[param1] = v0;
-    return v0;
+    fps->particleSys[index] = ps;
+    return ps;
 }
 
-void ov104_0223D68C(UnkStruct_ov104_0223D5F0 *param0, int param1)
+void FrontierParticleSystem_FreeParticleSystem(FrontierParticleSystem *fps, int index)
 {
-    GF_ASSERT(param0->unk_00[param1] != NULL);
+    GF_ASSERT(fps->particleSys[index] != NULL);
 
-    ov104_0223D708(param0->unk_00[param1]);
-    param0->unk_00[param1] = NULL;
+    FreeParticleSystem(fps->particleSys[index]);
+    fps->particleSys[index] = NULL;
 }
 
-int ov104_0223D6A8(void)
+BOOL FrontierParticleSystem_Update(void)
 {
-    int v0;
-
     G3_ResetG3X();
 
     if (ParticleSystem_GetActiveAmount() == 0) {
-        return 0;
+        return FALSE;
     }
 
-    v0 = ParticleSystem_DrawAll();
-
-    if (v0 > 0) {
+    if (ParticleSystem_DrawAll() > 0) {
         G3_ResetG3X();
     }
 
     ParticleSystem_UpdateAll();
 
-    return 1;
+    return TRUE;
 }
 
-ParticleSystem *ov104_0223D6D0(UnkStruct_ov104_0223D5F0 *param0, int param1)
+ParticleSystem *FrontierParticleSystem_GetParticleSystem(FrontierParticleSystem *fps, int index)
 {
-    GF_ASSERT(param0->unk_00[param1] != NULL);
-    return param0->unk_00[param1];
+    GF_ASSERT(fps->particleSys[index] != NULL);
+    return fps->particleSys[index];
 }
 
-BOOL ov104_0223D6E4(UnkStruct_ov104_0223D5F0 *param0)
+BOOL FrontierParticleSystem_NoActiveEmitters(FrontierParticleSystem *fps)
 {
-    int v0;
-
-    for (v0 = 0; v0 < (((3 + 1) + 3) + 1); v0++) {
-        if (param0->unk_00[v0] != NULL) {
-            if (ParticleSystem_GetActiveEmitterCount(param0->unk_00[v0]) > 0) {
-                return 0;
+    for (int i = 0; i < NUM_FRONTIER_PARTICLE_SYSTEMS; i++) {
+        if (fps->particleSys[i] != NULL) {
+            if (ParticleSystem_GetActiveEmitterCount(fps->particleSys[i]) > 0) {
+                return FALSE;
             }
         }
     }
 
-    return 1;
+    return TRUE;
 }
 
-static void ov104_0223D708(ParticleSystem *param0)
+static void FreeParticleSystem(ParticleSystem *ps)
 {
-    void *v0 = ParticleSystem_GetHeapStart(param0);
+    void *heap = ParticleSystem_GetHeapStart(ps);
 
-    ParticleSystem_Free(param0);
-    Heap_Free(v0);
+    ParticleSystem_Free(ps);
+    Heap_Free(heap);
 }
 
-static u32 ov104_0223D720(u32 param0, BOOL param1)
+static u32 AllocTexVram(u32 size, BOOL is4x4comp)
 {
-    u32 v0;
-    NNSGfdTexKey v1;
+    NNSGfdTexKey texKey = NNS_GfdAllocTexVram(size, is4x4comp, 0);
+    GF_ASSERT(texKey != NNS_GFD_ALLOC_ERROR_TEXKEY);
+    ParticleSystem_RegisterTextureKey(texKey);
 
-    v1 = NNS_GfdAllocTexVram(param0, param1, 0);
-    GF_ASSERT(v1 != NNS_GFD_ALLOC_ERROR_TEXKEY);
-
-    ParticleSystem_RegisterTextureKey(v1);
-
-    v0 = NNS_GfdGetTexKeyAddr(v1);
-    return v0;
+    return NNS_GfdGetTexKeyAddr(texKey);
 }
 
-static u32 ov104_0223D744(u32 param0, BOOL param1)
+static u32 AllocPaletteVram(u32 size, BOOL is4pltt)
 {
-    NNSGfdPlttKey v0;
-    u32 v1;
+    NNSGfdPlttKey plttKey = NNS_GfdAllocPlttVram(size, is4pltt, NNS_GFD_ALLOC_FROM_LOW);
+    GF_ASSERT(plttKey != NNS_GFD_ALLOC_ERROR_PLTTKEY);
+    ParticleSystem_RegisterPaletteKey(plttKey);
 
-    v0 = NNS_GfdAllocPlttVram(param0, param1, NNS_GFD_ALLOC_FROM_LOW);
-
-    if (v0 == NNS_GFD_ALLOC_ERROR_PLTTKEY) {
-        GF_ASSERT(FALSE);
-    }
-
-    ParticleSystem_RegisterPaletteKey(v0);
-    v1 = NNS_GfdGetPlttKeyAddr(v0);
-
-    return v1;
+    return NNS_GfdGetPlttKeyAddr(plttKey);
 }

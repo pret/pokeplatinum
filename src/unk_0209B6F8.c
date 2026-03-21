@@ -11,7 +11,6 @@
 #include "overlay104/ov104_0223C2D4.h"
 #include "overlay104/struct_ov104_0222E8C8.h"
 #include "overlay104/struct_ov104_02230BE4.h"
-#include "overlay104/struct_ov104_0223C4CC.h"
 #include "overlay104/struct_ov104_0223C634.h"
 #include "overlay104/struct_ov104_0223C688.h"
 #include "overlay104/struct_ov104_0223D3B0.h"
@@ -36,9 +35,9 @@ typedef struct UnkStruct_0209B75C_t {
     UnkFuncPtr_0209B988 unk_0C;
     u8 unk_10;
     FrontierScriptManager *unk_14;
-    UnkStruct_ov104_0223C4CC *unk_18;
+    FrontierGraphics *graphics;
     u8 unk_1C;
-    u8 unk_1D;
+    u8 isGraphicsInitialized;
     u8 unk_1E;
     u16 unk_20;
     u8 unk_22;
@@ -48,13 +47,13 @@ typedef struct UnkStruct_0209B75C_t {
     UnkStruct_ov104_0223D3B0 unk_98C;
 } UnkStruct_0209B75C;
 
-int sub_0209B6F8(ApplicationManager *appMan, int *param1);
+static BOOL sub_0209B6F8(ApplicationManager *appMan, int *state);
 int sub_0209B75C(ApplicationManager *appMan, int *param1);
 int sub_0209B8A4(ApplicationManager *appMan, int *param1);
-static void sub_0209B8C8(UnkStruct_0209B75C *param0);
-static void sub_0209B8D8(UnkStruct_0209B75C *param0);
-static void sub_0209B924(void);
-static void sub_0209B94C(void);
+static void InitFrontierGraphics(UnkStruct_0209B75C *param0);
+static void FreeFrontierGraphics(UnkStruct_0209B75C *param0);
+static void LoadBattleFrontierOverlays(void);
+static void UnloadBattleFrontierOverlays(void);
 static void sub_0209B8E8(UnkStruct_0209B75C *param0);
 
 const ApplicationManagerTemplate Unk_020F8BE0 = {
@@ -64,14 +63,12 @@ const ApplicationManagerTemplate Unk_020F8BE0 = {
     0xffffffff
 };
 
-int sub_0209B6F8(ApplicationManager *appMan, int *param1)
+static BOOL sub_0209B6F8(ApplicationManager *appMan, int *state)
 {
-    UnkStruct_0209B75C *v0;
-    int v1;
 
-    sub_0209B924();
+    LoadBattleFrontierOverlays();
 
-    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_0209B75C), HEAP_ID_FIELD2);
+    UnkStruct_0209B75C *v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_0209B75C), HEAP_ID_FIELD2);
     MI_CpuClear8(v0, sizeof(UnkStruct_0209B75C));
 
     sub_0209B8E8(v0);
@@ -80,12 +77,12 @@ int sub_0209B6F8(ApplicationManager *appMan, int *param1)
     v0->unk_00 = ApplicationManager_Args(appMan);
     GF_ASSERT(v0->unk_00 != NULL);
 
-    v0->unk_14 = FrontierScriptManager_New(v0, HEAP_ID_FIELD2, v0->unk_00->unk_24);
-    FrontierScriptManager_Load(v0->unk_14, v0->unk_00->unk_24, 0);
+    v0->unk_14 = FrontierScriptManager_New(v0, HEAP_ID_FIELD2, v0->unk_00->sceneID);
+    FrontierScriptManager_Load(v0->unk_14, v0->unk_00->sceneID, 0);
 
-    sub_0209B8C8(v0);
+    InitFrontierGraphics(v0);
 
-    return 1;
+    return TRUE;
 }
 
 int sub_0209B75C(ApplicationManager *appMan, int *param1)
@@ -103,7 +100,7 @@ int sub_0209B75C(ApplicationManager *appMan, int *param1)
             break;
         }
 
-        if (v0->unk_1D == 0) {
+        if (v0->isGraphicsInitialized == 0) {
             break;
         }
 
@@ -125,15 +122,15 @@ int sub_0209B75C(ApplicationManager *appMan, int *param1)
     case 2:
         return 1;
     case 3:
-        ov104_0223C634(v0->unk_18);
-        sub_0209B8D8(v0);
-        sub_0209B94C();
+        ov104_0223C634(v0->graphics);
+        FreeFrontierGraphics(v0);
+        UnloadBattleFrontierOverlays();
         *param1 = 4;
         break;
     case 4:
         if (ApplicationManager_Exec(v0->appMan) == 1) {
             ApplicationManager_Free(v0->appMan);
-            sub_0209B924();
+            LoadBattleFrontierOverlays();
 
             if (v0->unk_0C != NULL) {
                 v0->unk_0C(v0->unk_08);
@@ -147,29 +144,29 @@ int sub_0209B75C(ApplicationManager *appMan, int *param1)
             v0->unk_0C = NULL;
             v0->unk_08 = NULL;
 
-            sub_0209B8C8(v0);
-            ov104_0223C688(v0->unk_18);
+            InitFrontierGraphics(v0);
+            ov104_0223C688(v0->graphics);
             *param1 = 1;
         }
         break;
     case 5:
-        sub_0209B8D8(v0);
+        FreeFrontierGraphics(v0);
         sub_0209B8E8(v0);
         *param1 = 6;
         break;
     case 6:
-        sub_0209B8C8(v0);
+        InitFrontierGraphics(v0);
 
         if (v0->unk_20 == 0xffff) {
-            FrontierScriptManager_UpdateMessageLoader(v0->unk_14, v0->unk_00->unk_24, HEAP_ID_FIELD2);
+            FrontierScriptManager_UpdateMessageLoader(v0->unk_14, v0->unk_00->sceneID, HEAP_ID_FIELD2);
         } else {
             UnkStruct_ov104_0222E8C8 *v2;
 
             v2 = ov104_0222E8C8(v0->unk_14, HEAP_ID_FIELD2);
             FrontierScriptManager_Free(v0->unk_14);
 
-            v0->unk_14 = FrontierScriptManager_New(v0, HEAP_ID_FIELD2, v0->unk_00->unk_24);
-            FrontierScriptManager_Load(v0->unk_14, v0->unk_00->unk_24, v0->unk_20);
+            v0->unk_14 = FrontierScriptManager_New(v0, HEAP_ID_FIELD2, v0->unk_00->sceneID);
+            FrontierScriptManager_Load(v0->unk_14, v0->unk_00->sceneID, v0->unk_20);
             ov104_0222E8E8(v0->unk_14, v2);
         }
 
@@ -187,23 +184,23 @@ int sub_0209B8A4(ApplicationManager *appMan, int *param1)
 
     FrontierScriptManager_Free(v0->unk_14);
 
-    sub_0209B8D8(v0);
+    FreeFrontierGraphics(v0);
     ApplicationManager_FreeData(appMan);
-    sub_0209B94C();
+    UnloadBattleFrontierOverlays();
 
     return 1;
 }
 
-static void sub_0209B8C8(UnkStruct_0209B75C *param0)
+static void InitFrontierGraphics(UnkStruct_0209B75C *param0)
 {
-    param0->unk_18 = ov104_0223C2D4(param0);
-    param0->unk_1D = 1;
+    param0->graphics = FrontierGraphics_New(param0);
+    param0->isGraphicsInitialized = TRUE;
 }
 
-static void sub_0209B8D8(UnkStruct_0209B75C *param0)
+static void FreeFrontierGraphics(UnkStruct_0209B75C *param0)
 {
-    ov104_0223C4CC(param0->unk_18);
-    param0->unk_1D = 0;
+    FrontierGraphics_Free(param0->graphics);
+    param0->isGraphicsInitialized = FALSE;
 }
 
 static void sub_0209B8E8(UnkStruct_0209B75C *param0)
@@ -221,14 +218,14 @@ static void sub_0209B8E8(UnkStruct_0209B75C *param0)
     }
 }
 
-static void sub_0209B924(void)
+static void LoadBattleFrontierOverlays(void)
 {
-    Overlay_LoadByID(FS_OVERLAY_ID(overlay104), 2);
-    Overlay_LoadByID(FS_OVERLAY_ID(battle_factory_app), 2);
-    Overlay_LoadByID(FS_OVERLAY_ID(overlay63), 2);
+    Overlay_LoadByID(FS_OVERLAY_ID(overlay104), OVERLAY_LOAD_ASYNC);
+    Overlay_LoadByID(FS_OVERLAY_ID(battle_factory_app), OVERLAY_LOAD_ASYNC);
+    Overlay_LoadByID(FS_OVERLAY_ID(overlay63), OVERLAY_LOAD_ASYNC);
 }
 
-static void sub_0209B94C(void)
+static void UnloadBattleFrontierOverlays(void)
 {
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay104));
     Overlay_UnloadByID(FS_OVERLAY_ID(battle_factory_app));
@@ -240,9 +237,9 @@ UnkStruct_ov104_02230BE4 *sub_0209B970(UnkStruct_0209B75C *param0)
     return param0->unk_00;
 }
 
-UnkStruct_ov104_0223C4CC *sub_0209B974(UnkStruct_0209B75C *param0)
+FrontierGraphics *sub_0209B974(UnkStruct_0209B75C *param0)
 {
-    return param0->unk_18;
+    return param0->graphics;
 }
 
 void *sub_0209B978(UnkStruct_0209B75C *param0)
@@ -271,7 +268,7 @@ void sub_0209B9B4(UnkStruct_0209B75C *param0)
 
 void sub_0209B9BC(UnkStruct_0209B75C *param0, u16 param1, u16 param2)
 {
-    param0->unk_00->unk_24 = param1;
+    param0->unk_00->sceneID = param1;
     param0->unk_1E = 1;
     param0->unk_20 = param2;
 }
