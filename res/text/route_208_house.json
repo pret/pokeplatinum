@@ -2,7 +2,7 @@
   "key": 28362,
   "messages": [
     {
-      "id": "pl_msg_00000479_00000",
+      "id": "Route208House_Text_YoureDeservingOfABerry",
       "en_US": [
         "Everyone seems to call me the Berry\n",
         "Master.\r",
@@ -13,7 +13,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000479_00001",
+      "id": "Route208House_Text_FeedBerriesToPokemon",
       "en_US": [
         "Berries are gifts of nature.\r",
         "I encourage you to feed Berries to\n",
@@ -26,14 +26,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000479_00002",
+      "id": "Route208House_Text_DoYouForgetWhereBerriesArePlanted",
       "en_US": [
         "Are you the forgetful type who\n",
         "forgets where Berries are planted?"
       ]
     },
     {
-      "id": "pl_msg_00000479_00003",
+      "id": "Route208House_Text_YouCanHaveThisPoketchApp",
       "en_US": [
         "Yes, yes, I thought so!\n",
         "I’m the same way!\r",
@@ -42,7 +42,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000479_00004",
+      "id": "Route208House_Text_ThenYoureOKWithoutThisNiceThing",
       "en_US": [
         "Oh, is that so.\r",
         "Then you’re OK even if I don’t give\n",
@@ -50,7 +50,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000479_00005",
+      "id": "Route208House_Text_TheBerrySearcherShowsRipeBerryLocations",
       "en_US": [
         "The {STRVAR_1 24, 0, 0} shows you\n",
         "where there are ripe Berries\f",
@@ -58,14 +58,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000479_00006",
+      "id": "Route208House_Text_CertainBerriesNeedLotsOfWater",
       "en_US": [
         "Certain kinds of Berries need lots\n",
         "and lots of water."
       ]
     },
     {
-      "id": "pl_msg_00000479_00007",
+      "id": "Route208House_Text_WouldYouLikeSomeMulch",
       "en_US": [
         "Um... Would you like some Mulch?\r",
         "If you’re going to grow Berries,\n",
@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000479_00008",
+      "id": "Route208House_Text_ThatMulchWillPromoteBerryGrowth",
       "en_US": [
         "That {STRVAR_1 8, 0, 0}...\r",
         "I made it by mixing high-grade soil\n",
@@ -82,46 +82,46 @@
       ]
     },
     {
-      "id": "pl_msg_00000479_00009",
+      "id": "Route208House_Text_PleaseComeAgain",
       "en_US": [
         "Um...\n",
         "Please come again."
       ]
     },
     {
-      "id": "pl_msg_00000479_00010",
+      "id": "Route208House_Text_YouBoughtSomeMulch",
       "en_US": "You bought some {STRVAR_1 8, 0, 0}.\r"
     },
     {
-      "id": "pl_msg_00000479_00011",
+      "id": "Route208House_Text_YourBagAppearsToBeFull",
       "en_US": [
         "I’m so sorry...\n",
         "Your Bag appears to be full..."
       ]
     },
     {
-      "id": "pl_msg_00000479_00012",
+      "id": "Route208House_Text_YouDontHaveEnoughMoney",
       "en_US": [
         "Um... You don’t appear to have\n",
         "enough money..."
       ]
     },
     {
-      "id": "pl_msg_00000479_00013",
+      "id": "Route208House_Text_BookMuchAdoAboutMulch",
       "en_US": [
         "It’s a book titled “Much Ado About\n",
         "Mulch: A Berry-Grower’s Guide.”\r"
       ]
     },
     {
-      "id": "pl_msg_00000479_00014",
+      "id": "Route208House_Text_ReadAboutWhatMulch",
       "en_US": [
         "Which kind of Mulch would\n",
         "you like to read about?"
       ]
     },
     {
-      "id": "pl_msg_00000479_00015",
+      "id": "Route208House_Text_ExplainGrowthMulch",
       "en_US": [
         "The Growth Mulch promotes faster\n",
         "growth of Berries.\r",
@@ -131,7 +131,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000479_00016",
+      "id": "Route208House_Text_ExplainDampMulch",
       "en_US": [
         "The Damp Mulch slows the drying of soil.\r",
         "However, it also slows the growth of\n",
@@ -139,7 +139,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000479_00017",
+      "id": "Route208House_Text_ExplainStableMulch",
       "en_US": [
         "The Stable Mulch extends the time\n",
         "Berries remain on their plants.\r",
@@ -149,7 +149,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000479_00018",
+      "id": "Route208House_Text_ExplainGooeyMulch",
       "en_US": [
         "The Gooey Mulch increases the growth\n",
         "cycles of Berries.\r",
@@ -159,23 +159,23 @@
       ]
     },
     {
-      "id": "pl_msg_00000479_00019",
+      "id": "Route208House_Text_GrowthMulch",
       "en_US": "GROWTH MULCH"
     },
     {
-      "id": "pl_msg_00000479_00020",
+      "id": "Route208House_Text_DampMulch",
       "en_US": "DAMP MULCH"
     },
     {
-      "id": "pl_msg_00000479_00021",
+      "id": "Route208House_Text_StableMulch",
       "en_US": "STABLE MULCH"
     },
     {
-      "id": "pl_msg_00000479_00022",
+      "id": "Route208House_Text_GooeyMulch",
       "en_US": "GOOEY MULCH"
     },
     {
-      "id": "pl_msg_00000479_00023",
+      "id": "Route208House_Text_Exit",
       "en_US": "EXIT"
     }
   ]

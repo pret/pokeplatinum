@@ -2,21 +2,21 @@
 #include "res/text/bank/route_209_lost_tower_1f.h"
 
 
-    ScriptEntry _000E
-    ScriptEntry _0014
-    ScriptEntry _0027
+    ScriptEntry Route209LostTower1F_OnTransition
+    ScriptEntry Route209LostTower1F_PokemonBreederF1
+    ScriptEntry Route209LostTower1F_PokemonBreederF2
     ScriptEntryEnd
 
-_000E:
+Route209LostTower1F_OnTransition:
     SetFlag FLAG_FIRST_ARRIVAL_LOST_TOWER
     End
 
-_0014:
-    NPCMessage 0
+Route209LostTower1F_PokemonBreederF1:
+    NPCMessage Route209LostTower1F_Text_ThisIsWhereSpiritsRest
     End
 
-_0027:
-    NPCMessage 1
+Route209LostTower1F_PokemonBreederF2:
+    NPCMessage Route209LostTower1F_Text_ThisIsTheLostTower
     End
 
     .balign 4, 0

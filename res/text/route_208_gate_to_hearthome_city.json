@@ -2,7 +2,7 @@
   "key": 33826,
   "messages": [
     {
-      "id": "pl_msg_00000120_00000",
+      "id": "Route208GateToHearthomeCity_Text_HearthomeCityIsAGreatPlace",
       "en_US": [
         "Hearthome City is a great place.\r",
         "Every year, it gets voted the most\n",
@@ -10,7 +10,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000120_00001",
+      "id": "Route208GateToHearthomeCity_Text_IfYouSayHearthomeISayContests",
       "en_US": [
         "If you say Hearthome City, I only\n",
         "say this: Pokémon Contests!\r",
@@ -19,7 +19,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000120_00002",
+      "id": "Route208GateToHearthomeCity_Text_ClefairyCryPippii",
       "en_US": "CLEFAIRY: Pippii?!"
     }
   ]

@@ -2,14 +2,14 @@
   "key": 40632,
   "messages": [
     {
-      "id": "pl_msg_00000478_00000",
+      "id": "Route208_Text_JustTakeIt",
       "en_US": [
         "...Don’t say a word.\n",
         "Just take it.\r"
       ]
     },
     {
-      "id": "pl_msg_00000478_00001",
+      "id": "Route208_Text_GoToRoute209",
       "en_US": [
         "Go to Route 209!\n",
         "Go underground!\r",
@@ -18,28 +18,28 @@
       ]
     },
     {
-      "id": "pl_msg_00000478_00002",
+      "id": "Route208_Text_SignRt208MtCoronet",
       "en_US": [
         "Rt. 208\n",
         "Mt. Coronet"
       ]
     },
     {
-      "id": "pl_msg_00000478_00003",
+      "id": "Route208_Text_SignRt208HearthomeCity",
       "en_US": [
         "Rt. 208\n",
         "Hearthome City"
       ]
     },
     {
-      "id": "pl_msg_00000478_00004",
+      "id": "Route208_Text_SignBerryMastersHouse",
       "en_US": [
         "Berry Master’s House\n",
         "Free Berries Available"
       ]
     },
     {
-      "id": "pl_msg_00000478_00005",
+      "id": "Route208_Text_TrainerTipsWatchBerrySoilColor",
       "en_US": [
         "Trainer Tips\r",
         "After a Berry is planted, watch the\n",

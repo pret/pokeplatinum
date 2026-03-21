@@ -2,14 +2,14 @@
   "key": 32458,
   "messages": [
     {
-      "id": "pl_msg_00000481_00000",
+      "id": "Route209LostTower1F_Text_ThisIsWhereSpiritsRest",
       "en_US": [
         "This is where spirits rest.\n",
         "Please be quiet and respectful."
       ]
     },
     {
-      "id": "pl_msg_00000481_00001",
+      "id": "Route209LostTower1F_Text_ThisIsTheLostTower",
       "en_US": [
         "This is the Lost Tower.\r",
         "There is a persistent fog that thickens\n",

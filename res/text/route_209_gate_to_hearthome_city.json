@@ -2,7 +2,7 @@
   "key": 33850,
   "messages": [
     {
-      "id": "pl_msg_00000121_00000",
+      "id": "Route209GateToHearthomeCity_Text_TheresAWreckedStonePillar",
       "en_US": [
         "There’s a wrecked stone pillar up\n",
         "ahead.\r",
@@ -11,7 +11,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000121_00001",
+      "id": "Route209GateToHearthomeCity_Text_LetsGetTheShowStarted",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: Ta-daah!\n",
         "Kept me waiting again, {STRVAR_1 3, 1, 0}!\r",
@@ -24,7 +24,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000121_00002",
+      "id": "Route209GateToHearthomeCity_Text_MySurefireWinningStrategyDoesntWork",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: Waaah!\r",
         "It goes to show my surefire winning\n",

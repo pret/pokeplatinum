@@ -2,7 +2,7 @@
   "key": 32474,
   "messages": [
     {
-      "id": "pl_msg_00000482_00000",
+      "id": "Route209LostTower5F_Text_DontBeShyTakeIt",
       "en_US": [
         "Oh! The fog is gone and, with it, all\n",
         "doubt in my heart!\r",
@@ -11,7 +11,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000482_00001",
+      "id": "Route209LostTower5F_Text_FantinaIsARegularVisitor",
       "en_US": [
         "That Fantina...\n",
         "It’s hard to tell what she’s thinking.\r",
@@ -20,7 +20,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000482_00002",
+      "id": "Route209LostTower5F_Text_ThisFogObscuresEverything",
       "en_US": [
         "I can’t see!\n",
         "This fog obscures everything!\r",
@@ -29,14 +29,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000482_00003",
+      "id": "Route209LostTower5F_Text_TakeThis",
       "en_US": [
         "Let me make your journey out of this\n",
         "place less frightening. Take this.\r"
       ]
     },
     {
-      "id": "pl_msg_00000482_00004",
+      "id": "Route209LostTower5F_Text_AllDepartedPokemonFindSolaceHere",
       "en_US": [
         "The Lost Tower is where the spirits\n",
         "of departed Pokémon are put to rest.\r",
@@ -47,7 +47,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000482_00005",
+      "id": "Route209LostTower5F_Text_ThisFogObscuresEverything2",
       "en_US": [
         "I can’t see!\n",
         "This fog obscures everything!\r",

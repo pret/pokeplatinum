@@ -918,23 +918,23 @@
       "en_US": "NO THANKS"
     },
     {
-      "id": "pl_msg_00000361_00223",
+      "id": "MenuEntries_Text_MulchShop_GrowthMulch",
       "en_US": "GROWTH MULCH{CURSOR_X 90}$200"
     },
     {
-      "id": "pl_msg_00000361_00224",
+      "id": "MenuEntries_Text_MulchShop_DampMulch",
       "en_US": "DAMP MULCH{CURSOR_X 90}$200"
     },
     {
-      "id": "pl_msg_00000361_00225",
+      "id": "MenuEntries_Text_MulchShop_StableMulch",
       "en_US": "STABLE MULCH{CURSOR_X 90}$200"
     },
     {
-      "id": "pl_msg_00000361_00226",
+      "id": "MenuEntries_Text_MulchShop_GooeyMulch",
       "en_US": "GOOEY MULCH{CURSOR_X 90}$200"
     },
     {
-      "id": "pl_msg_00000361_00227",
+      "id": "MenuEntries_Text_MulchShop_Exit",
       "en_US": "EXIT"
     },
     {

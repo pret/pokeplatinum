@@ -2,21 +2,21 @@
 #include "res/text/bank/route_208_gate_to_hearthome_city.h"
 
 
-    ScriptEntry _000E
-    ScriptEntry _0021
-    ScriptEntry _0034
+    ScriptEntry Route208GateToHearthomeCity_PokemonBreederM
+    ScriptEntry Route208GateToHearthomeCity_MiddleAgedWoman
+    ScriptEntry Route208GateToHearthomeCity_Clefairy
     ScriptEntryEnd
 
-_000E:
-    NPCMessage 0
+Route208GateToHearthomeCity_PokemonBreederM:
+    NPCMessage Route208GateToHearthomeCity_Text_HearthomeCityIsAGreatPlace
     End
 
-_0021:
-    NPCMessage 1
+Route208GateToHearthomeCity_MiddleAgedWoman:
+    NPCMessage Route208GateToHearthomeCity_Text_IfYouSayHearthomeISayContests
     End
 
-_0034:
-    PokemonCryAndMessage SPECIES_CLEFAIRY, 2
+Route208GateToHearthomeCity_Clefairy:
+    PokemonCryAndMessage SPECIES_CLEFAIRY, Route208GateToHearthomeCity_Text_ClefairyCryPippii
     End
 
     .balign 4, 0

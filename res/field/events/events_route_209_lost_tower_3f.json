@@ -17,7 +17,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_209_LOST_TOWER_3F_POKEFAN_LEONARD",
+            "id": "LOCALID_POKEFAN_LEONARD",
             "graphics_id": "OBJ_EVENT_GFX_POKEFAN_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -34,7 +34,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_209_LOST_TOWER_3F_ROUGHNECK_KIRBY",
+            "id": "LOCALID_ROUGHNECK_KIRBY",
             "graphics_id": "OBJ_EVENT_GFX_ROUGHNECK",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",

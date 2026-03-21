@@ -2,21 +2,21 @@
   "key": 40636,
   "messages": [
     {
-      "id": "pl_msg_00000480_00000",
+      "id": "Route209_Text_ThisIsTheLostTower",
       "en_US": [
         "Where departed Pokémon sleep...\n",
         "This is the Lost Tower."
       ]
     },
     {
-      "id": "pl_msg_00000480_00001",
+      "id": "Route209_Text_ThereIsABrokenTower",
       "en_US": [
         "There is a broken, crumbling tower\n",
         "made of stone..."
       ]
     },
     {
-      "id": "pl_msg_00000480_00002",
+      "id": "Route209_Text_WouldYouLikeToUseTheOddKeystone",
       "en_US": [
         "There is a broken, crumbling tower\n",
         "made of stone...\r",
@@ -27,7 +27,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000480_00003",
+      "id": "Route209_Text_PlayerUsedTheOddKeystone",
       "en_US": [
         "{STRVAR_1 3, 0, 0} pushed the Odd Keystone\n",
         "into the stone tower.\r",
@@ -36,7 +36,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000480_00004",
+      "id": "Route209_Text_ItWasBuiltManyYearsAgo",
       "en_US": [
         "It’s the Hallowed Tower.\r",
         "It appears to have been built\n",
@@ -44,14 +44,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000480_00005",
+      "id": "Route209_Text_ItsStonesAppearToHaveShifted",
       "en_US": [
         "It’s the Hallowed Tower.\r",
         "Its stones appear to have shifted..."
       ]
     },
     {
-      "id": "pl_msg_00000480_00006",
+      "id": "Route209_Text_IsThatCryingComingFromInside",
       "en_US": [
         "It’s the Hallowed Tower.\r",
         "...Is that crying coming from inside\n",
@@ -59,7 +59,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000480_00007",
+      "id": "Route209_Text_IsTheTowerShaking",
       "en_US": [
         "It’s the Hallowed Tower.\r",
         "...Is the tower shaking ever so\n",
@@ -67,7 +67,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000480_00008",
+      "id": "Route209_Text_ThereIsSomeSortOfPresence",
       "en_US": [
         "It’s the Hallowed Tower.\r",
         "There is some sort of presence...\n",
@@ -75,11 +75,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000480_00009",
+      "id": "Route209_Text_SpiritombCry",
       "en_US": "Yulaaah!\r"
     },
     {
-      "id": "pl_msg_00000480_00010",
+      "id": "Route209_Text_GoodRodIsReallyGoodWouldntYouAgree",
       "en_US": [
         "Hmm!\n",
         "{STRVAR_1 8, 0, 0} is really good!\r",
@@ -87,7 +87,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000480_00011",
+      "id": "Route209_Text_TakeThisGoodRod",
       "en_US": [
         "Hmm!\n",
         "We’re of identical minds!\r",
@@ -96,7 +96,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000480_00012",
+      "id": "Route209_Text_DoINeedToExplainHowToFish",
       "en_US": [
         "Try fishing wherever there is\n",
         "a body of water.\r",
@@ -105,11 +105,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000480_00013",
+      "id": "Route209_Text_YouDontLikeToFish",
       "en_US": "You don’t like to fish?"
     },
     {
-      "id": "pl_msg_00000480_00014",
+      "id": "Route209_Text_ExplainHowToFish",
       "en_US": [
         "First, you face any body of water,\n",
         "then you use your fishing rod.\r",
@@ -119,7 +119,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000480_00015",
+      "id": "Route209_Text_WhenYouReelPokemonYouBattleIt",
       "en_US": [
         "When you’re fishing for Pokémon,\n",
         "the first hurdle is getting a bite.\r",
@@ -129,14 +129,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000480_00016",
+      "id": "Route209_Text_DoYouJogEveryMorning",
       "en_US": [
         "Do you jog every morning?\n",
         "Well, I do!"
       ]
     },
     {
-      "id": "pl_msg_00000480_00017",
+      "id": "Route209_Text_AWildPokemonChasedAfterMe",
       "en_US": [
         "When I was jogging the other day,\n",
         "a wild Pokémon chased after me.\r",
@@ -145,21 +145,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000480_00018",
+      "id": "Route209_Text_SignRt209HearthomeCity",
       "en_US": [
         "Rt. 209\n",
         "Hearthome City"
       ]
     },
     {
-      "id": "pl_msg_00000480_00019",
+      "id": "Route209_Text_Rt209SolaceonTown",
       "en_US": [
         "Rt. 209\n",
         "Solaceon Town"
       ]
     },
     {
-      "id": "pl_msg_00000480_00020",
+      "id": "Route209_Text_TrainerTipsRegisterKeyItems",
       "en_US": [
         "Trainer Tips\r",
         "You may register one of the Key\n",

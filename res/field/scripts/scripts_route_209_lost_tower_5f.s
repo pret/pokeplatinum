@@ -2,69 +2,69 @@
 #include "res/text/bank/route_209_lost_tower_5f.h"
 
 
-    ScriptEntry _000A
-    ScriptEntry _0072
+    ScriptEntry Route209LostTower5F_OldWoman1
+    ScriptEntry Route209LostTower5F_OldWoman2
     ScriptEntryEnd
 
-_000A:
+Route209LostTower5F_OldWoman1:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfUnset FLAG_UNK_0x007B, _0067
-    GoToIfSet FLAG_UNK_0x00A1, _005C
-    Message 0
+    GoToIfUnset FLAG_USED_DEFOG_IN_ROUTE_209_LOST_TOWER_5F, Route209LostTower5F_ThisFogObscuresEverything
+    GoToIfSet FLAG_RECEIVED_ROUTE_209_LOST_TOWER_5F_SPELL_TAG, Route209LostTower5F_FantinaIsARegularVisitor
+    Message Route209LostTower5F_Text_DontBeShyTakeIt
     SetVar VAR_0x8004, ITEM_SPELL_TAG
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _00CF
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Route209LostTower5F_BagIsFull
     Common_GiveItemQuantity
-    SetFlag FLAG_UNK_0x00A1
-    GoTo _005C
+    SetFlag FLAG_RECEIVED_ROUTE_209_LOST_TOWER_5F_SPELL_TAG
+    GoTo Route209LostTower5F_FantinaIsARegularVisitor
     End
 
-_005C:
-    Message 1
+Route209LostTower5F_FantinaIsARegularVisitor:
+    Message Route209LostTower5F_Text_FantinaIsARegularVisitor
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0067:
-    Message 2
+Route209LostTower5F_ThisFogObscuresEverything:
+    Message Route209LostTower5F_Text_ThisFogObscuresEverything
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0072:
+Route209LostTower5F_OldWoman2:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfUnset FLAG_UNK_0x007B, _00D9
-    GoToIfSet FLAG_UNK_0x0116, _00C4
-    Message 3
+    GoToIfUnset FLAG_USED_DEFOG_IN_ROUTE_209_LOST_TOWER_5F, Route209LostTower5F_ThisFogObscuresEverything2
+    GoToIfSet FLAG_RECEIVED_ROUTE_209_LOST_TOWER_5F_CLEANSE_TAG, Route209LostTower5F_AllDepartedPokemonFindSolaceHere
+    Message Route209LostTower5F_Text_TakeThis
     SetVar VAR_0x8004, ITEM_CLEANSE_TAG
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _00CF
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Route209LostTower5F_BagIsFull
     Common_GiveItemQuantity
-    SetFlag FLAG_UNK_0x0116
-    GoTo _00C4
+    SetFlag FLAG_RECEIVED_ROUTE_209_LOST_TOWER_5F_CLEANSE_TAG
+    GoTo Route209LostTower5F_AllDepartedPokemonFindSolaceHere
     End
 
-_00C4:
-    Message 4
+Route209LostTower5F_AllDepartedPokemonFindSolaceHere:
+    Message Route209LostTower5F_Text_AllDepartedPokemonFindSolaceHere
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_00CF:
+Route209LostTower5F_BagIsFull:
     Common_MessageBagIsFull
     CloseMessage
     ReleaseAll
     End
 
-_00D9:
-    Message 5
+Route209LostTower5F_ThisFogObscuresEverything2:
+    Message Route209LostTower5F_Text_ThisFogObscuresEverything2
     WaitABXPadPress
     CloseMessage
     ReleaseAll

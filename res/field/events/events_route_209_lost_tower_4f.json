@@ -26,7 +26,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_209_LOST_TOWER_4F_POKEFAN_REBEKAH",
+            "id": "LOCALID_POKEFAN_REBEKAH",
             "graphics_id": "OBJ_EVENT_GFX_POKEFAN_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -43,7 +43,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_209_LOST_TOWER_4F_YOUNG_COUPLE_TRAINER_MIKE",
+            "id": "LOCALID_YOUNG_COUPLE_TRAINER_MIKE",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -61,7 +61,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_209_LOST_TOWER_4F_YOUNG_COUPLE_TRAINER_NAT",
+            "id": "LOCALID_YOUNG_COUPLE_TRAINER_NAT",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -79,7 +79,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_209_LOST_TOWER_4F_PA_BOB",
+            "id": "LOCALID_PA_BOB",
             "graphics_id": "OBJ_EVENT_GFX_RANCHER",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -97,7 +97,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_209_LOST_TOWER_4F_BELLE_BETH",
+            "id": "LOCALID_BELLE_BETH",
             "graphics_id": "OBJ_EVENT_GFX_COWGIRL",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",

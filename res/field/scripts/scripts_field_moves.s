@@ -368,12 +368,12 @@ _05C3:
     GetCurrentMapID VAR_0x8004
     CreateJournalEvent LOCATION_EVENT_USED_DEFOG, VAR_0x8004, 0, 0, 0
     GetCurrentMapID VAR_0x8004
-    CallIfEq VAR_0x8004, 0x169, _0606
+    CallIfEq VAR_0x8004, MAP_HEADER_ROUTE_209_LOST_TOWER_5F, _0606
     GoTo _0671
     End
 
 _0606:
-    SetFlag FLAG_UNK_0x007B
+    SetFlag FLAG_USED_DEFOG_IN_ROUTE_209_LOST_TOWER_5F
     Return
 
 FieldMoves_UseDefogFromMenu:

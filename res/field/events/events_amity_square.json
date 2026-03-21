@@ -2,7 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
-            "id": "AMITY_SQUARE_RECEPTIONIST_0",
+            "id": "LOCALID_RECEPTIONIST_WEST",
             "graphics_id": "OBJ_EVENT_GFX_RECEPTIONIST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -17,7 +17,7 @@
             "y": 0
         },
         {
-            "id": "AMITY_SQUARE_RECEPTIONIST_1",
+            "id": "LOCALID_RECEPTIONIST_EAST",
             "graphics_id": "OBJ_EVENT_GFX_RECEPTIONIST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -77,11 +77,11 @@
             "y": 0
         },
         {
-            "id": "AMITY_SQUARE_COUNTERPART_5",
+            "id": "LOCALID_FOLLOWER_MON",
             "graphics_id": "OBJ_EVENT_GFX_COUNTERPART",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x02A1",
+            "hidden_flag": "FLAG_HIDE_AMITY_SQUARE_FOLLOWER_MON",
             "script": 6,
             "initial_dir": 0,
             "data": [],
@@ -92,7 +92,7 @@
             "y": 0
         },
         {
-            "id": "AMITY_SQUARE_POKEMON_BREEDER_M_6",
+            "id": "LOCALID_POKEMON_BREEDER_M",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -107,7 +107,7 @@
             "y": 0
         },
         {
-            "id": "AMITY_SQUARE_DRIFLOON_7",
+            "id": "LOCALID_DRIFLOON",
             "graphics_id": "OBJ_EVENT_GFX_DRIFLOON",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -122,7 +122,7 @@
             "y": 0
         },
         {
-            "id": "AMITY_SQUARE_HAPPINY_8",
+            "id": "LOCALID_HAPPINY",
             "graphics_id": "OBJ_EVENT_GFX_HAPPINY",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -137,7 +137,7 @@
             "y": 0
         },
         {
-            "id": "AMITY_SQUARE_POKEMON_BREEDER_F_9",
+            "id": "LOCALID_POKEMON_BREEDER_F",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -152,7 +152,7 @@
             "y": 0
         },
         {
-            "id": "AMITY_SQUARE_COLLECTOR_10",
+            "id": "LOCALID_COLLECTOR",
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -167,7 +167,7 @@
             "y": 0
         },
         {
-            "id": "AMITY_SQUARE_PIKACHU_11",
+            "id": "LOCALID_PIKACHU",
             "graphics_id": "OBJ_EVENT_GFX_PIKACHU",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -182,7 +182,7 @@
             "y": 0
         },
         {
-            "id": "AMITY_SQUARE_TWIN_12",
+            "id": "LOCALID_TWIN",
             "graphics_id": "OBJ_EVENT_GFX_TWIN",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -197,7 +197,7 @@
             "y": 0
         },
         {
-            "id": "AMITY_SQUARE_CLEFAIRY_13",
+            "id": "LOCALID_CLEFAIRY",
             "graphics_id": "OBJ_EVENT_GFX_CLEFAIRY",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -227,7 +227,7 @@
             "y": 0
         },
         {
-            "id": "AMITY_SQUARE_COLLECTOR_15",
+            "id": "LOCALID_GIFT_MAN",
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
