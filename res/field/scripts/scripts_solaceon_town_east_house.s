@@ -16,7 +16,7 @@ _000C:
     CheckPartyHasSpecies VAR_RESULT, SPECIES_UNOWN
     GoToIfEq VAR_RESULT, 1, _0048
     Message 0
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -51,14 +51,14 @@ _00DB:
     BufferBallSealName 0, VAR_0x8007
 _00E0:
     Message 4
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _00EB:
     Message 0
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -69,7 +69,7 @@ _00F6:
 
 _00FE:
     Message 3
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -86,14 +86,14 @@ _0109:
     SetFlag FLAG_UNK_0x0117
     Call _014F
     Message 7
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _0144:
     Message 7
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

@@ -32,7 +32,7 @@ _0060:
     SetNewsPressDeadline 1
     BufferSpeciesNameFromVar 0, VAR_UNK_0x40E5, 0, 0
     Message 2
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -125,7 +125,7 @@ _01E9:
     SetVar VAR_UNK_0x40E5, 0
     SetFlag FLAG_UNK_0x0AB1
     Message 5
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -145,7 +145,7 @@ _023F:
 
 _0251:
     Message 6
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -167,7 +167,7 @@ _0283:
     GetNewsPressDeadline VAR_RESULT
     BufferNumber 1, VAR_RESULT
     Message 8
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -175,14 +175,14 @@ _0283:
 _029F:
     Message 9
     SetVar VAR_UNK_0x40E5, 0
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _02B0:
     Message 10
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -213,28 +213,28 @@ _02CE:
 
 _0344:
     Message 14
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _034F:
     Message 15
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _035A:
     Message 16
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _0365:
     Message 17
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

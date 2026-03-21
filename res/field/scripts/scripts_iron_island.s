@@ -35,7 +35,7 @@ _003E:
 
 _0071:
     Message 5
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

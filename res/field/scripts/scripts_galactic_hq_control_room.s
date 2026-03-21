@@ -74,14 +74,14 @@ _0105:
 
 _0109:
     Message 3
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _0114:
     Message 2
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -114,14 +114,14 @@ _014C:
     LockAll
     GoToIfSet FLAG_FREED_GALACTIC_HQ_POKEMON, _0168
     Message 13
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _0168:
     Message 16
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -131,14 +131,14 @@ _0173:
     LockAll
     GoToIfSet FLAG_FREED_GALACTIC_HQ_POKEMON, _018F
     Message 14
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _018F:
     Message 17
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -148,14 +148,14 @@ _019A:
     LockAll
     GoToIfSet FLAG_FREED_GALACTIC_HQ_POKEMON, _01B6
     Message 15
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _01B6:
     Message 18
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -261,7 +261,7 @@ _0341:
 
 _0347:
     Message 12
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -354,7 +354,7 @@ _03FD:
     ApplyMovement 0, _0468
     WaitMovement
     Message 8
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -362,7 +362,7 @@ _03FD:
 _0450:
     FacePlayer
     Message 9
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

@@ -40,14 +40,14 @@ OreburghCityNorthHouse2F_BagIsFull:
 
 OreburghCityNorthHouse2F_HowAboutShowingMeAPokemonCalledGeodude:
     Message OreburghCityNorthHouse2F_Text_HowAboutShowingMeAPokemonCalledGeodude
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 OreburghCityNorthHouse2F_YeahThereAreSoManyKindsOfPokemonOutInTheWorld:
     Message OreburghCityNorthHouse2F_Text_YeahThereAreSoManyKindsOfPokemonOutInTheWorld
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

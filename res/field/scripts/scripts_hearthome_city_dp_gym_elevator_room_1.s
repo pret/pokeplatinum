@@ -20,7 +20,7 @@ _001A:
     LockAll
     PlayFanfare SEQ_SE_DP_UG_020
     Message 1
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -30,7 +30,7 @@ _002B:
     LockAll
     Message 0
     PlayFanfare SEQ_SE_DP_MAZYO4
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

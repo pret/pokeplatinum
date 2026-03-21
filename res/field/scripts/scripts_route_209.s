@@ -56,7 +56,7 @@ _00A4:
 _00E6:
     BufferPlayerName 0
     Message 3
-    WaitABXPadPress
+    WaitButton
     RemoveItem ITEM_ODD_KEYSTONE, 1, VAR_RESULT
     SetVar VAR_UNK_0x408A, 1
     CloseMessage
@@ -92,42 +92,42 @@ _017F:
 
 _0185:
     Message 4
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _0190:
     Message 5
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _019B:
     Message 6
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _01A6:
     Message 7
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _01B1:
     Message 8
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _01BC:
     Message 1
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -156,21 +156,21 @@ _020B:
 
 _0233:
     Message 14
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _023E:
     Message 15
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 RefuseGoodRod:
     Message 13
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

@@ -55,7 +55,7 @@ VeilstoneGym_MayleneTryGiveTM60:
     BufferItemName 0, VAR_0x8004
     BufferTMHMMoveName 1, VAR_0x8004
     Message VeilstoneGym_Text_MayleneExplainTM60
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -70,7 +70,7 @@ VeilstoneGym_MayleneAfterBadge:
     GoToIfUnset FLAG_OBTAINED_MAYLENE_TM60, VeilstoneGym_MayleneTryGiveTM60
     BufferPlayerName 0
     Message VeilstoneGym_Text_MayleneAfterBadge
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -86,7 +86,7 @@ VeilstoneGym_GymGuide:
     FacePlayer
     GoToIfBadgeAcquired BADGE_ID_COBBLE, VeilstoneGym_GymGuideAfterbadge
     Message VeilstoneGym_Text_GymGuideBeforeBadge
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -94,7 +94,7 @@ VeilstoneGym_GymGuide:
 VeilstoneGym_GymGuideAfterbadge:
     BufferPlayerName 0
     Message VeilstoneGym_Text_GymGuideAfterBadge
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -106,7 +106,7 @@ VeilstoneGym_GymStatue:
     BufferRivalName 0
     BufferRivalName 1
     Message VeilstoneGym_Text_GymStatueBeforeBadge
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -116,7 +116,7 @@ VeilstoneGym_GymStatueAfterBadge:
     BufferPlayerName 1
     BufferRivalName 2
     Message VeilstoneGym_Text_GymStatueAfterBadge
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

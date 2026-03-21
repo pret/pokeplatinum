@@ -18,7 +18,7 @@ PokedexRatings_CheckRowan:
 
 PokedexRatings_CheckRowanDecline:
     Message PokedexRatings_Text_RowanAfraidToShowMe
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     ReturnCommonScript
@@ -51,7 +51,7 @@ PokedexRatings_OakPromptMessageFemale:
 
 PokedexRatings_CheckOakDecline:
     Message PokedexRatings_Text_OakComeSeeMe
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     ReturnCommonScript

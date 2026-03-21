@@ -175,7 +175,7 @@ _023C:
 
 _0269:
     Message 12
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -192,7 +192,7 @@ _0274:
 
 _02A8:
     Message 14
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -206,14 +206,14 @@ _02B3:
 _02BD:
     GoToIfSet FLAG_UNK_0x010D, _0274
     Message 12
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _02D3:
     Message 11
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -268,21 +268,21 @@ _036F:
 
 _039C:
     Message 18
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _03A7:
     Message 17
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _03B2:
     Message 18
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -290,7 +290,7 @@ _03B2:
 _03BD:
     GoToIfSet FLAG_UNK_0x0112, _03B2
     Message 19
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

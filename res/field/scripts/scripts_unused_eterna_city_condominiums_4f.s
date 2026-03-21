@@ -22,7 +22,7 @@ EternaCityCondominiums4F_ExpertF:
 
 EternaCityCondominiums4F_FolksLikeMeHaveALongHistoryWeCanLookBackOn:
     Message EternaCityCondominiums4F_Text_FolksLikeMeHaveALongHistoryWeCanLookBackOn
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

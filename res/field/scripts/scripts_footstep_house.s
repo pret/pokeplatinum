@@ -372,7 +372,7 @@ FootstepHouse_AndThatsWhatYourPokemonThinksOfYou_NoRibbon:
     Call _00ED
     WaitTime 10, VAR_RESULT
     Message FootstepHouse_Text_AndThatsWhatYourPokemonThinksOfYou
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -383,7 +383,7 @@ FootstepHouse_PokemonDoesntLeaveAnyFootprints:
     Call _00ED
     WaitTime 10, VAR_RESULT
     Message FootstepHouse_Text_PokemonDoesntLeaveAnyFootprints
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -394,7 +394,7 @@ FootstepHouse_PokemonSilentType_NoRibbon:
     Call _00ED
     WaitTime 10, VAR_RESULT
     Message FootstepHouse_Text_PokemonSilentType
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -410,7 +410,7 @@ FootstepHouse_AndThatsWhatYourPokemonThinksOfYou_GiveRibbon:
     WaitSound
     SetPartyMonRibbon LOCALID_PARTY_SLOT, RIBBON_FOOTPRINT
     Message FootstepHouse_Text_PlayerPutTheFootprintRibbonOnPokemon
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -426,7 +426,7 @@ FootstepHouse_PokemonDoesntLeaveAnyFootprints_GiveRibbon:
     WaitSound
     SetPartyMonRibbon LOCALID_PARTY_SLOT, RIBBON_FOOTPRINT
     Message FootstepHouse_Text_PlayerPutTheFootprintRibbonOnPokemon
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -442,7 +442,7 @@ FootstepHouse_PokemonSilentType_GiveRibbon:
     WaitSound
     SetPartyMonRibbon LOCALID_PARTY_SLOT, RIBBON_FOOTPRINT
     Message FootstepHouse_Text_PlayerPutTheFootprintRibbonOnPokemon
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

@@ -30,7 +30,7 @@ EternaGym_GymGuideEncouragement:
     End
 
 EternaGym_GymGuideEnd:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -48,7 +48,7 @@ HearthomeGym_GymStatue:
     BufferRivalName 0
     BufferRivalName 1
     Message HearthomeGym_Text_GymStatueBeforeBadge
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -58,7 +58,7 @@ HearthomeGym_GymStatueAfterBadge:
     BufferPlayerName 1
     BufferRivalName 2
     Message HearthomeGym_Text_GymStatueAfterBadge
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

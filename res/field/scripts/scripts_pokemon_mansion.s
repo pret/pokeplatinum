@@ -30,7 +30,7 @@ _004D:
     LockAll
     FacePlayer
     Message 0
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ApplyMovement 0, _04A8
     WaitMovement
@@ -42,7 +42,7 @@ _006A:
     LockAll
     FacePlayer
     Message 1
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ApplyMovement 1, _04B0
     WaitMovement
@@ -311,7 +311,7 @@ _0471:
     End
 
 _047C:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -326,7 +326,7 @@ _048A:
     LockAll
     FacePlayer
     Message 14
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ApplyMovement 3, _04C0
     WaitMovement

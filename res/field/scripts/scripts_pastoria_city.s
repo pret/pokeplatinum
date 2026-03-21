@@ -65,14 +65,14 @@ _00FE:
     FacePlayer
     GoToIfBadgeAcquired BADGE_ID_FEN, _0124
     Message 33
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _0124:
     Message 34
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -97,7 +97,7 @@ _012F:
 
 _0189:
     Message 38
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -135,7 +135,7 @@ PastoriaGity_GalacticGrunt:
     LockAll
     GoToIfSet FLAG_UNK_0x0102, _0220
     Message PastoriaCity_Text_GalacticGruntPackageHasntArrived
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -349,7 +349,7 @@ _0498:
     End
 
 _04A6:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -358,7 +358,7 @@ _04AE:
     BufferRivalName 0
     BufferPlayerName 1
     Message 27
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -702,7 +702,7 @@ _091C:
     BufferRivalName 0
     BufferPlayerName 1
     Message 25
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     Return
 

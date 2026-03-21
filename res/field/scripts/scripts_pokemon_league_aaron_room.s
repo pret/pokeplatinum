@@ -25,7 +25,7 @@ PokemonLeagueAaronRoom_Aaron:
     CallIfUnset FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, PokemonLeagueAaronRoom_CreateJournalEventDefeatedAaron
     CallIfSet FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, PokemonLeagueAaronRoom_CreateJournalEventDefeatedRematchAaron
     Message PokemonLeagueAaronRoom_Text_AaronDefeat
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -53,7 +53,7 @@ PokemonLeagueAaronRoom_BlackOut:
 
 PokemonLeagueAaronRoom_AaronPostBattle:
     Message PokemonLeagueAaronRoom_Text_AaronPostBattle
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

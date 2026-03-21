@@ -55,19 +55,19 @@ _00A2:
     MessageFromBank VAR_0x8005, VAR_0x8006
     WaitSound
     Message 18
-    WaitABXPadPress
+    WaitButton
     GiveMysteryGift
     GoTo _0103
 
 _00D8:
     PrepareMysterGiftCantReceiveMsg VAR_0x8005, VAR_0x8006
     MessageFromBank VAR_0x8005, VAR_0x8006
-    WaitABXPadPress
+    WaitButton
     GoTo _00F9
 
 _00EE:
     Message 3
-    WaitABXPadPress
+    WaitButton
     GoTo _00F9
 
 _00F9:

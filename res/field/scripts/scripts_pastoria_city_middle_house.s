@@ -36,7 +36,7 @@ _004A:
 
 _009C:
     Message 2
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -57,7 +57,7 @@ _00BD:
     End
 
 _00C8:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

@@ -40,7 +40,7 @@ OreburghCityNorthwestHouse2F_BagIsFull:
 
 OreburghCityNorthwestHouse2F_TheDuskBallIsAPokeBallDesignedForUseInDarkness:
     Message OreburghCityNorthwestHouse2F_Text_TheDuskBallIsAPokeBallDesignedForUseInDarkness
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

@@ -14,8 +14,8 @@
 
     ScriptEntry _0036 @ 0x2648
     ScriptEntry ContestRegistration_Dummy @ 0x2649
-    ScriptEntry OngoingContest_OnTransition @ 0x264A 
-    ScriptEntry ContestHallLobby_OnTransition @ 0x264B 
+    ScriptEntry OngoingContest_OnTransition @ 0x264A
+    ScriptEntry ContestHallLobby_OnTransition @ 0x264B
     ScriptEntry _01D4 @ 0x264C
     ScriptEntry _01E9 @ 0x264D
     ScriptEntry ContestRegistration_ReceptionistOfficialContest @ 0x264E
@@ -224,7 +224,7 @@ ContestRegistration_Receptionists_ContestMenuExit:
     SetVar VAR_UNK_0x40D5, 0
     ClearFlag FLAG_COMMUNICATION_CLUB_ACCESSIBLE
     Message ContestRegistration_Text_LookForwardToYourParticipationAnotherTime
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -256,7 +256,7 @@ ContestRegistration_Receptionists_ContestMenuItem_InfoSelected:
 ContestRegistration_ReceptionistLinkContest_LinkContestInfo:
     Message ContestRegistration_Text_ExplainLinkContest
     GoTo ContestRegistration_Receptionists_WouldYouLikeToEnterContest
-    
+
 
 #define ReceptionistOfficialContest_InfoMenuItem_ContestBasics 0
 #define ReceptionistOfficialContest_InfoMenuItem_TypesOfContests 1
@@ -664,7 +664,7 @@ ContestRegistration_StartPracticeContest:
     Call ContestRegistration_AssessPracticeResults
     GoToIfEq VAR_RESULT, MENU_YES, ContestRegistration_StartContest
     Message ContestRegistration_Text_WeLookForwardToYourNextVisit1
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -834,7 +834,7 @@ OngoingContest_OfficialContest_ReturnToContestRegistration:
     Common_GiveAccessory
 ContestRegistration_ThankYouForParticipating:
     Message ContestRegistration_Text_ThankYouForParticipating
-    WaitABXPadPress
+    WaitButton
     CloseMessage
 ContestRegistration_End:
     End
@@ -1089,7 +1089,7 @@ ContestRegistration_ReceptionistPracticeContest_PracticeCategoryMenu_ActingSelec
 
 ContestRegistration_ReceptionistPracticeContest_Exit2:
     Message ContestRegistration_Text_WeLookForwardToYourNextVisit3
-    WaitABXPadPress
+    WaitButton
     GoTo ContestRegistration_Receptionists_End
     End
 
@@ -1108,7 +1108,7 @@ ContestRegistration_Unused:
     GoToIfEq VAR_0x8008, 2, ContestRegistration_Unused4
     GoToIfEq VAR_0x8008, 3, ContestRegistration_Unused5
     GoTo ContestRegistration_Unused6
-    End 
+    End
 
 ContestRegistration_Unused2:
     SetVar VAR_0x8004, 0
@@ -1132,7 +1132,7 @@ ContestRegistration_Unused5:
 
 ContestRegistration_Unused6:
     Message ContestRegistration_Text_Unused6
-    WaitABXPadPress
+    WaitButton
     GoTo ContestRegistration_Receptionists_End
     End
 
@@ -1193,7 +1193,7 @@ ContestRegistration_ReceptionistPracticeContest_SelectContestTypeTough:
 
 ContestRegistration_ReceptionistPracticeContest_Exit3:
     Message ContestRegistration_Text_WeLookForwardToYourNextVisit4
-    WaitABXPadPress
+    WaitButton
     GoTo ContestRegistration_Receptionists_End
     End
 
@@ -1210,7 +1210,7 @@ ContestRegistration_ReceptionistPracticeContest_TryRegisterMon:
     OpenPartyMenuForContest VAR_RESULT, VAR_0x8004, VAR_0x8005, 0
     TryEnterContestMon VAR_MAP_LOCAL_2, VAR_RESULT
     GoToIfEq VAR_RESULT, MenuItemEnter, ContestRegistration_ReceptionistPracticeContest_RegisterMonDone
-    SetMonSummary VAR_MAP_LOCAL_2 
+    SetMonSummary VAR_MAP_LOCAL_2
     GetMonPartySlot VAR_RESULT
     GoTo ContestRegistration_ReceptionistPracticeContest_TryRegisterMon
 
@@ -1396,7 +1396,7 @@ ContestRegistration_Unused7:
 
 ContestRegistration_ReceptionistPracticeContest_Exit:
     Message ContestRegistration_Text_WeLookForwardToYourNextVisit1
-    WaitABXPadPress
+    WaitButton
 ContestRegistration_Receptionists_End:
     CloseMessage
     ReleaseAll

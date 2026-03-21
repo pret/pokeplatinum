@@ -25,7 +25,7 @@ _0014:
     FadeScreenIn
     WaitFadeScreen
     Message 1
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -41,7 +41,7 @@ _005F:
     SetFlag FLAG_UNK_0x00FD
     FacePlayer
     Message 3
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -52,7 +52,7 @@ _0081:
     Message 4
     FacePlayer
     Message 5
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

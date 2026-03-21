@@ -190,7 +190,7 @@ _02EE:
     WaitMovement
     BufferRivalName 0
     Message 3
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -433,21 +433,21 @@ _0521:
     Common_GiveItemQuantity
     SetFlag FLAG_SUPER_ROD_OBTAINED
     Message 44
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _056F:
     Message 45
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _057A:
     Message 46
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -478,7 +478,7 @@ _05CA:
 
 _05FB:
     Message 40
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -641,7 +641,7 @@ _0802:
     LockAll
     FacePlayer
     Message 5
-    WaitABXPadPress
+    WaitButton
     ApplyMovement 25, _0450
     WaitMovement
     CloseMessage
@@ -653,7 +653,7 @@ _081F:
     LockAll
     FacePlayer
     Message 6
-    WaitABXPadPress
+    WaitButton
     ApplyMovement 24, _0470
     WaitMovement
     CloseMessage
@@ -665,7 +665,7 @@ _083C:
     LockAll
     FacePlayer
     Message 21
-    WaitABXPadPress
+    WaitButton
     ApplyMovement 8, _085C
     WaitMovement
     CloseMessage

@@ -23,7 +23,7 @@ SunyshoreGymRoom1_GymGuide:
     FacePlayer
     GoToIfBadgeAcquired BADGE_ID_BEACON, SunyshoreGymRoom1_GymGuideAfterbadge
     Message SunyshoreGymRoom1_Text_GymGuideBeforeBadge
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -31,7 +31,7 @@ SunyshoreGymRoom1_GymGuide:
 SunyshoreGymRoom1_GymGuideAfterbadge:
     BufferPlayerName 0
     Message SunyshoreGymRoom1_Text_GymGuideAfterBadge
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -41,7 +41,7 @@ SunyshoreGymRoom1_GymStatue:
     LockAll
     GoToIfBadgeAcquired BADGE_ID_BEACON, SunyshoreGymRoom1_GymStatue_AfterBadge
     Message SunyshoreGymRoom1_Text_GymStatue_BeforeBadge
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -51,7 +51,7 @@ SunyshoreGymRoom1_GymStatue_AfterBadge:
     BufferPlayerName 0
     BufferRivalName 1
     Message SunyshoreGymRoom1_Text_GymStatue_AfterBadge
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -60,7 +60,7 @@ SunyshoreGymRoom1_GymStatue_AfterRivalBadge:
     BufferPlayerName 0
     BufferRivalName 1
     Message SunyshoreGymRoom1_Text_GymStatue_AfterRivalBadge
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

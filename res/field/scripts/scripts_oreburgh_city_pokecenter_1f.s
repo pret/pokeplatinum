@@ -62,7 +62,7 @@ OreburghCityPokecenter1F_WhichKindOfTrainerWouldYouLikeToBe:
 
 OreburghCityPokecenter1F_OKThenIllJustTalkToYouLater:
     Message OreburghCityPokecenter1F_Text_OKThenIllJustTalkToYouLater
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -81,14 +81,14 @@ OreburghCityPokecenter1F_Gentleman:
     FacePlayer
     GoToIfSet FLAG_GAME_COMPLETED, OreburghCityPokecenter1F_WhatOrWhoIsThisTeamGalactic
     Message OreburghCityPokecenter1F_Text_WhatOrWhoIsThisTeamGalacticItsAMystery
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 OreburghCityPokecenter1F_WhatOrWhoIsThisTeamGalactic:
     Message OreburghCityPokecenter1F_Text_WhatOrWhoIsThisTeamGalactic
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

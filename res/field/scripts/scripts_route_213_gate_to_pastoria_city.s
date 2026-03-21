@@ -27,7 +27,7 @@ _0044:
     End
 
 _004F:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

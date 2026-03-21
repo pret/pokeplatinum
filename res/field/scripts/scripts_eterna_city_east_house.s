@@ -35,7 +35,7 @@ EternaCityEastHouse_WellIfYoureNotInterestedDontFeelObligatedOrAnything:
     End
 
 EternaCityEastHouse_PokemonBreederMEnd:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

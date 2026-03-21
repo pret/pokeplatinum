@@ -192,7 +192,7 @@ VeilstoneStoreElevator_ArrivedFloorB1:
     End
 
 VeilstoneStoreElevator_ElevatorDone:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -201,7 +201,7 @@ VeilstoneStoreElevator_SelectCurrentFloor:
     SetVar VAR_ELEVATOR_FLOORS_ABOVE, -1
     WaitTime 1, VAR_RESULT
     Message VeilstoneStoreElevator_Text_SameFloor
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -210,7 +210,7 @@ VeilstoneStoreElevator_SelectNoFloor:
     SetVar VAR_ELEVATOR_FLOORS_ABOVE, -1
     WaitTime 1, VAR_RESULT
     Message VeilstoneStoreElevator_Text_LookForward
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

@@ -67,14 +67,14 @@ PokemonLeagueNorthPokecenter1F_DoorGuardMoveAwayEastWest:
 PokemonLeagueNorthPokecenter1F_DoorGuardMovedAway:
     SetFlag FLAG_POKEMON_LEAGUE_DOOR_GUARD_MOVED_AWAY
     Message PokemonLeagueNorthPokecenter1F_Text_YouveCollectedAllGymBadges
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 PokemonLeagueNorthPokecenter1F_DoorGuardAfterMovingAway:
     Message PokemonLeagueNorthPokecenter1F_Text_YouWillBeFacingTheEliteFour
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

@@ -25,7 +25,7 @@ PokemonLeagueBerthaRoom_Bertha:
     CallIfUnset FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, PokemonLeagueBerthaRoom_CreateJournalEventDefeatedBertha
     CallIfSet FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, PokemonLeagueBerthaRoom_CreateJournalEventDefeatedRematchBertha
     Message PokemonLeagueBerthaRoom_Text_BerthaDefeat
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -53,7 +53,7 @@ PokemonLeagueBerthaRoom_BlackOut:
 
 PokemonLeagueBerthaRoom_BerthaPostBattle:
     Message PokemonLeagueBerthaRoom_Text_BerthaPostBattle
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

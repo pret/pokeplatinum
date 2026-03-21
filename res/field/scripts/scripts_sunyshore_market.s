@@ -33,14 +33,14 @@ SunyshoreMarket_EffortRibbonWoman:
     WaitSound
     BufferPartyMonSpecies 0, VAR_0x8000
     Message SunyshoreMarket_Text_PlayerPutEffortRibbonOn
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 SunyshoreMarket_NotEnoughEVs:
     Message SunyshoreMarket_Text_ItNeedsToWorkHarder
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -48,7 +48,7 @@ SunyshoreMarket_NotEnoughEVs:
 SunyshoreMarket_PokemonAlreadyHasEffortRibbon:
     BufferPartyMonSpecies 0, VAR_0x8000
     Message SunyshoreMarket_Text_EffortRibbonLooksGood
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -72,7 +72,7 @@ SunyshoreMarket_SealShop:
 
 SunyshoreMarket_NoSealCase:
     Message SunyshoreMarket_Text_NoSealCase
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -131,14 +131,14 @@ SunyshoreMarket_PokefanM:
 
 SunyshoreMarket_PokefanM_FirstWeekHalfMessage:
     Message SunyshoreMarket_Text_DidntHaveSeals
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 SunyshoreMarket_PokefanM_SecondWeekHalfMessage:
     Message SunyshoreMarket_Text_CameThroughWithDifferentSeals
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

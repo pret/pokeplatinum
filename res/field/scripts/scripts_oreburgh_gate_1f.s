@@ -19,7 +19,7 @@ OreburghGate1F_Hiker:
     CheckBadgeAcquired BADGE_ID_COAL, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, OreburghGate1F_HikerGiveHM
     Message OreburghGate1F_Text_NowYouCanUseTheHiddenMoveRockSmashOnSmallBoulders
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -35,7 +35,7 @@ OreburghGate1F_HikerGiveHM:
 
 OreburghGate1F_ThatHiddenMachineContainsRockSmash:
     Message OreburghGate1F_Text_ThatHiddenMachineContainsRockSmash
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -56,7 +56,7 @@ OreburghGate1F_HikerTrigger:
     Common_GiveItemQuantity
     Call OreburghGate1F_SetFlagReceivedHM06
     Message OreburghGate1F_Text_ThatHiddenMachineContainsRockSmash
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

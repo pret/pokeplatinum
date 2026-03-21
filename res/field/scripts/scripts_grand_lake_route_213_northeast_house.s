@@ -15,14 +15,14 @@ _000A:
     Message 0
     SetVar VAR_0x8004, POKETCH_APPID_COINTOSS
     Common_GivePoketchApp
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _003A:
     Message 1
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -37,14 +37,14 @@ _0045:
 
 _0066:
     Message 2
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _0071:
     Message 3
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

@@ -26,14 +26,14 @@ _0035:
     FadeScreenIn
     WaitFadeScreen
     Message 1
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _0062:
     Message 2
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

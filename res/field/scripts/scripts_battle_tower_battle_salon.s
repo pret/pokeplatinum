@@ -167,7 +167,7 @@ BattleTowerBattleSalon_Cheryl:
     GoToIfEq VAR_RESULT, MENU_YES, BattleTowerBattleSalon_CherylTeamUp
 BattleTowerBattleSalon_CherylDontTeamUp:
     Message BattleTowerBattleSalon_Text_CherylDontTeamUp
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -195,7 +195,7 @@ BattleTowerBattleSalon_Mira:
     GoToIfEq VAR_RESULT, MENU_YES, BattleTowerBattleSalon_MiraTeamUp
 BattleTowerBattleSalon_MiraDontTeamUp:
     Message BattleTowerBattleSalon_Text_MiraDontTeamUp
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -223,7 +223,7 @@ BattleTowerBattleSalon_Riley:
     GoToIfEq VAR_RESULT, MENU_YES, BattleTowerBattleSalon_RileyTeamUp
 BattleTowerBattleSalon_RileyDontTeamUp:
     Message BattleTowerBattleSalon_Text_RileyDontTeamUp
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -250,7 +250,7 @@ BattleTowerBattleSalon_Marley:
     GoToIfEq VAR_RESULT, MENU_YES, BattleTowerBattleSalon_MarleyTeamUp
 BattleTowerBattleSalon_MarleyDontTeamUp:
     Message BattleTowerBattleSalon_Text_MarleyDontTeamUp
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -277,7 +277,7 @@ BattleTowerBattleSalon_Buck:
     GoToIfEq VAR_RESULT, MENU_YES, BattleTowerBattleSalon_BuckTeamUp
 BattleTowerBattleSalon_BuckDontTeamUp:
     Message BattleTowerBattleSalon_Text_BuckDontTeamUp
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

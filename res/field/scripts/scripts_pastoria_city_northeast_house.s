@@ -19,7 +19,7 @@ _000E:
     GoToIfUnset FLAG_UNK_0x0143, _005C
     GoToIfUnset FLAG_UNK_0x0144, _005C
     Message 10
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -38,14 +38,14 @@ _005C:
     Call _02DC
     GoToIfEq VAR_RESULT, 1, _01DB
     Message 2
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _00CC:
     Message 3
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -60,7 +60,7 @@ _00D7:
     Common_GiveItemQuantity
     SetFlag FLAG_UNK_0x0140
     Message 5
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -75,7 +75,7 @@ _0118:
     Common_GiveItemQuantity
     SetFlag FLAG_UNK_0x0141
     Message 6
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -90,7 +90,7 @@ _0159:
     Common_GiveItemQuantity
     SetFlag FLAG_UNK_0x0142
     Message 7
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -105,7 +105,7 @@ _019A:
     Common_GiveItemQuantity
     SetFlag FLAG_UNK_0x0143
     Message 8
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -120,7 +120,7 @@ _01DB:
     Common_GiveItemQuantity
     SetFlag FLAG_UNK_0x0144
     Message 9
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

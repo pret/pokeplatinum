@@ -380,7 +380,7 @@ _05FA:
 _060D:
     SetFlagFromVar VAR_0x8006
     Message 9
-    WaitABXPadPress
+    WaitButton
     SetVar VAR_RESULT, 1
     GoTo _04AC
     End
@@ -403,7 +403,7 @@ _063C:
 _064F:
     BufferItemName 0, VAR_0x8004
     Message 4
-    WaitABXPadPress
+    WaitButton
     SetVar VAR_RESULT, 0
     GoTo _04AC
     End

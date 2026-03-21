@@ -25,7 +25,7 @@ PokemonLeagueLucianRoom_Lucian:
     CallIfUnset FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, PokemonLeagueLucianRoom_CreateJournalEventDefeatedLucian
     CallIfSet FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, PokemonLeagueLucianRoom_CreateJournalEventDefeatedRematchLucian
     Message PokemonLeagueLucianRoom_Text_LucianDefeat
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -53,7 +53,7 @@ PokemonLeagueLucianRoom_BlackOut:
 
 PokemonLeagueLucianRoom_LucianPostBattle:
     Message PokemonLeagueLucianRoom_Text_LucianPostBattle
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

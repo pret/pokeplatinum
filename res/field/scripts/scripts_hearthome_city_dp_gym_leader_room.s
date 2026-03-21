@@ -78,7 +78,7 @@ _012B:
     BufferItemName 0, VAR_0x8004
     BufferTMHMMoveName 1, VAR_0x8004
     Message 4
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -92,7 +92,7 @@ _0169:
 _0173:
     GoToIfUnset FLAG_OBTAINED_FANTINA_TM65, _012B
     Message 5
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

@@ -97,7 +97,7 @@ _0155:
 
 _015D:
     Message 16
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

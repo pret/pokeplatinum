@@ -110,14 +110,14 @@ Route206CyclingRoadNorthGate_BagIsFull:
 
 Route206CyclingRoadNorthGate_APokemonHoldingAnExpShareWillGetSomeOfTheExpPointsFromBattle:
     Message Route206CyclingRoadNorthGate_Text_APokemonHoldingAnExpShareWillGetSomeOfTheExpPointsFromBattle
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 Route206CyclingRoadNorthGate_YouveGotToFindAtLeast35:
     Message Route206CyclingRoadNorthGate_Text_YouveGotToFindAtLeast35
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

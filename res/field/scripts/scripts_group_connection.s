@@ -110,12 +110,12 @@ _01F8:
     ScrCmd_21D 2, 0, 0
     ScrCmd_21D 3, 0, 1
     Message 7
-    WaitABXPadPress
+    WaitButton
     GoTo _03EA
 
 _0256:
     Message 22
-    WaitABXPadPress
+    WaitButton
     GoTo _03EA
 
 _0261:
@@ -169,7 +169,7 @@ _037A:
     BufferPlayerName 0
     ScrCmd_21D 2, VAR_0x8004, 1
     Message 9
-    WaitABXPadPress
+    WaitButton
     GoTo _03EA
 
 _03DA:
@@ -179,7 +179,7 @@ _03DA:
 
 _03E5:
     Message 4
-    WaitABXPadPress
+    WaitButton
 _03EA:
     CloseMessage
     ReleaseAll

@@ -28,7 +28,7 @@ FloaromaTown_Grunts:
     ApplyMovement LOCALID_GRUNT_M_EAST, FloaromaTown_Movement_WalkOnSpotWest
     WaitMovement
     Message FloaromaTown_Text_DontComplainThisIsAPrettyDecentAssignment
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -52,14 +52,14 @@ FloaromaTown_SchoolKidM:
     ApplyMovement LOCALID_SCHOOL_KID_M, FloaromaTown_Movement_SchoolKidMFaceNorth
     WaitMovement
     Message FloaromaTown_Text_ThoseGalacticGuysWentToTheMeadowPastTheseFlowersHere
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 FloaromaTown_BeingSurroundedByFlowersPutsMeInAnOddlyPleasantMood:
     Message FloaromaTown_Text_BeingSurroundedByFlowersPutsMeInAnOddlyPleasantMood
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -127,7 +127,7 @@ FloaromaTown_GracideaFlowersHaveBeenAroundALongTimeInThisRegion:
     End
 
 FloaromaTown_BeautyEnd:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

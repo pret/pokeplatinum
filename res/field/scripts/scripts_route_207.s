@@ -147,14 +147,14 @@ Route207_CyclistM:
     FacePlayer
     GoToIfSet FLAG_RECEIVED_BICYCLE, Route207_ChangeToThe4thGearAndTakeARun
     Message Route207_Text_ThatSlopesTooSlippery
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 Route207_ChangeToThe4thGearAndTakeARun:
     Message Route207_Text_ChangeToThe4thGearAndTakeARun
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

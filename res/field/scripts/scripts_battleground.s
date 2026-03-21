@@ -90,14 +90,14 @@ _015A:
     FacePlayer
     GoToIfSet FLAG_UNK_0x00D7, _0178
     Message 1
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _0178:
     Message 2
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -189,7 +189,7 @@ _0278:
     ApplyMovement LOCALID_PLAYER, _02A8
     WaitMovement
     Message 0
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -250,7 +250,7 @@ _0376:
     Return
 
 _037E:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -396,7 +396,7 @@ _0605:
     Return
 
 _06B0:
-    SetVar VAR_MAP_LOCAL_5, TRAINER_LEADER_ROARK_REMATCH 
+    SetVar VAR_MAP_LOCAL_5, TRAINER_LEADER_ROARK_REMATCH
     Return
 
 _06B8:

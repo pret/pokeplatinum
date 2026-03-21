@@ -424,14 +424,14 @@ _0530:
 
 _0561:
     Message 5
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _056C:
     Message 9
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -625,7 +625,7 @@ _0850:
     FacePlayer
     GoToIfSet FLAG_UNK_0x0162, _086E
     Message 2
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

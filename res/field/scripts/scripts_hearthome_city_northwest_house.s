@@ -67,14 +67,14 @@ HearthomeCityNorthwestHouse_DontGiveNickname:
 
 HearthomeCityNorthwestHouse_PartyIsFull:
     Message HearthomeCityNorthwestHouse_Text_YouCantTakeAnyMorePokemon
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 HearthomeCityNorthwestHouse_DeclineEevee:
     Message HearthomeCityNorthwestHouse_Text_GuessIllRaiseItMyself
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -83,14 +83,14 @@ HearthomeCityNorthwestHouse_AlreadyReceivedEevee:
     GetNationalDexEnabled VAR_RESULT
     GoToIfEq VAR_RESULT, TRUE, HearthomeCityNorthwestHouse_NowThatsANationalDex
     Message HearthomeCityNorthwestHouse_Text_BillDevelopedTheBasicStorageSystem
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 HearthomeCityNorthwestHouse_NowThatsANationalDex:
     Message HearthomeCityNorthwestHouse_Text_NowThatsANationalDex
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

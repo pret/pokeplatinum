@@ -22,7 +22,7 @@ EternaGym_GymGuide:
     FacePlayer
     GoToIfBadgeAcquired BADGE_ID_FOREST, EternaGym_GymGuideAfterBadge
     Message EternaGym_Text_GymGuideBeforeBadge
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -30,7 +30,7 @@ EternaGym_GymGuide:
 EternaGym_GymGuideAfterBadge:
     BufferPlayerName 0
     Message EternaGym_Text_GymGuideAfterBadge
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -42,7 +42,7 @@ EternaGym_GymStatue:
     BufferRivalName 0
     BufferRivalName 1
     Message EternaGym_Text_GymStatueBeforeBadge
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -52,7 +52,7 @@ EternaGym_GymStatueAfterBadge:
     BufferPlayerName 1
     BufferRivalName 2
     Message EternaGym_Text_GymStatueAfterBadge
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -94,7 +94,7 @@ EternaGym_GardeniaTryGiveTM86Again:
     BufferItemName 0, VAR_0x8004
     BufferTMHMMoveName 1, VAR_0x8004
     Message EternaGym_Text_GardeniaExplainGrassKnot
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -108,7 +108,7 @@ EternaGym_GardeniaGiveTM86BagFullAgain:
 EternaGym_Gardenia_AlreadyHaveForestbadge:
     GoToIfUnset FLAG_OBTAINED_GARDENIA_TM86, EternaGym_GardeniaTryGiveTM86Again
     Message EternaGym_Text_GardeniaGymBeaten
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -122,7 +122,7 @@ EternaGym_GardeniaGiveTM86:
     BufferItemName 0, VAR_0x8004
     BufferTMHMMoveName 1, VAR_0x8004
     Message EternaGym_Text_GardeniaExplainGrassKnot
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     AdvanceEternaGymClock
@@ -152,7 +152,7 @@ EternaGym_LassCaroline:
     CheckWonBattle VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, EternaGym_LostBattle
     Message EternaGym_Text_LassCarolineAfterBattle
-    WaitABXPadPress
+    WaitButton
     SetVar VAR_ETERNA_GYM_TRAINERS_BEATEN, 1
     CloseMessage
     ReleaseAll
@@ -161,7 +161,7 @@ EternaGym_LassCaroline:
 
 EternaGym_LassCarolineBeaten:
     Message EternaGym_Text_LassCarolineAfterBattle
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -180,7 +180,7 @@ EternaGym_AromaLadyJenna:
     CheckWonBattle VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, EternaGym_LostBattle
     Message EternaGym_Text_AromaLadyJennaAfterBattle
-    WaitABXPadPress
+    WaitButton
     SetVar VAR_ETERNA_GYM_TRAINERS_BEATEN, 2
     CloseMessage
     ReleaseAll
@@ -189,7 +189,7 @@ EternaGym_AromaLadyJenna:
 
 EternaGym_AromaLadyJennaBeaten:
     Message EternaGym_Text_AromaLadyJennaAfterBattle
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -208,7 +208,7 @@ EternaGym_AromaLadyAngela:
     CheckWonBattle VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, EternaGym_LostBattle
     Message EternaGym_Text_AromaLadyAngelaAfterBattle
-    WaitABXPadPress
+    WaitButton
     SetVar VAR_ETERNA_GYM_TRAINERS_BEATEN, 3
     CloseMessage
     ReleaseAll
@@ -217,7 +217,7 @@ EternaGym_AromaLadyAngela:
 
 EternaGym_AromaLadyAngelaBeaten:
     Message EternaGym_Text_AromaLadyAngelaAfterBattle
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

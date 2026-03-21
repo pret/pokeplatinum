@@ -21,7 +21,7 @@ JubilifeTV3F_Beauty1:
     ApplyMovement LOCALID_BEAUTY_1, JubilifeTV3F_Movement_BeautyFaceWestGlobalRankingRoom
     WaitMovement
     Message JubilifeTV3F_Text_TheRoomOnTheOppositeSideIsTheGlobalRankingRoom
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -83,28 +83,28 @@ JubilifeTV3F_CheckIsMysteryGiftPhrase:
 
 JubilifeTV3F_ThanksForAnsweringMyQuestion:
     Message JubilifeTV3F_Text_ThanksForAnsweringMyQuestion
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 JubilifeTV3F_OhAllRightICanUnderstandHowBusyItMustGetForYou:
     Message JubilifeTV3F_Text_OhAllRightICanUnderstandHowBusyItMustGetForYou
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 JubilifeTV3F_IThinkICanSwingADealToGetYouANewWallpaperForYourPCBoxes:
     Message JubilifeTV3F_Text_IThinkICanSwingADealToGetYouANewWallpaperForYourPCBoxes
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 JubilifeTV3F_IThinkICanSwingADealSoYouCanReceiveAMysteryGift:
     Message JubilifeTV3F_Text_IThinkICanSwingADealSoYouCanReceiveAMysteryGift
-    WaitABXPadPress
+    WaitButton
     UnlockMysteryGift
     CloseMessage
     ReleaseAll

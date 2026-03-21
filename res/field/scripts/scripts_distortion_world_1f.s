@@ -65,7 +65,7 @@ _0070:
     WaitTime 30, VAR_RESULT
     FinishDistortionWorldGiratinaShadowEvent
     Message 3
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ApplyMovement LOCALID_PLAYER, _0174
     ApplyMovement 128, _01C4

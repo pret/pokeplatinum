@@ -31,7 +31,7 @@ _002A:
 
 _0071:
     Message 1
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

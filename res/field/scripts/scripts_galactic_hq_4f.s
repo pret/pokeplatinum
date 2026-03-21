@@ -106,7 +106,7 @@ _012C:
     CheckItem ITEM_GALACTIC_KEY, 1, VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _0154
     Message 5
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -121,7 +121,7 @@ _0154:
 _0177:
     BufferPlayerName 0
     Message 7
-    WaitABXPadPress
+    WaitButton
     WaitFanfare SEQ_SE_CONFIRM
     PlayFanfare SEQ_SE_DP_DOOR10
     ApplyMovement 1, _01B4

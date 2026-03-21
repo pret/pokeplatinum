@@ -39,7 +39,7 @@ _008E:
     Message FieldMoves_Text_TreeLooksLikeCanBeCut
     GetCurrentMapID VAR_0x8004
     CallIfEq VAR_0x8004, 203, _014A
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     GoTo _066D
     End
@@ -142,7 +142,7 @@ FieldMoves_Rock:
 
 _0275:
     Message FieldMoves_Text_PokemonMayBeAbleToSmashRock
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     GoTo _066D
     End
@@ -199,7 +199,7 @@ FieldMoves_Boulder:
 
 _0372:
     Message FieldMoves_Text_BoulderMayBeAbleToPush
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     GoTo _066D
     End
@@ -213,7 +213,7 @@ _0381:
     ScrCmd_0C5 VAR_0x8004
     CloseMessage
     Message FieldMoves_Text_PokemonStrengthMadePossibleToMove
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     GetCurrentMapID VAR_0x8004
     CreateJournalEvent LOCATION_EVENT_USED_STRENGTH, VAR_0x8004, 0, 0, 0
@@ -222,7 +222,7 @@ _0381:
 
 _03BD:
     Message FieldMoves_Text_StrengthMadePossibleToMove
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     GoTo _066D
     End
@@ -237,7 +237,7 @@ FieldMoves_UseStrengthFromMenu:
     CloseMessage
     ScrCmd_0C5 VAR_0x8000
     Message FieldMoves_Text_PokemonStrengthMadePossibleToMove
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     GetCurrentMapID VAR_0x8004
     CreateJournalEvent LOCATION_EVENT_USED_STRENGTH, VAR_0x8004, 0, 0, 0
@@ -261,14 +261,14 @@ FieldMoves_RockyWall:
 
 _0469:
     Message FieldMoves_Text_RockyWallWillMoveScale
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     GoTo _0671
     End
 
 _0478:
     Message FieldMoves_Text_NoRockClimbingWithPartner
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     GoTo _0671
     End
@@ -310,7 +310,7 @@ FieldMoves_Water:
 
 _0512:
     Message FieldMoves_Text_NoSurfingWithPartner
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     GoTo _0671
 
@@ -353,7 +353,7 @@ FieldMoves_Fog_Unused:
 
 _05B4:
     Message FieldMoves_Text_DeepFogDrapesArea_Unused
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     GoTo _0671
     End
@@ -430,7 +430,7 @@ FieldMoves_Waterfall:
 
 _06C3:
     Message FieldMoves_Text_WallOfWater
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     GoTo _0671
     End

@@ -22,7 +22,7 @@ JubilifeCityCondominiums4F_Beauty:
 
 JubilifeCityCondominiums4F_ObtainedFocusBand:
     Message JubilifeCityCondominiums4F_Text_ThereAreItemsThatAreUsefulOnlyWhenTheyreHeldByPokemon
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

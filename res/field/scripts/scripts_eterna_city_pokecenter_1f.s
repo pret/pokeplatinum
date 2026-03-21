@@ -24,14 +24,14 @@ EternaCityPokecenter1F_SchoolKidM:
     FacePlayer
     GoToIfSet FLAG_TEAM_GALACTIC_LEFT_ETERNA_BUILDING, EternaCityPokecenter1F_IGotMyPokemonBack
     Message EternaCityPokecenter1F_Text_TeamGalacticTookMyPokemonAway
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 EternaCityPokecenter1F_IGotMyPokemonBack:
     Message EternaCityPokecenter1F_Text_IGotMyPokemonBack
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -61,35 +61,35 @@ EternaCityPokecenter1F_GivePoketchAppFriendshipChecker:
     SetVar VAR_MAP_LOCAL_2, 1
     SetVar VAR_0x8004, POKETCH_APPID_FRIENDSHIPCHECKER
     Common_GivePoketchApp
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 EternaCityPokecenter1F_IfYouSpendEnoughTimeWithThemAllPokemonWillOpenUpToYou:
     Message EternaCityPokecenter1F_Text_IfYouSpendEnoughTimeWithThemAllPokemonWillOpenUpToYou
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 EternaCityPokecenter1F_ItSeemsToLikeYou:
     Message EternaCityPokecenter1F_Text_ItSeemsToLikeYou
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 EternaCityPokecenter1F_ItsBecomingComfortableAroundYouIThink:
     Message EternaCityPokecenter1F_Text_ItsBecomingComfortableAroundYouIThink
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 EternaCityPokecenter1F_HmmItNeedsToGetUsedToYouMore:
     Message EternaCityPokecenter1F_Text_HmmItNeedsToGetUsedToYouMore
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

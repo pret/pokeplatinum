@@ -33,7 +33,7 @@ _0031:
 
 _0079:
     Message 3
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

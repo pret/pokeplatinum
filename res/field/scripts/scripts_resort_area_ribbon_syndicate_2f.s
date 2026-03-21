@@ -24,7 +24,7 @@ _0012:
 
 _0058:
     Message 1
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -63,14 +63,14 @@ _00CE:
     CloseMessage
     PlayFanfare SEQ_SE_DP_FW367
     Call _00ED
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _00E2:
     Message 9
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

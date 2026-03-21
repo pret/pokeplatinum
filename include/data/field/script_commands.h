@@ -73,7 +73,7 @@ const ScrCmdFunc gFieldScriptCommands[] = {
     ScriptCommandTableEntry(SCRCMD_MESSAGENOSKIP,                                        ScrCmd_MessageNoSkip)
     ScriptCommandTableEntry(SCRCMD_MESSAGESYNCHRONIZED,                                  ScrCmd_MessageSynchronized)
     ScriptCommandTableEntry(SCRCMD_WAITABPRESS,                                          ScrCmd_WaitABPress)
-    ScriptCommandTableEntry(SCRCMD_WAITABXPADPRESS,                                      ScrCmd_WaitABXPadPress)
+    ScriptCommandTableEntry(SCRCMD_WAITBUTTON,                                           ScrCmd_WaitButton)
     ScriptCommandTableEntry(SCRCMD_WAITABPADPRESS,                                       ScrCmd_WaitABPadPress)
     ScriptCommandTableEntry(SCRCMD_OPENMESSAGE,                                          ScrCmd_OpenMessage)
     ScriptCommandTableEntry(SCRCMD_CLOSEMESSAGE,                                         ScrCmd_CloseMessage)

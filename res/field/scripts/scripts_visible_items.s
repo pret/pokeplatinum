@@ -2391,7 +2391,7 @@ VisibleItems_BufferPocketNameBattleItems:
 VisibleItems_MessagePlayerPutTheItemInTheItemPocket:
     CreateJournalEvent LOCATION_EVENT_ITEM_WAS_OBTAINED, VAR_0x8004, 0, 0, 0
     Message VisibleItems_Text_PlayerPutTheItemInTheItemPocket2
-    WaitABXPadPress
+    WaitButton
     SetVar VAR_RESULT, TRUE
     GoTo VisibleItems_End
     End
@@ -2414,7 +2414,7 @@ VisibleItems_MessagePlayerFoundItem:
 VisibleItems_BagIsFull:
     BufferItemName 0, VAR_0x8004
     Message VisibleItems_Text_ObtainedTheItemTooBadTheBagIsFull
-    WaitABXPadPress
+    WaitButton
     SetVar VAR_RESULT, FALSE
     GoTo VisibleItems_End
     End

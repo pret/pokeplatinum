@@ -27,7 +27,7 @@ PokemonLeagueFlintRoom_Flint:
     CallIfSet FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, PokemonLeagueFlintRoom_CreateJournalEventDefeatedRematchFlint
     CallIfUnset FLAG_GAME_COMPLETED, PokemonLeagueFlintRoom_FlintDefeat
     CallIfSet FLAG_GAME_COMPLETED, PokemonLeagueFlintRoom_FlintGameCompletedDefeat
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -56,7 +56,7 @@ PokemonLeagueFlintRoom_BlackOut:
 PokemonLeagueFlintRoom_PostBattle:
     CallIfUnset FLAG_GAME_COMPLETED, PokemonLeagueFlintRoom_FlintPostBattle
     CallIfSet FLAG_GAME_COMPLETED, PokemonLeagueFlintRoom_FlintGameCompletedPostBattle
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
