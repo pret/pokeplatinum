@@ -130,31 +130,33 @@ static void ov16_0223DD90(BattleSystem *battleSys, FieldBattleDTO *dto);
 static void BattleMain_SetNetworkIconStrength(void);
 
 static const RenderOamTemplate sOamTemplate = {
-    0x0,
-    0x80,
-    0x0,
-    0x20,
-    0x0,
-    0x80,
-    0x0,
-    0x20
+    .mainOamStart = 0,
+    .mainOamCount = 128,
+    .mainAffineOamStart = 0,
+    .mainAffineOamCount = 32,
+    .subOamStart = 0,
+    .subOamCount = 128,
+    .subAffineOamStart = 0,
+    .subAffineOamCount = 32,
 };
 
 static const CharTransferTemplateWithModes sTransferTemplate = {
-    0x60,
-    0x10000,
-    0x4000,
-    GX_OBJVRAMMODE_CHAR_1D_64K,
-    GX_OBJVRAMMODE_CHAR_1D_32K
+    .maxTasks = 0x60,
+    .sizeMain = 0x10000,
+    .sizeSub = 0x4000,
+    .modeMain = GX_OBJVRAMMODE_CHAR_1D_64K,
+    .modeSub = GX_OBJVRAMMODE_CHAR_1D_32K
 };
 
 const SpriteResourceCapacities sCapacities = {
-    0x60,
-    0x20,
-    0x40,
-    0x40,
-    0x8,
-    0x8
+    .asStruct = {
+        .charCapacity = 96,
+        .plttCapacity = 32,
+        .cellCapacity = 64,
+        .animCapacity = 64,
+        .mcellCapacity = 8,
+        .manimCapacity = 8,
+    }
 };
 
 enum BattleState {
