@@ -212,7 +212,7 @@ int ov58_021D0D80(ApplicationManager *appMan, int *param1)
             sub_02037B58(3);
         }
 
-        sub_02039734();
+        NetworkIcon_Init();
 
         if (CommSys_CurNetId() == 0) {
             sub_0205BEA8(1);

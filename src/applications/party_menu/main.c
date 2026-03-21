@@ -336,7 +336,7 @@ static BOOL PartyMenu_Init(ApplicationManager *appMan, int *state)
     }
 
     SetVBlankCallback(sub_0207E898, application);
-    NetworkIcon_Init();
+    NetworkIcon_InitIfConnected();
     NARC_dtor(narc);
 
     return TRUE;

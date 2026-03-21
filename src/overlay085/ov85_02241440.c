@@ -240,7 +240,7 @@ int ov85_02241440(ApplicationManager *appMan, int *param1)
     ov85_02242218(v0);
 
     SetVBlankCallback(ov85_022415F4, v0);
-    NetworkIcon_Init();
+    NetworkIcon_InitIfConnected();
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     NARC_dtor(v1);
 

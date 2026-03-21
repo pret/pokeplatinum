@@ -6477,7 +6477,7 @@ static BOOL ScrCmd_2AF(ScriptContext *ctx)
 
 static BOOL ScrCmd_2B0(ScriptContext *ctx)
 {
-    sub_02039734();
+    NetworkIcon_Init();
     return FALSE;
 }
 

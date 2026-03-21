@@ -327,14 +327,14 @@ int ov98_022471C8(ApplicationManager *appMan, int *param1)
         if (!DWC_CheckInet() && (WiFiList_HasValidLogin(v0->unk_00->saveData) == 1)) {
             v0->unk_08 = 12;
             sub_02038548(v0->unk_00->saveData);
-            sub_02039734();
+            NetworkIcon_Init();
         } else {
             v0->unk_08 = 0;
         }
         break;
     case 22:
         v0->unk_E8 = 0;
-        sub_02039734();
+        NetworkIcon_Init();
         v0->unk_08 = ov98_02246EA4(v0->unk_00);
         break;
     default:
@@ -1280,7 +1280,7 @@ static int ov98_022489DC(UnkStruct_ov98_02247704 *param0)
     switch (param0->unk_94) {
     case 0:
         sub_02038548(param0->unk_00->saveData);
-        sub_02039734();
+        NetworkIcon_Init();
         ov98_02249714(param0, param0->unk_2C, 1, TEXT_SPEED_FAST, 0xf0f);
         ov98_02247AF0(param0);
         param0->unk_94++;

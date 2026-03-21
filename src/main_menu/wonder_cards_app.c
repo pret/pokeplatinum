@@ -1542,7 +1542,7 @@ static int WonderCardsApp_Main(ApplicationManager *appMan, enum WonderCardsAppSt
         break;
     case WC_APP_STATE_PREPARE_FOR_SHARING:
         PrepareSelectedWCForSharing(appData);
-        sub_02039734();
+        NetworkIcon_Init();
         DoScreenTransitionToState(appData, FADE_TYPE_BRIGHTNESS_IN, WC_APP_STATE_WAIT_FOR_PLAYERS, state);
         break;
     case WC_APP_STATE_WAIT_FOR_PLAYERS: {

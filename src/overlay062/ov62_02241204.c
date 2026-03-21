@@ -4302,7 +4302,7 @@ static BOOL ov62_0224613C(UnkStruct_0208C06C *param0)
         ov62_022444A0(param0);
         ov62_0223146C(param0);
         ov62_02234540(param0, 0);
-        sub_020397C8(1, HEAP_ID_102);
+        NetworkIcon_CreateOnSubScreen(1, HEAP_ID_102);
         ov62_0223376C(param0, 1);
         param0->unk_08++;
         break;

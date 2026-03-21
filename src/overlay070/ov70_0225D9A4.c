@@ -1294,7 +1294,7 @@ static void ov70_0225E4EC(UnkStruct_ov70_0225E4EC *param0, SaveData *saveData, u
         ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_32K);
         ReserveSlotsForWirelessIconPalette(NNS_G2D_VRAM_TYPE_2DMAIN);
 
-        sub_02039734();
+        NetworkIcon_Init();
         param0->unk_04 = SpriteList_InitRendering(24, &param0->unk_08, heapID);
         SetSubScreenViewRect(&param0->unk_08, 0, 256 * FX32_ONE);
 

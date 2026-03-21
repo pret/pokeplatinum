@@ -190,7 +190,7 @@ FrontierGraphics *FrontierGraphics_New(UnkStruct_0209B75C *param0)
     SetVBlankCallback(VBlankCallback, graphics);
     graphics->dummyExecuteOnVBlank = SysTask_ExecuteOnVBlank(DummyExecuteOnVBlank, graphics, 10);
     ov104_0222EB8C(graphics, &graphics->unk_90, graphics->sceneID);
-    sub_02039734();
+    NetworkIcon_Init();
 
     return graphics;
 }

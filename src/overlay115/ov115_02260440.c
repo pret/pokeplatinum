@@ -159,7 +159,7 @@ int ov115_0226048C(ApplicationManager *appMan, int *param1)
         }
 
         v0->unk_34 = ov115_02260CEC(HEAP_ID_99, (30 * 40), v0->unk_74, v0->unk_46, &v0->unk_48);
-        sub_02039734();
+        NetworkIcon_Init();
 
         if (v1->unk_38) {
             NintendoWFC_StartVoiceChat(HEAP_ID_99);

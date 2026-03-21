@@ -293,7 +293,7 @@ static void ov94_0223E770(GTSApplicationState *param0)
     Sprite_SetAnimateFlag(param0->cursorSprite, 1);
     Sprite_SetAnim(param0->cursorSprite, 0);
     Sprite_SetExplicitPriority(param0->cursorSprite, 1);
-    sub_02039734();
+    NetworkIcon_Init();
 }
 
 static void ov94_0223E7C4(GTSApplicationState *param0)

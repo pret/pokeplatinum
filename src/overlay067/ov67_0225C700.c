@@ -412,7 +412,7 @@ int ov67_0225CB8C(ApplicationManager *appMan, int *param1)
     ov67_0225D188(&v0->unk_10, v0->unk_0C, 1, 674, 5, 1, 22, 2, ((((1 + (18 + 12)) + 9) + (27 * 4)) + (23 * 16)) + (6 * 4), v0->saveData, 112);
     ov67_0225D37C(&v0->unk_10, 21);
 
-    sub_02039734();
+    NetworkIcon_Init();
     SetVBlankCallback(ov67_0225CE28, v0);
     DisableHBlank();
 

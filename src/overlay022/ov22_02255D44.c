@@ -437,7 +437,7 @@ int VisualCompetition_Init(ApplicationManager *appMan, int *param1)
     ov22_022566C0(v0);
 
     SpriteList_SetActive(v0->unk_00.unk_44, 0);
-    sub_02039734();
+    NetworkIcon_Init();
     ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_32K);
     ReserveSlotsForWirelessIconPalette(NNS_G2D_VRAM_TYPE_2DMAIN);
 

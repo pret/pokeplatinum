@@ -415,7 +415,7 @@ static enum MysteryGiftAppState SetupFriendOrGBADistribution(ApplicationManager 
     if (appData->receptionMethod != RECEIVE_FROM_GBA_CARTRIDGE) {
         ov97_0222D200(appData, 15);
         appData->wirelessCommsTimeout = (60 * 120);
-        sub_02039734();
+        NetworkIcon_Init();
         ToggleWaitDial(appData, TRUE);
         return MG_APP_STATE_SEARCH_FOR_FRIEND_GIFT;
     } else {
@@ -2564,7 +2564,7 @@ static void UpdateLocalWirelessDistributionState(MysteryGiftAppData *appData)
             Unk_ov97_0223F1AC = Heap_Alloc(HEAP_ID_MYSTERY_GIFT_APP, ov97_02238D4C());
             ov97_02238A4C(appData->wirelessDistributionBuffer, ov97_02230280, Unk_ov97_0223F1AC);
             sWirelessDistribState = WIRELESS_DISTRIBUTION_STATE_39;
-            sub_02039734();
+            NetworkIcon_Init();
         }
         break;
     case WIRELESS_DISTRIBUTION_STATE_39:

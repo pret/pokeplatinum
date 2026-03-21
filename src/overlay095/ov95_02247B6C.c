@@ -281,8 +281,8 @@ static int ov95_02247CB4(UnkStruct_ov95_02247C6C *param0, int *param1)
 
     G2_BlendNone();
 
-    sub_02039734();
-    sub_020397C8(1, HEAP_ID_57);
+    NetworkIcon_Init();
+    NetworkIcon_CreateOnSubScreen(1, HEAP_ID_57);
     StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 16, 1, HEAP_ID_58);
 
     return 1;

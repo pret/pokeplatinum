@@ -212,7 +212,7 @@ int ov109_021D3D50(ApplicationManager *appMan, int *param1)
             sub_0205BEA8(13);
         }
 
-        sub_02039734();
+        NetworkIcon_Init();
         v0->unk_30 = SysTask_ExecuteOnVBlank(ov109_021D4044, v0, 5);
         NARC_dtor(v1);
         (*param1)++;

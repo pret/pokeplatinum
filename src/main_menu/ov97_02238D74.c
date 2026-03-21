@@ -214,7 +214,7 @@ int ov97_02238EAC(ApplicationManager *appMan, int *param1)
         DWC_InitInetEx(&v2->unk_164C, DEFAULT_DWC_DMA_NUMBER, DEFAULT_DWC_POWER_MODE, DEFAULT_DWC_SSL_PRIORITY);
         DWC_SetAuthServer(DWC_CONNECTINET_AUTH_RELEASE);
         DWC_ConnectInetAsync();
-        sub_02039734();
+        NetworkIcon_Init();
         *param1 = 4099;
         v2->wifiExitRequested = 0;
         break;

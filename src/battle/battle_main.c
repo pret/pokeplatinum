@@ -2255,7 +2255,7 @@ static void ov16_0223DD90(BattleSystem *battleSys, FieldBattleDTO *dto)
 
 static void BattleMain_SetNetworkIconStrength(void)
 {
-    sub_02039734();
+    NetworkIcon_Init();
 
     if (CommMan_IsConnectedToWifi()) {
         NetworkIcon_SetStrength(WM_LINK_LEVEL_3 - DWC_GetLinkLevel());

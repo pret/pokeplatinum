@@ -413,7 +413,7 @@ int ov65_0223648C(ApplicationManager *appMan, int *param1)
     ov65_022367A8(v0, v1, HEAP_ID_96);
 
     SetVBlankCallback(ov65_02236780, v0);
-    sub_02039734();
+    NetworkIcon_Init();
 
     v0->unk_00.unk_27 = 1;
 
@@ -2701,7 +2701,7 @@ static BOOL ov65_02238838(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *p
 
             ov65_0223760C(param0);
             ov65_022367A8(param0, param1, heapID);
-            sub_02039734();
+            NetworkIcon_Init();
         }
 
         {

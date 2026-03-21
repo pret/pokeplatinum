@@ -473,7 +473,7 @@ int BagApplication_Init(ApplicationManager *appMan, int *state)
 
     SetVBlankCallback(BagUIVBlankCB, controller);
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_BAG, SEQ_NONE, 0);
-    NetworkIcon_Init();
+    NetworkIcon_InitIfConnected();
 
     return TRUE;
 }

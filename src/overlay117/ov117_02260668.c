@@ -249,7 +249,7 @@ int ov117_02260668(ApplicationManager *appMan, int *param1)
     ov117_022613EC(v0);
     ov117_022614AC(v0, 0);
     ov117_02261368(v0);
-    sub_02039734();
+    NetworkIcon_Init();
 
     v0->unk_D4 = ov117_022626B0(v0);
     StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_27, FADE_TYPE_UNK_27, COLOR_BLACK, 6, 1, HEAP_ID_110);

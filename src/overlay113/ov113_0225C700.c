@@ -400,7 +400,7 @@ int ov113_0225C700(ApplicationManager *appMan, int *param1)
     SpriteSystem_InitSprites(v0->unk_1C, v0->unk_20, 64 + 64);
     SpriteSystem_InitManagerWithCapacities(v0->unk_1C, v0->unk_20, &Unk_ov113_022608FC);
     SetSubScreenViewRect(SpriteSystem_GetRenderer(v0->unk_1C), 0, (192 + 80) << FX32_SHIFT);
-    sub_02039734();
+    NetworkIcon_Init();
 
     ov113_0225E368(&v0->unk_194, v0->unk_19E0);
     ov113_0225D304(v0, v0->unk_160);

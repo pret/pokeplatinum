@@ -590,7 +590,7 @@ static u8 ov10_0221FBFC(UnkStruct_ov10_0221FB28 *param0)
         ov10_022223C0(param0);
         ov10_02222720(param0);
         ov10_02221C14(param0);
-        sub_02039734();
+        NetworkIcon_Init();
         App_StartScreenFade(FALSE, param0->unk_00->heapID);
         SetVBlankCallback(ov10_02220C64, param0);
         return 1;
@@ -611,7 +611,7 @@ static u8 ov10_0221FC78(UnkStruct_ov10_0221FB28 *param0)
     case 1:
         ov10_022214A0(param0, 0, 0);
         ov10_0222101C(param0);
-        sub_02039734();
+        NetworkIcon_Init();
         ov10_022217CC(param0);
         break;
     case 2:
@@ -664,7 +664,7 @@ static u8 ov10_0221FD00(UnkStruct_ov10_0221FB28 *param0)
     case 1:
         ov10_022214A0(param0, -32, -16);
         ov10_02221588(param0);
-        sub_02039734();
+        NetworkIcon_Init();
         break;
     case 2:
         App_StartScreenFade(FALSE, param0->unk_00->heapID);

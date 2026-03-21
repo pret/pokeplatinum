@@ -375,7 +375,7 @@ static int SetupMenuVisuals(OptionsMenuData *menuData)
         PrintTitleAndEntries(menuData);
         VramTransfer_New(32, menuData->heapID);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, TRUE);
-        NetworkIcon_Init();
+        NetworkIcon_InitIfConnected();
         SetVBlankCallback(OptionsMenuVBlank, menuData);
         menuData->subState = 0;
         return TRUE;

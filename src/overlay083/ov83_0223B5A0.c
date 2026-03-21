@@ -273,7 +273,7 @@ static int ov83_0223B78C(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
         ov83_0223F820(&param1->unk_334);
         ov83_0223C958(param1);
 
-        sub_02039734();
+        NetworkIcon_Init();
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
         if (param1->unk_1488 > 1) {

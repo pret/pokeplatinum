@@ -1630,7 +1630,7 @@ static void ov96_0223D90C(Window *param0, String *param1, int param2, int param3
 
 void ov96_0223D948(UnkStruct_ov96_0223BF40 *param0)
 {
-    sub_02039734();
+    NetworkIcon_Init();
 }
 
 static void ov96_0223D950(UnkStruct_ov96_0223BF40 *param0, int param1, int param2)

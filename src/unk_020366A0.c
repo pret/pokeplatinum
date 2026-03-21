@@ -170,7 +170,7 @@ static void sub_020366A0(SaveData *saveData, int param1)
     CommCmd_Init(NULL, 0, NULL);
 
     if ((param1 != 9) && (param1 != 17) && (param1 != 15)) {
-        sub_02039734();
+        NetworkIcon_Init();
     }
 }
 
@@ -388,7 +388,7 @@ void sub_02036A38(int param0)
     Unk_021C07D4->unk_44 = 3;
 
     sub_02032138(1);
-    sub_02039734();
+    NetworkIcon_Init();
     CommMan_SetTask(sub_020375A4, 0);
 }
 
@@ -1096,7 +1096,7 @@ static void sub_020374F4(void)
     } else {
         if (CommSys_IsClientConnecting()) {
             Unk_021C07D4->unk_4E = 1;
-            sub_02039734();
+            NetworkIcon_Init();
             CommMan_SetTask(sub_02037790, 0);
             return;
         }
@@ -1313,7 +1313,7 @@ void sub_02037888(int param0)
     Unk_021C07D4->unk_4A = 7;
     Unk_021C07D4->unk_44 = 3;
 
-    sub_02039734();
+    NetworkIcon_Init();
     CommMan_SetTask(sub_020375A4, 0);
 }
 
@@ -1328,7 +1328,7 @@ void sub_020378C8(int param0)
     Unk_021C07D4->unk_4A = 26;
     Unk_021C07D4->unk_44 = 3;
 
-    sub_02039734();
+    NetworkIcon_Init();
     CommMan_SetTask(sub_020375A4, 0);
 }
 

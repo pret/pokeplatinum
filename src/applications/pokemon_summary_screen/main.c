@@ -252,7 +252,7 @@ static int PokemonSummaryScreen_Init(ApplicationManager *appMan, int *state)
     SetVBlankCallback(PokemonSummaryScreenVBlank, summaryScreen);
     GXLayers_TurnBothDispOn();
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_61, SEQ_NONE, 0);
-    NetworkIcon_Init();
+    NetworkIcon_InitIfConnected();
     NARC_dtor(narc);
 
     return TRUE;

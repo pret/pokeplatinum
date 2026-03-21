@@ -79,8 +79,8 @@ static int sub_020890F4(ApplicationManager *appMan, int *param1)
     }
 
     if (v0->unk_3B8.unk_30 != 0) {
-        sub_02039734();
-        sub_020397C8(1, HEAP_ID_101);
+        NetworkIcon_Init();
+        NetworkIcon_CreateOnSubScreen(1, HEAP_ID_101);
     }
 
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2, 15, 7);

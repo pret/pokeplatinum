@@ -930,7 +930,7 @@ void ov94_02245900(Window *window, String *string, int x, int y, int centered, T
 
 void ov94_02245934(GTSApplicationState *appState)
 {
-    sub_02039734();
+    NetworkIcon_Init();
 }
 
 static void GTSApplication_WFCInit_DisplayNetworkError(GTSApplicationState *appState, int messageId)

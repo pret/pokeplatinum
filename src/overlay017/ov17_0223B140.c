@@ -240,7 +240,7 @@ int ActingCompetition_Init(ApplicationManager *appMan, int *param1)
     ov17_0223F9C4(v0->unk_7E4, 0, 1, NULL);
     ov17_022415E4(&v0->unk_0C);
 
-    sub_02039734();
+    NetworkIcon_Init();
     StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_31, FADE_TYPE_UNK_31, COLOR_BLACK, 6, 1, HEAP_ID_21);
 
     v0->unk_04 = SysTask_Start(ov17_0223B6F0, v0, 60000);

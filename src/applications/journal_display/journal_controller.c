@@ -100,7 +100,7 @@ int JournalController_Init(ApplicationManager *appMan, int *state)
 
     SetVBlankCallback(JournalController_MainCallback, journalManager);
     GXLayers_TurnBothDispOn();
-    sub_02039734();
+    NetworkIcon_Init();
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_67, SEQ_NONE, 0);
 

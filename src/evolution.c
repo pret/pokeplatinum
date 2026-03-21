@@ -154,7 +154,7 @@ EvolutionData *Evolution_Begin(Party *party, Pokemon *mon, int targetSpecies, Op
     sub_02015738(evolutionData->unk_58, 1);
     SysTask_Start(SysTask_Evolution, evolutionData, 0);
     RenderControlFlags_SetCanABSpeedUpPrint(TRUE);
-    sub_02039734();
+    NetworkIcon_Init();
 
     return evolutionData;
 }
@@ -559,7 +559,7 @@ static void Evolution_Main(EvolutionData *evolutionData)
             PokemonSprite_ScheduleReloadFromNARC(evolutionData->monSprites[1]);
             PaletteData_StartFade(evolutionData->paletteData, PLTTBUF_MAIN_BG_F | PLTTBUF_SUB_BG_F | PLTTBUF_MAIN_OBJ_F | PLTTBUF_SUB_OBJ_F, 0xFFFF, 1, 16, 0, 0);
             PokemonSpriteManager_StartFadeAll(evolutionData->monSpriteMan, 16, 0, 0, 0);
-            sub_02039734();
+            NetworkIcon_Init();
             evolutionData->state++;
         }
         break;

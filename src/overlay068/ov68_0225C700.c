@@ -511,7 +511,7 @@ static void ov68_0225CAB4(UnkStruct_ov68_0225C91C *param0, enum HeapID heapID)
         param0->unk_194[v0] = SpriteResourceCollection_New(32, v0, heapID);
     }
 
-    sub_02039734();
+    NetworkIcon_Init();
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }

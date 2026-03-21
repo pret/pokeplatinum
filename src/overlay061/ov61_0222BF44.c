@@ -193,7 +193,7 @@ int ov61_0222BF44(ApplicationManager *appMan, int *param1)
     SetVBlankCallback(ov61_0222C1FC, v0);
 
     if (v0->unk_00->unk_10) {
-        sub_02039734();
+        NetworkIcon_Init();
         ov61_0222C920(v0, 13, 8);
     } else {
         if (v0->unk_00->unk_00->unk_08) {
@@ -648,7 +648,7 @@ static int ov61_0222CA20(UnkStruct_ov61_0222C664 *param0)
     switch (param0->unk_90) {
     case 0:
         sub_02038438(param0->unk_00->unk_00->saveData);
-        sub_02039734();
+        NetworkIcon_Init();
         ov61_0222C8B8(param0, param0->unk_28, 1, TEXT_SPEED_FAST, 0xf0f);
         ov61_0222C850(param0);
         param0->unk_90++;

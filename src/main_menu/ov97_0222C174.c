@@ -881,7 +881,7 @@ int ov97_0222CB10(UnkStruct_ov97_0222C388 *param0)
         if (WirelessDriver_IsReady()) {
             ov97_02232E38(&Unk_ov97_0223E0A4, param0->unk_16C);
             param0->unk_158 = 1;
-            sub_02039734();
+            NetworkIcon_Init();
             *v3 = UnkEnum_ov97_0222C6F8_02;
         }
         break;

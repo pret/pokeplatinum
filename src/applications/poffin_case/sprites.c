@@ -61,7 +61,7 @@ void PoffinManager_InitSpriteSystem(PoffinManager *app)
     app->poffinSpriteMan = PoffinSpriteManager_New(app->heapID, 1, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 0);
 
     if (CommSys_IsInitialized()) {
-        sub_02039734();
+        NetworkIcon_Init();
     }
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, TRUE);

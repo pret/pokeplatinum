@@ -561,7 +561,7 @@ static void InitSpriteSystem(PoffinCutscene *app)
     ManagedSprite_SetDrawFlag(app->poffinSprite->sprite, FALSE);
 
     if (CommSys_IsInitialized()) {
-        sub_02039734();
+        NetworkIcon_Init();
     }
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, TRUE);

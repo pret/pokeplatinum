@@ -218,7 +218,7 @@ static void ov94_0223DE7C(GTSApplicationState *appState)
 
     Sprite_SetAnimateFlag(appState->unk_F30, 1);
     Sprite_SetAnim(appState->unk_F30, 37);
-    sub_02039734();
+    NetworkIcon_Init();
 }
 
 static void ov94_0223DEC8(GTSApplicationState *appState)

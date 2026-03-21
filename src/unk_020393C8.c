@@ -1,138 +1,143 @@
 #include "unk_020393C8.h"
 
 #include <nitro.h>
-#include <string.h>
 
-#include "struct_defs/struct_020E5EB4.h"
+#include "constants/graphics.h"
 
 #include "communication_system.h"
 #include "heap.h"
-#include "inlines.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
 #include "unk_02033200.h"
 #include "unk_020366A0.h"
 
-static int inline inline_02039614(NetworkIcon *param0);
-static int inline inline_02039614_1(int param0, int param1);
-static void sub_02039428(SysTask *param0, void *param1);
-static void sub_020394D0(int vramType, BOOL unusedIsWifi, u32 offset, u32 heapID);
-static void sub_02039530(int vramType, BOOL isWifi, u32 heapID);
-static void sub_02039614(NetworkIcon *param0);
+#define UPPER_SCREEN 1
+#define LOWER_SCREEN 2
+
+static const u16 sUnused5[] = { 496, 20, 500, 20, 504, 20, 508, 20, 65535, 0 };
+static const u16 sUnused1[] = { 496, 20, 65535, 0 };
+static const u16 sUnused2[] = { 500, 20, 65535, 0 };
+static const u16 sUnused3[] = { 504, 20, 65535, 0 };
+static const u16 sUnused4[] = { 508, 20, 65535, 0 };
+static const u16 *sUnused[] = { sUnused1, sUnused2, sUnused3, sUnused4, sUnused5 };
+
+static enum NNS_G2D_VRAM_TYPE inline GetVramType(NetworkIcon *networkIcon);
+static int inline GetStrengthOAMOffset(enum NNS_G2D_VRAM_TYPE vramType, int strength);
+static void PostVBlankCallback(SysTask *task, void *data);
+static void LoadIconPalette(enum NNS_G2D_VRAM_TYPE vramType, BOOL unusedIsWifi, u32 offset, enum HeapID heapID);
+static void LoadIconGraphic(enum NNS_G2D_VRAM_TYPE vramType, BOOL isWifi, enum HeapID heapID);
+static void UpdateOAM(NetworkIcon *icon);
 static void SetNetworkIconStrength(NetworkIcon *icon, int networkStrength);
 static void DestroyNetworkIcon(NetworkIcon *icon);
-static NetworkIcon *CreateNetworkIcon(u32 unused0, u32 heapID, int x, int y, BOOL isWifi, const UnkStruct_020E5EB4 *unused5[], int vramType);
+static NetworkIcon *CreateNetworkIcon(u32 unused0, u32 heapID, int x, int y, BOOL isWifi, void *unused, enum NNS_G2D_VRAM_TYPE vramType);
+static void InitGlobalNetworkIcon(int x, int y, BOOL isWifi, enum NNS_G2D_VRAM_TYPE vramType);
 
-NetworkIcon *CreateNetworkIcon(u32 unused0, u32 heapID, int x, int y, BOOL isWifi, const UnkStruct_020E5EB4 *unused5[], int vramType)
+static NetworkIcon *CreateNetworkIcon(u32 unused0, u32 heapID, int x, int y, BOOL isWifi, void *unused, enum NNS_G2D_VRAM_TYPE vramType)
 {
-    NetworkIcon *v0;
+    LoadIconPalette(vramType, isWifi, PLTT_OFFSET(14), heapID);
+    LoadIconGraphic(vramType, isWifi, heapID);
 
-    sub_020394D0(vramType, isWifi, (16 * 2 * 14), heapID);
-    sub_02039530(vramType, isWifi, heapID);
+    NetworkIcon *icon = Heap_AllocAtEnd(heapID, sizeof(NetworkIcon));
 
-    v0 = (NetworkIcon *)Heap_AllocAtEnd(heapID, sizeof(NetworkIcon));
+    icon->postVBlankTask = SysTask_ExecuteAfterVBlank(PostVBlankCallback, icon, 5);
+    icon->x = x;
+    icon->y = y;
+    icon->unused = 0;
+    icon->strength = 3;
+    icon->unused2 = unused;
+    icon->unused3 = 0;
+    icon->isWifi = isWifi;
+    icon->createdOnSubScreen = FALSE;
+    icon->screenId = 0;
+    icon->oam = (GXOamAttr *)HW_OAM;
 
-    v0->unk_18 = SysTask_ExecuteAfterVBlank(sub_02039428, v0, 5);
-    v0->x = x;
-    v0->y = y;
-    v0->unk_00 = 0;
-    v0->strength = 3;
-    v0->unused_14 = unused5;
-    v0->unk_08 = 0;
-    v0->isWifi = isWifi;
-    v0->unk_12 = 0;
-    v0->screenId = 0;
-    v0->unk_1C = (GXOamAttr *)HW_OAM;
-
-    return v0;
+    return icon;
 }
 
-static void sub_02039428(SysTask *param0, void *param1)
+static void PostVBlankCallback(SysTask *task, void *data)
 {
-    NetworkIcon *v0 = (NetworkIcon *)param1;
-    sub_02039614(v0);
+    UpdateOAM(data);
 }
 
-static int inline inline_02039614(NetworkIcon *networkIcon)
+static enum NNS_G2D_VRAM_TYPE inline GetVramType(NetworkIcon *networkIcon)
 {
     switch (networkIcon->screenId) {
-    case 1:
-        return (GX_GetDispSelect() == GX_DISP_SELECT_MAIN_SUB) ? NNS_G2D_VRAM_TYPE_2DMAIN : NNS_G2D_VRAM_TYPE_2DSUB;
-    case 2:
-        return (GX_GetDispSelect() == GX_DISP_SELECT_MAIN_SUB) ? NNS_G2D_VRAM_TYPE_2DSUB : NNS_G2D_VRAM_TYPE_2DMAIN;
+    case UPPER_SCREEN:
+        return GX_GetDispSelect() == GX_DISP_SELECT_MAIN_SUB ? NNS_G2D_VRAM_TYPE_2DMAIN : NNS_G2D_VRAM_TYPE_2DSUB;
+    case LOWER_SCREEN:
+        return GX_GetDispSelect() == GX_DISP_SELECT_MAIN_SUB ? NNS_G2D_VRAM_TYPE_2DSUB : NNS_G2D_VRAM_TYPE_2DMAIN;
     default:
         return NNS_G2D_VRAM_TYPE_2DMAIN;
     }
 }
 
-static int inline inline_02039614_1(int param0, int param1)
+static int inline GetStrengthOAMOffset(enum NNS_G2D_VRAM_TYPE vramType, int strength)
 {
-    int v0, v1;
-
-    if (param0 == NNS_G2D_VRAM_TYPE_2DMAIN) {
-        v0 = GX_GetOBJVRamModeChar();
-        v1 = GX_GetBankForOBJ();
+    int ramMode, gxBank;
+    if (vramType == NNS_G2D_VRAM_TYPE_2DMAIN) {
+        ramMode = GX_GetOBJVRamModeChar();
+        gxBank = GX_GetBankForOBJ();
     } else {
-        v0 = GXS_GetOBJVRamModeChar();
-        v1 = GX_GetBankForSubOBJ();
+        ramMode = GXS_GetOBJVRamModeChar();
+        gxBank = GX_GetBankForSubOBJ();
     }
 
-    switch (v0) {
+    switch (ramMode) {
     case GX_OBJVRAMMODE_CHAR_1D_32K:
-        if ((v1 == GX_VRAM_OBJ_16_G) || (v1 == GX_VRAM_OBJ_16_F)) {
-            return 512 - 16 + 4 * param1;
+        if (gxBank == GX_VRAM_OBJ_16_G || gxBank == GX_VRAM_OBJ_16_F) {
+            return 512 - 16 + 4 * strength;
         } else {
-            return 1024 - 16 + 4 * param1;
+            return 1024 - 16 + 4 * strength;
         }
     case GX_OBJVRAMMODE_CHAR_1D_128K:
-        if ((v1 == GX_VRAM_OBJ_80_EF) || (v1 == GX_VRAM_OBJ_80_EG)) {
-            return 640 - 4 + 1 * param1;
-        } else if (v1 == GX_VRAM_OBJ_64_E) {
-            return 512 - 4 + 1 * param1;
+        if (gxBank == GX_VRAM_OBJ_80_EF || gxBank == GX_VRAM_OBJ_80_EG) {
+            return 640 - 4 + 1 * strength;
+        } else if (gxBank == GX_VRAM_OBJ_64_E) {
+            return 512 - 4 + 1 * strength;
         } else {
-            return 1024 - 4 + 1 * param1;
+            return 1024 - 4 + 1 * strength;
         }
     default:
-        return 1024 - 8 + 2 * param1;
+        return 1024 - 8 + 2 * strength;
     }
 }
 
-static inline void inline_02039440(GXOamAttr *param0)
+static inline void ClearOAM(GXOamAttr *oam)
 {
-    G2_SetOBJAttr(param0, 0, 0, 0, GX_OAM_MODE_NORMAL, 0, GX_OAM_EFFECT_NODISPLAY, GX_OAM_SHAPE_16x16, GX_OAM_COLORMODE_16, 0, 0, 0);
+    G2_SetOBJAttr(oam, 0, 0, 0, GX_OAM_MODE_NORMAL, 0, GX_OAM_EFFECT_NODISPLAY, GX_OAM_SHAPE_16x16, GX_OAM_COLORMODE_16, 0, 0, 0);
 }
 
-void SetNetworkIconStrength(NetworkIcon *param0, int networkStrength)
+void SetNetworkIconStrength(NetworkIcon *icon, int networkStrength)
 {
     if (networkStrength < 4) {
-        param0->strength = networkStrength;
-        param0->unk_08 = 0;
+        icon->strength = networkStrength;
+        icon->unused3 = 0;
     }
 }
 
-void DestroyNetworkIcon(NetworkIcon *param0)
+static void DestroyNetworkIcon(NetworkIcon *icon)
 {
-    SysTask_Done(param0->unk_18);
-    inline_02039440((GXOamAttr *)(HW_OAM));
+    SysTask_Done(icon->postVBlankTask);
+    ClearOAM((GXOamAttr *)HW_OAM);
 
-    if (param0->unk_12) {
-        inline_02039440((GXOamAttr *)(HW_OAM_END));
+    if (icon->createdOnSubScreen) {
+        ClearOAM((GXOamAttr *)HW_OAM_END);
     }
 
-    Heap_Free(param0);
+    Heap_Free(icon);
 }
 
-void sub_02039474(NetworkIcon *param0, BOOL param1, u32 heapID)
+static void CreateIconOnSubScreen(NetworkIcon *icon, BOOL isUpperScreen, enum HeapID heapID)
 {
-    sub_020394D0(NNS_G2D_VRAM_TYPE_2DSUB, param0->isWifi, (16 * 2 * 14), heapID);
-    sub_02039530(NNS_G2D_VRAM_TYPE_2DSUB, param0->isWifi, heapID);
+    LoadIconPalette(NNS_G2D_VRAM_TYPE_2DSUB, icon->isWifi, PLTT_OFFSET(14), heapID);
+    LoadIconGraphic(NNS_G2D_VRAM_TYPE_2DSUB, icon->isWifi, heapID);
 
-    param0->screenId = (param1) ? 1 : 2;
-    param0->unk_12 = 1;
+    icon->screenId = isUpperScreen ? UPPER_SCREEN : LOWER_SCREEN;
+    icon->createdOnSubScreen = TRUE;
 }
 
-void *sub_020394A8(u32 heapID)
+void *NetworkIcon_GetPalette(enum HeapID heapID)
 {
     void *heapPtr = Heap_AllocAtEnd(heapID, 600);
 
@@ -142,162 +147,120 @@ void *sub_020394A8(u32 heapID)
     return heapPtr;
 }
 
-static void sub_020394D0(int vramType, BOOL unusedIsWifi, u32 offset, u32 heapID)
+static void LoadIconPalette(enum NNS_G2D_VRAM_TYPE vramType, BOOL unusedIsWifi, u32 offset, enum HeapID heapID)
 {
     void *heapPtr = Heap_AllocAtEnd(heapID, 600);
 
     if (heapPtr) {
-        NNSG2dPaletteData *paletteData;
-
         ReadFileToBuffer("data/pl_wm.NCLR", &heapPtr);
         DC_FlushRange(heapPtr, 600);
+
+        NNSG2dPaletteData *paletteData;
         NNS_G2dGetUnpackedPaletteData(heapPtr, &paletteData);
 
         if (vramType == NNS_G2D_VRAM_TYPE_2DMAIN) {
-            GX_LoadOBJPltt(paletteData->pRawData, offset, (16 * 2));
+            GX_LoadOBJPltt(paletteData->pRawData, offset, PALETTE_SIZE_BYTES);
         } else {
-            GXS_LoadOBJPltt(paletteData->pRawData, offset, (16 * 2));
+            GXS_LoadOBJPltt(paletteData->pRawData, offset, PALETTE_SIZE_BYTES);
         }
 
         Heap_Free(heapPtr);
     }
 }
 
-static void sub_02039530(int vramType, BOOL isWifi, u32 heapID)
+static void LoadIconGraphic(enum NNS_G2D_VRAM_TYPE vramType, BOOL isWifi, enum HeapID heapID)
 {
-    void *v0 = Heap_AllocAtEnd(heapID, 600);
+    void *ncgrFile = Heap_AllocAtEnd(heapID, 600);
 
-    if (v0) {
-        NNSG2dCharacterData *v1;
-        int offset, v3, v4;
+    if (ncgrFile) {
 
         if (isWifi) {
-            ReadFileToBuffer("data/pl_wifi.NCGR", &v0);
+            ReadFileToBuffer("data/pl_wifi.NCGR", &ncgrFile);
         } else {
-            ReadFileToBuffer("data/pl_wm.NCGR", &v0);
+            ReadFileToBuffer("data/pl_wm.NCGR", &ncgrFile);
         }
 
-        DC_FlushRange(v0, 600);
-        NNS_G2dGetUnpackedBGCharacterData(v0, &v1);
+        DC_FlushRange(ncgrFile, 600);
 
+        NNSG2dCharacterData *charData;
+        NNS_G2dGetUnpackedBGCharacterData(ncgrFile, &charData);
+
+        GXOBJVRamModeChar ramMode;
+        int gxBank;
         if (vramType == NNS_G2D_VRAM_TYPE_2DMAIN) {
-            v3 = GX_GetOBJVRamModeChar();
-            v4 = GX_GetBankForOBJ();
+            ramMode = GX_GetOBJVRamModeChar();
+            gxBank = GX_GetBankForOBJ();
         } else {
-            v3 = GXS_GetOBJVRamModeChar();
-            v4 = GX_GetBankForSubOBJ();
+            ramMode = GXS_GetOBJVRamModeChar();
+            gxBank = GX_GetBankForSubOBJ();
         }
 
-        switch (v3) {
+        int offset;
+        switch (ramMode) {
         case GX_OBJVRAMMODE_CHAR_1D_32K:
-            if ((v4 == GX_VRAM_OBJ_16_G) || (v4 == GX_VRAM_OBJ_16_F)) {
-                offset = ((512 - 16) * 32);
+            if (gxBank == GX_VRAM_OBJ_16_G || gxBank == GX_VRAM_OBJ_16_F) {
+                offset = (512 - 16) * 32;
             } else {
-                offset = ((1024 - 16) * 32);
+                offset = (1024 - 16) * 32;
             }
             break;
         case GX_OBJVRAMMODE_CHAR_1D_128K:
-            if ((v4 == GX_VRAM_OBJ_80_EF) || (v4 == GX_VRAM_OBJ_80_EG)) {
-                offset = ((2560 - 16) * 32);
-            } else if (v4 == GX_VRAM_OBJ_64_E) {
-                offset = 0x10000 - 16 * 32;
+            if (gxBank == GX_VRAM_OBJ_80_EF || gxBank == GX_VRAM_OBJ_80_EG) {
+                offset = (2560 - 16) * 32;
+            } else if (gxBank == GX_VRAM_OBJ_64_E) {
+                offset = 65536 - 16 * 32;
             } else {
-                offset = ((4096 - 16) * 32);
+                offset = (4096 - 16) * 32;
             }
             break;
         default:
-            offset = ((2048 - 16) * 32);
+            offset = (2048 - 16) * 32;
             break;
         }
 
         if (vramType == NNS_G2D_VRAM_TYPE_2DMAIN) {
-            GX_LoadOBJ(v1->pRawData, offset, (4 * 4 * 32));
+            GX_LoadOBJ(charData->pRawData, offset, 4 * 4 * 32);
         } else {
-            GXS_LoadOBJ(v1->pRawData, offset, (4 * 4 * 32));
+            GXS_LoadOBJ(charData->pRawData, offset, 4 * 4 * 32);
         }
 
-        Heap_Free(v0);
+        Heap_Free(ncgrFile);
     }
 }
-
-static const UnkStruct_020E5EB4 Unk_020E5EB4[] = {
-    { 0x1F0, 0x14 },
-    { 0x1F4, 0x14 },
-    { 0x1F8, 0x14 },
-    { 0x1FC, 0x14 },
-    { 0xFFFF, 0x0 }
-};
-
-static const UnkStruct_020E5EB4 Unk_020E5EAC[] = {
-    { 0x1F0, 0x14 },
-    { 0xFFFF, 0x0 }
-};
-
-static const UnkStruct_020E5EB4 Unk_020E5EA4[] = {
-    { 0x1F4, 0x14 },
-    { 0xFFFF, 0x0 }
-};
-
-static const UnkStruct_020E5EB4 Unk_020E5E9C[] = {
-    { 0x1F8, 0x14 },
-    { 0xFFFF, 0x0 }
-};
-
-static const UnkStruct_020E5EB4 Unk_020E5E94[] = {
-    { 0x1FC, 0x14 },
-    { 0xFFFF, 0x0 }
-};
-
-static const UnkStruct_020E5EB4 *Unk_02100A38[] = {
-    Unk_020E5EAC,
-    Unk_020E5EA4,
-    Unk_020E5E9C,
-    Unk_020E5E94,
-    Unk_020E5EB4
-};
 
 static NetworkIcon *sGlobalNetworkIcon = NULL;
 
-static void sub_02039614(NetworkIcon *v0)
+static void UpdateOAM(NetworkIcon *icon)
 {
-    int v1, v2;
-    GXOamAttr *v3;
+    enum NNS_G2D_VRAM_TYPE vramType = GetVramType(icon);
+    int oamOffset = GetStrengthOAMOffset(vramType, icon->strength);
+    GXOamAttr *oam = vramType == NNS_G2D_VRAM_TYPE_2DMAIN ? (GXOamAttr *)HW_OAM : (GXOamAttr *)HW_OAM_END;
 
-    v1 = inline_02039614(v0);
-    v2 = inline_02039614_1(v1, v0->strength);
-    v3 = (v1 == NNS_G2D_VRAM_TYPE_2DMAIN) ? (GXOamAttr *)(HW_OAM) : (GXOamAttr *)(HW_OAM_END);
+    G2_SetOBJAttr(oam, icon->x, icon->y, 0, GX_OAM_MODE_NORMAL, FALSE, GX_OAM_EFFECT_NONE, GX_OAM_SHAPE_16x16, GX_OAM_COLORMODE_16, oamOffset, 14, 0);
 
-    G2_SetOBJAttr(v3, v0->x, v0->y, 0, GX_OAM_MODE_NORMAL, 0, GX_OAM_EFFECT_NONE, GX_OAM_SHAPE_16x16, GX_OAM_COLORMODE_16, v2, 14, 0);
-
-    if (v3 != v0->unk_1C) {
-        G2_SetOBJAttr(v0->unk_1C, 0, 0, 0, GX_OAM_MODE_NORMAL, 0, GX_OAM_EFFECT_NODISPLAY, GX_OAM_SHAPE_16x16, GX_OAM_COLORMODE_16, 0, 0, 0);
-        v0->unk_1C = v3;
+    if (oam != icon->oam) {
+        G2_SetOBJAttr(icon->oam, 0, 0, 0, GX_OAM_MODE_NORMAL, FALSE, GX_OAM_EFFECT_NODISPLAY, GX_OAM_SHAPE_16x16, GX_OAM_COLORMODE_16, 0, 0, 0);
+        icon->oam = oam;
     }
 }
 
-void sub_02039720(void)
+void NetworkIcon_Update()
 {
-    NetworkIcon *networkIcon = sGlobalNetworkIcon;
-
-    if (networkIcon == NULL) {
-        return;
+    if (sGlobalNetworkIcon != NULL) {
+        UpdateOAM(sGlobalNetworkIcon);
     }
-
-    sub_02039614(networkIcon);
 }
 
-void sub_02039734(void)
+void NetworkIcon_Init()
 {
     BOOL isWifi = FALSE;
-
     if (CommMan_IsConnectedToWifi()) {
         isWifi = TRUE;
     }
-
-    sub_02039750(240, 0, isWifi, NNS_G2D_VRAM_TYPE_2DMAIN);
+    InitGlobalNetworkIcon(240, 0, isWifi, NNS_G2D_VRAM_TYPE_2DMAIN);
 }
 
-void sub_02039750(int param0, int param1, BOOL isWifi, int param3)
+static void InitGlobalNetworkIcon(int x, int y, BOOL isWifi, enum NNS_G2D_VRAM_TYPE vramType)
 {
     if (!WirelessDriver_Initialized()) {
         return;
@@ -307,10 +270,10 @@ void sub_02039750(int param0, int param1, BOOL isWifi, int param3)
         NetworkIcon_Destroy();
     }
 
-    sGlobalNetworkIcon = CreateNetworkIcon(0, HEAP_ID_91, param0, param1, isWifi, Unk_02100A38, param3);
+    sGlobalNetworkIcon = CreateNetworkIcon(0, HEAP_ID_91, x, y, isWifi, sUnused, vramType);
 }
 
-void NetworkIcon_Destroy(void)
+void NetworkIcon_Destroy()
 {
     if (sGlobalNetworkIcon) {
         DestroyNetworkIcon(sGlobalNetworkIcon);
@@ -325,20 +288,20 @@ void NetworkIcon_SetStrength(int networkStrength)
     }
 }
 
-void sub_020397C8(BOOL param0, u32 heapID)
+void NetworkIcon_CreateOnSubScreen(BOOL isUpperScreen, u32 heapID)
 {
     if (sGlobalNetworkIcon) {
-        sub_02039474(sGlobalNetworkIcon, param0, heapID);
+        CreateIconOnSubScreen(sGlobalNetworkIcon, isUpperScreen, heapID);
     }
 }
 
-void NetworkIcon_Init(void)
+void NetworkIcon_InitIfConnected()
 {
     if (CommSys_IsInitialized()) {
-        if ((CommSys_ConnectedCount() > 1) || CommMan_IsConnectedToWifi()) {
-            sub_02039734();
+        if (CommSys_ConnectedCount() > 1 || CommMan_IsConnectedToWifi()) {
+            NetworkIcon_Init();
         }
     } else if (CommMan_IsConnectedToWifi()) {
-        sub_02039734();
+        NetworkIcon_Init();
     }
 }

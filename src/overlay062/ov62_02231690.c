@@ -1719,7 +1719,7 @@ static void ov62_02233750(SysTask *param0, void *param1)
     UnkStruct_ov62_02233750 *v0 = param1;
 
     ov62_0222F824(v0->unk_00);
-    sub_02039720();
+    NetworkIcon_Update();
     v0->unk_04 = 1;
     SysTask_Done(param0);
 }
