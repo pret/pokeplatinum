@@ -15,6 +15,7 @@
 #include "heap.h"
 #include "message.h"
 #include "narc.h"
+#include "network_icon.h"
 #include "overlay_manager.h"
 #include "screen_fade.h"
 #include "string_gf.h"
@@ -23,7 +24,6 @@
 #include "text.h"
 #include "touch_pad.h"
 #include "unk_0202419C.h"
-#include "unk_020393C8.h"
 #include "unk_0208C098.h"
 #include "unk_020972FC.h"
 

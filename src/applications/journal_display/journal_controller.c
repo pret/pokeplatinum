@@ -16,6 +16,7 @@
 #include "journal.h"
 #include "message.h"
 #include "narc.h"
+#include "network_icon.h"
 #include "overlay_manager.h"
 #include "save_player.h"
 #include "savedata.h"
@@ -26,7 +27,6 @@
 #include "string_template.h"
 #include "system.h"
 #include "trainer_info.h"
-#include "unk_020393C8.h"
 #include "unk_0208C098.h"
 
 static void JournalController_MainCallback(void *data);

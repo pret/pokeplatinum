@@ -30,6 +30,7 @@
 #include "menu.h"
 #include "message.h"
 #include "narc.h"
+#include "network_icon.h"
 #include "palette.h"
 #include "particle_system.h"
 #include "party.h"
@@ -53,7 +54,6 @@
 #include "unk_0202F1D4.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
-#include "unk_020393C8.h"
 #include "unk_0208C098.h"
 #include "vram_transfer.h"
 

@@ -30,6 +30,7 @@
 #include "message.h"
 #include "move_table.h"
 #include "narc.h"
+#include "network_icon.h"
 #include "overlay_manager.h"
 #include "palette.h"
 #include "particle_system.h"
@@ -47,7 +48,6 @@
 #include "touch_pad.h"
 #include "unk_02012744.h"
 #include "unk_020366A0.h"
-#include "unk_020393C8.h"
 #include "unk_02094EDC.h"
 #include "vram_transfer.h"
 

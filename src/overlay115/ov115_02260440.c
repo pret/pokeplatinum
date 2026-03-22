@@ -26,12 +26,12 @@
 #include "graphics.h"
 #include "heap.h"
 #include "narc.h"
+#include "network_icon.h"
 #include "overlay_manager.h"
 #include "screen_fade.h"
 #include "system.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
-#include "unk_020393C8.h"
 #include "vram_transfer.h"
 
 typedef struct UnkStruct_ov115_0226095C_t {

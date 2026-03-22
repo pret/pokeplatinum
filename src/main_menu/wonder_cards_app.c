@@ -27,6 +27,7 @@
 #include "message.h"
 #include "message_util.h"
 #include "mystery_gift.h"
+#include "network_icon.h"
 #include "overlay_manager.h"
 #include "palette.h"
 #include "pokemon_icon.h"
@@ -49,7 +50,6 @@
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
-#include "unk_020393C8.h"
 
 #include "res/graphics/main_menu/main_menu_graphics.naix"
 #include "res/text/bank/mystery_gift_menu.h"

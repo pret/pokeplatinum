@@ -30,6 +30,7 @@
 #include "heap.h"
 #include "math_util.h"
 #include "narc.h"
+#include "network_icon.h"
 #include "overlay_manager.h"
 #include "palette.h"
 #include "screen_fade.h"
@@ -40,7 +41,6 @@
 #include "touch_pad.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
-#include "unk_020393C8.h"
 #include "vram_transfer.h"
 
 static void ov116_022612CC(UnkStruct_ov116_0226139C *param0);

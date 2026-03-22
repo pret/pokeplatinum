@@ -40,6 +40,7 @@
 #include "heap.h"
 #include "narc.h"
 #include "narc_frontier_bg.h"
+#include "network_icon.h"
 #include "palette.h"
 #include "render_text.h"
 #include "render_window.h"
@@ -53,7 +54,6 @@
 #include "touch_pad.h"
 #include "trainer_info.h"
 #include "unk_0202419C.h"
-#include "unk_020393C8.h"
 #include "unk_0209B6F8.h"
 #include "vram_transfer.h"
 

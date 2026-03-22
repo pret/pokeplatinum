@@ -13,6 +13,7 @@
 #include "communication_information.h"
 #include "communication_system.h"
 #include "heap.h"
+#include "network_icon.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "sound_playback.h"
@@ -22,7 +23,6 @@
 #include "unk_0203266C.h"
 #include "unk_02032798.h"
 #include "unk_02033200.h"
-#include "unk_020393C8.h"
 #include "unk_02039814.h"
 
 typedef void (*UnkFuncPtr_02036C94)(void);

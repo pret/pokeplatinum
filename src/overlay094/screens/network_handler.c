@@ -33,6 +33,7 @@
 #include "heap.h"
 #include "inlines.h"
 #include "journal.h"
+#include "network_icon.h"
 #include "party.h"
 #include "pc_boxes.h"
 #include "pokemon.h"
@@ -47,7 +48,6 @@
 #include "unk_0202F180.h"
 #include "unk_020366A0.h"
 #include "unk_02038F8C.h"
-#include "unk_020393C8.h"
 #include "unk_02039814.h"
 #include "vars_flags.h"
 

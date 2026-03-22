@@ -46,6 +46,7 @@
 #include "list_menu.h"
 #include "message.h"
 #include "narc.h"
+#include "network_icon.h"
 #include "overlay_manager.h"
 #include "pltt_transfer.h"
 #include "pokemon.h"
@@ -73,7 +74,6 @@
 #include "type_icon.h"
 #include "unk_0202419C.h"
 #include "unk_020366A0.h"
-#include "unk_020393C8.h"
 #include "vram_transfer.h"
 
 typedef struct {

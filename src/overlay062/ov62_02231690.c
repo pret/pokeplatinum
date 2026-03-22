@@ -40,6 +40,7 @@
 #include "heap.h"
 #include "message.h"
 #include "narc.h"
+#include "network_icon.h"
 #include "palette.h"
 #include "pokemon_icon.h"
 #include "pokemon_sprite.h"
@@ -57,7 +58,6 @@
 #include "unk_02014A84.h"
 #include "unk_0202F1D4.h"
 #include "unk_02030A80.h"
-#include "unk_020393C8.h"
 #include "unk_0208B284.h"
 
 static void ov62_022349E4(String *param0, enum HeapID heapID);

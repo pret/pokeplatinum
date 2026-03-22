@@ -37,6 +37,7 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
+#include "network_icon.h"
 #include "palette.h"
 #include "pokedex.h"
 #include "save_player.h"
@@ -51,7 +52,6 @@
 #include "unk_02012744.h"
 #include "unk_0202F1D4.h"
 #include "unk_02030A80.h"
-#include "unk_020393C8.h"
 #include "unk_0208B284.h"
 #include "unk_0208BA78.h"
 

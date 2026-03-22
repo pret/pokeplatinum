@@ -20,6 +20,7 @@
 #include "menu.h"
 #include "message.h"
 #include "narc.h"
+#include "network_icon.h"
 #include "render_window.h"
 #include "screen_fade.h"
 #include "string_gf.h"
@@ -30,7 +31,6 @@
 #include "unk_0202ACE0.h"
 #include "unk_02030CE8.h"
 #include "unk_020366A0.h"
-#include "unk_020393C8.h"
 
 #include "res/text/bank/gts.h"
 #include "res/text/bank/unk_0674.h"

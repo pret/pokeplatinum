@@ -39,6 +39,7 @@
 #include "math_util.h"
 #include "menu.h"
 #include "narc.h"
+#include "network_icon.h"
 #include "pltt_transfer.h"
 #include "pokedex.h"
 #include "render_oam.h"
@@ -63,7 +64,6 @@
 #include "trainer_info.h"
 #include "tv_episode_segment.h"
 #include "underground.h"
-#include "unk_020393C8.h"
 #include "vars_flags.h"
 #include "vram_transfer.h"
 

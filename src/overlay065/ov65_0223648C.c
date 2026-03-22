@@ -36,6 +36,7 @@
 #include "menu.h"
 #include "message.h"
 #include "narc.h"
+#include "network_icon.h"
 #include "overlay_manager.h"
 #include "pltt_transfer.h"
 #include "render_oam.h"
@@ -54,7 +55,6 @@
 #include "trainer_info.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
-#include "unk_020393C8.h"
 #include "unk_0209C390.h"
 #include "vram_transfer.h"
 

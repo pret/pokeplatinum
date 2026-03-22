@@ -26,6 +26,7 @@
 #include "menu.h"
 #include "message.h"
 #include "narc.h"
+#include "network_icon.h"
 #include "overlay_manager.h"
 #include "pltt_transfer.h"
 #include "render_oam.h"
@@ -44,7 +45,6 @@
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_02030EA4.h"
-#include "unk_020393C8.h"
 #include "vram_transfer.h"
 
 typedef struct {

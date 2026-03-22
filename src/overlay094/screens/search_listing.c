@@ -18,6 +18,7 @@
 #include "menu.h"
 #include "message.h"
 #include "message_util.h"
+#include "network_icon.h"
 #include "pokemon.h"
 #include "render_window.h"
 #include "screen_fade.h"
@@ -27,7 +28,6 @@
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_020393C8.h"
 
 #include "res/text/bank/gts.h"
 

@@ -22,6 +22,7 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
+#include "network_icon.h"
 #include "overlay_manager.h"
 #include "pokemon.h"
 #include "render_oam.h"
@@ -35,7 +36,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
-#include "unk_020393C8.h"
 
 struct UnkStruct_ov95_02247004_t {
     u16 unk_00[96];

@@ -13,6 +13,7 @@
 #include "math_util.h"
 #include "message.h"
 #include "narc.h"
+#include "network_icon.h"
 #include "overlay_manager.h"
 #include "poffin_sprite.h"
 #include "pokemon.h"
@@ -29,7 +30,6 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "text.h"
-#include "unk_020393C8.h"
 #include "unk_0208C098.h"
 #include "vram_transfer.h"
 

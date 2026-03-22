@@ -4,11 +4,11 @@
 
 #include "communication_system.h"
 #include "gx_layers.h"
+#include "network_icon.h"
 #include "poffin_sprite.h"
 #include "render_oam.h"
 #include "sprite.h"
 #include "sprite_system.h"
-#include "unk_020393C8.h"
 #include "vram_transfer.h"
 
 void PoffinManager_InitSpriteSystem(PoffinManager *param0);

@@ -16,6 +16,7 @@
 #include "menu.h"
 #include "message.h"
 #include "narc.h"
+#include "network_icon.h"
 #include "overlay_manager.h"
 #include "palette.h"
 #include "pokemon_icon.h"
@@ -31,7 +32,6 @@
 #include "system.h"
 #include "text.h"
 #include "unk_02014A84.h"
-#include "unk_020393C8.h"
 #include "vram_transfer.h"
 
 enum {

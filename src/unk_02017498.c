@@ -10,11 +10,11 @@
 
 #include "gx_layers.h"
 #include "heap.h"
+#include "network_icon.h"
 #include "overlay_manager.h"
 #include "sound.h"
 #include "system.h"
 #include "unk_02033200.h"
-#include "unk_020393C8.h"
 #include "unk_0208BA78.h"
 #include "wifi_overlays.h"
 

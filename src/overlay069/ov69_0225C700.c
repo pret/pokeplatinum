@@ -31,6 +31,7 @@
 #include "math_util.h"
 #include "message.h"
 #include "narc.h"
+#include "network_icon.h"
 #include "overlay_manager.h"
 #include "pltt_transfer.h"
 #include "render_oam.h"
@@ -52,7 +53,6 @@
 #include "unk_02015920.h"
 #include "unk_0202419C.h"
 #include "unk_0202C858.h"
-#include "unk_020393C8.h"
 #include "unk_020996D0.h"
 #include "vram_transfer.h"
 

@@ -1,4 +1,4 @@
-#include "unk_020393C8.h"
+#include "network_icon.h"
 
 #include <nitro.h>
 

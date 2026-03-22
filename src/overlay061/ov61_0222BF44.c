@@ -24,6 +24,7 @@
 #include "menu.h"
 #include "message.h"
 #include "narc.h"
+#include "network_icon.h"
 #include "overlay_manager.h"
 #include "render_oam.h"
 #include "render_text.h"
@@ -40,7 +41,6 @@
 #include "unk_0202ACE0.h"
 #include "unk_020366A0.h"
 #include "unk_02038FFC.h"
-#include "unk_020393C8.h"
 #include "vram_transfer.h"
 
 typedef struct {

@@ -6,6 +6,7 @@
 #include "struct_defs/struct_02089688.h"
 
 #include "heap.h"
+#include "network_icon.h"
 #include "palette.h"
 #include "screen_fade.h"
 #include "sound_playback.h"
@@ -14,7 +15,6 @@
 #include "system.h"
 #include "touch_screen.h"
 #include "touch_screen_actions.h"
-#include "unk_020393C8.h"
 #include "unk_0208A3F4.h"
 
 void sub_02089604(UnkStruct_02089688 *param0, int param1)

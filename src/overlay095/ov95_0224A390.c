@@ -16,6 +16,7 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "math_util.h"
+#include "network_icon.h"
 #include "screen_fade.h"
 #include "sound_playback.h"
 #include "sprite.h"
@@ -23,7 +24,6 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "unk_0202419C.h"
-#include "unk_020393C8.h"
 
 enum {
     UnkEnum_ov95_0224A690_00 = 0x18E3,

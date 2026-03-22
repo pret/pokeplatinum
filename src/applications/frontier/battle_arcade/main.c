@@ -28,6 +28,7 @@
 #include "message.h"
 #include "narc.h"
 #include "narc_frontier_bg.h"
+#include "network_icon.h"
 #include "overlay_manager.h"
 #include "palette.h"
 #include "party.h"
@@ -47,7 +48,6 @@
 #include "unk_02030494.h"
 #include "unk_0203061C.h"
 #include "unk_020363E8.h"
-#include "unk_020393C8.h"
 #include "unk_0209BA80.h"
 #include "vram_transfer.h"
 

@@ -17,6 +17,7 @@
 #include "heap.h"
 #include "message.h"
 #include "narc.h"
+#include "network_icon.h"
 #include "overlay_manager.h"
 #include "render_oam.h"
 #include "screen_fade.h"
@@ -27,7 +28,6 @@
 #include "system.h"
 #include "touch_pad.h"
 #include "touch_screen.h"
-#include "unk_020393C8.h"
 #include "vram_transfer.h"
 
 #include "res/text/bank/trainer_card.h"

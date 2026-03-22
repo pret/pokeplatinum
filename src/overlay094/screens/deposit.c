@@ -27,6 +27,7 @@
 #include "message.h"
 #include "message_util.h"
 #include "narc.h"
+#include "network_icon.h"
 #include "pokedex.h"
 #include "pokemon.h"
 #include "render_window.h"
@@ -39,7 +40,6 @@
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_0202C858.h"
-#include "unk_020393C8.h"
 
 #include "res/text/bank/country_names.h"
 #include "res/text/bank/gts.h"
