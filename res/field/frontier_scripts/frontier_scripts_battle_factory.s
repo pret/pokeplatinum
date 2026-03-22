@@ -1,6 +1,8 @@
 # include "macros/frscrcmd.inc"
+# include "res/graphics/frontier/particles/frontier_particles.naix"
 # include "res/text/bank/battle_factory_scene.h"
 # include "constants/battle_frontier.h"
+# include "constants/battle_frontier_emitters.h"
 
     .data
 
@@ -1590,18 +1592,18 @@ _154A:
     FrontierScrCmd_29
     FrontierScrCmd_28 4, _02A8
     FrontierScrCmd_29
-    FrontierScrCmd_41 0, 5, 1
-    FrontierScrCmd_43 0, 0
-    FrontierScrCmd_43 0, 1
-    FrontierScrCmd_43 0, 2
+    InitParticleSystem 0, battle_factory_spa
+    CreateParticleSystemEmitter 0, FACTORY_EMITTER_GREEN_SMOKE
+    CreateParticleSystemEmitter 0, FACTORY_EMITTER_SMOKE_CLOUDS
+    CreateParticleSystemEmitter 0, FACTORY_EMITTER_RISING_BLOCKS
     PlaySoundEffect SEQ_SE_PL_FAC01
     WaitTime 36, VAR_0x8008
     FrontierScrCmd_4C 0, 3, 2, 10
     WaitTime 11, VAR_0x8008
     FrontierScrCmd_28 98, _0270
     FrontierScrCmd_29
-    FrontierScrCmd_44
-    FrontierScrCmd_42 0
+    WaitForParticleSystemEmitters
+    FreeParticleSystem 0
     Return
 
 _15AA:

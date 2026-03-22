@@ -1,5 +1,7 @@
 # include "macros/frscrcmd.inc"
+# include "res/graphics/frontier/particles/frontier_particles.naix"
 # include "res/text/bank/battle_hall_scene.h"
+# include "constants/battle_frontier_emitters.h"
 
     .data
 
@@ -623,9 +625,9 @@ _0476:
 
 _048A:
     FrontierScrCmd_45 VAR_0x8002, 128, 56, 0xC350, 0, 0
-    FrontierScrCmd_41 0, 2, 1
-    FrontierScrCmd_43 0, 18
-    FrontierScrCmd_43 0, 19
+    InitParticleSystem 0, battle_hall_spa
+    CreateParticleSystemEmitter 0, HALL_EMITTER_UNK_18
+    CreateParticleSystemEmitter 0, HALL_EMITTER_UNK_19
     Call _10C8
     FadeScreenIn
     FrontierScrCmd_4E 72, 160, 230, 192, 0, 1
@@ -656,11 +658,11 @@ _0510:
 
 _0532:
     FrontierScrCmd_4E 10, 160, 230, 192, 0, 0
-    FrontierScrCmd_43 0, 20
+    CreateParticleSystemEmitter 0, HALL_EMITTER_UNK_20
     WaitTime 30, VAR_0x8008
     FadeScreenOut COLOR_WHITE
     FrontierScrCmd_91 31, 0, 0, VAR_0x8008
-    FrontierScrCmd_42 0
+    FreeParticleSystem 0
     FadeScreenIn COLOR_WHITE
     FrontierScrCmd_46 0xC350
     FrontierScrCmd_91 23, 0, 0, VAR_0x8008
@@ -888,10 +890,10 @@ _0907:
     GoToIfEq VAR_0x8008, 2, _137B
     Call _13C3
     BufferNumber 0, VAR_0x8008
-    FrontierScrCmd_41 0, 2, 1
+    InitParticleSystem 0, battle_hall_spa
     Call _1125
-    FrontierScrCmd_44
-    FrontierScrCmd_42 0
+    WaitForParticleSystemEmitters
+    FreeParticleSystem 0
     GoTo _09B7
     End
 
@@ -911,10 +913,10 @@ _09B7:
     End
 
 _09E3:
-    FrontierScrCmd_41 0, 2, 1
+    InitParticleSystem 0, battle_hall_spa
     Call _1125
-    FrontierScrCmd_44
-    FrontierScrCmd_42 0
+    WaitForParticleSystemEmitters
+    FreeParticleSystem 0
     Call _141B
     FrontierScrCmd_28 98, _02D8
     FrontierScrCmd_28 99, _02EC
@@ -1371,19 +1373,19 @@ _10C8:
     End
 
 _10F5:
-    FrontierScrCmd_43 0, 13
-    FrontierScrCmd_43 0, 14
-    FrontierScrCmd_43 0, 8
+    CreateParticleSystemEmitter 0, HALL_EMITTER_UNK_13
+    CreateParticleSystemEmitter 0, HALL_EMITTER_UNK_14
+    CreateParticleSystemEmitter 0, HALL_EMITTER_UNK_8
     Return
 
 _1109:
-    FrontierScrCmd_43 0, 9
-    FrontierScrCmd_43 0, 10
+    CreateParticleSystemEmitter 0, HALL_EMITTER_UNK_9
+    CreateParticleSystemEmitter 0, HALL_EMITTER_UNK_10
     Return
 
 _1117:
-    FrontierScrCmd_43 0, 11
-    FrontierScrCmd_43 0, 12
+    CreateParticleSystemEmitter 0, HALL_EMITTER_UNK_11
+    CreateParticleSystemEmitter 0, HALL_EMITTER_UNK_12
     Return
 
 _1125:
@@ -1391,26 +1393,26 @@ _1125:
     AddVar VAR_0x8008, 1
     GoToIfEq VAR_0x8008, 10, _1159
     PlaySoundEffect SEQ_SE_DP_UG_022
-    FrontierScrCmd_43 0, 2
-    FrontierScrCmd_43 0, 3
+    CreateParticleSystemEmitter 0, HALL_EMITTER_UNK_2
+    CreateParticleSystemEmitter 0, HALL_EMITTER_UNK_3
     WaitSoundEffect SEQ_SE_DP_UG_022
     PlaySoundEffect SEQ_SE_DP_DENDOU
     Return
 
 _1159:
     PlaySoundEffect SEQ_SE_DP_UG_022
-    FrontierScrCmd_43 0, 4
-    FrontierScrCmd_43 0, 6
+    CreateParticleSystemEmitter 0, HALL_EMITTER_UNK_4
+    CreateParticleSystemEmitter 0, HALL_EMITTER_UNK_6
     WaitSoundEffect SEQ_SE_DP_UG_022
     PlaySoundEffect SEQ_SE_DP_DENDOU
     Return
 
 _1173:
     PlaySoundEffect SEQ_SE_DP_UG_022
-    FrontierScrCmd_43 0, 4
-    FrontierScrCmd_43 0, 6
-    FrontierScrCmd_43 0, 0
-    FrontierScrCmd_43 0, 1
+    CreateParticleSystemEmitter 0, HALL_EMITTER_UNK_4
+    CreateParticleSystemEmitter 0, HALL_EMITTER_UNK_6
+    CreateParticleSystemEmitter 0, HALL_EMITTER_UNK_0
+    CreateParticleSystemEmitter 0, HALL_EMITTER_UNK_1
     WaitSoundEffect SEQ_SE_DP_UG_022
     PlaySoundEffect SEQ_SE_DP_DENDOU
     Return
@@ -1454,11 +1456,11 @@ _1207:
     FrontierScrCmd_28 98, _0280
     FrontierScrCmd_28 0, _0318
     FrontierScrCmd_29
-    FrontierScrCmd_41 0, 2, 1
-    FrontierScrCmd_43 0, 16
-    FrontierScrCmd_43 0, 17
+    InitParticleSystem 0, battle_hall_spa
+    CreateParticleSystemEmitter 0, HALL_EMITTER_UNK_16
+    CreateParticleSystemEmitter 0, HALL_EMITTER_UNK_17
     WaitTime 90, VAR_0x8008
-    FrontierScrCmd_43 0, 18
+    CreateParticleSystemEmitter 0, HALL_EMITTER_UNK_18
     FrontierScrCmd_28 98, _02C0
     FrontierScrCmd_29
     PlaySoundEffect SEQ_SE_DP_DENDOU
@@ -1467,26 +1469,26 @@ _1207:
     FrontierScrCmd_28 98, _0298
     FrontierScrCmd_29
     PlaySoundEffect SEQ_SE_DP_DENDOU
-    FrontierScrCmd_43 0, 11
-    FrontierScrCmd_43 0, 12
+    CreateParticleSystemEmitter 0, HALL_EMITTER_UNK_11
+    CreateParticleSystemEmitter 0, HALL_EMITTER_UNK_12
     WaitSoundEffect SEQ_SE_DP_DENDOU
     FrontierScrCmd_4E 10, 160, 230, 192, 10, 0
     FrontierScrCmd_28 0, _01BC
     FrontierScrCmd_28 98, _02A4
     FrontierScrCmd_29
     PlaySoundEffect SEQ_SE_DP_DENDOU
-    FrontierScrCmd_43 0, 11
-    FrontierScrCmd_43 0, 12
+    CreateParticleSystemEmitter 0, HALL_EMITTER_UNK_11
+    CreateParticleSystemEmitter 0, HALL_EMITTER_UNK_12
     WaitSoundEffect SEQ_SE_DP_DENDOU
     FrontierScrCmd_28 0, _01C4
     FrontierScrCmd_28 98, _02B0
     FrontierScrCmd_29
     FrontierScrCmd_46 0xC350
-    FrontierScrCmd_43 0, 20
+    CreateParticleSystemEmitter 0, HALL_EMITTER_UNK_20
     WaitTime 30, VAR_0x8008
     FadeScreenOut COLOR_WHITE
     FrontierScrCmd_91 31, 0, 0, VAR_0x8008
-    FrontierScrCmd_42 0
+    FreeParticleSystem 0
     FadeScreenIn COLOR_WHITE
     FrontierScrCmd_28 98, _022C
     FrontierScrCmd_29
@@ -1495,10 +1497,10 @@ _1207:
 _1333:
     Call _13C3
     BufferNumber 0, VAR_0x8008
-    FrontierScrCmd_41 0, 2, 1
+    InitParticleSystem 0, battle_hall_spa
     Call _1173
-    FrontierScrCmd_44
-    FrontierScrCmd_42 0
+    WaitForParticleSystemEmitters
+    FreeParticleSystem 0
     FrontierScrCmd_3E VAR_BATTLE_HALL_PRINT_STATE, VAR_0x8008
     CallIfEq VAR_0x8008, 0, _1373
     Message BattleHallScene_Text_BeatArgenta
@@ -1513,10 +1515,10 @@ _1373:
 _137B:
     Call _13C3
     BufferNumber 0, VAR_0x8008
-    FrontierScrCmd_41 0, 2, 1
+    InitParticleSystem 0, battle_hall_spa
     Call _1173
-    FrontierScrCmd_44
-    FrontierScrCmd_42 0
+    WaitForParticleSystemEmitters
+    FreeParticleSystem 0
     FrontierScrCmd_3E VAR_BATTLE_HALL_PRINT_STATE, VAR_0x8008
     CallIfEq VAR_0x8008, 2, _13BB
     Message BattleHallScene_Text_BeatArgentaGold

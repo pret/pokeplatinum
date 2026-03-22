@@ -1,6 +1,8 @@
 # include "macros/frscrcmd.inc"
+# include "res/graphics/frontier/particles/frontier_particles.naix"
 # include "res/text/bank/battle_castle_scene.h"
 # include "constants/battle_frontier.h"
+# include "constants/battle_frontier_emitters.h"
 
     .data
 
@@ -1187,7 +1189,7 @@ _0CAD:
     FrontierScrCmd_28 0, _028C
     FrontierScrCmd_28 4, _0294
     FrontierScrCmd_29
-    FrontierScrCmd_43 0, 0
+    CreateParticleSystemEmitter 0, CASTLE_EMITTER_TWINKLE
     GoToIfEq VAR_0x8005, 1, _0E89
     FrontierScrCmd_A0 40, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _1A9B
@@ -1225,7 +1227,7 @@ _0DA3:
     FrontierScrCmd_28 1, _02A8
     FrontierScrCmd_28 2, _02BC
     FrontierScrCmd_29
-    FrontierScrCmd_43 0, 0
+    CreateParticleSystemEmitter 0, CASTLE_EMITTER_TWINKLE
     GoToIfEq VAR_0x8005, 1, _0E89
     Call _0EEC
     FrontierScrCmd_28 98, _0314
@@ -1255,7 +1257,7 @@ _0E64:
     Return
 
 _0E74:
-    FrontierScrCmd_41 0, 6, 1
+    InitParticleSystem 0, battle_castle_spa
     FrontierScrCmd_A0 36, 0, 0, VAR_0x8008
     GetPlayerObjEventGfx VAR_0x8007
     Return
@@ -1303,7 +1305,7 @@ _0F1A:
     Return
 
 _0F2E:
-    FrontierScrCmd_42 0
+    FreeParticleSystem 0
     FrontierScrCmd_A0 35, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _0F83
     FrontierScrCmd_A0 40, 0, 0, VAR_0x8008
@@ -1333,8 +1335,8 @@ _0F99:
     BufferNumber 0, VAR_0x8008
     FrontierScrCmd_9C
     FrontierScrCmd_9B
-    FrontierScrCmd_41 0, 6, 1
-    FrontierScrCmd_43 0, 0
+    InitParticleSystem 0, battle_castle_spa
+    CreateParticleSystemEmitter 0, CASTLE_EMITTER_TWINKLE
     FrontierScrCmd_A0 36, 0, 0, VAR_0x8008
     FadeScreenIn
     FrontierScrCmd_A1 VAR_0x8008
@@ -1948,7 +1950,7 @@ _199D:
     End
 
 _19E8:
-    FrontierScrCmd_42 0
+    FreeParticleSystem 0
     FrontierScrCmd_A0 35, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _1A30
     FrontierScrCmd_25 0

@@ -1,5 +1,7 @@
 # include "macros/frscrcmd.inc"
+# include "res/graphics/frontier/particles/frontier_particles.naix"
 # include "res/text/bank/battle_arcade_scene.h"
+# include "constants/battle_frontier_emitters.h"
 
     .data
 
@@ -1329,10 +1331,10 @@ _0AE1:
     End
 
 _0AF1:
-    FrontierScrCmd_41 0, 3, 1
+    InitParticleSystem 0, battle_arcade_1_spa
     FrontierScrCmd_BF 39, VAR_0x8005, VAR_0x8006, VAR_0x8008
     WaitTime 120, VAR_0x8008
-    FrontierScrCmd_42 0
+    FreeParticleSystem 0
     WaitTime 60, VAR_0x8008
     AddVar VAR_0x8005, 1
     Return
@@ -1411,7 +1413,7 @@ _0BD4:
     End
 
 _0C9E:
-    FrontierScrCmd_42 3
+    FreeParticleSystem 3
     Return
 
 _0CA4:
@@ -1439,7 +1441,7 @@ _0CD0:
     Return
 
 _0CD6:
-    FrontierScrCmd_41 0, 3, 1
+    InitParticleSystem 0, battle_arcade_1_spa
     FrontierScrCmd_BF 16, 0, 0, VAR_0x8008
     PlaySoundEffect SEQ_SE_DP_DENDOU
     SetVar FR_VAR_0x8010, VAR_0x8008
@@ -2479,65 +2481,65 @@ _20D4:
 
 _2101:
     PlaySoundEffect SEQ_SE_PL_FR04
-    FrontierScrCmd_43 0, 6
-    FrontierScrCmd_43 0, 7
+    CreateParticleSystemEmitter 0, ARCADE_EMITTERS_UNK_6
+    CreateParticleSystemEmitter 0, ARCADE_EMITTERS_UNK_7
     WaitTime 60, VAR_0x8008
     WaitSoundEffect SEQ_SE_PL_FR04
     Return
 
 _211D:
     PlaySoundEffect SEQ_SE_PL_FR04
-    FrontierScrCmd_43 0, 8
-    FrontierScrCmd_43 0, 9
+    CreateParticleSystemEmitter 0, ARCADE_EMITTERS_UNK_8
+    CreateParticleSystemEmitter 0, ARCADE_EMITTERS_UNK_9
     WaitTime 60, VAR_0x8008
     WaitSoundEffect SEQ_SE_PL_FR04
     Return
 
 _2139:
     PlaySoundEffect SEQ_SE_PL_FR04
-    FrontierScrCmd_43 0, 10
-    FrontierScrCmd_43 0, 11
+    CreateParticleSystemEmitter 0, ARCADE_EMITTERS_UNK_10
+    CreateParticleSystemEmitter 0, ARCADE_EMITTERS_UNK_11
     WaitTime 60, VAR_0x8008
     WaitSoundEffect SEQ_SE_PL_FR04
     Return
 
 _2155:
     PlaySoundEffect SEQ_SE_PL_FR03
-    FrontierScrCmd_43 0, 0
-    FrontierScrCmd_43 0, 1
+    CreateParticleSystemEmitter 0, ARCADE_EMITTERS_UNK_0
+    CreateParticleSystemEmitter 0, ARCADE_EMITTERS_UNK_1
     WaitTime 60, VAR_0x8008
     WaitSoundEffect SEQ_SE_PL_FR03
     Return
 
 _2171:
     PlaySoundEffect SEQ_SE_PL_FR03
-    FrontierScrCmd_43 0, 2
-    FrontierScrCmd_43 0, 3
+    CreateParticleSystemEmitter 0, ARCADE_EMITTERS_UNK_2
+    CreateParticleSystemEmitter 0, ARCADE_EMITTERS_UNK_3
     WaitTime 60, VAR_0x8008
     WaitSoundEffect SEQ_SE_PL_FR03
     Return
 
 _218D:
     PlaySoundEffect SEQ_SE_PL_FR03
-    FrontierScrCmd_43 0, 4
-    FrontierScrCmd_43 0, 5
+    CreateParticleSystemEmitter 0, ARCADE_EMITTERS_UNK_4
+    CreateParticleSystemEmitter 0, ARCADE_EMITTERS_UNK_5
     WaitTime 60, VAR_0x8008
     WaitSoundEffect SEQ_SE_PL_FR03
     Return
 
 _21A9:
     PlaySoundEffect SEQ_SE_PL_FR04
-    FrontierScrCmd_43 0, VAR_0x8005
-    FrontierScrCmd_43 0, VAR_0x8006
+    CreateParticleSystemEmitter 0, VAR_0x8005
+    CreateParticleSystemEmitter 0, VAR_0x8006
     WaitTime 60, VAR_0x8008
     WaitSoundEffect SEQ_SE_PL_FR04
     Return
 
 _21C5:
     PlaySoundEffect SEQ_SE_PL_FR04
-    FrontierScrCmd_43 0, VAR_0x8005
-    FrontierScrCmd_43 0, VAR_0x8006
-    FrontierScrCmd_43 0, FR_VAR_0x800E
+    CreateParticleSystemEmitter 0, VAR_0x8005
+    CreateParticleSystemEmitter 0, VAR_0x8006
+    CreateParticleSystemEmitter 0, FR_VAR_0x800E
     WaitTime 60, VAR_0x8008
     WaitSoundEffect SEQ_SE_PL_FR04
     Return
@@ -2737,7 +2739,7 @@ _24AD:
     End
 
 _24F2:
-    FrontierScrCmd_42 0
+    FreeParticleSystem 0
     IncrementRecordValue RECORD_UNK_059
     FrontierScrCmd_47 6
     GoTo _251C
@@ -2760,7 +2762,7 @@ _251C:
     FrontierScrCmd_BF 48, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _2562
     GoToIfEq VAR_0x8008, 2, _2562
-    FrontierScrCmd_42 0
+    FreeParticleSystem 0
     GoTo _2562
     End
 
@@ -3420,9 +3422,9 @@ _2FF2:
     FrontierScrCmd_28 98, _0320
     FrontierScrCmd_29
     PlaySoundEffect SEQ_SE_PL_FR04
-    FrontierScrCmd_41 3, 4, 1
-    FrontierScrCmd_43 3, 0
-    FrontierScrCmd_43 3, 1
+    InitParticleSystem 3, battle_arcade_2_spa
+    CreateParticleSystemEmitter 3, ARCADE_2_EMITTER_UNK_0
+    CreateParticleSystemEmitter 3, ARCADE_2_EMITTER_UNK_1
     FrontierScrCmd_28 4, _03D0
     FrontierScrCmd_28 0, _03B4
     FrontierScrCmd_29

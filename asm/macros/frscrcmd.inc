@@ -371,25 +371,25 @@
     .short \destVar
     .endm
 
-    .macro FrontierScrCmd_41 arg0, arg1, arg2
+    .macro InitParticleSystem index, narcIdx, projection=1
     .short 0x041
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \index
+    .short \narcIdx
+    .short \projection
     .endm
 
-    .macro FrontierScrCmd_42 arg0
+    .macro FreeParticleSystem index
     .short 0x042
-    .short \arg0
+    .short \index
     .endm
 
-    .macro FrontierScrCmd_43 arg0, resourceID
+    .macro CreateParticleSystemEmitter index, resourceID
     .short 0x043
-    .short \arg0
+    .short \index
     .short \resourceID
     .endm
 
-    .macro FrontierScrCmd_44
+    .macro WaitForParticleSystemEmitters
     .short 0x044
     .endm
 

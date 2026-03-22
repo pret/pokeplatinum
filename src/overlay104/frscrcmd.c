@@ -235,11 +235,11 @@ static BOOL ov104_02230850(FrontierScriptContext *ctx);
 static BOOL FrontierScrCmd_3F(FrontierScriptContext *ctx);
 static BOOL FrontierScrCmd_GetPlayerObjEventGfx(FrontierScriptContext *ctx);
 static BOOL ov104_02231AA8(FrontierScriptContext *ctx);
-static BOOL FrontierScrCmd_41(FrontierScriptContext *ctx);
-static BOOL FrontierScrCmd_42(FrontierScriptContext *ctx);
-static BOOL FrontierScrCmd_43(FrontierScriptContext *ctx);
-static BOOL FrontierScrCmd_44(FrontierScriptContext *ctx);
-static BOOL ov104_02231BB8(FrontierScriptContext *ctx);
+static BOOL FrontierScrCmd_InitParticleSystem(FrontierScriptContext *ctx);
+static BOOL FrontierScrCmd_FreeParticleSystem(FrontierScriptContext *ctx);
+static BOOL FrontierScrCmd_CreateParticleSystemEmitter(FrontierScriptContext *ctx);
+static BOOL FrontierScrCmd_WaitForParticleSystemEmitters(FrontierScriptContext *ctx);
+static BOOL WaitForEmitters(FrontierScriptContext *ctx);
 static BOOL FrontierScrCmd_4C(FrontierScriptContext *ctx);
 static BOOL FrontierScrCmd_4D(FrontierScriptContext *ctx);
 static BOOL ov104_02231C54(FrontierScriptContext *ctx);
@@ -359,10 +359,10 @@ const FrontierScrCmdFunc gFrontierScrCmdFuncs[] = {
     FrontierScrCmd_3E,
     FrontierScrCmd_3F,
     FrontierScrCmd_GetPlayerObjEventGfx,
-    FrontierScrCmd_41,
-    FrontierScrCmd_42,
-    FrontierScrCmd_43,
-    FrontierScrCmd_44,
+    FrontierScrCmd_InitParticleSystem,
+    FrontierScrCmd_FreeParticleSystem,
+    FrontierScrCmd_CreateParticleSystemEmitter,
+    FrontierScrCmd_WaitForParticleSystemEmitters,
     FrontierScrCmd_45,
     FrontierScrCmd_46,
     FrontierScrCmd_47,
@@ -2412,61 +2412,54 @@ static BOOL FrontierScrCmd_GetPlayerObjEventGfx(FrontierScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL FrontierScrCmd_41(FrontierScriptContext *ctx)
+static BOOL FrontierScrCmd_InitParticleSystem(FrontierScriptContext *ctx)
 {
-    FrontierScriptManager *v0 = ctx->scriptMan;
-    FrontierGraphics *v1 = sub_0209B974(v0->unk_00);
-    u16 v2 = FrontierScriptContext_GetVar(ctx);
-    u16 v3 = FrontierScriptContext_GetVar(ctx);
-    u16 v4 = FrontierScriptContext_GetVar(ctx);
+    FrontierScriptManager *scriptMan = ctx->scriptMan;
+    FrontierGraphics *graphics = sub_0209B974(scriptMan->unk_00);
+    u16 index = FrontierScriptContext_GetVar(ctx);
+    u16 narcIdx = FrontierScriptContext_GetVar(ctx);
+    u16 projection = FrontierScriptContext_GetVar(ctx);
 
-    FrontierParticleSystem_NewParticleSystem(v1->particleSys, v2, v3, v4);
+    FrontierParticleSystem_NewParticleSystem(graphics->particleSys, index, narcIdx, projection);
 
     return FALSE;
 }
 
-static BOOL FrontierScrCmd_42(FrontierScriptContext *ctx)
+static BOOL FrontierScrCmd_FreeParticleSystem(FrontierScriptContext *ctx)
 {
-    FrontierScriptManager *v0 = ctx->scriptMan;
-    FrontierGraphics *v1 = sub_0209B974(v0->unk_00);
-    u16 v2 = FrontierScriptContext_GetVar(ctx);
-    FrontierParticleSystem_FreeParticleSystem(v1->particleSys, v2);
+    FrontierScriptManager *scriptMan = ctx->scriptMan;
+    FrontierGraphics *graphics = sub_0209B974(scriptMan->unk_00);
+    u16 index = FrontierScriptContext_GetVar(ctx);
+    FrontierParticleSystem_FreeParticleSystem(graphics->particleSys, index);
 
     return FALSE;
 }
 
-static BOOL FrontierScrCmd_43(FrontierScriptContext *ctx)
+static BOOL FrontierScrCmd_CreateParticleSystemEmitter(FrontierScriptContext *ctx)
 {
-    FrontierScriptManager *v0 = ctx->scriptMan;
-    FrontierGraphics *v1 = sub_0209B974(v0->unk_00);
-    u16 v2, resourceID;
-    ParticleSystem *particleSystem;
-
-    v2 = FrontierScriptContext_GetVar(ctx);
-    resourceID = FrontierScriptContext_GetVar(ctx);
-    particleSystem = FrontierParticleSystem_GetParticleSystem(v1->particleSys, v2);
+    FrontierScriptManager *scriptMan = ctx->scriptMan;
+    FrontierGraphics *graphics = sub_0209B974(scriptMan->unk_00);
+    u16 index = FrontierScriptContext_GetVar(ctx);
+    u16 resourceID = FrontierScriptContext_GetVar(ctx);
+    ParticleSystem *particleSystem = FrontierParticleSystem_GetParticleSystem(graphics->particleSys, index);
 
     ParticleSystem_CreateEmitterWithCallback(particleSystem, resourceID, NULL, NULL);
 
     return FALSE;
 }
 
-static BOOL FrontierScrCmd_44(FrontierScriptContext *ctx)
+static BOOL FrontierScrCmd_WaitForParticleSystemEmitters(FrontierScriptContext *ctx)
 {
-    FrontierScriptContext_Pause(ctx, ov104_02231BB8);
+    FrontierScriptContext_Pause(ctx, WaitForEmitters);
     return TRUE;
 }
 
-static BOOL ov104_02231BB8(FrontierScriptContext *ctx)
+static BOOL WaitForEmitters(FrontierScriptContext *ctx)
 {
-    FrontierScriptManager *v0 = ctx->scriptMan;
-    FrontierGraphics *v1 = sub_0209B974(v0->unk_00);
+    FrontierScriptManager *scriptMan = ctx->scriptMan;
+    FrontierGraphics *graphics = sub_0209B974(scriptMan->unk_00);
 
-    if (FrontierParticleSystem_NoActiveEmitters(v1->particleSys) == 1) {
-        return TRUE;
-    }
-
-    return FALSE;
+    return FrontierParticleSystem_NoActiveEmitters(graphics->particleSys) == TRUE;
 }
 
 static BOOL FrontierScrCmd_4C(FrontierScriptContext *ctx)
