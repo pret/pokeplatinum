@@ -25,7 +25,7 @@ HearthomeCitySoutheastHouse2F_AceTrainerF:
 HearthomeCitySoutheastHouse2F_ExplainShellBell:
     BufferItemName 0, ITEM_SHELL_BELL
     Message HearthomeCitySoutheastHouse2F_Text_TheHolderRegainsHPWhenItInflictsDamage
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

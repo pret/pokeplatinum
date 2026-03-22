@@ -32,7 +32,7 @@ Route208House_OldMan:
 
 Route208House_FeedBerriesToPokemon:
     Message Route208House_Text_FeedBerriesToPokemon
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -61,14 +61,14 @@ Route208House_GiveBerrySearcherApp:
     SetVar VAR_MAP_LOCAL_0, 1
     SetVar VAR_0x8004, POKETCH_APPID_BERRYSEARCHER
     Common_GivePoketchApp
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 Route208House_ThenYoureOKWithoutThisNiceThing:
     Message Route208House_Text_ThenYoureOKWithoutThisNiceThing
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -76,14 +76,14 @@ Route208House_ThenYoureOKWithoutThisNiceThing:
 Route208House_ExplainBerrySearcher:
     BufferPoketchAppName 0, POKETCH_APPID_BERRYSEARCHER
     Message Route208House_Text_TheBerrySearcherShowsRipeBerryLocations
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 Route208House_CertainBerriesNeedLotsOfWater:
     Message Route208House_Text_CertainBerriesNeedLotsOfWater
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -130,7 +130,7 @@ Route208House_TryBuyMulch:
     GoTo Route208House_PokemonBreederFEnd
 
 Route208House_PokemonBreederFEnd:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     HideMoney
     ReleaseAll

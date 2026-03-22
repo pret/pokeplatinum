@@ -12,14 +12,14 @@ TwinleafTownSouthwestHouse_ExpertF:
     FacePlayer
     GoToIfSet FLAG_HAS_POKEDEX, TwinleafTownSouthwestHouse_ProfRowanGaveYouAPokedexDidHe
     Message TwinleafTownSouthwestHouse_Text_ThePokemonProfessorReturned
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 TwinleafTownSouthwestHouse_ProfRowanGaveYouAPokedexDidHe:
     Message TwinleafTownSouthwestHouse_Text_ProfRowanGaveYouAPokedexDidHe
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -31,14 +31,14 @@ TwinleafTownSouthwestHouse_Twin:
     BufferPlayerName 0
     GoToIfSet FLAG_HAS_POKEDEX, TwinleafTownSouthwestHouse_DoYouThinkICanBeFriendsWithPokemon
     Message TwinleafTownSouthwestHouse_Text_IWantACutePokemon
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 TwinleafTownSouthwestHouse_DoYouThinkICanBeFriendsWithPokemon:
     Message TwinleafTownSouthwestHouse_Text_DoYouThinkICanBeFriendsWithPokemon
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

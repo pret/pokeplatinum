@@ -789,7 +789,7 @@ _0AE0:
     EndMovement
 
 _0AEC:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -1093,7 +1093,7 @@ _0E4C:
     End
 
 _0E5D:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -1115,7 +1115,7 @@ _0E65:
 
 _0EA7:
     Message Villa_Text_GoAheadOrderATableFromThisOrderForm
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     HideMoney
     ReleaseAll
@@ -1447,7 +1447,7 @@ _1468:
 
 _1478:
     Message Villa_Text_GoAheadOrderATableFromThisOrderForm
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     HideMoney
     ReleaseAll
@@ -1645,7 +1645,7 @@ _18DE:
     End
 
 _18E6:
-    WaitABXPadPress
+    WaitButton
     GoTo _18F0
     End
 

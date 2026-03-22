@@ -25,7 +25,7 @@ OreburghCityNorthwestHouse3F_Lass:
 OreburghCityNorthwestHouse3F_ThatItemIntensifiesThePowerOfRockTypeMoves:
     BufferItemName 0, ITEM_HARD_STONE
     Message OreburghCityNorthwestHouse3F_Text_ThatItemIntensifiesThePowerOfRockTypeMoves
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

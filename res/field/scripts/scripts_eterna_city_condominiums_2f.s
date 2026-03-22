@@ -30,7 +30,7 @@ EternaCityCondominiums2F_BagIsFull:
 
 EternaCityCondominiums2F_FolksLikeMeHaveALongHistoryWeCanLookBackOn:
     Message EternaCityCondominiums2F_Text_FolksLikeMeHaveALongHistoryWeCanLookBackOn
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

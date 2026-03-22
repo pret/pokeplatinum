@@ -44,7 +44,7 @@ JubilifeCityCondominiums1F_BagIsFull:
 
 JubilifeCityCondominiums1F_ObtainedQuickClaw:
     Message JubilifeCityCondominiums1F_Text_APokemonHoldingThatQuickClawCanSometimesAttackFirst
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

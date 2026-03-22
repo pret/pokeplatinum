@@ -106,7 +106,7 @@ ValleyWindworksOutside_Door:
     LockAll
     GoToIfSet FLAG_OBTAINED_FLOAROMA_MEADOW_WORKS_KEY, ValleyWindworksOutside_AskOpenDoor
     Message ValleyWindworksOutside_Text_ItsLockedFromInside
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -120,7 +120,7 @@ ValleyWindworksOutside_AskOpenDoor:
     Call ValleyWindworksOutside_SetDoorBgEvent
     SetWarpEventPos 0, 243, 654
     Message ValleyWindworksOutside_Text_KerchunkTheDoorToValleyWindworksOpened
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

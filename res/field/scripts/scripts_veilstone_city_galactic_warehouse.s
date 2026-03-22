@@ -26,7 +26,7 @@ _003B:
     CheckItem ITEM_STORAGE_KEY, 1, VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _0063
     Message 7
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -43,7 +43,7 @@ _0086:
     RemoveItem ITEM_STORAGE_KEY, 1, VAR_RESULT
     BufferPlayerName 0
     Message 9
-    WaitABXPadPress
+    WaitButton
     WaitFanfare SEQ_SE_CONFIRM
     PlayFanfare SEQ_SE_DP_DOOR10
     ApplyMovement 2, _00C8
@@ -88,7 +88,7 @@ _00D8:
     SetVar VAR_PASTORIA_STATE, 1
     SetVar VAR_UNK_0x411F, 2
     Message 2
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

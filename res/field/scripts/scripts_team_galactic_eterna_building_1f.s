@@ -110,7 +110,7 @@ TeamGalacticEternaBuilding1F_WallBlockingRotomsRoom:
     FadeScreenIn FADE_SCREEN_SPEED_FAST, COLOR_WHITE
     WaitFadeScreen
     Message TeamGalacticEternaBuilding1F_Text_ItsTheEntranceToASecretRoom
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

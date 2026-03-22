@@ -41,7 +41,7 @@ _005D:
 
 _0098:
     Message 3
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

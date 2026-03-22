@@ -130,7 +130,7 @@ _0194:
     ApplyMovement 129, _0264
     WaitMovement
     Message 12
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

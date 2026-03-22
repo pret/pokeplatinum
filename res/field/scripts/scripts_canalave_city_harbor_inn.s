@@ -104,7 +104,7 @@ _0160:
     WaitSound
     BufferPlayerName 0
     Message 2
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

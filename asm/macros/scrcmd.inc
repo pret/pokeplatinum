@@ -348,10 +348,12 @@
 
     // This also sets the player's direction appropriately when a pad
     // button is pressed, unlike the WaitABPadPress command.
-    .macro WaitABXPadPress
-    .short SCRCMD_WAITABXPADPRESS
+    .macro WaitButton
+    .short SCRCMD_WAITBUTTON
     .endm
 
+    // As opposed to WaitButton, this does not do a turn frame,
+    // i.e. it does not set the player's direction if a pad button is pressed.
     .macro WaitABPadPress
     .short SCRCMD_WAITABPADPRESS
     .endm
@@ -5183,7 +5185,7 @@
     LockAll
     FacePlayer
     Message \messageID
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     .endm
@@ -5192,7 +5194,7 @@
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message \messageID
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     .endm
@@ -5205,10 +5207,10 @@
     PlayCry \species, \unused
     Message \messageID
     WaitCry
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
-    .endm 
+    .endm
 
     .macro PokeMartCommonWithGreeting unused=1
     PlayFanfare SEQ_SE_CONFIRM

@@ -179,7 +179,7 @@ ValleyWindworksBuilding_ScientistPapaTurnInSpotFaceNorth:
 ValleyWindworksBuilding_IThinkTheBalloonPokemonWillComeVisitingAgain:
     Message ValleyWindworksBuilding_Text_OhSorryAhahaTheyHadMeWorkingNonstop
     Message ValleyWindworksBuilding_Text_IThinkTheBalloonPokemonWillComeVisitingAgain
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     SetVar VAR_VALLEY_WINDWORKS_LOOKER_STATE, 1
     ClearFlag FLAG_HIDE_VALLEY_WINDWORKS_OUTSIDE_LOOKER
@@ -285,14 +285,14 @@ ValleyWindworksBuilding_ScientistPapa:
     FacePlayer
     GoToIfGe VAR_VALLEY_WINDWORKS_TEAM_GALACTIC_STATE, 3, ValleyWindworksBuilding_TheValleyWindworksUsesTurbinesToCaptureEnergy
     Message ValleyWindworksBuilding_Text_ABalloonPokemonAppearsInFrontOfTheWindworksItsAlwaysACertainDayOfTheWeek
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 ValleyWindworksBuilding_TheValleyWindworksUsesTurbinesToCaptureEnergy:
     Message ValleyWindworksBuilding_Text_TheValleyWindworksUsesTurbinesToCaptureEnergy
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -303,14 +303,14 @@ ValleyWindworksBuilding_Twin:
     FacePlayer
     GoToIfGe VAR_VALLEY_WINDWORKS_TEAM_GALACTIC_STATE, 3, ValleyWindworksBuilding_IfTheBalloonPokemonCameTheWindWouldBlowItAway
     Message ValleyWindworksBuilding_Text_IThinkTheBalloonPokemonWillComeVisitingAgain
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 ValleyWindworksBuilding_IfTheBalloonPokemonCameTheWindWouldBlowItAway:
     Message ValleyWindworksBuilding_Text_IfTheBalloonPokemonCameTheWindWouldBlowItAway
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -337,7 +337,7 @@ ValleyWindworksBuilding_ThePCScreenIsFilledWithNumbersUponNumbers:
     End
 
 ValleyWindworksBuilding_PCEnd:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

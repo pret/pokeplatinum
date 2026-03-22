@@ -22,14 +22,14 @@ _0031:
     FacePlayer
     GoToIfBadgeAcquired BADGE_ID_BEACON, _0057
     Message 1
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _0057:
     Message 2
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

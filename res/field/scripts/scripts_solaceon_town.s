@@ -38,14 +38,14 @@ _0062:
     FacePlayer
     GoToIfBadgeAcquired BADGE_ID_RELIC, _0088
     Message 4
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _0088:
     Message 5
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -73,21 +73,21 @@ _00CC:
     Message 10
     SetVar VAR_0x8004, POKETCH_APPID_POKEMONHISTORY
     Common_GivePoketchApp
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _010D:
     Message 9
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _0118:
     Message 11
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

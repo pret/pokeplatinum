@@ -93,7 +93,7 @@ GameCorner_SlotMachine:
 
 GameCorner_SlotMachine_NoCoinCase:
     Message GameCorner_Text_YouCantPlayIfYouDontHaveACoinCase
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -114,7 +114,7 @@ GameCorner_CoinsClerk:
 
 GameCorner_CoinsClerk_NoCoinCase:
     Message GameCorner_Text_DidYouWantSomeCoins_NoCoinCase
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -168,7 +168,7 @@ GameCorner_CoinsClerk_Buy500Coins:
 
 GameCorner_CoinsClerk_NotEnoughMoney:
     Message GameCorner_Text_UmYouDontAppearToHaveEnoughMoney
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     HideCoins
     HideMoney
@@ -177,7 +177,7 @@ GameCorner_CoinsClerk_NotEnoughMoney:
 
 GameCorner_CoinsClerk_CoinCaseFull:
     Message GameCorner_Text_OhYourCoinCaseIsFull
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     HideCoins
     HideMoney
@@ -186,7 +186,7 @@ GameCorner_CoinsClerk_CoinCaseFull:
 
 GameCorner_CoinsClerk_Cancel:
     Message GameCorner_Text_OhYouDontNeedCoinsThen
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     HideCoins
     HideMoney
@@ -215,7 +215,7 @@ GameCorner_CoinsClerk_GiveTM64:
     Common_GiveItemQuantity
     SetFlag FLAG_GAME_CORNER_RECEIVED_TM64
     Message GameCorner_Text_PleaseKeepPlayingTheSlots
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -240,7 +240,7 @@ GameCorner_OldMan20Coins:
     SetFlag FLAG_GAME_CORNER_RECEIVED_20_COINS_OLD_MAN
     BufferPlayerName 0
     Message GameCorner_Text_IveBeenWinningATonToday
-    WaitABXPadPress
+    WaitButton
     PlayFanfare SEQ_SE_PL_COIN
     AddCoins 20
     WaitFanfare SEQ_SE_PL_COIN
@@ -250,14 +250,14 @@ GameCorner_OldMan20Coins:
 
 GameCorner_OldMan20Coins_NoCoinCase:
     Message GameCorner_Text_HeyKidIfYouWantToPlayHereYouNeedACoinCase
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 GameCorner_OldMan20Coins_LineUpClefairy:
     Message GameCorner_Text_ListenWhenClefairyAppears
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -273,7 +273,7 @@ GameCorner_Farmer:
     SetFlag FLAG_GAME_CORNER_RECEIVED_50_COINS_FARMER
     BufferPlayerName 0
     Message GameCorner_Text_WooHooClefairyLookYeahahItsACarnival
-    WaitABXPadPress
+    WaitButton
     PlayFanfare SEQ_SE_PL_COIN
     AddCoins 50
     WaitFanfare SEQ_SE_PL_COIN
@@ -283,14 +283,14 @@ GameCorner_Farmer:
 
 GameCorner_Farmer_NoCoinCase:
     Message GameCorner_Text_WooHooClefairyLookAtItItsDrivingMeBananas
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 GameCorner_Farmer_CannotAddCoins:
     Message GameCorner_Text_WooHooClefairyItsAdorable
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -337,7 +337,7 @@ GameCorner_Looker_PostStarkMountain:
     End
 
 GameCorner_Looker_End:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

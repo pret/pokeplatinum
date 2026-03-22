@@ -228,7 +228,7 @@ _0360:
     CallBattleTowerFunction BT_FUNC_CHECK_ENOUGH_VALID_POKEMON, 0, VAR_RESULT
     GoToIfEq VAR_RESULT, 1, BattleTower_SelectAndValidatePokemon
     MessageSeenBanlistSpecies BattleTower_Text_NotEnoughEligiblePokemon, 3
-    GoTo BattleTower_WaitABXPadPress
+    GoTo BattleTower_WaitButton
     End
 
 BattleTower_InitDoubleBattleRoomChallenge:
@@ -236,7 +236,7 @@ BattleTower_InitDoubleBattleRoomChallenge:
     CallBattleTowerFunction BT_FUNC_CHECK_ENOUGH_VALID_POKEMON, 0, VAR_RESULT
     GoToIfEq VAR_RESULT, 1, BattleTower_SelectAndValidatePokemon
     MessageSeenBanlistSpecies BattleTower_Text_NotEnoughEligiblePokemon, 4
-    GoTo BattleTower_WaitABXPadPress
+    GoTo BattleTower_WaitButton
     End
 
 BattleTower_SelectAndValidatePokemon:
@@ -455,8 +455,8 @@ BattleTower_ClearCommunicationAndClose:
     Call BattleTower_ClearCommunication
 BattleTower_WeHopeToSeeYouAgain:
     Message BattleTower_Text_WeHopeToSeeYouAgain
-BattleTower_WaitABXPadPress:
-    WaitABXPadPress
+BattleTower_WaitButton:
+    WaitButton
 BattleTower_Close:
     CloseMessage
     Call _07B5
@@ -681,7 +681,7 @@ BattleTower_StartMultiBattleRoomChallenge:
     CallBattleTowerFunction BT_FUNC_CHECK_ENOUGH_VALID_POKEMON, 2, VAR_RESULT
     GoToIfEq VAR_RESULT, 1, BattleTower_AskCommunicateWithFriend
     MessageSeenBanlistSpecies BattleTower_Text_NotEnoughEligiblePokemon, 2
-    GoTo BattleTower_WaitABXPadPress
+    GoTo BattleTower_WaitButton
     End
 
 BattleTower_AskCommunicateWithFriend:
@@ -1152,7 +1152,7 @@ _12CE:
 
 _12F9:
     Message BattleTower_Text_NoDataYet
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -1304,14 +1304,14 @@ BattleTower_PerfectHighestIVValue:
     End
 
 BattleTower_JudgeEnd:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 BattleTower_CancelJudge:
     Message BattleTower_Text_OhYouDontNeedMeToJudge
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

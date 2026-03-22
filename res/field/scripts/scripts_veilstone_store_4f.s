@@ -42,35 +42,35 @@ VeilstoneStore4F_AttendantPersonalized:
 
 VeilstoneStore4F_AttendantPleaseEnjoyYourself:
     Message VeilstoneStore4F_Text_PleaseEnjoyYourself
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 VeilstoneStore4F_AttendantYellowCushion:
     Message VeilstoneStore4F_Text_YellowCushionIsSoftAndFirm
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 VeilstoneStore4F_AttendantCupboards:
     Message VeilstoneStore4F_Text_SurprisedHowManyBuyCupboards
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 VeilstoneStore4F_AttendantBuizelDoll:
     Message VeilstoneStore4F_Text_BuizelDollIsVeryPopular
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 VeilstoneStore4F_AttendantMantykeDoll:
     Message VeilstoneStore4F_Text_MantykeDollHasBeenHotSeller
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

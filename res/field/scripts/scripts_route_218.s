@@ -34,7 +34,7 @@ _006E:
     PlayCry SPECIES_CLEFAIRY
     Message 1
     WaitCry
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -46,7 +46,7 @@ _008B:
     PlayCry SPECIES_CLEFAIRY
     Message 2
     WaitCry
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -58,7 +58,7 @@ _00A8:
     PlayCry SPECIES_PIKACHU
     Message 3
     WaitCry
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

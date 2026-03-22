@@ -65,7 +65,7 @@ PoketchCo1F_GiveMemoPadApp:
     SetVar VAR_0x8004, POKETCH_APPID_MEMOPAD
     Common_GivePoketchApp
     Message PoketchCo1F_Text_ThatsTheMemoPad
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -75,7 +75,7 @@ PoketchCo1F_GiveMarkingMapApp:
     SetVar VAR_0x8004, POKETCH_APPID_MARKINGMAP
     Common_GivePoketchApp
     Message PoketchCo1F_Text_HavingAMapConstantlyDisplayedIsConvenientNo
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -85,7 +85,7 @@ PoketchCo1F_GiveLinkSearcherApp:
     SetVar VAR_0x8004, POKETCH_APPID_LINKSEARCHER
     Common_GivePoketchApp
     Message PoketchCo1F_Text_IThinkItWillBeUsefulToKnowHowManyPeopleAreCommunicating
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -95,49 +95,49 @@ PoketchCo1F_GiveMoveTesterApp:
     SetVar VAR_0x8004, POKETCH_APPID_MOVETESTER
     Common_GivePoketchApp
     Message PoketchCo1F_Text_CheckTypeMatchupsSoYouCanMakeAllYourAttackSuperEffective
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 PoketchCo1F_NewPoketchAppWillBeReadyWhenYouGetAGymBadge:
     Message PoketchCo1F_Text_NewPoketchAppWillBeReadyWhenYouGetAGymBadge
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 PoketchCo1F_NewPoketchAppWillBeReadyWhenYouGetThreeGymBadges:
     Message PoketchCo1F_Text_NewPoketchAppWillBeReadyWhenYouGetThreeGymBadges
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 PoketchCo1F_NewPoketchAppWillBeReadyWhenYouGetFiveGymBadges:
     Message PoketchCo1F_Text_NewPoketchAppWillBeReadyWhenYouGetFiveGymBadges
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 PoketchCo1F_NewPoketchAppWillBeReadyWhenYouGetSevenGymBadges:
     Message PoketchCo1F_Text_NewPoketchAppWillBeReadyWhenYouGetSevenGymBadges
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 PoketchCo1F_YupAllSortsOfPeopleWillGiveYouPoketchApps:
     Message PoketchCo1F_Text_YupAllSortsOfPeopleWillGiveYouPoketchApps
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 PoketchCo1F_DoYouThinkIShouldSolicitNewPoketchIdeas:
     Message PoketchCo1F_Text_DoYouThinkIShouldSolicitNewPoketchIdeas
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

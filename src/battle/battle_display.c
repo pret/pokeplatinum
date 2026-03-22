@@ -26,13 +26,13 @@
 #include "battle/battle_controller.h"
 #include "battle/battle_cursor.h"
 #include "battle/battle_lib.h"
+#include "battle/battle_main.h"
 #include "battle/battle_message.h"
 #include "battle/battle_system.h"
 #include "battle/common.h"
 #include "battle/healthbar.h"
 #include "battle/message_defs.h"
 #include "battle/move_display_info.h"
-#include "battle/ov16_0223B140.h"
 #include "battle/ov16_02264798.h"
 #include "battle/party_gauge.h"
 #include "battle/struct_ov16_0224DDA8.h"
@@ -4026,7 +4026,7 @@ static void Task_PlayerShowBagMenu(SysTask *task, void *data)
             }
 
             if (bagMenuData->state != 8) {
-                BattleSystem_LoadFightOverlay(bagMenuData->battleSys, 0);
+                BattleSystem_LoadFightOverlay(bagMenuData->battleSys, FALSE);
             }
         }
         break;
@@ -4319,7 +4319,7 @@ static void Task_PlayerShowBagMenu(SysTask *task, void *data)
     case 30:
         if (Text_IsPrinterActive(bagMenuData->msgIdx) == FALSE) {
             if (--bagMenuData->delay == 0) {
-                BattleSystem_LoadFightOverlay(bagMenuData->battleSys, 1);
+                BattleSystem_LoadFightOverlay(bagMenuData->battleSys, TRUE);
                 bagMenuData->state = 8;
             }
         }

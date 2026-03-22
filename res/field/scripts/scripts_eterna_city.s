@@ -67,14 +67,14 @@ EternaCity_PokemonBreederF1:
     FacePlayer
     GoToIfSet FLAG_TEAM_GALACTIC_LEFT_ETERNA_BUILDING, EternaCity_WithTeamGalacticGoneWhatsGoingToHappenToTheirBuilding
     Message EternaCity_Text_SinceThatTeamGalacticBuildingWentUp
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 EternaCity_WithTeamGalacticGoneWhatsGoingToHappenToTheirBuilding:
     Message EternaCity_Text_WithTeamGalacticGoneWhatsGoingToHappenToTheirBuilding
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -85,14 +85,14 @@ EternaCity_BugCatcher1:
     FacePlayer
     GoToIfSet FLAG_TEAM_GALACTIC_LEFT_ETERNA_BUILDING, EternaCity_DoYouUseYourBikesKickstand
     Message EternaCity_Text_MyFriendSaidTeamGalacticTookHisFavoritePokemonAway
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 EternaCity_DoYouUseYourBikesKickstand:
     Message EternaCity_Text_DoYouUseYourBikesKickstand
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -549,7 +549,7 @@ EternaCity_BugCatcher2:
     GoToIfUnset FLAG_RECEIVED_BICYCLE, EternaCity_ItFeelsGreatRidingABikeWithTheWindInYourFaceDoesntIt
     GoToIfGe VAR_ROUTE_207_COUNTERPART_TRIGGER_STATE, 1, EternaCity_ItFeelsGreatRidingABikeWithTheWindInYourFaceDoesntIt
     Message EternaCity_Text_OhWowYouGotABicycle2
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ApplyMovement LOCALID_BUG_CATCHER_2, EternaCity_Movement_BugCatcher2FaceSouth
     WaitMovement
@@ -558,7 +558,7 @@ EternaCity_BugCatcher2:
 
 EternaCity_ItFeelsGreatRidingABikeWithTheWindInYourFaceDoesntIt:
     Message EternaCity_Text_ItFeelsGreatRidingABikeWithTheWindInYourFaceDoesntIt
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ApplyMovement LOCALID_BUG_CATCHER_2, EternaCity_Movement_BugCatcher2FaceSouth
     WaitMovement
@@ -1195,13 +1195,13 @@ EternaCity_CynthiaTryAgainGiveEggEnd:
 EternaCity_OhYouDontHaveRoomForThisEgg:
     SetVar VAR_ETERNA_CITY_STATE, 4
     Message EternaCity_Text_OhYouDontHaveRoomForThisEgg
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     Return
 
 EternaCity_OhYouDontNeedToFeelObligated:
     Message EternaCity_Text_OhYouDontNeedToFeelObligated
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     SetVar VAR_ETERNA_CITY_STATE, 4
     Return

@@ -478,7 +478,7 @@ RotomsRoom_RotomGaveUpEnteringTheLawnMower:
     Return
 
 RotomsRoom_CloseMessage:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -505,7 +505,7 @@ _07BB:
 
 _0801:
     Message RotomsRoom_Text_ThereWasAnApplianceHere
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -639,7 +639,7 @@ _09CF:
     End
 
 _09D5:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

@@ -10,7 +10,7 @@ _000A:
     LockAll
     BufferNumber 0, VAR_0x8000
     Message Bag_Text_BatteryHasRunDry
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -18,7 +18,7 @@ _000A:
 _001C:
     LockAll
     Message Bag_Text_GrassyPatchRemainedQuiet
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

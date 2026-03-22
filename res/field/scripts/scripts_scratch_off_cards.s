@@ -87,14 +87,14 @@ _015D:
     End
 
 _0168:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     HideBattlePoints
     ReleaseAll
     End
 
 _0172:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

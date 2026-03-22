@@ -30,7 +30,7 @@ _004C:
     End
 
 _0057:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

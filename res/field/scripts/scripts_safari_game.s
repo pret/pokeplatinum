@@ -338,7 +338,7 @@ SafariGame_RideQuickTramToArea6:
 SafariGame_ExitQuickTramMenu:
     BufferPlayerName 0
     Message SafariGame_Text_PlayerDidntBoard
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

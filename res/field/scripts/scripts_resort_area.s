@@ -72,7 +72,7 @@ _0100:
     FacePlayer
     CallIfUnset FLAG_UNK_0x00FA, _0126
     CallIfSet FLAG_UNK_0x00FA, _012B
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -307,7 +307,7 @@ _0429:
     End
 
 _0434:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

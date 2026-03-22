@@ -30,7 +30,7 @@ _0053:
 
 _005D:
     Message 1
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -61,7 +61,7 @@ _009D:
     WaitFadeScreen
     BufferPlayerName 0
     Message 5
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

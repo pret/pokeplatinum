@@ -43,21 +43,21 @@ EternaCityUndergroundManHouse_LetMeMentorYouAsYouBecomeAFullFledgedSpelunker:
 
 EternaCityUndergroundManHouse_ICantForceYouToAcceptMyProposalIfYoureNotInclined:
     Message EternaCityUndergroundManHouse_Text_ICantForceYouToAcceptMyProposalIfYoureNotInclined
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 EternaCityUndergroundManHouse_SoMySpelunkerAreYouGoingUndergroundWithYourFriends:
     Message EternaCityUndergroundManHouse_Text_SoMySpelunkerAreYouGoingUndergroundWithYourFriends
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 EternaCityUndergroundManHouse_FromNowOnYouAreTheSpelunkingMaster:
     Message EternaCityUndergroundManHouse_Text_FromNowOnYouAreTheSpelunkingMaster
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -65,7 +65,7 @@ EternaCityUndergroundManHouse_FromNowOnYouAreTheSpelunkingMaster:
 EternaCityUndergroundManHouse_StartMissionGoUnderground:
     SetFlag FLAG_HAS_ACTIVE_UNDERGROUND_MISSION
     Message EternaCityUndergroundManHouse_Text_IWillTeachYouByAssigningMissionsFirstGoUnderground
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -73,7 +73,7 @@ EternaCityUndergroundManHouse_StartMissionGoUnderground:
 EternaCityUndergroundManHouse_StartMissionDigUpTreasureOrSpheres:
     SetFlag FLAG_HAS_ACTIVE_UNDERGROUND_MISSION
     Message EternaCityUndergroundManHouse_Text_ForMyNextTestIWantYouToDigUpSomeTreasureOrSpheresForMe
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -81,7 +81,7 @@ EternaCityUndergroundManHouse_StartMissionDigUpTreasureOrSpheres:
 EternaCityUndergroundManHouse_StartMissionBurySpheres:
     SetFlag FLAG_HAS_ACTIVE_UNDERGROUND_MISSION
     Message EternaCityUndergroundManHouse_Text_IWantYouToGoBuryTheseStrangeSpheresInTheUnderground
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -89,7 +89,7 @@ EternaCityUndergroundManHouse_StartMissionBurySpheres:
 EternaCityUndergroundManHouse_StartMissionMakeASecretBase:
     SetFlag FLAG_HAS_ACTIVE_UNDERGROUND_MISSION
     Message EternaCityUndergroundManHouse_Text_YourNextAssignmentIsGoMakeYourOwnSecretBase
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -97,7 +97,7 @@ EternaCityUndergroundManHouse_StartMissionMakeASecretBase:
 EternaCityUndergroundManHouse_StartMissionDecorateASecretBase:
     SetFlag FLAG_HAS_ACTIVE_UNDERGROUND_MISSION
     Message EternaCityUndergroundManHouse_Text_ForMyFinalTestIWantYouToDecorateYourSecretBase
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -108,49 +108,49 @@ EternaCityUndergroundManHouse_StartMissionStealAFlag:
     CloseMessage
     Call EternaCityUndergroundManHouse_UndergroundManWalkAround
     Message EternaCityUndergroundManHouse_Text_StealYourFriendsFlagIfYouCanDoThatIWillPermitYouToMoveBoulders
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 EternaCityUndergroundManHouse_DidNotYetCompleteMissionGoUnderground:
     Message EternaCityUndergroundManHouse_Text_ToGetDownToTheUndergroundTunnelsYouNeedOnlyToUseYourExplorerKit
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 EternaCityUndergroundManHouse_DidNotYetCompleteMissionDigUpTreasureOrSpheres:
     Message EternaCityUndergroundManHouse_Text_YouveNotLocatedAnyTreasureOrSpheresYet
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 EternaCityUndergroundManHouse_DidNotYetCompleteMissionBurySpheres:
     Message EternaCityUndergroundManHouse_Text_YouveNotBuriedTheSpheresYet
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 EternaCityUndergroundManHouse_DidNotYetCompleteMissionMakeASecretBase:
     Message EternaCityUndergroundManHouse_Text_HmYouDontKnowHowToUseTheDiggerDrill
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 EternaCityUndergroundManHouse_DidNotYetCompleteMissionDecorateYourSecretBase:
     Message EternaCityUndergroundManHouse_Text_AhHaveIFinallyManagedToStumpYou
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 EternaCityUndergroundManHouse_DidNotYetCompleteMissionStealAFlag:
     Message EternaCityUndergroundManHouse_Text_IfYouManageToStealAFlagYouBeSureToComeShowMe
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -183,7 +183,7 @@ EternaCityUndergroundManHouse_MissionGoUnderground:
     SetVar VAR_0x8005, 1
     Common_ObtainUndergroundTrap
     Message EternaCityUndergroundManHouse_Text_ThoseAreCalledTraps
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -204,7 +204,7 @@ EternaCityUndergroundManHouse_MissionDigUpTreasureOrSpheres:
     SetVar VAR_0x8005, 1
     Common_ObtainUndergroundSphere
     Message EternaCityUndergroundManHouse_Text_DigInTheWallsOfTheUndergroundTunnelsToUnearthHiddenStuff
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -219,7 +219,7 @@ EternaCityUndergroundManHouse_MissionBurySpheres:
     SetVar VAR_0x8005, 1
     Common_ObtainUndergroundTrap
     Message EternaCityUndergroundManHouse_Text_YouMayHaveSeenThemAlreadyButTheseAreSphereCollectors
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -243,7 +243,7 @@ EternaCityUndergroundManHouse_MissionMakeASecretBase:
     SetVar VAR_0x8005, 1
     Common_SendToUndergroundPCWithLinefeed
     Message EternaCityUndergroundManHouse_Text_IncidentallyADiggerDrillCanBeUsedOnlyOnce
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -257,7 +257,7 @@ EternaCityUndergroundManHouse_MissionDecorateYourSecretBase:
     Message EternaCityUndergroundManHouse_Text_AhYouveEvenManagedToDecorateYourSecretBaseThisIsYourReward
     Call EternaCityUndergroundManHouse_SendStarterDollToUndergroundPC
     Message EternaCityUndergroundManHouse_Text_ThereAreWaysOfCollectingMoreDecorationGoods
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -300,7 +300,7 @@ EternaCityUndergroundManHouse_MissionStealAFlag:
     ClearFlag FLAG_HAS_ACTIVE_UNDERGROUND_MISSION
     ClearFlag FLAG_UNDERGROUND_MAN_COULDNT_GIVE_REWARD
     Message EternaCityUndergroundManHouse_Text_ThereReallyIsNothingElseThatICanTeachYou
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -372,7 +372,7 @@ EternaCityUndergroundManHouse_MyGoodnessYouveCapturedFiftyFlagsTakeThisAsYourRew
 EternaCityUndergroundManHouse_UndergroundPCIsFull:
     SetFlag FLAG_UNDERGROUND_MAN_COULDNT_GIVE_REWARD
     Message EternaCityUndergroundManHouse_Text_OhYourUndergroundPCAppearsToBeFull
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -451,14 +451,14 @@ EternaCityUndergroundManHouse_ScientistM:
     GoToIfSet FLAG_TALKED_TO_UNDERGROUND_MAN_HOUSE_SCIENTIST_M, EternaCityUndergroundManHouse_OhYoudLikeMoreAdviceOnDiggingUpTreasureAndSpheres
     SetFlag FLAG_TALKED_TO_UNDERGROUND_MAN_HOUSE_SCIENTIST_M
     Message EternaCityUndergroundManHouse_Text_LetsDigUpSomeTreasure
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 EternaCityUndergroundManHouse_OhYoudLikeMoreAdviceOnDiggingUpTreasureAndSpheres:
     Message EternaCityUndergroundManHouse_Text_OhYoudLikeMoreAdviceOnDiggingUpTreasureAndSpheres
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

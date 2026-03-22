@@ -94,7 +94,7 @@ HearthomeGym_FantinaTryGiveTM65:
     BufferItemName 0, VAR_0x8004
     BufferTMHMMoveName 1, VAR_0x8004
     Message HearthomeGym_FantinaExplainTM65
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -108,7 +108,7 @@ HearthomeGym_FantinaCannotGiveTM65:
 HearthomeGym_FantinaAfterBadge:
     GoToIfUnset FLAG_OBTAINED_FANTINA_TM65, HearthomeGym_FantinaTryGiveTM65
     Message HearthomeGym_Text_FantinaAfterBadge
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

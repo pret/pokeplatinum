@@ -58,7 +58,7 @@ ValorCavern_Azelf:
 
 ValorCavern_AzelfDisappeared:
     Message ValorCavern_Text_AzelfDisappeared
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

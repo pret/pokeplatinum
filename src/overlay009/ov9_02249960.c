@@ -239,11 +239,11 @@ enum ElevatorPlatformHandlerResult {
 enum EventCmdKind {
     EVENT_CMD_KIND_00 = 0,
     EVENT_CMD_KIND_01,
-    EVENT_CMD_KIND_02,
-    EVENT_CMD_KIND_03,
+    EVENT_CMD_ADD_MAP_OBJECT_WITH_LOCAL_ID,
+    EVENT_CMD_DELETE_MAP_OBJECT_WITH_LOCAL_ID,
     EVENT_CMD_KIND_04,
-    EVENT_CMD_KIND_05,
-    EVENT_CMD_KIND_06,
+    EVENT_CMD_START_SCRIPT,
+    EVENT_CMD_SET_DISTORTION_WORLD_PROGRESS,
     EVENT_CMD_KIND_07,
     EVENT_CMD_KIND_08,
     EVENT_CMD_KIND_09,
@@ -957,14 +957,14 @@ typedef struct {
     u32 unk_34;
 } UnkStruct_ov9_0224E5EC;
 
-typedef struct {
-    u16 unk_00;
-    u16 unk_02;
-} UnkStruct_ov9_0224E860;
+typedef struct CmdParamsAddMapObjWithLocalID {
+    u16 mapHeaderID;
+    u16 mapObjLocalID;
+} CmdParamsAddMapObjWithLocalID;
 
-typedef struct {
-    u32 unk_00;
-} UnkStruct_ov9_0224E870;
+typedef struct CmdParamsDeleteMapObjWithLocalID {
+    u32 mapObjLocalID;
+} CmdParamsDeleteMapObjWithLocalID;
 
 typedef struct DistWorldGiratinaShadowPropUserData {
     DistWorldSystem *system;
@@ -1080,13 +1080,13 @@ typedef struct {
     UnkStruct_ov9_0224F930 unk_34;
 } UnkStruct_ov9_02250138;
 
-typedef struct {
-    u32 unk_00;
-} UnkStruct_ov9_022506AC;
+typedef struct CmdParamsStartScript {
+    u32 scriptID;
+} CmdParamsStartScript;
 
-typedef struct {
-    u32 unk_00;
-} UnkStruct_ov9_022506D0;
+typedef struct CmdParamsSetDistortionWorldProgress {
+    u32 progress;
+} CmdParamsSetDistortionWorldProgress;
 
 typedef struct {
     u32 unk_00;
@@ -6560,28 +6560,28 @@ static const DistWorldEventCmdHandler Unk_ov9_022513E8[4] = {
     ov9_0224E798
 };
 
-static int ov9_0224E860(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
+static int EventCmdAddMapObjWithLocalID_Handle(DistWorldSystem *system, FieldTask *task, u16 *cmdState, const void *params)
 {
-    const UnkStruct_ov9_0224E860 *v0 = param3;
+    const CmdParamsAddMapObjWithLocalID *cmdParams = params;
+    AddMapObjectWithLocalID(system, cmdParams->mapHeaderID, cmdParams->mapObjLocalID);
 
-    AddMapObjectWithLocalID(param0, v0->unk_00, v0->unk_02);
-    return 2;
+    return EVENT_CMD_HANDLER_RES_FINISH;
 }
 
-static const DistWorldEventCmdHandler Unk_ov9_02251258[1] = {
-    ov9_0224E860
+static const DistWorldEventCmdHandler sAddMapObjWithLocalIDHandlers[] = {
+    EventCmdAddMapObjWithLocalID_Handle
 };
 
-static int ov9_0224E870(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
+static int EventCmdDeleteMapObjWithLocalID_Handle(DistWorldSystem *system, FieldTask *task, u16 *cmdState, const void *params)
 {
-    const UnkStruct_ov9_0224E870 *v0 = param3;
+    const CmdParamsDeleteMapObjWithLocalID *cmdParams = params;
+    DistWorld_DeleteMapObjectWithLocalID(system->fieldSystem, cmdParams->mapObjLocalID);
 
-    DistWorld_DeleteMapObjectWithLocalID(param0->fieldSystem, v0->unk_00);
-    return 2;
+    return EVENT_CMD_HANDLER_RES_FINISH;
 }
 
-static const DistWorldEventCmdHandler Unk_ov9_0225126C[1] = {
-    ov9_0224E870
+static const DistWorldEventCmdHandler sDeleteMapObjWithLocalIDHandlers[] = {
+    EventCmdDeleteMapObjWithLocalID_Handle
 };
 
 static const DistWorldGiratinaShadowTemplate sGiratinaShadowExternal[GIRATINA_SHADOW_EXTERNAL_COUNT] = {
@@ -8614,36 +8614,36 @@ static const DistWorldEventCmdHandler Unk_ov9_0225151C[5] = {
     ov9_02250650
 };
 
-static int ov9_022506AC(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
+static int EventCmdStartScript_Handle(DistWorldSystem *system, FieldTask *task, u16 *cmdState, const void *params)
 {
-    const UnkStruct_ov9_022506AC *v0 = param3;
+    const CmdParamsStartScript *cmdParams = params;
+    ScriptManager_Start(task, cmdParams->scriptID, NULL, NULL);
 
-    ScriptManager_Start(param1, v0->unk_00, NULL, NULL);
-    (*param2)++;
-    return 0;
+    (*cmdState)++;
+    return EVENT_CMD_HANDLER_RES_CONTINUE;
 }
 
-static int ov9_022506CC(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
+static int EventCmdStartScript_Finish(DistWorldSystem *system, FieldTask *task, u16 *cmdState, const void *params)
 {
-    return 2;
+    return EVENT_CMD_HANDLER_RES_FINISH;
 }
 
-static const DistWorldEventCmdHandler Unk_ov9_022512C0[2] = {
-    ov9_022506AC,
-    ov9_022506CC
+static const DistWorldEventCmdHandler sStartScriptHandlers[] = {
+    EventCmdStartScript_Handle,
+    EventCmdStartScript_Finish
 };
 
-static int ov9_022506D0(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
+static int EventCmdSetDistortionWorldProgress_Handle(DistWorldSystem *system, FieldTask *task, u16 *cmdState, const void *params)
 {
-    const UnkStruct_ov9_022506D0 *v0 = param3;
-    VarsFlags *v1 = SaveData_GetVarsFlags(param0->fieldSystem->saveData);
+    const CmdParamsSetDistortionWorldProgress *cmdParams = params;
+    VarsFlags *varsFlags = SaveData_GetVarsFlags(system->fieldSystem->saveData);
+    SystemVars_SetDistortionWorldProgress(varsFlags, cmdParams->progress);
 
-    SystemVars_SetDistortionWorldProgress(v1, v0->unk_00);
-    return 2;
+    return EVENT_CMD_HANDLER_RES_FINISH;
 }
 
-static const DistWorldEventCmdHandler Unk_ov9_02251238[1] = {
-    ov9_022506D0
+static const DistWorldEventCmdHandler sSetDistortionWorldProgressHandlers[] = {
+    EventCmdSetDistortionWorldProgress_Handle
 };
 
 static int ov9_022506EC(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
@@ -10877,11 +10877,11 @@ static const DistWorldElevatorPlatformPath sElevatorPlatformPaths[ELEVATOR_PLATF
 static const DistWorldEventCmdHandler *sEventCmdHandlers[EVENT_CMD_KIND_COUNT] = {
     [EVENT_CMD_KIND_00] = Unk_ov9_02251360,
     [EVENT_CMD_KIND_01] = Unk_ov9_022513E8,
-    [EVENT_CMD_KIND_02] = Unk_ov9_02251258,
-    [EVENT_CMD_KIND_03] = Unk_ov9_0225126C,
+    [EVENT_CMD_ADD_MAP_OBJECT_WITH_LOCAL_ID] = sAddMapObjWithLocalIDHandlers,
+    [EVENT_CMD_DELETE_MAP_OBJECT_WITH_LOCAL_ID] = sDeleteMapObjWithLocalIDHandlers,
     [EVENT_CMD_KIND_04] = Unk_ov9_0225151C,
-    [EVENT_CMD_KIND_05] = Unk_ov9_022512C0,
-    [EVENT_CMD_KIND_06] = Unk_ov9_02251238,
+    [EVENT_CMD_START_SCRIPT] = sStartScriptHandlers,
+    [EVENT_CMD_SET_DISTORTION_WORLD_PROGRESS] = sSetDistortionWorldProgressHandlers,
     [EVENT_CMD_KIND_07] = Unk_ov9_02251328,
     [EVENT_CMD_KIND_08] = Unk_ov9_0225121C,
     [EVENT_CMD_KIND_09] = Unk_ov9_02251270,
@@ -10895,22 +10895,22 @@ static const DistWorldEventCmdHandler *sEventCmdHandlers[EVENT_CMD_KIND_COUNT] =
     [EVENT_CMD_KIND_11] = Unk_ov9_02251254
 };
 
-static const UnkStruct_ov9_022506AC sUnkMapEventCmdParams1F_1_1 = {
-    0x4
+static const CmdParamsStartScript sMapEventCmdParams1F_CynthiaElevatorText_1 = {
+    .scriptID = 0x4
 };
 
-static const UnkStruct_ov9_022506D0 sUnkMapEventCmdParams1F_1_2 = {
-    0x2
+static const CmdParamsSetDistortionWorldProgress sMapEventCmdParams1F_CynthiaElevatorText_2 = {
+    .progress = 0x2
 };
 
-static const DistWorldEventCmd sUnkMapEvent1F_1[] = {
+static const DistWorldEventCmd sMapEvent1F_CynthiaElevatorText[] = {
     {
-        .kind = EVENT_CMD_KIND_05,
-        .params = &sUnkMapEventCmdParams1F_1_1,
+        .kind = EVENT_CMD_START_SCRIPT,
+        .params = &sMapEventCmdParams1F_CynthiaElevatorText_1,
     },
     {
-        .kind = EVENT_CMD_KIND_06,
-        .params = &sUnkMapEventCmdParams1F_1_2,
+        .kind = EVENT_CMD_SET_DISTORTION_WORLD_PROGRESS,
+        .params = &sMapEventCmdParams1F_CynthiaElevatorText_2,
     },
     { EVENT_CMD_END, NULL }
 };
@@ -10922,36 +10922,36 @@ static const DistWorldEvent sMapEvents1F[] = {
         .tileZ = 0x34,
         .flagCond = FLAG_COND_WORLD_PROGRESS_EQ,
         .flagCondVal = 0x1,
-        .cmds = sUnkMapEvent1F_1,
+        .cmds = sMapEvent1F_CynthiaElevatorText,
     },
     { 0x0, 0x0, 0x0, FLAG_COND_NONE, 0x0, NULL }
 };
 
-static const UnkStruct_ov9_022506AC sUnkMapEventCmdParamsB1F_1_1 = {
-    0x3
+static const CmdParamsStartScript sMapEventCmdParamsB1F_Mesprit_1 = {
+    .scriptID = 0x3
 };
 
-static const UnkStruct_ov9_022506D0 sUnkMapEventCmdParamsB1F_1_2 = {
-    0x4
+static const CmdParamsSetDistortionWorldProgress sMapEventCmdParamsB1F_Mesprit_2 = {
+    .progress = 0x4
 };
 
-static const UnkStruct_ov9_0224E860 sUnkMapEventCmdParamsB1F_1_3 = {
-    0x23F,
-    0x80
+static const CmdParamsAddMapObjWithLocalID sMapEventCmdParamsB1F_Mesprit_3 = {
+    .mapHeaderID = MAP_HEADER_DISTORTION_WORLD_B2F,
+    .mapObjLocalID = MAP_OBJECT_B2F_CYNTHIA_1
 };
 
-static const DistWorldEventCmd sUnkMapEventB1F_1[] = {
+static const DistWorldEventCmd sMapEventB1F_Mesprit[] = {
     {
-        .kind = EVENT_CMD_KIND_05,
-        .params = &sUnkMapEventCmdParamsB1F_1_1,
+        .kind = EVENT_CMD_START_SCRIPT,
+        .params = &sMapEventCmdParamsB1F_Mesprit_1,
     },
     {
-        .kind = EVENT_CMD_KIND_06,
-        .params = &sUnkMapEventCmdParamsB1F_1_2,
+        .kind = EVENT_CMD_SET_DISTORTION_WORLD_PROGRESS,
+        .params = &sMapEventCmdParamsB1F_Mesprit_2,
     },
     {
-        .kind = EVENT_CMD_KIND_02,
-        .params = &sUnkMapEventCmdParamsB1F_1_3,
+        .kind = EVENT_CMD_ADD_MAP_OBJECT_WITH_LOCAL_ID,
+        .params = &sMapEventCmdParamsB1F_Mesprit_3,
     },
     { EVENT_CMD_END, NULL }
 };
@@ -10963,7 +10963,7 @@ static const DistWorldEvent sMapEventsB1F[] = {
         .tileZ = 0x3A,
         .flagCond = FLAG_COND_WORLD_PROGRESS_EQ,
         .flagCondVal = 0x3,
-        .cmds = sUnkMapEventB1F_1,
+        .cmds = sMapEventB1F_Mesprit,
     },
     { 0x0, 0x0, 0x0, FLAG_COND_NONE, 0x0, NULL }
 };
@@ -12148,21 +12148,21 @@ static const DistWorldEvent sMapEventsB2F[] = {
     { 0x0, 0x0, 0x0, FLAG_COND_NONE, 0x0, NULL }
 };
 
-static const UnkStruct_ov9_022506AC sUnkMapEventCmdParamsB3F_1_1 = {
-    0x2
+static const CmdParamsStartScript sUnkMapEventCmdParamsB3F_1_1 = {
+    .scriptID = 0x2
 };
 
-static const UnkStruct_ov9_022506D0 sUnkMapEventCmdParamsB3F_1_2 = {
-    0x6
+static const CmdParamsSetDistortionWorldProgress sUnkMapEventCmdParamsB3F_1_2 = {
+    .progress = 0x6
 };
 
 static const DistWorldEventCmd sUnkMapEventB3F_1[] = {
     {
-        .kind = EVENT_CMD_KIND_05,
+        .kind = EVENT_CMD_START_SCRIPT,
         .params = &sUnkMapEventCmdParamsB3F_1_1,
     },
     {
-        .kind = EVENT_CMD_KIND_06,
+        .kind = EVENT_CMD_SET_DISTORTION_WORLD_PROGRESS,
         .params = &sUnkMapEventCmdParamsB3F_1_2,
     },
     { EVENT_CMD_END, NULL }
@@ -12396,21 +12396,21 @@ static const DistWorldEvent sMapEventsB5F[] = {
     { 0x0, 0x0, 0x0, FLAG_COND_NONE, 0x0, NULL }
 };
 
-static const UnkStruct_ov9_022506AC sUnkMapEventCmdParamsB7F_1_1 = {
-    0x4
+static const CmdParamsStartScript sUnkMapEventCmdParamsB7F_1_1 = {
+    .scriptID = 0x4
 };
 
-static const UnkStruct_ov9_022506D0 sUnkMapEventCmdParamsB7F_1_2 = {
-    0x9
+static const CmdParamsSetDistortionWorldProgress sUnkMapEventCmdParamsB7F_1_2 = {
+    .progress = 0x9
 };
 
 static const DistWorldEventCmd sUnkMapEventB7F_1[] = {
     {
-        .kind = EVENT_CMD_KIND_05,
+        .kind = EVENT_CMD_START_SCRIPT,
         .params = &sUnkMapEventCmdParamsB7F_1_1,
     },
     {
-        .kind = EVENT_CMD_KIND_06,
+        .kind = EVENT_CMD_SET_DISTORTION_WORLD_PROGRESS,
         .params = &sUnkMapEventCmdParamsB7F_1_2,
     },
     { EVENT_CMD_END, NULL }
@@ -12476,8 +12476,8 @@ static const DistWorldEventCmd sUnkMapEventGiratinaRoom_2[] = {
     { EVENT_CMD_END, NULL }
 };
 
-static const UnkStruct_ov9_022506AC sUnkMapEventCmdParamsGiratinaRoom_3_1 = {
-    0x7
+static const CmdParamsStartScript sUnkMapEventCmdParamsGiratinaRoom_3_1 = {
+    .scriptID = 0x7
 };
 
 static const DistWorldGiratinaShadowTemplate sUnkMapEventCmdParamsGiratinaRoom_3_2 = {
@@ -12491,13 +12491,13 @@ static const DistWorldGiratinaShadowTemplate sUnkMapEventCmdParamsGiratinaRoom_3
     .movementAnimSteps = 48
 };
 
-static const UnkStruct_ov9_022506D0 sUnkMapEventCmdParamsGiratinaRoom_3_3 = {
-    0xB
+static const CmdParamsSetDistortionWorldProgress sUnkMapEventCmdParamsGiratinaRoom_3_3 = {
+    .progress = 0xB
 };
 
 static const DistWorldEventCmd sUnkMapEventGiratinaRoom_3[] = {
     {
-        .kind = EVENT_CMD_KIND_05,
+        .kind = EVENT_CMD_START_SCRIPT,
         .params = &sUnkMapEventCmdParamsGiratinaRoom_3_1,
     },
     {
@@ -12505,7 +12505,7 @@ static const DistWorldEventCmd sUnkMapEventGiratinaRoom_3[] = {
         .params = &sUnkMapEventCmdParamsGiratinaRoom_3_2,
     },
     {
-        .kind = EVENT_CMD_KIND_06,
+        .kind = EVENT_CMD_SET_DISTORTION_WORLD_PROGRESS,
         .params = &sUnkMapEventCmdParamsGiratinaRoom_3_3,
     },
     { EVENT_CMD_END, NULL }
@@ -12522,8 +12522,8 @@ static const DistWorldGiratinaShadowTemplate sUnkMapEventCmdParamsGiratinaRoom_4
     .movementAnimSteps = 32
 };
 
-static const UnkStruct_ov9_022506D0 sUnkMapEventCmdParamsGiratinaRoom_4_2 = {
-    0xC
+static const CmdParamsSetDistortionWorldProgress sUnkMapEventCmdParamsGiratinaRoom_4_2 = {
+    .progress = 0xC
 };
 
 static const DistWorldEventCmd sUnkMapEventGiratinaRoom_4[] = {
@@ -12532,23 +12532,23 @@ static const DistWorldEventCmd sUnkMapEventGiratinaRoom_4[] = {
         .params = &sUnkMapEventCmdParamsGiratinaRoom_4_1,
     },
     {
-        .kind = EVENT_CMD_KIND_06,
+        .kind = EVENT_CMD_SET_DISTORTION_WORLD_PROGRESS,
         .params = &sUnkMapEventCmdParamsGiratinaRoom_4_2,
     },
     { EVENT_CMD_END, NULL }
 };
 
-static const UnkStruct_ov9_022506D0 sUnkMapEventCmdParamsGiratinaRoom_5_1 = {
-    0xD
+static const CmdParamsSetDistortionWorldProgress sUnkMapEventCmdParamsGiratinaRoom_5_1 = {
+    .progress = 0xD
 };
 
-static const UnkStruct_ov9_022506AC sUnkMapEventCmdParamsGiratinaRoom_5_2 = {
-    0x8
+static const CmdParamsStartScript sUnkMapEventCmdParamsGiratinaRoom_5_2 = {
+    .scriptID = 0x8
 };
 
 static const DistWorldEventCmd sUnkMapEventGiratinaRoom_5[] = {
     {
-        .kind = EVENT_CMD_KIND_06,
+        .kind = EVENT_CMD_SET_DISTORTION_WORLD_PROGRESS,
         .params = &sUnkMapEventCmdParamsGiratinaRoom_5_1,
     },
     {
@@ -12556,7 +12556,7 @@ static const DistWorldEventCmd sUnkMapEventGiratinaRoom_5[] = {
         .params = NULL,
     },
     {
-        .kind = EVENT_CMD_KIND_05,
+        .kind = EVENT_CMD_START_SCRIPT,
         .params = &sUnkMapEventCmdParamsGiratinaRoom_5_2,
     },
     { EVENT_CMD_END, NULL }

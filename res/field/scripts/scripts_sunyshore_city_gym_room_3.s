@@ -62,7 +62,7 @@ SunyshoreGymRoom3_VolknerTryGiveTM57:
     BufferItemName 0, VAR_0x8004
     BufferTMHMMoveName 1, VAR_0x8004
     Message SunyshoreGymRoom3_Text_VolknerExplainTM57
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -76,7 +76,7 @@ SunyshoreGymRoom3_VolknerCannotGiveTM57:
 SunyshoreGymRoom3_VolknerAlreadyHaveBeaconBadge:
     GoToIfUnset FLAG_OBTAINED_VOLKNER_TM57, SunyshoreGymRoom3_VolknerTryGiveTM57
     Message SunyshoreGymRoom3_Text_Afterbadge
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

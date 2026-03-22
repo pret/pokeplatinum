@@ -30,7 +30,7 @@ _000C:
     AddObject 1
     SetFlag FLAG_UNK_0x011F
     Message 0
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

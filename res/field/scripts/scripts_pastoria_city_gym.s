@@ -80,7 +80,7 @@ PastoriaGym_WakeTryGiveTm55:
     BufferItemName 0, VAR_0x8004
     BufferTMHMMoveName 1, VAR_0x8004
     Message PastoriaGym_Text_WakeExplainTM55
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -94,7 +94,7 @@ PastoriaGym_WakeCannotGiveTm55:
 PastoriaGym_WakeAlreadyHaveFenBadge:
     GoToIfUnset FLAG_OBTAINED_WAKE_TM55, PastoriaGym_WakeTryGiveTm55
     Message PastoriaGym_Text_WakeAfterbadge
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -110,7 +110,7 @@ PastoriaGym_GymGuide:
     FacePlayer
     GoToIfBadgeAcquired BADGE_ID_FEN, PastoriaGym_GymGuideAfterBadge
     Message PastoriaGym_Text_GymGuideBeforebadge
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -118,7 +118,7 @@ PastoriaGym_GymGuide:
 PastoriaGym_GymGuideAfterBadge:
     BufferPlayerName 0
     Message PastoriaGym_Text_GymGuideAfterbadge
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -130,7 +130,7 @@ PastoriaGym_GymStatue:
     BufferRivalName 0
     BufferRivalName 1
     Message PastoriaGym_Text_GymStatueBeforeBadge
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -140,7 +140,7 @@ PastoriaGym_GymStatueAfterBadge:
     BufferPlayerName 1
     BufferRivalName 2
     Message PastoriaGym_Text_GymStatueAfterBadge
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

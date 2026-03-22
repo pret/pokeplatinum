@@ -132,7 +132,7 @@ FloaromaMeadow_CantGiveHoneyBagIsFull:
     Message FloaromaMeadow_Text_OhTooBadSeemsToMeYourBagsFull
 FloaromaMeadow_DefeatedGruntsReturn:
     SetFlag FLAG_DEFEATED_FLOAROMA_MEADOW_GRUNTS
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     Return
 
@@ -206,7 +206,7 @@ FloaromaMeadow_TryGiveHoney:
 
 FloaromaMeadow_OopsyWellComeAgain:
     Message FloaromaMeadow_Text_OopsyWellComeAgain
-    WaitABXPadPress
+    WaitButton
     HideMoney
     CloseMessage
     ReleaseAll
@@ -214,7 +214,7 @@ FloaromaMeadow_OopsyWellComeAgain:
 
 FloaromaMeadow_CantBuyHoneyBagIsFull:
     Message FloaromaMeadow_Text_OhTooBadSeemsToMeYourBagsFull
-    WaitABXPadPress
+    WaitButton
     HideMoney
     CloseMessage
     ReleaseAll
@@ -222,7 +222,7 @@ FloaromaMeadow_CantBuyHoneyBagIsFull:
 
 FloaromaMeadow_OopsyYouDontHaveEnoughMoney:
     Message FloaromaMeadow_Text_OopsyYouDontHaveEnoughMoney
-    WaitABXPadPress
+    WaitButton
     HideMoney
     CloseMessage
     ReleaseAll

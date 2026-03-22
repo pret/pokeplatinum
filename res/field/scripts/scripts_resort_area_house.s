@@ -12,7 +12,7 @@ _000E:
     LockAll
     FacePlayer
     Message 0
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ApplyMovement 0, _002C
     WaitMovement
@@ -48,7 +48,7 @@ _007A:
     End
 
 _0085:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

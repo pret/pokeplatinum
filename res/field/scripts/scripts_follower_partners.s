@@ -17,7 +17,7 @@ FollowerPartners_Rival:
     GoToIfGe VAR_FOLLOWER_RIVAL_STATE, 3, FollowerPartners_Rival_PostStarterMessage
     BufferPlayerName 1
     Message FollowerPartners_Text_Rival_HeyPlayerYouCanChooseFirst
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -30,14 +30,14 @@ FollowerPartners_Rival_PostStarterMessage:
     GoToIfEq VAR_FOLLOWER_RIVAL_TIMES_TALKED, 1, FollowerPartners_Rival_PokemonAllHaveDifferentMovesHuh
     BufferRivalName 0
     Message FollowerPartners_Text_Rival_ThatPokemonBattle
-    WaitABXPadPress
+    WaitButton
     GoTo FollowerPartners_Rival_IncreaseTimesTalked
     End
 
 FollowerPartners_Rival_Unused:
     BufferRivalName 0
     Message FollowerPartners_Text_Rival_AllRightLetsMoveOut
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -45,7 +45,7 @@ FollowerPartners_Rival_Unused:
 FollowerPartners_Rival_HeyThatsEnoughTalkingAlready:
     BufferRivalName 0
     Message FollowerPartners_Text_Rival_HeyThatsEnoughTalkingAlready
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -53,14 +53,14 @@ FollowerPartners_Rival_HeyThatsEnoughTalkingAlready:
 FollowerPartners_Rival_HeyDoYouKnowAboutTheChampion:
     BufferRivalName 0
     Message FollowerPartners_Text_Rival_HeyDoYouKnowAboutTheChampion
-    WaitABXPadPress
+    WaitButton
     GoTo FollowerPartners_Rival_IncreaseTimesTalked
     End
 
 FollowerPartners_Rival_ThatLakeHasAMiragePokemonLivingInIt:
     BufferRivalName 0
     Message FollowerPartners_Text_Rival_ThatLakeHasAMiragePokemonLivingInIt
-    WaitABXPadPress
+    WaitButton
     GoTo FollowerPartners_Rival_IncreaseTimesTalked
     End
 
@@ -68,14 +68,14 @@ FollowerPartners_Rival_DoYouBelieveIt:
     BufferRivalName 0
     BufferRivalStarterSpeciesName 1
     Message FollowerPartners_Text_Rival_DoYouBelieveIt
-    WaitABXPadPress
+    WaitButton
     GoTo FollowerPartners_Rival_IncreaseTimesTalked
     End
 
 FollowerPartners_Rival_PokemonAllHaveDifferentMovesHuh:
     BufferRivalName 0
     Message FollowerPartners_Text_Rival_PokemonAllHaveDifferentMovesHuh
-    WaitABXPadPress
+    WaitButton
     GoTo FollowerPartners_Rival_IncreaseTimesTalked
     End
 
@@ -97,7 +97,7 @@ _00F9:
 
 _0126:
     BufferRivalName 0
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -108,7 +108,7 @@ _0131:
     End
 
 _013C:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     AddVar VAR_UNK_0x40CB, 1
     ReleaseAll
@@ -133,14 +133,14 @@ FollowerPartners_Cheryl_MyPokemonIsAnExcellentHealer:
 FollowerPartners_Cheryl_PlayerBattlingWithYouMakesMeFeelElated:
     BufferPlayerName 0
     Message FollowerPartners_Text_Cheryl_PlayerBattlingWithYouMakesMeFeelElated
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 FollowerPartners_Cheryl_IncreaseTimesTalked:
     AddVar VAR_FOLLOWER_CHERYL_TIMES_TALKED, 1
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -169,14 +169,14 @@ FollowerPartners_Buck_MyBigBrothersOneOfTheEliteFour:
 
 FollowerPartners_Buck_ItMightBeCoolBeingAGymLeaderOrEliteFour:
     Message FollowerPartners_Text_Buck_ItMightBeCoolBeingAGymLeaderOrEliteFour
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 FollowerPartners_Buck_IncreaseTimesTalked:
     AddVar VAR_FOLLOWER_BUCK_TIMES_TALKED, 1
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -200,14 +200,14 @@ FollowerPartners_Mira_ThisCaveItsSoEasyToGetConfusedHere:
 FollowerPartners_Mira_PlayerDidYouGetToBeSoGood:
     BufferPlayerName 0
     Message FollowerPartners_Text_Mira_PlayerDidYouGetToBeSoGood
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 FollowerPartners_Mira_IncreaseTimesTalked:
     AddVar VAR_FOLLOWER_MIRA_TIMES_TALKED, 1
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -225,14 +225,14 @@ FollowerPartners_Marley:
 
 FollowerPartners_Marley_ThePokemonAmongFlowers:
     Message FollowerPartners_Text_Marley_ThePokemonAmongFlowers
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 FollowerPartners_Marley_IncreaseTimesTalked:
     AddVar VAR_FOLLOWER_MARLEY_TIMES_TALKED, 1
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

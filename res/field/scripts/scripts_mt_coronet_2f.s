@@ -51,7 +51,7 @@ MtCoronet2F_TriggerLooker:
 MtCoronet2F_PleaseYouMustStopTeamGalactic:
     SetFlag FLAG_RECEIVED_MT_CORONET_2F_BLACK_FLUTE
     Message MtCoronet2F_Text_PleaseYouMustStopTeamGalactic
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     Return
 
@@ -63,7 +63,7 @@ MtCoronet2F_BagIsFull:
 
 MtCoronet2F_YourBagItIsFull:
     Message MtCoronet2F_Text_YourBagItIsFull
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     Return
 
@@ -134,7 +134,7 @@ MtCoronet2F_Looker:
     FacePlayer
     GoToIfUnset FLAG_RECEIVED_MT_CORONET_2F_BLACK_FLUTE, MtCoronet2F_TryAgainGiveBlackFlute
     Message MtCoronet2F_Text_PleaseYouMustStopTeamGalactic
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

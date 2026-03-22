@@ -42,7 +42,7 @@ Route208_BlackBelt:
 
 Route208_GoToRoute209:
     Message Route208_Text_GoToRoute209
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

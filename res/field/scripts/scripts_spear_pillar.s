@@ -106,7 +106,7 @@ _01A6:
     GoToIfEq VAR_RESULT, FALSE, _01DB
     SetVar VAR_UNK_0x4098, 1
     Message 2
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

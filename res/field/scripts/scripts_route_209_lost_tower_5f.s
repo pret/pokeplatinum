@@ -23,14 +23,14 @@ Route209LostTower5F_OldWoman1:
 
 Route209LostTower5F_FantinaIsARegularVisitor:
     Message Route209LostTower5F_Text_FantinaIsARegularVisitor
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 Route209LostTower5F_ThisFogObscuresEverything:
     Message Route209LostTower5F_Text_ThisFogObscuresEverything
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -52,7 +52,7 @@ Route209LostTower5F_OldWoman2:
 
 Route209LostTower5F_AllDepartedPokemonFindSolaceHere:
     Message Route209LostTower5F_Text_AllDepartedPokemonFindSolaceHere
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -65,7 +65,7 @@ Route209LostTower5F_BagIsFull:
 
 Route209LostTower5F_ThisFogObscuresEverything2:
     Message Route209LostTower5F_Text_ThisFogObscuresEverything2
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

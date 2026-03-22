@@ -90,7 +90,7 @@ _012F:
     WaitFanfare SEQ_SE_DP_REGI
     Message 7
     Message 8
-    WaitABXPadPress
+    WaitButton
     SetPartyMonRibbon VAR_0x8000, RIBBON_GORGEOUS
     CloseMessage
     HideMoney
@@ -110,7 +110,7 @@ _018A:
     WaitFanfare SEQ_SE_DP_REGI
     Message 9
     Message 10
-    WaitABXPadPress
+    WaitButton
     SetPartyMonRibbon VAR_0x8000, RIBBON_ROYAL
     CloseMessage
     HideMoney
@@ -130,7 +130,7 @@ _01E7:
     WaitFanfare SEQ_SE_DP_REGI
     Message 11
     Message 12
-    WaitABXPadPress
+    WaitButton
     SetPartyMonRibbon VAR_0x8000, RIBBON_GORGEOUS_ROYAL
     CloseMessage
     HideMoney
@@ -139,14 +139,14 @@ _01E7:
 
 _0244:
     Message 6
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _024F:
     Message 13
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     HideMoney
     ReleaseAll
@@ -154,7 +154,7 @@ _024F:
 
 _025C:
     Message 14
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     HideMoney
     ReleaseAll
@@ -175,14 +175,14 @@ _027C:
 
 _02A4:
     Message 16
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _02AF:
     Message 17
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

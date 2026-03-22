@@ -52,7 +52,7 @@ EternaForest_StartFollowingCheryl:
     SetFlag FLAG_TALKED_TO_ETERNA_FOREST_CHERYL
     SetVar VAR_ETERNA_FOREST_FOLLOWER_CHERYL_STATE, 1
     Message EternaForest_Text_IllKeepYourPokemonInPerfectHealth
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     SetVar VAR_PARTNER_TRAINER_ID, TRAINER_CHERYL_ETERNA_FOREST
     SetHasPartner
@@ -421,7 +421,7 @@ EternaForest_OnFrameCherylOldChateauCutscene:
     ApplyMovement LOCALID_CHERYL, EternaForest_Movement_CherylWalkOnSpotNorth
     WaitMovement
     Message EternaForest_Text_ThereIsAnOldChateauAhead
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

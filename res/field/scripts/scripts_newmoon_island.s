@@ -43,7 +43,7 @@ _005D:
 
 _009D:
     Message 2
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

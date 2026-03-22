@@ -13,14 +13,14 @@ SandgemTownCounterpartHouse1F_ExpertM:
     GetNationalDexEnabled VAR_RESULT
     GoToIfEq VAR_RESULT, TRUE, SandgemTownCounterpartHouse1F_OhMyYouveGotANationalPokedex
     Message SandgemTownCounterpartHouse1F_Text_SoThatRowanFellowIsBack
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 SandgemTownCounterpartHouse1F_OhMyYouveGotANationalPokedex:
     Message SandgemTownCounterpartHouse1F_Text_OhMyYouveGotANationalPokedex
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -50,7 +50,7 @@ SandgemTownCounterpartHouse1F_WowYoureDoingTheSameAsMyBigBrother:
     GoTo SandgemTownCounterpartHouse1F_CloseMessageWowYoureDoingTheSameAsMyBigSibling
 
 SandgemTownCounterpartHouse1F_CloseMessageWowYoureDoingTheSameAsMyBigSibling:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -62,7 +62,7 @@ SandgemTownCounterpartHouse1F_TwinNationalDex:
     EnableSwarms
     BufferPlayerName 0
     Message SandgemTownCounterpartHouse1F_Text_ThereWasNewsSayingThereIsAMassiveOutbreakOfPokemon
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -87,7 +87,7 @@ SandgemTownCounterpartHouse1F_FemaleTheresABunchOfThisPokemonAtThatLocation:
     GoTo SandgemTownCounterpartHouse1F_CloseMessageTheresABunchOfThisPokemonAtThatLocation
 
 SandgemTownCounterpartHouse1F_CloseMessageTheresABunchOfThisPokemonAtThatLocation:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

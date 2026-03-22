@@ -96,7 +96,7 @@ CommonScript_PokecenterNurse_Greeting:
 
 CommonScript_PokecenterNurse_DeclineHealPokemon:
     Message CommonStrings_Text_PokecenterHopeToSeeYouAgain1
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     ReturnCommonScript
@@ -142,7 +142,7 @@ CommonScript_PokecenterNurse_FarewellAfterHeal:
     ApplyMovement VAR_0x8007, CommonScript_PokecenterNurse_NurseBowMovement
     WaitMovement
     Message CommonStrings_Text_PokecenterHopeToSeeYouAgain1
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     ReturnCommonScript
@@ -157,7 +157,7 @@ CommonScript_PokecenterNurse_FarewellAfterHeal_GoldCard:
     ApplyMovement VAR_0x8007, CommonScript_PokecenterNurse_NurseBowMovement
     WaitMovement
     Message CommonStrings_Text_PokecenterHopeToSeeYouAgain2
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     ReturnCommonScript
@@ -175,7 +175,7 @@ CommonScript_PokecenterNurse_IdentifiedPokerus:
     SetPlayerState PLAYER_TRANSITION_WALKING
     ChangePlayerState
     Message CommonStrings_Text_PokecenterYourPokemonMayBeInfected
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     ReturnCommonScript
@@ -190,7 +190,7 @@ CommonScript_PokecenterNurse_GoldCard:
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_YES, CommonScript_PokecenterNurse_AcceptHealPokemon_GoldCard
     Message CommonStrings_Text_PokecenterHopeToSeeYouAgain2
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     ReturnCommonScript
@@ -202,7 +202,7 @@ CommonScript_PokecenterNurse_GoldCard_PreviouslySeen:
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_YES, CommonScript_PokecenterNurse_AcceptHealPokemon_GoldCard
     Message CommonStrings_Text_PokecenterHopeToSeeYouAgain2
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     ReturnCommonScript
@@ -458,14 +458,14 @@ _0632:
 
 _065F:
     Message pl_msg_00000213_00046
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _066A:
     Message pl_msg_00000213_00048
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -505,7 +505,7 @@ _06D5:
     SlatherHoneyTree
     WaitTime 10, VAR_RESULT
     Message pl_msg_00000213_00051
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -669,7 +669,7 @@ CommonScript_EmptyScript3:
 CommonScript_SendToUndergroundPC:
     Call CommonScript_ObtainUndergroundItem
     Message pl_msg_00000213_00109
-    WaitABXPadPress
+    WaitButton
     ReturnCommonScript
     End
 
@@ -718,7 +718,7 @@ CommonScript_InternalObtainUndergroundSphere:
 CommonScript_ObtainAccessoryWaitForConfirm:
     Call CommonScript_InternalObtainAccessory
     Message CommonStrings_Text_PutAwayItemInTheFashionCaseNoLineFeed
-    WaitABXPadPress
+    WaitButton
     ReturnCommonScript
     End
 
@@ -741,7 +741,7 @@ CommonScript_InternalObtainAccessory:
 CommonScript_ObtainContestBackdropWaitForConfirm:
     Call CommonScript_InternalObtainContestBackdrop
     Message CommonStrings_Text_PutAwayItemInTheFashionCaseNoLineFeed
-    WaitABXPadPress
+    WaitButton
     ReturnCommonScript
     End
 
@@ -773,7 +773,7 @@ CommonScript_InternalAddItemQuantityNoLineFeed:
     CallIfEq VAR_RESULT, POCKET_KEY_ITEMS, CommonScript_PrintMessageObtainedKeyItem
     CallIfNe VAR_RESULT, POCKET_KEY_ITEMS, CommonScript_PrepareMessageObtainedItem
     Message CommonStrings_Text_PutItemInThePocketNoLineFeed
-    WaitABXPadPress
+    WaitButton
     Return
 
 CommonScript_AddItemQuantity:
@@ -881,7 +881,7 @@ CommonScript_BagIsFull:
 
 CommonScript_InternalBagIsFull:
     Message CommonStrings_Text_BagIsFull
-    WaitABXPadPress
+    WaitButton
     Return
 
 _0BEE:
@@ -1164,7 +1164,7 @@ CommonScript_PlayerHouseBlackOutRecover:
     WaitFadeScreen
     CallIfSet FLAG_HAS_POKEDEX, CommonScript_PlayerHouseBlackOutRecover_BeforePokedexMessage
     CallIfUnset FLAG_HAS_POKEDEX, CommonScript_PlayerHouseBlackOutRecover_AfterPokedexMessage
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -1197,7 +1197,7 @@ CommonScript_PokecenterBlackOutRecover:
     ApplyMovement VAR_0x8007, CommonScript_PokecenterNurse_NurseBowMovement
     WaitMovement
     Message CommonStrings_Text_PokecenterGoodLuckTrainer
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -1210,7 +1210,7 @@ CommonScript_PokecenterBlackOutRecover_HasCoalBadge:
     ApplyMovement VAR_0x8007, CommonScript_PokecenterNurse_NurseBowMovement
     WaitMovement
     Message CommonStrings_Text_PokecenterAllHappyAndHealthy
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -1358,7 +1358,7 @@ _12A8:
     LockAll
     FacePlayer
     MessageFromTrainerType
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -1536,14 +1536,14 @@ _14AC:
     FadeScreenIn FADE_SCREEN_SPEED_SLOW, COLOR_WHITE
     WaitFadeScreen
     Message pl_msg_00000213_00124
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _1570:
     Message pl_msg_00000213_00125
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -1669,7 +1669,7 @@ CommonScript_Frontier_End:
 
 CommonScript_GriseousOrbCouldNotBeRemoved:
     Message CommonStrings_Text_GriseousOrbCouldNotBeRemoved
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     ReturnCommonScript

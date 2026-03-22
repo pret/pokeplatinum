@@ -24,7 +24,7 @@ _0026:
     BufferNumber 0, VAR_0x8004
     BufferNumber 1, VAR_0x8005
     Message 0
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

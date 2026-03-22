@@ -469,7 +469,7 @@ _0632:
     CheckItem ITEM_SUITE_KEY, 1, VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _065A
     Message 18
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

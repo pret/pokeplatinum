@@ -80,7 +80,7 @@ _0139:
 _0141:
     SetVar VAR_UNK_0x40B7, 0
     Message 6
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

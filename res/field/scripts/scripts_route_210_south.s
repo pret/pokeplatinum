@@ -37,7 +37,7 @@ _0079:
     CheckItem ITEM_SECRETPOTION, 1, VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _00A1
     Message 0
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -237,7 +237,7 @@ _031F:
 
 _0364:
     Message 8
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

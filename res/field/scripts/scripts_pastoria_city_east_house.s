@@ -25,7 +25,7 @@ _003D:
 
 _005F:
     Message 2
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -59,21 +59,21 @@ _006A:
     RemoveItem ITEM_HEART_SCALE, 1, VAR_RESULT
     BufferPlayerName 3
     Message 16
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _010F:
     Message 5
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _011A:
     Message 6
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

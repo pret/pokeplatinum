@@ -237,21 +237,21 @@ _03E7:
 
 _043F:
     Message 7
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _044A:
     Message 15
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _0455:
     Message 23
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -271,21 +271,21 @@ _046C:
 
 _049B:
     Message 7
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _04A6:
     Message 15
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _04B1:
     Message 23
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -293,7 +293,7 @@ _04B1:
 _04BC:
     FacePlayer
     Message 2
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     Call _04CF
     ReleaseAll
@@ -359,21 +359,21 @@ _0591:
 
 _05E9:
     Message 11
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _05F4:
     Message 19
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _05FF:
     Message 27
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -393,21 +393,21 @@ _0616:
 
 _0645:
     Message 11
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _0650:
     Message 19
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _065B:
     Message 27
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -415,7 +415,7 @@ _065B:
 _0666:
     FacePlayer
     Message 3
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     Call _0679
     ReleaseAll
@@ -481,21 +481,21 @@ _073B:
 
 _0793:
     Message 33
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _079E:
     Message 41
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _07A9:
     Message 49
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -515,21 +515,21 @@ _07C0:
 
 _07EF:
     Message 33
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _07FA:
     Message 41
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _0805:
     Message 49
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -537,7 +537,7 @@ _0805:
 _0810:
     FacePlayer
     Message 28
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     Call _0823
     ReleaseAll
@@ -603,21 +603,21 @@ _08E5:
 
 _093D:
     Message 37
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _0948:
     Message 45
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _0953:
     Message 53
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -637,21 +637,21 @@ _096A:
 
 _0999:
     Message 37
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _09A4:
     Message 45
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _09AF:
     Message 53
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -659,7 +659,7 @@ _09AF:
 _09BA:
     FacePlayer
     Message 29
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     Call _09CD
     ReleaseAll
@@ -725,21 +725,21 @@ _0A8F:
 
 _0AE7:
     Message 59
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _0AF2:
     Message 67
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _0AFD:
     Message 75
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -759,21 +759,21 @@ _0B14:
 
 _0B43:
     Message 59
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _0B4E:
     Message 67
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _0B59:
     Message 75
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -781,7 +781,7 @@ _0B59:
 _0B64:
     FacePlayer
     Message 54
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     Call _0B77
     ReleaseAll
@@ -847,21 +847,21 @@ _0C39:
 
 _0C91:
     Message 63
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _0C9C:
     Message 71
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _0CA7:
     Message 79
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -881,21 +881,21 @@ _0CBE:
 
 _0CED:
     Message 63
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _0CF8:
     Message 71
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _0D03:
     Message 79
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -903,7 +903,7 @@ _0D03:
 _0D0E:
     FacePlayer
     Message 55
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     Call _0D21
     ReleaseAll
@@ -969,21 +969,21 @@ _0DE3:
 
 _0E3B:
     Message 85
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _0E46:
     Message 93
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _0E51:
     Message 101
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -1003,21 +1003,21 @@ _0E68:
 
 _0E97:
     Message 85
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _0EA2:
     Message 93
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _0EAD:
     Message 101
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -1025,7 +1025,7 @@ _0EAD:
 _0EB8:
     FacePlayer
     Message 80
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     Call _0ECB
     ReleaseAll
@@ -1091,21 +1091,21 @@ _0F8D:
 
 _0FE5:
     Message 89
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _0FF0:
     Message 97
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _0FFB:
     Message 105
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -1125,21 +1125,21 @@ _1012:
 
 _1041:
     Message 89
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _104C:
     Message 97
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _1057:
     Message 105
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -1147,7 +1147,7 @@ _1057:
 _1062:
     FacePlayer
     Message 81
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     Call _1075
     ReleaseAll
@@ -1213,21 +1213,21 @@ _1137:
 
 _118F:
     Message 111
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _119A:
     Message 119
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _11A5:
     Message 127
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -1247,21 +1247,21 @@ _11BC:
 
 _11EB:
     Message 111
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _11F6:
     Message 119
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _1201:
     Message 127
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -1269,7 +1269,7 @@ _1201:
 _120C:
     FacePlayer
     Message 106
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     Call _121F
     ReleaseAll
@@ -1335,21 +1335,21 @@ _12E1:
 
 _1339:
     Message 115
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _1344:
     Message 123
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _134F:
     Message 131
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -1369,21 +1369,21 @@ _1366:
 
 _1395:
     Message 115
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _13A0:
     Message 123
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _13AB:
     Message 131
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -1391,7 +1391,7 @@ _13AB:
 _13B6:
     FacePlayer
     Message 107
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     Call _13C9
     ReleaseAll
@@ -1457,21 +1457,21 @@ _148B:
 
 _14E3:
     Message 137
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _14EE:
     Message 145
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _14F9:
     Message 153
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -1491,21 +1491,21 @@ _1510:
 
 _153F:
     Message 137
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _154A:
     Message 145
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _1555:
     Message 153
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -1513,7 +1513,7 @@ _1555:
 _1560:
     FacePlayer
     Message 132
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     Call _1573
     ReleaseAll
@@ -1579,21 +1579,21 @@ _1635:
 
 _168D:
     Message 141
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _1698:
     Message 149
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _16A3:
     Message 157
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -1613,21 +1613,21 @@ _16BA:
 
 _16E9:
     Message 141
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _16F4:
     Message 149
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _16FF:
     Message 157
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -1635,7 +1635,7 @@ _16FF:
 _170A:
     FacePlayer
     Message 133
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     Call _171D
     ReleaseAll
@@ -1701,21 +1701,21 @@ _17DF:
 
 _1837:
     Message 163
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _1842:
     Message 171
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _184D:
     Message 179
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -1735,21 +1735,21 @@ _1864:
 
 _1893:
     Message 163
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _189E:
     Message 171
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _18A9:
     Message 179
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -1757,7 +1757,7 @@ _18A9:
 _18B4:
     FacePlayer
     Message 158
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     Call _18C7
     ReleaseAll
@@ -1823,21 +1823,21 @@ _1989:
 
 _19E1:
     Message 167
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _19EC:
     Message 175
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _19F7:
     Message 183
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -1857,21 +1857,21 @@ _1A0E:
 
 _1A3D:
     Message 167
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _1A48:
     Message 175
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _1A53:
     Message 183
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -1879,7 +1879,7 @@ _1A53:
 _1A5E:
     FacePlayer
     Message 159
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     Call _1A71
     ReleaseAll
@@ -1945,21 +1945,21 @@ _1B33:
 
 _1B8B:
     Message 189
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _1B96:
     Message 197
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _1BA1:
     Message 205
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -1979,21 +1979,21 @@ _1BB8:
 
 _1BE7:
     Message 189
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _1BF2:
     Message 197
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _1BFD:
     Message 205
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -2001,7 +2001,7 @@ _1BFD:
 _1C08:
     FacePlayer
     Message 184
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     Call _1C1B
     ReleaseAll
@@ -2067,21 +2067,21 @@ _1CDD:
 
 _1D35:
     Message 193
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _1D40:
     Message 201
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _1D4B:
     Message 209
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -2101,21 +2101,21 @@ _1D62:
 
 _1D91:
     Message 193
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _1D9C:
     Message 201
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _1DA7:
     Message 209
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -2123,7 +2123,7 @@ _1DA7:
 _1DB2:
     FacePlayer
     Message 185
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     Call _1DC5
     ReleaseAll
@@ -2189,21 +2189,21 @@ _1E87:
 
 _1EDF:
     Message 215
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _1EEA:
     Message 223
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _1EF5:
     Message 231
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -2223,21 +2223,21 @@ _1F0C:
 
 _1F3B:
     Message 215
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _1F46:
     Message 223
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _1F51:
     Message 231
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -2245,7 +2245,7 @@ _1F51:
 _1F5C:
     FacePlayer
     Message 210
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     Call _1F6F
     ReleaseAll
@@ -2311,21 +2311,21 @@ _2031:
 
 _2089:
     Message 219
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _2094:
     Message 227
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _209F:
     Message 235
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -2345,21 +2345,21 @@ _20B6:
 
 _20E5:
     Message 219
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _20F0:
     Message 227
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _20FB:
     Message 235
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -2367,7 +2367,7 @@ _20FB:
 _2106:
     FacePlayer
     Message 211
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     Call _2119
     ReleaseAll

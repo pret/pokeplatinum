@@ -34,7 +34,7 @@ OreburghCity_Rival:
     BufferRivalName 0
     BufferPlayerName 1
     Message OreburghCity_Text_TheGymLeadersGoneOffToTheCoalMine
-    WaitABXPadPress
+    WaitButton
     SetFlag FLAG_TALKED_TO_OREBURGH_CITY_RIVAL
     CloseMessage
     ReleaseAll
@@ -43,7 +43,7 @@ OreburghCity_Rival:
 OreburghCity_IToldYouTheGymLeaderWentDownToTheOreburghMine:
     BufferRivalName 0
     Message OreburghCity_Text_IToldYouTheGymLeaderWentDownToTheOreburghMine
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -55,21 +55,21 @@ OreburghCity_Youngster:
     GoToIfBadgeAcquired BADGE_ID_COAL, OreburghCity_CanISeeYourTrainerCase
     GoToIfSet FLAG_ROARK_RETURNED_TO_OREBURGH_GYM, OreburghCity_TheGymLeadersWaitingForYou
     Message OreburghCity_Text_IsThatGuyInFrontOfTheGymYourFriend
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 OreburghCity_CanISeeYourTrainerCase:
     Message OreburghCity_Text_CanISeeYourTrainerCase
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 OreburghCity_TheGymLeadersWaitingForYou:
     Message OreburghCity_Text_TheGymLeadersWaitingForYou
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -285,7 +285,7 @@ OreburghCity_Worker2:
 
 OreburghCity_FeelingHaleAndHeartyPutsASmileOnMyFace:
     Message OreburghCity_Text_FeelingHaleAndHeartyPutsASmileOnMyFace
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -382,7 +382,7 @@ OreburghCity_WalkWithYoungsterToTheGymZ751:
 
 OreburghCity_HuhTheresSomeoneThere:
     Message OreburghCity_Text_HuhTheresSomeoneThere
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     Common_FadeToDefaultMusic3
     SetVar VAR_OREBURGH_STATE, 1
@@ -492,14 +492,14 @@ OreburghCity_SchoolKidF:
     FacePlayer
     GoToIfSet FLAG_ROARK_RETURNED_TO_OREBURGH_GYM, OreburghCity_TheGymLeaderIsYoungButHesTheMinesSafetySupervisor
     Message OreburghCity_Text_TheGymLeaderWentOffToWorkInTheMine
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 OreburghCity_TheGymLeaderIsYoungButHesTheMinesSafetySupervisor:
     Message OreburghCity_Text_TheGymLeaderIsYoungButHesTheMinesSafetySupervisor
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

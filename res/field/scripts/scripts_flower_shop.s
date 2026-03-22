@@ -25,7 +25,7 @@ FlowerShop_PokemonBreederF:
 
 FlowerShop_PleasePlantThatBerryInSoftEarthySoil:
     Message FlowerShop_Text_PleasePlantThatBerryInSoftEarthySoil
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -52,7 +52,7 @@ FlowerShop_Lass:
 
 FlowerShop_UseThatSprayduckToWaterTheSoilWhereYouvePlantedBerries:
     Message FlowerShop_Text_UseThatSprayduckToWaterTheSoilWhereYouvePlantedBerries
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

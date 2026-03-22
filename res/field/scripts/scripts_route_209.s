@@ -53,7 +53,7 @@ Route209_HallowedTower:
 Route209_UseOddKeystone:
     BufferPlayerName 0
     Message Route209_Text_PlayerUsedTheOddKeystone
-    WaitABXPadPress
+    WaitButton
     RemoveItem ITEM_ODD_KEYSTONE, 1, VAR_RESULT
     SetVar VAR_HALLOWED_TOWER_STATE, 1
     CloseMessage
@@ -89,42 +89,42 @@ Route209_BlackOut:
 
 Route209_ItWasBuiltManyYearsAgo:
     Message Route209_Text_ItWasBuiltManyYearsAgo
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 Route209_ItsStonesAppearToHaveShifted:
     Message Route209_Text_ItsStonesAppearToHaveShifted
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 Route209_IsThatCryingComingFromInside:
     Message Route209_Text_IsThatCryingComingFromInside
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 Route209_IsThatTowerShaking:
     Message Route209_Text_IsTheTowerShaking
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 Route209_ThereIsSomeSortOfPresence:
     Message Route209_Text_ThereIsSomeSortOfPresence
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 Route209_ThereIsABrokenTower:
     Message Route209_Text_ThereIsABrokenTower
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -153,21 +153,21 @@ Route209_AskExplainHowToFish:
 
 Route209_ExplainHowToFish:
     Message Route209_Text_ExplainHowToFish
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 Route209_WhenYouReelPokemonYouBattleIt:
     Message Route209_Text_WhenYouReelPokemonYouBattleIt
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 Route209_RefuseGoodRod:
     Message Route209_Text_YouDontLikeToFish
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

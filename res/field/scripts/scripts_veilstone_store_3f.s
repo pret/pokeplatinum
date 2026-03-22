@@ -42,35 +42,35 @@ VeilstoneStore3F_AttendantPersonalized:
 
 VeilstoneStore3F_AttendantPleaseEnjoyYourself:
     Message VeilstoneStore3F_Text_PleaseEnjoyYourself
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 VeilstoneStore3F_AttendantFalseSwipe:
     Message VeilstoneStore3F_Text_FalseSwipeMakesPokemonEasierToCatch
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 VeilstoneStore3F_AttendantFireBlast:
     Message VeilstoneStore3F_Text_ForFireTypesSuggestFireBlast
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 VeilstoneStore3F_AttendantProtect:
     Message VeilstoneStore3F_Text_ProtectIsForDodgingAttacks
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 VeilstoneStore3F_AttendantThunder:
     Message VeilstoneStore3F_Text_ThunderIsPreciseInRain
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

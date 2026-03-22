@@ -88,7 +88,7 @@ TwinleafTownPlayerHouse1F_DoMomPostgameSequence:
     GetNationalDexEnabled VAR_RESULT
     CallIfEq VAR_RESULT, TRUE, TwinleafTownPlayerHouse1F_RivalCameLookingForYou
     CallIfEq VAR_RESULT, FALSE, TwinleafTownPlayerHouse1F_IsYourProjectComingAlong
-    WaitABXPadPress
+    WaitButton
     CloseMessage
 TwinleafTownPlayerHouse1F_PostgameRelease:
     ReleaseAll
@@ -136,7 +136,7 @@ TwinleafTownPlayerHouse1F_OnFrame_CutsceneAfterRivalBattle:
     PlaySound SEQ_FANFA4
     WaitSound
     Message TwinleafTownPlayerHouse1F_Text_LetMeReadTheInstructions
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     SetVar VAR_PLAYER_HOUSE_STATE, 4
     ReleaseAll
@@ -181,7 +181,7 @@ TwinleafTownPlayerHouse1F_Mom:
     BufferPlayerName 0
     BufferRivalName 1
     Message TwinleafTownPlayerHouse1F_Text_RivalAlreadyLeft
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -190,7 +190,7 @@ TwinleafTownPlayerHouse1F_Unused:
     BufferPlayerName 0
     BufferRivalName 1
     Message TwinleafTownPlayerHouse1F_Text_RivalCameLookingForYou
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -241,7 +241,7 @@ TwinleafTownPlayerHouse1F_WhileYoureGoneIVisitRivalsMom:
     End
 
 TwinleafTownPlayerHouse1F_CloseMessage:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -249,7 +249,7 @@ TwinleafTownPlayerHouse1F_CloseMessage:
 TwinleafTownPlayerHouse1F_EnjoyYourAdventure:
     BufferPlayerName 0
     Message TwinleafTownPlayerHouse1F_Text_EnjoyYourAdventure2
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -491,7 +491,7 @@ TwinleafTownPlayerHouse1F_LateNightTakeAQuickRest:
 
 TwinleafTownPlayerHouse1F_IllReadTheInstructions:
     Message TwinleafTownPlayerHouse1F_Text_IllReadTheInstructions
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -511,7 +511,7 @@ TwinleafTownPlayerHouse1F_Unused2:
     PlaySound SEQ_FANFA4
     WaitSound
     Message TwinleafTownPlayerHouse1F_Text_LetMeReadTheInstructions
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     SetVar VAR_PLAYER_HOUSE_STATE, 4
     ReleaseAll
@@ -520,7 +520,7 @@ TwinleafTownPlayerHouse1F_Unused2:
 TwinleafTownPlayerHouse1F_IsntRivalWaitingForYou:
     BufferRivalName 0
     Message TwinleafTownPlayerHouse1F_Text_IsntRivalWaitingForYou
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -529,7 +529,7 @@ TwinleafTownPlayerHouse1F_YouTakeCareNow:
     SetFlag FLAG_UNK_0x00F8
     BufferPlayerName 0
     Message TwinleafTownPlayerHouse1F_Text_YouTakeCareNow
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -537,7 +537,7 @@ TwinleafTownPlayerHouse1F_YouTakeCareNow:
 TwinleafTownPlayerHouse1F_YouKnowHowImpatientRivalIs:
     BufferRivalName 0
     Message TwinleafTownPlayerHouse1F_Text_YouKnowHowImpatientRivalIs
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -749,7 +749,7 @@ TwinleafTownPlayerHouse1F_DontGoIntoTheTallGrass:
     SetVar VAR_PLAYER_HOUSE_STATE, 2
     BufferPlayerName 0
     Message TwinleafTownPlayerHouse1F_Text_DontGoIntoTheTallGrass
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

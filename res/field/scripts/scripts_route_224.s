@@ -52,7 +52,7 @@ _00B8:
     FacePlayer
     GoToIfSet FLAG_UNK_0x012D, _00D6
     Message 7
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -60,7 +60,7 @@ _00B8:
 _00D6:
     BufferTabletName 1
     Message 8
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -108,7 +108,7 @@ _0124:
     Call _02B8
     CallIfNe VAR_SHAYMIN_EVENT_STATE, 2, _01F0
     CallIfEq VAR_SHAYMIN_EVENT_STATE, 2, _01F5
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ScrCmd_333 127
     FadeInBGM 10
@@ -395,7 +395,7 @@ _057F:
     SetVar VAR_SHAYMIN_EVENT_STATE, 2
     SetVar VAR_UNK_0x4085, 2
     Message 10
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -450,7 +450,7 @@ _05F4:
     FacePlayer
     GoToIfSet FLAG_UNK_0x012D, _061C
     Message 10
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ApplyMovement 21, _0664
     WaitMovement
@@ -459,7 +459,7 @@ _05F4:
 
 _061C:
     Message 12
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
