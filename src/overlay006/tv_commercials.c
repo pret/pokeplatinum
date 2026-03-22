@@ -21,12 +21,12 @@ typedef BOOL (*TVCommercialUnlockFunc)(FieldSystem *);
 
 static BOOL TVCommercial_IsEligible_Always(FieldSystem *fieldSystem);
 static BOOL TVCommercial_IsEligible_Never(FieldSystem *fieldSystem);
-static BOOL TVCommercial_IsEligible_ArrivedToJubilifeCity(FieldSystem *fieldSystem);
-static BOOL TVCommercial_IsEligible_ArrivedToFloaromaTown(FieldSystem *fieldSystem);
-static BOOL TVCommercial_IsEligible_ArrivedToOreburghCity(FieldSystem *fieldSystem);
-static BOOL TVCommercial_IsEligible_ArrivedToEternaCity(FieldSystem *fieldSystem);
-static BOOL TVCommercial_IsEligible_ArrivedToHearthomeCity(FieldSystem *fieldSystem);
-static BOOL TVCommercial_IsEligible_ArrivedToFightArea(FieldSystem *fieldSystem);
+static BOOL TVCommercial_IsEligible_ArrivedAtJubilifeCity(FieldSystem *fieldSystem);
+static BOOL TVCommercial_IsEligible_ArrivedAtFloaromaTown(FieldSystem *fieldSystem);
+static BOOL TVCommercial_IsEligible_ArrivedAtOreburghCity(FieldSystem *fieldSystem);
+static BOOL TVCommercial_IsEligible_ArrivedAtEternaCity(FieldSystem *fieldSystem);
+static BOOL TVCommercial_IsEligible_ArrivedAtHearthomeCity(FieldSystem *fieldSystem);
+static BOOL TVCommercial_IsEligible_ArrivedAtFightArea(FieldSystem *fieldSystem);
 static BOOL TVCommercial_IsEligible_HasFiveBadges(FieldSystem *fieldSystem);
 static BOOL TVCommercial_IsEligible_LocalDexCompleted(FieldSystem *fieldSystem);
 static BOOL TVCommercial_IsEligible_PokedexObtained(FieldSystem *fieldSystem);
@@ -50,12 +50,12 @@ enum TVCommercialUnlockCondition {
 // clang-format off
 static const TVCommercialUnlockFunc sCommercialUnlockFuncs[] = {
     [TV_COMMERCIAL_UNLOCK_ALWAYS]                = TVCommercial_IsEligible_Always,
-    [TV_COMMERCIAL_UNLOCK_ARRIVED_TO_FLOAROMA]   = TVCommercial_IsEligible_ArrivedToFloaromaTown,
-    [TV_COMMERCIAL_UNLOCK_ARRIVED_TO_JUBILIFE]   = TVCommercial_IsEligible_ArrivedToJubilifeCity,
-    [TV_COMMERCIAL_UNLOCK_ARRIVED_TO_OREBURGH]   = TVCommercial_IsEligible_ArrivedToOreburghCity,
-    [TV_COMMERCIAL_UNLOCK_ARRIVED_TO_ETERNA]     = TVCommercial_IsEligible_ArrivedToEternaCity,
-    [TV_COMMERCIAL_UNLOCK_ARRIVED_TO_HEARTHOME]  = TVCommercial_IsEligible_ArrivedToHearthomeCity,
-    [TV_COMMERCIAL_UNLOCK_ARRIVED_TO_FIGHT_AREA] = TVCommercial_IsEligible_ArrivedToFightArea,
+    [TV_COMMERCIAL_UNLOCK_ARRIVED_TO_FLOAROMA]   = TVCommercial_IsEligible_ArrivedAtFloaromaTown,
+    [TV_COMMERCIAL_UNLOCK_ARRIVED_TO_JUBILIFE]   = TVCommercial_IsEligible_ArrivedAtJubilifeCity,
+    [TV_COMMERCIAL_UNLOCK_ARRIVED_TO_OREBURGH]   = TVCommercial_IsEligible_ArrivedAtOreburghCity,
+    [TV_COMMERCIAL_UNLOCK_ARRIVED_TO_ETERNA]     = TVCommercial_IsEligible_ArrivedAtEternaCity,
+    [TV_COMMERCIAL_UNLOCK_ARRIVED_TO_HEARTHOME]  = TVCommercial_IsEligible_ArrivedAtHearthomeCity,
+    [TV_COMMERCIAL_UNLOCK_ARRIVED_TO_FIGHT_AREA] = TVCommercial_IsEligible_ArrivedAtFightArea,
     [TV_COMMERCIAL_UNLOCK_FIVE_BADGES]           = TVCommercial_IsEligible_HasFiveBadges,
     [TV_COMMERCIAL_UNLOCK_LOCAL_DEX_COMPLETED]   = TVCommercial_IsEligible_LocalDexCompleted,
     [TV_COMMERCIAL_UNLOCK_POKEDEX_OBTAINED]      = TVCommercial_IsEligible_PokedexObtained,
@@ -112,32 +112,32 @@ static BOOL TVCommercial_IsEligible_Never(FieldSystem *fieldSystem)
     return FALSE;
 }
 
-static BOOL TVCommercial_IsEligible_ArrivedToJubilifeCity(FieldSystem *fieldSystem)
+static BOOL TVCommercial_IsEligible_ArrivedAtJubilifeCity(FieldSystem *fieldSystem)
 {
     return SystemFlag_HandleFirstArrivalToZone(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CHECK, FIRST_ARRIVAL_JUBILIFE_CITY);
 }
 
-static BOOL TVCommercial_IsEligible_ArrivedToFloaromaTown(FieldSystem *fieldSystem)
+static BOOL TVCommercial_IsEligible_ArrivedAtFloaromaTown(FieldSystem *fieldSystem)
 {
     return SystemFlag_HandleFirstArrivalToZone(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CHECK, FIRST_ARRIVAL_FLOAROMA_TOWN);
 }
 
-static BOOL TVCommercial_IsEligible_ArrivedToOreburghCity(FieldSystem *fieldSystem)
+static BOOL TVCommercial_IsEligible_ArrivedAtOreburghCity(FieldSystem *fieldSystem)
 {
     return SystemFlag_HandleFirstArrivalToZone(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CHECK, FIRST_ARRIVAL_OREBURGH_CITY);
 }
 
-static BOOL TVCommercial_IsEligible_ArrivedToEternaCity(FieldSystem *fieldSystem)
+static BOOL TVCommercial_IsEligible_ArrivedAtEternaCity(FieldSystem *fieldSystem)
 {
     return SystemFlag_HandleFirstArrivalToZone(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CHECK, FIRST_ARRIVAL_ETERNA_CITY);
 }
 
-static BOOL TVCommercial_IsEligible_ArrivedToHearthomeCity(FieldSystem *fieldSystem)
+static BOOL TVCommercial_IsEligible_ArrivedAtHearthomeCity(FieldSystem *fieldSystem)
 {
     return SystemFlag_HandleFirstArrivalToZone(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CHECK, FIRST_ARRIVAL_HEARTHOME_CITY);
 }
 
-static BOOL TVCommercial_IsEligible_ArrivedToFightArea(FieldSystem *fieldSystem)
+static BOOL TVCommercial_IsEligible_ArrivedAtFightArea(FieldSystem *fieldSystem)
 {
     return SystemFlag_HandleFirstArrivalToZone(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CHECK, FIRST_ARRIVAL_FIGHT_AREA);
 }
