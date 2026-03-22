@@ -263,7 +263,7 @@ Route201_GoOnChoosePokemon:
     WaitMovement
     BufferPlayerName 1
     Message Route201_Text_YouCanChooseFirst
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     Common_FadeToDefaultMusic
     SetObjectEventMovementType LOCALID_RIVAL, MOVEMENT_TYPE_LOOK_WEST
@@ -1141,25 +1141,25 @@ Route201_SchoolKidM:
     End
 
 Route201_Lass:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_HAS_POKEDEX, Route201_IfYourPokemonsHPIsLowGoToAPokemonCenter»
+    GoToIfSet FLAG_HAS_POKEDEX, Route201_IfYourPokemonsHPIsLowGoToAPokemonCenter
     Message Route201_Text_IfYourPokemonsHPIsLowGoHome
     GoTo Route201_LassCloseMessage
 
 Route201_LassCloseMessage:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
-Route201_IfYourPokemonsHPIsLowGoToAPokemonCenter»:
+Route201_IfYourPokemonsHPIsLowGoToAPokemonCenter:
     Message Route201_Text_IfYourPokemonsHPIsLowGoToAPokemonCenter
     GoTo Route201_LassCloseMessage
 
 Route201_Cashier:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_GOT_POTION_FROM_ROUTE_201_CASHIER, Route201_YouCanFindMartsInCitiesAndMajorTowns
@@ -1175,7 +1175,7 @@ Route201_Cashier:
 
 Route201_YouCanFindMartsInCitiesAndMajorTowns:
     Message Route201_Text_YouCanFindMartsInCitiesAndMajorTowns
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -1232,7 +1232,7 @@ Route201_RivalRunToPlayerX113:
 Route201_SetRivalPartner:
     BufferRivalName 0
     Message Route201_Text_TogetherWeveGotNothingToFear
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     SetVar VAR_FOLLOWER_RIVAL_STATE, 3
     SetStepFlag

@@ -10,7 +10,7 @@ _000A:
     End
 
 _000C:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     DrawPokemonPreview SPECIES_CRESSELIA, GENDER_FEMALE
@@ -30,7 +30,7 @@ _000C:
     AddObject 1
     SetFlag FLAG_UNK_0x011F
     Message 0
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

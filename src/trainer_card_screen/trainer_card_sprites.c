@@ -7,6 +7,7 @@
 
 #include "badges.h"
 #include "char_transfer.h"
+#include "coordinates.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "narc.h"
@@ -17,11 +18,6 @@
 #include "sprite_transfer.h"
 #include "sprite_util.h"
 
-typedef struct Coordinates {
-    int x;
-    int y;
-} Coordinates;
-
 static const u8 sSpriteResourceCapacities[4] = {
     [SPRITE_RESOURCE_CHAR] = 1,
     [SPRITE_RESOURCE_PLTT] = 2,
@@ -29,7 +25,7 @@ static const u8 sSpriteResourceCapacities[4] = {
     [SPRITE_RESOURCE_ANIM] = 1
 };
 
-static const Coordinates sBadgeCoordinates[] = {
+static const CoordinatesInt sBadgeCoordinates[] = {
     [BADGE_ID_COAL] = { .x = 24, .y = 40 },
     [BADGE_ID_FOREST] = { .x = 80, .y = 40 },
     [BADGE_ID_COBBLE] = { .x = 136, .y = 40 },
@@ -40,7 +36,7 @@ static const Coordinates sBadgeCoordinates[] = {
     [BADGE_ID_BEACON] = { .x = 192, .y = 72 }
 };
 
-static const Coordinates sSparkleCoordinates[] = {
+static const CoordinatesInt sSparkleCoordinates[] = {
     [BADGE_ID_COAL] = { .x = 24, .y = 40 },
     [BADGE_ID_FOREST] = { .x = 80, .y = 40 },
     [BADGE_ID_COBBLE] = { .x = 136, .y = 40 },

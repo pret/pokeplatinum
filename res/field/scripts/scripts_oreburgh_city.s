@@ -27,14 +27,14 @@
     ScriptEntryEnd
 
 OreburghCity_Rival:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_TALKED_TO_OREBURGH_CITY_RIVAL, OreburghCity_IToldYouTheGymLeaderWentDownToTheOreburghMine
     BufferRivalName 0
     BufferPlayerName 1
     Message OreburghCity_Text_TheGymLeadersGoneOffToTheCoalMine
-    WaitABXPadPress
+    WaitButton
     SetFlag FLAG_TALKED_TO_OREBURGH_CITY_RIVAL
     CloseMessage
     ReleaseAll
@@ -43,33 +43,33 @@ OreburghCity_Rival:
 OreburghCity_IToldYouTheGymLeaderWentDownToTheOreburghMine:
     BufferRivalName 0
     Message OreburghCity_Text_IToldYouTheGymLeaderWentDownToTheOreburghMine
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 OreburghCity_Youngster:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfBadgeAcquired BADGE_ID_COAL, OreburghCity_CanISeeYourTrainerCase
     GoToIfSet FLAG_ROARK_RETURNED_TO_OREBURGH_GYM, OreburghCity_TheGymLeadersWaitingForYou
     Message OreburghCity_Text_IsThatGuyInFrontOfTheGymYourFriend
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 OreburghCity_CanISeeYourTrainerCase:
     Message OreburghCity_Text_CanISeeYourTrainerCase
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 OreburghCity_TheGymLeadersWaitingForYou:
     Message OreburghCity_Text_TheGymLeadersWaitingForYou
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -123,7 +123,7 @@ OreburghCity_RivalRunIntoPlayerZ751:
     End
 
 OreburghCity_NextStopTheEternaGymBadge:
-    PlayFanfare SEQ_SE_DP_WALL_HIT2
+    PlaySE SEQ_SE_DP_WALL_HIT2
     Message OreburghCity_Text_BigThud
     CloseMessage
     Common_SetRivalBGM
@@ -174,7 +174,7 @@ OreburghCity_RivalLeaveZ751:
     End
 
 OreburghCity_RemoveRival:
-    PlayFanfare SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2
     RemoveObject LOCALID_RIVAL
     Common_FadeToDefaultMusic2
     SetVar VAR_OREBURGH_STATE, 3
@@ -270,7 +270,7 @@ OreburghCity_Worker1:
     End
 
 OreburghCity_Worker2:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_RECEIVED_OREBURGH_CITY_SUPER_POTION, OreburghCity_FeelingHaleAndHeartyPutsASmileOnMyFace
@@ -285,7 +285,7 @@ OreburghCity_Worker2:
 
 OreburghCity_FeelingHaleAndHeartyPutsASmileOnMyFace:
     Message OreburghCity_Text_FeelingHaleAndHeartyPutsASmileOnMyFace
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -382,7 +382,7 @@ OreburghCity_WalkWithYoungsterToTheGymZ751:
 
 OreburghCity_HuhTheresSomeoneThere:
     Message OreburghCity_Text_HuhTheresSomeoneThere
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     Common_FadeToDefaultMusic3
     SetVar VAR_OREBURGH_STATE, 1
@@ -487,19 +487,19 @@ OreburghCity_BattleGirl1:
     End
 
 OreburghCity_SchoolKidF:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_ROARK_RETURNED_TO_OREBURGH_GYM, OreburghCity_TheGymLeaderIsYoungButHesTheMinesSafetySupervisor
     Message OreburghCity_Text_TheGymLeaderWentOffToWorkInTheMine
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 OreburghCity_TheGymLeaderIsYoungButHesTheMinesSafetySupervisor:
     Message OreburghCity_Text_TheGymLeaderIsYoungButHesTheMinesSafetySupervisor
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

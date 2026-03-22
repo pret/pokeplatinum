@@ -182,7 +182,7 @@ species_orders = custom_target('species_orders',
 pokefoot_order = species_orders[0]
 
 
-datagen_species_out = custom_target('datagen_species_out',
+species_data = custom_target('species_data',
     output: [
         'pl_personal.narc',
         'evo.narc',
@@ -198,24 +198,26 @@ datagen_species_out = custom_target('datagen_species_out',
         'species_egg_moves.h',
         'species_icon_palettes.h',
     ],
+
     command: [
-        datagen_species_exe,
-        meson.current_build_dir(),
+        speciesproc_exe,
+        '-M', '@DEPFILE@',
+        '-t', files('move_tutors.json'),
+        '-o', meson.current_build_dir(),
         pokemon_data_root,
-        form_registry_json,
-        files('move_tutors.json'),
     ],
+
     env: species_env,
-    depend_files: [
-        species_data_files,
-    ],
+    depend_files: species_data_files,
+    depfile: 'species_data.d',
 )
-h_headers += datagen_species_out[7]
-h_headers += datagen_species_out[8]
-h_headers += datagen_species_out[9]
-h_headers += datagen_species_out[10]
-h_headers += datagen_species_out[11]
-h_headers += datagen_species_out[12]
+
+h_headers += species_data[7]
+h_headers += species_data[8]
+h_headers += species_data[9]
+h_headers += species_data[10]
+h_headers += species_data[11]
+h_headers += species_data[12]
 
 
 # OLD NARCs
@@ -410,7 +412,7 @@ pokefoot_narc = custom_target('pokefoot.narc',
 )
 naix_headers += pokefoot_narc[1]
 
-nitrofs_files += datagen_species_out
+nitrofs_files += species_data
 
 nitrofs_files += pl_poke_icon_narc
 nitrofs_files += pl_pokegra_narc

@@ -2,7 +2,7 @@
   "key": 1095,
   "messages": [
     {
-      "id": "pl_msg_00000124_00000",
+      "id": "HearthomeCityNortheastHouse2F_Text_AllMyGrandchildrenWantPokemon",
       "en_US": [
         "All my grandchildren are clamoring\n",
         "for Pokémon of their own.\r",
@@ -11,7 +11,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000124_00001",
+      "id": "HearthomeCityNortheastHouse2F_Text_ThereAreNoStairs",
       "en_US": [
         "Oh, no, there are no stairs in\n",
         "this house. It’s easier that way.\r",
@@ -20,7 +20,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000124_00002",
+      "id": "HearthomeCityNortheastHouse2F_Text_SomeActKindly",
       "en_US": [
         "Some act kindly in hopes of being\n",
         "treated kindly in turn.\r",
@@ -28,7 +28,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000124_00003",
+      "id": "HearthomeCityNortheastHouse2F_Text_HearthomeIsKidFriendly",
       "en_US": [
         "Hearthome is a kid-friendly city,\n",
         "they say, but I disagree.\r",

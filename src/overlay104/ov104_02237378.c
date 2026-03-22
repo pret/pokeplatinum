@@ -1,25 +1,23 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "applications/frontier/battle_arcade/main.h"
 #include "overlay063/ov63_0222CCE4.h"
+#include "overlay104/defs.h"
+#include "overlay104/frontier_graphics.h"
+#include "overlay104/frontier_particle_system.h"
 #include "overlay104/frontier_script_context.h"
+#include "overlay104/frontier_script_manager.h"
 #include "overlay104/frscrcmd.h"
 #include "overlay104/ov104_0222DCE0.h"
-#include "overlay104/ov104_0222E63C.h"
 #include "overlay104/ov104_02231F74.h"
 #include "overlay104/ov104_02237DD8.h"
 #include "overlay104/ov104_0223B6F4.h"
 #include "overlay104/ov104_0223BCBC.h"
-#include "overlay104/ov104_0223C2D4.h"
-#include "overlay104/ov104_0223D5D0.h"
 #include "overlay104/struct_ov104_02230BE4.h"
-#include "overlay104/struct_ov104_022320B4_decl.h"
-#include "overlay104/struct_ov104_022320B4_t.h"
 #include "overlay104/struct_ov104_02238240.h"
 #include "overlay104/struct_ov104_0223BFFC.h"
-#include "overlay104/struct_ov104_0223C4CC.h"
 #include "overlay104/struct_ov104_0223C634.h"
-#include "overlay108/ov108_02241AE0.h"
 
 #include "communication_information.h"
 #include "field_battle_data_transfer.h"
@@ -42,7 +40,7 @@
 
 #include "constdata/const_020EA358.h"
 
-FS_EXTERN_OVERLAY(overlay108);
+FS_EXTERN_OVERLAY(battle_arcade_app);
 
 #include <nitro/code16.h>
 
@@ -63,10 +61,10 @@ BOOL FrontierScrCmd_B8(FrontierScriptContext *param0)
     u16 v6 = FrontierScriptContext_GetVar(param0);
     u16 *v7 = FrontierScriptContext_TryGetVarPointer(param0);
 
-    v1 = sub_0209B970(param0->unk_00->unk_00);
+    v1 = sub_0209B970(param0->scriptMan->unk_00);
     v0 = ov104_02237DD8(v1->saveData, v2, v3, v4, v5, v6, v7);
 
-    sub_0209B980(param0->unk_00->unk_00, v0);
+    sub_0209B980(param0->scriptMan->unk_00, v0);
     return 0;
 }
 
@@ -75,7 +73,7 @@ BOOL FrontierScrCmd_B9(FrontierScriptContext *param0)
     UnkStruct_ov104_0223BFFC *v0;
     u16 v1 = FrontierScriptContext_GetVar(param0);
 
-    v0 = sub_0209B978(param0->unk_00->unk_00);
+    v0 = sub_0209B978(param0->scriptMan->unk_00);
     ov104_0223806C(v0, v1);
 
     return 0;
@@ -83,7 +81,7 @@ BOOL FrontierScrCmd_B9(FrontierScriptContext *param0)
 
 BOOL FrontierScrCmd_BA(FrontierScriptContext *param0)
 {
-    UnkStruct_ov104_0223BFFC *v0 = sub_0209B978(param0->unk_00->unk_00);
+    UnkStruct_ov104_0223BFFC *v0 = sub_0209B978(param0->scriptMan->unk_00);
     ov104_02238210(v0);
 
     return 0;
@@ -94,25 +92,25 @@ BOOL FrontierScrCmd_C3(FrontierScriptContext *param0)
     int v0;
     UnkStruct_ov104_0223BFFC *v1;
     UnkStruct_ov104_02238240 *v2;
-    UnkStruct_ov104_02230BE4 *v3 = sub_0209B970(param0->unk_00->unk_00);
+    UnkStruct_ov104_02230BE4 *v3 = sub_0209B970(param0->scriptMan->unk_00);
 
-    FS_EXTERN_OVERLAY(overlay108);
+    FS_EXTERN_OVERLAY(battle_arcade_app);
 
     static const ApplicationManagerTemplate v4 = {
-        ov108_02241AE0,
-        ov108_02241C38,
-        ov108_02241D70,
-        FS_OVERLAY_ID(overlay108)
+        BattleArcadeApp_Init,
+        BattleArcadeApp_Main,
+        BattleArcadeApp_Exit,
+        FS_OVERLAY_ID(battle_arcade_app)
     };
 
-    v1 = sub_0209B978(param0->unk_00->unk_00);
+    v1 = sub_0209B978(param0->scriptMan->unk_00);
     v2 = Heap_Alloc(HEAP_ID_FIELD2, sizeof(UnkStruct_ov104_02238240));
 
     MI_CpuClear8(v2, sizeof(UnkStruct_ov104_02238240));
     v2->saveData = v3->saveData;
 
     ov104_02237634(v2, v1);
-    sub_0209B988(param0->unk_00->unk_00, &v4, v2, 0, ov104_0223770C);
+    sub_0209B988(param0->scriptMan->unk_00, &v4, v2, 0, ov104_0223770C);
 
     return 1;
 }
@@ -127,7 +125,7 @@ BOOL FrontierScrCmd_BB(FrontierScriptContext *param0)
     Pokemon *v11;
     Pokemon *v12;
 
-    v9 = sub_0209B978(param0->unk_00->unk_00);
+    v9 = sub_0209B978(param0->scriptMan->unk_00);
     v10 = v9->unk_0C;
 
     v9->unk_1D = ov104_02238538(v9, v10->parties[0], v10->parties[2], v10->totalTurnsElapsed);
@@ -152,7 +150,7 @@ BOOL FrontierScrCmd_BB(FrontierScriptContext *param0)
     }
 
     if (v9->unk_13 == 17) {
-        v0 = ov104_0223BD70(v9->unk_10, 1);
+        v0 = BattleArcade_GetPartySize(v9->unk_10, 1);
 
         for (v1 = 0; v1 < v0; v1++) {
             v11 = Party_GetPokemonBySlotIndex(v9->unk_70, v1);
@@ -198,13 +196,13 @@ BOOL FrontierScrCmd_BC(FrontierScriptContext *param0)
 {
     FieldBattleDTO *v0;
     UnkStruct_ov104_0223BFFC *v1;
-    UnkStruct_ov104_02230BE4 *v2 = sub_0209B970(param0->unk_00->unk_00);
+    UnkStruct_ov104_02230BE4 *v2 = sub_0209B970(param0->scriptMan->unk_00);
 
-    v1 = sub_0209B978(param0->unk_00->unk_00);
+    v1 = sub_0209B978(param0->scriptMan->unk_00);
     v0 = ov104_0223BDD8(v1, v2);
 
     v1->unk_0C = v0;
-    sub_0209B988(param0->unk_00->unk_00, &gBattleApplicationTemplate, v0, 0, NULL);
+    sub_0209B988(param0->scriptMan->unk_00, &gBattleApplicationTemplate, v0, 0, NULL);
 
     return 1;
 }
@@ -260,7 +258,7 @@ static void ov104_0223770C(void *param0)
 
 BOOL FrontierScrCmd_BD(FrontierScriptContext *param0)
 {
-    UnkStruct_ov104_0223BFFC *v0 = sub_0209B978(param0->unk_00->unk_00);
+    UnkStruct_ov104_0223BFFC *v0 = sub_0209B978(param0->scriptMan->unk_00);
     ov104_022384D4(v0);
 
     return 0;
@@ -268,7 +266,7 @@ BOOL FrontierScrCmd_BD(FrontierScriptContext *param0)
 
 BOOL FrontierScrCmd_BE(FrontierScriptContext *param0)
 {
-    UnkStruct_ov104_0223BFFC *v0 = sub_0209B978(param0->unk_00->unk_00);
+    UnkStruct_ov104_0223BFFC *v0 = sub_0209B978(param0->scriptMan->unk_00);
     ov104_022384DC(v0);
 
     return 0;
@@ -286,16 +284,16 @@ BOOL FrontierScrCmd_BF(FrontierScriptContext *param0)
     u16 v10;
     int v11, v12, v13;
     UnkStruct_ov104_02230BE4 *v14;
-    UnkStruct_ov104_0223C4CC *v15;
+    FrontierGraphics *v15;
     TrainerInfo *v16;
     u8 v17 = FrontierScriptContext_ReadByte(param0);
     u8 v18 = FrontierScriptContext_GetVar(param0);
     u8 v19 = FrontierScriptContext_GetVar(param0);
     u16 *v20 = FrontierScriptContext_TryGetVarPointer(param0);
 
-    v3 = sub_0209B978(param0->unk_00->unk_00);
-    v14 = sub_0209B970(param0->unk_00->unk_00);
-    v15 = ov104_0222E924(param0->unk_00);
+    v3 = sub_0209B978(param0->scriptMan->unk_00);
+    v14 = sub_0209B970(param0->scriptMan->unk_00);
+    v15 = FrontierScriptManager_GetGraphics(param0->scriptMan);
 
     switch (v17) {
     case 2:
@@ -367,8 +365,8 @@ BOOL FrontierScrCmd_BF(FrontierScriptContext *param0)
         break;
     case 25:
         if (v3->unk_13 == 27) {
-            v4 = ov104_0223BD70(v3->unk_10, 1);
-            v5 = ov104_0223BDA4(v3->unk_10, 1);
+            v4 = BattleArcade_GetPartySize(v3->unk_10, 1);
+            v5 = BattleArcade_GetOpponentPartySize(v3->unk_10, 1);
 
             {
                 VecFx32 v21;
@@ -416,8 +414,8 @@ BOOL FrontierScrCmd_BF(FrontierScriptContext *param0)
     case 31:
         ov104_02238764(v3, v15, v18);
 
-        v4 = ov104_0223BD70(v3->unk_10, 1);
-        v5 = ov104_0223BDA4(v3->unk_10, 1);
+        v4 = BattleArcade_GetPartySize(v3->unk_10, 1);
+        v5 = BattleArcade_GetOpponentPartySize(v3->unk_10, 1);
 
         if (v18 == 0) {
             for (v11 = 0; v11 < v4; v11++) {
@@ -453,10 +451,10 @@ BOOL FrontierScrCmd_BF(FrontierScriptContext *param0)
         }
         break;
     case 38:
-        v6 = ov104_0223C148(v3->unk_13);
+        v6 = BattleArcade_GetCategoryFromEffect(v3->unk_13);
 
         if (v6 == 0) {
-            StringTemplate_SetFrontierTrainerName(param0->unk_00->strTemplate, v18, v3->unk_78[ov104_02238498(v3, v19)]);
+            StringTemplate_SetFrontierTrainerName(param0->scriptMan->strTemplate, v18, v3->unk_78[ov104_02238498(v3, v19)]);
         } else {
             if (BattleArcade_IsMultiPlayerChallenge(v3->unk_10) == 0) {
                 v16 = SaveData_GetTrainerInfo(v14->saveData);
@@ -464,7 +462,7 @@ BOOL FrontierScrCmd_BF(FrontierScriptContext *param0)
                 v16 = CommInfo_TrainerInfo(v19);
             }
 
-            StringTemplate_SetPlayerName(param0->unk_00->strTemplate, v18, v16);
+            StringTemplate_SetPlayerName(param0->scriptMan->strTemplate, v18, v16);
         }
         break;
     case 39:
@@ -486,17 +484,17 @@ BOOL FrontierScrCmd_BF(FrontierScriptContext *param0)
         break;
     case 44:
         if (v18 == 0) {
-            PaletteData_Blend(v15->unk_04, 2, 0, 16 * 16, v18, 0x0);
+            PaletteData_Blend(v15->plttData, 2, 0, 16 * 16, v18, 0x0);
         } else {
             {
                 u32 v25;
                 UnkStruct_ov104_0223C634 *v26;
                 Sprite *v27;
 
-                v26 = ov104_0223D5A8(param0->unk_00->unk_00, v19);
+                v26 = ov104_0223D5A8(param0->scriptMan->unk_00, v19);
                 v25 = ov63_0222D050(v26->unk_04);
 
-                PaletteData_Blend(v15->unk_04, 2, v25 * 16, 16, v18, 0x0);
+                PaletteData_Blend(v15->plttData, 2, v25 * 16, 16, v18, 0x0);
             }
         }
         break;
@@ -540,9 +538,9 @@ BOOL FrontierScrCmd_BF(FrontierScriptContext *param0)
 
 static void ov104_02237C0C(FrontierScriptContext *param0, UnkStruct_ov104_0223BFFC *param1, u16 param2)
 {
-    UnkStruct_ov104_022320B4 *v0 = param0->unk_00;
-    UnkStruct_ov104_0223C4CC *v1 = ov104_0222E924(param0->unk_00);
-    ParticleSystem *v2 = ov104_0223D6D0(v1->unk_10, 0);
+    FrontierScriptManager *v0 = param0->scriptMan;
+    FrontierGraphics *v1 = FrontierScriptManager_GetGraphics(param0->scriptMan);
+    ParticleSystem *v2 = FrontierParticleSystem_GetParticleSystem(v1->particleSys, 0);
     ParticleSystem_CreateEmitterWithCallback(v2, param2, ov104_02237C30, param1);
 
     return;
@@ -571,7 +569,7 @@ BOOL FrontierScrCmd_C0(FrontierScriptContext *param0)
     UnkStruct_ov104_0223BFFC *v0;
     u16 *v1 = FrontierScriptContext_TryGetVarPointer(param0);
 
-    v0 = sub_0209B978(param0->unk_00->unk_00);
+    v0 = sub_0209B978(param0->scriptMan->unk_00);
     *v1 = v0->unk_28;
 
     return 0;
@@ -584,7 +582,7 @@ BOOL FrontierScrCmd_C1(FrontierScriptContext *param0)
     u16 v2 = FrontierScriptContext_GetVar(param0);
     u16 *v3 = FrontierScriptContext_TryGetVarPointer(param0);
 
-    v0 = sub_0209B978(param0->unk_00->unk_00);
+    v0 = sub_0209B978(param0->scriptMan->unk_00);
     *v3 = ov104_02238B40(v0, v1, v2);
 
     return 1;
@@ -605,7 +603,7 @@ static BOOL ov104_02237D18(FrontierScriptContext *param0)
     UnkStruct_ov104_0223BFFC *v0;
     u16 v1 = FrontierScriptContext_TryGetVar(param0, param0->data[0]);
 
-    v0 = sub_0209B978(param0->unk_00->unk_00);
+    v0 = sub_0209B978(param0->scriptMan->unk_00);
 
     if (v0->unk_A7C >= 2) {
         v0->unk_A7C = 0;
@@ -619,10 +617,10 @@ BOOL FrontierScrCmd_C4(FrontierScriptContext *param0)
 {
     u16 *v0;
     UnkStruct_ov104_0223BFFC *v1;
-    UnkStruct_ov104_02230BE4 *v2 = sub_0209B970(param0->unk_00->unk_00);
+    UnkStruct_ov104_02230BE4 *v2 = sub_0209B970(param0->scriptMan->unk_00);
     u16 v3 = FrontierScriptContext_ReadByte(param0);
 
-    v1 = sub_0209B978(param0->unk_00->unk_00);
+    v1 = sub_0209B978(param0->scriptMan->unk_00);
 
     if (v1 == NULL) {
         return 0;
@@ -636,7 +634,7 @@ BOOL FrontierScrCmd_C4(FrontierScriptContext *param0)
 
 BOOL FrontierScrCmd_C5(FrontierScriptContext *param0)
 {
-    UnkStruct_ov104_0223BFFC *v0 = sub_0209B978(param0->unk_00->unk_00);
+    UnkStruct_ov104_0223BFFC *v0 = sub_0209B978(param0->scriptMan->unk_00);
     ov104_02238B88(v0, v0->unk_13);
 
     return 1;
@@ -645,12 +643,12 @@ BOOL FrontierScrCmd_C5(FrontierScriptContext *param0)
 BOOL FrontierScrCmd_C6(FrontierScriptContext *param0)
 {
     UnkStruct_ov104_0223BFFC *v0;
-    UnkStruct_ov104_0223C4CC *v1 = ov104_0222E924(param0->unk_00);
+    FrontierGraphics *v1 = FrontierScriptManager_GetGraphics(param0->scriptMan);
     u16 v2 = FrontierScriptContext_GetVar(param0);
     u16 v3 = FrontierScriptContext_GetVar(param0);
     u16 v4 = FrontierScriptContext_GetVar(param0);
 
-    v0 = sub_0209B978(param0->unk_00->unk_00);
+    v0 = sub_0209B978(param0->scriptMan->unk_00);
     ov104_022389F4(v0, v1, v2, v3, v4);
 
     return 0;

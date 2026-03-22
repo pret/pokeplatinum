@@ -1,9 +1,12 @@
 #ifndef POKEPLATINUM_UNK_02030EA4_H
 #define POKEPLATINUM_UNK_02030EA4_H
 
-#include "struct_decls/struct_02030EC4_decl.h"
-
 #include "savedata.h"
+
+typedef struct WiFiQuestions {
+    u32 unk_00;
+    u32 unk_04;
+} WiFiQuestions;
 
 int WiFiQuestion_SaveSize(void);
 void WiFiQuestion_Init(WiFiQuestions *param0);

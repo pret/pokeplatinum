@@ -4,8 +4,6 @@
 #include <string.h>
 
 #include "battle_anim/const_ov12_0223B0A0.h"
-#include "battle_anim/const_ov12_0223B0B8.h"
-#include "battle_anim/const_ov12_0223B0DC.h"
 #include "battle_anim/struct_ov12_022380DC.h"
 
 #include "character_sprite.h"
@@ -15,7 +13,7 @@
 
 static void ov12_022380DC(UnkStruct_ov12_022380DC *param0, int param1, int param2, enum HeapID heapID);
 
-const s16 Unk_ov12_0223B0B8[][3] = {
+const s16 gEncounterCoords[][3] = {
     { 0x150, 0x70, 0xFFFFFFFFFFFFFE00 },
     { 0xFFFFFFFFFFFFFFB0, 0x32, 0xFFFFFFFFFFFFFD80 },
     { 0x13C, 0x70, 0xFFFFFFFFFFFFFE00 },
@@ -33,7 +31,7 @@ const s16 Unk_ov12_0223B0A0[][2] = {
     { 0xB0, 0xE0 }
 };
 
-const s16 Unk_ov12_0223B0DC[][3] = {
+const s16 gSlideTrainerInCoords[][3] = {
     { 0xFFFFFFFFFFFFFFB0, 0x70, 0xFFFFFFFFFFFFFE00 },
     { 0x150, 0x32, 0xFFFFFFFFFFFFFE00 },
     { 0xFFFFFFFFFFFFFFB0, 0x70, 0xFFFFFFFFFFFFFE00 },
@@ -210,6 +208,6 @@ s16 ov12_022384CC(int param0, int param1)
     if (param1 == 0) {
         return Unk_ov12_0223B0A0[param0][0];
     } else {
-        return Unk_ov12_0223B0B8[param0][param1];
+        return gEncounterCoords[param0][param1];
     }
 }

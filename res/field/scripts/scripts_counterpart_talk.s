@@ -6,7 +6,7 @@
     ScriptEntryEnd
 
 _0006:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GetPlayerGender VAR_0x8004
@@ -22,7 +22,7 @@ _0027:
 _003A:
     CallIfEq VAR_0x8004, GENDER_MALE, _005C
     CallIfEq VAR_0x8004, GENDER_FEMALE, _0064
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -51,7 +51,7 @@ _00B2:
     GetNationalDexEnabled VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _030D
     GoToIfUnset FLAG_TALKED_TO_COUNTERPART_SISTER_WITH_NATIONAL_DEX, _02E8
-    GoToIfUnset FLAG_UNK_0x0131, _02C3
+    GoToIfUnset FLAG_RECEIVED_HEARTHOME_CITY_NORTHWEST_HOUSE_EEVEE, _02C3
     CheckNationalDexCompleted VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _0158
     GoTo _00F3
@@ -193,7 +193,7 @@ _037C:
     End
 
 _03A1:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

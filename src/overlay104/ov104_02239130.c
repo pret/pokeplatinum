@@ -11,13 +11,13 @@
 #include "struct_decls/struct_0202440C_decl.h"
 #include "struct_defs/battle_tower.h"
 
+#include "overlay104/defs.h"
 #include "overlay104/frontier_script_context.h"
 #include "overlay104/frscrcmd.h"
 #include "overlay104/ov104_02231F74.h"
 #include "overlay104/ov104_022394A4.h"
 #include "overlay104/ov104_0223A0C4.h"
 #include "overlay104/struct_ov104_02230BE4.h"
-#include "overlay104/struct_ov104_022320B4_t.h"
 #include "savedata/save_table.h"
 
 #include "communication_system.h"
@@ -43,12 +43,12 @@ BOOL FrontierScrCmd_CallBattleTowerFunction(FrontierScriptContext *ctx)
     BattleTower *battleTower;
     u16 functionIndex, functionArgument;
     u16 *destVar;
-    UnkStruct_ov104_02230BE4 *v8 = sub_0209B970(ctx->unk_00->unk_00);
+    UnkStruct_ov104_02230BE4 *v8 = sub_0209B970(ctx->scriptMan->unk_00);
 
     functionIndex = FrontierScriptContext_ReadHalfWord(ctx);
     functionArgument = FrontierScriptContext_GetVar(ctx);
     destVar = FrontierScriptContext_TryGetVarPointer(ctx);
-    battleTower = sub_0209B978(ctx->unk_00->unk_00);
+    battleTower = sub_0209B978(ctx->scriptMan->unk_00);
 
     switch (functionIndex) {
     case BT_FUNC_RESET_SYSTEM:
@@ -155,10 +155,10 @@ BOOL FrontierScrCmd_85(FrontierScriptContext *param0)
     u8 v0;
     u16 *v1;
     BattleTower *battleTower;
-    UnkStruct_ov104_02230BE4 *v3 = sub_0209B970(param0->unk_00->unk_00);
+    UnkStruct_ov104_02230BE4 *v3 = sub_0209B970(param0->scriptMan->unk_00);
     u16 v4 = FrontierScriptContext_ReadByte(param0);
 
-    battleTower = sub_0209B978(param0->unk_00->unk_00);
+    battleTower = sub_0209B978(param0->scriptMan->unk_00);
 
     if (battleTower == NULL) {
         return 0;
@@ -170,57 +170,53 @@ BOOL FrontierScrCmd_85(FrontierScriptContext *param0)
     return 1;
 }
 
-BOOL FrontierScrCmd_86(FrontierScriptContext *param0)
+BOOL FrontierScrCmd_FreeTowerStruct(FrontierScriptContext *param0)
 {
-    BattleTower *battleTower = sub_0209B978(param0->unk_00->unk_00);
+    BattleTower *battleTower = sub_0209B978(param0->scriptMan->unk_00);
     BattleTower_Free(battleTower);
 
-    return 0;
+    return FALSE;
 }
 
 BOOL FrontierScrCmd_87(FrontierScriptContext *param0)
 {
     FieldBattleDTO *v0;
     BattleTower *battleTower;
-    UnkStruct_ov104_02230BE4 *v2 = sub_0209B970(param0->unk_00->unk_00);
+    UnkStruct_ov104_02230BE4 *v2 = sub_0209B970(param0->scriptMan->unk_00);
 
-    battleTower = sub_0209B978(param0->unk_00->unk_00);
+    battleTower = sub_0209B978(param0->scriptMan->unk_00);
     v0 = ov104_0223A580(battleTower, v2);
 
     battleTower->unk_8D0 = v0;
 
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_BATTLE, SEQ_BATTLE_TRAINER, 1);
-    sub_0209B988(param0->unk_00->unk_00, &gBattleApplicationTemplate, v0, 0, NULL);
+    sub_0209B988(param0->scriptMan->unk_00, &gBattleApplicationTemplate, v0, 0, NULL);
 
     return 1;
 }
 
-BOOL FrontierScrCmd_88(FrontierScriptContext *param0)
+BOOL FrontierScrCmd_CheckWonTowerBattle(FrontierScriptContext *ctx)
 {
-    BattleTower *battleTower;
-    FieldBattleDTO *v1;
-    u16 *v2;
+    BattleTower *battleTower = sub_0209B978(ctx->scriptMan->unk_00);
+    u16 *destVar = FrontierScriptContext_TryGetVarPointer(ctx);
+    FieldBattleDTO *dto = battleTower->unk_8D0;
 
-    battleTower = sub_0209B978(param0->unk_00->unk_00);
-    v2 = FrontierScriptContext_TryGetVarPointer(param0);
-    v1 = battleTower->unk_8D0;
+    battleTower->unk_8CC = CheckPlayerWonBattle(dto->resultMask);
+    *destVar = battleTower->unk_8CC;
 
-    battleTower->unk_8CC = CheckPlayerWonBattle(v1->resultMask);
-    *v2 = battleTower->unk_8CC;
-
-    FieldBattleDTO_Free(v1);
-    return 0;
+    FieldBattleDTO_Free(dto);
+    return FALSE;
 }
 
 BOOL FrontierScrCmd_89(FrontierScriptContext *param0)
 {
     BattleTower *battleTower;
-    UnkStruct_ov104_02230BE4 *v1 = sub_0209B970(param0->unk_00->unk_00);
+    UnkStruct_ov104_02230BE4 *v1 = sub_0209B970(param0->scriptMan->unk_00);
     u16 v2 = FrontierScriptContext_GetVar(param0);
     u16 v3 = FrontierScriptContext_GetVar(param0);
     u16 *v4 = FrontierScriptContext_TryGetVarPointer(param0);
 
-    battleTower = sub_0209B978(param0->unk_00->unk_00);
+    battleTower = sub_0209B978(param0->scriptMan->unk_00);
 
     switch (v2) {
     case 2:
@@ -256,9 +252,9 @@ BOOL FrontierScrCmd_8A(FrontierScriptContext *param0)
 static BOOL ov104_0223942C(FrontierScriptContext *param0)
 {
     BattleTower *battleTower;
-    UnkStruct_ov104_02230BE4 *v1 = sub_0209B970(param0->unk_00->unk_00);
+    UnkStruct_ov104_02230BE4 *v1 = sub_0209B970(param0->scriptMan->unk_00);
 
-    battleTower = sub_0209B978(param0->unk_00->unk_00);
+    battleTower = sub_0209B978(param0->scriptMan->unk_00);
 
     if (ov104_02239464(param0, battleTower, v1->saveData, param0->data[0], param0->data[1]) == 1) {
         return 1;

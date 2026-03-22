@@ -5,8 +5,6 @@
 
 #include "generated/journal_location_events.h"
 
-#include "struct_decls/struct_0203A790_decl.h"
-
 #include "field/field_system.h"
 #include "overlay005/map_object_anim_cmd.h"
 #include "overlay005/ov5_021F0EB0.h"
@@ -234,7 +232,7 @@ static enum FieldWarpStateResult ChangeMap(FieldTask *task, FieldSystem *fieldSy
     if (fieldWarp->warpType == FIELD_WARP_TYPE_TELEPORT) {
         Location location;
 
-        u16 warpId = FieldOverworldState_GetWarpId(fieldState);
+        u16 warpId = FieldOverworldState_GetBlackOutWarpId(fieldState);
         Location_InitFly(warpId, &location);
         FieldTask_ChangeMapByFieldWarp(task, &location, fieldWarp->warpType);
     } else {

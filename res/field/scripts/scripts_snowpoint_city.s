@@ -62,7 +62,7 @@ _00AC:
     EndMovement
 
 _00B4:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GetNationalDexEnabled VAR_RESULT
@@ -71,7 +71,7 @@ _00B4:
 
 _00D4:
     Message 1
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -80,7 +80,7 @@ _00DF:
     GoToIfUnset FLAG_GAME_COMPLETED, _00D4
     GoToIfEq VAR_UNK_0x407F, 0, _0102
     Message 2
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -110,7 +110,7 @@ _011B:
     WaitMovement
     SetVar VAR_UNK_0x407F, 1
     Message 4
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     Return
 
@@ -146,19 +146,19 @@ _01AD:
     End
 
 _01C0:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfGe VAR_UNK_0x407F, 1, _01E0
     Message 7
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _01E0:
     Message 8
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -176,7 +176,7 @@ _0215:
     End
 
 _022A:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfUnset FLAG_GAME_COMPLETED, _0260
@@ -188,14 +188,14 @@ _022A:
 
 _0260:
     Message 13
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _026B:
     Message 12
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -279,7 +279,7 @@ _0348:
 _035C:
     ApplyMovement 8, _0390
     WaitMovement
-    PlayFanfare SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2
     ApplyMovement 8, _039C
     WaitMovement
     Return
@@ -287,7 +287,7 @@ _035C:
 _0376:
     ApplyMovement LOCALID_PLAYER, _03A4
     WaitMovement
-    PlayFanfare SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2
     ApplyMovement LOCALID_PLAYER, _039C
     WaitMovement
     Return

@@ -19,7 +19,7 @@ Route205South_OnTransition:
     End
 
 Route205South_Grunts:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ApplyMovement LOCALID_GRUNT_M_WEST, Route205South_Movement_GruntMWestWalkOnSpotSouth
@@ -30,7 +30,7 @@ Route205South_Grunts:
     WaitMovement
     Call _00B6
     Message Route205South_Text_OurResearchInvolvesCatchingPokemonInTheFloweryMeadowsOfFloaroma2
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -107,20 +107,20 @@ Route205South_Youngster:
     End
 
 Route205South_LittleGirl:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_TALKED_TO_ROUTE_205_SOUTH_LITTLE_GIRL, Route205South_IWantToSeeMyPapaHesAtTheValleyWindworks
     Call Route205South_HideFloaromaTownGrunts
     Message Route205South_Text_HelpHelpTrainerPleaseIWantToSeeMyPapa
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 Route205South_IWantToSeeMyPapaHesAtTheValleyWindworks:
     Message Route205South_Text_IWantToSeeMyPapaHesAtTheValleyWindworks
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -175,7 +175,7 @@ Route205South_LittleGirlNoticePlayerZ663:
 Route205South_HelpHelpTrainerPleaseIWantToSeeMyPapa:
     Call Route205South_HideFloaromaTownGrunts
     Message Route205South_Text_HelpHelpTrainerPleaseIWantToSeeMyPapa
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

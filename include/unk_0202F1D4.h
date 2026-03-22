@@ -1,20 +1,20 @@
 #ifndef POKEPLATINUM_UNK_0202F1D4_H
 #define POKEPLATINUM_UNK_0202F1D4_H
 
-#include "struct_decls/struct_0202F264_decl.h"
 #include "struct_decls/struct_0202F298_decl.h"
 #include "struct_decls/struct_0202F41C_decl.h"
 #include "struct_decls/struct_02030A80_decl.h"
+#include "struct_defs/struct_0202F264.h"
 
 #include "field_battle_data_transfer.h"
 #include "savedata.h"
 
 int BattleRecording_SaveSize(void);
 void BattleRecording_Init(BattleRecording *param0);
-void sub_0202F1F8(SaveData *saveData, enum HeapID heapID, int *param2);
-void sub_0202F22C(void);
-BOOL sub_0202F250(void);
-BattleRecording *sub_0202F264(void);
+void BattleRecording_New(SaveData *saveData, enum HeapID heapID, int *resultCode);
+void BattleRecording_Free(void);
+BOOL BattleRecording_Exists(void);
+BattleRecording *BattleRecording_Get(void);
 void *sub_0202F27C(void);
 BOOL sub_0202F298(SaveData *saveData, int param1, int *param2, FieldBattleDTO *param3, int param4);
 BOOL sub_0202F330(SaveData *saveData, int param1, int *param2, int param3);

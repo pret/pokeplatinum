@@ -16,7 +16,7 @@ OreburghCityNorthHouse2F_PokemonBreederF:
     End
 
 OreburghCityNorthHouse2F_Collector:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_RECEIVED_OREBURGH_CITY_NORTH_HOUSE_2F_HEAL_BALL, OreburghCityNorthHouse2F_YeahThereAreSoManyKindsOfPokemonOutInTheWorld
@@ -40,14 +40,14 @@ OreburghCityNorthHouse2F_BagIsFull:
 
 OreburghCityNorthHouse2F_HowAboutShowingMeAPokemonCalledGeodude:
     Message OreburghCityNorthHouse2F_Text_HowAboutShowingMeAPokemonCalledGeodude
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 OreburghCityNorthHouse2F_YeahThereAreSoManyKindsOfPokemonOutInTheWorld:
     Message OreburghCityNorthHouse2F_Text_YeahThereAreSoManyKindsOfPokemonOutInTheWorld
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

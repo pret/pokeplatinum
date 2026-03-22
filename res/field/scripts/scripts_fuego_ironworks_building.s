@@ -11,7 +11,7 @@ _000A:
     End
 
 _0010:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x00DB, _00A9
@@ -55,7 +55,7 @@ _00E1:
     End
 
 _00EC:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -111,7 +111,7 @@ _019E:
 _01E5:
     Message 6
     Message 8
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

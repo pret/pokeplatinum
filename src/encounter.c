@@ -309,7 +309,7 @@ static BOOL FieldTask_WiFiEncounter(FieldTask *task)
 
     case 2:
         FreeEncounter(encounter);
-        sub_0202F22C();
+        BattleRecording_Free();
         return TRUE;
     }
 
@@ -815,7 +815,7 @@ void Encounter_NewVsWiFi(FieldTask *task, int param1, int normalizedLevel, int w
     }
 
     FieldBattleDTO_InitWithNormalizedMonLevels(dto, fieldSystem, normalizedLevel);
-    sub_0202F1F8(fieldSystem->saveData, HEAP_ID_FIELD2, &recordingResultCode);
+    BattleRecording_New(fieldSystem->saveData, HEAP_ID_FIELD2, &recordingResultCode);
     dto->unk_18A = v5;
 
     encounter = NewEncounter(dto, EncEffects_CutInEffect(dto), EncEffects_BGM(dto), NULL);
@@ -837,8 +837,8 @@ static BOOL FieldTask_LinkEncounterWithRecording(FieldTask *task)
         break;
 
     case 1:
-        if (sub_0202F250() == 1) {
-            sub_0202F22C();
+        if (BattleRecording_Exists() == 1) {
+            BattleRecording_Free();
         }
 
         FieldCommMan_EnterBattleRoom(fieldSystem);
@@ -854,7 +854,7 @@ void Encounter_NewVsLinkWithRecording(FieldSystem *fieldSystem, const u8 *partyO
     FieldBattleDTO_InitWithPartyOrderFromSave(dto, fieldSystem, partyOrder);
 
     int recordingResultCode;
-    sub_0202F1F8(fieldSystem->saveData, HEAP_ID_FIELD2, &recordingResultCode);
+    BattleRecording_New(fieldSystem->saveData, HEAP_ID_FIELD2, &recordingResultCode);
     dto->unk_18A = sub_020516C8(fieldSystem->unk_B0, battleType);
 
     Encounter *encounter = NewEncounter(dto, EncEffects_CutInEffect(dto), EncEffects_BGM(dto), NULL);
@@ -867,7 +867,7 @@ void Encounter_NewVsLinkWithRecordingAndParty(FieldSystem *fieldSystem, const Pa
     FieldBattleDTO_InitWithPartyOrder(dto, fieldSystem, party, NULL);
 
     int recordingResultCode;
-    sub_0202F1F8(fieldSystem->saveData, HEAP_ID_FIELD2, &recordingResultCode);
+    BattleRecording_New(fieldSystem->saveData, HEAP_ID_FIELD2, &recordingResultCode);
     dto->unk_18A = sub_020516C8(fieldSystem->unk_B0, battleType);
 
     Encounter *encounter = NewEncounter(dto, EncEffects_CutInEffect(dto), EncEffects_BGM(dto), NULL);

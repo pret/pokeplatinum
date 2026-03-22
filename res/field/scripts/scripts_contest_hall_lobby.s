@@ -1,114 +1,115 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/contest_hall_lobby.h"
+#include "res/field/events/events_contest_hall_lobby.h"
 
 
-    ScriptEntry _002E
-    ScriptEntry _01EC
-    ScriptEntry _0229
-    ScriptEntry _0266
-    ScriptEntry _02A3
-    ScriptEntry _02E0
-    ScriptEntry _0328
-    ScriptEntry _033B
-    ScriptEntry _034E
-    ScriptEntry _0361
-    ScriptEntry _04A4
+    ScriptEntry ContestHallLobby_OnFrameFirstEntry
+    ScriptEntry ContestHallLobby_Frame0
+    ScriptEntry ContestHallLobby_Frame1
+    ScriptEntry ContestHallLobby_Frame2
+    ScriptEntry ContestHallLobby_Frame3
+    ScriptEntry ContestHallLobby_Frame4
+    ScriptEntry ContestHallLobby_AceTrainerF
+    ScriptEntry ContestHallLobby_Clown
+    ScriptEntry ContestHallLobby_SchoolKidF
+    ScriptEntry ContestHallLobby_RichBoy
+    ScriptEntry ContestHallLobby_Fantina
     ScriptEntryEnd
 
-_002E:
+ContestHallLobby_OnFrameFirstEntry:
     LockAll
-    ApplyMovement 6, _0140
+    ApplyMovement LOCALID_KEIRA, ContestHallLobby_Movement_KeiraNoticePlayer
     WaitMovement
-    Message 0
+    Message ContestHallLobby_Text_OhMyHero
     CloseMessage
-    ApplyMovement 5, _0174
+    ApplyMovement LOCALID_MOM, ContestHallLobby_Movement_MomWalkOnSpotSouth
     WaitMovement
     BufferPlayerName 0
-    Message 1
+    Message ContestHallLobby_Text_OhHiPlayer
     CloseMessage
-    ApplyMovement LOCALID_PLAYER, _0138
+    ApplyMovement LOCALID_PLAYER, ContestHallLobby_Movement_PlayerWalkNorth
     WaitMovement
-    ApplyMovement 6, _014C
+    ApplyMovement LOCALID_KEIRA, ContestHallLobby_Movement_KeiraWalkOnSpotWestSouth
     WaitMovement
-    Message 2
+    Message ContestHallLobby_Text_WaitJohannaIsYourMom
     BufferPlayerName 0
-    Message 3
-    Message 4
+    Message ContestHallLobby_Text_IveNeverSpokenToPlayerAboutContests
+    Message ContestHallLobby_Text_INeedToThankYouForEarlier
     SetVar VAR_0x8004, ACCESSORY_GLITTER_POWDER
     SetVar VAR_0x8005, 1
     Common_GiveAccessory
-    Message 5
-    ApplyMovement 6, _0158
-    ApplyMovement 5, _017C
+    Message ContestHallLobby_Text_PutThatAccessoryOnYourPokemon
+    ApplyMovement LOCALID_KEIRA, ContestHallLobby_Movement_KeiraFaceMom
+    ApplyMovement LOCALID_MOM, ContestHallLobby_Movement_MomFaceKeira
     WaitMovement
-    Message 6
+    Message ContestHallLobby_Text_JohannaIllSeeYou
     CloseMessage
-    ApplyMovement 6, _0160
-    ApplyMovement LOCALID_PLAYER, _01DC
+    ApplyMovement LOCALID_KEIRA, ContestHallLobby_Movement_KeiraLeave
+    ApplyMovement LOCALID_PLAYER, ContestHallLobby_Movement_PlayerWatchKeiraLeave
     WaitMovement
-    RemoveObject 6
-    SetVar VAR_UNK_0x40F7, 1
-    ApplyMovement 5, _0190
-    ApplyMovement LOCALID_PLAYER, _01E4
+    RemoveObject LOCALID_KEIRA
+    SetVar VAR_CONTEST_HALL_LOBBY_STATE, 1
+    ApplyMovement LOCALID_MOM, ContestHallLobby_Movement_MomFacePlayer
+    ApplyMovement LOCALID_PLAYER, ContestHallLobby_Movement_PlayerFaceMom
     WaitMovement
     BufferPlayerName 0
-    Message 7
+    Message ContestHallLobby_Text_WereYouSurprisedToSeeMe
     CloseMessage
-    PlaySound SEQ_FANFA4
+    PlayFanfare SEQ_FANFA4
     GetPlayerGender VAR_RESULT
-    GoToIfEq VAR_RESULT, GENDER_MALE, _00EE
-    GoTo _00F9
+    GoToIfEq VAR_RESULT, GENDER_MALE, ContestHallLobby_PlayerObtainedATuxedo
+    GoTo ContestHallLobby_PlayerObtainedADress
     End
 
-_00EE:
-    Message 8
-    GoTo _0104
+ContestHallLobby_PlayerObtainedATuxedo:
+    Message ContestHallLobby_Text_PlayerObtainedATuxedo
+    GoTo ContestHallLobby_MomLeave
     End
 
-_00F9:
-    Message 9
-    GoTo _0104
+ContestHallLobby_PlayerObtainedADress:
+    Message ContestHallLobby_Text_PlayerObtainedADress
+    GoTo ContestHallLobby_MomLeave
     End
 
-_0104:
-    WaitSound
-    Message 10
+ContestHallLobby_MomLeave:
+    WaitFanfare
+    Message ContestHallLobby_Text_ImSureItWillLookGoodOnYou
     CloseMessage
     WaitTime 15, VAR_RESULT
-    ApplyMovement LOCALID_PLAYER, _01C8
-    ApplyMovement 5, _01B0
+    ApplyMovement LOCALID_PLAYER, ContestHallLobby_Movement_PlayerWatchMomLeave
+    ApplyMovement LOCALID_MOM, ContestHallLobby_Movement_MomLeave
     WaitMovement
-    PlayFanfare SEQ_SE_DP_KAIDAN2
-    RemoveObject 5
-    WaitFanfare SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2
+    RemoveObject LOCALID_MOM
+    WaitSE SEQ_SE_DP_KAIDAN2
     SetFlag FLAG_CONTEST_HALL_VISITED
     ReleaseAll
     End
 
     .balign 4, 0
-_0138:
+ContestHallLobby_Movement_PlayerWalkNorth:
     WalkNormalNorth 2
     EndMovement
 
     .balign 4, 0
-_0140:
+ContestHallLobby_Movement_KeiraNoticePlayer:
     WalkOnSpotNormalSouth
     EmoteExclamationMark
     EndMovement
 
     .balign 4, 0
-_014C:
+ContestHallLobby_Movement_KeiraWalkOnSpotWestSouth:
     WalkOnSpotFastWest
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_0158:
+ContestHallLobby_Movement_KeiraFaceMom:
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_0160:
+ContestHallLobby_Movement_KeiraLeave:
     WalkNormalEast 3
     WalkNormalNorth 3
     WalkNormalEast 3
@@ -116,12 +117,12 @@ _0160:
     EndMovement
 
     .balign 4, 0
-_0174:
+ContestHallLobby_Movement_MomWalkOnSpotSouth:
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_017C:
+ContestHallLobby_Movement_MomFaceKeira:
     Delay4
     WalkOnSpotNormalEast
     EndMovement
@@ -131,7 +132,7 @@ ContestHallLobby_UnusedMovement:
     EndMovement
 
     .balign 4, 0
-_0190:
+ContestHallLobby_Movement_MomFacePlayer:
     WalkOnSpotNormalSouth
     EndMovement
 
@@ -148,7 +149,7 @@ ContestHallLobby_UnusedMovement4:
     EndMovement
 
     .balign 4, 0
-_01B0:
+ContestHallLobby_Movement_MomLeave:
     WalkNormalWest
     WalkNormalSouth 2
     WalkNormalEast
@@ -157,7 +158,7 @@ _01B0:
     EndMovement
 
     .balign 4, 0
-_01C8:
+ContestHallLobby_Movement_PlayerWatchMomLeave:
     Delay4
     WalkOnSpotNormalWest
     Delay8
@@ -165,20 +166,20 @@ _01C8:
     EndMovement
 
     .balign 4, 0
-_01DC:
+ContestHallLobby_Movement_PlayerWatchKeiraLeave:
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_01E4:
+ContestHallLobby_Movement_PlayerFaceMom:
     WalkOnSpotNormalNorth
     EndMovement
 
-_01EC:
-    PlayFanfare SEQ_SE_CONFIRM
+ContestHallLobby_Frame0:
+    PlaySE SEQ_SE_CONFIRM
     LockAll
-    ScrCmd_12F 0, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _031D
+    ContestPhotoHasData 0, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, ContestHallLobby_ItsAPhotoFrame
     FadeScreenOut
     WaitFadeScreen
     ScrCmd_0A8 0, VAR_RESULT
@@ -188,11 +189,11 @@ _01EC:
     ReleaseAll
     End
 
-_0229:
-    PlayFanfare SEQ_SE_CONFIRM
+ContestHallLobby_Frame1:
+    PlaySE SEQ_SE_CONFIRM
     LockAll
-    ScrCmd_12F 1, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _031D
+    ContestPhotoHasData 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, ContestHallLobby_ItsAPhotoFrame
     FadeScreenOut
     WaitFadeScreen
     ScrCmd_0A8 1, VAR_RESULT
@@ -202,11 +203,11 @@ _0229:
     ReleaseAll
     End
 
-_0266:
-    PlayFanfare SEQ_SE_CONFIRM
+ContestHallLobby_Frame2:
+    PlaySE SEQ_SE_CONFIRM
     LockAll
-    ScrCmd_12F 2, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _031D
+    ContestPhotoHasData 2, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, ContestHallLobby_ItsAPhotoFrame
     FadeScreenOut
     WaitFadeScreen
     ScrCmd_0A8 2, VAR_RESULT
@@ -216,11 +217,11 @@ _0266:
     ReleaseAll
     End
 
-_02A3:
-    PlayFanfare SEQ_SE_CONFIRM
+ContestHallLobby_Frame3:
+    PlaySE SEQ_SE_CONFIRM
     LockAll
-    ScrCmd_12F 3, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _031D
+    ContestPhotoHasData 3, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, ContestHallLobby_ItsAPhotoFrame
     FadeScreenOut
     WaitFadeScreen
     ScrCmd_0A8 3, VAR_RESULT
@@ -230,11 +231,11 @@ _02A3:
     ReleaseAll
     End
 
-_02E0:
-    PlayFanfare SEQ_SE_CONFIRM
+ContestHallLobby_Frame4:
+    PlaySE SEQ_SE_CONFIRM
     LockAll
-    ScrCmd_12F 4, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _031D
+    ContestPhotoHasData 4, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, ContestHallLobby_ItsAPhotoFrame
     FadeScreenOut
     WaitFadeScreen
     ScrCmd_0A8 4, VAR_RESULT
@@ -244,225 +245,225 @@ _02E0:
     ReleaseAll
     End
 
-_031D:
-    Message 24
-    WaitABXPadPress
+ContestHallLobby_ItsAPhotoFrame:
+    Message ContestHallLobby_Text_ItsAPhotoFrame
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0328:
-    NPCMessage 21
+ContestHallLobby_AceTrainerF:
+    NPCMessage ContestHallLobby_Text_APokemonFedPoffinsDoesBetter
     End
 
-_033B:
-    NPCMessage 22
+ContestHallLobby_Clown:
+    NPCMessage ContestHallLobby_Text_AContestHasVisualDanceAndActingParts
     End
 
-_034E:
-    NPCMessage 23
+ContestHallLobby_SchoolKidF:
+    NPCMessage ContestHallLobby_Text_TheyPutUpPhotosOfTheWinners
     End
 
-_0361:
-    PlayFanfare SEQ_SE_CONFIRM
+ContestHallLobby_RichBoy:
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfUnset FLAG_UNK_0x0159, _03D3
-    GoToIfUnset FLAG_UNK_0x015A, _038A
-_037F:
-    Message 18
-    WaitABXPadPress
+    GoToIfUnset FLAG_TALKED_TO_CONTEST_HALL_LOBBY_RICH_BOY, ContestHallLobby_RichBoyFirstInteraction
+    GoToIfUnset FLAG_RECEIVED_CONTEST_HALL_LOBBY_MILD_POFFIN, ContestHallLobby_HasNotReceivedPoffinYet
+ContestHallLobby_ItTakesPracticeToWinContests:
+    Message ContestHallLobby_Text_ItTakesPracticeToWinContests
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_038A:
+ContestHallLobby_HasNotReceivedPoffinYet:
     CheckItem ITEM_POFFIN_CASE, 1, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _037F
-    Message 13
+    GoToIfEq VAR_RESULT, FALSE, ContestHallLobby_ItTakesPracticeToWinContests
+    Message ContestHallLobby_Text_YupYouHaveAPoffinCase
     CheckHasEmptyPoffinCaseSlot VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _03C8
-    Call _0437
-    SetFlag FLAG_UNK_0x015A
-    Message 17
-    WaitABXPadPress
+    GoToIfEq VAR_RESULT, FALSE, ContestHallLobby_PoffinCaseIsFull
+    Call ContestHallLobby_GiveMildPoffin
+    SetFlag FLAG_RECEIVED_CONTEST_HALL_LOBBY_MILD_POFFIN
+    Message ContestHallLobby_Text_FeedThatPoffinToAPokemon2
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_03C8:
-    Message 19
-    WaitABXPadPress
+ContestHallLobby_PoffinCaseIsFull:
+    Message ContestHallLobby_Text_YourPoffinCasesFull
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_03D3:
-    SetFlag FLAG_UNK_0x0159
+ContestHallLobby_RichBoyFirstInteraction:
+    SetFlag FLAG_TALKED_TO_CONTEST_HALL_LOBBY_RICH_BOY
     CheckItem ITEM_POFFIN_CASE, 1, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _0428
-    Message 13
+    GoToIfEq VAR_RESULT, FALSE, ContestHallLobby_IDontSeeAPoffinCase
+    Message ContestHallLobby_Text_YupYouHaveAPoffinCase
     CheckHasEmptyPoffinCaseSlot VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _0419
-    Call _0437
-    SetFlag FLAG_UNK_0x015A
-    Message 16
+    GoToIfEq VAR_RESULT, FALSE, ContestHallLobby_IllGiveItToYouAnotherTime
+    Call ContestHallLobby_GiveMildPoffin
+    SetFlag FLAG_RECEIVED_CONTEST_HALL_LOBBY_MILD_POFFIN
+    Message ContestHallLobby_Text_FeedThatPoffinToAPokemon
     CloseMessage
-    Call _0458
+    Call ContestHallLobby_RichBoyWalkAwayFromCounter
     ReleaseAll
     End
 
-_0419:
-    Message 20
+ContestHallLobby_IllGiveItToYouAnotherTime:
+    Message ContestHallLobby_Text_IllGiveItToYouAnotherTime
     CloseMessage
-    Call _0458
+    Call ContestHallLobby_RichBoyWalkAwayFromCounter
     ReleaseAll
     End
 
-_0428:
-    Message 12
+ContestHallLobby_IDontSeeAPoffinCase:
+    Message ContestHallLobby_Text_IDontSeeAPoffinCase
     CloseMessage
-    Call _0458
+    Call ContestHallLobby_RichBoyWalkAwayFromCounter
     ReleaseAll
     End
 
-_0437:
+ContestHallLobby_GiveMildPoffin:
     GivePoffin VAR_RESULT, 60, 30, 30, 30, 30, 40
-    PlaySound SEQ_FANFA4
+    PlayFanfare SEQ_FANFA4
     BufferPlayerName 0
-    Message 14
-    WaitSound
-    Message 15
+    Message ContestHallLobby_Text_PlayerReceivedAMildPoffin
+    WaitFanfare
+    Message ContestHallLobby_Text_TheMildPoffinWasPutAway
     Return
 
-_0458:
+ContestHallLobby_RichBoyWalkAwayFromCounter:
     GetPlayerDir VAR_RESULT
-    GoToIfEq VAR_RESULT, 2, _0475
-    ApplyMovement 9, _0484
+    GoToIfEq VAR_RESULT, DIR_WEST, ContestHallLobby_RichBoyWalkAwayFromCounterWest
+    ApplyMovement CONTEST_HALL_LOBBY_RICH_BOY, ContestHallLobby_Movement_RichBoyWalkAwayFromCounterNorthSouthEast
     WaitMovement
     Return
 
-_0475:
-    ApplyMovement 9, _0490
+ContestHallLobby_RichBoyWalkAwayFromCounterWest:
+    ApplyMovement CONTEST_HALL_LOBBY_RICH_BOY, ContestHallLobby_Movement_RichBoyWalkAwayFromCounterWest
     WaitMovement
     Return
 
     .balign 4, 0
-_0484:
+ContestHallLobby_Movement_RichBoyWalkAwayFromCounterNorthSouthEast:
     WalkNormalEast 8
     WalkOnSpotFastSouth
     EndMovement
 
     .balign 4, 0
-_0490:
+ContestHallLobby_Movement_RichBoyWalkAwayFromCounterWest:
     WalkNormalSouth
     WalkNormalEast 8
     WalkNormalNorth
     WalkOnSpotFastSouth
     EndMovement
 
-_04A4:
-    PlayFanfare SEQ_SE_CONFIRM
+ContestHallLobby_Fantina:
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     WaitTime 30, VAR_RESULT
     GetPlayerDir VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _052B
-    GoToIfEq VAR_RESULT, 1, _053D
-    GoToIfEq VAR_RESULT, 2, _054F
-    GoToIfEq VAR_RESULT, 3, _0561
+    GoToIfEq VAR_RESULT, DIR_NORTH, ContestHallLobby_FantinaSpinNorth
+    GoToIfEq VAR_RESULT, DIR_SOUTH, ContestHallLobby_FantinaSpinSouth
+    GoToIfEq VAR_RESULT, DIR_WEST, ContestHallLobby_FantinaSpinWest
+    GoToIfEq VAR_RESULT, DIR_EAST, ContestHallLobby_FantinaSpinEast
     End
 
-_04EC:
-    Message 11
+ContestHallLobby_FantinaLeave:
+    Message ContestHallLobby_Text_IWaitForYouAtTheGym
     CloseMessage
     GetPlayerDir VAR_0x8004
-    GoToIfEq VAR_0x8004, 1, _0573
-    GoToIfEq VAR_0x8004, 0, _058D
-    GoToIfEq VAR_0x8004, 2, _05A7
-    GoToIfEq VAR_0x8004, 3, _05B9
+    GoToIfEq VAR_0x8004, DIR_SOUTH, ContestHallLobby_FantinaLeaveSouth
+    GoToIfEq VAR_0x8004, DIR_NORTH, ContestHallLobby_FantinaLeaveNorth
+    GoToIfEq VAR_0x8004, DIR_WEST, ContestHallLobby_FantinaLeaveWest
+    GoToIfEq VAR_0x8004, DIR_EAST, ContestHallLobby_FantinaLeaveEast
     End
 
-_052B:
-    ApplyMovement 10, _0624
+ContestHallLobby_FantinaSpinNorth:
+    ApplyMovement LOCALID_FANTINA, ContestHallLobby_Movement_FantinaSpinNorth
     WaitMovement
-    GoTo _04EC
+    GoTo ContestHallLobby_FantinaLeave
     End
 
-_053D:
-    ApplyMovement 10, _0638
+ContestHallLobby_FantinaSpinSouth:
+    ApplyMovement LOCALID_FANTINA, ContestHallLobby_Movement_FantinaSpinSouth
     WaitMovement
-    GoTo _04EC
+    GoTo ContestHallLobby_FantinaLeave
     End
 
-_054F:
-    ApplyMovement 10, _064C
+ContestHallLobby_FantinaSpinWest:
+    ApplyMovement LOCALID_FANTINA, ContestHallLobby_Movement_FantinaSpinWest
     WaitMovement
-    GoTo _04EC
+    GoTo ContestHallLobby_FantinaLeave
     End
 
-_0561:
-    ApplyMovement 10, _0660
+ContestHallLobby_FantinaSpinEast:
+    ApplyMovement LOCALID_FANTINA, ContestHallLobby_Movement_FantinaSpinEast
     WaitMovement
-    GoTo _04EC
+    GoTo ContestHallLobby_FantinaLeave
     End
 
-_0573:
-    ApplyMovement 10, _05E8
-    ApplyMovement LOCALID_PLAYER, _0604
+ContestHallLobby_FantinaLeaveSouth:
+    ApplyMovement LOCALID_FANTINA, ContestHallLobby_Movement_FantinaLeaveNorthSouthWest
+    ApplyMovement LOCALID_PLAYER, ContestHallLobby_Movement_PlayerWatchFantinaLeaveNorthSouth
     WaitMovement
-    GoTo _05D3
+    GoTo ContestHallLobby_RemoveFantina
     End
 
-_058D:
-    ApplyMovement 10, _05E8
-    ApplyMovement LOCALID_PLAYER, _0604
+ContestHallLobby_FantinaLeaveNorth:
+    ApplyMovement LOCALID_FANTINA, ContestHallLobby_Movement_FantinaLeaveNorthSouthWest
+    ApplyMovement LOCALID_PLAYER, ContestHallLobby_Movement_PlayerWatchFantinaLeaveNorthSouth
     WaitMovement
-    GoTo _05D3
+    GoTo ContestHallLobby_RemoveFantina
     End
 
-_05A7:
-    ApplyMovement 10, _05E8
+ContestHallLobby_FantinaLeaveWest:
+    ApplyMovement LOCALID_FANTINA, ContestHallLobby_Movement_FantinaLeaveNorthSouthWest
     WaitMovement
-    GoTo _05D3
+    GoTo ContestHallLobby_RemoveFantina
     End
 
-_05B9:
-    ApplyMovement 10, _05F4
-    ApplyMovement LOCALID_PLAYER, _0610
+ContestHallLobby_FantinaLeaveEast:
+    ApplyMovement LOCALID_FANTINA, ContestHallLobby_Movement_FantinaLeaveEast
+    ApplyMovement LOCALID_PLAYER, ContestHallLobby_Movement_PlayerWatchFantinaLeaveEast
     WaitMovement
-    GoTo _05D3
+    GoTo ContestHallLobby_RemoveFantina
     End
 
-_05D3:
-    PlayFanfare SEQ_SE_DP_KAIDAN2
-    RemoveObject 10
-    WaitFanfare SEQ_SE_DP_KAIDAN2
-    SetFlag FLAG_UNK_0x018D
+ContestHallLobby_RemoveFantina:
+    PlaySE SEQ_SE_DP_KAIDAN2
+    RemoveObject LOCALID_FANTINA
+    WaitSE SEQ_SE_DP_KAIDAN2
+    SetFlag FLAG_HIDE_HEARTHOME_CITY_GYM_GUIDE
     ReleaseAll
     End
 
     .balign 4, 0
-_05E8:
+ContestHallLobby_Movement_FantinaLeaveNorthSouthWest:
     WalkNormalWest 6
     WalkNormalSouth 4
     EndMovement
 
     .balign 4, 0
-_05F4:
+ContestHallLobby_Movement_FantinaLeaveEast:
     WalkNormalNorth
     WalkNormalWest 6
     WalkNormalSouth 5
     EndMovement
 
     .balign 4, 0
-_0604:
+ContestHallLobby_Movement_PlayerWatchFantinaLeaveNorthSouth:
     Delay8
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_0610:
+ContestHallLobby_Movement_PlayerWatchFantinaLeaveEast:
     Delay8 2
     WalkOnSpotNormalNorth
     Delay4
@@ -470,7 +471,7 @@ _0610:
     EndMovement
 
     .balign 4, 0
-_0624:
+ContestHallLobby_Movement_FantinaSpinNorth:
     FaceWest 4
     FaceNorth 4
     FaceEast 4
@@ -478,7 +479,7 @@ _0624:
     EndMovement
 
     .balign 4, 0
-_0638:
+ContestHallLobby_Movement_FantinaSpinSouth:
     FaceEast 4
     FaceSouth 4
     FaceWest 4
@@ -486,7 +487,7 @@ _0638:
     EndMovement
 
     .balign 4, 0
-_064C:
+ContestHallLobby_Movement_FantinaSpinWest:
     FaceSouth 4
     FaceWest 4
     FaceNorth 4
@@ -494,7 +495,7 @@ _064C:
     EndMovement
 
     .balign 4, 0
-_0660:
+ContestHallLobby_Movement_FantinaSpinEast:
     FaceNorth 4
     FaceEast 4
     FaceSouth 4

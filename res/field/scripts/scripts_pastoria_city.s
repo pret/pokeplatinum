@@ -60,25 +60,25 @@ _00EB:
     End
 
 _00FE:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfBadgeAcquired BADGE_ID_FEN, _0124
     Message 33
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _0124:
     Message 34
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _012F:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x0128, _0189
@@ -97,7 +97,7 @@ _012F:
 
 _0189:
     Message 38
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -131,11 +131,11 @@ _01E5:
     End
 
 PastoriaGity_GalacticGrunt:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     GoToIfSet FLAG_UNK_0x0102, _0220
     Message PastoriaCity_Text_GalacticGruntPackageHasntArrived
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -183,7 +183,7 @@ _02B2:
     End
 
 _02D2:
-    PlayFanfare SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2
     RemoveObject PASTORIA_CITY_GRUNT_M
     SetFlag FLAG_UNK_0x0103
     ReleaseAll
@@ -320,7 +320,7 @@ _0427:
     End
 
 _043E:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfGe VAR_PASTORIA_STATE, 5, _04AE
@@ -349,7 +349,7 @@ _0498:
     End
 
 _04A6:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -358,7 +358,7 @@ _04AE:
     BufferRivalName 0
     BufferPlayerName 1
     Message 27
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -651,10 +651,10 @@ _086F:
     Message 18
     ApplyMovement PASTORIA_CITY_RIVAL, _0AF0
     WaitMovement
-    PlayFanfare SEQ_SE_DP_FW291
+    PlaySE SEQ_SE_DP_FW291
     WaitTime 4, VAR_RESULT
     Message 19
-    WaitFanfare SEQ_SE_CONFIRM
+    WaitSE SEQ_SE_CONFIRM
     ScrCmd_29F 1
     CloseMessage
     ClearFlag FLAG_UNK_0x020C
@@ -702,7 +702,7 @@ _091C:
     BufferRivalName 0
     BufferPlayerName 1
     Message 25
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     Return
 
@@ -723,7 +723,7 @@ _099C:
     EndMovement
 
 _09A8:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Call _086F
@@ -962,9 +962,9 @@ _0C22:
     WaitTime 30, VAR_RESULT
     ApplyMovement 28, _0C70
     WaitMovement
-    PlayFanfare SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2
     RemoveObject 28
-    WaitFanfare SEQ_SE_DP_KAIDAN2
+    WaitSE SEQ_SE_DP_KAIDAN2
     ReleaseAll
     End
 

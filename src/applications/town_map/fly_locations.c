@@ -13,6 +13,8 @@
 #include "sprite.h"
 #include "sprite_system.h"
 
+#include "res/graphics/sprite_templates/town_map.h"
+
 enum TownMapFlyLocationShape {
     FLY_LOCATION_SHAPE_1x1_SQUARE = 0,
     FLY_LOCATION_SHAPE_VERTICAL,
@@ -227,7 +229,7 @@ const TownMapFlyLocationDescriptor sFlyLocations[NUM_FLY_LOCATIONS] = {
 TownMapAppFlyLocationsManager *TownMap_LoadFlyLocations(SpriteSystem *spriteSystem, SpriteManager *spriteMan, u8 *unlocked, short count, enum HeapID heapID)
 {
     static const SpriteTemplateFromResourceHeader spriteTemplate = {
-        .resourceHeaderID = 4,
+        .resourceHeaderID = TownMap_Template_FlyDestinationBlocks,
         .x = 0,
         .y = 0,
         .z = 0,
@@ -235,10 +237,6 @@ TownMapAppFlyLocationsManager *TownMap_LoadFlyLocations(SpriteSystem *spriteSyst
         .priority = 10,
         .plttIdx = PLTT_5,
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
-        .dummy18 = 0,
-        .dummy1C = 0,
-        .dummy20 = 0,
-        .dummy24 = 0,
     };
 
     TownMapAppFlyLocationsManager *flyLocationsMan = Heap_Alloc(heapID, sizeof(TownMapAppFlyLocationsManager));

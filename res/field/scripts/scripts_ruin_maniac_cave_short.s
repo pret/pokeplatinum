@@ -11,20 +11,20 @@ _000A:
     End
 
 _0010:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GetUnownFormsSeenCount VAR_RESULT
     GoToIfGe VAR_RESULT, 10, _0034
     Message 0
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _0034:
     Message 1
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

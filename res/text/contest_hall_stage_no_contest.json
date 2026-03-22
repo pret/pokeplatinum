@@ -2,7 +2,7 @@
   "key": 35850,
   "messages": [
     {
-      "id": "pl_msg_00000129_00000",
+      "id": "ContestHallStageNoContest_Text_ForTheVisualJudgingDressUpYourPokemon",
       "en_US": [
         "For the Visual judging, you want to\n",
         "dress up your Pokémon nicely with\f",
@@ -12,7 +12,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000129_00001",
+      "id": "ContestHallStageNoContest_Text_ForTheDanceCompetitionMimicTheLeadDancer",
       "en_US": [
         "For the Dance competition, your\n",
         "Pokémon needs to perfectly mimic\f",
@@ -20,7 +20,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000129_00002",
+      "id": "ContestHallStageNoContest_Text_ForThePerformancePokemonNeedTheRightMoves",
       "en_US": [
         "For the performance aspect of\n",
         "Contests, Pokémon need the right\f",
@@ -33,7 +33,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000129_00003",
+      "id": "ContestHallStageNoContest_Text_AtTheCoolContestPullOffACoolMove",
       "en_US": [
         "At the Cool Contest you gotta pull\n",
         "off a cool move!\f",

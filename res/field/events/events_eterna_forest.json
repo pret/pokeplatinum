@@ -11,7 +11,7 @@
     ],
     "object_events": [
         {
-            "id": "ETERNA_FOREST_CHERYL_0",
+            "id": "LOCALID_CHERYL",
             "graphics_id": "OBJ_EVENT_GFX_CHERYL",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -26,7 +26,7 @@
             "y": 0
         },
         {
-            "id": "ETERNA_FOREST_BUG_CATCHER_1",
+            "id": "LOCALID_BUG_CATCHER",
             "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -41,7 +41,7 @@
             "y": 0
         },
         {
-            "id": "ETERNA_FOREST_BUG_CATCHER_JACK",
+            "id": "LOCALID_BUG_CATCHER_JACK",
             "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -58,7 +58,7 @@
             "y": 0
         },
         {
-            "id": "ETERNA_FOREST_BUG_CATCHER_PHILLIP",
+            "id": "LOCALID_BUG_CATCHER_PHILLIP",
             "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -75,7 +75,7 @@
             "y": 0
         },
         {
-            "id": "ETERNA_FOREST_PSYCHIC_KODY",
+            "id": "LOCALID_PSYCHIC_KODY",
             "graphics_id": "OBJ_EVENT_GFX_PSYCHIC",
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -92,7 +92,7 @@
             "y": 0
         },
         {
-            "id": "ETERNA_FOREST_PSYCHIC_LINDSEY",
+            "id": "LOCALID_PSYCHIC_LINDSEY",
             "graphics_id": "OBJ_EVENT_GFX_PSYCHIC",
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -109,7 +109,7 @@
             "y": 0
         },
         {
-            "id": "ETERNA_FOREST_LASS_BRIANA",
+            "id": "LOCALID_LASS_BRIANA",
             "graphics_id": "OBJ_EVENT_GFX_LASS",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -126,7 +126,7 @@
             "y": 0
         },
         {
-            "id": "ETERNA_FOREST_BUG_CATCHER_DONALD",
+            "id": "LOCALID_BUG_CATCHER_DONALD",
             "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -203,7 +203,7 @@
             "y": 0
         },
         {
-            "id": "ETERNA_FOREST_SIGNBOARD_12",
+            "id": "LOCALID_SIGNBOARD",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -218,7 +218,7 @@
             "y": 0
         },
         {
-            "id": "ETERNA_FOREST_TRAINER_TIPS_SIGNPOST_13",
+            "id": "LOCALID_TRAINER_TIPS_SIGNPOST",
             "graphics_id": "OBJ_EVENT_GFX_TRAINER_TIPS_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -233,7 +233,7 @@
             "y": 0
         },
         {
-            "id": "ETERNA_FOREST_PSYCHIC_ELIJAH",
+            "id": "LOCALID_PSYCHIC_ELIJAH",
             "graphics_id": "OBJ_EVENT_GFX_PSYCHIC",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -250,7 +250,7 @@
             "y": 0
         },
         {
-            "id": "ETERNA_FOREST_PSYCHIC_RACHAEL",
+            "id": "LOCALID_PSYCHIC_RACHAEL",
             "graphics_id": "OBJ_EVENT_GFX_PSYCHIC",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -267,7 +267,7 @@
             "y": 0
         },
         {
-            "id": "ETERNA_FOREST_MOSS_ROCK_16",
+            "id": "LOCALID_MOSS_ROCK",
             "graphics_id": "OBJ_EVENT_GFX_MOSS_ROCK",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -312,7 +312,7 @@
             "y": 0
         },
         {
-            "id": "ETERNA_FOREST_CUT_TREE_19",
+            "id": "LOCALID_CUT_TREE_1",
             "graphics_id": "OBJ_EVENT_GFX_CUT_TREE",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -327,7 +327,7 @@
             "y": 0
         },
         {
-            "id": "ETERNA_FOREST_CUT_TREE_20",
+            "id": "LOCALID_CUT_TREE_2",
             "graphics_id": "OBJ_EVENT_GFX_CUT_TREE",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -342,7 +342,7 @@
             "y": 0
         },
         {
-            "id": "ETERNA_FOREST_CUT_TREE_21",
+            "id": "LOCALID_CUT_TREE_3",
             "graphics_id": "OBJ_EVENT_GFX_CUT_TREE",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -357,7 +357,7 @@
             "y": 0
         },
         {
-            "id": "ETERNA_FOREST_CUT_TREE_22",
+            "id": "LOCALID_CUT_TREE_4",
             "graphics_id": "OBJ_EVENT_GFX_CUT_TREE",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -372,7 +372,7 @@
             "y": 0
         },
         {
-            "id": "ETERNA_FOREST_CUT_TREE_23",
+            "id": "LOCALID_CUT_TREE_5",
             "graphics_id": "OBJ_EVENT_GFX_CUT_TREE",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -387,7 +387,7 @@
             "y": 0
         },
         {
-            "id": "ETERNA_FOREST_GARDENIA_24",
+            "id": "LOCALID_GARDENIA",
             "graphics_id": "OBJ_EVENT_GFX_GARDENIA",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -442,7 +442,7 @@
             "y": 0,
             "width": 2,
             "length": 1,
-            "var": "VAR_UNK_0x40B1",
+            "var": "VAR_ETERNA_FOREST_FOLLOWER_CHERYL_STATE",
             "value": 0
         },
         {
@@ -452,7 +452,7 @@
             "y": 0,
             "width": 2,
             "length": 1,
-            "var": "VAR_UNK_0x40B1",
+            "var": "VAR_ETERNA_FOREST_FOLLOWER_CHERYL_STATE",
             "value": 1
         },
         {
@@ -462,7 +462,7 @@
             "y": 0,
             "width": 1,
             "length": 6,
-            "var": "VAR_UNK_0x40B1",
+            "var": "VAR_ETERNA_FOREST_FOLLOWER_CHERYL_STATE",
             "value": 1
         }
     ]

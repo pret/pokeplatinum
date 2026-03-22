@@ -2,7 +2,7 @@
   "key": 3083,
   "messages": [
     {
-      "id": "pl_msg_00000127_00000",
+      "id": "PoffinHouse_Text_HeresMyAdviceOnCookingPoffins",
       "en_US": [
         "Hi!\n",
         "Let’s get cooking!\r",
@@ -18,7 +18,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000127_00001",
+      "id": "PoffinHouse_Text_HaveYouGotSomeBerries",
       "en_US": [
         "Have you got some Berries?\r",
         "To make delicious Poffins, the key\n",
@@ -28,7 +28,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000127_00002",
+      "id": "PoffinHouse_Text_EatingMakesPeopleAndPokemonHappy",
       "en_US": [
         "Eating good food makes people and\n",
         "Pokémon more energetic and happy.\r",
@@ -36,7 +36,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000127_00003",
+      "id": "PoffinHouse_Text_AtTheWiFiClubICanCookWithFriends",
       "en_US": [
         "At the Wi-Fi Club, I can cook up Poffins\n",
         "with my friends!"

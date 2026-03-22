@@ -21,7 +21,7 @@ _002B:
 
 _0035:
     LoadMysteryGift
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     CheckAvailableMysteryGift VAR_RESULT
@@ -50,24 +50,24 @@ _0096:
 _00A2:
     CheckCanReceiveMysteryGift VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _00D8
-    PlaySound SEQ_FANFA4
+    PlayFanfare SEQ_FANFA4
     PrepareMysteryGiftReceivedMsg VAR_0x8005, VAR_0x8006
     MessageFromBank VAR_0x8005, VAR_0x8006
-    WaitSound
+    WaitFanfare
     Message 18
-    WaitABXPadPress
+    WaitButton
     GiveMysteryGift
     GoTo _0103
 
 _00D8:
     PrepareMysterGiftCantReceiveMsg VAR_0x8005, VAR_0x8006
     MessageFromBank VAR_0x8005, VAR_0x8006
-    WaitABXPadPress
+    WaitButton
     GoTo _00F9
 
 _00EE:
     Message 3
-    WaitABXPadPress
+    WaitButton
     GoTo _00F9
 
 _00F9:

@@ -43,7 +43,7 @@
     ],
     "object_events": [
         {
-            "id": "MT_CORONET_1F_NORTH_ROOM_1_ROCK_SMASH_0",
+            "id": "LOCALID_ROCK_SMASH_1",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -58,7 +58,7 @@
             "y": 0
         },
         {
-            "id": "MT_CORONET_1F_NORTH_ROOM_1_ROCK_SMASH_1",
+            "id": "LOCALID_ROCK_SMASH_2",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -73,7 +73,7 @@
             "y": 0
         },
         {
-            "id": "MT_CORONET_1F_NORTH_ROOM_1_ROCK_SMASH_2",
+            "id": "LOCALID_ROCK_SMASH_3",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -88,7 +88,7 @@
             "y": 0
         },
         {
-            "id": "MT_CORONET_1F_NORTH_ROOM_1_ROCK_SMASH_3",
+            "id": "LOCALID_ROCK_SMASH_4",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -103,7 +103,7 @@
             "y": 0
         },
         {
-            "id": "MT_CORONET_1F_NORTH_ROOM_1_ROCK_SMASH_4",
+            "id": "LOCALID_ROCK_SMASH_5",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -118,7 +118,7 @@
             "y": 0
         },
         {
-            "id": "MT_CORONET_1F_NORTH_ROOM_1_ROCK_SMASH_5",
+            "id": "LOCALID_ROCK_SMASH_6",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -133,7 +133,7 @@
             "y": 0
         },
         {
-            "id": "MT_CORONET_1F_NORTH_ROOM_1_ROCK_SMASH_6",
+            "id": "LOCALID_ROCK_SMASH_7",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -148,7 +148,7 @@
             "y": 0
         },
         {
-            "id": "MT_CORONET_1F_NORTH_ROOM_1_STRENGTH_BOULDER_7",
+            "id": "LOCALID_STRENGTH_BOULDER_1",
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -163,7 +163,7 @@
             "y": 0
         },
         {
-            "id": "MT_CORONET_1F_NORTH_ROOM_1_STRENGTH_BOULDER_8",
+            "id": "LOCALID_STRENGTH_BOULDER_2",
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -178,7 +178,7 @@
             "y": 0
         },
         {
-            "id": "MT_CORONET_1F_NORTH_ROOM_1_STRENGTH_BOULDER_9",
+            "id": "LOCALID_STRENGTH_BOULDER_3",
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -193,7 +193,7 @@
             "y": 0
         },
         {
-            "id": "MT_CORONET_1F_NORTH_ROOM_1_STRENGTH_BOULDER_10",
+            "id": "LOCALID_STRENGTH_BOULDER_4",
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -268,11 +268,11 @@
             "y": 0
         },
         {
-            "id": "MT_CORONET_1F_NORTH_ROOM_1_GRUNT_F_15",
+            "id": "LOCALID_GRUNT_F",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0295",
+            "hidden_flag": "FLAG_HIDE_MT_CORONET_1F_NORTH_ROOM_1_GRUNT_F",
             "script": 1,
             "initial_dir": 1,
             "data": [],
@@ -283,11 +283,11 @@
             "y": 0
         },
         {
-            "id": "MT_CORONET_1F_NORTH_ROOM_1_GRUNT_M_16",
+            "id": "LOCALID_GRUNT_M_1",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x029A",
+            "hidden_flag": "FLAG_HIDE_MT_CORONET_1F_NORTH_ROOM_1_GRUNTS_M",
             "script": 2,
             "initial_dir": 2,
             "data": [],
@@ -298,11 +298,11 @@
             "y": 0
         },
         {
-            "id": "MT_CORONET_1F_NORTH_ROOM_1_GRUNT_M_17",
+            "id": "LOCALID_GRUNT_M_2",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x029A",
+            "hidden_flag": "FLAG_HIDE_MT_CORONET_1F_NORTH_ROOM_1_GRUNTS_M",
             "script": 2,
             "initial_dir": 2,
             "data": [],

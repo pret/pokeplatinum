@@ -2,7 +2,7 @@
   "key": 5135,
   "messages": [
     {
-      "id": "pl_msg_00000095_00000",
+      "id": "TeamGalacticEternaBuilding4F_Text_IJupiterWillDealWithYou",
       "en_US": [
         "Eh? Did you want something?\r",
         "How silly of me to even ask.\n",
@@ -12,7 +12,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000095_00001",
+      "id": "TeamGalacticEternaBuilding4F_Text_WellArentYouTough",
       "en_US": [
         "Well, aren’t you tough...?\r",
         "It’s OK, though. Our official Pokémon-\n",
@@ -31,11 +31,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000095_00002",
+      "id": "TeamGalacticEternaBuilding4F_Text_ClefairyPi",
       "en_US": "CLEFAIRY: Pi..."
     },
     {
-      "id": "pl_msg_00000095_00003",
+      "id": "TeamGalacticEternaBuilding4F_Text_WhatIsItWithThisTeamGalactic",
       "en_US": [
         "What is it with this Team Galactic?\r",
         "Why did they take our Pokémon?\n",
@@ -43,7 +43,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000095_00004",
+      "id": "TeamGalacticEternaBuilding4F_Text_ICantThankYouEnoughRightNowButCruiseByMyCycleShopOK",
       "en_US": [
         "I got my CLEFAIRY back, and it’s all\n",
         "thanks to you!\r",
@@ -59,11 +59,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000095_00005",
+      "id": "TeamGalacticEternaBuilding4F_Text_BunearyMyun",
       "en_US": "BUNEARY: Myun..."
     },
     {
-      "id": "pl_msg_00000095_00006",
+      "id": "TeamGalacticEternaBuilding4F_Text_WorkingForWorldPeace",
       "en_US": [
         "Working for world peace.\n",
         "              Team Galactic"

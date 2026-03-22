@@ -2,25 +2,25 @@
   "key": 5163,
   "messages": [
     {
-      "id": "pl_msg_00000101_00000",
+      "id": "Route206CyclingRoadNorthGate_Text_Dummy0",
       "garbage": 46
     },
     {
-      "id": "pl_msg_00000101_00001",
+      "id": "Route206CyclingRoadNorthGate_Text_CyclingRoadIsOnlyForBicycles",
       "en_US": [
         "Cycling Road is only for Bicycles!\r",
         "Please get on your Bicycle!\r"
       ]
     },
     {
-      "id": "pl_msg_00000101_00002",
+      "id": "Route206CyclingRoadNorthGate_Text_LearnHowToShiftGearsAndYoullBeAbleToRideAnywhere",
       "en_US": [
         "Learn how to shift gears, and you’ll\n",
         "be able to ride anywhere."
       ]
     },
     {
-      "id": "pl_msg_00000101_00003",
+      "id": "Route206CyclingRoadNorthGate_Text_PlayerLetMeAskYouHowManyPokemonHaveYouMet",
       "en_US": [
         "{STRVAR_1 3, 0, 0}, long time, no see!\r",
         "Oh? You look puzzled.\n",
@@ -35,7 +35,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000101_00004",
+      "id": "Route206CyclingRoadNorthGate_Text_PlayerLetMeAskYouHowManyPokemonHaveYouMet2",
       "en_US": [
         "{STRVAR_1 3, 0, 0}, long time, no see!\r",
         "Oh? You look puzzled.\n",
@@ -50,7 +50,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000101_00005",
+      "id": "Route206CyclingRoadNorthGate_Text_ProfessorRowanShouldBeDelightedHereIsSomethingForYou",
       "en_US": [
         "Oh, my!\n",
         "You’ve met {STRVAR_1 52, 1, 0} Pokémon!\r",
@@ -60,7 +60,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000101_00006",
+      "id": "Route206CyclingRoadNorthGate_Text_APokemonHoldingAnExpShareWillGetSomeOfTheExpPointsFromBattle",
       "en_US": [
         "A Pokémon holding an Exp. Share will get\n",
         "some of the Exp. Points from battle.\r",
@@ -75,7 +75,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000101_00007",
+      "id": "Route206CyclingRoadNorthGate_Text_YouveGotToFindAtLeast35",
       "en_US": [
         "You’ve met only {STRVAR_1 52, 1, 0} Pokémon?\r",
         "Hmm...\n",

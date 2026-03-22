@@ -8,7 +8,7 @@
     ScriptEntryEnd
 
 _000E:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     SetVar VAR_MAP_LOCAL_1, 19
@@ -36,14 +36,14 @@ _0039:
     AddItem VAR_0x8000, 1, VAR_RESULT
     SubtractCoins VAR_0x8001
     UpdateCoinDisplay
-    PlayFanfare SEQ_SE_DP_REGI
-    WaitFanfare SEQ_SE_DP_REGI
+    PlaySE SEQ_SE_DP_REGI
+    WaitSE SEQ_SE_DP_REGI
     GoTo _0039
     End
 
 _00D8:
     Message 7
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     HideCoins
     ReleaseAll
@@ -94,7 +94,7 @@ _016C:
     Return
 
 _017C:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x00C4, _01AF
@@ -155,7 +155,7 @@ _0266:
     End
 
 _0276:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

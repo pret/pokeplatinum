@@ -25,7 +25,7 @@ PoketchCo3F_ExpertF:
     End
 
 PoketchCo3F_PCSouthWest:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message PoketchCo3F_Text_ThereAreDescriptionsOfPoketchApps1
@@ -117,7 +117,7 @@ PoketchCo3F_PCSouthWestReturn:
     Return
 
 PoketchCo3F_PCSouthMiddle:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message PoketchCo3F_Text_ThereAreDescriptionsOfPoketchApps2
@@ -221,7 +221,7 @@ PoketchCo3F_PCSouthMiddleReturn:
     Return
 
 PoketchCo3F_PCSouthEast:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message PoketchCo3F_Text_ThereAreDescriptionsOfPoketchApps3
@@ -313,7 +313,7 @@ PoketchCo3F_PCSouthEastReturn:
     Return
 
 PoketchCo3F_PCNorthWest:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message PoketchCo3F_Text_ThereAreDescriptionsOfPoketchApps4

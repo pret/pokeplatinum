@@ -35,8 +35,8 @@ _006B:
 
 _0079:
     LockAll
-    PlayFanfare SEQ_SE_CONFIRM
-    WaitFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
+    WaitSE SEQ_SE_CONFIRM
     Message 0
     CloseMessage
     SetFlag FLAG_MAP_LOCAL
@@ -51,7 +51,7 @@ _00BC:
     SetFlag FLAG_UNK_0x0241
     GoToIfEq VAR_UNK_0x40F8, 2, _00E3
     Message 3
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

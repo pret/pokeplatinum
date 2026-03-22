@@ -2,7 +2,7 @@
   "key": 25614,
   "messages": [
     {
-      "id": "pl_msg_00000231_00000",
+      "id": "MtCoronet2F_Text_ObserveIfYouWillThatHole",
       "en_US": [
         "Looker: Observe, if you will, that hole.\r",
         "There was once a cave painting that had\n",
@@ -16,7 +16,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000231_00001",
+      "id": "MtCoronet2F_Text_AreYouTrainerEnoughToAdvanceShowMeIfYouWill",
       "en_US": [
         "There is but one cause!\n",
         "Team Galactic’s Cyrus!\r",
@@ -27,7 +27,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000231_00002",
+      "id": "MtCoronet2F_Text_YouAreFarSuperiorToMeAllICanDoNowIsGiveYouThis",
       "en_US": [
         "...\n",
         "...\r",
@@ -46,21 +46,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000231_00003",
+      "id": "MtCoronet2F_Text_PleaseYouMustStopTeamGalactic",
       "en_US": [
         "Looker: Please!\n",
         "You must stop Team Galactic!"
       ]
     },
     {
-      "id": "pl_msg_00000231_00004",
+      "id": "MtCoronet2F_Text_YourBagItIsFull",
       "en_US": [
         "Your Bag, it is full?\n",
         "Are you prepared for every occasion?"
       ]
     },
     {
-      "id": "pl_msg_00000231_00005",
+      "id": "MtCoronet2F_Text_PleaseStopTeamGalacticAllICanDoNowIsGiveYouThis",
       "en_US": [
         "Looker: Please, stop Team Galactic!\n",
         "For only you are able!\r",
@@ -70,14 +70,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000231_00006",
+      "id": "MtCoronet2F_Text_ThereAppearsToBeACavePaintingFromAnAncientTime",
       "en_US": [
         "There appears to be a cave painting\n",
         "from an ancient time..."
       ]
     },
     {
-      "id": "pl_msg_00000231_00007",
+      "id": "MtCoronet2F_Text_ShardsAreAllThatRemainOfTheAncientCavePainting",
       "en_US": [
         "Shards are all that remain of the\n",
         "ancient cave painting..."

@@ -7,7 +7,7 @@
     ScriptEntryEnd
 
 OreburghCityNorthwestHouse3F_Lass:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_RECEIVED_OREBURGH_CITY_NORTHWEST_HOUSE_3F_HARD_STONE, OreburghCityNorthwestHouse3F_ThatItemIntensifiesThePowerOfRockTypeMoves
@@ -25,7 +25,7 @@ OreburghCityNorthwestHouse3F_Lass:
 OreburghCityNorthwestHouse3F_ThatItemIntensifiesThePowerOfRockTypeMoves:
     BufferItemName 0, ITEM_HARD_STONE
     Message OreburghCityNorthwestHouse3F_Text_ThatItemIntensifiesThePowerOfRockTypeMoves
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

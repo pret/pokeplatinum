@@ -6,7 +6,7 @@
     InitScriptEntryEnd
 
 InitScriptFrameTable:
-    InitScriptGoToIfEqual VAR_UNK_0x4111, 1, 2
+    InitScriptGoToIfEqual VAR_OLD_CHATEAU_BACK_MIDDLE_EAST_ROOM_TWIN_STATE, 1, 2
     InitScriptFrameTableEnd
 
     InitScriptEnd

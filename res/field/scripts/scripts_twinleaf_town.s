@@ -33,7 +33,7 @@ TwinleafTown_SetPlayerHouseState5:
     Return
 
 TwinleafTown_Guitarist:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_HAS_POKEDEX, TwinleafTown_EveryoneGoesOnAdventures
@@ -42,14 +42,14 @@ TwinleafTown_Guitarist:
     BufferPlayerName 0
     BufferRivalName 1
     Message TwinleafTown_Text_RivalWasLookingForYou2
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 TwinleafTown_EveryoneGoesOnAdventures:
     Message TwinleafTown_Text_EveryoneGoesOnAdventures
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -57,7 +57,7 @@ TwinleafTown_EveryoneGoesOnAdventures:
 TwinleafTown_RivalWentTearingOffOuch:
     BufferRivalName 0
     Message TwinleafTown_Text_RivalWentTearingOffOuch
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -66,7 +66,7 @@ TwinleafTown_RivalWentTearingOff:
     BufferPlayerName 0
     BufferRivalName 1
     Message TwinleafTown_Text_RivalWentTearingOff
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -396,7 +396,7 @@ TwinleafTown_RivalThudTrigger:
     ApplyMovement LOCALID_RIVAL, TwinleafTown_Movement_RivalExitHouse
     ApplyMovement LOCALID_PLAYER, TwinleafTown_Movement_PlayerGetPushedBackByRival
     WaitMovement
-    PlayFanfare SEQ_SE_DP_WALL_HIT2
+    PlaySE SEQ_SE_DP_WALL_HIT2
     Message TwinleafTown_Text_BigThud
     WaitTime 30, VAR_RESULT
     Common_SetRivalBGM
@@ -473,27 +473,27 @@ TwinleafTown_Collector:
     End
 
 TwinleafTown_BreederF:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_HAS_POKEDEX, TwinleafTown_HelpingPutTogetherPokedex
     GoToIfGe VAR_VISITED_LAKE_VERITY_WITH_RIVAL, 1, TwinleafTown_PokemonYouLookGoodTogether
     Message TwinleafTown_Text_WildPokemonAttack
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 TwinleafTown_HelpingPutTogetherPokedex:
     Message TwinleafTown_Text_HelpingPutTogetherPokedex
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 TwinleafTown_PokemonYouLookGoodTogether:
     Message TwinleafTown_Text_PokemonYouLookGoodTogether
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

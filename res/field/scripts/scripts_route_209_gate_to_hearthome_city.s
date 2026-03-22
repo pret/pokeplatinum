@@ -59,9 +59,9 @@ _00CF:
     CallIfEq VAR_0x8005, 7, _01A2
     CallIfEq VAR_0x8005, 8, _01AE
     CallIfEq VAR_0x8005, 9, _01BA
-    PlayFanfare SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2
     RemoveObject 1
-    WaitFanfare SEQ_SE_DP_KAIDAN2
+    WaitSE SEQ_SE_DP_KAIDAN2
     SetVar VAR_HEARTHOME_STATE, 2
     ReleaseAll
     End

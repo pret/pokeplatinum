@@ -17,12 +17,12 @@ EternaGym_InitFeatures:
     End
 
 EternaGym_GymGuide:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfBadgeAcquired BADGE_ID_FOREST, EternaGym_GymGuideAfterBadge
     Message EternaGym_Text_GymGuideBeforeBadge
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -30,19 +30,19 @@ EternaGym_GymGuide:
 EternaGym_GymGuideAfterBadge:
     BufferPlayerName 0
     Message EternaGym_Text_GymGuideAfterBadge
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 EternaGym_GymStatue:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     GoToIfBadgeAcquired BADGE_ID_FOREST, EternaGym_GymStatueAfterBadge
     BufferRivalName 0
     BufferRivalName 1
     Message EternaGym_Text_GymStatueBeforeBadge
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -52,13 +52,13 @@ EternaGym_GymStatueAfterBadge:
     BufferPlayerName 1
     BufferRivalName 2
     Message EternaGym_Text_GymStatueAfterBadge
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 EternaGym_Gardenia:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfBadgeAcquired BADGE_ID_FOREST, EternaGym_Gardenia_AlreadyHaveForestbadge
@@ -71,8 +71,8 @@ EternaGym_Gardenia:
     Message EternaGym_Text_BeatGardenia
     BufferPlayerName 0
     Message EternaGym_Text_GardeniaReceiveForestBadge
-    PlaySound SEQ_BADGE
-    WaitSound
+    PlayFanfare SEQ_BADGE
+    WaitFanfare
     GiveBadge BADGE_ID_FOREST
     IncrementTrainerScore2 TRAINER_SCORE_EVENT_BADGE_EARNED
     SetTrainerFlag TRAINER_AROMA_LADY_JENNA
@@ -94,7 +94,7 @@ EternaGym_GardeniaTryGiveTM86Again:
     BufferItemName 0, VAR_0x8004
     BufferTMHMMoveName 1, VAR_0x8004
     Message EternaGym_Text_GardeniaExplainGrassKnot
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -108,7 +108,7 @@ EternaGym_GardeniaGiveTM86BagFullAgain:
 EternaGym_Gardenia_AlreadyHaveForestbadge:
     GoToIfUnset FLAG_OBTAINED_GARDENIA_TM86, EternaGym_GardeniaTryGiveTM86Again
     Message EternaGym_Text_GardeniaGymBeaten
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -122,7 +122,7 @@ EternaGym_GardeniaGiveTM86:
     BufferItemName 0, VAR_0x8004
     BufferTMHMMoveName 1, VAR_0x8004
     Message EternaGym_Text_GardeniaExplainGrassKnot
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     AdvanceEternaGymClock
@@ -141,7 +141,7 @@ EternaGym_LostBattle:
     End
 
 EternaGym_LassCaroline:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfGe VAR_ETERNA_GYM_TRAINERS_BEATEN, 1, EternaGym_LassCarolineBeaten
@@ -152,7 +152,7 @@ EternaGym_LassCaroline:
     CheckWonBattle VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, EternaGym_LostBattle
     Message EternaGym_Text_LassCarolineAfterBattle
-    WaitABXPadPress
+    WaitButton
     SetVar VAR_ETERNA_GYM_TRAINERS_BEATEN, 1
     CloseMessage
     ReleaseAll
@@ -161,18 +161,18 @@ EternaGym_LassCaroline:
 
 EternaGym_LassCarolineBeaten:
     Message EternaGym_Text_LassCarolineAfterBattle
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 EternaGym_AromaLadyJenna:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfGe VAR_ETERNA_GYM_TRAINERS_BEATEN, 2, EternaGym_AromaLadyJennaBeaten
     PlayTrainerEncounterBGM TRAINER_AROMA_LADY_JENNA
-    SetVar VAR_0x8007, ETERNA_CITY_GYM_AROMA_LADY_JENNA
+    SetVar VAR_0x8007, LOCALID_AROMA_LADY_JENNA
     Call EternaGym_LookTowardsPlayer
     Message EternaGym_Text_AromaLadyJennaBeforeBattle
     CloseMessage
@@ -180,7 +180,7 @@ EternaGym_AromaLadyJenna:
     CheckWonBattle VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, EternaGym_LostBattle
     Message EternaGym_Text_AromaLadyJennaAfterBattle
-    WaitABXPadPress
+    WaitButton
     SetVar VAR_ETERNA_GYM_TRAINERS_BEATEN, 2
     CloseMessage
     ReleaseAll
@@ -189,18 +189,18 @@ EternaGym_AromaLadyJenna:
 
 EternaGym_AromaLadyJennaBeaten:
     Message EternaGym_Text_AromaLadyJennaAfterBattle
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 EternaGym_AromaLadyAngela:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfGe VAR_ETERNA_GYM_TRAINERS_BEATEN, 3, EternaGym_AromaLadyAngelaBeaten
     PlayTrainerEncounterBGM TRAINER_AROMA_LADY_ANGELA
-    SetVar VAR_0x8007, ETERNA_CITY_GYM_AROMA_LADY_ANGELA
+    SetVar VAR_0x8007, LOCALID_AROMA_LADY_ANGELA
     Call EternaGym_LookTowardsPlayer
     Message EternaGym_Text_AromaLadyAngelaBeforeBattle
     CloseMessage
@@ -208,7 +208,7 @@ EternaGym_AromaLadyAngela:
     CheckWonBattle VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, EternaGym_LostBattle
     Message EternaGym_Text_AromaLadyAngelaAfterBattle
-    WaitABXPadPress
+    WaitButton
     SetVar VAR_ETERNA_GYM_TRAINERS_BEATEN, 3
     CloseMessage
     ReleaseAll
@@ -217,7 +217,7 @@ EternaGym_AromaLadyAngela:
 
 EternaGym_AromaLadyAngelaBeaten:
     Message EternaGym_Text_AromaLadyAngelaAfterBattle
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

@@ -62,6 +62,7 @@
 #include "vars_flags.h"
 
 #include "res/graphics/shop_menu/shop_gra.naix"
+#include "res/graphics/sprite_templates/shop_menu.h"
 #include "res/text/bank/location_names.h"
 #include "res/text/bank/underground_goods.h"
 #include "res/text/bank/unk_0543.h"
@@ -1482,67 +1483,51 @@ static const SpriteResourceDataPaths sShop_SpriteResourcePaths = {
 };
 
 static const SpriteTemplateFromResourceHeader sShop_SpriteTemplates[] = {
-    {
-        .resourceHeaderID = 0,
-        .x = 0xB1,
-        .y = 0x8,
+    [SHOP_SPRITE_SCROLL_ARROW_UP] = {
+        .resourceHeaderID = ShopMenu_Template_ScrollArrow,
+        .x = 177,
+        .y = 8,
         .z = 0,
         .animIdx = 0,
         .priority = 0,
         .plttIdx = 0,
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
-        .dummy18 = 0,
-        .dummy1C = 0,
-        .dummy20 = 0,
-        .dummy24 = 0,
     },
-    {
-        .resourceHeaderID = 0,
-        .x = 0xB1,
-        .y = 0x84,
+    [SHOP_SPRITE_SCROLL_ARROW_DOWN] = {
+        .resourceHeaderID = ShopMenu_Template_ScrollArrow,
+        .x = 177,
+        .y = 132,
         .z = 0,
         .animIdx = 1,
         .priority = 0,
         .plttIdx = 0,
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
-        .dummy18 = 0,
-        .dummy1C = 0,
-        .dummy20 = 0,
-        .dummy24 = 0,
     },
-    {
-        .resourceHeaderID = 1,
-        .x = 0xAC,
-        .y = 0x18,
+    [SHOP_SPRITE_CURSOR] = {
+        .resourceHeaderID = ShopMenu_Template_Cursor,
+        .x = 172,
+        .y = 24,
         .z = 0,
         .animIdx = 0,
         .priority = 0,
         .plttIdx = 0,
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
-        .dummy18 = 0,
-        .dummy1C = 0,
-        .dummy20 = 0,
-        .dummy24 = 0,
     },
-    {
-        .resourceHeaderID = 2,
-        .x = 0x16,
-        .y = 0xAC,
+    [SHOP_SPRITE_ITEM_ICON] = {
+        .resourceHeaderID = ShopMenu_Template_ItemIcon,
+        .x = 22,
+        .y = 172,
         .z = 0,
         .animIdx = 0,
         .priority = 0,
         .plttIdx = 0,
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
-        .dummy18 = 0,
-        .dummy1C = 0,
-        .dummy20 = 0,
-        .dummy24 = 0,
     },
 };
 
 static void Shop_DrawSprites(ShopMenu *shopMenu)
 {
-    SpriteResourceManager_Init(&shopMenu->spriteManager, &sShop_SpriteResourcePaths, 4, HEAP_ID_FIELD2);
+    SpriteResourceManager_Init(&shopMenu->spriteManager, &sShop_SpriteResourcePaths, SHOP_SPRITE_MAX, HEAP_ID_FIELD2);
 
     for (u32 i = 0; i < SHOP_SPRITE_MAX; i++) {
         shopMenu->sprites[i] = SpriteResourceManager_CreateSprite(&shopMenu->spriteManager, &sShop_SpriteTemplates[i]);

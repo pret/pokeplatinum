@@ -12,7 +12,7 @@ FloaromaTownMiddleHouse_PokemonBreederF:
     End
 
 FloaromaTownMiddleHouse_Twin:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_RECEIVED_FLOAROMA_TOWN_MIDDLE_HOUSE_TM88, FloaromaTownMiddleHouse_WhenAPokemonUsesPluckItEatsABerryHeldByItsFoe
@@ -24,7 +24,7 @@ FloaromaTownMiddleHouse_Twin:
 
 FloaromaTownMiddleHouse_OhIGuessIJustLikeWeirdThings:
     Message FloaromaTownMiddleHouse_Text_OhIGuessIJustLikeWeirdThings
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -42,7 +42,7 @@ FloaromaTownMiddleHouse_HeresTheTMForTheMovePluck:
 
 FloaromaTownMiddleHouse_WhenAPokemonUsesPluckItEatsABerryHeldByItsFoe:
     Message FloaromaTownMiddleHouse_Text_WhenAPokemonUsesPluckItEatsABerryHeldByItsFoe
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

@@ -20,7 +20,7 @@
     ScriptEntryEnd
 
 JubilifeTV2FGallery_Hiker:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     SetVar VAR_0x8007, 0
@@ -159,13 +159,13 @@ JubilifeTV2FGallery_CheckDressUpPokemonResult:
     GoToIfEq VAR_0x8005, 0, JubilifeTV2FGallery_OhYouCameOutWithoutDoingAnythingHowDisappointing
     SetVar VAR_MAP_LOCAL_1, 1
     Message JubilifeTV2FGallery_Text_OohNiceWorkOhButItNeedsToHaveATitle
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     GoTo JubilifeTV2FGallery_SetDressUpPhotoTitle
 
 JubilifeTV2FGallery_OhYouSillyThingWheresYourSenseOfAdventure:
     Message JubilifeTV2FGallery_Text_OhYouSillyThingWheresYourSenseOfAdventure
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -190,7 +190,7 @@ JubilifeTV2FGallery_SetDressUpPhotoTitle:
     ApplyMovement LOCALID_HIKER, JubilifeTV2FGallery_Movement_HikerFaceEast
     WaitMovement
     Message JubilifeTV2FGallery_Text_IPutYourPhotoUpRightHere
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ApplyMovement LOCALID_HIKER, JubilifeTV2FGallery_Movement_HikerFaceSouth
     WaitMovement
@@ -199,13 +199,13 @@ JubilifeTV2FGallery_SetDressUpPhotoTitle:
 
 JubilifeTV2FGallery_OhNonNonNonItWillBeForlornWithoutATitle:
     Message JubilifeTV2FGallery_Text_OhNonNonNonItWillBeForlornWithoutATitle
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     GoTo JubilifeTV2FGallery_SetDressUpPhotoTitle
 
 JubilifeTV2FGallery_OhYouCameOutWithoutDoingAnythingHowDisappointing:
     Message JubilifeTV2FGallery_Text_OhYouCameOutWithoutDoingAnythingHowDisappointing
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -285,7 +285,7 @@ JubilifeTV2FGallery_Movement_HikerFaceSouth:
     EndMovement
 
 JubilifeTV2FGallery_Frame0:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     DressUpPhotoHasData 0, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, JubilifeTV2FGallery_ItsAFrameForHoldingAPokemonPortraitPhoto
@@ -299,7 +299,7 @@ JubilifeTV2FGallery_Frame0:
     End
 
 JubilifeTV2FGallery_Frame1:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     DressUpPhotoHasData 1, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, JubilifeTV2FGallery_ItsAFrameForHoldingAPokemonPortraitPhoto
@@ -313,7 +313,7 @@ JubilifeTV2FGallery_Frame1:
     End
 
 JubilifeTV2FGallery_Frame2:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     DressUpPhotoHasData 2, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, JubilifeTV2FGallery_ItsAFrameForHoldingAPokemonPortraitPhoto
@@ -327,7 +327,7 @@ JubilifeTV2FGallery_Frame2:
     End
 
 JubilifeTV2FGallery_Frame3:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     DressUpPhotoHasData 3, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, JubilifeTV2FGallery_ItsAFrameForHoldingAPokemonPortraitPhoto
@@ -341,7 +341,7 @@ JubilifeTV2FGallery_Frame3:
     End
 
 JubilifeTV2FGallery_Frame4:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     DressUpPhotoHasData 4, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, JubilifeTV2FGallery_ItsAFrameForHoldingAPokemonPortraitPhoto
@@ -355,7 +355,7 @@ JubilifeTV2FGallery_Frame4:
     End
 
 JubilifeTV2FGallery_Frame5:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     DressUpPhotoHasData 5, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, JubilifeTV2FGallery_ItsAFrameForHoldingAPokemonPortraitPhoto
@@ -369,7 +369,7 @@ JubilifeTV2FGallery_Frame5:
     End
 
 JubilifeTV2FGallery_Frame6:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     DressUpPhotoHasData 6, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, JubilifeTV2FGallery_ItsAFrameForHoldingAPokemonPortraitPhoto
@@ -383,7 +383,7 @@ JubilifeTV2FGallery_Frame6:
     End
 
 JubilifeTV2FGallery_Frame7:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     DressUpPhotoHasData 7, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, JubilifeTV2FGallery_ItsAFrameForHoldingAPokemonPortraitPhoto
@@ -397,7 +397,7 @@ JubilifeTV2FGallery_Frame7:
     End
 
 JubilifeTV2FGallery_Frame8:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     DressUpPhotoHasData 8, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, JubilifeTV2FGallery_ItsAFrameForHoldingAPokemonPortraitPhoto
@@ -411,7 +411,7 @@ JubilifeTV2FGallery_Frame8:
     End
 
 JubilifeTV2FGallery_Frame9:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     DressUpPhotoHasData 9, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, JubilifeTV2FGallery_ItsAFrameForHoldingAPokemonPortraitPhoto
@@ -425,7 +425,7 @@ JubilifeTV2FGallery_Frame9:
     End
 
 JubilifeTV2FGallery_Frame10:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     DressUpPhotoHasData 10, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, JubilifeTV2FGallery_ItsAFrameForHoldingAPokemonPortraitPhoto
@@ -440,7 +440,7 @@ JubilifeTV2FGallery_Frame10:
 
 JubilifeTV2FGallery_ItsAFrameForHoldingAPokemonPortraitPhoto:
     Message JubilifeTV2FGallery_Text_ItsAFrameForHoldingAPokemonPortraitPhoto
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

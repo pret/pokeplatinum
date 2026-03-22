@@ -18,8 +18,8 @@ _0017:
 
 _0025:
     LockAll
-    PlayFanfare SEQ_SE_CONFIRM
-    WaitFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
+    WaitSE SEQ_SE_CONFIRM
     GoToIfSet FLAG_UNK_0x011A, _0081
     CheckHasAllLegendaryTitansInParty VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _0073
@@ -36,7 +36,7 @@ _0025:
 _0073:
     BufferPlayerName 0
     Message 0
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -59,7 +59,7 @@ _0081:
 
 _00C6:
     Message 3
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

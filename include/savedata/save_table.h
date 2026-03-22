@@ -3,7 +3,6 @@
 
 #include "constants/savedata/save_table.h"
 
-#include "struct_decls/struct_02024440_decl.h"
 #include "struct_decls/struct_020308A0_decl.h"
 #include "struct_defs/struct_0202440C.h"
 #include "struct_defs/struct_0202F264.h"
@@ -12,6 +11,7 @@
 #include "mystery_gift.h"
 #include "pc_boxes.h"
 #include "savedata.h"
+#include "unk_0202EEC0.h"
 
 typedef int (*SaveEntrySizeFunc)(void);
 typedef void (*SaveEntryInitFunc)(void *);
@@ -96,7 +96,7 @@ int SaveData_SaveHallOfFame(SaveData *saveData, HallOfFame *hof);
  * @param recNum        Which recording slot to load.
  * @return Address of the allocated BattleRecording data.
  */
-BattleRecording *SaveData_BattleRecording(SaveData *saveData, enum HeapID heapID, int *resultCode, int recNum);
+BattleRecording *SaveData_GetBattleRecording(SaveData *saveData, enum HeapID heapID, int *resultCode, int recNum);
 
 /**
  * @brief Saves a mirror of the given BattleRecording data into the extended save.

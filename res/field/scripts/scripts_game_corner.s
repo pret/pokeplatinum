@@ -77,7 +77,7 @@ GameCorner_SlotMachine_11:
     GoTo GameCorner_SlotMachine
 
 GameCorner_SlotMachine:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     CheckItem ITEM_COIN_CASE, 1, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, GameCorner_SlotMachine_NoCoinCase
@@ -93,13 +93,13 @@ GameCorner_SlotMachine:
 
 GameCorner_SlotMachine_NoCoinCase:
     Message GameCorner_Text_YouCantPlayIfYouDontHaveACoinCase
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 GameCorner_CoinsClerk:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message GameCorner_Text_WelcomeToTheVeilstoneGameCorner
@@ -114,7 +114,7 @@ GameCorner_CoinsClerk:
 
 GameCorner_CoinsClerk_NoCoinCase:
     Message GameCorner_Text_DidYouWantSomeCoins_NoCoinCase
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -137,15 +137,15 @@ GameCorner_CoinsClerk_OpenCoinBuyMenu:
 GameCorner_CoinsClerk_Buy50Coins:
     GoToIfNotEnoughMoney 1000, GameCorner_CoinsClerk_NotEnoughMoney
     GoToIfCannotAddCoins 50, GameCorner_CoinsClerk_CoinCaseFull
-    PlayFanfare SEQ_SE_DP_REGI
+    PlaySE SEQ_SE_DP_REGI
     AddToGameRecord RECORD_MONEY_SPENT, 1000
     RemoveMoney 1000
     UpdateMoneyDisplay
-    WaitFanfare SEQ_SE_DP_REGI
-    PlayFanfare SEQ_SE_PL_COIN
+    WaitSE SEQ_SE_DP_REGI
+    PlaySE SEQ_SE_PL_COIN
     AddCoins 50
     UpdateCoinDisplay
-    WaitFanfare SEQ_SE_PL_COIN
+    WaitSE SEQ_SE_PL_COIN
     Message GameCorner_Text_DidYouWantSomeCoins_ThankYouVeryMuchHereAreYourCoins
     WaitTime 30, VAR_RESULT
     GoTo GameCorner_CoinsClerk_OpenCoinBuyMenu
@@ -153,22 +153,22 @@ GameCorner_CoinsClerk_Buy50Coins:
 GameCorner_CoinsClerk_Buy500Coins:
     GoToIfNotEnoughMoney 10000, GameCorner_CoinsClerk_NotEnoughMoney
     GoToIfCannotAddCoins 500, GameCorner_CoinsClerk_CoinCaseFull
-    PlayFanfare SEQ_SE_DP_REGI
+    PlaySE SEQ_SE_DP_REGI
     AddToGameRecord RECORD_MONEY_SPENT, 10000
     RemoveMoney 10000
     UpdateMoneyDisplay
-    WaitFanfare SEQ_SE_DP_REGI
-    PlayFanfare SEQ_SE_PL_COIN
+    WaitSE SEQ_SE_DP_REGI
+    PlaySE SEQ_SE_PL_COIN
     AddCoins 500
     UpdateCoinDisplay
-    WaitFanfare SEQ_SE_PL_COIN
+    WaitSE SEQ_SE_PL_COIN
     Message GameCorner_Text_DidYouWantSomeCoins_ThankYouVeryMuchHereAreYourCoins
     WaitTime 30, VAR_RESULT
     GoTo GameCorner_CoinsClerk_OpenCoinBuyMenu
 
 GameCorner_CoinsClerk_NotEnoughMoney:
     Message GameCorner_Text_UmYouDontAppearToHaveEnoughMoney
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     HideCoins
     HideMoney
@@ -177,7 +177,7 @@ GameCorner_CoinsClerk_NotEnoughMoney:
 
 GameCorner_CoinsClerk_CoinCaseFull:
     Message GameCorner_Text_OhYourCoinCaseIsFull
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     HideCoins
     HideMoney
@@ -186,7 +186,7 @@ GameCorner_CoinsClerk_CoinCaseFull:
 
 GameCorner_CoinsClerk_Cancel:
     Message GameCorner_Text_OhYouDontNeedCoinsThen
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     HideCoins
     HideMoney
@@ -215,7 +215,7 @@ GameCorner_CoinsClerk_GiveTM64:
     Common_GiveItemQuantity
     SetFlag FLAG_GAME_CORNER_RECEIVED_TM64
     Message GameCorner_Text_PleaseKeepPlayingTheSlots
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -230,7 +230,7 @@ GameCorner_LadyExplainSlotMachines:
     End
 
 GameCorner_OldMan20Coins:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     CheckItem ITEM_COIN_CASE, 1, VAR_RESULT
@@ -240,30 +240,30 @@ GameCorner_OldMan20Coins:
     SetFlag FLAG_GAME_CORNER_RECEIVED_20_COINS_OLD_MAN
     BufferPlayerName 0
     Message GameCorner_Text_IveBeenWinningATonToday
-    WaitABXPadPress
-    PlayFanfare SEQ_SE_PL_COIN
+    WaitButton
+    PlaySE SEQ_SE_PL_COIN
     AddCoins 20
-    WaitFanfare SEQ_SE_PL_COIN
+    WaitSE SEQ_SE_PL_COIN
     CloseMessage
     ReleaseAll
     End
 
 GameCorner_OldMan20Coins_NoCoinCase:
     Message GameCorner_Text_HeyKidIfYouWantToPlayHereYouNeedACoinCase
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 GameCorner_OldMan20Coins_LineUpClefairy:
     Message GameCorner_Text_ListenWhenClefairyAppears
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 GameCorner_Farmer:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     CheckItem ITEM_COIN_CASE, 1, VAR_RESULT
@@ -273,24 +273,24 @@ GameCorner_Farmer:
     SetFlag FLAG_GAME_CORNER_RECEIVED_50_COINS_FARMER
     BufferPlayerName 0
     Message GameCorner_Text_WooHooClefairyLookYeahahItsACarnival
-    WaitABXPadPress
-    PlayFanfare SEQ_SE_PL_COIN
+    WaitButton
+    PlaySE SEQ_SE_PL_COIN
     AddCoins 50
-    WaitFanfare SEQ_SE_PL_COIN
+    WaitSE SEQ_SE_PL_COIN
     CloseMessage
     ReleaseAll
     End
 
 GameCorner_Farmer_NoCoinCase:
     Message GameCorner_Text_WooHooClefairyLookAtItItsDrivingMeBananas
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 GameCorner_Farmer_CannotAddCoins:
     Message GameCorner_Text_WooHooClefairyItsAdorable
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -323,7 +323,7 @@ GameCorner_SignBonusRounds_GreaterThan999:
     End
 
 GameCorner_Looker:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, GameCorner_Looker_PostStarkMountain
@@ -337,7 +337,7 @@ GameCorner_Looker_PostStarkMountain:
     End
 
 GameCorner_Looker_End:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

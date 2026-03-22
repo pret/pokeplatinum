@@ -8,7 +8,7 @@
 
 #include "field/field_system.h"
 #include "overlay005/ov5_021F8370.h"
-#include "overlay006/ov6_02242AF0.h"
+#include "overlay006/great_marsh_tram.h"
 #include "overlay008/ov8_02249960.h"
 #include "overlay009/ov9_02249960.h"
 

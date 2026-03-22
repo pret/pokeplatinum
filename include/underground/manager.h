@@ -5,6 +5,7 @@
 #include "underground/defs.h"
 #include "underground/text_printer.h"
 
+#include "coordinates.h"
 #include "savedata.h"
 #include "string_gf.h"
 #include "sys_task_manager.h"
@@ -68,7 +69,7 @@ enum MapMarkerAnim {
 
 #define MAX_RADAR_BLIPS 16
 
-typedef Coordinates *(*CoordinatesGetter)(Coordinates *, int);
+typedef CoordinatesU16 *(*GetCoordinatesFunc)(CoordinatesU16 *coordinates, int index);
 
 UndergroundTextPrinter *UndergroundMan_GetCommonTextPrinter(void);
 UndergroundTextPrinter *UndergroundMan_GetCaptureFlagTextPrinter(void);
@@ -83,9 +84,9 @@ BOOL UndergroundMan_CheckForTouchInput(void);
 void UndergroundMan_ProcessTouchInput(int netID, int unused1, void *data, void *unused3);
 void UndergroundMan_ProcessTouchRadarTrapResults(int unused0, int size, void *data, void *unused3);
 void UndergroundMan_ProcessTouchRadarMiningSpotResults(int unused0, int size, void *data, void *unused3);
-int UndergroundMan_CalcCoordsIndexGet(Coordinates *coordinates);
-int UndergroundMan_CalcCoordsIndexInsert(Coordinates *coordinates);
-void UndergroundMan_InitCoordsOrderingState(int orderedArrayLength, CoordinatesGetter coordinatesGetter);
+int UndergroundMan_CalcCoordsIndexGet(CoordinatesU16 *coordinates);
+int UndergroundMan_CalcCoordsIndexInsert(CoordinatesU16 *coordinates);
+void UndergroundMan_InitCoordsOrderingState(int orderedArrayLength, GetCoordinatesFunc getCoordsFunc);
 void UndergroundMan_OpenMenu(void);
 void UndergroundMan_ProgressInteractCooldown(void);
 void UndergroundMan_ProcessInteract(u8 flags);

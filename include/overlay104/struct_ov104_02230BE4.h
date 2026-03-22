@@ -18,7 +18,7 @@ typedef struct {
     int unk_18;
     int unk_1C;
     u8 *unk_20;
-    u8 unk_24;
+    u8 sceneID;
     FieldSystem *fieldSystem;
 } UnkStruct_ov104_02230BE4;
 

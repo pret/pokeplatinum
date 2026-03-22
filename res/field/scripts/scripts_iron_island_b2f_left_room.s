@@ -44,13 +44,13 @@ _0064:
     CallIfUnset FLAG_UNK_0x00E1, _00E9
     CallIfSet FLAG_UNK_0x00E1, _00EE
     BufferPlayerName 0
-    PlaySound SEQ_GONIN
+    PlayFanfare SEQ_GONIN
     Message 1
-    WaitSound
+    WaitFanfare
     SetFlag FLAG_UNK_0x00E1
     SetVar VAR_UNK_0x4092, 1
     Message 2
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     SetVar VAR_PARTNER_TRAINER_ID, TRAINER_RILEY_IRON_ISLAND
     SetHasPartner
@@ -238,15 +238,15 @@ _02F9:
 _031C:
     GetPartyCount VAR_RESULT
     GoToIfEq VAR_RESULT, 6, _0353
-    PlaySound SEQ_FANFA4
-    WaitSound
+    PlayFanfare SEQ_FANFA4
+    WaitFanfare
     Message 12
     GiveEgg SPECIES_RIOLU, SPECIAL_METLOC_NAME_RILEY
     SetFlag FLAG_UNK_0x01E5
     ClearFlag FLAG_UNK_0x00E2
     Call _0371
     Message 15
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     Return
 
@@ -254,7 +254,7 @@ _0353:
     SetFlag FLAG_UNK_0x00E2
     SetVar VAR_UNK_0x4092, 2
     Message 13
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     Return
 
@@ -387,7 +387,7 @@ _0466:
     End
 
 _0468:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x00E2, _0504
@@ -418,14 +418,14 @@ _04E0:
 
 _04EB:
     Message 22
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _04F6:
     AddVar VAR_UNK_0x40E3, 1
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -438,7 +438,7 @@ _0504:
 
 _0513:
     Message 15
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

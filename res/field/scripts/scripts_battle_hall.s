@@ -164,7 +164,7 @@ BattleHall_SetWinstonAsFan:
     Return
 
 BattleHall_SingleAttendant:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     SetVar VAR_MAP_LOCAL_3, 0
@@ -173,7 +173,7 @@ BattleHall_SingleAttendant:
     End
 
 BattleHall_MultiAttendant:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     SetVar VAR_MAP_LOCAL_3, 0
@@ -214,7 +214,7 @@ BattleHall_EndChallenge:
 _0355:
     SetVar VAR_BATTLE_HALL_LOBBY_LOAD_ACTION, 0
     Message BattleHall_Text_HopeToSeeYouAgain
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -395,7 +395,7 @@ BattleHall_WalkIntoCorridor:
     CallIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_SINGLE, BattleHall_WalkToStartSingleBattle
     CallIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_DOUBLE, BattleHall_WalkToStartDoubleBattle
     CallIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI, BattleHall_WalkToStartMultiBattle
-    PlayFanfare SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2
     GoTo BattleHall_SetupAndRunFrontierScript
     End
 
@@ -581,8 +581,8 @@ BattleHall_SaveGame:
     ShowSavingIcon
     TrySaveGame VAR_RESULT
     HideSavingIcon
-    PlayFanfare SEQ_SE_DP_SAVE
-    WaitFanfare SEQ_SE_DP_SAVE
+    PlaySE SEQ_SE_DP_SAVE
+    WaitSE SEQ_SE_DP_SAVE
     Return
 
 BattleHall_DidntSaveBeforeQuit:
@@ -607,8 +607,8 @@ BattleHall_SilverPrintEarned:
     Message BattleHall_Text_YouveEarnedAPrint
     BufferPlayerName 0
     Message BattleHall_Text_SilverPrintAdded
-    PlaySound SEQ_FANFA4
-    WaitSound
+    PlayFanfare SEQ_FANFA4
+    WaitFanfare
     SetVar VAR_BATTLE_HALL_PRINT_STATE, 2
     Return
 
@@ -616,8 +616,8 @@ BattleHall_GoldPrintEarned:
     Message BattleHall_Text_YouveEarnedAPrint
     BufferPlayerName 0
     Message BattleHall_Text_GoldPrintAdded
-    PlaySound SEQ_FANFA4
-    WaitSound
+    PlayFanfare SEQ_FANFA4
+    WaitFanfare
     SetVar VAR_BATTLE_HALL_PRINT_STATE, 4
     Common_CheckAllFrontierGoldPrintsObtained
     Return
@@ -675,7 +675,7 @@ BattleHall_BugCatcher:
     End
 
 BattleHall_RecordKeeper:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfUnset FLAG_SPOKEN_TO_BATTLE_HALL_RECORD_KEEPER, BattleHall_RecordKeeperIntro
@@ -686,9 +686,9 @@ BattleHall_RecordKeeper:
     BufferPlayerName 0
     Message BattleHall_Text_StreakIsPresentlyX
     Message BattleHall_Text_BPRewardForStreak
-    PlaySound SEQ_PL_POINTGET3
+    PlayFanfare SEQ_PL_POINTGET3
     Message BattleHall_Text_PlayerReceivedBP
-    WaitSound
+    WaitFanfare
     GoTo BattleHall_RecordKeeperEnd
     End
 
@@ -717,13 +717,13 @@ BattleHall_RecordKeeperIntro:
     End
 
 BattleHall_RecordKeeperEnd:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 BattleHall_SerenaWinston:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GetPlayerGender VAR_RESULT
@@ -793,13 +793,13 @@ BattleHall_Winston1Species:
     End
 
 BattleHall_WinstonEnd:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 BattleHall_WinstonSerena:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GetPlayerGender VAR_RESULT
@@ -869,13 +869,13 @@ BattleHall_Serena1Species:
     End
 
 BattleHall_SerenaEnd:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 BattleHall_MajorNPC:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     BufferPlayerName 0
@@ -913,7 +913,7 @@ BattleHall_Jasmine:
     End
 
 BattleHall_MajorNPCEnd:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

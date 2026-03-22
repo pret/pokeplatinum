@@ -30,7 +30,7 @@ _004A:
 
 _0058:
     SetVar VAR_UNK_0x40D9, 0
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Call _015D
@@ -39,8 +39,8 @@ _0058:
 
 _0070:
     Message 0
-    PlaySound SEQ_ASA
-    WaitSound
+    PlayFanfare SEQ_ASA
+    WaitFanfare
     HealParty
     Return
 
@@ -117,8 +117,8 @@ _01AC:
     ShowSavingIcon
     TrySaveGame VAR_RESULT
     HideSavingIcon
-    PlayFanfare SEQ_SE_DP_SAVE
-    WaitFanfare SEQ_SE_DP_SAVE
+    PlaySE SEQ_SE_DP_SAVE
+    WaitSE SEQ_SE_DP_SAVE
     FadeScreenOut
     WaitFadeScreen
     CloseMessage

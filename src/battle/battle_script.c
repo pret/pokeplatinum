@@ -31,12 +31,12 @@
 #include "battle/battle_controller_player.h"
 #include "battle/battle_display.h"
 #include "battle/battle_lib.h"
+#include "battle/battle_main.h"
 #include "battle/battle_message.h"
 #include "battle/battle_mon.h"
 #include "battle/battle_system.h"
 #include "battle/btlcmd.h"
 #include "battle/common.h"
-#include "battle/ov16_0223B140.h"
 #include "battle/ov16_02268520.h"
 #include "battle_anim/ov12_02235E94.h"
 #include "battle_anim/struct_ov12_02237728.h"
@@ -2621,10 +2621,10 @@ static BOOL BtlCmd_ShowParty(BattleSystem *battleSys, BattleContext *battleCtx)
             if ((switchingMask & FlagIndex(battler)) == FALSE
                 && (switchingMask & FlagIndex(partner)) == FALSE) {
                 switchingMask |= FlagIndex(battler);
-                BattleController_EmitLinkWaitMessage(battleSys, battler);
+                BattleController_EmitPrintLinkWaitMessage(battleSys, battler);
             }
         } else if ((switchingMask & FlagIndex(battler)) == FALSE) {
-            BattleController_EmitLinkWaitMessage(battleSys, battler);
+            BattleController_EmitPrintLinkWaitMessage(battleSys, battler);
         }
     }
 
@@ -2669,7 +2669,7 @@ static BOOL BtlCmd_WaitMonSelection(BattleSystem *battleSys, BattleContext *batt
 
             if ((battleCtx->battleStatusMask2 & (FlagIndex(battler) << SYSCTL_LINK_WAITING_SHIFT)) == FALSE) {
                 battleCtx->battleStatusMask2 |= (FlagIndex(battler) << SYSCTL_LINK_WAITING_SHIFT);
-                BattleController_EmitLinkWaitMessage(battleSys, battler);
+                BattleController_EmitPrintLinkWaitMessage(battleSys, battler);
             }
         }
     }
@@ -10779,7 +10779,7 @@ static void BattleScript_CatchMonTask(SysTask *task, void *inData)
             ov16_0223B53C(data->battleSys);
             ov16_022686BC(ov16_0223E020(data->battleSys, 0), 0);
             ov16_022686BC(ov16_0223E020(data->battleSys, 1), 0);
-            ov16_02263B20(BattleSystem_GetBattlerData(data->battleSys, 0), 0);
+            ov16_02263B20(BattleSystem_GetBattlerData(data->battleSys, 0), FALSE);
 
             v12.unk_00 = BattleSystem_GetBgConfig(data->battleSys);
             v12.unk_04 = BattleSystem_GetPaletteData(data->battleSys);
@@ -10831,7 +10831,7 @@ static void BattleScript_CatchMonTask(SysTask *task, void *inData)
 
             ov12_0223783C(data->ballRotation);
             PokemonSpriteManager_DeleteAll(monSpriteMan);
-            ov16_02263B20(BattleSystem_GetBattlerData(data->battleSys, 0), 0);
+            ov16_02263B20(BattleSystem_GetBattlerData(data->battleSys, 0), FALSE);
             ov16_0223B53C(data->battleSys);
             ov16_0223B578(data->battleSys);
             Pokemon_BuildSpriteTemplate(&monSpriteTemplate, mon, 2);

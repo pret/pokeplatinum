@@ -6,7 +6,7 @@
     ScriptEntryEnd
 
 TwinleafTownNortheastHouse_Guitarist:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfGe VAR_VISITED_LAKE_VERITY_WITH_RIVAL, 1, TwinleafTownNortheastHouse_IWentOnAnAdventureALongTimeAgo
@@ -15,14 +15,14 @@ TwinleafTownNortheastHouse_Guitarist:
 TwinleafTownNortheastHouse_YoureOffToHangWithRivalAgainRight:
     BufferRivalName 0
     Message TwinleafTownNortheastHouse_Text_YoureOffToHangWithRivalAgainRight
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 TwinleafTownNortheastHouse_IWentOnAnAdventureALongTimeAgo:
     Message TwinleafTownNortheastHouse_Text_IWentOnAnAdventureALongTimeAgo
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

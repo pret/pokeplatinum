@@ -36,7 +36,7 @@ FlowerParadise_RemoveShaymin:
     End
 
 FlowerParadise_Shaymin:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     PlayCry SPECIES_SHAYMIN
@@ -55,7 +55,7 @@ FlowerParadise_Shaymin:
 
 FlowerParadise_ShayminDisappearedAmongTheFlowers:
     Message FlowerParadise_Text_ShayminDisappearedAmongTheFlowers
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ClearFlag FLAG_HIDE_FLOWER_PARADISE_SHAYMIN
     ReleaseAll

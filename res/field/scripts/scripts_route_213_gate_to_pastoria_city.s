@@ -11,7 +11,7 @@ _000A:
     End
 
 _001D:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 1
@@ -27,7 +27,7 @@ _0044:
     End
 
 _004F:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

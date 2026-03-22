@@ -32,6 +32,8 @@
 #include "text.h"
 #include "touch_screen.h"
 
+#include "res/graphics/sprite_templates/town_map.h"
+
 #define TOWN_MAP_RIGHT (1 << 0)
 #define TOWN_MAP_LEFT  (1 << 1)
 #define TOWN_MAP_DOWN  (1 << 2)
@@ -794,9 +796,15 @@ static void ClearBGLayers(TownMapAppData *appData)
     Bg_ScheduleTilemapTransfer(appData->bgConfig, BG_LAYER_SUB_3);
 }
 
+enum {
+    SPRITE_TEMPLATE_ZOOM_BUTTON_SHOCKWAVE = 0,
+    SPRITE_TEMPLATE_CURSOR,
+    SPRITE_TEMPLATE_PLAYER_ICONS,
+};
+
 static const SpriteTemplateFromResourceHeader sTownMapSpriteTemplates[] = {
-    {
-        .resourceHeaderID = 0,
+    [SPRITE_TEMPLATE_ZOOM_BUTTON_SHOCKWAVE] = {
+        .resourceHeaderID = TownMap_Template_ZoomButtonShockwave,
         .x = 0,
         .y = 0,
         .z = 0,
@@ -804,13 +812,9 @@ static const SpriteTemplateFromResourceHeader sTownMapSpriteTemplates[] = {
         .priority = 0,
         .plttIdx = PLTT_0,
         .vramType = NNS_G2D_VRAM_TYPE_2DSUB,
-        .dummy18 = 0,
-        .dummy1C = 0,
-        .dummy20 = 0,
-        .dummy24 = 0,
     },
-    {
-        .resourceHeaderID = 1,
+    [SPRITE_TEMPLATE_CURSOR] = {
+        .resourceHeaderID = TownMap_Template_Cursor,
         .x = 0,
         .y = 0,
         .z = 0,
@@ -818,13 +822,9 @@ static const SpriteTemplateFromResourceHeader sTownMapSpriteTemplates[] = {
         .priority = 0,
         .plttIdx = PLTT_0,
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
-        .dummy18 = 0,
-        .dummy1C = 0,
-        .dummy20 = 0,
-        .dummy24 = 0,
     },
-    {
-        .resourceHeaderID = 2,
+    [SPRITE_TEMPLATE_PLAYER_ICONS] = {
+        .resourceHeaderID = TownMap_Template_PlayerIcons,
         .x = 0,
         .y = 0,
         .z = 0,
@@ -832,25 +832,21 @@ static const SpriteTemplateFromResourceHeader sTownMapSpriteTemplates[] = {
         .priority = 1,
         .plttIdx = PLTT_1,
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
-        .dummy18 = 0,
-        .dummy1C = 0,
-        .dummy20 = 0,
-        .dummy24 = 0,
     },
 };
 
 static void CreateSprites(TownMapAppData *appData)
 {
     TownMapGraphicsManager *graphicsMan = appData->graphicsMan;
-    SpriteTemplateFromResourceHeader spriteTemplate = sTownMapSpriteTemplates[2];
+    SpriteTemplateFromResourceHeader playerIconTemplate = sTownMapSpriteTemplates[SPRITE_TEMPLATE_PLAYER_ICONS];
 
-    graphicsMan->zoomBtnShockwave = SpriteSystem_NewSpriteFromResourceHeader(appData->spriteSystem, appData->spriteMan, &sTownMapSpriteTemplates[0]);
+    graphicsMan->zoomBtnShockwave = SpriteSystem_NewSpriteFromResourceHeader(appData->spriteSystem, appData->spriteMan, &sTownMapSpriteTemplates[SPRITE_TEMPLATE_ZOOM_BUTTON_SHOCKWAVE]);
 
     Sprite_SetDrawFlag(graphicsMan->zoomBtnShockwave, FALSE);
     Sprite_SetAnimSpeed(graphicsMan->zoomBtnShockwave, FX32_ONE);
     Sprite_SetPositionXY(graphicsMan->zoomBtnShockwave, 128, 108);
 
-    graphicsMan->cursorSprite = SpriteSystem_NewSpriteFromResourceHeader(appData->spriteSystem, appData->spriteMan, &sTownMapSpriteTemplates[1]);
+    graphicsMan->cursorSprite = SpriteSystem_NewSpriteFromResourceHeader(appData->spriteSystem, appData->spriteMan, &sTownMapSpriteTemplates[SPRITE_TEMPLATE_CURSOR]);
 
     Sprite_SetDrawFlag(graphicsMan->cursorSprite, TRUE);
     Sprite_SetAnimSpeed(graphicsMan->cursorSprite, FX32_CONST(2));
@@ -858,12 +854,12 @@ static void CreateSprites(TownMapAppData *appData)
     Sprite_SetPositionXY(graphicsMan->cursorSprite, TOWN_MAP_GRID_X(graphicsMan->cursorX), TOWN_MAP_GRID_Y(graphicsMan->cursorZ));
 
     if (appData->context->trainerGender == GENDER_MALE) {
-        spriteTemplate.plttIdx = PLTT_1;
+        playerIconTemplate.plttIdx = PLTT_1;
     } else {
-        spriteTemplate.plttIdx = PLTT_0;
+        playerIconTemplate.plttIdx = PLTT_0;
     }
 
-    graphicsMan->playerSprite = SpriteSystem_NewSpriteFromResourceHeader(appData->spriteSystem, appData->spriteMan, &spriteTemplate);
+    graphicsMan->playerSprite = SpriteSystem_NewSpriteFromResourceHeader(appData->spriteSystem, appData->spriteMan, &playerIconTemplate);
 
     Sprite_SetDrawFlag(graphicsMan->playerSprite, TRUE);
     Sprite_SetAnimFrame(graphicsMan->playerSprite, appData->context->trainerGender);
@@ -911,7 +907,7 @@ static void LoadLocationHistory(TownMapAppData *appData)
     TownMapGraphicsManager *graphicsMan = appData->graphicsMan;
     static const u16 directionMapping[4] = { 0, 2, 3, 1 };
     static const SpriteTemplateFromResourceHeader spriteTemplate = {
-        .resourceHeaderID = 3,
+        .resourceHeaderID = TownMap_Template_LocationHistoryDot,
         .x = 0,
         .y = 0,
         .z = 0,
@@ -919,10 +915,6 @@ static void LoadLocationHistory(TownMapAppData *appData)
         .priority = 2,
         .plttIdx = PLTT_2,
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
-        .dummy18 = 0,
-        .dummy1C = 0,
-        .dummy20 = 0,
-        .dummy24 = 0,
     };
 
     MI_CpuClear8(&(graphicsMan->locationHistory), sizeof(TownMapLocationHistory));

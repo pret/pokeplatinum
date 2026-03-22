@@ -26,11 +26,11 @@ _0033:
     End
 
 _004D:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 0
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ApplyMovement 0, _04A8
     WaitMovement
@@ -38,11 +38,11 @@ _004D:
     End
 
 _006A:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 1
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ApplyMovement 1, _04B0
     WaitMovement
@@ -50,7 +50,7 @@ _006A:
     End
 
 _0087:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfDefeated 0x37C, _0396
@@ -311,7 +311,7 @@ _0471:
     End
 
 _047C:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -322,11 +322,11 @@ _0484:
     End
 
 _048A:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 14
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ApplyMovement 3, _04C0
     WaitMovement

@@ -172,7 +172,7 @@ SandgemTown_RivalExitLab:
     WaitMovement
     ApplyMovement LOCALID_RIVAL, SandgemTown_Movement_RivalWalkOnSpotFastSouth
     WaitMovement
-    PlayFanfare SEQ_SE_DP_WALL_HIT2
+    PlaySE SEQ_SE_DP_WALL_HIT2
     Message SandgemTown_Text_BigThud
     ApplyMovement LOCALID_RIVAL, SandgemTown_Movement_RivalNoticePlayer
     WaitMovement

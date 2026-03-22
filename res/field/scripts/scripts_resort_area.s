@@ -67,12 +67,12 @@ _00ED:
     End
 
 _0100:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     CallIfUnset FLAG_UNK_0x00FA, _0126
     CallIfSet FLAG_UNK_0x00FA, _012B
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -283,7 +283,7 @@ _03CC:
     EndMovement
 
 _03D4:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 10
@@ -307,13 +307,13 @@ _0429:
     End
 
 _0434:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _043C:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 13
@@ -337,7 +337,7 @@ _0491:
     End
 
 _049C:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 16
@@ -361,7 +361,7 @@ _04F1:
     End
 
 _04FC:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 19
@@ -385,7 +385,7 @@ _0551:
     End
 
 _055C:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 22

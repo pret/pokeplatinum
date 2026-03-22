@@ -25,7 +25,7 @@ MiningMuseum_Welcome:
     End
 
 MiningMuseum_FossilResearcher:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x0001, MiningMuseum_ExtractingPokemon
@@ -202,14 +202,14 @@ MiningMuseum_SingleFossilRevival:
 MiningMuseum_ExtractingPokemon:
     SetFlag FLAG_UNK_0x0001
     Message MiningMuseum_Text_ExtractingPokemonLeave
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 MiningMuseum_DeclinedRevival:
     Message MiningMuseum_Text_DeclinedFossilRevival
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -221,9 +221,9 @@ MiningMuseum_PokemonRevival:
     GoToIfEq VAR_RESULT, 6, MiningMuseum_PartyFull
     BufferSpeciesNameFromVar 1, VAR_REVIVED_POKEMON_SPECIES, 0, 0
     BufferPlayerName 0
-    PlaySound SEQ_FANFA4
+    PlayFanfare SEQ_FANFA4
     Message MiningMuseum_Text_PokemonReceived
-    WaitSound
+    WaitFanfare
     GivePokemon VAR_REVIVED_POKEMON_SPECIES, 20, ITEM_NONE, VAR_RESULT
     IncrementGameRecord RECORD_POKEMON_RECEIVED_FROM_FOSSIL_REVIVAL
     SetVar VAR_REVIVED_POKEMON_SPECIES, 0
@@ -257,21 +257,21 @@ MiningMuseum_NoNickname:
 
 MiningMuseum_PartyFull:
     Message MiningMuseum_Text_PartyFull
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 MiningMuseum_NoFossils:
     Message MiningMuseum_Text_BringFossilsToMe
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 MiningMuseum_NotYetReady:
     Message MiningMuseum_Text_NotYetReady
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

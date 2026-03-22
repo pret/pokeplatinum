@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV104_022361B4_H
 #define POKEPLATINUM_OV104_022361B4_H
 
-#include "overlay104/struct_ov104_022320B4_decl.h"
+#include "overlay104/defs.h"
 #include "overlay104/struct_ov104_0223BA10.h"
 
 #include "savedata.h"
@@ -23,9 +23,9 @@ void ov104_02236C50(UnkStruct_ov104_0223BA10 *param0);
 int ov104_02236D10(UnkStruct_ov104_0223BA10 *param0);
 void ov104_02236ED8(SaveData *saveData, u8 param1, int param2);
 BOOL ov104_02236F70(UnkStruct_ov104_0223BA10 *param0, u16 param1, u16 param2);
-void ov104_02236FC0(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_0223BA10 *param1);
-void ov104_022370E0(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_0223BA10 *param1);
-void ov104_02237180(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_0223BA10 *param1);
+void ov104_02236FC0(FrontierScriptManager *param0, UnkStruct_ov104_0223BA10 *param1);
+void ov104_022370E0(FrontierScriptManager *param0, UnkStruct_ov104_0223BA10 *param1);
+void ov104_02237180(FrontierScriptManager *param0, UnkStruct_ov104_0223BA10 *param1);
 u16 ov104_02237338(UnkStruct_ov104_0223BA10 *param0);
 
 #endif // POKEPLATINUM_OV104_022361B4_H

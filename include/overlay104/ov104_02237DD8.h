@@ -1,8 +1,8 @@
 #ifndef POKEPLATINUM_OV104_02237DD8_H
 #define POKEPLATINUM_OV104_02237DD8_H
 
+#include "overlay104/frontier_graphics.h"
 #include "overlay104/struct_ov104_0223BFFC.h"
-#include "overlay104/struct_ov104_0223C4CC_decl.h"
 
 #include "party.h"
 #include "savedata.h"
@@ -22,15 +22,15 @@ void ov104_022384B4(UnkStruct_ov104_0223BFFC *param0);
 void ov104_022384D4(UnkStruct_ov104_0223BFFC *param0);
 void ov104_022384DC(UnkStruct_ov104_0223BFFC *param0);
 int ov104_02238538(UnkStruct_ov104_0223BFFC *param0, Party *param1, Party *param2, int param3);
-void ov104_02238658(void *param0, UnkStruct_ov104_0223C4CC *param1);
-void ov104_02238728(void *param0, UnkStruct_ov104_0223C4CC *param1);
-void ov104_02238764(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104_0223C4CC *param1, u16 param2);
-void ov104_02238814(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104_0223C4CC *param1, u16 param2);
-void ov104_0223886C(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104_0223C4CC *param1, u16 param2, u16 param3);
-void ov104_022388A4(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104_0223C4CC *param1, u16 param2, u16 param3);
-void ov104_022388DC(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104_0223C4CC *param1, u16 param2);
-void ov104_022389A0(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104_0223C4CC *param1, u16 param2);
-void ov104_022389F4(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104_0223C4CC *param1, u16 param2, u16 param3, u16 param4);
+void ov104_02238658(void *param0, FrontierGraphics *param1);
+void ov104_02238728(void *param0, FrontierGraphics *param1);
+void ov104_02238764(UnkStruct_ov104_0223BFFC *param0, FrontierGraphics *param1, u16 param2);
+void ov104_02238814(UnkStruct_ov104_0223BFFC *param0, FrontierGraphics *param1, u16 param2);
+void ov104_0223886C(UnkStruct_ov104_0223BFFC *param0, FrontierGraphics *param1, u16 param2, u16 param3);
+void ov104_022388A4(UnkStruct_ov104_0223BFFC *param0, FrontierGraphics *param1, u16 param2, u16 param3);
+void ov104_022388DC(UnkStruct_ov104_0223BFFC *param0, FrontierGraphics *param1, u16 param2);
+void ov104_022389A0(UnkStruct_ov104_0223BFFC *param0, FrontierGraphics *param1, u16 param2);
+void ov104_022389F4(UnkStruct_ov104_0223BFFC *param0, FrontierGraphics *param1, u16 param2, u16 param3, u16 param4);
 void ov104_02238AB4(u8 param0, u8 param1);
 BOOL ov104_02238B40(UnkStruct_ov104_0223BFFC *param0, u16 param1, u16 param2);
 void ov104_02238B88(UnkStruct_ov104_0223BFFC *param0, u8 param1);

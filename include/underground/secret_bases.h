@@ -6,6 +6,7 @@
 #include "field/field_system_decl.h"
 #include "underground/defs.h"
 
+#include "coordinates.h"
 #include "savedata.h"
 #include "string_gf.h"
 #include "underground.h"
@@ -64,7 +65,7 @@ int SecretBases_PrintBaseDecorationMessage(int bankEntry);
 void SecretBases_EraseBaseDecorationMessageBox(void);
 void SecretBases_SetGoodNameForPrinter(enum Good goodID);
 void SecretBases_SetTwoDigitNumberWithIndexForPrinter(int num, int index);
-BOOL SecretBases_CheckForInteractableGood(int netID, Coordinates *coordinates);
+BOOL SecretBases_CheckForInteractableGood(int netID, CoordinatesU16 *coordinates);
 void SecretBases_ProcessGoodInteractionEvent(int unused0, int unused1, void *data, void *unused3);
 int CommPacketSizeOf_GoodInteractionEvent(void);
 void SecretBases_QueueObtainedFlagMessage(int netID, int flagOwnerNetID);

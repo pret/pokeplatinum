@@ -12,23 +12,23 @@
     ScriptEntryEnd
 
 JubilifeTV3FGlobalRankingRoom_RecordMachinePokemon:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
-    ScrCmd_1B5 0
+    StartRankingsMachine 0
     ReleaseAll
     End
 
 JubilifeTV3FGlobalRankingRoom_RecordMachineBattles:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
-    ScrCmd_1B5 1
+    StartRankingsMachine 1
     ReleaseAll
     End
 
 JubilifeTV3FGlobalRankingRoom_RecordMachineContests:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
-    ScrCmd_1B5 2
+    StartRankingsMachine 2
     ReleaseAll
     End
 

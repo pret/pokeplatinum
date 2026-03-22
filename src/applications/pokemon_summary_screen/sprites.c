@@ -22,6 +22,7 @@
 #include "vram_transfer.h"
 
 #include "res/graphics/pokemon_summary_screen/pl_pst_gra.naix"
+#include "res/graphics/sprite_templates/pokemon_summary_screen.h"
 
 static void SetTypeIcon(PokemonSummaryScreen *summaryScreen, u8 spriteIndex, u8 param2, u8 type);
 static void SetMonAndTypeIcons(PokemonSummaryScreen *summaryScreen);
@@ -121,7 +122,7 @@ enum ConditionFlashBounds {
 
 static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = {
     [SUMMARY_SPRITE_TAB_INFO] = {
-        .resourceHeaderID = 1,
+        .resourceHeaderID = PokemonSummaryScreen_Template_Tabs,
         .x = 128,
         .y = 24,
         .z = 0,
@@ -131,7 +132,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_TAB_MEMO] = {
-        .resourceHeaderID = 1,
+        .resourceHeaderID = PokemonSummaryScreen_Template_Tabs,
         .x = 144,
         .y = 24,
         .z = 0,
@@ -141,7 +142,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_TAB_SKILLS] = {
-        .resourceHeaderID = 1,
+        .resourceHeaderID = PokemonSummaryScreen_Template_Tabs,
         .x = 160,
         .y = 24,
         .z = 0,
@@ -151,7 +152,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_TAB_BATTLE_MOVES] = {
-        .resourceHeaderID = 1,
+        .resourceHeaderID = PokemonSummaryScreen_Template_Tabs,
         .x = 176,
         .y = 24,
         .z = 0,
@@ -161,7 +162,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_TAB_CONDITION] = {
-        .resourceHeaderID = 1,
+        .resourceHeaderID = PokemonSummaryScreen_Template_Tabs,
         .x = 192,
         .y = 24,
         .z = 0,
@@ -171,7 +172,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_TAB_CONTEST_MOVES] = {
-        .resourceHeaderID = 1,
+        .resourceHeaderID = PokemonSummaryScreen_Template_Tabs,
         .x = 208,
         .y = 24,
         .z = 0,
@@ -181,7 +182,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_TAB_RIBBONS] = {
-        .resourceHeaderID = 1,
+        .resourceHeaderID = PokemonSummaryScreen_Template_Tabs,
         .x = 224,
         .y = 24,
         .z = 0,
@@ -191,7 +192,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_TAB_EXIT] = {
-        .resourceHeaderID = 1,
+        .resourceHeaderID = PokemonSummaryScreen_Template_Tabs,
         .x = 240,
         .y = 24,
         .z = 0,
@@ -201,7 +202,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_CAUGHT_BALL] = {
-        .resourceHeaderID = 0,
+        .resourceHeaderID = PokemonSummaryScreen_Template_CaughtBall,
         .x = 16,
         .y = 32,
         .z = 0,
@@ -211,7 +212,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_MOVE_SELECTOR_1] = {
-        .resourceHeaderID = 2,
+        .resourceHeaderID = PokemonSummaryScreen_Template_MoveSelectCursor,
         .x = 194,
         .y = 48,
         .z = 0,
@@ -221,7 +222,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_MOVE_SELECTOR_2] = {
-        .resourceHeaderID = 2,
+        .resourceHeaderID = PokemonSummaryScreen_Template_MoveSelectCursor,
         .x = 194,
         .y = 48,
         .z = 0,
@@ -231,7 +232,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_MON_TYPE_ICON_1] = {
-        .resourceHeaderID = 3,
+        .resourceHeaderID = PokemonSummaryScreen_Template_MonTypeIcon1,
         .x = 0,
         .y = 0,
         .z = 0,
@@ -241,7 +242,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_MON_TYPE_ICON_2] = {
-        .resourceHeaderID = 4,
+        .resourceHeaderID = PokemonSummaryScreen_Template_MonTypeIcon2,
         .x = 0,
         .y = 0,
         .z = 0,
@@ -251,7 +252,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_MOVE_TYPE_ICON_1] = {
-        .resourceHeaderID = 5,
+        .resourceHeaderID = PokemonSummaryScreen_Template_MoveTypeIcon1,
         .x = 0,
         .y = 0,
         .z = 0,
@@ -261,7 +262,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_MOVE_TYPE_ICON_2] = {
-        .resourceHeaderID = 6,
+        .resourceHeaderID = PokemonSummaryScreen_Template_MoveTypeIcon2,
         .x = 0,
         .y = 0,
         .z = 0,
@@ -271,7 +272,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_MOVE_TYPE_ICON_3] = {
-        .resourceHeaderID = 7,
+        .resourceHeaderID = PokemonSummaryScreen_Template_MoveTypeIcon3,
         .x = 0,
         .y = 0,
         .z = 0,
@@ -281,7 +282,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_MOVE_TYPE_ICON_4] = {
-        .resourceHeaderID = 8,
+        .resourceHeaderID = PokemonSummaryScreen_Template_MoveTypeIcon4,
         .x = 0,
         .y = 0,
         .z = 0,
@@ -291,7 +292,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_MOVE_TYPE_ICON_5] = {
-        .resourceHeaderID = 9,
+        .resourceHeaderID = PokemonSummaryScreen_Template_MoveTypeIcon5,
         .x = 0,
         .y = 0,
         .z = 0,
@@ -301,7 +302,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_MOVE_CATEGORY_ICON] = {
-        .resourceHeaderID = 10,
+        .resourceHeaderID = PokemonSummaryScreen_Template_CategoryIcon,
         .x = 0,
         .y = 0,
         .z = 0,
@@ -311,7 +312,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_MON_ICON] = {
-        .resourceHeaderID = 11,
+        .resourceHeaderID = PokemonSummaryScreen_Template_MonIcon,
         .x = 24,
         .y = 48,
         .z = 0,
@@ -321,7 +322,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_STATUS_ICON] = {
-        .resourceHeaderID = 12,
+        .resourceHeaderID = PokemonSummaryScreen_Template_StatusIcon,
         .x = 80,
         .y = 52,
         .z = 0,
@@ -331,7 +332,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_PAGE_ARROW_LEFT] = {
-        .resourceHeaderID = 14,
+        .resourceHeaderID = PokemonSummaryScreen_Template_TabArrow,
         .x = 0,
         .y = 24,
         .z = 0,
@@ -341,7 +342,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_PAGE_ARROW_RIGHT] = {
-        .resourceHeaderID = 14,
+        .resourceHeaderID = PokemonSummaryScreen_Template_TabArrow,
         .x = 0,
         .y = 24,
         .z = 0,
@@ -351,7 +352,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_MARKING_CIRCLE] = {
-        .resourceHeaderID = 18,
+        .resourceHeaderID = PokemonSummaryScreen_Template_MarkingCircle,
         .x = 48,
         .y = 150,
         .z = 0,
@@ -361,7 +362,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_MARKING_TRIANGLE] = {
-        .resourceHeaderID = 19,
+        .resourceHeaderID = PokemonSummaryScreen_Template_MarkingTriangle,
         .x = 56,
         .y = 150,
         .z = 0,
@@ -371,7 +372,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_MARKING_SQUARE] = {
-        .resourceHeaderID = 20,
+        .resourceHeaderID = PokemonSummaryScreen_Template_MarkingSquare,
         .x = 64,
         .y = 150,
         .z = 0,
@@ -381,7 +382,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_MARKING_HEART] = {
-        .resourceHeaderID = 21,
+        .resourceHeaderID = PokemonSummaryScreen_Template_MarkingHeart,
         .x = 72,
         .y = 150,
         .z = 0,
@@ -391,7 +392,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_MARKING_STAR] = {
-        .resourceHeaderID = 22,
+        .resourceHeaderID = PokemonSummaryScreen_Template_MarkingStar,
         .x = 80,
         .y = 150,
         .z = 0,
@@ -401,7 +402,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_MARKING_DIAMOND] = {
-        .resourceHeaderID = 23,
+        .resourceHeaderID = PokemonSummaryScreen_Template_MarkingDiamond,
         .x = 88,
         .y = 150,
         .z = 0,
@@ -411,7 +412,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_SHEEN_1] = {
-        .resourceHeaderID = 13,
+        .resourceHeaderID = PokemonSummaryScreen_Template_Sheen,
         .x = 152,
         .y = 168,
         .z = 0,
@@ -421,7 +422,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_SHEEN_2] = {
-        .resourceHeaderID = 13,
+        .resourceHeaderID = PokemonSummaryScreen_Template_Sheen,
         .x = 160,
         .y = 168,
         .z = 0,
@@ -431,7 +432,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_SHEEN_3] = {
-        .resourceHeaderID = 13,
+        .resourceHeaderID = PokemonSummaryScreen_Template_Sheen,
         .x = 168,
         .y = 168,
         .z = 0,
@@ -441,7 +442,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_SHEEN_4] = {
-        .resourceHeaderID = 13,
+        .resourceHeaderID = PokemonSummaryScreen_Template_Sheen,
         .x = 176,
         .y = 168,
         .z = 0,
@@ -451,7 +452,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_SHEEN_5] = {
-        .resourceHeaderID = 13,
+        .resourceHeaderID = PokemonSummaryScreen_Template_Sheen,
         .x = 184,
         .y = 168,
         .z = 0,
@@ -461,7 +462,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_SHEEN_6] = {
-        .resourceHeaderID = 13,
+        .resourceHeaderID = PokemonSummaryScreen_Template_Sheen,
         .x = 192,
         .y = 168,
         .z = 0,
@@ -471,7 +472,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_SHEEN_7] = {
-        .resourceHeaderID = 13,
+        .resourceHeaderID = PokemonSummaryScreen_Template_Sheen,
         .x = 200,
         .y = 168,
         .z = 0,
@@ -481,7 +482,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_SHEEN_8] = {
-        .resourceHeaderID = 13,
+        .resourceHeaderID = PokemonSummaryScreen_Template_Sheen,
         .x = 208,
         .y = 168,
         .z = 0,
@@ -491,7 +492,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_SHEEN_9] = {
-        .resourceHeaderID = 13,
+        .resourceHeaderID = PokemonSummaryScreen_Template_Sheen,
         .x = 216,
         .y = 168,
         .z = 0,
@@ -501,7 +502,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_SHEEN_10] = {
-        .resourceHeaderID = 13,
+        .resourceHeaderID = PokemonSummaryScreen_Template_Sheen,
         .x = 224,
         .y = 168,
         .z = 0,
@@ -511,7 +512,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_SHEEN_11] = {
-        .resourceHeaderID = 13,
+        .resourceHeaderID = PokemonSummaryScreen_Template_Sheen,
         .x = 232,
         .y = 168,
         .z = 0,
@@ -521,7 +522,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_SHEEN_12] = {
-        .resourceHeaderID = 13,
+        .resourceHeaderID = PokemonSummaryScreen_Template_Sheen,
         .x = 240,
         .y = 168,
         .z = 0,
@@ -531,7 +532,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_BUTTON_TAP_CIRCLE] = {
-        .resourceHeaderID = 15,
+        .resourceHeaderID = PokemonSummaryScreen_Template_TouchButtonEffect,
         .x = 0,
         .y = 0,
         .z = 0,
@@ -541,7 +542,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_CONDITION_ARROW_COOL] = {
-        .resourceHeaderID = 16,
+        .resourceHeaderID = PokemonSummaryScreen_Template_ConditionArrow,
         .x = 208,
         .y = 48,
         .z = 0,
@@ -551,7 +552,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_CONDITION_ARROW_BEAUTY] = {
-        .resourceHeaderID = 16,
+        .resourceHeaderID = PokemonSummaryScreen_Template_ConditionArrow,
         .x = 224,
         .y = 88,
         .z = 0,
@@ -561,7 +562,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_CONDITION_ARROW_CUTE] = {
-        .resourceHeaderID = 16,
+        .resourceHeaderID = PokemonSummaryScreen_Template_ConditionArrow,
         .x = 216,
         .y = 120,
         .z = 0,
@@ -571,7 +572,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_CONDITION_ARROW_SMART] = {
-        .resourceHeaderID = 16,
+        .resourceHeaderID = PokemonSummaryScreen_Template_ConditionArrow,
         .x = 144,
         .y = 120,
         .z = 0,
@@ -581,7 +582,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_CONDITION_ARROW_TOUGH] = {
-        .resourceHeaderID = 16,
+        .resourceHeaderID = PokemonSummaryScreen_Template_ConditionArrow,
         .x = 136,
         .y = 88,
         .z = 0,
@@ -591,7 +592,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_A_BUTTON] = {
-        .resourceHeaderID = 17,
+        .resourceHeaderID = PokemonSummaryScreen_Template_AButton,
         .x = 0,
         .y = 0,
         .z = 0,
@@ -601,7 +602,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_CONTEST_STAT_DOT_COOL] = {
-        .resourceHeaderID = 25,
+        .resourceHeaderID = PokemonSummaryScreen_Template_ContestStatDot,
         .x = 0,
         .y = 0,
         .z = 0,
@@ -611,7 +612,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_CONTEST_STAT_DOT_BEAUTY] = {
-        .resourceHeaderID = 25,
+        .resourceHeaderID = PokemonSummaryScreen_Template_ContestStatDot,
         .x = 0,
         .y = 0,
         .z = 0,
@@ -621,7 +622,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_CONTEST_STAT_DOT_CUTE] = {
-        .resourceHeaderID = 25,
+        .resourceHeaderID = PokemonSummaryScreen_Template_ContestStatDot,
         .x = 0,
         .y = 0,
         .z = 0,
@@ -631,7 +632,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_CONTEST_STAT_DOT_SMART] = {
-        .resourceHeaderID = 25,
+        .resourceHeaderID = PokemonSummaryScreen_Template_ContestStatDot,
         .x = 0,
         .y = 0,
         .z = 0,
@@ -641,7 +642,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_CONTEST_STAT_DOT_TOUGH] = {
-        .resourceHeaderID = 25,
+        .resourceHeaderID = PokemonSummaryScreen_Template_ContestStatDot,
         .x = 0,
         .y = 0,
         .z = 0,
@@ -651,7 +652,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_SHINY_ICON] = {
-        .resourceHeaderID = 24,
+        .resourceHeaderID = PokemonSummaryScreen_Template_ShinyPokerusCuredIcon,
         .x = 98,
         .y = 72,
         .z = 0,
@@ -661,7 +662,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_POKERUS_CURED_ICON] = {
-        .resourceHeaderID = 24,
+        .resourceHeaderID = PokemonSummaryScreen_Template_ShinyPokerusCuredIcon,
         .x = 98,
         .y = 132,
         .z = 0,
@@ -671,7 +672,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_RIBBON_1] = {
-        .resourceHeaderID = 26,
+        .resourceHeaderID = PokemonSummaryScreen_Template_Ribbon1,
         .x = 132,
         .y = 56,
         .z = 0,
@@ -681,7 +682,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_RIBBON_2] = {
-        .resourceHeaderID = 27,
+        .resourceHeaderID = PokemonSummaryScreen_Template_Ribbon2,
         .x = 164,
         .y = 56,
         .z = 0,
@@ -691,7 +692,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_RIBBON_3] = {
-        .resourceHeaderID = 28,
+        .resourceHeaderID = PokemonSummaryScreen_Template_Ribbon3,
         .x = 196,
         .y = 56,
         .z = 0,
@@ -701,7 +702,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_RIBBON_4] = {
-        .resourceHeaderID = 29,
+        .resourceHeaderID = PokemonSummaryScreen_Template_Ribbon4,
         .x = 228,
         .y = 56,
         .z = 0,
@@ -711,7 +712,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_RIBBON_5] = {
-        .resourceHeaderID = 30,
+        .resourceHeaderID = PokemonSummaryScreen_Template_Ribbon5,
         .x = 132,
         .y = 96,
         .z = 0,
@@ -721,7 +722,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_RIBBON_6] = {
-        .resourceHeaderID = 31,
+        .resourceHeaderID = PokemonSummaryScreen_Template_Ribbon6,
         .x = 164,
         .y = 96,
         .z = 0,
@@ -731,7 +732,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_RIBBON_7] = {
-        .resourceHeaderID = 32,
+        .resourceHeaderID = PokemonSummaryScreen_Template_Ribbon7,
         .x = 196,
         .y = 96,
         .z = 0,
@@ -741,7 +742,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_RIBBON_8] = {
-        .resourceHeaderID = 33,
+        .resourceHeaderID = PokemonSummaryScreen_Template_Ribbon8,
         .x = 228,
         .y = 96,
         .z = 0,
@@ -751,7 +752,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_RIBBON_9] = {
-        .resourceHeaderID = 34,
+        .resourceHeaderID = PokemonSummaryScreen_Template_Ribbon9,
         .x = 132,
         .y = 136,
         .z = 0,
@@ -761,7 +762,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_RIBBON_10] = {
-        .resourceHeaderID = 35,
+        .resourceHeaderID = PokemonSummaryScreen_Template_Ribbon10,
         .x = 164,
         .y = 136,
         .z = 0,
@@ -771,7 +772,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_RIBBON_11] = {
-        .resourceHeaderID = 36,
+        .resourceHeaderID = PokemonSummaryScreen_Template_Ribbon11,
         .x = 196,
         .y = 136,
         .z = 0,
@@ -781,7 +782,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_RIBBON_12] = {
-        .resourceHeaderID = 37,
+        .resourceHeaderID = PokemonSummaryScreen_Template_Ribbon12,
         .x = 228,
         .y = 136,
         .z = 0,
@@ -791,7 +792,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_RIBBON_CURSOR] = {
-        .resourceHeaderID = 38,
+        .resourceHeaderID = PokemonSummaryScreen_Template_RibbonCursor,
         .x = 132,
         .y = 56,
         .z = 0,
@@ -801,7 +802,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_RIBBON_ARROW_UP] = {
-        .resourceHeaderID = 39,
+        .resourceHeaderID = PokemonSummaryScreen_Template_RibbonArrow,
         .x = 180,
         .y = 32,
         .z = 0,
@@ -811,7 +812,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_RIBBON_ARROW_DOWN] = {
-        .resourceHeaderID = 39,
+        .resourceHeaderID = PokemonSummaryScreen_Template_RibbonArrow,
         .x = 180,
         .y = 120,
         .z = 0,
@@ -821,7 +822,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_RIBBON_FLASH] = {
-        .resourceHeaderID = 40,
+        .resourceHeaderID = PokemonSummaryScreen_Template_RibbonFlash,
         .x = 8,
         .y = 132,
         .z = 0,
@@ -831,7 +832,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_CONDITION_FLASH_COOL] = {
-        .resourceHeaderID = 41,
+        .resourceHeaderID = PokemonSummaryScreen_Template_ConditionFlash,
         .x = 132,
         .y = 56,
         .z = 0,
@@ -841,7 +842,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_CONDITION_FLASH_BEAUTY] = {
-        .resourceHeaderID = 41,
+        .resourceHeaderID = PokemonSummaryScreen_Template_ConditionFlash,
         .x = 132,
         .y = 56,
         .z = 0,
@@ -851,7 +852,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_CONDITION_FLASH_CUTE] = {
-        .resourceHeaderID = 41,
+        .resourceHeaderID = PokemonSummaryScreen_Template_ConditionFlash,
         .x = 132,
         .y = 56,
         .z = 0,
@@ -861,7 +862,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_CONDITION_FLASH_SMART] = {
-        .resourceHeaderID = 41,
+        .resourceHeaderID = PokemonSummaryScreen_Template_ConditionFlash,
         .x = 132,
         .y = 56,
         .z = 0,
@@ -871,7 +872,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_CONDITION_FLASH_TOUGH] = {
-        .resourceHeaderID = 41,
+        .resourceHeaderID = PokemonSummaryScreen_Template_ConditionFlash,
         .x = 132,
         .y = 56,
         .z = 0,
@@ -881,7 +882,7 @@ static const SpriteTemplateFromResourceHeader sSummaryScreenSpriteTemplates[] = 
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SUMMARY_SPRITE_POKERUS_ICON] = {
-        .resourceHeaderID = 42,
+        .resourceHeaderID = PokemonSummaryScreen_Template_PokerusIcon,
         .x = 76,
         .y = 48,
         .z = 0,

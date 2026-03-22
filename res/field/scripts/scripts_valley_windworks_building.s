@@ -179,7 +179,7 @@ ValleyWindworksBuilding_ScientistPapaTurnInSpotFaceNorth:
 ValleyWindworksBuilding_IThinkTheBalloonPokemonWillComeVisitingAgain:
     Message ValleyWindworksBuilding_Text_OhSorryAhahaTheyHadMeWorkingNonstop
     Message ValleyWindworksBuilding_Text_IThinkTheBalloonPokemonWillComeVisitingAgain
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     SetVar VAR_VALLEY_WINDWORKS_LOOKER_STATE, 1
     ClearFlag FLAG_HIDE_VALLEY_WINDWORKS_OUTSIDE_LOOKER
@@ -280,37 +280,37 @@ ValleyWindworksBuilding_Movement_CharonWalkOnSpotSouth:
     EndMovement
 
 ValleyWindworksBuilding_ScientistPapa:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfGe VAR_VALLEY_WINDWORKS_TEAM_GALACTIC_STATE, 3, ValleyWindworksBuilding_TheValleyWindworksUsesTurbinesToCaptureEnergy
     Message ValleyWindworksBuilding_Text_ABalloonPokemonAppearsInFrontOfTheWindworksItsAlwaysACertainDayOfTheWeek
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 ValleyWindworksBuilding_TheValleyWindworksUsesTurbinesToCaptureEnergy:
     Message ValleyWindworksBuilding_Text_TheValleyWindworksUsesTurbinesToCaptureEnergy
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 ValleyWindworksBuilding_Twin:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfGe VAR_VALLEY_WINDWORKS_TEAM_GALACTIC_STATE, 3, ValleyWindworksBuilding_IfTheBalloonPokemonCameTheWindWouldBlowItAway
     Message ValleyWindworksBuilding_Text_IThinkTheBalloonPokemonWillComeVisitingAgain
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 ValleyWindworksBuilding_IfTheBalloonPokemonCameTheWindWouldBlowItAway:
     Message ValleyWindworksBuilding_Text_IfTheBalloonPokemonCameTheWindWouldBlowItAway
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -324,7 +324,7 @@ ValleyWindworksBuilding_PCEast:
     End
 
 ValleyWindworksBuilding_PC:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     GoToIfGe VAR_EXITED_DISTORTION_WORLD_STATE, 2, ValleyWindworksBuilding_ThePCScreenIsFilledWithNumbersUponNumbers
     Message ValleyWindworksBuilding_Text_BringersAndTargetsTeamGalactic
@@ -337,7 +337,7 @@ ValleyWindworksBuilding_ThePCScreenIsFilledWithNumbersUponNumbers:
     End
 
 ValleyWindworksBuilding_PCEnd:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

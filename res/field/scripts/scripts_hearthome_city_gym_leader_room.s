@@ -17,13 +17,13 @@ HearthomeGym_TryRemoveBollards:
 
 HearthomeGym_RemoveBollards:
     SetFlag FLAG_HIDE_HEARTHOME_GYM_BOLLARDS
-    RemoveObject HEARTHOME_CITY_GYM_LEADER_ROOM_BOLLARD_2
-    RemoveObject HEARTHOME_CITY_GYM_LEADER_ROOM_BOLLARD_1
+    RemoveObject LOCALID_BOLLARD_2
+    RemoveObject LOCALID_BOLLARD_1
     ClearFlag FLAG_MAP_LOCAL
     End
 
 HearthomeGym_Fantina:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GetPlayerDir VAR_RESULT
@@ -34,22 +34,22 @@ HearthomeGym_Fantina:
     End
 
 HearthomeGym_FantinaPrepareSpinFaceSouth:
-    ApplyMovement HEARTHOME_CITY_GYM_LEADER_ROOM_FANTINA, HearthomeGym_FantinaSpinFaceSouth
+    ApplyMovement LOCALID_FANTINA, HearthomeGym_FantinaSpinFaceSouth
     WaitMovement
     GoTo HearthomeGym_FantinaMain
 
 HearthomeGym_FantinaPrepareSpinFaceNorth:
-    ApplyMovement HEARTHOME_CITY_GYM_LEADER_ROOM_FANTINA, HearthomeGym_FantinaSpinFaceNorth
+    ApplyMovement LOCALID_FANTINA, HearthomeGym_FantinaSpinFaceNorth
     WaitMovement
     GoTo HearthomeGym_FantinaMain
 
 HearthomeGym_FantinaPrepareSpinFaceEast:
-    ApplyMovement HEARTHOME_CITY_GYM_LEADER_ROOM_FANTINA, HearthomeGym_FantinaSpinFaceEast
+    ApplyMovement LOCALID_FANTINA, HearthomeGym_FantinaSpinFaceEast
     WaitMovement
     GoTo HearthomeGym_FantinaMain
 
 HearthomeGym_FantinaPrepareSpinFaceWest:
-    ApplyMovement HEARTHOME_CITY_GYM_LEADER_ROOM_FANTINA, HearthomeGym_FantinaSpinFaceWest
+    ApplyMovement LOCALID_FANTINA, HearthomeGym_FantinaSpinFaceWest
     WaitMovement
     GoTo HearthomeGym_FantinaMain
 
@@ -66,8 +66,8 @@ HearthomeGym_FantinaMain:
     Message HearthomeGym_Text_BeatFantina
     BufferPlayerName 0
     Message HearthomeGym_Text_FantinaReceiveRelicBadge
-    PlaySound SEQ_BADGE
-    WaitSound
+    PlayFanfare SEQ_BADGE
+    WaitFanfare
     GiveBadge BADGE_ID_RELIC
     IncrementTrainerScore2 TRAINER_SCORE_EVENT_BADGE_EARNED
     SetTrainerFlag TRAINER_CAMPER_DREW
@@ -94,7 +94,7 @@ HearthomeGym_FantinaTryGiveTM65:
     BufferItemName 0, VAR_0x8004
     BufferTMHMMoveName 1, VAR_0x8004
     Message HearthomeGym_FantinaExplainTM65
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -108,7 +108,7 @@ HearthomeGym_FantinaCannotGiveTM65:
 HearthomeGym_FantinaAfterBadge:
     GoToIfUnset FLAG_OBTAINED_FANTINA_TM65, HearthomeGym_FantinaTryGiveTM65
     Message HearthomeGym_Text_FantinaAfterBadge
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

@@ -17,7 +17,7 @@ _0018:
     End
 
 _002B:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ShowMoney 20, 2
@@ -59,8 +59,8 @@ _00E4:
     AddToGameRecord RECORD_MONEY_SPENT, VAR_0x8006
     RemoveMoney2 VAR_0x8006
     UpdateMoneyDisplay
-    PlayFanfare SEQ_SE_DP_REGI
-    WaitFanfare SEQ_SE_DP_REGI
+    PlaySE SEQ_SE_DP_REGI
+    WaitSE SEQ_SE_DP_REGI
     CallIfEq VAR_0x8006, 500, _0139
     CallIfEq VAR_0x8006, 6000, _013E
     Common_GiveItemQuantityNoLineFeed
@@ -79,7 +79,7 @@ _013E:
 
 _0143:
     Message 3
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     HideMoney
     ReleaseAll
@@ -87,7 +87,7 @@ _0143:
 
 _0150:
     Message 4
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     HideMoney
     ReleaseAll
@@ -95,26 +95,26 @@ _0150:
 
 _015D:
     Message 5
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     HideMoney
     ReleaseAll
     End
 
 _016A:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x0107, _0188
     Message 10
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _0188:
     Message 11
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

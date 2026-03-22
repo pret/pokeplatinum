@@ -40,7 +40,7 @@ _008D:
     End
 
 _00A0:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x00CD, _00E5
@@ -54,7 +54,7 @@ _00A0:
 
 _00E5:
     Message 2
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

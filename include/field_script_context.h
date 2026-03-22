@@ -27,6 +27,9 @@ struct ScriptContext {
     FieldSystem *fieldSystem;
 };
 
+extern const ScrCmdFunc gFieldScriptCommands[];
+extern const u32 gNumFieldScriptCommands;
+
 #define ScriptContext_ReadByte(ctx) (*(ctx->scriptPtr++))
 
 void ScriptContext_Init(ScriptContext *ctx, const ScrCmdFunc *cmdTable, u32 cmdTableSize);

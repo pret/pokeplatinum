@@ -34,16 +34,6 @@
 #define MAX_GOOD_WIDTH 3
 #define MAX_GOOD_DEPTH 3
 
-typedef struct Coordinates {
-    u16 x;
-    u16 z;
-} Coordinates;
-
-typedef struct Coordinates2D {
-    u16 x;
-    u16 y;
-} Coordinates2D;
-
 typedef struct SpherePrice {
     u8 sphereType;
     u8 minSize;

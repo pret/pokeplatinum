@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV104_022395F0_H
 #define POKEPLATINUM_OV104_022395F0_H
 
-#include "overlay104/frontier_script_context.h"
+#include "overlay104/defs.h"
 
 BOOL FrontierScrCmd_AA(FrontierScriptContext *param0);
 BOOL FrontierScrCmd_AB(FrontierScriptContext *param0);
@@ -15,6 +15,6 @@ BOOL FrontierScrCmd_B2(FrontierScriptContext *param0);
 BOOL FrontierScrCmd_B3(FrontierScriptContext *param0);
 BOOL FrontierScrCmd_B4(FrontierScriptContext *param0);
 BOOL FrontierScrCmd_B5(FrontierScriptContext *param0);
-BOOL FrontierScrCmd_B6(FrontierScriptContext *param0);
+BOOL FrontierScrCmd_ClearTowerStruct(FrontierScriptContext *ctx);
 
 #endif // POKEPLATINUM_OV104_022395F0_H

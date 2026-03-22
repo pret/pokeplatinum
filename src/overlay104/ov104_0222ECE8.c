@@ -1346,7 +1346,7 @@ BOOL ov104_0222FAD0(UnkStruct_ov104_0223BFFC *param0)
 
     v1 = 0;
     v3 = 512;
-    v5 = ov104_0223BD70(param0->unk_10, 0);
+    v5 = BattleArcade_GetPartySize(param0->unk_10, 0);
     v4 = Pokemon_StructSize();
 
     for (v0 = 0; v0 < v5; v0++) {
@@ -1378,7 +1378,7 @@ void ov104_0222FB34(int param0, int param1, void *param2, void *param3)
         return;
     }
 
-    v0 = ov104_0223BD70(v5->unk_10, 0);
+    v0 = BattleArcade_GetPartySize(v5->unk_10, 0);
     v3 = Pokemon_StructSize();
     v4 = Pokemon_New(HEAP_ID_FIELD2);
 

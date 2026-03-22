@@ -41,7 +41,7 @@ _0091:
     End
 
 _00A4:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     GoToIfEq VAR_UNK_0x408A, 1, _0102
     CheckItem ITEM_ODD_KEYSTONE, 1, VAR_RESULT
@@ -56,7 +56,7 @@ _00A4:
 _00E6:
     BufferPlayerName 0
     Message 3
-    WaitABXPadPress
+    WaitButton
     RemoveItem ITEM_ODD_KEYSTONE, 1, VAR_RESULT
     SetVar VAR_UNK_0x408A, 1
     CloseMessage
@@ -73,7 +73,7 @@ _0102:
     GoTo _0185
 
 _014D:
-    WaitFanfare SEQ_SE_CONFIRM
+    WaitSE SEQ_SE_CONFIRM
     PlayCry SPECIES_SPIRITOMB
     Message 9
     WaitCry
@@ -92,48 +92,48 @@ _017F:
 
 _0185:
     Message 4
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _0190:
     Message 5
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _019B:
     Message 6
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _01A6:
     Message 7
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _01B1:
     Message 8
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _01BC:
     Message 1
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _01C7:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     SetVar VAR_0x8004, ITEM_GOOD_ROD
@@ -156,21 +156,21 @@ _020B:
 
 _0233:
     Message 14
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _023E:
     Message 15
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 RefuseGoodRod:
     Message 13
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

@@ -20,13 +20,13 @@ _0025:
     Return
 
 _003B:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     CheckItem ITEM_STORAGE_KEY, 1, VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _0063
     Message 7
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -43,9 +43,9 @@ _0086:
     RemoveItem ITEM_STORAGE_KEY, 1, VAR_RESULT
     BufferPlayerName 0
     Message 9
-    WaitABXPadPress
-    WaitFanfare SEQ_SE_CONFIRM
-    PlayFanfare SEQ_SE_DP_DOOR10
+    WaitButton
+    WaitSE SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_DP_DOOR10
     ApplyMovement 2, _00C8
     ApplyMovement 3, _00D0
     WaitMovement
@@ -88,7 +88,7 @@ _00D8:
     SetVar VAR_PASTORIA_STATE, 1
     SetVar VAR_UNK_0x411F, 2
     Message 2
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -151,8 +151,8 @@ _0197:
     Message 5
     CloseMessage
     SetFlag FLAG_UNK_0x010E
-    WaitFanfare SEQ_SE_CONFIRM
-    PlayFanfare SEQ_SE_DP_DOOR10
+    WaitSE SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_DP_DOOR10
     ApplyMovement 2, _00C8
     ApplyMovement 3, _00D0
     WaitMovement

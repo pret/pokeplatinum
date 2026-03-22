@@ -57,7 +57,7 @@ LakeVerity_Unused:
     End
 
 LakeVerity_ProfRowan:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     GoToIfSet FLAG_TEAM_GALACTIC_LEFT_LAKE_VERITY, LakeVerity_INeedYouToGoToLakeAcuity
     ApplyMovement LOCALID_PROF_ROWAN, LakeVerity_Movement_RowanWalkOnSpotEast
@@ -82,7 +82,7 @@ LakeVerity_LucasNeedsYourHelp:
     End
 
 LakeVerity_CloseMessageCounterpartNeedsYourHelp:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -92,13 +92,13 @@ LakeVerity_INeedYouToGoToLakeAcuity:
     BufferPlayerName 0
     BufferRivalName 1
     Message LakeVerity_Text_INeedYouToGoToLakeAcuity
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 LakeVerity_Counterpart:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_TEAM_GALACTIC_LEFT_LAKE_VERITY, LakeVerity_CounterpartWhatsTeamGalacticUpTo
@@ -120,7 +120,7 @@ LakeVerity_LucasILostToHerButJustBarely:
     End
 
 LakeVerity_CloseMessageCounterpartLostToMars:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -144,7 +144,7 @@ LakeVerity_LucasWhatsTeamGalacticUpTo:
     End
 
 LakeVerity_CloseMessageWhatsTeamGalacticUpTo:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -177,7 +177,7 @@ LakeVerity_WhatTimingYouveGotToHelpLucas:
 
 LakeVerity_CloseMessageYouveGotToHelpCounterpart:
     SetVar VAR_LAKE_VERITY_PROF_ROWAN_STATE, 1
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -190,7 +190,7 @@ LakeVerity_Movement_RowanNoticePlayer:
     EndMovement
 
 LakeVerity_Mars:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ApplyMovement LOCALID_COUNTERPART, LakeVerity_Movement_CounterpartWalkOnSpotEast
@@ -219,13 +219,13 @@ LakeVerity_Mars:
     SetPosition LOCALID_PROF_ROWAN, 53, 1, 39, DIR_EAST
     FadeScreenIn
     WaitFadeScreen
-    SetFlag FLAG_UNK_0x029A
+    SetFlag FLAG_HIDE_MT_CORONET_1F_NORTH_ROOM_1_GRUNTS_M
     SetFlag FLAG_TEAM_GALACTIC_LEFT_LAKE_VERITY
     ClearFlag FLAG_HIDE_LAKE_ACUITY_JUPITER
     SetVar VAR_LAKE_ACUITY_STATE, 1
     BufferRivalName 0
     Message LakeVerity_Text_WhatIsHappeningAtLakeAcuity
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

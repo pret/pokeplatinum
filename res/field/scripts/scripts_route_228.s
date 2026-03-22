@@ -8,14 +8,14 @@
     ScriptEntryEnd
 
 _0012:
-    CallIfNe VAR_UNK_0x406B, 0x122, _003F
+    CallIfNe VAR_ROCK_PEAK_RUINS_STATE, RUINS_STATE_CAUGHT_REGI, _003F
     CheckPartyHasFatefulEncounterRegigigas VAR_MAP_LOCAL_1
     GoToIfEq VAR_MAP_LOCAL_1, 0, _0067
     GoToIfEq VAR_MAP_LOCAL_1, 1, _0071
     End
 
 _003F:
-    SetVar VAR_UNK_0x406B, 0
+    SetVar VAR_ROCK_PEAK_RUINS_STATE, 0
     Return
 
 _0047:

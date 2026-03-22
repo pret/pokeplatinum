@@ -4,9 +4,9 @@
 #include "constants/battle.h"
 
 #include "struct_decls/battle_system.h"
+#include "struct_defs/move_animation.h"
 
 #include "battle/battle_anim_battler_context.h"
-#include "battle/struct_ov16_02265BBC.h"
 #include "battle_anim/struct_ov12_02223764.h"
 #include "battle_anim/struct_ov12_022380DC.h"
 
@@ -119,7 +119,7 @@ typedef struct BattleAnimContext {
     ChatotCry *chatotCry;
     u8 *bgTiles;
     u16 *bgPaletteBuffer;
-    BOOL transformed; // Flag for if transform is currently active
+    BOOL isTransformed;
 } BattleAnimContext;
 
 typedef struct CustomBgScrollContext CustomBgScrollContext;

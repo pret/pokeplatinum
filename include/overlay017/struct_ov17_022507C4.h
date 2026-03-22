@@ -19,20 +19,20 @@
 typedef struct {
     UnkStruct_02095C48_sub1 *unk_00;
     PokemonSpriteManager *unk_04;
-    PokemonSprite *unk_08[4];
+    PokemonSprite *unk_08[CONTEST_NUM_PARTICIPANTS];
     SpriteSystem *unk_18;
     SpriteManager *unk_1C;
     BgConfig *unk_20;
     Window unk_24[9];
-    MessageLoader *unk_B4;
-    StringTemplate *unk_B8;
+    MessageLoader *contestResultsMessages;
+    StringTemplate *contestResultsTemplate;
     String *unk_BC;
     PaletteData *unk_C0;
     UnkStruct_02012744 *unk_C4;
     PokemonSpriteData pokemonSpriteDataArray[4];
     UnkStruct_ov17_0223F6E8 unk_108;
     SysTask *unk_124;
-    ManagedSprite *unk_128[4];
+    ManagedSprite *unk_128[CONTEST_NUM_PARTICIPANTS];
     ManagedSprite *unk_138[4];
     ManagedSprite *unk_148[4][12];
     ManagedSprite *unk_208[4][12];

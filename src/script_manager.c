@@ -10,6 +10,7 @@
 #include "data/field/hidden_items.h"
 #include "field/field_system.h"
 
+#include "field_script_context.h"
 #include "field_task.h"
 #include "heap.h"
 #include "map_header.h"
@@ -24,14 +25,12 @@
 #include "trainer_data.h"
 #include "vars_flags.h"
 
-#include "constdata/const_020EAB80.h"
-#include "constdata/const_020EAC58.h"
 #include "res/field/scripts/scr_seq.naix"
 
 // clang-format off
 #define SCRIPT_RANGE_TABLE(Entry) \
     Entry(SCRIPT_ID_OFFSET_SCRATCH_OFF_CARDS,              scripts_scratch_off_cards,              TEXT_BANK_SCRATCH_OFF_CARDS) \
-    Entry(SCRIPT_ID_OFFSET_BATTLE_TOWER_RECORDS,           scripts_battle_tower_records,           TEXT_BANK_BATTLE_TOWER_RECORDS) \
+    Entry(SCRIPT_ID_OFFSET_BATTLE_FRONTIER_RECORDS,        scripts_battle_frontier_records,        TEXT_BANK_BATTLE_FRONTIER_RECORDS) \
     Entry(SCRIPT_ID_OFFSET_POKEMON_CENTER_DAILY_TRAINERS,  scripts_pokemon_center_daily_trainers,  TEXT_BANK_POKEMON_CENTER_DAILY_TRAINERS) \
     Entry(SCRIPT_ID_OFFSET_COUNTERPART_TALK,               scripts_counterpart_talk,               TEXT_BANK_COUNTERPART_TALK) \
     Entry(SCRIPT_ID_OFFSET_MYSTERY_GIFT_DELIVERYMAN,       scripts_mystery_gift_deliveryman,       TEXT_BANK_MYSTERY_GIFT_DELIVERYMAN) \
@@ -40,7 +39,7 @@
     Entry(SCRIPT_ID_OFFSET_FIELD_MOVES,                    scripts_field_moves,                    TEXT_BANK_FIELD_MOVES) \
     Entry(SCRIPT_ID_OFFSET_POKEDEX_RATINGS,                scripts_pokedex_ratings,                TEXT_BANK_POKEDEX_RATINGS) \
     Entry(9900,                                            scripts_unk_0397,                       TEXT_BANK_COMMON_STRINGS) \
-    Entry(SCRIPT_ID_OFFSET_CONTEST_REGISTRATION,           scripts_contest_registration,           TEXT_BANK_CONTEST_REGISTRATION) \
+    Entry(SCRIPT_ID_OFFSET_CONTESTS,                       scripts_contests,                       TEXT_BANK_CONTEST_REGISTRATION) \
     Entry(SCRIPT_ID_OFFSET_FOLLOWER_PARTNERS,              scripts_follower_partners,              TEXT_BANK_FOLLOWER_PARTNERS) \
     Entry(SCRIPT_ID_OFFSET_INIT_NEW_GAME,                  scripts_init_new_game,                  TEXT_BANK_COMMON_STRINGS) \
     Entry(SCRIPT_ID_OFFSET_DAY_CARE_COMMON,                scripts_day_care_common,                TEXT_BANK_DAY_CARE_COMMON) \
@@ -209,7 +208,7 @@ ScriptContext *ScriptContext_CreateAndStart(FieldSystem *fieldSystem, u16 script
 
     GF_ASSERT(ctx != NULL);
 
-    ScriptContext_Init(ctx, Unk_020EAC58, Unk_020EAB80);
+    ScriptContext_Init(ctx, gFieldScriptCommands, gNumFieldScriptCommands);
     ScriptContext_LoadAndStart(fieldSystem, ctx, scriptID, 0);
 
     return ctx;

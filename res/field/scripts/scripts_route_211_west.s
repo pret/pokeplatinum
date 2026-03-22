@@ -2,21 +2,21 @@
 #include "res/text/bank/route_211_west.h"
 
 
-    ScriptEntry _000E
-    ScriptEntry _0021
-    ScriptEntry _0038
+    ScriptEntry Route211West_Unused
+    ScriptEntry Route211West_ArrowSignpostMtCoronet
+    ScriptEntry Route211West_ArrowSignpostEternaCity
     ScriptEntryEnd
 
-_000E:
-    NPCMessage 0
+Route211West_Unused:
+    NPCMessage Route211West_Text_Dummy0
     End
 
-_0021:
-    ShowArrowSign 1
+Route211West_ArrowSignpostMtCoronet:
+    ShowArrowSign Route211West_Text_Rt211MtCoronet
     End
 
-_0038:
-    ShowArrowSign 2
+Route211West_ArrowSignpostEternaCity:
+    ShowArrowSign Route211West_Text_Rt211EternaCity
     End
 
     .balign 4, 0

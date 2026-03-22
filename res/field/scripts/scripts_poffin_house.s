@@ -1,52 +1,53 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/poffin_house.h"
+#include "res/field/events/events_poffin_house.h"
 
 
-    ScriptEntry _0070
-    ScriptEntry _0083
-    ScriptEntry _0096
-    ScriptEntry _00A9
-    ScriptEntry _002F
-    ScriptEntry _001A
+    ScriptEntry PoffinHouse_Idol
+    ScriptEntry PoffinHouse_OldMan
+    ScriptEntry PoffinHouse_OldWoman
+    ScriptEntry PoffinHouse_SchoolKidF
+    ScriptEntry PoffinHouse_OnResume
+    ScriptEntry PoffinHouse_OnTransition
     ScriptEntryEnd
 
-_001A:
+PoffinHouse_OnTransition:
     CheckTVInterviewEligible TV_PROGRAM_SEGMENT_THREE_CHEERS_FOR_POFFIN_CORNER, VAR_MAP_LOCAL_0
-    CallIfEq VAR_MAP_LOCAL_0, 0, _004F
+    CallIfEq VAR_MAP_LOCAL_0, FALSE, PoffinHouse_HideReporter
     End
 
-_002F:
+PoffinHouse_OnResume:
     CheckTVInterviewEligible TV_PROGRAM_SEGMENT_THREE_CHEERS_FOR_POFFIN_CORNER, VAR_MAP_LOCAL_0
-    GoToIfNe VAR_MAP_LOCAL_0, 0, _0055
-    CallIfUnset FLAG_UNK_0x0217, _004F
+    GoToIfNe VAR_MAP_LOCAL_0, FALSE, PoffinHouse_ShowReporter
+    CallIfUnset FLAG_HIDE_POFFIN_HOUSE_REPORTER, PoffinHouse_HideReporter
     End
 
-_004F:
-    SetFlag FLAG_UNK_0x0217
+PoffinHouse_HideReporter:
+    SetFlag FLAG_HIDE_POFFIN_HOUSE_REPORTER
     Return
 
-_0055:
-    GoToIfSet FLAG_UNK_0x0217, _0066
-    ClearFlag FLAG_UNK_0x0217
+PoffinHouse_ShowReporter:
+    GoToIfSet FLAG_HIDE_POFFIN_HOUSE_REPORTER, PoffinHouse_AddReporter
+    ClearFlag FLAG_HIDE_POFFIN_HOUSE_REPORTER
     End
 
-_0066:
-    ClearFlag FLAG_UNK_0x0217
-    AddObject 4
+PoffinHouse_AddReporter:
+    ClearFlag FLAG_HIDE_POFFIN_HOUSE_REPORTER
+    AddObject LOCALID_REPORTER
     End
 
-_0070:
-    NPCMessage 0
+PoffinHouse_Idol:
+    NPCMessage PoffinHouse_Text_HeresMyAdviceOnCookingPoffins
     End
 
-_0083:
-    NPCMessage 1
+PoffinHouse_OldMan:
+    NPCMessage PoffinHouse_Text_HaveYouGotSomeBerries
     End
 
-_0096:
-    NPCMessage 2
+PoffinHouse_OldWoman:
+    NPCMessage PoffinHouse_Text_EatingMakesPeopleAndPokemonHappy
     End
 
-_00A9:
-    NPCMessage 3
+PoffinHouse_SchoolKidF:
+    NPCMessage PoffinHouse_Text_AtTheWiFiClubICanCookWithFriends
     End

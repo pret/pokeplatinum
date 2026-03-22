@@ -14,7 +14,7 @@ _000A:
     End
 
 VerityCavern_Mesprit:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     DrawPokemonPreview SPECIES_MESPRIT, GENDER_MALE

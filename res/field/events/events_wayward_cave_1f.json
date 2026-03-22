@@ -111,11 +111,11 @@
             "y": 0
         },
         {
-            "id": "WAYWARD_CAVE_1F_MIRA_4",
+            "id": "LOCALID_MIRA",
             "graphics_id": "OBJ_EVENT_GFX_MIRA",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x01E4",
+            "hidden_flag": "FLAG_HIDE_WAYWARD_CAVE_1F_MIRA",
             "script": 2,
             "initial_dir": 0,
             "data": [],
@@ -126,7 +126,7 @@
             "y": 0
         },
         {
-            "id": "WAYWARD_CAVE_1F_CAMPER_DIEGO",
+            "id": "LOCALID_CAMPER_DIEGO",
             "graphics_id": "OBJ_EVENT_GFX_CAMPER",
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -143,7 +143,7 @@
             "y": 0
         },
         {
-            "id": "WAYWARD_CAVE_1F_PICNICKER_TORI",
+            "id": "LOCALID_PICNICKER_TORI",
             "graphics_id": "OBJ_EVENT_GFX_PICNICKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -160,7 +160,7 @@
             "y": 0
         },
         {
-            "id": "WAYWARD_CAVE_1F_LASS_CASSIDY",
+            "id": "LOCALID_LASS_CASSIDY",
             "graphics_id": "OBJ_EVENT_GFX_LASS",
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -177,7 +177,7 @@
             "y": 0
         },
         {
-            "id": "WAYWARD_CAVE_1F_YOUNGSTER_WAYNE",
+            "id": "LOCALID_YOUNGSTER_WAYNE",
             "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -194,7 +194,7 @@
             "y": 0
         },
         {
-            "id": "WAYWARD_CAVE_1F_HIKER_REGINALD",
+            "id": "LOCALID_HIKER_REGINALD",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -211,7 +211,7 @@
             "y": 0
         },
         {
-            "id": "WAYWARD_CAVE_1F_COLLECTOR_TERRY",
+            "id": "LOCALID_COLLECTOR_TERRY",
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -228,7 +228,7 @@
             "y": 0
         },
         {
-            "id": "WAYWARD_CAVE_1F_PICNICKER_ANA",
+            "id": "LOCALID_PICNICKER_ANA",
             "graphics_id": "OBJ_EVENT_GFX_PICNICKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -245,7 +245,7 @@
             "y": 0
         },
         {
-            "id": "WAYWARD_CAVE_1F_CAMPER_PARKER",
+            "id": "LOCALID_CAMPER_PARKER",
             "graphics_id": "OBJ_EVENT_GFX_CAMPER",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -262,7 +262,7 @@
             "y": 0
         },
         {
-            "id": "WAYWARD_CAVE_1F_RUIN_MANIAC_GERALD",
+            "id": "LOCALID_RUIN_MANIAC_GERALD",
             "graphics_id": "OBJ_EVENT_GFX_RUIN_MANIAC",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -279,7 +279,7 @@
             "y": 0
         },
         {
-            "id": "WAYWARD_CAVE_1F_HIKER_LORENZO",
+            "id": "LOCALID_HIKER_LORENZO",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -296,7 +296,7 @@
             "y": 0
         },
         {
-            "id": "WAYWARD_CAVE_1F_ROCK_SMASH_15",
+            "id": "LOCALID_ROCK_SMASH_1",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -311,7 +311,7 @@
             "y": 0
         },
         {
-            "id": "WAYWARD_CAVE_1F_ROCK_SMASH_16",
+            "id": "LOCALID_ROCK_SMASH_2",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -326,7 +326,7 @@
             "y": 0
         },
         {
-            "id": "WAYWARD_CAVE_1F_ROCK_SMASH_17",
+            "id": "LOCALID_ROCK_SMASH_3",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -341,7 +341,7 @@
             "y": 0
         },
         {
-            "id": "WAYWARD_CAVE_1F_ROCK_SMASH_18",
+            "id": "LOCALID_ROCK_SMASH_4",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -356,7 +356,7 @@
             "y": 0
         },
         {
-            "id": "WAYWARD_CAVE_1F_ROCK_SMASH_19",
+            "id": "LOCALID_ROCK_SMASH_5",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -371,7 +371,7 @@
             "y": 0
         },
         {
-            "id": "WAYWARD_CAVE_1F_ROCK_SMASH_20",
+            "id": "LOCALID_ROCK_SMASH_6",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -386,7 +386,7 @@
             "y": 0
         },
         {
-            "id": "WAYWARD_CAVE_1F_ROCK_SMASH_21",
+            "id": "LOCALID_ROCK_SMASH_7",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -401,7 +401,7 @@
             "y": 0
         },
         {
-            "id": "WAYWARD_CAVE_1F_ROCK_SMASH_22",
+            "id": "LOCALID_ROCK_SMASH_8",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -416,7 +416,7 @@
             "y": 0
         },
         {
-            "id": "WAYWARD_CAVE_1F_ROCK_SMASH_23",
+            "id": "LOCALID_ROCK_SMASH_9",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -431,7 +431,7 @@
             "y": 0
         },
         {
-            "id": "WAYWARD_CAVE_1F_ROCK_SMASH_24",
+            "id": "LOCALID_ROCK_SMASH_10",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -446,7 +446,7 @@
             "y": 0
         },
         {
-            "id": "WAYWARD_CAVE_1F_ROCK_SMASH_25",
+            "id": "LOCALID_ROCK_SMASH_11",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -495,7 +495,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": "VAR_UNK_0x4091",
+            "var": "VAR_WAYWARD_CAVE_1F_FOLLOWER_MIRA_STATE",
             "value": 1
         }
     ]

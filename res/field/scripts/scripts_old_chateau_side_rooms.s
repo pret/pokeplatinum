@@ -2,11 +2,11 @@
 #include "res/text/bank/old_chateau_side_rooms.h"
 
 
-    ScriptEntry _0006
+    ScriptEntry OldChateauSideRooms_Notebook
     ScriptEntryEnd
 
-_0006:
-    EventMessage 0
+OldChateauSideRooms_Notebook:
+    EventMessage OldChateauSideRooms_Text_ItsAnOldNotebook
     End
 
     .balign 4, 0

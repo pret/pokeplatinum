@@ -132,7 +132,7 @@ FloaromaMeadow_CantGiveHoneyBagIsFull:
     Message FloaromaMeadow_Text_OhTooBadSeemsToMeYourBagsFull
 FloaromaMeadow_DefeatedGruntsReturn:
     SetFlag FLAG_DEFEATED_FLOAROMA_MEADOW_GRUNTS
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     Return
 
@@ -155,7 +155,7 @@ FloaromaMeadow_UnusedGrunt:
     End
 
 FloaromaMeadow_PokefanM:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message FloaromaMeadow_Text_WouldYouLikeToBuySomeHoneyForAttractingPokemon
@@ -196,8 +196,8 @@ FloaromaMeadow_TryGiveHoney:
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, FloaromaMeadow_CantBuyHoneyBagIsFull
     RemoveMoney2 VAR_0x8006
     UpdateMoneyDisplay
-    PlayFanfare SEQ_SE_DP_REGI
-    WaitFanfare SEQ_SE_DP_REGI
+    PlaySE SEQ_SE_DP_REGI
+    WaitSE SEQ_SE_DP_REGI
     Common_GiveItemQuantityNoLineFeed
     HideMoney
     CloseMessage
@@ -206,7 +206,7 @@ FloaromaMeadow_TryGiveHoney:
 
 FloaromaMeadow_OopsyWellComeAgain:
     Message FloaromaMeadow_Text_OopsyWellComeAgain
-    WaitABXPadPress
+    WaitButton
     HideMoney
     CloseMessage
     ReleaseAll
@@ -214,7 +214,7 @@ FloaromaMeadow_OopsyWellComeAgain:
 
 FloaromaMeadow_CantBuyHoneyBagIsFull:
     Message FloaromaMeadow_Text_OhTooBadSeemsToMeYourBagsFull
-    WaitABXPadPress
+    WaitButton
     HideMoney
     CloseMessage
     ReleaseAll
@@ -222,7 +222,7 @@ FloaromaMeadow_CantBuyHoneyBagIsFull:
 
 FloaromaMeadow_OopsyYouDontHaveEnoughMoney:
     Message FloaromaMeadow_Text_OopsyYouDontHaveEnoughMoney
-    WaitABXPadPress
+    WaitButton
     HideMoney
     CloseMessage
     ReleaseAll
@@ -233,7 +233,7 @@ FloaromaMeadow_UnusedArrowSign:
     End
 
 FloaromaMeadow_ItemWorksKey:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     SetVar VAR_0x8004, ITEM_WORKS_KEY

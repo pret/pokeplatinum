@@ -7,11 +7,11 @@
 typedef struct {
     u8 unk_00;
     u8 unk_01;
-    u8 unk_02[4];
+    u8 unk_02[CONTEST_NUM_PARTICIPANTS];
     u32 unk_08;
     u32 unk_0C;
     u16 unk_10;
-    u32 unk_14[4];
+    u32 unk_14[CONTEST_NUM_PARTICIPANTS];
     UnkStruct_ov17_02253084 unk_24;
     UnkStruct_ov17_0224C0C0 unk_30;
     u8 unk_36;

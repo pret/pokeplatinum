@@ -50,7 +50,7 @@
       "en_US": "EXIT"
     },
     {
-      "id": "pl_msg_00000361_00012",
+      "id": "MenuEntries_Text_ListMenu_Exit",
       "en_US": "EXIT"
     },
     {
@@ -410,19 +410,19 @@
       "garbage": 17
     },
     {
-      "id": "pl_msg_00000361_00096",
+      "id": "MenuEntries_Text_ContestRegistration_ContestBasics",
       "en_US": "CONTEST BASICS"
     },
     {
-      "id": "pl_msg_00000361_00097",
+      "id": "MenuEntries_Text_ContestRegistration_TypesOfContests",
       "en_US": "TYPES OF CONTESTS"
     },
     {
-      "id": "pl_msg_00000361_00098",
+      "id": "MenuEntries_Text_ContestRegistration_ContestRanks",
       "en_US": "CONTEST RANKS"
     },
     {
-      "id": "pl_msg_00000361_00099",
+      "id": "MenuEntries_Text_ContestRegistration_Cancel",
       "en_US": "CANCEL"
     },
     {
@@ -446,47 +446,47 @@
       "garbage": 3
     },
     {
-      "id": "pl_msg_00000361_00105",
+      "id": "MenuEntries_Text_ContestRegistration_NormalRank",
       "en_US": "NORMAL RANK"
     },
     {
-      "id": "pl_msg_00000361_00106",
+      "id": "MenuEntries_Text_ContestRegistration_GreatRank",
       "en_US": "GREAT RANK"
     },
     {
-      "id": "pl_msg_00000361_00107",
+      "id": "MenuEntries_Text_ContestRegistration_UltraRank",
       "en_US": "ULTRA RANK"
     },
     {
-      "id": "pl_msg_00000361_00108",
+      "id": "MenuEntries_Text_ContestRegistration_MasterRank",
       "en_US": "MASTER RANK"
     },
     {
-      "id": "pl_msg_00000361_00109",
+      "id": "MenuEntries_Text_ContestRegistration_ContestRankExit",
       "en_US": "EXIT"
     },
     {
-      "id": "pl_msg_00000361_00110",
+      "id": "MenuEntries_Text_ContestRegistration_CoolContest",
       "en_US": "COOL CONTEST"
     },
     {
-      "id": "pl_msg_00000361_00111",
+      "id": "MenuEntries_Text_ContestRegistration_BeautyContest",
       "en_US": "BEAUTY CONTEST"
     },
     {
-      "id": "pl_msg_00000361_00112",
+      "id": "MenuEntries_Text_ContestRegistration_CuteContest",
       "en_US": "CUTE CONTEST"
     },
     {
-      "id": "pl_msg_00000361_00113",
+      "id": "MenuEntries_Text_ContestRegistration_SmartContest",
       "en_US": "SMART CONTEST"
     },
     {
-      "id": "pl_msg_00000361_00114",
+      "id": "MenuEntries_Text_ContestRegistration_ToughContest",
       "en_US": "TOUGH CONTEST"
     },
     {
-      "id": "pl_msg_00000361_00115",
+      "id": "MenuEntries_Text_ContestRegistration_ContestTypeExit",
       "en_US": "EXIT"
     },
     {
@@ -574,11 +574,11 @@
       "en_US": "CANCEL"
     },
     {
-      "id": "pl_msg_00000361_00137",
+      "id": "MenuEntries_Text_CounterpartHand_Right",
       "en_US": "RIGHT"
     },
     {
-      "id": "pl_msg_00000361_00138",
+      "id": "MenuEntries_Text_CounterpartHand_Left",
       "en_US": "LEFT"
     },
     {
@@ -746,23 +746,23 @@
       "en_US": "PRACTICE"
     },
     {
-      "id": "pl_msg_00000361_00180",
+      "id": "MenuEntries_Text_UndergroundManHousePCHeading_Flags",
       "en_US": "FLAGS"
     },
     {
-      "id": "pl_msg_00000361_00181",
+      "id": "MenuEntries_Text_UndergroundManHousePCHeading_Spheres",
       "en_US": "SPHERES"
     },
     {
-      "id": "pl_msg_00000361_00182",
+      "id": "MenuEntries_Text_UndergroundManHousePCHeading_Traps",
       "en_US": "TRAPS"
     },
     {
-      "id": "pl_msg_00000361_00183",
+      "id": "MenuEntries_Text_UndergroundManHousePCHeading_Goods",
       "en_US": "GOODS"
     },
     {
-      "id": "pl_msg_00000361_00184",
+      "id": "MenuEntries_Text_UndergroundManHousePCHeading_Treasures",
       "en_US": "TREASURES"
     },
     {

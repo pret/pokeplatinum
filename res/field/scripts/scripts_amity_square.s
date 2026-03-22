@@ -470,7 +470,7 @@ AmitySquare_FollowerMon_SeemsToBeEnjoyingTheWalk:
 
 AmitySquare_FollowerMon_End:
     WaitCry
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -544,7 +544,7 @@ AmitySquare_EastReceptionist:
     End
 
 AmitySquare_Receptionist:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     BufferPartyMonNickname 0, VAR_FOLLOWER_MON_PARTY_ID
@@ -584,7 +584,7 @@ AmitySquare_YouMaySpendAllTheTimeYouLikeInAmitySquare:
     Return
 
 AmitySquare_WestReceptionist_End:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ApplyMovement 0, _08C8
     WaitMovement
@@ -592,7 +592,7 @@ AmitySquare_WestReceptionist_End:
     End
 
 AmitySquare_EastReceptionist_End:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ApplyMovement 1, _08D0
     WaitMovement
@@ -903,7 +903,7 @@ _1072:
     End
 
 AmitySquare_FollowerMon:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     BufferPartyMonNickname 0, VAR_FOLLOWER_MON_PARTY_ID
@@ -913,7 +913,7 @@ AmitySquare_FollowerMon:
     End
 
 AmitySquare_GiftMan:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_AMITY_SQUARE_MAN_GIFT_RECEIVED, AmitySquare_GiftMan_ReceivedGift
@@ -932,9 +932,9 @@ AmitySquare_GiftMan_ItemGift:
     GoToIfCannotFitItem LOCALID_ITEM_OR_ACCESSORY_ID, LOCALID_COUNT, VAR_RESULT, AmitySquare_GiftMan_CannotFitItem
     BufferPlayerName 0
     BufferItemNamePlural 1, LOCALID_ITEM_OR_ACCESSORY_ID
-    PlaySound SEQ_FANFA4
+    PlayFanfare SEQ_FANFA4
     Message AmitySquare_Text_PlayerReceivedItem
-    WaitSound
+    WaitFanfare
     AddItem LOCALID_ITEM_OR_ACCESSORY_ID, LOCALID_COUNT, VAR_RESULT
     GoTo AmitySquare_GiftMan_ReceivedGift
     End
@@ -951,7 +951,7 @@ AmitySquare_GiftMan_AccessoryGift:
 
 AmitySquare_GiftMan_DeclinedGift:
     Message AmitySquare_Text_OhItsNoProblemToMe
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -970,7 +970,7 @@ AmitySquare_GiftMan_CannotFitItem:
 AmitySquare_GiftMan_ReceivedGift:
     SetFlag FLAG_AMITY_SQUARE_MAN_GIFT_RECEIVED
     Message AmitySquare_Text_HahahahPerhapsIllSeeYouAgainTomorrow
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -1119,7 +1119,7 @@ _1305:
     ScrCmd_338
     ApplyMovement 5, _1758
     WaitMovement
-    PlayFanfare SEQ_SE_DP_GYURU
+    PlaySE SEQ_SE_DP_GYURU
     CallIfEq VAR_0x8003, 1, _14C2
     CallIfEq VAR_0x8003, 2, _14DA
     CallIfEq VAR_0x8003, 3, _14F2

@@ -20,25 +20,25 @@ _002D:
     Return
 
 _0033:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x00A8, _0051
     Message 0
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _0051:
     Message 1
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _005C:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     GoToIfGe VAR_ARCEUS_EVENT_STATE, 3, _0082
     Message 2
@@ -46,7 +46,7 @@ _005C:
     End
 
 _007A:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

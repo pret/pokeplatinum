@@ -18,23 +18,23 @@ CanalaveCityMart_SpecialtyVendor:
     End
 
 CanalaveCityMart_Lady:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     BufferItemName 0, ITEM_MAX_POTION //Unused?
     Message CanalaveCityMart_Text_ThatsTheRepeatBall
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 CanalaveCityMart_Pokefan:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     BufferItemName 0, ITEM_X_ATTACK //Unused?
     Message CanalaveCityMart_Text_ShouldTakeReviveToIronIsland
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

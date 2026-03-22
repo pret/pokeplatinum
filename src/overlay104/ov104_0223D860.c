@@ -7,9 +7,8 @@
 
 #include "overlay063/ov63_0222D77C.h"
 #include "overlay063/struct_ov63_0222CCB8.h"
+#include "overlay104/frontier_graphics.h"
 #include "overlay104/ov104_02231F74.h"
-#include "overlay104/ov104_0223C2D4.h"
-#include "overlay104/struct_ov104_0223C4CC.h"
 #include "overlay104/struct_ov104_0223C634.h"
 #include "overlay104/struct_ov104_0223D8F0.h"
 
@@ -77,7 +76,7 @@ static BOOL ov104_0223D8F0(UnkStruct_0209B75C *param0, UnkStruct_ov104_0223C634 
 {
     UnkStruct_ov104_0223D8F0 *v0 = &param1->unk_26;
     UnkStruct_ov63_0222CCB8 v1;
-    UnkStruct_ov104_0223C4CC *v2 = sub_0209B974(param0);
+    FrontierGraphics *v2 = sub_0209B974(param0);
 
     if (v0->unk_02[2] > 0) {
         v0->unk_02[2]--;

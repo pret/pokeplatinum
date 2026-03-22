@@ -22,19 +22,19 @@ FloaromaTownPokecenter1F_BattleGirl:
     End
 
 FloaromaTownPokecenter1F_AceTrainerF:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfGe VAR_VALLEY_WINDWORKS_TEAM_GALACTIC_STATE, 2, FloaromaTownPokecenter1F_ItsALongWayFromHereToEternaCity
     Message FloaromaTownPokecenter1F_Text_ThereveBeenProblemsWithTheElectricPowerLately
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 FloaromaTownPokecenter1F_ItsALongWayFromHereToEternaCity:
     Message FloaromaTownPokecenter1F_Text_ItsALongWayFromHereToEternaCity
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

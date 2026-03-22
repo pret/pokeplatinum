@@ -16,13 +16,13 @@ _0021:
     End
 
 _0034:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     CheckItem ITEM_GALACTIC_KEY, 1, VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _005C
     Message 2
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -37,9 +37,9 @@ _005C:
 _007F:
     BufferPlayerName 0
     Message 4
-    WaitABXPadPress
-    WaitFanfare SEQ_SE_CONFIRM
-    PlayFanfare SEQ_SE_DP_DOOR10
+    WaitButton
+    WaitSE SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_DP_DOOR10
     ApplyMovement 6, _00BC
     ApplyMovement 7, _00C4
     WaitMovement

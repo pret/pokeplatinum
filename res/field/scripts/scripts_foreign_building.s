@@ -2,51 +2,51 @@
 #include "res/text/bank/foreign_building.h"
 
 
-    ScriptEntry _0026
-    ScriptEntry _0039
-    ScriptEntry _004C
-    ScriptEntry _005F
-    ScriptEntry _0072
-    ScriptEntry _0085
-    ScriptEntry _0098
-    ScriptEntry _00AB
-    ScriptEntry _00BE
+    ScriptEntry ForeignBuilding_RuinManiac
+    ScriptEntry ForeignBuilding_OldMan
+    ScriptEntry ForeignBuilding_NinjaBoy
+    ScriptEntry ForeignBuilding_OldWoman
+    ScriptEntry ForeignBuilding_AceTrainerF
+    ScriptEntry ForeignBuilding_PokefanF
+    ScriptEntry ForeignBuilding_ExpertM
+    ScriptEntry ForeignBuilding_Psychic
+    ScriptEntry ForeignBuilding_Lady
     ScriptEntryEnd
 
-_0026:
-    NPCMessage 0
+ForeignBuilding_RuinManiac:
+    NPCMessage ForeignBuilding_Text_ThereDoISeeMyFather
     End
 
-_0039:
-    NPCMessage 1
+ForeignBuilding_OldMan:
+    NPCMessage ForeignBuilding_Text_CraftingFatiguesOnesSpirit
     End
 
-_004C:
-    NPCMessage 2
+ForeignBuilding_NinjaBoy:
+    NPCMessage ForeignBuilding_Text_PeopleAndPokemonMakeEveryoneComeTogether
     End
 
-_005F:
-    NPCMessage 3
+ForeignBuilding_OldWoman:
+    NPCMessage ForeignBuilding_Text_ThatPeopleAreLonelyIsOnlyNatural
     End
 
-_0072:
-    NPCMessage 4
+ForeignBuilding_AceTrainerF:
+    NPCMessage ForeignBuilding_Text_ThereAreWordsThatNotEveryoneCanDescribe
     End
 
-_0085:
-    NPCMessage 5
+ForeignBuilding_PokefanF:
+    NPCMessage ForeignBuilding_Text_ItsOnlyNaturalWeAreDifferent
     End
 
-_0098:
-    NPCMessage 6
+ForeignBuilding_ExpertM:
+    NPCMessage ForeignBuilding_Text_TheStrongMustShowRestraint
     End
 
-_00AB:
-    NPCMessage 7
+ForeignBuilding_Psychic:
+    NPCMessage ForeignBuilding_Text_WeCannotReadMinds
     End
 
-_00BE:
-    NPCMessage 8
+ForeignBuilding_Lady:
+    NPCMessage ForeignBuilding_Text_BalanceIsWhatsNeeded
     End
 
     .balign 4, 0

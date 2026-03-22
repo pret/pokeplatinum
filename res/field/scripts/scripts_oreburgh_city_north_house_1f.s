@@ -8,7 +8,7 @@
     ScriptEntryEnd
 
 OreburghCityNorthHouse1F_SchoolKidF:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_TRADED_FOR_KAZZA_ABRA, OreburghCityNorthHouse1F_ThanksToPokemonIGotToBeFriendsWithYou
@@ -34,7 +34,7 @@ OreburghCityNorthHouse1F_TryTrade:
     FinishNpcTrade
     SetFlag FLAG_TRADED_FOR_KAZZA_ABRA
     Message OreburghCityNorthHouse1F_Text_BeNiceToMyAbra
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -42,21 +42,21 @@ OreburghCityNorthHouse1F_TryTrade:
 OreburghCityNorthHouse1F_WhatIAskedForWasAMachop:
     FinishNpcTrade
     Message OreburghCityNorthHouse1F_Text_WhatIAskedForWasAMachop
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 OreburghCityNorthHouse1F_IfYouChangeYourMindIllBeRightHereWaiting:
     Message OreburghCityNorthHouse1F_Text_IfYouChangeYourMindIllBeRightHereWaiting
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 OreburghCityNorthHouse1F_ThanksToPokemonIGotToBeFriendsWithYou:
     Message OreburghCityNorthHouse1F_Text_ThanksToPokemonIGotToBeFriendsWithYou
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

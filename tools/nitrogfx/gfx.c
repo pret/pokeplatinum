@@ -1316,9 +1316,12 @@ void ReadGbaPalette(char *path, struct Palette *palette)
     free(data);
 }
 
-void ReadNtrPalette(char *path, struct Palette *palette, int bitdepth, int palIndex, bool inverted, bool convertTo8Bpp)
+#define PLTT_HEADER_SIZE 0x18
+
+void ReadNtrPalette(char *path, struct Palette *palette, int bitdepth, int palIndex, bool convertTo8Bpp, bool verbose)
 {
     int fileSize;
+    bool inverted = false;
     unsigned char *data = ReadWholeFile(path, &fileSize);
 
     if (memcmp(data, "RLCN", 4) != 0 && memcmp(data, "RPCN", 4) != 0) //NCLR / NCPR
@@ -1340,8 +1343,16 @@ void ReadNtrPalette(char *path, struct Palette *palette, int bitdepth, int palIn
 
     bitdepth = bitdepth ? bitdepth : palette->bitDepth;
 
+    // Some NCLRs are known to exist which have an "inverted" palette size, which is represented as
+    // 0x200 minus the true size in bytes. So, we must verify the palette size stored in the header
+    // with the section size (which is authoritative and never inverted in this way).
+    size_t sectionSize = (paletteHeader[0x04]) | (paletteHeader[0x05] << 8) | (paletteHeader[0x06] << 16) | (paletteHeader[0x07] << 24);
     size_t paletteSize = (paletteHeader[0x10]) | (paletteHeader[0x11] << 8) | (paletteHeader[0x12] << 16) | (paletteHeader[0x13] << 24);
-    if (inverted) paletteSize = 0x200 - paletteSize;
+    if (sectionSize - PLTT_HEADER_SIZE != paletteSize) {
+        paletteSize = 0x200 - paletteSize;
+        inverted = true;
+    }
+
     if (palIndex == 0) {
         palette->numColors = paletteSize / 2;
     } else {
@@ -1349,7 +1360,7 @@ void ReadNtrPalette(char *path, struct Palette *palette, int bitdepth, int palIn
         --palIndex;
     }
 
-    unsigned char *paletteData = paletteHeader + 0x18;
+    unsigned char *paletteData = paletteHeader + PLTT_HEADER_SIZE;
 
     for (int i = 0; i < 256; i++)
     {
@@ -1366,6 +1377,36 @@ void ReadNtrPalette(char *path, struct Palette *palette, int bitdepth, int palIn
             palette->colors[i].green = 0;
             palette->colors[i].blue = 0;
         }
+    }
+
+    if (verbose) {
+        printf("Suggested NCLR options: ");
+
+        if (paletteHeader[0x0A]) {
+            printf("-comp %d ", paletteHeader[0x0A]);
+        }
+
+        if (data[0x01] == 'P') {
+            printf("-ncpr ");
+        }
+
+        if (palette->numColors < 256) {
+            printf("-nopad ");
+        }
+
+        size_t truePaletteSize = paletteSize;
+        if (inverted) {
+            printf("-invertsize ");
+            truePaletteSize = 0x200 - truePaletteSize;
+        }
+
+        uint16_t sectionCount = (data[0x0F] << 8) | data[0x0E];
+        if (sectionCount == 2) {
+            printf("-pcmp ");
+        }
+
+        printf("-bitdepth %d ", bitdepth);
+        puts("");
     }
 
     free(data);

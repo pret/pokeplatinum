@@ -1,9 +1,11 @@
 #include "generated/battle_tower_functions.h"
+#include "generated/battle_tower_modes.h"
 #include "generated/fade_types.h"
 #include "generated/game_records.h"
 #include "generated/sdat.h"
 #include "generated/trainer_score_events.h"
 #include "generated/vars_flags.h"
+#include "constants/battle_tower.h"
 #include "constants/colors.h"
 #include "constants/fade_screen.h"
 #include "constants/scrcmd.h"
@@ -591,7 +593,7 @@
     .byte \arg0
     .endm
 
-    .macro FrontierScrCmd_6C
+    .macro InitNewBattleRecording
     .short 0x06C
     .endm
 
@@ -607,7 +609,7 @@
     .short 0x06E
     .endm
 
-    .macro FrontierScrCmd_6F
+    .macro FreeBattleRecording
     .short 0x06F
     .endm
 
@@ -727,7 +729,7 @@
     .byte \arg0
     .endm
 
-    .macro FrontierScrCmd_86
+    .macro FreeTowerStruct
     .short 0x086
     .endm
 
@@ -735,9 +737,9 @@
     .short 0x087
     .endm
 
-    .macro FrontierScrCmd_88 arg0
+    .macro CheckWonTowerBattle destVar
     .short 0x088
-    .short \arg0
+    .short \destVar
     .endm
 
     .macro FrontierScrCmd_89 arg0, arg1, arg2
@@ -983,7 +985,7 @@
     .short 0x0B5
     .endm
 
-    .macro FrontierScrCmd_B6
+    .macro ClearTowerStruct
     .short 0x0B6
     .endm
 

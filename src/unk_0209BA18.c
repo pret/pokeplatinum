@@ -29,7 +29,7 @@ UnkStruct_ov104_02230BE4 *sub_0209BA18(FieldSystem *fieldSystem, void *param1)
     v0->unk_14 = 0;
     v0->unk_18 = 0;
     v0->unk_1C = fieldSystem->location->mapId;
-    v0->unk_24 = (((((((((((0 + 1) + 1) + 1) + 1) + 1) + 3) + 1) + 1) + 1) + 2) + 1);
+    v0->sceneID = 14;
     v0->fieldSystem = fieldSystem;
 
     FieldSystem_StartChildProcess(fieldSystem, &Unk_020F8BE0, v0);

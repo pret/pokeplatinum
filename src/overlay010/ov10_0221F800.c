@@ -2439,7 +2439,7 @@ static void ov10_022229D4(UnkStruct_ov10_0221FB28 *param0)
 
 static BOOL ov10_02222A08(UnkStruct_ov10_0221FB28 *param0)
 {
-    if ((param0->unk_00->unk_00->saveData == NULL) || (sub_0202F250() == 0)) {
+    if ((param0->unk_00->unk_00->saveData == NULL) || (BattleRecording_Exists() == 0)) {
         return 0;
     }
 

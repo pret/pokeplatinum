@@ -19,7 +19,7 @@ FloaromaTown_OnTransition:
     End
 
 FloaromaTown_Grunts:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     ApplyMovement LOCALID_GRUNT_M_WEST, FloaromaTown_Movement_WalkOnSpotEast
     WaitMovement
@@ -28,7 +28,7 @@ FloaromaTown_Grunts:
     ApplyMovement LOCALID_GRUNT_M_EAST, FloaromaTown_Movement_WalkOnSpotWest
     WaitMovement
     Message FloaromaTown_Text_DontComplainThisIsAPrettyDecentAssignment
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -44,7 +44,7 @@ FloaromaTown_Movement_WalkOnSpotWest:
     EndMovement
 
 FloaromaTown_SchoolKidM:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfGe VAR_VALLEY_WINDWORKS_TEAM_GALACTIC_STATE, 2, FloaromaTown_BeingSurroundedByFlowersPutsMeInAnOddlyPleasantMood
@@ -52,14 +52,14 @@ FloaromaTown_SchoolKidM:
     ApplyMovement LOCALID_SCHOOL_KID_M, FloaromaTown_Movement_SchoolKidMFaceNorth
     WaitMovement
     Message FloaromaTown_Text_ThoseGalacticGuysWentToTheMeadowPastTheseFlowersHere
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 FloaromaTown_BeingSurroundedByFlowersPutsMeInAnOddlyPleasantMood:
     Message FloaromaTown_Text_BeingSurroundedByFlowersPutsMeInAnOddlyPleasantMood
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -99,7 +99,7 @@ FloaromaTown_LandmarkSignFloaromaMeadow:
     End
 
 FloaromaTown_Beauty:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     FindPartySlotWithFatefulEncounterSpecies VAR_RESULT, SPECIES_SHAYMIN
@@ -127,7 +127,7 @@ FloaromaTown_GracideaFlowersHaveBeenAroundALongTimeInThisRegion:
     End
 
 FloaromaTown_BeautyEnd:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

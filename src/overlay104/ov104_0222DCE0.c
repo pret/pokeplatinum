@@ -35,6 +35,7 @@
 #include "unk_02038F8C.h"
 #include "unk_0208C098.h"
 #include "unk_02092494.h"
+#include "versions.h"
 
 static const u16 sTrainerClassToObjectID[][2] = {
     { TRAINER_CLASS_TRAINER_CHERYL, OBJ_EVENT_GFX_CHERYL },
@@ -585,27 +586,19 @@ void BattleFrontier_SetPartnerInStrTemplate(StringTemplate *template, u32 idx)
     return;
 }
 
-int ov104_0222E5F0(const TrainerInfo *param0)
+enum ObjectEventGfx BattleFrontier_GetPlayerObjEventGfx(const TrainerInfo *playerInfo)
 {
-    u32 v0;
-    int v1, v2;
+    u32 gender = TrainerInfo_Gender(playerInfo);
 
-    v0 = TrainerInfo_Gender(param0);
-    v2 = TrainerInfo_GameCode(param0);
-
-    switch (v2) {
-    case 12:
-    case 7:
-    case 8:
+    switch (TrainerInfo_GameCode(playerInfo)) {
+    case VERSION_PLATINUM:
+    case VERSION_HEARTGOLD:
+    case VERSION_SOULSILVER:
     default:
-        v1 = (v0 == 0) ? 0x0 : 0x61;
-        break;
-    case 0:
-        v1 = (v0 == 0) ? 0xfc : 0xfd;
-        break;
+        return gender == GENDER_MALE ? OBJ_EVENT_GFX_PLAYER_M : OBJ_EVENT_GFX_PLAYER_F;
+    case VERSION_NONE:
+        return gender == GENDER_MALE ? OBJ_EVENT_GFX_DP_PLAYER_M : OBJ_EVENT_GFX_DP_PLAYER_F;
     }
-
-    return v1;
 }
 
 void ov104_0222E630(SaveData *saveData)

@@ -1,0 +1,1005 @@
+{
+  "characters": [
+    {
+      "id": "PokemonSummaryScreen_Chars_CaughtBall",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "master_ball_NCGR",
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Chars_Tabs",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "tabs_NCGR",
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Chars_MoveSelectCursor",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "move_cursor_NCGR",
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Chars_MonTypeIcon1",
+      "from_narc": "NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ",
+      "from_file": "type_icons_normal_NCGR_lz",
+      "compressed": true,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Chars_MonTypeIcon2",
+      "from_narc": "NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ",
+      "from_file": "type_icons_normal_NCGR_lz",
+      "compressed": true,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Chars_MoveTypeIcon1",
+      "from_narc": "NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ",
+      "from_file": "type_icons_normal_NCGR_lz",
+      "compressed": true,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Chars_MoveTypeIcon2",
+      "from_narc": "NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ",
+      "from_file": "type_icons_normal_NCGR_lz",
+      "compressed": true,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Chars_MoveTypeIcon3",
+      "from_narc": "NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ",
+      "from_file": "type_icons_normal_NCGR_lz",
+      "compressed": true,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Chars_MoveTypeIcon4",
+      "from_narc": "NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ",
+      "from_file": "type_icons_normal_NCGR_lz",
+      "compressed": true,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Chars_MoveTypeIcon5",
+      "from_narc": "NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ",
+      "from_file": "type_icons_normal_NCGR_lz",
+      "compressed": true,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Chars_CategoryIcon",
+      "from_narc": "NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ",
+      "from_file": "type_icons_status_NCGR_lz",
+      "compressed": true,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Chars_MonIcon",
+      "from_narc": "NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON",
+      "from_file": "icon_00000_NCGR",
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Chars_StatusIcon",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "status_icons_NCGR",
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Chars_Sheen",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "sheen_NCGR",
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Chars_TabArrow",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "tab_arrow_NCGR",
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Chars_MarkingCircle",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "marking_circle_NCGR",
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Chars_TouchButtonEffect",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_BAG_GRA",
+      "from_file": "button_shockwave_NCGR",
+      "compressed": false,
+      "on_main_screen": false,
+      "on_sub_screen": true
+    },
+    {
+      "id": "PokemonSummaryScreen_Chars_ConditionArrow",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "condition_arrow_NCGR",
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Chars_AButton",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "a_button_NCGR",
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Chars_MarkingStar",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "marking_star_NCGR",
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Chars_MarkingDiamond",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "marking_diamond_NCGR",
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Chars_MarkingSquare",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "marking_square_NCGR",
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Chars_MarkingTriangle",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "marking_triangle_NCGR",
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Chars_MarkingHeart",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "marking_heart_NCGR",
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Chars_ShinyPokerusCuredIcon",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "shiny_and_pokerus_cured_icon_NCGR",
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Chars_ContestStatDot",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "contest_stat_dot_NCGR",
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Chars_Ribbon1",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "hoenn_champion_NCGR",
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Chars_Ribbon2",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "hoenn_champion_NCGR",
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Chars_Ribbon3",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "hoenn_champion_NCGR",
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Chars_Ribbon4",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "hoenn_champion_NCGR",
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Chars_Ribbon5",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "hoenn_champion_NCGR",
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Chars_Ribbon6",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "hoenn_champion_NCGR",
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Chars_Ribbon7",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "hoenn_champion_NCGR",
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Chars_Ribbon8",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "hoenn_champion_NCGR",
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Chars_Ribbon9",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "hoenn_champion_NCGR",
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Chars_Ribbon10",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "hoenn_champion_NCGR",
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Chars_Ribbon11",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "hoenn_champion_NCGR",
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Chars_Ribbon12",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "hoenn_champion_NCGR",
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Chars_RibbonCursor",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "ribbon_cursor_NCGR",
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Chars_RibbonArrow",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "ribbon_arrow_NCGR",
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Chars_RibbonFlash",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "ribbon_flash_NCGR",
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Chars_ConditionFlash",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "condition_flash_NCGR",
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Chars_PokerusIcon",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "pokerus_icon_NCGR",
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    }
+  ],
+  "palettes": [
+    {
+      "id": "PokemonSummaryScreen_Palette_Shared",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "sprites_NCLR",
+      "load_in_slot": 3,
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Palette_TypeIcons",
+      "from_narc": "NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ",
+      "from_file": "type_icons_shared_NCLR",
+      "load_in_slot": 3,
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    },
+    {
+      "id": 2,
+      "dummy": true
+    },
+    {
+      "id": "PokemonSummaryScreen_Palette_StatusIcons",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "status_icons_NCLR",
+      "load_in_slot": 1,
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Palette_TouchButtonEffect",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PLIST_GRA",
+      "from_file": "touch_button_shockwave_NCLR",
+      "load_in_slot": 1,
+      "compressed": false,
+      "on_main_screen": false,
+      "on_sub_screen": true
+    },
+    {
+      "id": "PokemonSummaryScreen_Palette_Ribbons",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "ribbons_NCLR",
+      "load_in_slot": 5,
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Palette_CaughtBall",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "balls_0_NCLR",
+      "load_in_slot": 1,
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    }
+  ],
+  "cells": [
+    {
+      "id": "PokemonSummaryScreen_Cells_ConditionFlash",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "condition_flash_cell_NCER",
+      "compressed": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Cells_Tabs",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "tabs_cell_NCER",
+      "compressed": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Cells_MoveSelectCursor",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "move_cursor_cell_NCER",
+      "compressed": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Cells_TypeIcons",
+      "from_narc": "NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ",
+      "from_file": "type_icons_cell_NCER_lz",
+      "compressed": true
+    },
+    {
+      "id": "PokemonSummaryScreen_Cells_MonIcon",
+      "from_narc": "NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON",
+      "from_file": "shared_cell_NCER",
+      "compressed": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Cells_StatusIcons",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "status_icons_cell_NCER",
+      "compressed": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Cells_Sheen",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "sheen_cell_NCER",
+      "compressed": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Cells_TabArrow",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "tab_arrow_cell_NCER",
+      "compressed": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Cells_Markings",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "markings_cell_NCER",
+      "compressed": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Cells_TouchButtonEffect",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_BAG_GRA",
+      "from_file": "button_shockwave_cell_NCER",
+      "compressed": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Cells_ConditionArrow",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "condition_arrow_cell_NCER",
+      "compressed": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Cells_ContestStatDot",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "contest_stat_dot_cell_NCER",
+      "compressed": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Cells_Ribbons",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "ribbons_cell_NCER",
+      "compressed": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Cells_RibbonFlash",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "ribbon_flash_cell_NCER",
+      "compressed": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Cells_RibbonArrow",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "ribbon_arrow_cell_NCER",
+      "compressed": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Cells_RibbonCursor",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "ribbon_cursor_cell_NCER",
+      "compressed": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Cells_PokerusIcon",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "pokerus_icon_cell_NCER",
+      "compressed": false
+    }
+  ],
+  "animations": [
+    {
+      "id": "PokemonSummaryScreen_Anims_ConditionFlash",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "condition_flash_anim_NANR",
+      "compressed": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Anims_Tabs",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "tabs_anim_NANR",
+      "compressed": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Anims_MoveSelectCursor",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "move_cursor_anim_NANR",
+      "compressed": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Anims_TypeIcons",
+      "from_narc": "NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ",
+      "from_file": "misc_single_frame_anim_NANR_lz_14",
+      "compressed": true
+    },
+    {
+      "id": "PokemonSummaryScreen_Anims_MonIcon",
+      "from_narc": "NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON",
+      "from_file": "shared_anim_NANR",
+      "compressed": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Anims_StatusIcons",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "status_icons_anim_NANR",
+      "compressed": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Anims_Sheen",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "sheen_anim_NANR",
+      "compressed": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Anims_TabArrow",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "tab_arrow_anim_NANR",
+      "compressed": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Anims_Markings",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "markings_anim_NANR",
+      "compressed": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Anims_TouchButtonEffect",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_BAG_GRA",
+      "from_file": "button_shockwave_anim_NANR",
+      "compressed": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Anims_ConditionArrow",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "condition_arrow_anim_NANR",
+      "compressed": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Anims_ContestStatDot",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "contest_stat_dot_anim_NANR",
+      "compressed": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Anims_Ribbons",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "ribbons_anim_NANR",
+      "compressed": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Anims_RibbonFlash",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "ribbon_flash_anim_NANR",
+      "compressed": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Anims_RibbonArrow",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "ribbon_arrow_anim_NANR",
+      "compressed": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Anims_RibbonCursor",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "ribbon_cursor_anim_NANR",
+      "compressed": false
+    },
+    {
+      "id": "PokemonSummaryScreen_Anims_PokerusIcon",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "pokerus_icon_anim_NANR",
+      "compressed": false
+    }
+  ],
+  "templates": [
+    {
+      "id": "PokemonSummaryScreen_Template_CaughtBall",
+      "characters": "PokemonSummaryScreen_Chars_CaughtBall",
+      "palette": "PokemonSummaryScreen_Palette_CaughtBall",
+      "cells": "PokemonSummaryScreen_Cells_ConditionFlash",
+      "animations": "PokemonSummaryScreen_Anims_ConditionFlash",
+      "vram_transfer": false,
+      "priority": 0
+    },
+    {
+      "id": "PokemonSummaryScreen_Template_Tabs",
+      "characters": "PokemonSummaryScreen_Chars_Tabs",
+      "palette": "PokemonSummaryScreen_Palette_Shared",
+      "cells": "PokemonSummaryScreen_Cells_Tabs",
+      "animations": "PokemonSummaryScreen_Anims_Tabs",
+      "vram_transfer": false,
+      "priority": 0
+    },
+    {
+      "id": "PokemonSummaryScreen_Template_MoveSelectCursor",
+      "characters": "PokemonSummaryScreen_Chars_MoveSelectCursor",
+      "palette": "PokemonSummaryScreen_Palette_Shared",
+      "cells": "PokemonSummaryScreen_Cells_MoveSelectCursor",
+      "animations": "PokemonSummaryScreen_Anims_MoveSelectCursor",
+      "vram_transfer": false,
+      "priority": 0
+    },
+    {
+      "id": "PokemonSummaryScreen_Template_MonTypeIcon1",
+      "characters": "PokemonSummaryScreen_Chars_MonTypeIcon1",
+      "palette": "PokemonSummaryScreen_Palette_TypeIcons",
+      "cells": "PokemonSummaryScreen_Cells_TypeIcons",
+      "animations": "PokemonSummaryScreen_Anims_TypeIcons",
+      "vram_transfer": false,
+      "priority": 0
+    },
+    {
+      "id": "PokemonSummaryScreen_Template_MonTypeIcon2",
+      "characters": "PokemonSummaryScreen_Chars_MonTypeIcon2",
+      "palette": "PokemonSummaryScreen_Palette_TypeIcons",
+      "cells": "PokemonSummaryScreen_Cells_TypeIcons",
+      "animations": "PokemonSummaryScreen_Anims_TypeIcons",
+      "vram_transfer": false,
+      "priority": 0
+    },
+    {
+      "id": "PokemonSummaryScreen_Template_MoveTypeIcon1",
+      "characters": "PokemonSummaryScreen_Chars_MoveTypeIcon1",
+      "palette": "PokemonSummaryScreen_Palette_TypeIcons",
+      "cells": "PokemonSummaryScreen_Cells_TypeIcons",
+      "animations": "PokemonSummaryScreen_Anims_TypeIcons",
+      "vram_transfer": false,
+      "priority": 0
+    },
+    {
+      "id": "PokemonSummaryScreen_Template_MoveTypeIcon2",
+      "characters": "PokemonSummaryScreen_Chars_MoveTypeIcon2",
+      "palette": "PokemonSummaryScreen_Palette_TypeIcons",
+      "cells": "PokemonSummaryScreen_Cells_TypeIcons",
+      "animations": "PokemonSummaryScreen_Anims_TypeIcons",
+      "vram_transfer": false,
+      "priority": 0
+    },
+    {
+      "id": "PokemonSummaryScreen_Template_MoveTypeIcon3",
+      "characters": "PokemonSummaryScreen_Chars_MoveTypeIcon3",
+      "palette": "PokemonSummaryScreen_Palette_TypeIcons",
+      "cells": "PokemonSummaryScreen_Cells_TypeIcons",
+      "animations": "PokemonSummaryScreen_Anims_TypeIcons",
+      "vram_transfer": false,
+      "priority": 0
+    },
+    {
+      "id": "PokemonSummaryScreen_Template_MoveTypeIcon4",
+      "characters": "PokemonSummaryScreen_Chars_MoveTypeIcon4",
+      "palette": "PokemonSummaryScreen_Palette_TypeIcons",
+      "cells": "PokemonSummaryScreen_Cells_TypeIcons",
+      "animations": "PokemonSummaryScreen_Anims_TypeIcons",
+      "vram_transfer": false,
+      "priority": 0
+    },
+    {
+      "id": "PokemonSummaryScreen_Template_MoveTypeIcon5",
+      "characters": "PokemonSummaryScreen_Chars_MoveTypeIcon5",
+      "palette": "PokemonSummaryScreen_Palette_TypeIcons",
+      "cells": "PokemonSummaryScreen_Cells_TypeIcons",
+      "animations": "PokemonSummaryScreen_Anims_TypeIcons",
+      "vram_transfer": false,
+      "priority": 0
+    },
+    {
+      "id": "PokemonSummaryScreen_Template_CategoryIcon",
+      "characters": "PokemonSummaryScreen_Chars_CategoryIcon",
+      "palette": "PokemonSummaryScreen_Palette_TypeIcons",
+      "cells": "PokemonSummaryScreen_Cells_TypeIcons",
+      "animations": "PokemonSummaryScreen_Anims_TypeIcons",
+      "vram_transfer": false,
+      "priority": 0
+    },
+    {
+      "id": "PokemonSummaryScreen_Template_MonIcon",
+      "characters": "PokemonSummaryScreen_Chars_MonIcon",
+      "palette": "PokemonSummaryScreen_Palette_Ribbons",
+      "cells": "PokemonSummaryScreen_Cells_MonIcon",
+      "animations": "PokemonSummaryScreen_Anims_MonIcon",
+      "vram_transfer": false,
+      "priority": 0
+    },
+    {
+      "id": "PokemonSummaryScreen_Template_StatusIcon",
+      "characters": "PokemonSummaryScreen_Chars_StatusIcon",
+      "palette": "PokemonSummaryScreen_Palette_StatusIcons",
+      "cells": "PokemonSummaryScreen_Cells_StatusIcons",
+      "animations": "PokemonSummaryScreen_Anims_StatusIcons",
+      "vram_transfer": false,
+      "priority": 3
+    },
+    {
+      "id": "PokemonSummaryScreen_Template_Sheen",
+      "characters": "PokemonSummaryScreen_Chars_Sheen",
+      "palette": "PokemonSummaryScreen_Palette_Shared",
+      "cells": "PokemonSummaryScreen_Cells_Sheen",
+      "animations": "PokemonSummaryScreen_Anims_Sheen",
+      "vram_transfer": false,
+      "priority": 3
+    },
+    {
+      "id": "PokemonSummaryScreen_Template_TabArrow",
+      "characters": "PokemonSummaryScreen_Chars_TabArrow",
+      "palette": "PokemonSummaryScreen_Palette_Shared",
+      "cells": "PokemonSummaryScreen_Cells_TabArrow",
+      "animations": "PokemonSummaryScreen_Anims_TabArrow",
+      "vram_transfer": false,
+      "priority": 3
+    },
+    {
+      "id": "PokemonSummaryScreen_Template_TouchButtonEffect",
+      "characters": "PokemonSummaryScreen_Chars_TouchButtonEffect",
+      "palette": "PokemonSummaryScreen_Palette_TouchButtonEffect",
+      "cells": "PokemonSummaryScreen_Cells_TouchButtonEffect",
+      "animations": "PokemonSummaryScreen_Anims_TouchButtonEffect",
+      "vram_transfer": false,
+      "priority": 0
+    },
+    {
+      "id": "PokemonSummaryScreen_Template_ConditionArrow",
+      "characters": "PokemonSummaryScreen_Chars_ConditionArrow",
+      "palette": "PokemonSummaryScreen_Palette_Shared",
+      "cells": "PokemonSummaryScreen_Cells_ConditionArrow",
+      "animations": "PokemonSummaryScreen_Anims_ConditionArrow",
+      "vram_transfer": false,
+      "priority": 0
+    },
+    {
+      "id": "PokemonSummaryScreen_Template_AButton",
+      "characters": "PokemonSummaryScreen_Chars_AButton",
+      "palette": "PokemonSummaryScreen_Palette_Shared",
+      "cells": "PokemonSummaryScreen_Cells_ConditionArrow",
+      "animations": "PokemonSummaryScreen_Anims_ConditionArrow",
+      "vram_transfer": false,
+      "priority": 0
+    },
+    {
+      "id": "PokemonSummaryScreen_Template_MarkingCircle",
+      "characters": "PokemonSummaryScreen_Chars_MarkingCircle",
+      "palette": "PokemonSummaryScreen_Palette_Shared",
+      "cells": "PokemonSummaryScreen_Cells_Markings",
+      "animations": "PokemonSummaryScreen_Anims_Markings",
+      "vram_transfer": false,
+      "priority": 3
+    },
+    {
+      "id": "PokemonSummaryScreen_Template_MarkingTriangle",
+      "characters": "PokemonSummaryScreen_Chars_MarkingTriangle",
+      "palette": "PokemonSummaryScreen_Palette_Shared",
+      "cells": "PokemonSummaryScreen_Cells_Markings",
+      "animations": "PokemonSummaryScreen_Anims_Markings",
+      "vram_transfer": false,
+      "priority": 3
+    },
+    {
+      "id": "PokemonSummaryScreen_Template_MarkingSquare",
+      "characters": "PokemonSummaryScreen_Chars_MarkingSquare",
+      "palette": "PokemonSummaryScreen_Palette_Shared",
+      "cells": "PokemonSummaryScreen_Cells_Markings",
+      "animations": "PokemonSummaryScreen_Anims_Markings",
+      "vram_transfer": false,
+      "priority": 3
+    },
+    {
+      "id": "PokemonSummaryScreen_Template_MarkingHeart",
+      "characters": "PokemonSummaryScreen_Chars_MarkingHeart",
+      "palette": "PokemonSummaryScreen_Palette_Shared",
+      "cells": "PokemonSummaryScreen_Cells_Markings",
+      "animations": "PokemonSummaryScreen_Anims_Markings",
+      "vram_transfer": false,
+      "priority": 3
+    },
+    {
+      "id": "PokemonSummaryScreen_Template_MarkingStar",
+      "characters": "PokemonSummaryScreen_Chars_MarkingStar",
+      "palette": "PokemonSummaryScreen_Palette_Shared",
+      "cells": "PokemonSummaryScreen_Cells_Markings",
+      "animations": "PokemonSummaryScreen_Anims_Markings",
+      "vram_transfer": false,
+      "priority": 3
+    },
+    {
+      "id": "PokemonSummaryScreen_Template_MarkingDiamond",
+      "characters": "PokemonSummaryScreen_Chars_MarkingDiamond",
+      "palette": "PokemonSummaryScreen_Palette_Shared",
+      "cells": "PokemonSummaryScreen_Cells_Markings",
+      "animations": "PokemonSummaryScreen_Anims_Markings",
+      "vram_transfer": false,
+      "priority": 3
+    },
+    {
+      "id": "PokemonSummaryScreen_Template_ShinyPokerusCuredIcon",
+      "characters": "PokemonSummaryScreen_Chars_ShinyPokerusCuredIcon",
+      "palette": "PokemonSummaryScreen_Palette_Shared",
+      "cells": "PokemonSummaryScreen_Cells_Markings",
+      "animations": "PokemonSummaryScreen_Anims_Markings",
+      "vram_transfer": false,
+      "priority": 3
+    },
+    {
+      "id": "PokemonSummaryScreen_Template_ContestStatDot",
+      "characters": "PokemonSummaryScreen_Chars_ContestStatDot",
+      "palette": "PokemonSummaryScreen_Palette_Shared",
+      "cells": "PokemonSummaryScreen_Cells_ContestStatDot",
+      "animations": "PokemonSummaryScreen_Anims_ContestStatDot",
+      "vram_transfer": false,
+      "priority": 0
+    },
+    {
+      "id": "PokemonSummaryScreen_Template_Ribbon1",
+      "characters": "PokemonSummaryScreen_Chars_Ribbon1",
+      "palette": "PokemonSummaryScreen_Palette_Ribbons",
+      "cells": "PokemonSummaryScreen_Cells_Ribbons",
+      "animations": "PokemonSummaryScreen_Anims_Ribbons",
+      "vram_transfer": false,
+      "priority": 3
+    },
+    {
+      "id": "PokemonSummaryScreen_Template_Ribbon2",
+      "characters": "PokemonSummaryScreen_Chars_Ribbon2",
+      "palette": "PokemonSummaryScreen_Palette_Ribbons",
+      "cells": "PokemonSummaryScreen_Cells_Ribbons",
+      "animations": "PokemonSummaryScreen_Anims_Ribbons",
+      "vram_transfer": false,
+      "priority": 3
+    },
+    {
+      "id": "PokemonSummaryScreen_Template_Ribbon3",
+      "characters": "PokemonSummaryScreen_Chars_Ribbon3",
+      "palette": "PokemonSummaryScreen_Palette_Ribbons",
+      "cells": "PokemonSummaryScreen_Cells_Ribbons",
+      "animations": "PokemonSummaryScreen_Anims_Ribbons",
+      "vram_transfer": false,
+      "priority": 3
+    },
+    {
+      "id": "PokemonSummaryScreen_Template_Ribbon4",
+      "characters": "PokemonSummaryScreen_Chars_Ribbon4",
+      "palette": "PokemonSummaryScreen_Palette_Ribbons",
+      "cells": "PokemonSummaryScreen_Cells_Ribbons",
+      "animations": "PokemonSummaryScreen_Anims_Ribbons",
+      "vram_transfer": false,
+      "priority": 3
+    },
+    {
+      "id": "PokemonSummaryScreen_Template_Ribbon5",
+      "characters": "PokemonSummaryScreen_Chars_Ribbon5",
+      "palette": "PokemonSummaryScreen_Palette_Ribbons",
+      "cells": "PokemonSummaryScreen_Cells_Ribbons",
+      "animations": "PokemonSummaryScreen_Anims_Ribbons",
+      "vram_transfer": false,
+      "priority": 3
+    },
+    {
+      "id": "PokemonSummaryScreen_Template_Ribbon6",
+      "characters": "PokemonSummaryScreen_Chars_Ribbon6",
+      "palette": "PokemonSummaryScreen_Palette_Ribbons",
+      "cells": "PokemonSummaryScreen_Cells_Ribbons",
+      "animations": "PokemonSummaryScreen_Anims_Ribbons",
+      "vram_transfer": false,
+      "priority": 3
+    },
+    {
+      "id": "PokemonSummaryScreen_Template_Ribbon7",
+      "characters": "PokemonSummaryScreen_Chars_Ribbon7",
+      "palette": "PokemonSummaryScreen_Palette_Ribbons",
+      "cells": "PokemonSummaryScreen_Cells_Ribbons",
+      "animations": "PokemonSummaryScreen_Anims_Ribbons",
+      "vram_transfer": false,
+      "priority": 3
+    },
+    {
+      "id": "PokemonSummaryScreen_Template_Ribbon8",
+      "characters": "PokemonSummaryScreen_Chars_Ribbon8",
+      "palette": "PokemonSummaryScreen_Palette_Ribbons",
+      "cells": "PokemonSummaryScreen_Cells_Ribbons",
+      "animations": "PokemonSummaryScreen_Anims_Ribbons",
+      "vram_transfer": false,
+      "priority": 3
+    },
+    {
+      "id": "PokemonSummaryScreen_Template_Ribbon9",
+      "characters": "PokemonSummaryScreen_Chars_Ribbon9",
+      "palette": "PokemonSummaryScreen_Palette_Ribbons",
+      "cells": "PokemonSummaryScreen_Cells_Ribbons",
+      "animations": "PokemonSummaryScreen_Anims_Ribbons",
+      "vram_transfer": false,
+      "priority": 3
+    },
+    {
+      "id": "PokemonSummaryScreen_Template_Ribbon10",
+      "characters": "PokemonSummaryScreen_Chars_Ribbon10",
+      "palette": "PokemonSummaryScreen_Palette_Ribbons",
+      "cells": "PokemonSummaryScreen_Cells_Ribbons",
+      "animations": "PokemonSummaryScreen_Anims_Ribbons",
+      "vram_transfer": false,
+      "priority": 3
+    },
+    {
+      "id": "PokemonSummaryScreen_Template_Ribbon11",
+      "characters": "PokemonSummaryScreen_Chars_Ribbon11",
+      "palette": "PokemonSummaryScreen_Palette_Ribbons",
+      "cells": "PokemonSummaryScreen_Cells_Ribbons",
+      "animations": "PokemonSummaryScreen_Anims_Ribbons",
+      "vram_transfer": false,
+      "priority": 3
+    },
+    {
+      "id": "PokemonSummaryScreen_Template_Ribbon12",
+      "characters": "PokemonSummaryScreen_Chars_Ribbon12",
+      "palette": "PokemonSummaryScreen_Palette_Ribbons",
+      "cells": "PokemonSummaryScreen_Cells_Ribbons",
+      "animations": "PokemonSummaryScreen_Anims_Ribbons",
+      "vram_transfer": false,
+      "priority": 3
+    },
+    {
+      "id": "PokemonSummaryScreen_Template_RibbonCursor",
+      "characters": "PokemonSummaryScreen_Chars_RibbonCursor",
+      "palette": "PokemonSummaryScreen_Palette_Shared",
+      "cells": "PokemonSummaryScreen_Cells_RibbonCursor",
+      "animations": "PokemonSummaryScreen_Anims_RibbonCursor",
+      "vram_transfer": false,
+      "priority": 2
+    },
+    {
+      "id": "PokemonSummaryScreen_Template_RibbonArrow",
+      "characters": "PokemonSummaryScreen_Chars_RibbonArrow",
+      "palette": "PokemonSummaryScreen_Palette_Shared",
+      "cells": "PokemonSummaryScreen_Cells_RibbonArrow",
+      "animations": "PokemonSummaryScreen_Anims_RibbonArrow",
+      "vram_transfer": false,
+      "priority": 0
+    },
+    {
+      "id": "PokemonSummaryScreen_Template_RibbonFlash",
+      "characters": "PokemonSummaryScreen_Chars_RibbonFlash",
+      "palette": "PokemonSummaryScreen_Palette_Shared",
+      "cells": "PokemonSummaryScreen_Cells_RibbonFlash",
+      "animations": "PokemonSummaryScreen_Anims_RibbonFlash",
+      "vram_transfer": false,
+      "priority": 0
+    },
+    {
+      "id": "PokemonSummaryScreen_Template_ConditionFlash",
+      "characters": "PokemonSummaryScreen_Chars_ConditionFlash",
+      "palette": "PokemonSummaryScreen_Palette_Shared",
+      "cells": "PokemonSummaryScreen_Cells_ConditionFlash",
+      "animations": "PokemonSummaryScreen_Anims_ConditionFlash",
+      "vram_transfer": false,
+      "priority": 0
+    },
+    {
+      "id": "PokemonSummaryScreen_Template_PokerusIcon",
+      "characters": "PokemonSummaryScreen_Chars_PokerusIcon",
+      "palette": "PokemonSummaryScreen_Palette_Shared",
+      "cells": "PokemonSummaryScreen_Cells_PokerusIcon",
+      "animations": "PokemonSummaryScreen_Anims_PokerusIcon",
+      "vram_transfer": false,
+      "priority": 3
+    }
+  ]
+}

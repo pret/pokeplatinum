@@ -14,7 +14,7 @@
     ScriptEntryEnd
 
 VeilstoneStore2F_Attendant:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     CheckIsDepartmentStoreRegular VAR_RESULT
@@ -43,35 +43,35 @@ VeilstoneStore2F_AttendantPersonalized:
 
 VeilstoneStore2F_AttendantPleaseEnjoyYourself:
     Message VeilstoneStore2F_Text_PleaseEnjoyYourself
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 VeilstoneStore2F_AttendantProtein:
     Message VeilstoneStore2F_Text_CareForAProtein
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 VeilstoneStore2F_AttendantCarbos:
     Message VeilstoneStore2F_Text_SuggestACarbos
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 VeilstoneStore2F_AttendantDireHit:
     Message VeilstoneStore2F_Text_DireHitIsForYou
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 VeilstoneStore2F_AttendantXAccuracy:
     Message VeilstoneStore2F_Text_TreatItToXAccuracy
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -89,7 +89,7 @@ VeilstoneStore2F_BugCatcher2:
     End
 
 VeilstoneStore2F_PoketchVendor:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     CheckPoketchAppRegistered POKETCH_APPID_COUNTER, VAR_RESULT
@@ -100,21 +100,21 @@ VeilstoneStore2F_PoketchVendor:
     Message VeilstoneStore2F_Text_HereYouGo
     SetVar VAR_0x8004, POKETCH_APPID_COUNTER
     Common_GivePoketchApp
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 VeilstoneStore2F_PoketchVendorAfterAppGiven:
     Message VeilstoneStore2F_Text_IHopeCounterAppIsUseful
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 VeilstoneStore2F_PoketchVendorDeclined:
     Message VeilstoneStore2F_Text_WaitingIfYouChangeYourMind
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

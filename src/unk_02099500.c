@@ -72,7 +72,7 @@ static const CommCmdTable Unk_020F68A4[] = {
     { Traps_ProcessTriggeredTrapBits, CommPacketSizeOf_NetId, NULL },
     { Traps_QueueSendTrapRadarResults, CommPacketSizeOf_Nothing, NULL },
     { Traps_ReceiveTrapRadarResults, CommPacketSizeOf_TrapRadarResult, NULL },
-    { UndergroundMan_ProcessTouchInput, CommPacketSizeOf_Coordinates, NULL },
+    { UndergroundMan_ProcessTouchInput, CommPacketSizeOf_CoordinatesU16, NULL },
     { UndergroundMan_ProcessTouchRadarTrapResults, CommPacketSizeOf_Variable, NULL },
     { UndergroundMan_ProcessTouchRadarMiningSpotResults, CommPacketSizeOf_Variable, NULL }, // 50
     { Traps_ProcessDisengagedTrap, CommPacketSizeOf_TriggeredTrap, NULL },

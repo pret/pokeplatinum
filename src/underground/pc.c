@@ -26,6 +26,7 @@
 #include "comm_player_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
+#include "coordinates.h"
 #include "field_system.h"
 #include "field_task.h"
 #include "heap.h"
@@ -142,7 +143,7 @@ static const WindowTemplate sYesNoWindowTemplate = {
     .baseTile = BASE_TILE_YES_NO_MENU
 };
 
-int UndergroundPC_GetPCOwnerNetIDAtCoordinates(Coordinates *coordinates, int dir)
+int UndergroundPC_GetPCOwnerNetIDAtCoordinates(CoordinatesU16 *coordinates, int dir)
 {
     int netID;
     int x = coordinates->x;
@@ -176,7 +177,7 @@ int UndergroundPC_GetPCOwnerNetIDAtCoordinates(Coordinates *coordinates, int dir
     return NETID_NONE;
 }
 
-BOOL UndergroundPC_TryUsePC(int netID, Coordinates *coordinates)
+BOOL UndergroundPC_TryUsePC(int netID, CoordinatesU16 *coordinates)
 {
     int pcNetID = UndergroundPC_GetPCOwnerNetIDAtCoordinates(coordinates, CommPlayer_DirServer(netID));
 

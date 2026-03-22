@@ -2,57 +2,57 @@
 #include "res/text/bank/route_206.h"
 
 
-    ScriptEntry _0016
-    ScriptEntry _001C
-    ScriptEntry _00A4
-    ScriptEntry _00B7
-    ScriptEntry _00CE
+    ScriptEntry Route206_OnTransition
+    ScriptEntry Route206_OnResume
+    ScriptEntry Route206_Hiker
+    ScriptEntry Route206_ArrowSignpostEternaCity
+    ScriptEntry Route206_ArrowSignpostOreburghCity
     ScriptEntryEnd
 
-_0016:
+Route206_OnTransition:
     SetFlag FLAG_FIRST_ARRIVAL_CYCLING_ROAD_UNUSED
     End
 
-_001C:
-    CallIfSet FLAG_ON_CYCLING_ROAD, _009F
+Route206_OnResume:
+    CallIfSet FLAG_ON_CYCLING_ROAD, Route206_ForceBicycling
     GetPreviousMapID VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, MAP_HEADER_ROUTE_206_CYCLING_ROAD_NORTH_GATE, _0047
-    GoToIfEq VAR_MAP_LOCAL_0, MAP_HEADER_ROUTE_206_CYCLING_ROAD_SOUTH_GATE, _0047
+    GoToIfEq VAR_MAP_LOCAL_0, MAP_HEADER_ROUTE_206_CYCLING_ROAD_NORTH_GATE, Route206_TrySetFlagsCyclingRoad
+    GoToIfEq VAR_MAP_LOCAL_0, MAP_HEADER_ROUTE_206_CYCLING_ROAD_SOUTH_GATE, Route206_TrySetFlagsCyclingRoad
     End
 
-_0047:
-    GoToIfSet FLAG_UNK_0x0003, _009D
+Route206_TrySetFlagsCyclingRoad:
+    GoToIfSet FLAG_UNK_0x0003, Route206_OnResumeEnd
     GetPlayerMapPos VAR_MAP_LOCAL_0, VAR_MAP_LOCAL_1
-    GoToIfLt VAR_MAP_LOCAL_0, 0x12B, _009D
-    GoToIfGt VAR_MAP_LOCAL_0, 0x132, _009D
-    GoToIfEq VAR_MAP_LOCAL_1, 0x240, _008E
-    GoToIfEq VAR_MAP_LOCAL_1, 0x2A9, _008E
+    GoToIfLt VAR_MAP_LOCAL_0, 299, Route206_OnResumeEnd
+    GoToIfGt VAR_MAP_LOCAL_0, 306, Route206_OnResumeEnd
+    GoToIfEq VAR_MAP_LOCAL_1, 576, Route206_SetFlagsCyclingRoad
+    GoToIfEq VAR_MAP_LOCAL_1, 681, Route206_SetFlagsCyclingRoad
     End
 
-_008E:
+Route206_SetFlagsCyclingRoad:
     SetFlag FLAG_UNK_0x0003
     SetFlag FLAG_ON_CYCLING_ROAD
-    ScrCmd_2BF
-    ScrCmd_0C9 1
+    SetCyclingBGM
+    ForceBicycling TRUE
     End
 
-_009D:
+Route206_OnResumeEnd:
     End
 
-_009F:
-    ScrCmd_0C9 1
+Route206_ForceBicycling:
+    ForceBicycling TRUE
     Return
 
-_00A4:
-    NPCMessage 0
+Route206_Hiker:
+    NPCMessage Route206_Text_IHeardThereWereTwoCavesOnRoute206
     End
 
-_00B7:
-    ShowArrowSign 1
+Route206_ArrowSignpostEternaCity:
+    ShowArrowSign Route206_Text_Rt206EternaCity
     End
 
-_00CE:
-    ShowArrowSign 2
+Route206_ArrowSignpostOreburghCity:
+    ShowArrowSign Route206_Text_Rt206OreburghCity
     End
 
     .balign 4, 0

@@ -1704,7 +1704,7 @@ void ov62_0223371C(UnkStruct_0208C06C *param0)
 {
     int v0;
 
-    sub_0202F1F8(param0->saveData, HEAP_ID_119, &v0);
+    BattleRecording_New(param0->saveData, HEAP_ID_119, &v0);
 
     {
         UnkStruct_02030A80 *v1 = (UnkStruct_02030A80 *)(&param0->unk_8B4.unk_00->unk_00);
@@ -1852,8 +1852,8 @@ void ov62_022338A8(UnkStruct_0208C06C *param0)
             }
             break;
         }
-        if (sub_0202F250() == 1) {
-            sub_0202F22C();
+        if (BattleRecording_Exists() == 1) {
+            BattleRecording_Free();
         }
     }
 }

@@ -9,13 +9,13 @@
 #include "struct_defs/struct_02039A58.h"
 #include "struct_defs/struct_0209BBA4.h"
 
+#include "applications/frontier/battle_arcade/main.h"
 #include "applications/frontier/battle_castle/opponent_app.h"
 #include "applications/frontier/battle_castle/self_app.h"
 #include "applications/frontier/battle_factory/main.h"
 #include "applications/frontier/battle_hall/main.h"
 #include "overlay104/ov104_0222ECE8.h"
 #include "overlay104/ov104_0223C164.h"
-#include "overlay108/ov108_02241AE0.h"
 
 #include "communication_system.h"
 #include "party.h"
@@ -89,9 +89,9 @@ static const CommCmdTable Unk_020F8BF0[] = {
     { ov104_0222FA5C, CommPacketSizeOf_Variable, NULL },
     { ov104_0222FAA8, CommPacketSizeOf_Variable, NULL },
     { ov104_0222FB34, CommPacketSizeOf_Variable, ov104_0222FBC4 },
-    { ov108_02242AB0, CommPacketSizeOf_Variable, NULL },
-    { ov108_02242B24, CommPacketSizeOf_Variable, NULL },
-    { ov108_02242B84, CommPacketSizeOf_Variable, NULL }
+    { BattleArcadeApp_HandleInitialLayoutCmd, CommPacketSizeOf_Variable, NULL },
+    { BattleArcadeApp_HandleResultCmd, CommPacketSizeOf_Variable, NULL },
+    { BattleArcadeApp_HandleUnusedCmd, CommPacketSizeOf_Variable, NULL }
 };
 
 void sub_0209BA80(void *param0)

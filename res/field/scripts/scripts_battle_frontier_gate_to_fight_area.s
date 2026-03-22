@@ -31,19 +31,19 @@ _0038:
     Call _02F5
     Message 1
     BufferPlayerName 0
-    PlaySound SEQ_FANFA4
+    PlayFanfare SEQ_FANFA4
     Message 2
-    WaitSound
+    WaitFanfare
     Message 3
     Call _0095
     Message 10
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _007C:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 4
@@ -71,7 +71,7 @@ _0095:
 
 _0103:
     Message 10
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -107,7 +107,7 @@ _0146:
     End
 
 _0154:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 17
@@ -127,13 +127,13 @@ _018A:
     End
 
 _0195:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _019D:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 20
@@ -153,13 +153,13 @@ _01D3:
     End
 
 _01DE:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _01E6:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 23
@@ -179,13 +179,13 @@ _021C:
     End
 
 _0227:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _022F:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 26
@@ -205,13 +205,13 @@ _0265:
     End
 
 _0270:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _0278:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 29
@@ -231,7 +231,7 @@ _02AE:
     End
 
 _02B9:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

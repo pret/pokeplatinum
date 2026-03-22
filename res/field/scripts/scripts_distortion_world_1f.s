@@ -14,7 +14,7 @@ _0016:
     End
 
 _001A:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     Message 7
     ShowYesNoMenu VAR_RESULT
@@ -27,7 +27,7 @@ _003A:
     BufferPlayerName 0
     Message 8
     CloseMessage
-    PlayFanfare SEQ_SE_PL_SYUWA
+    PlaySE SEQ_SE_PL_SYUWA
     SetPartyGiratinaForm GIRATINA_FORM_ALTERED
     FadeScreenOut
     WaitFadeScreen
@@ -42,7 +42,7 @@ _0070:
     WaitMovement
     ApplyMovement LOCALID_PLAYER, _014C
     WaitMovement
-    ScrCmd_311 128
+    AddDistortionWorldMapObject 128
     ApplyMovement 128, _017C
     WaitMovement
     Message 0
@@ -65,7 +65,7 @@ _0070:
     WaitTime 30, VAR_RESULT
     FinishDistortionWorldGiratinaShadowEvent
     Message 3
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ApplyMovement LOCALID_PLAYER, _0174
     ApplyMovement 128, _01C4
@@ -74,7 +74,7 @@ _0070:
     CloseMessage
     ApplyMovement 128, _01CC
     WaitMovement
-    ScrCmd_312 128
+    DeleteDistortionWorldMapObject 128
     SetVar VAR_DISTORTION_WORLD_PROGRESS, 1
     ReleaseAll
     End

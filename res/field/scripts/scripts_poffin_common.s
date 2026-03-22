@@ -7,7 +7,7 @@
     End
 
 _0008:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 0
@@ -31,14 +31,14 @@ _001B:
 
 _006D:
     Message 33
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _0078:
     Message 32
-    WaitABXPadPress
+    WaitButton
     GoTo _001B
     End
 
@@ -51,7 +51,7 @@ _0085:
 
 _0097:
     ReturnToField
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     FadeScreenIn
@@ -60,7 +60,7 @@ _0097:
 
 _00AF:
     Message 8
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

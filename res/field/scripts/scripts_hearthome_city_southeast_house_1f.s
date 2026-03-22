@@ -2,26 +2,26 @@
 #include "res/text/bank/hearthome_city_southeast_house_1f.h"
 
 
-    ScriptEntry _0012
-    ScriptEntry _0025
-    ScriptEntry _0038
-    ScriptEntry _004B
+    ScriptEntry HearthomeCitySoutheastHouse1F_MiddleAgedMan
+    ScriptEntry HearthomeCitySoutheastHouse1F_Lady
+    ScriptEntry HearthomeCitySoutheastHouse1F_Twin
+    ScriptEntry HearthomeCitySoutheastHouse1F_Shroomish
     ScriptEntryEnd
 
-_0012:
-    NPCMessage 0
+HearthomeCitySoutheastHouse1F_MiddleAgedMan:
+    NPCMessage HearthomeCitySoutheastHouse1F_Text_ThereAreTheContests
     End
 
-_0025:
-    NPCMessage 1
+HearthomeCitySoutheastHouse1F_Lady:
+    NPCMessage HearthomeCitySoutheastHouse1F_Text_ICouldCaptivateTheWholeWorld
     End
 
-_0038:
-    NPCMessage 2
+HearthomeCitySoutheastHouse1F_Twin:
+    NPCMessage HearthomeCitySoutheastHouse1F_Text_MyShroomishFindsBerries
     End
 
-_004B:
-    PokemonCryAndMessage SPECIES_SHROOMISH, 3
+HearthomeCitySoutheastHouse1F_Shroomish:
+    PokemonCryAndMessage SPECIES_SHROOMISH, HearthomeCitySoutheastHouse1F_Text_ShroomishCryPofwaaah
     End
 
     .balign 4, 0

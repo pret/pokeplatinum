@@ -17,14 +17,14 @@ _0018:
     Return
 
 _0026:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     SetVar VAR_0x8004, VAR_TURNBACK_CAVE_PILLARS_SEEN
     SetVar VAR_0x8005, VAR_TURNBACK_CAVE_ROOMS_VISITED
     BufferNumber 0, VAR_0x8004
     BufferNumber 1, VAR_0x8005
     Message 0
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

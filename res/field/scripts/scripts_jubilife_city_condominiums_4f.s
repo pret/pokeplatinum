@@ -6,7 +6,7 @@
     ScriptEntryEnd
 
 JubilifeCityCondominiums4F_Beauty:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_OBTAINED_FOCUS_BAND, JubilifeCityCondominiums4F_ObtainedFocusBand
@@ -22,7 +22,7 @@ JubilifeCityCondominiums4F_Beauty:
 
 JubilifeCityCondominiums4F_ObtainedFocusBand:
     Message JubilifeCityCondominiums4F_Text_ThereAreItemsThatAreUsefulOnlyWhenTheyreHeldByPokemon
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

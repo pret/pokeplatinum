@@ -439,19 +439,19 @@ JubilifeCity_Movement_LookerLeaveFistArrival:
     EndMovement
 
 JubilifeCity_ExpertM2:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfBadgeAcquired BADGE_ID_COAL, JubilifeCity_HaveYouPaidAVisitToTheTVStation
     Message JubilifeCity_Text_JubilifeCitysBuiltOnLandTheyCarvedOutOfAMountain
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 JubilifeCity_HaveYouPaidAVisitToTheTVStation:
     Message JubilifeCity_Text_HaveYouPaidAVisitToTheTVStation
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -749,7 +749,7 @@ JubilifeCity_Movement_LookerWalkBackZ760:
     EndMovement
 
 JubilifeCity_Looker:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_OBTAINED_POKETCH, JubilifeCity_ItIsYouHaveYouNotObtainedAGymBadge
@@ -1214,7 +1214,7 @@ JubilifeCity_Movement_PlayerWalkToGrunt:
     EndMovement
 
 JubilifeCity_SchoolKidM1:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message JubilifeCity_Text_CanYouTellMeWhatTypeOfPokemonYouLike
@@ -1228,21 +1228,21 @@ JubilifeCity_SchoolKidM1:
     GoToIfEq VAR_0x8008, 0, JubilifeCity_TheFireTypeYouMustHaveAFieryPersonality
     GoToIfEq VAR_0x8008, 1, JubilifeCity_APersonThatLikesTheWaterTypeMustBeSomewhatCool
     Message JubilifeCity_Text_YouChoseTheGrassTypeNoWonderYouLookSoCalm
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 JubilifeCity_TheFireTypeYouMustHaveAFieryPersonality:
     Message JubilifeCity_Text_TheFireTypeYouMustHaveAFieryPersonality
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 JubilifeCity_APersonThatLikesTheWaterTypeMustBeSomewhatCool:
     Message JubilifeCity_Text_APersonThatLikesTheWaterTypeMustBeSomewhatCool
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -1260,7 +1260,7 @@ JubilifeCity_AceTrainerF:
     End
 
 JubilifeCity_ExpertM1:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message JubilifeCity_Text_HelloTrainerDoYouKnowMuchAboutPokemon
@@ -1271,14 +1271,14 @@ JubilifeCity_ExpertM1:
 
 JubilifeCity_AhISeeYouAreKnowledgeable:
     Message JubilifeCity_Text_AhISeeYouAreKnowledgeable
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 JubilifeCity_OhYoureNotKnowledgeable:
     Message JubilifeCity_Text_OhYoureNotKnowledgeable
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -1325,7 +1325,7 @@ JubilifeCity_TriggerPoketchCampaign:
     Message JubilifeCity_Text_YouCallYourselfAPokemonTrainerAndYetYouHaveNoPoketch
     SetVar VAR_POKETCH_CAMPAIGN_STATE, 2
     Message JubilifeCity_Text_AllYouHaveToDoIsFindThreeClownsInJubilifeCity
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -1400,14 +1400,14 @@ JubilifeCity_Movement_PoketchCoPresidentWalkToPlayerX176:
     EndMovement
 
 JubilifeCity_PoketchCoPresident:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     SetVar VAR_0x8004, 0
     Call JubilifeCity_SetObtainedCouponsCount
     GoToIfEq VAR_0x8004, 3, JubilifeCity_GivePoketch
     Message JubilifeCity_Text_CollectACouponFromEachClownThenComeSeeMeOK
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -1435,8 +1435,8 @@ JubilifeCity_GivePoketch:
     RegisterPoketchApp POKETCH_APPID_PARTYSTATUS
     BufferPlayerName 0
     Message JubilifeCity_Text_PlayerReceivedAPoketch
-    PlaySound SEQ_FANFA4
-    WaitSound
+    PlayFanfare SEQ_FANFA4
+    WaitFanfare
     Message JubilifeCity_Text_YouCanAddAppsToYourPoketch
     CloseMessage
     GetPlayerDir VAR_RESULT
@@ -1494,7 +1494,7 @@ JubilifeCity_Movement_PlayerWatchPoketchCoPresidentLeaveNorthWestEast:
     EndMovement
 
 JubilifeCity_Clown1:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_OBTAINED_COUPON_1, JubilifeCity_Clown1ObtainedCoupon
@@ -1505,7 +1505,7 @@ JubilifeCity_Clown1:
     End
 
 JubilifeCity_Clown1CorrectAnswer:
-    PlayFanfare SEQ_SE_DP_PINPON
+    PlaySE SEQ_SE_DP_PINPON
     Message JubilifeCity_Text_DingDingYoureAbsolutelyCorrect1
     Message JubilifeCity_Text_PokemonGrowStrongerByDefeatingOtherPokemonInBattle
     Message JubilifeCity_Text_HereYouGoYourPoketchCoupon1
@@ -1518,22 +1518,22 @@ JubilifeCity_Clown1CorrectAnswer:
     End
 
 JubilifeCity_Clown1WrongAnswer:
-    PlayFanfare SEQ_SE_DP_BOX03
+    PlaySE SEQ_SE_DP_BOX03
     Message JubilifeCity_Text_BzzzztThatsTheWrongAnswer1
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 JubilifeCity_Clown1ObtainedCoupon:
     Message JubilifeCity_Text_PokemonGrowStrongerThroughBattling
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 JubilifeCity_Clown2:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_OBTAINED_COUPON_2, JubilifeCity_Clown2ObtainedCoupon
@@ -1544,7 +1544,7 @@ JubilifeCity_Clown2:
     End
 
 JubilifeCity_Clown2CorrectAnswer:
-    PlayFanfare SEQ_SE_DP_PINPON
+    PlaySE SEQ_SE_DP_PINPON
     Message JubilifeCity_Text_DingDingYoureAbsolutelyCorrect2
     Message JubilifeCity_Text_IfThePokemonsTypeMatchesItsMovesTypeThatMoveIsMadeMuchMorePowerful
     Message JubilifeCity_Text_HereYouGoYourPoketchCoupon2
@@ -1557,22 +1557,22 @@ JubilifeCity_Clown2CorrectAnswer:
     End
 
 JubilifeCity_Clown2WrongAnswer:
-    PlayFanfare SEQ_SE_DP_BOX03
+    PlaySE SEQ_SE_DP_BOX03
     Message JubilifeCity_Text_BzzzztThatsTheWrongAnswer2
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 JubilifeCity_Clown2ObtainedCoupon:
     Message JubilifeCity_Text_IfThePokemonsTypeMatchesItsMovesTypeThatMoveIsMadeMuchMorePowerful2
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 JubilifeCity_Clown3:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfLt VAR_POKETCH_CAMPAIGN_STATE, 2, JubilifeCity_YouShouldStickAround
@@ -1584,7 +1584,7 @@ JubilifeCity_Clown3:
     End
 
 JubilifeCity_Clown3CorrectAnswer:
-    PlayFanfare SEQ_SE_DP_PINPON
+    PlaySE SEQ_SE_DP_PINPON
     Message JubilifeCity_Text_DingDingYoureAbsolutelyCorrect3
     Message JubilifeCity_Text_APokemonMayHoldASingleItem
     Message JubilifeCity_Text_HereYouGoYourPoketchCoupon3
@@ -1598,23 +1598,23 @@ JubilifeCity_Clown3CorrectAnswer:
     End
 
 JubilifeCity_Clown3WrongAnswer:
-    PlayFanfare SEQ_SE_DP_BOX03
+    PlaySE SEQ_SE_DP_BOX03
     Message JubilifeCity_Text_BzzzztThatsTheWrongAnswer3
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 JubilifeCity_Clown3ObtainedCoupon:
     Message JubilifeCity_Text_APokemonMayHoldASingleItem2
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 JubilifeCity_YouShouldStickAround:
     Message JubilifeCity_Text_YouShouldStickAround
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

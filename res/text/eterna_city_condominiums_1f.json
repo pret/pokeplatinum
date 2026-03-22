@@ -2,7 +2,7 @@
   "key": 37906,
   "messages": [
     {
-      "id": "pl_msg_00000097_00000",
+      "id": "EternaCityCondominiums1F_Text_WantMeToRateTheNicknamesOfYourPokemon",
       "en_US": [
         "Hello, hello!\n",
         "I am the official Name Rater!\r",
@@ -11,14 +11,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000097_00001",
+      "id": "EternaCityCondominiums1F_Text_WhichPokemonsNicknameShouldICritique",
       "en_US": [
         "Which Pokémon’s nickname should\n",
         "I critique?"
       ]
     },
     {
-      "id": "pl_msg_00000097_00002",
+      "id": "EternaCityCondominiums1F_Text_WouldYouLikeToGiveItAnEvenBetterName",
       "en_US": [
         "{STRVAR_1 1, 0, 0}, is it?\n",
         "That’s a decent nickname!\r",
@@ -28,14 +28,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000097_00003",
+      "id": "EternaCityCondominiums1F_Text_AhGoodThenWhatShallTheNewNicknameBe",
       "en_US": [
         "Ah, good. Then, what shall the new\n",
         "nickname be?"
       ]
     },
     {
-      "id": "pl_msg_00000097_00004",
+      "id": "EternaCityCondominiums1F_Text_ThisPokemonShallBeKnownAsNicknameItIsABetterNameThanBefore",
       "en_US": [
         "Done! From now on, this Pokémon\n",
         "shall be known as {STRVAR_1 1, 0, 0}!\r",
@@ -44,14 +44,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000097_00005",
+      "id": "EternaCityCondominiums1F_Text_ISeePleaseComeVisitAgain",
       "en_US": [
         "I see.\n",
         "Please come visit again."
       ]
     },
     {
-      "id": "pl_msg_00000097_00006",
+      "id": "EternaCityCondominiums1F_Text_ThisPokemonShallBeKnownAsNicknameItLooksNoDifferentFromBefore",
       "en_US": [
         "Done! From now on, this Pokémon\n",
         "shall be known as {STRVAR_1 1, 0, 0}!\r",
@@ -61,7 +61,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000097_00007",
+      "id": "EternaCityCondominiums1F_Text_NicknameIsItThatIsATrulyImpeccableName",
       "en_US": [
         "{STRVAR_1 1, 0, 0}, is it?\n",
         "That is a truly impeccable name!\r",
@@ -69,14 +69,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000097_00008",
+      "id": "EternaCityCondominiums1F_Text_AnEggCanGoByNoOtherName",
       "en_US": [
         "Now, now. That is merely an Egg!\n",
         "An Egg can go by no other name!\n"
       ]
     },
     {
-      "id": "pl_msg_00000097_00009",
+      "id": "EternaCityCondominiums1F_Text_DoYouGotThatPokemonNamedBuizelWannTradeItForMyChatot",
       "en_US": [
         "Excuse me, but do you got that\n",
         "Pokémon named BUIZEL?\r",
@@ -84,7 +84,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000097_00010",
+      "id": "EternaCityCondominiums1F_Text_YesSoAwesomeABuizel",
       "en_US": [
         "Yes! So awesome! A BUIZEL!\n",
         "I so promise I’ll be good to it!\r",
@@ -95,11 +95,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000097_00011",
+      "id": "EternaCityCondominiums1F_Text_WhatITotallyWantIsABuizel",
       "en_US": "What I totally want is a BUIZEL..."
     },
     {
-      "id": "pl_msg_00000097_00012",
+      "id": "EternaCityCondominiums1F_Text_OhOKTotallyGotIt",
       "en_US": [
         "Oh, OK. Totally got it.\n",
         "It’s all right if you don’t want to.\r",
@@ -108,7 +108,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000097_00013",
+      "id": "EternaCityCondominiums1F_Text_DidThatChatotITradedYouTotallyLearnThatChatterMove",
       "en_US": [
         "Did that CHATOT I traded you totally\n",
         "learn that Chatter move?\r",
@@ -119,14 +119,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000097_00014",
+      "id": "EternaCityCondominiums1F_Text_HiImTheBuildingSuperintented",
       "en_US": [
         "Hi! I’m the building superintendent.\n",
         "I maintain a vigilant 24-hour watch!"
       ]
     },
     {
-      "id": "pl_msg_00000097_00015",
+      "id": "EternaCityCondominiums1F_Text_ImBuildingSuperintendentMantain24HourWatchZZZ",
       "en_US": [
         "I’m...building...superintendent...\n",
         "...maintain...24-hour watch... Zzz..."

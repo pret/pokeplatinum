@@ -103,7 +103,7 @@ BattleTowerBattleSalon_Enter:
     End
 
 BattleTowerBattleSalon_Attendant:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     BufferPlayerName 0
@@ -151,7 +151,7 @@ BattleTowerBattleSalon_BufferSpeciesAndMoveNames:
     Return
 
 BattleTowerBattleSalon_Cheryl:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfEq VAR_UNK_0x40DF, 2, BattleTowerBattleSalon_CherylDontTeamUp
@@ -167,7 +167,7 @@ BattleTowerBattleSalon_Cheryl:
     GoToIfEq VAR_RESULT, MENU_YES, BattleTowerBattleSalon_CherylTeamUp
 BattleTowerBattleSalon_CherylDontTeamUp:
     Message BattleTowerBattleSalon_Text_CherylDontTeamUp
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -183,7 +183,7 @@ BattleTowerBattleSalon_CherylTeamUp:
     End
 
 BattleTowerBattleSalon_Mira:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfEq VAR_UNK_0x40DF, 2, BattleTowerBattleSalon_MiraDontTeamUp
@@ -195,7 +195,7 @@ BattleTowerBattleSalon_Mira:
     GoToIfEq VAR_RESULT, MENU_YES, BattleTowerBattleSalon_MiraTeamUp
 BattleTowerBattleSalon_MiraDontTeamUp:
     Message BattleTowerBattleSalon_Text_MiraDontTeamUp
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -212,7 +212,7 @@ BattleTowerBattleSalon_MiraTeamUp:
     End
 
 BattleTowerBattleSalon_Riley:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfEq VAR_UNK_0x40DF, 2, BattleTowerBattleSalon_RileyDontTeamUp
@@ -223,7 +223,7 @@ BattleTowerBattleSalon_Riley:
     GoToIfEq VAR_RESULT, MENU_YES, BattleTowerBattleSalon_RileyTeamUp
 BattleTowerBattleSalon_RileyDontTeamUp:
     Message BattleTowerBattleSalon_Text_RileyDontTeamUp
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -239,7 +239,7 @@ BattleTowerBattleSalon_RileyTeamUp:
     End
 
 BattleTowerBattleSalon_Marley:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfEq VAR_UNK_0x40DF, 2, BattleTowerBattleSalon_MarleyDontTeamUp
@@ -250,7 +250,7 @@ BattleTowerBattleSalon_Marley:
     GoToIfEq VAR_RESULT, MENU_YES, BattleTowerBattleSalon_MarleyTeamUp
 BattleTowerBattleSalon_MarleyDontTeamUp:
     Message BattleTowerBattleSalon_Text_MarleyDontTeamUp
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -266,7 +266,7 @@ BattleTowerBattleSalon_MarleyTeamUp:
     End
 
 BattleTowerBattleSalon_Buck:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfEq VAR_UNK_0x40DF, 2, BattleTowerBattleSalon_BuckDontTeamUp
@@ -277,7 +277,7 @@ BattleTowerBattleSalon_Buck:
     GoToIfEq VAR_RESULT, MENU_YES, BattleTowerBattleSalon_BuckTeamUp
 BattleTowerBattleSalon_BuckDontTeamUp:
     Message BattleTowerBattleSalon_Text_BuckDontTeamUp
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

@@ -10,7 +10,7 @@
     ScriptEntryEnd
 
 _0016:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 0
@@ -30,7 +30,7 @@ _004C:
     End
 
 _0057:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

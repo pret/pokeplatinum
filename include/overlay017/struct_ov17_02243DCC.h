@@ -12,7 +12,7 @@ typedef struct {
     u16 unk_0E;
     u8 unk_10;
     UnkStruct_ov17_022449B8 unk_12;
-    u8 unk_18;
+    u8 actingMessagesID;
 } UnkStruct_ov17_02243DCC;
 
 #endif // POKEPLATINUM_STRUCT_OV17_02243DCC_H

@@ -137,7 +137,7 @@ Static main
 	Object main.nef.p/src_mystery_gift.c.o
 	Object main.nef.p/src_hall_of_fame_entries.c.o
 	Object main.nef.p/src_unk_0202E2CC.c.o
-	Object main.nef.p/src_unk_0202E840.c.o
+	Object main.nef.p/src_rankings.c.o
 	Object main.nef.p/src_unk_0202EEC0.c.o
 	Object main.nef.p/src_link_contest_records.c.o
 	Object main.nef.p/src_unk_0202F180.c.o
@@ -184,7 +184,7 @@ Static main
 	Object main.nef.p/src_script_manager.c.o
 	Object main.nef.p/src_scrcmd.c.o
 	Object main.nef.p/src_scrcmd_shop.c.o
-	Object main.nef.p/src_unk_02046C7C.c.o
+	Object main.nef.p/src_scrcmd_contests.c.o
 	Object main.nef.p/src_scrcmd_strings.c.o
 	Object main.nef.p/src_scrcmd_jubilife_lottery.c.o
 	Object main.nef.p/src_scrcmd_sound.c.o
@@ -273,7 +273,7 @@ Static main
 	Object main.nef.p/src_unk_0206C660.c.o
 	Object main.nef.p/src_cutscenes_boat_cutscene_boat_cutscene.c.o
 	Object main.nef.p/src_tv_episode_segment.c.o
-	Object main.nef.p/src_unk_0206F314.c.o
+	Object main.nef.p/src_rankings_machine.c.o
 	Object main.nef.p/src_unk_02070428.c.o
 	Object main.nef.p/src_field_move_tasks.c.o
 	Object main.nef.p/src_unk_020711C8.c.o
@@ -325,7 +325,7 @@ Static main
 	Object main.nef.p/src_applications_pokemon_summary_screen_subscreen.c.o
 	Object main.nef.p/src_ribbon.c.o
 	Object main.nef.p/src_unk_02092494.c.o
-	Object main.nef.p/src_unk_020933F8.c.o
+	Object main.nef.p/src_contest.c.o
 	Object main.nef.p/src_unk_02094EDC.c.o
 	Object main.nef.p/src_unk_02095AF0.c.o
 	Object main.nef.p/src_unk_02095CD4.c.o
@@ -563,7 +563,7 @@ Overlay overlay6
 	Object main.nef.p/src_overlay006_wild_encounters.c.o
 	Object main.nef.p/src_overlay006_ov6_022426AC.c.o
 	Object main.nef.p/src_overlay006_great_marsh_binoculars.c.o
-	Object main.nef.p/src_overlay006_ov6_02242AF0.c.o
+	Object main.nef.p/src_overlay006_great_marsh_tram.c.o
 	Object main.nef.p/src_overlay006_great_marsh_daily_encounters.c.o
 	Object main.nef.p/src_overlay006_ov6_02243004.c.o
 	Object main.nef.p/src_overlay006_radar_chain_records.c.o
@@ -684,7 +684,7 @@ Overlay dummy4
 Overlay battle
 {
 	After battle_anim
-	Object main.nef.p/src_battle_ov16_0223B140.c.o
+	Object main.nef.p/src_battle_battle_main.c.o
 	Object main.nef.p/src_battle_battle_system.c.o
 	Object main.nef.p/src_battle_battle_script.c.o
 	Object main.nef.p/src_battle_battle_controller_player.c.o
@@ -1535,7 +1535,7 @@ Overlay overlay104
 {
 	After overlay63
 	Object main.nef.p/src_overlay104_ov104_0222DCE0.c.o
-	Object main.nef.p/src_overlay104_ov104_0222E63C.c.o
+	Object main.nef.p/src_overlay104_frontier_script_manager.c.o
 	Object main.nef.p/src_overlay104_frontier_script_context.c.o
 	Object main.nef.p/src_overlay104_ov104_0222EA90.c.o
 	Object main.nef.p/src_overlay104_ov104_0222ECE8.c.o
@@ -1560,8 +1560,8 @@ Overlay overlay104
 	Object main.nef.p/src_overlay104_ov104_0223B6F4.c.o
 	Object main.nef.p/src_overlay104_ov104_0223BCBC.c.o
 	Object main.nef.p/src_overlay104_ov104_0223C164.c.o
-	Object main.nef.p/src_overlay104_ov104_0223C2D4.c.o
-	Object main.nef.p/src_overlay104_ov104_0223D5D0.c.o
+	Object main.nef.p/src_overlay104_frontier_graphics.c.o
+	Object main.nef.p/src_overlay104_frontier_particle_system.c.o
 	Object main.nef.p/src_overlay104_ov104_0223D768.c.o
 	Object main.nef.p/src_overlay104_ov104_0223D860.c.o
 	Object main.nef.p/src_overlay104_ov104_0223D9E4.c.o
@@ -1601,13 +1601,13 @@ Overlay battle_castle_app
 	Object main.nef.p/src_applications_frontier_battle_castle_windows.c.o
 }
 
-Overlay overlay108
+Overlay battle_arcade_app
 {
 	After overlay104
-	Object main.nef.p/src_overlay108_ov108_02241AE0.c.o
-	Object main.nef.p/src_overlay108_ov108_02243030.c.o
-	Object main.nef.p/src_overlay108_ov108_0224351C.c.o
-	Object main.nef.p/src_overlay108_ov108_02243630.c.o
+	Object main.nef.p/src_applications_frontier_battle_arcade_main.c.o
+	Object main.nef.p/src_applications_frontier_battle_arcade_sprite_manager.c.o
+    Object main.nef.p/src_applications_frontier_battle_arcade_sprites.c.o
+	Object main.nef.p/src_applications_frontier_battle_arcade_windows.c.o
 }
 
 Overlay overlay109
@@ -1617,11 +1617,11 @@ Overlay overlay109
 	Object main.nef.p/src_overlay109_ov109_021D3D50.c.o
 }
 
-Overlay overlay110
+Overlay frontier_records_app
 {
 	After main
-	Object main.nef.p/src_overlay110_ov110_021D0D80.c.o
-	Object main.nef.p/src_overlay110_ov110_021D2124.c.o
+	Object main.nef.p/src_applications_frontier_records_main.c.o
+	Object main.nef.p/src_applications_frontier_records_windows.c.o
 }
 
 Overlay overlay111

@@ -8,7 +8,7 @@
     ScriptEntryEnd
 
 OreburghGym_Roark:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfBadgeAcquired BADGE_ID_COAL, OreburghGym_AlreadyHaveCoalBadge
@@ -21,8 +21,8 @@ OreburghGym_Roark:
     Message OreburghGym_Text_BeatRoark
     BufferPlayerName 0
     Message OreburghGym_Text_RoarkReceiveCoalBadge
-    PlaySound SEQ_BADGE
-    WaitSound
+    PlayFanfare SEQ_BADGE
+    WaitFanfare
     SetTrainerFlag TRAINER_YOUNGSTER_JONATHON
     SetTrainerFlag TRAINER_YOUNGSTER_DARIUS
     GiveBadge BADGE_ID_COAL
@@ -52,7 +52,7 @@ OreburghGym_RoarkGiveTM76:
     BufferItemName 0, VAR_0x8004
     BufferTMHMMoveName 1, VAR_0x8004
     Message OreburghGym_Text_RoarkExplainStealthRock
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -66,7 +66,7 @@ OreburghGym_RoarkGiveTM76BagFull:
 OreburghGym_AlreadyHaveCoalBadge:
     GoToIfUnset FLAG_OBTAINED_ROARK_TM76, OreburghGym_RoarkGiveTM76
     Message OreburghGym_Text_RoarkGymBeaten
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -77,12 +77,12 @@ OreburghGym_LostBattle:
     End
 
 OreburghGym_GymGuide:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfBadgeAcquired BADGE_ID_COAL, OreburghGym_GymGuideAfterBadge
     Message OreburghGym_Text_GymGuideBeforeBadge
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -90,19 +90,19 @@ OreburghGym_GymGuide:
 OreburghGym_GymGuideAfterBadge:
     BufferPlayerName 0
     Message OreburghGym_Text_GymGuideAfterBadge
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 OreburghGym_GymStatue:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     GoToIfBadgeAcquired BADGE_ID_COAL, OreburghGym_GymStatueAfterBadge
     BufferRivalName 0
     BufferRivalName 1
     Message OreburghGym_Text_GymStatueBeforeBadge
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -112,7 +112,7 @@ OreburghGym_GymStatueAfterBadge:
     BufferPlayerName 1
     BufferRivalName 2
     Message OreburghGym_Text_GymStatueAfterBadge
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

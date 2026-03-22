@@ -23,7 +23,7 @@ JubilifeTV2F_Idol:
     End
 
 JubilifeTV2F_GymGuide:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet VAR_OBTAINED_ACCESSORY_STARTER_MASK, JubilifeTV2F_IHopeYouGetIntoCollectingAccessoriesForYourPokemon
@@ -44,7 +44,7 @@ JubilifeTV2F_GymGuide:
 JubilifeTV2F_IHopeYouGetIntoCollectingAccessoriesForYourPokemon:
     BufferAccessoryName 0, VAR_ACCESSORY_STARTER_MASK
     Message JubilifeTV2F_Text_IHopeYouGetIntoCollectingAccessoriesForYourPokemon
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

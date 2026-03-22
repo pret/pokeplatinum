@@ -2,15 +2,15 @@
   "key": 35842,
   "messages": [
     {
-      "id": "pl_msg_00000128_00000",
+      "id": "ContestHallLobby_Text_OhMyHero",
       "en_US": "Keira: Oh! My hero!\r"
     },
     {
-      "id": "pl_msg_00000128_00001",
+      "id": "ContestHallLobby_Text_OhHiPlayer",
       "en_US": "Mom: Oh, hi, {STRVAR_1 3, 0, 0}.\r"
     },
     {
-      "id": "pl_msg_00000128_00002",
+      "id": "ContestHallLobby_Text_WaitJohannaIsYourMom",
       "en_US": [
         "Keira: Wait! No! Really?!\n",
         "Johanna is your mom?\f",
@@ -18,7 +18,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000128_00003",
+      "id": "ContestHallLobby_Text_IveNeverSpokenToPlayerAboutContests",
       "en_US": [
         "Mom: Oh, I don’t know about that.\r",
         "I’ve never spoken to {STRVAR_1 3, 0, 0}\n",
@@ -28,7 +28,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000128_00004",
+      "id": "ContestHallLobby_Text_INeedToThankYouForEarlier",
       "en_US": [
         "Keira: Oh, yes, that’s right!\r",
         "I need to thank you for earlier.\n",
@@ -36,7 +36,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000128_00005",
+      "id": "ContestHallLobby_Text_PutThatAccessoryOnYourPokemon",
       "en_US": [
         "Keira: Put that Accessory on your\n",
         "Pokémon before a Contest.\r",
@@ -49,11 +49,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000128_00006",
+      "id": "ContestHallLobby_Text_JohannaIllSeeYou",
       "en_US": "OK, Johanna, I’ll see you!\r"
     },
     {
-      "id": "pl_msg_00000128_00007",
+      "id": "ContestHallLobby_Text_WereYouSurprisedToSeeMe",
       "en_US": [
         "Mom: Were you surprised to see me,\n",
         "{STRVAR_1 3, 0, 0}?\r",
@@ -69,21 +69,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000128_00008",
+      "id": "ContestHallLobby_Text_PlayerObtainedATuxedo",
       "en_US": [
         "{STRVAR_1 3, 0, 0} obtained\n",
         "a Tuxedo!"
       ]
     },
     {
-      "id": "pl_msg_00000128_00009",
+      "id": "ContestHallLobby_Text_PlayerObtainedADress",
       "en_US": [
         "{STRVAR_1 3, 0, 0} obtained\n",
         "a Dress!"
       ]
     },
     {
-      "id": "pl_msg_00000128_00010",
+      "id": "ContestHallLobby_Text_ImSureItWillLookGoodOnYou",
       "en_US": [
         "Mom: I’m sure it will look good\n",
         "on you. After all, I chose it.\r",
@@ -95,7 +95,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000128_00011",
+      "id": "ContestHallLobby_Text_IWaitForYouAtTheGym",
       "en_US": [
         "Yes?\n",
         "I beg your pardon?\r",
@@ -113,7 +113,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000128_00012",
+      "id": "ContestHallLobby_Text_IDontSeeAPoffinCase",
       "en_US": [
         "You’re going to enter Contests?\n",
         "But I don’t see a Poffin Case.\r",
@@ -126,7 +126,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000128_00013",
+      "id": "ContestHallLobby_Text_YupYouHaveAPoffinCase",
       "en_US": [
         "You’re going to enter Contests?\n",
         "And, yup, you have a Poffin Case.\r",
@@ -135,21 +135,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000128_00014",
+      "id": "ContestHallLobby_Text_PlayerReceivedAMildPoffin",
       "en_US": [
         "{STRVAR_1 3, 0, 0} received\n",
         "a Mild Poffin!"
       ]
     },
     {
-      "id": "pl_msg_00000128_00015",
+      "id": "ContestHallLobby_Text_TheMildPoffinWasPutAway",
       "en_US": [
         "The Mild Poffin was put away\n",
         "in the Poffin Case.\r"
       ]
     },
     {
-      "id": "pl_msg_00000128_00016",
+      "id": "ContestHallLobby_Text_FeedThatPoffinToAPokemon",
       "en_US": [
         "Feed that Poffin to a Pokémon you’re\n",
         "going to enter in Contests.\r",
@@ -162,7 +162,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000128_00017",
+      "id": "ContestHallLobby_Text_FeedThatPoffinToAPokemon2",
       "en_US": [
         "Feed that Poffin to a Pokémon you’re\n",
         "going to enter in Contests.\r",
@@ -175,7 +175,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000128_00018",
+      "id": "ContestHallLobby_Text_ItTakesPracticeToWinContests",
       "en_US": [
         "Like everything else, the basics are\n",
         "important.\r",
@@ -183,14 +183,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000128_00019",
+      "id": "ContestHallLobby_Text_YourPoffinCasesFull",
       "en_US": [
         "Oh, no.\n",
         "Your Poffin Case’s full."
       ]
     },
     {
-      "id": "pl_msg_00000128_00020",
+      "id": "ContestHallLobby_Text_IllGiveItToYouAnotherTime",
       "en_US": [
         "Oh, no.\n",
         "Your Poffin Case is full.\f",
@@ -204,7 +204,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000128_00021",
+      "id": "ContestHallLobby_Text_APokemonFedPoffinsDoesBetter",
       "en_US": [
         "A Pokémon fed Poffins does\n",
         "better in Visual Evaluations.\r",
@@ -213,7 +213,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000128_00022",
+      "id": "ContestHallLobby_Text_AContestHasVisualDanceAndActingParts",
       "en_US": [
         "A Contest has three parts: Visual!\n",
         "Dance! And Acting!\r",
@@ -222,11 +222,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000128_00023",
+      "id": "ContestHallLobby_Text_TheyPutUpPhotosOfTheWinners",
       "en_US": "They put up photos of the winners!"
     },
     {
-      "id": "pl_msg_00000128_00024",
+      "id": "ContestHallLobby_Text_ItsAPhotoFrame",
       "en_US": [
         "It’s a photo frame for a Pokémon\n",
         "portrait."

@@ -2,46 +2,46 @@
   "key": 43257,
   "messages": [
     {
-      "id": "pl_msg_00000204_00000",
+      "id": "Contest_Text_ChooseJudge",
       "en_US": [
         "Choose the Judge you want\n",
         "to rate the move."
       ]
     },
     {
-      "id": "pl_msg_00000204_00001",
+      "id": "Contest_Text_WhichMoveIsYourChoice",
       "en_US": [
         "Performance {COLOR 1}no. {STRVAR_1 50, 0, 0}{COLOR 0}!\n",
         "Which move is your choice?"
       ]
     },
     {
-      "id": "pl_msg_00000204_00002",
+      "id": "Contest_Text_LastPerformanceChooseMove",
       "en_US": [
         "It’s the {COLOR 1}last {COLOR 0}performance!\n",
         "Choose your move!"
       ]
     },
     {
-      "id": "pl_msg_00000204_00003",
+      "id": "Contest_Text_ToJudgeMonPerformedMove",
       "en_US": [
         "To {STRVAR_1 3, 1, 0}, {STRVAR_1 1, 0, 0}\n",
         "performed {STRVAR_1 6, 2, 0}!\r"
       ]
     },
     {
-      "id": "pl_msg_00000204_00004",
+      "id": "Contest_Text_SomeoneAlreadyPerformedForJudge",
       "en_US": [
         "Oh, no! Someone already\n",
         "performed for that Judge!\r"
       ]
     },
     {
-      "id": "pl_msg_00000204_00005",
+      "id": "Contest_Text_Empty1",
       "garbage": 4
     },
     {
-      "id": "pl_msg_00000204_00006",
+      "id": "Contest_Text_JudgeWasStronglyImpressed",
       "en_US": [
         "{STRVAR_1 3, 0, 0} was strongly\n",
         "impressed by the acting of\r",
@@ -50,7 +50,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000204_00007",
+      "id": "Contest_Text_JudgeWasImpressed",
       "en_US": [
         "{STRVAR_1 3, 0, 0} was impressed\n",
         "by the performances of\r",
@@ -59,7 +59,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000204_00008",
+      "id": "Contest_Text_EveryonePerformedForSameJudge",
       "en_US": [
         "Everyone performed for\n",
         "{STRVAR_1 3, 0, 0}...\r",
@@ -68,7 +68,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000204_00009",
+      "id": "Contest_Text_JudgeWasVeryImpressed",
       "en_US": [
         "{STRVAR_1 3, 0, 0} was very\n",
         "impressed by {STRVAR_1 1, 1, 0}’s\f",
@@ -76,11 +76,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000204_00010",
+      "id": "Contest_Text_Empty2",
       "garbage": 4
     },
     {
-      "id": "pl_msg_00000204_00011",
+      "id": "Contest_Text_CoolMovePerformedVoltageUp",
       "en_US": [
         "Upon seeing the Cool move\n",
         "performed, {STRVAR_1 3, 0, 0}’s\f",
@@ -88,7 +88,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000204_00012",
+      "id": "Contest_Text_BeautyMovePerformedVoltageUp",
       "en_US": [
         "Upon seeing the Beauty move\n",
         "performed, {STRVAR_1 3, 0, 0}’s\f",
@@ -96,7 +96,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000204_00013",
+      "id": "Contest_Text_CuteMovePerformedVoltageUp",
       "en_US": [
         "Upon seeing the Cute move\n",
         "performed, {STRVAR_1 3, 0, 0}’s\f",
@@ -104,7 +104,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000204_00014",
+      "id": "Contest_Text_SmartMovePerformedVoltageUp",
       "en_US": [
         "Upon seeing the Smart move\n",
         "performed, {STRVAR_1 3, 0, 0}’s\f",
@@ -112,7 +112,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000204_00015",
+      "id": "Contest_Text_ToughMovePerformedVoltageUp",
       "en_US": [
         "Upon seeing the Tough move\n",
         "performed, {STRVAR_1 3, 0, 0}’s\f",
@@ -120,11 +120,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000204_00016",
+      "id": "Contest_Text_Empty3",
       "garbage": 4
     },
     {
-      "id": "pl_msg_00000204_00017",
+      "id": "Contest_Text_CoolMovePerformedVoltageDown",
       "en_US": [
         "Upon seeing the Cool move\n",
         "performed, {STRVAR_1 3, 0, 0}’s\f",
@@ -132,7 +132,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000204_00018",
+      "id": "Contest_Text_BeautyMovePerformedVoltageDown",
       "en_US": [
         "Upon seeing the Beauty move\n",
         "performed, {STRVAR_1 3, 0, 0}’s\f",
@@ -140,7 +140,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000204_00019",
+      "id": "Contest_Text_CuteMovePerformedVoltageDown",
       "en_US": [
         "Upon seeing the Cute move\n",
         "performed, {STRVAR_1 3, 0, 0}’s\f",
@@ -148,7 +148,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000204_00020",
+      "id": "Contest_Text_SmartMovePerformedVoltageDown",
       "en_US": [
         "Upon seeing the Smart move\n",
         "performed, {STRVAR_1 3, 0, 0}’s\f",
@@ -156,7 +156,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000204_00021",
+      "id": "Contest_Text_ToughMovePerformedVoltageDown",
       "en_US": [
         "Upon seeing the Tough move\n",
         "performed, {STRVAR_1 3, 0, 0}’s\f",
@@ -164,80 +164,80 @@
       ]
     },
     {
-      "id": "pl_msg_00000204_00022",
+      "id": "Contest_Text_Empty4",
       "garbage": 4
     },
     {
-      "id": "pl_msg_00000204_00023",
+      "id": "Contest_Text_Empty5",
       "garbage": 4
     },
     {
-      "id": "pl_msg_00000204_00024",
+      "id": "Contest_Text_AudienceIsGettingPrettyExcited",
       "en_US": [
         "The audience is getting\n",
         "pretty excited!\r"
       ]
     },
     {
-      "id": "pl_msg_00000204_00025",
+      "id": "Contest_Text_AudienceIsGoingWild",
       "en_US": [
         "The audience is going wild\n",
         "with excitement! {COLOR 1}+{STRVAR_1 50, 0, 0}{COLOR 0}!\r"
       ]
     },
     {
-      "id": "pl_msg_00000204_00026",
+      "id": "Contest_Text_Empty6",
       "garbage": 4
     },
     {
-      "id": "pl_msg_00000204_00027",
+      "id": "Contest_Text_Empty7",
       "garbage": 4
     },
     {
-      "id": "pl_msg_00000204_00028",
+      "id": "Contest_Text_Empty8",
       "garbage": 4
     },
     {
-      "id": "pl_msg_00000204_00029",
+      "id": "Contest_Text_Empty9",
       "garbage": 4
     },
     {
-      "id": "pl_msg_00000204_00030",
+      "id": "Contest_Text_MonDidntStandOut",
       "en_US": [
         "{STRVAR_1 1, 0, 0} didn’t stand\n",
         "out very much...\r"
       ]
     },
     {
-      "id": "pl_msg_00000204_00031",
+      "id": "Contest_Text_MonAttractedALittleAttention",
       "en_US": [
         "{STRVAR_1 1, 0, 0} attracted a\n",
         "little attention.\r"
       ]
     },
     {
-      "id": "pl_msg_00000204_00032",
+      "id": "Contest_Text_MonAttractedDecentAttention",
       "en_US": [
         "{STRVAR_1 1, 0, 0} attracted\n",
         "decent attention.\r"
       ]
     },
     {
-      "id": "pl_msg_00000204_00033",
+      "id": "Contest_Text_MonAttractedALotOfAttention",
       "en_US": [
         "{STRVAR_1 1, 0, 0} attracted a\n",
         "lot of attention!\r"
       ]
     },
     {
-      "id": "pl_msg_00000204_00034",
+      "id": "Contest_Text_MonCommandedTotalAttention",
       "en_US": [
         "{STRVAR_1 1, 0, 0} commanded\n",
         "total attention!\r"
       ]
     },
     {
-      "id": "pl_msg_00000204_00035",
+      "id": "Contest_Text_TimeForCuteActingCompetition",
       "en_US": [
         "OK! It’s time for the\n",
         "Acting Competition!\r",
@@ -248,11 +248,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000204_00036",
+      "id": "Contest_Text_Empty10",
       "garbage": 4
     },
     {
-      "id": "pl_msg_00000204_00037",
+      "id": "Contest_Text_TimeForSmartActingCompetition",
       "en_US": [
         "OK! It’s time for the\n",
         "Acting Competition!\r",
@@ -263,7 +263,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000204_00038",
+      "id": "Contest_Text_TimeForToughActingCompetition",
       "en_US": [
         "OK! It’s time for the\n",
         "Acting Competition!\r",
@@ -274,7 +274,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000204_00039",
+      "id": "Contest_Text_TimeForBeautyActingCompetition",
       "en_US": [
         "OK! It’s time for the\n",
         "Acting Competition!\r",
@@ -285,7 +285,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000204_00040",
+      "id": "Contest_Text_TimeForCoolActingCompetition",
       "en_US": [
         "OK! It’s time for the\n",
         "Acting Competition!\r",
@@ -404,7 +404,7 @@
       "garbage": 4
     },
     {
-      "id": "pl_msg_00000204_00068",
+      "id": "Contest_Text_NextTurnLowestScoringPerformFirst",
       "en_US": [
         "In the next turn, the\n",
         "lowest-scoring contestants\f",
@@ -412,18 +412,18 @@
       ]
     },
     {
-      "id": "pl_msg_00000204_00069",
+      "id": "Contest_Text_JudgingIsOver",
       "en_US": [
         "That’s it! Performance\n",
         "judging is now over!\r"
       ]
     },
     {
-      "id": "pl_msg_00000204_00070",
+      "id": "Contest_Text_Empty11",
       "garbage": 85
     },
     {
-      "id": "pl_msg_00000204_00071",
+      "id": "Contest_Text_BeginPracticeActingCompetition",
       "en_US": [
         "Looks like everyone’s here!\r",
         "Let’s begin our practice\n",
@@ -444,7 +444,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000204_00072",
+      "id": "Contest_Text_CommunicatingPleaseStandBy",
       "en_US": [
         "Communicating.\n",
         "Please stand by..."

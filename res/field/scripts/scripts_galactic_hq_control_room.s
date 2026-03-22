@@ -32,7 +32,7 @@ _0055:
     End
 
 _0059:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_FREED_GALACTIC_HQ_POKEMON, _0109
@@ -74,14 +74,14 @@ _0105:
 
 _0109:
     Message 3
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _0114:
     Message 2
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -110,52 +110,52 @@ _0140:
     EndMovement
 
 _014C:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     GoToIfSet FLAG_FREED_GALACTIC_HQ_POKEMON, _0168
     Message 13
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _0168:
     Message 16
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _0173:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     GoToIfSet FLAG_FREED_GALACTIC_HQ_POKEMON, _018F
     Message 14
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _018F:
     Message 17
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _019A:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     GoToIfSet FLAG_FREED_GALACTIC_HQ_POKEMON, _01B6
     Message 15
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _01B6:
     Message 18
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -170,7 +170,7 @@ _01C5:
     End
 
 _01C7:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     GoToIfSet FLAG_FREED_GALACTIC_HQ_POKEMON, _0347
     Message 10
@@ -181,11 +181,11 @@ _01C7:
 
 _01FB:
     SetVar VAR_UNK_0x410D, 0
-    PlayFanfare SEQ_SE_DP_BUTTON3
+    PlaySE SEQ_SE_DP_BUTTON3
     BufferPlayerName 0
     Message 11
     CloseMessage
-    ClearFlag FLAG_UNK_0x0295
+    ClearFlag FLAG_HIDE_MT_CORONET_1F_NORTH_ROOM_1_GRUNT_F
     SetFlag FLAG_FREED_GALACTIC_HQ_POKEMON
     ScrCmd_25F
     WaitTime 30, VAR_RESULT
@@ -248,9 +248,9 @@ _030E:
     RemoveObject 0
     FadeScreenIn
     WaitFadeScreen
-    SetFlag FLAG_UNK_0x0235
-    ClearFlag FLAG_UNK_0x0182
-    SetVar VAR_UNK_0x40A9, 1
+    SetFlag FLAG_HIDE_MT_CORONET_2F_CAVE_PAINTING
+    ClearFlag FLAG_HIDE_MT_CORONET_2F_CAVE_PAINTING_SHARDS
+    SetVar VAR_MT_CORONET_2F_STATE, 1
     ReleaseAll
     End
 
@@ -261,7 +261,7 @@ _0341:
 
 _0347:
     Message 12
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -337,7 +337,7 @@ _03EA:
     End
 
 _03FD:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     GoToIfSet FLAG_UNK_0x00AD, _0450
     ApplyMovement 4, _0470
@@ -354,7 +354,7 @@ _03FD:
     ApplyMovement 0, _0468
     WaitMovement
     Message 8
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -362,7 +362,7 @@ _03FD:
 _0450:
     FacePlayer
     Message 9
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

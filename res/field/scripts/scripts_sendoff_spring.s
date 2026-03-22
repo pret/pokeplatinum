@@ -31,19 +31,19 @@ _0021:
     WaitMovement
     BufferPlayerName 0
     Message 2
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     SetVar VAR_EXITED_DISTORTION_WORLD_STATE, 2
     SetVar VAR_SANDGEM_TOWN_LAB_STATE, 2
     SetFlag FLAG_UNK_0x01C7
-    ClearFlag FLAG_UNK_0x0132
-    SetFlag FLAG_UNK_0x028F
-    SetFlag FLAG_UNK_0x0295
-    SetFlag FLAG_UNK_0x029F
+    ClearFlag FLAG_SPEAR_PILLAR_IS_DISTORTED
+    SetFlag FLAG_HIDE_MT_CORONET_GALACTIC_GRUNTS
+    SetFlag FLAG_HIDE_MT_CORONET_1F_NORTH_ROOM_1_GRUNT_F
+    SetFlag FLAG_HIDE_MT_CORONET_2F_LOOKER
     SetFlag FLAG_ALT_MUSIC_GALACTIC_HQ_1F
     ClearFlag FLAG_UNK_0x0292
     SetFlag FLAG_GALACTIC_LEFT_LAKE_VALOR
-    SetFlag FLAG_UNK_0x0295
+    SetFlag FLAG_HIDE_MT_CORONET_1F_NORTH_ROOM_1_GRUNT_F
     ReleaseAll
     End
 
@@ -67,7 +67,7 @@ _00B8:
     EndMovement
 
 _00C0:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfGe VAR_EXITED_DISTORTION_WORLD_STATE, 3, _00E0
@@ -81,7 +81,7 @@ _00E0:
     End
 
 _00EB:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

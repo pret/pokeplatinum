@@ -59,7 +59,7 @@ _00D9:
     ApplyMovement LOCALID_PLAYER, _0184
     ApplyMovement 0, _0240
     WaitMovement
-    PlayFanfare SEQ_SE_DP_TELE2
+    PlaySE SEQ_SE_DP_TELE2
     ApplyMovement LOCALID_PLAYER, _01E8
     WaitMovement
     FadeScreenOut

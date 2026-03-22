@@ -2,7 +2,7 @@
   "key": 1026,
   "messages": [
     {
-      "id": "pl_msg_00000227_00000",
+      "id": "EternaForest_Text_PleaseMayIGoThroughWithYou",
       "en_US": [
         "Hello, my name’s Cheryl.\n",
         "And you are...?\r",
@@ -20,21 +20,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000227_00001",
+      "id": "EternaForest_Text_PlayerDecidedToGoWithCheryl",
       "en_US": [
         "{STRVAR_1 3, 0, 0} decided to go with\n",
         "Cheryl!"
       ]
     },
     {
-      "id": "pl_msg_00000227_00002",
+      "id": "EternaForest_Text_IllKeepYourPokemonInPerfectHealth",
       "en_US": [
         "Cheryl: I’ll keep your Pokémon\n",
         "in perfect health."
       ]
     },
     {
-      "id": "pl_msg_00000227_00003",
+      "id": "EternaForest_Text_LetsGetThroughThisForestTogether",
       "en_US": [
         "Cheryl: Oh, hi, {STRVAR_1 3, 0, 0}!\n",
         "I’ve been waiting like I said.\r",
@@ -43,14 +43,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000227_00004",
+      "id": "EternaForest_Text_IllWaitHereForYouThen",
       "en_US": [
         "Cheryl: Oh? Are you going back?\n",
         "I’ll wait here for you, then.\r"
       ]
     },
     {
-      "id": "pl_msg_00000227_00005",
+      "id": "EternaForest_Text_OhTheresTheExitThankYouSoMuchPlayer",
       "en_US": [
         "Cheryl: Oh! There’s the exit!\n",
         "I’m so relieved... We finally got here.\r",
@@ -60,21 +60,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000227_00006",
+      "id": "EternaForest_Text_ThisIsMyTokenOfAppreciation",
       "en_US": [
         "This is my token of appreciation.\n",
         "Please accept it!\r"
       ]
     },
     {
-      "id": "pl_msg_00000227_00007",
+      "id": "EternaForest_Text_ImSureWellMeetAgainSomewhere",
       "en_US": [
         "I’m sure we’ll meet again somewhere!\n",
         "Bye for now!\r"
       ]
     },
     {
-      "id": "pl_msg_00000227_00008",
+      "id": "EternaForest_Text_ThereIsAnOldChateauAhead",
       "en_US": [
         "Cheryl: There is an Old Chateau ahead.\r",
         "No one lives there now.\n",
@@ -82,7 +82,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000227_00009",
+      "id": "EternaForest_Text_ImSearchingForBugPokemonSoICanWinAtTheEternaGym",
       "en_US": [
         "I’m searching for bug Pokémon so I can\n",
         "win at the Eterna Gym.\r",
@@ -91,21 +91,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000227_00010",
+      "id": "EternaForest_Text_TheRockIsCoveredInMoss",
       "en_US": [
         "The rock is covered in moss.\n",
         "It feels pleasantly cool."
       ]
     },
     {
-      "id": "pl_msg_00000227_00011",
+      "id": "EternaForest_Text_HiyaWereYouIngriguedByTheRumorsGoingAroundToo",
       "en_US": [
         "Gardenia: Hiya! Were you intrigued\n",
         "by the rumors going around, too?\r"
       ]
     },
     {
-      "id": "pl_msg_00000227_00012",
+      "id": "EternaForest_Text_YouKnowPeopleveBeenTalkingAboutTheGhostPokemonOfTheOldChateau",
       "en_US": [
         "You know, people’ve been talking about\n",
         "the ghost Pokémon of the Old Chateau.\r",
@@ -114,7 +114,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000227_00013",
+      "id": "EternaForest_Text_IShouldCheckItOutMyselfButGoingInThereIs",
       "en_US": [
         "I should check it out myself, but\n",
         "going in there is...\r",
@@ -127,14 +127,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000227_00014",
+      "id": "EternaForest_Text_TheEternaForestWhereTimeFlowsEternally",
       "en_US": [
         "The Eterna Forest\n",
         "Where Time Flows Eternally"
       ]
     },
     {
-      "id": "pl_msg_00000227_00015",
+      "id": "EternaForest_Text_TrainerTipsInForestsAndCavesThereAreManyItemsOnTheGround",
       "en_US": [
         "Trainer Tips!\r",
         "In forests and caves, there are many\n",

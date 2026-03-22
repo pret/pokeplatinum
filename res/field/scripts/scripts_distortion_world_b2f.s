@@ -12,7 +12,7 @@ _000E:
     End
 
 _0012:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     GoToIfEq VAR_DISTORTION_WORLD_PROGRESS, 5, _0084
     GetPlayer3DPos VAR_0x8004, VAR_0x8005, VAR_0x8006
@@ -56,7 +56,7 @@ _00C6:
     WaitMovement
 _00D0:
     Message 1
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

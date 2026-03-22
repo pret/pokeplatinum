@@ -51,7 +51,7 @@
     ],
     "object_events": [
         {
-            "id": "CONTEST_HALL_LOBBY_POKECENTER_NURSE_0",
+            "id": "CONTEST_HALL_LOBBY_RECEPTIONIST_OFFICIAL_CONTEST",
             "graphics_id": "OBJ_EVENT_GFX_POKECENTER_NURSE",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -66,7 +66,7 @@
             "y": 0
         },
         {
-            "id": "CONTEST_HALL_LOBBY_POKECENTER_NURSE_1",
+            "id": "CONTEST_HALL_LOBBY_RECEPTIONIST_LINK_CONTEST",
             "graphics_id": "OBJ_EVENT_GFX_POKECENTER_NURSE",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -81,7 +81,7 @@
             "y": 0
         },
         {
-            "id": "CONTEST_HALL_LOBBY_POKECENTER_NURSE_2",
+            "id": "CONTEST_HALL_LOBBY_RECEPTIONIST_PRACTICE_CONTEST",
             "graphics_id": "OBJ_EVENT_GFX_POKECENTER_NURSE",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -96,7 +96,7 @@
             "y": 0
         },
         {
-            "id": "CONTEST_HALL_LOBBY_ACE_TRAINER_F_3",
+            "id": "LOCALID_ACE_TRAINER_F",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -111,7 +111,7 @@
             "y": 0
         },
         {
-            "id": "CONTEST_HALL_LOBBY_CLOWN_4",
+            "id": "LOCALID_CLOWN",
             "graphics_id": "OBJ_EVENT_GFX_CLOWN",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -126,11 +126,11 @@
             "y": 0
         },
         {
-            "id": "CONTEST_HALL_LOBBY_MOM_5",
+            "id": "LOCALID_MOM",
             "graphics_id": "OBJ_EVENT_GFX_MOM",
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0208",
+            "hidden_flag": "FLAG_HIDE_CONTEST_HALL_LOBBY_MOM",
             "script": 0,
             "initial_dir": 3,
             "data": [],
@@ -141,11 +141,11 @@
             "y": 0
         },
         {
-            "id": "CONTEST_HALL_LOBBY_IDOL_6",
+            "id": "LOCALID_KEIRA",
             "graphics_id": "OBJ_EVENT_GFX_IDOL",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0209",
+            "hidden_flag": "FLAG_HIDE_CONTEST_HALL_LOBBY_KEIRA",
             "script": 0,
             "initial_dir": 2,
             "data": [],
@@ -156,11 +156,11 @@
             "y": 0
         },
         {
-            "id": "CONTEST_HALL_LOBBY_REPORTER_7",
+            "id": "LOCALID_REPORTER",
             "graphics_id": "OBJ_EVENT_GFX_REPORTER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0213",
+            "hidden_flag": "FLAG_HIDE_CONTEST_HALL_LOBBY_REPORTER",
             "script": 10156,
             "initial_dir": 2,
             "data": [],
@@ -171,7 +171,7 @@
             "y": 0
         },
         {
-            "id": "CONTEST_HALL_LOBBY_SCHOOL_KID_F_8",
+            "id": "LOCALID_SCHOOL_KID_F",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_F",
             "movement_type": "MOVEMENT_TYPE_WANDER_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -186,7 +186,7 @@
             "y": 0
         },
         {
-            "id": "CONTEST_HALL_LOBBY_RICH_BOY_9",
+            "id": "CONTEST_HALL_LOBBY_RICH_BOY",
             "graphics_id": "OBJ_EVENT_GFX_RICH_BOY",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -201,11 +201,11 @@
             "y": 0
         },
         {
-            "id": "CONTEST_HALL_LOBBY_FANTINA_10",
+            "id": "LOCALID_FANTINA",
             "graphics_id": "OBJ_EVENT_GFX_FANTINA",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0190",
+            "hidden_flag": "FLAG_HIDE_CONTEST_HALL_LOBBY_FANTINA",
             "script": 11,
             "initial_dir": 2,
             "data": [],

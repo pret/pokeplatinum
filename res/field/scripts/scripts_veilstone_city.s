@@ -449,7 +449,7 @@ _05C4:
     EndMovement
 
 VeilstoneCity_Counterpart:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GetPlayerGender VAR_0x8004
@@ -470,7 +470,7 @@ VeilstoneCity_DawnAcceptTeamUp:
 
 VeilstoneCity_DawnDeclineTeamUp:
     Message VeilstoneCity_Text_DawnIllBeWaiting
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -488,7 +488,7 @@ VeilstoneCity_LucasAcceptTeamUp:
 
 VeilstoneCity_LucasDeclineTeamUp:
     Message VeilstoneCity_Text_LucasIllBeWaiting
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -611,7 +611,7 @@ _08DD:
     SetFlag FLAG_UNK_0x028A
     ClearFlag FLAG_UNK_0x020D
     SetVar VAR_UNK_0x411F, 1
-    PlayFanfare SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2
     FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_VEILSTONE_CITY_GALACTIC_WAREHOUSE, 0, 8, 11, 0
@@ -958,7 +958,7 @@ _0C64:
     End
 
 _0C77:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x00CC, _0CBC
@@ -972,7 +972,7 @@ _0C77:
 
 _0CBC:
     Message 51
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -1030,43 +1030,43 @@ VeilstoneCity_Player_GetPushed:
     EndMovement
 
 _0D5C:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfBadgeAcquired BADGE_ID_COBBLE, _0D82
     Message VeilstoneCity_Text_ThisIsGalacticWarehouse1
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _0D82:
     Message 14
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _0D8D:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfBadgeAcquired BADGE_ID_COBBLE, _0DB3
     Message 13
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _0DB3:
     Message 15
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _0DBE:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     Message 36
     CloseMessage
@@ -1150,7 +1150,7 @@ _0EF4:
 
 _0F0B:
     Message 40
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     Common_FadeToDefaultMusic4
     ReleaseAll
@@ -1224,7 +1224,7 @@ _0FA0:
     EndMovement
 
 _0FB0:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ApplyMovement 26, _0FE0
@@ -1280,56 +1280,56 @@ _10A2:
     End
 
 VeilstoneCity_DeoxysMeteoriteSpeed:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     CheckPartyHasSpecies2 SPECIES_DEOXYS, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, VeilstoneCity_MeteoriteFromTheStars
     ChangeDeoxysForm DEOXYS_FORM_SPEED
     PlayCry SPECIES_DEOXYS
     Message VeilstoneCity_Text_MeteoriteSpeed
-    WaitABXPadPress
+    WaitButton
     WaitCry
     CloseMessage
     ReleaseAll
     End
 
 VeilstoneCity_DeoxysMeteoriteDefense:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     CheckPartyHasSpecies2 SPECIES_DEOXYS, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, VeilstoneCity_MeteoriteFromTheStars
     ChangeDeoxysForm DEOXYS_FORM_DEFENSE
     PlayCry SPECIES_DEOXYS
     Message VeilstoneCity_Text_MeteoriteDefense
-    WaitABXPadPress
+    WaitButton
     WaitCry
     CloseMessage
     ReleaseAll
     End
 
 VeilstoneCity_DeoxysMeteoriteAttack:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     CheckPartyHasSpecies2 SPECIES_DEOXYS, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, VeilstoneCity_MeteoriteFromTheStars
     ChangeDeoxysForm DEOXYS_FORM_ATTACK
     PlayCry SPECIES_DEOXYS
     Message VeilstoneCity_Text_MeteoriteAttack
-    WaitABXPadPress
+    WaitButton
     WaitCry
     CloseMessage
     ReleaseAll
     End
 
 VeilstoneCity_DeoxysMeteoriteNormal:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     CheckPartyHasSpecies2 SPECIES_DEOXYS, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, VeilstoneCity_MeteoriteFromTheStars
     ChangeDeoxysForm DEOXYS_FORM_NORMAL
     PlayCry SPECIES_DEOXYS
     Message VeilstoneCity_Text_MeteoriteNormal
-    WaitABXPadPress
+    WaitButton
     WaitCry
     CloseMessage
     ReleaseAll
@@ -1337,7 +1337,7 @@ VeilstoneCity_DeoxysMeteoriteNormal:
 
 VeilstoneCity_MeteoriteFromTheStars:
     Message VeilstoneCity_Text_MeteoriteFromTheStars
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -1384,7 +1384,7 @@ _11FC:
     EndMovement
 
 _1204:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 52
@@ -1400,7 +1400,7 @@ _122B:
     End
 
 _1236:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

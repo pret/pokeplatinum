@@ -2,14 +2,14 @@
   "key": 25602,
   "messages": [
     {
-      "id": "pl_msg_00000230_00000",
+      "id": "MtCoronet1FSouth_Text_AccordingToOneTheoryMtCoronetIsWhereTheSinnohRegionBegan",
       "en_US": [
         "According to one theory, Mt. Coronet\n",
         "is where the Sinnoh region began.\r"
       ]
     },
     {
-      "id": "pl_msg_00000230_00001",
+      "id": "MtCoronet1FSouth_Text_InANewlyCreatedWorld",
       "en_US": [
         "...In a newly created world...\r",
         "A world where only time flowed and\n",
@@ -18,7 +18,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000230_00002",
+      "id": "MtCoronet1FSouth_Text_ButWhatBecameOfThatWorld",
       "en_US": [
         "But what became of that world?\r",
         "Because the human spirit is weak and\n",

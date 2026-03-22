@@ -7,7 +7,7 @@
     ScriptEntryEnd
 
 VeilstoneStoreElevator_TalkElevatorOperator:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GetFloorsAbove VAR_ELEVATOR_FLOORS_ABOVE
@@ -147,7 +147,7 @@ VeilstoneStoreElevator_ElevatorAnimation:
     CloseMessage
     ApplyMovement 0, VeilstoneStoreElevator_LookDown
     WaitMovement
-    WaitFanfare SEQ_SE_CONFIRM
+    WaitSE SEQ_SE_CONFIRM
     PlayElevatorAnimation VAR_0x8004, 4
     Return
 
@@ -192,7 +192,7 @@ VeilstoneStoreElevator_ArrivedFloorB1:
     End
 
 VeilstoneStoreElevator_ElevatorDone:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -201,7 +201,7 @@ VeilstoneStoreElevator_SelectCurrentFloor:
     SetVar VAR_ELEVATOR_FLOORS_ABOVE, -1
     WaitTime 1, VAR_RESULT
     Message VeilstoneStoreElevator_Text_SameFloor
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -210,7 +210,7 @@ VeilstoneStoreElevator_SelectNoFloor:
     SetVar VAR_ELEVATOR_FLOORS_ABOVE, -1
     WaitTime 1, VAR_RESULT
     Message VeilstoneStoreElevator_Text_LookForward
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

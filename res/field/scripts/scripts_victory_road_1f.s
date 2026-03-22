@@ -16,7 +16,7 @@ _002F:
     End
 
 _0031:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_GAME_COMPLETED, _004F
@@ -30,7 +30,7 @@ _004F:
     End
 
 _005A:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

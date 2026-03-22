@@ -27,6 +27,7 @@
 #include "comm_player_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
+#include "coordinates.h"
 #include "field_system.h"
 #include "game_options.h"
 #include "graphics.h"
@@ -71,8 +72,8 @@ typedef struct UndergroundManager {
     FieldSystem *fieldSystem;
     u8 padding[4];
     SysTask *sysTask;
-    Coordinates2D touchCoordinates;
-    Coordinates touchedTileCoords;
+    CoordinatesU16 touchCoordinates;
+    CoordinatesU16 touchedTileCoords;
     StoredListMenuPos storedPositions[MAX_STORED_MENU_POSITIONS];
     u16 storedPositionKey;
     u8 linksTalkedTo[MAX_CONNECTED_PLAYERS];
@@ -82,7 +83,7 @@ typedef struct UndergroundManager {
     u8 touchRadarTrapResults[MAX_TOUCH_RADAR_RESULTS_OF_TYPE];
     u8 touchRadarMiningSpotResults[MAX_TOUCH_RADAR_RESULTS_OF_TYPE];
     u8 touchRadarBuriedSphereResults[MAX_TOUCH_RADAR_RESULTS_OF_TYPE];
-    CoordinatesGetter coordinatesGetter;
+    GetCoordinatesFunc getCoordsFunc;
     UndergroundTextPrinter *commonTextPrinter;
     UndergroundTextPrinter *captureFlagTextPrinter;
     UndergroundTextPrinter *miscTextPrinter;
@@ -311,7 +312,7 @@ static BOOL UndergroundMan_GetQueuedPlayerMessage(String *dest)
 // doesn't check for everything that could be at the coordinates
 BOOL UndergroundMan_AreCoordinatesOccupied(int x, int z)
 {
-    Coordinates coordinates = {
+    CoordinatesU16 coordinates = {
         .x = x,
         .z = z
     };
@@ -358,7 +359,7 @@ BOOL UndergroundMan_CheckForTouchInput(void)
                 pos = ov5_GetPositionFromTouchCoordinates(gSystem.touchX, gSystem.touchY, sUndergroundMan->fieldSystem->unk_8C);
                 int x, z;
                 LandData_ObjectPosToTilePos(pos.x, pos.z, &x, &z);
-                Coordinates touchedTileCoords = {
+                CoordinatesU16 touchedTileCoords = {
                     .x = x,
                     .z = z
                 };
@@ -368,7 +369,7 @@ BOOL UndergroundMan_CheckForTouchInput(void)
                 sUndergroundMan->touchedTileCoords.x = x;
                 sUndergroundMan->touchedTileCoords.z = z;
 
-                CommSys_SendData(48, &touchedTileCoords, sizeof(Coordinates));
+                CommSys_SendData(48, &touchedTileCoords, sizeof(CoordinatesU16));
 
                 return TRUE;
             }
@@ -378,7 +379,7 @@ BOOL UndergroundMan_CheckForTouchInput(void)
     return FALSE;
 }
 
-static int UndergroundMan_TouchRadarSearch(u8 *out, TouchRadarItemCheckFunc isItemAtCoords, Coordinates *touchedTileCoords)
+static int UndergroundMan_TouchRadarSearch(u8 *out, TouchRadarItemCheckFunc isItemAtCoords, CoordinatesU16 *touchedTileCoords)
 {
     int index = 1;
 
@@ -388,7 +389,7 @@ static int UndergroundMan_TouchRadarSearch(u8 *out, TouchRadarItemCheckFunc isIt
     TouchRadarSearchContext ctx;
     TouchRadarSearch_Init(&ctx, TOUCH_RADAR_RADIUS);
 
-    TouchRadarCoordinates radarCoords;
+    CoordinatesS16 radarCoords;
     while (TouchRadarSearch_GetNextCoords(&ctx, &radarCoords)) {
         int x = touchedTileCoords->x + radarCoords.x;
         int z = touchedTileCoords->z + radarCoords.z;
@@ -408,7 +409,7 @@ static int UndergroundMan_TouchRadarSearch(u8 *out, TouchRadarItemCheckFunc isIt
     return index;
 }
 
-static void UndergroundMan_StartTouchRadar(int netID, Coordinates *touchedTileCoords)
+static void UndergroundMan_StartTouchRadar(int netID, CoordinatesU16 *touchedTileCoords)
 {
     u8 buffer[MAX_TOUCH_RADAR_RESULTS_OF_TYPE + 1];
     int size = 1;
@@ -424,7 +425,7 @@ static void UndergroundMan_StartTouchRadar(int netID, Coordinates *touchedTileCo
 
 void UndergroundMan_ProcessTouchInput(int netID, int unused1, void *data, void *unused3)
 {
-    Coordinates *touchedTileCoords = data;
+    CoordinatesU16 *touchedTileCoords = data;
 
     if (!CommPlayerMan_IsMovementEnabled(netID)) {
         return;
@@ -469,7 +470,7 @@ void UndergroundMan_ProcessTouchRadarMiningSpotResults(int unused0, int size, vo
     TouchRadar_StartTask(sUndergroundMan->fieldSystem, sUndergroundMan->touchedTileCoords.x, sUndergroundMan->touchedTileCoords.z, sUndergroundMan->touchCoordinates.x, sUndergroundMan->touchCoordinates.y, sUndergroundMan->touchRadarTrapResults, sUndergroundMan->touchRadarTrapResultCount, sUndergroundMan->touchRadarMiningSpotResults, sUndergroundMan->touchRadarMiningSpotResultCount, sUndergroundMan->touchRadarBuriedSphereResults, sUndergroundMan->touchRadarBuriedSphereResultCount);
 }
 
-static int UndergroundMan_GetOrderedCoordinatesValue(Coordinates *coordinates)
+static int UndergroundMan_GetOrderedCoordinatesValue(CoordinatesU16 *coordinates)
 {
     int x = 0, z = 0;
 
@@ -483,45 +484,45 @@ static int UndergroundMan_GetOrderedCoordinatesValue(Coordinates *coordinates)
     return (z * MAP_MATRIX_MAX_WIDTH * MAP_TILES_COUNT_X) + x;
 }
 
-int UndergroundMan_CalcCoordsIndexGet(Coordinates *coordinates)
+int UndergroundMan_CalcCoordsIndexGet(CoordinatesU16 *coordinates)
 {
     int index = 0;
     int max = sUndergroundMan->orderedArrayLength - 1;
     int orderedValue = UndergroundMan_GetOrderedCoordinatesValue(coordinates);
-    Coordinates _;
-    CoordinatesGetter getCoordinates = sUndergroundMan->coordinatesGetter;
+    CoordinatesU16 _;
+    GetCoordinatesFunc getCoordsFunc = sUndergroundMan->getCoordsFunc;
 
     while (index < max) {
         int midpoint = (index + max) / 2;
 
-        if (UndergroundMan_GetOrderedCoordinatesValue(getCoordinates(&_, midpoint)) < orderedValue) {
+        if (UndergroundMan_GetOrderedCoordinatesValue(getCoordsFunc(&_, midpoint)) < orderedValue) {
             index = midpoint + 1;
         } else {
             max = midpoint;
         }
     }
 
-    if (UndergroundMan_GetOrderedCoordinatesValue(getCoordinates(&_, index)) == orderedValue) {
+    if (UndergroundMan_GetOrderedCoordinatesValue(getCoordsFunc(&_, index)) == orderedValue) {
         return index;
     }
 
     return -1;
 }
 
-int UndergroundMan_CalcCoordsIndexInsert(Coordinates *coordinates)
+int UndergroundMan_CalcCoordsIndexInsert(CoordinatesU16 *coordinates)
 {
     int index = 0;
     int max = sUndergroundMan->orderedArrayLength - 2;
     int orderedValue = UndergroundMan_GetOrderedCoordinatesValue(coordinates);
-    Coordinates _;
-    CoordinatesGetter getCoordinates = sUndergroundMan->coordinatesGetter;
+    CoordinatesU16 _;
+    GetCoordinatesFunc getCoordsFunc = sUndergroundMan->getCoordsFunc;
 
     max++; // why?
 
     while (index < max) {
         int midpoint = (index + max) / 2;
 
-        if (UndergroundMan_GetOrderedCoordinatesValue(getCoordinates(&_, midpoint)) < orderedValue) {
+        if (UndergroundMan_GetOrderedCoordinatesValue(getCoordsFunc(&_, midpoint)) < orderedValue) {
             index = midpoint + 1;
         } else {
             max = midpoint;
@@ -531,9 +532,9 @@ int UndergroundMan_CalcCoordsIndexInsert(Coordinates *coordinates)
     return index;
 }
 
-void UndergroundMan_InitCoordsOrderingState(int orderedArrayLength, CoordinatesGetter coordinatesGetter)
+void UndergroundMan_InitCoordsOrderingState(int orderedArrayLength, GetCoordinatesFunc getCoordsFunc)
 {
-    sUndergroundMan->coordinatesGetter = coordinatesGetter;
+    sUndergroundMan->getCoordsFunc = getCoordsFunc;
     sUndergroundMan->orderedArrayLength = orderedArrayLength;
 }
 
@@ -595,7 +596,7 @@ void UndergroundMan_ProcessInteractEvent(int netID, int unused1, void *data, voi
 {
     TalkEvent talkEvent;
     InteractEvent *event = data;
-    Coordinates coordinates;
+    CoordinatesU16 coordinates;
     u8 netIDBuffer = netID;
     coordinates.x = CommPlayer_GetXInFrontOfPlayerServer(netID);
     coordinates.z = CommPlayer_GetZInFrontOfPlayerServer(netID);

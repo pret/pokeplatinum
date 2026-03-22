@@ -13,7 +13,7 @@
     ScriptEntryEnd
 
 VeilstoneStore4F_Attendant:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     CheckIsDepartmentStoreRegular VAR_RESULT
@@ -42,35 +42,35 @@ VeilstoneStore4F_AttendantPersonalized:
 
 VeilstoneStore4F_AttendantPleaseEnjoyYourself:
     Message VeilstoneStore4F_Text_PleaseEnjoyYourself
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 VeilstoneStore4F_AttendantYellowCushion:
     Message VeilstoneStore4F_Text_YellowCushionIsSoftAndFirm
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 VeilstoneStore4F_AttendantCupboards:
     Message VeilstoneStore4F_Text_SurprisedHowManyBuyCupboards
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 VeilstoneStore4F_AttendantBuizelDoll:
     Message VeilstoneStore4F_Text_BuizelDollIsVeryPopular
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 VeilstoneStore4F_AttendantMantykeDoll:
     Message VeilstoneStore4F_Text_MantykeDollHasBeenHotSeller
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -88,7 +88,7 @@ VeilstoneStore4F_SchoolBoy:
     End
 
 VeilstoneStore4F_TopDecorVendor:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Common_VendorGreeting
@@ -98,7 +98,7 @@ VeilstoneStore4F_TopDecorVendor:
     End
 
 VeilstoneStore4F_BottomDecorVendor:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Common_VendorGreeting

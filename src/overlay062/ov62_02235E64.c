@@ -453,7 +453,7 @@ static BOOL ov62_02236624(UnkStruct_0208C06C *param0)
 
                 sub_0202F298(param0->saveData, 102, &v1, NULL, param0->unk_86C);
                 v2 = ov62_022486A4(param0->saveData, param0->unk_86C);
-                sub_0202F22C();
+                BattleRecording_Free();
 
                 ov62_022339A0(param0);
                 ov62_022338A8(param0);

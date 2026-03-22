@@ -206,8 +206,8 @@ static int sub_0208BC08(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_0208BC3C *v0 = ApplicationManager_Data(appMan);
 
-    if (sub_0202F250() == 1) {
-        sub_0202F22C();
+    if (BattleRecording_Exists() == 1) {
+        BattleRecording_Free();
     }
 
     Heap_Free(v0->unk_14);
@@ -258,7 +258,7 @@ static BOOL sub_0208BC8C(UnkStruct_0208BC3C *param0, enum HeapID heapID)
 
         param0->unk_10 = FieldBattleDTO_New(heapID, 0x0);
 
-        if (sub_0202F250() == 0) {
+        if (BattleRecording_Exists() == 0) {
             sub_0202F298(param0->saveData, heapID, &v0, param0->unk_10, param0->unk_14->unk_86C);
         } else {
             sub_0202FAFC(param0->unk_10, param0->saveData);
@@ -269,7 +269,7 @@ static BOOL sub_0208BC8C(UnkStruct_0208BC3C *param0, enum HeapID heapID)
         param0->unk_10->records = SaveData_GetGameRecords(param0->saveData);
 
         if (Overlay_LoadByID(FS_OVERLAY_ID(overlay62), 2) == 1) {
-            ov62_02248408(sub_0202F264(), param0->unk_10, heapID);
+            ov62_02248408(BattleRecording_Get(), param0->unk_10, heapID);
             Overlay_UnloadByID(FS_OVERLAY_ID(overlay62));
         }
 

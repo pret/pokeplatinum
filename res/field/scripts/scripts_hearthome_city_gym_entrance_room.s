@@ -9,7 +9,7 @@
     ScriptEntryEnd
 
 EternaGym_GymGuide:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfBadgeAcquired BADGE_ID_RELIC, EternaGym_GymGuideAfterBadge
@@ -30,7 +30,7 @@ EternaGym_GymGuideEncouragement:
     End
 
 EternaGym_GymGuideEnd:
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -42,13 +42,13 @@ EternaGym_GymGuideAfterBadge:
     End
 
 HearthomeGym_GymStatue:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     GoToIfBadgeAcquired BADGE_ID_RELIC, HearthomeGym_GymStatueAfterBadge
     BufferRivalName 0
     BufferRivalName 1
     Message HearthomeGym_Text_GymStatueBeforeBadge
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -58,18 +58,18 @@ HearthomeGym_GymStatueAfterBadge:
     BufferPlayerName 1
     BufferRivalName 2
     Message HearthomeGym_Text_GymStatueAfterBadge
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 HearthomeGym_GymGuide_InitialVisit:
     LockAll
-    ApplyMovement HEARTHOME_CITY_GYM_ENTRANCE_ROOM_GYM_GUIDE, HearthomeGym_GymGuideMoveToPlayer
+    ApplyMovement LOCALID_GYM_GUIDE, HearthomeGym_GymGuideMoveToPlayer
     WaitMovement
     Message HearthomeGym_Text_GymGuideInitialVisit
     CloseMessage
-    ApplyMovement HEARTHOME_CITY_GYM_ENTRANCE_ROOM_GYM_GUIDE, HearthomeGym_GymGuideReturnToPosition
+    ApplyMovement LOCALID_GYM_GUIDE, HearthomeGym_GymGuideReturnToPosition
     WaitMovement
     SetVar VAR_HAS_ENTERED_HEARTHOME_GYM_BEFORE, TRUE
     ReleaseAll

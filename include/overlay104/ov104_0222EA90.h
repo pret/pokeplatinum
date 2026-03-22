@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV104_0222EA90_H
 #define POKEPLATINUM_OV104_0222EA90_H
 
-#include "overlay104/struct_ov104_0223C4CC_decl.h"
+#include "overlay104/frontier_graphics.h"
 
 enum FrontierSceneParam {
     FR_SCENE_BGMODE = 0,
@@ -21,7 +21,7 @@ enum FrontierSceneParam {
 };
 
 int GetFrontierSceneValue(int scene, enum FrontierSceneParam sceneParam);
-void ov104_0222EB8C(UnkStruct_ov104_0223C4CC *param0, void **param1, int param2);
-void ov104_0222EBA4(UnkStruct_ov104_0223C4CC *param0, void **param1, int param2);
+void ov104_0222EB8C(FrontierGraphics *param0, void **param1, int param2);
+void ov104_0222EBA4(FrontierGraphics *param0, void **param1, int param2);
 
 #endif // POKEPLATINUM_OV104_0222EA90_H

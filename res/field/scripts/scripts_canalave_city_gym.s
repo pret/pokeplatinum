@@ -13,7 +13,7 @@ CanalaveGym_Init:
     End
 
 CanalaveGym_Byron:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfBadgeAcquired BADGE_ID_MINE, CanalaveGym_ByronAfterBadge
@@ -26,8 +26,8 @@ CanalaveGym_Byron:
     Message CanalaveGym_Text_BeatByron
     BufferPlayerName 0
     Message CanalaveGym_Text_ByronReceiveMineBadge
-    PlaySound SEQ_BADGE
-    WaitSound
+    PlayFanfare SEQ_BADGE
+    WaitFanfare
     GiveBadge BADGE_ID_MINE
     IncrementTrainerScore2 TRAINER_SCORE_EVENT_BADGE_EARNED
     SetTrainerFlag TRAINER_BLACK_BELT_DAVID
@@ -57,7 +57,7 @@ CanalaveGym_ByronTryGiveTM91:
     BufferItemName 0, VAR_0x8004
     BufferTMHMMoveName 1, VAR_0x8004
     Message CanalaveGym_Text_ByronExplainTM91
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -72,7 +72,7 @@ CanalaveGym_ByronAfterBadge:
     GoToIfUnset FLAG_OBTAINED_BYRON_TM91, CanalaveGym_ByronTryGiveTM91
     BufferRivalName 1
     Message CanalaveGym_Text_ByronAfterBadge
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -83,12 +83,12 @@ CanalaveGym_Lostbattle:
     End
 
 CanalaveGym_GymGuide:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfBadgeAcquired BADGE_ID_MINE, CanalaveGym_GymGuideAfterBadge
     Message CanalaveGym_Text_GymGuideBeforeBadge
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -96,19 +96,19 @@ CanalaveGym_GymGuide:
 CanalaveGym_GymGuideAfterBadge:
     BufferPlayerName 0
     Message CanalaveGym_Text_GymGuideAfterBadge
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 CanalaveGym_GymStatue:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     GoToIfBadgeAcquired BADGE_ID_MINE, CanalaveGym_GymStatueAfterBadge
     BufferRivalName 0
     BufferRivalName 1
     Message CanalaveGym_Text_GymStatueBeforeBadge
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -118,7 +118,7 @@ CanalaveGym_GymStatueAfterBadge:
     BufferPlayerName 1
     BufferRivalName 2
     Message CanalaveGym_Text_GymStatueAfterBadge
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

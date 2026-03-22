@@ -8,7 +8,7 @@
     ScriptEntryEnd
 
 _000A:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     BufferDaycareMonNicknames
@@ -17,7 +17,7 @@ _000A:
     GoToIfEq VAR_RESULT, DAYCARE_ONE_MON, _00BE
     GoToIfEq VAR_RESULT, DAYCARE_TWO_MONS, _00CB
     Message 0
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -30,7 +30,7 @@ _004A:
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_YES, _0083
     Message 3
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ClearFlag FLAG_UNK_0x0073
     ResetDaycarePersonalityAndStepCounter
@@ -41,7 +41,7 @@ _0083:
     GetPartyCount VAR_RESULT
     GoToIfNe VAR_RESULT, 6, _009F
     Message 4
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -49,11 +49,11 @@ _0083:
 _009F:
     BufferPlayerName 0
     Message 5
-    PlaySound SEQ_FANFA4
-    WaitSound
+    PlayFanfare SEQ_FANFA4
+    WaitFanfare
     WaitABPress
     Message 6
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     GiveEggFromDaycare
     ClearFlag FLAG_UNK_0x0073
@@ -63,7 +63,7 @@ _009F:
 _00BE:
     BufferDaycareMonNicknames
     Message 2
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -76,7 +76,7 @@ _00CB:
     CallIfEq VAR_RESULT, 1, _0115
     CallIfEq VAR_RESULT, 2, _011A
     CallIfEq VAR_RESULT, 3, _011F
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -98,7 +98,7 @@ _011F:
     Return
 
 _0124:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ShowMoney 20, 2
@@ -110,7 +110,7 @@ _0124:
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_YES, _017E
     Message 20
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     HideMoney
     ReleaseAll
@@ -131,8 +131,8 @@ _01B9:
     OpenPartyMenuForDaycare VAR_RESULT
     ScrCmd_291 VAR_0x8000, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _01DE
-    ScrCmd_196 VAR_0x8000
-    ScrCmd_197 VAR_RESULT
+    SetMonSummary VAR_0x8000
+    GetMonPartySlot VAR_RESULT
     GoTo _01B9
 
 _01DE:
@@ -163,7 +163,7 @@ _025F:
 _0270:
     PlayCry VAR_0x8001
     Message 36
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     WaitCry
     HideMoney
@@ -172,7 +172,7 @@ _0270:
 
 _0285:
     Message 35
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     HideMoney
     ReleaseAll
@@ -180,7 +180,7 @@ _0285:
 
 _0292:
     Message 23
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     HideMoney
     ReleaseAll
@@ -195,7 +195,7 @@ _029F:
 
 _02BB:
     Message 31
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     HideMoney
     ReleaseAll
@@ -203,7 +203,7 @@ _02BB:
 
 _02C8:
     Message 33
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     HideMoney
     ReleaseAll
@@ -211,7 +211,7 @@ _02C8:
 
 _02D5:
     Message 34
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     HideMoney
     ReleaseAll
@@ -219,7 +219,7 @@ _02D5:
 
 _02E2:
     Message 19
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     HideMoney
     ReleaseAll
@@ -275,7 +275,7 @@ _03DE:
     CheckMoney2 VAR_RESULT, VAR_0x8004
     GoToIfEq VAR_RESULT, 1, _03FE
     Message 21
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     HideMoney
     ReleaseAll
@@ -287,8 +287,8 @@ _03FE:
     MoveMonToPartyFromDaycareSlot VAR_0x8002, VAR_0x8001
     RemoveMoney2 VAR_0x8004
     UpdateMoneyDisplay
-    PlayFanfare SEQ_SE_DP_REGI
-    WaitFanfare SEQ_SE_DP_REGI
+    PlaySE SEQ_SE_DP_REGI
+    WaitSE SEQ_SE_DP_REGI
     Message 29
     PlayCry VAR_0x8002
     BufferPlayerName 1
@@ -306,7 +306,7 @@ _0444:
 
 _045E:
     Message 26
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     HideMoney
     ReleaseAll
@@ -338,14 +338,14 @@ _04A0:
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_YES, _0346
     Message 23
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     HideMoney
     ReleaseAll
     End
 
 Unk501_Unused:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     Message 37
     ScrCmd_1AC

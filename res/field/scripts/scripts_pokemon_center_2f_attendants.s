@@ -81,7 +81,7 @@ _0100:
     EndMovement
 
 _0108:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     CheckPartyHasBadEgg VAR_RESULT
@@ -118,7 +118,7 @@ _01C8:
 
 _01D3:
     Message 15
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -139,7 +139,7 @@ _01F2:
 
 _020F:
     Message 6
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -152,7 +152,7 @@ _021A:
 
 _0237:
     Message 126
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -165,7 +165,7 @@ _0242:
 
 _025F:
     Message 125
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -260,7 +260,7 @@ _03D3:
 _03DD:
     EndCommunication
     Message 16
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -268,7 +268,7 @@ _03DD:
 _03EA:
     EndCommunication
     Message 15
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -293,7 +293,7 @@ _0446:
 _0450:
     EndCommunication
     Message 16
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -301,7 +301,7 @@ _0450:
 _045D:
     EndCommunication
     Message 15
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -371,7 +371,7 @@ _0538:
     EndMovement
 
 _0544:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     CheckPartyHasBadEgg VAR_RESULT
@@ -469,7 +469,7 @@ _06A0:
     End
 
 _06B4:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     SetFlag FLAG_UNK_0x00AA
@@ -509,14 +509,14 @@ _0724:
 
 _074A:
     Message 104
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _0755:
     Call _076D
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

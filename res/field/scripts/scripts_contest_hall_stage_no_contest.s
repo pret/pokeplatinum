@@ -2,26 +2,26 @@
 #include "res/text/bank/contest_hall_stage_no_contest.h"
 
 
-    ScriptEntry _0012
-    ScriptEntry _0025
-    ScriptEntry _0038
-    ScriptEntry _004B
+    ScriptEntry ContestHallStageNoContest_Hiker
+    ScriptEntry ContestHallStageNoContest_Idol
+    ScriptEntry ContestHallStageNoContest_Beauty
+    ScriptEntry ContestHallStageNoContest_BlackBelt
     ScriptEntryEnd
 
-_0012:
-    NPCMessage 0
+ContestHallStageNoContest_Hiker:
+    NPCMessage ContestHallStageNoContest_Text_ForTheVisualJudgingDressUpYourPokemon
     End
 
-_0025:
-    NPCMessage 1
+ContestHallStageNoContest_Idol:
+    NPCMessage ContestHallStageNoContest_Text_ForTheDanceCompetitionMimicTheLeadDancer
     End
 
-_0038:
-    NPCMessage 2
+ContestHallStageNoContest_Beauty:
+    NPCMessage ContestHallStageNoContest_Text_ForThePerformancePokemonNeedTheRightMoves
     End
 
-_004B:
-    NPCMessage 3
+ContestHallStageNoContest_BlackBelt:
+    NPCMessage ContestHallStageNoContest_Text_AtTheCoolContestPullOffACoolMove
     End
 
     .balign 4, 0

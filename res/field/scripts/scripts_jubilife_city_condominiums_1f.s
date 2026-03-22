@@ -21,7 +21,7 @@ JubilifeCityCondominiums1F_Pachirisu:
     End
 
 JubilifeCityCondominiums1F_Beauty:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_OBTAINED_QUICK_CLAW, JubilifeCityCondominiums1F_ObtainedQuickClaw
@@ -44,7 +44,7 @@ JubilifeCityCondominiums1F_BagIsFull:
 
 JubilifeCityCondominiums1F_ObtainedQuickClaw:
     Message JubilifeCityCondominiums1F_Text_APokemonHoldingThatQuickClawCanSometimesAttackFirst
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

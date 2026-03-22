@@ -12,7 +12,7 @@ Route204North_Youngster:
     End
 
 Route204North_AceTrainerF:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_RECEIVED_ROUTE_204_NORTH_TM78, Route204North_CaptivateOnlyWorksAgainstTheOppositeGender
@@ -26,7 +26,7 @@ Route204North_AceTrainerF:
 
 Route204North_CaptivateOnlyWorksAgainstTheOppositeGender:
     Message Route204North_Text_CaptivateOnlyWorksAgainstTheOppositeGender
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

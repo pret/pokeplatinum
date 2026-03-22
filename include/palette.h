@@ -126,7 +126,7 @@ u16 *PaletteData_GetFadedBuffer(PaletteData *palette, enum PaletteBufferID buffe
 u8 PaletteData_StartFade(PaletteData *paletteData, u16 buffersToFade, u16 palettesToFade, s8 wait, u8 cur, u8 end, u16 target);
 void PaletteData_CommitFadedBuffers(PaletteData *paletteData);
 u16 PaletteData_GetSelectedBuffersMask(PaletteData *paletteData);
-void PaletteData_SetAutoTransparent(PaletteData *paletteData, int val);
+void PaletteData_SetAutoTransparent(PaletteData *paletteData, BOOL val);
 void PaletteData_SelectAll(PaletteData *paletteData, u8 val);
 void PaletteData_FillBufferRange(PaletteData *paletteData, enum PaletteBufferID bufferID, enum PaletteSelector selector, u16 fillVal, u16 start, u16 end);
 u16 PaletteData_GetBufferIndexColor(PaletteData *paletteData, enum PaletteBufferID bufferID, enum PaletteSelector selector, u16 index);

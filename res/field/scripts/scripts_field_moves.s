@@ -21,7 +21,7 @@
     ScriptEntryEnd
 
 FieldMoves_CutTree:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     FindPartySlotWithMove VAR_RESULT, MOVE_CUT
@@ -39,7 +39,7 @@ _008E:
     Message FieldMoves_Text_TreeLooksLikeCanBeCut
     GetCurrentMapID VAR_0x8004
     CallIfEq VAR_0x8004, 203, _014A
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     GoTo _066D
     End
@@ -80,11 +80,11 @@ _0133:
     End
 
 _014A:
-    GoToIfNe VAR_UNK_0x40CD, 0, _0221
-    GoToIfNe VAR_UNK_0x40B1, 1, _0221
+    GoToIfNe VAR_ETERNA_FOREST_CHERYL_OLD_CHATEAU_CUTSCENE_STATE, 0, _0221
+    GoToIfNe VAR_ETERNA_FOREST_FOLLOWER_CHERYL_STATE, 1, _0221
     Call _017F
     GoToIfEq VAR_RESULT, 0, _0221
-    SetVar VAR_UNK_0x40CD, 1
+    SetVar VAR_ETERNA_FOREST_CHERYL_OLD_CHATEAU_CUTSCENE_STATE, 1
     Return
 
 _017F:
@@ -125,7 +125,7 @@ _0221:
     Return
 
 FieldMoves_Rock:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     FindPartySlotWithMove VAR_RESULT, MOVE_ROCK_SMASH
@@ -142,7 +142,7 @@ FieldMoves_Rock:
 
 _0275:
     Message FieldMoves_Text_PokemonMayBeAbleToSmashRock
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     GoTo _066D
     End
@@ -181,7 +181,7 @@ _02FD:
     End
 
 FieldMoves_Boulder:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Strength 2, VAR_RESULT
@@ -199,7 +199,7 @@ FieldMoves_Boulder:
 
 _0372:
     Message FieldMoves_Text_BoulderMayBeAbleToPush
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     GoTo _066D
     End
@@ -213,7 +213,7 @@ _0381:
     ScrCmd_0C5 VAR_0x8004
     CloseMessage
     Message FieldMoves_Text_PokemonStrengthMadePossibleToMove
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     GetCurrentMapID VAR_0x8004
     CreateJournalEvent LOCATION_EVENT_USED_STRENGTH, VAR_0x8004, 0, 0, 0
@@ -222,7 +222,7 @@ _0381:
 
 _03BD:
     Message FieldMoves_Text_StrengthMadePossibleToMove
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     GoTo _066D
     End
@@ -237,14 +237,14 @@ FieldMoves_UseStrengthFromMenu:
     CloseMessage
     ScrCmd_0C5 VAR_0x8000
     Message FieldMoves_Text_PokemonStrengthMadePossibleToMove
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     GetCurrentMapID VAR_0x8004
     CreateJournalEvent LOCATION_EVENT_USED_STRENGTH, VAR_0x8004, 0, 0, 0
     GoTo _0675
 
 FieldMoves_RockyWall:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FindPartySlotWithMove VAR_RESULT, MOVE_ROCK_CLIMB
     GoToIfEq VAR_RESULT, 6, _0469
@@ -261,14 +261,14 @@ FieldMoves_RockyWall:
 
 _0469:
     Message FieldMoves_Text_RockyWallWillMoveScale
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     GoTo _0671
     End
 
 _0478:
     Message FieldMoves_Text_NoRockClimbingWithPartner
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     GoTo _0671
     End
@@ -297,7 +297,7 @@ FieldMoves_UseRockClimbFromMenu:
     End
 
 FieldMoves_Water:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     CheckHasPartner VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _0512
@@ -310,7 +310,7 @@ FieldMoves_Water:
 
 _0512:
     Message FieldMoves_Text_NoSurfingWithPartner
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     GoTo _0671
 
@@ -340,7 +340,7 @@ FieldMoves_UseSurfFromMenu:
     End
 
 FieldMoves_Fog_Unused:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FindPartySlotWithMove VAR_RESULT, MOVE_DEFOG
     GoToIfEq VAR_RESULT, 6, _05B4
@@ -353,7 +353,7 @@ FieldMoves_Fog_Unused:
 
 _05B4:
     Message FieldMoves_Text_DeepFogDrapesArea_Unused
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     GoTo _0671
     End
@@ -383,7 +383,7 @@ FieldMoves_UseDefogFromMenu:
     CloseMessage
     ScrCmd_0C5 VAR_0x8000
     Defog 1
-    PlayFanfare SEQ_SE_DP_FBRADE
+    PlaySE SEQ_SE_DP_FBRADE
     ScrCmd_0C4
     GetCurrentMapID VAR_0x8004
     CreateJournalEvent LOCATION_EVENT_USED_DEFOG, VAR_0x8004, 0, 0, 0
@@ -415,7 +415,7 @@ _0675:
     End
 
 FieldMoves_Waterfall:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FindPartySlotWithMove VAR_RESULT, MOVE_WATERFALL
     GoToIfEq VAR_RESULT, 6, _06C3
@@ -430,7 +430,7 @@ FieldMoves_Waterfall:
 
 _06C3:
     Message FieldMoves_Text_WallOfWater
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     GoTo _0671
     End

@@ -61,7 +61,7 @@ PokemonLeagueHallwayToHallOfFame_EnterHallOfFameRoom:
     ApplyMovement LOCALID_PROF_ROWAN, PokemonLeagueHallwayToHallOfFame_Movement_RowanEnterHallOfFameRoom
     ApplyMovement LOCALID_PLAYER, PokemonLeagueHallwayToHallOfFame_Movement_PlayerEnterHallOfFameRoom
     WaitMovement
-    PlayFanfare SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2
     FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_POKEMON_LEAGUE_HALL_OF_FAME, 0, 8, 15, 0

@@ -29,7 +29,7 @@ _0032:
     ApplyMovement 11, _02C8
     ApplyMovement LOCALID_PLAYER, _0290
     WaitMovement
-    PlayFanfare SEQ_SE_DP_WALL_HIT2
+    PlaySE SEQ_SE_DP_WALL_HIT2
     BufferPlayerName 1
     Message 0
     CloseMessage
@@ -57,7 +57,7 @@ _0032:
     ApplyMovement 12, _02C8
     ApplyMovement LOCALID_PLAYER, _0290
     WaitMovement
-    PlayFanfare SEQ_SE_DP_WALL_HIT2
+    PlaySE SEQ_SE_DP_WALL_HIT2
     BufferRivalName 0
     BufferPlayerName 1
     Message 4

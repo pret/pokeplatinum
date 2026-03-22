@@ -1,0 +1,79 @@
+{
+  "characters": [
+    {
+      "id": "UndergroundMapTransition_Chars_Player",
+      "from_narc": "NARC_INDEX_DATA__UGEFFECT_OBJ_GRAPHIC",
+      "from_file": [ "lucas_NCGR", "dawn_NCGR" ],
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": true
+    },
+    {
+      "id": "UndergroundMapTransition_Chars_Hole",
+      "from_narc": "NARC_INDEX_DATA__UGEFFECT_OBJ_GRAPHIC",
+      "from_file": "hole_NCGR",
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    }
+  ],
+  "palettes": [
+    {
+      "id": "UndergroundMapTransition_Palette_Shared",
+      "from_narc": "NARC_INDEX_DATA__UGEFFECT_OBJ_GRAPHIC",
+      "from_file": [ "lucas_NCLR", "dawn_NCLR" ],
+      "load_in_slot": 1,
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": true
+    }
+  ],
+  "cells": [
+    {
+      "id": "UndergroundMapTransition_Cells_Player",
+      "from_narc": "NARC_INDEX_DATA__UGEFFECT_OBJ_GRAPHIC",
+      "from_file": "player_cell_NCER",
+      "compressed": false
+    },
+    {
+      "id": "UndergroundMapTransition_Cells_Hole",
+      "from_narc": "NARC_INDEX_DATA__UGEFFECT_OBJ_GRAPHIC",
+      "from_file": "hole_cell_NCER",
+      "compressed": false
+    }
+  ],
+  "animations": [
+    {
+      "id": "UndergroundMapTransition_Anims_Player",
+      "from_narc": "NARC_INDEX_DATA__UGEFFECT_OBJ_GRAPHIC",
+      "from_file": "player_anim_NANR",
+      "compressed": false
+    },
+    {
+      "id": "UndergroundMapTransition_Anims_Hole",
+      "from_narc": "NARC_INDEX_DATA__UGEFFECT_OBJ_GRAPHIC",
+      "from_file": "hole_anim_NANR",
+      "compressed": false
+    }
+  ],
+  "templates": [
+    {
+      "id": "UndergroundMapTransition_Template_Player",
+      "characters": "UndergroundMapTransition_Chars_Player",
+      "palette": "UndergroundMapTransition_Palette_Shared",
+      "cells": "UndergroundMapTransition_Cells_Player",
+      "animations": "UndergroundMapTransition_Anims_Player",
+      "vram_transfer": false,
+      "priority": 0
+    },
+    {
+      "id": "UndergroundMapTransition_Template_Hole",
+      "characters": "UndergroundMapTransition_Chars_Hole",
+      "palette": "UndergroundMapTransition_Palette_Shared",
+      "cells": "UndergroundMapTransition_Cells_Hole",
+      "animations": "UndergroundMapTransition_Anims_Hole",
+      "vram_transfer": false,
+      "priority": 0
+    }
+  ]
+}

@@ -2,7 +2,7 @@
   "key": 25718,
   "messages": [
     {
-      "id": "pl_msg_00000323_00000",
+      "id": "IcebergRuins_Text_ItsAStatueOfAPokemon",
       "en_US": [
         "It’s a statue of a Pokémon.\n",
         "It seems to exude power...\r",
@@ -12,7 +12,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000323_00001",
+      "id": "IcebergRuins_Text_SomethingChangedInTheAir",
       "en_US": [
         "Something changed in the air...\r",
         "An indescribable power is emanating\n",
@@ -20,18 +20,18 @@
       ]
     },
     {
-      "id": "pl_msg_00000323_00002",
+      "id": "IcebergRuins_Text_RegiceCry",
       "en_US": "Jakiih!\r"
     },
     {
-      "id": "pl_msg_00000323_00003",
+      "id": "IcebergRuins_Text_ThePokemonStatueHasStoppedEmanatingPower",
       "en_US": [
         "The Pokémon statue has stopped\n",
         "emanating power."
       ]
     },
     {
-      "id": "pl_msg_00000323_00004",
+      "id": "IcebergRuins_Text_ItsAStatueOfAPokemonBecomeStrongerYouMust",
       "en_US": [
         "It’s a statue of a Pokémon.\n",
         "It seems to exude power...\r",

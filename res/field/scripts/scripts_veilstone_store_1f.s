@@ -43,7 +43,7 @@ VeilstoneStore1F_Directory:
     End
 
 VeilstoneStore1F_Socialite:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_VEILSTONE_STORE_1F_RECEIVED_MASK, VeilstoneStore1F_Socialite_AfterMaskGiven
@@ -64,7 +64,7 @@ VeilstoneStore1F_Socialite:
 VeilstoneStore1F_Socialite_AfterMaskGiven:
     BufferAccessoryName 0, VAR_VEILSTONE_STORE_MASK
     Message VeilstoneStore1F_Text_GiveADifferentLookForContests
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

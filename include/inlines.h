@@ -3,8 +3,6 @@
 
 #include <nitro/rtc.h>
 
-#include "struct_decls/struct_0203A790_decl.h"
-
 #include "field/field_system.h"
 #include "overlay061/struct_ov61_0222C3B0.h"
 

@@ -17,16 +17,16 @@
     ScriptEntryEnd
 
 _0032:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     BufferPlayerName 0
     BufferRivalName 1
     Message 0
-    PlaySound SEQ_FANFA4
+    PlayFanfare SEQ_FANFA4
     BufferPlayerName 0
     Message 1
-    WaitSound
+    WaitFanfare
     RemoveItem ITEM_PARCEL, 1, VAR_RESULT
     BufferPlayerName 0
     BufferRivalName 1
@@ -66,9 +66,9 @@ _00D8:
     End
 
 _00F2:
-    PlayFanfare SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2
     RemoveObject 1
-    WaitFanfare SEQ_SE_DP_KAIDAN2
+    WaitSE SEQ_SE_DP_KAIDAN2
     SetVar VAR_POKETCH_CAMPAIGN_STATE, 1
     SetFlag FLAG_TALKED_TO_TRAINERS_SCHOOL_RIVAL
     ClearFlag FLAG_HIDE_JUBILIFE_CITY_POKETCH_CO_PRESIDENT
@@ -130,7 +130,7 @@ _01A4:
     End
 
 _01A6:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x0112, _02A8
@@ -175,7 +175,7 @@ _023C:
 
 _0269:
     Message 12
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -192,7 +192,7 @@ _0274:
 
 _02A8:
     Message 14
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -206,14 +206,14 @@ _02B3:
 _02BD:
     GoToIfSet FLAG_UNK_0x010D, _0274
     Message 12
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _02D3:
     Message 11
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -224,7 +224,7 @@ _02DE:
     End
 
 _02E4:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x010D, _039C
@@ -268,21 +268,21 @@ _036F:
 
 _039C:
     Message 18
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _03A7:
     Message 17
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _03B2:
     Message 18
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -290,7 +290,7 @@ _03B2:
 _03BD:
     GoToIfSet FLAG_UNK_0x0112, _03B2
     Message 19
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -301,7 +301,7 @@ _03D3:
     End
 
 _03D9:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     Message 20
     GoTo _03EA

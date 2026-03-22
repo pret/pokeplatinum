@@ -1,0 +1,50 @@
+{
+  "characters": [
+    {
+      "id": "TowerRecords_Chars_Interface",
+      "from_narc": "NARC_INDEX_GRAPHIC__BTOWER",
+      "from_file": "sprites_NCGR",
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    }
+  ],
+  "palettes": [
+    {
+      "id": "TowerRecords_Palette_Interface",
+      "from_narc": "NARC_INDEX_GRAPHIC__BTOWER",
+      "from_file": "sprites_NCLR",
+      "load_in_slot": 2,
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    }
+  ],
+  "cells": [
+    {
+      "id": "TowerRecords_Cells_Interface",
+      "from_narc": "NARC_INDEX_GRAPHIC__BTOWER",
+      "from_file": "sprites_cell_NCER",
+      "compressed": false
+    }
+  ],
+  "animations": [
+    {
+      "id": "TowerRecords_Anims_Interface",
+      "from_narc": "NARC_INDEX_GRAPHIC__BTOWER",
+      "from_file": "sprites_anim_NANR",
+      "compressed": false
+    }
+  ],
+  "templates": [
+    {
+      "id": "TowerRecords_Template_Interface",
+      "characters": "TowerRecords_Chars_Interface",
+      "palette": "TowerRecords_Palette_Interface",
+      "cells": "TowerRecords_Cells_Interface",
+      "animations": "TowerRecords_Anims_Interface",
+      "vram_transfer": false,
+      "priority": 0
+    }
+  ]
+}

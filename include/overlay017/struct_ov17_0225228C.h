@@ -14,7 +14,7 @@ typedef struct {
     u8 unk_11;
     u8 unk_12;
     UnkStruct_ov17_022508E4 unk_14;
-    u8 unk_1A;
+    u8 announcerMessagesID;
     u8 unk_1B;
     u8 unk_1C;
     u8 unk_1D;

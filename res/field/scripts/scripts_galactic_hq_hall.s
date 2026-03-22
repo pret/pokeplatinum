@@ -25,18 +25,18 @@ _0006:
     AddObject 2
     ApplyMovement 2, _01D8
     WaitMovement
-    PlayFanfare SEQ_SE_DP_DENDOU
+    PlaySE SEQ_SE_DP_DENDOU
     WaitTime 30, VAR_RESULT
     Message 1
     CloseMessage
-    PlayFanfare SEQ_SE_DP_DENDOU
+    PlaySE SEQ_SE_DP_DENDOU
     WaitTime 30, VAR_RESULT
     Message 2
     CloseMessage
     WaitTime 30, VAR_RESULT
     Message 3
     CloseMessage
-    PlayFanfare SEQ_SE_DP_DENDOU
+    PlaySE SEQ_SE_DP_DENDOU
     WaitTime 15, VAR_RESULT
     Message 4
     Message 5

@@ -21,6 +21,7 @@
 #include "poffin.h"
 #include "pokedex.h"
 #include "poketch.h"
+#include "rankings.h"
 #include "record_mixed_rng.h"
 #include "save_player.h"
 #include "savedata.h"
@@ -36,7 +37,6 @@
 #include "unk_0202C9F4.h"
 #include "unk_0202D778.h"
 #include "unk_0202E2CC.h"
-#include "unk_0202E840.h"
 #include "unk_0202EEC0.h"
 #include "unk_0202F1D4.h"
 #include "unk_0203061C.h"
@@ -131,7 +131,7 @@ int SaveData_SaveHallOfFame(SaveData *saveData, HallOfFame *hof)
     return SaveDataExtra_Save(saveData, EXTRA_SAVE_TABLE_ENTRY_HALL_OF_FAME, hof);
 }
 
-BattleRecording *SaveData_BattleRecording(SaveData *saveData, enum HeapID heapID, int *resultCode, int recNum)
+BattleRecording *SaveData_GetBattleRecording(SaveData *saveData, enum HeapID heapID, int *resultCode, int recNum)
 {
     BOOL tmp;
     return SaveDataExtra_Mirror(saveData, heapID, EXTRA_SAVE_TABLE_ENTRY_MY_RECORDINGS + recNum, resultCode, &tmp);

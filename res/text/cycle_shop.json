@@ -2,7 +2,7 @@
   "key": 5123,
   "messages": [
     {
-      "id": "pl_msg_00000091_00000",
+      "id": "CycleShop_Text_ThanksForRescuingMeThisIsSomethingToShowMyThanks",
       "en_US": [
         "Thanks for rescuing me!\n",
         "This is something to show my thanks!\r",
@@ -11,7 +11,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000091_00001",
+      "id": "CycleShop_Text_ThisIsTheLatestModelSoIllReadTheOperatingManualToYou",
       "en_US": [
         "It’s the latest model, so I’ll read\n",
         "the operating manual to you.\r",
@@ -24,11 +24,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000091_00002",
+      "id": "CycleShop_Text_ClefairyPipPiih",
       "en_US": "CLEFAIRY: Pip piih!"
     },
     {
-      "id": "pl_msg_00000091_00003",
+      "id": "CycleShop_Text_TheManagersGoneOffToTheTeamGalacticBuildingAndHasntReturned",
       "en_US": [
         "The manager’s gone off to the Team\n",
         "Galactic building and hasn’t returned.\r",
@@ -36,14 +36,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000091_00004",
+      "id": "CycleShop_Text_WhatWasTeamGalacticTryingToDoWithOtherPeoplesPokemon",
       "en_US": [
         "What was Team Galactic trying to do\n",
         "with other people’s Pokémon?"
       ]
     },
     {
-      "id": "pl_msg_00000091_00005",
+      "id": "CycleShop_Text_ThereIsAManualOnTheLatestModelBicycle",
       "en_US": [
         "There is a manual on the latest\n",
         "model Bicycle.\r",
@@ -54,7 +54,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000091_00006",
+      "id": "CycleShop_Text_TheresACatalogFromTheHoennRegionOnItsPopularBikes",
       "en_US": [
         "There’s a catalog from the Hoenn region\n",
         "on its popular Bikes...\r",

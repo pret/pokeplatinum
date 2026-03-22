@@ -21,7 +21,7 @@ typedef struct {
     u8 unk_17;
     UnkStruct_ov17_0224DF54_sub2 unk_18;
     UnkStruct_ov17_0224DC1C unk_50;
-    UnkStruct_ov17_0224E958 unk_58[4];
+    UnkStruct_ov17_0224E958 unk_58[CONTEST_NUM_PARTICIPANTS];
     UnkStruct_ov17_0224D69C *unk_140[4];
 } UnkStruct_ov17_0224D710;
 

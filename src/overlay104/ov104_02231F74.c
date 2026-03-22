@@ -14,16 +14,14 @@
 #include "overlay063/ov63_0222D77C.h"
 #include "overlay063/struct_ov63_0222BEC0_decl.h"
 #include "overlay063/struct_ov63_0222CCB8.h"
+#include "overlay104/defs.h"
 #include "overlay104/frontier_script_context.h"
-#include "overlay104/ov104_0222E63C.h"
+#include "overlay104/frontier_script_manager.h"
 #include "overlay104/struct_ov104_0222FEDC.h"
 #include "overlay104/struct_ov104_02230BE4.h"
-#include "overlay104/struct_ov104_022320B4_decl.h"
-#include "overlay104/struct_ov104_022320B4_t.h"
 #include "overlay104/struct_ov104_02232B78.h"
 #include "overlay104/struct_ov104_0223319C.h"
 #include "overlay104/struct_ov104_022331E8.h"
-#include "overlay104/struct_ov104_0223C4CC.h"
 
 #include "bg_window.h"
 #include "character_sprite.h"
@@ -65,10 +63,10 @@ typedef struct {
     u16 unk_02;
 } UnkStruct_ov104_022419A0;
 
-static void OpenMessageBox(UnkStruct_ov104_022320B4 *param0);
-static void GetMessage(UnkStruct_ov104_022320B4 *param0, const MessageLoader *msgLoader, u32 entryID);
-static void PrintMessage(UnkStruct_ov104_022320B4 *param0, enum Font font, int renderDelay, BOOL canSpeedUp, int autoScroll);
-static void FrontierMenuManager_Init(UnkStruct_ov104_022320B4 *param0, FrontierMenuManager *menuManager, u8 anchorX, u8 anchorY, u8 initialCursorPos, u8 canExitWithB, u16 *selectedOptionPtr, StringTemplate *strTemplate, MessageLoader *msgLoader);
+static void OpenMessageBox(FrontierScriptManager *scriptMan);
+static void GetMessage(FrontierScriptManager *scriptMan, const MessageLoader *msgLoader, u32 entryID);
+static void PrintMessage(FrontierScriptManager *scriptMan, enum Font font, int renderDelay, BOOL canSpeedUp, int autoScroll);
+static void FrontierMenuManager_Init(FrontierScriptManager *scriptMan, FrontierMenuManager *menuManager, u8 anchorX, u8 anchorY, u8 initialCursorPos, u8 canExitWithB, u16 *selectedOptionPtr, StringTemplate *strTemplate, MessageLoader *msgLoader);
 static void AddMenuEntry(FrontierMenuManager *menuManager, u32 entryID, u32 altTextEntryID, u32 index);
 static u32 CalcMenuWidth(FrontierMenuManager *menuManager);
 static void SetupSingleColumnMenu(FrontierMenuManager *menuManager);
@@ -76,11 +74,11 @@ static void MenuSysTaskCallback(SysTask *task, void *data);
 static void FreeManagerWithMenu(FrontierMenuManager *menuManager);
 static void UpdateMenuAltText(FrontierMenuManager *menuManager);
 static void PrintListMenuAltText(FrontierMenuManager *menuManager, u16 entryID, u32 printerDelay);
-static void ShowSentence(UnkStruct_ov104_022320B4 *param0, u8 renderDelay, u16 sentenceType, u16 sentenceID, u16 word1, s16 word2, u8 canSpeedUp);
+static void ShowSentence(FrontierScriptManager *scriptMan, u8 renderDelay, u16 sentenceType, u16 sentenceID, u16 word1, s16 word2, u8 canSpeedUp);
 static void GetStringFromSentence(String *msgBuf, u16 sentenceType, u16 sentenceID, u16 word1, u16 word2);
 static BOOL WaitForFinishedPrinting(FrontierScriptContext *ctx);
 static void AddListMenuEntry(FrontierMenuManager *menuManager, u32 entryID, u32 altTextEntryID, u32 index);
-static u32 CalcListMenuWidth(FrontierMenuManager *menuManager);
+static u32 CalcListMenuWidth(FrontierMenuManager *param0);
 static void InitListMenuTemplate(FrontierMenuManager *menuManager);
 static void SetListMenuItemAltColor(ListMenu *listMenu, u32 index, u8 yOffset);
 static void ListMenuDummyCursorCallback(ListMenu *listMenu, u32 index, u8 onInit);
@@ -88,18 +86,18 @@ static void ListMenuSysTaskCallback(SysTask *task, void *data);
 static void FreeManagerWithListMenu(FrontierMenuManager *menuManager, u8 playSound);
 static void UpdateListMenuAltText(FrontierMenuManager *menuManager);
 
-void FrontierShowMessage(UnkStruct_ov104_022320B4 *param0, const MessageLoader *msgLoader, u16 messageID, u8 canSpeedUp, FrontierMessageOptions *msgOptions)
+void FrontierShowMessage(FrontierScriptManager *scriptMan, const MessageLoader *msgLoader, u16 messageID, u8 canSpeedUp, FrontierMessageOptions *msgOptions)
 {
     u8 renderDelay;
     u8 autoScroll;
     u8 font;
 
-    OpenMessageBox(param0);
-    GetMessage(param0, msgLoader, messageID);
+    OpenMessageBox(scriptMan);
+    GetMessage(scriptMan, msgLoader, messageID);
 
     if (msgOptions == NULL) {
-        UnkStruct_ov104_0223C4CC *v3 = ov104_0222E924(param0);
-        UnkStruct_ov104_02230BE4 *v4 = sub_0209B970(v3->unk_08);
+        FrontierGraphics *graphics = FrontierScriptManager_GetGraphics(scriptMan);
+        UnkStruct_ov104_02230BE4 *v4 = sub_0209B970(graphics->unk_08);
 
         renderDelay = Options_TextFrameDelay(v4->options);
         autoScroll = AUTO_SCROLL_DISABLED;
@@ -110,59 +108,59 @@ void FrontierShowMessage(UnkStruct_ov104_022320B4 *param0, const MessageLoader *
         font = msgOptions->font;
     }
 
-    PrintMessage(param0, font, renderDelay, canSpeedUp, autoScroll);
+    PrintMessage(scriptMan, font, renderDelay, canSpeedUp, autoScroll);
 }
 
-static void OpenMessageBox(UnkStruct_ov104_022320B4 *param0)
+static void OpenMessageBox(FrontierScriptManager *scriptMan)
 {
-    UnkStruct_ov104_0223C4CC *v0 = ov104_0222E924(param0);
+    FrontierGraphics *graphics = FrontierScriptManager_GetGraphics(scriptMan);
 
-    if (param0->isMsgBoxOpen == FALSE) {
+    if (scriptMan->isMsgBoxOpen == FALSE) {
         Window_Add(
-            v0->unk_00, &param0->msgWindow, BG_LAYER_MAIN_1, 2, 19, 27, 4, 13, BASE_TILE_STANDARD_WINDOW_FRAME - MESSAGE_WINDOW_TILE_COUNT);
-        Window_FillTilemap(&param0->msgWindow, 15);
-        Window_DrawMessageBoxWithScrollCursor(&param0->msgWindow, 0, BASE_TILE_SCROLLING_MESSAGE_BOX, 11);
+            graphics->bgConfig, &scriptMan->msgWindow, BG_LAYER_MAIN_1, 2, 19, 27, 4, 13, BASE_TILE_STANDARD_WINDOW_FRAME - MESSAGE_WINDOW_TILE_COUNT);
+        Window_FillTilemap(&scriptMan->msgWindow, 15);
+        Window_DrawMessageBoxWithScrollCursor(&scriptMan->msgWindow, 0, BASE_TILE_SCROLLING_MESSAGE_BOX, 11);
 
-        param0->isMsgBoxOpen = TRUE;
+        scriptMan->isMsgBoxOpen = TRUE;
     } else {
-        Window_FillTilemap(&param0->msgWindow, 15);
+        Window_FillTilemap(&scriptMan->msgWindow, 15);
     }
 }
 
-static void GetMessage(UnkStruct_ov104_022320B4 *param0, const MessageLoader *msgLoader, u32 entryID)
+static void GetMessage(FrontierScriptManager *scriptMan, const MessageLoader *msgLoader, u32 entryID)
 {
-    MessageLoader_GetString(msgLoader, entryID, param0->fmtString);
-    StringTemplate_Format(param0->strTemplate, param0->string, param0->fmtString);
+    MessageLoader_GetString(msgLoader, entryID, scriptMan->fmtString);
+    StringTemplate_Format(scriptMan->strTemplate, scriptMan->string, scriptMan->fmtString);
 }
 
-static void PrintMessage(UnkStruct_ov104_022320B4 *param0, enum Font font, int renderDelay, BOOL canSpeedUp, int autoScroll)
+static void PrintMessage(FrontierScriptManager *scriptMan, enum Font font, int renderDelay, BOOL canSpeedUp, int autoScroll)
 {
     RenderControlFlags_SetCanABSpeedUpPrint(canSpeedUp);
     RenderControlFlags_SetAutoScrollFlags(autoScroll);
     RenderControlFlags_SetSpeedUpOnTouch(FALSE);
-    param0->printerID = Text_AddPrinterWithParams(&param0->msgWindow, font, param0->string, 0, 0, renderDelay, NULL);
+    scriptMan->printerID = Text_AddPrinterWithParams(&scriptMan->msgWindow, font, scriptMan->string, 0, 0, renderDelay, NULL);
 }
 
-void Frontier_CloseMessage(UnkStruct_ov104_022320B4 *param0)
+void Frontier_CloseMessage(FrontierScriptManager *scriptMan)
 {
-    GF_ASSERT(param0->isMsgBoxOpen == TRUE);
+    GF_ASSERT(scriptMan->isMsgBoxOpen == TRUE);
 
-    Window_EraseMessageBox(&param0->msgWindow, FALSE);
-    Window_Remove(&param0->msgWindow);
+    Window_EraseMessageBox(&scriptMan->msgWindow, FALSE);
+    Window_Remove(&scriptMan->msgWindow);
 
-    param0->isMsgBoxOpen = FALSE;
+    scriptMan->isMsgBoxOpen = FALSE;
 }
 
-static void ShowSentence(UnkStruct_ov104_022320B4 *param0, u8 renderDelay, u16 sentenceType, u16 sentenceID, u16 word1, s16 word2, u8 canSpeedUp)
+static void ShowSentence(FrontierScriptManager *scriptMan, u8 renderDelay, u16 sentenceType, u16 sentenceID, u16 word1, s16 word2, u8 canSpeedUp)
 {
-    OpenMessageBox(param0);
+    OpenMessageBox(scriptMan);
 
-    GetStringFromSentence(param0->string, sentenceType, sentenceID, word1, word2);
+    GetStringFromSentence(scriptMan->string, sentenceType, sentenceID, word1, word2);
 
     if (canSpeedUp != 0xFF) {
-        PrintMessage(param0, FONT_MESSAGE, renderDelay, canSpeedUp, AUTO_SCROLL_DISABLED);
+        PrintMessage(scriptMan, FONT_MESSAGE, renderDelay, canSpeedUp, AUTO_SCROLL_DISABLED);
     } else {
-        PrintMessage(param0, FONT_MESSAGE, TEXT_SPEED_INSTANT, canSpeedUp, AUTO_SCROLL_DISABLED);
+        PrintMessage(scriptMan, FONT_MESSAGE, TEXT_SPEED_INSTANT, canSpeedUp, AUTO_SCROLL_DISABLED);
     }
 }
 
@@ -181,12 +179,12 @@ static void GetStringFromSentence(String *msgBuf, u16 sentenceType, u16 sentence
     String_Free(string);
 }
 
-static void FrontierMenuManager_Init(UnkStruct_ov104_022320B4 *param0, FrontierMenuManager *menuManager, u8 anchorX, u8 anchorY, u8 initialCursorPos, u8 canExitWithB, u16 *selectedOptionPtr, StringTemplate *strTemplate, MessageLoader *msgLoader)
+static void FrontierMenuManager_Init(FrontierScriptManager *scriptMan, FrontierMenuManager *menuManager, u8 anchorX, u8 anchorY, u8 initialCursorPos, u8 canExitWithB, u16 *selectedOptionPtr, StringTemplate *strTemplate, MessageLoader *msgLoader)
 {
     int i;
 
     if (msgLoader == NULL) {
-        menuManager->msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MENU_ENTRIES, param0->heapID);
+        menuManager->msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MENU_ENTRIES, scriptMan->heapID);
         menuManager->freeMsgLoaderOnDelete = TRUE;
     } else {
         menuManager->msgLoader = msgLoader;
@@ -194,7 +192,7 @@ static void FrontierMenuManager_Init(UnkStruct_ov104_022320B4 *param0, FrontierM
     }
 
     menuManager->strTemplate = strTemplate;
-    menuManager->unk_00 = param0;
+    menuManager->scriptMan = scriptMan;
     menuManager->selectedOptionPtr = selectedOptionPtr;
 
     *menuManager->selectedOptionPtr = 0;
@@ -204,7 +202,7 @@ static void FrontierMenuManager_Init(UnkStruct_ov104_022320B4 *param0, FrontierM
     menuManager->anchorX = anchorX;
     menuManager->anchorY = anchorY;
     menuManager->optionCount = 0;
-    menuManager->parent = &param0->msgWindow;
+    menuManager->parent = &scriptMan->msgWindow;
     menuManager->sysTaskDelay = 3;
     menuManager->cursorPos = initialCursorPos;
 
@@ -220,15 +218,15 @@ static void FrontierMenuManager_Init(UnkStruct_ov104_022320B4 *param0, FrontierM
     }
 
     for (i = 0; i < FRONTIER_MENU_ENTRIES_MAX; i++) {
-        menuManager->choiceStringBuffers[i] = String_Init(80, param0->heapID);
+        menuManager->choiceStringBuffers[i] = String_Init(80, scriptMan->heapID);
     }
 
     *menuManager->selectedOptionPtr = LIST_MENU_NO_SELECTION_YET;
 }
 
-FrontierMenuManager *FrontierMenuManager_New(UnkStruct_ov104_022320B4 *param0, u8 anchorX, u8 anchorY, u8 initalCursorPos, u8 canExitWithB, u16 *selectedOptionPtr, StringTemplate *strTemplate, MessageLoader *msgLoader)
+FrontierMenuManager *FrontierMenuManager_New(FrontierScriptManager *scriptMan, u8 anchorX, u8 anchorY, u8 initalCursorPos, u8 canExitWithB, u16 *selectedOptionPtr, StringTemplate *strTemplate, MessageLoader *msgLoader)
 {
-    FrontierMenuManager *menuManager = Heap_Alloc(param0->heapID, sizeof(FrontierMenuManager));
+    FrontierMenuManager *menuManager = Heap_Alloc(scriptMan->heapID, sizeof(FrontierMenuManager));
 
     if (menuManager == NULL) {
         return NULL;
@@ -236,7 +234,7 @@ FrontierMenuManager *FrontierMenuManager_New(UnkStruct_ov104_022320B4 *param0, u
 
     memset(menuManager, 0, sizeof(FrontierMenuManager));
 
-    FrontierMenuManager_Init(param0, menuManager, anchorX, anchorY, initalCursorPos, canExitWithB, selectedOptionPtr, strTemplate, msgLoader);
+    FrontierMenuManager_Init(scriptMan, menuManager, anchorX, anchorY, initalCursorPos, canExitWithB, selectedOptionPtr, strTemplate, msgLoader);
 
     return menuManager;
 }
@@ -249,7 +247,7 @@ void FrontierMenuManager_AddMenuEntry(FrontierMenuManager *menuManager, u32 entr
 void FrontierMenuManager_ShowMenu(FrontierMenuManager *menuManager)
 {
     u32 menuWidth;
-    UnkStruct_ov104_0223C4CC *v1 = ov104_0222E924(menuManager->unk_00);
+    FrontierGraphics *graphics = FrontierScriptManager_GetGraphics(menuManager->scriptMan);
 
     menuWidth = CalcMenuWidth(menuManager);
     if (menuWidth % TILE_WIDTH_PIXELS == 0) {
@@ -265,17 +263,17 @@ void FrontierMenuManager_ShowMenu(FrontierMenuManager *menuManager)
         menuManager->anchorY -= menuManager->optionCount * 2;
     }
 
-    Window_Add(v1->unk_00, &menuManager->window, BG_LAYER_MAIN_1, menuManager->anchorX, menuManager->anchorY, menuWidth, menuManager->optionCount * 2, 14, 1);
+    Window_Add(graphics->bgConfig, &menuManager->window, BG_LAYER_MAIN_1, menuManager->anchorX, menuManager->anchorY, menuWidth, menuManager->optionCount * 2, 14, 1);
     Window_DrawStandardFrame(&menuManager->window, TRUE, 985, PLTT_12);
     SetupSingleColumnMenu(menuManager);
-    menuManager->menu = Menu_NewSimple(&menuManager->menuTemplate, menuManager->initialCursorPos, menuManager->unk_00->heapID);
+    menuManager->menu = Menu_NewSimple(&menuManager->menuTemplate, menuManager->initialCursorPos, menuManager->scriptMan->heapID);
     UpdateMenuAltText(menuManager);
     menuManager->sysTask = SysTask_Start(MenuSysTaskCallback, menuManager, 0);
 }
 
 static void AddMenuEntry(FrontierMenuManager *menuManager, u32 entryID, u32 altTextEntryID, u32 index)
 {
-    String *entryBuf = String_Init(80, menuManager->unk_00->heapID);
+    String *entryBuf = String_Init(80, menuManager->scriptMan->heapID);
 
     MessageLoader_GetString(menuManager->msgLoader, entryID, entryBuf);
     StringTemplate_Format(menuManager->strTemplate, menuManager->choiceStringBuffers[menuManager->optionCount], entryBuf);
@@ -391,9 +389,9 @@ static void UpdateMenuAltText(FrontierMenuManager *menuManager)
     }
 }
 
-FrontierMenuManager *FrontierMenuManager_New2(UnkStruct_ov104_022320B4 *param0, u8 anchorX, u8 anchorY, u8 initialCursorPos, u8 canExitWithB, u16 *selectedOptionPtr, StringTemplate *strTemplate, MessageLoader *msgLoader)
+FrontierMenuManager *FrontierMenuManager_New2(FrontierScriptManager *scriptMan, u8 anchorX, u8 anchorY, u8 initialCursorPos, u8 canExitWithB, u16 *selectedOptionPtr, StringTemplate *strTemplate, MessageLoader *msgLoader)
 {
-    return FrontierMenuManager_New(param0, anchorX, anchorY, initialCursorPos, canExitWithB, selectedOptionPtr, strTemplate, msgLoader);
+    return FrontierMenuManager_New(scriptMan, anchorX, anchorY, initialCursorPos, canExitWithB, selectedOptionPtr, strTemplate, msgLoader);
 }
 
 void FrontierMenuManager_AddListMenuEntry(FrontierMenuManager *menuManager, u32 entry, u32 altTextEntryID, u32 index)
@@ -403,7 +401,7 @@ void FrontierMenuManager_AddListMenuEntry(FrontierMenuManager *menuManager, u32 
 
 void FrontierMenuManager_ShowListMenu(FrontierMenuManager *menuManager)
 {
-    UnkStruct_ov104_0223C4CC *v1 = ov104_0222E924(menuManager->unk_00);
+    FrontierGraphics *graphics = FrontierScriptManager_GetGraphics(menuManager->scriptMan);
 
     u32 menuWidth = CalcListMenuWidth(menuManager);
     if (menuWidth % TILE_WIDTH_PIXELS == 0) {
@@ -420,23 +418,23 @@ void FrontierMenuManager_ShowListMenu(FrontierMenuManager *menuManager)
         if (menuManager->anchorBottom) {
             menuManager->anchorY -= LIST_MENU_MAX_DISPLAY * 2;
         }
-        Window_Add(v1->unk_00, &menuManager->window, 1, menuManager->anchorX, menuManager->anchorY, menuWidth, 8 * 2, 14, 1);
+        Window_Add(graphics->bgConfig, &menuManager->window, 1, menuManager->anchorX, menuManager->anchorY, menuWidth, 8 * 2, 14, 1);
     } else {
         if (menuManager->anchorBottom) {
             menuManager->anchorY -= menuManager->optionCount * 2;
         }
-        Window_Add(v1->unk_00, &menuManager->window, 1, menuManager->anchorX, menuManager->anchorY, menuWidth, menuManager->optionCount * 2, 14, 1);
+        Window_Add(graphics->bgConfig, &menuManager->window, 1, menuManager->anchorX, menuManager->anchorY, menuWidth, menuManager->optionCount * 2, 14, 1);
     }
     Window_DrawStandardFrame(&menuManager->window, 1, 985, PLTT_12);
     InitListMenuTemplate(menuManager);
-    menuManager->listMenu = ListMenu_New(&menuManager->listMenuTemplate, 0, menuManager->initialCursorPos, menuManager->unk_00->heapID);
+    menuManager->listMenu = ListMenu_New(&menuManager->listMenuTemplate, 0, menuManager->initialCursorPos, menuManager->scriptMan->heapID);
     UpdateListMenuAltText(menuManager);
     menuManager->sysTask = SysTask_Start(ListMenuSysTaskCallback, menuManager, 0);
 }
 
 static void AddListMenuEntry(FrontierMenuManager *menuManager, u32 entryID, u32 altTextEntryID, u32 index)
 {
-    String *fmtStr = String_Init(80, menuManager->unk_00->heapID);
+    String *fmtStr = String_Init(80, menuManager->scriptMan->heapID);
 
     MessageLoader_GetString(menuManager->msgLoader, entryID, fmtStr);
     StringTemplate_Format(menuManager->strTemplate, menuManager->choiceStringBuffers[menuManager->optionCount], fmtStr);
@@ -585,8 +583,8 @@ static void FreeManagerWithListMenu(FrontierMenuManager *menuManager, u8 playSou
 
 static void PrintListMenuAltText(FrontierMenuManager *menuManager, u16 entryID, u32 printerDelay)
 {
-    String *fmtStr = String_Init(80, menuManager->unk_00->heapID);
-    String *displayStr = String_Init(80, menuManager->unk_00->heapID);
+    String *fmtStr = String_Init(80, menuManager->scriptMan->heapID);
+    String *displayStr = String_Init(80, menuManager->scriptMan->heapID);
 
     Window_FillTilemap(menuManager->parent, 15);
 
@@ -741,11 +739,11 @@ void ov104_02232C80(UnkStruct_ov63_0222CCB8 *param0, UnkStruct_ov63_0222BEC0 *pa
     }
 }
 
-void ov104_02232CE0(UnkStruct_ov104_0223C4CC *param0, Pokemon *param1, enum HeapID heapID, int param3, int param4, int param5, int param6, int param7, int param8, u16 param9)
+void ov104_02232CE0(FrontierGraphics *param0, Pokemon *param1, enum HeapID heapID, int param3, int param4, int param5, int param6, int param7, int param8, u16 param9)
 {
-    SpriteSystem *v0 = param0->unk_34.unk_00;
-    SpriteManager *v1 = param0->unk_34.unk_04;
-    PaletteData *v2 = param0->unk_04;
+    SpriteSystem *v0 = param0->spriteSystem;
+    SpriteManager *v1 = param0->spriteMan;
+    PaletteData *v2 = param0->plttData;
     PokemonSpriteTemplate v3;
     void *v4;
     ManagedSprite *v5;
@@ -822,16 +820,16 @@ void ov104_02232CE0(UnkStruct_ov104_0223C4CC *param0, Pokemon *param1, enum Heap
     param0->unk_80[param3 - 50000] = v5;
 }
 
-void ov104_02232E80(UnkStruct_ov104_0223C4CC *param0, int param1)
+void ov104_02232E80(FrontierGraphics *param0, int param1)
 {
     Sprite_DeleteAndFreeResources(param0->unk_80[param1 - 50000]);
 
     param0->unk_80[param1 - 50000] = NULL;
 
-    SpriteManager_UnloadCharObjById(param0->unk_34.unk_04, param1);
-    SpriteManager_UnloadPlttObjById(param0->unk_34.unk_04, param1);
-    SpriteManager_UnloadCellObjById(param0->unk_34.unk_04, param1);
-    SpriteManager_UnloadAnimObjById(param0->unk_34.unk_04, param1);
+    SpriteManager_UnloadCharObjById(param0->spriteMan, param1);
+    SpriteManager_UnloadPlttObjById(param0->spriteMan, param1);
+    SpriteManager_UnloadCellObjById(param0->spriteMan, param1);
+    SpriteManager_UnloadAnimObjById(param0->spriteMan, param1);
 }
 
 static const SpriteTemplate Unk_ov104_0223F9E0 = {
@@ -860,21 +858,21 @@ static const SpriteTemplate Unk_ov104_0223F9AC = {
     0x0
 };
 
-void ov104_02232EC0(UnkStruct_ov104_0223C4CC *param0)
+void ov104_02232EC0(FrontierGraphics *param0)
 {
-    SpriteSystem_LoadPaletteBuffer(param0->unk_04, PLTTBUF_MAIN_OBJ, param0->unk_34.unk_00, param0->unk_34.unk_04, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconPalettesFileIndex(), FALSE, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 2000);
-    SpriteSystem_LoadCellResObj(param0->unk_34.unk_00, param0->unk_34.unk_04, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIcon32KCellsFileIndex(), FALSE, 2000);
-    SpriteSystem_LoadAnimResObj(param0->unk_34.unk_00, param0->unk_34.unk_04, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIcon32KAnimationFileIndex(), FALSE, 2000);
+    SpriteSystem_LoadPaletteBuffer(param0->plttData, PLTTBUF_MAIN_OBJ, param0->spriteSystem, param0->spriteMan, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconPalettesFileIndex(), FALSE, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 2000);
+    SpriteSystem_LoadCellResObj(param0->spriteSystem, param0->spriteMan, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIcon32KCellsFileIndex(), FALSE, 2000);
+    SpriteSystem_LoadAnimResObj(param0->spriteSystem, param0->spriteMan, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIcon32KAnimationFileIndex(), FALSE, 2000);
 }
 
-void ov104_02232F28(UnkStruct_ov104_0223C4CC *param0)
+void ov104_02232F28(FrontierGraphics *param0)
 {
-    SpriteManager_UnloadCellObjById(param0->unk_34.unk_04, 2000);
-    SpriteManager_UnloadAnimObjById(param0->unk_34.unk_04, 2000);
-    SpriteManager_UnloadPlttObjById(param0->unk_34.unk_04, 2000);
+    SpriteManager_UnloadCellObjById(param0->spriteMan, 2000);
+    SpriteManager_UnloadAnimObjById(param0->spriteMan, 2000);
+    SpriteManager_UnloadPlttObjById(param0->spriteMan, 2000);
 }
 
-ManagedSprite *ov104_02232F4C(UnkStruct_ov104_0223C4CC *param0, Pokemon *param1, int param2, int param3, int param4)
+ManagedSprite *ov104_02232F4C(FrontierGraphics *param0, Pokemon *param1, int param2, int param3, int param4)
 {
     ManagedSprite *v0;
     SpriteTemplate v1;
@@ -882,7 +880,7 @@ ManagedSprite *ov104_02232F4C(UnkStruct_ov104_0223C4CC *param0, Pokemon *param1,
     GF_ASSERT(param2 < (2008 - 2000));
 
     SpriteSystem_LoadCharResObjAtEndWithHardwareMappingType(
-        param0->unk_34.unk_00, param0->unk_34.unk_04, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, Pokemon_IconSpriteIndex(param1), FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 2000 + param2);
+        param0->spriteSystem, param0->spriteMan, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, Pokemon_IconSpriteIndex(param1), FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 2000 + param2);
 
     v1 = Unk_ov104_0223F9E0;
 
@@ -891,7 +889,7 @@ ManagedSprite *ov104_02232F4C(UnkStruct_ov104_0223C4CC *param0, Pokemon *param1,
     v1.y = param4;
     v1.priority = 200;
 
-    v0 = SpriteSystem_NewSprite(param0->unk_34.unk_00, param0->unk_34.unk_04, &v1);
+    v0 = SpriteSystem_NewSprite(param0->spriteSystem, param0->spriteMan, &v1);
 
     Sprite_SetExplicitPaletteOffsetAutoAdjust(v0->sprite, Pokemon_IconPaletteIndex(param1));
     ManagedSprite_TickFrame(v0);
@@ -899,32 +897,32 @@ ManagedSprite *ov104_02232F4C(UnkStruct_ov104_0223C4CC *param0, Pokemon *param1,
     return v0;
 }
 
-void ov104_02232FD4(UnkStruct_ov104_0223C4CC *param0, ManagedSprite *param1, int param2)
+void ov104_02232FD4(FrontierGraphics *param0, ManagedSprite *param1, int param2)
 {
-    SpriteManager_UnloadCharObjById(param0->unk_34.unk_04, 2000 + param2);
+    SpriteManager_UnloadCharObjById(param0->spriteMan, 2000 + param2);
     Sprite_DeleteAndFreeResources(param1);
 }
 
-void ov104_02232FEC(UnkStruct_ov104_0223C4CC *param0)
+void ov104_02232FEC(FrontierGraphics *param0)
 {
     NARC *v0 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PLIST_GRA, HEAP_ID_94);
 
-    SpriteSystem_LoadPaletteBufferFromOpenNarc(param0->unk_04, PLTTBUF_MAIN_OBJ, param0->unk_34.unk_00, param0->unk_34.unk_04, v0, sub_02081934(), FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 2001);
-    SpriteSystem_LoadCellResObjFromOpenNarc(param0->unk_34.unk_00, param0->unk_34.unk_04, v0, sub_02081938(), FALSE, 2001);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(param0->unk_34.unk_00, param0->unk_34.unk_04, v0, sub_0208193C(), FALSE, 2001);
-    SpriteSystem_LoadCharResObjAtEndWithHardwareMappingType(param0->unk_34.unk_00, param0->unk_34.unk_04, 20, sub_02081930(), FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 2009);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(param0->plttData, PLTTBUF_MAIN_OBJ, param0->spriteSystem, param0->spriteMan, v0, sub_02081934(), FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 2001);
+    SpriteSystem_LoadCellResObjFromOpenNarc(param0->spriteSystem, param0->spriteMan, v0, sub_02081938(), FALSE, 2001);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(param0->spriteSystem, param0->spriteMan, v0, sub_0208193C(), FALSE, 2001);
+    SpriteSystem_LoadCharResObjAtEndWithHardwareMappingType(param0->spriteSystem, param0->spriteMan, 20, sub_02081930(), FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 2009);
     NARC_dtor(v0);
 }
 
-void ov104_0223307C(UnkStruct_ov104_0223C4CC *param0)
+void ov104_0223307C(FrontierGraphics *param0)
 {
-    SpriteManager_UnloadCharObjById(param0->unk_34.unk_04, 2009);
-    SpriteManager_UnloadCellObjById(param0->unk_34.unk_04, 2001);
-    SpriteManager_UnloadAnimObjById(param0->unk_34.unk_04, 2001);
-    SpriteManager_UnloadPlttObjById(param0->unk_34.unk_04, 2001);
+    SpriteManager_UnloadCharObjById(param0->spriteMan, 2009);
+    SpriteManager_UnloadCellObjById(param0->spriteMan, 2001);
+    SpriteManager_UnloadAnimObjById(param0->spriteMan, 2001);
+    SpriteManager_UnloadPlttObjById(param0->spriteMan, 2001);
 }
 
-ManagedSprite *ov104_022330AC(UnkStruct_ov104_0223C4CC *param0, int param1, int param2)
+ManagedSprite *ov104_022330AC(FrontierGraphics *param0, int param1, int param2)
 {
     ManagedSprite *v0;
     SpriteTemplate v1;
@@ -935,13 +933,13 @@ ManagedSprite *ov104_022330AC(UnkStruct_ov104_0223C4CC *param0, int param1, int 
     v1.y = param2;
     v1.priority = 300;
 
-    v0 = SpriteSystem_NewSprite(param0->unk_34.unk_00, param0->unk_34.unk_04, &v1);
+    v0 = SpriteSystem_NewSprite(param0->spriteSystem, param0->spriteMan, &v1);
     ManagedSprite_TickFrame(v0);
 
     return v0;
 }
 
-void ov104_022330F0(UnkStruct_ov104_0223C4CC *param0, ManagedSprite *param1)
+void ov104_022330F0(FrontierGraphics *param0, ManagedSprite *param1)
 {
     Sprite_DeleteAndFreeResources(param1);
 }
@@ -954,16 +952,16 @@ void ov104_022330FC(FrontierScriptContext *ctx, u16 *args)
 void ov104_0223310C(FrontierScriptContext *ctx, u16 *args, u32 bankID)
 {
     MessageLoader *msgLoader;
-    UnkStruct_ov104_02230BE4 *v2 = sub_0209B970(ctx->unk_00->unk_00);
+    UnkStruct_ov104_02230BE4 *v2 = sub_0209B970(ctx->scriptMan->unk_00);
 
     if (args[0] == 0xFFFF) {
         msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, bankID, HEAP_ID_FIELD3);
 
-        FrontierShowMessage(ctx->unk_00, msgLoader, args[1], 1, NULL);
+        FrontierShowMessage(ctx->scriptMan, msgLoader, args[1], 1, NULL);
         MessageLoader_Free(msgLoader);
     } else {
         u8 frameDelay = Options_TextFrameDelay(SaveData_GetOptions(v2->saveData));
-        ShowSentence(ctx->unk_00, frameDelay, args[0], args[1], args[2], args[3], TRUE);
+        ShowSentence(ctx->scriptMan, frameDelay, args[0], args[1], args[2], args[3], TRUE);
     }
 
     FrontierScriptContext_Pause(ctx, WaitForFinishedPrinting);
@@ -971,7 +969,7 @@ void ov104_0223310C(FrontierScriptContext *ctx, u16 *args, u32 bankID)
 
 static BOOL WaitForFinishedPrinting(FrontierScriptContext *ctx)
 {
-    if (!Text_IsPrinterActive(ctx->unk_00->printerID)) {
+    if (!Text_IsPrinterActive(ctx->scriptMan->printerID)) {
         return TRUE;
     }
 

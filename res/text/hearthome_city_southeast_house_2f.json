@@ -2,14 +2,14 @@
   "key": 1039,
   "messages": [
     {
-      "id": "pl_msg_00000115_00000",
+      "id": "HearthomeCitySoutheastHouse2F_Text_IHaveSomethingForYourPokemon",
       "en_US": [
         "I have something for your Pokémon\n",
         "to hold. Take this {STRVAR_1 8, 0, 0}.\r"
       ]
     },
     {
-      "id": "pl_msg_00000115_00001",
+      "id": "HearthomeCitySoutheastHouse2F_Text_TheHolderRegainsHPWhenItInflictsDamage",
       "en_US": [
         "The {STRVAR_1 8, 0, 0} should be held by\n",
         "a Pokémon in battles.\r",
@@ -20,7 +20,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000115_00002",
+      "id": "HearthomeCitySoutheastHouse2F_Text_ClefairyCryPippi",
       "en_US": "CLEFAIRY: Pippi!"
     }
   ]

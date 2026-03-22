@@ -9,7 +9,7 @@
     ScriptEntryEnd
 
 _0012:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x0AA5, _00E2
@@ -24,7 +24,7 @@ _0012:
 
 _0058:
     Message 1
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -61,16 +61,16 @@ _00C5:
 
 _00CE:
     CloseMessage
-    PlayFanfare SEQ_SE_DP_FW367
+    PlaySE SEQ_SE_DP_FW367
     Call _00ED
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _00E2:
     Message 9
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -100,7 +100,7 @@ _0135:
     Return
 
 _0146:
-    WaitFanfare SEQ_SE_DP_FW367
+    WaitSE SEQ_SE_DP_FW367
     SetFlag FLAG_UNK_0x0AA5
     SetVar VAR_MAP_LOCAL_A, 1
     ApplyMovement 1, _02DC

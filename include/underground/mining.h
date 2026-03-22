@@ -6,6 +6,7 @@
 #include "field/field_system_decl.h"
 #include "underground/defs.h"
 
+#include "coordinates.h"
 #include "string_gf.h"
 
 void MiningEnv_Init(void *dest, FieldSystem *fieldSystem);
@@ -13,7 +14,7 @@ int MiningEnv_Size(void);
 void Mining_Dummy(void);
 void Mining_Dummy2(void);
 void MiningEnv_Free(void);
-BOOL Mining_CheckForMiningSpotInteract(int netID, Coordinates *coordinates);
+BOOL Mining_CheckForMiningSpotInteract(int netID, CoordinatesU16 *coordinates);
 void Mining_SpawnMiningSpotNearBuriedSphere(int buriedSphereX, int buriedSphereZ, MATHRandContext16 *rand);
 void Mining_SendRadarResults(void);
 void Mining_ProcessMiningSpotInteract(int unused0, int unused1, void *data, void *unused3);

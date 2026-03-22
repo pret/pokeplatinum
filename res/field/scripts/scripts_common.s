@@ -74,7 +74,7 @@ CommonScript_EmptyScript2:
     End
 
 CommonScript_PokecenterNurse:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GetTrainerCardLevel VAR_RESULT
@@ -96,7 +96,7 @@ CommonScript_PokecenterNurse_Greeting:
 
 CommonScript_PokecenterNurse_DeclineHealPokemon:
     Message CommonStrings_Text_PokecenterHopeToSeeYouAgain1
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     ReturnCommonScript
@@ -142,7 +142,7 @@ CommonScript_PokecenterNurse_FarewellAfterHeal:
     ApplyMovement VAR_0x8007, CommonScript_PokecenterNurse_NurseBowMovement
     WaitMovement
     Message CommonStrings_Text_PokecenterHopeToSeeYouAgain1
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     ReturnCommonScript
@@ -157,7 +157,7 @@ CommonScript_PokecenterNurse_FarewellAfterHeal_GoldCard:
     ApplyMovement VAR_0x8007, CommonScript_PokecenterNurse_NurseBowMovement
     WaitMovement
     Message CommonStrings_Text_PokecenterHopeToSeeYouAgain2
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     ReturnCommonScript
@@ -175,7 +175,7 @@ CommonScript_PokecenterNurse_IdentifiedPokerus:
     SetPlayerState PLAYER_TRANSITION_WALKING
     ChangePlayerState
     Message CommonStrings_Text_PokecenterYourPokemonMayBeInfected
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     ReturnCommonScript
@@ -190,7 +190,7 @@ CommonScript_PokecenterNurse_GoldCard:
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_YES, CommonScript_PokecenterNurse_AcceptHealPokemon_GoldCard
     Message CommonStrings_Text_PokecenterHopeToSeeYouAgain2
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     ReturnCommonScript
@@ -202,7 +202,7 @@ CommonScript_PokecenterNurse_GoldCard_PreviouslySeen:
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_YES, CommonScript_PokecenterNurse_AcceptHealPokemon_GoldCard
     Message CommonStrings_Text_PokecenterHopeToSeeYouAgain2
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     ReturnCommonScript
@@ -259,30 +259,30 @@ CommonScript_CheckBagPocketForItem:
 CommonScript_GetBagPocketForItem:
     GetItemPocket VAR_0x8004, VAR_RESULT
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, POCKET_KEY_ITEMS, CommonScript_PlaySound_SEQ_FANFA3
-    GoToIfEq VAR_0x8008, POCKET_ITEMS, CommonScript_PlaySound_SEQ_FANFA4
-    GoToIfEq VAR_0x8008, POCKET_BERRIES, CommonScript_PlaySound_SEQ_FANFA4
-    GoToIfEq VAR_0x8008, POCKET_MEDICINE, CommonScript_PlaySound_SEQ_FANFA4
-    GoToIfEq VAR_0x8008, POCKET_BALLS, CommonScript_PlaySound_SEQ_FANFA4
-    GoToIfEq VAR_0x8008, POCKET_BATTLE_ITEMS, CommonScript_PlaySound_SEQ_FANFA4
-    GoToIfEq VAR_0x8008, POCKET_MAIL, CommonScript_PlaySound_SEQ_FANFA2
-    GoToIfEq VAR_0x8008, POCKET_TMHMS, CommonScript_PlaySound_SEQ_WAZA
+    GoToIfEq VAR_0x8008, POCKET_KEY_ITEMS, CommonScript_PlayFanfare_SEQ_FANFA3
+    GoToIfEq VAR_0x8008, POCKET_ITEMS, CommonScript_PlayFanfare_SEQ_FANFA4
+    GoToIfEq VAR_0x8008, POCKET_BERRIES, CommonScript_PlayFanfare_SEQ_FANFA4
+    GoToIfEq VAR_0x8008, POCKET_MEDICINE, CommonScript_PlayFanfare_SEQ_FANFA4
+    GoToIfEq VAR_0x8008, POCKET_BALLS, CommonScript_PlayFanfare_SEQ_FANFA4
+    GoToIfEq VAR_0x8008, POCKET_BATTLE_ITEMS, CommonScript_PlayFanfare_SEQ_FANFA4
+    GoToIfEq VAR_0x8008, POCKET_MAIL, CommonScript_PlayFanfare_SEQ_FANFA2
+    GoToIfEq VAR_0x8008, POCKET_TMHMS, CommonScript_PlayFanfare_SEQ_WAZA
     End
 
-CommonScript_PlaySound_SEQ_FANFA4:
-    PlaySound SEQ_FANFA4
+CommonScript_PlayFanfare_SEQ_FANFA4:
+    PlayFanfare SEQ_FANFA4
     Return
 
-CommonScript_PlaySound_SEQ_WAZA:
-    PlaySound SEQ_WAZA
+CommonScript_PlayFanfare_SEQ_WAZA:
+    PlayFanfare SEQ_WAZA
     Return
 
-CommonScript_PlaySound_SEQ_FANFA3:
-    PlaySound SEQ_FANFA3
+CommonScript_PlayFanfare_SEQ_FANFA3:
+    PlayFanfare SEQ_FANFA3
     Return
 
-CommonScript_PlaySound_SEQ_FANFA2:
-    PlaySound SEQ_FANFA2
+CommonScript_PlayFanfare_SEQ_FANFA2:
+    PlayFanfare SEQ_FANFA2
     Return
 
 CommonScript_Unused:
@@ -400,8 +400,8 @@ CommonScript_SaveGame_SaveComplete:
     GoToIfEq VAR_RESULT, 0, CommonScript_SaveGame_SaveError
     BufferPlayerName 0
     Message CommonStrings_Text_PlayerSavedTheGame
-    PlayFanfare SEQ_SE_DP_SAVE
-    WaitFanfare SEQ_SE_DP_SAVE
+    PlaySE SEQ_SE_DP_SAVE
+    WaitSE SEQ_SE_DP_SAVE
     WaitABPressTime 30
     CloseSaveInfo
     Return
@@ -439,7 +439,7 @@ CommonScript_QuickSave_CheckMiscFlag:
     End
 
 _05EA:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     CheckItem ITEM_HONEY, 1, VAR_RESULT
     GoToIfNe VAR_RESULT, 0, _0632
@@ -458,14 +458,14 @@ _0632:
 
 _065F:
     Message pl_msg_00000213_00046
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _066A:
     Message pl_msg_00000213_00048
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -505,7 +505,7 @@ _06D5:
     SlatherHoneyTree
     WaitTime 10, VAR_RESULT
     Message pl_msg_00000213_00051
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -531,9 +531,9 @@ CommonScript_ObtainPoketchApp:
 CommonScript_InternalObtainPoketchApp:
     BufferPlayerName 0
     BufferPoketchAppName 1, VAR_0x8004
-    PlaySound SEQ_POCKETCH
+    PlayFanfare SEQ_POCKETCH
     Message CommonStrings_Text_ObtainedPoketchApp
-    WaitSound
+    WaitFanfare
     Message CommonStrings_Text_InstalledPoketchApp
     RegisterPoketchApp VAR_0x8004
     CallIfEq VAR_0x8004, POKETCH_APPID_DIGITALWATCH, CommonScript_ObtainedPoketchDigitalWatch
@@ -669,7 +669,7 @@ CommonScript_EmptyScript3:
 CommonScript_SendToUndergroundPC:
     Call CommonScript_ObtainUndergroundItem
     Message pl_msg_00000213_00109
-    WaitABXPadPress
+    WaitButton
     ReturnCommonScript
     End
 
@@ -680,12 +680,12 @@ CommonScript_SendToUndergroundPCWithLinefeed:
     End
 
 CommonScript_ObtainUndergroundItem:
-    PlaySound SEQ_FANFA4
+    PlayFanfare SEQ_FANFA4
     SendGoodToPC VAR_0x8004, VAR_0x8005, VAR_RESULT
     BufferUndergroundGoodsNameWithArticle 0, VAR_0x8004
     Message pl_msg_00000213_00108
     BufferUndergroundGoodsName 0, VAR_0x8004
-    WaitSound
+    WaitFanfare
     Return
 
 CommonScript_ObtainUndergroundTrap:
@@ -694,11 +694,11 @@ CommonScript_ObtainUndergroundTrap:
     End
 
 CommonScript_InternalObtainUndergroundTrap:
-    PlaySound SEQ_FANFA4
+    PlayFanfare SEQ_FANFA4
     GiveTrap VAR_0x8004, VAR_0x8005, VAR_RESULT
     BufferUndergroundTrapName 0, VAR_0x8004
     Message pl_msg_00000213_00080
-    WaitSound
+    WaitFanfare
     Return
 
 CommonScript_ObtainUndergroundSphere:
@@ -707,18 +707,18 @@ CommonScript_ObtainUndergroundSphere:
     End
 
 CommonScript_InternalObtainUndergroundSphere:
-    PlaySound SEQ_FANFA4
+    PlayFanfare SEQ_FANFA4
     GiveSphere VAR_0x8004, VAR_0x8005, VAR_RESULT
     BufferUndergroundItemName 0, VAR_0x8004
     BufferNumber 1, VAR_0x8005
     Message pl_msg_00000213_00081
-    WaitSound
+    WaitFanfare
     Return
 
 CommonScript_ObtainAccessoryWaitForConfirm:
     Call CommonScript_InternalObtainAccessory
     Message CommonStrings_Text_PutAwayItemInTheFashionCaseNoLineFeed
-    WaitABXPadPress
+    WaitButton
     ReturnCommonScript
     End
 
@@ -729,11 +729,11 @@ CommonScript_ObtainAccessory:
     End
 
 CommonScript_InternalObtainAccessory:
-    PlaySound SEQ_ACCE
+    PlayFanfare SEQ_ACCE
     AddAccessory VAR_0x8004, VAR_0x8005
     BufferAccessoryName 0, VAR_0x8004
     Message CommonStrings_Text_ObtainedItem
-    WaitSound
+    WaitFanfare
     BufferPlayerName 0
     BufferAccessoryName 1, VAR_0x8004
     Return
@@ -741,7 +741,7 @@ CommonScript_InternalObtainAccessory:
 CommonScript_ObtainContestBackdropWaitForConfirm:
     Call CommonScript_InternalObtainContestBackdrop
     Message CommonStrings_Text_PutAwayItemInTheFashionCaseNoLineFeed
-    WaitABXPadPress
+    WaitButton
     ReturnCommonScript
     End
 
@@ -752,11 +752,11 @@ CommonScript_ObtainContestBackdrop:
     End
 
 CommonScript_InternalObtainContestBackdrop:
-    PlaySound SEQ_FANFA4
+    PlayFanfare SEQ_FANFA4
     AddContestBackdrop VAR_0x8004
     BufferContestBackdropName 0, VAR_0x8004
     Message CommonStrings_Text_ObtainedItem
-    WaitSound
+    WaitFanfare
     BufferPlayerName 0
     BufferContestBackdropName 1, VAR_0x8004
     Return
@@ -773,7 +773,7 @@ CommonScript_InternalAddItemQuantityNoLineFeed:
     CallIfEq VAR_RESULT, POCKET_KEY_ITEMS, CommonScript_PrintMessageObtainedKeyItem
     CallIfNe VAR_RESULT, POCKET_KEY_ITEMS, CommonScript_PrepareMessageObtainedItem
     Message CommonStrings_Text_PutItemInThePocketNoLineFeed
-    WaitABXPadPress
+    WaitButton
     Return
 
 CommonScript_AddItemQuantity:
@@ -808,7 +808,7 @@ CommonScript_PrintMessageObtainedItem:
     GoTo CommonScript_AfterObtainedItem
 
 CommonScript_AfterObtainedItem:
-    WaitSound
+    WaitFanfare
     CheckItemIsPlate VAR_0x8004, VAR_RESULT
     CallIfEq VAR_RESULT, TRUE, CommonScript_DeterminePlateMessage
     BufferPlayerName 0
@@ -881,12 +881,12 @@ CommonScript_BagIsFull:
 
 CommonScript_InternalBagIsFull:
     Message CommonStrings_Text_BagIsFull
-    WaitABXPadPress
+    WaitButton
     Return
 
 _0BEE:
     LockAll
-    PlayFanfare SEQ_SE_DP_PC_ON
+    PlaySE SEQ_SE_DP_PC_ON
     Call _0C06
     BufferPlayerName 0
     Message pl_msg_00000213_00032
@@ -955,7 +955,7 @@ _0CDD:
     GoTo _0F70
 
 _0D16:
-    PlayFanfare SEQ_SE_DP_PC_LOGIN
+    PlaySE SEQ_SE_DP_PC_LOGIN
     BufferPlayerName 0
     Message pl_msg_00000213_00034
     Call _0D2C
@@ -1030,7 +1030,7 @@ _0E21:
     GoTo _0D73
 
 _0E45:
-    PlayFanfare SEQ_SE_DP_PC_LOGIN
+    PlaySE SEQ_SE_DP_PC_LOGIN
     BufferPlayerName 0
     Message pl_msg_00000213_00035
     GoTo _0E55
@@ -1091,7 +1091,7 @@ _0F0A:
     GoTo _0E83
 
 _0F2C:
-    PlayFanfare SEQ_SE_DP_PC_LOGIN
+    PlaySE SEQ_SE_DP_PC_LOGIN
     CloseMessage
     ScrCmd_336 VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _0F59
@@ -1106,13 +1106,13 @@ _0F59:
     GoTo _0C1C
 
 _0F62:
-    PlayFanfare SEQ_SE_DP_PC_LOGIN
+    PlaySE SEQ_SE_DP_PC_LOGIN
     CallCommonScript 0x26DF
     GoTo _0C1C
 
 _0F70:
     CloseMessage
-    PlayFanfare SEQ_SE_DP_PC_LOGOFF
+    PlaySE SEQ_SE_DP_PC_LOGOFF
     Call _0C11
     ReleaseAll
     End
@@ -1157,14 +1157,14 @@ CommonScript_PlayerHouseBlackOutRecover:
     FadeScreenOut
     WaitFadeScreen
     CloseMessage
-    PlaySound SEQ_ASA
-    WaitSound
+    PlayFanfare SEQ_ASA
+    WaitFanfare
     HealParty
     FadeScreenIn
     WaitFadeScreen
     CallIfSet FLAG_HAS_POKEDEX, CommonScript_PlayerHouseBlackOutRecover_BeforePokedexMessage
     CallIfUnset FLAG_HAS_POKEDEX, CommonScript_PlayerHouseBlackOutRecover_AfterPokedexMessage
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -1197,7 +1197,7 @@ CommonScript_PokecenterBlackOutRecover:
     ApplyMovement VAR_0x8007, CommonScript_PokecenterNurse_NurseBowMovement
     WaitMovement
     Message CommonStrings_Text_PokecenterGoodLuckTrainer
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -1210,7 +1210,7 @@ CommonScript_PokecenterBlackOutRecover_HasCoalBadge:
     ApplyMovement VAR_0x8007, CommonScript_PokecenterNurse_NurseBowMovement
     WaitMovement
     Message CommonStrings_Text_PokecenterAllHappyAndHealthy
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -1342,7 +1342,7 @@ CommonScript_EmptyScript5:
     End
 
 _1282:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FadeScreenOut
     WaitFadeScreen
@@ -1354,11 +1354,11 @@ _1282:
     End
 
 _12A8:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     MessageFromTrainerType
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -1379,7 +1379,7 @@ _12F3:
     CheckItem ITEM_BICYCLE, 1, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, CommonScript_End
     LockAll
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     CheckPlayerOnBike VAR_RESULT
     GoToIfEq VAR_RESULT, TRUE, _133C
     Message pl_msg_00000213_00073
@@ -1408,7 +1408,7 @@ CommonScript_End:
     End
 
 _1361:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     Message pl_msg_00000213_00076
     WaitABPress
@@ -1422,7 +1422,7 @@ _1361:
     End
 
 _138C:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     Message pl_msg_00000213_00079
     WaitABPress
@@ -1431,7 +1431,7 @@ _138C:
     End
 
 _139D:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_0A5
@@ -1536,14 +1536,14 @@ _14AC:
     FadeScreenIn FADE_SCREEN_SPEED_SLOW, COLOR_WHITE
     WaitFadeScreen
     Message pl_msg_00000213_00124
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _1570:
     Message pl_msg_00000213_00125
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -1615,21 +1615,21 @@ _1624:
     End
 
 _1636:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     SetVar VAR_0x8004, TUTOR_LOCATION_ROUTE_212
     GoTo _1672
     End
 
 _164A:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     SetVar VAR_0x8004, TUTOR_LOCATION_SURVIVAL_AREA
     GoTo _1672
     End
 
 _165E:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     SetVar VAR_0x8004, TUTOR_LOCATION_SNOWPOINT_CITY
     GoTo _1672
@@ -1640,9 +1640,9 @@ _1672:
     ShowMoveTutorMoveSelectionMenu 0xFF, VAR_0x8004, VAR_RESULT
     SetVar VAR_0x8003, VAR_RESULT
     GoToIfEq VAR_0x8003, -2, _16A4
-    ShowShardsCost 21, 1, VAR_0x8003, VAR_RESULT
+    ShowShardCost 21, 1, VAR_0x8003, VAR_RESULT
     WaitABPress
-    CloseShardsCostWindow
+    CloseShardCostWindow
     GoTo _16A4
     End
 
@@ -1669,7 +1669,7 @@ CommonScript_Frontier_End:
 
 CommonScript_GriseousOrbCouldNotBeRemoved:
     Message CommonStrings_Text_GriseousOrbCouldNotBeRemoved
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     ReturnCommonScript

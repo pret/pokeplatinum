@@ -15,7 +15,7 @@ _0012:
 
 _0032:
     InitPersistedMapFeaturesForPlatformLift
-    CallIfNe VAR_UNK_0x4069, 0x122, _0079
+    CallIfNe VAR_IRON_RUINS_STATE, RUINS_STATE_CAUGHT_REGI, _0079
     CheckPartyHasFatefulEncounterRegigigas VAR_MAP_LOCAL_4
     GoToIfEq VAR_MAP_LOCAL_4, 0, _0061
     GoToIfEq VAR_MAP_LOCAL_4, 1, _006B
@@ -34,7 +34,7 @@ _0075:
     End
 
 _0079:
-    SetVar VAR_UNK_0x4069, 0
+    SetVar VAR_IRON_RUINS_STATE, 0
     Return
 
 _0081:

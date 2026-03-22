@@ -24,20 +24,20 @@ _0062:
     End
 
 _0068:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GetUnownFormsSeenCount VAR_MAP_LOCAL_0
     GoToIfGe VAR_MAP_LOCAL_0, 26, _008C
     Message 1
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 _008C:
     Message 2
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

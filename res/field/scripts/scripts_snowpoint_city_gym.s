@@ -17,7 +17,7 @@ _001F:
     End
 
 SnowpointGym_Candice:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfBadgeAcquired BADGE_ID_ICICLE, SnowpointGym_CandiceAfterBadge
@@ -30,8 +30,8 @@ SnowpointGym_Candice:
     Message SnowpointGym_Text_BeatCandice
     BufferPlayerName 0
     Message SnowpointGym_Text_CandiceReceiveIciclebadge
-    PlaySound SEQ_BADGE
-    WaitSound
+    PlayFanfare SEQ_BADGE
+    WaitFanfare
     GiveBadge BADGE_ID_ICICLE
     IncrementTrainerScore2 TRAINER_SCORE_EVENT_BADGE_EARNED
     SetTrainerFlag TRAINER_ACE_TRAINER_SERGIO
@@ -54,7 +54,7 @@ SnowpointGym_CandiceTryGiveTM72:
     BufferItemName 0, VAR_0x8004
     BufferTMHMMoveName 1, VAR_0x8004
     Message SnowpointGym_Text_CandiceExplainTM72
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -68,7 +68,7 @@ SnowpointGym_CandiceCannotGiveTM72:
 SnowpointGym_CandiceAfterBadge:
     GoToIfUnset FLAG_OBTAINED_CANDICE_TM72, SnowpointGym_CandiceTryGiveTM72
     Message SnowpointGym_Text_CandiceAfterBadge
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -79,12 +79,12 @@ SnowpointGym_LostBattle:
     End
 
 SnowpointGym_GymGuide:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfBadgeAcquired BADGE_ID_ICICLE, SnowpointGym_GymGuideAfterBadge
     Message SnowpointGym_Text_GymGuideBeforeBadge
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -92,19 +92,19 @@ SnowpointGym_GymGuide:
 SnowpointGym_GymGuideAfterBadge:
     BufferPlayerName 0
     Message SnowpointGym_Text_GymGuideAfterBadge
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
 
 SnowpointGym_GymStatue:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     GoToIfBadgeAcquired BADGE_ID_ICICLE, SnowpointGym_GymStatueAfterBadge
     BufferRivalName 0
     BufferRivalName 1
     Message SnowpointGym_Text_GymStatueBeforeBadge
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End
@@ -114,7 +114,7 @@ SnowpointGym_GymStatueAfterBadge:
     BufferPlayerName 1
     BufferRivalName 2
     Message SnowpointGym_Text_GymStatueAfterBadge
-    WaitABXPadPress
+    WaitButton
     CloseMessage
     ReleaseAll
     End

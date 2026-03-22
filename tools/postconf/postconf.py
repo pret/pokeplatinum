@@ -25,7 +25,7 @@ def is_wsl_accessing_windows() -> bool:
 def bytecode_scripts_order_only_deps(fileString: str) -> str:
     '''Express bytecode-script dependencies on generated headers as order-only'''
     return re.sub(
-        r"build ([\w\/\.]+): (\w+) ([\w\/\.]+) \| ([\w\/\.]+\/make_script_bin\.sh) ([\w\s\/\.]+)",
+        r"build ([\w\/\.\-]+): (\w+) ([\w\/\.\-]+) \| ([\w\/\.\-]+\/make_script_bin\.sh) (.+)",
         r"build \1: \2 \3 | \4 || \5",
         fileString
     )
@@ -37,7 +37,7 @@ def pch_order_only_deps(fileString: str) -> str:
     dependencies on generated sources and headers.
     '''
     return re.sub(
-        r"build main.nef.p/global_pch.h.mch: c_PCH ../include/pch/global_pch.h \| ([\w\s\/\.]+)",
+        r"build main.nef.p/global_pch.h.mch: c_PCH ../include/pch/global_pch.h \| ([\w\s\/\.\-]+)",
         r"build main.nef.p/global_pch.h.mch: c_PCH ../include/pch/global_pch.h || \1",
         fileString
     )
