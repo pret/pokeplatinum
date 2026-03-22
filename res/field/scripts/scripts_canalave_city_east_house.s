@@ -7,7 +7,7 @@
     ScriptEntryEnd
 
 _0006:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x0001, _0026
@@ -60,8 +60,8 @@ _0054:
 _0105:
     ClearPartyMonMoveSlot VAR_0x8002, VAR_0x8001
     Message 8
-    PlaySound SEQ_WASURE
-    WaitSound
+    PlayFanfare SEQ_WASURE
+    WaitFanfare
     WaitButton
     CloseMessage
     End

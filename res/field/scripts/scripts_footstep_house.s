@@ -17,7 +17,7 @@ _000A:
     End
 
 FootstepHouse_DrFootstep:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GetFirstNonEggInParty LOCALID_PARTY_SLOT
@@ -405,9 +405,9 @@ FootstepHouse_AndThatsWhatYourPokemonThinksOfYou_GiveRibbon:
     Call _00ED
     WaitTime 10, VAR_RESULT
     Message FootstepHouse_Text_AndThatsWhatYourPokemonThinksOfYou_CloseBond
-    PlaySound SEQ_FANFA1
+    PlayFanfare SEQ_FANFA1
     Message FootstepHouse_Text_PlayerReceivedFootprintRibbon
-    WaitSound
+    WaitFanfare
     SetPartyMonRibbon LOCALID_PARTY_SLOT, RIBBON_FOOTPRINT
     Message FootstepHouse_Text_PlayerPutTheFootprintRibbonOnPokemon
     WaitButton
@@ -421,9 +421,9 @@ FootstepHouse_PokemonDoesntLeaveAnyFootprints_GiveRibbon:
     Call _00ED
     WaitTime 10, VAR_RESULT
     Message FootstepHouse_Text_PokemonDoesntLeaveAnyFootprints_CloseBond
-    PlaySound SEQ_FANFA1
+    PlayFanfare SEQ_FANFA1
     Message FootstepHouse_Text_PlayerReceivedFootprintRibbon
-    WaitSound
+    WaitFanfare
     SetPartyMonRibbon LOCALID_PARTY_SLOT, RIBBON_FOOTPRINT
     Message FootstepHouse_Text_PlayerPutTheFootprintRibbonOnPokemon
     WaitButton
@@ -437,9 +437,9 @@ FootstepHouse_PokemonSilentType_GiveRibbon:
     Call _00ED
     WaitTime 10, VAR_RESULT
     Message FootstepHouse_Text_SilentType_CloseBond
-    PlaySound SEQ_FANFA1
+    PlayFanfare SEQ_FANFA1
     Message FootstepHouse_Text_PlayerReceivedFootprintRibbon
-    WaitSound
+    WaitFanfare
     SetPartyMonRibbon LOCALID_PARTY_SLOT, RIBBON_FOOTPRINT
     Message FootstepHouse_Text_PlayerPutTheFootprintRibbonOnPokemon
     WaitButton

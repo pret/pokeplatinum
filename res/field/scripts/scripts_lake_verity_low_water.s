@@ -65,7 +65,7 @@ LakeVerityLowWater_OnFrameCyrus:
     WaitMovement
     ApplyMovement LOCALID_CYRUS, LakeVerityLowWater_Movement_CyrusLeave
     WaitMovement
-    PlayFanfare SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2
     RemoveObject LOCALID_CYRUS
     WaitTime 50, VAR_RESULT
     ApplyMovement LOCALID_PLAYER, LakeVerityLowWater_Movement_PlayerLookAtExit
@@ -105,7 +105,7 @@ LakeVerityLowWater_OnFrameCyrus:
     WaitMovement
     SetFlag FLAG_HIDE_LAKE_VERITY_LOW_WATER_RIVAL
     RemoveObject LOCALID_RIVAL
-    PlayFanfare SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2
     GoTo LakeVerityLowWater_EndRivalFollower
     End
 
@@ -377,7 +377,7 @@ LakeVerityLowWater_UnusedMovement27:
     EndMovement
 
 LakeVerityLowWater_ProfRowan:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_TALKED_TO_LAKE_VERITY_LOW_WATER_PROF_ROWAN, LakeVerityLowWater_RowanHowWasLakeValor
@@ -398,7 +398,7 @@ LakeVerityLowWater_RowanHowWasLakeValor:
     End
 
 LakeVerityLowWater_Counterpart:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GetPlayerGender VAR_RESULT

@@ -30,9 +30,9 @@ _0006:
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     CallIfEq VAR_0x8004, 14, _0168
     CallIfEq VAR_0x8004, 15, _0174
-    PlayFanfare SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2
     RemoveObject 1
-    WaitFanfare SEQ_SE_DP_KAIDAN2
+    WaitSE SEQ_SE_DP_KAIDAN2
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     CallIfEq VAR_0x8004, 14, _0180
     CallIfEq VAR_0x8004, 15, _018C
@@ -53,9 +53,9 @@ _0006:
     ApplyMovement 2, _01DC
     ApplyMovement LOCALID_PLAYER, _01B8
     WaitMovement
-    PlayFanfare SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2
     RemoveObject 2
-    WaitFanfare SEQ_SE_DP_KAIDAN2
+    WaitSE SEQ_SE_DP_KAIDAN2
     SetFlag FLAG_ALT_MUSIC_LAKE_ACUITY
     ClearFlag FLAG_UNK_0x0223
     SetVar VAR_LAKE_ACUITY_STATE, 2

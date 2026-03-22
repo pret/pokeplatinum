@@ -44,7 +44,7 @@ _0082:
     End
 
 _0095:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x00D7, _00B3
@@ -66,7 +66,7 @@ _00BE:
     End
 
 _00D5:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     BufferPlayerName 0
@@ -102,7 +102,7 @@ _0130:
     End
 
 _0141:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GetDayOfWeek VAR_MAP_LOCAL_0

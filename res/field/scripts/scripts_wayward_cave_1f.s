@@ -19,7 +19,7 @@ WaywardCave1F_ResetFollowerMiraState:
     End
 
 WaywardCave1F_Mira:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     SetPlayerBike FALSE
@@ -28,9 +28,9 @@ WaywardCave1F_Mira:
     CallIfUnset FLAG_TALKED_TO_WAYWARD_CAVE_1F_MIRA, WaywardCave1F_ImMiraPleaseTakeMeToTheExit
     CallIfSet FLAG_TALKED_TO_WAYWARD_CAVE_1F_MIRA, WaywardCave1F_MyNameIsMiraILikeYourName
     BufferPlayerName 0
-    PlaySound SEQ_GONIN
+    PlayFanfare SEQ_GONIN
     Message WaywardCave1F_Text_PlayerDecidedToGoWithMira
-    WaitSound
+    WaitFanfare
     SetFlag FLAG_TALKED_TO_WAYWARD_CAVE_1F_MIRA
     SetVar VAR_WAYWARD_CAVE_1F_FOLLOWER_MIRA_STATE, 1
     Message WaywardCave1F_Text_IllKeepYourPokemonHealthyAllTheTime

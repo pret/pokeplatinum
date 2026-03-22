@@ -65,9 +65,9 @@ _00EC:
     CallIfUnset FLAG_UNK_0x00DF, _0134
     CallIfSet FLAG_UNK_0x00DF, _0139
     BufferPlayerName 0
-    PlaySound SEQ_GONIN
+    PlayFanfare SEQ_GONIN
     Message 1
-    WaitSound
+    WaitFanfare
     SetFlag FLAG_UNK_0x00DF
     SetVar VAR_UNK_0x4090, 1
     Message 2

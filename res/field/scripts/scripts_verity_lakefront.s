@@ -49,7 +49,7 @@ VerityLakefront_WalkToLakeValor:
 VerityLakefront_WarpToLakeValor:
     SetVar VAR_UNK_0x4082, 1
     ReleaseAll
-    PlayFanfare SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2
     FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_LAKE_VERITY_LOW_WATER, 0, 46, 54, 0

@@ -103,7 +103,7 @@ _014D:
     GoTo _0159
 
 _0159:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     CheckTVInterviewEligible VAR_0x8000, VAR_RESULT

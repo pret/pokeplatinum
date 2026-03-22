@@ -117,7 +117,7 @@ _0178:
     EndMovement
 
 _0184:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 6

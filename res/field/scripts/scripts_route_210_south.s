@@ -31,7 +31,7 @@ _006F:
     End
 
 _0079:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     CheckItem ITEM_SECRETPOTION, 1, VAR_RESULT
@@ -223,7 +223,7 @@ _030C:
     End
 
 _031F:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x00C7, _0364

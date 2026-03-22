@@ -16,7 +16,7 @@ VeilstoneGym_Init:
     End
 
 VeilstoneGym_Maylene:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfBadgeAcquired BADGE_ID_COBBLE, VeilstoneGym_MayleneAfterBadge
@@ -29,8 +29,8 @@ VeilstoneGym_Maylene:
     Message VeilstoneGym_Text_BeatMaylene
     BufferPlayerName 0
     Message VeilstoneGym_Text_MayleneReceiveBadge
-    PlaySound SEQ_BADGE
-    WaitSound
+    PlayFanfare SEQ_BADGE
+    WaitFanfare
     GiveBadge BADGE_ID_COBBLE
     IncrementTrainerScore2 TRAINER_SCORE_EVENT_BADGE_EARNED
     SetTrainerFlag TRAINER_BLACK_BELT_COLBY
@@ -81,7 +81,7 @@ VeilstoneGym_LostBattle:
     End
 
 VeilstoneGym_GymGuide:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfBadgeAcquired BADGE_ID_COBBLE, VeilstoneGym_GymGuideAfterbadge
@@ -100,7 +100,7 @@ VeilstoneGym_GymGuideAfterbadge:
     End
 
 VeilstoneGym_GymStatue:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     GoToIfBadgeAcquired BADGE_ID_COBBLE, VeilstoneGym_GymStatueAfterBadge
     BufferRivalName 0

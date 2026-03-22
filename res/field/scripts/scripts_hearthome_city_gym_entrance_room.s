@@ -9,7 +9,7 @@
     ScriptEntryEnd
 
 EternaGym_GymGuide:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfBadgeAcquired BADGE_ID_RELIC, EternaGym_GymGuideAfterBadge
@@ -42,7 +42,7 @@ EternaGym_GymGuideAfterBadge:
     End
 
 HearthomeGym_GymStatue:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     GoToIfBadgeAcquired BADGE_ID_RELIC, HearthomeGym_GymStatueAfterBadge
     BufferRivalName 0

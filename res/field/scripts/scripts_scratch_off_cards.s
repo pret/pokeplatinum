@@ -6,7 +6,7 @@
     ScriptEntryEnd
 
 _0006:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ShowBattlePoints 21, 1
@@ -124,10 +124,10 @@ _01CE:
 _01D3:
     BufferNumber 1, VAR_MAP_LOCAL_1
     GoToIfCannotFitItem VAR_MAP_LOCAL_0, VAR_MAP_LOCAL_1, VAR_RESULT, _0294
-    PlaySound SEQ_FANFA4
+    PlayFanfare SEQ_FANFA4
     Message 13
     AddItem VAR_MAP_LOCAL_0, VAR_MAP_LOCAL_1, VAR_RESULT
-    WaitSound
+    WaitFanfare
     Return
 
 _0200:
@@ -140,10 +140,10 @@ _0218:
 _021D:
     BufferNumber 1, VAR_MAP_LOCAL_3
     GoToIfCannotFitItem VAR_MAP_LOCAL_2, VAR_MAP_LOCAL_3, VAR_RESULT, _0294
-    PlaySound SEQ_FANFA4
+    PlayFanfare SEQ_FANFA4
     Message 13
     AddItem VAR_MAP_LOCAL_2, VAR_MAP_LOCAL_3, VAR_RESULT
-    WaitSound
+    WaitFanfare
     Return
 
 _024A:
@@ -156,10 +156,10 @@ _0262:
 _0267:
     BufferNumber 1, VAR_MAP_LOCAL_5
     GoToIfCannotFitItem VAR_MAP_LOCAL_4, VAR_MAP_LOCAL_5, VAR_RESULT, _0294
-    PlaySound SEQ_FANFA4
+    PlayFanfare SEQ_FANFA4
     Message 13
     AddItem VAR_MAP_LOCAL_4, VAR_MAP_LOCAL_5, VAR_RESULT
-    WaitSound
+    WaitFanfare
     Return
 
 _0294:

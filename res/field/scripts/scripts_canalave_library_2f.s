@@ -20,7 +20,7 @@ _002D:
     Return
 
 _0033:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x00A8, _0051
@@ -38,7 +38,7 @@ _0051:
     End
 
 _005C:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     GoToIfGe VAR_ARCEUS_EVENT_STATE, 3, _0082
     Message 2

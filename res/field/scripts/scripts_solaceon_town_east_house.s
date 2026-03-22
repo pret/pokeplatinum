@@ -8,7 +8,7 @@
     End
 
 _000C:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfUnset FLAG_UNK_0x0117, _00FE
@@ -75,7 +75,7 @@ _00FE:
     End
 
 _0109:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x0117, _0144

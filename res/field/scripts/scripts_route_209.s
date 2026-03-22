@@ -38,7 +38,7 @@ Route209_PokefanM:
     End
 
 Route209_HallowedTower:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     GoToIfEq VAR_HALLOWED_TOWER_STATE, 1, Route209_CheckSpiritombCounter
     CheckItem ITEM_ODD_KEYSTONE, 1, VAR_RESULT
@@ -70,7 +70,7 @@ Route209_CheckSpiritombCounter:
     GoTo Route209_ItWasBuiltManyYearsAgo
 
 Route209_EncounterSpiritomb:
-    WaitFanfare SEQ_SE_CONFIRM
+    WaitSE SEQ_SE_CONFIRM
     PlayCry SPECIES_SPIRITOMB
     Message Route209_Text_SpiritombCry
     WaitCry
@@ -130,7 +130,7 @@ Route209_ThereIsABrokenTower:
     End
 
 Route209_Fisherman:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     SetVar VAR_0x8004, ITEM_GOOD_ROD

@@ -17,7 +17,7 @@ _001F:
     End
 
 SnowpointGym_Candice:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfBadgeAcquired BADGE_ID_ICICLE, SnowpointGym_CandiceAfterBadge
@@ -30,8 +30,8 @@ SnowpointGym_Candice:
     Message SnowpointGym_Text_BeatCandice
     BufferPlayerName 0
     Message SnowpointGym_Text_CandiceReceiveIciclebadge
-    PlaySound SEQ_BADGE
-    WaitSound
+    PlayFanfare SEQ_BADGE
+    WaitFanfare
     GiveBadge BADGE_ID_ICICLE
     IncrementTrainerScore2 TRAINER_SCORE_EVENT_BADGE_EARNED
     SetTrainerFlag TRAINER_ACE_TRAINER_SERGIO
@@ -79,7 +79,7 @@ SnowpointGym_LostBattle:
     End
 
 SnowpointGym_GymGuide:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfBadgeAcquired BADGE_ID_ICICLE, SnowpointGym_GymGuideAfterBadge
@@ -98,7 +98,7 @@ SnowpointGym_GymGuideAfterBadge:
     End
 
 SnowpointGym_GymStatue:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     GoToIfBadgeAcquired BADGE_ID_ICICLE, SnowpointGym_GymStatueAfterBadge
     BufferRivalName 0

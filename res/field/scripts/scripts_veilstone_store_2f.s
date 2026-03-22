@@ -14,7 +14,7 @@
     ScriptEntryEnd
 
 VeilstoneStore2F_Attendant:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     CheckIsDepartmentStoreRegular VAR_RESULT
@@ -89,7 +89,7 @@ VeilstoneStore2F_BugCatcher2:
     End
 
 VeilstoneStore2F_PoketchVendor:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     CheckPoketchAppRegistered POKETCH_APPID_COUNTER, VAR_RESULT

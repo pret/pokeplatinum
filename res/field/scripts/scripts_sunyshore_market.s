@@ -15,7 +15,7 @@ SunyshoreMarket_Dummy:
     End
 
 SunyshoreMarket_EffortRibbonWoman:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GetFirstNonEggInParty VAR_0x8000
@@ -27,10 +27,10 @@ SunyshoreMarket_EffortRibbonWoman:
     GoToIfLt VAR_RESULT, MAX_EVS_ALL_STATS, SunyshoreMarket_NotEnoughEVs
     Message SunyshoreMarket_Text_ItWorkedStupendouslyHard
     SetPartyMonRibbon VAR_0x8000, RIBBON_HOENN_EFFORT
-    PlaySound SEQ_FANFA1
+    PlayFanfare SEQ_FANFA1
     BufferPlayerName 1
     Message SunyshoreMarket_Text_PlayerReceivedEffortRibbon
-    WaitSound
+    WaitFanfare
     BufferPartyMonSpecies 0, VAR_0x8000
     Message SunyshoreMarket_Text_PlayerPutEffortRibbonOn
     WaitButton
@@ -58,7 +58,7 @@ SunyshoreMarket_Sailor:
     End
 
 SunyshoreMarket_SealShop:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     CheckItem ITEM_SEAL_CASE, 1, VAR_RESULT
@@ -118,7 +118,7 @@ SunyshoreMarket_SealShopSunday:
     Return
 
 SunyshoreMarket_PokefanM:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message SunyshoreMarket_Text_SeeTheSealMerchant

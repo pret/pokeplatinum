@@ -133,8 +133,8 @@ TwinleafTownPlayerHouse1F_OnFrame_CutsceneAfterRivalBattle:
     GiveRunningShoes
     BufferPlayerName 0
     Message TwinleafTownPlayerHouse1F_Text_PlayerReceivedRunningShoes
-    PlaySound SEQ_FANFA4
-    WaitSound
+    PlayFanfare SEQ_FANFA4
+    WaitFanfare
     Message TwinleafTownPlayerHouse1F_Text_LetMeReadTheInstructions
     WaitButton
     CloseMessage
@@ -165,7 +165,7 @@ TwinleafTownPlayerHouse1F_Movement_PlayerFollowMomToCouch:
     EndMovement
 
 TwinleafTownPlayerHouse1F_Mom:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x0002, TwinleafTownPlayerHouse1F_DoMomMessage
@@ -286,10 +286,10 @@ TwinleafTownPlayerHouse1F_RivalsMomEnters:
     BufferPlayerName 0
     Message TwinleafTownPlayerHouse1F_Text_GoEnjoyYourAdventure
     CloseMessage
-    PlayFanfare SEQ_SE_DP_DOOR_OPEN
+    PlaySE SEQ_SE_DP_DOOR_OPEN
     ClearFlag FLAG_HIDE_TWINLEAF_TOWN_PLAYER_HOUSE_1F_RIVAL_MOM
     AddObject LOCALID_RIVAL_MOM
-    WaitFanfare SEQ_SE_DP_DOOR_OPEN
+    WaitSE SEQ_SE_DP_DOOR_OPEN
     ApplyMovement LOCALID_MOM, TwinleafTownPlayerHouse1F_Movement_MomNoticeRivalsMom
     ApplyMovement LOCALID_PLAYER, TwinleafTownPlayerHouse1F_Movement_PlayerFaceRivalsMom
     WaitMovement
@@ -444,7 +444,7 @@ TwinleafTownPlayerHouse1F_RivalsMomLeaveEast:
     End
 
 TwinleafTownPlayerHouse1F_RemoveRivalsMom:
-    PlayFanfare SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2
     RemoveObject LOCALID_RIVAL_MOM
     SetVar VAR_PLAYER_HOUSE_STATE, 6
     ReleaseAll
@@ -461,8 +461,8 @@ TwinleafTownPlayerHouse1F_TakeAQuickRest:
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
-    PlaySound SEQ_ASA
-    WaitSound
+    PlayFanfare SEQ_ASA
+    WaitFanfare
     HealParty
     FadeScreenIn
     WaitFadeScreen
@@ -508,8 +508,8 @@ TwinleafTownPlayerHouse1F_Unused2:
     AddItem ITEM_POTION, 1, VAR_RESULT
     BufferPlayerName 0
     Message TwinleafTownPlayerHouse1F_Text_PlayerReceivedRunningShoes
-    PlaySound SEQ_FANFA4
-    WaitSound
+    PlayFanfare SEQ_FANFA4
+    WaitFanfare
     Message TwinleafTownPlayerHouse1F_Text_LetMeReadTheInstructions
     WaitButton
     CloseMessage

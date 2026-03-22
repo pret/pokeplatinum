@@ -7,7 +7,7 @@
     ScriptEntryEnd
 
 _000A:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x0097, _0109
@@ -32,10 +32,10 @@ _005B:
     GetPartyCount VAR_RESULT
     GoToIfEq VAR_RESULT, 6, _00F3
     Message 2
-    PlaySound SEQ_FANFA4
+    PlayFanfare SEQ_FANFA4
     BufferPlayerName 0
     Message 3
-    WaitSound
+    WaitFanfare
     GivePokemon SPECIES_PORYGON, 25, ITEM_NONE, VAR_RESULT
     SetFlag FLAG_UNK_0x0097
     Message 4

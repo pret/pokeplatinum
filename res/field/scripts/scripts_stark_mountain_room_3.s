@@ -71,8 +71,8 @@ _00D0:
 
 _00E6:
     LockAll
-    PlayFanfare SEQ_SE_CONFIRM
-    WaitFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
+    WaitSE SEQ_SE_CONFIRM
     CallIfUnset FLAG_UNK_0x00D7, _0174
     SetVar VAR_UNK_0x409E, 2
     PlayCry SPECIES_HEATRAN
@@ -133,10 +133,10 @@ _019C:
     LockAll
     Message 0
     CloseMessage
-    WaitFanfare SEQ_SE_CONFIRM
-    PlayFanfare SEQ_SE_DP_FW089
+    WaitSE SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_DP_FW089
     ScrCmd_29F 0
-    StopFanfare SEQ_SE_DP_FW089
+    StopSE SEQ_SE_DP_FW089
     ApplyMovement 2, _03A4
     ApplyMovement LOCALID_PLAYER, _0388
     WaitMovement

@@ -22,7 +22,7 @@ TwinleafTownRivalHouse2F_RivalNoticesPlayerAndLeaves:
     ApplyMovement LOCALID_RIVAL, TwinleafTownRivalHouse2F_Movement_RivalLeave
     ApplyMovement LOCALID_PLAYER, TwinleafTownRivalHouse2F_Movement_PlayerMoveAwayFromStairs
     WaitMovement
-    PlayFanfare SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2
     RemoveObject LOCALID_RIVAL
     Common_FadeToDefaultMusic2
     SetFlag FLAG_RIVAL_LEFT_HOME
@@ -57,7 +57,7 @@ TwinleafTownRivalHouse2F_Wii:
     End
 
 TwinleafTownRivalHouse2F_PC:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     BufferPlayerName 0
     Message TwinleafTownRivalHouse2F_Text_PCAdventureRules

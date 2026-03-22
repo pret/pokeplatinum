@@ -31,9 +31,9 @@ _0038:
     Call _02F5
     Message 1
     BufferPlayerName 0
-    PlaySound SEQ_FANFA4
+    PlayFanfare SEQ_FANFA4
     Message 2
-    WaitSound
+    WaitFanfare
     Message 3
     Call _0095
     Message 10
@@ -43,7 +43,7 @@ _0038:
     End
 
 _007C:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 4
@@ -107,7 +107,7 @@ _0146:
     End
 
 _0154:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 17
@@ -133,7 +133,7 @@ _0195:
     End
 
 _019D:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 20
@@ -159,7 +159,7 @@ _01DE:
     End
 
 _01E6:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 23
@@ -185,7 +185,7 @@ _0227:
     End
 
 _022F:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 26
@@ -211,7 +211,7 @@ _0270:
     End
 
 _0278:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 29

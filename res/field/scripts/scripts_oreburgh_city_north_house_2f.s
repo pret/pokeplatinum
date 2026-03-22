@@ -16,7 +16,7 @@ OreburghCityNorthHouse2F_PokemonBreederF:
     End
 
 OreburghCityNorthHouse2F_Collector:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_RECEIVED_OREBURGH_CITY_NORTH_HOUSE_2F_HEAL_BALL, OreburghCityNorthHouse2F_YeahThereAreSoManyKindsOfPokemonOutInTheWorld

@@ -29,7 +29,7 @@ _005B:
     End
 
 _0067:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x0AA2, _0155
@@ -170,7 +170,7 @@ _021C:
     EndMovement
 
 _0224:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GetNationalDexEnabled VAR_RESULT
@@ -245,7 +245,7 @@ _0304:
     End
 
 _0325:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 16
@@ -289,7 +289,7 @@ _0388:
     End
 
 _0399:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     Message 19
     ShowYesNoMenu VAR_RESULT

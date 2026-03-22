@@ -7,7 +7,7 @@
     ScriptEntryEnd
 
 MtCoronet1FTunnelRoom_GruntM:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message MtCoronet1FTunnelRoom_Text_ImHopelesslyLost

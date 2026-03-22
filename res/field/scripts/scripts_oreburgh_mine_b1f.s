@@ -28,7 +28,7 @@ OreburghMineB1F_Twin:
     End
 
 OreburghMineB1F_Hiker:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_COULDNT_RECEIVE_OREBURGH_MINE_B1F_FLAME_PLATE, OreburghMineB1F_TryGiveFlamePlateAgain
@@ -68,7 +68,7 @@ OreburghMineB1F_HikerLeaveZ5:
     End
 
 OreburghMineB1F_RemoveHiker:
-    PlayFanfare SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2
     RemoveObject LOCALID_HIKER
     SetVar VAR_ARCEUS_EVENT_STATE, 2
     ReleaseAll

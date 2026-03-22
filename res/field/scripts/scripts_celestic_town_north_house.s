@@ -14,7 +14,7 @@ _001A:
     End
 
 _001C:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 0
@@ -36,7 +36,7 @@ _004E:
     End
 
 _0056:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_GAME_COMPLETED, _007F

@@ -37,7 +37,7 @@ SandgemTownLab_SetProfRowanAndCounterpartPositions:
     Return
 
 SandgemTownLab_ProfRowan:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Call SandgemTownLab_SetVarIfArrivedInSunyshoreCity
@@ -250,8 +250,8 @@ SandgemTownLab_ObtainPokedex:
     SetFlag FLAG_HAS_POKEDEX
     BufferPlayerName 0
     Message SandgemTownLab_Text_PlayerObtainedThePokedex
-    PlaySound SEQ_FANFA4
-    WaitSound
+    PlayFanfare SEQ_FANFA4
+    WaitFanfare
     BufferPlayerName 0
     Message SandgemTownLab_Text_MeetEveryKindOfPokemonInThisRegion
     CloseMessage
@@ -384,7 +384,7 @@ SandgemTownLab_Movement_PlayerReceive:
     EndMovement
 
 SandgemTownLab_ScientistM:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Call SandgemTownLab_SetVarIfArrivedInSunyshoreCity
@@ -414,7 +414,7 @@ SandgemTownLab_ImStunnedByYourGreatness:
     End
 
 SandgemTownLab_ScientistF:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Call SandgemTownLab_SetVarIfArrivedInSunyshoreCity
@@ -538,9 +538,9 @@ SandgemTownLab_EnableNationalDex:
     CallIfGe VAR_UNK_0x4081, 2, _079C
     SetNationalDexEnabled
     BufferPlayerName 0
-    PlaySound SEQ_FANFA4
+    PlayFanfare SEQ_FANFA4
     Message SandgemTownLab_Text_PlayersPokedexWasUpgradedWithTheNationalMode
-    WaitSound
+    WaitFanfare
     Message SandgemTownLab_Text_ItWontBeEasyToCompleteTheNationalPokedex
     Message SandgemTownLab_Text_PlayerWillGetTheJobDone
     Message SandgemTownLab_Text_IveHeardThatThePalParkIsNowOpen

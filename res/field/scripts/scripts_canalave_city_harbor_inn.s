@@ -57,7 +57,7 @@ _0093:
     BufferPlayerName 0
     Message 1
     CloseMessage
-    PlayFanfare SEQ_SE_DP_MAZYO2
+    PlaySE SEQ_SE_DP_MAZYO2
     SetFlag FLAG_UNK_0x013C
     SetFlag FLAG_UNK_0x0241
     SetVar VAR_UNK_0x40F8, 2
@@ -100,8 +100,8 @@ _0160:
     LockAll
     Call _0184
     ScrCmd_2B5 33, 58, 0x2CA
-    PlaySound SEQ_ASA
-    WaitSound
+    PlayFanfare SEQ_ASA
+    WaitFanfare
     BufferPlayerName 0
     Message 2
     WaitButton

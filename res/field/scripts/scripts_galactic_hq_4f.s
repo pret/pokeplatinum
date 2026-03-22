@@ -100,7 +100,7 @@ _0124:
     EndMovement
 
 _012C:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     CheckItem ITEM_GALACTIC_KEY, 1, VAR_RESULT
@@ -122,8 +122,8 @@ _0177:
     BufferPlayerName 0
     Message 7
     WaitButton
-    WaitFanfare SEQ_SE_CONFIRM
-    PlayFanfare SEQ_SE_DP_DOOR10
+    WaitSE SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_DP_DOOR10
     ApplyMovement 1, _01B4
     ApplyMovement 2, _01BC
     WaitMovement
@@ -154,7 +154,7 @@ _01C4:
     End
 
 _01D5:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     Message 9
     GoTo _01E6

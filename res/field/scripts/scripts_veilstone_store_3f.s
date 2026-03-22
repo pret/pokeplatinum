@@ -13,7 +13,7 @@
     ScriptEntryEnd
 
 VeilstoneStore3F_Attendant:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     CheckIsDepartmentStoreRegular VAR_RESULT

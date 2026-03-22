@@ -11,7 +11,7 @@
     ScriptEntryEnd
 
 FollowerPartners_Rival:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfGe VAR_FOLLOWER_RIVAL_STATE, 3, FollowerPartners_Rival_PostStarterMessage
@@ -86,7 +86,7 @@ FollowerPartners_Rival_IncreaseTimesTalked:
     End
 
 _00F9:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfGe VAR_UNK_0x40CB, 2, _0126
@@ -115,7 +115,7 @@ _013C:
     End
 
 FollowerPartners_Cheryl:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfGe VAR_FOLLOWER_CHERYL_TIMES_TALKED, 2, FollowerPartners_Cheryl_PlayerBattlingWithYouMakesMeFeelElated
@@ -146,7 +146,7 @@ FollowerPartners_Cheryl_IncreaseTimesTalked:
     End
 
 FollowerPartners_Buck:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfGe VAR_FOLLOWER_BUCK_TIMES_TALKED, 3, FollowerPartners_Buck_ItMightBeCoolBeingAGymLeaderOrEliteFour
@@ -182,7 +182,7 @@ FollowerPartners_Buck_IncreaseTimesTalked:
     End
 
 FollowerPartners_Mira:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfGe VAR_FOLLOWER_MIRA_TIMES_TALKED, 2, FollowerPartners_Mira_PlayerDidYouGetToBeSoGood
@@ -214,7 +214,7 @@ FollowerPartners_Mira_IncreaseTimesTalked:
     End
 
 FollowerPartners_Marley:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfGe VAR_FOLLOWER_MARLEY_TIMES_TALKED, 1, FollowerPartners_Marley_ThePokemonAmongFlowers

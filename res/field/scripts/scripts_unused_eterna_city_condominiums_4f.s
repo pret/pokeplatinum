@@ -6,7 +6,7 @@
     ScriptEntryEnd
 
 EternaCityCondominiums4F_ExpertF:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_RECEIVED_ETERNA_CITY_CONDOMINIUMS_4F_TM04, EternaCityCondominiums4F_FolksLikeMeHaveALongHistoryWeCanLookBackOn

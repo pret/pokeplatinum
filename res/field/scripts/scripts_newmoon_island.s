@@ -21,7 +21,7 @@ _0035:
     Return
 
 _0037:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GetPlayerDir VAR_0x8004
@@ -51,7 +51,7 @@ _009D:
 _00A8:
     ApplyMovement 0, _0110
     WaitMovement
-    PlayFanfare SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2
     ApplyMovement 0, _011C
     WaitMovement
     Return
@@ -59,7 +59,7 @@ _00A8:
 _00C2:
     ApplyMovement LOCALID_PLAYER, _0124
     WaitMovement
-    PlayFanfare SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2
     ApplyMovement LOCALID_PLAYER, _011C
     WaitMovement
     Return
@@ -67,7 +67,7 @@ _00C2:
 _00DC:
     ApplyMovement LOCALID_PLAYER, _0134
     WaitMovement
-    PlayFanfare SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2
     ApplyMovement LOCALID_PLAYER, _011C
     WaitMovement
     Return
@@ -75,7 +75,7 @@ _00DC:
 _00F6:
     ApplyMovement LOCALID_PLAYER, _0140
     WaitMovement
-    PlayFanfare SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2
     ApplyMovement LOCALID_PLAYER, _011C
     WaitMovement
     Return

@@ -26,7 +26,7 @@ _0048:
     End
 
 _0067:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfBadgeAcquired BADGE_ID_ICICLE, _00EC

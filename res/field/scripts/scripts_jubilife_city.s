@@ -439,7 +439,7 @@ JubilifeCity_Movement_LookerLeaveFistArrival:
     EndMovement
 
 JubilifeCity_ExpertM2:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfBadgeAcquired BADGE_ID_COAL, JubilifeCity_HaveYouPaidAVisitToTheTVStation
@@ -749,7 +749,7 @@ JubilifeCity_Movement_LookerWalkBackZ760:
     EndMovement
 
 JubilifeCity_Looker:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_OBTAINED_POKETCH, JubilifeCity_ItIsYouHaveYouNotObtainedAGymBadge
@@ -1214,7 +1214,7 @@ JubilifeCity_Movement_PlayerWalkToGrunt:
     EndMovement
 
 JubilifeCity_SchoolKidM1:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message JubilifeCity_Text_CanYouTellMeWhatTypeOfPokemonYouLike
@@ -1260,7 +1260,7 @@ JubilifeCity_AceTrainerF:
     End
 
 JubilifeCity_ExpertM1:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message JubilifeCity_Text_HelloTrainerDoYouKnowMuchAboutPokemon
@@ -1400,7 +1400,7 @@ JubilifeCity_Movement_PoketchCoPresidentWalkToPlayerX176:
     EndMovement
 
 JubilifeCity_PoketchCoPresident:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     SetVar VAR_0x8004, 0
@@ -1435,8 +1435,8 @@ JubilifeCity_GivePoketch:
     RegisterPoketchApp POKETCH_APPID_PARTYSTATUS
     BufferPlayerName 0
     Message JubilifeCity_Text_PlayerReceivedAPoketch
-    PlaySound SEQ_FANFA4
-    WaitSound
+    PlayFanfare SEQ_FANFA4
+    WaitFanfare
     Message JubilifeCity_Text_YouCanAddAppsToYourPoketch
     CloseMessage
     GetPlayerDir VAR_RESULT
@@ -1494,7 +1494,7 @@ JubilifeCity_Movement_PlayerWatchPoketchCoPresidentLeaveNorthWestEast:
     EndMovement
 
 JubilifeCity_Clown1:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_OBTAINED_COUPON_1, JubilifeCity_Clown1ObtainedCoupon
@@ -1505,7 +1505,7 @@ JubilifeCity_Clown1:
     End
 
 JubilifeCity_Clown1CorrectAnswer:
-    PlayFanfare SEQ_SE_DP_PINPON
+    PlaySE SEQ_SE_DP_PINPON
     Message JubilifeCity_Text_DingDingYoureAbsolutelyCorrect1
     Message JubilifeCity_Text_PokemonGrowStrongerByDefeatingOtherPokemonInBattle
     Message JubilifeCity_Text_HereYouGoYourPoketchCoupon1
@@ -1518,7 +1518,7 @@ JubilifeCity_Clown1CorrectAnswer:
     End
 
 JubilifeCity_Clown1WrongAnswer:
-    PlayFanfare SEQ_SE_DP_BOX03
+    PlaySE SEQ_SE_DP_BOX03
     Message JubilifeCity_Text_BzzzztThatsTheWrongAnswer1
     WaitButton
     CloseMessage
@@ -1533,7 +1533,7 @@ JubilifeCity_Clown1ObtainedCoupon:
     End
 
 JubilifeCity_Clown2:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_OBTAINED_COUPON_2, JubilifeCity_Clown2ObtainedCoupon
@@ -1544,7 +1544,7 @@ JubilifeCity_Clown2:
     End
 
 JubilifeCity_Clown2CorrectAnswer:
-    PlayFanfare SEQ_SE_DP_PINPON
+    PlaySE SEQ_SE_DP_PINPON
     Message JubilifeCity_Text_DingDingYoureAbsolutelyCorrect2
     Message JubilifeCity_Text_IfThePokemonsTypeMatchesItsMovesTypeThatMoveIsMadeMuchMorePowerful
     Message JubilifeCity_Text_HereYouGoYourPoketchCoupon2
@@ -1557,7 +1557,7 @@ JubilifeCity_Clown2CorrectAnswer:
     End
 
 JubilifeCity_Clown2WrongAnswer:
-    PlayFanfare SEQ_SE_DP_BOX03
+    PlaySE SEQ_SE_DP_BOX03
     Message JubilifeCity_Text_BzzzztThatsTheWrongAnswer2
     WaitButton
     CloseMessage
@@ -1572,7 +1572,7 @@ JubilifeCity_Clown2ObtainedCoupon:
     End
 
 JubilifeCity_Clown3:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfLt VAR_POKETCH_CAMPAIGN_STATE, 2, JubilifeCity_YouShouldStickAround
@@ -1584,7 +1584,7 @@ JubilifeCity_Clown3:
     End
 
 JubilifeCity_Clown3CorrectAnswer:
-    PlayFanfare SEQ_SE_DP_PINPON
+    PlaySE SEQ_SE_DP_PINPON
     Message JubilifeCity_Text_DingDingYoureAbsolutelyCorrect3
     Message JubilifeCity_Text_APokemonMayHoldASingleItem
     Message JubilifeCity_Text_HereYouGoYourPoketchCoupon3
@@ -1598,7 +1598,7 @@ JubilifeCity_Clown3CorrectAnswer:
     End
 
 JubilifeCity_Clown3WrongAnswer:
-    PlayFanfare SEQ_SE_DP_BOX03
+    PlaySE SEQ_SE_DP_BOX03
     Message JubilifeCity_Text_BzzzztThatsTheWrongAnswer3
     WaitButton
     CloseMessage

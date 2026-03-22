@@ -50,7 +50,7 @@ _008A:
     End
 
 _008C:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     SetVar VAR_0x8005, 0
@@ -58,7 +58,7 @@ _008C:
     End
 
 _00A2:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     SetVar VAR_0x8005, 1

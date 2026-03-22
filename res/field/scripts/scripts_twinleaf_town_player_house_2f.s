@@ -27,9 +27,9 @@ TwinleafTownPlayerHouse2F_OnFrame_ConcludeSpecialProgram:
     LockAll
     SetVar VAR_PLAYER_HOUSE_SPECIAL_PROGRAM_STATE, 1
     Message TwinleafTownPlayerHouse2F_Text_ThatConcludesOurSpecialProgram
-    PlaySound SEQ_TV_END
+    PlayFanfare SEQ_TV_END
     Message TwinleafTownPlayerHouse2F_Text_SeeYouNextWeek
-    WaitSound
+    WaitFanfare
     CloseMessage
     PlayDefaultMusic
     ReleaseAll
@@ -40,7 +40,7 @@ TwinleafTownPlayerHouse2F_Wii:
     End
 
 TwinleafTownPlayerHouse2F_PC:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     BufferPlayerName 0
     Message TwinleafTownPlayerHouse2F_Text_PCPokemonBasics
@@ -120,10 +120,10 @@ TwinleafTownPlayerHouse2F_Rival:
     CallIfEq VAR_MAP_LOCAL_0, 1, TwinleafTownPlayerHouse2F_RivalLeaveWest
     CallIfEq VAR_MAP_LOCAL_0, 2, TwinleafTownPlayerHouse2F_RivalLeaveEast
     CallIfEq VAR_MAP_LOCAL_0, 3, TwinleafTownPlayerHouse2F_RivalLeaveSouth
-    PlayFanfare SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2
     RemoveObject LOCALID_RIVAL
     Common_FadeToDefaultMusic2
-    WaitFanfare SEQ_SE_DP_KAIDAN2
+    WaitSE SEQ_SE_DP_KAIDAN2
     SetFlag FLAG_HIDE_TWINLEAF_TOWN_PLAYER_HOUSE_2F_RIVAL
     SetVar VAR_PLAYER_HOUSE_RIVAL_TRIGGER_STATE, 1
     ReleaseAll

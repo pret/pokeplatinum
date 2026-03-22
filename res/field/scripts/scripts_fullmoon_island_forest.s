@@ -10,7 +10,7 @@ _000A:
     End
 
 _000C:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     DrawPokemonPreview SPECIES_CRESSELIA, GENDER_FEMALE

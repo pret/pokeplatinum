@@ -10,7 +10,7 @@
     ScriptEntryEnd
 
 _0016:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     ShowMoney 20, 2
     Message 0
@@ -25,8 +25,8 @@ _003E:
     GoToIfNotEnoughMoney 100, _006B
     RemoveMoney 100
     UpdateMoneyDisplay
-    PlayFanfare SEQ_SE_DP_REGI
-    WaitFanfare SEQ_SE_DP_REGI
+    PlaySE SEQ_SE_DP_REGI
+    WaitSE SEQ_SE_DP_REGI
     HideMoney
     StartGreatMarshLookout
     ReleaseAll

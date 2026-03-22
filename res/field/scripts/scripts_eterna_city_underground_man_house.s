@@ -16,7 +16,7 @@
     ScriptEntryEnd
 
 EternaCityUndergroundManHouse_UndergroundMan:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfGe VAR_CURRENT_UNDERGROUND_MISSION, 9, EternaCityUndergroundManHouse_FromNowOnYouAreTheSpelunkingMaster
@@ -445,7 +445,7 @@ EternaCityUndergroundManHouse_Youngster:
     End
 
 EternaCityUndergroundManHouse_ScientistM:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_TALKED_TO_UNDERGROUND_MAN_HOUSE_SCIENTIST_M, EternaCityUndergroundManHouse_OhYoudLikeMoreAdviceOnDiggingUpTreasureAndSpheres
@@ -468,7 +468,7 @@ EternaCityUndergroundManHouse_Sign:
     End
 
 EternaCityUndergroundManHouse_PC:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     Message EternaCityUndergroundManHouse_Text_ShortcutToTheUndergroundIsOnTheScreen
     GoTo EternaCityUndergroundManHouse_PCHeadingsMenu

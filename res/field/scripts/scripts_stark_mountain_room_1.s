@@ -53,16 +53,16 @@ _0014:
     ApplyMovement 0, _0190
     ApplyMovement LOCALID_PLAYER, _01A4
     WaitMovement
-    PlayFanfare SEQ_SE_DP_KAIDAN2
-    WaitFanfare SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2
+    WaitSE SEQ_SE_DP_KAIDAN2
     ApplyMovement 4, _01DC
     WaitMovement
     Message 7
     CloseMessage
     ApplyMovement 4, _01E4
     WaitMovement
-    PlayFanfare SEQ_SE_DP_KAIDAN2
-    WaitFanfare SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2
+    WaitSE SEQ_SE_DP_KAIDAN2
     ApplyMovement 14, _0200
     ApplyMovement LOCALID_PLAYER, _01B4
     WaitMovement

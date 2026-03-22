@@ -67,7 +67,7 @@ _00B8:
     EndMovement
 
 _00C0:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfGe VAR_EXITED_DISTORTION_WORLD_STATE, 3, _00E0

@@ -37,10 +37,10 @@ _002F:
     ApplyMovement 6, _00D4
     ApplyMovement 7, _0108
     WaitMovement
-    PlayFanfare SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2
     RemoveObject 6
     RemoveObject 7
-    WaitFanfare SEQ_SE_DP_KAIDAN2
+    WaitSE SEQ_SE_DP_KAIDAN2
     SetVar VAR_UNK_0x40A0, 1
     ReleaseAll
     End

@@ -8,7 +8,7 @@
     ScriptEntryEnd
 
 _000A:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     BufferDaycareMonNicknames
@@ -49,8 +49,8 @@ _0083:
 _009F:
     BufferPlayerName 0
     Message 5
-    PlaySound SEQ_FANFA4
-    WaitSound
+    PlayFanfare SEQ_FANFA4
+    WaitFanfare
     WaitABPress
     Message 6
     WaitButton
@@ -98,7 +98,7 @@ _011F:
     Return
 
 _0124:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ShowMoney 20, 2
@@ -287,8 +287,8 @@ _03FE:
     MoveMonToPartyFromDaycareSlot VAR_0x8002, VAR_0x8001
     RemoveMoney2 VAR_0x8004
     UpdateMoneyDisplay
-    PlayFanfare SEQ_SE_DP_REGI
-    WaitFanfare SEQ_SE_DP_REGI
+    PlaySE SEQ_SE_DP_REGI
+    WaitSE SEQ_SE_DP_REGI
     Message 29
     PlayCry VAR_0x8002
     BufferPlayerName 1
@@ -345,7 +345,7 @@ _04A0:
     End
 
 Unk501_Unused:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     Message 37
     ScrCmd_1AC

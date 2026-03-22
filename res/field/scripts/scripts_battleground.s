@@ -85,7 +85,7 @@ _0140:
     Return
 
 _015A:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x00D7, _0178
@@ -103,7 +103,7 @@ _0178:
     End
 
 _0183:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     SetFlag FLAG_CAUGHT_MESPRIT
@@ -113,7 +113,7 @@ _0183:
     CallIfEq VAR_0x8005, 7, _01D5
     CallIfEq VAR_0x8005, 8, _01E9
     CallIfEq VAR_0x8005, 9, _01FD
-    PlayFanfare SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2
     RemoveObject 1
     SetFlag FLAG_BUCK_LEFT_BATTLEGROUND
     SetFlag FLAG_UNK_0x01D6
@@ -206,7 +206,7 @@ _02A8:
     EndMovement
 
 _02B4:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     BufferPlayerName 0
@@ -281,7 +281,7 @@ _03C5:
     Return
 
 _03CA:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     BufferPlayerName 0
@@ -307,7 +307,7 @@ _0445:
     End
 
 _0457:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     BufferPlayerName 0
@@ -333,7 +333,7 @@ _04D2:
     End
 
 _04E4:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     BufferPlayerName 0

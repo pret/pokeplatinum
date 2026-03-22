@@ -8,7 +8,7 @@
     ScriptEntryEnd
 
 _000E:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     GoToIfSet FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, _0596
     GoTo _0027
@@ -412,7 +412,7 @@ _0520:
     EndMovement
 
 _0538:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 7

@@ -8,7 +8,7 @@
     ScriptEntryEnd
 
 FlowerShop_PokemonBreederF:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_OBTAINED_FLOWER_SHOP_BERRY, FlowerShop_PleasePlantThatBerryInSoftEarthySoil
@@ -37,7 +37,7 @@ FlowerShop_BagIsFull:
     End
 
 FlowerShop_Lass:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_RECEIVED_FLOWER_SHOP_SPRAYDUCK, FlowerShop_UseThatSprayduckToWaterTheSoilWhereYouvePlantedBerries
@@ -58,7 +58,7 @@ FlowerShop_UseThatSprayduckToWaterTheSoilWhereYouvePlantedBerries:
     End
 
 FlowerShop_Beauty:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ShowAccessoryShop

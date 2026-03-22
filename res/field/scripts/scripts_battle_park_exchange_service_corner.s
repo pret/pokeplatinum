@@ -19,7 +19,7 @@ _002A:
     GoTo _0030
 
 _0030:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 15
@@ -29,7 +29,7 @@ _0030:
     End
 
 _0044:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 15
@@ -39,7 +39,7 @@ _0044:
     End
 
 BattleParkExchangeServiceCorner_Unused:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ShowBattlePoints 21, 1
@@ -129,7 +129,7 @@ _01DE:
     End
 
 _01F1:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     Message 11
     Message 12

@@ -16,7 +16,7 @@ EternaCityEastHouse_ExpertF:
     End
 
 EternaCityEastHouse_PokemonBreederM:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message EternaCityEastHouse_Text_SomeoneRippedOffTheDescriptivePlateFromThePokemonStatueWantToKnowWhatItSaid

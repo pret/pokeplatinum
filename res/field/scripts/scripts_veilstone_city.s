@@ -449,7 +449,7 @@ _05C4:
     EndMovement
 
 VeilstoneCity_Counterpart:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GetPlayerGender VAR_0x8004
@@ -611,7 +611,7 @@ _08DD:
     SetFlag FLAG_UNK_0x028A
     ClearFlag FLAG_UNK_0x020D
     SetVar VAR_UNK_0x411F, 1
-    PlayFanfare SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2
     FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_VEILSTONE_CITY_GALACTIC_WAREHOUSE, 0, 8, 11, 0
@@ -958,7 +958,7 @@ _0C64:
     End
 
 _0C77:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x00CC, _0CBC
@@ -1030,7 +1030,7 @@ VeilstoneCity_Player_GetPushed:
     EndMovement
 
 _0D5C:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfBadgeAcquired BADGE_ID_COBBLE, _0D82
@@ -1048,7 +1048,7 @@ _0D82:
     End
 
 _0D8D:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfBadgeAcquired BADGE_ID_COBBLE, _0DB3
@@ -1066,7 +1066,7 @@ _0DB3:
     End
 
 _0DBE:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     Message 36
     CloseMessage
@@ -1224,7 +1224,7 @@ _0FA0:
     EndMovement
 
 _0FB0:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ApplyMovement 26, _0FE0
@@ -1280,7 +1280,7 @@ _10A2:
     End
 
 VeilstoneCity_DeoxysMeteoriteSpeed:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     CheckPartyHasSpecies2 SPECIES_DEOXYS, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, VeilstoneCity_MeteoriteFromTheStars
@@ -1294,7 +1294,7 @@ VeilstoneCity_DeoxysMeteoriteSpeed:
     End
 
 VeilstoneCity_DeoxysMeteoriteDefense:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     CheckPartyHasSpecies2 SPECIES_DEOXYS, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, VeilstoneCity_MeteoriteFromTheStars
@@ -1308,7 +1308,7 @@ VeilstoneCity_DeoxysMeteoriteDefense:
     End
 
 VeilstoneCity_DeoxysMeteoriteAttack:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     CheckPartyHasSpecies2 SPECIES_DEOXYS, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, VeilstoneCity_MeteoriteFromTheStars
@@ -1322,7 +1322,7 @@ VeilstoneCity_DeoxysMeteoriteAttack:
     End
 
 VeilstoneCity_DeoxysMeteoriteNormal:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     CheckPartyHasSpecies2 SPECIES_DEOXYS, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, VeilstoneCity_MeteoriteFromTheStars
@@ -1384,7 +1384,7 @@ _11FC:
     EndMovement
 
 _1204:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 52

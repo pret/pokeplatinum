@@ -18,8 +18,8 @@ _0017:
 
 _0025:
     LockAll
-    PlayFanfare SEQ_SE_CONFIRM
-    WaitFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
+    WaitSE SEQ_SE_CONFIRM
     GoToIfSet FLAG_UNK_0x011A, _0081
     CheckHasAllLegendaryTitansInParty VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _0073

@@ -37,7 +37,7 @@ _0062:
     Return
 
 _0078:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     GoToIfSet FLAG_UNK_0x0118, _0133
     Message 0
@@ -144,7 +144,7 @@ _019A:
     End
 
 _0261:
-    PlayFanfare SEQ_SE_DP_T_AME
+    PlaySE SEQ_SE_DP_T_AME
     Return
 
 _0267:

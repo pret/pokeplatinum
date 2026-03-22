@@ -46,9 +46,9 @@ EternaForest_StartFollowingCheryl:
     CallIfUnset FLAG_TALKED_TO_ETERNA_FOREST_CHERYL, EternaForest_PleaseMayIGoThroughWithYou
     CallIfSet FLAG_TALKED_TO_ETERNA_FOREST_CHERYL, EternaForest_LetsGetThroughThisForestTogether
     BufferPlayerName 0
-    PlaySound SEQ_GONIN
+    PlayFanfare SEQ_GONIN
     Message EternaForest_Text_PlayerDecidedToGoWithCheryl
-    WaitSound
+    WaitFanfare
     SetFlag FLAG_TALKED_TO_ETERNA_FOREST_CHERYL
     SetVar VAR_ETERNA_FOREST_FOLLOWER_CHERYL_STATE, 1
     Message EternaForest_Text_IllKeepYourPokemonInPerfectHealth
@@ -205,10 +205,10 @@ EternaForest_CherylLeave:
     CloseMessage
     ApplyMovement LOCALID_CHERYL, EternaForest_Movement_CherylLeave
     WaitMovement
-    PlayFanfare SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2
     ClearHasPartner
     RemoveObject LOCALID_CHERYL
-    WaitFanfare SEQ_SE_DP_KAIDAN2
+    WaitSE SEQ_SE_DP_KAIDAN2
     SetFlag FLAG_TRAVELED_WITH_CHERYL
     SetVar VAR_ETERNA_FOREST_FOLLOWER_CHERYL_STATE, 2
     ReleaseAll
@@ -338,7 +338,7 @@ EternaForest_BugCatcher:
     End
 
 EternaForest_Gardenia:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message EternaForest_Text_HiyaWereYouIngriguedByTheRumorsGoingAroundToo

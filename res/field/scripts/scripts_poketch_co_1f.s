@@ -22,7 +22,7 @@ PoketchCo1F_HideReporter:
     End
 
 PoketchCo1F_PoketchCoPresident:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message PoketchCo1F_Text_ImThePresidentOfThePoketchCompany

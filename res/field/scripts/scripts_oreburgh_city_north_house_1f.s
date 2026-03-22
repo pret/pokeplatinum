@@ -8,7 +8,7 @@
     ScriptEntryEnd
 
 OreburghCityNorthHouse1F_SchoolKidF:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_TRADED_FOR_KAZZA_ABRA, OreburghCityNorthHouse1F_ThanksToPokemonIGotToBeFriendsWithYou

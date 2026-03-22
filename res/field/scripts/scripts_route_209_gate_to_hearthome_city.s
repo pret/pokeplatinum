@@ -60,9 +60,9 @@ Route209GateToHearthomeCity_PostRivalBattle:
     CallIfEq VAR_0x8005, 7, Route209GateToHearthomeCity_RivalLeaveZ7
     CallIfEq VAR_0x8005, 8, Route209GateToHearthomeCity_RivalLeaveZ8
     CallIfEq VAR_0x8005, 9, Route209GateToHearthomeCity_RivalLeaveZ9
-    PlayFanfare SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2
     RemoveObject LOCALID_RIVAL
-    WaitFanfare SEQ_SE_DP_KAIDAN2
+    WaitSE SEQ_SE_DP_KAIDAN2
     SetVar VAR_HEARTHOME_STATE, 2
     ReleaseAll
     End

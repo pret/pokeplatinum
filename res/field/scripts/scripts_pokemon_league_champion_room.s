@@ -42,7 +42,7 @@ PokemonLeagueChampionRoom_OnFrame:
     SetFlag FLAG_HIDE_POKEMON_LEAGUE_HALLWAY_TO_HALL_OF_FAME_PROF_ROWAN
     ApplyMovement LOCALID_PLAYER, PokemonLeagueChampionRoom_EnterHallwayToHallOfFame
     WaitMovement
-    PlayFanfare SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2
     FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_POKEMON_LEAGUE_HALLWAY_TO_HALL_OF_FAME, 0, 5, 23, 0

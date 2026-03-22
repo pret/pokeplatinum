@@ -50,8 +50,8 @@ BattleTowerMultiBattleRoom_SetPlayerPositionsForBattle:
 
 BattleTowerMultiBattleRoom_RestorePokemon:
     Message BattleTowerMultiBattleRoom_Text_YourPokemonWillBeRestored
-    PlaySound SEQ_ASA
-    WaitSound
+    PlayFanfare SEQ_ASA
+    WaitFanfare
     HealParty
     Return
 
@@ -157,8 +157,8 @@ BattleTowerMultiBattleRoom_SaveAndQuitMultiChallenge:
     ShowSavingIcon
     TrySaveGame VAR_RESULT
     HideSavingIcon
-    PlayFanfare SEQ_SE_DP_SAVE
-    WaitFanfare SEQ_SE_DP_SAVE
+    PlaySE SEQ_SE_DP_SAVE
+    WaitSE SEQ_SE_DP_SAVE
     FadeScreenOut
     WaitFadeScreen
     CloseMessage

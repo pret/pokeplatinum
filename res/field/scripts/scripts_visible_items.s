@@ -2295,10 +2295,10 @@ VisibleItems_Unused7326_Nugget:
     End
 
 VisibleItems_TryGiveItem:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    WaitFanfare SEQ_SE_CONFIRM
+    WaitSE SEQ_SE_CONFIRM
     SetVar VAR_0x8004, VAR_0x8008
     SetVar VAR_0x8005, VAR_0x8009
     CanFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT
@@ -2323,7 +2323,7 @@ VisibleItems_GiveItem:
     End
 
 VisibleItems_CheckPlateOrItemPocket:
-    WaitSound
+    WaitFanfare
     CheckItemIsPlate VAR_0x8004, VAR_RESULT
     CallIfEq VAR_RESULT, TRUE, VisibleItems_MessageObtainedPlate
     BufferPlayerName 0

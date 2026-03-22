@@ -8,7 +8,7 @@
     ScriptEntryEnd
 
 _000A:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x0AAD, _0064
@@ -48,7 +48,7 @@ _007A:
     End
 
 _0085:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 7
@@ -109,15 +109,15 @@ _0161:
     GetPartyMonMove VAR_RESULT, VAR_0x8000, VAR_0x8002
     BufferMoveName 1, VAR_RESULT
     Message 20
-    PlayFanfare SEQ_SE_DP_KON
-    WaitFanfare SEQ_SE_DP_KON
+    PlaySE SEQ_SE_DP_KON
+    WaitSE SEQ_SE_DP_KON
     WaitTime 30, VAR_RESULT
     Message 21
     WaitTime 32, VAR_RESULT
-    PlaySound SEQ_FANFA1
+    PlayFanfare SEQ_FANFA1
     BufferMoveName 1, VAR_0x8003
     Message 22
-    WaitSound
+    WaitFanfare
     WaitTime 16, VAR_RESULT
     GoTo _0277
     End
@@ -142,8 +142,8 @@ _0256:
     BufferPartyMonNickname 0, VAR_0x8000
     BufferMoveName 1, VAR_0x8003
     Message 15
-    PlaySound SEQ_FANFA1
-    WaitSound
+    PlayFanfare SEQ_FANFA1
+    WaitFanfare
     WaitTime 16, VAR_RESULT
     GoTo _0277
     End

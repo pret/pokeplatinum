@@ -17,7 +17,7 @@ _0022:
     End
 
 _0028:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_GALACTIC_LEFT_LAKE_VALOR, _0046
@@ -35,7 +35,7 @@ _0046:
     End
 
 _0051:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_GALACTIC_LEFT_LAKE_VALOR, _006F
@@ -53,7 +53,7 @@ _006F:
     End
 
 _007A:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_GALACTIC_LEFT_LAKE_VALOR, _0098
@@ -71,7 +71,7 @@ _0098:
     End
 
 _00A3:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_GALACTIC_LEFT_LAKE_VALOR, _00C1
@@ -93,7 +93,7 @@ _00CC:
     End
 
 _00DF:
-    PlayFanfare SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     CheckItem ITEM_GALACTIC_KEY, 1, VAR_RESULT
@@ -115,8 +115,8 @@ _012A:
     BufferPlayerName 0
     Message 11
     WaitButton
-    WaitFanfare SEQ_SE_CONFIRM
-    PlayFanfare SEQ_SE_DP_DOOR10
+    WaitSE SEQ_SE_CONFIRM
+    PlaySE SEQ_SE_DP_DOOR10
     ApplyMovement 5, _0164
     ApplyMovement 6, _016C
     WaitMovement
