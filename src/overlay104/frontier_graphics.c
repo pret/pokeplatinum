@@ -151,10 +151,10 @@ FrontierGraphics *FrontierGraphics_New(UnkStruct_0209B75C *param0)
     graphics->plttData = PaletteData_New(HEAP_ID_94);
 
     PaletteData_SetAutoTransparent(graphics->plttData, TRUE);
-    PaletteData_AllocBuffer(graphics->plttData, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES * SLOTS_PER_PALETTE, HEAP_ID_94);
-    PaletteData_AllocBuffer(graphics->plttData, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES * SLOTS_PER_PALETTE, HEAP_ID_94);
-    PaletteData_AllocBuffer(graphics->plttData, PLTTBUF_MAIN_OBJ, PALETTE_SIZE_BYTES * SLOTS_PER_PALETTE - 64, HEAP_ID_94);
-    PaletteData_AllocBuffer(graphics->plttData, PLTTBUF_SUB_OBJ, PALETTE_SIZE_BYTES * SLOTS_PER_PALETTE, HEAP_ID_94);
+    PaletteData_AllocBuffer(graphics->plttData, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES * 16, HEAP_ID_94);
+    PaletteData_AllocBuffer(graphics->plttData, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES * 16, HEAP_ID_94);
+    PaletteData_AllocBuffer(graphics->plttData, PLTTBUF_MAIN_OBJ, PALETTE_SIZE_BYTES * 16 - 64, HEAP_ID_94);
+    PaletteData_AllocBuffer(graphics->plttData, PLTTBUF_SUB_OBJ, PALETTE_SIZE_BYTES * 16, HEAP_ID_94);
 
     graphics->bgConfig = BgConfig_New(HEAP_ID_94);
 
