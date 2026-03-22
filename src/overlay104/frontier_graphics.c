@@ -3,6 +3,7 @@
 #include <nitro.h>
 
 #include "constants/field_base_tiles.h"
+#include "constants/graphics.h"
 
 #include "struct_decls/struct_0209B75C_decl.h"
 
@@ -113,9 +114,7 @@ static const SpriteResourceCapacities sCapacities = {
     }
 };
 
-static const UnkUnion_ov63_0222BDAC Unk_ov104_022413D8[256] = {
-    0x0
-};
+static const UnkUnion_ov63_0222BDAC Unk_ov104_022413D8[256] = { 0 };
 
 FrontierGraphics *FrontierGraphics_New(UnkStruct_0209B75C *param0)
 {
@@ -246,10 +245,10 @@ void FrontierGraphics_Free(FrontierGraphics *graphics)
 
     NetworkIcon_Destroy();
 
-    MI_CpuFill16((void *)HW_BG_PLTT, 0x7fff, 0x200);
-    MI_CpuFill16((void *)HW_OBJ_PLTT, 0x7fff, 0x200);
-    MI_CpuFill16((void *)HW_DB_BG_PLTT, 0x7fff, 0x200);
-    MI_CpuFill16((void *)HW_DB_OBJ_PLTT, 0x7fff, 0x200);
+    MI_CpuFill16((void *)HW_BG_PLTT, COLOR_WHITE, PALETTE_SIZE_BYTES * SLOTS_PER_PALETTE);
+    MI_CpuFill16((void *)HW_OBJ_PLTT, COLOR_WHITE, PALETTE_SIZE_BYTES * SLOTS_PER_PALETTE);
+    MI_CpuFill16((void *)HW_DB_BG_PLTT, COLOR_WHITE, PALETTE_SIZE_BYTES * SLOTS_PER_PALETTE);
+    MI_CpuFill16((void *)HW_DB_OBJ_PLTT, COLOR_WHITE, PALETTE_SIZE_BYTES * SLOTS_PER_PALETTE);
 
     G2_BlendNone();
     G2S_BlendNone();
@@ -496,8 +495,8 @@ static void InitBackgrounds(BgConfig *bgConfig, int sceneID)
             .baseTile = 0,
             .screenSize = BG_SCREEN_SIZE_512x512,
             .colorMode = GX_BG_COLORMODE_256,
-            .screenBase = (GX_BG_SCRBASE_0x0800),
-            .charBase = (GX_BG_CHARBASE_0x20000),
+            .screenBase = GX_BG_SCRBASE_0x0800,
+            .charBase = GX_BG_CHARBASE_0x20000,
             .bgExtPltt = GX_BG_EXTPLTT_23,
             .priority = 1,
             .areaOver = 0,
@@ -510,8 +509,8 @@ static void InitBackgrounds(BgConfig *bgConfig, int sceneID)
             .baseTile = 0,
             .screenSize = BG_SCREEN_SIZE_512x512,
             .colorMode = GX_BG_COLORMODE_256,
-            .screenBase = (GX_BG_SCRBASE_0x2800),
-            .charBase = (GX_BG_CHARBASE_0x30000),
+            .screenBase = GX_BG_SCRBASE_0x2800,
+            .charBase = GX_BG_CHARBASE_0x30000,
             .bgExtPltt = GX_BG_EXTPLTT_23,
             .priority = 3,
             .areaOver = 0,
@@ -760,7 +759,7 @@ static void G3DPipelineCallback(void)
     G3X_AlphaBlend(TRUE);
     G3X_EdgeMarking(FALSE);
     G3X_SetFog(FALSE, GX_FOGBLEND_COLOR_ALPHA, GX_FOGSLOPE_0x8000, 0);
-    G3X_SetClearColor(GX_RGB(0, 0, 0), 0, 0x7fff, 63, FALSE);
+    G3X_SetClearColor(COLOR_BLACK, 0, G3X_DEPTH_MAX, 63, FALSE);
     G3_ViewPort(0, 0, 255, 191);
 }
 
@@ -786,7 +785,6 @@ static void InitSpriteSystem(FrontierGraphics *graphics)
 
 static void FreeSpriteSystem(FrontierGraphics *graphics)
 {
-
     for (int i = 0; i < 8; i++) {
         if (graphics->unk_3C.unk_00[i] != NULL) {
             ov104_0223D858(graphics->unk_3C.unk_00[i]);

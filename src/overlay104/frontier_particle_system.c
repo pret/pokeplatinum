@@ -85,10 +85,8 @@ ParticleSystem *FrontierParticleSystem_GetParticleSystem(FrontierParticleSystem 
 BOOL FrontierParticleSystem_NoActiveEmitters(FrontierParticleSystem *fps)
 {
     for (int i = 0; i < NUM_FRONTIER_PARTICLE_SYSTEMS; i++) {
-        if (fps->particleSys[i] != NULL) {
-            if (ParticleSystem_GetActiveEmitterCount(fps->particleSys[i]) > 0) {
-                return FALSE;
-            }
+        if (fps->particleSys[i] != NULL && ParticleSystem_GetActiveEmitterCount(fps->particleSys[i]) > 0) {
+            return FALSE;
         }
     }
 
