@@ -1751,7 +1751,7 @@ static BOOL ov62_02242D90(UnkStruct_0208C06C *param0)
 
     switch (param0->unk_08) {
     case 0:
-        if (sub_0202F250()) {
+        if (BattleRecording_Exists()) {
             BattleRecording_Free();
         }
 
@@ -2987,7 +2987,7 @@ static BOOL ov62_02244720(UnkStruct_0208C06C *param0)
             Bg_ClearTilemap(param0->unk_14.unk_10, 3);
             Bg_ClearTilemap(param0->unk_14.unk_10, 7);
 
-            if (sub_0202F250() == 1) {
+            if (BattleRecording_Exists() == 1) {
                 BattleRecording_Free();
             }
         } else {
@@ -3257,7 +3257,7 @@ static BOOL ov62_02244CD4(UnkStruct_0208C06C *param0)
                 Bg_ClearTilemap(param0->unk_14.unk_10, 3);
                 Bg_ClearTilemap(param0->unk_14.unk_10, 7);
 
-                if (sub_0202F250() == 1) {
+                if (BattleRecording_Exists() == 1) {
                     BattleRecording_Free();
                 }
             } else {
@@ -3834,7 +3834,7 @@ static void ov62_02245994(u32 param0, enum TouchScreenButtonState param1, void *
     case 1:
         ov62_02234520(v0);
 
-        if (sub_0202F250()) {
+        if (BattleRecording_Exists()) {
             ov62_0222FB60(v0, 20);
         } else {
             v1->unk_0C = 20;
@@ -3844,7 +3844,7 @@ static void ov62_02245994(u32 param0, enum TouchScreenButtonState param1, void *
     case 2:
         ov62_02234520(v0);
 
-        if (sub_0202F250()) {
+        if (BattleRecording_Exists()) {
             ov62_0222FB60(v0, 22);
         } else {
             v1->unk_0C = 22;
@@ -4325,7 +4325,7 @@ static BOOL ov62_0224613C(UnkStruct_0208C06C *param0)
             Bg_ClearTilemap(param0->unk_14.unk_10, 3);
             Bg_ClearTilemap(param0->unk_14.unk_10, 7);
 
-            if (sub_0202F250() == 1) {
+            if (BattleRecording_Exists() == 1) {
                 BattleRecording_Free();
             }
         } else {

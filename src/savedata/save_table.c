@@ -131,7 +131,7 @@ int SaveData_SaveHallOfFame(SaveData *saveData, HallOfFame *hof)
     return SaveDataExtra_Save(saveData, EXTRA_SAVE_TABLE_ENTRY_HALL_OF_FAME, hof);
 }
 
-BattleRecording *SaveData_BattleRecording(SaveData *saveData, enum HeapID heapID, int *resultCode, int recNum)
+BattleRecording *SaveData_GetBattleRecording(SaveData *saveData, enum HeapID heapID, int *resultCode, int recNum)
 {
     BOOL tmp;
     return SaveDataExtra_Mirror(saveData, heapID, EXTRA_SAVE_TABLE_ENTRY_MY_RECORDINGS + recNum, resultCode, &tmp);

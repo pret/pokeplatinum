@@ -96,7 +96,7 @@ int SaveData_SaveHallOfFame(SaveData *saveData, HallOfFame *hof);
  * @param recNum        Which recording slot to load.
  * @return Address of the allocated BattleRecording data.
  */
-BattleRecording *SaveData_BattleRecording(SaveData *saveData, enum HeapID heapID, int *resultCode, int recNum);
+BattleRecording *SaveData_GetBattleRecording(SaveData *saveData, enum HeapID heapID, int *resultCode, int recNum);
 
 /**
  * @brief Saves a mirror of the given BattleRecording data into the extended save.

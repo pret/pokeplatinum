@@ -1852,7 +1852,7 @@ void ov62_022338A8(UnkStruct_0208C06C *param0)
             }
             break;
         }
-        if (sub_0202F250() == 1) {
+        if (BattleRecording_Exists() == 1) {
             BattleRecording_Free();
         }
     }

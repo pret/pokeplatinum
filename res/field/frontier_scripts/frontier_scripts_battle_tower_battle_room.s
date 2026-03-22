@@ -377,7 +377,7 @@ _046D:
     FrontierScrCmd_3F 0
     CallBattleTowerFunction BT_FUNC_UNK_59, 0, VAR_0x8008
     FrontierScrCmd_87
-    CheckWonBattleTowerBattle VAR_0x800C
+    CheckWonTowerBattle VAR_0x800C
     FadeScreenIn
     Return
 
@@ -513,7 +513,7 @@ _06B3:
 _06D3:
     FrontierScrCmd_3D VAR_UNK_0x40D8, 2
     CallBattleTowerFunction BT_FUNC_UNK_39, 0, VAR_0x8008
-    FreeBattleTower
+    FreeTowerStruct
     Message BattleTowerBattleRoom_Text_Saving
     ShowSavingIcon
     FrontierScrCmd_72 VAR_0x8008
@@ -601,7 +601,7 @@ _086E:
     IncrementRecordValue RECORD_UNK_059
     FrontierScrCmd_47 1
     FrontierScrCmd_87
-    CheckWonBattleTowerBattle VAR_0x800C
+    CheckWonTowerBattle VAR_0x800C
     FadeScreenIn
     GoToIfEq VAR_0x800C, 0, _020F
     CallBattleTowerFunction BT_FUNC_UNK_36, 0, VAR_0x8008

@@ -15,6 +15,6 @@ BOOL FrontierScrCmd_B2(FrontierScriptContext *param0);
 BOOL FrontierScrCmd_B3(FrontierScriptContext *param0);
 BOOL FrontierScrCmd_B4(FrontierScriptContext *param0);
 BOOL FrontierScrCmd_B5(FrontierScriptContext *param0);
-BOOL FrontierScrCmd_SetBattleTowerNull(FrontierScriptContext *ctx);
+BOOL FrontierScrCmd_ClearTowerStruct(FrontierScriptContext *ctx);
 
 #endif // POKEPLATINUM_OV104_022395F0_H

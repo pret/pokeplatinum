@@ -729,7 +729,7 @@
     .byte \arg0
     .endm
 
-    .macro FreeBattleTower
+    .macro FreeTowerStruct
     .short 0x086
     .endm
 
@@ -737,7 +737,7 @@
     .short 0x087
     .endm
 
-    .macro CheckWonBattleTowerBattle destVar
+    .macro CheckWonTowerBattle destVar
     .short 0x088
     .short \destVar
     .endm
@@ -985,7 +985,7 @@
     .short 0x0B5
     .endm
 
-    .macro SetBattleTowerNull
+    .macro ClearTowerStruct
     .short 0x0B6
     .endm
 

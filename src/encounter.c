@@ -837,7 +837,7 @@ static BOOL FieldTask_LinkEncounterWithRecording(FieldTask *task)
         break;
 
     case 1:
-        if (sub_0202F250() == 1) {
+        if (BattleRecording_Exists() == 1) {
             BattleRecording_Free();
         }
 

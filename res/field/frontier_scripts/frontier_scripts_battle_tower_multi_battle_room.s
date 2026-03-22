@@ -425,7 +425,7 @@ _04D1:
     Return
 
 _04D5:
-    SetBattleTowerNull
+    ClearTowerStruct
     FrontierScrCmd_04 14, 1
     End
 
@@ -570,7 +570,7 @@ _06E7:
 _0707:
     FrontierScrCmd_3D VAR_UNK_0x40D8, 2
     CallBattleTowerFunction BT_FUNC_UNK_39, 0, VAR_0x8008
-    FreeBattleTower
+    FreeTowerStruct
     Message BattleTowerMultiBattleRoom_Text_ThanksForParticipating
     ShowSavingIcon
     FrontierScrCmd_72 VAR_0x8008
@@ -756,7 +756,7 @@ _0A1B:
     Call _0A91
     FrontierScrCmd_3F 0
     FrontierScrCmd_87
-    CheckWonBattleTowerBattle VAR_0x8003
+    CheckWonTowerBattle VAR_0x8003
     FadeScreenIn
     Return
 
@@ -806,7 +806,7 @@ _0ACD:
     CloseMessage
     FrontierScrCmd_3F 0
     FrontierScrCmd_87
-    CheckWonBattleTowerBattle VAR_0x8003
+    CheckWonTowerBattle VAR_0x8003
     FadeScreenIn
     Return
 

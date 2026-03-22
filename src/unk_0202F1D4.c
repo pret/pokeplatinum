@@ -36,8 +36,8 @@ BattleRecording *gBattleRecording = NULL;
 
 static void sub_0202FCE8(const Party *param0, UnkStruct_0202FD30 *param1);
 static void sub_0202FD30(UnkStruct_0202FD30 *param0, Party *param1);
-static BOOL sub_0202F75C(SaveData *saveData, BattleRecording *param1);
-static BOOL sub_0202F794(SaveData *saveData, const BattleRecording *param1);
+static BOOL sub_0202F75C(SaveData *saveData, BattleRecording *battleRecording);
+static BOOL sub_0202F794(SaveData *saveData, const BattleRecording *battleRecording);
 static void sub_0202F860(void *param0, u32 param1, u32 param2);
 static void sub_0202F510(SaveData *saveData, UnkStruct_0202F41C *param1, const UnkStruct_0202F298 *param2, int param3, int param4);
 
@@ -48,10 +48,10 @@ int BattleRecording_SaveSize(void)
     return sizeof(BattleRecording);
 }
 
-void BattleRecording_Init(BattleRecording *param0)
+void BattleRecording_Init(BattleRecording *battleRecording)
 {
-    MI_CpuClear32(param0, sizeof(BattleRecording));
-    param0->unk_00 = 0xffffffff;
+    MI_CpuClear32(battleRecording, sizeof(BattleRecording));
+    battleRecording->unk_00 = 0xFFFFFFFF;
 }
 
 void BattleRecording_New(SaveData *saveData, enum HeapID heapID, int *resultCode)
@@ -61,7 +61,7 @@ void BattleRecording_New(SaveData *saveData, enum HeapID heapID, int *resultCode
         gBattleRecording = NULL;
     }
 
-    gBattleRecording = SaveData_BattleRecording(saveData, heapID, resultCode, 0);
+    gBattleRecording = SaveData_GetBattleRecording(saveData, heapID, resultCode, 0);
     BattleRecording_Init(gBattleRecording);
 }
 
@@ -73,12 +73,12 @@ void BattleRecording_Free(void)
     gBattleRecording = NULL;
 }
 
-BOOL sub_0202F250(void)
+BOOL BattleRecording_Exists(void)
 {
     return gBattleRecording != NULL;
 }
 
-BattleRecording *sub_0202F264(void)
+BattleRecording *BattleRecording_Get(void)
 {
     GF_ASSERT(gBattleRecording);
     return gBattleRecording;
@@ -104,7 +104,7 @@ BOOL sub_0202F298(SaveData *saveData, int param1, int *param2, FieldBattleDTO *p
         gBattleRecording = NULL;
     }
 
-    gBattleRecording = SaveData_BattleRecording(saveData, param1, param2, param4);
+    gBattleRecording = SaveData_GetBattleRecording(saveData, param1, param2, param4);
 
     if (*param2 != 1) {
         *param2 = 3;
@@ -138,7 +138,7 @@ BOOL sub_0202F330(SaveData *saveData, int param1, int *param2, int param3)
 {
     UnkStruct_0202F298 *v0;
     UnkStruct_0202F41C *v1;
-    BattleRecording *v2 = SaveData_BattleRecording(saveData, param1, param2, param3);
+    BattleRecording *v2 = SaveData_GetBattleRecording(saveData, param1, param2, param3);
 
     if (*param2 != 1) {
         *param2 = 3;
@@ -348,10 +348,10 @@ static void sub_0202F510(SaveData *saveData, UnkStruct_0202F41C *param1, const U
     param1->unk_26 = param3;
 }
 
-static BOOL sub_0202F75C(SaveData *saveData, BattleRecording *param1)
+static BOOL sub_0202F75C(SaveData *saveData, BattleRecording *battleRecording)
 {
-    UnkStruct_0202F298 *v0 = &param1->unk_E8;
-    UnkStruct_0202F41C *v1 = &param1->unk_84;
+    UnkStruct_0202F298 *v0 = &battleRecording->unk_E8;
+    UnkStruct_0202F41C *v1 = &battleRecording->unk_84;
 
     if (SaveData_MiscSaveBlock_InitFlag(saveData) == 0) {
         return 1;
@@ -364,10 +364,10 @@ static BOOL sub_0202F75C(SaveData *saveData, BattleRecording *param1)
     return 0;
 }
 
-static BOOL sub_0202F794(SaveData *saveData, const BattleRecording *param1)
+static BOOL sub_0202F794(SaveData *saveData, const BattleRecording *battleRecording)
 {
-    const UnkStruct_0202F298 *v0 = &param1->unk_E8;
-    const UnkStruct_0202F41C *v1 = &param1->unk_84;
+    const UnkStruct_0202F298 *v0 = &battleRecording->unk_E8;
+    const UnkStruct_0202F41C *v1 = &battleRecording->unk_84;
     u16 v2;
 
     if ((v0->unk_1BEA != 0xe281) || (v1->unk_48 != 0xe281)) {

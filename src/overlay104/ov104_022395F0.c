@@ -371,7 +371,7 @@ static BOOL ov104_02239C20(FrontierScriptContext *param0)
     return 1;
 }
 
-BOOL FrontierScrCmd_SetBattleTowerNull(FrontierScriptContext *ctx)
+BOOL FrontierScrCmd_ClearTowerStruct(FrontierScriptContext *ctx)
 {
     BattleTower *battleTower = sub_0209B978(ctx->scriptMan->unk_00);
     BattleTower_Free(battleTower);
