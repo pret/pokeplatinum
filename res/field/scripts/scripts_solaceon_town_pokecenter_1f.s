@@ -1,27 +1,28 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/solaceon_town_pokecenter_1f.h"
+#include "res/field/events/events_solaceon_town_pokecenter_1f.h"
 
 
-    ScriptEntry _0012
-    ScriptEntry _001E
-    ScriptEntry _0031
-    ScriptEntry _0044
+    ScriptEntry SolaceonTownPokecenter1F_Nurse
+    ScriptEntry SolaceonTownPokecenter1F_OldMan
+    ScriptEntry SolaceonTownPokecenter1F_Lass
+    ScriptEntry SolaceonTownPokecenter1F_RuinManiac
     ScriptEntryEnd
 
-_0012:
-    Common_CallPokecenterNurse 0
+SolaceonTownPokecenter1F_Nurse:
+    Common_CallPokecenterNurse LOCALID_POKECENTER_NURSE
     End
 
-_001E:
-    NPCMessage 0
+SolaceonTownPokecenter1F_OldMan:
+    NPCMessage SolaceonTownPokecenter1F_Text_PokemonGrowAtDifferentRates
     End
 
-_0031:
-    NPCMessage 1
+SolaceonTownPokecenter1F_Lass:
+    NPCMessage SolaceonTownPokecenter1F_Text_ItsQuiteFarToVeilstoneCity
     End
 
-_0044:
-    NPCMessage 2
+SolaceonTownPokecenter1F_RuinManiac:
+    NPCMessage SolaceonTownPokecenter1F_Text_TheHMDefogIsInTheSolaceonRuins
     End
 
     .balign 4, 0

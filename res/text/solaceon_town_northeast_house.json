@@ -2,7 +2,7 @@
   "key": 29726,
   "messages": [
     {
-      "id": "pl_msg_00000579_00000",
+      "id": "SolaceonTownNortheastHouse_Text_YourPokemonHasThisNature",
       "en_US": [
         "Your Pokémon has a \n",
         "{STRVAR_1 7, 0, 0} nature?\r",
@@ -11,7 +11,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000579_00001",
+      "id": "SolaceonTownNortheastHouse_Text_ThisAreaHadManyPokemon",
       "en_US": [
         "This area had many Pokémon from\n",
         "the olden days.\r",

@@ -972,16 +972,16 @@
     .short \dummy3
     .endm
 
-    .macro ScrCmd_093 arg0, arg1
-    .short SCRCMD_093
-    .short \arg0
-    .short \arg1
+    .macro GetSealOccurence sealId, destVar
+    .short SCRCMD_GETSEALOCCURENCE
+    .short \sealId
+    .short \destVar
     .endm
 
-    .macro ScrCmd_094 arg0, arg1
-    .short SCRCMD_094
-    .short \arg0
-    .short \arg1
+    .macro GiveOrTakeSeal sealId, quantity
+    .short SCRCMD_GIVEORTAKESEAL
+    .short \sealId
+    .short \quantity
     .endm
 
     .macro GetPartyMonForm partySlot, destVar
@@ -3086,9 +3086,9 @@
     .short \followerSpecies
     .endm
 
-    .macro ScrCmd_218 arg0
-    .short SCRCMD_218
-    .short \arg0
+    .macro GetRandomSeenSpecies destVar
+    .short SCRCMD_GETRANDOMSEENSPECIES
+    .short \destVar
     .endm
 
     .macro SetNewsPressDeadline deadlineInDays

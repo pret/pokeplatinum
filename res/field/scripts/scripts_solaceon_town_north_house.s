@@ -2,14 +2,14 @@
 #include "res/text/bank/solaceon_town_north_house.h"
 
 
-    ScriptEntry _000A
-    ScriptEntry _001D
+    ScriptEntry SolaceonTownNorthHouse_OldWoman
+    ScriptEntry SolaceonTownNorthHouse_Lass
     ScriptEntryEnd
 
-_000A:
-    NPCMessage 0
+SolaceonTownNorthHouse_OldWoman:
+    NPCMessage SolaceonTownNorthHouse_Text_EggsAreFoundAtThePokemonDayCare
     End
 
-_001D:
-    NPCMessage 1
+SolaceonTownNorthHouse_Lass:
+    NPCMessage SolaceonTownNorthHouse_Text_ItHasntBeenProvenThatPokemonLayEggs
     End

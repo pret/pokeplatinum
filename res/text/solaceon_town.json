@@ -2,11 +2,11 @@
   "key": 18239,
   "messages": [
     {
-      "id": "pl_msg_00000575_00000",
+      "id": "SolaceonTown_Text_Yahoo",
       "en_US": "Yahoo!\r"
     },
     {
-      "id": "pl_msg_00000575_00001",
+      "id": "SolaceonTown_Text_IGotSomethingCool",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: Hey, {STRVAR_1 3, 1, 0}!\r",
         "I got something cool.\n",
@@ -14,7 +14,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000575_00002",
+      "id": "SolaceonTown_Text_CheckOutTheRuins",
       "en_US": [
         "Huh?\n",
         "What the...\r",
@@ -32,21 +32,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000575_00003",
+      "id": "SolaceonTown_Text_BreathingInRefreshingAir",
       "en_US": [
         "Breathing in this refreshing air...\n",
         "It perks up Pokémon, don’t you think?"
       ]
     },
     {
-      "id": "pl_msg_00000575_00004",
+      "id": "SolaceonTown_Text_TakeItEasySlowAndCasual",
       "en_US": [
         "Howdy, traveling Trainer.\n",
         "Take it easy, slow, and casual."
       ]
     },
     {
-      "id": "pl_msg_00000575_00005",
+      "id": "SolaceonTown_Text_TakeATourThroughTheRuins",
       "en_US": [
         "Howdy, traveling Trainer.\n",
         "There’s nothing here.\r",
@@ -57,7 +57,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000575_00006",
+      "id": "SolaceonTown_Text_ImTooLittle",
       "en_US": [
         "I’m too little, so I don’t know\n",
         "how to battle very good.\r",
@@ -66,14 +66,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000575_00007",
+      "id": "SolaceonTown_Text_EverySundayIVisitTheLostTower",
       "en_US": [
         "Every Sunday, I visit the Lost\n",
         "Tower..."
       ]
     },
     {
-      "id": "pl_msg_00000575_00008",
+      "id": "SolaceonTown_Text_OverTimeTheTownCameToBe",
       "en_US": [
         "There used to be nothing here but\n",
         "a road that went straight through.\r",
@@ -82,7 +82,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000575_00009",
+      "id": "SolaceonTown_Text_IfYoureCompetentYoudHaveMetFiftyPokemon",
       "en_US": [
         "A traveling Trainer, huh?\r",
         "Tell me, how many kinds of Pokémon\n",
@@ -94,7 +94,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000575_00010",
+      "id": "SolaceonTown_Text_ThisHeresAPoketchAppPokemonHistory",
       "en_US": [
         "Your encounters with Pokémon can\n",
         "be considered your shared history.\r",
@@ -105,7 +105,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000575_00011",
+      "id": "SolaceonTown_Text_EachPokemonHasItsOwnHistory",
       "en_US": [
         "You have your history, and each\n",
         "Pokémon has its own history.\r",
@@ -114,21 +114,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000575_00012",
+      "id": "SolaceonTown_Text_MapSign",
       "en_US": [
         "Solaceon Town\n",
         "Free of Worry!"
       ]
     },
     {
-      "id": "pl_msg_00000575_00013",
+      "id": "SolaceonTown_Text_SignPokemonDayCare",
       "en_US": [
         "Pokémon Day Care\n",
         "Let Us Raise Your Pokémon"
       ]
     },
     {
-      "id": "pl_msg_00000575_00014",
+      "id": "SolaceonTown_Text_SignPokemonNewsPress",
       "en_US": [
         "Pokémon News Press\n",
         "Wanted: Pro Pokémon Catcher!"

@@ -2,7 +2,7 @@
   "key": 17426,
   "messages": [
     {
-      "id": "pl_msg_00000248_00000",
+      "id": "SolaceonRuinsRoom2_Text_HMDefogIsInTheseRuins",
       "en_US": [
         "I’d heard the Hidden Machine Defog was\n",
         "somewhere in these ruins.\r",
@@ -13,7 +13,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000248_00001",
+      "id": "SolaceonRuinsRoom2_Text_HMDefogIsInTheseRuins2",
       "en_US": [
         "I’d heard the Hidden Machine Defog was\n",
         "somewhere in these ruins.\r",
@@ -24,7 +24,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000248_00002",
+      "id": "SolaceonRuinsRoom2_Text_CanYouLoanHMDefogToMe",
       "en_US": [
         "Hey!\n",
         "Now looky here!\r",
@@ -35,7 +35,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000248_00003",
+      "id": "SolaceonRuinsRoom2_Text_ThanksYoureMyRescuer",
       "en_US": [
         "OK, so I teach my STARAVIA the hidden\n",
         "move Defog like so... And done!\r",
@@ -44,14 +44,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000248_00004",
+      "id": "SolaceonRuinsRoom2_Text_ItsNotLikeItsGoingToWearOut",
       "en_US": [
         "It’s not like it’s going to wear out!\n",
         "It’s just for a minute! Cheapskate!"
       ]
     },
     {
-      "id": "pl_msg_00000248_00005",
+      "id": "SolaceonRuinsRoom2_Text_IveFinallyGotDefog",
       "en_US": [
         "I’ve finally got Defog, and it’s all\n",
         "thanks to you.\r",

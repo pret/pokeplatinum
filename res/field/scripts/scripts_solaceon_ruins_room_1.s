@@ -2,18 +2,18 @@
 #include "res/text/bank/solaceon_ruins_room_1.h"
 
 
-    ScriptEntry _000A
-    ScriptEntry _0010
+    ScriptEntry SolaceonRuinsRoom1_OnTransition
+    ScriptEntry SolaceonRuinsRoom1_Inscription
     ScriptEntryEnd
 
-_000A:
+SolaceonRuinsRoom1_OnTransition:
     SetFlag FLAG_FIRST_ARRIVAL_SOLACEON_RUINS
     End
 
-_0010:
+SolaceonRuinsRoom1_Inscription:
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    MessageUnown 0
+    MessageUnown SolaceonRuinsRoom1_Text_Directions
     WaitButton
     CloseMessage
     ReleaseAll

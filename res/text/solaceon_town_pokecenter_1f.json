@@ -2,14 +2,14 @@
   "key": 11987,
   "messages": [
     {
-      "id": "pl_msg_00000577_00000",
+      "id": "SolaceonTownPokecenter1F_Text_PokemonGrowAtDifferentRates",
       "en_US": [
         "The Day-Care Man was saying Pokémon\n",
         "grow at different rates."
       ]
     },
     {
-      "id": "pl_msg_00000577_00001",
+      "id": "SolaceonTownPokecenter1F_Text_ItsQuiteFarToVeilstoneCity",
       "en_US": [
         "It’s quite far from Solaceon Town to\n",
         "Veilstone City.\r",
@@ -18,7 +18,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000577_00002",
+      "id": "SolaceonTownPokecenter1F_Text_TheHMDefogIsInTheSolaceonRuins",
       "en_US": [
         "The Hidden Machine Defog can be found\n",
         "in the Solaceon Ruins.\r",
@@ -29,7 +29,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000577_00003",
+      "id": "SolaceonTownPokecenter1F_Text_WillYouBattleMe",
       "en_US": [
         "Pikachu!\r",
         "I want to become more like a PIKACHU!\n",
@@ -37,15 +37,15 @@
       ]
     },
     {
-      "id": "pl_msg_00000577_00004",
+      "id": "SolaceonTownPokecenter1F_Text_PiPikachu",
       "en_US": "Pi-Pikachu!\r"
     },
     {
-      "id": "pl_msg_00000577_00005",
+      "id": "SolaceonTownPokecenter1F_Text_PiPikachu2",
       "en_US": "Pi-Pikachu!"
     },
     {
-      "id": "pl_msg_00000577_00006",
+      "id": "SolaceonTownPokecenter1F_Text_INeedToGetMoreIntoCharacter",
       "en_US": [
         "I need to find a way to get more into\n",
         "the character of a Pokémon...\r",

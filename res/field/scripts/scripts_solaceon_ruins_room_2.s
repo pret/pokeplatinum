@@ -1,71 +1,72 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/solaceon_ruins_room_2.h"
+#include "res/field/events/events_solaceon_ruins_room_2.h"
 
 
-    ScriptEntry _0006
+    ScriptEntry SolaceonRuinsRoom2_Hiker
     ScriptEntryEnd
 
-_0006:
+SolaceonRuinsRoom2_Hiker:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x00D2, _00C7
-    GoToIfSet FLAG_UNK_0x00E8, _004F
+    GoToIfSet FLAG_RECEIVED_SOLACEON_RUINS_ROOM_2_GREEN_SHARD, SolaceonRuinsRoom2_IveFinallyGotDefog
+    GoToIfSet FLAG_DID_NOT_LOAN_HM_DEFOG, SolaceonRuinsRoom2_AskLoanHMDefog
     CheckItem ITEM_HM05, 1, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _0044
-    Message 0
+    GoToIfEq VAR_RESULT, TRUE, SolaceonRuinsRoom2_PlayerHasHMDefog
+    Message SolaceonRuinsRoom2_Text_HMDefogIsInTheseRuins
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0044:
-    Message 1
-    GoTo _004F
+SolaceonRuinsRoom2_PlayerHasHMDefog:
+    Message SolaceonRuinsRoom2_Text_HMDefogIsInTheseRuins2
+    GoTo SolaceonRuinsRoom2_AskLoanHMDefog
     End
 
-_004F:
-    ApplyMovement 0, _00D4
+SolaceonRuinsRoom2_AskLoanHMDefog:
+    ApplyMovement LOCALID_HIKER, SolaceonRuinsRoom2_Movement_HikerExclamationMark
     WaitMovement
-    Message 2
+    Message SolaceonRuinsRoom2_Text_CanYouLoanHMDefogToMe
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _007C
-    GoToIfEq VAR_RESULT, MENU_NO, _00B8
+    GoToIfEq VAR_RESULT, MENU_YES, SolaceonRuinsRoom2_LoanHMDefog
+    GoToIfEq VAR_RESULT, MENU_NO, SolaceonRuinsRoom2_DontLoanHMDefog
     End
 
-_007C:
-    Message 3
+SolaceonRuinsRoom2_LoanHMDefog:
+    Message SolaceonRuinsRoom2_Text_ThanksYoureMyRescuer
     SetVar VAR_0x8004, ITEM_GREEN_SHARD
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _00AE
-    SetFlag FLAG_UNK_0x00D2
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, SolaceonRuinsRoom2_BagIsFull
+    SetFlag FLAG_RECEIVED_SOLACEON_RUINS_ROOM_2_GREEN_SHARD
     Common_GiveItemQuantityNoLineFeed
     CloseMessage
     ReleaseAll
     End
 
-_00AE:
+SolaceonRuinsRoom2_BagIsFull:
     Common_MessageBagIsFull
     CloseMessage
     ReleaseAll
     End
 
-_00B8:
-    SetFlag FLAG_UNK_0x00E8
-    Message 4
+SolaceonRuinsRoom2_DontLoanHMDefog:
+    SetFlag FLAG_DID_NOT_LOAN_HM_DEFOG
+    Message SolaceonRuinsRoom2_Text_ItsNotLikeItsGoingToWearOut
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_00C7:
-    Message 5
+SolaceonRuinsRoom2_IveFinallyGotDefog:
+    Message SolaceonRuinsRoom2_Text_IveFinallyGotDefog
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
     .balign 4, 0
-_00D4:
+SolaceonRuinsRoom2_Movement_HikerExclamationMark:
     EmoteExclamationMark
     EndMovement

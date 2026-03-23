@@ -350,8 +350,8 @@ static BOOL ScrCmd_SetObjectFlagIsPersistent(ScriptContext *ctx);
 static BOOL ScrCmd_SetMovementType(ScriptContext *ctx);
 static BOOL ScrCmd_GetMovementType(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_06E(ScriptContext *ctx);
-static BOOL ScrCmd_093(ScriptContext *ctx);
-static BOOL ScrCmd_094(ScriptContext *ctx);
+static BOOL ScrCmd_GetSealOccurence(ScriptContext *ctx);
+static BOOL ScrCmd_GiveOrTakeSeal(ScriptContext *ctx);
 static BOOL ScrCmd_GetPartyMonForm(ScriptContext *ctx);
 static BOOL ScrCmd_GetRematchTrainerID(ScriptContext *ctx);
 static BOOL ScrCmd_315(ScriptContext *ctx);
@@ -595,7 +595,7 @@ static BOOL ScrCmd_CheckGreatMarshTramLocation(ScriptContext *ctx);
 static BOOL ScrCmd_SetPlayerHeightCalculationEnabled(ScriptContext *ctx);
 static BOOL ScrCmd_GetSpiritombCounter(ScriptContext *ctx);
 static BOOL ScrCmd_ClearSpiritombCounter(ScriptContext *ctx);
-static BOOL ScrCmd_218(ScriptContext *ctx);
+static BOOL ScrCmd_GetRandomSeenSpecies(ScriptContext *ctx);
 static BOOL ScrCmd_SetNewsPressDeadline(ScriptContext *ctx);
 static BOOL ScrCmd_GetNewsPressDeadline(ScriptContext *ctx);
 static BOOL ScrCmd_EnableSwarms(ScriptContext *ctx);
@@ -2545,23 +2545,23 @@ static BOOL ScrCmd_2AB(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_093(ScriptContext *ctx)
+static BOOL ScrCmd_GetSealOccurence(ScriptContext *ctx)
 {
-    u16 v1 = ScriptContext_GetVar(ctx);
-    u16 *v2 = ScriptContext_GetVarPointer(ctx);
+    u16 sealId = ScriptContext_GetVar(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    SealCase *v0 = SaveData_GetSealCase(ctx->fieldSystem->saveData);
-    *v2 = SealCase_CountSealOccurrenceAnywhere(v0, v1);
+    SealCase *sealCase = SaveData_GetSealCase(ctx->fieldSystem->saveData);
+    *destVar = SealCase_CountSealOccurrenceAnywhere(sealCase, sealId);
 
     return FALSE;
 }
 
-static BOOL ScrCmd_094(ScriptContext *ctx)
+static BOOL ScrCmd_GiveOrTakeSeal(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_GetVar(ctx);
-    u16 v1 = ScriptContext_GetVar(ctx);
+    u16 sealId = ScriptContext_GetVar(ctx);
+    u16 quantity = ScriptContext_GetVar(ctx);
 
-    GiveOrTakeSeal(SaveData_GetSealCase(ctx->fieldSystem->saveData), v0, v1);
+    GiveOrTakeSeal(SaveData_GetSealCase(ctx->fieldSystem->saveData), sealId, quantity);
     return FALSE;
 }
 
@@ -5360,23 +5360,23 @@ static BOOL ScrCmd_GetSpiritombCounter(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_218(ScriptContext *ctx)
+static BOOL ScrCmd_GetRandomSeenSpecies(ScriptContext *ctx)
 {
-    const Pokedex *v0 = SaveData_GetPokedex(ctx->fieldSystem->saveData);
-    u16 *v1 = ScriptContext_GetVarPointer(ctx);
+    const Pokedex *pokedex = SaveData_GetPokedex(ctx->fieldSystem->saveData);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    u16 v2 = Pokedex_CountSeen_Local(v0);
-    u16 v3 = LCRNG_Next() % v2;
-    *v1 = 25;
+    u16 seenSpeciesCount = Pokedex_CountSeen_Local(pokedex);
+    u16 random = LCRNG_Next() % seenSpeciesCount;
+    *destVar = SPECIES_PIKACHU;
 
-    for (u16 v4 = 1, v5 = 0; v4 <= NATIONAL_DEX_COUNT; v4++) {
-        if (Pokedex_HasSeenSpecies(v0, v4) == TRUE && Pokemon_SinnohDexNumber(v4) != FALSE) {
-            if (v5 == v3) {
-                *v1 = v4;
+    for (u16 species = 1, i = 0; species <= NATIONAL_DEX_COUNT; species++) {
+        if (Pokedex_HasSeenSpecies(pokedex, species) == TRUE && Pokemon_SinnohDexNumber(species) != FALSE) {
+            if (i == random) {
+                *destVar = species;
                 break;
             }
 
-            v5++;
+            i++;
         }
     }
 

@@ -2,7 +2,7 @@
   "key": 62487,
   "messages": [
     {
-      "id": "pl_msg_00000580_00000",
+      "id": "SolaceonTownPokemonNewsPress_Text_YoureTheExpertWeveBeenLookingFor",
       "en_US": [
         "Oh?\n",
         "Welcome!\r",
@@ -15,7 +15,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000580_00001",
+      "id": "SolaceonTownPokemonNewsPress_Text_HeresYourAssignment",
       "en_US": [
         "Here you are!\n",
         "Good!\r",
@@ -24,7 +24,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000580_00002",
+      "id": "SolaceonTownPokemonNewsPress_Text_IWantYouToBringMeThisPokemon",
       "en_US": [
         "{STRVAR_1 0, 0, 0}.\n",
         "I want you to bring me one.\r",
@@ -35,14 +35,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000580_00003",
+      "id": "SolaceonTownPokemonNewsPress_Text_DidYouBringUsThePokemon",
       "en_US": [
         "What’s up? Did you bring us\n",
         "the Pokémon we needed?\r"
       ]
     },
     {
-      "id": "pl_msg_00000580_00004",
+      "id": "SolaceonTownPokemonNewsPress_Text_ThatsItThanks",
       "en_US": [
         "Oh! Ohh! Ohhh!\n",
         "That’s it! {STRVAR_1 0, 0, 0}!\r",
@@ -57,14 +57,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000580_00005",
+      "id": "SolaceonTownPokemonNewsPress_Text_IHopeYoullHelpAgainTomorrow",
       "en_US": [
         "You really came through for us!\n",
         "I hope you’ll help us again tomorrow!"
       ]
     },
     {
-      "id": "pl_msg_00000580_00006",
+      "id": "SolaceonTownPokemonNewsPress_Text_YourBagIsStuffedFull",
       "en_US": [
         "Whoops! What’s all this?\n",
         "Your Bag is stuffed full.\r",
@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000580_00007",
+      "id": "SolaceonTownPokemonNewsPress_Text_HeresYourReward",
       "en_US": [
         "Oh, there you are! Here’s your\n",
         "reward for the last assignment!\r",
@@ -81,7 +81,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000580_00008",
+      "id": "SolaceonTownPokemonNewsPress_Text_YouStillHaventCaughtThePokemon",
       "en_US": [
         "What’s wrong? You still haven’t\n",
         "caught the {STRVAR_1 0, 0, 0} we need?\r",
@@ -94,7 +94,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000580_00009",
+      "id": "SolaceonTownPokemonNewsPress_Text_YouFailedToBringMeThePokemon",
       "en_US": [
         "Now, now! You failed to bring me the\n",
         "Pokémon I asked for...\r",
@@ -103,7 +103,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000580_00010",
+      "id": "SolaceonTownPokemonNewsPress_Text_IllHaveAnotherAssignmentTomorrow",
       "en_US": [
         "OK! I’ll crank out a riveting story\n",
         "based on this!\r",
@@ -112,7 +112,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000580_00011",
+      "id": "SolaceonTownPokemonNewsPress_Text_TheNewspaperIsTinyButHasManyFans",
       "en_US": [
         "The Sinnoh region’s newspaper is\n",
         "tiny, but it has many fans.\r",
@@ -121,7 +121,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000580_00012",
+      "id": "SolaceonTownPokemonNewsPress_Text_WeeklyPokeBallRoundupIsTheTopStory",
       "en_US": [
         "“Weekly Poké Ball Roundup”\n",
         "is the featured top story.\r",
@@ -130,11 +130,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000580_00013",
+      "id": "SolaceonTownPokemonNewsPress_Text_ReadWhichArticle",
       "en_US": "Which article would you like to read?"
     },
     {
-      "id": "pl_msg_00000580_00014",
+      "id": "SolaceonTownPokemonNewsPress_Text_ArticleDuskBall",
       "en_US": [
         "Dark caves and streets unlit at\n",
         "night are forbidding places to go.\r",
@@ -148,7 +148,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000580_00015",
+      "id": "SolaceonTownPokemonNewsPress_Text_ArticleHealBall",
       "en_US": [
         "Catching Pokémon is best accomplished\n",
         "by whittling the target’s HP down as\f",
@@ -166,7 +166,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000580_00016",
+      "id": "SolaceonTownPokemonNewsPress_Text_ArticleQuickBall",
       "en_US": [
         "When attempting to catch a Pokémon,\n",
         "you want to cut the target’s HP.\r",
@@ -181,7 +181,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000580_00017",
+      "id": "SolaceonTownPokemonNewsPress_Text_ArticleDiveBall",
       "en_US": [
         "The Pokémon of the mothering sea\n",
         "aren’t like the others.\r",

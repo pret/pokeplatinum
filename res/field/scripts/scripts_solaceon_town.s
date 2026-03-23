@@ -1,76 +1,77 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/solaceon_town.h"
+#include "res/field/events/events_solaceon_town.h"
 
 
-    ScriptEntry _004F
-    ScriptEntry _0062
-    ScriptEntry _0093
-    ScriptEntry _00A6
-    ScriptEntry _00B9
-    ScriptEntry _00CC
-    ScriptEntry _0123
-    ScriptEntry _013A
-    ScriptEntry _0151
-    ScriptEntry _0034
-    ScriptEntry _0032
-    ScriptEntry _0168
+    ScriptEntry SolaceonTown_Rancher1
+    ScriptEntry SolaceonTown_Cowgirl1
+    ScriptEntry SolaceonTown_Twin
+    ScriptEntry SolaceonTown_Cowgirl2
+    ScriptEntry SolaceonTown_Rancher2
+    ScriptEntry SolaceonTown_RuinManiac
+    ScriptEntry SolaceonTown_MapSign
+    ScriptEntry SolaceonTown_SignPokemonDayCare
+    ScriptEntry SolaceonTown_SignPokemonNewsPress
+    ScriptEntry SolaceonTown_OnTransition
+    ScriptEntry SolaceonTown_OnResume
+    ScriptEntry SolaceonTown_TriggerRival
     ScriptEntryEnd
 
-_0032:
+SolaceonTown_OnResume:
     End
 
-_0034:
+SolaceonTown_OnTransition:
     CheckDaycareHasEgg VAR_MAP_LOCAL_0
-    GoToIfNe VAR_MAP_LOCAL_0, FALSE, _0047
+    GoToIfNe VAR_MAP_LOCAL_0, FALSE, SolaceonTown_SetDayCareManDirEast
     End
 
-_0047:
-    SetObjectEventDir 3, DIR_EAST
+SolaceonTown_SetDayCareManDirEast:
+    SetObjectEventDir LOCALID_DAY_CARE_MAN, DIR_EAST
     End
 
-_004F:
-    NPCMessage 3
+SolaceonTown_Rancher1:
+    NPCMessage SolaceonTown_Text_BreathingInRefreshingAir
     End
 
-_0062:
+SolaceonTown_Cowgirl1:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfBadgeAcquired BADGE_ID_RELIC, _0088
-    Message 4
+    GoToIfBadgeAcquired BADGE_ID_RELIC, SolaceonTown_TakeATourThroughTheRuins
+    Message SolaceonTown_Text_TakeItEasySlowAndCasual
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0088:
-    Message 5
+SolaceonTown_TakeATourThroughTheRuins:
+    Message SolaceonTown_Text_TakeATourThroughTheRuins
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0093:
-    NPCMessage 6
+SolaceonTown_Twin:
+    NPCMessage SolaceonTown_Text_ImTooLittle
     End
 
-_00A6:
-    NPCMessage 7
+SolaceonTown_Cowgirl2:
+    NPCMessage SolaceonTown_Text_EverySundayIVisitTheLostTower
     End
 
-_00B9:
-    NPCMessage 8
+SolaceonTown_Rancher2:
+    NPCMessage SolaceonTown_Text_OverTimeTheTownCameToBe
     End
 
-_00CC:
+SolaceonTown_RuinManiac:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     CheckPoketchAppRegistered POKETCH_APPID_POKEMONHISTORY, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _0118
+    GoToIfEq VAR_RESULT, TRUE, SolaceonTown_EachPokemonHasItsOwnHistory
     GetLocalDexSeenCount VAR_RESULT
-    GoToIfLt VAR_RESULT, 50, _010D
-    Message 10
+    GoToIfLt VAR_RESULT, 50, SolaceonTown_IfYoureCompetentYoudHaveMetFiftyPokemon
+    Message SolaceonTown_Text_ThisHeresAPoketchAppPokemonHistory
     SetVar VAR_0x8004, POKETCH_APPID_POKEMONHISTORY
     Common_GivePoketchApp
     WaitButton
@@ -78,71 +79,71 @@ _00CC:
     ReleaseAll
     End
 
-_010D:
-    Message 9
+SolaceonTown_IfYoureCompetentYoudHaveMetFiftyPokemon:
+    Message SolaceonTown_Text_IfYoureCompetentYoudHaveMetFiftyPokemon
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0118:
-    Message 11
+SolaceonTown_EachPokemonHasItsOwnHistory:
+    Message SolaceonTown_Text_EachPokemonHasItsOwnHistory
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0123:
-    ShowMapSign 12
+SolaceonTown_MapSign:
+    ShowMapSign SolaceonTown_Text_MapSign
     End
 
-_013A:
-    ShowLandmarkSign 13
+SolaceonTown_SignPokemonDayCare:
+    ShowLandmarkSign SolaceonTown_Text_SignPokemonDayCare
     End
 
-_0151:
-    ShowLandmarkSign 14
+SolaceonTown_SignPokemonNewsPress:
+    ShowLandmarkSign SolaceonTown_Text_SignPokemonNewsPress
     End
 
-_0168:
+SolaceonTown_TriggerRival:
     LockAll
-    ApplyMovement LOCALID_PLAYER, _0218
+    ApplyMovement LOCALID_PLAYER, SolaceonTown_Movement_PlayerNoticeRival
     WaitMovement
     Common_SetRivalBGM
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    SetObjectEventPos 18, VAR_0x8004, 0x295
-    ClearFlag FLAG_UNK_0x021E
-    AddObject 18
-    LockObject 18
-    ApplyMovement LOCALID_PLAYER, _0228
-    ApplyMovement 18, _01E8
+    SetObjectEventPos LOCALID_RIVAL, VAR_0x8004, 0x295
+    ClearFlag FLAG_HIDE_SOLACEON_TOWN_RIVAL
+    AddObject LOCALID_RIVAL
+    LockObject LOCALID_RIVAL
+    ApplyMovement LOCALID_PLAYER, SolaceonTown_Movement_PlayerFaceNorth
+    ApplyMovement LOCALID_RIVAL, SolaceonTown_Movement_RivalWalkSouth
     WaitMovement
-    Message 0
+    Message SolaceonTown_Text_Yahoo
     CloseMessage
-    ApplyMovement 18, _01F0
+    ApplyMovement LOCALID_RIVAL, SolaceonTown_Movement_RivalLookAround
     WaitMovement
     BufferRivalName 0
     BufferPlayerName 1
-    Message 1
-    ApplyMovement 18, _0208
+    Message SolaceonTown_Text_IGotSomethingCool
+    ApplyMovement LOCALID_RIVAL, SolaceonTown_Movement_RivalExclamationMark
     WaitMovement
-    Message 2
+    Message SolaceonTown_Text_CheckOutTheRuins
     CloseMessage
-    ApplyMovement 18, _0210
+    ApplyMovement LOCALID_RIVAL, SolaceonTown_Movement_RivalLeave
     WaitMovement
-    RemoveObject 18
+    RemoveObject LOCALID_RIVAL
     Common_FadeToDefaultMusic2
-    SetVar VAR_UNK_0x4073, 1
+    SetVar VAR_SOLACEON_TOWN_STATE, 1
     ReleaseAll
     End
 
     .balign 4, 0
-_01E8:
+SolaceonTown_Movement_RivalWalkSouth:
     WalkFastSouth 7
     EndMovement
 
     .balign 4, 0
-_01F0:
+SolaceonTown_Movement_RivalLookAround:
     WalkOnSpotFastWest
     Delay8
     WalkOnSpotFastEast
@@ -151,23 +152,23 @@ _01F0:
     EndMovement
 
     .balign 4, 0
-_0208:
+SolaceonTown_Movement_RivalExclamationMark:
     EmoteExclamationMark
     EndMovement
 
     .balign 4, 0
-_0210:
+SolaceonTown_Movement_RivalLeave:
     WalkFastNorth 7
     EndMovement
 
     .balign 4, 0
-_0218:
+SolaceonTown_Movement_PlayerNoticeRival:
     Delay8
     EmoteExclamationMark
     Delay8 3
     EndMovement
 
     .balign 4, 0
-_0228:
+SolaceonTown_Movement_PlayerFaceNorth:
     FaceNorth
     EndMovement

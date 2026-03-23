@@ -1,245 +1,246 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/solaceon_town_pokemon_news_press.h"
+#include "res/text/bank/menu_entries.h"
 
 
-    ScriptEntry _000E
-    ScriptEntry _02BB
-    ScriptEntry _02CE
+    ScriptEntry SolaceonTownPokemonNewsPress_GymGuide
+    ScriptEntry SolaceonTownPokemonNewsPress_PokemonBreederM
+    ScriptEntry SolaceonTownPokemonNewsPress_PC
     ScriptEntryEnd
 
-_000E:
+SolaceonTownPokemonNewsPress_GymGuide:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x00DC, _0216
-    GoToIfSet FLAG_UNK_0x0AB1, _02B0
-    GoToIfUnset FLAG_UNK_0x00D8, _004A
-    GoToIfEq VAR_UNK_0x40E5, 0, _0057
-    GoTo _0081
+    GoToIfSet FLAG_COULD_NOT_RECEIVE_POKEMON_NEWS_PRESS_REWARD, SolaceonTownPokemonNewsPress_TryGiveReward
+    GoToIfSet FLAG_GOT_POKEMON_NEWS_PRESS_REWARD, SolaceonTownPokemonNewsPress_IllHaveAnotherAssignmentTomorrow
+    GoToIfUnset FLAG_TALKED_TO_POKEMON_NEWS_PRESS_GYM_GUIDE, SolaceonTownPokemonNewsPress_YoureTheExpertWeveBeenLookingFor
+    GoToIfEq VAR_POKEMON_NEWS_PRESS_REQUESTED_POKEMON, 0, SolaceonTownPokemonNewsPress_HeresYourAssignment
+    GoTo SolaceonTownPokemonNewsPress_CheckBroughtRequestedPokemon
 
-_004A:
-    SetFlag FLAG_UNK_0x00D8
-    Message 0
-    GoTo _0060
+SolaceonTownPokemonNewsPress_YoureTheExpertWeveBeenLookingFor:
+    SetFlag FLAG_TALKED_TO_POKEMON_NEWS_PRESS_GYM_GUIDE
+    Message SolaceonTownPokemonNewsPress_Text_YoureTheExpertWeveBeenLookingFor
+    GoTo SolaceonTownPokemonNewsPress_SetNewsPressRequestedPokemon
 
-_0057:
-    Message 1
-    GoTo _0060
+SolaceonTownPokemonNewsPress_HeresYourAssignment:
+    Message SolaceonTownPokemonNewsPress_Text_HeresYourAssignment
+    GoTo SolaceonTownPokemonNewsPress_SetNewsPressRequestedPokemon
 
-_0060:
-    ScrCmd_218 VAR_RESULT
-    SetVar VAR_UNK_0x40E5, VAR_RESULT
+SolaceonTownPokemonNewsPress_SetNewsPressRequestedPokemon:
+    GetRandomSeenSpecies VAR_RESULT
+    SetVar VAR_POKEMON_NEWS_PRESS_REQUESTED_POKEMON, VAR_RESULT
     SetNewsPressDeadline 1
-    BufferSpeciesNameFromVar 0, VAR_UNK_0x40E5, 0, 0
-    Message 2
+    BufferSpeciesNameFromVar 0, VAR_POKEMON_NEWS_PRESS_REQUESTED_POKEMON, 0, 0
+    Message SolaceonTownPokemonNewsPress_Text_IWantYouToBringMeThisPokemon
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0081:
-    Message 3
+SolaceonTownPokemonNewsPress_CheckBroughtRequestedPokemon:
+    Message SolaceonTownPokemonNewsPress_Text_DidYouBringUsThePokemon
     GetNewsPressDeadline VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _029F
-    CheckPartyHasSpecies VAR_RESULT, VAR_UNK_0x40E5
-    GoToIfEq VAR_RESULT, 0, _0283
-    GoTo _00AE
+    GoToIfEq VAR_RESULT, 0, SolaceonTownPokemonNewsPress_FailedToBringPokemonWithinDeadline
+    CheckPartyHasSpecies VAR_RESULT, VAR_POKEMON_NEWS_PRESS_REQUESTED_POKEMON
+    GoToIfEq VAR_RESULT, FALSE, SolaceonTownPokemonNewsPress_DidntBringPokemonYet
+    GoTo SolaceonTownPokemonNewsPress_SetReward
 
-_00AE:
-    BufferSpeciesNameFromVar 0, VAR_UNK_0x40E5, 0, 0
-    Message 4
+SolaceonTownPokemonNewsPress_SetReward:
+    BufferSpeciesNameFromVar 0, VAR_POKEMON_NEWS_PRESS_REQUESTED_POKEMON, 0, 0
+    Message SolaceonTownPokemonNewsPress_Text_ThatsItThanks
     GetRandom VAR_RESULT, 12
-    CallIfEq VAR_RESULT, 0, _0189
-    CallIfEq VAR_RESULT, 1, _0191
-    CallIfEq VAR_RESULT, 2, _0199
-    CallIfEq VAR_RESULT, 3, _01A1
-    CallIfEq VAR_RESULT, 4, _01A9
-    CallIfEq VAR_RESULT, 5, _01B1
-    CallIfEq VAR_RESULT, 6, _01B9
-    CallIfEq VAR_RESULT, 7, _01C1
-    CallIfEq VAR_RESULT, 8, _01C9
-    CallIfEq VAR_RESULT, 9, _01D1
-    CallIfEq VAR_RESULT, 10, _01D9
-    CallIfEq VAR_RESULT, 11, _01E1
+    CallIfEq VAR_RESULT, 0, SolaceonTownPokemonNewsPress_SetRewardUltraBall
+    CallIfEq VAR_RESULT, 1, SolaceonTownPokemonNewsPress_SetRewardGreatBall
+    CallIfEq VAR_RESULT, 2, SolaceonTownPokemonNewsPress_SetRewardPokeBall
+    CallIfEq VAR_RESULT, 3, SolaceonTownPokemonNewsPress_SetRewardNetBall
+    CallIfEq VAR_RESULT, 4, SolaceonTownPokemonNewsPress_SetRewardDiveBall
+    CallIfEq VAR_RESULT, 5, SolaceonTownPokemonNewsPress_SetRewardNestBall
+    CallIfEq VAR_RESULT, 6, SolaceonTownPokemonNewsPress_SetRewardRepeatBall
+    CallIfEq VAR_RESULT, 7, SolaceonTownPokemonNewsPress_SetRewardTimerBall
+    CallIfEq VAR_RESULT, 8, SolaceonTownPokemonNewsPress_SetRewardLuxuryBall
+    CallIfEq VAR_RESULT, 9, SolaceonTownPokemonNewsPress_SetRewardDuskBall
+    CallIfEq VAR_RESULT, 10, SolaceonTownPokemonNewsPress_SetRewardHealBall
+    CallIfEq VAR_RESULT, 11, SolaceonTownPokemonNewsPress_SetRewardQuickBall
     SetVar VAR_0x8005, 3
     CanFitItem ITEM_HEART_SCALE, 1, VAR_RESULT
-    GoToIfNe VAR_RESULT, 0, _01E9
-    SetFlag FLAG_UNK_0x0AB1
-    GoToIfEq VAR_RESULT, 0, _023F
+    GoToIfNe VAR_RESULT, FALSE, SolaceonTownPokemonNewsPress_GiveRewardIHopeYoullHelpAgainTomorrow
+    SetFlag FLAG_GOT_POKEMON_NEWS_PRESS_REWARD
+    GoToIfEq VAR_RESULT, FALSE, SolaceonTownPokemonNewsPress_CouldntGiveReward
     End
 
-_0189:
-    SetVar VAR_0x8004, 2
+SolaceonTownPokemonNewsPress_SetRewardUltraBall:
+    SetVar VAR_0x8004, ITEM_ULTRA_BALL
     Return
 
-_0191:
-    SetVar VAR_0x8004, 3
+SolaceonTownPokemonNewsPress_SetRewardGreatBall:
+    SetVar VAR_0x8004, ITEM_GREAT_BALL
     Return
 
-_0199:
-    SetVar VAR_0x8004, 4
+SolaceonTownPokemonNewsPress_SetRewardPokeBall:
+    SetVar VAR_0x8004, ITEM_POKE_BALL
     Return
 
-_01A1:
-    SetVar VAR_0x8004, 6
+SolaceonTownPokemonNewsPress_SetRewardNetBall:
+    SetVar VAR_0x8004, ITEM_NET_BALL
     Return
 
-_01A9:
-    SetVar VAR_0x8004, 7
+SolaceonTownPokemonNewsPress_SetRewardDiveBall:
+    SetVar VAR_0x8004, ITEM_DIVE_BALL
     Return
 
-_01B1:
-    SetVar VAR_0x8004, 8
+SolaceonTownPokemonNewsPress_SetRewardNestBall:
+    SetVar VAR_0x8004, ITEM_NEST_BALL
     Return
 
-_01B9:
-    SetVar VAR_0x8004, 9
+SolaceonTownPokemonNewsPress_SetRewardRepeatBall:
+    SetVar VAR_0x8004, ITEM_REPEAT_BALL
     Return
 
-_01C1:
-    SetVar VAR_0x8004, 10
+SolaceonTownPokemonNewsPress_SetRewardTimerBall:
+    SetVar VAR_0x8004, ITEM_TIMER_BALL
     Return
 
-_01C9:
-    SetVar VAR_0x8004, 11
+SolaceonTownPokemonNewsPress_SetRewardLuxuryBall:
+    SetVar VAR_0x8004, ITEM_LUXURY_BALL
     Return
 
-_01D1:
-    SetVar VAR_0x8004, 13
+SolaceonTownPokemonNewsPress_SetRewardDuskBall:
+    SetVar VAR_0x8004, ITEM_DUSK_BALL
     Return
 
-_01D9:
-    SetVar VAR_0x8004, 14
+SolaceonTownPokemonNewsPress_SetRewardHealBall:
+    SetVar VAR_0x8004, ITEM_HEAL_BALL
     Return
 
-_01E1:
-    SetVar VAR_0x8004, 15
+SolaceonTownPokemonNewsPress_SetRewardQuickBall:
+    SetVar VAR_0x8004, ITEM_QUICK_BALL
     Return
 
-_01E9:
+SolaceonTownPokemonNewsPress_GiveRewardIHopeYoullHelpAgainTomorrow:
     Common_GiveItemQuantity
     SetVar VAR_0x8004, ITEM_HEART_SCALE
     SetVar VAR_0x8005, 1
     Common_GiveItemQuantity
-    ClearFlag FLAG_UNK_0x00DC
-    SetVar VAR_UNK_0x40E5, 0
-    SetFlag FLAG_UNK_0x0AB1
-    Message 5
+    ClearFlag FLAG_COULD_NOT_RECEIVE_POKEMON_NEWS_PRESS_REWARD
+    SetVar VAR_POKEMON_NEWS_PRESS_REQUESTED_POKEMON, 0
+    SetFlag FLAG_GOT_POKEMON_NEWS_PRESS_REWARD
+    Message SolaceonTownPokemonNewsPress_Text_IHopeYoullHelpAgainTomorrow
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0216:
-    GoToIfCannotFitItem ITEM_HEART_SCALE, 1, VAR_RESULT, _0251
-    SetVar VAR_0x8004, VAR_UNK_0x4117
+SolaceonTownPokemonNewsPress_TryGiveReward:
+    GoToIfCannotFitItem ITEM_HEART_SCALE, 1, VAR_RESULT, SolaceonTownPokemonNewsPress_YourBagIsStuffedFull
+    SetVar VAR_0x8004, VAR_POKEMON_NEWS_PRESS_POKE_BALL_REWARD
     SetVar VAR_0x8005, 3
-    GoTo _025C
+    GoTo SolaceonTownPokemonNewsPress_GiveReward
     End
 
-_023F:
-    SetVar VAR_UNK_0x4117, VAR_0x8004
-    SetFlag FLAG_UNK_0x00DC
-    GoTo _0251
+SolaceonTownPokemonNewsPress_CouldntGiveReward:
+    SetVar VAR_POKEMON_NEWS_PRESS_POKE_BALL_REWARD, VAR_0x8004
+    SetFlag FLAG_COULD_NOT_RECEIVE_POKEMON_NEWS_PRESS_REWARD
+    GoTo SolaceonTownPokemonNewsPress_YourBagIsStuffedFull
     End
 
-_0251:
-    Message 6
+SolaceonTownPokemonNewsPress_YourBagIsStuffedFull:
+    Message SolaceonTownPokemonNewsPress_Text_YourBagIsStuffedFull
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_025C:
-    Message 7
-    ClearFlag FLAG_UNK_0x00DC
-    SetVar VAR_UNK_0x40E5, 0
+SolaceonTownPokemonNewsPress_GiveReward:
+    Message SolaceonTownPokemonNewsPress_Text_HeresYourReward
+    ClearFlag FLAG_COULD_NOT_RECEIVE_POKEMON_NEWS_PRESS_REWARD
+    SetVar VAR_POKEMON_NEWS_PRESS_REQUESTED_POKEMON, 0
     Common_GiveItemQuantity
-    SetVar VAR_0x8004, 93
+    SetVar VAR_0x8004, ITEM_HEART_SCALE
     SetVar VAR_0x8005, 1
     Common_GiveItemQuantityNoLineFeed
     CloseMessage
     ReleaseAll
     End
 
-_0283:
-    BufferSpeciesNameFromVar 0, VAR_UNK_0x40E5, 0, 0
+SolaceonTownPokemonNewsPress_DidntBringPokemonYet:
+    BufferSpeciesNameFromVar 0, VAR_POKEMON_NEWS_PRESS_REQUESTED_POKEMON, 0, 0
     GetNewsPressDeadline VAR_RESULT
     BufferNumber 1, VAR_RESULT
-    Message 8
+    Message SolaceonTownPokemonNewsPress_Text_YouStillHaventCaughtThePokemon
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_029F:
-    Message 9
-    SetVar VAR_UNK_0x40E5, 0
+SolaceonTownPokemonNewsPress_FailedToBringPokemonWithinDeadline:
+    Message SolaceonTownPokemonNewsPress_Text_YouFailedToBringMeThePokemon
+    SetVar VAR_POKEMON_NEWS_PRESS_REQUESTED_POKEMON, 0
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_02B0:
-    Message 10
+SolaceonTownPokemonNewsPress_IllHaveAnotherAssignmentTomorrow:
+    Message SolaceonTownPokemonNewsPress_Text_IllHaveAnotherAssignmentTomorrow
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_02BB:
-    NPCMessage 11
+SolaceonTownPokemonNewsPress_PokemonBreederM:
+    NPCMessage SolaceonTownPokemonNewsPress_Text_TheNewspaperIsTinyButHasManyFans
     End
 
-_02CE:
+SolaceonTownPokemonNewsPress_PC:
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    Message 12
-    Message 13
+    Message SolaceonTownPokemonNewsPress_Text_WeeklyPokeBallRoundupIsTheTopStory
+    Message SolaceonTownPokemonNewsPress_Text_ReadWhichArticle
     InitGlobalTextMenu 1, 1, 0, VAR_RESULT
-    AddMenuEntry 0x107, 0
-    AddMenuEntry 0x108, 1
-    AddMenuEntry 0x109, 2
-    AddMenuEntry 0x10B, 3
-    AddMenuEntry 0x10A, 4
+    AddMenuEntry MenuEntries_Text_Article_DuskBall, 0
+    AddMenuEntry MenuEntries_Text_Article_HealBall, 1
+    AddMenuEntry MenuEntries_Text_Article_QuickBall, 2
+    AddMenuEntry MenuEntries_Text_Article_DiveBall, 3
+    AddMenuEntry MenuEntries_Text_Article_Exit, 4
     ShowMenu
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, 0, _0344
-    GoToIfEq VAR_0x8008, 1, _034F
-    GoToIfEq VAR_0x8008, 2, _035A
-    GoToIfEq VAR_0x8008, 3, _0365
-    GoTo _0370
+    GoToIfEq VAR_0x8008, 0, SolaceonTownPokemonNewsPress_ArticleDuskBall
+    GoToIfEq VAR_0x8008, 1, SolaceonTownPokemonNewsPress_ArticleHealBall
+    GoToIfEq VAR_0x8008, 2, SolaceonTownPokemonNewsPress_ArticleQuickBall
+    GoToIfEq VAR_0x8008, 3, SolaceonTownPokemonNewsPress_ArticleDiveBall
+    GoTo SolaceonTownPokemonNewsPress_PCEnd
     End
 
-_0344:
-    Message 14
+SolaceonTownPokemonNewsPress_ArticleDuskBall:
+    Message SolaceonTownPokemonNewsPress_Text_ArticleDuskBall
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_034F:
-    Message 15
+SolaceonTownPokemonNewsPress_ArticleHealBall:
+    Message SolaceonTownPokemonNewsPress_Text_ArticleHealBall
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_035A:
-    Message 16
+SolaceonTownPokemonNewsPress_ArticleQuickBall:
+    Message SolaceonTownPokemonNewsPress_Text_ArticleQuickBall
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0365:
-    Message 17
+SolaceonTownPokemonNewsPress_ArticleDiveBall:
+    Message SolaceonTownPokemonNewsPress_Text_ArticleDiveBall
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0370:
+SolaceonTownPokemonNewsPress_PCEnd:
     CloseMessage
     ReleaseAll
     End
