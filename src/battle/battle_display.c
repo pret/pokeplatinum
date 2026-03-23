@@ -593,7 +593,7 @@ void BattleDisplay_InitTaskThrowTrainerBall(BattleSystem *battleSys, BattlerData
     } else {
         Trainer *trainer = BattleSystem_GetTrainer(battleSys, battlerData->battler);
         trainerThrowBallData->face = FACE_BACK;
-        trainerThrowBallData->unk_0C = sub_020788D0(ov16_02264768(battleSys, battlerData->battler, trainer->header.trainerType));
+        trainerThrowBallData->unk_0C = Pokemon_TrainerClassBackSpriteIndex(ov16_02264768(battleSys, battlerData->battler, trainer->header.trainerType));
     }
 
     SysTask_Start(Task_ThrowTrainerBall, trainerThrowBallData, 0);

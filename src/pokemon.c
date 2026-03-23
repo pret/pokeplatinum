@@ -27,8 +27,6 @@
 #include "struct_defs/sprite_animation_frame.h"
 #include "struct_defs/struct_02078B40.h"
 
-#include "overlay005/struct_ov5_021DE5D0.h"
-
 #include "charcode_util.h"
 #include "flags.h"
 #include "heap.h"
@@ -55,6 +53,8 @@
 #include "unk_02017038.h"
 #include "unk_0202C9F4.h"
 #include "unk_02092494.h"
+
+#include "res/trainers/classes/trbgra.naix"
 
 #define FATEFUL_ENCOUNTER_LOCATION 3002
 
@@ -241,6 +241,15 @@ enum PokemonDataBlockID {
     DATA_BLOCK_B,
     DATA_BLOCK_C,
     DATA_BLOCK_D
+};
+
+enum TrainerClassFilesTypes {
+    TCFT_TILES = 0,
+    TCFT_PALETTE,
+    TCFT_CELLS,
+    TCFT_ANIMS,
+    TCFT_SCAN,
+    TRAINER_CLASS_NUM_FILETYPES,
 };
 
 static void sub_02073E18(BoxPokemon *boxMon, int monSpecies, int monLevel, int monIVs, BOOL useMonPersonalityParam, u32 monPersonality, int monOTIDSource, u32 monOTID);
@@ -3371,14 +3380,14 @@ static u8 LoadPokemonDPSpriteHeight(u16 species, u8 gender, u8 face, u8 form, u3
     return result;
 }
 
-void sub_0207697C(PokemonSpriteTemplate *param0, u16 param1)
+void Pokemon_SetTrainerBackSpriteTemplate(PokemonSpriteTemplate *spriteTemplate, u16 param1)
 {
-    param0->narcID = 60;
-    param0->character = param1 * 2;
-    param0->palette = param1 * 2 + 1;
-    param0->spindaSpots = 0;
-    param0->dummy = 0;
-    param0->personality = 0;
+    spriteTemplate->narcID = NARC_INDEX_POKETOOL__TRGRA__TRFGRA;
+    spriteTemplate->character = param1 * 2;
+    spriteTemplate->palette = param1 * 2 + 1;
+    spriteTemplate->spindaSpots = 0;
+    spriteTemplate->dummy = 0;
+    spriteTemplate->personality = 0;
 }
 
 static const SpriteTemplate sSpriteTemplateTrainer = {
@@ -3403,27 +3412,26 @@ static const int Unk_020F0588[] = {
     0x1
 };
 
-ManagedSprite *SpriteSystem_NewManagedSpriteTrainer(SpriteSystem *spriteSys, SpriteManager *spriteMan, PaletteData *paletteData, int x, int y, int trainerClass, int face, int battlerType, enum HeapID heapID)
+ManagedSprite *SpriteSystem_NewManagedSpriteTrainer(SpriteSystem *spriteSys, SpriteManager *spriteMan, PaletteData *paletteData, int x, int y, enum TrainerClass trainerClass, int face, int battlerType, enum HeapID heapID)
 {
     SpriteTemplate spriteTemplate;
     ManagedSprite *managedSprite;
     NARC *narc;
-    UnkStruct_ov5_021DE5D0 v3;
-    int v4 = 1;
+    TrainerClassGraphicIndex trainerClassGraphicIndex;
+    int paletteIdx = 1;
 
-    sub_02076AAC(trainerClass, face, &v3);
+    Pokemon_SetTrainerClassGraphicsIndex(trainerClass, face, &trainerClassGraphicIndex);
 
-    // TODO enum values?
-    if (trainerClass == 102) {
-        v4 = 2;
+    if (trainerClass == TRAINER_CLASS_CASTLE_VALET) {
+        paletteIdx = 2;
     }
 
-    narc = NARC_ctor(v3.narcID, heapID);
+    narc = NARC_ctor(trainerClassGraphicIndex.narcID, heapID);
 
-    SpriteSystem_LoadCharResObjFromOpenNarc(spriteSys, spriteMan, narc, v3.unk_04, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 20015 + battlerType);
-    SpriteSystem_LoadPaletteBufferFromOpenNarc(paletteData, PLTTBUF_MAIN_OBJ, spriteSys, spriteMan, narc, v3.unk_08, FALSE, v4, NNS_G2D_VRAM_TYPE_2DMAIN, 20010 + battlerType);
-    SpriteSystem_LoadCellResObjFromOpenNarc(spriteSys, spriteMan, narc, v3.unk_0C, FALSE, 20007 + battlerType);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(spriteSys, spriteMan, narc, v3.unk_10, FALSE, 20007 + battlerType);
+    SpriteSystem_LoadCharResObjFromOpenNarc(spriteSys, spriteMan, narc, trainerClassGraphicIndex.tiles, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 20015 + battlerType);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(paletteData, PLTTBUF_MAIN_OBJ, spriteSys, spriteMan, narc, trainerClassGraphicIndex.palette, FALSE, paletteIdx, NNS_G2D_VRAM_TYPE_2DMAIN, 20010 + battlerType);
+    SpriteSystem_LoadCellResObjFromOpenNarc(spriteSys, spriteMan, narc, trainerClassGraphicIndex.cells, FALSE, 20007 + battlerType);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(spriteSys, spriteMan, narc, trainerClassGraphicIndex.anims, FALSE, 20007 + battlerType);
     NARC_dtor(narc);
 
     spriteTemplate = sSpriteTemplateTrainer;
@@ -3445,24 +3453,23 @@ ManagedSprite *SpriteSystem_NewManagedSpriteTrainer(SpriteSystem *spriteSys, Spr
     return managedSprite;
 }
 
-void sub_02076AAC(int param0, int param1, UnkStruct_ov5_021DE5D0 *param2)
+void Pokemon_SetTrainerClassGraphicsIndex(enum TrainerClass trainerClass, int face, TrainerClassGraphicIndex *trainerClassGraphicIndex)
 {
-    // TODO enum values?
-    if (param1 == 2) {
-        param2->narcID = NARC_INDEX_POKETOOL__TRGRA__TRFGRA;
-        param2->unk_04 = 0 + param0 * 5;
-        param2->unk_08 = 1 + param0 * 5;
-        param2->unk_0C = 2 + param0 * 5;
-        param2->unk_10 = 3 + param0 * 5;
-        param2->unk_14 = 4 + param0 * 5;
+    if (face == FACE_FRONT) {
+        trainerClassGraphicIndex->narcID = NARC_INDEX_POKETOOL__TRGRA__TRFGRA;
+        trainerClassGraphicIndex->tiles = TCFT_TILES + trainerClass * TRAINER_CLASS_NUM_FILETYPES;
+        trainerClassGraphicIndex->palette = TCFT_PALETTE + trainerClass * TRAINER_CLASS_NUM_FILETYPES;
+        trainerClassGraphicIndex->cells = TCFT_CELLS + trainerClass * TRAINER_CLASS_NUM_FILETYPES;
+        trainerClassGraphicIndex->anims = TCFT_ANIMS + trainerClass * TRAINER_CLASS_NUM_FILETYPES;
+        trainerClassGraphicIndex->scan = TCFT_SCAN + trainerClass * TRAINER_CLASS_NUM_FILETYPES;
     } else {
-        param2->narcID = NARC_INDEX_POKETOOL__TRGRA__TRBGRA;
-        param0 = sub_020788D0(param0);
-        param2->unk_04 = 0 + param0 * 5;
-        param2->unk_08 = 1 + param0 * 5;
-        param2->unk_0C = 2 + param0 * 5;
-        param2->unk_10 = 3 + param0 * 5;
-        param2->unk_14 = 4 + param0 * 5;
+        trainerClassGraphicIndex->narcID = NARC_INDEX_POKETOOL__TRGRA__TRBGRA;
+        trainerClass = Pokemon_TrainerClassBackSpriteIndex(trainerClass);
+        trainerClassGraphicIndex->tiles = TCFT_TILES + trainerClass * TRAINER_CLASS_NUM_FILETYPES;
+        trainerClassGraphicIndex->palette = TCFT_PALETTE + trainerClass * TRAINER_CLASS_NUM_FILETYPES;
+        trainerClassGraphicIndex->cells = TCFT_CELLS + trainerClass * TRAINER_CLASS_NUM_FILETYPES;
+        trainerClassGraphicIndex->anims = TCFT_ANIMS + trainerClass * TRAINER_CLASS_NUM_FILETYPES;
+        trainerClassGraphicIndex->scan = TCFT_SCAN + trainerClass * TRAINER_CLASS_NUM_FILETYPES;
     }
 }
 
@@ -5058,37 +5065,37 @@ BOOL sub_0207884C(BoxPokemon *boxMon, TrainerInfo *param1, enum HeapID heapID)
     return v6;
 }
 
-int sub_020788D0(int param0)
+// Mapping to Back Sprites order. Returns player if not otherwise defined
+int Pokemon_TrainerClassBackSpriteIndex(enum TrainerClass trainerClass)
 {
-    // TODO enum values?
-    switch (param0) {
-    case 0:
-    case 1:
+    switch (trainerClass) {
+    case TRAINER_CLASS_PLAYER_MALE:
+    case TRAINER_CLASS_PLAYER_FEMALE:
         break;
-    case 63:
-        param0 = 2;
+    case TRAINER_CLASS_RIVAL:
+        trainerClass = rival_back_NCGR / TRAINER_CLASS_NUM_FILETYPES;
         break;
-    case 90:
-    case 91:
-    case 92:
-    case 93:
-    case 94:
-        param0 = 3 + (param0 - 90);
+    case TRAINER_CLASS_TRAINER_CHERYL:
+    case TRAINER_CLASS_TRAINER_RILEY:
+    case TRAINER_CLASS_TRAINER_MARLEY:
+    case TRAINER_CLASS_TRAINER_BUCK:
+    case TRAINER_CLASS_TRAINER_MIRA:
+        trainerClass = trainer_cheryl_back_NCGR / TRAINER_CLASS_NUM_FILETYPES + trainerClass - TRAINER_CLASS_TRAINER_CHERYL;
         break;
-    case 103:
-    case 104:
-        param0 = 8 + (param0 - 103);
+    case TRAINER_CLASS_DP_PLAYER_MALE_2:
+    case TRAINER_CLASS_DP_PLAYER_FEMALE_2:
+        trainerClass = dp_player_male_back_NCGR / TRAINER_CLASS_NUM_FILETYPES + trainerClass - TRAINER_CLASS_DP_PLAYER_MALE_2;
         break;
     default:
-        if (TrainerClass_Gender(param0) == 1) {
-            param0 = 1;
+        if (TrainerClass_Gender(trainerClass) == GENDER_FEMALE) {
+            trainerClass = player_female_back_NCGR / TRAINER_CLASS_NUM_FILETYPES;
         } else {
-            param0 = 0;
+            trainerClass = player_male_back_NCGR / TRAINER_CLASS_NUM_FILETYPES;
         }
         break;
     }
 
-    return param0;
+    return trainerClass;
 }
 
 void Pokemon_ClearBallCapsuleData(Pokemon *mon)

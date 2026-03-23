@@ -6,7 +6,6 @@
 
 #include "constants/graphics.h"
 
-#include "overlay005/struct_ov5_021DE5D0.h"
 #include "overlay065/struct_ov65_0222F6EC.h"
 #include "overlay066/ov66_0222DDF0.h"
 #include "overlay066/ov66_02231428.h"
@@ -2707,39 +2706,39 @@ static void ov70_02260048(UnkStruct_ov70_0225FA84 *param0, UnkStruct_ov70_0225E4
 
 static void ov70_02260080(UnkStruct_ov70_0225FA84 *param0, UnkStruct_ov70_0225E4EC *param1, NARC *param2, u32 heapID, u32 param4)
 {
-    u32 v0;
+    enum TrainerClass trainerClass;
     u16 v1, v2;
     u32 v3;
-    UnkStruct_ov5_021DE5D0 v4;
+    TrainerClassGraphicIndex v4;
 
     GF_ASSERT(param0->unk_68 == NULL);
 
     for (v3 = 0; v3 < 18; v3++) {
         if (Unk_ov70_0226D724[v3].unk_00 == param4) {
-            v0 = Unk_ov70_0226D724[v3].unk_02;
+            trainerClass = Unk_ov70_0226D724[v3].unk_02;
             v1 = Unk_ov70_0226D724[v3].unk_04;
             v2 = Unk_ov70_0226D724[v3].unk_06;
         }
     }
 
-    sub_02076AAC(v0, 2, &v4);
+    Pokemon_SetTrainerClassGraphicsIndex(trainerClass, FACE_FRONT, &v4);
 
     {
         BOOL v5;
 
-        param0->unk_6C[0] = SpriteResourceCollection_AddTiles(param1->unk_194[0], v4.narcID, v4.unk_04, 0, 101, NNS_G2D_VRAM_TYPE_2DSUB, heapID);
+        param0->unk_6C[0] = SpriteResourceCollection_AddTiles(param1->unk_194[0], v4.narcID, v4.tiles, 0, 101, NNS_G2D_VRAM_TYPE_2DSUB, heapID);
         v5 = SpriteTransfer_RequestCharAtEnd(param0->unk_6C[0]);
         GF_ASSERT(v5);
 
-        param0->unk_6C[1] = SpriteResourceCollection_AddPalette(param1->unk_194[1], v4.narcID, v4.unk_08, 0, 101, NNS_G2D_VRAM_TYPE_2DSUB, 1, heapID);
+        param0->unk_6C[1] = SpriteResourceCollection_AddPalette(param1->unk_194[1], v4.narcID, v4.palette, 0, 101, NNS_G2D_VRAM_TYPE_2DSUB, 1, heapID);
         ov70_02260268(SpriteResource_GetPaletteFade(param0->unk_6C[1]));
         v5 = SpriteTransfer_RequestPlttFreeSpace(param0->unk_6C[1]);
         GF_ASSERT(v5);
 
         SpriteResource_ReleaseData(param0->unk_6C[1]);
 
-        param0->unk_6C[2] = SpriteResourceCollection_Add(param1->unk_194[2], v4.narcID, v4.unk_0C, 0, 101, 2, heapID);
-        param0->unk_6C[3] = SpriteResourceCollection_Add(param1->unk_194[3], v4.narcID, v4.unk_10, 0, 101, 3, heapID);
+        param0->unk_6C[2] = SpriteResourceCollection_Add(param1->unk_194[2], v4.narcID, v4.cells, 0, 101, 2, heapID);
+        param0->unk_6C[3] = SpriteResourceCollection_Add(param1->unk_194[3], v4.narcID, v4.anims, 0, 101, 3, heapID);
     }
 
     {

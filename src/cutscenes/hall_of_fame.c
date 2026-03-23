@@ -6,8 +6,6 @@
 #include "struct_defs/sprite_animation_frame.h"
 #include "struct_defs/struct_0203E234.h"
 
-#include "overlay005/struct_ov5_021DE5D0.h"
-
 #include "bg_window.h"
 #include "camera.h"
 #include "character_sprite.h"
@@ -796,7 +794,7 @@ static void ov86_0223BAC8(HallOfFameMan *hallOfFameMan, NNSG2dCellDataBank *cell
     PokemonSpriteTemplate spriteTemplate;
     SpriteResourcesHeader resourceHeader;
     SpriteListTemplate spriteListTemplate;
-    UnkStruct_ov5_021DE5D0 v4;
+    TrainerClassGraphicIndex v4;
     NNSG2dImageProxy imageProxy;
     NNSG2dImagePaletteProxy paletteProxy;
     NNSG2dCharacterData *charData;
@@ -882,13 +880,13 @@ static void ov86_0223BAC8(HallOfFameMan *hallOfFameMan, NNSG2dCellDataBank *cell
     NNS_G2dLoadImage1DMapping(charData, 38400, NNS_G2D_VRAM_TYPE_2DMAIN, &imageProxy);
     NNS_G2dLoadPalette(paletteData, 192, NNS_G2D_VRAM_TYPE_2DMAIN, &paletteProxy);
 
-    sub_02076AAC((TrainerInfo_Gender(hallOfFameMan->displayData->trainerInfo) == GENDER_FEMALE) ? 1 : 0, 2, &v4);
-    CharacterSprite_LoadSpriteRegion(v4.narcID, v4.unk_14, HEAP_ID_HALL_OF_FAME, &tileRegions[0], hallOfFameMan->unk_310);
+    Pokemon_SetTrainerClassGraphicsIndex((TrainerInfo_Gender(hallOfFameMan->displayData->trainerInfo) == GENDER_FEMALE) ? TRAINER_CLASS_PLAYER_FEMALE : TRAINER_CLASS_PLAYER_MALE, FACE_FRONT, &v4);
+    CharacterSprite_LoadSpriteRegion(v4.narcID, v4.scan, HEAP_ID_HALL_OF_FAME, &tileRegions[0], hallOfFameMan->unk_310);
 
     DC_FlushRange(hallOfFameMan->unk_310, 3200);
     GX_LoadOBJ(hallOfFameMan->unk_310, 38400, 3200);
 
-    Graphics_LoadPalette(v4.narcID, v4.unk_08, 1, 192, 0x20, HEAP_ID_HALL_OF_FAME);
+    Graphics_LoadPalette(v4.narcID, v4.palette, 1, 192, 0x20, HEAP_ID_HALL_OF_FAME);
 
     spriteListTemplate.priority = 0;
     hallOfFameMan->sprite = SpriteList_Add(&spriteListTemplate);

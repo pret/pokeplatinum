@@ -42,7 +42,7 @@ void CRYPTO_RC4FastInit(CRYPTORC4FastContext *ctx, const void *key, u32 keyLengt
     if (keyLength > 16) {
         keyLength = 16;
     }
-    
+
     ctx->i = 0;
     ctx->j = 0;
 

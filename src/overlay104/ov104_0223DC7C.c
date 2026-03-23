@@ -24,6 +24,9 @@
 #include "text.h"
 #include "unk_02012744.h"
 
+#include "res/text/bank/npc_trainer_names.h"
+#include "res/trainers/classes/field_encounteffect.naix"
+
 typedef struct {
     Window unk_00;
     u16 unk_10;
@@ -105,23 +108,23 @@ typedef struct {
     ManagedSprite *unk_90;
 } UnkStruct_ov104_0223DDE4;
 
-typedef struct {
-    u32 unk_00;
-    u8 unk_04;
-    u8 unk_05;
-    u8 unk_06;
-    u8 unk_07;
-    u8 unk_08;
-    u8 unk_09;
-    u8 unk_0A;
-    u8 unk_0B;
-} UnkStruct_ov104_0224191C;
+typedef struct FrontierBrainsEncounterParams {
+    u32 name;
+    u8 mugshotPalette;
+    u8 mugshotTiles;
+    u8 mugshotCells;
+    u8 mugshotAnims;
+    u8 bannerPalette;
+    u8 bannerTiles;
+    u8 bannerTilemap;
+    u8 unused;
+} FrontierBrainsEncounterParams;
 
 void ov104_0223DC7C(int param0, BgConfig *param1, SpriteSystem *param2, SpriteManager *param3, PaletteData *param4, u16 *param5, s16 param6, s16 param7);
 static void ov104_0223DD30(UnkStruct_ov104_0223DD30 *param0, SysTask *param1);
 static void ov104_0223DD5C(SysTask *param0, void *param1);
 static void ov104_0223DDB4(SysTask *param0, void *param1);
-static BOOL ov104_0223DDE4(UnkStruct_ov104_0223DD30 *param0, u32 heapID, const UnkStruct_ov104_0224191C *param2);
+static BOOL ov104_0223DDE4(UnkStruct_ov104_0223DD30 *param0, u32 heapID, const FrontierBrainsEncounterParams *param2);
 static void ov104_0223E29C(UnkStruct_ov104_0223DD30 *param0, UnkStruct_ov104_0223E3B8 *param1, const String *param2, enum Font param3, TextColor param4, int param5, int param6, int param7, int param8, int param9, UnkStruct_ov104_0223E29C *param10);
 static void ov104_0223E3B8(UnkStruct_ov104_0223E3B8 *param0);
 static void ov104_0223E3FC(UnkStruct_ov104_0223DD30 *param0, UnkStruct_ov104_0223E48C *param1, fx32 param2, fx32 param3, u32 param4);
@@ -130,7 +133,7 @@ static BOOL ov104_0223E4A4(UnkStruct_ov104_0223E48C *param0);
 static void ov104_0223E534(LinearInterpolationTaskFX32 *param0, fx32 param1, fx32 param2, int param3);
 static BOOL ov104_0223E544(LinearInterpolationTaskFX32 *param0);
 static VecFx32 ov104_0223E58C(fx32 param0, fx32 param1, fx32 param2);
-static void ov104_0223E5A8(UnkStruct_ov104_0223DD30 *param0, const UnkStruct_ov104_0224191C *param1);
+static void ov104_0223E5A8(UnkStruct_ov104_0223DD30 *param0, const FrontierBrainsEncounterParams *param1);
 static void ov104_0223E6BC(SysTask *param0, void *param1);
 static void ov104_0223E6F0(UnkStruct_ov104_0223DD30 *param0, int param1);
 static void ov104_0223E740(SysTask *param0, void *param1);
@@ -138,13 +141,13 @@ static void ov104_0223E7A4(SysTask *param0, void *param1);
 static BOOL ov104_0223E804(UnkStruct_ov104_0223DD30 *param0, UnkStruct_ov104_0223DDE4 *param1, UnkStruct_ov104_0223E804 *param2);
 static void ov104_0223E3CC(const String *param0, int param1, int *param2, int *param3);
 
-static const UnkStruct_ov104_0224191C Unk_ov104_0224191C[] = {
-    { 0x33A, 0x7D, 0x7E, 0x7F, 0x80, 0x8F, 0x8E, 0x8D, 0x0 },
-    { 0x387, 0x71, 0x72, 0x73, 0x74, 0x86, 0x85, 0x84, 0x0 },
-    { 0x387, 0x71, 0x72, 0x73, 0x74, 0x86, 0x85, 0x84, 0x0 },
-    { 0x389, 0x6D, 0x6E, 0x6F, 0x70, 0x83, 0x82, 0x81, 0x0 },
-    { 0x386, 0x79, 0x7A, 0x7B, 0x7C, 0x8C, 0x8B, 0x8A, 0x0 },
-    { 0x388, 0x75, 0x76, 0x77, 0x78, 0x89, 0x88, 0x87, 0x0 }
+static const FrontierBrainsEncounterParams sFrontierBrainsEncounterParams[] = {
+    { NPCTrainerNames_Text_tower_tycoon_palmer_dummy, tower_tycoon_mugshot_NCLR, tower_tycoon_mugshot_NCGR, tower_tycoon_mugshot_cell_NCER, tower_tycoon_mugshot_anim_NANR, tower_tycoon_banner_NCLR, tower_tycoon_banner_NCGR, tower_tycoon_banner_NSCR, 0 },
+    { NPCTrainerNames_Text_factory_head_thorton_dummy, factory_head_mugshot_NCLR, factory_head_mugshot_NCGR, factory_head_mugshot_cell_NCER, factory_head_mugshot_anim_NANR, factory_head_banner_NCLR, factory_head_banner_NCGR, factory_head_banner_NSCR, 0 },
+    { NPCTrainerNames_Text_factory_head_thorton_dummy, factory_head_mugshot_NCLR, factory_head_mugshot_NCGR, factory_head_mugshot_cell_NCER, factory_head_mugshot_anim_NANR, factory_head_banner_NCLR, factory_head_banner_NCGR, factory_head_banner_NSCR, 0 },
+    { NPCTrainerNames_Text_castle_valet_darach_dummy, castle_valet_mugshot_NCLR, castle_valet_mugshot_NCGR, castle_valet_mugshot_cell_NCER, castle_valet_mugshot_anim_NANR, castle_valet_banner_NCLR, castle_valet_banner_NCGR, castle_valet_banner_NSCR, 0 },
+    { NPCTrainerNames_Text_hall_matron_argenta_dummy, hall_matron_mugshot_NCLR, hall_matron_mugshot_NCGR, hall_matron_mugshot_cell_NCER, hall_matron_mugshot_anim_NANR, hall_matron_banner_NCLR, hall_matron_banner_NCGR, hall_matron_banner_NSCR, 0 },
+    { NPCTrainerNames_Text_arcade_star_dahlia_dummy, arcade_star_mugshot_NCLR, arcade_star_mugshot_NCGR, arcade_star_mugshot_cell_NCER, arcade_star_mugshot_anim_NANR, arcade_star_banner_NCLR, arcade_star_banner_NCGR, arcade_star_banner_NSCR, 0 }
 };
 
 static const SpriteTemplate Unk_ov104_022418B4 = {
@@ -198,7 +201,7 @@ void ov104_0223DC7C(int param0, BgConfig *param1, SpriteSystem *param2, SpriteMa
     Bg_ScheduleScroll(param1, 1, 0, 0);
     Bg_ScheduleScroll(param1, 1, 3, 0);
 
-    ov104_0223E5A8(v1, &Unk_ov104_0224191C[v1->unk_2C]);
+    ov104_0223E5A8(v1, &sFrontierBrainsEncounterParams[v1->unk_2C]);
 
     v1->unk_34 = SysTask_ExecuteAfterVBlank(ov104_0223DD5C, v1, 1);
 }
@@ -223,14 +226,14 @@ static void ov104_0223DD5C(SysTask *param0, void *param1)
 static void ov104_0223DDB4(SysTask *param0, void *param1)
 {
     UnkStruct_ov104_0223DD30 *v0 = param1;
-    BOOL v1 = ov104_0223DDE4(v0, HEAP_ID_94, &Unk_ov104_0224191C[v0->unk_2C]);
+    BOOL v1 = ov104_0223DDE4(v0, HEAP_ID_94, &sFrontierBrainsEncounterParams[v0->unk_2C]);
 
     if (v1 == 1) {
         ov104_0223DD30(v0, param0);
     }
 }
 
-static BOOL ov104_0223DDE4(UnkStruct_ov104_0223DD30 *param0, u32 heapID, const UnkStruct_ov104_0224191C *param2)
+static BOOL ov104_0223DDE4(UnkStruct_ov104_0223DD30 *param0, u32 heapID, const FrontierBrainsEncounterParams *param2)
 {
     UnkStruct_ov104_0223DDE4 *v0 = param0->unk_0C;
     BOOL v1;
@@ -247,7 +250,7 @@ static BOOL ov104_0223DDE4(UnkStruct_ov104_0223DD30 *param0, u32 heapID, const U
         memset(param0->unk_0C, 0, sizeof(UnkStruct_ov104_0223DDE4));
 
         v0 = param0->unk_0C;
-        v7 = SpriteSystem_LoadPaletteBufferFromOpenNarc(param0->unk_1C, 2, param0->unk_14, param0->unk_18, param0->unk_24, 11, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 2004);
+        v7 = SpriteSystem_LoadPaletteBufferFromOpenNarc(param0->unk_1C, 2, param0->unk_14, param0->unk_18, param0->unk_24, _shared_enc_fade_NCLR, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 2004);
 
         param0->unk_164 |= 1 << v7;
         param0->unk_30 = sub_02012744(4, HEAP_ID_94);
@@ -257,7 +260,7 @@ static BOOL ov104_0223DDE4(UnkStruct_ov104_0223DD30 *param0, u32 heapID, const U
             String *v10;
 
             v9 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_NPC_TRAINER_NAMES, heapID);
-            v10 = MessageLoader_GetNewString(v9, param2->unk_00);
+            v10 = MessageLoader_GetNewString(v9, param2->name);
 
             ov104_0223E29C(param0, &v0->unk_7C, v10, FONT_SYSTEM, TEXT_COLOR(1, 2, 0), 0, 2004, 208 + -92 + param0->unk_28, 11 * 8 + param0->unk_2A, 0, NULL);
 
@@ -267,20 +270,20 @@ static BOOL ov104_0223DDE4(UnkStruct_ov104_0223DD30 *param0, u32 heapID, const U
         }
 
         {
-            param0->unk_160 = SpriteSystem_LoadPaletteBufferFromOpenNarc(param0->unk_1C, 2, param0->unk_14, param0->unk_18, param0->unk_24, param2->unk_04, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 2002);
+            param0->unk_160 = SpriteSystem_LoadPaletteBufferFromOpenNarc(param0->unk_1C, 2, param0->unk_14, param0->unk_18, param0->unk_24, param2->mugshotPalette, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 2002);
             param0->unk_164 |= 1 << param0->unk_160;
 
-            SpriteSystem_LoadCharResObjFromOpenNarc(param0->unk_14, param0->unk_18, param0->unk_24, param2->unk_05, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 2010);
-            SpriteSystem_LoadCellResObjFromOpenNarc(param0->unk_14, param0->unk_18, param0->unk_24, param2->unk_06, FALSE, 2002);
-            SpriteSystem_LoadAnimResObjFromOpenNarc(param0->unk_14, param0->unk_18, param0->unk_24, param2->unk_07, FALSE, 2002);
+            SpriteSystem_LoadCharResObjFromOpenNarc(param0->unk_14, param0->unk_18, param0->unk_24, param2->mugshotTiles, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 2010);
+            SpriteSystem_LoadCellResObjFromOpenNarc(param0->unk_14, param0->unk_18, param0->unk_24, param2->mugshotCells, FALSE, 2002);
+            SpriteSystem_LoadAnimResObjFromOpenNarc(param0->unk_14, param0->unk_18, param0->unk_24, param2->mugshotAnims, FALSE, 2002);
             PaletteData_Blend(param0->unk_1C, PLTTBUF_MAIN_OBJ, param0->unk_160 * 16, 16, 14, (GX_RGB(0, 0, 0)));
 
-            v7 = SpriteSystem_LoadPaletteBufferFromOpenNarc(param0->unk_1C, PLTTBUF_MAIN_OBJ, param0->unk_14, param0->unk_18, param0->unk_24, 51, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 2003);
+            v7 = SpriteSystem_LoadPaletteBufferFromOpenNarc(param0->unk_1C, PLTTBUF_MAIN_OBJ, param0->unk_14, param0->unk_18, param0->unk_24, _shared_vs_NCLR, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 2003);
             param0->unk_164 |= 1 << v7;
 
-            SpriteSystem_LoadCharResObjFromOpenNarc(param0->unk_14, param0->unk_18, param0->unk_24, 144, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 2011);
-            SpriteSystem_LoadCellResObjFromOpenNarc(param0->unk_14, param0->unk_18, param0->unk_24, 145, FALSE, 2003);
-            SpriteSystem_LoadAnimResObjFromOpenNarc(param0->unk_14, param0->unk_18, param0->unk_24, 146, FALSE, 2003);
+            SpriteSystem_LoadCharResObjFromOpenNarc(param0->unk_14, param0->unk_18, param0->unk_24, _shared_frontier_vs_NCGR, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 2011);
+            SpriteSystem_LoadCellResObjFromOpenNarc(param0->unk_14, param0->unk_18, param0->unk_24, _shared_frontier_vs_cell_NCER, FALSE, 2003);
+            SpriteSystem_LoadAnimResObjFromOpenNarc(param0->unk_14, param0->unk_18, param0->unk_24, _shared_frontier_vs_anim_NANR, FALSE, 2003);
         }
 
         v0->unk_90 = SpriteSystem_NewSprite(param0->unk_14, param0->unk_18, &Unk_ov104_022418B4);
@@ -599,7 +602,7 @@ static VecFx32 ov104_0223E58C(fx32 param0, fx32 param1, fx32 param2)
     return v0;
 }
 
-static void ov104_0223E5A8(UnkStruct_ov104_0223DD30 *param0, const UnkStruct_ov104_0224191C *param1)
+static void ov104_0223E5A8(UnkStruct_ov104_0223DD30 *param0, const FrontierBrainsEncounterParams *param1)
 {
     GX_SetVisibleWnd(GX_WNDMASK_W0 | GX_WNDMASK_W1);
     G2_SetWnd0InsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, 1);
@@ -608,9 +611,9 @@ static void ov104_0223E5A8(UnkStruct_ov104_0223DD30 *param0, const UnkStruct_ov1
     G2_SetWnd0Position(0, 0, 0, 0);
     G2_SetWnd1Position(0, 0, 0, 0);
 
-    PaletteData_LoadBufferFromFileStart(param0->unk_1C, 112, param1->unk_08, 94, 0, 0x20, 12 * 16);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_24, param1->unk_09, param0->unk_10, 1, 0, 0, 0, HEAP_ID_94);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_24, param1->unk_0A, param0->unk_10, 1, 0, 0, 0, HEAP_ID_94);
+    PaletteData_LoadBufferFromFileStart(param0->unk_1C, 112, param1->bannerPalette, 94, 0, 0x20, 12 * 16);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_24, param1->bannerTiles, param0->unk_10, 1, 0, 0, 0, HEAP_ID_94);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_24, param1->bannerTilemap, param0->unk_10, 1, 0, 0, 0, HEAP_ID_94);
     Bg_ChangeTilemapRectPalette(param0->unk_10, 1, 0, 0, 32, 32, 12);
     Bg_ScheduleTilemapTransfer(param0->unk_10, 1);
 
@@ -618,7 +621,7 @@ static void ov104_0223E5A8(UnkStruct_ov104_0223DD30 *param0, const UnkStruct_ov1
         void *v0;
         NNSG2dPaletteData *v1;
 
-        v0 = Graphics_GetPlttData(NARC_INDEX_GRAPHIC__FIELD_ENCOUNTEFFECT, param1->unk_08, &v1, HEAP_ID_94);
+        v0 = Graphics_GetPlttData(NARC_INDEX_GRAPHIC__FIELD_ENCOUNTEFFECT, param1->bannerPalette, &v1, HEAP_ID_94);
 
         MI_CpuCopy16(v1->pRawData, param0->unk_40, 8 * 32);
         Heap_Free(v0);

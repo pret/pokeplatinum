@@ -7,14 +7,13 @@
 #include "constants/forms.h"
 #include "constants/pokemon.h"
 #include "constants/sound.h"
+#include "generated/trainer_classes.h"
 
 #include "struct_decls/struct_02078B40_decl.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/pokemon.h"
 #include "struct_defs/species.h"
 #include "struct_defs/sprite_animation_frame.h"
-
-#include "overlay005/struct_ov5_021DE5D0.h"
 
 #include "narc.h"
 #include "palette.h"
@@ -55,6 +54,15 @@ enum EvolutionClass {
     EVO_CLASS_UNUSED_02,
     EVO_CLASS_BY_ITEM,
 };
+
+typedef struct TrainerClassGraphicIndex {
+    enum NarcID narcID;
+    int tiles;
+    int palette;
+    int cells;
+    int anims;
+    int scan;
+} TrainerClassGraphicIndex;
 
 /**
  * @brief Zeros out a Pokemon data structure, then encrypts the result
@@ -497,9 +505,9 @@ u8 BoxPokemon_SpriteYOffset(BoxPokemon *boxMon, u8 face, BOOL preferDP);
  * @return Y-offset applied to the sprite-face on display
  */
 u8 LoadPokemonSpriteYOffset(u16 species, u8 gender, u8 face, u8 form, u32 personality);
-void sub_0207697C(PokemonSpriteTemplate *param0, u16 param1);
-ManagedSprite *SpriteSystem_NewManagedSpriteTrainer(SpriteSystem *spriteSys, SpriteManager *spriteMan, PaletteData *paletteData, int x, int y, int trainerType, int face, int battlerType, enum HeapID heapID);
-void sub_02076AAC(int param0, int param1, UnkStruct_ov5_021DE5D0 *param2);
+void Pokemon_SetTrainerBackSpriteTemplate(PokemonSpriteTemplate *spriteTemplate, u16 param1);
+ManagedSprite *SpriteSystem_NewManagedSpriteTrainer(SpriteSystem *spriteSys, SpriteManager *spriteMan, PaletteData *paletteData, int x, int y, enum TrainerClass trainerClass, int face, int battlerType, enum HeapID heapID);
+void Pokemon_SetTrainerClassGraphicsIndex(enum TrainerClass trainerClass, int face, TrainerClassGraphicIndex *trainerClassGraphicIndex);
 
 /**
  * @brief Returns the size in bytes of a Pokemon struct as a u32
@@ -840,7 +848,7 @@ BOOL Pokemon_IsOnBattleFrontierBanlist(u16 species);
 u16 Pokemon_GetBattleFrontierBanlistEntry(u8 index);
 BOOL Pokemon_IsBannedFromBattleFrontier(Pokemon *mon);
 BOOL sub_0207884C(BoxPokemon *boxMon, TrainerInfo *param1, enum HeapID heapID);
-int sub_020788D0(int param0);
+int Pokemon_TrainerClassBackSpriteIndex(enum TrainerClass trainerClass);
 void Pokemon_ClearBallCapsuleData(Pokemon *mon);
 void BoxPokemon_RestorePP(BoxPokemon *boxMon);
 

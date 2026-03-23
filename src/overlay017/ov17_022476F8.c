@@ -173,7 +173,7 @@ void ov17_022478D0(UnkStruct_ov17_02247A48 *param0, int param1)
 
     GF_ASSERT(param0->unk_0C.unk_18 == NULL);
 
-    sub_0207697C(&v0, param0->unk_00->unk_00.unk_10[param1].unk_0A);
+    Pokemon_SetTrainerBackSpriteTemplate(&v0, param0->unk_00->unk_00.unk_10[param1].unk_0A);
     param0->unk_0C.unk_18 = PokemonSpriteManager_CreateSprite(param0->unk_0C.unk_04, &v0, 320, 32, (-0x200 - 0x40), 3, NULL, NULL);
 }
 
