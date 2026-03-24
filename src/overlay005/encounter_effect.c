@@ -5,6 +5,7 @@
 #include <string.h>
 
 #include "constants/battle.h"
+#include "constants/graphics.h"
 #include "constants/heap.h"
 
 #include "field/field_system.h"
@@ -715,7 +716,7 @@ void ov5_021DE3D0(NARC *param0, u32 param1, u32 param2, u32 param3, u32 param4, 
     Bg_ScheduleTilemapTransfer(param6, param7);
 }
 
-void ov5_021DE47C(UnkStruct_ov5_021DE47C *param0, int param1, int param2)
+void EncounterEffect_InitSpriteCollection(UnkStruct_ov5_021DE47C *param0, int param1, int param2)
 {
     int v0;
 
@@ -762,22 +763,22 @@ void ov5_021DE5A4(UnkStruct_ov5_021DE47C *param0, UnkStruct_ov5_021DE5A4 *param1
     }
 }
 
-void ov5_021DE5D0(Sprite *param0, enum HeapID heapID, enum TrainerClass trainerClass, u8 param3, u16 param4)
+void EncounterEffect_BlendTrainerSpritePltt(Sprite *mugshotSprite, enum HeapID heapID, enum TrainerClass trainerClass, u8 fraction, u16 target)
 {
-    TrainerClassGraphicIndex v0;
-    NNSG2dPaletteData *v1;
-    void *v2;
-    u16 *v3;
+    TrainerClassGraphicIndex classIndex;
+    NNSG2dPaletteData *paletteData;
+    void *nclrBuffer;
+    u16 *objPltt;
 
-    SpriteSystem_SetTrainerClassGraphicsIndex(trainerClass, FACE_FRONT, &v0);
-    v3 = Heap_Alloc(heapID, 32);
-    v2 = Graphics_GetPlttData(v0.narcID, v0.palette, &v1, heapID);
-    BlendPalette(v1->pRawData, v3, 16, param3, param4);
+    SpriteSystem_SetTrainerClassGraphicsIndex(trainerClass, FACE_FRONT, &classIndex);
+    objPltt = Heap_Alloc(heapID, PALETTE_SIZE_BYTES);
+    nclrBuffer = Graphics_GetPlttData(classIndex.narcID, classIndex.palette, &paletteData, heapID);
+    BlendPalette(paletteData->pRawData, objPltt, SLOTS_PER_PALETTE, fraction, target);
 
-    ov5_021DE67C(param0, v3, 32);
+    ov5_021DE67C(mugshotSprite, objPltt, PALETTE_SIZE_BYTES);
 
-    Heap_Free(v3);
-    Heap_Free(v2);
+    Heap_Free(objPltt);
+    Heap_Free(nclrBuffer);
 }
 
 Sprite *ov5_021DE62C(UnkStruct_ov5_021DE47C *param0, UnkStruct_ov5_021DE5A4 *param1, fx32 param2, fx32 param3, fx32 param4, int param5)

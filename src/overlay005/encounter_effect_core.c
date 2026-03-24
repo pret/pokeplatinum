@@ -679,7 +679,7 @@ void EncounterEffect_Trainer_Grass_LowerLevel(SysTask *task, void *param)
         trainerEffect->camera = encEffect->fieldSystem->camera;
         trainerEffect->screenSliceEfx = ScreenSliceEffect_New();
 
-        ov5_021DE47C(&trainerEffect->unk_48, 2, 1);
+        EncounterEffect_InitSpriteCollection(&trainerEffect->unk_48, 2, 1);
 
         ov5_021DE4CC(
             encEffect->narc, &trainerEffect->unk_48, &trainerEffect->unk_1E8, 0, 1, 5, 7, 6, 600000);
@@ -841,7 +841,7 @@ void EncounterEffect_Trainer_Grass_HigherLevel(SysTask *param0, void *param1)
 
         v1->unk_28 = ScreenSplitEffect_New();
 
-        ov5_021DE47C(&v1->unk_2C, 2, 1);
+        EncounterEffect_InitSpriteCollection(&v1->unk_2C, 2, 1);
 
         ov5_021DE4CC(
             encEffect->narc, &v1->unk_2C, &v1->unk_1CC, 0, 1, 2, 4, 3, 600000);
@@ -989,7 +989,7 @@ void EncounterEffect_Trainer_Water_LowerLevel(SysTask *param0, void *param1)
         ScreenShakeEffect_Init(&v1->unk_40, HEAP_ID_FIELD1);
         v1->unk_248 = 12;
 
-        ov5_021DE47C(&v1->unk_50, 2, 1);
+        EncounterEffect_InitSpriteCollection(&v1->unk_50, 2, 1);
 
         ov5_021DE4CC(
             v0->narc, &v1->unk_50, &v1->unk_1F0, 0, 1, 5, 7, 6, 600000);
@@ -1160,7 +1160,7 @@ void EncounterEffect_Trainer_Water_HigherLevel(SysTask *param0, void *param1)
         ScreenShakeEffect_Init(&v1->unk_274, HEAP_ID_FIELD1);
         v1->unk_2A0 = 14;
 
-        ov5_021DE47C(&v1->unk_00, 3, 1);
+        EncounterEffect_InitSpriteCollection(&v1->unk_00, 3, 1);
 
         ov5_021DE4CC(
             v0->narc, &v1->unk_00, &v1->unk_1A0, 0, 1, 2, 4, 3, 600000);
@@ -1369,7 +1369,7 @@ void EncounterEffect_Trainer_Cave_LowerLevel(SysTask *param0, void *param1)
 
         v1->camera = v0->fieldSystem->camera;
 
-        ov5_021DE47C(&v1->unk_5C, 1, 1);
+        EncounterEffect_InitSpriteCollection(&v1->unk_5C, 1, 1);
 
         ov5_021DE4CC(
             v0->narc, &v1->unk_5C, &v1->unk_1FC, 0, 1, 2, 4, 3, 600000);
@@ -1495,7 +1495,7 @@ void EncounterEffect_Trainer_Cave_HigherLevel(SysTask *param0, void *param1)
 
         v1->camera = v0->fieldSystem->camera;
 
-        ov5_021DE47C(&v1->unk_00, 3, 1);
+        EncounterEffect_InitSpriteCollection(&v1->unk_00, 3, 1);
 
         ov5_021DE4CC(
             v0->narc, &v1->unk_00, &v1->unk_1A0, 0, 1, 2, 4, 3, 600000);
@@ -1719,7 +1719,7 @@ void EncounterEffect_Frontier(SysTask *param0, void *param1)
         memset(v0->param, 0, sizeof(UnkStruct_ov5_021E4260));
         v1 = v0->param;
 
-        ov5_021DE47C(&v1->unk_2C, 1, 1);
+        EncounterEffect_InitSpriteCollection(&v1->unk_2C, 1, 1);
 
         ov5_021DE4CC(
             v0->narc, &v1->unk_2C, &v1->unk_1CC, 0, 1, 5, 7, 6, 600000);
@@ -1834,7 +1834,7 @@ void EncounterEffect_Double(SysTask *param0, void *param1)
         memset(v0->param, 0, sizeof(UnkStruct_ov5_021E44C0));
         v1 = v0->param;
 
-        ov5_021DE47C(&v1->unk_00, 4, 1);
+        EncounterEffect_InitSpriteCollection(&v1->unk_00, 4, 1);
 
         ov5_021DE4CC(
             v0->narc, &v1->unk_00, &v1->unk_1A0, 0, 1, 2, 4, 3, 600000);
@@ -1988,7 +1988,7 @@ void EncounterEffect_GalacticGrunt(SysTask *param0, void *param1)
         memset(v0->param, 0, sizeof(UnkStruct_ov5_021E4738));
         v1 = v0->param;
 
-        ov5_021DE47C(&v1->unk_00, 6, 1);
+        EncounterEffect_InitSpriteCollection(&v1->unk_00, 6, 1);
 
         ov5_021DE4CC(
             v0->narc, &v1->unk_00, &v1->unk_1A0, 0, 1, 2, 4, 3, 600000);
@@ -2134,7 +2134,7 @@ void EncounterEffect_GalacticBoss(SysTask *param0, void *param1)
         memset(v0->param, 0, sizeof(UnkStruct_ov5_021E4B3C));
         v1 = v0->param;
 
-        ov5_021DE47C(&v1->unk_08, 1, 1);
+        EncounterEffect_InitSpriteCollection(&v1->unk_08, 1, 1);
 
         ov5_021DE4CC(
             v0->narc, &v1->unk_08, &v1->unk_1A8, 1, 1, 8, 10, 9, 600000);
@@ -2590,7 +2590,7 @@ typedef struct GymLeaderEncounterParam {
     fx32 endX;
     u32 trainerID;
     u16 trainerClass;
-    u16 unk_0A;
+    u16 unused; // this was likely meant to be a flip flag
     // The rest are NARC indices
     u8 mugshotPlttIdx;
     u8 mugshotTileIdx;
@@ -2609,7 +2609,7 @@ static const GymLeaderEncounterParam sGymLeaderEncounterParams[8] = {
         .endX = 214 * FX32_ONE,
         .trainerID = TRAINER_LEADER_ROARK,
         .trainerClass = TRAINER_CLASS_LEADER_ROARK,
-        .unk_0A = 1,
+        .unused = 1,
         .mugshotPlttIdx = leader_roark_mugshot_NCLR,
         .mugshotTileIdx = leader_roark_mugshot_NCGR,
         .mugshotCellIdx = leader_roark_mugshot_cell_NCER,
@@ -2623,7 +2623,7 @@ static const GymLeaderEncounterParam sGymLeaderEncounterParams[8] = {
         .endX = 214 * FX32_ONE,
         .trainerID = TRAINER_LEADER_GARDENIA,
         .trainerClass = TRAINER_CLASS_LEADER_GARDENIA,
-        .unk_0A = 1,
+        .unused = 1,
         .mugshotPlttIdx = leader_gardenia_mugshot_NCLR,
         .mugshotTileIdx = leader_gardenia_mugshot_NCGR,
         .mugshotCellIdx = leader_gardenia_mugshot_cell_NCER,
@@ -2637,7 +2637,7 @@ static const GymLeaderEncounterParam sGymLeaderEncounterParams[8] = {
         .endX = 214 * FX32_ONE,
         .trainerID = TRAINER_LEADER_WAKE,
         .trainerClass = TRAINER_CLASS_LEADER_WAKE,
-        .unk_0A = 0,
+        .unused = 0,
         .mugshotPlttIdx = leader_wake_mugshot_NCLR,
         .mugshotTileIdx = leader_wake_mugshot_NCGR,
         .mugshotCellIdx = leader_wake_mugshot_cell_NCER,
@@ -2651,7 +2651,7 @@ static const GymLeaderEncounterParam sGymLeaderEncounterParams[8] = {
         .endX = 214 * FX32_ONE,
         .trainerID = TRAINER_LEADER_MAYLENE,
         .trainerClass = TRAINER_CLASS_LEADER_MAYLENE,
-        .unk_0A = 1,
+        .unused = 1,
         .mugshotPlttIdx = leader_maylene_mugshot_NCLR,
         .mugshotTileIdx = leader_maylene_mugshot_NCGR,
         .mugshotCellIdx = leader_maylene_mugshot_cell_NCER,
@@ -2665,7 +2665,7 @@ static const GymLeaderEncounterParam sGymLeaderEncounterParams[8] = {
         .endX = 214 * FX32_ONE,
         .trainerID = TRAINER_LEADER_FANTINA,
         .trainerClass = TRAINER_CLASS_LEADER_FANTINA,
-        .unk_0A = 1,
+        .unused = 1,
         .mugshotPlttIdx = leader_fantina_mugshot_NCLR,
         .mugshotTileIdx = leader_fantina_mugshot_NCGR,
         .mugshotCellIdx = leader_fantina_mugshot_cell_NCER,
@@ -2679,7 +2679,7 @@ static const GymLeaderEncounterParam sGymLeaderEncounterParams[8] = {
         .endX = 214 * FX32_ONE,
         .trainerID = TRAINER_LEADER_CANDICE,
         .trainerClass = TRAINER_CLASS_LEADER_CANDICE,
-        .unk_0A = 1,
+        .unused = 1,
         .mugshotPlttIdx = leader_candice_mugshot_NCLR,
         .mugshotTileIdx = leader_candice_mugshot_NCGR,
         .mugshotCellIdx = leader_candice_mugshot_cell_NCER,
@@ -2693,7 +2693,7 @@ static const GymLeaderEncounterParam sGymLeaderEncounterParams[8] = {
         .endX = 214 * FX32_ONE,
         .trainerID = TRAINER_LEADER_BYRON,
         .trainerClass = TRAINER_CLASS_LEADER_BYRON,
-        .unk_0A = 1,
+        .unused = 1,
         .mugshotPlttIdx = leader_byron_mugshot_NCLR,
         .mugshotTileIdx = leader_byron_mugshot_NCGR,
         .mugshotCellIdx = leader_byron_mugshot_cell_NCER,
@@ -2707,7 +2707,7 @@ static const GymLeaderEncounterParam sGymLeaderEncounterParams[8] = {
         .endX = 214 * FX32_ONE,
         .trainerID = TRAINER_LEADER_VOLKNER,
         .trainerClass = TRAINER_CLASS_LEADER_VOLKNER,
-        .unk_0A = 1,
+        .unused = 1,
         .mugshotPlttIdx = leader_volkner_mugshot_NCLR,
         .mugshotTileIdx = leader_volkner_mugshot_NCGR,
         .mugshotCellIdx = leader_volkner_mugshot_cell_NCER,
@@ -2779,7 +2779,7 @@ typedef struct {
     UnkStruct_ov5_021DED04 *unk_40;
     UnkStruct_ov5_021DE47C unk_44;
     UnkStruct_ov5_021DE5A4 unk_1E4[2];
-    Sprite *unk_24C;
+    Sprite *mugshotSprite;
     UnkStruct_ov5_021E5128 unk_250;
     UnkStruct_ov5_021E52A8_sub1 unk_2B4;
     UnkStruct_ov5_021E52A8_sub2 unk_2BC;
@@ -2787,7 +2787,7 @@ typedef struct {
     BOOL unk_2F0;
     s32 unk_2F4;
     s32 unk_2F8;
-} UnkStruct_ov5_021E52A8;
+} GymLeaderEncounterEffect;
 
 typedef struct {
     QuadraticInterpolationTaskFX32 unk_00;
@@ -2871,7 +2871,7 @@ static BOOL ov5_021E51B4(UnkStruct_ov5_021E5128 *param0)
     return v2;
 }
 
-static String *EncounterEffect_GetGymLeaderName(u32 trainerClass, enum HeapID heapID)
+static String *EncounterEffect_GetGymLeaderName(u32 trainerID, enum HeapID heapID)
 {
     StringTemplate *template;
     MessageLoader *messageLoader;
@@ -2883,7 +2883,7 @@ static String *EncounterEffect_GetGymLeaderName(u32 trainerClass, enum HeapID he
     result = String_Init(128, heapID);
     message = String_Init(128, heapID);
     MessageLoader_GetString(messageLoader, 0, message);
-    StringTemplate_SetTrainerName(template, 0, trainerClass);
+    StringTemplate_SetTrainerName(template, 0, trainerID);
     StringTemplate_Format(template, result, message);
 
     MessageLoader_Free(messageLoader);
@@ -2894,46 +2894,46 @@ static String *EncounterEffect_GetGymLeaderName(u32 trainerClass, enum HeapID he
 
 static BOOL EncounterEffect_GymLeader(EncounterEffect *encEffect, enum HeapID heapID, const GymLeaderEncounterParam *param)
 {
-    UnkStruct_ov5_021E52A8 *v0 = encEffect->param;
+    GymLeaderEncounterEffect *leaderEncEffect = encEffect->param;
     BOOL v1;
     const VecFx32 *v2;
     VecFx32 v3;
     VecFx32 v4;
     int v5;
     int v6;
-    String *v7;
+    String *trainerName;
 
     switch (encEffect->state) {
     case 0:
-        encEffect->param = Heap_Alloc(heapID, sizeof(UnkStruct_ov5_021E52A8));
-        memset(encEffect->param, 0, sizeof(UnkStruct_ov5_021E52A8));
-        v0 = encEffect->param;
+        encEffect->param = Heap_Alloc(heapID, sizeof(GymLeaderEncounterEffect));
+        memset(encEffect->param, 0, sizeof(GymLeaderEncounterEffect));
+        leaderEncEffect = encEffect->param;
 
         Graphics_LoadPaletteFromOpenNARC(encEffect->narc, 11, 0, 2 * 0x20, 0x20, heapID);
 
-        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
-        Window_Add(encEffect->fieldSystem->bgConfig, &v0->unk_2E0, 2, 0, 10, 16, 2, 2, 1);
-        Window_FillTilemap(&v0->unk_2E0, 0);
-        v7 = EncounterEffect_GetGymLeaderName(param->trainerID, heapID);
-        Text_AddPrinterWithParamsAndColor(&v0->unk_2E0, FONT_SYSTEM, v7, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
-        String_Free(v7);
+        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, FALSE);
+        Window_Add(encEffect->fieldSystem->bgConfig, &leaderEncEffect->unk_2E0, 2, 0, 10, 16, 2, 2, 1);
+        Window_FillTilemap(&leaderEncEffect->unk_2E0, 0);
+        trainerName = EncounterEffect_GetGymLeaderName(param->trainerID, heapID);
+        Text_AddPrinterWithParamsAndColor(&leaderEncEffect->unk_2E0, FONT_SYSTEM, trainerName, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
+        String_Free(trainerName);
 
-        ov5_021DE47C(&v0->unk_44, 8, 3);
-
-        ov5_021DE4CC(
-            encEffect->narc, &v0->unk_44, &v0->unk_1E4[0], param->mugshotPlttIdx, 1, param->mugshotTileIdx, param->mugshotCellIdx, param->mugshotAnimIdx, 600000);
+        EncounterEffect_InitSpriteCollection(&leaderEncEffect->unk_44, 8, 3);
 
         ov5_021DE4CC(
-            encEffect->narc, &v0->unk_44, &v0->unk_1E4[1], 51, 1, 52, 53, 54, 600000 + 1);
+            encEffect->narc, &leaderEncEffect->unk_44, &leaderEncEffect->unk_1E4[0], param->mugshotPlttIdx, 1, param->mugshotTileIdx, param->mugshotCellIdx, param->mugshotAnimIdx, 600000);
 
-        v0->unk_24C = ov5_021DE62C(
-            &v0->unk_44, &v0->unk_1E4[0], 272 * FX32_ONE, 66 * FX32_ONE, 0, 0);
-        Sprite_SetDrawFlag(v0->unk_24C, FALSE);
-        ov5_021E5128(&v0->unk_250, &v0->unk_44, &v0->unk_1E4[1], FX32_CONST(72), FX32_CONST(74), heapID);
+        ov5_021DE4CC(
+            encEffect->narc, &leaderEncEffect->unk_44, &leaderEncEffect->unk_1E4[1], 51, 1, 52, 53, 54, 600000 + 1);
 
-        ov5_021DE5D0(v0->unk_24C, heapID, param->trainerClass, 14, GX_RGB(0, 0, 0));
+        leaderEncEffect->mugshotSprite = ov5_021DE62C(
+            &leaderEncEffect->unk_44, &leaderEncEffect->unk_1E4[0], 272 * FX32_ONE, 66 * FX32_ONE, 0, 0);
+        Sprite_SetDrawFlag(leaderEncEffect->mugshotSprite, FALSE);
+        ov5_021E5128(&leaderEncEffect->unk_250, &leaderEncEffect->unk_44, &leaderEncEffect->unk_1E4[1], FX32_CONST(72), FX32_CONST(74), heapID);
 
-        v0->unk_40 = ov5_021DECEC();
+        EncounterEffect_BlendTrainerSpritePltt(leaderEncEffect->mugshotSprite, heapID, param->trainerClass, 14, GX_RGB(0, 0, 0));
+
+        leaderEncEffect->unk_40 = ov5_021DECEC();
 
         encEffect->state++;
         break;
@@ -2955,9 +2955,9 @@ static BOOL EncounterEffect_GymLeader(EncounterEffect *encEffect, enum HeapID he
 
         ov5_021DE3D0(
             encEffect->narc, param->bannerTilemapIdx, param->bannerTileIdx, param->bannerPlttIdx, 0, 1, encEffect->fieldSystem->bgConfig, 3);
-        v0->unk_2F0 = 1;
+        leaderEncEffect->unk_2F0 = 1;
 
-        ov5_021DED20(encEffect, v0->unk_40, 6, 8, 16, GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_OBJ);
+        ov5_021DED20(encEffect, leaderEncEffect->unk_40, 6, 8, 16, GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_OBJ);
 
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
 
@@ -2969,24 +2969,24 @@ static BOOL EncounterEffect_GymLeader(EncounterEffect *encEffect, enum HeapID he
         if (EncounterEffect_GetHBlankFlag(encEffect)) {
             encEffect->state++;
 
-            ov5_021DED04(v0->unk_40);
+            ov5_021DED04(leaderEncEffect->unk_40);
 
-            v0->unk_2F8 = 10;
+            leaderEncEffect->unk_2F8 = 10;
         }
 
         break;
 
     case 5:
 
-        v0->unk_2F8--;
+        leaderEncEffect->unk_2F8--;
 
-        if (v0->unk_2F8 >= 0) {
+        if (leaderEncEffect->unk_2F8 >= 0) {
             break;
         }
 
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
-        v1 = ov5_021E51B4(&v0->unk_250);
+        v1 = ov5_021E51B4(&leaderEncEffect->unk_250);
 
         if (v1 == 1) {
             encEffect->state++;
@@ -2996,23 +2996,23 @@ static BOOL EncounterEffect_GymLeader(EncounterEffect *encEffect, enum HeapID he
 
     case 6:
 
-        QuadraticInterpolationTaskFX32_Init(&v0->unk_00, 272 * FX32_ONE, param->endX, -64 * FX32_ONE, 4);
-        Sprite_SetDrawFlag(v0->unk_24C, TRUE);
-        Sprite_SetExplicitPriority(v0->unk_24C, 0);
+        QuadraticInterpolationTaskFX32_Init(&leaderEncEffect->unk_00, 272 * FX32_ONE, param->endX, -64 * FX32_ONE, 4);
+        Sprite_SetDrawFlag(leaderEncEffect->mugshotSprite, TRUE);
+        Sprite_SetExplicitPriority(leaderEncEffect->mugshotSprite, 0);
 
         v3 = VecFx32_FromXYZ(
-            v0->unk_00.currentValue, 66 * FX32_ONE, 0);
-        Sprite_SetPosition(v0->unk_24C, &v3);
+            leaderEncEffect->unk_00.currentValue, 66 * FX32_ONE, 0);
+        Sprite_SetPosition(leaderEncEffect->mugshotSprite, &v3);
 
         encEffect->state++;
         break;
 
     case 7:
 
-        v1 = QuadraticInterpolationTaskFX32_Update(&v0->unk_00);
+        v1 = QuadraticInterpolationTaskFX32_Update(&leaderEncEffect->unk_00);
         v3 = VecFx32_FromXYZ(
-            v0->unk_00.currentValue, 66 * FX32_ONE, 0);
-        Sprite_SetPosition(v0->unk_24C, &v3);
+            leaderEncEffect->unk_00.currentValue, 66 * FX32_ONE, 0);
+        Sprite_SetPosition(leaderEncEffect->mugshotSprite, &v3);
 
         if (v1 == 1) {
             encEffect->state++;
@@ -3021,27 +3021,27 @@ static BOOL EncounterEffect_GymLeader(EncounterEffect *encEffect, enum HeapID he
         break;
 
     case 8:
-        LinearInterpolationTaskS32_Init(&v0->unk_18, 0, 16, 3);
-        v0->unk_2F8 = 10;
+        LinearInterpolationTaskS32_Init(&leaderEncEffect->unk_18, 0, 16, 3);
+        leaderEncEffect->unk_2F8 = 10;
         encEffect->state++;
         break;
 
     case 9:
-        v0->unk_2F8--;
+        leaderEncEffect->unk_2F8--;
 
-        if (v0->unk_2F8 >= 0) {
+        if (leaderEncEffect->unk_2F8 >= 0) {
             break;
         }
 
-        v1 = LinearInterpolationTaskS32_Update(&v0->unk_18);
-        ov5_021DEF8C(&v0->unk_18.currentValue);
+        v1 = LinearInterpolationTaskS32_Update(&leaderEncEffect->unk_18);
+        ov5_021DEF8C(&leaderEncEffect->unk_18.currentValue);
 
         if (v1 == 1) {
-            ov5_021DE5D0(v0->unk_24C, heapID, param->trainerClass, 0, GX_RGB(0, 0, 0));
+            EncounterEffect_BlendTrainerSpritePltt(leaderEncEffect->mugshotSprite, heapID, param->trainerClass, 0, GX_RGB(0, 0, 0));
 
             BrightnessController_SetScreenBrightness(-14, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BD, BRIGHTNESS_MAIN_SCREEN);
 
-            Bg_ScheduleScroll(encEffect->fieldSystem->bgConfig, 2, 0, -((v0->unk_00.currentValue >> FX32_SHIFT) + -92));
+            Bg_ScheduleScroll(encEffect->fieldSystem->bgConfig, 2, 0, -((leaderEncEffect->unk_00.currentValue >> FX32_SHIFT) + -92));
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
             Bg_SetPriority(BG_LAYER_MAIN_2, 0);
             encEffect->state++;
@@ -3050,25 +3050,25 @@ static BOOL EncounterEffect_GymLeader(EncounterEffect *encEffect, enum HeapID he
         break;
 
     case 10:
-        LinearInterpolationTaskS32_Init(&v0->unk_18, 16, 0, 3);
+        LinearInterpolationTaskS32_Init(&leaderEncEffect->unk_18, 16, 0, 3);
         encEffect->state++;
         break;
 
     case 11:
-        v1 = LinearInterpolationTaskS32_Update(&v0->unk_18);
-        ov5_021DEF8C(&v0->unk_18.currentValue);
+        v1 = LinearInterpolationTaskS32_Update(&leaderEncEffect->unk_18);
+        ov5_021DEF8C(&leaderEncEffect->unk_18.currentValue);
 
         if (v1 == 1) {
             encEffect->state++;
-            v0->unk_2F8 = 26;
+            leaderEncEffect->unk_2F8 = 26;
         }
 
         break;
 
     case 12:
-        v0->unk_2F8--;
+        leaderEncEffect->unk_2F8--;
 
-        if (v0->unk_2F8 < 0) {
+        if (leaderEncEffect->unk_2F8 < 0) {
             encEffect->state++;
         }
 
@@ -3095,13 +3095,13 @@ static BOOL EncounterEffect_GymLeader(EncounterEffect *encEffect, enum HeapID he
             *(encEffect->done) = 1;
         }
 
-        Sprite_Delete(v0->unk_24C);
-        ov5_021E519C(&v0->unk_250);
-        ov5_021DE5A4(&v0->unk_44, &v0->unk_1E4[0]);
-        ov5_021DE5A4(&v0->unk_44, &v0->unk_1E4[1]);
-        ov5_021DE4AC(&v0->unk_44);
+        Sprite_Delete(leaderEncEffect->mugshotSprite);
+        ov5_021E519C(&leaderEncEffect->unk_250);
+        ov5_021DE5A4(&leaderEncEffect->unk_44, &leaderEncEffect->unk_1E4[0]);
+        ov5_021DE5A4(&leaderEncEffect->unk_44, &leaderEncEffect->unk_1E4[1]);
+        ov5_021DE4AC(&leaderEncEffect->unk_44);
 
-        Window_Remove(&v0->unk_2E0);
+        Window_Remove(&leaderEncEffect->unk_2E0);
 
         GX_SetVisibleWnd(GX_WNDMASK_NONE);
 
@@ -3112,14 +3112,14 @@ static BOOL EncounterEffect_GymLeader(EncounterEffect *encEffect, enum HeapID he
         return 1;
     }
 
-    if (v0->unk_2F0 == 1) {
-        Bg_ScheduleScroll(encEffect->fieldSystem->bgConfig, 3, 0, v0->unk_2F4);
+    if (leaderEncEffect->unk_2F0 == 1) {
+        Bg_ScheduleScroll(encEffect->fieldSystem->bgConfig, 3, 0, leaderEncEffect->unk_2F4);
 
-        v0->unk_2F4 = (v0->unk_2F4 + 30) % 512;
+        leaderEncEffect->unk_2F4 = (leaderEncEffect->unk_2F4 + 30) % 512;
     }
 
     if (encEffect->state != 15) {
-        SpriteList_Update(v0->unk_44.unk_00);
+        SpriteList_Update(leaderEncEffect->unk_44.unk_00);
     }
 
     return 0;
@@ -3227,7 +3227,7 @@ static BOOL EncounterEffect_EliteFourChampion(EncounterEffect *encEffect, enum H
         memset(encEffect->param, 0, sizeof(UnkStruct_ov5_021E5890));
         v0 = encEffect->param;
 
-        ov5_021DE47C(&v0->unk_5C, 10, 4);
+        EncounterEffect_InitSpriteCollection(&v0->unk_5C, 10, 4);
 
         if (FieldSystem_GetTrainerGender(encEffect->fieldSystem) == 0) {
             ov5_021DE4CC(
@@ -3274,12 +3274,12 @@ static BOOL EncounterEffect_EliteFourChampion(EncounterEffect *encEffect, enum H
         }
 
         if (v0->unk_368) {
-            ov5_021DE5D0(v0->unk_2CC[0], heapID, 0, 14, GX_RGB(0, 0, 0));
+            EncounterEffect_BlendTrainerSpritePltt(v0->unk_2CC[0], heapID, 0, 14, GX_RGB(0, 0, 0));
         } else {
-            ov5_021DE5D0(v0->unk_2CC[0], heapID, 1, 14, GX_RGB(0, 0, 0));
+            EncounterEffect_BlendTrainerSpritePltt(v0->unk_2CC[0], heapID, 1, 14, GX_RGB(0, 0, 0));
         }
 
-        ov5_021DE5D0(v0->unk_2CC[1], heapID, param->trainerClass, 14, GX_RGB(0, 0, 0));
+        EncounterEffect_BlendTrainerSpritePltt(v0->unk_2CC[1], heapID, param->trainerClass, 14, GX_RGB(0, 0, 0));
 
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
@@ -3418,9 +3418,9 @@ static BOOL EncounterEffect_EliteFourChampion(EncounterEffect *encEffect, enum H
         ov5_021DEF8C(&v0->unk_48.currentValue);
 
         if (v1 == 1) {
-            ov5_021DE5D0(v0->unk_2CC[0], heapID, v0->unk_368, 0, GX_RGB(0, 0, 0));
+            EncounterEffect_BlendTrainerSpritePltt(v0->unk_2CC[0], heapID, v0->unk_368, 0, GX_RGB(0, 0, 0));
 
-            ov5_021DE5D0(v0->unk_2CC[1], heapID, param->trainerClass, 0, GX_RGB(0, 0, 0));
+            EncounterEffect_BlendTrainerSpritePltt(v0->unk_2CC[1], heapID, param->trainerClass, 0, GX_RGB(0, 0, 0));
 
             Sprite_SetAnimateFlag(v0->unk_2CC[2], 1);
             Sprite_SetAnimSpeed(v0->unk_2CC[2], FX32_ONE * 2);
