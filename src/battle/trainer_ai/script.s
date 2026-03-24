@@ -6351,7 +6351,8 @@ EvalAttack_Main:
     // Never target the partner.
     IfTargetIsPartner Terminate
 
-    IfCurrentMoveKills USE_MAX_DAMAGE, EvalAttack_CheckForKill
+    // If the move's maximum non-critical damage roll kills, then we use a different score routine.
+    IfCurrentMoveKills USE_MAX_DAMAGE, EvalAttack_ApplyKillBonuses
 
     // If this move does not out-damage all other moves, score -1.
     FlagMoveDamageScore FALSE
@@ -6380,17 +6381,20 @@ EvalAttack_TryScorePlus2:
     AddToMoveScore 2
     PopOrEnd 
 
-EvalAttack_CheckForKill:
+EvalAttack_ApplyKillBonuses:
     // Do not evaluate kills with Explosion or Self-Destruct for this routine.
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HALVE_DEFENSE, EvalAttack_Terminate
 
-    // Randomly increase the score of a move that kills.
+    // Moves like Focus Punch, Sucker Punch, and Future Sight *may* get an additional +4 on top of
+    // the usual +4 for a kill.
+    // NOTE: Focus Punch and Sucker Punch can never actually reach this state, because the AI never
+    // treats them as able to kill.
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HIT_LAST_WHIFF_IF_HIT, EvalAttack_TryScorePlus4
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HIT_FIRST_IF_TARGET_ATTACKING, EvalAttack_TryScorePlus4
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HIT_IN_3_TURNS, EvalAttack_TryScorePlus4
 
-    // Priority kill is score +2. This is because priorty moves are low-power, and this routine prioritizes
-    // raw damage output.
+    // Moves with the "+1 priority" effect get an additional +2 on top of the usual +4 for a kill.
+    // NOTE: this checks the move's _effect_, not the priority score in its data.
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_PRIORITY_1, EvalAttack_ScorePlus2
     GoTo EvalAttack_ScorePlus4
 
