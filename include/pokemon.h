@@ -505,9 +505,9 @@ u8 BoxPokemon_SpriteYOffset(BoxPokemon *boxMon, u8 face, BOOL preferDP);
  * @return Y-offset applied to the sprite-face on display
  */
 u8 LoadPokemonSpriteYOffset(u16 species, u8 gender, u8 face, u8 form, u32 personality);
-void Pokemon_SetTrainerBackSpriteTemplate(PokemonSpriteTemplate *spriteTemplate, u16 param1);
+void SpriteSystem_SetTrainerFrontSpriteTemplate(PokemonSpriteTemplate *spriteTemplate, u16 param1);
 ManagedSprite *SpriteSystem_NewManagedSpriteTrainer(SpriteSystem *spriteSys, SpriteManager *spriteMan, PaletteData *paletteData, int x, int y, enum TrainerClass trainerClass, int face, int battlerType, enum HeapID heapID);
-void Pokemon_SetTrainerClassGraphicsIndex(enum TrainerClass trainerClass, int face, TrainerClassGraphicIndex *trainerClassGraphicIndex);
+void SpriteSystem_SetTrainerClassGraphicsIndex(enum TrainerClass trainerClass, int face, TrainerClassGraphicIndex *trainerClassGraphicIndex);
 
 /**
  * @brief Returns the size in bytes of a Pokemon struct as a u32
@@ -848,7 +848,7 @@ BOOL Pokemon_IsOnBattleFrontierBanlist(u16 species);
 u16 Pokemon_GetBattleFrontierBanlistEntry(u8 index);
 BOOL Pokemon_IsBannedFromBattleFrontier(Pokemon *mon);
 BOOL sub_0207884C(BoxPokemon *boxMon, TrainerInfo *param1, enum HeapID heapID);
-int Pokemon_TrainerClassBackSpriteIndex(enum TrainerClass trainerClass);
+int SpriteSystem_TrainerClassBackSpriteIndex(enum TrainerClass trainerClass);
 void Pokemon_ClearBallCapsuleData(Pokemon *mon);
 void BoxPokemon_RestorePP(BoxPokemon *boxMon);
 

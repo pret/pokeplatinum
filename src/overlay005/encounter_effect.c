@@ -769,7 +769,7 @@ void ov5_021DE5D0(Sprite *param0, enum HeapID heapID, enum TrainerClass trainerC
     void *v2;
     u16 *v3;
 
-    Pokemon_SetTrainerClassGraphicsIndex(trainerClass, FACE_FRONT, &v0);
+    SpriteSystem_SetTrainerClassGraphicsIndex(trainerClass, FACE_FRONT, &v0);
     v3 = Heap_Alloc(heapID, 32);
     v2 = Graphics_GetPlttData(v0.narcID, v0.palette, &v1, heapID);
     BlendPalette(v1->pRawData, v3, 16, param3, param4);

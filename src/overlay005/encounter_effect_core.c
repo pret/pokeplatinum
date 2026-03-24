@@ -5,6 +5,7 @@
 
 #include "constants/heap.h"
 #include "generated/trainer_classes.h"
+#include "generated/trainers.h"
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
@@ -2606,7 +2607,7 @@ typedef struct GymLeaderEncounterParam {
 static const GymLeaderEncounterParam sGymLeaderEncounterParams[8] = {
     {
         .endX = 214 * FX32_ONE,
-        .trainerID = 246,
+        .trainerID = TRAINER_LEADER_ROARK,
         .trainerClass = TRAINER_CLASS_LEADER_ROARK,
         .unk_0A = 1,
         .mugshotPlttIdx = leader_roark_mugshot_NCLR,
@@ -2620,7 +2621,7 @@ static const GymLeaderEncounterParam sGymLeaderEncounterParams[8] = {
     },
     {
         .endX = 214 * FX32_ONE,
-        .trainerID = 315,
+        .trainerID = TRAINER_LEADER_GARDENIA,
         .trainerClass = TRAINER_CLASS_LEADER_GARDENIA,
         .unk_0A = 1,
         .mugshotPlttIdx = leader_gardenia_mugshot_NCLR,
@@ -2634,7 +2635,7 @@ static const GymLeaderEncounterParam sGymLeaderEncounterParams[8] = {
     },
     {
         .endX = 214 * FX32_ONE,
-        .trainerID = 316,
+        .trainerID = TRAINER_LEADER_WAKE,
         .trainerClass = TRAINER_CLASS_LEADER_WAKE,
         .unk_0A = 0,
         .mugshotPlttIdx = leader_wake_mugshot_NCLR,
@@ -2648,7 +2649,7 @@ static const GymLeaderEncounterParam sGymLeaderEncounterParams[8] = {
     },
     {
         .endX = 214 * FX32_ONE,
-        .trainerID = 317,
+        .trainerID = TRAINER_LEADER_MAYLENE,
         .trainerClass = TRAINER_CLASS_LEADER_MAYLENE,
         .unk_0A = 1,
         .mugshotPlttIdx = leader_maylene_mugshot_NCLR,
@@ -2662,7 +2663,7 @@ static const GymLeaderEncounterParam sGymLeaderEncounterParams[8] = {
     },
     {
         .endX = 214 * FX32_ONE,
-        .trainerID = 318,
+        .trainerID = TRAINER_LEADER_FANTINA,
         .trainerClass = TRAINER_CLASS_LEADER_FANTINA,
         .unk_0A = 1,
         .mugshotPlttIdx = leader_fantina_mugshot_NCLR,
@@ -2676,7 +2677,7 @@ static const GymLeaderEncounterParam sGymLeaderEncounterParams[8] = {
     },
     {
         .endX = 214 * FX32_ONE,
-        .trainerID = 319,
+        .trainerID = TRAINER_LEADER_CANDICE,
         .trainerClass = TRAINER_CLASS_LEADER_CANDICE,
         .unk_0A = 1,
         .mugshotPlttIdx = leader_candice_mugshot_NCLR,
@@ -2690,7 +2691,7 @@ static const GymLeaderEncounterParam sGymLeaderEncounterParams[8] = {
     },
     {
         .endX = 214 * FX32_ONE,
-        .trainerID = 250,
+        .trainerID = TRAINER_LEADER_BYRON,
         .trainerClass = TRAINER_CLASS_LEADER_BYRON,
         .unk_0A = 1,
         .mugshotPlttIdx = leader_byron_mugshot_NCLR,
@@ -2704,7 +2705,7 @@ static const GymLeaderEncounterParam sGymLeaderEncounterParams[8] = {
     },
     {
         .endX = 214 * FX32_ONE,
-        .trainerID = 320,
+        .trainerID = TRAINER_LEADER_VOLKNER,
         .trainerClass = TRAINER_CLASS_LEADER_VOLKNER,
         .unk_0A = 1,
         .mugshotPlttIdx = leader_volkner_mugshot_NCLR,
@@ -2727,31 +2728,41 @@ typedef struct EliterFourChampionEncounterParam {
 } EliterFourChampionEncounterParam;
 
 static const EliterFourChampionEncounterParam sEliteFourChampionEncounterParams[5] = {
-    { .mugshotPlttIdx = elite_four_aaron_mugshot_NCLR,
+    {
+        .mugshotPlttIdx = elite_four_aaron_mugshot_NCLR,
         .bannerPlttIdx = elite_four_aaron_banner_NCLR,
         .facePanFrames = 32,
         .trainerClass = TRAINER_CLASS_ELITE_FOUR_AARON,
-        .trainerID = 261 },
-    { .mugshotPlttIdx = elite_four_bertha_mugshot_NCLR,
+        .trainerID = TRAINER_ELITE_FOUR_AARON,
+    },
+    {
+        .mugshotPlttIdx = elite_four_bertha_mugshot_NCLR,
         .bannerPlttIdx = elite_four_bertha_banner_NCLR,
         .facePanFrames = 32,
         .trainerClass = TRAINER_CLASS_ELITE_FOUR_BERTHA,
-        .trainerID = 262 },
-    { .mugshotPlttIdx = elite_four_flint_mugshot_NCLR,
+        .trainerID = TRAINER_ELITE_FOUR_BERTHA,
+    },
+    {
+        .mugshotPlttIdx = elite_four_flint_mugshot_NCLR,
         .bannerPlttIdx = elite_four_flint_banner_NCLR,
         .facePanFrames = 32,
         .trainerClass = TRAINER_CLASS_ELITE_FOUR_FLINT,
-        .trainerID = 263 },
-    { .mugshotPlttIdx = elite_four_lucian_mugshot_NCLR,
+        .trainerID = TRAINER_ELITE_FOUR_FLINT,
+    },
+    {
+        .mugshotPlttIdx = elite_four_lucian_mugshot_NCLR,
         .bannerPlttIdx = elite_four_lucian_banner_NCLR,
         .facePanFrames = 32,
         .trainerClass = TRAINER_CLASS_ELITE_FOUR_LUCIAN,
-        .trainerID = 264 },
-    { .mugshotPlttIdx = champion_cynthia_mugshot_NCLR,
+        .trainerID = TRAINER_ELITE_FOUR_LUCIAN,
+    },
+    {
+        .mugshotPlttIdx = champion_cynthia_mugshot_NCLR,
         .bannerPlttIdx = champion_cynthia_banner_NCLR,
         .facePanFrames = 9,
         .trainerClass = TRAINER_CLASS_CHAMPION_CYNTHIA,
-        .trainerID = 267 },
+        .trainerID = TRAINER_CHAMPION_CYNTHIA,
+    },
 };
 
 typedef struct {

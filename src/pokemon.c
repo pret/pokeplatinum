@@ -3380,7 +3380,7 @@ static u8 LoadPokemonDPSpriteHeight(u16 species, u8 gender, u8 face, u8 form, u3
     return result;
 }
 
-void Pokemon_SetTrainerBackSpriteTemplate(PokemonSpriteTemplate *spriteTemplate, u16 param1)
+void SpriteSystem_SetTrainerFrontSpriteTemplate(PokemonSpriteTemplate *spriteTemplate, u16 param1)
 {
     spriteTemplate->narcID = NARC_INDEX_POKETOOL__TRGRA__TRFGRA;
     spriteTemplate->character = param1 * 2;
@@ -3420,7 +3420,7 @@ ManagedSprite *SpriteSystem_NewManagedSpriteTrainer(SpriteSystem *spriteSys, Spr
     TrainerClassGraphicIndex trainerClassGraphicIndex;
     int paletteIdx = 1;
 
-    Pokemon_SetTrainerClassGraphicsIndex(trainerClass, face, &trainerClassGraphicIndex);
+    SpriteSystem_SetTrainerClassGraphicsIndex(trainerClass, face, &trainerClassGraphicIndex);
 
     if (trainerClass == TRAINER_CLASS_CASTLE_VALET) {
         paletteIdx = 2;
@@ -3453,7 +3453,7 @@ ManagedSprite *SpriteSystem_NewManagedSpriteTrainer(SpriteSystem *spriteSys, Spr
     return managedSprite;
 }
 
-void Pokemon_SetTrainerClassGraphicsIndex(enum TrainerClass trainerClass, int face, TrainerClassGraphicIndex *trainerClassGraphicIndex)
+void SpriteSystem_SetTrainerClassGraphicsIndex(enum TrainerClass trainerClass, int face, TrainerClassGraphicIndex *trainerClassGraphicIndex)
 {
     if (face == FACE_FRONT) {
         trainerClassGraphicIndex->narcID = NARC_INDEX_POKETOOL__TRGRA__TRFGRA;
@@ -3464,7 +3464,7 @@ void Pokemon_SetTrainerClassGraphicsIndex(enum TrainerClass trainerClass, int fa
         trainerClassGraphicIndex->scan = TCFT_SCAN + trainerClass * TRAINER_CLASS_NUM_FILETYPES;
     } else {
         trainerClassGraphicIndex->narcID = NARC_INDEX_POKETOOL__TRGRA__TRBGRA;
-        trainerClass = Pokemon_TrainerClassBackSpriteIndex(trainerClass);
+        trainerClass = SpriteSystem_TrainerClassBackSpriteIndex(trainerClass);
         trainerClassGraphicIndex->tiles = TCFT_TILES + trainerClass * TRAINER_CLASS_NUM_FILETYPES;
         trainerClassGraphicIndex->palette = TCFT_PALETTE + trainerClass * TRAINER_CLASS_NUM_FILETYPES;
         trainerClassGraphicIndex->cells = TCFT_CELLS + trainerClass * TRAINER_CLASS_NUM_FILETYPES;
@@ -5066,7 +5066,7 @@ BOOL sub_0207884C(BoxPokemon *boxMon, TrainerInfo *param1, enum HeapID heapID)
 }
 
 // Mapping to Back Sprites order. Returns player if not otherwise defined
-int Pokemon_TrainerClassBackSpriteIndex(enum TrainerClass trainerClass)
+int SpriteSystem_TrainerClassBackSpriteIndex(enum TrainerClass trainerClass)
 {
     switch (trainerClass) {
     case TRAINER_CLASS_PLAYER_MALE:

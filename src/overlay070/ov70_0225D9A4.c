@@ -2721,7 +2721,7 @@ static void ov70_02260080(UnkStruct_ov70_0225FA84 *param0, UnkStruct_ov70_0225E4
         }
     }
 
-    Pokemon_SetTrainerClassGraphicsIndex(trainerClass, FACE_FRONT, &v4);
+    SpriteSystem_SetTrainerClassGraphicsIndex(trainerClass, FACE_FRONT, &v4);
 
     {
         BOOL v5;

@@ -3147,7 +3147,7 @@ static void ov64_02231164(UnkStruct_ov64_02230F98 *param0, UnkStruct_ov64_0222E0
     TrainerClassGraphicIndex v3;
     u32 v0 = sub_0202AD2C(wifiList, param1->unk_08.unk_04[param1->unk_07], 8);
     u32 v1 = sub_0202AD2C(wifiList, param1->unk_08.unk_04[param1->unk_07], 7);
-    Pokemon_SetTrainerClassGraphicsIndex(Appearance_GetData(v0, v1, APPEARANCE_DATA_TRAINER_CLASS_2), FACE_FRONT, &v3);
+    SpriteSystem_SetTrainerClassGraphicsIndex(Appearance_GetData(v0, v1, APPEARANCE_DATA_TRAINER_CLASS_2), FACE_FRONT, &v3);
 
     void *buffer = Heap_Alloc(heapID, 0xC80);
     CharacterSprite_LoadTiledData(v3.narcID, v3.scan, heapID, 0, 0, 10, 10, buffer);

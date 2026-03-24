@@ -880,7 +880,7 @@ static void ov86_0223BAC8(HallOfFameMan *hallOfFameMan, NNSG2dCellDataBank *cell
     NNS_G2dLoadImage1DMapping(charData, 38400, NNS_G2D_VRAM_TYPE_2DMAIN, &imageProxy);
     NNS_G2dLoadPalette(paletteData, 192, NNS_G2D_VRAM_TYPE_2DMAIN, &paletteProxy);
 
-    Pokemon_SetTrainerClassGraphicsIndex((TrainerInfo_Gender(hallOfFameMan->displayData->trainerInfo) == GENDER_FEMALE) ? TRAINER_CLASS_PLAYER_FEMALE : TRAINER_CLASS_PLAYER_MALE, FACE_FRONT, &v4);
+    SpriteSystem_SetTrainerClassGraphicsIndex((TrainerInfo_Gender(hallOfFameMan->displayData->trainerInfo) == GENDER_FEMALE) ? TRAINER_CLASS_PLAYER_FEMALE : TRAINER_CLASS_PLAYER_MALE, FACE_FRONT, &v4);
     CharacterSprite_LoadSpriteRegion(v4.narcID, v4.scan, HEAP_ID_HALL_OF_FAME, &tileRegions[0], hallOfFameMan->unk_310);
 
     DC_FlushRange(hallOfFameMan->unk_310, 3200);
