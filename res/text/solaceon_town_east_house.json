@@ -2,7 +2,7 @@
   "key": 62503,
   "messages": [
     {
-      "id": "SolaceonTownEastHouse_Text_IfYouGiveMePokemonLikeLettersIllGiveSeals",
+      "id": "SolaceonTownEastHouse_Text_GiveUnownForSeals",
       "en_US": [
         "The Pokémon in this town’s ruins look\n",
         "like some kind of strange alphabet.\r",
@@ -28,7 +28,7 @@
       "garbage": 47
     },
     {
-      "id": "SolaceonTownEastHouse_Text_YouDontHaveASealCase",
+      "id": "SolaceonTownEastHouse_Text_TalkToMyMom",
       "en_US": [
         "I wanted to give you some Seals,\n",
         "but you don’t have a Seal Case!\r",
@@ -43,7 +43,7 @@
       ]
     },
     {
-      "id": "SolaceonTownEastHouse_Text_YouDontHaveASealCaseHereYouGo",
+      "id": "SolaceonTownEastHouse_Text_YouDontHaveASealCase",
       "en_US": [
         "You can customize Poké Balls by\n",
         "affixing Seals on them.\r",
@@ -52,7 +52,7 @@
       ]
     },
     {
-      "id": "SolaceonTownEastHouse_Text_NextSomeSealsHereYouGo",
+      "id": "SolaceonTownEastHouse_Text_NextSomeSeals",
       "en_US": [
         "Next, some Seals.\n",
         "Here you go!\r"

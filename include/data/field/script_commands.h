@@ -171,7 +171,7 @@ const ScrCmdFunc gFieldScriptCommands[] = {
     ScriptCommandTableEntry(SCRCMD_DUMMY090,                                             ScrCmd_Dummy090)
     ScriptCommandTableEntry(SCRCMD_DUMMY091,                                             ScrCmd_Dummy091)
     ScriptCommandTableEntry(SCRCMD_DUMMY092,                                             ScrCmd_Dummy092)
-    ScriptCommandTableEntry(SCRCMD_GETSEALOCCURENCE,                                     ScrCmd_GetSealOccurence)
+    ScriptCommandTableEntry(SCRCMD_COUNTSEALOCCURENCE,                                   ScrCmd_CountSealOccurence)
     ScriptCommandTableEntry(SCRCMD_GIVEORTAKESEAL,                                       ScrCmd_GiveOrTakeSeal)
     ScriptCommandTableEntry(SCRCMD_GETPARTYMONFORM,                                      ScrCmd_GetPartyMonForm)
     ScriptCommandTableEntry(SCRCMD_GIVEPOKEMON,                                          ScrCmd_GivePokemon)

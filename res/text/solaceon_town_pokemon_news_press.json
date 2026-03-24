@@ -2,7 +2,7 @@
   "key": 62487,
   "messages": [
     {
-      "id": "SolaceonTownPokemonNewsPress_Text_YoureTheExpertWeveBeenLookingFor",
+      "id": "SolaceonTownPokemonNewsPress_Text_YoureTheExpert",
       "en_US": [
         "Oh?\n",
         "Welcome!\r",
@@ -24,7 +24,7 @@
       ]
     },
     {
-      "id": "SolaceonTownPokemonNewsPress_Text_IWantYouToBringMeThisPokemon",
+      "id": "SolaceonTownPokemonNewsPress_Text_BringMeThisPokemon",
       "en_US": [
         "{STRVAR_1 0, 0, 0}.\n",
         "I want you to bring me one.\r",
@@ -81,7 +81,7 @@
       ]
     },
     {
-      "id": "SolaceonTownPokemonNewsPress_Text_YouStillHaventCaughtThePokemon",
+      "id": "SolaceonTownPokemonNewsPress_Text_StillHaventCaughtThePokemon",
       "en_US": [
         "What’s wrong? You still haven’t\n",
         "caught the {STRVAR_1 0, 0, 0} we need?\r",
@@ -94,7 +94,7 @@
       ]
     },
     {
-      "id": "SolaceonTownPokemonNewsPress_Text_YouFailedToBringMeThePokemon",
+      "id": "SolaceonTownPokemonNewsPress_Text_FailedToBringThePokemon",
       "en_US": [
         "Now, now! You failed to bring me the\n",
         "Pokémon I asked for...\r",
@@ -112,7 +112,7 @@
       ]
     },
     {
-      "id": "SolaceonTownPokemonNewsPress_Text_TheNewspaperIsTinyButHasManyFans",
+      "id": "SolaceonTownPokemonNewsPress_Text_TheNewspaperIsTiny",
       "en_US": [
         "The Sinnoh region’s newspaper is\n",
         "tiny, but it has many fans.\r",
@@ -121,7 +121,7 @@
       ]
     },
     {
-      "id": "SolaceonTownPokemonNewsPress_Text_WeeklyPokeBallRoundupIsTheTopStory",
+      "id": "SolaceonTownPokemonNewsPress_Text_TopStory",
       "en_US": [
         "“Weekly Poké Ball Roundup”\n",
         "is the featured top story.\r",

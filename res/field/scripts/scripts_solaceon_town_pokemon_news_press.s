@@ -20,7 +20,7 @@ SolaceonTownPokemonNewsPress_GymGuide:
 
 SolaceonTownPokemonNewsPress_YoureTheExpertWeveBeenLookingFor:
     SetFlag FLAG_TALKED_TO_POKEMON_NEWS_PRESS_GYM_GUIDE
-    Message SolaceonTownPokemonNewsPress_Text_YoureTheExpertWeveBeenLookingFor
+    Message SolaceonTownPokemonNewsPress_Text_YoureTheExpert
     GoTo SolaceonTownPokemonNewsPress_SetNewsPressRequestedPokemon
 
 SolaceonTownPokemonNewsPress_HeresYourAssignment:
@@ -32,7 +32,7 @@ SolaceonTownPokemonNewsPress_SetNewsPressRequestedPokemon:
     SetVar VAR_POKEMON_NEWS_PRESS_REQUESTED_POKEMON, VAR_RESULT
     SetNewsPressDeadline 1
     BufferSpeciesNameFromVar 0, VAR_POKEMON_NEWS_PRESS_REQUESTED_POKEMON, 0, 0
-    Message SolaceonTownPokemonNewsPress_Text_IWantYouToBringMeThisPokemon
+    Message SolaceonTownPokemonNewsPress_Text_BringMeThisPokemon
     WaitButton
     CloseMessage
     ReleaseAll
@@ -167,14 +167,14 @@ SolaceonTownPokemonNewsPress_DidntBringPokemonYet:
     BufferSpeciesNameFromVar 0, VAR_POKEMON_NEWS_PRESS_REQUESTED_POKEMON, 0, 0
     GetNewsPressDeadline VAR_RESULT
     BufferNumber 1, VAR_RESULT
-    Message SolaceonTownPokemonNewsPress_Text_YouStillHaventCaughtThePokemon
+    Message SolaceonTownPokemonNewsPress_Text_StillHaventCaughtThePokemon
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
 SolaceonTownPokemonNewsPress_FailedToBringPokemonWithinDeadline:
-    Message SolaceonTownPokemonNewsPress_Text_YouFailedToBringMeThePokemon
+    Message SolaceonTownPokemonNewsPress_Text_FailedToBringThePokemon
     SetVar VAR_POKEMON_NEWS_PRESS_REQUESTED_POKEMON, 0
     WaitButton
     CloseMessage
@@ -189,13 +189,13 @@ SolaceonTownPokemonNewsPress_IllHaveAnotherAssignmentTomorrow:
     End
 
 SolaceonTownPokemonNewsPress_PokemonBreederM:
-    NPCMessage SolaceonTownPokemonNewsPress_Text_TheNewspaperIsTinyButHasManyFans
+    NPCMessage SolaceonTownPokemonNewsPress_Text_TheNewspaperIsTiny
     End
 
 SolaceonTownPokemonNewsPress_PC:
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    Message SolaceonTownPokemonNewsPress_Text_WeeklyPokeBallRoundupIsTheTopStory
+    Message SolaceonTownPokemonNewsPress_Text_TopStory
     Message SolaceonTownPokemonNewsPress_Text_ReadWhichArticle
     InitGlobalTextMenu 1, 1, 0, VAR_RESULT
     AddMenuEntry MenuEntries_Text_Article_DuskBall, 0

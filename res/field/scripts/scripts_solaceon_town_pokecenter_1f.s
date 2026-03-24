@@ -22,7 +22,7 @@ SolaceonTownPokecenter1F_Lass:
     End
 
 SolaceonTownPokecenter1F_RuinManiac:
-    NPCMessage SolaceonTownPokecenter1F_Text_TheHMDefogIsInTheSolaceonRuins
+    NPCMessage SolaceonTownPokecenter1F_Text_HMDefogIsInTheRuins
     End
 
     .balign 4, 0

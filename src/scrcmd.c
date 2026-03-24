@@ -350,7 +350,7 @@ static BOOL ScrCmd_SetObjectFlagIsPersistent(ScriptContext *ctx);
 static BOOL ScrCmd_SetMovementType(ScriptContext *ctx);
 static BOOL ScrCmd_GetMovementType(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_06E(ScriptContext *ctx);
-static BOOL ScrCmd_GetSealOccurence(ScriptContext *ctx);
+static BOOL ScrCmd_CountSealOccurence(ScriptContext *ctx);
 static BOOL ScrCmd_GiveOrTakeSeal(ScriptContext *ctx);
 static BOOL ScrCmd_GetPartyMonForm(ScriptContext *ctx);
 static BOOL ScrCmd_GetRematchTrainerID(ScriptContext *ctx);
@@ -2545,7 +2545,7 @@ static BOOL ScrCmd_2AB(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_GetSealOccurence(ScriptContext *ctx)
+static BOOL ScrCmd_CountSealOccurence(ScriptContext *ctx)
 {
     u16 sealId = ScriptContext_GetVar(ctx);
     u16 *destVar = ScriptContext_GetVarPointer(ctx);

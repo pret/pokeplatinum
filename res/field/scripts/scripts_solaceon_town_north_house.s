@@ -7,7 +7,7 @@
     ScriptEntryEnd
 
 SolaceonTownNorthHouse_OldWoman:
-    NPCMessage SolaceonTownNorthHouse_Text_EggsAreFoundAtThePokemonDayCare
+    NPCMessage SolaceonTownNorthHouse_Text_EggsFoundAtPokemonDayCare
     End
 
 SolaceonTownNorthHouse_Lass:

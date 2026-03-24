@@ -8,7 +8,7 @@
 SolaceonRuinsManiacTunnnelRoom_Inscription:
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    MessageUnown SolaceonRuinsManiacTunnnelRoom_Text_QuestionMarkExclamationMark
+    MessageUnown SolaceonRuinsManiacTunnnelRoom_Text_Interrobang
     WaitButton
     CloseMessage
     ReleaseAll

@@ -972,8 +972,8 @@
     .short \dummy3
     .endm
 
-    .macro GetSealOccurence sealId, destVar
-    .short SCRCMD_GETSEALOCCURENCE
+    .macro CountSealOccurence sealId, destVar
+    .short SCRCMD_COUNTSEALOCCURENCE
     .short \sealId
     .short \destVar
     .endm
