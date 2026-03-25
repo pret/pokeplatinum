@@ -791,7 +791,7 @@ const ScrCmdFunc gFieldScriptCommands[] = {
     ScriptCommandTableEntry(SCRCMD_2FC,                                                  ScrCmd_2FC)
     ScriptCommandTableEntry(SCRCMD_BUFFERTYPENAME,                                       ScrCmd_BufferTypeName)
     ScriptCommandTableEntry(SCRCMD_GETITEMQUANTITY,                                      ScrCmd_GetItemQuantity)
-    ScriptCommandTableEntry(SCRCMD_2FF,                                                  ScrCmd_2FF)
+    ScriptCommandTableEntry(SCRCMD_CALCHIDDENPOWERTYPE,                                  ScrCmd_CalcHiddenPowerType)
     ScriptCommandTableEntry(SCRCMD_300,                                                  ScrCmd_300)
     ScriptCommandTableEntry(SCRCMD_301,                                                  ScrCmd_301)
     ScriptCommandTableEntry(SCRCMD_GETROTOMFORMSINSAVE,                                  ScrCmd_GetRotomFormsInSave)

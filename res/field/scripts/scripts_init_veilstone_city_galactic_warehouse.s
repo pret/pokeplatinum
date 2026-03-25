@@ -6,7 +6,7 @@
     InitScriptEntryEnd
 
 InitScriptFrameTable:
-    InitScriptGoToIfEqual VAR_UNK_0x411F, 1, 2
+    InitScriptGoToIfEqual VAR_VEILSTONE_CITY_GALACTIC_WAREHOUSE_STATE, 1, 2
     InitScriptFrameTableEnd
 
     InitScriptEnd

@@ -370,7 +370,7 @@ _04C0:
 
 _04C8:
     LockAll
-    ClearFlag FLAG_UNK_0x01A9
+    ClearFlag FLAG_HIDE_PASTORIA_CITY_RIVAL
     SetObjectEventPos PASTORIA_CITY_RIVAL, 0x253, 0x333
     SetObjectEventMovementType PASTORIA_CITY_RIVAL, MOVEMENT_TYPE_LOOK_WEST
     SetObjectEventDir PASTORIA_CITY_RIVAL, DIR_WEST
@@ -419,7 +419,7 @@ _0563:
     End
 
 _0597:
-    SetFlag FLAG_UNK_0x01A9
+    SetFlag FLAG_HIDE_PASTORIA_CITY_RIVAL
     BlackOutFromBattle
     ReleaseAll
     End
@@ -456,7 +456,7 @@ _05D4:
 
 _05E0:
     LockAll
-    ClearFlag FLAG_UNK_0x01A9
+    ClearFlag FLAG_HIDE_PASTORIA_CITY_RIVAL
     SetObjectEventPos PASTORIA_CITY_RIVAL, 0x253, 0x333
     SetObjectEventMovementType PASTORIA_CITY_RIVAL, MOVEMENT_TYPE_LOOK_SOUTH
     SetObjectEventDir PASTORIA_CITY_RIVAL, DIR_SOUTH
@@ -519,7 +519,7 @@ _05E0:
     ClearFlag FLAG_UNK_0x01FB
     SetPosition PASTORIA_CITY_CRASHER_WAKE, 0x263, 0, 0x32A, 0
     Call _0721
-    ClearFlag FLAG_UNK_0x01A9
+    ClearFlag FLAG_HIDE_PASTORIA_CITY_RIVAL
     SetPosition PASTORIA_CITY_RIVAL, 0x260, 0, 0x32E, 1
     SetVar VAR_PASTORIA_STATE, 4
     ReleaseAll
@@ -696,7 +696,7 @@ _091C:
     CallIfEq VAR_0x8004, 0x261, _0981
     CallIfEq VAR_0x8004, 0x263, _098D
     CallIfEq VAR_0x8004, 0x264, _0981
-    SetFlag FLAG_UNK_0x020D
+    SetFlag FLAG_HIDE_VEILSTONE_CITY_GALACTIC_WAREHOUSE_LOOKER
     SetVar VAR_PASTORIA_STATE, 5
     SetFlag FLAG_UNK_0x0102
     BufferRivalName 0

@@ -2,32 +2,32 @@
   "key": 42018,
   "messages": [
     {
-      "id": "pl_msg_00000157_00000",
+      "id": "VeilstoneCitySoutheastHouse_Text_WatchThisCoin",
       "en_US": [
         "You there.\n",
         "Watch this Coin.\r"
       ]
     },
     {
-      "id": "pl_msg_00000157_00001",
+      "id": "VeilstoneCitySoutheastHouse_Text_Spin",
       "en_US": "Spin, spin, spin, spin, spin...\r"
     },
     {
-      "id": "pl_msg_00000157_00002",
+      "id": "VeilstoneCitySoutheastHouse_Text_LeftOrRightHand",
       "en_US": [
         "Now, which hand is that Coin in?\n",
         "My left or right?"
       ]
     },
     {
-      "id": "pl_msg_00000157_00003",
+      "id": "VeilstoneCitySoutheastHouse_Text_PoorShow",
       "en_US": [
         "Boo! Poor show!\n",
         "I challenge you to challenge it again!"
       ]
     },
     {
-      "id": "pl_msg_00000157_00004",
+      "id": "VeilstoneCitySoutheastHouse_Text_ForOurWinnerACoinCase",
       "en_US": [
         "Bravo!\n",
         "A winner is you!\r",
@@ -36,14 +36,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000157_00005",
+      "id": "VeilstoneCitySoutheastHouse_Text_IAmATearfulClown",
       "en_US": [
         "Me, I am but a tearful clown.\n",
         "Though I smile, I cry inside."
       ]
     },
     {
-      "id": "pl_msg_00000157_00006",
+      "id": "VeilstoneCitySoutheastHouse_Text_ThereAreManyMagicians",
       "en_US": [
         "There are many magicians in the world.\n",
         "You know, the performance artists?\r",

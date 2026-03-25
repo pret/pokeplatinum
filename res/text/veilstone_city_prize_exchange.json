@@ -2,7 +2,7 @@
   "key": 9259,
   "messages": [
     {
-      "id": "pl_msg_00000156_00000",
+      "id": "VeilstoneCityPrizeExchange_Text_ExchangeCoinsForPrizes",
       "en_US": [
         "Welcome!\r",
         "You may exchange your Coins for\n",
@@ -10,47 +10,47 @@
       ]
     },
     {
-      "id": "pl_msg_00000156_00001",
+      "id": "VeilstoneCityPrizeExchange_Text_WhichPrize",
       "en_US": "Which prize would you like?"
     },
     {
-      "id": "pl_msg_00000156_00002",
+      "id": "VeilstoneCityPrizeExchange_Text_IsYourChoiceThisItem",
       "en_US": [
         "So your choice is\n",
         "the {STRVAR_1 8, 0, 0}?"
       ]
     },
     {
-      "id": "pl_msg_00000156_00003",
+      "id": "VeilstoneCityPrizeExchange_Text_IsYourChoiceThisTM",
       "en_US": [
         "So your choice is {STRVAR_1 8, 0, 0}:\n",
         "{STRVAR_1 6, 1, 0}?"
       ]
     },
     {
-      "id": "pl_msg_00000156_00004",
+      "id": "VeilstoneCityPrizeExchange_Text_HereYouGo",
       "en_US": "Here you go!"
     },
     {
-      "id": "pl_msg_00000156_00005",
+      "id": "VeilstoneCityPrizeExchange_Text_NotEnoughCoins",
       "en_US": "You don’t have enough Coins.\r"
     },
     {
-      "id": "pl_msg_00000156_00006",
+      "id": "VeilstoneCityPrizeExchange_Text_NoRoomAvailable",
       "en_US": [
         "There isn’t any room available for\n",
         "that {STRVAR_1 8, 0, 0}.\r"
       ]
     },
     {
-      "id": "pl_msg_00000156_00007",
+      "id": "VeilstoneCityPrizeExchange_Text_OhIsThatSo",
       "en_US": [
         "Oh, is that so? \n",
         "Please come back with some Coins!"
       ]
     },
     {
-      "id": "pl_msg_00000156_00008",
+      "id": "VeilstoneCityPrizeExchange_Text_ICanTellHiddenPowerTypes",
       "en_US": [
         "I woke up and realized my potential!\r",
         "So, what potential was woken in me?\n",
@@ -65,7 +65,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000156_00009",
+      "id": "VeilstoneCityPrizeExchange_Text_IllTellHiddenPowerTypes",
       "en_US": [
         "I’ll tell you what type your Pokémon’s\n",
         "Hidden Power will be.\r",
@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000156_00010",
+      "id": "VeilstoneCityPrizeExchange_Text_PokemonsHiddenPowerWouldBeType",
       "en_US": [
         "If this Pokémon were to learn\n",
         "Hidden Power, the move’s type\f",
@@ -81,35 +81,35 @@
       ]
     },
     {
-      "id": "pl_msg_00000156_00011",
+      "id": "VeilstoneCityPrizeExchange_Text_PokemonsHiddenPowerIsType",
       "en_US": [
         "This Pokémon’s Hidden Power is the\n",
         "{STRVAR_1 15, 0, 0} type."
       ]
     },
     {
-      "id": "pl_msg_00000156_00012",
+      "id": "VeilstoneCityPrizeExchange_Text_IfYouWantAskMe",
       "en_US": [
         "If you want to know, ask me, and I’ll\n",
         "activate my hidden power for you."
       ]
     },
     {
-      "id": "pl_msg_00000156_00013",
+      "id": "VeilstoneCityPrizeExchange_Text_EggsCantLearnMoves",
       "en_US": [
         "A move that an Egg can learn?!\n",
         "That’s flat-out impossible."
       ]
     },
     {
-      "id": "pl_msg_00000156_00014",
+      "id": "VeilstoneCityPrizeExchange_Text_PokemonCantLearnHiddenPower",
       "en_US": [
         "Oh, no. This Pokémon can’t learn the\n",
         "move Hidden Power in the first place."
       ]
     },
     {
-      "id": "pl_msg_00000156_00015",
+      "id": "VeilstoneCityPrizeExchange_Text_IHaveNoCoins",
       "en_US": [
         "They have prizes I really want.\n",
         "But Coins, I have none!"

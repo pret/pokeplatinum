@@ -2,7 +2,7 @@
   "key": 42002,
   "messages": [
     {
-      "id": "pl_msg_00000155_00000",
+      "id": "VeilstoneCityGalacticWarehouse_Text_AKeyIsNecessary",
       "en_US": [
         "Looker: Hmm...\n",
         "A key is necessary for us to go on.\r",
@@ -11,7 +11,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000155_00001",
+      "id": "VeilstoneCityGalacticWarehouse_Text_ThisHMIsFly",
       "en_US": [
         "Looker: Ah, this Hidden Machine...\n",
         "It is of the hidden move Fly.\r",
@@ -22,7 +22,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000155_00002",
+      "id": "VeilstoneCityGalacticWarehouse_Text_WeDidntLearnMuch",
       "en_US": [
         "Looker: So, we did not learn very much\n",
         "from this exercise... No matter.\r",
@@ -35,7 +35,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000155_00003",
+      "id": "VeilstoneCityGalacticWarehouse_Text_GalacticTransportedToPastoria",
       "en_US": [
         "Looker: I am concerned over what I\n",
         "have overheard in the Game Corner.\r",
@@ -46,14 +46,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000155_00004",
+      "id": "VeilstoneCityGalacticWarehouse_Text_IHaveKeptYouWaiting",
       "en_US": [
         "Looker: Ah, hello!\n",
         "I have kept you waiting.\r"
       ]
     },
     {
-      "id": "pl_msg_00000155_00005",
+      "id": "VeilstoneCityGalacticWarehouse_Text_IWillUseTheStorageKey",
       "en_US": [
         "Looker: I will use this Storage Key I\n",
         "have obtained from the Team Galactic...\r",
@@ -63,21 +63,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000155_00006",
+      "id": "VeilstoneCityGalacticWarehouse_Text_IWillGoOnAhead",
       "en_US": [
         "I will go on ahead, my friend.\n",
         "Do not expose yourself to danger!\r"
       ]
     },
     {
-      "id": "pl_msg_00000155_00007",
+      "id": "VeilstoneCityGalacticWarehouse_Text_ItNeedsASpecialKey",
       "en_US": [
         "The rust-encrusted door is locked.\n",
         "It appears to take a special key.\n"
       ]
     },
     {
-      "id": "pl_msg_00000155_00008",
+      "id": "VeilstoneCityGalacticWarehouse_Text_AskUseTheStorageKey",
       "en_US": [
         "The rust-encrusted door is locked.\n",
         "It appears to take a special key.\r",
@@ -85,7 +85,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000155_00009",
+      "id": "VeilstoneCityGalacticWarehouse_Text_PlayerUsedTheStorageKey",
       "en_US": [
         "{STRVAR_1 3, 0, 0} inserted and turned the\n",
         "Storage Key.\r",

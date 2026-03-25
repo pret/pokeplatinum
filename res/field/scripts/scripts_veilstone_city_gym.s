@@ -41,7 +41,7 @@ VeilstoneGym_Maylene:
     SetFlag FLAG_HIDE_LOOKER_IN_GAME_CORNER
     ClearFlag FLAG_HIDE_VEILSTONE_COUNTERPART
     SetVar VAR_VEILSTONE_WAREHOUSE_GUARDS_FIGHTABLE, TRUE
-    SetVar VAR_VEILSTONE_STATE, 1
+    SetVar VAR_VEILSTONE_CITY_COUNTERPART_NEEDS_HELP_STATE, 1
     Message VeilstoneGym_Text_MayleneExplainBadge
     GoTo VeilstoneGym_MayleneTryGiveTM60
     End

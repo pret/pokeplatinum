@@ -3,260 +3,260 @@
 #include "res/field/events/events_veilstone_city.h"
 
 
-    ScriptEntry _0082
-    ScriptEntry _0C18
-    ScriptEntry _0C2B
-    ScriptEntry _0C3E
-    ScriptEntry _0C51
-    ScriptEntry _0C64
-    ScriptEntry _0C77
-    ScriptEntry _0CD1
-    ScriptEntry _0CE4
-    ScriptEntry VeilstoneCity_GalacticGruntWarehouseGuard
-    ScriptEntry _0D5C
-    ScriptEntry _0D8D
-    ScriptEntry _0DBE
-    ScriptEntry _0FF0
-    ScriptEntry _00F6
+    ScriptEntry VeilstoneCity_OnTransition
+    ScriptEntry VeilstoneCity_Guitarist1
+    ScriptEntry VeilstoneCity_Guitarist2
+    ScriptEntry VeilstoneCity_PokefanM
+    ScriptEntry VeilstoneCity_BattleGirl1
+    ScriptEntry VeilstoneCity_Roughneck1
+    ScriptEntry VeilstoneCity_Roughneck2
+    ScriptEntry VeilstoneCity_Lady
+    ScriptEntry VeilstoneCity_BattleGirl2
+    ScriptEntry VeilstoneCity_TriggerGruntBlockWarehouse
+    ScriptEntry VeilstoneCity_GruntMWarehouseNorth
+    ScriptEntry VeilstoneCity_GruntMWarehouseSouth
+    ScriptEntry VeilstoneCity_GruntMStorageKey
+    ScriptEntry VeilstoneCity_GruntMSoutheast
+    ScriptEntry VeilstoneCity_TriggerCrasherWake
     ScriptEntry VeilstoneCity_Counterpart
-    ScriptEntry _1003
-    ScriptEntry _101A
-    ScriptEntry _102F
-    ScriptEntry _1046
-    ScriptEntry _105D
-    ScriptEntry _1074
-    ScriptEntry _108B
-    ScriptEntry _10A2
+    ScriptEntry VeilstoneCity_MapSign
+    ScriptEntry VeilstoneCity_GymSign
+    ScriptEntry VeilstoneCity_SignGalacticWarehouse
+    ScriptEntry VeilstoneCity_SignGalacticBuilding
+    ScriptEntry VeilstoneCity_SignDepartmentStore
+    ScriptEntry VeilstoneCity_SignGameCorner
+    ScriptEntry VeilstoneCity_SignPrizeExchange
+    ScriptEntry VeilstoneCity_SignLakeValor
     ScriptEntry VeilstoneCity_DeoxysMeteoriteSpeed
     ScriptEntry VeilstoneCity_DeoxysMeteoriteDefense
     ScriptEntry VeilstoneCity_DeoxysMeteoriteAttack
     ScriptEntry VeilstoneCity_DeoxysMeteoriteNormal
-    ScriptEntry _1184
-    ScriptEntry _0FB0
-    ScriptEntry _1204
-    ScriptEntry _123E
+    ScriptEntry VeilstoneCity_OnFrameCounterpartNeedsHelp
+    ScriptEntry VeilstoneCity_Looker
+    ScriptEntry VeilstoneCity_Guitarist3
+    ScriptEntry VeilstoneCity_BattleGirl3
     ScriptEntryEnd
 
-_0082:
-    CallIfSet FLAG_UNK_0x0155, _00E0
-    CallIfGe VAR_VEILSTONE_STATE, 2, _00BA
+VeilstoneCity_OnTransition:
+    CallIfSet FLAG_VEILSTONE_CITY_GRUNT_DROPPED_STORAGE_KEY, VeilstoneCity_SetLookerPositionAtGalacticBuilding
+    CallIfGe VAR_VEILSTONE_CITY_COUNTERPART_NEEDS_HELP_STATE, 2, VeilstoneCity_SetCounterpartPositionAtWarehouse
     GetPlayerGender VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, GENDER_MALE, _00D0
-    GoToIfEq VAR_MAP_LOCAL_0, GENDER_FEMALE, _00D8
+    GoToIfEq VAR_MAP_LOCAL_0, GENDER_MALE, VeilstoneCity_SetCounterpartGraphicsDawn
+    GoToIfEq VAR_MAP_LOCAL_0, GENDER_FEMALE, VeilstoneCity_SetCounterpartGraphicsLucas
     End
 
-_00BA:
-    SetObjectEventPos 6, 0x2B8, 0x254
-    SetObjectEventMovementType 6, MOVEMENT_TYPE_LOOK_EAST
-    SetObjectEventDir 6, DIR_EAST
+VeilstoneCity_SetCounterpartPositionAtWarehouse:
+    SetObjectEventPos LOCALID_COUNTERPART, 696, 596
+    SetObjectEventMovementType LOCALID_COUNTERPART, MOVEMENT_TYPE_LOOK_EAST
+    SetObjectEventDir LOCALID_COUNTERPART, DIR_EAST
     Return
 
-_00D0:
-    SetVar VAR_OBJ_GFX_ID_0, 97
+VeilstoneCity_SetCounterpartGraphicsDawn:
+    SetVar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_PLAYER_F
     End
 
-_00D8:
-    SetVar VAR_OBJ_GFX_ID_0, 0
+VeilstoneCity_SetCounterpartGraphicsLucas:
+    SetVar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_PLAYER_M
     End
 
-_00E0:
-    SetObjectEventPos 26, 0x2CD, 0x251
-    SetObjectEventMovementType 26, MOVEMENT_TYPE_LOOK_NORTH
-    SetObjectEventDir 26, DIR_NORTH
+VeilstoneCity_SetLookerPositionAtGalacticBuilding:
+    SetObjectEventPos LOCALID_LOOKER, 717, 593
+    SetObjectEventMovementType LOCALID_LOOKER, MOVEMENT_TYPE_LOOK_NORTH
+    SetObjectEventDir LOCALID_LOOKER, DIR_NORTH
     Return
 
-_00F6:
+VeilstoneCity_TriggerCrasherWake:
     LockAll
-    ApplyMovement 6, _0444
+    ApplyMovement LOCALID_COUNTERPART, VeilstoneCity_Movement_CounterpartNoticePlayerBeforeGym
     WaitMovement
     Common_SetCounterpartBGM
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    CallIfEq VAR_0x8004, 0x2A9, _02E1
-    CallIfEq VAR_0x8004, 0x2AA, _02ED
-    CallIfEq VAR_0x8004, 0x2AB, _02F9
-    CallIfEq VAR_0x8004, 0x2AC, _0305
+    CallIfEq VAR_0x8004, 681, VeilstoneCity_CounterpartWalkToPlayerX681
+    CallIfEq VAR_0x8004, 682, VeilstoneCity_CounterpartWalkToPlayerX682
+    CallIfEq VAR_0x8004, 683, VeilstoneCity_CounterpartWalkToPlayerX683
+    CallIfEq VAR_0x8004, 684, VeilstoneCity_CounterpartWalkToPlayerX684
     GetPlayerGender VAR_0x8004
-    CallIfEq VAR_0x8004, GENDER_MALE, _0297
-    CallIfEq VAR_0x8004, GENDER_FEMALE, _029F
+    CallIfEq VAR_0x8004, GENDER_MALE, VeilstoneCity_DawnWillYouTakeTheGymChallenge
+    CallIfEq VAR_0x8004, GENDER_FEMALE, VeilstoneCity_LucasWillYouTakeOnTheGymLeader
     CloseMessage
     Common_FadeToDefaultMusic
     LoadDoorAnimation 21, 19, 12, 3, ANIMATION_TAG_DOOR_1
     PlayDoorOpenAnimation ANIMATION_TAG_DOOR_1
     WaitForAnimation ANIMATION_TAG_DOOR_1
-    ClearFlag FLAG_UNK_0x0191
-    AddObject 25
-    ApplyMovement 25, _0564
+    ClearFlag FLAG_HIDE_VEILSTONE_CRASHER_WAKE
+    AddObject LOCALID_CRASHER_WAKE
+    ApplyMovement LOCALID_CRASHER_WAKE, VeilstoneCity_Movement_CrasherWakeExitGym
     WaitMovement
     PlayDoorCloseAnimation ANIMATION_TAG_DOOR_1
     WaitForAnimation ANIMATION_TAG_DOOR_1
     UnloadAnimation ANIMATION_TAG_DOOR_1
-    ApplyMovement 6, _0484
+    ApplyMovement LOCALID_COUNTERPART, VeilstoneCity_Movement_CounterpartFaceCrasherWake
     WaitMovement
-    Message 4
+    Message VeilstoneCity_Text_CrashCrashCrasherWake
     CloseMessage
-    ApplyMovement 25, _056C
+    ApplyMovement LOCALID_CRASHER_WAKE, VeilstoneCity_Movement_CrasherWakeNoticePlayer
     WaitMovement
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    CallIfEq VAR_0x8004, 0x2A9, _0311
-    CallIfEq VAR_0x8004, 0x2AA, _032D
-    CallIfEq VAR_0x8004, 0x2AB, _0349
-    CallIfEq VAR_0x8004, 0x2AC, _0365
-    Message 5
-    Message 6
+    CallIfEq VAR_0x8004, 681, VeilstoneCity_CrasherWakeWalkToPlayerX681
+    CallIfEq VAR_0x8004, 682, VeilstoneCity_CrasherWakeWalkToPlayerX682
+    CallIfEq VAR_0x8004, 683, VeilstoneCity_CrasherWakeWalkToPlayerX683
+    CallIfEq VAR_0x8004, 684, VeilstoneCity_CrasherWakeWalkToPlayerX684
+    Message VeilstoneCity_Text_YoureChallengingTheGymLeader
+    Message VeilstoneCity_Text_ImCrasherWakeOfPastoriaGym
     CloseMessage
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    CallIfEq VAR_0x8004, 0x2A9, _0381
-    CallIfEq VAR_0x8004, 0x2AA, _039D
-    CallIfEq VAR_0x8004, 0x2AB, _03B9
-    CallIfEq VAR_0x8004, 0x2AC, _03D5
-    RemoveObject 25
+    CallIfEq VAR_0x8004, 681, VeilstoneCity_CrasherWakeLeaveX681
+    CallIfEq VAR_0x8004, 682, VeilstoneCity_CrasherWakeLeaveX682
+    CallIfEq VAR_0x8004, 683, VeilstoneCity_CrasherWakeLeaveX683
+    CallIfEq VAR_0x8004, 684, VeilstoneCity_CrasherWakeLeaveX684
+    RemoveObject LOCALID_CRASHER_WAKE
     WaitTime 20, VAR_RESULT
     GetPlayerGender VAR_0x8004
-    CallIfEq VAR_0x8004, GENDER_MALE, _02A7
-    CallIfEq VAR_0x8004, GENDER_FEMALE, _02C4
+    CallIfEq VAR_0x8004, GENDER_MALE, VeilstoneCity_DawnGoodLuck
+    CallIfEq VAR_0x8004, GENDER_FEMALE, VeilstoneCity_LucasGoodLuck
     CloseMessage
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    CallIfEq VAR_0x8004, 0x2A9, _03F1
-    CallIfEq VAR_0x8004, 0x2AA, _0405
-    CallIfEq VAR_0x8004, 0x2AB, _0419
-    CallIfEq VAR_0x8004, 0x2AC, _042D
-    RemoveObject 6
-    SetVar VAR_UNK_0x40F5, 1
+    CallIfEq VAR_0x8004, 681, VeilstoneCity_CounterpartLeaveX681
+    CallIfEq VAR_0x8004, 682, VeilstoneCity_CounterpartLeaveX682
+    CallIfEq VAR_0x8004, 683, VeilstoneCity_CounterpartLeaveX683
+    CallIfEq VAR_0x8004, 684, VeilstoneCity_CounterpartLeaveX684
+    RemoveObject LOCALID_COUNTERPART
+    SetVar VAR_VEILSTONE_CITY_CRASHER_WAKE_STATE, 1
     ReleaseAll
     End
 
-_0297:
+VeilstoneCity_DawnWillYouTakeTheGymChallenge:
     BufferPlayerName 0
-    Message 2
+    Message VeilstoneCity_Text_DawnWillYouTakeTheGymChallenge
     Return
 
-_029F:
+VeilstoneCity_LucasWillYouTakeOnTheGymLeader:
     BufferPlayerName 0
-    Message 3
+    Message VeilstoneCity_Text_LucasWillYouTakeOnTheGymLeader
     Return
 
-_02A7:
+VeilstoneCity_DawnGoodLuck:
     BufferPlayerName 0
-    Message 7
+    Message VeilstoneCity_Text_DawnDotDotDot
     CloseMessage
     WaitTime 15, VAR_RESULT
-    ApplyMovement LOCALID_PLAYER, _052C
+    ApplyMovement LOCALID_PLAYER, VeilstoneCity_Movement_PlayerFaceCounterpartAfterCrasherWake
     WaitMovement
-    Message 8
+    Message VeilstoneCity_Text_DawnGoodLuck
     Return
 
-_02C4:
+VeilstoneCity_LucasGoodLuck:
     BufferPlayerName 0
-    Message 9
+    Message VeilstoneCity_Text_LucasDotDotDot
     CloseMessage
     WaitTime 15, VAR_RESULT
-    ApplyMovement LOCALID_PLAYER, _052C
+    ApplyMovement LOCALID_PLAYER, VeilstoneCity_Movement_PlayerFaceCounterpartAfterCrasherWake
     WaitMovement
-    Message 10
+    Message VeilstoneCity_Text_LucasGoodLuck
     Return
 
-_02E1:
-    ApplyMovement 6, _0458
-    WaitMovement
-    Return
-
-_02ED:
-    ApplyMovement 6, _0464
+VeilstoneCity_CounterpartWalkToPlayerX681:
+    ApplyMovement LOCALID_COUNTERPART, VeilstoneCity_Movement_CounterpartWalkToPlayerX681
     WaitMovement
     Return
 
-_02F9:
-    ApplyMovement 6, _046C
+VeilstoneCity_CounterpartWalkToPlayerX682:
+    ApplyMovement LOCALID_COUNTERPART, VeilstoneCity_Movement_CounterpartWalkToPlayerX682
     WaitMovement
     Return
 
-_0305:
-    ApplyMovement 6, _0478
+VeilstoneCity_CounterpartWalkToPlayerX683:
+    ApplyMovement LOCALID_COUNTERPART, VeilstoneCity_Movement_CounterpartWalkToPlayerX683
     WaitMovement
     Return
 
-_0311:
-    ApplyMovement 25, _0574
-    ApplyMovement 6, _048C
-    ApplyMovement LOCALID_PLAYER, _04EC
+VeilstoneCity_CounterpartWalkToPlayerX684:
+    ApplyMovement LOCALID_COUNTERPART, VeilstoneCity_Movement_CounterpartWalkToPlayerX684
     WaitMovement
     Return
 
-_032D:
-    ApplyMovement 25, _0580
-    ApplyMovement 6, _0498
-    ApplyMovement LOCALID_PLAYER, _04FC
+VeilstoneCity_CrasherWakeWalkToPlayerX681:
+    ApplyMovement LOCALID_CRASHER_WAKE, VeilstoneCity_Movement_CrasherWakeWalkToPlayerX681
+    ApplyMovement LOCALID_COUNTERPART, VeilstoneCity_Movement_CounterpartWatchCrasherWakeWalkToPlayerX681
+    ApplyMovement LOCALID_PLAYER, VeilstoneCity_Movement_PlayerWatchCrasherWakeWalkToPlayerX681
     WaitMovement
     Return
 
-_0349:
-    ApplyMovement 25, _058C
-    ApplyMovement 6, _04A4
-    ApplyMovement LOCALID_PLAYER, _050C
+VeilstoneCity_CrasherWakeWalkToPlayerX682:
+    ApplyMovement LOCALID_CRASHER_WAKE, VeilstoneCity_Movement_CrasherWakeWalkToPlayerX682
+    ApplyMovement LOCALID_COUNTERPART, VeilstoneCity_Movement_CounterpartWatchCrasherWakeWalkToPlayerX682
+    ApplyMovement LOCALID_PLAYER, VeilstoneCity_Movement_PlayerWatchCrasherWakeWalkToPlayerX682
     WaitMovement
     Return
 
-_0365:
-    ApplyMovement 25, _0598
-    ApplyMovement 6, _04B0
-    ApplyMovement LOCALID_PLAYER, _051C
+VeilstoneCity_CrasherWakeWalkToPlayerX683:
+    ApplyMovement LOCALID_CRASHER_WAKE, VeilstoneCity_Movement_CrasherWakeWalkToPlayerX683
+    ApplyMovement LOCALID_COUNTERPART, VeilstoneCity_Movement_CounterpartWatchCrasherWakeWalkToPlayerX683
+    ApplyMovement LOCALID_PLAYER, VeilstoneCity_Movement_PlayerWatchCrasherWakeWalkToPlayerX683
     WaitMovement
     Return
 
-_0381:
-    ApplyMovement 25, _05AC
-    ApplyMovement 6, _04D4
-    ApplyMovement LOCALID_PLAYER, _0554
+VeilstoneCity_CrasherWakeWalkToPlayerX684:
+    ApplyMovement LOCALID_CRASHER_WAKE, VeilstoneCity_Movement_CrasherWakeWalkToPlayerX684
+    ApplyMovement LOCALID_COUNTERPART, VeilstoneCity_Movement_CounterpartWatchCrasherWakeWalkToPlayerX684
+    ApplyMovement LOCALID_PLAYER, VeilstoneCity_Movement_PlayerWatchCrasherWakeWalkToPlayerX684
     WaitMovement
     Return
 
-_039D:
-    ApplyMovement 25, _05B4
-    ApplyMovement 6, _04D4
-    ApplyMovement LOCALID_PLAYER, _0554
+VeilstoneCity_CrasherWakeLeaveX681:
+    ApplyMovement LOCALID_CRASHER_WAKE, VeilstoneCity_Movement_CrasherWakeLeaveX681
+    ApplyMovement LOCALID_COUNTERPART, VeilstoneCity_Movement_CounterpartWatchCrasherWakeLeave
+    ApplyMovement LOCALID_PLAYER, VeilstoneCity_Movement_PlayerWatchCrasherWakeLeave
     WaitMovement
     Return
 
-_03B9:
-    ApplyMovement 25, _05BC
-    ApplyMovement 6, _04D4
-    ApplyMovement LOCALID_PLAYER, _0554
+VeilstoneCity_CrasherWakeLeaveX682:
+    ApplyMovement LOCALID_CRASHER_WAKE, VeilstoneCity_Movement_CrasherWakeLeaveX682
+    ApplyMovement LOCALID_COUNTERPART, VeilstoneCity_Movement_CounterpartWatchCrasherWakeLeave
+    ApplyMovement LOCALID_PLAYER, VeilstoneCity_Movement_PlayerWatchCrasherWakeLeave
     WaitMovement
     Return
 
-_03D5:
-    ApplyMovement 25, _05C4
-    ApplyMovement 6, _04D4
-    ApplyMovement LOCALID_PLAYER, _0554
+VeilstoneCity_CrasherWakeLeaveX683:
+    ApplyMovement LOCALID_CRASHER_WAKE, VeilstoneCity_Movement_CrasherWakeLeaveX683
+    ApplyMovement LOCALID_COUNTERPART, VeilstoneCity_Movement_CounterpartWatchCrasherWakeLeave
+    ApplyMovement LOCALID_PLAYER, VeilstoneCity_Movement_PlayerWatchCrasherWakeLeave
     WaitMovement
     Return
 
-_03F1:
-    ApplyMovement 6, _04BC
-    ApplyMovement LOCALID_PLAYER, _0534
+VeilstoneCity_CrasherWakeLeaveX684:
+    ApplyMovement LOCALID_CRASHER_WAKE, VeilstoneCity_Movement_CrasherWakeLeaveX684
+    ApplyMovement LOCALID_COUNTERPART, VeilstoneCity_Movement_CounterpartWatchCrasherWakeLeave
+    ApplyMovement LOCALID_PLAYER, VeilstoneCity_Movement_PlayerWatchCrasherWakeLeave
     WaitMovement
     Return
 
-_0405:
-    ApplyMovement 6, _04BC
-    ApplyMovement LOCALID_PLAYER, _0534
+VeilstoneCity_CounterpartLeaveX681:
+    ApplyMovement LOCALID_COUNTERPART, VeilstoneCity_Movement_CounterpartLeaveWest
+    ApplyMovement LOCALID_PLAYER, VeilstoneCity_Movement_PlayerWatchCounterpartLeaveWest
     WaitMovement
     Return
 
-_0419:
-    ApplyMovement 6, _04C8
-    ApplyMovement LOCALID_PLAYER, _0544
+VeilstoneCity_CounterpartLeaveX682:
+    ApplyMovement LOCALID_COUNTERPART, VeilstoneCity_Movement_CounterpartLeaveWest
+    ApplyMovement LOCALID_PLAYER, VeilstoneCity_Movement_PlayerWatchCounterpartLeaveWest
     WaitMovement
     Return
 
-_042D:
-    ApplyMovement 6, _04C8
-    ApplyMovement LOCALID_PLAYER, _0544
+VeilstoneCity_CounterpartLeaveX683:
+    ApplyMovement LOCALID_COUNTERPART, VeilstoneCity_Movement_CounterpartLeaveEast
+    ApplyMovement LOCALID_PLAYER, VeilstoneCity_Movement_PlayerWatchCounterpartLeaveEast
+    WaitMovement
+    Return
+
+VeilstoneCity_CounterpartLeaveX684:
+    ApplyMovement LOCALID_COUNTERPART, VeilstoneCity_Movement_CounterpartLeaveEast
+    ApplyMovement LOCALID_PLAYER, VeilstoneCity_Movement_PlayerWatchCounterpartLeaveEast
     WaitMovement
     Return
 
     .balign 4, 0
-_0444:
+VeilstoneCity_Movement_CounterpartNoticePlayerBeforeGym:
     Delay8
     WalkOnSpotNormalSouth
     EmoteExclamationMark
@@ -264,71 +264,71 @@ _0444:
     EndMovement
 
     .balign 4, 0
-_0458:
+VeilstoneCity_Movement_CounterpartWalkToPlayerX681:
     WalkNormalWest
     WalkNormalSouth
     EndMovement
 
     .balign 4, 0
-_0464:
+VeilstoneCity_Movement_CounterpartWalkToPlayerX682:
     WalkNormalSouth
     EndMovement
 
     .balign 4, 0
-_046C:
+VeilstoneCity_Movement_CounterpartWalkToPlayerX683:
     WalkNormalEast
     WalkNormalSouth
     EndMovement
 
     .balign 4, 0
-_0478:
+VeilstoneCity_Movement_CounterpartWalkToPlayerX684:
     WalkNormalEast 2
     WalkNormalSouth
     EndMovement
 
     .balign 4, 0
-_0484:
+VeilstoneCity_Movement_CounterpartFaceCrasherWake:
     WalkOnSpotFastNorth
     EndMovement
 
     .balign 4, 0
-_048C:
+VeilstoneCity_Movement_CounterpartWatchCrasherWakeWalkToPlayerX681:
     Delay8 4
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_0498:
+VeilstoneCity_Movement_CounterpartWatchCrasherWakeWalkToPlayerX682:
     Delay8 3
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_04A4:
+VeilstoneCity_Movement_CounterpartWatchCrasherWakeWalkToPlayerX683:
     Delay8 2
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_04B0:
+VeilstoneCity_Movement_CounterpartWatchCrasherWakeWalkToPlayerX684:
     Delay8 4
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_04BC:
+VeilstoneCity_Movement_CounterpartLeaveWest:
     WalkNormalEast
     WalkNormalSouth 9
     EndMovement
 
     .balign 4, 0
-_04C8:
+VeilstoneCity_Movement_CounterpartLeaveEast:
     WalkNormalWest
     WalkNormalSouth 9
     EndMovement
 
     .balign 4, 0
-_04D4:
+VeilstoneCity_Movement_CounterpartWatchCrasherWakeLeave:
     Delay8
     WalkOnSpotNormalSouth
     EndMovement
@@ -339,89 +339,89 @@ VeilstoneCity_UnusedMovement:
     EndMovement
 
     .balign 4, 0
-_04EC:
+VeilstoneCity_Movement_PlayerWatchCrasherWakeWalkToPlayerX681:
     Delay8 4
     Delay4
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_04FC:
+VeilstoneCity_Movement_PlayerWatchCrasherWakeWalkToPlayerX682:
     Delay8 3
     Delay4
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_050C:
+VeilstoneCity_Movement_PlayerWatchCrasherWakeWalkToPlayerX683:
     Delay8 2
     Delay4
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_051C:
+VeilstoneCity_Movement_PlayerWatchCrasherWakeWalkToPlayerX684:
     Delay8 4
     Delay4
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_052C:
+VeilstoneCity_Movement_PlayerFaceCounterpartAfterCrasherWake:
     WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
-_0534:
+VeilstoneCity_Movement_PlayerWatchCounterpartLeaveWest:
     Delay8 2
     WalkOnSpotNormalEast
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_0544:
+VeilstoneCity_Movement_PlayerWatchCounterpartLeaveEast:
     Delay8 2
     WalkOnSpotNormalWest
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_0554:
+VeilstoneCity_Movement_PlayerWatchCrasherWakeLeave:
     Delay8
     Delay4
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_0564:
+VeilstoneCity_Movement_CrasherWakeExitGym:
     WalkNormalSouth
     EndMovement
 
     .balign 4, 0
-_056C:
+VeilstoneCity_Movement_CrasherWakeNoticePlayer:
     EmoteExclamationMark
     EndMovement
 
     .balign 4, 0
-_0574:
+VeilstoneCity_Movement_CrasherWakeWalkToPlayerX681:
     WalkNormalSouth 4
     WalkNormalWest 2
     EndMovement
 
     .balign 4, 0
-_0580:
+VeilstoneCity_Movement_CrasherWakeWalkToPlayerX682:
     WalkNormalSouth 4
     WalkNormalWest
     EndMovement
 
     .balign 4, 0
-_058C:
+VeilstoneCity_Movement_CrasherWakeWalkToPlayerX683:
     WalkNormalSouth 4
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_0598:
+VeilstoneCity_Movement_CrasherWakeWalkToPlayerX684:
     WalkNormalSouth
     WalkNormalWest
     WalkNormalSouth 3
@@ -429,22 +429,22 @@ _0598:
     EndMovement
 
     .balign 4, 0
-_05AC:
+VeilstoneCity_Movement_CrasherWakeLeaveX681:
     WalkNormalSouth 8
     EndMovement
 
     .balign 4, 0
-_05B4:
+VeilstoneCity_Movement_CrasherWakeLeaveX682:
     WalkNormalSouth 8
     EndMovement
 
     .balign 4, 0
-_05BC:
+VeilstoneCity_Movement_CrasherWakeLeaveX683:
     WalkNormalSouth 8
     EndMovement
 
     .balign 4, 0
-_05C4:
+VeilstoneCity_Movement_CrasherWakeLeaveX684:
     WalkNormalSouth 8
     EndMovement
 
@@ -466,7 +466,7 @@ VeilstoneCity_Dawn:
 
 VeilstoneCity_DawnAcceptTeamUp:
     Message VeilstoneCity_Text_DawnTeamUp
-    GoTo _0656
+    GoTo VeilstoneCity_WarehouseScene
 
 VeilstoneCity_DawnDeclineTeamUp:
     Message VeilstoneCity_Text_DawnIllBeWaiting
@@ -484,7 +484,7 @@ VeilstoneCity_Lucas:
 
 VeilstoneCity_LucasAcceptTeamUp:
     Message VeilstoneCity_Text_LucasTeamUp
-    GoTo _0656
+    GoTo VeilstoneCity_WarehouseScene
 
 VeilstoneCity_LucasDeclineTeamUp:
     Message VeilstoneCity_Text_LucasIllBeWaiting
@@ -493,124 +493,124 @@ VeilstoneCity_LucasDeclineTeamUp:
     ReleaseAll
     End
 
-_0656:
+VeilstoneCity_WarehouseScene:
     CloseMessage
     GetPlayerDir VAR_RESULT
-    CallIfEq VAR_RESULT, 3, _099F
-    CallIfEq VAR_RESULT, 1, _09B3
-    CallIfEq VAR_RESULT, 0, _09C7
+    CallIfEq VAR_RESULT, DIR_EAST, VeilstoneCity_PlayerAndCounterpartWalkToGruntsEast
+    CallIfEq VAR_RESULT, DIR_SOUTH, VeilstoneCity_PlayerAndCounterpartWalkToGruntsSouth
+    CallIfEq VAR_RESULT, DIR_NORTH, VeilstoneCity_PlayerAndCounterpartWalkToGruntsNorth
     Call VeilstoneCity_SetPlayerCounterpartPartnerTeam
     StartTagBattle VAR_0x8004, TRAINER_GALACTIC_GRUNT_VEILSTONE_CITY_1, TRAINER_GALACTIC_GRUNT_VEILSTONE_CITY_2
     CheckWonBattle VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, _0A73
-    Message 16
+    GoToIfEq VAR_RESULT, FALSE, VeilstoneCity_BlackOut
+    Message VeilstoneCity_Text_AwwThatStinks
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    CallIfEq VAR_0x8005, 0x253, _09DB
-    CallIfEq VAR_0x8005, 0x255, _09E7
-    Message 17
+    CallIfEq VAR_0x8005, 595, VeilstoneCity_GruntMWarehouseSouthWalkOnSpotWest
+    CallIfEq VAR_0x8005, 597, VeilstoneCity_GruntMWarehouseNorthWalkOnSpotWest
+    Message VeilstoneCity_Text_TakeYourPokedex
     CloseMessage
     WaitTime 15, VAR_RESULT
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    CallIfEq VAR_0x8005, 0x253, _09F3
-    CallIfEq VAR_0x8005, 0x255, _09FF
-    RemoveObject 7
-    Message 18
+    CallIfEq VAR_0x8005, 595, VeilstoneCity_GruntMWarehouseNorthLeave
+    CallIfEq VAR_0x8005, 597, VeilstoneCity_GruntMWarehouseNorthLeave2
+    RemoveObject LOCALID_GRUNT_M_WAREHOUSE_NORTH
+    Message VeilstoneCity_Text_WeWillRunLikeGrunts
     CloseMessage
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    CallIfEq VAR_0x8005, 0x253, _0A0B
-    CallIfEq VAR_0x8005, 0x255, _0A17
-    RemoveObject 20
+    CallIfEq VAR_0x8005, 595, VeilstoneCity_GruntMWarehouseSouthLeave
+    CallIfEq VAR_0x8005, 597, VeilstoneCity_GruntMWarehouseSouthLeave2
+    RemoveObject LOCALID_GRUNT_M_WAREHOUSE_SOUTH
     GetPlayerGender VAR_0x8004
-    CallIfEq VAR_0x8004, GENDER_MALE, _0A23
-    CallIfEq VAR_0x8004, GENDER_FEMALE, _0A28
+    CallIfEq VAR_0x8004, GENDER_MALE, VeilstoneCity_DawnWhatsGoingOn
+    CallIfEq VAR_0x8004, GENDER_FEMALE, VeilstoneCity_LucasWhatsGoingOnHere
     CloseMessage
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    CallIfEq VAR_0x8005, 0x253, _0A4B
-    CallIfEq VAR_0x8005, 0x255, _0A5F
+    CallIfEq VAR_0x8005, 595, VeilstoneCity_PlayerAndCounterpartFaceEachOtherZ595
+    CallIfEq VAR_0x8005, 597, VeilstoneCity_PlayerAndCounterpartFaceEachOtherZ597
     WaitTime 10, VAR_RESULT
     BufferPlayerName 0
     GetPlayerGender VAR_0x8004
-    CallIfEq VAR_0x8004, GENDER_MALE, _0A2D
-    CallIfEq VAR_0x8004, GENDER_FEMALE, _0A32
+    CallIfEq VAR_0x8004, GENDER_MALE, VeilstoneCity_DawnThankYouSincerely
+    CallIfEq VAR_0x8004, GENDER_FEMALE, VeilstoneCity_LucasThanksHonestly
     CloseMessage
     WaitTime 15, VAR_RESULT
-    ClearFlag FLAG_UNK_0x028A
-    SetObjectEventPos 26, 0x2B4, 0x25E
-    AddObject 26
+    ClearFlag FLAG_HIDE_VEILSTONE_CITY_LOOKER
+    SetObjectEventPos LOCALID_LOOKER, 692, 606
+    AddObject LOCALID_LOOKER
     Common_SetLookerBGM
-    ApplyMovement 26, _0A7C
+    ApplyMovement LOCALID_LOOKER, VeilstoneCity_Movement_LookerEnterAfterBattle
     WaitMovement
-    Message 29
+    Message VeilstoneCity_Text_HaveNoFear
     CloseMessage
-    ApplyMovement 6, _0B3C
-    ApplyMovement LOCALID_PLAYER, _0B9C
+    ApplyMovement LOCALID_COUNTERPART, VeilstoneCity_Movement_CounterpartFaceLooker
+    ApplyMovement LOCALID_PLAYER, VeilstoneCity_Movement_PlayerFaceLooker
     WaitMovement
     GetPlayerGender VAR_0x8004
-    CallIfEq VAR_0x8004, GENDER_MALE, _0A37
-    CallIfEq VAR_0x8004, GENDER_FEMALE, _0A3C
-    Message 32
+    CallIfEq VAR_0x8004, GENDER_MALE, VeilstoneCity_DawnFunnyManFromJubilife
+    CallIfEq VAR_0x8004, GENDER_FEMALE, VeilstoneCity_LucasWeirdoFromJubilife
+    Message VeilstoneCity_Text_YouInsultMeToMyFace
     GetPlayerGender VAR_0x8004
-    CallIfEq VAR_0x8004, GENDER_MALE, _0A41
-    CallIfEq VAR_0x8004, GENDER_FEMALE, _0A46
+    CallIfEq VAR_0x8004, GENDER_MALE, VeilstoneCity_DawnIShouldBeGoingNow
+    CallIfEq VAR_0x8004, GENDER_FEMALE, VeilstoneCity_LucasIllBeGoingNow
     CloseMessage
-    ApplyMovement 6, _0B44
-    ApplyMovement 26, _0A88
+    ApplyMovement LOCALID_COUNTERPART, VeilstoneCity_Movement_CounterpartLeaveAfterBattle
+    ApplyMovement LOCALID_LOOKER, VeilstoneCity_Movement_LookerWatchCounterpartLeave
     WaitMovement
-    RemoveObject 6
+    RemoveObject LOCALID_COUNTERPART
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    GoToIfEq VAR_0x8005, 0x253, _083A
-    GoToIfEq VAR_0x8005, 0x255, _0854
+    GoToIfEq VAR_0x8005, 595, VeilstoneCity_LookerWalkToPlayerZ595
+    GoToIfEq VAR_0x8005, 597, VeilstoneCity_LookerWalkToPlayerZ597
     End
 
-_083A:
-    ApplyMovement LOCALID_PLAYER, _0BB0
-    ApplyMovement 26, _0A94
+VeilstoneCity_LookerWalkToPlayerZ595:
+    ApplyMovement LOCALID_PLAYER, VeilstoneCity_Movement_PlayerFaceLookerSouth
+    ApplyMovement LOCALID_LOOKER, VeilstoneCity_Movement_LookerWalkToPlayerZ595
     WaitMovement
-    GoTo _086E
+    GoTo VeilstoneCity_WellTakeALook
     End
 
-_0854:
-    ApplyMovement LOCALID_PLAYER, _0BBC
-    ApplyMovement 26, _0AA0
+VeilstoneCity_LookerWalkToPlayerZ597:
+    ApplyMovement LOCALID_PLAYER, VeilstoneCity_Movement_PlayerFaceLookerNorth
+    ApplyMovement LOCALID_LOOKER, VeilstoneCity_Movement_LookerWalkToPlayerZ597
     WaitMovement
-    GoTo _086E
+    GoTo VeilstoneCity_WellTakeALook
     End
 
-_086E:
-    Message 35
+VeilstoneCity_WellTakeALook:
+    Message VeilstoneCity_Text_WellTakeALook
     CloseMessage
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    GoToIfEq VAR_0x8005, 0x253, _08A9
-    GoToIfEq VAR_0x8005, 0x255, _08C3
+    GoToIfEq VAR_0x8005, 595, VeilstoneCity_EnterWarehouseZ595
+    GoToIfEq VAR_0x8005, 597, VeilstoneCity_EnterWarehouseZ597
     End
 
 VeilstoneCity_Unused:
-    SetObjectEventPos 26, 692, 603
+    SetObjectEventPos LOCALID_LOOKER, 692, 603
     Return
 
 VeilstoneCity_Unused2:
-    SetObjectEventPos 26, 692, 605
+    SetObjectEventPos LOCALID_LOOKER, 692, 605
     Return
 
-_08A9:
-    ApplyMovement 26, _0AAC
-    ApplyMovement LOCALID_PLAYER, _0BC8
+VeilstoneCity_EnterWarehouseZ595:
+    ApplyMovement LOCALID_LOOKER, VeilstoneCity_Movement_LookerEnterWarehouse
+    ApplyMovement LOCALID_PLAYER, VeilstoneCity_Movement_PlayerEnterWarehouseZ595
     WaitMovement
-    GoTo _08DD
+    GoTo VeilstoneCity_WarpToWarehouse
     End
 
-_08C3:
-    ApplyMovement 26, _0AAC
-    ApplyMovement LOCALID_PLAYER, _0BDC
+VeilstoneCity_EnterWarehouseZ597:
+    ApplyMovement LOCALID_LOOKER, VeilstoneCity_Movement_LookerEnterWarehouse
+    ApplyMovement LOCALID_PLAYER, VeilstoneCity_Movement_PlayerEnterWarehouseZ597
     WaitMovement
-    GoTo _08DD
+    GoTo VeilstoneCity_WarpToWarehouse
     End
 
-_08DD:
-    SetFlag FLAG_UNK_0x01A9
-    SetFlag FLAG_UNK_0x028A
-    ClearFlag FLAG_UNK_0x020D
-    SetVar VAR_UNK_0x411F, 1
+VeilstoneCity_WarpToWarehouse:
+    SetFlag FLAG_HIDE_PASTORIA_CITY_RIVAL
+    SetFlag FLAG_HIDE_VEILSTONE_CITY_LOOKER
+    ClearFlag FLAG_HIDE_VEILSTONE_CITY_GALACTIC_WAREHOUSE_LOOKER
+    SetVar VAR_VEILSTONE_CITY_GALACTIC_WAREHOUSE_STATE, 1
     PlaySE SEQ_SE_DP_KAIDAN2
     FadeScreenOut
     WaitFadeScreen
@@ -628,166 +628,166 @@ VeilstoneCity_SetPlayerCounterpartPartnerTeam:
 VeilstoneCity_SetDawnPartnerTeam:
     GetPlayerStarterSpecies VAR_RESULT
     SetVar VAR_0x8004, TRAINER_DAWN_VEILSTONE_CITY_CHIMCHAR
-    GoToIfEq VAR_RESULT, SPECIES_CHIMCHAR, _099D
+    GoToIfEq VAR_RESULT, SPECIES_CHIMCHAR, VeilstoneCity_SetCounterpartPartnerTeamReturn
     SetVar VAR_0x8004, TRAINER_DAWN_VEILSTONE_CITY_PIPLUP
-    GoToIfEq VAR_RESULT, SPECIES_PIPLUP, _099D
+    GoToIfEq VAR_RESULT, SPECIES_PIPLUP, VeilstoneCity_SetCounterpartPartnerTeamReturn
     SetVar VAR_0x8004, TRAINER_DAWN_VEILSTONE_CITY_TURTWIG
     Return
 
 VeilstoneCity_SetLucasPartnerTeam:
     GetPlayerStarterSpecies VAR_RESULT
     SetVar VAR_0x8004, TRAINER_LUCAS_VEILSTONE_CITY_CHIMCHAR
-    GoToIfEq VAR_RESULT, SPECIES_CHIMCHAR, _099D
+    GoToIfEq VAR_RESULT, SPECIES_CHIMCHAR, VeilstoneCity_SetCounterpartPartnerTeamReturn
     SetVar VAR_0x8004, TRAINER_LUCAS_VEILSTONE_CITY_PIPLUP
-    GoToIfEq VAR_RESULT, SPECIES_PIPLUP, _099D
+    GoToIfEq VAR_RESULT, SPECIES_PIPLUP, VeilstoneCity_SetCounterpartPartnerTeamReturn
     SetVar VAR_0x8004, TRAINER_LUCAS_VEILSTONE_CITY_TURTWIG
     Return
 
-_099D:
+VeilstoneCity_SetCounterpartPartnerTeamReturn:
     Return
 
-_099F:
-    ApplyMovement 6, _0ABC
-    ApplyMovement LOCALID_PLAYER, _0B50
+VeilstoneCity_PlayerAndCounterpartWalkToGruntsEast:
+    ApplyMovement LOCALID_COUNTERPART, VeilstoneCity_Movement_CounterpartWalkToGruntEast
+    ApplyMovement LOCALID_PLAYER, VeilstoneCity_Movement_PlayerWalkToGruntEast
     WaitMovement
     Return
 
-_09B3:
-    ApplyMovement 6, _0AC8
-    ApplyMovement LOCALID_PLAYER, _0B5C
+VeilstoneCity_PlayerAndCounterpartWalkToGruntsSouth:
+    ApplyMovement LOCALID_COUNTERPART, VeilstoneCity_Movement_CounterpartWalkToGruntSouth
+    ApplyMovement LOCALID_PLAYER, VeilstoneCity_Movement_PlayerWalkToGruntSouth
     WaitMovement
     Return
 
-_09C7:
-    ApplyMovement 6, _0AD4
-    ApplyMovement LOCALID_PLAYER, _0B64
+VeilstoneCity_PlayerAndCounterpartWalkToGruntsNorth:
+    ApplyMovement LOCALID_COUNTERPART, VeilstoneCity_Movement_CounterpartWalkToGruntNorth
+    ApplyMovement LOCALID_PLAYER, VeilstoneCity_Movement_PlayerWalkToGruntNorth
     WaitMovement
     Return
 
-_09DB:
-    ApplyMovement 20, _0BF0
+VeilstoneCity_GruntMWarehouseSouthWalkOnSpotWest:
+    ApplyMovement LOCALID_GRUNT_M_WAREHOUSE_SOUTH, VeilstoneCity_Movement_GruntWalkOnSpotWest
     WaitMovement
     Return
 
-_09E7:
-    ApplyMovement 7, _0BF0
+VeilstoneCity_GruntMWarehouseNorthWalkOnSpotWest:
+    ApplyMovement LOCALID_GRUNT_M_WAREHOUSE_NORTH, VeilstoneCity_Movement_GruntWalkOnSpotWest
     WaitMovement
     Return
 
-_09F3:
-    ApplyMovement 7, _0BF8
+VeilstoneCity_GruntMWarehouseNorthLeave:
+    ApplyMovement LOCALID_GRUNT_M_WAREHOUSE_NORTH, VeilstoneCity_Movement_GruntMWarehouseNorthLeave
     WaitMovement
     Return
 
-_09FF:
-    ApplyMovement 7, _0BF8
+VeilstoneCity_GruntMWarehouseNorthLeave2:
+    ApplyMovement LOCALID_GRUNT_M_WAREHOUSE_NORTH, VeilstoneCity_Movement_GruntMWarehouseNorthLeave
     WaitMovement
     Return
 
-_0A0B:
-    ApplyMovement 20, _0C08
+VeilstoneCity_GruntMWarehouseSouthLeave:
+    ApplyMovement LOCALID_GRUNT_M_WAREHOUSE_SOUTH, VeilstoneCity_Movement_GruntMWarehouseSouthLeave
     WaitMovement
     Return
 
-_0A17:
-    ApplyMovement 20, _0C08
+VeilstoneCity_GruntMWarehouseSouthLeave2:
+    ApplyMovement LOCALID_GRUNT_M_WAREHOUSE_SOUTH, VeilstoneCity_Movement_GruntMWarehouseSouthLeave
     WaitMovement
     Return
 
-_0A23:
-    Message 22
+VeilstoneCity_DawnWhatsGoingOn:
+    Message VeilstoneCity_Text_DawnWhatsGoingOn
     Return
 
-_0A28:
-    Message 27
+VeilstoneCity_LucasWhatsGoingOnHere:
+    Message VeilstoneCity_Text_LucasWhatsGoingOnHere
     Return
 
-_0A2D:
-    Message 23
+VeilstoneCity_DawnThankYouSincerely:
+    Message VeilstoneCity_Text_DawnThankYouSincerely
     Return
 
-_0A32:
-    Message 28
+VeilstoneCity_LucasThanksHonestly:
+    Message VeilstoneCity_Text_LucasThanksHonestly
     Return
 
-_0A37:
-    Message 30
+VeilstoneCity_DawnFunnyManFromJubilife:
+    Message VeilstoneCity_Text_DawnFunnyManFromJubilife
     Return
 
-_0A3C:
-    Message 31
+VeilstoneCity_LucasWeirdoFromJubilife:
+    Message VeilstoneCity_Text_LucasWeirdoFromJubilife
     Return
 
-_0A41:
-    Message 33
+VeilstoneCity_DawnIShouldBeGoingNow:
+    Message VeilstoneCity_Text_DawnIShouldBeGoingNow
     Return
 
-_0A46:
-    Message 34
+VeilstoneCity_LucasIllBeGoingNow:
+    Message VeilstoneCity_Text_LucasIllBeGoingNow
     Return
 
-_0A4B:
-    ApplyMovement 6, _0B2C
-    ApplyMovement LOCALID_PLAYER, _0B8C
+VeilstoneCity_PlayerAndCounterpartFaceEachOtherZ595:
+    ApplyMovement LOCALID_COUNTERPART, VeilstoneCity_Movement_CounterpartWalkOnSpotNorth
+    ApplyMovement LOCALID_PLAYER, VeilstoneCity_Movement_PlayerWalkOnSpotSouth
     WaitMovement
     Return
 
-_0A5F:
-    ApplyMovement 6, _0B34
-    ApplyMovement LOCALID_PLAYER, _0B94
+VeilstoneCity_PlayerAndCounterpartFaceEachOtherZ597:
+    ApplyMovement LOCALID_COUNTERPART, VeilstoneCity_Movement_CounterpartWalkOnSpotSouth
+    ApplyMovement LOCALID_PLAYER, VeilstoneCity_Movement_PlayerWalkOnSpotNorth
     WaitMovement
     Return
 
-_0A73:
+VeilstoneCity_BlackOut:
     BlackOutFromBattle
     ReleaseAll
     End
 
     .balign 4, 0
-_0A7C:
+VeilstoneCity_Movement_LookerEnterAfterBattle:
     WalkFastNorth 10
     WalkFastEast 3
     EndMovement
 
     .balign 4, 0
-_0A88:
+VeilstoneCity_Movement_LookerWatchCounterpartLeave:
     Delay8 2
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_0A94:
+VeilstoneCity_Movement_LookerWalkToPlayerZ595:
     WalkNormalEast
     WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
-_0AA0:
+VeilstoneCity_Movement_LookerWalkToPlayerZ597:
     WalkNormalEast
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_0AAC:
+VeilstoneCity_Movement_LookerEnterWarehouse:
     WalkNormalEast 5
     WalkNormalNorth 4
     SetInvisible
     EndMovement
 
     .balign 4, 0
-_0ABC:
+VeilstoneCity_Movement_CounterpartWalkToGruntEast:
     WalkNormalSouth
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_0AC8:
+VeilstoneCity_Movement_CounterpartWalkToGruntSouth:
     WalkNormalSouth
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_0AD4:
+VeilstoneCity_Movement_CounterpartWalkToGruntNorth:
     WalkNormalNorth
     WalkOnSpotNormalEast
     EndMovement
@@ -822,39 +822,39 @@ VeilstoneCity_UnusedMovement6:
     EndMovement
 
     .balign 4, 0
-_0B2C:
+VeilstoneCity_Movement_CounterpartWalkOnSpotNorth:
     WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
-_0B34:
+VeilstoneCity_Movement_CounterpartWalkOnSpotSouth:
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_0B3C:
+VeilstoneCity_Movement_CounterpartFaceLooker:
     WalkOnSpotFastWest
     EndMovement
 
     .balign 4, 0
-_0B44:
+VeilstoneCity_Movement_CounterpartLeaveAfterBattle:
     WalkNormalWest 3
     WalkNormalSouth 10
     EndMovement
 
     .balign 4, 0
-_0B50:
+VeilstoneCity_Movement_PlayerWalkToGruntEast:
     WalkNormalNorth
     WalkNormalEast
     EndMovement
 
     .balign 4, 0
-_0B5C:
+VeilstoneCity_Movement_PlayerWalkToGruntSouth:
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_0B64:
+VeilstoneCity_Movement_PlayerWalkToGruntNorth:
     WalkOnSpotNormalEast
     EndMovement
 
@@ -871,17 +871,17 @@ VeilstoneCity_UnusedMovement8:
     EndMovement
 
     .balign 4, 0
-_0B8C:
+VeilstoneCity_Movement_PlayerWalkOnSpotSouth:
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_0B94:
+VeilstoneCity_Movement_PlayerWalkOnSpotNorth:
     WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
-_0B9C:
+VeilstoneCity_Movement_PlayerFaceLooker:
     WalkOnSpotNormalWest
     EndMovement
 
@@ -891,19 +891,19 @@ VeilstoneCity_UnusedMovement9:
     EndMovement
 
     .balign 4, 0
-_0BB0:
+VeilstoneCity_Movement_PlayerFaceLookerSouth:
     Delay8
     FaceSouth
     EndMovement
 
     .balign 4, 0
-_0BBC:
+VeilstoneCity_Movement_PlayerFaceLookerNorth:
     Delay8
     FaceNorth
     EndMovement
 
     .balign 4, 0
-_0BC8:
+VeilstoneCity_Movement_PlayerEnterWarehouseZ595:
     WalkNormalSouth
     WalkNormalEast 5
     WalkNormalNorth 5
@@ -911,7 +911,7 @@ _0BC8:
     EndMovement
 
     .balign 4, 0
-_0BDC:
+VeilstoneCity_Movement_PlayerEnterWarehouseZ597:
     WalkNormalNorth
     WalkNormalEast 5
     WalkNormalNorth 5
@@ -919,86 +919,86 @@ _0BDC:
     EndMovement
 
     .balign 4, 0
-_0BF0:
+VeilstoneCity_Movement_GruntWalkOnSpotWest:
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_0BF8:
+VeilstoneCity_Movement_GruntMWarehouseNorthLeave:
     WalkFastEast 4
     WalkFastNorth 4
     WalkOnSpotFastNorth
     EndMovement
 
     .balign 4, 0
-_0C08:
+VeilstoneCity_Movement_GruntMWarehouseSouthLeave:
     WalkFastEast 4
     WalkFastNorth 6
     WalkOnSpotFastNorth
     EndMovement
 
-_0C18:
-    NPCMessage 43
+VeilstoneCity_Guitarist1:
+    NPCMessage VeilstoneCity_Text_GalacticHasHMInWarehouse
     End
 
-_0C2B:
-    NPCMessage 49
+VeilstoneCity_Guitarist2:
+    NPCMessage VeilstoneCity_Text_AClownIsGivingAwayCoinCases
     End
 
-_0C3E:
-    NPCMessage 44
+VeilstoneCity_PokefanM:
+    NPCMessage VeilstoneCity_Text_GameCornerIsDangerous
     End
 
-_0C51:
-    NPCMessage 45
+VeilstoneCity_BattleGirl1:
+    NPCMessage VeilstoneCity_Text_IGotATMFromGameCorner
     End
 
-_0C64:
-    NPCMessage 46
+VeilstoneCity_Roughneck1:
+    NPCMessage VeilstoneCity_Text_MayleneIsVeilstonesGymLeader
     End
 
-_0C77:
+VeilstoneCity_Roughneck2:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x00CC, _0CBC
-    Message 50
+    GoToIfSet FLAG_RECEIVED_VEILSTONE_CITY_TM63, VeilstoneCity_EmbargoMakesItemsUnusable
+    Message VeilstoneCity_Text_VeilstoneIsTheCityOfStone
     SetVar VAR_0x8004, ITEM_TM63
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0CC7
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, VeilstoneCity_BagIsFull
     Common_GiveItemQuantity
-    SetFlag FLAG_UNK_0x00CC
-    GoTo _0CBC
+    SetFlag FLAG_RECEIVED_VEILSTONE_CITY_TM63
+    GoTo VeilstoneCity_EmbargoMakesItemsUnusable
 
-_0CBC:
-    Message 51
+VeilstoneCity_EmbargoMakesItemsUnusable:
+    Message VeilstoneCity_Text_EmbargoMakesItemsUnusable
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0CC7:
+VeilstoneCity_BagIsFull:
     Common_MessageBagIsFull
     CloseMessage
     ReleaseAll
     End
 
-_0CD1:
-    NPCMessage 47
+VeilstoneCity_Lady:
+    NPCMessage VeilstoneCity_Text_ICameToShopAtDepartmentStore
     End
 
-_0CE4:
-    NPCMessage 48
+VeilstoneCity_BattleGirl2:
+    NPCMessage VeilstoneCity_Text_IBoughtANewParasol
     End
 
-VeilstoneCity_GalacticGruntWarehouseGuard:
+VeilstoneCity_TriggerGruntBlockWarehouse:
     LockAll
-    ApplyMovement VEILSTONE_CITY_GRUNT_M_7, VeilstoneCity_Grunt_FaceSouth
+    ApplyMovement LOCALID_GRUNT_M_WAREHOUSE_NORTH, VeilstoneCity_Grunt_FaceSouth
     ApplyMovement LOCALID_PLAYER, VeilstoneCity_Player_FaceNorth
     WaitMovement
-    Message VeilstoneCity_Text_ThisIsGalacticWarehouse
+    Message VeilstoneCity_Text_ThisIsGalacticsWarehouse
     CloseMessage
-    ApplyMovement VEILSTONE_CITY_GRUNT_M_7, VeilstoneCity_Grunt_PushPlayerBack
+    ApplyMovement LOCALID_GRUNT_M_WAREHOUSE_NORTH, VeilstoneCity_Grunt_PushPlayerBack
     ApplyMovement LOCALID_PLAYER, VeilstoneCity_Player_GetPushed
     WaitMovement
     ReleaseAll
@@ -1029,127 +1029,127 @@ VeilstoneCity_Player_GetPushed:
     WalkNormalWest
     EndMovement
 
-_0D5C:
+VeilstoneCity_GruntMWarehouseNorth:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfBadgeAcquired BADGE_ID_COBBLE, _0D82
-    Message VeilstoneCity_Text_ThisIsGalacticWarehouse1
+    GoToIfBadgeAcquired BADGE_ID_COBBLE, VeilstoneCity_YouveBroughtYourBuddy
+    Message VeilstoneCity_Text_ThisIsGalacticsWarehouse2
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0D82:
-    Message 14
+VeilstoneCity_YouveBroughtYourBuddy:
+    Message VeilstoneCity_Text_YouveBroughtYourBuddy
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0D8D:
+VeilstoneCity_GruntMWarehouseSouth:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfBadgeAcquired BADGE_ID_COBBLE, _0DB3
-    Message 13
+    GoToIfBadgeAcquired BADGE_ID_COBBLE, VeilstoneCity_WellTakeYouOn
+    Message VeilstoneCity_Text_ThisIsTheAwesomeWarehouse
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0DB3:
-    Message 15
+VeilstoneCity_WellTakeYouOn:
+    Message VeilstoneCity_Text_WellTakeYouOn
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0DBE:
+VeilstoneCity_GruntMStorageKey:
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    Message 36
+    Message VeilstoneCity_Text_LookAtThoseAntennae
     CloseMessage
     FacePlayer
-    ApplyMovement 23, _0F1C
+    ApplyMovement LOCALID_GRUNT_M_STORAGE_KEY, VeilstoneCity_Movement_GruntMStorageKeyNoticePlayer
     WaitMovement
-    Message 37
+    Message VeilstoneCity_Text_IKnowNothingAboutStorageKey
     CloseMessage
-    SetFlag FLAG_UNK_0x0155
-    SetObjectEventPos 26, 0x2D3, 0x259
-    SetObjectEventMovementType 26, MOVEMENT_TYPE_LOOK_NORTH
-    SetObjectEventDir 26, DIR_NORTH
-    ClearFlag FLAG_UNK_0x028A
-    AddObject 26
+    SetFlag FLAG_VEILSTONE_CITY_GRUNT_DROPPED_STORAGE_KEY
+    SetObjectEventPos LOCALID_LOOKER, 723, 601
+    SetObjectEventMovementType LOCALID_LOOKER, MOVEMENT_TYPE_LOOK_NORTH
+    SetObjectEventDir LOCALID_LOOKER, DIR_NORTH
+    ClearFlag FLAG_HIDE_VEILSTONE_CITY_LOOKER
+    AddObject LOCALID_LOOKER
     GetPlayerDir VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _0E34
-    GoToIfEq VAR_RESULT, 1, _0E5C
-    GoToIfEq VAR_RESULT, 2, _0EA4
-    GoToIfEq VAR_RESULT, 3, _0E7C
+    GoToIfEq VAR_RESULT, DIR_NORTH, VeilstoneCity_GruntMStorageKeyLeaveNorth
+    GoToIfEq VAR_RESULT, DIR_SOUTH, VeilstoneCity_GruntMStorageKeyLeaveSouth
+    GoToIfEq VAR_RESULT, DIR_WEST, VeilstoneCity_GruntMStorageKeyLeaveWest
+    GoToIfEq VAR_RESULT, DIR_EAST, VeilstoneCity_GruntMStorageKeyLeaveEast
     End
 
-_0E34:
-    ApplyMovement LOCALID_PLAYER, _0F48
-    ApplyMovement 23, _0F24
+VeilstoneCity_GruntMStorageKeyLeaveNorth:
+    ApplyMovement LOCALID_PLAYER, VeilstoneCity_Movement_PlayerWatchGruntMStorageKeyLeaveNorth
+    ApplyMovement LOCALID_GRUNT_M_STORAGE_KEY, VeilstoneCity_Movement_GruntMStorageKeyLeaveNorthSouthEast
     WaitMovement
     Common_SetLookerBGM
-    ApplyMovement 26, _0F80
+    ApplyMovement LOCALID_LOOKER, VeilstoneCity_Movement_LookerEnterNorth
     WaitMovement
-    GoTo _0ECC
+    GoTo VeilstoneCity_RemoveGruntMStorageKey
     End
 
-_0E5C:
-    ApplyMovement 23, _0F24
+VeilstoneCity_GruntMStorageKeyLeaveSouth:
+    ApplyMovement LOCALID_GRUNT_M_STORAGE_KEY, VeilstoneCity_Movement_GruntMStorageKeyLeaveNorthSouthEast
     WaitMovement
     Common_SetLookerBGM
-    ApplyMovement 26, _0F70
+    ApplyMovement LOCALID_LOOKER, VeilstoneCity_Movement_LookerEnterSouth
     WaitMovement
-    GoTo _0ECC
+    GoTo VeilstoneCity_RemoveGruntMStorageKey
     End
 
-_0E7C:
-    ApplyMovement LOCALID_PLAYER, _0F58
-    ApplyMovement 23, _0F24
+VeilstoneCity_GruntMStorageKeyLeaveEast:
+    ApplyMovement LOCALID_PLAYER, VeilstoneCity_Movement_PlayerWatchGruntMStorageKeyLeaveEast
+    ApplyMovement LOCALID_GRUNT_M_STORAGE_KEY, VeilstoneCity_Movement_GruntMStorageKeyLeaveNorthSouthEast
     WaitMovement
     Common_SetLookerBGM
-    ApplyMovement 26, _0F90
+    ApplyMovement LOCALID_LOOKER, VeilstoneCity_Movement_LookerEnterEast
     WaitMovement
-    GoTo _0ECC
+    GoTo VeilstoneCity_RemoveGruntMStorageKey
     End
 
-_0EA4:
-    ApplyMovement LOCALID_PLAYER, _0F64
-    ApplyMovement 23, _0F38
+VeilstoneCity_GruntMStorageKeyLeaveWest:
+    ApplyMovement LOCALID_PLAYER, VeilstoneCity_Movement_PlayerWatchGruntMStorageKeyLeaveWest
+    ApplyMovement LOCALID_GRUNT_M_STORAGE_KEY, VeilstoneCity_Movement_GruntMStorageKeyLeaveWest
     WaitMovement
     Common_SetLookerBGM
-    ApplyMovement 26, _0FA0
+    ApplyMovement LOCALID_LOOKER, VeilstoneCity_Movement_LookerEnterWest
     WaitMovement
-    GoTo _0ECC
+    GoTo VeilstoneCity_RemoveGruntMStorageKey
     End
 
-_0ECC:
-    RemoveObject 23
-    GoTo _0ED8
+VeilstoneCity_RemoveGruntMStorageKey:
+    RemoveObject LOCALID_GRUNT_M_STORAGE_KEY
+    GoTo VeilstoneCity_AskWillYouEnterTheHideout
     End
 
-_0ED8:
-    Message 38
+VeilstoneCity_AskWillYouEnterTheHideout:
+    Message VeilstoneCity_Text_WillYouEnterTheHideout
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _0EF4
-    GoTo _0F0B
+    GoToIfEq VAR_RESULT, MENU_YES, VeilstoneCity_WeWillMeetInside
+    GoTo VeilstoneCity_SneakingInIsDaunting
     End
 
-_0EF4:
-    SetVar VAR_UNK_0x411F, 3
-    SetFlag FLAG_UNK_0x009B
-    Message 39
+VeilstoneCity_WeWillMeetInside:
+    SetVar VAR_VEILSTONE_CITY_GALACTIC_WAREHOUSE_STATE, 3
+    SetFlag FLAG_AGREED_WITH_LOOKER_TO_ENTER_HIDEOUT
+    Message VeilstoneCity_Text_WeWillMeetInside
     CloseMessage
     Common_FadeToDefaultMusic4
     ReleaseAll
     End
 
-_0F0B:
-    Message 40
+VeilstoneCity_SneakingInIsDaunting:
+    Message VeilstoneCity_Text_SneakingInIsDaunting
     WaitButton
     CloseMessage
     Common_FadeToDefaultMusic4
@@ -1157,12 +1157,12 @@ _0F0B:
     End
 
     .balign 4, 0
-_0F1C:
+VeilstoneCity_Movement_GruntMStorageKeyNoticePlayer:
     EmoteExclamationMark
     EndMovement
 
     .balign 4, 0
-_0F24:
+VeilstoneCity_Movement_GruntMStorageKeyLeaveNorthSouthEast:
     WalkFastEast
     WalkFastSouth 2
     WalkFastEast
@@ -1170,113 +1170,113 @@ _0F24:
     EndMovement
 
     .balign 4, 0
-_0F38:
+VeilstoneCity_Movement_GruntMStorageKeyLeaveWest:
     WalkFastSouth 2
     WalkFastEast 2
     WalkFastSouth 9
     EndMovement
 
     .balign 4, 0
-_0F48:
+VeilstoneCity_Movement_PlayerWatchGruntMStorageKeyLeaveNorth:
     Delay8
     WalkOnSpotNormalEast
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_0F58:
+VeilstoneCity_Movement_PlayerWatchGruntMStorageKeyLeaveEast:
     Delay8 2
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_0F64:
+VeilstoneCity_Movement_PlayerWatchGruntMStorageKeyLeaveWest:
     Delay8
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_0F70:
+VeilstoneCity_Movement_LookerEnterSouth:
     WalkNormalNorth 6
     WalkNormalWest 2
     WalkNormalNorth 2
     EndMovement
 
     .balign 4, 0
-_0F80:
+VeilstoneCity_Movement_LookerEnterNorth:
     WalkNormalNorth 6
     WalkNormalWest 2
     WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
-_0F90:
+VeilstoneCity_Movement_LookerEnterEast:
     WalkNormalNorth 6
     WalkNormalWest 3
     WalkNormalNorth
     EndMovement
 
     .balign 4, 0
-_0FA0:
+VeilstoneCity_Movement_LookerEnterWest:
     WalkNormalNorth 6
     WalkNormalWest
     WalkNormalNorth
     EndMovement
 
-_0FB0:
+VeilstoneCity_Looker:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ApplyMovement 26, _0FE0
+    ApplyMovement LOCALID_LOOKER, VeilstoneCity_Movement_LookerNoticePlayer
     WaitMovement
     BufferPlayerName 0
-    Message 41
+    Message VeilstoneCity_Text_Player
     Common_SetLookerBGM
-    GoToIfSet FLAG_UNK_0x009B, _0EF4
-    GoTo _0ED8
+    GoToIfSet FLAG_AGREED_WITH_LOOKER_TO_ENTER_HIDEOUT, VeilstoneCity_WeWillMeetInside
+    GoTo VeilstoneCity_AskWillYouEnterTheHideout
     End
 
     .balign 4, 0
-_0FE0:
+VeilstoneCity_Movement_LookerNoticePlayer:
     Delay8
     EmoteExclamationMark
     Delay8
     EndMovement
 
-_0FF0:
-    NPCMessage 42
+VeilstoneCity_GruntMSoutheast:
+    NPCMessage VeilstoneCity_Text_WeHaveHMFlyInWarehouse
     End
 
-_1003:
-    ShowMapSign 61
+VeilstoneCity_MapSign:
+    ShowMapSign VeilstoneCity_Text_MapSign
     End
 
-_101A:
-    ShowScrollingSign 62
+VeilstoneCity_GymSign:
+    ShowScrollingSign VeilstoneCity_Text_SignPokemonGym
     End
 
-_102F:
-    ShowLandmarkSign 63
+VeilstoneCity_SignGalacticWarehouse:
+    ShowLandmarkSign VeilstoneCity_Text_SignGalacticWarehouse
     End
 
-_1046:
-    ShowLandmarkSign 64
+VeilstoneCity_SignGalacticBuilding:
+    ShowLandmarkSign VeilstoneCity_Text_SignGalacticVeilstoneBuilding
     End
 
-_105D:
-    ShowLandmarkSign 65
+VeilstoneCity_SignDepartmentStore:
+    ShowLandmarkSign VeilstoneCity_Text_SignVeilstoneDepartmentStore
     End
 
-_1074:
-    ShowLandmarkSign 66
+VeilstoneCity_SignGameCorner:
+    ShowLandmarkSign VeilstoneCity_Text_SignVeilstoneGameCorner
     End
 
-_108B:
-    ShowLandmarkSign 67
+VeilstoneCity_SignPrizeExchange:
+    ShowLandmarkSign VeilstoneCity_Text_SignPrizeExchange
     End
 
-_10A2:
-    ShowLandmarkSign 68
+VeilstoneCity_SignLakeValor:
+    ShowLandmarkSign VeilstoneCity_Text_SignLakeValor
     End
 
 VeilstoneCity_DeoxysMeteoriteSpeed:
@@ -1342,36 +1342,36 @@ VeilstoneCity_MeteoriteFromTheStars:
     ReleaseAll
     End
 
-_1184:
+VeilstoneCity_OnFrameCounterpartNeedsHelp:
     LockAll
-    ApplyMovement VEILSTONE_CITY_COUNTERPART, _11E8
+    ApplyMovement LOCALID_COUNTERPART, VeilstoneCity_Movement_CounterpartNoticePlayerAfterGym
     WaitMovement
     GetPlayerGender VAR_0x8004
-    CallIfEq VAR_0x8004, GENDER_MALE, _11D6
-    CallIfEq VAR_0x8004, GENDER_FEMALE, _11DE
+    CallIfEq VAR_0x8004, GENDER_MALE, VeilstoneCity_DawnPleaseCanYouHelpMe
+    CallIfEq VAR_0x8004, GENDER_FEMALE, VeilstoneCity_LucasListenINeedYourHelp
     CloseMessage
-    ApplyMovement VEILSTONE_CITY_COUNTERPART, _11FC
+    ApplyMovement LOCALID_COUNTERPART, VeilstoneCity_Movement_CounterpartLeaveNeedsHelp
     WaitMovement
-    RemoveObject VEILSTONE_CITY_COUNTERPART
-    Call _00BA
+    RemoveObject LOCALID_COUNTERPART
+    Call VeilstoneCity_SetCounterpartPositionAtWarehouse
     ClearFlag FLAG_HIDE_VEILSTONE_COUNTERPART
-    AddObject VEILSTONE_CITY_COUNTERPART
-    SetVar VAR_VEILSTONE_STATE, 2
+    AddObject LOCALID_COUNTERPART
+    SetVar VAR_VEILSTONE_CITY_COUNTERPART_NEEDS_HELP_STATE, 2
     ReleaseAll
     End
 
-_11D6:
+VeilstoneCity_DawnPleaseCanYouHelpMe:
     BufferPlayerName 0
-    Message 0
+    Message VeilstoneCity_Text_DawnPleaseCanYouHelpMe
     Return
 
-_11DE:
+VeilstoneCity_LucasListenINeedYourHelp:
     BufferPlayerName 0
-    Message 1
+    Message VeilstoneCity_Text_LucasListenINeedYourHelp
     Return
 
     .balign 4, 0
-_11E8:
+VeilstoneCity_Movement_CounterpartNoticePlayerAfterGym:
     WalkOnSpotNormalNorth
     EmoteExclamationMark
     WalkNormalEast 2
@@ -1379,34 +1379,34 @@ _11E8:
     EndMovement
 
     .balign 4, 0
-_11FC:
+VeilstoneCity_Movement_CounterpartLeaveNeedsHelp:
     WalkNormalSouth 9
     EndMovement
 
-_1204:
+VeilstoneCity_Guitarist3:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 52
+    Message VeilstoneCity_Text_FrenchDoYouLikePokemon
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _122B
-    Message 53
-    GoTo _1236
+    GoToIfEq VAR_RESULT, MENU_NO, VeilstoneCity_FrenchHardToBelieve
+    Message VeilstoneCity_Text_FrenchMeToo
+    GoTo VeilstoneCity_Guitarist3End
     End
 
-_122B:
-    Message 54
-    GoTo _1236
+VeilstoneCity_FrenchHardToBelieve:
+    Message VeilstoneCity_Text_FrenchHardToBelieve
+    GoTo VeilstoneCity_Guitarist3End
     End
 
-_1236:
+VeilstoneCity_Guitarist3End:
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_123E:
-    NPCMessage 55
+VeilstoneCity_BattleGirl3:
+    NPCMessage VeilstoneCity_Text_AManSpokeInForeignLanguage
     End
 
     .balign 4, 0

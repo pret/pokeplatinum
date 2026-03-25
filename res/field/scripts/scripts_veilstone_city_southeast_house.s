@@ -1,79 +1,81 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/veilstone_city_southeast_house.h"
+#include "res/text/bank/menu_entries.h"
+#include "res/field/events/events_veilstone_city_southeast_house.h"
 
 
-    ScriptEntry _000A
-    ScriptEntry _018C
+    ScriptEntry VeilstoneCitySoutheastHouse_Clown
+    ScriptEntry VeilstoneCitySoutheastHouse_BlackBelt
     ScriptEntryEnd
 
-_000A:
+VeilstoneCitySoutheastHouse_Clown:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x00BC, _00EF
-    Message 0
-    Message 1
+    GoToIfSet FLAG_RECEIVED_VEILSTONE_CITY_SOUTHEAST_HOUSE_COIN_CASE, VeilstoneCitySoutheastHouse_IAmATearfulClown
+    Message VeilstoneCitySoutheastHouse_Text_WatchThisCoin
+    Message VeilstoneCitySoutheastHouse_Text_Spin
     CloseMessage
     GetPlayerDir VAR_RESULT
-    GoToIfEq VAR_RESULT, 2, _005F
-    GoToIfEq VAR_RESULT, 0, _006F
-    GoToIfEq VAR_RESULT, 3, _007F
-    GoToIfEq VAR_RESULT, 1, _008F
+    GoToIfEq VAR_RESULT, DIR_WEST, VeilstoneCitySoutheastHouse_ClownSpinWest
+    GoToIfEq VAR_RESULT, DIR_NORTH, VeilstoneCitySoutheastHouse_ClownSpinNorth
+    GoToIfEq VAR_RESULT, DIR_EAST, VeilstoneCitySoutheastHouse_ClownSpinEast
+    GoToIfEq VAR_RESULT, DIR_SOUTH, VeilstoneCitySoutheastHouse_ClownSpinSouth
     End
 
-_005F:
-    ApplyMovement 0, _0144
+VeilstoneCitySoutheastHouse_ClownSpinWest:
+    ApplyMovement LOCALID_CLOWN, VeilstoneCitySoutheastHouse_Movement_ClownSpinWest
     WaitMovement
-    GoTo _009F
+    GoTo VeilstoneCitySoutheastHouse_ChooseHand
 
-_006F:
-    ApplyMovement 0, _0168
+VeilstoneCitySoutheastHouse_ClownSpinNorth:
+    ApplyMovement LOCALID_CLOWN, VeilstoneCitySoutheastHouse_Movement_ClownSpinNorth
     WaitMovement
-    GoTo _009F
+    GoTo VeilstoneCitySoutheastHouse_ChooseHand
 
-_007F:
-    ApplyMovement 0, _00FC
+VeilstoneCitySoutheastHouse_ClownSpinEast:
+    ApplyMovement LOCALID_CLOWN, VeilstoneCitySoutheastHouse_Movement_ClownSpinEast
     WaitMovement
-    GoTo _009F
+    GoTo VeilstoneCitySoutheastHouse_ChooseHand
 
-_008F:
-    ApplyMovement 0, _0120
+VeilstoneCitySoutheastHouse_ClownSpinSouth:
+    ApplyMovement LOCALID_CLOWN, VeilstoneCitySoutheastHouse_Movement_ClownSpinSouth
     WaitMovement
-    GoTo _009F
+    GoTo VeilstoneCitySoutheastHouse_ChooseHand
 
-_009F:
-    Message 2
+VeilstoneCitySoutheastHouse_ChooseHand:
+    Message VeilstoneCitySoutheastHouse_Text_LeftOrRightHand
     InitGlobalTextMenu 1, 1, 0, VAR_0x8000, NO_EXIT_ON_B
-    AddMenuEntryImm 174, 0
-    AddMenuEntryImm 175, 1
+    AddMenuEntryImm MenuEntries_Text_CoinCaseClown_Right, 0
+    AddMenuEntryImm MenuEntries_Text_CoinCaseClown_Left, 1
     ShowMenu
     GetRandom VAR_RESULT, 2
-    GoToIfEq VAR_RESULT, 0, _00E4
-    Message 4
+    GoToIfEq VAR_RESULT, FALSE, VeilstoneCitySoutheastHouse_PoorShow
+    Message VeilstoneCitySoutheastHouse_Text_ForOurWinnerACoinCase
     SetVar VAR_0x8004, ITEM_COIN_CASE
     SetVar VAR_0x8005, 1
-    SetFlag FLAG_UNK_0x00BC
+    SetFlag FLAG_RECEIVED_VEILSTONE_CITY_SOUTHEAST_HOUSE_COIN_CASE
     Common_GiveItemQuantityNoLineFeed
     CloseMessage
     ReleaseAll
     End
 
-_00E4:
-    Message 3
+VeilstoneCitySoutheastHouse_PoorShow:
+    Message VeilstoneCitySoutheastHouse_Text_PoorShow
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_00EF:
-    Message 5
+VeilstoneCitySoutheastHouse_IAmATearfulClown:
+    Message VeilstoneCitySoutheastHouse_Text_IAmATearfulClown
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
     .balign 4, 0
-_00FC:
+VeilstoneCitySoutheastHouse_Movement_ClownSpinEast:
     FaceNorth
     Delay2
     FaceEast
@@ -85,7 +87,7 @@ _00FC:
     EndMovement
 
     .balign 4, 0
-_0120:
+VeilstoneCitySoutheastHouse_Movement_ClownSpinSouth:
     FaceEast
     Delay2
     FaceSouth
@@ -97,7 +99,7 @@ _0120:
     EndMovement
 
     .balign 4, 0
-_0144:
+VeilstoneCitySoutheastHouse_Movement_ClownSpinWest:
     FaceSouth
     Delay2
     FaceWest
@@ -109,7 +111,7 @@ _0144:
     EndMovement
 
     .balign 4, 0
-_0168:
+VeilstoneCitySoutheastHouse_Movement_ClownSpinNorth:
     FaceWest
     Delay2
     FaceNorth
@@ -120,8 +122,8 @@ _0168:
     Delay2
     EndMovement
 
-_018C:
-    NPCMessage 6
+VeilstoneCitySoutheastHouse_BlackBelt:
+    NPCMessage VeilstoneCitySoutheastHouse_Text_ThereAreManyMagicians
     End
 
     .balign 4, 0

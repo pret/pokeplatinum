@@ -358,7 +358,7 @@ _053A:
     RemoveObject 0
     SetVar VAR_UNK_0x4083, 2
     SetFlag FLAG_UNK_0x00B7
-    SetFlag FLAG_UNK_0x01A9
+    SetFlag FLAG_HIDE_PASTORIA_CITY_RIVAL
     ClearFlag FLAG_UNK_0x020F
     SetVar VAR_PASTORIA_STATE, 6
     ReleaseAll

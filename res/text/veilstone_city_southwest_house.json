@@ -2,7 +2,7 @@
   "key": 9291,
   "messages": [
     {
-      "id": "pl_msg_00000160_00000",
+      "id": "VeilstoneCitySouthwestHouse_Text_ICanMassagePokemon",
       "en_US": [
         "Oh, looking a little tired?\n",
         "...Oh, no, not you.\f",
@@ -12,50 +12,50 @@
       ]
     },
     {
-      "id": "pl_msg_00000160_00001",
+      "id": "VeilstoneCitySouthwestHouse_Text_MassageWhichPokemon",
       "en_US": "Which one needs a little love?\r"
     },
     {
-      "id": "pl_msg_00000160_00002",
+      "id": "VeilstoneCitySouthwestHouse_Text_ImNotShady",
       "en_US": [
         "Oh!\n",
         "Hey, I’m not doing anything shady..."
       ]
     },
     {
-      "id": "pl_msg_00000160_00003",
+      "id": "VeilstoneCitySouthwestHouse_Text_LetsGetStarted",
       "en_US": [
         "Giggle... OK, let’s get started.\n",
         "OK, sweetie, just relax...\r"
       ]
     },
     {
-      "id": "pl_msg_00000160_00004",
+      "id": "VeilstoneCitySouthwestHouse_Text_PokemonLooksContent",
       "en_US": [
         "{STRVAR_1 0, 0, 0} looks dreamily\n",
         "content...\r"
       ]
     },
     {
-      "id": "pl_msg_00000160_00005",
+      "id": "VeilstoneCitySouthwestHouse_Text_DropByAgainTomorrow",
       "en_US": "Drop by again tomorrow if you’d like."
     },
     {
-      "id": "pl_msg_00000160_00006",
+      "id": "VeilstoneCitySouthwestHouse_Text_IdBreakThatEgg",
       "en_US": [
         "That’s silly! I’d break that Egg\n",
         "if I tried to massage it!"
       ]
     },
     {
-      "id": "pl_msg_00000160_00007",
+      "id": "VeilstoneCitySouthwestHouse_Text_IFoundThis",
       "en_US": [
         "When I was massaging your Pokémon,\n",
         "I found this.\r"
       ]
     },
     {
-      "id": "pl_msg_00000160_00008",
+      "id": "VeilstoneCitySouthwestHouse_Text_ComeBackTomorrow",
       "en_US": [
         "Oh? You want me to show you how to\n",
         "massage Pokémon?\r",
@@ -65,7 +65,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000160_00009",
+      "id": "VeilstoneCitySouthwestHouse_Text_MyInLawIsScarfGuy",
       "en_US": [
         "My sister’s boyfriend is the Scarf\n",
         "Guy in Pastoria City.\r",
@@ -74,7 +74,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000160_00010",
+      "id": "VeilstoneCitySouthwestHouse_Text_PachirisuCry",
       "en_US": "PACHIRISU: Pachi chiii!"
     }
   ]

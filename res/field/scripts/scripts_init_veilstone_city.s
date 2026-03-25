@@ -6,7 +6,7 @@
     InitScriptEntryEnd
 
 InitScriptFrameTable:
-    InitScriptGoToIfEqual VAR_VEILSTONE_STATE, 1, 29
+    InitScriptGoToIfEqual VAR_VEILSTONE_CITY_COUNTERPART_NEEDS_HELP_STATE, 1, 29
     InitScriptFrameTableEnd
 
     InitScriptEnd

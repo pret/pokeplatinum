@@ -2,21 +2,21 @@
 #include "res/text/bank/veilstone_city_northwest_house.h"
 
 
-    ScriptEntry _000E
-    ScriptEntry _0021
-    ScriptEntry _0034
+    ScriptEntry VeilstoneCityNorthwestHouse_AceTrainerF
+    ScriptEntry VeilstoneCityNorthwestHouse_OldWoman
+    ScriptEntry VeilstoneCityNorthwestHouse_Buneary
     ScriptEntryEnd
 
-_000E:
-    NPCMessage 0
+VeilstoneCityNorthwestHouse_AceTrainerF:
+    NPCMessage VeilstoneCityNorthwestHouse_Text_MtCoronetPartedSinnoh
     End
 
-_0021:
-    NPCMessage 1
+VeilstoneCityNorthwestHouse_OldWoman:
+    NPCMessage VeilstoneCityNorthwestHouse_Text_PokemonAppearInManyGuises
     End
 
-_0034:
-    PokemonCryAndMessage SPECIES_BUNEARY, 2
+VeilstoneCityNorthwestHouse_Buneary:
+    PokemonCryAndMessage SPECIES_BUNEARY, VeilstoneCityNorthwestHouse_Text_BunearyCry
     End
 
     .balign 4, 0

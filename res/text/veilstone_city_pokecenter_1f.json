@@ -2,7 +2,7 @@
   "key": 11123,
   "messages": [
     {
-      "id": "pl_msg_00000145_00000",
+      "id": "VeilstoneCityPokecenter1F_Text_IfYouUseFly",
       "en_US": [
         "If you use the hidden move Fly,\n",
         "you’ll be instantly whisked to any\f",
@@ -10,7 +10,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000145_00001",
+      "id": "VeilstoneCityPokecenter1F_Text_MayleneIsCute",
       "en_US": [
         "Maylene, the Gym Leader, is a cute\n",
         "girl.\r",
@@ -19,70 +19,70 @@
       ]
     },
     {
-      "id": "pl_msg_00000145_00002",
+      "id": "VeilstoneCityPokecenter1F_Text_IfYouHadTwoPokemon",
       "en_US": [
         "Two Pokémon! If you had two Pokémon,\n",
         "we’d get a great shot here."
       ]
     },
     {
-      "id": "pl_msg_00000145_00003",
+      "id": "VeilstoneCityPokecenter1F_Text_YoureReadyForBattle",
       "en_US": [
         "Oh! You’re ready for a battle\n",
         "with us?"
       ]
     },
     {
-      "id": "pl_msg_00000145_00004",
+      "id": "VeilstoneCityPokecenter1F_Text_TryToActNatural",
       "en_US": [
         "You’re live on camera, but try to act\n",
         "natural, OK?\r"
       ]
     },
     {
-      "id": "pl_msg_00000145_00005",
+      "id": "VeilstoneCityPokecenter1F_Text_ThatsHowItIs",
       "en_US": [
         "OK, that’s how it is, huh.\n",
         "Can’t do anything about that."
       ]
     },
     {
-      "id": "pl_msg_00000145_00006",
+      "id": "VeilstoneCityPokecenter1F_Text_IdLikeToBroadcast",
       "en_US": [
         "I’d like to take that footage and\n",
         "broadcast it worldwide."
       ]
     },
     {
-      "id": "pl_msg_00000145_00007",
+      "id": "VeilstoneCityPokecenter1F_Text_WeWantTwoPokemon",
       "en_US": [
         "Oh, no. What we really want to see\n",
         "is you battling using two Pokémon!"
       ]
     },
     {
-      "id": "pl_msg_00000145_00008",
+      "id": "VeilstoneCityPokecenter1F_Text_WillYouBattleUs",
       "en_US": [
         "Giggle!\n",
         "Will you have a battle with us?"
       ]
     },
     {
-      "id": "pl_msg_00000145_00009",
+      "id": "VeilstoneCityPokecenter1F_Text_WellCheckYourAbilities",
       "en_US": [
         "We’ll thoroughly check out your\n",
         "abilities as a Trainer!\r"
       ]
     },
     {
-      "id": "pl_msg_00000145_00010",
+      "id": "VeilstoneCityPokecenter1F_Text_OhTooBad",
       "en_US": [
         "Oh, too bad!\n",
         "I wanted to check out your Pokémon!"
       ]
     },
     {
-      "id": "pl_msg_00000145_00011",
+      "id": "VeilstoneCityPokecenter1F_Text_WeMadeASpectacle",
       "en_US": [
         "I lost but I’m totally thrilled!\n",
         "We made a wonderful spectacle!"

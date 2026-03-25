@@ -32,7 +32,7 @@ _004E:
 
 _0079:
     SetFlag FLAG_UNK_0x0234
-    ClearFlag FLAG_UNK_0x0298
+    ClearFlag FLAG_HIDE_VEILSTONE_CITY_GYM_MAYLENE
     Return
 
 _0083:
