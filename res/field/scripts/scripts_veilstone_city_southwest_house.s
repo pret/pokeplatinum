@@ -24,7 +24,7 @@ VeilstoneCitySouthwestHouse_Beauty:
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
-    GoToIfEq VAR_MAP_LOCAL_0, 0xFF, VeilstoneCitySouthwestHouse_ImNotShady
+    GoToIfEq VAR_MAP_LOCAL_0, PARTY_SLOT_NONE, VeilstoneCitySouthwestHouse_ImNotShady
     GetPartyMonSpecies VAR_MAP_LOCAL_0, VAR_RESULT
     GoToIfEq VAR_RESULT, SPECIES_NONE, VeilstoneCitySouthwestHouse_IdBreakThatEgg
     Message VeilstoneCitySouthwestHouse_Text_LetsGetStarted

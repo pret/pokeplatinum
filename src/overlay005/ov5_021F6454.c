@@ -105,7 +105,7 @@ static void BattleHallRecordSelector_InitListMenuTemplate(BattleHallRecordSelect
 static void UpdateItemColor(ListMenu *menu, u32 item, u8 yOffset);
 static void UpdateListPosition(ListMenu *listMenu, u32 item, u8 onInit);
 
-static void CalcHiddenPowerTypeAndPower(Pokemon *mon, int *power, int *type);
+static void CalcHiddenPowerTypeAndPower(Pokemon *mon, int *outPower, int *outType);
 
 // TODO Create zukan_data.naix and populate constants here
 static u16 sAlphabeticalSpeciesLists[] = {
@@ -636,10 +636,10 @@ BOOL ScrCmd_CalcHiddenPowerType(ScriptContext *ctx)
 {
     int power, type;
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    u16 slot = ScriptContext_GetVar(ctx);
+    u16 partySlot = ScriptContext_GetVar(ctx);
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), slot);
+    Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), partySlot);
     u16 species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
 
     if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == FALSE) {
@@ -671,7 +671,7 @@ BOOL ScrCmd_CalcHiddenPowerType(ScriptContext *ctx)
     return FALSE;
 }
 
-static void CalcHiddenPowerTypeAndPower(Pokemon *mon, int *power, int *type)
+static void CalcHiddenPowerTypeAndPower(Pokemon *mon, int *outPower, int *outType)
 {
     int hpIV = Pokemon_GetValue(mon, MON_DATA_HP_IV, NULL);
     int atkIV = Pokemon_GetValue(mon, MON_DATA_ATK_IV, NULL);
@@ -680,17 +680,17 @@ static void CalcHiddenPowerTypeAndPower(Pokemon *mon, int *power, int *type)
     int spatkIV = Pokemon_GetValue(mon, MON_DATA_SPATK_IV, NULL);
     int spdefIV = Pokemon_GetValue(mon, MON_DATA_SPDEF_IV, NULL);
 
-    if (power != NULL) {
-        *power = ((hpIV & 2) >> 1) | ((atkIV & 2) >> 0) | ((defIV & 2) << 1) | ((speedIV & 2) << 2) | ((spatkIV & 2) << 3) | ((spdefIV & 2) << 4);
-        *power = (*power) * 40 / 63 + 30;
+    if (outPower != NULL) {
+        *outPower = (hpIV & 2) >> 1 | atkIV & 2 | (defIV & 2) << 1 | (speedIV & 2) << 2 | (spatkIV & 2) << 3 | (spdefIV & 2) << 4;
+        *outPower = *outPower * 40 / 63 + 30;
     }
 
-    if (type != NULL) {
-        *type = ((hpIV & 1) >> 0) | ((atkIV & 1) << 1) | ((defIV & 1) << 2) | ((speedIV & 1) << 3) | ((spatkIV & 1) << 4) | ((spdefIV & 1) << 5);
-        *type = (*type) * 15 / 63 + 1;
+    if (outType != NULL) {
+        *outType = hpIV & 1 | (atkIV & 1) << 1 | (defIV & 1) << 2 | (speedIV & 1) << 3 | (spatkIV & 1) << 4 | (spdefIV & 1) << 5;
+        *outType = *outType * 15 / 63 + 1;
 
-        if (*type >= 9) {
-            *type = (*type) + 1;
+        if (*outType >= TYPE_MYSTERY) {
+            *outType = *outType + 1;
         }
     }
 }

@@ -23,7 +23,7 @@ VeilstoneCityPrizeExchange_Receptionist:
 VeilstoneCityPrizeExchange_TryBuyPrize:
     Message VeilstoneCityPrizeExchange_Text_WhichPrize
     Call VeilstoneCityPrizeExchange_InitPrizeMenu
-    GoToIfEq VAR_RESULT, -2, VeilstoneCityPrizeExchange_DontBuyAPrize
+    GoToIfEq VAR_RESULT, MENU_CANCEL, VeilstoneCityPrizeExchange_DontBuyAPrize
     GoToIfEq VAR_RESULT, VAR_MAP_LOCAL_1, VeilstoneCityPrizeExchange_DontBuyAPrize
     GetGameCornerPrizeData VAR_RESULT, VAR_0x8000, VAR_0x8001
     CallIfLt VAR_0x8000, ITEM_TM01, VeilstoneCityPrizeExchange_IsYourChoiceThisItem
@@ -122,7 +122,7 @@ VeilstoneCityPrizeExchange_TryTellHiddenPowerType:
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
-    GoToIfEq VAR_0x8000, 0xFF, VeilstoneCityPrizeExchange_IfYouWantAskMe
+    GoToIfEq VAR_0x8000, PARTY_SLOT_NONE, VeilstoneCityPrizeExchange_IfYouWantAskMe
     GetPartyMonSpecies VAR_0x8000, VAR_0x8001
     GoToIfEq VAR_0x8001, 0, VeilstoneCityPrizeExchange_EggsCantLearnMoves
     CalcHiddenPowerType VAR_0x8000, VAR_0x8004

@@ -45,6 +45,7 @@
 #include "constants/init_script_types.h"
 #include "constants/items.h"
 #include "constants/map_object.h"
+#include "constants/pokemon.h"
 #include "constants/regi_ruins.h"
 #include "constants/roamer_states.h"
 #include "constants/savedata/vars_flags.h"
@@ -4565,9 +4566,9 @@
     .short \destVar
     .endm
 
-    .macro CalcHiddenPowerType slot, destVar
+    .macro CalcHiddenPowerType partySlot, destVar
     .short SCRCMD_CALCHIDDENPOWERTYPE
-    .short \slot
+    .short \partySlot
     .short \destVar
     .endm
 
