@@ -6,8 +6,8 @@
     InitScriptEntryEnd
 
 InitScriptFrameTable:
-    InitScriptGoToIfEqual VAR_UNK_0x40DA, 1, 3
-    InitScriptGoToIfEqual VAR_UNK_0x40DA, 2, 4
+    InitScriptGoToIfEqual VAR_SAFARI_GAME_STATE, 1, 3
+    InitScriptGoToIfEqual VAR_SAFARI_GAME_STATE, 2, 4
     InitScriptFrameTableEnd
 
     InitScriptEnd

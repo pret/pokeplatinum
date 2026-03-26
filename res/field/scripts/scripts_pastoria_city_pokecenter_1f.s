@@ -1,20 +1,21 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/pastoria_city_pokecenter_1f.h"
+#include "res/field/events/events_pastoria_city_pokecenter_1f.h"
 
 
-    ScriptEntry _000E
-    ScriptEntry _001A
-    ScriptEntry _002D
+    ScriptEntry PastoriaCityPokecenter1F_Nurse
+    ScriptEntry PastoriaCityPokecenter1F_BlackBelt
+    ScriptEntry PastoriaCityPokecenter1F_SchoolKidF
     ScriptEntryEnd
 
-_000E:
-    Common_CallPokecenterNurse 0
+PastoriaCityPokecenter1F_Nurse:
+    Common_CallPokecenterNurse LOCALID_POKECENTER_NURSE
     End
 
-_001A:
-    NPCMessage 0
+PastoriaCityPokecenter1F_BlackBelt:
+    NPCMessage PastoriaCityPokecenter1F_Text_GreatMarshIsVast
     End
 
-_002D:
-    NPCMessage 1
+PastoriaCityPokecenter1F_SchoolKidF:
+    NPCMessage PastoriaCityPokecenter1F_Text_GreatMarshWasSea
     End

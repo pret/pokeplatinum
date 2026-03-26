@@ -2,21 +2,21 @@
 #include "res/text/bank/pastoria_city_north_house.h"
 
 
-    ScriptEntry _000E
-    ScriptEntry _0021
-    ScriptEntry _0040
+    ScriptEntry PastoriaCityNorthHouse_ScientistM
+    ScriptEntry PastoriaCityNorthHouse_Psyduck
+    ScriptEntry PastoriaCityNorthHouse_KidWithNDS
     ScriptEntryEnd
 
-_000E:
-    NPCMessage 0
+PastoriaCityNorthHouse_ScientistM:
+    NPCMessage PastoriaCityNorthHouse_Text_QuickTramTransportation
     End
 
-_0021:
-    PokemonCryAndMessage SPECIES_PSYDUCK, 1
+PastoriaCityNorthHouse_Psyduck:
+    PokemonCryAndMessage SPECIES_PSYDUCK, PastoriaCityNorthHouse_Text_PsyduckCry
     End
 
-_0040:
-    NPCMessage 2
+PastoriaCityNorthHouse_KidWithNDS:
+    NPCMessage PastoriaCityNorthHouse_Text_QuickTramsAreSlow
     End
 
     .balign 4, 0

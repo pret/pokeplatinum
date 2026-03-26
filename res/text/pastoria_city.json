@@ -2,7 +2,7 @@
   "key": 18319,
   "messages": [
     {
-      "id": "PastoriaCity_Text_GalacticGruntPackageHasntArrived",
+      "id": "PastoriaCity_Text_PackageHasntArrived",
       "en_US": [
         "Grr... The package hasn’t arrived\n",
         "from the Veilstone warehouse yet...\r",
@@ -15,7 +15,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000131_00001",
+      "id": "PastoriaCity_Text_WhereShouldISetItOff",
       "en_US": [
         "Grr...\n",
         "This is so annoying...\r",
@@ -30,7 +30,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000131_00002",
+      "id": "PastoriaCity_Text_IllTestYouUnused",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: Whoops!\r",
         "Hehehe! I’m not always going to plow\n",
@@ -42,7 +42,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000131_00003",
+      "id": "PastoriaCity_Text_YouDidGetTougherUnused",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: Heh, yeah, maybe you\n",
         "did get a bit tougher since last time.\r",
@@ -59,7 +59,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000131_00004",
+      "id": "PastoriaCity_Text_MrWakeWentToVeilstone",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: Oh, hey, {STRVAR_1 3, 1, 0}.\n",
         "You’re out of luck, though.\r",
@@ -72,7 +72,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000131_00005",
+      "id": "PastoriaCity_Text_IllTestYou",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: Whoops!\r",
         "Hehehe! I’m not always going to plow\n",
@@ -84,7 +84,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000131_00006",
+      "id": "PastoriaCity_Text_YouDidGetTougher",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: Heh, yeah, maybe you\n",
         "did get a bit tougher since last time.\r",
@@ -96,7 +96,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000131_00007",
+      "id": "PastoriaCity_Text_YouGotTheGymBadge",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: Oh, hey!\n",
         "You got the Gym Badge here, huh?\r",
@@ -105,18 +105,18 @@
       ]
     },
     {
-      "id": "pl_msg_00000131_00008",
+      "id": "PastoriaCity_Text_WhatsThisRacket",
       "en_US": [
         "Wake: What’s this racket, then?\n",
         "Oh, it’s you two.\r"
       ]
     },
     {
-      "id": "pl_msg_00000131_00009",
+      "id": "PastoriaCity_Text_OhMaster",
       "en_US": "{STRVAR_1 3, 0, 0}: Oh, Master!\r"
     },
     {
-      "id": "pl_msg_00000131_00010",
+      "id": "PastoriaCity_Text_ListenKid",
       "en_US": [
         "Wake: ...Listen, kid.\n",
         "I know your father. I won’t deny that.\r",
@@ -125,7 +125,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000131_00011",
+      "id": "PastoriaCity_Text_YouDontNeedMe",
       "en_US": [
         "Besides, you two don’t need me.\r",
         "You can become strong on your own\n",
@@ -133,7 +133,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000131_00012",
+      "id": "PastoriaCity_Text_TheresTroubleBrewing",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: It doesn’t matter.\n",
         "I made you my master! I decided!\r",
@@ -145,7 +145,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000131_00013",
+      "id": "PastoriaCity_Text_NoOneMessesWithPastoria",
       "en_US": [
         "Wake: WHAAAAT?!\r",
         "No one messes with Pastoria!\n",
@@ -153,28 +153,28 @@
       ]
     },
     {
-      "id": "pl_msg_00000131_00014",
+      "id": "PastoriaCity_Text_HeyMasterWait",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: Hey!\n",
         "Master! Wait!\r"
       ]
     },
     {
-      "id": "pl_msg_00000131_00015",
+      "id": "PastoriaCity_Text_CroagunksWhereItsAt",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: Does my new outfit look\n",
         "good or what? CROAGUNK’s where it’s at."
       ]
     },
     {
-      "id": "pl_msg_00000131_00016",
+      "id": "PastoriaCity_Text_WhyAreYouTalkingFromThere",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: Why are you talking to\n",
         "me from there?!\r"
       ]
     },
     {
-      "id": "pl_msg_00000131_00017",
+      "id": "PastoriaCity_Text_DontForgetImHere",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: Hey!\r",
         "What am I, chopped liver?\n",
@@ -182,26 +182,26 @@
       ]
     },
     {
-      "id": "pl_msg_00000131_00018",
+      "id": "PastoriaCity_Text_WheresThisGalac",
       "en_US": "Wake: So, where’s this Galac...\r"
     },
     {
-      "id": "pl_msg_00000131_00019",
+      "id": "PastoriaCity_Text_BigExplosion",
       "en_US": "{SIZE 200}DDDOOOMMM!!{SIZE 100}\r"
     },
     {
-      "id": "pl_msg_00000131_00020",
+      "id": "PastoriaCity_Text_ThatWasRough",
       "en_US": "Grunt: Fweh! That was rough.\r"
     },
     {
-      "id": "pl_msg_00000131_00021",
+      "id": "PastoriaCity_Text_WhatveYouDone",
       "en_US": [
         "Wake: YOU!\n",
         "What’ve you done?!\r"
       ]
     },
     {
-      "id": "pl_msg_00000131_00022",
+      "id": "PastoriaCity_Text_IPushedTheButton",
       "en_US": [
         "Grunt: What’ve I done, you’re asking?\n",
         "Well, technically speaking, it wasn’t me.\r",
@@ -216,11 +216,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000131_00023",
+      "id": "PastoriaCity_Text_GreatMarshIsInvaluable",
       "en_US": "Wake: The Great Marsh is invaluable...\r"
     },
     {
-      "id": "pl_msg_00000131_00024",
+      "id": "PastoriaCity_Text_DoNotFollowMe",
       "en_US": [
         "You two! Do NOT follow me!\n",
         "Don’t let anyone else in, either!\r",
@@ -229,7 +229,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000131_00025",
+      "id": "PastoriaCity_Text_GoAfterThatGoon",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: Hey! {STRVAR_1 3, 1, 0}!\n",
         "You go after that Galactic goon!\r",
@@ -239,7 +239,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000131_00026",
+      "id": "PastoriaCity_Text_WhyArentYouGone",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: What’s the matter?!\n",
         "Why aren’t you gone already?!\r",
@@ -247,7 +247,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000131_00027",
+      "id": "PastoriaCity_Text_WhyArentYouGone2",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: What’s the matter?!\n",
         "Why aren’t you gone already?!\r",
@@ -255,7 +255,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000131_00028",
+      "id": "PastoriaCity_Text_StopChasingMe",
       "en_US": [
         "What’s with you?\n",
         "Stop chasing after me, you.\r",
@@ -268,21 +268,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000131_00029",
+      "id": "PastoriaCity_Text_ImInTheMiddle",
       "en_US": [
         "Here where I am standing, I’m\n",
         "smack-dab in the middle of town."
       ]
     },
     {
-      "id": "pl_msg_00000131_00030",
+      "id": "PastoriaCity_Text_IStudyRarePokemon",
       "en_US": [
         "I study rare Pokémon that appear\n",
         "only in the Great Marsh."
       ]
     },
     {
-      "id": "pl_msg_00000131_00031",
+      "id": "PastoriaCity_Text_SomeTrainersPreventEvolution",
       "en_US": [
         "Some Trainers deliberately prevent\n",
         "their Pokémon from evolving.\r",
@@ -291,7 +291,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000131_00032",
+      "id": "PastoriaCity_Text_ImVisitingTheGreatMarsh",
       "en_US": [
         "I’m visiting here to see the Great\n",
         "Marsh.\r",
@@ -299,7 +299,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000131_00033",
+      "id": "PastoriaCity_Text_GymLeaderIsAwesome",
       "en_US": [
         "Pastoria’s Gym Leader is awesome with\n",
         "his water attacks.\r",
@@ -308,7 +308,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000131_00034",
+      "id": "PastoriaCity_Text_GymLeaderWrestles",
       "en_US": [
         "Wasn’t the Pastoria Gym Leader kind of\n",
         "awesome in all sorts of ways?\r",
@@ -321,7 +321,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000131_00035",
+      "id": "PastoriaCity_Text_GreatMarshKeepsWeatherCool",
       "en_US": [
         "The Great Marsh keeps the weather\n",
         "cool in the summertime.\r",
@@ -330,11 +330,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000131_00036",
+      "id": "PastoriaCity_Text_ClefairyCry",
       "en_US": "CLEFAIRY: Fiiih?!"
     },
     {
-      "id": "pl_msg_00000131_00037",
+      "id": "PastoriaCity_Text_TryDressingUpPokemon",
       "en_US": [
         "You’re just like a totally impatient\n",
         "boy I met earlier.\r",
@@ -347,7 +347,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000131_00038",
+      "id": "PastoriaCity_Text_ICookedPoffins",
       "en_US": [
         "Someone gave me a Berry, so I\n",
         "planted it and grew some more.\r",
@@ -358,14 +358,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000131_00039",
+      "id": "PastoriaCity_Text_ICantUseSurf",
       "en_US": [
         "I can’t use the hidden move Surf until\n",
         "I beat the local Gym Leader."
       ]
     },
     {
-      "id": "pl_msg_00000131_00040",
+      "id": "PastoriaCity_Text_HaveYouBeenToPokemonMansion",
       "en_US": [
         "Have you been to the Pokémon Mansion?\n",
         "It’s on Route 212.\r",
@@ -374,14 +374,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000131_00041",
+      "id": "PastoriaCity_Text_MapSign",
       "en_US": [
         "Pastoria City\n",
         "The Marsh City"
       ]
     },
     {
-      "id": "pl_msg_00000131_00042",
+      "id": "PastoriaCity_Text_SignPokemonGym",
       "en_US": [
         "Pastoria City Pokémon Gym\n",
         "Leader: Crasher Wake\f",
@@ -389,14 +389,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000131_00043",
+      "id": "PastoriaCity_Text_SignGreatMarsh",
       "en_US": [
         "Pastoria Great Marsh\n",
         "Observatory Gate"
       ]
     },
     {
-      "id": "pl_msg_00000131_00044",
+      "id": "PastoriaCity_Text_SignSafariGame",
       "en_US": [
         "Try the Safari Game in\n",
         "Pastoria’s Great Marsh!"

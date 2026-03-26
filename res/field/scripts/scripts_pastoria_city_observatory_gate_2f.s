@@ -2,27 +2,27 @@
 #include "res/text/bank/pastoria_city_observatory_gate_2f.h"
 
 
-    ScriptEntry _0016
-    ScriptEntry _0078
-    ScriptEntry _008B
-    ScriptEntry _009E
-    ScriptEntry _00B1
+    ScriptEntry PastoriaCityObservatoryGate2F_Binocular
+    ScriptEntry PastoriaCityObservatoryGate2F_AceTrainerF
+    ScriptEntry PastoriaCityObservatoryGate2F_BugCatcher
+    ScriptEntry PastoriaCityObservatoryGate2F_PokefanM
+    ScriptEntry PastoriaCityObservatoryGate2F_Picnicker
     ScriptEntryEnd
 
-_0016:
+PastoriaCityObservatoryGate2F_Binocular:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     ShowMoney 20, 2
-    Message 0
+    Message PastoriaCityObservatoryGate2F_Text_AskPut100InBinoculars
     ShowYesNoMenu VAR_RESULT
     CloseMessage
-    GoToIfEq VAR_RESULT, MENU_YES, _003E
+    GoToIfEq VAR_RESULT, MENU_YES, PastoriaCityObservatoryGate2F_TryUseBinoculars
     HideMoney
     ReleaseAll
     End
 
-_003E:
-    GoToIfNotEnoughMoney 100, _006B
+PastoriaCityObservatoryGate2F_TryUseBinoculars:
+    GoToIfNotEnoughMoney 100, PastoriaCityObservatoryGate2F_NotEnoughMoney
     RemoveMoney 100
     UpdateMoneyDisplay
     PlaySE SEQ_SE_DP_REGI
@@ -32,26 +32,26 @@ _003E:
     ReleaseAll
     End
 
-_006B:
-    Message 1
+PastoriaCityObservatoryGate2F_NotEnoughMoney:
+    Message PastoriaCityObservatoryGate2F_Text_NotEnoughMoney
     WaitButton
     CloseMessage
     HideMoney
     ReleaseAll
     End
 
-_0078:
-    NPCMessage 2
+PastoriaCityObservatoryGate2F_AceTrainerF:
+    NPCMessage PastoriaCityObservatoryGate2F_Text_PokemonDifferFromYesterday
     End
 
-_008B:
-    NPCMessage 3
+PastoriaCityObservatoryGate2F_BugCatcher:
+    NPCMessage PastoriaCityObservatoryGate2F_Text_YouCanSeePokemon
     End
 
-_009E:
-    NPCMessage 4
+PastoriaCityObservatoryGate2F_PokefanM:
+    NPCMessage PastoriaCityObservatoryGate2F_Text_TakeQuickTrams
     End
 
-_00B1:
-    NPCMessage 5
+PastoriaCityObservatoryGate2F_Picnicker:
+    NPCMessage PastoriaCityObservatoryGate2F_Text_YouCanSinkInBog
     End

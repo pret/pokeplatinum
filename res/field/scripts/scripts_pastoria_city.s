@@ -3,188 +3,188 @@
 #include "res/field/events/events_pastoria_city.h"
 
 
-    ScriptEntry _005E
-    ScriptEntry _00B2
-    ScriptEntry _00C5
-    ScriptEntry _00D8
-    ScriptEntry _00EB
-    ScriptEntry _00FE
-    ScriptEntry _01D2
-    ScriptEntry _01E5
-    ScriptEntry PastoriaGity_GalacticGrunt
-    ScriptEntry _012F
-    ScriptEntry _01AC
-    ScriptEntry _01BF
-    ScriptEntry _03E4
-    ScriptEntry _03FB
-    ScriptEntry _0410
-    ScriptEntry _0427
-    ScriptEntry _043E
-    ScriptEntry _04C8
-    ScriptEntry _05E0
-    ScriptEntry _09A8
-    ScriptEntry _07F8
-    ScriptEntry _0B90
-    ScriptEntry _0BF0
+    ScriptEntry PastoriaCity_OnTransition
+    ScriptEntry PastoriaCity_Collector1
+    ScriptEntry PastoriaCity_ScientistM
+    ScriptEntry PastoriaCity_Picnicker
+    ScriptEntry PastoriaCity_Beauty
+    ScriptEntry PastoriaCity_BlackBelt
+    ScriptEntry PastoriaCity_AceTrainerM1
+    ScriptEntry PastoriaCity_Clefairy
+    ScriptEntry PastoriaCity_GruntM
+    ScriptEntry PastoriaCity_ParasolLady
+    ScriptEntry PastoriaCity_Collector2
+    ScriptEntry PastoriaCity_AceTrainerM2
+    ScriptEntry PastoriaCity_MapSign
+    ScriptEntry PastoriaCity_GymSign
+    ScriptEntry PastoriaCity_SignGreatMarsh
+    ScriptEntry PastoriaCity_SignSafariGame
+    ScriptEntry PastoriaCity_Rival
+    ScriptEntry PastoriaCity_TriggerRivalBattle
+    ScriptEntry PastoriaCity_OnFrameExitGym
+    ScriptEntry PastoriaCity_CrasherWake
+    ScriptEntry PastoriaCity_TriggerBomb
+    ScriptEntry PastoriaCity_TriggerBlockGreatMarsh
+    ScriptEntry PastoriaCity_TriggerFaceBoard
     ScriptEntryEnd
 
-_005E:
-    SetVar VAR_UNK_0x40C7, 0
-    SetFlag FLAG_UNK_0x017E
-    CallIfEq VAR_PASTORIA_STATE, 5, _074D
-    CallIfEq VAR_PASTORIA_STATE, 4, _0721
-    CallIfEq VAR_PASTORIA_STATE, 4, _0737
-    GoToIfSet FLAG_UNK_0x0102, _009C
+PastoriaCity_OnTransition:
+    SetVar VAR_PASTORIA_CITY_TRY_CROAGUNK_SCENE_STATE, 0
+    SetFlag FLAG_HIDE_ROUTE_212_BLOCKADE
+    CallIfEq VAR_PASTORIA_STATE, 5, PastoriaCity_SetRivalPositionAfterExplosion
+    CallIfEq VAR_PASTORIA_STATE, 4, PastoriaCity_SetRivalPositionAfterGym
+    CallIfEq VAR_PASTORIA_STATE, 4, PastoriaCity_SetCrasherWakePositionAfterGym
+    GoToIfSet FLAG_PASTORIA_CITY_GRUNT_M_MOVED_EAST, PastoriaCity_SetGruntMEastPosition
     End
 
-_009C:
-    SetObjectEventPos PASTORIA_CITY_GRUNT_M, 0x27D, 0x32C
-    SetObjectEventDir PASTORIA_CITY_GRUNT_M, DIR_EAST
-    SetObjectEventMovementType PASTORIA_CITY_GRUNT_M, MOVEMENT_TYPE_LOOK_EAST
+PastoriaCity_SetGruntMEastPosition:
+    SetObjectEventPos LOCALID_GRUNT_M, 637, 812
+    SetObjectEventDir LOCALID_GRUNT_M, DIR_EAST
+    SetObjectEventMovementType LOCALID_GRUNT_M, MOVEMENT_TYPE_LOOK_EAST
     End
 
-_00B2:
-    NPCMessage 29
+PastoriaCity_Collector1:
+    NPCMessage PastoriaCity_Text_ImInTheMiddle
     End
 
-_00C5:
-    NPCMessage 30
+PastoriaCity_ScientistM:
+    NPCMessage PastoriaCity_Text_IStudyRarePokemon
     End
 
-_00D8:
-    NPCMessage 31
+PastoriaCity_Picnicker:
+    NPCMessage PastoriaCity_Text_SomeTrainersPreventEvolution
     End
 
-_00EB:
-    NPCMessage 32
+PastoriaCity_Beauty:
+    NPCMessage PastoriaCity_Text_ImVisitingTheGreatMarsh
     End
 
-_00FE:
+PastoriaCity_BlackBelt:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfBadgeAcquired BADGE_ID_FEN, _0124
-    Message 33
+    GoToIfBadgeAcquired BADGE_ID_FEN, PastoriaCity_GymLeaderWrestles
+    Message PastoriaCity_Text_GymLeaderIsAwesome
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0124:
-    Message 34
+PastoriaCity_GymLeaderWrestles:
+    Message PastoriaCity_Text_GymLeaderWrestles
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_012F:
+PastoriaCity_ParasolLady:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x0128, _0189
+    GoToIfSet FLAG_RECEIVED_PASTORIA_CITY_ACCESSORY_STARTER_MASK, PastoriaCity_ICookedPoffins
     GetPlayerStarterSpecies VAR_RESULT
-    CallIfEq VAR_RESULT, SPECIES_TURTWIG, _0194
-    CallIfEq VAR_RESULT, SPECIES_CHIMCHAR, _019C
-    CallIfEq VAR_RESULT, SPECIES_PIPLUP, _01A4
+    CallIfEq VAR_RESULT, SPECIES_TURTWIG, PastoriaCity_SetAccessoryChimcharMask
+    CallIfEq VAR_RESULT, SPECIES_CHIMCHAR, PastoriaCity_SetAccessoryPiplupMask
+    CallIfEq VAR_RESULT, SPECIES_PIPLUP, PastoriaCity_SetAccessoryTurtwigMask
     BufferAccessoryName 0, VAR_0x8004
-    Message 37
+    Message PastoriaCity_Text_TryDressingUpPokemon
     SetVar VAR_0x8005, 1
     Common_GiveAccessoryWaitForConfirm
-    SetFlag FLAG_UNK_0x0128
+    SetFlag FLAG_RECEIVED_PASTORIA_CITY_ACCESSORY_STARTER_MASK
     CloseMessage
     ReleaseAll
     End
 
-_0189:
-    Message 38
+PastoriaCity_ICookedPoffins:
+    Message PastoriaCity_Text_ICookedPoffins
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0194:
+PastoriaCity_SetAccessoryChimcharMask:
     SetVar VAR_0x8004, ACCESSORY_CHIMCHAR_MASK
     Return
 
-_019C:
+PastoriaCity_SetAccessoryPiplupMask:
     SetVar VAR_0x8004, ACCESSORY_PIPLUP_MASK
     Return
 
-_01A4:
+PastoriaCity_SetAccessoryTurtwigMask:
     SetVar VAR_0x8004, ACCESSORY_TURTWIG_MASK
     Return
 
-_01AC:
-    NPCMessage 39
+PastoriaCity_Collector2:
+    NPCMessage PastoriaCity_Text_ICantUseSurf
     End
 
-_01BF:
-    NPCMessage 40
+PastoriaCity_AceTrainerM2:
+    NPCMessage PastoriaCity_Text_HaveYouBeenToPokemonMansion
     End
 
-_01D2:
-    NPCMessage 35
+PastoriaCity_AceTrainerM1:
+    NPCMessage PastoriaCity_Text_GreatMarshKeepsWeatherCool
     End
 
-_01E5:
-    PokemonCryAndMessage SPECIES_CLEFAIRY, 36
+PastoriaCity_Clefairy:
+    PokemonCryAndMessage SPECIES_CLEFAIRY, PastoriaCity_Text_ClefairyCry
     End
 
-PastoriaGity_GalacticGrunt:
+PastoriaCity_GruntM:
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    GoToIfSet FLAG_UNK_0x0102, _0220
-    Message PastoriaCity_Text_GalacticGruntPackageHasntArrived
+    GoToIfSet FLAG_PASTORIA_CITY_GRUNT_M_MOVED_EAST, PastoriaCity_StopChasingMe
+    Message PastoriaCity_Text_PackageHasntArrived
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0220:
+PastoriaCity_StopChasingMe:
     FacePlayer
-    Message 28
+    Message PastoriaCity_Text_StopChasingMe
     CloseMessage
     GetPlayerDir VAR_RESULT
-    GoToIfEq VAR_RESULT, 2, _025A
-    GoToIfEq VAR_RESULT, 3, _027A
-    GoToIfEq VAR_RESULT, 0, _0292
-    GoTo _02B2
+    GoToIfEq VAR_RESULT, DIR_WEST, PastoriaCity_GruntMLeaveWest
+    GoToIfEq VAR_RESULT, DIR_EAST, PastoriaCity_GruntMLeaveEast
+    GoToIfEq VAR_RESULT, DIR_NORTH, PastoriaCity_GruntMLeaveNorth
+    GoTo PastoriaCity_GruntMLeaveSouth
     End
 
-_025A:
+PastoriaCity_GruntMLeaveWest:
     SetVar VAR_0x8007, 2
-    ApplyMovement PASTORIA_CITY_GRUNT_M, _0388
-    ApplyMovement LOCALID_PLAYER, _02EC
+    ApplyMovement LOCALID_GRUNT_M, PastoriaCity_Movement_GruntMLeaveWest
+    ApplyMovement LOCALID_PLAYER, PastoriaCity_Movement_PlayerWatchGruntMLeaveWest
     WaitMovement
-    GoTo _02D2
+    GoTo PastoriaCity_RemoveGruntM
     End
 
-_027A:
+PastoriaCity_GruntMLeaveEast:
     SetVar VAR_0x8007, 3
-    ApplyMovement PASTORIA_CITY_GRUNT_M, _0398
+    ApplyMovement LOCALID_GRUNT_M, PastoriaCity_Movement_GruntMLeaveNorthSouthEast
     WaitMovement
-    GoTo _02D2
+    GoTo PastoriaCity_RemoveGruntM
     End
 
-_0292:
+PastoriaCity_GruntMLeaveNorth:
     SetVar VAR_0x8007, 0
-    ApplyMovement PASTORIA_CITY_GRUNT_M, _0398
-    ApplyMovement LOCALID_PLAYER, _030C
+    ApplyMovement LOCALID_GRUNT_M, PastoriaCity_Movement_GruntMLeaveNorthSouthEast
+    ApplyMovement LOCALID_PLAYER, PastoriaCity_Movement_PlayerWatchGruntMLeaveNorth
     WaitMovement
-    GoTo _02D2
+    GoTo PastoriaCity_RemoveGruntM
     End
 
-_02B2:
+PastoriaCity_GruntMLeaveSouth:
     SetVar VAR_0x8007, 1
-    ApplyMovement PASTORIA_CITY_GRUNT_M, _0398
-    ApplyMovement LOCALID_PLAYER, _0304
+    ApplyMovement LOCALID_GRUNT_M, PastoriaCity_Movement_GruntMLeaveNorthSouthEast
+    ApplyMovement LOCALID_PLAYER, PastoriaCity_Movement_PlayerWatchGruntMLeaveSouth
     WaitMovement
-    GoTo _02D2
+    GoTo PastoriaCity_RemoveGruntM
     End
 
-_02D2:
+PastoriaCity_RemoveGruntM:
     PlaySE SEQ_SE_DP_KAIDAN2
-    RemoveObject PASTORIA_CITY_GRUNT_M
+    RemoveObject LOCALID_GRUNT_M
     SetFlag FLAG_UNK_0x0103
     ReleaseAll
     End
@@ -195,7 +195,7 @@ PastoriaCity_UnusedMovement:
     EndMovement
 
     .balign 4, 0
-_02EC:
+PastoriaCity_Movement_PlayerWatchGruntMLeaveWest:
     WalkOnSpotNormalSouth
     WalkOnSpotNormalEast
     EndMovement
@@ -206,12 +206,12 @@ PastoriaCity_UnusedMovement2:
     EndMovement
 
     .balign 4, 0
-_0304:
+PastoriaCity_Movement_PlayerWatchGruntMLeaveSouth:
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_030C:
+PastoriaCity_Movement_PlayerWatchGruntMLeaveNorth:
     WalkOnSpotNormalEast
     EndMovement
 
@@ -267,14 +267,14 @@ PastoriaCity_UnusedMovement13:
     EndMovement
 
     .balign 4, 0
-_0388:
+PastoriaCity_Movement_GruntMLeaveWest:
     WalkFastSouth
     WalkFastEast 2
     WalkOnSpotFastEast
     EndMovement
 
     .balign 4, 0
-_0398:
+PastoriaCity_Movement_GruntMLeaveNorthSouthEast:
     WalkFastEast 2
     WalkOnSpotFastEast
     EndMovement
@@ -303,287 +303,287 @@ PastoriaCity_UnusedMovement17:
     WalkOnSpotFastEast
     EndMovement
 
-_03E4:
-    ShowMapSign 41
+PastoriaCity_MapSign:
+    ShowMapSign PastoriaCity_Text_MapSign
     End
 
-_03FB:
-    ShowScrollingSign 42
+PastoriaCity_GymSign:
+    ShowScrollingSign PastoriaCity_Text_SignPokemonGym
     End
 
-_0410:
-    ShowLandmarkSign 43
+PastoriaCity_SignGreatMarsh:
+    ShowLandmarkSign PastoriaCity_Text_SignGreatMarsh
     End
 
-_0427:
-    ShowLandmarkSign 44
+PastoriaCity_SignSafariGame:
+    ShowLandmarkSign PastoriaCity_Text_SignSafariGame
     End
 
-_043E:
+PastoriaCity_Rival:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfGe VAR_PASTORIA_STATE, 5, _04AE
-    GoToIfGe VAR_PASTORIA_STATE, 4, _0471
+    GoToIfGe VAR_PASTORIA_STATE, 5, PastoriaCity_WhyArentYouGone
+    GoToIfGe VAR_PASTORIA_STATE, 4, PastoriaCity_RivalCroagunk
     BufferRivalName 0
     BufferPlayerName 1
-    Message 4
-    GoTo _04A6
+    Message PastoriaCity_Text_MrWakeWentToVeilstone
+    GoTo PastoriaCity_RivalEnd
     End
 
-_0471:
+PastoriaCity_RivalCroagunk:
     GetPlayerDir VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _0498
+    GoToIfEq VAR_RESULT, DIR_NORTH, PastoriaCity_CroagunksWhereItsAt
     BufferRivalName 0
-    Message 16
+    Message PastoriaCity_Text_WhyAreYouTalkingFromThere
     CloseMessage
-    ApplyMovement PASTORIA_CITY_RIVAL, _04C0
+    ApplyMovement LOCALID_RIVAL, PastoriaCity_Movement_RivalWalkOnSpotSouth
     WaitMovement
     ReleaseAll
     End
 
-_0498:
+PastoriaCity_CroagunksWhereItsAt:
     BufferRivalName 0
-    Message 15
-    GoTo _04A6
+    Message PastoriaCity_Text_CroagunksWhereItsAt
+    GoTo PastoriaCity_RivalEnd
     End
 
-_04A6:
+PastoriaCity_RivalEnd:
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_04AE:
+PastoriaCity_WhyArentYouGone:
     BufferRivalName 0
     BufferPlayerName 1
-    Message 27
+    Message PastoriaCity_Text_WhyArentYouGone2
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
     .balign 4, 0
-_04C0:
+PastoriaCity_Movement_RivalWalkOnSpotSouth:
     WalkOnSpotNormalSouth
     EndMovement
 
-_04C8:
+PastoriaCity_TriggerRivalBattle:
     LockAll
-    ClearFlag FLAG_UNK_0x01A9
-    SetObjectEventPos PASTORIA_CITY_RIVAL, 0x253, 0x333
-    SetObjectEventMovementType PASTORIA_CITY_RIVAL, MOVEMENT_TYPE_LOOK_WEST
-    SetObjectEventDir PASTORIA_CITY_RIVAL, DIR_WEST
-    AddObject PASTORIA_CITY_RIVAL
-    ApplyMovement PASTORIA_CITY_RIVAL, _05B0
+    ClearFlag FLAG_HIDE_PASTORIA_CITY_RIVAL
+    SetObjectEventPos LOCALID_RIVAL, 595, 819
+    SetObjectEventMovementType LOCALID_RIVAL, MOVEMENT_TYPE_LOOK_WEST
+    SetObjectEventDir LOCALID_RIVAL, DIR_WEST
+    AddObject LOCALID_RIVAL
+    ApplyMovement LOCALID_RIVAL, PastoriaCity_Movement_RivalEnterForBattle
     WaitMovement
     Common_SetRivalBGM
-    ApplyMovement PASTORIA_CITY_RIVAL, _05C0
-    ApplyMovement LOCALID_PLAYER, _05A4
+    ApplyMovement LOCALID_RIVAL, PastoriaCity_Movement_RivalWalkToPlayerForBattle
+    ApplyMovement LOCALID_PLAYER, PastoriaCity_Movement_PlayerFaceRivalForBattle
     WaitMovement
     BufferRivalName 0
     BufferPlayerName 1
-    Message 5
+    Message PastoriaCity_Text_IllTestYou
     CloseMessage
-    ApplyMovement PASTORIA_CITY_RIVAL, _05CC
+    ApplyMovement LOCALID_RIVAL, PastoriaCity_Movement_RivalWalkWest
     WaitMovement
     GetPlayerStarterSpecies VAR_RESULT
-    GoToIfEq VAR_RESULT, SPECIES_TURTWIG, _054B
-    GoToIfEq VAR_RESULT, SPECIES_CHIMCHAR, _0557
-    GoTo _053F
+    GoToIfEq VAR_RESULT, SPECIES_TURTWIG, PastoriaCity_StartRivaLBattleTurtwig
+    GoToIfEq VAR_RESULT, SPECIES_CHIMCHAR, PastoriaCity_StartRivaLBattleChimchar
+    GoTo PastoriaCity_StartRivaLBattlePiplup
 
-_053F:
+PastoriaCity_StartRivaLBattlePiplup:
     StartTrainerBattle TRAINER_RIVAL_PASTORIA_CITY_PIPLUP
-    GoTo _0563
+    GoTo PastoriaCity_RivalPostBattle
 
-_054B:
+PastoriaCity_StartRivaLBattleTurtwig:
     StartTrainerBattle TRAINER_RIVAL_PASTORIA_CITY_TURTWIG
-    GoTo _0563
+    GoTo PastoriaCity_RivalPostBattle
 
-_0557:
+PastoriaCity_StartRivaLBattleChimchar:
     StartTrainerBattle TRAINER_RIVAL_PASTORIA_CITY_CHIMCHAR
-    GoTo _0563
+    GoTo PastoriaCity_RivalPostBattle
 
-_0563:
+PastoriaCity_RivalPostBattle:
     CheckWonBattle VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, _0597
+    GoToIfEq VAR_RESULT, FALSE, PastoriaCity_BlackOut
     BufferRivalName 0
     BufferPlayerName 1
-    Message 6
+    Message PastoriaCity_Text_YouDidGetTougher
     CloseMessage
-    ApplyMovement PASTORIA_CITY_RIVAL, _05D4
+    ApplyMovement LOCALID_RIVAL, PastoriaCity_Movement_RivalLeaveAfterBattle
     WaitMovement
-    RemoveObject PASTORIA_CITY_RIVAL
+    RemoveObject LOCALID_RIVAL
     SetVar VAR_PASTORIA_STATE, 2
     ReleaseAll
     End
 
-_0597:
-    SetFlag FLAG_UNK_0x01A9
+PastoriaCity_BlackOut:
+    SetFlag FLAG_HIDE_PASTORIA_CITY_RIVAL
     BlackOutFromBattle
     ReleaseAll
     End
 
     .balign 4, 0
-_05A4:
+PastoriaCity_Movement_PlayerFaceRivalForBattle:
     Delay4 13
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_05B0:
+PastoriaCity_Movement_RivalEnterForBattle:
     WalkFastSouth 9
     WalkOnSpotFastWest
     EmoteExclamationMark
     EndMovement
 
     .balign 4, 0
-_05C0:
+PastoriaCity_Movement_RivalWalkToPlayerForBattle:
     WalkFastWest 4
     WalkOnSpotFastWest
     EndMovement
 
     .balign 4, 0
-_05CC:
+PastoriaCity_Movement_RivalWalkWest:
     WalkNormalWest
     EndMovement
 
     .balign 4, 0
-_05D4:
+PastoriaCity_Movement_RivalLeaveAfterBattle:
     WalkFastEast 5
     WalkFastNorth 9
     EndMovement
 
-_05E0:
+PastoriaCity_OnFrameExitGym:
     LockAll
-    ClearFlag FLAG_UNK_0x01A9
-    SetObjectEventPos PASTORIA_CITY_RIVAL, 0x253, 0x333
-    SetObjectEventMovementType PASTORIA_CITY_RIVAL, MOVEMENT_TYPE_LOOK_SOUTH
-    SetObjectEventDir PASTORIA_CITY_RIVAL, DIR_SOUTH
-    AddObject PASTORIA_CITY_RIVAL
-    LockObject PASTORIA_CITY_RIVAL
-    ApplyMovement PASTORIA_CITY_RIVAL, _0798
-    ApplyMovement LOCALID_PLAYER, _07CC
+    ClearFlag FLAG_HIDE_PASTORIA_CITY_RIVAL
+    SetObjectEventPos LOCALID_RIVAL, 595, 819
+    SetObjectEventMovementType LOCALID_RIVAL, MOVEMENT_TYPE_LOOK_SOUTH
+    SetObjectEventDir LOCALID_RIVAL, DIR_SOUTH
+    AddObject LOCALID_RIVAL
+    LockObject LOCALID_RIVAL
+    ApplyMovement LOCALID_RIVAL, PastoriaCity_Movement_RivalEnterAfterGym
+    ApplyMovement LOCALID_PLAYER, PastoriaCity_Movement_PlayerFaceRivalAfterGym
     WaitMovement
     BufferRivalName 0
     BufferPlayerName 1
-    Message 7
+    Message PastoriaCity_Text_YouGotTheGymBadge
     CloseMessage
     LoadDoorAnimation 18, 25, 13, 27, ANIMATION_TAG_DOOR_1
     PlayDoorOpenAnimation ANIMATION_TAG_DOOR_1
     WaitForAnimation ANIMATION_TAG_DOOR_1
-    ApplyMovement LOCALID_PLAYER, _07D8
+    ApplyMovement LOCALID_PLAYER, PastoriaCity_Movement_PlayerMoveAwayForCrasherWake
     WaitMovement
-    ClearFlag FLAG_UNK_0x01FB
-    SetObjectEventPos PASTORIA_CITY_CRASHER_WAKE, 0x24D, 0x33B
-    SetObjectEventDir PASTORIA_CITY_CRASHER_WAKE, DIR_NORTH
-    SetObjectEventMovementType PASTORIA_CITY_CRASHER_WAKE, MOVEMENT_TYPE_LOOK_NORTH
-    AddObject PASTORIA_CITY_CRASHER_WAKE
-    LockObject PASTORIA_CITY_CRASHER_WAKE
-    ApplyMovement PASTORIA_CITY_CRASHER_WAKE, _0764
+    ClearFlag FLAG_HIDE_PASTORIA_CITY_CRASHER_WAKE
+    SetObjectEventPos LOCALID_CRASHER_WAKE, 589, 827
+    SetObjectEventDir LOCALID_CRASHER_WAKE, DIR_NORTH
+    SetObjectEventMovementType LOCALID_CRASHER_WAKE, MOVEMENT_TYPE_LOOK_NORTH
+    AddObject LOCALID_CRASHER_WAKE
+    LockObject LOCALID_CRASHER_WAKE
+    ApplyMovement LOCALID_CRASHER_WAKE, PastoriaCity_Movement_CrasherWakeExitGym
     WaitMovement
     PlayDoorCloseAnimation ANIMATION_TAG_DOOR_1
     WaitForAnimation ANIMATION_TAG_DOOR_1
     UnloadAnimation ANIMATION_TAG_DOOR_1
-    SetFlag FLAG_UNK_0x020F
-    ApplyMovement PASTORIA_CITY_CRASHER_WAKE, _076C
+    SetFlag FLAG_HIDE_PASTORIA_CITY_GYM_CRASHER_WAKE
+    ApplyMovement LOCALID_CRASHER_WAKE, PastoriaCity_Movement_CrasherWakeTurnToRivalAndPlayer
     WaitMovement
-    Message 8
+    Message PastoriaCity_Text_WhatsThisRacket
     CloseMessage
-    ApplyMovement PASTORIA_CITY_RIVAL, _07A4
+    ApplyMovement LOCALID_RIVAL, PastoriaCity_Movement_RivalExclamationMark
     WaitMovement
     BufferRivalName 0
-    Message 9
-    ApplyMovement PASTORIA_CITY_CRASHER_WAKE, _077C
+    Message PastoriaCity_Text_OhMaster
+    ApplyMovement LOCALID_CRASHER_WAKE, PastoriaCity_Movement_CrasherWakeWalkOnSpotEast
     WaitMovement
-    Message 10
-    ApplyMovement PASTORIA_CITY_CRASHER_WAKE, _0784
+    Message PastoriaCity_Text_ListenKid
+    ApplyMovement LOCALID_CRASHER_WAKE, PastoriaCity_Movement_CrasherWakeWalkOnSpotSouth
     WaitMovement
-    Message 11
+    Message PastoriaCity_Text_YouDontNeedMe
     BufferRivalName 0
-    Message 12
-    ApplyMovement PASTORIA_CITY_CRASHER_WAKE, _077C
+    Message PastoriaCity_Text_TheresTroubleBrewing
+    ApplyMovement LOCALID_CRASHER_WAKE, PastoriaCity_Movement_CrasherWakeWalkOnSpotEast
     WaitMovement
-    Message 13
+    Message PastoriaCity_Text_NoOneMessesWithPastoria
     CloseMessage
-    ApplyMovement LOCALID_PLAYER, _07EC
-    ApplyMovement PASTORIA_CITY_RIVAL, _07AC
-    ApplyMovement PASTORIA_CITY_CRASHER_WAKE, _078C
+    ApplyMovement LOCALID_PLAYER, PastoriaCity_Movement_PlayerWatchCrasherWakeLeave
+    ApplyMovement LOCALID_RIVAL, PastoriaCity_Movement_RivalMoveAwayForCrasherWake
+    ApplyMovement LOCALID_CRASHER_WAKE, PastoriaCity_Movement_CrasherWakeLeave
     WaitMovement
     BufferRivalName 0
-    Message 14
+    Message PastoriaCity_Text_HeyMasterWait
     CloseMessage
-    ApplyMovement PASTORIA_CITY_RIVAL, _07C0
+    ApplyMovement LOCALID_RIVAL, PastoriaCity_Movement_RivalLeaveAfterGym
     WaitMovement
-    Call _0737
-    ClearFlag FLAG_UNK_0x01FB
-    SetPosition PASTORIA_CITY_CRASHER_WAKE, 0x263, 0, 0x32A, 0
-    Call _0721
-    ClearFlag FLAG_UNK_0x01A9
-    SetPosition PASTORIA_CITY_RIVAL, 0x260, 0, 0x32E, 1
+    Call PastoriaCity_SetCrasherWakePositionAfterGym
+    ClearFlag FLAG_HIDE_PASTORIA_CITY_CRASHER_WAKE
+    SetPosition LOCALID_CRASHER_WAKE, 611, 0, 810, DIR_NORTH
+    Call PastoriaCity_SetRivalPositionAfterGym
+    ClearFlag FLAG_HIDE_PASTORIA_CITY_RIVAL
+    SetPosition LOCALID_RIVAL, 608, 0, 814, DIR_SOUTH
     SetVar VAR_PASTORIA_STATE, 4
     ReleaseAll
     End
 
-_0721:
-    SetObjectEventPos PASTORIA_CITY_RIVAL, 0x260, 0x32E
-    SetObjectEventDir PASTORIA_CITY_RIVAL, DIR_SOUTH
-    SetObjectEventMovementType PASTORIA_CITY_RIVAL, MOVEMENT_TYPE_LOOK_SOUTH
+PastoriaCity_SetRivalPositionAfterGym:
+    SetObjectEventPos LOCALID_RIVAL, 608, 814
+    SetObjectEventDir LOCALID_RIVAL, DIR_SOUTH
+    SetObjectEventMovementType LOCALID_RIVAL, MOVEMENT_TYPE_LOOK_SOUTH
     Return
 
-_0737:
-    SetObjectEventPos PASTORIA_CITY_CRASHER_WAKE, 0x263, 0x32A
-    SetObjectEventDir PASTORIA_CITY_CRASHER_WAKE, DIR_NORTH
-    SetObjectEventMovementType PASTORIA_CITY_CRASHER_WAKE, MOVEMENT_TYPE_LOOK_NORTH
+PastoriaCity_SetCrasherWakePositionAfterGym:
+    SetObjectEventPos LOCALID_CRASHER_WAKE, 611, 810
+    SetObjectEventDir LOCALID_CRASHER_WAKE, DIR_NORTH
+    SetObjectEventMovementType LOCALID_CRASHER_WAKE, MOVEMENT_TYPE_LOOK_NORTH
     Return
 
-_074D:
-    SetObjectEventPos PASTORIA_CITY_RIVAL, 0x263, 0x32A
-    SetObjectEventDir PASTORIA_CITY_RIVAL, DIR_NORTH
-    SetObjectEventMovementType PASTORIA_CITY_RIVAL, MOVEMENT_TYPE_LOOK_NORTH
+PastoriaCity_SetRivalPositionAfterExplosion:
+    SetObjectEventPos LOCALID_RIVAL, 611, 810
+    SetObjectEventDir LOCALID_RIVAL, DIR_NORTH
+    SetObjectEventMovementType LOCALID_RIVAL, MOVEMENT_TYPE_LOOK_NORTH
     Return
 
     .balign 4, 0
-_0764:
+PastoriaCity_Movement_CrasherWakeExitGym:
     WalkNormalSouth
     EndMovement
 
     .balign 4, 0
-_076C:
+PastoriaCity_Movement_CrasherWakeTurnToRivalAndPlayer:
     WalkOnSpotNormalEast
     Delay8 2
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_077C:
+PastoriaCity_Movement_CrasherWakeWalkOnSpotEast:
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_0784:
+PastoriaCity_Movement_CrasherWakeWalkOnSpotSouth:
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_078C:
+PastoriaCity_Movement_CrasherWakeLeave:
     WalkFastEast 6
     WalkFastNorth 8
     EndMovement
 
     .balign 4, 0
-_0798:
+PastoriaCity_Movement_RivalEnterAfterGym:
     WalkFastSouth 9
     WalkFastWest 5
     EndMovement
 
     .balign 4, 0
-_07A4:
+PastoriaCity_Movement_RivalExclamationMark:
     EmoteExclamationMark
     EndMovement
 
     .balign 4, 0
-_07AC:
+PastoriaCity_Movement_RivalMoveAwayForCrasherWake:
     LockDir
     WalkFastSouth
     UnlockDir
@@ -591,19 +591,19 @@ _07AC:
     EndMovement
 
     .balign 4, 0
-_07C0:
+PastoriaCity_Movement_RivalLeaveAfterGym:
     WalkFastEast 5
     WalkFastNorth 8
     EndMovement
 
     .balign 4, 0
-_07CC:
+PastoriaCity_Movement_PlayerFaceRivalAfterGym:
     Delay4 11
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_07D8:
+PastoriaCity_Movement_PlayerMoveAwayForCrasherWake:
     WalkOnSpotNormalNorth
     Delay8 2
     WalkNormalSouth
@@ -611,210 +611,210 @@ _07D8:
     EndMovement
 
     .balign 4, 0
-_07EC:
+PastoriaCity_Movement_PlayerWatchCrasherWakeLeave:
     Delay8
     WalkOnSpotNormalEast
     EndMovement
 
-_07F8:
+PastoriaCity_TriggerBomb:
     LockAll
-    Call _086F
-    ApplyMovement PASTORIA_CITY_CRASHER_WAKE, _0B6C
-    ApplyMovement PASTORIA_CITY_RIVAL, _0B08
-    ApplyMovement LOCALID_PLAYER, _0AAC
-    ApplyMovement PASTORIA_CITY_GRUNT_M, _0B44
+    Call PastoriaCity_Explosion
+    ApplyMovement LOCALID_CRASHER_WAKE, PastoriaCity_Movement_CrasherWakeWatchGruntMExitGreatMarsh
+    ApplyMovement LOCALID_RIVAL, PastoriaCity_Movement_RivalWatchGruntMExitGreatMarsh
+    ApplyMovement LOCALID_PLAYER, PastoriaCity_Movement_PlayerWatchGruntMExitGreatMarsh
+    ApplyMovement LOCALID_GRUNT_M, PastoriaCity_Movement_GruntMExitGreatMarsh
     WaitMovement
-    Call _08D9
-    ApplyMovement PASTORIA_CITY_CRASHER_WAKE, _0B74
-    ApplyMovement PASTORIA_CITY_RIVAL, _0B3C
-    ApplyMovement LOCALID_PLAYER, _0AC8
-    ApplyMovement PASTORIA_CITY_GRUNT_M, _0B54
+    Call PastoriaCity_GruntMPushedTheButton
+    ApplyMovement LOCALID_CRASHER_WAKE, PastoriaCity_Movement_CrasherWakeWatchGruntMLeave
+    ApplyMovement LOCALID_RIVAL, PastoriaCity_Movement_RivalWatchGruntMLeave
+    ApplyMovement LOCALID_PLAYER, PastoriaCity_Movement_PlayerWatchGruntMLeave
+    ApplyMovement LOCALID_GRUNT_M, PastoriaCity_Movement_GruntMLeave
     WaitMovement
-    Call _08FA
-    Message 23
-    ApplyMovement PASTORIA_CITY_CRASHER_WAKE, _0B80
-    ApplyMovement LOCALID_PLAYER, _0AD4
+    Call PastoriaCity_MoveGruntMEast
+    Message PastoriaCity_Text_GreatMarshIsInvaluable
+    ApplyMovement LOCALID_CRASHER_WAKE, PastoriaCity_Movement_CrasherWakeWalkOnSpotSouthAfterExplosion
+    ApplyMovement LOCALID_PLAYER, PastoriaCity_Movement_PlayerWalkOnSpotNorth
     WaitMovement
-    Call _091C
+    Call PastoriaCity_GoAfterThatGoon
     ReleaseAll
     End
 
-_086F:
-    ApplyMovement PASTORIA_CITY_RIVAL, _0AE4
+PastoriaCity_Explosion:
+    ApplyMovement LOCALID_RIVAL, PastoriaCity_Movement_RivalWalkToPlayerForExplosion
     WaitMovement
     BufferRivalName 0
-    Message 17
+    Message PastoriaCity_Text_DontForgetImHere
     CloseMessage
-    ApplyMovement LOCALID_PLAYER, _0AA4
-    ApplyMovement PASTORIA_CITY_CRASHER_WAKE, _0B5C
+    ApplyMovement LOCALID_PLAYER, PastoriaCity_Movement_PlayerFaceNorth
+    ApplyMovement LOCALID_CRASHER_WAKE, PastoriaCity_Movement_CrasherWakeWalkOnSpotNorth
     WaitMovement
-    Message 18
-    ApplyMovement PASTORIA_CITY_RIVAL, _0AF0
+    Message PastoriaCity_Text_WheresThisGalac
+    ApplyMovement LOCALID_RIVAL, PastoriaCity_Movement_RivalWalkOnSpotNorth
     WaitMovement
     PlaySE SEQ_SE_DP_FW291
     WaitTime 4, VAR_RESULT
-    Message 19
+    Message PastoriaCity_Text_BigExplosion
     WaitSE SEQ_SE_CONFIRM
     ScrCmd_29F 1
     CloseMessage
-    ClearFlag FLAG_UNK_0x020C
-    SetObjectEventPos PASTORIA_CITY_GRUNT_M, 0x262, 0x328
-    SetObjectEventDir PASTORIA_CITY_GRUNT_M, DIR_EAST
-    SetObjectEventMovementType PASTORIA_CITY_GRUNT_M, MOVEMENT_TYPE_LOOK_EAST
-    AddObject PASTORIA_CITY_GRUNT_M
-    LockObject PASTORIA_CITY_GRUNT_M
+    ClearFlag FLAG_HIDE_PASTORIA_CITY_GRUNT_M
+    SetObjectEventPos LOCALID_GRUNT_M, 610, 808
+    SetObjectEventDir LOCALID_GRUNT_M, DIR_EAST
+    SetObjectEventMovementType LOCALID_GRUNT_M, MOVEMENT_TYPE_LOOK_EAST
+    AddObject LOCALID_GRUNT_M
+    LockObject LOCALID_GRUNT_M
     Return
 
-_08D9:
-    Message 20
-    ApplyMovement PASTORIA_CITY_CRASHER_WAKE, _0B6C
+PastoriaCity_GruntMPushedTheButton:
+    Message PastoriaCity_Text_ThatWasRough
+    ApplyMovement LOCALID_CRASHER_WAKE, PastoriaCity_Movement_CrasherWakeWatchGruntMExitGreatMarsh
     WaitMovement
-    Message 21
-    ApplyMovement PASTORIA_CITY_GRUNT_M, _0B4C
+    Message PastoriaCity_Text_WhatveYouDone
+    ApplyMovement LOCALID_GRUNT_M, PastoriaCity_Movement_GruntMWalkOnSpotNorth
     WaitMovement
-    Message 22
+    Message PastoriaCity_Text_IPushedTheButton
     CloseMessage
     Return
 
-_08FA:
-    RemoveObject PASTORIA_CITY_GRUNT_M
-    ClearFlag FLAG_UNK_0x020C
-    SetObjectEventPos PASTORIA_CITY_GRUNT_M, 0x27D, 0x32C
-    SetObjectEventMovementType PASTORIA_CITY_GRUNT_M, MOVEMENT_TYPE_LOOK_EAST
-    SetObjectEventDir PASTORIA_CITY_GRUNT_M, DIR_EAST
-    AddObject PASTORIA_CITY_GRUNT_M
+PastoriaCity_MoveGruntMEast:
+    RemoveObject LOCALID_GRUNT_M
+    ClearFlag FLAG_HIDE_PASTORIA_CITY_GRUNT_M
+    SetObjectEventPos LOCALID_GRUNT_M, 637, 812
+    SetObjectEventMovementType LOCALID_GRUNT_M, MOVEMENT_TYPE_LOOK_EAST
+    SetObjectEventDir LOCALID_GRUNT_M, DIR_EAST
+    AddObject LOCALID_GRUNT_M
     Return
 
-_091C:
-    Message 24
+PastoriaCity_GoAfterThatGoon:
+    Message PastoriaCity_Text_DoNotFollowMe
     CloseMessage
-    ApplyMovement PASTORIA_CITY_CRASHER_WAKE, _0B88
-    ApplyMovement LOCALID_PLAYER, _099C
+    ApplyMovement LOCALID_CRASHER_WAKE, PastoriaCity_Movement_CrasherWakeEnterGreatMarsh
+    ApplyMovement LOCALID_PLAYER, PastoriaCity_Movement_PlayerWatchCrasherWakeEnterGreatMarsh
     WaitMovement
-    RemoveObject PASTORIA_CITY_CRASHER_WAKE
+    RemoveObject LOCALID_CRASHER_WAKE
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    CallIfEq VAR_0x8004, 0x261, _0981
-    CallIfEq VAR_0x8004, 0x263, _098D
-    CallIfEq VAR_0x8004, 0x264, _0981
-    SetFlag FLAG_UNK_0x020D
+    CallIfEq VAR_0x8004, 609, PastoriaCity_RivalWalkToGreatMarsh
+    CallIfEq VAR_0x8004, 611, PastoriaCity_RivalWalkToGreatMarshX611
+    CallIfEq VAR_0x8004, 612, PastoriaCity_RivalWalkToGreatMarsh
+    SetFlag FLAG_HIDE_VEILSTONE_CITY_GALACTIC_WAREHOUSE_LOOKER
     SetVar VAR_PASTORIA_STATE, 5
-    SetFlag FLAG_UNK_0x0102
+    SetFlag FLAG_PASTORIA_CITY_GRUNT_M_MOVED_EAST
     BufferRivalName 0
     BufferPlayerName 1
-    Message 25
+    Message PastoriaCity_Text_GoAfterThatGoon
     WaitButton
     CloseMessage
     Return
 
-_0981:
-    ApplyMovement PASTORIA_CITY_RIVAL, _0B1C
+PastoriaCity_RivalWalkToGreatMarsh:
+    ApplyMovement LOCALID_RIVAL, PastoriaCity_Movement_RivalWalkToGreatMarsh
     WaitMovement
     Return
 
-_098D:
-    ApplyMovement PASTORIA_CITY_RIVAL, _0B28
+PastoriaCity_RivalWalkToGreatMarshX611:
+    ApplyMovement LOCALID_RIVAL, PastoriaCity_Movement_RivalWalkToGreatMarshX611
     WaitMovement
     Return
 
     .balign 4, 0
-_099C:
+PastoriaCity_Movement_PlayerWatchCrasherWakeEnterGreatMarsh:
     Delay8
     FaceNorth
     EndMovement
 
-_09A8:
+PastoriaCity_CrasherWake:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Call _086F
+    Call PastoriaCity_Explosion
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    CallIfEq VAR_0x8004, 0x263, _0A31
-    CallIfEq VAR_0x8004, 0x264, _0A55
-    Call _08D9
-    ApplyMovement LOCALID_PLAYER, _0AC8
-    ApplyMovement PASTORIA_CITY_CRASHER_WAKE, _0B74
-    ApplyMovement PASTORIA_CITY_RIVAL, _0B3C
-    ApplyMovement PASTORIA_CITY_GRUNT_M, _0B54
+    CallIfEq VAR_0x8004, 611, PastoriaCity_GruntMExitGreatMarshX611
+    CallIfEq VAR_0x8004, 612, PastoriaCity_GruntMExitGreatMarshX612
+    Call PastoriaCity_GruntMPushedTheButton
+    ApplyMovement LOCALID_PLAYER, PastoriaCity_Movement_PlayerWatchGruntMLeave
+    ApplyMovement LOCALID_CRASHER_WAKE, PastoriaCity_Movement_CrasherWakeWatchGruntMLeave
+    ApplyMovement LOCALID_RIVAL, PastoriaCity_Movement_RivalWatchGruntMLeave
+    ApplyMovement LOCALID_GRUNT_M, PastoriaCity_Movement_GruntMLeave
     WaitMovement
-    Call _08FA
-    Message 23
+    Call PastoriaCity_MoveGruntMEast
+    Message PastoriaCity_Text_GreatMarshIsInvaluable
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    CallIfEq VAR_0x8004, 0x263, _0A79
-    CallIfEq VAR_0x8004, 0x264, _0A8D
-    Call _091C
+    CallIfEq VAR_0x8004, 611, PastoriaCity_PlayerAndCrasherWakeFaceEachOtherX611
+    CallIfEq VAR_0x8004, 612, PastoriaCity_PlayerAndCrasherWakeFaceEachOtherX612
+    Call PastoriaCity_GoAfterThatGoon
     ReleaseAll
     End
 
-_0A31:
-    ApplyMovement PASTORIA_CITY_CRASHER_WAKE, _0B6C
-    ApplyMovement LOCALID_PLAYER, _0ABC
-    ApplyMovement PASTORIA_CITY_RIVAL, _0B10
-    ApplyMovement PASTORIA_CITY_GRUNT_M, _0B44
+PastoriaCity_GruntMExitGreatMarshX611:
+    ApplyMovement LOCALID_CRASHER_WAKE, PastoriaCity_Movement_CrasherWakeWatchGruntMExitGreatMarsh
+    ApplyMovement LOCALID_PLAYER, PastoriaCity_Movement_PlayerWatchGruntMExitGreatMarsh2
+    ApplyMovement LOCALID_RIVAL, PastoriaCity_Movement_RivalWatchGruntMExitGreatMarsh2
+    ApplyMovement LOCALID_GRUNT_M, PastoriaCity_Movement_GruntMExitGreatMarsh
     WaitMovement
     Return
 
-_0A55:
-    ApplyMovement PASTORIA_CITY_CRASHER_WAKE, _0B6C
-    ApplyMovement LOCALID_PLAYER, _0ABC
-    ApplyMovement PASTORIA_CITY_RIVAL, _0B10
-    ApplyMovement PASTORIA_CITY_GRUNT_M, _0B44
+PastoriaCity_GruntMExitGreatMarshX612:
+    ApplyMovement LOCALID_CRASHER_WAKE, PastoriaCity_Movement_CrasherWakeWatchGruntMExitGreatMarsh
+    ApplyMovement LOCALID_PLAYER, PastoriaCity_Movement_PlayerWatchGruntMExitGreatMarsh2
+    ApplyMovement LOCALID_RIVAL, PastoriaCity_Movement_RivalWatchGruntMExitGreatMarsh2
+    ApplyMovement LOCALID_GRUNT_M, PastoriaCity_Movement_GruntMExitGreatMarsh
     WaitMovement
     Return
 
-_0A79:
-    ApplyMovement PASTORIA_CITY_CRASHER_WAKE, _0B80
-    ApplyMovement LOCALID_PLAYER, _0AD4
+PastoriaCity_PlayerAndCrasherWakeFaceEachOtherX611:
+    ApplyMovement LOCALID_CRASHER_WAKE, PastoriaCity_Movement_CrasherWakeWalkOnSpotSouthAfterExplosion
+    ApplyMovement LOCALID_PLAYER, PastoriaCity_Movement_PlayerWalkOnSpotNorth
     WaitMovement
     Return
 
-_0A8D:
-    ApplyMovement PASTORIA_CITY_CRASHER_WAKE, _0B80
-    ApplyMovement LOCALID_PLAYER, _0ADC
+PastoriaCity_PlayerAndCrasherWakeFaceEachOtherX612:
+    ApplyMovement LOCALID_CRASHER_WAKE, PastoriaCity_Movement_CrasherWakeWalkOnSpotSouthAfterExplosion
+    ApplyMovement LOCALID_PLAYER, PastoriaCity_Movement_PlayerWalkOnSpotWest
     WaitMovement
     Return
 
     .balign 4, 0
-_0AA4:
+PastoriaCity_Movement_PlayerFaceNorth:
     FaceNorth
     EndMovement
 
     .balign 4, 0
-_0AAC:
+PastoriaCity_Movement_PlayerWatchGruntMExitGreatMarsh:
     WalkFastSouth
     WalkFastEast
     WalkOnSpotFastSouth
     EndMovement
 
     .balign 4, 0
-_0ABC:
+PastoriaCity_Movement_PlayerWatchGruntMExitGreatMarsh2:
     Delay8
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_0AC8:
+PastoriaCity_Movement_PlayerWatchGruntMLeave:
     Delay8
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_0AD4:
+PastoriaCity_Movement_PlayerWalkOnSpotNorth:
     WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
-_0ADC:
+PastoriaCity_Movement_PlayerWalkOnSpotWest:
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_0AE4:
+PastoriaCity_Movement_RivalWalkToPlayerForExplosion:
     WalkFastNorth 3
     WalkFastEast
     EndMovement
 
     .balign 4, 0
-_0AF0:
+PastoriaCity_Movement_RivalWalkOnSpotNorth:
     WalkOnSpotFastNorth
     EndMovement
 
@@ -827,24 +827,24 @@ PastoriaCity_UnusedMovement19:
     EndMovement
 
     .balign 4, 0
-_0B08:
+PastoriaCity_Movement_RivalWatchGruntMExitGreatMarsh:
     WalkOnSpotFastSouth
     EndMovement
 
     .balign 4, 0
-_0B10:
+PastoriaCity_Movement_RivalWatchGruntMExitGreatMarsh2:
     Delay8
     WalkOnSpotFastSouth
     EndMovement
 
     .balign 4, 0
-_0B1C:
+PastoriaCity_Movement_RivalWalkToGreatMarsh:
     WalkFastEast 2
     WalkFastNorth
     EndMovement
 
     .balign 4, 0
-_0B28:
+PastoriaCity_Movement_RivalWalkToGreatMarshX611:
     WalkFastEast
     WalkFastNorth
     WalkFastEast
@@ -852,27 +852,27 @@ _0B28:
     EndMovement
 
     .balign 4, 0
-_0B3C:
+PastoriaCity_Movement_RivalWatchGruntMLeave:
     WalkOnSpotFastEast
     EndMovement
 
     .balign 4, 0
-_0B44:
+PastoriaCity_Movement_GruntMExitGreatMarsh:
     WalkFastSouth 4
     EndMovement
 
     .balign 4, 0
-_0B4C:
+PastoriaCity_Movement_GruntMWalkOnSpotNorth:
     WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
-_0B54:
+PastoriaCity_Movement_GruntMLeave:
     WalkFastEast 12
     EndMovement
 
     .balign 4, 0
-_0B5C:
+PastoriaCity_Movement_CrasherWakeWalkOnSpotNorth:
     WalkOnSpotNormalNorth
     EndMovement
 
@@ -881,105 +881,105 @@ PastoriaCity_UnusedMovement20:
     EndMovement
 
     .balign 4, 0
-_0B6C:
+PastoriaCity_Movement_CrasherWakeWatchGruntMExitGreatMarsh:
     WalkOnSpotFastSouth
     EndMovement
 
     .balign 4, 0
-_0B74:
+PastoriaCity_Movement_CrasherWakeWatchGruntMLeave:
     Delay8
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_0B80:
+PastoriaCity_Movement_CrasherWakeWalkOnSpotSouthAfterExplosion:
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_0B88:
+PastoriaCity_Movement_CrasherWakeEnterGreatMarsh:
     WalkNormalNorth 2
     EndMovement
 
-_0B90:
+PastoriaCity_TriggerBlockGreatMarsh:
     LockAll
-    ApplyMovement LOCALID_PLAYER, _0BC8
-    ApplyMovement PASTORIA_CITY_RIVAL, _0BD8
+    ApplyMovement LOCALID_PLAYER, PastoriaCity_Movement_PlayerWalkOnSpotEast
+    ApplyMovement LOCALID_RIVAL, PastoriaCity_Movement_RivalWalkOnSpotWest
     WaitMovement
     BufferRivalName 0
     BufferPlayerName 1
-    Message 26
+    Message PastoriaCity_Text_WhyArentYouGone
     CloseMessage
-    ApplyMovement LOCALID_PLAYER, _0BD0
-    ApplyMovement PASTORIA_CITY_RIVAL, _0BE0
+    ApplyMovement LOCALID_PLAYER, PastoriaCity_Movement_PlayerGetPushedSouth
+    ApplyMovement LOCALID_RIVAL, PastoriaCity_Movement_RivalPushBackPlayer
     WaitMovement
     ReleaseAll
     End
 
     .balign 4, 0
-_0BC8:
+PastoriaCity_Movement_PlayerWalkOnSpotEast:
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_0BD0:
+PastoriaCity_Movement_PlayerGetPushedSouth:
     WalkNormalSouth
     EndMovement
 
     .balign 4, 0
-_0BD8:
+PastoriaCity_Movement_RivalWalkOnSpotWest:
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_0BE0:
+PastoriaCity_Movement_RivalPushBackPlayer:
     WalkNormalWest
     WalkNormalEast
     WalkOnSpotNormalNorth
     EndMovement
 
-_0BF0:
+PastoriaCity_TriggerFaceBoard:
     LockAll
-    GoToIfSet FLAG_UNK_0x0156, _0C1E
-    SetVar VAR_UNK_0x40C7, 1
+    GoToIfSet FLAG_UNK_0x0156, PastoriaCity_FaceBoardEnd
+    SetVar VAR_PASTORIA_CITY_TRY_CROAGUNK_SCENE_STATE, 1
     GetRandom VAR_RESULT, 100
-    GoToIfGe VAR_RESULT, 90, _0C22
-    GoTo _0C1E
+    GoToIfGe VAR_RESULT, 90, PastoriaCity_CroagunkScene
+    GoTo PastoriaCity_FaceBoardEnd
     End
 
-_0C1E:
+PastoriaCity_FaceBoardEnd:
     ReleaseAll
     End
 
-_0C22:
-    ClearFlag FLAG_UNK_0x029D
-    AddObject 28
-    ApplyMovement LOCALID_PLAYER, _0C78
-    ApplyMovement 28, _0C64
+PastoriaCity_CroagunkScene:
+    ClearFlag FLAG_HIDE_PASTORIA_CITY_CROAGUNK
+    AddObject LOCALID_CROAGUNK
+    ApplyMovement LOCALID_PLAYER, PastoriaCity_Movement_PlayerWalkOnSpotSouth
+    ApplyMovement LOCALID_CROAGUNK, PastoriaCity_Movement_CroagunkEnter
     WaitMovement
     PlayCry SPECIES_CROAGUNK
     WaitCry
     WaitTime 30, VAR_RESULT
-    ApplyMovement 28, _0C70
+    ApplyMovement LOCALID_CROAGUNK, PastoriaCity_Movement_CroagunkLeave
     WaitMovement
     PlaySE SEQ_SE_DP_KAIDAN2
-    RemoveObject 28
+    RemoveObject LOCALID_CROAGUNK
     WaitSE SEQ_SE_DP_KAIDAN2
     ReleaseAll
     End
 
     .balign 4, 0
-_0C64:
+PastoriaCity_Movement_CroagunkEnter:
     WalkNormalNorth 7
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_0C70:
+PastoriaCity_Movement_CroagunkLeave:
     WalkNormalNorth 5
     EndMovement
 
     .balign 4, 0
-_0C78:
+PastoriaCity_Movement_PlayerWalkOnSpotSouth:
     WalkOnSpotNormalSouth
     EndMovement

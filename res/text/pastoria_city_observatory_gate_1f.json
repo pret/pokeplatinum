@@ -2,7 +2,7 @@
   "key": 13315,
   "messages": [
     {
-      "id": "pl_msg_00000136_00000",
+      "id": "PastoriaCityObservatoryGate1F_Text_AskPlaySafariGame",
       "en_US": [
         "Welcome to the Great Marsh, the home\n",
         "of Pastoria’s Safari Game!\r",
@@ -11,22 +11,22 @@
       ]
     },
     {
-      "id": "pl_msg_00000136_00001",
+      "id": "PastoriaCityObservatoryGate1F_Text_ThatWillBe500",
       "en_US": "That will be $500, please.\r"
     },
     {
-      "id": "pl_msg_00000136_00002",
+      "id": "PastoriaCityObservatoryGate1F_Text_HereAreSafariBalls",
       "en_US": "Here are your Safari Balls.\r"
     },
     {
-      "id": "pl_msg_00000136_00003",
+      "id": "PastoriaCityObservatoryGate1F_Text_PlayerReceived30SafariBalls",
       "en_US": [
         "{STRVAR_1 3, 0, 0} received\n",
         "30 Safari Balls.\r"
       ]
     },
     {
-      "id": "pl_msg_00000136_00004",
+      "id": "PastoriaCityObservatoryGate1F_Text_OffYouGo",
       "en_US": [
         "We’ll let you know when your game\n",
         "is over.\r",
@@ -35,28 +35,28 @@
       ]
     },
     {
-      "id": "pl_msg_00000136_00005",
+      "id": "PastoriaCityObservatoryGate1F_Text_PleaseComeAgain",
       "en_US": [
         "OK.\n",
         "Please come again!\r"
       ]
     },
     {
-      "id": "pl_msg_00000136_00006",
+      "id": "PastoriaCityObservatoryGate1F_Text_NotEnoughMoney",
       "en_US": [
         "You don’t have enough money.\n",
         "Sorry.\r"
       ]
     },
     {
-      "id": "pl_msg_00000136_00007",
+      "id": "PastoriaCityObservatoryGate1F_Text_NoRoomForPokemon",
       "en_US": [
         "I’m sorry, you don’t have enough\n",
         "room to catch any more Pokémon.\r"
       ]
     },
     {
-      "id": "pl_msg_00000136_00008",
+      "id": "PastoriaCityObservatoryGate1F_Text_AskPlaySafariGameUnused",
       "en_US": [
         "Welcome to the Great Marsh, the home\n",
         "of Pastoria’s Safari Game!\r",
@@ -68,14 +68,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000136_00009",
+      "id": "PastoriaCityObservatoryGate1F_Text_AskExitGreatMarsh",
       "en_US": [
         "You still have time left. Are you sure\n",
         "you want to exit the Great Marsh?"
       ]
     },
     {
-      "id": "pl_msg_00000136_00010",
+      "id": "PastoriaCityObservatoryGate1F_Text_ThanksForPlaying",
       "en_US": [
         "OK.\r",
         "I’ll relieve you of your remaining\n",
@@ -85,21 +85,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000136_00011",
+      "id": "PastoriaCityObservatoryGate1F_Text_EnjoyWildAdventure",
       "en_US": [
         "Please enjoy the rest of your wild\n",
         "Safari Game adventure!\r"
       ]
     },
     {
-      "id": "pl_msg_00000136_00012",
+      "id": "PastoriaCityObservatoryGate1F_Text_IsThisFirstSafariGame",
       "en_US": [
         "Welcome to the Great Marsh!\n",
         "Is this your first Safari Game?"
       ]
     },
     {
-      "id": "pl_msg_00000136_00013",
+      "id": "PastoriaCityObservatoryGate1F_Text_ExplainSafariGame",
       "en_US": [
         "When you enter the Great Marsh, you\n",
         "start with 30 Safari Balls.\r",
@@ -113,14 +113,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000136_00014",
+      "id": "PastoriaCityObservatoryGate1F_Text_EnjoySafariGame",
       "en_US": [
         "I see.\n",
         "Enjoy your Safari Game!"
       ]
     },
     {
-      "id": "pl_msg_00000136_00015",
+      "id": "PastoriaCityObservatoryGate1F_Text_CaptureFivePokemon",
       "en_US": [
         "Howdy.\n",
         "You’re playing the Safari Game?\r",
@@ -135,15 +135,15 @@
       ]
     },
     {
-      "id": "pl_msg_00000136_00016",
+      "id": "PastoriaCityObservatoryGate1F_Text_Dummy16",
       "garbage": 63
     },
     {
-      "id": "pl_msg_00000136_00017",
+      "id": "PastoriaCityObservatoryGate1F_Text_Dummy17",
       "garbage": 117
     },
     {
-      "id": "pl_msg_00000136_00018",
+      "id": "PastoriaCityObservatoryGate1F_Text_HereAppMatchupChecker",
       "en_US": [
         "So, how many Pokémon did you catch in\n",
         "your Safari Game? At least five?\r",
@@ -154,7 +154,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000136_00019",
+      "id": "PastoriaCityObservatoryGate1F_Text_ExplainMatchupChecker",
       "en_US": [
         "The Matchup Checker app figures out\n",
         "how Pokémon types match up.\r",
@@ -163,7 +163,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000136_00020",
+      "id": "PastoriaCityObservatoryGate1F_Text_Dummy20",
       "garbage": 66
     }
   ]

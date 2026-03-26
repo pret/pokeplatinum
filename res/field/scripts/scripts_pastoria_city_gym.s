@@ -64,7 +64,7 @@ PastoriaGym_Wake:
     SetTrainerFlag TRAINER_TUBER_JACKY
     SetTrainerFlag TRAINER_TUBER_CAITLYN
     SetVar VAR_PASTORIA_STATE, 3
-    SetFlag FLAG_UNK_0x020C
+    SetFlag FLAG_HIDE_PASTORIA_CITY_GRUNT_M
     SetFlag FLAG_UNK_0x0156
     CreateJournalEvent LOCATION_EVENT_BEAT_GYM_LEADER, 122, TRAINER_LEADER_WAKE, 0, 0
     Message PastoriaGym_Text_WakeExplainFenBadge

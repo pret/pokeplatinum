@@ -11,7 +11,7 @@
     ],
     "object_events": [
         {
-            "id": "PASTORIA_CITY_VENT_0",
+            "id": "LOCALID_VENT_1",
             "graphics_id": "OBJ_EVENT_GFX_VENT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -26,7 +26,7 @@
             "y": 0
         },
         {
-            "id": "PASTORIA_CITY_VENT_1",
+            "id": "LOCALID_VENT_2",
             "graphics_id": "OBJ_EVENT_GFX_VENT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -41,7 +41,7 @@
             "y": 0
         },
         {
-            "id": "PASTORIA_CITY_VENT_2",
+            "id": "LOCALID_VENT_3",
             "graphics_id": "OBJ_EVENT_GFX_VENT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -56,7 +56,7 @@
             "y": 0
         },
         {
-            "id": "PASTORIA_CITY_VENT_3",
+            "id": "LOCALID_VENT_4",
             "graphics_id": "OBJ_EVENT_GFX_VENT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -71,7 +71,7 @@
             "y": 0
         },
         {
-            "id": "PASTORIA_CITY_MAP_SIGNPOST_4",
+            "id": "LOCALID_MAP_SIGNPOST",
             "graphics_id": "OBJ_EVENT_GFX_MAP_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -88,7 +88,7 @@
             "y": 0
         },
         {
-            "id": "PASTORIA_CITY_GYM_SIGNPOST_5",
+            "id": "LOCALID_GYM_SIGNPOST",
             "graphics_id": "OBJ_EVENT_GFX_GYM_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -103,7 +103,7 @@
             "y": 0
         },
         {
-            "id": "PASTORIA_CITY_SIGNBOARD_6",
+            "id": "LOCALID_SIGNBOARD_GREAT_MARSH",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -133,7 +133,7 @@
             "y": 0
         },
         {
-            "id": "PASTORIA_CITY_SIGNBOARD_8",
+            "id": "LOCALID_SIGNBOARD_SAFARI_GAME",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -148,7 +148,7 @@
             "y": 0
         },
         {
-            "id": "PASTORIA_CITY_PICNICKER_9",
+            "id": "LOCALID_PICNICKER",
             "graphics_id": "OBJ_EVENT_GFX_PICNICKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -163,7 +163,7 @@
             "y": 0
         },
         {
-            "id": "PASTORIA_CITY_BLACK_BELT_10",
+            "id": "LOCALID_BLACK_BELT",
             "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -178,7 +178,7 @@
             "y": 0
         },
         {
-            "id": "PASTORIA_CITY_CLEFAIRY_11",
+            "id": "LOCALID_CLEFAIRY",
             "graphics_id": "OBJ_EVENT_GFX_CLEFAIRY",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -193,7 +193,7 @@
             "y": 0
         },
         {
-            "id": "PASTORIA_CITY_ACE_TRAINER_M_12",
+            "id": "LOCALID_ACE_TRAINER_M_1",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -208,7 +208,7 @@
             "y": 0
         },
         {
-            "id": "PASTORIA_CITY_BERRY_SOIL_13",
+            "id": "LOCALID_BERRY_SOIL_1",
             "graphics_id": "OBJ_EVENT_GFX_BERRY_SOIL",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -225,7 +225,7 @@
             "y": 0
         },
         {
-            "id": "PASTORIA_CITY_BERRY_SOIL_14",
+            "id": "LOCALID_BERRY_SOIL_2",
             "graphics_id": "OBJ_EVENT_GFX_BERRY_SOIL",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -242,7 +242,7 @@
             "y": 0
         },
         {
-            "id": "PASTORIA_CITY_BERRY_SOIL_15",
+            "id": "LOCALID_BERRY_SOIL_3",
             "graphics_id": "OBJ_EVENT_GFX_BERRY_SOIL",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -259,7 +259,7 @@
             "y": 0
         },
         {
-            "id": "PASTORIA_CITY_BERRY_SOIL_16",
+            "id": "LOCALID_BERRY_SOIL_4",
             "graphics_id": "OBJ_EVENT_GFX_BERRY_SOIL",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -276,7 +276,7 @@
             "y": 0
         },
         {
-            "id": "PASTORIA_CITY_COLLECTOR_17",
+            "id": "LOCALID_COLLECTOR_1",
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -291,7 +291,7 @@
             "y": 0
         },
         {
-            "id": "PASTORIA_CITY_SCIENTIST_M_18",
+            "id": "LOCALID_SCIENTIST_M",
             "graphics_id": "OBJ_EVENT_GFX_SCIENTIST_M",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -306,7 +306,7 @@
             "y": 0
         },
         {
-            "id": "PASTORIA_CITY_BEAUTY_19",
+            "id": "LOCALID_BEAUTY",
             "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -321,7 +321,7 @@
             "y": 0
         },
         {
-            "id": "PASTORIA_CITY_ARROW_SIGNPOST_20",
+            "id": "LOCALID_ARROW_SIGNPOST",
             "clone_id": 9,
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
@@ -339,11 +339,11 @@
             "y": 0
         },
         {
-            "id": "PASTORIA_CITY_GRUNT_M",
+            "id": "LOCALID_GRUNT_M",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x020C",
+            "hidden_flag": "FLAG_HIDE_PASTORIA_CITY_GRUNT_M",
             "script": 9,
             "initial_dir": 0,
             "data": [],
@@ -354,7 +354,7 @@
             "y": 0
         },
         {
-            "id": "PASTORIA_CITY_COLLECTOR_22",
+            "id": "LOCALID_COLLECTOR_ROUTE_212_SOUTH",
             "clone_id": 39,
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
@@ -370,7 +370,7 @@
             "y": 0
         },
         {
-            "id": "PASTORIA_CITY_PARASOL_LADY_23",
+            "id": "LOCALID_PARASOL_LADY",
             "graphics_id": "OBJ_EVENT_GFX_PARASOL_LADY",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -385,7 +385,7 @@
             "y": 0
         },
         {
-            "id": "PASTORIA_CITY_COLLECTOR_24",
+            "id": "LOCALID_COLLECTOR_2",
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -400,7 +400,7 @@
             "y": 0
         },
         {
-            "id": "PASTORIA_CITY_ACE_TRAINER_M_25",
+            "id": "LOCALID_ACE_TRAINER_M_2",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -415,11 +415,11 @@
             "y": 0
         },
         {
-            "id": "PASTORIA_CITY_RIVAL",
+            "id": "LOCALID_RIVAL",
             "graphics_id": "OBJ_EVENT_GFX_BARRY",
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x01A9",
+            "hidden_flag": "FLAG_HIDE_PASTORIA_CITY_RIVAL",
             "script": 17,
             "initial_dir": 3,
             "data": [],
@@ -430,11 +430,11 @@
             "y": 0
         },
         {
-            "id": "PASTORIA_CITY_CRASHER_WAKE",
+            "id": "LOCALID_CRASHER_WAKE",
             "graphics_id": "OBJ_EVENT_GFX_CRASHER_WAKE",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x01FB",
+            "hidden_flag": "FLAG_HIDE_PASTORIA_CITY_CRASHER_WAKE",
             "script": 20,
             "initial_dir": 1,
             "data": [],
@@ -445,11 +445,11 @@
             "y": 0
         },
         {
-            "id": "PASTORIA_CITY_CROAGUNK_28",
+            "id": "LOCALID_CROAGUNK",
             "graphics_id": "OBJ_EVENT_GFX_CROAGUNK",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x029D",
+            "hidden_flag": "FLAG_HIDE_PASTORIA_CITY_CROAGUNK",
             "script": 0,
             "initial_dir": 0,
             "data": [],
@@ -572,7 +572,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": "VAR_UNK_0x40C7",
+            "var": "VAR_PASTORIA_CITY_TRY_CROAGUNK_SCENE_STATE",
             "value": 0
         }
     ]

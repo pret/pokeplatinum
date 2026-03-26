@@ -2,7 +2,7 @@
   "key": 46098,
   "messages": [
     {
-      "id": "pl_msg_00000139_00000",
+      "id": "PastoriaCityMiddleHouse_Text_FemaleCombeeEvolves",
       "en_US": [
         "The Pokémon COMBEE is quite\n",
         "interesting.\r",
@@ -15,7 +15,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000139_00001",
+      "id": "PastoriaCityMiddleHouse_Text_CatchBothGendersCombee",
       "en_US": [
         "Hey, have you caught both the female\n",
         "and male forms of COMBEE?\r",
@@ -26,7 +26,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000139_00002",
+      "id": "PastoriaCityMiddleHouse_Text_NotASingleCombee",
       "en_US": [
         "Aww, you don’t even have a single\n",
         "COMBEE?\r",
@@ -39,7 +39,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000139_00003",
+      "id": "PastoriaCityMiddleHouse_Text_ThatsACombee",
       "en_US": [
         "That’s it! A COMBEE!\n",
         "It’s sooooo cute!\r",
@@ -54,7 +54,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000139_00004",
+      "id": "PastoriaCityMiddleHouse_Text_BothGendersCombee",
       "en_US": [
         "Cool! A female and a male COMBEE.\n",
         "I feel giddy!\r",
@@ -63,14 +63,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000139_00005",
+      "id": "PastoriaCityMiddleHouse_Text_BagIsFull",
       "en_US": [
         "Whoops, your Bag is crammed full!\n",
         "I’ll give this to you later."
       ]
     },
     {
-      "id": "pl_msg_00000139_00006",
+      "id": "PastoriaCityMiddleHouse_Text_YoureGood",
       "en_US": [
         "You’re good!\n",
         "You’d make an awesome Bug Maniac!"

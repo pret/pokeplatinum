@@ -2,41 +2,41 @@
 #include "res/text/bank/pastoria_city_southwest_house.h"
 
 
-    ScriptEntry _000A
-    ScriptEntry _006A
+    ScriptEntry PastoriaCitySouthwestHouse_PokemonBreederF
+    ScriptEntry PastoriaCitySouthwestHouse_Twin
     ScriptEntryEnd
 
-_000A:
+PastoriaCitySouthwestHouse_PokemonBreederF:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x0AA3, _0055
-    Message 0
+    GoToIfSet FLAG_RECEIVED_PASTORIA_CITY_SOUTHWEST_HOUSE_RANDOM_BERRY, PastoriaCitySouthwestHouse_PlantingIsGood
+    Message PastoriaCitySouthwestHouse_Text_PlantThisBerry
     GetRandom VAR_0x8004, 17
     AddVar VAR_0x8004, ITEM_OCCA_BERRY /* Random type berry */
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0060
-    SetFlag FLAG_UNK_0x0AA3
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, PastoriaCitySouthwestHouse_BagIsFull
+    SetFlag FLAG_RECEIVED_PASTORIA_CITY_SOUTHWEST_HOUSE_RANDOM_BERRY
     Common_GiveItemQuantityNoLineFeed
     CloseMessage
     ReleaseAll
     End
 
-_0055:
-    Message 1
+PastoriaCitySouthwestHouse_PlantingIsGood:
+    Message PastoriaCitySouthwestHouse_Text_PlantingIsGood
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0060:
+PastoriaCitySouthwestHouse_BagIsFull:
     Common_MessageBagIsFull
     CloseMessage
     ReleaseAll
     End
 
-_006A:
-    NPCMessage 2
+PastoriaCitySouthwestHouse_Twin:
+    NPCMessage PastoriaCitySouthwestHouse_Text_SisterGathersBerries
     End
 
     .balign 4, 0

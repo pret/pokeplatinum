@@ -139,7 +139,7 @@ _0197:
     SetObjectEventPos 4, 8, 11
     SetObjectEventMovementType 4, MOVEMENT_TYPE_LOOK_NORTH
     SetObjectEventDir 4, DIR_NORTH
-    ClearFlag FLAG_UNK_0x020D
+    ClearFlag FLAG_HIDE_VEILSTONE_CITY_GALACTIC_WAREHOUSE_LOOKER
     AddObject 4
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     CallIfEq VAR_0x8004, 8, _025A

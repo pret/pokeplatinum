@@ -2,11 +2,11 @@
 #include "res/text/bank/pastoria_city_pokecenter_2f.h"
 
 
-    ScriptEntry _0006
+    ScriptEntry PastoriaCityPokecenter2F_Artist
     ScriptEntryEnd
 
-_0006:
-    NPCMessage 0
+PastoriaCityPokecenter2F_Artist:
+    NPCMessage PastoriaCityPokecenter2F_Text_PleasureFromDrawing
     End
 
     .balign 4, 0

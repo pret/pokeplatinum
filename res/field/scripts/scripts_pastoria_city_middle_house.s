@@ -2,61 +2,61 @@
 #include "res/text/bank/pastoria_city_middle_house.h"
 
 
-    ScriptEntry _000A
-    ScriptEntry _001D
+    ScriptEntry PastoriaCityMiddleHouse_OldMan
+    ScriptEntry PastoriaCityMiddleHouse_BugCatcher
     ScriptEntryEnd
 
-_000A:
-    NPCMessage 0
+PastoriaCityMiddleHouse_OldMan:
+    NPCMessage PastoriaCityMiddleHouse_Text_FemaleCombeeEvolves
     End
 
-_001D:
+PastoriaCityMiddleHouse_BugCatcher:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x011C, _00BD
-    GoToIfSet FLAG_UNK_0x0078, _004A
-    Message 1
-    SetFlag FLAG_UNK_0x0078
-    GoTo _00C8
+    GoToIfSet FLAG_RECEIVED_PASTORIA_CITY_MIDDLE_HOUSE_MACHO_BRACE, PastoriaCityMiddleHouse_YoureGood
+    GoToIfSet FLAG_TALKED_TO_PASTORIA_CITY_MIDDLE_HOUSE_BUG_CATCHER, PastoriaCityMiddleHouse_HandlePartyCombeeGenderCount
+    Message PastoriaCityMiddleHouse_Text_CatchBothGendersCombee
+    SetFlag FLAG_TALKED_TO_PASTORIA_CITY_MIDDLE_HOUSE_BUG_CATCHER
+    GoTo PastoriaCityMiddleHouse_BugCatcherEnd
     End
 
-_004A:
+PastoriaCityMiddleHouse_HandlePartyCombeeGenderCount:
     CheckPartyCombeeGenderCount VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _009C
-    GoToIfEq VAR_RESULT, 1, _00A7
-    Message 4
+    GoToIfEq VAR_RESULT, 0, PastoriaCityMiddleHouse_NotASingleCombee
+    GoToIfEq VAR_RESULT, 1, PastoriaCityMiddleHouse_ThatsACombee
+    Message PastoriaCityMiddleHouse_Text_BothGendersCombee
     SetVar VAR_0x8004, ITEM_MACHO_BRACE
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _00B2
-    SetFlag FLAG_UNK_0x011C
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, PastoriaCityMiddleHouse_BagIsFull
+    SetFlag FLAG_RECEIVED_PASTORIA_CITY_MIDDLE_HOUSE_MACHO_BRACE
     Common_GiveItemQuantity
-    GoTo _00BD
+    GoTo PastoriaCityMiddleHouse_YoureGood
     End
 
-_009C:
-    Message 2
+PastoriaCityMiddleHouse_NotASingleCombee:
+    Message PastoriaCityMiddleHouse_Text_NotASingleCombee
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_00A7:
-    Message 3
-    GoTo _00C8
+PastoriaCityMiddleHouse_ThatsACombee:
+    Message PastoriaCityMiddleHouse_Text_ThatsACombee
+    GoTo PastoriaCityMiddleHouse_BugCatcherEnd
     End
 
-_00B2:
-    Message 5
-    GoTo _00C8
+PastoriaCityMiddleHouse_BagIsFull:
+    Message PastoriaCityMiddleHouse_Text_BagIsFull
+    GoTo PastoriaCityMiddleHouse_BugCatcherEnd
     End
 
-_00BD:
-    Message 6
-    GoTo _00C8
+PastoriaCityMiddleHouse_YoureGood:
+    Message PastoriaCityMiddleHouse_Text_YoureGood
+    GoTo PastoriaCityMiddleHouse_BugCatcherEnd
     End
 
-_00C8:
+PastoriaCityMiddleHouse_BugCatcherEnd:
     WaitButton
     CloseMessage
     ReleaseAll

@@ -2,7 +2,7 @@
   "key": 46138,
   "messages": [
     {
-      "id": "pl_msg_00000142_00000",
+      "id": "PastoriaCityNortheastHouse_Text_LetMeExamine",
       "en_US": [
         "Howdy, there!\r",
         "Let me examine your Pokémon to see\n",
@@ -10,14 +10,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000142_00001",
+      "id": "PastoriaCityNortheastHouse_Text_HmhmISee",
       "en_US": [
         "Hmhm...\n",
         "I see...\r"
       ]
     },
     {
-      "id": "pl_msg_00000142_00002",
+      "id": "PastoriaCityNortheastHouse_Text_ItsNotGood",
       "en_US": [
         "This isn’t what I had hoped to see...\r",
         "I can’t lie to you, so I’ll just have\n",
@@ -29,7 +29,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000142_00003",
+      "id": "PastoriaCityNortheastHouse_Text_YourBagsFull",
       "en_US": [
         "Your Pokémon is growing up really well.\n",
         "My hat’s off to you.\r",
@@ -38,7 +38,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000142_00004",
+      "id": "PastoriaCityNortheastHouse_Text_PokemonsLookingGood",
       "en_US": [
         "Your {STRVAR_1 0, 0, 0}’s looking good!\n",
         "I’d say it’s pretty impressive!\r",
@@ -47,7 +47,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000142_00005",
+      "id": "PastoriaCityNortheastHouse_Text_RedScarfCool",
       "en_US": [
         "The Red Scarf stands for passion!\r",
         "Let a Pokémon hold it to give it an edge\n",
@@ -55,7 +55,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000142_00006",
+      "id": "PastoriaCityNortheastHouse_Text_BlueScarfBeauty",
       "en_US": [
         "The Blue Scarf represents the vastness\n",
         "of the sea!\r",
@@ -64,7 +64,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000142_00007",
+      "id": "PastoriaCityNortheastHouse_Text_PinkScarfCute",
       "en_US": [
         "The Pink Scarf represents charm!\r",
         "Let a Pokémon hold it to give it an edge\n",
@@ -72,7 +72,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000142_00008",
+      "id": "PastoriaCityNortheastHouse_Text_GreenScarfSmart",
       "en_US": [
         "The Green Scarf represents the spring\n",
         "breeze!\r",
@@ -81,7 +81,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000142_00009",
+      "id": "PastoriaCityNortheastHouse_Text_YellowScarfTough",
       "en_US": [
         "The Yellow Scarf stands for toughness!\r",
         "Let a Pokémon hold it to give it an edge\n",
@@ -89,14 +89,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000142_00010",
+      "id": "PastoriaCityNortheastHouse_Text_OutOfScarves",
       "en_US": [
         "I’m out of scarves to give you!\n",
         "I’m out of things to say, too!"
       ]
     },
     {
-      "id": "pl_msg_00000142_00011",
+      "id": "PastoriaCityNortheastHouse_Text_MyInLawIsMassageGirl",
       "en_US": [
         "My brother’s girlfriend is the\n",
         "Massage Girl in Veilstone City.\r",
@@ -105,7 +105,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000142_00012",
+      "id": "PastoriaCityNortheastHouse_Text_PachirisuCry",
       "en_US": "PACHIRISU: Suuu pasuu!"
     }
   ]

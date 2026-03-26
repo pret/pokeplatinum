@@ -2,7 +2,7 @@
   "key": 13339,
   "messages": [
     {
-      "id": "pl_msg_00000138_00000",
+      "id": "PastoriaCitySouthwestHouse_Text_PlantThisBerry",
       "en_US": [
         "I’ve been hiking all around the\n",
         "Sinnoh region.\r",
@@ -13,7 +13,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000138_00001",
+      "id": "PastoriaCitySouthwestHouse_Text_PlantingIsGood",
       "en_US": [
         "Planting Berries is good for Pokémon.\r",
         "It provides them with more things to\n",
@@ -21,7 +21,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000138_00002",
+      "id": "PastoriaCitySouthwestHouse_Text_SisterGathersBerries",
       "en_US": [
         "My sister gathers Berries every day!\n",
         "Please come visit again!\r",

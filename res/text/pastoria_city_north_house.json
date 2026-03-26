@@ -2,7 +2,7 @@
   "key": 46114,
   "messages": [
     {
-      "id": "pl_msg_00000141_00000",
+      "id": "PastoriaCityNorthHouse_Text_QuickTramTransportation",
       "en_US": [
         "In the Great Marsh, Quick Trams on\n",
         "rails are used for transportation.\r",
@@ -11,11 +11,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000141_00001",
+      "id": "PastoriaCityNorthHouse_Text_PsyduckCry",
       "en_US": "PSYDUCK: Gwah?!"
     },
     {
-      "id": "pl_msg_00000141_00002",
+      "id": "PastoriaCityNorthHouse_Text_QuickTramsAreSlow",
       "en_US": [
         "Though the name says “Quick,” their\n",
         "movements are anything but!\r",

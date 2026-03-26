@@ -44,14 +44,14 @@ SafariGame_OutOfSteps:
     Warp MAP_HEADER_PASTORIA_CITY_OBSERVATORY_GATE_1F, 0, 5, 2, DIR_SOUTH
     FadeScreenIn
     WaitFadeScreen
-    SetVar VAR_UNK_0x40DA, 2
+    SetVar VAR_SAFARI_GAME_STATE, 2
     EndSafariGame
     ReleaseAll
     End
 
 SafariGame_OutOfSafariBalls_Battle:
     LockAll
-    SetVar VAR_UNK_0x40DA, 2
+    SetVar VAR_SAFARI_GAME_STATE, 2
     EndSafariGame
     ReleaseAll
     End
@@ -67,7 +67,7 @@ SafariGame_OutOfSafariBalls_Field:
     Warp MAP_HEADER_PASTORIA_CITY_OBSERVATORY_GATE_1F, 0, 5, 2, DIR_SOUTH
     FadeScreenIn
     WaitFadeScreen
-    SetVar VAR_UNK_0x40DA, 2
+    SetVar VAR_SAFARI_GAME_STATE, 2
     EndSafariGame
     ReleaseAll
     End
@@ -83,7 +83,7 @@ SafariGame_OutOfRoomForPokemon:
     Warp MAP_HEADER_PASTORIA_CITY_OBSERVATORY_GATE_1F, 0, 5, 2, DIR_SOUTH
     FadeScreenIn
     WaitFadeScreen
-    SetVar VAR_UNK_0x40DA, 2
+    SetVar VAR_SAFARI_GAME_STATE, 2
     EndSafariGame
     ReleaseAll
     End
@@ -99,7 +99,7 @@ SafariGame_Retire:
     Warp MAP_HEADER_PASTORIA_CITY_OBSERVATORY_GATE_1F, 0, 5, 2, DIR_SOUTH
     FadeScreenIn
     WaitFadeScreen
-    SetVar VAR_UNK_0x40DA, 2
+    SetVar VAR_SAFARI_GAME_STATE, 2
     EndSafariGame
     ReleaseAll
     End
