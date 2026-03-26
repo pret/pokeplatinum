@@ -88,7 +88,7 @@
             "y": 0
         },
         {
-            "id": "LOCALID_SIGNBOARD_5",
+            "id": "LOCALID_SIGNBOARD_POKEMON_DAY_CARE",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -103,7 +103,7 @@
             "y": 0
         },
         {
-            "id": "LOCALID_SIGNBOARD_6",
+            "id": "LOCALID_SIGNBOARD_POKEMON_NEWS_PRESS",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",

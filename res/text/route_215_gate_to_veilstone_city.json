@@ -2,7 +2,7 @@
   "key": 42050,
   "messages": [
     {
-      "id": "pl_msg_00000161_00000",
+      "id": "Route215GateToVeilstoneCity_Text_PokemonAreBlockingCelestic",
       "en_US": [
         "I wanted to go to Celestic Town, but\n",
         "there were some Pokémon in the way.\r",
@@ -11,7 +11,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000161_00001",
+      "id": "Route215GateToVeilstoneCity_Text_BlockingPokemonAreGone",
       "en_US": [
         "There was a group of Pokémon blocking\n",
         "the way up to Celestic Town.\r",

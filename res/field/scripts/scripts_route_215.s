@@ -2,87 +2,84 @@
 #include "res/text/bank/route_215.h"
 
 
-    ScriptEntry _008D
-    ScriptEntry _00A0
-    ScriptEntry _00FA
-    ScriptEntry _0111
-    ScriptEntry _013D
-    ScriptEntry _0150
-    ScriptEntry _0022
-    ScriptEntry _0128
+    ScriptEntry Route215_Unused
+    ScriptEntry Route215_BlackBelt
+    ScriptEntry Route215_ArrowSignpostWest
+    ScriptEntry Route215_ArrowSignpostVeilstoneCity
+    ScriptEntry Route215_JoggerScott
+    ScriptEntry Route215_JoggerCraig
+    ScriptEntry Route215_OnTransition
+    ScriptEntry Route215_TrainerTips
     ScriptEntryEnd
 
-_0022:
+Route215_OnTransition:
     GetTimeOfDay VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, 0, _0069
-    GoToIfEq VAR_MAP_LOCAL_0, 1, _007B
-    GoToIfEq VAR_MAP_LOCAL_0, 2, _007B
-    GoToIfEq VAR_MAP_LOCAL_0, 3, _007B
-    GoToIfEq VAR_MAP_LOCAL_0, 4, _007B
+    GoToIfEq VAR_MAP_LOCAL_0, TIMEOFDAY_MORNING, Route215_SetJoggersBattle
+    GoToIfInRange VAR_MAP_LOCAL_0, TIMEOFDAY_DAY, TIMEOFDAY_LATE_NIGHT, Route215_SetJoggersNoBattle
     End
 
-_0069:
-    ClearFlag FLAG_UNK_0x0273
-    ClearFlag FLAG_UNK_0x0275
-    SetFlag FLAG_UNK_0x0272
-    SetFlag FLAG_UNK_0x0274
+Route215_SetJoggersBattle:
+    ClearFlag FLAG_HIDE_ROUTE_215_JOGGER_SCOTT
+    ClearFlag FLAG_HIDE_ROUTE_215_JOGGER_CRAIG
+    SetFlag FLAG_HIDE_ROUTE_215_JOGGER_SCOTT_NO_BATTLE
+    SetFlag FLAG_HIDE_ROUTE_215_JOGGER_CRAIG_NO_BATTLE
     End
 
-_007B:
-    ClearFlag FLAG_UNK_0x0272
-    ClearFlag FLAG_UNK_0x0274
-    SetFlag FLAG_UNK_0x0273
-    SetFlag FLAG_UNK_0x0275
+Route215_SetJoggersNoBattle:
+    ClearFlag FLAG_HIDE_ROUTE_215_JOGGER_SCOTT_NO_BATTLE
+    ClearFlag FLAG_HIDE_ROUTE_215_JOGGER_CRAIG_NO_BATTLE
+    SetFlag FLAG_HIDE_ROUTE_215_JOGGER_SCOTT
+    SetFlag FLAG_HIDE_ROUTE_215_JOGGER_CRAIG
     End
 
-_008D:
-    NPCMessage 0
+Route215_Unused:
+    NPCMessage Route215_Text_Dummy0
     End
 
-_00A0:
+Route215_BlackBelt:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x00CD, _00E5
-    Message 1
+    GoToIfSet FLAG_RECEIVED_ROUTE_215_TM66, Route215_PaybackIsHarsh
+    Message Route215_Text_YupItsPayback
     SetVar VAR_0x8004, ITEM_TM66
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _00F0
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Route215_BagIsFull
     Common_GiveItemQuantity
-    SetFlag FLAG_UNK_0x00CD
-    GoTo _00E5
+    SetFlag FLAG_RECEIVED_ROUTE_215_TM66
+    GoTo Route215_PaybackIsHarsh
 
-_00E5:
-    Message 2
+Route215_PaybackIsHarsh:
+    Message Route215_Text_PaybackIsHarsh
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_00F0:
+Route215_BagIsFull:
     Common_MessageBagIsFull
     CloseMessage
     ReleaseAll
     End
 
-_00FA:
-    ShowArrowSign 5
+Route215_ArrowSignpostWest:
+    ShowArrowSign Route215_Text_SignCelesticTownSolaceonTown
     End
 
-_0111:
-    ShowArrowSign 6
+Route215_ArrowSignpostVeilstoneCity:
+    ShowArrowSign Route215_Text_SignRt215VeilstoneCity
     End
 
-_0128:
-    ShowScrollingSign 7
+Route215_TrainerTips:
+    ShowScrollingSign Route215_Text_TrainerTipsPhysicalSpecial
     End
 
-_013D:
-    NPCMessage 3
+Route215_JoggerScott:
+    NPCMessage Route215_Text_DontOverdoIt
     End
 
-_0150:
-    NPCMessage 4
+Route215_JoggerCraig:
+    NPCMessage Route215_Text_ImOnlyHuman
     End
 
     .balign 4, 0

@@ -1,152 +1,150 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/route_210_south.h"
+#include "res/field/events/events_route_210_south.h"
 
 
-    ScriptEntry _0079
-    ScriptEntry _030C
-    ScriptEntry _031F
-    ScriptEntry _0379
-    ScriptEntry _0390
-    ScriptEntry _03A7
-    ScriptEntry _001E
+    ScriptEntry Route210South_Psyduck
+    ScriptEntry Route210South_Unused
+    ScriptEntry Route210South_AceTrainerF
+    ScriptEntry Route210South_SignCafeCabin
+    ScriptEntry Route210South_ArrowSignpostSolaceonTown
+    ScriptEntry Route210South_JoggerWyatt
+    ScriptEntry Route210South_OnTransition
     ScriptEntryEnd
 
-_001E:
+Route210South_OnTransition:
     GetTimeOfDay VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, 0, _0065
-    GoToIfEq VAR_MAP_LOCAL_0, 1, _006F
-    GoToIfEq VAR_MAP_LOCAL_0, 2, _006F
-    GoToIfEq VAR_MAP_LOCAL_0, 3, _006F
-    GoToIfEq VAR_MAP_LOCAL_0, 4, _006F
+    GoToIfEq VAR_MAP_LOCAL_0, TIMEOFDAY_MORNING, Route210South_SetJoggerBattle
+    GoToIfInRange VAR_MAP_LOCAL_0, TIMEOFDAY_DAY, TIMEOFDAY_LATE_NIGHT, Route210South_SetJoggerNoBattle
     End
 
-_0065:
-    ClearFlag FLAG_UNK_0x0271
-    SetFlag FLAG_UNK_0x0270
+Route210South_SetJoggerBattle:
+    ClearFlag FLAG_HIDE_ROUTE_210_SOUTH_JOGGER_WYATT
+    SetFlag FLAG_HIDE_ROUTE_210_SOUTH_JOGGER_WYATT_NO_BATTLE
     End
 
-_006F:
-    ClearFlag FLAG_UNK_0x0270
-    SetFlag FLAG_UNK_0x0271
+Route210South_SetJoggerNoBattle:
+    ClearFlag FLAG_HIDE_ROUTE_210_SOUTH_JOGGER_WYATT_NO_BATTLE
+    SetFlag FLAG_HIDE_ROUTE_210_SOUTH_JOGGER_WYATT
     End
 
-_0079:
+Route210South_Psyduck:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     CheckItem ITEM_SECRETPOTION, 1, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _00A1
-    Message 0
+    GoToIfEq VAR_RESULT, TRUE, Route210South_AskUseSecretPotion
+    Message Route210South_Text_PsyduckAreStandingFirm
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_00A1:
-    Message 1
+Route210South_AskUseSecretPotion:
+    Message Route210South_Text_AskUseSecretPotion
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _00CA
-    GoToIfEq VAR_RESULT, MENU_NO, _00C4
+    GoToIfEq VAR_RESULT, MENU_YES, Route210South_UseSecretPotion
+    GoToIfEq VAR_RESULT, MENU_NO, Route210South_DontUseSecretPotion
     End
 
-_00C4:
+Route210South_DontUseSecretPotion:
     CloseMessage
     ReleaseAll
     End
 
-_00CA:
+Route210South_UseSecretPotion:
     BufferPlayerName 0
-    BufferItemName 1, 0x1D0
-    Message 2
+    BufferItemName 1, ITEM_SECRETPOTION
+    Message Route210South_Text_PlayerUsedTheSecretPotion
     CloseMessage
     PlayCry SPECIES_PSYDUCK
     WaitCry
-    ApplyMovement 27, _024C
-    ApplyMovement 28, _024C
-    ApplyMovement 26, _024C
-    ApplyMovement 19, _024C
+    ApplyMovement LOCALID_PSYDUCK_3, Route210South_Movement_PsyduckExclamationMark
+    ApplyMovement LOCALID_PSYDUCK_4, Route210South_Movement_PsyduckExclamationMark
+    ApplyMovement LOCALID_PSYDUCK_2, Route210South_Movement_PsyduckExclamationMark
+    ApplyMovement LOCALID_PSYDUCK_1, Route210South_Movement_PsyduckExclamationMark
     WaitMovement
-    ApplyMovement 27, _0258
-    ApplyMovement 28, _026C
-    ApplyMovement 26, _0280
-    ApplyMovement 19, _02B4
+    ApplyMovement LOCALID_PSYDUCK_3, Route210South_Movement_Psyduck3Leave
+    ApplyMovement LOCALID_PSYDUCK_4, Route210South_Movement_Psyduck4Leave
+    ApplyMovement LOCALID_PSYDUCK_2, Route210South_Movement_Psyduck2Leave
+    ApplyMovement LOCALID_PSYDUCK_1, Route210South_Movement_Psyduck1Leave
     WaitMovement
-    RemoveObject 27
-    RemoveObject 28
-    RemoveObject 26
-    RemoveObject 19
+    RemoveObject LOCALID_PSYDUCK_3
+    RemoveObject LOCALID_PSYDUCK_4
+    RemoveObject LOCALID_PSYDUCK_2
+    RemoveObject LOCALID_PSYDUCK_1
     WaitTime 45, VAR_RESULT
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    GoToIfEq VAR_0x8004, 0x230, _015B
-    GoToIfEq VAR_0x8004, 0x231, _016F
+    GoToIfEq VAR_0x8004, 560, Route210South_SetCynthiaPositionX560
+    GoToIfEq VAR_0x8004, 561, Route210South_SetCynthiaPositionX561
     End
 
-_015B:
-    SetObjectEventPos 20, 0x230, 0x254
-    SetObjectEventMovementType 20, MOVEMENT_TYPE_LOOK_NORTH
-    GoTo _0183
+Route210South_SetCynthiaPositionX560:
+    SetObjectEventPos LOCALID_CYNTHIA, 560, 596
+    SetObjectEventMovementType LOCALID_CYNTHIA, MOVEMENT_TYPE_LOOK_NORTH
+    GoTo Route210South_CynthiaEnter
 
-_016F:
-    SetObjectEventPos 20, 0x231, 0x254
-    SetObjectEventMovementType 20, MOVEMENT_TYPE_LOOK_NORTH
-    GoTo _0183
+Route210South_SetCynthiaPositionX561:
+    SetObjectEventPos LOCALID_CYNTHIA, 561, 596
+    SetObjectEventMovementType LOCALID_CYNTHIA, MOVEMENT_TYPE_LOOK_NORTH
+    GoTo Route210South_CynthiaEnter
 
-_0183:
-    ClearFlag FLAG_UNK_0x01B1
-    AddObject 20
-    LockObject 20
-    ApplyMovement 20, _02C4
+Route210South_CynthiaEnter:
+    ClearFlag FLAG_HIDE_ROUTE_210_SOUTH_CYNTHIA
+    AddObject LOCALID_CYNTHIA
+    LockObject LOCALID_CYNTHIA
+    ApplyMovement LOCALID_CYNTHIA, Route210South_Movement_CynthiaEnter
     WaitMovement
-    ApplyMovement LOCALID_PLAYER, _02DC
+    ApplyMovement LOCALID_PLAYER, Route210South_Movement_PlayerWalkOnSpotSouth
     WaitMovement
-    Message 3
+    Message Route210South_Text_DeliverThisOldCharm
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _01E9
-    GoToIfEq VAR_RESULT, MENU_NO, _01C6
+    GoToIfEq VAR_RESULT, MENU_YES, Route210South_AcceptOldCharm
+    GoToIfEq VAR_RESULT, MENU_NO, Route210South_RefuseOldCharm
     End
 
-_01C6:
-    Message 5
+Route210South_RefuseOldCharm:
+    Message Route210South_Text_WillYouGoToCelestic
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _01E9
-    GoToIfEq VAR_RESULT, MENU_NO, _01C6
+    GoToIfEq VAR_RESULT, MENU_YES, Route210South_AcceptOldCharm
+    GoToIfEq VAR_RESULT, MENU_NO, Route210South_RefuseOldCharm
     End
 
-_01E9:
+Route210South_AcceptOldCharm:
     SetVar VAR_0x8004, ITEM_OLD_CHARM
     SetVar VAR_0x8005, 1
     Common_GiveItemQuantity
-    Message 4
+    Message Route210South_Text_ImCountingOnYou
     CloseMessage
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    GoToIfEq VAR_0x8004, 0x230, _0220
-    GoToIfEq VAR_0x8004, 0x231, _0230
+    GoToIfEq VAR_0x8004, 560, Route210South_CynthiaLeaveX560
+    GoToIfEq VAR_0x8004, 561, Route210South_CynthiaLeaveX561
     End
 
-_0220:
-    ApplyMovement 20, _02CC
+Route210South_CynthiaLeaveX560:
+    ApplyMovement LOCALID_CYNTHIA, Route210South_Movement_CynthiaLeaveX560
     WaitMovement
-    GoTo _0240
+    GoTo Route210South_RemoveCynthia
 
-_0230:
-    ApplyMovement 20, _02D4
+Route210South_CynthiaLeaveX561:
+    ApplyMovement LOCALID_CYNTHIA, Route210South_Movement_CynthiaLeaveX561
     WaitMovement
-    GoTo _0240
+    GoTo Route210South_RemoveCynthia
 
-_0240:
-    RemoveObject 20
-    SetFlag FLAG_UNK_0x0107
+Route210South_RemoveCynthia:
+    RemoveObject LOCALID_CYNTHIA
+    SetFlag FLAG_USED_SECRETPOTION
     ReleaseAll
     End
 
     .balign 4, 0
-_024C:
+Route210South_Movement_PsyduckExclamationMark:
     EmoteExclamationMark
     Delay8 4
     EndMovement
 
     .balign 4, 0
-_0258:
+Route210South_Movement_Psyduck3Leave:
     WalkNormalNorth
     WalkOnSpotNormalSouth
     Delay8 8
@@ -154,7 +152,7 @@ _0258:
     EndMovement
 
     .balign 4, 0
-_026C:
+Route210South_Movement_Psyduck4Leave:
     WalkNormalNorth 2
     WalkOnSpotNormalSouth 2
     Delay8 6
@@ -162,7 +160,7 @@ _026C:
     EndMovement
 
     .balign 4, 0
-_0280:
+Route210South_Movement_Psyduck2Leave:
     WalkOnSpotNormalEast
     WalkOnSpotNormalWest
     WalkOnSpotNormalEast
@@ -178,29 +176,29 @@ _0280:
     EndMovement
 
     .balign 4, 0
-_02B4:
+Route210South_Movement_Psyduck1Leave:
     WalkNormalNorth 2
     Delay8 8
     WalkNormalNorth 8
     EndMovement
 
     .balign 4, 0
-_02C4:
+Route210South_Movement_CynthiaEnter:
     WalkNormalNorth 7
     EndMovement
 
     .balign 4, 0
-_02CC:
+Route210South_Movement_CynthiaLeaveX560:
     WalkNormalSouth 9
     EndMovement
 
     .balign 4, 0
-_02D4:
+Route210South_Movement_CynthiaLeaveX561:
     WalkNormalSouth 9
     EndMovement
 
     .balign 4, 0
-_02DC:
+Route210South_Movement_PlayerWalkOnSpotSouth:
     WalkOnSpotNormalSouth
     EndMovement
 
@@ -218,46 +216,46 @@ Route210South_UnusedMovement2:
     WalkOnSpotNormalNorth
     EndMovement
 
-_030C:
-    NPCMessage 6
+Route210South_Unused:
+    NPCMessage Route210South_Text_Dummy6
     End
 
-_031F:
+Route210South_AceTrainerF:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x00C7, _0364
-    Message 7
+    GoToIfSet FLAG_RECEIVED_ROUTE_210_SOUTH_TM51, Route210South_BirdPokemonWouldCrash
+    Message Route210South_Text_YouShouldRestToo
     SetVar VAR_0x8004, ITEM_TM51
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _036F
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Route210South_BagIsFull
     Common_GiveItemQuantity
-    SetFlag FLAG_UNK_0x00C7
-    GoTo _0364
+    SetFlag FLAG_RECEIVED_ROUTE_210_SOUTH_TM51
+    GoTo Route210South_BirdPokemonWouldCrash
 
-_0364:
-    Message 8
+Route210South_BirdPokemonWouldCrash:
+    Message Route210South_Text_BirdPokemonWouldCrash
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_036F:
+Route210South_BagIsFull:
     Common_MessageBagIsFull
     CloseMessage
     ReleaseAll
     End
 
-_0379:
-    ShowLandmarkSign 10
+Route210South_SignCafeCabin:
+    ShowLandmarkSign Route210South_Text_SignCafeCabin
     End
 
-_0390:
-    ShowArrowSign 11
+Route210South_ArrowSignpostSolaceonTown:
+    ShowArrowSign Route210South_Text_SignRt210SolaceonTown
     End
 
-_03A7:
-    NPCMessage 9
+Route210South_JoggerWyatt:
+    NPCMessage Route210South_Text_WellKeepOnRunning
     End
 
     .balign 4, 0

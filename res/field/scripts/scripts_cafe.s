@@ -105,7 +105,7 @@ _016A:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x0107, _0188
+    GoToIfSet FLAG_USED_SECRETPOTION, _0188
     Message 10
     WaitButton
     CloseMessage

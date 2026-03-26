@@ -2,16 +2,16 @@
 #include "res/text/bank/maniac_tunnel.h"
 
 
-    ScriptEntry _0010
-    ScriptEntry _000A
+    ScriptEntry ManiacTunnel_RuinManiac
+    ScriptEntry ManiacTunnel_OnTransition
     ScriptEntryEnd
 
-_000A:
+ManiacTunnel_OnTransition:
     SetFlag FLAG_FIRST_ARRIVAL_RUIN_MANIAC_CAVE
     End
 
-_0010:
-    NPCMessage 0
+ManiacTunnel_RuinManiac:
+    NPCMessage ManiacTunnel_Text_IDugToThisWeirdPlace
     End
 
     .balign 4, 0

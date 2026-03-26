@@ -1,45 +1,46 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/route_214.h"
 
 
-    ScriptEntry _00A2
-    ScriptEntry _00B9
-    ScriptEntry _0075
-    ScriptEntry _0012
+    ScriptEntry Route214_ArrowSignVeilstoneCity
+    ScriptEntry Route214_ArrowSignLakeValor
+    ScriptEntry Route214_OnTransition
+    ScriptEntry Route214_OnLoad
     ScriptEntryEnd
 
-_0012:
+Route214_OnLoad:
     GetUnownFormsSeenCount VAR_MAP_LOCAL_0
-    GoToIfGe VAR_MAP_LOCAL_0, 26, _003F
-    GoToIfGe VAR_MAP_LOCAL_0, 10, _0051
-    GoToIfLt VAR_MAP_LOCAL_0, 10, _0063
+    GoToIfGe VAR_MAP_LOCAL_0, 26, Route214_SetWarpEventManiacTunnel
+    GoToIfGe VAR_MAP_LOCAL_0, 10, Route214_SetWarpEventRuinManiacCaveLong
+    GoToIfLt VAR_MAP_LOCAL_0, 10, Route214_SetWarpEventRuinManiacCaveShort
     End
 
-_003F:
-    SetWarpEventPos 2, 0x2C6, 0x29E
-    SetWarpEventPos 3, 0x2C6, 0x29E
+Route214_SetWarpEventManiacTunnel:
+    SetWarpEventPos 2, 710, 670
+    SetWarpEventPos 3, 710, 670
     End
 
-_0051:
-    SetWarpEventPos 2, 0x2C6, 0x29E
-    SetWarpEventPos 4, 0x2C6, 0x29E
+Route214_SetWarpEventRuinManiacCaveLong:
+    SetWarpEventPos 2, 710, 670
+    SetWarpEventPos 4, 710, 670
     End
 
-_0063:
-    SetWarpEventPos 3, 0x2C6, 0x29E
-    SetWarpEventPos 4, 0x2C6, 0x29E
+Route214_SetWarpEventRuinManiacCaveShort:
+    SetWarpEventPos 3, 710, 670
+    SetWarpEventPos 4, 710, 670
     End
 
-_0075:
+Route214_OnTransition:
     GetUnownFormsSeenCount VAR_MAP_LOCAL_0
-    GoToIfGe VAR_MAP_LOCAL_0, 26, _003F
-    GoToIfGe VAR_MAP_LOCAL_0, 10, _0051
-    GoToIfLt VAR_MAP_LOCAL_0, 10, _0063
+    GoToIfGe VAR_MAP_LOCAL_0, 26, Route214_SetWarpEventManiacTunnel
+    GoToIfGe VAR_MAP_LOCAL_0, 10, Route214_SetWarpEventRuinManiacCaveLong
+    GoToIfLt VAR_MAP_LOCAL_0, 10, Route214_SetWarpEventRuinManiacCaveShort
     End
 
-_00A2:
-    ShowArrowSign 0
+Route214_ArrowSignVeilstoneCity:
+    ShowArrowSign Route214_Text_SignVeilstoneCity
     End
 
-_00B9:
-    ShowArrowSign 1
+Route214_ArrowSignLakeValor:
+    ShowArrowSign Route214_Text_SignLakeValor
     End

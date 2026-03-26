@@ -99,7 +99,7 @@ _0006:
     SetFlag FLAG_UNK_0x01AD
     SetFlag FLAG_UNK_0x01D5
     SetFlag FLAG_UNK_0x021B
-    SetFlag FLAG_UNK_0x01B1
+    SetFlag FLAG_HIDE_ROUTE_210_SOUTH_CYNTHIA
     SetFlag FLAG_UNK_0x025E
     InitSizeContestRecord
     RandomizeJubilifeLottery

@@ -2,28 +2,28 @@
 #include "res/text/bank/ruin_maniac_cave_long.h"
 
 
-    ScriptEntry _0010
-    ScriptEntry _000A
+    ScriptEntry RuinManiacCaveLong_RuinManiac
+    ScriptEntry RuinManiacCaveLong_OnTransition
     ScriptEntryEnd
 
-_000A:
+RuinManiacCaveLong_OnTransition:
     SetFlag FLAG_FIRST_ARRIVAL_RUIN_MANIAC_CAVE
     End
 
-_0010:
+RuinManiacCaveLong_RuinManiac:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GetUnownFormsSeenCount VAR_RESULT
-    GoToIfGe VAR_RESULT, 26, _0034
-    Message 0
+    GoToIfGe VAR_RESULT, 26, RuinManiacCaveLong_ImCloseToUnown
+    Message RuinManiacCaveLong_Text_ImFascinatedByUnown
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0034:
-    Message 1
+RuinManiacCaveLong_ImCloseToUnown:
+    Message RuinManiacCaveLong_Text_ImCloseToUnown
     WaitButton
     CloseMessage
     ReleaseAll

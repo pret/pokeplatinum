@@ -43,7 +43,7 @@
     ],
     "object_events": [
         {
-            "id": "ROUTE_210_SOUTH_NINJA_BOY_FABIAN",
+            "id": "LOCALID_NINJA_BOY_FABIAN",
             "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
             "movement_type": "MOVEMENT_TYPE_DISGUISE_GRASS",
             "trainer_type": "TRAINER_TYPE_VIEW_ALL_DIRECTIONS",
@@ -60,7 +60,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_210_SOUTH_NINJA_BOY_BRENNAN",
+            "id": "LOCALID_NINJA_BOY_BRENNAN",
             "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
             "movement_type": "MOVEMENT_TYPE_DISGUISE_GRASS",
             "trainer_type": "TRAINER_TYPE_VIEW_ALL_DIRECTIONS",
@@ -77,7 +77,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_210_SOUTH_TWIN_TIA",
+            "id": "LOCALID_TWIN_TIA",
             "graphics_id": "OBJ_EVENT_GFX_TWIN",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -95,7 +95,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_210_SOUTH_TWIN_TERI",
+            "id": "LOCALID_TWIN_TERI",
             "graphics_id": "OBJ_EVENT_GFX_TWIN",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -113,7 +113,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_210_SOUTH_NINJA_BOY_BRUCE",
+            "id": "LOCALID_NINJA_BOY_BRUCE",
             "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
             "movement_type": "MOVEMENT_TYPE_DISGUISE_GRASS",
             "trainer_type": "TRAINER_TYPE_VIEW_ALL_DIRECTIONS",
@@ -130,11 +130,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_210_SOUTH_JOGGER_WYATT",
+            "id": "LOCALID_JOGGER_WYATT",
             "graphics_id": "OBJ_EVENT_GFX_JOGGER",
             "movement_type": "MOVEMENT_TYPE_WALK_BACK_AND_FORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "hidden_flag": "FLAG_UNK_0x0271",
+            "hidden_flag": "FLAG_HIDE_ROUTE_210_SOUTH_JOGGER_WYATT",
             "script": "TRAINER_JOGGER_WYATT",
             "initial_dir": 2,
             "data": [
@@ -147,7 +147,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_210_SOUTH_BREEDER_KAHLIL",
+            "id": "LOCALID_BREEDER_KAHLIL",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -164,7 +164,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_210_SOUTH_BREEDER_AMBER",
+            "id": "LOCALID_BREEDER_AMBER",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -181,7 +181,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_210_SOUTH_BELLE_AVA",
+            "id": "LOCALID_BELLE_AVA",
             "graphics_id": "OBJ_EVENT_GFX_COWGIRL",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -199,7 +199,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_210_SOUTH_PA_MATT",
+            "id": "LOCALID_PA_MATT",
             "graphics_id": "OBJ_EVENT_GFX_RANCHER",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -217,7 +217,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_210_SOUTH_ARROW_SIGNPOST_10",
+            "id": "LOCALID_ARROW_SIGNPOST",
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -264,7 +264,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_210_SOUTH_SIGNBOARD_13",
+            "id": "LOCALID_SIGNBOARD_CAFE_CABIN",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -294,7 +294,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_210_SOUTH_BERRY_SOIL_15",
+            "id": "LOCALID_BERRY_SOIL_1",
             "graphics_id": "OBJ_EVENT_GFX_BERRY_SOIL",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -311,7 +311,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_210_SOUTH_BERRY_SOIL_16",
+            "id": "LOCALID_BERRY_SOIL_2",
             "graphics_id": "OBJ_EVENT_GFX_BERRY_SOIL",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -328,7 +328,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_210_SOUTH_BERRY_SOIL_17",
+            "id": "LOCALID_BERRY_SOIL_3",
             "graphics_id": "OBJ_EVENT_GFX_BERRY_SOIL",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -345,7 +345,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_210_SOUTH_BERRY_SOIL_18",
+            "id": "LOCALID_BERRY_SOIL_4",
             "graphics_id": "OBJ_EVENT_GFX_BERRY_SOIL",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -362,11 +362,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_210_SOUTH_PSYDUCK_19",
+            "id": "LOCALID_PSYDUCK_1",
             "graphics_id": "OBJ_EVENT_GFX_PSYDUCK",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x01B0",
+            "hidden_flag": "FLAG_HIDE_ROUTE_210_SOUTH_PSYDUCK",
             "script": 1,
             "initial_dir": 1,
             "data": [
@@ -379,11 +379,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_210_SOUTH_CYNTHIA_20",
+            "id": "LOCALID_CYNTHIA",
             "graphics_id": "OBJ_EVENT_GFX_CYNTHIA",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x01B1",
+            "hidden_flag": "FLAG_HIDE_ROUTE_210_SOUTH_CYNTHIA",
             "script": 0,
             "initial_dir": 1,
             "data": [
@@ -396,7 +396,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_210_SOUTH_ACE_TRAINER_F_21",
+            "id": "LOCALID_ACE_TRAINER_F",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -426,12 +426,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_210_SOUTH_SIGNBOARD_23",
+            "id": "LOCALID_SIGNBOARD_POKEMON_DAY_CARE",
             "clone_id": 5,
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x01B1",
+            "hidden_flag": "MAP_HEADER_SOLACEON_TOWN",
             "script": 65535,
             "initial_dir": 0,
             "data": [],
@@ -442,7 +442,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_210_SOUTH_RANCHER_MARCO",
+            "id": "LOCALID_RANCHER_MARCO",
             "graphics_id": "OBJ_EVENT_GFX_RANCHER",
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -459,12 +459,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_210_SOUTH_ARROW_SIGNPOST_25",
+            "id": "LOCALID_ARROW_SIGNPOST_ROUTE_215",
             "clone_id": 8,
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x017E",
+            "hidden_flag": "MAP_HEADER_ROUTE_215",
             "script": 65535,
             "initial_dir": 0,
             "data": [
@@ -477,11 +477,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_210_SOUTH_PSYDUCK_26",
+            "id": "LOCALID_PSYDUCK_2",
             "graphics_id": "OBJ_EVENT_GFX_PSYDUCK",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x01B0",
+            "hidden_flag": "FLAG_HIDE_ROUTE_210_SOUTH_PSYDUCK",
             "script": 1,
             "initial_dir": 1,
             "data": [
@@ -494,11 +494,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_210_SOUTH_PSYDUCK_27",
+            "id": "LOCALID_PSYDUCK_3",
             "graphics_id": "OBJ_EVENT_GFX_PSYDUCK",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x01B0",
+            "hidden_flag": "FLAG_HIDE_ROUTE_210_SOUTH_PSYDUCK",
             "script": 1,
             "initial_dir": 1,
             "data": [
@@ -511,11 +511,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_210_SOUTH_PSYDUCK_28",
+            "id": "LOCALID_PSYDUCK_4",
             "graphics_id": "OBJ_EVENT_GFX_PSYDUCK",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x01B0",
+            "hidden_flag": "FLAG_HIDE_ROUTE_210_SOUTH_PSYDUCK",
             "script": 1,
             "initial_dir": 1,
             "data": [
@@ -528,12 +528,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_210_SOUTH_BLACK_BELT_29",
+            "id": "LOCALID_BLACK_BELT",
             "clone_id": 23,
             "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x016B",
+            "hidden_flag": "MAP_HEADER_ROUTE_210_NORTH",
             "script": 65535,
             "initial_dir": 2,
             "data": [],
@@ -544,11 +544,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_210_SOUTH_JOGGER_30",
+            "id": "LOCALID_JOGGER_WYATT_NO_BATTLE",
             "graphics_id": "OBJ_EVENT_GFX_JOGGER",
             "movement_type": "MOVEMENT_TYPE_WALK_BACK_AND_FORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0270",
+            "hidden_flag": "FLAG_HIDE_ROUTE_210_SOUTH_JOGGER_WYATT_NO_BATTLE",
             "script": 6,
             "initial_dir": 2,
             "data": [
