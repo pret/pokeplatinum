@@ -2,14 +2,14 @@
 #include "res/text/bank/great_marsh_3.h"
 
 
-    ScriptEntry _000A
-    ScriptEntry _001D
+    ScriptEntry GreatMarsh3_Collector
+    ScriptEntry GreatMarsh3_SignArea3
     ScriptEntryEnd
 
-_000A:
-    NPCMessage 0
+GreatMarsh3_Collector:
+    NPCMessage GreatMarsh3_Text_WhatToDo
     End
 
-_001D:
-    ShowLandmarkSign 1
+GreatMarsh3_SignArea3:
+    ShowLandmarkSign GreatMarsh3_Text_SignArea3
     End

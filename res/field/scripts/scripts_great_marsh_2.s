@@ -2,14 +2,14 @@
 #include "res/text/bank/great_marsh_2.h"
 
 
-    ScriptEntry _000A
-    ScriptEntry _001D
+    ScriptEntry GreatMarsh2_ParasolLady
+    ScriptEntry GreatMarsh2_SignArea2
     ScriptEntryEnd
 
-_000A:
-    NPCMessage 0
+GreatMarsh2_ParasolLady:
+    NPCMessage GreatMarsh2_Text_PokemonDifferDayToDay
     End
 
-_001D:
-    ShowLandmarkSign 1
+GreatMarsh2_SignArea2:
+    ShowLandmarkSign GreatMarsh2_Text_SignArea2
     End

@@ -2,7 +2,7 @@
   "key": 21522,
   "messages": [
     {
-      "id": "pl_msg_00000242_00000",
+      "id": "GreatMarsh3_Text_WhatToDo",
       "en_US": [
         "Throwing food at Pokémon makes them\n",
         "more likely to bolt.\r",
@@ -16,7 +16,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000242_00001",
+      "id": "GreatMarsh3_Text_SignArea3",
       "en_US": "Great Marsh Area 3"
     }
   ]

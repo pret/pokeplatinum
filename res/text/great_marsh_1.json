@@ -2,7 +2,7 @@
   "key": 21530,
   "messages": [
     {
-      "id": "pl_msg_00000240_00000",
+      "id": "GreatMarsh1_Text_ThisIsHowYouWin",
       "en_US": [
         "Go upstairs in the Observatory before\n",
         "you start your Safari Game.\r",
@@ -12,7 +12,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000240_00001",
+      "id": "GreatMarsh1_Text_SignArea1",
       "en_US": "Great Marsh Area 1"
     }
   ]

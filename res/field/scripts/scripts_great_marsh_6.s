@@ -2,66 +2,66 @@
 #include "res/text/bank/great_marsh_6.h"
 
 
-    ScriptEntry _000A
-    ScriptEntry _00D1
+    ScriptEntry GreatMarsh6_AceTrainerM
+    ScriptEntry GreatMarsh6_SignArea6
     ScriptEntryEnd
 
-_000A:
+GreatMarsh6_AceTrainerM:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x0AB4, _00BC
-    Message 0
+    GoToIfSet FLAG_RECEIVED_GREAT_MARSH_6_RANDOM_SHARD, GreatMarsh6_IllTryFindingMore
+    Message GreatMarsh6_Text_IPickedThisUp
     GetRandom VAR_0x8004, 4
     SetVar VAR_0x8008, VAR_0x8004
-    GoToIfEq VAR_0x8008, 0, _005B
-    GoToIfEq VAR_0x8008, 1, _0069
-    GoToIfEq VAR_0x8008, 2, _0077
-    GoTo _0085
+    GoToIfEq VAR_0x8008, 0, GreatMarsh6_SetRedShard
+    GoToIfEq VAR_0x8008, 1, GreatMarsh6_SetBlueShard
+    GoToIfEq VAR_0x8008, 2, GreatMarsh6_SetYellowShard
+    GoTo GreatMarsh6_SetGreenShard
     End
 
-_005B:
+GreatMarsh6_SetRedShard:
     SetVar VAR_0x8004, ITEM_RED_SHARD
-    GoTo _0093
+    GoTo GreatMarsh6_TryGiveShard
     End
 
-_0069:
+GreatMarsh6_SetBlueShard:
     SetVar VAR_0x8004, ITEM_BLUE_SHARD
-    GoTo _0093
+    GoTo GreatMarsh6_TryGiveShard
     End
 
-_0077:
+GreatMarsh6_SetYellowShard:
     SetVar VAR_0x8004, ITEM_YELLOW_SHARD
-    GoTo _0093
+    GoTo GreatMarsh6_TryGiveShard
     End
 
-_0085:
+GreatMarsh6_SetGreenShard:
     SetVar VAR_0x8004, ITEM_GREEN_SHARD
-    GoTo _0093
+    GoTo GreatMarsh6_TryGiveShard
     End
 
-_0093:
+GreatMarsh6_TryGiveShard:
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _00C7
-    SetFlag FLAG_UNK_0x0AB4
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, GreatMarsh6_BagIsFull
+    SetFlag FLAG_RECEIVED_GREAT_MARSH_6_RANDOM_SHARD
     Common_GiveItemQuantityNoLineFeed
     CloseMessage
     ReleaseAll
     End
 
-_00BC:
-    Message 1
+GreatMarsh6_IllTryFindingMore:
+    Message GreatMarsh6_Text_IllTryFindingMore
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_00C7:
+GreatMarsh6_BagIsFull:
     Common_MessageBagIsFull
     CloseMessage
     ReleaseAll
     End
 
-_00D1:
-    ShowLandmarkSign 2
+GreatMarsh6_SignArea6:
+    ShowLandmarkSign GreatMarsh6_Text_Area6
     End

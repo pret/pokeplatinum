@@ -2,7 +2,7 @@
   "key": 21518,
   "messages": [
     {
-      "id": "pl_msg_00000243_00000",
+      "id": "GreatMarsh4_Text_YouGetSuckedDown",
       "en_US": [
         "When you’re walking on boggy parts,\n",
         "sometimes you get sucked down.\r",
@@ -11,7 +11,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000243_00001",
+      "id": "GreatMarsh4_Text_SignArea4",
       "en_US": "Great Marsh Area 4"
     }
   ]

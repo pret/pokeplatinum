@@ -388,19 +388,19 @@ PastoriaCity_TriggerRivalBattle:
     ApplyMovement LOCALID_RIVAL, PastoriaCity_Movement_RivalWalkWest
     WaitMovement
     GetPlayerStarterSpecies VAR_RESULT
-    GoToIfEq VAR_RESULT, SPECIES_TURTWIG, PastoriaCity_StartRivaLBattleTurtwig
-    GoToIfEq VAR_RESULT, SPECIES_CHIMCHAR, PastoriaCity_StartRivaLBattleChimchar
-    GoTo PastoriaCity_StartRivaLBattlePiplup
+    GoToIfEq VAR_RESULT, SPECIES_TURTWIG, PastoriaCity_StartRivalBattleTurtwig
+    GoToIfEq VAR_RESULT, SPECIES_CHIMCHAR, PastoriaCity_StartRivalBattleChimchar
+    GoTo PastoriaCity_StartRivalBattlePiplup
 
-PastoriaCity_StartRivaLBattlePiplup:
+PastoriaCity_StartRivalBattlePiplup:
     StartTrainerBattle TRAINER_RIVAL_PASTORIA_CITY_PIPLUP
     GoTo PastoriaCity_RivalPostBattle
 
-PastoriaCity_StartRivaLBattleTurtwig:
+PastoriaCity_StartRivalBattleTurtwig:
     StartTrainerBattle TRAINER_RIVAL_PASTORIA_CITY_TURTWIG
     GoTo PastoriaCity_RivalPostBattle
 
-PastoriaCity_StartRivaLBattleChimchar:
+PastoriaCity_StartRivalBattleChimchar:
     StartTrainerBattle TRAINER_RIVAL_PASTORIA_CITY_CHIMCHAR
     GoTo PastoriaCity_RivalPostBattle
 

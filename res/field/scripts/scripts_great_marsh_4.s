@@ -2,14 +2,14 @@
 #include "res/text/bank/great_marsh_4.h"
 
 
-    ScriptEntry _000A
-    ScriptEntry _001D
+    ScriptEntry GreatMarsh4_BugCatcher
+    ScriptEntry GreatMarsh4_SignArea4
     ScriptEntryEnd
 
-_000A:
-    NPCMessage 0
+GreatMarsh4_BugCatcher:
+    NPCMessage GreatMarsh4_Text_YouGetSuckedDown
     End
 
-_001D:
-    ShowLandmarkSign 1
+GreatMarsh4_SignArea4:
+    ShowLandmarkSign GreatMarsh4_Text_SignArea4
     End

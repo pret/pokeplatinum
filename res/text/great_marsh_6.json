@@ -2,7 +2,7 @@
   "key": 21510,
   "messages": [
     {
-      "id": "pl_msg_00000245_00000",
+      "id": "GreatMarsh6_Text_IPickedThisUp",
       "en_US": [
         "I picked this up during a Safari Game.\r",
         "I don’t collect Shards, so you can\n",
@@ -10,7 +10,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000245_00001",
+      "id": "GreatMarsh6_Text_IllTryFindingMore",
       "en_US": [
         "Do those Shards turn into something\n",
         "good if you collect them?\r",
@@ -18,7 +18,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000245_00002",
+      "id": "GreatMarsh6_Text_Area6",
       "en_US": "Great Marsh Area 6"
     }
   ]

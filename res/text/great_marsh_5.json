@@ -2,7 +2,7 @@
   "key": 21514,
   "messages": [
     {
-      "id": "pl_msg_00000244_00000",
+      "id": "GreatMarsh5_Text_IRecommendQuickTrams",
       "en_US": [
         "Quick, quick, out in the sticks.\n",
         "To and fro we go, we’re quick~♫\r",
@@ -12,7 +12,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000244_00001",
+      "id": "GreatMarsh5_Text_SignArea5",
       "en_US": "Great Marsh Area 5"
     }
   ]
