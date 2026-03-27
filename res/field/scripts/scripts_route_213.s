@@ -77,7 +77,7 @@ Route213_GruntMLeaveWest:
 Route213_MoveGruntMEast:
     SetFlag FLAG_TALKED_TO_ROUTE_213_GRUNT_M
     RemoveObject LOCALID_GRUNT_M
-    SetObjectEventPos LOCALID_GRUNT_M, 0x2AB, 0x341
+    SetObjectEventPos LOCALID_GRUNT_M, 683, 833
     SetObjectEventDir LOCALID_GRUNT_M, DIR_EAST
     SetObjectEventMovementType LOCALID_GRUNT_M, MOVEMENT_TYPE_LOOK_EAST
     ClearFlag FLAG_HIDE_ROUTE_213_GRUNT_M
