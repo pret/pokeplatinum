@@ -1,7 +1,8 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/game_corner.h"
+#include "res/text/bank/menu_entries.h"
 
-#define LOCALID_SLOT_MACHINE_ID VAR_0x8004
+#define LOCAL_VAR_SLOT_MACHINE_ID VAR_0x8004
 
 
     ScriptEntry GameCorner_SlotMachine_0
@@ -29,51 +30,51 @@
     ScriptEntryEnd
 
 GameCorner_SlotMachine_0:
-    SetVar LOCALID_SLOT_MACHINE_ID, 0
+    SetVar LOCAL_VAR_SLOT_MACHINE_ID, 0
     GoTo GameCorner_SlotMachine
 
 GameCorner_SlotMachine_1:
-    SetVar LOCALID_SLOT_MACHINE_ID, 1
+    SetVar LOCAL_VAR_SLOT_MACHINE_ID, 1
     GoTo GameCorner_SlotMachine
 
 GameCorner_SlotMachine_2:
-    SetVar LOCALID_SLOT_MACHINE_ID, 2
+    SetVar LOCAL_VAR_SLOT_MACHINE_ID, 2
     GoTo GameCorner_SlotMachine
 
 GameCorner_SlotMachine_3:
-    SetVar LOCALID_SLOT_MACHINE_ID, 3
+    SetVar LOCAL_VAR_SLOT_MACHINE_ID, 3
     GoTo GameCorner_SlotMachine
 
 GameCorner_SlotMachine_4:
-    SetVar LOCALID_SLOT_MACHINE_ID, 4
+    SetVar LOCAL_VAR_SLOT_MACHINE_ID, 4
     GoTo GameCorner_SlotMachine
 
 GameCorner_SlotMachine_5:
-    SetVar LOCALID_SLOT_MACHINE_ID, 5
+    SetVar LOCAL_VAR_SLOT_MACHINE_ID, 5
     GoTo GameCorner_SlotMachine
 
 GameCorner_SlotMachine_6:
-    SetVar LOCALID_SLOT_MACHINE_ID, 6
+    SetVar LOCAL_VAR_SLOT_MACHINE_ID, 6
     GoTo GameCorner_SlotMachine
 
 GameCorner_SlotMachine_7:
-    SetVar LOCALID_SLOT_MACHINE_ID, 7
+    SetVar LOCAL_VAR_SLOT_MACHINE_ID, 7
     GoTo GameCorner_SlotMachine
 
 GameCorner_SlotMachine_8:
-    SetVar LOCALID_SLOT_MACHINE_ID, 8
+    SetVar LOCAL_VAR_SLOT_MACHINE_ID, 8
     GoTo GameCorner_SlotMachine
 
 GameCorner_SlotMachine_9:
-    SetVar LOCALID_SLOT_MACHINE_ID, 9
+    SetVar LOCAL_VAR_SLOT_MACHINE_ID, 9
     GoTo GameCorner_SlotMachine
 
 GameCorner_SlotMachine_10:
-    SetVar LOCALID_SLOT_MACHINE_ID, 10
+    SetVar LOCAL_VAR_SLOT_MACHINE_ID, 10
     GoTo GameCorner_SlotMachine
 
 GameCorner_SlotMachine_11:
-    SetVar LOCALID_SLOT_MACHINE_ID, 11
+    SetVar LOCAL_VAR_SLOT_MACHINE_ID, 11
     GoTo GameCorner_SlotMachine
 
 GameCorner_SlotMachine:
@@ -84,7 +85,7 @@ GameCorner_SlotMachine:
     FadeScreenOut
     WaitFadeScreen
     CreateJournalEvent LOCATION_EVENT_GAME_CORNER, 0, 0, 0, 0
-    ScrCmd_267 LOCALID_SLOT_MACHINE_ID
+    ScrCmd_267 LOCAL_VAR_SLOT_MACHINE_ID
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
@@ -104,7 +105,7 @@ GameCorner_CoinsClerk:
     FacePlayer
     Message GameCorner_Text_WelcomeToTheVeilstoneGameCorner
     CheckItem ITEM_COIN_CASE, 1, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, GameCorner_CoinsClerk_NoCoinCase
+    GoToIfEq VAR_RESULT, FALSE, GameCorner_CoinsClerk_NoCoinCase
     GoToIfSet FLAG_GAME_CORNER_RECEIVED_TM64, GameCorner_CoinsClerk_ShowCoinsAndMoney
     GoToIfSet FLAG_GAME_CORNER_SAVED_TM64, GameCorner_CoinsClerk_CheckIfCanGiveTM64
     CheckBonusRoundStreak VAR_RESULT
@@ -125,9 +126,9 @@ GameCorner_CoinsClerk_ShowCoinsAndMoney:
 GameCorner_CoinsClerk_OpenCoinBuyMenu:
     Message GameCorner_Text_DidYouWantSomeCoins_1000For50Coins
     InitGlobalTextMenu 1, 1, 0, VAR_RESULT
-    AddMenuEntryImm 125, 0
-    AddMenuEntryImm 126, 1
-    AddMenuEntryImm 127, 2
+    AddMenuEntryImm MenuEntries_Text_GameCorner_50Coins, 0
+    AddMenuEntryImm MenuEntries_Text_GameCorner_500Coins, 1
+    AddMenuEntryImm MenuEntries_Text_GameCorner_NoThanks, 2
     ShowMenu
     SetVar VAR_0x8008, VAR_RESULT
     GoToIfEq VAR_0x8008, 0, GameCorner_CoinsClerk_Buy50Coins
@@ -234,7 +235,7 @@ GameCorner_OldMan20Coins:
     LockAll
     FacePlayer
     CheckItem ITEM_COIN_CASE, 1, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, GameCorner_OldMan20Coins_NoCoinCase
+    GoToIfEq VAR_RESULT, FALSE, GameCorner_OldMan20Coins_NoCoinCase
     GoToIfSet FLAG_GAME_CORNER_RECEIVED_20_COINS_OLD_MAN, GameCorner_OldMan20Coins_LineUpClefairy
     GoToIfCannotAddCoins 20, GameCorner_OldMan20Coins_LineUpClefairy
     SetFlag FLAG_GAME_CORNER_RECEIVED_20_COINS_OLD_MAN
@@ -267,7 +268,7 @@ GameCorner_Farmer:
     LockAll
     FacePlayer
     CheckItem ITEM_COIN_CASE, 1, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, GameCorner_Farmer_NoCoinCase
+    GoToIfEq VAR_RESULT, FALSE, GameCorner_Farmer_NoCoinCase
     GoToIfSet FLAG_GAME_CORNER_RECEIVED_50_COINS_FARMER, GameCorner_Farmer_CannotAddCoins
     GoToIfCannotAddCoins 50, GameCorner_Farmer_CannotAddCoins
     SetFlag FLAG_GAME_CORNER_RECEIVED_50_COINS_FARMER

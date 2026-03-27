@@ -2,7 +2,7 @@
   "key": 18315,
   "messages": [
     {
-      "id": "pl_msg_00000143_00000",
+      "id": "VeilstoneCity_Text_DawnPleaseCanYouHelpMe",
       "en_US": [
         "Dawn: Hi, {STRVAR_1 3, 0, 0}!\n",
         "Please, can you help me?\r",
@@ -14,7 +14,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000143_00001",
+      "id": "VeilstoneCity_Text_LucasListenINeedYourHelp",
       "en_US": [
         "Lucas: Hey! {STRVAR_1 3, 0, 0}!\n",
         "Listen, I need your help...\r",
@@ -26,7 +26,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000143_00002",
+      "id": "VeilstoneCity_Text_DawnWillYouTakeTheGymChallenge",
       "en_US": [
         "Dawn: {STRVAR_1 3, 0, 0}, are you going\n",
         "to take the Gym challenge?\r",
@@ -39,7 +39,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000143_00003",
+      "id": "VeilstoneCity_Text_LucasWillYouTakeOnTheGymLeader",
       "en_US": [
         "Lucas: Hey! {STRVAR_1 3, 0, 0}, are you\n",
         "going to take on the Gym Leader?\r",
@@ -53,7 +53,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000143_00004",
+      "id": "VeilstoneCity_Text_CrashCrashCrasherWake",
       "en_US": [
         "The ring is my roiling sea. ♫\n",
         "The towering waves shaped me.\r",
@@ -68,7 +68,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000143_00005",
+      "id": "VeilstoneCity_Text_YoureChallengingTheGymLeader",
       "en_US": [
         "Hello, dude and young lady!\n",
         "You’re challenging the Gym Leader,\f",
@@ -80,7 +80,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000143_00006",
+      "id": "VeilstoneCity_Text_ImCrasherWakeOfPastoriaGym",
       "en_US": [
         "Whoops!\n",
         "I’d better tell you who I am!\r",
@@ -91,29 +91,29 @@
       ]
     },
     {
-      "id": "pl_msg_00000143_00007",
+      "id": "VeilstoneCity_Text_DawnDotDotDot",
       "en_US": "Dawn: ...\r"
     },
     {
-      "id": "pl_msg_00000143_00008",
+      "id": "VeilstoneCity_Text_DawnGoodLuck",
       "en_US": [
         "So, uh, {STRVAR_1 3, 0, 0}.\n",
         "Good luck on your Gym challenge.\r"
       ]
     },
     {
-      "id": "pl_msg_00000143_00009",
+      "id": "VeilstoneCity_Text_LucasDotDotDot",
       "en_US": "Lucas: ...\r"
     },
     {
-      "id": "pl_msg_00000143_00010",
+      "id": "VeilstoneCity_Text_LucasGoodLuck",
       "en_US": [
         "So, uh, yeah, {STRVAR_1 3, 0, 0}.\n",
         "Good luck with the Pokémon Gym.\r"
       ]
     },
     {
-      "id": "VeilstoneCity_Text_ThisIsGalacticWarehouse",
+      "id": "VeilstoneCity_Text_ThisIsGalacticsWarehouse",
       "en_US": [
         "Grunt 1: Hey, you!\n",
         "Yeah, you!\r",
@@ -122,7 +122,7 @@
       ]
     },
     {
-      "id": "VeilstoneCity_Text_ThisIsGalacticWarehouse1",
+      "id": "VeilstoneCity_Text_ThisIsGalacticsWarehouse2",
       "en_US": [
         "Grunt 1: Hey, you!\n",
         "Yeah, you!\r",
@@ -131,7 +131,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000143_00013",
+      "id": "VeilstoneCity_Text_ThisIsTheAwesomeWarehouse",
       "en_US": [
         "Grunt 2: This is the awesome Team\n",
         "Galactic’s awesome warehouse!\r",
@@ -142,7 +142,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000143_00014",
+      "id": "VeilstoneCity_Text_YouveBroughtYourBuddy",
       "en_US": [
         "Grunt 1: What? Now you’ve brought\n",
         "your buddy along so you can get your\f",
@@ -152,7 +152,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000143_00015",
+      "id": "VeilstoneCity_Text_WellTakeYouOn",
       "en_US": [
         "Grunt 2: You’re trying to get the\n",
         "Pokédex back from us?\r",
@@ -164,7 +164,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000143_00016",
+      "id": "VeilstoneCity_Text_AwwThatStinks",
       "en_US": [
         "Grunt 1: Aww, that stinks!\n",
         "Our Pokémon are chumps!\r",
@@ -178,14 +178,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000143_00017",
+      "id": "VeilstoneCity_Text_TakeYourPokedex",
       "en_US": [
         "There! Take it!\n",
         "Take your Pokédex!\r"
       ]
     },
     {
-      "id": "pl_msg_00000143_00018",
+      "id": "VeilstoneCity_Text_WeWillRunLikeGrunts",
       "en_US": [
         "Grunt 2: Those things we had in\n",
         "the warehouse’ve already been moved\f",
@@ -228,7 +228,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000143_00022",
+      "id": "VeilstoneCity_Text_DawnWhatsGoingOn",
       "en_US": [
         "Dawn: What’s going on?\r",
         "Why is Team Galactic out in the\n",
@@ -236,7 +236,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000143_00023",
+      "id": "VeilstoneCity_Text_DawnThankYouSincerely",
       "en_US": [
         "Dawn: {STRVAR_1 3, 0, 0}, thank you,\n",
         "sincerely.\r",
@@ -285,7 +285,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000143_00027",
+      "id": "VeilstoneCity_Text_LucasWhatsGoingOnHere",
       "en_US": [
         "Lucas: What’s going on here?\r",
         "Why is Team Galactic out in the\n",
@@ -293,7 +293,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000143_00028",
+      "id": "VeilstoneCity_Text_LucasThanksHonestly",
       "en_US": [
         "Lucas: {STRVAR_1 3, 0, 0}, thanks,\n",
         "honestly.\r",
@@ -309,7 +309,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000143_00029",
+      "id": "VeilstoneCity_Text_HaveNoFear",
       "en_US": [
         "Looker: Have no fear, I have come\n",
         "running.\r",
@@ -319,28 +319,28 @@
       ]
     },
     {
-      "id": "pl_msg_00000143_00030",
+      "id": "VeilstoneCity_Text_DawnFunnyManFromJubilife",
       "en_US": [
         "Dawn: Oh...\n",
         "It’s that funny man from Jubilife...\r"
       ]
     },
     {
-      "id": "pl_msg_00000143_00031",
+      "id": "VeilstoneCity_Text_LucasWeirdoFromJubilife",
       "en_US": [
         "Lucas: Hey...\n",
         "It’s that weirdo from Jubilife.\r"
       ]
     },
     {
-      "id": "pl_msg_00000143_00032",
+      "id": "VeilstoneCity_Text_YouInsultMeToMyFace",
       "en_US": [
         "Looker: You insult me to my face?\n",
         "How very uncouth of you.\r"
       ]
     },
     {
-      "id": "pl_msg_00000143_00033",
+      "id": "VeilstoneCity_Text_DawnIShouldBeGoingNow",
       "en_US": [
         "Dawn: I’m terribly sorry.\r",
         "Team Galactic took my Pokédex, so I was\n",
@@ -351,7 +351,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000143_00034",
+      "id": "VeilstoneCity_Text_LucasIllBeGoingNow",
       "en_US": [
         "Lucas: Oh, sorry. Honestly.\r",
         "I was upset from having my Pokédex\n",
@@ -362,7 +362,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000143_00035",
+      "id": "VeilstoneCity_Text_WellTakeALook",
       "en_US": [
         "Looker: It is of no matter.\r",
         "Of more interest is the criminal\n",
@@ -378,7 +378,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000143_00036",
+      "id": "VeilstoneCity_Text_LookAtThoseAntennae",
       "en_US": [
         "There!\n",
         "Would you look at those antennae?\r",
@@ -387,7 +387,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000143_00037",
+      "id": "VeilstoneCity_Text_IKnowNothingAboutStorageKey",
       "en_US": [
         "Hey!\n",
         "It’s you!\r",
@@ -402,7 +402,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000143_00038",
+      "id": "VeilstoneCity_Text_WillYouEnterTheHideout",
       "en_US": [
         "Ah-hah!\n",
         "You leave this to me!\r",
@@ -415,7 +415,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000143_00039",
+      "id": "VeilstoneCity_Text_WeWillMeetInside",
       "en_US": [
         "Very well.\n",
         "Inside the Team Galactic warehouse.\f",
@@ -425,7 +425,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000143_00040",
+      "id": "VeilstoneCity_Text_SneakingInIsDaunting",
       "en_US": [
         "Looker: ...Yes, I see your point.\r",
         "Sneaking into the hideout of the Team\n",
@@ -433,11 +433,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000143_00041",
+      "id": "VeilstoneCity_Text_Player",
       "en_US": "Looker: {STRVAR_1 3, 0, 0}!\r"
     },
     {
-      "id": "pl_msg_00000143_00042",
+      "id": "VeilstoneCity_Text_WeHaveHMFlyInWarehouse",
       "en_US": [
         "We have the Hidden Machine that teaches\n",
         "Fly stored in the warehouse.\r",
@@ -446,7 +446,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000143_00043",
+      "id": "VeilstoneCity_Text_GalacticHasHMInWarehouse",
       "en_US": [
         "Yeah, Team Galactic is hiding all sorts\n",
         "of good stuff in their warehouse.\r",
@@ -455,7 +455,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000143_00044",
+      "id": "VeilstoneCity_Text_GameCornerIsDangerous",
       "en_US": [
         "The Game Corner is dangerous!\r",
         "Why is it dangerous?\n",
@@ -463,7 +463,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000143_00045",
+      "id": "VeilstoneCity_Text_IGotATMFromGameCorner",
       "en_US": [
         "I got a TM as a prize from the\n",
         "Game Corner.\r",
@@ -471,7 +471,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000143_00046",
+      "id": "VeilstoneCity_Text_MayleneIsVeilstonesGymLeader",
       "en_US": [
         "Maylene is Veilstone’s Gym Leader.\n",
         "Then, there’s Wake in Pastoria...\r",
@@ -480,7 +480,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000143_00047",
+      "id": "VeilstoneCity_Text_ICameToShopAtDepartmentStore",
       "en_US": [
         "I came to this city just so I could\n",
         "go shopping at the department store.\r",
@@ -489,7 +489,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000143_00048",
+      "id": "VeilstoneCity_Text_IBoughtANewParasol",
       "en_US": [
         "I bought a new parasol.\r",
         "But I don’t want it to get rained on,\n",
@@ -497,7 +497,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000143_00049",
+      "id": "VeilstoneCity_Text_AClownIsGivingAwayCoinCases",
       "en_US": [
         "Do you know where one might find\n",
         "a Coin Case?\r",
@@ -506,7 +506,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000143_00050",
+      "id": "VeilstoneCity_Text_VeilstoneIsTheCityOfStone",
       "en_US": [
         "Veilstone is the city of stone.\n",
         "We even have meteorites!\r",
@@ -515,7 +515,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000143_00051",
+      "id": "VeilstoneCity_Text_EmbargoMakesItemsUnusable",
       "en_US": [
         "If someone uses Embargo on your\n",
         "Pokémon, it becomes impossible to\f",
@@ -525,28 +525,28 @@
       ]
     },
     {
-      "id": "pl_msg_00000143_00052",
+      "id": "VeilstoneCity_Text_FrenchDoYouLikePokemon",
       "en_US": [
         "Salut, Trainer!\n",
         "Tu aimes les Pokémon?"
       ]
     },
     {
-      "id": "pl_msg_00000143_00053",
+      "id": "VeilstoneCity_Text_FrenchMeToo",
       "en_US": [
         "Moi aussi!\n",
         "C’est génial!"
       ]
     },
     {
-      "id": "pl_msg_00000143_00054",
+      "id": "VeilstoneCity_Text_FrenchHardToBelieve",
       "en_US": [
         "J’ai du mal à te croire...\n",
         "Il n’y a qu’à vous regarder!"
       ]
     },
     {
-      "id": "pl_msg_00000143_00055",
+      "id": "VeilstoneCity_Text_AManSpokeInForeignLanguage",
       "en_US": [
         "A man spoke to me in a foreign language.\n",
         "He really surprised me!\r",
@@ -592,14 +592,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000143_00061",
+      "id": "VeilstoneCity_Text_MapSign",
       "en_US": [
         "Veilstone City\n",
         "Hewn from Rock"
       ]
     },
     {
-      "id": "pl_msg_00000143_00062",
+      "id": "VeilstoneCity_Text_SignPokemonGym",
       "en_US": [
         "Veilstone City Pokémon Gym\n",
         "Leader: Maylene\f",
@@ -607,42 +607,42 @@
       ]
     },
     {
-      "id": "pl_msg_00000143_00063",
+      "id": "VeilstoneCity_Text_SignGalacticWarehouse",
       "en_US": [
         "Galactic Warehouse\n",
         "NO TRESPASSING!"
       ]
     },
     {
-      "id": "pl_msg_00000143_00064",
+      "id": "VeilstoneCity_Text_SignGalacticVeilstoneBuilding",
       "en_US": [
         "Galactic Veilstone Building\n",
         "We Dream of the Universe!"
       ]
     },
     {
-      "id": "pl_msg_00000143_00065",
+      "id": "VeilstoneCity_Text_SignVeilstoneDepartmentStore",
       "en_US": [
         "Veilstone Department Store\n",
         "A Shop Full of Dreams!"
       ]
     },
     {
-      "id": "pl_msg_00000143_00066",
+      "id": "VeilstoneCity_Text_SignVeilstoneGameCorner",
       "en_US": [
         "Veilstone Game Corner\n",
         "Aim for an Explosion of Luck!"
       ]
     },
     {
-      "id": "pl_msg_00000143_00067",
+      "id": "VeilstoneCity_Text_SignPrizeExchange",
       "en_US": [
         "Prize Exchange\n",
         "Coins Exchanged for Prizes!"
       ]
     },
     {
-      "id": "pl_msg_00000143_00068",
+      "id": "VeilstoneCity_Text_SignLakeValor",
       "en_US": [
         "Visit Beautiful Lake Valor!\n",
         "Right off Rt. 214!"

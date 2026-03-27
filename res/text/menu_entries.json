@@ -526,15 +526,15 @@
       "en_US": "EXIT"
     },
     {
-      "id": "pl_msg_00000361_00125",
+      "id": "MenuEntries_Text_GameCorner_50Coins",
       "en_US": "50 Coins{CURSOR_X 60}$1,000"
     },
     {
-      "id": "pl_msg_00000361_00126",
+      "id": "MenuEntries_Text_GameCorner_500Coins",
       "en_US": "500 Coins{CURSOR_X 60}$10,000"
     },
     {
-      "id": "pl_msg_00000361_00127",
+      "id": "MenuEntries_Text_GameCorner_NoThanks",
       "en_US": "NO THANKS"
     },
     {
@@ -698,11 +698,11 @@
       "en_US": "CHAT"
     },
     {
-      "id": "pl_msg_00000361_00168",
+      "id": "MenuEntries_Text_PrizeExchange_Prize",
       "en_US": "{STRVAR_1 8, 0, 0}{CURSOR_X 96}{STRVAR_1 54, 1, 0}"
     },
     {
-      "id": "pl_msg_00000361_00169",
+      "id": "MenuEntries_Text_PrizeExchange_NoThanks",
       "en_US": "NO THANKS"
     },
     {
@@ -722,11 +722,11 @@
       "garbage": 4
     },
     {
-      "id": "pl_msg_00000361_00174",
+      "id": "MenuEntries_Text_CoinCaseClown_Right",
       "en_US": "RIGHT"
     },
     {
-      "id": "pl_msg_00000361_00175",
+      "id": "MenuEntries_Text_CoinCaseClown_Left",
       "en_US": "LEFT"
     },
     {

@@ -1,5 +1,4 @@
 subdir('pl_etc')
-subdir('pl_frontier')
 
 prebuilt_files = [
     'particledata.narc'

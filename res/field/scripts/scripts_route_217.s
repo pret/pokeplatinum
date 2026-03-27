@@ -41,7 +41,7 @@ _004D:
     CallIfEq VAR_0x8004, 0x12F, _00F6
     RemoveObject 15
     SetVar VAR_UNK_0x40A8, 1
-    SetFlag FLAG_UNK_0x0298
+    SetFlag FLAG_HIDE_VEILSTONE_CITY_GYM_MAYLENE
     ReleaseAll
     End
 

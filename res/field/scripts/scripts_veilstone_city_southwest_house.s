@@ -2,20 +2,20 @@
 #include "res/text/bank/veilstone_city_southwest_house.h"
 
 
-    ScriptEntry _000E
-    ScriptEntry _0101
-    ScriptEntry _0114
+    ScriptEntry VeilstoneCitySouthwestHouse_Beauty
+    ScriptEntry VeilstoneCitySouthwestHouse_Youngster
+    ScriptEntry VeilstoneCitySouthwestHouse_Pachirisu
     ScriptEntryEnd
 
-_000E:
+VeilstoneCitySouthwestHouse_Beauty:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x0AAC, _00D5
-    Message 0
+    GoToIfSet FLAG_GOT_MASSAGE, VeilstoneCitySouthwestHouse_ComeBackTomorrow
+    Message VeilstoneCitySouthwestHouse_Text_ICanMassagePokemon
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _00EB
-    Message 1
+    GoToIfEq VAR_RESULT, MENU_NO, VeilstoneCitySouthwestHouse_ImNotShady
+    Message VeilstoneCitySouthwestHouse_Text_MassageWhichPokemon
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
@@ -24,10 +24,10 @@ _000E:
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
-    GoToIfEq VAR_MAP_LOCAL_0, 0xFF, _00EB
+    GoToIfEq VAR_MAP_LOCAL_0, PARTY_SLOT_NONE, VeilstoneCitySouthwestHouse_ImNotShady
     GetPartyMonSpecies VAR_MAP_LOCAL_0, VAR_RESULT
-    GoToIfEq VAR_RESULT, SPECIES_NONE, _00E0
-    Message 3
+    GoToIfEq VAR_RESULT, SPECIES_NONE, VeilstoneCitySouthwestHouse_IdBreakThatEgg
+    Message VeilstoneCitySouthwestHouse_Text_LetsGetStarted
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
@@ -36,50 +36,50 @@ _000E:
     FadeScreenIn
     WaitFadeScreen
     BufferPartyMonNickname 0, VAR_MAP_LOCAL_0
-    Message 4
-    SetFlag FLAG_UNK_0x0AAC
+    Message VeilstoneCitySouthwestHouse_Text_PokemonLooksContent
+    SetFlag FLAG_GOT_MASSAGE
     IncreasePartyMonFriendship 3, VAR_MAP_LOCAL_0
     TryGetRandomMassageGirlAccessory VAR_0x8004
-    GoToIfEq VAR_0x8004, -1, _00F6
-    Message 7
+    GoToIfEq VAR_0x8004, -1, VeilstoneCitySouthwestHouse_DropByAgainTomorrow
+    Message VeilstoneCitySouthwestHouse_Text_IFoundThis
     SetVar VAR_0x8005, 1
     Common_GiveAccessory
-    GoTo _00F6
+    GoTo VeilstoneCitySouthwestHouse_DropByAgainTomorrow
 
-_00D5:
-    Message 8
+VeilstoneCitySouthwestHouse_ComeBackTomorrow:
+    Message VeilstoneCitySouthwestHouse_Text_ComeBackTomorrow
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_00E0:
-    Message 6
+VeilstoneCitySouthwestHouse_IdBreakThatEgg:
+    Message VeilstoneCitySouthwestHouse_Text_IdBreakThatEgg
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_00EB:
-    Message 2
+VeilstoneCitySouthwestHouse_ImNotShady:
+    Message VeilstoneCitySouthwestHouse_Text_ImNotShady
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_00F6:
-    Message 5
+VeilstoneCitySouthwestHouse_DropByAgainTomorrow:
+    Message VeilstoneCitySouthwestHouse_Text_DropByAgainTomorrow
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0101:
-    NPCMessage 9
+VeilstoneCitySouthwestHouse_Youngster:
+    NPCMessage VeilstoneCitySouthwestHouse_Text_MyInLawIsScarfGuy
     End
 
-_0114:
-    PokemonCryAndMessage SPECIES_PACHIRISU, 10
+VeilstoneCitySouthwestHouse_Pachirisu:
+    PokemonCryAndMessage SPECIES_PACHIRISU, VeilstoneCitySouthwestHouse_Text_PachirisuCry
     End
 
     .balign 4, 0

@@ -2,7 +2,7 @@
   "key": 9267,
   "messages": [
     {
-      "id": "pl_msg_00000159_00000",
+      "id": "VeilstoneCityNortheastHouse_Text_ImNoTrainerTakePorygon",
       "en_US": [
         "You’re a Trainer, aren’t you?\r",
         "You see, there’s this Pokémon I’d like\n",
@@ -14,7 +14,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000159_00001",
+      "id": "VeilstoneCityNortheastHouse_Text_CanYouTakePorygon",
       "en_US": [
         "You’re a Trainer, aren’t you?\r",
         "You see, there’s this Pokémon I’d like\n",
@@ -24,7 +24,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000159_00002",
+      "id": "VeilstoneCityNortheastHouse_Text_Excellent",
       "en_US": [
         "Excellent! Thanks!\n",
         "That’ll make the PORYGON happy, too.\r",
@@ -33,18 +33,18 @@
       ]
     },
     {
-      "id": "pl_msg_00000159_00003",
+      "id": "VeilstoneCityNortheastHouse_Text_PlayerAcceptedThePorygon",
       "en_US": "{STRVAR_1 3, 0, 0} accepted the PORYGON!\r"
     },
     {
-      "id": "pl_msg_00000159_00004",
+      "id": "VeilstoneCityNortheastHouse_Text_AskNicknamePorygon",
       "en_US": [
         "Would you like to give a nickname\n",
         "to the PORYGON you received?"
       ]
     },
     {
-      "id": "pl_msg_00000159_00005",
+      "id": "VeilstoneCityNortheastHouse_Text_AlreadyWholeTeam",
       "en_US": [
         "Thanks!\r",
         "...But, oops, you already have a whole\n",
@@ -54,7 +54,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000159_00006",
+      "id": "VeilstoneCityNortheastHouse_Text_IsThatSo",
       "en_US": [
         "Is that so...\r",
         "I’ll look after it for a while. Please\n",
@@ -62,7 +62,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000159_00007",
+      "id": "VeilstoneCityNortheastHouse_Text_GalacticsBuildingBugsMe",
       "en_US": [
         "Team Galactic’s building bugs me so\n",
         "much, I can’t sleep well.\r",
@@ -71,7 +71,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000159_00008",
+      "id": "VeilstoneCityNortheastHouse_Text_IDontUnderstandTheirIdea",
       "en_US": [
         "Those thorny things on the building...\n",
         "The way it moves meaninglessly...\r",

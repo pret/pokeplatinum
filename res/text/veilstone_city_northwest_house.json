@@ -2,7 +2,7 @@
   "key": 42042,
   "messages": [
     {
-      "id": "pl_msg_00000158_00000",
+      "id": "VeilstoneCityNorthwestHouse_Text_MtCoronetPartedSinnoh",
       "en_US": [
         "A myth says that Mt. Coronet parted\n",
         "Sinnoh into halves.\r",
@@ -11,7 +11,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000158_00001",
+      "id": "VeilstoneCityNorthwestHouse_Text_PokemonAppearInManyGuises",
       "en_US": [
         "If there are people who desire to\n",
         "see them, Pokémon will appear in\f",
@@ -19,7 +19,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000158_00002",
+      "id": "VeilstoneCityNorthwestHouse_Text_BunearyCry",
       "en_US": "BUNEARY: Nii nii!"
     }
   ]

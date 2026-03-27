@@ -10,7 +10,7 @@ BOOL ScrCmd_TryRevertPokemonForm(ScriptContext *param0);
 BOOL ScrCmd_2F1(ScriptContext *param0);
 BOOL ScrCmd_GetPartyRotomCountAndFirst(ScriptContext *ctx);
 BOOL ScrCmd_SetRotomForm(ScriptContext *ctx);
-BOOL ScrCmd_2FF(ScriptContext *param0);
+BOOL ScrCmd_CalcHiddenPowerType(ScriptContext *ctx);
 BOOL ScrCmd_300(ScriptContext *param0);
 BOOL ScrCmd_301(ScriptContext *param0);
 BOOL ScrCmd_GetPartyMonForm2(ScriptContext *ctx);

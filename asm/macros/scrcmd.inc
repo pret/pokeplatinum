@@ -4566,10 +4566,10 @@
     .short \destVar
     .endm
 
-    .macro ScrCmd_2FF arg0, arg1
-    .short SCRCMD_2FF
-    .short \arg0
-    .short \arg1
+    .macro CalcHiddenPowerType partySlot, destVar
+    .short SCRCMD_CALCHIDDENPOWERTYPE
+    .short \partySlot
+    .short \destVar
     .endm
 
     .macro ScrCmd_300
