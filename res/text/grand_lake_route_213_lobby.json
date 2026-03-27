@@ -2,7 +2,7 @@
   "key": 57082,
   "messages": [
     {
-      "id": "pl_msg_00000498_00000",
+      "id": "GrandLakeRoute213Lobby_Text_YouMayRest",
       "en_US": [
         "Ah, hello. You wish to stay a night?\n",
         "Ah, but you’ve no reservations.\r",
@@ -11,7 +11,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000498_00001",
+      "id": "GrandLakeRoute213Lobby_Text_RestoredYourPokemon",
       "en_US": [
         "We’ve restored your Pokémon\n",
         "to full health.\r",
@@ -19,7 +19,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000498_00002",
+      "id": "GrandLakeRoute213Lobby_Text_HotelIsSoRomantic",
       "en_US": [
         "This hotel is so romantic...\r",
         "I hope a knight on a Pokémon will\n",
@@ -27,7 +27,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000498_00003",
+      "id": "GrandLakeRoute213Lobby_Text_GoSearchOutside",
       "en_US": [
         "Looker: Ah, my friend, it is you!\n",
         "Yes, I am at this hotel now.\r",
@@ -40,7 +40,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000498_00004",
+      "id": "GrandLakeRoute213Lobby_Text_BraggingIsNotNecessary",
       "en_US": [
         "Looker: Is that so?\n",
         "The champion of Hoenn has stayed here?\r",
@@ -50,7 +50,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000498_00005",
+      "id": "GrandLakeRoute213Lobby_Text_IWillSearchInside",
       "en_US": [
         "Inside the hotel, I will search.\n",
         "You, I ask to search outside.\r",

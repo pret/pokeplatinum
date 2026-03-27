@@ -99,7 +99,7 @@
     ],
     "object_events": [
         {
-            "id": "ROUTE_213_SWIMMER_SHELTIN",
+            "id": "LOCALID_SWIMMER_SHELTIN",
             "graphics_id": "OBJ_EVENT_GFX_SWIMMER_M",
             "movement_type": "MOVEMENT_TYPE_WALK_EAST_SOUTH_WEST_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -116,7 +116,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_213_SWIMMER_EVAN",
+            "id": "LOCALID_SWIMMER_EVAN",
             "graphics_id": "OBJ_EVENT_GFX_SWIMMER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -133,7 +133,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_213_SWIMMER_MARY",
+            "id": "LOCALID_SWIMMER_MARY",
             "graphics_id": "OBJ_EVENT_GFX_SWIMMER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -150,7 +150,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_213_SWIMMER_HALEY",
+            "id": "LOCALID_SWIMMER_HALEY",
             "graphics_id": "OBJ_EVENT_GFX_SWIMMER_F",
             "movement_type": "MOVEMENT_TYPE_WALK_BACK_AND_FORTH",
             "trainer_type": "TRAINER_TYPE_SPIN_COUNTERCLOCKWISE",
@@ -168,7 +168,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_213_TUBER_JARED",
+            "id": "LOCALID_TUBER_JARED",
             "graphics_id": "OBJ_EVENT_GFX_TUBER_M",
             "movement_type": "MOVEMENT_TYPE_WALK_BACK_AND_FORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -185,7 +185,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_213_TUBER_CHELSEA",
+            "id": "LOCALID_TUBER_CHELSEA",
             "graphics_id": "OBJ_EVENT_GFX_TUBER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_SOUTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -202,7 +202,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_213_BEAUTY_CYNDY",
+            "id": "LOCALID_BEAUTY_CYNDY",
             "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -219,7 +219,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_213_FISHERMAN_KENNETH",
+            "id": "LOCALID_FISHERMAN_KENNETH",
             "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -234,7 +234,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_213_SAILOR_PAUL",
+            "id": "LOCALID_SAILOR_PAUL",
             "graphics_id": "OBJ_EVENT_GFX_SAILOR",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -251,7 +251,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_213_ROCK_SMASH_9",
+            "id": "LOCALID_ROCK_SMASH_1",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -266,7 +266,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_213_ROCK_SMASH_10",
+            "id": "LOCALID_ROCK_SMASH_2",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -281,7 +281,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_213_ROCK_SMASH_11",
+            "id": "LOCALID_ROCK_SMASH_3",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -296,7 +296,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_213_ROCK_SMASH_12",
+            "id": "LOCALID_ROCK_SMASH_4",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -311,7 +311,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_213_ROCK_SMASH_13",
+            "id": "LOCALID_ROCK_SMASH_5",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -326,7 +326,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_213_ROCK_SMASH_14",
+            "id": "LOCALID_ROCK_SMASH_6",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -341,7 +341,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_213_ARROW_SIGNPOST_15",
+            "id": "LOCALID_ARROW_SIGNPOST",
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -358,7 +358,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_213_SIGNBOARD_16",
+            "id": "LOCALID_SIGNBOARD_DR_FOOTSTEPS_HOUSE",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -373,7 +373,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_213_SIGNBOARD_17",
+            "id": "LOCALID_SIGNBOARD_HOTEL_GRAND_LAKE",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -388,7 +388,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_213_BERRY_SOIL_18",
+            "id": "LOCALID_BERRY_SOIL_1",
             "graphics_id": "OBJ_EVENT_GFX_BERRY_SOIL",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -405,7 +405,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_213_BERRY_SOIL_19",
+            "id": "LOCALID_BERRY_SOIL_2",
             "graphics_id": "OBJ_EVENT_GFX_BERRY_SOIL",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -422,7 +422,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_213_BERRY_SOIL_20",
+            "id": "LOCALID_BERRY_SOIL_3",
             "graphics_id": "OBJ_EVENT_GFX_BERRY_SOIL",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -439,7 +439,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_213_BERRY_SOIL_21",
+            "id": "LOCALID_BERRY_SOIL_4",
             "graphics_id": "OBJ_EVENT_GFX_BERRY_SOIL",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -561,7 +561,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_213_FISHERMAN_29",
+            "id": "LOCALID_FISHERMAN",
             "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -576,11 +576,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_213_GRUNT_M_30",
+            "id": "LOCALID_GRUNT_M",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x021A",
+            "hidden_flag": "FLAG_HIDE_ROUTE_213_GRUNT_M",
             "script": 2,
             "initial_dir": 3,
             "data": [],
@@ -591,7 +591,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_213_BEAUTY_31",
+            "id": "LOCALID_BEAUTY",
             "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -606,7 +606,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_213_COLLECTOR_32",
+            "id": "LOCALID_COLLECTOR",
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -621,11 +621,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_213_LOOKER_33",
+            "id": "LOCALID_LOOKER",
             "graphics_id": "OBJ_EVENT_GFX_LOOKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x01E8",
+            "hidden_flag": "FLAG_HIDE_ROUTE_213_LOOKER",
             "script": 0,
             "initial_dir": 3,
             "data": [],

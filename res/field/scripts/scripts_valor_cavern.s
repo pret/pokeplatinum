@@ -1,35 +1,33 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/valor_cavern.h"
-
-#define LOCALID_AZELF  0
-#define LOCALID_SATURN 1
+#include "res/field/events/events_valor_cavern.h"
 
 
-    ScriptEntry _0012
-    ScriptEntry _0042
+    ScriptEntry ValorCavern_OnTransition
+    ScriptEntry ValorCavern_OnLoad
     ScriptEntry ValorCavern_Azelf
-    ScriptEntry ValorCavern_CommanderSaturn
+    ScriptEntry ValorCavern_Saturn
     ScriptEntryEnd
 
-_0012:
+ValorCavern_OnTransition:
     SetFlag FLAG_FIRST_ARRIVAL_VALOR_CAVERN
-    GoToIfUnset FLAG_GALACTIC_LEFT_LAKE_VALOR, ValorCavern_SetWarpEventPosLakeWithGalactic
-    GoToIfSet FLAG_GALACTIC_LEFT_LAKE_VALOR, ValorCavern_SetWarpEventPosLakeWithWater
+    GoToIfUnset FLAG_GALACTIC_LEFT_LAKE_VALOR, ValorCavern_SetWarpEventLakeValorDrained
+    GoToIfSet FLAG_GALACTIC_LEFT_LAKE_VALOR, ValorCavern_SetWarpEventLakeValor
     End
 
-ValorCavern_SetWarpEventPosLakeWithGalactic:
+ValorCavern_SetWarpEventLakeValorDrained:
     SetWarpEventPos 1, 10, 29
     End
 
-ValorCavern_SetWarpEventPosLakeWithWater:
+ValorCavern_SetWarpEventLakeValor:
     SetWarpEventPos 0, 10, 29
     End
 
-_0042:
+ValorCavern_OnLoad:
     SetFlag FLAG_FIRST_ARRIVAL_VALOR_CAVERN
     CallIfSet FLAG_MAP_LOCAL, ValorCavern_RemoveAzelf
-    GoToIfUnset FLAG_GALACTIC_LEFT_LAKE_VALOR, ValorCavern_SetWarpEventPosLakeWithGalactic
-    GoToIfSet FLAG_GALACTIC_LEFT_LAKE_VALOR, ValorCavern_SetWarpEventPosLakeWithWater
+    GoToIfUnset FLAG_GALACTIC_LEFT_LAKE_VALOR, ValorCavern_SetWarpEventLakeValorDrained
+    GoToIfSet FLAG_GALACTIC_LEFT_LAKE_VALOR, ValorCavern_SetWarpEventLakeValor
     End
 
 ValorCavern_RemoveAzelf:
@@ -68,13 +66,13 @@ ValorCavern_LostBattleAzelf:
     ReleaseAll
     End
 
-ValorCavern_CommanderSaturn:
+ValorCavern_Saturn:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     Message ValorCavern_Text_SaturnMissionIsProceeding
     CloseMessage
     FacePlayer
-    ApplyMovement LOCALID_SATURN, _013C
+    ApplyMovement LOCALID_SATURN, ValorCavern_Movement_SaturnExclamationMark
     WaitMovement
     WaitTime 30, VAR_RESULT
     Message ValorCavern_Text_SaturnBattleIntro
@@ -95,7 +93,7 @@ ValorCavern_CommanderSaturn:
     End
 
     .balign 4, 0
-_013C:
+ValorCavern_Movement_SaturnExclamationMark:
     EmoteExclamationMark
     EndMovement
 

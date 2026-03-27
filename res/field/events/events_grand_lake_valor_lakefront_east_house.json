@@ -2,11 +2,11 @@
     "bg_events": [],
     "object_events": [
         {
-            "id": "GRAND_LAKE_VALOR_LAKEFRONT_EAST_HOUSE_BEAUTY_0",
+            "id": "LOCALID_BEAUTY",
             "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x025E",
+            "hidden_flag": "FLAG_HIDE_GRAND_LAKE_VALOR_LAKEFRONT_EAST_HOUSE_BEAUTY",
             "script": 1,
             "initial_dir": 1,
             "data": [],

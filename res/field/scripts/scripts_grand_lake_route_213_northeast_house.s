@@ -2,17 +2,17 @@
 #include "res/text/bank/grand_lake_route_213_northeast_house.h"
 
 
-    ScriptEntry _000A
-    ScriptEntry _0045
+    ScriptEntry GrandLakeRoute213NortheastHouse_RichBoy
+    ScriptEntry GrandLakeRoute213NortheastHouse_Lady
     ScriptEntryEnd
 
-_000A:
+GrandLakeRoute213NortheastHouse_RichBoy:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     CheckPoketchAppRegistered POKETCH_APPID_COINTOSS, VAR_RESULT
-    GoToIfNe VAR_RESULT, 0, _003A
-    Message 0
+    GoToIfNe VAR_RESULT, FALSE, GrandLakeRoute213NortheastHouse_CoinTossForDecisions
+    Message GrandLakeRoute213NortheastHouse_Text_ReservationsWereFull
     SetVar VAR_0x8004, POKETCH_APPID_COINTOSS
     Common_GivePoketchApp
     WaitButton
@@ -20,30 +20,30 @@ _000A:
     ReleaseAll
     End
 
-_003A:
-    Message 1
+GrandLakeRoute213NortheastHouse_CoinTossForDecisions:
+    Message GrandLakeRoute213NortheastHouse_Text_CoinTossForDecisions
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0045:
+GrandLakeRoute213NortheastHouse_Lady:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     CheckPoketchAppRegistered POKETCH_APPID_COINTOSS, VAR_RESULT
-    GoToIfNe VAR_RESULT, 0, _0071
-    GoTo _0066
+    GoToIfNe VAR_RESULT, FALSE, GrandLakeRoute213NortheastHouse_WantedJustUsTwo
+    GoTo GrandLakeRoute213NortheastHouse_HereBecauseCoinToss
 
-_0066:
-    Message 2
+GrandLakeRoute213NortheastHouse_HereBecauseCoinToss:
+    Message GrandLakeRoute213NortheastHouse_Text_HereBecauseCoinToss
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0071:
-    Message 3
+GrandLakeRoute213NortheastHouse_WantedJustUsTwo:
+    Message GrandLakeRoute213NortheastHouse_Text_WantedJustUsTwo
     WaitButton
     CloseMessage
     ReleaseAll

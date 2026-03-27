@@ -2,7 +2,7 @@
   "key": 24299,
   "messages": [
     {
-      "id": "pl_msg_00000496_00000",
+      "id": "Route213GateToPastoriaCity_Text_FootprintsInSand",
       "en_US": [
         "Footprints are left in the sand\n",
         "when you walk on a beach.\r",
@@ -11,14 +11,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000496_00001",
+      "id": "Route213GateToPastoriaCity_Text_DoYouKnowBattleFrontier",
       "en_US": [
         "Listen, do you know about the Battle\n",
         "Frontier?"
       ]
     },
     {
-      "id": "pl_msg_00000496_00002",
+      "id": "Route213GateToPastoriaCity_Text_YouKnow",
       "en_US": [
         "I guess you’re someone who’s in the\n",
         "know.\r",
@@ -28,7 +28,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000496_00003",
+      "id": "Route213GateToPastoriaCity_Text_YouDontKnow",
       "en_US": [
         "I guess you’re someone who’s kind of\n",
         "out of the loop.\r",

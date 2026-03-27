@@ -45,6 +45,7 @@
 #include "constants/init_script_types.h"
 #include "constants/items.h"
 #include "constants/map_object.h"
+#include "constants/overworld_weather.h"
 #include "constants/pokemon.h"
 #include "constants/regi_ruins.h"
 #include "constants/roamer_states.h"
@@ -4694,9 +4695,9 @@
     .short \destVar
     .endm
 
-    .macro ScrCmd_315 arg0
-    .short SCRCMD_315
-    .short \arg0
+    .macro GetOverworldWeather destVar
+    .short SCRCMD_GETOVERWORLDWEATHER
+    .short \destVar
     .endm
 
     .macro Dummy316

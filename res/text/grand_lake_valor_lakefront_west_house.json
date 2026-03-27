@@ -2,7 +2,7 @@
   "key": 37905,
   "messages": [
     {
-      "id": "pl_msg_00000404_00000",
+      "id": "GrandLakeValorLakefrontWestHouse_Text_ImTheGameDirector",
       "en_US": [
         "Hi!\n",
         "I’m the game director!\r",
@@ -13,7 +13,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000404_00001",
+      "id": "GrandLakeValorLakefrontWestHouse_Text_SeenEverySinnohPokemon",
       "en_US": [
         "Hi!\n",
         "I’m the game director!\r",
@@ -24,7 +24,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000404_00002",
+      "id": "GrandLakeValorLakefrontWestHouse_Text_ObtainedEveryPokemon",
       "en_US": [
         "Hi!\n",
         "I’m the game director!\r",
@@ -41,7 +41,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000404_00003",
+      "id": "GrandLakeValorLakefrontWestHouse_Text_StoriesAreUnique",
       "en_US": [
         "How did you meet all the Pokémon\n",
         "that filled your Pokédex?\r",

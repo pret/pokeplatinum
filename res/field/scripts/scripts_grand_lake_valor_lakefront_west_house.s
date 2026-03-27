@@ -2,33 +2,33 @@
 #include "res/text/bank/grand_lake_valor_lakefront_west_house.h"
 
 
-    ScriptEntry _0006
+    ScriptEntry GrandLakeValorLakefrontWestHouse_GameDirector
     ScriptEntryEnd
 
-_0006:
+GrandLakeValorLakefrontWestHouse_GameDirector:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x0001, _00D3
+    GoToIfSet FLAG_UNK_0x0001, GrandLakeValorLakefrontWestHouse_StoriesAreUnique
     CheckLocalDexCompleted VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _004C
-    GoToIfUnset FLAG_LOCAL_DEX_DIPLOMA_RECEIVED, _0057
+    GoToIfEq VAR_RESULT, FALSE, GrandLakeValorLakefrontWestHouse_ImTheGameDirector
+    GoToIfUnset FLAG_LOCAL_DEX_DIPLOMA_RECEIVED, GrandLakeValorLakefrontWestHouse_ShowLocalDexDiploma
     CheckNationalDexCompleted VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _0057
-    GoTo _0095
+    GoToIfEq VAR_RESULT, FALSE, GrandLakeValorLakefrontWestHouse_ShowLocalDexDiploma
+    GoTo GrandLakeValorLakefrontWestHouse_ShowNationalDexDiploma
 
-_004C:
-    Message 0
+GrandLakeValorLakefrontWestHouse_ImTheGameDirector:
+    Message GrandLakeValorLakefrontWestHouse_Text_ImTheGameDirector
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0057:
-    CallIfUnset FLAG_LOCAL_DEX_DIPLOMA_RECEIVED, _00DE
+GrandLakeValorLakefrontWestHouse_ShowLocalDexDiploma:
+    CallIfUnset FLAG_LOCAL_DEX_DIPLOMA_RECEIVED, GrandLakeValorLakefrontWestHouse_IncrementScoreLocalDexDiplomaReceived
     SetFlag FLAG_LOCAL_DEX_DIPLOMA_RECEIVED
     SetFlag FLAG_UNK_0x0001
-    Message 1
+    Message GrandLakeValorLakefrontWestHouse_Text_SeenEverySinnohPokemon
     PlayFanfare SEQ_FANFA4
     WaitFanfare
     CloseMessage
@@ -41,11 +41,11 @@ _0057:
     ReleaseAll
     End
 
-_0095:
-    CallIfUnset FLAG_NATIONAL_DEX_DIPLOMA_RECEIVED, _00E4
+GrandLakeValorLakefrontWestHouse_ShowNationalDexDiploma:
+    CallIfUnset FLAG_NATIONAL_DEX_DIPLOMA_RECEIVED, GrandLakeValorLakefrontWestHouse_IncrementScoreNationalDexDiplomaReceived
     SetFlag FLAG_NATIONAL_DEX_DIPLOMA_RECEIVED
     SetFlag FLAG_UNK_0x0001
-    Message 2
+    Message GrandLakeValorLakefrontWestHouse_Text_ObtainedEveryPokemon
     PlayFanfare SEQ_FANFA4
     WaitFanfare
     CloseMessage
@@ -58,18 +58,18 @@ _0095:
     ReleaseAll
     End
 
-_00D3:
-    Message 3
+GrandLakeValorLakefrontWestHouse_StoriesAreUnique:
+    Message GrandLakeValorLakefrontWestHouse_Text_StoriesAreUnique
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_00DE:
+GrandLakeValorLakefrontWestHouse_IncrementScoreLocalDexDiplomaReceived:
     IncrementTrainerScore2 TRAINER_SCORE_EVENT_LOCAL_DEX_DIPLOMA_RECEIVED
     Return
 
-_00E4:
+GrandLakeValorLakefrontWestHouse_IncrementScoreNationalDexDiplomaReceived:
     IncrementTrainerScore2 TRAINER_SCORE_EVENT_NATIONAL_DEX_DIPLOMA_RECEIVED
     Return
 

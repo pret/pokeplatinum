@@ -354,7 +354,7 @@ static BOOL ScrCmd_CountSealOccurence(ScriptContext *ctx);
 static BOOL ScrCmd_GiveOrTakeSeal(ScriptContext *ctx);
 static BOOL ScrCmd_GetPartyMonForm(ScriptContext *ctx);
 static BOOL ScrCmd_GetRematchTrainerID(ScriptContext *ctx);
-static BOOL ScrCmd_315(ScriptContext *ctx);
+static BOOL ScrCmd_GetOverworldWeather(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_09C(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_09D(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_09E(ScriptContext *ctx);
@@ -2824,11 +2824,11 @@ static BOOL ScrCmd_GetRematchTrainerID(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_315(ScriptContext *ctx)
+static BOOL ScrCmd_GetOverworldWeather(ScriptContext *ctx)
 {
-    u16 *v0 = ScriptContext_GetVarPointer(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *v0 = FieldOverworldState_GetWeather(SaveData_GetFieldOverworldState(ctx->fieldSystem->saveData));
+    *destVar = FieldOverworldState_GetWeather(SaveData_GetFieldOverworldState(ctx->fieldSystem->saveData));
     return FALSE;
 }
 

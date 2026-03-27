@@ -1,141 +1,142 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/valor_lakefront.h"
+#include "res/field/events/events_valor_lakefront.h"
 
 
-    ScriptEntry _0026
-    ScriptEntry _0061
-    ScriptEntry _009D
-    ScriptEntry _060C
-    ScriptEntry _0632
-    ScriptEntry _061F
-    ScriptEntry _06B8
-    ScriptEntry _06CF
-    ScriptEntry _06E2
+    ScriptEntry ValorLakefront_OnTransition
+    ScriptEntry ValorLakefront_OnLoad
+    ScriptEntry ValorLakefront_GruntM
+    ScriptEntry ValorLakefront_CameramanSouth
+    ScriptEntry ValorLakefront_Beauty
+    ScriptEntry ValorLakefront_CameramanNorth
+    ScriptEntry ValorLakefront_SignSevenStarsRestaurant
+    ScriptEntry ValorLakefront_Collector
+    ScriptEntry ValorLakefront_TriggerBlockSunyshore
     ScriptEntryEnd
 
-_0026:
-    CallIfSet FLAG_UNK_0x0106, _004B
-    GoToIfUnset FLAG_GALACTIC_LEFT_LAKE_VALOR, _0079
-    GoToIfSet FLAG_GALACTIC_LEFT_LAKE_VALOR, _008B
+ValorLakefront_OnTransition:
+    CallIfSet FLAG_TALKED_TO_VALOR_LAKEFRONT_GRUNT_M, ValorLakefront_SetGruntMPositionNorth
+    GoToIfUnset FLAG_GALACTIC_LEFT_LAKE_VALOR, ValorLakefront_SetWarpEventsLakeValorDrained
+    GoToIfSet FLAG_GALACTIC_LEFT_LAKE_VALOR, ValorLakefront_SetWarpEventsLakeValor
     End
     End
 
-_004B:
-    SetObjectEventPos 5, 0x2D3, 0x301
-    SetObjectEventDir 5, DIR_NORTH
-    SetObjectEventMovementType 5, MOVEMENT_TYPE_LOOK_NORTH
+ValorLakefront_SetGruntMPositionNorth:
+    SetObjectEventPos LOCALID_GRUNT_M, 723, 769
+    SetObjectEventDir LOCALID_GRUNT_M, DIR_NORTH
+    SetObjectEventMovementType LOCALID_GRUNT_M, MOVEMENT_TYPE_LOOK_NORTH
     Return
 
-_0061:
-    GoToIfUnset FLAG_GALACTIC_LEFT_LAKE_VALOR, _0079
-    GoToIfSet FLAG_GALACTIC_LEFT_LAKE_VALOR, _008B
+ValorLakefront_OnLoad:
+    GoToIfUnset FLAG_GALACTIC_LEFT_LAKE_VALOR, ValorLakefront_SetWarpEventsLakeValorDrained
+    GoToIfSet FLAG_GALACTIC_LEFT_LAKE_VALOR, ValorLakefront_SetWarpEventsLakeValor
     End
 
-_0079:
-    SetWarpEventPos 5, 0x2C9, 0x2F8
-    SetWarpEventPos 6, 0x2C9, 0x2F9
+ValorLakefront_SetWarpEventsLakeValorDrained:
+    SetWarpEventPos 5, 713, 760
+    SetWarpEventPos 6, 713, 761
     End
 
-_008B:
-    SetWarpEventPos 3, 0x2C9, 0x2F8
-    SetWarpEventPos 4, 0x2C9, 0x2F9
+ValorLakefront_SetWarpEventsLakeValor:
+    SetWarpEventPos 3, 713, 760
+    SetWarpEventPos 4, 713, 761
     End
 
-_009D:
+ValorLakefront_GruntM:
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    GoToIfSet FLAG_UNK_0x0106, _013A
-    Message 0
+    GoToIfSet FLAG_TALKED_TO_VALOR_LAKEFRONT_GRUNT_M, ValorLakefront_GruntMNorth
+    Message ValorLakefront_Text_WhyAmIRunning
     FacePlayer
-    ApplyMovement 5, _0214
+    ApplyMovement LOCALID_GRUNT_M, ValorLakefront_Movement_GruntMExclamationMark
     WaitMovement
-    Message 1
+    Message ValorLakefront_Text_YouWereEavesdropping
     CloseMessage
     GetPlayerDir VAR_0x8004
-    GoToIfEq VAR_0x8004, 1, _00E6
-    GoToIfEq VAR_0x8004, 0, _00FE
-    GoTo _010E
+    GoToIfEq VAR_0x8004, DIR_SOUTH, ValorLakefront_GruntMLeaveSouth
+    GoToIfEq VAR_0x8004, DIR_NORTH, ValorLakefront_GruntMLeaveNorth
+    GoTo ValorLakefront_GruntMLeaveWestEast
 
-_00E6:
-    ApplyMovement 5, _021C
-    ApplyMovement LOCALID_PLAYER, _01E0
+ValorLakefront_GruntMLeaveSouth:
+    ApplyMovement LOCALID_GRUNT_M, ValorLakefront_Movement_GruntMLeaveSouth
+    ApplyMovement LOCALID_PLAYER, ValorLakefront_Movement_PlayerWatchGruntMLeaveSouth
     WaitMovement
-    GoTo _0126
+    GoTo ValorLakefront_MoveGruntMNorth
 
-_00FE:
-    ApplyMovement 5, _0228
+ValorLakefront_GruntMLeaveNorth:
+    ApplyMovement LOCALID_GRUNT_M, ValorLakefront_Movement_GruntMLeaveNorthWestEast
     WaitMovement
-    GoTo _0126
+    GoTo ValorLakefront_MoveGruntMNorth
 
-_010E:
-    ApplyMovement 5, _0228
-    ApplyMovement LOCALID_PLAYER, _01EC
+ValorLakefront_GruntMLeaveWestEast:
+    ApplyMovement LOCALID_GRUNT_M, ValorLakefront_Movement_GruntMLeaveNorthWestEast
+    ApplyMovement LOCALID_PLAYER, ValorLakefront_Movement_PlayerWatchGruntMLeaveWestEast
     WaitMovement
-    GoTo _0126
+    GoTo ValorLakefront_MoveGruntMNorth
 
-_0126:
-    SetPosition 5, 0x2D3, 1, 0x301, 0
-    SetFlag FLAG_UNK_0x0106
+ValorLakefront_MoveGruntMNorth:
+    SetPosition LOCALID_GRUNT_M, 723, 1, 769, DIR_NORTH
+    SetFlag FLAG_TALKED_TO_VALOR_LAKEFRONT_GRUNT_M
     ReleaseAll
     End
 
-_013A:
+ValorLakefront_GruntMNorth:
     GetPlayerDir VAR_0x8000
     FacePlayer
-    Message 2
+    Message ValorLakefront_Text_MyPokemonWillKOYou
     CloseMessage
     StartTrainerBattle TRAINER_GALACTIC_GRUNT_VALOR_LAKEFRONT
     CheckWonBattle VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, _01D9
-    Message 3
+    GoToIfEq VAR_RESULT, FALSE, ValorLakefront_BlackOut
+    Message ValorLakefront_Text_ICantBattleAnymore
     CloseMessage
     GetPlayerDir VAR_0x8004
-    GoToIfEq VAR_0x8004, 1, _0185
-    GoToIfEq VAR_0x8004, 0, _019D
-    GoTo _01AD
+    GoToIfEq VAR_0x8004, DIR_SOUTH, ValorLakefront_GruntMNorthLeaveSouth
+    GoToIfEq VAR_0x8004, DIR_NORTH, ValorLakefront_GruntMNorthLeaveNorth
+    GoTo ValorLakefront_GruntMNorthLeaveWestEast
 
-_0185:
-    ApplyMovement 5, _0230
-    ApplyMovement LOCALID_PLAYER, _01F4
+ValorLakefront_GruntMNorthLeaveSouth:
+    ApplyMovement LOCALID_GRUNT_M, ValorLakefront_Movement_GruntMNorthLeaveSouth
+    ApplyMovement LOCALID_PLAYER, ValorLakefront_Movement_PlayerWatchGruntMNorthLeaveSouth
     WaitMovement
-    GoTo _01C5
+    GoTo ValorLakefront_RemoveGruntM
 
-_019D:
-    ApplyMovement 5, _023C
+ValorLakefront_GruntMNorthLeaveNorth:
+    ApplyMovement LOCALID_GRUNT_M, ValorLakefront_Movement_GruntMNorthLeaveNorthWestEast
     WaitMovement
-    GoTo _01C5
+    GoTo ValorLakefront_RemoveGruntM
 
-_01AD:
-    ApplyMovement 5, _023C
-    ApplyMovement LOCALID_PLAYER, _0208
+ValorLakefront_GruntMNorthLeaveWestEast:
+    ApplyMovement LOCALID_GRUNT_M, ValorLakefront_Movement_GruntMNorthLeaveNorthWestEast
+    ApplyMovement LOCALID_PLAYER, ValorLakefront_Movement_PlayerWatchGruntMNorthLeaveWestEast
     WaitMovement
-    GoTo _01C5
+    GoTo ValorLakefront_RemoveGruntM
 
-_01C5:
-    RemoveObject 5
-    SetFlag FLAG_UNK_0x0211
-    ClearFlag FLAG_UNK_0x0156
-    GoTo _0248
+ValorLakefront_RemoveGruntM:
+    RemoveObject LOCALID_GRUNT_M
+    SetFlag FLAG_HIDE_GRAND_LAKE_ROUTE_213_LOBBY_LOOKER
+    ClearFlag FLAG_BLOCK_PASTORIA_CITY_CROAGUNK_EVENT
+    GoTo ValorLakefront_Cynthia
     End
 
-_01D9:
+ValorLakefront_BlackOut:
     BlackOutFromBattle
     ReleaseAll
     End
 
     .balign 4, 0
-_01E0:
+ValorLakefront_Movement_PlayerWatchGruntMLeaveSouth:
     WalkOnSpotNormalEast
     WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
-_01EC:
+ValorLakefront_Movement_PlayerWatchGruntMLeaveWestEast:
     WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
-_01F4:
+ValorLakefront_Movement_PlayerWatchGruntMNorthLeaveSouth:
     Delay8
     WalkOnSpotNormalEast
     Delay8
@@ -143,219 +144,219 @@ _01F4:
     EndMovement
 
     .balign 4, 0
-_0208:
+ValorLakefront_Movement_PlayerWatchGruntMNorthLeaveWestEast:
     Delay8
     WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
-_0214:
+ValorLakefront_Movement_GruntMExclamationMark:
     EmoteExclamationMark
     EndMovement
 
     .balign 4, 0
-_021C:
+ValorLakefront_Movement_GruntMLeaveSouth:
     WalkFastEast
     WalkFastNorth 11
     EndMovement
 
     .balign 4, 0
-_0228:
+ValorLakefront_Movement_GruntMLeaveNorthWestEast:
     WalkFastNorth 10
     EndMovement
 
     .balign 4, 0
-_0230:
+ValorLakefront_Movement_GruntMNorthLeaveSouth:
     WalkNormalEast
     WalkSlowNorth 9
     EndMovement
 
     .balign 4, 0
-_023C:
+ValorLakefront_Movement_GruntMNorthLeaveNorthWestEast:
     WalkNormalNorth
     WalkSlowNorth 9
     EndMovement
 
-_0248:
-    CallIfEq VAR_0x8000, 0, _03EC
-    CallIfEq VAR_0x8000, 1, _03F6
-    CallIfEq VAR_0x8000, 2, _0400
-    CallIfEq VAR_0x8000, 3, _040A
-    ClearFlag FLAG_UNK_0x01AD
-    SetObjectEventDir 0, DIR_SOUTH
-    SetObjectEventMovementType 0, MOVEMENT_TYPE_LOOK_SOUTH
-    AddObject 0
-    ApplyMovement 0, _0594
+ValorLakefront_Cynthia:
+    CallIfEq VAR_0x8000, DIR_NORTH, ValorLakefront_SetCynthiaPositionNorth
+    CallIfEq VAR_0x8000, DIR_SOUTH, ValorLakefront_SetCynthiaPositionSouth
+    CallIfEq VAR_0x8000, DIR_WEST, ValorLakefront_SetCynthiaPositionWest
+    CallIfEq VAR_0x8000, DIR_EAST, ValorLakefront_SetCynthiaPositionEast
+    ClearFlag FLAG_HIDE_VALOR_LAKEFRONT_CYNTHIA
+    SetObjectEventDir LOCALID_CYNTHIA, DIR_SOUTH
+    SetObjectEventMovementType LOCALID_CYNTHIA, MOVEMENT_TYPE_LOOK_SOUTH
+    AddObject LOCALID_CYNTHIA
+    ApplyMovement LOCALID_CYNTHIA, ValorLakefront_Movement_CynthiaEnter
     WaitMovement
-    Message 4
+    Message ValorLakefront_Text_IHadToTalk
     CloseMessage
-    CallIfEq VAR_0x8000, 0, _0444
-    CallIfEq VAR_0x8000, 1, _044E
-    CallIfEq VAR_0x8000, 2, _0458
-    CallIfEq VAR_0x8000, 3, _0462
-    ClearFlag FLAG_UNK_0x01D5
-    SetObjectEventDir 10, DIR_NORTH
-    SetObjectEventMovementType 10, MOVEMENT_TYPE_LOOK_NORTH
-    AddObject 10
+    CallIfEq VAR_0x8000, DIR_NORTH, ValorLakefront_SetRivalPositionNorth
+    CallIfEq VAR_0x8000, DIR_SOUTH, ValorLakefront_SetRivalPositionSouth
+    CallIfEq VAR_0x8000, DIR_WEST, ValorLakefront_SetRivalPositionWest
+    CallIfEq VAR_0x8000, DIR_EAST, ValorLakefront_SetRivalPositionEast
+    ClearFlag FLAG_HIDE_VALOR_LAKEFRONT_RIVAL
+    SetObjectEventDir LOCALID_RIVAL, DIR_NORTH
+    SetObjectEventMovementType LOCALID_RIVAL, MOVEMENT_TYPE_LOOK_NORTH
+    AddObject LOCALID_RIVAL
     Common_SetRivalBGM
-    CallIfEq VAR_0x8000, 0, _046C
-    CallIfEq VAR_0x8000, 1, _0480
-    CallIfEq VAR_0x8000, 2, _0494
-    CallIfEq VAR_0x8000, 3, _04A8
+    CallIfEq VAR_0x8000, DIR_NORTH, ValorLakefront_RivalEnterNorth
+    CallIfEq VAR_0x8000, DIR_SOUTH, ValorLakefront_RivalEnterSouth
+    CallIfEq VAR_0x8000, DIR_WEST, ValorLakefront_RivalEnterWest
+    CallIfEq VAR_0x8000, DIR_EAST, ValorLakefront_RivalEnterEast
     BufferPlayerName 0
     BufferRivalName 1
-    Message 5
-    ApplyMovement 10, _0574
+    Message ValorLakefront_Text_WheredThatGoonGo
+    ApplyMovement LOCALID_RIVAL, ValorLakefront_Movement_RivalWalkOnSpotNorth
     WaitMovement
-    Message 6
-    CallIfEq VAR_0x8000, 0, _04BC
-    CallIfEq VAR_0x8000, 1, _04C8
-    CallIfEq VAR_0x8000, 2, _04D4
-    CallIfEq VAR_0x8000, 3, _04E0
-    Message 7
+    Message ValorLakefront_Text_IsThisYourSister
+    CallIfEq VAR_0x8000, DIR_NORTH, ValorLakefront_RivalFacePlayerNorth
+    CallIfEq VAR_0x8000, DIR_SOUTH, ValorLakefront_RivalFacePlayerSouth
+    CallIfEq VAR_0x8000, DIR_WEST, ValorLakefront_RivalFacePlayerWest
+    CallIfEq VAR_0x8000, DIR_EAST, ValorLakefront_RivalFacePlayerEast
+    Message ValorLakefront_Text_SeeYouAround
     CloseMessage
-    ApplyMovement 0, _05A8
-    ApplyMovement LOCALID_PLAYER, _05E8
-    ApplyMovement 10, _058C
+    ApplyMovement LOCALID_CYNTHIA, ValorLakefront_Movement_CynthiaWatchRivalLeave
+    ApplyMovement LOCALID_PLAYER, ValorLakefront_Movement_PlayerWatchRivalLeave
+    ApplyMovement LOCALID_RIVAL, ValorLakefront_Movement_RivalLeave
     WaitMovement
-    RemoveObject 10
+    RemoveObject LOCALID_RIVAL
     Common_FadeToDefaultMusic2
-    Message 8
+    Message ValorLakefront_Text_HesYourFriend
     CloseMessage
-    CallIfEq VAR_0x8000, 0, _0414
-    CallIfEq VAR_0x8000, 1, _0420
-    CallIfEq VAR_0x8000, 2, _042C
-    CallIfEq VAR_0x8000, 3, _0438
-    Message 9
+    CallIfEq VAR_0x8000, DIR_NORTH, ValorLakefront_CynthiaFacePlayerNorth
+    CallIfEq VAR_0x8000, DIR_SOUTH, ValorLakefront_CynthiaFacePlayerSouth
+    CallIfEq VAR_0x8000, DIR_WEST, ValorLakefront_CynthiaFacePlayerWest
+    CallIfEq VAR_0x8000, DIR_EAST, ValorLakefront_CynthiaFacePlayerEast
+    Message ValorLakefront_Text_HaveYouSeenPsyduck
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _04EC
-    GoToIfEq VAR_RESULT, MENU_NO, _04F7
+    GoToIfEq VAR_RESULT, MENU_YES, ValorLakefront_YeahThatsRight
+    GoToIfEq VAR_RESULT, MENU_NO, ValorLakefront_YouHaventSeen
     End
 
-_03EC:
-    SetObjectEventPos 0, 0x2D3, 0x2F9
+ValorLakefront_SetCynthiaPositionNorth:
+    SetObjectEventPos LOCALID_CYNTHIA, 723, 761
     Return
 
-_03F6:
-    SetObjectEventPos 0, 0x2D3, 0x2F7
+ValorLakefront_SetCynthiaPositionSouth:
+    SetObjectEventPos LOCALID_CYNTHIA, 723, 759
     Return
 
-_0400:
-    SetObjectEventPos 0, 0x2D4, 0x2F8
+ValorLakefront_SetCynthiaPositionWest:
+    SetObjectEventPos LOCALID_CYNTHIA, 724, 760
     Return
 
-_040A:
-    SetObjectEventPos 0, 0x2D2, 0x2F8
+ValorLakefront_SetCynthiaPositionEast:
+    SetObjectEventPos LOCALID_CYNTHIA, 722, 760
     Return
 
-_0414:
-    ApplyMovement 0, _05B4
+ValorLakefront_CynthiaFacePlayerNorth:
+    ApplyMovement LOCALID_CYNTHIA, ValorLakefront_Movement_CynthiaWalkOnSpotSouth
     WaitMovement
     Return
 
-_0420:
-    ApplyMovement 0, _05B4
+ValorLakefront_CynthiaFacePlayerSouth:
+    ApplyMovement LOCALID_CYNTHIA, ValorLakefront_Movement_CynthiaWalkOnSpotSouth
     WaitMovement
     Return
 
-_042C:
-    ApplyMovement 0, _05B4
+ValorLakefront_CynthiaFacePlayerWest:
+    ApplyMovement LOCALID_CYNTHIA, ValorLakefront_Movement_CynthiaWalkOnSpotSouth
     WaitMovement
     Return
 
-_0438:
-    ApplyMovement 0, _05B4
+ValorLakefront_CynthiaFacePlayerEast:
+    ApplyMovement LOCALID_CYNTHIA, ValorLakefront_Movement_CynthiaWalkOnSpotSouth
     WaitMovement
     Return
 
-_0444:
-    SetObjectEventPos 10, 0x2D4, 0x30C
+ValorLakefront_SetRivalPositionNorth:
+    SetObjectEventPos LOCALID_RIVAL, 724, 780
     Return
 
-_044E:
-    SetObjectEventPos 10, 0x2D4, 0x30A
+ValorLakefront_SetRivalPositionSouth:
+    SetObjectEventPos LOCALID_RIVAL, 724, 778
     Return
 
-_0458:
-    SetObjectEventPos 10, 0x2D3, 0x30B
+ValorLakefront_SetRivalPositionWest:
+    SetObjectEventPos LOCALID_RIVAL, 723, 779
     Return
 
-_0462:
-    SetObjectEventPos 10, 0x2D3, 0x30B
+ValorLakefront_SetRivalPositionEast:
+    SetObjectEventPos LOCALID_RIVAL, 723, 779
     Return
 
-_046C:
-    ApplyMovement LOCALID_PLAYER, _05D0
-    ApplyMovement 10, _055C
+ValorLakefront_RivalEnterNorth:
+    ApplyMovement LOCALID_PLAYER, ValorLakefront_Movement_PlayerWatchRivalEnterNorthSouthEast
+    ApplyMovement LOCALID_RIVAL, ValorLakefront_Movement_RivalEnterNorthSouthEast
     WaitMovement
     Return
 
-_0480:
-    ApplyMovement LOCALID_PLAYER, _05D0
-    ApplyMovement 10, _055C
+ValorLakefront_RivalEnterSouth:
+    ApplyMovement LOCALID_PLAYER, ValorLakefront_Movement_PlayerWatchRivalEnterNorthSouthEast
+    ApplyMovement LOCALID_RIVAL, ValorLakefront_Movement_RivalEnterNorthSouthEast
     WaitMovement
     Return
 
-_0494:
-    ApplyMovement LOCALID_PLAYER, _05DC
-    ApplyMovement 10, _0568
+ValorLakefront_RivalEnterWest:
+    ApplyMovement LOCALID_PLAYER, ValorLakefront_Movement_PlayerWatchRivalEnterWest
+    ApplyMovement LOCALID_RIVAL, ValorLakefront_Movement_RivalEnterWest
     WaitMovement
     Return
 
-_04A8:
-    ApplyMovement LOCALID_PLAYER, _05D0
-    ApplyMovement 10, _055C
+ValorLakefront_RivalEnterEast:
+    ApplyMovement LOCALID_PLAYER, ValorLakefront_Movement_PlayerWatchRivalEnterNorthSouthEast
+    ApplyMovement LOCALID_RIVAL, ValorLakefront_Movement_RivalEnterNorthSouthEast
     WaitMovement
     Return
 
-_04BC:
-    ApplyMovement 10, _057C
+ValorLakefront_RivalFacePlayerNorth:
+    ApplyMovement LOCALID_RIVAL, ValorLakefront_Movement_RivalWalkOnSpotWest
     WaitMovement
     Return
 
-_04C8:
-    ApplyMovement 10, _057C
+ValorLakefront_RivalFacePlayerSouth:
+    ApplyMovement LOCALID_RIVAL, ValorLakefront_Movement_RivalWalkOnSpotWest
     WaitMovement
     Return
 
-_04D4:
-    ApplyMovement 10, _0584
+ValorLakefront_RivalFacePlayerWest:
+    ApplyMovement LOCALID_RIVAL, ValorLakefront_Movement_RivalWalkOnSpotEast
     WaitMovement
     Return
 
-_04E0:
-    ApplyMovement 10, _057C
+ValorLakefront_RivalFacePlayerEast:
+    ApplyMovement LOCALID_RIVAL, ValorLakefront_Movement_RivalWalkOnSpotWest
     WaitMovement
     Return
 
-_04EC:
-    Message 10
-    GoTo _0502
+ValorLakefront_YeahThatsRight:
+    Message ValorLakefront_Text_YeahThatsRight
+    GoTo ValorLakefront_UseMedicineOnPsyduck
     End
 
-_04F7:
-    Message 11
-    GoTo _0502
+ValorLakefront_YouHaventSeen:
+    Message ValorLakefront_Text_YouHaventSeen
+    GoTo ValorLakefront_UseMedicineOnPsyduck
     End
 
-_0502:
-    Message 12
+ValorLakefront_UseMedicineOnPsyduck:
+    Message ValorLakefront_Text_UseMedicineOnPsyduck
     SetVar VAR_0x8004, ITEM_SECRETPOTION
     SetVar VAR_0x8005, 1
     Common_GiveItemQuantity
-    Message 13
+    Message ValorLakefront_Text_SeeYouLater
     CloseMessage
-    GoTo _0522
+    GoTo ValorLakefront_CynthiaLeave
     End
 
-_0522:
-    ApplyMovement 0, _05BC
-    ApplyMovement LOCALID_PLAYER, _0600
+ValorLakefront_CynthiaLeave:
+    ApplyMovement LOCALID_CYNTHIA, ValorLakefront_Movement_CynthiaLeave
+    ApplyMovement LOCALID_PLAYER, ValorLakefront_Movement_PlayerWatchCynthiaLeave
     WaitMovement
-    GoTo _053A
+    GoTo ValorLakefront_RemoveCynthia
 
-_053A:
-    RemoveObject 0
+ValorLakefront_RemoveCynthia:
+    RemoveObject LOCALID_CYNTHIA
     SetVar VAR_UNK_0x4083, 2
     SetFlag FLAG_UNK_0x00B7
     SetFlag FLAG_HIDE_PASTORIA_CITY_RIVAL
@@ -365,39 +366,39 @@ _053A:
     End
 
     .balign 4, 0
-_055C:
+ValorLakefront_Movement_RivalEnterNorthSouthEast:
     WalkFastNorth 10
     WalkOnSpotFastWest
     EndMovement
 
     .balign 4, 0
-_0568:
+ValorLakefront_Movement_RivalEnterWest:
     WalkFastNorth 10
     WalkOnSpotFastEast
     EndMovement
 
     .balign 4, 0
-_0574:
+ValorLakefront_Movement_RivalWalkOnSpotNorth:
     WalkOnSpotFastNorth
     EndMovement
 
     .balign 4, 0
-_057C:
+ValorLakefront_Movement_RivalWalkOnSpotWest:
     WalkOnSpotFastWest
     EndMovement
 
     .balign 4, 0
-_0584:
+ValorLakefront_Movement_RivalWalkOnSpotEast:
     WalkOnSpotFastEast
     EndMovement
 
     .balign 4, 0
-_058C:
+ValorLakefront_Movement_RivalLeave:
     WalkFastNorth 8
     EndMovement
 
     .balign 4, 0
-_0594:
+ValorLakefront_Movement_CynthiaEnter:
     WalkNormalSouth 4
     WalkOnSpotNormalNorth
     Delay8 2
@@ -405,18 +406,18 @@ _0594:
     EndMovement
 
     .balign 4, 0
-_05A8:
+ValorLakefront_Movement_CynthiaWatchRivalLeave:
     Delay8
     WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
-_05B4:
+ValorLakefront_Movement_CynthiaWalkOnSpotSouth:
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_05BC:
+ValorLakefront_Movement_CynthiaLeave:
     WalkNormalNorth 9
     EndMovement
 
@@ -426,19 +427,19 @@ ValorLakefront_UnusedMovement:
     EndMovement
 
     .balign 4, 0
-_05D0:
+ValorLakefront_Movement_PlayerWatchRivalEnterNorthSouthEast:
     Delay8 4
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_05DC:
+ValorLakefront_Movement_PlayerWatchRivalEnterWest:
     Delay8 4
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_05E8:
+ValorLakefront_Movement_PlayerWatchRivalLeave:
     Delay8 2
     WalkOnSpotNormalNorth
     EndMovement
@@ -449,167 +450,167 @@ ValorLakefront_UnusedMovement2:
     EndMovement
 
     .balign 4, 0
-_0600:
+ValorLakefront_Movement_PlayerWatchCynthiaLeave:
     Delay8
     FaceNorth
     EndMovement
 
-_060C:
-    NPCMessage 14
+ValorLakefront_CameramanSouth:
+    NPCMessage ValorLakefront_Text_LegendaryInThisLake
     End
 
-_061F:
-    NPCMessage 15
+ValorLakefront_CameramanNorth:
+    NPCMessage ValorLakefront_Text_PokemonWontComeOut
     End
 
-_0632:
+ValorLakefront_Beauty:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     CheckItem ITEM_SUITE_KEY, 1, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _065A
-    Message 18
+    GoToIfEq VAR_RESULT, TRUE, ValorLakefront_FoundSuiteKey
+    Message ValorLakefront_Text_DroppedSuiteKey
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_065A:
-    Message 19
+ValorLakefront_FoundSuiteKey:
+    Message ValorLakefront_Text_ThatsMySuiteKey
     CloseMessage
     RemoveItem ITEM_SUITE_KEY, 1, VAR_RESULT
-    ApplyMovement 8, _06A8
+    ApplyMovement LOCALID_BEAUTY, ValorLakefront_Movement_WalkOnSpotNorth
     WaitMovement
     LoadDoorAnimation 22, 24, 11, 13, ANIMATION_TAG_DOOR_1
     PlayDoorOpenAnimation ANIMATION_TAG_DOOR_1
     WaitForAnimation ANIMATION_TAG_DOOR_1
-    ApplyMovement 8, _06B0
+    ApplyMovement LOCALID_BEAUTY, ValorLakefront_Movement_WalkNorth
     WaitMovement
-    RemoveObject 8
+    RemoveObject LOCALID_BEAUTY
     PlayDoorCloseAnimation ANIMATION_TAG_DOOR_1
     WaitForAnimation ANIMATION_TAG_DOOR_1
     UnloadAnimation ANIMATION_TAG_DOOR_1
-    ClearFlag FLAG_UNK_0x025E
-    SetFlag FLAG_UNK_0x025D
+    ClearFlag FLAG_HIDE_GRAND_LAKE_VALOR_LAKEFRONT_EAST_HOUSE_BEAUTY
+    SetFlag FLAG_HIDE_VALOR_LAKEFRONT_BEAUTY
     ReleaseAll
     End
 
     .balign 4, 0
-_06A8:
+ValorLakefront_Movement_WalkOnSpotNorth:
     WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
-_06B0:
+ValorLakefront_Movement_WalkNorth:
     WalkNormalNorth
     EndMovement
 
-_06B8:
-    ShowLandmarkSign 20
+ValorLakefront_SignSevenStarsRestaurant:
+    ShowLandmarkSign ValorLakefront_Text_SignSevenStarsRestaurant
     End
 
-_06CF:
-    NPCMessage 17
+ValorLakefront_Collector:
+    NPCMessage ValorLakefront_Text_SunyshoreHadBlackout2
     End
 
-_06E2:
+ValorLakefront_TriggerBlockSunyshore:
     LockAll
-    ApplyMovement 9, _07A8
+    ApplyMovement LOCALID_COLLECTOR, ValorLakefront_Movement_CollectorExclamationMark
     WaitMovement
     GetPlayerMapPos VAR_0x8000, VAR_0x8001
-    CallIfEq VAR_0x8001, 0x315, _075D
-    CallIfEq VAR_0x8001, 0x316, _0769
-    CallIfEq VAR_0x8001, 0x317, _0775
-    ApplyMovement 9, _07FC
-    ApplyMovement LOCALID_PLAYER, _0804
+    CallIfEq VAR_0x8001, 789, ValorLakefront_CollectorBlockPlayerX789
+    CallIfEq VAR_0x8001, 790, ValorLakefront_CollectorBlockPlayerX790
+    CallIfEq VAR_0x8001, 791, ValorLakefront_CollectorBlockPlayerX791
+    ApplyMovement LOCALID_COLLECTOR, ValorLakefront_Movement_CollectorWalkWest
+    ApplyMovement LOCALID_PLAYER, ValorLakefront_Movement_PlayerGetPushedWest
     WaitMovement
-    Message 16
+    Message ValorLakefront_Text_SunyshoreHadBlackout
     CloseMessage
-    CallIfEq VAR_0x8001, 0x315, _0781
-    CallIfEq VAR_0x8001, 0x316, _078D
-    CallIfEq VAR_0x8001, 0x317, _0799
+    CallIfEq VAR_0x8001, 789, ValorLakefront_CollectorWalkBackX789
+    CallIfEq VAR_0x8001, 790, ValorLakefront_CollectorWalkBackX790
+    CallIfEq VAR_0x8001, 791, ValorLakefront_CollectorWalkBackX791
     ReleaseAll
     End
 
-_075D:
-    ApplyMovement 9, _07B4
+ValorLakefront_CollectorBlockPlayerX789:
+    ApplyMovement LOCALID_COLLECTOR, ValorLakefront_Movement_CollectorBlockPlayerX789
     WaitMovement
     Return
 
-_0769:
-    ApplyMovement 9, _07C0
+ValorLakefront_CollectorBlockPlayerX790:
+    ApplyMovement LOCALID_COLLECTOR, ValorLakefront_Movement_CollectorBlockPlayerX790
     WaitMovement
     Return
 
-_0775:
-    ApplyMovement 9, _07CC
+ValorLakefront_CollectorBlockPlayerX791:
+    ApplyMovement LOCALID_COLLECTOR, ValorLakefront_Movement_CollectorBlockPlayerX791
     WaitMovement
     Return
 
-_0781:
-    ApplyMovement 9, _07D8
+ValorLakefront_CollectorWalkBackX789:
+    ApplyMovement LOCALID_COLLECTOR, ValorLakefront_Movement_CollectorWalkBackX789
     WaitMovement
     Return
 
-_078D:
-    ApplyMovement 9, _07E4
+ValorLakefront_CollectorWalkBackX790:
+    ApplyMovement LOCALID_COLLECTOR, ValorLakefront_Movement_CollectorWalkBackX790
     WaitMovement
     Return
 
-_0799:
-    ApplyMovement 9, _07F0
+ValorLakefront_CollectorWalkBackX791:
+    ApplyMovement LOCALID_COLLECTOR, ValorLakefront_Movement_CollectorWalkBackX791
     WaitMovement
     Return
 
     .balign 4, 0
-_07A8:
+ValorLakefront_Movement_CollectorExclamationMark:
     EmoteExclamationMark
     Delay16
     EndMovement
 
     .balign 4, 0
-_07B4:
+ValorLakefront_Movement_CollectorBlockPlayerX789:
     WalkNormalEast
     WalkNormalSouth
     EndMovement
 
     .balign 4, 0
-_07C0:
+ValorLakefront_Movement_CollectorBlockPlayerX790:
     WalkNormalEast
     WalkNormalSouth 2
     EndMovement
 
     .balign 4, 0
-_07CC:
+ValorLakefront_Movement_CollectorBlockPlayerX791:
     WalkNormalEast
     WalkNormalSouth 3
     EndMovement
 
     .balign 4, 0
-_07D8:
+ValorLakefront_Movement_CollectorWalkBackX789:
     WalkNormalNorth
     FaceSouth
     EndMovement
 
     .balign 4, 0
-_07E4:
+ValorLakefront_Movement_CollectorWalkBackX790:
     WalkNormalNorth 2
     FaceSouth
     EndMovement
 
     .balign 4, 0
-_07F0:
+ValorLakefront_Movement_CollectorWalkBackX791:
     WalkNormalNorth 3
     FaceSouth
     EndMovement
 
     .balign 4, 0
-_07FC:
+ValorLakefront_Movement_CollectorWalkWest:
     WalkNormalWest
     EndMovement
 
     .balign 4, 0
-_0804:
+ValorLakefront_Movement_PlayerGetPushedWest:
     LockDir
     WalkNormalWest
     UnlockDir

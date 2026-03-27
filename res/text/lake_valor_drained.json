@@ -2,7 +2,7 @@
   "key": 13379,
   "messages": [
     {
-      "id": "pl_msg_00000294_00000",
+      "id": "LakeValorDrained_Text_WhatYouDoWant",
       "en_US": [
         "What do you want?\n",
         "You’re investigating the explosion?\r",
@@ -15,14 +15,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000294_00001",
+      "id": "LakeValorDrained_Text_MagikarpWorthless",
       "en_US": [
         "Even Team Galactic has no use for\n",
         "MAGIKARP! Worthless, all of them!"
       ]
     },
     {
-      "id": "pl_msg_00000294_00002",
+      "id": "LakeValorDrained_Text_NextStopLakeVerity",
       "en_US": [
         "Hahaha!\n",
         "Next stop, Lake Verity!\r",
@@ -33,7 +33,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000294_00003",
+      "id": "LakeValorDrained_Text_MagikarpIsFlopping",
       "en_US": "A MAGIKARP is weakly flopping about..."
     }
   ]

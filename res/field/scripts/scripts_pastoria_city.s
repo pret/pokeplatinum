@@ -185,7 +185,7 @@ PastoriaCity_GruntMLeaveSouth:
 PastoriaCity_RemoveGruntM:
     PlaySE SEQ_SE_DP_KAIDAN2
     RemoveObject LOCALID_GRUNT_M
-    SetFlag FLAG_UNK_0x0103
+    SetFlag FLAG_TALKED_TO_PASTORIA_CITY_GRUNT_M
     ReleaseAll
     End
 
@@ -940,7 +940,7 @@ PastoriaCity_Movement_RivalPushBackPlayer:
 
 PastoriaCity_TriggerFaceBoard:
     LockAll
-    GoToIfSet FLAG_UNK_0x0156, PastoriaCity_FaceBoardEnd
+    GoToIfSet FLAG_BLOCK_PASTORIA_CITY_CROAGUNK_EVENT, PastoriaCity_FaceBoardEnd
     SetVar VAR_PASTORIA_CITY_TRY_CROAGUNK_SCENE_STATE, 1
     GetRandom VAR_RESULT, 100
     GoToIfGe VAR_RESULT, 90, PastoriaCity_CroagunkScene

@@ -2,7 +2,7 @@
   "key": 39572,
   "messages": [
     {
-      "id": "pl_msg_00000495_00000",
+      "id": "Route213_Text_WeNeededEnergy",
       "en_US": [
         "We needed the energy from the\n",
         "Valley Windworks to make this...\r",
@@ -13,7 +13,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000495_00001",
+      "id": "Route213_Text_YouWereEavesdropping",
       "en_US": [
         "Graw! You were eavesdropping!\n",
         "I was just thinking out loud!\r",
@@ -22,7 +22,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000495_00002",
+      "id": "Route213_Text_BombPacksAWallop",
       "en_US": [
         "But, boy, this Galactic Bomb packs\n",
         "a pretty big wallop.\r",
@@ -33,7 +33,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000495_00003",
+      "id": "Route213_Text_YoureAPersistentPest",
       "en_US": [
         "Graw! You were eavesdropping!\n",
         "I was just thinking out loud!\r",
@@ -44,7 +44,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000495_00004",
+      "id": "Route213_Text_ThatIsTeamGalactic",
       "en_US": [
         "Looker: Hello, my friend!\r",
         "The cargo that the Team Galactic\n",
@@ -60,7 +60,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000495_00005",
+      "id": "Route213_Text_HowDidIMissIt",
       "en_US": [
         "Oh, no, no, no!\n",
         "How did I miss it?\r",
@@ -71,14 +71,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000495_00006",
+      "id": "Route213_Text_ThisWillNotDo",
       "en_US": [
         "Ach! This will not do!\n",
         "Wait! Wait, I say!\r"
       ]
     },
     {
-      "id": "pl_msg_00000495_00007",
+      "id": "Route213_Text_TheresAFancyHotel",
       "en_US": [
         "There’s a fancy hotel in a fancy\n",
         "place with a fancy restaurant.\r",
@@ -88,7 +88,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000495_00008",
+      "id": "Route213_Text_RatherPoolThanSea",
       "en_US": [
         "I’d rather be in a pool than the sea.\r",
         "The salty tang of the sea tastes like\n",
@@ -96,7 +96,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000495_00009",
+      "id": "Route213_Text_SomethingOnBigCliff",
       "en_US": [
         "There’s something on top of this\n",
         "big cliff here!\r",
@@ -105,21 +105,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000495_00010",
+      "id": "Route213_Text_SignRt213PastoriaCity",
       "en_US": [
         "Rt. 213\n",
         "Pastoria City"
       ]
     },
     {
-      "id": "pl_msg_00000495_00011",
+      "id": "Route213_Text_SignHotelGrandLake",
       "en_US": [
         "Hotel Grand Lake\n",
         "Another World on Lake Valor"
       ]
     },
     {
-      "id": "pl_msg_00000495_00012",
+      "id": "Route213_Text_SignDrFootstepsHouse",
       "en_US": [
         "Dr. Footstep’s House\n",
         "Footprints Reveal All"

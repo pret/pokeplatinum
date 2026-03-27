@@ -2,7 +2,7 @@
   "key": 13391,
   "messages": [
     {
-      "id": "pl_msg_00000295_00000",
+      "id": "LakeValor_Text_MissionIsProceeding",
       "en_US": [
         "The mission is proceeding without\n",
         "a hitch. The boss should be pleased.\r",
@@ -11,7 +11,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000295_00001",
+      "id": "LakeValor_Text_IRecognizeYourFace",
       "en_US": [
         "I recognize your face!\r",
         "You’re the child who raided the Team\n",
@@ -25,7 +25,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000295_00002",
+      "id": "LakeValor_Text_OnlyBoughtTime",
       "en_US": [
         "Gah! Even I, a Commander, only\n",
         "managed to buy us time?\r",
@@ -41,19 +41,19 @@
       ]
     },
     {
-      "id": "pl_msg_00000295_00003",
+      "id": "LakeValor_Text_Dummy3",
       "garbage": 46
     },
     {
-      "id": "pl_msg_00000295_00004",
+      "id": "LakeValor_Text_Dummy4",
       "garbage": 27
     },
     {
-      "id": "pl_msg_00000295_00005",
+      "id": "LakeValor_Text_Dummy5",
       "garbage": 44
     },
     {
-      "id": "pl_msg_00000295_00006",
+      "id": "LakeValor_Text_MagikarpisFlopping",
       "en_US": "A MAGIKARP is weakly flopping about..."
     }
   ]

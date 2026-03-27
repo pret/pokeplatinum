@@ -2,7 +2,7 @@
   "key": 57034,
   "messages": [
     {
-      "id": "pl_msg_00000500_00000",
+      "id": "GrandLakeRoute213NorthwestHouse_Text_TravelingTroupe",
       "en_US": [
         "We’re a traveling troupe of street\n",
         "performers.\r",
@@ -11,7 +11,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000500_00001",
+      "id": "GrandLakeRoute213NorthwestHouse_Text_ExplainTrickRoom",
       "en_US": [
         "Trick Room is a doozy of a weird\n",
         "time-twister move.\r",
@@ -24,7 +24,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000500_00002",
+      "id": "GrandLakeRoute213NorthwestHouse_Text_ReadYourFortune",
       "en_US": [
         "Let me gaze into your eyes...\n",
         "I will read your fortune...\r",
@@ -32,7 +32,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000500_00003",
+      "id": "GrandLakeRoute213NorthwestHouse_Text_MagicalEncounter",
       "en_US": [
         "A magical encounter is in the winds...\r",
         "Though I cannot tell whether it be\n",
@@ -40,7 +40,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000500_00004",
+      "id": "GrandLakeRoute213NorthwestHouse_Text_BriefJoy",
       "en_US": [
         "A brief occasion of joy is imminent...\r",
         "But remember this: the good and the\n",
@@ -48,7 +48,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000500_00005",
+      "id": "GrandLakeRoute213NorthwestHouse_Text_UnseeableAccident",
       "en_US": [
         "An unseeable accident lurks...\r",
         "Whether you succumb to it or rise\n",
@@ -56,7 +56,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000500_00006",
+      "id": "GrandLakeRoute213NorthwestHouse_Text_DestinyShallShift",
       "en_US": [
         "Destiny shall shift...\r",
         "Whether that bodes well or ill is\n",
@@ -64,7 +64,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000500_00007",
+      "id": "GrandLakeRoute213NorthwestHouse_Text_GazedIntoManyEyes",
       "en_US": [
         "Many are the eyes that I have gazed\n",
         "into over the years, be they human\f",
@@ -76,7 +76,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000500_00008",
+      "id": "GrandLakeRoute213NorthwestHouse_Text_ImASimpleGuy",
       "en_US": [
         "Me, I’m just a simple guy.\n",
         "I let my guitar do all my talking.\f",

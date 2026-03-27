@@ -2,26 +2,26 @@
 #include "res/text/bank/lake_valor_drained.h"
 
 
-    ScriptEntry _0012
-    ScriptEntry _0025
-    ScriptEntry _0038
-    ScriptEntry _004B
+    ScriptEntry LakeValorDrained_GruntM1
+    ScriptEntry LakeValorDrained_GruntF
+    ScriptEntry LakeValorDrained_GruntM2
+    ScriptEntry LakeValorDrained_Magikarp
     ScriptEntryEnd
 
-_0012:
-    NPCMessage 0
+LakeValorDrained_GruntM1:
+    NPCMessage LakeValorDrained_Text_WhatYouDoWant
     End
 
-_0025:
-    NPCMessage 1
+LakeValorDrained_GruntF:
+    NPCMessage LakeValorDrained_Text_MagikarpWorthless
     End
 
-_0038:
-    NPCMessage 2
+LakeValorDrained_GruntM2:
+    NPCMessage LakeValorDrained_Text_NextStopLakeVerity
     End
 
-_004B:
-    PokemonCryAndMessage SPECIES_MAGIKARP, 3, 11
+LakeValorDrained_Magikarp:
+    PokemonCryAndMessage SPECIES_MAGIKARP, LakeValorDrained_Text_MagikarpIsFlopping, 11
     End
 
     .balign 4, 0

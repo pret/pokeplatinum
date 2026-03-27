@@ -35,11 +35,11 @@
     ],
     "object_events": [
         {
-            "id": "VALOR_LAKEFRONT_CYNTHIA_0",
+            "id": "LOCALID_CYNTHIA",
             "graphics_id": "OBJ_EVENT_GFX_CYNTHIA",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x01AD",
+            "hidden_flag": "FLAG_HIDE_VALOR_LAKEFRONT_CYNTHIA",
             "script": 0,
             "initial_dir": 2,
             "data": [],
@@ -50,11 +50,11 @@
             "y": 0
         },
         {
-            "id": "VALOR_LAKEFRONT_CAMERAMAN_1",
+            "id": "LOCALID_CAMERAMAN_NORTH",
             "graphics_id": "OBJ_EVENT_GFX_CAMERAMAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x01AE",
+            "hidden_flag": "FLAG_HIDE_VALOR_LAKEFRONT_CAMERAMEN",
             "script": 6,
             "initial_dir": 3,
             "data": [],
@@ -65,11 +65,11 @@
             "y": 0
         },
         {
-            "id": "VALOR_LAKEFRONT_CAMERAMAN_2",
+            "id": "LOCALID_CAMERAMAN_SOUTH",
             "graphics_id": "OBJ_EVENT_GFX_CAMERAMAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x01AE",
+            "hidden_flag": "FLAG_HIDE_VALOR_LAKEFRONT_CAMERAMEN",
             "script": 4,
             "initial_dir": 3,
             "data": [],
@@ -95,7 +95,7 @@
             "y": 0
         },
         {
-            "id": "VALOR_LAKEFRONT_POKEBALL_4",
+            "id": "LOCALID_ITEM_ULTRA_BALL",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -110,11 +110,11 @@
             "y": 0
         },
         {
-            "id": "VALOR_LAKEFRONT_GRUNT_M_5",
+            "id": "LOCALID_GRUNT_M",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x021B",
+            "hidden_flag": "FLAG_HIDE_VALOR_LAKEFRONT_GRUNT_M",
             "script": 3,
             "initial_dir": 0,
             "data": [],
@@ -125,7 +125,7 @@
             "y": 0
         },
         {
-            "id": "VALOR_LAKEFRONT_BEAUTY_6",
+            "id": "LOCALID_BEAUTY_ROUTE_213",
             "clone_id": 31,
             "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
@@ -141,7 +141,7 @@
             "y": 0
         },
         {
-            "id": "VALOR_LAKEFRONT_SIGNBOARD_7",
+            "id": "LOCALID_SIGNBOARD_SEVEN_STARS_RESTAURANT",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -156,11 +156,11 @@
             "y": 0
         },
         {
-            "id": "VALOR_LAKEFRONT_BEAUTY_8",
+            "id": "LOCALID_BEAUTY",
             "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x025D",
+            "hidden_flag": "FLAG_HIDE_VALOR_LAKEFRONT_BEAUTY",
             "script": 5,
             "initial_dir": 0,
             "data": [],
@@ -171,7 +171,7 @@
             "y": 0
         },
         {
-            "id": "VALOR_LAKEFRONT_COLLECTOR_9",
+            "id": "LOCALID_COLLECTOR",
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -186,11 +186,11 @@
             "y": 0
         },
         {
-            "id": "VALOR_LAKEFRONT_RIVAL_10",
+            "id": "LOCALID_RIVAL",
             "graphics_id": "OBJ_EVENT_GFX_BARRY",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x01D5",
+            "hidden_flag": "FLAG_HIDE_VALOR_LAKEFRONT_RIVAL",
             "script": 0,
             "initial_dir": 0,
             "data": [],

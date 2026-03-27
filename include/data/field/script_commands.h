@@ -813,7 +813,7 @@ const ScrCmdFunc gFieldScriptCommands[] = {
     ScriptCommandTableEntry(SCRCMD_DELETEDISTORTIONWORLDMAPOBJECT,                       ScrCmd_DeleteDistortionWorldMapObject)
     ScriptCommandTableEntry(SCRCMD_CHECKHEAPMEMORY,                                      ScrCmd_CheckHeapMemory)
     ScriptCommandTableEntry(SCRCMD_GETBATTLERESULT,                                      ScrCmd_GetBattleResult)
-    ScriptCommandTableEntry(SCRCMD_315,                                                  ScrCmd_315)
+    ScriptCommandTableEntry(SCRCMD_GETOVERWORLDWEATHER,                                  ScrCmd_GetOverworldWeather)
     ScriptCommandTableEntry(SCRCMD_DUMMY316,                                             ScrCmd_Dummy316)
     ScriptCommandTableEntry(SCRCMD_GETPLAYER3DPOS,                                       ScrCmd_GetPlayer3DPos)
     ScriptCommandTableEntry(SCRCMD_STARTFATEFULENCOUNTER,                                ScrCmd_StartFatefulEncounter)

@@ -2,7 +2,7 @@
   "key": 18407,
   "messages": [
     {
-      "id": "pl_msg_00000401_00000",
+      "id": "ValorLakefront_Text_WhyAmIRunning",
       "en_US": [
         "...Pant...pant...\r",
         "...Why am I running like this anyway?!\r",
@@ -14,7 +14,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000401_00001",
+      "id": "ValorLakefront_Text_YouWereEavesdropping",
       "en_US": [
         "Gweh! You were eavesdropping!\n",
         "I was only talking to myself!\r",
@@ -25,7 +25,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000401_00002",
+      "id": "ValorLakefront_Text_MyPokemonWillKOYou",
       "en_US": [
         "Aww, no...\n",
         "You’re still on my tail...?\f",
@@ -35,7 +35,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000401_00003",
+      "id": "ValorLakefront_Text_ICantBattleAnymore",
       "en_US": [
         "I can’t battle anymore...\n",
         "I’m running on fumes...\r",
@@ -46,7 +46,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000401_00004",
+      "id": "ValorLakefront_Text_IHadToTalk",
       "en_US": [
         "Cynthia: Oh, hello, long time no see!\n",
         "How is your Pokédex filling up?\r",
@@ -66,14 +66,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000401_00005",
+      "id": "ValorLakefront_Text_WheredThatGoonGo",
       "en_US": [
         "{STRVAR_1 3, 1, 0}: Hey, {STRVAR_1 3, 0, 0}!\n",
         "Where’d that Galactic goon run off to?\r"
       ]
     },
     {
-      "id": "pl_msg_00000401_00006",
+      "id": "ValorLakefront_Text_IsThisYourSister",
       "en_US": [
         "Huh?\n",
         "Is this your older sister?\r",
@@ -82,7 +82,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000401_00007",
+      "id": "ValorLakefront_Text_SeeYouAround",
       "en_US": [
         "That explosion in the Great Marsh?\n",
         "It wasn’t anything serious.\r",
@@ -95,7 +95,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000401_00008",
+      "id": "ValorLakefront_Text_HesYourFriend",
       "en_US": [
         "Cynthia: He’s your friend?\r",
         "He’s more impatient than he is\n",
@@ -103,7 +103,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000401_00009",
+      "id": "ValorLakefront_Text_HaveYouSeenPsyduck",
       "en_US": [
         "Cynthia: So, getting back to what I\n",
         "started saying earlier...\r",
@@ -112,7 +112,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000401_00010",
+      "id": "ValorLakefront_Text_YeahThatsRight",
       "en_US": [
         "Cynthia: Yes, that’s right.\n",
         "By the café on Route 210.\r",
@@ -122,7 +122,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000401_00011",
+      "id": "ValorLakefront_Text_YouHaventSeen",
       "en_US": [
         "Cynthia: You haven’t seen them?\n",
         "By the café on Route 210.\r",
@@ -132,7 +132,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000401_00012",
+      "id": "ValorLakefront_Text_UseMedicineOnPsyduck",
       "en_US": [
         "Anyway, what you should do is use\n",
         "this medicine on the PSYDUCK.\r",
@@ -141,7 +141,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000401_00013",
+      "id": "ValorLakefront_Text_SeeYouLater",
       "en_US": [
         "Cynthia: I went on a big adventure\n",
         "with a Pokédex when I was younger.\r",
@@ -153,7 +153,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000401_00014",
+      "id": "ValorLakefront_Text_LegendaryInThisLake",
       "en_US": [
         "They say there’s a legendary Pokémon\n",
         "in this lake.\r",
@@ -164,7 +164,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000401_00015",
+      "id": "ValorLakefront_Text_PokemonWontComeOut",
       "en_US": [
         "The Pokémon of the lake won’t come out\n",
         "if it senses people.\r",
@@ -172,7 +172,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000401_00016",
+      "id": "ValorLakefront_Text_SunyshoreHadBlackout",
       "en_US": [
         "Stop, stop!\n",
         "Yes, you!\r",
@@ -183,7 +183,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000401_00017",
+      "id": "ValorLakefront_Text_SunyshoreHadBlackout2",
       "en_US": [
         "Stop, stop!\n",
         "Yes, you!\r",
@@ -194,7 +194,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000401_00018",
+      "id": "ValorLakefront_Text_DroppedSuiteKey",
       "en_US": [
         "What am I to do...?\r",
         "I’ve gone and dropped my Suite\n",
@@ -208,7 +208,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000401_00019",
+      "id": "ValorLakefront_Text_ThatsMySuiteKey",
       "en_US": [
         "What am I to do...?\r",
         "I’ve gone and dropped my Suite\n",
@@ -220,7 +220,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000401_00020",
+      "id": "ValorLakefront_Text_SignSevenStarsRestaurant",
       "en_US": [
         "Seven Stars Restaurant\n",
         "More Flavor Than You Can Wish For"

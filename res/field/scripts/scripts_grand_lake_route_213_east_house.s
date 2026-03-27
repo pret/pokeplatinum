@@ -2,43 +2,43 @@
 #include "res/text/bank/grand_lake_route_213_east_house.h"
 
 
-    ScriptEntry _0006
+    ScriptEntry GrandLakeRoute213EastHouse_MiddleAgedMan
     ScriptEntryEnd
 
-_0006:
+GrandLakeRoute213EastHouse_MiddleAgedMan:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 0
+    Message GrandLakeRoute213EastHouse_Text_YoureATraveler
     GetRandom VAR_RESULT, 4
-    GoToIfEq VAR_RESULT, 0, _0044
-    GoToIfEq VAR_RESULT, 1, _004F
-    GoToIfEq VAR_RESULT, 2, _005A
-    GoTo _0065
+    GoToIfEq VAR_RESULT, 0, GrandLakeRoute213EastHouse_MtMoonKanto
+    GoToIfEq VAR_RESULT, 1, GrandLakeRoute213EastHouse_TinTowerJohto
+    GoToIfEq VAR_RESULT, 2, GrandLakeRoute213EastHouse_SpaceCenterHoenn
+    GoTo GrandLakeRoute213EastHouse_WhirlIslandsJohto
 
-_0044:
-    Message 1
+GrandLakeRoute213EastHouse_MtMoonKanto:
+    Message GrandLakeRoute213EastHouse_Text_MtMoonKanto
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_004F:
-    Message 2
+GrandLakeRoute213EastHouse_TinTowerJohto:
+    Message GrandLakeRoute213EastHouse_Text_TinTowerJohto
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_005A:
-    Message 3
+GrandLakeRoute213EastHouse_SpaceCenterHoenn:
+    Message GrandLakeRoute213EastHouse_Text_SpaceCenterHoenn
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0065:
-    Message 4
+GrandLakeRoute213EastHouse_WhirlIslandsJohto:
+    Message GrandLakeRoute213EastHouse_Text_WhirlIslandsJohto
     WaitButton
     CloseMessage
     ReleaseAll
