@@ -1,6 +1,6 @@
-#include "crypto/rc4.h"
-
 #include <nitro/types.h>
+
+#include "crypto/rc4.h"
 
 void CRYPTO_RC4Init(CRYPTORC4Context *ctx, const void *key, u32 keyLength)
 {
