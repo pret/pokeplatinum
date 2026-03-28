@@ -352,7 +352,7 @@ static BOOL ov5_021EAD38(UnkStruct_ov5_021EAE78 *param0)
     if (v4 == 0xffffffff) {
         return 0;
     } else if (v4 == 0) {
-        sub_02030788(SaveData_GetBattleFrontier(param0->saveData), param0->unk_90);
+        BattleFrontierStats_ClearFriendStatsAndShift(SaveData_GetBattleFrontier(param0->saveData), param0->unk_90);
         sub_0202AFD4(v0, param0->unk_90);
         sub_02039298(param0->saveData, param0->unk_8C, 32 - 1, HEAP_ID_FIELD1, 0);
         param0->unk_48 = 1;

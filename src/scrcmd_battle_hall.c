@@ -88,17 +88,17 @@ BOOL ScrCmd_2CC(ScriptContext *ctx)
         break;
     case 1:
         if (arg == 3) {
-            *result = sub_02030698(SaveData_GetBattleFrontier(ctx->fieldSystem->saveData),
+            *result = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(ctx->fieldSystem->saveData),
                 106,
-                sub_0205E6A8(106));
+                BattleFrontierStats_GetHostFriendIdx(106));
         } else {
             *result = sub_020302B4(v11, 5, arg, 0, NULL);
         }
         break;
     case 2:
-        *result = sub_02030698(SaveData_GetBattleFrontier(ctx->fieldSystem->saveData),
-            sub_0205E55C(arg),
-            sub_0205E6A8(sub_0205E55C(arg)));
+        *result = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(ctx->fieldSystem->saveData),
+            BattleFrontierStats_GetHallLatestSpeciesIndex(arg),
+            BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetHallLatestSpeciesIndex(arg)));
         break;
     case 3:
         sub_0204FA50(ctx->fieldSystem->saveData, v11, arg);
@@ -459,7 +459,7 @@ static const BattleHallMilestone sBattleHallRecordMilestones[] = {
 
 BOOL ScrCmd_GetBattleHallRecordKeeperStats(ScriptContext *ctx)
 {
-    BattleFrontierStage *frontierStage;
+    BattleHallWinRecords *records;
     FieldSystem *fieldSystem = ctx->fieldSystem;
     StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 curStreakStrIndex = ScriptContext_ReadByte(ctx);
@@ -477,17 +477,17 @@ BOOL ScrCmd_GetBattleHallRecordKeeperStats(ScriptContext *ctx)
         return FALSE;
     }
 
-    frontierStage = sub_020308A0(fieldSystem->saveData, HEAP_ID_FIELD3, &loadResult);
+    records = BattleHallWinRecords_Get(fieldSystem->saveData, HEAP_ID_FIELD3, &loadResult);
     if (loadResult != LOAD_RESULT_OK) {
         totalWinRecord = 0;
     } else {
         for (u32 species = 0; species < NATIONAL_DEX_COUNT; species++) {
-            totalWinRecord += sub_020308BC(fieldSystem->saveData, frontierStage, FRONTIER_CHALLENGE_SINGLE, species);
+            totalWinRecord += BattleFrontierStats_GetHallRecordForSpecies(fieldSystem->saveData, records, FRONTIER_CHALLENGE_SINGLE, species);
         }
     }
 
-    if (frontierStage != NULL) {
-        Heap_Free(frontierStage);
+    if (records != NULL) {
+        Heap_Free(records);
     }
 
     StringTemplate_SetNumber(*strTemplate, curStreakStrIndex, totalWinRecord, GetNumberDigitCount(totalWinRecord), 1, 1);
@@ -538,7 +538,7 @@ BOOL ScrCmd_GetBattleHallRecordKeeperStats(ScriptContext *ctx)
 
 BOOL ScrCmd_GetNumSpeciesWithBattleHallRecords(ScriptContext *ctx)
 {
-    BattleFrontierStage *frontierStage;
+    BattleHallWinRecords *records;
     u32 combinedRecord, species;
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u16 *result = ScriptContext_GetVarPointer(ctx);
@@ -551,16 +551,16 @@ BOOL ScrCmd_GetNumSpeciesWithBattleHallRecords(ScriptContext *ctx)
         return FALSE;
     }
 
-    frontierStage = sub_020308A0(fieldSystem->saveData, HEAP_ID_FIELD3, &loadResult);
+    records = BattleHallWinRecords_Get(fieldSystem->saveData, HEAP_ID_FIELD3, &loadResult);
     if (loadResult != LOAD_RESULT_OK) {
         numSpeciesWithRecord = 0;
     } else {
         for (species = 0; species < NATIONAL_DEX_COUNT; species++) {
             combinedRecord = 0;
 
-            combinedRecord += sub_020308BC(fieldSystem->saveData, frontierStage, FRONTIER_CHALLENGE_SINGLE, species);
-            combinedRecord += sub_020308BC(fieldSystem->saveData, frontierStage, FRONTIER_CHALLENGE_DOUBLE, species);
-            combinedRecord += sub_020308BC(fieldSystem->saveData, frontierStage, FRONTIER_CHALLENGE_MULTI, species);
+            combinedRecord += BattleFrontierStats_GetHallRecordForSpecies(fieldSystem->saveData, records, FRONTIER_CHALLENGE_SINGLE, species);
+            combinedRecord += BattleFrontierStats_GetHallRecordForSpecies(fieldSystem->saveData, records, FRONTIER_CHALLENGE_DOUBLE, species);
+            combinedRecord += BattleFrontierStats_GetHallRecordForSpecies(fieldSystem->saveData, records, FRONTIER_CHALLENGE_MULTI, species);
 
             if (combinedRecord > 0) {
                 numSpeciesWithRecord++;
@@ -568,8 +568,8 @@ BOOL ScrCmd_GetNumSpeciesWithBattleHallRecords(ScriptContext *ctx)
         }
     }
 
-    if (frontierStage != NULL) {
-        Heap_Free(frontierStage);
+    if (records != NULL) {
+        Heap_Free(records);
     }
 
     *result = numSpeciesWithRecord;
@@ -578,7 +578,7 @@ BOOL ScrCmd_GetNumSpeciesWithBattleHallRecords(ScriptContext *ctx)
 
 BOOL ScrCmd_GetBattleHallTotalSinglesRecord(ScriptContext *ctx)
 {
-    BattleFrontierStage *frontierStage;
+    BattleHallWinRecords *records;
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u16 *result = ScriptContext_GetVarPointer(ctx);
 
@@ -590,17 +590,17 @@ BOOL ScrCmd_GetBattleHallTotalSinglesRecord(ScriptContext *ctx)
         return FALSE;
     }
 
-    frontierStage = sub_020308A0(fieldSystem->saveData, HEAP_ID_FIELD3, &loadResult);
+    records = BattleHallWinRecords_Get(fieldSystem->saveData, HEAP_ID_FIELD3, &loadResult);
     if (loadResult != LOAD_RESULT_OK) {
         totalRecord = 0;
     } else {
         for (u32 species = 0; species < NATIONAL_DEX_COUNT; species++) {
-            totalRecord += sub_020308BC(fieldSystem->saveData, frontierStage, FRONTIER_CHALLENGE_SINGLE, species);
+            totalRecord += BattleFrontierStats_GetHallRecordForSpecies(fieldSystem->saveData, records, FRONTIER_CHALLENGE_SINGLE, species);
         }
     }
 
-    if (frontierStage != NULL) {
-        Heap_Free(frontierStage);
+    if (records != NULL) {
+        Heap_Free(records);
     }
 
     if (totalRecord > 10000) {
@@ -615,12 +615,12 @@ BOOL ScrCmd_32A(ScriptContext *ctx)
 {
     u16 *v2 = ScriptContext_GetVarPointer(ctx);
 
-    u16 v0 = sub_02030698(SaveData_GetBattleFrontier(ctx->fieldSystem->saveData),
-        sub_0205E55C(0),
+    u16 v0 = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(ctx->fieldSystem->saveData),
+        BattleFrontierStats_GetHallLatestSpeciesIndex(0),
         0xff);
 
-    u16 v1 = sub_02030698(SaveData_GetBattleFrontier(ctx->fieldSystem->saveData),
-        sub_0205E50C(0),
+    u16 v1 = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(ctx->fieldSystem->saveData),
+        BattleFrontierStats_GetHallLatestStreakIndex(0),
         0xff);
 
     *v2 = 0;

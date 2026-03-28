@@ -564,7 +564,7 @@ static void DeleteDuplicateFriendCallback(int deletedFriendIdx, int duplicateFri
     MI_CpuCopy8(sNintendoWFCManager->friends, sub_0202AED8(SaveData_GetWiFiList(sNintendoWFCManager->saveData), 0), MAX_FRIENDS * sizeof(DWCFriendData));
 
     sub_0202B270(SaveData_GetWiFiList(sNintendoWFCManager->saveData), deletedFriendIdx, duplicateFriendIdx);
-    sub_020307F0(SaveData_GetBattleFrontier(sNintendoWFCManager->saveData), deletedFriendIdx, duplicateFriendIdx);
+    BattleFrontierStats_ClearFriendStats(SaveData_GetBattleFrontier(sNintendoWFCManager->saveData), deletedFriendIdx, duplicateFriendIdx);
 }
 
 static void DummyWFCBuddyFriendCB(int friendIdx, void *userParam)

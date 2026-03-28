@@ -445,10 +445,10 @@ BOOL FrontierScrCmd_A0(FrontierScriptContext *param0)
     case 44:
         if (v3->unk_10 == 3) {
             if (v15 == 0) {
-                v3->unk_22 = sub_02030698(SaveData_GetBattleFrontier(v11->saveData), sub_0205E630(v3->unk_10), sub_0205E6A8(sub_0205E630(v3->unk_10)));
-                sub_020306E4(SaveData_GetBattleFrontier(v11->saveData), sub_0205E630(v3->unk_10), sub_0205E6A8(sub_0205E630(v3->unk_10)), v3->unk_20);
+                v3->unk_22 = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(v11->saveData), BattleFrontierStats_GetCastleLatestCPIndex(v3->unk_10), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleLatestCPIndex(v3->unk_10)));
+                BattleFrontierStats_SetStat(SaveData_GetBattleFrontier(v11->saveData), BattleFrontierStats_GetCastleLatestCPIndex(v3->unk_10), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleLatestCPIndex(v3->unk_10)), v3->unk_20);
             } else {
-                sub_020306E4(SaveData_GetBattleFrontier(v11->saveData), sub_0205E630(v3->unk_10), sub_0205E6A8(sub_0205E630(v3->unk_10)), v3->unk_22);
+                BattleFrontierStats_SetStat(SaveData_GetBattleFrontier(v11->saveData), BattleFrontierStats_GetCastleLatestCPIndex(v3->unk_10), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleLatestCPIndex(v3->unk_10)), v3->unk_22);
             }
         }
         break;
@@ -564,7 +564,7 @@ BOOL FrontierScrCmd_A6(FrontierScriptContext *param0)
     u16 *v2 = FrontierScriptContext_TryGetVarPointer(param0);
 
     v0 = sub_0209B970(param0->scriptMan->unk_00);
-    *v2 = sub_02030698(SaveData_GetBattleFrontier(v0->saveData), sub_0205E630(v1), sub_0205E6A8(sub_0205E630(v1)));
+    *v2 = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(v0->saveData), BattleFrontierStats_GetCastleLatestCPIndex(v1), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleLatestCPIndex(v1)));
 
     return 0;
 }

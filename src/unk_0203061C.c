@@ -1,12 +1,11 @@
 #include "unk_0203061C.h"
 
 #include <nitro.h>
-#include <string.h>
 
 #include "struct_defs/battle_frontier.h"
-#include "struct_defs/struct_02030698.h"
 
 #include "savedata.h"
+#include "unk_0202ACE0.h"
 #include "unk_0202D05C.h"
 #include "unk_0202FF4C.h"
 #include "unk_02030108.h"
@@ -29,8 +28,6 @@ void BattleFrontier_Init(BattleFrontier *frontier)
     sub_02030260(&frontier->unk_1618.unk_00);
     sub_02030410(&frontier->unk_161C.unk_00);
     sub_020305AC(&frontier->unk_1620.unk_00);
-
-    return;
 }
 
 BattleFrontier *SaveData_GetBattleFrontier(SaveData *saveData)
@@ -38,147 +35,144 @@ BattleFrontier *SaveData_GetBattleFrontier(SaveData *saveData)
     return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FRONTIER);
 }
 
-u16 sub_02030698(BattleFrontier *frontier, int param1, int param2)
+u16 BattleFrontierStats_GetStat(BattleFrontier *frontier, enum BattleFrontierStatsIndex statIndex, int hostFriendID)
 {
-    UnkStruct_02030698 *v0 = &frontier->unk_00;
+    BattleFrontierStats *stats = &frontier->stats;
 
-    if (param1 < 112) {
-        if (param1 >= 100) {
-            int v1, v2;
+    if (statIndex < STATS_NUM_SOLO_STATS_AND_ACTIVE_FLAGS) {
+        if (statIndex >= STATS_NUM_SOLO_STATS) {
+            int flagGroup, bit;
 
-            if (param2 < 16) {
-                v1 = param1;
-                v2 = param2;
+            if (hostFriendID < 16) {
+                flagGroup = statIndex;
+                bit = hostFriendID;
             } else {
-                v1 = param1 + 1;
-                v2 = param2 - 16;
+                flagGroup = statIndex + 1;
+                bit = hostFriendID - 16;
             }
 
-            return (v0->unk_00[v1] >> v2) & 1;
+            return (stats->soloStats[flagGroup] >> bit) & 1;
         }
 
-        return v0->unk_00[param1];
+        return stats->soloStats[statIndex];
     } else {
-        if (param2 == -1) {
+        if (hostFriendID == -1) {
             GF_ASSERT(0);
             return 0;
         }
 
-        return v0->unk_E0[param2][param1 - 112];
+        return stats->wfcStats[hostFriendID][statIndex - STATS_NUM_SOLO_STATS_AND_ACTIVE_FLAGS];
     }
 }
 
-u16 sub_020306E4(BattleFrontier *frontier, int param1, int param2, u16 param3)
+u16 BattleFrontierStats_SetStat(BattleFrontier *frontier, enum BattleFrontierStatsIndex statIndex, int hostFriendID, u16 newValue)
 {
-    UnkStruct_02030698 *v0 = &frontier->unk_00;
+    BattleFrontierStats *stats = &frontier->stats;
 
-    if (param3 > 9999) {
-        param3 = 9999;
+    if (newValue > 9999) {
+        newValue = 9999;
     }
 
-    if (param1 < 112) {
-        if (param1 >= 100) {
-            int v1, v2;
+    if (statIndex < STATS_NUM_SOLO_STATS_AND_ACTIVE_FLAGS) {
+        if (statIndex >= STATS_NUM_SOLO_STATS) {
+            int flagGroup, bit;
 
-            GF_ASSERT(param2 != 0xff);
+            GF_ASSERT(hostFriendID != 0xff);
 
-            if (param2 < 16) {
-                v1 = param1;
-                v2 = param2;
+            if (hostFriendID < 16) {
+                flagGroup = statIndex;
+                bit = hostFriendID;
             } else {
-                v1 = param1 + 1;
-                v2 = param2 - 16;
+                flagGroup = statIndex + 1;
+                bit = hostFriendID - 16;
             }
 
-            if (param3 == 0) {
-                v0->unk_00[v1] &= 0xffff ^ (1 << v2);
+            if (newValue == 0) {
+                stats->soloStats[flagGroup] &= 0xffff ^ (1 << bit);
             } else {
-                v0->unk_00[v1] |= 1 << v2;
+                stats->soloStats[flagGroup] |= 1 << bit;
             }
         } else {
-            GF_ASSERT(param2 == 0xff);
-            v0->unk_00[param1] = param3;
+            GF_ASSERT(hostFriendID == 0xff);
+            stats->soloStats[statIndex] = newValue;
         }
     } else {
-        GF_ASSERT(param2 != 0xff);
-        v0->unk_E0[param2][param1 - 112] = param3;
+        GF_ASSERT(hostFriendID != 0xff);
+        stats->wfcStats[hostFriendID][statIndex - STATS_NUM_SOLO_STATS_AND_ACTIVE_FLAGS] = newValue;
     }
 
-    return param3;
+    return newValue;
 }
 
-void sub_02030764(BattleFrontier *frontier)
+void BattleFrontierStats_ClearAllWFCStats(BattleFrontier *frontier)
 {
-    int v0;
-    UnkStruct_02030698 *v1 = &frontier->unk_00;
+    BattleFrontierStats *stats = &frontier->stats;
 
-    MI_CpuClear8(v1->unk_E0, (sizeof(u16) * (144 - 112)) * 32);
+    MI_CpuClear8(stats->wfcStats, sizeof(u16) * STATS_NUM_WFC_STATS * MAX_FRIENDS);
 
-    for (v0 = 100; v0 <= 111; v0++) {
-        v1->unk_00[v0] = 0;
+    for (int i = STATS_NUM_SOLO_STATS; i <= STATS_NUM_SOLO_STATS_AND_ACTIVE_FLAGS - 1; i++) {
+        stats->soloStats[i] = 0;
     }
 }
 
-void sub_02030788(BattleFrontier *frontier, int param1)
+void BattleFrontierStats_ClearFriendStatsAndShift(BattleFrontier *frontier, int friendIdx)
 {
-    UnkStruct_02030698 *v0 = &frontier->unk_00;
-    int v1, v2;
-    u16 v3;
+    GF_ASSERT(friendIdx != 0xff);
 
-    GF_ASSERT(param1 != 0xff);
+    BattleFrontierStats *stats = &frontier->stats;
+    int i;
+    for (i = friendIdx; i < MAX_FRIENDS - 1; i++) {
+        MI_CpuCopy8(stats->wfcStats[i + 1], stats->wfcStats[i], sizeof(u16) * STATS_NUM_WFC_STATS);
 
-    for (v1 = param1; v1 < (32 - 1); v1++) {
-        MI_CpuCopy8(v0->unk_E0[v1 + 1], v0->unk_E0[v1], sizeof(u16) * (144 - 112));
-
-        for (v2 = 100; v2 < 111; v2 += 2) {
-            v3 = sub_02030698(frontier, v2, v1 + 1);
-            sub_020306E4(frontier, v2, v1, v3);
+        for (int statIndex = STATS_NUM_SOLO_STATS; statIndex < STATS_NUM_SOLO_STATS_AND_ACTIVE_FLAGS - 1; statIndex += 2) {
+            u16 activeFlag = BattleFrontierStats_GetStat(frontier, statIndex, i + 1);
+            BattleFrontierStats_SetStat(frontier, statIndex, i, activeFlag);
         }
     }
 
-    v1 = 32 - 1;
-    MI_CpuClear8(v0->unk_E0[v1], sizeof(u16) * (144 - 112));
+    i = MAX_FRIENDS - 1;
+    MI_CpuClear8(stats->wfcStats[i], sizeof(u16) * STATS_NUM_WFC_STATS);
 }
 
-void sub_020307F0(BattleFrontier *frontier, int param1, int param2)
+void BattleFrontierStats_ClearFriendStats(BattleFrontier *frontier, int friendIndex, int unused)
 {
-    UnkStruct_02030698 *v0 = &frontier->unk_00;
-    MI_CpuClear8(v0->unk_E0[param1], sizeof(u16) * (144 - 112));
+    BattleFrontierStats *stats = &frontier->stats;
+    MI_CpuClear8(stats->wfcStats[friendIndex], sizeof(u16) * STATS_NUM_WFC_STATS);
 }
 
-u16 sub_02030804(BattleFrontier *frontier, int param1, int param2, int param3)
+u16 BattleFrontierStats_AddToStat(BattleFrontier *frontier, enum BattleFrontierStatsIndex statIndex, int hostFriendID, int addValue)
 {
-    UnkStruct_02030698 *v0 = &frontier->unk_00;
-    u16 v1 = sub_02030698(frontier, param1, param2);
-    v1 += param3;
+    BattleFrontierStats *stats = &frontier->stats;
+    u16 value = BattleFrontierStats_GetStat(frontier, statIndex, hostFriendID);
+    value += addValue;
 
-    return sub_020306E4(frontier, param1, param2, v1);
+    return BattleFrontierStats_SetStat(frontier, statIndex, hostFriendID, value);
 }
 
-u16 sub_02030824(BattleFrontier *frontier, int param1, int param2, int param3)
+u16 BattleFrontierStats_SubtractFromStat(BattleFrontier *frontier, enum BattleFrontierStatsIndex statIndex, int hostFriendID, int subtractValue)
 {
-    UnkStruct_02030698 *v0 = &frontier->unk_00;
-    int v1 = sub_02030698(frontier, param1, param2);
-    v1 -= param3;
+    BattleFrontierStats *stats = &frontier->stats;
+    int value = BattleFrontierStats_GetStat(frontier, statIndex, hostFriendID);
+    value -= subtractValue;
 
-    if (v1 < 0) {
-        v1 = 0;
+    if (value < 0) {
+        value = 0;
     }
 
-    return sub_020306E4(frontier, param1, param2, v1);
+    return BattleFrontierStats_SetStat(frontier, statIndex, hostFriendID, value);
 }
 
-u16 sub_02030848(BattleFrontier *frontier, int param1, int param2, u16 param3)
+u16 BattleFrontierStats_SetIfBetter(BattleFrontier *frontier, enum BattleFrontierStatsIndex statIndex, int hostFriendID, u16 newValue)
 {
-    u16 v0 = sub_02030698(frontier, param1, param2);
+    u16 currentValue = BattleFrontierStats_GetStat(frontier, statIndex, hostFriendID);
 
-    if (v0 < param3) {
-        return sub_020306E4(frontier, param1, param2, param3);
+    if (currentValue < newValue) {
+        return BattleFrontierStats_SetStat(frontier, statIndex, hostFriendID, newValue);
     } else {
-        if (v0 > 9999) {
-            return sub_020306E4(frontier, param1, param2, 9999);
+        if (currentValue > 9999) {
+            return BattleFrontierStats_SetStat(frontier, statIndex, hostFriendID, 9999);
         }
 
-        return v0;
+        return currentValue;
     }
 }

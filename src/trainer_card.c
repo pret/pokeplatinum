@@ -120,7 +120,7 @@ u8 TrainerCard_CalculateLevel(FieldSystem *fieldSystem)
         trainerCardLevel++;
     }
 
-    if ((sub_02030698(frontier, 0, 0xff) >= 100) || (sub_02030698(frontier, 2, 0xff) >= 100) || (sub_02030698(frontier, 4, 0xff) >= 100) || (sub_02030698(frontier, 6, 0xff) >= 100) || (sub_02030698(frontier, 8, 0xff) >= 100)) {
+    if ((BattleFrontierStats_GetStat(frontier, STAT_TOWER_RECORD_STREAK_SINGLE, 0xff) >= 100) || (BattleFrontierStats_GetStat(frontier, STAT_TOWER_RECORD_STREAK_DOUBLE, 0xff) >= 100) || (BattleFrontierStats_GetStat(frontier, STAT_TOWER_RECORD_STREAK_MULTI, 0xff) >= 100) || (BattleFrontierStats_GetStat(frontier, STAT_TOWER_RECORD_STREAK_LINK_MULTI, 0xff) >= 100) || (BattleFrontierStats_GetStat(frontier, STAT_TOWER_RECORD_STREAK_WIFI, 0xff) >= 100)) {
         trainerCardLevel++;
     }
 

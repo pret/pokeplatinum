@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_STRUCT_BATTLE_FRONTIER_H
 #define POKEPLATINUM_STRUCT_BATTLE_FRONTIER_H
 
+#include "constants/battle_frontier_stats.h"
+
 #include "struct_defs/struct_0202D060.h"
 #include "struct_defs/struct_0202D080.h"
 #include "struct_defs/struct_0202D750.h"
@@ -13,10 +15,16 @@
 #include "struct_defs/struct_0203041C.h"
 #include "struct_defs/struct_020304A0.h"
 #include "struct_defs/struct_020305B8.h"
-#include "struct_defs/struct_02030698.h"
+
+#include "unk_0202ACE0.h"
+
+typedef struct BattleFrontierStats {
+    u16 soloStats[STATS_NUM_SOLO_STATS_AND_ACTIVE_FLAGS];
+    u16 wfcStats[MAX_FRIENDS][STATS_NUM_WFC_STATS];
+} BattleFrontierStats;
 
 typedef struct BattleFrontier {
-    UnkStruct_02030698 unk_00;
+    BattleFrontierStats stats;
     union {
         UnkStruct_0202D060 unk_8E0_val1;
         UnkStruct_0202FF58 unk_8E0_val2;

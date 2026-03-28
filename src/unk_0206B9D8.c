@@ -332,7 +332,7 @@ u16 sub_0206BDBC(SaveData *saveData)
     u8 v4, v5, v6, v7, v8, v9;
 
     frontier = SaveData_GetBattleFrontier(saveData);
-    v3 = sub_02030698(frontier, 0, 0xff);
+    v3 = BattleFrontierStats_GetStat(frontier, STAT_TOWER_RECORD_STREAK_SINGLE, 0xff);
 
     if (v3 < 20) {
         return 0;
@@ -406,7 +406,7 @@ u16 sub_0206BF04(SaveData *saveData)
     u8 v3, v4, v5, v6, v7, v8;
 
     frontier = SaveData_GetBattleFrontier(saveData);
-    v2 = sub_02030698(frontier, 0, 0xff);
+    v2 = BattleFrontierStats_GetStat(frontier, STAT_TOWER_RECORD_STREAK_SINGLE, 0xff);
 
     if (v2 < 20) {
         return 0;

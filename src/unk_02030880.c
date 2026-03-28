@@ -1,7 +1,6 @@
 #include "unk_02030880.h"
 
 #include <nitro.h>
-#include <string.h>
 
 #include "constants/battle_frontier.h"
 #include "constants/species.h"
@@ -14,47 +13,39 @@
 #include "savedata.h"
 #include "unk_0203061C.h"
 
-typedef struct {
-    u16 unk_00[MAX_SPECIES];
-    u16 unk_3DE[MAX_SPECIES];
-    u16 unk_7BC[MAX_SPECIES];
-    u16 unk_B9A;
-} UnkStruct_020308A0_sub1;
+typedef struct BattleHallWinRecords {
+    u32 alwaysNegative1;
+    u16 singleStreaks[MAX_SPECIES];
+    u16 doubleStreaks[MAX_SPECIES];
+    u16 multiStreaks[MAX_SPECIES];
+    u16 unused;
+} BattleHallWinRecords;
 
-typedef struct BattleFrontierStage {
-    u32 unk_00;
-    UnkStruct_020308A0_sub1 unk_04;
-} BattleFrontierStage;
+static u16 WriteWinRecord(BattleHallWinRecords *records, int challengeType, int species, u16 streak);
 
-static u16 sub_02030908(BattleFrontierStage *param0, int param1, int param2, u16 param3);
-
-int Frontier_Extra_SaveSize(void)
+int BattleHallWinRecords_SaveSize(void)
 {
-    GF_ASSERT(sizeof(BattleFrontierStage) % 4 == 0);
-    return sizeof(BattleFrontierStage);
+    GF_ASSERT(sizeof(BattleHallWinRecords) % 4 == 0);
+    return sizeof(BattleHallWinRecords);
 }
 
-void Frontier_Extra_Init(BattleFrontierStage *param0)
+void BattleHallWinRecords_Init(BattleHallWinRecords *records)
 {
-    MI_CpuClear8(param0, sizeof(BattleFrontierStage));
-    param0->unk_00 = 0xffffffff;
+    MI_CpuClear8(records, sizeof(BattleHallWinRecords));
+    records->alwaysNegative1 = -1;
 }
 
-BattleFrontierStage *sub_020308A0(SaveData *saveData, enum HeapID heapID, int *param2)
+BattleHallWinRecords *BattleHallWinRecords_Get(SaveData *saveData, enum HeapID heapID, int *resultCode)
 {
-    BattleFrontierStage *v0 = SaveData_BattleFrontierStage(saveData, heapID, param2);
-    return v0;
+    return SaveData_BattleHallWinRecords(saveData, heapID, resultCode);
 }
 
-int sub_020308A8(SaveData *saveData, BattleFrontierStage *param1)
+int BattleHallWinRecords_Save(SaveData *saveData, BattleHallWinRecords *records)
 {
-    int v0 = SaveData_SaveBattleFrontierStage(saveData, param1);
-    v0 |= SaveData_Save(saveData);
-
-    return v0;
+    return SaveData_SaveBattleHallWinRecords(saveData, records) | SaveData_Save(saveData);
 }
 
-u16 sub_020308BC(SaveData *saveData, BattleFrontierStage *frontierStage, int challengeType, int species)
+u16 BattleFrontierStats_GetHallRecordForSpecies(SaveData *saveData, BattleHallWinRecords *records, int challengeType, int species)
 {
     if (!SaveData_MiscSaveBlock_InitFlag(saveData)) {
         return 0;
@@ -62,105 +53,100 @@ u16 sub_020308BC(SaveData *saveData, BattleFrontierStage *frontierStage, int cha
 
     switch (challengeType) {
     case FRONTIER_CHALLENGE_SINGLE:
-        return frontierStage->unk_04.unk_00[species];
+        return records->singleStreaks[species];
     case FRONTIER_CHALLENGE_DOUBLE:
-        return frontierStage->unk_04.unk_3DE[species];
+        return records->doubleStreaks[species];
     case FRONTIER_CHALLENGE_MULTI:
-        return frontierStage->unk_04.unk_7BC[species];
+        return records->multiStreaks[species];
     }
 
     GF_ASSERT(0);
     return 0;
 }
 
-static u16 sub_02030908(BattleFrontierStage *param0, int param1, int param2, u16 param3)
+static u16 WriteWinRecord(BattleHallWinRecords *records, int challengeType, int species, u16 streak)
 {
-    if (param3 > 9999) {
-        param3 = 9999;
+    if (streak > 9999) {
+        streak = 9999;
     }
 
-    switch (param1) {
-    case 0:
-        param0->unk_04.unk_00[param2] = param3;
+    switch (challengeType) {
+    case FRONTIER_CHALLENGE_SINGLE:
+        records->singleStreaks[species] = streak;
         break;
-    case 1:
-        param0->unk_04.unk_3DE[param2] = param3;
+    case FRONTIER_CHALLENGE_DOUBLE:
+        records->doubleStreaks[species] = streak;
         break;
-    case 2:
-        param0->unk_04.unk_7BC[param2] = param3;
+    case FRONTIER_CHALLENGE_MULTI:
+        records->multiStreaks[species] = streak;
         break;
     default:
         GF_ASSERT(0);
         return 0;
     }
 
-    return param3;
+    return streak;
 }
 
-static u16 sub_02030954(SaveData *saveData, BattleFrontierStage *param1, int param2, int param3, u16 param4)
+static u16 UpdateWinRecord(SaveData *saveData, BattleHallWinRecords *records, int challengeType, int species, u16 newRecord)
 {
-    u16 v0;
-
     if (SaveData_MiscSaveBlock_InitFlag(saveData) == 0) {
         return 0;
     }
 
-    v0 = sub_020308BC(saveData, param1, param2, param3);
+    u16 currentRecord = BattleFrontierStats_GetHallRecordForSpecies(saveData, records, challengeType, species);
 
-    if (v0 < param4) {
-        return sub_02030908(param1, param2, param3, param4);
-    } else {
-        if (v0 > 9999) {
-            return sub_02030908(param1, param2, param3, 9999);
-        }
-
-        return v0;
+    if (currentRecord < newRecord) {
+        return WriteWinRecord(records, challengeType, species, newRecord);
     }
+    if (currentRecord > 9999) {
+        return WriteWinRecord(records, challengeType, species, 9999);
+    }
+
+    return currentRecord;
 }
 
-BOOL sub_020309A0(SaveData *saveData, int param1, int param2, int param3, int param4, enum HeapID heapID, int *param6, int *param7)
+BOOL BattleHallWinRecords_UpdateRecord(SaveData *saveData, enum BattleFrontierStatsIndex recordIndex, enum BattleFrontierStatsIndex speciesIndex, int hostFriendID, int challengeType, enum HeapID heapID, int *resultCode, int *saveResult)
 {
-    BattleFrontier *frontier;
-    BattleFrontierStage *v1;
-    u16 v2, v3, v4;
-    int v5;
-    BOOL v6 = 0;
+    u16 newRecord, currentRecord;
+    int species;
+    BOOL updated = 0;
 
-    GF_ASSERT(param1 >= 34 && param1 <= 60);
-    GF_ASSERT(param2 == 36 || param2 == 48 || param2 == 60);
+    GF_ASSERT(recordIndex >= 34 && recordIndex <= 60);
+    GF_ASSERT(speciesIndex == STAT_HALL_LATEST_SPECIES_SINGLE || speciesIndex == STAT_HALL_LATEST_SPECIES_DOUBLE || speciesIndex == STAT_HALL_LATEST_SPECIES_MULTI);
 
-    *param6 = 1;
-    *param7 = 2;
+    *resultCode = 1;
+    *saveResult = 2;
 
-    if (param3 != 0xff) {
-        return v6;
+    if (hostFriendID != 0xff) {
+        return updated;
     }
 
     if (SaveData_MiscSaveBlock_InitFlag(saveData) == 0) {
-        return v6;
+        return updated;
     }
 
-    frontier = SaveData_GetBattleFrontier(saveData);
-    v3 = sub_02030698(frontier, param1, param3);
-    v5 = sub_02030698(frontier, param2, param3);
-    v1 = sub_020308A0(saveData, heapID, param6);
+    BattleFrontier *frontier = SaveData_GetBattleFrontier(saveData);
+    newRecord = BattleFrontierStats_GetStat(frontier, recordIndex, hostFriendID);
+    species = BattleFrontierStats_GetStat(frontier, speciesIndex, hostFriendID);
+    BattleHallWinRecords *records = BattleHallWinRecords_Get(saveData, heapID, resultCode);
 
-    if (*param6 != 1) {
-        v4 = 0;
+    if (*resultCode != LOAD_RESULT_OK) {
+        currentRecord = 0;
     } else {
-        v4 = sub_020308BC(saveData, v1, param4, v5);
+        currentRecord = BattleFrontierStats_GetHallRecordForSpecies(saveData, records, challengeType, species);
     }
 
-    v2 = sub_02030954(saveData, v1, param4, v5, v3);
+    UpdateWinRecord(saveData, records, challengeType, species, newRecord);
 
-    if (v3 != v4) {
-        *param7 = sub_020308A8(saveData, v1);
-        v6 = 1;
+    if (newRecord != currentRecord) {
+        *saveResult = BattleHallWinRecords_Save(saveData, records);
+        updated = 1;
     }
 
-    if (v1 != NULL) {
-        Heap_Free(v1);
+    if (records != NULL) {
+        Heap_Free(records);
     }
 
-    return v6;
+    return updated;
 }

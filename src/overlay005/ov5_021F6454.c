@@ -123,7 +123,7 @@ static u16 sAlphabeticalSpeciesLists[] = {
 BOOL ScrCmd_ShowBattleHallRecordMonSelectionMenu(ScriptContext *ctx)
 {
     int resultCode;
-    BattleFrontierStage *frontierStage;
+    BattleHallWinRecords *records;
     u16 *speciesList;
     FieldSystem *fieldSystem = ctx->fieldSystem;
     StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
@@ -137,14 +137,14 @@ BOOL ScrCmd_ShowBattleHallRecordMonSelectionMenu(ScriptContext *ctx)
 
     MessageLoader *monMsgLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_FIELD3);
     BattleHallRecordSelector *selector = BattleHallRecordSelecter_New(fieldSystem, 20, 1, 0, TRUE, FieldSystem_GetVarPointer(fieldSystem, resultVar), *strTemplate, FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_WINDOW), monMsgLoader, FieldSystem_GetVarPointer(fieldSystem, listPosVar), FieldSystem_GetVarPointer(fieldSystem, cursorPosVar));
-    frontierStage = sub_020308A0(fieldSystem->saveData, HEAP_ID_FIELD2, &resultCode);
+    records = BattleHallWinRecords_Get(fieldSystem->saveData, HEAP_ID_FIELD2, &resultCode);
 
     if (resultCode == LOAD_RESULT_OK) {
         int speciesListSize;
         speciesList = BattleHallRecordSelector_GetSpeciesList(HEAP_ID_FIELD3, sAlphabeticalSpeciesLists[letterGroup], &speciesListSize);
 
         for (int i = 0; i < speciesListSize; i++) {
-            u16 streak = sub_020308BC(fieldSystem->saveData, frontierStage, sub_0205E584(challengeType), speciesList[i]);
+            u16 streak = BattleFrontierStats_GetHallRecordForSpecies(fieldSystem->saveData, records, BattleFrontierStats_GetHallRecordStreakIndex(challengeType), speciesList[i]);
 
             if (streak != 0) {
                 BattleHallRecordSelector_AddOption(selector, speciesList[i], 0xff, speciesList[i]);
@@ -154,8 +154,8 @@ BOOL ScrCmd_ShowBattleHallRecordMonSelectionMenu(ScriptContext *ctx)
         Heap_Free(speciesList);
     }
 
-    if (frontierStage != NULL) {
-        Heap_Free(frontierStage);
+    if (records != NULL) {
+        Heap_Free(records);
     }
 
     MessageLoader *menuMsgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MENU_ENTRIES, HEAP_ID_FIELD3);

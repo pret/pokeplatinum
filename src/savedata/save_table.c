@@ -112,7 +112,7 @@ MigratedPokemon *SaveData_GetPalParkTransfer(SaveData *saveData)
 
 const SaveTableEntry gExtraSaveTable[] = {
     { EXTRA_SAVE_TABLE_ENTRY_HALL_OF_FAME, SAVE_PAGE_MAX, (SaveEntrySizeFunc)HallOfFame_SaveSize, (SaveEntryInitFunc)HallOfFame_Init },
-    { EXTRA_SAVE_TABLE_ENTRY_FRONTIER, SAVE_PAGE_MAX + 3, (SaveEntrySizeFunc)Frontier_Extra_SaveSize, (SaveEntryInitFunc)Frontier_Extra_Init },
+    { EXTRA_SAVE_TABLE_ENTRY_FRONTIER, SAVE_PAGE_MAX + 3, (SaveEntrySizeFunc)BattleHallWinRecords_SaveSize, (SaveEntryInitFunc)BattleHallWinRecords_Init },
     { EXTRA_SAVE_TABLE_ENTRY_MY_RECORDINGS, SAVE_PAGE_MAX + 4, (SaveEntrySizeFunc)BattleRecording_SaveSize, (SaveEntryInitFunc)BattleRecording_Init },
     { EXTRA_SAVE_TABLE_ENTRY_DL_RECORDINGS_0, SAVE_PAGE_MAX + 6, (SaveEntrySizeFunc)BattleRecording_SaveSize, (SaveEntryInitFunc)BattleRecording_Init },
     { EXTRA_SAVE_TABLE_ENTRY_DL_RECORDINGS_1, SAVE_PAGE_MAX + 8, (SaveEntrySizeFunc)BattleRecording_SaveSize, (SaveEntryInitFunc)BattleRecording_Init },
@@ -142,13 +142,13 @@ int SaveData_SaveBattleRecording(SaveData *saveData, BattleRecording *rec, int r
     return SaveDataExtra_SaveMirror(saveData, EXTRA_SAVE_TABLE_ENTRY_MY_RECORDINGS + recNum, rec);
 }
 
-BattleFrontierStage *SaveData_BattleFrontierStage(SaveData *saveData, enum HeapID heapID, int *resultCode)
+BattleHallWinRecords *SaveData_BattleHallWinRecords(SaveData *saveData, enum HeapID heapID, int *resultCode)
 {
     BOOL tmp;
     return SaveDataExtra_Mirror(saveData, heapID, EXTRA_SAVE_TABLE_ENTRY_FRONTIER, resultCode, &tmp);
 }
 
-int SaveData_SaveBattleFrontierStage(SaveData *saveData, BattleFrontierStage *frontier)
+int SaveData_SaveBattleHallWinRecords(SaveData *saveData, BattleHallWinRecords *records)
 {
-    return SaveDataExtra_SaveMirror(saveData, EXTRA_SAVE_TABLE_ENTRY_FRONTIER, frontier);
+    return SaveDataExtra_SaveMirror(saveData, EXTRA_SAVE_TABLE_ENTRY_FRONTIER, records);
 }

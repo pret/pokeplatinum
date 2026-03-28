@@ -165,7 +165,7 @@ static u32 *GetRecordValues(SaveData *saveData, enum HeapID heapID)
             break;
         default:
             if (i >= 0 && i <= 4) {
-                recordValues[i] = sub_02030698(frontier, recordIDs[i], 0xFF);
+                recordValues[i] = BattleFrontierStats_GetStat(frontier, recordIDs[i], 0xFF);
             } else {
                 recordValues[i] = GameRecords_GetRecordValue(gameRecords, recordIDs[i]);
             }

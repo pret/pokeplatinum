@@ -735,7 +735,7 @@ BOOL ov104_0222F3B8(UnkStruct_ov104_0223BA10 *param0)
     v1 += 3;
     v1 += (7 + 1);
 
-    param0->unk_3C0[v1] = sub_02030698(SaveData_GetBattleFrontier(param0->saveData), sub_0205E630(param0->unk_10), sub_0205E6A8(sub_0205E630(param0->unk_10)));
+    param0->unk_3C0[v1] = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(param0->saveData), BattleFrontierStats_GetCastleLatestCPIndex(param0->unk_10), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleLatestCPIndex(param0->unk_10)));
     v1 += 1;
 
     if (CommSys_SendData(42, param0->unk_3C0, v3) == 1) {

@@ -109,14 +109,14 @@ BattleRecording *SaveData_GetBattleRecording(SaveData *saveData, enum HeapID hea
 int SaveData_SaveBattleRecording(SaveData *saveData, BattleRecording *rec, int recNum);
 
 /**
- * @brief Loads the BattleFrontierStage sector from the extended save data.
+ * @brief Loads the BattleFrontierHallWinRecords sector from the extended save data.
  *
  * @param saveData      The save data.
  * @param heapID        Heap on which to allocate the BattleRecording sector.
  * @param resultCode    Load-result opcode output.
- * @return Address of the allocated BattleFrontierStage data.
+ * @return Address of the allocated BattleHallWinRecords data.
  */
-BattleFrontierStage *SaveData_BattleFrontierStage(SaveData *saveData, enum HeapID heapID, int *resultCode);
+BattleHallWinRecords *SaveData_BattleHallWinRecords(SaveData *saveData, enum HeapID heapID, int *resultCode);
 
 /**
  * @brief Saves a mirror of the given BattleRecording data into the extended save.
@@ -125,6 +125,6 @@ BattleFrontierStage *SaveData_BattleFrontierStage(SaveData *saveData, enum HeapI
  * @param frontier      The battle frontier data to save.
  * @return Save-result opcode.
  */
-int SaveData_SaveBattleFrontierStage(SaveData *saveData, BattleFrontierStage *frontier);
+int SaveData_SaveBattleHallWinRecords(SaveData *saveData, BattleHallWinRecords *records);
 
 #endif // POKEPLATINUM_SAVEDATA_LOAD_HELPERS_H
