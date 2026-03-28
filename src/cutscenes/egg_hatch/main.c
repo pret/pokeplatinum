@@ -1,10 +1,10 @@
-#include "overlay119/ov119_021D191C.h"
+#include "cutscenes/egg_hatch/main.h"
 
 #include <nitro.h>
 
 #include "constants/menu.h"
 
-#include "overlay119/ov119_021D0D80.h"
+#include "cutscenes/egg_hatch/graphics.h"
 
 #include "gx_layers.h"
 #include "menu.h"

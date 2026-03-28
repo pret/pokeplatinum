@@ -1,9 +1,8 @@
-#ifndef POKEPLATINUM_OV119_021D0D80_H
-#define POKEPLATINUM_OV119_021D0D80_H
-
-#include "struct_defs/struct_0209843C.h"
+#ifndef POKEPLATINUM_CUTSCENES_EGG_HATCH_GRAPHICS_H
+#define POKEPLATINUM_CUTSCENES_EGG_HATCH_GRAPHICS_H
 
 #include "bg_window.h"
+#include "egg_hatch.h"
 #include "g3d_pipeline.h"
 #include "menu.h"
 #include "palette.h"
@@ -105,4 +104,4 @@ void EggHatch_PlayMonAnim(EggHatchCutscene *eggHatch);
 void EggHatch_DeleteMonSprite(EggHatchCutscene *eggHatch);
 void EggHatch_HideMonSprite(EggHatchCutscene *eggHatch, BOOL hide);
 
-#endif // POKEPLATINUM_OV119_021D0D80_H
+#endif // POKEPLATINUM_CUTSCENES_EGG_HATCH_GRAPHICS_H

@@ -1,4 +1,4 @@
-#include "unk_02098218.h"
+#include "egg_hatch.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -6,14 +6,11 @@
 #include "generated/game_records.h"
 #include "generated/species.h"
 
-#include "struct_defs/struct_0203E2FC.h"
-#include "struct_defs/struct_0209843C.h"
-
 #include "applications/naming_screen.h"
+#include "cutscenes/egg_hatch/graphics.h"
+#include "cutscenes/egg_hatch/main.h"
 #include "field/field_system.h"
 #include "overlay005/daycare.h"
-#include "overlay119/ov119_021D0D80.h"
-#include "overlay119/ov119_021D191C.h"
 
 #include "bg_window.h"
 #include "field_system.h"
@@ -40,7 +37,7 @@
 #include "unk_02092494.h"
 #include "vram_transfer.h"
 
-FS_EXTERN_OVERLAY(overlay119);
+FS_EXTERN_OVERLAY(egg_hatch_cutscene);
 
 static BOOL EggHatch_Init(ApplicationManager *appMan, int *state);
 static BOOL EggHatch_Main(ApplicationManager *appMan, int *state);
@@ -50,7 +47,7 @@ static const ApplicationManagerTemplate sEggHatchAppTemplate = {
     EggHatch_Init,
     EggHatch_Main,
     EggHatch_Exit,
-    FS_OVERLAY_ID(overlay119)
+    FS_OVERLAY_ID(egg_hatch_cutscene)
 };
 
 static BOOL EggHatch_Init(ApplicationManager *appMan, int *state)

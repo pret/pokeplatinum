@@ -1,4 +1,4 @@
-#include "overlay119/ov119_021D0D80.h"
+#include "cutscenes/egg_hatch/graphics.h"
 
 #include <nitro.h>
 

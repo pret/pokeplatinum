@@ -19,7 +19,6 @@
 #include "struct_defs/struct_0203DDFC.h"
 #include "struct_defs/struct_0203DE34.h"
 #include "struct_defs/struct_0203E234.h"
-#include "struct_defs/struct_0203E2FC.h"
 #include "struct_defs/struct_0203E348.h"
 #include "struct_defs/struct_0203E564.h"
 #include "struct_defs/struct_0203E608.h"
@@ -79,6 +78,7 @@
 #include "bag_context.h"
 #include "coins.h"
 #include "dexmode_checker.h"
+#include "egg_hatch.h"
 #include "evolution.h"
 #include "field_battle_data_transfer.h"
 #include "field_move_tasks.h"
@@ -128,7 +128,6 @@
 #include "unk_0205B33C.h"
 #include "unk_0209747C.h"
 #include "unk_02097624.h"
-#include "unk_02098218.h"
 #include "vars_flags.h"
 
 #include "constdata/const_020EA328.h"

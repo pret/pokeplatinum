@@ -337,7 +337,7 @@ Static main
 	Object main.nef.p/src_unk_0209747C.c.o
 	Object main.nef.p/src_unk_02097624.c.o
 	Object main.nef.p/src_unk_02097B18.c.o
-	Object main.nef.p/src_unk_02098218.c.o
+	Object main.nef.p/src_egg_hatch.c.o
 	Object main.nef.p/src_unk_020985E4.c.o
 	Object main.nef.p/src_pokedex_language.c.o
 	Object main.nef.p/src_pokedex_heightweight.c.o
@@ -1696,11 +1696,11 @@ Overlay party_menu_form_change
 	Object main.nef.p/src_applications_party_menu_form_change.c.o
 }
 
-Overlay overlay119
+Overlay egg_hatch_cutscene
 {
 	After main
-	Object main.nef.p/src_overlay119_ov119_021D0D80.c.o
-	Object main.nef.p/src_overlay119_ov119_021D191C.c.o
+	Object main.nef.p/src_cutscenes_egg_hatch_graphics.c.o
+	Object main.nef.p/src_cutscenes_egg_hatch_main.c.o
 }
 
 Overlay library_tv
