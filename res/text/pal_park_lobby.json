@@ -2,21 +2,21 @@
   "key": 32395,
   "messages": [
     {
-      "id": "PalParkLobby_Text_Oak_AhPlayerThisIsItThisIsPalPark_PlayerMale",
+      "id": "PalParkLobby_Text_Oak_ThisIsPalPark_PlayerMale",
       "en_US": [
         "Oak: Ah, {STRVAR_1 3, 0, 0}!\n",
         "This is it! This is Pal Park!\r"
       ]
     },
     {
-      "id": "PalParkLobby_Text_Oak_AhPlayerThisIsItThisIsPalPark_PlayerFemale",
+      "id": "PalParkLobby_Text_Oak_ThisIsPalPark_PlayerFemale",
       "en_US": [
         "Oak: Ah, {STRVAR_1 3, 0, 0}!\n",
         "This is it! This is Pal Park!\r"
       ]
     },
     {
-      "id": "PalParkLobby_Text_Oak_PokemonFromAroundTheCountryCanBeBroughtHere",
+      "id": "PalParkLobby_Text_Oak_PokemonFromAroundTheCountry",
       "en_US": [
         "Pokémon from around the country\n",
         "can be brought here.\r",
@@ -28,7 +28,7 @@
       ]
     },
     {
-      "id": "PalParkLobby_Text_Oak_LetMeMakeAGiftOfThisTrainerCounterApp",
+      "id": "PalParkLobby_Text_Oak_GiftTrainerCounterApp",
       "en_US": [
         "It’s good to see you’ve come\n",
         "to join us for a visit.\r",
@@ -37,7 +37,7 @@
       ]
     },
     {
-      "id": "PalParkLobby_Text_Oak_IPlanToBeInEternaCityForSomeTime",
+      "id": "PalParkLobby_Text_Oak_InEternaForSomeTime",
       "en_US": [
         "Oak: I plan to be in Eterna City\n",
         "for some time.\r",
@@ -47,7 +47,7 @@
       ]
     },
     {
-      "id": "PalParkLobby_Text_PalParkIsSoScintillating",
+      "id": "PalParkLobby_Text_PalParkIsScintillating",
       "en_US": [
         "Pal Park is so scintillating!\r",
         "Trainers and Pokémon are so full of\n",
@@ -55,26 +55,26 @@
       ]
     },
     {
-      "id": "PalParkLobby_Text_IveNeverSeenSomePokemon",
+      "id": "PalParkLobby_Text_NeverSeenPokemon",
       "en_US": [
         "I’ve never seen some Pokémon.\n",
         "Would you show me if you had one?\r"
       ]
     },
     {
-      "id": "PalParkLobby_Text_Unused_00007",
+      "id": "PalParkLobby_Text_Dummy7",
       "garbage": 36
     },
     {
-      "id": "PalParkLobby_Text_Unused_00008",
+      "id": "PalParkLobby_Text_Dummy8",
       "garbage": 67
     },
     {
-      "id": "PalParkLobby_Text_Unused_00009",
+      "id": "PalParkLobby_Text_Dummy9",
       "garbage": 54
     },
     {
-      "id": "PalParkLobby_Text_APokemonThatDoesNothingButEatAndSleep",
+      "id": "PalParkLobby_Text_PokemonThatJustEatsAndSleeps",
       "en_US": [
         "Let me see...\r",
         "A Pokémon that does nothing but\n",
@@ -82,7 +82,7 @@
       ]
     },
     {
-      "id": "PalParkLobby_Text_OhASnorlaxItSureLooksLikeItCanEat",
+      "id": "PalParkLobby_Text_ShowSnorlaxForApp",
       "en_US": [
         "Oh, a SNORLAX?\n",
         "It sure looks like it can eat!\r",
@@ -93,14 +93,14 @@
       ]
     },
     {
-      "id": "PalParkLobby_Text_DoesntThatKitchenTimerMakeYouWantToCookSomething",
+      "id": "PalParkLobby_Text_KitchenTimerMakesYouCook",
       "en_US": [
         "Doesn’t that {STRVAR_1 24, 0, 0}\n",
         "make you want to cook something?\n"
       ]
     },
     {
-      "id": "PalParkLobby_Text_APokemonThatChangesColorWheneverSomethingHappens",
+      "id": "PalParkLobby_Text_PokemonThatChangesColor",
       "en_US": [
         "Let me see...\r",
         "A Pokémon that changes color\n",
@@ -108,7 +108,7 @@
       ]
     },
     {
-      "id": "PalParkLobby_Text_OhAKecleonHowColorful",
+      "id": "PalParkLobby_Text_ShowKecleonForApp",
       "en_US": [
         "Oh, a KECLEON!\n",
         "How colorful!\r",
@@ -119,33 +119,33 @@
       ]
     },
     {
-      "id": "PalParkLobby_Text_ChangingColorsCanChangeYourMoodToo",
+      "id": "PalParkLobby_Text_ColorsChangeMood",
       "en_US": [
         "Changing colors can change your\n",
         "mood, too."
       ]
     },
     {
-      "id": "PalParkLobby_Text_Unused_00016",
+      "id": "PalParkLobby_Text_Dummy16",
       "garbage": 34
     },
     {
-      "id": "PalParkLobby_Text_Unused_00017",
+      "id": "PalParkLobby_Text_Dummy17",
       "garbage": 68
     },
     {
-      "id": "PalParkLobby_Text_Unused_00018",
+      "id": "PalParkLobby_Text_Dummy18",
       "garbage": 37
     },
     {
-      "id": "PalParkLobby_Text_WhatWasThatPokemonNameNow",
+      "id": "PalParkLobby_Text_WhatWasPokemonsName",
       "en_US": [
         "What was that Pokémon’s name now...?\n",
         "Oh, it’s on the tip of my tongue!"
       ]
     },
     {
-      "id": "PalParkLobby_Text_PalParkIsSoScintillatingAreYouTakingTheChallengeToo",
+      "id": "PalParkLobby_Text_AreYouTakingChallenge",
       "en_US": [
         "Pal Park is so scintillating!\r",
         "Trainers and Pokémon are so full of\n",
@@ -186,7 +186,7 @@
       ]
     },
     {
-      "id": "PalParkLobby_Text_YesYouAgreedToParticipateItsAHappyDayForMe",
+      "id": "PalParkLobby_Text_LetMeExplainPalPark",
       "en_US": [
         "Yes! You agreed to participate!\n",
         "It’s a happy day for me!\r",
@@ -253,7 +253,7 @@
       ]
     },
     {
-      "id": "PalParkLobby_Text_WouldYouLikeToTakePartInACatchingShowNow",
+      "id": "PalParkLobby_Text_TakePartInCatchingShow",
       "en_US": [
         "Would you like to take part in\n",
         "a Catching Show now?"
@@ -284,7 +284,7 @@
       ]
     },
     {
-      "id": "PalParkLobby_Text_OkHereAreYourParkBalls_PlayerMale",
+      "id": "PalParkLobby_Text_HereParkBalls_PlayerMale",
       "en_US": [
         "OK, here are your Park Balls!\r",
         "{STRVAR_1 3, 0, 0} received\n",
@@ -297,7 +297,7 @@
       ]
     },
     {
-      "id": "PalParkLobby_Text_OkHereAreYourParkBalls_PlayerFemale",
+      "id": "PalParkLobby_Text_HereParkBalls_PlayerFemale",
       "en_US": [
         "OK, here are your Park Balls!\r",
         "{STRVAR_1 3, 0, 0} received\n",
@@ -310,7 +310,7 @@
       ]
     },
     {
-      "id": "PalParkLobby_Text_YouDontHaveEnoughPokemonForACatchingShow",
+      "id": "PalParkLobby_Text_NotEnoughPokemonMigrated",
       "en_US": [
         "Oh, hold on. You don’t have enough\n",
         "Pokémon for a Catching Show.\r",
@@ -321,7 +321,7 @@
       ]
     },
     {
-      "id": "PalParkLobby_Text_VeryWellLetMeExplainHowThingsWorkAroundHere",
+      "id": "PalParkLobby_Text_IllReadManual",
       "en_US": [
         "Very well, let me explain how things\n",
         "work around here.\r",
@@ -330,7 +330,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000515_00036",
+      "id": "PalParkLobby_Text_SorryYouRetired",
       "en_US": [
         "I’m sorry you had to retire.\n",
         "We hope you try harder next time.\r",
@@ -341,7 +341,7 @@
       ]
     },
     {
-      "id": "PalParkLobby_Text_YouHaveNoRoomForSixMorePokemon",
+      "id": "PalParkLobby_Text_PCBoxesFilled",
       "en_US": [
         "Oh, your PC Boxes are filled. You\n",
         "have no room for six more Pokémon.\r",
@@ -352,7 +352,7 @@
       ]
     },
     {
-      "id": "PalParkLobby_Text_CongratulationsThatsAllSixPokemonCaught",
+      "id": "PalParkLobby_Text_AllSixPokemonCaught",
       "en_US": [
         "Congratulations!\n",
         "That’s all six Pokémon caught!\r",
@@ -372,28 +372,28 @@
       ]
     },
     {
-      "id": "PalParkLobby_Text_WowThatsAnOutstandingRecord",
+      "id": "PalParkLobby_Text_OutstandingRecord",
       "en_US": [
         "Wow! That’s an outstanding record!\n",
         "Kudos to you!\r"
       ]
     },
     {
-      "id": "PalParkLobby_Text_GoodThatsADecentRecord",
+      "id": "PalParkLobby_Text_DecentRecord",
       "en_US": [
         "Good! That’s a decent record.\n",
         "Props to you!\r"
       ]
     },
     {
-      "id": "PalParkLobby_Text_AskToStoreCaughtMon",
+      "id": "PalParkLobby_Text_AskStoreCaughtMon",
       "en_US": [
         "Would you like to put all the Pokémon\n",
         "you’ve caught in PC Boxes?"
       ]
     },
     {
-      "id": "PalParkLobby_Text_DoneYourPokemonHaveBeenBoxedAway",
+      "id": "PalParkLobby_Text_PokemonHaveBeenBoxed",
       "en_US": [
         "Done!\n",
         "Your Pokémon have been boxed away.\r",
@@ -401,7 +401,7 @@
       ]
     },
     {
-      "id": "PalParkLobby_Text_OhThenItMightBeFunForYouToGoForAnEvenBetterScore",
+      "id": "PalParkLobby_Text_GoForBetterScore",
       "en_US": [
         "Oh, then it might be fun for you to\n",
         "go for an even better score by\f",
@@ -411,48 +411,48 @@
       ]
     },
     {
-      "id": "PalParkLobby_Text_IfYouWantToDoAnotherCatchingShowComeSeeUsAgain",
+      "id": "PalParkLobby_Text_ComeSeeUsAgain",
       "en_US": [
         "If you want to do another Catching\n",
         "Show, come see us again!"
       ]
     },
     {
-      "id": "PalParkLobby_Text_ItsTimeForYourPrize",
+      "id": "PalParkLobby_Text_TimeForPrize",
       "en_US": [
         "It’s time for your prize!\n",
         "Here you are!\r"
       ]
     },
     {
-      "id": "PalParkLobby_Text_AskToRedoCatchingShow",
+      "id": "PalParkLobby_Text_AskRedoCatchingShow",
       "en_US": [
         "Would you like to do another Catching\n",
         "Show with the same Pokémon?"
       ]
     },
     {
-      "id": "PalParkLobby_Text_Unused_00047",
+      "id": "PalParkLobby_Text_Dummy47",
       "garbage": 76
     },
     {
-      "id": "PalParkLobby_Text_Unused_00048",
+      "id": "PalParkLobby_Text_Dummy48",
       "garbage": 91
     },
     {
-      "id": "PalParkLobby_Text_Unused_00049",
+      "id": "PalParkLobby_Text_Dummy49",
       "garbage": 97
     },
     {
-      "id": "PalParkLobby_Text_Unused_00050",
+      "id": "PalParkLobby_Text_Dummy50",
       "garbage": 69
     },
     {
-      "id": "PalParkLobby_Text_Unused_00051",
+      "id": "PalParkLobby_Text_Dummy51",
       "garbage": 28
     },
     {
-      "id": "PalParkLobby_Text_ICameToSeePlayersCatchingShowWithDaddy",
+      "id": "PalParkLobby_Text_CameToSeeCatchingShow",
       "en_US": [
         "I came to see {STRVAR_1 3, 0, 0}’s Catching\n",
         "Show with Daddy.\r",
@@ -460,7 +460,7 @@
       ]
     },
     {
-      "id": "PalParkLobby_Text_EekPlayerYourCatchingShowWasFantastic",
+      "id": "PalParkLobby_Text_YourCatchingShowWasFantastic",
       "en_US": [
         "Eek! {STRVAR_1 3, 0, 0}!\n",
         "Your Catching Show was fantastic!\r",
@@ -469,14 +469,14 @@
       ]
     },
     {
-      "id": "PalParkLobby_Text_OhPlayerIHopeYouDoBetterNextTime",
+      "id": "PalParkLobby_Text_IHopeYouDoBetter",
       "en_US": [
         "Oh, {STRVAR_1 3, 0, 0}!\n",
         "I hope you do better next time."
       ]
     },
     {
-      "id": "PalParkLobby_Text_PlayerMyDaughterIsABigFanOfYours",
+      "id": "PalParkLobby_Text_DaughterIsBigFan",
       "en_US": [
         "{STRVAR_1 3, 0, 0}, my daughter is a big\n",
         "fan of yours.\r",
@@ -485,7 +485,7 @@
       ]
     },
     {
-      "id": "PalParkLobby_Text_WeGetToSeeRareAndExoticPokemon",
+      "id": "PalParkLobby_Text_RareAndExoticPokemon",
       "en_US": [
         "People come here not only to see\n",
         "the Catching Show.\r",
@@ -495,7 +495,7 @@
       ]
     },
     {
-      "id": "PalParkLobby_Text_TheCurrentRecordHolderIsXWithYPoints",
+      "id": "PalParkLobby_Text_CurrentRecordHolder",
       "en_US": [
         "The current record holder is\n",
         "{STRVAR_1 3, 1, 0} with {STRVAR_1 53, 2, 0} points.\f",
@@ -503,56 +503,56 @@
       ]
     },
     {
-      "id": "pl_msg_00000515_00058",
+      "id": "PalParkLobby_Text_Topped2000Points",
       "en_US": [
         "Oh! You’ve topped 2,000 points!\n",
         "You’ve earned this, then!\r"
       ]
     },
     {
-      "id": "pl_msg_00000515_00059",
+      "id": "PalParkLobby_Text_KeepWorkingHighScore",
       "en_US": [
         "Keep working on getting a higher\n",
         "score!"
       ]
     },
     {
-      "id": "pl_msg_00000515_00060",
+      "id": "PalParkLobby_Text_Topped2500Points",
       "en_US": [
         "Oh! You’ve topped 2,500 points!\n",
         "You’ve earned this, then!\r"
       ]
     },
     {
-      "id": "pl_msg_00000515_00061",
+      "id": "PalParkLobby_Text_Topped3000Points",
       "en_US": [
         "Oh! You’ve topped 3,000 points!\n",
         "You’ve earned this, then!\r"
       ]
     },
     {
-      "id": "pl_msg_00000515_00062",
+      "id": "PalParkLobby_Text_Topped3500Points",
       "en_US": [
         "Oh! You’ve earned 3,500 points!\n",
         "You’ve earned this, then!\r"
       ]
     },
     {
-      "id": "pl_msg_00000515_00063",
+      "id": "PalParkLobby_Text_IncredibleRecord",
       "en_US": [
         "You’ve set an incredible record!\n",
         "There’s nothing left to say!"
       ]
     },
     {
-      "id": "pl_msg_00000515_00064",
+      "id": "PalParkLobby_Text_BagIsFull",
       "en_US": [
         "Your Bag is full.\n",
         "You should come back later."
       ]
     },
     {
-      "id": "PalParkLobby_Text_RarePokemonTakeLongerToAppear",
+      "id": "PalParkLobby_Text_RarePokemonTakeLonger",
       "en_US": [
         "I’ve heard Trainers complain that\n",
         "rare Pokémon take longer to appear.\r",
@@ -561,7 +561,7 @@
       ]
     },
     {
-      "id": "PalParkLobby_Text_IEspeciallyLookForwardToSeeingPokemonFromKantoAndHoenn",
+      "id": "PalParkLobby_Text_ClashTrainerAndPokemon",
       "en_US": [
         "The Catching Show...\r",
         "It’s a head-on clash of will and\n",
@@ -573,7 +573,7 @@
       ]
     },
     {
-      "id": "PalParkLobby_Text_YourPerformanceLeftMyHeartFlutterToday_Crown",
+      "id": "PalParkLobby_Text_MustCrownYou",
       "en_US": [
         "Your performance left my heart\n",
         "aflutter today...\r",
@@ -584,7 +584,7 @@
       ]
     },
     {
-      "id": "PalParkLobby_Text_YourPerformanceLeftMyHeartFlutterToday_Tiara",
+      "id": "PalParkLobby_Text_CompelledToGiveTiara",
       "en_US": [
         "Your performance left my heart\n",
         "aflutter today...\r",
@@ -595,7 +595,7 @@
       ]
     },
     {
-      "id": "PalParkLobby_Text_YourPerformanceLeftMyHeartFlutterToday_Seafloor",
+      "id": "PalParkLobby_Text_TakeThisSeafloorBackdrop",
       "en_US": [
         "Your performance left my heart\n",
         "aflutter today...\r",
@@ -606,7 +606,7 @@
       ]
     },
     {
-      "id": "PalParkLobby_Text_YourPerformanceLeftMyHeartFlutterToday_Underground",
+      "id": "PalParkLobby_Text_TakeThisUndergroundBackdrop",
       "en_US": [
         "Your performance left my heart\n",
         "aflutter today...\r",
@@ -617,7 +617,7 @@
       ]
     },
     {
-      "id": "PalParkLobby_Text_YourPerformanceLeftMyHeartFlutterToday_Sky",
+      "id": "PalParkLobby_Text_TakeThisSkyBackdrop",
       "en_US": [
         "Your performance left my heart\n",
         "aflutter today...\r",
@@ -628,7 +628,7 @@
       ]
     },
     {
-      "id": "PalParkLobby_Text_NotOnlyAreThereCatchingShowsThereAreAlsoPokemonContests",
+      "id": "PalParkLobby_Text_CatchingShowsAndContests",
       "en_US": [
         "Not only are there Catching Shows,\n",
         "there are also Pokémon Contests...\r",
@@ -637,11 +637,11 @@
       ]
     },
     {
-      "id": "PalParkLobby_Text_Unused_00073",
+      "id": "PalParkLobby_Text_Dummy73",
       "garbage": 60
     },
     {
-      "id": "PalParkLobby_Text_Unused_00074",
+      "id": "PalParkLobby_Text_Dummy74",
       "garbage": 52
     }
   ]

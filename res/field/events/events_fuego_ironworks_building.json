@@ -79,7 +79,7 @@
             "y": 0
         },
         {
-            "id": "FUEGO_IRONWORKS_BUILDING_MIDDLE_AGED_MAN_4",
+            "id": "LOCALID_MR_FUEGO",
             "graphics_id": "OBJ_EVENT_GFX_MIDDLE_AGED_MAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -94,7 +94,7 @@
             "y": 0
         },
         {
-            "id": "FUEGO_IRONWORKS_BUILDING_WORKER_DILLAN",
+            "id": "LOCALID_WORKER_DILLAN",
             "graphics_id": "OBJ_EVENT_GFX_WORKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -111,7 +111,7 @@
             "y": 0
         },
         {
-            "id": "FUEGO_IRONWORKS_BUILDING_WORKER_HOLDEN",
+            "id": "LOCALID_WORKER_HOLDEN",
             "graphics_id": "OBJ_EVENT_GFX_WORKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -128,7 +128,7 @@
             "y": 0
         },
         {
-            "id": "FUEGO_IRONWORKS_BUILDING_WORKER_CONRAD",
+            "id": "LOCALID_WORKER_CONRAD",
             "graphics_id": "OBJ_EVENT_GFX_WORKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
