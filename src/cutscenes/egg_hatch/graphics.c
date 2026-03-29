@@ -315,15 +315,15 @@ void EggHatch_CreateYesNoMenu(EggHatchCutscene *eggHatch, BgConfig *bgConfig, Wi
     menuTemplate.suppressCursor = FALSE;
     menuTemplate.loopAround = TRUE;
 
-    Window_DrawStandardFrame(window, 1, BASE_TILE_OFFSET + SCROLLING_MESSAGE_BOX_TILE_COUNT, PLTT_13);
+    Window_DrawStandardFrame(window, TRUE, BASE_TILE_OFFSET + SCROLLING_MESSAGE_BOX_TILE_COUNT, PLTT_13);
     eggHatch->graphics.yesNoMenu = Menu_NewAndCopyToVRAM(&menuTemplate, 8, 0, 0, HEAP_ID_EGG_HATCH, PAD_BUTTON_B);
 }
 
 void EggHatch_FreeMenu(EggHatchCutscene *eggHatch)
 {
-    Window_EraseStandardFrame(&eggHatch->graphics.windows[1], TRUE);
-    Window_ClearAndCopyToVRAM(&eggHatch->graphics.windows[1]);
-    Window_Remove(&eggHatch->graphics.windows[1]);
+    Window_EraseStandardFrame(&eggHatch->graphics.windows[WINDOW_MENU], TRUE);
+    Window_ClearAndCopyToVRAM(&eggHatch->graphics.windows[WINDOW_MENU]);
+    Window_Remove(&eggHatch->graphics.windows[WINDOW_MENU]);
     Menu_Free(eggHatch->graphics.yesNoMenu, NULL);
     StringList_Free(eggHatch->graphics.strList);
 }
@@ -348,17 +348,17 @@ void EggHatch_LoadSubScreenBackground(BgConfig *bgConfig, PaletteData *plttData)
     PaletteData_LoadBufferFromFileStart(plttData, NARC_INDEX_GRAPHIC__POKETCH, unavailable_bg_tiles_NCLR, HEAP_ID_EGG_HATCH, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, 0);
 }
 
-static u32 AllocTexVram(u32 size, BOOL is4x4comp)
+static u32 AllocTexVram(u32 size, BOOL is4x4Comp)
 {
-    NNSGfdTexKey texKey = NNS_GfdAllocTexVram(size, is4x4comp, 0);
+    NNSGfdTexKey texKey = NNS_GfdAllocTexVram(size, is4x4Comp, 0);
     ParticleSystem_RegisterTextureKey(texKey);
 
     return NNS_GfdGetTexKeyAddr(texKey);
 }
 
-static u32 AllocPaletteVram(u32 size, BOOL is4pltt)
+static u32 AllocPaletteVram(u32 size, BOOL is4Pltt)
 {
-    NNSGfdPlttKey plttKey = NNS_GfdAllocPlttVram(size, is4pltt, 0);
+    NNSGfdPlttKey plttKey = NNS_GfdAllocPlttVram(size, is4Pltt, 0);
     ParticleSystem_RegisterPaletteKey(plttKey);
 
     return NNS_GfdGetPlttKeyAddr(plttKey);

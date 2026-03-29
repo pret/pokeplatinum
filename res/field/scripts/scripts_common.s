@@ -1415,7 +1415,7 @@ CommonScript_HatchEgg:
     FadeScreenOut
     WaitFadeScreen
     CloseMessage
-    ScrCmd_HatchEgg
+    HatchEgg
     FadeScreenIn
     WaitFadeScreen
     ReleaseAll

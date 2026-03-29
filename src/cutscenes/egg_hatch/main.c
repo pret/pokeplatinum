@@ -24,24 +24,31 @@
 #include "res/graphics/egg_hatch/egg_particles.naix"
 #include "res/text/bank/egg_hatch.h"
 
-#define ANIM_FRAME_WHOLE_EGG        0
-#define ANIM_FRAME_ONE_CRACK        1
-#define ANIM_FRAME_COUPLE_CRACKS    2
-#define ANIM_FRAME_BIG_CRACKS       3
-#define ANIM_FRAME_GAPING_HOLE      4
-#define ANIM_FRAME_READY_TO_SHATTER 5
+enum EggAnimFrame {
+    ANIM_FRAME_WHOLE_EGG = 0,
+    ANIM_FRAME_ONE_CRACK,
+    ANIM_FRAME_COUPLE_CRACKS,
+    ANIM_FRAME_BIG_CRACKS,
+    ANIM_FRAME_GAPING_HOLE,
+    ANIM_FRAME_READY_TO_SHATTER,
+};
 
-#define EMITTER_FIRST_EGG_SHARDS 0
-#define EMITTER_MORE_EGG_SHARDS  1
-#define EMITTER_EGG_EXPLODES     2
-#define EMITTER_SPARKLES         3
+enum EggNormalEmitter {
+    EMITTER_FIRST_EGG_SHARDS = 0,
+    EMITTER_MORE_EGG_SHARDS,
+    EMITTER_EGG_EXPLODES,
+    EMITTER_SPARKLES,
+};
 
-#define EMITTER_MANAPHY_GLOW     0
-#define EMITTER_MANAPHY_SPARKLES 1
-#define EMITTER_MANAPHY_RING     2
-#define EMITTER_MANAPHY_GLOW_EGG 3
+enum EggManaphyEmitter {
+    EMITTER_MANAPHY_GLOW = 0,
+    EMITTER_MANAPHY_SPARKLES,
+    EMITTER_MANAPHY_RING,
+    EMITTER_MANAPHY_GLOW_EGG,
+};
 
-static BOOL EggHatchCutscene_Normal(EggHatchCutscene *eggHatch);
+static BOOL
+EggHatchCutscene_Normal(EggHatchCutscene *eggHatch);
 static BOOL EggHatchCutscene_Manaphy(EggHatchCutscene *eggHatch);
 static BOOL InitializeEggAnimation(EggHatchCutscene *eggHatch);
 static BOOL StartBreakingEgg(EggHatchCutscene *eggHatch);
@@ -62,7 +69,7 @@ BOOL EggHatch_PlayCutscene(EggHatchCutscene *eggHatch)
 
 static BOOL EggHatchCutscene_Normal(EggHatchCutscene *eggHatch)
 {
-    BOOL notFinished = TRUE;
+    BOOL inProgress = TRUE;
 
     switch (eggHatch->state) {
     case 0:
@@ -70,7 +77,7 @@ static BOOL EggHatchCutscene_Normal(EggHatchCutscene *eggHatch)
         EggHatch_LoadSubScreenBackground(eggHatch->graphics.bgConfig, eggHatch->graphics.plttData);
 
         EggHatch_LoadMessageBoxGraphics(eggHatch->graphics.bgConfig, eggHatch->graphics.plttData, eggHatch->graphics.frame);
-        EggHatch_CreateMessageWindow(eggHatch->graphics.bgConfig, &eggHatch->graphics.windows[0], BG_LAYER_MAIN_1, 2, 19, 27, 4, BASE_TILE_OFFSET + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT, 14);
+        EggHatch_CreateMessageWindow(eggHatch->graphics.bgConfig, &eggHatch->graphics.windows[WINDOW_MESSAGE_BOX], BG_LAYER_MAIN_1, 2, 19, 27, 4, BASE_TILE_OFFSET + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT, 14);
 
         EggHatch_LoadSpriteResources(eggHatch);
         EggHatch_CreateSprites(eggHatch);
@@ -123,7 +130,7 @@ static BOOL EggHatchCutscene_Normal(EggHatchCutscene *eggHatch)
             int species = Pokemon_GetValue(eggHatch->app->args.mon, MON_DATA_SPECIES, NULL);
             int form = Pokemon_GetValue(eggHatch->app->args.mon, MON_DATA_FORM, NULL);
             Sound_PlayPokemonCry(species, form);
-            eggHatch->graphics.printerID = EggHatch_PrintMessage(&eggHatch->graphics.windows[0], EggHatch_Text_MonHatched, eggHatch->app->args.mon, eggHatch->graphics.renderDelay);
+            eggHatch->graphics.printerID = EggHatch_PrintMessage(&eggHatch->graphics.windows[WINDOW_MESSAGE_BOX], EggHatch_Text_MonHatched, eggHatch->app->args.mon, eggHatch->graphics.renderDelay);
             eggHatch->state++;
         }
         break;
@@ -145,7 +152,7 @@ static BOOL EggHatchCutscene_Normal(EggHatchCutscene *eggHatch)
             break;
         }
 
-        eggHatch->graphics.printerID = EggHatch_PrintMessage(&eggHatch->graphics.windows[0], EggHatch_Text_WantToNickname, eggHatch->app->args.mon, eggHatch->graphics.renderDelay);
+        eggHatch->graphics.printerID = EggHatch_PrintMessage(&eggHatch->graphics.windows[WINDOW_MESSAGE_BOX], EggHatch_Text_WantToNickname, eggHatch->app->args.mon, eggHatch->graphics.renderDelay);
         eggHatch->state++;
     case 11:
         if (Text_IsPrinterActive(eggHatch->graphics.printerID)) {
@@ -160,7 +167,7 @@ static BOOL EggHatchCutscene_Normal(EggHatchCutscene *eggHatch)
             break;
         }
 
-        EggHatch_CreateYesNoMenu(eggHatch, eggHatch->graphics.bgConfig, &eggHatch->graphics.windows[1], BG_LAYER_MAIN_1, 25, 13, 6, 4, BASE_TILE_OFFSET + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT + MESSAGE_WINDOW_TILE_COUNT, 14);
+        EggHatch_CreateYesNoMenu(eggHatch, eggHatch->graphics.bgConfig, &eggHatch->graphics.windows[WINDOW_MENU], BG_LAYER_MAIN_1, 25, 13, 6, 4, BASE_TILE_OFFSET + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT + MESSAGE_WINDOW_TILE_COUNT, 14);
         eggHatch->state++;
         break;
     case 12: {
@@ -203,16 +210,16 @@ static BOOL EggHatchCutscene_Normal(EggHatchCutscene *eggHatch)
     default:
         EggHatch_DeleteMonSprite(eggHatch);
         EggHatch_DeleteSprites(eggHatch);
-        EggHatch_FreeWindow(&eggHatch->graphics.windows[0]);
+        EggHatch_FreeWindow(&eggHatch->graphics.windows[WINDOW_MESSAGE_BOX]);
         EggHatchParticleSystem_FreeParticleSystem(eggHatch->graphics.eps->ps);
         EggHatchParticleSystem_Free(eggHatch->graphics.eps);
-        notFinished = FALSE;
+        inProgress = FALSE;
         break;
     }
 
     SpriteSystem_DrawSprites(eggHatch->graphics.spriteMan);
 
-    return notFinished;
+    return inProgress;
 }
 
 static BOOL EggHatchCutscene_Manaphy(EggHatchCutscene *eggHatch)
@@ -225,7 +232,7 @@ static BOOL EggHatchCutscene_Manaphy(EggHatchCutscene *eggHatch)
         EggHatch_LoadSubScreenBackground(eggHatch->graphics.bgConfig, eggHatch->graphics.plttData);
 
         EggHatch_LoadMessageBoxGraphics(eggHatch->graphics.bgConfig, eggHatch->graphics.plttData, eggHatch->graphics.frame);
-        EggHatch_CreateMessageWindow(eggHatch->graphics.bgConfig, &eggHatch->graphics.windows[0], 1, 2, 19, 27, 4, BASE_TILE_OFFSET + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT, 14);
+        EggHatch_CreateMessageWindow(eggHatch->graphics.bgConfig, &eggHatch->graphics.windows[WINDOW_MESSAGE_BOX], 1, 2, 19, 27, 4, BASE_TILE_OFFSET + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT, 14);
 
         EggHatch_LoadSpriteResources(eggHatch);
         EggHatch_CreateSprites(eggHatch);
@@ -258,7 +265,7 @@ static BOOL EggHatchCutscene_Manaphy(EggHatchCutscene *eggHatch)
             int species = Pokemon_GetValue(eggHatch->app->args.mon, MON_DATA_SPECIES, NULL);
             int form = Pokemon_GetValue(eggHatch->app->args.mon, MON_DATA_FORM, NULL);
             Sound_PlayPokemonCry(species, form);
-            eggHatch->graphics.printerID = EggHatch_PrintMessage(&eggHatch->graphics.windows[0], EggHatch_Text_MonHatched, eggHatch->app->args.mon, eggHatch->graphics.renderDelay);
+            eggHatch->graphics.printerID = EggHatch_PrintMessage(&eggHatch->graphics.windows[WINDOW_MESSAGE_BOX], EggHatch_Text_MonHatched, eggHatch->app->args.mon, eggHatch->graphics.renderDelay);
             eggHatch->state = 8;
         }
         break;
@@ -286,7 +293,7 @@ static BOOL EggHatchCutscene_Manaphy(EggHatchCutscene *eggHatch)
             break;
         }
 
-        eggHatch->graphics.printerID = EggHatch_PrintMessage(&eggHatch->graphics.windows[0], EggHatch_Text_WantToNickname, eggHatch->app->args.mon, eggHatch->graphics.renderDelay);
+        eggHatch->graphics.printerID = EggHatch_PrintMessage(&eggHatch->graphics.windows[WINDOW_MESSAGE_BOX], EggHatch_Text_WantToNickname, eggHatch->app->args.mon, eggHatch->graphics.renderDelay);
         eggHatch->state++;
     case 11:
         if (Text_IsPrinterActive(eggHatch->graphics.printerID)) {
@@ -301,7 +308,7 @@ static BOOL EggHatchCutscene_Manaphy(EggHatchCutscene *eggHatch)
             break;
         }
 
-        EggHatch_CreateYesNoMenu(eggHatch, eggHatch->graphics.bgConfig, &eggHatch->graphics.windows[1], 1, 25, 13, 6, 4, BASE_TILE_OFFSET + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT + MESSAGE_WINDOW_TILE_COUNT, 14);
+        EggHatch_CreateYesNoMenu(eggHatch, eggHatch->graphics.bgConfig, &eggHatch->graphics.windows[WINDOW_MENU], 1, 25, 13, 6, 4, BASE_TILE_OFFSET + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT + MESSAGE_WINDOW_TILE_COUNT, 14);
         eggHatch->state++;
         break;
     case 12: {
@@ -315,7 +322,7 @@ static BOOL EggHatchCutscene_Manaphy(EggHatchCutscene *eggHatch)
         case MENU_NOTHING_CHOSEN:
             break;
         default:
-            if (input == 0) {
+            if (input == MENU_YES) {
                 eggHatch->app->nicknameMon = TRUE;
             } else {
                 eggHatch->app->nicknameMon = FALSE;
@@ -344,7 +351,7 @@ static BOOL EggHatchCutscene_Manaphy(EggHatchCutscene *eggHatch)
     default:
         EggHatch_DeleteMonSprite(eggHatch);
         EggHatch_DeleteSprites(eggHatch);
-        EggHatch_FreeWindow(&eggHatch->graphics.windows[0]);
+        EggHatch_FreeWindow(&eggHatch->graphics.windows[WINDOW_MESSAGE_BOX]);
         EggHatchParticleSystem_FreeParticleSystem(eggHatch->graphics.eps->ps);
         EggHatchParticleSystem_Free(eggHatch->graphics.eps);
         notFinished = FALSE;

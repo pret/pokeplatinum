@@ -2462,7 +2462,7 @@
     .short \valueOrVarID
     .endm
 
-    .macro ScrCmd_HatchEgg
+    .macro HatchEgg
     .short SCRCMD_HATCHEGG
     .endm
 

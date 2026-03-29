@@ -15,6 +15,9 @@
 #define EGG_SHAKE_HALF_OVER 1
 #define EGG_SHAKE_FINISHED  2
 
+#define WINDOW_MESSAGE_BOX 0
+#define WINDOW_MENU        1
+
 enum EggHatchShakeAnimID {
     EGG_MINOR_SHAKE = 0,
     EGG_BIG_SHAKE,

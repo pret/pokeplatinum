@@ -52,10 +52,9 @@ static const ApplicationManagerTemplate sEggHatchAppTemplate = {
 
 static BOOL EggHatch_Init(ApplicationManager *appMan, int *state)
 {
-
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
-    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_EGG_HATCH, 0x40000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_EGG_HATCH, HEAP_SIZE_EGG_HATCH);
 
     EggHatchCutscene *eggHatch = ApplicationManager_NewData(appMan, sizeof(EggHatchCutscene), HEAP_ID_EGG_HATCH);
     memset(eggHatch, 0, sizeof(EggHatchCutscene));
@@ -173,7 +172,7 @@ static BOOL EggHatch_Exit(ApplicationManager *appMan, int *state)
     return TRUE;
 }
 
-static BOOL HatchEgg(FieldTask *fieldTask)
+static BOOL FieldTask_HatchEgg(FieldTask *fieldTask)
 {
     EggHatchApp *app = FieldTask_GetEnv(fieldTask);
 
@@ -249,5 +248,5 @@ void EggHatch_HatchEgg(FieldTask *task, void *args)
 
     app->args = *(EggHatchArgs *)args;
 
-    FieldTask_InitCall(task, HatchEgg, app);
+    FieldTask_InitCall(task, FieldTask_HatchEgg, app);
 }
