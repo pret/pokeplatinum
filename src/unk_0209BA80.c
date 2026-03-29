@@ -17,10 +17,10 @@
 #include "overlay104/ov104_0222ECE8.h"
 #include "overlay104/ov104_0223C164.h"
 
+#include "battle_frontier_stats.h"
 #include "communication_system.h"
 #include "party.h"
 #include "pokemon.h"
-#include "unk_0203061C.h"
 #include "unk_02032798.h"
 #include "unk_0205DFC4.h"
 

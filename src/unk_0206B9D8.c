@@ -16,6 +16,7 @@
 #include "field/field_system.h"
 
 #include "bag.h"
+#include "battle_frontier_stats.h"
 #include "communication_system.h"
 #include "dexmode_checker.h"
 #include "field_system.h"
@@ -29,7 +30,6 @@
 #include "underground.h"
 #include "unk_0202D05C.h"
 #include "unk_0202D778.h"
-#include "unk_0203061C.h"
 #include "unk_020363E8.h"
 #include "unk_02038FFC.h"
 #include "unk_0203D1B8.h"

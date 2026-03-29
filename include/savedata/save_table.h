@@ -3,10 +3,10 @@
 
 #include "constants/savedata/save_table.h"
 
-#include "struct_decls/struct_020308A0_decl.h"
 #include "struct_defs/struct_0202440C.h"
 #include "struct_defs/struct_0202F264.h"
 
+#include "battle_hall_win_records.h"
 #include "hall_of_fame_entries.h"
 #include "mystery_gift.h"
 #include "pc_boxes.h"

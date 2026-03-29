@@ -1,4 +1,4 @@
-#include "unk_0203061C.h"
+#include "battle_frontier_stats.h"
 
 #include <nitro.h>
 

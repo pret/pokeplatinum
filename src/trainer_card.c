@@ -10,6 +10,7 @@
 #include "field/field_system.h"
 
 #include "badges.h"
+#include "battle_frontier_stats.h"
 #include "charcode_util.h"
 #include "field_system.h"
 #include "field_task.h"
@@ -23,7 +24,6 @@
 #include "trainer_card_save_data.h"
 #include "trainer_info.h"
 #include "underground.h"
-#include "unk_0203061C.h"
 #include "unk_0203D1B8.h"
 #include "unk_020559DC.h"
 #include "unk_0205B33C.h"

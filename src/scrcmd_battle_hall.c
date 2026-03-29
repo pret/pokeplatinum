@@ -8,7 +8,6 @@
 
 #include "struct_decls/struct_02030114_decl.h"
 #include "struct_decls/struct_0203026C_decl.h"
-#include "struct_decls/struct_020308A0_decl.h"
 
 #include "applications/party_menu/defs.h"
 #include "applications/party_menu/main.h"
@@ -16,6 +15,8 @@
 #include "field/field_system.h"
 
 #include "bag.h"
+#include "battle_frontier_stats.h"
+#include "battle_hall_win_records.h"
 #include "communication_system.h"
 #include "dexmode_checker.h"
 #include "field_script_context.h"
@@ -34,8 +35,6 @@
 #include "unk_0202D05C.h"
 #include "unk_0202D778.h"
 #include "unk_02030108.h"
-#include "unk_0203061C.h"
-#include "unk_02030880.h"
 #include "unk_0204FA34.h"
 #include "unk_0205DFC4.h"
 #include "unk_02099500.h"
@@ -482,7 +481,7 @@ BOOL ScrCmd_GetBattleHallRecordKeeperStats(ScriptContext *ctx)
         totalWinRecord = 0;
     } else {
         for (u32 species = 0; species < NATIONAL_DEX_COUNT; species++) {
-            totalWinRecord += BattleFrontierStats_GetHallRecordForSpecies(fieldSystem->saveData, records, FRONTIER_CHALLENGE_SINGLE, species);
+            totalWinRecord += BattleHallWinRecords_GetRecordForSpecies(fieldSystem->saveData, records, FRONTIER_CHALLENGE_SINGLE, species);
         }
     }
 
@@ -558,9 +557,9 @@ BOOL ScrCmd_GetNumSpeciesWithBattleHallRecords(ScriptContext *ctx)
         for (species = 0; species < NATIONAL_DEX_COUNT; species++) {
             combinedRecord = 0;
 
-            combinedRecord += BattleFrontierStats_GetHallRecordForSpecies(fieldSystem->saveData, records, FRONTIER_CHALLENGE_SINGLE, species);
-            combinedRecord += BattleFrontierStats_GetHallRecordForSpecies(fieldSystem->saveData, records, FRONTIER_CHALLENGE_DOUBLE, species);
-            combinedRecord += BattleFrontierStats_GetHallRecordForSpecies(fieldSystem->saveData, records, FRONTIER_CHALLENGE_MULTI, species);
+            combinedRecord += BattleHallWinRecords_GetRecordForSpecies(fieldSystem->saveData, records, FRONTIER_CHALLENGE_SINGLE, species);
+            combinedRecord += BattleHallWinRecords_GetRecordForSpecies(fieldSystem->saveData, records, FRONTIER_CHALLENGE_DOUBLE, species);
+            combinedRecord += BattleHallWinRecords_GetRecordForSpecies(fieldSystem->saveData, records, FRONTIER_CHALLENGE_MULTI, species);
 
             if (combinedRecord > 0) {
                 numSpeciesWithRecord++;
@@ -595,7 +594,7 @@ BOOL ScrCmd_GetBattleHallTotalSinglesRecord(ScriptContext *ctx)
         totalRecord = 0;
     } else {
         for (u32 species = 0; species < NATIONAL_DEX_COUNT; species++) {
-            totalRecord += BattleFrontierStats_GetHallRecordForSpecies(fieldSystem->saveData, records, FRONTIER_CHALLENGE_SINGLE, species);
+            totalRecord += BattleHallWinRecords_GetRecordForSpecies(fieldSystem->saveData, records, FRONTIER_CHALLENGE_SINGLE, species);
         }
     }
 

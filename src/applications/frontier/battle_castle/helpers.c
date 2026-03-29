@@ -2,6 +2,7 @@
 
 #include <nitro.h>
 
+#include "battle_frontier_stats.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "list_menu.h"
@@ -9,7 +10,6 @@
 #include "sound_playback.h"
 #include "string_template.h"
 #include "trainer_info.h"
-#include "unk_0203061C.h"
 #include "unk_0205DFC4.h"
 
 u8 BattleCastleApp_GetSelectedSlot(u8 numSlots, u8 slot)

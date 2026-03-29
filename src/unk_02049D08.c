@@ -19,6 +19,7 @@
 #include "field/field_system.h"
 #include "savedata/save_table.h"
 
+#include "battle_frontier_stats.h"
 #include "field_overworld_state.h"
 #include "field_task.h"
 #include "game_records.h"
@@ -39,7 +40,6 @@
 #include "tv_episode_segment.h"
 #include "underground.h"
 #include "unk_0202D05C.h"
-#include "unk_0203061C.h"
 #include "unk_0204AEE8.h"
 #include "unk_0205DFC4.h"
 #include "unk_0206B9D8.h"

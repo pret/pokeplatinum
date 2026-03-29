@@ -4,6 +4,8 @@
 #include <string.h>
 
 #include "bag.h"
+#include "battle_frontier_stats.h"
+#include "battle_hall_win_records.h"
 #include "battle_regulation.h"
 #include "chatot_cry.h"
 #include "daycare_save.h"
@@ -39,8 +41,6 @@
 #include "unk_0202E2CC.h"
 #include "unk_0202EEC0.h"
 #include "unk_0202F1D4.h"
-#include "unk_0203061C.h"
-#include "unk_02030880.h"
 #include "unk_02030CE8.h"
 #include "unk_02030EA4.h"
 #include "vars_flags.h"

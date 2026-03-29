@@ -14,6 +14,7 @@
 #include "overlay104/struct_ov104_0223BA10.h"
 #include "overlay104/struct_ov104_0223BFFC.h"
 
+#include "battle_frontier_stats.h"
 #include "communication_system.h"
 #include "heap.h"
 #include "party.h"
@@ -22,7 +23,6 @@
 #include "trainer_info.h"
 #include "unk_020302D0.h"
 #include "unk_02030494.h"
-#include "unk_0203061C.h"
 #include "unk_0205DFC4.h"
 
 BOOL ov104_0222EEF8(UnkStruct_ov104_0223ADA0 *param0);

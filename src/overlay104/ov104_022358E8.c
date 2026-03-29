@@ -14,6 +14,7 @@
 #include "overlay104/struct_ov104_0223597C.h"
 #include "overlay104/struct_ov104_0223BA10.h"
 
+#include "battle_frontier_stats.h"
 #include "communication_system.h"
 #include "field_battle_data_transfer.h"
 #include "heap.h"
@@ -21,7 +22,6 @@
 #include "pokemon.h"
 #include "string_gf.h"
 #include "unk_020302D0.h"
-#include "unk_0203061C.h"
 #include "unk_0205DFC4.h"
 #include "unk_0209B6F8.h"
 #include "unk_0209BA80.h"

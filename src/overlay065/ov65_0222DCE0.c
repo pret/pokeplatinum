@@ -26,6 +26,7 @@
 
 #include "assert.h"
 #include "bag.h"
+#include "battle_frontier_stats.h"
 #include "bg_window.h"
 #include "char_transfer.h"
 #include "communication_information.h"
@@ -78,7 +79,6 @@
 #include "unk_02012744.h"
 #include "unk_0202ACE0.h"
 #include "unk_0202C858.h"
-#include "unk_0203061C.h"
 #include "unk_02030CE8.h"
 #include "unk_02033200.h"
 #include "unk_020363E8.h"

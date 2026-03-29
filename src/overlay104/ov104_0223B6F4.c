@@ -11,6 +11,7 @@
 #include "overlay104/struct_ov104_02230BE4.h"
 #include "overlay104/struct_ov104_0223BA10.h"
 
+#include "battle_frontier_stats.h"
 #include "bg_window.h"
 #include "communication_information.h"
 #include "communication_system.h"
@@ -23,7 +24,6 @@
 #include "pokemon.h"
 #include "save_player.h"
 #include "string_gf.h"
-#include "unk_0203061C.h"
 #include "unk_0205DFC4.h"
 
 static int ov104_0223B6F4(u8 param0, int param1, int param2);

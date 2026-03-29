@@ -6,12 +6,13 @@
 #include "constants/battle_frontier.h"
 
 #include "struct_decls/struct_0202D750_decl.h"
-#include "struct_decls/struct_020308A0_decl.h"
 #include "struct_defs/battle_frontier.h"
 #include "struct_defs/struct_0203E564.h"
 
 #include "applications/frontier/records/windows.h"
 
+#include "battle_frontier_stats.h"
+#include "battle_hall_win_records.h"
 #include "battle_tower_modes.h"
 #include "bg_window.h"
 #include "font.h"
@@ -35,8 +36,6 @@
 #include "unk_0202FF4C.h"
 #include "unk_020302D0.h"
 #include "unk_02030494.h"
-#include "unk_0203061C.h"
-#include "unk_02030880.h"
 #include "unk_0205DFC4.h"
 
 #include "res/graphics/poketch/poketch.naix"
@@ -613,7 +612,7 @@ static void DisplayBattleHallRecord(FrontierRecordsApp *app)
     if (resultCode != LOAD_RESULT_OK) {
         streak = 0;
     } else {
-        streak = BattleFrontierStats_GetHallRecordForSpecies(app->saveData, records, BattleFrontierStats_GetHallRecordStreakIndex(app->challengeType), app->species);
+        streak = BattleHallWinRecords_GetRecordForSpecies(app->saveData, records, BattleFrontierStats_GetHallRecordStreakIndex(app->challengeType), app->species);
     }
 
     if (records != NULL) {

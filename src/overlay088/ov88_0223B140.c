@@ -17,6 +17,7 @@
 #include "overlay088/struct_ov88_0223C8AC.h"
 
 #include "bag.h"
+#include "battle_frontier_stats.h"
 #include "bg_window.h"
 #include "brightness_controller.h"
 #include "char_transfer.h"
@@ -70,7 +71,6 @@
 #include "unk_0202ACE0.h"
 #include "unk_0202D778.h"
 #include "unk_0202F180.h"
-#include "unk_0203061C.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
 #include "unk_02038ED4.h"

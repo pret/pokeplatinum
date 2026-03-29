@@ -16,6 +16,7 @@
 #include "overlay104/struct_ov104_0223ADA0.h"
 #include "overlay104/struct_ov104_0224028C.h"
 
+#include "battle_frontier_stats.h"
 #include "game_records.h"
 #include "heap.h"
 #include "math_util.h"
@@ -24,7 +25,6 @@
 #include "savedata.h"
 #include "system_vars.h"
 #include "unk_0202FF4C.h"
-#include "unk_0203061C.h"
 #include "unk_0205DFC4.h"
 #include "vars_flags.h"
 
@@ -135,7 +135,7 @@ static void ov104_02233BAC(UnkStruct_ov104_0223ADA0 *param0)
     u16 v5[6];
     u16 v6[6];
 
-    ov104_0223A860(param0->unk_04, ov104_0223AF34(param0), param0->unk_18, (7 * 2));
+    ov104_0223A860(param0->unk_04, ov104_0223AF34(param0), param0->unk_18, 7 * 2);
 
     ov104_0223AAA0(ov104_0223AF34(param0), param0->unk_05, param0->unk_254, param0->unk_280, param0->unk_260, param0->unk_268, param0->unk_08, NULL, NULL);
 
@@ -528,7 +528,7 @@ void ov104_02234570(UnkStruct_ov104_0223ADA0 *param0)
 
     v7 = ov104_0223A8A8(param0->unk_18[param0->unk_06], param0->unk_05);
 
-    ov104_0223A918(v4, v5, (v2 + v1), v3, param0->unk_3D2, 11, v7, 0, param0->unk_3DA);
+    ov104_0223A918(v4, v5, v2 + v1, v3, param0->unk_3D2, 11, v7, 0, param0->unk_3DA);
     ov104_0222E330(param0->unk_3F0, param0->unk_3D2, param0->unk_3DA, NULL, param0->unk_3E0, v3, 11, 179);
 
     return;

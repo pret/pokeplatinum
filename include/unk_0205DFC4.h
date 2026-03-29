@@ -1,11 +1,12 @@
 #ifndef POKEPLATINUM_UNK_0205DFC4_H
 #define POKEPLATINUM_UNK_0205DFC4_H
 
+#include "constants/battle_frontier_stats.h"
+
 #include "struct_decls/struct_02061AB4_decl.h"
 
 #include "field_task.h"
 #include "savedata.h"
-#include "unk_0203061C.h"
 
 u16 GetNumberDigitCount(u32 number);
 u16 Item_IsTMHM(u16 item);

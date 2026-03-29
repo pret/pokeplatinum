@@ -1,25 +1,16 @@
-#include "unk_02030880.h"
+#include "battle_hall_win_records.h"
 
 #include <nitro.h>
 
 #include "constants/battle_frontier.h"
-#include "constants/species.h"
 
 #include "struct_defs/battle_frontier.h"
 
 #include "savedata/save_table.h"
 
+#include "battle_frontier_stats.h"
 #include "heap.h"
 #include "savedata.h"
-#include "unk_0203061C.h"
-
-typedef struct BattleHallWinRecords {
-    u32 alwaysNegative1;
-    u16 singleStreaks[MAX_SPECIES];
-    u16 doubleStreaks[MAX_SPECIES];
-    u16 multiStreaks[MAX_SPECIES];
-    u16 unused;
-} BattleHallWinRecords;
 
 static u16 WriteWinRecord(BattleHallWinRecords *records, int challengeType, int species, u16 streak);
 
@@ -45,7 +36,7 @@ int BattleHallWinRecords_Save(SaveData *saveData, BattleHallWinRecords *records)
     return SaveData_SaveBattleHallWinRecords(saveData, records) | SaveData_Save(saveData);
 }
 
-u16 BattleFrontierStats_GetHallRecordForSpecies(SaveData *saveData, BattleHallWinRecords *records, int challengeType, int species)
+u16 BattleHallWinRecords_GetRecordForSpecies(SaveData *saveData, BattleHallWinRecords *records, int challengeType, int species)
 {
     if (!SaveData_MiscSaveBlock_InitFlag(saveData)) {
         return 0;
@@ -94,7 +85,7 @@ static u16 UpdateWinRecord(SaveData *saveData, BattleHallWinRecords *records, in
         return 0;
     }
 
-    u16 currentRecord = BattleFrontierStats_GetHallRecordForSpecies(saveData, records, challengeType, species);
+    u16 currentRecord = BattleHallWinRecords_GetRecordForSpecies(saveData, records, challengeType, species);
 
     if (currentRecord < newRecord) {
         return WriteWinRecord(records, challengeType, species, newRecord);
@@ -134,7 +125,7 @@ BOOL BattleHallWinRecords_UpdateRecord(SaveData *saveData, enum BattleFrontierSt
     if (*resultCode != LOAD_RESULT_OK) {
         currentRecord = 0;
     } else {
-        currentRecord = BattleFrontierStats_GetHallRecordForSpecies(saveData, records, challengeType, species);
+        currentRecord = BattleHallWinRecords_GetRecordForSpecies(saveData, records, challengeType, species);
     }
 
     UpdateWinRecord(saveData, records, challengeType, species, newRecord);

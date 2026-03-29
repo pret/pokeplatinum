@@ -13,14 +13,14 @@
 #include "overlay104/struct_ov104_02235208.h"
 #include "overlay104/struct_ov104_0223B5C0.h"
 
+#include "battle_frontier_stats.h"
+#include "battle_hall_win_records.h"
 #include "heap.h"
 #include "party.h"
 #include "pokemon.h"
 #include "savedata.h"
 #include "system_vars.h"
 #include "unk_02030108.h"
-#include "unk_0203061C.h"
-#include "unk_02030880.h"
 #include "unk_0205DFC4.h"
 #include "vars_flags.h"
 
@@ -119,7 +119,7 @@ UnkStruct_ov104_0223B5C0 *ov104_02234DB4(SaveData *saveData, u16 param1, u8 para
 
     if (v10->unk_04 == 2) {
         for (v5 = 0; v5 < 18; v5++) {
-            sub_02030204(v5, &v10->unk_704[2][0], (10 - 1));
+            sub_02030204(v5, &v10->unk_704[2][0], 10 - 1);
         }
     } else {
         for (v5 = 0; v5 < 18; v5++) {
@@ -473,7 +473,7 @@ void ov104_022356A0(UnkStruct_ov104_0223B5C0 *param0)
 
         if (v1 == (18 - 1)) {
             for (v1 = 0; v1 < (18 - 1); v1++) {
-                sub_02030204(v1, &param0->unk_704[param0->unk_04][0], (10 - 1));
+                sub_02030204(v1, &param0->unk_704[param0->unk_04][0], 10 - 1);
             }
         }
     }

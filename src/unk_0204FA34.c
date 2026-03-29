@@ -6,10 +6,10 @@
 
 #include "struct_decls/struct_0203026C_decl.h"
 
+#include "battle_frontier_stats.h"
 #include "communication_system.h"
 #include "savedata.h"
 #include "unk_02030108.h"
-#include "unk_0203061C.h"
 #include "unk_0205DFC4.h"
 
 void BattleHall_ProcessSelectedSpeciesMsg(int netID, int unused, void *data, void *context)

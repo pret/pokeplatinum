@@ -13,6 +13,7 @@
 #include "overlay090/struct_ov90_021D0D80.h"
 #include "overlay090/struct_ov90_021D1750.h"
 
+#include "battle_frontier_stats.h"
 #include "bg_window.h"
 #include "font.h"
 #include "game_options.h"
@@ -34,7 +35,6 @@
 #include "text.h"
 #include "unk_02014A84.h"
 #include "unk_0202D05C.h"
-#include "unk_0203061C.h"
 #include "unk_0208C098.h"
 #include "vram_transfer.h"
 

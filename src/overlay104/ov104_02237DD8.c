@@ -16,6 +16,7 @@
 #include "overlay104/struct_ov104_02238240.h"
 #include "overlay104/struct_ov104_0223BFFC.h"
 
+#include "battle_frontier_stats.h"
 #include "bg_window.h"
 #include "graphics.h"
 #include "gx_layers.h"
@@ -29,7 +30,6 @@
 #include "sprite.h"
 #include "system_vars.h"
 #include "unk_02030494.h"
-#include "unk_0203061C.h"
 #include "unk_0205DFC4.h"
 #include "vars_flags.h"
 
@@ -243,7 +243,7 @@ void ov104_0223806C(UnkStruct_ov104_0223BFFC *param0, u16 param1)
 
 static void ov104_02238080(UnkStruct_ov104_0223BFFC *param0)
 {
-    ov104_0223BD28(param0->unk_10, ov104_0223C124(param0), param0->unk_78, (7 * 2));
+    ov104_0223BD28(param0->unk_10, ov104_0223C124(param0), param0->unk_78, 7 * 2);
 
     ov104_0222E4BC(BattleArcade_GetOpponentPartySize(param0->unk_10, 1), param0->unk_78[param0->unk_11], param0->unk_78[param0->unk_11 + 7], param0->unk_314, param0->unk_330, param0->unk_31C, param0->unk_320, BattleArcade_IsMultiPlayerChallenge(param0->unk_10));
 

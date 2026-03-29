@@ -3,6 +3,7 @@
 #include <nitro.h>
 
 #include "constants/battle_frontier.h"
+#include "constants/battle_frontier_stats.h"
 
 #include "struct_decls/struct_02061AB4_decl.h"
 
@@ -21,7 +22,6 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "trainer_info.h"
-#include "unk_0203061C.h"
 
 #include "res/text/bank/pokedex_ratings.h"
 

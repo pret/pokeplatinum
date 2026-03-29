@@ -11,7 +11,6 @@
 #include "generated/items.h"
 #include "generated/species.h"
 
-#include "struct_decls/struct_020308A0_decl.h"
 #include "struct_decls/struct_02061830_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_defs/wi_fi_history.h"
@@ -21,6 +20,7 @@
 #include "overlay005/ov5_021ECE40.h"
 
 #include "bag.h"
+#include "battle_hall_win_records.h"
 #include "berry_patch_graphics.h"
 #include "bg_window.h"
 #include "billboard.h"
@@ -53,7 +53,6 @@
 #include "sys_task_manager.h"
 #include "system_vars.h"
 #include "unk_0202C858.h"
-#include "unk_02030880.h"
 #include "unk_02038F8C.h"
 #include "unk_0205DFC4.h"
 #include "vars_flags.h"
@@ -144,7 +143,7 @@ BOOL ScrCmd_ShowBattleHallRecordMonSelectionMenu(ScriptContext *ctx)
         speciesList = BattleHallRecordSelector_GetSpeciesList(HEAP_ID_FIELD3, sAlphabeticalSpeciesLists[letterGroup], &speciesListSize);
 
         for (int i = 0; i < speciesListSize; i++) {
-            u16 streak = BattleFrontierStats_GetHallRecordForSpecies(fieldSystem->saveData, records, BattleFrontierStats_GetHallRecordStreakIndex(challengeType), speciesList[i]);
+            u16 streak = BattleHallWinRecords_GetRecordForSpecies(fieldSystem->saveData, records, BattleFrontierStats_GetHallRecordStreakIndex(challengeType), speciesList[i]);
 
             if (streak != 0) {
                 BattleHallRecordSelector_AddOption(selector, speciesList[i], 0xff, speciesList[i]);

@@ -18,6 +18,7 @@
 #include "overlay104/struct_ov104_0223597C.h"
 #include "overlay104/struct_ov104_0223BA10.h"
 
+#include "battle_frontier_stats.h"
 #include "bg_window.h"
 #include "communication_information.h"
 #include "communication_system.h"
@@ -35,7 +36,6 @@
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_020302D0.h"
-#include "unk_0203061C.h"
 #include "unk_0205DFC4.h"
 #include "vars_flags.h"
 

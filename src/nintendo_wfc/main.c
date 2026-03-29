@@ -11,12 +11,12 @@
 #include "global/assert.h"
 #include "nintendo_wfc/voice_chat.h"
 
+#include "battle_frontier_stats.h"
 #include "communication_system.h"
 #include "dwc_error.h"
 #include "heap.h"
 #include "savedata.h"
 #include "unk_0202ACE0.h"
-#include "unk_0203061C.h"
 #include "unk_0203266C.h"
 #include "unk_020366A0.h"
 
@@ -260,7 +260,7 @@ int NintendoWFC_ConnectToDWCServer(void)
         }
     }
 
-        DWC_InitFriendsMatch(&(sNintendoWFCManager->friendsMatchCtl), (sNintendoWFCManager->userData), 10727, "pokemondpds", "1vTlwb", 0, 0, sNintendoWFCManager->friends, MAX_FRIENDS);
+        DWC_InitFriendsMatch(&(sNintendoWFCManager->friendsMatchCtl), sNintendoWFCManager->userData, 10727, "pokemondpds", "1vTlwb", 0, 0, sNintendoWFCManager->friends, MAX_FRIENDS);
 
         OSOwnerInfo ownerInfo;
         OS_GetOwnerInfo(&ownerInfo);
