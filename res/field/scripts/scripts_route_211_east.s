@@ -2,58 +2,58 @@
 #include "res/text/bank/route_211_east.h"
 
 
-    ScriptEntry _0012
-    ScriptEntry _0088
-    ScriptEntry _009F
-    ScriptEntry _00B4
+    ScriptEntry Route211East_AceTrainerM
+    ScriptEntry Route211East_ArrowSignMtCoronet
+    ScriptEntry Route211East_TrainerTips
+    ScriptEntry Route211East_ArrowSignCelesticTown
     ScriptEntryEnd
 
-_0012:
+Route211East_AceTrainerM:
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    GoToIfSet FLAG_UNK_0x00C6, _0066
-    Message 0
+    GoToIfSet FLAG_RECEIVED_ROUTE_211_EAST_TM77, Route211East_ExplainPsychUp
+    Message Route211East_Text_ImStrong
     CloseMessage
     FacePlayer
-    ApplyMovement VAR_LAST_TALKED, _0080
+    ApplyMovement VAR_LAST_TALKED, Route211East_Movement_ExclamationMark
     WaitMovement
-    Message 1
+    Message Route211East_Text_YouStartledMe
     SetVar VAR_0x8004, ITEM_TM77
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0073
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Route211East_BagIsFull
     Common_GiveItemQuantity
-    SetFlag FLAG_UNK_0x00C6
-    GoTo _0066
+    SetFlag FLAG_RECEIVED_ROUTE_211_EAST_TM77
+    GoTo Route211East_ExplainPsychUp
 
-_0066:
+Route211East_ExplainPsychUp:
     FacePlayer
-    Message 2
+    Message Route211East_Text_ExplainPsychUp
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0073:
+Route211East_BagIsFull:
     Common_MessageBagIsFull
     CloseMessage
     ReleaseAll
     End
 
     .balign 4, 0
-_0080:
+Route211East_Movement_ExclamationMark:
     EmoteExclamationMark
     EndMovement
 
-_0088:
-    ShowArrowSign 3
+Route211East_ArrowSignMtCoronet:
+    ShowArrowSign Route211East_Text_SignMtCoronet
     End
 
-_009F:
-    ShowScrollingSign 4
+Route211East_TrainerTips:
+    ShowScrollingSign Route211East_Text_TrainerTipsCheckSupply
     End
 
-_00B4:
-    ShowArrowSign 5
+Route211East_ArrowSignCelesticTown:
+    ShowArrowSign Route211East_Text_SignCelesticTown
     End
 
     .balign 4, 0

@@ -1,68 +1,69 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/celestic_town_pokecenter_1f.h"
+#include "res/field/events/events_celestic_town_pokecenter_1f.h"
 
 
-    ScriptEntry _0012
-    ScriptEntry _001E
-    ScriptEntry _0031
-    ScriptEntry _0044
+    ScriptEntry CelesticTownPokecenter1F_Nurse
+    ScriptEntry CelesticTownPokecenter1F_ExpertF
+    ScriptEntry CelesticTownPokecenter1F_Twin
+    ScriptEntry CelesticTownPokecenter1F_PokefanM
     ScriptEntryEnd
 
-_0012:
-    Common_CallPokecenterNurse 0
+CelesticTownPokecenter1F_Nurse:
+    Common_CallPokecenterNurse LOCALID_POKECENTER_NURSE
     End
 
-_001E:
-    NPCMessage 0
+CelesticTownPokecenter1F_ExpertF:
+    NPCMessage CelesticTownPokecenter1F_Text_SeeCavePainting
     End
 
-_0031:
-    NPCMessage 1
+CelesticTownPokecenter1F_Twin:
+    NPCMessage CelesticTownPokecenter1F_Text_TownSinceSinnoh
     End
 
-_0044:
+CelesticTownPokecenter1F_PokefanM:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x0AA1, _00C0
-    Message 2
+    GoToIfSet FLAG_RECEIVED_CELESTIC_TOWN_POKECENTER_1F_GREAT_BALL, CelesticTownPokecenter1F_ItsAboutTrust
+    Message CelesticTownPokecenter1F_Text_InterestingPokemon
     GetFirstNonEggInParty VAR_0x8000
     GetPartyMonFriendship VAR_RESULT, VAR_0x8000
-    GoToIfGe VAR_RESULT, 150, _0084
-    GoToIfGe VAR_RESULT, 50, _00CB
-    GoTo _00D6
+    GoToIfGe VAR_RESULT, 150, CelesticTownPokecenter1F_GiveGreatBall
+    GoToIfGe VAR_RESULT, 50, CelesticTownPokecenter1F_ItsWarmingUp
+    GoTo CelesticTownPokecenter1F_ItsNotUsedToYou
 
-_0084:
-    Message 3
+CelesticTownPokecenter1F_GiveGreatBall:
+    Message CelesticTownPokecenter1F_Text_YouCanHaveThis
     SetVar VAR_0x8004, ITEM_GREAT_BALL
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _00B6
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, CelesticTownPokecenter1F_BagIsFull
     Common_GiveItemQuantity
-    SetFlag FLAG_UNK_0x0AA1
-    GoTo _00C0
+    SetFlag FLAG_RECEIVED_CELESTIC_TOWN_POKECENTER_1F_GREAT_BALL
+    GoTo CelesticTownPokecenter1F_ItsAboutTrust
 
-_00B6:
+CelesticTownPokecenter1F_BagIsFull:
     Common_MessageBagIsFull
     CloseMessage
     ReleaseAll
     End
 
-_00C0:
-    Message 4
+CelesticTownPokecenter1F_ItsAboutTrust:
+    Message CelesticTownPokecenter1F_Text_ItsAboutTrust
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_00CB:
-    Message 5
+CelesticTownPokecenter1F_ItsWarmingUp:
+    Message CelesticTownPokecenter1F_Text_ItsWarmingUp
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_00D6:
-    Message 6
+CelesticTownPokecenter1F_ItsNotUsedToYou:
+    Message CelesticTownPokecenter1F_Text_ItsNotUsedToYou
     WaitButton
     CloseMessage
     ReleaseAll

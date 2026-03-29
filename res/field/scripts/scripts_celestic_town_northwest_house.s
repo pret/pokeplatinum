@@ -2,98 +2,98 @@
 #include "res/text/bank/celestic_town_northwest_house.h"
 
 
-    ScriptEntry _0012
-    ScriptEntry _002B
-    ScriptEntry _0041
-    ScriptEntry _0057
+    ScriptEntry CelesticTownNorthwestHouse_Unused
+    ScriptEntry CelesticTownNorthwestHouse_ExpertF
+    ScriptEntry CelesticTownNorthwestHouse_ExpertM
+    ScriptEntry CelesticTownNorthwestHouse_GymGuide
     ScriptEntryEnd
 
-_0012:
+CelesticTownNorthwestHouse_Unused:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 0
+    Message CelesticTownNorthwestHouse_Text_AWhileSinceCustomer
     Common_VendorGreeting
     CloseMessageWithoutErasing
     PokeMartCommon
     ReleaseAll
     End
 
-_002B:
+CelesticTownNorthwestHouse_ExpertF:
     PokeMartCommonWithGreeting
     End
 
-_0041:
+CelesticTownNorthwestHouse_ExpertM:
     PokeMartSpecialtiesWithGreeting MART_SPECIALTIES_ID_CELESTIC
     End
 
-_0057:
+CelesticTownNorthwestHouse_GymGuide:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 1
+    Message CelesticTownNorthwestHouse_Text_GlassesChangeTheWorld
     GetHour VAR_RESULT
-    GoToIfLt VAR_RESULT, 4, _0113
-    GoToIfLt VAR_RESULT, 10, _0093
-    GoToIfLt VAR_RESULT, 20, _00D3
-    GoTo _0113
+    GoToIfLt VAR_RESULT, 4, CelesticTownNorthwestHouse_TryGiveWiseGlasses
+    GoToIfLt VAR_RESULT, 10, CelesticTownNorthwestHouse_TryGiveChoiceSpecs
+    GoToIfLt VAR_RESULT, 20, CelesticTownNorthwestHouse_TryGiveBlackGlasses
+    GoTo CelesticTownNorthwestHouse_TryGiveWiseGlasses
 
-_0093:
-    GoToIfSet FLAG_UNK_0x0134, _0153
-    Message 2
+CelesticTownNorthwestHouse_TryGiveChoiceSpecs:
+    GoToIfSet FLAG_RECEIVED_CELESTIC_TOWN_NORTHWEST_HOUSE_CHOICE_SPECS, CelesticTownNorthwestHouse_ExplainChoiceSpecs
+    Message CelesticTownNorthwestHouse_Text_ChangeHowWorldLooks
     SetVar VAR_0x8004, ITEM_CHOICE_SPECS
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0174
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, CelesticTownNorthwestHouse_BagIsFull
     Common_GiveItemQuantity
-    SetFlag FLAG_UNK_0x0134
-    Message 3
-    GoTo _0153
+    SetFlag FLAG_RECEIVED_CELESTIC_TOWN_NORTHWEST_HOUSE_CHOICE_SPECS
+    Message CelesticTownNorthwestHouse_Text_MorningChoiceSpecs
+    GoTo CelesticTownNorthwestHouse_ExplainChoiceSpecs
 
-_00D3:
-    GoToIfSet FLAG_UNK_0x0135, _015E
-    Message 2
+CelesticTownNorthwestHouse_TryGiveBlackGlasses:
+    GoToIfSet FLAG_RECEIVED_CELESTIC_TOWN_NORTHWEST_HOUSE_BLACKGLASSES, CelesticTownNorthwestHouse_ExplainBlackGlasses
+    Message CelesticTownNorthwestHouse_Text_ChangeHowWorldLooks
     SetVar VAR_0x8004, ITEM_BLACKGLASSES
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0174
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, CelesticTownNorthwestHouse_BagIsFull
     Common_GiveItemQuantity
-    SetFlag FLAG_UNK_0x0135
-    Message 4
-    GoTo _015E
+    SetFlag FLAG_RECEIVED_CELESTIC_TOWN_NORTHWEST_HOUSE_BLACKGLASSES
+    Message CelesticTownNorthwestHouse_Text_DayBlackGlasses
+    GoTo CelesticTownNorthwestHouse_ExplainBlackGlasses
 
-_0113:
-    GoToIfSet FLAG_UNK_0x0136, _0169
-    Message 2
+CelesticTownNorthwestHouse_TryGiveWiseGlasses:
+    GoToIfSet FLAG_RECEIVED_CELESTIC_TOWN_NORTHWEST_HOUSE_WISE_GLASSES, CelesticTownNorthwestHouse_ExplainWiseGlasses
+    Message CelesticTownNorthwestHouse_Text_ChangeHowWorldLooks
     SetVar VAR_0x8004, ITEM_WISE_GLASSES
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0174
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, CelesticTownNorthwestHouse_BagIsFull
     Common_GiveItemQuantity
-    SetFlag FLAG_UNK_0x0136
-    Message 5
-    GoTo _0169
+    SetFlag FLAG_RECEIVED_CELESTIC_TOWN_NORTHWEST_HOUSE_WISE_GLASSES
+    Message CelesticTownNorthwestHouse_Text_NightWiseGlasses
+    GoTo CelesticTownNorthwestHouse_ExplainWiseGlasses
 
-_0153:
-    Message 6
+CelesticTownNorthwestHouse_ExplainChoiceSpecs:
+    Message CelesticTownNorthwestHouse_Text_ExplainChoiceSpecs
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_015E:
-    Message 7
+CelesticTownNorthwestHouse_ExplainBlackGlasses:
+    Message CelesticTownNorthwestHouse_Text_ExplainBlackGlasses
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0169:
-    Message 8
+CelesticTownNorthwestHouse_ExplainWiseGlasses:
+    Message CelesticTownNorthwestHouse_Text_ExplainWiseGlasses
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0174:
-    Message 9
+CelesticTownNorthwestHouse_BagIsFull:
+    Message CelesticTownNorthwestHouse_Text_BagIsFull
     WaitButton
     CloseMessage
     ReleaseAll

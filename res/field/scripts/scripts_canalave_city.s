@@ -32,7 +32,7 @@
     ScriptEntryEnd
 
 _0066:
-    SetFlag FLAG_UNK_0x01BD
+    SetFlag FLAG_HIDE_CELESTIC_TOWN_CYNTHIA
     CallIfEq VAR_UNK_0x40F8, 2, _00F8
     CallIfEq VAR_UNK_0x40F8, 3, _0100
     Call _0168

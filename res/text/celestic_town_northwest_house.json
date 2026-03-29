@@ -2,14 +2,14 @@
   "key": 25630,
   "messages": [
     {
-      "id": "pl_msg_00000586_00000",
+      "id": "CelesticTownNorthwestHouse_Text_AWhileSinceCustomer",
       "en_US": [
         "Oh, hello! It’s been a while since\n",
         "our last customer!"
       ]
     },
     {
-      "id": "pl_msg_00000586_00001",
+      "id": "CelesticTownNorthwestHouse_Text_GlassesChangeTheWorld",
       "en_US": [
         "Putting on a pair of glasses changes\n",
         "how the world looks.\r",
@@ -18,14 +18,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000586_00002",
+      "id": "CelesticTownNorthwestHouse_Text_ChangeHowWorldLooks",
       "en_US": [
         "So, would you like to change how\n",
         "the world looks to your Pokémon?\r"
       ]
     },
     {
-      "id": "pl_msg_00000586_00003",
+      "id": "CelesticTownNorthwestHouse_Text_MorningChoiceSpecs",
       "en_US": [
         "Morning is the start of a new day.\r",
         "Put on the Choice Specs and make\n",
@@ -33,21 +33,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000586_00004",
+      "id": "CelesticTownNorthwestHouse_Text_DayBlackGlasses",
       "en_US": [
         "The sunlight is bright in the day.\n",
         "How about a pair of BlackGlasses?\r"
       ]
     },
     {
-      "id": "pl_msg_00000586_00005",
+      "id": "CelesticTownNorthwestHouse_Text_NightWiseGlasses",
       "en_US": [
         "At night, reflect on what you’ve\n",
         "learned with the Wise Glasses.\r"
       ]
     },
     {
-      "id": "pl_msg_00000586_00006",
+      "id": "CelesticTownNorthwestHouse_Text_ExplainChoiceSpecs",
       "en_US": [
         "Choice Specs make the Pokémon use\n",
         "only one kind of move.\r",
@@ -56,21 +56,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000586_00007",
+      "id": "CelesticTownNorthwestHouse_Text_ExplainBlackGlasses",
       "en_US": [
         "BlackGlasses raise the power of\n",
         "Dark-type moves."
       ]
     },
     {
-      "id": "pl_msg_00000586_00008",
+      "id": "CelesticTownNorthwestHouse_Text_ExplainWiseGlasses",
       "en_US": [
         "The Wise Glasses boost the power of\n",
         "special moves."
       ]
     },
     {
-      "id": "pl_msg_00000586_00009",
+      "id": "CelesticTownNorthwestHouse_Text_BagIsFull",
       "en_US": "Your Bag is full!"
     }
   ]

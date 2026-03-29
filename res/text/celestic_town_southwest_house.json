@@ -2,7 +2,7 @@
   "key": 25646,
   "messages": [
     {
-      "id": "pl_msg_00000588_00000",
+      "id": "CelesticTownSoutheastHouse_Text_TakeThisFromMe",
       "en_US": [
         "I must bear down and train...\n",
         "And for that, time is unimportant.\r",
@@ -11,7 +11,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000588_00001",
+      "id": "CelesticTownSoutheastHouse_Text_AnalogOrDigital",
       "en_US": [
         "Analog or digital: which kind of watch\n",
         "do you prefer?\r",
@@ -20,7 +20,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000588_00002",
+      "id": "CelesticTownSoutheastHouse_Text_HappinyCry",
       "en_US": "HAPPINY: Pinny haaa!"
     }
   ]

@@ -30,7 +30,7 @@ MtCoronet6F_SetWarpEventSpearPillar:
     End
 
 MtCoronet6F_TrySetWarpEventSpearPillarDialga:
-    GoToIfUnset FLAG_UNK_0x0145, MtCoronet6F_SetWarpEventSpearPillar
+    GoToIfUnset FLAG_UNLOCKED_DIALGA_PALKIA_SPEAR_PILLAR, MtCoronet6F_SetWarpEventSpearPillar
     GoToIfSet FLAG_CAUGHT_DIALGA, MtCoronet6F_TrySetWarpEventSpearPillarPalkia
     GoToIfGe VAR_SPEAR_PILLAR_DIALGA_STATE, 1, MtCoronet6F_TrySetWarpEventSpearPillarPalkia
     CheckItem ITEM_ADAMANT_ORB, 1, VAR_MAP_LOCAL_1

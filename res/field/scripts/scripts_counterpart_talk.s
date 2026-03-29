@@ -42,7 +42,7 @@ _006C:
     GoToIfEq VAR_RESULT, TRUE, _0133
     CheckLocalDexCompleted VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _00B2
-    GoToIfUnset FLAG_UNK_0x0145, _0332
+    GoToIfUnset FLAG_UNLOCKED_DIALGA_PALKIA_SPEAR_PILLAR, _0332
     Call _04A4
     GoToIfEq VAR_RESULT, 0, _037C
     GoTo _0357

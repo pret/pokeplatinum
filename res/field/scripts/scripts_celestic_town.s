@@ -1,168 +1,169 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/celestic_town.h"
+#include "res/field/events/events_celestic_town.h"
 
 
-    ScriptEntry _0032
-    ScriptEntry _026C
-    ScriptEntry _022C
-    ScriptEntry _0038
-    ScriptEntry _0294
-    ScriptEntry _0304
-    ScriptEntry _0317
-    ScriptEntry _032A
-    ScriptEntry _033D
-    ScriptEntry _0350
-    ScriptEntry _0367
-    ScriptEntry _0378
+    ScriptEntry CelesticTown_OnTransition
+    ScriptEntry CelesticTown_ExpertF
+    ScriptEntry CelesticTown_TriggerExpertF
+    ScriptEntry CelesticTown_GruntM
+    ScriptEntry CelesticTown_OnFrameCynthia
+    ScriptEntry CelesticTown_Cynthia
+    ScriptEntry CelesticTown_ExpertM
+    ScriptEntry CelesticTown_AceTrainerF
+    ScriptEntry CelesticTown_NinjaBoy
+    ScriptEntry CelesticTown_MapSign
+    ScriptEntry CelesticTown_EtchingDialga
+    ScriptEntry CelesticTown_EtchingPalkia
     ScriptEntryEnd
 
-_0032:
+CelesticTown_OnTransition:
     SetFlag FLAG_UNLOCKED_VS_SEEKER_LVL_2
     End
 
-_0038:
+CelesticTown_GruntM:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 1
+    Message CelesticTown_Text_WillYouMessWithMe
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _006E
-    GoToIfEq VAR_RESULT, MENU_NO, _0063
+    GoToIfEq VAR_RESULT, MENU_YES, CelesticTown_GruntMBattle
+    GoToIfEq VAR_RESULT, MENU_NO, CelesticTown_VerySmart
     End
 
-_0063:
-    Message 3
+CelesticTown_VerySmart:
+    Message CelesticTown_Text_VerySmart
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_006E:
-    Message 2
+CelesticTown_GruntMBattle:
+    Message CelesticTown_Text_YouDareOpposeUs
     CloseMessage
     StartTrainerBattle TRAINER_GALACTIC_GRUNT_CELESTIC_TOWN
     CheckWonBattle VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, _0191
-    Message 4
+    GoToIfEq VAR_RESULT, FALSE, CelesticTown_BlackOut
+    Message CelesticTown_Text_TooMuchToHandle
     CloseMessage
     GetPlayerDir VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _00BC
-    GoToIfEq VAR_RESULT, 2, _00EC
-    GoToIfEq VAR_RESULT, 3, _0114
+    GoToIfEq VAR_RESULT, DIR_NORTH, CelesticTown_GruntMLeaveExpertFEnterNorth
+    GoToIfEq VAR_RESULT, DIR_WEST, CelesticTown_GruntMLeaveExpertFEnterWest
+    GoToIfEq VAR_RESULT, DIR_EAST, CelesticTown_GruntMLeaveExpertFEnterEast
     End
 
-_00BC:
-    ApplyMovement 2, _0198
-    ApplyMovement LOCALID_PLAYER, _01E0
+CelesticTown_GruntMLeaveExpertFEnterNorth:
+    ApplyMovement LOCALID_GRUNT_M, CelesticTown_Movement_GruntMLeaveNorthWest
+    ApplyMovement LOCALID_PLAYER, CelesticTown_Movement_PlayerWatchGruntMLeaveNorth
     WaitMovement
-    Call _013C
-    ApplyMovement 3, _01B4
-    ApplyMovement LOCALID_PLAYER, _0204
+    Call CelesticTown_RemoveGruntMAddExpertF
+    ApplyMovement LOCALID_EXPERT_F, CelesticTown_Movement_ExpertFEnterNorth
+    ApplyMovement LOCALID_PLAYER, CelesticTown_Movement_PlayerWatchExpertFEnterNorth
     WaitMovement
-    GoTo _0166
+    GoTo CelesticTown_GiveOldCharm
 
-_00EC:
-    ApplyMovement 2, _0198
-    ApplyMovement LOCALID_PLAYER, _01F0
+CelesticTown_GruntMLeaveExpertFEnterWest:
+    ApplyMovement LOCALID_GRUNT_M, CelesticTown_Movement_GruntMLeaveNorthWest
+    ApplyMovement LOCALID_PLAYER, CelesticTown_Movement_PlayerWatchGruntMLeaveWest
     WaitMovement
-    Call _013C
-    ApplyMovement 3, _01C0
+    Call CelesticTown_RemoveGruntMAddExpertF
+    ApplyMovement LOCALID_EXPERT_F, CelesticTown_Movement_ExpertFEnterWest
     WaitMovement
-    GoTo _0166
+    GoTo CelesticTown_GiveOldCharm
 
-_0114:
-    ApplyMovement 2, _01A4
-    ApplyMovement LOCALID_PLAYER, _01FC
+CelesticTown_GruntMLeaveExpertFEnterEast:
+    ApplyMovement LOCALID_GRUNT_M, CelesticTown_Movement_GruntMLeaveEast
+    ApplyMovement LOCALID_PLAYER, CelesticTown_Movement_PlayerWatchGruntMLeaveEast
     WaitMovement
-    Call _013C
-    ApplyMovement 3, _01D0
+    Call CelesticTown_RemoveGruntMAddExpertF
+    ApplyMovement LOCALID_EXPERT_F, CelesticTown_Movement_ExpertFEnterEast
     WaitMovement
-    GoTo _0166
+    GoTo CelesticTown_GiveOldCharm
 
-_013C:
-    RemoveObject 2
-    RemoveObject 3
-    SetObjectEventPos 3, 0x1D2, 0x213
-    SetObjectEventDir 3, DIR_NORTH
-    SetObjectEventMovementType 3, MOVEMENT_TYPE_LOOK_NORTH
-    ClearFlag FLAG_UNK_0x01AC
-    AddObject 3
-    LockObject 3
+CelesticTown_RemoveGruntMAddExpertF:
+    RemoveObject LOCALID_GRUNT_M
+    RemoveObject LOCALID_EXPERT_F
+    SetObjectEventPos LOCALID_EXPERT_F, 466, 531
+    SetObjectEventDir LOCALID_EXPERT_F, DIR_NORTH
+    SetObjectEventMovementType LOCALID_EXPERT_F, MOVEMENT_TYPE_LOOK_NORTH
+    ClearFlag FLAG_HIDE_CELESTIC_TOWN_EXPERT_F
+    AddObject LOCALID_EXPERT_F
+    LockObject LOCALID_EXPERT_F
     Return
 
-_0166:
-    Message 5
+CelesticTown_GiveOldCharm:
+    Message CelesticTown_Text_ThatOldCharm
     BufferPlayerName 0
-    BufferItemName 1, 0x1B7
+    BufferItemName 1, ITEM_OLD_CHARM
     PlayFanfare SEQ_FANFA4
-    Message 6
+    Message CelesticTown_Text_PlayerHandedOverCharm
     WaitFanfare
     RemoveItem ITEM_OLD_CHARM, 1, VAR_RESULT
-    SetFlag FLAG_UNK_0x00A6
-    Message 7
+    SetFlag FLAG_DELIVERED_OLD_CHARM
+    Message CelesticTown_Text_LookAroundRuins
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0191:
+CelesticTown_BlackOut:
     BlackOutFromBattle
     ReleaseAll
     End
 
     .balign 4, 0
-_0198:
+CelesticTown_Movement_GruntMLeaveNorthWest:
     WalkFastWest 3
     WalkFastSouth 9
     EndMovement
 
     .balign 4, 0
-_01A4:
+CelesticTown_Movement_GruntMLeaveEast:
     WalkFastSouth 2
     WalkFastWest 3
     WalkFastSouth 7
     EndMovement
 
     .balign 4, 0
-_01B4:
+CelesticTown_Movement_ExpertFEnterNorth:
     WalkNormalNorth 8
     WalkNormalWest 2
     EndMovement
 
     .balign 4, 0
-_01C0:
+CelesticTown_Movement_ExpertFEnterWest:
     WalkNormalNorth 8
     WalkNormalWest 2
     WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
-_01D0:
+CelesticTown_Movement_ExpertFEnterEast:
     WalkNormalNorth 8
     WalkNormalWest 4
     WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
-_01E0:
+CelesticTown_Movement_PlayerWatchGruntMLeaveNorth:
     WalkOnSpotNormalWest
     Delay8
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_01F0:
+CelesticTown_Movement_PlayerWatchGruntMLeaveWest:
     Delay8 3
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_01FC:
+CelesticTown_Movement_PlayerWatchGruntMLeaveEast:
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_0204:
+CelesticTown_Movement_PlayerWatchExpertFEnterNorth:
     Delay8 8
     Delay4
     WalkOnSpotNormalEast
@@ -178,116 +179,116 @@ CelesticTown_UnusedMovement2:
     WalkOnSpotNormalSouth
     EndMovement
 
-_022C:
+CelesticTown_TriggerExpertF:
     LockAll
-    ApplyMovement LOCALID_PLAYER, _0264
-    ApplyMovement 3, _025C
+    ApplyMovement LOCALID_PLAYER, CelesticTown_Movement_PlayerFaceWest
+    ApplyMovement LOCALID_EXPERT_F, CelesticTown_Movement_ExpertFWalkOnSpotEast
     WaitMovement
-    Call _024A
+    Call CelesticTown_OddSpaceman
     ReleaseAll
     End
 
-_024A:
-    SetVar VAR_UNK_0x40F1, 1
-    Message 0
+CelesticTown_OddSpaceman:
+    SetVar VAR_CELESTIC_TOWN_EXPERT_F_STATE, 1
+    Message CelesticTown_Text_OddSpaceman
     WaitButton
     CloseMessage
     Return
 
     .balign 4, 0
-_025C:
+CelesticTown_Movement_ExpertFWalkOnSpotEast:
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_0264:
+CelesticTown_Movement_PlayerFaceWest:
     FaceWest
     EndMovement
 
-_026C:
+CelesticTown_ExpertF:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x00A6, _0289
-    Call _024A
+    GoToIfSet FLAG_DELIVERED_OLD_CHARM, CelesticTown_ExamineRuins
+    Call CelesticTown_OddSpaceman
     ReleaseAll
     End
 
-_0289:
-    Message 8
+CelesticTown_ExamineRuins:
+    Message CelesticTown_Text_ExamineRuins
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0294:
+CelesticTown_OnFrameCynthia:
     LockAll
-    ApplyMovement LOCALID_PLAYER, _02E0
-    ApplyMovement 4, _02E8
+    ApplyMovement LOCALID_PLAYER, CelesticTown_Movement_PlayerWalkOnSpotEast
+    ApplyMovement LOCALID_CYNTHIA, CelesticTown_Movement_CynthiaNoticePlayer
     WaitMovement
-    Message 9
-    ApplyMovement 4, _02F4
+    Message CelesticTown_Text_WasEverythingAllRight
+    ApplyMovement LOCALID_CYNTHIA, CelesticTown_Movement_CynthiaWalkOnSpotNorth
     WaitMovement
-    Message 10
+    Message CelesticTown_Text_ThoughtGalacticWasHarmless
     CloseMessage
-    ApplyMovement 4, _02FC
+    ApplyMovement LOCALID_CYNTHIA, CelesticTown_Movement_CynthiaWalkOnSpotWest
     WaitMovement
-    SetVar VAR_UNK_0x4074, 2
-    SetFlag FLAG_UNK_0x0299
+    SetVar VAR_CELESTIC_TOWN_STATE, 2
+    SetFlag FLAG_HIDE_ROUTE_218_BLOCKADE
     WaitTime 12, VAR_RESULT
-    Message 11
+    Message CelesticTown_Text_LibraryInCanalave
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
     .balign 4, 0
-_02E0:
+CelesticTown_Movement_PlayerWalkOnSpotEast:
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_02E8:
+CelesticTown_Movement_CynthiaNoticePlayer:
     EmoteExclamationMark
     WalkNormalWest 2
     EndMovement
 
     .balign 4, 0
-_02F4:
+CelesticTown_Movement_CynthiaWalkOnSpotNorth:
     WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
-_02FC:
+CelesticTown_Movement_CynthiaWalkOnSpotWest:
     WalkOnSpotNormalWest
     EndMovement
 
-_0304:
-    NPCMessage 11
+CelesticTown_Cynthia:
+    NPCMessage CelesticTown_Text_LibraryInCanalave
     End
 
-_0317:
-    NPCMessage 12
+CelesticTown_ExpertM:
+    NPCMessage CelesticTown_Text_StudyingLocalHistory
     End
 
-_032A:
-    NPCMessage 14
+CelesticTown_AceTrainerF:
+    NPCMessage CelesticTown_Text_NoPokemonMart
     End
 
-_033D:
-    NPCMessage 13
+CelesticTown_NinjaBoy:
+    NPCMessage CelesticTown_Text_APokemonCreatedSinnoh
     End
 
-_0350:
-    ShowMapSign 15
+CelesticTown_MapSign:
+    ShowMapSign CelesticTown_Text_MapSign
     End
 
-_0367:
-    EventMessage 16
+CelesticTown_EtchingDialga:
+    EventMessage CelesticTown_Text_EtchingDialga
     End
 
-_0378:
-    EventMessage 17
+CelesticTown_EtchingPalkia:
+    EventMessage CelesticTown_Text_EtchingPalkia
     End
 
     .balign 4, 0

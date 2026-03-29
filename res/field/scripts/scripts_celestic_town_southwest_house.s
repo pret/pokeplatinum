@@ -2,17 +2,17 @@
 #include "res/text/bank/celestic_town_southwest_house.h"
 
 
-    ScriptEntry _000A
-    ScriptEntry _0045
+    ScriptEntry CelesticTownPokecenter1F_BlackBelt
+    ScriptEntry CelesticTownPokecenter1F_Happiny
     ScriptEntryEnd
 
-_000A:
+CelesticTownPokecenter1F_BlackBelt:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     CheckPoketchAppRegistered POKETCH_APPID_ANALOGWATCH, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _003A
-    Message 0
+    GoToIfEq VAR_RESULT, TRUE, CelesticTownSoutheastHouse_AnalogOrDigital
+    Message CelesticTownSoutheastHouse_Text_TakeThisFromMe
     SetVar VAR_0x8004, POKETCH_APPID_ANALOGWATCH
     Common_GivePoketchApp
     WaitButton
@@ -20,13 +20,13 @@ _000A:
     ReleaseAll
     End
 
-_003A:
-    Message 1
+CelesticTownSoutheastHouse_AnalogOrDigital:
+    Message CelesticTownSoutheastHouse_Text_AnalogOrDigital
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0045:
-    PokemonCryAndMessage SPECIES_HAPPINY, 2
+CelesticTownPokecenter1F_Happiny:
+    PokemonCryAndMessage SPECIES_HAPPINY, CelesticTownSoutheastHouse_Text_HappinyCry
     End

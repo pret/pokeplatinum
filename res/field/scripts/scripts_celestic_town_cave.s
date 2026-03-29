@@ -1,230 +1,231 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/celestic_town_cave.h"
+#include "res/field/events/events_celestic_town_cave.h"
 
 
-    ScriptEntry _000E
-    ScriptEntry _0538
-    ScriptEntry _0585
+    ScriptEntry CelesticTownCave_Painting
+    ScriptEntry CelesticTownCave_Cyrus
+    ScriptEntry CelesticTownCave_ExpertF
     ScriptEntryEnd
 
-_000E:
+CelesticTownCave_Painting:
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    GoToIfSet FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, _0596
-    GoTo _0027
+    GoToIfSet FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, CelesticTownCave_PaintingCythia
+    GoTo CelesticTownCave_ExaminePainting
     End
 
-_0027:
-    GoToIfUnset FLAG_UNK_0x00A7, _0040
+CelesticTownCave_ExaminePainting:
+    GoToIfUnset FLAG_EXAMINED_CELESTIC_TOWN_CAVE_PAINTING, CelesticTownCave_EnterCyrus
     BufferPlayerName 0
-    Message 15
+    Message CelesticTownCave_Text_PlayerExaminedPainting
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0040:
+CelesticTownCave_EnterCyrus:
     BufferPlayerName 0
-    Message 0
+    Message CelesticTownCave_Text_WhatsThisAbout
     CloseMessage
-    SetFlag FLAG_UNK_0x00A7
-    ClearFlag FLAG_UNK_0x0229
-    SetObjectEventPos 0, 4, 11
-    SetObjectEventDir 0, DIR_NORTH
-    SetObjectEventMovementType 0, MOVEMENT_TYPE_LOOK_NORTH
-    AddObject 0
+    SetFlag FLAG_EXAMINED_CELESTIC_TOWN_CAVE_PAINTING
+    ClearFlag FLAG_HIDE_CELESTIC_TOWN_CAVE_EXPERT_F
+    SetObjectEventPos LOCALID_EXPERT_F, 4, 11
+    SetObjectEventDir LOCALID_EXPERT_F, DIR_NORTH
+    SetObjectEventMovementType LOCALID_EXPERT_F, MOVEMENT_TYPE_LOOK_NORTH
+    AddObject LOCALID_EXPERT_F
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    CallIfEq VAR_0x8004, 9, _0110
-    CallIfEq VAR_0x8004, 10, _0126
-    Message 1
-    Message 2
+    CallIfEq VAR_0x8004, 9, CelesticTownCave_ExpertEnterFX9
+    CallIfEq VAR_0x8004, 10, CelesticTownCave_ExpertEnterFX10
+    Message CelesticTownCave_Text_AncientLegendOfSinnoh
+    Message CelesticTownCave_Text_IdLikeToKnowMore
     CloseMessage
-    ApplyMovement 0, _04B8
-    ApplyMovement LOCALID_PLAYER, _0424
+    ApplyMovement LOCALID_EXPERT_F, CelesticTownCave_Movement_ExpertFWalkOnSpotSouth
+    ApplyMovement LOCALID_PLAYER, CelesticTownCave_Movement_PlayerWalkOnSpotSouth
     WaitMovement
-    Message 3
+    Message CelesticTownCave_Text_WhoMightYouBe
     CloseMessage
-    SetFlag FLAG_UNK_0x01AC
-    ClearFlag FLAG_UNK_0x029B
-    SetObjectEventPos 1, 4, 11
-    SetObjectEventDir 1, DIR_NORTH
-    SetObjectEventMovementType 1, MOVEMENT_TYPE_LOOK_NORTH
-    AddObject 1
+    SetFlag FLAG_HIDE_CELESTIC_TOWN_EXPERT_F
+    ClearFlag FLAG_HIDE_CELESTIC_TOWN_CAVE_CYRUS
+    SetObjectEventPos LOCALID_CYRUS, 4, 11
+    SetObjectEventDir LOCALID_CYRUS, DIR_NORTH
+    SetObjectEventMovementType LOCALID_CYRUS, MOVEMENT_TYPE_LOOK_NORTH
+    AddObject LOCALID_CYRUS
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    CallIfEq VAR_0x8004, 9, _0285
-    CallIfEq VAR_0x8004, 10, _0291
-    Message 4
-    Message 5
-    Message 6
+    CallIfEq VAR_0x8004, 9, CelesticTownCave_CyrusEnterX9
+    CallIfEq VAR_0x8004, 10, CelesticTownCave_CyrusEnterX10
+    Message CelesticTownCave_Text_MyNameIsCyrus
+    Message CelesticTownCave_Text_NotInterested
+    Message CelesticTownCave_Text_ChallengeMe
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _019D
-    GoToIfEq VAR_RESULT, MENU_NO, _013C
+    GoToIfEq VAR_RESULT, MENU_YES, CelesticTownCave_BattleCyrus
+    GoToIfEq VAR_RESULT, MENU_NO, CelesticTownCave_DontBattleNow
     End
 
-_0110:
-    ApplyMovement 0, _0488
+CelesticTownCave_ExpertEnterFX9:
+    ApplyMovement LOCALID_EXPERT_F, CelesticTownCave_Movement_ExpertFEnterX9
     WaitMovement
-    ApplyMovement LOCALID_PLAYER, _03E4
-    WaitMovement
-    Return
-
-_0126:
-    ApplyMovement 0, _04A0
-    WaitMovement
-    ApplyMovement LOCALID_PLAYER, _03EC
+    ApplyMovement LOCALID_PLAYER, CelesticTownCave_Movement_PlayerWalkOnSpotEast
     WaitMovement
     Return
 
-_013C:
-    Message 10
+CelesticTownCave_ExpertEnterFX10:
+    ApplyMovement LOCALID_EXPERT_F, CelesticTownCave_Movement_ExpertFEnterX10
+    WaitMovement
+    ApplyMovement LOCALID_PLAYER, CelesticTownCave_Movement_PlayerWalkOnSpotWest
+    WaitMovement
+    Return
+
+CelesticTownCave_DontBattleNow:
+    Message CelesticTownCave_Text_YouChoseCoward2
     CloseMessage
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    CallIfEq VAR_0x8004, 9, _0165
-    CallIfEq VAR_0x8004, 10, _0181
+    CallIfEq VAR_0x8004, 9, CelesticTownCave_CyrusPushPlayerX9
+    CallIfEq VAR_0x8004, 10, CelesticTownCave_CyrusPushPlayerX10
     ReleaseAll
     End
 
-_0165:
-    ApplyMovement 0, _04C0
-    ApplyMovement LOCALID_PLAYER, _03F4
-    ApplyMovement 1, _03CC
+CelesticTownCave_CyrusPushPlayerX9:
+    ApplyMovement LOCALID_EXPERT_F, CelesticTownCave_Movement_ExpertFWatchCyrusPushPlayerX9
+    ApplyMovement LOCALID_PLAYER, CelesticTownCave_Movement_PlayerGetPushedX9
+    ApplyMovement LOCALID_CYRUS, CelesticTownCave_Movement_CyrusPushPlayerX9
     WaitMovement
     Return
 
-_0181:
-    ApplyMovement 0, _04CC
-    ApplyMovement LOCALID_PLAYER, _040C
-    ApplyMovement 1, _03D8
+CelesticTownCave_CyrusPushPlayerX10:
+    ApplyMovement LOCALID_EXPERT_F, CelesticTownCave_Movement_ExpertFWatchCyrusPushPlayerX10
+    ApplyMovement LOCALID_PLAYER, CelesticTownCave_Movement_PlayerGetPushedX10
+    ApplyMovement LOCALID_CYRUS, CelesticTownCave_Movement_CyrusPushPlayerX10
     WaitMovement
     Return
 
-_019D:
-    Message 8
+CelesticTownCave_BattleCyrus:
+    Message CelesticTownCave_Text_ErrorOfYourWays
     CloseMessage
     StartTrainerBattle TRAINER_GALACTIC_BOSS_CYRUS_CELESTIC_TOWN_RUINS
     CheckWonBattle VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, _0393
-    Call _01C3
+    GoToIfEq VAR_RESULT, FALSE, CelesticTownCave_Blackout
+    Call CelesticTownCave_DefeatedCyrus
     ReleaseAll
     End
 
-_01C3:
-    ClearFlag FLAG_UNK_0x01BD
-    SetVar VAR_UNK_0x4074, 1
-    Message 11
+CelesticTownCave_DefeatedCyrus:
+    ClearFlag FLAG_HIDE_CELESTIC_TOWN_CYNTHIA
+    SetVar VAR_CELESTIC_TOWN_STATE, 1
+    Message CelesticTownCave_Text_Remarkable
     CloseMessage
     WaitTime 15, VAR_RESULT
     FadeScreenOut
     WaitFadeScreen
-    RemoveObject 1
+    RemoveObject LOCALID_CYRUS
     FadeScreenIn
     WaitFadeScreen
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    CallIfEq VAR_0x8004, 8, _029D
-    CallIfEq VAR_0x8004, 9, _02B1
-    CallIfEq VAR_0x8004, 10, _02FA
-    CallIfEq VAR_0x8004, 11, _0343
-    Message 13
+    CallIfEq VAR_0x8004, 8, CelesticTownCave_PlayerExpertFFaceEachOtherX8
+    CallIfEq VAR_0x8004, 9, CelesticTownCave_PlayerExpertFFaceEachOtherX9
+    CallIfEq VAR_0x8004, 10, CelesticTownCave_PlayerExpertFFaceEachOtherX10
+    CallIfEq VAR_0x8004, 11, CelesticTownCave_PlayerExpertFFaceEachOtherX11
+    Message CelesticTownCave_Text_YouShouldTakeThis
     SetVar VAR_0x8004, ITEM_HM03
     SetVar VAR_0x8005, 1
     Common_GiveItemQuantity
-    SetFlag FLAG_UNK_0x01AC
-    ClearFlag FLAG_UNK_0x01C3
+    SetFlag FLAG_HIDE_CELESTIC_TOWN_EXPERT_F
+    ClearFlag FLAG_HIDE_CELESTIC_TOWN_NORTH_HOUSE_EXPERT_F
     SetFlag FLAG_DUMMY_2445
-    Message 14
+    Message CelesticTownCave_Text_SurfAcrossWater
     CloseMessage
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    CallIfEq VAR_0x8004, 9, _0357
-    CallIfEq VAR_0x8004, 10, _036B
-    CallIfEq VAR_0x8004, 11, _037F
-    RemoveObject 0
+    CallIfEq VAR_0x8004, 9, CelesticTownCave_ExpertFLeaveX9
+    CallIfEq VAR_0x8004, 10, CelesticTownCave_ExpertFLeaveX10
+    CallIfEq VAR_0x8004, 11, CelesticTownCave_ExpertFLeaveX11
+    RemoveObject LOCALID_EXPERT_F
     Return
 
-_0285:
-    ApplyMovement 1, _039C
+CelesticTownCave_CyrusEnterX9:
+    ApplyMovement LOCALID_CYRUS, CelesticTownCave_Movement_CyrusEnterX9
     WaitMovement
     Return
 
-_0291:
-    ApplyMovement 1, _03B4
+CelesticTownCave_CyrusEnterX10:
+    ApplyMovement LOCALID_CYRUS, CelesticTownCave_Movement_CyrusEnterX10
     WaitMovement
     Return
 
-_029D:
-    ApplyMovement LOCALID_PLAYER, _042C
-    ApplyMovement 0, _04D8
+CelesticTownCave_PlayerExpertFFaceEachOtherX8:
+    ApplyMovement LOCALID_PLAYER, CelesticTownCave_Movement_PlayerWalkEast
+    ApplyMovement LOCALID_EXPERT_F, CelesticTownCave_Movement_ExpertFWalkOnSpotWest
     WaitMovement
     Return
 
-_02B1:
-    GoToIfEq VAR_0x8005, 4, _02D2
-    ApplyMovement LOCALID_PLAYER, _0434
-    ApplyMovement 0, _04D8
+CelesticTownCave_PlayerExpertFFaceEachOtherX9:
+    GoToIfEq VAR_0x8005, 4, CelesticTownCave_PlayerExpertFFaceEachOtherX9South
+    ApplyMovement LOCALID_PLAYER, CelesticTownCave_Movement_PlayerWalkOnSpotEast2
+    ApplyMovement LOCALID_EXPERT_F, CelesticTownCave_Movement_ExpertFWalkOnSpotWest
     WaitMovement
     Return
 
-_02D2:
-    ApplyMovement LOCALID_PLAYER, _043C
-    ApplyMovement 0, _04D8
+CelesticTownCave_PlayerExpertFFaceEachOtherX9South:
+    ApplyMovement LOCALID_PLAYER, CelesticTownCave_Movement_PlayerWalkNorthOnSpotEast
+    ApplyMovement LOCALID_EXPERT_F, CelesticTownCave_Movement_ExpertFWalkOnSpotWest
     WaitMovement
     Return
 
 CelesticTownCave_Unused:
     ApplyMovement LOCALID_PLAYER, CelesticTownCave_UnusedMovement
-    ApplyMovement 0, _04D8
+    ApplyMovement LOCALID_EXPERT_F, CelesticTownCave_Movement_ExpertFWalkOnSpotWest
     WaitMovement
     Return
 
-_02FA:
-    GoToIfEq VAR_0x8005, 4, _031B
-    ApplyMovement LOCALID_PLAYER, _0454
-    ApplyMovement 0, _04E0
+CelesticTownCave_PlayerExpertFFaceEachOtherX10:
+    GoToIfEq VAR_0x8005, 4, CelesticTownCave_PlayerExpertFFaceEachOtherX10South
+    ApplyMovement LOCALID_PLAYER, CelesticTownCave_Movement_PlayerWalkOnSpotWest2
+    ApplyMovement LOCALID_EXPERT_F, CelesticTownCave_Movement_ExpertFWalkOnSpotEast
     WaitMovement
     Return
 
-_031B:
-    ApplyMovement LOCALID_PLAYER, _045C
-    ApplyMovement 0, _04E0
+CelesticTownCave_PlayerExpertFFaceEachOtherX10South:
+    ApplyMovement LOCALID_PLAYER, CelesticTownCave_Movement_PlayerWalkNorthOnSpotWest
+    ApplyMovement LOCALID_EXPERT_F, CelesticTownCave_Movement_ExpertFWalkOnSpotEast
     WaitMovement
     Return
 
 CelesticTownCave_Unused2:
     ApplyMovement LOCALID_PLAYER, CelesticTownCave_UnusedMovement2
-    ApplyMovement 0, _04D8
+    ApplyMovement LOCALID_EXPERT_F, CelesticTownCave_Movement_ExpertFWalkOnSpotWest
     WaitMovement
     Return
 
-_0343:
-    ApplyMovement LOCALID_PLAYER, _0474
-    ApplyMovement 0, _04E8
+CelesticTownCave_PlayerExpertFFaceEachOtherX11:
+    ApplyMovement LOCALID_PLAYER, CelesticTownCave_Movement_PlayerWalkWest
+    ApplyMovement LOCALID_EXPERT_F, CelesticTownCave_Movement_ExpertFWalkOnSpotEast2
     WaitMovement
     Return
 
-_0357:
-    ApplyMovement LOCALID_PLAYER, _047C
-    ApplyMovement 0, _04F0
+CelesticTownCave_ExpertFLeaveX9:
+    ApplyMovement LOCALID_PLAYER, CelesticTownCave_Movement_PlayerWatchExpertFLeave
+    ApplyMovement LOCALID_EXPERT_F, CelesticTownCave_Movement_ExpertFLeaveX9
     WaitMovement
     Return
 
-_036B:
-    ApplyMovement LOCALID_PLAYER, _047C
-    ApplyMovement 0, _0508
+CelesticTownCave_ExpertFLeaveX10:
+    ApplyMovement LOCALID_PLAYER, CelesticTownCave_Movement_PlayerWatchExpertFLeave
+    ApplyMovement LOCALID_EXPERT_F, CelesticTownCave_Movement_ExpertFLeaveX10
     WaitMovement
     Return
 
-_037F:
-    ApplyMovement LOCALID_PLAYER, _047C
-    ApplyMovement 0, _0520
+CelesticTownCave_ExpertFLeaveX11:
+    ApplyMovement LOCALID_PLAYER, CelesticTownCave_Movement_PlayerWatchExpertFLeave
+    ApplyMovement LOCALID_EXPERT_F, CelesticTownCave_Movement_ExpertFLeaveX11
     WaitMovement
     Return
 
-_0393:
+CelesticTownCave_Blackout:
     BlackOutFromBattle
     ReleaseAll
     End
 
     .balign 4, 0
-_039C:
+CelesticTownCave_Movement_CyrusEnterX9:
     WalkNormalNorth 6
     WalkNormalEast
     WalkNormalNorth
@@ -233,7 +234,7 @@ _039C:
     EndMovement
 
     .balign 4, 0
-_03B4:
+CelesticTownCave_Movement_CyrusEnterX10:
     WalkNormalNorth 6
     WalkNormalEast
     WalkNormalNorth
@@ -242,29 +243,29 @@ _03B4:
     EndMovement
 
     .balign 4, 0
-_03CC:
+CelesticTownCave_Movement_CyrusPushPlayerX9:
     WalkNormalWest
     WalkNormalNorth
     EndMovement
 
     .balign 4, 0
-_03D8:
+CelesticTownCave_Movement_CyrusPushPlayerX10:
     WalkNormalEast
     WalkNormalNorth
     EndMovement
 
     .balign 4, 0
-_03E4:
+CelesticTownCave_Movement_PlayerWalkOnSpotEast:
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_03EC:
+CelesticTownCave_Movement_PlayerWalkOnSpotWest:
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_03F4:
+CelesticTownCave_Movement_PlayerGetPushedX9:
     Delay8
     FaceEast
     LockDir
@@ -273,7 +274,7 @@ _03F4:
     EndMovement
 
     .balign 4, 0
-_040C:
+CelesticTownCave_Movement_PlayerGetPushedX10:
     Delay8
     FaceWest
     LockDir
@@ -282,22 +283,22 @@ _040C:
     EndMovement
 
     .balign 4, 0
-_0424:
+CelesticTownCave_Movement_PlayerWalkOnSpotSouth:
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_042C:
+CelesticTownCave_Movement_PlayerWalkEast:
     WalkNormalEast
     EndMovement
 
     .balign 4, 0
-_0434:
+CelesticTownCave_Movement_PlayerWalkOnSpotEast2:
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_043C:
+CelesticTownCave_Movement_PlayerWalkNorthOnSpotEast:
     WalkNormalNorth
     WalkOnSpotNormalEast
     EndMovement
@@ -308,12 +309,12 @@ CelesticTownCave_UnusedMovement:
     EndMovement
 
     .balign 4, 0
-_0454:
+CelesticTownCave_Movement_PlayerWalkOnSpotWest2:
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_045C:
+CelesticTownCave_Movement_PlayerWalkNorthOnSpotWest:
     WalkNormalNorth
     WalkOnSpotNormalWest
     EndMovement
@@ -324,18 +325,18 @@ CelesticTownCave_UnusedMovement2:
     EndMovement
 
     .balign 4, 0
-_0474:
+CelesticTownCave_Movement_PlayerWalkWest:
     WalkNormalWest
     EndMovement
 
     .balign 4, 0
-_047C:
+CelesticTownCave_Movement_PlayerWatchExpertFLeave:
     Delay8
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_0488:
+CelesticTownCave_Movement_ExpertFEnterX9:
     WalkNormalNorth 6
     WalkNormalEast
     WalkNormalNorth
@@ -344,7 +345,7 @@ _0488:
     EndMovement
 
     .balign 4, 0
-_04A0:
+CelesticTownCave_Movement_ExpertFEnterX10:
     WalkNormalNorth 6
     WalkNormalEast
     WalkNormalNorth
@@ -353,39 +354,39 @@ _04A0:
     EndMovement
 
     .balign 4, 0
-_04B8:
+CelesticTownCave_Movement_ExpertFWalkOnSpotSouth:
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_04C0:
+CelesticTownCave_Movement_ExpertFWatchCyrusPushPlayerX9:
     Delay8
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_04CC:
+CelesticTownCave_Movement_ExpertFWatchCyrusPushPlayerX10:
     Delay8
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_04D8:
+CelesticTownCave_Movement_ExpertFWalkOnSpotWest:
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_04E0:
+CelesticTownCave_Movement_ExpertFWalkOnSpotEast:
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_04E8:
+CelesticTownCave_Movement_ExpertFWalkOnSpotEast2:
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_04F0:
+CelesticTownCave_Movement_ExpertFLeaveX9:
     WalkNormalSouth
     WalkNormalWest 5
     WalkNormalSouth
@@ -394,7 +395,7 @@ _04F0:
     EndMovement
 
     .balign 4, 0
-_0508:
+CelesticTownCave_Movement_ExpertFLeaveX10:
     WalkNormalSouth
     WalkNormalWest 4
     WalkNormalSouth
@@ -403,7 +404,7 @@ _0508:
     EndMovement
 
     .balign 4, 0
-_0520:
+CelesticTownCave_Movement_ExpertFLeaveX11:
     WalkNormalSouth
     WalkNormalWest 5
     WalkNormalSouth
@@ -411,153 +412,153 @@ _0520:
     WalkNormalSouth 6
     EndMovement
 
-_0538:
+CelesticTownCave_Cyrus:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 7
+    Message CelesticTownCave_Text_WellChallengeMe
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _057A
-    Message 8
+    GoToIfEq VAR_RESULT, MENU_NO, CelesticTownCave_YouChoseCoward
+    Message CelesticTownCave_Text_ErrorOfYourWays
     CloseMessage
     StartTrainerBattle TRAINER_GALACTIC_BOSS_CYRUS_CELESTIC_TOWN_RUINS
     CheckWonBattle VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, _0393
-    Call _01C3
+    GoToIfEq VAR_RESULT, FALSE, CelesticTownCave_Blackout
+    Call CelesticTownCave_DefeatedCyrus
     ReleaseAll
     End
 
-_057A:
-    Message 9
+CelesticTownCave_YouChoseCoward:
+    Message CelesticTownCave_Text_YouChoseCoward
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0585:
-    EventMessage 12
+CelesticTownCave_ExpertF:
+    EventMessage CelesticTownCave_Text_WeValueMemories
     End
 
-_0596:
-    GoToIfSet FLAG_TALKED_TO_CELESTIC_TOWN_CAVE_CYNTHIA, _0027
+CelesticTownCave_PaintingCythia:
+    GoToIfSet FLAG_TALKED_TO_CELESTIC_TOWN_CAVE_CYNTHIA, CelesticTownCave_ExaminePainting
     SetFlag FLAG_TALKED_TO_CELESTIC_TOWN_CAVE_CYNTHIA
-    ClearFlag FLAG_UNK_0x01A6
-    SetObjectEventPos 2, 4, 11
-    AddObject 2
+    ClearFlag FLAG_HIDE_CELESTIC_TOWN_CAVE_CYNTHIA
+    SetObjectEventPos LOCALID_CYNTHIA, 4, 11
+    AddObject LOCALID_CYNTHIA
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    CallIfEq VAR_0x8004, 9, _06CF
-    CallIfEq VAR_0x8004, 10, _06E5
-    Message 16
+    CallIfEq VAR_0x8004, 9, CelesticTownCave_CynthiaEnterX9
+    CallIfEq VAR_0x8004, 10, CelesticTownCave_CynthiaEnterX10
+    Message CelesticTownCave_Text_PaintingDescribedThisWay
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    CallIfEq VAR_0x8004, 9, _0713
-    CallIfEq VAR_0x8004, 10, _071F
-    Message 17
+    CallIfEq VAR_0x8004, 9, CelesticTownCave_CynthiaWalkOnSpotWest
+    CallIfEq VAR_0x8004, 10, CelesticTownCave_CynthiaWalkOnSpotEast
+    Message CelesticTownCave_Text_MayIContinue
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _0753
+    GoToIfEq VAR_RESULT, MENU_NO, CelesticTownCave_IGotCarriedAway
     CloseMessage
-    ApplyMovement 2, _07F0
-    ApplyMovement LOCALID_PLAYER, _0858
+    ApplyMovement LOCALID_CYNTHIA, CelesticTownCave_Movement_CynthiaWalkOnSpotNorth
+    ApplyMovement LOCALID_PLAYER, CelesticTownCave_Movement_PlayerDelayWalkOnSpotNorth
     WaitMovement
     WaitTime 15, VAR_RESULT
-    Message 18
+    Message CelesticTownCave_Text_OtherInterpretationContinueLonger
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    CallIfEq VAR_0x8004, 9, _0713
-    CallIfEq VAR_0x8004, 10, _071F
-    CallIfEq VAR_0x8004, 9, _06FB
-    CallIfEq VAR_0x8004, 10, _0707
+    CallIfEq VAR_0x8004, 9, CelesticTownCave_CynthiaWalkOnSpotWest
+    CallIfEq VAR_0x8004, 10, CelesticTownCave_CynthiaWalkOnSpotEast
+    CallIfEq VAR_0x8004, 9, CelesticTownCave_PlayerWalkOnSpotEast
+    CallIfEq VAR_0x8004, 10, CelesticTownCave_PlayerWalkOnSpotWest
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _0753
-    Message 19
+    GoToIfEq VAR_RESULT, MENU_NO, CelesticTownCave_IGotCarriedAway
+    Message CelesticTownCave_Text_ThanksForListening
     CloseMessage
-    ApplyMovement LOCALID_PLAYER, _0864
-    ApplyMovement 2, _07F8
+    ApplyMovement LOCALID_PLAYER, CelesticTownCave_Movement_PlayerWatchCynthiaWalkSouth
+    ApplyMovement LOCALID_CYNTHIA, CelesticTownCave_Movement_CynthiaWalkSouth
     WaitMovement
-    Message 20
+    Message CelesticTownCave_Text_NotSureHowGiratinaFits
     CloseMessage
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    CallIfEq VAR_0x8004, 9, _072B
-    CallIfEq VAR_0x8004, 10, _073F
-    Message 21
+    CallIfEq VAR_0x8004, 9, CelesticTownCave_CynthiaWalkBackToPlayerX9
+    CallIfEq VAR_0x8004, 10, CelesticTownCave_CynthiaWalkBackToPlayerX10
+    Message CelesticTownCave_Text_MayISayLastBit
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _0753
-    Message 22
-    GoTo _075E
+    GoToIfEq VAR_RESULT, MENU_NO, CelesticTownCave_IGotCarriedAway
+    Message CelesticTownCave_Text_ThatsWhatIBelieve
+    GoTo CelesticTownCave_CynthiaLeave
     End
 
-_06CF:
-    ApplyMovement 2, _07B0
+CelesticTownCave_CynthiaEnterX9:
+    ApplyMovement LOCALID_CYNTHIA, CelesticTownCave_Movement_CynthiaEnterX9
     WaitMovement
-    ApplyMovement LOCALID_PLAYER, _0848
-    WaitMovement
-    Return
-
-_06E5:
-    ApplyMovement 2, _07C8
-    WaitMovement
-    ApplyMovement LOCALID_PLAYER, _0850
+    ApplyMovement LOCALID_PLAYER, CelesticTownCave_Movement_PlayerWalkOnSpotEast3
     WaitMovement
     Return
 
-_06FB:
-    ApplyMovement LOCALID_PLAYER, _0848
+CelesticTownCave_CynthiaEnterX10:
+    ApplyMovement LOCALID_CYNTHIA, CelesticTownCave_Movement_CynthiaEnterX10
+    WaitMovement
+    ApplyMovement LOCALID_PLAYER, CelesticTownCave_Movement_PlayerWalkOnSpotWest3
     WaitMovement
     Return
 
-_0707:
-    ApplyMovement LOCALID_PLAYER, _0850
+CelesticTownCave_PlayerWalkOnSpotEast:
+    ApplyMovement LOCALID_PLAYER, CelesticTownCave_Movement_PlayerWalkOnSpotEast3
     WaitMovement
     Return
 
-_0713:
-    ApplyMovement 2, _07E0
+CelesticTownCave_PlayerWalkOnSpotWest:
+    ApplyMovement LOCALID_PLAYER, CelesticTownCave_Movement_PlayerWalkOnSpotWest3
     WaitMovement
     Return
 
-_071F:
-    ApplyMovement 2, _07E8
+CelesticTownCave_CynthiaWalkOnSpotWest:
+    ApplyMovement LOCALID_CYNTHIA, CelesticTownCave_Movement_CynthiaWalkOnSpotWest
     WaitMovement
     Return
 
-_072B:
-    ApplyMovement 2, _0800
-    ApplyMovement LOCALID_PLAYER, _0870
+CelesticTownCave_CynthiaWalkOnSpotEast:
+    ApplyMovement LOCALID_CYNTHIA, CelesticTownCave_Movement_CynthiaWalkOnSpotEast
     WaitMovement
     Return
 
-_073F:
-    ApplyMovement 2, _080C
-    ApplyMovement LOCALID_PLAYER, _087C
+CelesticTownCave_CynthiaWalkBackToPlayerX9:
+    ApplyMovement LOCALID_CYNTHIA, CelesticTownCave_Movement_CynthiaWalkBackToPlayerX9
+    ApplyMovement LOCALID_PLAYER, CelesticTownCave_Movement_PlayerWatchCynthiaWalkBackX9
     WaitMovement
     Return
 
-_0753:
-    Message 23
-    GoTo _075E
+CelesticTownCave_CynthiaWalkBackToPlayerX10:
+    ApplyMovement LOCALID_CYNTHIA, CelesticTownCave_Movement_CynthiaWalkBackToPlayerX10
+    ApplyMovement LOCALID_PLAYER, CelesticTownCave_Movement_PlayerWatchCynthiaWalkBackX10
+    WaitMovement
+    Return
+
+CelesticTownCave_IGotCarriedAway:
+    Message CelesticTownCave_Text_IGotCarriedAway
+    GoTo CelesticTownCave_CynthiaLeave
     End
 
-_075E:
+CelesticTownCave_CynthiaLeave:
     CloseMessage
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    CallIfEq VAR_0x8004, 9, _0788
-    CallIfEq VAR_0x8004, 10, _079C
-    RemoveObject 2
+    CallIfEq VAR_0x8004, 9, CelesticTownCave_CynthiaLeaveX9
+    CallIfEq VAR_0x8004, 10, CelesticTownCave_CynthiaLeaveX10
+    RemoveObject LOCALID_CYNTHIA
     ReleaseAll
     End
 
-_0788:
-    ApplyMovement 2, _0818
-    ApplyMovement LOCALID_PLAYER, _0888
+CelesticTownCave_CynthiaLeaveX9:
+    ApplyMovement LOCALID_CYNTHIA, CelesticTownCave_Movement_CynthiaLeaveX9
+    ApplyMovement LOCALID_PLAYER, CelesticTownCave_Movement_PlayerWatchCynthiaLeave
     WaitMovement
     Return
 
-_079C:
-    ApplyMovement 2, _0830
-    ApplyMovement LOCALID_PLAYER, _0888
+CelesticTownCave_CynthiaLeaveX10:
+    ApplyMovement LOCALID_CYNTHIA, CelesticTownCave_Movement_CynthiaLeaveX10
+    ApplyMovement LOCALID_PLAYER, CelesticTownCave_Movement_PlayerWatchCynthiaLeave
     WaitMovement
     Return
 
     .balign 4, 0
-_07B0:
+CelesticTownCave_Movement_CynthiaEnterX9:
     WalkNormalNorth 6
     WalkNormalEast
     WalkNormalNorth
@@ -566,7 +567,7 @@ _07B0:
     EndMovement
 
     .balign 4, 0
-_07C8:
+CelesticTownCave_Movement_CynthiaEnterX10:
     WalkNormalNorth 6
     WalkNormalEast
     WalkNormalNorth
@@ -575,39 +576,39 @@ _07C8:
     EndMovement
 
     .balign 4, 0
-_07E0:
+CelesticTownCave_Movement_CynthiaWalkOnSpotWest:
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_07E8:
+CelesticTownCave_Movement_CynthiaWalkOnSpotEast:
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_07F0:
+CelesticTownCave_Movement_CynthiaWalkOnSpotNorth:
     WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
-_07F8:
+CelesticTownCave_Movement_CynthiaWalkSouth:
     WalkNormalSouth
     EndMovement
 
     .balign 4, 0
-_0800:
+CelesticTownCave_Movement_CynthiaWalkBackToPlayerX9:
     WalkNormalNorth
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_080C:
+CelesticTownCave_Movement_CynthiaWalkBackToPlayerX10:
     WalkNormalNorth
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_0818:
+CelesticTownCave_Movement_CynthiaLeaveX9:
     WalkNormalSouth
     WalkNormalWest 5
     WalkNormalSouth
@@ -616,7 +617,7 @@ _0818:
     EndMovement
 
     .balign 4, 0
-_0830:
+CelesticTownCave_Movement_CynthiaLeaveX10:
     WalkNormalSouth
     WalkNormalWest 4
     WalkNormalSouth
@@ -625,41 +626,41 @@ _0830:
     EndMovement
 
     .balign 4, 0
-_0848:
+CelesticTownCave_Movement_PlayerWalkOnSpotEast3:
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_0850:
+CelesticTownCave_Movement_PlayerWalkOnSpotWest3:
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_0858:
+CelesticTownCave_Movement_PlayerDelayWalkOnSpotNorth:
     Delay8
     WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
-_0864:
+CelesticTownCave_Movement_PlayerWatchCynthiaWalkSouth:
     Delay8
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_0870:
+CelesticTownCave_Movement_PlayerWatchCynthiaWalkBackX9:
     Delay8
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_087C:
+CelesticTownCave_Movement_PlayerWatchCynthiaWalkBackX10:
     Delay8
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_0888:
+CelesticTownCave_Movement_PlayerWatchCynthiaLeave:
     Delay8 2
     FaceWest
     EndMovement
