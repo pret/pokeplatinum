@@ -2,18 +2,18 @@
   "key": 61171,
   "messages": [
     {
-      "id": "pl_msg_00000512_00000",
+      "id": "Route218GateToCanalaveCity_Text_ISureAmThirsty",
       "en_US": [
         "Boy...\n",
         "I sure am thirsty..."
       ]
     },
     {
-      "id": "pl_msg_00000512_00001",
+      "id": "Route218GateToCanalaveCity_Text_Dummy1",
       "garbage": 53
     },
     {
-      "id": "pl_msg_00000512_00002",
+      "id": "Route218GateToCanalaveCity_Text_UpgradeyourPokedexMale",
       "en_US": [
         "{STRVAR_1 3, 0, 0}, long time, no see!\r",
         "Oh? You look puzzled.\n",
@@ -29,7 +29,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000512_00003",
+      "id": "Route218GateToCanalaveCity_Text_UpgradeyourPokedexFemale",
       "en_US": [
         "{STRVAR_1 3, 0, 0}, long time, no see!\r",
         "Oh? You look puzzled.\n",
@@ -45,7 +45,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000512_00004",
+      "id": "Route218GateToCanalaveCity_Text_DisplayMaleAndFemale",
       "en_US": [
         "Let’s see... Was I supposed to put\n",
         "in the software here...?\r",

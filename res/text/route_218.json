@@ -2,40 +2,40 @@
   "key": 39608,
   "messages": [
     {
-      "id": "pl_msg_00000510_00000",
+      "id": "Route218_Text_ClefairyCuterNow",
       "en_US": [
         "That’s right, CLEFAIRY!\n",
         "Cuter, now!"
       ]
     },
     {
-      "id": "pl_msg_00000510_00001",
+      "id": "Route218_Text_ClefairyCryPippiih",
       "en_US": "CLEFAIRY: Pippiih!"
     },
     {
-      "id": "pl_msg_00000510_00002",
+      "id": "Route218_Text_ClefairyCryPippippiih",
       "en_US": "CLEFAIRY: Pippippiih!"
     },
     {
-      "id": "pl_msg_00000510_00003",
+      "id": "Route218_Text_PikachuCry",
       "en_US": "PIKACHU: Puhppikaah!"
     },
     {
-      "id": "pl_msg_00000510_00004",
+      "id": "Route218_Text_PikachuDazzle",
       "en_US": [
         "PIKACHU! Try to keep up!\n",
         "You need to dazzle!"
       ]
     },
     {
-      "id": "pl_msg_00000510_00005",
+      "id": "Route218_Text_SignCanalaveCity",
       "en_US": [
         "Rt. 218\n",
         "Canalave City"
       ]
     },
     {
-      "id": "pl_msg_00000510_00006",
+      "id": "Route218_Text_SignJubilifeCity",
       "en_US": [
         "Rt. 218\n",
         "Jubilife City"

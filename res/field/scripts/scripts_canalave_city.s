@@ -1,200 +1,201 @@
 #include "macros/scrcmd.inc"
 #include "generated/distribution_events.h"
 #include "res/text/bank/canalave_city.h"
+#include "res/text/bank/menu_entries.h"
 #include "res/field/events/events_canalave_city.h"
 
 
-    ScriptEntry _0066
-    ScriptEntry _01F9
-    ScriptEntry _0364
-    ScriptEntry _0377
-    ScriptEntry _03C8
-    ScriptEntry _04D4
-    ScriptEntry _04E7
-    ScriptEntry _0520
-    ScriptEntry _054D
-    ScriptEntry _05A9
-    ScriptEntry _05CE
-    ScriptEntry _05F3
-    ScriptEntry _0624
-    ScriptEntry _0649
-    ScriptEntry _0660
-    ScriptEntry _0675
-    ScriptEntry _068C
-    ScriptEntry _06A3
-    ScriptEntry _06BA
-    ScriptEntry _0708
-    ScriptEntry _06F7
-    ScriptEntry _0900
-    ScriptEntry _0959
-    ScriptEntry _01D2
-    ScriptEntry _09BC
+    ScriptEntry CanalaveCity_OnTransition
+    ScriptEntry CanalaveCity_TriggerRival
+    ScriptEntry CanalaveCity_RivalBridge
+    ScriptEntry CanalaveCity_OnFrameRivalOutsideGym
+    ScriptEntry CanalaveCity_OnFrameAfterExplosion
+    ScriptEntry CanalaveCity_ProfRowan
+    ScriptEntry CanalaveCity_Counterpart
+    ScriptEntry CanalaveCity_Collector
+    ScriptEntry CanalaveCity_PokemonBreederM
+    ScriptEntry CanalaveCity_AceTrainerF
+    ScriptEntry CanalaveCity_Lass
+    ScriptEntry CanalaveCity_Psyduck
+    ScriptEntry CanalaveCity_OldMan
+    ScriptEntry CanalaveCity_MapSign
+    ScriptEntry CanalaveCity_GymSign
+    ScriptEntry CanalaveCity_SignCanalaveLibrary
+    ScriptEntry CanalaveCity_SignSailorEldritchsHouse
+    ScriptEntry CanalaveCity_SignCanalaveDock
+    ScriptEntry CanalaveCity_SignHarborInn
+    ScriptEntry CanalaveCity_SailorEldritch
+    ScriptEntry CanalaveCity_Door
+    ScriptEntry CanalaveCity_AskGoingToFullmoonIsland
+    ScriptEntry CanalaveCity_OnFrameAfterDarkrai
+    ScriptEntry CanalaveCity_OnLoad
+    ScriptEntry CanalaveCity_RivalLibrary
     ScriptEntryEnd
 
-_0066:
-    SetFlag FLAG_UNK_0x01BD
-    CallIfEq VAR_UNK_0x40F8, 2, _00F8
-    CallIfEq VAR_UNK_0x40F8, 3, _0100
-    Call _0168
-    CallIfEq VAR_MAP_LOCAL_0, 0, _01E7
-    CallIfEq VAR_MAP_LOCAL_0, 1, _0116
-    CallIfEq VAR_CANALAVE_STATE, 1, _0132
-    CallIfEq VAR_CANALAVE_STATE, 2, _0132
-    CallIfEq VAR_CANALAVE_STATE, 4, _011C
-    CallIfEq VAR_CANALAVE_STATE, 5, _0158
+CanalaveCity_OnTransition:
+    SetFlag FLAG_HIDE_CELESTIC_TOWN_CYNTHIA
+    CallIfEq VAR_DARKRAI_EVENT_STATE, 2, CanalaveCity_ResetDarkraiEventState
+    CallIfEq VAR_DARKRAI_EVENT_STATE, 3, CanalaveCity_SetSailorEldritchPositionAfterDarkrai
+    Call CanalaveCity_CheckDoDarkraiEvent
+    CallIfEq VAR_MAP_LOCAL_0, FALSE, CanalaveCity_SetHarborInnDoorClosed
+    CallIfEq VAR_MAP_LOCAL_0, TRUE, CanalaveCity_ShowNewmoonIslandForestDarkrai
+    CallIfEq VAR_CANALAVE_STATE, 1, CanalaveCity_SetRivalPositionOutsideGym
+    CallIfEq VAR_CANALAVE_STATE, 2, CanalaveCity_SetRivalPositionOutsideGym
+    CallIfEq VAR_CANALAVE_STATE, 4, CanalaveCity_SetRivalPositionOutsideLibrary
+    CallIfEq VAR_CANALAVE_STATE, 5, CanalaveCity_HideProfRowanAndCounterpart
     GetPlayerGender VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, GENDER_MALE, _0148
-    GoToIfEq VAR_MAP_LOCAL_0, GENDER_FEMALE, _0150
+    GoToIfEq VAR_MAP_LOCAL_0, GENDER_MALE, CanalaveCity_SetCounterpartGraphicsDawn
+    GoToIfEq VAR_MAP_LOCAL_0, GENDER_FEMALE, CanalaveCity_SetCounterpartGraphicsLucas
     End
 
-_00F8:
-    SetVar VAR_UNK_0x40F8, 0
+CanalaveCity_ResetDarkraiEventState:
+    SetVar VAR_DARKRAI_EVENT_STATE, 0
     Return
 
-_0100:
-    SetObjectEventPos 16, 55, 0x2CC
-    SetObjectEventDir 16, DIR_EAST
-    SetObjectEventMovementType 16, MOVEMENT_TYPE_LOOK_EAST
+CanalaveCity_SetSailorEldritchPositionAfterDarkrai:
+    SetObjectEventPos LOCALID_SAILOR_ELDRITCH, 55, 716
+    SetObjectEventDir LOCALID_SAILOR_ELDRITCH, DIR_EAST
+    SetObjectEventMovementType LOCALID_SAILOR_ELDRITCH, MOVEMENT_TYPE_LOOK_EAST
     Return
 
-_0116:
-    ClearFlag FLAG_UNK_0x0240
+CanalaveCity_ShowNewmoonIslandForestDarkrai:
+    ClearFlag FLAG_HIDE_NEWMOON_ISLAND_FOREST_DARKRAI
     Return
 
-_011C:
-    SetObjectEventPos CANALAVE_CITY_RIVAL_BRIDGE, 37, 0x2D1
-    SetObjectEventDir CANALAVE_CITY_RIVAL_BRIDGE, DIR_SOUTH
-    SetObjectEventMovementType CANALAVE_CITY_RIVAL_BRIDGE, MOVEMENT_TYPE_LOOK_SOUTH
+CanalaveCity_SetRivalPositionOutsideLibrary:
+    SetObjectEventPos LOCALID_RIVAL_BRIDGE, 37, 721
+    SetObjectEventDir LOCALID_RIVAL_BRIDGE, DIR_SOUTH
+    SetObjectEventMovementType LOCALID_RIVAL_BRIDGE, MOVEMENT_TYPE_LOOK_SOUTH
     Return
 
-_0132:
-    SetObjectEventPos CANALAVE_CITY_RIVAL_BRIDGE, 39, 0x2DD
-    SetObjectEventDir CANALAVE_CITY_RIVAL_BRIDGE, DIR_NORTH
-    SetObjectEventMovementType CANALAVE_CITY_RIVAL_BRIDGE, MOVEMENT_TYPE_LOOK_NORTH
+CanalaveCity_SetRivalPositionOutsideGym:
+    SetObjectEventPos LOCALID_RIVAL_BRIDGE, 39, 733
+    SetObjectEventDir LOCALID_RIVAL_BRIDGE, DIR_NORTH
+    SetObjectEventMovementType LOCALID_RIVAL_BRIDGE, MOVEMENT_TYPE_LOOK_NORTH
     Return
 
-_0148:
-    SetVar VAR_OBJ_GFX_ID_0, 97
+CanalaveCity_SetCounterpartGraphicsDawn:
+    SetVar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_PLAYER_F
     End
 
-_0150:
-    SetVar VAR_OBJ_GFX_ID_0, 0
+CanalaveCity_SetCounterpartGraphicsLucas:
+    SetVar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_PLAYER_M
     End
 
-_0158:
-    SetFlag FLAG_UNK_0x01B3
-    SetFlag FLAG_UNK_0x01B5
+CanalaveCity_HideProfRowanAndCounterpart:
+    SetFlag FLAG_HIDE_CANALAVE_CITY_PROF_ROWAN
+    SetFlag FLAG_HIDE_CANALAVE_CITY_COUNTERPART
     SetVar VAR_CANALAVE_STATE, 6
     Return
 
-_0168:
-    GoToIfSet FLAG_UNK_0x0158, _01CA
-    GoToIfUnset FLAG_GAME_COMPLETED, _01CA
+CanalaveCity_CheckDoDarkraiEvent:
+    GoToIfSet FLAG_CAUGHT_DARKRAI, CanalaveCity_SetMapLocalFalse
+    GoToIfUnset FLAG_GAME_COMPLETED, CanalaveCity_SetMapLocalFalse
     GetNationalDexEnabled VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, 0, _01CA
+    GoToIfEq VAR_MAP_LOCAL_0, FALSE, CanalaveCity_SetMapLocalFalse
     CheckItem ITEM_MEMBER_CARD, 1, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, FALSE, _01CA
+    GoToIfEq VAR_MAP_LOCAL_0, FALSE, CanalaveCity_SetMapLocalFalse
     CheckDistributionEvent DISTRIBUTION_EVENT_DARKRAI, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, FALSE, _01CA
-    GoToIfUnset FLAG_UNK_0x012C, _01CA
-    SetVar VAR_MAP_LOCAL_0, 1
+    GoToIfEq VAR_MAP_LOCAL_0, FALSE, CanalaveCity_SetMapLocalFalse
+    GoToIfUnset FLAG_WOKE_UP_CANALAVE_CITY_SAILOR_ELDRITCH_HOUSE_LITTLE_BOY, CanalaveCity_SetMapLocalFalse
+    SetVar VAR_MAP_LOCAL_0, TRUE
     Return
 
-_01CA:
-    SetVar VAR_MAP_LOCAL_0, 0
+CanalaveCity_SetMapLocalFalse:
+    SetVar VAR_MAP_LOCAL_0, FALSE
     Return
 
-_01D2:
-    Call _0168
-    CallIfEq VAR_MAP_LOCAL_0, 0, _01E7
+CanalaveCity_OnLoad:
+    Call CanalaveCity_CheckDoDarkraiEvent
+    CallIfEq VAR_MAP_LOCAL_0, FALSE, CanalaveCity_SetHarborInnDoorClosed
     End
 
-_01E7:
-    SetBgEventPos 0, 58, 0x2C9
-    SetWarpEventPos 5, 59, 0x2C8
+CanalaveCity_SetHarborInnDoorClosed:
+    SetBgEventPos 0, 58, 713
+    SetWarpEventPos 5, 59, 712
     Return
 
-_01F9:
+CanalaveCity_TriggerRival:
     LockAll
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    GoToIfEq VAR_0x8005, 0x2D3, _0244
-    GoToIfEq VAR_0x8005, 0x2D4, _0252
-    GoToIfEq VAR_0x8005, 0x2D5, _0260
-    GoToIfEq VAR_0x8005, 0x2D6, _026E
-    GoToIfEq VAR_0x8005, 0x2D7, _027C
+    GoToIfEq VAR_0x8005, 723, CanalaveCity_SetRivalBridgePositionZ707
+    GoToIfEq VAR_0x8005, 724, CanalaveCity_SetRivalBridgePositionZ708
+    GoToIfEq VAR_0x8005, 725, CanalaveCity_SetRivalBridgePositionZ709
+    GoToIfEq VAR_0x8005, 726, CanalaveCity_SetRivalBridgePositionZ710
+    GoToIfEq VAR_0x8005, 727, CanalaveCity_SetRivalBridgePositionZ711
     End
 
-_0244:
-    SetObjectEventPos CANALAVE_CITY_RIVAL_BRIDGE, 38, 0x2D3
-    GoTo _028A
+CanalaveCity_SetRivalBridgePositionZ707:
+    SetObjectEventPos LOCALID_RIVAL_BRIDGE, 38, 723
+    GoTo CanalaveCity_RivalBridgeEnter
 
-_0252:
-    SetObjectEventPos CANALAVE_CITY_RIVAL_BRIDGE, 38, 0x2D4
-    GoTo _028A
+CanalaveCity_SetRivalBridgePositionZ708:
+    SetObjectEventPos LOCALID_RIVAL_BRIDGE, 38, 724
+    GoTo CanalaveCity_RivalBridgeEnter
 
-_0260:
-    SetObjectEventPos CANALAVE_CITY_RIVAL_BRIDGE, 38, 0x2D5
-    GoTo _028A
+CanalaveCity_SetRivalBridgePositionZ709:
+    SetObjectEventPos LOCALID_RIVAL_BRIDGE, 38, 725
+    GoTo CanalaveCity_RivalBridgeEnter
 
-_026E:
-    SetObjectEventPos CANALAVE_CITY_RIVAL_BRIDGE, 38, 0x2D6
-    GoTo _028A
+CanalaveCity_SetRivalBridgePositionZ710:
+    SetObjectEventPos LOCALID_RIVAL_BRIDGE, 38, 726
+    GoTo CanalaveCity_RivalBridgeEnter
 
-_027C:
-    SetObjectEventPos CANALAVE_CITY_RIVAL_BRIDGE, 38, 0x2D7
-    GoTo _028A
+CanalaveCity_SetRivalBridgePositionZ711:
+    SetObjectEventPos LOCALID_RIVAL_BRIDGE, 38, 727
+    GoTo CanalaveCity_RivalBridgeEnter
 
-_028A:
-    SetObjectEventMovementType CANALAVE_CITY_RIVAL_BRIDGE, MOVEMENT_TYPE_LOOK_EAST
-    ClearFlag FLAG_HIDE_CANALAVE_RIVAL
-    AddObject CANALAVE_CITY_RIVAL_BRIDGE
-    ApplyMovement CANALAVE_CITY_RIVAL_BRIDGE, _0340
+CanalaveCity_RivalBridgeEnter:
+    SetObjectEventMovementType LOCALID_RIVAL_BRIDGE, MOVEMENT_TYPE_LOOK_EAST
+    ClearFlag FLAG_HIDE_CANALAVE_CITY_RIVAL_BRIDGE
+    AddObject LOCALID_RIVAL_BRIDGE
+    ApplyMovement LOCALID_RIVAL_BRIDGE, CanalaveCity_Movement_RivalNoticePlayer
     WaitMovement
     Common_SetRivalBGM
-    ApplyMovement CANALAVE_CITY_RIVAL_BRIDGE, _0354
+    ApplyMovement LOCALID_RIVAL_BRIDGE, CanalaveCity_Movement_RivalWalkToPlayer
     WaitMovement
     BufferRivalName 0
     BufferPlayerName 1
-    Message 0
+    Message CanalaveCity_Text_CheckIfYoureReady
     CloseMessage
     GetPlayerStarterSpecies VAR_RESULT
-    GoToIfEq VAR_RESULT, SPECIES_TURTWIG, _02EB
-    GoToIfEq VAR_RESULT, SPECIES_CHIMCHAR, _02F7
-    GoTo _02DF
+    GoToIfEq VAR_RESULT, SPECIES_TURTWIG, CanalaveCity_StartRivalBattleTurtwig
+    GoToIfEq VAR_RESULT, SPECIES_CHIMCHAR, CanalaveCity_StartRivalBattleChimchar
+    GoTo CanalaveCity_StartRivalBattlePiplup
 
-_02DF:
+CanalaveCity_StartRivalBattlePiplup:
     StartTrainerBattle TRAINER_RIVAL_CANALAVE_CITY_PIPLUP
-    GoTo _0303
+    GoTo CanalaveCity_PostRivalBattle
 
-_02EB:
+CanalaveCity_StartRivalBattleTurtwig:
     StartTrainerBattle TRAINER_RIVAL_CANALAVE_CITY_TURTWIG
-    GoTo _0303
+    GoTo CanalaveCity_PostRivalBattle
 
-_02F7:
+CanalaveCity_StartRivalBattleChimchar:
     StartTrainerBattle TRAINER_RIVAL_CANALAVE_CITY_CHIMCHAR
-    GoTo _0303
+    GoTo CanalaveCity_PostRivalBattle
 
-_0303:
+CanalaveCity_PostRivalBattle:
     CheckWonBattle VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, _0334
+    GoToIfEq VAR_RESULT, FALSE, CanalaveCity_BlackOut
     BufferRivalName 0
-    Message 1
+    Message CanalaveCity_Text_TrainAtIronIsland
     CloseMessage
-    ApplyMovement CANALAVE_CITY_RIVAL_BRIDGE, _035C
+    ApplyMovement LOCALID_RIVAL_BRIDGE, CanalaveCity_Movement_RivalBridgeLeave
     WaitMovement
-    RemoveObject CANALAVE_CITY_RIVAL_BRIDGE
+    RemoveObject LOCALID_RIVAL_BRIDGE
     SetVar VAR_CANALAVE_STATE, 1
     ReleaseAll
     End
 
-_0334:
-    SetFlag FLAG_HIDE_CANALAVE_RIVAL
+CanalaveCity_BlackOut:
+    SetFlag FLAG_HIDE_CANALAVE_CITY_RIVAL_BRIDGE
     BlackOutFromBattle
     ReleaseAll
     End
 
     .balign 4, 0
-_0340:
+CanalaveCity_Movement_RivalNoticePlayer:
     WalkFastEast 4
     Delay8
     EmoteExclamationMark
@@ -202,521 +203,521 @@ _0340:
     EndMovement
 
     .balign 4, 0
-_0354:
+CanalaveCity_Movement_RivalWalkToPlayer:
     WalkFastEast 4
     EndMovement
 
     .balign 4, 0
-_035C:
+CanalaveCity_Movement_RivalBridgeLeave:
     WalkFastWest 9
     EndMovement
 
-_0364:
-    NPCMessage 1
+CanalaveCity_RivalBridge:
+    NPCMessage CanalaveCity_Text_TrainAtIronIsland
     End
 
-_0377:
+CanalaveCity_OnFrameRivalOutsideGym:
     LockAll
     BufferRivalName 0
     BufferPlayerName 1
-    Message 2
+    Message CanalaveCity_Text_ComeToLibrary
     CloseMessage
-    ApplyMovement CANALAVE_CITY_RIVAL_BRIDGE, _03AC
-    ApplyMovement LOCALID_PLAYER, _03BC
+    ApplyMovement LOCALID_RIVAL_BRIDGE, CanalaveCity_Movement_RivalWalkToLibrary
+    ApplyMovement LOCALID_PLAYER, CanalaveCity_Movement_PlayerWatchRivalWalkToLibrary
     WaitMovement
-    RemoveObject CANALAVE_CITY_RIVAL_BRIDGE
+    RemoveObject LOCALID_RIVAL_BRIDGE
     SetVar VAR_CANALAVE_STATE, 3
     SetVar VAR_CANALAVE_LIBRARY_STATE, 1
     ReleaseAll
     End
 
     .balign 4, 0
-_03AC:
+CanalaveCity_Movement_RivalWalkToLibrary:
     WalkFastSouth
     WalkFastWest 5
     WalkFastNorth 10
     EndMovement
 
     .balign 4, 0
-_03BC:
+CanalaveCity_Movement_PlayerWatchRivalWalkToLibrary:
     Delay8
     WalkOnSpotNormalWest
     EndMovement
 
-_03C8:
+CanalaveCity_OnFrameAfterExplosion:
     LockAll
-    ApplyMovement 13, _0498
+    ApplyMovement LOCALID_PROF_ROWAN, CanalaveCity_Movement_ProfRowanWalkOnSpotSouth
     WaitMovement
-    Message 5
+    Message CanalaveCity_Text_ThatTremorUnnatural
     CloseMessage
-    ClearFlag FLAG_UNK_0x01B4
-    AddObject 14
-    LockObject 14
-    ApplyMovement 14, _04AC
+    ClearFlag FLAG_HIDE_CANALAVE_CITY_SAILOR
+    AddObject LOCALID_SAILOR
+    LockObject LOCALID_SAILOR
+    ApplyMovement LOCALID_SAILOR, CanalaveCity_Movement_SailorToWalkProfRowan
     WaitMovement
-    Message 6
+    Message CanalaveCity_Text_HugeExplosionAtLakeValor
     CloseMessage
-    ApplyMovement 14, _04B8
+    ApplyMovement LOCALID_SAILOR, CanalaveCity_Movement_SailorLeave
     WaitMovement
-    RemoveObject 14
-    ApplyMovement CANALAVE_CITY_RIVAL_BRIDGE, _04C0
+    RemoveObject LOCALID_SAILOR
+    ApplyMovement LOCALID_RIVAL_BRIDGE, CanalaveCity_Movement_RivalWalkOnSpotNorth
     WaitMovement
     BufferRivalName 0
-    Message 7
+    Message CanalaveCity_Text_BadFeelingAboutThis
     CloseMessage
-    ApplyMovement CANALAVE_CITY_RIVAL_BRIDGE, _04C8
+    ApplyMovement LOCALID_RIVAL_BRIDGE, CanalaveCity_Movement_RivalLeaveAfterExplosion
     WaitMovement
-    RemoveObject CANALAVE_CITY_RIVAL_BRIDGE
-    ApplyMovement 13, _04A0
+    RemoveObject LOCALID_RIVAL_BRIDGE
+    ApplyMovement LOCALID_PROF_ROWAN, CanalaveCity_Movement_ProfRowanWalkOnSpotNorth
     WaitMovement
     BufferRivalName 0
     BufferPlayerName 1
-    Message 8
+    Message CanalaveCity_Text_INeedYouAtLakeValor
     CloseMessage
-    ApplyMovement 12, _0490
+    ApplyMovement LOCALID_COUNTERPART, CanalaveCity_Movement_CounterpartWalkOnSpotWest
     WaitMovement
     WaitTime 15, VAR_RESULT
     GetPlayerGender VAR_RESULT
-    GoToIfEq VAR_RESULT, GENDER_MALE, _045E
-    GoTo _046A
+    GoToIfEq VAR_RESULT, GENDER_MALE, CanalaveCity_DawnYoullBeOKRight
+    GoTo CanalaveCity_LucasIWonderWhatHappened
 
-_045E:
+CanalaveCity_DawnYoullBeOKRight:
     BufferPlayerName 0
-    Message 9
-    GoTo _0473
+    Message CanalaveCity_Text_DawnYoullBeOKRight
+    GoTo CanalaveCity_ExplosionSceneEnd
 
-_046A:
-    Message 10
-    GoTo _0473
+CanalaveCity_LucasIWonderWhatHappened:
+    Message CanalaveCity_Text_LucasIWonderWhatHappened
+    GoTo CanalaveCity_ExplosionSceneEnd
 
-_0473:
+CanalaveCity_ExplosionSceneEnd:
     WaitButton
     CloseMessage
     SetVar VAR_CANALAVE_STATE, 5
     ClearFlag FLAG_HIDE_LAKE_VERITY_LOW_WATER_COUNTERPART
     ClearFlag FLAG_HIDE_LAKE_VERITY_LOW_WATER_PROF_ROWAN
-    ClearFlag FLAG_UNK_0x0293
+    ClearFlag FLAG_HIDE_LAKE_ACUITY_LOW_WATER_RIVAL
     ReleaseAll
     End
 
     .balign 4, 0
-_0490:
+CanalaveCity_Movement_CounterpartWalkOnSpotWest:
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_0498:
+CanalaveCity_Movement_ProfRowanWalkOnSpotSouth:
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_04A0:
+CanalaveCity_Movement_ProfRowanWalkOnSpotNorth:
     Delay8 2
     WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
-_04AC:
+CanalaveCity_Movement_SailorToWalkProfRowan:
     WalkFastWest 5
     WalkFastNorth 2
     EndMovement
 
     .balign 4, 0
-_04B8:
+CanalaveCity_Movement_SailorLeave:
     WalkFastSouth 6
     EndMovement
 
     .balign 4, 0
-_04C0:
+CanalaveCity_Movement_RivalWalkOnSpotNorth:
     WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
-_04C8:
+CanalaveCity_Movement_RivalLeaveAfterExplosion:
     WalkFastSouth 3
     WalkFastEast 9
     EndMovement
 
-_04D4:
-    NPCMessage 13
+CanalaveCity_ProfRowan:
+    NPCMessage CanalaveCity_Text_WhatIsTakingPlace
     End
 
-_04E7:
+CanalaveCity_Counterpart:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GetPlayerGender VAR_RESULT
-    GoToIfEq VAR_RESULT, GENDER_MALE, _0506
-    GoTo _050F
+    GoToIfEq VAR_RESULT, GENDER_MALE, CanalaveCity_DawnGoingToLakeVerity
+    GoTo CanalaveCity_LucasGoingToLakeVerity
 
-_0506:
-    Message 11
-    GoTo _0518
+CanalaveCity_DawnGoingToLakeVerity:
+    Message CanalaveCity_Text_DawnGoingToLakeVerity
+    GoTo CanalaveCity_CounterpartEnd
 
-_050F:
-    Message 12
-    GoTo _0518
+CanalaveCity_LucasGoingToLakeVerity:
+    Message CanalaveCity_Text_LucasGoingToLakeVerity
+    GoTo CanalaveCity_CounterpartEnd
 
-_0518:
+CanalaveCity_CounterpartEnd:
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0520:
+CanalaveCity_Collector:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x00A8, _053C
-    Message 14
-    GoTo _0545
+    GoToIfSet FLAG_LAKE_VALOR_EXPLODED, CanalaveCity_TremorWasNoQuake
+    Message CanalaveCity_Text_YourClothesLookDamp
+    GoTo CanalaveCity_NPCEnd
 
-_053C:
-    Message 15
-    GoTo _0545
+CanalaveCity_TremorWasNoQuake:
+    Message CanalaveCity_Text_TremorWasNoQuake
+    GoTo CanalaveCity_NPCEnd
 
-_0545:
+CanalaveCity_NPCEnd:
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_054D:
+CanalaveCity_PokemonBreederM:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x00A8, _0586
-    GoToIfBadgeAcquired BADGE_ID_MINE, _0591
-    GoTo _057B
+    GoToIfSet FLAG_LAKE_VALOR_EXPLODED, CanalaveCity_WhatWasThatTremor
+    GoToIfBadgeAcquired BADGE_ID_MINE, CanalaveCity_ImpatientBoyAtLibrary
+    GoTo CanalaveCity_WelcomeToCanalCity
     End
 
-_057B:
-    Message 16
-    GoTo _0545
+CanalaveCity_WelcomeToCanalCity:
+    Message CanalaveCity_Text_WelcomeToCanalCity
+    GoTo CanalaveCity_NPCEnd
     End
 
-_0586:
-    Message 17
-    GoTo _0545
+CanalaveCity_WhatWasThatTremor:
+    Message CanalaveCity_Text_WhatWasThatTremor
+    GoTo CanalaveCity_NPCEnd
     End
 
-_0591:
-    GoToIfGe VAR_CANALAVE_STATE, 5, _057B
-    Message 18
-    GoTo _0545
+CanalaveCity_ImpatientBoyAtLibrary:
+    GoToIfGe VAR_CANALAVE_STATE, 5, CanalaveCity_WelcomeToCanalCity
+    Message CanalaveCity_Text_ImpatientBoyAtLibrary
+    GoTo CanalaveCity_NPCEnd
     End
 
-_05A9:
+CanalaveCity_AceTrainerF:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x00A8, _05C5
-    Message 19
-    GoTo _0545
+    GoToIfSet FLAG_LAKE_VALOR_EXPLODED, CanalaveCity_ExplosionAtLakeValor
+    Message CanalaveCity_Text_GoingToStudy
+    GoTo CanalaveCity_NPCEnd
 
-_05C5:
-    Message 20
-    GoTo _0545
+CanalaveCity_ExplosionAtLakeValor:
+    Message CanalaveCity_Text_ExplosionAtLakeValor
+    GoTo CanalaveCity_NPCEnd
 
-_05CE:
+CanalaveCity_Lass:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x00A8, _05EA
-    Message 21
-    GoTo _0545
+    GoToIfSet FLAG_LAKE_VALOR_EXPLODED, CanalaveCity_CouldntForetellTremor
+    Message CanalaveCity_Text_PsyduckIsVeryClose
+    GoTo CanalaveCity_NPCEnd
 
-_05EA:
-    Message 22
-    GoTo _0545
+CanalaveCity_CouldntForetellTremor:
+    Message CanalaveCity_Text_CouldntForetellTremor
+    GoTo CanalaveCity_NPCEnd
 
-_05F3:
+CanalaveCity_Psyduck:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x00A8, _0615
+    GoToIfSet FLAG_LAKE_VALOR_EXPLODED, CanalaveCity_PsyduckCryGuaagwa
     PlayCry SPECIES_PSYDUCK
-    Message 23
-    GoTo _0545
+    Message CanalaveCity_Text_PsyduckCryGua
+    GoTo CanalaveCity_NPCEnd
 
-_0615:
+CanalaveCity_PsyduckCryGuaagwa:
     PlayCry SPECIES_PSYDUCK
-    Message 24
-    GoTo _0545
+    Message CanalaveCity_Text_PsyduckCryGuaagwa
+    GoTo CanalaveCity_NPCEnd
 
-_0624:
+CanalaveCity_OldMan:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x00A8, _0640
-    Message 25
-    GoTo _0545
+    GoToIfSet FLAG_LAKE_VALOR_EXPLODED, CanalaveCity_WhatCouldExplode
+    Message CanalaveCity_Text_WorkOutAtIronIsland
+    GoTo CanalaveCity_NPCEnd
 
-_0640:
-    Message 26
-    GoTo _0545
+CanalaveCity_WhatCouldExplode:
+    Message CanalaveCity_Text_WhatCouldExplode
+    GoTo CanalaveCity_NPCEnd
 
-_0649:
-    ShowMapSign 36
+CanalaveCity_MapSign:
+    ShowMapSign CanalaveCity_Text_MapSign
     End
 
-_0660:
-    ShowScrollingSign 37
+CanalaveCity_GymSign:
+    ShowScrollingSign CanalaveCity_Text_SignPokemonGym
     End
 
-_0675:
-    ShowLandmarkSign 38
+CanalaveCity_SignCanalaveLibrary:
+    ShowLandmarkSign CanalaveCity_Text_SignCanalaveLibrary
     End
 
-_068C:
-    ShowLandmarkSign 39
+CanalaveCity_SignSailorEldritchsHouse:
+    ShowLandmarkSign CanalaveCity_Text_SignSailorEldritchsHouse
     End
 
-_06A3:
-    ShowLandmarkSign 40
+CanalaveCity_SignCanalaveDock:
+    ShowLandmarkSign CanalaveCity_Text_SignCanalaveDock
     End
 
-_06BA:
-    Call _0168
-    GoToIfEq VAR_MAP_LOCAL_0, 0, _06E2
-    ShowScrollingSign 42
+CanalaveCity_SignHarborInn:
+    Call CanalaveCity_CheckDoDarkraiEvent
+    GoToIfEq VAR_MAP_LOCAL_0, FALSE, CanalaveCity_SignHarborInnFaded
+    ShowScrollingSign CanalaveCity_Text_SignHarborInn
     End
 
-_06E2:
-    ShowScrollingSign 41
+CanalaveCity_SignHarborInnFaded:
+    ShowScrollingSign CanalaveCity_Text_SignHarborInnFaded
     End
 
-_06F7:
-    EventMessage 43
+CanalaveCity_Door:
+    EventMessage CanalaveCity_Text_DoorIsTightlyShut
     End
 
-_0708:
+CanalaveCity_SailorEldritch:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GetPlayerDir VAR_0x8004
     FacePlayer
-    GoToIfEq VAR_UNK_0x4106, 2, _0900
-    Message 27
+    GoToIfEq VAR_LUNAR_WING_EVENT_STATE, 2, CanalaveCity_AskGoingToFullmoonIsland
+    Message CanalaveCity_Text_DoYouWannaSetSail
     InitGlobalTextMenu 1, 1, 0, VAR_RESULT
-    AddMenuEntryImm 213, 0
-    CallIfSet FLAG_UNK_0x0133, _0790
-    CallIfSet FLAG_UNK_0x013C, _078A
-    AddMenuEntryImm 218, 4
+    AddMenuEntryImm MenuEntries_Text_CanalaveDock_IronIsland, 0
+    CallIfSet FLAG_TALKED_TO_CANALAVE_CITY_SAILOR_ELDRITCH_HOUSE_LITTLE_BOY, CanalaveCity_AddMenuEntryFullmoonIsland
+    CallIfSet FLAG_TRAVELED_TO_NEWMOON_ISLAND, CanalaveCity_AddMenuEntryNewmoonIsland
+    AddMenuEntryImm MenuEntries_Text_CanalaveDock_Exit, 4
     ShowMenu
-    GoToIfEq VAR_RESULT, 0, _0796
-    GoToIfEq VAR_RESULT, 1, _07D1
-    GoToIfEq VAR_RESULT, 2, _080C
-    GoToIfEq VAR_RESULT, 3, _0847
-    GoTo _0847
+    GoToIfEq VAR_RESULT, 0, CanalaveCity_TakeShipToIronIsland
+    GoToIfEq VAR_RESULT, 1, CanalaveCity_TakeShipToFullmoonIsland
+    GoToIfEq VAR_RESULT, 2, CanalaveCity_TakeShipToNewmoonIsland
+    GoToIfEq VAR_RESULT, 3, CanalaveCity_DontTakeShip
+    GoTo CanalaveCity_DontTakeShip
     End
 
-_078A:
-    AddMenuEntryImm 215, 2
+CanalaveCity_AddMenuEntryNewmoonIsland:
+    AddMenuEntryImm MenuEntries_Text_CanalaveDock_NewmoonIsland, 2
     Return
 
-_0790:
-    AddMenuEntryImm 214, 1
+CanalaveCity_AddMenuEntryFullmoonIsland:
+    AddMenuEntryImm MenuEntries_Text_CanalaveDock_FullmoonIsland, 1
     Return
 
-_0796:
-    Call _0852
-    CallIfEq VAR_0x8004, 1, _0871
-    CallIfEq VAR_0x8004, 3, _088B
-    CallIfEq VAR_0x8004, 0, _08A5
+CanalaveCity_TakeShipToIronIsland:
+    Call CanalaveCity_SailorEldritchEnterShip
+    CallIfEq VAR_0x8004, DIR_SOUTH, CanalaveCity_PlayerEnterShipSouth
+    CallIfEq VAR_0x8004, DIR_EAST, CanalaveCity_PlayerEnterShipEast
+    CallIfEq VAR_0x8004, DIR_NORTH, CanalaveCity_PlayerEnterShipNorth
     TakeShipFromCanalave DIR_EAST, MAP_HEADER_IRON_ISLAND, 100, 502
     ReleaseAll
     End
 
-_07D1:
-    Call _0852
-    CallIfEq VAR_0x8004, 1, _0871
-    CallIfEq VAR_0x8004, 3, _088B
-    CallIfEq VAR_0x8004, 0, _08A5
+CanalaveCity_TakeShipToFullmoonIsland:
+    Call CanalaveCity_SailorEldritchEnterShip
+    CallIfEq VAR_0x8004, DIR_SOUTH, CanalaveCity_PlayerEnterShipSouth
+    CallIfEq VAR_0x8004, DIR_EAST, CanalaveCity_PlayerEnterShipEast
+    CallIfEq VAR_0x8004, DIR_NORTH, CanalaveCity_PlayerEnterShipNorth
     TakeShipFromCanalave DIR_WEST, MAP_HEADER_FULLMOON_ISLAND, 39, 277
     ReleaseAll
     End
 
-_080C:
-    Call _0852
-    CallIfEq VAR_0x8004, 1, _0871
-    CallIfEq VAR_0x8004, 3, _088B
-    CallIfEq VAR_0x8004, 0, _08A5
+CanalaveCity_TakeShipToNewmoonIsland:
+    Call CanalaveCity_SailorEldritchEnterShip
+    CallIfEq VAR_0x8004, DIR_SOUTH, CanalaveCity_PlayerEnterShipSouth
+    CallIfEq VAR_0x8004, DIR_EAST, CanalaveCity_PlayerEnterShipEast
+    CallIfEq VAR_0x8004, DIR_NORTH, CanalaveCity_PlayerEnterShipNorth
     TakeShipFromCanalave DIR_EAST, MAP_HEADER_NEWMOON_ISLAND, 152, 277
     ReleaseAll
     End
 
-_0847:
-    Message 29
+CanalaveCity_DontTakeShip:
+    Message CanalaveCity_Text_TellWheneverSetSail
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0852:
-    Message 28
+CanalaveCity_SailorEldritchEnterShip:
+    Message CanalaveCity_Text_AnchorsAweigh
     CloseMessage
-    ApplyMovement 16, _08C0
+    ApplyMovement LOCALID_SAILOR_ELDRITCH, CanalaveCity_Movement_SailorEldritchFaceEast
     WaitMovement
     PlaySE SEQ_SE_DP_KAIDAN2
-    ApplyMovement 16, _08CC
+    ApplyMovement LOCALID_SAILOR_ELDRITCH, CanalaveCity_Movement_SetInvisible
     WaitMovement
     Return
 
-_0871:
-    ApplyMovement LOCALID_PLAYER, _08D4
+CanalaveCity_PlayerEnterShipSouth:
+    ApplyMovement LOCALID_PLAYER, CanalaveCity_Movement_PlayerWalkToShipSouth
     WaitMovement
     PlaySE SEQ_SE_DP_KAIDAN2
-    ApplyMovement LOCALID_PLAYER, _08CC
+    ApplyMovement LOCALID_PLAYER, CanalaveCity_Movement_SetInvisible
     WaitMovement
     Return
 
-_088B:
-    ApplyMovement LOCALID_PLAYER, _08E4
+CanalaveCity_PlayerEnterShipEast:
+    ApplyMovement LOCALID_PLAYER, CanalaveCity_Movement_PlayerWalkToShipEast
     WaitMovement
     PlaySE SEQ_SE_DP_KAIDAN2
-    ApplyMovement LOCALID_PLAYER, _08CC
+    ApplyMovement LOCALID_PLAYER, CanalaveCity_Movement_SetInvisible
     WaitMovement
     Return
 
-_08A5:
-    ApplyMovement LOCALID_PLAYER, _08F0
+CanalaveCity_PlayerEnterShipNorth:
+    ApplyMovement LOCALID_PLAYER, CanalaveCity_Movement_PlayerWalkToShipNorth
     WaitMovement
     PlaySE SEQ_SE_DP_KAIDAN2
-    ApplyMovement LOCALID_PLAYER, _08CC
+    ApplyMovement LOCALID_PLAYER, CanalaveCity_Movement_SetInvisible
     WaitMovement
     Return
 
     .balign 4, 0
-_08C0:
+CanalaveCity_Movement_SailorEldritchFaceEast:
     FaceEast
     Delay15
     EndMovement
 
     .balign 4, 0
-_08CC:
+CanalaveCity_Movement_SetInvisible:
     SetInvisible
     EndMovement
 
     .balign 4, 0
-_08D4:
+CanalaveCity_Movement_PlayerWalkToShipSouth:
     WalkNormalSouth
     FaceEast
     Delay15
     EndMovement
 
     .balign 4, 0
-_08E4:
+CanalaveCity_Movement_PlayerWalkToShipEast:
     WalkNormalEast
     Delay15
     EndMovement
 
     .balign 4, 0
-_08F0:
+CanalaveCity_Movement_PlayerWalkToShipNorth:
     WalkNormalNorth
     FaceEast
     Delay15
     EndMovement
 
-_0900:
+CanalaveCity_AskGoingToFullmoonIsland:
     CheckItem ITEM_LUNAR_WING, 1, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _094E
-    Message 31
+    GoToIfEq VAR_RESULT, TRUE, CanalaveCity_TakeLunarWingToSon
+    Message CanalaveCity_Text_GoingToFullmoonIsland
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _0938
-    GoToIfEq VAR_RESULT, MENU_NO, _0943
+    GoToIfEq VAR_RESULT, MENU_YES, CanalaveCity_CountingOnYou
+    GoToIfEq VAR_RESULT, MENU_NO, CanalaveCity_IllBeWaiting
     End
 
-_0938:
-    Message 32
+CanalaveCity_CountingOnYou:
+    Message CanalaveCity_Text_CountingOnYou
     CloseMessage
-    GoTo _07D1
+    GoTo CanalaveCity_TakeShipToFullmoonIsland
 
-_0943:
-    Message 33
+CanalaveCity_IllBeWaiting:
+    Message CanalaveCity_Text_IllBeWaiting
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_094E:
-    Message 34
+CanalaveCity_TakeLunarWingToSon:
+    Message CanalaveCity_Text_TakeLunarWingToSon
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0959:
+CanalaveCity_OnFrameAfterDarkrai:
     LockAll
-    ApplyMovement 16, _099C
+    ApplyMovement LOCALID_SAILOR_ELDRITCH, CanalaveCity_Movement_SailorEldritchNoticeWalkToPlayer
     WaitMovement
-    Message 35
+    Message CanalaveCity_Text_AsleepForLongTime
     CloseMessage
-    ApplyMovement 16, _09AC
+    ApplyMovement LOCALID_SAILOR_ELDRITCH, CanalaveCity_Movement_SailorEldritchLeave
     WaitMovement
-    RemoveObject 16
-    SetObjectEventPos 16, 45, 0x2EE
-    SetObjectEventDir 16, DIR_WEST
-    SetObjectEventMovementType 16, MOVEMENT_TYPE_LOOK_WEST
-    AddObject 16
-    SetVar VAR_UNK_0x40F8, 4
+    RemoveObject LOCALID_SAILOR_ELDRITCH
+    SetObjectEventPos LOCALID_SAILOR_ELDRITCH, 45, 750
+    SetObjectEventDir LOCALID_SAILOR_ELDRITCH, DIR_WEST
+    SetObjectEventMovementType LOCALID_SAILOR_ELDRITCH, MOVEMENT_TYPE_LOOK_WEST
+    AddObject LOCALID_SAILOR_ELDRITCH
+    SetVar VAR_DARKRAI_EVENT_STATE, 4
     ReleaseAll
     End
 
     .balign 4, 0
-_099C:
+CanalaveCity_Movement_SailorEldritchNoticeWalkToPlayer:
     EmoteExclamationMark
     WalkNormalEast 3
     WalkNormalNorth
     EndMovement
 
     .balign 4, 0
-_09AC:
+CanalaveCity_Movement_SailorEldritchLeave:
     WalkNormalSouth
     WalkNormalWest 3
     WalkNormalSouth 8
     EndMovement
 
-_09BC:
+CanalaveCity_RivalLibrary:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     CheckItem ITEM_HM04, 1, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, CanalaveCity_RIVAL_EnterLibrary
+    GoToIfEq VAR_RESULT, TRUE, CanalaveCity_EnterLibrary
     FindPartySlotWithMove VAR_RESULT, MOVE_STRENGTH
-    GoToIfNe VAR_RESULT, 6, CanalaveCity_RIVAL_EnterLibrary
+    GoToIfNe VAR_RESULT, MAX_PARTY_SIZE, CanalaveCity_EnterLibrary
     BufferRivalName 0
-    Message 3
+    Message CanalaveCity_Text_DidntGetHMStrength
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-CanalaveCity_RIVAL_EnterLibrary:
+CanalaveCity_EnterLibrary:
     BufferRivalName 0
     Message CanalaveCity_Text_RivalTooSlowMoveIt
     CloseMessage
-    ApplyMovement CANALAVE_CITY_RIVAL_LIBRARY, CanalaveCity_RIVAL_FaceNorth
+    ApplyMovement LOCALID_RIVAL_LIBRARY, CanalaveCity_Movement_FaceNorth
     WaitMovement
     LoadDoorAnimation 1, 22, 5, 14, ANIMATION_TAG_DOOR_1
     PlayDoorOpenAnimation ANIMATION_TAG_DOOR_1
     WaitForAnimation ANIMATION_TAG_DOOR_1
-    ApplyMovement CANALAVE_CITY_RIVAL_LIBRARY, CanalaveCity_RIVAL_EnterDoor
+    ApplyMovement LOCALID_RIVAL_LIBRARY, CanalaveCity_Movement_EnterDoor
     WaitMovement
     PlayDoorCloseAnimation ANIMATION_TAG_DOOR_1
     WaitForAnimation ANIMATION_TAG_DOOR_1
     UnloadAnimation ANIMATION_TAG_DOOR_1
-    RemoveObject CANALAVE_CITY_RIVAL_LIBRARY
+    RemoveObject LOCALID_RIVAL_LIBRARY
     ReleaseAll
     End
 
     .balign 4, 0
-CanalaveCity_RIVAL_FaceNorth:
+CanalaveCity_Movement_FaceNorth:
     WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
-CanalaveCity_RIVAL_EnterDoor:
+CanalaveCity_Movement_EnterDoor:
     WalkNormalNorth
     SetInvisible
     EndMovement

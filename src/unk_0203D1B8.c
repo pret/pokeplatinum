@@ -1796,7 +1796,7 @@ static const ApplicationManagerTemplate LibraryTV_template = {
     FS_OVERLAY_ID(library_tv)
 };
 
-void sub_0203E704(FieldSystem *fieldSystem)
+void FieldSystem_StartLibraryTV(FieldSystem *fieldSystem)
 {
     FieldSystem_StartChildProcess(fieldSystem, &LibraryTV_template, fieldSystem->saveData);
 }

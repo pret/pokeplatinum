@@ -2,39 +2,39 @@
 #include "res/text/bank/canalave_city_southeast_house.h"
 
 
-    ScriptEntry _000A
-    ScriptEntry _0066
+    ScriptEntry CanalaveCitySoutheastHouse_AceTrainerF
+    ScriptEntry CanalaveCitySoutheastHouse_Lass
     ScriptEntryEnd
 
-_000A:
+CanalaveCitySoutheastHouse_AceTrainerF:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x00C9, _0051
-    Message 0
+    GoToIfSet FLAG_RECEIVED_CANALAVE_CITY_SOUTHEAST_HOUSE_TM48, CanalaveCitySoutheastHouse_ExplainSkillSwap
+    Message CanalaveCitySoutheastHouse_Text_IFoundThis
     SetVar VAR_0x8004, ITEM_TM48
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _005C
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, CanalaveCitySoutheastHouse_BagIsFull
     Common_GiveItemQuantity
-    SetFlag FLAG_UNK_0x00C9
-    GoTo _0051
+    SetFlag FLAG_RECEIVED_CANALAVE_CITY_SOUTHEAST_HOUSE_TM48
+    GoTo CanalaveCitySoutheastHouse_ExplainSkillSwap
     End
 
-_0051:
-    Message 1
+CanalaveCitySoutheastHouse_ExplainSkillSwap:
+    Message CanalaveCitySoutheastHouse_Text_ExplainSkillSwap
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_005C:
+CanalaveCitySoutheastHouse_BagIsFull:
     Common_MessageBagIsFull
     CloseMessage
     ReleaseAll
     End
 
-_0066:
-    NPCMessage 2
+CanalaveCitySoutheastHouse_Lass:
+    NPCMessage CanalaveCitySoutheastHouse_Text_OtherLandsPopulated
     End
 
     .balign 4, 0

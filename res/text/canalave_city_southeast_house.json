@@ -2,7 +2,7 @@
   "key": 29723,
   "messages": [
     {
-      "id": "pl_msg_00000061_00000",
+      "id": "CanalaveCitySoutheastHouse_Text_IFoundThis",
       "en_US": [
         "Hello, Trainer!\n",
         "This is something I found.\r",
@@ -13,7 +13,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000061_00001",
+      "id": "CanalaveCitySoutheastHouse_Text_ExplainSkillSwap",
       "en_US": [
         "You know how Pokémon have their\n",
         "own abilities?\r",
@@ -25,7 +25,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000061_00002",
+      "id": "CanalaveCitySoutheastHouse_Text_OtherLandsPopulated",
       "en_US": [
         "Somewhere far beyond the vast sea...\r",
         "There are other lands populated by\n",

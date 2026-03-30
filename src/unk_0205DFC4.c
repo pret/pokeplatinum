@@ -31,13 +31,13 @@ typedef struct {
     u16 unk_10;
 } UnkStruct_0205E268;
 
-typedef struct {
-    MapObject *unk_00;
-    u16 unk_04;
-    u16 unk_06;
-    u8 unk_08;
-    u8 unk_09;
-} UnkStruct_0205E3AC;
+typedef struct MapObjectFlickerData {
+    MapObject *mapObj;
+    u16 times;
+    u16 delay;
+    u8 timer;
+    u8 hiddenFlag;
+} MapObjectFlickerData;
 
 u16 Pokedex_GetRatingMessageID_Local(u16 pokemonSeen, u16 reachedEternaCity);
 u16 Pokedex_GetRatingMessageID_National(u16 pokemonCaught, u16 playerGender);
@@ -329,39 +329,39 @@ void sub_0205E318(FieldTask *param0, MapObject *param1, u16 param2, u16 param3, 
     FieldTask_InitCall(fieldSystem->task, sub_0205E268, v1);
 }
 
-static BOOL sub_0205E3AC(FieldTask *param0)
+static BOOL Task_FlickerMabObject(FieldTask *task)
 {
-    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
-    UnkStruct_0205E3AC *v1 = FieldTask_GetEnv(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
+    MapObjectFlickerData *flickerData = FieldTask_GetEnv(task);
 
-    MapObject_SetHidden(v1->unk_00, v1->unk_09);
+    MapObject_SetHidden(flickerData->mapObj, flickerData->hiddenFlag);
 
-    if (v1->unk_08++ >= v1->unk_06) {
-        v1->unk_09 ^= 1;
-        v1->unk_08 = 0;
+    if (flickerData->timer++ >= flickerData->delay) {
+        flickerData->hiddenFlag ^= 1;
+        flickerData->timer = 0;
 
-        if (v1->unk_04-- == 0) {
-            Heap_Free(v1);
-            return 1;
+        if (flickerData->times-- == 0) {
+            Heap_Free(flickerData);
+            return TRUE;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
-void sub_0205E3F4(FieldTask *param0, MapObject *param1, u16 param2, u16 param3)
+void MapObject_Flicker(FieldTask *task, MapObject *mapObj, u16 times, u16 delay)
 {
-    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
-    UnkStruct_0205E3AC *v1 = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(UnkStruct_0205E3AC));
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
+    MapObjectFlickerData *flickerData = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(MapObjectFlickerData));
 
-    MI_CpuClear8(v1, sizeof(UnkStruct_0205E3AC));
+    MI_CpuClear8(flickerData, sizeof(MapObjectFlickerData));
 
-    v1->unk_04 = param2;
-    v1->unk_06 = param3;
-    v1->unk_00 = param1;
-    v1->unk_09 = 0;
+    flickerData->times = times;
+    flickerData->delay = delay;
+    flickerData->mapObj = mapObj;
+    flickerData->hiddenFlag = 0;
 
-    FieldTask_InitCall(fieldSystem->task, sub_0205E3AC, v1);
+    FieldTask_InitCall(fieldSystem->task, Task_FlickerMabObject, flickerData);
 }
 
 int sub_0205E430(u8 param0, u8 param1)

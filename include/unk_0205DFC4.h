@@ -13,7 +13,7 @@ u16 Pokedex_GetRatingMessageID_National(u16 pokemonCaught, u16 playerGender);
 u16 SaveData_GetFirstNonEggInParty(SaveData *saveData);
 BOOL HasAllLegendaryTitansInParty(SaveData *saveData);
 void sub_0205E318(FieldTask *param0, MapObject *param1, u16 param2, u16 param3, u16 param4, u16 param5);
-void sub_0205E3F4(FieldTask *param0, MapObject *param1, u16 param2, u16 param3);
+void MapObject_Flicker(FieldTask *task, MapObject *mapObj, u16 times, u16 delay);
 int sub_0205E430(u8 param0, u8 param1);
 int sub_0205E45C(u8 param0, u8 param1);
 int sub_0205E488(u8 param0, u8 param1);

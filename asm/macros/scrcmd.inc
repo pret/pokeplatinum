@@ -3192,8 +3192,8 @@
     .short SCRCMD_22B
     .endm
 
-    .macro ScrCmd_22C
-    .short SCRCMD_22C
+    .macro TurnOnPokedexFormDetection
+    .short SCRCMD_TURNONPOKEDEXFORMDETECTION
     .endm
 
     .macro GetSetNationalDexEnabled getSet, destVar
@@ -3693,11 +3693,11 @@
     .short \arg4
     .endm
 
-    .macro ScrCmd_26A arg0, arg1, arg2
-    .short SCRCMD_26A
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .macro FlickerObject localID, times, delay
+    .short SCRCMD_FLICKEROBJECT
+    .short \localID
+    .short \times
+    .short \delay
     .endm
 
     .macro CheckHasAllLegendaryTitansInParty destVar
@@ -4148,11 +4148,11 @@
     .short SCRCMD_LOCKLASTTALKED
     .endm
 
-    .macro ScrCmd_2B5 arg0, arg1, arg2
+    .macro ScrCmd_2B5 mapId, x, z
     .short SCRCMD_2B5
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \mapId
+    .short \x
+    .short \z
     .endm
 
     .macro ScrCmd_2B6 arg0, arg1
@@ -4663,8 +4663,8 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_310
-    .short SCRCMD_310
+    .macro StartLibraryTV
+    .short SCRCMD_STARTLIBRARYTV
     .endm
 
     .macro AddDistortionWorldMapObject mapObjLocalID
