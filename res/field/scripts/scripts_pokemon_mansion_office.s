@@ -1,148 +1,149 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/pokemon_mansion_office.h"
+#include "res/field/events/events_pokemon_mansion_office.h"
 
 
-    ScriptEntry _001E
-    ScriptEntry _0067
-    ScriptEntry _0224
-    ScriptEntry _0325
-    ScriptEntry _0354
-    ScriptEntry _0388
-    ScriptEntry _0399
+    ScriptEntry PokemonMansionOffice_OnTransition
+    ScriptEntry PokemonMansionOffice_MrBacklot
+    ScriptEntry PokemonMansionOffice_OldMan
+    ScriptEntry PokemonMansionOffice_Policeman
+    ScriptEntry PokemonMansionOffice_TriggerBlockStatue
+    ScriptEntry PokemonMansionOffice_Statue
+    ScriptEntry PokemonMansionOffice_Book
     ScriptEntryEnd
 
-_001E:
+PokemonMansionOffice_OnTransition:
     GetHour VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, 0, _004F
-    GoToIfEq VAR_MAP_LOCAL_0, 1, _004F
-    GoToIfLe VAR_MAP_LOCAL_0, 5, _005B
-    GoTo _004F
+    GoToIfEq VAR_MAP_LOCAL_0, 0, PokemonMansionOffice_SetBlockStatue
+    GoToIfEq VAR_MAP_LOCAL_0, 1, PokemonMansionOffice_SetBlockStatue
+    GoToIfLe VAR_MAP_LOCAL_0, 5, PokemonMansionOffice_SetDontBlockStatue
+    GoTo PokemonMansionOffice_SetBlockStatue
 
-_004F:
-    ClearFlag FLAG_UNK_0x028B
-    SetVar VAR_UNK_0x4116, 0
+PokemonMansionOffice_SetBlockStatue:
+    ClearFlag FLAG_HIDE_POKEMON_MANSION_OFFICE_POLICEMAN
+    SetVar VAR_POKEMON_MANSION_OFFICE_BLOCK_STATUE_STATE, 0
     End
 
-_005B:
-    SetFlag FLAG_UNK_0x028B
-    SetVar VAR_UNK_0x4116, 1
+PokemonMansionOffice_SetDontBlockStatue:
+    SetFlag FLAG_HIDE_POKEMON_MANSION_OFFICE_POLICEMAN
+    SetVar VAR_POKEMON_MANSION_OFFICE_BLOCK_STATUE_STATE, 1
     End
 
-_0067:
+PokemonMansionOffice_MrBacklot:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x0AA2, _0155
-    GoToIfEq VAR_MAP_LOCAL_B, 1, _0155
+    GoToIfSet FLAG_ADDED_TROPHY_GARDEN_MON, PokemonMansionOffice_ThereAreCutePokemon
+    GoToIfEq VAR_MAP_LOCAL_B, 1, PokemonMansionOffice_ThereAreCutePokemon
     GetNationalDexEnabled VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _00AA
-    GoTo _009F
+    GoToIfEq VAR_RESULT, TRUE, PokemonMansionOffice_YouAreEnviousYes
+    GoTo PokemonMansionOffice_WelcomeToMansion
 
-_009F:
-    Message 0
+PokemonMansionOffice_WelcomeToMansion:
+    Message PokemonMansionOffice_Text_WelcomeToMansion
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_00AA:
-    Message 3
+PokemonMansionOffice_YouAreEnviousYes:
+    Message PokemonMansionOffice_Text_YouAreEnviousYes
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _00D8
-    GoToIfEq VAR_RESULT, MENU_NO, _00CD
+    GoToIfEq VAR_RESULT, MENU_YES, PokemonMansionOffice_YouAreEnviousYes2
+    GoToIfEq VAR_RESULT, MENU_NO, PokemonMansionOffice_IKnowYoureEnvious
     End
 
-_00CD:
-    Message 4
+PokemonMansionOffice_IKnowYoureEnvious:
+    Message PokemonMansionOffice_Text_IKnowYoureEnvious
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_00D8:
-    Message 5
+PokemonMansionOffice_YouAreEnviousYes2:
+    Message PokemonMansionOffice_Text_YouAreEnviousYes2
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _00FB
-    GoToIfEq VAR_RESULT, MENU_NO, _00CD
+    GoToIfEq VAR_RESULT, MENU_YES, PokemonMansionOffice_AddThrophyGardenMon
+    GoToIfEq VAR_RESULT, MENU_NO, PokemonMansionOffice_IKnowYoureEnvious
     End
 
-_00FB:
+PokemonMansionOffice_AddThrophyGardenMon:
     AddTrophyGardenMon
     GetTrophyGardenSlot1Species VAR_0x8000
     BufferSpeciesNameFromVar 0, VAR_0x8000, 0, 0
-    Message 6
+    Message PokemonMansionOffice_Text_IBetYouAre
     GetPlayerMapPos VAR_0x8001, VAR_0x8002
-    ApplyMovement 2, _01D4
+    ApplyMovement LOCALID_OLD_MAN, PokemonMansionOffice_Movement_OldManExclamationMarkFaceEast
     WaitMovement
-    Message 7
-    ApplyMovement 1, _01E4
+    Message PokemonMansionOffice_Text_ItDoesntExist
+    ApplyMovement LOCALID_MR_BACKLOT, PokemonMansionOffice_Movement_MrBacklotExclamationMarkWalkOnSpotWest
     WaitMovement
-    Message 8
-    Message 9
+    Message PokemonMansionOffice_Text_WhatAreYouSaying
+    Message PokemonMansionOffice_Text_RightAwaySir
     CloseMessage
-    ApplyMovement 2, _01F0
+    ApplyMovement LOCALID_OLD_MAN, PokemonMansionOffice_Movement_OldManLeave
     WaitMovement
-    RemoveObject 2
+    RemoveObject LOCALID_OLD_MAN
     SetVar VAR_MAP_LOCAL_B, 1
-    Call _016C
-    SetFlag FLAG_UNK_0x0AA2
-    GoTo _0155
+    Call PokemonMansionOffice_MrBacklotFacePlayer
+    SetFlag FLAG_ADDED_TROPHY_GARDEN_MON
+    GoTo PokemonMansionOffice_ThereAreCutePokemon
 
-_0155:
+PokemonMansionOffice_ThereAreCutePokemon:
     GetTrophyGardenSlot1Species VAR_0x8000
     BufferSpeciesNameFromVar 0, VAR_0x8000, 0, 0
-    Message 10
+    Message PokemonMansionOffice_Text_ThereAreCutePokemon
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_016C:
-    GoToIfEq VAR_0x8001, 4, _0199
-    GoToIfEq VAR_0x8001, 6, _01A5
-    GoToIfEq VAR_0x8002, 6, _01B1
-    GoTo _01BD
+PokemonMansionOffice_MrBacklotFacePlayer:
+    GoToIfEq VAR_0x8001, 4, PokemonMansionOffice_MrBacklotWalkOnSpotWest
+    GoToIfEq VAR_0x8001, 6, PokemonMansionOffice_MrBacklotWalkOnSpotEast
+    GoToIfEq VAR_0x8002, 6, PokemonMansionOffice_MrBacklotWalkOnSpotNorth
+    GoTo PokemonMansionOffice_MrBacklotWalkOnSpotSouth
 
-_0199:
-    ApplyMovement 1, _0204
+PokemonMansionOffice_MrBacklotWalkOnSpotWest:
+    ApplyMovement LOCALID_MR_BACKLOT, PokemonMansionOffice_Movement_MrBacklotWalkOnSpotWest
     WaitMovement
     Return
 
-_01A5:
-    ApplyMovement 1, _020C
+PokemonMansionOffice_MrBacklotWalkOnSpotEast:
+    ApplyMovement LOCALID_MR_BACKLOT, PokemonMansionOffice_Movement_MrBacklotWalkOnSpotEast
     WaitMovement
     Return
 
-_01B1:
-    ApplyMovement 1, _0214
+PokemonMansionOffice_MrBacklotWalkOnSpotNorth:
+    ApplyMovement LOCALID_MR_BACKLOT, PokemonMansionOffice_Movement_MrBacklotWalkOnSpotNorth
     WaitMovement
     Return
 
-_01BD:
-    ApplyMovement 1, _021C
+PokemonMansionOffice_MrBacklotWalkOnSpotSouth:
+    ApplyMovement LOCALID_MR_BACKLOT, PokemonMansionOffice_Movement_MrBacklotWalkOnSpotSouth
     WaitMovement
     Return
 
     .balign 4, 0
-_01CC:
+PokemonMansionOffice_Movement_OldManFaceSouth:
     FaceSouth
     EndMovement
 
     .balign 4, 0
-_01D4:
+PokemonMansionOffice_Movement_OldManExclamationMarkFaceEast:
     EmoteExclamationMark
     Delay16
     FaceEast
     EndMovement
 
     .balign 4, 0
-_01E4:
+PokemonMansionOffice_Movement_MrBacklotExclamationMarkWalkOnSpotWest:
     EmoteExclamationMark
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_01F0:
+PokemonMansionOffice_Movement_OldManLeave:
     WalkNormalSouth 2
     WalkNormalEast
     FaceSouth
@@ -150,178 +151,178 @@ _01F0:
     EndMovement
 
     .balign 4, 0
-_0204:
+PokemonMansionOffice_Movement_MrBacklotWalkOnSpotWest:
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_020C:
+PokemonMansionOffice_Movement_MrBacklotWalkOnSpotEast:
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_0214:
+PokemonMansionOffice_Movement_MrBacklotWalkOnSpotNorth:
     WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
-_021C:
+PokemonMansionOffice_Movement_MrBacklotWalkOnSpotSouth:
     WalkOnSpotNormalSouth
     EndMovement
 
-_0224:
+PokemonMansionOffice_OldMan:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GetNationalDexEnabled VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _0244
-    GoTo _0270
+    GoToIfEq VAR_RESULT, TRUE, PokemonMansionOffice_OldManNationalDexEnabled
+    GoTo PokemonMansionOffice_OldManMessage
 
-_0244:
-    GoToIfSet FLAG_UNK_0x0164, _0270
-    GoTo _0257
+PokemonMansionOffice_OldManNationalDexEnabled:
+    GoToIfSet FLAG_TALKED_TO_POKEMON_MANSION_OFFICE_OLD_MAN_NATIONAL_DEX, PokemonMansionOffice_OldManMessage
+    GoTo PokemonMansionOffice_HowWasTrophyGarden
     End
 
-_0257:
-    Message 15
-    SetFlag FLAG_UNK_0x0164
+PokemonMansionOffice_HowWasTrophyGarden:
+    Message PokemonMansionOffice_Text_HowWasTrophyGarden
+    SetFlag FLAG_TALKED_TO_POKEMON_MANSION_OFFICE_OLD_MAN_NATIONAL_DEX
     WaitButton
     CloseMessage
-    ApplyMovement 2, _01CC
+    ApplyMovement LOCALID_OLD_MAN, PokemonMansionOffice_Movement_OldManFaceSouth
     WaitMovement
     ReleaseAll
     End
 
-_0270:
-    GoToIfSet FLAG_UNK_0x0AA2, _0304
+PokemonMansionOffice_OldManMessage:
+    GoToIfSet FLAG_ADDED_TROPHY_GARDEN_MON, PokemonMansionOffice_ThereWereSomePokemon
     CheckGameCompleted VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _02C8
+    GoToIfEq VAR_RESULT, TRUE, PokemonMansionOffice_MessageGameCompleted
     GetRandom VAR_RESULT, 2
-    CallIfEq VAR_RESULT, 0, _02BE
-    CallIfEq VAR_RESULT, 1, _02C3
+    CallIfEq VAR_RESULT, 0, PokemonMansionOffice_MasterIsWonderful
+    CallIfEq VAR_RESULT, 1, PokemonMansionOffice_MasterEnjoysShowingGarden
     WaitButton
     CloseMessage
-    ApplyMovement 2, _01CC
+    ApplyMovement LOCALID_OLD_MAN, PokemonMansionOffice_Movement_OldManFaceSouth
     WaitMovement
     ReleaseAll
     End
 
-_02BE:
-    Message 11
+PokemonMansionOffice_MasterIsWonderful:
+    Message PokemonMansionOffice_Text_MasterIsWonderful
     Return
 
-_02C3:
-    Message 12
+PokemonMansionOffice_MasterEnjoysShowingGarden:
+    Message PokemonMansionOffice_Text_MasterEnjoysShowingGarden
     Return
 
-_02C8:
+PokemonMansionOffice_MessageGameCompleted:
     GetRandom VAR_RESULT, 2
-    CallIfEq VAR_RESULT, 0, _02FA
-    CallIfEq VAR_RESULT, 1, _02FF
+    CallIfEq VAR_RESULT, 0, PokemonMansionOffice_MasterIsWonderful2
+    CallIfEq VAR_RESULT, 1, PokemonMansionOffice_MasterTookStroll
     WaitButton
     CloseMessage
-    ApplyMovement 2, _01CC
+    ApplyMovement LOCALID_OLD_MAN, PokemonMansionOffice_Movement_OldManFaceSouth
     WaitMovement
     ReleaseAll
     End
 
-_02FA:
-    Message 11
+PokemonMansionOffice_MasterIsWonderful2:
+    Message PokemonMansionOffice_Text_MasterIsWonderful
     Return
 
-_02FF:
-    Message 13
+PokemonMansionOffice_MasterTookStroll:
+    Message PokemonMansionOffice_Text_MasterTookStroll
     Return
 
-_0304:
+PokemonMansionOffice_ThereWereSomePokemon:
     GetTrophyGardenSlot1Species VAR_0x8000
     BufferSpeciesNameFromVar 0, VAR_0x8000, 0, 0
-    Message 14
+    Message PokemonMansionOffice_Text_ThereWereSomePokemon
     WaitButton
     CloseMessage
-    ApplyMovement 2, _01CC
+    ApplyMovement LOCALID_OLD_MAN, PokemonMansionOffice_Movement_OldManFaceSouth
     WaitMovement
     ReleaseAll
     End
 
-_0325:
+PokemonMansionOffice_Policeman:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 16
+    Message PokemonMansionOffice_Text_LookDontTouchStatue
     WaitButton
     CloseMessage
-    ApplyMovement 3, _0344
+    ApplyMovement LOCALID_POLICEMAN, PokemonMansionOffice_Movement_PolicemanFaceSouth
     WaitMovement
     ReleaseAll
     End
 
     .balign 4, 0
-_0344:
+PokemonMansionOffice_Movement_PolicemanFaceSouth:
     FaceSouth
     EndMovement
 
     .balign 4, 0
-_034C:
+PokemonMansionOffice_Movement_PolicemanFaceWest:
     FaceWest
     EndMovement
 
-_0354:
+PokemonMansionOffice_TriggerBlockStatue:
     LockAll
-    ApplyMovement 3, _034C
+    ApplyMovement LOCALID_POLICEMAN, PokemonMansionOffice_Movement_PolicemanFaceWest
     WaitMovement
-    Message 17
+    Message PokemonMansionOffice_Text_SorryDontTouchStatue
     CloseMessage
-    ApplyMovement LOCALID_PLAYER, _037C
-    ApplyMovement 3, _0344
+    ApplyMovement LOCALID_PLAYER, PokemonMansionOffice_Movement_PlayerWalkBackFromStatue
+    ApplyMovement LOCALID_POLICEMAN, PokemonMansionOffice_Movement_PolicemanFaceSouth
     WaitMovement
     ReleaseAll
     End
 
     .balign 4, 0
-_037C:
+PokemonMansionOffice_Movement_PlayerWalkBackFromStatue:
     WalkNormalSouth
     FaceNorth
     EndMovement
 
-_0388:
-    EventMessage 18
+PokemonMansionOffice_Statue:
+    EventMessage PokemonMansionOffice_Text_ExpensivePokemonStatue
     End
 
-_0399:
+PokemonMansionOffice_Book:
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    Message 19
+    Message PokemonMansionOffice_Text_WouldYouReadBook
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _03C2
-    GoToIfEq VAR_RESULT, MENU_NO, _0408
+    GoToIfEq VAR_RESULT, MENU_YES, PokemonMansionOffice_ReadBook
+    GoToIfEq VAR_RESULT, MENU_NO, PokemonMansionOffice_PutBookBack
     End
 
-_03C2:
-    Message 20
-    GoToIfSet FLAG_UNK_0x00FB, _0408
+PokemonMansionOffice_ReadBook:
+    Message PokemonMansionOffice_Text_ManaphyInfo
+    GoToIfSet FLAG_SKIP_POKEMON_MANSION_OFFICE_BOOK_SEEN_MANAPHY_CHECK, PokemonMansionOffice_PutBookBack
     CheckHasSeenSpecies SPECIES_MANAPHY, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _03FC
+    GoToIfEq VAR_RESULT, TRUE, PokemonMansionOffice_AlreadySawManaphy
     DrawPokemonPreview SPECIES_MANAPHY, GENDER_MALE
     WaitABPress
-    ScrCmd_209
-    SetFlag FLAG_UNK_0x00FB
-    Message 21
-    GoTo _0416
+    RemovePokemonPreview
+    SetFlag FLAG_SKIP_POKEMON_MANSION_OFFICE_BOOK_SEEN_MANAPHY_CHECK
+    Message PokemonMansionOffice_Text_ManaphyAddedToPokedex
+    GoTo PokemonMansionOffice_BookEnd
     End
 
-_03FC:
-    SetFlag FLAG_UNK_0x00FB
-    GoTo _0408
+PokemonMansionOffice_AlreadySawManaphy:
+    SetFlag FLAG_SKIP_POKEMON_MANSION_OFFICE_BOOK_SEEN_MANAPHY_CHECK
+    GoTo PokemonMansionOffice_PutBookBack
     End
 
-_0408:
+PokemonMansionOffice_PutBookBack:
     BufferPlayerName 0
-    Message 22
-    GoTo _0416
+    Message PokemonMansionOffice_Text_PlayerPutBookBack
+    GoTo PokemonMansionOffice_BookEnd
     End
 
-_0416:
+PokemonMansionOffice_BookEnd:
     WaitButton
     CloseMessage
     ReleaseAll

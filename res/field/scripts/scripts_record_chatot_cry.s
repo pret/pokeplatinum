@@ -45,7 +45,7 @@ _0054:
     End
 
 _00B2:
-    ScrCmd_209
+    RemovePokemonPreview
     CloseMessage
     ReleaseAll
     End

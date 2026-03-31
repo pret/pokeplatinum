@@ -348,7 +348,7 @@ Unk501_Unused:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     Message 37
-    ScrCmd_1AC
+    HatchEgg
     CloseMessage
     HideMoney
     ReleaseAll

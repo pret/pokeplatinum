@@ -1,14 +1,14 @@
 #include "macros/scrcmd.inc"
 
 
-    ScriptEntry _0006
+    ScriptEntry TrophyGarden_Unused1
     ScriptEntryEnd
 
-_0006:
+TrophyGarden_Unused1:
     SetFlag FLAG_FIRST_ARRIVAL_TROPHY_GARDEN
     End
 
-Unk323_Unused:
+TrophyGarden_Unused2:
     End
 
     .balign 4, 0

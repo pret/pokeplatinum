@@ -367,7 +367,7 @@ static BOOL ScrCmd_Unused_0A4(ScriptContext *ctx);
 static BOOL ScrCmd_GetCurNetID(ScriptContext *ctx);
 static BOOL ScrCmd_DrawPokemonPreview(ScriptContext *ctx);
 static void FieldSystem_WriteSpeciesSeen(FieldSystem *fieldSystem, u16 param1);
-static BOOL ScrCmd_209(ScriptContext *ctx);
+static BOOL ScrCmd_RemovePokemonPreview(ScriptContext *ctx);
 static BOOL ScrCmd_20A(ScriptContext *ctx);
 static BOOL ScrCmd_20B(ScriptContext *ctx);
 static BOOL ScrCmd_0A5(ScriptContext *ctx);
@@ -541,7 +541,7 @@ static BOOL ScrCmd_CloseUndergroundNPCMessage(ScriptContext *ctx);
 static BOOL ScrCmd_BufferTreasureNameForUndergroundVendor_Unused(ScriptContext *ctx);
 static BOOL ScrCmd_BufferTrapNameForUndergroundVendor_Unused(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_03F(ScriptContext *ctx);
-static BOOL ScrCmd_1AC(ScriptContext *ctx);
+static BOOL ScrCmd_HatchEgg(ScriptContext *ctx);
 static BOOL ScrCmd_ShowObject(ScriptContext *ctx);
 static BOOL ScrCmd_HideObject(ScriptContext *ctx);
 static BOOL ScrCmd_1B3(ScriptContext *ctx);
@@ -2995,12 +2995,12 @@ static BOOL ScrCmd_GetCurNetID(ScriptContext *ctx)
 
 static BOOL ScrCmd_DrawPokemonPreview(ScriptContext *ctx)
 {
-    void **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
+    void **dataPtr = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
     u16 species = ScriptContext_GetVar(ctx);
     u16 gender = ScriptContext_GetVar(ctx);
 
     LoadStandardWindowGraphics(ctx->fieldSystem->bgConfig, BG_LAYER_MAIN_3, 1024 - (18 + 12) - 9, 11, 0, HEAP_ID_FIELD1);
-    *v0 = DrawPokemonPreview(ctx->fieldSystem->bgConfig, BG_LAYER_MAIN_3, 10, 5, 11, 1024 - (18 + 12) - 9, species, gender, HEAP_ID_FIELD1);
+    *dataPtr = DrawPokemonPreview(ctx->fieldSystem->bgConfig, BG_LAYER_MAIN_3, 10, 5, 11, 1024 - (18 + 12) - 9, species, gender, HEAP_ID_FIELD1);
     FieldSystem_WriteSpeciesSeen(ctx->fieldSystem, species);
 
     return FALSE;
@@ -3008,24 +3008,24 @@ static BOOL ScrCmd_DrawPokemonPreview(ScriptContext *ctx)
 
 static BOOL ScrCmd_DrawPokemonPreviewFromPartySlot(ScriptContext *ctx)
 {
-    void **v1 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
+    void **dataPtr = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
     u16 partySlot = ScriptContext_GetVar(ctx);
 
     Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(ctx->fieldSystem->saveData), partySlot);
     LoadStandardWindowGraphics(ctx->fieldSystem->bgConfig, BG_LAYER_MAIN_3, 1024 - (18 + 12) - 9, 11, 0, HEAP_ID_FIELD1);
 
-    *v1 = DrawPokemonPreviewFromStruct(ctx->fieldSystem->bgConfig, BG_LAYER_MAIN_3, 10, 5, 11, 1024 - (18 + 12) - 9, mon, HEAP_ID_FIELD1);
+    *dataPtr = DrawPokemonPreviewFromStruct(ctx->fieldSystem->bgConfig, BG_LAYER_MAIN_3, 10, 5, 11, 1024 - (18 + 12) - 9, mon, HEAP_ID_FIELD1);
     FieldSystem_WriteSpeciesSeen(ctx->fieldSystem, Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL));
 
     return FALSE;
 }
 
-static BOOL ScrCmd_209(ScriptContext *ctx)
+static BOOL ScrCmd_RemovePokemonPreview(ScriptContext *ctx)
 {
-    void **v1 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
+    void **dataPtr = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
 
-    u8 *v0 = *v1;
-    *v0 = 1;
+    u8 *previewState = *dataPtr;
+    *previewState = 1;
 
     return TRUE;
 }
@@ -4798,9 +4798,9 @@ static BOOL ScrCmd_GetPlayer3DPos(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_1AC(ScriptContext *ctx)
+static BOOL ScrCmd_HatchEgg(ScriptContext *ctx)
 {
-    sub_0203E2FC(ctx->fieldSystem);
+    FieldSystem_HatchEgg(ctx->fieldSystem);
     return TRUE;
 }
 

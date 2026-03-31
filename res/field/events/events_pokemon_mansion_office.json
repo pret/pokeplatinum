@@ -34,7 +34,7 @@
             "y": 0
         },
         {
-            "id": "POKEMON_MANSION_OFFICE_MIDDLE_AGED_MAN_1",
+            "id": "LOCALID_MR_BACKLOT",
             "graphics_id": "OBJ_EVENT_GFX_MIDDLE_AGED_MAN",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -49,7 +49,7 @@
             "y": 0
         },
         {
-            "id": "POKEMON_MANSION_OFFICE_OLD_MAN_2",
+            "id": "LOCALID_OLD_MAN",
             "graphics_id": "OBJ_EVENT_GFX_OLD_MAN",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -64,11 +64,11 @@
             "y": 0
         },
         {
-            "id": "POKEMON_MANSION_OFFICE_POLICEMAN_3",
+            "id": "LOCALID_POLICEMAN",
             "graphics_id": "OBJ_EVENT_GFX_POLICEMAN",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x028B",
+            "hidden_flag": "FLAG_HIDE_POKEMON_MANSION_OFFICE_POLICEMAN",
             "script": 4,
             "initial_dir": 1,
             "data": [],
@@ -95,7 +95,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": "VAR_UNK_0x4116",
+            "var": "VAR_POKEMON_MANSION_OFFICE_BLOCK_STATUE_STATE",
             "value": 0
         }
     ]

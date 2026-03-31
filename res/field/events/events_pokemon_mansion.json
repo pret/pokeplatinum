@@ -2,7 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
-            "id": "POKEMON_MANSION_MAID_0",
+            "id": "LOCALID_MAID_OFFICE",
             "graphics_id": "OBJ_EVENT_GFX_MAID",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -17,7 +17,7 @@
             "y": 0
         },
         {
-            "id": "POKEMON_MANSION_MAID_1",
+            "id": "LOCALID_MAID_TROPHY_GARDEN",
             "graphics_id": "OBJ_EVENT_GFX_MAID",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -32,7 +32,7 @@
             "y": 0
         },
         {
-            "id": "POKEMON_MANSION_MAID_2",
+            "id": "LOCALID_MAID_FAR_WEST",
             "graphics_id": "OBJ_EVENT_GFX_MAID",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -47,7 +47,7 @@
             "y": 0
         },
         {
-            "id": "POKEMON_MANSION_MAID_3",
+            "id": "LOCALID_MAID_FAR_EAST",
             "graphics_id": "OBJ_EVENT_GFX_MAID",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -62,11 +62,11 @@
             "y": 0
         },
         {
-            "id": "POKEMON_MANSION_COUNTERPART_4",
+            "id": "LOCALID_FIVE_MAID_KNOCKOUT_BOSS",
             "graphics_id": "OBJ_EVENT_GFX_COUNTERPART",
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0258",
+            "hidden_flag": "FLAG_HIDE_POKEMON_MANSION_FIVE_MAID_KNOCKOUT_BOSS",
             "script": 0,
             "initial_dir": 3,
             "data": [],
@@ -77,11 +77,11 @@
             "y": 0
         },
         {
-            "id": "POKEMON_MANSION_MAID_5",
+            "id": "LOCALID_FIVE_MAID_KNOCKOUT_MAID",
             "graphics_id": "OBJ_EVENT_GFX_MAID",
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0257",
+            "hidden_flag": "FLAG_HIDE_POKEMON_MANSION_FIVE_MAID_KNOCKOUT_MAID",
             "script": 0,
             "initial_dir": 3,
             "data": [],
@@ -92,7 +92,7 @@
             "y": 0
         },
         {
-            "id": "POKEMON_MANSION_MAID_6",
+            "id": "LOCALID_MAID_EAST",
             "graphics_id": "OBJ_EVENT_GFX_MAID",
             "movement_type": "MOVEMENT_TYPE_WALK_BACK_AND_FORTH",
             "trainer_type": "TRAINER_TYPE_NONE",

@@ -2,7 +2,7 @@
   "key": 37239,
   "messages": [
     {
-      "id": "pl_msg_00000489_00000",
+      "id": "Route212North_Text_MrBacklotLikesVisitors",
       "en_US": [
         "Mr. Backlot in the Pokémon Mansion \n",
         "looks forward to seeing visitors.\r",
@@ -11,7 +11,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000489_00001",
+      "id": "Route212North_Text_FindAttractiveTree",
       "en_US": [
         "There are good trees that you can\n",
         "smear with Honey, and some you can’t.\r",
@@ -20,7 +20,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000489_00002",
+      "id": "Route212North_Text_SayHiToPolicemen",
       "en_US": [
         "Why, hello there!\r",
         "It’s nice to have an average citizen\n",
@@ -28,42 +28,42 @@
       ]
     },
     {
-      "id": "pl_msg_00000489_00003",
+      "id": "Route212North_Text_PatrolsDayAndNight",
       "en_US": [
         "Patrols day and night...\n",
         "I’m feeling drowsy... Yawn..."
       ]
     },
     {
-      "id": "pl_msg_00000489_00004",
+      "id": "Route212North_Text_WorkingHard",
       "en_US": [
         "Yo!\n",
         "Working hard at it, Trainer?"
       ]
     },
     {
-      "id": "pl_msg_00000489_00005",
+      "id": "Route212North_Text_PatrolTooMuch",
       "en_US": [
         "Just between you and me...\n",
         "I think we’re on patrol too much."
       ]
     },
     {
-      "id": "pl_msg_00000489_00006",
+      "id": "Route212North_Text_SignHearthomeCity",
       "en_US": [
         "Rt. 212\n",
         "Hearthome City"
       ]
     },
     {
-      "id": "pl_msg_00000489_00007",
+      "id": "Route212North_Text_SignPokemonMansion",
       "en_US": [
         "Pokémon Mansion\n",
         "Please Visit for Pokémon Viewings"
       ]
     },
     {
-      "id": "pl_msg_00000489_00008",
+      "id": "Route212North_Text_TrainerTipsReorganizeItems",
       "en_US": [
         "Trainer Tips\r",
         "The items in the Bag can be\n",
