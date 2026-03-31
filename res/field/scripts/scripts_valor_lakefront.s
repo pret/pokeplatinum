@@ -16,8 +16,8 @@
 
 ValorLakefront_OnTransition:
     CallIfSet FLAG_TALKED_TO_VALOR_LAKEFRONT_GRUNT_M, ValorLakefront_SetGruntMPositionNorth
-    GoToIfUnset FLAG_GALACTIC_LEFT_LAKE_VALOR, ValorLakefront_SetWarpEventsLakeValorDrained
-    GoToIfSet FLAG_GALACTIC_LEFT_LAKE_VALOR, ValorLakefront_SetWarpEventsLakeValor
+    GoToIfUnset FLAG_GALACTIC_LEFT_LAKE_VALOR, ValorLakefront_RemoveWarpsLakeValorNormal
+    GoToIfSet FLAG_GALACTIC_LEFT_LAKE_VALOR, ValorLakefront_RemoveWarpsLakeValorDrained
     End
     End
 
@@ -28,16 +28,16 @@ ValorLakefront_SetGruntMPositionNorth:
     Return
 
 ValorLakefront_OnLoad:
-    GoToIfUnset FLAG_GALACTIC_LEFT_LAKE_VALOR, ValorLakefront_SetWarpEventsLakeValorDrained
-    GoToIfSet FLAG_GALACTIC_LEFT_LAKE_VALOR, ValorLakefront_SetWarpEventsLakeValor
+    GoToIfUnset FLAG_GALACTIC_LEFT_LAKE_VALOR, ValorLakefront_RemoveWarpsLakeValorNormal
+    GoToIfSet FLAG_GALACTIC_LEFT_LAKE_VALOR, ValorLakefront_RemoveWarpsLakeValorDrained
     End
 
-ValorLakefront_SetWarpEventsLakeValorDrained:
+ValorLakefront_RemoveWarpsLakeValorNormal:
     SetWarpEventPos 5, 713, 760
     SetWarpEventPos 6, 713, 761
     End
 
-ValorLakefront_SetWarpEventsLakeValor:
+ValorLakefront_RemoveWarpsLakeValorDrained:
     SetWarpEventPos 3, 713, 760
     SetWarpEventPos 4, 713, 761
     End

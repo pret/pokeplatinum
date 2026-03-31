@@ -9,23 +9,23 @@
     ScriptEntryEnd
 
 VerityLakefront_OnLoad:
-    GoToIfUnset FLAG_DEFEATED_COMMANDER_SATURN_VALOR_CAVERN, VerityLakefront_SetWarpsLakeVerityNormal
-    GoToIfSet FLAG_DEFEATED_COMMANDER_SATURN_VALOR_CAVERN, VerityLakefront_SetWarpsLakeVerityLowWater
+    GoToIfUnset FLAG_DEFEATED_COMMANDER_SATURN_VALOR_CAVERN, VerityLakefront_RemoveWarpsLakeVerityNormal
+    GoToIfSet FLAG_DEFEATED_COMMANDER_SATURN_VALOR_CAVERN, VerityLakefront_RemoveWarpsLakeVerityLowWater
     End
 
-VerityLakefront_SetWarpsLakeVerityNormal:
-    SetWarpEventPos 2, 80, 0x348
-    SetWarpEventPos 3, 81, 0x348
+VerityLakefront_RemoveWarpsLakeVerityNormal:
+    SetWarpEventPos 2, 80, 840
+    SetWarpEventPos 3, 81, 840
     End
 
-VerityLakefront_SetWarpsLakeVerityLowWater:
-    SetWarpEventPos 1, 80, 0x348
-    SetWarpEventPos 0, 81, 0x348
+VerityLakefront_RemoveWarpsLakeVerityLowWater:
+    SetWarpEventPos 1, 80, 840
+    SetWarpEventPos 0, 81, 840
     End
 
 VerityLakefront_OnTransition:
-    GoToIfUnset FLAG_DEFEATED_COMMANDER_SATURN_VALOR_CAVERN, VerityLakefront_SetWarpsLakeVerityNormal
-    GoToIfSet FLAG_DEFEATED_COMMANDER_SATURN_VALOR_CAVERN, VerityLakefront_SetWarpsLakeVerityLowWater
+    GoToIfUnset FLAG_DEFEATED_COMMANDER_SATURN_VALOR_CAVERN, VerityLakefront_RemoveWarpsLakeVerityNormal
+    GoToIfSet FLAG_DEFEATED_COMMANDER_SATURN_VALOR_CAVERN, VerityLakefront_RemoveWarpsLakeVerityLowWater
     End
 
 VerityLakefront_TriggerWereAtTheLake:
