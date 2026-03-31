@@ -99,7 +99,7 @@ void sub_0203E274(FieldSystem *fieldSystem, ClearGamePlayerInfo *param1);
 void FieldSystem_OpenMoveReminderMenu(FieldSystem *fieldSystem, MoveReminderData *moveReminderData);
 void FieldTask_PlayBoatCutscene_CanalaveShip(FieldSystem *fieldSystem, void *taskEnv);
 void FieldTask_PlayBoatCutscene_SnowpointShip(FieldSystem *fieldSystem, void *taskEnv);
-void sub_0203E2FC(FieldSystem *fieldSystem);
+void FieldSystem_HatchEgg(FieldSystem *fieldSystem);
 BOOL sub_0203E348(FieldSystem *fieldSystem, UnkStruct_0203E348 *param1);
 void sub_0203E414(FieldTask *task, int slotMachineID);
 void AccessoryShop_Init(FieldTask *task);

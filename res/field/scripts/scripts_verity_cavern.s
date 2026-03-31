@@ -19,7 +19,7 @@ VerityCavern_Mesprit:
     FacePlayer
     DrawPokemonPreview SPECIES_MESPRIT, GENDER_MALE
     WaitABPress
-    ScrCmd_209
+    RemovePokemonPreview
     PlayCry SPECIES_MESPRIT
     Message VerityCavern_Text_MespritCry
     CloseMessage

@@ -15,7 +15,7 @@ _000C:
     FacePlayer
     DrawPokemonPreview SPECIES_CRESSELIA, GENDER_FEMALE
     WaitABPress
-    ScrCmd_209
+    RemovePokemonPreview
     PlayCry SPECIES_CRESSELIA
     GetPlayerDir VAR_RESULT
     CallIfEq VAR_RESULT, 0, _007E

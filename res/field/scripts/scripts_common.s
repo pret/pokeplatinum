@@ -38,7 +38,7 @@
     ScriptEntry _12CD @ 0x7EC
     ScriptEntry _12E0 @ 0x7ED
     ScriptEntry _12F3 @ 0x7EE
-    ScriptEntry _1361 @ 0x7EF
+    ScriptEntry CommonScript_HatchEgg @ 0x7EF
     ScriptEntry _138C @ 0x7F0
     ScriptEntry _139D @ 0x7F1
     ScriptEntry _048B @ 0x7F2
@@ -1407,15 +1407,15 @@ _1359:
 CommonScript_End:
     End
 
-_1361:
+CommonScript_HatchEgg:
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    Message pl_msg_00000213_00076
+    Message CommonStrings_Text_Oh
     WaitABPress
     FadeScreenOut
     WaitFadeScreen
     CloseMessage
-    ScrCmd_1AC
+    HatchEgg
     FadeScreenIn
     WaitFadeScreen
     ReleaseAll

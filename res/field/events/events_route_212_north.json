@@ -19,7 +19,7 @@
     ],
     "object_events": [
         {
-            "id": "ROUTE_212_NORTH_RICH_BOY_JASON",
+            "id": "LOCALID_RICH_BOY_JASON",
             "graphics_id": "OBJ_EVENT_GFX_RICH_BOY",
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -36,7 +36,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_212_NORTH_LADY_MELISSA",
+            "id": "LOCALID_LADY_MELISSA",
             "graphics_id": "OBJ_EVENT_GFX_LADY",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -53,7 +53,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_212_NORTH_GENTLEMAN_JEREMY",
+            "id": "LOCALID_GENTLEMAN_JEREMY",
             "graphics_id": "OBJ_EVENT_GFX_GENTLEMAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -70,7 +70,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_212_NORTH_SOCIALITE_REINA",
+            "id": "LOCALID_SOCIALITE_REINA",
             "graphics_id": "OBJ_EVENT_GFX_SOCIALITE",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -87,11 +87,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_212_NORTH_POLICEMAN_BOBBY",
+            "id": "LOCALID_POLICEMAN_BOBBY",
             "graphics_id": "OBJ_EVENT_GFX_POLICEMAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "hidden_flag": "FLAG_UNK_0x0261",
+            "hidden_flag": "FLAG_HIDE_ROUTE_212_NORTH_POLICEMAN_BOBBY",
             "script": "TRAINER_POLICEMAN_BOBBY",
             "initial_dir": 3,
             "data": [
@@ -104,11 +104,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_212_NORTH_POLICEMAN_ALEX",
+            "id": "LOCALID_POLICEMAN_ALEX",
             "graphics_id": "OBJ_EVENT_GFX_POLICEMAN",
             "movement_type": "MOVEMENT_TYPE_WALK_WEST_NORTH_SOUTH_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "hidden_flag": "FLAG_UNK_0x0263",
+            "hidden_flag": "FLAG_HIDE_ROUTE_212_NORTH_POLICEMAN_ALEX",
             "script": "TRAINER_POLICEMAN_ALEX",
             "initial_dir": 2,
             "data": [
@@ -121,11 +121,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_212_NORTH_POLICEMAN_DYLAN",
+            "id": "LOCALID_POLICEMAN_DYLAN",
             "graphics_id": "OBJ_EVENT_GFX_POLICEMAN",
             "movement_type": "MOVEMENT_TYPE_WALK_BACK_AND_FORTH",
             "trainer_type": "TRAINER_TYPE_FACE_SIDES",
-            "hidden_flag": "FLAG_UNK_0x0265",
+            "hidden_flag": "FLAG_HIDE_ROUTE_212_NORTH_POLICEMAN_DYLAN",
             "script": "TRAINER_POLICEMAN_DYLAN",
             "initial_dir": 1,
             "data": [
@@ -139,11 +139,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_212_NORTH_POLICEMAN_CALEB",
+            "id": "LOCALID_POLICEMAN_CALEB",
             "graphics_id": "OBJ_EVENT_GFX_POLICEMAN",
             "movement_type": "MOVEMENT_TYPE_WALK_BACK_AND_FORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "hidden_flag": "FLAG_UNK_0x0267",
+            "hidden_flag": "FLAG_HIDE_ROUTE_212_NORTH_POLICEMAN_CALEB",
             "script": "TRAINER_POLICEMAN_CALEB",
             "initial_dir": 3,
             "data": [
@@ -156,7 +156,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_212_NORTH_ARROW_SIGNPOST_8",
+            "id": "LOCALID_ARROW_SIGNPOST_HEARTHOME_CITY",
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -173,7 +173,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_212_NORTH_SIGNBOARD_9",
+            "id": "LOCALID_SIGNBOARD_POKEMON_MANSION",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -188,7 +188,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_212_NORTH_TRAINER_TIPS_SIGNPOST_10",
+            "id": "LOCALID_TRAINER_TIPS_SIGNPOST",
             "graphics_id": "OBJ_EVENT_GFX_TRAINER_TIPS_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -203,7 +203,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_212_NORTH_CUT_TREE_11",
+            "id": "LOCALID_CUT_TREE_1",
             "graphics_id": "OBJ_EVENT_GFX_CUT_TREE",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -248,7 +248,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_212_NORTH_BERRY_SOIL_14",
+            "id": "LOCALID_BERRY_SOIL_1",
             "graphics_id": "OBJ_EVENT_GFX_BERRY_SOIL",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -265,7 +265,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_212_NORTH_BERRY_SOIL_15",
+            "id": "LOCALID_BERRY_SOIL_2",
             "graphics_id": "OBJ_EVENT_GFX_BERRY_SOIL",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -282,7 +282,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_212_NORTH_BERRY_SOIL_16",
+            "id": "LOCALID_BERRY_SOIL_3",
             "graphics_id": "OBJ_EVENT_GFX_BERRY_SOIL",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -299,7 +299,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_212_NORTH_BERRY_SOIL_17",
+            "id": "LOCALID_BERRY_SOIL_4",
             "graphics_id": "OBJ_EVENT_GFX_BERRY_SOIL",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -331,7 +331,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_212_NORTH_VENT_19",
+            "id": "LOCALID_VENT_1",
             "graphics_id": "OBJ_EVENT_GFX_VENT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -346,7 +346,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_212_NORTH_VENT_20",
+            "id": "LOCALID_VENT_2",
             "graphics_id": "OBJ_EVENT_GFX_VENT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -361,7 +361,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_212_NORTH_VENT_21",
+            "id": "LOCALID_VENT_3",
             "graphics_id": "OBJ_EVENT_GFX_VENT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -376,7 +376,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_212_NORTH_YOUNGSTER_22",
+            "id": "LOCALID_YOUNGSTER",
             "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
             "movement_type": "MOVEMENT_TYPE_WANDER_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -391,7 +391,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_212_NORTH_COLLECTOR_23",
+            "id": "LOCALID_COLLECTOR",
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -406,11 +406,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_212_NORTH_POLICEMAN_24",
+            "id": "LOCALID_POLICEMAN_BOBBY_NO_BATTLE",
             "graphics_id": "OBJ_EVENT_GFX_POLICEMAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0260",
+            "hidden_flag": "FLAG_HIDE_ROUTE_212_NORTH_POLICEMAN_BOBBY_NO_BATTLE",
             "script": 6,
             "initial_dir": 3,
             "data": [
@@ -423,11 +423,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_212_NORTH_POLICEMAN_25",
+            "id": "LOCALID_POLICEMAN_ALEX_NO_BATTLE",
             "graphics_id": "OBJ_EVENT_GFX_POLICEMAN",
             "movement_type": "MOVEMENT_TYPE_WALK_WEST_NORTH_SOUTH_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0262",
+            "hidden_flag": "FLAG_HIDE_ROUTE_212_NORTH_POLICEMAN_ALEX_NO_BATTLE",
             "script": 7,
             "initial_dir": 2,
             "data": [
@@ -440,11 +440,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_212_NORTH_POLICEMAN_26",
+            "id": "LOCALID_POLICEMAN_DYLAN_NO_BATTLE",
             "graphics_id": "OBJ_EVENT_GFX_POLICEMAN",
             "movement_type": "MOVEMENT_TYPE_WALK_BACK_AND_FORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0264",
+            "hidden_flag": "FLAG_HIDE_ROUTE_212_NORTH_POLICEMAN_DYLAN_NO_BATTLE",
             "script": 8,
             "initial_dir": 1,
             "data": [
@@ -458,11 +458,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_212_NORTH_POLICEMAN_27",
+            "id": "LOCALID_POLICEMAN_CALEB_NO_BATTLE",
             "graphics_id": "OBJ_EVENT_GFX_POLICEMAN",
             "movement_type": "MOVEMENT_TYPE_WALK_BACK_AND_FORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0266",
+            "hidden_flag": "FLAG_HIDE_ROUTE_212_NORTH_POLICEMAN_CALEB_NO_BATTLE",
             "script": 9,
             "initial_dir": 3,
             "data": [
