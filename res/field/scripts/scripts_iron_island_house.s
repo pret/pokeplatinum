@@ -1,78 +1,79 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/iron_island_house.h"
+#include "res/field/events/events_iron_island_house.h"
 
 
-    ScriptEntry _000A
-    ScriptEntry _0035
+    ScriptEntry IronIslandHouse_OnTransition
+    ScriptEntry IronIslandHouse_Byron
     ScriptEntryEnd
 
-_000A:
-    GoToIfSet FLAG_UNK_0x011D, _0029
+IronIslandHouse_OnTransition:
+    GoToIfSet FLAG_RECEIVED_IRON_ISLAND_HOUSE_METAL_COAT, IronIslandHouse_HideByron
     GetNationalDexEnabled VAR_MAP_LOCAL_0
-    CallIfEq VAR_MAP_LOCAL_0, 1, _002F
+    CallIfEq VAR_MAP_LOCAL_0, TRUE, IronIslandHouse_ShowByron
     End
 
-_0029:
-    SetFlag FLAG_UNK_0x024D
+IronIslandHouse_HideByron:
+    SetFlag FLAG_HIDE_IRON_ISLAND_HOUSE_BYRON
     End
 
-_002F:
-    ClearFlag FLAG_UNK_0x024D
+IronIslandHouse_ShowByron:
+    ClearFlag FLAG_HIDE_IRON_ISLAND_HOUSE_BYRON
     Return
 
-_0035:
+IronIslandHouse_Byron:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 0
+    Message IronIslandHouse_Text_TakeApology
     SetVar VAR_0x8004, ITEM_METAL_COAT
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _00A8
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, IronIslandHouse_BagIsFull
     Common_GiveItemQuantity
-    SetFlag FLAG_UNK_0x011D
-    Message 1
+    SetFlag FLAG_RECEIVED_IRON_ISLAND_HOUSE_METAL_COAT
+    Message IronIslandHouse_Text_EvolveUsingMetalCoat
     CloseMessage
     GetPlayerDir VAR_0x8004
-    GoToIfEq VAR_0x8004, 2, _00B2
-    GoToIfEq VAR_0x8004, 3, _00D0
-    GoToIfEq VAR_0x8004, 0, _00B2
-    GoToIfEq VAR_0x8004, 1, _00D0
+    GoToIfEq VAR_0x8004, DIR_WEST, IronIslandHouse_ByronLeaveNorthWest
+    GoToIfEq VAR_0x8004, DIR_EAST, IronIslandHouse_ByronLeaveSouthEast
+    GoToIfEq VAR_0x8004, DIR_NORTH, IronIslandHouse_ByronLeaveNorthWest
+    GoToIfEq VAR_0x8004, DIR_SOUTH, IronIslandHouse_ByronLeaveSouthEast
     End
 
-_00A8:
+IronIslandHouse_BagIsFull:
     Common_MessageBagIsFull
     CloseMessage
     ReleaseAll
     End
 
-_00B2:
-    ApplyMovement 0, _00F0
+IronIslandHouse_ByronLeaveNorthWest:
+    ApplyMovement LOCALID_BYRON, IronIslandHouse_Movement_ByronLeaveNorthWest
     WaitMovement
     PlaySE SEQ_SE_DP_KAIDAN2
-    RemoveObject 0
+    RemoveObject LOCALID_BYRON
     WaitSE SEQ_SE_DP_KAIDAN2
     StopSE SEQ_SE_DP_KAIDAN2
     ReleaseAll
     End
 
-_00D0:
-    ApplyMovement 0, _00FC
+IronIslandHouse_ByronLeaveSouthEast:
+    ApplyMovement LOCALID_BYRON, IronIslandHouse_Movement_ByronLeaveSouthEast
     WaitMovement
     PlaySE SEQ_SE_DP_KAIDAN2
-    RemoveObject 0
+    RemoveObject LOCALID_BYRON
     WaitSE SEQ_SE_DP_KAIDAN2
     StopSE SEQ_SE_DP_KAIDAN2
     ReleaseAll
     End
 
     .balign 4, 0
-_00F0:
+IronIslandHouse_Movement_ByronLeaveNorthWest:
     WalkNormalWest
     WalkNormalSouth 3
     EndMovement
 
     .balign 4, 0
-_00FC:
+IronIslandHouse_Movement_ByronLeaveSouthEast:
     WalkNormalSouth 2
     WalkNormalWest
     WalkNormalSouth

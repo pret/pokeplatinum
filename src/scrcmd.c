@@ -6512,16 +6512,16 @@ static BOOL ScrCmd_2B5(ScriptContext *ctx)
 
 static BOOL ScrCmd_2B6(ScriptContext *ctx)
 {
-    u16 v1 = ScriptContext_GetVar(ctx);
+    u16 localID = ScriptContext_GetVar(ctx);
     u16 v2 = ScriptContext_ReadByte(ctx);
 
-    MapObject *v0 = MapObjMan_LocalMapObjByIndex(ctx->fieldSystem->mapObjMan, v1);
+    MapObject *mapObject = MapObjMan_LocalMapObjByIndex(ctx->fieldSystem->mapObjMan, localID);
 
-    if (v0 == NULL) {
+    if (mapObject == NULL) {
         GF_ASSERT(FALSE);
     }
 
-    sub_02062D80(v0, v2);
+    sub_02062D80(mapObject, v2);
     return FALSE;
 }
 
