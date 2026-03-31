@@ -31,7 +31,7 @@ ValorCavern_OnLoad:
     End
 
 ValorCavern_RemoveAzelf:
-    SetFlag FLAG_AZELF_DISAPPEARED
+    SetFlag FLAG_HIDE_VALOR_CAVERN_AZELF
     RemoveObject LOCALID_AZELF
     ClearFlag FLAG_MAP_LOCAL
     Return

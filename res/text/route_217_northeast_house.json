@@ -2,7 +2,7 @@
   "key": 7923,
   "messages": [
     {
-      "id": "pl_msg_00000509_00000",
+      "id": "Route217NortheastHouse_Text_PersonRareSight",
       "en_US": [
         "...A person...?\n",
         "...A rare sight...\r",
@@ -11,7 +11,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000509_00001",
+      "id": "Route217NortheastHouse_Text_ExplainSpellTag",
       "en_US": [
         "...The Spell Tag...\n",
         "It intensifies Ghost-type moves...\f",

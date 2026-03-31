@@ -2,11 +2,11 @@
     "bg_events": [],
     "object_events": [
         {
-            "id": "VERITY_CAVERN_MESPRIT_0",
+            "id": "LOCALID_MESPRIT",
             "graphics_id": "OBJ_EVENT_GFX_MESPRIT",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_MESPRIT_DISAPPEARED",
+            "hidden_flag": "FLAG_HIDE_VERITY_CAVERN_MESPRIT",
             "script": 2,
             "initial_dir": 1,
             "data": [],
@@ -17,11 +17,11 @@
             "y": 0
         },
         {
-            "id": "VERITY_CAVERN_PROF_ROWAN_1",
+            "id": "LOCALID_PROF_ROWAN",
             "graphics_id": "OBJ_EVENT_GFX_PROF_ROWAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0296",
+            "hidden_flag": "FLAG_HIDE_VERITY_CAVERN_PROF_OAK",
             "script": 0,
             "initial_dir": 0,
             "data": [],

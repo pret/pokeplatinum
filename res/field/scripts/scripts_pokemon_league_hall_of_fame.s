@@ -127,8 +127,8 @@ PokemonLeagueHallOfFame_SetHallOfFameVictoryFlagsAndVars:
     CallIfUnset FLAG_CAUGHT_PALKIA, PokemonLeagueHallOfFame_ResetSpearPillarPalkiaState
     CallIfUnset FLAG_CAUGHT_HEATRAN, PokemonLeagueHallOfFame_TryShowStarkMountainHeatran
     CallIfUnset FLAG_CAUGHT_REGIGIGAS, PokemonLeagueHallOfFame_TryShowSnowpointTempleRegigigas
-    CallIfUnset FLAG_CAUGHT_AZELF, PokemonLeagueHallOfFame_ClearFlagAzelfDisappeared
-    CallIfUnset FLAG_CAUGHT_UXIE, PokemonLeagueHallOfFame_ClearFlagUxieDisappeared
+    CallIfUnset FLAG_CAUGHT_AZELF, PokemonLeagueHallOfFame_ShowValorCavernAzelf
+    CallIfUnset FLAG_CAUGHT_UXIE, PokemonLeagueHallOfFame_ShowAcuityCavernUxie
     CallIfUnset FLAG_CAUGHT_GIRATINA, PokemonLeagueHallOfFame_ShowTurnbackCaveGiratina
     CallIfEq VAR_ROAMING_MESPRIT_STATE, ROAMER_STATE_DEFEATED, PokemonLeagueHallOfFame_ResetRoamingMesprit
     CallIfEq VAR_ROAMING_CRESSELIA_STATE, ROAMER_STATE_DEFEATED, PokemonLeagueHallOfFame_ResetRoamingCresselia
@@ -169,12 +169,12 @@ PokemonLeagueHallOfFame_TryShowSnowpointTempleRegigigas:
 PokemonLeagueHallOfFame_DontShowSnowpointTempleRegigigas:
     Return
 
-PokemonLeagueHallOfFame_ClearFlagAzelfDisappeared:
-    ClearFlag FLAG_AZELF_DISAPPEARED
+PokemonLeagueHallOfFame_ShowValorCavernAzelf:
+    ClearFlag FLAG_HIDE_VALOR_CAVERN_AZELF
     Return
 
-PokemonLeagueHallOfFame_ClearFlagUxieDisappeared:
-    ClearFlag FLAG_UXIE_DISAPPEARED
+PokemonLeagueHallOfFame_ShowAcuityCavernUxie:
+    ClearFlag FLAG_HIDE_ACUITY_CAVERN_UXIE
     Return
 
 PokemonLeagueHallOfFame_ShowTurnbackCaveGiratina:
@@ -182,7 +182,7 @@ PokemonLeagueHallOfFame_ShowTurnbackCaveGiratina:
     Return
 
 PokemonLeagueHallOfFame_ResetRoamingMesprit:
-    ClearFlag FLAG_MESPRIT_DISAPPEARED
+    ClearFlag FLAG_HIDE_VERITY_CAVERN_MESPRIT
     SetVar VAR_ROAMING_MESPRIT_STATE, ROAMER_STATE_RESET
     Return
 
