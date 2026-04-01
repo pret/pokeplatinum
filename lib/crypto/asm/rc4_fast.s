@@ -4,7 +4,7 @@
 
 	.text
 
-
+; this function was originally written in assembly. don't bother trying to decompile it
 	arm_func_start CRYPTO_RC4FastEncrypt
 CRYPTO_RC4FastEncrypt: ; 0x020A4A34
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, lr}
