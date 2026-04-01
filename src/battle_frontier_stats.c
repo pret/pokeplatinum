@@ -57,7 +57,7 @@ u16 BattleFrontierStats_GetStat(BattleFrontier *frontier, enum BattleFrontierSta
         return stats->soloStats[statIndex];
     } else {
         if (hostFriendID == -1) {
-            GF_ASSERT(0);
+            GF_ASSERT(FALSE);
             return 0;
         }
 
@@ -152,8 +152,7 @@ u16 BattleFrontierStats_AddToStat(BattleFrontier *frontier, enum BattleFrontierS
 u16 BattleFrontierStats_SubtractFromStat(BattleFrontier *frontier, enum BattleFrontierStatsIndex statIndex, int hostFriendID, int subtractValue)
 {
     BattleFrontierStats *stats = &frontier->stats;
-    int value = BattleFrontierStats_GetStat(frontier, statIndex, hostFriendID);
-    value -= subtractValue;
+    int value = BattleFrontierStats_GetStat(frontier, statIndex, hostFriendID) - subtractValue;
 
     if (value < 0) {
         value = 0;
@@ -168,11 +167,11 @@ u16 BattleFrontierStats_SetIfBetter(BattleFrontier *frontier, enum BattleFrontie
 
     if (currentValue < newValue) {
         return BattleFrontierStats_SetStat(frontier, statIndex, hostFriendID, newValue);
-    } else {
-        if (currentValue > 9999) {
-            return BattleFrontierStats_SetStat(frontier, statIndex, hostFriendID, 9999);
-        }
-
-        return currentValue;
     }
+
+    if (currentValue > 9999) {
+        return BattleFrontierStats_SetStat(frontier, statIndex, hostFriendID, 9999);
+    }
+
+    return currentValue;
 }
