@@ -9,25 +9,25 @@
     ScriptEntryEnd
 
 _0012:
-    GoToIfUnset FLAG_TEAM_GALACTIC_LEFT_LAKE_VERITY, AcuityLakefront_SetWarpsLakeAcuityNormal
-    GoToIfSet FLAG_TEAM_GALACTIC_LEFT_LAKE_VERITY, AcuityLakefront_SetWarpsLakeAcuityLowWater
+    GoToIfUnset FLAG_TEAM_GALACTIC_LEFT_LAKE_VERITY, AcuityLakefront_RemoveWarpsLakeAcuityNormal
+    GoToIfSet FLAG_TEAM_GALACTIC_LEFT_LAKE_VERITY, AcuityLakefront_RemoveWarpsLakeAcuityLowWater
     End
 
-AcuityLakefront_SetWarpsLakeAcuityNormal:
-    SetWarpEventPos 2, 0x131, 229
-    SetWarpEventPos 3, 0x132, 229
+AcuityLakefront_RemoveWarpsLakeAcuityNormal:
+    SetWarpEventPos 2, 305, 229
+    SetWarpEventPos 3, 306, 229
     End
 
-AcuityLakefront_SetWarpsLakeAcuityLowWater:
-    SetWarpEventPos 0, 0x131, 229
-    SetWarpEventPos 1, 0x132, 229
+AcuityLakefront_RemoveWarpsLakeAcuityLowWater:
+    SetWarpEventPos 0, 305, 229
+    SetWarpEventPos 1, 306, 229
     End
 
 _004E:
     CheckBadgeAcquired BADGE_ID_ICICLE, VAR_MAP_LOCAL_0
     CallIfEq VAR_MAP_LOCAL_0, TRUE, _0079
-    GoToIfUnset FLAG_TEAM_GALACTIC_LEFT_LAKE_VERITY, AcuityLakefront_SetWarpsLakeAcuityNormal
-    GoToIfSet FLAG_TEAM_GALACTIC_LEFT_LAKE_VERITY, AcuityLakefront_SetWarpsLakeAcuityLowWater
+    GoToIfUnset FLAG_TEAM_GALACTIC_LEFT_LAKE_VERITY, AcuityLakefront_RemoveWarpsLakeAcuityNormal
+    GoToIfSet FLAG_TEAM_GALACTIC_LEFT_LAKE_VERITY, AcuityLakefront_RemoveWarpsLakeAcuityLowWater
     End
 
 _0079:

@@ -96,6 +96,12 @@ struct UnkStruct_ov5_021D1A68_t {
     int unk_02[24];
 };
 
+enum FieldExtensionOverlay {
+    FIELD_EXTENSION_OVERLAY_GYM = 0,
+    FIELD_EXTENSION_OVERLAY_GENERIC,
+    FIELD_EXTENSION_OVERLAY_DISTORTION_WORLD,
+};
+
 static void BgConfig_Init(BgConfig *bgl);
 static void ov5_021D1524(BgConfig *bgl);
 static void ov5_021D154C(void);
@@ -118,7 +124,7 @@ static void ov5_021D134C(FieldSystem *fieldSystem, u8 param1);
 static BOOL FieldSystem_UpdateLocationToPlayerPosition(FieldSystem *fieldSystem);
 static void fieldmap(void *param0);
 static void ov5_021D13B4(FieldSystem *fieldSystem);
-static int ov5_021D1178(FieldSystem *fieldSystem);
+static enum FieldExtensionOverlay FieldMap_GetExtOverlayForActiveDynMapFeatures(FieldSystem *fieldSystem);
 static BOOL FieldMap_InDistortionWorld(FieldSystem *fieldSystem);
 static UnkStruct_ov5_021D1A68 *ov5_021D1A14(int param0, int param1);
 static const int *ov5_021D1A68(const UnkStruct_ov5_021D1A68 *param0);
@@ -164,18 +170,20 @@ static BOOL FieldMap_Init(ApplicationManager *appMan, int *state)
         ov5_021D173C(fieldSystem);
         FieldMapChange_Set3DDisplay(fieldSystem);
 
-        if (fieldSystem->mapLoadMode->unk_00_20) {
-            Overlay_LoadByID(FS_OVERLAY_ID(overlay6), 2);
+        if (fieldSystem->mapLoadMode->loadExtOverlay) {
+            Overlay_LoadByID(FS_OVERLAY_ID(overlay6), OVERLAY_LOAD_ASYNC);
 
-            switch (ov5_021D1178(fieldSystem)) {
-            case 0:
-                Overlay_LoadByID(FS_OVERLAY_ID(overlay8), 2);
+            switch (FieldMap_GetExtOverlayForActiveDynMapFeatures(fieldSystem)) {
+            case FIELD_EXTENSION_OVERLAY_GYM:
+                Overlay_LoadByID(FS_OVERLAY_ID(overlay8), OVERLAY_LOAD_ASYNC);
                 break;
-            case 1:
-                Overlay_LoadByID(FS_OVERLAY_ID(overlay7), 2);
+
+            case FIELD_EXTENSION_OVERLAY_GENERIC:
+                Overlay_LoadByID(FS_OVERLAY_ID(overlay7), OVERLAY_LOAD_ASYNC);
                 break;
-            case 2:
-                Overlay_LoadByID(FS_OVERLAY_ID(overlay9), 2);
+
+            case FIELD_EXTENSION_OVERLAY_DISTORTION_WORLD:
+                Overlay_LoadByID(FS_OVERLAY_ID(overlay9), OVERLAY_LOAD_ASYNC);
                 break;
             }
         }
@@ -342,7 +350,7 @@ static BOOL FieldMap_Exit(ApplicationManager *appMan, int *param1)
 
             Heap_Destroy(HEAP_ID_FIELD1);
 
-            if (fieldSystem->mapLoadMode->unk_00_20) {
+            if (fieldSystem->mapLoadMode->loadExtOverlay) {
                 Overlay_UnloadByID(FS_OVERLAY_ID(overlay6));
                 Overlay_UnloadByID(FS_OVERLAY_ID(overlay8));
                 Overlay_UnloadByID(FS_OVERLAY_ID(overlay7));
@@ -364,20 +372,18 @@ const ApplicationManagerTemplate gFieldMapTemplate = {
     0xffffffff
 };
 
-static int ov5_021D1178(FieldSystem *fieldSystem)
+static enum FieldExtensionOverlay FieldMap_GetExtOverlayForActiveDynMapFeatures(FieldSystem *fieldSystem)
 {
-    PersistedMapFeatures *v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
-    int v1 = PersistedMapFeatures_GetID(v0);
+    PersistedMapFeatures *persistedMapFeatures = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+    int id = PersistedMapFeatures_GetID(persistedMapFeatures);
 
-    if (v1 == DYNAMIC_MAP_FEATURES_NONE) {
-        return 1;
+    if (id == DYNAMIC_MAP_FEATURES_NONE) {
+        return FIELD_EXTENSION_OVERLAY_GENERIC;
+    } else if (id == DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) {
+        return FIELD_EXTENSION_OVERLAY_DISTORTION_WORLD;
     }
 
-    if (v1 == DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) {
-        return 2;
-    }
-
-    return 0;
+    return FIELD_EXTENSION_OVERLAY_GYM;
 }
 
 static BOOL FieldSystem_UpdateLocationToPlayerPosition(FieldSystem *fieldSystem)
