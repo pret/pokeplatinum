@@ -104,11 +104,11 @@
             "y": 7
         },
         {
-            "id": "LOCALID_EXPERT_F",
+            "id": "LOCALID_ELDER",
             "graphics_id": "OBJ_EVENT_GFX_EXPERT_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_HIDE_CELESTIC_TOWN_EXPERT_F",
+            "hidden_flag": "FLAG_HIDE_CELESTIC_TOWN_ELDER",
             "script": 2,
             "initial_dir": 0,
             "data": [],
@@ -293,7 +293,7 @@
             "y": 0,
             "width": 3,
             "length": 1,
-            "var": "VAR_CELESTIC_TOWN_EXPERT_F_STATE",
+            "var": "VAR_CELESTIC_TOWN_ELDER_STATE",
             "value": 0
         }
     ]

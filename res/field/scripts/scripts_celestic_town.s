@@ -4,8 +4,8 @@
 
 
     ScriptEntry CelesticTown_OnTransition
-    ScriptEntry CelesticTown_ExpertF
-    ScriptEntry CelesticTown_TriggerExpertF
+    ScriptEntry CelesticTown_Elder
+    ScriptEntry CelesticTown_TriggerElder
     ScriptEntry CelesticTown_GruntM
     ScriptEntry CelesticTown_OnFrameCynthia
     ScriptEntry CelesticTown_Cynthia
@@ -47,48 +47,48 @@ CelesticTown_GruntMBattle:
     Message CelesticTown_Text_TooMuchToHandle
     CloseMessage
     GetPlayerDir VAR_RESULT
-    GoToIfEq VAR_RESULT, DIR_NORTH, CelesticTown_GruntMLeaveExpertFEnterNorth
-    GoToIfEq VAR_RESULT, DIR_WEST, CelesticTown_GruntMLeaveExpertFEnterWest
-    GoToIfEq VAR_RESULT, DIR_EAST, CelesticTown_GruntMLeaveExpertFEnterEast
+    GoToIfEq VAR_RESULT, DIR_NORTH, CelesticTown_GruntMLeaveElderEnterNorth
+    GoToIfEq VAR_RESULT, DIR_WEST, CelesticTown_GruntMLeaveElderEnterWest
+    GoToIfEq VAR_RESULT, DIR_EAST, CelesticTown_GruntMLeaveElderEnterEast
     End
 
-CelesticTown_GruntMLeaveExpertFEnterNorth:
+CelesticTown_GruntMLeaveElderEnterNorth:
     ApplyMovement LOCALID_GRUNT_M, CelesticTown_Movement_GruntMLeaveNorthWest
     ApplyMovement LOCALID_PLAYER, CelesticTown_Movement_PlayerWatchGruntMLeaveNorth
     WaitMovement
-    Call CelesticTown_RemoveGruntMAddExpertF
-    ApplyMovement LOCALID_EXPERT_F, CelesticTown_Movement_ExpertFEnterNorth
-    ApplyMovement LOCALID_PLAYER, CelesticTown_Movement_PlayerWatchExpertFEnterNorth
+    Call CelesticTown_RemoveGruntMAddElder
+    ApplyMovement LOCALID_ELDER, CelesticTown_Movement_ElderEnterNorth
+    ApplyMovement LOCALID_PLAYER, CelesticTown_Movement_PlayerWatchElderEnterNorth
     WaitMovement
     GoTo CelesticTown_GiveOldCharm
 
-CelesticTown_GruntMLeaveExpertFEnterWest:
+CelesticTown_GruntMLeaveElderEnterWest:
     ApplyMovement LOCALID_GRUNT_M, CelesticTown_Movement_GruntMLeaveNorthWest
     ApplyMovement LOCALID_PLAYER, CelesticTown_Movement_PlayerWatchGruntMLeaveWest
     WaitMovement
-    Call CelesticTown_RemoveGruntMAddExpertF
-    ApplyMovement LOCALID_EXPERT_F, CelesticTown_Movement_ExpertFEnterWest
+    Call CelesticTown_RemoveGruntMAddElder
+    ApplyMovement LOCALID_ELDER, CelesticTown_Movement_ElderEnterWest
     WaitMovement
     GoTo CelesticTown_GiveOldCharm
 
-CelesticTown_GruntMLeaveExpertFEnterEast:
+CelesticTown_GruntMLeaveElderEnterEast:
     ApplyMovement LOCALID_GRUNT_M, CelesticTown_Movement_GruntMLeaveEast
     ApplyMovement LOCALID_PLAYER, CelesticTown_Movement_PlayerWatchGruntMLeaveEast
     WaitMovement
-    Call CelesticTown_RemoveGruntMAddExpertF
-    ApplyMovement LOCALID_EXPERT_F, CelesticTown_Movement_ExpertFEnterEast
+    Call CelesticTown_RemoveGruntMAddElder
+    ApplyMovement LOCALID_ELDER, CelesticTown_Movement_ElderEnterEast
     WaitMovement
     GoTo CelesticTown_GiveOldCharm
 
-CelesticTown_RemoveGruntMAddExpertF:
+CelesticTown_RemoveGruntMAddElder:
     RemoveObject LOCALID_GRUNT_M
-    RemoveObject LOCALID_EXPERT_F
-    SetObjectEventPos LOCALID_EXPERT_F, 466, 531
-    SetObjectEventDir LOCALID_EXPERT_F, DIR_NORTH
-    SetObjectEventMovementType LOCALID_EXPERT_F, MOVEMENT_TYPE_LOOK_NORTH
-    ClearFlag FLAG_HIDE_CELESTIC_TOWN_EXPERT_F
-    AddObject LOCALID_EXPERT_F
-    LockObject LOCALID_EXPERT_F
+    RemoveObject LOCALID_ELDER
+    SetObjectEventPos LOCALID_ELDER, 466, 531
+    SetObjectEventDir LOCALID_ELDER, DIR_NORTH
+    SetObjectEventMovementType LOCALID_ELDER, MOVEMENT_TYPE_LOOK_NORTH
+    ClearFlag FLAG_HIDE_CELESTIC_TOWN_ELDER
+    AddObject LOCALID_ELDER
+    LockObject LOCALID_ELDER
     Return
 
 CelesticTown_GiveOldCharm:
@@ -125,20 +125,20 @@ CelesticTown_Movement_GruntMLeaveEast:
     EndMovement
 
     .balign 4, 0
-CelesticTown_Movement_ExpertFEnterNorth:
+CelesticTown_Movement_ElderEnterNorth:
     WalkNormalNorth 8
     WalkNormalWest 2
     EndMovement
 
     .balign 4, 0
-CelesticTown_Movement_ExpertFEnterWest:
+CelesticTown_Movement_ElderEnterWest:
     WalkNormalNorth 8
     WalkNormalWest 2
     WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
-CelesticTown_Movement_ExpertFEnterEast:
+CelesticTown_Movement_ElderEnterEast:
     WalkNormalNorth 8
     WalkNormalWest 4
     WalkOnSpotNormalNorth
@@ -163,7 +163,7 @@ CelesticTown_Movement_PlayerWatchGruntMLeaveEast:
     EndMovement
 
     .balign 4, 0
-CelesticTown_Movement_PlayerWatchExpertFEnterNorth:
+CelesticTown_Movement_PlayerWatchElderEnterNorth:
     Delay8 8
     Delay4
     WalkOnSpotNormalEast
@@ -179,24 +179,24 @@ CelesticTown_UnusedMovement2:
     WalkOnSpotNormalSouth
     EndMovement
 
-CelesticTown_TriggerExpertF:
+CelesticTown_TriggerElder:
     LockAll
     ApplyMovement LOCALID_PLAYER, CelesticTown_Movement_PlayerFaceWest
-    ApplyMovement LOCALID_EXPERT_F, CelesticTown_Movement_ExpertFWalkOnSpotEast
+    ApplyMovement LOCALID_ELDER, CelesticTown_Movement_ElderWalkOnSpotEast
     WaitMovement
     Call CelesticTown_OddSpaceman
     ReleaseAll
     End
 
 CelesticTown_OddSpaceman:
-    SetVar VAR_CELESTIC_TOWN_EXPERT_F_STATE, 1
+    SetVar VAR_CELESTIC_TOWN_ELDER_STATE, 1
     Message CelesticTown_Text_OddSpaceman
     WaitButton
     CloseMessage
     Return
 
     .balign 4, 0
-CelesticTown_Movement_ExpertFWalkOnSpotEast:
+CelesticTown_Movement_ElderWalkOnSpotEast:
     WalkOnSpotNormalEast
     EndMovement
 
@@ -205,7 +205,7 @@ CelesticTown_Movement_PlayerFaceWest:
     FaceWest
     EndMovement
 
-CelesticTown_ExpertF:
+CelesticTown_Elder:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer

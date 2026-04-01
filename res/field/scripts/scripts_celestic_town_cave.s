@@ -5,13 +5,13 @@
 
     ScriptEntry CelesticTownCave_Painting
     ScriptEntry CelesticTownCave_Cyrus
-    ScriptEntry CelesticTownCave_ExpertF
+    ScriptEntry CelesticTownCave_Elder
     ScriptEntryEnd
 
 CelesticTownCave_Painting:
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    GoToIfSet FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, CelesticTownCave_PaintingCythia
+    GoToIfSet FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, CelesticTownCave_PaintingCynthia
     GoTo CelesticTownCave_ExaminePainting
     End
 
@@ -29,23 +29,23 @@ CelesticTownCave_EnterCyrus:
     Message CelesticTownCave_Text_WhatsThisAbout
     CloseMessage
     SetFlag FLAG_EXAMINED_CELESTIC_TOWN_CAVE_PAINTING
-    ClearFlag FLAG_HIDE_CELESTIC_TOWN_CAVE_EXPERT_F
-    SetObjectEventPos LOCALID_EXPERT_F, 4, 11
-    SetObjectEventDir LOCALID_EXPERT_F, DIR_NORTH
-    SetObjectEventMovementType LOCALID_EXPERT_F, MOVEMENT_TYPE_LOOK_NORTH
-    AddObject LOCALID_EXPERT_F
+    ClearFlag FLAG_HIDE_CELESTIC_TOWN_CAVE_ELDER
+    SetObjectEventPos LOCALID_ELDER, 4, 11
+    SetObjectEventDir LOCALID_ELDER, DIR_NORTH
+    SetObjectEventMovementType LOCALID_ELDER, MOVEMENT_TYPE_LOOK_NORTH
+    AddObject LOCALID_ELDER
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     CallIfEq VAR_0x8004, 9, CelesticTownCave_ExpertEnterFX9
     CallIfEq VAR_0x8004, 10, CelesticTownCave_ExpertEnterFX10
     Message CelesticTownCave_Text_AncientLegendOfSinnoh
     Message CelesticTownCave_Text_IdLikeToKnowMore
     CloseMessage
-    ApplyMovement LOCALID_EXPERT_F, CelesticTownCave_Movement_ExpertFWalkOnSpotSouth
+    ApplyMovement LOCALID_ELDER, CelesticTownCave_Movement_ElderWalkOnSpotSouth
     ApplyMovement LOCALID_PLAYER, CelesticTownCave_Movement_PlayerWalkOnSpotSouth
     WaitMovement
     Message CelesticTownCave_Text_WhoMightYouBe
     CloseMessage
-    SetFlag FLAG_HIDE_CELESTIC_TOWN_EXPERT_F
+    SetFlag FLAG_HIDE_CELESTIC_TOWN_ELDER
     ClearFlag FLAG_HIDE_CELESTIC_TOWN_CAVE_CYRUS
     SetObjectEventPos LOCALID_CYRUS, 4, 11
     SetObjectEventDir LOCALID_CYRUS, DIR_NORTH
@@ -63,14 +63,14 @@ CelesticTownCave_EnterCyrus:
     End
 
 CelesticTownCave_ExpertEnterFX9:
-    ApplyMovement LOCALID_EXPERT_F, CelesticTownCave_Movement_ExpertFEnterX9
+    ApplyMovement LOCALID_ELDER, CelesticTownCave_Movement_ElderEnterX9
     WaitMovement
     ApplyMovement LOCALID_PLAYER, CelesticTownCave_Movement_PlayerWalkOnSpotEast
     WaitMovement
     Return
 
 CelesticTownCave_ExpertEnterFX10:
-    ApplyMovement LOCALID_EXPERT_F, CelesticTownCave_Movement_ExpertFEnterX10
+    ApplyMovement LOCALID_ELDER, CelesticTownCave_Movement_ElderEnterX10
     WaitMovement
     ApplyMovement LOCALID_PLAYER, CelesticTownCave_Movement_PlayerWalkOnSpotWest
     WaitMovement
@@ -86,14 +86,14 @@ CelesticTownCave_DontBattleNow:
     End
 
 CelesticTownCave_CyrusPushPlayerX9:
-    ApplyMovement LOCALID_EXPERT_F, CelesticTownCave_Movement_ExpertFWatchCyrusPushPlayerX9
+    ApplyMovement LOCALID_ELDER, CelesticTownCave_Movement_ElderWatchCyrusPushPlayerX9
     ApplyMovement LOCALID_PLAYER, CelesticTownCave_Movement_PlayerGetPushedX9
     ApplyMovement LOCALID_CYRUS, CelesticTownCave_Movement_CyrusPushPlayerX9
     WaitMovement
     Return
 
 CelesticTownCave_CyrusPushPlayerX10:
-    ApplyMovement LOCALID_EXPERT_F, CelesticTownCave_Movement_ExpertFWatchCyrusPushPlayerX10
+    ApplyMovement LOCALID_ELDER, CelesticTownCave_Movement_ElderWatchCyrusPushPlayerX10
     ApplyMovement LOCALID_PLAYER, CelesticTownCave_Movement_PlayerGetPushedX10
     ApplyMovement LOCALID_CYRUS, CelesticTownCave_Movement_CyrusPushPlayerX10
     WaitMovement
@@ -121,24 +121,24 @@ CelesticTownCave_DefeatedCyrus:
     FadeScreenIn
     WaitFadeScreen
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    CallIfEq VAR_0x8004, 8, CelesticTownCave_PlayerExpertFFaceEachOtherX8
-    CallIfEq VAR_0x8004, 9, CelesticTownCave_PlayerExpertFFaceEachOtherX9
-    CallIfEq VAR_0x8004, 10, CelesticTownCave_PlayerExpertFFaceEachOtherX10
-    CallIfEq VAR_0x8004, 11, CelesticTownCave_PlayerExpertFFaceEachOtherX11
+    CallIfEq VAR_0x8004, 8, CelesticTownCave_PlayerElderFaceEachOtherX8
+    CallIfEq VAR_0x8004, 9, CelesticTownCave_PlayerElderFaceEachOtherX9
+    CallIfEq VAR_0x8004, 10, CelesticTownCave_PlayerElderFaceEachOtherX10
+    CallIfEq VAR_0x8004, 11, CelesticTownCave_PlayerElderFaceEachOtherX11
     Message CelesticTownCave_Text_YouShouldTakeThis
     SetVar VAR_0x8004, ITEM_HM03
     SetVar VAR_0x8005, 1
     Common_GiveItemQuantity
-    SetFlag FLAG_HIDE_CELESTIC_TOWN_EXPERT_F
-    ClearFlag FLAG_HIDE_CELESTIC_TOWN_NORTH_HOUSE_EXPERT_F
+    SetFlag FLAG_HIDE_CELESTIC_TOWN_ELDER
+    ClearFlag FLAG_HIDE_CELESTIC_TOWN_NORTH_HOUSE_ELDER
     SetFlag FLAG_DUMMY_2445
     Message CelesticTownCave_Text_SurfAcrossWater
     CloseMessage
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    CallIfEq VAR_0x8004, 9, CelesticTownCave_ExpertFLeaveX9
-    CallIfEq VAR_0x8004, 10, CelesticTownCave_ExpertFLeaveX10
-    CallIfEq VAR_0x8004, 11, CelesticTownCave_ExpertFLeaveX11
-    RemoveObject LOCALID_EXPERT_F
+    CallIfEq VAR_0x8004, 9, CelesticTownCave_ElderLeaveX9
+    CallIfEq VAR_0x8004, 10, CelesticTownCave_ElderLeaveX10
+    CallIfEq VAR_0x8004, 11, CelesticTownCave_ElderLeaveX11
+    RemoveObject LOCALID_ELDER
     Return
 
 CelesticTownCave_CyrusEnterX9:
@@ -151,71 +151,71 @@ CelesticTownCave_CyrusEnterX10:
     WaitMovement
     Return
 
-CelesticTownCave_PlayerExpertFFaceEachOtherX8:
+CelesticTownCave_PlayerElderFaceEachOtherX8:
     ApplyMovement LOCALID_PLAYER, CelesticTownCave_Movement_PlayerWalkEast
-    ApplyMovement LOCALID_EXPERT_F, CelesticTownCave_Movement_ExpertFWalkOnSpotWest
+    ApplyMovement LOCALID_ELDER, CelesticTownCave_Movement_ElderWalkOnSpotWest
     WaitMovement
     Return
 
-CelesticTownCave_PlayerExpertFFaceEachOtherX9:
-    GoToIfEq VAR_0x8005, 4, CelesticTownCave_PlayerExpertFFaceEachOtherX9South
+CelesticTownCave_PlayerElderFaceEachOtherX9:
+    GoToIfEq VAR_0x8005, 4, CelesticTownCave_PlayerElderFaceEachOtherX9South
     ApplyMovement LOCALID_PLAYER, CelesticTownCave_Movement_PlayerWalkOnSpotEast2
-    ApplyMovement LOCALID_EXPERT_F, CelesticTownCave_Movement_ExpertFWalkOnSpotWest
+    ApplyMovement LOCALID_ELDER, CelesticTownCave_Movement_ElderWalkOnSpotWest
     WaitMovement
     Return
 
-CelesticTownCave_PlayerExpertFFaceEachOtherX9South:
+CelesticTownCave_PlayerElderFaceEachOtherX9South:
     ApplyMovement LOCALID_PLAYER, CelesticTownCave_Movement_PlayerWalkNorthOnSpotEast
-    ApplyMovement LOCALID_EXPERT_F, CelesticTownCave_Movement_ExpertFWalkOnSpotWest
+    ApplyMovement LOCALID_ELDER, CelesticTownCave_Movement_ElderWalkOnSpotWest
     WaitMovement
     Return
 
 CelesticTownCave_Unused:
     ApplyMovement LOCALID_PLAYER, CelesticTownCave_UnusedMovement
-    ApplyMovement LOCALID_EXPERT_F, CelesticTownCave_Movement_ExpertFWalkOnSpotWest
+    ApplyMovement LOCALID_ELDER, CelesticTownCave_Movement_ElderWalkOnSpotWest
     WaitMovement
     Return
 
-CelesticTownCave_PlayerExpertFFaceEachOtherX10:
-    GoToIfEq VAR_0x8005, 4, CelesticTownCave_PlayerExpertFFaceEachOtherX10South
+CelesticTownCave_PlayerElderFaceEachOtherX10:
+    GoToIfEq VAR_0x8005, 4, CelesticTownCave_PlayerElderFaceEachOtherX10South
     ApplyMovement LOCALID_PLAYER, CelesticTownCave_Movement_PlayerWalkOnSpotWest2
-    ApplyMovement LOCALID_EXPERT_F, CelesticTownCave_Movement_ExpertFWalkOnSpotEast
+    ApplyMovement LOCALID_ELDER, CelesticTownCave_Movement_ElderWalkOnSpotEast
     WaitMovement
     Return
 
-CelesticTownCave_PlayerExpertFFaceEachOtherX10South:
+CelesticTownCave_PlayerElderFaceEachOtherX10South:
     ApplyMovement LOCALID_PLAYER, CelesticTownCave_Movement_PlayerWalkNorthOnSpotWest
-    ApplyMovement LOCALID_EXPERT_F, CelesticTownCave_Movement_ExpertFWalkOnSpotEast
+    ApplyMovement LOCALID_ELDER, CelesticTownCave_Movement_ElderWalkOnSpotEast
     WaitMovement
     Return
 
 CelesticTownCave_Unused2:
     ApplyMovement LOCALID_PLAYER, CelesticTownCave_UnusedMovement2
-    ApplyMovement LOCALID_EXPERT_F, CelesticTownCave_Movement_ExpertFWalkOnSpotWest
+    ApplyMovement LOCALID_ELDER, CelesticTownCave_Movement_ElderWalkOnSpotWest
     WaitMovement
     Return
 
-CelesticTownCave_PlayerExpertFFaceEachOtherX11:
+CelesticTownCave_PlayerElderFaceEachOtherX11:
     ApplyMovement LOCALID_PLAYER, CelesticTownCave_Movement_PlayerWalkWest
-    ApplyMovement LOCALID_EXPERT_F, CelesticTownCave_Movement_ExpertFWalkOnSpotEast2
+    ApplyMovement LOCALID_ELDER, CelesticTownCave_Movement_ElderWalkOnSpotEast2
     WaitMovement
     Return
 
-CelesticTownCave_ExpertFLeaveX9:
-    ApplyMovement LOCALID_PLAYER, CelesticTownCave_Movement_PlayerWatchExpertFLeave
-    ApplyMovement LOCALID_EXPERT_F, CelesticTownCave_Movement_ExpertFLeaveX9
+CelesticTownCave_ElderLeaveX9:
+    ApplyMovement LOCALID_PLAYER, CelesticTownCave_Movement_PlayerWatchElderLeave
+    ApplyMovement LOCALID_ELDER, CelesticTownCave_Movement_ElderLeaveX9
     WaitMovement
     Return
 
-CelesticTownCave_ExpertFLeaveX10:
-    ApplyMovement LOCALID_PLAYER, CelesticTownCave_Movement_PlayerWatchExpertFLeave
-    ApplyMovement LOCALID_EXPERT_F, CelesticTownCave_Movement_ExpertFLeaveX10
+CelesticTownCave_ElderLeaveX10:
+    ApplyMovement LOCALID_PLAYER, CelesticTownCave_Movement_PlayerWatchElderLeave
+    ApplyMovement LOCALID_ELDER, CelesticTownCave_Movement_ElderLeaveX10
     WaitMovement
     Return
 
-CelesticTownCave_ExpertFLeaveX11:
-    ApplyMovement LOCALID_PLAYER, CelesticTownCave_Movement_PlayerWatchExpertFLeave
-    ApplyMovement LOCALID_EXPERT_F, CelesticTownCave_Movement_ExpertFLeaveX11
+CelesticTownCave_ElderLeaveX11:
+    ApplyMovement LOCALID_PLAYER, CelesticTownCave_Movement_PlayerWatchElderLeave
+    ApplyMovement LOCALID_ELDER, CelesticTownCave_Movement_ElderLeaveX11
     WaitMovement
     Return
 
@@ -330,13 +330,13 @@ CelesticTownCave_Movement_PlayerWalkWest:
     EndMovement
 
     .balign 4, 0
-CelesticTownCave_Movement_PlayerWatchExpertFLeave:
+CelesticTownCave_Movement_PlayerWatchElderLeave:
     Delay8
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-CelesticTownCave_Movement_ExpertFEnterX9:
+CelesticTownCave_Movement_ElderEnterX9:
     WalkNormalNorth 6
     WalkNormalEast
     WalkNormalNorth
@@ -345,7 +345,7 @@ CelesticTownCave_Movement_ExpertFEnterX9:
     EndMovement
 
     .balign 4, 0
-CelesticTownCave_Movement_ExpertFEnterX10:
+CelesticTownCave_Movement_ElderEnterX10:
     WalkNormalNorth 6
     WalkNormalEast
     WalkNormalNorth
@@ -354,39 +354,39 @@ CelesticTownCave_Movement_ExpertFEnterX10:
     EndMovement
 
     .balign 4, 0
-CelesticTownCave_Movement_ExpertFWalkOnSpotSouth:
+CelesticTownCave_Movement_ElderWalkOnSpotSouth:
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-CelesticTownCave_Movement_ExpertFWatchCyrusPushPlayerX9:
+CelesticTownCave_Movement_ElderWatchCyrusPushPlayerX9:
     Delay8
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-CelesticTownCave_Movement_ExpertFWatchCyrusPushPlayerX10:
+CelesticTownCave_Movement_ElderWatchCyrusPushPlayerX10:
     Delay8
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-CelesticTownCave_Movement_ExpertFWalkOnSpotWest:
+CelesticTownCave_Movement_ElderWalkOnSpotWest:
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-CelesticTownCave_Movement_ExpertFWalkOnSpotEast:
+CelesticTownCave_Movement_ElderWalkOnSpotEast:
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-CelesticTownCave_Movement_ExpertFWalkOnSpotEast2:
+CelesticTownCave_Movement_ElderWalkOnSpotEast2:
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-CelesticTownCave_Movement_ExpertFLeaveX9:
+CelesticTownCave_Movement_ElderLeaveX9:
     WalkNormalSouth
     WalkNormalWest 5
     WalkNormalSouth
@@ -395,7 +395,7 @@ CelesticTownCave_Movement_ExpertFLeaveX9:
     EndMovement
 
     .balign 4, 0
-CelesticTownCave_Movement_ExpertFLeaveX10:
+CelesticTownCave_Movement_ElderLeaveX10:
     WalkNormalSouth
     WalkNormalWest 4
     WalkNormalSouth
@@ -404,7 +404,7 @@ CelesticTownCave_Movement_ExpertFLeaveX10:
     EndMovement
 
     .balign 4, 0
-CelesticTownCave_Movement_ExpertFLeaveX11:
+CelesticTownCave_Movement_ElderLeaveX11:
     WalkNormalSouth
     WalkNormalWest 5
     WalkNormalSouth
@@ -435,11 +435,11 @@ CelesticTownCave_YouChoseCoward:
     ReleaseAll
     End
 
-CelesticTownCave_ExpertF:
+CelesticTownCave_Elder:
     EventMessage CelesticTownCave_Text_WeValueMemories
     End
 
-CelesticTownCave_PaintingCythia:
+CelesticTownCave_PaintingCynthia:
     GoToIfSet FLAG_TALKED_TO_CELESTIC_TOWN_CAVE_CYNTHIA, CelesticTownCave_ExaminePainting
     SetFlag FLAG_TALKED_TO_CELESTIC_TOWN_CAVE_CYNTHIA
     ClearFlag FLAG_HIDE_CELESTIC_TOWN_CAVE_CYNTHIA

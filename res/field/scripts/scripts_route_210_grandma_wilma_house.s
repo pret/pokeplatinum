@@ -15,8 +15,8 @@ Route210GrandmaWilmaHouse_Wilma:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_TALKED_TO_ROUTE_210_GRANDMA_WILMA_HOUSE_WILMA, Route210GrandmaWilmaHouse_AskTeachDracoMeteor
-    SetFlag FLAG_TALKED_TO_ROUTE_210_GRANDMA_WILMA_HOUSE_WILMA
+    GoToIfSet FLAG_TALKED_TO_ROUTE_210_GRANDMA_WILMA, Route210GrandmaWilmaHouse_AskTeachDracoMeteor
+    SetFlag FLAG_TALKED_TO_ROUTE_210_GRANDMA_WILMA
     Message Route210GrandmaWilmaHouse_Text_ImWilmaTeachDracoMeteor
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, Route210GrandmaWilmaHouse_DoComeBack

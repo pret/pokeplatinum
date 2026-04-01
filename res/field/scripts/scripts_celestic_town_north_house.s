@@ -3,7 +3,7 @@
 
 
     ScriptEntry CelesticTownNorthHouse_ExpertM
-    ScriptEntry CelesticTownNorthHouse_ExpertF
+    ScriptEntry CelesticTownNorthHouse_Elder
     ScriptEntry CelesticTownNorthHouse_Lass
     ScriptEntry CelesticTownNorthHouse_Scroll
     ScriptEntry CelesticTownNorthHouse_OnTransition
@@ -35,28 +35,28 @@ CelesticTownNorthHouse_ExpertMEnd:
     ReleaseAll
     End
 
-CelesticTownNorthHouse_ExpertF:
+CelesticTownNorthHouse_Elder:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet FLAG_GAME_COMPLETED, CelesticTownNorthHouse_IDidSomeResearch
     GoToIfSet FLAG_FIRST_ARRIVAL_CANALAVE_CITY, CelesticTownNorthHouse_CelesticOldestTown
     Message CelesticTownNorthHouse_Text_UsingSurfGoPlaces
-    GoTo CelesticTownNorthHouse_ExpertFEnd
+    GoTo CelesticTownNorthHouse_ElderEnd
     End
 
 CelesticTownNorthHouse_IDidSomeResearch:
     SetFlag FLAG_UNLOCKED_DIALGA_PALKIA_SPEAR_PILLAR
     Message CelesticTownNorthHouse_Text_IDidSomeResearch
-    GoTo CelesticTownNorthHouse_ExpertFEnd
+    GoTo CelesticTownNorthHouse_ElderEnd
     End
 
 CelesticTownNorthHouse_CelesticOldestTown:
     Message CelesticTownNorthHouse_Text_CelesticOldestTown
-    GoTo CelesticTownNorthHouse_ExpertFEnd
+    GoTo CelesticTownNorthHouse_ElderEnd
     End
 
-CelesticTownNorthHouse_ExpertFEnd:
+CelesticTownNorthHouse_ElderEnd:
     WaitButton
     CloseMessage
     ReleaseAll

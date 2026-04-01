@@ -19,11 +19,11 @@
     ],
     "object_events": [
         {
-            "id": "LOCALID_EXPERT_F",
+            "id": "LOCALID_ELDER",
             "graphics_id": "OBJ_EVENT_GFX_EXPERT_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_HIDE_CELESTIC_TOWN_CAVE_EXPERT_F",
+            "hidden_flag": "FLAG_HIDE_CELESTIC_TOWN_CAVE_ELDER",
             "script": 3,
             "initial_dir": 2,
             "data": [],
