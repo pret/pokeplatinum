@@ -3,10 +3,10 @@
 #include "res/text/bank/canalave_city_east_house.h"
 
 
-    ScriptEntry CanalaveCityEastHouse_OldMan
+    ScriptEntry CanalaveCityEastHouse_MoveDeleter
     ScriptEntryEnd
 
-CanalaveCityEastHouse_OldMan:
+CanalaveCityEastHouse_MoveDeleter:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
