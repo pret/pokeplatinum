@@ -282,13 +282,13 @@ static void HandleFieldInput(FieldSystem *fieldSystem)
     case MAP_LOAD_TYPE_BATTLE_TOWER:
         if (processInput) {
             if (FieldInput_Process_BattleTower(&fieldInput, fieldSystem) == TRUE) {
-                MapNamePopUp_Hide(fieldSystem->unk_04->unk_08);
+                MapNamePopUp_Hide(fieldSystem->unk_04->mapPopup);
                 Signpost_DoCommand(fieldSystem, SIGNPOST_CMD_REMOVE);
                 ov5_021E0EEC(fieldSystem->playerAvatar);
                 FieldSystem_SendPoketchEvent(fieldSystem, POKETCH_EVENT_SLEEP, 1);
             } else {
                 if (gSystem.pressedKeys & PAD_BUTTON_A) {
-                    MapNamePopUp_Hide(fieldSystem->unk_04->unk_08);
+                    MapNamePopUp_Hide(fieldSystem->unk_04->mapPopup);
                 }
 
                 BOOL tappedPoketch = FALSE;
@@ -305,14 +305,14 @@ static void HandleFieldInput(FieldSystem *fieldSystem)
     default:
         if (processInput) {
             if (FieldInput_Process(&fieldInput, fieldSystem) == TRUE) {
-                MapNamePopUp_Hide(fieldSystem->unk_04->unk_08);
+                MapNamePopUp_Hide(fieldSystem->unk_04->mapPopup);
                 Signpost_DoCommand(fieldSystem, SIGNPOST_CMD_REMOVE);
                 sub_0205F56C(fieldSystem->playerAvatar);
                 ov5_021E0EEC(fieldSystem->playerAvatar);
                 FieldSystem_SendPoketchEvent(fieldSystem, POKETCH_EVENT_SLEEP, 1);
             } else {
                 if (gSystem.pressedKeys & PAD_BUTTON_A) {
-                    MapNamePopUp_Hide(fieldSystem->unk_04->unk_08);
+                    MapNamePopUp_Hide(fieldSystem->unk_04->mapPopup);
                 }
 
                 BOOL tappedPoketch = 0;

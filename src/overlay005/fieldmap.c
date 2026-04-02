@@ -318,7 +318,7 @@ static BOOL FieldMap_Exit(ApplicationManager *appMan, int *param1)
             FieldCamera_Delete(fieldSystem);
             AreaLightManager_Free(&fieldSystem->areaLightMan);
             Signpost_Free(fieldSystem->signpost);
-            MapNamePopUp_Destroy(fieldSystem->unk_04->unk_08);
+            MapNamePopUp_Destroy(fieldSystem->unk_04->mapPopup);
 
             if (fieldSystem->unk_04->unk_0C != NULL) {
                 ov5_021D5EF8(fieldSystem->unk_04->unk_0C);
@@ -402,35 +402,30 @@ static BOOL FieldSystem_UpdateLocationToPlayerPosition(FieldSystem *fieldSystem)
 
 static BOOL FieldMap_ChangeZone(FieldSystem *fieldSystem)
 {
-    u32 v0;
-    u32 mapId;
-    int x, y;
-    FieldOverworldState *fieldState;
-
     if (FieldMap_InDistortionWorld(fieldSystem) == TRUE) {
         return FALSE;
     }
 
-    x = (Player_GetXPos(fieldSystem->playerAvatar) - LandDataManager_GetOffsetTileX(fieldSystem->landDataMan)) / MAP_TILES_COUNT_X;
-    y = (Player_GetZPos(fieldSystem->playerAvatar) - LandDataManager_GetOffsetTileZ(fieldSystem->landDataMan)) / MAP_TILES_COUNT_Z;
-    v0 = MapMatrix_GetMapHeaderIDAtCoords(fieldSystem->mapMatrix, x, y);
-    mapId = fieldSystem->location->mapId;
+    int x = (Player_GetXPos(fieldSystem->playerAvatar) - LandDataManager_GetOffsetTileX(fieldSystem->landDataMan)) / MAP_TILES_COUNT_X;
+    int y = (Player_GetZPos(fieldSystem->playerAvatar) - LandDataManager_GetOffsetTileZ(fieldSystem->landDataMan)) / MAP_TILES_COUNT_Z;
 
-    if (v0 == mapId) {
+    u32 newMapID = MapMatrix_GetMapHeaderIDAtCoords(fieldSystem->mapMatrix, x, y);
+    u32 oldMapID = fieldSystem->location->mapId;
+    if (newMapID == oldMapID) {
         return FALSE;
     }
 
-    fieldState = SaveData_GetFieldOverworldState(fieldSystem->saveData);
+    FieldOverworldState *fieldState = SaveData_GetFieldOverworldState(fieldSystem->saveData);
 
-    fieldSystem->location->mapId = v0;
+    fieldSystem->location->mapId = newMapID;
 
-    MapHeaderData_Load(fieldSystem, v0);
+    MapHeaderData_Load(fieldSystem, newMapID);
     FieldMapChange_UpdateGameData(fieldSystem, 1);
 
     int objEventCount = MapHeaderData_GetNumObjectEvents(fieldSystem);
     const ObjectEvent *objEventList = MapHeaderData_GetObjectEvents(fieldSystem);
 
-    sub_0206184C(fieldSystem->mapObjMan, mapId, v0, objEventCount, objEventList);
+    sub_0206184C(fieldSystem->mapObjMan, oldMapID, newMapID, objEventCount, objEventList);
 
     RadarChain_Clear(fieldSystem->chain);
     Sound_TryFadeOutToBGM(fieldSystem, Sound_GetOverrideBGM(fieldSystem, fieldSystem->location->mapId), 1);
@@ -441,19 +436,16 @@ static BOOL FieldMap_ChangeZone(FieldSystem *fieldSystem)
             fieldSystem->unk_04->unk_0C, FieldOverworldState_GetWeather(fieldState));
     }
 
-    int v7, v8;
-    int v9;
+    int oldMapLabelTextID = MapHeader_GetMapLabelTextID(oldMapID);
+    int newMapLabelTextID = MapHeader_GetMapLabelTextID(newMapID);
+    int mapLabelWindowID = MapHeader_GetMapLabelWindowID(newMapID);
 
-    v7 = MapHeader_GetMapLabelTextID(mapId);
-    v8 = MapHeader_GetMapLabelTextID(v0);
-    v9 = MapHeader_GetMapLabelWindowID(v0);
-
-    if (v7 != v8) {
-        if (v9 != 0) {
-            v9--;
+    if (oldMapLabelTextID != newMapLabelTextID) {
+        if (mapLabelWindowID != 0) {
+            mapLabelWindowID--;
         }
 
-        MapNamePopUp_Show(fieldSystem->unk_04->unk_08, v8, v9);
+        MapNamePopUp_Show(fieldSystem->unk_04->mapPopup, newMapLabelTextID, mapLabelWindowID);
     }
 
     return TRUE;
@@ -901,7 +893,7 @@ static void ov5_021D1968(FieldSystem *fieldSystem)
         fieldSystem->unk_04->unk_0C = ov5_021D5EB8(fieldSystem);
     }
 
-    fieldSystem->unk_04->unk_08 = MapNamePopUp_Create(fieldSystem->bgConfig);
+    fieldSystem->unk_04->mapPopup = MapNamePopUp_Create(fieldSystem->bgConfig);
     fieldSystem->signpost = Signpost_Init(HEAP_ID_FIELD1);
     fieldSystem->unk_04->unk_10 = TextureResourceManager_Create();
 

@@ -282,7 +282,7 @@ res/prebuilt/fielddata/mm_list/move_model_list.narc,/fielddata/mm_list/move_mode
 res/prebuilt/pokeanime/poke_anm.narc,/pokeanime/poke_anm.narc
 res/pokemon_anims/pokemon_anims.narc,/pokeanime/pl_poke_anm.narc
 res/prebuilt/battle/tr_ai/tr_ai_seq.narc,/battle/tr_ai/tr_ai_seq.narc
-res/prebuilt/arc/area_win_gra.narc,/arc/area_win_gra.narc
+res/graphics/map_popups/map_popup.narc,/arc/area_win_gra.narc
 res/prebuilt/arc/balance_ball_gra.narc,/arc/balance_ball_gra.narc
 res/field/props/animations/prop_animations.narc,/arc/bm_anime.narc
 res/prebuilt/arc/bm_anime_list.narc,/arc/bm_anime_list.narc

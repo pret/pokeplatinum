@@ -14,7 +14,7 @@
 struct FieldSystem_sub2_t {
     BOOL unk_00;
     UnkStruct_ov5_021D1A94 *unk_04;
-    MapNamePopUp *unk_08;
+    MapNamePopUp *mapPopup;
     UnkStruct_ov5_021D5EF8 *unk_0C;
     FieldTextureManager *unk_10;
     PoketchSystem *poketchSys;

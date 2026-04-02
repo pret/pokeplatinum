@@ -1,5 +1,4 @@
 prebuilt_files = [
-    'area_win_gra.narc',
     'balance_ball_gra.narc',
     'bm_anime_list.narc',
     'codein_gra.narc',
