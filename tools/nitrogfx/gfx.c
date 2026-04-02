@@ -587,6 +587,10 @@ uint32_t ReadNtrImage(char *path, int tilesWide, int bitDepth, int colsPerChunk,
         if (charHeader[0x15] == 1) {
             printf("-vram ");
         }
+
+        if (tilesWide && ReadS16(charHeader, 0xA) != 0xFF) {
+            printf("-width %d ", ReadS16(charHeader, 0xA));
+        }
     }
 
     if (bitDepth == 4 && !convertTo8Bpp)
@@ -598,18 +602,22 @@ uint32_t ReadNtrImage(char *path, int tilesWide, int bitDepth, int colsPerChunk,
     if (bitDepth == 4 && convertTo8Bpp)
         tileSize *= 2;
 
+    int numTiles = ReadS32(charHeader, 0x18) / (64 / (8 / bitDepth));
+
+    int tilesTall;
     if (tilesWide == 0) {
         tilesWide = ReadS16(charHeader, 0xA);
         if (tilesWide < 0) {
             tilesWide = 1;
         }
+        tilesTall = ReadS16(charHeader, 0x8);
+        if (tilesTall < 0) {
+            tilesTall = (numTiles + tilesWide - 1) / tilesWide;
+        }
+    } else {
+        tilesTall = numTiles / tilesWide + (numTiles % tilesWide != 0);
     }
 
-    int numTiles = ReadS32(charHeader, 0x18) / (64 / (8 / bitDepth));
-
-    int tilesTall = ReadS16(charHeader, 0x8);
-    if (tilesTall < 0)
-        tilesTall = (numTiles + tilesWide - 1) / tilesWide;
 
     if (tilesWide % colsPerChunk != 0)
         FATAL_ERROR("The width in tiles (%d) isn't a multiple of the specified tiles per row (%d)", tilesWide, colsPerChunk);
@@ -1075,7 +1083,8 @@ void WriteImage(char *path, int numTiles, int bitDepth, int colsPerChunk, int ro
 
 void WriteNtrImage(char *path, int numTiles, int bitDepth, int colsPerChunk, int rowsPerChunk, struct Image *image,
                    bool invertColors, bool clobberSize, bool byteOrder, bool version101, bool sopc, bool vram, bool scan,
-                   uint32_t encodeMode, uint32_t mappingType, uint32_t key, bool wrongSize, bool convertTo4Bpp, int rotate)
+                   uint32_t encodeMode, uint32_t mappingType, uint32_t key, bool wrongSize, bool convertTo4Bpp, int rotate, 
+                   int tilesWide)
 {
     FILE *fp = fopen(path, "wb");
 
@@ -1092,8 +1101,24 @@ void WriteNtrImage(char *path, int numTiles, int bitDepth, int colsPerChunk, int
     if (image->height % 8 != 0)
         FATAL_ERROR("The height in pixels (%d) isn't a multiple of 8.\n", image->height);
 
-    int tilesWide = image->width / 8; // how many tiles wide the image is
-    int tilesTall = image->height / 8; // how many tiles tall the image is
+    int pngTilesWide = image->width / 8; // how many tiles wide the image is
+    int pngTilesTall = image->height / 8; // how many tiles tall the image is
+    int pngNumTiles = pngTilesWide * pngTilesTall;
+
+    if (numTiles == 0)
+        numTiles = pngNumTiles;
+    else if (numTiles > pngNumTiles)
+        FATAL_ERROR("The specified number of tiles (%d) is greater than the maximum possible value (%d).\n", numTiles, pngNumTiles);
+
+    int tilesTall;
+    if (tilesWide == 0) {
+        tilesWide = pngTilesWide;
+        tilesTall = pngTilesTall;
+    } else {
+        if (numTiles % tilesWide != 0)
+            FATAL_ERROR("The number of tiles (%d) is not a multiple of the width in tiles (%d).\n", numTiles, tilesWide);
+        tilesTall = numTiles / tilesWide;
+    }
 
     if (tilesWide % colsPerChunk != 0)
         FATAL_ERROR("The width in tiles (%d) isn't a multiple of the specified tiles per row (%d)", tilesWide, colsPerChunk);
@@ -1101,20 +1126,13 @@ void WriteNtrImage(char *path, int numTiles, int bitDepth, int colsPerChunk, int
     if (tilesTall % rowsPerChunk != 0)
         FATAL_ERROR("The height in tiles (%d) isn't a multiple of the specified rows per chunk (%d)", tilesTall, rowsPerChunk);
 
-    int maxNumTiles = tilesWide * tilesTall;
-
-    if (numTiles == 0)
-        numTiles = maxNumTiles;
-    else if (numTiles > maxNumTiles)
-        FATAL_ERROR("The specified number of tiles (%d) is greater than the maximum possible value (%d).\n", numTiles, maxNumTiles);
-
     int bufferSize = numTiles * tileSize;
     unsigned char *pixelBuffer = malloc(bufferSize);
 
     if (pixelBuffer == NULL)
         FATAL_ERROR("Failed to allocate memory for pixels.\n");
 
-    int chunksWide = tilesWide / colsPerChunk; // how many chunks side-by-side are needed for the full width of the image
+    int chunksWide = pngTilesWide / colsPerChunk; // how many chunks side-by-side are needed for the full width of the image
 
     if (scan)
     {

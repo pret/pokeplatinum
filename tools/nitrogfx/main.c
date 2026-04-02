@@ -187,7 +187,7 @@ void ConvertPngToNtr(char *inputPath, char *outputPath, struct PngToNtrOptions *
     WriteNtrImage(outputPath, options->numTiles, options->bitDepth, options->colsPerChunk, options->rowsPerChunk,
                   &image, !image.hasPalette, options->clobberSize, options->byteOrder, options->version101,
                   options->sopc, options->vramTransfer, options->scan, options->encodeMode, options->mappingType,
-                  key, options->wrongSize, options->convertTo4Bpp, options->rotate);
+                  key, options->wrongSize, options->convertTo4Bpp, options->rotate, options->tilesWide);
 
     FreeImage(&image);
 }
@@ -517,6 +517,7 @@ void HandlePngToNtrCommand(char *inputPath, char *outputPath, int argc, char **a
     options.cellFilePath = NULL;
     options.cellSnap = true;
     options.numTiles = 0;
+    options.tilesWide = 0;
     options.bitDepth = 0;
     options.colsPerChunk = 1;
     options.rowsPerChunk = 1;
@@ -588,6 +589,19 @@ void HandlePngToNtrCommand(char *inputPath, char *outputPath, int argc, char **a
                     break;
                 }
             }
+        }
+        else if (strcmp(option, "-width") == 0)
+        {
+            if (i + 1 >= argc)
+                FATAL_ERROR("No number of tiles following \"-width\".\n");
+
+            i++;
+
+            if (!ParseNumber(argv[i], NULL, 10, &options.tilesWide))
+                FATAL_ERROR("Failed to parse tile width.\n");
+
+            if (options.tilesWide < 1)
+                FATAL_ERROR("Tile width must be positive.\n");
         }
         else if (strcmp(option, "-mwidth") == 0 || strcmp(option, "-cpc") == 0)
         {
