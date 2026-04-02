@@ -17,6 +17,7 @@
 #include "overlay088/struct_ov88_0223C8AC.h"
 
 #include "bag.h"
+#include "battle_frontier_stats.h"
 #include "bg_window.h"
 #include "brightness_controller.h"
 #include "char_transfer.h"
@@ -70,7 +71,6 @@
 #include "unk_0202ACE0.h"
 #include "unk_0202D778.h"
 #include "unk_0202F180.h"
-#include "unk_0203061C.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
 #include "unk_02038ED4.h"
@@ -1816,7 +1816,7 @@ static int ov88_0223D514(UnkStruct_02095E80 *param0)
 
     switch (ov88_0223ED2C(param0->unk_174, &param0->unk_6BC, &param0->unk_6C8)) {
     case 0:
-        sub_02030788(SaveData_GetBattleFrontier(param0->saveData), param0->unk_36C8);
+        BattleFrontierStats_ClearFriendStatsAndShift(SaveData_GetBattleFrontier(param0->saveData), param0->unk_36C8);
         sub_0202AFD4(param0->unk_36EC, param0->unk_36C8);
         sub_02039298(param0->saveData, param0->unk_36C4, 32 - 1, HEAP_ID_26, 0);
         param0->unk_226C = ov88_0223D854;

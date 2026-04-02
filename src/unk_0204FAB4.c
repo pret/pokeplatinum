@@ -15,6 +15,7 @@
 #include "field/field_system.h"
 
 #include "bag.h"
+#include "battle_frontier_stats.h"
 #include "communication_system.h"
 #include "dexmode_checker.h"
 #include "field_script_context.h"
@@ -29,7 +30,6 @@
 #include "script_manager.h"
 #include "unk_0202D778.h"
 #include "unk_020302D0.h"
-#include "unk_0203061C.h"
 #include "unk_02049D08.h"
 #include "unk_0205DFC4.h"
 #include "unk_02099500.h"
@@ -82,7 +82,7 @@ BOOL ScrCmd_2D2(ScriptContext *param0)
         break;
     case 1:
         if (v4 == 3) {
-            *v6 = sub_02030698(SaveData_GetBattleFrontier(param0->fieldSystem->saveData), 108, sub_0205E6A8(108));
+            *v6 = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(param0->fieldSystem->saveData), STAT_CASTLE_WFC_STREAK_ACTIVE, BattleFrontierStats_GetHostFriendIdx(STAT_CASTLE_WFC_STREAK_ACTIVE));
         } else {
             *v6 = (u16)sub_02030470(v11, 9, v4, 0, NULL);
         }
@@ -133,16 +133,16 @@ static void sub_0204FBEC(SaveData *saveData, UnkStruct_0203041C *param1, u8 para
     sub_02030430(param1, 9, param2, 0, v2);
 
     if (param2 == 3) {
-        sub_020306E4(SaveData_GetBattleFrontier(saveData), 108, sub_0205E6A8(108), 0);
+        BattleFrontierStats_SetStat(SaveData_GetBattleFrontier(saveData), STAT_CASTLE_WFC_STREAK_ACTIVE, BattleFrontierStats_GetHostFriendIdx(STAT_CASTLE_WFC_STREAK_ACTIVE), 0);
     }
 
-    sub_020306E4(SaveData_GetBattleFrontier(saveData), sub_0205E5E0(param2), sub_0205E6A8(sub_0205E5E0(param2)), 0);
-    sub_020306E4(SaveData_GetBattleFrontier(saveData), sub_0205E630(param2), sub_0205E6A8(sub_0205E630(param2)), 0);
+    BattleFrontierStats_SetStat(SaveData_GetBattleFrontier(saveData), BattleFrontierStats_GetCastleLatestStreakIndex(param2), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleLatestStreakIndex(param2)), 0);
+    BattleFrontierStats_SetStat(SaveData_GetBattleFrontier(saveData), BattleFrontierStats_GetCastleLatestCPIndex(param2), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleLatestCPIndex(param2)), 0);
 
     v1[0] = 1;
 
     for (v0 = 0; v0 < 3; v0++) {
-        sub_020306E4(SaveData_GetBattleFrontier(saveData), sub_0205E5B4(param2, v0), sub_0205E6A8(sub_0205E5B4(param2, v0)), 1);
+        BattleFrontierStats_SetStat(SaveData_GetBattleFrontier(saveData), BattleFrontierStats_GetCastleRankIndex(param2, v0), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleRankIndex(param2, v0)), 1);
     }
 
     return;

@@ -878,15 +878,15 @@
       "en_US": "GREEN SHARD"
     },
     {
-      "id": "pl_msg_00000361_00213",
+      "id": "MenuEntries_Text_CanalaveDock_IronIsland",
       "en_US": "IRON ISLAND"
     },
     {
-      "id": "pl_msg_00000361_00214",
+      "id": "MenuEntries_Text_CanalaveDock_FullmoonIsland",
       "en_US": "FULLMOON ISLAND"
     },
     {
-      "id": "pl_msg_00000361_00215",
+      "id": "MenuEntries_Text_CanalaveDock_NewmoonIsland",
       "en_US": "NEWMOON ISLAND"
     },
     {
@@ -898,7 +898,7 @@
       "en_US": "SNOWPOINT CITY"
     },
     {
-      "id": "pl_msg_00000361_00218",
+      "id": "MenuEntries_Text_CanalaveDock_Exit",
       "en_US": "EXIT"
     },
     {
@@ -1062,19 +1062,19 @@
       "en_US": "EXIT"
     },
     {
-      "id": "pl_msg_00000361_00259",
+      "id": "MenuEntries_Text_SinnohFolkStory_Part1",
       "en_US": "PART 1"
     },
     {
-      "id": "pl_msg_00000361_00260",
+      "id": "MenuEntries_Text_SinnohFolkStory_Part2",
       "en_US": "PART 2"
     },
     {
-      "id": "pl_msg_00000361_00261",
+      "id": "MenuEntries_Text_SinnohFolkStory_Part3",
       "en_US": "PART 3"
     },
     {
-      "id": "pl_msg_00000361_00262",
+      "id": "MenuEntries_Text_SinnohFolkStory_Exit",
       "en_US": "EXIT"
     },
     {

@@ -2,6 +2,7 @@
 
 #include <nitro.h>
 
+#include "battle_frontier_stats.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "list_menu.h"
@@ -9,7 +10,6 @@
 #include "sound_playback.h"
 #include "string_template.h"
 #include "trainer_info.h"
-#include "unk_0203061C.h"
 #include "unk_0205DFC4.h"
 
 u8 BattleCastleApp_GetSelectedSlot(u8 numSlots, u8 slot)
@@ -28,7 +28,7 @@ u8 BattleCastleApp_GetSlotFromSlotID(u8 exitSlot, u8 slotID)
 
 u8 BattleCastleApp_GetRank(SaveData *saveData, u8 challengeType, u8 rankType)
 {
-    return sub_02030698(SaveData_GetBattleFrontier(saveData), sub_0205E5B4(challengeType, rankType), sub_0205E6A8(sub_0205E5B4(challengeType, rankType)));
+    return BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(saveData), BattleFrontierStats_GetCastleRankIndex(challengeType, rankType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleRankIndex(challengeType, rankType)));
 }
 
 void BattleCastleApp_PlaySound(u32 input, u16 seqID)

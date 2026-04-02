@@ -1,15 +1,16 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/fullmoon_island_forest.h"
+#include "res/field/events/events_fullmoon_island_forest.h"
 
 
-    ScriptEntry _000A
-    ScriptEntry _000C
+    ScriptEntry FullmoonIslandForest_Unused
+    ScriptEntry FullmoonIslandForest_Cresselia
     ScriptEntryEnd
 
-_000A:
+FullmoonIslandForest_Unused:
     End
 
-_000C:
+FullmoonIslandForest_Cresselia:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
@@ -18,36 +19,36 @@ _000C:
     RemovePokemonPreview
     PlayCry SPECIES_CRESSELIA
     GetPlayerDir VAR_RESULT
-    CallIfEq VAR_RESULT, 0, _007E
-    ReleaseObject 0
-    ScrCmd_26A 0, 6, 8
-    LockObject 0
+    CallIfEq VAR_RESULT, DIR_NORTH, FullmoonIslandForest_CresseliaMoveAwayForLunarWing
+    ReleaseObject LOCALID_CRESSELIA
+    FlickerObject LOCALID_CRESSELIA, 6, 8
+    LockObject LOCALID_CRESSELIA
     SetFlag FLAG_HIDE_FULLMOON_ISLAND_FOREST_CRESSELIA
-    RemoveObject 0
+    RemoveObject LOCALID_CRESSELIA
     ActivateRoamingPokemon ROAMING_SLOT_CRESSELIA
-    GoToIfEq VAR_ROAMING_CRESSELIA_STATE, ROAMER_STATE_RESET, _0074
-    ClearFlag FLAG_OBTAINED_FULLMOON_ISLAND_FOREST
-    AddObject 1
-    SetFlag FLAG_UNK_0x011F
-    Message 0
+    GoToIfEq VAR_ROAMING_CRESSELIA_STATE, ROAMER_STATE_RESET, FullmoonIslandForest_ResetCresseliaRoamingState
+    ClearFlag FLAG_OBTAINED_FULLMOON_ISLAND_FOREST_LUNAR_WING
+    AddObject LOCALID_ITEM_LUNAR_WING
+    SetFlag FLAG_OBTAINED_LUNAR_WING
+    Message FullmoonIslandForest_Text_SomethingSparkling
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0074:
+FullmoonIslandForest_ResetCresseliaRoamingState:
     SetVar VAR_ROAMING_CRESSELIA_STATE, ROAMER_STATE_ROAMING
     ReleaseAll
     End
 
-_007E:
-    SetObjectEventPos 1, 16, 14
-    ApplyMovement 0, _0094
+FullmoonIslandForest_CresseliaMoveAwayForLunarWing:
+    SetObjectEventPos LOCALID_ITEM_LUNAR_WING, 16, 14
+    ApplyMovement LOCALID_CRESSELIA, FullmoonIslandForest_Movement_CresseliaMoveBackNorth
     WaitMovement
     Return
 
     .balign 4, 0
-_0094:
+FullmoonIslandForest_Movement_CresseliaMoveBackNorth:
     LockDir
     WalkNormalNorth
     UnlockDir

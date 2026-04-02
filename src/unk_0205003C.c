@@ -15,6 +15,7 @@
 #include "field/field_system.h"
 
 #include "bag.h"
+#include "battle_frontier_stats.h"
 #include "communication_system.h"
 #include "dexmode_checker.h"
 #include "field_script_context.h"
@@ -29,7 +30,6 @@
 #include "script_manager.h"
 #include "unk_0202D778.h"
 #include "unk_02030494.h"
-#include "unk_0203061C.h"
 #include "unk_02049D08.h"
 #include "unk_0205DFC4.h"
 #include "unk_02099500.h"
@@ -82,7 +82,7 @@ BOOL ScrCmd_2D9(ScriptContext *param0)
         break;
     case 1:
         if (v4 == 3) {
-            *v6 = sub_02030698(SaveData_GetBattleFrontier(param0->fieldSystem->saveData), 110, sub_0205E6A8(110));
+            *v6 = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(param0->fieldSystem->saveData), STAT_ARCADE_WFC_STREAK_ACTIVE, BattleFrontierStats_GetHostFriendIdx(STAT_ARCADE_WFC_STREAK_ACTIVE));
         } else {
             *v6 = (u16)sub_02030600(v11, 8, v4, 0, NULL);
         }
@@ -133,10 +133,10 @@ static void sub_02050174(SaveData *saveData, UnkStruct_020305B8 *param1, u8 para
     sub_020305CC(param1, 8, param2, 0, v2);
 
     if (param2 == 3) {
-        sub_020306E4(SaveData_GetBattleFrontier(saveData), 110, sub_0205E6A8(110), 0);
+        BattleFrontierStats_SetStat(SaveData_GetBattleFrontier(saveData), STAT_ARCADE_WFC_STREAK_ACTIVE, BattleFrontierStats_GetHostFriendIdx(STAT_ARCADE_WFC_STREAK_ACTIVE), 0);
     }
 
-    sub_020306E4(SaveData_GetBattleFrontier(saveData), sub_0205E700(param2), sub_0205E6A8(sub_0205E700(param2)), 0);
+    BattleFrontierStats_SetStat(SaveData_GetBattleFrontier(saveData), BattleFrontierStats_GetArcadeLatestStreakIndex(param2), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetArcadeLatestStreakIndex(param2)), 0);
     return;
 }
 

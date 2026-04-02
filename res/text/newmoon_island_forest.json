@@ -2,21 +2,21 @@
   "key": 13410,
   "messages": [
     {
-      "id": "pl_msg_00000301_00000",
+      "id": "NewmoonIslandForest_Text_Ellipses",
       "en_US": [
         "...\n",
         "...\r"
       ]
     },
     {
-      "id": "pl_msg_00000301_00001",
+      "id": "NewmoonIslandForest_Text_DarkraiMeltedAway",
       "en_US": [
         "DARKRAI melted away into the\n",
         "darkness...\r"
       ]
     },
     {
-      "id": "pl_msg_00000301_00002",
+      "id": "NewmoonIslandForest_Text_VoiceFromSomewhere",
       "en_US": [
         "...A voice called out from somewhere...\r",
         "???: DARKRAI...\n",
@@ -36,7 +36,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000301_00003",
+      "id": "NewmoonIslandForest_Text_VoiceFromSomewhere2",
       "en_US": [
         "...A voice called out from somewhere...\r",
         "???: DARKRAI...\n",

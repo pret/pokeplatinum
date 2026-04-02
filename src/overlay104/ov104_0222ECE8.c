@@ -14,6 +14,7 @@
 #include "overlay104/struct_ov104_0223BA10.h"
 #include "overlay104/struct_ov104_0223BFFC.h"
 
+#include "battle_frontier_stats.h"
 #include "communication_system.h"
 #include "heap.h"
 #include "party.h"
@@ -22,7 +23,6 @@
 #include "trainer_info.h"
 #include "unk_020302D0.h"
 #include "unk_02030494.h"
-#include "unk_0203061C.h"
 #include "unk_0205DFC4.h"
 
 BOOL ov104_0222EEF8(UnkStruct_ov104_0223ADA0 *param0);
@@ -735,7 +735,7 @@ BOOL ov104_0222F3B8(UnkStruct_ov104_0223BA10 *param0)
     v1 += 3;
     v1 += (7 + 1);
 
-    param0->unk_3C0[v1] = sub_02030698(SaveData_GetBattleFrontier(param0->saveData), sub_0205E630(param0->unk_10), sub_0205E6A8(sub_0205E630(param0->unk_10)));
+    param0->unk_3C0[v1] = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(param0->saveData), BattleFrontierStats_GetCastleLatestCPIndex(param0->unk_10), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleLatestCPIndex(param0->unk_10)));
     v1 += 1;
 
     if (CommSys_SendData(42, param0->unk_3C0, v3) == 1) {

@@ -17,10 +17,10 @@
 #include "overlay104/ov104_0222ECE8.h"
 #include "overlay104/ov104_0223C164.h"
 
+#include "battle_frontier_stats.h"
 #include "communication_system.h"
 #include "party.h"
 #include "pokemon.h"
-#include "unk_0203061C.h"
 #include "unk_02032798.h"
 #include "unk_0205DFC4.h"
 
@@ -201,7 +201,7 @@ BOOL sub_0209BBA4(UnkStruct_0209BBA4 *param0)
     param0->unk_08[0] = param0->unk_A0;
 
     v2 = ov104_0223C264(param0->unk_A0);
-    param0->unk_08[1] = sub_02030698(SaveData_GetBattleFrontier(param0->saveData), v2, sub_0205E6A8(v2));
+    param0->unk_08[1] = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(param0->saveData), v2, BattleFrontierStats_GetHostFriendIdx(v2));
 
     if (CommSys_SendData(57, param0->unk_08, v1) == 1) {
         v0 = 1;

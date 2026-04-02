@@ -1,21 +1,21 @@
 #include "macros/scrcmd.inc"
 
 
-    ScriptEntry _0029
-    ScriptEntry _000A
+    ScriptEntry CanalaveCityWestHouse_Unused
+    ScriptEntry CanalaveCityWestHouse_OnTransition
     ScriptEntryEnd
 
-_000A:
+CanalaveCityWestHouse_OnTransition:
     CheckTVInterviewEligible TV_PROGRAM_SEGMENT_STREET_CORNER_PERSONALITY_CHECKUP, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, 0, _0023
-    ClearFlag FLAG_UNK_0x0216
+    GoToIfEq VAR_MAP_LOCAL_0, FALSE, CanalaveCityWestHouse_HideReporter
+    ClearFlag FLAG_HIDE_CANALAVE_CITY_WEST_HOUSE_REPORTER
     End
 
-_0023:
-    SetFlag FLAG_UNK_0x0216
+CanalaveCityWestHouse_HideReporter:
+    SetFlag FLAG_HIDE_CANALAVE_CITY_WEST_HOUSE_REPORTER
     End
 
-_0029:
+CanalaveCityWestHouse_Unused:
     End
 
     .balign 4, 0

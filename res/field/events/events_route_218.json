@@ -2,7 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
-            "id": "ROUTE_218_GUITARIST_TONY",
+            "id": "LOCALID_GUITARIST_TONY",
             "graphics_id": "OBJ_EVENT_GFX_GUITARIST",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -19,7 +19,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_218_SAILOR_SKYLER",
+            "id": "LOCALID_SAILOR_SKYLER",
             "graphics_id": "OBJ_EVENT_GFX_SAILOR",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -36,7 +36,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_218_FISHERMAN_MIGUEL",
+            "id": "LOCALID_FISHERMAN_MIGUEL",
             "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -51,7 +51,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_218_FISHERMAN_LUC",
+            "id": "LOCALID_FISHERMAN_LUC",
             "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -66,7 +66,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_218_ARROW_SIGNPOST_4",
+            "id": "LOCALID_ARROW_SIGNPOST_JUBILIFE_CITY",
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -83,7 +83,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_218_ARROW_SIGNPOST_5",
+            "id": "LOCALID_ARROW_SIGNPOST_CANALAVE_CITY",
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -130,7 +130,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_218_BERRY_SOIL_8",
+            "id": "LOCALID_BERRY_SOIL_1",
             "graphics_id": "OBJ_EVENT_GFX_BERRY_SOIL",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -147,7 +147,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_218_BERRY_SOIL_9",
+            "id": "LOCALID_BERRY_SOIL_2",
             "graphics_id": "OBJ_EVENT_GFX_BERRY_SOIL",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -164,7 +164,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_218_BERRY_SOIL_10",
+            "id": "LOCALID_BERRY_SOIL_3",
             "graphics_id": "OBJ_EVENT_GFX_BERRY_SOIL",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -181,7 +181,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_218_BERRY_SOIL_11",
+            "id": "LOCALID_BERRY_SOIL_4",
             "graphics_id": "OBJ_EVENT_GFX_BERRY_SOIL",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -198,7 +198,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_218_VENT_12",
+            "id": "LOCALID_VENT_1",
             "graphics_id": "OBJ_EVENT_GFX_VENT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -213,7 +213,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_218_VENT_13",
+            "id": "LOCALID_VENT_2",
             "graphics_id": "OBJ_EVENT_GFX_VENT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -228,7 +228,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_218_GUITARIST_14",
+            "id": "LOCALID_GUITARIST",
             "graphics_id": "OBJ_EVENT_GFX_GUITARIST",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -243,7 +243,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_218_CLEFAIRY_15",
+            "id": "LOCALID_CLEFAIRY_SOUTH",
             "graphics_id": "OBJ_EVENT_GFX_CLEFAIRY",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -258,7 +258,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_218_CLEFAIRY_16",
+            "id": "LOCALID_CLEFAIRY_NORTH",
             "graphics_id": "OBJ_EVENT_GFX_CLEFAIRY",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -273,7 +273,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_218_PIKACHU_17",
+            "id": "LOCALID_PIKACHU_SOUTH",
             "graphics_id": "OBJ_EVENT_GFX_PIKACHU",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -288,7 +288,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_218_PIKACHU_18",
+            "id": "LOCALID_PIKACHU_NORTH",
             "graphics_id": "OBJ_EVENT_GFX_PIKACHU",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -303,7 +303,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_218_FISHERMAN_19",
+            "id": "LOCALID_FISHERMAN",
             "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",

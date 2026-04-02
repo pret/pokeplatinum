@@ -10,6 +10,7 @@
 #include "field/field_system.h"
 
 #include "badges.h"
+#include "battle_frontier_stats.h"
 #include "charcode_util.h"
 #include "field_system.h"
 #include "field_task.h"
@@ -23,7 +24,6 @@
 #include "trainer_card_save_data.h"
 #include "trainer_info.h"
 #include "underground.h"
-#include "unk_0203061C.h"
 #include "unk_0203D1B8.h"
 #include "unk_020559DC.h"
 #include "unk_0205B33C.h"
@@ -120,7 +120,7 @@ u8 TrainerCard_CalculateLevel(FieldSystem *fieldSystem)
         trainerCardLevel++;
     }
 
-    if ((sub_02030698(frontier, 0, 0xff) >= 100) || (sub_02030698(frontier, 2, 0xff) >= 100) || (sub_02030698(frontier, 4, 0xff) >= 100) || (sub_02030698(frontier, 6, 0xff) >= 100) || (sub_02030698(frontier, 8, 0xff) >= 100)) {
+    if ((BattleFrontierStats_GetStat(frontier, STAT_TOWER_RECORD_STREAK_SINGLE, 0xff) >= 100) || (BattleFrontierStats_GetStat(frontier, STAT_TOWER_RECORD_STREAK_DOUBLE, 0xff) >= 100) || (BattleFrontierStats_GetStat(frontier, STAT_TOWER_RECORD_STREAK_MULTI, 0xff) >= 100) || (BattleFrontierStats_GetStat(frontier, STAT_TOWER_RECORD_STREAK_LINK_MULTI, 0xff) >= 100) || (BattleFrontierStats_GetStat(frontier, STAT_TOWER_RECORD_STREAK_WIFI, 0xff) >= 100)) {
         trainerCardLevel++;
     }
 

@@ -585,7 +585,7 @@ static BOOL ScrCmd_StartEndSafariGame(ScriptContext *ctx);
 static BOOL ScrCmd_203(ScriptContext *ctx);
 static BOOL ScrCmd_204(ScriptContext *ctx);
 static BOOL ScrCmd_205(ScriptContext *ctx);
-static BOOL ScrCmd_310(ScriptContext *ctx);
+static BOOL ScrCmd_StartLibraryTV(ScriptContext *ctx);
 static BOOL ScrCmd_StartGreatMarshLookout(ScriptContext *ctx);
 static BOOL ScrCmd_MessageFromTrainerType(ScriptContext *ctx);
 static BOOL ScrCmd_20D(ScriptContext *ctx);
@@ -606,7 +606,7 @@ static BOOL ScrCmd_GetNpcTradeRequestedSpecies(ScriptContext *ctx);
 static BOOL ScrCmd_StartNPCTrade(ScriptContext *ctx);
 static BOOL ScrCmd_FinishNpcTrade(ScriptContext *ctx);
 static BOOL ScrCmd_22B(ScriptContext *ctx);
-static BOOL ScrCmd_22C(ScriptContext *ctx);
+static BOOL ScrCmd_TurnOnPokedexFormDetection(ScriptContext *ctx);
 static BOOL ScrCmd_GetSetNationalDexEnabled(ScriptContext *ctx);
 static BOOL ScrCmd_GetPartyMonEVTotal(ScriptContext *ctx);
 static BOOL ScrCmd_GetDayOfWeek(ScriptContext *ctx);
@@ -642,7 +642,7 @@ static BOOL ScrCmd_ShowPoketch(ScriptContext *ctx);
 static BOOL ScrCmd_267(ScriptContext *ctx);
 static BOOL ScrCmd_GetHour(ScriptContext *ctx);
 static BOOL ScrCmd_269(ScriptContext *ctx);
-static BOOL ScrCmd_26A(ScriptContext *ctx);
+static BOOL ScrCmd_FlickerObject(ScriptContext *ctx);
 static BOOL ScrCmd_CheckHasAllLegendaryTitansInParty(ScriptContext *ctx);
 static BOOL ScrCmd_TryGetRandomMassageGirlAccessory(ScriptContext *ctx);
 static BOOL ScrCmd_GetGBACartridgeVersion(ScriptContext *ctx);
@@ -3206,9 +3206,9 @@ static BOOL ScrCmd_205(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_310(ScriptContext *ctx)
+static BOOL ScrCmd_StartLibraryTV(ScriptContext *ctx)
 {
-    sub_0203E704(ctx->fieldSystem);
+    FieldSystem_StartLibraryTV(ctx->fieldSystem);
     ScriptContext_Pause(ctx, ScriptContext_WaitForApplicationExit);
 
     return TRUE;
@@ -5455,7 +5455,7 @@ static BOOL ScrCmd_22B(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_22C(ScriptContext *ctx)
+static BOOL ScrCmd_TurnOnPokedexFormDetection(ScriptContext *ctx)
 {
     Pokedex_TurnOnFormDetection(SaveData_GetPokedex(ctx->fieldSystem->saveData));
     return FALSE;
@@ -5855,19 +5855,19 @@ static BOOL ScrCmd_269(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_26A(ScriptContext *ctx)
+static BOOL ScrCmd_FlickerObject(ScriptContext *ctx)
 {
-    u16 v1 = ScriptContext_GetVar(ctx);
-    u16 v2 = ScriptContext_GetVar(ctx);
-    u16 v3 = ScriptContext_GetVar(ctx);
+    u16 localID = ScriptContext_GetVar(ctx);
+    u16 times = ScriptContext_GetVar(ctx);
+    u16 delay = ScriptContext_GetVar(ctx);
 
-    MapObject *v0 = MapObjMan_LocalMapObjByIndex(ctx->fieldSystem->mapObjMan, v1);
+    MapObject *mapObject = MapObjMan_LocalMapObjByIndex(ctx->fieldSystem->mapObjMan, localID);
 
-    if (v0 == NULL) {
+    if (mapObject == NULL) {
         GF_ASSERT(FALSE);
     }
 
-    sub_0205E3F4(ctx->task, v0, v2, v3);
+    MapObject_Flicker(ctx->task, mapObject, times, delay);
     return TRUE;
 }
 
@@ -6496,14 +6496,14 @@ static BOOL ScrCmd_2B2(ScriptContext *ctx)
 static BOOL ScrCmd_2B5(ScriptContext *ctx)
 {
     u16 mapId = ScriptContext_GetVar(ctx);
-    u16 v1 = ScriptContext_GetVar(ctx);
-    u16 v2 = ScriptContext_GetVar(ctx);
+    u16 x = ScriptContext_GetVar(ctx);
+    u16 z = ScriptContext_GetVar(ctx);
     FieldOverworldState *fieldState = SaveData_GetFieldOverworldState(ctx->fieldSystem->saveData);
     Location *location = FieldOverworldState_GetExitLocation(fieldState);
 
     location->mapId = mapId;
-    location->x = v1;
-    location->z = v2;
+    location->x = x;
+    location->z = z;
     location->warpId = WARP_ID_NONE;
     location->faceDirection = FACE_DOWN;
 

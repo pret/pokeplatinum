@@ -16,6 +16,7 @@
 #include "field/field_system.h"
 
 #include "bag.h"
+#include "battle_frontier_stats.h"
 #include "communication_system.h"
 #include "dexmode_checker.h"
 #include "field_system.h"
@@ -29,7 +30,6 @@
 #include "underground.h"
 #include "unk_0202D05C.h"
 #include "unk_0202D778.h"
-#include "unk_0203061C.h"
 #include "unk_020363E8.h"
 #include "unk_02038FFC.h"
 #include "unk_0203D1B8.h"
@@ -332,7 +332,7 @@ u16 sub_0206BDBC(SaveData *saveData)
     u8 v4, v5, v6, v7, v8, v9;
 
     frontier = SaveData_GetBattleFrontier(saveData);
-    v3 = sub_02030698(frontier, 0, 0xff);
+    v3 = BattleFrontierStats_GetStat(frontier, STAT_TOWER_RECORD_STREAK_SINGLE, 0xff);
 
     if (v3 < 20) {
         return 0;
@@ -406,7 +406,7 @@ u16 sub_0206BF04(SaveData *saveData)
     u8 v3, v4, v5, v6, v7, v8;
 
     frontier = SaveData_GetBattleFrontier(saveData);
-    v2 = sub_02030698(frontier, 0, 0xff);
+    v2 = BattleFrontierStats_GetStat(frontier, STAT_TOWER_RECORD_STREAK_SINGLE, 0xff);
 
     if (v2 < 20) {
         return 0;

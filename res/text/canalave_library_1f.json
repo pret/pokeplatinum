@@ -2,7 +2,7 @@
   "key": 29699,
   "messages": [
     {
-      "id": "pl_msg_00000058_00000",
+      "id": "CanalaveLibrary1F_Text_PleaseKeepQuiet",
       "en_US": [
         "Hello.\n",
         "This is the Canalave Library.\r",
@@ -11,7 +11,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000058_00001",
+      "id": "CanalaveLibrary1F_Text_ThatWasntMeScreaming",
       "en_US": [
         "H-hello!\n",
         "This is the Canalave Library.\r",
@@ -26,18 +26,18 @@
       ]
     },
     {
-      "id": "pl_msg_00000058_00002",
+      "id": "CanalaveLibrary1F_Text_Ellipsis",
       "en_US": "...\r"
     },
     {
-      "id": "pl_msg_00000058_00003",
+      "id": "CanalaveLibrary1F_Text_DontDisturbMe",
       "en_US": [
         "What is it? Please don’t disturb\n",
         "me when I’m reading.\r"
       ]
     },
     {
-      "id": "pl_msg_00000058_00004",
+      "id": "CanalaveLibrary1F_Text_ImAllAgitated",
       "en_US": [
         "I’ve been asking people not to\n",
         "disturb me while I’m reading...\r",
@@ -46,21 +46,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000058_00005",
+      "id": "CanalaveLibrary1F_Text_BookshelvesAreCrammed",
       "en_US": [
         "The ceiling-high bookshelves are\n",
         "crammed with books."
       ]
     },
     {
-      "id": "pl_msg_00000058_00006",
+      "id": "CanalaveLibrary1F_Text_ShelvesLinedWithBooks",
       "en_US": [
         "The shelves are lined with books\n",
         "worn from being read by many people."
       ]
     },
     {
-      "id": "pl_msg_00000058_00007",
+      "id": "CanalaveLibrary1F_Text_BooksAreWonderful",
       "en_US": [
         "Lucian: ...Ah, hello.\n",
         "You’re here to read, too?\r",
@@ -70,14 +70,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000058_00008",
+      "id": "CanalaveLibrary1F_Text_SeeAtPokemonLeague",
       "en_US": [
         "I imagine we’ll see each other again\n",
         "at the Pokémon League. Take care.\r"
       ]
     },
     {
-      "id": "pl_msg_00000058_00009",
+      "id": "CanalaveLibrary1F_Text_LettersWrittenLongAgo",
       "en_US": [
         "I was just reading a collection of\n",
         "letters written by an artist long ago.\r",
@@ -94,7 +94,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000058_00010",
+      "id": "CanalaveLibrary1F_Text_AnalyticalTomeOnHumankind",
       "en_US": [
         "I was just reading an analytical tome on\n",
         "humankind.\r",
@@ -108,7 +108,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000058_00011",
+      "id": "CanalaveLibrary1F_Text_ObservationsWildPokemon",
       "en_US": [
         "I was just reading a collection of\n",
         "observations on Pokémon in the wild.\r",
@@ -123,7 +123,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000058_00012",
+      "id": "CanalaveLibrary1F_Text_ScieneFictionEssays",
       "en_US": [
         "I was just reading a collection of\n",
         "essays on the science-fiction genre.\r",
@@ -135,7 +135,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000058_00013",
+      "id": "CanalaveLibrary1F_Text_BookOfPhilosophy",
       "en_US": [
         "I was just reading a book of philosophy\n",
         "from an ancient, far-off land.\r",
