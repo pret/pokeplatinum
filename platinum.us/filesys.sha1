@@ -52,9 +52,9 @@ b6c7a3b01146ef7a8e5cd0c583a6185a62fce803 *res/prebuilt/data/miniasasea.nsbtx
 5d5c14fcfa0f8534c2eec79ffa945d01f4c547b4 *res/prebuilt/data/nfont.NCGR
 9eae4f97e9e97b6cd427c95def1c166ea868da43 *res/prebuilt/data/nfont.NCLR
 bbec5b2143b48f7439efa8eb285b69635f3720fa *res/prebuilt/data/pc.nsbca
-0ccb5f6bfe786b95323c2547ee4201af2e47ee8b *res/prebuilt/data/pl_wifi.ncgr
-e8982c6379fcc2dbd01e2a3626fa1e11477c77c9 *res/prebuilt/data/pl_wm.ncgr
-26ca766959599944cd52221ad42cc0a93d95ba2e *res/prebuilt/data/pl_wm.nclr
+0ccb5f6bfe786b95323c2547ee4201af2e47ee8b *res/graphics/network_icon/wifi_connection.NCGR
+e8982c6379fcc2dbd01e2a3626fa1e11477c77c9 *res/graphics/network_icon/local_connection.NCGR
+26ca766959599944cd52221ad42cc0a93d95ba2e *res/graphics/network_icon/network_icon.NCLR
 1914b6e76596ffa892508899cad35acedf7ae070 *res/prebuilt/data/plbr.dat
 516b0800e4ebeca7982a487160ed6a04db95eb8b *res/graphics/sprite_templates/party_menu_anims.resdat
 c63feb68844c5a535611cd61945810977dc13989 *res/graphics/sprite_templates/party_menu_cells.resdat

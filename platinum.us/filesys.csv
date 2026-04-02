@@ -53,9 +53,9 @@ res/graphics/naming_screen/namein.narc,/data/namein.narc
 res/prebuilt/data/nfont.NCGR,/data/nfont.NCGR
 res/prebuilt/data/nfont.NCLR,/data/nfont.NCLR
 res/prebuilt/data/pc.nsbca,/data/pc.nsbca
-res/prebuilt/data/pl_wifi.ncgr,/data/pl_wifi.ncgr
-res/prebuilt/data/pl_wm.ncgr,/data/pl_wm.ncgr
-res/prebuilt/data/pl_wm.nclr,/data/pl_wm.nclr
+res/graphics/network_icon/wifi_connection.NCGR,/data/pl_wifi.ncgr
+res/graphics/network_icon/local_connection.NCGR,/data/pl_wm.ncgr
+res/graphics/network_icon/network_icon.NCLR,/data/pl_wm.nclr
 res/prebuilt/data/plbr.dat,/data/plbr.dat
 res/graphics/sprite_templates/party_menu_anims.resdat,/data/plist_canm.resdat
 res/graphics/sprite_templates/party_menu_cells.resdat,/data/plist_cell.resdat
