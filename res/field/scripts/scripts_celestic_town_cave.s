@@ -35,8 +35,8 @@ CelesticTownCave_EnterCyrus:
     SetObjectEventMovementType LOCALID_ELDER, MOVEMENT_TYPE_LOOK_NORTH
     AddObject LOCALID_ELDER
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    CallIfEq VAR_0x8004, 9, CelesticTownCave_ExpertEnterFX9
-    CallIfEq VAR_0x8004, 10, CelesticTownCave_ExpertEnterFX10
+    CallIfEq VAR_0x8004, 9, CelesticTownCave_ElderEnterX9
+    CallIfEq VAR_0x8004, 10, CelesticTownCave_ElderEnterX10
     Message CelesticTownCave_Text_AncientLegendOfSinnoh
     Message CelesticTownCave_Text_IdLikeToKnowMore
     CloseMessage
@@ -62,14 +62,14 @@ CelesticTownCave_EnterCyrus:
     GoToIfEq VAR_RESULT, MENU_NO, CelesticTownCave_DontBattleNow
     End
 
-CelesticTownCave_ExpertEnterFX9:
+CelesticTownCave_ElderEnterX9:
     ApplyMovement LOCALID_ELDER, CelesticTownCave_Movement_ElderEnterX9
     WaitMovement
     ApplyMovement LOCALID_PLAYER, CelesticTownCave_Movement_PlayerWalkOnSpotEast
     WaitMovement
     Return
 
-CelesticTownCave_ExpertEnterFX10:
+CelesticTownCave_ElderEnterX10:
     ApplyMovement LOCALID_ELDER, CelesticTownCave_Movement_ElderEnterX10
     WaitMovement
     ApplyMovement LOCALID_PLAYER, CelesticTownCave_Movement_PlayerWalkOnSpotWest
