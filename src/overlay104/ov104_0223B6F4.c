@@ -11,6 +11,7 @@
 #include "overlay104/struct_ov104_02230BE4.h"
 #include "overlay104/struct_ov104_0223BA10.h"
 
+#include "battle_frontier_stats.h"
 #include "bg_window.h"
 #include "communication_information.h"
 #include "communication_system.h"
@@ -23,7 +24,6 @@
 #include "pokemon.h"
 #include "save_player.h"
 #include "string_gf.h"
-#include "unk_0203061C.h"
 #include "unk_0205DFC4.h"
 
 static int ov104_0223B6F4(u8 param0, int param1, int param2);
@@ -413,13 +413,13 @@ void ov104_0223BC2C(BattleFrontier *frontier, u8 challengeType, int castlePoints
 {
     u16 v0;
 
-    sub_02030824(frontier, sub_0205E630(challengeType), sub_0205E6A8(sub_0205E630(challengeType)), castlePoints);
-    v0 = sub_02030698(frontier, sub_0205E658(challengeType), sub_0205E6A8(sub_0205E658(challengeType)));
+    BattleFrontierStats_SubtractFromStat(frontier, BattleFrontierStats_GetCastleLatestCPIndex(challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleLatestCPIndex(challengeType)), castlePoints);
+    v0 = BattleFrontierStats_GetStat(frontier, BattleFrontierStats_GetCastleSpentCPIndex(challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleSpentCPIndex(challengeType)));
 
     if (v0 + castlePoints > 9999) {
-        sub_020306E4(frontier, sub_0205E658(challengeType), sub_0205E6A8(sub_0205E658(challengeType)), 9999);
+        BattleFrontierStats_SetStat(frontier, BattleFrontierStats_GetCastleSpentCPIndex(challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleSpentCPIndex(challengeType)), 9999);
     } else {
-        sub_02030804(frontier, sub_0205E658(challengeType), sub_0205E6A8(sub_0205E658(challengeType)), castlePoints);
+        BattleFrontierStats_AddToStat(frontier, BattleFrontierStats_GetCastleSpentCPIndex(challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleSpentCPIndex(challengeType)), castlePoints);
     }
 
     return;

@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_UNK_0205DFC4_H
 #define POKEPLATINUM_UNK_0205DFC4_H
 
+#include "constants/battle_frontier_stats.h"
+
 #include "struct_decls/struct_02061AB4_decl.h"
 
 #include "field_task.h"
@@ -14,27 +16,26 @@ u16 SaveData_GetFirstNonEggInParty(SaveData *saveData);
 BOOL HasAllLegendaryTitansInParty(SaveData *saveData);
 void sub_0205E318(FieldTask *param0, MapObject *param1, u16 param2, u16 param3, u16 param4, u16 param5);
 void MapObject_Flicker(FieldTask *task, MapObject *mapObj, u16 times, u16 delay);
-int sub_0205E430(u8 param0, u8 param1);
-int sub_0205E45C(u8 param0, u8 param1);
-int sub_0205E488(u8 param0, u8 param1);
-int sub_0205E4B4(u8 param0, u8 param1);
-int sub_0205E4E0(u8 param0, u8 param1);
-int sub_0205E50C(u8 param0);
-int sub_0205E534(u8 param0);
-int sub_0205E55C(u8 param0);
-int sub_0205E584(u8 param0);
-int sub_0205E5B4(u8 param0, u8 param1);
-int sub_0205E5E0(u8 param0);
-int sub_0205E608(u8 param0);
-int sub_0205E630(u8 param0);
-int sub_0205E658(u8 param0);
-int sub_0205E680(u8 param0);
-int sub_0205E6A8(u32 param0);
-u8 sub_0205E6B8(void);
+enum BattleFrontierStatsIndex BattleFrontierStats_GetFactoryLatestStreakIdx(u8 isOpenLevel, u8 challengeType);
+enum BattleFrontierStatsIndex BattleFrontierStats_GetFactoryRecordStreakIdx(u8 isOpenLevel, u8 challengeType);
+enum BattleFrontierStatsIndex BattleFrontierStats_GetFactoryLatestTradeCountIndex(u8 isOpenLevel, u8 challengeType);
+enum BattleFrontierStatsIndex BattleFrontierStats_GetFactoryRecordTradeCountIndex(u8 isOpenLevel, u8 challengeType);
+enum BattleFrontierStatsIndex sub_0205E4E0(u8 param0, u8 param1);
+enum BattleFrontierStatsIndex BattleFrontierStats_GetHallLatestStreakIndex(u8 challengeType);
+enum BattleFrontierStatsIndex sub_0205E534(u8 param0);
+enum BattleFrontierStatsIndex BattleFrontierStats_GetHallLatestSpeciesIndex(u8 challengeType);
+enum BattleFrontierStatsIndex BattleFrontierStats_GetHallRecordStreakIndex(u8 challengeType);
+enum BattleFrontierStatsIndex BattleFrontierStats_GetCastleRankIndex(u8 challengeType, u8 rankType);
+enum BattleFrontierStatsIndex BattleFrontierStats_GetCastleLatestStreakIndex(u8 challengeType);
+enum BattleFrontierStatsIndex BattleFrontierStats_GetCastleRecordStreakIndex(u8 challengeType);
+enum BattleFrontierStatsIndex BattleFrontierStats_GetCastleLatestCPIndex(u8 challengeType);
+enum BattleFrontierStatsIndex BattleFrontierStats_GetCastleSpentCPIndex(u8 challengeType);
+enum BattleFrontierStatsIndex BattleFrontierStats_GetCastleRecordCPIndex(u8 challengeType);
+enum BattleFrontierStatsIndex BattleFrontierStats_GetArcadeLatestStreakIndex(u8 challengeType);
+enum BattleFrontierStatsIndex BattleFrontierStats_GetArcadeCurrentStreakIndex(u8 challengeType);
+enum BattleFrontierStatsIndex BattleFrontierStats_GetTowerLatestStreakIndex(u8 challengeType);
+enum BattleFrontierStatsIndex BattleFrontierStats_GetTowerRecordStreakIndex(u8 challengeType);
+int BattleFrontierStats_GetHostFriendIdx(u32 statIndex);
 u8 sub_0205E6D8(SaveData *saveData);
-int sub_0205E700(u8 param0);
-int sub_0205E728(u8 param0);
-int sub_0205E750(u8 param0);
-int sub_0205E790(u8 param0);
 
 #endif // POKEPLATINUM_UNK_0205DFC4_H

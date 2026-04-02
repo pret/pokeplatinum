@@ -2,7 +2,7 @@
   "key": 25268,
   "messages": [
     {
-      "id": "pl_msg_00000494_00000",
+      "id": "Route212House_Text_WantToTeachMove",
       "en_US": [
         "If you’d share your shards with me,\n",
         "I can teach your Pokémon some moves.\r",
@@ -10,48 +10,48 @@
       ]
     },
     {
-      "id": "pl_msg_00000494_00001",
+      "id": "Route212House_Text_SeeYouThen",
       "en_US": "See you, then!"
     },
     {
-      "id": "pl_msg_00000494_00002",
+      "id": "Route212House_Text_TeachWhichPokemon",
       "en_US": "Which Pokémon should I teach?\r"
     },
     {
-      "id": "pl_msg_00000494_00003",
+      "id": "Route212House_Text_NoMovesToTeach",
       "en_US": [
         "There are no moves that can be taught\n",
         "to this Pokémon."
       ]
     },
     {
-      "id": "pl_msg_00000494_00004",
+      "id": "Route212House_Text_NotEnoughShards",
       "en_US": "You don’t have enough shards."
     },
     {
-      "id": "pl_msg_00000494_00005",
+      "id": "Route212House_Text_TeachWhichMove",
       "en_US": [
         "Which move should be taught to\n",
         "{STRVAR_1 1, 0, 0}?"
       ]
     },
     {
-      "id": "pl_msg_00000494_00006",
+      "id": "Route212House_Text_Dummy6",
       "garbage": 16
     },
     {
-      "id": "pl_msg_00000494_00007",
+      "id": "Route212House_Text_Dummy7",
       "garbage": 28
     },
     {
-      "id": "pl_msg_00000494_00008",
+      "id": "Route212House_Text_PokemonLearnedMove",
       "en_US": [
         "{STRVAR_1 1, 0, 0} learned\n",
         "{STRVAR_1 6, 1, 0}!"
       ]
     },
     {
-      "id": "pl_msg_00000494_00009",
+      "id": "Route212House_Text_DeleteOlderMove",
       "en_US": [
         "{STRVAR_1 1, 0, 0} is trying to learn\n",
         "{STRVAR_1 6, 1, 0}.\r",
@@ -62,29 +62,29 @@
       ]
     },
     {
-      "id": "pl_msg_00000494_00010",
+      "id": "Route212House_Text_StopTryingToTeachMove",
       "en_US": "Stop trying to teach {STRVAR_1 6, 1, 0}?"
     },
     {
-      "id": "pl_msg_00000494_00011",
+      "id": "Route212House_Text_PokemonDidntLearnMove",
       "en_US": [
         "{STRVAR_1 1, 0, 0} did not learn\n",
         "the move {STRVAR_1 6, 1, 0}.\r"
       ]
     },
     {
-      "id": "pl_msg_00000494_00012",
+      "id": "Route212House_Text_OKToForgetMove",
       "en_US": [
         "Is it OK to forget the\n",
         "move {STRVAR_1 6, 1, 0}?"
       ]
     },
     {
-      "id": "pl_msg_00000494_00013",
+      "id": "Route212House_Text_OneTwoThreePoof",
       "en_US": "1,{PAUSE 20} 2,{PAUSE 20} and...{PAUSE 20} ...{PAUSE 20} Poof!"
     },
     {
-      "id": "pl_msg_00000494_00014",
+      "id": "Route212House_Text_PokemonForgotMove",
       "en_US": [
         "{STRVAR_1 1, 0, 0} forgot how to\n",
         "use {STRVAR_1 6, 1, 0}.\r",
@@ -92,18 +92,18 @@
       ]
     },
     {
-      "id": "pl_msg_00000494_00015",
+      "id": "Route212House_Text_PokemonLearnedMove2",
       "en_US": "{STRVAR_1 1, 0, 0} learned {STRVAR_1 6, 1, 0}."
     },
     {
-      "id": "pl_msg_00000494_00016",
+      "id": "Route212House_Text_CantTeachEgg",
       "en_US": [
         "Teach an Egg a move?\n",
         "That’s out of my league!"
       ]
     },
     {
-      "id": "pl_msg_00000494_00017",
+      "id": "Route212House_Text_DaddyCollectsShards",
       "en_US": [
         "My daddy collects shards.\r",
         "If you find any, like in the\n",
@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000494_00018",
+      "id": "Route212House_Text_DaddyLikesBlueShards",
       "en_US": [
         "My daddy likes Blue Shards.\r",
         "There are other people who like shards\n",
@@ -121,7 +121,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000494_00019",
+      "id": "Route212House_Text_BlueShardsForMe",
       "en_US": [
         "Red Shards emphasize power.\n",
         "Blue Shards are for special effects.\f",

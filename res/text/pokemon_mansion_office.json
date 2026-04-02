@@ -2,7 +2,7 @@
   "key": 21180,
   "messages": [
     {
-      "id": "pl_msg_00000492_00000",
+      "id": "PokemonMansionOffice_Text_WelcomeToMansion",
       "en_US": [
         "Backlot: Hello, hello!\n",
         "Welcome to my opulent mansion!\r",
@@ -19,15 +19,15 @@
       ]
     },
     {
-      "id": "pl_msg_00000492_00001",
+      "id": "PokemonMansionOffice_Text_Dummy1",
       "garbage": 124
     },
     {
-      "id": "pl_msg_00000492_00002",
+      "id": "PokemonMansionOffice_Text_Dummy2",
       "garbage": 118
     },
     {
-      "id": "pl_msg_00000492_00003",
+      "id": "PokemonMansionOffice_Text_YouAreEnviousYes",
       "en_US": [
         "Backlot: Er-hem!\r",
         "There’s a lot for me to be proud of\n",
@@ -43,14 +43,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000492_00004",
+      "id": "PokemonMansionOffice_Text_IKnowYoureEnvious",
       "en_US": [
         "I know you’re really envious...\n",
         "You’re not fooling anyone..."
       ]
     },
     {
-      "id": "pl_msg_00000492_00005",
+      "id": "PokemonMansionOffice_Text_YouAreEnviousYes2",
       "en_US": [
         "Backlot: Muhohoho... I bet you are!\n",
         "I knew you would be!\r",
@@ -65,7 +65,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000492_00006",
+      "id": "PokemonMansionOffice_Text_IBetYouAre",
       "en_US": [
         "Backlot: Muhohoho... I bet you are!\n",
         "I knew you would be!\r",
@@ -80,7 +80,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000492_00007",
+      "id": "PokemonMansionOffice_Text_ItDoesntExist",
       "en_US": [
         "Butler: M-Master!\n",
         "Th-that Pokémon you mentioned...\f",
@@ -88,7 +88,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000492_00008",
+      "id": "PokemonMansionOffice_Text_WhatAreYouSaying",
       "en_US": [
         "Backlot: Wha...\r",
         "Erm...\r",
@@ -99,14 +99,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000492_00009",
+      "id": "PokemonMansionOffice_Text_RightAwaySir",
       "en_US": [
         "Butler: Yes, Master!\n",
         "Right away, sir!\r"
       ]
     },
     {
-      "id": "pl_msg_00000492_00010",
+      "id": "PokemonMansionOffice_Text_ThereAreCutePokemon",
       "en_US": [
         "Backlot: ...It’s true, I tell you!\n",
         "No lies ever leave these lips!\r",
@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000492_00011",
+      "id": "PokemonMansionOffice_Text_MasterIsWonderful",
       "en_US": [
         "Butler: Master is a truly wonderful\n",
         "and generous person!\r",
@@ -125,7 +125,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000492_00012",
+      "id": "PokemonMansionOffice_Text_MasterEnjoysShowingGarden",
       "en_US": [
         "Butler: Master actually quite enjoys\n",
         "showing his prized garden to strong\f",
@@ -133,14 +133,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000492_00013",
+      "id": "PokemonMansionOffice_Text_MasterTookStroll",
       "en_US": [
         "Butler: Master took a stroll in his\n",
         "trophy garden today, like usual."
       ]
     },
     {
-      "id": "pl_msg_00000492_00014",
+      "id": "PokemonMansionOffice_Text_ThereWereSomePokemon",
       "en_US": [
         "Butler: Did you see them? There were\n",
         "some {STRVAR_1 0, 0, 0}, weren’t there?\r",
@@ -149,7 +149,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000492_00015",
+      "id": "PokemonMansionOffice_Text_HowWasTrophyGarden",
       "en_US": [
         "Butler: How do you find it? Master’s\n",
         "upgraded trophy garden, I mean.\r",
@@ -160,21 +160,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000492_00016",
+      "id": "PokemonMansionOffice_Text_LookDontTouchStatue",
       "en_US": [
         "You may look, but please refrain from\n",
         "touching this Pokémon statue."
       ]
     },
     {
-      "id": "pl_msg_00000492_00017",
+      "id": "PokemonMansionOffice_Text_SorryDontTouchStatue",
       "en_US": [
         "I’m very sorry. But please refrain\n",
         "from touching this statue.\r"
       ]
     },
     {
-      "id": "pl_msg_00000492_00018",
+      "id": "PokemonMansionOffice_Text_ExpensivePokemonStatue",
       "en_US": [
         "It’s a very expensive-looking Pokémon\n",
         "statue...\r",
@@ -183,7 +183,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000492_00019",
+      "id": "PokemonMansionOffice_Text_WouldYouReadBook",
       "en_US": [
         "It’s a very expensive-looking book\n",
         "on Pokémon.\r",
@@ -191,7 +191,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000492_00020",
+      "id": "PokemonMansionOffice_Text_ManaphyInfo",
       "en_US": [
         "MANAPHY\r",
         "An extremely rare Pokémon that has\n",
@@ -200,14 +200,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000492_00021",
+      "id": "PokemonMansionOffice_Text_ManaphyAddedToPokedex",
       "en_US": [
         "Information on MANAPHY was added to\n",
         "the Pokédex."
       ]
     },
     {
-      "id": "pl_msg_00000492_00022",
+      "id": "PokemonMansionOffice_Text_PlayerPutBookBack",
       "en_US": "{STRVAR_1 3, 0, 0} put the book back."
     }
   ]

@@ -16,6 +16,7 @@
 #include "overlay104/ov104_0223BCBC.h"
 #include "overlay104/struct_ov104_02238240.h"
 
+#include "battle_frontier_stats.h"
 #include "bg_window.h"
 #include "communication_system.h"
 #include "font.h"
@@ -46,7 +47,6 @@
 #include "touch_screen.h"
 #include "trainer_info.h"
 #include "unk_02030494.h"
-#include "unk_0203061C.h"
 #include "unk_020363E8.h"
 #include "unk_0209BA80.h"
 #include "vram_transfer.h"

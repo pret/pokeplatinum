@@ -13,6 +13,7 @@
 #include "overlay090/struct_ov90_021D0D80.h"
 #include "overlay090/struct_ov90_021D1750.h"
 
+#include "battle_frontier_stats.h"
 #include "bg_window.h"
 #include "font.h"
 #include "game_options.h"
@@ -34,7 +35,6 @@
 #include "text.h"
 #include "unk_02014A84.h"
 #include "unk_0202D05C.h"
-#include "unk_0203061C.h"
 #include "unk_0208C098.h"
 #include "vram_transfer.h"
 
@@ -642,8 +642,8 @@ static void ov90_021D14C8(UnkStruct_ov90_021D0ECC *param0, Window *param1, u8 pa
     u16 v0, v1, v2;
     int v3;
 
-    v1 = sub_02030698(param0->frontier, param3, 0xff);
-    v2 = sub_02030698(param0->frontier, param3 + 1, 0xff);
+    v1 = BattleFrontierStats_GetStat(param0->frontier, param3, 0xff);
+    v2 = BattleFrontierStats_GetStat(param0->frontier, param3 + 1, 0xff);
     v0 = sub_0202D414(param0->unk_20, 8 + param2, 0);
 
     Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, param0->unk_28.unk_24[v0], 4, param4, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(3, 4, 0), NULL);

@@ -6,12 +6,13 @@
 #include "constants/battle_frontier.h"
 
 #include "struct_decls/struct_0202D750_decl.h"
-#include "struct_decls/struct_020308A0_decl.h"
 #include "struct_defs/battle_frontier.h"
 #include "struct_defs/struct_0203E564.h"
 
 #include "applications/frontier/records/windows.h"
 
+#include "battle_frontier_stats.h"
+#include "battle_hall_win_records.h"
 #include "battle_tower_modes.h"
 #include "bg_window.h"
 #include "font.h"
@@ -35,8 +36,6 @@
 #include "unk_0202FF4C.h"
 #include "unk_020302D0.h"
 #include "unk_02030494.h"
-#include "unk_0203061C.h"
-#include "unk_02030880.h"
 #include "unk_0205DFC4.h"
 
 #include "res/graphics/poketch/poketch.naix"
@@ -82,7 +81,7 @@ static void DisplayRecords(FrontierRecordsApp *app);
 static void DisplayBattleFactoryLevel50Record(FrontierRecordsApp *app);
 static void DisplayBattleFactoryOpenLevelRecord(FrontierRecordsApp *app);
 static u32 GetBattleFactoryLatestStreakEntryID(FrontierRecordsApp *app, u8 openLevel);
-static void DispalyBattleHallRecord(FrontierRecordsApp *app);
+static void DisplayBattleHallRecord(FrontierRecordsApp *app);
 static void SetStringTemplateSpecies(FrontierRecordsApp *app);
 static void DisplayBattleCastleRecord(FrontierRecordsApp *app);
 static u32 GetBattleCastleLatestStreakEntryID(FrontierRecordsApp *app);
@@ -469,7 +468,7 @@ static void DisplayRecords(FrontierRecordsApp *app)
         DisplayBattleFactoryOpenLevelRecord(app);
         break;
     case FRONTIER_RECORDS_APP_HALL:
-        DispalyBattleHallRecord(app);
+        DisplayBattleHallRecord(app);
         break;
     case FRONTIER_RECORDS_APP_CASTLE:
         DisplayBattleCastleRecord(app);
@@ -516,16 +515,16 @@ static void DisplayBattleFactoryLevel50Record(FrontierRecordsApp *app)
     Window_ScheduleCopyToVRAM(&app->windows[WINDOW_FACTORY_LEVEL_50_HEADER]);
 
     PrintBasicMessage(app, &app->windows[WINDOW_FACTORY_LEVEL_50_LATEST], GetBattleFactoryLatestStreakEntryID(app, FALSE), FONT_MESSAGE);
-    SetStringTemplateNumber(app, 0, sub_02030698(app->frontier, sub_0205E430(0, app->challengeType), 0xFF));
+    SetStringTemplateNumber(app, 0, BattleFrontierStats_GetStat(app->frontier, BattleFrontierStats_GetFactoryLatestStreakIdx(FALSE, app->challengeType), 0xFF));
     PrintMessage(app, &app->windows[WINDOW_FACTORY_LEVEL_50_LATEST], BattleFrontierRecords_Text_WinStreak, 112, 0, 1, 2, 0, FONT_SYSTEM, FALSE, TEXT_ALIGN_CENTER);
-    SetStringTemplateNumber(app, 0, sub_02030698(app->frontier, sub_0205E488(0, app->challengeType), 0xFF));
+    SetStringTemplateNumber(app, 0, BattleFrontierStats_GetStat(app->frontier, BattleFrontierStats_GetFactoryLatestTradeCountIndex(0, app->challengeType), 0xFF));
     PrintMessage(app, &app->windows[WINDOW_FACTORY_LEVEL_50_LATEST], BattleFrontierRecords_Text_Number, 224, 0, 1, 2, 0, FONT_SYSTEM, FALSE, TEXT_ALIGN_RIGHT);
     Window_ScheduleCopyToVRAM(&app->windows[WINDOW_FACTORY_LEVEL_50_LATEST]);
 
     PrintBasicMessage(app, &app->windows[WINDOW_FACTORY_LEVEL_50_RECORD], BattleFrontierRecords_Text_Record, FONT_MESSAGE);
-    SetStringTemplateNumber(app, 0, sub_02030698(app->frontier, sub_0205E45C(0, app->challengeType), 0xFF));
+    SetStringTemplateNumber(app, 0, BattleFrontierStats_GetStat(app->frontier, BattleFrontierStats_GetFactoryRecordStreakIdx(FALSE, app->challengeType), 0xFF));
     PrintMessage(app, &app->windows[WINDOW_FACTORY_LEVEL_50_RECORD], BattleFrontierRecords_Text_WinStreak, 112, 0, 1, 2, 0, FONT_SYSTEM, FALSE, TEXT_ALIGN_CENTER);
-    SetStringTemplateNumber(app, 0, sub_02030698(app->frontier, sub_0205E4B4(0, app->challengeType), 0xFF));
+    SetStringTemplateNumber(app, 0, BattleFrontierStats_GetStat(app->frontier, BattleFrontierStats_GetFactoryRecordTradeCountIndex(0, app->challengeType), 0xFF));
     PrintMessage(app, &app->windows[WINDOW_FACTORY_LEVEL_50_RECORD], BattleFrontierRecords_Text_Number, 224, 0, 1, 2, 0, FONT_SYSTEM, FALSE, TEXT_ALIGN_RIGHT);
     Window_ScheduleCopyToVRAM(&app->windows[WINDOW_FACTORY_LEVEL_50_RECORD]);
 }
@@ -536,27 +535,27 @@ static void DisplayBattleFactoryOpenLevelRecord(FrontierRecordsApp *app)
     Window_ScheduleCopyToVRAM(&app->windows[WINDOW_FACTORY_OPEN_LEVEL_HEADER]);
 
     PrintBasicMessage(app, &app->windows[WINDOW_FACTORY_OPEN_LEVEL_LATEST], GetBattleFactoryLatestStreakEntryID(app, TRUE), FONT_MESSAGE);
-    SetStringTemplateNumber(app, 0, sub_02030698(app->frontier, sub_0205E430(1, app->challengeType), 0xFF));
+    SetStringTemplateNumber(app, 0, BattleFrontierStats_GetStat(app->frontier, BattleFrontierStats_GetFactoryLatestStreakIdx(TRUE, app->challengeType), 0xFF));
     PrintMessage(app, &app->windows[WINDOW_FACTORY_OPEN_LEVEL_LATEST], BattleFrontierRecords_Text_WinStreak, 112, 0, 1, 2, 0, FONT_SYSTEM, FALSE, TEXT_ALIGN_CENTER);
-    SetStringTemplateNumber(app, 0, sub_02030698(app->frontier, sub_0205E488(1, app->challengeType), 0xFF));
+    SetStringTemplateNumber(app, 0, BattleFrontierStats_GetStat(app->frontier, BattleFrontierStats_GetFactoryLatestTradeCountIndex(1, app->challengeType), 0xFF));
     PrintMessage(app, &app->windows[WINDOW_FACTORY_OPEN_LEVEL_LATEST], BattleFrontierRecords_Text_Number, 224, 0, 1, 2, 0, FONT_SYSTEM, FALSE, TEXT_ALIGN_RIGHT);
     Window_ScheduleCopyToVRAM(&app->windows[WINDOW_FACTORY_OPEN_LEVEL_LATEST]);
 
     PrintBasicMessage(app, &app->windows[WINDOW_FACTORY_OPEN_LEVEL_RECORD], BattleFrontierRecords_Text_Record, FONT_MESSAGE);
-    SetStringTemplateNumber(app, 0, sub_02030698(app->frontier, sub_0205E45C(1, app->challengeType), 0xFF));
+    SetStringTemplateNumber(app, 0, BattleFrontierStats_GetStat(app->frontier, BattleFrontierStats_GetFactoryRecordStreakIdx(TRUE, app->challengeType), 0xFF));
     PrintMessage(app, &app->windows[WINDOW_FACTORY_OPEN_LEVEL_RECORD], BattleFrontierRecords_Text_WinStreak, 112, 0, 1, 2, 0, FONT_SYSTEM, FALSE, TEXT_ALIGN_CENTER);
-    SetStringTemplateNumber(app, 0, sub_02030698(app->frontier, sub_0205E4B4(1, app->challengeType), 0xFF));
+    SetStringTemplateNumber(app, 0, BattleFrontierStats_GetStat(app->frontier, BattleFrontierStats_GetFactoryRecordTradeCountIndex(1, app->challengeType), 0xFF));
     PrintMessage(app, &app->windows[WINDOW_FACTORY_OPEN_LEVEL_RECORD], BattleFrontierRecords_Text_Number, 224, 0, 1, 2, 0, FONT_SYSTEM, FALSE, TEXT_ALIGN_RIGHT);
     Window_ScheduleCopyToVRAM(&app->windows[WINDOW_FACTORY_OPEN_LEVEL_RECORD]);
 }
 
 static u32 GetBattleFactoryLatestStreakEntryID(FrontierRecordsApp *app, u8 openLevel)
 {
-    u32 v1 = !openLevel ? 102 : 104;
+    u32 v1 = !openLevel ? STAT_FACTORY_50_WFC_STREAK_ACTIVE : STAT_FACTORY_OPEN_WFC_STREAK_ACTIVE;
 
     u8 streakIsActive;
     if (app->challengeType == FRONTIER_CHALLENGE_MULTI_WFC) {
-        streakIsActive = sub_02030698(SaveData_GetBattleFrontier(app->saveData), v1, sub_0205E6A8(v1));
+        streakIsActive = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(app->saveData), v1, BattleFrontierStats_GetHostFriendIdx(v1));
     } else {
         streakIsActive = sub_020300E0(sub_020300F4(app->saveData), 10, (openLevel * 4) + app->challengeType, NULL);
     }
@@ -568,7 +567,7 @@ static u32 GetBattleFactoryLatestStreakEntryID(FrontierRecordsApp *app, u8 openL
     return BattleFrontierRecords_Text_Prev;
 }
 
-static void DispalyBattleHallRecord(FrontierRecordsApp *app)
+static void DisplayBattleHallRecord(FrontierRecordsApp *app)
 {
     Window_FillTilemap(&app->windows[WINDOW_HEADER], 0);
     PrintMessage(app, &app->windows[WINDOW_HEADER], BattleFrontierRecords_Text_BattleHall, 8, 0, 1, 2, 0, FONT_SYSTEM, FALSE, TEXT_ALIGN_LEFT);
@@ -596,10 +595,10 @@ static void DispalyBattleHallRecord(FrontierRecordsApp *app)
     PrintBasicMessage(app, &app->windows[WINDOW_HALL_LATEST], BattleFrontierRecords_Text_Prev, FONT_MESSAGE);
 
     u16 streak;
-    if (app->species != sub_02030698(SaveData_GetBattleFrontier(app->saveData), sub_0205E55C(app->challengeType), sub_0205E6A8(sub_0205E55C(app->challengeType)))) {
+    if (app->species != BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(app->saveData), BattleFrontierStats_GetHallLatestSpeciesIndex(app->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetHallLatestSpeciesIndex(app->challengeType)))) {
         streak = 0;
     } else {
-        streak = sub_02030698(app->frontier, sub_0205E50C(app->challengeType), 0xFF);
+        streak = BattleFrontierStats_GetStat(app->frontier, BattleFrontierStats_GetHallLatestStreakIndex(app->challengeType), 0xFF);
     }
 
     SetStringTemplateNumber(app, 0, streak);
@@ -609,15 +608,15 @@ static void DispalyBattleHallRecord(FrontierRecordsApp *app)
     PrintBasicMessage(app, &app->windows[WINDOW_HALL_RECORD], BattleFrontierRecords_Text_Record, FONT_MESSAGE);
 
     int resultCode;
-    BattleFrontierStage *frontierStage = sub_020308A0(app->saveData, HEAP_ID_FIELD2, &resultCode);
+    BattleHallWinRecords *records = BattleHallWinRecords_Get(app->saveData, HEAP_ID_FIELD2, &resultCode);
     if (resultCode != LOAD_RESULT_OK) {
         streak = 0;
     } else {
-        streak = sub_020308BC(app->saveData, frontierStage, sub_0205E584(app->challengeType), app->species);
+        streak = BattleHallWinRecords_GetRecordForSpecies(app->saveData, records, BattleFrontierStats_GetHallRecordStreakIndex(app->challengeType), app->species);
     }
 
-    if (frontierStage != NULL) {
-        Heap_Free(frontierStage);
+    if (records != NULL) {
+        Heap_Free(records);
     }
 
     SetStringTemplateNumber(app, 0, streak);
@@ -660,16 +659,16 @@ static void DisplayBattleCastleRecord(FrontierRecordsApp *app)
     Window_ScheduleCopyToVRAM(&app->windows[WINDOW_CASTLE_POINTS]);
 
     PrintBasicMessage(app, &app->windows[WINDOW_CASTLES_LATEST], GetBattleCastleLatestStreakEntryID(app), FONT_MESSAGE);
-    SetStringTemplateNumber(app, 0, sub_02030698(app->frontier, sub_0205E5E0(app->challengeType), 0xFF));
+    SetStringTemplateNumber(app, 0, BattleFrontierStats_GetStat(app->frontier, BattleFrontierStats_GetCastleLatestStreakIndex(app->challengeType), 0xFF));
     PrintMessage(app, &app->windows[WINDOW_CASTLES_LATEST], BattleFrontierRecords_Text_WinStreakTemplate, 112, 0, 1, 2, 0, FONT_SYSTEM, FALSE, TEXT_ALIGN_CENTER);
-    SetStringTemplateNumber(app, 0, sub_02030698(SaveData_GetBattleFrontier(app->saveData), sub_0205E630(app->challengeType), sub_0205E6A8(sub_0205E630(app->challengeType))));
+    SetStringTemplateNumber(app, 0, BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(app->saveData), BattleFrontierStats_GetCastleLatestCPIndex(app->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleLatestCPIndex(app->challengeType))));
     PrintMessage(app, &app->windows[WINDOW_CASTLES_LATEST], BattleFrontierRecords_Text_CP, 224, 0, 1, 2, 0, FONT_SYSTEM, FALSE, TEXT_ALIGN_RIGHT);
     Window_ScheduleCopyToVRAM(&app->windows[WINDOW_CASTLES_LATEST]);
 
     PrintBasicMessage(app, &app->windows[WINDOW_CASTLES_RECORD], BattleFrontierRecords_Text_Record, FONT_MESSAGE);
-    SetStringTemplateNumber(app, 0, sub_02030698(app->frontier, sub_0205E608(app->challengeType), 0xFF));
+    SetStringTemplateNumber(app, 0, BattleFrontierStats_GetStat(app->frontier, BattleFrontierStats_GetCastleRecordStreakIndex(app->challengeType), 0xFF));
     PrintMessage(app, &app->windows[WINDOW_CASTLES_RECORD], BattleFrontierRecords_Text_WinStreakTemplate, 112, 0, 1, 2, 0, FONT_SYSTEM, FALSE, TEXT_ALIGN_CENTER);
-    SetStringTemplateNumber(app, 0, sub_02030698(SaveData_GetBattleFrontier(app->saveData), sub_0205E680(app->challengeType), sub_0205E6A8(sub_0205E680(app->challengeType))));
+    SetStringTemplateNumber(app, 0, BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(app->saveData), BattleFrontierStats_GetCastleRecordCPIndex(app->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleRecordCPIndex(app->challengeType))));
     PrintMessage(app, &app->windows[WINDOW_CASTLES_RECORD], BattleFrontierRecords_Text_CP, 224, 0, 1, 2, 0, FONT_SYSTEM, FALSE, TEXT_ALIGN_RIGHT);
     Window_ScheduleCopyToVRAM(&app->windows[WINDOW_CASTLES_RECORD]);
 }
@@ -678,7 +677,7 @@ static u32 GetBattleCastleLatestStreakEntryID(FrontierRecordsApp *app)
 {
     u8 isActive;
     if (app->challengeType == FRONTIER_CHALLENGE_MULTI_WFC) {
-        isActive = sub_02030698(SaveData_GetBattleFrontier(app->saveData), 108, sub_0205E6A8(108));
+        isActive = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(app->saveData), STAT_CASTLE_WFC_STREAK_ACTIVE, BattleFrontierStats_GetHostFriendIdx(STAT_CASTLE_WFC_STREAK_ACTIVE));
     } else {
         isActive = sub_02030470(sub_0203041C(app->saveData), 9, app->challengeType, 0, NULL);
     }
@@ -712,12 +711,12 @@ static void DisplayBattleArcadeRecord(FrontierRecordsApp *app)
     Window_ScheduleCopyToVRAM(&app->windows[WINDOW_HEADER]);
 
     PrintBasicMessage(app, &app->windows[WINDOW_ARCADE_LATEST], GetBattleArcadeLatestStreakEntryID(app), FONT_MESSAGE);
-    SetStringTemplateNumber(app, 0, sub_02030698(app->frontier, sub_0205E700(app->challengeType), 0xFF));
+    SetStringTemplateNumber(app, 0, BattleFrontierStats_GetStat(app->frontier, BattleFrontierStats_GetArcadeLatestStreakIndex(app->challengeType), 0xFF));
     PrintMessage(app, &app->windows[WINDOW_ARCADE_LATEST], BattleFrontierRecords_Text_GamesCleared, 112, 0, 1, 2, 0, FONT_SYSTEM, FALSE, TEXT_ALIGN_CENTER);
     Window_ScheduleCopyToVRAM(&app->windows[WINDOW_ARCADE_LATEST]);
 
     PrintBasicMessage(app, &app->windows[WINDOW_ARCADE_RECORD], 31, FONT_MESSAGE);
-    SetStringTemplateNumber(app, 0, sub_02030698(app->frontier, sub_0205E728(app->challengeType), 0xFF));
+    SetStringTemplateNumber(app, 0, BattleFrontierStats_GetStat(app->frontier, BattleFrontierStats_GetArcadeCurrentStreakIndex(app->challengeType), 0xFF));
     PrintMessage(app, &app->windows[WINDOW_ARCADE_RECORD], BattleFrontierRecords_Text_GamesCleared, 112, 0, 1, 2, 0, FONT_SYSTEM, FALSE, TEXT_ALIGN_CENTER);
     Window_ScheduleCopyToVRAM(&app->windows[WINDOW_ARCADE_RECORD]);
 }
@@ -726,7 +725,7 @@ static u32 GetBattleArcadeLatestStreakEntryID(FrontierRecordsApp *app)
 {
     u8 isActive;
     if (app->challengeType == FRONTIER_CHALLENGE_MULTI_WFC) {
-        isActive = sub_02030698(SaveData_GetBattleFrontier(app->saveData), 110, sub_0205E6A8(110));
+        isActive = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(app->saveData), STAT_ARCADE_WFC_STREAK_ACTIVE, BattleFrontierStats_GetHostFriendIdx(STAT_ARCADE_WFC_STREAK_ACTIVE));
     } else {
         isActive = sub_02030600(sub_020305B8(app->saveData), 8, app->challengeType, 0, NULL);
     }
@@ -757,12 +756,12 @@ static void DisplayBattleTowerSoloRecord(FrontierRecordsApp *app)
     Window_ScheduleCopyToVRAM(&app->windows[WINDOW_HEADER]);
 
     PrintBasicMessage(app, &app->windows[WINDOW_TOWER_SOLO_LATEST], GetBattleTowerLatestStreakEntryID(app, app->challengeType), FONT_MESSAGE);
-    SetStringTemplateNumber(app, 0, sub_02030698(app->frontier, sub_0205E750(app->challengeType), 0xFF));
+    SetStringTemplateNumber(app, 0, BattleFrontierStats_GetStat(app->frontier, BattleFrontierStats_GetTowerLatestStreakIndex(app->challengeType), 0xFF));
     PrintMessage(app, &app->windows[WINDOW_TOWER_SOLO_LATEST], BattleFrontierRecords_Text_WinStreak, 112, 0, 1, 2, 0, FONT_SYSTEM, FALSE, TEXT_ALIGN_CENTER);
     Window_ScheduleCopyToVRAM(&app->windows[WINDOW_TOWER_SOLO_LATEST]);
 
     PrintBasicMessage(app, &app->windows[WINDOW_TOWER_SOLO_RECORD], 31, FONT_MESSAGE);
-    SetStringTemplateNumber(app, 0, sub_02030698(app->frontier, sub_0205E790(app->challengeType), 0xFF));
+    SetStringTemplateNumber(app, 0, BattleFrontierStats_GetStat(app->frontier, BattleFrontierStats_GetTowerRecordStreakIndex(app->challengeType), 0xFF));
     PrintMessage(app, &app->windows[WINDOW_TOWER_SOLO_RECORD], BattleFrontierRecords_Text_WinStreak, 112, 0, 1, 2, 0, FONT_SYSTEM, FALSE, TEXT_ALIGN_CENTER);
     Window_ScheduleCopyToVRAM(&app->windows[WINDOW_TOWER_SOLO_RECORD]);
 }
@@ -778,12 +777,12 @@ static void DisplayBattleTowerMultiRecord(FrontierRecordsApp *app)
     Window_ScheduleCopyToVRAM(&app->windows[WINDOW_TOWER_MULTI_W_TRAINER]);
 
     PrintBasicMessage(app, &app->windows[WINDOW_TOWER_MULTI_LATEST], GetBattleTowerLatestStreakEntryID(app, app->challengeType), FONT_MESSAGE);
-    SetStringTemplateNumber(app, 0, sub_02030698(app->frontier, sub_0205E750(app->challengeType), 0xFF));
+    SetStringTemplateNumber(app, 0, BattleFrontierStats_GetStat(app->frontier, BattleFrontierStats_GetTowerLatestStreakIndex(app->challengeType), 0xFF));
     PrintMessage(app, &app->windows[WINDOW_TOWER_MULTI_LATEST], BattleFrontierRecords_Text_WinStreak, 112, 0, 1, 2, 0, FONT_SYSTEM, FALSE, TEXT_ALIGN_CENTER);
     Window_ScheduleCopyToVRAM(&app->windows[WINDOW_TOWER_MULTI_LATEST]);
 
     PrintBasicMessage(app, &app->windows[WINDOW_TOWER_MULTI_RECORD], BattleFrontierRecords_Text_Record, FONT_MESSAGE);
-    SetStringTemplateNumber(app, 0, sub_02030698(app->frontier, sub_0205E790(app->challengeType), 0xFF));
+    SetStringTemplateNumber(app, 0, BattleFrontierStats_GetStat(app->frontier, BattleFrontierStats_GetTowerRecordStreakIndex(app->challengeType), 0xFF));
     PrintMessage(app, &app->windows[WINDOW_TOWER_MULTI_RECORD], BattleFrontierRecords_Text_WinStreak, 112, 0, 1, 2, 0, FONT_SYSTEM, FALSE, TEXT_ALIGN_CENTER);
     Window_ScheduleCopyToVRAM(&app->windows[WINDOW_TOWER_MULTI_RECORD]);
 
@@ -791,12 +790,12 @@ static void DisplayBattleTowerMultiRecord(FrontierRecordsApp *app)
     Window_ScheduleCopyToVRAM(&app->windows[WINDOW_TOWER_MULTI_W_FRIEND]);
 
     PrintBasicMessage(app, &app->windows[WINDOW_TOWER_W_FRIEND_LATEST], GetBattleTowerLatestStreakEntryID(app, BATTLE_TOWER_MODE_LINK_MULTI), FONT_MESSAGE);
-    SetStringTemplateNumber(app, 0, sub_02030698(app->frontier, sub_0205E750(3), 0xFF));
+    SetStringTemplateNumber(app, 0, BattleFrontierStats_GetStat(app->frontier, BattleFrontierStats_GetTowerLatestStreakIndex(3), 0xFF));
     PrintMessage(app, &app->windows[WINDOW_TOWER_W_FRIEND_LATEST], BattleFrontierRecords_Text_WinStreak, 112, 0, 1, 2, 0, FONT_SYSTEM, FALSE, TEXT_ALIGN_CENTER);
     Window_ScheduleCopyToVRAM(&app->windows[WINDOW_TOWER_W_FRIEND_LATEST]);
 
     PrintBasicMessage(app, &app->windows[WINDOW_TOWER_W_FRIEND_RECORD], BattleFrontierRecords_Text_Record, FONT_MESSAGE);
-    SetStringTemplateNumber(app, 0, sub_02030698(app->frontier, sub_0205E790(3), 0xFF));
+    SetStringTemplateNumber(app, 0, BattleFrontierStats_GetStat(app->frontier, BattleFrontierStats_GetTowerRecordStreakIndex(3), 0xFF));
     PrintMessage(app, &app->windows[WINDOW_TOWER_W_FRIEND_RECORD], BattleFrontierRecords_Text_WinStreak, 112, 0, 1, 2, 0, FONT_SYSTEM, FALSE, TEXT_ALIGN_CENTER);
     Window_ScheduleCopyToVRAM(&app->windows[WINDOW_TOWER_W_FRIEND_RECORD]);
 }

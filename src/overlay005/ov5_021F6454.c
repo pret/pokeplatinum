@@ -11,7 +11,6 @@
 #include "generated/items.h"
 #include "generated/species.h"
 
-#include "struct_decls/struct_020308A0_decl.h"
 #include "struct_decls/struct_02061830_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_defs/wi_fi_history.h"
@@ -21,6 +20,7 @@
 #include "overlay005/ov5_021ECE40.h"
 
 #include "bag.h"
+#include "battle_hall_win_records.h"
 #include "berry_patch_graphics.h"
 #include "bg_window.h"
 #include "billboard.h"
@@ -53,7 +53,6 @@
 #include "sys_task_manager.h"
 #include "system_vars.h"
 #include "unk_0202C858.h"
-#include "unk_02030880.h"
 #include "unk_02038F8C.h"
 #include "unk_0205DFC4.h"
 #include "vars_flags.h"
@@ -123,7 +122,7 @@ static u16 sAlphabeticalSpeciesLists[] = {
 BOOL ScrCmd_ShowBattleHallRecordMonSelectionMenu(ScriptContext *ctx)
 {
     int resultCode;
-    BattleFrontierStage *frontierStage;
+    BattleHallWinRecords *records;
     u16 *speciesList;
     FieldSystem *fieldSystem = ctx->fieldSystem;
     StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
@@ -137,14 +136,14 @@ BOOL ScrCmd_ShowBattleHallRecordMonSelectionMenu(ScriptContext *ctx)
 
     MessageLoader *monMsgLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_FIELD3);
     BattleHallRecordSelector *selector = BattleHallRecordSelecter_New(fieldSystem, 20, 1, 0, TRUE, FieldSystem_GetVarPointer(fieldSystem, resultVar), *strTemplate, FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_WINDOW), monMsgLoader, FieldSystem_GetVarPointer(fieldSystem, listPosVar), FieldSystem_GetVarPointer(fieldSystem, cursorPosVar));
-    frontierStage = sub_020308A0(fieldSystem->saveData, HEAP_ID_FIELD2, &resultCode);
+    records = BattleHallWinRecords_Get(fieldSystem->saveData, HEAP_ID_FIELD2, &resultCode);
 
     if (resultCode == LOAD_RESULT_OK) {
         int speciesListSize;
         speciesList = BattleHallRecordSelector_GetSpeciesList(HEAP_ID_FIELD3, sAlphabeticalSpeciesLists[letterGroup], &speciesListSize);
 
         for (int i = 0; i < speciesListSize; i++) {
-            u16 streak = sub_020308BC(fieldSystem->saveData, frontierStage, sub_0205E584(challengeType), speciesList[i]);
+            u16 streak = BattleHallWinRecords_GetRecordForSpecies(fieldSystem->saveData, records, BattleFrontierStats_GetHallRecordStreakIndex(challengeType), speciesList[i]);
 
             if (streak != 0) {
                 BattleHallRecordSelector_AddOption(selector, speciesList[i], 0xff, speciesList[i]);
@@ -154,8 +153,8 @@ BOOL ScrCmd_ShowBattleHallRecordMonSelectionMenu(ScriptContext *ctx)
         Heap_Free(speciesList);
     }
 
-    if (frontierStage != NULL) {
-        Heap_Free(frontierStage);
+    if (records != NULL) {
+        Heap_Free(records);
     }
 
     MessageLoader *menuMsgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MENU_ENTRIES, HEAP_ID_FIELD3);

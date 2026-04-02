@@ -13,14 +13,14 @@
 #include "overlay104/struct_ov104_02235208.h"
 #include "overlay104/struct_ov104_0223B5C0.h"
 
+#include "battle_frontier_stats.h"
+#include "battle_hall_win_records.h"
 #include "heap.h"
 #include "party.h"
 #include "pokemon.h"
 #include "savedata.h"
 #include "system_vars.h"
 #include "unk_02030108.h"
-#include "unk_0203061C.h"
-#include "unk_02030880.h"
 #include "unk_0205DFC4.h"
 #include "vars_flags.h"
 
@@ -79,7 +79,7 @@ UnkStruct_ov104_0223B5C0 *ov104_02234DB4(SaveData *saveData, u16 param1, u8 para
         }
 
         if (v2 == 1) {
-            v10->unk_08 = sub_02030698(SaveData_GetBattleFrontier(v10->saveData), sub_0205E50C(v10->unk_04), sub_0205E6A8(sub_0205E50C(v10->unk_04)));
+            v10->unk_08 = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(v10->saveData), BattleFrontierStats_GetHallLatestStreakIndex(v10->unk_04), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetHallLatestStreakIndex(v10->unk_04)));
         } else {
             v10->unk_08 = 0;
 
@@ -94,7 +94,7 @@ UnkStruct_ov104_0223B5C0 *ov104_02234DB4(SaveData *saveData, u16 param1, u8 para
         v10->unk_04 = (u8)sub_02030198(v0, 0, 0, 0, NULL);
         v4 = ov104_0223B500(v10->unk_04);
         v10->unk_05 = (u8)sub_02030198(v0, 1, 0, 0, NULL);
-        v10->unk_08 = sub_02030698(SaveData_GetBattleFrontier(v10->saveData), sub_0205E50C(v10->unk_04), sub_0205E6A8(sub_0205E50C(v10->unk_04)));
+        v10->unk_08 = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(v10->saveData), BattleFrontierStats_GetHallLatestStreakIndex(v10->unk_04), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetHallLatestStreakIndex(v10->unk_04)));
 
         for (v5 = 0; v5 < v4; v5++) {
             v10->unk_260[v5] = (u8)sub_02030198(v0, 3, v5, 0, NULL);
@@ -119,7 +119,7 @@ UnkStruct_ov104_0223B5C0 *ov104_02234DB4(SaveData *saveData, u16 param1, u8 para
 
     if (v10->unk_04 == 2) {
         for (v5 = 0; v5 < 18; v5++) {
-            sub_02030204(v5, &v10->unk_704[2][0], (10 - 1));
+            sub_02030204(v5, &v10->unk_704[2][0], 10 - 1);
         }
     } else {
         for (v5 = 0; v5 < 18; v5++) {
@@ -236,7 +236,7 @@ void ov104_0223520C(UnkStruct_ov104_0223B5C0 *param0, u16 *param1)
     int v1;
 
     if (param0->unk_04 != 3) {
-        *param1 = sub_020309A0(param0->saveData, sub_0205E534(param0->unk_04), sub_0205E55C(param0->unk_04), sub_0205E6A8(sub_0205E534(param0->unk_04)), sub_0205E584(param0->unk_04), 11, &v0, &v1);
+        *param1 = BattleHallWinRecords_UpdateRecord(param0->saveData, sub_0205E534(param0->unk_04), BattleFrontierStats_GetHallLatestSpeciesIndex(param0->unk_04), BattleFrontierStats_GetHostFriendIdx(sub_0205E534(param0->unk_04)), BattleFrontierStats_GetHallRecordStreakIndex(param0->unk_04), 11, &v0, &v1);
     } else {
         *param1 = 0;
     }
@@ -264,20 +264,20 @@ void ov104_0223526C(UnkStruct_ov104_0223B5C0 *param0, u8 param1)
 
     v10 = Party_GetPokemonBySlotIndex(SaveData_GetParty(param0->saveData), param0->unk_260[0]);
     v9 = Pokemon_GetValue(v10, MON_DATA_SPECIES, NULL);
-    v8 = sub_02030698(frontier, sub_0205E55C(param0->unk_04), sub_0205E6A8(sub_0205E55C(param0->unk_04)));
+    v8 = BattleFrontierStats_GetStat(frontier, BattleFrontierStats_GetHallLatestSpeciesIndex(param0->unk_04), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetHallLatestSpeciesIndex(param0->unk_04)));
     v1[0] = param0->unk_05;
 
     sub_02030140(param0->unk_6F8, 1, 0, 0, v1);
-    sub_020306E4(frontier, sub_0205E50C(param0->unk_04), sub_0205E6A8(sub_0205E50C(param0->unk_04)), param0->unk_08);
+    BattleFrontierStats_SetStat(frontier, BattleFrontierStats_GetHallLatestStreakIndex(param0->unk_04), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetHallLatestStreakIndex(param0->unk_04)), param0->unk_08);
 
     if (param1 != 2) {
         if (param0->unk_04 != 3) {
-            sub_020306E4(frontier, sub_0205E534(param0->unk_04), sub_0205E6A8(sub_0205E534(param0->unk_04)), param0->unk_08);
+            BattleFrontierStats_SetStat(frontier, sub_0205E534(param0->unk_04), BattleFrontierStats_GetHostFriendIdx(sub_0205E534(param0->unk_04)), param0->unk_08);
         } else {
             if (v8 != v9) {
-                sub_020306E4(frontier, sub_0205E534(param0->unk_04), sub_0205E6A8(sub_0205E534(param0->unk_04)), param0->unk_08);
+                BattleFrontierStats_SetStat(frontier, sub_0205E534(param0->unk_04), BattleFrontierStats_GetHostFriendIdx(sub_0205E534(param0->unk_04)), param0->unk_08);
             } else {
-                sub_02030848(frontier, sub_0205E534(param0->unk_04), sub_0205E6A8(sub_0205E534(param0->unk_04)), param0->unk_08);
+                BattleFrontierStats_SetIfBetter(frontier, sub_0205E534(param0->unk_04), BattleFrontierStats_GetHostFriendIdx(sub_0205E534(param0->unk_04)), param0->unk_08);
             }
         }
 
@@ -285,7 +285,7 @@ void ov104_0223526C(UnkStruct_ov104_0223B5C0 *param0, u8 param1)
         sub_02030280(v12, 5, param0->unk_04, 0, v1);
 
         if (param0->unk_04 == 3) {
-            sub_020306E4(frontier, 106, sub_0205E6A8(106), param0->unk_06);
+            BattleFrontierStats_SetStat(frontier, STAT_HALL_WFC_STREAK_ACTIVE, BattleFrontierStats_GetHostFriendIdx(STAT_HALL_WFC_STREAK_ACTIVE), param0->unk_06);
         }
     }
 
@@ -309,7 +309,7 @@ void ov104_0223526C(UnkStruct_ov104_0223B5C0 *param0, u8 param1)
         sub_02030140(param0->unk_6F8, 4, v0, 0, v2);
     }
 
-    sub_020306E4(frontier, sub_0205E55C(param0->unk_04), sub_0205E6A8(sub_0205E55C(param0->unk_04)), Pokemon_GetValue(v10, MON_DATA_SPECIES, NULL));
+    BattleFrontierStats_SetStat(frontier, BattleFrontierStats_GetHallLatestSpeciesIndex(param0->unk_04), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetHallLatestSpeciesIndex(param0->unk_04)), Pokemon_GetValue(v10, MON_DATA_SPECIES, NULL));
     return;
 }
 
@@ -418,7 +418,7 @@ u16 ov104_02235578(UnkStruct_ov104_0223B5C0 *param0)
 
 static u16 ov104_022355C0(SaveData *saveData, u8 param1, u8 param2, u16 *param3, u16 *param4)
 {
-    u16 v0 = sub_02030698(SaveData_GetBattleFrontier(saveData), sub_0205E4E0(param1, param2), sub_0205E6A8(sub_0205E4E0(param1, param2)));
+    u16 v0 = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(saveData), sub_0205E4E0(param1, param2), BattleFrontierStats_GetHostFriendIdx(sub_0205E4E0(param1, param2)));
     v0 &= 0xff;
 
     *param3 = (v0 & 0xf);
@@ -453,7 +453,7 @@ static void ov104_02235620(SaveData *saveData, u8 param1, u8 param2, u8 param3)
     v2 = (param3 << (4 * v1));
     v3 |= v2;
 
-    sub_020306E4(SaveData_GetBattleFrontier(saveData), sub_0205E4E0(param1, param2), sub_0205E6A8(sub_0205E4E0(param1, param2)), v3);
+    BattleFrontierStats_SetStat(SaveData_GetBattleFrontier(saveData), sub_0205E4E0(param1, param2), BattleFrontierStats_GetHostFriendIdx(sub_0205E4E0(param1, param2)), v3);
     return;
 }
 
@@ -473,7 +473,7 @@ void ov104_022356A0(UnkStruct_ov104_0223B5C0 *param0)
 
         if (v1 == (18 - 1)) {
             for (v1 = 0; v1 < (18 - 1); v1++) {
-                sub_02030204(v1, &param0->unk_704[param0->unk_04][0], (10 - 1));
+                sub_02030204(v1, &param0->unk_704[param0->unk_04][0], 10 - 1);
             }
         }
     }

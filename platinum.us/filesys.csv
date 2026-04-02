@@ -276,8 +276,8 @@ res/pokemon/zukan_data_gira.narc,/application/zukanlist/zkn_data/zukan_data_gira
 res/prebuilt/application/wifi_earth/wifi_earth.narc,/application/wifi_earth/wifi_earth.narc
 res/prebuilt/application/wifi_earth/wifi_earth_place.narc,/application/wifi_earth/wifi_earth_place.narc
 res/prebuilt/application/custom_ball/data/cb_data.narc,/application/custom_ball/data/cb_data.narc
-res/prebuilt/demo/egg/data/egg_data.narc,/demo/egg/data/egg_data.narc
-res/prebuilt/demo/egg/data/particle/egg_demo_particle.narc,/demo/egg/data/particle/egg_demo_particle.narc
+res/graphics/egg_hatch/egg_graphics.narc,/demo/egg/data/egg_data.narc
+res/graphics/egg_hatch/egg_particles.narc,/demo/egg/data/particle/egg_demo_particle.narc
 res/prebuilt/fielddata/mm_list/move_model_list.narc,/fielddata/mm_list/move_model_list.narc
 res/prebuilt/pokeanime/poke_anm.narc,/pokeanime/poke_anm.narc
 res/pokemon_anims/pokemon_anims.narc,/pokeanime/pl_poke_anm.narc
