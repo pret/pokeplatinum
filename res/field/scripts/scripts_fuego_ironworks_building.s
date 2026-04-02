@@ -88,7 +88,7 @@ FuegoIronworksBuilding_AskTrade10StarPieces:
     SetMenuXOriginToRight
     AddMenuEntry MenuEntries_Text_StarPieces_1, 0
     AddMenuEntry MenuEntries_Text_StarPieces_10, 1
-    AddMenuEntry MenuEntries_Text_Battle_Exit, 2
+    AddMenuEntry MenuEntries_Text_Exit2, 2
     ShowMenu
     SetVar VAR_0x8007, 10
     SetVar VAR_0x8008, VAR_0x8001
