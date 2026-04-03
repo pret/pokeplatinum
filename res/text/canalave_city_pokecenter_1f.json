@@ -2,14 +2,14 @@
   "key": 11219,
   "messages": [
     {
-      "id": "pl_msg_00000057_00000",
+      "id": "CanalaveCityPokecenter1F_Text_BoatToIronIsland",
       "en_US": [
         "It’s easy to get to Iron Island.\n",
         "It’s one boat trip from here."
       ]
     },
     {
-      "id": "pl_msg_00000057_00001",
+      "id": "CanalaveCityPokecenter1F_Text_StrengthHMIronIsland",
       "en_US": [
         "I was lucky enough to get a\n",
         "Strength HM from Iron Island.\r",
@@ -20,7 +20,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000057_00002",
+      "id": "CanalaveCityPokecenter1F_Text_DifferentAbilities",
       "en_US": [
         "It’s possible for one kind of Pokémon\n",
         "to have different abilities.\r",
@@ -28,7 +28,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000057_00003",
+      "id": "CanalaveCityPokecenter1F_Text_CoolRumor",
       "en_US": [
         "I heard this cool rumor.\r",
         "If you can get on Nintendo Wi-Fi\n",
@@ -39,28 +39,28 @@
       ]
     },
     {
-      "id": "pl_msg_00000057_00004",
+      "id": "CanalaveCityPokecenter1F_Text_LetsDoBattle",
       "en_US": [
         "Come on, let’s show off our Pokémon!\n",
         "Let’s do battle, kiddo!"
       ]
     },
     {
-      "id": "pl_msg_00000057_00005",
+      "id": "CanalaveCityPokecenter1F_Text_RockInYourVeins",
       "en_US": [
         "Your spirit’s vibes...\n",
         "You’ve got rock in your veins!\r"
       ]
     },
     {
-      "id": "pl_msg_00000057_00006",
+      "id": "CanalaveCityPokecenter1F_Text_MyGuitarLiesBroken",
       "en_US": [
         "My guitar...\n",
         "It lies broken and weeping..."
       ]
     },
     {
-      "id": "pl_msg_00000057_00007",
+      "id": "CanalaveCityPokecenter1F_Text_PokemonAndRockNRoll",
       "en_US": [
         "Pokémon and rock ’n’ roll are all\n",
         "anyone needs to survive in this world!"

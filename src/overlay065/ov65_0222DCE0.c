@@ -26,6 +26,7 @@
 
 #include "assert.h"
 #include "bag.h"
+#include "battle_frontier_stats.h"
 #include "bg_window.h"
 #include "char_transfer.h"
 #include "communication_information.h"
@@ -78,7 +79,6 @@
 #include "unk_02012744.h"
 #include "unk_0202ACE0.h"
 #include "unk_0202C858.h"
-#include "unk_0203061C.h"
 #include "unk_02030CE8.h"
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
@@ -1720,7 +1720,7 @@ static int ov65_0222F304(UnkStruct_ov65_0222EBE0 *param0, int param1)
         if (v1 == 0) {
             WiFiList_Init(param0->unk_00);
             Email_Init(SaveData_SaveTable(param0->saveData, SAVE_TABLE_ENTRY_EMAIL));
-            sub_02030764(SaveData_GetBattleFrontier(param0->saveData));
+            BattleFrontierStats_ClearAllWFCStats(SaveData_GetBattleFrontier(param0->saveData));
             param0->unk_3A8 = 14;
             param0->unk_04 = sub_0203871C(param0->saveData, sizeof(UnkStruct_0207DFAC));
             ov65_02232B58(param0, 23, 1);
@@ -5511,7 +5511,7 @@ static void ov65_022342A8(UnkStruct_ov65_0222EBE0 *param0, enum HeapID heapID)
         MessageLoader_GetString(param0->unk_168, 55, param0->unk_178);
         Text_AddPrinterWithParamsAndColor(&param0->unk_BE0.unk_1FC, FONT_SYSTEM, param0->unk_178, 8, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
 
-        v1 = sub_02030698(frontier, 124, v0);
+        v1 = BattleFrontierStats_GetStat(frontier, STAT_HALL_LATEST_SPECIES_MULTI_WFC, v0);
         v3 = MessageUtil_SpeciesName(v1, heapID);
 
         {
@@ -5610,7 +5610,7 @@ static void ov65_02234694(UnkStruct_ov65_0222EBE0 *param0, u32 param1, u32 param
 {
     int v0;
     BattleFrontier *frontier = SaveData_GetBattleFrontier(param0->saveData);
-    v0 = sub_02030698(frontier, param2, param3);
+    v0 = BattleFrontierStats_GetStat(frontier, param2, param3);
 
     ov65_02234708(param0, param1, v0, param4, param5);
 }
@@ -5632,7 +5632,7 @@ static void ov65_022346C4(UnkStruct_ov65_0222EBE0 *param0, String *param1, u32 p
     GF_ASSERT(param2 < 6);
 
     frontier = SaveData_GetBattleFrontier(param0->saveData);
-    v1 = sub_02030698(frontier, v3[param2], param3);
+    v1 = BattleFrontierStats_GetStat(frontier, v3[param2], param3);
 
     if (v1 == 0) {
         v2 = 57;

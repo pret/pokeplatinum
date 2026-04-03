@@ -7,6 +7,7 @@
 
 #include "struct_defs/battle_frontier.h"
 
+#include "battle_frontier_stats.h"
 #include "charcode_util.h"
 #include "game_records.h"
 #include "heap.h"
@@ -15,7 +16,6 @@
 #include "savedata.h"
 #include "string_gf.h"
 #include "trainer_info.h"
-#include "unk_0203061C.h"
 
 #include "res/text/bank/rankings_machine.h"
 
@@ -165,7 +165,7 @@ static u32 *GetRecordValues(SaveData *saveData, enum HeapID heapID)
             break;
         default:
             if (i >= 0 && i <= 4) {
-                recordValues[i] = sub_02030698(frontier, recordIDs[i], 0xFF);
+                recordValues[i] = BattleFrontierStats_GetStat(frontier, recordIDs[i], 0xFF);
             } else {
                 recordValues[i] = GameRecords_GetRecordValue(gameRecords, recordIDs[i]);
             }

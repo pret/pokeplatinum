@@ -2,14 +2,14 @@
   "key": 29707,
   "messages": [
     {
-      "id": "pl_msg_00000060_00000",
+      "id": "CanalaveLibrary3F_Text_OverHere",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: Hey, {STRVAR_1 3, 1, 0}!\n",
         "Over here! This way!\r"
       ]
     },
     {
-      "id": "pl_msg_00000060_00001",
+      "id": "CanalaveLibrary3F_Text_IllBeOuttahere",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: OK, gramps!\n",
         "I brought {STRVAR_1 3, 1, 0} like I said!\r",
@@ -17,7 +17,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000060_00002",
+      "id": "CanalaveLibrary3F_Text_Ellipses",
       "en_US": [
         "Rowan: ...\n",
         "...\r",
@@ -28,14 +28,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000060_00003",
+      "id": "CanalaveLibrary3F_Text_OKIGetIt",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: ...OK...\n",
         "I get it...\r"
       ]
     },
     {
-      "id": "pl_msg_00000060_00004",
+      "id": "CanalaveLibrary3F_Text_EveryonesHereFinally",
       "en_US": [
         "Rowan: Hm! Everyone’s here finally.\n",
         "{STRVAR_1 3, 0, 0}, everyone, listen.\r",
@@ -44,7 +44,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000060_00005",
+      "id": "CanalaveLibrary3F_Text_MoreIStudyMoreMysteries",
       "en_US": [
         "But the more I study, the more\n",
         "mysteries appear and multiply.\r",
@@ -61,7 +61,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000060_00006",
+      "id": "CanalaveLibrary3F_Text_HelpMeFindLakePokemon",
       "en_US": [
         "This is where you three come in.\r",
         "In the three lakes of Sinnoh, there\n",
@@ -76,14 +76,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000060_00007",
+      "id": "CanalaveLibrary3F_Text_IDidntGetPokedex",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: What are you saying?\n",
         "I didn’t get a Pokédex!\r"
       ]
     },
     {
-      "id": "pl_msg_00000060_00008",
+      "id": "CanalaveLibrary3F_Text_BoltedFromLab",
       "en_US": [
         "Rowan: ...And who was it that bolted\n",
         "from the lab before I had a chance\f",
@@ -95,7 +95,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000060_00009",
+      "id": "CanalaveLibrary3F_Text_DawnCountOnMe",
       "en_US": [
         "Dawn: You can count on me!\n",
         "It will help with my Pokédex, too.\r",
@@ -104,7 +104,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000060_00010",
+      "id": "CanalaveLibrary3F_Text_LucasYouBet",
       "en_US": [
         "Lucas: You bet, Professor!\r",
         "This will add to the Pokédex\n",
@@ -113,7 +113,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000060_00011",
+      "id": "CanalaveLibrary3F_Text_InvestigateLakesIndividually",
       "en_US": [
         "Rowan: Hm! I would have made all of\n",
         "you go regardless... Anyway.\r",
@@ -124,23 +124,23 @@
       ]
     },
     {
-      "id": "pl_msg_00000060_00012",
+      "id": "CanalaveLibrary3F_Text_DawnToLakeVerity",
       "en_US": "Rowan: Dawn, you go to Lake Verity.\r"
     },
     {
-      "id": "pl_msg_00000060_00013",
+      "id": "CanalaveLibrary3F_Text_DawnWillDo",
       "en_US": "Dawn: Will do!\r"
     },
     {
-      "id": "pl_msg_00000060_00014",
+      "id": "CanalaveLibrary3F_Text_LucasToLakeVerity",
       "en_US": "Rowan: Lucas, you go to Lake Verity.\r"
     },
     {
-      "id": "pl_msg_00000060_00015",
+      "id": "CanalaveLibrary3F_Text_LucasYesSir",
       "en_US": "Lucas: Yes, sir!\r"
     },
     {
-      "id": "pl_msg_00000060_00016",
+      "id": "CanalaveLibrary3F_Text_RivalToLakeAcuity",
       "en_US": [
         "Rowan: {STRVAR_1 3, 0, 0}, I want you to\n",
         "investigate Lake Acuity.\r",
@@ -151,7 +151,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000060_00017",
+      "id": "CanalaveLibrary3F_Text_YeahOfCourse",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: Uh... Yeah, of course!\n",
         "Gramps, you know how to call it!\f",
@@ -165,7 +165,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000060_00018",
+      "id": "CanalaveLibrary3F_Text_ThatLeavesLakeValor",
       "en_US": [
         "Rowan: Very well.\n",
         "I’m counting on you.\r",
@@ -176,11 +176,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000060_00019",
+      "id": "CanalaveLibrary3F_Text_BigExplosion",
       "en_US": "{SIZE 200}DDDOOOMMM!!"
     },
     {
-      "id": "pl_msg_00000060_00020",
+      "id": "CanalaveLibrary3F_Text_AreYouUnharmed",
       "en_US": [
         "Rowan: ...\n",
         "...Has it stopped?\r",
@@ -188,7 +188,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000060_00021",
+      "id": "CanalaveLibrary3F_Text_WhatWasThatAbout",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: What was that about?!\r",
         "No, wait, I mean, TV! The TV!\n",
@@ -196,7 +196,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000060_00022",
+      "id": "CanalaveLibrary3F_Text_NewsExplosion",
       "en_US": [
         "Announcer: What you’ve just witnessed\n",
         "is actual footage from the scene.\r",
@@ -208,14 +208,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000060_00023",
+      "id": "CanalaveLibrary3F_Text_TheySaidExplosion",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: Gramps!\n",
         "They said it was an explosion?!\r"
       ]
     },
     {
-      "id": "pl_msg_00000060_00024",
+      "id": "CanalaveLibrary3F_Text_LetsGetOutside",
       "en_US": [
         "Rowan: Hmm...\n",
         "But why at Lake Valor...?\r",
@@ -226,7 +226,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000060_00025",
+      "id": "CanalaveLibrary3F_Text_LeaveNowToo",
       "en_US": [
         "Rowan: {STRVAR_1 3, 1, 0}.\n",
         "You should leave now, too.\r",
@@ -235,7 +235,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000060_00026",
+      "id": "CanalaveLibrary3F_Text_BooksContainMemories",
       "en_US": [
         "Every book contains someone’s\n",
         "memories of various places and times.\r",
@@ -246,21 +246,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000060_00027",
+      "id": "CanalaveLibrary3F_Text_WasThatAnEarthquake",
       "en_US": [
         "W-was that an earthquake?\n",
         "I didn’t imagine it?"
       ]
     },
     {
-      "id": "pl_msg_00000060_00028",
+      "id": "CanalaveLibrary3F_Text_BookAlwaysCheckedOut",
       "en_US": [
         "Someone’s always checked out the\n",
         "book I want to read..."
       ]
     },
     {
-      "id": "pl_msg_00000060_00029",
+      "id": "CanalaveLibrary3F_Text_ImFeelingWobbly",
       "en_US": [
         "I’m feeling wobbly...\r",
         "Even though the tremor has ended,\n",
@@ -268,18 +268,18 @@
       ]
     },
     {
-      "id": "pl_msg_00000060_00030",
+      "id": "CanalaveLibrary3F_Text_AskReadSinnohMyth",
       "en_US": [
         "This book is titled “Sinnoh\n",
         "Myth.” Want to read it?"
       ]
     },
     {
-      "id": "pl_msg_00000060_00031",
+      "id": "CanalaveLibrary3F_Text_PutSinnohMythBack",
       "en_US": "{STRVAR_1 3, 0, 0} put the book back."
     },
     {
-      "id": "pl_msg_00000060_00032",
+      "id": "CanalaveLibrary3F_Text_SinnohMyth",
       "en_US": [
         "“Sinnoh Myth”\r",
         "Betray not your anger, lest ??? will\n",
@@ -295,18 +295,18 @@
       ]
     },
     {
-      "id": "pl_msg_00000060_00033",
+      "id": "CanalaveLibrary3F_Text_AskReadSinnohRegionsMythology",
       "en_US": [
         "This book is titled “Sinnoh Region’s\n",
         "Mythology.” Want to read it?"
       ]
     },
     {
-      "id": "pl_msg_00000060_00034",
+      "id": "CanalaveLibrary3F_Text_PutSinnohRegionsMythologyBack",
       "en_US": "{STRVAR_1 3, 0, 0} put the book back."
     },
     {
-      "id": "pl_msg_00000060_00035",
+      "id": "CanalaveLibrary3F_Text_SinnohRegionsMythology",
       "en_US": [
         "“Sinnoh Region’s Mythology”\r",
         "Long ago, when Sinnoh had just been\n",
@@ -325,18 +325,18 @@
       ]
     },
     {
-      "id": "pl_msg_00000060_00036",
+      "id": "CanalaveLibrary3F_Text_AskReadSinnohsMyth",
       "en_US": [
         "This book is titled “Sinnoh’s\n",
         "Myth.” Want to read it?"
       ]
     },
     {
-      "id": "pl_msg_00000060_00037",
+      "id": "CanalaveLibrary3F_Text_PutSinnohsMythBack",
       "en_US": "{STRVAR_1 3, 0, 0} put the book back."
     },
     {
-      "id": "pl_msg_00000060_00038",
+      "id": "CanalaveLibrary3F_Text_SinnohsMyth",
       "en_US": [
         "“Sinnoh’s Myth”\r",
         "Three Pokémon there were.\r",
@@ -351,18 +351,18 @@
       ]
     },
     {
-      "id": "pl_msg_00000060_00039",
+      "id": "CanalaveLibrary3F_Text_AskReadVeilstonesMyth",
       "en_US": [
         "This book is titled “Veilstone’s\n",
         "Myth.” Want to read it?"
       ]
     },
     {
-      "id": "pl_msg_00000060_00040",
+      "id": "CanalaveLibrary3F_Text_PutVeilstonesMythBack",
       "en_US": "{STRVAR_1 3, 0, 0} put the book back."
     },
     {
-      "id": "pl_msg_00000060_00041",
+      "id": "CanalaveLibrary3F_Text_VeilstonesMyth1",
       "en_US": [
         "“Veilstone’s Myth”\r",
         "A young man, callow and foolish in\n",
@@ -377,7 +377,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000060_00042",
+      "id": "CanalaveLibrary3F_Text_VeilstonesMyth2",
       "en_US": [
         "The young man, seeking the missing\n",
         "Pokémon, journeyed afar.\r",
@@ -396,7 +396,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000060_00043",
+      "id": "CanalaveLibrary3F_Text_VeilstonesMyth3",
       "en_US": [
         "To the skies, the young man shouted\n",
         "his dismay.\r",
@@ -415,18 +415,18 @@
       ]
     },
     {
-      "id": "pl_msg_00000060_00044",
+      "id": "CanalaveLibrary3F_Text_AskReadTheOriginalStory",
       "en_US": [
         "This ancient book is titled “The\n",
         "Original Story.” Want to read it?"
       ]
     },
     {
-      "id": "pl_msg_00000060_00045",
+      "id": "CanalaveLibrary3F_Text_PutTheOriginalStoryBack",
       "en_US": "{STRVAR_1 3, 0, 0} put the book back."
     },
     {
-      "id": "pl_msg_00000060_00046",
+      "id": "CanalaveLibrary3F_Text_TheOriginalStory1",
       "en_US": [
         "In the beginning, there was only\n",
         "a churning turmoil of chaos.\r",
@@ -438,7 +438,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000060_00047",
+      "id": "CanalaveLibrary3F_Text_TheOriginalStory2",
       "en_US": [
         "From itself, two beings the Original\n",
         "One did make.\r",
@@ -450,7 +450,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000060_00048",
+      "id": "CanalaveLibrary3F_Text_TheOriginalStory3",
       "en_US": [
         "The two beings wished, and from them,\n",
         "matter came to be.\r",
@@ -461,18 +461,18 @@
       ]
     },
     {
-      "id": "pl_msg_00000060_00049",
+      "id": "CanalaveLibrary3F_Text_AskReadHorrificMyth",
       "en_US": [
         "This book is titled “A Horrific\n",
         "Myth.” Want to read it?"
       ]
     },
     {
-      "id": "pl_msg_00000060_00050",
+      "id": "CanalaveLibrary3F_Text_PutHorrificMythBack",
       "en_US": "{STRVAR_1 3, 0, 0} put the book back."
     },
     {
-      "id": "pl_msg_00000060_00051",
+      "id": "CanalaveLibrary3F_Text_HorrificMyth",
       "en_US": [
         "Look not into the Pokémon’s eyes.\r",
         "In but an instant, you’ll have no\n",
@@ -489,22 +489,22 @@
       ]
     },
     {
-      "id": "pl_msg_00000060_00052",
+      "id": "CanalaveLibrary3F_Text_SinnohFolkStories",
       "en_US": [
         "This book is titled “Sinnoh Folk\n",
         "Stories.”\r"
       ]
     },
     {
-      "id": "pl_msg_00000060_00053",
+      "id": "CanalaveLibrary3F_Text_ReadWhichStory",
       "en_US": "Which story would you like to read?"
     },
     {
-      "id": "pl_msg_00000060_00054",
+      "id": "CanalaveLibrary3F_Text_PutSinnohFolkStoriesBack",
       "en_US": "{STRVAR_1 3, 0, 0} put the book back."
     },
     {
-      "id": "pl_msg_00000060_00055",
+      "id": "CanalaveLibrary3F_Text_SinnohFolkStory1",
       "en_US": [
         "“Sinnoh Folk Story 1”\r",
         "Pick clean the bones of Pokémon\n",
@@ -519,7 +519,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000060_00056",
+      "id": "CanalaveLibrary3F_Text_SinnohFolkStory2",
       "en_US": [
         "“Sinnoh Folk Story 2”\r",
         "There lived a Pokémon in a forest.\r",
@@ -530,7 +530,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000060_00057",
+      "id": "CanalaveLibrary3F_Text_SinnohFolkStory3",
       "en_US": [
         "“Sinnoh Folk Story 3”\r",
         "There once were Pokémon that\n",
@@ -542,7 +542,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000060_00058",
+      "id": "CanalaveLibrary3F_Text_ManyMythsAndLegends",
       "en_US": [
         "On this floor, you will find many\n",
         "books on the myths and legends of\f",

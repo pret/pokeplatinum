@@ -1,32 +1,33 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/canalave_city_pokecenter_1f.h"
+#include "res/field/events/events_canalave_city_pokecenter_1f.h"
 
 
-    ScriptEntry _0016
-    ScriptEntry _0022
-    ScriptEntry _0035
-    ScriptEntry _0048
-    ScriptEntry _005B
+    ScriptEntry CanalaveCityPokecenter1F_Nurse
+    ScriptEntry CanalaveCityPokecenter1F_PokemonBreederF
+    ScriptEntry CanalaveCityPokecenter1F_Lass
+    ScriptEntry CanalaveCityPokecenter1F_ScientistM
+    ScriptEntry CanalaveCityPokecenter1F_BugCatcher
     ScriptEntryEnd
 
-_0016:
-    Common_CallPokecenterNurse 1
+CanalaveCityPokecenter1F_Nurse:
+    Common_CallPokecenterNurse LOCALID_POKECENTER_NURSE
     End
 
-_0022:
-    NPCMessage 0
+CanalaveCityPokecenter1F_PokemonBreederF:
+    NPCMessage CanalaveCityPokecenter1F_Text_BoatToIronIsland
     End
 
-_0035:
-    NPCMessage 1
+CanalaveCityPokecenter1F_Lass:
+    NPCMessage CanalaveCityPokecenter1F_Text_StrengthHMIronIsland
     End
 
-_0048:
-    NPCMessage 2
+CanalaveCityPokecenter1F_ScientistM:
+    NPCMessage CanalaveCityPokecenter1F_Text_DifferentAbilities
     End
 
-_005B:
-    NPCMessage 3
+CanalaveCityPokecenter1F_BugCatcher:
+    NPCMessage CanalaveCityPokecenter1F_Text_CoolRumor
     End
 
     .balign 4, 0

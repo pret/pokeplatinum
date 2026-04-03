@@ -65,7 +65,7 @@ LakeAcuity_TriggerJupiterRival:
     SetFlag FLAG_HIDE_LAKE_VERITY_LOW_WATER_PROF_ROWAN
     SetFlag FLAG_HIDE_LAKE_VERITY_COUNTERPART
     SetFlag FLAG_HIDE_LAKE_VERITY_PROF_ROWAN
-    ClearFlag FLAG_UNK_0x00A8
+    ClearFlag FLAG_LAKE_VALOR_EXPLODED
     ReleaseAll
     End
 

@@ -109,7 +109,7 @@ _019D:
     End
 
 _01C3:
-    ClearFlag FLAG_UNK_0x01BD
+    ClearFlag FLAG_HIDE_CELESTIC_TOWN_CYNTHIA
     SetVar VAR_UNK_0x4074, 1
     Message 11
     CloseMessage

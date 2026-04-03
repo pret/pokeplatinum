@@ -15,6 +15,7 @@
 #include "overlay104/ov104_0223B6F4.h"
 #include "overlay104/struct_ov104_0223597C.h"
 
+#include "battle_frontier_stats.h"
 #include "bg_window.h"
 #include "communication_information.h"
 #include "communication_system.h"
@@ -53,7 +54,6 @@
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_020302D0.h"
-#include "unk_0203061C.h"
 #include "unk_020363E8.h"
 #include "unk_0205DFC4.h"
 #include "unk_0208C098.h"
@@ -852,7 +852,7 @@ static BOOL State_MainAppFlow(BattleCastleSelfApp *app)
             } else {
                 app->selectedMenuEntry = input;
                 FreeListMenu2(app);
-                currentCP = sub_02030698(app->frontier, sub_0205E630(app->challengeType), sub_0205E6A8(sub_0205E630(app->challengeType)));
+                currentCP = BattleFrontierStats_GetStat(app->frontier, BattleFrontierStats_GetCastleLatestCPIndex(app->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleLatestCPIndex(app->challengeType)));
                 SetStringTemplateNumber(app, 0, sRankUpCosts[0][rank], 4, PADDING_MODE_NONE);
                 app->printerID = PrintMessageAndCopyToVRAM(app, BattleCastleSelfApp_Text_RankUpForCP, FONT_MESSAGE);
                 OpenYesNoMenu(app);
@@ -871,7 +871,7 @@ static BOOL State_MainAppFlow(BattleCastleSelfApp *app)
             mon = Party_GetPokemonBySlotIndex(app->party, BattleCastleApp_GetSelectedSlot(app->numSlots, app->selectedMonSlot));
             CloseYesNoMenu(app);
 
-            currentCP = sub_02030698(app->frontier, sub_0205E630(app->challengeType), sub_0205E6A8(sub_0205E630(app->challengeType)));
+            currentCP = BattleFrontierStats_GetStat(app->frontier, BattleFrontierStats_GetCastleLatestCPIndex(app->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleLatestCPIndex(app->challengeType)));
             rank = BattleCastleApp_GetRank(app->saveData, app->challengeType, BATTLE_CASTLE_RANK_HEALING);
 
             if (rank < sHealMenuEntries[app->menuPos][0]) {
@@ -938,7 +938,7 @@ static BOOL State_MainAppFlow(BattleCastleSelfApp *app)
         case MENU_YES:
             CloseYesNoMenu(app);
 
-            currentCP = sub_02030698(app->frontier, sub_0205E630(app->challengeType), sub_0205E6A8(sub_0205E630(app->challengeType)));
+            currentCP = BattleFrontierStats_GetStat(app->frontier, BattleFrontierStats_GetCastleLatestCPIndex(app->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleLatestCPIndex(app->challengeType)));
             rank = BattleCastleApp_GetRank(app->saveData, app->challengeType, BATTLE_CASTLE_RANK_HEALING);
 
             if (currentCP < sRankUpCosts[BATTLE_CASTLE_RANK_HEALING][rank]) {
@@ -1083,7 +1083,7 @@ static BOOL State_MainAppFlow(BattleCastleSelfApp *app)
             break;
         case MENU_YES:
             CloseYesNoMenu(app);
-            currentCP = sub_02030698(app->frontier, sub_0205E630(app->challengeType), sub_0205E6A8(sub_0205E630(app->challengeType)));
+            currentCP = BattleFrontierStats_GetStat(app->frontier, BattleFrontierStats_GetCastleLatestCPIndex(app->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleLatestCPIndex(app->challengeType)));
 
             if (currentCP < GetItemPriceFromListPos(app, app->menuPos, app->selectedMenuEntry)) {
                 BattleCastleApp_DrawMessageBox(&app->windows[SELF_APP_WINDOW_MSG_BOX], Options_Frame(app->options));
@@ -1133,7 +1133,7 @@ static BOOL State_MainAppFlow(BattleCastleSelfApp *app)
         case MENU_YES:
             CloseYesNoMenu(app);
 
-            currentCP = sub_02030698(app->frontier, sub_0205E630(app->challengeType), sub_0205E6A8(sub_0205E630(app->challengeType)));
+            currentCP = BattleFrontierStats_GetStat(app->frontier, BattleFrontierStats_GetCastleLatestCPIndex(app->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleLatestCPIndex(app->challengeType)));
             rank = BattleCastleApp_GetRank(app->saveData, app->challengeType, BATTLE_CASTLE_RANK_RENTALS);
 
             if (currentCP < sRankUpCosts[BATTLE_CASTLE_RANK_RENTALS][rank]) {
@@ -2002,7 +2002,7 @@ static void PrintMonLevelAndGender(BattleCastleSelfApp *app, Window *window, u8 
 
 static void DrawPlayerInfoOnItemSelectMenu(BattleCastleSelfApp *app, Window *window)
 {
-    u16 castlePoints = sub_02030698(app->frontier, sub_0205E630(app->challengeType), sub_0205E6A8(sub_0205E630(app->challengeType)));
+    u16 castlePoints = BattleFrontierStats_GetStat(app->frontier, BattleFrontierStats_GetCastleLatestCPIndex(app->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleLatestCPIndex(app->challengeType)));
 
     BattleCastleApp_DrawWindow(app->bgConfig, window);
     Window_FillTilemap(window, 15);
@@ -3308,14 +3308,14 @@ static void PrintPlayersAndPartnersCastlePoints(BattleCastleSelfApp *app, Window
         x = playerXOffset + 104;
         y = playerYOffset;
         Window_FillRectWithColor(window, 0, x - 48, y, 48, 16);
-        SetStringTemplateNumber(app, 0, sub_02030698(app->frontier, sub_0205E630(app->challengeType), sub_0205E6A8(sub_0205E630(app->challengeType))), 4, PADDING_MODE_SPACES);
+        SetStringTemplateNumber(app, 0, BattleFrontierStats_GetStat(app->frontier, BattleFrontierStats_GetCastleLatestCPIndex(app->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleLatestCPIndex(app->challengeType))), 4, PADDING_MODE_SPACES);
         app->printerID = PrintMessage(app, window, BattleCastleSelfApp_Text_CastlePoints, x, y, TEXT_SPEED_NO_TRANSFER, 1, 2, 0, FONT_SYSTEM, TEXT_ALIGN_RIGHT);
     } else {
         if (CommSys_CurNetId() == 0) {
             x = playerXOffset + 104;
             y = playerYOffset;
             Window_FillRectWithColor(window, 0, x - 48, y, 48, 16);
-            SetStringTemplateNumber(app, 0, sub_02030698(app->frontier, sub_0205E630(app->challengeType), sub_0205E6A8(sub_0205E630(app->challengeType))), 4, PADDING_MODE_SPACES);
+            SetStringTemplateNumber(app, 0, BattleFrontierStats_GetStat(app->frontier, BattleFrontierStats_GetCastleLatestCPIndex(app->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleLatestCPIndex(app->challengeType))), 4, PADDING_MODE_SPACES);
             app->printerID = PrintMessage(app, window, BattleCastleSelfApp_Text_CastlePoints, x, y, TEXT_SPEED_NO_TRANSFER, 1, 2, 0, FONT_SYSTEM, TEXT_ALIGN_RIGHT);
 
             x = partnerXOffset + 104;
@@ -3333,7 +3333,7 @@ static void PrintPlayersAndPartnersCastlePoints(BattleCastleSelfApp *app, Window
             x = partnerXOffset + 104;
             y = partnerYOffset;
             Window_FillRectWithColor(window, 0, x - 48, partnerYOffset, 48, 16);
-            SetStringTemplateNumber(app, 0, sub_02030698(app->frontier, sub_0205E630(app->challengeType), sub_0205E6A8(sub_0205E630(app->challengeType))), 4, PADDING_MODE_SPACES);
+            SetStringTemplateNumber(app, 0, BattleFrontierStats_GetStat(app->frontier, BattleFrontierStats_GetCastleLatestCPIndex(app->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleLatestCPIndex(app->challengeType))), 4, PADDING_MODE_SPACES);
             app->printerID = PrintMessage(app, window, BattleCastleSelfApp_Text_CastlePoints, x, y, TEXT_SPEED_NO_TRANSFER, 1, 2, 0, FONT_SYSTEM, TEXT_ALIGN_RIGHT);
         }
     }
@@ -3490,7 +3490,7 @@ static void IncreaseRank(BattleCastleSelfApp *app, u8 slot, u8 menuOption)
             ov104_0223BC2C(app->frontier, app->challengeType, sRankUpCosts[rankType][rank]);
 
             rank = BattleCastleApp_GetRank(app->saveData, app->challengeType, rankType);
-            sub_020306E4(SaveData_GetBattleFrontier(app->saveData), sub_0205E5B4(app->challengeType, rankType), sub_0205E6A8(sub_0205E5B4(app->challengeType, rankType)), rank + 1);
+            BattleFrontierStats_SetStat(SaveData_GetBattleFrontier(app->saveData), BattleFrontierStats_GetCastleRankIndex(app->challengeType, rankType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleRankIndex(app->challengeType, rankType)), rank + 1);
 
             if (BattleCastle_IsMultiPlayerChallenge(app->challengeType) == TRUE) {
                 if (menuOption == MENU_ENTRY_RANK_UP_HEALING) {
@@ -3518,7 +3518,7 @@ static void IncreaseRank(BattleCastleSelfApp *app, u8 slot, u8 menuOption)
             ov104_0223BC2C(app->frontier, app->challengeType, sRankUpCosts[rankType][rank]);
             rank = BattleCastleApp_GetRank(app->saveData, app->challengeType, rankType);
 
-            sub_020306E4(SaveData_GetBattleFrontier(app->saveData), sub_0205E5B4(app->challengeType, rankType), sub_0205E6A8(sub_0205E5B4(app->challengeType, rankType)), rank + 1);
+            BattleFrontierStats_SetStat(SaveData_GetBattleFrontier(app->saveData), BattleFrontierStats_GetCastleRankIndex(app->challengeType, rankType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleRankIndex(app->challengeType, rankType)), rank + 1);
 
             if (BattleCastle_IsMultiPlayerChallenge(app->challengeType) == TRUE) {
                 if (menuOption == MENU_ENTRY_RANK_UP_HEALING) {

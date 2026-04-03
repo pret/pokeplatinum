@@ -2,7 +2,7 @@
   "key": 29711,
   "messages": [
     {
-      "id": "pl_msg_00000059_00000",
+      "id": "CanalaveLibrary2F_Text_ThirdFloorEasyRead",
       "en_US": [
         "The books on the third floor are\n",
         "easy to read.\r",
@@ -11,7 +11,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000059_00001",
+      "id": "CanalaveLibrary2F_Text_TremorWasWicked",
       "en_US": [
         "That tremor...\n",
         "It was wicked!\r",
@@ -20,28 +20,28 @@
       ]
     },
     {
-      "id": "pl_msg_00000059_00002",
+      "id": "CanalaveLibrary2F_Text_BookshelvesAreCrammed",
       "en_US": [
         "The ceiling-high bookshelves are\n",
         "crammed with books."
       ]
     },
     {
-      "id": "pl_msg_00000059_00003",
+      "id": "CanalaveLibrary2F_Text_ShelvesLinedWithBooks",
       "en_US": [
         "The shelves are lined with books\n",
         "worn from being read by many people."
       ]
     },
     {
-      "id": "pl_msg_00000059_00004",
+      "id": "CanalaveLibrary2F_Text_RefrainFromBringingFood",
       "en_US": [
         "Please refrain from bringing food\n",
         "or beverages into the library."
       ]
     },
     {
-      "id": "pl_msg_00000059_00005",
+      "id": "CanalaveLibrary2F_Text_WantToHearAboutJourney",
       "en_US": [
         "Well, hello!\n",
         "We meet again!\r",
@@ -58,14 +58,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000059_00006",
+      "id": "CanalaveLibrary2F_Text_LetsNotBeHasty",
       "en_US": [
         "Whoa, now let’s not be hasty!\n",
         "I really want to share this with you!"
       ]
     },
     {
-      "id": "pl_msg_00000059_00007",
+      "id": "CanalaveLibrary2F_Text_TheWayISeeIt",
       "en_US": [
         "The way I see it, our world began when\n",
         "the spirit within people was born.\r",
@@ -82,7 +82,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000059_00008",
+      "id": "CanalaveLibrary2F_Text_WantToHearMore",
       "en_US": [
         "Because they shared the same spirit,\n",
         "people and Pokémon intermingled.\r",
@@ -106,14 +106,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000059_00009",
+      "id": "CanalaveLibrary2F_Text_DontTeaseMe",
       "en_US": [
         "Whoa, please don’t tease me!\n",
         "I really want to share this with you!"
       ]
     },
     {
-      "id": "pl_msg_00000059_00010",
+      "id": "CanalaveLibrary2F_Text_ThereWerePlates",
       "en_US": [
         "Oh, there were also Plates, weren’t\n",
         "there?\r",
@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000059_00011",
+      "id": "CanalaveLibrary2F_Text_WroteDownEngravings",
       "en_US": [
         "Oh, by the way, I wrote down the words\n",
         "engraved on those Plates.\r",
@@ -140,7 +140,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000059_00012",
+      "id": "CanalaveLibrary2F_Text_GladICameToSinnoh",
       "en_US": [
         "I have to say I’m glad I came out to\n",
         "Sinnoh.\r",
@@ -151,7 +151,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000059_00013",
+      "id": "CanalaveLibrary2F_Text_SinnohAsToldOnPlates",
       "en_US": [
         "”Sinnoh’s Beginning as Told on Plates.”\r",
         "This is a collection of engravings from\n",
