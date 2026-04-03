@@ -1,17 +1,18 @@
 #include "overlay104/ov104_02234DB4.h"
 
 #include <nitro.h>
-#include <string.h>
+
+#include "constants/battle_frontier.h"
 
 #include "struct_decls/struct_02030114_decl.h"
 #include "struct_decls/struct_0203026C_decl.h"
 #include "struct_defs/battle_frontier.h"
 
+#include "applications/frontier/battle_hall/main.h"
 #include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/ov104_0222ECE8.h"
 #include "overlay104/ov104_0223AF58.h"
-#include "overlay104/struct_ov104_02235208.h"
-#include "overlay104/struct_ov104_0223B5C0.h"
+#include "overlay104/struct_battle_hall.h"
 
 #include "battle_frontier_stats.h"
 #include "battle_hall_win_records.h"
@@ -24,37 +25,35 @@
 #include "unk_0205DFC4.h"
 #include "vars_flags.h"
 
-UnkStruct_ov104_0223B5C0 *ov104_02234DB4(SaveData *saveData, u16 param1, u8 param2, u8 param3, u8 param4);
-void ov104_022350B0(UnkStruct_ov104_0223B5C0 *param0, u16 param1);
-static void ov104_022350B8(UnkStruct_ov104_0223B5C0 *param0);
-void ov104_02235190(UnkStruct_ov104_0223B5C0 *param0);
-void ov104_022351CC(UnkStruct_ov104_0223B5C0 *param0, void *param1);
-u16 ov104_02235208(void *param0, u8 param1);
-void ov104_0223520C(UnkStruct_ov104_0223B5C0 *param0, u16 *param1);
-BOOL ov104_02235534(UnkStruct_ov104_0223B5C0 *param0, u16 param1, u16 param2);
+BattleHall *ov104_02234DB4(SaveData *saveData, u16 param1, u8 param2, u8 param3, u8 param4);
+void ov104_022350B0(BattleHall *param0, u16 param1);
+static void ov104_022350B8(BattleHall *param0);
+void ov104_02235190(BattleHall *param0);
+static u16 GetBattleHallAppSelectedCell(BattleHallAppArgs *args, u8 unused);
+BOOL ov104_02235534(BattleHall *param0, u16 param1, u16 param2);
 static u16 ov104_022355C0(SaveData *saveData, u8 param1, u8 param2, u16 *param3, u16 *param4);
 static void ov104_02235620(SaveData *saveData, u8 param1, u8 param2, u8 param3);
-void ov104_022356A0(UnkStruct_ov104_0223B5C0 *param0);
-static u16 ov104_02235704(UnkStruct_ov104_0223B5C0 *param0);
-void ov104_0223526C(UnkStruct_ov104_0223B5C0 *param0, u8 param1);
-u16 ov104_022354B0(UnkStruct_ov104_0223B5C0 *param0);
-u16 ov104_022354BC(UnkStruct_ov104_0223B5C0 *param0);
-u16 ov104_022354C0(UnkStruct_ov104_0223B5C0 *param0, u8 param1);
-void ov104_022354F4(UnkStruct_ov104_0223B5C0 *param0);
-void ov104_02235518(UnkStruct_ov104_0223B5C0 *param0);
-u16 ov104_02235578(UnkStruct_ov104_0223B5C0 *param0);
+void ov104_022356A0(BattleHall *param0);
+static u16 ov104_02235704(BattleHall *param0);
+void ov104_0223526C(BattleHall *param0, u8 param1);
+u16 ov104_022354B0(BattleHall *param0);
+u16 ov104_022354BC(BattleHall *param0);
+u16 ov104_022354C0(BattleHall *param0, u8 param1);
+void ov104_022354F4(BattleHall *param0);
+void ov104_02235518(BattleHall *param0);
+u16 ov104_02235578(BattleHall *param0);
 
-UnkStruct_ov104_0223B5C0 *ov104_02234DB4(SaveData *saveData, u16 param1, u8 param2, u8 param3, u8 param4)
+BattleHall *ov104_02234DB4(SaveData *saveData, u16 param1, u8 param2, u8 param3, u8 param4)
 {
     UnkStruct_02030114 *v0;
     UnkStruct_0203026C *v1;
     u8 v2, v3, v4;
     u16 v5, v6, v7, v8;
     Pokemon *v9;
-    static UnkStruct_ov104_0223B5C0 *v10;
+    static BattleHall *v10;
 
-    v10 = Heap_Alloc(HEAP_ID_FIELD2, sizeof(UnkStruct_ov104_0223B5C0));
-    MI_CpuClear8(v10, sizeof(UnkStruct_ov104_0223B5C0));
+    v10 = Heap_Alloc(HEAP_ID_FIELD2, sizeof(BattleHall));
+    MI_CpuClear8(v10, sizeof(BattleHall));
 
     v10->unk_6F8 = sub_02030114(saveData);
     v10->saveData = saveData;
@@ -66,35 +65,35 @@ UnkStruct_ov104_0223B5C0 *ov104_02234DB4(SaveData *saveData, u16 param1, u8 para
     v1 = sub_0203026C(saveData);
 
     if (param1 == 0) {
-        v10->unk_04 = param2;
-        v4 = ov104_0223B500(v10->unk_04);
+        v10->challengeType = param2;
+        v4 = BattleHall_GetPartySize(v10->challengeType);
         v10->unk_05 = 0;
 
         sub_02030108(v0);
 
-        if (v10->unk_04 == 3) {
+        if (v10->challengeType == 3) {
             v2 = SystemVars_GetWiFiFrontierCleared(SaveData_GetVarsFlags(v10->saveData));
         } else {
-            v2 = (u8)sub_020302B4(v1, 5, v10->unk_04, 0, NULL);
+            v2 = (u8)sub_020302B4(v1, 5, v10->challengeType, 0, NULL);
         }
 
         if (v2 == 1) {
-            v10->unk_08 = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(v10->saveData), BattleFrontierStats_GetHallLatestStreakIndex(v10->unk_04), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetHallLatestStreakIndex(v10->unk_04)));
+            v10->currentStreak = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(v10->saveData), BattleFrontierStats_GetHallLatestStreakIndex(v10->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetHallLatestStreakIndex(v10->challengeType)));
         } else {
-            v10->unk_08 = 0;
+            v10->currentStreak = 0;
 
             for (v5 = 0; v5 < 18; v5++) {
-                ov104_02235620(v10->saveData, v10->unk_04, v5, 0);
+                ov104_02235620(v10->saveData, v10->challengeType, v5, 0);
             }
         }
 
         v10->unk_260[0] = param3;
         v10->unk_260[1] = param4;
     } else {
-        v10->unk_04 = (u8)sub_02030198(v0, 0, 0, 0, NULL);
-        v4 = ov104_0223B500(v10->unk_04);
+        v10->challengeType = (u8)sub_02030198(v0, 0, 0, 0, NULL);
+        v4 = BattleHall_GetPartySize(v10->challengeType);
         v10->unk_05 = (u8)sub_02030198(v0, 1, 0, 0, NULL);
-        v10->unk_08 = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(v10->saveData), BattleFrontierStats_GetHallLatestStreakIndex(v10->unk_04), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetHallLatestStreakIndex(v10->unk_04)));
+        v10->currentStreak = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(v10->saveData), BattleFrontierStats_GetHallLatestStreakIndex(v10->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetHallLatestStreakIndex(v10->challengeType)));
 
         for (v5 = 0; v5 < v4; v5++) {
             v10->unk_260[v5] = (u8)sub_02030198(v0, 3, v5, 0, NULL);
@@ -115,28 +114,28 @@ UnkStruct_ov104_0223B5C0 *ov104_02234DB4(SaveData *saveData, u16 param1, u8 para
     }
 
     v10->unk_10 = 0;
-    v10->unk_0A = (u16)(v10->unk_08 / 10);
+    v10->unk_0A = (u16)(v10->currentStreak / 10);
 
-    if (v10->unk_04 == 2) {
+    if (v10->challengeType == 2) {
         for (v5 = 0; v5 < 18; v5++) {
             sub_02030204(v5, &v10->unk_704[2][0], 10 - 1);
         }
     } else {
         for (v5 = 0; v5 < 18; v5++) {
-            v8 = ov104_022355C0(saveData, v10->unk_04, v5, &v6, &v7);
+            v8 = ov104_022355C0(saveData, v10->challengeType, v5, &v6, &v7);
 
-            sub_02030204(v5, &v10->unk_704[v10->unk_04][0], v8);
+            sub_02030204(v5, &v10->unk_704[v10->challengeType][0], v8);
         }
     }
 
-    if (BattleHall_IsMultiPlayerChallenge(v10->unk_04) == 1) {
+    if (BattleHall_IsMultiPlayerChallenge(v10->challengeType) == 1) {
         ov104_0222E630(v10->saveData);
     }
 
     return v10;
 }
 
-void ov104_022350B0(UnkStruct_ov104_0223B5C0 *param0, u16 param1)
+void ov104_022350B0(BattleHall *param0, u16 param1)
 {
     if (param1 == 0) {
         ov104_022350B8(param0);
@@ -147,7 +146,7 @@ void ov104_022350B0(UnkStruct_ov104_0223B5C0 *param0, u16 param1)
     return;
 }
 
-static void ov104_022350B8(UnkStruct_ov104_0223B5C0 *param0)
+static void ov104_022350B8(BattleHall *param0)
 {
     u8 v0, v1, v2, v3;
     int v4, v5;
@@ -156,15 +155,15 @@ static void ov104_022350B8(UnkStruct_ov104_0223B5C0 *param0)
     v3 = 0;
     v1 = 1;
 
-    if (param0->unk_04 != 0) {
+    if (param0->challengeType != 0) {
         v1 = 2;
     }
 
-    v0 = BattleHall_GetRankOfType(param0->unk_6F5, &param0->unk_704[param0->unk_04][0]);
+    v0 = BattleHall_GetRankOfType(param0->selectedTypeIdx, &param0->unk_704[param0->challengeType][0]);
     param0->unk_07 = ov104_02235704(param0);
 
-    ov104_0223AF58(param0->unk_6F5, v1, v0, param0->unk_05, param0->unk_18);
-    ov104_0223AFB4(param0->unk_04, v1, param0->unk_0A, v0, param0->unk_05, param0->unk_18);
+    ov104_0223AF58(param0->selectedTypeIdx, v1, v0, param0->unk_05, param0->unk_18);
+    ov104_0223AFB4(param0->challengeType, v1, param0->unk_0A, v0, param0->unk_05, param0->unk_18);
 
     v2 = (param0->unk_05 * 2);
 
@@ -182,12 +181,12 @@ static void ov104_022350B8(UnkStruct_ov104_0223B5C0 *param0)
     }
 
     v6 = Party_GetPokemonBySlotIndex(param0->unk_264, 0);
-    ov104_0223B0C8(1, param0->unk_6F4, v0, param0->unk_05, Pokemon_GetValue(v6, MON_DATA_SPECIES, NULL), param0->unk_268, v3);
+    ov104_0223B0C8(1, param0->selectedType, v0, param0->unk_05, Pokemon_GetValue(v6, MON_DATA_SPECIES, NULL), param0->unk_268, v3);
 
     return;
 }
 
-void ov104_02235190(UnkStruct_ov104_0223B5C0 *param0)
+void ov104_02235190(BattleHall *param0)
 {
     if (param0 == NULL) {
         return;
@@ -201,7 +200,7 @@ void ov104_02235190(UnkStruct_ov104_0223B5C0 *param0)
         Heap_Free(param0->unk_D8C);
     }
 
-    MI_CpuClear8(param0, sizeof(UnkStruct_ov104_0223B5C0));
+    MI_CpuClear8(param0, sizeof(BattleHall));
 
     Heap_Free(param0);
     param0 = NULL;
@@ -209,42 +208,34 @@ void ov104_02235190(UnkStruct_ov104_0223B5C0 *param0)
     return;
 }
 
-void ov104_022351CC(UnkStruct_ov104_0223B5C0 *param0, void *param1)
+void BattleHall_GetTypeSelectionAppResult(BattleHall *battleHall, void *args)
 {
-    int v0;
+    battleHall->selectedTypeIdx2 = GetBattleHallAppSelectedCell(args, 0);
+    battleHall->selectedTypeIdx = battleHall->selectedTypeIdx2;
+    battleHall->selectedType = BattleHall_CursorPosToType(battleHall->selectedTypeIdx2);
 
-    param0->unk_6F2 = ov104_02235208(param1, 0);
-    param0->unk_6F5 = param0->unk_6F2;
-    param0->unk_6F4 = BattleHall_CursorPosToType(param0->unk_6F2);
-
-    if (param0->unk_6F5 >= 17) {
-        param0->unk_6F5 = 18 - 1;
+    if (battleHall->selectedTypeIdx >= 17) {
+        battleHall->selectedTypeIdx = 17;
     }
-
-    return;
 }
 
-u16 ov104_02235208(void *param0, u8 param1)
+static u16 GetBattleHallAppSelectedCell(BattleHallAppArgs *args, u8 unused)
 {
-    UnkStruct_ov104_02235208 *v0 = param0;
-    return v0->unk_06;
+    return args->selectedCell;
 }
 
-void ov104_0223520C(UnkStruct_ov104_0223B5C0 *param0, u16 *param1)
+void BattleHall_UpdateWinRecordForCurrentMon(BattleHall *battleHall, u16 *updated)
 {
-    int v0;
-    int v1;
+    int unused, unused2;
 
-    if (param0->unk_04 != 3) {
-        *param1 = BattleHallWinRecords_UpdateRecord(param0->saveData, sub_0205E534(param0->unk_04), BattleFrontierStats_GetHallLatestSpeciesIndex(param0->unk_04), BattleFrontierStats_GetHostFriendIdx(sub_0205E534(param0->unk_04)), BattleFrontierStats_GetHallRecordStreakIndex(param0->unk_04), 11, &v0, &v1);
+    if (battleHall->challengeType != FRONTIER_CHALLENGE_MULTI_WFC) {
+        *updated = BattleHallWinRecords_UpdateRecord(battleHall->saveData, sub_0205E534(battleHall->challengeType), BattleFrontierStats_GetHallLatestSpeciesIndex(battleHall->challengeType), BattleFrontierStats_GetHostFriendIdx(sub_0205E534(battleHall->challengeType)), BattleFrontierStats_GetHallRecordStreakIndex(battleHall->challengeType), HEAP_ID_FIELD2, &unused, &unused2);
     } else {
-        *param1 = 0;
+        *updated = 0;
     }
-
-    return;
 }
 
-void ov104_0223526C(UnkStruct_ov104_0223B5C0 *param0, u8 param1)
+void ov104_0223526C(BattleHall *param0, u8 param1)
 {
     u16 v0;
     u8 v1[4];
@@ -257,34 +248,34 @@ void ov104_0223526C(UnkStruct_ov104_0223B5C0 *param0, u8 param1)
     UnkStruct_0203026C *v12 = sub_0203026C(param0->saveData);
 
     frontier = SaveData_GetBattleFrontier(param0->saveData);
-    v1[0] = param0->unk_04;
+    v1[0] = param0->challengeType;
 
     sub_02030140(param0->unk_6F8, 0, 0, 0, v1);
     sub_0203012C(param0->unk_6F8, 1);
 
     v10 = Party_GetPokemonBySlotIndex(SaveData_GetParty(param0->saveData), param0->unk_260[0]);
     v9 = Pokemon_GetValue(v10, MON_DATA_SPECIES, NULL);
-    v8 = BattleFrontierStats_GetStat(frontier, BattleFrontierStats_GetHallLatestSpeciesIndex(param0->unk_04), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetHallLatestSpeciesIndex(param0->unk_04)));
+    v8 = BattleFrontierStats_GetStat(frontier, BattleFrontierStats_GetHallLatestSpeciesIndex(param0->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetHallLatestSpeciesIndex(param0->challengeType)));
     v1[0] = param0->unk_05;
 
     sub_02030140(param0->unk_6F8, 1, 0, 0, v1);
-    BattleFrontierStats_SetStat(frontier, BattleFrontierStats_GetHallLatestStreakIndex(param0->unk_04), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetHallLatestStreakIndex(param0->unk_04)), param0->unk_08);
+    BattleFrontierStats_SetStat(frontier, BattleFrontierStats_GetHallLatestStreakIndex(param0->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetHallLatestStreakIndex(param0->challengeType)), param0->currentStreak);
 
     if (param1 != 2) {
-        if (param0->unk_04 != 3) {
-            BattleFrontierStats_SetStat(frontier, sub_0205E534(param0->unk_04), BattleFrontierStats_GetHostFriendIdx(sub_0205E534(param0->unk_04)), param0->unk_08);
+        if (param0->challengeType != 3) {
+            BattleFrontierStats_SetStat(frontier, sub_0205E534(param0->challengeType), BattleFrontierStats_GetHostFriendIdx(sub_0205E534(param0->challengeType)), param0->currentStreak);
         } else {
             if (v8 != v9) {
-                BattleFrontierStats_SetStat(frontier, sub_0205E534(param0->unk_04), BattleFrontierStats_GetHostFriendIdx(sub_0205E534(param0->unk_04)), param0->unk_08);
+                BattleFrontierStats_SetStat(frontier, sub_0205E534(param0->challengeType), BattleFrontierStats_GetHostFriendIdx(sub_0205E534(param0->challengeType)), param0->currentStreak);
             } else {
-                BattleFrontierStats_SetIfBetter(frontier, sub_0205E534(param0->unk_04), BattleFrontierStats_GetHostFriendIdx(sub_0205E534(param0->unk_04)), param0->unk_08);
+                BattleFrontierStats_SetIfBetter(frontier, sub_0205E534(param0->challengeType), BattleFrontierStats_GetHostFriendIdx(sub_0205E534(param0->challengeType)), param0->currentStreak);
             }
         }
 
         v1[0] = param0->unk_06;
-        sub_02030280(v12, 5, param0->unk_04, 0, v1);
+        sub_02030280(v12, 5, param0->challengeType, 0, v1);
 
-        if (param0->unk_04 == 3) {
+        if (param0->challengeType == 3) {
             BattleFrontierStats_SetStat(frontier, STAT_HALL_WFC_STREAK_ACTIVE, BattleFrontierStats_GetHostFriendIdx(STAT_HALL_WFC_STREAK_ACTIVE), param0->unk_06);
         }
     }
@@ -300,8 +291,8 @@ void ov104_0223526C(UnkStruct_ov104_0223B5C0 *param0, u8 param1)
     }
 
     for (v0 = 0; v0 < 18; v0++) {
-        v1[0] = BattleHall_GetRankOfType(v0, &param0->unk_704[param0->unk_04][0]);
-        ov104_02235620(param0->saveData, param0->unk_04, v0, v1[0]);
+        v1[0] = BattleHall_GetRankOfType(v0, &param0->unk_704[param0->challengeType][0]);
+        ov104_02235620(param0->saveData, param0->challengeType, v0, v1[0]);
     }
 
     for (v0 = 0; v0 < (10 * 2); v0++) {
@@ -309,22 +300,22 @@ void ov104_0223526C(UnkStruct_ov104_0223B5C0 *param0, u8 param1)
         sub_02030140(param0->unk_6F8, 4, v0, 0, v2);
     }
 
-    BattleFrontierStats_SetStat(frontier, BattleFrontierStats_GetHallLatestSpeciesIndex(param0->unk_04), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetHallLatestSpeciesIndex(param0->unk_04)), Pokemon_GetValue(v10, MON_DATA_SPECIES, NULL));
+    BattleFrontierStats_SetStat(frontier, BattleFrontierStats_GetHallLatestSpeciesIndex(param0->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetHallLatestSpeciesIndex(param0->challengeType)), Pokemon_GetValue(v10, MON_DATA_SPECIES, NULL));
     return;
 }
 
-u16 ov104_022354B0(UnkStruct_ov104_0223B5C0 *param0)
+u16 ov104_022354B0(BattleHall *param0)
 {
     param0->unk_05++;
     return param0->unk_05;
 }
 
-u16 ov104_022354BC(UnkStruct_ov104_0223B5C0 *param0)
+u16 ov104_022354BC(BattleHall *param0)
 {
     return param0->unk_05;
 }
 
-u16 ov104_022354C0(UnkStruct_ov104_0223B5C0 *param0, u8 param1)
+u16 ov104_022354C0(BattleHall *param0, u8 param1)
 {
     FrontierTrainerDataDTO v0;
     u8 v2 = (param0->unk_05 * 2) + param1;
@@ -334,17 +325,17 @@ u16 ov104_022354C0(UnkStruct_ov104_0223B5C0 *param0, u8 param1)
     return BattleTower_GetObjectIDFromTrainerClass(v0.trainerType);
 }
 
-void ov104_022354F4(UnkStruct_ov104_0223B5C0 *param0)
+void ov104_022354F4(BattleHall *param0)
 {
     int v0;
 
-    sub_02030244(&param0->unk_704[param0->unk_04][0]);
+    sub_02030244(&param0->unk_704[param0->challengeType][0]);
     ov104_0223526C(param0, 1);
 
     return;
 }
 
-void ov104_02235518(UnkStruct_ov104_0223B5C0 *param0)
+void ov104_02235518(BattleHall *param0)
 {
     Pokemon *v0;
 
@@ -360,7 +351,7 @@ void ov104_02235518(UnkStruct_ov104_0223B5C0 *param0)
     return;
 }
 
-BOOL ov104_02235534(UnkStruct_ov104_0223B5C0 *param0, u16 param1, u16 param2)
+BOOL ov104_02235534(BattleHall *param0, u16 param1, u16 param2)
 {
     int v0;
 
@@ -385,13 +376,13 @@ BOOL ov104_02235534(UnkStruct_ov104_0223B5C0 *param0, u16 param1, u16 param2)
     return v0;
 }
 
-u16 ov104_02235578(UnkStruct_ov104_0223B5C0 *param0)
+u16 ov104_02235578(BattleHall *param0)
 {
     u8 v0;
     static const u8 v1[18 + 1] = { 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 6, 6, 8, 8, 10, 10, 12 };
     static const u8 v2[18 + 1] = { 0, 6, 6, 6, 8, 8, 8, 10, 10, 10, 12, 12, 14, 15, 17, 17, 20, 20, 23 };
 
-    if ((param0->unk_04 == 0) || (param0->unk_04 == 1)) {
+    if ((param0->challengeType == 0) || (param0->challengeType == 1)) {
         if (param0->unk_0A >= 18) {
             v0 = v1[18];
         } else {
@@ -405,11 +396,11 @@ u16 ov104_02235578(UnkStruct_ov104_0223B5C0 *param0)
         }
     }
 
-    if (param0->unk_04 == 0) {
-        if ((param0->unk_08 == 50) || (param0->unk_08 == 170)) {
+    if (param0->challengeType == 0) {
+        if ((param0->currentStreak == 50) || (param0->currentStreak == 170)) {
             v0 = 20;
         }
-    } else if (param0->unk_04 == 2) {
+    } else if (param0->challengeType == 2) {
         v0 = 12;
     }
 
@@ -457,14 +448,14 @@ static void ov104_02235620(SaveData *saveData, u8 param1, u8 param2, u8 param3)
     return;
 }
 
-void ov104_022356A0(UnkStruct_ov104_0223B5C0 *param0)
+void ov104_022356A0(BattleHall *param0)
 {
     u8 v0;
     int v1;
 
-    if (param0->unk_04 != 2) {
+    if (param0->challengeType != 2) {
         for (v1 = 0; v1 < (18 - 1); v1++) {
-            v0 = BattleHall_GetRankOfType(v1, &param0->unk_704[param0->unk_04][0]);
+            v0 = BattleHall_GetRankOfType(v1, &param0->unk_704[param0->challengeType][0]);
 
             if (v0 < 10) {
                 break;
@@ -473,7 +464,7 @@ void ov104_022356A0(UnkStruct_ov104_0223B5C0 *param0)
 
         if (v1 == (18 - 1)) {
             for (v1 = 0; v1 < (18 - 1); v1++) {
-                sub_02030204(v1, &param0->unk_704[param0->unk_04][0], 10 - 1);
+                sub_02030204(v1, &param0->unk_704[param0->challengeType][0], 10 - 1);
             }
         }
     }
@@ -481,15 +472,13 @@ void ov104_022356A0(UnkStruct_ov104_0223B5C0 *param0)
     return;
 }
 
-void ov104_022356F4(UnkStruct_ov104_0223B5C0 *param0)
+void BattleHall_CalcPlayerLevelSqrt(BattleHall *battleHall)
 {
-    int v0 = ov104_0223B64C(param0);
-    param0->unk_0C = ov104_0223B6C4(v0);
-
-    return;
+    int level = BattleHall_GetHighestLevelInParty(battleHall);
+    battleHall->playerLevelSqrt = BattleHall_GetLevelSquareRoot(level);
 }
 
-static u16 ov104_02235704(UnkStruct_ov104_0223B5C0 *param0)
+static u16 ov104_02235704(BattleHall *param0)
 {
     fx32 v0, v1;
     int v2, v3;
@@ -497,15 +486,15 @@ static u16 ov104_02235704(UnkStruct_ov104_0223B5C0 *param0)
     u8 v5;
     float v6, v7;
 
-    v5 = BattleHall_GetRankOfType(param0->unk_6F5, &param0->unk_704[param0->unk_04][0]);
-    v2 = ov104_0223B64C(param0);
+    v5 = BattleHall_GetRankOfType(param0->selectedTypeIdx, &param0->unk_704[param0->challengeType][0]);
+    v2 = BattleHall_GetHighestLevelInParty(param0);
 
-    if (param0->unk_04 == 2) {
+    if (param0->challengeType == 2) {
         return v2;
     }
 
-    v0 = (FX32_CONST(v2) - (param0->unk_0C * 3));
-    v6 = (FX_FX32_TO_F32(param0->unk_0C) * 5.0);
+    v0 = (FX32_CONST(v2) - (param0->playerLevelSqrt * 3));
+    v6 = (FX_FX32_TO_F32(param0->playerLevelSqrt) * 5.0);
 
     if ((v2 / v6) < 1.0) {
         v6 = 1.0;
@@ -518,10 +507,10 @@ static u16 ov104_02235704(UnkStruct_ov104_0223B5C0 *param0)
     v7 = 0.0;
 
     for (v3 = 0; v3 < 18; v3++) {
-        if (v3 == param0->unk_6F5) {
+        if (v3 == param0->selectedTypeIdx) {
             v7 += 1.0;
         } else {
-            if (BattleHall_GetRankOfType(v3, &param0->unk_704[param0->unk_04][0]) > 0) {
+            if (BattleHall_GetRankOfType(v3, &param0->unk_704[param0->challengeType][0]) > 0) {
                 v7 += 1.0;
             }
         }

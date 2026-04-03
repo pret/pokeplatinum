@@ -10,7 +10,6 @@
 #include "applications/pokemon_summary_screen/main.h"
 #include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/ov104_0223AF58.h"
-#include "overlay104/struct_ov104_02235208.h"
 
 #include "bg_window.h"
 #include "communication_system.h"
@@ -250,17 +249,17 @@ BOOL BattleHallApp_Init(ApplicationManager *appMan, int *state)
     app->bgConfig = BgConfig_New(HEAP_ID_BATTLE_HALL_APP);
     app->unused = appMan;
 
-    UnkStruct_ov104_02235208 *v2 = ApplicationManager_Args(appMan);
+    BattleHallAppArgs *args = ApplicationManager_Args(appMan);
 
-    app->saveData = v2->saveData;
-    app->challengeType = v2->unk_04;
-    app->selectedCellPtr = &v2->unk_06;
+    app->saveData = args->saveData;
+    app->challengeType = args->challengeType;
+    app->selectedCellPtr = &args->selectedCell;
     app->options = SaveData_GetOptions(app->saveData);
-    app->party = v2->party;
-    app->typeRanks = v2->unk_08;
-    app->partnersLevel = v2->unk_14;
-    app->currentStreak = v2->unk_18 + 1;
-    app->cursorPos = v2->unk_05;
+    app->party = args->party;
+    app->typeRanks = args->typeRanks;
+    app->partnersLevel = args->partnersLevel;
+    app->currentStreak = args->currentStreak + 1;
+    app->cursorPos = args->cursorPos;
     app->partnersSelectedCell = 0xff;
     app->selectionID = 0xff;
     app->savedCursorPos = 0x75;

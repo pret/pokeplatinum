@@ -1,5 +1,9 @@
+#include "overlay104/ov104_02234838.h"
+
 #include <nitro.h>
-#include <string.h>
+
+#include "constants/battle_frontier.h"
+#include "constants/battle_hall_functions.h"
 
 #include "struct_decls/tv_broadcast.h"
 
@@ -11,9 +15,8 @@
 #include "overlay104/ov104_02231F74.h"
 #include "overlay104/ov104_02234DB4.h"
 #include "overlay104/ov104_0223AF58.h"
+#include "overlay104/struct_battle_hall.h"
 #include "overlay104/struct_ov104_02230BE4.h"
-#include "overlay104/struct_ov104_02235208.h"
-#include "overlay104/struct_ov104_0223B5C0.h"
 #include "savedata/save_table.h"
 
 #include "field_battle_data_transfer.h"
@@ -34,11 +37,11 @@ FS_EXTERN_OVERLAY(battle_hall_app);
 #include <nitro/code16.h>
 
 static BOOL ov104_02234CEC(FrontierScriptContext *param0);
-static void ov104_02234A08(void *param0);
+static void StoreBattleHallAppResult(void *data);
 
 BOOL FrontierScrCmd_8B(FrontierScriptContext *param0)
 {
-    UnkStruct_ov104_0223B5C0 *v0;
+    BattleHall *v0;
     UnkStruct_ov104_02230BE4 *v1;
     u16 v2 = FrontierScriptContext_GetVar(param0);
     u16 v3 = FrontierScriptContext_GetVar(param0);
@@ -55,7 +58,7 @@ BOOL FrontierScrCmd_8B(FrontierScriptContext *param0)
 
 BOOL FrontierScrCmd_8C(FrontierScriptContext *param0)
 {
-    UnkStruct_ov104_0223B5C0 *v0;
+    BattleHall *v0;
     u16 v1 = FrontierScriptContext_GetVar(param0);
 
     v0 = sub_0209B978(param0->scriptMan->unk_00);
@@ -66,7 +69,7 @@ BOOL FrontierScrCmd_8C(FrontierScriptContext *param0)
 
 BOOL FrontierScrCmd_8D(FrontierScriptContext *param0)
 {
-    UnkStruct_ov104_0223B5C0 *v0 = sub_0209B978(param0->scriptMan->unk_00);
+    BattleHall *v0 = sub_0209B978(param0->scriptMan->unk_00);
     ov104_02235190(v0);
 
     return 0;
@@ -85,229 +88,215 @@ BOOL FrontierScrCmd_OpenBattleHallApp(FrontierScriptContext *ctx)
         FS_OVERLAY_ID(battle_hall_app)
     };
 
-    UnkStruct_ov104_0223B5C0 *v3 = sub_0209B978(ctx->scriptMan->unk_00);
-    UnkStruct_ov104_02235208 *v4 = Heap_Alloc(HEAP_ID_FIELD2, sizeof(UnkStruct_ov104_02235208));
+    BattleHall *battleHall = sub_0209B978(ctx->scriptMan->unk_00);
+    BattleHallAppArgs *args = Heap_Alloc(HEAP_ID_FIELD2, sizeof(BattleHallAppArgs));
 
-    MI_CpuClear8(v4, sizeof(UnkStruct_ov104_02235208));
+    MI_CpuClear8(args, sizeof(BattleHallAppArgs));
 
-    v4->saveData = v5->saveData;
-    v4->unk_04 = v3->unk_04;
-    v4->unk_10 = v3;
-    v4->unk_08 = &v3->unk_704[v3->unk_04][0];
-    v4->party = v3->unk_264;
-    v4->unk_18 = v3->unk_08;
-    v4->unk_05 = v3->unk_6F5;
-    v4->unk_14 = &v3->unk_D84[0];
+    args->saveData = v5->saveData;
+    args->challengeType = battleHall->challengeType;
+    args->battleHall = battleHall;
+    args->typeRanks = &battleHall->unk_704[battleHall->challengeType][0];
+    args->party = battleHall->unk_264;
+    args->currentStreak = battleHall->currentStreak;
+    args->cursorPos = battleHall->selectedTypeIdx;
+    args->partnersLevel = &battleHall->unk_D84[0];
 
-    Party_Init(v4->party);
+    Party_Init(args->party);
 
     Party *party = SaveData_GetParty(v5->saveData);
-    Pokemon *mon = Party_GetPokemonBySlotIndex(party, v3->unk_260[0]);
+    Pokemon *mon = Party_GetPokemonBySlotIndex(party, battleHall->unk_260[0]);
 
-    Party_AddPokemon(v4->party, mon);
+    Party_AddPokemon(args->party, mon);
 
-    if (v4->unk_04 == 1) {
-        mon = Party_GetPokemonBySlotIndex(party, v3->unk_260[1]);
-        Party_AddPokemon(v4->party, mon);
-    } else if ((v4->unk_04 == 2) || (v4->unk_04 == 3)) {
-        Party_AddPokemon(v4->party, v3->unk_D8C);
+    if (args->challengeType == FRONTIER_CHALLENGE_DOUBLE) {
+        mon = Party_GetPokemonBySlotIndex(party, battleHall->unk_260[1]);
+        Party_AddPokemon(args->party, mon);
+    } else if (args->challengeType == FRONTIER_CHALLENGE_MULTI || args->challengeType == FRONTIER_CHALLENGE_MULTI_WFC) {
+        Party_AddPokemon(args->party, battleHall->unk_D8C);
     }
 
-    sub_0209B988(ctx->scriptMan->unk_00, &sBattleHallAppTemplate, v4, 0, ov104_02234A08);
+    sub_0209B988(ctx->scriptMan->unk_00, &sBattleHallAppTemplate, args, 0, StoreBattleHallAppResult);
     return TRUE;
 }
 
-BOOL FrontierScrCmd_8F(FrontierScriptContext *param0)
+BOOL FrontierScrCmd_BattleHall_CheckWonBattle(FrontierScriptContext *ctx)
 {
-    UnkStruct_ov104_0223B5C0 *v0 = sub_0209B978(param0->scriptMan->unk_00);
-    FieldBattleDTO *v1 = v0->unk_700;
+    BattleHall *battleHall = sub_0209B978(ctx->scriptMan->unk_00);
+    FieldBattleDTO *dto = battleHall->unk_700;
 
-    v0->unk_14 = CheckPlayerWonBattle(v1->resultMask);
-    FieldBattleDTO_Free(v1);
+    battleHall->wonBattle = CheckPlayerWonBattle(dto->resultMask);
+    FieldBattleDTO_Free(dto);
 
-    return 0;
+    return FALSE;
 }
 
-BOOL FrontierScrCmd_90(FrontierScriptContext *param0)
+BOOL FrontierScrCmd_BattleHall_StartBattle(FrontierScriptContext *ctx)
 {
-    FieldBattleDTO *v0;
-    UnkStruct_ov104_0223B5C0 *v1;
-    UnkStruct_ov104_02230BE4 *v2 = sub_0209B970(param0->scriptMan->unk_00);
+    UnkStruct_ov104_02230BE4 *v2 = sub_0209B970(ctx->scriptMan->unk_00);
+    BattleHall *battleHall = sub_0209B978(ctx->scriptMan->unk_00);
 
-    v1 = sub_0209B978(param0->scriptMan->unk_00);
-    v0 = ov104_0223B250(v1, v2);
-
-    v1->unk_700 = v0;
+    FieldBattleDTO *v0 = ov104_0223B250(battleHall, v2);
+    battleHall->unk_700 = v0;
 
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_BATTLE, SEQ_BATTLE_TRAINER, 1);
-    sub_0209B988(param0->scriptMan->unk_00, &gBattleApplicationTemplate, v0, 0, NULL);
+    sub_0209B988(ctx->scriptMan->unk_00, &gBattleApplicationTemplate, v0, 0, NULL);
 
-    return 1;
+    return TRUE;
 }
 
-static void ov104_02234A08(void *param0)
+static void StoreBattleHallAppResult(void *data)
 {
-    int v0;
-    Pokemon *v1;
-    UnkStruct_ov104_02235208 *v2 = param0;
-
-    ov104_022351CC(v2->unk_10, param0);
-    Heap_Free(param0);
-
-    return;
+    BattleHallAppArgs *args = data;
+    BattleHall_GetTypeSelectionAppResult(args->battleHall, data);
+    Heap_Free(data);
 }
 
-BOOL FrontierScrCmd_91(FrontierScriptContext *param0)
+BOOL FrontierScrCmd_CallBattleHallFunction(FrontierScriptContext *ctx)
 {
-    UnkStruct_ov104_02230BE4 *v0;
-    Pokemon *v1;
-    Party *v2;
-    UnkStruct_ov104_0223B5C0 *v3;
-    u8 v4, v5;
+    u8 v4, partySize;
     u32 v6;
-    int v7;
-    u8 v8 = FrontierScriptContext_ReadByte(param0);
-    u8 v9 = FrontierScriptContext_ReadByte(param0);
-    u8 v10 = FrontierScriptContext_ReadByte(param0);
-    u16 *v11 = FrontierScriptContext_TryGetVarPointer(param0);
+    u8 command = FrontierScriptContext_ReadByte(ctx);
+    u8 arg1 = FrontierScriptContext_ReadByte(ctx);
+    u8 arg2 = FrontierScriptContext_ReadByte(ctx);
+    u16 *returnVar = FrontierScriptContext_TryGetVarPointer(ctx);
 
-    v0 = sub_0209B970(param0->scriptMan->unk_00);
-    v3 = sub_0209B978(param0->scriptMan->unk_00);
+    UnkStruct_ov104_02230BE4 *v0 = sub_0209B970(ctx->scriptMan->unk_00);
+    BattleHall *battleHall = sub_0209B978(ctx->scriptMan->unk_00);
 
-    switch (v8) {
-    case 2:
-        v3->unk_04 = v9;
+    switch (command) {
+    case BH_FUNC_SET_CHALLENGE_TYPE:
+        battleHall->challengeType = arg1;
         break;
-    case 3:
-        *v11 = v3->unk_6F2;
+    case BH_FUNC_GET_SELECTED_TYPE_INDEX:
+        *returnVar = battleHall->selectedTypeIdx2;
         break;
-    case 4:
-        *v11 = v3->unk_08;
+    case BH_FUNC_GET_CURRENT_STREAK:
+        *returnVar = battleHall->currentStreak;
         break;
-    case 5:
-        if (v3->unk_08 < 9999) {
-            v3->unk_08++;
+    case BH_FUNC_INCREMENT_CURRENT_STEAK:
+        if (battleHall->currentStreak < 9999) {
+            battleHall->currentStreak++;
         }
         break;
-    case 7:
+    case BH_FUNC_RESET_SYSTEM:
         OS_ResetSystem(0);
         break;
-    case 9:
-        *v11 = sub_02030124(v3->unk_6F8);
+    case BH_FUNC_UNK_9:
+        *returnVar = sub_02030124(battleHall->unk_6F8);
         break;
-    case 10:
-        ov104_0223526C(v3, 2);
+    case BH_FUNC_UNK_10:
+        ov104_0223526C(battleHall, 2);
         break;
-    case 14:
-        *v11 = ov104_022354B0(v3);
+    case BH_FUNC_UNK_14:
+        *returnVar = ov104_022354B0(battleHall);
         break;
-    case 19:
-        if (v3->unk_04 == 2) {
-            *v11 = 10;
+    case BH_FUNC_UNK_19:
+        if (battleHall->challengeType == 2) {
+            *returnVar = 10;
         } else {
-            *v11 = v3->unk_0A;
+            *returnVar = battleHall->unk_0A;
         }
         break;
-    case 20:
-        *v11 = ov104_022354C0(v3, v9);
+    case BH_FUNC_UNK_20:
+        *returnVar = ov104_022354C0(battleHall, arg1);
         break;
-    case 21:
-        ov104_022354F4(v3);
+    case BH_FUNC_UNK_21:
+        ov104_022354F4(battleHall);
         break;
-    case 22:
-        ov104_02235518(v3);
+    case BH_FUNC_UNK_22:
+        ov104_02235518(battleHall);
         break;
-    case 23:
-        *v11 = ov104_022354BC(v3);
+    case BH_FUNC_UNK_23:
+        *returnVar = ov104_022354BC(battleHall);
         break;
-    case 24:
-        *v11 = v3->unk_D88;
+    case BH_FUNC_UNK_24:
+        *returnVar = battleHall->unk_D88;
         break;
-    case 27:
-        v2 = SaveData_GetParty(v0->saveData);
-        v5 = ov104_0223B500(v3->unk_04);
+    case BH_FUNC_UPDATE_HELD_ITEMS: {
+        Party *party = SaveData_GetParty(v0->saveData);
+        partySize = BattleHall_GetPartySize(battleHall->challengeType);
 
-        for (v7 = 0; v7 < v5; v7++) {
-            v1 = Party_GetPokemonBySlotIndex(v2, v3->unk_260[v7]);
-            Pokemon_SetValue(v1, MON_DATA_HELD_ITEM, &v3->unk_728[v7]);
+        for (int i = 0; i < partySize; i++) {
+            Pokemon *mon = Party_GetPokemonBySlotIndex(party, battleHall->unk_260[i]);
+            Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &battleHall->unk_728[i]);
         }
-        break;
-    case 28:
-        v4 = BattleHall_GetRankOfType(v3->unk_6F5, &v3->unk_704[v3->unk_04][0]);
+    } break;
+    case BH_FUNC_UNK_28:
+        v4 = BattleHall_GetRankOfType(battleHall->selectedTypeIdx, &battleHall->unk_704[battleHall->challengeType][0]);
 
         if (v4 < 10) {
-            sub_02030204(v3->unk_6F5, &v3->unk_704[v3->unk_04][0], v4 + 1);
+            sub_02030204(battleHall->selectedTypeIdx, &battleHall->unk_704[battleHall->challengeType][0], v4 + 1);
         }
         break;
-    case 29:
-        sub_0209BA80(v3);
+    case BH_FUNC_UNK_29:
+        sub_0209BA80(battleHall);
         break;
-    case 30:
-        *v11 = BattleHall_IsMultiPlayerChallenge(v3->unk_04);
+    case BH_FUNC_IS_MULTIPLAYER_CHALLENGE:
+        *returnVar = BattleHall_IsMultiPlayerChallenge(battleHall->challengeType);
         break;
-    case 17:
-        *v11 = v3->unk_04;
+    case BH_FUNC_GET_CHALLENGE_TYPE:
+        *returnVar = battleHall->challengeType;
         break;
-    case 31:
-        if (v9 == 0) {
-            GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
+    case BH_FUNC_TOGGLE_ENGINE_LAYER:
+        if (arg1 == 0) {
+            GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, TRUE);
         } else {
-            GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
+            GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, FALSE);
         }
         break;
-    case 32:
-        ov104_0222E278(&(v3->unk_40[0]), v3->unk_18[v3->unk_05 * 2], HEAP_ID_FIELD2, 178);
-        ov104_0222E278(&(v3->unk_40[1]), v3->unk_18[v3->unk_05 * 2 + 1], HEAP_ID_FIELD2, 178);
+    case BH_FUNC_UNK_32:
+        ov104_0222E278(&(battleHall->unk_40[0]), battleHall->unk_18[battleHall->unk_05 * 2], HEAP_ID_FIELD2, 178);
+        ov104_0222E278(&(battleHall->unk_40[1]), battleHall->unk_18[battleHall->unk_05 * 2 + 1], HEAP_ID_FIELD2, 178);
         break;
-    case 33:
-        *v11 = BattleHall_GetRankOfType(v3->unk_6F5, &v3->unk_704[v3->unk_04][0]);
+    case BH_FUNC_UNK_33:
+        *returnVar = BattleHall_GetRankOfType(battleHall->selectedTypeIdx, &battleHall->unk_704[battleHall->challengeType][0]);
         break;
-    case 34:
-        *v11 = ov104_02235578(v3);
+    case BH_FUNC_UNK_34:
+        *returnVar = ov104_02235578(battleHall);
         break;
-    case 15:
-        v2 = SaveData_GetParty(v0->saveData);
-        v1 = Party_GetPokemonBySlotIndex(v2, v3->unk_260[0]);
-        *v11 = Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL);
+    case BH_FUNC_UNK_15: {
+        Party *v2 = SaveData_GetParty(v0->saveData);
+        Pokemon *v1 = Party_GetPokemonBySlotIndex(v2, battleHall->unk_260[0]);
+        *returnVar = Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL);
+    } break;
+    case BH_FUNC_UNK_35:
+        ov104_022356A0(battleHall);
         break;
-    case 35:
-        ov104_022356A0(v3);
+    case BH_FUNC_SET_BASE_LEVEL:
+        BattleHall_CalcPlayerLevelSqrt(battleHall);
         break;
-    case 36:
-        ov104_022356F4(v3);
-        break;
-    case 37:
-        *v11 = 0;
+    case BH_FUNC_UNK_37:
+        *returnVar = 0;
 
-        if (v3->unk_04 == 0) {
-            if ((v3->unk_08 + 1) == 50) {
-                *v11 = 1;
-            } else if ((v3->unk_08 + 1) == 170) {
-                *v11 = 2;
+        if (battleHall->challengeType == 0) {
+            if ((battleHall->currentStreak + 1) == 50) {
+                *returnVar = 1;
+            } else if ((battleHall->currentStreak + 1) == 170) {
+                *returnVar = 2;
             }
         }
         break;
-    case 38:
+    case BH_FUNC_DUMMY:
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
-BOOL FrontierScrCmd_92(FrontierScriptContext *param0)
+BOOL FrontierScrCmd_BattleHall_GetBattleResult(FrontierScriptContext *param0)
 {
-    UnkStruct_ov104_0223B5C0 *v0;
-    u16 *v1 = FrontierScriptContext_TryGetVarPointer(param0);
+    u16 *destVar = FrontierScriptContext_TryGetVarPointer(param0);
 
-    v0 = sub_0209B978(param0->scriptMan->unk_00);
-    *v1 = v0->unk_14;
+    BattleHall *battleHall = sub_0209B978(param0->scriptMan->unk_00);
+    *destVar = battleHall->wonBattle;
 
-    return 0;
+    return FALSE;
 }
 
 BOOL FrontierScrCmd_93(FrontierScriptContext *param0)
 {
-    UnkStruct_ov104_0223B5C0 *v0;
+    BattleHall *v0;
     u16 v1 = FrontierScriptContext_GetVar(param0);
     u16 v2 = FrontierScriptContext_GetVar(param0);
     u16 *v3 = FrontierScriptContext_TryGetVarPointer(param0);
@@ -330,7 +319,7 @@ BOOL FrontierScrCmd_94(FrontierScriptContext *param0)
 
 static BOOL ov104_02234CEC(FrontierScriptContext *param0)
 {
-    UnkStruct_ov104_0223B5C0 *v0;
+    BattleHall *v0;
     u16 v1 = FrontierScriptContext_TryGetVar(param0, param0->data[0]);
 
     v0 = sub_0209B978(param0->scriptMan->unk_00);
@@ -346,7 +335,7 @@ static BOOL ov104_02234CEC(FrontierScriptContext *param0)
 BOOL FrontierScrCmd_95(FrontierScriptContext *param0)
 {
     u16 *v0;
-    UnkStruct_ov104_0223B5C0 *v1;
+    BattleHall *v1;
     UnkStruct_ov104_02230BE4 *v2 = sub_0209B970(param0->scriptMan->unk_00);
     u16 v3 = FrontierScriptContext_ReadByte(param0);
 
@@ -362,15 +351,13 @@ BOOL FrontierScrCmd_95(FrontierScriptContext *param0)
     return 1;
 }
 
-BOOL FrontierScrCmd_76(FrontierScriptContext *param0)
+BOOL FrontierScrCmd_BattleHall_UpdateWinRecord(FrontierScriptContext *ctx)
 {
-    UnkStruct_ov104_0223B5C0 *v0;
-    u16 *v1 = FrontierScriptContext_TryGetVarPointer(param0);
+    u16 *destVar = FrontierScriptContext_TryGetVarPointer(ctx);
+    BattleHall *battleHall = sub_0209B978(ctx->scriptMan->unk_00);
+    BattleHall_UpdateWinRecordForCurrentMon(battleHall, destVar);
 
-    v0 = sub_0209B978(param0->scriptMan->unk_00);
-    ov104_0223520C(v0, v1);
-
-    return 1;
+    return TRUE;
 }
 
 BOOL FrontierScrCmd_C7(FrontierScriptContext *param0)
@@ -379,7 +366,7 @@ BOOL FrontierScrCmd_C7(FrontierScriptContext *param0)
     u16 v1;
     Party *v2;
     Pokemon *v3;
-    UnkStruct_ov104_0223B5C0 *v4;
+    BattleHall *v4;
     UnkStruct_ov104_02230BE4 *v5 = sub_0209B970(param0->scriptMan->unk_00);
 
     v4 = sub_0209B978(param0->scriptMan->unk_00);
@@ -387,7 +374,7 @@ BOOL FrontierScrCmd_C7(FrontierScriptContext *param0)
     v3 = Party_GetPokemonBySlotIndex(v2, v4->unk_260[0]);
     v1 = Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL);
 
-    if (v4->unk_04 == 0) {
+    if (v4->challengeType == 0) {
         broadcast = SaveData_GetTVBroadcast(v5->saveData);
         sub_0206D048(broadcast, v3);
     }

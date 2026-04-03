@@ -1,21 +1,21 @@
 #ifndef POKEPLATINUM_OV104_0222ECE8_H
 #define POKEPLATINUM_OV104_0222ECE8_H
 
+#include "overlay104/struct_battle_hall.h"
 #include "overlay104/struct_ov104_0223ADA0.h"
-#include "overlay104/struct_ov104_0223B5C0.h"
 #include "overlay104/struct_ov104_0223BA10.h"
 #include "overlay104/struct_ov104_0223BFFC.h"
 
 void ov104_0222ECE8(int param0, int param1, void *param2, void *param3);
-BOOL ov104_0222ED00(UnkStruct_ov104_0223B5C0 *param0);
+BOOL ov104_0222ED00(BattleHall *param0);
 void ov104_0222ED2C(int param0, int param1, void *param2, void *param3);
-BOOL ov104_0222ED44(UnkStruct_ov104_0223B5C0 *param0);
+BOOL ov104_0222ED44(BattleHall *param0);
 void ov104_0222ED74(int param0, int param1, void *param2, void *param3);
-BOOL ov104_0222EDA8(UnkStruct_ov104_0223B5C0 *param0);
+BOOL ov104_0222EDA8(BattleHall *param0);
 void ov104_0222EDDC(int param0, int param1, void *param2, void *param3);
-BOOL ov104_0222EE14(UnkStruct_ov104_0223B5C0 *param0, u8 param1);
+BOOL ov104_0222EE14(BattleHall *param0, u8 param1);
 void ov104_0222EE38(int param0, int param1, void *param2, void *param3);
-BOOL ov104_0222EE60(UnkStruct_ov104_0223B5C0 *param0);
+BOOL ov104_0222EE60(BattleHall *param0);
 void ov104_0222EEA8(int param0, int param1, void *param2, void *param3);
 u8 *ov104_0222EED8(int param0, void *param1, int param2);
 BOOL ov104_0222EEF8(UnkStruct_ov104_0223ADA0 *param0);

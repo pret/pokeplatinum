@@ -535,7 +535,7 @@ _0385:
     FrontierScrCmd_6A VAR_0x8002
     ClearReceivedTempDataAllPlayers
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 230
+    SyncConnectedPlayers 230
     ClearReceivedTempDataAllPlayers
     GoTo _03B6
     End
@@ -554,7 +554,7 @@ _03D6:
     FrontierScrCmd_6A VAR_0x8002
     ClearReceivedTempDataAllPlayers
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 231
+    SyncConnectedPlayers 231
     ClearReceivedTempDataAllPlayers
     GoTo _0407
     End
@@ -601,7 +601,7 @@ _04A9:
 
 _04C5:
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 238
+    SyncConnectedPlayers 238
     ClearReceivedTempDataAllPlayers
     GoTo _04D5
     End
@@ -613,7 +613,7 @@ _04D5:
     FrontierScrCmd_6A VAR_0x8002
     ClearReceivedTempDataAllPlayers
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 232
+    SyncConnectedPlayers 232
     ClearReceivedTempDataAllPlayers
     FrontierScrCmd_67 39, 0, 0, VAR_0x8008
     FrontierScrCmd_67 19, 0, 0, VAR_0x8008
@@ -740,7 +740,7 @@ _072D:
     ClearReceivedTempDataAllPlayers
     FrontierScrCmd_67 40, 0, 0, VAR_0x8008
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 160
+    SyncConnectedPlayers 160
     ClearReceivedTempDataAllPlayers
     GoTo _0765
     End
@@ -763,13 +763,13 @@ _0765:
 
 _07C8:
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 234
+    SyncConnectedPlayers 234
     ClearReceivedTempDataAllPlayers
     Return
 
 _07D2:
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 235
+    SyncConnectedPlayers 235
     ClearReceivedTempDataAllPlayers
     Return
 
@@ -924,7 +924,7 @@ _0A92:
     ClearReceivedTempDataAllPlayers
     FrontierScrCmd_67 38, 0, 0, VAR_0x8008
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 161
+    SyncConnectedPlayers 161
     ClearReceivedTempDataAllPlayers
     CloseMessage
     FrontierScrCmd_3F 3
@@ -1140,7 +1140,7 @@ _0E45:
     FrontierScrCmd_67 24, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _0E8A
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 162
+    SyncConnectedPlayers 162
     ClearReceivedTempDataAllPlayers
     GoTo _0E9F
     End
@@ -1193,7 +1193,7 @@ _0F23:
 
 _0F4D:
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 163
+    SyncConnectedPlayers 163
     ClearReceivedTempDataAllPlayers
     GoTo _0F5D
     End
@@ -1213,13 +1213,13 @@ _0F5D:
 
 _0FAB:
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 236
+    SyncConnectedPlayers 236
     ClearReceivedTempDataAllPlayers
     Return
 
 _0FB5:
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 233
+    SyncConnectedPlayers 233
     ClearReceivedTempDataAllPlayers
     Return
 
@@ -1381,7 +1381,7 @@ _11FE:
     Message BattleFactoryScene_Text_ReturnPokemon
     MessageNoSkip BattleFactoryScene_Text_PleaseWait
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 168
+    SyncConnectedPlayers 168
     ClearReceivedTempDataAllPlayers
     GoTo _1216
     End
@@ -1439,7 +1439,7 @@ _12BF:
 _12DF:
     MessageNoSkip BattleFactoryScene_Text_PleaseWait
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 166
+    SyncConnectedPlayers 166
     ClearReceivedTempDataAllPlayers
     GoTo _12F3
     End
@@ -1469,7 +1469,7 @@ _1358:
 
 _135E:
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 167
+    SyncConnectedPlayers 167
     ClearReceivedTempDataAllPlayers
     Return
 
@@ -1648,7 +1648,7 @@ _1630:
     FrontierScrCmd_67 27, 0, 0, VAR_0x8008
     WaitTime 1, VAR_0x8008
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 195
+    SyncConnectedPlayers 195
     ClearReceivedTempDataAllPlayers
     Return
 
@@ -1657,7 +1657,7 @@ _164D:
     FrontierScrCmd_67 27, 0, 0, VAR_0x8008
     WaitTime 1, VAR_0x8008
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 196
+    SyncConnectedPlayers 196
     ClearReceivedTempDataAllPlayers
     Return
 
@@ -1666,7 +1666,7 @@ _166A:
     FrontierScrCmd_67 27, 0, 0, VAR_0x8008
     WaitTime 1, VAR_0x8008
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 197
+    SyncConnectedPlayers 197
     ClearReceivedTempDataAllPlayers
     Return
 

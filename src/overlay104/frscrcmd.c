@@ -207,7 +207,7 @@ static BOOL FrontierScrCmd_04(FrontierScriptContext *ctx);
 static BOOL Resume(FrontierScriptContext *ctx);
 static BOOL FrontierScrCmd_26(FrontierScriptContext *ctx);
 static BOOL FrontierScrCmd_Dummy27(FrontierScriptContext *ctx);
-static BOOL FrontierScrCmd_35(FrontierScriptContext *ctx);
+static BOOL FrontierScrCmd_SyncConnectedPlayers(FrontierScriptContext *ctx);
 static BOOL WaitForSyncState(FrontierScriptContext *ctx);
 static BOOL FrontierScrCmd_ClearReceivedTempDataAllPlayers(FrontierScriptContext *ctx);
 static BOOL FrontierScrCmd_EndCommunication(FrontierScriptContext *ctx);
@@ -1597,13 +1597,13 @@ static BOOL FrontierScrCmd_RemoteBattlePoints(FrontierScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL FrontierScrCmd_35(FrontierScriptContext *ctx)
+static BOOL FrontierScrCmd_SyncConnectedPlayers(FrontierScriptContext *ctx)
 {
-    u16 v0 = FrontierScriptContext_GetVar(ctx);
+    u16 syncNo = FrontierScriptContext_GetVar(ctx);
 
-    ctx->data[0] = v0;
+    ctx->data[0] = syncNo;
 
-    CommTiming_StartSync(v0);
+    CommTiming_StartSync(syncNo);
     FrontierScriptContext_Pause(ctx, WaitForSyncState);
 
     return TRUE;
