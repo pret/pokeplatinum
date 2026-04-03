@@ -8,6 +8,7 @@
 #include "field/field_system.h"
 
 #include "bag.h"
+#include "battle_frontier_stats.h"
 #include "bg_window.h"
 #include "communication_information.h"
 #include "communication_system.h"
@@ -29,7 +30,6 @@
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_0202ACE0.h"
-#include "unk_0203061C.h"
 #include "unk_0203909C.h"
 
 typedef struct {
@@ -68,7 +68,7 @@ static BOOL ov5_021EA874(UnkStruct_ov5_021EAE78 *param0)
 
     param0->unk_8C = 0;
 
-    LoadMessageBoxGraphics(param0->fieldSystem->bgConfig, 3, (512 - (18 + 12)), 10, Options_Frame(SaveData_GetOptions(param0->saveData)), HEAP_ID_FIELD1);
+    LoadMessageBoxGraphics(param0->fieldSystem->bgConfig, 3, 512 - (18 + 12), 10, Options_Frame(SaveData_GetOptions(param0->saveData)), HEAP_ID_FIELD1);
     LoadStandardWindowGraphics(param0->fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 0, HEAP_ID_FIELD1);
 
     param0->unk_48 = 1;
@@ -352,7 +352,7 @@ static BOOL ov5_021EAD38(UnkStruct_ov5_021EAE78 *param0)
     if (v4 == 0xffffffff) {
         return 0;
     } else if (v4 == 0) {
-        sub_02030788(SaveData_GetBattleFrontier(param0->saveData), param0->unk_90);
+        BattleFrontierStats_ClearFriendStatsAndShift(SaveData_GetBattleFrontier(param0->saveData), param0->unk_90);
         sub_0202AFD4(v0, param0->unk_90);
         sub_02039298(param0->saveData, param0->unk_8C, 32 - 1, HEAP_ID_FIELD1, 0);
         param0->unk_48 = 1;

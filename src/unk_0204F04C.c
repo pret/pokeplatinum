@@ -5,10 +5,10 @@
 
 #include "struct_defs/struct_020300F4.h"
 
+#include "battle_frontier_stats.h"
 #include "field_script_context.h"
 #include "inlines.h"
 #include "unk_0202FF4C.h"
-#include "unk_0203061C.h"
 #include "unk_0205DFC4.h"
 
 BOOL ScrCmd_2C5(ScriptContext *param0);
@@ -33,11 +33,11 @@ BOOL ScrCmd_2C5(ScriptContext *param0)
             v0 = 104;
         }
 
-        sub_020306E4(SaveData_GetBattleFrontier(param0->fieldSystem->saveData), v0, sub_0205E6A8(v0), 0);
+        BattleFrontierStats_SetStat(SaveData_GetBattleFrontier(param0->fieldSystem->saveData), v0, BattleFrontierStats_GetHostFriendIdx(v0), 0);
     }
 
-    sub_020306E4(SaveData_GetBattleFrontier(param0->fieldSystem->saveData), sub_0205E430(v4, v3), sub_0205E6A8(sub_0205E430(v4, v3)), 0);
-    sub_020306E4(SaveData_GetBattleFrontier(param0->fieldSystem->saveData), sub_0205E488(v4, v3), sub_0205E6A8(sub_0205E488(v4, v3)), 0);
+    BattleFrontierStats_SetStat(SaveData_GetBattleFrontier(param0->fieldSystem->saveData), BattleFrontierStats_GetFactoryLatestStreakIdx(v4, v3), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetFactoryLatestStreakIdx(v4, v3)), 0);
+    BattleFrontierStats_SetStat(SaveData_GetBattleFrontier(param0->fieldSystem->saveData), BattleFrontierStats_GetFactoryLatestTradeCountIndex(v4, v3), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetFactoryLatestTradeCountIndex(v4, v3)), 0);
 
     return 0;
 }

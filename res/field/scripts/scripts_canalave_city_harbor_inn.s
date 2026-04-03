@@ -1,66 +1,66 @@
 #include "macros/scrcmd.inc"
 #include "generated/distribution_events.h"
 #include "res/text/bank/canalave_city_harbor_inn.h"
+#include "res/field/events/events_canalave_city_harbor_inn.h"
 
-
-    ScriptEntry _000E
-    ScriptEntry _0093
-    ScriptEntry _0160
+    ScriptEntry CanalaveCityHarborInn_OnTransition
+    ScriptEntry CanalaveCityHarborInn_OnFrameSleep
+    ScriptEntry CanalaveCityHarborInn_OnFrameAwaken
     ScriptEntryEnd
 
-_000E:
-    SetFlag FLAG_UNK_0x0241
-    GoToIfUnset FLAG_UNK_0x0158, _001F
+CanalaveCityHarborInn_OnTransition:
+    SetFlag FLAG_HIDE_CANALAVE_CITY_HARBOR_INN_GYM_GUIDE
+    GoToIfUnset FLAG_CAUGHT_DARKRAI, CanalaveCityHarborInn_CheckGameCompleted
     End
 
-_001F:
-    GoToIfSet FLAG_GAME_COMPLETED, _002C
+CanalaveCityHarborInn_CheckGameCompleted:
+    GoToIfSet FLAG_GAME_COMPLETED, CanalaveCityHarborInn_CheckNationalDexEnabled
     End
 
-_002C:
+CanalaveCityHarborInn_CheckNationalDexEnabled:
     GetNationalDexEnabled VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, 1, _0040
+    GoToIfEq VAR_MAP_LOCAL_0, TRUE, CanalaveCityHarborInn_CheckMemberCard
     End
 
-_0040:
+CanalaveCityHarborInn_CheckMemberCard:
     CheckItem ITEM_MEMBER_CARD, 1, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, 1, _0057
+    GoToIfEq VAR_MAP_LOCAL_0, TRUE, CanalaveCityHarborInn_CheckDistributionEventDarkrai
     End
 
-_0057:
+CanalaveCityHarborInn_CheckDistributionEventDarkrai:
     CheckDistributionEvent DISTRIBUTION_EVENT_DARKRAI, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, TRUE, _006B
+    GoToIfEq VAR_MAP_LOCAL_0, TRUE, CanalaveCityWestHouse_CheckWokeUpLittleBoy
     End
 
-_006B:
-    GoToIfSet FLAG_UNK_0x012C, _0078
+CanalaveCityWestHouse_CheckWokeUpLittleBoy:
+    GoToIfSet FLAG_WOKE_UP_CANALAVE_CITY_SAILOR_ELDRITCH_HOUSE_LITTLE_BOY, CanalaveCityWestHouse_TryStartDarkraiEvent
     End
 
-_0078:
-    GoToIfGe VAR_UNK_0x40F8, 2, _0091
-    ClearFlag FLAG_UNK_0x0241
-    SetVar VAR_UNK_0x40F8, 1
+CanalaveCityWestHouse_TryStartDarkraiEvent:
+    GoToIfGe VAR_DARKRAI_EVENT_STATE, 2, CanalaveCityHarborInn_OnTransitionEnd
+    ClearFlag FLAG_HIDE_CANALAVE_CITY_HARBOR_INN_GYM_GUIDE
+    SetVar VAR_DARKRAI_EVENT_STATE, 1
     End
 
-_0091:
+CanalaveCityHarborInn_OnTransitionEnd:
     End
 
-_0093:
+CanalaveCityHarborInn_OnFrameSleep:
     LockAll
     WaitTime 30, VAR_RESULT
-    Message 0
+    Message CanalaveCityHarborInn_Text_ReservationForYou
     CloseMessage
-    ApplyMovement 0, _0148
-    ApplyMovement LOCALID_PLAYER, _0130
+    ApplyMovement LOCALID_GYM_GUIDE, CanalaveCityHarborInn_Movement_GymGuideWalkToBed
+    ApplyMovement LOCALID_PLAYER, CanalaveCityHarborInn_Movement_PlayerLayDownOnBed
     WaitMovement
     WaitTime 15, VAR_RESULT
     BufferPlayerName 0
-    Message 1
+    Message CanalaveCityHarborInn_Text_PlayerLayDown
     CloseMessage
     PlaySE SEQ_SE_DP_MAZYO2
-    SetFlag FLAG_UNK_0x013C
-    SetFlag FLAG_UNK_0x0241
-    SetVar VAR_UNK_0x40F8, 2
+    SetFlag FLAG_TRAVELED_TO_NEWMOON_ISLAND
+    SetFlag FLAG_HIDE_CANALAVE_CITY_HARBOR_INN_GYM_GUIDE
+    SetVar VAR_DARKRAI_EVENT_STATE, 2
     FadeScreenOut FADE_SCREEN_SPEED_MEDIUM
     WaitFadeScreen
     FadeScreenIn FADE_SCREEN_SPEED_MEDIUM
@@ -72,14 +72,14 @@ _0093:
     FadeScreenOut FADE_SCREEN_SPEED_SLOW
     WaitFadeScreen
     WaitTime 120, VAR_RESULT
-    Warp MAP_HEADER_NEWMOON_ISLAND, 0, 152, 0x115, 1
+    Warp MAP_HEADER_NEWMOON_ISLAND, 0, 152, 277, 1
     FadeScreenIn FADE_SCREEN_SPEED_SLOW
     WaitFadeScreen
     ReleaseAll
     End
 
     .balign 4, 0
-_0130:
+CanalaveCityHarborInn_Movement_PlayerLayDownOnBed:
     WalkNormalNorth
     WalkNormalEast 3
     WalkNormalNorth
@@ -88,7 +88,7 @@ _0130:
     EndMovement
 
     .balign 4, 0
-_0148:
+CanalaveCityHarborInn_Movement_GymGuideWalkToBed:
     WalkNormalEast 3
     WalkNormalNorth 2
     WalkOnSpotNormalSouth
@@ -96,26 +96,26 @@ _0148:
     WalkOnSpotNormalEast
     EndMovement
 
-_0160:
+CanalaveCityHarborInn_OnFrameAwaken:
     LockAll
-    Call _0184
-    ScrCmd_2B5 33, 58, 0x2CA
+    Call CanalaveCityHarborInn_ResetOrFinishDarkraiEvent
+    ScrCmd_2B5 MAP_HEADER_CANALAVE_CITY, 58, 714
     PlayFanfare SEQ_ASA
     WaitFanfare
     BufferPlayerName 0
-    Message 2
+    Message CanalaveCityHarborInn_Text_PlayerAwakened
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0184:
-    GoToIfSet FLAG_UNK_0x0158, _0197
-    SetVar VAR_UNK_0x40F8, 0
+CanalaveCityHarborInn_ResetOrFinishDarkraiEvent:
+    GoToIfSet FLAG_CAUGHT_DARKRAI, CanalaveCityHarborInn_FinishDarkraiEvent
+    SetVar VAR_DARKRAI_EVENT_STATE, 0
     Return
 
-_0197:
-    SetVar VAR_UNK_0x40F8, 3
+CanalaveCityHarborInn_FinishDarkraiEvent:
+    SetVar VAR_DARKRAI_EVENT_STATE, 3
     Return
 
     .balign 4, 0

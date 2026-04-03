@@ -1,13 +1,16 @@
 #include "unk_0205DFC4.h"
 
 #include <nitro.h>
-#include <string.h>
+
+#include "constants/battle_frontier.h"
+#include "constants/battle_frontier_stats.h"
 
 #include "struct_decls/struct_02061AB4_decl.h"
 
 #include "field/field_system.h"
 #include "nintendo_wfc/main.h"
 
+#include "battle_tower_modes.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "field_task.h"
@@ -31,38 +34,16 @@ typedef struct {
     u16 unk_10;
 } UnkStruct_0205E268;
 
-typedef struct {
-    MapObject *unk_00;
-    u16 unk_04;
-    u16 unk_06;
-    u8 unk_08;
-    u8 unk_09;
-} UnkStruct_0205E3AC;
+typedef struct MapObjectFlickerData {
+    MapObject *mapObj;
+    u16 times;
+    u16 delay;
+    u8 timer;
+    u8 hiddenFlag;
+} MapObjectFlickerData;
 
-u16 Pokedex_GetRatingMessageID_Local(u16 pokemonSeen, u16 reachedEternaCity);
-u16 Pokedex_GetRatingMessageID_National(u16 pokemonCaught, u16 playerGender);
-int sub_0205E430(u8 param0, u8 param1);
-int sub_0205E45C(u8 param0, u8 param1);
-int sub_0205E488(u8 param0, u8 param1);
-int sub_0205E4B4(u8 param0, u8 param1);
-int sub_0205E4E0(u8 param0, u8 param1);
-int sub_0205E50C(u8 param0);
-int sub_0205E534(u8 param0);
-int sub_0205E55C(u8 param0);
-int sub_0205E584(u8 param0);
-int sub_0205E5B4(u8 param0, u8 param1);
-int sub_0205E5E0(u8 param0);
-int sub_0205E608(u8 param0);
-int sub_0205E630(u8 param0);
-int sub_0205E658(u8 param0);
-int sub_0205E680(u8 param0);
-int sub_0205E6A8(u32 param0);
-u8 sub_0205E6B8(void);
+static u8 GetPartnerGameCode(void);
 u8 sub_0205E6D8(SaveData *saveData);
-int sub_0205E700(u8 param0);
-int sub_0205E728(u8 param0);
-int sub_0205E750(u8 param0);
-int sub_0205E790(u8 param0);
 
 u16 GetNumberDigitCount(u32 number)
 {
@@ -329,130 +310,130 @@ void sub_0205E318(FieldTask *param0, MapObject *param1, u16 param2, u16 param3, 
     FieldTask_InitCall(fieldSystem->task, sub_0205E268, v1);
 }
 
-static BOOL sub_0205E3AC(FieldTask *param0)
+static BOOL Task_FlickerMapObject(FieldTask *task)
 {
-    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
-    UnkStruct_0205E3AC *v1 = FieldTask_GetEnv(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
+    MapObjectFlickerData *flickerData = FieldTask_GetEnv(task);
 
-    MapObject_SetHidden(v1->unk_00, v1->unk_09);
+    MapObject_SetHidden(flickerData->mapObj, flickerData->hiddenFlag);
 
-    if (v1->unk_08++ >= v1->unk_06) {
-        v1->unk_09 ^= 1;
-        v1->unk_08 = 0;
+    if (flickerData->timer++ >= flickerData->delay) {
+        flickerData->hiddenFlag ^= 1;
+        flickerData->timer = 0;
 
-        if (v1->unk_04-- == 0) {
-            Heap_Free(v1);
-            return 1;
+        if (flickerData->times-- == 0) {
+            Heap_Free(flickerData);
+            return TRUE;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
-void sub_0205E3F4(FieldTask *param0, MapObject *param1, u16 param2, u16 param3)
+void MapObject_Flicker(FieldTask *task, MapObject *mapObj, u16 times, u16 delay)
 {
-    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
-    UnkStruct_0205E3AC *v1 = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(UnkStruct_0205E3AC));
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
+    MapObjectFlickerData *flickerData = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(MapObjectFlickerData));
 
-    MI_CpuClear8(v1, sizeof(UnkStruct_0205E3AC));
+    MI_CpuClear8(flickerData, sizeof(MapObjectFlickerData));
 
-    v1->unk_04 = param2;
-    v1->unk_06 = param3;
-    v1->unk_00 = param1;
-    v1->unk_09 = 0;
+    flickerData->times = times;
+    flickerData->delay = delay;
+    flickerData->mapObj = mapObj;
+    flickerData->hiddenFlag = 0;
 
-    FieldTask_InitCall(fieldSystem->task, sub_0205E3AC, v1);
+    FieldTask_InitCall(fieldSystem->task, Task_FlickerMapObject, flickerData);
 }
 
-int sub_0205E430(u8 param0, u8 param1)
+enum BattleFrontierStatsIndex BattleFrontierStats_GetFactoryLatestStreakIdx(u8 isOpenLevel, u8 challengeType)
 {
-    int v0;
+    enum BattleFrontierStatsIndex index;
 
-    switch (param1) {
-    case 0:
-        v0 = 11;
+    switch (challengeType) {
+    case FRONTIER_CHALLENGE_SINGLE:
+        index = STAT_FACTORY_LATEST_STREAK_50_SINGLE;
         break;
-    case 1:
-        v0 = 19;
+    case FRONTIER_CHALLENGE_DOUBLE:
+        index = STAT_FACTORY_LATEST_STREAK_50_DOUBLE;
         break;
-    case 2:
-        v0 = 27;
+    case FRONTIER_CHALLENGE_MULTI:
+        index = STAT_FACTORY_LATEST_STREAK_50_MULTI;
         break;
-    case 3:
-        v0 = 115;
+    case FRONTIER_CHALLENGE_MULTI_WFC:
+        index = STAT_FACTORY_LATEST_STREAK_50_MULTI_WFC;
         break;
     }
 
-    return v0 + (param0 * 4);
+    return index + (isOpenLevel * 4);
 }
 
-int sub_0205E45C(u8 param0, u8 param1)
+enum BattleFrontierStatsIndex BattleFrontierStats_GetFactoryRecordStreakIdx(u8 isOpenLevel, u8 challengeType)
 {
-    int v0;
+    enum BattleFrontierStatsIndex index;
 
-    switch (param1) {
-    case 0:
-        v0 = 10;
+    switch (challengeType) {
+    case FRONTIER_CHALLENGE_SINGLE:
+        index = STAT_FACTORY_RECORD_STREAK_50_SINGLE;
         break;
-    case 1:
-        v0 = 18;
+    case FRONTIER_CHALLENGE_DOUBLE:
+        index = STAT_FACTORY_RECORD_STREAK_50_DOUBLE;
         break;
-    case 2:
-        v0 = 26;
+    case FRONTIER_CHALLENGE_MULTI:
+        index = STAT_FACTORY_RECORD_STREAK_50_MULTI;
         break;
-    case 3:
-        v0 = 114;
+    case FRONTIER_CHALLENGE_MULTI_WFC:
+        index = STAT_FACTORY_RECORD_STREAK_50_MULTI_WFC;
         break;
     }
 
-    return v0 + (param0 * 4);
+    return index + (isOpenLevel * 4);
 }
 
-int sub_0205E488(u8 param0, u8 param1)
+enum BattleFrontierStatsIndex BattleFrontierStats_GetFactoryLatestTradeCountIndex(u8 isOpenLevel, u8 challengeType)
 {
-    int v0;
+    enum BattleFrontierStatsIndex index;
 
-    switch (param1) {
-    case 0:
-        v0 = 13;
+    switch (challengeType) {
+    case FRONTIER_CHALLENGE_SINGLE:
+        index = STAT_FACTORY_LATEST_TRADE_COUNT_50_SINGLE;
         break;
-    case 1:
-        v0 = 21;
+    case FRONTIER_CHALLENGE_DOUBLE:
+        index = STAT_FACTORY_LATEST_TRADE_COUNT_50_DOUBLE;
         break;
-    case 2:
-        v0 = 29;
+    case FRONTIER_CHALLENGE_MULTI:
+        index = STAT_FACTORY_LATEST_TRADE_COUNT_50_MULTI;
         break;
-    case 3:
-        v0 = 117;
+    case FRONTIER_CHALLENGE_MULTI_WFC:
+        index = STAT_FACTORY_LATEST_TRADE_COUNT_50_MULTI_WFC;
         break;
     }
 
-    return v0 + (param0 * 4);
+    return index + (isOpenLevel * 4);
 }
 
-int sub_0205E4B4(u8 param0, u8 param1)
+enum BattleFrontierStatsIndex BattleFrontierStats_GetFactoryRecordTradeCountIndex(u8 isOpenLevel, u8 challengeType)
 {
-    int v0;
+    enum BattleFrontierStatsIndex index;
 
-    switch (param1) {
-    case 0:
-        v0 = 12;
+    switch (challengeType) {
+    case FRONTIER_CHALLENGE_SINGLE:
+        index = STAT_FACTORY_RECORD_TRADE_COUNT_50_SINGLE;
         break;
-    case 1:
-        v0 = 20;
+    case FRONTIER_CHALLENGE_DOUBLE:
+        index = STAT_FACTORY_RECORD_TRADE_COUNT_50_DOUBLE;
         break;
-    case 2:
-        v0 = 28;
+    case FRONTIER_CHALLENGE_MULTI:
+        index = STAT_FACTORY_RECORD_TRADE_COUNT_50_MULTI;
         break;
-    case 3:
-        v0 = 116;
+    case FRONTIER_CHALLENGE_MULTI_WFC:
+        index = STAT_FACTORY_RECORD_TRADE_COUNT_50_MULTI_WFC;
         break;
     }
 
-    return v0 + (param0 * 4);
+    return index + (isOpenLevel * 4);
 }
 
-int sub_0205E4E0(u8 param0, u8 param1)
+enum BattleFrontierStatsIndex sub_0205E4E0(u8 param0, u8 param1)
 {
     int v0;
 
@@ -475,29 +456,29 @@ int sub_0205E4E0(u8 param0, u8 param1)
     return v0;
 }
 
-int sub_0205E50C(u8 param0)
+enum BattleFrontierStatsIndex BattleFrontierStats_GetHallLatestStreakIndex(u8 challengeType)
 {
-    int v0;
+    enum BattleFrontierStatsIndex index;
 
-    switch (param0) {
-    case 0:
-        v0 = 35;
+    switch (challengeType) {
+    case FRONTIER_CHALLENGE_SINGLE:
+        index = STAT_HALL_LATEST_STREAK_SINGLE;
         break;
-    case 1:
-        v0 = 47;
+    case FRONTIER_CHALLENGE_DOUBLE:
+        index = STAT_HALL_LATEST_STREAK_DOUBLE;
         break;
-    case 2:
-        v0 = 59;
+    case FRONTIER_CHALLENGE_MULTI:
+        index = STAT_HALL_LATEST_STREAK_MULTI;
         break;
-    case 3:
-        v0 = 123;
+    case FRONTIER_CHALLENGE_MULTI_WFC:
+        index = STAT_HALL_LATEST_STREAK_MULTI_WFC;
         break;
     }
 
-    return v0;
+    return index;
 }
 
-int sub_0205E534(u8 param0)
+enum BattleFrontierStatsIndex sub_0205E534(u8 param0)
 {
     int v0;
 
@@ -519,316 +500,316 @@ int sub_0205E534(u8 param0)
     return v0;
 }
 
-int sub_0205E55C(u8 param0)
+enum BattleFrontierStatsIndex BattleFrontierStats_GetHallLatestSpeciesIndex(u8 challengeType)
 {
-    int v0;
+    enum BattleFrontierStatsIndex index;
 
-    switch (param0) {
-    case 0:
-        v0 = 36;
+    switch (challengeType) {
+    case FRONTIER_CHALLENGE_SINGLE:
+        index = STAT_HALL_LATEST_SPECIES_SINGLE;
         break;
-    case 1:
-        v0 = 48;
+    case FRONTIER_CHALLENGE_DOUBLE:
+        index = STAT_HALL_LATEST_SPECIES_DOUBLE;
         break;
-    case 2:
-        v0 = 60;
+    case FRONTIER_CHALLENGE_MULTI:
+        index = STAT_HALL_LATEST_SPECIES_MULTI;
         break;
-    case 3:
-        v0 = 124;
+    case FRONTIER_CHALLENGE_MULTI_WFC:
+        index = STAT_HALL_LATEST_SPECIES_MULTI_WFC;
         break;
     }
 
-    return v0;
+    return index;
 }
 
-int sub_0205E584(u8 param0)
+enum BattleFrontierStatsIndex BattleFrontierStats_GetHallRecordStreakIndex(u8 challengeType)
 {
-    int v0;
+    enum BattleFrontierStatsIndex index;
 
-    switch (param0) {
-    case 0:
-        v0 = 0;
+    switch (challengeType) {
+    case FRONTIER_CHALLENGE_SINGLE:
+        index = FRONTIER_CHALLENGE_SINGLE;
         break;
-    case 1:
-        v0 = 1;
+    case FRONTIER_CHALLENGE_DOUBLE:
+        index = FRONTIER_CHALLENGE_DOUBLE;
         break;
-    case 2:
-        v0 = 2;
+    case FRONTIER_CHALLENGE_MULTI:
+        index = FRONTIER_CHALLENGE_MULTI;
         break;
-    case 3:
-        v0 = 2;
+    case FRONTIER_CHALLENGE_MULTI_WFC:
+        index = 2;
         GF_ASSERT(0);
         break;
     }
 
-    return v0;
+    return index;
 }
 
-int sub_0205E5B4(u8 param0, u8 param1)
+enum BattleFrontierStatsIndex BattleFrontierStats_GetCastleRankIndex(u8 challengeType, u8 rankType)
 {
-    int v0;
+    enum BattleFrontierStatsIndex index;
 
-    switch (param0) {
-    case 0:
-        v0 = 75;
+    switch (challengeType) {
+    case FRONTIER_CHALLENGE_SINGLE:
+        index = STAT_CASTLE_RANK_HEALING_SINGLE;
         break;
-    case 1:
-        v0 = 83;
+    case FRONTIER_CHALLENGE_DOUBLE:
+        index = STAT_CASTLE_RANK_HEALING_DOUBLE;
         break;
-    case 2:
-        v0 = 91;
+    case FRONTIER_CHALLENGE_MULTI:
+        index = STAT_CASTLE_RANK_HEALING_MULTI;
         break;
-    case 3:
-        v0 = 139;
+    case FRONTIER_CHALLENGE_MULTI_WFC:
+        index = STAT_CASTLE_RANK_HEALING_MULTI_WFC;
         break;
     }
 
-    v0 += param1;
-    return v0;
+    index += rankType;
+    return index;
 }
 
-int sub_0205E5E0(u8 param0)
+enum BattleFrontierStatsIndex BattleFrontierStats_GetCastleLatestStreakIndex(u8 challengeType)
 {
-    int v0;
+    enum BattleFrontierStatsIndex index;
 
-    switch (param0) {
-    case 0:
-        v0 = 71;
+    switch (challengeType) {
+    case FRONTIER_CHALLENGE_SINGLE:
+        index = STAT_CASTLE_LATEST_STREAK_SINGLE;
         break;
-    case 1:
-        v0 = 79;
+    case FRONTIER_CHALLENGE_DOUBLE:
+        index = STAT_CASTLE_LATEST_STREAK_DOUBLE;
         break;
-    case 2:
-        v0 = 87;
+    case FRONTIER_CHALLENGE_MULTI:
+        index = STAT_CASTLE_LATEST_STREAK_MULTI;
         break;
-    case 3:
-        v0 = 135;
+    case FRONTIER_CHALLENGE_MULTI_WFC:
+        index = STAT_CASTLE_LATEST_STREAK_MULTI_WFC;
         break;
     }
 
-    return v0;
+    return index;
 }
 
-int sub_0205E608(u8 param0)
+enum BattleFrontierStatsIndex BattleFrontierStats_GetCastleRecordStreakIndex(u8 challengeType)
 {
-    int v0;
+    enum BattleFrontierStatsIndex index;
 
-    switch (param0) {
-    case 0:
-        v0 = 70;
+    switch (challengeType) {
+    case FRONTIER_CHALLENGE_SINGLE:
+        index = STAT_CASTLE_RECORD_STREAK_SINGLE;
         break;
-    case 1:
-        v0 = 78;
+    case FRONTIER_CHALLENGE_DOUBLE:
+        index = STAT_CASTLE_RECORD_STREAK_DOUBLE;
         break;
-    case 2:
-        v0 = 86;
+    case FRONTIER_CHALLENGE_MULTI:
+        index = STAT_CASTLE_RECORD_STREAK_MULTI;
         break;
-    case 3:
-        v0 = 134;
+    case FRONTIER_CHALLENGE_MULTI_WFC:
+        index = STAT_CASTLE_RECORD_STREAK_MULTI_WFC;
         break;
     }
 
-    return v0;
+    return index;
 }
 
-int sub_0205E630(u8 param0)
+enum BattleFrontierStatsIndex BattleFrontierStats_GetCastleLatestCPIndex(u8 challengeType)
 {
-    int v0;
+    enum BattleFrontierStatsIndex index;
 
-    switch (param0) {
-    case 0:
-        v0 = 72;
+    switch (challengeType) {
+    case FRONTIER_CHALLENGE_SINGLE:
+        index = STAT_CASTLE_LATEST_CP_SINGLE;
         break;
-    case 1:
-        v0 = 80;
+    case FRONTIER_CHALLENGE_DOUBLE:
+        index = STAT_CASTLE_LATEST_CP_DOUBLE;
         break;
-    case 2:
-        v0 = 88;
+    case FRONTIER_CHALLENGE_MULTI:
+        index = STAT_CASTLE_LATEST_CP_MULTI;
         break;
-    case 3:
-        v0 = 136;
+    case FRONTIER_CHALLENGE_MULTI_WFC:
+        index = STAT_CASTLE_LATEST_CP_MULTI_WFC;
         break;
     }
 
-    return v0;
+    return index;
 }
 
-int sub_0205E658(u8 param0)
+enum BattleFrontierStatsIndex BattleFrontierStats_GetCastleSpentCPIndex(u8 challengeType)
 {
-    int v0;
+    enum BattleFrontierStatsIndex index;
 
-    switch (param0) {
-    case 0:
-        v0 = 73;
+    switch (challengeType) {
+    case FRONTIER_CHALLENGE_SINGLE:
+        index = STAT_CASTLE_SPENT_CP_SINGLE;
         break;
-    case 1:
-        v0 = 81;
+    case FRONTIER_CHALLENGE_DOUBLE:
+        index = STAT_CASTLE_SPENT_CP_DOUBLE;
         break;
-    case 2:
-        v0 = 89;
+    case FRONTIER_CHALLENGE_MULTI:
+        index = STAT_CASTLE_SPENT_CP_MULTI;
         break;
-    case 3:
-        v0 = 137;
+    case FRONTIER_CHALLENGE_MULTI_WFC:
+        index = STAT_CASTLE_SPENT_CP_MULTI_WFC;
         break;
     }
 
-    return v0;
+    return index;
 }
 
-int sub_0205E680(u8 param0)
+enum BattleFrontierStatsIndex BattleFrontierStats_GetCastleRecordCPIndex(u8 challengeType)
 {
-    int v0;
+    enum BattleFrontierStatsIndex index;
 
-    switch (param0) {
-    case 0:
-        v0 = 74;
+    switch (challengeType) {
+    case FRONTIER_CHALLENGE_SINGLE:
+        index = STAT_CASTLE_RECORD_CP_SINGLE;
         break;
-    case 1:
-        v0 = 82;
+    case FRONTIER_CHALLENGE_DOUBLE:
+        index = STAT_CASTLE_RECORD_CP_DOUBLE;
         break;
-    case 2:
-        v0 = 90;
+    case FRONTIER_CHALLENGE_MULTI:
+        index = STAT_CASTLE_RECORD_CP_MULTI;
         break;
-    case 3:
-        v0 = 138;
+    case FRONTIER_CHALLENGE_MULTI_WFC:
+        index = STAT_CASTLE_RECORD_CP_MULTI_WFC;
         break;
     }
 
-    return v0;
+    return index;
 }
 
-int sub_0205E6A8(u32 param0)
+int BattleFrontierStats_GetHostFriendIdx(u32 statIndex)
 {
-    if (param0 < 100) {
+    if (statIndex < 100) {
         return 0xff;
     }
 
     return NintendoWFC_GetHostFriendIdx();
 }
 
-u8 sub_0205E6B8(void)
+static u8 GetPartnerGameCode(void)
 {
-    TrainerInfo *v0 = CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1);
-    GF_ASSERT(v0 != NULL);
+    TrainerInfo *trainerInfo = CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1);
+    GF_ASSERT(trainerInfo != NULL);
 
-    return TrainerInfo_GameCode(v0);
+    return TrainerInfo_GameCode(trainerInfo);
 }
 
 u8 sub_0205E6D8(SaveData *saveData)
 {
-    if (TrainerInfo_GameCode(SaveData_GetTrainerInfo(saveData)) == 0) {
+    if (TrainerInfo_GameCode(SaveData_GetTrainerInfo(saveData)) == VERSION_NONE) {
         return 1;
     }
 
-    if (sub_0205E6B8() == 0) {
+    if (GetPartnerGameCode() == VERSION_NONE) {
         return 1;
     }
 
     return 0;
 }
 
-int sub_0205E700(u8 param0)
+enum BattleFrontierStatsIndex BattleFrontierStats_GetArcadeLatestStreakIndex(u8 challengeType)
 {
-    int v0;
+    enum BattleFrontierStatsIndex index;
 
-    switch (param0) {
-    case 0:
-        v0 = 95;
+    switch (challengeType) {
+    case FRONTIER_CHALLENGE_SINGLE:
+        index = STAT_ARCADE_LATEST_STREAK_SINGLE;
         break;
-    case 1:
-        v0 = 97;
+    case FRONTIER_CHALLENGE_DOUBLE:
+        index = STAT_ARCADE_LATEST_STREAK_DOUBLE;
         break;
-    case 2:
-        v0 = 99;
+    case FRONTIER_CHALLENGE_MULTI:
+        index = STAT_ARCADE_LATEST_STREAK_MULTI;
         break;
-    case 3:
-        v0 = 143;
+    case FRONTIER_CHALLENGE_MULTI_WFC:
+        index = STAT_ARCADE_LATEST_STREAK_MULTI_WFC;
         break;
     }
 
-    return v0;
+    return index;
 }
 
-int sub_0205E728(u8 param0)
+enum BattleFrontierStatsIndex BattleFrontierStats_GetArcadeCurrentStreakIndex(u8 challengeType)
 {
-    int v0;
+    enum BattleFrontierStatsIndex index;
 
-    switch (param0) {
-    case 0:
-        v0 = 94;
+    switch (challengeType) {
+    case FRONTIER_CHALLENGE_SINGLE:
+        index = STAT_ARCADE_RECORD_STREAK_SINGLE;
         break;
-    case 1:
-        v0 = 96;
+    case FRONTIER_CHALLENGE_DOUBLE:
+        index = STAT_ARCADE_RECORD_STREAK_DOUBLE;
         break;
-    case 2:
-        v0 = 98;
+    case FRONTIER_CHALLENGE_MULTI:
+        index = STAT_ARCADE_RECORD_STREAK_MULTI;
         break;
-    case 3:
-        v0 = 142;
+    case FRONTIER_CHALLENGE_MULTI_WFC:
+        index = STAT_ARCADE_RECORD_STREAK_MULTI_WFC;
         break;
     }
 
-    return v0;
+    return index;
 }
 
-int sub_0205E750(u8 param0)
+enum BattleFrontierStatsIndex BattleFrontierStats_GetTowerLatestStreakIndex(u8 challengeType)
 {
-    int v0;
+    enum BattleFrontierStatsIndex index;
 
-    switch (param0) {
-    case 0:
-        v0 = 1;
+    switch (challengeType) {
+    case BATTLE_TOWER_MODE_SINGLE:
+        index = STAT_TOWER_LATEST_STREAK_SINGLE;
         break;
-    case 1:
-        v0 = 3;
+    case BATTLE_TOWER_MODE_DOUBLE:
+        index = STAT_TOWER_LATEST_STREAK_DOUBLE;
         break;
-    case 2:
-        v0 = 5;
+    case BATTLE_TOWER_MODE_MULTI:
+        index = STAT_TOWER_LATEST_STREAK_MULTI;
         break;
-    case 3:
-        v0 = 7;
+    case BATTLE_TOWER_MODE_LINK_MULTI:
+        index = STAT_TOWER_LATEST_STREAK_LINK_MULTI;
         break;
-    case 4:
-        v0 = 9;
+    case BATTLE_TOWER_MODE_WIFI:
+        index = STAT_TOWER_LATEST_STREAK_WIFI;
         break;
-    case 6:
-        v0 = 113;
+    case BATTLE_TOWER_MODE_6:
+        index = STAT_TOWER_LATEST_STREAK_MODE_6;
         break;
     default:
         GF_ASSERT(0);
         break;
     }
 
-    return v0;
+    return index;
 }
 
-int sub_0205E790(u8 param0)
+enum BattleFrontierStatsIndex BattleFrontierStats_GetTowerRecordStreakIndex(u8 challengeType)
 {
-    int v0;
+    enum BattleFrontierStatsIndex index;
 
-    switch (param0) {
-    case 0:
-        v0 = 0;
+    switch (challengeType) {
+    case BATTLE_TOWER_MODE_SINGLE:
+        index = STAT_TOWER_RECORD_STREAK_SINGLE;
         break;
-    case 1:
-        v0 = 2;
+    case BATTLE_TOWER_MODE_DOUBLE:
+        index = STAT_TOWER_RECORD_STREAK_DOUBLE;
         break;
-    case 2:
-        v0 = 4;
+    case BATTLE_TOWER_MODE_MULTI:
+        index = STAT_TOWER_RECORD_STREAK_MULTI;
         break;
-    case 3:
-        v0 = 6;
+    case BATTLE_TOWER_MODE_LINK_MULTI:
+        index = STAT_TOWER_RECORD_STREAK_LINK_MULTI;
         break;
-    case 4:
-        v0 = 8;
+    case BATTLE_TOWER_MODE_WIFI:
+        index = STAT_TOWER_RECORD_STREAK_WIFI;
         break;
-    case 6:
-        v0 = 112;
+    case BATTLE_TOWER_MODE_6:
+        index = STAT_TOWER_RECORD_STREAK_MODE_6;
         break;
     default:
         GF_ASSERT(0);
         break;
     }
 
-    return v0;
+    return index;
 }

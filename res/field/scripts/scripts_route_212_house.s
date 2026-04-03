@@ -3,41 +3,41 @@
 #include "res/text/bank/route_212_house.h"
 
 
-    ScriptEntry _0016
-    ScriptEntry _001C
-    ScriptEntry _002F
-    ScriptEntry _0042
-    ScriptEntry _0053
+    ScriptEntry Route212House_OnTransition
+    ScriptEntry Route212House_Twin
+    ScriptEntry Route212House_Beauty
+    ScriptEntry Route212House_Diary
+    ScriptEntry Route212House_Hiker
     ScriptEntryEnd
 
-_0016:
+Route212House_OnTransition:
     SetFlag FLAG_FIRST_ARRIVAL_ROUTE_212_MOVE_TUTOR
     End
 
-_001C:
-    NPCMessage 17
+Route212House_Twin:
+    NPCMessage Route212House_Text_DaddyCollectsShards
     End
 
-_002F:
-    NPCMessage 18
+Route212House_Beauty:
+    NPCMessage Route212House_Text_DaddyLikesBlueShards
     End
 
-_0042:
-    EventMessage 19
+Route212House_Diary:
+    EventMessage Route212House_Text_BlueShardsForMe
     End
 
-_0053:
+Route212House_Hiker:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 0
+    Message Route212House_Text_WantToTeachMove
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _007E
-    GoToIfEq VAR_RESULT, MENU_NO, _0264
+    GoToIfEq VAR_RESULT, MENU_YES, Route212House_TryTeachMove
+    GoToIfEq VAR_RESULT, MENU_NO, Route212House_SeeYouThen
     End
 
-_007E:
-    Message 2
+Route212House_TryTeachMove:
+    Message Route212House_Text_TeachWhichPokemon
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
@@ -46,30 +46,30 @@ _007E:
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
-    GoToIfEq VAR_0x8000, 0xFF, _0264
+    GoToIfEq VAR_0x8000, PARTY_SLOT_NONE, Route212House_SeeYouThen
     GetPartyMonSpecies VAR_0x8000, VAR_0x8001
-    GoToIfEq VAR_0x8001, 0, _0259
+    GoToIfEq VAR_0x8001, SPECIES_NONE, Route212House_CantTeachEgg
     CheckHasLearnableTutorMoves VAR_0x8000, TUTOR_LOCATION_ROUTE_212, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _026F
+    GoToIfEq VAR_RESULT, FALSE, Route212House_NoMovesToTeach
     BufferPartyMonNickname 0, VAR_0x8000
-    Message 5
+    Message Route212House_Text_TeachWhichMove
     ShowMoveTutorMoveSelectionMenu VAR_0x8000, TUTOR_LOCATION_ROUTE_212, VAR_RESULT
     SetVar VAR_0x8003, VAR_RESULT
-    GoToIfEq VAR_0x8003, -2, _0264
+    GoToIfEq VAR_0x8003, MENU_CANCEL, Route212House_SeeYouThen
     CheckCanAffordMove VAR_0x8003, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _027A
+    GoToIfEq VAR_RESULT, 0, Route212House_NotEnoughShards
     GetPartyMonMoveCount VAR_RESULT, VAR_0x8000
     SetVar VAR_0x8002, VAR_RESULT
-    GoToIfEq VAR_RESULT, 4, _012F
-    GoTo _0224
+    GoToIfEq VAR_RESULT, LEARNED_MOVES_MAX, Route212House_TryReplaceMove
+    GoTo Route212House_TeachMove
     End
 
-_012F:
+Route212House_TryReplaceMove:
     BufferPartyMonNickname 0, VAR_0x8000
     BufferMoveName 1, VAR_0x8003
-    Message 9
+    Message Route212House_Text_DeleteOlderMove
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _01E9
+    GoToIfEq VAR_RESULT, MENU_NO, Route212House_StopTryingToTeachMove
     FadeScreenOut
     WaitFadeScreen
     CloseMessage
@@ -78,84 +78,84 @@ _012F:
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
-    GoToIfEq VAR_0x8002, 4, _01E9
+    GoToIfEq VAR_0x8002, 4, Route212House_StopTryingToTeachMove
     GetPartyMonMove VAR_RESULT, VAR_0x8000, VAR_0x8002
     BufferMoveName 1, VAR_RESULT
-    Message 12
+    Message Route212House_Text_OKToForgetMove
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _01E9
+    GoToIfEq VAR_RESULT, MENU_NO, Route212House_StopTryingToTeachMove
     BufferPartyMonNickname 0, VAR_0x8000
     GetPartyMonMove VAR_RESULT, VAR_0x8000, VAR_0x8002
     BufferMoveName 1, VAR_RESULT
-    Message 13
+    Message Route212House_Text_OneTwoThreePoof
     PlaySE SEQ_SE_DP_KON
     WaitSE SEQ_SE_DP_KON
     WaitTime 30, VAR_RESULT
-    Message 14
+    Message Route212House_Text_PokemonForgotMove
     WaitTime 32, VAR_RESULT
     PlayFanfare SEQ_FANFA1
     BufferMoveName 1, VAR_0x8003
-    Message 15
+    Message Route212House_Text_PokemonLearnedMove2
     WaitFanfare
     WaitTime 16, VAR_RESULT
-    GoTo _0245
+    GoTo Route212House_PayShards
     End
 
-_01E9:
+Route212House_StopTryingToTeachMove:
     BufferPartyMonNickname 0, VAR_0x8000
     BufferMoveName 1, VAR_0x8003
-    Message 10
+    Message Route212House_Text_StopTryingToTeachMove
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _020F
-    GoTo _012F
+    GoToIfEq VAR_RESULT, MENU_YES, Route212House_DidntLearnMove
+    GoTo Route212House_TryReplaceMove
     End
 
-_020F:
+Route212House_DidntLearnMove:
     BufferPartyMonNickname 0, VAR_0x8000
     BufferMoveName 1, VAR_0x8003
-    Message 11
-    GoTo _0264
+    Message Route212House_Text_PokemonDidntLearnMove
+    GoTo Route212House_SeeYouThen
     End
 
-_0224:
+Route212House_TeachMove:
     BufferPartyMonNickname 0, VAR_0x8000
     BufferMoveName 1, VAR_0x8003
-    Message 8
+    Message Route212House_Text_PokemonLearnedMove
     PlayFanfare SEQ_FANFA1
     WaitFanfare
     WaitTime 16, VAR_RESULT
-    GoTo _0245
+    GoTo Route212House_PayShards
     End
 
-_0245:
+Route212House_PayShards:
     PayShardCost VAR_0x8003
     ResetMoveSlot VAR_0x8000, VAR_0x8002, VAR_0x8003
-    GoTo _0264
+    GoTo Route212House_SeeYouThen
     End
 
-_0259:
-    Message 16
+Route212House_CantTeachEgg:
+    Message Route212House_Text_CantTeachEgg
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0264:
-    Message 1
+Route212House_SeeYouThen:
+    Message Route212House_Text_SeeYouThen
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_026F:
-    Message 3
+Route212House_NoMovesToTeach:
+    Message Route212House_Text_NoMovesToTeach
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_027A:
-    Message 4
+Route212House_NotEnoughShards:
+    Message Route212House_Text_NotEnoughShards
     WaitButton
     CloseMessage
     ReleaseAll

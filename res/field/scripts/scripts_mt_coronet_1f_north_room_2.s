@@ -9,8 +9,8 @@
 MtCoronet1FNorthRoom2_OnTransition:
     CallIfNe VAR_ICEBERG_RUINS_STATE, RUINS_STATE_CAUGHT_REGI, MtCoronet1FNorthRoom2_ResetIcebergRuinsState
     CheckPartyHasFatefulEncounterRegigigas VAR_MAP_LOCAL_1
-    GoToIfEq VAR_MAP_LOCAL_1, FALSE, MtCoronet1FNorthRoom2_SetWarpEventIcebergRuins
-    GoToIfEq VAR_MAP_LOCAL_1, TRUE, MtCoronet1FNorthRoom2_SetWarpEventMtCoronetIcebergRuins
+    GoToIfEq VAR_MAP_LOCAL_1, FALSE, MtCoronet1FNorthRoom2_RemoveWarpIcebergRuinsWithRegice
+    GoToIfEq VAR_MAP_LOCAL_1, TRUE, MtCoronet1FNorthRoom2_RemoveWarpIcebergRuinsWithoutRegice
     End
 
 MtCoronet1FNorthRoom2_ResetIcebergRuinsState:
@@ -19,15 +19,15 @@ MtCoronet1FNorthRoom2_ResetIcebergRuinsState:
 
 MtCoronet1FNorthRoom2_OnLoad:
     CheckPartyHasFatefulEncounterRegigigas VAR_MAP_LOCAL_1
-    GoToIfEq VAR_MAP_LOCAL_1, FALSE, MtCoronet1FNorthRoom2_SetWarpEventIcebergRuins
-    GoToIfEq VAR_MAP_LOCAL_1, TRUE, MtCoronet1FNorthRoom2_SetWarpEventMtCoronetIcebergRuins
+    GoToIfEq VAR_MAP_LOCAL_1, FALSE, MtCoronet1FNorthRoom2_RemoveWarpIcebergRuinsWithRegice
+    GoToIfEq VAR_MAP_LOCAL_1, TRUE, MtCoronet1FNorthRoom2_RemoveWarpIcebergRuinsWithoutRegice
     End
 
-MtCoronet1FNorthRoom2_SetWarpEventIcebergRuins:
+MtCoronet1FNorthRoom2_RemoveWarpIcebergRuinsWithRegice:
     SetWarpEventPos 3, 17, 16
     End
 
-MtCoronet1FNorthRoom2_SetWarpEventMtCoronetIcebergRuins:
+MtCoronet1FNorthRoom2_RemoveWarpIcebergRuinsWithoutRegice:
     SetWarpEventPos 2, 17, 16
     End
 

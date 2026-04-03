@@ -99,7 +99,7 @@ void sub_0203E274(FieldSystem *fieldSystem, ClearGamePlayerInfo *param1);
 void FieldSystem_OpenMoveReminderMenu(FieldSystem *fieldSystem, MoveReminderData *moveReminderData);
 void FieldTask_PlayBoatCutscene_CanalaveShip(FieldSystem *fieldSystem, void *taskEnv);
 void FieldTask_PlayBoatCutscene_SnowpointShip(FieldSystem *fieldSystem, void *taskEnv);
-void sub_0203E2FC(FieldSystem *fieldSystem);
+void FieldSystem_HatchEgg(FieldSystem *fieldSystem);
 BOOL sub_0203E348(FieldSystem *fieldSystem, UnkStruct_0203E348 *param1);
 void sub_0203E414(FieldTask *task, int slotMachineID);
 void AccessoryShop_Init(FieldTask *task);
@@ -108,7 +108,7 @@ void *FieldSystem_OpenBattleFrontierRecord(FieldSystem *fieldSystem, u8 param1, 
 void *sub_0203E608(FieldSystem *fieldSystem, enum HeapID heapID);
 void *FieldSystem_OpenSummaryScreenTeachMove(int unused, FieldSystem *fieldSystem, u16 partySlot, u16 move);
 void sub_0203E6C0(FieldSystem *fieldSystem, int param1, int param2);
-void sub_0203E704(FieldSystem *fieldSystem);
+void FieldSystem_StartLibraryTV(FieldSystem *fieldSystem);
 void sub_0203E714(FieldSystem *fieldSystem);
 
 #endif // POKEPLATINUM_UNK_0203D1B8_H

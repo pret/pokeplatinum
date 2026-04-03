@@ -19,7 +19,7 @@
     ],
     "object_events": [
         {
-            "id": "CANALAVE_CITY_COLLECTOR_0",
+            "id": "LOCALID_COLLECTOR",
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -34,7 +34,7 @@
             "y": 1
         },
         {
-            "id": "CANALAVE_CITY_LASS_1",
+            "id": "LOCALID_LASS",
             "graphics_id": "OBJ_EVENT_GFX_LASS",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -49,7 +49,7 @@
             "y": 1
         },
         {
-            "id": "CANALAVE_CITY_POKEMON_BREEDER_M_2",
+            "id": "LOCALID_POKEMON_BREEDER_M",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_M",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -64,7 +64,7 @@
             "y": 1
         },
         {
-            "id": "CANALAVE_CITY_ACE_TRAINER_F_3",
+            "id": "LOCALID_ACE_TRAINER_F",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_WANDER_NORTH_AND_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -79,7 +79,7 @@
             "y": 1
         },
         {
-            "id": "CANALAVE_CITY_SIGNBOARD_4",
+            "id": "LOCALID_SIGNBOARD_CANALAVE_LIBRARY",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -94,7 +94,7 @@
             "y": 0
         },
         {
-            "id": "CANALAVE_CITY_GYM_SIGNPOST_5",
+            "id": "LOCALID_GYM_SIGNPOST",
             "graphics_id": "OBJ_EVENT_GFX_GYM_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -109,7 +109,7 @@
             "y": 0
         },
         {
-            "id": "CANALAVE_CITY_SIGNBOARD_6",
+            "id": "LOCALID_SIGNBOARD_CANALAVE_DOCK",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -124,7 +124,7 @@
             "y": 0
         },
         {
-            "id": "CANALAVE_CITY_MAP_SIGNPOST_7",
+            "id": "LOCALID_MAP_SIGNPOST",
             "graphics_id": "OBJ_EVENT_GFX_MAP_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -141,7 +141,7 @@
             "y": 0
         },
         {
-            "id": "CANALAVE_CITY_SIGNBOARD_8",
+            "id": "LOCALID_SIGNBOARD_SAILOR_ELDRITCHS_HOUSE",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -156,7 +156,7 @@
             "y": 0
         },
         {
-            "id": "CANALAVE_CITY_PSYDUCK_9",
+            "id": "LOCALID_PSYDUCK",
             "graphics_id": "OBJ_EVENT_GFX_PSYDUCK",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -171,7 +171,7 @@
             "y": 1
         },
         {
-            "id": "CANALAVE_CITY_OLD_MAN_10",
+            "id": "LOCALID_OLD_MAN",
             "graphics_id": "OBJ_EVENT_GFX_OLD_MAN",
             "movement_type": "MOVEMENT_TYPE_WANDER_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -186,11 +186,11 @@
             "y": 1
         },
         {
-            "id": "CANALAVE_CITY_RIVAL_BRIDGE",
+            "id": "LOCALID_RIVAL_BRIDGE",
             "graphics_id": "OBJ_EVENT_GFX_BARRY",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_HIDE_CANALAVE_RIVAL",
+            "hidden_flag": "FLAG_HIDE_CANALAVE_CITY_RIVAL_BRIDGE",
             "script": 3,
             "initial_dir": 0,
             "data": [],
@@ -201,11 +201,11 @@
             "y": 1
         },
         {
-            "id": "CANALAVE_CITY_COUNTERPART_12",
+            "id": "LOCALID_COUNTERPART",
             "graphics_id": "OBJ_EVENT_GFX_COUNTERPART",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x01B5",
+            "hidden_flag": "FLAG_HIDE_CANALAVE_CITY_COUNTERPART",
             "script": 7,
             "initial_dir": 1,
             "data": [],
@@ -216,11 +216,11 @@
             "y": 1
         },
         {
-            "id": "CANALAVE_CITY_PROF_ROWAN_13",
+            "id": "LOCALID_PROF_ROWAN",
             "graphics_id": "OBJ_EVENT_GFX_PROF_ROWAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x01B3",
+            "hidden_flag": "FLAG_HIDE_CANALAVE_CITY_PROF_ROWAN",
             "script": 6,
             "initial_dir": 1,
             "data": [],
@@ -231,11 +231,11 @@
             "y": 1
         },
         {
-            "id": "CANALAVE_CITY_SAILOR_14",
+            "id": "LOCALID_SAILOR",
             "graphics_id": "OBJ_EVENT_GFX_SAILOR",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x01B4",
+            "hidden_flag": "FLAG_HIDE_CANALAVE_CITY_SAILOR",
             "script": 0,
             "initial_dir": 0,
             "data": [],
@@ -261,7 +261,7 @@
             "y": 0
         },
         {
-            "id": "CANALAVE_CITY_SAILOR_16",
+            "id": "LOCALID_SAILOR_ELDRITCH",
             "graphics_id": "OBJ_EVENT_GFX_SAILOR",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -276,7 +276,7 @@
             "y": 1
         },
         {
-            "id": "CANALAVE_CITY_SIGNBOARD_17",
+            "id": "LOCALID_SIGNBOARD_HARBOR_INN",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -291,11 +291,11 @@
             "y": 0
         },
         {
-            "id": "CANALAVE_CITY_RIVAL_LIBRARY",
+            "id": "LOCALID_RIVAL_LIBRARY",
             "graphics_id": "OBJ_EVENT_GFX_BARRY",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_HIDE_CANALAVE_CITY_RIVAL",
+            "hidden_flag": "FLAG_HIDE_CANALAVE_CITY_RIVAL_LIBRARY",
             "script": 25,
             "initial_dir": 1,
             "data": [],

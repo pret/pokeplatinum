@@ -5,7 +5,7 @@
     "ai_flags": [
         "AI_FLAG_BASIC",
         "AI_FLAG_EVAL_ATTACK",
-        "AI_FLAG_DAMAGE_PRIORITY"
+        "AI_FLAG_PRIORITIZE_EXTREMES"
     ],
     "double_battle": false,
     "party": [

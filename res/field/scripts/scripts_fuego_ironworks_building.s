@@ -1,122 +1,123 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/fuego_ironworks_building.h"
+#include "res/text/bank/menu_entries.h"
 
 
-    ScriptEntry _000A
-    ScriptEntry _0010
+    ScriptEntry FuegoIronworksBuilding_OnTransition
+    ScriptEntry FuegoIronworksBuilding_MrFuego
     ScriptEntryEnd
 
-_000A:
+FuegoIronworksBuilding_OnTransition:
     SetFlag FLAG_FIRST_ARRIVAL_FUEGO_IRONWORKS
     End
 
-_0010:
+FuegoIronworksBuilding_MrFuego:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x00DB, _00A9
-    GoToIfSet FLAG_UNK_0x0138, _0062
-    Message 0
+    GoToIfSet FLAG_MR_FUEGO_ASKED_FOR_TRADE, FuegoIronworksBuilding_CheckStarPieceForTradeAgain
+    GoToIfSet FLAG_RECEIVED_FUEGO_IRONWORKS_BUILDING_STAR_PIECE, FuegoIronworksBuilding_CheckStarPieceForTrade
+    Message FuegoIronworksBuilding_Text_HeresASouvenir
     SetVar VAR_0x8004, ITEM_STAR_PIECE
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _01F3
-    SetFlag FLAG_UNK_0x0138
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, FuegoIronworksBuilding_BagIsFull
+    SetFlag FLAG_RECEIVED_FUEGO_IRONWORKS_BUILDING_STAR_PIECE
     Common_GiveItemQuantity
-    GoTo _0062
+    GoTo FuegoIronworksBuilding_CheckStarPieceForTrade
     End
 
-_0062:
+FuegoIronworksBuilding_CheckStarPieceForTrade:
     CheckItem ITEM_STAR_PIECE, 1, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _0082
-    Message 1
-    GoTo _00EC
+    GoToIfEq VAR_RESULT, TRUE, FuegoIronworksBuilding_AskTradeStarPieceForShards
+    Message FuegoIronworksBuilding_Text_TradeStarPiecesForShards
+    GoTo FuegoIronworksBuilding_MrFuegoEnd
     End
 
-_0082:
-    SetFlag FLAG_UNK_0x00DB
-    Message 2
+FuegoIronworksBuilding_AskTradeStarPieceForShards:
+    SetFlag FLAG_MR_FUEGO_ASKED_FOR_TRADE
+    Message FuegoIronworksBuilding_Text_AskTradeStarPiecesForShards
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _00FF
-    GoToIfEq VAR_RESULT, MENU_NO, _00F4
+    GoToIfEq VAR_RESULT, MENU_YES, FuegoIronworksBuilding_TryTrade
+    GoToIfEq VAR_RESULT, MENU_NO, FuegoIronworksBuilding_YoureNotTrading
     End
 
-_00A9:
+FuegoIronworksBuilding_CheckStarPieceForTradeAgain:
     CheckItem ITEM_STAR_PIECE, 1, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _00E1
-    Message 4
+    GoToIfEq VAR_RESULT, FALSE, FuegoIronworksBuilding_AnyStarPieces
+    Message FuegoIronworksBuilding_Text_WantToTrade
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _00FF
-    GoToIfEq VAR_RESULT, MENU_NO, _00F4
+    GoToIfEq VAR_RESULT, MENU_YES, FuegoIronworksBuilding_TryTrade
+    GoToIfEq VAR_RESULT, MENU_NO, FuegoIronworksBuilding_YoureNotTrading
     End
 
-_00E1:
-    Message 3
-    GoTo _00EC
+FuegoIronworksBuilding_AnyStarPieces:
+    Message FuegoIronworksBuilding_Text_AnyStarPieces
+    GoTo FuegoIronworksBuilding_MrFuegoEnd
     End
 
-_00EC:
+FuegoIronworksBuilding_MrFuegoEnd:
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_00F4:
-    Message 7
-    GoTo _00EC
+FuegoIronworksBuilding_YoureNotTrading:
+    Message FuegoIronworksBuilding_Text_YoureNotTrading
+    GoTo FuegoIronworksBuilding_MrFuegoEnd
     End
 
-_00FF:
+FuegoIronworksBuilding_TryTrade:
     GetItemQuantity ITEM_STAR_PIECE, VAR_0x8000
-    GoToIfGe VAR_0x8000, 10, _014E
-    GoTo _011A
+    GoToIfGe VAR_0x8000, 10, FuegoIronworksBuilding_AskTrade10StarPieces
+    GoTo FuegoIronworksBuilding_Trade1StarPiece
     End
 
-_011A:
-    IncrementGameRecord RECORD_UNK_070
+FuegoIronworksBuilding_Trade1StarPiece:
+    IncrementGameRecord RECORD_STAR_PIECES_TRADED
     RemoveItem ITEM_STAR_PIECE, 1, VAR_RESULT
     AddItem ITEM_RED_SHARD, 1, VAR_RESULT
     AddItem ITEM_BLUE_SHARD, 1, VAR_RESULT
     AddItem ITEM_YELLOW_SHARD, 1, VAR_RESULT
     AddItem ITEM_GREEN_SHARD, 1, VAR_RESULT
-    GoTo _01E5
+    GoTo FuegoIronworksBuilding_ThereYouAre
     End
 
-_014E:
-    Message 5
+FuegoIronworksBuilding_AskTrade10StarPieces:
+    Message FuegoIronworksBuilding_Text_WantToTrade10StarPieces
     InitGlobalTextMenu 31, 11, 0, VAR_0x8001
     SetMenuXOriginToRight
-    AddMenuEntry 0x116, 0
-    AddMenuEntry 0x117, 1
-    AddMenuEntry 11, 2
+    AddMenuEntry MenuEntries_Text_StarPieces_1, 0
+    AddMenuEntry MenuEntries_Text_StarPieces_10, 1
+    AddMenuEntry MenuEntries_Text_Exit2, 2
     ShowMenu
     SetVar VAR_0x8007, 10
     SetVar VAR_0x8008, VAR_0x8001
-    GoToIfEq VAR_0x8008, 0, _011A
-    GoToIfEq VAR_0x8008, 1, _019E
-    GoTo _00F4
+    GoToIfEq VAR_0x8008, 0, FuegoIronworksBuilding_Trade1StarPiece
+    GoToIfEq VAR_0x8008, 1, FuegoIronworksBuilding_Trade10StarPieces
+    GoTo FuegoIronworksBuilding_YoureNotTrading
     End
 
-_019E:
+FuegoIronworksBuilding_Trade10StarPieces:
     SubVar VAR_0x8007, 1
-    IncrementGameRecord RECORD_UNK_070
+    IncrementGameRecord RECORD_STAR_PIECES_TRADED
     AddItem ITEM_RED_SHARD, 1, VAR_RESULT
     AddItem ITEM_BLUE_SHARD, 1, VAR_RESULT
     AddItem ITEM_YELLOW_SHARD, 1, VAR_RESULT
     AddItem ITEM_GREEN_SHARD, 1, VAR_RESULT
     RemoveItem ITEM_STAR_PIECE, 1, VAR_RESULT
-    GoToIfEq VAR_0x8007, 0, _01E5
-    GoTo _019E
+    GoToIfEq VAR_0x8007, 0, FuegoIronworksBuilding_ThereYouAre
+    GoTo FuegoIronworksBuilding_Trade10StarPieces
     End
 
-_01E5:
-    Message 6
-    Message 8
+FuegoIronworksBuilding_ThereYouAre:
+    Message FuegoIronworksBuilding_Text_ThereYouAre
+    Message FuegoIronworksBuilding_Text_NothingIfNoIron
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_01F3:
+FuegoIronworksBuilding_BagIsFull:
     Common_MessageBagIsFull
     CloseMessage
     ReleaseAll

@@ -18,8 +18,8 @@ ValleyWindworksOutside_OnResume:
 
 ValleyWindworksOutside_OnTransition:
     CallIfEq VAR_VALLEY_WINDWORKS_TEAM_GALACTIC_STATE, 2, ValleyWindworksOutside_IncreaseTeamGalacticValleyWindworksState
-    CallIfSet FLAG_UNLOCKED_VALLEY_WINDWORKS_DOOR, ValleyWindworksOutside_SetDoorBgEvent
-    CallIfUnset FLAG_UNLOCKED_VALLEY_WINDWORKS_DOOR, ValleyWindworksOutside_SetDoorWarpEvent
+    CallIfSet FLAG_UNLOCKED_VALLEY_WINDWORKS_DOOR, ValleyWindworksOutside_RemoveBgEventDoor
+    CallIfUnset FLAG_UNLOCKED_VALLEY_WINDWORKS_DOOR, ValleyWindworksOutside_RemoveWarpValleyWindworksBuilding
     GoToIfLt VAR_VALLEY_WINDWORKS_STATE, 2, ValleyWindworksOutside_HideDrifloon
     GoToIfSet FLAG_WON_AGAINST_VALLEY_WINDWORKS_OUTSIDE_DRIFLOON, ValleyWindworksOutside_HideDrifloon
     GetDayOfWeek VAR_MAP_LOCAL_0
@@ -39,8 +39,8 @@ ValleyWindworksOutside_IncreaseTeamGalacticValleyWindworksState:
     Return
 
 ValleyWindworksOutside_OnLoad:
-    CallIfSet FLAG_UNLOCKED_VALLEY_WINDWORKS_DOOR, ValleyWindworksOutside_SetDoorBgEvent
-    CallIfUnset FLAG_UNLOCKED_VALLEY_WINDWORKS_DOOR, ValleyWindworksOutside_SetDoorWarpEvent
+    CallIfSet FLAG_UNLOCKED_VALLEY_WINDWORKS_DOOR, ValleyWindworksOutside_RemoveBgEventDoor
+    CallIfUnset FLAG_UNLOCKED_VALLEY_WINDWORKS_DOOR, ValleyWindworksOutside_RemoveWarpValleyWindworksBuilding
     GoToIfSet FLAG_MAP_LOCAL, ValleyWindworksOutside_RemoveDrifloon
     End
 
@@ -50,11 +50,11 @@ ValleyWindworksOutside_RemoveDrifloon:
     ClearFlag FLAG_MAP_LOCAL
     End
 
-ValleyWindworksOutside_SetDoorBgEvent:
+ValleyWindworksOutside_RemoveBgEventDoor:
     SetBgEventPos 1, 243, 650
     Return
 
-ValleyWindworksOutside_SetDoorWarpEvent:
+ValleyWindworksOutside_RemoveWarpValleyWindworksBuilding:
     SetWarpEventPos 0, 243, 650
     Return
 
@@ -117,7 +117,7 @@ ValleyWindworksOutside_AskOpenDoor:
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, ValleyWindworksOutside_AskOpenDoorEnd
     SetFlag FLAG_UNLOCKED_VALLEY_WINDWORKS_DOOR
-    Call ValleyWindworksOutside_SetDoorBgEvent
+    Call ValleyWindworksOutside_RemoveBgEventDoor
     SetWarpEventPos 0, 243, 654
     Message ValleyWindworksOutside_Text_KerchunkTheDoorToValleyWindworksOpened
     WaitButton

@@ -1,68 +1,69 @@
 #include "macros/scrcmd.inc"
 #include "generated/distribution_events.h"
 #include "res/text/bank/newmoon_island_forest.h"
+#include "res/field/events/events_newmoon_island_forest.h"
 
 
-    ScriptEntry _000E
-    ScriptEntry _005E
-    ScriptEntry _0079
+    ScriptEntry NewmoonIslandForest_OnTransition
+    ScriptEntry NewmoonIslandForest_OnLoad
+    ScriptEntry NewmoonIslandForest_Darkrai
     ScriptEntryEnd
 
-_000E:
+NewmoonIslandForest_OnTransition:
     GetNationalDexEnabled VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, 0, _0058
+    GoToIfEq VAR_MAP_LOCAL_0, FALSE, NewmoonIslandForest_HideDarkrai
     CheckItem ITEM_MEMBER_CARD, 1, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, FALSE, _0058
+    GoToIfEq VAR_MAP_LOCAL_0, FALSE, NewmoonIslandForest_HideDarkrai
     CheckDistributionEvent DISTRIBUTION_EVENT_DARKRAI, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, FALSE, _0058
-    GoToIfSet FLAG_UNK_0x0158, _0058
-    ClearFlag FLAG_UNK_0x0240
+    GoToIfEq VAR_MAP_LOCAL_0, FALSE, NewmoonIslandForest_HideDarkrai
+    GoToIfSet FLAG_CAUGHT_DARKRAI, NewmoonIslandForest_HideDarkrai
+    ClearFlag FLAG_HIDE_NEWMOON_ISLAND_FOREST_DARKRAI
     End
 
-_0058:
-    SetFlag FLAG_UNK_0x0240
+NewmoonIslandForest_HideDarkrai:
+    SetFlag FLAG_HIDE_NEWMOON_ISLAND_FOREST_DARKRAI
     End
 
-_005E:
-    GoToIfSet FLAG_MAP_LOCAL, _006B
+NewmoonIslandForest_OnLoad:
+    GoToIfSet FLAG_MAP_LOCAL, NewmoonIslandForest_RemoveDarkrai
     End
 
-_006B:
-    SetFlag FLAG_UNK_0x0240
-    RemoveObject 0
+NewmoonIslandForest_RemoveDarkrai:
+    SetFlag FLAG_HIDE_NEWMOON_ISLAND_FOREST_DARKRAI
+    RemoveObject LOCALID_DARKRAI
     ClearFlag FLAG_MAP_LOCAL
     End
 
-_0079:
+NewmoonIslandForest_Darkrai:
     LockAll
     PlaySE SEQ_SE_CONFIRM
     WaitSE SEQ_SE_CONFIRM
-    Message 0
+    Message NewmoonIslandForest_Text_Ellipses
     CloseMessage
     SetFlag FLAG_MAP_LOCAL
     StartLegendaryBattle SPECIES_DARKRAI, 50
     ClearFlag FLAG_MAP_LOCAL
     CheckWonBattle VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, _014C
+    GoToIfEq VAR_RESULT, FALSE, NewmoonIslandForest_BlackOut
     CheckDidNotCapture VAR_RESULT
-    GoToIfEq VAR_RESULT, TRUE, _00D8
-    SetFlag FLAG_UNK_0x0158
-_00BC:
-    SetFlag FLAG_UNK_0x0241
-    GoToIfEq VAR_UNK_0x40F8, 2, _00E3
-    Message 3
+    GoToIfEq VAR_RESULT, TRUE, NewmoonIslandForest_DidNotCatchDarkrai
+    SetFlag FLAG_CAUGHT_DARKRAI
+NewmoonIslandForest_PostDarkraiBattle:
+    SetFlag FLAG_HIDE_CANALAVE_CITY_HARBOR_INN_GYM_GUIDE
+    GoToIfEq VAR_DARKRAI_EVENT_STATE, 2, NewmoonIslandForest_ReturnToHarborInn
+    Message NewmoonIslandForest_Text_VoiceFromSomewhere2
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_00D8:
-    Message 1
+NewmoonIslandForest_DidNotCatchDarkrai:
+    Message NewmoonIslandForest_Text_DarkraiMeltedAway
     CloseMessage
-    GoTo _00BC
+    GoTo NewmoonIslandForest_PostDarkraiBattle
 
-_00E3:
-    Message 2
+NewmoonIslandForest_ReturnToHarborInn:
+    Message NewmoonIslandForest_Text_VoiceFromSomewhere
     CloseMessage
     WaitTime 30, VAR_RESULT
     FadeScreenOut FADE_SCREEN_SPEED_MEDIUM
@@ -82,7 +83,7 @@ _00E3:
     ReleaseAll
     End
 
-_014C:
+NewmoonIslandForest_BlackOut:
     BlackOutFromBattle
     ReleaseAll
     End

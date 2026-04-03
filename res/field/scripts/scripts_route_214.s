@@ -10,31 +10,31 @@
 
 Route214_OnLoad:
     GetUnownFormsSeenCount VAR_MAP_LOCAL_0
-    GoToIfGe VAR_MAP_LOCAL_0, 26, Route214_SetWarpEventManiacTunnel
-    GoToIfGe VAR_MAP_LOCAL_0, 10, Route214_SetWarpEventRuinManiacCaveLong
-    GoToIfLt VAR_MAP_LOCAL_0, 10, Route214_SetWarpEventRuinManiacCaveShort
+    GoToIfGe VAR_MAP_LOCAL_0, 26, Route214_RemoveWarpsManiacCaveShortAndLong
+    GoToIfGe VAR_MAP_LOCAL_0, 10, Route214_RemoveWarpsManiacCaveShortAndTunnel
+    GoToIfLt VAR_MAP_LOCAL_0, 10, Route214_RemoveWarpsManiacCaveLongAndTunnel
     End
 
-Route214_SetWarpEventManiacTunnel:
+Route214_RemoveWarpsManiacCaveShortAndLong:
     SetWarpEventPos 2, 710, 670
     SetWarpEventPos 3, 710, 670
     End
 
-Route214_SetWarpEventRuinManiacCaveLong:
+Route214_RemoveWarpsManiacCaveShortAndTunnel:
     SetWarpEventPos 2, 710, 670
     SetWarpEventPos 4, 710, 670
     End
 
-Route214_SetWarpEventRuinManiacCaveShort:
+Route214_RemoveWarpsManiacCaveLongAndTunnel:
     SetWarpEventPos 3, 710, 670
     SetWarpEventPos 4, 710, 670
     End
 
 Route214_OnTransition:
     GetUnownFormsSeenCount VAR_MAP_LOCAL_0
-    GoToIfGe VAR_MAP_LOCAL_0, 26, Route214_SetWarpEventManiacTunnel
-    GoToIfGe VAR_MAP_LOCAL_0, 10, Route214_SetWarpEventRuinManiacCaveLong
-    GoToIfLt VAR_MAP_LOCAL_0, 10, Route214_SetWarpEventRuinManiacCaveShort
+    GoToIfGe VAR_MAP_LOCAL_0, 26, Route214_RemoveWarpsManiacCaveShortAndLong
+    GoToIfGe VAR_MAP_LOCAL_0, 10, Route214_RemoveWarpsManiacCaveShortAndTunnel
+    GoToIfLt VAR_MAP_LOCAL_0, 10, Route214_RemoveWarpsManiacCaveLongAndTunnel
     End
 
 Route214_ArrowSignVeilstoneCity:

@@ -11,23 +11,23 @@
 
 ValorCavern_OnTransition:
     SetFlag FLAG_FIRST_ARRIVAL_VALOR_CAVERN
-    GoToIfUnset FLAG_GALACTIC_LEFT_LAKE_VALOR, ValorCavern_SetWarpEventLakeValorDrained
-    GoToIfSet FLAG_GALACTIC_LEFT_LAKE_VALOR, ValorCavern_SetWarpEventLakeValor
+    GoToIfUnset FLAG_GALACTIC_LEFT_LAKE_VALOR, ValorCavern_RemoveWarpLakeValorNormal
+    GoToIfSet FLAG_GALACTIC_LEFT_LAKE_VALOR, ValorCavern_RemoveWarpLakeValorDrained
     End
 
-ValorCavern_SetWarpEventLakeValorDrained:
+ValorCavern_RemoveWarpLakeValorNormal:
     SetWarpEventPos 1, 10, 29
     End
 
-ValorCavern_SetWarpEventLakeValor:
+ValorCavern_RemoveWarpLakeValorDrained:
     SetWarpEventPos 0, 10, 29
     End
 
 ValorCavern_OnLoad:
     SetFlag FLAG_FIRST_ARRIVAL_VALOR_CAVERN
     CallIfSet FLAG_MAP_LOCAL, ValorCavern_RemoveAzelf
-    GoToIfUnset FLAG_GALACTIC_LEFT_LAKE_VALOR, ValorCavern_SetWarpEventLakeValorDrained
-    GoToIfSet FLAG_GALACTIC_LEFT_LAKE_VALOR, ValorCavern_SetWarpEventLakeValor
+    GoToIfUnset FLAG_GALACTIC_LEFT_LAKE_VALOR, ValorCavern_RemoveWarpLakeValorNormal
+    GoToIfSet FLAG_GALACTIC_LEFT_LAKE_VALOR, ValorCavern_RemoveWarpLakeValorDrained
     End
 
 ValorCavern_RemoveAzelf:

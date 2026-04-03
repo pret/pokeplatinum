@@ -1,20 +1,21 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/pal_park.h"
+#include "res/field/events/events_pal_park.h"
 
 
-    ScriptEntry _001A
-    ScriptEntry PalPark_Trigger_Countdown
+    ScriptEntry PalPark_OnTransition
+    ScriptEntry PalPark_OnFrameCountdown
     ScriptEntry PalPark_Trigger_CaughtAllPokemon
     ScriptEntry PalPark_RetireFromMenu
     ScriptEntry PalPark_Trigger_RetireFromGate
     ScriptEntry PalPark_Worker
     ScriptEntryEnd
 
-_001A:
+PalPark_OnTransition:
     SetFlag FLAG_FIRST_ARRIVAL_PAL_PARK
     End
 
-PalPark_Trigger_Countdown:
+PalPark_OnFrameCountdown:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     MessageInstant PalPark_Text_LetTheCountdownBegin
@@ -83,20 +84,20 @@ PalPark_Trigger_RetireFromGate:
     LockAll
     Call PalPark_AskPlayerRetireFromCatchingShow
     CloseMessage
-    GoToIfEq VAR_RESULT, FALSE, _0114
+    GoToIfEq VAR_RESULT, FALSE, PalPark_PlayerWalkNorth
     SetVar VAR_PAL_PARK_STATE, 2
     ReleaseAll
     Call PalPark_ClearFlagAndWarpOut
     End
 
-_0114:
-    ApplyMovement LOCALID_PLAYER, _0124
+PalPark_PlayerWalkNorth:
+    ApplyMovement LOCALID_PLAYER, PalPark_Movement_PlayerWalkNorth
     WaitMovement
     ReleaseAll
     End
 
     .balign 4, 0
-_0124:
+PalPark_Movement_PlayerWalkNorth:
     WalkNormalNorth
     EndMovement
 
@@ -106,25 +107,25 @@ PalPark_Worker:
     FacePlayer
     Call PalPark_AskPlayerRetireFromCatchingShow
     CloseMessage
-    GoToIfEq VAR_RESULT, FALSE, _0159
+    GoToIfEq VAR_RESULT, FALSE, PalPark_WorkerWalkOnSpotWest
     SetVar VAR_PAL_PARK_STATE, 2
     ReleaseAll
     Call PalPark_ClearFlagAndWarpOut
     End
 
-_0159:
-    ApplyMovement 0, _0168
+PalPark_WorkerWalkOnSpotWest:
+    ApplyMovement LOCALID_WORKER, PalPark_Movement_WorkerWalkOnSpotWest
     WaitMovement
     ReleaseAll
     End
 
     .balign 4, 0
-_0168:
+PalPark_Movement_WorkerWalkOnSpotWest:
     WalkOnSpotNormalWest
     EndMovement
 
 PalPark_AskPlayerRetireFromCatchingShow:
-    Message PalPark_Text_WouldYouLikeToRetireFromYourCatchingShow
+    Message PalPark_Text_RetireWithoutAllPokemon
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_YES, PalPark_RetireFromCatchingShow
     GetPlayerGender VAR_RESULT
@@ -143,7 +144,7 @@ PalPark_NotRetireFromCatchingShow_Female:
     Return
 
 PalPark_RetireFromCatchingShow:
-    Message PalPark_Text_ISeeImDisappointedThatYouDroppedOut
+    Message PalPark_Text_ImDisappointed
     SetVar VAR_RESULT, TRUE
     Return
 

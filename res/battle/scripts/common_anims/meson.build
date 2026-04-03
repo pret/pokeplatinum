@@ -65,7 +65,7 @@ anim_subscripts_narc = custom_target(anim_subscripts_narc_name,
         anim_subscripts_narc_name,
         anim_subscripts_naix_name,
     ],
-    input: script_bin_gen.process(
+    input: battle_anim_script_bin_gen.process(
         anim_subscript_files,
         extra_args: [ '--out-dir', anim_subscripts_private_dir, ]
     ),

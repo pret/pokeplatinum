@@ -100,7 +100,7 @@ _012C:
     AddListMenuEntry MenuEntries_Text_BattlesForFour, LIST_MENU_BUILDER_HEADER
     AddListMenuEntry MenuEntries_Text_MultiBattle, 3
     AddListMenuEntry MenuEntries_Text_Battle_Info, 4
-    AddListMenuEntry MenuEntries_Text_Battle_Exit, 5
+    AddListMenuEntry MenuEntries_Text_Exit2, 5
     ShowListMenu
     SetVar VAR_0x8008, VAR_RESULT
     GoToIfEq VAR_0x8008, 0, _01DE

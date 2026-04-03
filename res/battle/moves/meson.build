@@ -72,34 +72,6 @@ pl_waza_tbl_narc = custom_target('pl_waza_tbl.narc',
     ]
 )
 
-battle_anim_script_bin_gen = generator(make_script_bin_sh,
-    arguments: [
-        '-i', relative_source_root / 'include',
-        '-i', relative_source_root / 'asm',
-        '-i', '.' / 'res' / 'text',
-        '-i', '.' / 'res',
-        '-i', '.',
-        '--depfile',
-        '-P', # Preserve parent dir in output file name
-        '--assembler', arm_none_eabi_gcc_exe.full_path(),
-        '--objcopy', arm_none_eabi_objcopy_exe.full_path(),
-        '@EXTRA_ARGS@',
-        '@INPUT@',
-    ],
-    depends: [
-        text_banks,
-        c_consts_generators,
-        h_headers,
-        battle_particles_narc[1],
-        anim_ncer_narc_files[1],
-        anim_nanr_narc_files[1],
-        anim_ncgr_narc_files[1],
-        anim_nclr_narc_files[1],
-    ],
-    output: '@BASENAME@',
-    depfile: '@BASENAME@.d',
-)
-
 anim_script_srcs = []
 foreach subdir : anim_script_subdirs
     anim_script_srcs += subdir / 'anim.s'
@@ -127,7 +99,7 @@ anim_scripts_narc = custom_target(anim_scripts_narc_name,
     ],
     input: battle_anim_script_bin_gen.process(
         anim_script_srcs,
-        extra_args: ['--out-dir', anim_scripts_private_dir],
+        extra_args: ['--out-dir', anim_scripts_private_dir, '--parent-dir'],
         preserve_path_from: anim_scripts_root,
     ),
     command: [

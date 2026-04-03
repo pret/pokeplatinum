@@ -46,6 +46,7 @@
 #include "constants/items.h"
 #include "constants/map_object.h"
 #include "constants/overworld_weather.h"
+#include "constants/moves.h"
 #include "constants/pokemon.h"
 #include "constants/regi_ruins.h"
 #include "constants/roamer_states.h"
@@ -2464,8 +2465,8 @@
     .short \valueOrVarID
     .endm
 
-    .macro ScrCmd_1AC
-    .short SCRCMD_1AC
+    .macro HatchEgg
+    .short SCRCMD_HATCHEGG
     .endm
 
     .macro Dummy1AD dummy
@@ -3012,8 +3013,8 @@
     .short \gender
     .endm
 
-    .macro ScrCmd_209
-    .short SCRCMD_209
+    .macro RemovePokemonPreview
+    .short SCRCMD_REMOVEPOKEMONPREVIEW
     .endm
 
     .macro ScrCmd_20A arg0
@@ -3192,8 +3193,8 @@
     .short SCRCMD_22B
     .endm
 
-    .macro ScrCmd_22C
-    .short SCRCMD_22C
+    .macro TurnOnPokedexFormDetection
+    .short SCRCMD_TURNONPOKEDEXFORMDETECTION
     .endm
 
     .macro GetSetNationalDexEnabled getSet, destVar
@@ -3693,11 +3694,11 @@
     .short \arg4
     .endm
 
-    .macro ScrCmd_26A arg0, arg1, arg2
-    .short SCRCMD_26A
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .macro FlickerObject localID, times, delay
+    .short SCRCMD_FLICKEROBJECT
+    .short \localID
+    .short \times
+    .short \delay
     .endm
 
     .macro CheckHasAllLegendaryTitansInParty destVar
@@ -4148,11 +4149,11 @@
     .short SCRCMD_LOCKLASTTALKED
     .endm
 
-    .macro ScrCmd_2B5 arg0, arg1, arg2
+    .macro ScrCmd_2B5 mapId, x, z
     .short SCRCMD_2B5
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \mapId
+    .short \x
+    .short \z
     .endm
 
     .macro ScrCmd_2B6 localID, arg1
@@ -4663,8 +4664,8 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_310
-    .short SCRCMD_310
+    .macro StartLibraryTV
+    .short SCRCMD_STARTLIBRARYTV
     .endm
 
     .macro AddDistortionWorldMapObject mapObjLocalID

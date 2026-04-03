@@ -16,6 +16,7 @@
 #include "overlay104/struct_ov104_0223ADA0.h"
 #include "overlay104/struct_ov104_0224028C.h"
 
+#include "battle_frontier_stats.h"
 #include "game_records.h"
 #include "heap.h"
 #include "math_util.h"
@@ -24,7 +25,6 @@
 #include "savedata.h"
 #include "system_vars.h"
 #include "unk_0202FF4C.h"
-#include "unk_0203061C.h"
 #include "unk_0205DFC4.h"
 #include "vars_flags.h"
 
@@ -91,8 +91,8 @@ UnkStruct_ov104_0223ADA0 *ov104_022339B4(SaveData *saveData, u16 param1, u8 para
         }
 
         if (v3 == 1) {
-            v7->unk_0C = sub_02030698(SaveData_GetBattleFrontier(v7->saveData), sub_0205E430(v7->unk_05, v7->unk_04), sub_0205E6A8(sub_0205E430(v7->unk_05, v7->unk_04)));
-            v7->unk_08 = sub_02030698(SaveData_GetBattleFrontier(v7->saveData), sub_0205E488(v7->unk_05, v7->unk_04), sub_0205E6A8(sub_0205E488(v7->unk_05, v7->unk_04)));
+            v7->unk_0C = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(v7->saveData), BattleFrontierStats_GetFactoryLatestStreakIdx(v7->unk_05, v7->unk_04), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetFactoryLatestStreakIdx(v7->unk_05, v7->unk_04)));
+            v7->unk_08 = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(v7->saveData), BattleFrontierStats_GetFactoryLatestTradeCountIndex(v7->unk_05, v7->unk_04), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetFactoryLatestTradeCountIndex(v7->unk_05, v7->unk_04)));
         } else {
             v7->unk_0C = 0;
             v7->unk_08 = 0;
@@ -103,8 +103,8 @@ UnkStruct_ov104_0223ADA0 *ov104_022339B4(SaveData *saveData, u16 param1, u8 para
         v7->unk_04 = (u8)sub_02030030(v0, 1, 0, NULL);
         v7->unk_05 = (u8)sub_02030030(v0, 0, 0, NULL);
         v7->unk_06 = (u8)sub_02030030(v0, 2, 0, NULL);
-        v7->unk_0C = sub_02030698(SaveData_GetBattleFrontier(v7->saveData), sub_0205E430(v7->unk_05, v7->unk_04), sub_0205E6A8(sub_0205E430(v7->unk_05, v7->unk_04)));
-        v7->unk_08 = sub_02030698(SaveData_GetBattleFrontier(v7->saveData), sub_0205E488(v7->unk_05, v7->unk_04), sub_0205E6A8(sub_0205E488(v7->unk_05, v7->unk_04)));
+        v7->unk_0C = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(v7->saveData), BattleFrontierStats_GetFactoryLatestStreakIdx(v7->unk_05, v7->unk_04), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetFactoryLatestStreakIdx(v7->unk_05, v7->unk_04)));
+        v7->unk_08 = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(v7->saveData), BattleFrontierStats_GetFactoryLatestTradeCountIndex(v7->unk_05, v7->unk_04), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetFactoryLatestTradeCountIndex(v7->unk_05, v7->unk_04)));
     }
 
     v7->unk_0E = (u16)(v7->unk_0C / 7);
@@ -135,7 +135,7 @@ static void ov104_02233BAC(UnkStruct_ov104_0223ADA0 *param0)
     u16 v5[6];
     u16 v6[6];
 
-    ov104_0223A860(param0->unk_04, ov104_0223AF34(param0), param0->unk_18, (7 * 2));
+    ov104_0223A860(param0->unk_04, ov104_0223AF34(param0), param0->unk_18, 7 * 2);
 
     ov104_0223AAA0(ov104_0223AF34(param0), param0->unk_05, param0->unk_254, param0->unk_280, param0->unk_260, param0->unk_268, param0->unk_08, NULL, NULL);
 
@@ -355,18 +355,18 @@ void ov104_02234148(UnkStruct_ov104_0223ADA0 *param0, u8 param1)
 
     v5[0] = param0->unk_06;
     sub_0202FF84(param0->unk_4F4, 2, 0, v5);
-    sub_020306E4(frontier, sub_0205E488(param0->unk_05, param0->unk_04), sub_0205E6A8(sub_0205E488(param0->unk_05, param0->unk_04)), param0->unk_08);
-    sub_020306E4(frontier, sub_0205E430(param0->unk_05, param0->unk_04), sub_0205E6A8(sub_0205E430(param0->unk_05, param0->unk_04)), param0->unk_0C);
+    BattleFrontierStats_SetStat(frontier, BattleFrontierStats_GetFactoryLatestTradeCountIndex(param0->unk_05, param0->unk_04), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetFactoryLatestTradeCountIndex(param0->unk_05, param0->unk_04)), param0->unk_08);
+    BattleFrontierStats_SetStat(frontier, BattleFrontierStats_GetFactoryLatestStreakIdx(param0->unk_05, param0->unk_04), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetFactoryLatestStreakIdx(param0->unk_05, param0->unk_04)), param0->unk_0C);
 
     if (param1 != 2) {
-        v1 = sub_02030698(frontier, sub_0205E45C(param0->unk_05, param0->unk_04), sub_0205E6A8(sub_0205E45C(param0->unk_05, param0->unk_04)));
-        v8 = sub_02030848(frontier, sub_0205E45C(param0->unk_05, param0->unk_04), sub_0205E6A8(sub_0205E45C(param0->unk_05, param0->unk_04)), param0->unk_0C);
-        v2 = sub_02030698(frontier, sub_0205E45C(param0->unk_05, param0->unk_04), sub_0205E6A8(sub_0205E45C(param0->unk_05, param0->unk_04)));
+        v1 = BattleFrontierStats_GetStat(frontier, BattleFrontierStats_GetFactoryRecordStreakIdx(param0->unk_05, param0->unk_04), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetFactoryRecordStreakIdx(param0->unk_05, param0->unk_04)));
+        v8 = BattleFrontierStats_SetIfBetter(frontier, BattleFrontierStats_GetFactoryRecordStreakIdx(param0->unk_05, param0->unk_04), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetFactoryRecordStreakIdx(param0->unk_05, param0->unk_04)), param0->unk_0C);
+        v2 = BattleFrontierStats_GetStat(frontier, BattleFrontierStats_GetFactoryRecordStreakIdx(param0->unk_05, param0->unk_04), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetFactoryRecordStreakIdx(param0->unk_05, param0->unk_04)));
 
         if (param0->unk_0C == v1) {
-            sub_02030848(frontier, sub_0205E4B4(param0->unk_05, param0->unk_04), sub_0205E6A8(sub_0205E4B4(param0->unk_05, param0->unk_04)), param0->unk_08);
+            BattleFrontierStats_SetIfBetter(frontier, BattleFrontierStats_GetFactoryRecordTradeCountIndex(param0->unk_05, param0->unk_04), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetFactoryRecordTradeCountIndex(param0->unk_05, param0->unk_04)), param0->unk_08);
         } else if (v1 < v2) {
-            sub_020306E4(frontier, sub_0205E4B4(param0->unk_05, param0->unk_04), sub_0205E6A8(sub_0205E4B4(param0->unk_05, param0->unk_04)), param0->unk_08);
+            BattleFrontierStats_SetStat(frontier, BattleFrontierStats_GetFactoryRecordTradeCountIndex(param0->unk_05, param0->unk_04), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetFactoryRecordTradeCountIndex(param0->unk_05, param0->unk_04)), param0->unk_08);
         }
 
         v5[0] = param0->unk_0A;
@@ -379,7 +379,7 @@ void ov104_02234148(UnkStruct_ov104_0223ADA0 *param0, u8 param1)
                 v10 = 104;
             }
 
-            sub_020306E4(frontier, v10, sub_0205E6A8(v10), param0->unk_0A);
+            BattleFrontierStats_SetStat(frontier, v10, BattleFrontierStats_GetHostFriendIdx(v10), param0->unk_0A);
         }
     }
 
@@ -528,7 +528,7 @@ void ov104_02234570(UnkStruct_ov104_0223ADA0 *param0)
 
     v7 = ov104_0223A8A8(param0->unk_18[param0->unk_06], param0->unk_05);
 
-    ov104_0223A918(v4, v5, (v2 + v1), v3, param0->unk_3D2, 11, v7, 0, param0->unk_3DA);
+    ov104_0223A918(v4, v5, v2 + v1, v3, param0->unk_3D2, 11, v7, 0, param0->unk_3DA);
     ov104_0222E330(param0->unk_3F0, param0->unk_3D2, param0->unk_3DA, NULL, param0->unk_3E0, v3, 11, 179);
 
     return;
