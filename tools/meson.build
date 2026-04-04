@@ -15,6 +15,7 @@ subdir('scripts')
 subdir('debug')
 
 copy_exe = find_program('cp')
+touch_exe = find_program('touch')
 
 # ARM binutils
 arm_none_eabi_gcc_exe = find_program('arm-none-eabi-gcc', native: true)

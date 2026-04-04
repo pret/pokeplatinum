@@ -8,9 +8,6 @@ deoxys_attack_icon = files('forms/attack/icon.png')
 deoxys_defense_icon = files('forms/defense/icon.png')
 deoxys_speed_icon = files('forms/speed/icon.png')
 
-pokegra_files += files('male_back.png')
-pokegra_files += files('male_front.png')
-
 otherpoke_index += {
     '0': files('forms/base/back.png'),
     '1': files('forms/base/front.png'),

@@ -30,9 +30,6 @@ unown_z_icon = files('forms/z/icon.png')
 unown_exc_icon = files('forms/exc/icon.png')
 unown_que_icon = files('forms/que/icon.png')
 
-pokegra_files += files('male_back.png')
-pokegra_files += files('male_front.png')
-
 otherpoke_index += {
     '8': files('forms/base/back.png'),
     '9': files('forms/base/front.png'),

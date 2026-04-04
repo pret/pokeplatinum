@@ -4,9 +4,6 @@ species_data_files += files('forms/sky/data.json')
 poke_icon_files += files('icon.png')
 shaymin_sky_icon = files('forms/sky/icon.png')
 
-pokegra_files += files('male_back.png')
-pokegra_files += files('male_front.png')
-
 otherpoke_index += {
     '134': files('forms/base/back.png'),
     '135': files('forms/base/front.png'),

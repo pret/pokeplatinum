@@ -32,6 +32,7 @@ static enum_t dp_include(
 
 static archive_template_t *s_archives   = NULL;
 static header_template_t  *s_headers    = NULL;
+static order_template_t   *s_orders     = NULL;
 static const char         *s_output_dir = NULL;
 
 static void* crt_malloc(void *ctx, unsigned items, unsigned size) {
@@ -79,6 +80,7 @@ void common_init(
     enum_template_t    *lookups,
     archive_template_t *archives,
     header_template_t  *headers,
+    order_template_t   *orders,
     const char         *source_name,
     const char         *depfile_path,
     const char         *output_dir,
@@ -90,6 +92,7 @@ void common_init(
 
     s_archives   = archives;
     s_headers    = headers;
+    s_orders     = orders;
     s_output_dir = output_dir;
     atexit(unload_enums);
     atexit(finish_headers);
@@ -129,6 +132,21 @@ void common_init(
         }
 
         fprintf(to_init->out_file, header_comment, source_name);
+
+        fputs(full_path, depfile);
+        fputc(' ',       depfile);
+        free(full_path);
+    }
+
+    // Prepare iteratively-written order files
+    for (order_template_t *to_init = orders; to_init && to_init->out_filename; to_init++) {
+        char *full_path   = pathjoin(output_dir, NULL, to_init->out_filename);
+        to_init->out_file = fopen(full_path, "wb");
+        if (to_init->out_file == NULL) {
+            fprintf(stderr, "could not open output file '%s': %s",
+                    full_path, strerror(errno));
+            exit(EXIT_FAILURE);
+        }
 
         fputs(full_path, depfile);
         fputc(' ',       depfile);
@@ -203,6 +221,10 @@ static void finish_headers(void) {
 int common_done(int errc, int (*addl_done_hook)(void)) {
     for (archive_template_t *a = s_archives; a && a->out_filename; a++) {
         if (fdump_narc(&a->packer, a->out_filename, errc == 0)) errc = EXIT_FAILURE;
+    }
+
+    for (order_template_t *o = s_orders; o && o->out_filename; o++) {
+        if (fclose(o->out_file)) errc = EXIT_FAILURE;
     }
 
     if (addl_done_hook) errc = addl_done_hook() || errc;

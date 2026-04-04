@@ -73,6 +73,7 @@ static void emit_tutorables(datafile_t *df, size_t i);
 static void emit_eggmoves(datafile_t *df, const char *species_upper);
 static void emit_footprints(datafile_t *df, size_t i, const char *species_upper);
 static void emit_iconpalettes(datafile_t *df, size_t i, const char *species);
+static void emit_pokegra(size_t i, const char *species, enum GenderRatio ratio);
 static void pack(Container *species, size_t i);
 
 static void pre_init(void);
@@ -111,6 +112,11 @@ static header_template_t headers[] = {
     { .out_filename = NULL,                          },
 };
 
+static order_template_t orders[] = {
+    { .out_filename = "pl_pokegra.order"             },
+    { .out_filename = NULL,                          },
+};
+
 static const char *alt_forms_with_data[] = { // NOTE: also implicitly defines the ordering of these forms
     "deoxys/forms/attack",
     "deoxys/forms/defense",
@@ -139,7 +145,7 @@ int main(int argc, char **argv) {
     archives[2].num_files = (u16)len_registry;
     archives[3].num_files = (u16)(4 * NATIONAL_DEX_MAX);
 
-    common_init(DATAPROC_F_JSON, enums, archives, headers, __FILE__, depfile_fpath, output_dir, pre_init, post_init);
+    common_init(DATAPROC_F_JSON, enums, archives, headers, orders, __FILE__, depfile_fpath, output_dir, pre_init, post_init);
 
     datafile_t df_d = { 0 };
     datafile_t df_s = { 0 };
@@ -160,8 +166,8 @@ int main(int argc, char **argv) {
                 .offspring        = proc_offspring(&df_d, i),
             };
 
+            enum GenderRatio ratio = species.personal.genderRatio;
             if (i < NATIONAL_DEX_MAX && dp_load(&df_s, path_s) == 0) {
-                enum GenderRatio ratio = species.personal.genderRatio;
                 if (i == SPECIES_NONE) ratio = GENDER_RATIO_FEMALE_50;
 
                 species.heights    = proc_heights(&df_s, ratio);
@@ -172,6 +178,7 @@ int main(int argc, char **argv) {
             emit_eggmoves(&df_d, capped);
             emit_footprints(&df_d, i, capped);
             emit_iconpalettes(&df_d, i, registry[i]);
+            emit_pokegra(i, registry[i], ratio);
             pack(&species, i);
 
             free(capped);
@@ -552,6 +559,7 @@ static FILE **f_egg_moves       = &headers[2].out_file;
 static FILE **f_footprint_sizes = &headers[3].out_file;
 static FILE **f_footprint_types = &headers[4].out_file;
 static FILE **f_icon_palettes   = &headers[5].out_file;
+static FILE **f_pl_pokegra      = &orders[0].out_file;
 
 static void emit_tutorables(datafile_t *df, size_t i) {
     // NOTE: none of these have any tutorable learnsets, but mechanically-distinct forms
@@ -658,6 +666,32 @@ static void emit_iconpalettes(datafile_t *df, size_t i, const char *species) {
 
 cleanup:
     free(capped);
+}
+
+static void emit_pokegra(size_t i, const char *species, enum GenderRatio ratio) {
+    if (i < SPECIES_EGG) {
+        if (ratio == GENDER_RATIO_FEMALE_ONLY) {
+            fprintf(*f_pl_pokegra, "%s/female_back.NCGR\n", species);
+            fprintf(*f_pl_pokegra, "empty\n");
+            fprintf(*f_pl_pokegra, "%s/female_front.NCGR\n", species);
+            fprintf(*f_pl_pokegra, "empty\n");
+        }
+        else if (ratio == GENDER_RATIO_MALE_ONLY || ratio == GENDER_RATIO_NO_GENDER) {
+            fprintf(*f_pl_pokegra, "empty\n");
+            fprintf(*f_pl_pokegra, "%s/male_back.NCGR\n", species);
+            fprintf(*f_pl_pokegra, "empty\n");
+            fprintf(*f_pl_pokegra, "%s/male_front.NCGR\n", species);
+        }
+        else {
+            fprintf(*f_pl_pokegra, "%s/female_back.NCGR\n", species);
+            fprintf(*f_pl_pokegra, "%s/male_back.NCGR\n", species);
+            fprintf(*f_pl_pokegra, "%s/female_front.NCGR\n", species);
+            fprintf(*f_pl_pokegra, "%s/male_front.NCGR\n", species);
+        }
+        
+        fprintf(*f_pl_pokegra, "%s/normal.NCLR\n", species);
+        fprintf(*f_pl_pokegra, "%s/shiny.NCLR\n", species);
+    }
 }
 
 static void pack(Container *species, size_t i) {

@@ -71,6 +71,11 @@ copy_gen = generator(copy_exe,
     output: '@PLAINNAME@'
 )
 
+touch_gen = generator(touch_exe,
+    arguments: [ '@OUTPUT@', ],
+    output: '@PLAINNAME@'
+)
+
 ### DECOMPILED DATA DIRECTORIES ###
 # These subpaths are listed because the result of some build-rule inside them
 # is a dependency of some later build-rule.

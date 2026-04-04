@@ -77,6 +77,13 @@ struct header_template {
     char       *footer;
 };
 
+// Template-struct for an order file to be written. Specify the output filename.
+typedef struct order_template order_template_t;
+struct order_template {
+    const char *out_filename;
+    FILE       *out_file;
+};
+
 // Common initialization routine. Instantiate requested lookup-tables and
 // prepare requested outputs. Output header-files will also search the data
 // directory for a file with ".template" suffixed to the output's basename.
@@ -91,6 +98,7 @@ void common_init(
     enum_template_t    *lookups,
     archive_template_t *archives,
     header_template_t  *headers,
+    order_template_t   *orders,
     const char         *source_name,
     const char         *depfile_name,
     const char         *output_dir,

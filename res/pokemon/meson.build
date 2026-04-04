@@ -33,7 +33,9 @@
 #######################
 species_data_files = []
 poke_icon_files = []
-pokegra_files = []
+pokegra_png = []
+pokegra_pal = []
+pokefoot_files = []
 otherpoke_index = {} # otherpoke uses a unique, non-uniform structure
 
 pokemon_data_root = meson.current_source_dir()
@@ -56,8 +58,6 @@ form_sprites_shared = files(
     '.shared/shadows.png',
     '.shared/shadows.pal',
 )
-
-pokefoot_files = []
 
 sinnoh_pokedex = files('sinnoh_pokedex.json')
 pl_growtbl_files = files('.shared/exp_tables.csv')
@@ -102,6 +102,17 @@ form_sprites_order = form_registry[2]
 # 3. Walk species subdirectories; `species_dirnames` is the authority.
 foreach species : species_dirnames
     subdir(species)
+
+    # add species graphics
+    if fs.exists(species / 'female_front.png')
+        pokegra_png += files(species / 'female_front.png', species / 'female_back.png')
+    endif
+    if fs.exists(species / 'male_front.png')
+        pokegra_png += files(species / 'male_front.png', species / 'male_back.png')
+    endif
+    if fs.exists(species / 'shiny.pal')
+        pokegra_pal += files(species/'normal.pal', species/'shiny.pal')
+    endif
 endforeach
 
 # Stash the listing of species in an environment so that other processes can make
@@ -197,6 +208,7 @@ species_data = custom_target('species_data',
         'species_footprint_types.h',
         'species_egg_moves.h',
         'species_icon_palettes.h',
+        'pl_pokegra.order',
     ],
 
     command: [
@@ -218,6 +230,7 @@ h_headers += species_data[9]
 h_headers += species_data[10]
 h_headers += species_data[11]
 h_headers += species_data[12]
+pl_pokegra_order = species_data[13]
 
 
 # OLD NARCs
@@ -245,19 +258,44 @@ pl_poke_icon_narc = custom_target('pl_poke_icon.narc',
 naix_headers += pl_poke_icon_narc[1]
 
 pl_pokegra_narc = custom_target('pl_pokegra.narc',
-    output: 'pl_pokegra.narc',
-    input: pokegra_files,
-    env: species_env,
-    depends: [ py_consts_generators ],
+    output: [
+        'pl_pokegra.narc',
+        'pl_pokegra.naix',
+    ],
+    input: [
+        ncgr_gen.process(
+            pokegra_png,
+            extra_args: [
+                '-encodefronttoback',
+                '-scan',
+            ],
+            preserve_path_from: pokemon_data_root,
+        ),
+        nclr_gen.process(
+            pokegra_pal,
+            extra_args: [
+                '-bitdepth', '8',
+                '-nopad',
+                '-comp', '10'
+            ],
+            preserve_path_from: pokemon_data_root,
+        ),
+        copy_gen.process( # Species 000 has special palettes; they are included here in their raw form.
+            files('none'/'normal.NCLR', 'none'/'shiny.NCLR'),
+            preserve_path_from: pokemon_data_root,
+        ),
+        touch_gen.process(files('.shared/empty')),
+    ],
     command: [
-        make_pl_pokegra_py,
-        '--nitrogfx', nitrogfx_exe,
-        '--narc', nitroarc_exe,
-        '--source-dir', '@CURRENT_SOURCE_DIR@',
-        '--private-dir', '@PRIVATE_DIR@',
-        '--output-dir', '@OUTDIR@',
+        nitroarc_exe,
+        '--create',
+        '--index',
+        '--files-from', pl_pokegra_order,
+        '--file', '@OUTPUT0@',
+        '@PRIVATE_DIR@',
     ],
 )
+naix_headers += pl_pokegra_narc[1]
 
 pl_otherpoke_narc = custom_target('pl_otherpoke.narc',
     output: [

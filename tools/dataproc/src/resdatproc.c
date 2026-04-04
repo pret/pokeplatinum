@@ -96,7 +96,7 @@ static enum restype filter = 0;
 
 int main(int argc, char **argv) {
     parse_args(&argc, &argv);
-    common_init(DATAPROC_F_JSON, enums, NULL, NULL, SOURCE_NAME, depfile_path, output_dir, NULL, NULL);
+    common_init(DATAPROC_F_JSON, enums, NULL, NULL, NULL, SOURCE_NAME, depfile_path, output_dir, NULL, NULL);
 
     datafile_t df   = { 0 };
     unsigned   errc = EXIT_SUCCESS;
