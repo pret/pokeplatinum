@@ -1,14 +1,15 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/acuity_lakefront.h"
+#include "res/field/events/events_acuity_lakefront.h"
 
 
-    ScriptEntry _004E
-    ScriptEntry _0012
-    ScriptEntry _0083
-    ScriptEntry _009A
+    ScriptEntry AcuityLakefront_OnTransition
+    ScriptEntry AcuityLakefront_OnLoad
+    ScriptEntry AcuityLakefront_ArrowSignpostLakeAcuity
+    ScriptEntry AcuityLakefront_TriggerRival
     ScriptEntryEnd
 
-_0012:
+AcuityLakefront_OnLoad:
     GoToIfUnset FLAG_TEAM_GALACTIC_LEFT_LAKE_VERITY, AcuityLakefront_RemoveWarpsLakeAcuityNormal
     GoToIfSet FLAG_TEAM_GALACTIC_LEFT_LAKE_VERITY, AcuityLakefront_RemoveWarpsLakeAcuityLowWater
     End
@@ -23,55 +24,55 @@ AcuityLakefront_RemoveWarpsLakeAcuityLowWater:
     SetWarpEventPos 1, 306, 229
     End
 
-_004E:
+AcuityLakefront_OnTransition:
     CheckBadgeAcquired BADGE_ID_ICICLE, VAR_MAP_LOCAL_0
-    CallIfEq VAR_MAP_LOCAL_0, TRUE, _0079
+    CallIfEq VAR_MAP_LOCAL_0, TRUE, AcuityLakefront_SetVeilstoneGymMaylene
     GoToIfUnset FLAG_TEAM_GALACTIC_LEFT_LAKE_VERITY, AcuityLakefront_RemoveWarpsLakeAcuityNormal
     GoToIfSet FLAG_TEAM_GALACTIC_LEFT_LAKE_VERITY, AcuityLakefront_RemoveWarpsLakeAcuityLowWater
     End
 
-_0079:
-    SetFlag FLAG_UNK_0x0234
+AcuityLakefront_SetVeilstoneGymMaylene:
+    SetFlag FLAG_HIDE_SNOWPOINT_CITY_POKECENTER_1F_MAYLENE
     ClearFlag FLAG_HIDE_VEILSTONE_CITY_GYM_MAYLENE
     Return
 
-_0083:
-    ShowArrowSign 5
+AcuityLakefront_ArrowSignpostLakeAcuity:
+    ShowArrowSign AcuityLakefront_Text_SignLakeAcuityAhead
     End
 
-_009A:
+AcuityLakefront_TriggerRival:
     LockAll
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     AddFreeCamera VAR_0x8004, VAR_0x8005
-    ApplyFreeCameraMovement _00E8
+    ApplyFreeCameraMovement AcuityLakefront_Movement_CameraMoveNorth
     WaitMovement
     WaitTime 15, VAR_RESULT
     BufferRivalName 0
     BufferPlayerName 1
-    Message 0
+    Message AcuityLakefront_Text_CantClimbWithoutBadge
     CloseMessage
-    ApplyMovement 2, _00F8
+    ApplyMovement LOCALID_RIVAL, AcuityLakefront_Movement_RivalLeave
     WaitMovement
-    RemoveObject 2
-    ApplyFreeCameraMovement _00F0
+    RemoveObject LOCALID_RIVAL
+    ApplyFreeCameraMovement AcuityLakefront_Movement_CameraMoveSouth
     WaitMovement
     RestoreCamera
-    SetVar VAR_UNK_0x4084, 1
+    SetVar VAR_ACUITY_LAKEFRONT_STATE, 1
     ReleaseAll
     End
 
     .balign 4, 0
-_00E8:
+AcuityLakefront_Movement_CameraMoveNorth:
     WalkNormalNorth 6
     EndMovement
 
     .balign 4, 0
-_00F0:
+AcuityLakefront_Movement_CameraMoveSouth:
     WalkNormalSouth 6
     EndMovement
 
     .balign 4, 0
-_00F8:
+AcuityLakefront_Movement_RivalLeave:
     WalkNormalNorth 3
     WalkNormalWest
     WalkNormalNorth 4

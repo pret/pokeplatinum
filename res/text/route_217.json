@@ -2,11 +2,11 @@
   "key": 39556,
   "messages": [
     {
-      "id": "pl_msg_00000507_00000",
+      "id": "Route217_Text_OhPlayer",
       "en_US": "Maylene: Oh, {STRVAR_1 3, 0, 0}!\r"
     },
     {
-      "id": "pl_msg_00000507_00001",
+      "id": "Route217_Text_GoingToSnowpointCity",
       "en_US": [
         "Um, are you maybe on your way to\n",
         "Snowpoint City?\r",
@@ -24,7 +24,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000507_00002",
+      "id": "Route217_Text_ImUsingDowsingMachine",
       "en_US": [
         "I’m using the Dowsing Machine on\n",
         "my Pokétch.\r",
@@ -33,14 +33,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000507_00003",
+      "id": "Route217_Text_BoulderEncrustedWithIce",
       "en_US": [
         "The boulder is encrusted with ice.\n",
         "It is bone chilling to touch."
       ]
     },
     {
-      "id": "pl_msg_00000507_00004",
+      "id": "Route217_Text_SignRt217LakeAcuity",
       "en_US": [
         "Rt. 217\n",
         "Lake Acuity"

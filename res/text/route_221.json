@@ -2,21 +2,21 @@
   "key": 38556,
   "messages": [
     {
-      "id": "pl_msg_00000514_00000",
+      "id": "Route221_Text_PalParkIsntOpenYet",
       "en_US": [
         "Pal Park isn’t open yet.\n",
         "We’re still setting up."
       ]
     },
     {
-      "id": "pl_msg_00000514_00001",
+      "id": "Route221_Text_GettingPalParkReady",
       "en_US": [
         "We’re getting Pal Park ready.\n",
         "I wonder what you can do there?"
       ]
     },
     {
-      "id": "pl_msg_00000514_00002",
+      "id": "Route221_Text_SignPalPark",
       "en_US": [
         "Pal Park\n",
         "A Place for New Beginnings"

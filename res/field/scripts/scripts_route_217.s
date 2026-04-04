@@ -1,86 +1,87 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/route_217.h"
+#include "res/field/events/events_route_217.h"
 
 
-    ScriptEntry _0012
-    ScriptEntry _0023
-    ScriptEntry _003A
-    ScriptEntry _004D
+    ScriptEntry Route217_IceRock
+    ScriptEntry Route217_ArrowSignpostLakeAcuity
+    ScriptEntry Route217_SnowpointNPCF
+    ScriptEntry Route217_TriggerMaylene
     ScriptEntryEnd
 
-_0012:
-    EventMessage 3
+Route217_IceRock:
+    EventMessage Route217_Text_BoulderEncrustedWithIce
     End
 
-_0023:
-    ShowArrowSign 4
+Route217_ArrowSignpostLakeAcuity:
+    ShowArrowSign Route217_Text_SignRt217LakeAcuity
     End
 
-_003A:
-    NPCMessage 2
+Route217_SnowpointNPCF:
+    NPCMessage Route217_Text_ImUsingDowsingMachine
     End
 
-_004D:
+Route217_TriggerMaylene:
     LockAll
-    ClearFlag FLAG_UNK_0x0297
-    AddObject 15
+    ClearFlag FLAG_HIDE_ROUTE_217_MAYLENE
+    AddObject LOCALID_MAYLENE
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    CallIfEq VAR_0x8004, 0x12E, _00CA
-    CallIfEq VAR_0x8004, 0x12F, _00D6
+    CallIfEq VAR_0x8004, 302, Route217_MayleneEnterX302
+    CallIfEq VAR_0x8004, 303, Route217_MayleneEnterX303
     BufferPlayerName 0
-    Message 0
+    Message Route217_Text_OhPlayer
     CloseMessage
-    ApplyMovement LOCALID_PLAYER, _010C
+    ApplyMovement LOCALID_PLAYER, Route217_Movement_PlayerWalkOnSpotSouth
     WaitMovement
-    ApplyMovement 15, _014C
+    ApplyMovement LOCALID_MAYLENE, Route217_Movement_MayleneWalkNorth
     WaitMovement
-    Message 1
+    Message Route217_Text_GoingToSnowpointCity
     CloseMessage
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    CallIfEq VAR_0x8004, 0x12E, _00E2
-    CallIfEq VAR_0x8004, 0x12F, _00F6
-    RemoveObject 15
-    SetVar VAR_UNK_0x40A8, 1
+    CallIfEq VAR_0x8004, 302, Route217_MayleneLeaveX302
+    CallIfEq VAR_0x8004, 303, Route217_MayleneLeaveX303
+    RemoveObject LOCALID_MAYLENE
+    SetVar VAR_ROUTE_217_STATE, 1
     SetFlag FLAG_HIDE_VEILSTONE_CITY_GYM_MAYLENE
     ReleaseAll
     End
 
-_00CA:
-    ApplyMovement 15, _0124
+Route217_MayleneEnterX302:
+    ApplyMovement LOCALID_MAYLENE, Route217_Movement_MayleneEnterX302
     WaitMovement
     Return
 
-_00D6:
-    ApplyMovement 15, _0138
+Route217_MayleneEnterX303:
+    ApplyMovement LOCALID_MAYLENE, Route217_Movement_MayleneEnterX303
     WaitMovement
     Return
 
-_00E2:
-    ApplyMovement LOCALID_PLAYER, _0114
-    ApplyMovement 15, _0154
+Route217_MayleneLeaveX302:
+    ApplyMovement LOCALID_PLAYER, Route217_Movement_PlayerWatchMayleneLeave
+    ApplyMovement LOCALID_MAYLENE, Route217_Movement_MayleneLeaveX302
     WaitMovement
     Return
 
-_00F6:
-    ApplyMovement LOCALID_PLAYER, _0114
-    ApplyMovement 15, _0168
+Route217_MayleneLeaveX303:
+    ApplyMovement LOCALID_PLAYER, Route217_Movement_PlayerWatchMayleneLeave
+    ApplyMovement LOCALID_MAYLENE, Route217_Movement_MayleneLeaveX303
     WaitMovement
     Return
 
     .balign 4, 0
-_010C:
+Route217_Movement_PlayerWalkOnSpotSouth:
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_0114:
+Route217_Movement_PlayerWatchMayleneLeave:
     Delay8 2
     Delay4
     WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
-_0124:
+Route217_Movement_MayleneEnterX302:
     WalkNormalNorth 4
     WalkNormalWest 3
     WalkNormalNorth
@@ -88,7 +89,7 @@ _0124:
     EndMovement
 
     .balign 4, 0
-_0138:
+Route217_Movement_MayleneEnterX303:
     WalkNormalNorth 4
     WalkNormalWest 2
     WalkNormalNorth
@@ -96,12 +97,12 @@ _0138:
     EndMovement
 
     .balign 4, 0
-_014C:
+Route217_Movement_MayleneWalkNorth:
     WalkNormalNorth
     EndMovement
 
     .balign 4, 0
-_0154:
+Route217_Movement_MayleneLeaveX302:
     WalkNormalEast
     WalkNormalNorth 3
     WalkNormalEast 2
@@ -109,7 +110,7 @@ _0154:
     EndMovement
 
     .balign 4, 0
-_0168:
+Route217_Movement_MayleneLeaveX303:
     WalkNormalWest
     WalkNormalNorth 3
     WalkNormalEast 3

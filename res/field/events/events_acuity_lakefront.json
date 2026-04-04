@@ -17,7 +17,7 @@
             "y": 0
         },
         {
-            "id": "ACUITY_LAKEFRONT_ARROW_SIGNPOST_1",
+            "id": "LOCALID_ARROW_SIGNPOST",
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -34,11 +34,11 @@
             "y": 0
         },
         {
-            "id": "ACUITY_LAKEFRONT_RIVAL_2",
+            "id": "LOCALID_RIVAL",
             "graphics_id": "OBJ_EVENT_GFX_BARRY",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x01AA",
+            "hidden_flag": "FLAG_HIDE_ACUITY_LAKEFRONT_RIVAL",
             "script": 0,
             "initial_dir": 1,
             "data": [],
@@ -98,7 +98,7 @@
             "y": 0,
             "width": 2,
             "length": 1,
-            "var": "VAR_UNK_0x4084",
+            "var": "VAR_ACUITY_LAKEFRONT_STATE",
             "value": 0
         }
     ]

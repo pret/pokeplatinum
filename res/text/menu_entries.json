@@ -46,7 +46,7 @@
       "en_US": "INFO"
     },
     {
-      "id": "MenuEntries_Text_Battle_Exit",
+      "id": "MenuEntries_Text_Exit2",
       "en_US": "EXIT"
     },
     {
@@ -1138,11 +1138,11 @@
       "en_US": "X {STRVAR_1 52, 0, 0}"
     },
     {
-      "id": "pl_msg_00000361_00278",
+      "id": "MenuEntries_Text_StarPieces_1",
       "en_US": "1"
     },
     {
-      "id": "pl_msg_00000361_00279",
+      "id": "MenuEntries_Text_StarPieces_10",
       "en_US": "10"
     }
   ]

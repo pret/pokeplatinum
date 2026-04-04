@@ -1,15 +1,13 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/verity_cavern.h"
-
-#define LOCALID_MESPRIT 0
-#define LOCALID_ROWAN   1
+#include "res/field/events/events_verity_cavern.h"
 
 
-    ScriptEntry _000A
+    ScriptEntry VerityCavern_OnTransition
     ScriptEntry VerityCavern_Mesprit
     ScriptEntryEnd
 
-_000A:
+VerityCavern_OnTransition:
     SetFlag FLAG_FIRST_ARRIVAL_VERITY_CAVERN
     End
 
@@ -23,25 +21,25 @@ VerityCavern_Mesprit:
     PlayCry SPECIES_MESPRIT
     Message VerityCavern_Text_MespritCry
     CloseMessage
-    SetFlag FLAG_MESPRIT_DISAPPEARED
+    SetFlag FLAG_HIDE_VERITY_CAVERN_MESPRIT
     RemoveObject LOCALID_MESPRIT
     WaitTime 8, VAR_RESULT
-    ClearFlag FLAG_MESPRIT_DISAPPEARED
+    ClearFlag FLAG_HIDE_VERITY_CAVERN_MESPRIT
     AddObject LOCALID_MESPRIT
     WaitTime 8, VAR_RESULT
-    SetFlag FLAG_MESPRIT_DISAPPEARED
+    SetFlag FLAG_HIDE_VERITY_CAVERN_MESPRIT
     RemoveObject LOCALID_MESPRIT
     WaitTime 8, VAR_RESULT
-    ClearFlag FLAG_MESPRIT_DISAPPEARED
+    ClearFlag FLAG_HIDE_VERITY_CAVERN_MESPRIT
     AddObject LOCALID_MESPRIT
     WaitTime 8, VAR_RESULT
-    SetFlag FLAG_MESPRIT_DISAPPEARED
+    SetFlag FLAG_HIDE_VERITY_CAVERN_MESPRIT
     RemoveObject LOCALID_MESPRIT
     WaitTime 8, VAR_RESULT
-    ClearFlag FLAG_MESPRIT_DISAPPEARED
+    ClearFlag FLAG_HIDE_VERITY_CAVERN_MESPRIT
     AddObject LOCALID_MESPRIT
     WaitTime 8, VAR_RESULT
-    SetFlag FLAG_MESPRIT_DISAPPEARED
+    SetFlag FLAG_HIDE_VERITY_CAVERN_MESPRIT
     RemoveObject LOCALID_MESPRIT
     ActivateRoamingPokemon ROAMING_SLOT_MESPRIT
     Message VerityCavern_Text_MespritFlewOff
@@ -49,58 +47,58 @@ VerityCavern_Mesprit:
     GoToIfEq VAR_ROAMING_MESPRIT_STATE, ROAMER_STATE_RESET, VerityCavern_ResetRoamingMespritState
     WaitTime 30, VAR_RESULT
     GetPlayerDir VAR_RESULT
-    GoToIfEq VAR_RESULT, DIR_NORTH, VerityCavern_EnterProfessorRowanNorth
-    GoToIfEq VAR_RESULT, DIR_SOUTH, VerityCavern_EnterProfessorRowanSouth
-    GoToIfEq VAR_RESULT, DIR_WEST, VerityCavern_EnterProfessorRowanWest
-    GoToIfEq VAR_RESULT, DIR_EAST, VerityCavern_EnterProfessorRowanEast
+    GoToIfEq VAR_RESULT, DIR_NORTH, VerityCavern_EnterProfRowanNorth
+    GoToIfEq VAR_RESULT, DIR_SOUTH, VerityCavern_EnterProfRowanSouth
+    GoToIfEq VAR_RESULT, DIR_WEST, VerityCavern_EnterProfRowanWest
+    GoToIfEq VAR_RESULT, DIR_EAST, VerityCavern_EnterProfRowanEast
     End
 
-VerityCavern_EnterProfessorRowanNorth:
-    SetObjectEventPos LOCALID_ROWAN, 12, 22
-    GoTo VerityCavern_EnterProfessorRowan
+VerityCavern_EnterProfRowanNorth:
+    SetObjectEventPos LOCALID_PROF_ROWAN, 12, 22
+    GoTo VerityCavern_EnterProfRowan
     End
 
-VerityCavern_EnterProfessorRowanSouth:
-    SetObjectEventPos LOCALID_ROWAN, 12, 20
-    GoTo VerityCavern_EnterProfessorRowan
+VerityCavern_EnterProfRowanSouth:
+    SetObjectEventPos LOCALID_PROF_ROWAN, 12, 20
+    GoTo VerityCavern_EnterProfRowan
     End
 
-VerityCavern_EnterProfessorRowanWest:
-    SetObjectEventPos LOCALID_ROWAN, 13, 21
-    GoTo VerityCavern_EnterProfessorRowan
+VerityCavern_EnterProfRowanWest:
+    SetObjectEventPos LOCALID_PROF_ROWAN, 13, 21
+    GoTo VerityCavern_EnterProfRowan
     End
 
-VerityCavern_EnterProfessorRowanEast:
-    SetObjectEventPos LOCALID_ROWAN, 11, 21
-    GoTo VerityCavern_EnterProfessorRowan
+VerityCavern_EnterProfRowanEast:
+    SetObjectEventPos LOCALID_PROF_ROWAN, 11, 21
+    GoTo VerityCavern_EnterProfRowan
     End
 
-VerityCavern_EnterProfessorRowan:
-    ClearFlag FLAG_UNK_0x0296
-    AddObject LOCALID_ROWAN
-    ApplyMovement LOCALID_ROWAN, _0190
+VerityCavern_EnterProfRowan:
+    ClearFlag FLAG_HIDE_VERITY_CAVERN_PROF_OAK
+    AddObject LOCALID_PROF_ROWAN
+    ApplyMovement LOCALID_PROF_ROWAN, VerityCavern_Movement_ProfRowanEnter
     WaitMovement
-    ApplyMovement LOCALID_PLAYER, _01B0
+    ApplyMovement LOCALID_PLAYER, VerityCavern_Movement_PlayerFaceSouth
     WaitMovement
     BufferPlayerName 0
     Message VerityCavern_Text_RowanThatWasMesprit
     CloseMessage
-    ApplyMovement LOCALID_ROWAN, _0198
+    ApplyMovement LOCALID_PROF_ROWAN, VerityCavern_Movement_ProfRowanWalkOnSpotSouthNorth
     WaitMovement
     BufferPlayerName 0
     Message VerityCavern_Text_RowanChaseAfterMesprit
     CheckPoketchAppRegistered POKETCH_APPID_MARKINGMAP, VAR_RESULT
-    CallIfEq VAR_RESULT, 0, VerityCavern_ProfessorRowanNoMarkingMap
+    CallIfEq VAR_RESULT, FALSE, VerityCavern_ProfRowanNoMarkingMap
     BufferPlayerName 0
     Message VerityCavern_Text_RowanGoOn
     CloseMessage
-    ApplyMovement LOCALID_ROWAN, _01A8
+    ApplyMovement LOCALID_PROF_ROWAN, VerityCavern_Movement_ProfRowanLeave
     WaitMovement
-    RemoveObject LOCALID_ROWAN
+    RemoveObject LOCALID_PROF_ROWAN
     ReleaseAll
     End
 
-VerityCavern_ProfessorRowanNoMarkingMap:
+VerityCavern_ProfRowanNoMarkingMap:
     Message VerityCavern_Text_RowanNoMarkingMap
     Return
 
@@ -110,23 +108,23 @@ VerityCavern_ResetRoamingMespritState:
     End
 
     .balign 4, 0
-_0190:
+VerityCavern_Movement_ProfRowanEnter:
     WalkNormalNorth 7
     EndMovement
 
     .balign 4, 0
-_0198:
+VerityCavern_Movement_ProfRowanWalkOnSpotSouthNorth:
     WalkOnSpotNormalSouth
     Delay8 2
     WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
-_01A8:
+VerityCavern_Movement_ProfRowanLeave:
     WalkNormalSouth 9
     EndMovement
 
     .balign 4, 0
-_01B0:
+VerityCavern_Movement_PlayerFaceSouth:
     FaceSouth
     EndMovement

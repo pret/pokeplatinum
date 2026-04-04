@@ -2,39 +2,39 @@
 #include "res/text/bank/route_217_west_house.h"
 
 
-    ScriptEntry _0006
+    ScriptEntry Route217WestHouse_Hiker
     ScriptEntryEnd
 
-_0006:
+Route217WestHouse_Hiker:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x00DE, _0039
+    GoToIfSet FLAG_RECEIVED_ROUTE_217_WEST_HOUSE_ICICLE_PLATE, Route217WestHouse_IFoundIciclePlate
     CheckItem ITEM_HM08, 1, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _0044
-    Message 0
+    GoToIfEq VAR_RESULT, TRUE, Route217WestHouse_TryGiveIciclePlate
+    Message Route217WestHouse_Text_IDroppedHM
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0039:
-    Message 2
+Route217WestHouse_IFoundIciclePlate:
+    Message Route217WestHouse_Text_IFoundIciclePlate
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0044:
-    Message 1
+Route217WestHouse_TryGiveIciclePlate:
+    Message Route217WestHouse_Text_YouFoundHM
     SetVar VAR_0x8004, ITEM_ICICLE_PLATE
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0076
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Route217WestHouse_BagIsFull
     Common_GiveItemQuantity
-    SetFlag FLAG_UNK_0x00DE
-    GoTo _0039
+    SetFlag FLAG_RECEIVED_ROUTE_217_WEST_HOUSE_ICICLE_PLATE
+    GoTo Route217WestHouse_IFoundIciclePlate
 
-_0076:
+Route217WestHouse_BagIsFull:
     Common_MessageBagIsFull
     CloseMessage
     ReleaseAll

@@ -2,7 +2,7 @@
   "key": 9283,
   "messages": [
     {
-      "id": "pl_msg_00000297_00000",
+      "id": "LakeAcuityLowWater_Text_NotSupposedToBeHere",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: What are you doing?\n",
         "You’re not supposed to be here.\r",
@@ -16,7 +16,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000297_00001",
+      "id": "LakeAcuityLowWater_Text_ChallengeSunyshoreGym",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: What’d I say?\n",
         "I told you I’ll be OK by myself.\r",
