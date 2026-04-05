@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "constants/field/dynamic_map_features.h"
+#include "constants/map_object.h"
 #include "generated/movement_actions.h"
 #include "generated/movement_types.h"
 
@@ -24,16 +25,21 @@
 #include "script_manager.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "trainer_types.h"
 #include "unk_020655F4.h"
 
-typedef struct {
-    int unk_00;
-    int unk_04;
-    int unk_08;
-    int unk_0C;
-    int unk_10;
-    MapObject *unk_14;
-} UnkStruct_02067C28;
+#define APPROACH_TYPE_SINGLES 0
+#define APPROACH_TYPE_DOUBLES 1
+#define APPROACH_TYPE_VS2     2
+
+typedef struct EyesMeetTrainer {
+    int distance;
+    int direction;
+    int script;
+    int trainerID;
+    int isDoubleBattle;
+    MapObject *trainerMapObj;
+} EyesMeetTrainer;
 
 typedef struct {
     int unk_00;
@@ -50,164 +56,175 @@ typedef struct {
     FieldSystem *fieldSystem;
 } UnkStruct_020EF6D0;
 
-static int sub_02067BA8(FieldSystem *fieldSystem, MapObjectManager *param1, PlayerAvatar *playerAvatar, const MapObject *param3, UnkStruct_02067C28 *param4);
-static void sub_02067C28(UnkStruct_02067C28 *param0, MapObject *param1, int param2, int param3);
-static int sub_02067C54(const MapObject *param0);
-static int sub_02067C80(const MapObject *param0, PlayerAvatar *playerAvatar, int *param2);
-static int sub_02067DA8(const MapObject *param0, int param1, int param2, int param3, int param4, int param5);
-static int sub_02067E74(const MapObject *param0, int param1, int param2);
-static int sub_02067F14(MapObject *param0);
-static MapObject *sub_02067F2C(FieldSystem *fieldSystem, MapObjectManager *param1, MapObject *param2, int param3);
+static BOOL CanTrainerReachPlayer(FieldSystem *fieldSystem, MapObjectManager *mapObjMan, PlayerAvatar *playerAvatar, const MapObject *param3, EyesMeetTrainer *eyesMeetTr);
+static void EyesMeetTrainer_Init(EyesMeetTrainer *eyesMeetTr, MapObject *trainerMapObj, int distance, int direction);
+static int GetTrainerType(const MapObject *trainerMapObj);
+static int GetTrainerDistToPlayer(const MapObject *trainerMapObj, PlayerAvatar *playerAvatar, int *direction);
+static int GetDistanceToPlayerFromDir(const MapObject *trainerMapObj, int trainerFaceDir, int trainerSightRange, int playerX, int playerZ, int param5);
+static BOOL IsPathInterrupted(const MapObject *mapObj, int direction, int distance);
+static int GetTrainerIDFromMapObj(MapObject *mapObj);
+static MapObject *FindTrainerPartner(FieldSystem *fieldSystem, MapObjectManager *mapObjMan, MapObject *trainerMapObj, int trainerID);
 static SysTask *sub_02067FF0(FieldSystem *fieldSystem, MapObject *param1, PlayerAvatar *playerAvatar, int param3, int param4, int param5, int param6, int param7);
 static int sub_02068048(SysTask *param0);
 static void sub_02068054(SysTask *param0);
 static void sub_0206806C(SysTask *param0, void *param1);
+static int GetDistanceNorth(const MapObject *mapObj, int range, int playerX, int playerZ, int unused);
+static int GetDistanceSouth(const MapObject *mapObj, int range, int playerX, int playerZ, int unused);
+static int GetDistanceWest(const MapObject *mapObj, int range, int playerX, int playerZ, int unused);
+static int GetDistanceEast(const MapObject *mapObj, int range, int playerX, int playerZ, int unused);
 
-int (*const Unk_020EF6C0[])(const MapObject *, int, int, int, int);
+typedef int (*DistanceFunc)(const MapObject *, int, int, int, int);
+static const DistanceFunc sGetMapObjDistToPlayerFuncs[] = {
+    GetDistanceNorth,
+    GetDistanceSouth,
+    GetDistanceWest,
+    GetDistanceEast
+};
+
 int (*const Unk_020EF6D0[])(UnkStruct_020EF6D0 *);
 
-int sub_02067A84(FieldSystem *fieldSystem, BOOL param1)
+BOOL StartTrainerApproach(FieldSystem *fieldSystem, BOOL hasTwoAliveMons)
 {
-    UnkStruct_02067C28 v0;
+    EyesMeetTrainer trainer;
     MapObjectManager *mapObjMan = fieldSystem->mapObjMan;
     PlayerAvatar *playerAvatar = fieldSystem->playerAvatar;
 
-    if (sub_02067BA8(fieldSystem, mapObjMan, playerAvatar, NULL, &v0) == 0) {
-        return 0;
+    if (CanTrainerReachPlayer(fieldSystem, mapObjMan, playerAvatar, NULL, &trainer) == FALSE) {
+        return FALSE;
     }
 
-    if (v0.unk_10 == 0) {
-        MapObject *v3;
-        UnkStruct_02067C28 v4;
+    if (trainer.isDoubleBattle == FALSE) {
+        MapObject *unused;
+        EyesMeetTrainer trainerTwo;
 
-        ScriptManager_Set(fieldSystem, SCRIPT_ID(SINGLE_BATTLES, 928), v0.unk_14);
+        ScriptManager_Set(fieldSystem, SCRIPT_ID(SINGLE_BATTLES, 928), trainer.trainerMapObj);
 
-        if ((param1 == 0) || (sub_02067BA8(fieldSystem, mapObjMan, playerAvatar, v0.unk_14, &v4) == 0)) {
-            ScriptManager_SetApproachingTrainer(fieldSystem, v0.unk_14, v0.unk_00, v0.unk_04, v0.unk_08, v0.unk_0C, 0, 0);
-            return 1;
+        if ((hasTwoAliveMons == FALSE) || (CanTrainerReachPlayer(fieldSystem, mapObjMan, playerAvatar, trainer.trainerMapObj, &trainerTwo) == FALSE)) {
+            ScriptManager_SetApproachingTrainer(fieldSystem, trainer.trainerMapObj, trainer.distance, trainer.direction, trainer.script, trainer.trainerID, APPROACH_TYPE_SINGLES, 0);
+            return TRUE;
         }
 
-        ScriptManager_SetApproachingTrainer(fieldSystem, v0.unk_14, v0.unk_00, v0.unk_04, v0.unk_08, v0.unk_0C, 2, 0);
-        ScriptManager_SetApproachingTrainer(fieldSystem, v4.unk_14, v4.unk_00, v4.unk_04, v4.unk_08, v4.unk_0C, 2, 1);
+        ScriptManager_SetApproachingTrainer(fieldSystem, trainer.trainerMapObj, trainer.distance, trainer.direction, trainer.script, trainer.trainerID, APPROACH_TYPE_VS2, 0);
+        ScriptManager_SetApproachingTrainer(fieldSystem, trainerTwo.trainerMapObj, trainerTwo.distance, trainerTwo.direction, trainerTwo.script, trainerTwo.trainerID, APPROACH_TYPE_VS2, 1);
 
-        return 1;
+        return TRUE;
     }
 
-    if (v0.unk_10 == 1) {
-        MapObject *v5;
-        UnkStruct_02067C28 v6;
+    if (trainer.isDoubleBattle == TRUE) {
+        MapObject *trainerTwoMapObj;
+        EyesMeetTrainer trainerTwo;
 
-        if (param1 == 0) {
-            return 0;
+        if (hasTwoAliveMons == 0) {
+            return FALSE;
         }
 
-        v5 = sub_02067F2C(fieldSystem, mapObjMan, v0.unk_14, v0.unk_0C);
+        trainerTwoMapObj = FindTrainerPartner(fieldSystem, mapObjMan, trainer.trainerMapObj, trainer.trainerID);
 
-        sub_02067C28(&v6, v5, v0.unk_00, v0.unk_04);
-        ScriptManager_Set(fieldSystem, SCRIPT_ID(SINGLE_BATTLES, 928), v0.unk_14);
-        ScriptManager_SetApproachingTrainer(fieldSystem, v0.unk_14, v0.unk_00, v0.unk_04, v0.unk_08, v0.unk_0C, 1, 0);
-        ScriptManager_SetApproachingTrainer(fieldSystem, v6.unk_14, v6.unk_00, v6.unk_04, v6.unk_08, v6.unk_0C, 1, 1);
+        EyesMeetTrainer_Init(&trainerTwo, trainerTwoMapObj, trainer.distance, trainer.direction);
+        ScriptManager_Set(fieldSystem, SCRIPT_ID(SINGLE_BATTLES, 928), trainer.trainerMapObj);
+        ScriptManager_SetApproachingTrainer(fieldSystem, trainer.trainerMapObj, trainer.distance, trainer.direction, trainer.script, trainer.trainerID, APPROACH_TYPE_DOUBLES, 0);
+        ScriptManager_SetApproachingTrainer(fieldSystem, trainerTwo.trainerMapObj, trainerTwo.distance, trainerTwo.direction, trainerTwo.script, trainerTwo.trainerID, APPROACH_TYPE_DOUBLES, 1);
 
-        return 1;
+        return TRUE;
     }
 
     GF_ASSERT(FALSE);
-    return 0;
+    return FALSE;
 }
 
-static int sub_02067BA8(FieldSystem *fieldSystem, MapObjectManager *param1, PlayerAvatar *playerAvatar, const MapObject *param3, UnkStruct_02067C28 *param4)
+static BOOL CanTrainerReachPlayer(FieldSystem *fieldSystem, MapObjectManager *mapObjMan, PlayerAvatar *playerAvatar, const MapObject *param3, EyesMeetTrainer *eyesMeetTr)
 {
-    int v0, v1, v2;
-    MapObject *v3;
+    int startIdx, distance, direction;
+    MapObject *trainerMapObj;
 
-    v0 = 0;
-    v3 = NULL;
-    v1 = -1;
+    startIdx = 0;
+    trainerMapObj = NULL;
+    distance = -1;
 
-    while (MapObjectMan_FindObjectWithStatus(param1, &v3, &v0, (1 << 0))) {
-        if ((param3 == NULL) || (param3 != v3)) {
-            v1 = sub_02067C80(v3, playerAvatar, &v2);
+    while (MapObjectMan_FindObjectWithStatus(mapObjMan, &trainerMapObj, &startIdx, MAP_OBJ_STATUS_0)) {
+        if ((param3 == NULL) || (param3 != trainerMapObj)) {
+            distance = GetTrainerDistToPlayer(trainerMapObj, playerAvatar, &direction);
 
-            if (v1 != -1) {
-                if (Script_IsTrainerDefeated(fieldSystem, sub_02067F14(v3)) == 0) {
-                    sub_02067C28(param4, v3, v1, v2);
-                    return 1;
+            if (distance != -1) {
+                if (Script_IsTrainerDefeated(fieldSystem, GetTrainerIDFromMapObj(trainerMapObj)) == FALSE) {
+                    EyesMeetTrainer_Init(eyesMeetTr, trainerMapObj, distance, direction);
+                    return TRUE;
                 }
             }
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
-static void sub_02067C28(UnkStruct_02067C28 *param0, MapObject *param1, int param2, int param3)
+static void EyesMeetTrainer_Init(EyesMeetTrainer *eyesMeetTr, MapObject *trainerMapObj, int distance, int direction)
 {
-    param0->unk_00 = param2;
-    param0->unk_04 = param3;
-    param0->unk_08 = MapObject_GetScript(param1);
-    param0->unk_0C = Script_GetTrainerID(param0->unk_08);
-    param0->unk_10 = Script_IsTrainerDoubleBattle(param0->unk_0C);
-    param0->unk_14 = param1;
+    eyesMeetTr->distance = distance;
+    eyesMeetTr->direction = direction;
+    eyesMeetTr->script = MapObject_GetScript(trainerMapObj);
+    eyesMeetTr->trainerID = Script_GetTrainerID(eyesMeetTr->script);
+    eyesMeetTr->isDoubleBattle = Script_IsTrainerDoubleBattle(eyesMeetTr->trainerID);
+    eyesMeetTr->trainerMapObj = trainerMapObj;
 }
 
-static int sub_02067C54(const MapObject *param0)
+static int GetTrainerType(const MapObject *trainerMapObj)
 {
-    int v0 = MapObject_GetTrainerType(param0);
+    int trainerType = MapObject_GetTrainerType(trainerMapObj);
 
-    switch (v0) {
-    case 0x4:
-    case 0x5:
-    case 0x6:
-    case 0x7:
-    case 0x8:
-        v0 = 0x1;
+    switch (trainerType) {
+    case TRAINER_TYPE_FACE_SIDES:
+    case TRAINER_TYPE_FACE_COUNTERCLOCKWISE:
+    case TRAINER_TYPE_FACE_CLOCKWISE:
+    case TRAINER_TYPE_SPIN_COUNTERCLOCKWISE:
+    case TRAINER_TYPE_SPIN_CLOCKWISE:
+        trainerType = TRAINER_TYPE_NORMAL;
         break;
     }
 
-    return v0;
+    return trainerType;
 }
 
-static int sub_02067C80(const MapObject *param0, PlayerAvatar *playerAvatar, int *param2)
+static int GetTrainerDistToPlayer(const MapObject *trainerMapObj, PlayerAvatar *playerAvatar, int *direction)
 {
-    int v0, v1, v2, v3, v4, v5;
+    int trainerType, trainerSightRange, trainerFaceDir, playerX, playerZ, distance;
 
-    v0 = sub_02067C54(param0);
+    trainerType = GetTrainerType(trainerMapObj);
 
-    if (v0 == 0x1) {
-        v3 = Player_GetXPos(playerAvatar);
-        v4 = Player_GetZPos(playerAvatar);
-        v2 = MapObject_GetFacingDir(param0);
-        v1 = MapObject_GetDataAt(param0, 0);
-        v5 = sub_02067DA8(param0, v2, v1, v3, v4, 0);
+    if (trainerType == TRAINER_TYPE_NORMAL) {
+        playerX = Player_GetXPos(playerAvatar);
+        playerZ = Player_GetZPos(playerAvatar);
+        trainerFaceDir = MapObject_GetFacingDir(trainerMapObj);
+        trainerSightRange = MapObject_GetDataAt(trainerMapObj, 0);
+        distance = GetDistanceToPlayerFromDir(trainerMapObj, trainerFaceDir, trainerSightRange, playerX, playerZ, 0);
 
-        if (v5 != -1) {
-            if (sub_02067E74(param0, v2, v5) == 0) {
-                *param2 = v2;
-                return v5;
+        if (distance != -1) {
+            if (IsPathInterrupted(trainerMapObj, trainerFaceDir, distance) == FALSE) {
+                *direction = trainerFaceDir;
+                return distance;
             }
         }
 
         return -1;
     }
 
-    if (v0 == 0x2) {
-        v3 = Player_GetXPos(playerAvatar);
-        v4 = Player_GetZPos(playerAvatar);
-        v1 = MapObject_GetDataAt(param0, 0);
-        v2 = 0;
+    if (trainerType == TRAINER_TYPE_VIEW_ALL_DIRECTIONS) {
+        playerX = Player_GetXPos(playerAvatar);
+        playerZ = Player_GetZPos(playerAvatar);
+        trainerSightRange = MapObject_GetDataAt(trainerMapObj, 0);
+        trainerFaceDir = 0;
 
         do {
-            v5 = sub_02067DA8(param0, v2, v1, v3, v4, 0);
+            distance = GetDistanceToPlayerFromDir(trainerMapObj, trainerFaceDir, trainerSightRange, playerX, playerZ, 0);
 
-            if (v5 != -1) {
-                if (sub_02067E74(param0, v2, v5) == 0) {
-                    *param2 = v2;
-                    return v5;
+            if (distance != -1) {
+                if (IsPathInterrupted(trainerMapObj, trainerFaceDir, distance) == FALSE) {
+                    *direction = trainerFaceDir;
+                    return distance;
                 }
             }
 
-            v2++;
-        } while (v2 < 4);
+            trainerFaceDir++;
+        } while (trainerFaceDir < 4);
 
         return -1;
     }
@@ -219,10 +236,10 @@ int sub_02067D58(const MapObject *mapObj, PlayerAvatar *playerAvatar, int param2
 {
     int v0 = Player_GetXPos(playerAvatar);
     int v1 = Player_GetZPos(playerAvatar);
-    int v2 = sub_02067DA8(mapObj, param2, param3, v0, v1, 0);
+    int v2 = GetDistanceToPlayerFromDir(mapObj, param2, param3, v0, v1, 0);
 
     if (v2 != -1) {
-        if (sub_02067E74(mapObj, param2, v2) == 1) {
+        if (IsPathInterrupted(mapObj, param2, v2) == 1) {
             v2 = -1;
         }
     }
@@ -230,147 +247,140 @@ int sub_02067D58(const MapObject *mapObj, PlayerAvatar *playerAvatar, int param2
     return v2;
 }
 
-static int sub_02067DA8(const MapObject *mapObj, int param1, int param2, int param3, int param4, int param5)
+static int GetDistanceToPlayerFromDir(const MapObject *mapObj, int objFaceDir, int range, int playerX, int playerZ, int unused)
 {
-    return Unk_020EF6C0[param1](mapObj, param2, param3, param4, param5);
+    return sGetMapObjDistToPlayerFuncs[objFaceDir](mapObj, range, playerX, playerZ, unused);
 }
 
-static int sub_02067DC4(const MapObject *mapObj, int param1, int param2, int param3, int param4)
+static int GetDistanceNorth(const MapObject *mapObj, int range, int playerX, int playerZ, int unused)
 {
-    int v0, v1;
+    int mapObjX, mapObjZ;
 
-    v0 = MapObject_GetX(mapObj);
+    mapObjX = MapObject_GetX(mapObj);
 
-    if (v0 == param2) {
-        v1 = MapObject_GetZ(mapObj);
+    if (mapObjX == playerX) {
+        mapObjZ = MapObject_GetZ(mapObj);
 
-        if ((param3 < v1) && (param3 >= (v1 - param1))) {
-            return v1 - param3;
+        if ((playerZ < mapObjZ) && (playerZ >= (mapObjZ - range))) {
+            return mapObjZ - playerZ;
         }
     }
 
     return -1;
 }
 
-static int sub_02067DF0(const MapObject *mapObj, int param1, int param2, int param3, int param4)
+static int GetDistanceSouth(const MapObject *mapObj, int range, int playerX, int playerZ, int unused)
 {
-    int v0, v1;
+    int mapObjX, mapObjZ;
 
-    v0 = MapObject_GetX(mapObj);
+    mapObjX = MapObject_GetX(mapObj);
 
-    if (v0 == param2) {
-        v1 = MapObject_GetZ(mapObj);
+    if (mapObjX == playerX) {
+        mapObjZ = MapObject_GetZ(mapObj);
 
-        if ((param3 > v1) && (param3 <= (v1 + param1))) {
-            return param3 - v1;
+        if ((playerZ > mapObjZ) && (playerZ <= (mapObjZ + range))) {
+            return playerZ - mapObjZ;
         }
     }
 
     return -1;
 }
 
-static int sub_02067E1C(const MapObject *mapObj, int param1, int param2, int param3, int param4)
+static int GetDistanceWest(const MapObject *mapObj, int range, int playerX, int playerZ, int unused)
 {
-    int v0, v1;
+    int mapObjX, mapObjZ;
 
-    v1 = MapObject_GetZ(mapObj);
+    mapObjZ = MapObject_GetZ(mapObj);
 
-    if (v1 == param3) {
-        v0 = MapObject_GetX(mapObj);
+    if (mapObjZ == playerZ) {
+        mapObjX = MapObject_GetX(mapObj);
 
-        if ((param2 < v0) && (param2 >= (v0 - param1))) {
-            return v0 - param2;
+        if ((playerX < mapObjX) && (playerX >= (mapObjX - range))) {
+            return mapObjX - playerX;
         }
     }
 
     return -1;
 }
 
-static int sub_02067E48(const MapObject *mapObj, int param1, int param2, int param3, int param4)
+static int GetDistanceEast(const MapObject *mapObj, int range, int playerX, int playerZ, int unused)
 {
-    int v0, v1;
+    int mapObjX, mapObjZ;
 
-    v1 = MapObject_GetZ(mapObj);
+    mapObjZ = MapObject_GetZ(mapObj);
 
-    if (v1 == param3) {
-        v0 = MapObject_GetX(mapObj);
+    if (mapObjZ == playerZ) {
+        mapObjX = MapObject_GetX(mapObj);
 
-        if ((param2 > v0) && (param2 <= (v0 + param1))) {
-            return param2 - v0;
+        if ((playerX > mapObjX) && (playerX <= (mapObjX + range))) {
+            return playerX - mapObjX;
         }
     }
 
     return -1;
 }
 
-static int (*const Unk_020EF6C0[])(const MapObject *, int, int, int, int) = {
-    sub_02067DC4,
-    sub_02067DF0,
-    sub_02067E1C,
-    sub_02067E48
-};
-
-static int sub_02067E74(const MapObject *mapObj, int param1, int param2)
+static BOOL IsPathInterrupted(const MapObject *mapObj, int direction, int distance)
 {
-    int v0, v1, v2, v3;
-    u32 v4;
+    int distCovered, targetX, targetZ, targetY;
+    u32 collisionFlags;
 
-    if (param2 == 0) {
-        return 1;
+    if (distance == 0) {
+        return TRUE;
     }
 
-    v1 = MapObject_GetX(mapObj);
-    v2 = MapObject_GetZ(mapObj);
-    v3 = MapObject_GetY(mapObj);
-    v1 += MapObject_GetDxFromDir(param1);
-    v2 += MapObject_GetDzFromDir(param1);
+    targetX = MapObject_GetX(mapObj);
+    targetZ = MapObject_GetZ(mapObj);
+    targetY = MapObject_GetY(mapObj);
+    targetX += MapObject_GetDxFromDir(direction);
+    targetZ += MapObject_GetDzFromDir(direction);
 
-    for (v0 = 0; v0 < (param2 - 1); v0++) {
-        v4 = sub_02063E94(mapObj, v1, v3, v2, param1);
-        v4 &= ~(1 << 0);
+    for (distCovered = 0; distCovered < (distance - 1); distCovered++) {
+        collisionFlags = sub_02063E94(mapObj, targetX, targetY, targetZ, direction);
+        collisionFlags &= ~(1 << 0);
 
-        if (v4) {
-            return 1;
+        if (collisionFlags) {
+            return TRUE;
         }
 
-        v1 += MapObject_GetDxFromDir(param1);
-        v2 += MapObject_GetDzFromDir(param1);
+        targetX += MapObject_GetDxFromDir(direction);
+        targetZ += MapObject_GetDzFromDir(direction);
     }
 
-    v4 = sub_02063E94(mapObj, v1, v3, v2, param1);
-    v4 &= ~(1 << 0);
+    collisionFlags = sub_02063E94(mapObj, targetX, targetY, targetZ, direction);
+    collisionFlags &= ~(1 << 0);
 
-    if (v4 == (1 << 2)) {
-        return 0;
+    if (collisionFlags == (1 << 2)) {
+        return FALSE;
     }
 
-    return 1;
+    return TRUE;
 }
 
-static int sub_02067F14(MapObject *mapObj)
+static int GetTrainerIDFromMapObj(MapObject *mapObj)
 {
     return Script_GetTrainerID(MapObject_GetScript(mapObj));
 }
 
-int sub_02067F24(MapObject *mapObj)
+int MapObject_GetTrainerID(MapObject *mapObj)
 {
-    return sub_02067F14(mapObj);
+    return GetTrainerIDFromMapObj(mapObj);
 }
 
-static MapObject *sub_02067F2C(FieldSystem *fieldSystem, MapObjectManager *param1, MapObject *param2, int param3)
+static MapObject *FindTrainerPartner(FieldSystem *fieldSystem, MapObjectManager *mapObjMan, MapObject *trainerMapObj, int trainerID)
 {
-    int v0;
-    MapObject *v1;
+    int startIdx;
+    MapObject *trainerPartner;
 
-    v0 = 0;
+    startIdx = 0;
 
-    while (MapObjectMan_FindObjectWithStatus(param1, &v1, &v0, MAP_OBJ_STATUS_0)) {
-        if (v1 != param2) {
-            int v2 = sub_02067C54(v1);
+    while (MapObjectMan_FindObjectWithStatus(mapObjMan, &trainerPartner, &startIdx, MAP_OBJ_STATUS_0)) {
+        if (trainerPartner != trainerMapObj) {
+            int trainerType = GetTrainerType(trainerPartner);
 
-            if ((v2 == 0x1) || (v2 == 0x2)) {
-                if (param3 == sub_02067F14(v1)) {
-                    return v1;
+            if ((trainerType == TRAINER_TYPE_NORMAL) || (trainerType == TRAINER_TYPE_VIEW_ALL_DIRECTIONS)) {
+                if (trainerID == GetTrainerIDFromMapObj(trainerPartner)) {
+                    return trainerPartner;
                 }
             }
         }
@@ -382,10 +392,10 @@ static MapObject *sub_02067F2C(FieldSystem *fieldSystem, MapObjectManager *param
 
 int sub_02067F88(FieldSystem *fieldSystem, MapObject *param1)
 {
-    int v0 = sub_02067C54(param1);
+    int v0 = GetTrainerType(param1);
 
     if ((v0 == 0x1) || (v0 == 0x2)) {
-        if (Script_IsTrainerDefeated(fieldSystem, sub_02067F14(param1)) == 0) {
+        if (Script_IsTrainerDefeated(fieldSystem, GetTrainerIDFromMapObj(param1)) == 0) {
             return 1;
         }
     }

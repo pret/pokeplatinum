@@ -185,7 +185,7 @@ BOOL FieldInput_Process(const FieldInput *input, FieldSystem *fieldSystem)
             hasTwoAliveMons = TRUE;
         }
 
-        if (sub_02067A84(fieldSystem, hasTwoAliveMons) == TRUE
+        if (StartTrainerApproach(fieldSystem, hasTwoAliveMons) == TRUE
             || (PersistedMapFeatures_IsCurrentDynamicMap(fieldSystem, DYNAMIC_MAP_FEATURES_HEARTHOME_GYM) == TRUE
                 && ov8_0224C51C(fieldSystem) == TRUE)) {
 

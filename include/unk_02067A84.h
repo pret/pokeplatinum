@@ -8,9 +8,9 @@
 #include "player_avatar.h"
 #include "sys_task_manager.h"
 
-int sub_02067A84(FieldSystem *fieldSystem, BOOL param1);
+BOOL StartTrainerApproach(FieldSystem *fieldSystem, BOOL hasTwoAliveMons);
 int sub_02067D58(const MapObject *param0, PlayerAvatar *playerAvatar, int param2, int param3);
-int sub_02067F24(MapObject *param0);
+int MapObject_GetTrainerID(MapObject *mapObj);
 int sub_02067F88(FieldSystem *fieldSystem, MapObject *param1);
 SysTask *sub_02067FB8(FieldSystem *fieldSystem, MapObject *param1, PlayerAvatar *playerAvatar, int param3, int param4, int param5, int param6, int param7);
 int sub_02067FD4(SysTask *param0);
