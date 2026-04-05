@@ -56,7 +56,7 @@ typedef struct {
     FieldSystem *fieldSystem;
 } UnkStruct_020EF6D0;
 
-static BOOL CanTrainerReachPlayer(FieldSystem *fieldSystem, MapObjectManager *mapObjMan, PlayerAvatar *playerAvatar, const MapObject *param3, EyesMeetTrainer *eyesMeetTr);
+static BOOL CanTrainerReachPlayer(FieldSystem *fieldSystem, MapObjectManager *mapObjMan, PlayerAvatar *playerAvatar, const MapObject *knownTrainer, EyesMeetTrainer *eyesMeetTr);
 static void EyesMeetTrainer_Init(EyesMeetTrainer *eyesMeetTr, MapObject *trainerMapObj, int distance, int direction);
 static int GetTrainerType(const MapObject *trainerMapObj);
 static int GetTrainerDistToPlayer(const MapObject *trainerMapObj, PlayerAvatar *playerAvatar, int *direction);
@@ -114,7 +114,7 @@ BOOL StartTrainerApproach(FieldSystem *fieldSystem, BOOL hasTwoAliveMons)
         MapObject *trainerTwoMapObj;
         EyesMeetTrainer trainerTwo;
 
-        if (hasTwoAliveMons == 0) {
+        if (hasTwoAliveMons == FALSE) {
             return FALSE;
         }
 
@@ -132,7 +132,7 @@ BOOL StartTrainerApproach(FieldSystem *fieldSystem, BOOL hasTwoAliveMons)
     return FALSE;
 }
 
-static BOOL CanTrainerReachPlayer(FieldSystem *fieldSystem, MapObjectManager *mapObjMan, PlayerAvatar *playerAvatar, const MapObject *param3, EyesMeetTrainer *eyesMeetTr)
+static BOOL CanTrainerReachPlayer(FieldSystem *fieldSystem, MapObjectManager *mapObjMan, PlayerAvatar *playerAvatar, const MapObject *knownTrainer, EyesMeetTrainer *eyesMeetTr)
 {
     int startIdx, distance, direction;
     MapObject *trainerMapObj;
@@ -142,7 +142,7 @@ static BOOL CanTrainerReachPlayer(FieldSystem *fieldSystem, MapObjectManager *ma
     distance = -1;
 
     while (MapObjectMan_FindObjectWithStatus(mapObjMan, &trainerMapObj, &startIdx, MAP_OBJ_STATUS_0)) {
-        if ((param3 == NULL) || (param3 != trainerMapObj)) {
+        if ((knownTrainer == NULL) || (knownTrainer != trainerMapObj)) {
             distance = GetTrainerDistToPlayer(trainerMapObj, playerAvatar, &direction);
 
             if (distance != -1) {
@@ -390,17 +390,17 @@ static MapObject *FindTrainerPartner(FieldSystem *fieldSystem, MapObjectManager 
     return NULL;
 }
 
-int sub_02067F88(FieldSystem *fieldSystem, MapObject *param1)
+BOOL FieldSystem_IsTrainerDefated(FieldSystem *fieldSystem, MapObject *mapObj)
 {
-    int v0 = GetTrainerType(param1);
+    int trainerType = GetTrainerType(mapObj);
 
-    if ((v0 == 0x1) || (v0 == 0x2)) {
-        if (Script_IsTrainerDefeated(fieldSystem, GetTrainerIDFromMapObj(param1)) == 0) {
-            return 1;
+    if ((trainerType == TRAINER_TYPE_NORMAL) || (trainerType == TRAINER_TYPE_VIEW_ALL_DIRECTIONS)) {
+        if (Script_IsTrainerDefeated(fieldSystem, GetTrainerIDFromMapObj(mapObj)) == FALSE) {
+            return TRUE;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
 SysTask *sub_02067FB8(FieldSystem *fieldSystem, MapObject *mapObj, PlayerAvatar *playerAvatar, int direction, int sightRange, int param5, int param6, int approachNum)

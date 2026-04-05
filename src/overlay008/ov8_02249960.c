@@ -3971,7 +3971,7 @@ BOOL ov8_0224C51C(FieldSystem *fieldSystem)
     v1 = Direction_GetOpposite(MapObject_GetFacingDir(v8));
 
     while (MapObjectMan_FindObjectWithStatus(mapObjMan, &v7, &v0, (1 << 0))) {
-        if ((v7 != v8) && (sub_02067F88(fieldSystem, v7) == 1)) {
+        if ((v7 != v8) && (FieldSystem_IsTrainerDefated(fieldSystem, v7) == 1)) {
             v3 = sub_02067D58(v7, playerAvatar, v1, v2);
 
             if (v3 != -1) {
