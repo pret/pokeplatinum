@@ -34,14 +34,14 @@
 
 #define DISTANCE_INVALID -1
 
-typedef struct EyesMeetTrainer {
+typedef struct ApproachingTrainer {
     int distance;
     int direction;
     int script;
     int trainerID;
     int isDoubleBattle;
     MapObject *trainerMapObj;
-} EyesMeetTrainer;
+} ApproachingTrainer;
 
 typedef struct {
     int unk_00;
@@ -58,8 +58,8 @@ typedef struct {
     FieldSystem *fieldSystem;
 } UnkStruct_020EF6D0;
 
-static BOOL FindUndefeatedTrainerInSight(FieldSystem *fieldSystem, MapObjectManager *mapObjMan, PlayerAvatar *playerAvatar, const MapObject *knownTrainer, EyesMeetTrainer *eyesMeetTr);
-static void EyesMeetTrainer_Init(EyesMeetTrainer *eyesMeetTr, MapObject *trainerMapObj, int distance, int direction);
+static BOOL FindUndefeatedTrainerInSight(FieldSystem *fieldSystem, MapObjectManager *mapObjMan, PlayerAvatar *playerAvatar, const MapObject *knownTrainer, ApproachingTrainer *eyesMeetTr);
+static void EyesMeetTrainer_Init(ApproachingTrainer *eyesMeetTr, MapObject *trainerMapObj, int distance, int direction);
 static int GetTrainerType(const MapObject *trainerMapObj);
 static int GetTrainerDistToPlayer(const MapObject *trainerMapObj, PlayerAvatar *playerAvatar, int *direction);
 static int GetDistanceToPlayerFromDir(const MapObject *mapObj, int direction, int range, int playerX, int playerZ, int unused);
@@ -87,7 +87,7 @@ int (*const Unk_020EF6D0[])(UnkStruct_020EF6D0 *);
 
 BOOL StartTrainerApproach(FieldSystem *fieldSystem, BOOL hasTwoAliveMons)
 {
-    EyesMeetTrainer trainer;
+    ApproachingTrainer trainer;
     MapObjectManager *mapObjMan = fieldSystem->mapObjMan;
     PlayerAvatar *playerAvatar = fieldSystem->playerAvatar;
 
@@ -96,7 +96,7 @@ BOOL StartTrainerApproach(FieldSystem *fieldSystem, BOOL hasTwoAliveMons)
     }
 
     if (!trainer.isDoubleBattle) {
-        EyesMeetTrainer trainerTwo;
+        ApproachingTrainer trainerTwo;
 
         ScriptManager_Set(fieldSystem, SCRIPT_ID(SINGLE_BATTLES, 928), trainer.trainerMapObj);
 
@@ -113,7 +113,7 @@ BOOL StartTrainerApproach(FieldSystem *fieldSystem, BOOL hasTwoAliveMons)
 
     if (trainer.isDoubleBattle == TRUE) {
         MapObject *trainerTwoMapObj;
-        EyesMeetTrainer trainerTwo;
+        ApproachingTrainer trainerTwo;
 
         if (!hasTwoAliveMons) {
             return FALSE;
@@ -133,7 +133,7 @@ BOOL StartTrainerApproach(FieldSystem *fieldSystem, BOOL hasTwoAliveMons)
     return FALSE;
 }
 
-static BOOL FindUndefeatedTrainerInSight(FieldSystem *fieldSystem, MapObjectManager *mapObjMan, PlayerAvatar *playerAvatar, const MapObject *knownTrainer, EyesMeetTrainer *eyesMeetTr)
+static BOOL FindUndefeatedTrainerInSight(FieldSystem *fieldSystem, MapObjectManager *mapObjMan, PlayerAvatar *playerAvatar, const MapObject *knownTrainer, ApproachingTrainer *eyesMeetTr)
 {
     int startIdx = 0;
     int direction;
@@ -156,7 +156,7 @@ static BOOL FindUndefeatedTrainerInSight(FieldSystem *fieldSystem, MapObjectMana
     return FALSE;
 }
 
-static void EyesMeetTrainer_Init(EyesMeetTrainer *eyesMeetTr, MapObject *trainerMapObj, int distance, int direction)
+static void EyesMeetTrainer_Init(ApproachingTrainer *eyesMeetTr, MapObject *trainerMapObj, int distance, int direction)
 {
     eyesMeetTr->distance = distance;
     eyesMeetTr->direction = direction;

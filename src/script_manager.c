@@ -87,7 +87,7 @@ void ScriptManager_Set(FieldSystem *fieldSystem, u16 scriptID, MapObject *object
 void ScriptManager_SetApproachingTrainer(FieldSystem *fieldSystem, MapObject *object, int sightRange, int direction, int scriptID, int trainerID, int approachType, int approachNum)
 {
     ScriptManager *scriptManager = FieldTask_GetEnv(fieldSystem->task);
-    ApproachingTrainer *trainer = &scriptManager->trainers[approachNum];
+    ApproachingTrainerTask *trainer = &scriptManager->trainers[approachNum];
 
     trainer->sightRange = sightRange;
     trainer->direction = direction;
@@ -269,7 +269,7 @@ static void ScriptContext_LoadFromCurrentMap(FieldSystem *fieldSystem, ScriptCon
 
 void *ScriptManager_GetMemberPtr(ScriptManager *scriptManager, u32 member)
 {
-    ApproachingTrainer *trainer;
+    ApproachingTrainerTask *trainer;
 
     switch (member) {
     case 0:

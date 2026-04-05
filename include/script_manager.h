@@ -129,7 +129,7 @@ typedef struct HiddenItemTilePosition {
     u8 range;
 } HiddenItemTilePosition;
 
-typedef struct ApproachingTrainer {
+typedef struct ApproachingTrainerTask {
     int sightRange;
     int direction;
     int scriptID;
@@ -137,7 +137,7 @@ typedef struct ApproachingTrainer {
     int approachType;
     MapObject *object;
     SysTask *task;
-} ApproachingTrainer;
+} ApproachingTrainerTask;
 
 typedef struct ScriptManager {
     u32 magic;
@@ -161,7 +161,7 @@ typedef struct ScriptManager {
     String *msgBuf;
     String *tmpBuf;
     void *savingIcon;
-    ApproachingTrainer trainers[2];
+    ApproachingTrainerTask trainers[2];
     u16 data[SCRIPT_DATA_MAX - SCRIPT_DATA_START];
     FieldSysFunc function;
     void *partyManagementDataPtr;
