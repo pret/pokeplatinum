@@ -28,6 +28,25 @@ static size_t        (*get_length_func)(void *node) = NULL;
 static void*         (*get_elem_func)(void *arr, size_t i) = NULL;
 static void*         (*get_memb_func)(void *obj, const char *k) = NULL;
 
+static int   (*new_func)(datafile_t *df) = NULL;
+static char* (*dump_func)(datafile_t *df) = NULL;
+static void* (*set_root_arr_func)(void *ctx) = NULL;
+static bool  (*arr_app_bool_func)(void *ctx, void *node, bool v) = NULL;
+static bool  (*arr_app_int_func)(void *ctx, void *node, int64_t v) = NULL;
+static bool  (*arr_app_uint_func)(void *ctx, void *node, uint64_t v) = NULL;
+static bool  (*arr_app_float_func)(void *ctx, void *node, double v) = NULL;
+static bool  (*arr_app_string_func)(void *ctx, void *node, const char *v) = NULL;
+static void* (*arr_app_array_func)(void *ctx, void *node) = NULL;
+static void* (*arr_app_object_func)(void *ctx, void *node) = NULL;
+static void* (*set_root_obj_func)(void *ctx) = NULL;
+static bool  (*obj_put_bool_func)(void *ctx, void *node, const char *k, bool v) = NULL;
+static bool  (*obj_put_int_func)(void *ctx, void *node, const char *k, int64_t v) = NULL;
+static bool  (*obj_put_uint_func)(void *ctx, void *node, const char *k, uint64_t v) = NULL;
+static bool  (*obj_put_float_func)(void *ctx, void *node, const char *k, double v) = NULL;
+static bool  (*obj_put_string_func)(void *ctx, void *node, const char *k, const char *v) = NULL;
+static void* (*obj_put_array_func)(void *ctx, void *node, const char *k) = NULL;
+static void* (*obj_put_object_func)(void *ctx, void *node, const char *k) = NULL;
+
 static const char *hl_note     = "\033[1;36m"; // bold + cyan
 static const char *hl_warning  = "\033[1;33m"; // bold + yellow
 static const char *hl_error    = "\033[1;31m"; // bold + red
@@ -205,6 +224,26 @@ int dp_init(enum format format) {
         get_length_func = json_get_length;
         get_elem_func   = json_get_element;
         get_memb_func   = json_get_member;
+
+        new_func            = json_new;
+        dump_func           = json_dump;
+        set_root_arr_func   = json_arr_new;
+        arr_app_bool_func   = json_arr_appbool;
+        arr_app_int_func    = json_arr_appint;
+        arr_app_uint_func   = json_arr_appuint;
+        arr_app_float_func  = json_arr_appfloat;
+        arr_app_string_func = json_arr_appstring;
+        arr_app_array_func  = json_arr_apparray;
+        arr_app_object_func = json_arr_appobject;
+        set_root_obj_func   = json_obj_new;
+        obj_put_bool_func   = json_obj_putbool;
+        obj_put_int_func    = json_obj_putint;
+        obj_put_uint_func   = json_obj_putuint;
+        obj_put_float_func  = json_obj_putfloat;
+        obj_put_string_func = json_obj_putstring;
+        obj_put_array_func  = json_obj_putarray;
+        obj_put_object_func = json_obj_putobject;
+
         break;
 
     default: return DATAPROC_E_UNKFORMAT;
@@ -224,6 +263,24 @@ int dp_init(enum format format) {
     assert(get_length_func && "get_length_func must be loaded");
     assert(get_elem_func && "get_elem_func must be loaded");
     assert(get_memb_func && "get_memb_func must be loaded");
+    assert(new_func && "new_func must be loaded");
+    assert(dump_func && "dump_func must be loaded");
+    assert(set_root_arr_func && "set_root_arr_func must be loaded");
+    assert(arr_app_bool_func && "arr_app_bool_func must be loaded");
+    assert(arr_app_int_func && "arr_app_int_func must be loaded");
+    assert(arr_app_uint_func && "arr_app_uint_func must be loaded");
+    assert(arr_app_float_func && "arr_app_float_func must be loaded");
+    assert(arr_app_string_func && "arr_app_string_func must be loaded");
+    assert(arr_app_array_func && "arr_app_array_func must be loaded");
+    assert(arr_app_object_func && "arr_app_object_func must be loaded");
+    assert(set_root_obj_func && "set_root_obj_func must be loaded");
+    assert(obj_put_bool_func && "obj_put_bool_func must be loaded");
+    assert(obj_put_int_func && "obj_put_int_func must be loaded");
+    assert(obj_put_uint_func && "obj_put_uint_func must be loaded");
+    assert(obj_put_float_func && "obj_put_float_func must be loaded");
+    assert(obj_put_string_func && "obj_put_string_func must be loaded");
+    assert(obj_put_array_func && "obj_put_array_func must be loaded");
+    assert(obj_put_object_func && "obj_put_object_func must be loaded");
     return DATAPROC_E_NONE;
 }
 
@@ -827,4 +884,145 @@ datanode_t dp_lookup(datanode_t dn, const char *type) {
 datanode_t dp_lookup_s(datanode_t dn, const char *type) {
     lookup_find(&dn, type);
     return dn;
+}
+
+datafile_t dp_new(void) {
+    datafile_t df = { 0 };
+    new_func(&df);
+    return df;
+}
+
+char* dp_dump(datafile_t *df) {
+    return dump_func(df);
+}
+
+datanode_t dp_set_arr(datafile_t *df) {
+    return (datanode_t){
+        .file = df,
+        .type = DATAPROC_T_ARRAY,
+        .node = set_root_arr_func(df->ctx),
+    };
+}
+
+void dp_arr_appbool(datanode_t *dn, bool v) {
+    assert(dn->type == DATAPROC_T_ARRAY && "cannot append to a non-array");
+    arr_app_bool_func(dn->file->ctx, dn->node, v);
+}
+
+void dp_arr_appint(datanode_t *dn, int64_t v) {
+    assert(dn->type == DATAPROC_T_ARRAY && "cannot append to a non-array");
+    arr_app_int_func(dn->file->ctx, dn->node, v);
+}
+
+void dp_arr_appuint(datanode_t *dn, uint64_t v) {
+    assert(dn->type == DATAPROC_T_ARRAY && "cannot append to a non-array");
+    arr_app_uint_func(dn->file->ctx, dn->node, v);
+}
+
+void dp_arr_appfloat(datanode_t *dn, double v) {
+    assert(dn->type == DATAPROC_T_ARRAY && "cannot append to a non-array");
+    arr_app_float_func(dn->file->ctx, dn->node, v);
+}
+
+void dp_arr_appstring(datanode_t *dn, const char *v) {
+    assert(dn->type == DATAPROC_T_ARRAY && "cannot append to a non-array");
+    arr_app_string_func(dn->file->ctx, dn->node, v);
+}
+
+datanode_t dp_arr_apparray(datanode_t *dn) {
+    assert(dn->type == DATAPROC_T_ARRAY && "cannot append to a non-array");
+
+    datanode_t result = {
+        .file = dn->file,
+        .type = DATAPROC_T_ARRAY,
+        .node = arr_app_array_func(dn->file->ctx, dn->node),
+    };
+
+    if (result.node == NULL) {
+        result.type = DATAPROC_T_ERR;
+    }
+
+    return result;
+}
+
+datanode_t dp_arr_appobject(datanode_t *dn) {
+    assert(dn->type == DATAPROC_T_ARRAY && "cannot append to a non-array");
+
+    datanode_t result = {
+        .file = dn->file,
+        .type = DATAPROC_T_OBJECT,
+        .node = arr_app_object_func(dn->file->ctx, dn->node),
+    };
+
+    if (result.node == NULL) {
+        result.type = DATAPROC_T_ERR;
+    }
+
+    return result;
+}
+
+datanode_t dp_set_obj(datafile_t *df) {
+    return (datanode_t){
+        .file = df,
+        .path = ".",
+        .type = DATAPROC_T_OBJECT,
+        .node = set_root_obj_func(df->ctx),
+    };
+}
+
+void dp_obj_putbool(datanode_t *dn, const char *k, bool v) {
+    assert(dn->type == DATAPROC_T_OBJECT && "cannot put into a non-object");
+    obj_put_bool_func(dn->file->ctx, dn->node, k, v);
+}
+
+void dp_obj_putint(datanode_t *dn, const char *k, int64_t v) {
+    assert(dn->type == DATAPROC_T_OBJECT && "cannot put into a non-object");
+    obj_put_int_func(dn->file->ctx, dn->node, k, v);
+}
+
+void dp_obj_putuint(datanode_t *dn, const char *k, uint64_t v) {
+    assert(dn->type == DATAPROC_T_OBJECT && "cannot put into a non-object");
+    obj_put_uint_func(dn->file->ctx, dn->node, k, v);
+}
+
+void dp_obj_putfloat(datanode_t *dn, const char *k, double v) {
+    assert(dn->type == DATAPROC_T_OBJECT && "cannot put into a non-object");
+    obj_put_float_func(dn->file->ctx, dn->node, k, v);
+}
+
+void dp_obj_putstring(datanode_t *dn, const char *k, const char *v) {
+    assert(dn->type == DATAPROC_T_OBJECT && "cannot put into a non-object");
+    obj_put_string_func(dn->file->ctx, dn->node, k, v);
+}
+
+datanode_t dp_obj_putarray(datanode_t *dn, const char *k) {
+    assert(dn->type == DATAPROC_T_OBJECT && "cannot put into a non-object");
+
+    datanode_t result = {
+        .file = dn->file,
+        .type = DATAPROC_T_ARRAY,
+        .node = obj_put_array_func(dn->file->ctx, dn->node, k),
+    };
+
+    if (result.node == NULL) {
+        result.type = DATAPROC_T_ERR;
+    }
+
+    return result;
+}
+
+datanode_t dp_obj_putobject(datanode_t *dn, const char *k) {
+    assert(dn->type == DATAPROC_T_OBJECT && "cannot put into a non-object");
+
+    datanode_t result = {
+        .file = dn->file,
+        .type = DATAPROC_T_OBJECT,
+        .node = obj_put_object_func(dn->file->ctx, dn->node, k),
+    };
+
+    if (result.node == NULL) {
+        result.type = DATAPROC_T_ERR;
+    }
+
+    return result;
 }

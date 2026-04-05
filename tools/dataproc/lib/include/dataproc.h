@@ -112,4 +112,25 @@ datanode_t  dp_objmemb(datanode_t dn, const char *k);
 datanode_t  dp_lookup(datanode_t dn, const char *type);
 datanode_t  dp_lookup_s(datanode_t dn, const char *type);
 
+datafile_t dp_new(void);
+char*      dp_dump(datafile_t *df);
+
+datanode_t dp_set_arr(datafile_t *df);
+void       dp_arr_appbool(datanode_t *dn, bool v);
+void       dp_arr_appint(datanode_t *dn, int64_t v);
+void       dp_arr_appuint(datanode_t *dn, uint64_t v);
+void       dp_arr_appfloat(datanode_t *dn, double v);
+void       dp_arr_appstring(datanode_t *dn, const char *v);
+datanode_t dp_arr_apparray(datanode_t *dn);
+datanode_t dp_arr_appobject(datanode_t *dn);
+
+datanode_t dp_set_obj(datafile_t *df);
+void       dp_obj_putbool(datanode_t *dn, const char *k, bool v);
+void       dp_obj_putint(datanode_t *dn, const char *k, int64_t v);
+void       dp_obj_putuint(datanode_t *dn, const char *k, uint64_t v);
+void       dp_obj_putfloat(datanode_t *dn, const char *k, double v);
+void       dp_obj_putstring(datanode_t *dn, const char *k, const char *v);
+datanode_t dp_obj_putarray(datanode_t *dn, const char *k);
+datanode_t dp_obj_putobject(datanode_t *dn, const char *k);
+
 #endif // DATAPROC_H

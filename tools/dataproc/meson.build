@@ -6,6 +6,7 @@ dataproc_cflags = [
     '-Wpedantic',
     '-Wconversion',
     '-Wno-sign-conversion',
+    '-Wno-unused-result',
 ]
 
 dataproc_dep = declare_dependency(
