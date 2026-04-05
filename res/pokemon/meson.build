@@ -187,8 +187,10 @@ species_data = custom_target('species_data',
         'pl_personal.narc',
         'evo.narc',
         'wotbl.narc',
-        'ppark.narc',
         'height.narc',
+        'zukan_data_gira.narc',
+        'zukan_data.narc',
+        'ppark.narc',
         'pl_poke_data.narc',
         'pms.narc',
         'tutorable_moves.h',
@@ -197,12 +199,38 @@ species_data = custom_target('species_data',
         'species_footprint_types.h',
         'species_egg_moves.h',
         'species_icon_palettes.h',
+        'species_name.json',
+        'species_name_with_articles.json',
+        'species_pokedex_entry_en.json',
+        'species_pokedex_entry_fr.json',
+        'species_pokedex_entry_de.json',
+        'species_pokedex_entry_it.json',
+        'species_pokedex_entry_es.json',
+        'species_pokedex_entry_jp.json',
+        'species_name_with_natdex_number_en.json',
+        'species_name_with_natdex_number_fr.json',
+        'species_name_with_natdex_number_de.json',
+        'species_name_with_natdex_number_it.json',
+        'species_name_with_natdex_number_es.json',
+        'species_name_with_natdex_number_jp.json',
+        'species_category_en.json',
+        'species_category_fr.json',
+        'species_category_de.json',
+        'species_category_it.json',
+        'species_category_es.json',
+        'species_category_jp.json',
+        'species_category.json',
+        'species_weight_gira.json',
+        'species_weight.json',
+        'species_height_gira.json',
+        'species_height.json',
     ],
 
     command: [
         speciesproc_exe,
         '-M', '@DEPFILE@',
         '-t', files('move_tutors.json'),
+        '-s', files('sinnoh_pokedex.json'),
         '-o', meson.current_build_dir(),
         pokemon_data_root,
     ],
@@ -212,13 +240,9 @@ species_data = custom_target('species_data',
     depfile: 'species_data.d',
 )
 
-h_headers += species_data[7]
-h_headers += species_data[8]
-h_headers += species_data[9]
-h_headers += species_data[10]
-h_headers += species_data[11]
-h_headers += species_data[12]
-
+species_data_outputs = species_data.to_list()
+h_headers += species_data_outputs.slice(9, 15)
+species_text_banks = species_data_outputs.slice(15, species_data_outputs.length())
 
 # OLD NARCs
 pl_poke_icon_narc = custom_target('pl_poke_icon.narc',
@@ -329,39 +353,6 @@ pl_growtbl_narc = custom_target('pl_growtbl.narc',
     depends: [ py_consts_generators ],
 )
 
-pokedex_data_narc = custom_target('zukan_data.narc',
-    output: 'zukan_data.narc',
-    command: [
-        make_pokedex_data_py,
-        '--narc', nitroarc_exe,
-        '--source-dir', '@CURRENT_SOURCE_DIR@',
-        '--private-dir', '@PRIVATE_DIR@',
-        '--output-dir', '@OUTDIR@',
-        sinnoh_pokedex,
-        'giratina_origin',
-    ],
-    env: species_env,
-    depends: [ py_consts_generators ],
-    depend_files: [ species_data_files ],
-)
-
-pokedex_data_giratina_altered_narc = custom_target('zukan_data_gira.narc',
-    output: 'zukan_data_gira.narc',
-    command: [
-        make_pokedex_data_py,
-        '--narc', nitroarc_exe,
-        '--source-dir', '@CURRENT_SOURCE_DIR@',
-        '--private-dir', '@PRIVATE_DIR@',
-        '--output-dir', '@OUTDIR@',
-        sinnoh_pokedex,
-        'giratina_altered',
-    ],
-    env: species_env,
-    depends: [ py_consts_generators ],
-    depend_files: [ species_data_files ],
-)
-
-
 pokefoot_nclr = nclr_gen.process(
     files('.shared/footprint.pal')
 )
@@ -420,6 +411,4 @@ nitrofs_files += pl_otherpoke_narc
 nitrofs_files += pl_pokezukan_narc
 nitrofs_files += shinzukan_narc
 nitrofs_files += pl_growtbl_narc
-nitrofs_files += pokedex_data_narc
-nitrofs_files += pokedex_data_giratina_altered_narc
 nitrofs_files += pokefoot_narc

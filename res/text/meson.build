@@ -101,19 +101,6 @@ json_to_bin_gen = generator(msgenc_exe,
     output: '@BASENAME@'
 )
 
-# 5. Set up targets which build generated text banks and build the final NARC.
-species_text_banks = custom_target('species_text_banks',
-    output: species_text_bank_names,
-    command: [
-        make_species_text_banks_py,
-        '--source-dir', pokemon_data_root,
-        '--output-dir', '@OUTDIR@',
-        '--format', 'json',
-    ],
-    env: species_env,
-    depend_files: [ species_data_files ],
-)
-
 text_bank_files += species_text_banks
 
 trainer_text_banks = custom_target('trainer_text_banks',

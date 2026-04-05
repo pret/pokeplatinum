@@ -123,8 +123,8 @@
         "type": "FOOTPRINT_TYPE_TOUGH"
     },
     "pokedex_data": {
-        "height": 23,
-        "weight": 888,
+        "height_inches": 91,
+        "weight_pounds": 195.8,
         "body_shape": "SHAPE_BIPEDAL_TAILED",
         "trainer_scale_f": 358,
         "pokemon_scale_f": 256,

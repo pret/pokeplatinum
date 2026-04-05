@@ -100,8 +100,8 @@
         "type": "FOOTPRINT_TYPE_TOUGH"
     },
     "pokedex_data": {
-        "height": 62,
-        "weight": 1620,
+        "height_inches": 244,
+        "weight_pounds": 357.1,
         "body_shape": "SHAPE_SERPENTINE",
         "trainer_scale_f": 349,
         "pokemon_scale_f": 256,

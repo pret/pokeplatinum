@@ -104,8 +104,8 @@
         "type": "FOOTPRINT_TYPE_TOUGH"
     },
     "pokedex_data": {
-        "height": 21,
-        "weight": 1980,
+        "height_inches": 83,
+        "weight_pounds": 436.5,
         "body_shape": "SHAPE_QUADRUPED",
         "trainer_scale_f": 341,
         "pokemon_scale_f": 245,
@@ -136,7 +136,7 @@
         "de": {
             "name": "ENTEI",
             "category": "Vulkan",
-            "entry_text": [ "Man sagt, wenn es brüllt, bricht\n", "irgendwo in der Welt ein Vulkan aus." ]
+            "entry_text": [ "Man sagt, wenn es br\u00fcllt, bricht\n", "irgendwo in der Welt ein Vulkan aus." ]
         },
         "it": {
             "name": "ENTEI",

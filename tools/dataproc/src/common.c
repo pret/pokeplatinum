@@ -19,7 +19,7 @@ static enum_t loaded_enums[MAX_LOADED_ENUMS] = { 0 };
 static size_t num_loaded_enums = 0;
 
 static void   unload_enums(void);
-static void   finish_headers(void);
+static void   finish_outputs(void);
 static FILE*  open_depfile(const char *depfile_path);
 static void   load_header_template(header_template_t *h, FILE *depfile);
 static enum_t dp_include(
@@ -30,9 +30,10 @@ static enum_t dp_include(
     FILE       *depfile
 );
 
-static archive_template_t *s_archives   = NULL;
-static header_template_t  *s_headers    = NULL;
-static const char         *s_output_dir = NULL;
+static archive_template_t  *s_archives   = NULL;
+static header_template_t   *s_headers    = NULL;
+static textbank_template_t *s_textbanks  = NULL;
+static const char          *s_output_dir = NULL;
 
 static void* crt_malloc(void *ctx, unsigned items, unsigned size) {
     (void)ctx;
@@ -75,24 +76,26 @@ static FILE* open_depfile(const char *depfile_path) {
 }
 
 void common_init(
-    enum format         format,
-    enum_template_t    *lookups,
-    archive_template_t *archives,
-    header_template_t  *headers,
-    const char         *source_name,
-    const char         *depfile_path,
-    const char         *output_dir,
-    void              (*pre_init_hook)(void),
-    void              (*post_init_hook)(void)
+    enum format          format,
+    enum_template_t     *lookups,
+    archive_template_t  *archives,
+    header_template_t   *headers,
+    textbank_template_t *textbanks,
+    const char          *source_name,
+    const char          *depfile_path,
+    const char          *output_dir,
+    void               (*pre_init_hook)(void),
+    void               (*post_init_hook)(void)
 ) {
     dp_init(format);
     if (pre_init_hook) pre_init_hook();
 
     s_archives   = archives;
     s_headers    = headers;
+    s_textbanks  = textbanks;
     s_output_dir = output_dir;
     atexit(unload_enums);
-    atexit(finish_headers);
+    atexit(finish_outputs);
 
     FILE *depfile = open_depfile(depfile_path);
 
@@ -129,6 +132,26 @@ void common_init(
         }
 
         fprintf(to_init->out_file, header_comment, source_name);
+
+        fputs(full_path, depfile);
+        fputc(' ',       depfile);
+        free(full_path);
+    }
+
+    // Prepare iteratively-written data-files
+    for (textbank_template_t *to_init = textbanks; to_init && to_init->out_filename; to_init++) {
+        char *full_path   = pathjoin(output_dir, NULL, to_init->out_filename);
+        to_init->out_file = fopen(full_path, "wb");
+        if (to_init->out_file == NULL) {
+            fprintf(stderr, "could not open output file '%s': %s",
+                    full_path, strerror(errno));
+            exit(EXIT_FAILURE);
+        }
+
+        to_init->df   = dp_new();
+        to_init->root = dp_set_obj(&to_init->df);
+        dp_obj_putint(&to_init->root, "key", to_init->key);
+        to_init->root = dp_obj_putarray(&to_init->root, "messages"); // Nothing else should be touched
 
         fputs(full_path, depfile);
         fputc(' ',       depfile);
@@ -190,7 +213,7 @@ static void unload_enums(void) {
     for (size_t i = 0; i < num_loaded_enums; i++) enum_free(&loaded_enums[i]);
 }
 
-static void finish_headers(void) {
+static void finish_outputs(void) {
     for (header_template_t *h = s_headers; h && h->out_filename; h++) {
         if (h->out_file) {
             fputs(h->footer, h->out_file);
@@ -198,14 +221,24 @@ static void finish_headers(void) {
             free(h->header);
         }
     }
+
+    for (textbank_template_t *t = s_textbanks; t && t->out_filename; t++) {
+        if (t->out_file) {
+            char *payload = dp_dump(&t->df);
+            fputs(payload, t->out_file);
+            free(payload);
+            fclose(t->out_file);
+        }
+    }
 }
 
 int common_done(int errc, int (*addl_done_hook)(void)) {
+    if (addl_done_hook) errc = addl_done_hook() || errc;
+
     for (archive_template_t *a = s_archives; a && a->out_filename; a++) {
         if (fdump_narc(&a->packer, a->out_filename, errc == 0)) errc = EXIT_FAILURE;
     }
 
-    if (addl_done_hook) errc = addl_done_hook() || errc;
     return errc;
 }
 
@@ -229,6 +262,41 @@ char* strreplace(char *s, char r, char c) {
     return s;
 }
 
+char* strreplstr(const char *s, const char *repl, const char *with) {
+    if (!s || !repl) return NULL;
+
+    char  *result;
+    char  *insert;
+    char  *tmp;
+    size_t count = 0;
+    size_t front = 0;
+
+    size_t len_repl = strlen(repl);
+    if (len_repl == 0) return NULL;
+    if (!with) with = "";
+    size_t len_with = strlen(with);
+
+    insert = (char *)s;
+    for (count = 0; (tmp = strstr(insert, repl)); count++) {
+        insert = tmp + len_repl;
+    }
+
+    size_t len = strlen(s);
+    len += ((len_with - len_repl) * count);
+    result = malloc(len + 1);
+    tmp    = result;
+    while (count--) {
+        insert = strstr(s, repl);
+        front  = insert - s;
+        tmp    = strncpy(tmp, s, front) + front;
+        tmp    = strcpy(tmp, with) + len_with;
+        s     += front + len_repl;
+    }
+
+    strcpy(tmp, s);
+    return result;
+}
+
 char* strupper(const char *s) {
     char *capped = calloc(strlen(s) + 1, 1);
     for (size_t i = 0; i < strlen(s); i++) {
@@ -237,6 +305,24 @@ char* strupper(const char *s) {
     }
 
     return capped;
+}
+
+char* strjoin(const char *s, const char *with, const char *sep) {
+    if (!s)   s   = "";
+    if (!sep) sep = "";
+
+    size_t len_s    = strlen(s);
+    size_t len_with = strlen(with);
+    size_t len_sep  = strlen(sep);
+
+    char *result = malloc(len_s + len_with + len_sep + 1);
+    char *p      = result;
+
+    p = (char *)memcpy(p, s, len_s) + len_s;
+    p = (char *)memcpy(p, sep, len_sep) + len_sep;
+    p = (char *)memcpy(p, with, len_with) + len_with;
+    *p = 0;
+    return result;
 }
 
 void splitenv(const char *name, char ***target, size_t *target_len, const char **extra, size_t extra_len) {

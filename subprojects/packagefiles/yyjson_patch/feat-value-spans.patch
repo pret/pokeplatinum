@@ -179,7 +179,7 @@ index c16d925..e67cbaf 100644
      val->tag = YYJSON_TYPE_NUM | (u8)((u8)sign << 3); \
      val->uni.u64 = 0; \
 +    val->beg = hdr - beg; \
-+    val->end = cur - beg - 1; \
++    val->end = cur - beg; \
      *end = cur; return true; \
  } while (false)
  
@@ -187,7 +187,7 @@ index c16d925..e67cbaf 100644
      val->tag = YYJSON_TYPE_NUM | (u8)((u8)sign << 3); \
      val->uni.u64 = (u64)(sign ? (u64)(~(_v) + 1) : (u64)(_v)); \
 +    val->beg = hdr - beg; \
-+    val->end = cur - beg - 1; \
++    val->end = cur - beg; \
      *end = cur; return true; \
  } while (false)
  
@@ -195,7 +195,7 @@ index c16d925..e67cbaf 100644
      val->tag = YYJSON_TYPE_NUM | YYJSON_SUBTYPE_REAL; \
      val->uni.f64 = sign ? -(f64)(_v) : (f64)(_v); \
 +    val->beg = hdr - beg; \
-+    val->end = cur - beg - 1; \
++    val->end = cur - beg; \
      *end = cur; return true; \
  } while (false)
  
@@ -203,7 +203,7 @@ index c16d925..e67cbaf 100644
      val->tag = YYJSON_TYPE_NUM | YYJSON_SUBTYPE_REAL; \
      val->uni.u64 = ((u64)sign << 63) | (u64)(_v); \
 +    val->beg = hdr - beg; \
-+    val->end = cur - beg - 1; \
++    val->end = cur - beg; \
      *end = cur; return true; \
  } while (false)
  
@@ -212,7 +212,7 @@ index c16d925..e67cbaf 100644
      val->tag = ((u64)(cur - hdr) << YYJSON_TAG_BIT) | YYJSON_TYPE_RAW; \
      val->uni.str = (const char *)hdr; \
 +    val->beg = hdr - beg; \
-+    val->end = cur - beg - 1; \
++    val->end = cur - beg; \
      *pre = cur; *end = cur; return true; \
  } while (false)
  

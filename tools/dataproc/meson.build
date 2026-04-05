@@ -7,6 +7,7 @@ dataproc_cflags = [
     '-Wconversion',
     '-Wno-sign-conversion',
     '-Wno-unused-result',
+    '-Wno-stringop-overflow',
 ]
 
 dataproc_dep = declare_dependency(
@@ -48,6 +49,7 @@ commonproc_dep = declare_dependency(
     dependencies: [ dataproc_dep, nitroarc_dep ],
 )
 
+cc = meson.get_compiler('c', native: true)
 speciesproc_exe = executable(
     'speciesproc',
     sources: [ files('src/speciesproc.c'), c_consts_generators ],
@@ -55,7 +57,10 @@ speciesproc_exe = executable(
     c_args: dataproc_cflags,
 
     include_directories: [ public_includes, toplevel_includes ],
-    dependencies: commonproc_dep,
+    dependencies: [
+        commonproc_dep,
+        cc.find_library('m', required: true),
+    ],
     native: true,
 )
 

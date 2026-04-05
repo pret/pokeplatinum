@@ -77,6 +77,17 @@ struct header_template {
     char       *footer;
 };
 
+// Template-struct for an output text bank to be written. Specify the output
+// filename.
+typedef struct textbank_template textbank_template_t;
+struct textbank_template {
+    int         key;
+    const char *out_filename;
+    FILE       *out_file;
+    datafile_t  df;
+    datanode_t  root;
+};
+
 // Common initialization routine. Instantiate requested lookup-tables and
 // prepare requested outputs. Output header-files will also search the data
 // directory for a file with ".template" suffixed to the output's basename.
@@ -87,15 +98,16 @@ struct header_template {
 // `post_init_hook`, when provided, will be called as the function exits, after
 // all requests have been fulfilled.
 void common_init(
-    enum format         format,
-    enum_template_t    *lookups,
-    archive_template_t *archives,
-    header_template_t  *headers,
-    const char         *source_name,
-    const char         *depfile_name,
-    const char         *output_dir,
-    void              (*pre_init_hook)(void),
-    void              (*post_init_hook)(void)
+    enum format          format,
+    enum_template_t     *lookups,
+    archive_template_t  *archives,
+    header_template_t   *headers,
+    textbank_template_t *textbanks,
+    const char          *source_name,
+    const char          *depfile_name,
+    const char          *output_dir,
+    void               (*pre_init_hook)(void),
+    void               (*post_init_hook)(void)
 );
 
 // Common completion routine. Write the footer-content for each output header,
@@ -108,7 +120,9 @@ int common_done(int errc, int (*addl_done_hook)(void));
 
 char* strremove(char *s, const char *sub);
 char* strreplace(char *s, char r, char c);
+char* strreplstr(const char *s, const char *repl, const char *with);
 char* strupper(const char *s);
+char* strjoin(const char *s, const char *with, const char *sep);
 
 void  splitenv(const char *name, char ***target, size_t *target_len, const char **extra, size_t extra_len);
 char* fload(const char *filename);
