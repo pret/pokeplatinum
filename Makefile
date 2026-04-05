@@ -24,7 +24,7 @@ ROM_REVISION ?= 1
 
 SUBPROJ_DIR := subprojects
 
-MESON_VER := 1.7.0
+MESON_VER := 1.10.0
 MESON_DIR := $(SUBPROJ_DIR)/meson-$(MESON_VER)
 MESON_SUB := $(MESON_DIR)/meson.py
 
