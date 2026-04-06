@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_TRAINER_CARD_H
-#define POKEPLATINUM_TRAINER_CARD_H
+#ifndef POKEPLATINUM_TRAINER_CASE_H
+#define POKEPLATINUM_TRAINER_CASE_H
 
 #include "constants/graphics.h"
 #include "constants/string.h"
@@ -18,16 +18,16 @@
 #define BADGE_POLISH_THRESHOLD_4_SPARKLES 190
 #define MAX_BADGE_POLISH                  199
 
-typedef struct TrainerCardBadge {
+typedef struct TrainerCaseBadge {
     int obtained : 1;
     int polish : 31;
-} TrainerCardBadge;
+} TrainerCaseBadge;
 
-typedef struct TrainerCard {
+typedef struct TrainerCase {
     u8 gameVersion;
     u8 language;
     u8 gymLeadersToHideUnused;
-    u8 level;
+    u8 cardLevel;
     u8 badgesInteractable : 1;
     u8 liveTimeDisplay : 1;
     u8 gender : 1;
@@ -39,7 +39,7 @@ typedef struct TrainerCard {
     u32 money;
     u32 seenPokemon;
     u32 score;
-    u16 id;
+    u16 trainerId;
     u16 playTimeHours;
     u16 hofDebutHour;
     u8 playTimeMinutes;
@@ -54,17 +54,17 @@ typedef struct TrainerCard {
     u32 linkBattleWins;
     u32 linkBattleLosses;
     u32 linkTrades;
-    TrainerCardBadge badges[MAX_BADGES];
+    TrainerCaseBadge badges[MAX_BADGES];
     u8 signature[SIGNATURE_WIDTH * SIGNATURE_HEIGHT * TILE_SIZE_1BPP];
     u16 dummyChecksum; // calculated but never used for anything
     u16 unk_66A;
-} TrainerCard;
+} TrainerCase;
 
-void TrainerCard_Init(u8 badgesInteractable, u8 liveTimeDisplay, u8 gymLeadersToHide, u8 trainerAppearance, FieldSystem *fieldSystem, TrainerCard *trainerCard);
-TrainerCard *TrainerCard_New(u16 heapID);
-void TrainerCard_Free(TrainerCard *trainerCard);
-u8 TrainerCard_CalculateLevel(FieldSystem *fieldSystem);
-void TrainerCard_SaveBadgePolish(FieldSystem *fieldSystem, const TrainerCard *trainerCard);
+void TrainerCase_Init(u8 badgesInteractable, u8 liveTimeDisplay, u8 gymLeadersToHide, u8 trainerAppearance, FieldSystem *fieldSystem, TrainerCase *trainerCase);
+TrainerCase *TrainerCase_New(u16 heapID);
+void TrainerCase_Free(TrainerCase *trainerCase);
+u8 TrainerCase_CalculateTrainerCardLevel(FieldSystem *fieldSystem);
+void TrainerCase_SaveBadgePolish(FieldSystem *fieldSystem, const TrainerCase *trainerCase);
 void sub_02072204(FieldSystem *fieldSystem);
 
-#endif // POKEPLATINUM_TRAINER_CARD_H
+#endif // POKEPLATINUM_TRAINER_CASE_H

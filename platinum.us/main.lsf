@@ -124,7 +124,7 @@ Static main
 	Object main.nef.p/src_record_mixed_rng.c.o
 	Object main.nef.p/src_coins.c.o
 	Object main.nef.p/src_journal.c.o
-	Object main.nef.p/src_trainer_card_save_data.c.o
+	Object main.nef.p/src_trainer_case_save_data.c.o
 	Object main.nef.p/src_unk_0202C858.c.o
 	Object main.nef.p/src_unk_0202C9F4.c.o
 	Object main.nef.p/src_play_time.c.o
@@ -281,7 +281,7 @@ Static main
 	Object main.nef.p/src_platform_lift.c.o
 	Object main.nef.p/src_persisted_map_features_init.c.o
 	Object main.nef.p/src_map_header_util.c.o
-	Object main.nef.p/src_trainer_card.c.o
+	Object main.nef.p/src_trainer_case.c.o
 	Object main.nef.p/src_unk_020722AC.c.o
 	Object main.nef.p/src_unk_02073700.c.o
 	Object main.nef.p/src_simple3d.c.o

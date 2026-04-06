@@ -145,7 +145,7 @@ void TrainerCase_DrawBadgeCaseSprites(TrainerCaseSpriteData *spriteData, u8 *bad
         }
     }
 
-    u8 index = TRAINER_CARD_TWO_SPARKLES_SPRITES_INDEX;
+    u8 index = TRAINER_CASE_TWO_SPARKLES_SPRITES_INDEX;
 
     for (int badgeID = 0; badgeID < MAX_BADGES; badgeID++) {
         template.position.x = FX32_ONE * sSparkleCoordinates[badgeID].x;
@@ -157,7 +157,7 @@ void TrainerCase_DrawBadgeCaseSprites(TrainerCaseSpriteData *spriteData, u8 *bad
         Sprite_SetDrawFlag(spriteData->sprites[index + badgeID], FALSE);
     }
 
-    index += TRAINER_CARD_FOUR_SPARKLES_SPRITES_INDEX - TRAINER_CARD_TWO_SPARKLES_SPRITES_INDEX;
+    index += TRAINER_CASE_FOUR_SPARKLES_SPRITES_INDEX - TRAINER_CASE_TWO_SPARKLES_SPRITES_INDEX;
 
     for (int badgeID = 0; badgeID < MAX_BADGES; badgeID++) {
         template.position.x = FX32_ONE * sSparkleCoordinates[badgeID].x;
@@ -169,7 +169,7 @@ void TrainerCase_DrawBadgeCaseSprites(TrainerCaseSpriteData *spriteData, u8 *bad
         Sprite_SetDrawFlag(spriteData->sprites[index + badgeID], FALSE);
     }
 
-    index += TRAINER_CARD_BADGE_CASE_BUTTON_EFFECT_SPRITE_INDEX - TRAINER_CARD_FOUR_SPARKLES_SPRITES_INDEX;
+    index += TRAINER_CASE_BADGE_CASE_BUTTON_EFFECT_SPRITE_INDEX - TRAINER_CASE_FOUR_SPARKLES_SPRITES_INDEX;
 
     resourceData.priority = 0;
     template.position.x = FX32_ONE * 96;

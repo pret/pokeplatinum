@@ -6,8 +6,8 @@
 #include "badges.h"
 #include "save_player.h"
 #include "savedata.h"
-#include "trainer_card.h"
-#include "trainer_card_save_data.h"
+#include "trainer_case.h"
+#include "trainer_case_save_data.h"
 #include "trainer_info.h"
 
 void TrainerCase_AccumulateBadgeDirt(SaveData *saveData, s32 daysPassed)
@@ -16,8 +16,8 @@ void TrainerCase_AccumulateBadgeDirt(SaveData *saveData, s32 daysPassed)
         return;
     }
 
-    TrainerCardSaveData *tcSaveData = SaveData_GetTrainerCardSaveData(saveData);
-    TrainerCardSaveDataBadge *badges = TrainerCardSaveData_GetTrainerCardSaveDataBadges(tcSaveData);
+    TrainerCaseSaveData *tcSaveData = SaveData_GetTrainerCaseSaveData(saveData);
+    TrainerCaseSaveDataBadge *badges = TrainerCaseSaveData_GetTrainerCaseSaveDataBadges(tcSaveData);
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(saveData);
 
     for (u8 badgeID = 0; badgeID < MAX_BADGES; badgeID++) {
@@ -25,7 +25,7 @@ void TrainerCase_AccumulateBadgeDirt(SaveData *saveData, s32 daysPassed)
             continue;
         }
 
-        int polish = TrainerCardSaveDataBadge_GetPolish(badgeID, badges);
+        int polish = TrainerCaseSaveDataBadge_GetPolish(badgeID, badges);
 
         if (0 < polish && polish < MAX_BADGE_POLISH + 1) {
             polish -= 10 * daysPassed;
@@ -38,6 +38,6 @@ void TrainerCase_AccumulateBadgeDirt(SaveData *saveData, s32 daysPassed)
             polish = 0;
         }
 
-        TrainerCardSaveDataBadge_SetPolish(badgeID, polish, badges);
+        TrainerCaseSaveDataBadge_SetPolish(badgeID, polish, badges);
     }
 }

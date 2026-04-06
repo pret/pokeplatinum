@@ -13,7 +13,7 @@
 #include "string_gf.h"
 #include "string_template.h"
 #include "text.h"
-#include "trainer_card.h"
+#include "trainer_case.h"
 
 #include "res/text/bank/trainer_card.h"
 
@@ -169,7 +169,7 @@ static const int sTrainerCardTextFields[] = {
     TrainerCard_Text_LinkTrades
 };
 
-void TrainerCard_DrawFrontText(Window windows[], const TrainerCard *trainerCard)
+void TrainerCard_DrawFrontText(Window windows[], const TrainerCase *trainerCase)
 {
     u8 i;
 
@@ -185,7 +185,7 @@ void TrainerCard_DrawFrontText(Window windows[], const TrainerCard *trainerCard)
     String *string = String_Init(32, HEAP_ID_TRAINER_CASE);
 
     for (i = TRAINER_CARD_WINDOW_ID; i < TRAINER_CARD_WINDOW_HOF_DEBUT; i++) {
-        if (i != TRAINER_CARD_WINDOW_POKEDEX || i == TRAINER_CARD_WINDOW_POKEDEX && trainerCard->pokedexObtained) {
+        if (i != TRAINER_CARD_WINDOW_POKEDEX || i == TRAINER_CARD_WINDOW_POKEDEX && trainerCase->pokedexObtained) {
             MessageLoader_GetString(messageLoader, sTrainerCardTextFields[i], string);
             Text_AddPrinterWithParamsAndColor(&windows[i], FONT_SYSTEM, string, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
         }
@@ -194,11 +194,11 @@ void TrainerCard_DrawFrontText(Window windows[], const TrainerCard *trainerCard)
     String *fmtString = String_Init(32, HEAP_ID_TRAINER_CASE);
     StringTemplate *template = StringTemplate_New(6, 32, HEAP_ID_TRAINER_CASE);
 
-    TrainerCard_DrawNumber(&windows[TRAINER_CARD_WINDOW_ID], TRAINER_CARD_WINDOW_PARTIAL_WIDTH * TILE_WIDTH_PIXELS, 0, 0, string, trainerCard->id, 5, PADDING_MODE_ZEROES);
-    String_CopyChars(string, trainerCard->name);
+    TrainerCard_DrawNumber(&windows[TRAINER_CARD_WINDOW_ID], TRAINER_CARD_WINDOW_PARTIAL_WIDTH * TILE_WIDTH_PIXELS, 0, 0, string, trainerCase->trainerId, 5, PADDING_MODE_ZEROES);
+    String_CopyChars(string, trainerCase->name);
     TrainerCard_DrawString(&windows[TRAINER_CARD_WINDOW_NAME], TRAINER_CARD_WINDOW_PARTIAL_WIDTH * TILE_WIDTH_PIXELS, 0, 0, string);
 
-    StringTemplate_SetNumber(template, 5, trainerCard->money, 6, PADDING_MODE_NONE, CHARSET_MODE_EN);
+    StringTemplate_SetNumber(template, 5, trainerCase->money, 6, PADDING_MODE_NONE, CHARSET_MODE_EN);
     MessageLoader_GetString(messageLoader, TrainerCard_Text_Format_Money, fmtString);
     StringTemplate_Format(template, string, fmtString);
 
@@ -206,8 +206,8 @@ void TrainerCard_DrawFrontText(Window windows[], const TrainerCard *trainerCard)
 
     Text_AddPrinterWithParamsAndColor(&windows[TRAINER_CARD_WINDOW_MONEY], FONT_SYSTEM, string, xOffset, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
 
-    if (trainerCard->pokedexObtained) {
-        StringTemplate_SetNumber(template, 5, trainerCard->seenPokemon, 3, PADDING_MODE_NONE, CHARSET_MODE_EN);
+    if (trainerCase->pokedexObtained) {
+        StringTemplate_SetNumber(template, 5, trainerCase->seenPokemon, 3, PADDING_MODE_NONE, CHARSET_MODE_EN);
         MessageLoader_GetString(messageLoader, TrainerCard_Text_Format_Number_1, fmtString);
         StringTemplate_Format(template, string, fmtString);
 
@@ -216,15 +216,15 @@ void TrainerCard_DrawFrontText(Window windows[], const TrainerCard *trainerCard)
         Text_AddPrinterWithParamsAndColor(&windows[TRAINER_CARD_WINDOW_POKEDEX], FONT_SYSTEM, string, xOffset, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
     }
 
-    TrainerCard_DrawNumber(&windows[TRAINER_CARD_WINDOW_SCORE], TRAINER_CARD_WINDOW_PARTIAL_WIDTH * TILE_WIDTH_PIXELS, 0, 0, string, trainerCard->score, 9, PADDING_MODE_SPACES);
+    TrainerCard_DrawNumber(&windows[TRAINER_CARD_WINDOW_SCORE], TRAINER_CARD_WINDOW_PARTIAL_WIDTH * TILE_WIDTH_PIXELS, 0, 0, string, trainerCase->score, 9, PADDING_MODE_SPACES);
 
-    if (trainerCard->liveTimeDisplay) {
-        StringTemplate_SetNumber(template, 0, PlayTime_GetHours(trainerCard->playTime), 3, PADDING_MODE_SPACES, CHARSET_MODE_EN);
-        StringTemplate_SetNumber(template, 1, PlayTime_GetMinutes(trainerCard->playTime), 2, PADDING_MODE_ZEROES, CHARSET_MODE_EN);
+    if (trainerCase->liveTimeDisplay) {
+        StringTemplate_SetNumber(template, 0, PlayTime_GetHours(trainerCase->playTime), 3, PADDING_MODE_SPACES, CHARSET_MODE_EN);
+        StringTemplate_SetNumber(template, 1, PlayTime_GetMinutes(trainerCase->playTime), 2, PADDING_MODE_ZEROES, CHARSET_MODE_EN);
         MessageLoader_GetString(messageLoader, TrainerCard_Text_Format_HHMMWithoutColon, fmtString);
     } else {
-        StringTemplate_SetNumber(template, 0, trainerCard->playTimeHours, 3, PADDING_MODE_SPACES, CHARSET_MODE_EN);
-        StringTemplate_SetNumber(template, 1, trainerCard->playTimeMinutes, 2, PADDING_MODE_ZEROES, CHARSET_MODE_EN);
+        StringTemplate_SetNumber(template, 0, trainerCase->playTimeHours, 3, PADDING_MODE_SPACES, CHARSET_MODE_EN);
+        StringTemplate_SetNumber(template, 1, trainerCase->playTimeMinutes, 2, PADDING_MODE_ZEROES, CHARSET_MODE_EN);
         MessageLoader_GetString(messageLoader, TrainerCard_Text_Format_HHMMWithColon, fmtString);
     }
 
@@ -232,9 +232,9 @@ void TrainerCard_DrawFrontText(Window windows[], const TrainerCard *trainerCard)
     xOffset = TRAINER_CARD_WINDOW_FULL_WIDTH * TILE_WIDTH_PIXELS - Font_CalcStringWidth(FONT_SYSTEM, string, 0);
     Text_AddPrinterWithParamsAndColor(&windows[TRAINER_CARD_WINDOW_TIME], FONT_SYSTEM, string, xOffset, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
 
-    StringTemplate_SetNumber(template, 2, trainerCard->adventureStartedYear, 2, PADDING_MODE_ZEROES, CHARSET_MODE_EN);
-    StringTemplate_SetMonthName(template, 3, trainerCard->adventureStartedMonth);
-    StringTemplate_SetNumber(template, 4, trainerCard->adventureStartedDay, 2, PADDING_MODE_ZEROES, CHARSET_MODE_EN);
+    StringTemplate_SetNumber(template, 2, trainerCase->adventureStartedYear, 2, PADDING_MODE_ZEROES, CHARSET_MODE_EN);
+    StringTemplate_SetMonthName(template, 3, trainerCase->adventureStartedMonth);
+    StringTemplate_SetNumber(template, 4, trainerCase->adventureStartedDay, 2, PADDING_MODE_ZEROES, CHARSET_MODE_EN);
     MessageLoader_GetString(messageLoader, TrainerCard_Text_Format_MMDD20YY, fmtString);
     StringTemplate_Format(template, string, fmtString);
 
@@ -249,7 +249,7 @@ void TrainerCard_DrawFrontText(Window windows[], const TrainerCard *trainerCard)
     MessageLoader_Free(messageLoader);
 }
 
-void TrainerCard_DrawBackText(Window windows[], const TrainerCard *trainerCard)
+void TrainerCard_DrawBackText(Window windows[], const TrainerCase *trainerCase)
 {
     u8 i;
 
@@ -269,12 +269,12 @@ void TrainerCard_DrawBackText(Window windows[], const TrainerCard *trainerCard)
     String *fmtString = String_Init(32, HEAP_ID_TRAINER_CASE);
     StringTemplate *template = StringTemplate_New(6, 32, HEAP_ID_TRAINER_CASE);
 
-    if (trainerCard->hofDebutMonth != 0) {
-        StringTemplate_SetNumber(template, 2, trainerCard->hofDebutYear, 2, PADDING_MODE_ZEROES, CHARSET_MODE_EN);
-        StringTemplate_SetMonthName(template, 3, trainerCard->hofDebutMonth);
-        StringTemplate_SetNumber(template, 4, trainerCard->hofDebutDay, 2, PADDING_MODE_ZEROES, CHARSET_MODE_EN);
-        StringTemplate_SetNumber(template, 0, trainerCard->hofDebutHour, 3, PADDING_MODE_SPACES, CHARSET_MODE_EN);
-        StringTemplate_SetNumber(template, 1, trainerCard->hofDebutMinute, 2, PADDING_MODE_ZEROES, CHARSET_MODE_EN);
+    if (trainerCase->hofDebutMonth != 0) {
+        StringTemplate_SetNumber(template, 2, trainerCase->hofDebutYear, 2, PADDING_MODE_ZEROES, CHARSET_MODE_EN);
+        StringTemplate_SetMonthName(template, 3, trainerCase->hofDebutMonth);
+        StringTemplate_SetNumber(template, 4, trainerCase->hofDebutDay, 2, PADDING_MODE_ZEROES, CHARSET_MODE_EN);
+        StringTemplate_SetNumber(template, 0, trainerCase->hofDebutHour, 3, PADDING_MODE_SPACES, CHARSET_MODE_EN);
+        StringTemplate_SetNumber(template, 1, trainerCase->hofDebutMinute, 2, PADDING_MODE_ZEROES, CHARSET_MODE_EN);
         MessageLoader_GetString(messageLoader, TrainerCard_Text_Format_MMDD20YY, fmtString);
         StringTemplate_Format(template, string, fmtString);
     } else {
@@ -291,7 +291,7 @@ void TrainerCard_DrawBackText(Window windows[], const TrainerCard *trainerCard)
     xOffset = TRAINER_CARD_WINDOW_FULL_WIDTH * TILE_WIDTH_PIXELS - Font_CalcStringWidth(FONT_SYSTEM, string, 0);
     Text_AddPrinterWithParamsAndColor(&windows[TRAINER_CARD_WINDOW_HOF_DEBUT], FONT_SYSTEM, string, xOffset, 16, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
 
-    StringTemplate_SetNumber(template, 5, trainerCard->timesLinked, 6, PADDING_MODE_NONE, CHARSET_MODE_EN);
+    StringTemplate_SetNumber(template, 5, trainerCase->timesLinked, 6, PADDING_MODE_NONE, CHARSET_MODE_EN);
     MessageLoader_GetString(messageLoader, TrainerCard_Text_Format_Number_2, fmtString);
     StringTemplate_Format(template, string, fmtString);
     xOffset = TRAINER_CARD_WINDOW_FULL_WIDTH * TILE_WIDTH_PIXELS - Font_CalcStringWidth(FONT_SYSTEM, string, 0);
@@ -299,12 +299,12 @@ void TrainerCard_DrawBackText(Window windows[], const TrainerCard *trainerCard)
 
     MessageLoader_GetString(messageLoader, TrainerCard_Text_W, string);
     Text_AddPrinterWithParamsAndColor(&windows[TRAINER_CARD_WINDOW_LINK_BATTLES], FONT_SYSTEM, string, 14 * TILE_WIDTH_PIXELS, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
-    TrainerCard_DrawNumber(&windows[TRAINER_CARD_WINDOW_LINK_BATTLES], TRAINER_CARD_WINDOW_FULL_WIDTH * TILE_WIDTH_PIXELS, 0, 0, string, trainerCard->linkBattleLosses, 4, PADDING_MODE_SPACES);
+    TrainerCard_DrawNumber(&windows[TRAINER_CARD_WINDOW_LINK_BATTLES], TRAINER_CARD_WINDOW_FULL_WIDTH * TILE_WIDTH_PIXELS, 0, 0, string, trainerCase->linkBattleLosses, 4, PADDING_MODE_SPACES);
     MessageLoader_GetString(messageLoader, TrainerCard_Text_L, string);
     Text_AddPrinterWithParamsAndColor(&windows[TRAINER_CARD_WINDOW_LINK_BATTLES], FONT_SYSTEM, string, 22 * TILE_WIDTH_PIXELS, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
-    TrainerCard_DrawNumber(&windows[TRAINER_CARD_WINDOW_LINK_BATTLES], TRAINER_CARD_WINDOW_FULL_WIDTH * TILE_WIDTH_PIXELS, 8 * TILE_WIDTH_PIXELS, 0, string, trainerCard->linkBattleWins, 4, PADDING_MODE_SPACES);
+    TrainerCard_DrawNumber(&windows[TRAINER_CARD_WINDOW_LINK_BATTLES], TRAINER_CARD_WINDOW_FULL_WIDTH * TILE_WIDTH_PIXELS, 8 * TILE_WIDTH_PIXELS, 0, string, trainerCase->linkBattleWins, 4, PADDING_MODE_SPACES);
 
-    StringTemplate_SetNumber(template, 5, trainerCard->linkTrades, 6, PADDING_MODE_NONE, CHARSET_MODE_EN);
+    StringTemplate_SetNumber(template, 5, trainerCase->linkTrades, 6, PADDING_MODE_NONE, CHARSET_MODE_EN);
     MessageLoader_GetString(messageLoader, TrainerCard_Text_Format_Number_2, fmtString);
     StringTemplate_Format(template, string, fmtString);
     xOffset = TRAINER_CARD_WINDOW_FULL_WIDTH * TILE_WIDTH_PIXELS - Font_CalcStringWidth(FONT_SYSTEM, string, 0);
@@ -336,11 +336,11 @@ static void TrainerCard_DrawString(Window *window, u32 windowWidth, u32 endXOffs
     Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, windowWidth - (width + endXOffset), yOffset, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
 }
 
-void TrainerCard_DrawUpdatedTime(Window windows[], const TrainerCard *trainerCard, String *unused)
+void TrainerCard_DrawUpdatedTime(Window windows[], const TrainerCase *trainerCase, String *unused)
 {
-    GF_ASSERT(trainerCard->playTime != NULL);
+    GF_ASSERT(trainerCase->playTime != NULL);
 
-    int hoursUnused = PlayTime_GetHours(trainerCard->playTime);
+    int hoursUnused = PlayTime_GetHours(trainerCase->playTime);
 
     if (hoursUnused > PLAYTIME_MAX_HOURS) {
         hoursUnused = PLAYTIME_MAX_HOURS;
@@ -353,8 +353,8 @@ void TrainerCard_DrawUpdatedTime(Window windows[], const TrainerCard *trainerCar
     String *fmtString = String_Init(32, HEAP_ID_TRAINER_CASE);
     StringTemplate *template = StringTemplate_New(2, 32, HEAP_ID_TRAINER_CASE);
 
-    StringTemplate_SetNumber(template, 0, PlayTime_GetHours(trainerCard->playTime), 3, PADDING_MODE_SPACES, CHARSET_MODE_EN);
-    StringTemplate_SetNumber(template, 1, PlayTime_GetMinutes(trainerCard->playTime), 2, PADDING_MODE_ZEROES, CHARSET_MODE_EN);
+    StringTemplate_SetNumber(template, 0, PlayTime_GetHours(trainerCase->playTime), 3, PADDING_MODE_SPACES, CHARSET_MODE_EN);
+    StringTemplate_SetNumber(template, 1, PlayTime_GetMinutes(trainerCase->playTime), 2, PADDING_MODE_ZEROES, CHARSET_MODE_EN);
     MessageLoader_GetString(messageLoader, TrainerCard_Text_Format_HHMMWithoutColon, fmtString);
     StringTemplate_Format(template, string, fmtString);
     u32 xOffset = TRAINER_CARD_WINDOW_FULL_WIDTH * TILE_WIDTH_PIXELS - Font_CalcStringWidth(FONT_SYSTEM, string, 0);

@@ -112,8 +112,8 @@
 #include "system_data.h"
 #include "system_flags.h"
 #include "system_vars.h"
-#include "trainer_card.h"
-#include "trainer_card_save_data.h"
+#include "trainer_case.h"
+#include "trainer_case_save_data.h"
 #include "trainer_info.h"
 #include "tv_episode_segment.h"
 #include "unk_02017498.h"
@@ -1255,7 +1255,7 @@ void sub_0203DFE8(
     FieldTask_InitCall(param0, sub_0203DE98, v2);
 }
 
-void FieldSystem_OpenTrainerCase(FieldSystem *fieldSystem, TrainerCard *trainerCard)
+void FieldSystem_OpenTrainerCase(FieldSystem *fieldSystem, TrainerCase *trainerCase)
 {
     FS_EXTERN_OVERLAY(trainer_case);
 
@@ -1266,7 +1266,7 @@ void FieldSystem_OpenTrainerCase(FieldSystem *fieldSystem, TrainerCard *trainerC
         .overlayID = FS_OVERLAY_ID(trainer_case)
     };
 
-    FieldSystem_StartChildProcess(fieldSystem, &template, trainerCard);
+    FieldSystem_StartChildProcess(fieldSystem, &template, trainerCase);
 }
 
 BOOL FieldSystem_OpenPokedex(FieldSystem *fieldSystem, PokedexOverlayArgs *args)
@@ -1300,7 +1300,7 @@ void FieldSystem_LaunchChooseStarterApp(FieldSystem *fieldSystem, ChooseStarterD
 
 void sub_0203E0D0(FieldSystem *fieldSystem)
 {
-    TrainerCardSaveData *v0 = SaveData_GetTrainerCardSaveData(fieldSystem->saveData);
+    TrainerCaseSaveData *v0 = SaveData_GetTrainerCaseSaveData(fieldSystem->saveData);
 
     FS_EXTERN_OVERLAY(overlay72);
 

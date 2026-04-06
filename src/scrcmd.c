@@ -178,7 +178,7 @@
 #include "system_flags.h"
 #include "system_vars.h"
 #include "text.h"
-#include "trainer_card.h"
+#include "trainer_case.h"
 #include "trainer_data.h"
 #include "trainer_info.h"
 #include "tv_episode_segment.h"
@@ -6530,7 +6530,7 @@ static BOOL ScrCmd_GetTrainerCardLevel(ScriptContext *ctx)
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *destVar = TrainerCard_CalculateLevel(fieldSystem);
+    *destVar = TrainerCase_CalculateTrainerCardLevel(fieldSystem);
     return FALSE;
 }
 

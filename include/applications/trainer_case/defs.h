@@ -10,7 +10,7 @@
 #include "sprite_resource.h"
 #include "sprite_util.h"
 #include "string_gf.h"
-#include "trainer_card.h"
+#include "trainer_case.h"
 
 enum TrainerCardWindow {
     TRAINER_CARD_WINDOW_ID = 0,
@@ -76,7 +76,7 @@ typedef struct TrainerCaseSpriteData {
 typedef struct TrainerCaseApp {
     BgConfig *bgConfig;
     Window windows[TRAINER_CARD_WINDOW_COUNT];
-    TrainerCard *trainerCard;
+    TrainerCase *trainerCase;
     u8 signature[SIGNATURE_WIDTH * SIGNATURE_HEIGHT * TILE_SIZE_8BPP];
     void *trainerSprite;
     NNSG2dCharacterData *trainerCharacterData;

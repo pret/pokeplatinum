@@ -5,9 +5,9 @@
 
 #include "narc.h"
 
-#define TRAINER_CARD_TWO_SPARKLES_SPRITES_INDEX            MAX_BADGES
-#define TRAINER_CARD_FOUR_SPARKLES_SPRITES_INDEX           (MAX_BADGES * 2)
-#define TRAINER_CARD_BADGE_CASE_BUTTON_EFFECT_SPRITE_INDEX (MAX_BADGES * 3)
+#define TRAINER_CASE_TWO_SPARKLES_SPRITES_INDEX            MAX_BADGES
+#define TRAINER_CASE_FOUR_SPARKLES_SPRITES_INDEX           (MAX_BADGES * 2)
+#define TRAINER_CASE_BADGE_CASE_BUTTON_EFFECT_SPRITE_INDEX (MAX_BADGES * 3)
 
 void TrainerCaseApp_InitSpriteData(TrainerCaseSpriteData *spriteData, NARC *narc);
 void TrainerCase_DrawBadgeCaseSprites(TrainerCaseSpriteData *spriteData, u8 *badgesObtained);

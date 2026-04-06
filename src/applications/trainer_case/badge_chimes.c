@@ -2,8 +2,8 @@
 
 #include <nitro.h>
 
-#include "applications/trainer_case/main.h"
 #include "applications/trainer_case/defs.h"
+#include "applications/trainer_case/main.h"
 
 #include "badges.h"
 #include "sound.h"

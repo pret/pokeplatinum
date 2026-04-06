@@ -17,7 +17,7 @@
 
 #include "comm_player_manager.h"
 #include "field_comm_manager.h"
-#include "trainer_card.h"
+#include "trainer_case.h"
 #include "trainer_info.h"
 #include "unk_02032798.h"
 #include "unk_0204FA34.h"
@@ -26,7 +26,7 @@
 #include "unk_0205A0D8.h"
 #include "unk_0205B33C.h"
 
-static int CommPacketSizeOf_TrainerCard(void);
+static int CommPacketSizeOf_TrainerCase(void);
 static int sub_02099548(void);
 static int sub_0209954C(void);
 
@@ -112,7 +112,7 @@ static const CommCmdTable Unk_020F68A4[] = {
     { UndergroundPlayer_ProcessFlagEvent, CommPacketSizeOf_FlagEvent, NULL },
     { SecretBases_ProcessBaseCreateRequest, CommPacketSizeOf_NetId, NULL },
     { SecretBases_ProcessBaseCreateEvent, CommPacketSizeOf_SecretBaseCreateEvent, NULL },
-    { sub_02059EAC, CommPacketSizeOf_TrainerCard, sub_02059EBC },
+    { sub_02059EAC, CommPacketSizeOf_TrainerCase, sub_02059EBC },
     { UndergroundPC_ProcessTakeFlagAttempt, CommPacketSizeOf_PCInteraction, NULL },
     { UndergroundPC_ProcessTakenFlag, CommPacketSizeOf_PCInteraction, NULL }, // 90
     { UndergroundPlayer_ProcessHeldFlagOwnerInfo, CommPacketSizeOf_TrainerInfo, NULL },
@@ -129,7 +129,7 @@ static const CommCmdTable Unk_020F68A4[] = {
     { sub_0205B990, CommPacketSizeOf_Nothing, NULL },
     { sub_0205B9C4, CommPacketSizeOf_NetId, NULL },
     { sub_0205B9E0, CommPacketSizeOf_Nothing, NULL },
-    { sub_0205BA08, CommPacketSizeOf_TrainerCard, sub_0205BA5C },
+    { sub_0205BA08, CommPacketSizeOf_TrainerCase, sub_0205BA5C },
     { sub_0205B0C0, sub_0205B0E4, sub_0205B0F4 },
     { sub_0205B110, CommPacketSizeOf_NetId, NULL },
     { sub_02099510, CommPacketSizeOf_NetId, NULL },
@@ -172,9 +172,9 @@ void CommFieldCmd_Init(void *param0)
     CommCmd_Init(Unk_020F68A4, v0, param0);
 }
 
-static int CommPacketSizeOf_TrainerCard(void)
+static int CommPacketSizeOf_TrainerCase(void)
 {
-    return sizeof(TrainerCard);
+    return sizeof(TrainerCase);
 }
 
 int sub_02099530(void)

@@ -5,9 +5,9 @@
 #include "constants/trainer_card_levels.h"
 #include "generated/genders.h"
 
+#include "applications/trainer_case/card_text.h"
 #include "applications/trainer_case/defs.h"
 #include "applications/trainer_case/sprites.h"
-#include "applications/trainer_case/card_text.h"
 
 #include "badges.h"
 #include "bg_window.h"
@@ -218,7 +218,7 @@ BOOL TrainerCaseApp_Init(ApplicationManager *appMan, int *state)
 
     memset(trainerCaseApp, 0, sizeof(TrainerCaseApp));
 
-    trainerCaseApp->trainerCard = ApplicationManager_Args(appMan);
+    trainerCaseApp->trainerCase = ApplicationManager_Args(appMan);
     trainerCaseApp->bgConfig = BgConfig_New(HEAP_ID_TRAINER_CASE);
 
     TrainerCaseApp_InitStrings(trainerCaseApp);
@@ -236,7 +236,7 @@ BOOL TrainerCaseApp_Init(ApplicationManager *appMan, int *state)
     u8 badgesObtained[MAX_BADGES];
 
     for (int badgeID = 0; badgeID < MAX_BADGES; badgeID++) {
-        if (trainerCaseApp->trainerCard->badges[badgeID].obtained) {
+        if (trainerCaseApp->trainerCase->badges[badgeID].obtained) {
             badgesObtained[badgeID] = TRUE;
         } else {
             badgesObtained[badgeID] = FALSE;
@@ -248,7 +248,7 @@ BOOL TrainerCaseApp_Init(ApplicationManager *appMan, int *state)
     TrainerCard_AddWindows(trainerCaseApp->bgConfig, trainerCaseApp->windows);
 
     for (u8 gymLeader = 0; gymLeader < MAX_BADGES; gymLeader++) {
-        if ((trainerCaseApp->trainerCard->gymLeadersToHideUnused >> gymLeader) & 0x1) {
+        if ((trainerCaseApp->trainerCase->gymLeadersToHideUnused >> gymLeader) & 0x1) {
             // never reached, relevant field is always 0
             TrainerCase_HideGymLeaderFace_Unused(trainerCaseApp, gymLeader);
         }
@@ -256,9 +256,9 @@ BOOL TrainerCaseApp_Init(ApplicationManager *appMan, int *state)
 
     Bg_CopyTilemapBufferToVRAM(trainerCaseApp->bgConfig, BG_LAYER_MAIN_3);
 
-    TrainerCard_DrawFrontText(trainerCaseApp->windows, trainerCaseApp->trainerCard);
+    TrainerCard_DrawFrontText(trainerCaseApp->windows, trainerCaseApp->trainerCase);
 
-    if (trainerCaseApp->trainerCard->liveTimeDisplay) {
+    if (trainerCaseApp->trainerCase->liveTimeDisplay) {
         TrainerCard_BlinkPlaytimeColon(&trainerCaseApp->windows[TRAINER_CARD_WINDOW_TIME], TRUE, trainerCaseApp->colonString);
     }
 
@@ -271,8 +271,8 @@ BOOL TrainerCaseApp_Init(ApplicationManager *appMan, int *state)
     for (u8 badgeID = 0; badgeID < MAX_BADGES; badgeID++) {
         trainerCaseApp->polishingProgress[badgeID] = 0;
 
-        if (trainerCaseApp->trainerCard->badges[badgeID].obtained) {
-            u8 polishLevel = TrainerCase_GetBadgePolishLevel(trainerCaseApp->trainerCard->badges[badgeID].polish);
+        if (trainerCaseApp->trainerCase->badges[badgeID].obtained) {
+            u8 polishLevel = TrainerCase_GetBadgePolishLevel(trainerCaseApp->trainerCase->badges[badgeID].polish);
 
             if (polishLevel <= BADGE_POLISH_LEVEL_4_SPARKLES) {
                 if (polishLevel == BADGE_POLISH_LEVEL_4_SPARKLES) {
@@ -283,9 +283,9 @@ BOOL TrainerCaseApp_Init(ApplicationManager *appMan, int *state)
             }
 
             if (polishLevel == BADGE_POLISH_LEVEL_2_SPARKLES) {
-                Sprite_SetDrawFlag(trainerCaseApp->spriteData.sprites[TRAINER_CARD_TWO_SPARKLES_SPRITES_INDEX + badgeID], TRUE);
+                Sprite_SetDrawFlag(trainerCaseApp->spriteData.sprites[TRAINER_CASE_TWO_SPARKLES_SPRITES_INDEX + badgeID], TRUE);
             } else if (polishLevel == BADGE_POLISH_LEVEL_4_SPARKLES) {
-                Sprite_SetDrawFlag(trainerCaseApp->spriteData.sprites[TRAINER_CARD_FOUR_SPARKLES_SPRITES_INDEX + badgeID], TRUE);
+                Sprite_SetDrawFlag(trainerCaseApp->spriteData.sprites[TRAINER_CASE_FOUR_SPARKLES_SPRITES_INDEX + badgeID], TRUE);
             }
         }
     }
@@ -321,9 +321,9 @@ BOOL TrainerCaseApp_Main(ApplicationManager *appMan, int *state)
                 trainerCaseApp->badgeCaseButtonPushed = TRUE;
                 trainerCaseApp->badgeCaseButtonState = BUTTON_STATE_PUSHED;
 
-                Sprite_SetDrawFlag(trainerCaseApp->spriteData.sprites[TRAINER_CARD_BADGE_CASE_BUTTON_EFFECT_SPRITE_INDEX], TRUE);
-                Sprite_SetAnimateFlag(trainerCaseApp->spriteData.sprites[TRAINER_CARD_BADGE_CASE_BUTTON_EFFECT_SPRITE_INDEX], TRUE);
-                Sprite_SetAnim(trainerCaseApp->spriteData.sprites[TRAINER_CARD_BADGE_CASE_BUTTON_EFFECT_SPRITE_INDEX], BADGE_CASE_ANIM_BUTTON_PRESS_EFFECT);
+                Sprite_SetDrawFlag(trainerCaseApp->spriteData.sprites[TRAINER_CASE_BADGE_CASE_BUTTON_EFFECT_SPRITE_INDEX], TRUE);
+                Sprite_SetAnimateFlag(trainerCaseApp->spriteData.sprites[TRAINER_CASE_BADGE_CASE_BUTTON_EFFECT_SPRITE_INDEX], TRUE);
+                Sprite_SetAnim(trainerCaseApp->spriteData.sprites[TRAINER_CASE_BADGE_CASE_BUTTON_EFFECT_SPRITE_INDEX], BADGE_CASE_ANIM_BUTTON_PRESS_EFFECT);
 
                 trainerCaseApp->subState = BADGE_CASE_SUBSTATE_INITIAL;
                 trainerCaseApp->badgeCaseButtonAnimIndex = 0;
@@ -333,8 +333,8 @@ BOOL TrainerCaseApp_Main(ApplicationManager *appMan, int *state)
             } else {
                 u8 badgeID = trainerCaseApp->touchedRectangleIndex - TOUCH_RECTANGLE_COAL_BADGE;
 
-                if (trainerCaseApp->trainerCard->badges[badgeID].obtained) {
-                    u8 polishLevel = TrainerCase_GetBadgePolishLevel(trainerCaseApp->trainerCard->badges[badgeID].polish);
+                if (trainerCaseApp->trainerCase->badges[badgeID].obtained) {
+                    u8 polishLevel = TrainerCase_GetBadgePolishLevel(trainerCaseApp->trainerCase->badges[badgeID].polish);
                     TrainerCase_PlayBadgeChime(&trainerCaseApp->badgeChimeState, badgeID, polishLevel);
                 }
             }
@@ -351,7 +351,7 @@ BOOL TrainerCaseApp_Main(ApplicationManager *appMan, int *state)
                 trainerCaseApp->badgeCaseButtonState = BUTTON_STATE_SPRING_BACK;
             }
 
-            if (trainerCaseApp->trainerCard->badgesInteractable) {
+            if (trainerCaseApp->trainerCase->badgesInteractable) {
                 TrainerCase_ResetBadgePolishingState(&trainerCaseApp->badgePolishingState);
             }
 
@@ -366,7 +366,7 @@ BOOL TrainerCaseApp_Main(ApplicationManager *appMan, int *state)
             }
         }
 
-        TrainerCase_UpdatePlayTime(trainerCaseApp, trainerCaseApp->trainerCard->liveTimeDisplay);
+        TrainerCase_UpdatePlayTime(trainerCaseApp, trainerCaseApp->trainerCase->liveTimeDisplay);
         break;
     case TRAINER_CASE_STATE_EXIT:
         if (IsScreenFadeDone()) {
@@ -477,13 +477,13 @@ static void TrainerCase_SetVRAMBanks(void)
     GXLayers_SetBanks(&banks);
 }
 
-static void TrainerCase_LoadCardPalette(u8 level, u8 pokedexObtained, NARC *narc)
+static void TrainerCase_LoadCardPalette(u8 cardLevel, u8 pokedexObtained, NARC *narc)
 {
     void *nclrBuffer;
     NNSG2dPaletteData *paletteData;
 
     if (pokedexObtained) {
-        switch (level) {
+        switch (cardLevel) {
         case TRAINER_CARD_LEVEL_NORMAL:
             nclrBuffer = Graphics_GetPlttDataFromOpenNARC(narc, trainer_card_normal_NCLR, &paletteData, HEAP_ID_TRAINER_CASE);
             break;
@@ -678,7 +678,7 @@ static void TrainerCase_DrawTrainerCard(TrainerCaseApp *trainerCaseApp, NARC *na
     GXS_LoadBGPltt(cardPaletteData->pRawData, 0, PALETTE_SIZE_EXT_BYTES);
     Heap_Free(nclrBuffer);
 
-    TrainerCase_LoadCardPalette(trainerCaseApp->trainerCard->level, trainerCaseApp->trainerCard->pokedexObtained, narc);
+    TrainerCase_LoadCardPalette(trainerCaseApp->trainerCase->cardLevel, trainerCaseApp->trainerCase->pokedexObtained, narc);
 
     NNSG2dPaletteData *lidPaletteData;
 
@@ -688,12 +688,12 @@ static void TrainerCase_DrawTrainerCard(TrainerCaseApp *trainerCaseApp, NARC *na
     GX_LoadBGPltt(lidPaletteData->pRawData, 0, PALETTE_SIZE_EXT_BYTES);
     Heap_Free(nclrBuffer);
 
-    TrainerCase_LoadCasePalette(trainerCaseApp->trainerCard->gameVersion, narc);
+    TrainerCase_LoadCasePalette(trainerCaseApp->trainerCase->gameVersion, narc);
 
-    if (trainerCaseApp->trainerCard->trainerAppearance == 0xFF) {
+    if (trainerCaseApp->trainerCase->trainerAppearance == 0xFF) {
         s32 trainerSpriteNarcIndex, trainerScreenDataNarcIndex, trainerPaletteNarcIndex;
 
-        switch (trainerCaseApp->trainerCard->gameVersion) {
+        switch (trainerCaseApp->trainerCase->gameVersion) {
         case VERSION_DIAMOND:
         case VERSION_PEARL:
             trainerSpriteNarcIndex = player_dp_tiles_NCGR;
@@ -717,13 +717,13 @@ static void TrainerCase_DrawTrainerCard(TrainerCaseApp *trainerCaseApp, NARC *na
             Graphics_LoadPaletteFromOpenNARC(narc, trainerPaletteNarcIndex, PAL_LOAD_SUB_BG, PLTT_OFFSET(4), 2 * PALETTE_SIZE_BYTES, HEAP_ID_TRAINER_CASE);
         }
 
-        if (trainerCaseApp->trainerCard->gender == GENDER_MALE) {
+        if (trainerCaseApp->trainerCase->gender == GENDER_MALE) {
             trainerCaseApp->trainerScreenDataNSCRBuffer = Graphics_GetScrnDataFromOpenNARC(narc, trainerScreenDataNarcIndex, FALSE, &trainerCaseApp->trainerScreenData, HEAP_ID_TRAINER_CASE);
         } else {
             trainerCaseApp->trainerScreenDataNSCRBuffer = Graphics_GetScrnDataFromOpenNARC(narc, trainerScreenDataNarcIndex + 1, FALSE, &trainerCaseApp->trainerScreenData, HEAP_ID_TRAINER_CASE);
         }
     } else {
-        trainerCaseApp->trainerSprite = LoadMemberFromOpenNARC(narc, sTrainerAppearanceNarcIndices[trainerCaseApp->trainerCard->trainerAppearance], FALSE, HEAP_ID_TRAINER_CASE, FALSE);
+        trainerCaseApp->trainerSprite = LoadMemberFromOpenNARC(narc, sTrainerAppearanceNarcIndices[trainerCaseApp->trainerCase->trainerAppearance], FALSE, HEAP_ID_TRAINER_CASE, FALSE);
         GF_ASSERT(trainerCaseApp->trainerSprite != NULL);
 
         BOOL success = NNS_G2dGetUnpackedBGCharacterData(trainerCaseApp->trainerSprite, &trainerCaseApp->trainerCharacterData);
@@ -731,7 +731,7 @@ static void TrainerCase_DrawTrainerCard(TrainerCaseApp *trainerCaseApp, NARC *na
 
         trainerCaseApp->trainerScreenDataNSCRBuffer = Graphics_GetScrnDataFromOpenNARC(narc, trainer_appearance_NSCR, FALSE, &trainerCaseApp->trainerScreenData, HEAP_ID_TRAINER_CASE);
 
-        TrainerCase_LoadTrainerAppearancePalette(trainerCaseApp->trainerCard->trainerAppearance, narc);
+        TrainerCase_LoadTrainerAppearancePalette(trainerCaseApp->trainerCase->trainerAppearance, narc);
     }
 
     TrainerCase_DrawTrainer(trainerCaseApp);
@@ -748,7 +748,7 @@ static void TrainerCase_DrawTrainerCard(TrainerCaseApp *trainerCaseApp, NARC *na
     Graphics_LoadTilesToBgLayerFromOpenNARC(narc, badge_case_lid_tiles_NCGR, trainerCaseApp->bgConfig, BG_LAYER_MAIN_3, 0, 0, FALSE, HEAP_ID_TRAINER_CASE);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, badge_case_lid_NSCR, trainerCaseApp->bgConfig, BG_LAYER_MAIN_3, 0, 0, FALSE, HEAP_ID_TRAINER_CASE);
 
-    TrainerCase_ConvertSignature1BppTo8Bpp(trainerCaseApp->trainerCard->signature, trainerCaseApp->signature);
+    TrainerCase_ConvertSignature1BppTo8Bpp(trainerCaseApp->trainerCase->signature, trainerCaseApp->signature);
 }
 
 static void TrainerCase_TeardownBgs(BgConfig *bgConfig)
@@ -800,7 +800,7 @@ static BOOL TrainerCase_FlipTrainerCard(TrainerCaseApp *trainerCaseApp)
             TrainerCard_ClearWindows(trainerCaseApp->windows, TRAINER_CARD_WINDOW_ID, TRAINER_CARD_WINDOW_ADVENTURE_STARTED);
             TrainerCase_ClearTrainerSprite(trainerCaseApp);
             Bg_ClearTilemap(trainerCaseApp->bgConfig, BG_LAYER_SUB_3);
-            TrainerCard_DrawBackText(trainerCaseApp->windows, trainerCaseApp->trainerCard);
+            TrainerCard_DrawBackText(trainerCaseApp->windows, trainerCaseApp->trainerCase);
             TrainerCase_DisplaySignature(trainerCaseApp->bgConfig, BG_LAYER_SUB_3, trainerCaseApp->signature);
         } else {
             trainerCaseApp->viewingBack = FALSE;
@@ -808,7 +808,7 @@ static BOOL TrainerCase_FlipTrainerCard(TrainerCaseApp *trainerCaseApp)
             TrainerCard_ClearWindows(trainerCaseApp->windows, TRAINER_CARD_WINDOW_HOF_DEBUT, TRAINER_CARD_WINDOW_LINK_TRADES);
             Bg_ClearTilemap(trainerCaseApp->bgConfig, BG_LAYER_SUB_3);
             TrainerCase_DrawTrainer(trainerCaseApp);
-            TrainerCard_DrawFrontText(trainerCaseApp->windows, trainerCaseApp->trainerCard);
+            TrainerCard_DrawFrontText(trainerCaseApp->windows, trainerCaseApp->trainerCase);
         }
 
         trainerCaseApp->subState++;
@@ -929,13 +929,13 @@ static int TrainerCase_GetPlayerInput(TrainerCaseApp *trainerCaseApp)
         trainerCaseApp->polishingEnabled = TRUE;
     }
 
-    trainerCaseApp->touchedRectangleIndex = TrainerCase_CheckBadgeOrButtonTouched(trainerCaseApp->bgConfig, sTouchRectangleSets[trainerCaseApp->trainerCard->badgesInteractable].touchRectangles[trainerCaseApp->badgeCaseOpenState]);
+    trainerCaseApp->touchedRectangleIndex = TrainerCase_CheckBadgeOrButtonTouched(trainerCaseApp->bgConfig, sTouchRectangleSets[trainerCaseApp->trainerCase->badgesInteractable].touchRectangles[trainerCaseApp->badgeCaseOpenState]);
 
     if (trainerCaseApp->touchedRectangleIndex != TOUCHSCREEN_INPUT_NONE) {
         touchScreenInput = TRUE;
         input = INPUT_TOUCH_SCREEN_TAP;
     } else if (gSystem.touchHeld) {
-        trainerCaseApp->touchedRectangleIndex = TrainerCase_CheckBadgeOrButtonHeld(trainerCaseApp->bgConfig, sTouchRectangleSets[trainerCaseApp->trainerCard->badgesInteractable].touchRectangles[trainerCaseApp->badgeCaseOpenState]);
+        trainerCaseApp->touchedRectangleIndex = TrainerCase_CheckBadgeOrButtonHeld(trainerCaseApp->bgConfig, sTouchRectangleSets[trainerCaseApp->trainerCase->badgesInteractable].touchRectangles[trainerCaseApp->badgeCaseOpenState]);
 
         if (trainerCaseApp->polishingEnabled) {
             touchScreenInput = TRUE;
@@ -963,7 +963,7 @@ static void TrainerCase_HandleBadgePolishing(TrainerCaseApp *trainerCaseApp)
 
     if (gSystem.touchX != (u16)TOUCHSCREEN_INPUT_NONE && gSystem.touchY != (u16)TOUCHSCREEN_INPUT_NONE && trainerCaseApp->lastTouchedX != (u16)TOUCHSCREEN_INPUT_NONE && trainerCaseApp->lastTouchedY != (u16)TOUCHSCREEN_INPUT_NONE) {
         if (trainerCaseApp->touchedRectangleIndex != TOUCHSCREEN_INPUT_NONE && trainerCaseApp->touchedRectangleIndex != TOUCH_RECTANGLE_OPEN_CLOSE_BADGE_CASE) {
-            if (trainerCaseApp->trainerCard->badges[trainerCaseApp->touchedRectangleIndex - TOUCH_RECTANGLE_COAL_BADGE].obtained) {
+            if (trainerCaseApp->trainerCase->badges[trainerCaseApp->touchedRectangleIndex - TOUCH_RECTANGLE_COAL_BADGE].obtained) {
                 if (trainerCaseApp->lastTouchedX > gSystem.touchX) {
                     distance = trainerCaseApp->lastTouchedX - gSystem.touchX;
                     trainerCaseApp->badgePolishingState.currentXDirection = -1;
@@ -1061,16 +1061,16 @@ static void TrainerCase_TransferGraphicsOnVBlank(void *unused)
 
 static void TrainerCase_PolishBadge(TrainerCaseApp *trainerCaseApp, u8 badgeID)
 {
-    int updatedPolish = trainerCaseApp->trainerCard->badges[badgeID].polish + 1;
+    int updatedPolish = trainerCaseApp->trainerCase->badges[badgeID].polish + 1;
 
     if (updatedPolish < MAX_BADGE_POLISH + 1) {
-        u8 currentPolishLevel = TrainerCase_GetBadgePolishLevel(trainerCaseApp->trainerCard->badges[badgeID].polish);
+        u8 currentPolishLevel = TrainerCase_GetBadgePolishLevel(trainerCaseApp->trainerCase->badges[badgeID].polish);
 
         trainerCaseApp->polishingProgress[badgeID]++;
 
         if (trainerCaseApp->polishingProgress[badgeID] >= sPolishThresholds[currentPolishLevel]) {
             trainerCaseApp->polishingProgress[badgeID] = 0;
-            trainerCaseApp->trainerCard->badges[badgeID].polish++;
+            trainerCaseApp->trainerCase->badges[badgeID].polish++;
 
             u8 updatedPolishLevel = TrainerCase_GetBadgePolishLevel(updatedPolish);
             GF_ASSERT(currentPolishLevel <= updatedPolishLevel);
@@ -1085,10 +1085,10 @@ static void TrainerCase_PolishBadge(TrainerCaseApp *trainerCaseApp, u8 badgeID)
                 }
 
                 if (updatedPolishLevel == BADGE_POLISH_LEVEL_2_SPARKLES) {
-                    Sprite_SetDrawFlag(trainerCaseApp->spriteData.sprites[TRAINER_CARD_TWO_SPARKLES_SPRITES_INDEX + badgeID], TRUE);
+                    Sprite_SetDrawFlag(trainerCaseApp->spriteData.sprites[TRAINER_CASE_TWO_SPARKLES_SPRITES_INDEX + badgeID], TRUE);
                 } else if (updatedPolishLevel == BADGE_POLISH_LEVEL_4_SPARKLES) {
-                    Sprite_SetDrawFlag(trainerCaseApp->spriteData.sprites[TRAINER_CARD_TWO_SPARKLES_SPRITES_INDEX + badgeID], FALSE);
-                    Sprite_SetDrawFlag(trainerCaseApp->spriteData.sprites[TRAINER_CARD_FOUR_SPARKLES_SPRITES_INDEX + badgeID], TRUE);
+                    Sprite_SetDrawFlag(trainerCaseApp->spriteData.sprites[TRAINER_CASE_TWO_SPARKLES_SPRITES_INDEX + badgeID], FALSE);
+                    Sprite_SetDrawFlag(trainerCaseApp->spriteData.sprites[TRAINER_CASE_FOUR_SPARKLES_SPRITES_INDEX + badgeID], TRUE);
                 }
             }
         }
@@ -1272,7 +1272,7 @@ static void TrainerCase_UpdatePlayTime(TrainerCaseApp *trainerCaseApp, u8 liveTi
 
     if (!trainerCaseApp->viewingBack) {
         if (trainerCaseApp->timer == 15) {
-            TrainerCard_DrawUpdatedTime(trainerCaseApp->windows, trainerCaseApp->trainerCard, trainerCaseApp->unusedString);
+            TrainerCard_DrawUpdatedTime(trainerCaseApp->windows, trainerCaseApp->trainerCase, trainerCaseApp->unusedString);
 
             TrainerCard_BlinkPlaytimeColon(&(trainerCaseApp->windows[TRAINER_CARD_WINDOW_TIME]), TRUE, trainerCaseApp->colonString);
         } else if (trainerCaseApp->timer == 0) {
