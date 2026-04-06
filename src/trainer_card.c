@@ -83,7 +83,7 @@ void TrainerCard_Init(u8 badgesInteractable, u8 liveTimeDisplay, u8 gymLeadersTo
         checksum ^= buffer[i];
     }
 
-    trainerCard->checksum = checksum;
+    trainerCard->dummyChecksum = checksum;
 
     trainerCard->unk_66A = 0;
 }
@@ -141,7 +141,7 @@ static void TrainerCard_SetFields(u8 badgesInteractable, u8 gameVersion, u8 leve
     trainerCard->gameVersion = gameVersion;
     trainerCard->level = level;
     trainerCard->language = language;
-    trainerCard->gymLeadersToHide_Unused = gymLeadersToHide;
+    trainerCard->gymLeadersToHideUnused = gymLeadersToHide;
 }
 
 static void TrainerCard_SetTrainerInfo(u16 id, u8 gender, const u16 *name, u32 money, u32 seenPokemon, BOOL pokedexObtained, u32 score, TrainerCard *trainerCard)
@@ -213,7 +213,7 @@ static void TrainerCard_SetLinkDataAndSignature(u32 timesLinked, u32 linkBattleW
         trainerCard->linkTrades = TRAINER_CARD_MAX_LINK_TRADES;
     }
 
-    MI_CpuCopy8(signature, trainerCard->signature, SIGNATURE_WIDTH * SIGNATURE_HEIGHT * 8);
+    MI_CpuCopy8(signature, trainerCard->signature, SIGNATURE_WIDTH * SIGNATURE_HEIGHT * TILE_SIZE_1BPP);
 }
 
 static void TrainerCard_SetBadgeData(TrainerInfo *trainerInfo, FieldSystem *fieldSystem, TrainerCard *trainerCard)
@@ -269,7 +269,7 @@ static BOOL sub_02072230(FieldTask *param0)
         }
         break;
     case 10:
-        FieldSystem_OpenTrainerCardScreen(fieldSystem, v1->unk_04);
+        FieldSystem_OpenTrainerCase(fieldSystem, v1->unk_04);
         v1->unk_00 = 11;
         break;
     case 11:

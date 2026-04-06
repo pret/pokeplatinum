@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_TRAINERCARD_SAVEDATA_H
 #define POKEPLATINUM_TRAINERCARD_SAVEDATA_H
 
+#include "constants/graphics.h"
+
 #include "badges.h"
 #include "savedata.h"
 #include "trainer_card.h"
@@ -11,7 +13,7 @@ typedef struct TrainerCardSaveDataBadge {
 
 typedef struct TrainerCardSaveData {
     TrainerCardSaveDataBadge badges[MAX_BADGES];
-    u8 signature[SIGNATURE_WIDTH * SIGNATURE_HEIGHT * 8];
+    u8 signature[SIGNATURE_WIDTH * SIGNATURE_HEIGHT * TILE_SIZE_1BPP];
 } TrainerCardSaveData;
 
 int TrainerCardSaveData_Size(void);

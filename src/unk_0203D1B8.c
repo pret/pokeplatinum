@@ -42,6 +42,7 @@
 #include "applications/pokedex/pokedex_main.h"
 #include "applications/pokemon_summary_screen/main.h"
 #include "applications/town_map/main.h"
+#include "applications/trainer_case/main.h"
 #include "battle/battle_main.h"
 #include "choose_starter/choose_starter_app.h"
 #include "cutscenes/boat_cutscene.h"
@@ -72,7 +73,6 @@
 #include "overlay101/ov101_021D0D80.h"
 #include "overlay111/ov111_021D0D80.h"
 #include "savedata/save_table.h"
-#include "trainer_card_screen/trainer_card_screen.h"
 
 #include "bag.h"
 #include "bag_context.h"
@@ -145,7 +145,7 @@ FS_EXTERN_OVERLAY(overlay58);
 FS_EXTERN_OVERLAY(overlay59);
 FS_EXTERN_OVERLAY(overlay61);
 FS_EXTERN_OVERLAY(overlay64);
-FS_EXTERN_OVERLAY(trainer_card_screen);
+FS_EXTERN_OVERLAY(trainer_case);
 FS_EXTERN_OVERLAY(overlay72);
 FS_EXTERN_OVERLAY(options_menu);
 FS_EXTERN_OVERLAY(choose_starter);
@@ -1255,15 +1255,15 @@ void sub_0203DFE8(
     FieldTask_InitCall(param0, sub_0203DE98, v2);
 }
 
-void FieldSystem_OpenTrainerCardScreen(FieldSystem *fieldSystem, TrainerCard *trainerCard)
+void FieldSystem_OpenTrainerCase(FieldSystem *fieldSystem, TrainerCard *trainerCard)
 {
-    FS_EXTERN_OVERLAY(trainer_card_screen);
+    FS_EXTERN_OVERLAY(trainer_case);
 
     static const ApplicationManagerTemplate template = {
-        .init = TrainerCardScreen_Init,
-        .main = TrainerCardScreen_Main,
-        .exit = TrainerCardScreen_Exit,
-        .overlayID = FS_OVERLAY_ID(trainer_card_screen)
+        .init = TrainerCaseApp_Init,
+        .main = TrainerCaseApp_Main,
+        .exit = TrainerCaseApp_Exit,
+        .overlayID = FS_OVERLAY_ID(trainer_case)
     };
 
     FieldSystem_StartChildProcess(fieldSystem, &template, trainerCard);

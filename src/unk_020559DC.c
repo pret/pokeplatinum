@@ -19,7 +19,7 @@
 #include "special_encounter.h"
 #include "system_data.h"
 #include "system_vars.h"
-#include "trainer_card_badge_dirt.h"
+#include "trainer_case_badge_dirt.h"
 #include "tv_episode_segment.h"
 #include "underground.h"
 #include "unk_0202C858.h"
@@ -88,7 +88,7 @@ static void sub_02055AC0(FieldSystem *fieldSystem, s32 daysPassed)
 {
     Underground_HandleDailyEvents(FieldSystem_GetSaveData(fieldSystem), daysPassed);
     sub_0203F1FC(fieldSystem);
-    TrainerCard_AccumulateBadgeDirt(fieldSystem->saveData, daysPassed);
+    TrainerCase_AccumulateBadgeDirt(fieldSystem->saveData, daysPassed);
     RecordMixedRNG_AdvanceEntries(SaveData_GetRecordMixedRNG(fieldSystem->saveData), daysPassed);
     SpecialEncounter_SetMixedRecordDailies(SaveData_GetSpecialEncounters(fieldSystem->saveData), RecordMixedRNG_GetRand(SaveData_GetRecordMixedRNG(fieldSystem->saveData)));
 

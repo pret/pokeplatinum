@@ -1281,7 +1281,7 @@ static BOOL StartMenu_TrainerCard(FieldTask *fieldTask)
     menu->taskData = TrainerCard_New(HEAP_ID_FIELD2);
 
     TrainerCard_Init(TRUE, TRUE, 0, 0xFF, fieldSystem, (TrainerCard *)menu->taskData);
-    FieldSystem_OpenTrainerCardScreen(fieldSystem, (TrainerCard *)menu->taskData);
+    FieldSystem_OpenTrainerCase(fieldSystem, (TrainerCard *)menu->taskData);
 
     menu->callback = StartMenu_ExitTrainerCard;
     return FALSE;

@@ -86,7 +86,7 @@ void sub_0203DFE8(
     const u16 *param5,
     u16 *param6);
 void sub_0203E09C(FieldSystem *fieldSystem, TrainerCard *param1);
-void FieldSystem_OpenTrainerCardScreen(FieldSystem *fieldSystem, TrainerCard *trainerCard);
+void FieldSystem_OpenTrainerCase(FieldSystem *fieldSystem, TrainerCard *trainerCard);
 BOOL FieldSystem_OpenPokedex(FieldSystem *fieldSystem, PokedexOverlayArgs *args);
 void FieldSystem_LaunchChooseStarterApp(FieldSystem *fieldSystem, ChooseStarterData *param1);
 void sub_0203E0D0(FieldSystem *fieldSystem);

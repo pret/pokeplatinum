@@ -1,6 +1,7 @@
 #ifndef POKEPLATINUM_TRAINER_CARD_H
 #define POKEPLATINUM_TRAINER_CARD_H
 
+#include "constants/graphics.h"
 #include "constants/string.h"
 
 #include "field/field_system_decl.h"
@@ -25,7 +26,7 @@ typedef struct TrainerCardBadge {
 typedef struct TrainerCard {
     u8 gameVersion;
     u8 language;
-    u8 gymLeadersToHide_Unused;
+    u8 gymLeadersToHideUnused;
     u8 level;
     u8 badgesInteractable : 1;
     u8 liveTimeDisplay : 1;
@@ -54,12 +55,12 @@ typedef struct TrainerCard {
     u32 linkBattleLosses;
     u32 linkTrades;
     TrainerCardBadge badges[MAX_BADGES];
-    u8 signature[SIGNATURE_WIDTH * SIGNATURE_HEIGHT * 8];
-    u16 checksum; // calculated but never used for anything
+    u8 signature[SIGNATURE_WIDTH * SIGNATURE_HEIGHT * TILE_SIZE_1BPP];
+    u16 dummyChecksum; // calculated but never used for anything
     u16 unk_66A;
 } TrainerCard;
 
-void TrainerCard_Init(u8 param0, u8 param1, u8 gymLeadersToHide, u8 trainerAppearance, FieldSystem *fieldSystem, TrainerCard *trainerCard);
+void TrainerCard_Init(u8 badgesInteractable, u8 liveTimeDisplay, u8 gymLeadersToHide, u8 trainerAppearance, FieldSystem *fieldSystem, TrainerCard *trainerCard);
 TrainerCard *TrainerCard_New(u16 heapID);
 void TrainerCard_Free(TrainerCard *trainerCard);
 u8 TrainerCard_CalculateLevel(FieldSystem *fieldSystem);
