@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/approach_type.h"
 #include "constants/battle.h"
 #include "generated/bg_event_types.h"
 #include "generated/map_headers.h"
@@ -84,10 +85,10 @@ void ScriptManager_Set(FieldSystem *fieldSystem, u16 scriptID, MapObject *object
     FieldSystem_CreateTask(fieldSystem, FieldTask_RunScript, scriptManager);
 }
 
-void ScriptManager_SetApproachingTrainer(FieldSystem *fieldSystem, MapObject *object, int sightRange, int direction, int scriptID, int trainerID, int approachType, int approachNum)
+void ScriptManager_SetApproachingTrainer(FieldSystem *fieldSystem, MapObject *object, int sightRange, int direction, int scriptID, int trainerID, enum ApproachType approachType, int approachNum)
 {
     ScriptManager *scriptManager = FieldTask_GetEnv(fieldSystem->task);
-    ApproachingTrainerTask *trainer = &scriptManager->trainers[approachNum];
+    ApproachingTrainer *trainer = &scriptManager->trainers[approachNum];
 
     trainer->sightRange = sightRange;
     trainer->direction = direction;
@@ -269,7 +270,7 @@ static void ScriptContext_LoadFromCurrentMap(FieldSystem *fieldSystem, ScriptCon
 
 void *ScriptManager_GetMemberPtr(ScriptManager *scriptManager, u32 member)
 {
-    ApproachingTrainerTask *trainer;
+    ApproachingTrainer *trainer;
 
     switch (member) {
     case 0:

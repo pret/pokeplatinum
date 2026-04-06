@@ -9,6 +9,8 @@
 #define MAX_DIR   4
 #define DIR_NONE  -1
 
+#define DISTANCE_INVALID -1
+
 // Status Flags
 #define MAP_OBJ_STATUS_0                           (1 << 0)
 #define MAP_OBJ_STATUS_1                           (1 << 1)
