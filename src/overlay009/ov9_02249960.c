@@ -1686,18 +1686,18 @@ static void ov9_02249CC4(DistWorldSystem *param0)
     v0->boulderPuzzleFlags = 0;
 
     {
-        u32 v2 = 1 << DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_B4F_1
-            | 1 << DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_B5F_1;
+        u32 v2 = 1 << DIST_WORLD_PLATFORM_FLAG_B4F_1
+            | 1 << DIST_WORLD_PLATFORM_FLAG_B5F_1;
 
         if (DistWorldSystem_GetMapHeaderID(param0) == 581) {
-            v2 = 1 << DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_B1F_1
-                | 1 << DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_B2F_1
-                | 1 << DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_B3F_1
-                | 1 << DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_B4F_1
-                | 1 << DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_B4F_2
-                | 1 << DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_B5F_1
-                | 1 << DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_B6F_1
-                | 1 << DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_B7F_1;
+            v2 = 1 << DIST_WORLD_PLATFORM_FLAG_B1F_1
+                | 1 << DIST_WORLD_PLATFORM_FLAG_B2F_1
+                | 1 << DIST_WORLD_PLATFORM_FLAG_B3F_1
+                | 1 << DIST_WORLD_PLATFORM_FLAG_B4F_1
+                | 1 << DIST_WORLD_PLATFORM_FLAG_B4F_2
+                | 1 << DIST_WORLD_PLATFORM_FLAG_B5F_1
+                | 1 << DIST_WORLD_PLATFORM_FLAG_B6F_1
+                | 1 << DIST_WORLD_PLATFORM_FLAG_B7F_1;
         }
 
         SetPersistedMovingPlatformFlags(param0, v2);
@@ -1760,7 +1760,7 @@ static void SetPersistedMovingPlatformFlag(DistWorldSystem *system, u32 index)
 {
     DistWorldPersistedData *persistedData = system->persistedData;
 
-    GF_ASSERT(index < DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_COUNT);
+    GF_ASSERT(index < DIST_WORLD_PLATFORM_FLAG_COUNT);
     persistedData->movingPlatformFlags |= (1 << index);
 }
 
@@ -1768,7 +1768,7 @@ static void ClearPersistedMovingPlatformFlag(DistWorldSystem *system, u32 index)
 {
     DistWorldPersistedData *persistedData = system->persistedData;
 
-    GF_ASSERT(index < DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_COUNT);
+    GF_ASSERT(index < DIST_WORLD_PLATFORM_FLAG_COUNT);
     persistedData->movingPlatformFlags &= ~(1 << index);
 }
 
@@ -1776,7 +1776,7 @@ static BOOL CheckPersistedMovingPlatformFlag(DistWorldSystem *system, u32 index)
 {
     DistWorldPersistedData *persistedData = system->persistedData;
 
-    GF_ASSERT(index < DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_COUNT);
+    GF_ASSERT(index < DIST_WORLD_PLATFORM_FLAG_COUNT);
     return persistedData->movingPlatformFlags & (1 << index) ? TRUE : FALSE;
 }
 
@@ -5178,18 +5178,18 @@ static int DistWorldElevatorPlatform_BeginMovement(DistWorldSystem *system, Dist
 
         switch (elevatorPlatform->pathIndex) {
         case 13:
-            SetPersistedMovingPlatformFlag(system, DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_B4F_1);
-            ClearPersistedMovingPlatformFlag(system, DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_B4F_2);
+            SetPersistedMovingPlatformFlag(system, DIST_WORLD_PLATFORM_FLAG_B4F_1);
+            ClearPersistedMovingPlatformFlag(system, DIST_WORLD_PLATFORM_FLAG_B4F_2);
             break;
 
         case 10:
-            ClearPersistedMovingPlatformFlag(system, DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_B5F_3);
+            ClearPersistedMovingPlatformFlag(system, DIST_WORLD_PLATFORM_FLAG_B5F_3);
             break;
 
         case 11:
-            SetPersistedMovingPlatformFlag(system, DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_B3F_2);
-            ClearPersistedMovingPlatformFlag(system, DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_B4F_1);
-            ClearPersistedMovingPlatformFlag(system, DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_B5F_3);
+            SetPersistedMovingPlatformFlag(system, DIST_WORLD_PLATFORM_FLAG_B3F_2);
+            ClearPersistedMovingPlatformFlag(system, DIST_WORLD_PLATFORM_FLAG_B4F_1);
+            ClearPersistedMovingPlatformFlag(system, DIST_WORLD_PLATFORM_FLAG_B5F_3);
             break;
         }
     }
@@ -5355,11 +5355,11 @@ static int DistWorldElevatorPlatform_ChangeMaps(DistWorldSystem *system, DistWor
     ov9_0224E0DC(elevatorPlatform->animator, TRUE);
 
     if (elevatorPlatform->nextPathIndex == ELEVATOR_PLATFORM_PATH_INVALID) {
-        if (elevatorPlatform->persistedFlagToSet != DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_INVALID) {
+        if (elevatorPlatform->persistedFlagToSet != DIST_WORLD_PLATFORM_FLAG_INVALID) {
             SetPersistedMovingPlatformFlag(system, elevatorPlatform->persistedFlagToSet);
         }
 
-        if (elevatorPlatform->persistedFlagToClear != DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_INVALID) {
+        if (elevatorPlatform->persistedFlagToClear != DIST_WORLD_PLATFORM_FLAG_INVALID) {
             ClearPersistedMovingPlatformFlag(system, elevatorPlatform->persistedFlagToClear);
         }
 
@@ -5472,7 +5472,7 @@ static int DistWorldElevatorPlatform_EndMovement(DistWorldSystem *system, DistWo
         if (elevatorPlatform->dir == MOVING_PLATFORM_ELEVATOR_DIR_DOWN) {
             switch (elevatorPlatform->pathIndex) {
             case 9:
-                SetPersistedMovingPlatformFlag(system, DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_B5F_1);
+                SetPersistedMovingPlatformFlag(system, DIST_WORLD_PLATFORM_FLAG_B5F_1);
                 InitSpecificMovingPlatformPropForMap(system, MAP_HEADER_DISTORTION_WORLD_B5F, 0);
                 break;
             }
@@ -5892,7 +5892,7 @@ static void InitMovingPlatformPropsForMapEx(DistWorldSystem *system, const DistW
     while (mapTemplates->templates[i] != NULL) {
         u32 persistedFlag = mapTemplates->templates[i]->persistedFlag;
 
-        if ((persistedFlag == DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_INVALID || CheckPersistedMovingPlatformFlag(system, persistedFlag) == TRUE) && GetAnimatorForMovingPlatform(system, mapTemplates->templates[i]->index, mapHeaderID) == NULL) {
+        if ((persistedFlag == DIST_WORLD_PLATFORM_FLAG_INVALID || CheckPersistedMovingPlatformFlag(system, persistedFlag) == TRUE) && GetAnimatorForMovingPlatform(system, mapTemplates->templates[i]->index, mapHeaderID) == NULL) {
             DistWorldMovingPlatformPropAnimator *animator = FindUnusedMovingPlatformPropAnimator(system);
             DistWorldMovingPlatformPropAnimator_InitFromTemplate(system, animator, mapTemplates->templates[i], mapHeaderID);
         }
@@ -8330,7 +8330,7 @@ static int ov9_0224FEDC(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
         *param2 = 4;
 
         {
-            SetPersistedMovingPlatformFlag(param0, DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_B5F_1);
+            SetPersistedMovingPlatformFlag(param0, DIST_WORLD_PLATFORM_FLAG_B5F_1);
             InitSpecificMovingPlatformPropForMap(param0, 579, 0);
         }
     }
@@ -10176,7 +10176,7 @@ static const DistWorldMovingPlatformTemplate sMovingPlatformMapTemplate1F_1 = {
     .elevatorDir = MOVING_PLATFORM_ELEVATOR_DIR_DOWN,
     .destIndex = 0x0,
     .propKind = PROP_KIND_MEDIUM_ELEVATOR_PLATFORM_1,
-    .persistedFlag = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_INVALID
+    .persistedFlag = DIST_WORLD_PLATFORM_FLAG_INVALID
 };
 
 static const DistWorldMovingPlatformTemplate *sMovingPlatformsMapTemplates1F[] = {
@@ -10193,7 +10193,7 @@ static const DistWorldMovingPlatformTemplate sMovingPlatformMapTemplateB1F_1 = {
     .elevatorDir = MOVING_PLATFORM_ELEVATOR_DIR_UP,
     .destIndex = 0x0,
     .propKind = PROP_KIND_MEDIUM_ELEVATOR_PLATFORM_1,
-    .persistedFlag = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_B1F_1
+    .persistedFlag = DIST_WORLD_PLATFORM_FLAG_B1F_1
 };
 
 static const DistWorldMovingPlatformTemplate sMovingPlatformMapTemplateB1F_2 = {
@@ -10205,7 +10205,7 @@ static const DistWorldMovingPlatformTemplate sMovingPlatformMapTemplateB1F_2 = {
     .elevatorDir = MOVING_PLATFORM_ELEVATOR_DIR_DOWN,
     .destIndex = 0x0,
     .propKind = PROP_KIND_MEDIUM_ELEVATOR_PLATFORM_2,
-    .persistedFlag = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_INVALID
+    .persistedFlag = DIST_WORLD_PLATFORM_FLAG_INVALID
 };
 
 static const DistWorldMovingPlatformTemplate *sMovingPlatformsMapTemplatesB1F[] = {
@@ -10223,7 +10223,7 @@ static const DistWorldMovingPlatformTemplate sMovingPlatformMapTemplateB2F_1 = {
     .elevatorDir = MOVING_PLATFORM_ELEVATOR_DIR_UP,
     .destIndex = 0x1,
     .propKind = PROP_KIND_MEDIUM_ELEVATOR_PLATFORM_2,
-    .persistedFlag = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_B2F_1
+    .persistedFlag = DIST_WORLD_PLATFORM_FLAG_B2F_1
 };
 
 static const DistWorldMovingPlatformTemplate sMovingPlatformMapTemplateB2F_2 = {
@@ -10235,7 +10235,7 @@ static const DistWorldMovingPlatformTemplate sMovingPlatformMapTemplateB2F_2 = {
     .elevatorDir = MOVING_PLATFORM_ELEVATOR_DIR_NONE,
     .destIndex = 0x0,
     .propKind = PROP_KIND_MEDIUM_MOVING_PLATFORM_1,
-    .persistedFlag = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_INVALID
+    .persistedFlag = DIST_WORLD_PLATFORM_FLAG_INVALID
 };
 
 static const DistWorldMovingPlatformTemplate sMovingPlatformMapTemplateB2F_3 = {
@@ -10247,7 +10247,7 @@ static const DistWorldMovingPlatformTemplate sMovingPlatformMapTemplateB2F_3 = {
     .elevatorDir = MOVING_PLATFORM_ELEVATOR_DIR_NONE,
     .destIndex = 0x0,
     .propKind = PROP_KIND_MEDIUM_MOVING_PLATFORM_1,
-    .persistedFlag = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_INVALID
+    .persistedFlag = DIST_WORLD_PLATFORM_FLAG_INVALID
 };
 
 static const DistWorldMovingPlatformTemplate sMovingPlatformMapTemplateB2F_4 = {
@@ -10259,7 +10259,7 @@ static const DistWorldMovingPlatformTemplate sMovingPlatformMapTemplateB2F_4 = {
     .elevatorDir = MOVING_PLATFORM_ELEVATOR_DIR_NONE,
     .destIndex = 0x0,
     .propKind = PROP_KIND_MEDIUM_MOVING_PLATFORM_1,
-    .persistedFlag = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_INVALID
+    .persistedFlag = DIST_WORLD_PLATFORM_FLAG_INVALID
 };
 
 static const DistWorldMovingPlatformTemplate sMovingPlatformMapTemplateB2F_5 = {
@@ -10271,7 +10271,7 @@ static const DistWorldMovingPlatformTemplate sMovingPlatformMapTemplateB2F_5 = {
     .elevatorDir = MOVING_PLATFORM_ELEVATOR_DIR_NONE,
     .destIndex = 0x0,
     .propKind = PROP_KIND_MEDIUM_MOVING_PLATFORM_1,
-    .persistedFlag = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_INVALID
+    .persistedFlag = DIST_WORLD_PLATFORM_FLAG_INVALID
 };
 
 static const DistWorldMovingPlatformTemplate sMovingPlatformMapTemplateB2F_6 = {
@@ -10283,7 +10283,7 @@ static const DistWorldMovingPlatformTemplate sMovingPlatformMapTemplateB2F_6 = {
     .elevatorDir = MOVING_PLATFORM_ELEVATOR_DIR_NONE,
     .destIndex = 0x0,
     .propKind = PROP_KIND_MEDIUM_MOVING_PLATFORM_1,
-    .persistedFlag = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_INVALID
+    .persistedFlag = DIST_WORLD_PLATFORM_FLAG_INVALID
 };
 
 static const DistWorldMovingPlatformTemplate sMovingPlatformMapTemplateB2F_7 = {
@@ -10295,7 +10295,7 @@ static const DistWorldMovingPlatformTemplate sMovingPlatformMapTemplateB2F_7 = {
     .elevatorDir = MOVING_PLATFORM_ELEVATOR_DIR_NONE,
     .destIndex = 0x0,
     .propKind = PROP_KIND_MEDIUM_MOVING_PLATFORM_1,
-    .persistedFlag = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_INVALID
+    .persistedFlag = DIST_WORLD_PLATFORM_FLAG_INVALID
 };
 
 static const DistWorldMovingPlatformTemplate sMovingPlatformMapTemplateB2F_8 = {
@@ -10307,7 +10307,7 @@ static const DistWorldMovingPlatformTemplate sMovingPlatformMapTemplateB2F_8 = {
     .elevatorDir = MOVING_PLATFORM_ELEVATOR_DIR_DOWN,
     .destIndex = 0x0,
     .propKind = PROP_KIND_MEDIUM_ELEVATOR_PLATFORM_SW,
-    .persistedFlag = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_INVALID
+    .persistedFlag = DIST_WORLD_PLATFORM_FLAG_INVALID
 };
 
 static const DistWorldMovingPlatformTemplate sMovingPlatformMapTemplateB2F_9 = {
@@ -10319,7 +10319,7 @@ static const DistWorldMovingPlatformTemplate sMovingPlatformMapTemplateB2F_9 = {
     .elevatorDir = MOVING_PLATFORM_ELEVATOR_DIR_NONE,
     .destIndex = 0x0,
     .propKind = PROP_KIND_MEDIUM_MOVING_PLATFORM_1,
-    .persistedFlag = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_INVALID
+    .persistedFlag = DIST_WORLD_PLATFORM_FLAG_INVALID
 };
 
 static const DistWorldMovingPlatformTemplate sMovingPlatformMapTemplateB2F_10 = {
@@ -10331,7 +10331,7 @@ static const DistWorldMovingPlatformTemplate sMovingPlatformMapTemplateB2F_10 = 
     .elevatorDir = MOVING_PLATFORM_ELEVATOR_DIR_NONE,
     .destIndex = 0x1,
     .propKind = PROP_KIND_MEDIUM_MOVING_PLATFORM_2,
-    .persistedFlag = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_INVALID
+    .persistedFlag = DIST_WORLD_PLATFORM_FLAG_INVALID
 };
 
 static const DistWorldMovingPlatformTemplate sMovingPlatformMapTemplateB2F_11 = {
@@ -10343,7 +10343,7 @@ static const DistWorldMovingPlatformTemplate sMovingPlatformMapTemplateB2F_11 = 
     .elevatorDir = MOVING_PLATFORM_ELEVATOR_DIR_NONE,
     .destIndex = 0x1,
     .propKind = PROP_KIND_MEDIUM_MOVING_PLATFORM_2,
-    .persistedFlag = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_INVALID
+    .persistedFlag = DIST_WORLD_PLATFORM_FLAG_INVALID
 };
 
 static const DistWorldMovingPlatformTemplate sMovingPlatformMapTemplateB2F_12 = {
@@ -10355,7 +10355,7 @@ static const DistWorldMovingPlatformTemplate sMovingPlatformMapTemplateB2F_12 = 
     .elevatorDir = MOVING_PLATFORM_ELEVATOR_DIR_NONE,
     .destIndex = 0x1,
     .propKind = PROP_KIND_MEDIUM_MOVING_PLATFORM_2,
-    .persistedFlag = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_INVALID
+    .persistedFlag = DIST_WORLD_PLATFORM_FLAG_INVALID
 };
 
 static const DistWorldMovingPlatformTemplate sMovingPlatformMapTemplateB2F_13 = {
@@ -10367,7 +10367,7 @@ static const DistWorldMovingPlatformTemplate sMovingPlatformMapTemplateB2F_13 = 
     .elevatorDir = MOVING_PLATFORM_ELEVATOR_DIR_NONE,
     .destIndex = 0x1,
     .propKind = PROP_KIND_MEDIUM_MOVING_PLATFORM_2,
-    .persistedFlag = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_INVALID
+    .persistedFlag = DIST_WORLD_PLATFORM_FLAG_INVALID
 };
 
 static const DistWorldMovingPlatformTemplate sMovingPlatformMapTemplateB2F_14 = {
@@ -10379,7 +10379,7 @@ static const DistWorldMovingPlatformTemplate sMovingPlatformMapTemplateB2F_14 = 
     .elevatorDir = MOVING_PLATFORM_ELEVATOR_DIR_NONE,
     .destIndex = 0x1,
     .propKind = PROP_KIND_MEDIUM_MOVING_PLATFORM_2,
-    .persistedFlag = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_INVALID
+    .persistedFlag = DIST_WORLD_PLATFORM_FLAG_INVALID
 };
 
 static const DistWorldMovingPlatformTemplate sMovingPlatformMapTemplateB2F_15 = {
@@ -10391,7 +10391,7 @@ static const DistWorldMovingPlatformTemplate sMovingPlatformMapTemplateB2F_15 = 
     .elevatorDir = MOVING_PLATFORM_ELEVATOR_DIR_NONE,
     .destIndex = 0x1,
     .propKind = PROP_KIND_MEDIUM_MOVING_PLATFORM_2,
-    .persistedFlag = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_INVALID
+    .persistedFlag = DIST_WORLD_PLATFORM_FLAG_INVALID
 };
 
 static const DistWorldMovingPlatformTemplate sMovingPlatformMapTemplateB2F_16 = {
@@ -10403,7 +10403,7 @@ static const DistWorldMovingPlatformTemplate sMovingPlatformMapTemplateB2F_16 = 
     .elevatorDir = MOVING_PLATFORM_ELEVATOR_DIR_NONE,
     .destIndex = 0x1,
     .propKind = PROP_KIND_MEDIUM_MOVING_PLATFORM_2,
-    .persistedFlag = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_INVALID
+    .persistedFlag = DIST_WORLD_PLATFORM_FLAG_INVALID
 };
 
 static const DistWorldMovingPlatformTemplate sMovingPlatformMapTemplateB2F_17 = {
@@ -10415,7 +10415,7 @@ static const DistWorldMovingPlatformTemplate sMovingPlatformMapTemplateB2F_17 = 
     .elevatorDir = MOVING_PLATFORM_ELEVATOR_DIR_NONE,
     .destIndex = 0x1,
     .propKind = PROP_KIND_MEDIUM_MOVING_PLATFORM_2,
-    .persistedFlag = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_INVALID
+    .persistedFlag = DIST_WORLD_PLATFORM_FLAG_INVALID
 };
 
 static const DistWorldMovingPlatformTemplate sMovingPlatformMapTemplateB2F_18 = {
@@ -10427,7 +10427,7 @@ static const DistWorldMovingPlatformTemplate sMovingPlatformMapTemplateB2F_18 = 
     .elevatorDir = MOVING_PLATFORM_ELEVATOR_DIR_NONE,
     .destIndex = 0x1,
     .propKind = PROP_KIND_MEDIUM_MOVING_PLATFORM_2,
-    .persistedFlag = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_INVALID
+    .persistedFlag = DIST_WORLD_PLATFORM_FLAG_INVALID
 };
 
 static const DistWorldMovingPlatformTemplate *sMovingPlatformsMapTemplatesB2F[] = {
@@ -10461,7 +10461,7 @@ static const DistWorldMovingPlatformTemplate sMovingPlatformMapTemplateB3F_1 = {
     .elevatorDir = MOVING_PLATFORM_ELEVATOR_DIR_UP,
     .destIndex = 0x7,
     .propKind = PROP_KIND_MEDIUM_ELEVATOR_PLATFORM_SW,
-    .persistedFlag = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_B3F_1
+    .persistedFlag = DIST_WORLD_PLATFORM_FLAG_B3F_1
 };
 
 static const DistWorldMovingPlatformTemplate sMovingPlatformMapTemplateB3F_2 = {
@@ -10473,7 +10473,7 @@ static const DistWorldMovingPlatformTemplate sMovingPlatformMapTemplateB3F_2 = {
     .elevatorDir = MOVING_PLATFORM_ELEVATOR_DIR_DOWN,
     .destIndex = 0x0,
     .propKind = PROP_KIND_MEDIUM_ELEVATOR_PLATFORM_4,
-    .persistedFlag = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_B3F_2
+    .persistedFlag = DIST_WORLD_PLATFORM_FLAG_B3F_2
 };
 
 static const DistWorldMovingPlatformTemplate sMovingPlatformMapTemplateB3F_3 = {
@@ -10485,7 +10485,7 @@ static const DistWorldMovingPlatformTemplate sMovingPlatformMapTemplateB3F_3 = {
     .elevatorDir = MOVING_PLATFORM_ELEVATOR_DIR_DOWN,
     .destIndex = 0x1,
     .propKind = PROP_KIND_MEDIUM_ELEVATOR_PLATFORM_4,
-    .persistedFlag = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_INVALID
+    .persistedFlag = DIST_WORLD_PLATFORM_FLAG_INVALID
 };
 
 static const DistWorldMovingPlatformTemplate sMovingPlatformMapTemplateB3F_4 = {
@@ -10497,7 +10497,7 @@ static const DistWorldMovingPlatformTemplate sMovingPlatformMapTemplateB3F_4 = {
     .elevatorDir = MOVING_PLATFORM_ELEVATOR_DIR_DOWN,
     .destIndex = 0x2,
     .propKind = PROP_KIND_LARGE_ELEVATOR_PLATFORM_1,
-    .persistedFlag = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_INVALID
+    .persistedFlag = DIST_WORLD_PLATFORM_FLAG_INVALID
 };
 
 static const DistWorldMovingPlatformTemplate *sMovingPlatformsMapTemplatesB3F[] = {
@@ -10517,7 +10517,7 @@ static const DistWorldMovingPlatformTemplate sMovingPlatformMapTemplateB4F_1 = {
     .elevatorDir = MOVING_PLATFORM_ELEVATOR_DIR_UP,
     .destIndex = 0x1,
     .propKind = PROP_KIND_MEDIUM_ELEVATOR_PLATFORM_4,
-    .persistedFlag = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_B4F_1
+    .persistedFlag = DIST_WORLD_PLATFORM_FLAG_B4F_1
 };
 
 static const DistWorldMovingPlatformTemplate sMovingPlatformMapTemplateB4F_2 = {
@@ -10529,7 +10529,7 @@ static const DistWorldMovingPlatformTemplate sMovingPlatformMapTemplateB4F_2 = {
     .elevatorDir = MOVING_PLATFORM_ELEVATOR_DIR_UP,
     .destIndex = 0x2,
     .propKind = PROP_KIND_MEDIUM_ELEVATOR_PLATFORM_4,
-    .persistedFlag = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_B4F_2
+    .persistedFlag = DIST_WORLD_PLATFORM_FLAG_B4F_2
 };
 
 static const DistWorldMovingPlatformTemplate sMovingPlatformMapTemplateB4F_3 = {
@@ -10541,7 +10541,7 @@ static const DistWorldMovingPlatformTemplate sMovingPlatformMapTemplateB4F_3 = {
     .elevatorDir = MOVING_PLATFORM_ELEVATOR_DIR_DOWN,
     .destIndex = 0x0,
     .propKind = PROP_KIND_LARGE_ELEVATOR_PLATFORM_2,
-    .persistedFlag = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_B4F_3
+    .persistedFlag = DIST_WORLD_PLATFORM_FLAG_B4F_3
 };
 
 static const DistWorldMovingPlatformTemplate *sMovingPlatformsMapTemplatesB4F[] = {
@@ -10560,7 +10560,7 @@ static const DistWorldMovingPlatformTemplate sMovingPlatformMapTemplateB5F_1 = {
     .elevatorDir = MOVING_PLATFORM_ELEVATOR_DIR_UP,
     .destIndex = 0x2,
     .propKind = PROP_KIND_LARGE_ELEVATOR_PLATFORM_2,
-    .persistedFlag = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_B5F_1
+    .persistedFlag = DIST_WORLD_PLATFORM_FLAG_B5F_1
 };
 
 static const DistWorldMovingPlatformTemplate sMovingPlatformMapTemplateB5F_2 = {
@@ -10572,7 +10572,7 @@ static const DistWorldMovingPlatformTemplate sMovingPlatformMapTemplateB5F_2 = {
     .elevatorDir = MOVING_PLATFORM_ELEVATOR_DIR_DOWN,
     .destIndex = 0x0,
     .propKind = PROP_KIND_LARGE_ELEVATOR_PLATFORM_4,
-    .persistedFlag = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_INVALID
+    .persistedFlag = DIST_WORLD_PLATFORM_FLAG_INVALID
 };
 
 static const DistWorldMovingPlatformTemplate sMovingPlatformMapTemplateB5F_3 = {
@@ -10584,7 +10584,7 @@ static const DistWorldMovingPlatformTemplate sMovingPlatformMapTemplateB5F_3 = {
     .elevatorDir = MOVING_PLATFORM_ELEVATOR_DIR_UP,
     .destIndex = 0x3,
     .propKind = PROP_KIND_LARGE_ELEVATOR_PLATFORM_1,
-    .persistedFlag = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_B5F_3
+    .persistedFlag = DIST_WORLD_PLATFORM_FLAG_B5F_3
 };
 
 static const DistWorldMovingPlatformTemplate *sMovingPlatformsMapTemplatesB5F[] = {
@@ -10603,7 +10603,7 @@ static const DistWorldMovingPlatformTemplate sMovingPlatformMapTemplateB6F_1 = {
     .elevatorDir = MOVING_PLATFORM_ELEVATOR_DIR_UP,
     .destIndex = 0x1,
     .propKind = PROP_KIND_LARGE_ELEVATOR_PLATFORM_4,
-    .persistedFlag = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_B6F_1
+    .persistedFlag = DIST_WORLD_PLATFORM_FLAG_B6F_1
 };
 
 static const DistWorldMovingPlatformTemplate sMovingPlatformMapTemplateB6F_2 = {
@@ -10615,7 +10615,7 @@ static const DistWorldMovingPlatformTemplate sMovingPlatformMapTemplateB6F_2 = {
     .elevatorDir = MOVING_PLATFORM_ELEVATOR_DIR_DOWN,
     .destIndex = 0x0,
     .propKind = PROP_KIND_MEDIUM_ELEVATOR_PLATFORM_5,
-    .persistedFlag = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_INVALID
+    .persistedFlag = DIST_WORLD_PLATFORM_FLAG_INVALID
 };
 
 static const DistWorldMovingPlatformTemplate *sMovingPlatformsMapTemplatesB6F[] = {
@@ -10633,7 +10633,7 @@ static const DistWorldMovingPlatformTemplate sMovingPlatformMapTemplateB7F_1 = {
     .elevatorDir = MOVING_PLATFORM_ELEVATOR_DIR_UP,
     .destIndex = 0x1,
     .propKind = PROP_KIND_MEDIUM_ELEVATOR_PLATFORM_5,
-    .persistedFlag = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_B7F_1
+    .persistedFlag = DIST_WORLD_PLATFORM_FLAG_B7F_1
 };
 
 static const DistWorldMovingPlatformTemplate *sMovingPlatformsMapTemplatesB7F[] = {
@@ -10663,8 +10663,8 @@ static const DistWorldElevatorPlatformPath sElevatorPlatformPaths[ELEVATOR_PLATF
         .changeMapsTileYOffset = -0x10,
         .changeMapsTileZOffset = 0x0,
         .posDelta = { 0x0, FX32_ONE * -4, 0x0 },
-        .persistedFlagToSet = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_B1F_1,
-        .persistedFlagToClear = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_INVALID,
+        .persistedFlagToSet = DIST_WORLD_PLATFORM_FLAG_B1F_1,
+        .persistedFlagToClear = DIST_WORLD_PLATFORM_FLAG_INVALID,
     },
     {
         .index = 0x1,
@@ -10676,8 +10676,8 @@ static const DistWorldElevatorPlatformPath sElevatorPlatformPaths[ELEVATOR_PLATF
         .changeMapsTileYOffset = 0x12,
         .changeMapsTileZOffset = 0x0,
         .posDelta = { 0x0, FX32_ONE * 4, 0x0 },
-        .persistedFlagToSet = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_INVALID,
-        .persistedFlagToClear = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_B1F_1,
+        .persistedFlagToSet = DIST_WORLD_PLATFORM_FLAG_INVALID,
+        .persistedFlagToClear = DIST_WORLD_PLATFORM_FLAG_B1F_1,
     },
     {
         .index = 0x2,
@@ -10689,8 +10689,8 @@ static const DistWorldElevatorPlatformPath sElevatorPlatformPaths[ELEVATOR_PLATF
         .changeMapsTileYOffset = -0x1C,
         .changeMapsTileZOffset = 0x0,
         .posDelta = { 0x0, FX32_ONE * -4, 0x0 },
-        .persistedFlagToSet = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_B2F_1,
-        .persistedFlagToClear = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_INVALID,
+        .persistedFlagToSet = DIST_WORLD_PLATFORM_FLAG_B2F_1,
+        .persistedFlagToClear = DIST_WORLD_PLATFORM_FLAG_INVALID,
     },
     {
         .index = 0x3,
@@ -10702,8 +10702,8 @@ static const DistWorldElevatorPlatformPath sElevatorPlatformPaths[ELEVATOR_PLATF
         .changeMapsTileYOffset = 0x12,
         .changeMapsTileZOffset = 0x0,
         .posDelta = { 0x0, FX32_ONE * 4, 0x0 },
-        .persistedFlagToSet = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_INVALID,
-        .persistedFlagToClear = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_B2F_1,
+        .persistedFlagToSet = DIST_WORLD_PLATFORM_FLAG_INVALID,
+        .persistedFlagToClear = DIST_WORLD_PLATFORM_FLAG_B2F_1,
     },
     {
         .index = 0x4,
@@ -10715,8 +10715,8 @@ static const DistWorldElevatorPlatformPath sElevatorPlatformPaths[ELEVATOR_PLATF
         .changeMapsTileYOffset = -0xE,
         .changeMapsTileZOffset = 0x0,
         .posDelta = { 0x0, FX32_ONE * -4, 0x0 },
-        .persistedFlagToSet = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_B3F_1,
-        .persistedFlagToClear = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_INVALID,
+        .persistedFlagToSet = DIST_WORLD_PLATFORM_FLAG_B3F_1,
+        .persistedFlagToClear = DIST_WORLD_PLATFORM_FLAG_INVALID,
     },
     {
         .index = 0x5,
@@ -10728,8 +10728,8 @@ static const DistWorldElevatorPlatformPath sElevatorPlatformPaths[ELEVATOR_PLATF
         .changeMapsTileYOffset = 0x12,
         .changeMapsTileZOffset = 0x0,
         .posDelta = { 0x0, FX32_ONE * 4, 0x0 },
-        .persistedFlagToSet = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_INVALID,
-        .persistedFlagToClear = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_B3F_1,
+        .persistedFlagToSet = DIST_WORLD_PLATFORM_FLAG_INVALID,
+        .persistedFlagToClear = DIST_WORLD_PLATFORM_FLAG_B3F_1,
     },
     {
         .index = 0x6,
@@ -10741,8 +10741,8 @@ static const DistWorldElevatorPlatformPath sElevatorPlatformPaths[ELEVATOR_PLATF
         .changeMapsTileYOffset = -0x12,
         .changeMapsTileZOffset = 0x0,
         .posDelta = { 0x0, FX32_ONE * -4, 0x0 },
-        .persistedFlagToSet = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_B4F_1,
-        .persistedFlagToClear = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_B3F_2,
+        .persistedFlagToSet = DIST_WORLD_PLATFORM_FLAG_B4F_1,
+        .persistedFlagToClear = DIST_WORLD_PLATFORM_FLAG_B3F_2,
     },
     {
         .index = 0x7,
@@ -10754,8 +10754,8 @@ static const DistWorldElevatorPlatformPath sElevatorPlatformPaths[ELEVATOR_PLATF
         .changeMapsTileYOffset = -0xE,
         .changeMapsTileZOffset = 0x0,
         .posDelta = { 0x0, FX32_ONE * -4, 0x0 },
-        .persistedFlagToSet = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_B4F_2,
-        .persistedFlagToClear = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_INVALID,
+        .persistedFlagToSet = DIST_WORLD_PLATFORM_FLAG_B4F_2,
+        .persistedFlagToClear = DIST_WORLD_PLATFORM_FLAG_INVALID,
     },
     {
         .index = 0x8,
@@ -10767,8 +10767,8 @@ static const DistWorldElevatorPlatformPath sElevatorPlatformPaths[ELEVATOR_PLATF
         .changeMapsTileYOffset = -0x12,
         .changeMapsTileZOffset = 0x0,
         .posDelta = { 0x0, FX32_ONE * -4, 0x0 },
-        .persistedFlagToSet = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_B5F_3,
-        .persistedFlagToClear = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_INVALID,
+        .persistedFlagToSet = DIST_WORLD_PLATFORM_FLAG_B5F_3,
+        .persistedFlagToClear = DIST_WORLD_PLATFORM_FLAG_INVALID,
     },
     {
         .index = 0x9,
@@ -10780,8 +10780,8 @@ static const DistWorldElevatorPlatformPath sElevatorPlatformPaths[ELEVATOR_PLATF
         .changeMapsTileYOffset = -0xE,
         .changeMapsTileZOffset = 0x0,
         .posDelta = { 0x0, FX32_ONE * -4, 0x0 },
-        .persistedFlagToSet = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_INVALID,
-        .persistedFlagToClear = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_INVALID,
+        .persistedFlagToSet = DIST_WORLD_PLATFORM_FLAG_INVALID,
+        .persistedFlagToClear = DIST_WORLD_PLATFORM_FLAG_INVALID,
     },
     {
         .index = 0xA,
@@ -10793,8 +10793,8 @@ static const DistWorldElevatorPlatformPath sElevatorPlatformPaths[ELEVATOR_PLATF
         .changeMapsTileYOffset = 0x12,
         .changeMapsTileZOffset = 0x0,
         .posDelta = { 0x0, FX32_ONE * 4, 0x0 },
-        .persistedFlagToSet = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_B3F_2,
-        .persistedFlagToClear = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_B4F_1,
+        .persistedFlagToSet = DIST_WORLD_PLATFORM_FLAG_B3F_2,
+        .persistedFlagToClear = DIST_WORLD_PLATFORM_FLAG_B4F_1,
     },
     {
         .index = 0xB,
@@ -10806,8 +10806,8 @@ static const DistWorldElevatorPlatformPath sElevatorPlatformPaths[ELEVATOR_PLATF
         .changeMapsTileYOffset = 0x12,
         .changeMapsTileZOffset = 0x0,
         .posDelta = { 0x0, FX32_ONE * 4, 0x0 },
-        .persistedFlagToSet = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_INVALID,
-        .persistedFlagToClear = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_B4F_2,
+        .persistedFlagToSet = DIST_WORLD_PLATFORM_FLAG_INVALID,
+        .persistedFlagToClear = DIST_WORLD_PLATFORM_FLAG_B4F_2,
     },
     {
         .index = 0xC,
@@ -10819,8 +10819,8 @@ static const DistWorldElevatorPlatformPath sElevatorPlatformPaths[ELEVATOR_PLATF
         .changeMapsTileYOffset = -0xE,
         .changeMapsTileZOffset = 0x0,
         .posDelta = { 0x0, FX32_ONE * -4, 0x0 },
-        .persistedFlagToSet = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_B5F_1,
-        .persistedFlagToClear = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_B4F_3,
+        .persistedFlagToSet = DIST_WORLD_PLATFORM_FLAG_B5F_1,
+        .persistedFlagToClear = DIST_WORLD_PLATFORM_FLAG_B4F_3,
     },
     {
         .index = 0xD,
@@ -10832,8 +10832,8 @@ static const DistWorldElevatorPlatformPath sElevatorPlatformPaths[ELEVATOR_PLATF
         .changeMapsTileYOffset = 0x12,
         .changeMapsTileZOffset = 0x0,
         .posDelta = { 0x0, FX32_ONE * 4, 0x0 },
-        .persistedFlagToSet = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_B4F_3,
-        .persistedFlagToClear = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_B5F_1,
+        .persistedFlagToSet = DIST_WORLD_PLATFORM_FLAG_B4F_3,
+        .persistedFlagToClear = DIST_WORLD_PLATFORM_FLAG_B5F_1,
     },
     {
         .index = 0xE,
@@ -10845,8 +10845,8 @@ static const DistWorldElevatorPlatformPath sElevatorPlatformPaths[ELEVATOR_PLATF
         .changeMapsTileYOffset = -0xC,
         .changeMapsTileZOffset = 0x0,
         .posDelta = { 0x0, FX32_ONE * -4, 0x0 },
-        .persistedFlagToSet = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_B6F_1,
-        .persistedFlagToClear = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_INVALID,
+        .persistedFlagToSet = DIST_WORLD_PLATFORM_FLAG_B6F_1,
+        .persistedFlagToClear = DIST_WORLD_PLATFORM_FLAG_INVALID,
     },
     {
         .index = 0xF,
@@ -10858,8 +10858,8 @@ static const DistWorldElevatorPlatformPath sElevatorPlatformPaths[ELEVATOR_PLATF
         .changeMapsTileYOffset = 0x12,
         .changeMapsTileZOffset = 0x0,
         .posDelta = { 0x0, FX32_ONE * 4, 0x0 },
-        .persistedFlagToSet = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_INVALID,
-        .persistedFlagToClear = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_B5F_3,
+        .persistedFlagToSet = DIST_WORLD_PLATFORM_FLAG_INVALID,
+        .persistedFlagToClear = DIST_WORLD_PLATFORM_FLAG_B5F_3,
     },
     {
         .index = 0x10,
@@ -10871,8 +10871,8 @@ static const DistWorldElevatorPlatformPath sElevatorPlatformPaths[ELEVATOR_PLATF
         .changeMapsTileYOffset = 0xA,
         .changeMapsTileZOffset = 0x0,
         .posDelta = { 0x0, FX32_ONE * 4, 0x0 },
-        .persistedFlagToSet = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_INVALID,
-        .persistedFlagToClear = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_INVALID,
+        .persistedFlagToSet = DIST_WORLD_PLATFORM_FLAG_INVALID,
+        .persistedFlagToClear = DIST_WORLD_PLATFORM_FLAG_INVALID,
     },
     {
         .index = 0x11,
@@ -10884,8 +10884,8 @@ static const DistWorldElevatorPlatformPath sElevatorPlatformPaths[ELEVATOR_PLATF
         .changeMapsTileYOffset = 0x1,
         .changeMapsTileZOffset = 0x0,
         .posDelta = { 0x0, FX32_ONE * 4, 0x0 },
-        .persistedFlagToSet = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_INVALID,
-        .persistedFlagToClear = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_B6F_1,
+        .persistedFlagToSet = DIST_WORLD_PLATFORM_FLAG_INVALID,
+        .persistedFlagToClear = DIST_WORLD_PLATFORM_FLAG_B6F_1,
     },
     {
         .index = 0x12,
@@ -10897,8 +10897,8 @@ static const DistWorldElevatorPlatformPath sElevatorPlatformPaths[ELEVATOR_PLATF
         .changeMapsTileYOffset = -0x11,
         .changeMapsTileZOffset = 0x0,
         .posDelta = { 0x0, FX32_ONE * -4, 0x0 },
-        .persistedFlagToSet = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_B7F_1,
-        .persistedFlagToClear = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_INVALID,
+        .persistedFlagToSet = DIST_WORLD_PLATFORM_FLAG_B7F_1,
+        .persistedFlagToClear = DIST_WORLD_PLATFORM_FLAG_INVALID,
     },
     {
         .index = 0x13,
@@ -10910,8 +10910,8 @@ static const DistWorldElevatorPlatformPath sElevatorPlatformPaths[ELEVATOR_PLATF
         .changeMapsTileYOffset = 0x12,
         .changeMapsTileZOffset = 0x0,
         .posDelta = { 0x0, FX32_ONE * 4, 0x0 },
-        .persistedFlagToSet = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_INVALID,
-        .persistedFlagToClear = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_B7F_1,
+        .persistedFlagToSet = DIST_WORLD_PLATFORM_FLAG_INVALID,
+        .persistedFlagToClear = DIST_WORLD_PLATFORM_FLAG_B7F_1,
     },
     {
         .index = 0x14,
@@ -10923,8 +10923,8 @@ static const DistWorldElevatorPlatformPath sElevatorPlatformPaths[ELEVATOR_PLATF
         .changeMapsTileYOffset = 0x12,
         .changeMapsTileZOffset = 0x0,
         .posDelta = { 0x0, FX32_ONE * 4, 0x0 },
-        .persistedFlagToSet = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_INVALID,
-        .persistedFlagToClear = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_INVALID,
+        .persistedFlagToSet = DIST_WORLD_PLATFORM_FLAG_INVALID,
+        .persistedFlagToClear = DIST_WORLD_PLATFORM_FLAG_INVALID,
     },
     {
         .index = 0x15,
@@ -10936,8 +10936,8 @@ static const DistWorldElevatorPlatformPath sElevatorPlatformPaths[ELEVATOR_PLATF
         .changeMapsTileYOffset = -0xE,
         .changeMapsTileZOffset = 0x0,
         .posDelta = { 0x0, FX32_ONE * 4, 0x0 },
-        .persistedFlagToSet = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_INVALID,
-        .persistedFlagToClear = DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_INVALID,
+        .persistedFlagToSet = DIST_WORLD_PLATFORM_FLAG_INVALID,
+        .persistedFlagToClear = DIST_WORLD_PLATFORM_FLAG_INVALID,
     },
 };
 
