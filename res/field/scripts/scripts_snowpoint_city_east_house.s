@@ -3,62 +3,62 @@
 #include "res/text/bank/snowpoint_city_east_house.h"
 
 
-    ScriptEntry _000A
-    ScriptEntry _0085
+    ScriptEntry SnowpointCityEastHouse_ExpertM
+    ScriptEntry SnowpointCityEastHouse_Hiker
     ScriptEntryEnd
 
-_000A:
+SnowpointCityEastHouse_ExpertM:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x0AAD, _0064
+    GoToIfSet FLAG_HEARD_DAILY_TRENDY_SAYING, SnowpointCityEastHouse_UseTrendySayings
     ScrCmd_27F VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _007A
-    Message 0
+    GoToIfEq VAR_RESULT, TRUE, SnowpointCityEastHouse_AreYouUsingTrendySayings
+    Message SnowpointCityEastHouse_Text_HearTrendySaying
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _006F
+    GoToIfEq VAR_RESULT, MENU_NO, SnowpointCityEastHouse_ComeOnNow
     ScrCmd_27D VAR_RESULT, 0
-    GoToIfEq VAR_RESULT, -1, _007A
-    SetFlag FLAG_UNK_0x0AAD
-    Message 1
+    GoToIfEq VAR_RESULT, -1, SnowpointCityEastHouse_AreYouUsingTrendySayings
+    SetFlag FLAG_HEARD_DAILY_TRENDY_SAYING
+    Message SnowpointCityEastHouse_Text_TrendyThingIsThis
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0064:
-    Message 3
+SnowpointCityEastHouse_UseTrendySayings:
+    Message SnowpointCityEastHouse_Text_UseTrendySayings
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_006F:
-    Message 2
+SnowpointCityEastHouse_ComeOnNow:
+    Message SnowpointCityEastHouse_Text_ComeOnNow
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_007A:
-    Message 4
+SnowpointCityEastHouse_AreYouUsingTrendySayings:
+    Message SnowpointCityEastHouse_Text_AreYouUsingTrendySayings
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0085:
+SnowpointCityEastHouse_Hiker:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 7
+    Message SnowpointCityEastHouse_Text_WantMeToTeachMove
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _00B0
-    GoToIfEq VAR_RESULT, MENU_NO, _0296
+    GoToIfEq VAR_RESULT, MENU_YES, SnowpointCityEastHouse_TryTeachMove
+    GoToIfEq VAR_RESULT, MENU_NO, SnowpointCityEastHouse_BeSeeingYou
     End
 
-_00B0:
-    Message 9
+SnowpointCityEastHouse_TryTeachMove:
+    Message SnowpointCityEastHouse_Text_WhichPokemon
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
@@ -67,30 +67,30 @@ _00B0:
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
-    GoToIfEq VAR_0x8000, 0xFF, _0296
+    GoToIfEq VAR_0x8000, PARTY_SLOT_NONE, SnowpointCityEastHouse_BeSeeingYou
     GetPartyMonSpecies VAR_0x8000, VAR_0x8001
-    GoToIfEq VAR_0x8001, 0, _028B
+    GoToIfEq VAR_0x8001, SPECIES_NONE, SnowpointCityEastHouse_CantTeachEgg
     CheckHasLearnableTutorMoves VAR_0x8000, TUTOR_LOCATION_SNOWPOINT_CITY, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _02A1
+    GoToIfEq VAR_RESULT, FALSE, SnowpointCityEastHouse_NoMovesToTeach
     BufferPartyMonNickname 0, VAR_0x8000
-    Message 12
+    Message SnowpointCityEastHouse_Text_TeachWhichMove
     ShowMoveTutorMoveSelectionMenu VAR_0x8000, TUTOR_LOCATION_SNOWPOINT_CITY, VAR_RESULT
     SetVar VAR_0x8003, VAR_RESULT
-    GoToIfEq VAR_0x8003, -2, _0296
+    GoToIfEq VAR_0x8003, MENU_CANCEL, SnowpointCityEastHouse_BeSeeingYou
     CheckCanAffordMove VAR_0x8003, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _02AC
+    GoToIfEq VAR_RESULT, FALSE, SnowpointCityEastHouse_NotEnoughShards
     GetPartyMonMoveCount VAR_RESULT, VAR_0x8000
     SetVar VAR_0x8002, VAR_RESULT
-    GoToIfEq VAR_RESULT, 4, _0161
-    GoTo _0256
+    GoToIfEq VAR_RESULT, LEARNED_MOVES_MAX, SnowpointCityEastHouse_TryReplaceMove
+    GoTo SnowpointCityEastHouse_TeachMove
     End
 
-_0161:
+SnowpointCityEastHouse_TryReplaceMove:
     BufferPartyMonNickname 0, VAR_0x8000
     BufferMoveName 1, VAR_0x8003
-    Message 16
+    Message SnowpointCityEastHouse_Text_DeleteOlderMove
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _021B
+    GoToIfEq VAR_RESULT, MENU_NO, SnowpointCityEastHouse_StopTryingToTeachMove
     FadeScreenOut
     WaitFadeScreen
     CloseMessage
@@ -99,84 +99,84 @@ _0161:
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
-    GoToIfEq VAR_0x8002, 4, _021B
+    GoToIfEq VAR_0x8002, LEARNED_MOVES_MAX, SnowpointCityEastHouse_StopTryingToTeachMove
     GetPartyMonMove VAR_RESULT, VAR_0x8000, VAR_0x8002
     BufferMoveName 1, VAR_RESULT
-    Message 19
+    Message SnowpointCityEastHouse_Text_ForgetThisMove
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _021B
+    GoToIfEq VAR_RESULT, MENU_NO, SnowpointCityEastHouse_StopTryingToTeachMove
     BufferPartyMonNickname 0, VAR_0x8000
     GetPartyMonMove VAR_RESULT, VAR_0x8000, VAR_0x8002
     BufferMoveName 1, VAR_RESULT
-    Message 20
+    Message SnowpointCityEastHouse_Text_OneTwoThreePoof
     PlaySE SEQ_SE_DP_KON
     WaitSE SEQ_SE_DP_KON
     WaitTime 30, VAR_RESULT
-    Message 21
+    Message SnowpointCityEastHouse_Text_PokemonForgotMove
     WaitTime 32, VAR_RESULT
     PlayFanfare SEQ_FANFA1
     BufferMoveName 1, VAR_0x8003
-    Message 22
+    Message SnowpointCityEastHouse_Text_PokemonLearnedMove2
     WaitFanfare
     WaitTime 16, VAR_RESULT
-    GoTo _0277
+    GoTo SnowpointCityEastHouse_PayShards
     End
 
-_021B:
+SnowpointCityEastHouse_StopTryingToTeachMove:
     BufferPartyMonNickname 0, VAR_0x8000
     BufferMoveName 1, VAR_0x8003
-    Message 17
+    Message SnowpointCityEastHouse_Text_StopTryingToTeachMove
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _0241
-    GoTo _0161
+    GoToIfEq VAR_RESULT, MENU_YES, SnowpointCityEastHouse_DidntLearnMove
+    GoTo SnowpointCityEastHouse_TryReplaceMove
     End
 
-_0241:
+SnowpointCityEastHouse_DidntLearnMove:
     BufferPartyMonNickname 0, VAR_0x8000
     BufferMoveName 1, VAR_0x8003
-    Message 18
-    GoTo _0296
+    Message SnowpointCityEastHouse_Text_PokemonDidntLearnMove
+    GoTo SnowpointCityEastHouse_BeSeeingYou
     End
 
-_0256:
+SnowpointCityEastHouse_TeachMove:
     BufferPartyMonNickname 0, VAR_0x8000
     BufferMoveName 1, VAR_0x8003
-    Message 15
+    Message SnowpointCityEastHouse_Text_PokemonLearnedMove
     PlayFanfare SEQ_FANFA1
     WaitFanfare
     WaitTime 16, VAR_RESULT
-    GoTo _0277
+    GoTo SnowpointCityEastHouse_PayShards
     End
 
-_0277:
+SnowpointCityEastHouse_PayShards:
     PayShardCost VAR_0x8003
     ResetMoveSlot VAR_0x8000, VAR_0x8002, VAR_0x8003
-    GoTo _0296
+    GoTo SnowpointCityEastHouse_BeSeeingYou
     End
 
-_028B:
-    Message 23
+SnowpointCityEastHouse_CantTeachEgg:
+    Message SnowpointCityEastHouse_Text_CantTeachEgg
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0296:
-    Message 8
+SnowpointCityEastHouse_BeSeeingYou:
+    Message SnowpointCityEastHouse_Text_BeSeeingYou
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_02A1:
-    Message 10
+SnowpointCityEastHouse_NoMovesToTeach:
+    Message SnowpointCityEastHouse_Text_NoMovesToTeach
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_02AC:
-    Message 11
+SnowpointCityEastHouse_NotEnoughShards:
+    Message SnowpointCityEastHouse_Text_NotEnoughShards
     WaitButton
     CloseMessage
     ReleaseAll

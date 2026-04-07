@@ -1,256 +1,257 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/snowpoint_city.h"
+#include "res/field/events/events_snowpoint_city.h"
 
 
-    ScriptEntry _0032
-    ScriptEntry _00B4
-    ScriptEntry _0047
-    ScriptEntry _0174
-    ScriptEntry _0187
-    ScriptEntry _019A
-    ScriptEntry _01AD
-    ScriptEntry _01C0
-    ScriptEntry _01EB
-    ScriptEntry _01FE
-    ScriptEntry _0215
-    ScriptEntry _022A
+    ScriptEntry SnowpointCity_OnTransition
+    ScriptEntry SnowpointCity_TempleGuard
+    ScriptEntry SnowpointCity_TriggerTempleGuard
+    ScriptEntry SnowpointCity_Candice
+    ScriptEntry SnowpointCity_AceTrainerSnowF
+    ScriptEntry SnowpointCity_SnowpointNPCF1
+    ScriptEntry SnowpointCity_SnowpointNPCF2
+    ScriptEntry SnowpointCity_SnowpointNPCM
+    ScriptEntry SnowpointCity_Sailor
+    ScriptEntry SnowpointCity_MapSign
+    ScriptEntry SnowpointCity_GymSign
+    ScriptEntry SnowpointCity_SailorSSSpiral
     ScriptEntryEnd
 
-_0032:
-    GoToIfGe VAR_UNK_0x407F, 1, _0041
+SnowpointCity_OnTransition:
+    GoToIfGe VAR_SNOWPOINT_CITY_STATE, 1, SnowpointCity_HideCandice
     End
 
-_0041:
-    SetFlag FLAG_UNK_0x01F3
+SnowpointCity_HideCandice:
+    SetFlag FLAG_HIDE_SNOWPOINT_CITY_CANDICE
     End
 
-_0047:
+SnowpointCity_TriggerTempleGuard:
     LockAll
-    ApplyMovement 6, _009C
+    ApplyMovement LOCALID_TEMPLE_GUARD, SnowpointCity_Movement_TempleGuardWalkOnSpotWest
     WaitMovement
-    Message 0
+    Message SnowpointCity_Text_OnlyChosenMayEnterTemple
     CloseMessage
     GetNationalDexEnabled VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _0088
-    GoTo _0072
+    GoToIfEq VAR_RESULT, TRUE, SnowpointCity_CheckAllowEnterTemple
+    GoTo SnowpointCity_TempleGuardBlockPlayer
     End
 
-_0072:
-    ApplyMovement 6, _00A4
-    ApplyMovement LOCALID_PLAYER, _00AC
+SnowpointCity_TempleGuardBlockPlayer:
+    ApplyMovement LOCALID_TEMPLE_GUARD, SnowpointCity_Movement_TempleGuardWalkOnSpotSOuth
+    ApplyMovement LOCALID_PLAYER, SnowpointCity_Movement_PlayerWalkSouth
     WaitMovement
     ReleaseAll
     End
 
-_0088:
-    GoToIfUnset FLAG_GAME_COMPLETED, _0072
-    GoTo _0111
+SnowpointCity_CheckAllowEnterTemple:
+    GoToIfUnset FLAG_GAME_COMPLETED, SnowpointCity_TempleGuardBlockPlayer
+    GoTo SnowpointCity_CallAllowEnterTemple
 
     .balign 4, 0
-_009C:
+SnowpointCity_Movement_TempleGuardWalkOnSpotWest:
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_00A4:
+SnowpointCity_Movement_TempleGuardWalkOnSpotSOuth:
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_00AC:
+SnowpointCity_Movement_PlayerWalkSouth:
     WalkNormalSouth
     EndMovement
 
-_00B4:
+SnowpointCity_TempleGuard:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GetNationalDexEnabled VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _00DF
-    GoTo _00D4
+    GoToIfEq VAR_RESULT, TRUE, SnowpointCity_TempleGuardNationalDex
+    GoTo SnowpointCity_MayNotEnterTemple
 
-_00D4:
-    Message 1
+SnowpointCity_MayNotEnterTemple:
+    Message SnowpointCity_Text_OnlyChosenMayEnterTemple2
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_00DF:
-    GoToIfUnset FLAG_GAME_COMPLETED, _00D4
-    GoToIfEq VAR_UNK_0x407F, 0, _0102
-    Message 2
+SnowpointCity_TempleGuardNationalDex:
+    GoToIfUnset FLAG_GAME_COMPLETED, SnowpointCity_MayNotEnterTemple
+    GoToIfEq VAR_SNOWPOINT_CITY_STATE, 0, SnowpointCity_OnlyChosenMayEnterTemple
+    Message SnowpointCity_Text_BuiltInAncientTimes
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0102:
-    Message 0
+SnowpointCity_OnlyChosenMayEnterTemple:
+    Message SnowpointCity_Text_OnlyChosenMayEnterTemple
     CloseMessage
-    Call _011B
+    Call SnowpointCity_AllowEnterTemple
     ReleaseAll
     End
 
-_0111:
-    Call _011B
+SnowpointCity_CallAllowEnterTemple:
+    Call SnowpointCity_AllowEnterTemple
     ReleaseAll
     End
 
-_011B:
+SnowpointCity_AllowEnterTemple:
     WaitTime 30, VAR_RESULT
-    ClearFlag FLAG_UNK_0x01F3
-    AddObject 7
-    ApplyMovement 7, _016C
+    ClearFlag FLAG_HIDE_SNOWPOINT_CITY_CANDICE
+    AddObject LOCALID_CANDICE
+    ApplyMovement LOCALID_CANDICE, SnowpointCity_Movement_CandiceEnter
     WaitMovement
-    Message 3
+    Message SnowpointCity_Text_LetThatPersonIn
     CloseMessage
-    ApplyMovement LOCALID_PLAYER, _0164
-    ApplyMovement 6, _015C
+    ApplyMovement LOCALID_PLAYER, SnowpointCity_Movement_PlayerWalkOnSpotSouth
+    ApplyMovement LOCALID_TEMPLE_GUARD, SnowpointCity_Movement_TempleGuardFaceSouth
     WaitMovement
-    SetVar VAR_UNK_0x407F, 1
-    Message 4
+    SetVar VAR_SNOWPOINT_CITY_STATE, 1
+    Message SnowpointCity_Text_EnjoyYourExploring
     WaitButton
     CloseMessage
     Return
 
     .balign 4, 0
-_015C:
+SnowpointCity_Movement_TempleGuardFaceSouth:
     FaceSouth
     EndMovement
 
     .balign 4, 0
-_0164:
+SnowpointCity_Movement_PlayerWalkOnSpotSouth:
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_016C:
+SnowpointCity_Movement_CandiceEnter:
     WalkNormalNorth 7
     EndMovement
 
-_0174:
-    NPCMessage 4
+SnowpointCity_Candice:
+    NPCMessage SnowpointCity_Text_EnjoyYourExploring
     End
 
-_0187:
-    NPCMessage 5
+SnowpointCity_AceTrainerSnowF:
+    NPCMessage SnowpointCity_Text_TownIsFreezingCold
     End
 
-_019A:
-    NPCMessage 6
+SnowpointCity_SnowpointNPCF1:
+    NPCMessage SnowpointCity_Text_ScarfLooksWarm
     End
 
-_01AD:
-    NPCMessage 9
+SnowpointCity_SnowpointNPCF2:
+    NPCMessage SnowpointCity_Text_CandiceIsTeachingMe
     End
 
-_01C0:
+SnowpointCity_SnowpointNPCM:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfGe VAR_UNK_0x407F, 1, _01E0
-    Message 7
+    GoToIfGe VAR_SNOWPOINT_CITY_STATE, 1, SnowpointCity_PokemonDraggedCityHere
+    Message SnowpointCity_Text_IWantToLookAroundTemple
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_01E0:
-    Message 8
+SnowpointCity_PokemonDraggedCityHere:
+    Message SnowpointCity_Text_PokemonDraggedCityHere
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_01EB:
-    NPCMessage 14
+SnowpointCity_Sailor:
+    NPCMessage SnowpointCity_Text_NothingExceptionalHere
     End
 
-_01FE:
-    ShowMapSign 18
+SnowpointCity_MapSign:
+    ShowMapSign SnowpointCity_Text_MapSign
     End
 
-_0215:
-    ShowScrollingSign 19
+SnowpointCity_GymSign:
+    ShowScrollingSign SnowpointCity_Text_SignPokemonGym
     End
 
-_022A:
+SnowpointCity_SailorSSSpiral:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfUnset FLAG_GAME_COMPLETED, _0260
-    Message 10
+    GoToIfUnset FLAG_GAME_COMPLETED, SnowpointCity_ILookForwardToAGreatTrainer
+    Message SnowpointCity_Text_SailToBattleZone
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _0276
-    GoToIfEq VAR_RESULT, MENU_NO, _026B
+    GoToIfEq VAR_RESULT, MENU_YES, SnowpointCity_TakeShipToBattleZone
+    GoToIfEq VAR_RESULT, MENU_NO, SnowpointCity_YouCantGoUsingSurf
     End
 
-_0260:
-    Message 13
+SnowpointCity_ILookForwardToAGreatTrainer:
+    Message SnowpointCity_Text_ILookForwardToAGreatTrainer
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_026B:
-    Message 12
+SnowpointCity_YouCantGoUsingSurf:
+    Message SnowpointCity_Text_YouCantGoUsingSurf
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0276:
-    CallIfUnset FLAG_UNK_0x0157, _02A0
-    Message 11
+SnowpointCity_TakeShipToBattleZone:
+    CallIfUnset FLAG_SAILED_TO_BATTLE_ZONE, SnowpointCity_Cynthia
+    Message SnowpointCity_Text_LetsSetSail
     CloseMessage
-    Call _035C
-    Call _0376
+    Call SnowpointCity_SailorEnterShip
+    Call SnowpointCity_PlayerEnterShip
     TakeShipFromSnowpoint DIR_EAST, MAP_HEADER_FIGHT_AREA, 623, 434
     ReleaseAll
     End
 
-_02A0:
-    ClearFlag FLAG_UNK_0x0256
-    AddObject 10
-    LockObject 10
+SnowpointCity_Cynthia:
+    ClearFlag FLAG_HIDE_SNOWPOINT_CITY_CYNTHIA
+    AddObject LOCALID_CYNTHIA
+    LockObject LOCALID_CYNTHIA
     CloseMessage
-    ApplyMovement 10, _0320
+    ApplyMovement LOCALID_CYNTHIA, SnowpointCity_Movement_CynthiaEnter
     WaitMovement
-    Message 15
-    ApplyMovement LOCALID_PLAYER, _030C
+    Message SnowpointCity_Text_ImGladIWaited
+    ApplyMovement LOCALID_PLAYER, SnowpointCity_Movement_PlayerNoticeCynthia
     WaitMovement
     CloseMessage
-    ApplyMovement 10, _0334
+    ApplyMovement LOCALID_CYNTHIA, SnowpointCity_Movement_CynthiaWalkEast
     WaitMovement
     WaitTime 15, VAR_RESULT
-    Message 16
+    Message SnowpointCity_Text_GoodThatOurWorldChanges
     CloseMessage
-    ApplyMovement 10, _033C
+    ApplyMovement LOCALID_CYNTHIA, SnowpointCity_Movement_CynthiaWalkWestOnSpotSouth
     WaitMovement
-    Message 17
+    Message SnowpointCity_Text_TravelToFarOffPlaces
     CloseMessage
-    ApplyMovement 10, _0348
+    ApplyMovement LOCALID_CYNTHIA, SnowpointCity_Movement_CynthiaLeave
     WaitMovement
-    RemoveObject 10
-    ApplyMovement LOCALID_PLAYER, _0318
+    RemoveObject LOCALID_CYNTHIA
+    ApplyMovement LOCALID_PLAYER, SnowpointCity_Movement_PlayerWalkOnSpotSouth2
     WaitMovement
-    SetFlag FLAG_UNK_0x0157
+    SetFlag FLAG_SAILED_TO_BATTLE_ZONE
     Return
 
     .balign 4, 0
-_030C:
+SnowpointCity_Movement_PlayerNoticeCynthia:
     EmoteExclamationMark
     WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
-_0318:
+SnowpointCity_Movement_PlayerWalkOnSpotSouth2:
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_0320:
+SnowpointCity_Movement_CynthiaEnter:
     WalkNormalWest 4
     WalkNormalSouth 2
     WalkNormalWest 6
@@ -258,53 +259,53 @@ _0320:
     EndMovement
 
     .balign 4, 0
-_0334:
+SnowpointCity_Movement_CynthiaWalkEast:
     WalkNormalEast
     EndMovement
 
     .balign 4, 0
-_033C:
+SnowpointCity_Movement_CynthiaWalkWestOnSpotSouth:
     WalkNormalWest
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_0348:
+SnowpointCity_Movement_CynthiaLeave:
     WalkNormalNorth 2
     WalkNormalEast 3
     WalkNormalNorth 2
     WalkNormalEast 7
     EndMovement
 
-_035C:
-    ApplyMovement 8, _0390
+SnowpointCity_SailorEnterShip:
+    ApplyMovement LOCALID_SAILOR_SS_SPIRAL, SnowpointCity_Movement_SailorSSSpiralFaceSouth
     WaitMovement
     PlaySE SEQ_SE_DP_KAIDAN2
-    ApplyMovement 8, _039C
+    ApplyMovement LOCALID_SAILOR_SS_SPIRAL, SnowpointCity_Movement_SetInvisible
     WaitMovement
     Return
 
-_0376:
-    ApplyMovement LOCALID_PLAYER, _03A4
+SnowpointCity_PlayerEnterShip:
+    ApplyMovement LOCALID_PLAYER, SnowpointCity_Movement_PlayerWalkToShip
     WaitMovement
     PlaySE SEQ_SE_DP_KAIDAN2
-    ApplyMovement LOCALID_PLAYER, _039C
+    ApplyMovement LOCALID_PLAYER, SnowpointCity_Movement_SetInvisible
     WaitMovement
     Return
 
     .balign 4, 0
-_0390:
+SnowpointCity_Movement_SailorSSSpiralFaceSouth:
     FaceSouth
     Delay15
     EndMovement
 
     .balign 4, 0
-_039C:
+SnowpointCity_Movement_SetInvisible:
     SetInvisible
     EndMovement
 
     .balign 4, 0
-_03A4:
+SnowpointCity_Movement_PlayerWalkToShip:
     WalkNormalSouth
     Delay15
     EndMovement

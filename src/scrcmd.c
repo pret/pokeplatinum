@@ -641,7 +641,7 @@ static BOOL ScrCmd_HidePoketch(ScriptContext *ctx);
 static BOOL ScrCmd_ShowPoketch(ScriptContext *ctx);
 static BOOL ScrCmd_267(ScriptContext *ctx);
 static BOOL ScrCmd_GetHour(ScriptContext *ctx);
-static BOOL ScrCmd_269(ScriptContext *ctx);
+static BOOL ScrCmd_ShakeObject(ScriptContext *ctx);
 static BOOL ScrCmd_FlickerObject(ScriptContext *ctx);
 static BOOL ScrCmd_CheckHasAllLegendaryTitansInParty(ScriptContext *ctx);
 static BOOL ScrCmd_TryGetRandomMassageGirlAccessory(ScriptContext *ctx);
@@ -5837,21 +5837,21 @@ static BOOL ScrCmd_GetHour(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_269(ScriptContext *ctx)
+static BOOL ScrCmd_ShakeObject(ScriptContext *ctx)
 {
-    u16 v1 = ScriptContext_GetVar(ctx);
-    u16 v2 = ScriptContext_GetVar(ctx);
-    u16 v3 = ScriptContext_GetVar(ctx);
-    u16 v4 = ScriptContext_GetVar(ctx);
-    u16 v5 = ScriptContext_GetVar(ctx);
+    u16 localID = ScriptContext_GetVar(ctx);
+    u16 times = ScriptContext_GetVar(ctx);
+    u16 speed = ScriptContext_GetVar(ctx);
+    u16 xOffset = ScriptContext_GetVar(ctx);
+    u16 zOffset = ScriptContext_GetVar(ctx);
 
-    MapObject *v0 = MapObjMan_LocalMapObjByIndex(ctx->fieldSystem->mapObjMan, v1);
+    MapObject *mapObject = MapObjMan_LocalMapObjByIndex(ctx->fieldSystem->mapObjMan, localID);
 
-    if (v0 == NULL) {
+    if (mapObject == NULL) {
         GF_ASSERT(FALSE);
     }
 
-    sub_0205E318(ctx->task, v0, v2, v3, v4, v5);
+    MapObject_Shake(ctx->task, mapObject, times, speed, xOffset, zOffset);
     return TRUE;
 }
 

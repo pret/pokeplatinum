@@ -1,48 +1,49 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/snowpoint_temple_b5f.h"
+#include "res/field/events/events_snowpoint_temple_b5f.h"
 
 
-    ScriptEntry _000A
-    ScriptEntry _0025
+    ScriptEntry SnowpointTempleB5F_OnLoad
+    ScriptEntry SnowpointTempleB5F_Regigigas
     ScriptEntryEnd
 
-_000A:
-    GoToIfSet FLAG_MAP_LOCAL, _0017
+SnowpointTempleB5F_OnLoad:
+    GoToIfSet FLAG_MAP_LOCAL, SnowpointTempleB5F_RemoveRegigigas
     End
 
-_0017:
+SnowpointTempleB5F_RemoveRegigigas:
     SetFlag FLAG_HIDE_SNOWPOINT_TEMPLE_B5F_REGIGIGAS
-    RemoveObject 0
+    RemoveObject LOCALID_REGIGIGAS
     ClearFlag FLAG_MAP_LOCAL
     End
 
-_0025:
+SnowpointTempleB5F_Regigigas:
     LockAll
     PlaySE SEQ_SE_CONFIRM
     WaitSE SEQ_SE_CONFIRM
-    GoToIfSet FLAG_UNK_0x011A, _0081
+    GoToIfSet FLAG_AWAKENED_REGIGIGAS, SnowpointTempleB5F_EncounterRegigigas
     CheckHasAllLegendaryTitansInParty VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _0073
-    SetFlag FLAG_UNK_0x011A
+    GoToIfEq VAR_RESULT, FALSE, SnowpointTempleB5F_GatherThreePokemon
+    SetFlag FLAG_AWAKENED_REGIGIGAS
     BufferPlayerName 0
-    Message 1
+    Message SnowpointTempleB5F_Text_KingShallAppear
     CloseMessage
-    ReleaseObject 0
-    ScrCmd_269 0, 8, 90, 3, 0
-    LockObject 0
-    GoTo _0081
+    ReleaseObject LOCALID_REGIGIGAS
+    ShakeObject LOCALID_REGIGIGAS, 8, 90, 3, 0
+    LockObject LOCALID_REGIGIGAS
+    GoTo SnowpointTempleB5F_EncounterRegigigas
     End
 
-_0073:
+SnowpointTempleB5F_GatherThreePokemon:
     BufferPlayerName 0
-    Message 0
+    Message SnowpointTempleB5F_Text_GatherThreePokemon
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0081:
-    Message 2
+SnowpointTempleB5F_EncounterRegigigas:
+    Message SnowpointTempleB5F_Text_RegigigasCry
     CloseMessage
     PlayCry SPECIES_REGIGIGAS
     WaitCry
@@ -50,21 +51,21 @@ _0081:
     StartLegendaryBattle SPECIES_REGIGIGAS, 1
     ClearFlag FLAG_MAP_LOCAL
     CheckWonBattle VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, _00D1
+    GoToIfEq VAR_RESULT, FALSE, SnowpointTempleB5F_BlackOut
     CheckDidNotCapture VAR_RESULT
-    GoToIfEq VAR_RESULT, TRUE, _00C6
+    GoToIfEq VAR_RESULT, TRUE, SnowpointTempleB5F_RegigigasDisappeared
     SetFlag FLAG_CAUGHT_REGIGIGAS
     ReleaseAll
     End
 
-_00C6:
-    Message 3
+SnowpointTempleB5F_RegigigasDisappeared:
+    Message SnowpointTempleB5F_Text_RegigigasDisappeared
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_00D1:
+SnowpointTempleB5F_BlackOut:
     BlackOutFromBattle
     ReleaseAll
     End

@@ -2,77 +2,77 @@
 #include "res/text/bank/snowpoint_city_west_house.h"
 
 
-    ScriptEntry _000A
-    ScriptEntry _0033
+    ScriptEntry SnowpointCityWestHouse_AceTrainerM
+    ScriptEntry SnowpointCityWestHouse_Beauty
     ScriptEntryEnd
 
-_000A:
+SnowpointCityWestHouse_AceTrainerM:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x00F4, _0028
-    Message 0
+    GoToIfSet FLAG_TRADED_FOR_GASPAR_HAUNTER, SnowpointCityWestHouse_MyGirlsHappy
+    Message SnowpointCityWestHouse_Text_SuchVivacityAndCharm
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0028:
-    Message 1
+SnowpointCityWestHouse_MyGirlsHappy:
+    Message SnowpointCityWestHouse_Text_MyGirlsHappy
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0033:
+SnowpointCityWestHouse_Beauty:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x00F4, _00DC
-    Message 2
+    GoToIfSet FLAG_TRADED_FOR_GASPAR_HAUNTER, SnowpointCityWestHouse_WeGotToBeFriends
+    Message SnowpointCityWestHouse_Text_AskTradeMedichamForHaunter
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _0060
-    GoTo _00D1
+    GoToIfEq VAR_RESULT, MENU_YES, SnowpointCityWestHouse_TryTrade
+    GoTo SnowpointCityWestHouse_OKIfYouDontWant
 
-_0060:
+SnowpointCityWestHouse_TryTrade:
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
     SelectPokemonToTrade
     FadeScreenIn
     WaitFadeScreen
-    GoToIfEq VAR_RESULT, 0xFF, _00D1
+    GoToIfEq VAR_RESULT, PARTY_SLOT_NONE, SnowpointCityWestHouse_OKIfYouDontWant
     InitNPCTrade NPC_TRADE_GASPAR_HAUNTER
     SetVar VAR_0x8004, VAR_RESULT
     GetPartyMonSpecies VAR_0x8004, VAR_0x8005
     GetNpcTradeRequestedSpecies VAR_RESULT
-    GoToIfNe VAR_0x8005, VAR_RESULT, _00C4
+    GoToIfNe VAR_0x8005, VAR_RESULT, SnowpointCityWestHouse_IAskedForMedicham
     StartNPCTrade VAR_0x8004
     FinishNpcTrade
-    SetFlag FLAG_UNK_0x00F4
-    Message 3
+    SetFlag FLAG_TRADED_FOR_GASPAR_HAUNTER
+    Message SnowpointCityWestHouse_Text_IMadeItPreventEvolving
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_00C4:
+SnowpointCityWestHouse_IAskedForMedicham:
     FinishNpcTrade
-    Message 4
+    Message SnowpointCityWestHouse_Text_IAskedForMedicham
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_00D1:
-    Message 5
+SnowpointCityWestHouse_OKIfYouDontWant:
+    Message SnowpointCityWestHouse_Text_OKIfYouDontWant
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_00DC:
-    Message 6
+SnowpointCityWestHouse_WeGotToBeFriends:
+    Message SnowpointCityWestHouse_Text_WeGotToBeFriends
     WaitButton
     CloseMessage
     ReleaseAll

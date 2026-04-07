@@ -9,11 +9,11 @@
     ScriptEntryEnd
 
 SnowpointGym_Init:
-    GoToIfSet FLAG_UNK_0x00EB, _001F
+    GoToIfSet FLAG_UNK_0x00EB, SnowpointCityGym_HideSnowpointCityCandice
     End
 
-_001F:
-    SetFlag FLAG_UNK_0x01F3
+SnowpointCityGym_HideSnowpointCityCandice:
+    SetFlag FLAG_HIDE_SNOWPOINT_CITY_CANDICE
     End
 
 SnowpointGym_Candice:

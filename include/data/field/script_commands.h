@@ -641,7 +641,7 @@ const ScrCmdFunc gFieldScriptCommands[] = {
     ScriptCommandTableEntry(SCRCMD_SHOWPOKETCH,                                          ScrCmd_ShowPoketch)
     ScriptCommandTableEntry(SCRCMD_267,                                                  ScrCmd_267)
     ScriptCommandTableEntry(SCRCMD_GETHOUR,                                              ScrCmd_GetHour)
-    ScriptCommandTableEntry(SCRCMD_269,                                                  ScrCmd_269)
+    ScriptCommandTableEntry(SCRCMD_SHAKEOBJECT,                                          ScrCmd_ShakeObject)
     ScriptCommandTableEntry(SCRCMD_FLICKEROBJECT,                                        ScrCmd_FlickerObject)
     ScriptCommandTableEntry(SCRCMD_CHECKHASALLLEGENDARYTITANSINPARTY,                    ScrCmd_CheckHasAllLegendaryTitansInParty)
     ScriptCommandTableEntry(SCRCMD_TRYGETRANDOMMASSAGEGIRLACCESSORY,                     ScrCmd_TryGetRandomMassageGirlAccessory)

@@ -3685,13 +3685,13 @@
     .short \destVar
     .endm
 
-    .macro ScrCmd_269 arg0, arg1, arg2, arg3, arg4
-    .short SCRCMD_269
-    .short \arg0
-    .short \arg1
-    .short \arg2
-    .short \arg3
-    .short \arg4
+    .macro ShakeObject localID, times, speed, xOffset, zOffset
+    .short SCRCMD_SHAKEOBJECT
+    .short \localID
+    .short \times
+    .short \speed
+    .short \xOffset
+    .short \zOffset
     .endm
 
     .macro FlickerObject localID, times, delay

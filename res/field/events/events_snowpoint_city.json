@@ -11,7 +11,7 @@
     ],
     "object_events": [
         {
-            "id": "SNOWPOINT_CITY_ACE_TRAINER_SNOW_F_0",
+            "id": "LOCALID_ACE_TRAINER_SNOW_F",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_SNOW_F",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -26,7 +26,7 @@
             "y": 7
         },
         {
-            "id": "SNOWPOINT_CITY_MAP_SIGNPOST_1",
+            "id": "LOCALID_MAP_SIGNPOST",
             "graphics_id": "OBJ_EVENT_GFX_MAP_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -43,7 +43,7 @@
             "y": 0
         },
         {
-            "id": "SNOWPOINT_CITY_GYM_SIGNPOST_2",
+            "id": "LOCALID_GYM_SIGNPOST",
             "graphics_id": "OBJ_EVENT_GFX_GYM_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -58,7 +58,7 @@
             "y": 0
         },
         {
-            "id": "SNOWPOINT_CITY_SNOWPOINT_NPC_M_3",
+            "id": "LOCALID_SNOWPOINT_NPC_M",
             "graphics_id": "OBJ_EVENT_GFX_SNOWPOINT_NPC_M",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -73,7 +73,7 @@
             "y": 7
         },
         {
-            "id": "SNOWPOINT_CITY_SNOWPOINT_NPC_F_4",
+            "id": "LOCALID_SNOWPOINT_NPC_F_1",
             "graphics_id": "OBJ_EVENT_GFX_SNOWPOINT_NPC_F",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -88,7 +88,7 @@
             "y": 7
         },
         {
-            "id": "SNOWPOINT_CITY_SAILOR_5",
+            "id": "LOCALID_SAILOR",
             "graphics_id": "OBJ_EVENT_GFX_SAILOR",
             "movement_type": "MOVEMENT_TYPE_WANDER_NORTH_AND_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -103,7 +103,7 @@
             "y": 7
         },
         {
-            "id": "SNOWPOINT_CITY_ACE_TRAINER_SNOW_F_6",
+            "id": "LOCALID_TEMPLE_GUARD",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_SNOW_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -118,11 +118,11 @@
             "y": 7
         },
         {
-            "id": "SNOWPOINT_CITY_CANDICE_7",
+            "id": "LOCALID_CANDICE",
             "graphics_id": "OBJ_EVENT_GFX_CANDICE",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x01F3",
+            "hidden_flag": "FLAG_HIDE_SNOWPOINT_CITY_CANDICE",
             "script": 4,
             "initial_dir": 0,
             "data": [],
@@ -133,11 +133,11 @@
             "y": 7
         },
         {
-            "id": "SNOWPOINT_CITY_SAILOR_8",
+            "id": "LOCALID_SAILOR_SS_SPIRAL",
             "graphics_id": "OBJ_EVENT_GFX_SAILOR",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x027A",
+            "hidden_flag": "FLAG_HIDE_SNOWPOINT_CITY_SAILOR_SS_SPIRAL",
             "script": 12,
             "initial_dir": 0,
             "data": [],
@@ -148,7 +148,7 @@
             "y": 7
         },
         {
-            "id": "SNOWPOINT_CITY_SNOWPOINT_NPC_F_9",
+            "id": "LOCALID_SNOWPOINT_NPC_F_2",
             "graphics_id": "OBJ_EVENT_GFX_SNOWPOINT_NPC_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_SOUTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -163,11 +163,11 @@
             "y": 7
         },
         {
-            "id": "SNOWPOINT_CITY_CYNTHIA_10",
+            "id": "LOCALID_CYNTHIA",
             "graphics_id": "OBJ_EVENT_GFX_CYNTHIA",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0256",
+            "hidden_flag": "FLAG_HIDE_SNOWPOINT_CITY_CYNTHIA",
             "script": 0,
             "initial_dir": 1,
             "data": [],
@@ -245,7 +245,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": "VAR_UNK_0x407F",
+            "var": "VAR_SNOWPOINT_CITY_STATE",
             "value": 0
         }
     ]
