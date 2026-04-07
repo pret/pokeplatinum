@@ -45,10 +45,10 @@ _0060:
     InitNPCTrade NPC_TRADE_GASPAR_HAUNTER
     SetVar VAR_0x8004, VAR_RESULT
     GetPartyMonSpecies VAR_0x8004, VAR_0x8005
-    GetNpcTradeRequestedSpecies VAR_RESULT
+    GetNPCTradeRequestedSpecies VAR_RESULT
     GoToIfNe VAR_0x8005, VAR_RESULT, _00C4
     StartNPCTrade VAR_0x8004
-    FinishNpcTrade
+    FinishNPCTrade
     SetFlag FLAG_UNK_0x00F4
     Message 3
     WaitButton
@@ -57,7 +57,7 @@ _0060:
     End
 
 _00C4:
-    FinishNpcTrade
+    FinishNPCTrade
     Message 4
     WaitButton
     CloseMessage
