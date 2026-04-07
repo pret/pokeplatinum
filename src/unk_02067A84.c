@@ -80,7 +80,7 @@ static const DistanceFunc sGetMapObjDistToPlayerFuncs[] = {
 
 int (*const Unk_020EF6D0[])(UnkStruct_020EF6D0 *);
 
-BOOL StartTrainerApproach(FieldSystem *fieldSystem, BOOL hasTwoAliveMons)
+BOOL FieldSystem_CheckForTrainersWantingBattle(FieldSystem *fieldSystem, BOOL hasTwoAliveMons)
 {
     ApproachingTrainerTemplate trainer;
     MapObjectManager *mapObjMan = fieldSystem->mapObjMan;

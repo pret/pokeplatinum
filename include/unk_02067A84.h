@@ -8,7 +8,7 @@
 #include "player_avatar.h"
 #include "sys_task_manager.h"
 
-BOOL StartTrainerApproach(FieldSystem *fieldSystem, BOOL hasTwoAliveMons);
+BOOL FieldSystem_CheckForTrainersWantingBattle(FieldSystem *fieldSystem, BOOL hasTwoAliveMons);
 int MapObject_GetDistanceToPlayer(const MapObject *mapObj, PlayerAvatar *playerAvatar, int direction, int range);
 int MapObject_GetTrainerID(MapObject *mapObj);
 BOOL FieldSystem_IsTrainerDefated(FieldSystem *fieldSystem, MapObject *mapObj);
