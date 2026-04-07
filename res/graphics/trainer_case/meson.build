@@ -40,7 +40,7 @@ trainer_case_pals_4bpp = files(
     'unused2.pal',
 )
 
-#these should be in the same order as sTrainerAppearanceNarcIndices in src/applications/trainer_case/main.c
+#these should be in the same order as the TrainerAppearance enum in include/appearance.h
 #limit of 16 here because each needs its own row in a 8bpp palette
 trainer_appearance_pngs = files(
     'school_kid_m.png',

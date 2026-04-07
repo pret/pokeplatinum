@@ -11,6 +11,7 @@
 #include "overlay007/communication_club.h"
 #include "underground/manager.h"
 
+#include "appearance.h"
 #include "comm_player_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
@@ -178,7 +179,7 @@ void FieldCommMan_EnterBattleRoom(FieldSystem *fieldSystem)
             }
         }
 
-        TrainerCase_Init(FALSE, FALSE, 0, 0xFF, sFieldCommMan->fieldSystem, sFieldCommMan->trainerCase[netId]);
+        TrainerCase_Init(FALSE, FALSE, 0, TRAINER_APPEARANCE_DEFAULT, sFieldCommMan->fieldSystem, sFieldCommMan->trainerCase[netId]);
     }
 
     CommTiming_StartSync(95);

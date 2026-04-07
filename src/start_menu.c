@@ -28,6 +28,7 @@
 #include "overlay005/save_info_window.h"
 #include "overlay005/sprite_resource_manager.h"
 
+#include "appearance.h"
 #include "bag.h"
 #include "bag_context.h"
 #include "bg_window.h"
@@ -1280,7 +1281,7 @@ static BOOL StartMenu_TrainerCase(FieldTask *fieldTask)
 
     menu->taskData = TrainerCase_New(HEAP_ID_FIELD2);
 
-    TrainerCase_Init(TRUE, TRUE, 0, 0xFF, fieldSystem, (TrainerCase *)menu->taskData);
+    TrainerCase_Init(TRUE, TRUE, 0, TRAINER_APPEARANCE_DEFAULT, fieldSystem, (TrainerCase *)menu->taskData);
     FieldSystem_OpenTrainerCase(fieldSystem, (TrainerCase *)menu->taskData);
 
     menu->callback = StartMenu_ExitTrainerCase;

@@ -9,6 +9,7 @@
 #include "applications/trainer_case/defs.h"
 #include "applications/trainer_case/sprites.h"
 
+#include "appearance.h"
 #include "badges.h"
 #include "bg_window.h"
 #include "graphics.h"
@@ -179,25 +180,23 @@ static const u8 *const sButtonAnimData[] = {
     sButtonSpringBackAnimData
 };
 
-// these should be in the same order as trainer_appearance_pngs in res/graphics/trainer_case/meson.build
-// limit of 16 here because each needs its own row in a 8bpp palette
 static const int sTrainerAppearanceNarcIndices[16] = {
-    school_kid_m_NCGR,
-    bug_catcher_NCGR,
-    ace_trainer_m_NCGR,
-    roughneck_NCGR,
-    ruin_maniac_NCGR,
-    black_belt_NCGR,
-    rich_boy_NCGR,
-    psychic_m_NCGR,
-    lass_NCGR,
-    battle_girl_NCGR,
-    beauty_NCGR,
-    ace_trainer_f_NCGR,
-    idol_NCGR,
-    socialite_NCGR,
-    cowgirl_NCGR,
-    lady_NCGR
+    [TRAINER_APPEARANCE_SCHOOL_KID_M] = school_kid_m_NCGR,
+    [TRAINER_APPEARANCE_BUG_CATCHER] = bug_catcher_NCGR,
+    [TRAINER_APPEARANCE_ACE_TRAINER_M] = ace_trainer_m_NCGR,
+    [TRAINER_APPEARANCE_ROUGHNECK] = roughneck_NCGR,
+    [TRAINER_APPEARANCE_RUIN_MANIAC] = ruin_maniac_NCGR,
+    [TRAINER_APPEARANCE_BLACK_BELT] = black_belt_NCGR,
+    [TRAINER_APPEARANCE_RICH_BOY] = rich_boy_NCGR,
+    [TRAINER_APPEARANCE_PSYCHIC_M] = psychic_m_NCGR,
+    [TRAINER_APPEARANCE_LASS] = lass_NCGR,
+    [TRAINER_APPEARANCE_BATTLE_GIRL] = battle_girl_NCGR,
+    [TRAINER_APPEARANCE_BEAUTY] = beauty_NCGR,
+    [TRAINER_APPEARANCE_ACE_TRAINER_F] = ace_trainer_f_NCGR,
+    [TRAINER_APPEARANCE_IDOL] = idol_NCGR,
+    [TRAINER_APPEARANCE_SOCIALITE] = socialite_NCGR,
+    [TRAINER_APPEARANCE_COWGIRL] = cowgirl_NCGR,
+    [TRAINER_APPEARANCE_LADY] = lady_NCGR
 };
 
 BOOL TrainerCaseApp_Init(ApplicationManager *appMan, int *state)
@@ -690,7 +689,7 @@ static void TrainerCase_DrawTrainerCard(TrainerCaseApp *trainerCaseApp, NARC *na
 
     TrainerCase_LoadCasePalette(trainerCaseApp->trainerCase->gameVersion, narc);
 
-    if (trainerCaseApp->trainerCase->trainerAppearance == 0xFF) {
+    if (trainerCaseApp->trainerCase->trainerAppearance == (u8)TRAINER_APPEARANCE_DEFAULT) {
         s32 trainerSpriteNarcIndex, trainerScreenDataNarcIndex, trainerPaletteNarcIndex;
 
         switch (trainerCaseApp->trainerCase->gameVersion) {
