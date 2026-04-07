@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_02067A84_H
-#define POKEPLATINUM_UNK_02067A84_H
+#ifndef POKEPLATINUM_TRAINER_SEE_H
+#define POKEPLATINUM_TRAINER_SEE_H
 
 #include "struct_decls/struct_02061AB4_decl.h"
 
@@ -16,4 +16,4 @@ SysTask *sub_02067FB8(FieldSystem *fieldSystem, MapObject *param1, PlayerAvatar 
 int sub_02067FD4(SysTask *param0);
 void sub_02067FE8(SysTask *param0);
 
-#endif // POKEPLATINUM_UNK_02067A84_H
+#endif // POKEPLATINUM_TRAINER_SEE_H

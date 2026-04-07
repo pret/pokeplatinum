@@ -13,9 +13,9 @@
 #include "map_object_move.h"
 #include "math_util.h"
 #include "player_avatar.h"
+#include "trainer_see.h"
 #include "unk_0205F180.h"
 #include "unk_020655F4.h"
-#include "unk_02067A84.h"
 
 typedef struct {
     int unk_00;

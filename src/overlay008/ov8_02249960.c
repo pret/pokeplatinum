@@ -58,9 +58,9 @@
 #include "system_vars.h"
 #include "terrain_collision_manager.h"
 #include "trainer_info.h"
+#include "trainer_see.h"
 #include "unk_0205F180.h"
 #include "unk_020655F4.h"
-#include "unk_02067A84.h"
 #include "vars_flags.h"
 
 #include "res/field/props/models/prop_models.naix"

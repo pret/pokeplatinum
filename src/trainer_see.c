@@ -1,4 +1,4 @@
-#include "unk_02067A84.h"
+#include "trainer_see.h"
 
 #include <nitro.h>
 #include <string.h>

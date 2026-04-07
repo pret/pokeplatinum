@@ -257,7 +257,7 @@ Static main
 	Object main.nef.p/src_unk_020655F4.c.o
 	Object main.nef.p/src_unk_020673B8.c.o
 	Object main.nef.p/src_berry_patch_graphics.c.o
-	Object main.nef.p/src_unk_02067A84.c.o
+	Object main.nef.p/src_trainer_see.c.o
 	Object main.nef.p/src_dynamic_map_features.c.o
 	Object main.nef.p/src_item_use_functions.c.o
 	Object main.nef.p/src_pokeradar.c.o

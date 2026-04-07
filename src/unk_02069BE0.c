@@ -18,8 +18,8 @@
 #include "overworld_anim_manager.h"
 #include "player_avatar.h"
 #include "terrain_collision_manager.h"
+#include "trainer_see.h"
 #include "unk_020655F4.h"
-#include "unk_02067A84.h"
 
 typedef struct {
     u8 unk_00;
