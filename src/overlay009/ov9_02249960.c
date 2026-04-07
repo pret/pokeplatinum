@@ -12275,22 +12275,22 @@ static const DistWorldEvent sMapEventsB2F[] = {
     { 0x0, 0x0, 0x0, FLAG_COND_NONE, 0x0, NULL }
 };
 
-static const CmdParamsStartScript sUnkMapEventCmdParamsB3F_1_1 = {
+static const CmdParamsStartScript sMapEventCmdParamsB3F_Cyrus_1 = {
     .scriptID = 0x2
 };
 
-static const CmdParamsSetDistortionWorldProgress sUnkMapEventCmdParamsB3F_1_2 = {
+static const CmdParamsSetDistortionWorldProgress sMapEventCmdParamsB3F_Cyrus_2 = {
     .progress = 0x6
 };
 
-static const DistWorldEventCmd sUnkMapEventB3F_1[] = {
+static const DistWorldEventCmd sMapEventB3F_Cyrus[] = {
     {
         .kind = EVENT_CMD_START_SCRIPT,
-        .params = &sUnkMapEventCmdParamsB3F_1_1,
+        .params = &sMapEventCmdParamsB3F_Cyrus_1,
     },
     {
         .kind = EVENT_CMD_SET_DISTORTION_WORLD_PROGRESS,
-        .params = &sUnkMapEventCmdParamsB3F_1_2,
+        .params = &sMapEventCmdParamsB3F_Cyrus_2,
     },
     { EVENT_CMD_END, NULL }
 };
@@ -12302,7 +12302,7 @@ static const DistWorldEvent sMapEventsB3F[] = {
         .tileZ = 0x29,
         .flagCond = FLAG_COND_WORLD_PROGRESS_EQ,
         .flagCondVal = 0x4,
-        .cmds = sUnkMapEventB3F_1,
+        .cmds = sMapEventB3F_Cyrus,
     },
     {
         .tileX = 0x41,
@@ -12310,7 +12310,7 @@ static const DistWorldEvent sMapEventsB3F[] = {
         .tileZ = 0x29,
         .flagCond = FLAG_COND_WORLD_PROGRESS_EQ,
         .flagCondVal = 0x5,
-        .cmds = sUnkMapEventB3F_1,
+        .cmds = sMapEventB3F_Cyrus,
     },
     { 0x0, 0x0, 0x0, FLAG_COND_NONE, 0x0, NULL }
 };
@@ -12523,22 +12523,22 @@ static const DistWorldEvent sMapEventsB5F[] = {
     { 0x0, 0x0, 0x0, FLAG_COND_NONE, 0x0, NULL }
 };
 
-static const CmdParamsStartScript sUnkMapEventCmdParamsB7F_1_1 = {
+static const CmdParamsStartScript sMapEventCmdParamsB7F_CynthiaCyrus_1 = {
     .scriptID = 0x4
 };
 
-static const CmdParamsSetDistortionWorldProgress sUnkMapEventCmdParamsB7F_1_2 = {
+static const CmdParamsSetDistortionWorldProgress sMapEventCmdParamsB7F_CynthiaCyrus_2 = {
     .progress = 0x9
 };
 
-static const DistWorldEventCmd sUnkMapEventB7F_1[] = {
+static const DistWorldEventCmd sMapEventB7F_CynthiaCyrus[] = {
     {
         .kind = EVENT_CMD_START_SCRIPT,
-        .params = &sUnkMapEventCmdParamsB7F_1_1,
+        .params = &sMapEventCmdParamsB7F_CynthiaCyrus_1,
     },
     {
         .kind = EVENT_CMD_SET_DISTORTION_WORLD_PROGRESS,
-        .params = &sUnkMapEventCmdParamsB7F_1_2,
+        .params = &sMapEventCmdParamsB7F_CynthiaCyrus_2,
     },
     { EVENT_CMD_END, NULL }
 };
@@ -12550,7 +12550,7 @@ static const DistWorldEvent sMapEventsB7F[] = {
         .tileZ = 0x4C,
         .flagCond = FLAG_COND_WORLD_PROGRESS_EQ,
         .flagCondVal = 0x8,
-        .cmds = sUnkMapEventB7F_1,
+        .cmds = sMapEventB7F_CynthiaCyrus,
     },
     {
         .tileX = 0x55,
@@ -12558,7 +12558,7 @@ static const DistWorldEvent sMapEventsB7F[] = {
         .tileZ = 0x4C,
         .flagCond = FLAG_COND_WORLD_PROGRESS_EQ,
         .flagCondVal = 0x8,
-        .cmds = sUnkMapEventB7F_1,
+        .cmds = sMapEventB7F_CynthiaCyrus,
     },
     {
         .tileX = 0x56,
@@ -12566,7 +12566,7 @@ static const DistWorldEvent sMapEventsB7F[] = {
         .tileZ = 0x4C,
         .flagCond = FLAG_COND_WORLD_PROGRESS_EQ,
         .flagCondVal = 0x8,
-        .cmds = sUnkMapEventB7F_1,
+        .cmds = sMapEventB7F_CynthiaCyrus,
     },
     { 0x0, 0x0, 0x0, FLAG_COND_NONE, 0x0, NULL }
 };
