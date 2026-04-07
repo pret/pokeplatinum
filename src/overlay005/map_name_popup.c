@@ -19,6 +19,10 @@
 #include "sys_task_manager.h"
 #include "text.h"
 
+#define POPUP_WIDTH_TILES  17
+#define POPUP_HEIGHT_TILES 5
+#define POPUP_SIZE_TILES   (POPUP_WIDTH_TILES * POPUP_HEIGHT_TILES)
+
 enum MapNamePopUpState {
     MAP_NAME_POPUP_STATE_END,
     MAP_NAME_POPUP_STATE_SLIDE_IN,
@@ -87,8 +91,8 @@ static void MapNamePopUp_DrawWindowFrame(MapNamePopUp *mapPopUp, s32 strWidth)
     MapNamePopUp_LoadAreaGfx(mapPopUp, BG_LAYER_MAIN_3, BASE_TILE_MAP_TRANSITION_DROPDOWN, 7, 0);
     Window_FillTilemap(&mapPopUp->window, 0);
 
-    for (int i = 0; i < 85; i++) {
-        Window_BlitBitmapRect(&mapPopUp->window, mapPopUp->charData->pRawData, i * 8, 0, 8, 8, (i % 17) * 8, (i / 17) * 8, 8, 8);
+    for (int i = 0; i < POPUP_SIZE_TILES; i++) {
+        Window_BlitBitmapRect(&mapPopUp->window, mapPopUp->charData->pRawData, i * 8, 0, 8, 8, (i % POPUP_WIDTH_TILES) * 8, (i / POPUP_WIDTH_TILES) * 8, 8, 8);
     }
 
     Window_CopyToVRAM(&mapPopUp->window);
