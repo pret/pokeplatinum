@@ -163,6 +163,8 @@ meson: $(MESON)
 
 $(MESON):
 	$(GIT) clone --depth=1 -b $(MESON_VER) https://github.com/mesonbuild/meson $(@D)
+	cd $(MESON_DIR) ; find ../packagefiles/meson_patch -name '*.patch' -exec $(GIT) apply {} \;
+	cd $(MESON_DIR) ; $(GIT) add .
 
 skrew: $(SKREW_EXE)
 

@@ -1,0 +1,15 @@
+# Upstream PR: https://github.com/mesonbuild/meson/pull/15683
+diff --git a/mesonbuild/scripts/meson_exe.py b/mesonbuild/scripts/meson_exe.py
+index e928e9c..1d892c2 100644
+--- a/mesonbuild/scripts/meson_exe.py
++++ b/mesonbuild/scripts/meson_exe.py
+@@ -77,6 +77,9 @@ def run_exe(exe: ExecutableSerialisation, extra_env: T.Optional[T.Dict[str, str]
+         print('--- stderr ---')
+         print(stderr.decode(encoding=encoding, errors='replace'))
+         return p.returncode
++    elif stderr: # Allow a wrapped subprocess to gracefully communicate warnings
++        encoding = locale.getpreferredencoding()
++        print(stderr.decode(encoding=encoding, errors='replace'))
+ 
+     if exe.capture:
+         skip_write = False
