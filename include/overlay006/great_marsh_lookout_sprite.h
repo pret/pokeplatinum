@@ -6,7 +6,7 @@
 #include "sprite_resource.h"
 #include "sprite_util.h"
 
-typedef struct GreatMarshLookout_SpriteResources {
+typedef struct GreatMarshLookoutSpriteManager {
     SpriteResourceCollection *resourceCollection[4];
     SpriteResource *resources[4];
     void *monSpriteTiles;
