@@ -2,7 +2,7 @@
   "key": 54347,
   "messages": [
     {
-      "id": "pl_msg_00000284_00000",
+      "id": "GalacticHQ3F_Text_DoorsOpenWithSpecialKey",
       "en_US": [
         "The locked doors only open with\n",
         "a special key.\r",
@@ -12,14 +12,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000284_00001",
+      "id": "GalacticHQ3F_Text_DoorIsLocked",
       "en_US": [
         "The door is locked.\n",
         "A special key is needed."
       ]
     },
     {
-      "id": "pl_msg_00000284_00002",
+      "id": "GalacticHQ3F_Text_UseGalacticKey",
       "en_US": [
         "The door is locked.\n",
         "A special key is needed.\r",
@@ -27,11 +27,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000284_00003",
+      "id": "GalacticHQ3F_Text_DoorOpened",
       "en_US": "The door opened."
     },
     {
-      "id": "pl_msg_00000284_00004",
+      "id": "GalacticHQ3F_Text_TeamGalacticCredo",
       "en_US": [
         "The Team Galactic credo!\n",
         "Everything belongs to Team Galactic!\r",

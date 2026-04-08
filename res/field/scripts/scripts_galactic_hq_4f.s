@@ -1,93 +1,95 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/galactic_hq_4f.h"
+#include "res/text/bank/menu_entries.h"
+#include "res/field/events/events_galactic_hq_4f.h"
 
 
-    ScriptEntry _0012
-    ScriptEntry _012C
-    ScriptEntry _01C4
-    ScriptEntry _01D5
+    ScriptEntry GalacticHQ4F_TriggerCyrus
+    ScriptEntry GalacticHQ4F_Door
+    ScriptEntry GalacticHQ4F_SignWarpPanels
+    ScriptEntry GalacticHQ4F_Report
     ScriptEntryEnd
 
-_0012:
+GalacticHQ4F_TriggerCyrus:
     LockAll
-    ApplyMovement 0, _00E8
+    ApplyMovement LOCALID_CYRUS, GalacticHQ4F_Movement_CyrusWalkOnSpotSouth
     WaitMovement
-    Message 0
+    Message GalacticHQ4F_Text_SpeechWasBigLie
     CloseMessage
-    ApplyMovement 0, _00F0
+    ApplyMovement LOCALID_CYRUS, GalacticHQ4F_Movement_CyrusWalkSouth
     WaitMovement
-    Message 1
+    Message GalacticHQ4F_Text_IKnowWhyYoureHere
     CloseMessage
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    GoToIfEq VAR_0x8004, 8, _0054
-    GoToIfEq VAR_0x8004, 9, _0064
+    GoToIfEq VAR_0x8004, 8, GalacticHQ4F_CyrusWalkToPlayerX8
+    GoToIfEq VAR_0x8004, 9, GalacticHQ4F_CyrusWalkToPlayerX9
     End
 
-_0054:
-    ApplyMovement 0, _00F8
+GalacticHQ4F_CyrusWalkToPlayerX8:
+    ApplyMovement LOCALID_CYRUS, GalacticHQ4F_Movement_CyrusWalkToPlayerX8
     WaitMovement
-    GoTo _0074
+    GoTo GalacticHQ4F_Cyrus
 
-_0064:
-    ApplyMovement 0, _0100
+GalacticHQ4F_CyrusWalkToPlayerX9:
+    ApplyMovement LOCALID_CYRUS, GalacticHQ4F_Movement_CyrusWalkToPlayerX9
     WaitMovement
-    GoTo _0074
+    GoTo GalacticHQ4F_Cyrus
 
-_0074:
+GalacticHQ4F_Cyrus:
     StartTrainerBattle TRAINER_GALACTIC_BOSS_CYRUS_GALACTIC_HQ
     CheckWonBattle VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, _00E1
-    Message 2
+    GoToIfEq VAR_RESULT, FALSE, GalacticHQ4F_BlackOut
+    Message GalacticHQ4F_Text_YouAreIndeedStrong
     SetVar VAR_0x8004, ITEM_MASTER_BALL
     SetVar VAR_0x8005, 1
     CanFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT
-    CallIfEq VAR_RESULT, 1, _00DB
-    Message 3
+    CallIfEq VAR_RESULT, TRUE, GalacticHQ4F_GiveMasterBall
+    Message GalacticHQ4F_Text_IMakePowerMyOwn
     CloseMessage
-    ApplyMovement 0, _0110
+    ApplyMovement LOCALID_CYRUS, GalacticHQ4F_Movement_CyrusWalkNorthEast
     WaitMovement
-    Message 4
+    Message GalacticHQ4F_Text_TakeWarpPanel
     CloseMessage
-    ApplyMovement 0, _0124
+    ApplyMovement LOCALID_CYRUS, GalacticHQ4F_Movement_CyrusLeave
     WaitMovement
-    RemoveObject 0
-    SetVar VAR_UNK_0x40D6, 1
+    RemoveObject LOCALID_CYRUS
+    SetVar VAR_GALACTIC_HQ_4F_STATE, 1
     ReleaseAll
     End
 
-_00DB:
+GalacticHQ4F_GiveMasterBall:
     Common_GiveItemQuantity
     Return
 
-_00E1:
+GalacticHQ4F_BlackOut:
     BlackOutFromBattle
     ReleaseAll
     End
 
     .balign 4, 0
-_00E8:
+GalacticHQ4F_Movement_CyrusWalkOnSpotSouth:
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_00F0:
+GalacticHQ4F_Movement_CyrusWalkSouth:
     WalkNormalSouth
     EndMovement
 
     .balign 4, 0
-_00F8:
+GalacticHQ4F_Movement_CyrusWalkToPlayerX8:
     WalkNormalSouth
     EndMovement
 
     .balign 4, 0
-_0100:
+GalacticHQ4F_Movement_CyrusWalkToPlayerX9:
     WalkNormalSouth
     WalkNormalEast
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_0110:
+GalacticHQ4F_Movement_CyrusWalkNorthEast:
     WalkNormalNorth
     WalkNormalEast 4
     WalkNormalNorth 3
@@ -95,102 +97,102 @@ _0110:
     EndMovement
 
     .balign 4, 0
-_0124:
+GalacticHQ4F_Movement_CyrusLeave:
     WalkNormalEast 7
     EndMovement
 
-_012C:
+GalacticHQ4F_Door:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     CheckItem ITEM_GALACTIC_KEY, 1, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _0154
-    Message 5
+    GoToIfEq VAR_RESULT, TRUE, GalacticHQ4F_AskUseGalacticKey
+    Message GalacticHQ4F_Text_DoorIsLocked
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0154:
-    Message 6
+GalacticHQ4F_AskUseGalacticKey:
+    Message GalacticHQ4F_Text_UseGalacticKey
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _0177
-    GoToIfEq VAR_RESULT, MENU_NO, _01AB
+    GoToIfEq VAR_RESULT, MENU_YES, GalacticHQ4F_UseGalacticKey
+    GoToIfEq VAR_RESULT, MENU_NO, GalacticHQ4F_DontUseKey
     End
 
-_0177:
+GalacticHQ4F_UseGalacticKey:
     BufferPlayerName 0
-    Message 7
+    Message GalacticHQ4F_Text_DoorOpened
     WaitButton
     WaitSE SEQ_SE_CONFIRM
     PlaySE SEQ_SE_DP_DOOR10
-    ApplyMovement 1, _01B4
-    ApplyMovement 2, _01BC
+    ApplyMovement LOCALID_GALACTIC_HQ_DOOR_WEST, GalacticHQ4F_Movement_DoorWestMoveWest
+    ApplyMovement LOCALID_GALACTIC_HQ_DOOR_EAST, GalacticHQ4F_Movement_DoorEastMoveEast
     WaitMovement
-    SetFlag FLAG_UNK_0x0226
-    RemoveObject 1
-    RemoveObject 2
+    SetFlag FLAG_HIDE_GALACTIC_HQ_4F_DOOR
+    RemoveObject LOCALID_GALACTIC_HQ_DOOR_WEST
+    RemoveObject LOCALID_GALACTIC_HQ_DOOR_EAST
     CloseMessage
     ReleaseAll
     End
 
-_01AB:
+GalacticHQ4F_DontUseKey:
     CloseMessage
     ReleaseAll
     End
 
     .balign 4, 0
-_01B4:
+GalacticHQ4F_Movement_DoorWestMoveWest:
     WalkFastWest
     EndMovement
 
     .balign 4, 0
-_01BC:
+GalacticHQ4F_Movement_DoorEastMoveEast:
     WalkFastEast
     EndMovement
 
-_01C4:
-    EventMessage 8
+GalacticHQ4F_SignWarpPanels:
+    EventMessage GalacticHQ4F_Text_TeamGalacticWarpPanels
     End
 
-_01D5:
+GalacticHQ4F_Report:
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    Message 9
-    GoTo _01E6
+    Message GalacticHQ4F_Text_TeamGalacticReport
+    GoTo GalacticHQ4F_ReadWhichReport
     End
 
-_01E6:
-    Message 10
+GalacticHQ4F_ReadWhichReport:
+    Message GalacticHQ4F_Text_ReadWhichReport
     InitGlobalTextMenu 1, 1, 0, VAR_RESULT
-    AddMenuEntry 0x10C, 0
-    AddMenuEntry 0x10D, 1
-    AddMenuEntry 0x10E, 2
-    AddMenuEntry 0x10F, 3
+    AddMenuEntry MenuEntries_Text_GalacticReport_CreationOfSpace, 0
+    AddMenuEntry MenuEntries_Text_GalacticReport_MythicalPokemon, 1
+    AddMenuEntry MenuEntries_Text_GalacticReport_RedChain, 2
+    AddMenuEntry MenuEntries_Text_GalacticReport_Exit, 3
     ShowMenu
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, 0, _0240
-    GoToIfEq VAR_0x8008, 1, _024B
-    GoToIfEq VAR_0x8008, 2, _0256
-    GoTo _0261
+    GoToIfEq VAR_0x8008, 0, GalacticHQ4F_ReportCreationOfSpace
+    GoToIfEq VAR_0x8008, 1, GalacticHQ4F_ReportMythicalPokemon
+    GoToIfEq VAR_0x8008, 2, GalacticHQ4F_ReportRedChain
+    GoTo GalacticHQ4F_ReportEnd
     End
 
-_0240:
-    Message 11
-    GoTo _01E6
+GalacticHQ4F_ReportCreationOfSpace:
+    Message GalacticHQ4F_Text_ReportCreationOfSpace
+    GoTo GalacticHQ4F_ReadWhichReport
     End
 
-_024B:
-    Message 12
-    GoTo _01E6
+GalacticHQ4F_ReportMythicalPokemon:
+    Message GalacticHQ4F_Text_ReportMythicalPokemon
+    GoTo GalacticHQ4F_ReadWhichReport
     End
 
-_0256:
-    Message 13
-    GoTo _01E6
+GalacticHQ4F_ReportRedChain:
+    Message GalacticHQ4F_Text_ReportRedChain
+    GoTo GalacticHQ4F_ReadWhichReport
     End
 
-_0261:
+GalacticHQ4F_ReportEnd:
     CloseMessage
     ReleaseAll
     End

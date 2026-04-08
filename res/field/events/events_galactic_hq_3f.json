@@ -35,11 +35,11 @@
     ],
     "object_events": [
         {
-            "id": "GALACTIC_HQ_3F_GRUNT_M_0",
+            "id": "LOCALID_GRUNT_M",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0237",
+            "hidden_flag": "FLAG_HIDE_GALACTIC_HQ_TEAM_GALACTIC",
             "script": 1,
             "initial_dir": 1,
             "data": [],
@@ -65,11 +65,11 @@
             "y": 0
         },
         {
-            "id": "GALACTIC_HQ_3F_GALACTIC_GRUNT_2",
+            "id": "LOCALID_GALACTIC_GRUNT_2",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_WALK_BACK_AND_FORTH",
             "trainer_type": "TRAINER_TYPE_FACE_SIDES",
-            "hidden_flag": "FLAG_UNK_0x0237",
+            "hidden_flag": "FLAG_HIDE_GALACTIC_HQ_TEAM_GALACTIC",
             "script": "TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_3F_2",
             "initial_dir": 3,
             "data": [
@@ -83,11 +83,11 @@
             "y": 0
         },
         {
-            "id": "GALACTIC_HQ_3F_GALACTIC_GRUNT_3",
+            "id": "LOCALID_GALACTIC_GRUNT_3",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "hidden_flag": "FLAG_UNK_0x0237",
+            "hidden_flag": "FLAG_HIDE_GALACTIC_HQ_TEAM_GALACTIC",
             "script": "TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_3F_3",
             "initial_dir": 0,
             "data": [
@@ -100,11 +100,11 @@
             "y": 0
         },
         {
-            "id": "GALACTIC_HQ_3F_GALACTIC_GRUNT_4",
+            "id": "LOCALID_GALACTIC_GRUNT_4",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "hidden_flag": "FLAG_UNK_0x0237",
+            "hidden_flag": "FLAG_HIDE_GALACTIC_HQ_TEAM_GALACTIC",
             "script": "TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_3F_4",
             "initial_dir": 1,
             "data": [
@@ -117,11 +117,11 @@
             "y": 0
         },
         {
-            "id": "GALACTIC_HQ_3F_GALACTIC_HQ_DOOR_5",
+            "id": "LOCALID_GALACTIC_HQ_DOOR_WEST",
             "graphics_id": "OBJ_EVENT_GFX_GALACTIC_HQ_DOOR",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0225",
+            "hidden_flag": "FLAG_HIDE_GALACTIC_HQ_3F_DOOR",
             "script": 2,
             "initial_dir": 1,
             "data": [],
@@ -132,11 +132,11 @@
             "y": 0
         },
         {
-            "id": "GALACTIC_HQ_3F_GALACTIC_HQ_DOOR_6",
+            "id": "LOCALID_GALACTIC_HQ_DOOR_EAST",
             "graphics_id": "OBJ_EVENT_GFX_GALACTIC_HQ_DOOR",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0225",
+            "hidden_flag": "FLAG_HIDE_GALACTIC_HQ_3F_DOOR",
             "script": 2,
             "initial_dir": 1,
             "data": [],
@@ -147,11 +147,11 @@
             "y": 0
         },
         {
-            "id": "GALACTIC_HQ_3F_GALACTIC_GRUNT_1",
+            "id": "LOCALID_GALACTIC_GRUNT_1",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "hidden_flag": "FLAG_UNK_0x0237",
+            "hidden_flag": "FLAG_HIDE_GALACTIC_HQ_TEAM_GALACTIC",
             "script": "TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_3F_1",
             "initial_dir": 0,
             "data": [

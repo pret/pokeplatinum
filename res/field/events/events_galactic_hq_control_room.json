@@ -35,11 +35,11 @@
     ],
     "object_events": [
         {
-            "id": "GALACTIC_HQ_CONTROL_ROOM_SATURN_0",
+            "id": "LOCALID_SATURN",
             "graphics_id": "OBJ_EVENT_GFX_SATURN",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0237",
+            "hidden_flag": "FLAG_HIDE_GALACTIC_HQ_TEAM_GALACTIC",
             "script": 3,
             "initial_dir": 0,
             "data": [],
@@ -50,11 +50,11 @@
             "y": 0
         },
         {
-            "id": "GALACTIC_HQ_CONTROL_ROOM_AZELF_1",
+            "id": "LOCALID_AZELF",
             "graphics_id": "OBJ_EVENT_GFX_AZELF",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0236",
+            "hidden_flag": "FLAG_HIDE_GALACTIC_HQ_CONTROL_ROOM_LAKE_GUARDIANS",
             "script": 13,
             "initial_dir": 1,
             "data": [],
@@ -65,11 +65,11 @@
             "y": 0
         },
         {
-            "id": "GALACTIC_HQ_CONTROL_ROOM_MESPRIT_2",
+            "id": "LOCALID_MESPRIT",
             "graphics_id": "OBJ_EVENT_GFX_MESPRIT",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0236",
+            "hidden_flag": "FLAG_HIDE_GALACTIC_HQ_CONTROL_ROOM_LAKE_GUARDIANS",
             "script": 12,
             "initial_dir": 1,
             "data": [],
@@ -80,11 +80,11 @@
             "y": 0
         },
         {
-            "id": "GALACTIC_HQ_CONTROL_ROOM_UXIE_3",
+            "id": "LOCALID_UXIE",
             "graphics_id": "OBJ_EVENT_GFX_UXIE",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0236",
+            "hidden_flag": "FLAG_HIDE_GALACTIC_HQ_CONTROL_ROOM_LAKE_GUARDIANS",
             "script": 11,
             "initial_dir": 1,
             "data": [],
@@ -95,11 +95,11 @@
             "y": 0
         },
         {
-            "id": "GALACTIC_HQ_CONTROL_ROOM_CHARON_4",
+            "id": "LOCALID_CHARON",
             "graphics_id": "OBJ_EVENT_GFX_CHARON",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x029E",
+            "hidden_flag": "FLAG_HIDE_GALACTIC_HQ_CONTROL_ROOM_CHARON",
             "script": 15,
             "initial_dir": 0,
             "data": [],
@@ -126,7 +126,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": "VAR_UNK_0x410D",
+            "var": "FLAG_GALACTIC_HQ_CONTROL_ROOM_STATE",
             "value": 1
         }
     ]

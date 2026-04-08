@@ -2,7 +2,7 @@
   "key": 54359,
   "messages": [
     {
-      "id": "pl_msg_00000285_00000",
+      "id": "GalacticHQ4F_Text_SpeechWasBigLie",
       "en_US": [
         "Cyrus: ...So, you’ve come.\n",
         "You heard my speech, I take it.\r",
@@ -22,7 +22,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000285_00001",
+      "id": "GalacticHQ4F_Text_IKnowWhyYoureHere",
       "en_US": [
         "I know why you’re here. I can sense\n",
         "it in you.\r",
@@ -51,7 +51,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000285_00002",
+      "id": "GalacticHQ4F_Text_YouAreIndeedStrong",
       "en_US": [
         "Cyrus: I see.\n",
         "You are indeed strong.\r",
@@ -71,7 +71,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000285_00003",
+      "id": "GalacticHQ4F_Text_IMakePowerMyOwn",
       "en_US": [
         "Cyrus: The Master Ball is the ultimate\n",
         "Poké Ball.\r",
@@ -87,7 +87,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000285_00004",
+      "id": "GalacticHQ4F_Text_TakeWarpPanel",
       "en_US": [
         "If you wish to save the Pokémon from\n",
         "the lakes, take the warp panel ahead.\r",
@@ -99,14 +99,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000285_00005",
+      "id": "GalacticHQ4F_Text_DoorIsLocked",
       "en_US": [
         "The door is locked.\n",
         "A special key is needed."
       ]
     },
     {
-      "id": "pl_msg_00000285_00006",
+      "id": "GalacticHQ4F_Text_UseGalacticKey",
       "en_US": [
         "The door is locked.\n",
         "A special key is needed.\r",
@@ -114,11 +114,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000285_00007",
+      "id": "GalacticHQ4F_Text_DoorOpened",
       "en_US": "The door opened."
     },
     {
-      "id": "pl_msg_00000285_00008",
+      "id": "GalacticHQ4F_Text_TeamGalacticWarpPanels",
       "en_US": [
         "Team Galactic Warp Panels!\r",
         "The green warp panel returns you\n",
@@ -128,15 +128,15 @@
       ]
     },
     {
-      "id": "pl_msg_00000285_00009",
+      "id": "GalacticHQ4F_Text_TeamGalacticReport",
       "en_US": "Team Galactic Report\r"
     },
     {
-      "id": "pl_msg_00000285_00010",
+      "id": "GalacticHQ4F_Text_ReadWhichReport",
       "en_US": "Which report would you like to read?"
     },
     {
-      "id": "pl_msg_00000285_00011",
+      "id": "GalacticHQ4F_Text_ReportCreationOfSpace",
       "en_US": [
         "Some say the universe originated\n",
         "from a massive explosion.\r",
@@ -154,7 +154,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000285_00012",
+      "id": "GalacticHQ4F_Text_ReportMythicalPokemon",
       "en_US": [
         "The mythical Pokémon...\r",
         "According to myths, the Pokémon\n",
@@ -169,7 +169,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000285_00013",
+      "id": "GalacticHQ4F_Text_ReportRedChain",
       "en_US": [
         "The Red Chain...\r",
         "The Pokémon of the three lakes and\n",

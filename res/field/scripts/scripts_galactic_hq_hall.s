@@ -1,182 +1,183 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/galactic_hq_hall.h"
+#include "res/field/events/events_galactic_hq_hall.h"
 
 
-    ScriptEntry _0006
+    ScriptEntry GalacticHQHall_TriggerSpeech
     ScriptEntryEnd
 
-_0006:
+GalacticHQHall_TriggerSpeech:
     LockAll
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    ApplyMovement 3, _0234
+    ApplyMovement LOCALID_LOOKER, GalacticHQHall_Movement_LookerNoticePlayer
     WaitMovement
-    Message 0
+    Message GalacticHQHall_Text_PsstOverHere
     CloseMessage
-    CallIfEq VAR_0x8005, 12, _01AD
-    CallIfEq VAR_0x8005, 13, _01C1
+    CallIfEq VAR_0x8005, 12, GalacticHQHall_LookerPlayerWalkToSpeechZ12
+    CallIfEq VAR_0x8005, 13, GalacticHQHall_LookerPlayerWalkToSpeechZ13
     AddFreeCamera VAR_0x8004, VAR_0x8005
     FadeScreenOut FADE_SCREEN_SPEED_MEDIUM
-    ApplyFreeCameraMovement _01F8
+    ApplyFreeCameraMovement GalacticHQHall_Movement_CameraMoveNorthWest
     WaitMovement
     FadeScreenIn
     WaitFadeScreen
     WaitTime 15, VAR_RESULT
-    ClearFlag FLAG_UNK_0x0253
-    AddObject 2
-    ApplyMovement 2, _01D8
+    ClearFlag FLAG_HIDE_GALACTIC_HQ_HALL_CYRUS
+    AddObject LOCALID_CYRUS
+    ApplyMovement LOCALID_CYRUS, GalacticHQHall_Movement_CyrusEnter
     WaitMovement
     PlaySE SEQ_SE_DP_DENDOU
     WaitTime 30, VAR_RESULT
-    Message 1
+    Message GalacticHQHall_Text_TheWorldMustChange
     CloseMessage
     PlaySE SEQ_SE_DP_DENDOU
     WaitTime 30, VAR_RESULT
-    Message 2
+    Message GalacticHQHall_Text_WeWillChangeIt
     CloseMessage
     WaitTime 30, VAR_RESULT
-    Message 3
+    Message GalacticHQHall_Text_LetThereBeGlory
     CloseMessage
     PlaySE SEQ_SE_DP_DENDOU
     WaitTime 15, VAR_RESULT
-    Message 4
-    Message 5
+    Message GalacticHQHall_Text_GruntsWroooar
+    Message GalacticHQHall_Text_CyrusIsTheGreatest
     CloseMessage
     WaitTime 15, VAR_RESULT
-    ApplyMovement 2, _01E8
+    ApplyMovement LOCALID_CYRUS, GalacticHQHall_Movement_CyrusLeave
     WaitMovement
-    RemoveObject 2
+    RemoveObject LOCALID_CYRUS
     FadeScreenOut FADE_SCREEN_SPEED_MEDIUM
     WaitFadeScreen
-    ApplyFreeCameraMovement _0204
+    ApplyFreeCameraMovement GalacticHQHall_Movement_CameraMoveSouthEast
     WaitMovement
     RestoreCamera
-    RemoveObject 0
-    RemoveObject 1
-    RemoveObject 4
-    RemoveObject 5
-    RemoveObject 6
-    RemoveObject 7
-    RemoveObject 8
-    RemoveObject 9
-    RemoveObject 10
-    RemoveObject 11
-    RemoveObject 12
-    RemoveObject 13
-    RemoveObject 14
-    RemoveObject 15
-    RemoveObject 16
-    RemoveObject 17
-    RemoveObject 18
-    RemoveObject 19
-    RemoveObject 20
-    RemoveObject 21
-    RemoveObject 22
-    RemoveObject 23
-    RemoveObject 24
-    RemoveObject 25
-    RemoveObject 26
-    RemoveObject 27
-    RemoveObject 28
-    RemoveObject 29
-    RemoveObject 30
-    RemoveObject 31
-    RemoveObject 32
-    RemoveObject 33
-    RemoveObject 34
-    RemoveObject 35
-    ApplyMovement 3, _0248
-    ApplyMovement LOCALID_PLAYER, _0224
+    RemoveObject LOCALID_GRUNTS_GROUP_OF_4_1
+    RemoveObject LOCALID_GRUNT_M_1
+    RemoveObject LOCALID_GRUNTS_GROUP_OF_4_2
+    RemoveObject LOCALID_GRUNTS_GROUP_OF_4_3
+    RemoveObject LOCALID_GRUNTS_GROUP_OF_3_1
+    RemoveObject LOCALID_GRUNTS_GROUP_OF_4_4
+    RemoveObject LOCALID_GRUNTS_GROUP_OF_3_2
+    RemoveObject LOCALID_GRUNTS_GROUP_OF_3_3
+    RemoveObject LOCALID_GRUNTS_GROUP_OF_3_4
+    RemoveObject LOCALID_GRUNTS_GROUP_OF_4_5
+    RemoveObject LOCALID_GRUNTS_GROUP_OF_4_6
+    RemoveObject LOCALID_GRUNTS_GROUP_OF_4_7
+    RemoveObject LOCALID_GRUNTS_GROUP_OF_4_8
+    RemoveObject LOCALID_GRUNTS_GROUP_OF_3_5
+    RemoveObject LOCALID_GRUNTS_GROUP_OF_3_6
+    RemoveObject LOCALID_GRUNTS_GROUP_OF_3_7
+    RemoveObject LOCALID_GRUNTS_GROUP_OF_3_8
+    RemoveObject LOCALID_GRUNT_M_2
+    RemoveObject LOCALID_GRUNT_M_3
+    RemoveObject LOCALID_GRUNT_M_4
+    RemoveObject LOCALID_GRUNT_M_5
+    RemoveObject LOCALID_GRUNT_F_1
+    RemoveObject LOCALID_GRUNT_F_2
+    RemoveObject LOCALID_GRUNT_F_3
+    RemoveObject LOCALID_GRUNT_F_4
+    RemoveObject LOCALID_GRUNTS_GROUP_OF_4_9
+    RemoveObject LOCALID_GRUNTS_GROUP_OF_4_10
+    RemoveObject LOCALID_GRUNT_F_5
+    RemoveObject LOCALID_GRUNT_F_6
+    RemoveObject LOCALID_GRUNT_M_6
+    RemoveObject LOCALID_GRUNT_M_7
+    RemoveObject LOCALID_GRUNT_M_8
+    RemoveObject LOCALID_GRUNT_M_9
+    RemoveObject LOCALID_GRUNT_F_7
+    ApplyMovement LOCALID_LOOKER, GalacticHQHall_Movement_LookerWalkOnSpotSouth
+    ApplyMovement LOCALID_PLAYER, GalacticHQHall_Movement_PlayerWalkOnSpotNorth
     WaitMovement
     FadeScreenIn
     WaitFadeScreen
     WaitTime 15, VAR_RESULT
-    Message 6
+    Message GalacticHQHall_Text_QuiteThePerformance
     CloseMessage
-    ApplyMovement 3, _0250
-    ApplyMovement LOCALID_PLAYER, _022C
+    ApplyMovement LOCALID_LOOKER, GalacticHQHall_Movement_LookerLeave
+    ApplyMovement LOCALID_PLAYER, GalacticHQHall_Movement_PlayerWalkOnSpotWest
     WaitMovement
-    RemoveObject 3
-    SetVar VAR_UNK_0x408E, 1
+    RemoveObject LOCALID_LOOKER
+    SetVar VAR_GALACTIC_HQ_HALL_STATE, 1
     ReleaseAll
     End
 
-_01AD:
-    ApplyMovement 3, _0240
-    ApplyMovement LOCALID_PLAYER, _0210
+GalacticHQHall_LookerPlayerWalkToSpeechZ12:
+    ApplyMovement LOCALID_LOOKER, GalacticHQHall_Movement_LookerWalkOnSpotWest
+    ApplyMovement LOCALID_PLAYER, GalacticHQHall_Movement_PlayerWalkSouthWest
     WaitMovement
     Return
 
-_01C1:
-    ApplyMovement 3, _0240
-    ApplyMovement LOCALID_PLAYER, _021C
+GalacticHQHall_LookerPlayerWalkToSpeechZ13:
+    ApplyMovement LOCALID_LOOKER, GalacticHQHall_Movement_LookerWalkOnSpotWest
+    ApplyMovement LOCALID_PLAYER, GalacticHQHall_Movement_PlayerWalkWest
     WaitMovement
     Return
 
     .balign 4, 0
-_01D8:
+GalacticHQHall_Movement_CyrusEnter:
     WalkNormalSouth 3
     WalkNormalWest 4
     WalkNormalSouth
     EndMovement
 
     .balign 4, 0
-_01E8:
+GalacticHQHall_Movement_CyrusLeave:
     WalkNormalNorth
     WalkNormalEast 4
     WalkNormalNorth 3
     EndMovement
 
     .balign 4, 0
-_01F8:
+GalacticHQHall_Movement_CameraMoveNorthWest:
     WalkNormalWest 6
     WalkNormalNorth 6
     EndMovement
 
     .balign 4, 0
-_0204:
+GalacticHQHall_Movement_CameraMoveSouthEast:
     WalkNormalSouth 6
     WalkNormalEast 6
     EndMovement
 
     .balign 4, 0
-_0210:
+GalacticHQHall_Movement_PlayerWalkSouthWest:
     WalkNormalSouth
     WalkNormalWest
     EndMovement
 
     .balign 4, 0
-_021C:
+GalacticHQHall_Movement_PlayerWalkWest:
     WalkNormalWest
     EndMovement
 
     .balign 4, 0
-_0224:
+GalacticHQHall_Movement_PlayerWalkOnSpotNorth:
     WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
-_022C:
+GalacticHQHall_Movement_PlayerWalkOnSpotWest:
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_0234:
+GalacticHQHall_Movement_LookerNoticePlayer:
     WalkOnSpotFastEast
     EmoteExclamationMark
     EndMovement
 
     .balign 4, 0
-_0240:
+GalacticHQHall_Movement_LookerWalkOnSpotWest:
     WalkOnSpotFastWest
     EndMovement
 
     .balign 4, 0
-_0248:
+GalacticHQHall_Movement_LookerWalkOnSpotSouth:
     WalkOnSpotFastSouth
     EndMovement
 
     .balign 4, 0
-_0250:
+GalacticHQHall_Movement_LookerLeave:
     WalkFastWest
     WalkOnSpotFastNorth
     Delay8
