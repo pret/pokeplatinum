@@ -351,7 +351,7 @@ pokeplatinum_c = files(
     'unk_0209C390.c',
     'unk_020EDBAC.c',
     'rowan_intro_app_template.c',
-    'overlay001/ov1_021D0D80.c',
+    'dummy/dummy.c',
     'nintendo_wfc/main.c',
     'nintendo_wfc/voice_chat.c',
     'overlay005/fieldmap.c',

@@ -419,18 +419,18 @@ Overlay dummy1
 	After main
 }
 
-Overlay overlay1
-{
-	After main
-	Object main.nef.p/src_overlay001_ov1_021D0D80.c.o
-}
-
 Overlay dummy2
 {
-	After overlay1
+	After main
+	Object main.nef.p/src_dummy_dummy.c.o
 }
 
 Overlay dummy3
+{
+	After dummy2
+}
+
+Overlay dummy4
 {
 	After ITCM
 }
@@ -676,7 +676,7 @@ Overlay trainer_ai
 	Object trainer_ai_script.o
 }
 
-Overlay dummy4
+Overlay dummy5
 {
 	After main
 }
@@ -1377,7 +1377,7 @@ Overlay overlay88
 	Object main.nef.p/src_overlay088_ov88_0223E9C4.c.o
 }
 
-Overlay dummy5
+Overlay dummy6
 {
 	After main
 }
@@ -1526,7 +1526,7 @@ Overlay diploma
 	Object main.nef.p/src_applications_diploma.c.o
 }
 
-Overlay dummy6
+Overlay dummy7
 {
 	After overlay63
 }
