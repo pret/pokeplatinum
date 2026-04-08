@@ -21,7 +21,7 @@
 #include "unk_020559DC.h"
 #include "unk_02092494.h"
 
-static inline String *NPCTrade_GetOtName(enum HeapID heapID, u32 npcTradeID);
+static inline String *NPCTrade_GetOTName(enum HeapID heapID, u32 npcTradeID);
 static String *NPCTrade_GetNickname(enum HeapID heapID, u32 npcTradeID);
 static void NPCTrade_CreateMon(Pokemon *mon, NPCTradeMon *npcTrade, u32 level, u32 npcTradeID, enum HeapID heapID, u32 mapID);
 
@@ -39,7 +39,7 @@ NPCTradeData *NPCTrade_Init(enum HeapID heapID, u32 npcTradeID)
     data->trainerInfo = TrainerInfo_New(heapID);
 
     TrainerInfo_Init(data->trainerInfo);
-    String *string = NPCTrade_GetOtName(heapID, npcTradeID);
+    String *string = NPCTrade_GetOTName(heapID, npcTradeID);
 
     charcode_t otName[128];
     String_ToChars(string, otName, NELEMS(otName));
@@ -101,7 +101,7 @@ void NPCTrade_FillAnimationTemplate(FieldSystem *fieldSystem, NPCTradeData *data
     }
 }
 
-static inline String *NPCTrade_GetOtName(enum HeapID heapID, u32 npcTradeID)
+static inline String *NPCTrade_GetOTName(enum HeapID heapID, u32 npcTradeID)
 {
     return NPCTrade_GetNickname(heapID, MAX_NPC_TRADES + npcTradeID);
 }
@@ -137,7 +137,7 @@ static void NPCTrade_CreateMon(Pokemon *mon, NPCTradeMon *npcTradeMon, u32 level
     Pokemon_SetValue(mon, MON_DATA_TOUGH, &npcTradeMon->tough);
     Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &npcTradeMon->heldItem);
 
-    string = NPCTrade_GetOtName(heapID, npcTradeID);
+    string = NPCTrade_GetOTName(heapID, npcTradeID);
     Pokemon_SetValue(mon, MON_DATA_OT_NAME_STRING, string);
     String_Free(string);
 
