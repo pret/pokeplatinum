@@ -97,10 +97,17 @@ anim_scripts_narc = custom_target(anim_scripts_narc_name,
     output: [
         anim_scripts_narc_name,
     ],
-    input: battle_anim_script_bin_gen.process(
+    input: script_bin_gen.process(
         anim_script_srcs,
         extra_args: ['--out-dir', anim_scripts_private_dir, '--parent-dir'],
         preserve_path_from: anim_scripts_root,
+        depends: [
+            battle_particles_narc,
+            anim_ncer_narc_files,
+            anim_nanr_narc_files,
+            anim_ncgr_narc_files,
+            anim_nclr_narc_files,
+        ],
     ),
     command: [
         nitroarc_exe,
