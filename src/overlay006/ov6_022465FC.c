@@ -7,13 +7,13 @@
 #include "struct_decls/struct_0202440C_decl.h"
 
 #include "field/field_system.h"
-#include "overlay006/ov6_02246444.h"
+#include "overlay006/tv_episode.h"
 #include "savedata/save_table.h"
 
 #include "math_util.h"
 #include "narc.h"
 #include "rtc.h"
-#include "tv_episode_segment.h"
+#include "tv_segment.h"
 #include "unk_0202E2CC.h"
 #include "unk_020559DC.h"
 

@@ -59,7 +59,7 @@
 #include "text.h"
 #include "touch_pad.h"
 #include "touch_screen.h"
-#include "tv_episode_segment.h"
+#include "tv_segment.h"
 #include "unk_0206B9D8.h"
 #include "vram_transfer.h"
 

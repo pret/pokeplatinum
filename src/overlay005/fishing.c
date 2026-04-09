@@ -34,7 +34,7 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
-#include "tv_episode_segment.h"
+#include "tv_segment.h"
 #include "unk_020655F4.h"
 
 #include "res/text/bank/common_strings.h"

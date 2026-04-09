@@ -181,7 +181,7 @@
 #include "trainer_case.h"
 #include "trainer_data.h"
 #include "trainer_info.h"
-#include "tv_episode_segment.h"
+#include "tv_segment.h"
 #include "underground.h"
 #include "unk_02014D38.h"
 #include "unk_020298BC.h"

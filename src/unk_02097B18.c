@@ -40,7 +40,7 @@
 #include "system.h"
 #include "touch_pad.h"
 #include "touch_screen_actions.h"
-#include "tv_episode_segment.h"
+#include "tv_segment.h"
 #include "unk_0202C9F4.h"
 #include "vram_transfer.h"
 

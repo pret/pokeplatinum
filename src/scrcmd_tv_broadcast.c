@@ -14,7 +14,7 @@
 #include "struct_defs/struct_0202E808.h"
 #include "struct_defs/struct_0202E810.h"
 #include "struct_defs/struct_0202E81C.h"
-#include "struct_defs/tv_episode_segment_contest_hall_showcased_pokemon.h"
+#include "struct_defs/tv_segment_contest_hall_showcased_pokemon.h"
 
 #include "applications/poketch/poketch_system.h"
 #include "field/field_system.h"
@@ -33,7 +33,7 @@
 #include "script_manager.h"
 #include "string_gf.h"
 #include "string_template.h"
-#include "tv_episode_segment.h"
+#include "tv_segment.h"
 #include "unk_020298BC.h"
 #include "unk_0202E2CC.h"
 #include "unk_02054884.h"

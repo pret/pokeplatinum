@@ -36,7 +36,7 @@
 #include "sound_playback.h"
 #include "sprite.h"
 #include "system.h"
-#include "tv_episode_segment.h"
+#include "tv_segment.h"
 #include "unk_0202ACE0.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"

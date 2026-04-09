@@ -20,7 +20,7 @@
 #include "system_data.h"
 #include "system_vars.h"
 #include "trainer_case_badge_dirt.h"
-#include "tv_episode_segment.h"
+#include "tv_segment.h"
 #include "underground.h"
 #include "unk_0202C858.h"
 #include "unk_0202E2CC.h"

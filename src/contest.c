@@ -54,7 +54,7 @@
 #include "sys_task_manager.h"
 #include "system_flags.h"
 #include "trainer_info.h"
-#include "tv_episode_segment.h"
+#include "tv_segment.h"
 #include "unk_020298BC.h"
 #include "unk_020363E8.h"
 #include "unk_02094EDC.h"

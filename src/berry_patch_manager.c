@@ -26,7 +26,7 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "terrain_collision_manager.h"
-#include "tv_episode_segment.h"
+#include "tv_segment.h"
 #include "unk_020655F4.h"
 
 typedef struct BerryWateringTask {

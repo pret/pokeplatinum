@@ -15,7 +15,7 @@
 #include "string_gf.h"
 #include "string_template.h"
 #include "system_vars.h"
-#include "tv_episode_segment.h"
+#include "tv_segment.h"
 #include "vars_flags.h"
 
 #define MM_TO_TENTH_OF_INCH(length) (((length * 1000) / 254 + 5) / 10)

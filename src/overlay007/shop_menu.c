@@ -52,7 +52,7 @@
 #include "system_vars.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "tv_episode_segment.h"
+#include "tv_segment.h"
 #include "underground.h"
 #include "unk_0202C9F4.h"
 #include "unk_0202D05C.h"

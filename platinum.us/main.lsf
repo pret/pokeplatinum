@@ -272,7 +272,7 @@ Static main
 	Object main.nef.p/src_roaming_pokemon.c.o
 	Object main.nef.p/src_npc_trade_task.c.o
 	Object main.nef.p/src_cutscenes_boat_cutscene_boat_cutscene.c.o
-	Object main.nef.p/src_tv_episode_segment.c.o
+	Object main.nef.p/src_tv_segment.c.o
 	Object main.nef.p/src_rankings_machine.c.o
 	Object main.nef.p/src_unk_02070428.c.o
 	Object main.nef.p/src_field_move_tasks.c.o
@@ -571,7 +571,7 @@ Overlay overlay6
 	Object main.nef.p/src_overlay006_hm_cut_in.c.o
 	Object main.nef.p/src_overlay006_roamer_after_battle.c.o
 	Object main.nef.p/src_overlay006_npc_trade.c.o
-	Object main.nef.p/src_overlay006_ov6_02246444.c.o
+	Object main.nef.p/src_overlay006_tv_episode.c.o
 	Object main.nef.p/src_overlay006_ov6_022465FC.c.o
 	Object main.nef.p/src_overlay006_tv_commercials.c.o
 	Object main.nef.p/src_overlay006_special_dates.c.o

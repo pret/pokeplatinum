@@ -1,4 +1,4 @@
-#include "overlay006/ov6_02246444.h"
+#include "overlay006/tv_episode.h"
 
 #include <nitro.h>
 

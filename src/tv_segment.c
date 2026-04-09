@@ -1,4 +1,4 @@
-#include "tv_episode_segment.h"
+#include "tv_segment.h"
 
 #include <nitro.h>
 
@@ -22,13 +22,13 @@
 #include "struct_defs/struct_0202E81C.h"
 #include "struct_defs/struct_0202E828.h"
 #include "struct_defs/struct_0202E834.h"
-#include "struct_defs/tv_episode_segment_contest_hall_showcased_pokemon.h"
+#include "struct_defs/tv_segment_contest_hall_showcased_pokemon.h"
 
 #include "applications/poketch/poketch_system.h"
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
-#include "overlay006/ov6_02246444.h"
 #include "overlay006/swarm.h"
+#include "overlay006/tv_episode.h"
 #include "savedata/save_table.h"
 
 #include "bag.h"

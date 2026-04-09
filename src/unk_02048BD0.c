@@ -15,7 +15,7 @@
 #include "string_gf.h"
 #include "string_template.h"
 #include "trainer_info.h"
-#include "tv_episode_segment.h"
+#include "tv_segment.h"
 #include "unk_0203D1B8.h"
 
 BOOL ScrCmd_21D(ScriptContext *param0)

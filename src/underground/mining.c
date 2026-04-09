@@ -62,7 +62,7 @@
 #include "terrain_collision_manager.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "tv_episode_segment.h"
+#include "tv_segment.h"
 #include "underground.h"
 #include "vars_flags.h"
 #include "vram_transfer.h"

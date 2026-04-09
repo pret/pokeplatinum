@@ -115,7 +115,7 @@
 #include "trainer_case.h"
 #include "trainer_case_save_data.h"
 #include "trainer_info.h"
-#include "tv_episode_segment.h"
+#include "tv_segment.h"
 #include "unk_02017498.h"
 #include "unk_020298BC.h"
 #include "unk_0202C858.h"
