@@ -730,7 +730,7 @@ static u32 get_height_decimeters(datanode_t dexdata) {
         datanode_t height_m = dp_objmemb(dexdata, "height_meters");
         datanode_t height_i = dp_objmemb(dexdata, "height_inches");
 
-        dp_error(&dexdata, "conflicting unit-systems given for species height; remove one before rebuilding");
+        dp_warn(&dexdata, "conflicting unit-systems given for species height; metric units will be used");
         dp_note(&height_m, "metric units defined here");
         dp_note(&height_i, "imperial units defined here");
     }
@@ -748,7 +748,7 @@ static u32 get_weight_hectograms(datanode_t dexdata, enum Species species) {
         datanode_t weight_m = dp_objmemb(dexdata, "weight_kilograms");
         datanode_t weight_i = dp_objmemb(dexdata, "weight_pounds");
 
-        dp_error(&dexdata, "conflicting unit-systems given for species weight; remove one before rebuilding");
+        dp_warn(&dexdata, "conflicting unit-systems given for species weight; metric units will be used");
         dp_note(&weight_m, "metric units defined here");
         dp_note(&weight_i, "imperial units defined here");
     }
@@ -914,7 +914,7 @@ static void emit_tutorables(datafile_t *df, size_t i) {
         }
 
         if (found) tutorset[idx / 8] |= (u8)(1 << (idx % 8));
-        else dp_error(&move, "'%s' is not available from any move tutors", move_s);
+        else dp_warn(&move, "'%s' is not available from any move tutors and will be skipped", move_s);
     }
 
     for (size_t i = 0; i < tutorset_size; i++) fprintf(*f_tutor_sets, "0x%02X, ", tutorset[i]);
