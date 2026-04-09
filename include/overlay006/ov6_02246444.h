@@ -1,16 +1,17 @@
 #ifndef POKEPLATINUM_OV6_02246444_H
 #define POKEPLATINUM_OV6_02246444_H
 
-#include "field/field_system_decl.h"
-#include "overlay006/struct_ov6_022465F4_decl.h"
+#include "struct_defs/struct_0202440C.h"
 
-void ov6_0224647C(UnkStruct_ov6_022465F4 *param0);
-int ov6_0224648C(const UnkStruct_ov6_022465F4 *param0);
-int ov6_02246490(const UnkStruct_ov6_022465F4 *param0);
-const u16 *ov6_02246494(const UnkStruct_ov6_022465F4 *param0);
-void *ov6_02246498(UnkStruct_ov6_022465F4 *param0);
-int ov6_022464A4(const UnkStruct_ov6_022465F4 *param0);
-UnkStruct_ov6_022465F4 *ov6_022465A0(FieldSystem *fieldSystem, int param1, int param2);
-void ov6_022465F4(UnkStruct_ov6_022465F4 *param0);
+#include "field/field_system_decl.h"
+
+void TVEpisode_IncrementTimesPlayed(TVEpisode *episode);
+int TVEpisode_GetGender(const TVEpisode *episode);
+int TVEpisode_GetLanguage(const TVEpisode *episode);
+const u16 *TVEpisode_GetTrainerName(const TVEpisode *episode);
+void *TVEpisode_GetSegment(TVEpisode *episode);
+int TVEpisode_GetSegmentID(const TVEpisode *episode);
+TVEpisode *TVEpisode_New(FieldSystem *fieldSystem, int programType, int segmentID);
+void TVEpisode_Free(TVEpisode *episode);
 
 #endif // POKEPLATINUM_OV6_02246444_H

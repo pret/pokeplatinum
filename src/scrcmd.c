@@ -5291,7 +5291,7 @@ static BOOL ScrCmd_StartEndSafariGame(ScriptContext *ctx)
         break;
     case SAFARI_GAME_INACTIVE:
         SystemFlag_ClearSafariGameActive(varsFlags);
-        FieldSystem_SaveTVEpisodeSegment_SafariGameSpecialNewsBulletin(ctx->fieldSystem);
+        FieldSystem_SaveTVSegment_SafariGameSpecialNewsBulletin(ctx->fieldSystem);
         void *journalEntryLocationEvent = JournalEntry_CreateEventSafariGame(HEAP_ID_FIELD1);
 
         JournalEntry_SaveData(ctx->fieldSystem->journalEntry, journalEntryLocationEvent, JOURNAL_LOCATION);

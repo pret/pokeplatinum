@@ -157,7 +157,7 @@ BOOL BerryPatches_HarvestBerry(FieldSystem *fieldSystem, MapObject *mapObject)
     berryID = BerryPatches_GetPatchBerryID(berryPatches, patchID);
     yieldAmount = BerryPatches_GetPatchYield(berryPatches, patchID);
 
-    FieldSystem_SaveTVEpisodeSegment_PlantingAndWateringShow(fieldSystem, BerryPatches_ConvertTagNumberToItemID(berryID), BerryPatches_GetPatchYieldRating(berryPatches, patchID), yieldAmount);
+    FieldSystem_SaveTVSegment_PlantingAndWateringShow(fieldSystem, BerryPatches_ConvertTagNumberToItemID(berryID), BerryPatches_GetPatchYieldRating(berryPatches, patchID), yieldAmount);
     BerryPatches_HarvestPatch(berryPatches, patchID);
     BerryPatchGraphics_MarkForUpdate(mapObject);
 

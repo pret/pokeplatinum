@@ -1,9 +1,8 @@
 #ifndef POKEPLATINUM_TV_EPISODE_SEGMENT_CONTEST_HALL_SHOWCASED_POKEMON_H
 #define POKEPLATINUM_TV_EPISODE_SEGMENT_CONTEST_HALL_SHOWCASED_POKEMON_H
 
-typedef struct TVEpisodeSegment_ContestHall_ShowcasedPokemon {
+typedef struct TVSegment_ContestHall_ShowcasedPokemon {
     u8 unk_00;
-    u8 padding_01;
     u16 species;
     u8 gender;
     u8 language;
@@ -11,6 +10,6 @@ typedef struct TVEpisodeSegment_ContestHall_ShowcasedPokemon {
     u8 contestRank;
     u8 contestType;
     u8 contestPlacement;
-} TVEpisodeSegment_ContestHall_ShowcasedPokemon;
+} TVSegment_ContestHall_ShowcasedPokemon;
 
 #endif // POKEPLATINUM_TV_EPISODE_SEGMENT_CONTEST_HALL_SHOWCASED_POKEMON_H

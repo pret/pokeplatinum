@@ -1,159 +1,145 @@
 #include "overlay006/ov6_02246444.h"
 
 #include <nitro.h>
-#include <string.h>
 
 #include "constants/tv_broadcast.h"
 
 #include "struct_decls/struct_0202440C_decl.h"
-#include "struct_decls/struct_0202E4D4_decl.h"
-#include "struct_decls/struct_0202E768_decl.h"
-#include "struct_decls/struct_0202E794_decl.h"
 
 #include "field/field_system.h"
 #include "savedata/save_table.h"
 
 #include "charcode_util.h"
-#include "field_battle_data_transfer.h"
 #include "heap.h"
 #include "save_player.h"
 #include "trainer_info.h"
 #include "unk_0202E2CC.h"
 
-struct UnkStruct_ov6_022465F4_t {
-    u8 unk_00;
-    u8 unk_01;
-    u8 language;
-    u8 unk_03;
-    u16 unk_04[8];
-    UnkStruct_0202E4D4 *unk_14;
-};
-
-static void ov6_02246444(UnkStruct_ov6_022465F4 *param0)
+static void TVEpisode_Clear(TVEpisode *episode)
 {
-    MI_CpuClear8(param0, sizeof(UnkStruct_ov6_022465F4));
+    MI_CpuClear8(episode, sizeof(TVEpisode));
 }
 
-static void ov6_02246450(UnkStruct_ov6_022465F4 *param0, int param1)
+static void TVEpisode_SetGender(TVEpisode *episode, int gender)
 {
-    param0->unk_03 = param1;
+    episode->gender = gender;
 }
 
-static void ov6_02246454(UnkStruct_ov6_022465F4 *param0, int language)
+static void TVEpisode_SetLanguage(TVEpisode *episode, int language)
 {
-    param0->language = language;
+    episode->language = language;
 }
 
-static void ov6_02246458(UnkStruct_ov6_022465F4 *param0, int param1)
+static void TVEpisode_SetGameVersion(TVEpisode *episode, int gameVersion)
 {
-    param0->unk_01 = param1;
+    episode->gameVersion = gameVersion;
 }
 
-static void ov6_0224645C(UnkStruct_ov6_022465F4 *param0, const u16 *param1)
+static void TVEpisode_SetTrainerName(TVEpisode *episode, const u16 *name)
 {
-    CharCode_CopyNumChars(param0->unk_04, param1, 7 + 1);
+    CharCode_CopyNumChars(episode->name, name, TRAINER_NAME_LEN + 1);
 }
 
-static void ov6_02246468(UnkStruct_ov6_022465F4 *param0, UnkStruct_0202E4D4 *param1)
+static void TVEpisode_SetDetails(TVEpisode *episode, TVSegmentInstance *segmentInstance)
 {
-    param0->unk_00 = sub_0202E55C(param1);
-    param0->unk_14 = param1;
+    episode->segmentID = sub_0202E55C(segmentInstance);
+    episode->details = segmentInstance;
 }
 
-void ov6_0224647C(UnkStruct_ov6_022465F4 *param0)
+void TVEpisode_IncrementTimesPlayed(TVEpisode *episode)
 {
-    if (param0->unk_14 != NULL) {
-        sub_0202E560(param0->unk_14);
+    if (episode->details != NULL) {
+        sub_0202E560(episode->details);
     }
 }
 
-int ov6_0224648C(const UnkStruct_ov6_022465F4 *param0)
+int TVEpisode_GetGender(const TVEpisode *episode)
 {
-    return param0->unk_03;
+    return episode->gender;
 }
 
-int ov6_02246490(const UnkStruct_ov6_022465F4 *param0)
+int TVEpisode_GetLanguage(const TVEpisode *episode)
 {
-    return param0->language;
+    return episode->language;
 }
 
-const u16 *ov6_02246494(const UnkStruct_ov6_022465F4 *param0)
+const u16 *TVEpisode_GetTrainerName(const TVEpisode *episode)
 {
-    return param0->unk_04;
+    return episode->name;
 }
 
-void *ov6_02246498(UnkStruct_ov6_022465F4 *param0)
+void *TVEpisode_GetSegment(TVEpisode *episode)
 {
-    return sub_0202E574(param0->unk_14);
+    return sub_0202E574(episode->details);
 }
 
-int ov6_022464A4(const UnkStruct_ov6_022465F4 *param0)
+int TVEpisode_GetSegmentID(const TVEpisode *episode)
 {
-    return param0->unk_00;
+    return episode->segmentID;
 }
 
-static UnkStruct_ov6_022465F4 *ov6_022464A8(FieldSystem *fieldSystem, UnkStruct_0202E794 *param1)
+static TVEpisode *CreateTVEpisodeFromWifiEpisode(FieldSystem *fieldSystem, TVWifiEpisode *wifiEpisode)
 {
-    UnkStruct_ov6_022465F4 *v0 = Heap_Alloc(HEAP_ID_FIELD1, sizeof(UnkStruct_ov6_022465F4));
+    TVEpisode *episode = Heap_Alloc(HEAP_ID_FIELD1, sizeof(TVEpisode));
 
-    ov6_02246444(v0);
-    ov6_0224645C(v0, sub_0202E4C8(param1));
-    ov6_02246454(v0, sub_0202E4CC(param1));
-    ov6_02246458(v0, sub_0202E4D0(param1));
-    ov6_02246468(v0, sub_0202E4D4(param1));
+    TVEpisode_Clear(episode);
+    TVEpisode_SetTrainerName(episode, sub_0202E4C8(wifiEpisode));
+    TVEpisode_SetLanguage(episode, sub_0202E4CC(wifiEpisode));
+    TVEpisode_SetGameVersion(episode, sub_0202E4D0(wifiEpisode));
+    TVEpisode_SetDetails(episode, sub_0202E4D4(wifiEpisode));
 
-    return v0;
+    return episode;
 }
 
-static UnkStruct_ov6_022465F4 *ov6_022464F8(FieldSystem *fieldSystem, UnkStruct_0202E768 *param1)
+static TVEpisode *CreateTVEpisodeFromSegmentInstance(FieldSystem *fieldSystem, TVSegmentInstance *instance)
 {
-    TrainerInfo *v0 = SaveData_GetTrainerInfo(fieldSystem->saveData);
-    UnkStruct_ov6_022465F4 *v1 = Heap_Alloc(HEAP_ID_FIELD1, sizeof(UnkStruct_ov6_022465F4));
+    TrainerInfo *playerInfo = SaveData_GetTrainerInfo(fieldSystem->saveData);
+    TVEpisode *episode = Heap_Alloc(HEAP_ID_FIELD1, sizeof(TVEpisode));
 
-    ov6_02246444(v1);
-    ov6_0224645C(v1, TrainerInfo_Name(v0));
-    ov6_02246450(v1, TrainerInfo_Gender(v0));
-    ov6_02246454(v1, GAME_LANGUAGE);
-    ov6_02246458(v1, GAME_VERSION);
-    ov6_02246468(v1, sub_0202E4D8(param1));
+    TVEpisode_Clear(episode);
+    TVEpisode_SetTrainerName(episode, TrainerInfo_Name(playerInfo));
+    TVEpisode_SetGender(episode, TrainerInfo_Gender(playerInfo));
+    TVEpisode_SetLanguage(episode, GAME_LANGUAGE);
+    TVEpisode_SetGameVersion(episode, GAME_VERSION);
+    TVEpisode_SetDetails(episode, sub_0202E4D8(instance));
 
-    return v1;
+    return episode;
 }
 
-static UnkStruct_ov6_022465F4 *ov6_02246550(FieldSystem *fieldSystem, int param1)
+static TVEpisode *CreateEmptyTVEpisode(FieldSystem *fieldSystem, int segmentID)
 {
-    TrainerInfo *v0 = SaveData_GetTrainerInfo(fieldSystem->saveData);
-    UnkStruct_ov6_022465F4 *v1 = Heap_Alloc(HEAP_ID_FIELD1, sizeof(UnkStruct_ov6_022465F4));
+    TrainerInfo *playerInfo = SaveData_GetTrainerInfo(fieldSystem->saveData);
+    TVEpisode *episode = Heap_Alloc(HEAP_ID_FIELD1, sizeof(TVEpisode));
 
-    ov6_02246444(v1);
-    v1->unk_00 = param1;
-    ov6_0224645C(v1, TrainerInfo_Name(v0));
-    ov6_02246450(v1, TrainerInfo_Gender(v0));
-    ov6_02246454(v1, GAME_LANGUAGE);
-    ov6_02246458(v1, GAME_VERSION);
+    TVEpisode_Clear(episode);
+    episode->segmentID = segmentID;
+    TVEpisode_SetTrainerName(episode, TrainerInfo_Name(playerInfo));
+    TVEpisode_SetGender(episode, TrainerInfo_Gender(playerInfo));
+    TVEpisode_SetLanguage(episode, GAME_LANGUAGE);
+    TVEpisode_SetGameVersion(episode, GAME_VERSION);
 
-    v1->unk_14 = NULL;
-    return v1;
+    episode->details = NULL;
+    return episode;
 }
 
-UnkStruct_ov6_022465F4 *ov6_022465A0(FieldSystem *fieldSystem, int programType, int param2)
+TVEpisode *TVEpisode_New(FieldSystem *fieldSystem, int programType, int segmentID)
 {
     TVBroadcast *broadcast = SaveData_GetTVBroadcast(fieldSystem->saveData);
 
-    if ((programType == TV_PROGRAM_TYPE_SINNOH_NOW) || (programType == TV_PROGRAM_TYPE_VARIETY_HOUR)) {
-        return ov6_02246550(fieldSystem, param2);
+    if (programType == TV_PROGRAM_TYPE_SINNOH_NOW || programType == TV_PROGRAM_TYPE_VARIETY_HOUR) {
+        return CreateEmptyTVEpisode(fieldSystem, segmentID);
     }
 
-    if (sub_0202E7C0(param2) == 0) {
-        UnkStruct_0202E794 *v1 = sub_0202E794(broadcast, programType, param2);
-        return ov6_022464A8(fieldSystem, v1);
+    if (sub_0202E7C0(segmentID) == 0) {
+        TVWifiEpisode *wifiEpisode = sub_0202E794(broadcast, programType, segmentID);
+        return CreateTVEpisodeFromWifiEpisode(fieldSystem, wifiEpisode);
     } else {
-        UnkStruct_0202E768 *v2 = sub_0202E768(broadcast, programType, param2);
-        return ov6_022464F8(fieldSystem, v2);
+        TVSegmentInstance *instance = sub_0202E768(broadcast, programType, segmentID);
+        return CreateTVEpisodeFromSegmentInstance(fieldSystem, instance);
     }
 }
 
-void ov6_022465F4(UnkStruct_ov6_022465F4 *param0)
+void TVEpisode_Free(TVEpisode *episode)
 {
-    Heap_Free(param0);
+    Heap_Free(episode);
 }
