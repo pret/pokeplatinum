@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_TV_EPISODE_SEGMENT_H
-#define POKEPLATINUM_TV_EPISODE_SEGMENT_H
+#ifndef POKEPLATINUM_TV_SEGMENT_H
+#define POKEPLATINUM_TV_SEGMENT_H
 
 #include "generated/pokemon_contest_ranks.h"
 #include "generated/pokemon_contest_types.h"
@@ -17,9 +17,9 @@
 
 int TVSegment_LoadMessage(int programTypeID, FieldSystem *fieldSystem, StringTemplate *template, TVEpisode *episode, u16 *bankDestVar);
 BOOL TVSegment_IsEligible(int programTypeID, FieldSystem *fieldSystem, TVEpisode *episode);
+
 void TVBroadcast_SetContestHallShowInfo(TVBroadcast *broadcast, Pokemon *mon, enum PokemonContestType contestType, enum PokemonContestRank contestRank, int contestPlacement);
 void sub_0206CF48(TVBroadcast *broadcast, Pokemon *param1, enum HeapID heapID);
-void FieldSystem_SaveTVSegment_PlantingAndWateringShow(FieldSystem *fieldSystem, u16 berryItemID, u8 yieldRating, u16 yieldAmount);
 void sub_0206CF9C(TVBroadcast *broadcast, int param1);
 void sub_0206CFB4(TVBroadcast *broadcast, int param1);
 void sub_0206CFCC(TVBroadcast *broadcast, int param1);
@@ -32,9 +32,12 @@ void sub_0206D0C8(TVBroadcast *broadcast, u16 param1);
 void sub_0206D0F0(TVBroadcast *broadcast);
 void sub_0206D104(TVBroadcast *broadcast);
 void sub_0206D12C(TVBroadcast *broadcast);
+
 CaptureAttempt *CaptureAttempt_New(enum HeapID heapID);
 void CaptureAttempt_Free(CaptureAttempt *captureAttempt);
 void CaptureAttempt_Init(CaptureAttempt *captureAttempt, Pokemon *mon, int resultMask, int ballsThrown, enum HeapID heapID);
+
+void FieldSystem_SaveTVSegment_PlantingAndWateringShow(FieldSystem *fieldSystem, u16 berryItemID, u8 yieldRating, u16 yieldAmount);
 void FieldSystem_SaveTVSegment_CatchThatPokemonShow(FieldSystem *fieldSystem, const CaptureAttempt *captureAttempt, int resultMask);
 void FieldSystem_SaveTVSegment_WhatsFishing(FieldSystem *fieldSystem, BOOL caughtFish, u16 fishingRodItemID, Pokemon *mon);
 void FieldSystem_SaveTVSegment_LoveThatGroupCorner_NewGroup(FieldSystem *fieldSystem);
@@ -77,4 +80,4 @@ void FieldSystem_SaveTVSegment_InYourFaceInterview_Question4(FieldSystem *fieldS
 void FieldSystem_SaveTVSegment_BattleFrontierFrontlineNews_Multi(FieldSystem *fieldSystem, u16 customWordMessage);
 void sub_0206F2F0(SaveData *saveData);
 
-#endif // POKEPLATINUM_TV_EPISODE_SEGMENT_H
+#endif // POKEPLATINUM_TV_SEGMENT_H
