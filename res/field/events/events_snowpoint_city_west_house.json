@@ -17,7 +17,7 @@
             "y": 0
         },
         {
-            "id": "LOCALID_BEAUTY",
+            "id": "LOCALID_MINDY",
             "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",

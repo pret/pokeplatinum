@@ -3,7 +3,7 @@
 
 
     ScriptEntry SnowpointCityWestHouse_AceTrainerM
-    ScriptEntry SnowpointCityWestHouse_Beauty
+    ScriptEntry SnowpointCityWestHouse_Mindy
     ScriptEntryEnd
 
 SnowpointCityWestHouse_AceTrainerM:
@@ -24,7 +24,7 @@ SnowpointCityWestHouse_MyGirlsHappy:
     ReleaseAll
     End
 
-SnowpointCityWestHouse_Beauty:
+SnowpointCityWestHouse_Mindy:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
