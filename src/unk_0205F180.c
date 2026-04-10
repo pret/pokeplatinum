@@ -105,7 +105,7 @@ static enum FaceDirection PlayerAvatar_CalcFaceDirectionInternal(PlayerAvatar *p
 static BOOL IsMovementWalkOnSpotSlow(enum MovementAction pamovementActionram0);
 static void sub_020615C8(PlayerAvatar *playerAvatar);
 static int sub_020615E0(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2);
-static int PlayerAvatar_IsUnderCyclingRoad(PlayerAvatar *playerAvatar, u32 param1, int param2);
+static int sub_02061630(PlayerAvatar *playerAvatar, u32 tileBehavior, int param2);
 static void sub_02060B64(PlayerAvatar *playerAvatar, MapObject *mapObj, enum MovementAction movementAction, int param3);
 
 static const UnkStruct_020EDB04 Unk_020EDB04[4] = {
@@ -450,9 +450,9 @@ static int sub_0205F62C(PlayerAvatar *playerAvatar, int param1)
 static u32 sub_0205F644(PlayerAvatar *playerAvatar, int param1)
 {
     int v0 = 0;
-    u32 v1 = MapObject_GetCurrTileBehavior(Player_MapObject(playerAvatar));
+    u32 tileBehavior = MapObject_GetCurrTileBehavior(Player_MapObject(playerAvatar));
 
-    if (PlayerAvatar_IsUnderCyclingRoad(playerAvatar, v1, param1) == 1) {
+    if (sub_02061630(playerAvatar, tileBehavior, param1) == 1) {
         return 5;
     }
 
@@ -461,7 +461,7 @@ static u32 sub_0205F644(PlayerAvatar *playerAvatar, int param1)
     }
 
     do {
-        if (Unk_020EDB84[v0].unk_00(v1) == 1) {
+        if (Unk_020EDB84[v0].unk_00(tileBehavior) == 1) {
             return Unk_020EDB84[v0].unk_04;
         }
 
@@ -2373,7 +2373,7 @@ static int sub_020615E0(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
     return 0;
 }
 
-static int PlayerAvatar_IsUnderCyclingRoad(PlayerAvatar *playerAvatar, u32 param1, int param2)
+static int sub_02061630(PlayerAvatar *playerAvatar, u32 tileBehavior, int param2)
 {
     if (param2 != -1) {
         return FALSE;
@@ -2389,7 +2389,7 @@ static int PlayerAvatar_IsUnderCyclingRoad(PlayerAvatar *playerAvatar, u32 param
 
     MapObject *mapObj = Player_MapObject(playerAvatar);
 
-    if (MapObject_IsOnBridge(mapObj, param1) == 1) {
+    if (MapObject_IsOnElevatedBridge(mapObj, tileBehavior) == TRUE) {
         return TRUE;
     }
 

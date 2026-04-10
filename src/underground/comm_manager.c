@@ -5,8 +5,6 @@
 
 #include "generated/trainer_score_events.h"
 
-#include "struct_defs/struct_0205964C.h"
-
 #include "field/field_system.h"
 #include "functypes/funcptr_020598EC.h"
 #include "underground/manager.h"

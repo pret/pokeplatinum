@@ -1,15 +1,15 @@
 #include "macros/scrcmd.inc"
 
 
-    ScriptEntry _000A
-    ScriptEntry _000E
+    ScriptEntry IronIslandB1FRightRoom_OnTransition
+    ScriptEntry IronIslandB1FRightRoom_TriggerPlatformLift
     ScriptEntryEnd
 
-_000A:
+IronIslandB1FRightRoom_OnTransition:
     InitPersistedMapFeaturesForPlatformLift
     End
 
-_000E:
+IronIslandB1FRightRoom_TriggerPlatformLift:
     TriggerPlatformLift
     End
 

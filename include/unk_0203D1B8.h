@@ -30,7 +30,7 @@
 #include "move_reminder_data.h"
 #include "pokemon.h"
 #include "savedata.h"
-#include "trainer_card.h"
+#include "trainer_case.h"
 
 void FieldSystem_StartBattleProcess(FieldSystem *fieldSystem, FieldBattleDTO *dto);
 void sub_0203D1E4(FieldSystem *fieldSystem, BagContext *param1);
@@ -85,8 +85,8 @@ void sub_0203DFE8(
     int param4,
     const u16 *param5,
     u16 *param6);
-void sub_0203E09C(FieldSystem *fieldSystem, TrainerCard *param1);
-void FieldSystem_OpenTrainerCardScreen(FieldSystem *fieldSystem, TrainerCard *trainerCard);
+void sub_0203E09C(FieldSystem *fieldSystem, TrainerCase *param1);
+void FieldSystem_OpenTrainerCase(FieldSystem *fieldSystem, TrainerCase *trainerCase);
 BOOL FieldSystem_OpenPokedex(FieldSystem *fieldSystem, PokedexOverlayArgs *args);
 void FieldSystem_LaunchChooseStarterApp(FieldSystem *fieldSystem, ChooseStarterData *param1);
 void sub_0203E0D0(FieldSystem *fieldSystem);

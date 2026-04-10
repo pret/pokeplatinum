@@ -49,7 +49,7 @@ _0088:
     ApplyMovement 0, _0154
     WaitMovement
     Message 5
-    SetFlag FLAG_UNK_0x029E
+    SetFlag FLAG_HIDE_GALACTIC_HQ_CONTROL_ROOM_CHARON
     GoTo _00DA
     End
 

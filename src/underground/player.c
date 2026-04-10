@@ -37,7 +37,7 @@
 #include "system_flags.h"
 #include "system_vars.h"
 #include "trainer_info.h"
-#include "tv_episode_segment.h"
+#include "tv_segment.h"
 #include "underground.h"
 #include "vars_flags.h"
 
@@ -480,7 +480,7 @@ void UndergroundPlayer_ProcessFlagEvent(int unused0, int unused1, void *data, vo
             SystemFlag_SetDeliveredStolenFlag(SaveData_GetVarsFlags(commPlayerMan->fieldSystem->saveData));
 
             if (commPlayerMan->heldFlagOwnerInfo[event->netID]) {
-                FieldSystem_SaveTVEpisodeSegment_CaptureTheFlagDigest_TakeFlag(commPlayerMan->fieldSystem, commPlayerMan->heldFlagOwnerInfo[event->netID]);
+                FieldSystem_SaveTVSegment_CaptureTheFlagDigest_TakeFlag(commPlayerMan->fieldSystem, commPlayerMan->heldFlagOwnerInfo[event->netID]);
 
                 if (commPlayerMan->flagsRegisteredInCurrentSession != USHRT_MAX) {
                     commPlayerMan->flagsRegisteredInCurrentSession++;
@@ -501,7 +501,7 @@ void UndergroundPlayer_ProcessFlagEvent(int unused0, int unused1, void *data, vo
 
         if (commPlayerMan->heldFlagOwnerInfo[event->netID]) {
             if (TrainerInfo_Equals(commPlayerMan->heldFlagOwnerInfo[event->netID], CommInfo_TrainerInfo(CommSys_CurNetId())) == TRUE) {
-                FieldSystem_SaveTVEpisodeSegment_CaptureTheFlagDigest_LoseFlag(commPlayerMan->fieldSystem, CommInfo_TrainerInfo(event->netID));
+                FieldSystem_SaveTVSegment_CaptureTheFlagDigest_LoseFlag(commPlayerMan->fieldSystem, CommInfo_TrainerInfo(event->netID));
             }
         }
 

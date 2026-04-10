@@ -65,7 +65,7 @@ static void sub_02063CC8(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBeha
 static void sub_02063CFC(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3);
 static void sub_02063D30(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3);
 static void sub_02063DA8(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3);
-static void sub_02063DDC(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3);
+static void MapObject_DetermineElevatedBridgeStatus(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *unused);
 static void MapObject_EmptyFunction(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3);
 
 static BOOL (*const Unk_020EE76C[4])(u8);
@@ -176,7 +176,7 @@ static void sub_020635AC(MapObject *mapObj)
         u8 prevTileBehavior = MapObject_GetPrevTileBehavior(mapObj);
         const UnkStruct_ov5_021ECD10 *v2 = ov5_021ECD04(mapObj);
 
-        sub_02063DDC(mapObj, currTileBehavior, prevTileBehavior, v2);
+        MapObject_DetermineElevatedBridgeStatus(mapObj, currTileBehavior, prevTileBehavior, v2);
         sub_02063964(mapObj, currTileBehavior, prevTileBehavior, v2);
         sub_02063A30(mapObj, currTileBehavior, prevTileBehavior, v2);
         sub_02063A70(mapObj, currTileBehavior, prevTileBehavior, v2);
@@ -196,7 +196,7 @@ static void sub_0206363C(MapObject *mapObj)
         u8 prevTileBehavior = MapObject_GetPrevTileBehavior(mapObj);
         const UnkStruct_ov5_021ECD10 *v2 = ov5_021ECD04(mapObj);
 
-        sub_02063DDC(mapObj, currTileBehavior, prevTileBehavior, v2);
+        MapObject_DetermineElevatedBridgeStatus(mapObj, currTileBehavior, prevTileBehavior, v2);
         sub_0206397C(mapObj, currTileBehavior, prevTileBehavior, v2);
         sub_02063994(mapObj, currTileBehavior, prevTileBehavior, v2);
         sub_02063A30(mapObj, currTileBehavior, prevTileBehavior, v2);
@@ -220,7 +220,7 @@ static void sub_020636F0(MapObject *mapObj)
         u8 prevTileBehavior = MapObject_GetPrevTileBehavior(mapObj);
         const UnkStruct_ov5_021ECD10 *v2 = ov5_021ECD04(mapObj);
 
-        sub_02063DDC(mapObj, currTileBehavior, prevTileBehavior, v2);
+        MapObject_DetermineElevatedBridgeStatus(mapObj, currTileBehavior, prevTileBehavior, v2);
         sub_02063A78(mapObj, currTileBehavior, prevTileBehavior, v2);
         sub_02063D30(mapObj, currTileBehavior, prevTileBehavior, v2);
         sub_02063A64(mapObj, currTileBehavior, prevTileBehavior, v2);
@@ -558,12 +558,12 @@ static void sub_02063DA8(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBeha
     }
 }
 
-static void sub_02063DDC(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3)
+static void MapObject_DetermineElevatedBridgeStatus(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *unused)
 {
     if (TileBehavior_IsBridgeStart(currTileBehavior) == TRUE) {
-        sub_02062F14(mapObj, 1);
-    } else if (sub_02062F30(mapObj) == TRUE && TileBehavior_IsBridge(currTileBehavior) == FALSE) {
-        sub_02062F14(mapObj, 0);
+        MapObject_SetElevatedBridgeStatus(mapObj, TRUE);
+    } else if (MapObject_IsStatusOnElevatedBridge(mapObj) == TRUE && TileBehavior_IsBridge(currTileBehavior) == FALSE) {
+        MapObject_SetElevatedBridgeStatus(mapObj, FALSE);
     }
 }
 
@@ -738,7 +738,7 @@ static BOOL (*const Unk_020EE77C[4])(u8) = {
 int MapObject_IsOnWater(MapObject *mapObj, u32 tileBehavior)
 {
     if (TileBehavior_IsBridgeOverWater(tileBehavior)) {
-        if (sub_02062F30(mapObj) == FALSE) {
+        if (!MapObject_IsStatusOnElevatedBridge(mapObj)) {
             return TRUE;
         }
     } else if (TileBehavior_IsSurfable(tileBehavior)) {
@@ -751,7 +751,7 @@ int MapObject_IsOnWater(MapObject *mapObj, u32 tileBehavior)
 int MapObject_IsOnSand(MapObject *mapObj, u32 tileBehavior)
 {
     if (TileBehavior_IsBridgeOverSand(tileBehavior)) {
-        if (sub_02062F30(mapObj) == FALSE) {
+        if (!MapObject_IsStatusOnElevatedBridge(mapObj)) {
             return TRUE;
         }
     } else if (TileBehavior_IsSand(tileBehavior)) {
@@ -764,7 +764,7 @@ int MapObject_IsOnSand(MapObject *mapObj, u32 tileBehavior)
 int MapObject_IsOnSnow(MapObject *mapObj, u32 tileBehavior)
 {
     if (TileBehavior_IsBridgeOverSnow(tileBehavior)) {
-        if (sub_02062F30(mapObj) == FALSE) {
+        if (!MapObject_IsStatusOnElevatedBridge(mapObj)) {
             return TRUE;
         }
     } else if (TileBehavior_IsSnow(tileBehavior)) {
@@ -777,7 +777,7 @@ int MapObject_IsOnSnow(MapObject *mapObj, u32 tileBehavior)
 int MapObject_IsOnShallowSnow(MapObject *mapObj, u32 tileBehavior)
 {
     if (TileBehavior_IsBridgeOverSnow(tileBehavior)) {
-        if (sub_02062F30(mapObj) == FALSE) {
+        if (!MapObject_IsStatusOnElevatedBridge(mapObj)) {
             return TRUE;
         }
     } else if (TileBehavior_IsShallowSnow(tileBehavior)) {
@@ -787,9 +787,9 @@ int MapObject_IsOnShallowSnow(MapObject *mapObj, u32 tileBehavior)
     return FALSE;
 }
 
-int MapObject_IsOnBridge(MapObject *mapObj, u32 tileBehavior)
+int MapObject_IsOnElevatedBridge(MapObject *mapObj, u32 tileBehavior)
 {
-    if (sub_02062F30(mapObj) == TRUE && TileBehavior_IsBridge(tileBehavior) == TRUE) {
+    if (MapObject_IsStatusOnElevatedBridge(mapObj) == TRUE && TileBehavior_IsBridge(tileBehavior) == TRUE) {
         return TRUE;
     }
 
@@ -798,7 +798,7 @@ int MapObject_IsOnBridge(MapObject *mapObj, u32 tileBehavior)
 
 int MapObject_IsOnBikeBridgeNorthSouth(MapObject *mapObj, u32 tileBehavior)
 {
-    if (sub_02062F30(mapObj) == TRUE && TileBehavior_IsBikeBridgeNorthSouth(tileBehavior) == TRUE) {
+    if (MapObject_IsStatusOnElevatedBridge(mapObj) == TRUE && TileBehavior_IsBikeBridgeNorthSouth(tileBehavior) == TRUE) {
         return TRUE;
     }
 
@@ -807,7 +807,7 @@ int MapObject_IsOnBikeBridgeNorthSouth(MapObject *mapObj, u32 tileBehavior)
 
 int MapObject_IsOnBikeBridgeEastWest(MapObject *mapObj, u32 tileBehavior)
 {
-    if (sub_02062F30(mapObj) == TRUE && TileBehavior_IsBikeBridgeEastWest(tileBehavior) == TRUE) {
+    if (MapObject_IsStatusOnElevatedBridge(mapObj) == TRUE && TileBehavior_IsBikeBridgeEastWest(tileBehavior) == TRUE) {
         return TRUE;
     }
 

@@ -59,7 +59,7 @@
 #include "text.h"
 #include "touch_pad.h"
 #include "touch_screen.h"
-#include "tv_episode_segment.h"
+#include "tv_segment.h"
 #include "unk_0206B9D8.h"
 #include "vram_transfer.h"
 
@@ -2714,7 +2714,7 @@ static int ApplyItemEffectOnPokemon(PartyMenuApplication *app)
 
         if ((Item_IsHerbalMedicine(app->partyMenu->usedItemID) == 1) && (app->partyMenu->broadcast != NULL)) {
             Pokemon *v2 = Party_GetPokemonBySlotIndex(app->partyMenu->party, app->currPartySlot);
-            FieldSystem_SaveTVEpisodeSegment_HerbalMedicineTrainerSightingDummy(app->partyMenu->broadcast, v2, app->partyMenu->usedItemID);
+            FieldSystem_SaveTVSegment_HerbalMedicineTrainerSightingDummy(app->partyMenu->broadcast, v2, app->partyMenu->usedItemID);
         }
 
         sub_020852B8(app);

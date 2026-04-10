@@ -12,7 +12,7 @@ void PlayerAvatar_SetTransitionState(PlayerAvatar *playerAvatar, u32 param1);
 void PlayerAvatar_RequestChangeState(PlayerAvatar *playerAvatar);
 int ov5_021DFDE0(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, enum FaceDirection dir, int param3);
 void FieldTask_StartUseSurf(FieldTask *task, int direction, int partySlot);
-int PlayerAvatar_CanUseSurf(PlayerAvatar *playerAvatar, u32 currTileBehavior, u32 nextTileBehavior);
+BOOL PlayerAvatar_CanUseSurf(PlayerAvatar *playerAvatar, u32 currTileBehavior, u32 nextTileBehavior);
 void FieldTask_StartUseRockClimb(FieldTask *task, int direction, int partySlot);
 BOOL PlayerAvatar_CanUseRockClimb(u32 metatileBehavior, int facingDir);
 void ov5_021E097C(FieldSystem *fieldSystem, int param1);

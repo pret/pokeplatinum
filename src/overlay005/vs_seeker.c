@@ -107,7 +107,7 @@ static BOOL VsSeeker_IsMoveCodeHidden(u32 moveCode);
 static BOOL VsSeeker_ExecuteTask(FieldTask *taskMan);
 static enum VsSeekerUsability VsSeekerSystem_CheckUsability(VsSeekerSystem *vsSeeker);
 static void VsSeekerSystem_SetState(VsSeekerSystem *vsSeeker, enum VsSeekerState state);
-static void VsSeekerSystem_CollectViableNpcs(VsSeekerSystem *vsSeeker);
+static void VsSeekerSystem_CollectViableNPCs(VsSeekerSystem *vsSeeker);
 static void VsSeekerSystem_StartAnimation(VsSeekerSystem *vsSeeker, MapObject *mapObj, const MapObjectAnimCmd *animCmdList);
 static void VsSeekerSystem_StartAnimationTask(VsSeekerSystem *vsSeeker, SysTask *animTask);
 static void VsSeeker_TrackAnimation(SysTask *task, void *param);
@@ -122,7 +122,7 @@ static u16 VsSeeker_GetNextLowerRematchLevel(u16 rematchDataIndex, u16 level);
 static u16 VsSeeker_GetTrainerIDForRematchLevel(u16 rematchDataIndex, u16 level);
 static BOOL VsSeeker_IsTrainerDoingRematchAnimation(MapObject *trainerObj);
 static void VsSeeker_SetTrainerMoveCode(MapObject *trainerObj, u16 moveCode);
-static BOOL VsSeeker_WaitForNpcsToPause(FieldSystem *fieldSystem);
+static BOOL VsSeeker_WaitForNPCsToPause(FieldSystem *fieldSystem);
 static MapObject *VsSeeker_GetSecondDoubleBattleTrainer(FieldSystem *fieldSystem, MapObject *trainerObj, enum VsSeeker2v2TrainerSearchMode mode);
 
 #define _ VS_SEEKER_REMATCH_DATA_NONE
@@ -410,12 +410,12 @@ static BOOL VsSeeker_ExecuteTask(FieldTask *taskMan)
 
     switch (vsSeeker->state) {
     case VS_SEEKER_STATE_WAIT_FOR_NPCS:
-        if (VsSeeker_WaitForNpcsToPause(vsSeeker->fieldSystem) == TRUE) {
+        if (VsSeeker_WaitForNPCsToPause(vsSeeker->fieldSystem) == TRUE) {
             VsSeekerSystem_SetState(vsSeeker, VS_SEEKER_STATE_CHECK_USABILITY);
         }
         break;
     case VS_SEEKER_STATE_CHECK_USABILITY:
-        VsSeekerSystem_CollectViableNpcs(vsSeeker);
+        VsSeekerSystem_CollectViableNPCs(vsSeeker);
         usability = VsSeekerSystem_CheckUsability(vsSeeker);
 
         if (usability == VS_SEEKER_USABILITY_OK) {
@@ -501,7 +501,7 @@ static enum VsSeekerUsability VsSeekerSystem_CheckUsability(VsSeekerSystem *vsSe
     return VS_SEEKER_USABILITY_NO_BATTERY;
 }
 
-static void VsSeekerSystem_CollectViableNpcs(VsSeekerSystem *vsSeeker)
+static void VsSeekerSystem_CollectViableNPCs(VsSeekerSystem *vsSeeker)
 {
     // Can't get this to match with C99 style declarations
     int numVisibleTrainers;
@@ -813,7 +813,7 @@ void VsSeeker_SetMoveCodeForFacingDirection(FieldSystem *fieldSystem, MapObject 
     VsSeeker_SetTrainerMoveCode(trainerObj, moveCode);
 }
 
-static BOOL VsSeeker_WaitForNpcsToPause(FieldSystem *fieldSystem)
+static BOOL VsSeeker_WaitForNPCsToPause(FieldSystem *fieldSystem)
 {
     u32 objEventCount = MapHeaderData_GetNumObjectEvents(fieldSystem);
     BOOL anyMoving = FALSE;

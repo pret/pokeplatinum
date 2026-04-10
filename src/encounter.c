@@ -44,7 +44,7 @@
 #include "system_flags.h"
 #include "system_vars.h"
 #include "trainer_data.h"
-#include "tv_episode_segment.h"
+#include "tv_segment.h"
 #include "unk_0202F1D4.h"
 #include "unk_0203D1B8.h"
 #include "unk_020528D0.h"
@@ -186,7 +186,7 @@ static BOOL FieldTask_Encounter(FieldTask *task)
         if (encounter->dto->battleType == BATTLE_TYPE_WILD_MON
             || encounter->dto->battleType == BATTLE_TYPE_ROAMER
             || encounter->dto->battleType == BATTLE_TYPE_AI_PARTNER) {
-            FieldSystem_SaveTVEpisodeSegment_CatchThatPokemonShow(fieldSystem, encounter->dto->captureAttempt, encounter->dto->resultMask);
+            FieldSystem_SaveTVSegment_CatchThatPokemonShow(fieldSystem, encounter->dto->captureAttempt, encounter->dto->resultMask);
         }
 
         if (CheckPlayerWonEncounter(encounter) == FALSE) {
@@ -386,7 +386,7 @@ static BOOL FieldTask_WildEncounter(FieldTask *task)
 
     case 3:
         UpdateFieldSystemFromDTO(encounter->dto, fieldSystem);
-        FieldSystem_SaveTVEpisodeSegment_CatchThatPokemonShow(fieldSystem, encounter->dto->captureAttempt, encounter->dto->resultMask);
+        FieldSystem_SaveTVSegment_CatchThatPokemonShow(fieldSystem, encounter->dto->captureAttempt, encounter->dto->resultMask);
 
         if (CheckPlayerWonBattle(encounter->dto->resultMask) == 0) {
             FreeWildEncounter(encounter);

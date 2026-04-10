@@ -4,8 +4,6 @@
 #include <string.h>
 
 #include "struct_defs/struct_0202440C.h"
-#include "struct_defs/struct_0202E768.h"
-#include "struct_defs/struct_0202E794.h"
 
 #include "savedata/save_table.h"
 
@@ -121,17 +119,17 @@ static const u8 *const Unk_ov59_021D33E4[] = {
 
 u32 ov59_021D2B44(const SaveData *saveData)
 {
-    return sizeof(UnkStruct_0202E794) * 4;
+    return sizeof(TVWifiEpisode) * 4;
 }
 
 u32 ov59_021D2B4C(const SaveData *saveData)
 {
-    return sizeof(UnkStruct_0202E794) * 4;
+    return sizeof(TVWifiEpisode) * 4;
 }
 
 u32 ov59_021D2B54(const SaveData *saveData)
 {
-    return sizeof(UnkStruct_0202E794) * 4;
+    return sizeof(TVWifiEpisode) * 4;
 }
 
 static BOOL ov59_021D2B5C(int param0, int param1)
@@ -147,33 +145,33 @@ static BOOL ov59_021D2B5C(int param0, int param1)
     return 0;
 }
 
-static void ov59_021D2B90(SaveData *saveData, UnkStruct_0202E794 *param1, UnkStruct_0202E768 *param2, int param3, int param4, int param5)
+static void ov59_021D2B90(SaveData *saveData, TVWifiEpisode *param1, TVSegmentInstance *param2, int param3, int param4, int param5)
 {
     int v0;
     TrainerInfo *v1 = SaveData_GetTrainerInfo(saveData);
 
     for (v0 = 0; v0 < param3; v0++, param1++) {
-        MI_CpuClearFast(param1, sizeof(UnkStruct_0202E794));
+        MI_CpuClearFast(param1, sizeof(TVWifiEpisode));
 
-        param1->unk_00 = TrainerInfo_ID(v1);
-        param1->unk_04 = TrainerInfo_Gender(v1);
-        param1->unk_05 = GAME_VERSION;
+        param1->trainerID = TrainerInfo_ID(v1);
+        param1->gender = TrainerInfo_Gender(v1);
+        param1->gameVersion = GAME_VERSION;
         param1->language = GAME_LANGUAGE;
 
-        CharCode_CopyNumChars(param1->unk_08, TrainerInfo_Name(v1), 7 + 1);
+        CharCode_CopyNumChars(param1->name, TrainerInfo_Name(v1), 7 + 1);
 
-        param1->unk_18 = param2[v0].unk_00;
-        param1->unk_18.unk_01 = 0;
+        param1->details = param2[v0];
+        param1->details.timesPlayed = 0;
 
-        if ((param4 == 1) && (ov59_021D2B5C(param5, param1->unk_18.unk_00) == 0)) {
-            param1->unk_18.unk_00 = 0;
+        if ((param4 == 1) && (ov59_021D2B5C(param5, param1->details.segmentID) == 0)) {
+            param1->details.segmentID = 0;
         }
     }
 }
 
-UnkStruct_0202E794 *ov59_021D2C28(SaveData *saveData, enum HeapID heapID, u32 param2)
+TVWifiEpisode *ov59_021D2C28(SaveData *saveData, enum HeapID heapID, u32 param2)
 {
-    UnkStruct_0202E794 *v0 = Heap_AllocAtEnd(heapID, param2);
+    TVWifiEpisode *v0 = Heap_AllocAtEnd(heapID, param2);
     TVBroadcast *broadcast = SaveData_GetTVBroadcast(saveData);
 
     GF_ASSERT(param2 == ov59_021D2B44(saveData));
@@ -182,9 +180,9 @@ UnkStruct_0202E794 *ov59_021D2C28(SaveData *saveData, enum HeapID heapID, u32 pa
     return v0;
 }
 
-UnkStruct_0202E794 *ov59_021D2C70(SaveData *saveData, enum HeapID heapID, u32 param2)
+TVWifiEpisode *ov59_021D2C70(SaveData *saveData, enum HeapID heapID, u32 param2)
 {
-    UnkStruct_0202E794 *v0 = Heap_AllocAtEnd(heapID, param2);
+    TVWifiEpisode *v0 = Heap_AllocAtEnd(heapID, param2);
     TVBroadcast *broadcast = SaveData_GetTVBroadcast(saveData);
 
     GF_ASSERT(param2 == ov59_021D2B4C(saveData));
@@ -193,9 +191,9 @@ UnkStruct_0202E794 *ov59_021D2C70(SaveData *saveData, enum HeapID heapID, u32 pa
     return v0;
 }
 
-UnkStruct_0202E794 *ov59_021D2CB4(SaveData *saveData, enum HeapID heapID, u32 param2)
+TVWifiEpisode *ov59_021D2CB4(SaveData *saveData, enum HeapID heapID, u32 param2)
 {
-    UnkStruct_0202E794 *v0 = Heap_AllocAtEnd(heapID, param2);
+    TVWifiEpisode *v0 = Heap_AllocAtEnd(heapID, param2);
     TVBroadcast *broadcast = SaveData_GetTVBroadcast(saveData);
 
     GF_ASSERT(param2 == ov59_021D2B54(saveData));
@@ -204,9 +202,9 @@ UnkStruct_0202E794 *ov59_021D2CB4(SaveData *saveData, enum HeapID heapID, u32 pa
     return v0;
 }
 
-UnkStruct_0202E794 *ov59_021D2CF8(SaveData *saveData, enum HeapID heapID, u32 param2)
+TVWifiEpisode *ov59_021D2CF8(SaveData *saveData, enum HeapID heapID, u32 param2)
 {
-    UnkStruct_0202E794 *v0 = Heap_AllocAtEnd(heapID, param2);
+    TVWifiEpisode *v0 = Heap_AllocAtEnd(heapID, param2);
     TVBroadcast *broadcast = SaveData_GetTVBroadcast(saveData);
 
     GF_ASSERT(param2 == ov59_021D2B44(saveData));
@@ -215,9 +213,9 @@ UnkStruct_0202E794 *ov59_021D2CF8(SaveData *saveData, enum HeapID heapID, u32 pa
     return v0;
 }
 
-UnkStruct_0202E794 *ov59_021D2D3C(SaveData *saveData, enum HeapID heapID, u32 param2)
+TVWifiEpisode *ov59_021D2D3C(SaveData *saveData, enum HeapID heapID, u32 param2)
 {
-    UnkStruct_0202E794 *v0 = Heap_AllocAtEnd(heapID, param2);
+    TVWifiEpisode *v0 = Heap_AllocAtEnd(heapID, param2);
     TVBroadcast *broadcast = SaveData_GetTVBroadcast(saveData);
 
     GF_ASSERT(param2 == ov59_021D2B4C(saveData));
@@ -226,9 +224,9 @@ UnkStruct_0202E794 *ov59_021D2D3C(SaveData *saveData, enum HeapID heapID, u32 pa
     return v0;
 }
 
-UnkStruct_0202E794 *ov59_021D2D80(SaveData *saveData, enum HeapID heapID, u32 param2)
+TVWifiEpisode *ov59_021D2D80(SaveData *saveData, enum HeapID heapID, u32 param2)
 {
-    UnkStruct_0202E794 *v0 = Heap_AllocAtEnd(heapID, param2);
+    TVWifiEpisode *v0 = Heap_AllocAtEnd(heapID, param2);
     TVBroadcast *broadcast = SaveData_GetTVBroadcast(saveData);
 
     GF_ASSERT(param2 == ov59_021D2B54(saveData));
@@ -237,27 +235,27 @@ UnkStruct_0202E794 *ov59_021D2D80(SaveData *saveData, enum HeapID heapID, u32 pa
     return v0;
 }
 
-static BOOL ov59_021D2DC4(UnkStruct_0202E794 *param0, int param1, const UnkStruct_0202E794 *param2, int param3)
+static BOOL ov59_021D2DC4(TVWifiEpisode *param0, int param1, const TVWifiEpisode *param2, int param3)
 {
     int v0;
 
-    if (param2->unk_18.unk_00 == 0) {
+    if (param2->details.segmentID == 0) {
         return 0;
     }
 
-    if (ov59_021D2B5C(param3, param2->unk_18.unk_00) == 0) {
+    if (ov59_021D2B5C(param3, param2->details.segmentID) == 0) {
         return -1;
     }
 
     for (v0 = 0; v0 < param1; v0++) {
-        if (param0[v0].unk_18.unk_00 == 0) {
+        if (param0[v0].details.segmentID == 0) {
             param0[v0] = *param2;
             return 1;
         }
     }
 
     for (v0 = 0; v0 < param1; v0++) {
-        if (param0[v0].unk_18.unk_01 >= 3) {
+        if (param0[v0].details.timesPlayed >= 3) {
             param0[v0] = *param2;
             return 1;
         }
@@ -281,7 +279,7 @@ static const void **ov59_021D2E40(int param0, const void **param1, const void **
     return param1;
 }
 
-static void ov59_021D2E60(UnkStruct_0202E794 *param0, int param1, int param2, int param3, const void **param4, const void **param5, int param6)
+static void ov59_021D2E60(TVWifiEpisode *param0, int param1, int param2, int param3, const void **param4, const void **param5, int param6)
 {
     u8 v0[16];
     int v1, v2, v3;
@@ -312,7 +310,7 @@ static void ov59_021D2E60(UnkStruct_0202E794 *param0, int param1, int param2, in
                 v4 = ov59_021D2E40(v1, param4, param5);
 
                 if (v4 != NULL) {
-                    ov59_021D2DC4(param0, param1, &((UnkStruct_0202E794 *)v4[v1])[v3], param6);
+                    ov59_021D2DC4(param0, param1, &((TVWifiEpisode *)v4[v1])[v3], param6);
                 }
             }
         }

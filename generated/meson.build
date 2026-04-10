@@ -77,7 +77,7 @@ metang_generators = {
     'movement_types': { 'type': 'enum', 'tag': 'MovementType' },
     'moves': { 'type': 'enum', 'tag': 'Move' },
     'natures': { 'type': 'enum', 'tag': 'Nature' },
-    'npc_trades': { 'type': 'enum', 'tag': 'NpcTradeID' },
+    'npc_trades': { 'type': 'enum', 'tag': 'NPCTradeID' },
     'object_events_gfx': { 'type': 'enum', 'tag': 'ObjectEventGfx' },
     'pal_park_land_area': { 'type': 'enum', 'tag': 'PalParkLandArea' },
     'pal_park_water_area': { 'type': 'enum', 'tag': 'PalParkWaterArea' },

@@ -30,7 +30,6 @@ prebuilt_files = [
     'ranking.narc',
     'record.narc',
     'touch_subwindow.narc',
-    'trainer_case.narc',
     'unionobj2d_onlyfront.narc',
     'unionroom.narc',
     'wifi_lobby_other.narc',

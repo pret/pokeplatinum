@@ -19,7 +19,7 @@ int MapObject_IsOnWater(MapObject *mapObj, u32 tileBehavior);
 int MapObject_IsOnSand(MapObject *mapObj, u32 tileBehavior);
 int MapObject_IsOnSnow(MapObject *mapObj, u32 tileBehavior);
 int MapObject_IsOnShallowSnow(MapObject *mapObj, u32 tileBehavior);
-int MapObject_IsOnBridge(MapObject *mapObj, u32 tileBehavior);
+int MapObject_IsOnElevatedBridge(MapObject *mapObj, u32 tileBehavior);
 int MapObject_IsOnBikeBridgeNorthSouth(MapObject *mapObj, u32 tileBehavior);
 int MapObject_IsOnBikeBridgeEastWest(MapObject *mapObj, u32 tileBehavior);
 int MapObject_GetDxFromDir(int dir);

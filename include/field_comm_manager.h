@@ -1,15 +1,19 @@
 #ifndef POKEPLATINUM_UNK_0205964C_H
 #define POKEPLATINUM_UNK_0205964C_H
 
-#include "struct_defs/struct_0205964C.h"
+#include <nitro/math.h>
 
 #include "field/field_system_decl.h"
+#include "functypes/funcptr_020598EC.h"
 
+#include "party.h"
 #include "savedata.h"
+#include "sys_task_manager.h"
+#include "trainer_case.h"
 #include "underground.h"
 
 typedef struct FieldCommunicationManager {
-    TrainerCard *trainerCard[4];
+    TrainerCase *trainerCase[4];
     u8 unk_10[4];
     u8 padding_14[4];
     FieldSystem *fieldSystem;

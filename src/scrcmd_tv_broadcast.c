@@ -14,7 +14,7 @@
 #include "struct_defs/struct_0202E808.h"
 #include "struct_defs/struct_0202E810.h"
 #include "struct_defs/struct_0202E81C.h"
-#include "struct_defs/tv_episode_segment_contest_hall_showcased_pokemon.h"
+#include "struct_defs/tv_segment_contest_hall_showcased_pokemon.h"
 
 #include "applications/poketch/poketch_system.h"
 #include "field/field_system.h"
@@ -33,7 +33,7 @@
 #include "script_manager.h"
 #include "string_gf.h"
 #include "string_template.h"
-#include "tv_episode_segment.h"
+#include "tv_segment.h"
 #include "unk_020298BC.h"
 #include "unk_0202E2CC.h"
 #include "unk_02054884.h"
@@ -96,7 +96,7 @@ BOOL ScrCmd_CallTVBroadcast(ScriptContext *ctx)
     } break;
     case TV_BROADCAST_CALL_GET_NEXT_SEGMENT_ID: {
         u16 *segmentDestVar = ScriptContext_GetVarPointer(ctx);
-        *segmentDestVar = ov6_02246920(ctx->fieldSystem);
+        *segmentDestVar = TVBroadcast_GetNextSegmentID(ctx->fieldSystem);
     } break;
     }
 
@@ -105,7 +105,7 @@ BOOL ScrCmd_CallTVBroadcast(ScriptContext *ctx)
 
 BOOL ScrCmd_236(ScriptContext *param0)
 {
-    FieldSystem_SaveTVEpisodeSegment_HiddenItemBreakingNews(param0->fieldSystem, ScriptContext_GetVar(param0));
+    FieldSystem_SaveTVSegment_HiddenItemBreakingNews(param0->fieldSystem, ScriptContext_GetVar(param0));
     return 0;
 }
 
@@ -114,19 +114,19 @@ BOOL ScrCmd_2B8(ScriptContext *param0)
     Party *v0 = SaveData_GetParty(param0->fieldSystem->saveData);
     Pokemon *v1 = Party_GetPokemonBySlotIndex(v0, ScriptContext_GetVar(param0));
 
-    FieldSystem_SaveTVEpisodeSegment_RateThatNameChange(param0->fieldSystem, v1);
+    FieldSystem_SaveTVSegment_RateThatNameChange(param0->fieldSystem, v1);
     return 0;
 }
 
 BOOL ScrCmd_30B(ScriptContext *param0)
 {
-    FieldSystem_SaveTVEpisodeSegment_PokemonStorageSpecialNewsBulletin(param0->fieldSystem);
+    FieldSystem_SaveTVSegment_PokemonStorageSpecialNewsBulletin(param0->fieldSystem);
     return 0;
 }
 
 BOOL ScrCmd_30C(ScriptContext *param0)
 {
-    FieldSystem_SaveTVEpisodeSegment_HomeAndManor_NoFurniture(param0->fieldSystem);
+    FieldSystem_SaveTVSegment_HomeAndManor_NoFurniture(param0->fieldSystem);
     return 0;
 }
 
@@ -134,7 +134,7 @@ BOOL ScrCmd_30D(ScriptContext *param0)
 {
     u16 v0 = ScriptContext_GetVar(param0);
 
-    FieldSystem_SaveTVEpisodeSegment_HomeAndManor(param0->fieldSystem, v0);
+    FieldSystem_SaveTVSegment_HomeAndManor(param0->fieldSystem, v0);
     return 0;
 }
 
@@ -321,7 +321,7 @@ static BOOL sub_02049358(FieldSystem *fieldSystem)
 
 static BOOL sub_02049368(FieldSystem *fieldSystem)
 {
-    TVEpisodeSegment_ContestHall_ShowcasedPokemon *v0 = TVBroadcast_GetShowcasedPokemon(SaveData_GetTVBroadcast(fieldSystem->saveData));
+    TVSegment_ContestHall_ShowcasedPokemon *v0 = TVBroadcast_GetShowcasedPokemon(SaveData_GetTVBroadcast(fieldSystem->saveData));
     return v0->unk_00;
 }
 
@@ -357,24 +357,24 @@ static BOOL sub_020493B8(FieldSystem *fieldSystem)
 
 static const TVInterview sInterviews[TV_PROGRAM_TYPE_INTERVIEWS_NUM_SEGMENTS] = {
     { NULL, NULL, NULL, 0x3 },
-    { FieldSystem_SaveTVEpisodeSegment_BattleTowerCorner, NULL, sub_02049348, 0x4 },
+    { FieldSystem_SaveTVSegment_BattleTowerCorner, NULL, sub_02049348, 0x4 },
     { NULL, NULL, NULL, 0x5 },
-    { FieldSystem_SaveTVEpisodeSegment_YourPokemonCorner, sub_02049268, NULL, 0x6 },
+    { FieldSystem_SaveTVSegment_YourPokemonCorner, sub_02049268, NULL, 0x6 },
     { NULL, NULL, NULL, 0x7 },
-    { FieldSystem_SaveTVEpisodeSegment_ThePoketchWatch, sub_02049288, sub_02049358, 0x8 },
-    { FieldSystem_SaveTVEpisodeSegment_ContestHall, NULL, sub_02049368, 0x9 },
+    { FieldSystem_SaveTVSegment_ThePoketchWatch, sub_02049288, sub_02049358, 0x8 },
+    { FieldSystem_SaveTVSegment_ContestHall, NULL, sub_02049368, 0x9 },
     { NULL, NULL, NULL, 0xA },
-    { FieldSystem_SaveTVEpisodeSegment_RightOnPhotoCorner, NULL, sub_02049378, 0xB },
-    { FieldSystem_SaveTVEpisodeSegment_StreetCornerPersonalityCheckup, NULL, NULL, 0xC },
-    { FieldSystem_SaveTVEpisodeSegment_ThreeCheersForPoffinCorner, NULL, sub_02049388, 0xD },
+    { FieldSystem_SaveTVSegment_RightOnPhotoCorner, NULL, sub_02049378, 0xB },
+    { FieldSystem_SaveTVSegment_StreetCornerPersonalityCheckup, NULL, NULL, 0xC },
+    { FieldSystem_SaveTVSegment_ThreeCheersForPoffinCorner, NULL, sub_02049388, 0xD },
     { NULL, NULL, NULL, 0xE },
-    { FieldSystem_SaveTVEpisodeSegment_AmitySquareWatch, sub_020492A0, sub_02049398, 0xF },
-    { FieldSystem_SaveTVEpisodeSegment_BattleFrontierFrontlineNews_Single, sub_020492D4, sub_020493A8, 0x10 },
-    { FieldSystem_SaveTVEpisodeSegment_InYourFaceInterview_Question1, NULL, NULL, 0x11 },
-    { FieldSystem_SaveTVEpisodeSegment_InYourFaceInterview_Question2, NULL, NULL, 0x12 },
-    { FieldSystem_SaveTVEpisodeSegment_InYourFaceInterview_Question3, NULL, NULL, 0x13 },
-    { FieldSystem_SaveTVEpisodeSegment_InYourFaceInterview_Question4, NULL, NULL, 0x14 },
-    { FieldSystem_SaveTVEpisodeSegment_BattleFrontierFrontlineNews_Multi, sub_02049308, sub_020493B8, 0x15 }
+    { FieldSystem_SaveTVSegment_AmitySquareWatch, sub_020492A0, sub_02049398, 0xF },
+    { FieldSystem_SaveTVSegment_BattleFrontierFrontlineNews_Single, sub_020492D4, sub_020493A8, 0x10 },
+    { FieldSystem_SaveTVSegment_InYourFaceInterview_Question1, NULL, NULL, 0x11 },
+    { FieldSystem_SaveTVSegment_InYourFaceInterview_Question2, NULL, NULL, 0x12 },
+    { FieldSystem_SaveTVSegment_InYourFaceInterview_Question3, NULL, NULL, 0x13 },
+    { FieldSystem_SaveTVSegment_InYourFaceInterview_Question4, NULL, NULL, 0x14 },
+    { FieldSystem_SaveTVSegment_BattleFrontierFrontlineNews_Multi, sub_02049308, sub_020493B8, 0x15 }
 };
 
 BOOL ScrCmd_GetCurrentSafariGameCaughtNum(ScriptContext *ctx)

@@ -3170,12 +3170,12 @@
     .byte \npcTradeID
     .endm
 
-    .macro GetNpcTradeSpecies destVar
+    .macro GetNPCTradeSpecies destVar
     .short SCRCMD_GETNPCTRADESPECIES
     .short \destVar
     .endm
 
-    .macro GetNpcTradeRequestedSpecies destVar
+    .macro GetNPCTradeRequestedSpecies destVar
     .short SCRCMD_GETNPCTRADEREQUESTEDSPECIES
     .short \destVar
     .endm
@@ -3185,7 +3185,7 @@
     .short \partySlot
     .endm
 
-    .macro FinishNpcTrade
+    .macro FinishNPCTrade
     .short SCRCMD_FINISHNPCTRADE
     .endm
 
@@ -4156,9 +4156,9 @@
     .short \z
     .endm
 
-    .macro ScrCmd_2B6 arg0, arg1
+    .macro ScrCmd_2B6 localID, arg1
     .short SCRCMD_2B6
-    .short \arg0
+    .short \localID
     .byte \arg1
     .endm
 

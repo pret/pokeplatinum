@@ -124,7 +124,7 @@ Static main
 	Object main.nef.p/src_record_mixed_rng.c.o
 	Object main.nef.p/src_coins.c.o
 	Object main.nef.p/src_journal.c.o
-	Object main.nef.p/src_trainer_card_save_data.c.o
+	Object main.nef.p/src_trainer_case_save_data.c.o
 	Object main.nef.p/src_unk_0202C858.c.o
 	Object main.nef.p/src_unk_0202C9F4.c.o
 	Object main.nef.p/src_play_time.c.o
@@ -257,7 +257,7 @@ Static main
 	Object main.nef.p/src_unk_020655F4.c.o
 	Object main.nef.p/src_unk_020673B8.c.o
 	Object main.nef.p/src_berry_patch_graphics.c.o
-	Object main.nef.p/src_unk_02067A84.c.o
+	Object main.nef.p/src_trainer_see.c.o
 	Object main.nef.p/src_dynamic_map_features.c.o
 	Object main.nef.p/src_item_use_functions.c.o
 	Object main.nef.p/src_pokeradar.c.o
@@ -268,11 +268,11 @@ Static main
 	Object main.nef.p/src_applications_town_map_context.c.o
 	Object main.nef.p/src_unk_0206B9D8.c.o
 	Object main.nef.p/src_great_marsh_lookout.c.o
-	Object main.nef.p/src_trainer_card_badge_dirt.c.o
+	Object main.nef.p/src_trainer_case_badge_dirt.c.o
 	Object main.nef.p/src_roaming_pokemon.c.o
 	Object main.nef.p/src_npc_trade_task.c.o
 	Object main.nef.p/src_cutscenes_boat_cutscene_boat_cutscene.c.o
-	Object main.nef.p/src_tv_episode_segment.c.o
+	Object main.nef.p/src_tv_segment.c.o
 	Object main.nef.p/src_rankings_machine.c.o
 	Object main.nef.p/src_unk_02070428.c.o
 	Object main.nef.p/src_field_move_tasks.c.o
@@ -281,7 +281,7 @@ Static main
 	Object main.nef.p/src_platform_lift.c.o
 	Object main.nef.p/src_persisted_map_features_init.c.o
 	Object main.nef.p/src_map_header_util.c.o
-	Object main.nef.p/src_trainer_card.c.o
+	Object main.nef.p/src_trainer_case.c.o
 	Object main.nef.p/src_unk_020722AC.c.o
 	Object main.nef.p/src_unk_02073700.c.o
 	Object main.nef.p/src_simple3d.c.o
@@ -419,18 +419,18 @@ Overlay dummy1
 	After main
 }
 
-Overlay overlay1
-{
-	After main
-	Object main.nef.p/src_overlay001_ov1_021D0D80.c.o
-}
-
 Overlay dummy2
 {
-	After overlay1
+	After main
+	Object main.nef.p/src_dummy_dummy.c.o
 }
 
 Overlay dummy3
+{
+	After dummy2
+}
+
+Overlay dummy4
 {
 	After ITCM
 }
@@ -571,7 +571,7 @@ Overlay overlay6
 	Object main.nef.p/src_overlay006_hm_cut_in.c.o
 	Object main.nef.p/src_overlay006_roamer_after_battle.c.o
 	Object main.nef.p/src_overlay006_npc_trade.c.o
-	Object main.nef.p/src_overlay006_ov6_02246444.c.o
+	Object main.nef.p/src_overlay006_tv_episode.c.o
 	Object main.nef.p/src_overlay006_ov6_022465FC.c.o
 	Object main.nef.p/src_overlay006_tv_commercials.c.o
 	Object main.nef.p/src_overlay006_special_dates.c.o
@@ -676,7 +676,7 @@ Overlay trainer_ai
 	Object trainer_ai_script.o
 }
 
-Overlay dummy4
+Overlay dummy5
 {
 	After main
 }
@@ -1239,18 +1239,18 @@ Overlay overlay70
 	Object main.nef.p/src_overlay070_ov70_0226CE54.c.o
 }
 
-Overlay trainer_card_screen
+Overlay trainer_case
 {
 	After battle_anim
-	Object main.nef.p/src_trainer_card_screen_trainer_card_screen.c.o
-	Object main.nef.p/src_trainer_card_screen_trainer_card_display_text.c.o
-	Object main.nef.p/src_trainer_card_screen_trainer_card_sprites.c.o
-	Object main.nef.p/src_trainer_card_screen_trainer_card_badge_chimes.c.o
+	Object main.nef.p/src_applications_trainer_case_main.c.o
+	Object main.nef.p/src_applications_trainer_case_card_text.c.o
+	Object main.nef.p/src_applications_trainer_case_sprites.c.o
+	Object main.nef.p/src_applications_trainer_case_badge_chimes.c.o
 }
 
 Overlay overlay72
 {
-	After trainer_card_screen
+	After trainer_case
 	Object main.nef.p/src_overlay072_ov72_0223D7A0.c.o
 }
 
@@ -1377,7 +1377,7 @@ Overlay overlay88
 	Object main.nef.p/src_overlay088_ov88_0223E9C4.c.o
 }
 
-Overlay dummy5
+Overlay dummy6
 {
 	After main
 }
@@ -1526,7 +1526,7 @@ Overlay diploma
 	Object main.nef.p/src_applications_diploma.c.o
 }
 
-Overlay dummy6
+Overlay dummy7
 {
 	After overlay63
 }

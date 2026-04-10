@@ -62,7 +62,7 @@
 #include "terrain_collision_manager.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "tv_episode_segment.h"
+#include "tv_segment.h"
 #include "underground.h"
 #include "vars_flags.h"
 #include "vram_transfer.h"
@@ -2637,7 +2637,7 @@ static BOOL Mining_ProcessNextDugUpItem(MiningGameContext *ctx)
             if (Spheres_IsMiningItemSphere(itemID)) {
                 UndergroundRecord_AddNumSpheresDug(undergroundRecord, 1);
             } else {
-                FieldSystem_SaveTVEpisodeSegment_UndergroundTreasuresCorner(sMiningEnv->fieldSystem, itemID, 1);
+                FieldSystem_SaveTVSegment_UndergroundTreasuresCorner(sMiningEnv->fieldSystem, itemID, 1);
 
                 // possible bug: rare bones count toward the fossil total
                 if ((itemID >= MINING_TREASURE_HELIX_FOSSIL) && ((MINING_TREASURE_RARE_BONE + 1) > itemID) || (itemID == MINING_TREASURE_ARMOR_FOSSIL) || (itemID == MINING_TREASURE_SKULL_FOSSIL)) {

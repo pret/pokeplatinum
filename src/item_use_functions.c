@@ -837,9 +837,9 @@ static enum ItemUseCheckResult CanUseFishingRod(const ItemUseContext *usageConte
 
     if (TileBehavior_IsSurfable(usageContext->facingTileBehavior) == TRUE) {
         if ((TileBehavior_IsBridge(usageContext->currTileBehavior) == TRUE) || (TileBehavior_IsBridgeStart(usageContext->currTileBehavior) == TRUE)) {
-            MapObject *v0 = Player_MapObject(usageContext->playerAvatar);
+            MapObject *playerObj = Player_MapObject(usageContext->playerAvatar);
 
-            if (sub_02062F30(v0) == TRUE) {
+            if (MapObject_IsStatusOnElevatedBridge(playerObj) == TRUE) {
                 return ITEM_USE_CANNOT_USE_GENERIC;
             }
         }

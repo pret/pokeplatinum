@@ -2,21 +2,21 @@
 #include "res/text/bank/galactic_hq_laboratory.h"
 
 
-    ScriptEntry _000E
-    ScriptEntry _0021
-    ScriptEntry _0034
+    ScriptEntry GalacticHQLaboratory_ScientistM
+    ScriptEntry GalacticHQLaboratory_ScientistF
+    ScriptEntry GalacticHQLaboratory_Machine
     ScriptEntryEnd
 
-_000E:
-    NPCMessage 0
+GalacticHQLaboratory_ScientistM:
+    NPCMessage GalacticHQLaboratory_Text_ExperimentWentTooFar
     End
 
-_0021:
-    NPCMessage 1
+GalacticHQLaboratory_ScientistF:
+    NPCMessage GalacticHQLaboratory_Text_IFeelTooSickened
     End
 
-_0034:
-    EventMessage 2
+GalacticHQLaboratory_Machine:
+    EventMessage GalacticHQLaboratory_Text_SomethingInGreenFluid
     End
 
     .balign 4, 0

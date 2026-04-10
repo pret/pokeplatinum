@@ -62,7 +62,7 @@ _00FF:
     Return
 
 _010C:
-    CallIfUnset FLAG_TRAVELED_WITH_RILEY, _00F9
+    CallIfUnset FLAG_RECEIVED_RIOLU_EGG_FROM_RILEY, _00F9
     Return
 
 _0119:

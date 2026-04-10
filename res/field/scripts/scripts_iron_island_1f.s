@@ -1,10 +1,10 @@
 #include "macros/scrcmd.inc"
 
 
-    ScriptEntry _0006
+    ScriptEntry IronIsland1F_OnTransition
     ScriptEntryEnd
 
-_0006:
+IronIsland1F_OnTransition:
     SetFlag FLAG_FIRST_ARRIVAL_IRON_ISLAND_INTERIOR
     End
 

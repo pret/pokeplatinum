@@ -45,10 +45,10 @@ SnowpointCityWestHouse_TryTrade:
     InitNPCTrade NPC_TRADE_GASPAR_HAUNTER
     SetVar VAR_0x8004, VAR_RESULT
     GetPartyMonSpecies VAR_0x8004, VAR_0x8005
-    GetNpcTradeRequestedSpecies VAR_RESULT
+    GetNPCTradeRequestedSpecies VAR_RESULT
     GoToIfNe VAR_0x8005, VAR_RESULT, SnowpointCityWestHouse_IAskedForMedicham
     StartNPCTrade VAR_0x8004
-    FinishNpcTrade
+    FinishNPCTrade
     SetFlag FLAG_TRADED_FOR_GASPAR_HAUNTER
     Message SnowpointCityWestHouse_Text_IMadeItPreventEvolving
     WaitButton
@@ -57,7 +57,7 @@ SnowpointCityWestHouse_TryTrade:
     End
 
 SnowpointCityWestHouse_IAskedForMedicham:
-    FinishNpcTrade
+    FinishNPCTrade
     Message SnowpointCityWestHouse_Text_IAskedForMedicham
     WaitButton
     CloseMessage

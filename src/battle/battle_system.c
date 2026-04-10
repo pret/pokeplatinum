@@ -69,7 +69,7 @@
 #include "text.h"
 #include "trainer_data.h"
 #include "trainer_info.h"
-#include "tv_episode_segment.h"
+#include "tv_segment.h"
 #include "unk_02014A84.h"
 #include "unk_0202F1D4.h"
 

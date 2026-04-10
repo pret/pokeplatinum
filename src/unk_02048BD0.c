@@ -15,7 +15,7 @@
 #include "string_gf.h"
 #include "string_template.h"
 #include "trainer_info.h"
-#include "tv_episode_segment.h"
+#include "tv_segment.h"
 #include "unk_0203D1B8.h"
 
 BOOL ScrCmd_21D(ScriptContext *param0)
@@ -75,7 +75,7 @@ BOOL ScrCmd_21D(ScriptContext *param0)
         RecordMixedRNG_CopyEntry(v1, v12, 1);
 
         if (v13) {
-            FieldSystem_SaveTVEpisodeSegment_LoveThatGroupCorner_SwitchGroup(param0->fieldSystem);
+            FieldSystem_SaveTVSegment_LoveThatGroupCorner_SwitchGroup(param0->fieldSystem);
         }
     }
         return 0;
@@ -90,7 +90,7 @@ BOOL ScrCmd_21D(ScriptContext *param0)
         RecordMixedRNG_SetEntrySeed(v1, 0, MTRNG_Next());
         String_Free(v14);
         RecordMixedRNG_CopyEntry(v1, 0, 1);
-        FieldSystem_SaveTVEpisodeSegment_LoveThatGroupCorner_NewGroup(param0->fieldSystem);
+        FieldSystem_SaveTVSegment_LoveThatGroupCorner_NewGroup(param0->fieldSystem);
     } break;
     }
 

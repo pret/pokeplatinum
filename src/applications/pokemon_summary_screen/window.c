@@ -968,7 +968,7 @@ static void PrintStaticWindows(PokemonSummaryScreen *summaryScreen)
     PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_DEX_NUM, PokemonSummary_Text_LabelDexNum, SUMMARY_TEXT_WHITE, ALIGN_LEFT);
     PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_SPECIES_NAME, PokemonSummary_Text_LabelSpeciesName, SUMMARY_TEXT_WHITE, ALIGN_LEFT);
     PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_TYPE, PokemonSummary_Text_LabelType, SUMMARY_TEXT_WHITE, ALIGN_LEFT);
-    PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_OT_NAME, PokemonSummary_Text_LabelOtName, SUMMARY_TEXT_WHITE, ALIGN_LEFT);
+    PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_OT_NAME, PokemonSummary_Text_LabelOTName, SUMMARY_TEXT_WHITE, ALIGN_LEFT);
     PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_OT_ID, PokemonSummary_Text_LabelOtId, SUMMARY_TEXT_WHITE, ALIGN_LEFT);
     PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_EXP, PokemonSummary_Text_LabelExp, SUMMARY_TEXT_WHITE, ALIGN_LEFT);
     PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_EXP_NEXT_LV, PokemonSummary_Text_LabelExpNextLv, SUMMARY_TEXT_WHITE, ALIGN_LEFT);
