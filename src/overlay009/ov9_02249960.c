@@ -3717,7 +3717,7 @@ static BOOL DistWorldPlatformProp_AnimInit(OverworldAnimManager *animMan, void *
     }
 
     VecFx32_SetPosFromMapCoords(ghostPropTemplate->tileX, ghostPropTemplate->tileZ, &platformProp->initialPos);
-    platformProp->initialPos.y = MAP_OBJECT_COORD_TO_FX32(ghostPropTemplate->tileY);
+    platformProp->initialPos.y = MAP_OBJECT_COORD_CENTER_TO_FX32(ghostPropTemplate->tileY);
 
     const VecFx32 *initialPosOffset = &sPropInitialPosOffsetByKind[ghostPropTemplate->propKind];
     platformProp->initialPos.x += initialPosOffset->x;
@@ -3884,7 +3884,7 @@ static BOOL DistWorldObstacleProp_AnimInit(OverworldAnimManager *animMan, void *
     }
 
     VecFx32_SetPosFromMapCoords(ghostPropTemplate->tileX, ghostPropTemplate->tileZ, &obstacleProp->pos);
-    obstacleProp->pos.y = MAP_OBJECT_COORD_TO_FX32(ghostPropTemplate->tileY);
+    obstacleProp->pos.y = MAP_OBJECT_COORD_CENTER_TO_FX32(ghostPropTemplate->tileY);
 
     const VecFx32 *initialPosOffset = &sPropInitialPosOffsetByKind[ghostPropTemplate->propKind];
     obstacleProp->pos.x += initialPosOffset->x;
@@ -6323,7 +6323,7 @@ static int DistWorldMovingPlatformProp_AnimInit(OverworldAnimManager *animMan, v
     }
 
     VecFx32_SetPosFromMapCoords(userData->tileX, userData->tileZ, &movingPlatformProp->pos);
-    movingPlatformProp->pos.y = MAP_OBJECT_COORD_TO_FX32(userData->tileY);
+    movingPlatformProp->pos.y = MAP_OBJECT_COORD_CENTER_TO_FX32(userData->tileY);
 
     const VecFx32 *initialPosOffset = &sPropInitialPosOffsetByKind[userData->propKind];
     movingPlatformProp->pos.x += initialPosOffset->x;
@@ -7209,7 +7209,7 @@ static BOOL DistWorldSimpleProp_AnimInit(OverworldAnimManager *animMan, void *co
     }
 
     VecFx32_SetPosFromMapCoords(simplePropTemplate->tileX, simplePropTemplate->tileZ, &simpleProp->pos);
-    simpleProp->pos.y = MAP_OBJECT_COORD_TO_FX32(simplePropTemplate->tileY);
+    simpleProp->pos.y = MAP_OBJECT_COORD_CENTER_TO_FX32(simplePropTemplate->tileY);
 
     const VecFx32 *initialPosOffset = &sPropInitialPosOffsetByKind[simplePropTemplate->propKind];
     simpleProp->pos.x += initialPosOffset->x;

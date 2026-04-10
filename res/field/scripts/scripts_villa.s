@@ -22,26 +22,26 @@
     ScriptEntry _0B5C
     ScriptEntry _0BBC
     ScriptEntry _0C24
-    ScriptEntry _0C88
-    ScriptEntry _0C99
-    ScriptEntry _0CAA
-    ScriptEntry _0CBB
-    ScriptEntry _0CCC
-    ScriptEntry _0CDD
-    ScriptEntry _0CEE
-    ScriptEntry _0D03
-    ScriptEntry _0D14
-    ScriptEntry _0D30
-    ScriptEntry _0D41
-    ScriptEntry _0D55
-    ScriptEntry _0DD1
-    ScriptEntry _0DE2
-    ScriptEntry _0DF3
-    ScriptEntry _0E08
-    ScriptEntry _0E19
-    ScriptEntry _0E2A
-    ScriptEntry _0E3B
-    ScriptEntry _0E4C
+    ScriptEntry Villa_Furniture_Table
+    ScriptEntry Villa_Furniture_BigSofa
+    ScriptEntry Villa_Furniture_SmallSofa
+    ScriptEntry Villa_Furniture_Bed
+    ScriptEntry Villa_Furniture_NightTable
+    ScriptEntry Villa_Furniture_TVDummy
+    ScriptEntry Villa_Furniture_AudioSystem
+    ScriptEntry Villa_Furniture_Bookshelf
+    ScriptEntry Villa_Furniture_Rack
+    ScriptEntry Villa_Furniture_Houseplant
+    ScriptEntry Villa_Furniture_PCDesk
+    ScriptEntry Villa_Furniture_MusicBox
+    ScriptEntry Villa_Furniture_PokemonBust
+    ScriptEntry Villa_Furniture_PokemonBustSilver
+    ScriptEntry Villa_Furniture_Piano
+    ScriptEntry Villa_Furniture_GuestSet
+    ScriptEntry Villa_Furniture_WallClock
+    ScriptEntry Villa_Furniture_Masterpiece
+    ScriptEntry Villa_Furniture_TeaSet
+    ScriptEntry Villa_Furniture_Chandelier
     ScriptEntry _0E65
     ScriptEntry _0EB4
     ScriptEntry _15F3
@@ -184,23 +184,23 @@ _029C:
     End
 
 _02F3:
-    Message 15
+    Message pl_msg_00000602_00015
     Return
 
 _02F8:
-    Message 16
+    Message pl_msg_00000602_00016
     Return
 
 _02FD:
-    Message 17
+    Message pl_msg_00000602_00017
     Return
 
 _0302:
-    Message 18
+    Message pl_msg_00000602_00018
     Return
 
 _0307:
-    Message 19
+    Message pl_msg_00000602_00019
     Return
 
 _030C:
@@ -247,43 +247,43 @@ _03E0:
     Return
 
 _0400:
-    Message 20
+    Message pl_msg_00000602_00020
     Return
 
 _0405:
-    Message 25
+    Message pl_msg_00000602_00025
     Return
 
 _040A:
-    Message 21
+    Message pl_msg_00000602_00021
     Return
 
 _040F:
-    Message 26
+    Message pl_msg_00000602_00026
     Return
 
 _0414:
-    Message 22
+    Message pl_msg_00000602_00022
     Return
 
 _0419:
-    Message 27
+    Message pl_msg_00000602_00027
     Return
 
 _041E:
-    Message 23
+    Message pl_msg_00000602_00023
     Return
 
 _0423:
-    Message 28
+    Message pl_msg_00000602_00028
     Return
 
 _0428:
-    Message 24
+    Message pl_msg_00000602_00024
     Return
 
 _042D:
-    Message 29
+    Message pl_msg_00000602_00029
     Return
 
 _0432:
@@ -299,23 +299,23 @@ _0432:
     End
 
 _0483:
-    Message 30
+    Message pl_msg_00000602_00030
     Return
 
 _0488:
-    Message 31
+    Message pl_msg_00000602_00031
     Return
 
 _048D:
-    Message 32
+    Message pl_msg_00000602_00032
     Return
 
 _0492:
-    Message 33
+    Message pl_msg_00000602_00033
     Return
 
 _0497:
-    Message 34
+    Message pl_msg_00000602_00034
     Return
 
 _049C:
@@ -333,23 +333,23 @@ _049C:
     End
 
 _04F3:
-    Message 35
+    Message pl_msg_00000602_00035
     Return
 
 _04F8:
-    Message 36
+    Message pl_msg_00000602_00036
     Return
 
 _04FD:
-    Message 37
+    Message pl_msg_00000602_00037
     Return
 
 _0502:
-    Message 38
+    Message pl_msg_00000602_00038
     Return
 
 _0507:
-    Message 39
+    Message pl_msg_00000602_00039
     Return
 
 _050C:
@@ -365,23 +365,23 @@ _050C:
     End
 
 _055D:
-    Message 40
+    Message pl_msg_00000602_00040
     Return
 
 _0562:
-    Message 41
+    Message pl_msg_00000602_00041
     Return
 
 _0567:
-    Message 42
+    Message pl_msg_00000602_00042
     Return
 
 _056C:
-    Message 43
+    Message pl_msg_00000602_00043
     Return
 
 _0571:
-    Message 44
+    Message pl_msg_00000602_00044
     Return
 
 _0576:
@@ -397,23 +397,23 @@ _0576:
     End
 
 _05C7:
-    Message 45
+    Message pl_msg_00000602_00045
     Return
 
 _05CC:
-    Message 46
+    Message pl_msg_00000602_00046
     Return
 
 _05D1:
-    Message 47
+    Message pl_msg_00000602_00047
     Return
 
 _05D6:
-    Message 48
+    Message pl_msg_00000602_00048
     Return
 
 _05DB:
-    Message 49
+    Message pl_msg_00000602_00049
     Return
 
 _05E0:
@@ -429,23 +429,23 @@ _05E0:
     End
 
 _0631:
-    Message 50
+    Message pl_msg_00000602_00050
     Return
 
 _0636:
-    Message 51
+    Message pl_msg_00000602_00051
     Return
 
 _063B:
-    Message 52
+    Message pl_msg_00000602_00052
     Return
 
 _0640:
-    Message 53
+    Message pl_msg_00000602_00053
     Return
 
 _0645:
-    Message 54
+    Message pl_msg_00000602_00054
     Return
 
 _064A:
@@ -463,23 +463,23 @@ _064A:
     End
 
 _06AB:
-    Message 55
+    Message pl_msg_00000602_00055
     Return
 
 _06B0:
-    Message 56
+    Message pl_msg_00000602_00056
     Return
 
 _06B5:
-    Message 57
+    Message pl_msg_00000602_00057
     Return
 
 _06BA:
-    Message 58
+    Message pl_msg_00000602_00058
     Return
 
 _06BF:
-    Message 59
+    Message pl_msg_00000602_00059
     Return
 
 _06C4:
@@ -496,24 +496,24 @@ _06C4:
 
 _0715:
     BufferRivalName 0
-    Message 60
+    Message pl_msg_00000602_00060
     Return
 
 _071D:
-    Message 61
+    Message pl_msg_00000602_00061
     Return
 
 _0722:
     BufferRivalName 0
-    Message 62
+    Message pl_msg_00000602_00062
     Return
 
 _072A:
-    Message 63
+    Message pl_msg_00000602_00063
     Return
 
 _072F:
-    Message 64
+    Message pl_msg_00000602_00064
     Return
 
 _0734:
@@ -529,23 +529,23 @@ _0734:
     End
 
 _0785:
-    Message 65
+    Message pl_msg_00000602_00065
     Return
 
 _078A:
-    Message 66
+    Message pl_msg_00000602_00066
     Return
 
 _078F:
-    Message 67
+    Message pl_msg_00000602_00067
     Return
 
 _0794:
-    Message 68
+    Message pl_msg_00000602_00068
     Return
 
 _0799:
-    Message 69
+    Message pl_msg_00000602_00069
     Return
 
 _079E:
@@ -562,23 +562,23 @@ _079E:
     End
 
 _07FC:
-    Message 70
+    Message pl_msg_00000602_00070
     Return
 
 _0801:
-    Message 71
+    Message pl_msg_00000602_00071
     Return
 
 _0806:
-    Message 72
+    Message pl_msg_00000602_00072
     Return
 
 _080B:
-    Message 73
+    Message pl_msg_00000602_00073
     Return
 
 _0810:
-    Message 74
+    Message pl_msg_00000602_00074
     Return
 
 _0815:
@@ -595,23 +595,23 @@ _0815:
     End
 
 _0873:
-    Message 75
+    Message pl_msg_00000602_00075
     Return
 
 _0878:
-    Message 76
+    Message pl_msg_00000602_00076
     Return
 
 _087D:
-    Message 77
+    Message pl_msg_00000602_00077
     Return
 
 _0882:
-    Message 78
+    Message pl_msg_00000602_00078
     Return
 
 _0887:
-    Message 79
+    Message pl_msg_00000602_00079
     Return
 
 _088C:
@@ -627,33 +627,33 @@ _088C:
 
 _08DB:
     FacePlayer
-    Message 86
+    Message pl_msg_00000602_00086
     Return
 
 _08E2:
     FacePlayer
-    Message 88
+    Message pl_msg_00000602_00088
     Return
 
 _08E9:
     ApplyMovement 11, _0930
     ApplyMovement 13, _093C
     WaitMovement
-    Message 89
+    Message pl_msg_00000602_00089
     Return
 
 _0900:
     ApplyMovement 11, _0930
     ApplyMovement 13, _093C
     WaitMovement
-    Message 90
+    Message pl_msg_00000602_00090
     Return
 
 _0917:
     ApplyMovement 11, _0930
     ApplyMovement 13, _093C
     WaitMovement
-    Message 91
+    Message pl_msg_00000602_00091
     Return
 
     .balign 4, 0
@@ -680,23 +680,23 @@ _0944:
     End
 
 _0995:
-    Message 80
+    Message pl_msg_00000602_00080
     Return
 
 _099A:
-    Message 81
+    Message pl_msg_00000602_00081
     Return
 
 _099F:
-    Message 82
+    Message pl_msg_00000602_00082
     Return
 
 _09A4:
-    Message 83
+    Message pl_msg_00000602_00083
     Return
 
 _09A9:
-    Message 84
+    Message pl_msg_00000602_00084
     Return
 
 _09AE:
@@ -712,33 +712,33 @@ _09AE:
 
 _09FD:
     FacePlayer
-    Message 85
+    Message pl_msg_00000602_00085
     Return
 
 _0A04:
     FacePlayer
-    Message 87
+    Message pl_msg_00000602_00087
     Return
 
 _0A0B:
     ApplyMovement 11, _0930
     ApplyMovement 13, _093C
     WaitMovement
-    Message 89
+    Message pl_msg_00000602_00089
     Return
 
 _0A22:
     ApplyMovement 11, _0930
     ApplyMovement 13, _093C
     WaitMovement
-    Message 90
+    Message pl_msg_00000602_00090
     Return
 
 _0A39:
     ApplyMovement 11, _0930
     ApplyMovement 13, _093C
     WaitMovement
-    Message 91
+    Message pl_msg_00000602_00091
     Return
 
 _0A50:
@@ -757,24 +757,24 @@ _0A50:
     End
 
 _0AB4:
-    Message 92
+    Message pl_msg_00000602_00092
     Return
 
 _0AB9:
-    Message 93
+    Message pl_msg_00000602_00093
     Return
 
 _0ABE:
-    Message 94
+    Message pl_msg_00000602_00094
     Return
 
 _0AC3:
-    Message 95
+    Message pl_msg_00000602_00095
     Return
 
 _0AC8:
     GoToIfUnset FLAG_VILLA_FURNITURE_TEA_SET, _0AB4
-    Message 96
+    Message pl_msg_00000602_00096
     Return
 
     .balign 4, 0
@@ -915,94 +915,94 @@ _0C78:
     WalkOnSpotNormalWest
     EndMovement
 
-_0C88:
+Villa_Furniture_Table:
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    Message 99
-    GoTo _0E5D
+    Message Villa_Text_Table
+    GoTo Villa_Furniture_End
     End
 
-_0C99:
+Villa_Furniture_BigSofa:
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    Message 100
-    GoTo _0E5D
+    Message Villa_Text_BigSofa
+    GoTo Villa_Furniture_End
     End
 
-_0CAA:
+Villa_Furniture_SmallSofa:
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    Message 101
-    GoTo _0E5D
+    Message Villa_Text_SmallSofa
+    GoTo Villa_Furniture_End
     End
 
-_0CBB:
+Villa_Furniture_Bed:
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    Message 102
-    GoTo _0E5D
+    Message Villa_Text_Bed
+    GoTo Villa_Furniture_End
     End
 
-_0CCC:
+Villa_Furniture_NightTable:
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    Message 103
-    GoTo _0E5D
+    Message Villa_Text_NightTable
+    GoTo Villa_Furniture_End
     End
 
-_0CDD:
+Villa_Furniture_TVDummy:
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    Message 104
-    GoTo _0E5D
+    Message Villa_Text_TV
+    GoTo Villa_Furniture_End
     End
 
-_0CEE:
+Villa_Furniture_AudioSystem:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     PlayMusic SEQ_PL_AUDIO
-    Message 105
-    GoTo _0E5D
+    Message Villa_Text_AudioSystem
+    GoTo Villa_Furniture_End
     End
 
-_0D03:
+Villa_Furniture_Bookshelf:
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    Message 106
-    GoTo _0E5D
+    Message Villa_Text_Bookshelf
+    GoTo Villa_Furniture_End
     End
 
-_0D14:
+Villa_Furniture_Rack:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     GoToIfSet FLAG_VILLA_FURNITURE_MUSIC_BOX, _0D63
-    Message 107
-    GoTo _0E5D
+    Message Villa_Text_Rack
+    GoTo Villa_Furniture_End
     End
 
-_0D30:
+Villa_Furniture_Houseplant:
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    Message 108
-    GoTo _0E5D
+    Message Villa_Text_Houseplant
+    GoTo Villa_Furniture_End
     End
 
-_0D41:
+Villa_Furniture_PCDesk:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     BufferPlayerName 0
-    Message 109
-    GoTo _0E5D
+    Message Villa_Text_PCDesk
+    GoTo Villa_Furniture_End
     End
 
-_0D55:
+Villa_Furniture_MusicBox:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     GoTo _0D63
     End
 
 _0D63:
-    Message 110
+    Message Villa_Text_MusicBox
     GoTo _0D6E
     End
 
@@ -1032,67 +1032,67 @@ _0DC2:
     End
 
 Villa_Unused:
-    Message 118
+    Message Villa_Text_Chandelier
     Return
 
-_0DD1:
+Villa_Furniture_PokemonBust:
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    Message 111
-    GoTo _0E5D
+    Message Villa_Text_PokemonBust
+    GoTo Villa_Furniture_End
     End
 
-_0DE2:
+Villa_Furniture_PokemonBustSilver:
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    Message 112
-    GoTo _0E5D
+    Message Villa_Text_PokemonBustSilver
+    GoTo Villa_Furniture_End
     End
 
-_0DF3:
+Villa_Furniture_Piano:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     PlayMusic SEQ_PL_PIANO
-    Message 113
-    GoTo _0E5D
+    Message Villa_Text_Piano
+    GoTo Villa_Furniture_End
     End
 
-_0E08:
+Villa_Furniture_GuestSet:
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    Message 114
-    GoTo _0E5D
+    Message Villa_Text_GuestSet
+    GoTo Villa_Furniture_End
     End
 
-_0E19:
+Villa_Furniture_WallClock:
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    Message 115
-    GoTo _0E5D
+    Message Villa_Text_WallClock
+    GoTo Villa_Furniture_End
     End
 
-_0E2A:
+Villa_Furniture_Masterpiece:
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    Message 116
-    GoTo _0E5D
+    Message Villa_Text_Masterpiece
+    GoTo Villa_Furniture_End
     End
 
-_0E3B:
+Villa_Furniture_TeaSet:
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    Message 117
-    GoTo _0E5D
+    Message Villa_Text_TeaSet
+    GoTo Villa_Furniture_End
     End
 
-_0E4C:
+Villa_Furniture_Chandelier:
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    Message 118
-    GoTo _0E5D
+    Message Villa_Text_Chandelier
+    GoTo Villa_Furniture_End
     End
 
-_0E5D:
+Villa_Furniture_End:
     WaitButton
     CloseMessage
     ReleaseAll
@@ -1329,12 +1329,12 @@ _12BF:
     End
 
 _12FC:
-    Message 10
+    Message pl_msg_00000602_00010
     GoTo _1312
     End
 
 _1307:
-    Message 11
+    Message pl_msg_00000602_00011
     GoTo _1312
     End
 
@@ -1359,7 +1359,7 @@ _1332:
     SetVar VAR_RESORT_VILLA_VISITOR, 2
     BufferRivalName 0
     BufferPlayerName 1
-    Message 12
+    Message pl_msg_00000602_00012
     CloseMessage
     Return
 
@@ -1384,7 +1384,7 @@ _1390:
     SetVar VAR_RESORT_VILLA_VISITOR, 5
     BufferRivalName 0
     BufferPlayerName 1
-    Message 13
+    Message pl_msg_00000602_00013
     CloseMessage
     Return
 
@@ -1410,7 +1410,7 @@ _13EE:
     SetFlag FLAG_VILLA_VISITOR_OUTSIDE
     BufferRivalName 0
     BufferPlayerName 1
-    Message 14
+    Message pl_msg_00000602_00014
     CloseMessage
     Return
 

@@ -98,8 +98,8 @@ OverworldAnimManager *SurfMountRenderer_HandleSurfBegin(MapObject *surfMountMapO
     if (!reuseMapObjPos) {
         FieldSystem *fieldSystem = MapObject_FieldSystem(surfMountMapObj);
 
-        mapObjPos.x = MAP_OBJECT_COORD_TO_FX32(tileX);
-        mapObjPos.z = MAP_OBJECT_COORD_TO_FX32(tileZ);
+        mapObjPos.x = MAP_OBJECT_COORD_CENTER_TO_FX32(tileX);
+        mapObjPos.z = MAP_OBJECT_COORD_CENTER_TO_FX32(tileZ);
         MapObject_RecalculatePositionHeight(fieldSystem, &mapObjPos);
     } else {
         VecFx32 spritePosOffset = { MAP_OBJECT_BASE_POS_OFFSET_X, MAP_OBJECT_BASE_POS_OFFSET_Y, MAP_OBJECT_BASE_POS_OFFSET_Z };

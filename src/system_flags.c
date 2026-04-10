@@ -490,7 +490,7 @@ void SystemFlag_SetConnectedToWiFi(VarsFlags *varsFlags)
     SetFlag(varsFlags, FLAG_CONNECTED_TO_WIFI);
 }
 
-BOOL SystemFlag_HandleOwnsVillaFurniture(VarsFlags *varsFlags, enum HandleFlagOp op, enum VillaFurniture furniture)
+BOOL SystemFlag_HandleOwnsVillaFurniture(VarsFlags *varsFlags, enum HandleFlagOp op, enum VillaFurnitureType furniture)
 {
     GF_ASSERT(furniture < VILLA_FURNITURE_MAX);
     return HandleFlag(varsFlags, op, FLAG_VILLA_FURNITURE_START + furniture);

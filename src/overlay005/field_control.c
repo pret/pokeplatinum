@@ -20,7 +20,7 @@
 #include "overlay005/ov5_021E1154.h"
 #include "overlay005/ov5_021EA714.h"
 #include "overlay005/ov5_021EF4BC.h"
-#include "overlay005/ov5_021F8370.h"
+#include "overlay005/villa_furniture.h"
 #include "overlay005/vs_seeker.h"
 #include "overlay006/repel_step_update.h"
 #include "overlay006/wild_encounters.h"
@@ -310,7 +310,7 @@ BOOL FieldInput_Process(const FieldInput *input, FieldSystem *fieldSystem)
 
         Field_Step(fieldSystem, &playerX, &playerZ);
 
-        if (ov5_021F8410(fieldSystem, playerX, playerZ, playerDir) == TRUE) {
+        if (FieldSystem_TrySetVillaFurnitureScript(fieldSystem, playerX, playerZ, playerDir) == TRUE) {
             return TRUE;
         }
     }

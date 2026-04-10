@@ -987,8 +987,8 @@ void VecFx32_StepDirection(int dir, VecFx32 *vec, fx32 val)
 
 void VecFx32_SetPosFromMapCoords(int x, int z, VecFx32 *outVec)
 {
-    outVec->x = MAP_OBJECT_COORD_TO_FX32(x);
-    outVec->z = MAP_OBJECT_COORD_TO_FX32(z);
+    outVec->x = MAP_OBJECT_COORD_CENTER_TO_FX32(x);
+    outVec->z = MAP_OBJECT_COORD_CENTER_TO_FX32(z);
 }
 
 void sub_02064464(MapObject *mapObj)
