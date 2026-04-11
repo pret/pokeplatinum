@@ -375,7 +375,7 @@ ScriptCommand(SCRCMD_GETDAYCARESTATE,                                      ScrCm
 ScriptCommand(SCRCMD_INITPERSISTEDMAPFEATURESFORPASTORIAGYM,               ScrCmd_InitPersistedMapFeaturesForPastoriaGym)
 ScriptCommand(SCRCMD_PRESSPASTORIAGYMBUTTON,                               ScrCmd_PressPastoriaGymButton)
 ScriptCommand(SCRCMD_INITPERSISTEDMAPFEATURESFORHEARTHOMEGYM,              ScrCmd_InitPersistedMapFeaturesForHearthomeGym)
-ScriptCommand(SCRCMD_172,                                                  ScrCmd_172)
+ScriptCommand(SCRCMD_MOVEHEARTHOMEGYMDPLIFT,                               ScrCmd_MoveHearthomeGymDPLift)
 ScriptCommand(SCRCMD_INITPERSISTEDMAPFEATURESFORCANALAVEGYM,               ScrCmd_InitPersistedMapFeaturesForCanalaveGym)
 ScriptCommand(SCRCMD_INITPERSISTEDMAPFEATURESFORVEILSTONEGYM,              ScrCmd_InitPersistedMapFeaturesForVeilstoneGym)
 ScriptCommand(SCRCMD_INITPERSISTEDMAPFEATURESFORSUNYSHOREGYM,              ScrCmd_InitPersistedMapFeaturesForSunyshoreGym)

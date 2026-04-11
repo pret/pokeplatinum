@@ -9,7 +9,6 @@
 #include "struct_defs/struct_02071B30.h"
 #include "struct_defs/struct_02071B6C.h"
 #include "struct_defs/struct_02071BF8.h"
-#include "struct_defs/struct_02071C18.h"
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
@@ -129,7 +128,7 @@ void PersistedMapFeatures_InitForHearthomeGym(FieldSystem *fieldSystem)
     PersistedMapFeatures *persistedMapFeatures = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
     PersistedMapFeatures_InitWithID(persistedMapFeatures, DYNAMIC_MAP_FEATURES_HEARTHOME_GYM);
 
-    UnkStruct_02071C18 *data = PersistedMapFeatures_GetBuffer(persistedMapFeatures, DYNAMIC_MAP_FEATURES_HEARTHOME_GYM);
+    HearthomeGymPersistedFeatures *data = PersistedMapFeatures_GetBuffer(persistedMapFeatures, DYNAMIC_MAP_FEATURES_HEARTHOME_GYM);
 }
 
 void PersistedMapFeatures_InitForVilla(FieldSystem *fieldSystem)

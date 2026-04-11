@@ -2143,8 +2143,8 @@
     .short SCRCMD_INITPERSISTEDMAPFEATURESFORHEARTHOMEGYM
     .endm
 
-    .macro ScrCmd_172
-    .short SCRCMD_172
+    .macro MoveHearthomeGymDPLift
+    .short SCRCMD_MOVEHEARTHOMEGYMDPLIFT
     .endm
 
     .macro InitPersistedMapFeaturesForCanalaveGym

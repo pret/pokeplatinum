@@ -13,7 +13,7 @@ _0012:
     End
 
 _0016:
-    ScrCmd_172
+    MoveHearthomeGymDPLift
     End
 
 _001A:

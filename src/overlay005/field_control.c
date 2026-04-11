@@ -187,7 +187,7 @@ BOOL FieldInput_Process(const FieldInput *input, FieldSystem *fieldSystem)
 
         if (FieldSystem_CheckForTrainersWantingBattle(fieldSystem, hasTwoAliveMons) == TRUE
             || (PersistedMapFeatures_IsCurrentDynamicMap(fieldSystem, DYNAMIC_MAP_FEATURES_HEARTHOME_GYM) == TRUE
-                && ov8_0224C51C(fieldSystem) == TRUE)) {
+                && HearthomeGym_CheckIfPlayerSeesTrainer(fieldSystem) == TRUE)) {
 
             sub_0205F56C(fieldSystem->playerAvatar);
             MapObjectMan_PauseAllMovement(fieldSystem->mapObjMan);
@@ -582,13 +582,13 @@ static BOOL Field_CheckMapTransition(FieldSystem *fieldSystem, const FieldInput 
         tileBehavior = TerrainCollisionManager_GetTileBehavior(fieldSystem, playerX, playerZ);
 
         if (TileBehavior_IsDoor(tileBehavior)) {
-            int v6 = input->transitionDir;
+            int transitionDir = input->transitionDir;
 
             if (PersistedMapFeatures_IsCurrentDynamicMap(fieldSystem, DYNAMIC_MAP_FEATURES_HEARTHOME_GYM) == TRUE) {
-                ov8_0224C62C(fieldSystem, playerX, playerZ, &v6);
+                HearthomeGym_CheckIfEnteredIncorrectDoor(fieldSystem, playerX, playerZ, &transitionDir);
             }
 
-            sub_02056BDC(fieldSystem, nextMap.mapId, nextMap.warpId, 0, 0, v6, 1);
+            sub_02056BDC(fieldSystem, nextMap.mapId, nextMap.warpId, 0, 0, transitionDir, 1);
 
             return TRUE;
         }
