@@ -29,7 +29,7 @@ GalacticHQControlRoom_SetSaturnPositionEastOfButton:
     End
 
 GalacticHQControlRoom_OnResume:
-    ScrCmd_25E
+    InitLakeGuardianContainmentUnits
     End
 
 GalacticHQControlRoom_Saturn:
@@ -188,7 +188,7 @@ GalacticHQControlRoom_FreePokemon:
     CloseMessage
     ClearFlag FLAG_HIDE_MT_CORONET_1F_NORTH_ROOM_1_GRUNT_F
     SetFlag FLAG_FREED_GALACTIC_HQ_POKEMON
-    ScrCmd_25F
+    DeactivateLakeGuardianContainmentUnits
     WaitTime 30, VAR_RESULT
     ApplyMovement LOCALID_MESPRIT, GalacticHQControlRoom_Movement_MespritMoveSouth
     ApplyMovement LOCALID_AZELF, GalacticHQControlRoom_Movement_AzelfMoveSouth

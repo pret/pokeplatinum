@@ -495,7 +495,7 @@ map_prop_model_files = copy_gen.process(files(
     'prop_model_493.nsbmd',
     'prop_model_494.nsbmd',
     'prop_model_495.nsbmd',
-    'prop_model_496.nsbmd',
+    'lake_guardian_containment_unit.nsbmd',
     'prop_model_497.nsbmd',
     'elevator_lights.nsbmd',
     'prop_model_499.nsbmd',

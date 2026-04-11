@@ -3629,12 +3629,12 @@
     .short \destVarID
     .endm
 
-    .macro ScrCmd_25E
-    .short SCRCMD_25E
+    .macro InitLakeGuardianContainmentUnits
+    .short SCRCMD_INITLAKEGUARDIANCONTAINMENTUNITS
     .endm
 
-    .macro ScrCmd_25F
-    .short SCRCMD_25F
+    .macro DeactivateLakeGuardianContainmentUnits
+    .short SCRCMD_DEACTIVATELAKEGUARDIANCONTAINMENTUNITS
     .endm
 
     .macro IncrementTrainerScore2 scoreID
