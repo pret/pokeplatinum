@@ -28,7 +28,6 @@ prebuilt_files = [
     'pst_gra.narc',
     'ranking.narc',
     'record.narc',
-    'touch_subwindow.narc',
     'unionobj2d_onlyfront.narc',
     'unionroom.narc',
     'wifi_lobby_other.narc',

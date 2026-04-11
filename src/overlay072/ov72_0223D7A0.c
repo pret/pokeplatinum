@@ -6,9 +6,6 @@
 #include "generated/game_records.h"
 #include "generated/trainer_score_events.h"
 
-#include "struct_decls/struct_02015920_decl.h"
-#include "struct_defs/struct_02015958.h"
-
 #include "overlay072/struct_ov72_0223DB98_decl.h"
 #include "overlay072/struct_ov72_0223DB98_t.h"
 #include "overlay072/struct_ov72_0223E7D8.h"
@@ -49,8 +46,8 @@
 #include "touch_screen.h"
 #include "trainer_case_save_data.h"
 #include "unk_02012744.h"
-#include "unk_02015920.h"
 #include "vram_transfer.h"
+#include "yes_no_touch_menu.h"
 
 static void inline_ov72_0223E2A4(UnkStruct_ov72_0223DB98 *param0, int param1);
 static void ov72_0223DA48(void *param0);
@@ -85,7 +82,7 @@ static int ov72_0223E99C(int param0);
 static void ov72_0223E388(Sprite **param0, int param1);
 static void ov72_0223E3A8(Sprite **param0, BOOL param1);
 static int ov72_0223E528(UnkStruct_ov72_0223DB98 *param0, int param1);
-static void ov72_0223E430(BgConfig *param0, UnkStruct_02015920 *param1);
+static void ov72_0223E430(BgConfig *param0, YesNoTouchMenu *param1);
 static void ov72_0223E9B4(u8 *param0, u8 *param1);
 static void *ov72_0223E060(Window *param0, String *param1, int param2, u8 param3, const u32 param4);
 static void ov72_0223EA18(UnkStruct_ov72_0223DB98 *param0);
@@ -399,7 +396,7 @@ static void ov72_0223DB98(UnkStruct_ov72_0223DB98 *param0)
     MessageLoader_GetString(param0->unk_14, 12, param0->unk_2C);
     MessageLoader_GetString(param0->unk_14, 9, param0->unk_30);
 
-    param0->unk_5D00 = sub_02015920(HEAP_ID_39);
+    param0->unk_5D00 = YesNoTouchMenu_New(HEAP_ID_39);
 
     MI_CpuClearFast(&param0->unk_5D04, sizeof(UnkStruct_ov72_0223EAD8));
 }
@@ -408,7 +405,7 @@ static void ov72_0223DC34(UnkStruct_ov72_0223DB98 *param0)
 {
     int v0;
 
-    sub_02015938(param0->unk_5D00);
+    YesNoTouchMenu_Free(param0->unk_5D00);
 
     for (v0 = 0; v0 < 5; v0++) {
         String_Free(param0->unk_18[v0]);
@@ -719,25 +716,23 @@ static void ov72_0223E408(UnkStruct_ov72_0223DB98 *param0)
     ov72_0223E80C(&param0->unk_328, param0->unk_4391, param0->unk_43E6, 0);
 }
 
-static void ov72_0223E430(BgConfig *param0, UnkStruct_02015920 *param1)
+static void ov72_0223E430(BgConfig *param0, YesNoTouchMenu *param1)
 {
-    UnkStruct_02015958 v0;
+    YesNoTouchMenuParams v0;
 
-    v0.unk_00 = param0;
-    v0.unk_04 = 0;
-    v0.unk_08 = (1 + (18 + 12) + 9 + 27 * 4) + 8 * 4;
-    v0.unk_0C = 8;
-    v0.unk_10 = 25;
-    v0.unk_11 = 6;
+    v0.bgConfig = param0;
+    v0.bgLayer = BG_LAYER_MAIN_0;
+    v0.baseTile = (1 + (18 + 12) + 9 + 27 * 4) + 8 * 4;
+    v0.palette = 8;
+    v0.tilemapLeft = 25;
+    v0.tilemapTop = 6;
 
-    sub_02015958(param1, &v0);
+    YesNoTouchMenu_InitWithParams(param1, &v0);
 }
 
 static int ov72_0223E458(UnkStruct_ov72_0223DB98 *param0, int param1)
 {
     if (ov72_0223E99C(param0->unk_38)) {
-        UnkStruct_02015958 v0;
-
         ov72_0223E430(param0->unk_00, param0->unk_5D00);
 
         param0->unk_370 = 3;
@@ -749,22 +744,22 @@ static int ov72_0223E458(UnkStruct_ov72_0223DB98 *param0, int param1)
 
 static int ov72_0223E488(UnkStruct_ov72_0223DB98 *param0, int param1)
 {
-    int v0 = sub_020159FC(param0->unk_5D00);
+    int v0 = YesNoTouchMenu_ProcessInput(param0->unk_5D00);
 
     switch (v0) {
-    case 1:
+    case YES_NO_TOUCH_MENU_YES:
         GameRecords_IncrementTrainerScore(param0->records, TRAINER_SCORE_EVENT_UNK_04);
         GameRecords_IncrementRecordValue(param0->records, RECORD_UNK_114);
         Window_EraseMessageBox(&param0->unk_338, 1);
-        sub_02015A54(param0->unk_5D00);
+        YesNoTouchMenu_Reset(param0->unk_5D00);
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 16, 1, HEAP_ID_39);
         return 2;
         break;
-    case 2:
+    case YES_NO_TOUCH_MENU_NO:
         param0->unk_370 = 4;
         ov72_0223E3A8(param0->unk_2B4, 0);
         Window_EraseMessageBox(&param0->unk_338, 1);
-        sub_02015A54(param0->unk_5D00);
+        YesNoTouchMenu_Reset(param0->unk_5D00);
         break;
     }
 
@@ -776,21 +771,21 @@ static int ov72_0223E488(UnkStruct_ov72_0223DB98 *param0, int param1)
 
 static int ov72_0223E528(UnkStruct_ov72_0223DB98 *param0, int param1)
 {
-    int v0 = sub_020159FC(param0->unk_5D00);
+    int v0 = YesNoTouchMenu_ProcessInput(param0->unk_5D00);
 
     switch (v0) {
-    case 1:
+    case YES_NO_TOUCH_MENU_YES:
         param0->unk_370 = 1;
 
         Window_EraseMessageBox(&param0->unk_338, 1);
-        sub_02015A54(param0->unk_5D00);
+        YesNoTouchMenu_Reset(param0->unk_5D00);
         Window_FillTilemap(&param0->unk_328, 0x202);
         Window_CopyToVRAM(&param0->unk_328);
         break;
-    case 2:
+    case YES_NO_TOUCH_MENU_NO:
         param0->unk_370 = 1;
         Window_EraseMessageBox(&param0->unk_338, 1);
-        sub_02015A54(param0->unk_5D00);
+        YesNoTouchMenu_Reset(param0->unk_5D00);
         break;
     }
 

@@ -5,9 +5,7 @@
 
 #include "generated/trainer_score_events.h"
 
-#include "struct_decls/struct_02015920_decl.h"
 #include "struct_defs/dress_up_photo.h"
-#include "struct_defs/struct_02015958.h"
 #include "struct_defs/struct_02029C88.h"
 #include "struct_defs/struct_0203DA00.h"
 #include "struct_defs/struct_02095C60.h"
@@ -73,11 +71,11 @@
 #include "text.h"
 #include "touch_pad.h"
 #include "trainer_info.h"
-#include "unk_02015920.h"
 #include "unk_020298BC.h"
 #include "unk_020363E8.h"
 #include "unk_02094EDC.h"
 #include "unk_02095AF0.h"
+#include "yes_no_touch_menu.h"
 
 typedef struct {
     UnkStruct_ov22_0225A0E4 unk_00;
@@ -93,7 +91,7 @@ typedef struct {
     UnkStruct_ov22_0225A428 unk_5C4;
     int unk_70C;
     int unk_710;
-    UnkStruct_02015920 *unk_714;
+    YesNoTouchMenu *unk_714;
     Window *unk_718;
     BOOL unk_71C;
     int unk_720;
@@ -225,7 +223,7 @@ int ov22_02255D44(ApplicationManager *appMan, int *param1)
     ov22_02256BAC(v0, v2->options);
     ov22_022589E0(&v0->unk_4FC, &v0->unk_458, &v0->unk_3CC, &v0->unk_00, &v0->unk_5C4, 1);
 
-    v0->unk_714 = sub_02015920(HEAP_ID_13);
+    v0->unk_714 = YesNoTouchMenu_New(HEAP_ID_13);
     v0->unk_718 = Window_New(HEAP_ID_13, 1);
     v0->unk_70C = 0;
 
@@ -374,7 +372,7 @@ int ov22_02256098(ApplicationManager *appMan, int *param1)
         }
     }
 
-    sub_02015938(v0->unk_714);
+    YesNoTouchMenu_Free(v0->unk_714);
     Windows_Delete(v0->unk_718, 1);
 
     ov22_02256C38(v0);
@@ -459,7 +457,7 @@ int VisualCompetition_Init(ApplicationManager *appMan, int *param1)
     ov22_02256BF4(v0, v0->unk_720, appArgs->unk_08, appArgs->unk_1C, appArgs->options);
     ov22_022589E0(&v0->unk_4FC, &v0->unk_458, &v0->unk_3CC, &v0->unk_00, &v0->unk_5C4, 0);
 
-    v0->unk_714 = sub_02015920(HEAP_ID_13);
+    v0->unk_714 = YesNoTouchMenu_New(HEAP_ID_13);
     v0->unk_718 = Window_New(HEAP_ID_13, 1);
     v0->unk_70C = 0;
 
@@ -635,7 +633,7 @@ int VisualCompetition_Exit(ApplicationManager *appMan, int *param1)
 
     ov22_02256FD8(appArgs->unk_04, &v0->unk_458, v0->contestRank, appArgs->trainerInfo);
 
-    sub_02015938(v0->unk_714);
+    YesNoTouchMenu_Free(v0->unk_714);
     Windows_Delete(v0->unk_718, 1);
 
     ov22_02256C38(v0);
@@ -1270,20 +1268,20 @@ static void ov22_0225718C(UnkStruct_ov22_02255D44 *param0)
 
 static void ov22_022571D4(UnkStruct_ov22_02255D44 *param0)
 {
-    UnkStruct_02015958 v0;
+    YesNoTouchMenuParams v0;
 
     Bg_ClearTilemap(param0->unk_00.unk_40, 3);
     Bg_SetOffset(param0->unk_00.unk_40, 3, 0, 0);
     Bg_SetOffset(param0->unk_00.unk_40, 3, 3, 0);
 
-    v0.unk_00 = param0->unk_00.unk_40;
-    v0.unk_04 = 3;
-    v0.unk_08 = 0;
-    v0.unk_0C = 5;
-    v0.unk_10 = 25;
-    v0.unk_11 = 4;
+    v0.bgConfig = param0->unk_00.unk_40;
+    v0.bgLayer = BG_LAYER_MAIN_3;
+    v0.baseTile = 0;
+    v0.palette = 5;
+    v0.tilemapLeft = 25;
+    v0.tilemapTop = 4;
 
-    sub_02015958(param0->unk_714, &v0);
+    YesNoTouchMenu_InitWithParams(param0->unk_714, &v0);
     ov22_022574CC(param0, 1);
 
     G2_SetBG0Priority(2);
@@ -1294,23 +1292,23 @@ static void ov22_022571D4(UnkStruct_ov22_02255D44 *param0)
 
 static void ov22_02257258(UnkStruct_ov22_02255D44 *param0)
 {
-    sub_02015A54(param0->unk_714);
+    YesNoTouchMenu_Reset(param0->unk_714);
     ov22_022574EC(param0);
     Bg_ClearTilemap(param0->unk_00.unk_40, 3);
 }
 
 static u32 ov22_02257278(UnkStruct_ov22_02255D44 *param0)
 {
-    u32 v0 = sub_020159FC(param0->unk_714);
+    u32 v0 = YesNoTouchMenu_ProcessInput(param0->unk_714);
 
     switch (v0) {
-    case 0:
+    case YES_NO_TOUCH_MENU_NOTHING_CHOSEN:
         v0 = 4;
         break;
-    case 1:
+    case YES_NO_TOUCH_MENU_YES:
         v0 = 8;
         break;
-    case 2:
+    case YES_NO_TOUCH_MENU_NO:
         v0 = 9;
         break;
     }
@@ -1480,17 +1478,17 @@ static int ov22_02257580(enum PokemonContestRank contestRank)
 
 static void ov22_022575B4(UnkStruct_ov22_02255D44 *param0)
 {
-    UnkStruct_02015958 v0;
+    YesNoTouchMenuParams v0;
 
-    v0.unk_00 = param0->unk_00.unk_40;
-    v0.unk_04 = 3;
-    v0.unk_08 = 0;
-    v0.unk_0C = 5;
-    v0.unk_10 = 25;
-    v0.unk_11 = 4;
+    v0.bgConfig = param0->unk_00.unk_40;
+    v0.bgLayer = BG_LAYER_MAIN_3;
+    v0.baseTile = 0;
+    v0.palette = 5;
+    v0.tilemapLeft = 25;
+    v0.tilemapTop = 4;
 
-    sub_02015A54(param0->unk_714);
-    sub_02015958(param0->unk_714, &v0);
+    YesNoTouchMenu_Reset(param0->unk_714);
+    YesNoTouchMenu_InitWithParams(param0->unk_714, &v0);
 
     ov22_022574E4(param0, 2);
 
@@ -1502,16 +1500,16 @@ static void ov22_022575B4(UnkStruct_ov22_02255D44 *param0)
 
 static u32 ov22_02257624(UnkStruct_ov22_02255D44 *param0)
 {
-    u32 v0 = sub_020159FC(param0->unk_714);
+    u32 v0 = YesNoTouchMenu_ProcessInput(param0->unk_714);
 
     switch (v0) {
-    case 0:
+    case YES_NO_TOUCH_MENU_NOTHING_CHOSEN:
         v0 = 5;
         break;
-    case 1:
+    case YES_NO_TOUCH_MENU_YES:
         v0 = 6;
         break;
-    case 2:
+    case YES_NO_TOUCH_MENU_NO:
         v0 = 7;
         break;
     }

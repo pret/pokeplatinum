@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02015920_decl.h"
-#include "struct_defs/struct_02015958.h"
 #include "struct_defs/struct_0203E608.h"
 
 #include "overlay111/ov111_021D2F80.h"
@@ -42,8 +40,8 @@
 #include "touch_pad.h"
 #include "touch_screen.h"
 #include "unk_0201567C.h"
-#include "unk_02015920.h"
 #include "vram_transfer.h"
+#include "yes_no_touch_menu.h"
 
 typedef struct {
     u8 unk_00;
@@ -101,7 +99,7 @@ struct UnkStruct_ov111_021D0F7C_t {
     void *unk_3F0;
     NNSG2dCharacterData *unk_3F4;
     u8 *unk_3F8;
-    UnkStruct_02015920 *unk_3FC;
+    YesNoTouchMenu *unk_3FC;
     u8 unk_400[9];
     u8 unk_409;
     u8 unk_40A;
@@ -882,16 +880,16 @@ static BOOL ov111_021D1508(UnkStruct_ov111_021D0F7C *param0)
         }
         break;
     case 9:
-        v2 = sub_020159C0(param0->unk_3FC);
+        v2 = YesNoTouchMenu_ProcessInputInstant(param0->unk_3FC);
 
-        if (v2 == 1) {
+        if (v2 == YES_NO_TOUCH_MENU_YES) {
             ov111_021D350C(param0->unk_3A0, 0);
             Window_EraseStandardFrame(&param0->unk_5C[0], 0);
             Window_ClearAndCopyToVRAM(&param0->unk_5C[0]);
             ov111_021D2E20(param0);
             ov111_021D1FB4(param0);
             return 1;
-        } else if (v2 == 2) {
+        } else if (v2 == YES_NO_TOUCH_MENU_NO) {
             ov111_021D350C(param0->unk_3A0, 0);
             Window_EraseStandardFrame(&param0->unk_5C[0], 0);
             Window_ClearAndCopyToVRAM(&param0->unk_5C[0]);
@@ -900,16 +898,16 @@ static BOOL ov111_021D1508(UnkStruct_ov111_021D0F7C *param0)
         }
         break;
     case 10:
-        v2 = sub_020159C0(param0->unk_3FC);
+        v2 = YesNoTouchMenu_ProcessInputInstant(param0->unk_3FC);
 
-        if (v2 == 1) {
+        if (v2 == YES_NO_TOUCH_MENU_YES) {
             ov111_021D350C(param0->unk_3A0, 0);
             Window_EraseStandardFrame(&param0->unk_5C[0], 0);
             Window_ClearAndCopyToVRAM(&param0->unk_5C[0]);
             ov111_021D2E18(param0);
             ov111_021D1FB4(param0);
             return 1;
-        } else if (v2 == 2) {
+        } else if (v2 == YES_NO_TOUCH_MENU_NO) {
             ov111_021D350C(param0->unk_3A0, 0);
             Window_EraseStandardFrame(&param0->unk_5C[0], 0);
             Window_ClearAndCopyToVRAM(&param0->unk_5C[0]);
@@ -1199,29 +1197,29 @@ static void ov111_021D1D68(UnkStruct_ov111_021D0F7C *param0)
 
 static void ov111_021D1F70(UnkStruct_ov111_021D0F7C *param0)
 {
-    param0->unk_3FC = sub_02015920(HEAP_ID_115);
+    param0->unk_3FC = YesNoTouchMenu_New(HEAP_ID_115);
     return;
 }
 
 static void ov111_021D1F84(UnkStruct_ov111_021D0F7C *param0)
 {
-    UnkStruct_02015958 v0;
+    YesNoTouchMenuParams v0;
 
-    v0.unk_00 = param0->unk_58;
-    v0.unk_04 = 2;
-    v0.unk_08 = (1024 - 128);
-    v0.unk_0C = 10;
-    v0.unk_10 = 24;
-    v0.unk_11 = 8;
+    v0.bgConfig = param0->unk_58;
+    v0.bgLayer = BG_LAYER_MAIN_2;
+    v0.baseTile = (1024 - 128);
+    v0.palette = 10;
+    v0.tilemapLeft = 24;
+    v0.tilemapTop = 8;
 
-    sub_02015958(param0->unk_3FC, &v0);
+    YesNoTouchMenu_InitWithParams(param0->unk_3FC, &v0);
 
     return;
 }
 
 static void ov111_021D1FB4(UnkStruct_ov111_021D0F7C *param0)
 {
-    sub_02015938(param0->unk_3FC);
+    YesNoTouchMenu_Free(param0->unk_3FC);
     return;
 }
 

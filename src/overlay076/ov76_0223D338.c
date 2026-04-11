@@ -8,7 +8,6 @@
 #include "struct_decls/font_oam.h"
 #include "struct_defs/seal_case.h"
 #include "struct_defs/sprite_animation_frame.h"
-#include "struct_defs/struct_02015958.h"
 
 #include "battle_anim/ov12_02235E94.h"
 #include "battle_anim/struct_ov12_02236030.h"
@@ -41,10 +40,10 @@
 #include "touch_screen.h"
 #include "touch_screen_actions.h"
 #include "unk_02012744.h"
-#include "unk_02015920.h"
 #include "unk_0202C9F4.h"
 #include "unk_02097B18.h"
 #include "vram_transfer.h"
+#include "yes_no_touch_menu.h"
 
 typedef struct {
     int unk_00;
@@ -1012,17 +1011,17 @@ static BOOL ov76_0223DF94(UnkStruct_ov76_0223DE00 *param0)
             ov76_0223CA98(param0->unk_D4.unk_10, &param0->unk_D4.unk_18[2], 4, 2, 1, 27, 4, 0 + ((1 + (18 + 12)) + 9));
 
             {
-                UnkStruct_02015958 v9;
+                YesNoTouchMenuParams v9;
 
-                v9.unk_00 = param0->unk_D4.unk_10;
-                v9.unk_04 = 4;
-                v9.unk_08 = (((3 + 1) * 2) + (((3 + 1) * 2) + (((3 + 1) * 2) + (((3 + 1) * 2) + (((3 + 1) * 2) + (((3 + 1) * 2) + (((3 + 1) * 2) + (((3 + 1) * 2) + ((27 * 4) + (0 + ((1 + (18 + 12)) + 9)))))))))));
-                v9.unk_0C = 5;
-                v9.unk_10 = 25;
-                v9.unk_11 = 6;
+                v9.bgConfig = param0->unk_D4.unk_10;
+                v9.bgLayer = BG_LAYER_SUB_0;
+                v9.baseTile = (((3 + 1) * 2) + (((3 + 1) * 2) + (((3 + 1) * 2) + (((3 + 1) * 2) + (((3 + 1) * 2) + (((3 + 1) * 2) + (((3 + 1) * 2) + (((3 + 1) * 2) + ((27 * 4) + (0 + ((1 + (18 + 12)) + 9)))))))))));
+                v9.palette = 5;
+                v9.tilemapLeft = 25;
+                v9.tilemapTop = 6;
 
-                param0->unk_D4.unk_150 = sub_02015920(HEAP_ID_53);
-                sub_02015958(param0->unk_D4.unk_150, &v9);
+                param0->unk_D4.unk_150 = YesNoTouchMenu_New(HEAP_ID_53);
+                YesNoTouchMenu_InitWithParams(param0->unk_D4.unk_150, &v9);
             }
 
             ov76_0223CA30(&param0->unk_D4.unk_18[2], 14);
@@ -1033,21 +1032,21 @@ static BOOL ov76_0223DF94(UnkStruct_ov76_0223DE00 *param0)
             param0->unk_3DC++;
         case 3: {
             u32 v10;
-            v10 = sub_020159FC(param0->unk_D4.unk_150);
+            v10 = YesNoTouchMenu_ProcessInput(param0->unk_D4.unk_150);
 
             switch (v10) {
-            case 1:
-            case 2:
+            case YES_NO_TOUCH_MENU_YES:
+            case YES_NO_TOUCH_MENU_NO:
                 param0->unk_3E0 = v10;
                 PaletteData_SetAutoTransparent(param0->unk_D4.unk_14, 1);
-                sub_02015A54(param0->unk_D4.unk_150);
-                sub_02015938(param0->unk_D4.unk_150);
+                YesNoTouchMenu_Reset(param0->unk_D4.unk_150);
+                YesNoTouchMenu_Free(param0->unk_D4.unk_150);
                 Window_EraseMessageBox(&param0->unk_D4.unk_18[2], 1);
                 Window_ClearAndCopyToVRAM(&param0->unk_D4.unk_18[2]);
                 Window_Remove(&param0->unk_D4.unk_18[2]);
                 param0->unk_3DC++;
                 break;
-            case 0:
+            case YES_NO_TOUCH_MENU_NOTHING_CHOSEN:
             default:
                 break;
             }

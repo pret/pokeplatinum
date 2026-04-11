@@ -1,8 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_OV72_0223DB98_T_H
 #define POKEPLATINUM_STRUCT_OV72_0223DB98_T_H
 
-#include "struct_decls/struct_02015920_decl.h"
-
 #include "overlay072/struct_ov72_0223E7D8.h"
 #include "overlay072/struct_ov72_0223E80C.h"
 #include "overlay072/struct_ov72_0223EAD8.h"
@@ -16,6 +14,7 @@
 #include "sprite_util.h"
 #include "string_gf.h"
 #include "string_template.h"
+#include "yes_no_touch_menu.h"
 
 struct UnkStruct_ov72_0223DB98_t {
     BgConfig *unk_00;
@@ -57,7 +56,7 @@ struct UnkStruct_ov72_0223DB98_t {
     u8 unk_43FA[6144];
     u8 *unk_5BFC;
     u8 unk_5C00[256];
-    UnkStruct_02015920 *unk_5D00;
+    YesNoTouchMenu *unk_5D00;
     UnkStruct_ov72_0223EAD8 unk_5D04;
     int unk_5D0C;
     int unk_5D10;
