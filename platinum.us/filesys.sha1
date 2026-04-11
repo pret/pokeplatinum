@@ -297,8 +297,8 @@ ad5fefc4758eba86f6f647e506531d6cfe9c9ce5 *res/prebuilt/arc/plgym_ghost.narc
 114d4f20de27a95ad930b246bb6f62a6d7295fe5 *res/prebuilt/arc/tv.narc
 e486e52fc813b5c8d334afedf515cbce879de372 *res/prebuilt/fielddata/maptable/mapname.bin
 115e9632aba1f20195779667fe7ba8f89f268aad *res/prebuilt/poketool/pokezukan.narc
-9848c22dfdab0edbf9bab5dc6562fea41498d962 *res/pokemon/pl_pokezukan.narc
-e7b13d750733413f481d6c2423fee32cb7d5df37 *res/pokemon/shinzukan.narc
+9848c22dfdab0edbf9bab5dc6562fea41498d962 *res/pokemon/national_to_regional.narc
+e7b13d750733413f481d6c2423fee32cb7d5df37 *res/pokemon/regional_to_national.narc
 f414660585d0c1c638cb235ad6b025bd590986a4 *res/prebuilt/poketool/pokeanm/pokeanm.narc
 f414660585d0c1c638cb235ad6b025bd590986a4 *res/prebuilt/poketool/pokeanm/pl_pokeanm.narc
 e388289d5648250d73b02a38e7a8a3ecca525e0c *res/prebuilt/demo/shinka/data/particle/shinka_demo_particle.narc

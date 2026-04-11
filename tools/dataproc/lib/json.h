@@ -8,8 +8,8 @@
 #include "dataproc.h"
 #include "private.h"
 
-int  json_read(datafile_t *dp);
-void json_free(datafile_t *dp);
+int  json_read(datafile_t *df);
+void json_free(datafile_t *df);
 
 void*         json_get_root(void *ctx);
 enum nodetype json_get_type(void *node);

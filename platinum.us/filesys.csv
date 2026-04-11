@@ -298,8 +298,8 @@ res/prebuilt/arc/ship_demo_pl.narc,/arc/ship_demo_pl.narc
 res/prebuilt/arc/tv.narc,/arc/tv.narc
 res/prebuilt/fielddata/maptable/mapname.bin,/fielddata/maptable/mapname.bin
 res/prebuilt/poketool/pokezukan.narc,/poketool/pokezukan.narc
-res/pokemon/pl_pokezukan.narc,/poketool/pl_pokezukan.narc
-res/pokemon/shinzukan.narc,/poketool/shinzukan.narc
+res/pokemon/national_to_regional.narc,/poketool/pl_pokezukan.narc
+res/pokemon/regional_to_national.narc,/poketool/shinzukan.narc
 res/prebuilt/poketool/pokeanm/pokeanm.narc,/poketool/pokeanm/pokeanm.narc
 res/prebuilt/poketool/pokeanm/pl_pokeanm.narc,/poketool/pokeanm/pl_pokeanm.narc
 res/prebuilt/demo/shinka/data/particle/shinka_demo_particle.narc,/demo/shinka/data/particle/shinka_demo_particle.narc

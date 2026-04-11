@@ -39,6 +39,7 @@ enum {
 };
 
 enum diaglevel {
+    DIAG_EMPTY,
     DIAG_NOTE,
     DIAG_WARNING,
     DIAG_ERROR,

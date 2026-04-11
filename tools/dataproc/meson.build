@@ -53,9 +53,7 @@ cc = meson.get_compiler('c', native: true)
 speciesproc_exe = executable(
     'speciesproc',
     sources: [ files('src/speciesproc.c'), c_consts_generators ],
-
     c_args: dataproc_cflags,
-
     include_directories: [ public_includes, toplevel_includes ],
     dependencies: [
         commonproc_dep,
@@ -66,10 +64,17 @@ speciesproc_exe = executable(
 
 resdatproc_exe = executable(
     'resdatproc',
-    sources: [ files('src/resdatproc.c') ],
-
+    sources: files('src/resdatproc.c'),
     c_args: dataproc_cflags,
+    include_directories: [ public_includes, toplevel_includes ],
+    dependencies: commonproc_dep,
+    native: true,
+)
 
+dexproc_exe = executable(
+    'dexproc',
+    sources: [ files('src/dexproc.c'), c_consts_generators ],
+    c_args: dataproc_cflags,
     include_directories: [ public_includes, toplevel_includes ],
     dependencies: commonproc_dep,
     native: true,
