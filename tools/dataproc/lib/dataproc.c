@@ -400,6 +400,8 @@ static errpos_t locate(datafile_t *df, diagnostic_t *perr) {
 enum diaglevel dp_report(datafile_t *df) {
     assert(df && "df pointer must not be NULL");
 
+    if (!df->diag_head) return DIAG_EMPTY;
+
     enum diaglevel max_sev = DIAG_NOTE;
     for (diagnostic_t *perr = df->diag_head; perr; perr = perr->next) {
         max_sev = max(max_sev, perr->level);
@@ -409,6 +411,8 @@ enum diaglevel dp_report(datafile_t *df) {
         case DIAG_NOTE:    prefix = "note:";    hl_diag = hl_note;    break;
         case DIAG_WARNING: prefix = "warning:"; hl_diag = hl_warning; break;
         case DIAG_ERROR:   prefix = "error:";   hl_diag = hl_error;   break;
+
+        case DIAG_EMPTY:   assert(false && "DIAG_EMPTY is an invalid level"); abort(); break;
         }
 
         if (perr->span.beg == 0 && perr->span.end == 0) {

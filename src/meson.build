@@ -56,7 +56,7 @@ pokeplatinum_c = files(
     'software_sprite.c',
     'unk_0201567C.c',
     'poffin_types.c',
-    'unk_02015920.c',
+    'yes_no_touch_menu.c',
     'pokemon_anim.c',
     'unk_02017038.c',
     'easy3d_object.c',

@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_02015958.h"
-
 #include "overlay083/ov83_0223D4CC.h"
 #include "overlay083/struct_ov83_0223D4CC_decl.h"
 #include "overlay083/struct_ov83_0223D784.h"
@@ -51,7 +49,7 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
-#include "unk_02015920.h"
+#include "yes_no_touch_menu.h"
 
 typedef struct {
     fx32 unk_00;
@@ -1831,35 +1829,35 @@ void ov83_0223F784(UnkStruct_ov83_0223F770 *param0)
 
 void ov83_0223F790(UnkStruct_ov83_0223F7A4 *param0, enum HeapID heapID, BgConfig *param2)
 {
-    param0->unk_00 = sub_02015920(heapID);
+    param0->unk_00 = YesNoTouchMenu_New(heapID);
     param0->unk_04 = param2;
 }
 
 void ov83_0223F7A4(UnkStruct_ov83_0223F7A4 *param0)
 {
-    sub_02015938(param0->unk_00);
+    YesNoTouchMenu_Free(param0->unk_00);
 }
 
 void ov83_0223F7B0(UnkStruct_ov83_0223F7A4 *param0)
 {
-    UnkStruct_02015958 v0;
+    YesNoTouchMenuParams v0;
 
-    v0.unk_00 = param0->unk_04;
-    v0.unk_04 = 2;
-    v0.unk_08 = (((1 + (18 + 12)) + 9) + (27 * 5));
-    v0.unk_0C = 5;
-    v0.unk_10 = 24;
-    v0.unk_11 = 8;
+    v0.bgConfig = param0->unk_04;
+    v0.bgLayer = BG_LAYER_MAIN_2;
+    v0.baseTile = (((1 + (18 + 12)) + 9) + (27 * 5));
+    v0.palette = 5;
+    v0.tilemapLeft = 24;
+    v0.tilemapTop = 8;
 
-    sub_02015958(param0->unk_00, &v0);
+    YesNoTouchMenu_InitWithParams(param0->unk_00, &v0);
 }
 
 u32 ov83_0223F7DC(UnkStruct_ov83_0223F7A4 *param0)
 {
-    u32 v0 = sub_020159FC(param0->unk_00);
+    u32 v0 = YesNoTouchMenu_ProcessInput(param0->unk_00);
 
-    if (v0 != 0) {
-        sub_02015A54(param0->unk_00);
+    if (v0 != YES_NO_TOUCH_MENU_NOTHING_CHOSEN) {
+        YesNoTouchMenu_Reset(param0->unk_00);
     }
 
     return v0;

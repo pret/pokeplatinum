@@ -27,6 +27,7 @@ subdir('trap_effects')
 subdir('underground_map_transition')
 subdir('underground_top_screen')
 subdir('windows')
+subdir('yes_no_touch_menu')
 
 # This directory must be walked last to avoid circular dependencies.
 subdir('sprite_templates')

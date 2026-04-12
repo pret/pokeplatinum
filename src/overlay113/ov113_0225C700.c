@@ -9,9 +9,7 @@
 
 #include "struct_decls/font_oam.h"
 #include "struct_decls/struct_02012744_decl.h"
-#include "struct_decls/struct_02015920_decl.h"
 #include "struct_defs/struct_020127E8.h"
-#include "struct_defs/struct_02015958.h"
 
 #include "overlay066/ov66_0222DDF0.h"
 #include "overlay066/ov66_02231428.h"
@@ -62,9 +60,9 @@
 #include "text.h"
 #include "touch_pad.h"
 #include "unk_02012744.h"
-#include "unk_02015920.h"
 #include "unk_0202419C.h"
 #include "vram_transfer.h"
+#include "yes_no_touch_menu.h"
 
 typedef struct {
     Easy3DModel unk_00;
@@ -87,7 +85,7 @@ typedef struct UnkStruct_ov113_0225DBCC_t {
     SysTask *unk_18;
     SpriteSystem *unk_1C;
     SpriteManager *unk_20;
-    UnkStruct_02015920 *unk_24;
+    YesNoTouchMenu *unk_24;
     u8 unk_28;
     u8 unk_29;
     StringTemplate *unk_2C;
@@ -409,7 +407,7 @@ int ov113_0225C700(ApplicationManager *appMan, int *param1)
     ov113_0225D6F8(v0);
     ov113_0225D7CC(v0);
 
-    v0->unk_24 = sub_02015920(HEAP_ID_118);
+    v0->unk_24 = YesNoTouchMenu_New(HEAP_ID_118);
 
     StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, HEAP_ID_118);
 
@@ -501,16 +499,16 @@ int ov113_0225CA04(ApplicationManager *appMan, int *param1)
         break;
     case 4:
         if (Text_IsPrinterActive(v0->unk_C8) == 0) {
-            UnkStruct_02015958 v3;
+            YesNoTouchMenuParams v3;
 
-            v3.unk_00 = v0->unk_08;
-            v3.unk_04 = 1;
-            v3.unk_08 = (1 + (18 + 12));
-            v3.unk_0C = 11;
-            v3.unk_10 = 25;
-            v3.unk_11 = 6;
+            v3.bgConfig = v0->unk_08;
+            v3.bgLayer = BG_LAYER_MAIN_1;
+            v3.baseTile = (1 + (18 + 12));
+            v3.palette = 11;
+            v3.tilemapLeft = 25;
+            v3.tilemapTop = 6;
 
-            sub_02015958(v0->unk_24, &v3);
+            YesNoTouchMenu_InitWithParams(v0->unk_24, &v3);
 
             v0->unk_28 = 1;
             (*param1)++;
@@ -520,19 +518,19 @@ int ov113_0225CA04(ApplicationManager *appMan, int *param1)
     case 5:
         PaletteData_LoadBufferFromHardware(v0->unk_0C, 0, 11 * 16, 0x20 * 2);
         {
-            u32 v4 = sub_020159FC(v0->unk_24);
+            u32 v4 = YesNoTouchMenu_ProcessInput(v0->unk_24);
 
             switch (v4) {
-            case 1:
-                sub_02015A54(v0->unk_24);
+            case YES_NO_TOUCH_MENU_YES:
+                YesNoTouchMenu_Reset(v0->unk_24);
                 v0->unk_28 = 0;
                 Window_EraseMessageBox(&v0->unk_B4, 0);
                 v0->unk_168.unk_00 = 0;
                 v0->unk_9BC = 3;
                 *param1 = 9;
                 break;
-            case 2:
-                sub_02015A54(v0->unk_24);
+            case YES_NO_TOUCH_MENU_NO:
+                YesNoTouchMenu_Reset(v0->unk_24);
                 v0->unk_28 = 0;
                 Window_EraseMessageBox(&v0->unk_B4, 0);
                 PaletteData_Blend(v0->unk_0C, 0, 0 * 16 + 9, 1, 0, 0x0);
@@ -592,7 +590,7 @@ int ov113_0225CA04(ApplicationManager *appMan, int *param1)
 
         if (((ov66_02231760() == 1) || (ov66_0222E12C(v0->unk_00->unk_00) == 1)) && ((*param1) != 4)) {
             if (v0->unk_28 == 1) {
-                sub_02015A54(v0->unk_24);
+                YesNoTouchMenu_Reset(v0->unk_24);
             }
 
             v0->unk_168.unk_00 = 0;
@@ -620,7 +618,7 @@ int ov113_0225CDFC(ApplicationManager *appMan, int *param1)
     SysTask_Done(v0->unk_18);
     ov113_0225D5D8(v0);
     ov113_0225D7A4(v0);
-    sub_02015938(v0->unk_24);
+    YesNoTouchMenu_Free(v0->unk_24);
     ov113_0225E378(&v0->unk_194);
 
     String_Free(v0->unk_C4);

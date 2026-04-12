@@ -11,9 +11,6 @@
 #include "constants/pokemon.h"
 #include "constants/species.h"
 
-#include "struct_decls/struct_02015920_decl.h"
-#include "struct_defs/struct_02015958.h"
-
 #include "game_opening/const_ov77_021D742C.h"
 #include "main_menu/gba_convert_string.h"
 #include "main_menu/gba_player.h"
@@ -59,9 +56,9 @@
 #include "text.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
-#include "unk_02015920.h"
 #include "unk_0209A74C.h"
 #include "vram_transfer.h"
+#include "yes_no_touch_menu.h"
 
 #include "res/graphics/main_menu/main_menu_graphics.naix"
 #include "res/text/bank/migrate_from_gba.h"
@@ -199,7 +196,7 @@ typedef struct {
     GBAPokemonStorage *pokemonStorage;
     int currentBox;
     int fullSelectionTimer; // Used track how long to wait until fade out once all 6 mon have been selected.
-    UnkStruct_02015920 *unk_E8EC;
+    YesNoTouchMenu *yesNoTouchMenu;
     UnkStruct_ov97_02233B8C unk_E8F0;
     UnkStruct_ov97_0223F434 unk_E8FC[GBA_MAX_MONS_PER_BOX];
     void (*unk_12664)(void);
@@ -1625,7 +1622,7 @@ static void ov97_022351F0(GBAMigrator *migrator)
     CharTransfer_Free();
     PlttTransfer_Free();
 
-    sub_02015938(migrator->unk_E8EC);
+    YesNoTouchMenu_Free(migrator->yesNoTouchMenu);
     gSystem.whichScreenIs3D = DS_SCREEN_MAIN;
     GXLayers_SwapDisplay();
 
@@ -1637,16 +1634,16 @@ static void ov97_022351F0(GBAMigrator *migrator)
 
 static void ov97_02235310(GBAMigrator *migrator)
 {
-    UnkStruct_02015958 v0;
+    YesNoTouchMenuParams v0;
 
-    v0.unk_00 = migrator->bgConfig;
-    v0.unk_04 = 0;
-    v0.unk_08 = 512;
-    v0.unk_0C = 8;
-    v0.unk_10 = 25;
-    v0.unk_11 = 7;
+    v0.bgConfig = migrator->bgConfig;
+    v0.bgLayer = BG_LAYER_MAIN_0;
+    v0.baseTile = 512;
+    v0.palette = 8;
+    v0.tilemapLeft = 25;
+    v0.tilemapTop = 7;
 
-    sub_02015958(migrator->unk_E8EC, &v0);
+    YesNoTouchMenu_InitWithParams(migrator->yesNoTouchMenu, &v0);
 }
 
 static void ov97_02235344(GBAMigrator *migrator)
@@ -1823,7 +1820,7 @@ static int GBAMigrator_Init(ApplicationManager *appMan, int *state)
     memset(migrator, 0, sizeof(GBAMigrator));
 
     migrator->bgConfig = BgConfig_New(HEAP_ID_MIGRATE_FROM_GBA);
-    migrator->unk_E8EC = sub_02015920(HEAP_ID_MIGRATE_FROM_GBA);
+    migrator->yesNoTouchMenu = YesNoTouchMenu_New(HEAP_ID_MIGRATE_FROM_GBA);
 
     SetScreenColorBrightness(DS_SCREEN_MAIN, COLOR_BLACK);
     SetScreenColorBrightness(DS_SCREEN_SUB, COLOR_BLACK);
@@ -1911,16 +1908,16 @@ static int GBAMigrator_Main(ApplicationManager *appMan, int *state)
         ov97_02234CC4(migrator, FADE_TYPE_BRIGHTNESS_IN, 3, state);
         break;
     case GBA_MIGRATOR_STATE_3:
-        boxPos = sub_020159FC(migrator->unk_E8EC);
+        boxPos = YesNoTouchMenu_ProcessInput(migrator->yesNoTouchMenu);
 
         switch (boxPos) {
-        case 1:
-            sub_02015A54(migrator->unk_E8EC);
+        case YES_NO_TOUCH_MENU_YES:
+            YesNoTouchMenu_Reset(migrator->yesNoTouchMenu);
             migrator->messageEntryID = MigrateFromGBA_Text_CannotReturnToGBAMigrateToPlatinum;
             *state = GBA_MIGRATOR_STATE_4;
             break;
-        case 2:
-            sub_02015A54(migrator->unk_E8EC);
+        case YES_NO_TOUCH_MENU_NO:
+            YesNoTouchMenu_Reset(migrator->yesNoTouchMenu);
             ov97_02234CF4(migrator, FADE_TYPE_BRIGHTNESS_OUT, 24, state);
             break;
         }
@@ -1932,11 +1929,11 @@ static int GBAMigrator_Main(ApplicationManager *appMan, int *state)
         }
         break;
     case GBA_MIGRATOR_STATE_5:
-        boxPos = sub_020159FC(migrator->unk_E8EC);
+        boxPos = YesNoTouchMenu_ProcessInput(migrator->yesNoTouchMenu);
 
         switch (boxPos) {
-        case 1:
-            sub_02015A54(migrator->unk_E8EC);
+        case YES_NO_TOUCH_MENU_YES:
+            YesNoTouchMenu_Reset(migrator->yesNoTouchMenu);
 
             migrator->canMigrateStatus = GetCanMigrateStatus(migrator);
 
@@ -1952,8 +1949,8 @@ static int GBAMigrator_Main(ApplicationManager *appMan, int *state)
                 *state = GBA_MIGRATOR_STATE_6;
             }
             break;
-        case 2:
-            sub_02015A54(migrator->unk_E8EC);
+        case YES_NO_TOUCH_MENU_NO:
+            YesNoTouchMenu_Reset(migrator->yesNoTouchMenu);
             ov97_02234CF4(migrator, FADE_TYPE_BRIGHTNESS_OUT, 24, state);
             break;
         }
@@ -1974,19 +1971,19 @@ static int GBAMigrator_Main(ApplicationManager *appMan, int *state)
         }
         break;
     case GBA_MIGRATOR_STATE_9:
-        boxPos = sub_020159FC(migrator->unk_E8EC);
+        boxPos = YesNoTouchMenu_ProcessInput(migrator->yesNoTouchMenu);
 
         switch (boxPos) {
-        case 1:
-            sub_02015A54(migrator->unk_E8EC);
+        case YES_NO_TOUCH_MENU_YES:
+            YesNoTouchMenu_Reset(migrator->yesNoTouchMenu);
             migrator->unk_490.unk_44 = 0;
             migrator->unk_490.messageEntryID = MigrateFromGBA_Text_MakingAdjustments;
             ov97_02233DD0(migrator, &migrator->unk_490, 0);
             migrator->unk_E8F0.unk_08 = Window_AddWaitDial(&migrator->unk_4FC, 0x3F0 - (18 + 12));
             *state = GBA_MIGRATOR_STATE_10;
             break;
-        case 2:
-            sub_02015A54(migrator->unk_E8EC);
+        case YES_NO_TOUCH_MENU_NO:
+            YesNoTouchMenu_Reset(migrator->yesNoTouchMenu);
             ov97_02234CF4(migrator, FADE_TYPE_BRIGHTNESS_OUT, 24, state);
             break;
         }
@@ -2090,15 +2087,15 @@ static int GBAMigrator_Main(ApplicationManager *appMan, int *state)
 
         break;
     case GBA_MIGRATOR_STATE_17:
-        boxPos = sub_020159FC(migrator->unk_E8EC);
+        boxPos = YesNoTouchMenu_ProcessInput(migrator->yesNoTouchMenu);
 
         switch (boxPos) {
-        case 1:
-            sub_02015A54(migrator->unk_E8EC);
+        case YES_NO_TOUCH_MENU_YES:
+            YesNoTouchMenu_Reset(migrator->yesNoTouchMenu);
             *state = GBA_MIGRATOR_STATE_18;
             break;
-        case 2:
-            sub_02015A54(migrator->unk_E8EC);
+        case YES_NO_TOUCH_MENU_NO:
+            YesNoTouchMenu_Reset(migrator->yesNoTouchMenu);
             ov97_02234CC4(migrator, FADE_TYPE_BRIGHTNESS_OUT, 20, state);
             break;
         }
@@ -2115,20 +2112,20 @@ static int GBAMigrator_Main(ApplicationManager *appMan, int *state)
         *state = GBA_MIGRATOR_STATE_19;
     } break;
     case GBA_MIGRATOR_STATE_19:
-        boxPos = sub_020159FC(migrator->unk_E8EC);
+        boxPos = YesNoTouchMenu_ProcessInput(migrator->yesNoTouchMenu);
 
         switch (boxPos) {
-        case 1:
+        case YES_NO_TOUCH_MENU_YES:
             migrator->unk_490.messageEntryID = sSavingOnGBAGameAndPlatinumMessageIDs[migrator->gbaVersion];
             ov97_02233DD0(migrator, &migrator->unk_490, 0);
-            sub_02015A54(migrator->unk_E8EC);
+            YesNoTouchMenu_Reset(migrator->yesNoTouchMenu);
             migrator->unk_E8F0.unk_00 = 0;
             migrator->unk_E8F0.unk_08 = Window_AddWaitDial(&migrator->unk_4FC, 0x3F0 - (18 + 12));
             *state = GBA_MIGRATOR_STATE_21;
             ResetLock(RESET_LOCK_SOFT_RESET);
             break;
-        case 2:
-            sub_02015A54(migrator->unk_E8EC);
+        case YES_NO_TOUCH_MENU_NO:
+            YesNoTouchMenu_Reset(migrator->yesNoTouchMenu);
             ov97_02234CC4(migrator, FADE_TYPE_BRIGHTNESS_OUT, 20, state);
             break;
         }

@@ -3,8 +3,7 @@
 
 #include "generated/species.h"
 
-#include "res/pokemon/pokedex_sizes.h"
-
-#define MAX_SPECIES SPECIES_BAD_EGG
+#define MAX_SPECIES        SPECIES_BAD_EGG
+#define NATIONAL_DEX_COUNT (MAX_SPECIES - 2)
 
 #endif // POKEPLATINUM_CONSTANTS_SPECIES_H

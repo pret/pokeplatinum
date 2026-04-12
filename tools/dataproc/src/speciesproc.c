@@ -281,8 +281,8 @@ int main(int argc, char **argv) {
             free(capped);
         }
 
-        if (df_d.diag_head && dp_report(&df_d) == DIAG_ERROR) errc = EXIT_FAILURE;
-        if (df_s.diag_head && dp_report(&df_s) == DIAG_ERROR) errc = EXIT_FAILURE;
+        if (dp_report(&df_d) == DIAG_ERROR) errc = EXIT_FAILURE;
+        if (dp_report(&df_s) == DIAG_ERROR) errc = EXIT_FAILURE;
 
         free(path_d);
         free(path_s);
@@ -458,13 +458,8 @@ static void post_init(void) {
         }
     }
 
-    if (df_tutorables.diag_head && dp_report(&df_tutorables) == DIAG_ERROR) {
-        exit(EXIT_FAILURE);
-    }
-
-    if (df_sinnohdex.diag_head && dp_report(&df_sinnohdex) == DIAG_ERROR) {
-        exit(EXIT_FAILURE);
-    }
+    if (dp_report(&df_tutorables) == DIAG_ERROR) exit(EXIT_FAILURE);
+    if (dp_report(&df_sinnohdex) == DIAG_ERROR) exit(EXIT_FAILURE);
 
     atexit(free_tutorables);
 }

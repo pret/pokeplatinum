@@ -12,6 +12,8 @@
 #define TILEMAP_FILL_VAL_KEEP_PALETTE     16 // do not replace the selected palette index
 #define TILEMAP_FILL_VAL_INCLUDES_PALETTE 17
 
+#define TILEMAP_PALETTE_SHIFT(i) (i << 12)
+
 #define PIXEL_FILL(color) (((color) << 4) | (color))
 
 enum BgLayer {
@@ -166,8 +168,6 @@ typedef struct GraphicsModes {
     GXBGMode subBgMode;
     GXBG0As bg0As2DOr3D;
 } GraphicsModes;
-
-#define TILEMAP_PALETTE_SHIFT(i) (i << 12)
 
 void SetAllGraphicsModes(const GraphicsModes *graphicsModes);
 void SetScreenGraphicsModes(const GraphicsModes *graphicsModes, u8 screen);

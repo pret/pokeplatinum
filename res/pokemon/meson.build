@@ -24,8 +24,8 @@
 #   - Pokedex:
 #     - footprint_data.h - a table of footprint sizes for each Pokemon, as used by
 #       Dr. Footstep and the Pokedex
-#     - shinzukan - Sinnoh-to-National Pokedex mappings
-#     - pl_pokezukan - National-to-Sinnoh Pokedex mappings
+#     - regional_to_national - Regional-to-National Pokedex mappings
+#     - national_to_regional - National-to-Regional Pokedex mappings
 #     - zukan_data - Pokedex information for each species
 
 #######################
@@ -230,7 +230,7 @@ species_data = custom_target('species_data',
         speciesproc_exe,
         '-M', '@DEPFILE@',
         '-t', files('move_tutors.json'),
-        '-s', files('sinnoh_pokedex.json'),
+        '-s', sinnoh_pokedex,
         '-o', meson.current_build_dir(),
         pokemon_data_root,
     ],
@@ -243,6 +243,25 @@ species_data = custom_target('species_data',
 species_data_outputs = species_data.to_list()
 h_headers += species_data_outputs.slice(9, 15)
 species_text_banks = species_data_outputs.slice(15, species_data_outputs.length())
+
+pokedex_listings = custom_target('pokedex_listings',
+    output: [
+        'national_to_regional.narc',
+        'regional_to_national.narc',
+        'regional_pokedex_size.h',
+    ],
+
+    command: [
+        dexproc_exe,
+        '-M', '@DEPFILE@',
+        '-o', meson.current_build_dir(),
+        sinnoh_pokedex
+    ],
+
+    depfile: 'pokedex_listings.d',
+)
+
+h_headers += pokedex_listings[-1]
 
 # OLD NARCs
 pl_poke_icon_narc = custom_target('pl_poke_icon.narc',
@@ -306,38 +325,6 @@ pl_otherpoke_narc = custom_target('pl_otherpoke.narc',
     ],
 )
 naix_headers += pl_otherpoke_narc[1]
-
-pl_pokezukan_narc = custom_target('pl_pokezukan.narc',
-    output: 'pl_pokezukan.narc',
-    env: py_consts_env,
-    depends: [ py_consts_generators ],
-    command: [
-        make_pl_pokezukan_py,
-        '--narc', nitroarc_exe,
-        '--source-dir', '@CURRENT_SOURCE_DIR@',
-        '--private-dir', '@PRIVATE_DIR@',
-        '--output-dir', '@OUTDIR@',
-        sinnoh_pokedex
-    ],
-)
-
-shinzukan_narc = custom_target('shinzukan.narc',
-    output: [
-        'shinzukan.narc',
-        'pokedex_sizes.h'
-    ],
-    env: py_consts_env,
-    depends: [ py_consts_generators ],
-    command: [
-        make_shinzukan_py,
-        '--narc', nitroarc_exe,
-        '--source-dir', '@CURRENT_SOURCE_DIR@',
-        '--private-dir', '@PRIVATE_DIR@',
-        '--output-dir', '@OUTDIR@',
-        sinnoh_pokedex
-    ],
-)
-h_headers += shinzukan_narc[1]
 
 pl_growtbl_narc = custom_target('pl_growtbl.narc',
     output: 'pl_growtbl.narc',
@@ -404,11 +391,10 @@ pokefoot_narc = custom_target('pokefoot.narc',
 naix_headers += pokefoot_narc[1]
 
 nitrofs_files += species_data
+nitrofs_files += pokedex_listings
 
 nitrofs_files += pl_poke_icon_narc
 nitrofs_files += pl_pokegra_narc
 nitrofs_files += pl_otherpoke_narc
-nitrofs_files += pl_pokezukan_narc
-nitrofs_files += shinzukan_narc
 nitrofs_files += pl_growtbl_narc
 nitrofs_files += pokefoot_narc

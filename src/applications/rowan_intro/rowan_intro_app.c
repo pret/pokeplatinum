@@ -5,9 +5,6 @@
 #include "constants/string.h"
 #include "generated/genders.h"
 
-#include "struct_decls/struct_02015920_decl.h"
-#include "struct_defs/struct_02015958.h"
-
 #include "applications/naming_screen.h"
 #include "applications/rowan_intro/main.h"
 
@@ -43,7 +40,7 @@
 #include "text_banks.h"
 #include "trainer_info.h"
 #include "unk_0201567C.h"
-#include "unk_02015920.h"
+#include "yes_no_touch_menu.h"
 
 #include "res/text/bank/rowan_intro.h"
 
@@ -242,7 +239,7 @@ typedef struct RowanIntro {
     String *string;
     UnkStruct_020157E4 *unk_60;
     StringTemplate *strFormatter;
-    UnkStruct_02015920 *unk_68;
+    YesNoTouchMenu *yesNoTouchMenu;
     SysTask *unused;
     NamingScreenArgs *playerNamingScreenArgs;
     NamingScreenArgs *rivalNamingScreenArgs;
@@ -282,8 +279,8 @@ static void RowanIntro_FreeGraphics(RowanIntro *manager);
 static void RowanIntro_InitMessageStructs(RowanIntro *manager);
 static void RowanIntro_FreeMessageStructs(RowanIntro *manager);
 // relating to unkown structure
-static void ov73_021D1318(RowanIntro *manager);
-static void ov73_021D1328(RowanIntro *manager);
+static void RowanIntro_InitYesNoTouchMenu(RowanIntro *manager);
+static void RowanIntro_FreeYesNoTouchMenu(RowanIntro *manager);
 static void RowanIntro_LoadInitialTilemaps(RowanIntro *manager);
 static void RowanIntro_LoadLayer3Tilemap(RowanIntro *manager);
 static void RowanIntro_LoadTilemap(RowanIntro *manager);
@@ -358,7 +355,7 @@ BOOL RowanIntro_Main(ApplicationManager *appMan, int *state)
 
         RowanIntro_InitGraphics(manager);
         RowanIntro_InitMessageStructs(manager);
-        ov73_021D1318(manager);
+        RowanIntro_InitYesNoTouchMenu(manager);
 
         SetVBlankCallback(RowanIntro_VBlankCallback, (void *)manager);
         GXLayers_TurnBothDispOn();
@@ -394,7 +391,7 @@ BOOL RowanIntro_Main(ApplicationManager *appMan, int *state)
         if (IsScreenFadeDone() == TRUE) {
             RowanIntro_FreeMessageStructs(manager);
             RowanIntro_FreeGraphics(manager);
-            ov73_021D1328(manager);
+            RowanIntro_FreeYesNoTouchMenu(manager);
             SetVBlankCallback(NULL, NULL);
 
             isFinished = TRUE;
@@ -404,7 +401,7 @@ BOOL RowanIntro_Main(ApplicationManager *appMan, int *state)
         if (IsScreenFadeDone() == TRUE) {
             RowanIntro_FreeMessageStructs(manager);
             RowanIntro_FreeGraphics(manager);
-            ov73_021D1328(manager);
+            RowanIntro_FreeYesNoTouchMenu(manager);
             SetVBlankCallback(NULL, NULL);
             *state = RI_APP_STATE_CHANGE_APP;
         }
@@ -707,14 +704,14 @@ static void RowanIntro_FreeMessageStructs(RowanIntro *manager)
     MessageLoader_Free(manager->msgLoader);
 }
 
-static void ov73_021D1318(RowanIntro *manager)
+static void RowanIntro_InitYesNoTouchMenu(RowanIntro *manager)
 {
-    manager->unk_68 = sub_02015920(manager->heapID);
+    manager->yesNoTouchMenu = YesNoTouchMenu_New(manager->heapID);
 }
 
-static void ov73_021D1328(RowanIntro *manager)
+static void RowanIntro_FreeYesNoTouchMenu(RowanIntro *manager)
 {
-    sub_02015938(manager->unk_68);
+    YesNoTouchMenu_Free(manager->yesNoTouchMenu);
 }
 
 static BOOL RowanIntro_FadeBgLayer(
@@ -2199,17 +2196,16 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         }
         break;
     case RI_STATE_CONTROL_INFO_SHOW_YESNO: {
-        UnkStruct_02015958 v1 = {
-            .unk_00 = NULL,
-            .unk_04 = BG_LAYER_SUB_2,
-            .unk_08 = 1,
-            .unk_0C = 12,
-            .unk_10 = 12,
-            .unk_11 = 8,
+        YesNoTouchMenuParams v1 = {
+            .bgConfig = manager->bgConfig,
+            .bgLayer = BG_LAYER_SUB_2,
+            .baseTile = 1,
+            .palette = 12,
+            .tilemapLeft = 12,
+            .tilemapTop = 8,
         };
 
-        v1.unk_00 = manager->bgConfig;
-        sub_02015958(manager->unk_68, &v1);
+        YesNoTouchMenu_InitWithParams(manager->yesNoTouchMenu, &v1);
         Bg_ToggleLayer(BG_LAYER_SUB_2, TRUE);
     }
         manager->bgSubLayer3TilemapIndex = 3;
@@ -2222,27 +2218,25 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
             break;
         }
 
-        {
-            int yesNoResult = sub_020159C0(manager->unk_68);
+        int yesNoResult = YesNoTouchMenu_ProcessInputInstant(manager->yesNoTouchMenu);
 
-            if ((yesNoResult == 3) || (yesNoResult == 4)) {
-                manager->state = RI_STATE_CONTROL_INFO_PROCESS_YESNO;
-            }
+        if (yesNoResult == YES_NO_TOUCH_MENU_YES_INSTANT || yesNoResult == YES_NO_TOUCH_MENU_NO_INSTANT) {
+            manager->state = RI_STATE_CONTROL_INFO_PROCESS_YESNO;
         }
         break;
     case RI_STATE_CONTROL_INFO_PROCESS_YESNO:
-        switch (sub_020159C0(manager->unk_68)) {
-        case 1:
+        switch (YesNoTouchMenu_ProcessInputInstant(manager->yesNoTouchMenu)) {
+        case YES_NO_TOUCH_MENU_YES:
             manager->state = RI_STATE_CONTROL_INFO_FADE_OUT_START;
             break;
-        case 2:
+        case YES_NO_TOUCH_MENU_NO:
             manager->state = RI_STATE_CONTROL_INFO_REPEAT;
             break;
         }
         break;
     case RI_STATE_CONTROL_INFO_FADE_OUT_START:
         if (RowanIntro_FadeBgLayer(manager, BG_LAYER_SUB_2, FADE_OUT) == TRUE) {
-            sub_02015A54(manager->unk_68);
+            YesNoTouchMenu_Reset(manager->yesNoTouchMenu);
             StartScreenFade(
                 FADE_BOTH_SCREENS,
                 FADE_TYPE_BRIGHTNESS_OUT,
@@ -2267,7 +2261,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
             {
                 Bg_ClearTilemap(manager->bgConfig, BG_LAYER_MAIN_0);
             }
-            sub_02015A54(manager->unk_68);
+            YesNoTouchMenu_Reset(manager->yesNoTouchMenu);
             manager->bgLayer3TilemapIndex = 1;
             RowanIntro_LoadLayer3Tilemap(manager);
             manager->bgSubLayer3TilemapIndex = 1;

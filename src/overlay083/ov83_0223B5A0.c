@@ -710,8 +710,8 @@ static int ov83_0223BF74(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
     case 8:
         v0 = ov83_0223F7DC(&param1->unk_1480);
 
-        if ((v0 == 1) || (v0 == 2)) {
-            if (v0 == 1) {
+        if (v0 == YES_NO_TOUCH_MENU_YES || v0 == YES_NO_TOUCH_MENU_NO) {
+            if (v0 == YES_NO_TOUCH_MENU_YES) {
                 if (PoffinCase_CountFilledSlots(param0->unk_10->poffinCase) >= MAX_POFFINS) {
                     ov83_0223EC8C(&param1->unk_6A0, 2);
                     (*param2) = 10;

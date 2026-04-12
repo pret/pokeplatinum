@@ -1,7 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_02095EAC_T_H
 #define POKEPLATINUM_STRUCT_02095EAC_T_H
 
-#include "struct_decls/struct_02015920_decl.h"
 #include "struct_defs/struct_0203DDFC.h"
 #include "struct_defs/struct_02095EAC_sub1.h"
 
@@ -16,6 +15,7 @@
 #include "string_gf.h"
 #include "string_template.h"
 #include "trainer_info.h"
+#include "yes_no_touch_menu.h"
 
 struct UnkStruct_02095EAC_t {
     BgConfig *unk_00;
@@ -70,7 +70,7 @@ struct UnkStruct_02095EAC_t {
     s16 unk_941E;
     u8 unk_9420;
     UnkStruct_ov58_021D2820 unk_9421[5];
-    UnkStruct_02015920 *unk_9454;
+    YesNoTouchMenu *unk_9454;
     int unk_9458;
     int unk_945C;
     int unk_9460;

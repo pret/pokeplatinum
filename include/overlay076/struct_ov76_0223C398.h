@@ -3,7 +3,6 @@
 
 #include "struct_decls/font_oam.h"
 #include "struct_decls/struct_02012744_decl.h"
-#include "struct_decls/struct_02015920_decl.h"
 
 #include "battle_anim/struct_ball_rotation_decl.h"
 #include "battle_anim/struct_ov12_02235FE0_decl.h"
@@ -20,6 +19,7 @@
 #include "string_list.h"
 #include "touch_screen.h"
 #include "touch_screen_actions.h"
+#include "yes_no_touch_menu.h"
 
 typedef struct {
     int unk_00;
@@ -37,7 +37,7 @@ typedef struct {
     UnkStruct_ov22_02258A48 unk_DC;
     TouchScreenActions *unk_F8;
     TouchScreenRect unk_FC[21];
-    UnkStruct_02015920 *unk_150;
+    YesNoTouchMenu *unk_150;
     UnkStruct_ov12_02235FE0 *unk_154;
     BallRotation *unk_158;
     G3DPipelineBuffers *unk_15C;

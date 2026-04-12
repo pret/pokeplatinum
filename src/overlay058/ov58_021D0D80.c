@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02095EAC_decl.h"
-#include "struct_defs/struct_02015958.h"
 #include "struct_defs/struct_0203DDFC.h"
 #include "struct_defs/struct_02095EAC_t.h"
 #include "struct_defs/struct_02095FE4.h"
@@ -44,7 +43,6 @@
 #include "touch_pad.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
-#include "unk_02015920.h"
 #include "unk_02030EE0.h"
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
@@ -53,6 +51,7 @@
 #include "unk_0205C22C.h"
 #include "unk_02095E98.h"
 #include "vram_transfer.h"
+#include "yes_no_touch_menu.h"
 
 typedef struct {
     int (*unk_00)(UnkStruct_02095EAC *, int);
@@ -117,7 +116,7 @@ static int ov58_021D2B5C(UnkStruct_02095EAC *param0);
 static int ov58_021D22D8(UnkStruct_02095EAC *param0, int param1);
 static void ov58_021D2CB0(UnkStruct_02095EAC *param0, int param1);
 static void ov58_021D2CB8(UnkStruct_02095EAC *param0, int param1);
-static BOOL ov58_021D2CEC(UnkStruct_02095EAC *param0, UnkStruct_02015958 *param1);
+static BOOL ov58_021D2CEC(UnkStruct_02095EAC *param0, YesNoTouchMenuParams *param1);
 static void ov58_021D2D10(UnkStruct_02095EAC *param0);
 static int ov58_021D2D30(UnkStruct_02095EAC *param0);
 static void ov58_021D2D4C(UnkStruct_ov58_021D2820 *param0, TouchPadDataBuffer *param1, int param2, int param3);
@@ -543,7 +542,7 @@ static void ov58_021D12C4(UnkStruct_02095EAC *param0)
     MessageLoader_GetString(param0->unk_10, 7, param0->unk_28);
 
     param0->unk_442C = Heap_Alloc(HEAP_ID_39, 30 * 16 * 32);
-    param0->unk_9454 = sub_02015920(HEAP_ID_39);
+    param0->unk_9454 = YesNoTouchMenu_New(HEAP_ID_39);
     param0->unk_378 = 0;
 }
 
@@ -552,7 +551,7 @@ static void ov58_021D13B4(UnkStruct_02095EAC *param0)
     int v0;
 
     Heap_Free(param0->unk_442C);
-    sub_02015938(param0->unk_9454);
+    YesNoTouchMenu_Free(param0->unk_9454);
 
     for (v0 = 0; v0 < 5; v0++) {
         String_Free(param0->unk_14[v0]);
@@ -972,15 +971,15 @@ static int ov58_021D1DC8(UnkStruct_02095EAC *param0, int param1)
 static int ov58_021D1DFC(UnkStruct_02095EAC *param0, int param1)
 {
     if (ov58_021D2B0C(param0->unk_30)) {
-        UnkStruct_02015958 v0;
+        YesNoTouchMenuParams v0;
         BOOL v1;
 
-        v0.unk_00 = param0->unk_00;
-        v0.unk_04 = 0;
-        v0.unk_08 = (1 + (18 + 12) + 9 + 27 * 4) + 8 * 4;
-        v0.unk_0C = 8;
-        v0.unk_10 = 25;
-        v0.unk_11 = 6;
+        v0.bgConfig = param0->unk_00;
+        v0.bgLayer = BG_LAYER_MAIN_0;
+        v0.baseTile = (1 + (18 + 12) + 9 + 27 * 4) + 8 * 4;
+        v0.palette = 8;
+        v0.tilemapLeft = 25;
+        v0.tilemapTop = 6;
 
         v1 = ov58_021D2CEC(param0, &v0);
         GF_ASSERT(v1);
@@ -1018,10 +1017,10 @@ static int ov58_021D1E4C(UnkStruct_02095EAC *param0, int param1)
         return param1;
     }
 
-    v0 = sub_020159FC(param0->unk_9454);
+    v0 = YesNoTouchMenu_ProcessInput(param0->unk_9454);
 
     switch (v0) {
-    case 1:
+    case YES_NO_TOUCH_MENU_YES:
         if (CommSys_CurNetId() == 0) {
             ov58_021D2CB0(param0, 13);
             ov58_021D2A98(param0, 4, TEXT_SPEED_FAST);
@@ -1044,7 +1043,7 @@ static int ov58_021D1E4C(UnkStruct_02095EAC *param0, int param1)
         ov58_021D2D10(param0);
         Window_CopyToVRAM(&param0->unk_32C);
         break;
-    case 2:
+    case YES_NO_TOUCH_MENU_NO:
         ov58_021D2CB0(param0, 4);
         ov58_021D1CDC(param0->unk_2AC, 0);
         Window_EraseMessageBox(&param0->unk_33C, 1);
@@ -1155,15 +1154,15 @@ static int ov58_021D20F4(UnkStruct_02095EAC *param0, int param1)
 static int ov58_021D2130(UnkStruct_02095EAC *param0, int param1)
 {
     if (ov58_021D2B0C(param0->unk_30)) {
-        UnkStruct_02015958 v0;
+        YesNoTouchMenuParams v0;
         BOOL v1;
 
-        v0.unk_00 = param0->unk_00;
-        v0.unk_04 = 0;
-        v0.unk_08 = (1 + (18 + 12) + 9 + 27 * 4) + 8 * 4;
-        v0.unk_0C = 8;
-        v0.unk_10 = 25;
-        v0.unk_11 = 6;
+        v0.bgConfig = param0->unk_00;
+        v0.bgLayer = BG_LAYER_MAIN_0;
+        v0.baseTile = (1 + (18 + 12) + 9 + 27 * 4) + 8 * 4;
+        v0.palette = 8;
+        v0.tilemapLeft = 25;
+        v0.tilemapTop = 6;
 
         v1 = ov58_021D2CEC(param0, &v0);
         GF_ASSERT(v1);
@@ -1177,7 +1176,7 @@ static int ov58_021D2130(UnkStruct_02095EAC *param0, int param1)
 
 static int ov58_021D2180(UnkStruct_02095EAC *param0, int param1)
 {
-    int v0 = sub_020159FC(param0->unk_9454);
+    int v0 = YesNoTouchMenu_ProcessInput(param0->unk_9454);
 
     if ((param0->unk_37C != ov58_021D2A30()) || (param0->unk_9418 != 0)) {
         ov58_021D1D40(param0);
@@ -1185,14 +1184,14 @@ static int ov58_021D2180(UnkStruct_02095EAC *param0, int param1)
     }
 
     switch (v0) {
-    case 1:
+    case YES_NO_TOUCH_MENU_YES:
         ov58_021D2CB0(param0, 15);
         CommSys_SendDataServer(127, NULL, 0);
         StringTemplate_SetPlayerName(param0->unk_0C, 0, CommInfo_TrainerInfo(0));
         param1 = 2;
         ov58_021D2D10(param0);
         break;
-    case 2:
+    case YES_NO_TOUCH_MENU_NO:
         ov58_021D2CB0(param0, 4);
         ov58_021D1CDC(param0->unk_2AC, 0);
         Window_EraseMessageBox(&param0->unk_33C, 1);
@@ -1837,10 +1836,10 @@ static void ov58_021D2CB8(UnkStruct_02095EAC *param0, int param1)
     }
 }
 
-static BOOL ov58_021D2CEC(UnkStruct_02095EAC *param0, UnkStruct_02015958 *param1)
+static BOOL ov58_021D2CEC(UnkStruct_02095EAC *param0, YesNoTouchMenuParams *param1)
 {
     if (!param0->unk_945C) {
-        sub_02015958(param0->unk_9454, param1);
+        YesNoTouchMenu_InitWithParams(param0->unk_9454, param1);
         param0->unk_945C = 1;
         return 1;
     } else {
@@ -1851,7 +1850,7 @@ static BOOL ov58_021D2CEC(UnkStruct_02095EAC *param0, UnkStruct_02015958 *param1
 static void ov58_021D2D10(UnkStruct_02095EAC *param0)
 {
     if (param0->unk_945C) {
-        sub_02015A54(param0->unk_9454);
+        YesNoTouchMenu_Reset(param0->unk_9454);
         param0->unk_945C = 0;
     }
 }
