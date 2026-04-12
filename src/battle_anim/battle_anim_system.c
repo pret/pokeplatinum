@@ -157,10 +157,10 @@ static void BattleAnimScriptCmd_Call(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_Return(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_SetVar(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_ResetVars(BattleAnimSystem *param0);
-static void ov12_022206A4(BattleAnimSystem *param0);
-static void ov12_022206E8(BattleAnimSystem *param0);
-static void ov12_02220F30(BattleAnimSystem *param0);
-static void ov12_02221064(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_068(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_069(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_013(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_014(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_Jump(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_SwitchBg(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_SetBgSwitchVar(BattleAnimSystem *param0);
@@ -187,7 +187,7 @@ static void BattleAnimScriptCmd_CancelTrackingTask(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_SetCameraProjection(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_SetCameraFlip(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_RemovePokemonSpriteFromBg(BattleAnimSystem *param0);
-static void ov12_02220EA8(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_033(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_SwitchBgEx(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_PlayMovingSoundEffectNoCorrection(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_PlayMovingSoundEffectAtkDef2(BattleAnimSystem *param0);
@@ -225,8 +225,8 @@ static void BattleAnimScriptCmd_AddSpriteWithFunc(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_AddSprite(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_FreeSpriteManager(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_SetPokemonSpriteVisible(BattleAnimSystem *param0);
-static void ov12_02221834(BattleAnimSystem *param0);
-static void ov12_022219E8(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_082(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_083(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_WaitForLRX(BattleAnimSystem *param0);
 static int BattleAnimSystem_GetBattlerWithRole(BattleAnimSystem *param0, int param1);
 static BOOL BattleBgSwitch_ShouldBeReversed(BattleBgSwitch *param0, BattleAnimSystem *param1, int param2);
@@ -788,91 +788,7 @@ static BOOL BattleAnimSoundFunc_Delay(BattleAnimSoundContext *ctx)
 }
 
 static const BattleAnimScriptCmd sBattleAnimScriptCmdTable[] = {
-    [0] = BattleAnimScriptCmd_Delay,
-    [1] = BattleAnimScriptCmd_WaitForAnimTasks,
-    [2] = BattleAnimScriptCmd_BeginLoop,
-    [3] = BattleAnimScriptCmd_EndLoop,
-    [4] = BattleAnimScriptCmd_End,
-    [5] = BattleAnimScriptCmd_PlaySoundEffect,
-    [6] = BattleAnimScriptCmd_Nop0,
-    [7] = BattleAnimScriptCmd_Nop1,
-    [8] = BattleAnimScriptCmd_SetBG0BG1AlphaBlending,
-    [9] = BattleAnimScriptCmd_SetDefaultAlphaBlending,
-    [10] = BattleAnimScriptCmd_Call,
-    [11] = BattleAnimScriptCmd_Return,
-    [12] = BattleAnimScriptCmd_SetVar,
-    [13] = ov12_02220F30,
-    [14] = ov12_02221064,
-    [15] = BattleAnimScriptCmd_Jump,
-    [16] = BattleAnimScriptCmd_SwitchBg,
-    [17] = BattleAnimScriptCmd_SetBgSwitchVar,
-    [18] = BattleAnimScriptCmd_RestoreBg,
-    [19] = BattleAnimScriptCmd_WaitForPartialBgSwitch,
-    [20] = BattleAnimScriptCmd_WaitForBgSwitch,
-    [21] = BattleAnimScriptCmd_SetBg,
-    [22] = BattleAnimScriptCmd_PlayPannedSoundEffect,
-    [23] = BattleAnimScriptCmd_PanSoundEffects,
-    [24] = BattleAnimScriptCmd_PlayMovingSoundEffectAtkDef,
-    [25] = BattleAnimScriptCmd_PlayLoopedSoundEffect,
-    [26] = BattleAnimScriptCmd_PlayDelayedSoundEffect,
-    [27] = BattleAnimScriptCmd_Nop2,
-    [28] = BattleAnimScriptCmd_Nop3,
-    [29] = BattleAnimScriptCmd_WaitForSoundEffects,
-    [30] = BattleAnimScriptCmd_JumpIfEqual,
-    [31] = BattleAnimScriptCmd_LoadPokemonSpriteIntoBg,
-    [32] = BattleAnimScriptCmd_RemovePokemonSpriteFromBg,
-    [33] = ov12_02220EA8,
-    [34] = BattleAnimScriptCmd_SwitchBgEx,
-    [35] = BattleAnimScriptCmd_PlayMovingSoundEffectNoCorrection,
-    [36] = BattleAnimScriptCmd_PlayMovingSoundEffectAtkDef2,
-    [37] = BattleAnimScriptCmd_Nop4,
-    [38] = BattleAnimScriptCmd_Nop5,
-    [39] = BattleAnimScriptCmd_Nop6,
-    [40] = BattleAnimScriptCmd_Nop7,
-    [41] = BattleAnimScriptCmd_Nop8,
-    [42] = BattleAnimScriptCmd_Nop9,
-    [43] = BattleAnimScriptCmd_Nop10,
-    [44] = BattleAnimScriptCmd_StopSoundEffect,
-    [45] = BattleAnimScriptCmd_CallFunc,
-    [46] = BattleAnimScriptCmd_CreateEmitter,
-    [47] = BattleAnimScriptCmd_CreateEmitterEx,
-    [48] = BattleAnimScriptCmd_CreateEmitterForMove,
-    [49] = BattleAnimScriptCmd_CreateEmitterForFriendlyFire,
-    [50] = BattleAnimScriptCmd_WaitForAllEmitters,
-    [51] = BattleAnimScriptCmd_LoadParticleSystem,
-    [52] = BattleAnimScriptCmd_LoadDebugParticleSystem,
-    [53] = BattleAnimScriptCmd_UnloadParticleSystem,
-    [54] = BattleAnimScriptCmd_Nop11,
-    [55] = BattleAnimScriptCmd_SetExtraParams,
-    [56] = BattleAnimScriptCmd_InitPokemonSpriteManager,
-    [57] = BattleAnimScriptCmd_LoadPokemonSpriteDummyResources,
-    [58] = BattleAnimScriptCmd_AddPokemonSprite,
-    [59] = BattleAnimScriptCmd_FreePokemonSpriteManager,
-    [60] = BattleAnimScriptCmd_RemovePokemonSprite,
-    [61] = BattleAnimScriptCmd_CancelTrackingTask,
-    [62] = BattleAnimScriptCmd_SetCameraProjection,
-    [63] = BattleAnimScriptCmd_SetCameraFlip,
-    [64] = BattleAnimScriptCmd_JumpIfBattlerSide,
-    [65] = BattleAnimScriptCmd_PlayPokemonCry,
-    [66] = BattleAnimScriptCmd_WaitForPokemonCries,
-    [67] = BattleAnimScriptCmd_ResetVars,
-    [68] = ov12_022206A4,
-    [69] = ov12_022206E8,
-    [70] = BattleAnimScriptCmd_JumpIfWeather,
-    [71] = BattleAnimScriptCmd_JumpIfContest,
-    [72] = BattleAnimScriptCmd_JumpIfFriendlyFire,
-    [73] = BattleAnimScriptCmd_InitSpriteManager,
-    [74] = BattleAnimScriptCmd_LoadCharResObj,
-    [75] = BattleAnimScriptCmd_LoadPlttRes,
-    [76] = BattleAnimScriptCmd_LoadCellResObj,
-    [77] = BattleAnimScriptCmd_LoadAnimResObj,
-    [78] = BattleAnimScriptCmd_AddSpriteWithFunc,
-    [79] = BattleAnimScriptCmd_AddSprite,
-    [80] = BattleAnimScriptCmd_FreeSpriteManager,
-    [81] = BattleAnimScriptCmd_SetPokemonSpriteVisible,
-    [82] = ov12_02221834,
-    [83] = ov12_022219E8,
-    [84] = BattleAnimScriptCmd_WaitForLRX
+#include "data/scripts/btlanimcmd.h"
 };
 
 void BattleAnimSystem_SetDefaultAlphaBlending(void)
@@ -1014,7 +930,7 @@ void ov12_02220590(BattleAnimSystem *system, UnkStruct_ov12_022380DC *ctx, int p
     }
 }
 
-static void ov12_022206A4(BattleAnimSystem *param0)
+static void BattleAnimScriptCmd_068(BattleAnimSystem *param0)
 {
     int v0;
     UnkStruct_ov12_022380DC v1;
@@ -1034,7 +950,7 @@ static void ov12_022206A4(BattleAnimSystem *param0)
     }
 }
 
-static void ov12_022206E8(BattleAnimSystem *param0)
+static void BattleAnimScriptCmd_069(BattleAnimSystem *param0)
 {
     int v0;
     UnkStruct_ov12_022380DC v1;
@@ -1475,7 +1391,7 @@ static void BattleAnimScriptCmd_JumpIfEqual(BattleAnimSystem *system)
     }
 }
 
-static void ov12_02220EA8(BattleAnimSystem *param0)
+static void BattleAnimScriptCmd_033(BattleAnimSystem *param0)
 {
     param0->scriptPtr += 1;
 
@@ -1512,7 +1428,7 @@ static void BattleAnimScriptCmd_CallFunc(BattleAnimSystem *system)
     func(system);
 }
 
-static void ov12_02220F30(BattleAnimSystem *param0)
+static void BattleAnimScriptCmd_013(BattleAnimSystem *param0)
 {
     int v0;
 
@@ -1600,7 +1516,7 @@ static void BattleAnimScriptCmd_JumpIfFriendlyFire(BattleAnimSystem *system)
     }
 }
 
-static void ov12_02221064(BattleAnimSystem *param0)
+static void BattleAnimScriptCmd_014(BattleAnimSystem *param0)
 {
     int v0;
 
@@ -2082,7 +1998,7 @@ static void ov12_02221810(SysTask *param0, void *param1)
     }
 }
 
-static void ov12_02221834(BattleAnimSystem *system)
+static void BattleAnimScriptCmd_082(BattleAnimSystem *system)
 {
     int role;
     int v1;
@@ -2188,7 +2104,7 @@ static void ov12_02221834(BattleAnimSystem *system)
     }
 }
 
-static void ov12_022219E8(BattleAnimSystem *param0)
+static void BattleAnimScriptCmd_083(BattleAnimSystem *param0)
 {
     int v0;
 

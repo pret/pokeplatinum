@@ -6,13 +6,12 @@
 #include "constants/graphics.h"
 #include "constants/heap.h"
 
-#include "struct_defs/struct_0205964C.h"
-
 #include "field/field_system.h"
 #include "functypes/funcptr_020598EC.h"
 #include "overlay007/communication_club.h"
 #include "underground/manager.h"
 
+#include "appearance.h"
 #include "comm_player_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
@@ -25,7 +24,7 @@
 #include "script_manager.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "trainer_card.h"
+#include "trainer_case.h"
 #include "trainer_info.h"
 #include "underground.h"
 #include "unk_02033200.h"
@@ -54,9 +53,9 @@ static void sub_02059E80(void);
 static void sub_02059E94(void);
 static void sub_02059E50(void);
 static void sub_02059D58(void);
-static void FieldCommTask_CopyTrainerCard(void);
+static void FieldCommTask_CopyTrainerCase(void);
 static void sub_02059FB8(void);
-static void FieldCommTask_StartCopyTrainerCard(void);
+static void FieldCommTask_StartCopyTrainerCase(void);
 static void sub_02059FD4(void);
 static void sub_0205A018(void);
 static void Task_EndBattle(void);
@@ -105,8 +104,8 @@ void FieldCommMan_Delete(void)
     SysTask_Done(sFieldCommMan->sysTask);
 
     for (i = 0; i < 4; i++) {
-        if (sFieldCommMan->trainerCard[i]) {
-            Heap_Free(sFieldCommMan->trainerCard[i]);
+        if (sFieldCommMan->trainerCase[i]) {
+            Heap_Free(sFieldCommMan->trainerCase[i]);
         }
     }
 
@@ -175,16 +174,16 @@ void FieldCommMan_EnterBattleRoom(FieldSystem *fieldSystem)
         CommInfo_TrainerInfo(CommSys_CurNetId());
 
         for (netJd = 0; netJd < CommSys_ConnectedCount(); netJd++) {
-            if (sFieldCommMan->trainerCard[netJd] == NULL) {
-                sFieldCommMan->trainerCard[netJd] = Heap_Alloc(HEAP_ID_SYSTEM, sizeof(TrainerCard));
+            if (sFieldCommMan->trainerCase[netJd] == NULL) {
+                sFieldCommMan->trainerCase[netJd] = Heap_Alloc(HEAP_ID_SYSTEM, sizeof(TrainerCase));
             }
         }
 
-        TrainerCard_Init(FALSE, FALSE, 0, 0xFF, sFieldCommMan->fieldSystem, sFieldCommMan->trainerCard[netId]);
+        TrainerCase_Init(FALSE, FALSE, 0, TRAINER_APPEARANCE_DEFAULT, sFieldCommMan->fieldSystem, sFieldCommMan->trainerCase[netId]);
     }
 
     CommTiming_StartSync(95);
-    FieldCommMan_SetTask(FieldCommTask_StartCopyTrainerCard, 0);
+    FieldCommMan_SetTask(FieldCommTask_StartCopyTrainerCase, 0);
 }
 
 void FieldCommMan_EndBattle(void)
@@ -402,9 +401,9 @@ static void sub_02059B74(void)
             if (CommTool_GetSyncNo(i) == 94) {
                 if (sFieldCommMan->fieldSystem->task == NULL) {
                     for (j = 0; j < 4; j++) {
-                        if (sFieldCommMan->trainerCard[j]) {
-                            Heap_Free(sFieldCommMan->trainerCard[j]);
-                            sFieldCommMan->trainerCard[j] = NULL;
+                        if (sFieldCommMan->trainerCase[j]) {
+                            Heap_Free(sFieldCommMan->trainerCase[j]);
+                            sFieldCommMan->trainerCase[j] = NULL;
                         }
                     }
 
@@ -611,20 +610,20 @@ void sub_02059EAC(int param0, int unused1, void *unused2, void *unused3)
 u8 *sub_02059EBC(int param0, void *unused1, int unused2)
 {
     GF_ASSERT(param0 < 4);
-    return (u8 *)sFieldCommMan->trainerCard[param0];
+    return (u8 *)sFieldCommMan->trainerCase[param0];
 }
 
-static void FieldCommTask_StartCopyTrainerCard(void)
+static void FieldCommTask_StartCopyTrainerCase(void)
 {
     int v1 = CommSys_CurNetId();
 
     if (CommTiming_IsSyncState(95)) {
-        CommSys_SendDataHuge(88, sFieldCommMan->trainerCard[v1], sizeof(TrainerCard));
-        FieldCommMan_SetTask(FieldCommTask_CopyTrainerCard, 0);
+        CommSys_SendDataHuge(88, sFieldCommMan->trainerCase[v1], sizeof(TrainerCase));
+        FieldCommMan_SetTask(FieldCommTask_CopyTrainerCase, 0);
     }
 }
 
-static void FieldCommTask_CopyTrainerCard(void)
+static void FieldCommTask_CopyTrainerCase(void)
 {
     int i;
 

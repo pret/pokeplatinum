@@ -2,7 +2,7 @@
   "key": 18355,
   "messages": [
     {
-      "id": "pl_msg_00000176_00000",
+      "id": "SnowpointCity_Text_OnlyChosenMayEnterTemple",
       "en_US": [
         "Only the chosen may enter\n",
         "the Snowpoint Temple.\r",
@@ -11,7 +11,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000176_00001",
+      "id": "SnowpointCity_Text_OnlyChosenMayEnterTemple2",
       "en_US": [
         "Only the chosen may enter\n",
         "the Snowpoint Temple.\r",
@@ -20,7 +20,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000176_00002",
+      "id": "SnowpointCity_Text_BuiltInAncientTimes",
       "en_US": [
         "The temple is said to have been\n",
         "built in ancient times.\r",
@@ -30,14 +30,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000176_00003",
+      "id": "SnowpointCity_Text_LetThatPersonIn",
       "en_US": [
         "Candice: It’s OK!\n",
         "You can let that person in.\r"
       ]
     },
     {
-      "id": "pl_msg_00000176_00004",
+      "id": "SnowpointCity_Text_EnjoyYourExploring",
       "en_US": [
         "I heard from Cynthia.\r",
         "You’re working on a Pokédex,\n",
@@ -48,7 +48,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000176_00005",
+      "id": "SnowpointCity_Text_TownIsFreezingCold",
       "en_US": [
         "Brrr... This snowbound town is always\n",
         "freezing cold.\r",
@@ -58,14 +58,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000176_00006",
+      "id": "SnowpointCity_Text_ScarfLooksWarm",
       "en_US": [
         "Your scarf looks nice and warm.\n",
         "I wish I had one like it."
       ]
     },
     {
-      "id": "pl_msg_00000176_00007",
+      "id": "SnowpointCity_Text_IWantToLookAroundTemple",
       "en_US": [
         "I want to take a look around in the\n",
         "Snowpoint Temple.\r",
@@ -74,7 +74,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000176_00008",
+      "id": "SnowpointCity_Text_PokemonDraggedCityHere",
       "en_US": [
         "Pokémon are said to have dragged\n",
         "Snowpoint City here.\r",
@@ -83,7 +83,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000176_00009",
+      "id": "SnowpointCity_Text_CandiceIsTeachingMe",
       "en_US": [
         "Candice is teaching me about Pokémon.\r",
         "She says I have to start by making\n",
@@ -91,21 +91,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000176_00010",
+      "id": "SnowpointCity_Text_SailToBattleZone",
       "en_US": [
         "What is it? Do you want to sail\n",
         "to the Battle Zone?"
       ]
     },
     {
-      "id": "pl_msg_00000176_00011",
+      "id": "SnowpointCity_Text_LetsSetSail",
       "en_US": [
         "Aye, aye, then!\n",
         "Let’s set sail!\r"
       ]
     },
     {
-      "id": "pl_msg_00000176_00012",
+      "id": "SnowpointCity_Text_YouCantGoUsingSurf",
       "en_US": [
         "What is it?\n",
         "The Battle Zone’s rough to get to.\r",
@@ -116,7 +116,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000176_00013",
+      "id": "SnowpointCity_Text_ILookForwardToAGreatTrainer",
       "en_US": [
         "A great Trainer recognized by\n",
         "the Pokémon League...\r",
@@ -125,7 +125,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000176_00014",
+      "id": "SnowpointCity_Text_NothingExceptionalHere",
       "en_US": [
         "There is nothing exceptional here.\n",
         "That makes Snowpoint unique.\r",
@@ -134,14 +134,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000176_00015",
+      "id": "SnowpointCity_Text_ImGladIWaited",
       "en_US": [
         "Cynthia: I thought you would come.\n",
         "I’m glad I waited for you!\r"
       ]
     },
     {
-      "id": "pl_msg_00000176_00016",
+      "id": "SnowpointCity_Text_GoodThatOurWorldChanges",
       "en_US": [
         "Cynthia: I think it’s good that our\n",
         "world is constantly changing.\r",
@@ -160,7 +160,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000176_00017",
+      "id": "SnowpointCity_Text_TravelToFarOffPlaces",
       "en_US": [
         "I want you to keep traveling to many\n",
         "far-off places.\r",
@@ -174,14 +174,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000176_00018",
+      "id": "SnowpointCity_Text_MapSign",
       "en_US": [
         "Snowpoint City\n",
         "City of Snow"
       ]
     },
     {
-      "id": "pl_msg_00000176_00019",
+      "id": "SnowpointCity_Text_SignPokemonGym",
       "en_US": [
         "Snowpoint City Pokémon Gym\n",
         "Leader: Candice\f",

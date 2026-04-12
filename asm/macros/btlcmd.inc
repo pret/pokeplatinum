@@ -16,97 +16,99 @@
 #include "battle/btlcmd.h"
 #include "res/text/bank/battle_strings.h"
 
+#include "data/scripts/btlcmd.h"
+
     .equ FALSE, 0
     .equ TRUE, 1
 
     .macro PlayEncounterAnimation
-    .long 0
+    .long BTLCMD_PLAYENCOUNTERANIMATION
     .endm
 
     .macro SetPokemonEncounter battler
-    .long 1
+    .long BTLCMD_SETPOKEMONENCOUNTER
     .long \battler
     .endm
 
     .macro PokemonSlideIn battler
-    .long 2
+    .long BTLCMD_POKEMONSLIDEIN
     .long \battler
     .endm
 
     .macro PokemonSendOut battler
-    .long 3
+    .long BTLCMD_POKEMONSENDOUT
     .long \battler
     .endm
 
     .macro RecallPokemon battler
-    .long 4
+    .long BTLCMD_RECALLPOKEMON
     .long \battler
     .endm
 
     .macro DeletePokemon battler
-    .long 5
+    .long BTLCMD_DELETEPOKEMON
     .long \battler
     .endm
 
     .macro SetTrainerEncounter battler
-    .long 6
+    .long BTLCMD_SETTRAINERENCOUNTER
     .long \battler
     .endm
 
     .macro ThrowPokeball battler, type
-    .long 7
+    .long BTLCMD_THROWPOKEBALL
     .long \battler
     .long \type
     .endm
 
     .macro TrainerSlideOut battler
-    .long 8
+    .long BTLCMD_TRAINERSLIDEOUT
     .long \battler
     .endm
 
     .macro TrainerSlideIn battler, pos
-    .long 9
+    .long BTLCMD_TRAINERSLIDEIN
     .long \battler
     .long \pos
     .endm
 
     .macro BackgroundSlideIn
-    .long 10
+    .long BTLCMD_BACKGROUNDSLIDEIN
     .endm
 
     .macro HealthbarSlideIn battler
-    .long 11
+    .long BTLCMD_HEALTHBARSLIDEIN
     .long \battler
     .endm
 
     .macro HealthbarSlideInDelay battler
-    .long 12
+    .long BTLCMD_HEALTHBARSLIDEINDELAY
     .long \battler
     .endm
 
     .macro HealthbarSlideOut battler
-    .long 13
+    .long BTLCMD_HEALTHBARSLIDEOUT
     .long \battler
     .endm
 
     .macro Wait
-    .long 14
+    .long BTLCMD_WAIT
     .endm
 
     .macro CalcDamage
-    .long 15
+    .long BTLCMD_CALCDAMAGE
     .endm
 
     .macro CalcMaxDamage
-    .long 16
+    .long BTLCMD_CALCMAXDAMAGE
     .endm
 
     .macro PrintAttackMessage
-    .long 17
+    .long BTLCMD_PRINTATTACKMESSAGE
     .endm
 
     .macro PrintMessage msg_id, tag, arg_0, arg_1, arg_2, arg_3, arg_4, arg_5
-    .long 18
+    .long BTLCMD_PRINTMESSAGE
     .long \msg_id
     .long \tag
     .if \tag > TAG_NONE
@@ -128,7 +130,7 @@
     .endm
 
     .macro PrintGlobalMessage msg_id, tag, arg_0, arg_1, arg_2, arg_3, arg_4, arg_5
-    .long 19
+    .long BTLCMD_PRINTGLOBALMESSAGE
     .long \msg_id
     .long \tag
     .if \tag > TAG_NONE
@@ -150,11 +152,11 @@
     .endm
 
     .macro PrintBufferedMessage
-    .long 20
+    .long BTLCMD_PRINTBUFFEREDMESSAGE
     .endm
 
     .macro BufferMessage msg_id, tag, arg_0, arg_1, arg_2, arg_3, arg_4, arg_5
-    .long 21
+    .long BTLCMD_BUFFERMESSAGE
     .long \msg_id
     .long \tag
     .if \tag > TAG_NONE
@@ -176,7 +178,7 @@
     .endm
 
     .macro BufferLocalMessage battler, msg_id, tag, arg_0, arg_1, arg_2, arg_3, arg_4, arg_5
-    .long 22
+    .long BTLCMD_BUFFERLOCALMESSAGE
     .long \battler
     .long \msg_id
     .long \tag
@@ -199,54 +201,54 @@
     .endm
 
     .macro PlayMoveAnimation move_src
-    .long 23
+    .long BTLCMD_PLAYMOVEANIMATION
     .long \move_src
     .endm
 
     .macro PlayMoveAnimationOnMons move_src, attacker, defender
-    .long 24
+    .long BTLCMD_PLAYMOVEANIMATIONONMONS
     .long \move_src
     .long \attacker
     .long \defender
     .endm
 
     .macro FlickerMon battler
-    .long 25
+    .long BTLCMD_FLICKERMON
     .long \battler
     .endm
 
     .macro UpdateHealthBarValue battler
-    .long 26
+    .long BTLCMD_UPDATEHEALTHBARVALUE
     .long \battler
     .endm
 
     .macro UpdateHealthBar battler
-    .long 27
+    .long BTLCMD_UPDATEHEALTHBAR
     .long \battler
     .endm
 
     .macro TryFaintMon battler
-    .long 28
+    .long BTLCMD_TRYFAINTMON
     .long \battler
     .endm
 
     .macro PlayFaintAnimation
-    .long 29
+    .long BTLCMD_PLAYFAINTANIMATION
     .endm
 
     .macro WaitButtonABTime frames
-    .long 30
+    .long BTLCMD_WAITBUTTONABTIME
     .long \frames
     .endm
 
     .macro PlaySound battler, sdatID
-    .long 31
+    .long BTLCMD_PLAYSOUND
     .long \battler
     .long \sdatID
     .endm
 
     .macro CompareVarToValue op, var, val, jump
-    .long 32
+    .long BTLCMD_COMPAREVARTOVALUE
     .long \op
     .long \var
     .long \val
@@ -254,7 +256,7 @@
     .endm
 
     .macro CompareMonDataToValue op, battler, param, val, jump
-    .long 33
+    .long BTLCMD_COMPAREMONDATATOVALUE
     .long \op
     .long \battler
     .long \param
@@ -263,94 +265,94 @@
     .endm
 
     .macro FadeOutBattle
-    .long 34
+    .long BTLCMD_FADEOUTBATTLE
     .endm
 
     .macro GoToSubscript subscript
-    .long 35
+    .long BTLCMD_GOTOSUBSCRIPT
     .long \subscript
     .endm
 
     .macro GoToEffectScript
-    .long 36
+    .long BTLCMD_GOTOEFFECTSCRIPT
     .endm
 
     .macro GoToMoveScript is_target_set
-    .long 37
+    .long BTLCMD_GOTOMOVESCRIPT
     .long \is_target_set
     .endm
 
     .macro CalcCrit
-    .long 38
+    .long BTLCMD_CALCCRIT
     .endm
 
     .macro CalcExpGain jump
-    .long 39
+    .long BTLCMD_CALCEXPGAIN
     .long (\jump-.) / 4 - 1
     .endm
 
     .macro StartGetExpTask
-    .long 40
+    .long BTLCMD_STARTGETEXPTASK
     .endm
 
     .macro WaitGetExpTask
-    .long 41
+    .long BTLCMD_WAITGETEXPTASK
     .endm
 
     .macro Dummy2A arg_0
-    .long 42
+    .long BTLCMD_DUMMY2A
     .long \arg_0
     .endm
 
     .macro ShowParty
-    .long 43
+    .long BTLCMD_SHOWPARTY
     .endm
 
     .macro WaitMonSelection
-    .long 44
+    .long BTLCMD_WAITMONSELECTION
     .endm
 
     .macro SwitchAndUpdateMon battler
-    .long 45
+    .long BTLCMD_SWITCHANDUPDATEMON
     .long \battler
     .endm
 
     .macro GoToIfAnySwitches jump
-    .long 46
+    .long BTLCMD_GOTOIFANYSWITCHES
     .long (\jump-.) / 4 - 1
     .endm
 
     .macro StartCatchMonTask is_safari_capture
-    .long 47
+    .long BTLCMD_STARTCATCHMONTASK
     .long \is_safari_capture
     .endm
 
     .macro WaitCatchMonTask
-    .long 48
+    .long BTLCMD_WAITCATCHMONTASK
     .endm
 
     .macro SetMultiHit hits, flags
-    .long 49
+    .long BTLCMD_SETMULTIHIT
     .long \hits
     .long \flags
     .endm
 
     .macro UpdateVar op, var, val
-    .long 50
+    .long BTLCMD_UPDATEVAR
     .long \op
     .long \var
     .long \val
     .endm
 
     .macro ChangeStatStage jump_no_change, jump_blocked, jump_substitute
-    .long 51
+    .long BTLCMD_CHANGESTATSTAGE
     .long (\jump_no_change-.) / 4 - 3
     .long (\jump_blocked-.) / 4 - 2
     .long (\jump_substitute-.) / 4 - 1
     .endm
 
     .macro UpdateMonData op, battler, param, val
-    .long 52
+    .long BTLCMD_UPDATEMONDATA
     .long \op
     .long \battler
     .long \param
@@ -358,19 +360,19 @@
     .endm
 
     .macro ClearVolatileStatus battler, status
-    .long 53
+    .long BTLCMD_CLEARVOLATILESTATUS
     .long \battler
     .long \status
     .endm
 
     .macro ToggleVanish battler, toggle
-    .long 54
+    .long BTLCMD_TOGGLEVANISH
     .long \battler
     .long \toggle
     .endm
 
     .macro CheckAbility op, battler, ability, jump
-    .long 55
+    .long BTLCMD_CHECKABILITY
     .long \op
     .long \battler
     .long \ability
@@ -378,20 +380,20 @@
     .endm
 
     .macro Random upper_bound, offset
-    .long 56
+    .long BTLCMD_RANDOM
     .long \upper_bound
     .long \offset
     .endm
 
     .macro UpdateVarFromVar op, dst, src
-    .long 57
+    .long BTLCMD_UPDATEVARFROMVAR
     .long \op
     .long \dst
     .long \src
     .endm
 
     .macro UpdateMonDataFromVar op, battler, dst, src
-    .long 58
+    .long BTLCMD_UPDATEMONDATAFROMVAR
     .long \op
     .long \battler
     .long \dst
@@ -399,105 +401,105 @@
     .endm
 
     .macro GoTo jump
-    .long 59
+    .long BTLCMD_GOTO
     .long (\jump-.) / 4 - 1
     .endm
 
     .macro Call subscript
-    .long 60
+    .long BTLCMD_CALL
     .long \subscript
     .endm
 
     .macro CallFromVar var
-    .long 61
+    .long BTLCMD_CALLFROMVAR
     .long \var
     .endm
 
     .macro SetMirrorMove
-    .long 62
+    .long BTLCMD_SETMIRRORMOVE
     .endm
 
     .macro ResetAllStatChanges
-    .long 63
+    .long BTLCMD_RESETALLSTATCHANGES
     .endm
 
     .macro LockMoveChoice battler
-    .long 64
+    .long BTLCMD_LOCKMOVECHOICE
     .long \battler
     .endm
 
     .macro UnlockMoveChoice battler
-    .long 65
+    .long BTLCMD_UNLOCKMOVECHOICE
     .long \battler
     .endm
 
     .macro SetHealthbarStatus battler, status
-    .long 66
+    .long BTLCMD_SETHEALTHBARSTATUS
     .long \battler
     .long \status
     .endm
 
     .macro PrintTrainerMessage battler, type
-    .long 67
+    .long BTLCMD_PRINTTRAINERMESSAGE
     .long \battler
     .long \type
     .endm
 
     .macro PayPrizeMoney
-    .long 68
+    .long BTLCMD_PAYPRIZEMONEY
     .endm
 
     .macro PlayBattleAnimation battler, animation
-    .long 69
+    .long BTLCMD_PLAYBATTLEANIMATION
     .long \battler
     .long \animation
     .endm
 
     .macro PlayBattleAnimationOnMons attacker, defender, animation
-    .long 70
+    .long BTLCMD_PLAYBATTLEANIMATIONONMONS
     .long \attacker
     .long \defender
     .long \animation
     .endm
 
     .macro PlayBattleAnimationFromVar battler, var
-    .long 71
+    .long BTLCMD_PLAYBATTLEANIMATIONFROMVAR
     .long \battler
     .long \var
     .endm
 
     .macro PrintRecallMessage battler
-    .long 72
+    .long BTLCMD_PRINTRECALLMESSAGE
     .long \battler
     .endm
 
     .macro PrintSendOutMessage battler
-    .long 73
+    .long BTLCMD_PRINTSENDOUTMESSAGE
     .long \battler
     .endm
 
     .macro PrintEncounterMessage battler
-    .long 74
+    .long BTLCMD_PRINTENCOUNTERMESSAGE
     .long \battler
     .endm
 
     .macro PrintFirstSendOutMessage battler
-    .long 75
+    .long BTLCMD_PRINTFIRSTSENDOUTMESSAGE
     .long \battler
     .endm
 
     .macro PrintBufferedTrainerMessage battler
-    .long 76
+    .long BTLCMD_PRINTBUFFEREDTRAINERMESSAGE
     .long \battler
     .endm
 
     .macro TryConversion jump_if_fail
-    .long 77
+    .long BTLCMD_TRYCONVERSION
     .long (\jump_if_fail-.) / 4 - 1
     .endm
 
     .macro CompareVarToVar op, lhs, rhs, jump
-    .long 78
+    .long BTLCMD_COMPAREVARTOVAR
     .long \op
     .long \lhs
     .long \rhs
@@ -505,7 +507,7 @@
     .endm
 
     .macro CompareMonDataToVar op, battler, lhs, rhs, jump
-    .long 79
+    .long BTLCMD_COMPAREMONDATATOVAR
     .long \op
     .long \battler
     .long \lhs
@@ -514,209 +516,209 @@
     .endm
 
     .macro AddPayDayMoney
-    .long 80
+    .long BTLCMD_ADDPAYDAYMONEY
     .endm
 
     .macro TryLightScreen jump_if_fail
-    .long 81
+    .long BTLCMD_TRYLIGHTSCREEN
     .long (\jump_if_fail-.) / 4 - 1
     .endm
 
     .macro TryReflect jump_if_fail
-    .long 82
+    .long BTLCMD_TRYREFLECT
     .long (\jump_if_fail-.) / 4 - 1
     .endm
 
     .macro TryMist jump_if_fail
-    .long 83
+    .long BTLCMD_TRYMIST
     .long (\jump_if_fail-.) / 4 - 1
     .endm
 
     .macro TryOHKOMove
-    .long 84
+    .long BTLCMD_TRYOHKOMOVE
     .endm
 
     .macro DivideVarByValue var, val
-    .long 85
+    .long BTLCMD_DIVIDEVARBYVALUE
     .long \var
     .long \val
     .endm
 
     .macro DivideVarByVar dividend, divisor
-    .long 86
+    .long BTLCMD_DIVIDEVARBYVAR
     .long \dividend
     .long \divisor
     .endm
 
     .macro TryMimic jump_if_fail
-    .long 87
+    .long BTLCMD_TRYMIMIC
     .long (\jump_if_fail-.) / 4 - 1
     .endm
 
     .macro Metronome
-    .long 88
+    .long BTLCMD_METRONOME
     .endm
 
     .macro TryDisable jump_if_fail
-    .long 89
+    .long BTLCMD_TRYDISABLE
     .long (\jump_if_fail-.) / 4 - 1
     .endm
 
     .macro Counter
-    .long 90
+    .long BTLCMD_COUNTER
     .endm
 
     .macro MirrorCoat
-    .long 91
+    .long BTLCMD_MIRRORCOAT
     .endm
 
     .macro TryEncore jump_if_fail
-    .long 92
+    .long BTLCMD_TRYENCORE
     .long (\jump_if_fail-.) / 4 - 1
     .endm
 
     .macro TryConversion2 jump_if_fail
-    .long 93
+    .long BTLCMD_TRYCONVERSION2
     .long (\jump_if_fail-.) / 4 - 1
     .endm
 
     .macro TrySketch jump_if_fail
-    .long 94
+    .long BTLCMD_TRYSKETCH
     .long (\jump_if_fail-.) / 4 - 1
     .endm
 
     .macro TrySleepTalk jump_if_fail
-    .long 95
+    .long BTLCMD_TRYSLEEPTALK
     .long (\jump_if_fail-.) / 4 - 1
     .endm
 
     .macro CalcFlailPower
-    .long 96
+    .long BTLCMD_CALCFLAILPOWER
     .endm
 
     .macro TrySpite jump_if_fail
-    .long 97
+    .long BTLCMD_TRYSPITE
     .long (\jump_if_fail-.) / 4 - 1
     .endm
 
     .macro TryPartyStatusRefresh
-    .long 98
+    .long BTLCMD_TRYPARTYSTATUSREFRESH
     .endm
 
     .macro TryStealItem jump_if_fail, jump_sticky_hold
-    .long 99
+    .long BTLCMD_TRYSTEALITEM
     .long (\jump_if_fail-.) / 4 - 2
     .long (\jump_sticky_hold-.) / 4 - 1
     .endm
 
     .macro TryProtection jump_if_fail
-    .long 100
+    .long BTLCMD_TRYPROTECTION
     .long (\jump_if_fail-.) / 4 - 1
     .endm
 
     .macro TrySubstitute jump_if_fail
-    .long 101
+    .long BTLCMD_TRYSUBSTITUTE
     .long (\jump_if_fail-.) / 4 - 1
     .endm
 
     .macro TryWhirlwind jump_if_fail
-    .long 102
+    .long BTLCMD_TRYWHIRLWIND
     .long (\jump_if_fail-.) / 4 - 1
     .endm
 
     .macro Transform
-    .long 103
+    .long BTLCMD_TRANSFORM
     .endm
 
     .macro TrySpikes jump_if_fail
-    .long 104
+    .long BTLCMD_TRYSPIKES
     .long (\jump_if_fail-.) / 4 - 1
     .endm
 
     .macro CheckSpikes battler, jump_no_spikes
-    .long 105
+    .long BTLCMD_CHECKSPIKES
     .long \battler
     .long (\jump_no_spikes-.) / 4 - 1
     .endm
 
     .macro TryPerishSong jump_if_fail
-    .long 106
+    .long BTLCMD_TRYPERISHSONG
     .long (\jump_if_fail-.) / 4 - 1
     .endm
 
     .macro GetMonBySpeedOrder dst_var
-    .long 107
+    .long BTLCMD_GETMONBYSPEEDORDER
     .long \dst_var
     .endm
 
     .macro GoToIfValidMon var, jump
-    .long 108
+    .long BTLCMD_GOTOIFVALIDMON
     .long \var
     .long (\jump-.) / 4 - 1
     .endm
 
     .macro EndOfTurnWeatherEffect battler
-    .long 109
+    .long BTLCMD_ENDOFTURNWEATHEREFFECT
     .long \battler
     .endm
 
     .macro CalcRolloutPower
-    .long 110
+    .long BTLCMD_CALCROLLOUTPOWER
     .endm
 
     .macro CalcFuryCutterPower
-    .long 111
+    .long BTLCMD_CALCFURYCUTTERPOWER
     .endm
 
     .macro TryAttract jump_if_fail
-    .long 112
+    .long BTLCMD_TRYATTRACT
     .long (\jump_if_fail-.) / 4 - 1
     .endm
 
     .macro TrySafeguard jump_if_fail
-    .long 113
+    .long BTLCMD_TRYSAFEGUARD
     .long (\jump_if_fail-.) / 4 - 1
     .endm
 
     .macro Present jump_if_heal
-    .long 114
+    .long BTLCMD_PRESENT
     .long (\jump_if_heal-.) / 4 - 1
     .endm
 
     .macro CalcMagnitudePower
-    .long 115
+    .long BTLCMD_CALCMAGNITUDEPOWER
     .endm
 
     .macro TryReplaceFaintedMon battler, open_party_list, jump_if_fail
-    .long 116
+    .long BTLCMD_TRYREPLACEFAINTEDMON
     .long \battler
     .long \open_party_list
     .long (\jump_if_fail-.) / 4 - 1
     .endm
 
     .macro RapidSpin
-    .long 117
+    .long BTLCMD_RAPIDSPIN
     .endm
 
     .macro WeatherHPRecovery
-    .long 118
+    .long BTLCMD_WEATHERHPRECOVERY
     .endm
 
     .macro CalcHiddenPowerParams
-    .long 119
+    .long BTLCMD_CALCHIDDENPOWERPARAMS
     .endm
 
     .macro CopyStatStages
-    .long 120
+    .long BTLCMD_COPYSTATSTAGES
     .endm
 
     .macro TryFutureSight jump_if_fail
-    .long 121
+    .long BTLCMD_TRYFUTURESIGHT
     .long (\jump_if_fail-.) / 4 - 1
     .endm
 
     .macro CheckMoveHit attacker, defender, move_src, jump_if_miss
-    .long 122
+    .long BTLCMD_CHECKMOVEHIT
     .long \attacker
     .long \defender
     .long \move_src
@@ -724,105 +726,105 @@
     .endm
 
     .macro TryTeleport jump_if_fail
-    .long 123
+    .long BTLCMD_TRYTELEPORT
     .long (\jump_if_fail-.) / 4 - 1
     .endm
 
     .macro BeatUp
-    .long 124
+    .long BTLCMD_BEATUP
     .endm
 
     .macro FollowMe
-    .long 125
+    .long BTLCMD_FOLLOWME
     .endm
 
     .macro TryHelpingHand jump_if_fail
-    .long 126
+    .long BTLCMD_TRYHELPINGHAND
     .long (\jump_if_fail-.) / 4 - 1
     .endm
 
     .macro TrySwapItems jump_if_fail, jump_sticky_hold
-    .long 127
+    .long BTLCMD_TRYSWAPITEMS
     .long (\jump_if_fail-.) / 4 - 2
     .long (\jump_sticky_hold-.) / 4 - 1
     .endm
 
     .macro TryWish jump_if_fail
-    .long 128
+    .long BTLCMD_TRYWISH
     .long (\jump_if_fail-.) / 4 - 1
     .endm
 
     .macro TryAssist jump_if_fail
-    .long 129
+    .long BTLCMD_TRYASSIST
     .long (\jump_if_fail-.) / 4 - 1
     .endm
 
     .macro TrySetMagicCoat jump_if_fail
-    .long 130
+    .long BTLCMD_TRYSETMAGICCOAT
     .long (\jump_if_fail-.) / 4 - 1
     .endm
 
     .macro MagicCoat
-    .long 131
+    .long BTLCMD_MAGICCOAT
     .endm
 
     .macro CalcRevengePowerMul
-    .long 132
+    .long BTLCMD_CALCREVENGEPOWERMUL
     .endm
 
     .macro TryBreakScreens jump_no_screens
-    .long 133
+    .long BTLCMD_TRYBREAKSCREENS
     .long (\jump_no_screens-.) / 4 - 1
     .endm
 
     .macro TryYawn jump_if_fail
-    .long 134
+    .long BTLCMD_TRYYAWN
     .long (\jump_if_fail-.) / 4 - 1
     .endm
 
     .macro TryKnockOff jump_if_fail
-    .long 135
+    .long BTLCMD_TRYKNOCKOFF
     .long (\jump_if_fail-.) / 4 - 1
     .endm
 
     .macro CalcHPFalloffPower
-    .long 136
+    .long BTLCMD_CALCHPFALLOFFPOWER
     .endm
 
     .macro TryImprison jump_if_fail
-    .long 137
+    .long BTLCMD_TRYIMPRISON
     .long (\jump_if_fail-.) / 4 - 1
     .endm
 
     .macro TryGrudge jump_if_fail
-    .long 138
+    .long BTLCMD_TRYGRUDGE
     .long (\jump_if_fail-.) / 4 - 1
     .endm
 
     .macro TrySnatch jump_if_fail
-    .long 139
+    .long BTLCMD_TRYSNATCH
     .long (\jump_if_fail-.) / 4 - 1
     .endm
 
     .macro CalcWeightBasedPower
-    .long 140
+    .long BTLCMD_CALCWEIGHTBASEDPOWER
     .endm
 
     .macro CalcWeatherBallParams
-    .long 141
+    .long BTLCMD_CALCWEATHERBALLPARAMS
     .endm
 
     .macro TryPursuit jump_no_trigger
-    .long 142
+    .long BTLCMD_TRYPURSUIT
     .long (\jump_no_trigger-.) / 4 - 1
     .endm
 
     .macro ApplyTypeEffectiveness
-    .long 143
+    .long BTLCMD_APPLYTYPEEFFECTIVENESS
     .endm
 
     .macro IfTurnFlag battler, flag, compare_to, jump
-    .long 144
+    .long BTLCMD_IFTURNFLAG
     .long \battler
     .long \flag
     .long \compare_to
@@ -830,54 +832,54 @@
     .endm
 
     .macro SetTurnFlag battler, flag, val
-    .long 145
+    .long BTLCMD_SETTURNFLAG
     .long \battler
     .long \flag
     .long \val
     .endm
 
     .macro CalcGyroBallPower
-    .long 146
+    .long BTLCMD_CALCGYROBALLPOWER
     .endm
 
     .macro TryMetalBurst jump_if_fail
-    .long 147
+    .long BTLCMD_TRYMETALBURST
     .long (\jump_if_fail-.) / 4 - 1
     .endm
 
     .macro CalcPaybackPower
-    .long 148
+    .long BTLCMD_CALCPAYBACKPOWER
     .endm
 
     .macro CalcTrumpCardPower
-    .long 149
+    .long BTLCMD_CALCTRUMPCARDPOWER
     .endm
 
     .macro CalcWringOutPower
-    .long 150
+    .long BTLCMD_CALCWRINGOUTPOWER
     .endm
 
     .macro TryMeFirst jump_if_fail
-    .long 151
+    .long BTLCMD_TRYMEFIRST
     .long (\jump_if_fail-.) / 4 - 1
     .endm
 
     .macro TryCopycat jump_if_fail
-    .long 152
+    .long BTLCMD_TRYCOPYCAT
     .long (\jump_if_fail-.) / 4 - 1
     .endm
 
     .macro CalcPunishmentPower
-    .long 153
+    .long BTLCMD_CALCPUNISHMENTPOWER
     .endm
 
     .macro TrySuckerPunch jump_if_fail
-    .long 154
+    .long BTLCMD_TRYSUCKERPUNCH
     .long (\jump_if_fail-.) / 4 - 1
     .endm
 
     .macro CheckSideCondition battler, op, condition, jump
-    .long 155
+    .long BTLCMD_CHECKSIDECONDITION
     .long \battler
     .long \op
     .long \condition
@@ -885,33 +887,33 @@
     .endm
 
     .macro TryFeint jump_if_fail
-    .long 156
+    .long BTLCMD_TRYFEINT
     .long (\jump_if_fail-.) / 4 - 1
     .endm
 
     .macro CheckCanShareStatus jump_if_fail
-    .long 157
+    .long BTLCMD_CHECKCANSHARESTATUS
     .long (\jump_if_fail-.) / 4 - 1
     .endm
 
     .macro TryLastResort jump_if_fail
-    .long 158
+    .long BTLCMD_TRYLASTRESORT
     .long (\jump_if_fail-.) / 4 - 1
     .endm
 
     .macro TryToxicSpikes jump_if_fail
-    .long 159
+    .long BTLCMD_TRYTOXICSPIKES
     .long (\jump_if_fail-.) / 4 - 1
     .endm
 
     .macro CheckToxicSpikes battler, jump_no_spikes
-    .long 160
+    .long BTLCMD_CHECKTOXICSPIKES
     .long \battler
     .long (\jump_no_spikes-.) / 4 - 1
     .endm
 
     .macro CheckIgnorableAbility op, battler, ability, jump
-    .long 161
+    .long BTLCMD_CHECKIGNORABLEABILITY
     .long \op
     .long \battler
     .long \ability
@@ -919,28 +921,28 @@
     .endm
 
     .macro IfSameSide battler_1, battler_2, jump_same_side
-    .long 162
+    .long BTLCMD_IFSAMESIDE
     .long \battler_1
     .long \battler_2
     .long (\jump_same_side-.) / 4 - 1
     .endm
 
     .macro GenerateEndOfBattleItem
-    .long 163
+    .long BTLCMD_GENERATEENDOFBATTLEITEM
     .endm
 
     .macro TrickRoom
-    .long 164
+    .long BTLCMD_TRICKROOM
     .endm
 
     .macro IfMovedThisTurn battler, jump
-    .long 165
+    .long BTLCMD_IFMOVEDTHISTURN
     .long \battler
     .long (\jump-.) / 4 - 1
     .endm
 
     .macro CheckItemHoldEffect op, battler, effect, jump
-    .long 166
+    .long BTLCMD_CHECKITEMHOLDEFFECT
     .long \op
     .long \battler
     .long \effect
@@ -948,289 +950,289 @@
     .endm
 
     .macro GetItemHoldEffect battler, dst
-    .long 167
+    .long BTLCMD_GETITEMHOLDEFFECT
     .long \battler
     .long \dst
     .endm
 
     .macro GetItemEffectParam battler, dst
-    .long 168
+    .long BTLCMD_GETITEMEFFECTPARAM
     .long \battler
     .long \dst
     .endm
 
     .macro TryCamouflage jump_if_fail
-    .long 169
+    .long BTLCMD_TRYCAMOUFLAGE
     .long (\jump_if_fail-.) / 4 - 1
     .endm
 
     .macro GetTerrainMove
-    .long 170
+    .long BTLCMD_GETTERRAINMOVE
     .endm
 
     .macro GetTerrainSecondaryEffect
-    .long 171
+    .long BTLCMD_GETTERRAINSECONDARYEFFECT
     .endm
 
     .macro CalcNaturalGiftParams jump_if_fail
-    .long 172
+    .long BTLCMD_CALCNATURALGIFTPARAMS
     .long (\jump_if_fail-.) / 4 - 1
     .endm
 
     .macro TryPluck jump_sticky_hold, jump_no_effect
-    .long 173
+    .long BTLCMD_TRYPLUCK
     .long (\jump_sticky_hold-.) / 4 - 2
     .long (\jump_no_effect-.) / 4 - 1
     .endm
 
     .macro TryFling jump_no_effect
-    .long 174
+    .long BTLCMD_TRYFLING
     .long (\jump_no_effect-.) / 4 - 1
     .endm
 
     .macro YesNoMenu type
-    .long 175
+    .long BTLCMD_YESNOMENU
     .long \type
     .endm
 
     .macro WaitYesNoResult jump_yes, jump_no
-    .long 176
+    .long BTLCMD_WAITYESNORESULT
     .long (\jump_yes-.) / 4 - 2
     .long (\jump_no-.) / 4 - 1
     .endm
 
     .macro ChoosePokemonMenu
-    .long 177
+    .long BTLCMD_CHOOSEPOKEMONMENU
     .endm
 
     .macro WaitPokemonMenuResult jump_cancel
-    .long 178
+    .long BTLCMD_WAITPOKEMONMENURESULT
     .long (\jump_cancel-.) / 4 - 1
     .endm
 
     .macro SetLinkBattleResult
-    .long 179
+    .long BTLCMD_SETLINKBATTLERESULT
     .endm
 
     .macro CheckStealthRock battler, jump_no_rocks
-    .long 180
+    .long BTLCMD_CHECKSTEALTHROCK
     .long \battler
     .long (\jump_no_rocks-.) / 4 - 1
     .endm
 
     .macro CheckEffectActivation jump_no_effect
-    .long 181
+    .long BTLCMD_CHECKEFFECTACTIVATION
     .long (\jump_no_effect-.) / 4 - 1
     .endm
 
     .macro CheckChatterActivation jump_no_effect
-    .long 182
+    .long BTLCMD_CHECKCHATTERACTIVATION
     .long (\jump_no_effect-.) / 4 - 1
     .endm
 
     .macro GetCurrentMoveData param
-    .long 183
+    .long BTLCMD_GETCURRENTMOVEDATA
     .long \param
     .endm
 
     .macro SetMosaic battler, distortion, delay
-    .long 184
+    .long BTLCMD_SETMOSAIC
     .long \battler
     .long \distortion
     .long \delay
     .endm
 
     .macro ChangeForm battler
-    .long 185
+    .long BTLCMD_CHANGEFORM
     .long \battler
     .endm
 
     .macro SetBattleBackground
-    .long 186
+    .long BTLCMD_SETBATTLEBACKGROUND
     .endm
 
     .macro UseBagItem battler
-    .long 187
+    .long BTLCMD_USEBAGITEM
     .long \battler
     .endm
 
     .macro TryEscape battler, jump_if_fail
-    .long 188
+    .long BTLCMD_TRYESCAPE
     .long \battler
     .long (\jump_if_fail-.) / 4 - 1
     .endm
 
     .macro ShowBattleStartPartyGauge battler
-    .long 189
+    .long BTLCMD_SHOWBATTLESTARTPARTYGAUGE
     .long \battler
     .endm
 
     .macro HideBattleStartPartyGauge battler
-    .long 190
+    .long BTLCMD_HIDEBATTLESTARTPARTYGAUGE
     .long \battler
     .endm
 
     .macro ShowPartyGauge battler
-    .long 191
+    .long BTLCMD_SHOWPARTYGAUGE
     .long \battler
     .endm
 
     .macro HidePartyGauge battler
-    .long 192
+    .long BTLCMD_HIDEPARTYGAUGE
     .long \battler
     .endm
 
     .macro LoadPartyGaugeGraphics
-    .long 193
+    .long BTLCMD_LOADPARTYGAUGEGRAPHICS
     .endm
 
     .macro FreePartyGaugeGraphics
-    .long 194
+    .long BTLCMD_FREEPARTYGAUGEGRAPHICS
     .endm
 
     .macro IncrementGameRecord battler, battler_type, game_stat
-    .long 195
+    .long BTLCMD_INCREMENTGAMERECORD
     .long \battler
     .long \battler_type
     .long \game_stat
     .endm
 
     .macro RestoreSprite battler
-    .long 196
+    .long BTLCMD_RESTORESPRITE
     .long \battler
     .endm
 
     .macro TriggerAbilityOnHit jump_no_effect
-    .long 197
+    .long BTLCMD_TRIGGERABILITYONHIT
     .long (\jump_no_effect-.) / 4 - 1
     .endm
 
     .macro SpriteToOAM battler
-    .long 198
+    .long BTLCMD_SPRITETOOAM
     .long \battler
     .endm
 
     .macro OAMToSprite battler
-    .long 199
+    .long BTLCMD_OAMTOSPRITE
     .long \battler
     .endm
 
     .macro CheckBlackOut battler, jump
-    .long 200
+    .long BTLCMD_CHECKBLACKOUT
     .long \battler
     .long (\jump-.) / 4 - 1
     .endm
 
     .macro BoostRandomStatBy2 jump_no_change
-    .long 201
+    .long BTLCMD_BOOSTRANDOMSTATBY2
     .long (\jump_no_change-.) / 4 - 1
     .endm
 
     .macro RemoveItem battler
-    .long 202
+    .long BTLCMD_REMOVEITEM
     .long \battler
     .endm
 
     .macro TryRecycle jump_if_fail
-    .long 203
+    .long BTLCMD_TRYRECYCLE
     .long (\jump_if_fail-.) / 4 - 1
     .endm
 
     .macro TriggerHeldItemOnHit jump_no_effect
-    .long 204
+    .long BTLCMD_TRIGGERHELDITEMONHIT
     .long (\jump_no_effect-.) / 4 - 1
     .endm
 
     .macro PrintBattleResultMessage
-    .long 205
+    .long BTLCMD_PRINTBATTLERESULTMESSAGE
     .endm
 
     .macro PrintEscapeMessage
-    .long 206
+    .long BTLCMD_PRINTESCAPEMESSAGE
     .endm
 
     .macro PrintForfeitMessage
-    .long 207
+    .long BTLCMD_PRINTFORFEITMESSAGE
     .endm
 
     .macro CheckHoldOnWith1HP battler
-    .long 208
+    .long BTLCMD_CHECKHOLDONWITH1HP
     .long \battler
     .endm
 
     .macro TryRestoreStatusOnSwitch battler, jump_no_effect
-    .long 209
+    .long BTLCMD_TRYRESTORESTATUSONSWITCH
     .long \battler
     .long (\jump_no_effect-.) / 4 - 1
     .endm
 
     .macro CheckSubstitute battler, jump_sub_active
-    .long 210
+    .long BTLCMD_CHECKSUBSTITUTE
     .long \battler
     .long (\jump_sub_active-.) / 4 - 1
     .endm
 
     .macro CheckIgnoreWeather jump
-    .long 211
+    .long BTLCMD_CHECKIGNOREWEATHER
     .long (\jump-.) / 4 - 1
     .endm
 
     .macro SetRandomTarget battler
-    .long 212
+    .long BTLCMD_SETRANDOMTARGET
     .long \battler
     .endm
 
     .macro TriggerHeldItemOnPivotMove jump_no_effect
-    .long 213
+    .long BTLCMD_TRIGGERHELDITEMONPIVOTMOVE
     .long (\jump_no_effect-.) / 4 - 1
     .endm
 
     .macro RefreshSprite battler
-    .long 214
+    .long BTLCMD_REFRESHSPRITE
     .long \battler
     .endm
 
     .macro PlayMoveHitSound battler
-    .long 215
+    .long BTLCMD_PLAYMOVEHITSOUND
     .long \battler
     .endm
 
     .macro PlayBGM battler, sdat_id
-    .long 216
+    .long BTLCMD_PLAYBGM
     .long \battler
     .long \sdat_id
     .endm
 
     .macro CheckSafariGameDone jump_not_over
-    .long 217
+    .long BTLCMD_CHECKSAFARIGAMEDONE
     .long (\jump_not_over)-.) / 4 - 1
     .endm
 
     .macro WaitTime frames
-    .long 218
+    .long BTLCMD_WAITTIME
     .long \frames
     .endm
 
     .macro CheckCurMoveIsType type, jump
-    .long 219
+    .long BTLCMD_CHECKCURMOVEISTYPE
     .long \type
     .long (\jump)-.) / 4 - 1
     .endm
 
     .macro LoadArchivedMonData species, form_var, param
-    .long 220
+    .long BTLCMD_LOADARCHIVEDMONDATA
     .long \species
     .long \form_var
     .long \param
     .endm
 
     .macro RefreshMonData battler
-    .long 221
+    .long BTLCMD_REFRESHMONDATA
     .long \battler
     .endm
 
     .macro End
-    .long 222
+    .long BTLCMD_END
     .endm
 
     .text

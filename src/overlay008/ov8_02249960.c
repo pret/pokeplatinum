@@ -58,9 +58,9 @@
 #include "system_vars.h"
 #include "terrain_collision_manager.h"
 #include "trainer_info.h"
+#include "trainer_see.h"
 #include "unk_0205F180.h"
 #include "unk_020655F4.h"
-#include "unk_02067A84.h"
 #include "vars_flags.h"
 
 #include "res/field/props/models/prop_models.naix"
@@ -3971,8 +3971,8 @@ BOOL ov8_0224C51C(FieldSystem *fieldSystem)
     v1 = Direction_GetOpposite(MapObject_GetFacingDir(v8));
 
     while (MapObjectMan_FindObjectWithStatus(mapObjMan, &v7, &v0, (1 << 0))) {
-        if ((v7 != v8) && (sub_02067F88(fieldSystem, v7) == 1)) {
-            v3 = sub_02067D58(v7, playerAvatar, v1, v2);
+        if ((v7 != v8) && (FieldSystem_IsTrainerDefated(fieldSystem, v7) == 1)) {
+            v3 = MapObject_GetDistanceToPlayer(v7, playerAvatar, v1, v2);
 
             if (v3 != -1) {
                 int v9 = MapObject_GetScript(v7);

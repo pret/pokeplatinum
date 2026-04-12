@@ -27,7 +27,7 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "trainer_card.h"
+#include "trainer_case.h"
 #include "trainer_info.h"
 #include "unk_02014A84.h"
 #include "unk_02014D38.h"
@@ -80,8 +80,8 @@ struct UnkStruct_0205B43C_t {
     u8 unk_176[2];
     Sentence unk_178;
     BOOL unk_180;
-    TrainerCard *unk_184;
-    TrainerCard *unk_188[2];
+    TrainerCase *unk_184;
+    TrainerCase *unk_188[2];
 };
 
 static UnkStruct_0205B43C *sub_0205B3A0(FieldSystem *fieldSystem);
@@ -688,18 +688,18 @@ int sub_0205B9EC(UnkStruct_0205B43C *param0, int param1)
 void sub_0205BA08(int param0, int param1, void *param2, void *param3)
 {
     FieldSystem *fieldSystem = (FieldSystem *)param3;
-    TrainerCard *trainerCard = (TrainerCard *)param2;
+    TrainerCase *trainerCase = (TrainerCase *)param2;
     TrainerInfo *trainerInfo = CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1);
     void *journalEntryOnlineEvent;
 
     int i, v5 = 0;
     u8 *v6 = (u8 *)param2;
 
-    for (i = 0; i < sizeof(TrainerCard); i++) {
+    for (i = 0; i < sizeof(TrainerCase); i++) {
         v5 ^= v6[i];
     }
 
-    trainerCard->unk_66A = 1;
+    trainerCase->unk_66A = 1;
 
     if (param0 != CommSys_CurNetId()) {
         journalEntryOnlineEvent = JournalEntry_CreateEventGreetedInUnionRoom((u16 *)TrainerInfo_Name(trainerInfo), TrainerInfo_Gender(trainerInfo), 31);
@@ -1369,11 +1369,11 @@ static void sub_0205C160(UnkStruct_0205B43C *param0)
 
 void *sub_0205C17C(UnkStruct_0205B43C *param0)
 {
-    param0->unk_184 = TrainerCard_New(HEAP_ID_SYSTEM);
-    param0->unk_188[0] = TrainerCard_New(HEAP_ID_SYSTEM);
-    param0->unk_188[1] = TrainerCard_New(HEAP_ID_SYSTEM);
+    param0->unk_184 = TrainerCase_New(HEAP_ID_SYSTEM);
+    param0->unk_188[0] = TrainerCase_New(HEAP_ID_SYSTEM);
+    param0->unk_188[1] = TrainerCase_New(HEAP_ID_SYSTEM);
 
-    TrainerCard_Init(FALSE, FALSE, 0, Appearance_GetData(TrainerInfo_Gender(param0->unk_08), TrainerInfo_Appearance(param0->unk_08), 0), param0->fieldSystem, param0->unk_184);
+    TrainerCase_Init(FALSE, FALSE, 0, Appearance_GetData(TrainerInfo_Gender(param0->unk_08), TrainerInfo_Appearance(param0->unk_08), 0), param0->fieldSystem, param0->unk_184);
 
     return (void *)param0->unk_188[CommSys_CurNetId() ^ 1];
 }
@@ -1387,5 +1387,5 @@ void sub_0205C1F0(UnkStruct_0205B43C *param0)
 
 void sub_0205C214(UnkStruct_0205B43C *param0)
 {
-    CommSys_SendDataHuge(105, param0->unk_184, sizeof(TrainerCard));
+    CommSys_SendDataHuge(105, param0->unk_184, sizeof(TrainerCase));
 }

@@ -13,9 +13,9 @@
 #include "map_object_move.h"
 #include "math_util.h"
 #include "player_avatar.h"
+#include "trainer_see.h"
 #include "unk_0205F180.h"
 #include "unk_020655F4.h"
-#include "unk_02067A84.h"
 
 typedef struct {
     int unk_00;
@@ -1100,7 +1100,7 @@ static int sub_02065124(MapObject *mapObj, UnkStruct_0206502C *param1)
         PlayerAvatar *playerAvatar = FieldSystem_GetPlayerAvatar(fieldSystem);
         int v2 = MapObject_GetFacingDir(mapObj);
         int v3 = MapObject_GetDataAt(mapObj, 0);
-        int v4 = sub_02067D58(mapObj, playerAvatar, v2, v3);
+        int v4 = MapObject_GetDistanceToPlayer(mapObj, playerAvatar, v2, v3);
 
         if (v4 != -1) {
             int v5 = MovementAction_TurnActionTowardsDir(v2, MOVEMENT_ACTION_JUMP_ON_SPOT_FAST_NORTH);

@@ -72,40 +72,7 @@ static void TransformFunc_LinearEven(TransformData *transform, PokemonAnim *monA
 static void TransformFunc_LinearBounded(TransformData *transform, PokemonAnim *monAnim);
 
 static const PokemonAnimCmd sPokemonAnimCmds[NUM_POKEMON_ANIM_COMMANDS] = {
-    PokemonAnimCmd_End,
-    PokemonAnimCmd_WaitFrame,
-    PokemonAnimCmd_SetOriginalPosition,
-    PokemonAnimCmd_SetVarIf,
-    PokemonAnimCmd_SetVar,
-    PokemonAnimCmd_CopyVar,
-    PokemonAnimCmd_Add,
-    PokemonAnimCmd_Multiply,
-    PokemonAnimCmd_Subtract,
-    PokemonAnimCmd_Divide,
-    PokemonAnimCmd_Modulo,
-    PokemonAnimCmd_Loop,
-    PokemonAnimCmd_LoopEnd,
-    PokemonAnimCmd_SetSpriteAttribute,
-    PokemonAnimCmd_AddSpriteAttribute,
-    PokemonAnimCmd_UpdateSpriteAttribute,
-    PokemonAnimCmd_Sin,
-    PokemonAnimCmd_Cos,
-    PokemonAnimCmd_SetTranslation,
-    PokemonAnimCmd_AddTranslation,
-    PokemonAnimCmd_UpdateAttribute,
-    PokemonAnimCmd_ApplyTranslation,
-    PokemonAnimCmd_ApplyScaleAndRotation,
-    PokemonAnimCmd_SetOffset,
-    PokemonAnimCmd_WaitTransform,
-    PokemonAnimCmd_SetYNormalization,
-    PokemonAnimCmd_Transform_Curve,
-    PokemonAnimCmd_Transform_CurveEven,
-    PokemonAnimCmd_Transform_Linear,
-    PokemonAnimCmd_Transform_LinearEven,
-    PokemonAnimCmd_Transform_LinearBounded,
-    PokemonAnimCmd_SetStartDelay,
-    PokemonAnimCmd_Fade,
-    PokemonAnimCmd_WaitFade
+#include "data/scripts/pokemon_anim_cmd.h"
 };
 
 static const TransformFuncParameters sTransformFuncToParams[] = {

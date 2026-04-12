@@ -20,10 +20,10 @@
 #include "sys_task_manager.h"
 #include "system_flags.h"
 #include "system_vars.h"
+#include "trainer_see.h"
 #include "unk_020528D0.h"
 #include "unk_02054884.h"
 #include "unk_020553DC.h"
-#include "unk_02067A84.h"
 #include "vars_flags.h"
 
 BOOL ScrCmd_0B6(ScriptContext *ctx)
@@ -31,7 +31,7 @@ BOOL ScrCmd_0B6(ScriptContext *ctx)
     int *sightRange;
     int *scriptID;
     int *trainerID;
-    int *v3;
+    enum ApproachType *approachType;
     int *direction;
     SysTask **task;
     MapObject **mapObj;
@@ -44,7 +44,7 @@ BOOL ScrCmd_0B6(ScriptContext *ctx)
         direction = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_TRAINER_0_DIRECTION);
         scriptID = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_TRAINER_0_SCRIPT_ID);
         trainerID = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_TRAINER_0_ID);
-        v3 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_TRAINER_0_TYPE);
+        approachType = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_TRAINER_0_TYPE);
         mapObj = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_TRAINER_0_MAP_OBJECT);
         task = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_TRAINER_0_TASK);
     } else {
@@ -52,13 +52,13 @@ BOOL ScrCmd_0B6(ScriptContext *ctx)
         direction = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_TRAINER_1_DIRECTION);
         scriptID = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_TRAINER_1_SCRIPT_ID);
         trainerID = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_TRAINER_1_ID);
-        v3 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_TRAINER_1_TYPE);
+        approachType = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_TRAINER_1_TYPE);
         mapObj = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_TRAINER_1_MAP_OBJECT);
         task = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_TRAINER_1_TASK);
     }
 
     playerAvatar = fieldSystem->playerAvatar;
-    *task = sub_02067FB8(fieldSystem, *mapObj, playerAvatar, *direction, *sightRange, 0, *v3, approachNum);
+    *task = sub_02067FB8(fieldSystem, *mapObj, playerAvatar, *direction, *sightRange, 0, *approachType, approachNum);
 
     return FALSE;
 }

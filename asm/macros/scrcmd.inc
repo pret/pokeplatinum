@@ -55,8 +55,7 @@
 #include "constants/tv_broadcast.h"
 #include "constants/battle.h"
 
-#define INC_AS_ASM
-#include "data/field/script_commands.h"
+#include "data/scripts/scrcmd.h"
 #include "macros/movement.inc"
 
     .set FALSE, 0
@@ -3170,12 +3169,12 @@
     .byte \npcTradeID
     .endm
 
-    .macro GetNpcTradeSpecies destVar
+    .macro GetNPCTradeSpecies destVar
     .short SCRCMD_GETNPCTRADESPECIES
     .short \destVar
     .endm
 
-    .macro GetNpcTradeRequestedSpecies destVar
+    .macro GetNPCTradeRequestedSpecies destVar
     .short SCRCMD_GETNPCTRADEREQUESTEDSPECIES
     .short \destVar
     .endm
@@ -3185,7 +3184,7 @@
     .short \partySlot
     .endm
 
-    .macro FinishNpcTrade
+    .macro FinishNPCTrade
     .short SCRCMD_FINISHNPCTRADE
     .endm
 
@@ -3685,13 +3684,13 @@
     .short \destVar
     .endm
 
-    .macro ScrCmd_269 arg0, arg1, arg2, arg3, arg4
-    .short SCRCMD_269
-    .short \arg0
-    .short \arg1
-    .short \arg2
-    .short \arg3
-    .short \arg4
+    .macro ShakeObject localID, times, speed, xOffset, zOffset
+    .short SCRCMD_SHAKEOBJECT
+    .short \localID
+    .short \times
+    .short \speed
+    .short \xOffset
+    .short \zOffset
     .endm
 
     .macro FlickerObject localID, times, delay
@@ -4156,9 +4155,9 @@
     .short \z
     .endm
 
-    .macro ScrCmd_2B6 arg0, arg1
+    .macro ScrCmd_2B6 localID, arg1
     .short SCRCMD_2B6
-    .short \arg0
+    .short \localID
     .byte \arg1
     .endm
 

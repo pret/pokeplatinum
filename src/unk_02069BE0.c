@@ -18,8 +18,8 @@
 #include "overworld_anim_manager.h"
 #include "player_avatar.h"
 #include "terrain_collision_manager.h"
+#include "trainer_see.h"
 #include "unk_020655F4.h"
-#include "unk_02067A84.h"
 
 typedef struct {
     u8 unk_00;
@@ -312,7 +312,7 @@ MapObject *sub_02069EB8(MapObject *mapObj)
     int v0 = 0;
     int v1 = MapObject_GetTrainerType(mapObj);
     int v2 = MapObject_GetMapID(mapObj);
-    u32 v3 = sub_02067F24(mapObj);
+    u32 v3 = MapObject_GetTrainerID(mapObj);
     const MapObjectManager *mapObjMan = MapObject_MapObjectManager(mapObj);
     MapObject *v5;
 
@@ -327,7 +327,7 @@ MapObject *sub_02069EB8(MapObject *mapObj)
     case 0x8:
         while (MapObjectMan_FindObjectWithStatus(mapObjMan, &v5, &v0, (1 << 0)) == 1) {
             if ((mapObj != v5) && (MapObject_GetMapID(v5) == v2)) {
-                if (sub_02067F24(v5) == v3) {
+                if (MapObject_GetTrainerID(v5) == v3) {
                     return v5;
                 }
             }
@@ -346,10 +346,10 @@ static int sub_02069F48(MapObject *mapObj, UnkStruct_02069F48 *param1)
 
     v0 = 0;
     v1 = MapObject_GetMapID(mapObj);
-    v2 = sub_02067F24(mapObj);
+    v2 = MapObject_GetTrainerID(mapObj);
 
     while (MapObjectMan_FindObjectWithStatus(mapObjMan, &v3, &v0, (1 << 0)) == 1) {
-        if ((mapObj != v3) && (MapObject_GetMapID(v3) == v1) && (sub_02067F24(v3) == v2)) {
+        if ((mapObj != v3) && (MapObject_GetMapID(v3) == v1) && (MapObject_GetTrainerID(v3) == v2)) {
             if (param1->unk_01 == 0) {
                 sub_02069FC4(mapObj, param1, v3);
             }

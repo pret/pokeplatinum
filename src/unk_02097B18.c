@@ -40,7 +40,7 @@
 #include "system.h"
 #include "touch_pad.h"
 #include "touch_screen_actions.h"
-#include "tv_episode_segment.h"
+#include "tv_segment.h"
 #include "unk_0202C9F4.h"
 #include "vram_transfer.h"
 
@@ -388,7 +388,7 @@ static BOOL sub_02097F38(FieldTask *param0)
             v12 = sub_02098164(v12);
             broadcast = SaveData_GetTVBroadcast(fieldSystem->saveData);
 
-            FieldSystem_SaveTVEpisodeSegment_SealClubShow(broadcast, v8, v12);
+            FieldSystem_SaveTVSegment_SealClubShow(broadcast, v8, v12);
         }
     }
         v0->unk_14 = 1;

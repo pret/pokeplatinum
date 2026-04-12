@@ -1,6 +1,7 @@
 #ifndef POKEPLATINUM_SCRIPT_MANAGER_H
 #define POKEPLATINUM_SCRIPT_MANAGER_H
 
+#include "constants/approach_type.h"
 #include "constants/init_script_types.h"
 
 #include "struct_decls/struct_02061AB4_decl.h"
@@ -134,7 +135,7 @@ typedef struct ApproachingTrainer {
     int direction;
     int scriptID;
     int trainerID;
-    int unk_10;
+    enum ApproachType approachType;
     MapObject *object;
     SysTask *task;
 } ApproachingTrainer;
@@ -174,7 +175,7 @@ typedef struct ScriptManager {
 } ScriptManager;
 
 void ScriptManager_Set(FieldSystem *fieldSystem, u16 scriptID, MapObject *object);
-void ScriptManager_SetApproachingTrainer(FieldSystem *fieldSystem, MapObject *object, int sightRange, int direction, int scriptID, int trainerID, int trainerType, int approachNum);
+void ScriptManager_SetApproachingTrainer(FieldSystem *fieldSystem, MapObject *object, int sightRange, int direction, int scriptID, int trainerID, enum ApproachType approachType, int approachNum);
 void ScriptManager_Start(FieldTask *taskManager, u16 scriptID, MapObject *object, void *saveType);
 void ScriptManager_Change(FieldTask *taskManager, u16 scriptID, MapObject *object);
 ScriptContext *ScriptContext_CreateAndStart(FieldSystem *fieldSystem, u16 scriptID);

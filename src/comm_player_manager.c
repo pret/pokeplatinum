@@ -39,7 +39,7 @@
 #include "system.h"
 #include "terrain_collision_manager.h"
 #include "trainer_info.h"
-#include "tv_episode_segment.h"
+#include "tv_segment.h"
 #include "underground.h"
 #include "unk_020366A0.h"
 #include "unk_0205F180.h"

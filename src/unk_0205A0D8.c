@@ -37,7 +37,7 @@
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "trainer_card.h"
+#include "trainer_case.h"
 #include "trainer_info.h"
 #include "unk_0202D778.h"
 #include "unk_020363E8.h"
@@ -1002,7 +1002,7 @@ static BOOL sub_0205B140(FieldTask *param0)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
     UnkStruct_0205B2D4 *v1 = FieldTask_GetEnv(param0);
-    TrainerCard *v2 = (TrainerCard *)sub_02059EBC(v1->unk_24, NULL, 0);
+    TrainerCase *v2 = (TrainerCase *)sub_02059EBC(v1->unk_24, NULL, 0);
 
     switch (v1->unk_28) {
     case 0:
@@ -1011,7 +1011,7 @@ static BOOL sub_0205B140(FieldTask *param0)
         v1->unk_00 = String_Init(100 * 2, HEAP_ID_FIELD1);
         v1->unk_04 = String_Init(100 * 2, HEAP_ID_FIELD1);
 
-        MessageLoader_GetString(v1->unk_1C, 2 + v2->level, v1->unk_00);
+        MessageLoader_GetString(v1->unk_1C, 2 + v2->cardLevel, v1->unk_00);
         StringTemplate_SetPlayerName(v1->unk_18, 0, CommInfo_TrainerInfo(v1->unk_24));
         StringTemplate_Format(v1->unk_18, v1->unk_04, v1->unk_00);
         FieldMessage_AddWindow(fieldSystem->bgConfig, &v1->unk_08, 3);
@@ -1040,7 +1040,7 @@ static BOOL sub_0205B140(FieldTask *param0)
         }
         break;
     case 3:
-        FieldSystem_OpenTrainerCardScreen(fieldSystem, v2);
+        FieldSystem_OpenTrainerCase(fieldSystem, v2);
         v1->unk_28++;
         break;
     case 4:

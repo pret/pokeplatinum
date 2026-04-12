@@ -719,7 +719,7 @@ static void ov5_021D15F4(FieldSystem *fieldSystem)
     BillboardLists_Draw();
 
     if (FieldMap_InDistortionWorld(fieldSystem) == TRUE) {
-        ov9_02250780(fieldSystem);
+        DistWorld_ApplyGiratinaSpritePalette(fieldSystem);
     }
 
     {

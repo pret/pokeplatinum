@@ -637,21 +637,21 @@ void FieldTask_StartUseSurf(FieldTask *task, int direction, int partySlot)
     SurfTask_Start(fieldSystem, direction, &monRideTask);
 }
 
-int PlayerAvatar_CanUseSurf(PlayerAvatar *playerAvatar, u32 currTileBehavior, u32 nextTileBehavior)
+BOOL PlayerAvatar_CanUseSurf(PlayerAvatar *playerAvatar, u32 currTileBehavior, u32 nextTileBehavior)
 {
-    MapObject *v0 = Player_MapObject(playerAvatar);
+    MapObject *playerObj = Player_MapObject(playerAvatar);
 
     if (TileBehavior_IsSurfable(nextTileBehavior) == TRUE) {
         if ((TileBehavior_IsBridge(currTileBehavior) == TRUE) || (TileBehavior_IsBridgeStart(currTileBehavior) == TRUE)) {
-            if (sub_02062F30(v0) == 1) {
-                return 0;
+            if (MapObject_IsStatusOnElevatedBridge(playerObj) == TRUE) {
+                return FALSE;
             }
         }
 
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL FieldTask_UseSurf(FieldTask *task)

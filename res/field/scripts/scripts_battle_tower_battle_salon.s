@@ -31,7 +31,7 @@ BattleTowerBattleSalon_CheckShowMira:
 BattleTowerBattleSalon_ShowMira:
     ClearFlag FLAG_HIDE_BATTLE_SALON_MIRA
 BattleTowerBattleSalon_CheckShowRiley:
-    GoToIfUnset FLAG_TRAVELED_WITH_RILEY, BattleTowerBattleSalon_HideRiley
+    GoToIfUnset FLAG_RECEIVED_RIOLU_EGG_FROM_RILEY, BattleTowerBattleSalon_HideRiley
     GoToIfNe VAR_UNK_0x40DF, 2, BattleTowerBattleSalon_ShowRiley
     CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, BT_PARAM_PARTNER_ID, VAR_MAP_LOCAL_9
     GoToIfEq VAR_MAP_LOCAL_9, BT_PARTNER_RILEY, BattleTowerBattleSalon_HideRiley

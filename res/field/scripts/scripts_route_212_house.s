@@ -57,7 +57,7 @@ Route212House_TryTeachMove:
     SetVar VAR_0x8003, VAR_RESULT
     GoToIfEq VAR_0x8003, MENU_CANCEL, Route212House_SeeYouThen
     CheckCanAffordMove VAR_0x8003, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, Route212House_NotEnoughShards
+    GoToIfEq VAR_RESULT, FALSE, Route212House_NotEnoughShards
     GetPartyMonMoveCount VAR_RESULT, VAR_0x8000
     SetVar VAR_0x8002, VAR_RESULT
     GoToIfEq VAR_RESULT, LEARNED_MOVES_MAX, Route212House_TryReplaceMove
@@ -78,7 +78,7 @@ Route212House_TryReplaceMove:
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
-    GoToIfEq VAR_0x8002, 4, Route212House_StopTryingToTeachMove
+    GoToIfEq VAR_0x8002, LEARNED_MOVES_MAX, Route212House_StopTryingToTeachMove
     GetPartyMonMove VAR_RESULT, VAR_0x8000, VAR_0x8002
     BufferMoveName 1, VAR_RESULT
     Message Route212House_Text_OKToForgetMove

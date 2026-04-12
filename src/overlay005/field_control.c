@@ -59,6 +59,7 @@
 #include "system_vars.h"
 #include "terrain_collision_manager.h"
 #include "trainer_info.h"
+#include "trainer_see.h"
 #include "unk_02030EE0.h"
 #include "unk_020366A0.h"
 #include "unk_0203C954.h"
@@ -67,7 +68,6 @@
 #include "unk_0205A0D8.h"
 #include "unk_0205B33C.h"
 #include "unk_0205F180.h"
-#include "unk_02067A84.h"
 #include "vars_flags.h"
 
 static BOOL Field_CheckMapTransition(FieldSystem *fieldSystem, const FieldInput *input);
@@ -185,7 +185,7 @@ BOOL FieldInput_Process(const FieldInput *input, FieldSystem *fieldSystem)
             hasTwoAliveMons = TRUE;
         }
 
-        if (sub_02067A84(fieldSystem, hasTwoAliveMons) == TRUE
+        if (FieldSystem_CheckForTrainersWantingBattle(fieldSystem, hasTwoAliveMons) == TRUE
             || (PersistedMapFeatures_IsCurrentDynamicMap(fieldSystem, DYNAMIC_MAP_FEATURES_HEARTHOME_GYM) == TRUE
                 && ov8_0224C51C(fieldSystem) == TRUE)) {
 

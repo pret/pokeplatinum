@@ -44,7 +44,7 @@
 #include "string_template.h"
 #include "system_vars.h"
 #include "text.h"
-#include "tv_episode_segment.h"
+#include "tv_segment.h"
 #include "unk_0202F180.h"
 #include "unk_020366A0.h"
 #include "unk_02038F8C.h"

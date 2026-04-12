@@ -87,7 +87,7 @@ BOOL ov9_0224F240(const MapObject *param0, int param1);
 BOOL ov9_0224F2B0(const MapObject *param0);
 UnkStruct_ov9_0224F6EC *ov9_0224F2BC(FieldSystem *fieldSystem, FieldTask *param1, MapObject *param2);
 BOOL ov9_0224F6EC(UnkStruct_ov9_0224F6EC *param0);
-void ov9_02250780(FieldSystem *fieldSystem);
+void DistWorld_ApplyGiratinaSpritePalette(FieldSystem *fieldSystem);
 BOOL ov9_02250F74(FieldSystem *fieldSystem);
 BOOL DistWorld_CheckCollisionOnCurrentFloatingPlatform(FieldSystem *fieldSystem, int tileX, int tileY, int tileZ);
 BOOL DistWorld_IsValidTileOnCurrentFloatingPlatform(FieldSystem *fieldSystem, int tileX, int tileY, int tileZ);

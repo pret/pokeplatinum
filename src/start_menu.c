@@ -28,6 +28,7 @@
 #include "overlay005/save_info_window.h"
 #include "overlay005/sprite_resource_manager.h"
 
+#include "appearance.h"
 #include "bag.h"
 #include "bag_context.h"
 #include "bg_window.h"
@@ -71,7 +72,7 @@
 #include "system_flags.h"
 #include "system_vars.h"
 #include "text.h"
-#include "trainer_card.h"
+#include "trainer_case.h"
 #include "trainer_info.h"
 #include "unk_02014A84.h"
 #include "unk_0202D778.h"
@@ -97,7 +98,7 @@ enum StartMenuOption {
     START_MENU_OPTION_POKEDEX = 0,
     START_MENU_OPTION_POKEMON,
     START_MENU_OPTION_BAG,
-    START_MENU_OPTION_TRAINER_CARD,
+    START_MENU_OPTION_TRAINER_CASE,
     START_MENU_OPTION_SAVE,
     START_MENU_OPTION_OPTIONS,
     START_MENU_OPTION_EXIT,
@@ -157,9 +158,9 @@ static void StartMenu_ApplicationRun(FieldTask *fieldTask);
 static BOOL StartMenu_SelectPokedex(FieldTask *fieldTask);
 static BOOL StartMenu_OpenPokedex(FieldTask *fieldTask);
 static BOOL StartMenu_ExitPokedex(FieldTask *fieldTask);
-static BOOL StartMenu_SelectTrainerCard(FieldTask *fieldTask);
-static BOOL StartMenu_TrainerCard(FieldTask *fieldTask);
-static BOOL StartMenu_ExitTrainerCard(FieldTask *fieldTask);
+static BOOL StartMenu_SelectTrainerCase(FieldTask *fieldTask);
+static BOOL StartMenu_TrainerCase(FieldTask *fieldTask);
+static BOOL StartMenu_ExitTrainerCase(FieldTask *fieldTask);
 static BOOL StartMenu_SelectOptions(FieldTask *fieldTask);
 static BOOL StartMenu_Options(FieldTask *fieldTask);
 static BOOL StartMenu_ExitOptions(FieldTask *fieldTask);
@@ -194,7 +195,7 @@ static const StartMenuAction sStartMenuActions[] = {
     [START_MENU_OPTION_POKEDEX]      = { .bankEntry = StartMenu_Text_Pokedex,        .callback = StartMenu_SelectPokedex     },
     [START_MENU_OPTION_POKEMON]      = { .bankEntry = StartMenu_Text_Pokemon,        .callback = StartMenu_SelectPokemon     },
     [START_MENU_OPTION_BAG]          = { .bankEntry = StartMenu_Text_Bag,            .callback = StartMenu_SelectBag         },
-    [START_MENU_OPTION_TRAINER_CARD] = { .bankEntry = StartMenu_Text_PlayerTemplate, .callback = StartMenu_SelectTrainerCard },
+    [START_MENU_OPTION_TRAINER_CASE] = { .bankEntry = StartMenu_Text_PlayerTemplate, .callback = StartMenu_SelectTrainerCase },
     [START_MENU_OPTION_SAVE]         = { .bankEntry = StartMenu_Text_Save,           .callback = StartMenu_SelectSave        },
     [START_MENU_OPTION_OPTIONS]      = { .bankEntry = StartMenu_Text_Options,        .callback = StartMenu_SelectOptions     },
     [START_MENU_OPTION_EXIT]         = { .bankEntry = StartMenu_Text_Exit,           .callback = (void *)MENU_CANCEL         },
@@ -268,7 +269,7 @@ BOOL FieldSystem_IsInValidLocation(FieldSystem *fieldSystem)
 #define HIDE_OPTION_POKEDEX      (1 << 0)
 #define HIDE_OPTION_POKEMON      (1 << 1)
 #define HIDE_OPTION_BAG          (1 << 2)
-#define HIDE_OPTION_TRAINER_CARD (1 << 3)
+#define HIDE_OPTION_TRAINER_CASE (1 << 3)
 #define HIDE_OPTION_SAVE         (1 << 4)
 #define HIDE_OPTION_OPTIONS      (1 << 5)
 #define HIDE_OPTION_EXIT         (1 << 6)
@@ -536,7 +537,7 @@ static void StartMenu_InitMenu(FieldTask *fieldTask)
     menu->cursorPos = 0;
 
     for (u32 i = 0; i < optionCount; i++) {
-        if (menu->options[i] == START_MENU_OPTION_TRAINER_CARD) {
+        if (menu->options[i] == START_MENU_OPTION_TRAINER_CASE) {
             StringTemplate *template = StringTemplate_Default(HEAP_ID_FIELD2);
             String *string = String_Init(8, HEAP_ID_FIELD2);
             String *fmtString = MessageLoader_GetNewString(loader, sStartMenuActions[menu->options[i]].bankEntry);
@@ -597,7 +598,7 @@ static u32 StartMenu_MakeOptionList(StartMenu *menu, u8 *listOut)
     ADD_OPTION_IF_NOT_HIDDEN(START_MENU_OPTION_POKEDEX, HIDE_OPTION_POKEDEX);
     ADD_OPTION_IF_NOT_HIDDEN(START_MENU_OPTION_POKEMON, HIDE_OPTION_POKEMON);
     ADD_OPTION_IF_NOT_HIDDEN(START_MENU_OPTION_BAG, HIDE_OPTION_BAG);
-    ADD_OPTION_IF_NOT_HIDDEN(START_MENU_OPTION_TRAINER_CARD, HIDE_OPTION_TRAINER_CARD);
+    ADD_OPTION_IF_NOT_HIDDEN(START_MENU_OPTION_TRAINER_CASE, HIDE_OPTION_TRAINER_CASE);
     ADD_OPTION_IF_NOT_HIDDEN(START_MENU_OPTION_SAVE, HIDE_OPTION_SAVE);
     ADD_OPTION_IF_NOT_HIDDEN(START_MENU_OPTION_OPTIONS, HIDE_OPTION_OPTIONS);
     ADD_OPTION_IF_NOT_HIDDEN(START_MENU_OPTION_EXIT, HIDE_OPTION_EXIT);
@@ -1261,39 +1262,39 @@ static BOOL StartMenu_ExitBag(FieldTask *fieldTask)
     return FALSE;
 }
 
-static BOOL StartMenu_SelectTrainerCard(FieldTask *fieldTask)
+static BOOL StartMenu_SelectTrainerCase(FieldTask *fieldTask)
 {
     StartMenu *menu = FieldTask_GetEnv(fieldTask);
 
     FieldMap_FadeScreen(FADE_TYPE_BRIGHTNESS_OUT);
 
-    menu->callback = StartMenu_TrainerCard;
+    menu->callback = StartMenu_TrainerCase;
     menu->state = START_MENU_STATE_APP_START;
 
     return TRUE;
 }
 
-static BOOL StartMenu_TrainerCard(FieldTask *fieldTask)
+static BOOL StartMenu_TrainerCase(FieldTask *fieldTask)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(fieldTask);
     StartMenu *menu = FieldTask_GetEnv(fieldTask);
 
-    menu->taskData = TrainerCard_New(HEAP_ID_FIELD2);
+    menu->taskData = TrainerCase_New(HEAP_ID_FIELD2);
 
-    TrainerCard_Init(TRUE, TRUE, 0, 0xFF, fieldSystem, (TrainerCard *)menu->taskData);
-    FieldSystem_OpenTrainerCardScreen(fieldSystem, (TrainerCard *)menu->taskData);
+    TrainerCase_Init(TRUE, TRUE, 0, TRAINER_APPEARANCE_DEFAULT, fieldSystem, (TrainerCase *)menu->taskData);
+    FieldSystem_OpenTrainerCase(fieldSystem, (TrainerCase *)menu->taskData);
 
-    menu->callback = StartMenu_ExitTrainerCard;
+    menu->callback = StartMenu_ExitTrainerCase;
     return FALSE;
 }
 
-static BOOL StartMenu_ExitTrainerCard(FieldTask *fieldTask)
+static BOOL StartMenu_ExitTrainerCase(FieldTask *fieldTask)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(fieldTask);
     StartMenu *menu = FieldTask_GetEnv(fieldTask);
 
-    TrainerCard_SaveBadgePolish(fieldSystem, (TrainerCard *)menu->taskData);
-    TrainerCard_Free((TrainerCard *)menu->taskData);
+    TrainerCase_SaveBadgePolish(fieldSystem, (TrainerCase *)menu->taskData);
+    TrainerCase_Free((TrainerCase *)menu->taskData);
     FieldSystem_StartFieldMap(fieldSystem);
 
     menu->state = START_MENU_STATE_REINIT;

@@ -10,107 +10,109 @@
 #include "constants/fade_screen.h"
 #include "constants/scrcmd.h"
 
+#include "data/scripts/frscrcmd.h"
+
     .set FALSE, 0
     .set TRUE, 1
 
     .macro Noop
-    .short 0x000
+    .short FRSCRCMD_NOOP
     .endm
 
     .macro End
-    .short 0x001
+    .short FRSCRCMD_END
     .endm
 
     .macro FrontierScrCmd_02
-    .short 0x002
+    .short FRSCRCMD_02
     .endm
 
     .macro FrontierScrCmd_03 arg0
-    .short 0x003
+    .short FRSCRCMD_03
     .short \arg0
     .endm
 
     .macro FrontierScrCmd_04 arg0, arg1
-    .short 0x004
+    .short FRSCRCMD_04
     .short \arg0
     .short \arg1
     .endm
 
     .macro WaitTime frames, countdownVarID
-    .short 0x005
+    .short FRSCRCMD_WAITTIME
     .short \frames
     .short \countdownVarID
     .endm
 
     .macro SetVar destVarID, valueOrVarID
     .if \valueOrVarID < 0x8000
-        .short 0x006 /* SetVarFromValue */
+        .short FRSCRCMD_SETVARFROMVALUE
     .else
-        .short 0x007 /* SetVarFromVar */
+        .short FRSCRCMD_SETVARFROMVAR
     .endif
     .short \destVarID
     .short \valueOrVarID
     .endm
 
     .macro AddVar destVarID, valueOrVarID
-    .short 0x008
+    .short FRSCRCMD_ADDVAR
     .short \destVarID
     .short \valueOrVarID
     .endm
 
     .macro SubVar destVarID, valueOrVarID
-    .short 0x009
+    .short FRSCRCMD_SUBVAR
     .short \destVarID
     .short \valueOrVarID
     .endm
 
     .macro GoTo offset
-    .short 0x00A
+    .short FRSCRCMD_GOTO
     .long \offset-.-4
     .endm
 
     .macro GoToIf condition, offset
-    .short 0x00B
+    .short FRSCRCMD_GOTOIF
     .byte \condition
     .long \offset-.-4
     .endm
 
     .macro Call offset
-    .short 0x00C
+    .short FRSCRCMD_CALL
     .long \offset-.-4
     .endm
 
     .macro Return
-    .short 0x00D
+    .short FRSCRCMD_RETURN
     .endm
 
     .macro CallIf condition, offset
-    .short 0x00E
+    .short FRSCRCMD_CALLIF
     .byte \condition
     .long \offset-.-4
     .endm
 
     .macro MessageInstant messageID
-    .short 0x00F
+    .short FRSCRCMD_MESSAGEINSTANT
     .short \messageID
     .endm
 
     .macro MessageNoSkip messageID
-    .short 0x010
+    .short FRSCRCMD_MESSAGENOSKIP
     .short \messageID
     .endm
 
     .macro Message messageID
-    .short 0x011
+    .short FRSCRCMD_MESSAGE
     .short \messageID
     .endm
 
     .macro CloseMessage
-    .short 0x012
+    .short FRSCRCMD_CLOSEMESSAGE
     .endm
 
     .macro FadeScreen transition, frames, type, color
-    .short 0x013
+    .short FRSCRCMD_FADESCREEN
     .short \transition
     .short \frames
     .short \type
@@ -118,7 +120,7 @@
     .endm
 
     .macro WaitFadeScreen
-    .short 0x014
+    .short FRSCRCMD_WAITFADESCREEN
     .endm
 
     .macro FadeScreenOut color=COLOR_BLACK
@@ -132,7 +134,7 @@
     .endm
 
     .macro InitGlobalTextMenu anchorX, anchorY, initialCursorPos, canExitWithB, selectedOption
-    .short 0x015
+    .short FRSCRCMD_INITGLOBALTEXTMENU
     .byte \anchorX
     .byte \anchorY
     .byte \initialCursorPos
@@ -141,7 +143,7 @@
     .endm
 
     .macro InitLocalTextMenu anchorX, anchorY, initialCursorPos, canExitWithB, selectedOption
-    .short 0x016
+    .short FRSCRCMD_INITLOCALTEXTMENU
     .byte \anchorX
     .byte \anchorY
     .byte \initialCursorPos
@@ -150,24 +152,24 @@
     .endm
 
     .macro AddMenuEntry entryID, index
-    .short 0x017
+    .short FRSCRCMD_ADDMENUENTRY
     .short \entryID
     .short \index
     .endm
 
     .macro AddMenuEntryWithDesc entryID, descriptionID, index
-    .short 0x018
+    .short FRSCRCMD_ADDMENUENTRYWITHDESC
     .short \entryID
     .short \descriptionID
     .short \index
     .endm
 
     .macro ShowMenu
-    .short 0x019
+    .short FRSCRCMD_SHOWMENU
     .endm
 
     .macro InitGlobalTextListMenu anchorX, anchorY, initialCursorPos, canExitWithB, selectedOption
-    .short 0x01A
+    .short FRSCRCMD_INITGLOBALTEXTLISTMENU
     .byte \anchorX
     .byte \anchorY
     .byte \initialCursorPos
@@ -176,7 +178,7 @@
     .endm
 
     .macro InitLocalTextListMenu anchorX, anchorY, initialCursorPos, canExitWithB, selectedOption
-    .short 0x01B
+    .short FRSCRCMD_INITLOCALTEXTLISTMENU
     .byte \anchorX
     .byte \anchorY
     .byte \initialCursorPos
@@ -185,216 +187,216 @@
     .endm
 
     .macro AddListMenuEntry entryID, descriptionID, index
-    .short 0x01C
+    .short FRSCRCMD_ADDLISTMENUENTRY
     .short \entryID
     .short \descriptionID
     .short \index
     .endm
 
     .macro ShowListMenu
-    .short 0x01D
+    .short FRSCRCMD_SHOWLISTMENU
     .endm
 
     .macro FreeListMenu
-    .short 0x01E
+    .short FRSCRCMD_FREELISTMENU
     .endm
 
     .macro ShowYesNoMenu destVarID, cursorStart
-    .short 0x01F
+    .short FRSCRCMD_SHOWYESNOMENU
     .short \destVarID
     .byte \cursorStart
     .endm
 
     .macro CompareVar varID, valueOrVarID
     .if \valueOrVarID < 0x8000
-        .short 0x020 /* CompareVarToValue */
+        .short FRSCRCMD_COMPAREVARTOVALUE
     .else
-        .short 0x021 /* CompareVarToVar */
+        .short FRSCRCMD_COMPAREVARTOVAR
     .endif
     .short \varID
     .short \valueOrVarID
     .endm
 
     .macro FrontierScrCmd_22 offset
-    .short 0x022
+    .short FRSCRCMD_22
     .long \offset-.-4
     .endm
 
     .macro FrontierScrCmd_23 arg0
-    .short 0x023
+    .short FRSCRCMD_23
     .short \arg0
     .endm
 
     .macro FrontierScrCmd_24 offset
-    .short 0x024
+    .short FRSCRCMD_24
     .long \offset-.-4
     .endm
 
     .macro FrontierScrCmd_25 arg0
-    .short 0x025
+    .short FRSCRCMD_25
     .short \arg0
     .endm
 
     .macro FrontierScrCmd_26 arg0, arg1
-    .short 0x026
+    .short FRSCRCMD_26
     .short \arg0
     .byte \arg1
     .endm
 
     .macro FrontierScrCmd_Dummy27
-    .short 0x027
+    .short FRSCRCMD_DUMMY27
     .endm
 
     .macro FrontierScrCmd_28 arg0, offset
-    .short 0x028
+    .short FRSCRCMD_28
     .short \arg0
     .long \offset-.-4
     .endm
 
     .macro FrontierScrCmd_29
-    .short 0x029
+    .short FRSCRCMD_29
     .endm
 
     .macro FrontierScrCmd_2A offset
-    .short 0x02A
+    .short FRSCRCMD_2A
     .long \offset-.-4
     .endm
 
     .macro FrontierScrCmd_2B arg0
-    .short 0x02B
+    .short FRSCRCMD_2B
     .short \arg0
     .endm
 
     .macro FrontierScrCmd_2C offset
-    .short 0x02C
+    .short FRSCRCMD_2C
     .long \offset-.-4
     .endm
 
     .macro FrontierScrCmd_2D arg0
-    .short 0x02D
+    .short FRSCRCMD_2D
     .short \arg0
     .endm
 
     .macro FrontierScrCmd_2E arg0, draw
-    .short 0x02E
+    .short FRSCRCMD_2E
     .short \arg0
     .byte \draw
     .endm
 
     .macro FrontierScrCmd_2F arg0
-    .short 0x02F
+    .short FRSCRCMD_2F
     .short \arg0
     .endm
 
     .macro FrontierScrCmd_30 arg0, arg1
-    .short 0x030
+    .short FRSCRCMD_30
     .short \arg0
     .short \arg1
     .endm
 
     .macro FrontierScrCmd_31 arg0, arg1
-    .short 0x031
+    .short FRSCRCMD_31
     .short \arg0
     .short \arg1
     .endm
 
     .macro FrontierScrCmd_32 arg0
-    .short 0x032
+    .short FRSCRCMD_32
     .short \arg0
     .endm
 
     .macro FrontierScrCmd_33 arg0
-    .short 0x033
+    .short FRSCRCMD_33
     .short \arg0
     .endm
 
     .macro FrontierScrCmd_34
-    .short 0x034
+    .short FRSCRCMD_34
     .endm
 
     .macro FrontierScrCmd_35 arg0
-    .short 0x035
+    .short FRSCRCMD_35
     .short \arg0
     .endm
 
     .macro ClearReceivedTempDataAllPlayers
-    .short 0x036
+    .short FRSCRCMD_CLEARRECEIVEDTEMPDATAALLPLAYERS
     .endm
 
     .macro EndCommunication
-    .short 0x037
+    .short FRSCRCMD_ENDCOMMUNICATION
     .endm
 
     .macro GetRandom destVarID, upperBound
-    .short 0x038
+    .short FRSCRCMD_GETRANDOM
     .short \destVarID
     .short \upperBound
     .endm
 
     .macro HealParty
-    .short 0x039
+    .short FRSCRCMD_HEALPARTY
     .endm
 
     .macro WaitABPress
-    .short 0x03A
+    .short FRSCRCMD_WAITABPRESS
     .endm
 
     .macro WaitABPressTime frames
-    .short 0x03B
+    .short FRSCRCMD_WAITABPRESSTIME
     .short \frames
     .endm
 
     .macro FrontierScrCmd_Dummy3C unused
-    .short 0x03C
+    .short FRSCRCMD_DUMMY3C
     .short \unused
     .endm
 
     .macro FrontierScrCmd_3D destVar, value
-    .short 0x03D
+    .short FRSCRCMD_3D
     .short \destVar
     .short \value
     .endm
 
     .macro FrontierScrCmd_3E srcVar, destVar
-    .short 0x03E
+    .short FRSCRCMD_3E
     .short \srcVar
     .short \destVar
     .endm
 
     .macro FrontierScrCmd_3F arg0
-    .short 0x03F
+    .short FRSCRCMD_3F
     .short \arg0
     .endm
 
     .macro GetPlayerObjEventGfx destVar
-    .short 0x040
+    .short FRSCRCMD_GETPLAYEROBJEVENTGFX
     .short \destVar
     .endm
 
     .macro InitParticleSystem index, narcIdx, projection=1
-    .short 0x041
+    .short FRSCRCMD_INITPARTICLESYSTEM
     .short \index
     .short \narcIdx
     .short \projection
     .endm
 
     .macro FreeParticleSystem index
-    .short 0x042
+    .short FRSCRCMD_FREEPARTICLESYSTEM
     .short \index
     .endm
 
     .macro CreateParticleSystemEmitter index, resourceID
-    .short 0x043
+    .short FRSCRCMD_CREATEPARTICLESYSTEMEMITTER
     .short \index
     .short \resourceID
     .endm
 
     .macro WaitForParticleSystemEmitters
-    .short 0x044
+    .short FRSCRCMD_WAITFORPARTICLESYSTEMEMITTERS
     .endm
 
     .macro FrontierScrCmd_45 slot, x, y, arg3, blendFraction, blendTarget
-    .short 0x045
+    .short FRSCRCMD_45
     .short \slot
     .short \x
     .short \y
@@ -404,38 +406,38 @@
     .endm
 
     .macro FrontierScrCmd_46 arg0
-    .short 0x046
+    .short FRSCRCMD_46
     .short \arg0
     .endm
 
     .macro FrontierScrCmd_47 arg0
-    .short 0x047
+    .short FRSCRCMD_47
     .short \arg0
     .endm
 
     .macro IncrementRecordValue recordID
-    .short 0x048
+    .short FRSCRCMD_INCREMENTRECORDVALUE
     .short \recordID
     .endm
 
     .macro AddToRecordValue recordID, value
-    .short 0x049
+    .short FRSCRCMD_ADDTORECORDVALUE
     .short \recordID
     .short \value
     .endm
 
     .macro IncrementTrainerScore scoreID
-    .short 0x04A
+    .short FRSCRCMD_INCREMENTTRAINERSCORE
     .short \scoreID
     .endm
 
     .macro FrontierScrCmd_4B destVar
-    .short 0x04B
+    .short FRSCRCMD_4B
     .short \destVar
     .endm
 
     .macro FrontierScrCmd_4C arg0, arg1, arg2, arg3
-    .short 0x04C
+    .short FRSCRCMD_4C
     .short \arg0
     .short \arg1
     .short \arg2
@@ -443,11 +445,11 @@
     .endm
 
     .macro FrontierScrCmd_4D
-    .short 0x04D
+    .short FRSCRCMD_4D
     .endm
 
     .macro FrontierScrCmd_4E arg0, arg1, arg2, arg3, arg4, arg5
-    .short 0x04E
+    .short FRSCRCMD_4E
     .short \arg0
     .short \arg1
     .short \arg2
@@ -457,114 +459,114 @@
     .endm
 
     .macro FrontierScrCmd_4F
-    .short 0x04F
+    .short FRSCRCMD_4F
     .endm
 
     .macro FrontierScrCmd_50
-    .short 0x050
+    .short FRSCRCMD_50
     .endm
 
     .macro FrontierScrCmd_51
-    .short 0x051
+    .short FRSCRCMD_51
     .endm
 
     .macro FrontierScrCmd_52
-    .short 0x052
+    .short FRSCRCMD_52
     .endm
 
     .macro FrontierScrCmd_53 arg0
-    .short 0x053
+    .short FRSCRCMD_53
     .short \arg0
     .endm
 
     .macro FrontierScrCmd_54
-    .short 0x054
+    .short FRSCRCMD_54
     .endm
 
     .macro PlaySoundEffect seqID
-    .short 0x055
+    .short FRSCRCMD_PLAYSOUNDEFFECT
     .short \seqID
     .endm
 
     .macro StopSoundEffect seqID
-    .short 0x056
+    .short FRSCRCMD_STOPSOUNDEFFECT
     .short \seqID
     .endm
 
     .macro WaitSoundEffect seqID
-    .short 0x057
+    .short FRSCRCMD_WAITSOUNDEFFECT
     .short \seqID
     .endm
 
     .macro PlayFanfare seqID
-    .short 0x058
+    .short FRSCRCMD_PLAYFANFARE
     .short \seqID
     .endm
 
     .macro WaitFanfare
-    .short 0x059
+    .short FRSCRCMD_WAITFANFARE
     .endm
 
     .macro PlayBGM seqID
-    .short 0x05A
+    .short FRSCRCMD_PLAYBGM
     .short \seqID
     .endm
 
     .macro StopBGM seqID
-    .short 0x05B
+    .short FRSCRCMD_STOPBGM
     .short \seqID
     .endm
 
     .macro FrontierScrCmd_5C arg0, arg1, arg2
-    .short 0x05C
+    .short FRSCRCMD_5C
     .short \arg0
     .short \arg1
     .short \arg2
     .endm
 
     .macro FrontierScrCmd_5D arg0
-    .short 0x05D
+    .short FRSCRCMD_5D
     .short \arg0
     .endm
 
     .macro FrontierScrCmd_5E
-    .short 0x05E
+    .short FRSCRCMD_5E
     .endm
 
     .macro FrontierScrCmd_5F
-    .short 0x05F
+    .short FRSCRCMD_5F
     .endm
 
     .macro FrontierScrCmd_60
-    .short 0x060
+    .short FRSCRCMD_60
     .endm
 
     .macro FrontierScrCmd_61
-    .short 0x061
+    .short FRSCRCMD_61
     .endm
 
     .macro FrontierScrCmd_62
-    .short 0x062
+    .short FRSCRCMD_62
     .endm
 
     .macro FrontierScrCmd_63
-    .short 0x063
+    .short FRSCRCMD_63
     .endm
 
     .macro FrontierScrCmd_64
-    .short 0x064
+    .short FRSCRCMD_64
     .endm
 
     .macro FrontierScrCmd_65
-    .short 0x065
+    .short FRSCRCMD_65
     .endm
 
     .macro FrontierScrCmd_66
-    .short 0x066
+    .short FRSCRCMD_66
     .endm
 
     .macro FrontierScrCmd_67 arg0, arg1, arg2, arg3
-    .short 0x067
+    .short FRSCRCMD_67
     .byte \arg0
     .byte \arg1
     .byte \arg2
@@ -572,33 +574,33 @@
     .endm
 
     .macro FrontierScrCmd_68 arg0
-    .short 0x068
+    .short FRSCRCMD_68
     .short \arg0
     .endm
 
     .macro FrontierScrCmd_69 arg0, arg1, arg2
-    .short 0x069
+    .short FRSCRCMD_69
     .short \arg0
     .short \arg1
     .short \arg2
     .endm
 
     .macro FrontierScrCmd_6A arg0
-    .short 0x06A
+    .short FRSCRCMD_6A
     .short \arg0
     .endm
 
     .macro FrontierScrCmd_6B arg0
-    .short 0x06B
+    .short FRSCRCMD_6B
     .byte \arg0
     .endm
 
     .macro InitNewBattleRecording
-    .short 0x06C
+    .short FRSCRCMD_INITNEWBATTLERECORDING
     .endm
 
     .macro FrontierScrCmd_6D arg0, arg1, arg2, arg3
-    .short 0x06D
+    .short FRSCRCMD_6D
     .short \arg0
     .short \arg1
     .short \arg2
@@ -606,85 +608,85 @@
     .endm
 
     .macro FrontierScrCmd_6E
-    .short 0x06E
+    .short FRSCRCMD_6E
     .endm
 
     .macro FreeBattleRecording
-    .short 0x06F
+    .short FRSCRCMD_FREEBATTLERECORDING
     .endm
 
     .macro FrontierScrCmd_70 arg0
-    .short 0x070
+    .short FRSCRCMD_70
     .short \arg0
     .endm
 
     .macro FrontierScrCmd_71 destVar
-    .short 0x071
+    .short FRSCRCMD_71
     .short \destVar
     .endm
 
     .macro FrontierScrCmd_72 arg0
-    .short 0x072
+    .short FRSCRCMD_72
     .short \arg0
     .endm
 
     .macro FrontierScrCmd_73 arg0
-    .short 0x073
+    .short FRSCRCMD_73
     .short \arg0
     .endm
 
     .macro SaveDataExtraInit
-    .short 0x074
+    .short FRSCRCMD_SAVEDATAEXTRAINIT
     .endm
 
     .macro FrontierScrCmd_GetMiscSaveBlockInitFlag destVar
-    .short 0x075
+    .short FRSCRCMD_GETMISCSAVEBLOCKINITFLAG
     .short \destVar
     .endm
 
     .macro FrontierScrCmd_76 arg0
-    .short 0x076
+    .short FRSCRCMD_76
     .short \arg0
     .endm
 
     .macro ShowSavingIcon
-    .short 0x077
+    .short FRSCRCMD_SHOWSAVINGICON
     .endm
 
     .macro HideSavingIcon
-    .short 0x078
+    .short FRSCRCMD_HIDESAVINGICON
     .endm
 
     .macro BufferItemName templateArg, item
-    .short 0x079
+    .short FRSCRCMD_BUFFERITEMNAME
     .byte \templateArg
     .short \item
     .endm
 
     .macro BufferNumber templateArg, number
-    .short 0x07A
+    .short FRSCRCMD_BUFFERNUMBER
     .byte \templateArg
     .short \number
     .endm
 
     .macro BufferPlayerName templateArg
-    .short 0x07B
+    .short FRSCRCMD_BUFFERPLAYERNAME
     .byte \templateArg
     .endm
 
     .macro BufferPartnerName templateArg
-    .short 0x07C
+    .short FRSCRCMD_BUFFERPARTNERNAME
     .byte \templateArg
     .endm
 
     .macro BufferMoveName templateArg, move
-    .short 0x07D
+    .short FRSCRCMD_BUFFERMOVENAME
     .byte \templateArg
     .short \move
     .endm
 
     .macro BufferSpeciesName templateArg, species, unused1=0, unused2=0
-    .short 0x07E
+    .short FRSCRCMD_BUFFERSPECIESNAME
     .byte \templateArg
     .short \species
     .short \unused1
@@ -692,71 +694,71 @@
     .endm
 
     .macro BufferTypeName templateArg, type
-    .short 0x07F
+    .short FRSCRCMD_BUFFERTYPENAME
     .byte \templateArg
     .short \type
     .endm
 
     .macro BufferRivalName templateArg
-    .short 0x080
+    .short FRSCRCMD_BUFFERRIVALNAME
     .byte \templateArg
     .endm
 
     .macro GetNumBattlePoints destVar
-    .short 0x081
+    .short FRSCRCMD_GETNUMBATTLEPOINTS
     .short \destVar
     .endm
 
     .macro GiveBattlePoints battlePoints
-    .short 0x082
+    .short FRSCRCMD_GIVEBATTLEPOINTS
     .short \battlePoints
     .endm
 
     .macro RemoteBattlePoints battlePoints
-    .short 0x083
+    .short FRSCRCMD_REMOTEBATTLEPOINTS
     .short \battlePoints
     .endm
 
     .macro CallBattleTowerFunction functionIndex, functionArgument, destVar
-    .short 0x084
+    .short FRSCRCMD_CALLBATTLETOWERFUNCTION
     .short \functionIndex
     .short \functionArgument
     .short \destVar
     .endm
 
     .macro FrontierScrCmd_85 arg0
-    .short 0x085
+    .short FRSCRCMD_85
     .byte \arg0
     .endm
 
     .macro FreeTowerStruct
-    .short 0x086
+    .short FRSCRCMD_FREETOWERSTRUCT
     .endm
 
     .macro FrontierScrCmd_87
-    .short 0x087
+    .short FRSCRCMD_87
     .endm
 
     .macro CheckWonTowerBattle destVar
-    .short 0x088
+    .short FRSCRCMD_CHECKWONTOWERBATTLE
     .short \destVar
     .endm
 
     .macro FrontierScrCmd_89 arg0, arg1, arg2
-    .short 0x089
+    .short FRSCRCMD_89
     .short \arg0
     .short \arg1
     .short \arg2
     .endm
 
     .macro FrontierScrCmd_8A arg0, arg1
-    .short 0x08A
+    .short FRSCRCMD_8A
     .short \arg0
     .short \arg1
     .endm
 
     .macro FrontierScrCmd_8B arg0, arg1, arg2, arg3
-    .short 0x08B
+    .short FRSCRCMD_8B
     .short \arg0
     .short \arg1
     .short \arg2
@@ -764,28 +766,28 @@
     .endm
 
     .macro FrontierScrCmd_8C arg0
-    .short 0x08C
+    .short FRSCRCMD_8C
     .short \arg0
     .endm
 
     .macro FrontierScrCmd_8D
-    .short 0x08D
+    .short FRSCRCMD_8D
     .endm
 
     .macro OpenBattleHallApp
-    .short 0x08E
+    .short FRSCRCMD_OPENBATTLEHALLAPP
     .endm
 
     .macro FrontierScrCmd_8F
-    .short 0x08F
+    .short FRSCRCMD_8F
     .endm
 
     .macro FrontierScrCmd_90
-    .short 0x090
+    .short FRSCRCMD_90
     .endm
 
     .macro FrontierScrCmd_91 arg0, arg1, arg2, arg3
-    .short 0x091
+    .short FRSCRCMD_91
     .byte \arg0
     .byte \arg1
     .byte \arg2
@@ -793,34 +795,34 @@
     .endm
 
     .macro FrontierScrCmd_92 arg0
-    .short 0x092
+    .short FRSCRCMD_92
     .short \arg0
     .endm
 
     .macro FrontierScrCmd_93 arg0, arg1, arg2
-    .short 0x093
+    .short FRSCRCMD_93
     .short \arg0
     .short \arg1
     .short \arg2
     .endm
 
     .macro FrontierScrCmd_94 arg0
-    .short 0x094
+    .short FRSCRCMD_94
     .short \arg0
     .endm
 
     .macro FrontierScrCmd_95 arg0
-    .short 0x095
+    .short FRSCRCMD_95
     .byte \arg0
     .endm
 
     .macro FrontierScrCmd_Dummy96 arg0
-    .short 0x096
+    .short FRSCRCMD_DUMMY96
     .short \arg0
     .endm
 
     .macro FrontierScrCmd_97 arg0, arg1, arg2, arg3, arg4, arg5
-    .short 0x097
+    .short FRSCRCMD_97
     .short \arg0
     .short \arg1
     .short \arg2
@@ -830,40 +832,40 @@
     .endm
 
     .macro FrontierScrCmd_98 arg0
-    .short 0x098
+    .short FRSCRCMD_98
     .short \arg0
     .endm
 
     .macro FrontierScrCmd_99
-    .short 0x099
+    .short FRSCRCMD_99
     .endm
 
     .macro FrontierScrCmd_9A
-    .short 0x09A
+    .short FRSCRCMD_9A
     .endm
 
     .macro FrontierScrCmd_9B
-    .short 0x09B
+    .short FRSCRCMD_9B
     .endm
 
     .macro FrontierScrCmd_9C
-    .short 0x09C
+    .short FRSCRCMD_9C
     .endm
 
     .macro FrontierScrCmd_9D
-    .short 0x09D
+    .short FRSCRCMD_9D
     .endm
 
     .macro FrontierScrCmd_9E
-    .short 0x09E
+    .short FRSCRCMD_9E
     .endm
 
     .macro FrontierScrCmd_9F
-    .short 0x09F
+    .short FRSCRCMD_9F
     .endm
 
     .macro FrontierScrCmd_A0 arg0, arg1, arg2, arg3
-    .short 0x0A0
+    .short FRSCRCMD_A0
     .byte \arg0
     .byte \arg1
     .byte \arg2
@@ -871,64 +873,64 @@
     .endm
 
     .macro FrontierScrCmd_A1 arg0
-    .short 0x0A1
+    .short FRSCRCMD_A1
     .short \arg0
     .endm
 
     .macro FrontierScrCmd_A2 arg0, arg1, arg2
-    .short 0x0A2
+    .short FRSCRCMD_A2
     .short \arg0
     .short \arg1
     .short \arg2
     .endm
 
     .macro FrontierScrCmd_A3 arg0
-    .short 0x0A3
+    .short FRSCRCMD_A3
     .short \arg0
     .endm
 
     .macro FrontierScrCmd_A4
-    .short 0x0A4
+    .short FRSCRCMD_A4
     .endm
 
     .macro FrontierScrCmd_A5 arg0
-    .short 0x0A5
+    .short FRSCRCMD_A5
     .short \arg0
     .endm
 
     .macro FrontierScrCmd_A6 arg0, arg1
-    .short 0x0A6
+    .short FRSCRCMD_A6
     .short \arg0
     .short \arg1
     .endm
 
     .macro FrontierScrCmd_A7 arg0, arg1
-    .short 0x0A7
+    .short FRSCRCMD_A7
     .short \arg0
     .short \arg1
     .endm
 
     .macro FrontierScrCmd_A8 arg0, arg1
-    .short 0x0A8
+    .short FRSCRCMD_A8
     .short \arg0
     .short \arg1
     .endm
 
     .macro FrontierScrCmd_A9 arg0
-    .short 0x0A9
+    .short FRSCRCMD_A9
     .byte \arg0
     .endm
 
     .macro FrontierScrCmd_AA
-    .short 0x0AA
+    .short FRSCRCMD_AA
     .endm
 
     .macro FrontierScrCmd_AB
-    .short 0x0AB
+    .short FRSCRCMD_AB
     .endm
 
     .macro FrontierScrCmd_AC arg0, arg1, arg2, arg3
-    .short 0x0AC
+    .short FRSCRCMD_AC
     .short \arg0
     .short \arg1
     .short \arg2
@@ -936,36 +938,36 @@
     .endm
 
     .macro FrontierScrCmd_AD arg0
-    .short 0x0AD
+    .short FRSCRCMD_AD
     .short \arg0
     .endm
 
     .macro FrontierScrCmd_AE arg0, arg1
-    .short 0x0AE
+    .short FRSCRCMD_AE
     .short \arg0
     .short \arg1
     .endm
 
     .macro FrontierScrCmd_AF arg0, arg1, arg2
-    .short 0x0AF
+    .short FRSCRCMD_AF
     .short \arg0
     .short \arg1
     .short \arg2
     .endm
 
     .macro FrontierScrCmd_B0 arg0, arg1
-    .short 0x0B0
+    .short FRSCRCMD_B0
     .short \arg0
     .short \arg1
     .endm
 
     .macro FrontierScrCmd_B1 arg0
-    .short 0x0B1
+    .short FRSCRCMD_B1
     .short \arg0
     .endm
 
     .macro FrontierScrCmd_B2 arg0, arg1, arg2, arg3
-    .short 0x0B2
+    .short FRSCRCMD_B2
     .byte \arg0
     .byte \arg1
     .byte \arg2
@@ -973,28 +975,28 @@
     .endm
 
     .macro FrontierScrCmd_B3
-    .short 0x0B3
+    .short FRSCRCMD_B3
     .endm
 
     .macro FrontierScrCmd_B4 arg0
-    .short 0x0B4
+    .short FRSCRCMD_B4
     .short \arg0
     .endm
 
     .macro FrontierScrCmd_B5
-    .short 0x0B5
+    .short FRSCRCMD_B5
     .endm
 
     .macro ClearTowerStruct
-    .short 0x0B6
+    .short FRSCRCMD_CLEARTOWERSTRUCT
     .endm
 
     .macro SetWiFiListHostFriendCurrentDate
-    .short 0x0B7
+    .short FRSCRCMD_SETWIFILISTHOSTFRIENDCURRENTDATE
     .endm
 
     .macro FrontierScrCmd_B8 arg0, arg1, arg2, arg3, arg4, arg5
-    .short 0x0B8
+    .short FRSCRCMD_B8
     .short \arg0
     .short \arg1
     .short \arg2
@@ -1004,32 +1006,32 @@
     .endm
 
     .macro FrontierScrCmd_B9 arg0
-    .short 0x0B9
+    .short FRSCRCMD_B9
     .short \arg0
     .endm
 
     .macro FrontierScrCmd_BA
-    .short 0x0BA
+    .short FRSCRCMD_BA
     .endm
 
     .macro FrontierScrCmd_BB
-    .short 0x0BB
+    .short FRSCRCMD_BB
     .endm
 
     .macro FrontierScrCmd_BC
-    .short 0x0BC
+    .short FRSCRCMD_BC
     .endm
 
     .macro FrontierScrCmd_BD
-    .short 0x0BD
+    .short FRSCRCMD_BD
     .endm
 
     .macro FrontierScrCmd_BE
-    .short 0x0BE
+    .short FRSCRCMD_BE
     .endm
 
     .macro FrontierScrCmd_BF arg0, arg1, arg2, arg3
-    .short 0x0BF
+    .short FRSCRCMD_BF
     .byte \arg0
     .short \arg1
     .short \arg2
@@ -1037,63 +1039,63 @@
     .endm
 
     .macro FrontierScrCmd_C0 arg0
-    .short 0x0C0
+    .short FRSCRCMD_C0
     .short \arg0
     .endm
 
     .macro FrontierScrCmd_C1 arg0, arg1, arg2
-    .short 0x0C1
+    .short FRSCRCMD_C1
     .short \arg0
     .short \arg1
     .short \arg2
     .endm
 
     .macro FrontierScrCmd_C2 arg0
-    .short 0x0C2
+    .short FRSCRCMD_C2
     .short \arg0
     .endm
 
     .macro FrontierScrCmd_C3
-    .short 0x0C3
+    .short FRSCRCMD_C3
     .endm
 
     .macro FrontierScrCmd_C4 arg0
-    .short 0x0C4
+    .short FRSCRCMD_C4
     .byte \arg0
     .endm
 
     .macro FrontierScrCmd_C5
-    .short 0x0C5
+    .short FRSCRCMD_C5
     .endm
 
     .macro FrontierScrCmd_C6 arg0, arg1, arg2
-    .short 0x0C6
+    .short FRSCRCMD_C6
     .short \arg0
     .short \arg1
     .short \arg2
     .endm
 
     .macro FrontierScrCmd_C7
-    .short 0x0C7
+    .short FRSCRCMD_C7
     .endm
 
     .macro FrontierScrCmd_C8 arg0
-    .short 0x0C8
+    .short FRSCRCMD_C8
     .short \arg0
     .endm
 
     .macro FrontierScrCmd_C9 arg0
-    .short 0x0C9
+    .short FRSCRCMD_C9
     .short \arg0
     .endm
 
     .macro SetMenuXOriginSide isRightSide
-    .short 0x0CA
+    .short FRSCRCMD_SETMENUXORIGINSIDE
     .byte \isRightSide
     .endm
 
     .macro SetMenuYOriginSide isBottomSide
-    .short 0x0CB
+    .short FRSCRCMD_SETMENUYORIGINSIDE
     .byte \isBottomSide
     .endm
 

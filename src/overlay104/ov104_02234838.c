@@ -22,7 +22,7 @@
 #include "party.h"
 #include "pokemon.h"
 #include "sound.h"
-#include "tv_episode_segment.h"
+#include "tv_segment.h"
 #include "unk_02030108.h"
 #include "unk_0209B6F8.h"
 #include "unk_0209BA80.h"

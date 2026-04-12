@@ -50,7 +50,7 @@
 #include "system_vars.h"
 #include "terrain_collision_manager.h"
 #include "trainer_info.h"
-#include "tv_episode_segment.h"
+#include "tv_segment.h"
 #include "unk_0203266C.h"
 #include "unk_020366A0.h"
 #include "unk_020559DC.h"

@@ -2,7 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
-            "id": "SNOWPOINT_CITY_WEST_HOUSE_ACE_TRAINER_M_0",
+            "id": "LOCALID_ACE_TRAINER_M",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -17,7 +17,7 @@
             "y": 0
         },
         {
-            "id": "SNOWPOINT_CITY_WEST_HOUSE_BEAUTY_1",
+            "id": "LOCALID_MINDY",
             "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",

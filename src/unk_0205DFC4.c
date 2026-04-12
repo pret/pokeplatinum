@@ -25,14 +25,14 @@
 
 #include "res/text/bank/pokedex_ratings.h"
 
-typedef struct {
-    MapObject *unk_00;
-    fx32 unk_04;
-    fx32 unk_08;
-    u16 unk_0C;
-    u16 unk_0E;
-    u16 unk_10;
-} UnkStruct_0205E268;
+typedef struct MapObjectShakeData {
+    MapObject *mapObj;
+    fx32 xOffset;
+    fx32 zOffset;
+    u16 times;
+    u16 degrees;
+    u16 speed;
+} MapObjectShakeData;
 
 typedef struct MapObjectFlickerData {
     MapObject *mapObj;
@@ -263,51 +263,51 @@ BOOL HasAllLegendaryTitansInParty(SaveData *saveData)
     return FALSE;
 }
 
-static BOOL sub_0205E268(FieldTask *param0)
+static BOOL Task_ShakeMapObject(FieldTask *task)
 {
-    VecFx32 v0;
-    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
-    UnkStruct_0205E268 *v2 = FieldTask_GetEnv(param0);
+    VecFx32 pos;
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
+    MapObjectShakeData *shakeData = FieldTask_GetEnv(task);
 
-    v0.x = FX32_CONST(8);
-    v0.z = FX32_CONST(8);
-    v0.x = FX_Mul(CalcSineDegrees(v2->unk_0E), v2->unk_04);
-    v0.z = FX_Mul(CalcSineDegrees(v2->unk_0E), v2->unk_08);
-    v0.y = 0;
+    pos.x = FX32_CONST(8);
+    pos.z = FX32_CONST(8);
+    pos.x = FX_Mul(CalcSineDegrees(shakeData->degrees), shakeData->xOffset);
+    pos.z = FX_Mul(CalcSineDegrees(shakeData->degrees), shakeData->zOffset);
+    pos.y = 0;
 
-    MapObject_SetSpritePosOffset(v2->unk_00, &v0);
+    MapObject_SetSpritePosOffset(shakeData->mapObj, &pos);
 
-    v2->unk_0E += v2->unk_10;
+    shakeData->degrees += shakeData->speed;
 
-    if (v2->unk_0E >= 360) {
-        v2->unk_0E = 0;
-        v2->unk_0C--;
+    if (shakeData->degrees >= 360) {
+        shakeData->degrees = 0;
+        shakeData->times--;
     }
 
-    if (v2->unk_0C == 0) {
-        v0.x = v0.y = v0.z = 0;
-        MapObject_SetSpritePosOffset(v2->unk_00, &v0);
-        Heap_Free(v2);
-        return 1;
+    if (shakeData->times == 0) {
+        pos.x = pos.y = pos.z = 0;
+        MapObject_SetSpritePosOffset(shakeData->mapObj, &pos);
+        Heap_Free(shakeData);
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-void sub_0205E318(FieldTask *param0, MapObject *param1, u16 param2, u16 param3, u16 param4, u16 param5)
+void MapObject_Shake(FieldTask *task, MapObject *mapObj, u16 times, u16 speed, u16 xOffset, u16 zOffset)
 {
-    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
-    UnkStruct_0205E268 *v1 = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(UnkStruct_0205E268));
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
+    MapObjectShakeData *shakeData = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(MapObjectShakeData));
 
-    MI_CpuClear8(v1, sizeof(UnkStruct_0205E268));
+    MI_CpuClear8(shakeData, sizeof(MapObjectShakeData));
 
-    v1->unk_04 = FX32_CONST(param4);
-    v1->unk_08 = FX32_CONST(param5);
-    v1->unk_0C = param2;
-    v1->unk_10 = param3;
-    v1->unk_00 = param1;
+    shakeData->xOffset = FX32_CONST(xOffset);
+    shakeData->zOffset = FX32_CONST(zOffset);
+    shakeData->times = times;
+    shakeData->speed = speed;
+    shakeData->mapObj = mapObj;
 
-    FieldTask_InitCall(fieldSystem->task, sub_0205E268, v1);
+    FieldTask_InitCall(fieldSystem->task, Task_ShakeMapObject, shakeData);
 }
 
 static BOOL Task_FlickerMapObject(FieldTask *task)

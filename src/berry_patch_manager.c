@@ -26,7 +26,7 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "terrain_collision_manager.h"
-#include "tv_episode_segment.h"
+#include "tv_segment.h"
 #include "unk_020655F4.h"
 
 typedef struct BerryWateringTask {
@@ -157,7 +157,7 @@ BOOL BerryPatches_HarvestBerry(FieldSystem *fieldSystem, MapObject *mapObject)
     berryID = BerryPatches_GetPatchBerryID(berryPatches, patchID);
     yieldAmount = BerryPatches_GetPatchYield(berryPatches, patchID);
 
-    FieldSystem_SaveTVEpisodeSegment_PlantingAndWateringShow(fieldSystem, BerryPatches_ConvertTagNumberToItemID(berryID), BerryPatches_GetPatchYieldRating(berryPatches, patchID), yieldAmount);
+    FieldSystem_SaveTVSegment_PlantingAndWateringShow(fieldSystem, BerryPatches_ConvertTagNumberToItemID(berryID), BerryPatches_GetPatchYieldRating(berryPatches, patchID), yieldAmount);
     BerryPatches_HarvestPatch(berryPatches, patchID);
     BerryPatchGraphics_MarkForUpdate(mapObject);
 
