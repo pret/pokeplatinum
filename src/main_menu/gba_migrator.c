@@ -36,6 +36,7 @@
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "pal_park_transfers.h"
 #include "palette.h"
 #include "pltt_transfer.h"
 #include "pokemon.h"
@@ -59,7 +60,6 @@
 #include "touch_screen.h"
 #include "trainer_info.h"
 #include "unk_02015920.h"
-#include "unk_0202EEC0.h"
 #include "unk_0209A74C.h"
 #include "vram_transfer.h"
 

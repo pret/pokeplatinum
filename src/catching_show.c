@@ -17,10 +17,10 @@
 #include "inlines.h"
 #include "map_tile_behavior.h"
 #include "narc.h"
+#include "pal_park_transfers.h"
 #include "pokemon.h"
 #include "rtc.h"
 #include "terrain_collision_manager.h"
-#include "unk_0202EEC0.h"
 
 #define PAL_PARK_AREA_NONE     0
 #define POINTS_LOST_PER_SECOND 2
