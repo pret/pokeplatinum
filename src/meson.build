@@ -871,7 +871,7 @@ pokeplatinum_c = files(
     'overlay096/ov96_0223B6A0.c',
     'overlay096/ov96_0223BCE0.c',
     'main_menu/main_menu.c',
-    'main_menu/ov97_0222C174.c',
+    'main_menu/ranger_link.c',
     'main_menu/ov97_0222D04C.c',
     'main_menu/ov97_0222D2F8.c',
     'main_menu/mystery_gift_app.c',

@@ -270,7 +270,7 @@ static void InitGlobalNetworkIcon(int x, int y, BOOL isWifi, enum NNS_G2D_VRAM_T
         NetworkIcon_Destroy();
     }
 
-    sGlobalNetworkIcon = CreateNetworkIcon(0, HEAP_ID_91, x, y, isWifi, sUnused, vramType);
+    sGlobalNetworkIcon = CreateNetworkIcon(0, HEAP_ID_NETWORK_ICON, x, y, isWifi, sUnused, vramType);
 }
 
 void NetworkIcon_Destroy()

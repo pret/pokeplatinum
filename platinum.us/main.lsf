@@ -1451,7 +1451,7 @@ Overlay main_menu
 {
 	After http
 	Object main.nef.p/src_main_menu_main_menu.c.o
-	Object main.nef.p/src_main_menu_ov97_0222C174.c.o
+	Object main.nef.p/src_main_menu_ranger_link.c.o
 	Object main.nef.p/src_main_menu_ov97_0222D04C.c.o
 	Object main.nef.p/src_main_menu_ov97_0222D2F8.c.o
 	Object main.nef.p/src_main_menu_mystery_gift_app.c.o

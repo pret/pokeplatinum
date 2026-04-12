@@ -148,7 +148,7 @@ static FieldSystem *InitFieldSystem(ApplicationManager *appMan)
 {
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_FIELD2, HEAP_SIZE_FIELD2);
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_FIELD3, HEAP_SIZE_FIELD3);
-    Heap_Create(HEAP_ID_SYSTEM, HEAP_ID_91, 0x300);
+    Heap_Create(HEAP_ID_SYSTEM, HEAP_ID_NETWORK_ICON, HEAP_SIZE_NETWORK_ICON);
 
     FieldSystem *fieldSystem = ApplicationManager_NewData(appMan, sizeof(FieldSystem), HEAP_ID_FIELD2);
     MI_CpuClear8(fieldSystem, sizeof(FieldSystem));
@@ -189,7 +189,7 @@ static void TeardownFieldSystem(ApplicationManager *appMan)
 
     Heap_Free(fieldSystem->processManager);
     ApplicationManager_FreeData(appMan);
-    Heap_Destroy(HEAP_ID_91);
+    Heap_Destroy(HEAP_ID_NETWORK_ICON);
     Heap_Destroy(HEAP_ID_FIELD2);
     Heap_Destroy(HEAP_ID_FIELD3);
 }
