@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_0202EEC0_H
-#define POKEPLATINUM_UNK_0202EEC0_H
+#ifndef POKEPLATINUM_PAL_PARK_TRANSFERS_H
+#define POKEPLATINUM_PAL_PARK_TRANSFERS_H
 
 #include "pokemon.h"
 
@@ -14,7 +14,7 @@ typedef struct MigratedPokemon {
 int MigratedPokemon_SaveSize(void);
 void PalParkTransfer_Init(MigratedPokemon *transferData);
 void ClearPalParkTransferPokemonData(MigratedPokemon *transferData);
-void BoxMonToTransferData(MigratedPokemon *transfer, BoxPokemon *boxMon, int param2);
+void BoxMonToTransferData(MigratedPokemon *transfer, BoxPokemon *boxMon, int slot);
 void PalParkTransfer_SaveTransferHistory(MigratedPokemon *transferData, u32 gbaTrainerId);
 void MigratedPokemon_ConvertToPokemon(const MigratedPokemon *transferData, int slot, Pokemon *mon);
 int GetPalParkTransferMonCount(const MigratedPokemon *transferData);
@@ -23,4 +23,4 @@ BOOL MacAddressMatchesLastPalParkTransfer(const MigratedPokemon *transferData);
 BOOL RtcOffsetMatchesLastPalParkTransfer(const MigratedPokemon *transferData);
 BOOL IsPalParkTransferMacAddressUnset(const MigratedPokemon *transferData);
 
-#endif // POKEPLATINUM_UNK_0202EEC0_H
+#endif // POKEPLATINUM_PAL_PARK_TRANSFERS_H

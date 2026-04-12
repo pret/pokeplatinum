@@ -138,7 +138,7 @@ Static main
 	Object main.nef.p/src_hall_of_fame_entries.c.o
 	Object main.nef.p/src_unk_0202E2CC.c.o
 	Object main.nef.p/src_rankings.c.o
-	Object main.nef.p/src_unk_0202EEC0.c.o
+	Object main.nef.p/src_pal_park_transfers.c.o
 	Object main.nef.p/src_link_contest_records.c.o
 	Object main.nef.p/src_unk_0202F180.c.o
 	Object main.nef.p/src_unk_0202F1D4.c.o

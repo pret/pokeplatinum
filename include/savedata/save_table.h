@@ -9,9 +9,9 @@
 #include "battle_hall_win_records.h"
 #include "hall_of_fame_entries.h"
 #include "mystery_gift.h"
+#include "pal_park_transfers.h"
 #include "pc_boxes.h"
 #include "savedata.h"
-#include "unk_0202EEC0.h"
 
 typedef int (*SaveEntrySizeFunc)(void);
 typedef void (*SaveEntryInitFunc)(void *);

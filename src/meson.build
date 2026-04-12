@@ -127,7 +127,7 @@ pokeplatinum_c = files(
     'hall_of_fame_entries.c',
     'unk_0202E2CC.c',
     'rankings.c',
-    'unk_0202EEC0.c',
+    'pal_park_transfers.c',
     'link_contest_records.c',
     'unk_0202F180.c',
     'unk_0202F1D4.c',
