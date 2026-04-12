@@ -1,109 +1,110 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/turnback_cave_giratina_room.h"
+#include "res/field/events/events_turnback_cave_giratina_room.h"
 
 
-    ScriptEntry _001C
-    ScriptEntry _0037
-    ScriptEntry _00A5
-    ScriptEntry _0116
-    ScriptEntry _001A
-    ScriptEntry _0127
+    ScriptEntry TurnbackCaveGiratinaRoom_OnLoad
+    ScriptEntry TurnbackCaveGiratinaRoom_Giratina
+    ScriptEntry TurnbackCaveGiratinaRoom_Item
+    ScriptEntry TurnbackCaveGiratinaRoom_Inscription
+    ScriptEntry TurnbackCaveGiratinaRoom_OnTransition
+    ScriptEntry TurnbackCaveGiratinaRoom_Portal
     ScriptEntryEnd
 
-_001A:
+TurnbackCaveGiratinaRoom_OnTransition:
     End
 
-_001C:
-    GoToIfSet FLAG_MAP_LOCAL, _0029
+TurnbackCaveGiratinaRoom_OnLoad:
+    GoToIfSet FLAG_MAP_LOCAL, TurnbackCaveGiratinaRoom_RemoveGiratina
     End
 
-_0029:
+TurnbackCaveGiratinaRoom_RemoveGiratina:
     SetFlag FLAG_HIDE_TURNBACK_CAVE_GIRATINA_ROOM_GIRATINA
-    RemoveObject 0
+    RemoveObject LOCALID_GIRATINA
     ClearFlag FLAG_MAP_LOCAL
     End
 
-_0037:
+TurnbackCaveGiratinaRoom_Giratina:
     LockAll
     PlaySE SEQ_SE_CONFIRM
     WaitSE SEQ_SE_CONFIRM
     PlayCry SPECIES_GIRATINA
-    Message 0
+    Message TurnbackCaveGiratinaRoom_Text_GiratinaCry
     CloseMessage
     SetFlag FLAG_MAP_LOCAL
     StartLegendaryBattle SPECIES_GIRATINA, 47
     ClearFlag FLAG_MAP_LOCAL
     CheckWonBattle VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, _009B
+    GoToIfEq VAR_RESULT, FALSE, TurnbackCaveGiratinaRoom_BlackOut
     CheckDidNotCapture VAR_RESULT
-    GoToIfEq VAR_RESULT, TRUE, _0090
-    GoTo _0084
+    GoToIfEq VAR_RESULT, TRUE, TurnbackCaveGiratinaRoom_DefeatedGiratina
+    GoTo TurnbackCaveGiratinaRoom_CaughtGiratina
     End
 
-_0084:
+TurnbackCaveGiratinaRoom_CaughtGiratina:
     SetFlag FLAG_CAUGHT_GIRATINA
     SetFlag FLAG_HIDE_TURNBACK_CAVE_GIRATINA_ROOM_GIRATINA
     ReleaseAll
     End
 
-_0090:
-    Message 1
+TurnbackCaveGiratinaRoom_DefeatedGiratina:
+    Message TurnbackCaveGiratinaRoom_Text_GiratinaDisappeared
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_009B:
+TurnbackCaveGiratinaRoom_BlackOut:
     ClearFlag FLAG_HIDE_TURNBACK_CAVE_GIRATINA_ROOM_GIRATINA
     BlackOutFromBattle
     ReleaseAll
     End
 
-_00A5:
+TurnbackCaveGiratinaRoom_Item:
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    GoToIfEq VAR_TURNBACK_CAVE_ROOMS_VISITED, 3, _00F4
-    GoToIfLt VAR_TURNBACK_CAVE_ROOMS_VISITED, 15, _0100
+    GoToIfEq VAR_TURNBACK_CAVE_ROOMS_VISITED, 3, TurnbackCaveGiratinaRoom_SetItemReaperCloth
+    GoToIfLt VAR_TURNBACK_CAVE_ROOMS_VISITED, 15, TurnbackCaveGiratinaRoom_SetItemRareBone
     SetVar VAR_0x8004, ITEM_STARDUST
-_00CB:
+TurnbackCaveGiratinaRoom_GiveItem:
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _010C
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, TurnbackCaveGiratinaRoom_BagIsFull
     Common_GiveItemQuantityNoLineFeed
     CloseMessage
-    RemoveObject 1
+    RemoveObject LOCALID_ITEM
     ReleaseAll
     End
 
-_00F4:
+TurnbackCaveGiratinaRoom_SetItemReaperCloth:
     SetVar VAR_0x8004, ITEM_REAPER_CLOTH
-    GoTo _00CB
+    GoTo TurnbackCaveGiratinaRoom_GiveItem
 
-_0100:
+TurnbackCaveGiratinaRoom_SetItemRareBone:
     SetVar VAR_0x8004, ITEM_RARE_BONE
-    GoTo _00CB
+    GoTo TurnbackCaveGiratinaRoom_GiveItem
 
-_010C:
+TurnbackCaveGiratinaRoom_BagIsFull:
     Common_MessageBagIsFull
     CloseMessage
     ReleaseAll
     End
 
-_0116:
-    EventMessage 4
+TurnbackCaveGiratinaRoom_Inscription:
+    EventMessage TurnbackCaveGiratinaRoom_Text_PlaceWhereWorldsOverlap
     End
 
-_0127:
+TurnbackCaveGiratinaRoom_Portal:
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    Message 2
+    Message TurnbackCaveGiratinaRoom_Text_GoToDistortionWorld
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _0149
-    GoTo _017F
+    GoToIfEq VAR_RESULT, MENU_YES, TurnbackCaveGiratinaRoom_GoToDistortionWorld
+    GoTo TurnbackCaveGiratinaRoom_PortalEnd
     End
 
-_0149:
+TurnbackCaveGiratinaRoom_GoToDistortionWorld:
     BufferPlayerName 0
-    Message 3
+    Message TurnbackCaveGiratinaRoom_Text_PlayerLeaptIntoPortal
     CloseMessage
     PlaySE SEQ_SE_PL_SYUWA
     SetPartyGiratinaForm GIRATINA_FORM_ORIGIN
@@ -114,7 +115,7 @@ _0149:
     WaitFadeScreen
     End
 
-_017F:
+TurnbackCaveGiratinaRoom_PortalEnd:
     CloseMessage
     ReleaseAll
     End
