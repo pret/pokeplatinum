@@ -2,7 +2,7 @@
   "key": 50223,
   "messages": [
     {
-      "id": "pl_msg_00000266_00000",
+      "id": "TurnbackCaveEntrance_Text_PastThreePillars",
       "en_US": [
         "...Past three pillars...\n",
         "to the sleeping...\f",
@@ -10,7 +10,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000266_00001",
+      "id": "TurnbackCaveEntrance_Text_PastThreePillarsOfferUp",
       "en_US": [
         "...Past three pillars...\n",
         "offer up...to the...\f",

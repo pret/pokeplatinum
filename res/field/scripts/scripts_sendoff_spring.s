@@ -1,36 +1,37 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/sendoff_spring.h"
+#include "res/field/events/events_sendoff_spring.h"
 
 
-    ScriptEntry _0021
-    ScriptEntry _00C0
-    ScriptEntry _000E
+    ScriptEntry SendoffSpring_OnFrameCynthia
+    ScriptEntry SendoffSpring_Cynthia
+    ScriptEntry SendoffSpring_OnTransition
     ScriptEntryEnd
 
-_000E:
-    CallIfSet FLAG_CAUGHT_GIRATINA, _001B
+SendoffSpring_OnTransition:
+    CallIfSet FLAG_CAUGHT_GIRATINA, SendoffSpring_ShowTurnbackCaveItem
     End
 
-_001B:
-    ClearFlag FLAG_UNK_0x0278
+SendoffSpring_ShowTurnbackCaveItem:
+    ClearFlag FLAG_HIDE_TURNBACK_CAVE_GIRATINA_ROOM_ITEM
     Return
 
-_0021:
+SendoffSpring_OnFrameCynthia:
     LockAll
     SetPartyGiratinaForm GIRATINA_FORM_ALTERED
-    ScrCmd_2B5 0x10A, 0x2FA, 0x2CA
-    Message 0
+    ScrCmd_2B5 MAP_HEADER_UNKNOWN_266, 762, 714
+    Message SendoffSpring_Text_ThisPlace
     CloseMessage
-    ApplyMovement 0, _00A0
+    ApplyMovement LOCALID_CYNTHIA, SendoffSpring_Movement_CynthiaLookAround
     WaitMovement
-    ApplyMovement LOCALID_PLAYER, _0098
+    ApplyMovement LOCALID_PLAYER, SendoffSpring_Movement_PlayerWalkOnSpotWest
     WaitMovement
-    Message 1
+    Message SendoffSpring_Text_ItsTheSendoffSpring
     CloseMessage
-    ApplyMovement 0, _00B8
+    ApplyMovement LOCALID_CYNTHIA, SendoffSpring_Movement_CynthiaWalkOnSpotEast
     WaitMovement
     BufferPlayerName 0
-    Message 2
+    Message SendoffSpring_Text_YouShouldVisitProfRowan
     WaitButton
     CloseMessage
     SetVar VAR_EXITED_DISTORTION_WORLD_STATE, 2
@@ -48,12 +49,12 @@ _0021:
     End
 
     .balign 4, 0
-_0098:
+SendoffSpring_Movement_PlayerWalkOnSpotWest:
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_00A0:
+SendoffSpring_Movement_CynthiaLookAround:
     WalkOnSpotFastWest
     Delay8
     WalkOnSpotFastEast
@@ -62,25 +63,25 @@ _00A0:
     EndMovement
 
     .balign 4, 0
-_00B8:
+SendoffSpring_Movement_CynthiaWalkOnSpotEast:
     WalkOnSpotNormalEast
     EndMovement
 
-_00C0:
+SendoffSpring_Cynthia:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfGe VAR_EXITED_DISTORTION_WORLD_STATE, 3, _00E0
-    Message 3
-    GoTo _00EB
+    GoToIfGe VAR_EXITED_DISTORTION_WORLD_STATE, 3, SendoffSpring_IWishIBattledGiratina
+    Message SendoffSpring_Text_GoTellProfRowan
+    GoTo SendoffSpring_CynthiaEnd
     End
 
-_00E0:
-    Message 4
-    GoTo _00EB
+SendoffSpring_IWishIBattledGiratina:
+    Message SendoffSpring_Text_IWishIBattledGiratina
+    GoTo SendoffSpring_CynthiaEnd
     End
 
-_00EB:
+SendoffSpring_CynthiaEnd:
     WaitButton
     CloseMessage
     ReleaseAll

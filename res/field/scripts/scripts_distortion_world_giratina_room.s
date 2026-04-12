@@ -98,7 +98,7 @@ _014E:
 _016E:
     SetFlag FLAG_CAUGHT_GIRATINA
     SetFlag FLAG_HIDE_TURNBACK_CAVE_GIRATINA_ROOM_GIRATINA
-    ClearFlag FLAG_UNK_0x0278
+    ClearFlag FLAG_HIDE_TURNBACK_CAVE_GIRATINA_ROOM_ITEM
     AddDistortionWorldMapObject 130
     AddDistortionWorldMapObject 129
     ApplyMovement 129, _0250
