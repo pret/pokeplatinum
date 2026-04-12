@@ -1,75 +1,73 @@
 #include "macros/scrcmd.inc"
 #include "generated/distribution_events.h"
 #include "res/text/bank/spear_pillar.h"
+#include "res/field/events/events_spear_pillar.h"
 #include "generated/versions.h"
 
 
-    ScriptEntry _0022
-    ScriptEntry _0107
-    ScriptEntry _0154
-    ScriptEntry _0508
-    ScriptEntry _0249
-    ScriptEntry _0210
-    ScriptEntry _0223
-    ScriptEntry _0236
+    ScriptEntry SpearPillar_OnTransition
+    ScriptEntry SpearPillar_OnLoad
+    ScriptEntry SpearPillar_TriggerGrunts
+    ScriptEntry SpearPillar_Cyrus
+    ScriptEntry SpearPillar_TriggerMarsJupiter
+    ScriptEntry SpearPillar_Grunts
+    ScriptEntry SpearPillar_Jupiter
+    ScriptEntry SpearPillar_Mars
     ScriptEntryEnd
 
-_0022:
+SpearPillar_OnTransition:
     SetFlag FLAG_FIRST_ARRIVAL_SPEAR_PILLAR
-    Call _00C7
-    Call _0062
+    Call SpearPillar_TryHideRival
+    Call SpearPillar_TryEnableHallOfOrigin
     GetPlayerGender VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, GENDER_MALE, _0052
-    GoToIfEq VAR_MAP_LOCAL_0, GENDER_FEMALE, _005A
+    GoToIfEq VAR_MAP_LOCAL_0, GENDER_MALE, SpearPillar_SetCounterpartGraphicsDawn
+    GoToIfEq VAR_MAP_LOCAL_0, GENDER_FEMALE, SpearPillar_SetCounterpartGraphicsLucas
     End
 
-_0052:
-    SetVar VAR_OBJ_GFX_ID_0, 97
+SpearPillar_SetCounterpartGraphicsDawn:
+    SetVar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_PLAYER_F
     End
 
-_005A:
-    SetVar VAR_OBJ_GFX_ID_0, 0
+SpearPillar_SetCounterpartGraphicsLucas:
+    SetVar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_PLAYER_M
     End
 
-_0062:
+SpearPillar_TryEnableHallOfOrigin:
     CheckGameCompleted VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, 0, _00C5
+    GoToIfEq VAR_MAP_LOCAL_0, FALSE, SpearPillar_TryEnableHallOfOriginEnd
     GetNationalDexEnabled VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, 0, _00C5
+    GoToIfEq VAR_MAP_LOCAL_0, FALSE, SpearPillar_TryEnableHallOfOriginEnd
     CheckItem ITEM_AZURE_FLUTE, 1, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, FALSE, _00C5
+    GoToIfEq VAR_MAP_LOCAL_0, FALSE, SpearPillar_TryEnableHallOfOriginEnd
     CheckDistributionEvent DISTRIBUTION_EVENT_ARCEUS, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, FALSE, _00C5
-    GoToIfSet FLAG_UNK_0x011E, _00C5
-    SetVar VAR_UNK_0x4118, 1
-    GoTo _00C5
+    GoToIfEq VAR_MAP_LOCAL_0, FALSE, SpearPillar_TryEnableHallOfOriginEnd
+    GoToIfSet FLAG_CAUGHT_ARCEUS, SpearPillar_TryEnableHallOfOriginEnd
+    SetVar VAR_HALL_OF_ORIGIN_STATE, 1
+    GoTo SpearPillar_TryEnableHallOfOriginEnd
     End
 
-_00C5:
+SpearPillar_TryEnableHallOfOriginEnd:
     Return
 
-_00C7:
-    Dummy1F9 VAR_UNK_0x4098
-    GoToIfEq VAR_UNK_0x4098, 0, _0101
-    GoToIfEq VAR_UNK_0x4098, 1, _0101
-    GoToIfEq VAR_UNK_0x4098, 2, _0101
-    GoToIfEq VAR_UNK_0x4098, 3, _0101
+SpearPillar_TryHideRival:
+    Dummy1F9 VAR_SPEAR_PILLAR_STATE
+    GoToIfInRange VAR_SPEAR_PILLAR_STATE, 0, 3, SpearPillar_HideRival
     Return
 
-_0101:
-    SetFlag FLAG_UNK_0x01C5
+SpearPillar_HideRival:
+    SetFlag FLAG_HIDE_SPEAR_PILLAR_RIVAL
     Return
 
-_0107:
+SpearPillar_OnLoad:
     End
 
-_0109:
+SpearPillar_SetMessageVar:
     GetGameVersion VAR_RESULT
     SetVar VAR_0x8004, VAR_0x8005
-    GoToIfEq VAR_RESULT, VERSION_DIAMOND, _0133
-    GoToIfEq VAR_RESULT, VERSION_PLATINUM, _0133
+    GoToIfEq VAR_RESULT, VERSION_DIAMOND, SpearPillar_SetMessageVarReturn
+    GoToIfEq VAR_RESULT, VERSION_PLATINUM, SpearPillar_SetMessageVarReturn
     SetVar VAR_0x8004, VAR_0x8006
-_0133:
+SpearPillar_SetMessageVarReturn:
     Return
 
 SpearPillar_Unused:
@@ -80,217 +78,217 @@ SpearPillar_Unused:
 SpearPillar_Unused2:
     Return
 
-_0154:
+SpearPillar_TriggerGrunts:
     LockAll
-    ApplyMovement 0, _01E4
-    ApplyMovement 3, _01F4
+    ApplyMovement LOCALID_GRUNT_F, SpearPillar_Movement_GruntFWalkOnSpotEast
+    ApplyMovement LOCALID_GRUNT_M, SpearPillar_Movement_GruntMWalkOnSpotWest
     WaitMovement
     CheckHasTwoAliveMons VAR_RESULT
-    GoToIfNe VAR_RESULT, 0, _01A6
-    GoTo _0181
+    GoToIfNe VAR_RESULT, FALSE, SpearPillar_BattleGrunts
+    GoTo SpearPillar_GruntsOnlyOnePokemon
     End
 
-_0181:
-    Message 1
+SpearPillar_GruntsOnlyOnePokemon:
+    Message SpearPillar_Text_OnlyOnePokemon
     CloseMessage
-    ApplyMovement LOCALID_PLAYER, _0204
+    ApplyMovement LOCALID_PLAYER, SpearPillar_Movement_PlayerWalkSouth
     WaitMovement
-    ApplyMovement 0, _01EC
-    ApplyMovement 3, _01FC
+    ApplyMovement LOCALID_GRUNT_F, SpearPillar_Movement_GruntFWalkOnSpotSouth
+    ApplyMovement LOCALID_GRUNT_M, SpearPillar_Movement_GruntMWalkOnSpotSouth
     WaitMovement
     ReleaseAll
     End
 
-_01A6:
-    Call _01CA
-    GoToIfEq VAR_RESULT, FALSE, _01DB
-    SetVar VAR_UNK_0x4098, 1
-    Message 2
+SpearPillar_BattleGrunts:
+    Call SpearPillar_StartBattleGrunts
+    GoToIfEq VAR_RESULT, FALSE, SpearPillar_BlackOutGrunts
+    SetVar VAR_SPEAR_PILLAR_STATE, 1
+    Message SpearPillar_Text_WeLetYouPass
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_01CA:
-    Message 0
+SpearPillar_StartBattleGrunts:
+    Message SpearPillar_Text_TakeYouDown
     CloseMessage
     StartTrainerBattle TRAINER_GALACTIC_GRUNT_SPEAR_PILLAR_1, TRAINER_GALACTIC_GRUNT_SPEAR_PILLAR_2
     CheckWonBattle VAR_RESULT
     Return
 
-_01DB:
+SpearPillar_BlackOutGrunts:
     BlackOutFromBattle
     ReleaseAll
     End
 
     .balign 4, 0
-_01E4:
+SpearPillar_Movement_GruntFWalkOnSpotEast:
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_01EC:
+SpearPillar_Movement_GruntFWalkOnSpotSouth:
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_01F4:
+SpearPillar_Movement_GruntMWalkOnSpotWest:
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_01FC:
+SpearPillar_Movement_GruntMWalkOnSpotSouth:
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_0204:
+SpearPillar_Movement_PlayerWalkSouth:
     Delay4 5
     WalkNormalSouth
     EndMovement
 
-_0210:
-    NPCMessage 2
+SpearPillar_Grunts:
+    NPCMessage SpearPillar_Text_WeLetYouPass
     End
 
-_0223:
-    NPCMessage 44
+SpearPillar_Jupiter:
+    NPCMessage SpearPillar_Text_BeQuietAndWatch
     End
 
-_0236:
-    NPCMessage 43
+SpearPillar_Mars:
+    NPCMessage SpearPillar_Text_SurprisedYouMadeIt
     End
 
-_0249:
+SpearPillar_TriggerMarsJupiter:
     LockAll
-    Call _036F
-    Message 3
-    Message 4
+    Call SpearPillar_MarsJupiterWalkToPlayer
+    Message SpearPillar_Text_GoThroughMeFirst
+    Message SpearPillar_Text_IllBeNext
     CloseMessage
-    Call _02DC
+    Call SpearPillar_RivalEnter
     BufferRivalName 0
-    Message 5
-    Message 7
-    Message 8
-    Message 9
+    Message SpearPillar_Text_DontPartyWithoutMe
+    Message SpearPillar_Text_Huh
+    Message SpearPillar_Text_ImHereForRevenge
+    Message SpearPillar_Text_LetsBattleTwoOnTwo
     CloseMessage
     Call SpearPillar_SetRivalPartnerTeam
     StartTagBattle VAR_0x8004, TRAINER_COMMANDER_MARS_SPEAR_PILLAR, TRAINER_COMMANDER_JUPITER_SPEAR_PILLAR
     CheckWonBattle VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, _02D0
-    Call _0456
+    GoToIfEq VAR_RESULT, FALSE, SpearPillar_BlackOutMarsJupiter
+    Call SpearPillar_PlayerRivalFaceEachOther
     BufferRivalName 0
     BufferPlayerName 1
-    Message 10
+    Message SpearPillar_Text_IllHelpYou
     PlayFanfare SEQ_ASA
     WaitFanfare
     HealParty
-    Message 11
-    Message 12
+    Message SpearPillar_Text_FullyHealedPokemon
+    Message SpearPillar_Text_ItsYourShowNow
     CloseMessage
-    ScrCmd_18C 0xFF, 1
-    ApplyMovement 5, _0500
+    ScrCmd_18C LOCALID_PLAYER, DIR_SOUTH
+    ApplyMovement LOCALID_RIVAL, SpearPillar_Movement_RivalLeave
     WaitMovement
-    RemoveObject 5
-    SetVar VAR_UNK_0x4098, 2
-    GoTo _0508
+    RemoveObject LOCALID_RIVAL
+    SetVar VAR_SPEAR_PILLAR_STATE, 2
+    GoTo SpearPillar_Cyrus
     End
 
-_02D0:
-    SetVar VAR_UNK_0x4098, 1
+SpearPillar_BlackOutMarsJupiter:
+    SetVar VAR_SPEAR_PILLAR_STATE, 1
     BlackOutFromBattle
     ReleaseAll
     End
 
-_02DC:
-    ClearFlag FLAG_UNK_0x01C5
+SpearPillar_RivalEnter:
+    ClearFlag FLAG_HIDE_SPEAR_PILLAR_RIVAL
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     SetVar VAR_0x8008, VAR_0x8004
-    GoToIfEq VAR_0x8008, 30, _0315
-    GoToIfEq VAR_0x8008, 31, _0333
-    GoToIfEq VAR_0x8008, 32, _0351
+    GoToIfEq VAR_0x8008, 30, SpearPillar_RivalEnterX30
+    GoToIfEq VAR_0x8008, 31, SpearPillar_RivalEnterX31
+    GoToIfEq VAR_0x8008, 32, SpearPillar_RivalEnterX32
     Return
 
-_0315:
-    SetObjectEventPos 5, 31, 40
-    AddObject 5
-    ApplyMovement 5, _04F4
+SpearPillar_RivalEnterX30:
+    SetObjectEventPos LOCALID_RIVAL, 31, 40
+    AddObject LOCALID_RIVAL
+    ApplyMovement LOCALID_RIVAL, SpearPillar_Movement_RivalEnter
     WaitMovement
-    ScrCmd_18C 5, 3
+    ScrCmd_18C LOCALID_RIVAL, DIR_EAST
     Return
 
-_0333:
-    SetObjectEventPos 5, 30, 40
-    AddObject 5
-    ApplyMovement 5, _04F4
+SpearPillar_RivalEnterX31:
+    SetObjectEventPos LOCALID_RIVAL, 30, 40
+    AddObject LOCALID_RIVAL
+    ApplyMovement LOCALID_RIVAL, SpearPillar_Movement_RivalEnter
     WaitMovement
-    ScrCmd_18C 5, 2
+    ScrCmd_18C LOCALID_RIVAL, DIR_WEST
     Return
 
-_0351:
-    SetObjectEventPos 5, 31, 40
-    AddObject 5
-    ApplyMovement 5, _04F4
+SpearPillar_RivalEnterX32:
+    SetObjectEventPos LOCALID_RIVAL, 31, 40
+    AddObject LOCALID_RIVAL
+    ApplyMovement LOCALID_RIVAL, SpearPillar_Movement_RivalEnter
     WaitMovement
-    ScrCmd_18C 5, 2
+    ScrCmd_18C LOCALID_RIVAL, DIR_WEST
     Return
 
-_036F:
+SpearPillar_MarsJupiterWalkToPlayer:
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     SetVar VAR_0x8008, VAR_0x8004
-    GoToIfEq VAR_0x8008, 30, _03A4
-    GoToIfEq VAR_0x8008, 31, _03BE
-    GoToIfEq VAR_0x8008, 32, _03D8
+    GoToIfEq VAR_0x8008, 30, SpearPillar_MarsJupiterWalkToPlayerX30
+    GoToIfEq VAR_0x8008, 31, SpearPillar_MarsJupiterWalkToPlayerX31
+    GoToIfEq VAR_0x8008, 32, SpearPillar_MarsJupiterWalkToPlayerX32
     Return
 
-_03A4:
-    ScrCmd_18C 0xFF, 2
-    ApplyMovement 4, _03F4
-    ApplyMovement 2, _03FC
+SpearPillar_MarsJupiterWalkToPlayerX30:
+    ScrCmd_18C LOCALID_PLAYER, DIR_WEST
+    ApplyMovement LOCALID_JUPITER, SpearPillar_Movement_JupiterWalkOnSpotEast
+    ApplyMovement LOCALID_MARS, SpearPillar_Movement_MarsWalkWest
     WaitMovement
     Return
 
-_03BE:
-    ScrCmd_18C 0xFF, 3
-    ApplyMovement 4, _0404
-    ApplyMovement 2, _040C
+SpearPillar_MarsJupiterWalkToPlayerX31:
+    ScrCmd_18C LOCALID_PLAYER, DIR_EAST
+    ApplyMovement LOCALID_JUPITER, SpearPillar_Movement_JupiterWalkOnSpotEast2
+    ApplyMovement LOCALID_MARS, SpearPillar_Movement_MarsWalkWest2
     WaitMovement
     Return
 
-_03D8:
-    ScrCmd_18C 0xFF, 3
-    ApplyMovement 4, _0414
-    ApplyMovement 2, _041C
+SpearPillar_MarsJupiterWalkToPlayerX32:
+    ScrCmd_18C LOCALID_PLAYER, DIR_EAST
+    ApplyMovement LOCALID_JUPITER, SpearPillar_Movement_JupiterWalkEast
+    ApplyMovement LOCALID_MARS, SpearPillar_Movement_MarsWalkOnSpotWest
     WaitMovement
     Return
 
     .balign 4, 0
-_03F4:
+SpearPillar_Movement_JupiterWalkOnSpotEast:
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_03FC:
+SpearPillar_Movement_MarsWalkWest:
     WalkNormalWest
     EndMovement
 
     .balign 4, 0
-_0404:
+SpearPillar_Movement_JupiterWalkOnSpotEast2:
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_040C:
+SpearPillar_Movement_MarsWalkWest2:
     WalkNormalWest
     EndMovement
 
     .balign 4, 0
-_0414:
+SpearPillar_Movement_JupiterWalkEast:
     WalkNormalEast
     EndMovement
 
     .balign 4, 0
-_041C:
+SpearPillar_Movement_MarsWalkOnSpotWest:
     WalkOnSpotNormalWest
     EndMovement
 
@@ -304,32 +302,32 @@ SpearPillar_SetRivalPartnerTeam:
 SpearPillar_Return:
     Return
 
-_0456:
+SpearPillar_PlayerRivalFaceEachOther:
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     SetVar VAR_0x8008, VAR_0x8004
-    GoToIfEq VAR_0x8008, 30, _048B
-    GoToIfEq VAR_0x8008, 31, _0499
-    GoToIfEq VAR_0x8008, 32, _04A7
+    GoToIfEq VAR_0x8008, 30, SpearPillar_PlayerRivalFaceEachOtherX30
+    GoToIfEq VAR_0x8008, 31, SpearPillar_PlayerRivalFaceEachOtherX31
+    GoToIfEq VAR_0x8008, 32, SpearPillar_PlayerRivalFaceEachOtherX32
     Return
 
-_048B:
-    ScrCmd_18C 0xFF, 3
-    ScrCmd_18C 5, 2
+SpearPillar_PlayerRivalFaceEachOtherX30:
+    ScrCmd_18C LOCALID_PLAYER, DIR_EAST
+    ScrCmd_18C LOCALID_RIVAL, DIR_WEST
     Return
 
-_0499:
-    ScrCmd_18C 0xFF, 2
-    ScrCmd_18C 5, 3
+SpearPillar_PlayerRivalFaceEachOtherX31:
+    ScrCmd_18C LOCALID_PLAYER, DIR_WEST
+    ScrCmd_18C LOCALID_RIVAL, DIR_EAST
     Return
 
-_04A7:
-    ScrCmd_18C 0xFF, 2
-    ScrCmd_18C 5, 3
+SpearPillar_PlayerRivalFaceEachOtherX32:
+    ScrCmd_18C LOCALID_PLAYER, DIR_WEST
+    ScrCmd_18C LOCALID_RIVAL, DIR_EAST
     Return
 
 SpearPillar_Unused3:
-    ApplyMovement 4, SpearPillar_UnusedMovement
-    ApplyMovement 2, SpearPillar_UnusedMovement2
+    ApplyMovement LOCALID_JUPITER, SpearPillar_UnusedMovement
+    ApplyMovement LOCALID_MARS, SpearPillar_UnusedMovement2
     WaitMovement
     Return
 
@@ -349,26 +347,26 @@ SpearPillar_UnusedMovement2:
     EndMovement
 
     .balign 4, 0
-_04F4:
+SpearPillar_Movement_RivalEnter:
     Delay4 2
     WalkFastNorth 8
     EndMovement
 
     .balign 4, 0
-_0500:
+SpearPillar_Movement_RivalLeave:
     WalkFastSouth 8
     EndMovement
 
-_0508:
-    ApplyMovement LOCALID_PLAYER, _05B8
+SpearPillar_Cyrus:
+    ApplyMovement LOCALID_PLAYER, SpearPillar_Movement_PlayerWalkOnSpotNorth
     WaitMovement
     GetPlayerMapPos VAR_0x8000, VAR_0x8001
     AddFreeCamera VAR_0x8000, VAR_0x8001
-    Call _05C0
+    Call SpearPillar_CameraMoveToCyrus
     WaitMovement
-    SetVar VAR_0x8005, 13
-    SetVar VAR_0x8006, 68
-    Call _0109
+    SetVar VAR_0x8005, SpearPillar_Text_EverythingIsReady
+    SetVar VAR_0x8006, SpearPillar_Text_Dummy68
+    Call SpearPillar_SetMessageVar
     MessageVar VAR_0x8004
     CloseMessage
     FadeOutBGM 0, 30
@@ -378,21 +376,21 @@ _0508:
     WaitTime 20, VAR_RESULT
     PlayMusic SEQ_THE_EVENT02
     SetSubScene63
-    GoTo _0567
+    GoTo SpearPillar_WaitThenWarpToSpearPillarDistorted
     End
 
-_0567:
+SpearPillar_WaitThenWarpToSpearPillarDistorted:
     ScrCmd_20D 1, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _0567
+    GoToIfEq VAR_RESULT, 0, SpearPillar_WaitThenWarpToSpearPillarDistorted
     ScrCmd_2FB
-    SetFlag FLAG_UNK_0x01C8
-    SetFlag FLAG_UNK_0x01C9
-    SetFlag FLAG_UNK_0x01CA
-    SetVar VAR_UNK_0x4098, 3
+    SetFlag FLAG_HIDE_SPEAR_PILLAR_GRUNTS
+    SetFlag FLAG_HIDE_SPEAR_PILLAR_MARS_JUPITER
+    SetFlag FLAG_HIDE_SPEAR_PILLAR_CYRUS
+    SetVar VAR_SPEAR_PILLAR_STATE, 3
     SetFlag FLAG_UNLOCKED_VS_SEEKER_LVL_3
-    ClearFlag FLAG_UNK_0x01C7
+    ClearFlag FLAG_HIDE_SPEAR_PILLAR_DISTORTED_TEAM_GALACTIC
     SetFlag FLAG_SPEAR_PILLAR_IS_DISTORTED
-    SetVar VAR_UNK_0x40C3, 1
+    SetVar VAR_SPEAR_PILLAR_DISTORTED_STATE, 1
     SetSpeciesSeen SPECIES_DIALGA
     SetSpeciesSeen SPECIES_PALKIA
     RestoreCamera
@@ -400,69 +398,69 @@ _0567:
     End
 
     .balign 4, 0
-_05B8:
+SpearPillar_Movement_PlayerWalkOnSpotNorth:
     WalkOnSpotNormalNorth
     EndMovement
 
-_05C0:
+SpearPillar_CameraMoveToCyrus:
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     SetVar VAR_0x8008, VAR_0x8004
-    GoToIfEq VAR_0x8008, 29, _060F
-    GoToIfEq VAR_0x8008, 30, _0619
-    GoToIfEq VAR_0x8008, 31, _0623
-    GoToIfEq VAR_0x8008, 32, _062D
-    GoToIfEq VAR_0x8008, 33, _0637
+    GoToIfEq VAR_0x8008, 29, SpearPillar_CameraMoveToCyrusX29
+    GoToIfEq VAR_0x8008, 30, SpearPillar_CameraMoveToCyrusX30
+    GoToIfEq VAR_0x8008, 31, SpearPillar_CameraMoveToCyrusX31
+    GoToIfEq VAR_0x8008, 32, SpearPillar_CameraMoveToCyrusX32
+    GoToIfEq VAR_0x8008, 33, SpearPillar_CameraMoveToCyrusX33
     Return
 
-_060F:
-    ApplyFreeCameraMovement _0644
+SpearPillar_CameraMoveToCyrusX29:
+    ApplyFreeCameraMovement SpearPillar_Movement_CameraMoveToCyrusX29
     Return
 
-_0619:
-    ApplyFreeCameraMovement _0654
+SpearPillar_CameraMoveToCyrusX30:
+    ApplyFreeCameraMovement SpearPillar_Movement_CameraMoveToCyrusX30
     Return
 
-_0623:
-    ApplyFreeCameraMovement _0664
+SpearPillar_CameraMoveToCyrusX31:
+    ApplyFreeCameraMovement SpearPillar_Movement_CameraMoveToCyrusX31
     Return
 
-_062D:
-    ApplyFreeCameraMovement _0670
+SpearPillar_CameraMoveToCyrusX32:
+    ApplyFreeCameraMovement SpearPillar_Movement_CameraMoveToCyrusX32
     Return
 
-_0637:
-    ApplyFreeCameraMovement _0680
+SpearPillar_CameraMoveToCyrusX33:
+    ApplyFreeCameraMovement SpearPillar_Movement_CameraMoveToCyrusX33
     Return
 
     .balign 4, 0
-_0644:
+SpearPillar_Movement_CameraMoveToCyrusX29:
     Delay8
     WalkNormalNorth 6
     WalkNormalEast 2
     EndMovement
 
     .balign 4, 0
-_0654:
+SpearPillar_Movement_CameraMoveToCyrusX30:
     Delay8
     WalkNormalNorth 6
     WalkNormalEast
     EndMovement
 
     .balign 4, 0
-_0664:
+SpearPillar_Movement_CameraMoveToCyrusX31:
     Delay8
     WalkNormalNorth 6
     EndMovement
 
     .balign 4, 0
-_0670:
+SpearPillar_Movement_CameraMoveToCyrusX32:
     Delay8
     WalkNormalNorth 6
     WalkNormalWest
     EndMovement
 
     .balign 4, 0
-_0680:
+SpearPillar_Movement_CameraMoveToCyrusX33:
     Delay8
     WalkNormalNorth 6
     WalkNormalWest 2

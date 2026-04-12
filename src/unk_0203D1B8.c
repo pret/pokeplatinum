@@ -1800,14 +1800,14 @@ void FieldSystem_StartLibraryTV(FieldSystem *fieldSystem)
     FieldSystem_StartChildProcess(fieldSystem, &LibraryTV_template, fieldSystem->saveData);
 }
 
-static const ApplicationManagerTemplate Unk_020EA368 = {
+static const ApplicationManagerTemplate sDWWarpTemplate = {
     DWWarp_Init,
     DWWarp_Main,
     DWWarp_Exit,
     FS_OVERLAY_ID(dw_warp)
 };
 
-void sub_0203E714(FieldSystem *fieldSystem)
+void FieldSystem_StartDWWarp(FieldSystem *fieldSystem)
 {
-    FieldSystem_StartChildProcess(fieldSystem, &Unk_020EA368, fieldSystem->saveData);
+    FieldSystem_StartChildProcess(fieldSystem, &sDWWarpTemplate, fieldSystem->saveData);
 }

@@ -1,139 +1,140 @@
 #include "macros/scrcmd.inc"
 #include "generated/distribution_events.h"
 #include "res/text/bank/hall_of_origin.h"
+#include "res/field/events/events_hall_of_origin.h"
 
 
-    ScriptEntry _003B
-    ScriptEntry _0056
-    ScriptEntry _0012
-    ScriptEntry _0056
+    ScriptEntry HallOfOrigin_OnLoad
+    ScriptEntry HallOfOrigin_TriggerArceus
+    ScriptEntry HallOfOrigin_OnTransition
+    ScriptEntry HallOfOrigin_TriggerArceus
     ScriptEntryEnd
 
-_0012:
+HallOfOrigin_OnTransition:
     CheckDistributionEvent DISTRIBUTION_EVENT_ARCEUS, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, FALSE, _0035
-    GoToIfSet FLAG_UNK_0x011E, _0035
-    ClearFlag FLAG_UNK_0x024E
+    GoToIfEq VAR_MAP_LOCAL_0, FALSE, HallOfOrigin_HideArceus
+    GoToIfSet FLAG_CAUGHT_ARCEUS, HallOfOrigin_HideArceus
+    ClearFlag FLAG_HIDE_HALL_OF_ORIGIN_ARCEUS
     End
 
-_0035:
-    SetFlag FLAG_UNK_0x024E
+HallOfOrigin_HideArceus:
+    SetFlag FLAG_HIDE_HALL_OF_ORIGIN_ARCEUS
     End
 
-_003B:
-    GoToIfSet FLAG_MAP_LOCAL, _0048
+HallOfOrigin_OnLoad:
+    GoToIfSet FLAG_MAP_LOCAL, HallOfOrigin_RemoveArceus
     End
 
-_0048:
-    SetFlag FLAG_UNK_0x024E
-    RemoveObject 0
+HallOfOrigin_RemoveArceus:
+    SetFlag FLAG_HIDE_HALL_OF_ORIGIN_ARCEUS
+    RemoveObject LOCALID_ARCEUS
     ClearFlag FLAG_MAP_LOCAL
     End
 
-_0056:
+HallOfOrigin_TriggerArceus:
     LockAll
-    SetVar VAR_UNK_0x4118, 0
-    Call _00E9
-    Call _0104
+    SetVar VAR_HALL_OF_ORIGIN_STATE, 0
+    Call HallOfOrigin_PlayerNoticeArceus
+    Call HallOfOrigin_PlayerWalkToArceus
     PlayCry SPECIES_ARCEUS
     WaitCry
-    Call _016F
+    Call HallOfOrigin_PlayerWalkNorth
     PlayCry SPECIES_ARCEUS
-    Message 0
+    Message HallOfOrigin_Text_ArceusCry
     CloseMessage
     SetFlag FLAG_MAP_LOCAL
     StartLegendaryBattle SPECIES_ARCEUS, 80
     ClearFlag FLAG_MAP_LOCAL
     CheckWonBattle VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, _00DF
+    GoToIfEq VAR_RESULT, FALSE, HallOfOrigin_BlackOut
     CheckDidNotCapture VAR_RESULT
-    GoToIfEq VAR_RESULT, TRUE, _00D0
-    CallIfEq VAR_ARCEUS_EVENT_STATE, 0, _00C8
-    SetFlag FLAG_UNK_0x011E
+    GoToIfEq VAR_RESULT, TRUE, HallOfOrigin_DefeatedArceus
+    CallIfEq VAR_ARCEUS_EVENT_STATE, 0, HallOfOrigin_IncreaseArceusEventState
+    SetFlag FLAG_CAUGHT_ARCEUS
     ReleaseAll
     End
 
-_00C8:
+HallOfOrigin_IncreaseArceusEventState:
     SetVar VAR_ARCEUS_EVENT_STATE, 1
     Return
 
-_00D0:
-    Message 1
+HallOfOrigin_DefeatedArceus:
+    Message HallOfOrigin_Text_ArceusDisappeared
     WaitButton
     CloseMessage
-    ClearFlag FLAG_UNK_0x024E
+    ClearFlag FLAG_HIDE_HALL_OF_ORIGIN_ARCEUS
     ReleaseAll
     End
 
-_00DF:
-    ClearFlag FLAG_UNK_0x024E
+HallOfOrigin_BlackOut:
+    ClearFlag FLAG_HIDE_HALL_OF_ORIGIN_ARCEUS
     BlackOutFromBattle
     ReleaseAll
     End
 
-_00E9:
-    ApplyMovement LOCALID_PLAYER, _00F8
+HallOfOrigin_PlayerNoticeArceus:
+    ApplyMovement LOCALID_PLAYER, HallOfOrigin_Movement_PlayerExclamationMark
     WaitMovement
     Return
 
     .balign 4, 0
-_00F8:
+HallOfOrigin_Movement_PlayerExclamationMark:
     EmoteExclamationMark
     Delay16
     EndMovement
 
-_0104:
+HallOfOrigin_PlayerWalkToArceus:
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     SetVar VAR_0x8008, VAR_0x8004
-    GoToIfEq VAR_0x8008, 30, _0139
-    GoToIfEq VAR_0x8008, 31, _014B
-    GoToIfEq VAR_0x8008, 32, _015D
-_0137:
+    GoToIfEq VAR_0x8008, 30, HallOfOrigin_PlayerWalkToArceusX30
+    GoToIfEq VAR_0x8008, 31, HallOfOrigin_PlayerWalkToArceusX31
+    GoToIfEq VAR_0x8008, 32, HallOfOrigin_PlayerWalkToArceusX32
+HallOfOrigin_PlayerWalkToArceusReturn:
     Return
 
-_0139:
-    ApplyMovement LOCALID_PLAYER, _017C
+HallOfOrigin_PlayerWalkToArceusX30:
+    ApplyMovement LOCALID_PLAYER, HallOfOrigin_Movement_PlayerWalkToArceusX30
     WaitMovement
-    GoTo _0137
+    GoTo HallOfOrigin_PlayerWalkToArceusReturn
     End
 
-_014B:
-    ApplyMovement LOCALID_PLAYER, _018C
+HallOfOrigin_PlayerWalkToArceusX31:
+    ApplyMovement LOCALID_PLAYER, HallOfOrigin_Movement_PlayerWalkToArceusX31
     WaitMovement
-    GoTo _0137
+    GoTo HallOfOrigin_PlayerWalkToArceusReturn
     End
 
-_015D:
-    ApplyMovement LOCALID_PLAYER, _0194
+HallOfOrigin_PlayerWalkToArceusX32:
+    ApplyMovement LOCALID_PLAYER, HallOfOrigin_Movement_PlayerWalkToArceusX32
     WaitMovement
-    GoTo _0137
+    GoTo HallOfOrigin_PlayerWalkToArceusReturn
     End
 
-_016F:
-    ApplyMovement LOCALID_PLAYER, _01A4
+HallOfOrigin_PlayerWalkNorth:
+    ApplyMovement LOCALID_PLAYER, HallOfOrigin_Movement_PlayerWalkNorth
     WaitMovement
     Return
 
     .balign 4, 0
-_017C:
+HallOfOrigin_Movement_PlayerWalkToArceusX30:
     WalkNormalNorth 4
     WalkNormalEast
     FaceNorth
     EndMovement
 
     .balign 4, 0
-_018C:
+HallOfOrigin_Movement_PlayerWalkToArceusX31:
     WalkNormalNorth 4
     EndMovement
 
     .balign 4, 0
-_0194:
+HallOfOrigin_Movement_PlayerWalkToArceusX32:
     WalkNormalNorth 4
     WalkNormalWest
     FaceNorth
     EndMovement
 
     .balign 4, 0
-_01A4:
+HallOfOrigin_Movement_PlayerWalkNorth:
     WalkNormalNorth 2
     EndMovement

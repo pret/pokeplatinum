@@ -1,5 +1,5 @@
 scroll_prompts_png = files('scroll_prompts.png')
-scroll_prompts_ncgr = ncgr_gen.process(scroll_prompts_png,
+scroll_prompts_ncgr = ncgr_cell_gen.process(scroll_prompts_png,
     extra_args: [ '-version101', '-clobbersize', ],
 )
 scroll_prompts_nclr = nclr_gen.process(scroll_prompts_png,
@@ -9,10 +9,10 @@ scroll_prompts_nclr = nclr_gen.process(scroll_prompts_png,
 scroll_prompts_ncer = ncer_gen.process(files('scroll_prompts_cell.json'))
 scroll_prompts_nanr = nanr_gen.process(files('scroll_prompts_anim.json'))
 
-fld_comact_narc = custom_target('fld_comact.narc',
+scroll_prompts_narc = custom_target('scroll_prompts.narc',
     output: [
-        'fld_comact.narc',
-        'fld_comact.naix',
+        'scroll_prompts.narc',
+        'scroll_prompts.naix',
     ],
     input: [
         scroll_prompts_ncgr,
@@ -24,11 +24,11 @@ fld_comact_narc = custom_target('fld_comact.narc',
         nitroarc_exe,
         '--create',
         '--index',
-        '--files-from', files('fld_comact.order'),
+        '--files-from', files('scroll_prompts.order'),
         '--file', '@OUTPUT0@',
         '@PRIVATE_DIR@',
     ],
 )
 
-nitrofs_files += fld_comact_narc
-naix_headers += fld_comact_narc[1]
+nitrofs_files += scroll_prompts_narc
+naix_headers += scroll_prompts_narc[1]

@@ -8,7 +8,6 @@ prebuilt_files = [
     'ending.narc',
     'ev_pokeselect.narc',
     'f_note_gra.narc',
-    'fld_comact.narc',
     'font.narc',
     'fontoam.narc',
     'footprint_board.narc',

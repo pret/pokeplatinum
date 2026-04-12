@@ -474,7 +474,7 @@ pokeplatinum_c = files(
     'overlay006/ov6_02247830.c',
     'overlay006/link_contest_record_display.c',
     'overlay006/healing_machine_animation/hall_of_fame.c',
-    'overlay006/ov6_02247F5C.c',
+    'overlay006/lake_guardian_containment_units.c',
     'overlay006/ov6_02248050.c',
     'overlay006/ov6_02248948.c',
     'overlay006/ov6_022489E4.c',

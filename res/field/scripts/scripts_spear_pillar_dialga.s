@@ -3,68 +3,68 @@
 #include "res/text/bank/spear_pillar_dialga.h"
 
 
-    ScriptEntry _0077
-    ScriptEntry _000A
+    ScriptEntry SpearPillarDialga_Rift
+    ScriptEntry SpearPillarDialga_OnTransition
     ScriptEntryEnd
 
-_000A:
-    Call _0012
+SpearPillarDialga_OnTransition:
+    Call SpearPillarDialga_TryEnableHallOfOrigin
     End
 
-_0012:
+SpearPillarDialga_TryEnableHallOfOrigin:
     CheckGameCompleted VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, 0, _0075
+    GoToIfEq VAR_MAP_LOCAL_0, FALSE, SpearPillarDialga_TryEnableHallOfOriginEnd
     GetNationalDexEnabled VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, 0, _0075
+    GoToIfEq VAR_MAP_LOCAL_0, FALSE, SpearPillarDialga_TryEnableHallOfOriginEnd
     CheckItem ITEM_AZURE_FLUTE, 1, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, FALSE, _0075
+    GoToIfEq VAR_MAP_LOCAL_0, FALSE, SpearPillarDialga_TryEnableHallOfOriginEnd
     CheckDistributionEvent DISTRIBUTION_EVENT_ARCEUS, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, FALSE, _0075
-    GoToIfSet FLAG_UNK_0x011E, _0075
-    SetVar VAR_UNK_0x4118, 1
-    GoTo _0075
+    GoToIfEq VAR_MAP_LOCAL_0, FALSE, SpearPillarDialga_TryEnableHallOfOriginEnd
+    GoToIfSet FLAG_CAUGHT_ARCEUS, SpearPillarDialga_TryEnableHallOfOriginEnd
+    SetVar VAR_HALL_OF_ORIGIN_STATE, 1
+    GoTo SpearPillarDialga_TryEnableHallOfOriginEnd
     End
 
-_0075:
+SpearPillarDialga_TryEnableHallOfOriginEnd:
     Return
 
-_0077:
+SpearPillarDialga_Rift:
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    GoToIfGe VAR_SPEAR_PILLAR_DIALGA_STATE, 1, _00F4
-    GoToIfSet FLAG_CAUGHT_DIALGA, _00F4
-    Message 0
+    GoToIfGe VAR_SPEAR_PILLAR_DIALGA_STATE, 1, SpearPillarDialga_TimeEmanatesFromRift
+    GoToIfSet FLAG_CAUGHT_DIALGA, SpearPillarDialga_TimeEmanatesFromRift
+    Message SpearPillarDialga_Text_WillYouChallengeDialga
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _0101
+    GoToIfEq VAR_RESULT, MENU_NO, SpearPillarDialga_RiftEnd
     PlayCry SPECIES_DIALGA
-    Message 1
+    Message SpearPillarDialga_Text_DialgaCry
     WaitCry
     CloseMessage
     StartLegendaryBattle SPECIES_DIALGA, 70
     CheckWonBattle VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, _00E8
+    GoToIfEq VAR_RESULT, FALSE, SpearPillarDialga_BlackOut
     SetVar VAR_SPEAR_PILLAR_DIALGA_STATE, 1
     CheckDidNotCapture VAR_RESULT
-    CallIfEq VAR_RESULT, FALSE, _00EE
+    CallIfEq VAR_RESULT, FALSE, SpearPillarDialga_SetFlagCaughtDialga
     ReleaseAll
     End
 
-_00E8:
+SpearPillarDialga_BlackOut:
     BlackOutFromBattle
     ReleaseAll
     End
 
-_00EE:
+SpearPillarDialga_SetFlagCaughtDialga:
     SetFlag FLAG_CAUGHT_DIALGA
     Return
 
-_00F4:
-    Message 2
+SpearPillarDialga_TimeEmanatesFromRift:
+    Message SpearPillarDialga_Text_TimeEmanatesFromRift
     WaitButton
-    GoTo _0101
+    GoTo SpearPillarDialga_RiftEnd
     End
 
-_0101:
+SpearPillarDialga_RiftEnd:
     CloseMessage
     ReleaseAll
     End

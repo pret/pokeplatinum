@@ -71,11 +71,11 @@
 #include "overlay006/great_marsh_tram.h"
 #include "overlay006/healing_machine_animation.h"
 #include "overlay006/hm_cut_in.h"
+#include "overlay006/lake_guardian_containment_units.h"
 #include "overlay006/npc_trade.h"
 #include "overlay006/ov6_0223E140.h"
 #include "overlay006/ov6_02243004.h"
 #include "overlay006/ov6_02247830.h"
-#include "overlay006/ov6_02247F5C.h"
 #include "overlay006/ov6_02248948.h"
 #include "overlay006/pc_animation.h"
 #include "overlay006/swarm.h"
@@ -631,8 +631,8 @@ static BOOL ScrCmd_PlayHallOfFameHealingAnimation(ScriptContext *ctx);
 static BOOL ScrCmd_InitPersistedMapFeaturesForPlatformLift(ScriptContext *ctx);
 static BOOL ScrCmd_TriggerPlatformLift(ScriptContext *ctx);
 static BOOL ScrCmd_CheckPlatformLiftNotUsedWhenEnteredMap(ScriptContext *ctx);
-static BOOL ScrCmd_25E(ScriptContext *ctx);
-static BOOL ScrCmd_25F(ScriptContext *ctx);
+static BOOL ScrCmd_InitLakeGuardianContainmentUnits(ScriptContext *ctx);
+static BOOL ScrCmd_DeactivateLakeGuardianContainmentUnits(ScriptContext *ctx);
 static BOOL ScrCmd_IncrementTrainerScore2(ScriptContext *ctx);
 static BOOL ScrCmd_CheckPartyHasSpecies2(ScriptContext *ctx);
 static BOOL ScrCmd_ChangeDeoxysForm(ScriptContext *ctx);
@@ -730,7 +730,7 @@ static BOOL ScrCmd_ResetDistortionWorldPersistedCameraAngles(ScriptContext *ctx)
 static BOOL ScrCmd_CheckHeapMemory(ScriptContext *ctx);
 static BOOL ScrCmd_StartGiratinaOriginBattle(ScriptContext *ctx);
 static BOOL ScrCmd_SetSpeciesSeen(ScriptContext *ctx);
-static BOOL ScrCmd_320(ScriptContext *ctx);
+static BOOL ScrCmd_DoDWWarp(ScriptContext *ctx);
 static BOOL ScrCmd_StartDistortionWorldGiratinaShadowEvent(ScriptContext *ctx);
 static BOOL ScrCmd_FinishDistortionWorldGiratinaShadowEvent(ScriptContext *ctx);
 static BOOL ScrCmd_323(ScriptContext *ctx);
@@ -4631,16 +4631,16 @@ static BOOL ScrCmd_SetBgEventPos(ScriptContext *ctx)
 
 static BOOL ScrCmd_18C(ScriptContext *ctx)
 {
-    u16 v1 = ScriptContext_GetVar(ctx);
-    u16 v2 = ScriptContext_GetVar(ctx);
+    u16 localID = ScriptContext_GetVar(ctx);
+    u16 dir = ScriptContext_GetVar(ctx);
 
-    MapObject *v0 = MapObjMan_LocalMapObjByIndex(ctx->fieldSystem->mapObjMan, v1);
+    MapObject *mapObj = MapObjMan_LocalMapObjByIndex(ctx->fieldSystem->mapObjMan, localID);
 
-    if (v0 == NULL) {
+    if (mapObj == NULL) {
         GF_ASSERT(FALSE);
     }
 
-    ov5_021ECDFC(v0, v2);
+    ov5_021ECDFC(mapObj, dir);
     return FALSE;
 }
 
@@ -5723,15 +5723,15 @@ static BOOL ScrCmd_CheckPlatformLiftNotUsedWhenEnteredMap(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_25E(ScriptContext *ctx)
+static BOOL ScrCmd_InitLakeGuardianContainmentUnits(ScriptContext *ctx)
 {
-    ov6_02247F5C(ctx->fieldSystem);
+    LakeGuardianContainmentUnit_InitAnimations(ctx->fieldSystem);
     return FALSE;
 }
 
-static BOOL ScrCmd_25F(ScriptContext *ctx)
+static BOOL ScrCmd_DeactivateLakeGuardianContainmentUnits(ScriptContext *ctx)
 {
-    ov6_02247FBC(ctx->fieldSystem);
+    LakeGuardianContainmentUnit_Deactivate(ctx->fieldSystem);
     return TRUE;
 }
 
@@ -7054,9 +7054,9 @@ static BOOL ScrCmd_CheckHeapMemory(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_320(ScriptContext *ctx)
+static BOOL ScrCmd_DoDWWarp(ScriptContext *ctx)
 {
-    sub_0203E714(ctx->fieldSystem);
+    FieldSystem_StartDWWarp(ctx->fieldSystem);
     ScriptContext_Pause(ctx, ScriptContext_WaitForApplicationExit);
 
     return TRUE;
