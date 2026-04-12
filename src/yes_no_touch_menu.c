@@ -115,14 +115,8 @@ u32 YesNoTouchMenu_ProcessInputInstant(YesNoTouchMenu *menu)
 
     u32 input = YesNoTouchMenu_ProcessInput(menu);
 
-    if (input == YES_NO_TOUCH_MENU_NOTHING_CHOSEN) {
-        if (menu->buttonState == TOUCH_BUTTON_PRESSED) {
-            if (menu->pressedButton == BUTTON_YES) {
-                return YES_NO_TOUCH_MENU_YES_INSTANT;
-            } else {
-                return YES_NO_TOUCH_MENU_NO_INSTANT;
-            }
-        }
+    if (input == YES_NO_TOUCH_MENU_NOTHING_CHOSEN && menu->buttonState == TOUCH_BUTTON_PRESSED) {
+        return menu->pressedButton == BUTTON_YES ? YES_NO_TOUCH_MENU_YES_INSTANT : YES_NO_TOUCH_MENU_NO_INSTANT;
     }
 
     return input;
@@ -143,11 +137,7 @@ u32 YesNoTouchMenu_ProcessInput(YesNoTouchMenu *menu)
     }
 
     if (pressAnimDone == TRUE) {
-        if (menu->pressedButton == BUTTON_YES) {
-            return YES_NO_TOUCH_MENU_YES;
-        } else {
-            return YES_NO_TOUCH_MENU_NO;
-        }
+        return menu->pressedButton == BUTTON_YES ? YES_NO_TOUCH_MENU_YES : YES_NO_TOUCH_MENU_NO;
     }
 
     return YES_NO_TOUCH_MENU_NOTHING_CHOSEN;
@@ -181,13 +171,7 @@ static void YesNoTouchMenu_LoadChar(YesNoTouchMenu *menu, const YesNoTouchMenuPa
 
 static void YesNoTouchMenu_LoadPltt(YesNoTouchMenu *menu, const YesNoTouchMenuParams *params)
 {
-    u32 screen;
-
-    if (menu->bgLayer < BG_LAYER_SUB_0) {
-        screen = SCREEN_MAIN;
-    } else {
-        screen = SCREEN_SUB;
-    }
+    u32 screen = menu->bgLayer < BG_LAYER_SUB_0 ? SCREEN_MAIN : SCREEN_SUB;
 
     YesNoTouchMenu_QueueLoadPlttTask(NARC_INDEX_GRAPHIC__TOUCH_SUBWINDOW, yes_no_button_tiles_NCLR, screen, PLTT_OFFSET(params->palette), BUTTON_COUNT * PALETTE_SIZE_BYTES, menu->heapID);
 }
