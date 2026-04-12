@@ -1,9 +1,10 @@
 #include "overlay005/map_prop_animation.h"
 
 #include <nitro.h>
-#include <string.h>
 
 #include "constants/heap.h"
+
+#include "overlay008/ov8_02249960.h"
 
 #include "heap.h"
 #include "narc.h"
@@ -94,7 +95,7 @@ MapPropAnimationManager *MapPropAnimationManager_New(void)
         manager->animations[i].loopCount = -1;
         manager->animations[i].looping = FALSE;
         manager->animations[i].reversed = FALSE;
-        manager->animations[i].pastoriaGymButtonGroup = 0;
+        manager->animations[i].pastoriaGymButtonGroup = PASTORIA_NO_BUTTON_GROUP;
     }
 
     for (i = 0; i < MAP_PROP_ANIMATION_MANAGER_MAX_BICYCLE_SLOPE_ANIMATIONS; i++) {
@@ -154,7 +155,7 @@ MapPropAnimation *MapPropAnimationManager_LoadPropAnimationForOneShot(const int 
     }
 
     for (i = 0; i < MAP_PROP_ANIMATION_MANAGER_MAX_ANIMATIONS; i++) {
-        if (pastoriaGymButtonGroup != 0 && manager->animations[i].pastoriaGymButtonGroup == pastoriaGymButtonGroup) {
+        if (pastoriaGymButtonGroup != PASTORIA_NO_BUTTON_GROUP && manager->animations[i].pastoriaGymButtonGroup == pastoriaGymButtonGroup) {
             GF_ASSERT(FALSE);
         }
     }
@@ -212,7 +213,7 @@ void MapPropAnimationManager_LoadPropAnimations(const int mapPropModelID, NNSG3d
                 manager->animations[j].currentLoop = 0;
                 manager->animations[j].animeArchiveID = animeArchiveID;
                 manager->animations[j].reversed = FALSE;
-                manager->animations[j].pastoriaGymButtonGroup = 0;
+                manager->animations[j].pastoriaGymButtonGroup = PASTORIA_NO_BUTTON_GROUP;
                 manager->animations[j].animationFile = MapPropAnimation_LoadAnimationObj(manager->animeNARC, animeArchiveID, mapPropModel, &manager->animations[j].animationObj, mapPropTexture, &manager->allocator);
                 manager->animations[j].loopCount = -1;
                 manager->animations[j].looping = TRUE;
@@ -340,7 +341,7 @@ void MapPropAnimationManager_UnloadAllAnimations(MapPropAnimationManager *manage
             }
 
             manager->animations[i].loaded = FALSE;
-            manager->animations[i].pastoriaGymButtonGroup = 0;
+            manager->animations[i].pastoriaGymButtonGroup = PASTORIA_NO_BUTTON_GROUP;
         }
     }
 }
@@ -361,7 +362,7 @@ void MapPropAnimationManager_UnloadAnimation(MapPropAnimation *animation, MapPro
         }
 
         animation->loaded = FALSE;
-        animation->pastoriaGymButtonGroup = 0;
+        animation->pastoriaGymButtonGroup = PASTORIA_NO_BUTTON_GROUP;
     }
 }
 
@@ -397,7 +398,7 @@ void MapPropAnimationManager_Free(MapPropAnimationManager *manager)
 
 MapPropAnimation *MapPropAnimationManager_GetAnimationByPastoriaGymButtonGroup(const int pastoriaGymButtonGroup, MapPropAnimationManager *manager)
 {
-    GF_ASSERT(pastoriaGymButtonGroup != 0);
+    GF_ASSERT(pastoriaGymButtonGroup != PASTORIA_NO_BUTTON_GROUP);
     MapPropAnimation *animation = NULL;
 
     for (int i = 0; i < MAP_PROP_ANIMATION_MANAGER_MAX_ANIMATIONS; i++) {

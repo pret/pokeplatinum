@@ -16,9 +16,26 @@ enum EternaClockState {
     ETERNA_CLOCK_MAX,
 };
 
+enum PastoriaGymPressedButton {
+    PASTORIA_ORANGE_BUTTON_PRESSED = 0,
+    PASTORIA_GREEN_BUTTON_PRESSED,
+    PASTORIA_BLUE_BUTTON_PRESSED,
+};
+
+enum PastoriaGymButtonGroup {
+    PASTORIA_NO_BUTTON_GROUP = 0,
+    PASTORIA_BLUE_BUTTON_GROUP,
+    PASTORIA_GREEN_BUTTON_GROUP,
+    PASTORIA_ORANGE_BUTTON_GROUP,
+};
+
 typedef struct EternaGymClockPersistedFeature {
     u32 state;
 } EternaGymClockPersistedFeature;
+
+typedef struct PastoriaGymPersistedFeature {
+    u8 pressedButton;
+} PastoriaGymPersistedFeature;
 
 void PastoriaGym_PressButton(FieldSystem *fieldSystem);
 BOOL PastoriaGym_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileZ, const fx32 height, BOOL *isColliding);

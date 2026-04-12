@@ -81,14 +81,7 @@
 #define PASTORIA_WATER_HEIGHT_MIDDLE (MAP_OBJECT_TILE_SIZE * 2)
 #define PASTORIA_WATER_HEIGHT_HIGH   (MAP_OBJECT_TILE_SIZE * 4)
 
-#define PASTORIA_BLUE_BUTTON_PRESSED   2
-#define PASTORIA_GREEN_BUTTON_PRESSED  1
-#define PASTORIA_ORANGE_BUTTON_PRESSED 0
-
-#define PASTORIA_WATER               0
-#define PASTORIA_BLUE_BUTTON_GROUP   1
-#define PASTORIA_GREEN_BUTTON_GROUP  2
-#define PASTORIA_ORANGE_BUTTON_GROUP 3
+#define PASTORIA_WATER_PLATE_INDEX 0
 
 typedef struct {
     int unk_00;
@@ -381,20 +374,20 @@ void PastoriaGym_PressButton(FieldSystem *fieldSystem)
 
     if (hasCollisionHit) {
         PersistedMapFeatures *mapFeatures = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
-        u8 *pressedButton = PersistedMapFeatures_GetBuffer(mapFeatures, DYNAMIC_MAP_FEATURES_PASTORIA_GYM);
+        PastoriaGymPersistedFeature *feature = PersistedMapFeatures_GetBuffer(mapFeatures, DYNAMIC_MAP_FEATURES_PASTORIA_GYM);
 
         int *waterMoveTaskState = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(int));
         *waterMoveTaskState = 0;
 
         if (mapPropModelID == pastoria_gym_blue_button_nsbmd) {
             FieldTask_InitCall(fieldSystem->task, PastoriaGym_PressBlueButton, waterMoveTaskState);
-            *pressedButton = PASTORIA_BLUE_BUTTON_PRESSED;
+            feature->pressedButton = PASTORIA_BLUE_BUTTON_PRESSED;
         } else if (mapPropModelID == pastoria_gym_green_button_nsbmd) {
             FieldTask_InitCall(fieldSystem->task, PastoriaGym_PressGreenButton, waterMoveTaskState);
-            *pressedButton = PASTORIA_GREEN_BUTTON_PRESSED;
+            feature->pressedButton = PASTORIA_GREEN_BUTTON_PRESSED;
         } else if (mapPropModelID == pastoria_gym_orange_button_nsbmd) {
             FieldTask_InitCall(fieldSystem->task, PastoriaGym_PressOrangeButton, waterMoveTaskState);
-            *pressedButton = PASTORIA_ORANGE_BUTTON_PRESSED;
+            feature->pressedButton = PASTORIA_ORANGE_BUTTON_PRESSED;
         } else {
             GF_ASSERT(FALSE);
         }
@@ -457,7 +450,7 @@ static BOOL PastoriaGym_PressOrangeButton(FieldTask *taskMan)
         }
     } break;
     case 2:
-        DynamicTerrainHeightManager_SetHeight(PASTORIA_WATER, PASTORIA_WATER_HEIGHT_LOW, fieldSystem->dynamicTerrainHeightMan);
+        DynamicTerrainHeightManager_SetHeight(PASTORIA_WATER_PLATE_INDEX, PASTORIA_WATER_HEIGHT_LOW, fieldSystem->dynamicTerrainHeightMan);
         Sound_StopEffect(SEQ_SE_DP_FW056, 0);
         (*state)++;
         break;
@@ -531,7 +524,7 @@ static BOOL PastoriaGym_PressGreenButton(FieldTask *taskMan)
         MapProp_SetPosition(waterProp, &waterPropPosition);
     } break;
     case 4:
-        DynamicTerrainHeightManager_SetHeight(PASTORIA_WATER, PASTORIA_WATER_HEIGHT_MIDDLE, fieldSystem->dynamicTerrainHeightMan);
+        DynamicTerrainHeightManager_SetHeight(PASTORIA_WATER_PLATE_INDEX, PASTORIA_WATER_HEIGHT_MIDDLE, fieldSystem->dynamicTerrainHeightMan);
         Sound_StopEffect(SEQ_SE_DP_FW056, 0);
         (*state)++;
         break;
@@ -574,7 +567,7 @@ static BOOL PastoriaGym_PressBlueButton(FieldTask *taskMan)
         }
     } break;
     case 2:
-        DynamicTerrainHeightManager_SetHeight(PASTORIA_WATER, PASTORIA_WATER_HEIGHT_HIGH, fieldSystem->dynamicTerrainHeightMan);
+        DynamicTerrainHeightManager_SetHeight(PASTORIA_WATER_PLATE_INDEX, PASTORIA_WATER_HEIGHT_HIGH, fieldSystem->dynamicTerrainHeightMan);
         Sound_StopEffect(SEQ_SE_DP_FW056, 0);
         (*state)++;
         break;
@@ -589,16 +582,16 @@ static BOOL PastoriaGym_PressBlueButton(FieldTask *taskMan)
 void PastoriaGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
 {
     PersistedMapFeatures *mapFeatures = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
-    u8 *pressedButton = PersistedMapFeatures_GetBuffer(mapFeatures, DYNAMIC_MAP_FEATURES_PASTORIA_GYM);
+    PastoriaGymPersistedFeature *feature = PersistedMapFeatures_GetBuffer(mapFeatures, DYNAMIC_MAP_FEATURES_PASTORIA_GYM);
 
     VecFx32 iniWaterPropPosition = { FX32_CONST(256), 0, FX32_CONST(256) };
     MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->areaDataManager, pastoria_gym_water_floor_nsbmd, &iniWaterPropPosition, NULL, fieldSystem->mapPropAnimMan);
 
-    DynamicTerrainHeightManager_SetPlate(PASTORIA_WATER, 1, 2, 25, 38, 0, fieldSystem->dynamicTerrainHeightMan);
+    DynamicTerrainHeightManager_SetPlate(PASTORIA_WATER_PLATE_INDEX, 1, 2, 25, 38, 0, fieldSystem->dynamicTerrainHeightMan);
 
     fx32 waterPosition, waterHeight;
     BOOL blueButtonIsUp, greenButtonIsUp, orangeButtonIsUp;
-    switch (*pressedButton) {
+    switch (feature->pressedButton) {
     case PASTORIA_ORANGE_BUTTON_PRESSED:
         waterPosition = PASTORIA_WATER_HEIGHT_LOW;
         waterHeight = PASTORIA_WATER_HEIGHT_LOW;
@@ -637,7 +630,7 @@ void PastoriaGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
 
     MapProp_SetPosition(waterProp, &waterPropPosition);
 
-    DynamicTerrainHeightManager_SetHeight(PASTORIA_WATER, waterHeight, fieldSystem->dynamicTerrainHeightMan);
+    DynamicTerrainHeightManager_SetHeight(PASTORIA_WATER_PLATE_INDEX, waterHeight, fieldSystem->dynamicTerrainHeightMan);
 
     MapPropAnimation *animation;
     animation = MapPropAnimationManager_GetAnimation(pastoria_gym_blue_button_nsbmd, 0, fieldSystem->mapPropAnimMan);

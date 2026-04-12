@@ -56,8 +56,8 @@ void PersistedMapFeatures_InitForPastoriaGym(FieldSystem *fieldSystem)
     PersistedMapFeatures *persistedMapFeatures = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
     PersistedMapFeatures_InitWithID(persistedMapFeatures, DYNAMIC_MAP_FEATURES_PASTORIA_GYM);
 
-    u8 *pressedButton = PersistedMapFeatures_GetBuffer(persistedMapFeatures, DYNAMIC_MAP_FEATURES_PASTORIA_GYM);
-    *pressedButton = 1;
+    PastoriaGymPersistedFeature *feature = PersistedMapFeatures_GetBuffer(persistedMapFeatures, DYNAMIC_MAP_FEATURES_PASTORIA_GYM);
+    feature->pressedButton = PASTORIA_GREEN_BUTTON_PRESSED;
 }
 
 void PersistedMapFeatures_InitForCanalaveGym(FieldSystem *fieldSystem)
