@@ -19,11 +19,11 @@
     ],
     "object_events": [
         {
-            "id": "SPEAR_PILLAR_DISTORTED_CYNTHIA_0",
+            "id": "LOCALID_CYNTHIA",
             "graphics_id": "OBJ_EVENT_GFX_CYNTHIA",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x01CD",
+            "hidden_flag": "FLAG_HIDE_SPEAR_PILLAR_DISTORTED_CYNTHIA",
             "script": 2,
             "initial_dir": 0,
             "data": [],
@@ -34,11 +34,11 @@
             "y": 0
         },
         {
-            "id": "SPEAR_PILLAR_DISTORTED_MESPRIT_1",
+            "id": "LOCALID_MESPRIT",
             "graphics_id": "OBJ_EVENT_GFX_MESPRIT",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x02BA",
+            "hidden_flag": "FLAG_HIDE_SPEAR_PILLAR_DISTORTED_MESPRIT",
             "script": 0,
             "initial_dir": 1,
             "data": [],
@@ -49,11 +49,11 @@
             "y": 0
         },
         {
-            "id": "SPEAR_PILLAR_DISTORTED_JUPITER_2",
+            "id": "LOCALID_JUPITER",
             "graphics_id": "OBJ_EVENT_GFX_JUPITER",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x01C7",
+            "hidden_flag": "FLAG_HIDE_SPEAR_PILLAR_DISTORTED_TEAM_GALACTIC",
             "script": 3,
             "initial_dir": 0,
             "data": [],
@@ -64,11 +64,11 @@
             "y": 0
         },
         {
-            "id": "SPEAR_PILLAR_DISTORTED_MARS_3",
+            "id": "LOCALID_MARS",
             "graphics_id": "OBJ_EVENT_GFX_MARS",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x01C7",
+            "hidden_flag": "FLAG_HIDE_SPEAR_PILLAR_DISTORTED_TEAM_GALACTIC",
             "script": 4,
             "initial_dir": 0,
             "data": [],
@@ -79,11 +79,11 @@
             "y": 0
         },
         {
-            "id": "SPEAR_PILLAR_DISTORTED_GRUNT_F_4",
+            "id": "LOCALID_GRUNT_F",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x01C7",
+            "hidden_flag": "FLAG_HIDE_SPEAR_PILLAR_DISTORTED_TEAM_GALACTIC",
             "script": 6,
             "initial_dir": 0,
             "data": [],
@@ -94,11 +94,11 @@
             "y": 0
         },
         {
-            "id": "SPEAR_PILLAR_DISTORTED_GRUNT_M_5",
+            "id": "LOCALID_GRUNT_M",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x01C7",
+            "hidden_flag": "FLAG_HIDE_SPEAR_PILLAR_DISTORTED_TEAM_GALACTIC",
             "script": 5,
             "initial_dir": 0,
             "data": [],

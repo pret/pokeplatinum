@@ -2,11 +2,11 @@
     "bg_events": [],
     "object_events": [
         {
-            "id": "SPEAR_PILLAR_GRUNT_F_0",
+            "id": "LOCALID_GRUNT_F",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x01C8",
+            "hidden_flag": "FLAG_HIDE_SPEAR_PILLAR_GRUNTS",
             "script": 6,
             "initial_dir": 1,
             "data": [],
@@ -17,11 +17,11 @@
             "y": 0
         },
         {
-            "id": "SPEAR_PILLAR_CYRUS_1",
+            "id": "LOCALID_CYRUS",
             "graphics_id": "OBJ_EVENT_GFX_CYRUS",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x01CA",
+            "hidden_flag": "FLAG_HIDE_SPEAR_PILLAR_CYRUS",
             "script": 1,
             "initial_dir": 0,
             "data": [],
@@ -32,11 +32,11 @@
             "y": 0
         },
         {
-            "id": "SPEAR_PILLAR_MARS_2",
+            "id": "LOCALID_MARS",
             "graphics_id": "OBJ_EVENT_GFX_MARS",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x01C9",
+            "hidden_flag": "FLAG_HIDE_SPEAR_PILLAR_MARS_JUPITER",
             "script": 8,
             "initial_dir": 1,
             "data": [],
@@ -47,11 +47,11 @@
             "y": 0
         },
         {
-            "id": "SPEAR_PILLAR_GRUNT_M_3",
+            "id": "LOCALID_GRUNT_M",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x01C8",
+            "hidden_flag": "FLAG_HIDE_SPEAR_PILLAR_GRUNTS",
             "script": 6,
             "initial_dir": 1,
             "data": [],
@@ -62,11 +62,11 @@
             "y": 0
         },
         {
-            "id": "SPEAR_PILLAR_JUPITER_4",
+            "id": "LOCALID_JUPITER",
             "graphics_id": "OBJ_EVENT_GFX_JUPITER",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x01C9",
+            "hidden_flag": "FLAG_HIDE_SPEAR_PILLAR_MARS_JUPITER",
             "script": 7,
             "initial_dir": 1,
             "data": [],
@@ -77,11 +77,11 @@
             "y": 0
         },
         {
-            "id": "SPEAR_PILLAR_RIVAL_5",
+            "id": "LOCALID_RIVAL",
             "graphics_id": "OBJ_EVENT_GFX_BARRY",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x01C5",
+            "hidden_flag": "FLAG_HIDE_SPEAR_PILLAR_RIVAL",
             "script": 1,
             "initial_dir": 0,
             "data": [],
@@ -108,7 +108,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": "VAR_UNK_0x4098",
+            "var": "VAR_SPEAR_PILLAR_STATE",
             "value": 0
         },
         {
@@ -118,7 +118,7 @@
             "y": 0,
             "width": 3,
             "length": 1,
-            "var": "VAR_UNK_0x4098",
+            "var": "VAR_SPEAR_PILLAR_STATE",
             "value": 1
         },
         {
@@ -128,7 +128,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": "VAR_UNK_0x4118",
+            "var": "VAR_HALL_OF_ORIGIN_STATE",
             "value": 1
         }
     ]

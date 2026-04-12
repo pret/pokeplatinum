@@ -1518,7 +1518,7 @@ _14AC:
     GoToIfEq VAR_MAP_LOCAL_0, 0, _1570
     CheckDistributionEvent DISTRIBUTION_EVENT_ARCEUS, VAR_MAP_LOCAL_0
     GoToIfEq VAR_MAP_LOCAL_0, FALSE, _1570
-    GoToIfSet FLAG_UNK_0x011E, _1570
+    GoToIfSet FLAG_CAUGHT_ARCEUS, _1570
     BufferPlayerName 0
     Message pl_msg_00000213_00122
     ShowYesNoMenu VAR_RESULT

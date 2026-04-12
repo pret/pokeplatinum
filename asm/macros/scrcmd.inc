@@ -2292,10 +2292,10 @@
     .short \z
     .endm
 
-    .macro ScrCmd_18C arg0, arg1
+    .macro ScrCmd_18C localID, dir
     .short SCRCMD_18C
-    .short \arg0
-    .short \arg1
+    .short \localID
+    .short \dir
     .endm
 
     .macro ShowSavingIcon
@@ -4754,8 +4754,8 @@
     .short SCRCMD_RESETDISTORTIONWORLDPERSISTEDCAMERAANGLES
     .endm
 
-    .macro ScrCmd_320
-    .short SCRCMD_320
+    .macro DoDWWarp
+    .short SCRCMD_DODWWARP
     .endm
 
     .macro StartDistortionWorldGiratinaShadowEvent eventIndex

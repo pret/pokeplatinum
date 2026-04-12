@@ -805,7 +805,7 @@ ScriptCommand(SCRCMD_FINDPARTYSLOTWITHFATEFULENCOUNTERSPECIES,             ScrCm
 ScriptCommand(SCRCMD_31D,                                                  ScrCmd_31D)
 ScriptCommand(SCRCMD_TRYREVERTPOKEMONFORM,                                 ScrCmd_TryRevertPokemonForm)
 ScriptCommand(SCRCMD_RESETDISTORTIONWORLDPERSISTEDCAMERAANGLES,            ScrCmd_ResetDistortionWorldPersistedCameraAngles)
-ScriptCommand(SCRCMD_320,                                                  ScrCmd_320)
+ScriptCommand(SCRCMD_DODWWARP,                                             ScrCmd_DoDWWarp)
 ScriptCommand(SCRCMD_STARTDISTORTIONWORLDGIRATINASHADOWEVENT,              ScrCmd_StartDistortionWorldGiratinaShadowEvent)
 ScriptCommand(SCRCMD_FINISHDISTORTIONWORLDGIRATINASHADOWEVENT,             ScrCmd_FinishDistortionWorldGiratinaShadowEvent)
 ScriptCommand(SCRCMD_323,                                                  ScrCmd_323)

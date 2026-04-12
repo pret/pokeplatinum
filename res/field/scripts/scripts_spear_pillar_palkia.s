@@ -3,68 +3,68 @@
 #include "res/text/bank/spear_pillar_palkia.h"
 
 
-    ScriptEntry _0077
-    ScriptEntry _000A
+    ScriptEntry SpearPillarPalkia_Rift
+    ScriptEntry SpearPillarPalkia_OnTransition
     ScriptEntryEnd
 
-_000A:
-    Call _0012
+SpearPillarPalkia_OnTransition:
+    Call SpearPillarPalkia_TryEnableHallOfOrigin
     End
 
-_0012:
+SpearPillarPalkia_TryEnableHallOfOrigin:
     CheckGameCompleted VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, 0, _0075
+    GoToIfEq VAR_MAP_LOCAL_0, FALSE, SpearPillarPalkia_TryEnableHallOfOriginEnd
     GetNationalDexEnabled VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, 0, _0075
+    GoToIfEq VAR_MAP_LOCAL_0, FALSE, SpearPillarPalkia_TryEnableHallOfOriginEnd
     CheckItem ITEM_AZURE_FLUTE, 1, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, FALSE, _0075
+    GoToIfEq VAR_MAP_LOCAL_0, FALSE, SpearPillarPalkia_TryEnableHallOfOriginEnd
     CheckDistributionEvent DISTRIBUTION_EVENT_ARCEUS, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, FALSE, _0075
-    GoToIfSet FLAG_UNK_0x011E, _0075
-    SetVar VAR_UNK_0x4118, 1
-    GoTo _0075
+    GoToIfEq VAR_MAP_LOCAL_0, FALSE, SpearPillarPalkia_TryEnableHallOfOriginEnd
+    GoToIfSet FLAG_CAUGHT_ARCEUS, SpearPillarPalkia_TryEnableHallOfOriginEnd
+    SetVar VAR_HALL_OF_ORIGIN_STATE, 1
+    GoTo SpearPillarPalkia_TryEnableHallOfOriginEnd
     End
 
-_0075:
+SpearPillarPalkia_TryEnableHallOfOriginEnd:
     Return
 
-_0077:
+SpearPillarPalkia_Rift:
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    GoToIfGe VAR_SPEAR_PILLAR_PALKIA_STATE, 1, _00F4
-    GoToIfSet FLAG_CAUGHT_PALKIA, _00F4
-    Message 0
+    GoToIfGe VAR_SPEAR_PILLAR_PALKIA_STATE, 1, SpearPillarPalkia_SpaceEmanatesFromRift
+    GoToIfSet FLAG_CAUGHT_PALKIA, SpearPillarPalkia_SpaceEmanatesFromRift
+    Message SpearPillarPalkia_Text_WillYouChallengePalkia
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _0101
+    GoToIfEq VAR_RESULT, MENU_NO, SpearPillarPalkia_RiftEnd
     PlayCry SPECIES_PALKIA
-    Message 1
+    Message SpearPillarPalkia_Text_PalkiaCry
     WaitCry
     CloseMessage
     StartLegendaryBattle SPECIES_PALKIA, 70
     CheckWonBattle VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, _00E8
+    GoToIfEq VAR_RESULT, FALSE, SpearPillarPalkia_BlackOut
     SetVar VAR_SPEAR_PILLAR_PALKIA_STATE, 1
     CheckDidNotCapture VAR_RESULT
-    CallIfEq VAR_RESULT, FALSE, _00EE
+    CallIfEq VAR_RESULT, FALSE, SpearPillarPalkia_SetFlagCaughtPalkia
     ReleaseAll
     End
 
-_00E8:
+SpearPillarPalkia_BlackOut:
     BlackOutFromBattle
     ReleaseAll
     End
 
-_00EE:
+SpearPillarPalkia_SetFlagCaughtPalkia:
     SetFlag FLAG_CAUGHT_PALKIA
     Return
 
-_00F4:
-    Message 2
+SpearPillarPalkia_SpaceEmanatesFromRift:
+    Message SpearPillarPalkia_Text_SpaceEmanatesFromRift
     WaitButton
-    GoTo _0101
+    GoTo SpearPillarPalkia_RiftEnd
     End
 
-_0101:
+SpearPillarPalkia_RiftEnd:
     CloseMessage
     ReleaseAll
     End

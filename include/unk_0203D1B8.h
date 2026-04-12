@@ -109,6 +109,6 @@ void *sub_0203E608(FieldSystem *fieldSystem, enum HeapID heapID);
 void *FieldSystem_OpenSummaryScreenTeachMove(int unused, FieldSystem *fieldSystem, u16 partySlot, u16 move);
 void sub_0203E6C0(FieldSystem *fieldSystem, int param1, int param2);
 void FieldSystem_StartLibraryTV(FieldSystem *fieldSystem);
-void sub_0203E714(FieldSystem *fieldSystem);
+void FieldSystem_StartDWWarp(FieldSystem *fieldSystem);
 
 #endif // POKEPLATINUM_UNK_0203D1B8_H

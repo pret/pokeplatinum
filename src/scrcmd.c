@@ -730,7 +730,7 @@ static BOOL ScrCmd_ResetDistortionWorldPersistedCameraAngles(ScriptContext *ctx)
 static BOOL ScrCmd_CheckHeapMemory(ScriptContext *ctx);
 static BOOL ScrCmd_StartGiratinaOriginBattle(ScriptContext *ctx);
 static BOOL ScrCmd_SetSpeciesSeen(ScriptContext *ctx);
-static BOOL ScrCmd_320(ScriptContext *ctx);
+static BOOL ScrCmd_DoDWWarp(ScriptContext *ctx);
 static BOOL ScrCmd_StartDistortionWorldGiratinaShadowEvent(ScriptContext *ctx);
 static BOOL ScrCmd_FinishDistortionWorldGiratinaShadowEvent(ScriptContext *ctx);
 static BOOL ScrCmd_323(ScriptContext *ctx);
@@ -4631,16 +4631,16 @@ static BOOL ScrCmd_SetBgEventPos(ScriptContext *ctx)
 
 static BOOL ScrCmd_18C(ScriptContext *ctx)
 {
-    u16 v1 = ScriptContext_GetVar(ctx);
-    u16 v2 = ScriptContext_GetVar(ctx);
+    u16 localID = ScriptContext_GetVar(ctx);
+    u16 dir = ScriptContext_GetVar(ctx);
 
-    MapObject *v0 = MapObjMan_LocalMapObjByIndex(ctx->fieldSystem->mapObjMan, v1);
+    MapObject *mapObj = MapObjMan_LocalMapObjByIndex(ctx->fieldSystem->mapObjMan, localID);
 
-    if (v0 == NULL) {
+    if (mapObj == NULL) {
         GF_ASSERT(FALSE);
     }
 
-    ov5_021ECDFC(v0, v2);
+    ov5_021ECDFC(mapObj, dir);
     return FALSE;
 }
 
@@ -7054,9 +7054,9 @@ static BOOL ScrCmd_CheckHeapMemory(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_320(ScriptContext *ctx)
+static BOOL ScrCmd_DoDWWarp(ScriptContext *ctx)
 {
-    sub_0203E714(ctx->fieldSystem);
+    FieldSystem_StartDWWarp(ctx->fieldSystem);
     ScriptContext_Pause(ctx, ScriptContext_WaitForApplicationExit);
 
     return TRUE;
