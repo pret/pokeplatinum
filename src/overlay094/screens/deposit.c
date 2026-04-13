@@ -39,7 +39,7 @@
 #include "system.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_0202C858.h"
+#include "wifi_history_save_data.h"
 
 #include "res/text/bank/country_names.h"
 #include "res/text/bank/gts.h"

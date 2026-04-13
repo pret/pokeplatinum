@@ -125,7 +125,7 @@ Static main
 	Object main.nef.p/src_coins.c.o
 	Object main.nef.p/src_journal.c.o
 	Object main.nef.p/src_trainer_case_save_data.c.o
-	Object main.nef.p/src_unk_0202C858.c.o
+	Object main.nef.p/src_wifi_history_save_data.c.o
 	Object main.nef.p/src_unk_0202C9F4.c.o
 	Object main.nef.p/src_play_time.c.o
 	Object main.nef.p/src_chatot_cry.c.o

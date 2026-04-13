@@ -59,9 +59,9 @@
 #include "system_data.h"
 #include "trainer_info.h"
 #include "unk_02014D38.h"
-#include "unk_0202C858.h"
 #include "unk_02030EA4.h"
 #include "unk_0207E060.h"
+#include "wifi_history_save_data.h"
 
 typedef struct UnkStruct_ov66_0222E71C_t {
     s32 unk_00;

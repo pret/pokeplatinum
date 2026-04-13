@@ -11,8 +11,8 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "trainer_info.h"
-#include "unk_0202C858.h"
 #include "unk_0202D05C.h"
+#include "wifi_history_save_data.h"
 
 void sub_02073700(SaveData *saveData, int param1, UnkStruct_ov96_0223B450_sub1 *param2)
 {

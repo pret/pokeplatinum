@@ -17,7 +17,7 @@
 #include "heap.h"
 #include "savedata.h"
 #include "unk_0202ACE0.h"
-#include "unk_0202C858.h"
+#include "wifi_history_save_data.h"
 
 typedef struct {
     u16 unk_00;

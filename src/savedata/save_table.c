@@ -36,7 +36,6 @@
 #include "unk_02014D38.h"
 #include "unk_020298BC.h"
 #include "unk_0202ACE0.h"
-#include "unk_0202C858.h"
 #include "unk_0202C9F4.h"
 #include "unk_0202D778.h"
 #include "unk_0202E2CC.h"
@@ -44,6 +43,7 @@
 #include "unk_02030CE8.h"
 #include "unk_02030EA4.h"
 #include "vars_flags.h"
+#include "wifi_history_save_data.h"
 
 const SaveTableEntry gSaveTable[] = {
     { SAVE_TABLE_ENTRY_SYSTEM, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)SystemData_SaveSize, (SaveEntryInitFunc)SystemData_Clear },

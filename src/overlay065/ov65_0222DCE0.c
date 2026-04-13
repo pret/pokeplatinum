@@ -78,7 +78,6 @@
 #include "trainer_info.h"
 #include "unk_02012744.h"
 #include "unk_0202ACE0.h"
-#include "unk_0202C858.h"
 #include "unk_02030CE8.h"
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
@@ -88,6 +87,7 @@
 #include "unk_0209C390.h"
 #include "vars_flags.h"
 #include "vram_transfer.h"
+#include "wifi_history_save_data.h"
 #include "wifi_overlays.h"
 
 FS_EXTERN_OVERLAY(overlay63);

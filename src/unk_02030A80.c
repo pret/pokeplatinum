@@ -20,8 +20,8 @@
 #include "trainer_info.h"
 #include "unk_02014A84.h"
 #include "unk_02014D38.h"
-#include "unk_0202C858.h"
 #include "unk_020996D0.h"
+#include "wifi_history_save_data.h"
 
 UnkStruct_02030A80 *sub_02030A80(enum HeapID heapID)
 {

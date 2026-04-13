@@ -35,8 +35,8 @@
 #include "system.h"
 #include "text.h"
 #include "unk_0202419C.h"
-#include "unk_0202C858.h"
 #include "unk_020996D0.h"
+#include "wifi_history_save_data.h"
 
 typedef struct UnkStruct_ov92_021D1530_t {
     u16 unk_00;

@@ -49,9 +49,9 @@
 #include "system.h"
 #include "text.h"
 #include "unk_0202419C.h"
-#include "unk_0202C858.h"
 #include "unk_020996D0.h"
 #include "vram_transfer.h"
+#include "wifi_history_save_data.h"
 #include "yes_no_touch_menu.h"
 
 typedef struct {

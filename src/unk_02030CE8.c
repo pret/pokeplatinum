@@ -13,7 +13,7 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "trainer_info.h"
-#include "unk_0202C858.h"
+#include "wifi_history_save_data.h"
 
 static void sub_02030DD0(SaveData *saveData, WorldExchangeTrainer *param1);
 

@@ -1,4 +1,4 @@
-#include "unk_0202C858.h"
+#include "wifi_history_save_data.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -64,7 +64,6 @@ void WiFiHistory_SetGeonetCommunicatedWith(WiFiHistory *wiFiHistory, int country
 { // 1 = today, 2 = at some point, 3 = self
     u8 *v0;
     u8 v1 = 3;
-    u8 v2;
 
     GF_ASSERT(recency < 4);
     GF_ASSERT(country < 256);

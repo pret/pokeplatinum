@@ -52,10 +52,10 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system_vars.h"
-#include "unk_0202C858.h"
 #include "unk_02038F8C.h"
 #include "unk_0205DFC4.h"
 #include "vars_flags.h"
+#include "wifi_history_save_data.h"
 
 #include "res/text/bank/battle_tower.h"
 #include "res/text/bank/menu_entries.h"

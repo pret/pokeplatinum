@@ -22,10 +22,10 @@
 #include "trainer_case_badge_dirt.h"
 #include "tv_segment.h"
 #include "underground.h"
-#include "unk_0202C858.h"
 #include "unk_0202E2CC.h"
 #include "unk_0206B9D8.h"
 #include "vars_flags.h"
+#include "wifi_history_save_data.h"
 
 static void sub_02055AC0(FieldSystem *fieldSystem, s32 param1);
 static void sub_02055B64(FieldSystem *fieldSystem, s32 param1, const RTCTime *param2);
