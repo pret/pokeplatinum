@@ -772,7 +772,7 @@ static int GTSApplication_NetworkHandler_GetListingStatusResponse(GTSApplication
             if (GlobalTrade_IsPokemonListed(appState->playerData->globalTrade)) {
                 Pokemon *tempPokemon = Pokemon_New(HEAP_ID_62);
 
-                GlobalTrade_CopyStoredPokemon(appState->playerData->globalTrade, tempPokemon);
+                GlobalTrade_CopyFromStoredPokemon(appState->playerData->globalTrade, tempPokemon);
                 StringTemplate_SetNickname(appState->stringTemplate, 0, Pokemon_GetBoxPokemon(tempPokemon));
 
                 appState->depositReturnError = pl_msg_00000671_00002;
@@ -792,7 +792,7 @@ static int GTSApplication_NetworkHandler_GetListingStatusResponse(GTSApplication
             if (GlobalTrade_IsPokemonListed(appState->playerData->globalTrade)) {
                 Pokemon *tempPokemon = Pokemon_New(HEAP_ID_62);
 
-                GlobalTrade_CopyStoredPokemon(appState->playerData->globalTrade, tempPokemon);
+                GlobalTrade_CopyFromStoredPokemon(appState->playerData->globalTrade, tempPokemon);
                 StringTemplate_SetNickname(appState->stringTemplate, 0, Pokemon_GetBoxPokemon(tempPokemon));
 
                 appState->depositReturnError = pl_msg_00000671_00003;
@@ -1215,30 +1215,30 @@ static int GTSApplication_NetworkHandler_WaitForText(GTSApplicationState *appSta
     return GTS_LOOP_STATE_MAIN;
 }
 
-static void ov94_02243B08(GTSApplicationState *param0, int param1)
+static void ov94_02243B08(GTSApplicationState *appState, int param1)
 {
-    if (param0->selectedBoxId != MAX_PC_BOXES) {
-        Pokemon *v0 = Pokemon_New(HEAP_ID_62);
+    if (appState->selectedBoxId != MAX_PC_BOXES) {
+        Pokemon *mon = Pokemon_New(HEAP_ID_62);
 
-        Pokemon_FromBoxPokemon(PCBoxes_GetBoxMonAt(param0->playerData->pcBoxes, param0->selectedBoxId, param0->unk_112), v0);
-        sub_0202DA7C(param0->playerData->globalTrade, v0, param0->selectedBoxId);
-        PCBoxes_InitBoxMonAt(param0->playerData->pcBoxes, param0->selectedBoxId, param0->unk_112);
-        Heap_Free(v0);
+        Pokemon_FromBoxPokemon(PCBoxes_GetBoxMonAt(appState->playerData->pcBoxes, appState->selectedBoxId, appState->partySlotIndex), mon);
+        GlobalTrade_CopyToStoredPokemon(appState->playerData->globalTrade, mon, appState->selectedBoxId);
+        PCBoxes_InitBoxMonAt(appState->playerData->pcBoxes, appState->selectedBoxId, appState->partySlotIndex);
+        Heap_Free(mon);
     } else {
-        Pokemon *v1 = Party_GetPokemonBySlotIndex(param0->playerData->party, param0->unk_112);
+        Pokemon *mon = Party_GetPokemonBySlotIndex(appState->playerData->party, appState->partySlotIndex);
 
-        Pokemon_ClearBallCapsuleData(v1);
-        sub_0202DA7C(param0->playerData->globalTrade, v1, param0->selectedBoxId);
-        Party_RemovePokemonBySlotIndex(param0->playerData->party, param0->unk_112);
+        Pokemon_ClearBallCapsuleData(mon);
+        GlobalTrade_CopyToStoredPokemon(appState->playerData->globalTrade, mon, appState->selectedBoxId);
+        Party_RemovePokemonBySlotIndex(appState->playerData->party, appState->partySlotIndex);
 
-        if (Party_HasSpecies(param0->playerData->party, SPECIES_CHATOT) == 0) {
-            ChatotCry *v2 = SaveData_GetChatotCry(param0->playerData->saveData);
-            ChatotCry_ResetStatus(v2);
+        if (Party_HasSpecies(appState->playerData->party, SPECIES_CHATOT) == 0) {
+            ChatotCry *chatotCry = SaveData_GetChatotCry(appState->playerData->saveData);
+            ChatotCry_ResetStatus(chatotCry);
         }
     }
 
     if (param1) {
-        GlobalTrade_SetPokemonListed(param0->playerData->globalTrade, 1);
+        GlobalTrade_SetPokemonListed(appState->playerData->globalTrade, 1);
     }
 }
 

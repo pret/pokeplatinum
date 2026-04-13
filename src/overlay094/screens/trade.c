@@ -54,7 +54,7 @@ int GTSApplication_Trade_Init(GTSApplicationState *appState, int unused1)
         break;
     case SCREEN_ARGUMENT_10:
         appState->tradeAnimationConfig.receivingPokemon = Pokemon_GetBoxPokemon((Pokemon *)appState->receivedListing.pokemon.bytes);
-        GlobalTrade_CopyStoredPokemon(appState->playerData->globalTrade, appState->tradeTempPokemon);
+        GlobalTrade_CopyFromStoredPokemon(appState->playerData->globalTrade, appState->tradeTempPokemon);
         appState->tradeAnimationConfig.sendingPokemon = Pokemon_GetBoxPokemon(appState->tradeTempPokemon);
         appState->receivingPokemonTrainer = GTSPokemonListing_GetTrainerInfo(&appState->receivedListing);
         appState->tradeAnimationConfig.otherTrainer = appState->receivingPokemonTrainer;
@@ -62,7 +62,7 @@ int GTSApplication_Trade_Init(GTSApplicationState *appState, int unused1)
         appState->tradeAnimationConfig.tradeType = TRADE_TYPE_NORMAL;
         break;
     case SCREEN_ARGUMENT_9: // from the search flow
-        GlobalTrade_CopyStoredPokemon(appState->playerData->globalTrade, appState->tradeTempPokemon);
+        GlobalTrade_CopyFromStoredPokemon(appState->playerData->globalTrade, appState->tradeTempPokemon);
         appState->tradeAnimationConfig.sendingPokemon = Pokemon_GetBoxPokemon(appState->tradeTempPokemon);
         appState->tradeAnimationConfig.receivingPokemon = Pokemon_GetBoxPokemon((Pokemon *)appState->searchResults[appState->selectedSearchResult].pokemon.bytes);
         appState->receivingPokemonTrainer = GTSPokemonListing_GetTrainerInfo(&appState->searchResults[appState->selectedSearchResult]);
@@ -106,7 +106,7 @@ int GTSApplication_Trade_Main(GTSApplicationState *appState, int unused1)
                 Pokemon *tradedPokemon = GTSApplication_Trade_GetTradedPokemon(appState, appState->screenArgument);
                 Pokemon *storedPokemon = Pokemon_New(HEAP_ID_62);
 
-                GlobalTrade_CopyStoredPokemon(appState->playerData->globalTrade, storedPokemon);
+                GlobalTrade_CopyFromStoredPokemon(appState->playerData->globalTrade, storedPokemon);
 
                 if ((Pokemon_GetValue(tradedPokemon, MON_DATA_SPECIES, NULL) != Pokemon_GetValue(storedPokemon, MON_DATA_SPECIES, NULL)) || (Pokemon_GetValue(tradedPokemon, MON_DATA_PERSONALITY, NULL) != Pokemon_GetValue(storedPokemon, MON_DATA_PERSONALITY, NULL))) {
                     int heldItem = Pokemon_GetValue(tradedPokemon, MON_DATA_HELD_ITEM, NULL);
