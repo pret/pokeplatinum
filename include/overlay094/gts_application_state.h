@@ -149,7 +149,7 @@ typedef struct GTSApplicationState {
     u16 mainMenuSelectedOption;
     u16 unk_10E;
     u16 selectedBoxId;
-    u16 unk_112;
+    u16 partySlotIndex;
     BoxPokemon *unk_114;
     int unk_118;
     int selectedSearchResult;
