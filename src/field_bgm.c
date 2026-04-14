@@ -132,7 +132,7 @@ void FieldBGM_ClearOverride(FieldSystem *fieldSystem)
 {
     u16 *bgm = FieldOverworldState_GetSpecialBGM(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
-    *bgm = 0;
+    *bgm = SEQ_NONE;
 }
 
 u16 FieldBGM_GetEffective(FieldSystem *fieldSystem, enum MapHeader mapID)
@@ -223,7 +223,7 @@ static u16 FieldBGM_GetAltMusicForCyclingRoad(FieldSystem *fieldSystem, int head
         }
     }
 
-    return 0;
+    return SEQ_NONE;
 }
 
 BOOL FieldBGM_TryFadeOut(FieldSystem *fieldSystem, u16 bgmID, int mode)
