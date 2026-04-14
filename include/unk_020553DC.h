@@ -7,16 +7,16 @@
 
 #include "field/field_system_decl.h"
 
-void sub_020553DC(void);
-void Sound_SetSpecialBGM(FieldSystem *fieldSystem, u16 bgmID);
-u16 Sound_GetSpecialBGM(FieldSystem *fieldSystem);
-void Sound_ClearSpecialBGM(FieldSystem *fieldSystem);
-u16 Sound_GetOverrideBGM(FieldSystem *fieldSystem, enum MapHeader mapID);
-u16 Sound_GetBGMByMapID(FieldSystem *fieldSystem, int mapID);
-BOOL Sound_TryFadeOutToBGM(FieldSystem *fieldSystem, u16 bgmID, int mode);
-u16 Trainer_GetEncounterBGM(enum TrainerID trainerID);
-void Sound_TryFadeInBGM(FieldSystem *fieldSystem, int mapID);
-void Sound_PlayMapBGM(FieldSystem *fieldSystem, int mapID);
-void sub_020556A0(FieldSystem *fieldSystem, int mapID);
+void FieldBGM_Stop(void);
+void FieldBGM_SetOverride(FieldSystem *fieldSystem, u16 bgmID);
+u16 FieldBGM_GetOverride(FieldSystem *fieldSystem);
+void FieldBGM_ClearOverride(FieldSystem *fieldSystem);
+u16 FieldBGM_GetEffective(FieldSystem *fieldSystem, enum MapHeader mapID);
+u16 FieldBGM_GetForMapHeader(FieldSystem *fieldSystem, int mapID);
+BOOL FieldBGM_TryFadeOut(FieldSystem *fieldSystem, u16 bgmID, int mode);
+u16 FieldBGM_GetEyesMeetForTrainer(enum TrainerID trainerID);
+void FieldBGM_TryFadeIn(FieldSystem *fieldSystem, int mapID);
+void FieldBGM_PlayForMapHeader(FieldSystem *fieldSystem, int mapID);
+void FieldBGM_PlayEffectiveForMapHeader(FieldSystem *fieldSystem, int mapID);
 
 #endif // POKEPLATINUM_UNK_020553DC_H

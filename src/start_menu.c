@@ -1769,7 +1769,7 @@ static void StartMenu_Evolve(FieldTask *fieldTask)
         Heap_Destroy(HEAP_ID_EVOLUTION);
         Sound_StopBGM(SEQ_SHINKA, 0);
         Sound_SetScene(SOUND_SCENE_NONE);
-        sub_020556A0(fieldSystem, fieldSystem->location->mapId);
+        FieldBGM_PlayEffectiveForMapHeader(fieldSystem, fieldSystem->location->mapId);
 
         menu->taskData = FieldSystem_OpenBag(fieldSystem, &menu->itemUseCtx);
 

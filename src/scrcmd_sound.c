@@ -42,13 +42,13 @@ BOOL ScrCmd_StopMusic(ScriptContext *ctx)
 
 BOOL ScrCmd_PlayDefaultMusic(ScriptContext *ctx)
 {
-    Sound_PlayBGM(Sound_GetBGMByMapID(ctx->fieldSystem, ctx->fieldSystem->location->mapId));
+    Sound_PlayBGM(FieldBGM_GetForMapHeader(ctx->fieldSystem, ctx->fieldSystem->location->mapId));
     return FALSE;
 }
 
 BOOL ScrCmd_SetSpecialBGM(ScriptContext *ctx)
 {
-    Sound_SetSpecialBGM(ctx->fieldSystem, ScriptContext_ReadHalfWord(ctx));
+    FieldBGM_SetOverride(ctx->fieldSystem, ScriptContext_ReadHalfWord(ctx));
     return FALSE;
 }
 

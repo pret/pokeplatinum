@@ -436,11 +436,11 @@ static BOOL MountOrUnmountBicycle(FieldTask *task)
             PlayerAvatar_SetTransitionState(fieldSystem->playerAvatar, PLAYER_TRANSITION_WALKING);
             PlayerAvatar_RequestChangeState(fieldSystem->playerAvatar);
 
-            Sound_SetSpecialBGM(fieldSystem, SEQ_NONE);
-            Sound_TryFadeOutToBGM(fieldSystem, Sound_GetOverrideBGM(fieldSystem, fieldSystem->location->mapId), 1);
+            FieldBGM_SetOverride(fieldSystem, SEQ_NONE);
+            FieldBGM_TryFadeOut(fieldSystem, FieldBGM_GetEffective(fieldSystem, fieldSystem->location->mapId), 1);
         } else {
-            Sound_SetSpecialBGM(fieldSystem, SEQ_BICYCLE);
-            Sound_TryFadeOutToBGM(fieldSystem, SEQ_BICYCLE, 1);
+            FieldBGM_SetOverride(fieldSystem, SEQ_BICYCLE);
+            FieldBGM_TryFadeOut(fieldSystem, SEQ_BICYCLE, 1);
             MapObject_SetPauseMovementOff(Player_MapObject(fieldSystem->playerAvatar));
 
             PlayerAvatar_SetTransitionState(fieldSystem->playerAvatar, PLAYER_TRANSITION_CYCLING);

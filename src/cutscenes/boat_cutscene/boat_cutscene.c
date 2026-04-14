@@ -240,7 +240,7 @@ static BOOL FieldSystem_PlayBoatCutsceneStep(FieldTask *taskMan)
         boatCutscene->state = BOAT_CUTSCENE_STATE_FADE_IN;
         break;
     case BOAT_CUTSCENE_STATE_FADE_IN:
-        Sound_PlayMapBGM(fieldSystem, boatCutscene->mapID);
+        FieldBGM_PlayForMapHeader(fieldSystem, boatCutscene->mapID);
         FieldTransition_StartMapAndFadeIn(taskMan);
         boatCutscene->state = BOAT_CUTSCENE_STATE_CLEAN_UP;
         break;

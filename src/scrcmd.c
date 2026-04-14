@@ -3718,15 +3718,15 @@ static BOOL ScrCmd_SetPlayerBike(ScriptContext *ctx)
     u8 rideBike = ScriptContext_ReadByte(ctx);
 
     if (rideBike == TRUE) {
-        Sound_SetSpecialBGM(ctx->fieldSystem, SEQ_BICYCLE);
-        Sound_TryFadeOutToBGM(ctx->fieldSystem, SEQ_BICYCLE, 1);
+        FieldBGM_SetOverride(ctx->fieldSystem, SEQ_BICYCLE);
+        FieldBGM_TryFadeOut(ctx->fieldSystem, SEQ_BICYCLE, 1);
         PlayerAvatar_SetTransitionState(ctx->fieldSystem->playerAvatar, PLAYER_TRANSITION_CYCLING);
         PlayerAvatar_RequestChangeState(ctx->fieldSystem->playerAvatar);
     } else {
         PlayerAvatar_SetTransitionState(ctx->fieldSystem->playerAvatar, PLAYER_TRANSITION_WALKING);
         PlayerAvatar_RequestChangeState(ctx->fieldSystem->playerAvatar);
-        Sound_SetSpecialBGM(ctx->fieldSystem, SEQ_NONE);
-        Sound_TryFadeOutToBGM(ctx->fieldSystem, Sound_GetOverrideBGM(ctx->fieldSystem, ctx->fieldSystem->location->mapId), 1);
+        FieldBGM_SetOverride(ctx->fieldSystem, SEQ_NONE);
+        FieldBGM_TryFadeOut(ctx->fieldSystem, FieldBGM_GetEffective(ctx->fieldSystem, ctx->fieldSystem->location->mapId), 1);
     }
 
     return FALSE;
@@ -3734,7 +3734,7 @@ static BOOL ScrCmd_SetPlayerBike(ScriptContext *ctx)
 
 static BOOL ScrCmd_SetCyclingBGM(ScriptContext *ctx)
 {
-    Sound_SetSpecialBGM(ctx->fieldSystem, SEQ_PL_BICYCLE);
+    FieldBGM_SetOverride(ctx->fieldSystem, SEQ_PL_BICYCLE);
     return FALSE;
 }
 

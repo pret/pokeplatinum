@@ -223,7 +223,7 @@ BOOL FieldTask_BlackOutFromBattle(FieldTask *task)
         break;
     case 2:
         if (Sound_IsFadeActive() == FALSE) {
-            sub_020553DC();
+            FieldBGM_Stop();
             (*state)++;
         }
         break;
