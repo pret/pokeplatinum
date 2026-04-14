@@ -10,7 +10,6 @@
 
 #include "struct_decls/struct_02061830_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
-#include "struct_defs/struct_02071B10.h"
 #include "struct_defs/struct_02071B30.h"
 #include "struct_defs/struct_02071B6C.h"
 #include "struct_defs/struct_02071BF8.h"
@@ -77,6 +76,12 @@
 #define ETERNA_GYM_WIDTH          21
 
 #define ETERNA_CLOCK_NO_HOUR_HAND_JUMP { -1, -1, 2 }
+
+#define PASTORIA_WATER_HEIGHT_LOW    0
+#define PASTORIA_WATER_HEIGHT_MIDDLE (MAP_OBJECT_TILE_SIZE * 2)
+#define PASTORIA_WATER_HEIGHT_HIGH   (MAP_OBJECT_TILE_SIZE * 4)
+
+#define PASTORIA_WATER_PLATE_INDEX 0
 
 typedef struct {
     int unk_00;
@@ -313,15 +318,15 @@ void include_ov8_02249960(void);
 
 static u8 ov8_02249960(const u8 param0, const int param1);
 static void ov8_0224996C(const u8 param0, int *param1);
-static BOOL ov8_02249A94(FieldTask *param0);
-static BOOL ov8_02249B74(FieldTask *param0);
-static BOOL ov8_02249CD8(FieldTask *param0);
-static void ov8_02249F14(const u8 param0, MapPropAnimationManager *param1);
-static BOOL ov8_0224A018(FieldTask *param0);
-static BOOL ov8_0224A0E8(FieldTask *param0);
-static BOOL ov8_0224A4FC(FieldTask *param0);
-static BOOL ov8_0224A620(FieldTask *param0);
-static BOOL ov8_0224A770(FieldTask *param0);
+static BOOL PastoriaGym_PressOrangeButton(FieldTask *taskMan);
+static BOOL PastoriaGym_PressGreenButton(FieldTask *taskMan);
+static BOOL PastoriaGym_PressBlueButton(FieldTask *taskMan);
+static void PastoriaGym_UpdateButtonAnimations(const u8 pressedButton, MapPropAnimationManager *mapPropAnimMan);
+static BOOL ov8_0224A018(FieldTask *taskMan);
+static BOOL ov8_0224A0E8(FieldTask *taskMan);
+static BOOL ov8_0224A4FC(FieldTask *taskMan);
+static BOOL ov8_0224A620(FieldTask *taskMan);
+static BOOL ov8_0224A770(FieldTask *taskMan);
 static BOOL ov8_0224ADE8(FieldTask *param0);
 static void ov8_0224B8D0(UnkStruct_ov8_0224B8D0 *param0);
 static void ov8_0224B958(UnkStruct_ov8_0224B8D0 *param0);
@@ -332,7 +337,7 @@ static BOOL ov8_0224C0C8(UnkStruct_ov8_0224C098 *param0, UnkStruct_ov8_0224B80C 
 static void ov8_0224C0FC(UnkStruct_ov8_0224C098 *param0, int param1);
 static void ov8_0224C11C(UnkStruct_ov8_0224C098 *param0, int param1);
 static void ov8_0224C170(UnkStruct_ov8_0224C098 *param0, fx32 param1);
-static void ov8_0224C3B0(SysTask *param0, void *param1);
+static void ov8_0224C3B0(SysTask *task, void *param1);
 static void ov8_0224C3B4(UnkStruct_ov8_0224C444 *param0);
 static void ov8_0224C444(UnkStruct_ov8_0224C444 *param0);
 static void ov8_0224C4F8(UnkStruct_ov8_0224C444 *param0);
@@ -368,25 +373,21 @@ void PastoriaGym_PressButton(FieldSystem *fieldSystem)
     hasCollisionHit = FieldSystem_FindCollidingLoadedMapPropByModelIDs(fieldSystem, pastoriaButtonTypes, NELEMS(pastoriaButtonTypes), &terrainCollision, NULL, &mapPropModelID);
 
     if (hasCollisionHit) {
-        UnkStruct_ov8_0224997C *v6;
-        PersistedMapFeatures *v7;
-        UnkStruct_02071B10 *v8;
+        PersistedMapFeatures *mapFeatures = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+        PastoriaGymPersistedFeature *feature = PersistedMapFeatures_GetBuffer(mapFeatures, DYNAMIC_MAP_FEATURES_PASTORIA_GYM);
 
-        v7 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
-        v8 = (UnkStruct_02071B10 *)PersistedMapFeatures_GetBuffer(v7, DYNAMIC_MAP_FEATURES_PASTORIA_GYM);
-
-        v6 = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(UnkStruct_ov8_0224997C));
-        v6->unk_00 = 0;
+        int *waterMoveTaskState = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(int));
+        *waterMoveTaskState = 0;
 
         if (mapPropModelID == pastoria_gym_blue_button_nsbmd) {
-            FieldTask_InitCall(fieldSystem->task, ov8_02249CD8, v6);
-            v8->unk_00 = 2;
+            FieldTask_InitCall(fieldSystem->task, PastoriaGym_PressBlueButton, waterMoveTaskState);
+            feature->pressedButton = PASTORIA_BLUE_BUTTON_PRESSED;
         } else if (mapPropModelID == pastoria_gym_green_button_nsbmd) {
-            FieldTask_InitCall(fieldSystem->task, ov8_02249B74, v6);
-            v8->unk_00 = 1;
+            FieldTask_InitCall(fieldSystem->task, PastoriaGym_PressGreenButton, waterMoveTaskState);
+            feature->pressedButton = PASTORIA_GREEN_BUTTON_PRESSED;
         } else if (mapPropModelID == pastoria_gym_orange_button_nsbmd) {
-            FieldTask_InitCall(fieldSystem->task, ov8_02249A94, v6);
-            v8->unk_00 = 0;
+            FieldTask_InitCall(fieldSystem->task, PastoriaGym_PressOrangeButton, waterMoveTaskState);
+            feature->pressedButton = PASTORIA_ORANGE_BUTTON_PRESSED;
         } else {
             GF_ASSERT(FALSE);
         }
@@ -398,17 +399,17 @@ BOOL PastoriaGym_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, cons
     u8 tileBehavior = TerrainCollisionManager_GetTileBehavior(fieldSystem, tileX, tileZ);
 
     if (TileBehavior_IsPastoriaGymHighGround(tileBehavior)) {
-        if (height != MAP_OBJECT_TILE_SIZE * 0) {
+        if (height != PASTORIA_WATER_HEIGHT_LOW) {
             *isColliding = TRUE;
             return TRUE;
         }
     } else if (TileBehavior_IsPastoriaGymMiddleGround(tileBehavior)) {
-        if (height != MAP_OBJECT_TILE_SIZE * 2) {
+        if (height != PASTORIA_WATER_HEIGHT_MIDDLE) {
             *isColliding = TRUE;
             return TRUE;
         }
     } else if (TileBehavior_IsPastoriaGymLowGround(tileBehavior)) {
-        if (height != MAP_OBJECT_TILE_SIZE * 4) {
+        if (height != PASTORIA_WATER_HEIGHT_HIGH) {
             *isColliding = TRUE;
             return TRUE;
         }
@@ -418,329 +419,285 @@ BOOL PastoriaGym_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, cons
     return FALSE;
 }
 
-static BOOL ov8_02249A94(FieldTask *taskMan)
+static BOOL PastoriaGym_PressOrangeButton(FieldTask *taskMan)
 {
-    MapProp *v0;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
-    UnkStruct_ov8_0224997C *v2 = FieldTask_GetEnv(taskMan);
+    int *state = FieldTask_GetEnv(taskMan);
 
-    switch (v2->unk_00) {
+    switch (*state) {
     case 0:
-
-        ov8_02249F14(0, fieldSystem->mapPropAnimMan);
-        (v2->unk_00)++;
+        PastoriaGym_UpdateButtonAnimations(PASTORIA_ORANGE_BUTTON_PRESSED, fieldSystem->mapPropAnimMan);
+        (*state)++;
         break;
     case 1: {
-        MapPropAnimation *v3;
-        MapPropAnimation *v4;
-        MapPropAnimation *v5;
+        MapPropAnimation *blueButtonGroup = MapPropAnimationManager_GetAnimationByPastoriaGymButtonGroup(PASTORIA_BLUE_BUTTON_GROUP, fieldSystem->mapPropAnimMan);
+        MapPropAnimation *greenButtonGroup = MapPropAnimationManager_GetAnimationByPastoriaGymButtonGroup(PASTORIA_GREEN_BUTTON_GROUP, fieldSystem->mapPropAnimMan);
+        MapPropAnimation *orangeButtonGroup = MapPropAnimationManager_GetAnimationByPastoriaGymButtonGroup(PASTORIA_ORANGE_BUTTON_GROUP, fieldSystem->mapPropAnimMan);
 
-        v3 = MapPropAnimationManager_GetAnimationByPastoriaGymButtonGroup(1, fieldSystem->mapPropAnimMan);
-        v4 = MapPropAnimationManager_GetAnimationByPastoriaGymButtonGroup(2, fieldSystem->mapPropAnimMan);
-        v5 = MapPropAnimationManager_GetAnimationByPastoriaGymButtonGroup(3, fieldSystem->mapPropAnimMan);
+        if (MapPropAnimation_IsLoopFinished(blueButtonGroup) && MapPropAnimation_IsLoopFinished(greenButtonGroup) && MapPropAnimation_IsLoopFinished(orangeButtonGroup)) {
+            MapProp *waterProp = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, pastoria_gym_water_floor_nsbmd);
 
-        if (MapPropAnimation_IsLoopFinished(v3) && MapPropAnimation_IsLoopFinished(v4) && MapPropAnimation_IsLoopFinished(v5)) {
-            v0 = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, pastoria_gym_water_floor_nsbmd);
+            VecFx32 waterPropPosition;
+            waterPropPosition = MapProp_GetPosition(waterProp);
+            waterPropPosition.y -= FX32_ONE;
 
-            {
-                VecFx32 v6;
-
-                v6 = MapProp_GetPosition(v0);
-                v6.y -= (FX32_ONE);
-
-                if (v6.y <= (FX32_ONE * 0)) {
-                    v6.y = (FX32_ONE * 0);
-                    (v2->unk_00)++;
-                }
-
-                MapProp_SetPosition(v0, &v6);
+            if (waterPropPosition.y <= PASTORIA_WATER_HEIGHT_LOW) {
+                waterPropPosition.y = PASTORIA_WATER_HEIGHT_LOW;
+                (*state)++;
             }
+
+            MapProp_SetPosition(waterProp, &waterPropPosition);
         }
     } break;
     case 2:
-        DynamicTerrainHeightManager_SetHeight(0, (FX32_ONE * 16 * 0), fieldSystem->dynamicTerrainHeightMan);
-        Sound_StopEffect(1626, 0);
-        (v2->unk_00)++;
+        DynamicTerrainHeightManager_SetHeight(PASTORIA_WATER_PLATE_INDEX, PASTORIA_WATER_HEIGHT_LOW, fieldSystem->dynamicTerrainHeightMan);
+        Sound_StopEffect(SEQ_SE_DP_FW056, 0);
+        (*state)++;
         break;
     case 3:
-        Heap_Free(v2);
-        return 1;
+        Heap_Free(state);
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov8_02249B74(FieldTask *taskMan)
+static BOOL PastoriaGym_PressGreenButton(FieldTask *taskMan)
 {
-    MapProp *v0;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
-    UnkStruct_ov8_0224997C *v2 = FieldTask_GetEnv(taskMan);
+    int *state = FieldTask_GetEnv(taskMan);
 
-    switch (v2->unk_00) {
+    switch (*state) {
     case 0:
-        ov8_02249F14(1, fieldSystem->mapPropAnimMan);
-        (v2->unk_00)++;
+        PastoriaGym_UpdateButtonAnimations(PASTORIA_GREEN_BUTTON_PRESSED, fieldSystem->mapPropAnimMan);
+        (*state)++;
         break;
     case 1: {
-        MapPropAnimation *v3;
-        MapPropAnimation *v4;
-        MapPropAnimation *v5;
+        MapPropAnimation *blueButtonGroup = MapPropAnimationManager_GetAnimationByPastoriaGymButtonGroup(PASTORIA_BLUE_BUTTON_GROUP, fieldSystem->mapPropAnimMan);
+        MapPropAnimation *greenButtonGroup = MapPropAnimationManager_GetAnimationByPastoriaGymButtonGroup(PASTORIA_GREEN_BUTTON_GROUP, fieldSystem->mapPropAnimMan);
+        MapPropAnimation *orangeButtonGroup = MapPropAnimationManager_GetAnimationByPastoriaGymButtonGroup(PASTORIA_ORANGE_BUTTON_GROUP, fieldSystem->mapPropAnimMan);
 
-        v3 = MapPropAnimationManager_GetAnimationByPastoriaGymButtonGroup(1, fieldSystem->mapPropAnimMan);
-        v4 = MapPropAnimationManager_GetAnimationByPastoriaGymButtonGroup(2, fieldSystem->mapPropAnimMan);
-        v5 = MapPropAnimationManager_GetAnimationByPastoriaGymButtonGroup(3, fieldSystem->mapPropAnimMan);
+        if (MapPropAnimation_IsLoopFinished(blueButtonGroup) && MapPropAnimation_IsLoopFinished(greenButtonGroup) && MapPropAnimation_IsLoopFinished(orangeButtonGroup)) {
+            MapProp *waterProp = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, pastoria_gym_water_floor_nsbmd);
 
-        if (MapPropAnimation_IsLoopFinished(v3) && MapPropAnimation_IsLoopFinished(v4) && MapPropAnimation_IsLoopFinished(v5)) {
-            v0 = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, pastoria_gym_water_floor_nsbmd);
-            {
-                VecFx32 v6;
+            VecFx32 waterPropPosition;
+            waterPropPosition = MapProp_GetPosition(waterProp);
 
-                v6 = MapProp_GetPosition(v0);
-
-                if (v6.y == (FX32_ONE * 0)) {
-                    (v2->unk_00) = 2;
-                } else if (v6.y == (FX32_ONE * 16 * 2)) {
-                    Heap_Free(v2);
-                    return 1;
-                } else if (v6.y == (FX32_ONE * 16 * 4)) {
-                    (v2->unk_00) = 3;
-                } else {
-                    GF_ASSERT(0);
-                }
+            if (waterPropPosition.y == PASTORIA_WATER_HEIGHT_LOW) {
+                *state = 2;
+            } else if (waterPropPosition.y == PASTORIA_WATER_HEIGHT_MIDDLE) {
+                Heap_Free(state);
+                return TRUE;
+            } else if (waterPropPosition.y == PASTORIA_WATER_HEIGHT_HIGH) {
+                *state = 3;
+            } else {
+                GF_ASSERT(0);
             }
         }
     } break;
-    case 2:
-        v0 = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, pastoria_gym_water_floor_nsbmd);
+    case 2: {
+        MapProp *waterProp = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, pastoria_gym_water_floor_nsbmd);
 
-        {
-            VecFx32 v7;
+        VecFx32 waterPropPosition;
+        waterPropPosition = MapProp_GetPosition(waterProp);
+        waterPropPosition.y += FX32_ONE;
 
-            v7 = MapProp_GetPosition(v0);
-            v7.y += (FX32_ONE);
-
-            if (v7.y >= (FX32_ONE * 16 * 2)) {
-                v7.y = (FX32_ONE * 16 * 2);
-                (v2->unk_00) = 4;
-            }
-
-            MapProp_SetPosition(v0, &v7);
+        if (waterPropPosition.y >= PASTORIA_WATER_HEIGHT_MIDDLE) {
+            waterPropPosition.y = PASTORIA_WATER_HEIGHT_MIDDLE;
+            *state = 4;
         }
-        break;
-    case 3:
-        v0 = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, pastoria_gym_water_floor_nsbmd);
 
-        {
-            VecFx32 v8;
+        MapProp_SetPosition(waterProp, &waterPropPosition);
+    } break;
+    case 3: {
+        MapProp *waterProp = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, pastoria_gym_water_floor_nsbmd);
 
-            v8 = MapProp_GetPosition(v0);
-            v8.y -= (FX32_ONE);
+        VecFx32 waterPropPosition;
+        waterPropPosition = MapProp_GetPosition(waterProp);
+        waterPropPosition.y -= FX32_ONE;
 
-            if (v8.y <= (FX32_ONE * 16 * 2)) {
-                v8.y = (FX32_ONE * 16 * 2);
-                (v2->unk_00) = 4;
-            }
-
-            MapProp_SetPosition(v0, &v8);
+        if (waterPropPosition.y <= PASTORIA_WATER_HEIGHT_MIDDLE) {
+            waterPropPosition.y = PASTORIA_WATER_HEIGHT_MIDDLE;
+            *state = 4;
         }
-        break;
+
+        MapProp_SetPosition(waterProp, &waterPropPosition);
+    } break;
     case 4:
-        DynamicTerrainHeightManager_SetHeight(0, (FX32_ONE * 16 * 2), fieldSystem->dynamicTerrainHeightMan);
-        Sound_StopEffect(1626, 0);
-        (v2->unk_00)++;
+        DynamicTerrainHeightManager_SetHeight(PASTORIA_WATER_PLATE_INDEX, PASTORIA_WATER_HEIGHT_MIDDLE, fieldSystem->dynamicTerrainHeightMan);
+        Sound_StopEffect(SEQ_SE_DP_FW056, 0);
+        (*state)++;
         break;
     case 5:
-        Heap_Free(v2);
-        return 1;
+        Heap_Free(state);
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov8_02249CD8(FieldTask *taskMan)
+static BOOL PastoriaGym_PressBlueButton(FieldTask *taskMan)
 {
-    MapProp *v0;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
-    UnkStruct_ov8_0224997C *v2 = FieldTask_GetEnv(taskMan);
+    int *state = FieldTask_GetEnv(taskMan);
 
-    switch (v2->unk_00) {
+    switch (*state) {
     case 0:
-        ov8_02249F14(2, fieldSystem->mapPropAnimMan);
-        (v2->unk_00)++;
+        PastoriaGym_UpdateButtonAnimations(PASTORIA_BLUE_BUTTON_PRESSED, fieldSystem->mapPropAnimMan);
+        (*state)++;
         break;
     case 1: {
-        MapPropAnimation *v3;
-        MapPropAnimation *v4;
-        MapPropAnimation *v5;
+        MapPropAnimation *blueButtonGroup = MapPropAnimationManager_GetAnimationByPastoriaGymButtonGroup(PASTORIA_BLUE_BUTTON_GROUP, fieldSystem->mapPropAnimMan);
+        MapPropAnimation *greenButtonGroup = MapPropAnimationManager_GetAnimationByPastoriaGymButtonGroup(PASTORIA_GREEN_BUTTON_GROUP, fieldSystem->mapPropAnimMan);
+        MapPropAnimation *orangeButtonGroup = MapPropAnimationManager_GetAnimationByPastoriaGymButtonGroup(PASTORIA_ORANGE_BUTTON_GROUP, fieldSystem->mapPropAnimMan);
 
-        v3 = MapPropAnimationManager_GetAnimationByPastoriaGymButtonGroup(1, fieldSystem->mapPropAnimMan);
-        v4 = MapPropAnimationManager_GetAnimationByPastoriaGymButtonGroup(2, fieldSystem->mapPropAnimMan);
-        v5 = MapPropAnimationManager_GetAnimationByPastoriaGymButtonGroup(3, fieldSystem->mapPropAnimMan);
+        if (MapPropAnimation_IsLoopFinished(blueButtonGroup) && MapPropAnimation_IsLoopFinished(greenButtonGroup) && MapPropAnimation_IsLoopFinished(orangeButtonGroup)) {
+            MapProp *waterProp = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, pastoria_gym_water_floor_nsbmd);
 
-        if (MapPropAnimation_IsLoopFinished(v3) && MapPropAnimation_IsLoopFinished(v4) && MapPropAnimation_IsLoopFinished(v5)) {
-            v0 = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, pastoria_gym_water_floor_nsbmd);
+            VecFx32 waterPropPosition;
+            waterPropPosition = MapProp_GetPosition(waterProp);
+            waterPropPosition.y += FX32_ONE;
 
-            {
-                VecFx32 v6;
-
-                v6 = MapProp_GetPosition(v0);
-                v6.y += (FX32_ONE);
-
-                if (v6.y >= (FX32_ONE * 16 * 4)) {
-                    v6.y = (FX32_ONE * 16 * 4);
-                    (v2->unk_00)++;
-                }
-
-                MapProp_SetPosition(v0, &v6);
+            if (waterPropPosition.y >= PASTORIA_WATER_HEIGHT_HIGH) {
+                waterPropPosition.y = PASTORIA_WATER_HEIGHT_HIGH;
+                (*state)++;
             }
+
+            MapProp_SetPosition(waterProp, &waterPropPosition);
         }
     } break;
     case 2:
-        DynamicTerrainHeightManager_SetHeight(0, (FX32_ONE * 16 * 4), fieldSystem->dynamicTerrainHeightMan);
-        Sound_StopEffect(1626, 0);
-        (v2->unk_00)++;
+        DynamicTerrainHeightManager_SetHeight(PASTORIA_WATER_PLATE_INDEX, PASTORIA_WATER_HEIGHT_HIGH, fieldSystem->dynamicTerrainHeightMan);
+        Sound_StopEffect(SEQ_SE_DP_FW056, 0);
+        (*state)++;
         break;
     case 3:
-        Heap_Free(v2);
-        return 1;
+        Heap_Free(state);
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 void PastoriaGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
 {
-    u8 v0;
-    MapProp *v1;
-    fx32 v2;
-    fx32 v3;
-    BOOL v4, v5, v6;
-    PersistedMapFeatures *v7 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
-    UnkStruct_02071B10 *v8 = (UnkStruct_02071B10 *)PersistedMapFeatures_GetBuffer(v7, DYNAMIC_MAP_FEATURES_PASTORIA_GYM);
+    PersistedMapFeatures *mapFeatures = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+    PastoriaGymPersistedFeature *feature = PersistedMapFeatures_GetBuffer(mapFeatures, DYNAMIC_MAP_FEATURES_PASTORIA_GYM);
 
-    {
-        VecFx32 v9 = { FX32_ONE * 16 * 16, 0, FX32_ONE * 16 * 16 };
-        MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->areaDataManager, 242, &v9, NULL, fieldSystem->mapPropAnimMan);
-    }
+    VecFx32 iniWaterPropPosition = { FX32_CONST(256), 0, FX32_CONST(256) };
+    MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->areaDataManager, pastoria_gym_water_floor_nsbmd, &iniWaterPropPosition, NULL, fieldSystem->mapPropAnimMan);
 
-    DynamicTerrainHeightManager_SetPlate(0, 1, 2, 25, 38, (FX32_ONE * 16 * 0), fieldSystem->dynamicTerrainHeightMan);
+    DynamicTerrainHeightManager_SetPlate(PASTORIA_WATER_PLATE_INDEX, 1, 2, 25, 38, 0, fieldSystem->dynamicTerrainHeightMan);
 
-    v0 = v8->unk_00;
-
-    switch (v0) {
-    case 0:
-        v2 = (FX32_ONE * 0);
-        v3 = (FX32_ONE * 16 * 0);
-        v4 = 1;
-        v5 = 1;
-        v6 = 0;
+    fx32 waterPosition, waterHeight;
+    BOOL blueButtonIsUp, greenButtonIsUp, orangeButtonIsUp;
+    switch (feature->pressedButton) {
+    case PASTORIA_ORANGE_BUTTON_PRESSED:
+        waterPosition = PASTORIA_WATER_HEIGHT_LOW;
+        waterHeight = PASTORIA_WATER_HEIGHT_LOW;
+        blueButtonIsUp = TRUE;
+        greenButtonIsUp = TRUE;
+        orangeButtonIsUp = FALSE;
         break;
-    case 1:
-        v2 = (FX32_ONE * 16 * 2);
-        v3 = (FX32_ONE * 16 * 2);
-        v4 = 1;
-        v5 = 0;
-        v6 = 1;
+    case PASTORIA_GREEN_BUTTON_PRESSED:
+        waterPosition = PASTORIA_WATER_HEIGHT_MIDDLE;
+        waterHeight = PASTORIA_WATER_HEIGHT_MIDDLE;
+        blueButtonIsUp = TRUE;
+        greenButtonIsUp = FALSE;
+        orangeButtonIsUp = TRUE;
         break;
-    case 2:
-        v2 = (FX32_ONE * 16 * 4);
-        v3 = (FX32_ONE * 16 * 4);
-        v4 = 0;
-        v5 = 1;
-        v6 = 1;
+    case PASTORIA_BLUE_BUTTON_PRESSED:
+        waterPosition = PASTORIA_WATER_HEIGHT_HIGH;
+        waterHeight = PASTORIA_WATER_HEIGHT_HIGH;
+        blueButtonIsUp = FALSE;
+        greenButtonIsUp = TRUE;
+        orangeButtonIsUp = TRUE;
         break;
     default:
         GF_ASSERT(FALSE);
-        v2 = (FX32_ONE * 0);
-        v3 = (FX32_ONE * 16 * 0);
-        v4 = 1;
-        v5 = 1;
-        v6 = 0;
+        waterPosition = PASTORIA_WATER_HEIGHT_LOW;
+        waterHeight = PASTORIA_WATER_HEIGHT_LOW;
+        blueButtonIsUp = TRUE;
+        greenButtonIsUp = TRUE;
+        orangeButtonIsUp = FALSE;
     }
 
-    v1 = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, pastoria_gym_water_floor_nsbmd);
+    MapProp *waterProp = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, pastoria_gym_water_floor_nsbmd);
 
-    {
-        VecFx32 v10;
+    VecFx32 waterPropPosition;
+    waterPropPosition = MapProp_GetPosition(waterProp);
+    waterPropPosition.y = waterPosition;
 
-        v10 = MapProp_GetPosition(v1);
-        v10.y = v2;
+    MapProp_SetPosition(waterProp, &waterPropPosition);
 
-        MapProp_SetPosition(v1, &v10);
-    }
+    DynamicTerrainHeightManager_SetHeight(PASTORIA_WATER_PLATE_INDEX, waterHeight, fieldSystem->dynamicTerrainHeightMan);
 
-    DynamicTerrainHeightManager_SetHeight(0, v3, fieldSystem->dynamicTerrainHeightMan);
+    MapPropAnimation *animation;
+    animation = MapPropAnimationManager_GetAnimation(pastoria_gym_blue_button_nsbmd, 0, fieldSystem->mapPropAnimMan);
 
-    {
-        MapPropAnimation *v11;
+    MapPropAnimation_SetPastoriaGymButtonGroup(animation, PASTORIA_BLUE_BUTTON_GROUP);
+    MapPropAnimation_SetReversed(animation, blueButtonIsUp);
+    MapPropAnimation_SetLoopCount(animation, 1);
+    MapPropAnimation_SetAnimationPaused(animation, TRUE);
+    MapPropAnimation_GoToLastFrame(animation);
 
-        v11 = MapPropAnimationManager_GetAnimation(239, 0, fieldSystem->mapPropAnimMan);
+    animation = MapPropAnimationManager_GetAnimation(pastoria_gym_green_button_nsbmd, 0, fieldSystem->mapPropAnimMan);
 
-        MapPropAnimation_SetPastoriaGymButtonGroup(v11, 1);
-        MapPropAnimation_SetReversed(v11, v4);
-        MapPropAnimation_SetLoopCount(v11, 1);
-        MapPropAnimation_SetAnimationPaused(v11, 1);
-        MapPropAnimation_GoToLastFrame(v11);
+    MapPropAnimation_SetPastoriaGymButtonGroup(animation, PASTORIA_GREEN_BUTTON_GROUP);
+    MapPropAnimation_SetReversed(animation, greenButtonIsUp);
+    MapPropAnimation_SetLoopCount(animation, 1);
+    MapPropAnimation_SetAnimationPaused(animation, TRUE);
+    MapPropAnimation_GoToLastFrame(animation);
 
-        v11 = MapPropAnimationManager_GetAnimation(240, 0, fieldSystem->mapPropAnimMan);
+    animation = MapPropAnimationManager_GetAnimation(pastoria_gym_orange_button_nsbmd, 0, fieldSystem->mapPropAnimMan);
 
-        MapPropAnimation_SetPastoriaGymButtonGroup(v11, 2);
-        MapPropAnimation_SetReversed(v11, v5);
-        MapPropAnimation_SetLoopCount(v11, 1);
-        MapPropAnimation_SetAnimationPaused(v11, 1);
-        MapPropAnimation_GoToLastFrame(v11);
-
-        v11 = MapPropAnimationManager_GetAnimation(241, 0, fieldSystem->mapPropAnimMan);
-
-        MapPropAnimation_SetPastoriaGymButtonGroup(v11, 3);
-        MapPropAnimation_SetReversed(v11, v6);
-        MapPropAnimation_SetLoopCount(v11, 1);
-        MapPropAnimation_SetAnimationPaused(v11, 1);
-        MapPropAnimation_GoToLastFrame(v11);
-    }
+    MapPropAnimation_SetPastoriaGymButtonGroup(animation, PASTORIA_ORANGE_BUTTON_GROUP);
+    MapPropAnimation_SetReversed(animation, orangeButtonIsUp);
+    MapPropAnimation_SetLoopCount(animation, 1);
+    MapPropAnimation_SetAnimationPaused(animation, TRUE);
+    MapPropAnimation_GoToLastFrame(animation);
 }
 
-static void ov8_02249F14(const u8 param0, MapPropAnimationManager *param1)
+static void PastoriaGym_UpdateButtonAnimations(const u8 pressedButton, MapPropAnimationManager *mapPropAnimMan)
 {
-    MapPropAnimation *v0;
-    int v1, v2, v3;
-
-    if (param0 == 2) {
-        v1 = 1;
-        v2 = 2;
-        v3 = 3;
-    } else if (param0 == 1) {
-        v1 = 2;
-        v2 = 1;
-        v3 = 3;
-    } else if (param0 == 0) {
-        v1 = 3;
-        v2 = 1;
-        v3 = 2;
+    int pressedButtonGroup, unpressedGroup1, unpressedGroup2;
+    if (pressedButton == PASTORIA_BLUE_BUTTON_PRESSED) {
+        pressedButtonGroup = PASTORIA_BLUE_BUTTON_GROUP;
+        unpressedGroup1 = PASTORIA_GREEN_BUTTON_GROUP;
+        unpressedGroup2 = PASTORIA_ORANGE_BUTTON_GROUP;
+    } else if (pressedButton == PASTORIA_GREEN_BUTTON_PRESSED) {
+        pressedButtonGroup = PASTORIA_GREEN_BUTTON_GROUP;
+        unpressedGroup1 = PASTORIA_BLUE_BUTTON_GROUP;
+        unpressedGroup2 = PASTORIA_ORANGE_BUTTON_GROUP;
+    } else if (pressedButton == PASTORIA_ORANGE_BUTTON_PRESSED) {
+        pressedButtonGroup = PASTORIA_ORANGE_BUTTON_GROUP;
+        unpressedGroup1 = PASTORIA_BLUE_BUTTON_GROUP;
+        unpressedGroup2 = PASTORIA_GREEN_BUTTON_GROUP;
     } else {
         GF_ASSERT(0);
     }
 
-    v0 = MapPropAnimationManager_GetAnimationByPastoriaGymButtonGroup(v1, param1);
+    MapPropAnimation *mapPropAnimation;
+    mapPropAnimation = MapPropAnimationManager_GetAnimationByPastoriaGymButtonGroup(pressedButtonGroup, mapPropAnimMan);
 
-    MapPropAnimation_SetReversed(v0, 0);
-    MapPropAnimation_GoToFirstFrame(v0);
-    MapPropAnimation_SetAnimationPaused(v0, 0);
-    MapPropAnimation_StartLoop(v0);
+    MapPropAnimation_SetReversed(mapPropAnimation, FALSE);
+    MapPropAnimation_GoToFirstFrame(mapPropAnimation);
+    MapPropAnimation_SetAnimationPaused(mapPropAnimation, FALSE);
+    MapPropAnimation_StartLoop(mapPropAnimation);
 
-    v0 = MapPropAnimationManager_GetAnimationByPastoriaGymButtonGroup(v2, param1);
+    mapPropAnimation = MapPropAnimationManager_GetAnimationByPastoriaGymButtonGroup(unpressedGroup1, mapPropAnimMan);
 
-    MapPropAnimation_SetReversed(v0, 1);
-    MapPropAnimation_GoToFirstFrame(v0);
-    MapPropAnimation_SetAnimationPaused(v0, 0);
-    MapPropAnimation_StartLoop(v0);
+    MapPropAnimation_SetReversed(mapPropAnimation, TRUE);
+    MapPropAnimation_GoToFirstFrame(mapPropAnimation);
+    MapPropAnimation_SetAnimationPaused(mapPropAnimation, FALSE);
+    MapPropAnimation_StartLoop(mapPropAnimation);
 
-    v0 = MapPropAnimationManager_GetAnimationByPastoriaGymButtonGroup(v3, param1);
+    mapPropAnimation = MapPropAnimationManager_GetAnimationByPastoriaGymButtonGroup(unpressedGroup2, mapPropAnimMan);
 
-    MapPropAnimation_SetReversed(v0, 1);
-    MapPropAnimation_GoToFirstFrame(v0);
-    MapPropAnimation_SetAnimationPaused(v0, 0);
-    MapPropAnimation_StartLoop(v0);
+    MapPropAnimation_SetReversed(mapPropAnimation, TRUE);
+    MapPropAnimation_GoToFirstFrame(mapPropAnimation);
+    MapPropAnimation_SetAnimationPaused(mapPropAnimation, FALSE);
+    MapPropAnimation_StartLoop(mapPropAnimation);
 
     Sound_PlayEffect(SEQ_SE_DP_FW056);
 }
@@ -809,7 +766,7 @@ static BOOL ov8_0224A018(FieldTask *taskMan)
         }
     } break;
     case 2:
-        DynamicTerrainHeightManager_SetHeight(0, (FX32_ONE * 16 * 10), fieldSystem->dynamicTerrainHeightMan);
+        DynamicTerrainHeightManager_SetHeight(0, FX32_ONE * 16 * 10, fieldSystem->dynamicTerrainHeightMan);
         PlayerAvatar_SetHeightCalculationEnabledAndUpdate(fieldSystem->playerAvatar, TRUE);
         Sound_PlayEffect(SEQ_SE_DP_KI_GASYAN);
         (v2->unk_00)++;
@@ -854,7 +811,7 @@ static BOOL ov8_0224A0E8(FieldTask *taskMan)
         }
     } break;
     case 2:
-        DynamicTerrainHeightManager_SetHeight(0, (FX32_ONE * 16 * 0), fieldSystem->dynamicTerrainHeightMan);
+        DynamicTerrainHeightManager_SetHeight(0, FX32_ONE * 16 * 0, fieldSystem->dynamicTerrainHeightMan);
         PlayerAvatar_SetHeightCalculationEnabledAndUpdate(fieldSystem->playerAvatar, TRUE);
         Sound_PlayEffect(SEQ_SE_DP_KI_GASYAN);
         (v2->unk_00)++;
@@ -2743,7 +2700,7 @@ static BOOL ov8_0224B370(UnkStruct_ov8_0224AF00 *param0, const fx32 param1, cons
     if ((v1 != param1) || (v2 != param2)) {
         fx32 v3, v4;
 
-        ov8_0224AF00(param0, (FX32_ONE * 2));
+        ov8_0224AF00(param0, FX32_ONE * 2);
 
         v3 = param0->fxHour;
         v4 = param0->fxMinute;
@@ -3161,7 +3118,7 @@ static void ov8_0224B958(UnkStruct_ov8_0224B8D0 *param0)
     UnkStruct_ov8_0224B8A0 *v5 = param0->unk_04;
     UnkStruct_ov8_0224BCA8 *v6 = param0->unk_10C;
 
-    while (MapObjectMan_FindObjectWithStatus(mapObjMan, &v2, &v0, (1 << 0)) == 1) {
+    while (MapObjectMan_FindObjectWithStatus(mapObjMan, &v2, &v0, 1 << 0) == 1) {
         if (MapObject_GetLocalID(v2) == 0xfd) {
             if (MapObject_GetDataAt(v2, 0) == 0) {
                 ov8_0224B80C(&v5->unk_08, v2, fieldSystem);
@@ -3904,7 +3861,7 @@ static void ov8_0224C444(UnkStruct_ov8_0224C444 *param0)
     v1 = 0;
     v3 = MapObjectMan_GetTaskBasePriority(mapObjMan) + 2;
 
-    while (MapObjectMan_FindObjectWithStatus(mapObjMan, &v5, &v0, (1 << 0))) {
+    while (MapObjectMan_FindObjectWithStatus(mapObjMan, &v5, &v0, 1 << 0)) {
         v4 = MapObject_GetLocalID(v5);
         v6->unk_08 = MapObject_GetDataAt(v5, 0);
 
@@ -3970,7 +3927,7 @@ BOOL ov8_0224C51C(FieldSystem *fieldSystem)
     v2 = 2;
     v1 = Direction_GetOpposite(MapObject_GetFacingDir(v8));
 
-    while (MapObjectMan_FindObjectWithStatus(mapObjMan, &v7, &v0, (1 << 0))) {
+    while (MapObjectMan_FindObjectWithStatus(mapObjMan, &v7, &v0, 1 << 0)) {
         if ((v7 != v8) && (FieldSystem_IsTrainerDefated(fieldSystem, v7) == 1)) {
             v3 = MapObject_GetDistanceToPlayer(v7, playerAvatar, v1, v2);
 
