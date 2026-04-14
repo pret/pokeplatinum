@@ -50,6 +50,7 @@
 #include "comm_player_manager.h"
 #include "dynamic_map_features.h"
 #include "easy3d.h"
+#include "field_bgm.h"
 #include "field_map_change.h"
 #include "field_message.h"
 #include "field_overworld_state.h"
@@ -77,7 +78,6 @@
 #include "script_manager.h"
 #include "system.h"
 #include "unk_0202419C.h"
-#include "field_bgm.h"
 #include "unk_020559DC.h"
 #include "vram_transfer.h"
 

@@ -12,6 +12,7 @@
 #include "overlay005/map_prop_animation.h"
 
 #include "camera.h"
+#include "field_bgm.h"
 #include "field_map_change.h"
 #include "field_task.h"
 #include "field_transition.h"
@@ -22,7 +23,6 @@
 #include "sound_playback.h"
 #include "terrain_collision_manager.h"
 #include "unk_0203D1B8.h"
-#include "field_bgm.h"
 
 #include "res/field/props/models/prop_models.naix"
 

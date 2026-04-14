@@ -19,6 +19,7 @@
 #include "overlay005/struct_ov5_021D4E00_decl.h"
 
 #include "camera.h"
+#include "field_bgm.h"
 #include "field_map_change.h"
 #include "field_task.h"
 #include "field_transition.h"
@@ -32,7 +33,6 @@
 #include "screen_fade.h"
 #include "sound_playback.h"
 #include "terrain_collision_manager.h"
-#include "field_bgm.h"
 #include "unk_020655F4.h"
 
 typedef struct {

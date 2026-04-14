@@ -29,6 +29,7 @@
 #include "billboard.h"
 #include "encounter.h"
 #include "field_battle_data_transfer.h"
+#include "field_bgm.h"
 #include "field_task.h"
 #include "game_records.h"
 #include "heap.h"
@@ -44,7 +45,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
-#include "field_bgm.h"
 #include "unk_0205F180.h"
 #include "unk_020655F4.h"
 

@@ -14,6 +14,7 @@
 
 #include "bag.h"
 #include "field_battle_data_transfer.h"
+#include "field_bgm.h"
 #include "game_overlay.h"
 #include "game_records.h"
 #include "heap.h"
@@ -24,7 +25,6 @@
 #include "sound.h"
 #include "system_flags.h"
 #include "unk_0202F1D4.h"
-#include "field_bgm.h"
 #include "unk_0208C010.h"
 #include "vars_flags.h"
 #include "wifi_overlays.h"

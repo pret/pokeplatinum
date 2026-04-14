@@ -12,6 +12,7 @@
 #include "overlay006/radar_chain_records.h"
 
 #include "bag.h"
+#include "field_bgm.h"
 #include "field_task.h"
 #include "gfx_box_test.h"
 #include "heap.h"
@@ -26,7 +27,6 @@
 #include "sound_playback.h"
 #include "special_encounter.h"
 #include "terrain_collision_manager.h"
-#include "field_bgm.h"
 
 typedef struct {
     int x;

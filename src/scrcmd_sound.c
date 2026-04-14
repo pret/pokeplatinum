@@ -4,13 +4,13 @@
 #include "field/field_system.h"
 
 #include "chatot_cry.h"
+#include "field_bgm.h"
 #include "field_script_context.h"
 #include "inlines.h"
 #include "sound.h"
 #include "sound_chatot.h"
 #include "sound_playback.h"
 #include "system.h"
-#include "field_bgm.h"
 
 static BOOL ScriptContext_IsSoundFadeFinished(ScriptContext *ctx);
 static BOOL ScriptContext_IsFanfareFinished(ScriptContext *ctx);
