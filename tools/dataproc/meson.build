@@ -79,3 +79,12 @@ dexproc_exe = executable(
     dependencies: commonproc_dep,
     native: true,
 )
+
+trainerproc_exe = executable(
+    'trainerproc',
+    sources: [ files('src/trainerproc.c'), c_consts_generators ],
+    c_args: dataproc_cflags,
+    include_directories: [ public_includes, toplevel_includes ],
+    dependencies: commonproc_dep,
+    native: true,
+)

@@ -26,25 +26,33 @@ trainer_env = environment()
 trainer_env.append('TRAINERS', trainer_stems, separator: ';')
 
 # 3. Process the trainer data files in batch and emit header data + party lists.
-datagen_trainer_out = custom_target('datagen_trainer_out',
+trainer_data = custom_target('trainer_data',
     output: [
         'trdata.narc',
         'trpoke.narc',
         'trtbl.narc',
         'trtblofs.narc',
+        'npc_trainer_messages.json',
+        'npc_trainer_names.json',
     ],
+
     command: [
-        datagen_trainer_exe,
-        meson.current_build_dir(),
+        trainerproc_exe,
+        '-M', '@DEPFILE@',
+        '-o', meson.current_build_dir(),
         trainer_data_dir,
     ],
+
     env: trainer_env,
     depend_files: [
         trainer_data_files,
     ],
+    depfile: 'trainer_data.d',
 )
 
-nitrofs_files += datagen_trainer_out
+nitrofs_files += trainer_data
+trainer_data_outputs = trainer_data.to_list()
+trainer_text_banks = trainer_data_outputs.slice(4, trainer_data_outputs.length())
 
 
 subdir('classes')
