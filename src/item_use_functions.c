@@ -57,7 +57,7 @@
 #include "terrain_collision_manager.h"
 #include "unk_0203C954.h"
 #include "unk_0203D1B8.h"
-#include "unk_020553DC.h"
+#include "field_bgm.h"
 #include "unk_0205F180.h"
 #include "unk_0206B9D8.h"
 #include "vars_flags.h"

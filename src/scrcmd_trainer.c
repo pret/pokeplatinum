@@ -23,7 +23,7 @@
 #include "trainer_see.h"
 #include "unk_020528D0.h"
 #include "unk_02054884.h"
-#include "unk_020553DC.h"
+#include "field_bgm.h"
 #include "vars_flags.h"
 
 BOOL ScrCmd_0B6(ScriptContext *ctx)

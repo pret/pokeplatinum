@@ -24,7 +24,7 @@
 #include "sound.h"
 #include "system_flags.h"
 #include "unk_0202F1D4.h"
-#include "unk_020553DC.h"
+#include "field_bgm.h"
 #include "unk_0208C010.h"
 #include "vars_flags.h"
 #include "wifi_overlays.h"

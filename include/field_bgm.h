@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_020553DC_H
-#define POKEPLATINUM_UNK_020553DC_H
+#ifndef POKEPLATINUM_FIELD_BGM_H
+#define POKEPLATINUM_FIELD_BGM_H
 
 #include "generated/map_headers.h"
 #include "generated/sdat.h"
@@ -19,4 +19,4 @@ void FieldBGM_TryFadeIn(FieldSystem *fieldSystem, int mapID);
 void FieldBGM_PlayForMapHeader(FieldSystem *fieldSystem, int mapID);
 void FieldBGM_PlayEffectiveForMapHeader(FieldSystem *fieldSystem, int mapID);
 
-#endif // POKEPLATINUM_UNK_020553DC_H
+#endif // POKEPLATINUM_FIELD_BGM_H

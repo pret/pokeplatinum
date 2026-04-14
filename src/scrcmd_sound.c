@@ -10,7 +10,7 @@
 #include "sound_chatot.h"
 #include "sound_playback.h"
 #include "system.h"
-#include "unk_020553DC.h"
+#include "field_bgm.h"
 
 static BOOL ScriptContext_IsSoundFadeFinished(ScriptContext *ctx);
 static BOOL ScriptContext_IsFanfareFinished(ScriptContext *ctx);

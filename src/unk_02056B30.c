@@ -32,7 +32,7 @@
 #include "screen_fade.h"
 #include "sound_playback.h"
 #include "terrain_collision_manager.h"
-#include "unk_020553DC.h"
+#include "field_bgm.h"
 #include "unk_020655F4.h"
 
 typedef struct {

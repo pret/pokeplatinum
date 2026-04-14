@@ -77,7 +77,7 @@
 #include "script_manager.h"
 #include "system.h"
 #include "unk_0202419C.h"
-#include "unk_020553DC.h"
+#include "field_bgm.h"
 #include "unk_020559DC.h"
 #include "vram_transfer.h"
 

@@ -79,7 +79,7 @@
 #include "unk_02033200.h"
 #include "unk_020366A0.h"
 #include "unk_0203D1B8.h"
-#include "unk_020553DC.h"
+#include "field_bgm.h"
 #include "unk_020559DC.h"
 #include "unk_0205B33C.h"
 #include "unk_0205C22C.h"

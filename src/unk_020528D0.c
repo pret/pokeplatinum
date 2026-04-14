@@ -32,7 +32,7 @@
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_020553DC.h"
+#include "field_bgm.h"
 #include "unk_02070428.h"
 
 typedef struct {

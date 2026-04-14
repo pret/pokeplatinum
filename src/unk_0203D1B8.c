@@ -122,7 +122,7 @@
 #include "unk_0202D778.h"
 #include "unk_020366A0.h"
 #include "unk_02038FFC.h"
-#include "unk_020553DC.h"
+#include "field_bgm.h"
 #include "unk_020559DC.h"
 #include "unk_0205B33C.h"
 #include "unk_0209747C.h"

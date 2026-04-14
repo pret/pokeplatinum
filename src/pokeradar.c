@@ -26,7 +26,7 @@
 #include "sound_playback.h"
 #include "special_encounter.h"
 #include "terrain_collision_manager.h"
-#include "unk_020553DC.h"
+#include "field_bgm.h"
 
 typedef struct {
     int x;

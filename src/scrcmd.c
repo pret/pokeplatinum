@@ -201,7 +201,7 @@
 #include "unk_0205003C.h"
 #include "unk_02050568.h"
 #include "unk_020528D0.h"
-#include "unk_020553DC.h"
+#include "field_bgm.h"
 #include "unk_020559DC.h"
 #include "unk_0205749C.h"
 #include "unk_0205B33C.h"
