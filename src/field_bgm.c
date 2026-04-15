@@ -104,7 +104,6 @@ const static u16 sTrainerEncounterBGMs[][2] = {
 };
 // clang-format on
 
-void FieldBGM_Stop(void);
 static u16 FieldBGM_GetAltMusicForCyclingRoad(FieldSystem *fieldSystem, int headerID);
 static void FieldBGM_GetFadeOutAndWaitFrames(FieldSystem *fieldSystem, int mode, int *fadeOutFrames, int *waitFrames);
 
