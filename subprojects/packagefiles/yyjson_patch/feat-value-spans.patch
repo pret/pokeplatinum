@@ -517,7 +517,7 @@ index c16d925..e67cbaf 100644
      /* save the next sibling value offset */
      ctn->uni.ofs = (usize)((u8 *)val - (u8 *)ctn) + sizeof(yyjson_val);
      ctn->tag = ((ctn_len) << YYJSON_TAG_BIT) | YYJSON_TYPE_ARR;
-+    ctn->end = cur - hdr - 1;
++    ctn->end = cur - hdr;
      if (unlikely(ctn == ctn_parent)) goto doc_end;
  
      /* pop parent as current container */
@@ -616,7 +616,7 @@ index c16d925..e67cbaf 100644
      /* point to the next value */
      ctn->uni.ofs = (usize)((u8 *)val - (u8 *)ctn) + sizeof(yyjson_val);
      ctn->tag = (ctn_len << (YYJSON_TAG_BIT - 1)) | YYJSON_TYPE_OBJ;
-+    ctn->end = cur - hdr - 1;
++    ctn->end = cur - hdr;
      if (unlikely(ctn == ctn_parent)) goto doc_end;
      ctn = ctn_parent;
      ctn_len = (usize)(ctn->tag >> YYJSON_TAG_BIT);
@@ -702,7 +702,7 @@ index c16d925..e67cbaf 100644
      /* save the next sibling value offset */
      ctn->uni.ofs = (usize)((u8 *)val - (u8 *)ctn) + sizeof(yyjson_val);
      ctn->tag = ((ctn_len) << YYJSON_TAG_BIT) | YYJSON_TYPE_ARR;
-+    ctn->end = cur - hdr - 1;
++    ctn->end = cur - hdr;
      if (unlikely(ctn == ctn_parent)) goto doc_end;
  
      /* pop parent as current container */
@@ -801,7 +801,7 @@ index c16d925..e67cbaf 100644
      /* point to the next value */
      ctn->uni.ofs = (usize)((u8 *)val - (u8 *)ctn) + sizeof(yyjson_val);
      ctn->tag = (ctn_len << (YYJSON_TAG_BIT - 1)) | YYJSON_TYPE_OBJ;
-+    ctn->end = cur - hdr - 1;
++    ctn->end = cur - hdr;
      if (unlikely(ctn == ctn_parent)) goto doc_end;
      ctn = ctn_parent;
      ctn_len = (usize)(ctn->tag >> YYJSON_TAG_BIT);
