@@ -9,6 +9,7 @@
 
 #include "bg_window.h"
 #include "brightness_controller.h"
+#include "field_bgm.h"
 #include "field_map_change.h"
 #include "field_overworld_state.h"
 #include "field_system.h"
@@ -32,7 +33,6 @@
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_020553DC.h"
 #include "unk_02070428.h"
 
 typedef struct {
@@ -223,7 +223,7 @@ BOOL FieldTask_BlackOutFromBattle(FieldTask *task)
         break;
     case 2:
         if (Sound_IsFadeActive() == FALSE) {
-            sub_020553DC();
+            FieldBGM_Stop();
             (*state)++;
         }
         break;

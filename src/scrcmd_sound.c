@@ -4,13 +4,13 @@
 #include "field/field_system.h"
 
 #include "chatot_cry.h"
+#include "field_bgm.h"
 #include "field_script_context.h"
 #include "inlines.h"
 #include "sound.h"
 #include "sound_chatot.h"
 #include "sound_playback.h"
 #include "system.h"
-#include "unk_020553DC.h"
 
 static BOOL ScriptContext_IsSoundFadeFinished(ScriptContext *ctx);
 static BOOL ScriptContext_IsFanfareFinished(ScriptContext *ctx);
@@ -42,13 +42,13 @@ BOOL ScrCmd_StopMusic(ScriptContext *ctx)
 
 BOOL ScrCmd_PlayDefaultMusic(ScriptContext *ctx)
 {
-    Sound_PlayBGM(Sound_GetBGMByMapID(ctx->fieldSystem, ctx->fieldSystem->location->mapId));
+    Sound_PlayBGM(FieldBGM_GetForMapHeader(ctx->fieldSystem, ctx->fieldSystem->location->mapId));
     return FALSE;
 }
 
 BOOL ScrCmd_SetSpecialBGM(ScriptContext *ctx)
 {
-    Sound_SetSpecialBGM(ctx->fieldSystem, ScriptContext_ReadHalfWord(ctx));
+    FieldBGM_SetOverride(ctx->fieldSystem, ScriptContext_ReadHalfWord(ctx));
     return FALSE;
 }
 

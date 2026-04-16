@@ -19,6 +19,7 @@
 #include "overlay005/struct_ov5_021D4E00_decl.h"
 
 #include "camera.h"
+#include "field_bgm.h"
 #include "field_map_change.h"
 #include "field_task.h"
 #include "field_transition.h"
@@ -32,7 +33,6 @@
 #include "screen_fade.h"
 #include "sound_playback.h"
 #include "terrain_collision_manager.h"
-#include "unk_020553DC.h"
 #include "unk_020655F4.h"
 
 typedef struct {
@@ -212,7 +212,7 @@ static BOOL sub_02056CFC(FieldTask *taskMan)
     switch (v1->unk_00) {
     case 0:
         v1->unk_04 = 0;
-        Sound_TryFadeInBGM(fieldSystem, v2->mapId);
+        FieldBGM_TryFadeIn(fieldSystem, v2->mapId);
         FieldTask_InitCall(taskMan, Unk_020EC560[v1->unk_20], v1);
         (v1->unk_00)++;
         break;
@@ -240,7 +240,7 @@ static BOOL sub_02056CFC(FieldTask *taskMan)
             break;
         }
 
-        Sound_PlayMapBGM(fieldSystem, v2->mapId);
+        FieldBGM_PlayForMapHeader(fieldSystem, v2->mapId);
         FieldSystem_RequestLocationName(fieldSystem);
 
         v1->unk_04 = 0;

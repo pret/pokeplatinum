@@ -26,6 +26,7 @@
 #include "bag_context.h"
 #include "berry_patch_manager.h"
 #include "bg_window.h"
+#include "field_bgm.h"
 #include "field_map_change.h"
 #include "field_message.h"
 #include "field_system.h"
@@ -57,7 +58,6 @@
 #include "terrain_collision_manager.h"
 #include "unk_0203C954.h"
 #include "unk_0203D1B8.h"
-#include "unk_020553DC.h"
 #include "unk_0205F180.h"
 #include "unk_0206B9D8.h"
 #include "vars_flags.h"
@@ -436,11 +436,11 @@ static BOOL MountOrUnmountBicycle(FieldTask *task)
             PlayerAvatar_SetTransitionState(fieldSystem->playerAvatar, PLAYER_TRANSITION_WALKING);
             PlayerAvatar_RequestChangeState(fieldSystem->playerAvatar);
 
-            Sound_SetSpecialBGM(fieldSystem, SEQ_NONE);
-            Sound_TryFadeOutToBGM(fieldSystem, Sound_GetOverrideBGM(fieldSystem, fieldSystem->location->mapId), 1);
+            FieldBGM_SetOverride(fieldSystem, SEQ_NONE);
+            FieldBGM_TryFadeOut(fieldSystem, FieldBGM_GetEffective(fieldSystem, fieldSystem->location->mapId), 1);
         } else {
-            Sound_SetSpecialBGM(fieldSystem, SEQ_BICYCLE);
-            Sound_TryFadeOutToBGM(fieldSystem, SEQ_BICYCLE, 1);
+            FieldBGM_SetOverride(fieldSystem, SEQ_BICYCLE);
+            FieldBGM_TryFadeOut(fieldSystem, SEQ_BICYCLE, 1);
             MapObject_SetPauseMovementOff(Player_MapObject(fieldSystem->playerAvatar));
 
             PlayerAvatar_SetTransitionState(fieldSystem->playerAvatar, PLAYER_TRANSITION_CYCLING);

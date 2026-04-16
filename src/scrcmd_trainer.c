@@ -10,6 +10,7 @@
 
 #include "encounter.h"
 #include "field_battle_data_transfer.h"
+#include "field_bgm.h"
 #include "field_script_context.h"
 #include "inlines.h"
 #include "map_object.h"
@@ -23,7 +24,6 @@
 #include "trainer_see.h"
 #include "unk_020528D0.h"
 #include "unk_02054884.h"
-#include "unk_020553DC.h"
 #include "vars_flags.h"
 
 BOOL ScrCmd_0B6(ScriptContext *ctx)
@@ -243,7 +243,7 @@ BOOL ScrCmd_PlayTrainerEncounterBGM(ScriptContext *ctx)
 {
     u16 trainerID = ScriptContext_GetVar(ctx);
 
-    Sound_SwapBGM(Trainer_GetEncounterBGM(trainerID));
+    Sound_SwapBGM(FieldBGM_GetEyesMeetForTrainer(trainerID));
     return TRUE;
 }
 

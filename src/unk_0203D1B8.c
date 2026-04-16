@@ -81,6 +81,7 @@
 #include "egg_hatch.h"
 #include "evolution.h"
 #include "field_battle_data_transfer.h"
+#include "field_bgm.h"
 #include "field_move_tasks.h"
 #include "field_overworld_state.h"
 #include "field_system.h"
@@ -122,7 +123,6 @@
 #include "unk_0202D778.h"
 #include "unk_020366A0.h"
 #include "unk_02038FFC.h"
-#include "unk_020553DC.h"
 #include "unk_020559DC.h"
 #include "unk_0205B33C.h"
 #include "unk_0209747C.h"
@@ -1495,7 +1495,7 @@ void FieldSystem_HatchEgg(FieldSystem *fieldSystem)
     args.mon = eggMon;
     args.options = SaveData_GetOptions(fieldSystem->saveData);
     args.trainerInfo = SaveData_GetTrainerInfo(fieldSystem->saveData);
-    args.bgmID = Sound_GetOverrideBGM(fieldSystem, fieldSystem->location->mapId);
+    args.bgmID = FieldBGM_GetEffective(fieldSystem, fieldSystem->location->mapId);
 
     EggHatch_HatchEgg(fieldSystem->task, &args);
 }

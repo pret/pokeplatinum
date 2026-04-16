@@ -35,6 +35,7 @@
 #include "catching_show.h"
 #include "dexmode_checker.h"
 #include "evolution.h"
+#include "field_bgm.h"
 #include "field_move_tasks.h"
 #include "field_overworld_state.h"
 #include "field_system.h"
@@ -79,7 +80,6 @@
 #include "unk_02033200.h"
 #include "unk_020366A0.h"
 #include "unk_0203D1B8.h"
-#include "unk_020553DC.h"
 #include "unk_020559DC.h"
 #include "unk_0205B33C.h"
 #include "unk_0205C22C.h"
@@ -1769,7 +1769,7 @@ static void StartMenu_Evolve(FieldTask *fieldTask)
         Heap_Destroy(HEAP_ID_EVOLUTION);
         Sound_StopBGM(SEQ_SHINKA, 0);
         Sound_SetScene(SOUND_SCENE_NONE);
-        sub_020556A0(fieldSystem, fieldSystem->location->mapId);
+        FieldBGM_PlayEffectiveForMapHeader(fieldSystem, fieldSystem->location->mapId);
 
         menu->taskData = FieldSystem_OpenBag(fieldSystem, &menu->itemUseCtx);
 

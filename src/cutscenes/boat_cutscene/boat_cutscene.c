@@ -12,6 +12,7 @@
 #include "overlay005/map_prop_animation.h"
 
 #include "camera.h"
+#include "field_bgm.h"
 #include "field_map_change.h"
 #include "field_task.h"
 #include "field_transition.h"
@@ -22,7 +23,6 @@
 #include "sound_playback.h"
 #include "terrain_collision_manager.h"
 #include "unk_0203D1B8.h"
-#include "unk_020553DC.h"
 
 #include "res/field/props/models/prop_models.naix"
 
@@ -240,7 +240,7 @@ static BOOL FieldSystem_PlayBoatCutsceneStep(FieldTask *taskMan)
         boatCutscene->state = BOAT_CUTSCENE_STATE_FADE_IN;
         break;
     case BOAT_CUTSCENE_STATE_FADE_IN:
-        Sound_PlayMapBGM(fieldSystem, boatCutscene->mapID);
+        FieldBGM_PlayForMapHeader(fieldSystem, boatCutscene->mapID);
         FieldTransition_StartMapAndFadeIn(taskMan);
         boatCutscene->state = BOAT_CUTSCENE_STATE_CLEAN_UP;
         break;

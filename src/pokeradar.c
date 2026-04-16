@@ -12,6 +12,7 @@
 #include "overlay006/radar_chain_records.h"
 
 #include "bag.h"
+#include "field_bgm.h"
 #include "field_task.h"
 #include "gfx_box_test.h"
 #include "heap.h"
@@ -26,7 +27,6 @@
 #include "sound_playback.h"
 #include "special_encounter.h"
 #include "terrain_collision_manager.h"
-#include "unk_020553DC.h"
 
 typedef struct {
     int x;
@@ -136,7 +136,7 @@ BOOL RadarSpawnPatches(FieldSystem *fieldSystem, const int param1, const int par
 
     if (v7 == 0) {
         RadarChain_Clear(chain);
-        Sound_TryFadeOutToBGM(fieldSystem, Sound_GetOverrideBGM(fieldSystem, fieldSystem->location->mapId), 1);
+        FieldBGM_TryFadeOut(fieldSystem, FieldBGM_GetEffective(fieldSystem, fieldSystem->location->mapId), 1);
     } else {
         chain->active = TRUE;
     }
@@ -289,7 +289,7 @@ void PokeRadar_ClearIfAllOutOfView(FieldSystem *fieldSystem)
 
     if (inactiveRadarRings == 4) {
         RadarChain_Clear(fieldSystem->chain);
-        Sound_TryFadeOutToBGM(fieldSystem, Sound_GetOverrideBGM(fieldSystem, fieldSystem->location->mapId), 1);
+        FieldBGM_TryFadeOut(fieldSystem, FieldBGM_GetEffective(fieldSystem, fieldSystem->location->mapId), 1);
     }
 }
 

@@ -6,6 +6,7 @@
 #include "constants/field/field_effect_renderer.h"
 
 #include "overlay005/berry_patch_effects.h"
+#include "overlay005/dist_world_surf_mount_renderer.h"
 #include "overlay005/ov5_021F10E8.h"
 #include "overlay005/ov5_021F134C.h"
 #include "overlay005/ov5_021F17B8.h"
@@ -36,7 +37,6 @@
 #include "overlay005/ov5_021F5A10.h"
 #include "overlay005/ov5_021F600C.h"
 #include "overlay005/ov5_021F61BC.h"
-#include "overlay005/ov5_021F8560.h"
 #include "overlay005/surf_mount_renderer.h"
 
 const FieldEffectRendererFuncs sFieldEffectRendererHandlers[FIELD_EFFECT_RENDERER_COUNT + 1] = {
@@ -73,7 +73,7 @@ const FieldEffectRendererFuncs sFieldEffectRendererHandlers[FIELD_EFFECT_RENDERE
     { FIELD_EFFECT_RENDERER_1E, ov5_021F4018, ov5_021F4034 },
     { FIELD_EFFECT_RENDERER_1F, ov5_021F428C, ov5_021F42A8 },
     { FIELD_EFFECT_RENDERER_20, ov5_021F47B0, ov5_021F47CC },
-    { FIELD_EFFECT_RENDERER_21, ov5_021F8560, ov5_021F857C },
+    { FIELD_EFFECT_RENDERER_DISTORTION_WORLD_SURF_MOUNT, DistWorldSurfMountRenderer_New, DistWorldSurfMountRenderer_Free },
     { FIELD_EFFECT_RENDERER_INVALID, NULL, NULL }
 };
 
@@ -121,7 +121,7 @@ const u32 sUndergroundFieldEffectRenderers[FIELD_EFFECT_RENDERER_COUNT + 1] = {
 const u32 sDistWorldFieldEffectRenderers[FIELD_EFFECT_RENDERER_COUNT + 1] = {
     FIELD_EFFECT_RENDERER_1D,
     FIELD_EFFECT_RENDERER_14,
-    FIELD_EFFECT_RENDERER_21,
+    FIELD_EFFECT_RENDERER_DISTORTION_WORLD_SURF_MOUNT,
     FIELD_EFFECT_RENDERER_17,
     FIELD_EFFECT_RENDERER_0E,
     FIELD_EFFECT_RENDERER_INVALID

@@ -22,6 +22,7 @@
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
 #include "overlay005/area_data.h"
+#include "overlay005/dist_world_surf_mount_renderer.h"
 #include "overlay005/field_effect_manager.h"
 #include "overlay005/fieldmap.h"
 #include "overlay005/land_data.h"
@@ -31,7 +32,6 @@
 #include "overlay005/ov5_021EB1A0.h"
 #include "overlay005/ov5_021ECE40.h"
 #include "overlay005/ov5_021F348C.h"
-#include "overlay005/ov5_021F8560.h"
 #include "overlay005/struct_ov5_021D57D8_decl.h"
 #include "overlay005/struct_ov5_021ED0A4.h"
 #include "overlay009/camera_configuration.h"
@@ -166,6 +166,90 @@
 #define GIRATINA_ROOM_PLAY_ARRIVAL_SPRITE_DARKNESS_DECREMENT ((FX32_ONE * 16) / (3 * 30))
 #define GIRATINA_ROOM_PLAY_ARRIVAL_WAIT_DELAY                30
 
+#define WATERFALL_B4F_X       104
+#define WATERFALL_B4F_Y       170
+#define WATERFALL_B4F_START_Z 76
+#define WATERFALL_B4F_END_Z   79
+#define WATERFALL_B5F_X       104
+#define WATERFALL_B5F_Y       128
+#define WATERFALL_B5F_START_Z 76
+#define WATERFALL_B5F_END_Z   79
+
+#define CASCADE_FINISHING_THRESHOLD (16 * FX32_ONE)
+
+#define CASCADE_DOWN_FIRST_CAMERA_ANGLE_Y_OFFSET         -20
+#define CASCADE_DOWN_SECOND_CAMERA_ANGLE_Y_OFFSET        -36
+#define CASCADE_DOWN_FIRST_CAMERA_ANGLE_DELAY            32
+#define CASCADE_DOWN_INITIAL_SPRITE_ROTATION_STEPS       32
+#define CASCADE_DOWN_FIRST_CAMERA_TRANSITION_STEPS       72
+#define CASCADE_DOWN_SECOND_CAMERA_TRANSITION_STEPS      32
+#define CASCADE_DOWN_FINAL_SPRITE_ROTATION_STEPS         16
+#define CASCADE_DOWN_MOUNT_ROTATION_ANGLE_X              (FX32_ONE * -90)
+#define CASCADE_DOWN_MOUNT_ROTATION_ANGLE_Y              (FX32_ONE * 180)
+#define CASCADE_DOWN_MOUNT_ROTATION_ANGLE_Z              (FX32_ONE * 0)
+#define CASCADE_DOWN_FINAL_MOUNT_ROTATION_ANGLE_X        (FX32_ONE * -90)
+#define CASCADE_DOWN_FINAL_MOUNT_ROTATION_ANGLE_Y        (FX32_ONE * 0)
+#define CASCADE_DOWN_FINAL_MOUNT_ROTATION_ANGLE_Z        (FX32_ONE * 0)
+#define CASCADE_DOWN_ORBIT_ANGLE_START                   (FX32_ONE * 90)
+#define CASCADE_DOWN_ORBIT_ANGLE                         (FX32_ONE * -70)
+#define CASCADE_DOWN_FINAL_ORBIT_ANGLE                   (FX32_ONE * -110)
+#define CASCADE_DOWN_ORBIT_ANGLE_END                     270
+#define CASCADE_DOWN_ROTATE_MOUNT_POSITION_FIX_X_START   (FX32_ONE * 0)
+#define CASCADE_DOWN_ROTATE_MOUNT_POSITION_FIX_Y_START   (FX32_ONE * 0)
+#define CASCADE_DOWN_ROTATE_MOUNT_POSITION_FIX_Z_START   (FX32_ONE * 6)
+#define CASCADE_DOWN_ROTATE_MOUNT_POSITION_FIX_X         (FX32_ONE * 0)
+#define CASCADE_DOWN_ROTATE_MOUNT_POSITION_FIX_Y         (FX32_ONE * 0)
+#define CASCADE_DOWN_ROTATE_MOUNT_POSITION_FIX_Z         (FX32_ONE * 4)
+#define CASCADE_DOWN_CASCADE_MOUNT_POSITION_FIX_X_START  (FX32_ONE * 0)
+#define CASCADE_DOWN_CASCADE_MOUNT_POSITION_FIX_Y_START  (FX32_ONE * 0)
+#define CASCADE_DOWN_CASCADE_MOUNT_POSITION_FIX_Z_START  (FX32_ONE * 10)
+#define CASCADE_DOWN_FIRST_CASCADE_MOUNT_POSITION_FIX_X  (FX32_ONE * 0)
+#define CASCADE_DOWN_FIRST_CASCADE_MOUNT_POSITION_FIX_Y  (FX32_ONE * 0)
+#define CASCADE_DOWN_FIRST_CASCADE_MOUNT_POSITION_FIX_Z  (FX32_ONE * -16)
+#define CASCADE_DOWN_SECOND_CASCADE_MOUNT_POSITION_FIX_X (FX32_ONE * 0)
+#define CASCADE_DOWN_SECOND_CASCADE_MOUNT_POSITION_FIX_Y (FX32_ONE * 0)
+#define CASCADE_DOWN_SECOND_CASCADE_MOUNT_POSITION_FIX_Z (FX32_ONE * 6)
+#define CASCADE_DOWN_FINAL_MOUNT_POSITION_FIX_X          (FX32_ONE * 0)
+#define CASCADE_DOWN_FINAL_MOUNT_POSITION_FIX_Y          (FX32_ONE * 0)
+#define CASCADE_DOWN_FINAL_MOUNT_POSITION_FIX_Z          (FX32_ONE * -7)
+#define CASCADE_DOWN_FIRST_CASCADE_BOBBING_FIX           (FX32_ONE * -4)
+#define CASCADE_DOWN_SECOND_CASCADE_BOBBING_FIX          (FX32_ONE * 4)
+#define CASCADE_DOWN_BOBBING_DELTA                       1024
+#define CASCADE_DOWN_BOBBING_MAX                         (FX32_ONE * 4)
+
+#define CASCADE_UP_CAMERA_ANGLE_Y_OFFSET                  20
+#define CASCADE_UP_INITIAL_SPRITE_ROTATION_STEPS          4
+#define CASCADE_UP_CASCADE_STEPS                          16
+#define CASCADE_UP_FINAL_SPRITE_ROTATION_STEPS            2
+#define CASCADE_UP_MOUNT_ROTATION_ANGLE_X                 (FX32_ONE * -90)
+#define CASCADE_UP_MOUNT_ROTATION_ANGLE_Y                 (FX32_ONE * 180)
+#define CASCADE_UP_MOUNT_ROTATION_ANGLE_Z                 (FX32_ONE * 0)
+#define CASCADE_UP_FINAL_MOUNT_ROTATION_ANGLE_X           (FX32_ONE * 90)
+#define CASCADE_UP_FINAL_MOUNT_ROTATION_ANGLE_Y           (FX32_ONE * 0)
+#define CASCADE_UP_FINAL_MOUNT_ROTATION_ANGLE_Z           (FX32_ONE * 0)
+#define CASCADE_UP_ORBIT_ANGLE_START                      (FX32_ONE * 270)
+#define CASCADE_UP_ORBIT_ANGLE                            (FX32_ONE * 110)
+#define CASCADE_UP_FINAL_ORBIT_ANGLE                      (FX32_ONE * 70)
+#define CASCADE_UP_ORBIT_ANGLE_END                        90
+#define CASCADE_UP_ROTATE_MOUNT_POSITION_FIX_X_START      (FX32_ONE * 0)
+#define CASCADE_UP_ROTATE_MOUNT_POSITION_FIX_Y_START      (FX32_ONE * 0)
+#define CASCADE_UP_ROTATE_MOUNT_POSITION_FIX_Z_START      (FX32_ONE * -7)
+#define CASCADE_UP_ROTATE_MOUNT_POSITION_FIX_X            (FX32_ONE * 0)
+#define CASCADE_UP_ROTATE_MOUNT_POSITION_FIX_Y            (FX32_ONE * 0)
+#define CASCADE_UP_ROTATE_MOUNT_POSITION_FIX_Z            (FX32_ONE * 0)
+#define CASCADE_UP_CASCADE_MOUNT_POSITION_FIX_X_START     (FX32_ONE * 0)
+#define CASCADE_UP_CASCADE_MOUNT_POSITION_FIX_Y_START     (FX32_ONE * 0)
+#define CASCADE_UP_CASCADE_MOUNT_POSITION_FIX_Z_START     (FX32_ONE * -7)
+#define CASCADE_UP_CASCADE_MOUNT_POSITION_FIX_X           (FX32_ONE * 0)
+#define CASCADE_UP_CASCADE_MOUNT_POSITION_FIX_Y           (FX32_ONE * 0)
+#define CASCADE_UP_CASCADE_MOUNT_POSITION_FIX_Z           (FX32_ONE * 17)
+#define CASCADE_UP_FINAL_MOUNT_POSITION_FIX_X             (FX32_ONE * 0)
+#define CASCADE_UP_FINAL_MOUNT_POSITION_FIX_Y             (FX32_ONE * 0)
+#define CASCADE_UP_FINAL_MOUNT_POSITION_FIX_Z             (FX32_ONE * -4)
+#define CASCADE_UP_CASCADE_MOUNT_POSITION_FIX_Z_THRESHOLD (FX32_ONE * 10)
+#define CASCADE_UP_BOBBING_DELTA                          512
+#define CASCADE_UP_BOBBING_MAX                            (FX32_ONE * 4)
+
 enum FloatingPlatformKind {
     FLOATING_PLATFORM_KIND_FLOOR = 0,
     FLOATING_PLATFORM_KIND_WEST_WALL,
@@ -290,13 +374,13 @@ enum EventCmdKind {
     EVENT_CMD_MOVE_PLATFORM,
     EVENT_CMD_ADD_MAP_OBJECT_WITH_LOCAL_ID,
     EVENT_CMD_DELETE_MAP_OBJECT_WITH_LOCAL_ID,
-    EVENT_CMD_KIND_04,
+    EVENT_CMD_CASCADE_UP,
     EVENT_CMD_START_SCRIPT,
     EVENT_CMD_SET_DISTORTION_WORLD_PROGRESS,
     EVENT_CMD_SHOW_GIRATINA_SHADOW,
     EVENT_CMD_SET_GIRATINA_ANIMATION_FLAG,
     EVENT_CMD_SET_PUZZLE_FLAG,
-    EVENT_CMD_KIND_0A,
+    EVENT_CMD_CASCADE_DOWN,
     EVENT_CMD_PLAY_GIRATINA_ARRIVAL,
     EVENT_CMD_SHOW_UXIE_BOULDER_TUTO,
     EVENT_CMD_SHOW_AZELF_BOULDER_TUTO,
@@ -448,6 +532,40 @@ enum EventCmdPlayGiratinaArrivalState {
     EVENT_CMD_PLAY_GIRATINA_ARRIVAL_STATE_DESCEND,
     EVENT_CMD_PLAY_GIRATINA_ARRIVAL_STATE_BRIGHTEN_SPRITE,
     EVENT_CMD_PLAY_GIRATINA_ARRIVAL_STATE_WAIT,
+};
+
+enum EventCmdCascadeDownState {
+    EVENT_CMD_CASCADE_DOWN_STATE_INIT = 0,
+    EVENT_CMD_CASCADE_DOWN_STATE_ROTATE_PLAYER,
+    EVENT_CMD_CASCADE_DOWN_STATE_CASCADE_DOWN,
+    EVENT_CMD_CASCADE_DOWN_STATE_FINISH_CASCADING,
+    EVENT_CMD_CASCADE_DOWN_STATE_MOVE_AWAY,
+};
+
+enum EventCmdCascadeUpState {
+    EVENT_CMD_CASCADE_UP_STATE_INIT = 0,
+    EVENT_CMD_CASCADE_UP_STATE_ROTATE_PLAYER,
+    EVENT_CMD_CASCADE_UP_STATE_CASCADE_DOWN,
+    EVENT_CMD_CASCADE_UP_STATE_FINISH_CASCADING,
+    EVENT_CMD_CASCADE_UP_STATE_MOVE_AWAY,
+};
+
+enum Axis {
+    AXIS_X = 0,
+    AXIS_Y,
+    AXIS_Z,
+};
+
+enum CascadeMovementDirection {
+    CASCADE_MOVEMENT_DIR_UP = 0,
+    CASCADE_MOVEMENT_DIR_DOWN,
+};
+
+enum CascadeUpdateResult {
+    CASCADE_UPDATE_RES_NOTHING = 0,
+    CASCADE_UPDATE_RES_MAP_LOAD_REACHED,
+    CASCADE_UPDATE_RES_FINISHING_POS_REACHED,
+    CASCADE_UPDATE_RES_FINAL_POS_REACHED,
 };
 
 typedef struct DistWorldSystem DistWorldSystem;
@@ -1112,75 +1230,74 @@ struct UnkStruct_ov9_0224F6EC_t {
     fx32 unk_20;
 };
 
-typedef struct {
-    u32 unk_00;
-    u16 unk_04;
-    s16 unk_06;
-    s16 unk_08;
-    s16 unk_0A;
-    s16 unk_0C;
-    s16 unk_0E;
-    s16 unk_10;
-    s16 unk_12;
-    s16 unk_14;
-    s16 unk_16;
-    VecFx32 unk_18;
-} UnkStruct_ov9_0224F8C4;
+typedef struct CmdParamsCascadeBase {
+    u32 movementAxis;
+    u16 movementDir;
+    s16 finishingPosFixTileX;
+    s16 finishingPosFixTileY;
+    s16 finishingPosFixTileZ;
+    s16 finalPosOffsetTileX;
+    s16 finalPosOffsetTileY;
+    s16 finalPosOffsetTileZ;
+    s16 mapLoadPosOffsetTileX;
+    s16 mapLoadPosOffsetTileY;
+    s16 mapLoadPosOffsetTileZ;
+    VecFx32 posDelta;
+} CmdParamsCascadeBase;
 
-typedef struct {
-    u32 unk_00_0 : 1;
-    u32 unk_00_1 : 1;
-    u32 unk_00_2 : 1;
-    u32 unk_00_3 : 2;
-    u32 unk_00_5 : 27;
-    VecFx32 unk_04;
-    VecFx32 unk_10;
-    VecFx32 unk_1C;
-    VecFx32 unk_28;
-    VecFx32 unk_34;
-    VecFx32 unk_40;
-    fx32 *unk_4C;
-    fx32 unk_50;
-    fx32 unk_54;
-} UnkStruct_ov9_0224F930;
+typedef struct CmdRunDataCascadeBase {
+    u32 targetMapLoaded : 1;
+    u32 movementDir : 1;
+    u32 spriteBobbing : 1;
+    u32 movementAxis : 2;
+    VecFx32 posDelta;
+    VecFx32 currPosOffset;
+    VecFx32 finalPosOffset;
+    VecFx32 mapLoadPosOffset;
+    VecFx32 playerPos;
+    VecFx32 jumpOffset;
+    fx32 *bobbingOffset;
+    fx32 bobbingOffsetDelta;
+    fx32 bobbingOffsetMax;
+} CmdRunDataCascadeBase;
 
-typedef struct {
-    UnkStruct_ov9_0224F8C4 unk_00;
-} UnkStruct_ov9_02252384;
+typedef struct CmdParamsCascadeDown {
+    CmdParamsCascadeBase base;
+} CmdParamsCascadeDown;
 
-typedef struct {
-    s16 unk_00;
-    u16 unk_02;
-    u16 unk_04;
-    s16 unk_06;
-    s16 unk_08;
-    s16 unk_0A;
-    VecFx32 unk_0C;
-    VecFx32 unk_18;
-    VecFx32 unk_24;
-    fx32 unk_30;
-    fx32 unk_34;
-    fx32 unk_38;
-    fx32 unk_3C;
-    UnkStruct_ov9_0224F930 unk_40;
-} UnkStruct_ov9_0224FA94;
+typedef struct CmdRunDataCascadeDown {
+    s16 spriteRotationAnimStepsLeft;
+    u16 moveAwayAnimStep;
+    u16 cameraAngleState;
+    s16 cameraAngleDelay;
+    s16 firstCameraAnimStepsLeft;
+    s16 secondCameraAnimStepsLeft;
+    VecFx32 mountRotAngles;
+    VecFx32 mountRotAnglesDelta;
+    VecFx32 mountPosFixDelta;
+    fx32 orbitAngle;
+    fx32 orbitAngleDelta;
+    fx32 bobbingFix;
+    fx32 bobbingFixDelta;
+    CmdRunDataCascadeBase base;
+} CmdRunDataCascadeDown;
 
-typedef struct {
-    UnkStruct_ov9_0224F8C4 unk_00;
-} UnkStruct_ov9_022523F0;
+typedef struct CmdParamsCascadeUp {
+    CmdParamsCascadeBase base;
+} CmdParamsCascadeUp;
 
-typedef struct {
-    s16 unk_00;
-    u16 unk_02;
-    u16 unk_04;
-    s16 unk_06;
-    VecFx32 unk_08;
-    VecFx32 unk_14;
-    VecFx32 unk_20;
-    fx32 unk_2C;
-    fx32 unk_30;
-    UnkStruct_ov9_0224F930 unk_34;
-} UnkStruct_ov9_02250138;
+typedef struct CmdRunDataCascadeUp {
+    s16 spriteRotationAnimStepsLeft;
+    u16 moveAwayAnimStep;
+    u16 cameraAngleState;
+    s16 dummy06;
+    VecFx32 mountRotAngles;
+    VecFx32 mountRotAnglesDelta;
+    VecFx32 mountPosFixDelta;
+    fx32 orbitAngle;
+    fx32 orbitAngleDelta;
+    CmdRunDataCascadeBase base;
+} CmdRunDataCascadeUp;
 
 typedef struct CmdParamsStartScript {
     u32 scriptID;
@@ -1288,10 +1405,10 @@ static void FieldTaskContextNoOp1(DistWorldSystem *system);
 static void FieldTaskContextNoOp2(DistWorldSystem *system);
 static void *InitFieldTaskContext(DistWorldSystem *system, int ctxSize);
 static void *GetFieldTaskContext(DistWorldSystem *system);
-static BOOL ApplyCameraAngleForPlayerPosition(DistWorldSystem *system, int playerX, int playerY, int playerZ, int playerDir);
+static BOOL ApplyCameraAngleForPlayerPosition(DistWorldSystem *system, int playerX, int playerY, int playerZ, enum FaceDirection playerDir);
 static void ov9_0224A8C0(DistWorldSystem *param0);
 static void ov9_0224A9E8(DistWorldSystem *param0);
-static BOOL HandleFloatingPlatformJumpPointAt(DistWorldSystem *system, int playerX, int playerY, int playerZ, int playerDir);
+static BOOL HandleFloatingPlatformJumpPointAt(DistWorldSystem *system, int playerX, int playerY, int playerZ, enum FaceDirection playerDir);
 static void CreateJumpOnFloatingPlatformTask(DistWorldSystem *system, const DistWorldFloatingPlatformJumpPointTemplate *template);
 static BOOL JumpOnFloatingPlatform(FieldTask *task);
 static BOOL TickJumpOnFloatingPlatformMovementAnimation(DistWorldFloatingPlatformJumpTaskContext *ctx, MapObject *playerMapObj);
@@ -1317,7 +1434,7 @@ static BOOL IsInactiveGhostPropGroupHidden(DistWorldSystem *system, u32 groupID)
 static void PersistActiveHiddenGhostPropGroups(DistWorldSystem *system);
 static void InitAllGhostPropAnimManagers(DistWorldSystem *system, DistWorldGhostPropManager *ghostPropMan, const DistWorldGhostPropTemplate *iter, int mapHeaderID);
 static OverworldAnimManager *InitGhostPropAnimManager(DistWorldSystem *system, int animManIndex, int mapHeaderID, const DistWorldGhostPropTemplate *ghostPropTemplate);
-static void HandleGhostPropTriggerAt(DistWorldSystem *system, int tileX, int tileY, int tileZ, int direction);
+static void HandleGhostPropTriggerAt(DistWorldSystem *system, int tileX, int tileY, int tileZ, enum FaceDirection direction);
 static BOOL HasActiveGhostProp2(DistWorldSystem *system, u32 propKind);
 static BOOL HasActiveGhostPropAnim(DistWorldSystem *system, u32 animKind);
 static BOOL HasActiveGhostProp(DistWorldSystem *system, int propKind);
@@ -1378,10 +1495,10 @@ static u16 GetCurrentFloatingPlatformTileAttributesRelative(DistWorldSystem *sys
 static u16 GetCurrentFloatingPlatformTileAttributes(DistWorldSystem *system, int tileX, int tileY, int tileZ);
 static void InitFloatingPlatformJumpPoint(DistWorldSystem *system);
 static void ResetFloatingPlatformJumpPoint(DistWorldSystem *system);
-static const DistWorldFloatingPlatformJumpPointTemplate *FindFloatingPlatformJumpPointAt(DistWorldSystem *system, int playerX, int playerY, int playerZ, int playerDir);
+static const DistWorldFloatingPlatformJumpPointTemplate *FindFloatingPlatformJumpPointAt(DistWorldSystem *system, int playerX, int playerY, int playerZ, enum FaceDirection playerDir);
 static void InitCameraAngleTemplates(DistWorldSystem *system);
 static void ResetCameraAngleTemplates(DistWorldSystem *system);
-static const DistWorldCameraAngleTemplate *FindCameraAngleForPlayerPosition(DistWorldSystem *system, int playerX, int playerY, int playerZ, int playerDir);
+static const DistWorldCameraAngleTemplate *FindCameraAngleForPlayerPosition(DistWorldSystem *system, int playerX, int playerY, int playerZ, enum FaceDirection playerDir);
 static void DistWorldGhostPropData_InitFromFile(DistWorldFile *file, DistWorldGhostPropData *data);
 static void InitActiveGhostPropData(DistWorldSystem *system);
 static void InitInactiveGhostPropData(DistWorldSystem *system);
@@ -1504,8 +1621,8 @@ static void SetSkyDarknessLevel(DistWorldSystem *system, s16 level);
 static void CalculateTintedColor(GXRgb baseRawColor, GXRgb tintRawColor, u16 tintLevel, GXRgb *outColor);
 static BOOL DistWorldBounds_AreCoordinatesInBounds(int tileX, int tileY, int tileZ, const DistWorldBounds *bounds);
 static int CalculateCameraAngleDelta(u16 currentAngleComponent, u16 targetAngleComponent);
-static void ov9_02250EE8(s16 *param0, s16 param1);
-static void ov9_02250F1C(fx32 *param0, fx32 param1);
+static void ApplyRotationToTarget(s16 *target, s16 angle);
+static void ApplyRotationToTargetFx32(fx32 *target, fx32 angle);
 static void GetPlayerPos(DistWorldSystem *system, int *playerX, int *playerY, int *playerZ);
 static u32 DistWorldSystem_GetMapHeaderID(DistWorldSystem *system);
 static enum AvatarDistortionState GetAvatarDistortionStateForFloatingPlatformKind(u32 platformKind);
@@ -1537,8 +1654,8 @@ static const DistWorldMovingPlatformMapTemplates sMovingPlatformsMapTemplates[MO
 static const DistWorldElevatorPlatformPath sElevatorPlatformPaths[ELEVATOR_PLATFORM_PATH_COUNT];
 static const DistWorldEventCmdHandler *sEventCmdHandlers[EVENT_CMD_KIND_COUNT];
 static const DistWorldMapEvents sMapEvents[];
-const DistWorldEventCmd Unk_ov9_02251438[];
-const DistWorldEventCmd Unk_ov9_022513D8[];
+static const DistWorldEventCmd sMapEventB4F_Waterfall[];
+static const DistWorldEventCmd sMapEventB5F_Waterfall[];
 static const DistWorldSimplePropMapTemplates sSimplePropsMapTemplates[];
 static const DistWorldMapObjectEvents sMapObjectEvents[];
 
@@ -2300,7 +2417,7 @@ static void ov9_0224A438(DistWorldSystem *param0, UnkStruct_ov9_0224A228 *param1
 
     if (param2->unk_02) {
         param2->unk_02--;
-        ov9_02250F1C(&param2->unk_04, param2->unk_08);
+        ApplyRotationToTargetFx32(&param2->unk_04, param2->unk_08);
 
         if (param2->unk_02 == 0) {
             param2->unk_04 = (FX32_ONE * (param2->unk_00));
@@ -2338,7 +2455,7 @@ static void ov9_0224A4D0(DistWorldSystem *param0, MapObject *param1, int param2,
             v2->unk_04 = (FX32_ONE * (v2->unk_00));
             v2->unk_08 = (FX32_ONE * (param2)) / param3;
             v2->unk_02 = param3;
-            ov9_02250EE8(&v2->unk_00, param2);
+            ApplyRotationToTarget(&v2->unk_00, param2);
             return;
         }
 
@@ -2407,47 +2524,43 @@ static void *GetFieldTaskContext(DistWorldSystem *system)
     return system->fieldTaskCtx.data;
 }
 
-BOOL ov9_0224A59C(FieldSystem *fieldSystem, int param1)
+BOOL DistWorld_HandlePlayerMoved(FieldSystem *fieldSystem, enum FaceDirection playerDir)
 {
-    PersistedMapFeatures *v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+    PersistedMapFeatures *persistedMapFeatures = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
 
-    if (PersistedMapFeatures_GetID(v0) == DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) {
-        int v1, v2, v3, v4;
-        DistWorldSystem *v5 = fieldSystem->unk_04->dynamicMapFeaturesData;
+    if (PersistedMapFeatures_GetID(persistedMapFeatures) == DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) {
+        DistWorldSystem *dwSystem = fieldSystem->unk_04->dynamicMapFeaturesData;
+        int v4 = sub_02061434(fieldSystem->playerAvatar, playerDir);
 
-        v4 = sub_02061434(fieldSystem->playerAvatar, param1);
-        GetPlayerPos(v5, &v1, &v2, &v3);
+        int playerX, playerY, playerZ;
+        GetPlayerPos(dwSystem, &playerX, &playerY, &playerZ);
 
         if (v4 == 1) {
-            HandleGhostPropTriggerAt(v5, v1, v2, v3, param1);
+            HandleGhostPropTriggerAt(dwSystem, playerX, playerY, playerZ, playerDir);
         }
 
-        if (ApplyCameraAngleForPlayerPosition(v5, v1, v2, v3, param1) == 1) {
-            (void)0;
+        ApplyCameraAngleForPlayerPosition(dwSystem, playerX, playerY, playerZ, playerDir);
+
+        if (HandleFloatingPlatformJumpPointAt(dwSystem, playerX, playerY, playerZ, playerDir) == TRUE) {
+            return TRUE;
         }
 
-        if (HandleFloatingPlatformJumpPointAt(v5, v1, v2, v3, param1) == 1) {
-            return 1;
-        }
+        u32 mapHeaderID = DistWorldSystem_GetMapHeaderID(dwSystem);
 
-        {
-            u32 v6 = DistWorldSystem_GetMapHeaderID(v5);
-
-            if (v6 == 577) {
-                if ((param1 == 3) && (v1 == 104) && (v2 == 170) && (v3 >= 76) && (v3 <= 79)) {
-                    RunEventCommands(v5, Unk_ov9_02251438);
-                    return 1;
-                }
-            } else if (v6 == 579) {
-                if ((param1 == 3) && (v1 == 104) && (v2 == 128) && (v3 >= 76) && (v3 <= 79)) {
-                    RunEventCommands(v5, Unk_ov9_022513D8);
-                    return 1;
-                }
+        if (mapHeaderID == MAP_HEADER_DISTORTION_WORLD_B4F) {
+            if (playerDir == FACE_RIGHT && playerX == WATERFALL_B4F_X && playerY == WATERFALL_B4F_Y && playerZ >= WATERFALL_B4F_START_Z && playerZ <= WATERFALL_B4F_END_Z) {
+                RunEventCommands(dwSystem, sMapEventB4F_Waterfall);
+                return TRUE;
+            }
+        } else if (mapHeaderID == MAP_HEADER_DISTORTION_WORLD_B5F) {
+            if (playerDir == FACE_RIGHT && playerX == WATERFALL_B5F_X && playerY == WATERFALL_B5F_Y && playerZ >= WATERFALL_B5F_START_Z && playerZ <= WATERFALL_B5F_END_Z) {
+                RunEventCommands(dwSystem, sMapEventB5F_Waterfall);
+                return TRUE;
             }
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
 BOOL ov9_0224A67C(FieldSystem *fieldSystem, int param1)
@@ -2574,7 +2687,7 @@ BOOL ov9_0224A800(FieldSystem *fieldSystem, int param1)
     return 0;
 }
 
-static BOOL ApplyCameraAngleForPlayerPosition(DistWorldSystem *system, int playerX, int playerY, int playerZ, int playerDir)
+static BOOL ApplyCameraAngleForPlayerPosition(DistWorldSystem *system, int playerX, int playerY, int playerZ, enum FaceDirection playerDir)
 {
     const DistWorldCameraAngleTemplate *cameraAngleTemplate = FindCameraAngleForPlayerPosition(system, playerX, playerY, playerZ, playerDir);
 
@@ -2644,7 +2757,7 @@ static void ov9_0224A8C0(DistWorldSystem *param0)
         OverworldAnimManager *v9;
         int v10 = PlayerAvatar_GetDir(playerAvatar);
 
-        v9 = ov5_021F85BC(playerAvatar, v2, v3, v4, v10, 1, v0);
+        v9 = DistWorldSurfMountRenderer_HandleSurfBegin(playerAvatar, v2, v3, v4, v10, 1, v0);
         PlayerAvatar_SetSurfMountAnimManager(playerAvatar, v9);
     }
 
@@ -2659,7 +2772,7 @@ static void ov9_0224A9E8(DistWorldSystem *param0)
     PlayerAvatar_ClearSpeed(v0);
 }
 
-static BOOL HandleFloatingPlatformJumpPointAt(DistWorldSystem *system, int playerX, int playerY, int playerZ, int playerDir)
+static BOOL HandleFloatingPlatformJumpPointAt(DistWorldSystem *system, int playerX, int playerY, int playerZ, enum FaceDirection playerDir)
 {
     const DistWorldFloatingPlatformJumpPointTemplate *template = FindFloatingPlatformJumpPointAt(system, playerX, playerY, playerZ, playerDir);
 
@@ -2719,7 +2832,7 @@ static BOOL JumpOnFloatingPlatform(FieldTask *task)
             break;
         }
 
-        int playerDir = ctx->template.playerDir;
+        enum FaceDirection playerDir = ctx->template.playerDir;
         int platformKind = GetCurrentFloatingPlatformKind2(system);
 
         switch (platformKind) {
@@ -3212,10 +3325,10 @@ static void ov9_0224B2CC(OverworldAnimManager *param0, void *param1)
     }
 
     v1 = v4->unk_08.unk_04.unk_14 + v4->unk_04;
-    ov9_02250F1C(&v4->unk_00, v1);
+    ApplyRotationToTargetFx32(&v4->unk_00, v1);
 
     v0 = v4->unk_00;
-    ov9_02250F1C(&v0, v4->unk_08.unk_04.unk_0C);
+    ApplyRotationToTargetFx32(&v0, v4->unk_08.unk_04.unk_0C);
 
     v3 = v4->unk_08.unk_04.unk_18;
 
@@ -3451,7 +3564,7 @@ static OverworldAnimManager *InitGhostPropAnimManager(DistWorldSystem *system, i
     return FieldEffectManager_InitAnimManager(system->fieldSystem->fieldEffMan, animFuncs, NULL, 0, &ghostProp, 2);
 }
 
-static void HandleGhostPropTriggerAt(DistWorldSystem *system, int tileX, int tileY, int tileZ, int direction)
+static void HandleGhostPropTriggerAt(DistWorldSystem *system, int tileX, int tileY, int tileZ, enum FaceDirection direction)
 {
     if (GetActiveGhostPropFileSectionSize(system)) {
         const DistWorldGhostPropHeader *header = GetActiveGhostPropHeader(system);
@@ -4462,7 +4575,7 @@ static void ResetFloatingPlatformJumpPoint(DistWorldSystem *system)
     memset(floatingPlatformJumpPoints, 0, sizeof(DistWorldFileFloatingPlatformJumpPointSection));
 }
 
-static const DistWorldFloatingPlatformJumpPointTemplate *FindFloatingPlatformJumpPointAt(DistWorldSystem *system, int playerX, int playerY, int playerZ, int playerDir)
+static const DistWorldFloatingPlatformJumpPointTemplate *FindFloatingPlatformJumpPointAt(DistWorldSystem *system, int playerX, int playerY, int playerZ, enum FaceDirection playerDir)
 {
     DistWorldFileFloatingPlatformJumpPointSection *floatingPlatformJumpPoints = &system->unk_169C.floatingPlatformJumpPoints;
     DistWorldFloatingPlatformJumpPointTemplate *iter = floatingPlatformJumpPoints->templates;
@@ -4502,7 +4615,7 @@ static void ResetCameraAngleTemplates(DistWorldSystem *system)
     memset(cameraAngleTemplates, 0, sizeof(DistWorldCameraAngleTemplates));
 }
 
-static const DistWorldCameraAngleTemplate *FindCameraAngleForPlayerPosition(DistWorldSystem *system, int playerX, int playerY, int playerZ, int playerDir)
+static const DistWorldCameraAngleTemplate *FindCameraAngleForPlayerPosition(DistWorldSystem *system, int playerX, int playerY, int playerZ, enum FaceDirection playerDir)
 {
     DistWorldCameraAngleTemplates *cameraAngleTemplates = &system->unk_169C.cameraAngleTemplates;
     DistWorldCameraAngleTemplate *cameraAngleTemplateIter = cameraAngleTemplates->templates;
@@ -7932,790 +8045,758 @@ static void CalculateTintedColor(GXRgb baseRawColor, GXRgb tintRawColor, u16 tin
         base->b + ((tint->b - base->b) * tintLevel >> 4));
 }
 
-static void ov9_0224F8C4(DistWorldSystem *param0, UnkStruct_ov9_0224F930 *param1, const UnkStruct_ov9_0224F8C4 *param2, const VecFx32 *param3)
+static void CmdRunDataCascadeBase_InitFromParams(DistWorldSystem *system, CmdRunDataCascadeBase *runData, const CmdParamsCascadeBase *params, const VecFx32 *playerPos)
 {
-    param1->unk_00_3 = param2->unk_00;
-    param1->unk_00_1 = param2->unk_04;
-    param1->unk_1C.x = (FX32_ONE * (param2->unk_0C));
-    param1->unk_1C.y = (FX32_ONE * (param2->unk_0E));
-    param1->unk_1C.z = (FX32_ONE * (param2->unk_10));
-    param1->unk_28.x = (((param2->unk_12) << 4) * FX32_ONE);
-    param1->unk_28.y = (((param2->unk_14) << 4) * FX32_ONE);
-    param1->unk_28.z = (((param2->unk_16) << 4) * FX32_ONE);
-    param1->unk_04 = param2->unk_18;
-    param1->unk_34 = *param3;
+    runData->movementAxis = params->movementAxis;
+    runData->movementDir = params->movementDir;
+    runData->finalPosOffset.x = FX32_ONE * params->finalPosOffsetTileX;
+    runData->finalPosOffset.y = FX32_ONE * params->finalPosOffsetTileY;
+    runData->finalPosOffset.z = FX32_ONE * params->finalPosOffsetTileZ;
+    runData->mapLoadPosOffset.x = (params->mapLoadPosOffsetTileX << 4) * FX32_ONE;
+    runData->mapLoadPosOffset.y = (params->mapLoadPosOffsetTileY << 4) * FX32_ONE;
+    runData->mapLoadPosOffset.z = (params->mapLoadPosOffsetTileZ << 4) * FX32_ONE;
+    runData->posDelta = params->posDelta;
+    runData->playerPos = *playerPos;
 }
 
-static void ov9_0224F930(UnkStruct_ov9_0224F930 *param0, int param1, fx32 param2, fx32 param3)
+static void CmdRunDataCascadeBase_InitBobbing(CmdRunDataCascadeBase *runData, enum Axis axis, fx32 delta, fx32 max)
 {
-    switch (param1) {
-    case 0:
-        param0->unk_4C = &param0->unk_40.x;
+    switch (axis) {
+    case AXIS_X:
+        runData->bobbingOffset = &runData->jumpOffset.x;
         break;
-    case 1:
-        param0->unk_4C = &param0->unk_40.y;
+
+    case AXIS_Y:
+        runData->bobbingOffset = &runData->jumpOffset.y;
         break;
-    case 2:
-        param0->unk_4C = &param0->unk_40.z;
+
+    case AXIS_Z:
+        runData->bobbingOffset = &runData->jumpOffset.z;
         break;
     }
 
-    *param0->unk_4C = FX32_ONE;
+    *runData->bobbingOffset = FX32_ONE;
 
-    param0->unk_50 = param2;
-    param0->unk_54 = param3;
-    param0->unk_00_2 = 1;
+    runData->bobbingOffsetDelta = delta;
+    runData->bobbingOffsetMax = max;
+    runData->spriteBobbing = TRUE;
 }
 
-static BOOL ov9_0224F970(DistWorldSystem *param0, UnkStruct_ov9_0224F930 *param1)
+static BOOL CmdRunDataCascadeBase_Update(DistWorldSystem *system, CmdRunDataCascadeBase *runData)
 {
-    if (param1->unk_10.x != param1->unk_1C.x) {
-        param1->unk_10.x += param1->unk_04.x;
-        param1->unk_34.x += param1->unk_04.x;
+    if (runData->currPosOffset.x != runData->finalPosOffset.x) {
+        runData->currPosOffset.x += runData->posDelta.x;
+        runData->playerPos.x += runData->posDelta.x;
     }
 
-    if (param1->unk_10.y != param1->unk_1C.y) {
-        param1->unk_10.y += param1->unk_04.y;
-        param1->unk_34.y += param1->unk_04.y;
+    if (runData->currPosOffset.y != runData->finalPosOffset.y) {
+        runData->currPosOffset.y += runData->posDelta.y;
+        runData->playerPos.y += runData->posDelta.y;
     }
 
-    if (param1->unk_10.z != param1->unk_1C.z) {
-        param1->unk_10.z += param1->unk_04.z;
-        param1->unk_34.z += param1->unk_04.z;
+    if (runData->currPosOffset.z != runData->finalPosOffset.z) {
+        runData->currPosOffset.z += runData->posDelta.z;
+        runData->playerPos.z += runData->posDelta.z;
     }
 
-    if (param1->unk_00_2) {
-        *param1->unk_4C += param1->unk_50;
+    if (runData->spriteBobbing) {
+        *runData->bobbingOffset += runData->bobbingOffsetDelta;
 
-        if (*param1->unk_4C >= param1->unk_54) {
-            *param1->unk_4C = param1->unk_54;
-            param1->unk_50 = -param1->unk_50;
-        } else if (*param1->unk_4C <= FX32_ONE) {
-            *param1->unk_4C = FX32_ONE;
-            param1->unk_50 = -param1->unk_50;
+        if (*runData->bobbingOffset >= runData->bobbingOffsetMax) {
+            *runData->bobbingOffset = runData->bobbingOffsetMax;
+            runData->bobbingOffsetDelta = -runData->bobbingOffsetDelta;
+        } else if (*runData->bobbingOffset <= FX32_ONE) {
+            *runData->bobbingOffset = FX32_ONE;
+            runData->bobbingOffsetDelta = -runData->bobbingOffsetDelta;
         }
     }
 
-    if (param1->unk_00_0 == 0) {
-        if ((param1->unk_10.x == param1->unk_28.x) && (param1->unk_10.y == param1->unk_28.y) && (param1->unk_10.z == param1->unk_28.z)) {
-            if (param1->unk_00_1 == 0) {
-                ov9_0224CC50(param0, NULL, 1);
+    if (!runData->targetMapLoaded) {
+        if (runData->currPosOffset.x == runData->mapLoadPosOffset.x && runData->currPosOffset.y == runData->mapLoadPosOffset.y && runData->currPosOffset.z == runData->mapLoadPosOffset.z) {
+            if (runData->movementDir == CASCADE_MOVEMENT_DIR_UP) {
+                ov9_0224CC50(system, NULL, 1);
             } else {
-                ov9_0224CC50(param0, NULL, 2);
+                ov9_0224CC50(system, NULL, 2);
             }
 
-            param1->unk_00_0++;
+            runData->targetMapLoaded++;
         }
 
-        return 1;
+        return CASCADE_UPDATE_RES_MAP_LOAD_REACHED;
     }
 
-    if ((param1->unk_10.x == param1->unk_1C.x) && (param1->unk_10.y == param1->unk_1C.y) && (param1->unk_10.z == param1->unk_1C.z)) {
-        return 3;
+    if (runData->currPosOffset.x == runData->finalPosOffset.x && runData->currPosOffset.y == runData->finalPosOffset.y && runData->currPosOffset.z == runData->finalPosOffset.z) {
+        return CASCADE_UPDATE_RES_FINAL_POS_REACHED;
     }
 
-    {
-        fx32 v0;
+    fx32 distToFinal;
 
-        switch (param1->unk_00_3) {
-        case 0:
-            v0 = param1->unk_1C.x - param1->unk_10.x;
-            break;
-        case 1:
-            v0 = param1->unk_1C.y - param1->unk_10.y;
-            break;
-        case 2:
-            v0 = param1->unk_1C.z - param1->unk_10.z;
-            break;
-        }
+    switch (runData->movementAxis) {
+    case AXIS_X:
+        distToFinal = runData->finalPosOffset.x - runData->currPosOffset.x;
+        break;
 
-        if (v0 < 0) {
-            v0 = -v0;
-        }
+    case AXIS_Y:
+        distToFinal = runData->finalPosOffset.y - runData->currPosOffset.y;
+        break;
 
-        if ((v0 - (16 * FX32_ONE)) == 0) {
-            return 2;
-        }
+    case AXIS_Z:
+        distToFinal = runData->finalPosOffset.z - runData->currPosOffset.z;
+        break;
     }
 
-    return 0;
+    if (distToFinal < 0) {
+        distToFinal = -distToFinal;
+    }
+
+    return distToFinal - CASCADE_FINISHING_THRESHOLD == 0 ? CASCADE_UPDATE_RES_FINISHING_POS_REACHED : CASCADE_UPDATE_RES_NOTHING;
 }
 
-static const DistWorldCameraAngleTemplate Unk_ov9_02251E40 = {
-    { 0x0, 0x0, 0x0, 0x0 },
-    0xF5,
-    0xEF,
-    0x0,
-    0x0,
-    0x48
+static const DistWorldCameraAngleTemplate sCascadeDownFirstCameraAngle = {
+    .bounds = {
+        .startTileX = 0,
+        .startTileY = 0,
+        .startTileZ = 0,
+        .sizeX = 0,
+        .sizeY = 0,
+        .sizeZ = 0,
+    },
+    .angleX = 245,
+    .angleY = 239,
+    .angleZ = 0,
+    .playerDir = FACE_UP,
+    .transitionSteps = CASCADE_DOWN_FIRST_CAMERA_TRANSITION_STEPS
 };
 
-static const DistWorldCameraAngleTemplate Unk_ov9_02251888 = {
-    { 0x0, 0x0, 0x0, 0x0 },
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x20
+static const DistWorldCameraAngleTemplate sCascadeDownSecondCameraAngle = {
+    .bounds = {
+        .startTileX = 0,
+        .startTileY = 0,
+        .startTileZ = 0,
+        .sizeX = 0,
+        .sizeY = 0,
+        .sizeZ = 0,
+    },
+    .angleX = 0,
+    .angleY = 0,
+    .angleZ = 0,
+    .playerDir = FACE_UP,
+    .transitionSteps = CASCADE_DOWN_SECOND_CAMERA_TRANSITION_STEPS
 };
 
-static void ov9_0224FA94(DistWorldSystem *param0, UnkStruct_ov9_0224FA94 *param1)
+static void UpdateCascadeDownCamera(DistWorldSystem *system, CmdRunDataCascadeDown *runData)
 {
-    MapObject *v0 = Player_MapObject(param0->fieldSystem->playerAvatar);
-    int v1 = (((param1->unk_40.unk_10.y) >> 4) / FX32_ONE);
+    MapObject *playerMapObj = Player_MapObject(system->fieldSystem->playerAvatar);
+    int yOffset = (runData->base.currPosOffset.y >> 4) / FX32_ONE;
 
-    if ((param1->unk_04 == 0) && (v1 == -20)) {
-        DoCameraTransition(param0, &Unk_ov9_02251E40);
-        ov9_0224A4D0(param0, v0, -32, 72);
-        param1->unk_04++;
-    } else if ((param1->unk_04 == 1) && (v1 == -36)) {
-        MapObject_TryFace(v0, 2);
-        DoCameraTransition(param0, &Unk_ov9_02251888);
-        ov9_0224A4D0(param0, v0, 32, 31);
-        param1->unk_04++;
+    if (runData->cameraAngleState == 0 && yOffset == CASCADE_DOWN_FIRST_CAMERA_ANGLE_Y_OFFSET) {
+        DoCameraTransition(system, &sCascadeDownFirstCameraAngle);
+        ov9_0224A4D0(system, playerMapObj, -32, 72);
+        runData->cameraAngleState++;
+    } else if (runData->cameraAngleState == 1 && yOffset == CASCADE_DOWN_SECOND_CAMERA_ANGLE_Y_OFFSET) {
+        MapObject_TryFace(playerMapObj, FACE_LEFT);
+        DoCameraTransition(system, &sCascadeDownSecondCameraAngle);
+        ov9_0224A4D0(system, playerMapObj, 32, 31);
+        runData->cameraAngleState++;
     }
 
-    if ((param1->unk_04 == 1) && (param1->unk_06 >= 0)) {
-        param1->unk_06++;
+    if (runData->cameraAngleState == 1 && runData->cameraAngleDelay >= 0) {
+        runData->cameraAngleDelay++;
 
-        if (param1->unk_06 >= 32) {
-            MapObject_TryFace(v0, 0);
-            param1->unk_06 = -1;
+        if (runData->cameraAngleDelay >= CASCADE_DOWN_FIRST_CAMERA_ANGLE_DELAY) {
+            MapObject_TryFace(playerMapObj, FACE_UP);
+            runData->cameraAngleDelay = -1;
         }
     }
 }
 
-static int ov9_0224FB3C(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
+static int EventCmdCascadeDown_Init(DistWorldSystem *system, FieldTask *task, u16 *cmdState, const void *params)
 {
-    VecFx32 v0;
-    UnkStruct_ov9_0224F930 *v1;
-    MapObject *v2;
-    PlayerAvatar *playerAvatar;
-    UnkStruct_ov9_0224FA94 *v4;
-    const UnkStruct_ov9_02252384 *v5 = param3;
-    v4 = ResetLoadedEventDataBuffer(param0, sizeof(UnkStruct_ov9_0224FA94));
-    v1 = &v4->unk_40;
-    playerAvatar = param0->fieldSystem->playerAvatar;
-    v2 = Player_MapObject(playerAvatar);
+    CmdRunDataCascadeDown *runData = ResetLoadedEventDataBuffer(system, sizeof(CmdRunDataCascadeDown));
+    const CmdParamsCascadeDown *cmdParams = params;
+    CmdRunDataCascadeBase *baseRunData = &runData->base;
+    PlayerAvatar *playerAvatar = system->fieldSystem->playerAvatar;
+    MapObject *playerMapObj = Player_MapObject(playerAvatar);
 
-    MapObject_GetPosPtr(v2, &v0);
-    MapObject_TryFace(v2, 2);
-    ov9_0224F8C4(param0, v1, &v5->unk_00, &v0);
+    VecFx32 playerPos;
+    MapObject_GetPosPtr(playerMapObj, &playerPos);
+    MapObject_TryFace(playerMapObj, FACE_LEFT);
+    CmdRunDataCascadeBase_InitFromParams(system, baseRunData, &cmdParams->base, &playerPos);
 
-    v1->unk_04.x >>= 1;
-    v1->unk_04.y >>= 1;
-    v1->unk_04.z >>= 1;
-    v4->unk_00 = 32;
+    baseRunData->posDelta.x >>= 1;
+    baseRunData->posDelta.y >>= 1;
+    baseRunData->posDelta.z >>= 1;
+    runData->spriteRotationAnimStepsLeft = CASCADE_DOWN_INITIAL_SPRITE_ROTATION_STEPS;
 
-    ov9_0224A4D0(param0, v2, 90, v4->unk_00);
+    ov9_0224A4D0(system, playerMapObj, 90, runData->spriteRotationAnimStepsLeft);
 
-    {
-        VecFx32 v6 = { 0, 0, 0 };
-        MapObject_SetSpritePosOffset(v2, &v6);
-    }
+    VecFx32 spritePosOffset = { 0, 0, 0 };
+    MapObject_SetSpritePosOffset(playerMapObj, &spritePosOffset);
 
-    {
-        VecFx32 *v7;
-        OverworldAnimManager *v8 = PlayerAvatar_GetSurfMountAnimManager(playerAvatar);
-        Simple3DRotationAngles *v9 = ov5_021F88A8(v8);
+    OverworldAnimManager *mountAnimMan = PlayerAvatar_GetSurfMountAnimManager(playerAvatar);
+    Simple3DRotationAngles *mountRotAngles = DistWorldSurfMountRenderer_GetSurfMountRotationAngles(mountAnimMan);
 
-        ov5_021F88B4(v8, 2, 5);
-        ov5_021F88CC(v8, 1 << 2 | 1 << 4 | 1 << 6 | 1 << 5);
+    DistWorldSurfMountRenderer_SetFixedRotationAngles(mountAnimMan, FACE_LEFT, AVATAR_DISTORTION_STATE_CEILING);
 
-        v4->unk_0C.x = (FX32_ONE * (v9->alpha));
-        v4->unk_0C.y = (FX32_ONE * (v9->beta));
-        v4->unk_0C.z = (FX32_ONE * (v9->gamma));
-        v4->unk_18.x = (FX32_ONE * -90) / 32;
-        v4->unk_18.y = (FX32_ONE * 180) / 32;
-        v4->unk_18.z = 0;
-        v4->unk_30 = (FX32_ONE * 90);
-        v4->unk_34 = (FX32_ONE * -70) / 32;
+    DistWorldSurfMountRenderer_SetFlags(
+        mountAnimMan,
+        DIST_WORLD_SURF_MOUNT_RENDERER_FLAG_MASK_NO_ROTATION_RECALCULATION
+            | DIST_WORLD_SURF_MOUNT_RENDERER_FLAG_MASK_NO_ORBIT_RECALCULATION
+            | DIST_WORLD_SURF_MOUNT_RENDERER_FLAG_MASK_USE_EXTERNAL_POS_FIX
+            | DIST_WORLD_SURF_MOUNT_RENDERER_FLAG_MASK_USE_EXTERNAL_SPRITE_POS_OFFSET);
 
-        v7 = ov5_021F88FC(v8);
-        v7->x = 0;
-        v7->y = 0;
-        v7->z = (FX32_ONE * 6);
-        v4->unk_24.x = 0;
-        v4->unk_24.y = 0;
-        v4->unk_24.z = (FX32_ONE * 4) / 32;
-    }
+    runData->mountRotAngles.x = FX32_ONE * mountRotAngles->alpha;
+    runData->mountRotAngles.y = FX32_ONE * mountRotAngles->beta;
+    runData->mountRotAngles.z = FX32_ONE * mountRotAngles->gamma;
+    runData->mountRotAnglesDelta.x = CASCADE_DOWN_MOUNT_ROTATION_ANGLE_X / CASCADE_DOWN_INITIAL_SPRITE_ROTATION_STEPS;
+    runData->mountRotAnglesDelta.y = CASCADE_DOWN_MOUNT_ROTATION_ANGLE_Y / CASCADE_DOWN_INITIAL_SPRITE_ROTATION_STEPS;
+    runData->mountRotAnglesDelta.z = CASCADE_DOWN_MOUNT_ROTATION_ANGLE_Z / CASCADE_DOWN_INITIAL_SPRITE_ROTATION_STEPS;
+    runData->orbitAngle = CASCADE_DOWN_ORBIT_ANGLE_START;
+    runData->orbitAngleDelta = CASCADE_DOWN_ORBIT_ANGLE / CASCADE_DOWN_INITIAL_SPRITE_ROTATION_STEPS;
+
+    VecFx32 *mountPosFix = DistWorldSurfMountRenderer_GetExternalPosFixPtr(mountAnimMan);
+    mountPosFix->x = CASCADE_DOWN_ROTATE_MOUNT_POSITION_FIX_X_START;
+    mountPosFix->y = CASCADE_DOWN_ROTATE_MOUNT_POSITION_FIX_Y_START;
+    mountPosFix->z = CASCADE_DOWN_ROTATE_MOUNT_POSITION_FIX_Z_START;
+    runData->mountPosFixDelta.x = CASCADE_DOWN_ROTATE_MOUNT_POSITION_FIX_X / CASCADE_DOWN_INITIAL_SPRITE_ROTATION_STEPS;
+    runData->mountPosFixDelta.y = CASCADE_DOWN_ROTATE_MOUNT_POSITION_FIX_Y / CASCADE_DOWN_INITIAL_SPRITE_ROTATION_STEPS;
+    runData->mountPosFixDelta.z = CASCADE_DOWN_ROTATE_MOUNT_POSITION_FIX_Z / CASCADE_DOWN_INITIAL_SPRITE_ROTATION_STEPS;
 
     Sound_PlayEffect(SEQ_SE_PL_FW463);
 
-    *param2 = 1;
-    return 0;
+    *cmdState = EVENT_CMD_CASCADE_DOWN_STATE_ROTATE_PLAYER;
+    return EVENT_CMD_HANDLER_RES_CONTINUE;
 }
 
-static int ov9_0224FC2C(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
+static int EventCmdCascadeDown_RotatePlayer(DistWorldSystem *system, FieldTask *task, u16 *cmdState, const void *params)
 {
-    MapObject *v0 = Player_MapObject(param0->fieldSystem->playerAvatar);
-    UnkStruct_ov9_0224FA94 *v1 = GetLoadedEventDataBuffer(param0);
-    UnkStruct_ov9_0224F930 *v2 = &v1->unk_40;
+    MapObject *playerMapObj = Player_MapObject(system->fieldSystem->playerAvatar);
+    CmdRunDataCascadeDown *runData = GetLoadedEventDataBuffer(system);
+    CmdRunDataCascadeBase *baseRunData = &runData->base;
 
-    ov9_0224F970(param0, v2);
-    MapObject_SetPos(v0, &v2->unk_34);
-    ov9_0224FA94(param0, v1);
+    CmdRunDataCascadeBase_Update(system, baseRunData);
+    MapObject_SetPos(playerMapObj, &baseRunData->playerPos);
+    UpdateCascadeDownCamera(system, runData);
 
-    {
-        OverworldAnimManager *v3 = PlayerAvatar_GetSurfMountAnimManager(param0->fieldSystem->playerAvatar);
+    OverworldAnimManager *mountAnimMan = PlayerAvatar_GetSurfMountAnimManager(system->fieldSystem->playerAvatar);
+    Simple3DRotationAngles *mountRotAngles = DistWorldSurfMountRenderer_GetSurfMountRotationAngles(mountAnimMan);
 
-        {
-            Simple3DRotationAngles *v4 = ov5_021F88A8(v3);
+    ApplyRotationToTargetFx32(&runData->mountRotAngles.x, runData->mountRotAnglesDelta.x);
+    ApplyRotationToTargetFx32(&runData->mountRotAngles.y, runData->mountRotAnglesDelta.y);
+    ApplyRotationToTargetFx32(&runData->mountRotAngles.z, runData->mountRotAnglesDelta.z);
 
-            ov9_02250F1C(&v1->unk_0C.x, v1->unk_18.x);
-            ov9_02250F1C(&v1->unk_0C.y, v1->unk_18.y);
-            ov9_02250F1C(&v1->unk_0C.z, v1->unk_18.z);
+    mountRotAngles->alpha = runData->mountRotAngles.x / FX32_ONE;
+    mountRotAngles->beta = runData->mountRotAngles.y / FX32_ONE;
+    mountRotAngles->gamma = runData->mountRotAngles.z / FX32_ONE;
 
-            v4->alpha = ((v1->unk_0C.x) / FX32_ONE);
-            v4->beta = ((v1->unk_0C.y) / FX32_ONE);
-            v4->gamma = ((v1->unk_0C.z) / FX32_ONE);
-        }
+    ApplyRotationToTargetFx32(&runData->orbitAngle, runData->orbitAngleDelta);
+    DistWorldSurfMountRenderer_SetOrbitAngle(mountAnimMan, runData->orbitAngle / FX32_ONE);
 
-        {
-            ov9_02250F1C(&v1->unk_30, v1->unk_34);
-            ov5_021F8908(v3, ((v1->unk_30) / FX32_ONE));
-        }
+    VecFx32 *mountPosFix = DistWorldSurfMountRenderer_GetExternalPosFixPtr(mountAnimMan);
+    mountPosFix->x += runData->mountPosFixDelta.x;
+    mountPosFix->y += runData->mountPosFixDelta.y;
+    mountPosFix->z += runData->mountPosFixDelta.z;
 
-        {
-            VecFx32 *v5 = ov5_021F88FC(v3);
+    runData->spriteRotationAnimStepsLeft--;
 
-            v5->x += v1->unk_24.x;
-            v5->y += v1->unk_24.y;
-            v5->z += v1->unk_24.z;
-        }
+    if (runData->spriteRotationAnimStepsLeft == 0) {
+        baseRunData->posDelta.x <<= 1;
+        baseRunData->posDelta.y <<= 1;
+        baseRunData->posDelta.z <<= 1;
+
+        CmdRunDataCascadeBase_InitBobbing(baseRunData, AXIS_X, CASCADE_DOWN_BOBBING_DELTA, CASCADE_DOWN_BOBBING_MAX);
+
+        OverworldAnimManager *mountAnimMan2 = PlayerAvatar_GetSurfMountAnimManager(system->fieldSystem->playerAvatar);
+        VecFx32 *mountPosFix2;
+
+        mountPosFix2 = DistWorldSurfMountRenderer_GetExternalPosFixPtr(mountAnimMan2);
+        mountPosFix2->x = CASCADE_DOWN_CASCADE_MOUNT_POSITION_FIX_X_START;
+        mountPosFix2->y = CASCADE_DOWN_CASCADE_MOUNT_POSITION_FIX_Y_START;
+        mountPosFix2->z = CASCADE_DOWN_CASCADE_MOUNT_POSITION_FIX_Z_START;
+
+        runData->firstCameraAnimStepsLeft = CASCADE_DOWN_FIRST_CAMERA_TRANSITION_STEPS - 2;
+        runData->secondCameraAnimStepsLeft = -1;
+        runData->mountPosFixDelta.x = CASCADE_DOWN_FIRST_CASCADE_MOUNT_POSITION_FIX_X / runData->firstCameraAnimStepsLeft;
+        runData->mountPosFixDelta.y = CASCADE_DOWN_FIRST_CASCADE_MOUNT_POSITION_FIX_Y / runData->firstCameraAnimStepsLeft;
+        runData->mountPosFixDelta.z = CASCADE_DOWN_FIRST_CASCADE_MOUNT_POSITION_FIX_Z / runData->firstCameraAnimStepsLeft;
+        runData->bobbingFixDelta = CASCADE_DOWN_FIRST_CASCADE_BOBBING_FIX / runData->firstCameraAnimStepsLeft;
+
+        *cmdState = EVENT_CMD_CASCADE_DOWN_STATE_CASCADE_DOWN;
+        return EVENT_CMD_HANDLER_RES_CONTINUE;
     }
 
-    v1->unk_00--;
-
-    if (v1->unk_00 == 0) {
-        v2->unk_04.x <<= 1;
-        v2->unk_04.y <<= 1;
-        v2->unk_04.z <<= 1;
-
-        ov9_0224F930(v2, 0, 0x400, (FX32_ONE * 4));
-
-        {
-            OverworldAnimManager *v6 = PlayerAvatar_GetSurfMountAnimManager(param0->fieldSystem->playerAvatar);
-            VecFx32 *v7;
-
-            v7 = ov5_021F88FC(v6);
-            v7->x = 0;
-            v7->y = 0;
-            v7->z = (FX32_ONE * 10);
-            v1->unk_08 = 70;
-            v1->unk_0A = -1;
-            v1->unk_24.x = 0;
-            v1->unk_24.y = 0;
-            v1->unk_24.z = (FX32_ONE * -16) / v1->unk_08;
-            v1->unk_3C = (FX32_ONE * -4) / v1->unk_08;
-        }
-
-        *param2 = 2;
-        return 0;
-    }
-
-    return 0;
+    return EVENT_CMD_HANDLER_RES_CONTINUE;
 }
 
-static int ov9_0224FD74(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
+static int EventCmdCascadeDown_CascadeDown(DistWorldSystem *system, FieldTask *task, u16 *cmdState, const void *params)
 {
-    int v0;
-    OverworldAnimManager *v1 = PlayerAvatar_GetSurfMountAnimManager(param0->fieldSystem->playerAvatar);
-    MapObject *v2 = Player_MapObject(param0->fieldSystem->playerAvatar);
-    UnkStruct_ov9_0224FA94 *v3 = GetLoadedEventDataBuffer(param0);
-    UnkStruct_ov9_0224F930 *v4 = &v3->unk_40;
+    enum CascadeUpdateResult updateRes;
+    OverworldAnimManager *mountAnimMan = PlayerAvatar_GetSurfMountAnimManager(system->fieldSystem->playerAvatar);
+    MapObject *playerMapObj = Player_MapObject(system->fieldSystem->playerAvatar);
+    CmdRunDataCascadeDown *runData = GetLoadedEventDataBuffer(system);
+    CmdRunDataCascadeBase *baseRunData = &runData->base;
 
-    v0 = ov9_0224F970(param0, v4);
-    MapObject_SetPos(v2, &v4->unk_34);
+    updateRes = CmdRunDataCascadeBase_Update(system, baseRunData);
+    MapObject_SetPos(playerMapObj, &baseRunData->playerPos);
 
-    {
-        VecFx32 v5 = v4->unk_40;
+    VecFx32 jumpOffset = baseRunData->jumpOffset;
 
-        v5.x += v3->unk_38;
-        MapObject_SetSpriteJumpOffset(v2, &v5);
-    }
+    jumpOffset.x += runData->bobbingFix;
+    MapObject_SetSpriteJumpOffset(playerMapObj, &jumpOffset);
 
-    ov9_0224FA94(param0, v3);
+    UpdateCascadeDownCamera(system, runData);
 
-    {
-        VecFx32 *v6 = ov5_021F88FC(v1);
-        VecFx32 *v7 = ov5_021F88F0(v1);
+    VecFx32 *mountPosFix = DistWorldSurfMountRenderer_GetExternalPosFixPtr(mountAnimMan);
+    VecFx32 *mountSpritePosOffset = DistWorldSurfMountRenderer_GetExternalSpritePosOffsetPtr(mountAnimMan);
 
-        *v7 = v4->unk_40;
+    *mountSpritePosOffset = baseRunData->jumpOffset;
 
-        if (v3->unk_04 == 1) {
-            if (v3->unk_08 > 0) {
-                v3->unk_08--;
-                v6->x += v3->unk_24.x;
-                v6->y += v3->unk_24.y;
-                v6->z += v3->unk_24.z;
-                v3->unk_38 += v3->unk_3C;
-            }
-        } else if (v3->unk_04 == 2) {
-            if (v3->unk_0A < 0) {
-                v3->unk_0A = 30;
-                v3->unk_24.x = 0;
-                v3->unk_24.y = 0;
-                v3->unk_24.z = (FX32_ONE * 6) / v3->unk_0A;
-                v3->unk_3C = (FX32_ONE * 4) / v3->unk_0A;
-            }
+    if (runData->cameraAngleState == 1) {
+        if (runData->firstCameraAnimStepsLeft > 0) {
+            runData->firstCameraAnimStepsLeft--;
+            mountPosFix->x += runData->mountPosFixDelta.x;
+            mountPosFix->y += runData->mountPosFixDelta.y;
+            mountPosFix->z += runData->mountPosFixDelta.z;
+            runData->bobbingFix += runData->bobbingFixDelta;
+        }
+    } else if (runData->cameraAngleState == 2) {
+        if (runData->secondCameraAnimStepsLeft < 0) {
+            runData->secondCameraAnimStepsLeft = CASCADE_DOWN_SECOND_CAMERA_TRANSITION_STEPS - 2;
+            runData->mountPosFixDelta.x = CASCADE_DOWN_SECOND_CASCADE_MOUNT_POSITION_FIX_X / runData->secondCameraAnimStepsLeft;
+            runData->mountPosFixDelta.y = CASCADE_DOWN_SECOND_CASCADE_MOUNT_POSITION_FIX_Y / runData->secondCameraAnimStepsLeft;
+            runData->mountPosFixDelta.z = CASCADE_DOWN_SECOND_CASCADE_MOUNT_POSITION_FIX_Z / runData->secondCameraAnimStepsLeft;
+            runData->bobbingFixDelta = CASCADE_DOWN_SECOND_CASCADE_BOBBING_FIX / runData->secondCameraAnimStepsLeft;
+        }
 
-            if (v3->unk_0A > 0) {
-                v3->unk_0A--;
-                v6->x += v3->unk_24.x;
-                v6->y += v3->unk_24.y;
-                v6->z += v3->unk_24.z;
-                v3->unk_38 += v3->unk_3C;
-            }
+        if (runData->secondCameraAnimStepsLeft > 0) {
+            runData->secondCameraAnimStepsLeft--;
+            mountPosFix->x += runData->mountPosFixDelta.x;
+            mountPosFix->y += runData->mountPosFixDelta.y;
+            mountPosFix->z += runData->mountPosFixDelta.z;
+            runData->bobbingFix += runData->bobbingFixDelta;
         }
     }
 
-    if (v0 == 2) {
-        v3->unk_00 = 16;
-        ov9_0224A4D0(param0, v2, 90, v3->unk_00);
+    if (updateRes == CASCADE_UPDATE_RES_FINISHING_POS_REACHED) {
+        runData->spriteRotationAnimStepsLeft = CASCADE_DOWN_FINAL_SPRITE_ROTATION_STEPS;
+        ov9_0224A4D0(system, playerMapObj, 90, runData->spriteRotationAnimStepsLeft);
 
-        {
-            v3->unk_18.x = (FX32_ONE * -90) / 16;
-            v3->unk_18.y = 0;
-            v3->unk_18.z = 0;
-            v3->unk_24.x = 0;
-            v3->unk_24.y = 0;
-            v3->unk_24.z = (FX32_ONE * -7) / 16;
-            v3->unk_34 = (FX32_ONE * -110) / 16;
+        runData->mountRotAnglesDelta.x = CASCADE_DOWN_FINAL_MOUNT_ROTATION_ANGLE_X / CASCADE_DOWN_FINAL_SPRITE_ROTATION_STEPS;
+        runData->mountRotAnglesDelta.y = CASCADE_DOWN_FINAL_MOUNT_ROTATION_ANGLE_Y / CASCADE_DOWN_FINAL_SPRITE_ROTATION_STEPS;
+        runData->mountRotAnglesDelta.z = CASCADE_DOWN_FINAL_MOUNT_ROTATION_ANGLE_Z / CASCADE_DOWN_FINAL_SPRITE_ROTATION_STEPS;
+        runData->mountPosFixDelta.x = CASCADE_DOWN_FINAL_MOUNT_POSITION_FIX_X / CASCADE_DOWN_FINAL_SPRITE_ROTATION_STEPS;
+        runData->mountPosFixDelta.y = CASCADE_DOWN_FINAL_MOUNT_POSITION_FIX_Y / CASCADE_DOWN_FINAL_SPRITE_ROTATION_STEPS;
+        runData->mountPosFixDelta.z = CASCADE_DOWN_FINAL_MOUNT_POSITION_FIX_Z / CASCADE_DOWN_FINAL_SPRITE_ROTATION_STEPS;
+        runData->orbitAngleDelta = CASCADE_DOWN_FINAL_ORBIT_ANGLE / CASCADE_DOWN_FINAL_SPRITE_ROTATION_STEPS;
 
-            ov5_021F88DC(v1, 1 << 5);
-        }
+        DistWorldSurfMountRenderer_ClearFlags(mountAnimMan, DIST_WORLD_SURF_MOUNT_RENDERER_FLAG_MASK_USE_EXTERNAL_SPRITE_POS_OFFSET);
 
-        *param2 = 3;
+        *cmdState = EVENT_CMD_CASCADE_DOWN_STATE_FINISH_CASCADING;
     }
 
-    GF_ASSERT(v0 != 3);
-    return 0;
+    GF_ASSERT(updateRes != CASCADE_UPDATE_RES_FINAL_POS_REACHED);
+    return EVENT_CMD_HANDLER_RES_CONTINUE;
 }
 
-static int ov9_0224FEDC(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
+static int EventCmdCascadeDown_FinishCascading(DistWorldSystem *system, FieldTask *task, u16 *cmdState, const void *params)
 {
-    int v0;
-    OverworldAnimManager *v1 = PlayerAvatar_GetSurfMountAnimManager(param0->fieldSystem->playerAvatar);
-    MapObject *v2 = Player_MapObject(param0->fieldSystem->playerAvatar);
-    UnkStruct_ov9_0224FA94 *v3 = GetLoadedEventDataBuffer(param0);
-    UnkStruct_ov9_0224F930 *v4 = &v3->unk_40;
+    enum CascadeUpdateResult updateRes;
+    OverworldAnimManager *mountAnimMan = PlayerAvatar_GetSurfMountAnimManager(system->fieldSystem->playerAvatar);
+    MapObject *playerMapObj = Player_MapObject(system->fieldSystem->playerAvatar);
+    CmdRunDataCascadeDown *runData = GetLoadedEventDataBuffer(system);
+    CmdRunDataCascadeBase *baseRunData = &runData->base;
 
-    v0 = ov9_0224F970(param0, v4);
+    updateRes = CmdRunDataCascadeBase_Update(system, baseRunData);
 
-    MapObject_SetPos(v2, &v4->unk_34);
-    MapObject_SetSpriteJumpOffset(v2, &v4->unk_40);
+    MapObject_SetPos(playerMapObj, &baseRunData->playerPos);
+    MapObject_SetSpriteJumpOffset(playerMapObj, &baseRunData->jumpOffset);
 
-    ov9_0224FA94(param0, v3);
+    UpdateCascadeDownCamera(system, runData);
 
-    {
-        VecFx32 *v5;
-        Simple3DRotationAngles *v6 = ov5_021F88A8(v1);
+    Simple3DRotationAngles *mountRotAngles = DistWorldSurfMountRenderer_GetSurfMountRotationAngles(mountAnimMan);
 
-        ov9_02250F1C(&v3->unk_0C.x, v3->unk_18.x);
-        ov9_02250F1C(&v3->unk_0C.y, v3->unk_18.y);
-        ov9_02250F1C(&v3->unk_0C.z, v3->unk_18.z);
+    ApplyRotationToTargetFx32(&runData->mountRotAngles.x, runData->mountRotAnglesDelta.x);
+    ApplyRotationToTargetFx32(&runData->mountRotAngles.y, runData->mountRotAnglesDelta.y);
+    ApplyRotationToTargetFx32(&runData->mountRotAngles.z, runData->mountRotAnglesDelta.z);
 
-        v6->alpha = ((v3->unk_0C.x) / FX32_ONE);
-        v6->beta = ((v3->unk_0C.y) / FX32_ONE);
-        v6->gamma = ((v3->unk_0C.z) / FX32_ONE);
+    mountRotAngles->alpha = runData->mountRotAngles.x / FX32_ONE;
+    mountRotAngles->beta = runData->mountRotAngles.y / FX32_ONE;
+    mountRotAngles->gamma = runData->mountRotAngles.z / FX32_ONE;
 
-        ov9_02250F1C(&v3->unk_30, v3->unk_34);
-        ov5_021F8908(v1, ((v3->unk_30) / FX32_ONE));
+    ApplyRotationToTargetFx32(&runData->orbitAngle, runData->orbitAngleDelta);
+    DistWorldSurfMountRenderer_SetOrbitAngle(mountAnimMan, runData->orbitAngle / FX32_ONE);
 
-        {
-            VecFx32 *v7 = ov5_021F88FC(v1);
+    VecFx32 *mountPosFix = DistWorldSurfMountRenderer_GetExternalPosFixPtr(mountAnimMan);
+    mountPosFix->x += runData->mountPosFixDelta.x;
+    mountPosFix->y += runData->mountPosFixDelta.y;
+    mountPosFix->z += runData->mountPosFixDelta.z;
 
-            v7->x += v3->unk_24.x;
-            v7->y += v3->unk_24.y;
-            v7->z += v3->unk_24.z;
-        }
+    if (updateRes == CASCADE_UPDATE_RES_FINAL_POS_REACHED) {
+        const CmdParamsCascadeDown *cmdParams = params;
+        const CmdParamsCascadeBase *baseCmdParams = &cmdParams->base;
+        VecFx32 zeroVec = { 0, 0, 0 };
+
+        int playerTileX = MapObject_GetX(playerMapObj) + baseCmdParams->finishingPosFixTileX;
+        int playerTileY = MapObject_GetY(playerMapObj) + baseCmdParams->finishingPosFixTileY * 2;
+        int playerTileZ = MapObject_GetZ(playerMapObj) + baseCmdParams->finishingPosFixTileZ;
+
+        MapObject_SetX(playerMapObj, playerTileX);
+        MapObject_SetY(playerMapObj, playerTileY);
+        MapObject_SetZ(playerMapObj, playerTileZ);
+        MapObject_UpdateCoords(playerMapObj);
+        MapObject_TryFace(playerMapObj, FACE_LEFT);
+        MapObject_Turn(playerMapObj, FACE_LEFT);
+        MapObject_SetSpriteJumpOffset(playerMapObj, &zeroVec);
+        MapObject_SetSpritePosOffset(playerMapObj, &zeroVec);
+        FindAndPrepareNewCurrentFloatingPlatform(system, playerTileX, playerTileY / 2, playerTileZ, FLOATING_PLATFORM_KIND_INVALID);
+        PlayerAvatar_SetDistortionState(system->fieldSystem->playerAvatar, AVATAR_DISTORTION_STATE_ACTIVE);
+        MapObject_SetHeightCalculationDisabled(playerMapObj, FALSE);
+
+        VecFx32 *mountPosFix2 = DistWorldSurfMountRenderer_GetExternalPosFixPtr(mountAnimMan);
+        *mountPosFix2 = zeroVec;
+
+        mountPosFix2 = DistWorldSurfMountRenderer_GetExternalSpritePosOffsetPtr(mountAnimMan);
+        *mountPosFix2 = zeroVec;
+
+        DistWorldSurfMountRenderer_SetOrbitAngle(mountAnimMan, CASCADE_DOWN_ORBIT_ANGLE_END);
+        DistWorldSurfMountRenderer_SetFixedRotationAngles(mountAnimMan, FACE_LEFT, AVATAR_DISTORTION_STATE_ACTIVE);
+
+        DistWorldSurfMountRenderer_ClearFlags(
+            mountAnimMan,
+            DIST_WORLD_SURF_MOUNT_RENDERER_FLAG_MASK_NO_ROTATION_RECALCULATION
+                | DIST_WORLD_SURF_MOUNT_RENDERER_FLAG_MASK_NO_ORBIT_RECALCULATION
+                | DIST_WORLD_SURF_MOUNT_RENDERER_FLAG_MASK_USE_EXTERNAL_POS_FIX
+                | DIST_WORLD_SURF_MOUNT_RENDERER_FLAG_MASK_USE_EXTERNAL_SPRITE_POS_OFFSET);
+
+        Sound_StopEffect(SEQ_SE_PL_FW463, 0);
+        *cmdState = EVENT_CMD_CASCADE_DOWN_STATE_MOVE_AWAY;
+
+        SetPersistedMovingPlatformFlag(system, DIST_WORLD_PLATFORM_FLAG_B5F_1);
+        InitSpecificMovingPlatformPropForMap(system, MAP_HEADER_DISTORTION_WORLD_B5F, 0);
     }
 
-    if (v0 == 3) {
-        int v8, v9, v10;
-        const UnkStruct_ov9_02252384 *v11 = param3;
-        const UnkStruct_ov9_0224F8C4 *v12 = &v11->unk_00;
-        VecFx32 v13 = { 0, 0, 0 };
-
-        v8 = MapObject_GetX(v2) + v12->unk_06;
-        v9 = MapObject_GetY(v2) + ((v12->unk_08) * 2);
-        v10 = MapObject_GetZ(v2) + v12->unk_0A;
-
-        MapObject_SetX(v2, v8);
-        MapObject_SetY(v2, v9);
-        MapObject_SetZ(v2, v10);
-        MapObject_UpdateCoords(v2);
-        MapObject_TryFace(v2, 2);
-        MapObject_Turn(v2, 2);
-        MapObject_SetSpriteJumpOffset(v2, &v13);
-        MapObject_SetSpritePosOffset(v2, &v13);
-        FindAndPrepareNewCurrentFloatingPlatform(param0, v8, ((v9) / 2), v10, 4);
-        PlayerAvatar_SetDistortionState(param0->fieldSystem->playerAvatar, AVATAR_DISTORTION_STATE_ACTIVE);
-        MapObject_SetHeightCalculationDisabled(v2, FALSE);
-
-        {
-            {
-                VecFx32 *v14 = ov5_021F88FC(v1);
-
-                *v14 = v13;
-                v14 = ov5_021F88F0(v1);
-                *v14 = v13;
-            }
-
-            ov5_021F8908(v1, 270);
-            ov5_021F88B4(v1, 2, 1);
-            ov5_021F88DC(v1, 1 << 2 | 1 << 4 | 1 << 6 | 1 << 5);
-        }
-
-        Sound_StopEffect(1488, 0);
-        *param2 = 4;
-
-        {
-            SetPersistedMovingPlatformFlag(param0, DIST_WORLD_PLATFORM_FLAG_B5F_1);
-            InitSpecificMovingPlatformPropForMap(param0, 579, 0);
-        }
-    }
-
-    return 0;
+    return EVENT_CMD_HANDLER_RES_CONTINUE;
 }
 
-static int ov9_022500E0(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
+static int EventCmdCascadeDown_MoveAway(DistWorldSystem *system, FieldTask *task, u16 *cmdState, const void *params)
 {
-    u32 v0[2] = { 0xa, 0x6 };
-    UnkStruct_ov9_0224FA94 *v1 = GetLoadedEventDataBuffer(param0);
-    MapObject *v2 = Player_MapObject(param0->fieldSystem->playerAvatar);
+    u32 movements[2] = { MOVEMENT_ACTION_WALK_SLOW_WEST, MOVEMENT_ACTION_WALK_SLOWER_WEST };
+    CmdRunDataCascadeDown *runData = GetLoadedEventDataBuffer(system);
+    MapObject *playerMapObj = Player_MapObject(system->fieldSystem->playerAvatar);
 
-    if (LocalMapObj_IsAnimationSet(v2) == 0) {
-        return 0;
+    if (!LocalMapObj_IsAnimationSet(playerMapObj)) {
+        return EVENT_CMD_HANDLER_RES_CONTINUE;
     }
 
-    if (v1->unk_02 >= 2) {
-        return 2;
+    if (runData->moveAwayAnimStep >= NELEMS(movements)) {
+        return EVENT_CMD_HANDLER_RES_FINISH;
     }
 
-    LocalMapObj_SetAnimationCode(v2, v0[v1->unk_02]);
-    v1->unk_02++;
-    return 0;
+    LocalMapObj_SetAnimationCode(playerMapObj, movements[runData->moveAwayAnimStep]);
+    runData->moveAwayAnimStep++;
+    return EVENT_CMD_HANDLER_RES_CONTINUE;
 }
 
-static const DistWorldEventCmdHandler Unk_ov9_02251544[5] = {
-    ov9_0224FB3C,
-    ov9_0224FC2C,
-    ov9_0224FD74,
-    ov9_0224FEDC,
-    ov9_022500E0
+static const DistWorldEventCmdHandler sCascadeDownHandlers[] = {
+    [EVENT_CMD_CASCADE_DOWN_STATE_INIT] = EventCmdCascadeDown_Init,
+    [EVENT_CMD_CASCADE_DOWN_STATE_ROTATE_PLAYER] = EventCmdCascadeDown_RotatePlayer,
+    [EVENT_CMD_CASCADE_DOWN_STATE_CASCADE_DOWN] = EventCmdCascadeDown_CascadeDown,
+    [EVENT_CMD_CASCADE_DOWN_STATE_FINISH_CASCADING] = EventCmdCascadeDown_FinishCascading,
+    [EVENT_CMD_CASCADE_DOWN_STATE_MOVE_AWAY] = EventCmdCascadeDown_MoveAway
 };
 
-static const DistWorldCameraAngleTemplate Unk_ov9_02251C48 = {
-    { 0x0, 0x0, 0x0, 0x0 },
-    0x37,
-    0xF0,
-    0x0,
-    0x0,
-    0x10
+static const DistWorldCameraAngleTemplate sCascadeUpCameraAngle = {
+    .bounds = {
+        .startTileX = 0,
+        .startTileY = 0,
+        .startTileZ = 0,
+        .sizeX = 0,
+        .sizeY = 0,
+        .sizeZ = 0,
+    },
+    .angleX = 55,
+    .angleY = 240,
+    .angleZ = 0,
+    .playerDir = FACE_UP,
+    .transitionSteps = 16
 };
 
-static void ov9_02250138(DistWorldSystem *param0, UnkStruct_ov9_02250138 *param1)
+static void UpdateCascadeUpCamera(DistWorldSystem *system, CmdRunDataCascadeUp *runData)
 {
-    MapObject *v0 = Player_MapObject(param0->fieldSystem->playerAvatar);
-    int v1 = (((param1->unk_34.unk_10.y) >> 4) / FX32_ONE);
+    MapObject *playerMapObj = Player_MapObject(system->fieldSystem->playerAvatar);
+    int yOffset = (runData->base.currPosOffset.y >> 4) / FX32_ONE;
 
-    if ((param1->unk_04 == 0) && (v1 == 20)) {
-        DoCameraTransition(param0, &Unk_ov9_02251C48);
-        param1->unk_04++;
+    if (runData->cameraAngleState == 0 && yOffset == CASCADE_UP_CAMERA_ANGLE_Y_OFFSET) {
+        DoCameraTransition(system, &sCascadeUpCameraAngle);
+        runData->cameraAngleState++;
     }
 }
 
-static int ov9_02250170(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
+static int EventCmdCascadeUp_Init(DistWorldSystem *system, FieldTask *task, u16 *cmdState, const void *params)
 {
-    VecFx32 v0;
-    UnkStruct_ov9_0224F930 *v1;
-    MapObject *v2;
-    PlayerAvatar *playerAvatar;
-    UnkStruct_ov9_02250138 *v4;
-    const UnkStruct_ov9_022523F0 *v5 = param3;
-    v4 = ResetLoadedEventDataBuffer(param0, sizeof(UnkStruct_ov9_02250138));
-    v1 = &v4->unk_34;
-    playerAvatar = param0->fieldSystem->playerAvatar;
-    v2 = Player_MapObject(playerAvatar);
+    const CmdParamsCascadeUp *cmdParams = params;
+    CmdRunDataCascadeUp *runData = ResetLoadedEventDataBuffer(system, sizeof(CmdRunDataCascadeUp));
+    CmdRunDataCascadeBase *baseRunData = &runData->base;
+    PlayerAvatar *playerAvatar = system->fieldSystem->playerAvatar;
+    MapObject *playerMapObj = Player_MapObject(playerAvatar);
 
-    MapObject_GetPosPtr(v2, &v0);
-    MapObject_TryFace(v2, 3);
-    ov9_0224F8C4(param0, v1, &v5->unk_00, &v0);
+    VecFx32 playerPos;
+    MapObject_GetPosPtr(playerMapObj, &playerPos);
+    MapObject_TryFace(playerMapObj, FACE_RIGHT);
+    CmdRunDataCascadeBase_InitFromParams(system, baseRunData, &cmdParams->base, &playerPos);
 
-    v1->unk_04.x >>= 1;
-    v1->unk_04.y >>= 1;
-    v1->unk_04.z >>= 1;
-    v4->unk_00 = 4;
+    baseRunData->posDelta.x >>= 1;
+    baseRunData->posDelta.y >>= 1;
+    baseRunData->posDelta.z >>= 1;
+    runData->spriteRotationAnimStepsLeft = CASCADE_UP_INITIAL_SPRITE_ROTATION_STEPS;
 
-    ov9_0224A4D0(param0, v2, -90, v4->unk_00);
+    ov9_0224A4D0(system, playerMapObj, -90, runData->spriteRotationAnimStepsLeft);
 
-    {
-        VecFx32 v6 = { 0, 0, 0 };
-        MapObject_SetSpritePosOffset(v2, &v6);
-    }
+    VecFx32 spritePosOffset = { 0, 0, 0 };
+    MapObject_SetSpritePosOffset(playerMapObj, &spritePosOffset);
 
-    {
-        VecFx32 *v7;
-        OverworldAnimManager *v8 = PlayerAvatar_GetSurfMountAnimManager(playerAvatar);
-        Simple3DRotationAngles *v9 = ov5_021F88A8(v8);
+    OverworldAnimManager *mountAnimMan = PlayerAvatar_GetSurfMountAnimManager(playerAvatar);
+    Simple3DRotationAngles *mountRotAngles = DistWorldSurfMountRenderer_GetSurfMountRotationAngles(mountAnimMan);
 
-        ov5_021F88B4(v8, 3, 1);
-        ov5_021F88CC(v8, 1 << 2 | 1 << 4 | 1 << 6 | 1 << 5);
+    DistWorldSurfMountRenderer_SetFixedRotationAngles(mountAnimMan, FACE_RIGHT, AVATAR_DISTORTION_STATE_ACTIVE);
 
-        v4->unk_08.x = (FX32_ONE * (v9->alpha));
-        v4->unk_08.y = (FX32_ONE * (v9->beta));
-        v4->unk_08.z = (FX32_ONE * (v9->gamma));
-        v4->unk_14.x = (FX32_ONE * -90) / 4;
-        v4->unk_14.y = (FX32_ONE * 180) / 4;
-        v4->unk_14.z = 0;
-        v4->unk_2C = (FX32_ONE * 270);
-        v4->unk_30 = (FX32_ONE * 110) / 4;
+    DistWorldSurfMountRenderer_SetFlags(
+        mountAnimMan,
+        DIST_WORLD_SURF_MOUNT_RENDERER_FLAG_MASK_NO_ROTATION_RECALCULATION
+            | DIST_WORLD_SURF_MOUNT_RENDERER_FLAG_MASK_NO_ORBIT_RECALCULATION
+            | DIST_WORLD_SURF_MOUNT_RENDERER_FLAG_MASK_USE_EXTERNAL_POS_FIX
+            | DIST_WORLD_SURF_MOUNT_RENDERER_FLAG_MASK_USE_EXTERNAL_SPRITE_POS_OFFSET);
 
-        v7 = ov5_021F88FC(v8);
-        v7->x = 0;
-        v7->y = 0;
-        v7->z = (FX32_ONE * -7);
-        v4->unk_20.x = 0;
-        v4->unk_20.y = 0;
-        v4->unk_20.z = (FX32_ONE * 0) / 4;
-    }
+    runData->mountRotAngles.x = FX32_ONE * mountRotAngles->alpha;
+    runData->mountRotAngles.y = FX32_ONE * mountRotAngles->beta;
+    runData->mountRotAngles.z = FX32_ONE * mountRotAngles->gamma;
+    runData->mountRotAnglesDelta.x = CASCADE_UP_MOUNT_ROTATION_ANGLE_X / CASCADE_UP_INITIAL_SPRITE_ROTATION_STEPS;
+    runData->mountRotAnglesDelta.y = CASCADE_UP_MOUNT_ROTATION_ANGLE_Y / CASCADE_UP_INITIAL_SPRITE_ROTATION_STEPS;
+    runData->mountRotAnglesDelta.z = CASCADE_UP_MOUNT_ROTATION_ANGLE_Z / CASCADE_UP_INITIAL_SPRITE_ROTATION_STEPS;
+    runData->orbitAngle = CASCADE_UP_ORBIT_ANGLE_START;
+    runData->orbitAngleDelta = CASCADE_UP_ORBIT_ANGLE / CASCADE_UP_INITIAL_SPRITE_ROTATION_STEPS;
+
+    VecFx32 *mountPosFix = DistWorldSurfMountRenderer_GetExternalPosFixPtr(mountAnimMan);
+    mountPosFix->x = CASCADE_UP_ROTATE_MOUNT_POSITION_FIX_X_START;
+    mountPosFix->y = CASCADE_UP_ROTATE_MOUNT_POSITION_FIX_Y_START;
+    mountPosFix->z = CASCADE_UP_ROTATE_MOUNT_POSITION_FIX_Z_START;
+    runData->mountPosFixDelta.x = CASCADE_UP_ROTATE_MOUNT_POSITION_FIX_X / CASCADE_UP_INITIAL_SPRITE_ROTATION_STEPS;
+    runData->mountPosFixDelta.y = CASCADE_UP_ROTATE_MOUNT_POSITION_FIX_Y / CASCADE_UP_INITIAL_SPRITE_ROTATION_STEPS;
+    runData->mountPosFixDelta.z = CASCADE_UP_ROTATE_MOUNT_POSITION_FIX_Z / CASCADE_UP_INITIAL_SPRITE_ROTATION_STEPS;
 
     Sound_PlayEffect(SEQ_SE_PL_FW463);
 
-    *param2 = 1;
-    return 0;
+    *cmdState = EVENT_CMD_CASCADE_UP_STATE_ROTATE_PLAYER;
+    return EVENT_CMD_HANDLER_RES_CONTINUE;
 }
 
-static int ov9_02250260(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
+static int EventCmdCascadeUp_RotatePlayer(DistWorldSystem *system, FieldTask *task, u16 *cmdState, const void *params)
 {
-    MapObject *v0 = Player_MapObject(param0->fieldSystem->playerAvatar);
-    UnkStruct_ov9_02250138 *v1 = GetLoadedEventDataBuffer(param0);
-    UnkStruct_ov9_0224F930 *v2 = &v1->unk_34;
+    MapObject *playerMapObj = Player_MapObject(system->fieldSystem->playerAvatar);
+    CmdRunDataCascadeUp *runData = GetLoadedEventDataBuffer(system);
+    CmdRunDataCascadeBase *baseRunData = &runData->base;
 
-    ov9_0224F970(param0, v2);
-    MapObject_SetPos(v0, &v2->unk_34);
-    ov9_02250138(param0, v1);
+    CmdRunDataCascadeBase_Update(system, baseRunData);
+    MapObject_SetPos(playerMapObj, &baseRunData->playerPos);
+    UpdateCascadeUpCamera(system, runData);
 
-    {
-        OverworldAnimManager *v3 = PlayerAvatar_GetSurfMountAnimManager(param0->fieldSystem->playerAvatar);
+    OverworldAnimManager *mountAnimMan = PlayerAvatar_GetSurfMountAnimManager(system->fieldSystem->playerAvatar);
+    Simple3DRotationAngles *mountRotAngles = DistWorldSurfMountRenderer_GetSurfMountRotationAngles(mountAnimMan);
 
-        {
-            Simple3DRotationAngles *v4 = ov5_021F88A8(v3);
+    ApplyRotationToTargetFx32(&runData->mountRotAngles.x, runData->mountRotAnglesDelta.x);
+    ApplyRotationToTargetFx32(&runData->mountRotAngles.y, runData->mountRotAnglesDelta.y);
+    ApplyRotationToTargetFx32(&runData->mountRotAngles.z, runData->mountRotAnglesDelta.z);
 
-            ov9_02250F1C(&v1->unk_08.x, v1->unk_14.x);
-            ov9_02250F1C(&v1->unk_08.y, v1->unk_14.y);
-            ov9_02250F1C(&v1->unk_08.z, v1->unk_14.z);
+    mountRotAngles->alpha = runData->mountRotAngles.x / FX32_ONE;
+    mountRotAngles->beta = runData->mountRotAngles.y / FX32_ONE;
+    mountRotAngles->gamma = runData->mountRotAngles.z / FX32_ONE;
 
-            v4->alpha = ((v1->unk_08.x) / FX32_ONE);
-            v4->beta = ((v1->unk_08.y) / FX32_ONE);
-            v4->gamma = ((v1->unk_08.z) / FX32_ONE);
-        }
+    ApplyRotationToTargetFx32(&runData->orbitAngle, runData->orbitAngleDelta);
+    DistWorldSurfMountRenderer_SetOrbitAngle(mountAnimMan, runData->orbitAngle / FX32_ONE);
 
-        {
-            ov9_02250F1C(&v1->unk_2C, v1->unk_30);
-            ov5_021F8908(v3, ((v1->unk_2C) / FX32_ONE));
-        }
+    VecFx32 *mountPosFix = DistWorldSurfMountRenderer_GetExternalPosFixPtr(mountAnimMan);
+    mountPosFix->x += runData->mountPosFixDelta.x;
+    mountPosFix->y += runData->mountPosFixDelta.y;
+    mountPosFix->z += runData->mountPosFixDelta.z;
 
-        {
-            VecFx32 *v5 = ov5_021F88FC(v3);
+    runData->spriteRotationAnimStepsLeft--;
 
-            v5->x += v1->unk_20.x;
-            v5->y += v1->unk_20.y;
-            v5->z += v1->unk_20.z;
-        }
+    if (runData->spriteRotationAnimStepsLeft == 0) {
+        baseRunData->posDelta.x <<= 1;
+        baseRunData->posDelta.y <<= 1;
+        baseRunData->posDelta.z <<= 1;
+
+        CmdRunDataCascadeBase_InitBobbing(baseRunData, AXIS_X, CASCADE_UP_BOBBING_DELTA, CASCADE_UP_BOBBING_MAX);
+
+        OverworldAnimManager *mountAnimMan2 = PlayerAvatar_GetSurfMountAnimManager(system->fieldSystem->playerAvatar);
+        VecFx32 *mountPosFix2;
+
+        mountPosFix2 = DistWorldSurfMountRenderer_GetExternalPosFixPtr(mountAnimMan2);
+        mountPosFix2->x = CASCADE_UP_CASCADE_MOUNT_POSITION_FIX_X_START;
+        mountPosFix2->y = CASCADE_UP_CASCADE_MOUNT_POSITION_FIX_Y_START;
+        mountPosFix2->z = CASCADE_UP_CASCADE_MOUNT_POSITION_FIX_Z_START;
+
+        runData->mountPosFixDelta.x = CASCADE_UP_CASCADE_MOUNT_POSITION_FIX_X / CASCADE_UP_CASCADE_STEPS;
+        runData->mountPosFixDelta.y = CASCADE_UP_CASCADE_MOUNT_POSITION_FIX_Y / CASCADE_UP_CASCADE_STEPS;
+        runData->mountPosFixDelta.z = CASCADE_UP_CASCADE_MOUNT_POSITION_FIX_Z / CASCADE_UP_CASCADE_STEPS;
+
+        *cmdState = EVENT_CMD_CASCADE_UP_STATE_CASCADE_DOWN;
+        return EVENT_CMD_HANDLER_RES_CONTINUE;
     }
 
-    v1->unk_00--;
-
-    if (v1->unk_00 == 0) {
-        v2->unk_04.x <<= 1;
-        v2->unk_04.y <<= 1;
-        v2->unk_04.z <<= 1;
-
-        ov9_0224F930(v2, 0, 0x200, (FX32_ONE * 4));
-
-        {
-            OverworldAnimManager *v6 = PlayerAvatar_GetSurfMountAnimManager(param0->fieldSystem->playerAvatar);
-            VecFx32 *v7;
-
-            v7 = ov5_021F88FC(v6);
-            v7->x = 0;
-            v7->y = 0;
-            v7->z = (FX32_ONE * -7);
-            v1->unk_20.x = 0;
-            v1->unk_20.y = 0;
-            v1->unk_20.z = (FX32_ONE * 17) / 16;
-        }
-
-        *param2 = 2;
-        return 0;
-    }
-
-    return 0;
+    return EVENT_CMD_HANDLER_RES_CONTINUE;
 }
 
-static int ov9_02250388(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
+static int EventCmdCascadeUp_CascadeUp(DistWorldSystem *system, FieldTask *task, u16 *cmdState, const void *params)
 {
-    int v0;
-    OverworldAnimManager *v1 = PlayerAvatar_GetSurfMountAnimManager(param0->fieldSystem->playerAvatar);
-    MapObject *v2 = Player_MapObject(param0->fieldSystem->playerAvatar);
-    UnkStruct_ov9_02250138 *v3 = GetLoadedEventDataBuffer(param0);
-    UnkStruct_ov9_0224F930 *v4 = &v3->unk_34;
+    enum CascadeUpdateResult updateRes;
+    OverworldAnimManager *mountAnimMan = PlayerAvatar_GetSurfMountAnimManager(system->fieldSystem->playerAvatar);
+    MapObject *playerMapObj = Player_MapObject(system->fieldSystem->playerAvatar);
+    CmdRunDataCascadeUp *runData = GetLoadedEventDataBuffer(system);
+    CmdRunDataCascadeBase *baseRunData = &runData->base;
 
-    v0 = ov9_0224F970(param0, v4);
+    updateRes = CmdRunDataCascadeBase_Update(system, baseRunData);
 
-    MapObject_SetPos(v2, &v4->unk_34);
-    MapObject_SetSpriteJumpOffset(v2, &v4->unk_40);
-    ov9_02250138(param0, v3);
+    MapObject_SetPos(playerMapObj, &baseRunData->playerPos);
+    MapObject_SetSpriteJumpOffset(playerMapObj, &baseRunData->jumpOffset);
+    UpdateCascadeUpCamera(system, runData);
 
-    {
-        VecFx32 *v5 = ov5_021F88F0(v1);
+    VecFx32 *mountSpritePosOffset = DistWorldSurfMountRenderer_GetExternalSpritePosOffsetPtr(mountAnimMan);
+    *mountSpritePosOffset = baseRunData->jumpOffset;
 
-        *v5 = v4->unk_40;
+    if (runData->cameraAngleState == 1) {
+        VecFx32 *mountPosFix = DistWorldSurfMountRenderer_GetExternalPosFixPtr(mountAnimMan);
 
-        if (v3->unk_04 == 1) {
-            VecFx32 *v6 = ov5_021F88FC(v1);
-
-            if (v6->z < (FX32_ONE * 10)) {
-                v6->x += v3->unk_20.x;
-                v6->y += v3->unk_20.y;
-                v6->z += v3->unk_20.z;
-            }
+        if (mountPosFix->z < CASCADE_UP_CASCADE_MOUNT_POSITION_FIX_Z_THRESHOLD) {
+            mountPosFix->x += runData->mountPosFixDelta.x;
+            mountPosFix->y += runData->mountPosFixDelta.y;
+            mountPosFix->z += runData->mountPosFixDelta.z;
         }
     }
 
-    if (v0 == 2) {
-        v3->unk_00 = 2;
-        ov9_0224A4D0(param0, v2, -90, v3->unk_00);
+    if (updateRes == CASCADE_UPDATE_RES_FINISHING_POS_REACHED) {
+        runData->spriteRotationAnimStepsLeft = CASCADE_UP_FINAL_SPRITE_ROTATION_STEPS;
+        ov9_0224A4D0(system, playerMapObj, -90, runData->spriteRotationAnimStepsLeft);
 
-        {
-            v3->unk_14.x = (FX32_ONE * 90) / 2;
-            v3->unk_14.y = 0;
-            v3->unk_14.z = 0;
-            v3->unk_20.x = 0;
-            v3->unk_20.y = 0;
-            v3->unk_20.z = (FX32_ONE * -4) / 2;
-            v3->unk_30 = (FX32_ONE * 70) / 2;
+        runData->mountRotAnglesDelta.x = CASCADE_UP_FINAL_MOUNT_ROTATION_ANGLE_X / CASCADE_UP_FINAL_SPRITE_ROTATION_STEPS;
+        runData->mountRotAnglesDelta.y = CASCADE_UP_FINAL_MOUNT_ROTATION_ANGLE_Y / CASCADE_UP_FINAL_SPRITE_ROTATION_STEPS;
+        runData->mountRotAnglesDelta.z = CASCADE_UP_FINAL_MOUNT_ROTATION_ANGLE_Z / CASCADE_UP_FINAL_SPRITE_ROTATION_STEPS;
+        runData->mountPosFixDelta.x = CASCADE_UP_FINAL_MOUNT_POSITION_FIX_X / CASCADE_UP_FINAL_SPRITE_ROTATION_STEPS;
+        runData->mountPosFixDelta.y = CASCADE_UP_FINAL_MOUNT_POSITION_FIX_Y / CASCADE_UP_FINAL_SPRITE_ROTATION_STEPS;
+        runData->mountPosFixDelta.z = CASCADE_UP_FINAL_MOUNT_POSITION_FIX_Z / CASCADE_UP_FINAL_SPRITE_ROTATION_STEPS;
+        runData->orbitAngleDelta = CASCADE_UP_FINAL_ORBIT_ANGLE / CASCADE_UP_FINAL_SPRITE_ROTATION_STEPS;
 
-            ov5_021F88DC(v1, 1 << 5);
-        }
+        DistWorldSurfMountRenderer_ClearFlags(mountAnimMan, DIST_WORLD_SURF_MOUNT_RENDERER_FLAG_MASK_USE_EXTERNAL_SPRITE_POS_OFFSET);
 
-        *param2 = 3;
+        *cmdState = EVENT_CMD_CASCADE_UP_STATE_FINISH_CASCADING;
     }
 
-    GF_ASSERT(v0 != 3);
-    return 0;
+    GF_ASSERT(updateRes != CASCADE_UPDATE_RES_FINAL_POS_REACHED);
+    return EVENT_CMD_HANDLER_RES_CONTINUE;
 }
 
-static int ov9_02250468(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
+static int EventCmdCascadeUp_FinishCascading(DistWorldSystem *system, FieldTask *task, u16 *cmdState, const void *params)
 {
-    int v0;
-    OverworldAnimManager *v1 = PlayerAvatar_GetSurfMountAnimManager(param0->fieldSystem->playerAvatar);
-    MapObject *v2 = Player_MapObject(param0->fieldSystem->playerAvatar);
-    UnkStruct_ov9_02250138 *v3 = GetLoadedEventDataBuffer(param0);
-    UnkStruct_ov9_0224F930 *v4 = &v3->unk_34;
+    enum CascadeUpdateResult updateRes;
+    OverworldAnimManager *mountAnimMan = PlayerAvatar_GetSurfMountAnimManager(system->fieldSystem->playerAvatar);
+    MapObject *playerMapObj = Player_MapObject(system->fieldSystem->playerAvatar);
+    CmdRunDataCascadeUp *runData = GetLoadedEventDataBuffer(system);
+    CmdRunDataCascadeBase *baseRunData = &runData->base;
 
-    v0 = ov9_0224F970(param0, v4);
+    updateRes = CmdRunDataCascadeBase_Update(system, baseRunData);
 
-    MapObject_SetPos(v2, &v4->unk_34);
-    MapObject_SetSpriteJumpOffset(v2, &v4->unk_40);
+    MapObject_SetPos(playerMapObj, &baseRunData->playerPos);
+    MapObject_SetSpriteJumpOffset(playerMapObj, &baseRunData->jumpOffset);
 
-    ov9_02250138(param0, v3);
+    UpdateCascadeUpCamera(system, runData);
 
-    {
-        VecFx32 *v5;
-        Simple3DRotationAngles *v6 = ov5_021F88A8(v1);
+    Simple3DRotationAngles *mountRotAngles = DistWorldSurfMountRenderer_GetSurfMountRotationAngles(mountAnimMan);
 
-        ov9_02250F1C(&v3->unk_08.x, v3->unk_14.x);
-        ov9_02250F1C(&v3->unk_08.y, v3->unk_14.y);
-        ov9_02250F1C(&v3->unk_08.z, v3->unk_14.z);
+    ApplyRotationToTargetFx32(&runData->mountRotAngles.x, runData->mountRotAnglesDelta.x);
+    ApplyRotationToTargetFx32(&runData->mountRotAngles.y, runData->mountRotAnglesDelta.y);
+    ApplyRotationToTargetFx32(&runData->mountRotAngles.z, runData->mountRotAnglesDelta.z);
 
-        v6->alpha = ((v3->unk_08.x) / FX32_ONE);
-        v6->beta = ((v3->unk_08.y) / FX32_ONE);
-        v6->gamma = ((v3->unk_08.z) / FX32_ONE);
+    mountRotAngles->alpha = runData->mountRotAngles.x / FX32_ONE;
+    mountRotAngles->beta = runData->mountRotAngles.y / FX32_ONE;
+    mountRotAngles->gamma = runData->mountRotAngles.z / FX32_ONE;
 
-        ov9_02250F1C(&v3->unk_2C, v3->unk_30);
-        ov5_021F8908(v1, ((v3->unk_2C) / FX32_ONE));
+    ApplyRotationToTargetFx32(&runData->orbitAngle, runData->orbitAngleDelta);
+    DistWorldSurfMountRenderer_SetOrbitAngle(mountAnimMan, runData->orbitAngle / FX32_ONE);
 
-        {
-            VecFx32 *v7 = ov5_021F88FC(v1);
+    VecFx32 *mountPosFix = DistWorldSurfMountRenderer_GetExternalPosFixPtr(mountAnimMan);
+    mountPosFix->x += runData->mountPosFixDelta.x;
+    mountPosFix->y += runData->mountPosFixDelta.y;
+    mountPosFix->z += runData->mountPosFixDelta.z;
 
-            v7->x += v3->unk_20.x;
-            v7->y += v3->unk_20.y;
-            v7->z += v3->unk_20.z;
-        }
+    if (updateRes == CASCADE_UPDATE_RES_FINAL_POS_REACHED) {
+        const CmdParamsCascadeUp *cmdParams = params;
+        const CmdParamsCascadeBase *baseCmdParams = &cmdParams->base;
+        VecFx32 zeroVec = { 0, 0, 0 };
+
+        int playerTileX = MapObject_GetX(playerMapObj) + baseCmdParams->finishingPosFixTileX;
+        int playerTileY = MapObject_GetY(playerMapObj) + baseCmdParams->finishingPosFixTileY * 2;
+        int playerTileZ = MapObject_GetZ(playerMapObj) + baseCmdParams->finishingPosFixTileZ;
+
+        MapObject_SetX(playerMapObj, playerTileX);
+        MapObject_SetY(playerMapObj, playerTileY);
+        MapObject_SetZ(playerMapObj, playerTileZ);
+        MapObject_UpdateCoords(playerMapObj);
+        MapObject_TryFace(playerMapObj, FACE_RIGHT);
+        MapObject_Turn(playerMapObj, FACE_RIGHT);
+        MapObject_SetSpriteJumpOffset(playerMapObj, &zeroVec);
+        MapObject_SetSpritePosOffset(playerMapObj, &zeroVec);
+        FindAndPrepareNewCurrentFloatingPlatform(system, playerTileX, playerTileY / 2, playerTileZ, FLOATING_PLATFORM_KIND_INVALID);
+        PlayerAvatar_SetDistortionState(system->fieldSystem->playerAvatar, AVATAR_DISTORTION_STATE_CEILING);
+        MapObject_SetHeightCalculationDisabled(playerMapObj, TRUE);
+
+        VecFx32 *mountPosFix2 = DistWorldSurfMountRenderer_GetExternalPosFixPtr(mountAnimMan);
+        *mountPosFix2 = zeroVec;
+
+        mountPosFix2 = DistWorldSurfMountRenderer_GetExternalSpritePosOffsetPtr(mountAnimMan);
+        *mountPosFix2 = zeroVec;
+
+        DistWorldSurfMountRenderer_SetOrbitAngle(mountAnimMan, CASCADE_UP_ORBIT_ANGLE_END);
+        DistWorldSurfMountRenderer_SetFixedRotationAngles(mountAnimMan, FACE_RIGHT, AVATAR_DISTORTION_STATE_CEILING);
+
+        DistWorldSurfMountRenderer_ClearFlags(
+            mountAnimMan,
+            DIST_WORLD_SURF_MOUNT_RENDERER_FLAG_MASK_NO_ROTATION_RECALCULATION
+                | DIST_WORLD_SURF_MOUNT_RENDERER_FLAG_MASK_NO_ORBIT_RECALCULATION
+                | DIST_WORLD_SURF_MOUNT_RENDERER_FLAG_MASK_USE_EXTERNAL_POS_FIX
+                | DIST_WORLD_SURF_MOUNT_RENDERER_FLAG_MASK_USE_EXTERNAL_SPRITE_POS_OFFSET);
+
+        Sound_StopEffect(SEQ_SE_PL_FW463, 0);
+        *cmdState = EVENT_CMD_CASCADE_UP_STATE_MOVE_AWAY;
     }
 
-    if (v0 == 3) {
-        int v8, v9, v10;
-        const UnkStruct_ov9_022523F0 *v11 = param3;
-        const UnkStruct_ov9_0224F8C4 *v12 = &v11->unk_00;
-        VecFx32 v13 = { 0, 0, 0 };
-
-        v8 = MapObject_GetX(v2) + v12->unk_06;
-        v9 = MapObject_GetY(v2) + ((v12->unk_08) * 2);
-        v10 = MapObject_GetZ(v2) + v12->unk_0A;
-
-        MapObject_SetX(v2, v8);
-        MapObject_SetY(v2, v9);
-        MapObject_SetZ(v2, v10);
-        MapObject_UpdateCoords(v2);
-        MapObject_TryFace(v2, 3);
-        MapObject_Turn(v2, 3);
-        MapObject_SetSpriteJumpOffset(v2, &v13);
-        MapObject_SetSpritePosOffset(v2, &v13);
-        FindAndPrepareNewCurrentFloatingPlatform(param0, v8, ((v9) / 2), v10, 4);
-        PlayerAvatar_SetDistortionState(param0->fieldSystem->playerAvatar, AVATAR_DISTORTION_STATE_CEILING);
-        MapObject_SetHeightCalculationDisabled(v2, TRUE);
-
-        {
-            {
-                VecFx32 *v14 = ov5_021F88FC(v1);
-
-                *v14 = v13;
-                v14 = ov5_021F88F0(v1);
-                *v14 = v13;
-            }
-
-            ov5_021F8908(v1, 90);
-            ov5_021F88B4(v1, 3, 5);
-            ov5_021F88DC(v1, 1 << 2 | 1 << 4 | 1 << 6 | 1 << 5);
-        }
-
-        Sound_StopEffect(1488, 0);
-        *param2 = 4;
-    }
-
-    return 0;
+    return EVENT_CMD_HANDLER_RES_CONTINUE;
 }
 
-static int ov9_02250650(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
+static int EventCmdCascadeUp_MoveAway(DistWorldSystem *system, FieldTask *task, u16 *cmdState, const void *params)
 {
-    u32 v0[3] = { 0x97, 0x93, 0x73 };
-    UnkStruct_ov9_02250138 *v1 = GetLoadedEventDataBuffer(param0);
-    MapObject *v2 = Player_MapObject(param0->fieldSystem->playerAvatar);
+    u32 movements[3] = { MOVEMENT_ACTION_151, MOVEMENT_ACTION_147, MOVEMENT_ACTION_115 };
+    CmdRunDataCascadeUp *runData = GetLoadedEventDataBuffer(system);
+    MapObject *playerMapObj = Player_MapObject(system->fieldSystem->playerAvatar);
 
-    if (LocalMapObj_IsAnimationSet(v2) == 0) {
-        return 0;
+    if (!LocalMapObj_IsAnimationSet(playerMapObj)) {
+        return EVENT_CMD_HANDLER_RES_CONTINUE;
     }
 
-    if (v1->unk_02 >= 3) {
-        return 2;
+    if (runData->moveAwayAnimStep >= NELEMS(movements)) {
+        return EVENT_CMD_HANDLER_RES_FINISH;
     }
 
-    LocalMapObj_SetAnimationCode(v2, v0[v1->unk_02]);
-    v1->unk_02++;
-    return 0;
+    LocalMapObj_SetAnimationCode(playerMapObj, movements[runData->moveAwayAnimStep]);
+    runData->moveAwayAnimStep++;
+    return EVENT_CMD_HANDLER_RES_CONTINUE;
 }
 
-static const DistWorldEventCmdHandler Unk_ov9_0225151C[5] = {
-    ov9_02250170,
-    ov9_02250260,
-    ov9_02250388,
-    ov9_02250468,
-    ov9_02250650
+static const DistWorldEventCmdHandler sCascadeUpHandlers[] = {
+    [EVENT_CMD_CASCADE_UP_STATE_INIT] = EventCmdCascadeUp_Init,
+    [EVENT_CMD_CASCADE_UP_STATE_ROTATE_PLAYER] = EventCmdCascadeUp_RotatePlayer,
+    [EVENT_CMD_CASCADE_UP_STATE_CASCADE_DOWN] = EventCmdCascadeUp_CascadeUp,
+    [EVENT_CMD_CASCADE_UP_STATE_FINISH_CASCADING] = EventCmdCascadeUp_FinishCascading,
+    [EVENT_CMD_CASCADE_UP_STATE_MOVE_AWAY] = EventCmdCascadeUp_MoveAway
 };
 
 static int EventCmdStartScript_Handle(DistWorldSystem *system, FieldTask *task, u16 *cmdState, const void *params)
@@ -9484,29 +9565,29 @@ static int CalculateCameraAngleDelta(u16 currentAngleComponent, u16 targetAngleC
     return angleComponentDelta;
 }
 
-static void ov9_02250EE8(s16 *param0, s16 param1)
+static void ApplyRotationToTarget(s16 *target, s16 angle)
 {
-    (*param0) += param1;
+    *target += angle;
 
-    if ((*param0) < 0) {
+    if (*target < 0) {
         do {
-            (*param0) += 360;
-        } while ((*param0) < 0);
+            *target += 360;
+        } while (*target < 0);
     } else {
-        (*param0) %= 360;
+        *target %= 360;
     }
 }
 
-static void ov9_02250F1C(fx32 *param0, fx32 param1)
+static void ApplyRotationToTargetFx32(fx32 *target, fx32 angle)
 {
-    (*param0) += param1;
+    *target += angle;
 
-    if ((*param0) < 0) {
+    if (*target < 0) {
         do {
-            (*param0) += (FX32_ONE * 360);
-        } while ((*param0) < 0);
+            *target += FX32_ONE * 360;
+        } while (*target < 0);
     } else {
-        (*param0) %= (FX32_ONE * 360);
+        *target %= FX32_ONE * 360;
     }
 }
 
@@ -10994,13 +11075,13 @@ static const DistWorldEventCmdHandler *sEventCmdHandlers[EVENT_CMD_KIND_COUNT] =
     [EVENT_CMD_MOVE_PLATFORM] = sMovePlatformHandlers,
     [EVENT_CMD_ADD_MAP_OBJECT_WITH_LOCAL_ID] = sAddMapObjWithLocalIDHandlers,
     [EVENT_CMD_DELETE_MAP_OBJECT_WITH_LOCAL_ID] = sDeleteMapObjWithLocalIDHandlers,
-    [EVENT_CMD_KIND_04] = Unk_ov9_0225151C,
+    [EVENT_CMD_CASCADE_UP] = sCascadeUpHandlers,
     [EVENT_CMD_START_SCRIPT] = sStartScriptHandlers,
     [EVENT_CMD_SET_DISTORTION_WORLD_PROGRESS] = sSetDistortionWorldProgressHandlers,
     [EVENT_CMD_SHOW_GIRATINA_SHADOW] = sEventCmdShowGiratinaShadow,
     [EVENT_CMD_SET_GIRATINA_ANIMATION_FLAG] = sSetGiratinaAnimationFlagHandlers,
     [EVENT_CMD_SET_PUZZLE_FLAG] = sSetPuzzleFlagHandlers,
-    [EVENT_CMD_KIND_0A] = Unk_ov9_02251544,
+    [EVENT_CMD_CASCADE_DOWN] = sCascadeDownHandlers,
     [EVENT_CMD_PLAY_GIRATINA_ARRIVAL] = sPlayGiratinaArrivalHandlers,
     [EVENT_CMD_SHOW_UXIE_BOULDER_TUTO] = sShowUxieBoulderTutoHandlers,
     [EVENT_CMD_SHOW_AZELF_BOULDER_TUTO] = sShowAzelfBoulderTutoHandlers,
@@ -12315,27 +12396,27 @@ static const DistWorldEvent sMapEventsB3F[] = {
     { 0x0, 0x0, 0x0, FLAG_COND_NONE, 0x0, NULL }
 };
 
-static const UnkStruct_ov9_02252384 Unk_ov9_02252384 = {
+static const CmdParamsCascadeDown sMapEventCmdParamsB4F_Waterfall = {
     {
-        0x1,
-        0x1,
-        0x0,
-        -42,
-        0x0,
-        0x0,
-        -664,
-        0x0,
-        0x0,
-        -21,
-        0x0,
-        { 0x0, (FX32_ONE * -1), 0x0 },
+        .movementAxis = AXIS_Y,
+        .movementDir = CASCADE_MOVEMENT_DIR_DOWN,
+        .finishingPosFixTileX = 0x0,
+        .finishingPosFixTileY = -0x2A,
+        .finishingPosFixTileZ = 0x0,
+        .finalPosOffsetTileX = 0x0,
+        .finalPosOffsetTileY = -0x298,
+        .finalPosOffsetTileZ = 0x0,
+        .mapLoadPosOffsetTileX = 0x0,
+        .mapLoadPosOffsetTileY = -0x15,
+        .mapLoadPosOffsetTileZ = 0x0,
+        .posDelta = { 0x0, FX32_ONE * -1, 0x0 },
     },
 };
 
-static const DistWorldEventCmd Unk_ov9_02251438[] = {
+static const DistWorldEventCmd sMapEventB4F_Waterfall[] = {
     {
-        .kind = EVENT_CMD_KIND_0A,
-        .params = &Unk_ov9_02252384,
+        .kind = EVENT_CMD_CASCADE_DOWN,
+        .params = &sMapEventCmdParamsB4F_Waterfall,
     },
     { EVENT_CMD_END, NULL }
 };
@@ -12422,27 +12503,27 @@ static const DistWorldEvent sMapEventsB4F[] = {
     { 0x0, 0x0, 0x0, FLAG_COND_NONE, 0x0, NULL }
 };
 
-static const UnkStruct_ov9_022523F0 Unk_ov9_022523F0 = {
+static const CmdParamsCascadeUp sMapEventCmdParamsB5F_Waterfall = {
     {
-        0x1,
-        0x0,
-        0x0,
-        0x2A,
-        0x0,
-        0x0,
-        0x298,
-        0x0,
-        0x0,
-        0x14,
-        0x0,
-        { 0x0, (FX32_ONE * 8), 0x0 },
+        .movementAxis = AXIS_Y,
+        .movementDir = CASCADE_MOVEMENT_DIR_UP,
+        .finishingPosFixTileX = 0x0,
+        .finishingPosFixTileY = 0x2A,
+        .finishingPosFixTileZ = 0x0,
+        .finalPosOffsetTileX = 0x0,
+        .finalPosOffsetTileY = 0x298,
+        .finalPosOffsetTileZ = 0x0,
+        .mapLoadPosOffsetTileX = 0x0,
+        .mapLoadPosOffsetTileY = 0x14,
+        .mapLoadPosOffsetTileZ = 0x0,
+        .posDelta = { 0x0, FX32_ONE * 8, 0x0 },
     },
 };
 
-static const DistWorldEventCmd Unk_ov9_022513D8[] = {
+static const DistWorldEventCmd sMapEventB5F_Waterfall[] = {
     {
-        .kind = EVENT_CMD_KIND_04,
-        .params = &Unk_ov9_022523F0,
+        .kind = EVENT_CMD_CASCADE_UP,
+        .params = &sMapEventCmdParamsB5F_Waterfall,
     },
     { EVENT_CMD_END, NULL }
 };

@@ -8,6 +8,7 @@
 
 #include "billboard.h"
 #include "field_task.h"
+#include "location.h"
 
 #define GHOST_PROP_GROUP_MAX_COUNT 24
 
@@ -73,7 +74,7 @@ void DistWorld_ResetPersistedCameraAngles(FieldSystem *fieldSystem);
 int ov9_0224A520(FieldSystem *fieldSystem, MapObject *param1);
 void ov9_0224A558(FieldSystem *fieldSystem, Billboard *param1, int param2);
 void ov9_0224A564(FieldSystem *fieldSystem, const Billboard *param1);
-BOOL ov9_0224A59C(FieldSystem *fieldSystem, int param1);
+BOOL DistWorld_HandlePlayerMoved(FieldSystem *fieldSystem, enum FaceDirection playerDir);
 BOOL ov9_0224A67C(FieldSystem *fieldSystem, int param1);
 BOOL ov9_0224A71C(FieldSystem *fieldSystem);
 BOOL ov9_0224A800(FieldSystem *fieldSystem, int param1);

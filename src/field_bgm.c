@@ -1,4 +1,4 @@
-#include "unk_020553DC.h"
+#include "field_bgm.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -104,38 +104,37 @@ const static u16 sTrainerEncounterBGMs[][2] = {
 };
 // clang-format on
 
-void sub_020553DC(void);
-static u16 FieldSystem_GetAltMusicForCyclingRoad(FieldSystem *fieldSystem, int headerID);
-static void Sound_GetBGMFadeOutAndWaitFrames(FieldSystem *fieldSystem, int mode, int *fadeOutFrames, int *waitFrames);
+static u16 FieldBGM_GetAltMusicForCyclingRoad(FieldSystem *fieldSystem, int headerID);
+static void FieldBGM_GetFadeOutAndWaitFrames(FieldSystem *fieldSystem, int mode, int *fadeOutFrames, int *waitFrames);
 
-void sub_020553DC()
+void FieldBGM_Stop()
 {
     Sound_StopWaveOutAndSequences();
     Sound_ClearBGMPauseFlags();
     Sound_SetScene(SOUND_SCENE_NONE);
 }
 
-void Sound_SetSpecialBGM(FieldSystem *fieldSystem, u16 bgmID)
+void FieldBGM_SetOverride(FieldSystem *fieldSystem, u16 bgmID)
 {
     u16 *bgm = FieldOverworldState_GetSpecialBGM(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
     *bgm = bgmID;
 }
 
-u16 Sound_GetSpecialBGM(FieldSystem *fieldSystem)
+u16 FieldBGM_GetOverride(FieldSystem *fieldSystem)
 {
     u16 *bgm = FieldOverworldState_GetSpecialBGM(SaveData_GetFieldOverworldState(fieldSystem->saveData));
     return *bgm;
 }
 
-void Sound_ClearSpecialBGM(FieldSystem *fieldSystem)
+void FieldBGM_ClearOverride(FieldSystem *fieldSystem)
 {
     u16 *bgm = FieldOverworldState_GetSpecialBGM(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
-    *bgm = 0;
+    *bgm = SEQ_NONE;
 }
 
-u16 Sound_GetOverrideBGM(FieldSystem *fieldSystem, enum MapHeader mapID)
+u16 FieldBGM_GetEffective(FieldSystem *fieldSystem, enum MapHeader mapID)
 {
     PlayerAvatar *playerAvatar = fieldSystem->playerAvatar;
     int playerState = PlayerAvatar_GetPlayerState(playerAvatar);
@@ -162,16 +161,16 @@ u16 Sound_GetOverrideBGM(FieldSystem *fieldSystem, enum MapHeader mapID)
         return SEQ_POKERADAR;
     }
 
-    u16 bgmID = Sound_GetBGMByMapID(fieldSystem, mapID);
+    u16 bgmID = FieldBGM_GetForMapHeader(fieldSystem, mapID);
 
-    if (Sound_GetSpecialBGM(fieldSystem) != SEQ_NONE) {
-        bgmID = Sound_GetSpecialBGM(fieldSystem);
+    if (FieldBGM_GetOverride(fieldSystem) != SEQ_NONE) {
+        bgmID = FieldBGM_GetOverride(fieldSystem);
     }
 
     return bgmID;
 }
 
-u16 Sound_GetBGMByMapID(FieldSystem *fieldSystem, int mapID)
+u16 FieldBGM_GetForMapHeader(FieldSystem *fieldSystem, int mapID)
 {
     u16 sdatID;
 
@@ -187,7 +186,7 @@ u16 Sound_GetBGMByMapID(FieldSystem *fieldSystem, int mapID)
         sdatID = altSdatID;
     }
 
-    altSdatID = FieldSystem_GetAltMusicForCyclingRoad(fieldSystem, mapID);
+    altSdatID = FieldBGM_GetAltMusicForCyclingRoad(fieldSystem, mapID);
 
     if (altSdatID != SEQ_NONE) {
         sdatID = altSdatID;
@@ -196,7 +195,7 @@ u16 Sound_GetBGMByMapID(FieldSystem *fieldSystem, int mapID)
     return sdatID;
 }
 
-static u16 FieldSystem_GetAltMusicForCyclingRoad(FieldSystem *fieldSystem, int headerID)
+static u16 FieldBGM_GetAltMusicForCyclingRoad(FieldSystem *fieldSystem, int headerID)
 {
     int x, y;
     FieldOverworldState *fieldState = SaveData_GetFieldOverworldState(fieldSystem->saveData);
@@ -223,10 +222,10 @@ static u16 FieldSystem_GetAltMusicForCyclingRoad(FieldSystem *fieldSystem, int h
         }
     }
 
-    return 0;
+    return SEQ_NONE;
 }
 
-BOOL Sound_TryFadeOutToBGM(FieldSystem *fieldSystem, u16 bgmID, int mode)
+BOOL FieldBGM_TryFadeOut(FieldSystem *fieldSystem, u16 bgmID, int mode)
 {
     PlayerAvatar *playerAvatar;
     int fadeOutFrames, waitFrames, playerState;
@@ -243,7 +242,7 @@ BOOL Sound_TryFadeOutToBGM(FieldSystem *fieldSystem, u16 bgmID, int mode)
     }
 
     Sound_ClearBGMPauseFlags();
-    Sound_GetBGMFadeOutAndWaitFrames(fieldSystem, mode, &fadeOutFrames, &waitFrames);
+    FieldBGM_GetFadeOutAndWaitFrames(fieldSystem, mode, &fadeOutFrames, &waitFrames);
 
     // Yes, it's checking bike twice. Maybe there was a point were Acro and Mach Bikes were still a thing?
     if ((playerState == PLAYER_STATE_CYCLING) || (playerState == PLAYER_STATE_CYCLING)) {
@@ -255,7 +254,7 @@ BOOL Sound_TryFadeOutToBGM(FieldSystem *fieldSystem, u16 bgmID, int mode)
     return TRUE;
 }
 
-static void Sound_GetBGMFadeOutAndWaitFrames(FieldSystem *fieldSystem, int mode, int *fadeOutFrames, int *waitFrames)
+static void FieldBGM_GetFadeOutAndWaitFrames(FieldSystem *fieldSystem, int mode, int *fadeOutFrames, int *waitFrames)
 {
     switch (mode) {
     case 0:
@@ -277,7 +276,7 @@ static void Sound_GetBGMFadeOutAndWaitFrames(FieldSystem *fieldSystem, int mode,
     }
 }
 
-u16 Trainer_GetEncounterBGM(enum TrainerID trainerID)
+u16 FieldBGM_GetEyesMeetForTrainer(enum TrainerID trainerID)
 {
     u8 class = (u8)Trainer_LoadParam(trainerID, TRDATA_CLASS);
     u16 i, bgmID = SEQ_EYE_KID;
@@ -292,18 +291,18 @@ u16 Trainer_GetEncounterBGM(enum TrainerID trainerID)
     return bgmID;
 }
 
-void Sound_TryFadeInBGM(FieldSystem *fieldSystem, int mapID)
+void FieldBGM_TryFadeIn(FieldSystem *fieldSystem, int mapID)
 {
     if (Sound_IsBGMFixed() == 1) {
         return;
     }
 
-    if (Sound_GetCurrentBGM() != Sound_GetBGMByMapID(fieldSystem, mapID)) {
+    if (Sound_GetCurrentBGM() != FieldBGM_GetForMapHeader(fieldSystem, mapID)) {
         Sound_FadeOutBGM(0, 40);
     }
 }
 
-void Sound_PlayMapBGM(FieldSystem *fieldSystem, int mapID)
+void FieldBGM_PlayForMapHeader(FieldSystem *fieldSystem, int mapID)
 {
     u16 bgmID;
 
@@ -313,16 +312,16 @@ void Sound_PlayMapBGM(FieldSystem *fieldSystem, int mapID)
 
     Sound_SetScene(SOUND_SCENE_NONE);
 
-    bgmID = Sound_GetBGMByMapID(fieldSystem, mapID);
+    bgmID = FieldBGM_GetForMapHeader(fieldSystem, mapID);
 
     Sound_SetFieldBGM(bgmID);
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_FIELD, bgmID, 1);
 }
 
-void sub_020556A0(FieldSystem *fieldSystem, int mapID)
+void FieldBGM_PlayEffectiveForMapHeader(FieldSystem *fieldSystem, int mapID)
 {
-    u16 bgmID = Sound_GetOverrideBGM(fieldSystem, mapID);
+    u16 bgmID = FieldBGM_GetEffective(fieldSystem, mapID);
 
-    Sound_SetFieldBGM(Sound_GetBGMByMapID(fieldSystem, mapID));
+    Sound_SetFieldBGM(FieldBGM_GetForMapHeader(fieldSystem, mapID));
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_FIELD, bgmID, 1);
 }

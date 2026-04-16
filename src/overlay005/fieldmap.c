@@ -50,6 +50,7 @@
 #include "comm_player_manager.h"
 #include "dynamic_map_features.h"
 #include "easy3d.h"
+#include "field_bgm.h"
 #include "field_map_change.h"
 #include "field_message.h"
 #include "field_overworld_state.h"
@@ -77,7 +78,6 @@
 #include "script_manager.h"
 #include "system.h"
 #include "unk_0202419C.h"
-#include "unk_020553DC.h"
 #include "unk_020559DC.h"
 #include "vram_transfer.h"
 
@@ -226,7 +226,7 @@ static BOOL FieldMap_Init(ApplicationManager *appMan, int *state)
             ov5_021D5F24(fieldSystem->unk_04->unk_0C, weather);
         }
 
-        sub_020556A0(fieldSystem, fieldSystem->location->mapId);
+        FieldBGM_PlayEffectiveForMapHeader(fieldSystem, fieldSystem->location->mapId);
         FieldSystem_RunInitScript(fieldSystem, INIT_SCRIPT_ON_RESUME);
 
         fieldSystem->unk_04->hBlankSystem = HBlankSystem_New(HEAP_ID_FIELD1);
@@ -428,7 +428,7 @@ static BOOL FieldMap_ChangeZone(FieldSystem *fieldSystem)
     sub_0206184C(fieldSystem->mapObjMan, oldMapID, newMapID, objEventCount, objEventList);
 
     RadarChain_Clear(fieldSystem->chain);
-    Sound_TryFadeOutToBGM(fieldSystem, Sound_GetOverrideBGM(fieldSystem, fieldSystem->location->mapId), 1);
+    FieldBGM_TryFadeOut(fieldSystem, FieldBGM_GetEffective(fieldSystem, fieldSystem->location->mapId), 1);
     sub_0203A418(fieldSystem);
 
     if (fieldSystem->unk_04->unk_0C != NULL) {
@@ -466,7 +466,7 @@ void FieldMap_ChangeZoneDistortionWorld(FieldSystem *fieldSystem, u32 mapId)
 
     sub_0206184C(fieldSystem->mapObjMan, oldMapId, mapId, objEventCount, objEventList);
 
-    Sound_TryFadeOutToBGM(fieldSystem, Sound_GetOverrideBGM(fieldSystem, fieldSystem->location->mapId), 1);
+    FieldBGM_TryFadeOut(fieldSystem, FieldBGM_GetEffective(fieldSystem, fieldSystem->location->mapId), 1);
     sub_0203A418(fieldSystem);
 
     if (fieldSystem->unk_04->unk_0C != NULL) {
