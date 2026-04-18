@@ -43,7 +43,7 @@ _0078:
     WaitTime 20, VAR_RESULT
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_RESORT_AREA, 0, 0x338, 0x1C6, 1
+    Warp MAP_HEADER_RESORT_AREA, 0, 0x338, 0x1C6, DIR_SOUTH
     FadeScreenIn
     WaitFadeScreen
     ReleaseAll

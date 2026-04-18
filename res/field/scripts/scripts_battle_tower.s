@@ -73,7 +73,7 @@ _013A:
     End
 
 _013C:
-    ScrCmd_18C 3, 2
+    ScrCmd_18C 3, DIR_WEST
     End
 
 _0144:
@@ -445,7 +445,7 @@ BattleTower_WarpToElevator:
     CreateJournalEvent LOCATION_EVENT_BATTLE_TOWER, 0, 0, 0, 0
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_BATTLE_TOWER_ELEVATOR, 0, 3, 6, 0
+    Warp MAP_HEADER_BATTLE_TOWER_ELEVATOR, 0, 3, 6, DIR_NORTH
     FadeScreenIn
     WaitFadeScreen
     ReleaseAll

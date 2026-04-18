@@ -110,7 +110,7 @@ TurnbackCaveGiratinaRoom_GoToDistortionWorld:
     SetPartyGiratinaForm GIRATINA_FORM_ORIGIN
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_DISTORTION_WORLD_TURNBACK_CAVE_ROOM, 0, 116, 75, 1
+    Warp MAP_HEADER_DISTORTION_WORLD_TURNBACK_CAVE_ROOM, 0, 116, 75, DIR_SOUTH
     FadeScreenIn
     WaitFadeScreen
     End

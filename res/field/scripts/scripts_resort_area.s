@@ -134,7 +134,7 @@ _0184:
     SetVar VAR_RESORT_VILLA_VISITOR, 0xFF
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_VILLA, 0, 10, 6, 2
+    Warp MAP_HEADER_VILLA, 0, 10, 6, DIR_WEST
     FadeScreenIn
     WaitFadeScreen
     End
@@ -296,7 +296,7 @@ _03D4:
     SetFlag FLAG_VILLA_VISITOR_INSIDE
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_VILLA, 0, 11, 11, 0
+    Warp MAP_HEADER_VILLA, 0, 11, 11, DIR_NORTH
     FadeScreenIn
     WaitFadeScreen
     End
@@ -326,7 +326,7 @@ _043C:
     SetFlag FLAG_VILLA_VISITOR_INSIDE
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_VILLA, 0, 11, 11, 0
+    Warp MAP_HEADER_VILLA, 0, 11, 11, DIR_NORTH
     FadeScreenIn
     WaitFadeScreen
     End
@@ -350,7 +350,7 @@ _049C:
     SetFlag FLAG_VILLA_VISITOR_INSIDE
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_VILLA, 0, 11, 11, 0
+    Warp MAP_HEADER_VILLA, 0, 11, 11, DIR_NORTH
     FadeScreenIn
     WaitFadeScreen
     End
@@ -374,7 +374,7 @@ _04FC:
     SetFlag FLAG_VILLA_VISITOR_INSIDE
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_VILLA, 0, 11, 11, 0
+    Warp MAP_HEADER_VILLA, 0, 11, 11, DIR_NORTH
     FadeScreenIn
     WaitFadeScreen
     End
@@ -398,7 +398,7 @@ _055C:
     SetFlag FLAG_VILLA_VISITOR_INSIDE
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_VILLA, 0, 11, 11, 0
+    Warp MAP_HEADER_VILLA, 0, 11, 11, DIR_NORTH
     FadeScreenIn
     WaitFadeScreen
     End

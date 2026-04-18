@@ -25,7 +25,7 @@ _0037:
     End
 
 _004A:
-    SetPosition 2, 5, 0, 6, 3
+    SetPosition 2, 5, 0, 6, DIR_EAST
     End
 
 _0058:
@@ -53,7 +53,7 @@ _007D:
     GoToIfEq VAR_0x8008, BATTLE_TOWER_MODE_5, _00D9
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_BATTLE_TOWER, 0, 11, 6, 0
+    Warp MAP_HEADER_BATTLE_TOWER, 0, 11, 6, DIR_NORTH
     FadeScreenIn
     WaitFadeScreen
     ReleaseAll
@@ -62,7 +62,7 @@ _007D:
 _00D9:
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_BATTLE_TOWER, 0, 15, 6, 0
+    Warp MAP_HEADER_BATTLE_TOWER, 0, 15, 6, DIR_NORTH
     FadeScreenIn
     WaitFadeScreen
     ReleaseAll

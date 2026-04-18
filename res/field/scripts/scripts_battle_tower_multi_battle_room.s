@@ -43,8 +43,8 @@ BattleTowerMultiBattleRoom_HidePlayer:
     Return
 
 BattleTowerMultiBattleRoom_SetPlayerPositionsForBattle:
-    SetPosition BATTLE_TOWER_MULTI_BATTLE_ROOM_LEADER, 5, 0, 5, 3
-    SetPosition BATTLE_TOWER_MULTI_BATTLE_ROOM_PARTNER, 5, 0, 6, 3
+    SetPosition BATTLE_TOWER_MULTI_BATTLE_ROOM_LEADER, 5, 0, 5, DIR_EAST
+    SetPosition BATTLE_TOWER_MULTI_BATTLE_ROOM_PARTNER, 5, 0, 6, DIR_EAST
     GoTo BattleTowerMultiBattleRoom_EndSetPositions
     End
 
@@ -62,7 +62,7 @@ BattleTowerMultiBattleRoom_EndChallenge:
     SetVar VAR_UNK_0x40D8, 1
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_BATTLE_TOWER, 0, 7, 6, 0
+    Warp MAP_HEADER_BATTLE_TOWER, 0, 7, 6, DIR_NORTH
     FadeScreenIn
     WaitFadeScreen
     ReleaseAll
@@ -78,7 +78,7 @@ BattleTowerMultiBattleRoom_EndLinkMultiChallenge:
     ClearReceivedTempDataAllPlayers
     ScrCmd_135 8
     EndCommunication
-    Warp MAP_HEADER_BATTLE_TOWER, 0, 7, 6, 0
+    Warp MAP_HEADER_BATTLE_TOWER, 0, 7, 6, DIR_NORTH
     FadeScreenIn
     WaitFadeScreen
     ReleaseAll

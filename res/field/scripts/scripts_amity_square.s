@@ -213,11 +213,11 @@ AmitySquare_EnterWithFollowerMon:
     End
 
 AmitySquare_SetFollowerMonPositionWestGate:
-    SetPosition LOCAL_VAR_FOLLOWER_MON_ID, 12, 2, 47, 2
+    SetPosition LOCAL_VAR_FOLLOWER_MON_ID, 12, 2, 47, DIR_WEST
     Return
 
 AmitySquare_SetFollowerMonPositionEastGate:
-    SetPosition LOCAL_VAR_FOLLOWER_MON_ID, 51, 2, 47, 3
+    SetPosition LOCAL_VAR_FOLLOWER_MON_ID, 51, 2, 47, DIR_EAST
     Return
 
 AmitySquare_Unused:
@@ -1166,163 +1166,163 @@ AmitySquare_DoWarp:
 AmitySquare_SetPositionsWarp1:
     ApplyMovement LOCALID_PLAYER, AmitySquare_Movement_PlayerGoToDestinationWarp1
     WaitMovement
-    SetPosition LOCALID_FOLLOWER_MON, 35, 2, 15, 1
+    SetPosition LOCALID_FOLLOWER_MON, 35, 2, 15, DIR_SOUTH
     Return
 
 AmitySquare_SetPositionsWarp2:
     ApplyMovement LOCALID_PLAYER, AmitySquare_Movement_PlayerGoToDestinationWarp2
     WaitMovement
-    SetPosition LOCALID_FOLLOWER_MON, 35, 2, 15, 1
+    SetPosition LOCALID_FOLLOWER_MON, 35, 2, 15, DIR_SOUTH
     Return
 
 AmitySquare_SetPositionsWarp3:
     ApplyMovement LOCALID_PLAYER, AmitySquare_Movement_PlayerGoToDestinationWarp3
     WaitMovement
-    SetPosition LOCALID_FOLLOWER_MON, 35, 2, 15, 1
+    SetPosition LOCALID_FOLLOWER_MON, 35, 2, 15, DIR_SOUTH
     Return
 
 AmitySquare_SetPositionsWarp4:
     ApplyMovement LOCALID_PLAYER, AmitySquare_Movement_PlayerGoToDestinationWarp4
     WaitMovement
-    SetPosition LOCALID_FOLLOWER_MON, 17, 2, 16, 1
+    SetPosition LOCALID_FOLLOWER_MON, 17, 2, 16, DIR_SOUTH
     Return
 
 AmitySquare_SetPositionsWarp5:
     ApplyMovement LOCALID_PLAYER, AmitySquare_Movement_PlayerGoToDestinationWarp5
     WaitMovement
-    SetPosition LOCALID_FOLLOWER_MON, 17, 2, 16, 1
+    SetPosition LOCALID_FOLLOWER_MON, 17, 2, 16, DIR_SOUTH
     Return
 
 AmitySquare_SetPositionsWarp6:
     ApplyMovement LOCALID_PLAYER, AmitySquare_Movement_PlayerGoToDestinationWarp6
     WaitMovement
-    SetPosition LOCALID_FOLLOWER_MON, 17, 2, 16, 1
+    SetPosition LOCALID_FOLLOWER_MON, 17, 2, 16, DIR_SOUTH
     Return
 
 AmitySquare_SetPositionsWarp7:
     ApplyMovement LOCALID_PLAYER, AmitySquare_Movement_PlayerGoToDestinationWarp7
     WaitMovement
-    SetPosition LOCALID_FOLLOWER_MON, 47, 4, 8, 1
+    SetPosition LOCALID_FOLLOWER_MON, 47, 4, 8, DIR_SOUTH
     Return
 
 AmitySquare_SetPositionsWarp8:
     ApplyMovement LOCALID_PLAYER, AmitySquare_Movement_PlayerGoToDestinationWarp8
     WaitMovement
-    SetPosition LOCALID_FOLLOWER_MON, 33, 5, 7, 1
+    SetPosition LOCALID_FOLLOWER_MON, 33, 5, 7, DIR_SOUTH
     Return
 
 AmitySquare_SetPositionsWarp9:
     ApplyMovement LOCALID_PLAYER, AmitySquare_Movement_PlayerGoToDestinationWarp9
     WaitMovement
-    SetPosition LOCALID_FOLLOWER_MON, 15, 4, 10, 1
+    SetPosition LOCALID_FOLLOWER_MON, 15, 4, 10, DIR_SOUTH
     Return
 
 AmitySquare_SetPositionsWarp10:
     ApplyMovement LOCALID_PLAYER, AmitySquare_Movement_PlayerGoToDestinationWarp10
     WaitMovement
-    SetPosition LOCALID_FOLLOWER_MON, 52, 4, 25, 1
+    SetPosition LOCALID_FOLLOWER_MON, 52, 4, 25, DIR_SOUTH
     Return
 
 AmitySquare_SetPositionsWarp11:
     ApplyMovement LOCALID_PLAYER, AmitySquare_Movement_PlayerGoToDestinationWarp11
     WaitMovement
-    SetPosition LOCALID_FOLLOWER_MON, 15, 4, 10, 1
+    SetPosition LOCALID_FOLLOWER_MON, 15, 4, 10, DIR_SOUTH
     Return
 
 AmitySquare_SetPositionsWarp12:
     ApplyMovement LOCALID_PLAYER, AmitySquare_Movement_PlayerGoToDestinationWarp12
     WaitMovement
-    SetPosition LOCALID_FOLLOWER_MON, 33, 5, 7, 1
+    SetPosition LOCALID_FOLLOWER_MON, 33, 5, 7, DIR_SOUTH
     Return
 
 AmitySquare_SetPositionsWarp13:
     ApplyMovement LOCALID_PLAYER, AmitySquare_Movement_PlayerGoToDestinationWarp13
     WaitMovement
-    SetPosition LOCALID_FOLLOWER_MON, 52, 4, 25, 1
+    SetPosition LOCALID_FOLLOWER_MON, 52, 4, 25, DIR_SOUTH
     Return
 
 AmitySquare_SetPositionsWarp14:
     ApplyMovement LOCALID_PLAYER, AmitySquare_Movement_PlayerGoToDestinationWarp14
     WaitMovement
-    SetPosition LOCALID_FOLLOWER_MON, 26, 6, 9, 1
+    SetPosition LOCALID_FOLLOWER_MON, 26, 6, 9, DIR_SOUTH
     Return
 
 AmitySquare_SetPositionsWarp15:
     ApplyMovement LOCALID_PLAYER, AmitySquare_Movement_PlayerGoToDestinationWarp15
     WaitMovement
-    SetPosition LOCALID_FOLLOWER_MON, 41, 3, 16, 1
+    SetPosition LOCALID_FOLLOWER_MON, 41, 3, 16, DIR_SOUTH
     Return
 
 AmitySquare_SetPositionsWarp16:
     ApplyMovement LOCALID_PLAYER, AmitySquare_Movement_PlayerGoToDestinationWarp16
     WaitMovement
-    SetPosition LOCALID_FOLLOWER_MON, 52, 4, 25, 1
+    SetPosition LOCALID_FOLLOWER_MON, 52, 4, 25, DIR_SOUTH
     Return
 
 AmitySquare_SetPositionsWarp17:
     ApplyMovement LOCALID_PLAYER, AmitySquare_Movement_PlayerGoToDestinationWarp17
     WaitMovement
-    SetPosition LOCALID_FOLLOWER_MON, 41, 3, 16, 1
+    SetPosition LOCALID_FOLLOWER_MON, 41, 3, 16, DIR_SOUTH
     Return
 
 AmitySquare_SetPositionsWarp18:
     ApplyMovement LOCALID_PLAYER, AmitySquare_Movement_PlayerGoToDestinationWarp18
     WaitMovement
-    SetPosition LOCALID_FOLLOWER_MON, 26, 6, 9, 1
+    SetPosition LOCALID_FOLLOWER_MON, 26, 6, 9, DIR_SOUTH
     Return
 
 AmitySquare_SetPositionsWarp19:
     ApplyMovement LOCALID_PLAYER, AmitySquare_Movement_PlayerGoToDestinationWarp19
     WaitMovement
-    SetPosition LOCALID_FOLLOWER_MON, 47, 4, 8, 1
+    SetPosition LOCALID_FOLLOWER_MON, 47, 4, 8, DIR_SOUTH
     Return
 
 AmitySquare_SetPositionsWarp20:
     ApplyMovement LOCALID_PLAYER, AmitySquare_Movement_PlayerGoToDestinationWarp20
     WaitMovement
-    SetPosition LOCALID_FOLLOWER_MON, 47, 2, 34, 1
+    SetPosition LOCALID_FOLLOWER_MON, 47, 2, 34, DIR_SOUTH
     Return
 
 AmitySquare_SetPositionsWarp21:
     ApplyMovement LOCALID_PLAYER, AmitySquare_Movement_PlayerGoToDestinationWarp21
     WaitMovement
-    SetPosition LOCALID_FOLLOWER_MON, 15, 4, 10, 1
+    SetPosition LOCALID_FOLLOWER_MON, 15, 4, 10, DIR_SOUTH
     Return
 
 AmitySquare_SetPositionsWarp22:
     ApplyMovement LOCALID_PLAYER, AmitySquare_Movement_PlayerGoToDestinationWarp22
     WaitMovement
-    SetPosition LOCALID_FOLLOWER_MON, 47, 4, 8, 1
+    SetPosition LOCALID_FOLLOWER_MON, 47, 4, 8, DIR_SOUTH
     Return
 
 AmitySquare_SetPositionsWarp23:
     ApplyMovement LOCALID_PLAYER, AmitySquare_Movement_PlayerGoToDestinationWarp23
     WaitMovement
-    SetPosition LOCALID_FOLLOWER_MON, 33, 5, 7, 1
+    SetPosition LOCALID_FOLLOWER_MON, 33, 5, 7, DIR_SOUTH
     Return
 
 AmitySquare_SetPositionsWarp24:
     ApplyMovement LOCALID_PLAYER, AmitySquare_Movement_PlayerGoToDestinationWarp24
     WaitMovement
-    SetPosition LOCALID_FOLLOWER_MON, 47, 2, 34, 1
+    SetPosition LOCALID_FOLLOWER_MON, 47, 2, 34, DIR_SOUTH
     Return
 
 AmitySquare_SetPositionsWarp25:
     ApplyMovement LOCALID_PLAYER, AmitySquare_Movement_PlayerGoToDestinationWarp25
     WaitMovement
-    SetPosition LOCALID_FOLLOWER_MON, 52, 4, 25, 1
+    SetPosition LOCALID_FOLLOWER_MON, 52, 4, 25, DIR_SOUTH
     Return
 
 AmitySquare_SetPositionsWarp26:
     ApplyMovement LOCALID_PLAYER, AmitySquare_Movement_PlayerGoToDestinationWarp26
     WaitMovement
-    SetPosition LOCALID_FOLLOWER_MON, 15, 4, 10, 1
+    SetPosition LOCALID_FOLLOWER_MON, 15, 4, 10, DIR_SOUTH
     Return
 
 AmitySquare_SetPositionsWarp27:
     ApplyMovement LOCALID_PLAYER, AmitySquare_Movement_PlayerGoToDestinationWarp27
     WaitMovement
-    SetPosition LOCALID_FOLLOWER_MON, 33, 5, 7, 1
+    SetPosition LOCALID_FOLLOWER_MON, 33, 5, 7, DIR_SOUTH
     Return
 
 _174A:

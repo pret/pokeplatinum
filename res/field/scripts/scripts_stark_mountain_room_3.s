@@ -235,7 +235,7 @@ _019C:
     ClearFlag FLAG_UNK_0x022E
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_STARK_MOUNTAIN_OUTSIDE, 0, 0x2EF, 233, 0
+    Warp MAP_HEADER_STARK_MOUNTAIN_OUTSIDE, 0, 0x2EF, 233, DIR_NORTH
     FadeScreenIn
     WaitFadeScreen
     End

@@ -19,7 +19,7 @@ VistaLighthouseElevator_ElevatorUp:
     Call VistaLighthouseElevator_ElevatorAnimation
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_VISTA_LIGHTHOUSE, 0, 6, 10, 1
+    Warp MAP_HEADER_VISTA_LIGHTHOUSE, 0, 6, 10, DIR_SOUTH
     FadeScreenIn
     WaitFadeScreen
     End
@@ -29,7 +29,7 @@ VistaLighthouseElevator_ElevatorDown:
     Call VistaLighthouseElevator_ElevatorAnimation
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_SUNYSHORE_CITY, 0, 0x376, 0x317, 1
+    Warp MAP_HEADER_SUNYSHORE_CITY, 0, 0x376, 0x317, DIR_SOUTH
     FadeScreenIn
     WaitFadeScreen
     End

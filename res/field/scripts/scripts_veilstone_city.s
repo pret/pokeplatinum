@@ -614,7 +614,7 @@ VeilstoneCity_WarpToWarehouse:
     PlaySE SEQ_SE_DP_KAIDAN2
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_VEILSTONE_CITY_GALACTIC_WAREHOUSE, 0, 8, 11, 0
+    Warp MAP_HEADER_VEILSTONE_CITY_GALACTIC_WAREHOUSE, 0, 8, 11, DIR_NORTH
     FadeScreenIn
     WaitFadeScreen
     End

@@ -89,7 +89,7 @@ BattleTowerBattleSalon_HidePlayer:
     Return
 
 BattleTowerBattleSalon_SetAttendantPositionAtDoor:
-    SetPosition BATTLE_TOWER_BATTLE_SALON_TEALA, 8, 0, 3, 1
+    SetPosition BATTLE_TOWER_BATTLE_SALON_TEALA, 8, 0, 3, DIR_SOUTH
     End
 
 BattleTowerBattleSalon_Enter:
@@ -121,7 +121,7 @@ BattleTowerBattleSalon_Quit:
     SetVar VAR_UNK_0x40D8, 3
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_BATTLE_TOWER, 0, 11, 6, 0
+    Warp MAP_HEADER_BATTLE_TOWER, 0, 11, 6, DIR_NORTH
     FadeScreenIn
     WaitFadeScreen
     End
@@ -135,7 +135,7 @@ BattleTowerBattleSalon_EnterBattleRoom:
     SetVar VAR_UNK_0x40DB, 2
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_BATTLE_TOWER_ELEVATOR, 0, 3, 6, 0
+    Warp MAP_HEADER_BATTLE_TOWER_ELEVATOR, 0, 3, 6, DIR_NORTH
     FadeScreenIn
     WaitFadeScreen
     ReleaseAll
@@ -339,7 +339,7 @@ BattleTowerBattleSalon_PartnerEnterBattleRoom:
     WaitMovement
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_BATTLE_TOWER_BATTLE_SALON, 0, 8, 4, 0
+    Warp MAP_HEADER_BATTLE_TOWER_BATTLE_SALON, 0, 8, 4, DIR_NORTH
     FadeScreenIn
     WaitFadeScreen
     ReleaseAll

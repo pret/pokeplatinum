@@ -19,7 +19,7 @@ HearthomeCitySoutheastHouseElevator_ElevatorUp:
     Call HearthomeCitySoutheastHouseElevator_ElevatorAnimation
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_HEARTHOME_CITY_SOUTHEAST_HOUSE_2F, 0, 18, 3, 1
+    Warp MAP_HEADER_HEARTHOME_CITY_SOUTHEAST_HOUSE_2F, 0, 18, 3, DIR_SOUTH
     FadeScreenIn
     WaitFadeScreen
     End
@@ -29,7 +29,7 @@ HearthomeCitySoutheastHouseElevator_ElevatorDown:
     Call HearthomeCitySoutheastHouseElevator_ElevatorAnimation
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_HEARTHOME_CITY_SOUTHEAST_HOUSE_1F, 0, 18, 3, 1
+    Warp MAP_HEADER_HEARTHOME_CITY_SOUTHEAST_HOUSE_1F, 0, 18, 3, DIR_SOUTH
     FadeScreenIn
     WaitFadeScreen
     End

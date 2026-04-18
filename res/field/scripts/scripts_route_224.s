@@ -34,7 +34,7 @@ _009A:
     End
 
 _009C:
-    ScrCmd_18C 3, 0
+    ScrCmd_18C 3, DIR_NORTH
     Return
 
 Route224_Unused:
@@ -101,7 +101,7 @@ _0124:
     WaitFadeScreen
     EnableHiddenLocation HIDDEN_LOCATION_SEABREAK_PATH
     ScrCmd_333 0
-    Warp MAP_HEADER_ROUTE_224, 0, 0x38C, 0x1EC, 0
+    Warp MAP_HEADER_ROUTE_224, 0, 0x38C, 0x1EC, DIR_NORTH
     WaitTime 15, VAR_RESULT
     FadeScreenIn FADE_SCREEN_SPEED_SLOW, COLOR_WHITE
     WaitFadeScreen

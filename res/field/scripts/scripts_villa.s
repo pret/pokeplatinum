@@ -1195,7 +1195,7 @@ _1092:
     ClearFlag FLAG_UNK_0x02C7
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_VILLA, 0, 10, 6, 1
+    Warp MAP_HEADER_VILLA, 0, 10, 6, DIR_SOUTH
     FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_0x8002, 0, _1485

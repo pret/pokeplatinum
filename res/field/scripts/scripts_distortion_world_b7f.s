@@ -17,7 +17,7 @@ _001A:
 _001E:
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_DISTORTION_WORLD_GIRATINA_ROOM, 0, 15, 25, 0
+    Warp MAP_HEADER_DISTORTION_WORLD_GIRATINA_ROOM, 0, 15, 25, DIR_NORTH
     FadeScreenIn
     WaitFadeScreen
     End

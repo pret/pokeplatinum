@@ -70,7 +70,7 @@ PastoriaCityObservatoryGate1F_StartSafariGame:
     PlaySE SEQ_SE_DP_KAIDAN2
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_GREAT_MARSH_6, 0, 68, 116, 0
+    Warp MAP_HEADER_GREAT_MARSH_6, 0, 68, 116, DIR_NORTH
     FadeScreenIn
     WaitFadeScreen
     End
@@ -179,7 +179,7 @@ PastoriaCityObservatoryGate1F_ReturnToGreatMarsh:
     WaitMovement
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_GREAT_MARSH_6, 0, 68, 116, 0
+    Warp MAP_HEADER_GREAT_MARSH_6, 0, 68, 116, DIR_NORTH
     FadeScreenIn
     WaitFadeScreen
     End

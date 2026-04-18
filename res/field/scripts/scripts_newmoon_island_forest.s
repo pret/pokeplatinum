@@ -77,7 +77,7 @@ NewmoonIslandForest_ReturnToHarborInn:
     FadeScreenOut FADE_SCREEN_SPEED_SLOW
     WaitFadeScreen
     WaitTime 120, VAR_RESULT
-    Warp MAP_HEADER_CANALAVE_CITY_HARBOR_INN, 0, 8, 6, 1
+    Warp MAP_HEADER_CANALAVE_CITY_HARBOR_INN, 0, 8, 6, DIR_SOUTH
     FadeScreenIn FADE_SCREEN_SPEED_SLOW
     WaitFadeScreen
     ReleaseAll

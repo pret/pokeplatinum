@@ -394,7 +394,7 @@ SpearPillar_WaitThenWarpToSpearPillarDistorted:
     SetSpeciesSeen SPECIES_DIALGA
     SetSpeciesSeen SPECIES_PALKIA
     RestoreCamera
-    Warp MAP_HEADER_SPEAR_PILLAR_DISTORTED, 0, 30, 30, 0
+    Warp MAP_HEADER_SPEAR_PILLAR_DISTORTED, 0, 30, 30, DIR_NORTH
     End
 
     .balign 4, 0

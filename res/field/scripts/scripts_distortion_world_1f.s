@@ -31,7 +31,7 @@ _003A:
     SetPartyGiratinaForm GIRATINA_FORM_ALTERED
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_SPEAR_PILLAR_DISTORTED, 0, 31, 33, 1
+    Warp MAP_HEADER_SPEAR_PILLAR_DISTORTED, 0, 31, 33, DIR_SOUTH
     FadeScreenIn
     WaitFadeScreen
     End
