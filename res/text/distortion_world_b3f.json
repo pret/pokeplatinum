@@ -2,7 +2,7 @@
   "key": 29814,
   "messages": [
     {
-      "id": "pl_msg_00000317_00000",
+      "id": "DistortionWorldB3F_Text_DoYouUnderstandGenes",
       "en_US": [
         "Cyrus: ...The shadowy Pokémon isn’t\n",
         "here.\r",
@@ -15,15 +15,15 @@
       ]
     },
     {
-      "id": "pl_msg_00000317_00001",
+      "id": "DistortionWorldB3F_Text_YouveImpressedMe",
       "en_US": "...If it’s true, you’ve impressed me.\r"
     },
     {
-      "id": "pl_msg_00000317_00002",
+      "id": "DistortionWorldB3F_Text_OfCourseYouWouldnt",
       "en_US": "...No, of course, you wouldn’t.\r"
     },
     {
-      "id": "pl_msg_00000317_00003",
+      "id": "DistortionWorldB3F_Text_TwoWorldsMustBalance",
       "en_US": [
         "Genes can be considered the blueprints\n",
         "of all life-forms.\r",
@@ -57,7 +57,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000317_00004",
+      "id": "DistortionWorldB3F_Text_DefeatingThatPokemonMatters",
       "en_US": [
         "The shadowy Pokémon must have made\n",
         "this bizarre world.\r",

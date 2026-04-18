@@ -2,27 +2,27 @@
 #include "res/text/bank/distortion_world_turnback_cave_room.h"
 
 
-    ScriptEntry _000A
-    ScriptEntry _000E
+    ScriptEntry DistortionWorldTurnbackCaveRoom_OnTransition
+    ScriptEntry DistortionWorldTurnbackCaveRoom_Portal
     ScriptEntryEnd
 
-_000A:
+DistortionWorldTurnbackCaveRoom_OnTransition:
     InitPersistedMapFeaturesForDistortionWorld
     End
 
-_000E:
+DistortionWorldTurnbackCaveRoom_Portal:
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    Message 0
+    Message DistortionWorldTurnbackCaveRoom_Text_LeapIntoPortal
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _002E
+    GoToIfEq VAR_RESULT, MENU_YES, DistortionWorldTurnbackCaveRoom_GoToTurnbackCave
     CloseMessage
     ReleaseAll
     End
 
-_002E:
+DistortionWorldTurnbackCaveRoom_GoToTurnbackCave:
     BufferPlayerName 0
-    Message 1
+    Message DistortionWorldTurnbackCaveRoom_Text_PlayerLeaptIntoPortal
     CloseMessage
     PlaySE SEQ_SE_PL_SYUWA
     SetPartyGiratinaForm GIRATINA_FORM_ALTERED

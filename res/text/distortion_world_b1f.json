@@ -2,7 +2,7 @@
   "key": 29806,
   "messages": [
     {
-      "id": "pl_msg_00000315_00000",
+      "id": "DistortionWorldB1F_Text_WillWeSeeGiratina",
       "en_US": [
         "Cynthia: Will we get to see GIRATINA if\n",
         "we keep going down?\r",
@@ -11,7 +11,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000315_00001",
+      "id": "DistortionWorldB1F_Text_MespritCry",
       "en_US": "MESPRIT: Piih!\r"
     }
   ]

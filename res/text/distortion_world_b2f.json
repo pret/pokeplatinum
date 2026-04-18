@@ -2,7 +2,7 @@
   "key": 29802,
   "messages": [
     {
-      "id": "pl_msg_00000316_00000",
+      "id": "DistortionWorldB2F_Text_LetsSplitUp",
       "en_US": [
         "Cynthia: The legend of GIRATINA has\n",
         "been all but forgotten but to a few...\r",
@@ -17,7 +17,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000316_00001",
+      "id": "DistortionWorldB2F_Text_DontNeedToGoTogether",
       "en_US": [
         "We don’t need to go together now.\n",
         "Let’s keep looking for the way down."
