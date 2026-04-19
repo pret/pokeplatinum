@@ -163,14 +163,14 @@ int ov58_021D0D80(ApplicationManager *appMan, int *param1)
         GX_SetVisiblePlane(0);
         GXS_SetVisiblePlane(0);
 
-        Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_39, 0x40000);
+        Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_DRAWING, HEAP_SIZE_DRAWING);
 
-        v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_02095EAC), HEAP_ID_39);
+        v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_02095EAC), HEAP_ID_DRAWING);
         memset(v0, 0, sizeof(UnkStruct_02095EAC));
-        v0->unk_00 = BgConfig_New(HEAP_ID_39);
+        v0->unk_00 = BgConfig_New(HEAP_ID_DRAWING);
 
-        v0->unk_0C = StringTemplate_Default(HEAP_ID_39);
-        v0->unk_10 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0425, HEAP_ID_39);
+        v0->unk_0C = StringTemplate_Default(HEAP_ID_DRAWING);
+        v0->unk_10 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_DRAWING, HEAP_ID_DRAWING);
 
         SetAutorepeat(4, 8);
 
@@ -179,14 +179,14 @@ int ov58_021D0D80(ApplicationManager *appMan, int *param1)
 
         SetScreenColorBrightness(DS_SCREEN_MAIN, COLOR_BLACK);
         SetScreenColorBrightness(DS_SCREEN_SUB, COLOR_BLACK);
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_CIRCLE_IN, FADE_TYPE_CIRCLE_IN, COLOR_BLACK, 16, 1, HEAP_ID_39);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_CIRCLE_IN, FADE_TYPE_CIRCLE_IN, COLOR_BLACK, 16, 1, HEAP_ID_DRAWING);
 
         {
             UnkStruct_0203DDFC *v2 = (UnkStruct_0203DDFC *)ApplicationManager_Args(appMan);
             v0->unk_08 = v2;
         }
 
-        v1 = NARC_ctor(NARC_INDEX_GRAPHIC__OEKAKI, HEAP_ID_39);
+        v1 = NARC_ctor(NARC_INDEX_GRAPHIC__OEKAKI, HEAP_ID_DRAWING);
 
         ov58_021D142C(v0, v1);
 
@@ -354,7 +354,7 @@ int ov58_021D1018(ApplicationManager *appMan, int *param1)
         Heap_Free(v0->unk_08);
         ApplicationManager_FreeData(appMan);
         SetVBlankCallback(NULL, NULL);
-        Heap_Destroy(HEAP_ID_39);
+        Heap_Destroy(HEAP_ID_DRAWING);
         sub_02037B58(2);
 
         return 1;
@@ -501,10 +501,10 @@ static void ov58_021D11A4(BgConfig *param0)
         Bg_InitFromTemplate(param0, BG_LAYER_SUB_1, &v5, 0);
     }
 
-    Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, HEAP_ID_39);
-    Bg_ClearTilesRange(4, 32, 0, HEAP_ID_39);
-    Bg_ClearTilesRange(BG_LAYER_MAIN_1, 32, 0, HEAP_ID_39);
-    Bg_ClearTilesRange(5, 32, 0, HEAP_ID_39);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, HEAP_ID_DRAWING);
+    Bg_ClearTilesRange(4, 32, 0, HEAP_ID_DRAWING);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_1, 32, 0, HEAP_ID_DRAWING);
+    Bg_ClearTilesRange(5, 32, 0, HEAP_ID_DRAWING);
 }
 
 static void ov58_021D12C4(UnkStruct_02095EAC *param0)
@@ -512,15 +512,15 @@ static void ov58_021D12C4(UnkStruct_02095EAC *param0)
     int v0;
 
     for (v0 = 0; v0 < 5; v0++) {
-        param0->unk_14[v0] = String_Init(7 + 1, HEAP_ID_39);
+        param0->unk_14[v0] = String_Init(7 + 1, HEAP_ID_DRAWING);
         param0->unk_43E6[v0].unk_08_3 = 0;
         param0->unk_4418[v0].unk_02 = 0;
         param0->unk_398[v0][0] = NULL;
         param0->unk_398[v0][1] = NULL;
     }
 
-    param0->unk_28 = String_Init(10, HEAP_ID_39);
-    param0->unk_2C = String_Init(40 * 2, HEAP_ID_39);
+    param0->unk_28 = String_Init(10, HEAP_ID_DRAWING);
+    param0->unk_2C = String_Init(40 * 2, HEAP_ID_DRAWING);
     param0->unk_43DA = 0;
     param0->unk_43DB = 1;
     param0->unk_9458 = 1;
@@ -541,8 +541,8 @@ static void ov58_021D12C4(UnkStruct_02095EAC *param0)
 
     MessageLoader_GetString(param0->unk_10, 7, param0->unk_28);
 
-    param0->unk_442C = Heap_Alloc(HEAP_ID_39, 30 * 16 * 32);
-    param0->unk_9454 = YesNoTouchMenu_New(HEAP_ID_39);
+    param0->unk_442C = Heap_Alloc(HEAP_ID_DRAWING, 30 * 16 * 32);
+    param0->unk_9454 = YesNoTouchMenu_New(HEAP_ID_DRAWING);
     param0->unk_378 = 0;
 }
 
@@ -576,29 +576,29 @@ static void ov58_021D142C(UnkStruct_02095EAC *param0, NARC *param1)
 {
     BgConfig *v0 = param0->unk_00;
 
-    Graphics_LoadPaletteFromOpenNARC(param1, 0, 0, 0, 16 * 2 * 2, HEAP_ID_39);
-    Graphics_LoadPaletteFromOpenNARC(param1, 1, 4, 0, 16 * 2 * 2, HEAP_ID_39);
-    Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, HEAP_ID_39);
-    Font_LoadScreenIndicatorsPalette(4, 13 * 0x20, HEAP_ID_39);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 2, v0, 2, 0, 32 * 8 * 0x20, 1, HEAP_ID_39);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 4, v0, 2, 0, 32 * 24 * 2, 1, HEAP_ID_39);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 3, v0, 5, 0, 32 * 8 * 0x20, 1, HEAP_ID_39);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 5, v0, 5, 0, 32 * 24 * 2, 1, HEAP_ID_39);
-    LoadMessageBoxGraphics(v0, BG_LAYER_MAIN_0, 1, 10, Options_Frame(param0->unk_08->options), HEAP_ID_39);
-    LoadStandardWindowGraphics(v0, BG_LAYER_MAIN_0, 1 + (18 + 12), 11, 0, HEAP_ID_39);
+    Graphics_LoadPaletteFromOpenNARC(param1, 0, 0, 0, 16 * 2 * 2, HEAP_ID_DRAWING);
+    Graphics_LoadPaletteFromOpenNARC(param1, 1, 4, 0, 16 * 2 * 2, HEAP_ID_DRAWING);
+    Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, HEAP_ID_DRAWING);
+    Font_LoadScreenIndicatorsPalette(4, 13 * 0x20, HEAP_ID_DRAWING);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 2, v0, 2, 0, 32 * 8 * 0x20, 1, HEAP_ID_DRAWING);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 4, v0, 2, 0, 32 * 24 * 2, 1, HEAP_ID_DRAWING);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 3, v0, 5, 0, 32 * 8 * 0x20, 1, HEAP_ID_DRAWING);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 5, v0, 5, 0, 32 * 24 * 2, 1, HEAP_ID_DRAWING);
+    LoadMessageBoxGraphics(v0, BG_LAYER_MAIN_0, 1, 10, Options_Frame(param0->unk_08->options), HEAP_ID_DRAWING);
+    LoadStandardWindowGraphics(v0, BG_LAYER_MAIN_0, 1 + (18 + 12), 11, 0, HEAP_ID_DRAWING);
 }
 
 static void ov58_021D1524(void)
 {
     {
         CharTransferTemplate v0 = {
-            20, 2048, 2048, HEAP_ID_39
+            20, 2048, 2048, HEAP_ID_DRAWING
         };
 
         CharTransfer_Init(&v0);
     }
 
-    PlttTransfer_Init(20, HEAP_ID_39);
+    PlttTransfer_Init(20, HEAP_ID_DRAWING);
     CharTransfer_ClearBuffers();
     PlttTransfer_Clear();
 }
@@ -610,21 +610,21 @@ static void ov58_021D1554(UnkStruct_02095EAC *param0, NARC *param1)
     NNS_G2dInitOamManagerModule();
 
     RenderOam_Init(0, 126, 0, 32, 0, 126, 0, 32, 39);
-    param0->unk_34 = SpriteList_InitRendering(50 + 3, &param0->unk_38, HEAP_ID_39);
+    param0->unk_34 = SpriteList_InitRendering(50 + 3, &param0->unk_38, HEAP_ID_DRAWING);
     SetSubScreenViewRect(&param0->unk_38, 0, 256 * FX32_ONE);
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_1C4[v0] = SpriteResourceCollection_New(2, v0, HEAP_ID_39);
+        param0->unk_1C4[v0] = SpriteResourceCollection_New(2, v0, HEAP_ID_DRAWING);
     }
 
-    param0->unk_1D4[0][0] = SpriteResourceCollection_AddTilesFrom(param0->unk_1C4[0], param1, 6, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_39);
-    param0->unk_1D4[0][1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_1C4[1], param1, 0, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 7, HEAP_ID_39);
-    param0->unk_1D4[0][2] = SpriteResourceCollection_AddFrom(param0->unk_1C4[2], param1, 7, 1, 0, 2, HEAP_ID_39);
-    param0->unk_1D4[0][3] = SpriteResourceCollection_AddFrom(param0->unk_1C4[3], param1, 8, 1, 0, 3, HEAP_ID_39);
-    param0->unk_1D4[1][0] = SpriteResourceCollection_AddTilesFrom(param0->unk_1C4[0], param1, 6, 1, 1, NNS_G2D_VRAM_TYPE_2DSUB, HEAP_ID_39);
-    param0->unk_1D4[1][1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_1C4[1], param1, 0, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 3, HEAP_ID_39);
-    param0->unk_1D4[1][2] = SpriteResourceCollection_AddFrom(param0->unk_1C4[2], param1, 7, 1, 1, 2, HEAP_ID_39);
-    param0->unk_1D4[1][3] = SpriteResourceCollection_AddFrom(param0->unk_1C4[3], param1, 8, 1, 1, 3, HEAP_ID_39);
+    param0->unk_1D4[0][0] = SpriteResourceCollection_AddTilesFrom(param0->unk_1C4[0], param1, 6, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_DRAWING);
+    param0->unk_1D4[0][1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_1C4[1], param1, 0, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 7, HEAP_ID_DRAWING);
+    param0->unk_1D4[0][2] = SpriteResourceCollection_AddFrom(param0->unk_1C4[2], param1, 7, 1, 0, 2, HEAP_ID_DRAWING);
+    param0->unk_1D4[0][3] = SpriteResourceCollection_AddFrom(param0->unk_1C4[3], param1, 8, 1, 0, 3, HEAP_ID_DRAWING);
+    param0->unk_1D4[1][0] = SpriteResourceCollection_AddTilesFrom(param0->unk_1C4[0], param1, 6, 1, 1, NNS_G2D_VRAM_TYPE_2DSUB, HEAP_ID_DRAWING);
+    param0->unk_1D4[1][1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_1C4[1], param1, 0, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 3, HEAP_ID_DRAWING);
+    param0->unk_1D4[1][2] = SpriteResourceCollection_AddFrom(param0->unk_1C4[2], param1, 7, 1, 1, 2, HEAP_ID_DRAWING);
+    param0->unk_1D4[1][3] = SpriteResourceCollection_AddFrom(param0->unk_1C4[3], param1, 8, 1, 1, 3, HEAP_ID_DRAWING);
 
     SpriteTransfer_RequestChar(param0->unk_1D4[0][0]);
     SpriteTransfer_RequestChar(param0->unk_1D4[1][0]);
@@ -667,7 +667,7 @@ static void ov58_021D16D8(UnkStruct_02095EAC *param0)
         v1.affineZRotation = 0;
         v1.priority = 1;
         v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-        v1.heapID = HEAP_ID_39;
+        v1.heapID = HEAP_ID_DRAWING;
 
         for (v0 = 0; v0 < 5; v0++) {
             v1.resourceData = &param0->unk_218;
@@ -1143,7 +1143,7 @@ static int ov58_021D20C8(UnkStruct_02095EAC *param0, int param1)
 static int ov58_021D20F4(UnkStruct_02095EAC *param0, int param1)
 {
     if (++param0->unk_374 > 60) {
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_CIRCLE_OUT, FADE_TYPE_CIRCLE_OUT, COLOR_BLACK, 16, 1, HEAP_ID_39);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_CIRCLE_OUT, FADE_TYPE_CIRCLE_OUT, COLOR_BLACK, 16, 1, HEAP_ID_DRAWING);
         param1 = 3;
     }
 
@@ -1233,7 +1233,7 @@ static int ov58_021D2270(UnkStruct_02095EAC *param0, int param1)
 static int ov58_021D2298(UnkStruct_02095EAC *param0, int param1)
 {
     if (CommTiming_IsSyncState(200) || (CommSys_ConnectedCount() == 1)) {
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_CIRCLE_OUT, FADE_TYPE_CIRCLE_OUT, COLOR_BLACK, 16, 1, HEAP_ID_39);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_CIRCLE_OUT, FADE_TYPE_CIRCLE_OUT, COLOR_BLACK, 16, 1, HEAP_ID_DRAWING);
         param1 = 3;
     }
 
@@ -1700,7 +1700,7 @@ static int ov58_021D2A54(UnkStruct_02095EAC *param0)
 
 static void ov58_021D2A98(UnkStruct_02095EAC *param0, int param1, int param2)
 {
-    String *v0 = String_Init(40 * 2, HEAP_ID_39);
+    String *v0 = String_Init(40 * 2, HEAP_ID_DRAWING);
 
     MessageLoader_GetString(param0->unk_10, param1, v0);
     StringTemplate_Format(param0->unk_0C, param0->unk_2C, v0);

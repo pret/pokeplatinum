@@ -16,7 +16,6 @@ prebuilt_files = [
     'library_tv.narc',
     'lobby_news.narc',
     'mail_gra.narc',
-    'mysign.narc',
     'ntag_gra.narc',
     'nutmixer.narc',
     'oekaki.narc',

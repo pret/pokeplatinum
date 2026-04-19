@@ -41,6 +41,7 @@
 #include "applications/poffin_case/main.h"
 #include "applications/pokedex/pokedex_main.h"
 #include "applications/pokemon_summary_screen/main.h"
+#include "applications/signature.h"
 #include "applications/town_map/main.h"
 #include "applications/trainer_case/main.h"
 #include "battle/battle_main.h"
@@ -59,7 +60,6 @@
 #include "overlay058/ov58_021D0D80.h"
 #include "overlay059/ov59_021D0D80.h"
 #include "overlay064/ov64_0222DCE0.h"
-#include "overlay072/ov72_0223D7A0.h"
 #include "overlay085/ov85_02241440.h"
 #include "overlay088/ov88_0223B140.h"
 #include "overlay088/struct_ov88_0223C370.h"
@@ -146,7 +146,7 @@ FS_EXTERN_OVERLAY(overlay59);
 FS_EXTERN_OVERLAY(overlay61);
 FS_EXTERN_OVERLAY(overlay64);
 FS_EXTERN_OVERLAY(trainer_case);
-FS_EXTERN_OVERLAY(overlay72);
+FS_EXTERN_OVERLAY(signature);
 FS_EXTERN_OVERLAY(options_menu);
 FS_EXTERN_OVERLAY(choose_starter);
 FS_EXTERN_OVERLAY(town_map);
@@ -1298,20 +1298,20 @@ void FieldSystem_LaunchChooseStarterApp(FieldSystem *fieldSystem, ChooseStarterD
     FieldSystem_StartChildProcess(fieldSystem, &template, chooseStarterData);
 }
 
-void sub_0203E0D0(FieldSystem *fieldSystem)
+void FieldSystem_LaunchSignatureApp(FieldSystem *fieldSystem)
 {
-    TrainerCaseSaveData *v0 = SaveData_GetTrainerCaseSaveData(fieldSystem->saveData);
+    TrainerCaseSaveData *unused = SaveData_GetTrainerCaseSaveData(fieldSystem->saveData);
 
-    FS_EXTERN_OVERLAY(overlay72);
+    FS_EXTERN_OVERLAY(signature);
 
-    const ApplicationManagerTemplate v1 = {
-        ov72_0223D7A0,
-        ov72_0223D920,
-        ov72_0223D984,
-        FS_OVERLAY_ID(overlay72)
+    const ApplicationManagerTemplate template = {
+        SignatureApp_Init,
+        SignatureApp_Main,
+        SignatureApp_Exit,
+        FS_OVERLAY_ID(signature)
     };
 
-    FieldSystem_StartChildProcess(fieldSystem, &v1, fieldSystem->saveData);
+    FieldSystem_StartChildProcess(fieldSystem, &template, fieldSystem->saveData);
 }
 
 void FieldSystem_LaunchGTSApp(FieldSystem *fieldSystem, BOOL connectToWiFi)

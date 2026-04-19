@@ -32,7 +32,7 @@ int sub_02012B58(const UnkStruct_02012B20 *param0, int param1);
 FontOAM *sub_02012B60(const UnkStruct_020127E8 *param0, const UnkStruct_02012B20 *param1);
 void sub_02012BD8(FontOAM *param0);
 void sub_02012BE0(FontOAM *param0, const UnkStruct_02012B20 *param1, const Window *param2, enum HeapID heapID);
-void sub_02012C60(const Window *param0, int param1, int param2, int param3, int param4, char *param5);
+void sub_02012C60(const Window *window, int width, int height, int x, int y, char *output);
 void sub_020131E0(FontOAM *param0, const Sprite *param1);
 
 #endif // POKEPLATINUM_UNK_02012744_H

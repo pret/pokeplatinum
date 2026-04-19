@@ -304,7 +304,7 @@ ScriptCommand(SCRCMD_SLATHERHONEYTREE,                                     ScrCm
 ScriptCommand(SCRCMD_GETHONEYTREESTATUS,                                   ScrCmd_GetHoneyTreeStatus)
 ScriptCommand(SCRCMD_STARTHONEYTREEBATTLE,                                 ScrCmd_StartHoneyTreeBattle)
 ScriptCommand(SCRCMD_12A,                                                  ScrCmd_12A)
-ScriptCommand(SCRCMD_12B,                                                  ScrCmd_12B)
+ScriptCommand(SCRCMD_STARTSIGNATUREAPP,                                    ScrCmd_StartSignatureApp)
 ScriptCommand(SCRCMD_CHECKSAVETYPE,                                        ScrCmd_CheckSaveType)
 ScriptCommand(SCRCMD_TRYSAVEGAME,                                          ScrCmd_TrySaveGame)
 ScriptCommand(SCRCMD_DRESSUPPHOTOHASDATA,                                  ScrCmd_DressUpPhotoHasData)

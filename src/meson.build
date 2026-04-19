@@ -796,7 +796,7 @@ pokeplatinum_c = files(
     'applications/trainer_case/card_text.c',
     'applications/trainer_case/sprites.c',
     'applications/trainer_case/badge_chimes.c',
-    'overlay072/ov72_0223D7A0.c',
+    'applications/signature.c',
     'applications/rowan_intro/rowan_intro_app.c',
     'applications/rowan_intro/tv_app.c',
     'applications/options_menu.c',

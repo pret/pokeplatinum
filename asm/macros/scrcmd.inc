@@ -1797,8 +1797,8 @@
     .short SCRCMD_12A
     .endm
 
-    .macro ScrCmd_12B
-    .short SCRCMD_12B
+    .macro StartSignatureApp
+    .short SCRCMD_STARTSIGNATUREAPP
     .endm
 
     .macro CheckSaveType destVarID

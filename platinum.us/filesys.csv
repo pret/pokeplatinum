@@ -210,7 +210,7 @@ res/prebuilt/graphic/library_tv.narc,/graphic/library_tv.narc
 res/prebuilt/graphic/lobby_news.narc,/graphic/lobby_news.narc
 res/prebuilt/graphic/mail_gra.narc,/graphic/mail_gra.narc
 res/graphics/start_menu/start_menu.narc,/graphic/menu_gra.narc
-res/prebuilt/graphic/mysign.narc,/graphic/mysign.narc
+res/graphics/signature_interface/signature_interface.narc,/graphic/mysign.narc
 res/graphics/main_menu/main_menu_graphics.narc,/graphic/mystery.narc
 res/prebuilt/graphic/ntag_gra.narc,/graphic/ntag_gra.narc
 res/prebuilt/graphic/nutmixer.narc,/graphic/nutmixer.narc
