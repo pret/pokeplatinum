@@ -6,9 +6,9 @@
 #include "generated/movement_actions.h"
 #include "generated/movement_types.h"
 
+#include "struct_decls/map_object.h"
+#include "struct_decls/map_object_manager.h"
 #include "struct_decls/struct_0205B43C_decl.h"
-#include "struct_decls/struct_02061830_decl.h"
-#include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_defs/struct_0203330C.h"
 #include "struct_defs/struct_0205B4F8.h"
 #include "struct_defs/struct_0205C22C.h"

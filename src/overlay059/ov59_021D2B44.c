@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0202440C.h"
+#include "struct_defs/tv.h"
 
 #include "savedata/save_table.h"
 

@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_SENTENCE_H
 #define POKEPLATINUM_STRUCT_SENTENCE_H
 
-typedef struct {
+typedef struct Sentence {
     u16 type;
     u16 id;
     u16 words[2];

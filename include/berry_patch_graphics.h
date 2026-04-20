@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_BERRY_PATCH_GRAPHICS_H
 #define POKEPLATINUM_BERRY_PATCH_GRAPHICS_H
 
-#include "struct_decls/struct_02061AB4_decl.h"
+#include "struct_decls/map_object.h"
 
 #include "billboard.h"
 

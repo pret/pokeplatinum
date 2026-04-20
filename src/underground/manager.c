@@ -8,7 +8,7 @@
 #include "constants/field_base_tiles.h"
 #include "constants/map_object.h"
 
-#include "struct_decls/struct_02061AB4_decl.h"
+#include "struct_decls/map_object.h"
 
 #include "field/field_system.h"
 #include "overlay005/land_data.h"

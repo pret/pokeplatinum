@@ -8,7 +8,7 @@
 #include "generated/game_records.h"
 #include "generated/object_events_gfx.h"
 
-#include "struct_decls/struct_0202440C_decl.h"
+#include "struct_decls/tv_broadcast.h"
 #include "struct_defs/battle_tower.h"
 
 #include "overlay104/defs.h"

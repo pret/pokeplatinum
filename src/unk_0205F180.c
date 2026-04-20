@@ -7,8 +7,8 @@
 #include "generated/game_records.h"
 #include "generated/movement_actions.h"
 
-#include "struct_decls/struct_02061AB4_decl.h"
-#include "struct_defs/struct_0205EC34.h"
+#include "struct_decls/map_object.h"
+#include "struct_defs/player_data.h"
 
 #include "field/field_system.h"
 #include "overlay005/land_data_manager_decl.h"

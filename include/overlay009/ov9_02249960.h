@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV9_02249960_H
 #define POKEPLATINUM_OV9_02249960_H
 
-#include "struct_decls/struct_02061AB4_decl.h"
+#include "struct_decls/map_object.h"
 
 #include "field/field_system_decl.h"
 #include "overlay009/struct_ov9_0224F6EC_decl.h"

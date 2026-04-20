@@ -5,9 +5,9 @@
 
 #include "constants/player_avatar.h"
 
-#include "struct_decls/struct_02061830_decl.h"
-#include "struct_decls/struct_02061AB4_decl.h"
-#include "struct_defs/struct_0205EC34.h"
+#include "struct_decls/map_object.h"
+#include "struct_decls/map_object_manager.h"
+#include "struct_defs/player_data.h"
 
 #include "field/field_system_decl.h"
 

@@ -8,7 +8,7 @@
 #include "struct_decls/struct_0209747C_decl.h"
 #include "struct_defs/choose_starter_data.h"
 #include "struct_defs/clear_game_player_info.h"
-#include "struct_defs/struct_0203E234.h"
+#include "struct_defs/hall_of_fame_display_data.h"
 #include "struct_defs/struct_0203E348.h"
 #include "struct_defs/struct_02097728.h"
 

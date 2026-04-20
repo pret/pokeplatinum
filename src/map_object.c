@@ -36,7 +36,7 @@
 #include "unk_020655F4.h"
 #include "unk_020EDBAC.h"
 
-typedef struct MapObjectMan {
+typedef struct MapObjectManager {
     u32 status;
     int maxObjects;
     int objectCnt;

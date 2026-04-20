@@ -6,7 +6,7 @@
 
 #include "constants/heap.h"
 
-#include "struct_decls/struct_0202B370_decl.h"
+#include "struct_decls/wi_fi_list.h"
 #include "struct_defs/wi_fi_history.h"
 
 #include "battle_regulation.h"

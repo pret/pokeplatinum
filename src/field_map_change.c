@@ -9,7 +9,7 @@
 #include "constants/overworld_weather.h"
 
 #include "struct_defs/map_load_mode.h"
-#include "struct_defs/struct_0205EC34.h"
+#include "struct_defs/player_data.h"
 
 #include "field/field_system.h"
 #include "overlay005/map_name_popup.h"

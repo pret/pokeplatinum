@@ -9,7 +9,7 @@
 #include "generated/species.h"
 #include "generated/trainer_score_events.h"
 
-#include "struct_decls/struct_0202440C_decl.h"
+#include "struct_decls/tv_broadcast.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/wi_fi_history.h"
 

@@ -12,7 +12,7 @@
 #include "pokemon.h"
 #include "trainer_info.h"
 
-typedef struct {
+typedef struct VisualCompetitionAppArgs {
     Pokemon *mon;
     UnkStruct_02029C88 *unk_04;
     int unk_08;

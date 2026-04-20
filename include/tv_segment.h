@@ -4,8 +4,8 @@
 #include "generated/pokemon_contest_ranks.h"
 #include "generated/pokemon_contest_types.h"
 
-#include "struct_decls/struct_0202440C_decl.h"
-#include "struct_defs/struct_0202440C.h"
+#include "struct_decls/tv_broadcast.h"
+#include "struct_defs/tv.h"
 
 #include "field/field_system_decl.h"
 

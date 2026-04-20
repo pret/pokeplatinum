@@ -5,7 +5,7 @@
 #include "constants/battle_frontier.h"
 #include "constants/battle_frontier_stats.h"
 
-#include "struct_decls/struct_02061AB4_decl.h"
+#include "struct_decls/map_object.h"
 
 #include "field/field_system.h"
 #include "nintendo_wfc/main.h"

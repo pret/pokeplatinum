@@ -3,8 +3,8 @@
 
 #include "constants/savedata/save_table.h"
 
-#include "struct_defs/struct_0202440C.h"
-#include "struct_defs/struct_0202F264.h"
+#include "struct_defs/battle_recording.h"
+#include "struct_defs/tv.h"
 
 #include "battle_hall_win_records.h"
 #include "hall_of_fame_entries.h"

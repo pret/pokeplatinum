@@ -9,7 +9,7 @@
 #include "generated/journal_location_events.h"
 #include "generated/object_events_gfx.h"
 
-#include "struct_decls/struct_02061AB4_decl.h"
+#include "struct_decls/map_object.h"
 #include "struct_defs/struct_020711C8.h"
 
 #include "applications/town_map/main.h"

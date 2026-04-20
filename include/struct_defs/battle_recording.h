@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_STRUCT_0202F264_H
-#define POKEPLATINUM_STRUCT_0202F264_H
+#ifndef POKEPLATINUM_STRUCT_DEF_BATTLE_RECORDING_H
+#define POKEPLATINUM_STRUCT_DEF_BATTLE_RECORDING_H
 
 #include "struct_defs/struct_0202F298.h"
 #include "struct_defs/struct_0202F41C.h"
@@ -12,4 +12,4 @@ typedef struct BattleRecording {
     UnkStruct_0202F298 unk_E8;
 } BattleRecording;
 
-#endif // POKEPLATINUM_STRUCT_0202F264_H
+#endif // POKEPLATINUM_STRUCT_DEF_BATTLE_RECORDING_H

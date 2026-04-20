@@ -7,7 +7,7 @@
 
 #include "struct_decls/struct_0202D750_decl.h"
 #include "struct_defs/battle_frontier.h"
-#include "struct_defs/struct_0203E564.h"
+#include "struct_defs/frontier_records_app_args.h"
 
 #include "applications/frontier/records/windows.h"
 

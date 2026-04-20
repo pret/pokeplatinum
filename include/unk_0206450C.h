@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNK_0206450C_H
 #define POKEPLATINUM_UNK_0206450C_H
 
-#include "struct_decls/struct_02061AB4_decl.h"
+#include "struct_decls/map_object.h"
 
 void sub_0206453C(MapObject *param0);
 void sub_02064548(MapObject *param0);

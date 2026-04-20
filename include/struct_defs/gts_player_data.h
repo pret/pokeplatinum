@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_GTS_PLAYER_DATA_H
 #define POKEPLATINUM_STRUCT_GTS_PLAYER_DATA_H
 
-#include "struct_decls/struct_0202B370_decl.h"
+#include "struct_decls/wi_fi_list.h"
 #include "struct_defs/wi_fi_history.h"
 
 #include "bag.h"

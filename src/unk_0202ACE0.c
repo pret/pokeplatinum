@@ -4,8 +4,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0202B370.h"
-#include "struct_defs/struct_0202B370_sub1.h"
+#include "struct_defs/wi_fi_list.h"
 
 #include "assert.h"
 #include "rtc.h"

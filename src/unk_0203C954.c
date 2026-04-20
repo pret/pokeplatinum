@@ -6,7 +6,7 @@
 #include "generated/bg_event_dirs.h"
 #include "generated/bg_event_types.h"
 
-#include "struct_decls/struct_02061AB4_decl.h"
+#include "struct_decls/map_object.h"
 
 #include "field/field_system.h"
 

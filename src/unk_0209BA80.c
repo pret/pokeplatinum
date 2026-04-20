@@ -6,7 +6,7 @@
 #include "constants/battle_tower.h"
 
 #include "struct_defs/battle_tower.h"
-#include "struct_defs/struct_02039A58.h"
+#include "struct_defs/comm_cmd_table.h"
 #include "struct_defs/struct_0209BBA4.h"
 
 #include "applications/frontier/battle_arcade/main.h"

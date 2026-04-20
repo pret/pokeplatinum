@@ -9,8 +9,8 @@
 #include "generated/string_padding_mode.h"
 #include "generated/vars_flags.h"
 
-#include "struct_decls/struct_0202440C_decl.h"
-#include "struct_decls/struct_0202B370_decl.h"
+#include "struct_decls/tv_broadcast.h"
+#include "struct_decls/wi_fi_list.h"
 
 #include "applications/naming_screen.h"
 #include "nintendo_wfc/main.h"

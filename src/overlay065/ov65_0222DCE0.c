@@ -7,7 +7,7 @@
 #include "generated/journal_online_events.h"
 
 #include "struct_decls/struct_02012B20_decl.h"
-#include "struct_decls/struct_0202B370_decl.h"
+#include "struct_decls/wi_fi_list.h"
 #include "struct_defs/battle_frontier.h"
 #include "struct_defs/struct_020127E8.h"
 #include "struct_defs/struct_0207DFAC.h"

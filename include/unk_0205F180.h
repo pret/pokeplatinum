@@ -3,7 +3,7 @@
 
 #include "generated/movement_actions.h"
 
-#include "struct_decls/struct_02061AB4_decl.h"
+#include "struct_decls/map_object.h"
 
 #include "overlay005/land_data_manager_decl.h"
 

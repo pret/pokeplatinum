@@ -9,7 +9,7 @@
 #include "generated/map_headers.h"
 #include "generated/trainer_score_events.h"
 
-#include "struct_decls/struct_0202440C_decl.h"
+#include "struct_decls/tv_broadcast.h"
 
 #include "field/field_system.h"
 #include "overlay006/roamer_after_battle.h"

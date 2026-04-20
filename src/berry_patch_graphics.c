@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02061AB4_decl.h"
+#include "struct_decls/map_object.h"
 
 #include "overlay005/berry_graphics_data.h"
 #include "overlay005/berry_graphics_table.h"

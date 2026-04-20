@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV6_TV_EPISODE_H
 #define POKEPLATINUM_OV6_TV_EPISODE_H
 
-#include "struct_defs/struct_0202440C.h"
+#include "struct_defs/tv.h"
 
 #include "field/field_system_decl.h"
 

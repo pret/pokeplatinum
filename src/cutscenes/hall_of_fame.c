@@ -3,8 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "struct_defs/hall_of_fame_display_data.h"
 #include "struct_defs/sprite_animation_frame.h"
-#include "struct_defs/struct_0203E234.h"
 
 #include "bg_window.h"
 #include "camera.h"

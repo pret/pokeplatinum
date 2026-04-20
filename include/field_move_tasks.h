@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_FIELD_MOVE_TASKS_H
 #define POKEPLATINUM_FIELD_MOVE_TASKS_H
 
-#include "struct_decls/struct_02061AB4_decl.h"
+#include "struct_decls/map_object.h"
 
 #include "field/field_system_decl.h"
 

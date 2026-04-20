@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0202B370_decl.h"
+#include "struct_decls/wi_fi_list.h"
 
 #include "field/field_system.h"
 

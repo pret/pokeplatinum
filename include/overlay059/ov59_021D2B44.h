@@ -1,8 +1,8 @@
 #ifndef POKEPLATINUM_OV59_021D2B44_H
 #define POKEPLATINUM_OV59_021D2B44_H
 
-#include "struct_decls/struct_0202440C_decl.h"
-#include "struct_defs/struct_0202440C.h"
+#include "struct_decls/tv_broadcast.h"
+#include "struct_defs/tv.h"
 
 #include "savedata.h"
 

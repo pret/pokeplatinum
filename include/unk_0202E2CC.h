@@ -1,8 +1,7 @@
 #ifndef POKEPLATINUM_UNK_0202E2CC_H
 #define POKEPLATINUM_UNK_0202E2CC_H
 
-#include "struct_decls/struct_0202440C_decl.h"
-#include "struct_defs/struct_0202440C.h"
+#include "struct_decls/tv_broadcast.h"
 #include "struct_defs/struct_0202E7E4.h"
 #include "struct_defs/struct_0202E7F0.h"
 #include "struct_defs/struct_0202E7FC.h"
@@ -11,6 +10,7 @@
 #include "struct_defs/struct_0202E81C.h"
 #include "struct_defs/struct_0202E828.h"
 #include "struct_defs/struct_0202E834.h"
+#include "struct_defs/tv.h"
 #include "struct_defs/tv_segment_contest_hall_showcased_pokemon.h"
 
 int TVBroadcast_SaveSize(void);

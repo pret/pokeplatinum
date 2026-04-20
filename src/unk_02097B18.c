@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0202440C_decl.h"
+#include "struct_decls/tv_broadcast.h"
 #include "struct_defs/seal_case.h"
 #include "struct_defs/struct_02097F18.h"
 

@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_STRUCT_0203E234_H
-#define POKEPLATINUM_STRUCT_0203E234_H
+#ifndef POKEPLATINUM_STRUCT_DEF_HALL_OF_FAME_DISPLAY_DATA_H
+#define POKEPLATINUM_STRUCT_DEF_HALL_OF_FAME_DISPLAY_DATA_H
 
 #include "party.h"
 #include "play_time.h"
@@ -11,4 +11,4 @@ typedef struct HallOfFameDisplayData {
     const PlayTime *playTime;
 } HallOfFameDisplayData;
 
-#endif // POKEPLATINUM_STRUCT_0203E234_H
+#endif // POKEPLATINUM_STRUCT_DEF_HALL_OF_FAME_DISPLAY_DATA_H

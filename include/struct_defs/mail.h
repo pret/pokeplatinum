@@ -8,7 +8,7 @@
 
 #define MAILBOX_SIZE 20
 
-typedef struct {
+typedef struct Mail {
     u32 trainerID;
     u8 trainerGender;
     u8 language;
@@ -20,7 +20,7 @@ typedef struct {
     Sentence unk_20[3];
 } Mail;
 
-typedef struct {
+typedef struct Mailbox {
     Mail mail[MAILBOX_SIZE];
 } Mailbox;
 

@@ -5,7 +5,6 @@
 
 #include "constants/tv_broadcast.h"
 
-#include "struct_defs/struct_0202440C.h"
 #include "struct_defs/struct_0202E7E4.h"
 #include "struct_defs/struct_0202E7F0.h"
 #include "struct_defs/struct_0202E7FC.h"
@@ -14,6 +13,7 @@
 #include "struct_defs/struct_0202E81C.h"
 #include "struct_defs/struct_0202E828.h"
 #include "struct_defs/struct_0202E834.h"
+#include "struct_defs/tv.h"
 #include "struct_defs/tv_segment_contest_hall_showcased_pokemon.h"
 
 #include "inlines.h"

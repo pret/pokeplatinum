@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_02039A58.h"
+#include "struct_defs/comm_cmd_table.h"
 
 #include "overlay116/ov116_022604C4.h"
 #include "overlay116/struct_ov116_0226048C.h"

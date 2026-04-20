@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_COMM_PLAYER_MANAGER_H
 #define POKEPLATINUM_COMM_PLAYER_MANAGER_H
 
-#include "struct_defs/struct_02057B48.h"
+#include "struct_defs/comm_player_location.h"
 
 #include "field/field_system_decl.h"
 #include "underground/player_status.h"

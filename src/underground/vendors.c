@@ -8,7 +8,7 @@
 #include "generated/sphere_types.h"
 #include "generated/traps.h"
 
-#include "struct_decls/struct_02061AB4_decl.h"
+#include "struct_decls/map_object.h"
 
 #include "field/field_system.h"
 #include "underground/item_list_menu.h"

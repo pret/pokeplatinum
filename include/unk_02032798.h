@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNK_02032798_H
 #define POKEPLATINUM_UNK_02032798_H
 
-#include "struct_defs/struct_02039A58.h"
+#include "struct_defs/comm_cmd_table.h"
 
 void CommCmd_Init(const CommCmdTable *param0, int param1, void *param2);
 void sub_020327E0(void);

@@ -8,7 +8,7 @@
 #include "constants/savedata/vars_flags.h"
 #include "constants/string.h"
 
-#include "struct_decls/struct_0202B370_decl.h"
+#include "struct_decls/wi_fi_list.h"
 #include "struct_defs/battle_frontier.h"
 #include "struct_defs/struct_02089438.h"
 

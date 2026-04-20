@@ -3,7 +3,7 @@
 
 #include "constants/battle_frontier_stats.h"
 
-#include "struct_decls/struct_02061AB4_decl.h"
+#include "struct_decls/map_object.h"
 
 #include "field_task.h"
 #include "savedata.h"

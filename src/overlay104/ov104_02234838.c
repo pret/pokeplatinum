@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0202440C_decl.h"
+#include "struct_decls/tv_broadcast.h"
 
 #include "applications/frontier/battle_hall/main.h"
 #include "overlay104/defs.h"

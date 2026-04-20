@@ -6,7 +6,7 @@
 
 #include "constants/savedata/vars_flags.h"
 
-#include "struct_decls/struct_02061AB4_decl.h"
+#include "struct_decls/map_object.h"
 #include "struct_defs/struct_02097728.h"
 
 #include "applications/party_menu/defs.h"

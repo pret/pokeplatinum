@@ -6,7 +6,7 @@
 #include "constants/field/dynamic_map_features.h"
 #include "constants/great_marsh_tram.h"
 
-#include "struct_decls/struct_02061AB4_decl.h"
+#include "struct_decls/map_object.h"
 
 #include "field/field_system.h"
 #include "overlay005/area_data.h"

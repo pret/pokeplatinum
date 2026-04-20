@@ -6,9 +6,9 @@
 #include "constants/field/dynamic_map_features.h"
 #include "constants/scrcmd.h"
 
-#include "struct_decls/struct_02061830_decl.h"
-#include "struct_decls/struct_02061AB4_decl.h"
-#include "struct_defs/struct_0205EC34.h"
+#include "struct_decls/map_object.h"
+#include "struct_decls/map_object_manager.h"
+#include "struct_defs/player_data.h"
 
 #include "field/field_system.h"
 #include "overlay005/ov5_021F61BC.h"

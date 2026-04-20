@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_STRUCT_0202440C_H
-#define POKEPLATINUM_STRUCT_0202440C_H
+#ifndef POKEPLATINUM_STRUCT_DEF_TV_H
+#define POKEPLATINUM_STRUCT_DEF_TV_H
 
 #include "constants/tv_broadcast.h"
 
@@ -61,4 +61,4 @@ typedef struct TVBroadcast {
     UnkStruct_0202E834 unk_B4C;
 } TVBroadcast;
 
-#endif // POKEPLATINUM_STRUCT_0202440C_H
+#endif // POKEPLATINUM_STRUCT_DEF_TV_H

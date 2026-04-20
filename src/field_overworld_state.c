@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0205EC34.h"
+#include "struct_defs/player_data.h"
 
 #include "field/field_system.h"
 

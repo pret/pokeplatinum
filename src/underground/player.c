@@ -6,7 +6,7 @@
 
 #include "generated/trainer_score_events.h"
 
-#include "struct_defs/struct_02057B48.h"
+#include "struct_defs/comm_player_location.h"
 
 #include "field/field_system.h"
 #include "overlay005/ov5_021F50BC.h"

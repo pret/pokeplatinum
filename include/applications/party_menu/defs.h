@@ -4,9 +4,9 @@
 #include "constants/graphics.h"
 #include "constants/pokemon.h"
 
-#include "struct_defs/funcptr_0207F248_sub1.h"
+#include "struct_defs/function_ptr_pair.h"
 #include "struct_defs/mail.h"
-#include "struct_defs/struct_0202440C.h"
+#include "struct_defs/tv.h"
 
 #include "field/field_system_decl.h"
 #include "functypes/funcptr_0207F248.h"

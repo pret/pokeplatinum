@@ -6,8 +6,8 @@
 #include "generated/game_records.h"
 #include "generated/species.h"
 
-#include "struct_decls/struct_0202B370_decl.h"
 #include "struct_decls/struct_02095E80_decl.h"
+#include "struct_decls/wi_fi_list.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/struct_02095E80_t.h"
 

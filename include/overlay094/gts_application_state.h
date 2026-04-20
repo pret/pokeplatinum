@@ -4,7 +4,7 @@
 #include <dwc.h>
 #include <nnsys.h>
 
-#include "struct_decls/struct_0202B370_decl.h"
+#include "struct_decls/wi_fi_list.h"
 #include "struct_defs/gts_player_data.h"
 
 #include "applications/pokemon_summary_screen/main.h"

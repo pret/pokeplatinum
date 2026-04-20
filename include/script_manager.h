@@ -4,7 +4,7 @@
 #include "constants/approach_type.h"
 #include "constants/init_script_types.h"
 
-#include "struct_decls/struct_02061AB4_decl.h"
+#include "struct_decls/map_object.h"
 
 #include "field/field_system_decl.h"
 #include "overlay005/field_menu.h"

@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV5_021EB1A0_H
 #define POKEPLATINUM_OV5_021EB1A0_H
 
-#include "struct_decls/struct_02061AB4_decl.h"
+#include "struct_decls/map_object.h"
 
 #include "billboard.h"
 

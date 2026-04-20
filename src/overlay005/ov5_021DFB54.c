@@ -8,8 +8,8 @@
 #include "generated/game_records.h"
 #include "generated/movement_actions.h"
 
-#include "struct_decls/struct_02061830_decl.h"
-#include "struct_decls/struct_02061AB4_decl.h"
+#include "struct_decls/map_object.h"
+#include "struct_decls/map_object_manager.h"
 
 #include "field/field_system.h"
 #include "overlay005/dist_world_surf_mount_renderer.h"
