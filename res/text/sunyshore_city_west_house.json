@@ -2,7 +2,7 @@
   "key": 21522,
   "messages": [
     {
-      "id": "pl_msg_00000169_00000",
+      "id": "SunyshoreCityWestHouse_Text_GoneUndergroundLately",
       "en_US": [
         "Have you gone underground lately?\r",
         "Depending on where you go down, you\n",
@@ -12,7 +12,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000169_00001",
+      "id": "SunyshoreCityWestHouse_Text_SpheresUndergroundLikeGems",
       "en_US": [
         "The Spheres found in the underground\n",
         "tunnels are like gems.\r",
@@ -21,7 +21,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000169_00002",
+      "id": "SunyshoreCityWestHouse_Text_BuriedSpheresGrow",
       "en_US": [
         "If you bury Spheres, they grow\n",
         "a little every day.\r",
@@ -31,7 +31,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000169_00003",
+      "id": "SunyshoreCityWestHouse_Text_GetFlagsFromFriends",
       "en_US": [
         "Get Flags from your friends to make\n",
         "your Secret Base better.\r",
@@ -41,14 +41,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000169_00004",
+      "id": "SunyshoreCityWestHouse_Text_GoUndergroundHaveFun",
       "en_US": [
         "Go underground and have fun down\n",
         "there. Make it an adventure!"
       ]
     },
     {
-      "id": "pl_msg_00000169_00005",
+      "id": "SunyshoreCityWestHouse_Text_DefusedByTouch",
       "en_US": [
         "Some underground Traps need to be\n",
         "defused by touch or by using the\f",
@@ -56,7 +56,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000169_00006",
+      "id": "SunyshoreCityWestHouse_Text_UndergroundManByronRelated",
       "en_US": [
         "The Underground Man in Eterna and\n",
         "Byron of Canalave are related.\r",

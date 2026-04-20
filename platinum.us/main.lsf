@@ -216,7 +216,7 @@ Static main
 	Object main.nef.p/src_unk_0205001C.c.o
 	Object main.nef.p/src_unk_0205003C.c.o
 	Object main.nef.p/src_unk_02050548.c.o
-	Object main.nef.p/src_unk_02050568.c.o
+	Object main.nef.p/src_binoculars_vista_lighthouse.c.o
 	Object main.nef.p/src_vars_flags.c.o
 	Object main.nef.p/src_field_task.c.o
 	Object main.nef.p/src_encounter.c.o

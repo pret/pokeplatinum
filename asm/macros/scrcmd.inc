@@ -3798,8 +3798,8 @@
     .short \amount
     .endm
 
-    .macro ScrCmd_27A
-    .short SCRCMD_27A
+    .macro UseVistaLighthouseBinoculars
+    .short SCRCMD_USEVISTALIGHTHOUSEBINOCULARS
     .endm
 
     .macro InitDailyRandomLevel

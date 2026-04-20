@@ -1,41 +1,42 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/sunyshore_city_pokecenter_1f.h"
+#include "res/field/events/events_sunyshore_city_pokecenter_1f.h"
 
 
-    ScriptEntry _0012
-    ScriptEntry _001E
-    ScriptEntry _0031
-    ScriptEntry _0062
+    ScriptEntry SunyshoreCityPokecenter1F_Nurse
+    ScriptEntry SunyshoreCityPokecenter1F_OldMan
+    ScriptEntry SunyshoreCityPokecenter1F_NinjaBoy
+    ScriptEntry SunyshoreCityPokecenter1F_MiddleAgedMan
     ScriptEntryEnd
 
-_0012:
-    Common_CallPokecenterNurse 0
+SunyshoreCityPokecenter1F_Nurse:
+    Common_CallPokecenterNurse LOCALID_POKECENTER_NURSE
     End
 
-_001E:
-    NPCMessage 0
+SunyshoreCityPokecenter1F_OldMan:
+    NPCMessage SunyshoreCityPokecenter1F_Text_DreamedBecomingGymLeader
     End
 
-_0031:
+SunyshoreCityPokecenter1F_NinjaBoy:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfBadgeAcquired BADGE_ID_BEACON, _0057
-    Message 1
+    GoToIfBadgeAcquired BADGE_ID_BEACON, SunyshoreCityPokecenter1F_AwesomelyCoolEightBadges
+    Message SunyshoreCityPokecenter1F_Text_ReallyCoolSevenBadges
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0057:
-    Message 2
+SunyshoreCityPokecenter1F_AwesomelyCoolEightBadges:
+    Message SunyshoreCityPokecenter1F_Text_AwesomelyCoolEightBadges
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0062:
-    NPCMessage 3
+SunyshoreCityPokecenter1F_MiddleAgedMan:
+    NPCMessage SunyshoreCityPokecenter1F_Text_RoadsOutOfSolarPanels
     End
 
     .balign 4, 0
