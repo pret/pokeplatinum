@@ -1,4 +1,3 @@
-
 #include "binoculars_vista_lighthouse.h"
 
 #include <nitro.h>
@@ -135,18 +134,18 @@ static void VistaLighthouseBinoculars_SetCamera(FieldSystem *fieldSystem)
     VecFx32 target;
     CameraAngle angle;
 
-    Camera_SetFOV(0x8c1, fieldSystem->camera);
-    Camera_SetDistance(0xf81b8, fieldSystem->camera);
+    Camera_SetFOV(FX32_CONST(0.547f), fieldSystem->camera);
+    Camera_SetDistance(FX32_CONST(248.1074f), fieldSystem->camera);
 
-    target.x = 0x350523d;
-    target.y = 0x15edb7;
-    target.z = 0x23da40e;
+    target.x = FX32_CONST(13573.1399);
+    target.y = FX32_CONST(350.8571f);
+    target.z = FX32_CONST(9178.2534);
 
     Camera_SetTarget(&target, fieldSystem->camera);
 
-    angle.x = 0x823;
-    angle.y = 0x520;
-    angle.z = 0;
+    angle.x = FX32_CONST(0.5086f);
+    angle.y = FX32_CONST(0.3203125f);
+    angle.z = FX32_CONST(0);
 
     Camera_SetAngleAroundTarget(&angle, fieldSystem->camera);
     Camera_SetClipping(12 * FX32_ONE, 1564 * FX32_ONE, fieldSystem->camera);
