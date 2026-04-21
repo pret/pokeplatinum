@@ -2,6 +2,7 @@
 #include "generated/hidden_locations.h"
 #include "res/text/bank/distortion_world_giratina_room.h"
 
+// NOTE: These constants must mirror those in ov9_02249960.c
 #define LOCALID_GIRATINA 128
 #define LOCALID_CYNTHIA  129
 #define LOCALID_CYRUS    130

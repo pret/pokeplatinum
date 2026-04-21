@@ -1,6 +1,7 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/distortion_world_1f.h"
 
+// NOTE: These constants must mirror those in ov9_02249960.c
 #define LOCALID_CYNTHIA 128
 
     ScriptEntry DistortionWorld1F_OnTransition
