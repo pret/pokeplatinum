@@ -311,6 +311,27 @@ datagen_cpp_commands = [
     for file in (homedir / "tools" / "datagen").rglob("*.cpp")
 ]
 
+enumproc_c_commands = [
+    {
+        "directory": builddir,
+        "arguments": [
+            "gcc",
+            f"-I{homedir}/tools/enumproc",
+            "-std=gnu17",
+            "-Wall",
+            "-Wextra",
+            "-Wpedantic",
+            "-Wconversion",
+            "-Wno-sign-conversion",
+            "-o",
+            file.with_suffix(".o"),
+            file.resolve(),
+        ],
+        "file": file.resolve(),
+    }
+    for file in (homedir / "tools" / "enumproc").rglob("*.c")
+]
+
 dataproc_c_commands = [
     {
         "directory": builddir,
@@ -318,6 +339,7 @@ dataproc_c_commands = [
             "gcc",
             f"-I{homedir}/subprojects/yyjson-0.12.0/src",
             f"-I{homedir}/tools/nitroarc/lib/include",
+            f"-I{homedir}/tools/enumproc",
             f"-I{homedir}/tools/dataproc/lib/include",
             f"-I{homedir}/include",
             f"-I{builddir}",

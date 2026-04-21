@@ -1,8 +1,11 @@
 rapidjson_dep = dependency('rapidjson')
 
-# Native tools
-subdir('nitroarc') # Contains a library component that other tools depend on
-subdir('dataproc')
+# Native tools with helper libraries
+subdir('nitroarc') # libnitroarc
+subdir('enumproc') # libenum
+subdir('dataproc') # Requires libnitroarc and libenum
+
+# Other native tools
 subdir('csv2bin')
 subdir('datagen')
 subdir('fixrom')

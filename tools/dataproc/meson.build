@@ -34,7 +34,7 @@ dataproc_templates_dir = meson.current_source_dir() / 'data'
 commonproc_dep = declare_dependency(
     link_with: static_library(
         'commonproc',
-        sources: files('src/common.c', 'src/enum.c'),
+        sources: files('src/common.c'),
 
         c_args: [
             dataproc_cflags,
@@ -43,7 +43,12 @@ commonproc_dep = declare_dependency(
             f'-DTEMPLATES_DIR="@dataproc_templates_dir@"',
         ],
 
-        dependencies: [ dataproc_dep, nitroarc_dep ],
+        dependencies: [
+            dataproc_dep,
+            nitroarc_dep,
+            libenum_dep,
+            libexpr_dep,
+        ],
         native: true,
     ),
     dependencies: [ dataproc_dep, nitroarc_dep ],

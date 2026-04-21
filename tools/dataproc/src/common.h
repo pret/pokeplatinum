@@ -126,7 +126,7 @@ char* strupper(const char *s);
 char* strjoin(const char *s, const char *with, const char *sep);
 
 void  splitenv(const char *name, char ***target, size_t *target_len, const char **extra, size_t extra_len);
-char* fload(const char *filename);
+char* fload(const char *filename, size_t *out_size);
 char* pathjoin(const char *basedir, const char *subdir, const char *file);
 char* guardify(const char *path);
 
