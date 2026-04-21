@@ -2,44 +2,44 @@
   "key": 55726,
   "messages": [
     {
-      "id": "pl_msg_00000425_00000",
+      "id": "Drawing_Text_PlayerHasEntered",
       "en_US": "{STRVAR_1 1, 0, 0} has entered."
     },
     {
-      "id": "pl_msg_00000425_00001",
+      "id": "Drawing_Text_WouldYouLikeToStop",
       "en_US": "Would you like to stop drawing?"
     },
     {
-      "id": "pl_msg_00000425_00002",
+      "id": "Drawing_Text_PlayerHasLeft",
       "en_US": "{STRVAR_1 1, 0, 0} has left."
     },
     {
-      "id": "pl_msg_00000425_00003",
+      "id": "Drawing_Text_LeaderHasLeft",
       "en_US": [
         "The leader, {STRVAR_1 1, 0, 0}, has left.\n",
         "This group will be disbanded."
       ]
     },
     {
-      "id": "pl_msg_00000425_00004",
+      "id": "Drawing_Text_GroupWillDisband",
       "en_US": [
         "If the leader leaves, the group will\n",
         "disband. Is that OK?"
       ]
     },
     {
-      "id": "pl_msg_00000425_00005",
+      "id": "Drawing_Text_NoMembers",
       "en_US": [
         "There are no members.\n",
         "The group will be disbanded."
       ]
     },
     {
-      "id": "pl_msg_00000425_00006",
+      "id": "Drawing_Text_DrawingSessionEnded",
       "en_US": "The drawing session was ended."
     },
     {
-      "id": "pl_msg_00000425_00007",
+      "id": "Drawing_Text_Quit",
       "en_US": "QUIT"
     },
     {
@@ -47,26 +47,26 @@
       "en_US": "{STRVAR_1 1, 0, 0}"
     },
     {
-      "id": "pl_msg_00000425_00009",
+      "id": "Drawing_Text_WriteYourAutograph",
       "en_US": "Write your autograph!"
     },
     {
-      "id": "pl_msg_00000425_00010",
+      "id": "Drawing_Text_IsThisOK",
       "en_US": "Is this OK?"
     },
     {
-      "id": "pl_msg_00000425_00011",
+      "id": "Drawing_Text_RedoAutographPrompt",
       "en_US": [
         "Would you like to\n",
         "redo your autograph?"
       ]
     },
     {
-      "id": "pl_msg_00000425_00012",
+      "id": "Drawing_Text_Done",
       "en_US": "DONE"
     },
     {
-      "id": "pl_msg_00000425_00013",
+      "id": "Drawing_Text_JoinedSession",
       "en_US": "Joined a drawing session!"
     }
   ]

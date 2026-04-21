@@ -1797,8 +1797,8 @@
     .short SCRCMD_12A
     .endm
 
-    .macro ScrCmd_12B
-    .short SCRCMD_12B
+    .macro StartSignatureApp
+    .short SCRCMD_STARTSIGNATUREAPP
     .endm
 
     .macro CheckSaveType destVarID
@@ -2241,9 +2241,9 @@
     .short \berryItemID
     .endm
 
-    .macro SetBerryWateringState direction
+    .macro SetBerryWateringState state
     .short SCRCMD_SETBERRYWATERINGSTATE
-    .short \direction
+    .short \state
     .endm
 
     .macro HarvestBerry

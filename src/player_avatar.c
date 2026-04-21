@@ -87,7 +87,7 @@ void PlayerAvatar_InitDraw(PlayerAvatar *playerAvatar, int dynamicMapFeaturesID)
             int x = Player_GetXPos(playerAvatar);
             int z = Player_GetZPos(playerAvatar);
             int dir = PlayerAvatar_GetDir(playerAvatar);
-            OverworldAnimManager *v7 = SurfMountRenderer_HandleSurfBegin(mapObj, x, z, dir, 1);
+            OverworldAnimManager *v7 = SurfMountRenderer_HandleSurfBegin(mapObj, x, z, dir, TRUE);
 
             PlayerAvatar_SetSurfMountAnimManager(playerAvatar, v7);
         }

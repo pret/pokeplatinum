@@ -34,7 +34,7 @@ enum DistWorldSurfMountRendererFlagMask {
 
 void *DistWorldSurfMountRenderer_New(FieldEffectManager *fieldEffMan);
 void DistWorldSurfMountRenderer_Free(void *context);
-OverworldAnimManager *DistWorldSurfMountRenderer_HandleSurfBegin(PlayerAvatar *playerAvatar, int mountTileX, int mountTileY, int mountTileZ, enum FaceDirection dir, BOOL reuseMapObjPos, enum AvatarDistortionState avatarDistortionState);
+OverworldAnimManager *DistWorldSurfMountRenderer_HandleSurfBegin(PlayerAvatar *playerAvatar, int mountTileX, int mountTileY, int mountTileZ, enum FaceDirection dir, BOOL syncPos, enum AvatarDistortionState avatarDistortionState);
 Simple3DRotationAngles *DistWorldSurfMountRenderer_GetSurfMountRotationAngles(OverworldAnimManager *animMan);
 void DistWorldSurfMountRenderer_SetFixedRotationAngles(OverworldAnimManager *animMan, enum FaceDirection dir, enum AvatarDistortionState avatarDistortionState);
 void DistWorldSurfMountRenderer_SetFlags(OverworldAnimManager *animMan, int mask);

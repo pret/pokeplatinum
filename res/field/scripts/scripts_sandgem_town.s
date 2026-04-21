@@ -215,7 +215,7 @@ SandgemTown_EnterPokemonResearchLab:
     SetVar VAR_SANDGEM_TOWN_STATE, 1
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_SANDGEM_TOWN_POKEMON_RESEARCH_LAB, 0, 7, 15, 0
+    Warp MAP_HEADER_SANDGEM_TOWN_POKEMON_RESEARCH_LAB, 0, 7, 15, DIR_NORTH
     FadeScreenIn
     WaitFadeScreen
     End

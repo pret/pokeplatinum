@@ -119,7 +119,7 @@ static int ov5_021F184C(OverworldAnimManager *param0, void *param1)
     v2 = OverworldAnimManager_GetUserData(param0);
 
     v1->unk_14 = *v2;
-    v1->unk_10 = OverworldAnimManager_GetID(param0);
+    v1->unk_10 = OverworldAnimManager_GetUserInt(param0);
     v1->unk_00 = MapObject_GetLocalID(v1->unk_14.unk_0C);
     v1->unk_04 = MapObject_GetMapID(v1->unk_14.unk_0C);
     v1->unk_08 = MapObject_GetGraphicsID(v1->unk_14.unk_0C);
@@ -374,7 +374,7 @@ static int ov5_021F1BEC(OverworldAnimManager *param0, void *param1)
     v2 = OverworldAnimManager_GetUserData(param0);
 
     v1->unk_04 = *v2;
-    v1->unk_00 = OverworldAnimManager_GetID(param0);
+    v1->unk_00 = OverworldAnimManager_GetUserInt(param0);
     v1->unk_40.x = FX32_ONE;
     v1->unk_40.y = FX32_ONE;
     v1->unk_40.z = FX32_ONE;

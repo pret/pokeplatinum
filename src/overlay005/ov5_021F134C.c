@@ -220,7 +220,7 @@ static int ov5_021F15B4(OverworldAnimManager *param0, void *param1)
     v1 = OverworldAnimManager_GetUserData(param0);
 
     v0->unk_14 = *v1;
-    v0->unk_10 = OverworldAnimManager_GetID(param0);
+    v0->unk_10 = OverworldAnimManager_GetUserInt(param0);
     v0->unk_00 = MapObject_GetGraphicsID(v0->unk_14.unk_08);
     v0->unk_04 = MapObject_GetLocalID(v0->unk_14.unk_08);
 
@@ -349,7 +349,7 @@ static void ov5_021F176C(OverworldAnimManager *param0, void *param1)
     }
 
     {
-        int v1 = OverworldAnimManager_GetID(param0);
+        int v1 = OverworldAnimManager_GetUserInt(param0);
         VecFx32 v2;
         Simple3DRenderObj *v3 = &v0->unk_14.unk_04->unk_64[v1];
 

@@ -69,7 +69,7 @@ SpearPillarDistorted_EnterDistortionWorld:
     DoDWWarp
     ReturnToField
     SetPartyGiratinaForm GIRATINA_FORM_ORIGIN
-    Warp MAP_HEADER_DISTORTION_WORLD_1F, 0, 55, 40, 1
+    Warp MAP_HEADER_DISTORTION_WORLD_1F, 0, 55, 40, DIR_SOUTH
     FadeScreenIn
     WaitFadeScreen
     End

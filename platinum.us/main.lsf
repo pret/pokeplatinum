@@ -552,7 +552,7 @@ Overlay overlay5
 	Object main.nef.p/src_overlay005_ov5_021F61BC.c.o
 	Object main.nef.p/src_overlay005_ov5_021F6454.c.o
 	Object main.nef.p/src_overlay005_scrcmd_move_tutor.c.o
-	Object main.nef.p/src_overlay005_ov5_021F8370.c.o
+	Object main.nef.p/src_overlay005_villa_furniture.c.o
 	Object main.nef.p/src_overlay005_dist_world_surf_mount_renderer.c.o
 }
 
@@ -1248,10 +1248,10 @@ Overlay trainer_case
 	Object main.nef.p/src_applications_trainer_case_badge_chimes.c.o
 }
 
-Overlay overlay72
+Overlay signature
 {
 	After trainer_case
-	Object main.nef.p/src_overlay072_ov72_0223D7A0.c.o
+	Object main.nef.p/src_applications_signature.c.o
 }
 
 Overlay rowan_intro

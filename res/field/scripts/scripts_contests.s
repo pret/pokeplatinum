@@ -650,7 +650,7 @@ ContestRegistration_StartPracticeContest:
     RunContestApplication
     GetContestInfo VAR_0x8004, VAR_0x8005, VAR_0x8007, VAR_MAP_LOCAL_2
     SetVar VAR_ONGOING_CONTEST, FALSE
-    Warp MAP_HEADER_CONTEST_HALL_LOBBY, 0, 28, 3, 1
+    Warp MAP_HEADER_CONTEST_HALL_LOBBY, 0, 28, 3, DIR_SOUTH
     LockAll
     FadeScreenIn
     WaitFadeScreen
@@ -680,7 +680,7 @@ Contest_DoContest:
     ClearFlag FLAG_HIDE_CONTEST_HALL_STAGE_CONTESTANT4
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_CONTEST_HALL_STAGE_ONGOING_CONTEST, 0, 29, 7, 0
+    Warp MAP_HEADER_CONTEST_HALL_STAGE_ONGOING_CONTEST, 0, 29, 7, DIR_NORTH
     LockAutoScrollForLinkContests
     GetContestMode VAR_MAP_LOCAL_3
     StopHBlank
@@ -810,7 +810,7 @@ OngoingContest_EndContest:
     EndContest VAR_MAP_LOCAL_2
     SetVar VAR_ONGOING_CONTEST, FALSE
     GoToIfEq VAR_MAP_LOCAL_3, CONTEST_MODE_OFFICIAL, OngoingContest_OfficialContest_ReturnToContestRegistration
-    Warp MAP_HEADER_CONTEST_HALL_LOBBY, 0, 7, 3, 1
+    Warp MAP_HEADER_CONTEST_HALL_LOBBY, 0, 7, 3, DIR_SOUTH
     FadeScreenIn
     WaitFadeScreen
     SetVar VAR_RESULT, 7
@@ -820,7 +820,7 @@ OngoingContest_EndContest:
     GoTo ContestRegistration_End
 
 OngoingContest_OfficialContest_ReturnToContestRegistration:
-    Warp MAP_HEADER_CONTEST_HALL_LOBBY, 0, 18, 3, 1
+    Warp MAP_HEADER_CONTEST_HALL_LOBBY, 0, 18, 3, DIR_SOUTH
     FadeScreenIn
     WaitFadeScreen
     SetVar VAR_RESULT, 19

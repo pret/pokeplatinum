@@ -173,7 +173,7 @@ _02DF:
     ReleaseAll
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_VALOR_LAKEFRONT, 0, 0x2C2, 0x317, 1
+    Warp MAP_HEADER_VALOR_LAKEFRONT, 0, 0x2C2, 0x317, DIR_SOUTH
     FadeScreenIn
     WaitFadeScreen
     End

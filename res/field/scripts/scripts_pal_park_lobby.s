@@ -163,7 +163,7 @@ PalParkLobby_WalkInAndWarp:
     PlaySE SEQ_SE_DP_KAIDAN2
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_PAL_PARK, 0, 24, 47, 0
+    Warp MAP_HEADER_PAL_PARK, 0, 24, 47, DIR_NORTH
     FadeScreenIn
     WaitFadeScreen
     ReleaseAll

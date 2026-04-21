@@ -130,7 +130,7 @@ static void ov5_021F33D0(OverworldAnimManager *param0, void *param1)
         return;
     }
 
-    v1 = OverworldAnimManager_GetID(param0);
+    v1 = OverworldAnimManager_GetUserInt(param0);
 
     if (v1 == 1) {
         if (sub_02062EC8(v3) == 0) {

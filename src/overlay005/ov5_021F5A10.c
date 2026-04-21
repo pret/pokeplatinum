@@ -272,7 +272,7 @@ static int ov5_021F5C70(OverworldAnimManager *param0, void *param1)
     v1->unk_40 = ov5_021F5C18(v1->unk_30.unk_04, v1->unk_30.unk_00, &v0, v1->unk_30.unk_08->unk_06);
     ov5_021F5A7C(v1->unk_30.unk_08, v1->unk_30.unk_00);
 
-    if (OverworldAnimManager_GetID(param0) == 1) {
+    if (OverworldAnimManager_GetUserInt(param0) == 1) {
         Sound_PlayEffect(SEQ_SE_DP_DECIDE);
     }
 
@@ -390,7 +390,7 @@ static int ov5_021F5DE4(OverworldAnimManager *param0, void *param1)
     v1->unk_40 = ov5_021F5C18(v1->unk_30.unk_04, v1->unk_30.unk_00, &v0, v1->unk_30.unk_08->unk_06);
     ov5_021F5A7C(v1->unk_30.unk_08, v1->unk_30.unk_00);
 
-    if (OverworldAnimManager_GetID(param0) == 1) {
+    if (OverworldAnimManager_GetUserInt(param0) == 1) {
         Sound_PlayEffect(SEQ_SE_DP_DECIDE);
     }
 
@@ -489,7 +489,7 @@ static void ov5_021F5F24(OverworldAnimManager *param0, void *param1)
         Billboard_SetDrawFlag(v0->unk_40, 1);
         v0->unk_10 = 0;
 
-        if (OverworldAnimManager_GetID(param0) == 1) {
+        if (OverworldAnimManager_GetUserInt(param0) == 1) {
             Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         }
 

@@ -234,7 +234,7 @@ static int ov5_021F1FB8(OverworldAnimManager *param0, void *param1)
     const UnkStruct_021F1FB8 *v2;
 
     v1 = param1;
-    v1->unk_10 = OverworldAnimManager_GetID(param0);
+    v1->unk_10 = OverworldAnimManager_GetUserInt(param0);
 
     v2 = OverworldAnimManager_GetUserData(param0);
     v1->unk_18 = v2->unk_08;

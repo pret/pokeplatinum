@@ -213,7 +213,7 @@ _0360:
     PlaySE SEQ_SE_DP_KAIDAN2
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_BATTLE_HALL, 0, 25, 9, 2
+    Warp MAP_HEADER_BATTLE_HALL, 0, 25, 9, DIR_WEST
     FadeScreenIn
     WaitFadeScreen
     End
@@ -230,7 +230,7 @@ _03A0:
     PlaySE SEQ_SE_DP_KAIDAN2
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_BATTLE_CASTLE, 0, 21, 9, 2
+    Warp MAP_HEADER_BATTLE_CASTLE, 0, 21, 9, DIR_WEST
     FadeScreenIn
     WaitFadeScreen
     End
@@ -247,7 +247,7 @@ _03E0:
     PlaySE SEQ_SE_DP_KAIDAN2
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_BATTLE_ARCADE, 0, 1, 6, 3
+    Warp MAP_HEADER_BATTLE_ARCADE, 0, 1, 6, DIR_EAST
     FadeScreenIn
     WaitFadeScreen
     End
@@ -264,7 +264,7 @@ _0420:
     PlaySE SEQ_SE_DP_KAIDAN2
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_BATTLE_FACTORY, 0, 1, 7, 3
+    Warp MAP_HEADER_BATTLE_FACTORY, 0, 1, 7, DIR_EAST
     FadeScreenIn
     WaitFadeScreen
     End

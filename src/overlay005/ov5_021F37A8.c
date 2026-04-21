@@ -128,7 +128,7 @@ static int ov5_021F38AC(OverworldAnimManager *param0, void *param1)
     OverworldAnimManager_SetPosition(param0, &v2);
     v3->unk_34 = ov5_021DF84C(v3->unk_18.unk_10, 9, &v2);
 
-    if (OverworldAnimManager_GetID(param0) == 0) {
+    if (OverworldAnimManager_GetUserInt(param0) == 0) {
         v3->unk_00 = 1;
     }
 

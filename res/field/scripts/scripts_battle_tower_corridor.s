@@ -31,7 +31,7 @@ _0025:
 _0066:
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_BATTLE_TOWER_BATTLE_ROOM, 0, 7, 6, 0
+    Warp MAP_HEADER_BATTLE_TOWER_BATTLE_ROOM, 0, 7, 6, DIR_NORTH
     FadeScreenIn
     WaitFadeScreen
     ReleaseAll

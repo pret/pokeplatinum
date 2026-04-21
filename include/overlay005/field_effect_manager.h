@@ -48,7 +48,7 @@ FieldEffectManager *MapObject_GetFieldEffectManager(const MapObject *mapObject);
 u32 FieldEffectManager_GetNARCMemberSize(FieldEffectManager *fieldEffMan, u32 memberIndex);
 void FieldEffectManager_ReadNARCWholeMember(FieldEffectManager *fieldEffMan, u32 memberIndex, void *dest);
 void *FieldEffectManager_AllocAndReadNARCWholeMember(FieldEffectManager *fieldEffMan, u32 memberIndex, BOOL allocAtEnd);
-OverworldAnimManager *FieldEffectManager_InitAnimManager(const FieldEffectManager *fieldEffMan, const OverworldAnimManagerFuncs *funcs, const VecFx32 *initialPos, int animId, const void *userData, int sysTaskPriority);
+OverworldAnimManager *FieldEffectManager_InitAnimManager(const FieldEffectManager *fieldEffMan, const OverworldAnimManagerFuncs *funcs, const VecFx32 *initialPos, int userInt, const void *userData, int sysTaskPriority);
 void FieldEffectManager_FinishAnimManager(OverworldAnimManager *animMan);
 Billboard *ov5_021DF7F8(FieldEffectManager *param0, const BillboardResources *param1, const VecFx32 *param2);
 Billboard *ov5_021DF84C(FieldEffectManager *param0, u32 param1, const VecFx32 *param2);

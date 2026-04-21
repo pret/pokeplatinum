@@ -409,7 +409,7 @@ _0526:
     SetVar VAR_MAP_LOCAL_3, 0
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_WIFI_PLAZA_ENTRANCE, 0, 20, 11, 0
+    Warp MAP_HEADER_WIFI_PLAZA_ENTRANCE, 0, 20, 11, DIR_NORTH
     FadeScreenIn
     WaitFadeScreen
     End

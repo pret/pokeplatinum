@@ -446,7 +446,7 @@ static BOOL ScrCmd_SlatherHoneyTree(ScriptContext *ctx);
 static BOOL ScrCmd_GetHoneyTreeStatus(ScriptContext *ctx);
 static BOOL ScrCmd_StartHoneyTreeBattle(ScriptContext *ctx);
 static BOOL ScrCmd_12A(ScriptContext *ctx);
-static BOOL ScrCmd_12B(ScriptContext *ctx);
+static BOOL ScrCmd_StartSignatureApp(ScriptContext *ctx);
 static BOOL ScrCmd_CheckSaveType(ScriptContext *ctx);
 static BOOL ScrCmd_TrySaveGame(ScriptContext *ctx);
 static BOOL ScrCmd_131(ScriptContext *ctx);
@@ -4086,9 +4086,9 @@ static BOOL ScrCmd_12A(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_12B(ScriptContext *ctx)
+static BOOL ScrCmd_StartSignatureApp(ScriptContext *ctx)
 {
-    sub_0203E0D0(ctx->fieldSystem);
+    FieldSystem_LaunchSignatureApp(ctx->fieldSystem);
     ScriptContext_Pause(ctx, ScriptContext_WaitForApplicationExit);
     return TRUE;
 }

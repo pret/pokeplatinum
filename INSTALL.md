@@ -187,6 +187,26 @@ GNU `coreutils` installed to run the build scripts:
 
 6. [Download the repository](#2-downloading-the-repository).
 
+> [!TIP]
+> You can run a persistent Wine server in the background to speed up builds.
+>
+> To do this, open the Wine Stable application from your Applications folder.
+> In the terminal window that opens, run the following command:
+>
+> ```zsh
+> wineserver -p
+> ```
+>
+> When trying to build the repository, the first invocation of `make` may hang
+> on compiling a file. If that happens, hit Control+C to interrupt the build,
+> and run `make` again.
+>
+> If you need to stop the Wine server, run the following command:
+>
+> ```zsh
+> wineserver -k
+> ```
+
 ### Linux
 
 > [!NOTE]

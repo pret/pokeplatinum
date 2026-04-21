@@ -98,7 +98,7 @@ static void DistWorldSurfMountResources_Free(DistWorldSurfMountResources *resour
     Simple3D_FreeModel(&resources->surfMountModel);
 }
 
-OverworldAnimManager *DistWorldSurfMountRenderer_HandleSurfBegin(PlayerAvatar *playerAvatar, int mountTileX, int mountTileY, int mountTileZ, enum FaceDirection dir, BOOL reuseMapObjPos, enum AvatarDistortionState avatarDistortionState)
+OverworldAnimManager *DistWorldSurfMountRenderer_HandleSurfBegin(PlayerAvatar *playerAvatar, int mountTileX, int mountTileY, int mountTileZ, enum FaceDirection dir, BOOL syncPos, enum AvatarDistortionState avatarDistortionState)
 {
     VecFx32 mountPos = { 0, 0, 0 };
     DistWorldSurfMountUserData userData;
@@ -111,7 +111,7 @@ OverworldAnimManager *DistWorldSurfMountRenderer_HandleSurfBegin(PlayerAvatar *p
     userData.playerMapObj = playerMapObj;
     userData.playerAvatar = playerAvatar;
 
-    if (!reuseMapObjPos) {
+    if (!syncPos) {
         FieldSystem *fieldSystem = MapObject_FieldSystem(playerMapObj);
         const VecFx32 *mountPosFix = &sInitialMountPosFixes[avatarDistortionState];
 
@@ -126,7 +126,7 @@ OverworldAnimManager *DistWorldSurfMountRenderer_HandleSurfBegin(PlayerAvatar *p
     }
 
     int taskPriority = MapObject_CalculateTaskPriority(playerMapObj, 2);
-    OverworldAnimManager *animMan = FieldEffectManager_InitAnimManager(userData.fieldEffMan, &sDistWorldSurfMountRendererAnimFuncs, &mountPos, reuseMapObjPos, &userData, taskPriority);
+    OverworldAnimManager *animMan = FieldEffectManager_InitAnimManager(userData.fieldEffMan, &sDistWorldSurfMountRendererAnimFuncs, &mountPos, syncPos, &userData, taskPriority);
 
     return animMan;
 }
@@ -145,7 +145,7 @@ static BOOL DistWorldSurfMountRenderer_AnimInit(OverworldAnimManager *animMan, v
     renderer->orbitAngle = sOrbitAngles[renderer->avatarDistortionState];
     renderer->orbitDistance = MOUNT_ORBIT_DISTANCE;
 
-    if (OverworldAnimManager_GetID(animMan) == 1) {
+    if (OverworldAnimManager_GetUserInt(animMan) == TRUE) {
         renderer->flags |= DIST_WORLD_SURF_MOUNT_RENDERER_FLAG_MASK_TICK;
     }
 

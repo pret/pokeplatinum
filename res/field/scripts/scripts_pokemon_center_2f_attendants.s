@@ -500,7 +500,7 @@ _0724:
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
-    ScrCmd_12B
+    StartSignatureApp
     ReturnToField
     FadeScreenIn
     WaitFadeScreen

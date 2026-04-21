@@ -129,7 +129,7 @@ static int ov5_021F3B54(OverworldAnimManager *param0, void *param1)
 
     v3->unk_34 = ov5_021DF84C(v3->unk_18.unk_10, 10, &v2);
 
-    if (OverworldAnimManager_GetID(param0) == 0) {
+    if (OverworldAnimManager_GetUserInt(param0) == 0) {
         v3->unk_00 = 1;
     }
 

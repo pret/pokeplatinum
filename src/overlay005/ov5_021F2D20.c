@@ -192,7 +192,7 @@ static int ov5_021F2F0C(OverworldAnimManager *param0, void *param1)
 
     v3->unk_34 = ov5_021DF84C(v3->unk_18.unk_10, 0, &v2);
 
-    if (OverworldAnimManager_GetID(param0) == 0) {
+    if (OverworldAnimManager_GetUserInt(param0) == 0) {
         v3->unk_00 = 1;
     }
 
@@ -415,7 +415,7 @@ static int ov5_021F31B4(OverworldAnimManager *param0, void *param1)
     v2 = param1;
     v3 = OverworldAnimManager_GetUserData(param0);
     v2->unk_10 = *v3;
-    v2->unk_0C = OverworldAnimManager_GetID(param0);
+    v2->unk_0C = OverworldAnimManager_GetUserInt(param0);
 
     v1.x = (((v2->unk_10.unk_00) << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1);
     v1.z = (((v2->unk_10.unk_04) << 4) * FX32_ONE) + ((((16 * FX32_ONE) >> 1) + (FX32_ONE * 6) + (FX32_ONE * 4)) / 2);

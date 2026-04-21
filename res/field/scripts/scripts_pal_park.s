@@ -152,7 +152,7 @@ PalPark_ClearFlagAndWarpOut:
     ClearInCatchingShowFlag
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_PAL_PARK_LOBBY, 0, 7, 7, 1
+    Warp MAP_HEADER_PAL_PARK_LOBBY, 0, 7, 7, DIR_SOUTH
     FadeScreenIn
     WaitFadeScreen
     Return

@@ -45,7 +45,7 @@ PokemonLeagueChampionRoom_OnFrame:
     PlaySE SEQ_SE_DP_KAIDAN2
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_POKEMON_LEAGUE_HALLWAY_TO_HALL_OF_FAME, 0, 5, 23, 0
+    Warp MAP_HEADER_POKEMON_LEAGUE_HALLWAY_TO_HALL_OF_FAME, 0, 5, 23, DIR_NORTH
     FadeScreenIn
     WaitFadeScreen
     ReleaseAll

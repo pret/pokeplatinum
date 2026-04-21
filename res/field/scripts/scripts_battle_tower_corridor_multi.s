@@ -44,7 +44,7 @@ BattleTowerCorridorMulti_EnterCorridorAndGoToBattleRoom:
     Call BattleTowerCorridorMulti_ApplyEnterBattleRoomMovement
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_BATTLE_TOWER_MULTI_BATTLE_ROOM, 0, 7, 5, 0
+    Warp MAP_HEADER_BATTLE_TOWER_MULTI_BATTLE_ROOM, 0, 7, 5, DIR_NORTH
     FadeScreenIn
     WaitFadeScreen
     ReleaseAll

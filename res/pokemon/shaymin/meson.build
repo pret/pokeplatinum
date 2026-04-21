@@ -1,4 +1,4 @@
-species_data_files += files('data.json')
+species_data_files += files('data.json', 'sprite_data.json')
 species_data_files += files('forms/sky/data.json')
 
 poke_icon_files += files('icon.png')

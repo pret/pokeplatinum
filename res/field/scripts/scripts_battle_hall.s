@@ -37,12 +37,12 @@ BattleHall_OnResume:
 
 BattleHall_SerenaWinstonMoveEvenCloser:
     SetObjectEventPos LOCALID_SERENA_WINSTON, 8, 11
-    SetPosition LOCALID_SERENA_WINSTON, 8, 0, 11, 2
+    SetPosition LOCALID_SERENA_WINSTON, 8, 0, 11, DIR_WEST
     Return
 
 BattleHall_SerenaWinstonMoveCloser:
     SetObjectEventPos LOCALID_SERENA_WINSTON, 13, 11
-    SetPosition LOCALID_SERENA_WINSTON, 13, 0, 11, 2
+    SetPosition LOCALID_SERENA_WINSTON, 13, 0, 11, DIR_WEST
     Return
 
 BattleHall_OnLoad:

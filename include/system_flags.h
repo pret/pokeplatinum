@@ -6,7 +6,7 @@
 #include "generated/giratina_shadow_animations.h"
 #include "generated/map_headers.h"
 #include "generated/pokemon_contest_types.h"
-#include "generated/villa_furnitures.h"
+#include "generated/villa_furniture_type.h"
 
 #include "vars_flags.h"
 
@@ -67,7 +67,7 @@ BOOL SystemFlag_HandleForceBikingInGate(VarsFlags *varsFlags, enum HandleFlagOp 
 BOOL SystemFlag_HandleJournalAcquired(VarsFlags *varsFlags, enum HandleFlagOp op);
 BOOL SystemFlag_HandleFirstArrivalToZone(VarsFlags *varsFlags, enum HandleFlagOp op, u32 firstArrival);
 void SystemFlag_SetConnectedToWiFi(VarsFlags *varsFlags);
-BOOL SystemFlag_HandleOwnsVillaFurniture(VarsFlags *varsFlags, enum HandleFlagOp op, enum VillaFurniture furniture);
+BOOL SystemFlag_HandleOwnsVillaFurniture(VarsFlags *varsFlags, enum HandleFlagOp op, enum VillaFurnitureType furniture);
 void SystemFlag_ClearVillaVisitorInside(VarsFlags *varsFlags);
 void SystemFlag_ClearVillaVisitorOutside(VarsFlags *varsFlags);
 BOOL SystemFlag_HandleGiratinaAnimation(VarsFlags *varsFlags, enum HandleFlagOp op, enum GiratinaShadowAnimation anim);
