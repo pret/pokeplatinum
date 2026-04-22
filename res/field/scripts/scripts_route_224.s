@@ -2,213 +2,214 @@
 #include "generated/distribution_events.h"
 #include "generated/hidden_locations.h"
 #include "res/text/bank/route_224.h"
+#include "res/field/events/events_route_224.h"
 
 
-    ScriptEntry _001A
-    ScriptEntry _0082
-    ScriptEntry _00B8
-    ScriptEntry _00E4
-    ScriptEntry _0458
-    ScriptEntry _05F4
+    ScriptEntry Route224_OnTransition
+    ScriptEntry Route224_OnResume
+    ScriptEntry Route224_Tablet
+    ScriptEntry Route224_ProfOak
+    ScriptEntry Route224_TriggerMarley
+    ScriptEntry Route224_Marley
     ScriptEntryEnd
 
-_001A:
-    CallIfEq VAR_SHAYMIN_EVENT_STATE, 1, _00AA
-    GoToIfSet FLAG_UNK_0x012D, _0080
+Route224_OnTransition:
+    CallIfEq VAR_SHAYMIN_EVENT_STATE, 1, Route224_IncreaseVars
+    GoToIfSet FLAG_WROTE_ON_ROUTE_224_TABLET, Route224_DontHideProfOak
     CheckGameCompleted VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, 0, _0080
+    GoToIfEq VAR_MAP_LOCAL_0, FALSE, Route224_DontHideProfOak
     GetNationalDexEnabled VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, 0, _0080
+    GoToIfEq VAR_MAP_LOCAL_0, FALSE, Route224_DontHideProfOak
     CheckItem ITEM_OAKS_LETTER, 1, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, FALSE, _0080
+    GoToIfEq VAR_MAP_LOCAL_0, FALSE, Route224_DontHideProfOak
     CheckDistributionEvent DISTRIBUTION_EVENT_SHAYMIN, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, FALSE, _0080
-    ClearFlag FLAG_UNK_0x0252
-_0080:
+    GoToIfEq VAR_MAP_LOCAL_0, FALSE, Route224_DontHideProfOak
+    ClearFlag FLAG_HIDE_ROUTE_224_PROF_OAK
+Route224_DontHideProfOak:
     End
 
-_0082:
-    GoToIfSet FLAG_UNK_0x012D, _009A
-    CallIfEq VAR_UNK_0x408D, 1, _009C
-_009A:
+Route224_OnResume:
+    GoToIfSet FLAG_WROTE_ON_ROUTE_224_TABLET, Route224_OnResumeEnd
+    CallIfEq VAR_ROUTE_224_PROF_OAK_STATE, 1, Route224_SetProfOakDirNorth
+Route224_OnResumeEnd:
     End
 
-_009C:
-    ScrCmd_18C 3, DIR_NORTH
+Route224_SetProfOakDirNorth:
+    ScrCmd_18C LOCALID_PROF_OAK, DIR_NORTH
     Return
 
 Route224_Unused:
-    SetFlag FLAG_UNK_0x02CA
+    SetFlag FLAG_HIDE_ROUTE_224_MARLEY
     Return
 
-_00AA:
+Route224_IncreaseVars:
     SetVar VAR_SHAYMIN_EVENT_STATE, 2
-    SetVar VAR_UNK_0x4085, 1
+    SetVar VAR_ROUTE_224_STATE, 1
     Return
 
-_00B8:
+Route224_Tablet:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x012D, _00D6
-    Message 7
+    GoToIfSet FLAG_WROTE_ON_ROUTE_224_TABLET, Route224_NameWhomIThank
+    Message Route224_Text_SurfaceIsUnmarked
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_00D6:
+Route224_NameWhomIThank:
     BufferTabletName 1
-    Message 8
+    Message Route224_Text_NameWhomIThank
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_00E4:
-    GoToIfSet FLAG_UNK_0x012D, _022D
+Route224_ProfOak:
+    GoToIfSet FLAG_WROTE_ON_ROUTE_224_TABLET, Route224_WhatWasThatPokemon2Return2
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    SetVar VAR_UNK_0x408D, 1
+    SetVar VAR_ROUTE_224_PROF_OAK_STATE, 1
     BufferPlayerName 0
     GetPlayerGender VAR_RESULT
-    GoToIfEq VAR_RESULT, GENDER_FEMALE, _0219
-    Message 0
-_0114:
+    GoToIfEq VAR_RESULT, GENDER_FEMALE, Route224_ExamineTabletFemale
+    Message Route224_Text_ExamineTabletMale
+Route224_ExamineTablet:
     CloseMessage
-    Call _0240
+    Call Route224_PlayerWalkToTabletFaceProfOak
     BufferPlayerName 0
-    Message 2
+    Message Route224_Text_SayThanksToWhom
     CloseMessage
-_0124:
+Route224_ExpressThanks:
     FadeScreenOut
     WaitFadeScreen
-    ScrCmd_271 VAR_RESULT
+    OpenTabletNamingScreen VAR_RESULT
     FadeScreenIn
     WaitFadeScreen
-    GoToIfEq VAR_RESULT, 1, _0222
+    GoToIfEq VAR_RESULT, 1, Route224_NotSuggestingNoOne
     BufferPlayerName 0
     BufferTabletName 1
-    Message 3
+    Message Route224_Text_ExpressThanksToName
     ShowYesNoMenu VAR_RESULT
     CloseMessage
-    GoToIfEq VAR_RESULT, MENU_NO, _0124
-    Call _029A
+    GoToIfEq VAR_RESULT, MENU_NO, Route224_ExpressThanks
+    Call Route224_PlayerProfOakFaceTablet
     WaitTime 15, VAR_RESULT
     FadeOutBGM 0, 10
     FadeScreenOut FADE_SCREEN_SPEED_SLOW, COLOR_WHITE
     WaitFadeScreen
     EnableHiddenLocation HIDDEN_LOCATION_SEABREAK_PATH
-    ScrCmd_333 0
-    Warp MAP_HEADER_ROUTE_224, 0, 0x38C, 0x1EC, DIR_NORTH
+    SetPlayerVolume SOUND_VOLUME_MIN
+    Warp MAP_HEADER_ROUTE_224, 0, 908, 492, DIR_NORTH
     WaitTime 15, VAR_RESULT
     FadeScreenIn FADE_SCREEN_SPEED_SLOW, COLOR_WHITE
     WaitFadeScreen
-    Call _02B8
-    CallIfNe VAR_SHAYMIN_EVENT_STATE, 2, _01F0
-    CallIfEq VAR_SHAYMIN_EVENT_STATE, 2, _01F5
+    Call Route224_ShayminSceneMovement
+    CallIfNe VAR_SHAYMIN_EVENT_STATE, 2, Route224_WhatWasThatPokemon2Return
+    CallIfEq VAR_SHAYMIN_EVENT_STATE, 2, Route224_ThankYou
     WaitButton
     CloseMessage
-    ScrCmd_333 127
+    SetPlayerVolume SOUND_VOLUME_MAX
     FadeInBGM 10
-    SetFlag FLAG_UNK_0x012D
-    SetFlag FLAG_UNK_0x0252
-    SetFlag FLAG_UNK_0x02CA
-    SetVar VAR_UNK_0x408D, 0
+    SetFlag FLAG_WROTE_ON_ROUTE_224_TABLET
+    SetFlag FLAG_HIDE_ROUTE_224_PROF_OAK
+    SetFlag FLAG_HIDE_ROUTE_224_MARLEY
+    SetVar VAR_ROUTE_224_PROF_OAK_STATE, 0
     ReleaseAll
     End
 
-_01F0:
-    Message 5
+Route224_WhatWasThatPokemon2Return:
+    Message Route224_Text_WhatWasThatPokemon2
     Return
 
-_01F5:
-    Message 4
+Route224_ThankYou:
+    Message Route224_Text_WhatWasThatPokemon
     CloseMessage
-    ApplyMovement 21, _05EC
+    ApplyMovement LOCALID_MARLEY, Route224_Movement_MarleyWalkOnSpotEast
     WaitMovement
-    ApplyMovement LOCALID_PLAYER, _0438
+    ApplyMovement LOCALID_PLAYER, Route224_Movement_PlayerWalkOnSpotWest
     WaitMovement
     WaitTime 15, VAR_RESULT
-    Message 11
+    Message Route224_Text_ThankYou
     Return
 
-_0219:
-    Message 1
-    GoTo _0114
+Route224_ExamineTabletFemale:
+    Message Route224_Text_ExamineTabletFemale
+    GoTo Route224_ExamineTablet
 
-_0222:
-    Message 6
+Route224_NotSuggestingNoOne:
+    Message Route224_Text_NotSuggestingNoOne
     CloseMessage
-    GoTo _0124
+    GoTo Route224_ExpressThanks
 
-_022D:
-    NPCMessage 5
+Route224_WhatWasThatPokemon2Return2:
+    NPCMessage Route224_Text_WhatWasThatPokemon2
     End
 
-_0240:
+Route224_PlayerWalkToTabletFaceProfOak:
     GetPlayerMapPos VAR_0x8000, VAR_0x8001
     SetVar VAR_0x8008, VAR_0x8000
-    GoToIfEq VAR_0x8008, 0x38D, _0272
-    GoToIfEq VAR_0x8008, 0x38E, _0286
-    ApplyMovement LOCALID_PLAYER, _0328
+    GoToIfEq VAR_0x8008, 909, Route224_PlayerWalkToTabletFaceProfOakX909
+    GoToIfEq VAR_0x8008, 910, Route224_PlayerWalkToTabletFaceProfOakX910
+    ApplyMovement LOCALID_PLAYER, Route224_Movement_PlayerFaceTabletThenProfOak
     WaitMovement
     Return
 
-_0272:
-    ApplyMovement LOCALID_PLAYER, _0338
-    ApplyMovement 3, _0364
+Route224_PlayerWalkToTabletFaceProfOakX909:
+    ApplyMovement LOCALID_PLAYER, Route224_Movement_PlayerWalkToTabletFaceProfOakX909
+    ApplyMovement LOCALID_PROF_OAK, Route224_Movement_ProfOakWatchPlayerWalkToTabletX909
     WaitMovement
     Return
 
-_0286:
-    ApplyMovement LOCALID_PLAYER, _034C
-    ApplyMovement 3, _0370
+Route224_PlayerWalkToTabletFaceProfOakX910:
+    ApplyMovement LOCALID_PLAYER, Route224_Movement_PlayerWalkToTabletFaceProfOakX910
+    ApplyMovement LOCALID_PROF_OAK, Route224_Movement_ProfOakWatchPlayerWalkToTabletX910
     WaitMovement
     Return
 
-_029A:
-    ApplyMovement LOCALID_PLAYER, _0384
-    ApplyMovement 3, _0384
+Route224_PlayerProfOakFaceTablet:
+    ApplyMovement LOCALID_PLAYER, Route224_Movement_FaceNorth
+    ApplyMovement LOCALID_PROF_OAK, Route224_Movement_FaceNorth
     WaitMovement
     Return
 
-_02AE:
-    ApplyMovement 21, _066C
+Route224_MarleyNoticeShaymin:
+    ApplyMovement LOCALID_MARLEY, Route224_Movement_MarleyNoticeShaymin
     Return
 
-_02B8:
-    ApplyMovement 3, _0404
-    ApplyMovement LOCALID_PLAYER, _03C8
-    ApplyMovement 16, _0440
+Route224_ShayminSceneMovement:
+    ApplyMovement LOCALID_PROF_OAK, Route224_Movement_ProfOakLookAround
+    ApplyMovement LOCALID_PLAYER, Route224_Movement_PlayerLookAround
+    ApplyMovement LOCALID_SHAYMIN, Route224_Movement_ShayminEnter
     WaitMovement
     PlayCry SPECIES_SHAYMIN
     WaitCry
-    CallIfEq VAR_SHAYMIN_EVENT_STATE, 2, _02AE
-    ApplyMovement 3, _038C
-    ApplyMovement 16, _03B0
-    ApplyMovement LOCALID_PLAYER, _039C
+    CallIfEq VAR_SHAYMIN_EVENT_STATE, 2, Route224_MarleyNoticeShaymin
+    ApplyMovement LOCALID_PROF_OAK, Route224_Movement_ProfOakNoticeShaymin
+    ApplyMovement LOCALID_SHAYMIN, Route224_Movement_ShayminNoticePeople
+    ApplyMovement LOCALID_PLAYER, Route224_Movement_PlayerNoticeShaymin
     WaitMovement
-    ApplyMovement 16, _0448
+    ApplyMovement LOCALID_SHAYMIN, Route224_Movement_ShayminLeave
     WaitMovement
-    SetFlag FLAG_UNK_0x025C
-    RemoveObject 16
+    SetFlag FLAG_HIDE_ROUTE_224_SHAYMIN
+    RemoveObject LOCALID_SHAYMIN
     PlayCry SPECIES_SHAYMIN
     WaitCry
-    ApplyMovement 3, _03C0
+    ApplyMovement LOCALID_PROF_OAK, Route224_Movement_ProfOakFaceWest
     WaitMovement
     Return
 
     .balign 4, 0
-_0328:
+Route224_Movement_PlayerFaceTabletThenProfOak:
     FaceNorth
     Delay16
     FaceEast
     EndMovement
 
     .balign 4, 0
-_0338:
+Route224_Movement_PlayerWalkToTabletFaceProfOakX909:
     WalkNormalWest
     WalkNormalNorth
     Delay16
@@ -216,7 +217,7 @@ _0338:
     EndMovement
 
     .balign 4, 0
-_034C:
+Route224_Movement_PlayerWalkToTabletFaceProfOakX910:
     WalkNormalSouth
     WalkNormalWest 2
     WalkNormalNorth
@@ -225,13 +226,13 @@ _034C:
     EndMovement
 
     .balign 4, 0
-_0364:
+Route224_Movement_ProfOakWatchPlayerWalkToTabletX909:
     Delay8
     FaceWest
     EndMovement
 
     .balign 4, 0
-_0370:
+Route224_Movement_ProfOakWatchPlayerWalkToTabletX910:
     Delay8
     FaceSouth
     Delay8 2
@@ -239,19 +240,19 @@ _0370:
     EndMovement
 
     .balign 4, 0
-_0384:
+Route224_Movement_FaceNorth:
     FaceNorth
     EndMovement
 
     .balign 4, 0
-_038C:
+Route224_Movement_ProfOakNoticeShaymin:
     FaceEast
     EmoteExclamationMark
     Delay16
     EndMovement
 
     .balign 4, 0
-_039C:
+Route224_Movement_PlayerNoticeShaymin:
     Delay16
     FaceEast
     EmoteExclamationMark
@@ -259,19 +260,19 @@ _039C:
     EndMovement
 
     .balign 4, 0
-_03B0:
+Route224_Movement_ShayminNoticePeople:
     FaceWest
     EmoteExclamationMark
     Delay16
     EndMovement
 
     .balign 4, 0
-_03C0:
+Route224_Movement_ProfOakFaceWest:
     FaceWest
     EndMovement
 
     .balign 4, 0
-_03C8:
+Route224_Movement_PlayerLookAround:
     FaceWest
     Delay16
     FaceSouth
@@ -289,7 +290,7 @@ _03C8:
     EndMovement
 
     .balign 4, 0
-_0404:
+Route224_Movement_ProfOakLookAround:
     FaceSouth
     Delay16
     FaceEast
@@ -307,170 +308,170 @@ Route224_UnusedMovement:
     EndMovement
 
     .balign 4, 0
-_0438:
+Route224_Movement_PlayerWalkOnSpotWest:
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_0440:
+Route224_Movement_ShayminEnter:
     WalkNormalSouth 12
     EndMovement
 
     .balign 4, 0
-_0448:
+Route224_Movement_ShayminLeave:
     FaceNorth
     Delay16
     WalkSlightlyFastNorth 12
     EndMovement
 
-_0458:
+Route224_TriggerMarley:
     LockAll
-    ClearFlag FLAG_UNK_0x02CA
+    ClearFlag FLAG_HIDE_ROUTE_224_MARLEY
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    GoToIfEq VAR_0x8005, 0x1F0, _048D
-    GoToIfEq VAR_0x8005, 0x1F1, _04AF
-    GoToIfEq VAR_0x8005, 0x1F2, _04D1
+    GoToIfEq VAR_0x8005, 496, Route224_MarleyWalkToPlayerZ496
+    GoToIfEq VAR_0x8005, 497, Route224_MarleyWalkToPlayerZ497
+    GoToIfEq VAR_0x8005, 498, Route224_MarleyWalkToPlayerZ498
     End
 
-_048D:
-    SetObjectEventPos 21, 0x386, 0x1F8
-    AddObject 21
-    LockObject 21
-    ApplyMovement 21, _0598
+Route224_MarleyWalkToPlayerZ496:
+    SetObjectEventPos LOCALID_MARLEY, 902, 504
+    AddObject LOCALID_MARLEY
+    LockObject LOCALID_MARLEY
+    ApplyMovement LOCALID_MARLEY, Route224_Movement_MarleyWalkToPlayerZ496
     WaitMovement
-    GoTo _04F3
+    GoTo Route224_PokemonThatConveysGratitude
     End
 
-_04AF:
-    SetObjectEventPos 21, 0x386, 0x1F9
-    AddObject 21
-    LockObject 21
-    ApplyMovement 21, _05A4
+Route224_MarleyWalkToPlayerZ497:
+    SetObjectEventPos LOCALID_MARLEY, 902, 505
+    AddObject LOCALID_MARLEY
+    LockObject LOCALID_MARLEY
+    ApplyMovement LOCALID_MARLEY, Route224_Movement_MarleyWalkToPlayerZ497
     WaitMovement
-    GoTo _04F3
+    GoTo Route224_PokemonThatConveysGratitude
     End
 
-_04D1:
-    SetObjectEventPos 21, 0x386, 0x1FA
-    AddObject 21
-    LockObject 21
-    ApplyMovement 21, _05B0
+Route224_MarleyWalkToPlayerZ498:
+    SetObjectEventPos LOCALID_MARLEY, 902, 506
+    AddObject LOCALID_MARLEY
+    LockObject LOCALID_MARLEY
+    ApplyMovement LOCALID_MARLEY, Route224_Movement_MarleyWalkToPlayerZ498
     WaitMovement
-    GoTo _04F3
+    GoTo Route224_PokemonThatConveysGratitude
     End
 
-_04F3:
-    ApplyMovement LOCALID_PLAYER, _0628
+Route224_PokemonThatConveysGratitude:
+    ApplyMovement LOCALID_PLAYER, Route224_Movement_PlayerWalkOnSpotWest2
     WaitMovement
-    Message 9
+    Message Route224_Text_PokemonThatConveysGratitude
     CloseMessage
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    GoToIfEq VAR_0x8005, 0x1F0, _0531
-    GoToIfEq VAR_0x8005, 0x1F1, _054B
-    GoToIfEq VAR_0x8005, 0x1F2, _0565
+    GoToIfEq VAR_0x8005, 496, Route224_MarleyWalkToTabletZ496
+    GoToIfEq VAR_0x8005, 497, Route224_MarleyWalkToTabletZ497
+    GoToIfEq VAR_0x8005, 498, Route224_MarleyWalkToTabletZ498
     End
 
-_0531:
-    ApplyMovement 21, _05BC
-    ApplyMovement LOCALID_PLAYER, _0630
+Route224_MarleyWalkToTabletZ496:
+    ApplyMovement LOCALID_MARLEY, Route224_Movement_MarleyWalkToTabletZ496
+    ApplyMovement LOCALID_PLAYER, Route224_Movement_PlayerWatchMarleyWalkToTabletZ496
     WaitMovement
-    GoTo _057F
+    GoTo Route224_ThatStoneTablet
     End
 
-_054B:
-    ApplyMovement 21, _05CC
-    ApplyMovement LOCALID_PLAYER, _0644
+Route224_MarleyWalkToTabletZ497:
+    ApplyMovement LOCALID_MARLEY, Route224_Movement_MarleyWalkToTabletZ497
+    ApplyMovement LOCALID_PLAYER, Route224_Movement_PlayerWatchMarleyWalkToTabletZ497
     WaitMovement
-    GoTo _057F
+    GoTo Route224_ThatStoneTablet
     End
 
-_0565:
-    ApplyMovement 21, _05DC
-    ApplyMovement LOCALID_PLAYER, _0658
+Route224_MarleyWalkToTabletZ498:
+    ApplyMovement LOCALID_MARLEY, Route224_Movement_MarleyWalkToTabletZ498
+    ApplyMovement LOCALID_PLAYER, Route224_Movement_PlayerWatchMarleyWalkToTabletZ498
     WaitMovement
-    GoTo _057F
+    GoTo Route224_ThatStoneTablet
     End
 
-_057F:
+Route224_ThatStoneTablet:
     SetVar VAR_SHAYMIN_EVENT_STATE, 2
-    SetVar VAR_UNK_0x4085, 2
-    Message 10
+    SetVar VAR_ROUTE_224_STATE, 2
+    Message Route224_Text_ThatStoneTablet
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
     .balign 4, 0
-_0598:
+Route224_Movement_MarleyWalkToPlayerZ496:
     WalkNormalNorth 8
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_05A4:
+Route224_Movement_MarleyWalkToPlayerZ497:
     WalkNormalNorth 8
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_05B0:
+Route224_Movement_MarleyWalkToPlayerZ498:
     WalkNormalNorth 8
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_05BC:
+Route224_Movement_MarleyWalkToTabletZ496:
     WalkNormalSouth
     WalkNormalEast 5
     WalkNormalNorth 4
     EndMovement
 
     .balign 4, 0
-_05CC:
+Route224_Movement_MarleyWalkToTabletZ497:
     WalkNormalNorth
     WalkNormalEast 5
     WalkNormalNorth 3
     EndMovement
 
     .balign 4, 0
-_05DC:
+Route224_Movement_MarleyWalkToTabletZ498:
     WalkNormalNorth 2
     WalkNormalEast 5
     WalkNormalNorth 3
     EndMovement
 
     .balign 4, 0
-_05EC:
+Route224_Movement_MarleyWalkOnSpotEast:
     WalkOnSpotNormalEast
     EndMovement
 
-_05F4:
+Route224_Marley:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x012D, _061C
-    Message 10
+    GoToIfSet FLAG_WROTE_ON_ROUTE_224_TABLET, Route224_ThankYouToo
+    Message Route224_Text_ThatStoneTablet
     WaitButton
     CloseMessage
-    ApplyMovement 21, _0664
+    ApplyMovement LOCALID_MARLEY, Route224_Movement_MarleyFaceNorth
     WaitMovement
     ReleaseAll
     End
 
-_061C:
-    Message 12
+Route224_ThankYouToo:
+    Message Route224_Text_ThankYouToo
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
     .balign 4, 0
-_0628:
+Route224_Movement_PlayerWalkOnSpotWest2:
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_0630:
+Route224_Movement_PlayerWatchMarleyWalkToTabletZ496:
     Delay8 2
     WalkOnSpotNormalEast
     Delay8 4
@@ -478,7 +479,7 @@ _0630:
     EndMovement
 
     .balign 4, 0
-_0644:
+Route224_Movement_PlayerWatchMarleyWalkToTabletZ497:
     Delay8 2
     WalkOnSpotNormalEast
     Delay8 3
@@ -486,18 +487,18 @@ _0644:
     EndMovement
 
     .balign 4, 0
-_0658:
+Route224_Movement_PlayerWatchMarleyWalkToTabletZ498:
     Delay8 2
     WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
-_0664:
+Route224_Movement_MarleyFaceNorth:
     FaceNorth
     EndMovement
 
     .balign 4, 0
-_066C:
+Route224_Movement_MarleyNoticeShaymin:
     FaceEast
     EmoteExclamationMark
     EndMovement

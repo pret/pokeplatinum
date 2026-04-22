@@ -112,11 +112,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_224_PROF_OAK_3",
+            "id": "LOCALID_PROF_OAK",
             "graphics_id": "OBJ_EVENT_GFX_PROF_OAK",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0252",
+            "hidden_flag": "FLAG_HIDE_ROUTE_224_PROF_OAK",
             "script": 4,
             "initial_dir": 1,
             "data": [],
@@ -127,7 +127,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_224_BERRY_SOIL_4",
+            "id": "LOCALID_BERRY_SOIL_1",
             "graphics_id": "OBJ_EVENT_GFX_BERRY_SOIL",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -144,7 +144,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_224_BERRY_SOIL_5",
+            "id": "LOCALID_BERRY_SOIL_2",
             "graphics_id": "OBJ_EVENT_GFX_BERRY_SOIL",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -161,7 +161,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_224_BERRY_SOIL_6",
+            "id": "LOCALID_BERRY_SOIL_3",
             "graphics_id": "OBJ_EVENT_GFX_BERRY_SOIL",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -178,7 +178,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_224_BERRY_SOIL_7",
+            "id": "LOCALID_BERRY_SOIL_4",
             "graphics_id": "OBJ_EVENT_GFX_BERRY_SOIL",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -195,7 +195,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_224_ACE_TRAINER_RUBEN",
+            "id": "LOCALID_ACE_TRAINER_RUBEN",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -212,7 +212,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_224_PSYCHIC_MAXWELL",
+            "id": "LOCALID_PSYCHIC_MAXWELL",
             "graphics_id": "OBJ_EVENT_GFX_PSYCHIC",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -229,7 +229,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_224_BLACK_BELT_CARL",
+            "id": "LOCALID_BLACK_BELT_CARL",
             "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
             "movement_type": "MOVEMENT_TYPE_WALK_SOUTH_EAST_NORTH_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -246,7 +246,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_224_VETERAN_ARMANDO",
+            "id": "LOCALID_VETERAN_ARMANDO",
             "graphics_id": "OBJ_EVENT_GFX_EXPERT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -263,7 +263,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_224_PSYCHIC_BRITTNEY",
+            "id": "LOCALID_PSYCHIC_BRITTNEY",
             "graphics_id": "OBJ_EVENT_GFX_PSYCHIC",
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -280,7 +280,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_224_ACE_TRAINER_JAMIE",
+            "id": "LOCALID_ACE_TRAINER_JAMIE",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -297,7 +297,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_224_RUIN_MANIAC_LARRY",
+            "id": "LOCALID_RUIN_MANIAC_LARRY",
             "graphics_id": "OBJ_EVENT_GFX_RUIN_MANIAC",
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -314,7 +314,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_224_DRAGON_TAMER_HAYDEN",
+            "id": "LOCALID_DRAGON_TAMER_HAYDEN",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_ROTATE_CLOCKWISE",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -331,11 +331,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_224_SHAYMIN_16",
+            "id": "LOCALID_SHAYMIN",
             "graphics_id": "OBJ_EVENT_GFX_SHAYMIN",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x025C",
+            "hidden_flag": "FLAG_HIDE_ROUTE_224_SHAYMIN",
             "script": 0,
             "initial_dir": 1,
             "data": [],
@@ -406,11 +406,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_224_MARLEY_21",
+            "id": "LOCALID_MARLEY",
             "graphics_id": "OBJ_EVENT_GFX_MARLEY",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x02CA",
+            "hidden_flag": "FLAG_HIDE_ROUTE_224_MARLEY",
             "script": 6,
             "initial_dir": 0,
             "data": [],
@@ -437,7 +437,7 @@
             "y": 0,
             "width": 1,
             "length": 3,
-            "var": "VAR_UNK_0x4085",
+            "var": "VAR_ROUTE_224_STATE",
             "value": 1
         }
     ]

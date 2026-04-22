@@ -1080,10 +1080,10 @@ BOOL ScrCmd_LogLinkInfoInWiFiHistory(ScriptContext *ctx)
     return TRUE;
 }
 
-BOOL ScrCmd_333(ScriptContext *ctx)
+BOOL ScrCmd_SetPlayerVolume(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_GetVar(ctx);
+    u16 volume = ScriptContext_GetVar(ctx);
 
-    Sound_SetPlayerVolume(1, v0);
-    return 0;
+    Sound_SetPlayerVolume(PLAYER_FIELD, volume);
+    return FALSE;
 }

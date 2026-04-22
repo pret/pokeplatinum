@@ -5,15 +5,13 @@
 #include <nitro/spi.h>
 #include <nnsys.h>
 
+#include "constants/sound_volume.h"
 #include "generated/sdat.h"
 
 #include "sound_system.h"
 
 #define FIELD_BGM_BANK_STATE_IDLE   0
 #define FIELD_BGM_BANK_STATE_SWITCH 1
-
-#define SOUND_VOLUME_MIN 0
-#define SOUND_VOLUME_MAX 127
 
 #define SOUND_WAVE_BUFFER_SIZE 2000
 

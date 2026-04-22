@@ -79,7 +79,7 @@
             "y": 0
         },
         {
-            "id": "VICTORY_ROAD_2F_ACE_TRAINER_OMAR",
+            "id": "LOCALID_ACE_TRAINER_OMAR",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -96,7 +96,7 @@
             "y": 0
         },
         {
-            "id": "VICTORY_ROAD_2F_ACE_TRAINER_SYDNEY",
+            "id": "LOCALID_ACE_TRAINER_SYDNEY",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -113,7 +113,7 @@
             "y": 0
         },
         {
-            "id": "VICTORY_ROAD_2F_VETERAN_CLAYTON",
+            "id": "LOCALID_VETERAN_CLAYTON",
             "graphics_id": "OBJ_EVENT_GFX_EXPERT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -130,7 +130,7 @@
             "y": 0
         },
         {
-            "id": "VICTORY_ROAD_2F_DOUBLE_TEAM_TRAINER_AL",
+            "id": "LOCALID_DOUBLE_TEAM_TRAINER_AL",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -148,7 +148,7 @@
             "y": 0
         },
         {
-            "id": "VICTORY_ROAD_2F_DOUBLE_TEAM_TRAINER_KAY",
+            "id": "LOCALID_DOUBLE_TEAM_TRAINER_KAY",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -166,7 +166,7 @@
             "y": 0
         },
         {
-            "id": "VICTORY_ROAD_2F_STRENGTH_BOULDER_9",
+            "id": "LOCALID_STRENGTH_BOULDER_1",
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -181,7 +181,7 @@
             "y": 0
         },
         {
-            "id": "VICTORY_ROAD_2F_STRENGTH_BOULDER_10",
+            "id": "LOCALID_STRENGTH_BOULDER_2",
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -196,7 +196,7 @@
             "y": 0
         },
         {
-            "id": "VICTORY_ROAD_2F_STRENGTH_BOULDER_11",
+            "id": "LOCALID_STRENGTH_BOULDER_3",
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -211,7 +211,7 @@
             "y": 0
         },
         {
-            "id": "VICTORY_ROAD_2F_STRENGTH_BOULDER_12",
+            "id": "LOCALID_STRENGTH_BOULDER_4",
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -226,7 +226,7 @@
             "y": 0
         },
         {
-            "id": "VICTORY_ROAD_2F_STRENGTH_BOULDER_13",
+            "id": "LOCALID_STRENGTH_BOULDER_5",
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -241,7 +241,7 @@
             "y": 0
         },
         {
-            "id": "VICTORY_ROAD_2F_ROCK_SMASH_14",
+            "id": "LOCALID_ROCK_SMASH_1",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -256,7 +256,7 @@
             "y": 0
         },
         {
-            "id": "VICTORY_ROAD_2F_STRENGTH_BOULDER_15",
+            "id": "LOCALID_STRENGTH_BOULDER_6",
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -271,7 +271,7 @@
             "y": 0
         },
         {
-            "id": "VICTORY_ROAD_2F_STRENGTH_BOULDER_16",
+            "id": "LOCALID_STRENGTH_BOULDER_7",
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -286,7 +286,7 @@
             "y": 0
         },
         {
-            "id": "VICTORY_ROAD_2F_STRENGTH_BOULDER_17",
+            "id": "LOCALID_STRENGTH_BOULDER_8",
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -301,7 +301,7 @@
             "y": 0
         },
         {
-            "id": "VICTORY_ROAD_2F_STRENGTH_BOULDER_18",
+            "id": "LOCALID_STRENGTH_BOULDER_9",
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -316,7 +316,7 @@
             "y": 0
         },
         {
-            "id": "VICTORY_ROAD_2F_STRENGTH_BOULDER_19",
+            "id": "LOCALID_STRENGTH_BOULDER_10",
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -331,7 +331,7 @@
             "y": 0
         },
         {
-            "id": "VICTORY_ROAD_2F_STRENGTH_BOULDER_20",
+            "id": "LOCALID_STRENGTH_BOULDER_11",
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -346,7 +346,7 @@
             "y": 0
         },
         {
-            "id": "VICTORY_ROAD_2F_STRENGTH_BOULDER_21",
+            "id": "LOCALID_STRENGTH_BOULDER_12",
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -361,7 +361,7 @@
             "y": 0
         },
         {
-            "id": "VICTORY_ROAD_2F_STRENGTH_BOULDER_22",
+            "id": "LOCALID_STRENGTH_BOULDER_13",
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -376,7 +376,7 @@
             "y": 0
         },
         {
-            "id": "VICTORY_ROAD_2F_STRENGTH_BOULDER_23",
+            "id": "LOCALID_STRENGTH_BOULDER_14",
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -391,7 +391,7 @@
             "y": 0
         },
         {
-            "id": "VICTORY_ROAD_2F_STRENGTH_BOULDER_24",
+            "id": "LOCALID_STRENGTH_BOULDER_15",
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -406,7 +406,7 @@
             "y": 0
         },
         {
-            "id": "VICTORY_ROAD_2F_STRENGTH_BOULDER_25",
+            "id": "LOCALID_STRENGTH_BOULDER_16",
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -421,7 +421,7 @@
             "y": 0
         },
         {
-            "id": "VICTORY_ROAD_2F_ROCK_SMASH_26",
+            "id": "LOCALID_ROCK_SMASH_2",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -436,7 +436,7 @@
             "y": 0
         },
         {
-            "id": "VICTORY_ROAD_2F_ROCK_SMASH_27",
+            "id": "LOCALID_ROCK_SMASH_3",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -451,7 +451,7 @@
             "y": 0
         },
         {
-            "id": "VICTORY_ROAD_2F_ROCK_SMASH_28",
+            "id": "LOCALID_ROCK_SMASH_4",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -466,7 +466,7 @@
             "y": 0
         },
         {
-            "id": "VICTORY_ROAD_2F_ROCK_SMASH_29",
+            "id": "LOCALID_ROCK_SMASH_5",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -481,7 +481,7 @@
             "y": 0
         },
         {
-            "id": "VICTORY_ROAD_2F_ROCK_SMASH_30",
+            "id": "LOCALID_ROCK_SMASH_6",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -496,7 +496,7 @@
             "y": 0
         },
         {
-            "id": "VICTORY_ROAD_2F_ROCK_SMASH_31",
+            "id": "LOCALID_ROCK_SMASH_7",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",

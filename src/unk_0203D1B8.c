@@ -1204,7 +1204,7 @@ static void sub_0203DF68(FieldTask *param0)
         RecordMixedRNG *v5 = SaveData_GetRecordMixedRNG(fieldSystem->saveData);
         RecordMixedRNG_GetEntryNameAsString(v5, 0, 0, v1->unk_0C->textInputStr);
     } break;
-    case NAMING_SCREEN_TYPE_UNK6: {
+    case NAMING_SCREEN_TYPE_TABLET: {
         MiscSaveBlock *v6 = SaveData_MiscSaveBlock(fieldSystem->saveData);
         MiscSaveBlock_SetTabletName(v6, v1->unk_0C->textInputStr);
     } break;

@@ -52,6 +52,7 @@
 #include "constants/roamer_states.h"
 #include "constants/savedata/vars_flags.h"
 #include "constants/scrcmd.h"
+#include "constants/sound_volume.h"
 #include "constants/tv_broadcast.h"
 #include "constants/battle.h"
 
@@ -3740,9 +3741,9 @@
     SetHiddenLocation \hiddenLocation, FALSE
     .endm
 
-    .macro ScrCmd_271 arg0
-    .short SCRCMD_271
-    .short \arg0
+    .macro OpenTabletNamingScreen destVar
+    .short SCRCMD_OPENTABLETNAMINGSCREEN
+    .short \destVar
     .endm
 
     .macro BufferTabletName templateArg
@@ -4854,9 +4855,9 @@
     .short SCRCMD_332
     .endm
 
-    .macro ScrCmd_333 arg0
-    .short SCRCMD_333
-    .short \arg0
+    .macro SetPlayerVolume volume
+    .short SCRCMD_SETPLAYERVOLUME
+    .short \volume
     .endm
 
     .macro AddToGameRecord recordID, value

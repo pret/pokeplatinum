@@ -1,188 +1,189 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/victory_road_1f_room_2.h"
+#include "res/field/events/events_victory_road_1f_room_2.h"
 
 
-    ScriptEntry _0027
-    ScriptEntry _0190
-    ScriptEntry _02E4
-    ScriptEntry _0012
+    ScriptEntry VictoryRoad1FRoom2_TriggerStartFollowingMarley
+    ScriptEntry VictoryRoad1FRoom2_TriggerPlayerLeaveMarley
+    ScriptEntry VictoryRoad1FRoom2_TriggerMarleyLeavePlayer
+    ScriptEntry VictoryRoad1FRoom2_OnTransition
     ScriptEntryEnd
 
-_0012:
-    GoToIfUnset FLAG_TRAVELED_WITH_MARLEY, _001F
+VictoryRoad1FRoom2_OnTransition:
+    GoToIfUnset FLAG_TRAVELED_WITH_MARLEY, VictoryRoad1FRoom2_ResetFollowerMarleyState
     End
 
-_001F:
-    SetVar VAR_UNK_0x4090, 0
+VictoryRoad1FRoom2_ResetFollowerMarleyState:
+    SetVar VAR_VICTORY_ROAD_1F_ROOM_2_FOLLOWER_MARLEY_STATE, 0
     End
 
-_0027:
+VictoryRoad1FRoom2_TriggerStartFollowingMarley:
     LockAll
     SetPlayerBike FALSE
-    ApplyMovement 28, _0140
+    ApplyMovement LOCALID_MARLEY, VictoryRoad1FRoom2_Movement_MarleyNoticePlayer
     WaitMovement
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    GoToIfEq VAR_0x8005, 55, _008C
-    GoToIfEq VAR_0x8005, 56, _009C
-    GoToIfEq VAR_0x8005, 57, _00AC
-    GoToIfEq VAR_0x8005, 58, _00BC
-    GoToIfEq VAR_0x8005, 59, _00CC
-    GoToIfEq VAR_0x8005, 60, _00DC
+    GoToIfEq VAR_0x8005, 55, VictoryRoad1FRoom2_MarleyWalkToPlayerZ55
+    GoToIfEq VAR_0x8005, 56, VictoryRoad1FRoom2_MarleyWalkToPlayerZ56
+    GoToIfEq VAR_0x8005, 57, VictoryRoad1FRoom2_MarleyWalkToPlayerZ57
+    GoToIfEq VAR_0x8005, 58, VictoryRoad1FRoom2_MarleyWalkToPlayerZ58
+    GoToIfEq VAR_0x8005, 59, VictoryRoad1FRoom2_MarleyWalkToPlayerZ59
+    GoToIfEq VAR_0x8005, 60, VictoryRoad1FRoom2_MarleyWalkToPlayerZ60
     End
 
-_008C:
-    ApplyMovement 28, _014C
+VictoryRoad1FRoom2_MarleyWalkToPlayerZ55:
+    ApplyMovement LOCALID_MARLEY, VictoryRoad1FRoom2_Movement_MarleyWalkToPlayerZ55
     WaitMovement
-    GoTo _00EC
+    GoTo VictoryRoad1FRoom2_StartFollowingMarley
 
-_009C:
-    ApplyMovement 28, _0158
+VictoryRoad1FRoom2_MarleyWalkToPlayerZ56:
+    ApplyMovement LOCALID_MARLEY, VictoryRoad1FRoom2_Movement_MarleyWalkToPlayerZ56
     WaitMovement
-    GoTo _00EC
+    GoTo VictoryRoad1FRoom2_StartFollowingMarley
 
-_00AC:
-    ApplyMovement 28, _0164
+VictoryRoad1FRoom2_MarleyWalkToPlayerZ57:
+    ApplyMovement LOCALID_MARLEY, VictoryRoad1FRoom2_Movement_MarleyWalkToPlayerZ57
     WaitMovement
-    GoTo _00EC
+    GoTo VictoryRoad1FRoom2_StartFollowingMarley
 
-_00BC:
-    ApplyMovement 28, _0170
+VictoryRoad1FRoom2_MarleyWalkToPlayerZ58:
+    ApplyMovement LOCALID_MARLEY, VictoryRoad1FRoom2_Movement_MarleyWalkToPlayerZ58
     WaitMovement
-    GoTo _00EC
+    GoTo VictoryRoad1FRoom2_StartFollowingMarley
 
-_00CC:
-    ApplyMovement 28, _0178
+VictoryRoad1FRoom2_MarleyWalkToPlayerZ59:
+    ApplyMovement LOCALID_MARLEY, VictoryRoad1FRoom2_Movement_MarleyWalkToPlayerZ59
     WaitMovement
-    GoTo _00EC
+    GoTo VictoryRoad1FRoom2_StartFollowingMarley
 
-_00DC:
-    ApplyMovement 28, _0184
+VictoryRoad1FRoom2_MarleyWalkToPlayerZ60:
+    ApplyMovement LOCALID_MARLEY, VictoryRoad1FRoom2_Movement_MarleyWalkToPlayerZ60
     WaitMovement
-    GoTo _00EC
+    GoTo VictoryRoad1FRoom2_StartFollowingMarley
 
-_00EC:
+VictoryRoad1FRoom2_StartFollowingMarley:
     BufferPlayerName 0
-    CallIfUnset FLAG_UNK_0x00DF, _0134
-    CallIfSet FLAG_UNK_0x00DF, _0139
+    CallIfUnset FLAG_TALKED_TO_VICTORY_ROAD_1F_ROOM_2_MARLEY, VictoryRoad1FRoom2_LetMeGoWithYou
+    CallIfSet FLAG_TALKED_TO_VICTORY_ROAD_1F_ROOM_2_MARLEY, VictoryRoad1FRoom2_YouTookSoLong
     BufferPlayerName 0
     PlayFanfare SEQ_GONIN
-    Message 1
+    Message VictoryRoad1FRoom2_Text_DecidedToGoWithMarley
     WaitFanfare
-    SetFlag FLAG_UNK_0x00DF
-    SetVar VAR_UNK_0x4090, 1
-    Message 2
+    SetFlag FLAG_TALKED_TO_VICTORY_ROAD_1F_ROOM_2_MARLEY
+    SetVar VAR_VICTORY_ROAD_1F_ROOM_2_FOLLOWER_MARLEY_STATE, 1
+    Message VictoryRoad1FRoom2_Text_IllHealPokemon
     WaitButton
     CloseMessage
     SetVar VAR_PARTNER_TRAINER_ID, TRAINER_MARLEY_VICTORY_ROAD
     SetHasPartner
-    SetMovementType 28, 48
+    SetMovementType LOCALID_MARLEY, MOVEMENT_TYPE_FOLLOW_PLAYER
     ReleaseAll
     End
 
-_0134:
-    Message 0
+VictoryRoad1FRoom2_LetMeGoWithYou:
+    Message VictoryRoad1FRoom2_Text_LetMeGoWithYou
     Return
 
-_0139:
-    Message 3
+VictoryRoad1FRoom2_YouTookSoLong:
+    Message VictoryRoad1FRoom2_Text_YouTookSoLong
     Return
 
     .balign 4, 0
-_0140:
+VictoryRoad1FRoom2_Movement_MarleyNoticePlayer:
     WalkOnSpotNormalWest
     EmoteExclamationMark
     EndMovement
 
     .balign 4, 0
-_014C:
+VictoryRoad1FRoom2_Movement_MarleyWalkToPlayerZ55:
     WalkNormalNorth 3
     WalkNormalWest
     EndMovement
 
     .balign 4, 0
-_0158:
+VictoryRoad1FRoom2_Movement_MarleyWalkToPlayerZ56:
     WalkNormalNorth 2
     WalkNormalWest
     EndMovement
 
     .balign 4, 0
-_0164:
+VictoryRoad1FRoom2_Movement_MarleyWalkToPlayerZ57:
     WalkNormalNorth
     WalkNormalWest
     EndMovement
 
     .balign 4, 0
-_0170:
+VictoryRoad1FRoom2_Movement_MarleyWalkToPlayerZ58:
     WalkNormalWest
     EndMovement
 
     .balign 4, 0
-_0178:
+VictoryRoad1FRoom2_Movement_MarleyWalkToPlayerZ59:
     WalkNormalSouth
     WalkNormalWest
     EndMovement
 
     .balign 4, 0
-_0184:
+VictoryRoad1FRoom2_Movement_MarleyWalkToPlayerZ60:
     WalkNormalSouth 2
     WalkNormalWest
     EndMovement
 
-_0190:
+VictoryRoad1FRoom2_TriggerPlayerLeaveMarley:
     LockAll
-    ApplyMovement LOCALID_PLAYER, _0274
-    ApplyMovement 28, _02DC
+    ApplyMovement LOCALID_PLAYER, VictoryRoad1FRoom2_Movement_PlayerWalkOnSpotEast
+    ApplyMovement LOCALID_MARLEY, VictoryRoad1FRoom2_Movement_MarleyFaceWest
     WaitMovement
-    Message 4
+    Message VictoryRoad1FRoom2_Text_YoureGoingBack
     CloseMessage
-    SetVar VAR_UNK_0x4090, 0
+    SetVar VAR_VICTORY_ROAD_1F_ROOM_2_FOLLOWER_MARLEY_STATE, 0
     ClearHasPartner
-    SetMovementType 28, 14
+    SetMovementType LOCALID_MARLEY, MOVEMENT_TYPE_LOOK_NORTH
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    GoToIfEq VAR_0x8005, 55, _020D
-    GoToIfEq VAR_0x8005, 56, _021D
-    GoToIfEq VAR_0x8005, 57, _022D
-    GoToIfEq VAR_0x8005, 58, _023D
-    GoToIfEq VAR_0x8005, 59, _024D
-    GoToIfEq VAR_0x8005, 60, _025D
+    GoToIfEq VAR_0x8005, 55, VictoryRoad1FRoom2_MarleyWalkBackZ55
+    GoToIfEq VAR_0x8005, 56, VictoryRoad1FRoom2_MarleyWalkBackZ56
+    GoToIfEq VAR_0x8005, 57, VictoryRoad1FRoom2_MarleyWalkBackZ57
+    GoToIfEq VAR_0x8005, 58, VictoryRoad1FRoom2_MarleyWalkBackZ58
+    GoToIfEq VAR_0x8005, 59, VictoryRoad1FRoom2_MarleyWalkBackZ59
+    GoToIfEq VAR_0x8005, 60, VictoryRoad1FRoom2_MarleyWalkBackZ60
     End
 
-_020D:
-    ApplyMovement 28, _0284
+VictoryRoad1FRoom2_MarleyWalkBackZ55:
+    ApplyMovement LOCALID_MARLEY, VictoryRoad1FRoom2_Movement_MarleyWalkBackZ55
     WaitMovement
-    GoTo _026D
+    GoTo VictoryRoad1FRoom2_PlayerLeaveMarleyEnd
 
-_021D:
-    ApplyMovement 28, _0294
+VictoryRoad1FRoom2_MarleyWalkBackZ56:
+    ApplyMovement LOCALID_MARLEY, VictoryRoad1FRoom2_Movement_MarleyWalkBackZ56
     WaitMovement
-    GoTo _026D
+    GoTo VictoryRoad1FRoom2_PlayerLeaveMarleyEnd
 
-_022D:
-    ApplyMovement 28, _02A4
+VictoryRoad1FRoom2_MarleyWalkBackZ57:
+    ApplyMovement LOCALID_MARLEY, VictoryRoad1FRoom2_Movement_MarleyWalkBackZ57
     WaitMovement
-    GoTo _026D
+    GoTo VictoryRoad1FRoom2_PlayerLeaveMarleyEnd
 
-_023D:
-    ApplyMovement 28, _02B4
+VictoryRoad1FRoom2_MarleyWalkBackZ58:
+    ApplyMovement LOCALID_MARLEY, VictoryRoad1FRoom2_Movement_MarleyWalkBackZ58
     WaitMovement
-    GoTo _026D
+    GoTo VictoryRoad1FRoom2_PlayerLeaveMarleyEnd
 
-_024D:
-    ApplyMovement 28, _02BC
+VictoryRoad1FRoom2_MarleyWalkBackZ59:
+    ApplyMovement LOCALID_MARLEY, VictoryRoad1FRoom2_Movement_MarleyWalkBackZ59
     WaitMovement
-    GoTo _026D
+    GoTo VictoryRoad1FRoom2_PlayerLeaveMarleyEnd
 
-_025D:
-    ApplyMovement 28, _02CC
+VictoryRoad1FRoom2_MarleyWalkBackZ60:
+    ApplyMovement LOCALID_MARLEY, VictoryRoad1FRoom2_Movement_MarleyWalkBackZ60
     WaitMovement
-    GoTo _026D
+    GoTo VictoryRoad1FRoom2_PlayerLeaveMarleyEnd
 
-_026D:
+VictoryRoad1FRoom2_PlayerLeaveMarleyEnd:
     ReleaseAll
     End
 
     .balign 4, 0
-_0274:
+VictoryRoad1FRoom2_Movement_PlayerWalkOnSpotEast:
     WalkOnSpotNormalEast
     EndMovement
 
@@ -191,125 +192,125 @@ VictoryRoad1FRoom2_UnusedMovement:
     EndMovement
 
     .balign 4, 0
-_0284:
+VictoryRoad1FRoom2_Movement_MarleyWalkBackZ55:
     WalkNormalEast 2
     WalkNormalSouth 3
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_0294:
+VictoryRoad1FRoom2_Movement_MarleyWalkBackZ56:
     WalkNormalEast 2
     WalkNormalSouth 2
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_02A4:
+VictoryRoad1FRoom2_Movement_MarleyWalkBackZ57:
     WalkNormalEast 2
     WalkNormalSouth
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_02B4:
+VictoryRoad1FRoom2_Movement_MarleyWalkBackZ58:
     WalkNormalEast 2
     EndMovement
 
     .balign 4, 0
-_02BC:
+VictoryRoad1FRoom2_Movement_MarleyWalkBackZ59:
     WalkNormalEast 2
     WalkNormalNorth
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_02CC:
+VictoryRoad1FRoom2_Movement_MarleyWalkBackZ60:
     WalkNormalEast 2
     WalkNormalNorth 2
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_02DC:
+VictoryRoad1FRoom2_Movement_MarleyFaceWest:
     FaceWest
     EndMovement
 
-_02E4:
+VictoryRoad1FRoom2_TriggerMarleyLeavePlayer:
     LockAll
     ClearHasPartner
-    SetMovementType 28, 14
-    ApplyMovement LOCALID_PLAYER, _03B4
-    ApplyMovement 28, _03E0
+    SetMovementType LOCALID_MARLEY, MOVEMENT_TYPE_LOOK_NORTH
+    ApplyMovement LOCALID_PLAYER, VictoryRoad1FRoom2_Movement_PlayerFaceMarley
+    ApplyMovement LOCALID_MARLEY, VictoryRoad1FRoom2_Movement_MarleyFacePlayer
     WaitMovement
-    Message 5
+    Message VictoryRoad1FRoom2_Text_IAppreciateEscorting
     CloseMessage
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    GoToIfEq VAR_0x8004, 51, _0341
-    GoToIfEq VAR_0x8004, 52, _0359
-    GoToIfEq VAR_0x8004, 53, _0371
-    GoToIfEq VAR_0x8004, 54, _0389
+    GoToIfEq VAR_0x8004, 51, VictoryRoad1FRoom2_MarleyLeaveX51
+    GoToIfEq VAR_0x8004, 52, VictoryRoad1FRoom2_MarleyLeaveX52
+    GoToIfEq VAR_0x8004, 53, VictoryRoad1FRoom2_MarleyLeaveX53
+    GoToIfEq VAR_0x8004, 54, VictoryRoad1FRoom2_MarleyLeaveX54
     End
 
-_0341:
-    ApplyMovement LOCALID_PLAYER, _03C0
-    ApplyMovement 28, _03EC
+VictoryRoad1FRoom2_MarleyLeaveX51:
+    ApplyMovement LOCALID_PLAYER, VictoryRoad1FRoom2_Movement_PlayerWatchMarleyLeaveWest
+    ApplyMovement LOCALID_MARLEY, VictoryRoad1FRoom2_Movement_MarleyLeaveX51
     WaitMovement
-    GoTo _03A1
+    GoTo VictoryRoad1FRoom2_RemoveMarley
 
-_0359:
-    ApplyMovement LOCALID_PLAYER, _03C0
-    ApplyMovement 28, _0400
+VictoryRoad1FRoom2_MarleyLeaveX52:
+    ApplyMovement LOCALID_PLAYER, VictoryRoad1FRoom2_Movement_PlayerWatchMarleyLeaveWest
+    ApplyMovement LOCALID_MARLEY, VictoryRoad1FRoom2_Movement_MarleyLeaveX52
     WaitMovement
-    GoTo _03A1
+    GoTo VictoryRoad1FRoom2_RemoveMarley
 
-_0371:
-    ApplyMovement LOCALID_PLAYER, _03C0
-    ApplyMovement 28, _0414
+VictoryRoad1FRoom2_MarleyLeaveX53:
+    ApplyMovement LOCALID_PLAYER, VictoryRoad1FRoom2_Movement_PlayerWatchMarleyLeaveWest
+    ApplyMovement LOCALID_MARLEY, VictoryRoad1FRoom2_Movement_MarleyLeaveX53
     WaitMovement
-    GoTo _03A1
+    GoTo VictoryRoad1FRoom2_RemoveMarley
 
-_0389:
-    ApplyMovement LOCALID_PLAYER, _03D0
-    ApplyMovement 28, _0428
+VictoryRoad1FRoom2_MarleyLeaveX54:
+    ApplyMovement LOCALID_PLAYER, VictoryRoad1FRoom2_Movement_PlayerWatchMarleyLeaveEast
+    ApplyMovement LOCALID_MARLEY, VictoryRoad1FRoom2_Movement_MarleyLeaveX54
     WaitMovement
-    GoTo _03A1
+    GoTo VictoryRoad1FRoom2_RemoveMarley
 
-_03A1:
-    RemoveObject 28
+VictoryRoad1FRoom2_RemoveMarley:
+    RemoveObject LOCALID_MARLEY
     SetFlag FLAG_TRAVELED_WITH_MARLEY
-    SetVar VAR_UNK_0x4090, 2
+    SetVar VAR_VICTORY_ROAD_1F_ROOM_2_FOLLOWER_MARLEY_STATE, 2
     ReleaseAll
     End
 
     .balign 4, 0
-_03B4:
+VictoryRoad1FRoom2_Movement_PlayerFaceMarley:
     Delay8
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_03C0:
+VictoryRoad1FRoom2_Movement_PlayerWatchMarleyLeaveWest:
     Delay8
     WalkOnSpotNormalEast
     WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
-_03D0:
+VictoryRoad1FRoom2_Movement_PlayerWatchMarleyLeaveEast:
     Delay8
     WalkOnSpotNormalWest
     WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
-_03E0:
+VictoryRoad1FRoom2_Movement_MarleyFacePlayer:
     WalkOnSpotNormalNorth
     EmoteExclamationMark
     EndMovement
 
     .balign 4, 0
-_03EC:
+VictoryRoad1FRoom2_Movement_MarleyLeaveX51:
     WalkNormalEast
     WalkNormalNorth 7
     WalkNormalEast 4
@@ -317,7 +318,7 @@ _03EC:
     EndMovement
 
     .balign 4, 0
-_0400:
+VictoryRoad1FRoom2_Movement_MarleyLeaveX52:
     WalkNormalEast
     WalkNormalNorth 7
     WalkNormalEast 3
@@ -325,7 +326,7 @@ _0400:
     EndMovement
 
     .balign 4, 0
-_0414:
+VictoryRoad1FRoom2_Movement_MarleyLeaveX53:
     WalkNormalEast
     WalkNormalNorth 7
     WalkNormalEast 2
@@ -333,7 +334,7 @@ _0414:
     EndMovement
 
     .balign 4, 0
-_0428:
+VictoryRoad1FRoom2_Movement_MarleyLeaveX54:
     WalkNormalWest
     WalkNormalNorth 7
     WalkNormalEast 3
