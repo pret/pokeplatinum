@@ -630,7 +630,7 @@ ScriptCommand(SCRCMD_MESSAGEUNOWN,                                         ScrCm
 ScriptCommand(SCRCMD_GETGBACARTRIDGEVERSION,                               ScrCmd_GetGBACartridgeVersion)
 ScriptCommand(SCRCMD_CLEARSPIRITOMBCOUNTER,                                ScrCmd_ClearSpiritombCounter)
 ScriptCommand(SCRCMD_SETHIDDENLOCATION,                                    ScrCmd_SetHiddenLocation)
-ScriptCommand(SCRCMD_OPENTABLETNAMINGSCREEN,                               ScrCmd_OpenTabletNamingScreen)
+ScriptCommand(SCRCMD_OPENSHAYMINTABLETNAMINGSCREEN,                        ScrCmd_OpenShayminTabletNamingScreen)
 ScriptCommand(SCRCMD_BUFFERTABLETNAME,                                     ScrCmd_BufferTabletName)
 ScriptCommand(SCRCMD_BUFFERCONTESTBACKDROPNAME,                            ScrCmd_BufferContestBackdropName)
 ScriptCommand(SCRCMD_HASCOINSFROMVALUE,                                    ScrCmd_HasCoinsFromValue)

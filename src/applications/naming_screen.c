@@ -2113,7 +2113,7 @@ static void NamingScreen_InitIconSprite(NamingScreen *namingScreen, AffineSprite
     case NAMING_SCREEN_TYPE_RIVAL:
         Sprite_SetAnim(namingScreen->entitySprite[0], 51);
         break;
-    case NAMING_SCREEN_TYPE_TABLET:
+    case NAMING_SCREEN_TYPE_SHAYMIN_TABLET:
         Sprite_SetAnim(namingScreen->entitySprite[0], 55);
         break;
     case NAMING_SCREEN_TYPE_GROUP:

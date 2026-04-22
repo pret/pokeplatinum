@@ -397,7 +397,7 @@ static BOOL ScrCmd_StartChooseStarterScene(ScriptContext *ctx);
 static BOOL ScrCmd_SaveChosenStarter(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_0BA(ScriptContext *ctx);
 static BOOL ScrCmd_OpenPokemonNamingScreen(ScriptContext *ctx);
-static BOOL ScrCmd_OpenTabletNamingScreen(ScriptContext *ctx);
+static BOOL ScrCmd_OpenShayminTabletNamingScreen(ScriptContext *ctx);
 static BOOL ScrCmd_FadeScreen(ScriptContext *ctx);
 static BOOL ScrCmd_WaitFadeScreen(ScriptContext *ctx);
 static BOOL ScriptContext_ScreenWipeDone(ScriptContext *ctx);
@@ -3473,9 +3473,9 @@ static BOOL ScrCmd_OpenPokemonNamingScreen(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_OpenTabletNamingScreen(ScriptContext *ctx)
+static BOOL ScrCmd_OpenShayminTabletNamingScreen(ScriptContext *ctx)
 {
-    sub_0203DFE8(ctx->task, NAMING_SCREEN_TYPE_TABLET, 0, 10, 0, NULL, ScriptContext_GetVarPointer(ctx));
+    sub_0203DFE8(ctx->task, NAMING_SCREEN_TYPE_SHAYMIN_TABLET, 0, 10, 0, NULL, ScriptContext_GetVarPointer(ctx));
     return TRUE;
 }
 

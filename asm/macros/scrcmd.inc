@@ -3741,8 +3741,8 @@
     SetHiddenLocation \hiddenLocation, FALSE
     .endm
 
-    .macro OpenTabletNamingScreen destVar
-    .short SCRCMD_OPENTABLETNAMINGSCREEN
+    .macro OpenShayminTabletNamingScreen destVar
+    .short SCRCMD_OPENSHAYMINTABLETNAMINGSCREEN
     .short \destVar
     .endm
 

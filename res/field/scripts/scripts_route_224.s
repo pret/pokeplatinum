@@ -85,7 +85,7 @@ Route224_ExamineTablet:
 Route224_ExpressThanks:
     FadeScreenOut
     WaitFadeScreen
-    OpenTabletNamingScreen VAR_RESULT
+    OpenShayminTabletNamingScreen VAR_RESULT
     FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_RESULT, 1, Route224_NotSuggestingNoOne
