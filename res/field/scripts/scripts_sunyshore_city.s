@@ -1,493 +1,494 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/sunyshore_city.h"
+#include "res/field/events/events_sunyshore_city.h"
 
 
-    ScriptEntry _0593
-    ScriptEntry _0680
-    ScriptEntry _0693
-    ScriptEntry _06A6
-    ScriptEntry _06B9
-    ScriptEntry _06CC
-    ScriptEntry _06DF
-    ScriptEntry _0099
-    ScriptEntry _0530
-    ScriptEntry _06F2
-    ScriptEntry _0709
-    ScriptEntry _071E
-    ScriptEntry _0735
-    ScriptEntry _074C
-    ScriptEntry _0763
-    ScriptEntry _077A
-    ScriptEntry _0791
-    ScriptEntry _0850
-    ScriptEntry _004E
+    ScriptEntry SunyshoreCity_OnFrameFlint
+    ScriptEntry SunyshoreCity_Unused2
+    ScriptEntry SunyshoreCity_Sailor2
+    ScriptEntry SunyshoreCity_Sailor1
+    ScriptEntry SunyshoreCity_Worker
+    ScriptEntry SunyshoreCity_PokefanF
+    ScriptEntry SunyshoreCity_PokemonBreederF
+    ScriptEntry SunyshoreCity_TriggerRivalAndJasmine
+    ScriptEntry SunyshoreCity_Jasmine
+    ScriptEntry SunyshoreCity_MapSign
+    ScriptEntry SunyshoreCity_GymSign
+    ScriptEntry SunyshoreCity_SignVistaLighthouse
+    ScriptEntry SunyshoreCity_SignSunyshoreMarket
+    ScriptEntry SunyshoreCity_SignJuliasHouse
+    ScriptEntry SunyshoreCity_SignBlank
+    ScriptEntry SunyshoreCity_SignPokemonRock
+    ScriptEntry SunyshoreCity_UnusedSealMerchant
+    ScriptEntry SunyshoreCity_Flint
+    ScriptEntry SunyshoreCity_OnTransition
     ScriptEntryEnd
 
-_004E:
-    CallIfEq VAR_SANDGEM_TOWN_LAB_STATE, 2, _0077
-    CallIfEq VAR_SANDGEM_TOWN_LAB_STATE, 3, _0077
-    GoToIfEq VAR_SUNYSHORE_STATE, 0, _0083
+SunyshoreCity_OnTransition:
+    CallIfEq VAR_SANDGEM_TOWN_LAB_STATE, 2, SunyshoreCity_HideSandgemTownLabCounterpart
+    CallIfEq VAR_SANDGEM_TOWN_LAB_STATE, 3, SunyshoreCity_HideSandgemTownLabCounterpart
+    GoToIfEq VAR_SUNYSHORE_STATE, 0, SunyshoreCity_SetFlintPositionAtGate
     End
 
-_0077:
+SunyshoreCity_HideSandgemTownLabCounterpart:
     SetFlag FLAG_HIDE_SANDGEM_TOWN_LAB_COUNTERPART
     SetVar VAR_SANDGEM_TOWN_LAB_STATE, 4
     Return
 
-_0083:
-    SetObjectEventPos 18, 0x349, 0x316
-    SetObjectEventMovementType 18, MOVEMENT_TYPE_LOOK_WEST
-    SetObjectEventDir 18, DIR_WEST
+SunyshoreCity_SetFlintPositionAtGate:
+    SetObjectEventPos LOCALID_FLINT, 841, 790
+    SetObjectEventMovementType LOCALID_FLINT, MOVEMENT_TYPE_LOOK_WEST
+    SetObjectEventDir LOCALID_FLINT, DIR_WEST
     End
 
-_0099:
+SunyshoreCity_TriggerRivalAndJasmine:
     LockAll
-    ApplyMovement 9, _04E8
+    ApplyMovement LOCALID_JASMINE, SunyshoreCity_Movement_JasmineNoticePlayer
     WaitMovement
-    ClearFlag FLAG_UNK_0x0255
-    AddObject 20
-    LockObject 20
+    ClearFlag FLAG_HIDE_SUNYSHORE_CITY_RIVAL
+    AddObject LOCALID_RIVAL
+    LockObject LOCALID_RIVAL
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    GoToIfEq VAR_0x8004, 0x355, _00FA
-    GoToIfEq VAR_0x8004, 0x356, _0114
-    GoToIfEq VAR_0x8004, 0x357, _012E
-    GoToIfEq VAR_0x8004, 0x358, _0148
-    GoToIfEq VAR_0x8004, 0x359, _0162
+    GoToIfEq VAR_0x8004, 853, SunyshoreCity_RivalEnterX853
+    GoToIfEq VAR_0x8004, 854, SunyshoreCity_RivalEnterX854
+    GoToIfEq VAR_0x8004, 855, SunyshoreCity_RivalEnterX855
+    GoToIfEq VAR_0x8004, 856, SunyshoreCity_RivalEnterX856
+    GoToIfEq VAR_0x8004, 857, SunyshoreCity_RivalEnterX857
     End
 
-_00FA:
-    ApplyMovement 20, _0454
-    ApplyMovement LOCALID_PLAYER, _04F4
+SunyshoreCity_RivalEnterX853:
+    ApplyMovement LOCALID_RIVAL, SunyshoreCity_Movement_RivalEnterX853
+    ApplyMovement LOCALID_PLAYER, SunyshoreCity_Movement_PlayerWatchRivalEnterWest
     WaitMovement
-    GoTo _017C
+    GoTo SunyshoreCity_RivalAndJasmine
     End
 
-_0114:
-    ApplyMovement 20, _0464
-    ApplyMovement LOCALID_PLAYER, _04F4
+SunyshoreCity_RivalEnterX854:
+    ApplyMovement LOCALID_RIVAL, SunyshoreCity_Movement_RivalEnterX854
+    ApplyMovement LOCALID_PLAYER, SunyshoreCity_Movement_PlayerWatchRivalEnterWest
     WaitMovement
-    GoTo _017C
+    GoTo SunyshoreCity_RivalAndJasmine
     End
 
-_012E:
-    ApplyMovement 20, _0474
-    ApplyMovement LOCALID_PLAYER, _0504
+SunyshoreCity_RivalEnterX855:
+    ApplyMovement LOCALID_RIVAL, SunyshoreCity_Movement_RivalEnterX855
+    ApplyMovement LOCALID_PLAYER, SunyshoreCity_Movement_PlayerWatchRivalEnterX855
     WaitMovement
-    GoTo _017C
+    GoTo SunyshoreCity_RivalAndJasmine
     End
 
-_0148:
-    ApplyMovement 20, _0480
-    ApplyMovement LOCALID_PLAYER, _050C
+SunyshoreCity_RivalEnterX856:
+    ApplyMovement LOCALID_RIVAL, SunyshoreCity_Movement_RivalEnterX856
+    ApplyMovement LOCALID_PLAYER, SunyshoreCity_Movement_PlayerWatchRivalEnterEast
     WaitMovement
-    GoTo _017C
+    GoTo SunyshoreCity_RivalAndJasmine
     End
 
-_0162:
-    ApplyMovement 20, _0490
-    ApplyMovement LOCALID_PLAYER, _050C
+SunyshoreCity_RivalEnterX857:
+    ApplyMovement LOCALID_RIVAL, SunyshoreCity_Movement_RivalEnterX857
+    ApplyMovement LOCALID_PLAYER, SunyshoreCity_Movement_PlayerWatchRivalEnterEast
     WaitMovement
-    GoTo _017C
+    GoTo SunyshoreCity_RivalAndJasmine
     End
 
-_017C:
+SunyshoreCity_RivalAndJasmine:
     BufferRivalName 0
     BufferPlayerName 1
-    Message 10
-    ApplyMovement 20, _04A0
+    Message SunyshoreCity_Text_YouGotAllBadges
+    ApplyMovement LOCALID_RIVAL, SunyshoreCity_Movement_RivalWalkOnSpotSouth
     WaitMovement
-    Message 11
-    CallIfEq VAR_0x8004, 0x355, _02BE
-    CallIfEq VAR_0x8004, 0x356, _02CA
-    CallIfEq VAR_0x8004, 0x357, _02D6
-    CallIfEq VAR_0x8004, 0x358, _02E2
-    CallIfEq VAR_0x8004, 0x359, _02EE
-    Message 12
+    Message SunyshoreCity_Text_YouWatchMe
+    CallIfEq VAR_0x8004, 853, SunyshoreCity_RivalFacePlayerX853
+    CallIfEq VAR_0x8004, 854, SunyshoreCity_RivalFacePlayerX854
+    CallIfEq VAR_0x8004, 855, SunyshoreCity_RivalFacePlayerX855
+    CallIfEq VAR_0x8004, 856, SunyshoreCity_RivalFacePlayerX856
+    CallIfEq VAR_0x8004, 857, SunyshoreCity_RivalFacePlayerX857
+    Message SunyshoreCity_Text_HurryToPokemonLeague
     CloseMessage
-    CallIfEq VAR_0x8004, 0x355, _02FA
-    CallIfEq VAR_0x8004, 0x356, _030E
-    CallIfEq VAR_0x8004, 0x357, _0322
-    CallIfEq VAR_0x8004, 0x358, _032E
-    CallIfEq VAR_0x8004, 0x359, _0342
-    RemoveObject 20
-    CallIfEq VAR_0x8004, 0x355, _0356
-    CallIfEq VAR_0x8004, 0x356, _0362
-    CallIfEq VAR_0x8004, 0x357, _036E
-    CallIfEq VAR_0x8004, 0x358, _037A
-    CallIfEq VAR_0x8004, 0x359, _0386
-    ApplyMovement LOCALID_PLAYER, _0528
+    CallIfEq VAR_0x8004, 853, SunyshoreCity_RivalLeaveX853
+    CallIfEq VAR_0x8004, 854, SunyshoreCity_RivalLeaveX854
+    CallIfEq VAR_0x8004, 855, SunyshoreCity_RivalLeaveX855
+    CallIfEq VAR_0x8004, 856, SunyshoreCity_RivalLeaveX856
+    CallIfEq VAR_0x8004, 857, SunyshoreCity_RivalLeaveX857
+    RemoveObject LOCALID_RIVAL
+    CallIfEq VAR_0x8004, 853, SunyshoreCity_JasmineWalkToPlayerX853
+    CallIfEq VAR_0x8004, 854, SunyshoreCity_JasmineWalkToPlayerX854
+    CallIfEq VAR_0x8004, 855, SunyshoreCity_JasmineWalkToPlayerX855
+    CallIfEq VAR_0x8004, 856, SunyshoreCity_JasmineWalkToPlayerX856
+    CallIfEq VAR_0x8004, 857, SunyshoreCity_JasmineWalkToPlayerX857
+    ApplyMovement LOCALID_PLAYER, SunyshoreCity_Movement_PlayerWalkOnSpotNorth
     WaitMovement
-    Message 13
-    Call _0577
+    Message SunyshoreCity_Text_HaveThisAsMyThanks
+    Call SunyshoreCity_GiveWaterfall
     CloseMessage
-    CallIfEq VAR_0x8004, 0x355, _0392
-    CallIfEq VAR_0x8004, 0x356, _039E
-    CallIfEq VAR_0x8004, 0x357, _03AA
-    CallIfEq VAR_0x8004, 0x358, _03B6
-    CallIfEq VAR_0x8004, 0x359, _03C2
+    CallIfEq VAR_0x8004, 853, SunyshoreCity_JasmineLeaveX853
+    CallIfEq VAR_0x8004, 854, SunyshoreCity_JasmineLeaveX854
+    CallIfEq VAR_0x8004, 855, SunyshoreCity_JasmineLeaveX855
+    CallIfEq VAR_0x8004, 856, SunyshoreCity_JasmineLeaveX856
+    CallIfEq VAR_0x8004, 857, SunyshoreCity_JasmineLeaveX857
     SetVar VAR_SUNYSHORE_STATE, 3
     ReleaseAll
     End
 
-_02BE:
-    ApplyMovement 20, _04A8
+SunyshoreCity_RivalFacePlayerX853:
+    ApplyMovement LOCALID_RIVAL, SunyshoreCity_Movement_RivalWalkOnSpotWest
     WaitMovement
     Return
 
-_02CA:
-    ApplyMovement 20, _04A8
+SunyshoreCity_RivalFacePlayerX854:
+    ApplyMovement LOCALID_RIVAL, SunyshoreCity_Movement_RivalWalkOnSpotWest
     WaitMovement
     Return
 
-_02D6:
-    ApplyMovement 20, _04B0
+SunyshoreCity_RivalFacePlayerX855:
+    ApplyMovement LOCALID_RIVAL, SunyshoreCity_Movement_RivalWalkOnSpotNorth
     WaitMovement
     Return
 
-_02E2:
-    ApplyMovement 20, _04B8
+SunyshoreCity_RivalFacePlayerX856:
+    ApplyMovement LOCALID_RIVAL, SunyshoreCity_Movement_RivalWalkOnSpotEast
     WaitMovement
     Return
 
-_02EE:
-    ApplyMovement 20, _04B8
+SunyshoreCity_RivalFacePlayerX857:
+    ApplyMovement LOCALID_RIVAL, SunyshoreCity_Movement_RivalWalkOnSpotEast
     WaitMovement
     Return
 
-_02FA:
-    ApplyMovement 20, _04C0
-    ApplyMovement LOCALID_PLAYER, _051C
+SunyshoreCity_RivalLeaveX853:
+    ApplyMovement LOCALID_RIVAL, SunyshoreCity_Movement_RivalLeaveX853
+    ApplyMovement LOCALID_PLAYER, SunyshoreCity_Movement_PlayerWatchRivalLeave
     WaitMovement
     Return
 
-_030E:
-    ApplyMovement 20, _04C8
-    ApplyMovement LOCALID_PLAYER, _051C
+SunyshoreCity_RivalLeaveX854:
+    ApplyMovement LOCALID_RIVAL, SunyshoreCity_Movement_RivalLeaveX854
+    ApplyMovement LOCALID_PLAYER, SunyshoreCity_Movement_PlayerWatchRivalLeave
     WaitMovement
     Return
 
-_0322:
-    ApplyMovement 20, _04D0
+SunyshoreCity_RivalLeaveX855:
+    ApplyMovement LOCALID_RIVAL, SunyshoreCity_Movement_RivalLeaveX855
     WaitMovement
     Return
 
-_032E:
-    ApplyMovement 20, _04D8
-    ApplyMovement LOCALID_PLAYER, _051C
+SunyshoreCity_RivalLeaveX856:
+    ApplyMovement LOCALID_RIVAL, SunyshoreCity_Movement_RivalLeaveX856
+    ApplyMovement LOCALID_PLAYER, SunyshoreCity_Movement_PlayerWatchRivalLeave
     WaitMovement
     Return
 
-_0342:
-    ApplyMovement 20, _04E0
-    ApplyMovement LOCALID_PLAYER, _051C
+SunyshoreCity_RivalLeaveX857:
+    ApplyMovement LOCALID_RIVAL, SunyshoreCity_Movement_RivalLeaveX857
+    ApplyMovement LOCALID_PLAYER, SunyshoreCity_Movement_PlayerWatchRivalLeave
     WaitMovement
     Return
 
-_0356:
-    ApplyMovement 9, _03D0
+SunyshoreCity_JasmineWalkToPlayerX853:
+    ApplyMovement LOCALID_JASMINE, SunyshoreCity_Movement_JasmineWalkToPlayerX853
     WaitMovement
     Return
 
-_0362:
-    ApplyMovement 9, _03DC
+SunyshoreCity_JasmineWalkToPlayerX854:
+    ApplyMovement LOCALID_JASMINE, SunyshoreCity_Movement_JasmineWalkToPlayerX854
     WaitMovement
     Return
 
-_036E:
-    ApplyMovement 9, _03E8
+SunyshoreCity_JasmineWalkToPlayerX855:
+    ApplyMovement LOCALID_JASMINE, SunyshoreCity_Movement_JasmineWalkToPlayerX855
     WaitMovement
     Return
 
-_037A:
-    ApplyMovement 9, _03F4
+SunyshoreCity_JasmineWalkToPlayerX856:
+    ApplyMovement LOCALID_JASMINE, SunyshoreCity_Movement_JasmineWalkToPlayerX856
     WaitMovement
     Return
 
-_0386:
-    ApplyMovement 9, _0400
+SunyshoreCity_JasmineWalkToPlayerX857:
+    ApplyMovement LOCALID_JASMINE, SunyshoreCity_Movement_JasmineWalkToPlayerX857
     WaitMovement
     Return
 
-_0392:
-    ApplyMovement 9, _0408
+SunyshoreCity_JasmineLeaveX853:
+    ApplyMovement LOCALID_JASMINE, SunyshoreCity_Movement_JasmineLeaveX853
     WaitMovement
     Return
 
-_039E:
-    ApplyMovement 9, _0418
+SunyshoreCity_JasmineLeaveX854:
+    ApplyMovement LOCALID_JASMINE, SunyshoreCity_Movement_JasmineLeaveX854
     WaitMovement
     Return
 
-_03AA:
-    ApplyMovement 9, _0428
+SunyshoreCity_JasmineLeaveX855:
+    ApplyMovement LOCALID_JASMINE, SunyshoreCity_Movement_JasmineLeaveX855
     WaitMovement
     Return
 
-_03B6:
-    ApplyMovement 9, _0438
+SunyshoreCity_JasmineLeaveX856:
+    ApplyMovement LOCALID_JASMINE, SunyshoreCity_Movement_JasmineLeaveX856
     WaitMovement
     Return
 
-_03C2:
-    ApplyMovement 9, _0448
+SunyshoreCity_JasmineLeaveX857:
+    ApplyMovement LOCALID_JASMINE, SunyshoreCity_Movement_JasmineLeaveX857
     WaitMovement
     Return
 
     .balign 4, 0
-_03D0:
+SunyshoreCity_Movement_JasmineWalkToPlayerX853:
     WalkNormalWest 4
     WalkNormalSouth
     EndMovement
 
     .balign 4, 0
-_03DC:
+SunyshoreCity_Movement_JasmineWalkToPlayerX854:
     WalkNormalWest 3
     WalkNormalSouth
     EndMovement
 
     .balign 4, 0
-_03E8:
+SunyshoreCity_Movement_JasmineWalkToPlayerX855:
     WalkNormalWest 2
     WalkNormalSouth
     EndMovement
 
     .balign 4, 0
-_03F4:
+SunyshoreCity_Movement_JasmineWalkToPlayerX856:
     WalkNormalWest
     WalkNormalSouth
     EndMovement
 
     .balign 4, 0
-_0400:
+SunyshoreCity_Movement_JasmineWalkToPlayerX857:
     WalkNormalSouth
     EndMovement
 
     .balign 4, 0
-_0408:
+SunyshoreCity_Movement_JasmineLeaveX853:
     WalkNormalNorth
     WalkNormalEast 4
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_0418:
+SunyshoreCity_Movement_JasmineLeaveX854:
     WalkNormalNorth
     WalkNormalEast 3
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_0428:
+SunyshoreCity_Movement_JasmineLeaveX855:
     WalkNormalNorth
     WalkNormalEast 2
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_0438:
+SunyshoreCity_Movement_JasmineLeaveX856:
     WalkNormalNorth
     WalkNormalEast
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_0448:
+SunyshoreCity_Movement_JasmineLeaveX857:
     WalkNormalNorth
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_0454:
+SunyshoreCity_Movement_RivalEnterX853:
     Delay8
     WalkFastNorth 4
     WalkFastWest
     EndMovement
 
     .balign 4, 0
-_0464:
+SunyshoreCity_Movement_RivalEnterX854:
     Delay8
     WalkFastNorth 4
     WalkOnSpotFastWest
     EndMovement
 
     .balign 4, 0
-_0474:
+SunyshoreCity_Movement_RivalEnterX855:
     Delay8
     WalkFastNorth 3
     EndMovement
 
     .balign 4, 0
-_0480:
+SunyshoreCity_Movement_RivalEnterX856:
     Delay8
     WalkFastNorth 4
     WalkOnSpotFastEast
     EndMovement
 
     .balign 4, 0
-_0490:
+SunyshoreCity_Movement_RivalEnterX857:
     Delay8
     WalkFastNorth 4
     WalkFastEast
     EndMovement
 
     .balign 4, 0
-_04A0:
+SunyshoreCity_Movement_RivalWalkOnSpotSouth:
     WalkOnSpotFastSouth
     EndMovement
 
     .balign 4, 0
-_04A8:
+SunyshoreCity_Movement_RivalWalkOnSpotWest:
     WalkOnSpotFastWest
     EndMovement
 
     .balign 4, 0
-_04B0:
+SunyshoreCity_Movement_RivalWalkOnSpotNorth:
     WalkOnSpotFastNorth
     EndMovement
 
     .balign 4, 0
-_04B8:
+SunyshoreCity_Movement_RivalWalkOnSpotEast:
     WalkOnSpotFastEast
     EndMovement
 
     .balign 4, 0
-_04C0:
+SunyshoreCity_Movement_RivalLeaveX853:
     WalkFastSouth 8
     EndMovement
 
     .balign 4, 0
-_04C8:
+SunyshoreCity_Movement_RivalLeaveX854:
     WalkFastSouth 8
     EndMovement
 
     .balign 4, 0
-_04D0:
+SunyshoreCity_Movement_RivalLeaveX855:
     WalkFastSouth 8
     EndMovement
 
     .balign 4, 0
-_04D8:
+SunyshoreCity_Movement_RivalLeaveX856:
     WalkFastSouth 8
     EndMovement
 
     .balign 4, 0
-_04E0:
+SunyshoreCity_Movement_RivalLeaveX857:
     WalkFastSouth 8
     EndMovement
 
     .balign 4, 0
-_04E8:
+SunyshoreCity_Movement_JasmineNoticePlayer:
     WalkOnSpotNormalSouth
     EmoteExclamationMark
     EndMovement
 
     .balign 4, 0
-_04F4:
+SunyshoreCity_Movement_PlayerWatchRivalEnterWest:
     WalkOnSpotNormalSouth
     Delay8
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_0504:
+SunyshoreCity_Movement_PlayerWatchRivalEnterX855:
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_050C:
+SunyshoreCity_Movement_PlayerWatchRivalEnterEast:
     WalkOnSpotNormalSouth
     Delay8 2
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_051C:
+SunyshoreCity_Movement_PlayerWatchRivalLeave:
     Delay8
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_0528:
+SunyshoreCity_Movement_PlayerWalkOnSpotNorth:
     WalkOnSpotNormalNorth
     EndMovement
 
-_0530:
+SunyshoreCity_Jasmine:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x009A, _056C
-    Message 8
+    GoToIfSet FLAG_RECEIVED_SUNYSHORE_CITY_HM07, SunyshoreCity_ICameToGetStronger
+    Message SunyshoreCity_Text_FeelAtHome
     CheckBadgeAcquired BADGE_ID_BEACON, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _0561
-    GoTo _056C
+    GoToIfEq VAR_RESULT, FALSE, SunyshoreCity_ForcedToTurnBack
+    GoTo SunyshoreCity_ICameToGetStronger
     End
 
-_0561:
-    Message 5
+SunyshoreCity_ForcedToTurnBack:
+    Message SunyshoreCity_Text_ForcedToTurnBack
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_056C:
-    Message 9
+SunyshoreCity_ICameToGetStronger:
+    Message SunyshoreCity_Text_ICameToGetStronger
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0577:
-    Message 6
+SunyshoreCity_GiveWaterfall:
+    Message SunyshoreCity_Text_ThisIsntMuchBut
     SetVar VAR_0x8004, ITEM_HM07
     SetVar VAR_0x8005, 1
     Common_GiveItemQuantity
-    SetFlag FLAG_UNK_0x009A
-    Message 7
+    SetFlag FLAG_RECEIVED_SUNYSHORE_CITY_HM07
+    Message SunyshoreCity_Text_ThatHMContainsWaterfall
     Return
 
-_0593:
+SunyshoreCity_OnFrameFlint:
     LockAll
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    GoToIfEq VAR_0x8005, 0x316, _05B7
-    GoToIfEq VAR_0x8005, 0x317, _05C7
+    GoToIfEq VAR_0x8005, 790, SunyshoreCity_FlintWalkToPlayerZ790
+    GoToIfEq VAR_0x8005, 791, SunyshoreCity_FlintWalkToPlayerZ791
     End
 
-_05B7:
-    ApplyMovement 18, _063C
+SunyshoreCity_FlintWalkToPlayerZ790:
+    ApplyMovement LOCALID_FLINT, SunyshoreCity_Movement_FlintWalkToPlayerZ790
     WaitMovement
-    GoTo _05D7
+    GoTo SunyshoreCity_GiveVolknerHotBattle
 
-_05C7:
-    ApplyMovement 18, _0650
+SunyshoreCity_FlintWalkToPlayerZ791:
+    ApplyMovement LOCALID_FLINT, SunyshoreCity_Movement_FlintWalkToPlayerZ791
     WaitMovement
-    GoTo _05D7
+    GoTo SunyshoreCity_GiveVolknerHotBattle
 
-_05D7:
-    Message 0
+SunyshoreCity_GiveVolknerHotBattle:
+    Message SunyshoreCity_Text_TheNamesFlint
     CloseMessage
-    ApplyMovement 18, _0668
+    ApplyMovement LOCALID_FLINT, SunyshoreCity_Movement_FlintWalkOnSpotNormalSouth
     WaitMovement
     WaitTime 15, VAR_RESULT
-    ApplyMovement 18, _0670
+    ApplyMovement LOCALID_FLINT, SunyshoreCity_Movement_FlintWalkOnSpotNormalWest
     WaitMovement
-    Message 1
+    Message SunyshoreCity_Text_GiveVolknerHotBattle
     CloseMessage
     WaitTime 15, VAR_RESULT
-    ApplyMovement 18, _0678
+    ApplyMovement LOCALID_FLINT, SunyshoreCity_Movement_FlintLeave
     WaitMovement
-    RemoveObject 18
+    RemoveObject LOCALID_FLINT
     WaitTime 1, VAR_RESULT
-    SetObjectEventPos 18, 0x34D, 0x2EC
-    SetObjectEventMovementType 18, MOVEMENT_TYPE_LOOK_SOUTH
-    SetObjectEventDir 18, DIR_SOUTH
-    ClearFlag FLAG_UNK_0x0239
-    AddObject 18
+    SetObjectEventPos LOCALID_FLINT, 845, 748
+    SetObjectEventMovementType LOCALID_FLINT, MOVEMENT_TYPE_LOOK_SOUTH
+    SetObjectEventDir LOCALID_FLINT, DIR_SOUTH
+    ClearFlag FLAG_HIDE_SUNYSHORE_CITY_FLINT
+    AddObject LOCALID_FLINT
     SetVar VAR_SUNYSHORE_STATE, 1
     ReleaseAll
     End
 
     .balign 4, 0
-_063C:
+SunyshoreCity_Movement_FlintWalkToPlayerZ790:
     WalkNormalWest 3
     WalkOnSpotNormalWest
     EmoteExclamationMark
@@ -495,7 +496,7 @@ _063C:
     EndMovement
 
     .balign 4, 0
-_0650:
+SunyshoreCity_Movement_FlintWalkToPlayerZ791:
     WalkNormalSouth
     WalkNormalWest 3
     WalkOnSpotNormalWest
@@ -504,73 +505,73 @@ _0650:
     EndMovement
 
     .balign 4, 0
-_0668:
+SunyshoreCity_Movement_FlintWalkOnSpotNormalSouth:
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_0670:
+SunyshoreCity_Movement_FlintWalkOnSpotNormalWest:
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_0678:
+SunyshoreCity_Movement_FlintLeave:
     WalkNormalEast 9
     EndMovement
 
-_0680:
-    NPCMessage 14
+SunyshoreCity_Unused2:
+    NPCMessage SunyshoreCity_Text_Dummy14
     End
 
-_0693:
-    NPCMessage 20
+SunyshoreCity_Sailor2:
+    NPCMessage SunyshoreCity_Text_PeopleAndPokemonAdapt
     End
 
-_06A6:
-    NPCMessage 15
+SunyshoreCity_Sailor1:
+    NPCMessage SunyshoreCity_Text_ThatGiantRock
     End
 
-_06B9:
-    NPCMessage 17
+SunyshoreCity_Worker:
+    NPCMessage SunyshoreCity_Text_GymUsesTooMuchElectricity
     End
 
-_06CC:
-    NPCMessage 18
+SunyshoreCity_PokefanF:
+    NPCMessage SunyshoreCity_Text_CityUsesALotOfElectricity
     End
 
-_06DF:
-    NPCMessage 19
+SunyshoreCity_PokemonBreederF:
+    NPCMessage SunyshoreCity_Text_MajorPortTown
     End
 
-_06F2:
-    ShowMapSign 21
+SunyshoreCity_MapSign:
+    ShowMapSign SunyshoreCity_Text_MapSign
     End
 
-_0709:
-    ShowScrollingSign 22
+SunyshoreCity_GymSign:
+    ShowScrollingSign SunyshoreCity_Text_SignPokemonGym
     End
 
-_071E:
-    ShowLandmarkSign 23
+SunyshoreCity_SignVistaLighthouse:
+    ShowLandmarkSign SunyshoreCity_Text_SignVistaLighthouse
     End
 
-_0735:
-    ShowLandmarkSign 24
+SunyshoreCity_SignSunyshoreMarket:
+    ShowLandmarkSign SunyshoreCity_Text_SignSunyshoreMarket
     End
 
-_074C:
-    ShowLandmarkSign 25
+SunyshoreCity_SignJuliasHouse:
+    ShowLandmarkSign SunyshoreCity_Text_SignJuliasHouse
     End
 
-_0763:
-    ShowLandmarkSign 26
+SunyshoreCity_SignBlank:
+    ShowLandmarkSign SunyshoreCity_Text_SignBlank
     End
 
-_077A:
-    ShowLandmarkSign 27
+SunyshoreCity_SignPokemonRock:
+    ShowLandmarkSign SunyshoreCity_Text_SignPokemonRock
     End
 
-_0791:
+SunyshoreCity_UnusedSealMerchant:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
@@ -578,112 +579,112 @@ _0791:
     CloseMessageWithoutErasing
     GetDayOfWeek VAR_RESULT
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, DAY_OF_WEEK_SUNDAY, _0806
-    GoToIfEq VAR_0x8008, DAY_OF_WEEK_MONDAY, _0810
-    GoToIfEq VAR_0x8008, DAY_OF_WEEK_TUESDAY, _081A
-    GoToIfEq VAR_0x8008, DAY_OF_WEEK_WEDNESDAY, _0824
-    GoToIfEq VAR_0x8008, DAY_OF_WEEK_THURSDAY, _082E
-    GoToIfEq VAR_0x8008, DAY_OF_WEEK_FRIDAY, _0838
-    GoToIfEq VAR_0x8008, DAY_OF_WEEK_SATURDAY, _0842
+    GoToIfEq VAR_0x8008, DAY_OF_WEEK_SUNDAY, SunyshoreCity_UnusedSealMerchantSunday
+    GoToIfEq VAR_0x8008, DAY_OF_WEEK_MONDAY, SunyshoreCity_UnusedSealMerchantMonday
+    GoToIfEq VAR_0x8008, DAY_OF_WEEK_TUESDAY, SunyshoreCity_UnusedSealMerchantTuesday
+    GoToIfEq VAR_0x8008, DAY_OF_WEEK_WEDNESDAY, SunyshoreCity_UnusedSealMerchantWednesday
+    GoToIfEq VAR_0x8008, DAY_OF_WEEK_THURSDAY, SunyshoreCity_UnusedSealMerchantThursday
+    GoToIfEq VAR_0x8008, DAY_OF_WEEK_FRIDAY, SunyshoreCity_UnusedSealMerchantFriday
+    GoToIfEq VAR_0x8008, DAY_OF_WEEK_SATURDAY, SunyshoreCity_UnusedSealMerchantSaturday
     End
 
-_0806:
+SunyshoreCity_UnusedSealMerchantSunday:
     PokeMartSeal MART_SEAL_ID_SUNYSHORE_MONDAY
-    GoTo _084C
+    GoTo SunyshoreCity_UnusedSealMerchantEnd
 
-_0810:
+SunyshoreCity_UnusedSealMerchantMonday:
     PokeMartSeal MART_SEAL_ID_SUNYSHORE_TUESDAY
-    GoTo _084C
+    GoTo SunyshoreCity_UnusedSealMerchantEnd
 
-_081A:
+SunyshoreCity_UnusedSealMerchantTuesday:
     PokeMartSeal MART_SEAL_ID_SUNYSHORE_WEDNESDAY
-    GoTo _084C
+    GoTo SunyshoreCity_UnusedSealMerchantEnd
 
-_0824:
+SunyshoreCity_UnusedSealMerchantWednesday:
     PokeMartSeal MART_SEAL_ID_SUNYSHORE_THURSDAY
-    GoTo _084C
+    GoTo SunyshoreCity_UnusedSealMerchantEnd
 
-_082E:
+SunyshoreCity_UnusedSealMerchantThursday:
     PokeMartSeal MART_SEAL_ID_SUNYSHORE_FRIDAY
-    GoTo _084C
+    GoTo SunyshoreCity_UnusedSealMerchantEnd
 
-_0838:
+SunyshoreCity_UnusedSealMerchantFriday:
     PokeMartSeal MART_SEAL_ID_SUNYSHORE_SATURDAY
-    GoTo _084C
+    GoTo SunyshoreCity_UnusedSealMerchantEnd
 
-_0842:
+SunyshoreCity_UnusedSealMerchantSaturday:
     PokeMartSeal MART_SEAL_ID_SUNYSHORE_SUNDAY
-    GoTo _084C
+    GoTo SunyshoreCity_UnusedSealMerchantEnd
 
-_084C:
+SunyshoreCity_UnusedSealMerchantEnd:
     ReleaseAll
     End
 
-_0850:
+SunyshoreCity_Flint:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x0162, _086E
-    Message 2
+    GoToIfSet FLAG_VOLKNER_RETURNED_TO_GYM, SunyshoreCity_VolknerFinallyCameBack
+    Message SunyshoreCity_Text_VolknerNotBackYet
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_086E:
-    Message 3
+SunyshoreCity_VolknerFinallyCameBack:
+    Message SunyshoreCity_Text_VolknerFinallyCameBack
     CloseMessage
     WaitTime 15, VAR_RESULT
     GetPlayerDir VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _08A6
-    GoToIfEq VAR_RESULT, 2, _08BE
-    GoToIfEq VAR_RESULT, 3, _08D6
+    GoToIfEq VAR_RESULT, DIR_NORTH, SunyshoreCity_FlintLeaveNorth
+    GoToIfEq VAR_RESULT, DIR_WEST, SunyshoreCity_FlintLeaveWest
+    GoToIfEq VAR_RESULT, DIR_EAST, SunyshoreCity_FlintLeaveEast
     End
 
-_08A6:
-    ApplyMovement 18, _08F8
-    ApplyMovement LOCALID_PLAYER, _0914
+SunyshoreCity_FlintLeaveNorth:
+    ApplyMovement LOCALID_FLINT, SunyshoreCity_Movement_FlintLeaveNorth
+    ApplyMovement LOCALID_PLAYER, SunyshoreCity_Movement_PlayerWatchFlintLeaveNorthEast
     WaitMovement
-    GoTo _08EE
+    GoTo SunyshoreCity_RemoveVolkner
 
-_08BE:
-    ApplyMovement 18, _0908
-    ApplyMovement LOCALID_PLAYER, _0920
+SunyshoreCity_FlintLeaveWest:
+    ApplyMovement LOCALID_FLINT, SunyshoreCity_Movement_FlintLeaveWestEast
+    ApplyMovement LOCALID_PLAYER, SunyshoreCity_Movement_PlayerWatchFlintLeaveWest
     WaitMovement
-    GoTo _08EE
+    GoTo SunyshoreCity_RemoveVolkner
 
-_08D6:
-    ApplyMovement 18, _0908
-    ApplyMovement LOCALID_PLAYER, _0914
+SunyshoreCity_FlintLeaveEast:
+    ApplyMovement LOCALID_FLINT, SunyshoreCity_Movement_FlintLeaveWestEast
+    ApplyMovement LOCALID_PLAYER, SunyshoreCity_Movement_PlayerWatchFlintLeaveNorthEast
     WaitMovement
-    GoTo _08EE
+    GoTo SunyshoreCity_RemoveVolkner
 
-_08EE:
-    RemoveObject 18
+SunyshoreCity_RemoveVolkner:
+    RemoveObject LOCALID_FLINT
     ReleaseAll
     End
 
     .balign 4, 0
-_08F8:
+SunyshoreCity_Movement_FlintLeaveNorth:
     WalkNormalEast
     WalkNormalSouth 2
     WalkNormalEast 8
     EndMovement
 
     .balign 4, 0
-_0908:
+SunyshoreCity_Movement_FlintLeaveWestEast:
     WalkNormalSouth 2
     WalkNormalEast 9
     EndMovement
 
     .balign 4, 0
-_0914:
+SunyshoreCity_Movement_PlayerWatchFlintLeaveNorthEast:
     Delay8
     FaceEast
     EndMovement
 
     .balign 4, 0
-_0920:
+SunyshoreCity_Movement_PlayerWatchFlintLeaveWest:
     Delay8
     WalkOnSpotNormalSouth
     WalkOnSpotNormalEast

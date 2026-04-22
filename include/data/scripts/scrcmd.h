@@ -639,7 +639,7 @@ ScriptCommand(SCRCMD_CHECKCANADDCOINS,                                     ScrCm
 ScriptCommand(SCRCMD_GETDAILYRANDOMLEVEL,                                  ScrCmd_GetDailyRandomLevel)
 ScriptCommand(SCRCMD_GETPARTYMONLEVEL,                                     ScrCmd_GetPartyMonLevel)
 ScriptCommand(SCRCMD_REMOVEACCESSORY,                                      ScrCmd_RemoveAccessory)
-ScriptCommand(SCRCMD_27A,                                                  ScrCmd_27A)
+ScriptCommand(SCRCMD_USEVISTALIGHTHOUSEBINOCULARS,                         ScrCmd_UseVistaLighthouseBinoculars)
 ScriptCommand(SCRCMD_INITDAILYRANDOMLEVEL,                                 ScrCmd_InitDailyRandomLevel)
 ScriptCommand(SCRCMD_27C,                                                  ScrCmd_27C)
 ScriptCommand(SCRCMD_27D,                                                  ScrCmd_27D)

@@ -36,7 +36,7 @@ typedef struct SurfMountUserData {
     int dir;
     FieldEffectManager *fieldEffMan;
     SurfMountResources *resources;
-    MapObject *surfMountMapObj;
+    MapObject *playerMapObj;
 } SurfMountUserData;
 
 typedef struct SurfMountRenderer {
@@ -85,18 +85,18 @@ static void SurfMountResources_Free(SurfMountResources *resources)
     Simple3D_FreeModel(&resources->surfMountModel);
 }
 
-OverworldAnimManager *SurfMountRenderer_HandleSurfBegin(MapObject *surfMountMapObj, int tileX, int tileZ, int dir, BOOL syncPos)
+OverworldAnimManager *SurfMountRenderer_HandleSurfBegin(MapObject *playerMapObj, int tileX, int tileZ, int dir, BOOL syncPos)
 {
     SurfMountUserData userData;
     VecFx32 mapObjPos = { 0, 0, 0 };
 
     userData.dir = dir;
-    userData.fieldEffMan = MapObject_GetFieldEffectManager(surfMountMapObj);
+    userData.fieldEffMan = MapObject_GetFieldEffectManager(playerMapObj);
     userData.resources = FieldEffectManager_GetRendererContext(userData.fieldEffMan, FIELD_EFFECT_RENDERER_SURF_MOUNT);
-    userData.surfMountMapObj = surfMountMapObj;
+    userData.playerMapObj = playerMapObj;
 
     if (!syncPos) {
-        FieldSystem *fieldSystem = MapObject_FieldSystem(surfMountMapObj);
+        FieldSystem *fieldSystem = MapObject_FieldSystem(playerMapObj);
 
         mapObjPos.x = MAP_OBJECT_COORD_CENTER_TO_FX32(tileX);
         mapObjPos.z = MAP_OBJECT_COORD_CENTER_TO_FX32(tileZ);
@@ -104,11 +104,11 @@ OverworldAnimManager *SurfMountRenderer_HandleSurfBegin(MapObject *surfMountMapO
     } else {
         VecFx32 spritePosOffset = { MAP_OBJECT_BASE_POS_OFFSET_X, MAP_OBJECT_BASE_POS_OFFSET_Y, MAP_OBJECT_BASE_POS_OFFSET_Z };
 
-        MapObject_GetPosPtr(surfMountMapObj, &mapObjPos);
-        MapObject_SetSpritePosOffset(surfMountMapObj, &spritePosOffset);
+        MapObject_GetPosPtr(playerMapObj, &mapObjPos);
+        MapObject_SetSpritePosOffset(playerMapObj, &spritePosOffset);
     }
 
-    int taskPriority = MapObject_CalculateTaskPriority(surfMountMapObj, 2);
+    int taskPriority = MapObject_CalculateTaskPriority(playerMapObj, 2);
     return FieldEffectManager_InitAnimManager(userData.fieldEffMan, &sSurfMountRendererAnimFuncs, &mapObjPos, syncPos, &userData, taskPriority);
 }
 
@@ -116,11 +116,11 @@ static BOOL SurfMountRenderer_AnimInit(OverworldAnimManager *animMan, void *cont
 {
     SurfMountRenderer *renderer = context;
     const SurfMountUserData *userData = OverworldAnimManager_GetUserData(animMan);
-    MapObject *surfMountMapObj = userData->surfMountMapObj;
+    MapObject *playerMapObj = userData->playerMapObj;
 
     renderer->userData = *userData;
-    renderer->mapObjLocalID = MapObject_GetLocalID(surfMountMapObj);
-    renderer->mapHeaderID = MapObject_GetMapID(surfMountMapObj);
+    renderer->mapObjLocalID = MapObject_GetLocalID(playerMapObj);
+    renderer->mapHeaderID = MapObject_GetMapID(playerMapObj);
     renderer->dir = userData->dir;
     renderer->syncPos = OverworldAnimManager_GetUserInt(animMan);
     renderer->yOffset = RENDERER_INITIAL_Y_OFFSET;
@@ -132,24 +132,24 @@ static BOOL SurfMountRenderer_AnimInit(OverworldAnimManager *animMan, void *cont
 static void SurfMountRenderer_AnimExit(OverworldAnimManager *animMan, void *context)
 {
     SurfMountRenderer *renderer = context;
-    MapObject *surfMountMapObj = renderer->userData.surfMountMapObj;
+    MapObject *playerMapObj = renderer->userData.playerMapObj;
     VecFx32 spritePosOffset = { 0, 0, 0 };
 
-    MapObject_SetSpritePosOffset(surfMountMapObj, &spritePosOffset);
+    MapObject_SetSpritePosOffset(playerMapObj, &spritePosOffset);
 }
 
 static void SurfMountRenderer_AnimTick(OverworldAnimManager *animMan, void *context)
 {
     SurfMountRenderer *renderer = context;
-    MapObject *surfMountMapObj = renderer->userData.surfMountMapObj;
+    MapObject *playerMapObj = renderer->userData.playerMapObj;
 
-    if (!sub_02062764(surfMountMapObj, renderer->mapObjLocalID, renderer->mapHeaderID)) {
+    if (!sub_02062764(playerMapObj, renderer->mapObjLocalID, renderer->mapHeaderID)) {
         FieldEffectManager_FinishAnimManager(animMan);
         return;
     }
 
     renderer->inactive = FALSE;
-    renderer->dirRaw = MapObject_GetFacingDir(surfMountMapObj);
+    renderer->dirRaw = MapObject_GetFacingDir(playerMapObj);
 
     if (renderer->dirRaw == DIR_NONE) {
         renderer->inactive = TRUE;
@@ -176,11 +176,11 @@ static void SurfMountRenderer_AnimTick(OverworldAnimManager *animMan, void *cont
     spritePosOffset.y = MAP_OBJECT_BASE_POS_OFFSET_Y + renderer->yOffset;
     spritePosOffset.z = MAP_OBJECT_BASE_POS_OFFSET_Z;
 
-    MapObject_SetSpritePosOffset(surfMountMapObj, &spritePosOffset);
+    MapObject_SetSpritePosOffset(playerMapObj, &spritePosOffset);
 
     VecFx32 mapObjPos;
 
-    MapObject_GetPosPtr(surfMountMapObj, &mapObjPos);
+    MapObject_GetPosPtr(playerMapObj, &mapObjPos);
     mapObjPos.y += renderer->yOffset - FX32_ONE;
     OverworldAnimManager_SetPosition(animMan, &mapObjPos);
 }

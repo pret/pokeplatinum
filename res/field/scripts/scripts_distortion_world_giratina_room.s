@@ -2,44 +2,48 @@
 #include "generated/hidden_locations.h"
 #include "res/text/bank/distortion_world_giratina_room.h"
 
+// NOTE: These constants must mirror those in ov9_02249960.c
+#define LOCALID_GIRATINA 128
+#define LOCALID_CYNTHIA  129
+#define LOCALID_CYRUS    130
 
-    ScriptEntry _0022
-    ScriptEntry _0026
-    ScriptEntry _0041
-    ScriptEntry _009E
-    ScriptEntry _00C4
-    ScriptEntry _020A
-    ScriptEntry _021D
-    ScriptEntry _0232
+    ScriptEntry DistortionWorldGiratinaRoom_OnTransition
+    ScriptEntry DistortionWorldGiratinaRoom_OnLoad
+    ScriptEntry DistortionWorldGiratinaRoom_Portal
+    ScriptEntry DistortionWorldGiratinaRoom_TriggerWarpToB7F
+    ScriptEntry DistortionWorldGiratinaRoom_Giratina
+    ScriptEntry DistortionWorldGiratinaRoom_Cynthia
+    ScriptEntry DistortionWorldGiratinaRoom_TriggerFirstShadow
+    ScriptEntry DistortionWorldGiratinaRoom_TriggerGiratinaArrival
     ScriptEntryEnd
 
-_0022:
+DistortionWorldGiratinaRoom_OnTransition:
     InitPersistedMapFeaturesForDistortionWorld
     End
 
-_0026:
-    GoToIfSet FLAG_MAP_LOCAL, _0033
+DistortionWorldGiratinaRoom_OnLoad:
+    GoToIfSet FLAG_MAP_LOCAL, DistortionWorldGiratinaRoom_RemoveGiratina
     End
 
-_0033:
+DistortionWorldGiratinaRoom_RemoveGiratina:
     ResetDistortionWorldPersistedCameraAngles
     SetVar VAR_DISTORTION_WORLD_PROGRESS, 14
-    RemoveObject 128
+    RemoveObject LOCALID_GIRATINA
     End
 
-_0041:
+DistortionWorldGiratinaRoom_Portal:
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    Message 13
+    Message DistortionWorldGiratinaRoom_Text_LeapIntoPortal
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _0061
+    GoToIfEq VAR_RESULT, MENU_YES, DistortionWorldGiratinaRoom_GoToSendoffSpring
     CloseMessage
     ReleaseAll
     End
 
-_0061:
+DistortionWorldGiratinaRoom_GoToSendoffSpring:
     BufferPlayerName 0
-    Message 14
+    Message DistortionWorldGiratinaRoom_Text_PlayerLeaptIntoPortal
     CloseMessage
     EnableHiddenLocation HIDDEN_LOCATION_SPRING_PATH
     SetVar VAR_EXITED_DISTORTION_WORLD_STATE, 1
@@ -51,7 +55,7 @@ _0061:
     WaitFadeScreen
     End
 
-_009E:
+DistortionWorldGiratinaRoom_TriggerWarpToB7F:
     FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_DISTORTION_WORLD_B7F, 0, 89, 57, DIR_SOUTH
@@ -59,11 +63,11 @@ _009E:
     WaitFadeScreen
     End
 
-_00C4:
+DistortionWorldGiratinaRoom_Giratina:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     PlayCry SPECIES_GIRATINA
-    Message 2
+    Message DistortionWorldGiratinaRoom_Text_GiratinaCryGiygogagohgwooh
     WaitCry
     CloseMessage
     SetFlag FLAG_MAP_LOCAL
@@ -71,137 +75,137 @@ _00C4:
     ClearFlag FLAG_MAP_LOCAL
     CheckWonBattle VAR_RESULT
     GetBattleResult VAR_RESULT
-    GoToIfEq VAR_RESULT, BATTLE_RESULT_LOSE, _0204
-    GoToIfEq VAR_RESULT, BATTLE_RESULT_DRAW, _0204
-    GoToIfEq VAR_RESULT, BATTLE_RESULT_PLAYER_FLED, _014E
-    GoToIfEq VAR_RESULT, BATTLE_RESULT_ENEMY_FLED, _014E
-    GoToIfEq VAR_RESULT, BATTLE_RESULT_CAPTURED_MON, _016E
-    AddDistortionWorldMapObject 130
-    AddDistortionWorldMapObject 129
-    ApplyMovement 129, _0250
+    GoToIfEq VAR_RESULT, BATTLE_RESULT_LOSE, DistortionWorldGiratinaRoom_BlackOut
+    GoToIfEq VAR_RESULT, BATTLE_RESULT_DRAW, DistortionWorldGiratinaRoom_BlackOut
+    GoToIfEq VAR_RESULT, BATTLE_RESULT_PLAYER_FLED, DistortionWorldGiratinaRoom_PlayerRan
+    GoToIfEq VAR_RESULT, BATTLE_RESULT_ENEMY_FLED, DistortionWorldGiratinaRoom_PlayerRan
+    GoToIfEq VAR_RESULT, BATTLE_RESULT_CAPTURED_MON, DistortionWorldGiratinaRoom_CaughtGiratina
+    AddDistortionWorldMapObject LOCALID_CYRUS
+    AddDistortionWorldMapObject LOCALID_CYNTHIA
+    ApplyMovement LOCALID_CYNTHIA, DistortionWorldGiratinaRoom_Movement_CynthiaJumpNorth
     WaitMovement
-    Message 3
+    Message DistortionWorldGiratinaRoom_Text_GiratinaUnderstoodUs
     CloseMessage
-    Message 4
-    GoTo _0194
+    Message DistortionWorldGiratinaRoom_Text_ThatPokemonWasDefeated
+    GoTo DistortionWorldGiratinaRoom_PostBattle
 
-_014E:
-    AddDistortionWorldMapObject 130
-    AddDistortionWorldMapObject 129
-    ApplyMovement 129, _0250
+DistortionWorldGiratinaRoom_PlayerRan:
+    AddDistortionWorldMapObject LOCALID_CYRUS
+    AddDistortionWorldMapObject LOCALID_CYNTHIA
+    ApplyMovement LOCALID_CYNTHIA, DistortionWorldGiratinaRoom_Movement_CynthiaJumpNorth
     WaitMovement
-    Message 3
+    Message DistortionWorldGiratinaRoom_Text_GiratinaUnderstoodUs
     CloseMessage
-    Message 6
-    GoTo _0194
+    Message DistortionWorldGiratinaRoom_Text_YouRefusedToBattle
+    GoTo DistortionWorldGiratinaRoom_PostBattle
 
-_016E:
+DistortionWorldGiratinaRoom_CaughtGiratina:
     SetFlag FLAG_CAUGHT_GIRATINA
     SetFlag FLAG_HIDE_TURNBACK_CAVE_GIRATINA_ROOM_GIRATINA
     ClearFlag FLAG_HIDE_TURNBACK_CAVE_GIRATINA_ROOM_ITEM
-    AddDistortionWorldMapObject 130
-    AddDistortionWorldMapObject 129
-    ApplyMovement 129, _0250
+    AddDistortionWorldMapObject LOCALID_CYRUS
+    AddDistortionWorldMapObject LOCALID_CYNTHIA
+    ApplyMovement LOCALID_CYNTHIA, DistortionWorldGiratinaRoom_Movement_CynthiaJumpNorth
     WaitMovement
-    Message 3
+    Message DistortionWorldGiratinaRoom_Text_GiratinaUnderstoodUs
     CloseMessage
-    Message 5
-_0194:
+    Message DistortionWorldGiratinaRoom_Text_ThatPokemonWasCaptured
+DistortionWorldGiratinaRoom_PostBattle:
     CloseMessage
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     AddFreeCamera VAR_0x8004, VAR_0x8005
-    ApplyFreeCameraMovement _0280
-    ApplyMovement 130, _026C
-    ApplyMovement 129, _0258
-    ApplyMovement LOCALID_PLAYER, _0244
+    ApplyFreeCameraMovement DistortionWorldGiratinaRoom_Movement_CameraMoveSouth
+    ApplyMovement LOCALID_CYRUS, DistortionWorldGiratinaRoom_Movement_CyrusEnter
+    ApplyMovement LOCALID_CYNTHIA, DistortionWorldGiratinaRoom_Movement_CynthiaNoticeCyrus
+    ApplyMovement LOCALID_PLAYER, DistortionWorldGiratinaRoom_Movement_PlayerNoticeCyrus
     WaitMovement
-    Message 7
-    Message 8
-    Message 9
-    Message 10
+    Message DistortionWorldGiratinaRoom_Text_NewWorldCantBeMade
+    Message DistortionWorldGiratinaRoom_Text_PokemonUniteUs
+    Message DistortionWorldGiratinaRoom_Text_BigSilence
+    Message DistortionWorldGiratinaRoom_Text_EnoughBlathering
     CloseMessage
-    ApplyMovement 130, _0274
+    ApplyMovement LOCALID_CYRUS, DistortionWorldGiratinaRoom_Movement_CyrusLeave
     WaitMovement
-    DeleteDistortionWorldMapObject 130
-    ApplyFreeCameraMovement _0288
+    DeleteDistortionWorldMapObject LOCALID_CYRUS
+    ApplyFreeCameraMovement DistortionWorldGiratinaRoom_Movement_CameraMoveNorth
     WaitMovement
     RestoreCamera
-    Message 11
-    ApplyMovement 129, _0264
+    Message DistortionWorldGiratinaRoom_Text_WeCanFeelJoy
+    ApplyMovement LOCALID_CYNTHIA, DistortionWorldGiratinaRoom_Movement_CynthiaWalkOnSpotNorth
     WaitMovement
-    Message 12
+    Message DistortionWorldGiratinaRoom_Text_LetsGoBackHome
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0204:
+DistortionWorldGiratinaRoom_BlackOut:
     BlackOutFromBattle
     ReleaseAll
     End
 
-_020A:
-    NPCMessage 12
+DistortionWorldGiratinaRoom_Cynthia:
+    NPCMessage DistortionWorldGiratinaRoom_Text_LetsGoBackHome
     End
 
-_021D:
+DistortionWorldGiratinaRoom_TriggerFirstShadow:
     LockAll
     PlayCry SPECIES_GIRATINA
-    Message 0
+    Message DistortionWorldGiratinaRoom_Text_GiratinaCryGiygogagogwoh
     WaitCry
     WaitABPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0232:
+DistortionWorldGiratinaRoom_TriggerGiratinaArrival:
     LockAll
     BufferPlayerName 0
-    Message 1
+    Message DistortionWorldGiratinaRoom_Text_GiratinaIsEyeingPlayer
     WaitABPadPress
     CloseMessage
     ReleaseAll
     End
 
     .balign 4, 0
-_0244:
+DistortionWorldGiratinaRoom_Movement_PlayerNoticeCyrus:
     WalkOnSpotNormalSouth
     EmoteExclamationMark
     EndMovement
 
     .balign 4, 0
-_0250:
+DistortionWorldGiratinaRoom_Movement_CynthiaJumpNorth:
     JumpDistortionWorldNorth 2
     EndMovement
 
     .balign 4, 0
-_0258:
+DistortionWorldGiratinaRoom_Movement_CynthiaNoticeCyrus:
     WalkOnSpotNormalSouth
     EmoteExclamationMark
     EndMovement
 
     .balign 4, 0
-_0264:
+DistortionWorldGiratinaRoom_Movement_CynthiaWalkOnSpotNorth:
     WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
-_026C:
+DistortionWorldGiratinaRoom_Movement_CyrusEnter:
     JumpDistortionWorldNorth
     EndMovement
 
     .balign 4, 0
-_0274:
+DistortionWorldGiratinaRoom_Movement_CyrusLeave:
     JumpDistortionWorldSouth
     WalkNormalSouth 5
     EndMovement
 
     .balign 4, 0
-_0280:
+DistortionWorldGiratinaRoom_Movement_CameraMoveSouth:
     WalkNormalSouth 5
     EndMovement
 
     .balign 4, 0
-_0288:
+DistortionWorldGiratinaRoom_Movement_CameraMoveNorth:
     WalkNormalNorth 5
     EndMovement

@@ -2,83 +2,80 @@
 #include "res/text/bank/route_222.h"
 
 
-    ScriptEntry _00D7
-    ScriptEntry _007D
-    ScriptEntry _00EA
-    ScriptEntry _0101
-    ScriptEntry _0118
-    ScriptEntry _012F
-    ScriptEntry _0146
-    ScriptEntry _0022
+    ScriptEntry Route222_Fisherman
+    ScriptEntry Route222_RichBoy
+    ScriptEntry Route222_ArrowSignpostHotelGrandLake
+    ScriptEntry Route222_ArrowSignpostSunyshoreCity
+    ScriptEntry Route222_SignPikachuFanClub
+    ScriptEntry Route222_SignPokemonSizeContest
+    ScriptEntry Route222_PolicemanThomas
+    ScriptEntry Route222_OnTransition
     ScriptEntryEnd
 
-_0022:
+Route222_OnTransition:
     GetTimeOfDay VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, 0, _0069
-    GoToIfEq VAR_MAP_LOCAL_0, 1, _0069
-    GoToIfEq VAR_MAP_LOCAL_0, 2, _0069
-    GoToIfEq VAR_MAP_LOCAL_0, 3, _0073
-    GoToIfEq VAR_MAP_LOCAL_0, 4, _0073
+    GoToIfInRange VAR_MAP_LOCAL_0, TIMEOFDAY_MORNING, TIMEOFDAY_TWILIGHT, Route222_SetPolicemanThomasNoBattle
+    GoToIfInRange VAR_MAP_LOCAL_0, TIMEOFDAY_NIGHT, TIMEOFDAY_LATE_NIGHT, Route222_SetPolicemanThomasBattle
     End
 
-_0069:
-    ClearFlag FLAG_UNK_0x026A
-    SetFlag FLAG_UNK_0x026B
+Route222_SetPolicemanThomasNoBattle:
+    ClearFlag FLAG_HIDE_ROUTE_222_POLICEMAN_THOMAS_NO_BATTLE
+    SetFlag FLAG_HIDE_ROUTE_222_POLICEMAN_THOMAS
     End
 
-_0073:
-    ClearFlag FLAG_UNK_0x026B
-    SetFlag FLAG_UNK_0x026A
+Route222_SetPolicemanThomasBattle:
+    ClearFlag FLAG_HIDE_ROUTE_222_POLICEMAN_THOMAS
+    SetFlag FLAG_HIDE_ROUTE_222_POLICEMAN_THOMAS_NO_BATTLE
     End
 
-_007D:
+Route222_RichBoy:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x00CE, _00C2
-    Message 0
+    GoToIfSet FLAG_RECEIVED_ROUTE_222_TM56, Route222_ExplainFling
+    Message Route222_Text_IGiveTMFling
     SetVar VAR_0x8004, ITEM_TM56
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _00CD
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Route222_BagIsFull
     Common_GiveItemQuantity
-    SetFlag FLAG_UNK_0x00CE
-    GoTo _00C2
+    SetFlag FLAG_RECEIVED_ROUTE_222_TM56
+    GoTo Route222_ExplainFling
 
-_00C2:
-    Message 1
+Route222_ExplainFling:
+    Message Route222_Text_ExplainFling
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_00CD:
+Route222_BagIsFull:
     Common_MessageBagIsFull
     CloseMessage
     ReleaseAll
     End
 
-_00D7:
-    NPCMessage 2
+Route222_Fisherman:
+    NPCMessage Route222_Text_CatchingMadeMeHappy
     End
 
-_00EA:
-    ShowArrowSign 4
+Route222_ArrowSignpostHotelGrandLake:
+    ShowArrowSign Route222_Text_SignRt222HotelGrandLake
     End
 
-_0101:
-    ShowArrowSign 5
+Route222_ArrowSignpostSunyshoreCity:
+    ShowArrowSign Route222_Text_SignRt222SunyshoreCity
     End
 
-_0118:
-    ShowLandmarkSign 6
+Route222_SignPikachuFanClub:
+    ShowLandmarkSign Route222_Text_SignPikachuFanClub
     End
 
-_012F:
-    ShowLandmarkSign 7
+Route222_SignPokemonSizeContest:
+    ShowLandmarkSign Route222_Text_SignPokemonSizeContest
     End
 
-_0146:
-    NPCMessage 3
+Route222_PolicemanThomas:
+    NPCMessage Route222_Text_MoreAgitatedAtNight
     End
 
     .balign 4, 0

@@ -11,7 +11,7 @@
     ],
     "object_events": [
         {
-            "id": "VISTA_LIGHTHOUSE_SAILOR_0",
+            "id": "LOCALID_SAILOR",
             "graphics_id": "OBJ_EVENT_GFX_SAILOR",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -26,7 +26,7 @@
             "y": 0
         },
         {
-            "id": "VISTA_LIGHTHOUSE_YOUNGSTER_1",
+            "id": "LOCALID_YOUNGSTER",
             "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -41,11 +41,11 @@
             "y": 0
         },
         {
-            "id": "VISTA_LIGHTHOUSE_VOLKNER_2",
+            "id": "LOCALID_VOLKNER",
             "graphics_id": "OBJ_EVENT_GFX_VOLKNER",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0281",
+            "hidden_flag": "FLAG_HIDE_VISTA_LIGHTHOUSE_VOLKNER",
             "script": 4,
             "initial_dir": 0,
             "data": [],

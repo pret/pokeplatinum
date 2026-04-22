@@ -94,6 +94,7 @@
 #include "appearance.h"
 #include "bag.h"
 #include "bg_window.h"
+#include "binoculars_vista_lighthouse.h"
 #include "camera.h"
 #include "clear_game.h"
 #include "comm_player_manager.h"
@@ -200,7 +201,6 @@
 #include "unk_0204F04C.h"
 #include "unk_0204FAB4.h"
 #include "unk_0205003C.h"
-#include "unk_02050568.h"
 #include "unk_020528D0.h"
 #include "unk_020559DC.h"
 #include "unk_0205749C.h"
@@ -651,7 +651,7 @@ static BOOL ScrCmd_BufferContestBackdropName(ScriptContext *ctx);
 static BOOL ScrCmd_CheckBonusRoundStreak(ScriptContext *ctx);
 static BOOL ScrCmd_GetDailyRandomLevel(ScriptContext *ctx);
 static BOOL ScrCmd_RemoveAccessory(ScriptContext *ctx);
-static BOOL ScrCmd_27A(ScriptContext *ctx);
+static BOOL ScrCmd_UseVistaLighthouseBinoculars(ScriptContext *ctx);
 static BOOL ScrCmd_InitDailyRandomLevel(ScriptContext *ctx);
 static BOOL ScrCmd_27D(ScriptContext *ctx);
 static BOOL ScrCmd_CheckIsDepartmentStoreRegular(ScriptContext *ctx);
@@ -5997,11 +5997,11 @@ static BOOL ScrCmd_RemoveAccessory(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_27A(ScriptContext *ctx)
+static BOOL ScrCmd_UseVistaLighthouseBinoculars(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
-    sub_02050568(fieldSystem);
+    UseVistaLighthouseBinoculars(fieldSystem);
     return TRUE;
 }
 

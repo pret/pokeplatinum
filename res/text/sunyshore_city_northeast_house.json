@@ -2,7 +2,7 @@
   "key": 54299,
   "messages": [
     {
-      "id": "pl_msg_00000168_00000",
+      "id": "SunyshoreCityNortheastHouse_Text_TellMeStories",
       "en_US": [
         "Julia: Oh, hello.\n",
         "You’re quite the nifty Trainer.\r",
@@ -17,14 +17,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000168_00001",
+      "id": "SunyshoreCityNortheastHouse_Text_PleaseVisitTomorrow",
       "en_US": [
         "Starting tomorrow, please visit and\n",
         "tell me stories about your travels."
       ]
     },
     {
-      "id": "pl_msg_00000168_00002",
+      "id": "SunyshoreCityNortheastHouse_Text_AskMondayStory",
       "en_US": [
         "Julia: Today is Monday!\r",
         "It’s time to get going on a brand-new\n",
@@ -36,7 +36,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000168_00003",
+      "id": "SunyshoreCityNortheastHouse_Text_TellMondayStory",
       "en_US": [
         "{STRVAR_1 28, 0, 0} splashed with water...\n",
         "...\r",
@@ -45,21 +45,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000168_00004",
+      "id": "SunyshoreCityNortheastHouse_Text_GiveThisToPokemon",
       "en_US": [
         "Thank you!\n",
         "Please give this to your Pokémon.\r"
       ]
     },
     {
-      "id": "pl_msg_00000168_00005",
+      "id": "SunyshoreCityNortheastHouse_Text_PlayerReceivedRibbon",
       "en_US": [
         "{STRVAR_1 3, 2, 0} received\n",
         "the {STRVAR_1 39, 3, 0}.\r"
       ]
     },
     {
-      "id": "pl_msg_00000168_00006",
+      "id": "SunyshoreCityNortheastHouse_Text_PlayerPutRibbonOnPokemon",
       "en_US": [
         "{STRVAR_1 3, 2, 0} put\n",
         "the {STRVAR_1 39, 3, 0}\f",
@@ -67,14 +67,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000168_00007",
+      "id": "SunyshoreCityNortheastHouse_Text_TellAnotherStoryTomorrow",
       "en_US": [
         "Julia: Please tell me another story\n",
         "tomorrow."
       ]
     },
     {
-      "id": "pl_msg_00000168_00008",
+      "id": "SunyshoreCityNortheastHouse_Text_GaveRibbonBefore",
       "en_US": [
         "Julia: Hello!\r",
         "Oh, this is the {STRVAR_1 0, 1, 0} I gave\n",
@@ -84,14 +84,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000168_00009",
+      "id": "SunyshoreCityNortheastHouse_Text_CouldntThinkUpAnything",
       "en_US": [
         "Julia: Oh...\n",
         "You couldn’t think up anything?"
       ]
     },
     {
-      "id": "pl_msg_00000168_00010",
+      "id": "SunyshoreCityNortheastHouse_Text_AskTuesdayStory",
       "en_US": [
         "Julia: Today is Tuesday!\r",
         "The first date I went on with my\n",
@@ -105,7 +105,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000168_00011",
+      "id": "SunyshoreCityNortheastHouse_Text_TellTuesdayStory",
       "en_US": [
         "One mean {STRVAR_1 28, 0, 0} that bursts\n",
         "out from a closet?\f",
@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000168_00012",
+      "id": "SunyshoreCityNortheastHouse_Text_AskWednesdayStory",
       "en_US": [
         "Julia: Sigh...\n",
         "I gained a little weight...\r",
@@ -127,7 +127,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000168_00013",
+      "id": "SunyshoreCityNortheastHouse_Text_TellWednesdayStory",
       "en_US": [
         "A tearful {STRVAR_1 28, 0, 0}...\n",
         "...\r",
@@ -136,7 +136,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000168_00014",
+      "id": "SunyshoreCityNortheastHouse_Text_AskThursdayStory",
       "en_US": [
         "Julia: It’s Thursday already?\n",
         "I lost track of time!\r",
@@ -148,7 +148,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000168_00015",
+      "id": "SunyshoreCityNortheastHouse_Text_TellThursdayStory",
       "en_US": [
         "The {STRVAR_1 28, 0, 0} had shoes\n",
         "on the wrong feet?\r",
@@ -159,7 +159,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000168_00016",
+      "id": "SunyshoreCityNortheastHouse_Text_AskFridayStory",
       "en_US": [
         "Julia: Today is Friday!\r",
         "My meager cooking repertoire is\n",
@@ -171,7 +171,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000168_00017",
+      "id": "SunyshoreCityNortheastHouse_Text_TellFridayStory",
       "en_US": [
         "You went {STRVAR_1 28, 0, 0}\n",
         "shopping and paid $777 including tax?\r",
@@ -181,7 +181,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000168_00018",
+      "id": "SunyshoreCityNortheastHouse_Text_AskSaturdayStory",
       "en_US": [
         "Julia: Yawn...\n",
         "Today’s Saturday...\f",
@@ -191,7 +191,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000168_00019",
+      "id": "SunyshoreCityNortheastHouse_Text_TellSaturdayStory",
       "en_US": [
         "{STRVAR_1 28, 0, 0} snuggle pillow...\n",
         "...\r",
@@ -201,7 +201,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000168_00020",
+      "id": "SunyshoreCityNortheastHouse_Text_AskSundayStory",
       "en_US": [
         "Julia: Oh, hello! You’re on your\n",
         "adventure even though it’s Sunday!\r",
@@ -216,7 +216,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000168_00021",
+      "id": "SunyshoreCityNortheastHouse_Text_TellSundayStory",
       "en_US": [
         "You love {STRVAR_1 28, 0, 0}?\n",
         "...\r",

@@ -9,7 +9,7 @@
 
 void *SurfMountRenderer_New(FieldEffectManager *fieldEffMan);
 void SurfMountRenderer_Free(void *context);
-OverworldAnimManager *SurfMountRenderer_HandleSurfBegin(MapObject *surfMountMapObj, int tileX, int tileZ, int dir, BOOL syncPos);
+OverworldAnimManager *SurfMountRenderer_HandleSurfBegin(MapObject *playerMapObj, int tileX, int tileZ, int dir, BOOL syncPos);
 void SurfMountRenderer_SetSyncPos(OverworldAnimManager *animMan, BOOL syncPos);
 
 #endif // POKEPLATINUM_SURF_MOUNT_RENDERER_H

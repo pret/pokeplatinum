@@ -2,41 +2,41 @@
 #include "res/text/bank/route_222_west_house.h"
 
 
-    ScriptEntry _001E
-    ScriptEntry _0024
-    ScriptEntry _0043
-    ScriptEntry _0062
-    ScriptEntry _0081
-    ScriptEntry _00A0
-    ScriptEntry _00BF
+    ScriptEntry Route222WestHouse_OnTransition
+    ScriptEntry Route222WestHouse_Pikachu
+    ScriptEntry Route222WestHouse_Unused3
+    ScriptEntry Route222WestHouse_Unused4
+    ScriptEntry Route222WestHouse_Unused5
+    ScriptEntry Route222WestHouse_Unused6
+    ScriptEntry Route222WestHouse_PokefanM
     ScriptEntryEnd
 
-_001E:
+Route222WestHouse_OnTransition:
     SetFlag FLAG_FIRST_ARRIVAL_PIKACHU_FAN_CLUB
     End
 
-_0024:
-    PokemonCryAndMessage SPECIES_PIKACHU, 0
+Route222WestHouse_Pikachu:
+    PokemonCryAndMessage SPECIES_PIKACHU, Route222WestHouse_Text_PikachuCryPikachuu
     End
 
-_0043:
-    PokemonCryAndMessage SPECIES_PIKACHU, 1
+Route222WestHouse_Unused3:
+    PokemonCryAndMessage SPECIES_PIKACHU, Route222WestHouse_Text_PikachuCryPikaah
     End
 
-_0062:
-    PokemonCryAndMessage SPECIES_PIKACHU, 2
+Route222WestHouse_Unused4:
+    PokemonCryAndMessage SPECIES_PIKACHU, Route222WestHouse_Text_PikachuCryPikaPika
     End
 
-_0081:
-    PokemonCryAndMessage SPECIES_PIKACHU, 3
+Route222WestHouse_Unused5:
+    PokemonCryAndMessage SPECIES_PIKACHU, Route222WestHouse_Text_PikachuCryPiPikachu
     End
 
-_00A0:
-    PokemonCryAndMessage SPECIES_PIKACHU, 4
+Route222WestHouse_Unused6:
+    PokemonCryAndMessage SPECIES_PIKACHU, Route222WestHouse_Text_PikachuCryPiiKaahchu
     End
 
-_00BF:
-    NPCMessage 5
+Route222WestHouse_PokefanM:
+    NPCMessage Route222WestHouse_Text_OnlyPikachu
     End
 
     .balign 4, 0

@@ -1,59 +1,62 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/distortion_world_b1f.h"
 
+// NOTE: These constants must mirror those in ov9_02249960.c
+#define LOCALID_CYNTHIA 128
+#define LOCALID_MESPRIT 129
 
-    ScriptEntry _000E
-    ScriptEntry _0012
-    ScriptEntry _004B
+    ScriptEntry DistortionWorldB1F_OnTransition
+    ScriptEntry DistortionWorldB1F_OnFrameFirstEntry
+    ScriptEntry DistortionWorldB1F_TriggerMesprit
     ScriptEntryEnd
 
-_000E:
+DistortionWorldB1F_OnTransition:
     InitPersistedMapFeaturesForDistortionWorld
     End
 
-_0012:
+DistortionWorldB1F_OnFrameFirstEntry:
     LockAll
-    ApplyMovement LOCALID_PLAYER, _0078
-    ApplyMovement 128, _00A8
+    ApplyMovement LOCALID_PLAYER, DistortionWorldB1F_Movement_PlayerWalkOnSpotNorth
+    ApplyMovement LOCALID_CYNTHIA, DistortionWorldB1F_Movement_CynthiaWalkOnSpotSouth
     WaitMovement
-    Message 0
+    Message DistortionWorldB1F_Text_WillWeSeeGiratina
     CloseMessage
-    ApplyMovement 128, _00B4
-    ApplyMovement LOCALID_PLAYER, _0080
+    ApplyMovement LOCALID_CYNTHIA, DistortionWorldB1F_Movement_CynthiaLeave
+    ApplyMovement LOCALID_PLAYER, DistortionWorldB1F_Movement_PlayerWatchCynthiaLeave
     WaitMovement
-    DeleteDistortionWorldMapObject 128
+    DeleteDistortionWorldMapObject LOCALID_CYNTHIA
     SetVar VAR_DISTORTION_WORLD_PROGRESS, 3
     ReleaseAll
     End
 
-_004B:
+DistortionWorldB1F_TriggerMesprit:
     LockAll
     PlayCry SPECIES_MESPRIT
-    Message 1
+    Message DistortionWorldB1F_Text_MespritCry
     CloseMessage
     WaitCry
-    AddDistortionWorldMapObject 129
-    ApplyMovement LOCALID_PLAYER, _0090
-    ApplyMovement 129, _00D8
+    AddDistortionWorldMapObject LOCALID_MESPRIT
+    ApplyMovement LOCALID_PLAYER, DistortionWorldB1F_Movement_PlayerWatchMesprit
+    ApplyMovement LOCALID_MESPRIT, DistortionWorldB1F_Movement_MespritMoveNorth
     WaitMovement
-    DeleteDistortionWorldMapObject 129
+    DeleteDistortionWorldMapObject LOCALID_MESPRIT
     ReleaseAll
     End
 
     .balign 4, 0
-_0078:
+DistortionWorldB1F_Movement_PlayerWalkOnSpotNorth:
     WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
-_0080:
+DistortionWorldB1F_Movement_PlayerWatchCynthiaLeave:
     Delay16
     Delay8
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_0090:
+DistortionWorldB1F_Movement_PlayerWatchMesprit:
     FaceWest
     Delay1 8
     Delay32
@@ -62,13 +65,13 @@ _0090:
     EndMovement
 
     .balign 4, 0
-_00A8:
+DistortionWorldB1F_Movement_CynthiaWalkOnSpotSouth:
     Delay16 3
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_00B4:
+DistortionWorldB1F_Movement_CynthiaLeave:
     WalkNormalWest
     WalkNormalSouth 2
     WalkOnSpotNormalWest
@@ -80,7 +83,7 @@ _00B4:
     EndMovement
 
     .balign 4, 0
-_00D8:
+DistortionWorldB1F_Movement_MespritMoveNorth:
     Delay16 3
     WalkSlowNorth
     WalkNormalNorth

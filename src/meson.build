@@ -204,7 +204,7 @@ pokeplatinum_c = files(
     'unk_0205001C.c',
     'unk_0205003C.c',
     'unk_02050548.c',
-    'unk_02050568.c',
+    'binoculars_vista_lighthouse.c',
     'vars_flags.c',
     'field_task.c',
     'encounter.c',
