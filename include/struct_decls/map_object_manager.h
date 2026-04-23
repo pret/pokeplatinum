@@ -1,0 +1,6 @@
+#ifndef POKEPLATINUM_MAP_OBJECT_MANAGER_H
+#define POKEPLATINUM_MAP_OBJECT_MANAGER_H
+
+typedef struct MapObjectMan MapObjectManager;
+
+#endif // POKEPLATINUM_MAP_OBJECT_MANAGER_H

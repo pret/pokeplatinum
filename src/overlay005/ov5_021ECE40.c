@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02061830_decl.h"
+#include "struct_decls/map_object_manager.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 
 #include "overlay005/area_light.h"

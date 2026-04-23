@@ -16,7 +16,7 @@
 #include "generated/movement_types.h"
 #include "generated/sdat.h"
 
-#include "struct_decls/struct_02061830_decl.h"
+#include "struct_decls/map_object_manager.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 
 #include "field/field_system.h"

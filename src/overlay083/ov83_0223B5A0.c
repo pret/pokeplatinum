@@ -7,7 +7,7 @@
 #include "generated/trainer_score_events.h"
 
 #include "struct_decls/struct_0202440C_decl.h"
-#include "struct_decls/struct_0202B370_decl.h"
+#include "struct_decls/wifi_list.h"
 
 #include "nintendo_wfc/main.h"
 #include "overlay083/ov83_0223C958.h"

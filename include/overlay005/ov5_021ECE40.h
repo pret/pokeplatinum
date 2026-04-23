@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV5_021ECE40_H
 #define POKEPLATINUM_OV5_021ECE40_H
 
-#include "struct_decls/struct_02061830_decl.h"
+#include "struct_decls/map_object_manager.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 
 #include "overlay005/funcptr_ov5_021EE454.h"
