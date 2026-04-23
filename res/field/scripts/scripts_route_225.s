@@ -1,14 +1,15 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/route_225.h"
 
 
-    ScriptEntry _000A
-    ScriptEntry _0021
+    ScriptEntry Route225_ArrowSignpostFightArea
+    ScriptEntry Route225_ArrowSignpostSurvivalArea
     ScriptEntryEnd
 
-_000A:
-    ShowArrowSign 0
+Route225_ArrowSignpostFightArea:
+    ShowArrowSign Route225_Text_SignRt225FightArea
     End
 
-_0021:
-    ShowArrowSign 1
+Route225_ArrowSignpostSurvivalArea:
+    ShowArrowSign Route225_Text_SignRt225SurvivalArea
     End

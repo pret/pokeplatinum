@@ -1,219 +1,220 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/survival_area.h"
+#include "res/field/events/events_survival_area.h"
 
 
-    ScriptEntry _005C
-    ScriptEntry _006F
-    ScriptEntry _0082
-    ScriptEntry _0095
-    ScriptEntry _00BE
-    ScriptEntry _00D5
-    ScriptEntry _0130
-    ScriptEntry _002A
-    ScriptEntry _0045
-    ScriptEntry _0141
+    ScriptEntry SurvivalArea_Youngster
+    ScriptEntry SurvivalArea_BattleGirl
+    ScriptEntry SurvivalArea_RuinManiac
+    ScriptEntry SurvivalArea_Cameraman
+    ScriptEntry SurvivalArea_MapSign
+    ScriptEntry SurvivalArea_Buck
+    ScriptEntry SurvivalArea_Door
+    ScriptEntry SurvivalArea_OnTransition
+    ScriptEntry SurvivalArea_OnLoad
+    ScriptEntry SurvivalArea_Rival
     ScriptEntryEnd
 
-_002A:
-    GoTo _0032
+SurvivalArea_OnTransition:
+    GoTo SurvivalArea_SetRivalMessageTryRemoveWarp
     End
 
-_0032:
-    GetRandom VAR_UNK_0x40C2, 3
-    GoToIfUnset FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, _0052
+SurvivalArea_SetRivalMessageTryRemoveWarp:
+    GetRandom VAR_RANDOM_SURVIVAL_AREA_RIVAL_MESSAGE, 3
+    GoToIfUnset FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, SurvivalArea_RemoveWarpBattleground
     End
 
-_0045:
-    GoToIfUnset FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, _0052
+SurvivalArea_OnLoad:
+    GoToIfUnset FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, SurvivalArea_RemoveWarpBattleground
     End
 
-_0052:
-    SetWarpEventPos 0, 0x28C, 0x150
+SurvivalArea_RemoveWarpBattleground:
+    SetWarpEventPos 0, 652, 336
     End
 
-_005C:
-    NPCMessage 7
+SurvivalArea_Youngster:
+    NPCMessage SurvivalArea_Text_BagFullOfItems
     End
 
-_006F:
-    NPCMessage 8
+SurvivalArea_BattleGirl:
+    NPCMessage SurvivalArea_Text_ComeHereToTrain
     End
 
-_0082:
-    NPCMessage 9
+SurvivalArea_RuinManiac:
+    NPCMessage SurvivalArea_Text_ScoreCommemorativePrints
     End
 
-_0095:
+SurvivalArea_Cameraman:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x00D7, _00B3
-    Message 10
+    GoToIfSet FLAG_UNK_0x00D7, SurvivalArea_AllSetToProduce
+    Message SurvivalArea_Text_IFilmedRedGyarados
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_00B3:
-    Message 11
+SurvivalArea_AllSetToProduce:
+    Message SurvivalArea_Text_AllSetToProduce
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_00BE:
-    ShowMapSign 13
+SurvivalArea_MapSign:
+    ShowMapSign SurvivalArea_Text_MapSign
     End
 
-_00D5:
+SurvivalArea_Buck:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     BufferPlayerName 0
-    Message 0
+    Message SurvivalArea_Text_ThisIsMyPlace
     CloseMessage
-    ApplyMovement 8, _011C
+    ApplyMovement LOCALID_BUCK, SurvivalArea_Movement_BuckWalkOnSpotNorth
     WaitMovement
     LoadDoorAnimation 20, 10, 12, 18, ANIMATION_TAG_DOOR_1
     PlayDoorOpenAnimation ANIMATION_TAG_DOOR_1
     WaitForAnimation ANIMATION_TAG_DOOR_1
-    ApplyMovement 8, _0124
+    ApplyMovement LOCALID_BUCK, SurvivalArea_Movement_BuckEnterBattleground
     WaitMovement
     PlayDoorCloseAnimation ANIMATION_TAG_DOOR_1
     WaitForAnimation ANIMATION_TAG_DOOR_1
     UnloadAnimation ANIMATION_TAG_DOOR_1
-    RemoveObject 8
+    RemoveObject LOCALID_BUCK
     ReleaseAll
     End
 
     .balign 4, 0
-_011C:
+SurvivalArea_Movement_BuckWalkOnSpotNorth:
     WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
-_0124:
+SurvivalArea_Movement_BuckEnterBattleground:
     WalkNormalNorth
     SetInvisible
     EndMovement
 
-_0130:
-    EventMessage 1
+SurvivalArea_Door:
+    EventMessage SurvivalArea_Text_DoorMembersOnly
     End
 
-_0141:
+SurvivalArea_Rival:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GetDayOfWeek VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, DAY_OF_WEEK_SUNDAY, _01BE
-    GoToIfEq VAR_MAP_LOCAL_0, DAY_OF_WEEK_SATURDAY, _01BE
+    GoToIfEq VAR_MAP_LOCAL_0, DAY_OF_WEEK_SUNDAY, SurvivalArea_RivalBattle
+    GoToIfEq VAR_MAP_LOCAL_0, DAY_OF_WEEK_SATURDAY, SurvivalArea_RivalBattle
     BufferRivalName 0
     BufferPlayerName 1
-    SetVar VAR_0x8008, VAR_UNK_0x40C2
-    GoToIfEq VAR_0x8008, 0, _0195
-    GoToIfEq VAR_0x8008, 1, _01A0
-    GoTo _01AB
+    SetVar VAR_0x8008, VAR_RANDOM_SURVIVAL_AREA_RIVAL_MESSAGE
+    GoToIfEq VAR_0x8008, 0, SurvivalArea_PilingUpWins
+    GoToIfEq VAR_0x8008, 1, SurvivalArea_DidYouBattleEveryone
+    GoTo SurvivalArea_BestTrainersLovePokemon
     End
 
-_0195:
-    Message 4
-    GoTo _01B6
+SurvivalArea_PilingUpWins:
+    Message SurvivalArea_Text_PilingUpWins
+    GoTo SurvivalArea_RivalEnd
     End
 
-_01A0:
-    Message 5
-    GoTo _01B6
+SurvivalArea_DidYouBattleEveryone:
+    Message SurvivalArea_Text_DidYouBattleEveryone
+    GoTo SurvivalArea_RivalEnd
     End
 
-_01AB:
-    Message 6
-    GoTo _01B6
+SurvivalArea_BestTrainersLovePokemon:
+    Message SurvivalArea_Text_BestTrainersLovePokemon
+    GoTo SurvivalArea_RivalEnd
     End
 
-_01B6:
+SurvivalArea_RivalEnd:
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_01BE:
-    GoToIfSet FLAG_UNK_0x0AB2, _02CB
+SurvivalArea_RivalBattle:
+    GoToIfSet FLAG_DEFEATED_SURVIVAL_AREA_RIVAL, SurvivalArea_PostRivalBattle
     BufferRivalName 0
     BufferPlayerName 1
-    Message 2
+    Message SurvivalArea_Text_IllProveImTougher
     CloseMessage
     GetPlayerStarterSpecies VAR_RESULT
-    GoToIfEq VAR_RESULT, SPECIES_TURTWIG, _0236
-    GoToIfEq VAR_RESULT, SPECIES_CHIMCHAR, _0272
-    GoTo _01FA
+    GoToIfEq VAR_RESULT, SPECIES_TURTWIG, SurvivalArea_SetRivalTeamTurtwig
+    GoToIfEq VAR_RESULT, SPECIES_CHIMCHAR, SurvivalArea_SetRivalTeamChimchar
+    GoTo SurvivalArea_SetRivalTeamPiplup
     End
 
-_01FA:
+SurvivalArea_SetRivalTeamPiplup:
     GetLeagueVictories VAR_RESULT
-    GoToIfLt VAR_RESULT, 20, _021A
-    GoToIfGe VAR_RESULT, 20, _0228
+    GoToIfLt VAR_RESULT, 20, SurvivalArea_SetRivalTeamPiplup1
+    GoToIfGe VAR_RESULT, 20, SurvivalArea_SetRivalTeamPiplup2
     End
 
-_021A:
+SurvivalArea_SetRivalTeamPiplup1:
     StartTrainerBattle TRAINER_RIVAL_SURVIVAL_AREA_1_PIPLUP
-    GoTo _02AE
+    GoTo SurvivalArea_CheckWonRivalBattle
     End
 
-_0228:
+SurvivalArea_SetRivalTeamPiplup2:
     StartTrainerBattle TRAINER_RIVAL_SURVIVAL_AREA_2_PIPLUP
-    GoTo _02AE
+    GoTo SurvivalArea_CheckWonRivalBattle
     End
 
-_0236:
+SurvivalArea_SetRivalTeamTurtwig:
     GetLeagueVictories VAR_RESULT
-    GoToIfLt VAR_RESULT, 20, _0256
-    GoToIfGe VAR_RESULT, 20, _0264
+    GoToIfLt VAR_RESULT, 20, SurvivalArea_SetRivalTeamTurtwig1
+    GoToIfGe VAR_RESULT, 20, SurvivalArea_SetRivalTeamTurtwig2
     End
 
-_0256:
+SurvivalArea_SetRivalTeamTurtwig1:
     StartTrainerBattle TRAINER_RIVAL_SURVIVAL_AREA_1_TURTWIG
-    GoTo _02AE
+    GoTo SurvivalArea_CheckWonRivalBattle
     End
 
-_0264:
+SurvivalArea_SetRivalTeamTurtwig2:
     StartTrainerBattle TRAINER_RIVAL_SURVIVAL_AREA_2_TURTWIG
-    GoTo _02AE
+    GoTo SurvivalArea_CheckWonRivalBattle
     End
 
-_0272:
+SurvivalArea_SetRivalTeamChimchar:
     GetLeagueVictories VAR_RESULT
-    GoToIfLt VAR_RESULT, 20, _0292
-    GoToIfGe VAR_RESULT, 20, _02A0
+    GoToIfLt VAR_RESULT, 20, SurvivalArea_SetRivalTeamChimchar1
+    GoToIfGe VAR_RESULT, 20, SurvivalArea_SetRivalTeamChimchar2
     End
 
-_0292:
+SurvivalArea_SetRivalTeamChimchar1:
     StartTrainerBattle TRAINER_RIVAL_SURVIVAL_AREA_1_CHIMCHAR
-    GoTo _02AE
+    GoTo SurvivalArea_CheckWonRivalBattle
     End
 
-_02A0:
+SurvivalArea_SetRivalTeamChimchar2:
     StartTrainerBattle TRAINER_RIVAL_SURVIVAL_AREA_2_CHIMCHAR
-    GoTo _02AE
+    GoTo SurvivalArea_CheckWonRivalBattle
     End
 
-_02AE:
+SurvivalArea_CheckWonRivalBattle:
     CheckWonBattle VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, _02DC
-    SetFlag FLAG_UNK_0x0AB2
-    GoTo _02CB
+    GoToIfEq VAR_RESULT, FALSE, SurvivalArea_LostRivalBattle
+    SetFlag FLAG_DEFEATED_SURVIVAL_AREA_RIVAL
+    GoTo SurvivalArea_PostRivalBattle
     End
 
-_02CB:
+SurvivalArea_PostRivalBattle:
     BufferRivalName 0
     BufferPlayerName 1
-    Message 3
+    Message SurvivalArea_Text_KeepGettingTougher
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_02DC:
+SurvivalArea_LostRivalBattle:
     BlackOutFromBattle
     ReleaseAll
     End

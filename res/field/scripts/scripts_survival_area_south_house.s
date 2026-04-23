@@ -2,30 +2,30 @@
 #include "res/text/bank/survival_area_south_house.h"
 
 
-    ScriptEntry _0006
+    ScriptEntry SurvivalAreaSouthHouse_BlackBelt
     ScriptEntryEnd
 
-_0006:
+SurvivalAreaSouthHouse_BlackBelt:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x00CB, _004B
-    Message 0
+    GoToIfSet FLAG_RECEIVED_SURVIVAL_AREA_SOUTH_HOUSE_TM42, SurvivalAreaSouthHouse_ExplainFacade
+    Message SurvivalAreaSouthHouse_Text_YouWantTM
     SetVar VAR_0x8004, ITEM_TM42
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0056
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, SurvivalAreaSouthHouse_BagIsFull
     Common_GiveItemQuantity
-    SetFlag FLAG_UNK_0x00CB
-    GoTo _004B
+    SetFlag FLAG_RECEIVED_SURVIVAL_AREA_SOUTH_HOUSE_TM42
+    GoTo SurvivalAreaSouthHouse_ExplainFacade
 
-_004B:
-    Message 1
+SurvivalAreaSouthHouse_ExplainFacade:
+    Message SurvivalAreaSouthHouse_Text_ExplainFacade
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0056:
+SurvivalAreaSouthHouse_BagIsFull:
     Common_MessageBagIsFull
     CloseMessage
     ReleaseAll
