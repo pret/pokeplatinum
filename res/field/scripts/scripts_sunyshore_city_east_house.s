@@ -3,61 +3,61 @@
 #include "generated/natures.h"
 
 
-    ScriptEntry _0006
+    ScriptEntry SunyshoreCityEastHouse_Scientist
     ScriptEntryEnd
 
-_0006:
+SunyshoreCityEastHouse_Scientist:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfGe VAR_UNK_0x40B5, 1, _002C
-    SetVar VAR_UNK_0x40B5, 1
-    Message 0
+    GoToIfGe VAR_SUNYSHORE_CITY_EAST_HOUSE_SCIENTIST_STATE, 1, SunyshoreCityEastHouse_TryCheckNatures
+    SetVar VAR_SUNYSHORE_CITY_EAST_HOUSE_SCIENTIST_STATE, 1
+    Message SunyshoreCityEastHouse_Text_MayISeeNatures
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_002C:
+SunyshoreCityEastHouse_TryCheckNatures:
     CheckPoketchAppRegistered POKETCH_APPID_ROULETTE, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _0125
+    GoToIfEq VAR_RESULT, TRUE, SunyshoreCityEastHouse_AppsMayOutnumberPokemon
     CheckPoketchAppRegistered POKETCH_APPID_DOTART, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _00A7
+    GoToIfEq VAR_RESULT, TRUE, SunyshoreCityEastHouse_CheckQuirkyNature
     CheckPoketchAppRegistered POKETCH_APPID_CALENDAR, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _0089
-    GoTo _006B
+    GoToIfEq VAR_RESULT, TRUE, SunyshoreCityEastHouse_CheckNaiveNature
+    GoTo SunyshoreCityEastHouse_CheckSeriousNature
 
-_006B:
+SunyshoreCityEastHouse_CheckSeriousNature:
     FindPartySlotWithNature VAR_0x8000, NATURE_SERIOUS
-    GoToIfNe VAR_0x8000, 0xFF, _00C5
-    Message 1
+    GoToIfNe VAR_0x8000, PARTY_SLOT_NONE, SunyshoreCityEastHouse_GiveCalendarApp
+    Message SunyshoreCityEastHouse_Text_LikeToSeeSeriousNature
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0089:
+SunyshoreCityEastHouse_CheckNaiveNature:
     FindPartySlotWithNature VAR_0x8000, NATURE_NAIVE
-    GoToIfNe VAR_0x8000, 0xFF, _00E5
-    Message 2
+    GoToIfNe VAR_0x8000, PARTY_SLOT_NONE, SunyshoreCityEastHouse_GiveDotArtistApp
+    Message SunyshoreCityEastHouse_Text_LikeToSeeNaiveNature
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_00A7:
+SunyshoreCityEastHouse_CheckQuirkyNature:
     FindPartySlotWithNature VAR_0x8000, NATURE_QUIRKY
-    GoToIfNe VAR_0x8000, 0xFF, _0105
-    Message 3
+    GoToIfNe VAR_0x8000, PARTY_SLOT_NONE, SunyshoreCityEastHouse_GiveRouletteApp
+    Message SunyshoreCityEastHouse_Text_LikeToSeeQuirkyNature
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_00C5:
+SunyshoreCityEastHouse_GiveCalendarApp:
     GetPartyMonSpecies VAR_0x8000, VAR_0x8001
     BufferPartyMonSpecies 0, VAR_0x8000
-    Message 4
+    Message SunyshoreCityEastHouse_Text_IllGiveCalendarApp
     SetVar VAR_0x8004, POKETCH_APPID_CALENDAR
     Common_GivePoketchApp
     WaitButton
@@ -65,10 +65,10 @@ _00C5:
     ReleaseAll
     End
 
-_00E5:
+SunyshoreCityEastHouse_GiveDotArtistApp:
     GetPartyMonSpecies VAR_0x8000, VAR_0x8001
     BufferPartyMonSpecies 0, VAR_0x8000
-    Message 5
+    Message SunyshoreCityEastHouse_Text_IllGiveDotArtistApp
     SetVar VAR_0x8004, POKETCH_APPID_DOTART
     Common_GivePoketchApp
     WaitButton
@@ -76,10 +76,10 @@ _00E5:
     ReleaseAll
     End
 
-_0105:
+SunyshoreCityEastHouse_GiveRouletteApp:
     GetPartyMonSpecies VAR_0x8000, VAR_0x8001
     BufferPartyMonSpecies 0, VAR_0x8000
-    Message 6
+    Message SunyshoreCityEastHouse_Text_IllGiveRouletteApp
     SetVar VAR_0x8004, POKETCH_APPID_ROULETTE
     Common_GivePoketchApp
     WaitButton
@@ -87,8 +87,8 @@ _0105:
     ReleaseAll
     End
 
-_0125:
-    Message 7
+SunyshoreCityEastHouse_AppsMayOutnumberPokemon:
+    Message SunyshoreCityEastHouse_Text_AppsMayOutnumberPokemon
     WaitButton
     CloseMessage
     ReleaseAll

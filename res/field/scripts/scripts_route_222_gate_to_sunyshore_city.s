@@ -2,14 +2,14 @@
 #include "res/text/bank/route_222_gate_to_sunyshore_city.h"
 
 
-    ScriptEntry _000A
-    ScriptEntry _001D
+    ScriptEntry Route222GateToSunyshoreCity_Worker
+    ScriptEntry Route222GateToSunyshoreCity_PokefanM
     ScriptEntryEnd
 
-_000A:
-    NPCMessage 0
+Route222GateToSunyshoreCity_Worker:
+    NPCMessage Route222GateToSunyshoreCity_Text_ShockinglyElectric
     End
 
-_001D:
-    NPCMessage 1
+Route222GateToSunyshoreCity_PokefanM:
+    NPCMessage Route222GateToSunyshoreCity_Text_VolknersBoredLately
     End

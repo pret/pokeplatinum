@@ -398,21 +398,25 @@ enum EventCmdHandlerResult {
     EVENT_CMD_HANDLER_RES_FINISH,
 };
 
+// NOTE: These constants must mirror those in res/field/scripts/scripts_distortion_world_1f.s
 enum MapObjectEvent1FLocalID {
     MAP_OBJECT_1F_CYNTHIA_PORTAL = MAP_OBJECT_BASE_LOCAL_ID,
     MAP_OBJECT_1F_CYNTHIA_ELEVATOR,
 };
 
+// NOTE: These constants must mirror those in res/field/scripts/scripts_distortion_world_b1f.s
 enum MapObjectEventB1FLocalID {
     MAP_OBJECT_B1F_CYNTHIA_ELEVATOR = MAP_OBJECT_BASE_LOCAL_ID,
     MAP_OBJECT_B1F_MESPRIT,
 };
 
+// NOTE: These constants must mirror those in res/field/scripts/scripts_distortion_world_b2f.s
 enum MapObjectEventB2FLocalID {
     MAP_OBJECT_B2F_CYNTHIA_1 = MAP_OBJECT_BASE_LOCAL_ID,
     MAP_OBJECT_B2F_CYNTHIA_2 = MAP_OBJECT_B2F_CYNTHIA_1,
 };
 
+// NOTE: These constants must mirror those in res/field/scripts/scripts_distortion_world_b3f.s
 enum MapObjectEventB3FLocalID {
     MAP_OBJECT_B3F_CYRUS = MAP_OBJECT_BASE_LOCAL_ID,
 };
@@ -430,6 +434,7 @@ enum MapObjectEventB5FLocalID {
     MAP_OBJECT_B5F_MESPRIT,
 };
 
+// NOTE: These constants must mirror those in res/field/scripts/scripts_distortion_world_b6f.s
 enum MapObjectEventB6FLocalID {
     MAP_OBJECT_B6F_MESPRIT_BOULDER_OUTSIDE = MAP_OBJECT_BASE_LOCAL_ID,
     MAP_OBJECT_B6F_AZELF_BOULDER_OUTSIDE,
@@ -453,6 +458,7 @@ enum MapObjectEventB6FLocalID {
     MAP_OBJECT_B6F_UXIE_BOULDER_IN_PIT,
 };
 
+// NOTE: These constants must mirror those in res/field/scripts/scripts_distortion_world_b7f.s
 enum MapObjectEventB7FLocalID {
     MAP_OBJECT_B7F_CYNTHIA_INITIAL = MAP_OBJECT_BASE_LOCAL_ID,
     MAP_OBJECT_B7F_CYNTHIA_TALKING = MAP_OBJECT_B7F_CYNTHIA_INITIAL,
@@ -461,6 +467,7 @@ enum MapObjectEventB7FLocalID {
     MAP_OBJECT_B7F_CYRUS_TALKING = MAP_OBJECT_B7F_CYRUS_INITIAL,
 };
 
+// NOTE: These constants must mirror those in res/field/scripts/scripts_distortion_world_giratina_room.s
 enum MapObjectEventGiratinaRoomLocalID {
     MAP_OBJECT_GIRATINA_ROOM_GIRATINA = MAP_OBJECT_BASE_LOCAL_ID,
     MAP_OBJECT_GIRATINA_ROOM_CYNTHIA,

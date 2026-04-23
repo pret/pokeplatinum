@@ -2,41 +2,41 @@
 #include "res/text/bank/sunyshore_city_west_house.h"
 
 
-    ScriptEntry _001E
-    ScriptEntry _0031
-    ScriptEntry _0044
-    ScriptEntry _0057
-    ScriptEntry _006A
-    ScriptEntry _007D
-    ScriptEntry _0090
+    ScriptEntry SunyshoreCityWestHouse_BattleGirl
+    ScriptEntry SunyshoreCityWestHouse_Clown
+    ScriptEntry SunyshoreCityWestHouse_Youngster1
+    ScriptEntry SunyshoreCityWestHouse_Youngster2
+    ScriptEntry SunyshoreCityWestHouse_Youngster3
+    ScriptEntry SunyshoreCityWestHouse_GymGuide
+    ScriptEntry SunyshoreCityWestHouse_PokemonBreederF
     ScriptEntryEnd
 
-_001E:
-    NPCMessage 0
+SunyshoreCityWestHouse_BattleGirl:
+    NPCMessage SunyshoreCityWestHouse_Text_GoneUndergroundLately
     End
 
-_0031:
-    NPCMessage 1
+SunyshoreCityWestHouse_Clown:
+    NPCMessage SunyshoreCityWestHouse_Text_SpheresUndergroundLikeGems
     End
 
-_0044:
-    NPCMessage 2
+SunyshoreCityWestHouse_Youngster1:
+    NPCMessage SunyshoreCityWestHouse_Text_BuriedSpheresGrow
     End
 
-_0057:
-    NPCMessage 3
+SunyshoreCityWestHouse_Youngster2:
+    NPCMessage SunyshoreCityWestHouse_Text_GetFlagsFromFriends
     End
 
-_006A:
-    NPCMessage 4
+SunyshoreCityWestHouse_Youngster3:
+    NPCMessage SunyshoreCityWestHouse_Text_GoUndergroundHaveFun
     End
 
-_007D:
-    NPCMessage 5
+SunyshoreCityWestHouse_GymGuide:
+    NPCMessage SunyshoreCityWestHouse_Text_DefusedByTouch
     End
 
-_0090:
-    NPCMessage 6
+SunyshoreCityWestHouse_PokemonBreederF:
+    NPCMessage SunyshoreCityWestHouse_Text_UndergroundManByronRelated
     End
 
     .balign 4, 0

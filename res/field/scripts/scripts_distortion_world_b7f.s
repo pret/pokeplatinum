@@ -1,20 +1,23 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/distortion_world_b7f.h"
 
+// NOTE: These constants must mirror those in ov9_02249960.c
+#define LOCALID_CYNTHIA 128
+#define LOCALID_CYRUS   129
 
-    ScriptEntry _001A
-    ScriptEntry _001E
-    ScriptEntry _0044
-    ScriptEntry _006F
-    ScriptEntry _0096
-    ScriptEntry _01DA
+    ScriptEntry DistortionWorldB7F_OnTransition
+    ScriptEntry DistortionWorldB7F_TriggerWarpToGiratinaRoom
+    ScriptEntry DistortionWorldB7F_OnFrameFirstEntry
+    ScriptEntry DistortionWorldB7F_TriggerCynthiaCyrus
+    ScriptEntry DistortionWorldB7F_Cyrus
+    ScriptEntry DistortionWorldB7F_Cynthia
     ScriptEntryEnd
 
-_001A:
+DistortionWorldB7F_OnTransition:
     InitPersistedMapFeaturesForDistortionWorld
     End
 
-_001E:
+DistortionWorldB7F_TriggerWarpToGiratinaRoom:
     FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_DISTORTION_WORLD_GIRATINA_ROOM, 0, 15, 25, DIR_NORTH
@@ -22,140 +25,140 @@ _001E:
     WaitFadeScreen
     End
 
-_0044:
+DistortionWorldB7F_OnFrameFirstEntry:
     LockAll
-    ApplyMovement 128, _028C
-    ApplyMovement LOCALID_PLAYER, _0204
+    ApplyMovement LOCALID_CYNTHIA, DistortionWorldB7F_Movement_CynthiaWalkOnSpotNorth
+    ApplyMovement LOCALID_PLAYER, DistortionWorldB7F_Movement_PlayerWalkOnSpotNorth
     WaitMovement
-    Message 0
+    Message DistortionWorldB7F_Text_GiratinaIsUpAhead
     CloseMessage
-    ApplyMovement 128, _029C
+    ApplyMovement LOCALID_CYNTHIA, DistortionWorldB7F_Movement_CynthiaWalkNorth
     WaitMovement
     SetVar VAR_DISTORTION_WORLD_PROGRESS, 8
     End
 
-_006F:
+DistortionWorldB7F_TriggerCynthiaCyrus:
     LockAll
-    Message 1
+    Message DistortionWorldB7F_Text_YouWereAlreadyHere
     CloseMessage
-    ApplyMovement 129, _0308
-    ApplyMovement 128, _02AC
+    ApplyMovement LOCALID_CYRUS, DistortionWorldB7F_Movement_CyrusWalkToCynthia
+    ApplyMovement LOCALID_CYNTHIA, DistortionWorldB7F_Movement_CynthiaMoveAside
     WaitMovement
-    Message 2
-    Message 4
+    Message DistortionWorldB7F_Text_WhyChangeTheWorld
+    Message DistortionWorldB7F_Text_ThatIsMyJustice
     WaitABPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0096:
+DistortionWorldB7F_Cyrus:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 5
+    Message DistortionWorldB7F_Text_IWontLose
     CloseMessage
     StartTrainerBattle TRAINER_GALACTIC_BOSS_CYRUS_DISTORTION_WORLD
     CheckWonBattle VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, _01CE
+    GoToIfEq VAR_RESULT, FALSE, DistortionWorldB7F_LostBattle
     SetVar VAR_DISTORTION_WORLD_PROGRESS, 10
-    Message 6
+    Message DistortionWorldB7F_Text_YoullDestroyThisWorld
     CloseMessage
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    GoToIfEq VAR_0x8004, 86, _00E6
-    ApplyMovement LOCALID_PLAYER, _0210
-    GoTo _00EE
+    GoToIfEq VAR_0x8004, 86, DistortionWorldB7F_PlayerWatchCyrusLeave
+    ApplyMovement LOCALID_PLAYER, DistortionWorldB7F_Movement_PlayerMoveAside
+    GoTo DistortionWorldB7F_CyrusLeave
 
-_00E6:
-    ApplyMovement LOCALID_PLAYER, _0248
-_00EE:
-    ApplyMovement 129, _0314
-    ApplyMovement 128, _02DC
+DistortionWorldB7F_PlayerWatchCyrusLeave:
+    ApplyMovement LOCALID_PLAYER, DistortionWorldB7F_Movement_PlayerWatchCyrusLeave
+DistortionWorldB7F_CyrusLeave:
+    ApplyMovement LOCALID_CYRUS, DistortionWorldB7F_Movement_CyrusLeave
+    ApplyMovement LOCALID_CYNTHIA, DistortionWorldB7F_Movement_CynthiaWatchCyrusLeave
     WaitMovement
-    DeleteDistortionWorldMapObject 129
-    ApplyMovement 128, _02BC
-    WaitMovement
-    GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    GoToIfEq VAR_0x8005, 74, _012F
-    ApplyMovement LOCALID_PLAYER, _0254
-    GoTo _013F
-
-_012F:
-    ApplyMovement 128, _02E8
-    ApplyMovement LOCALID_PLAYER, _0264
-_013F:
-    Message 7
+    DeleteDistortionWorldMapObject LOCALID_CYRUS
+    ApplyMovement LOCALID_CYNTHIA, DistortionWorldB7F_Movement_CynthiaWalkToPlayer
     WaitMovement
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    GoToIfEq VAR_0x8005, 74, _016D
-    ApplyMovement 128, _02F8
-    ApplyMovement LOCALID_PLAYER, _0274
-    GoTo _017D
+    GoToIfEq VAR_0x8005, 74, DistortionWorldB7F_CynthiaPlayerFaceEachOtherAfterDelay
+    ApplyMovement LOCALID_PLAYER, DistortionWorldB7F_Movement_PlayerFaceCynthiaNorthAfterDelay
+    GoTo DistortionWorldB7F_DontBelieveHisLies
 
-_016D:
-    ApplyMovement 128, _0300
-    ApplyMovement LOCALID_PLAYER, _0280
-_017D:
+DistortionWorldB7F_CynthiaPlayerFaceEachOtherAfterDelay:
+    ApplyMovement LOCALID_CYNTHIA, DistortionWorldB7F_Movement_CynthiaFaceCynthiaEastAfterDelay
+    ApplyMovement LOCALID_PLAYER, DistortionWorldB7F_Movement_PlayerFaceCynthiaWestAfterDelay
+DistortionWorldB7F_DontBelieveHisLies:
+    Message DistortionWorldB7F_Text_DontBelieveHisLies
+    WaitMovement
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    GoToIfEq VAR_0x8005, 74, DistortionWorldB7F_CynthiaPlayerWalkOnSpotEastWest
+    ApplyMovement LOCALID_CYNTHIA, DistortionWorldB7F_Movement_CynthiaWalkOnSpotSouth
+    ApplyMovement LOCALID_PLAYER, DistortionWorldB7F_Movement_PlayerWalkOnSpotNorthAfterDelay
+    GoTo DistortionWorldB7F_MeetGiratina
+
+DistortionWorldB7F_CynthiaPlayerWalkOnSpotEastWest:
+    ApplyMovement LOCALID_CYNTHIA, DistortionWorldB7F_Movement_CynthiaWalkOnSpotEast
+    ApplyMovement LOCALID_PLAYER, DistortionWorldB7F_Movement_PlayerWalkOnSpotWestAfterDelay
+DistortionWorldB7F_MeetGiratina:
     BufferPlayerName 0
-    Message 8
+    Message DistortionWorldB7F_Text_CynthiaFullyHealedPokemon
     PlayFanfare SEQ_ASA
     WaitFanfare
     HealParty
     WaitMovement
-    Message 9
+    Message DistortionWorldB7F_Text_LetsGoMeetGiratina
     CloseMessage
-    ApplyMovement 128, _02C8
+    ApplyMovement LOCALID_CYNTHIA, DistortionWorldB7F_Movement_CynthiaWalkToGiratina
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    GoToIfEq VAR_0x8005, 74, _01BB
-    ApplyMovement LOCALID_PLAYER, _0220
-    GoTo _01C3
+    GoToIfEq VAR_0x8005, 74, DistortionWorldB7F_PlayerFollowCynthiaToGiratinaY74
+    ApplyMovement LOCALID_PLAYER, DistortionWorldB7F_Movement_PlayerFollowCynthiaToGiratinaY75
+    GoTo DistortionWorldB7F_GiratinaIsEnraged
 
-_01BB:
-    ApplyMovement LOCALID_PLAYER, _0234
-_01C3:
+DistortionWorldB7F_PlayerFollowCynthiaToGiratinaY74:
+    ApplyMovement LOCALID_PLAYER, DistortionWorldB7F_Movement_PlayerFollowCynthiaToGiratinaY74
+DistortionWorldB7F_GiratinaIsEnraged:
     WaitMovement
-    Message 10
+    Message DistortionWorldB7F_Text_GiratinaIsEnraged
     WaitButton
     CloseMessage
     End
 
-_01CE:
+DistortionWorldB7F_LostBattle:
     SetVar VAR_DISTORTION_WORLD_PROGRESS, 9
     BlackOutFromBattle
     ReleaseAll
     End
 
-_01DA:
+DistortionWorldB7F_Cynthia:
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    GoToIfGe VAR_DISTORTION_WORLD_PROGRESS, 10, _01F8
-    Message 3
+    GoToIfGe VAR_DISTORTION_WORLD_PROGRESS, 10, DistortionWorldB7F_YourBondIsStrong
+    Message DistortionWorldB7F_Text_ThatsNoJustice
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_01F8:
-    Message 11
+DistortionWorldB7F_YourBondIsStrong:
+    Message DistortionWorldB7F_Text_YourBondIsStrong
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
     .balign 4, 0
-_0204:
+DistortionWorldB7F_Movement_PlayerWalkOnSpotNorth:
     Delay16 2
     WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
-_0210:
+DistortionWorldB7F_Movement_PlayerMoveAside:
     WalkNormalEast
     WalkOnSpotNormalWest
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_0220:
+DistortionWorldB7F_Movement_PlayerFollowCynthiaToGiratinaY75:
     WalkNormalWest
     WalkNormalNorth 7
     WalkNormalEast 4
@@ -163,7 +166,7 @@ _0220:
     EndMovement
 
     .balign 4, 0
-_0234:
+DistortionWorldB7F_Movement_PlayerFollowCynthiaToGiratinaY74:
     WalkNormalWest
     WalkNormalNorth 6
     WalkNormalEast 4
@@ -171,66 +174,66 @@ _0234:
     EndMovement
 
     .balign 4, 0
-_0248:
+DistortionWorldB7F_Movement_PlayerWatchCyrusLeave:
     Delay8
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_0254:
+DistortionWorldB7F_Movement_PlayerFaceCynthiaNorthAfterDelay:
     Delay32 2
     Delay16
     WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
-_0264:
+DistortionWorldB7F_Movement_PlayerFaceCynthiaWestAfterDelay:
     Delay32 2
     Delay16
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_0274:
+DistortionWorldB7F_Movement_PlayerWalkOnSpotNorthAfterDelay:
     Delay4
     WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
-_0280:
+DistortionWorldB7F_Movement_PlayerWalkOnSpotWestAfterDelay:
     Delay4
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_028C:
+DistortionWorldB7F_Movement_CynthiaWalkOnSpotNorth:
     Delay16 2
     WalkOnSpotNormalNorth
     Delay16 2
     EndMovement
 
     .balign 4, 0
-_029C:
+DistortionWorldB7F_Movement_CynthiaWalkNorth:
     WalkNormalEast
     JumpDistortionWorldNorth
     WalkNormalNorth 7
     EndMovement
 
     .balign 4, 0
-_02AC:
+DistortionWorldB7F_Movement_CynthiaMoveAside:
     Delay8 3
     WalkNormalWest
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_02BC:
+DistortionWorldB7F_Movement_CynthiaWalkToPlayer:
     WalkNormalEast
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_02C8:
+DistortionWorldB7F_Movement_CynthiaWalkToGiratina:
     WalkNormalNorth 6
     WalkNormalEast 4
     WalkNormalSouth
@@ -238,36 +241,36 @@ _02C8:
     EndMovement
 
     .balign 4, 0
-_02DC:
+DistortionWorldB7F_Movement_CynthiaWatchCyrusLeave:
     Delay16
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_02E8:
+DistortionWorldB7F_Movement_CynthiaFaceCynthiaEastAfterDelay:
     Delay32 2
     Delay8
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_02F8:
+DistortionWorldB7F_Movement_CynthiaWalkOnSpotSouth:
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_0300:
+DistortionWorldB7F_Movement_CynthiaWalkOnSpotEast:
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_0308:
+DistortionWorldB7F_Movement_CyrusWalkToCynthia:
     WalkNormalSouth 4
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_0314:
+DistortionWorldB7F_Movement_CyrusLeave:
     WalkNormalSouth 7
     JumpDistortionWorldSouth
     Delay16

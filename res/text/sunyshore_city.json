@@ -2,7 +2,7 @@
   "key": 18359,
   "messages": [
     {
-      "id": "pl_msg_00000162_00000",
+      "id": "SunyshoreCity_Text_TheNamesFlint",
       "en_US": [
         "Yo!\n",
         "Fellow Trainer!\r",
@@ -16,7 +16,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000162_00001",
+      "id": "SunyshoreCity_Text_GiveVolknerHotBattle",
       "en_US": [
         "I just had this idea.\n",
         "Maybe you can pull it off.\r",
@@ -37,7 +37,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000162_00002",
+      "id": "SunyshoreCity_Text_VolknerNotBackYet",
       "en_US": [
         "Flint: Yo! Hiya!\n",
         "He hasn’t come back yet.\r",
@@ -49,7 +49,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000162_00003",
+      "id": "SunyshoreCity_Text_VolknerFinallyCameBack",
       "en_US": [
         "Flint: Yo! Hiya!\n",
         "He’s finally come back!\r",
@@ -67,7 +67,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000162_00004",
+      "id": "SunyshoreCity_Text_MyNameIsJasmine",
       "en_US": [
         "...Er...um... M-my name is Jasmine,\n",
         "and I’m a Gym Leader.\r",
@@ -81,18 +81,18 @@
       ]
     },
     {
-      "id": "pl_msg_00000162_00005",
+      "id": "SunyshoreCity_Text_ForcedToTurnBack",
       "en_US": [
         "Oh, if you don’t have the Gym Badge,\n",
         "you’ll be forced to turn back."
       ]
     },
     {
-      "id": "pl_msg_00000162_00006",
+      "id": "SunyshoreCity_Text_ThisIsntMuchBut",
       "en_US": "This isn’t much, but...\r"
     },
     {
-      "id": "pl_msg_00000162_00007",
+      "id": "SunyshoreCity_Text_ThatHMContainsWaterfall",
       "en_US": [
         "...That Hidden Machine...\n",
         "It contains Waterfall.\r",
@@ -103,7 +103,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000162_00008",
+      "id": "SunyshoreCity_Text_FeelAtHome",
       "en_US": [
         "Jasmine: ...This city makes me feel\n",
         "at home somehow.\r",
@@ -112,7 +112,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000162_00009",
+      "id": "SunyshoreCity_Text_ICameToGetStronger",
       "en_US": [
         "Jasmine: ...I came from very far away\n",
         "because I wanted to get stronger.\r",
@@ -123,7 +123,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000162_00010",
+      "id": "SunyshoreCity_Text_YouGotAllBadges",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: Hey!\n",
         "{STRVAR_1 3, 1, 0}!\r",
@@ -136,7 +136,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000162_00011",
+      "id": "SunyshoreCity_Text_YouWatchMe",
       "en_US": [
         "Because I’m going to be the toughest\n",
         "Trainer ever! You watch me!\r",
@@ -151,7 +151,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000162_00012",
+      "id": "SunyshoreCity_Text_HurryToPokemonLeague",
       "en_US": [
         "I’m not going to challenge you to a\n",
         "battle now.\r",
@@ -168,7 +168,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000162_00013",
+      "id": "SunyshoreCity_Text_HaveThisAsMyThanks",
       "en_US": [
         "Jasmine: ...Was that your friend?\r",
         "Seeing how you two got along made me\n",
@@ -186,22 +186,22 @@
       ]
     },
     {
-      "id": "pl_msg_00000162_00014",
+      "id": "SunyshoreCity_Text_Dummy14",
       "garbage": 38
     },
     {
-      "id": "pl_msg_00000162_00015",
+      "id": "SunyshoreCity_Text_ThatGiantRock",
       "en_US": [
         "That giant rock...\n",
         "Isn’t it really a Pokémon?"
       ]
     },
     {
-      "id": "pl_msg_00000162_00016",
+      "id": "SunyshoreCity_Text_Dummy16",
       "garbage": 47
     },
     {
-      "id": "pl_msg_00000162_00017",
+      "id": "SunyshoreCity_Text_GymUsesTooMuchElectricity",
       "en_US": [
         "The Gym Leader uses too much\n",
         "electricity!\r",
@@ -210,7 +210,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000162_00018",
+      "id": "SunyshoreCity_Text_CityUsesALotOfElectricity",
       "en_US": [
         "The city uses a lot of electricity,\n",
         "especially the lighthouse and the Gym.\r",
@@ -221,7 +221,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000162_00019",
+      "id": "SunyshoreCity_Text_MajorPortTown",
       "en_US": [
         "This is a major port town.\n",
         "And...\r",
@@ -230,7 +230,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000162_00020",
+      "id": "SunyshoreCity_Text_PeopleAndPokemonAdapt",
       "en_US": [
         "Whatever the environment, people\n",
         "and Pokémon adapt to live there.\r",
@@ -238,14 +238,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000162_00021",
+      "id": "SunyshoreCity_Text_MapSign",
       "en_US": [
         "Sunyshore City\n",
         "Solar Powered!"
       ]
     },
     {
-      "id": "pl_msg_00000162_00022",
+      "id": "SunyshoreCity_Text_SignPokemonGym",
       "en_US": [
         "Sunyshore City Pokémon Gym\n",
         "Leader: Volkner\f",
@@ -253,32 +253,32 @@
       ]
     },
     {
-      "id": "pl_msg_00000162_00023",
+      "id": "SunyshoreCity_Text_SignVistaLighthouse",
       "en_US": [
         "Vista Lighthouse\n",
         "The Beacon That Lights Sinnoh"
       ]
     },
     {
-      "id": "pl_msg_00000162_00024",
+      "id": "SunyshoreCity_Text_SignSunyshoreMarket",
       "en_US": [
         "Sunyshore Market\n",
         "A Selection of the World’s Seals"
       ]
     },
     {
-      "id": "pl_msg_00000162_00025",
+      "id": "SunyshoreCity_Text_SignJuliasHouse",
       "en_US": [
         "Julia’s House\n",
         "Delightful Ribbons for Pokémon"
       ]
     },
     {
-      "id": "pl_msg_00000162_00026",
+      "id": "SunyshoreCity_Text_SignBlank",
       "en_US": "It’s a blank sign painted white."
     },
     {
-      "id": "pl_msg_00000162_00027",
+      "id": "SunyshoreCity_Text_SignPokemonRock",
       "en_US": [
         "Pokémon Rock\n",
         "Sunyshore’s Heritage Site"
