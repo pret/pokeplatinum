@@ -11,7 +11,7 @@
 #include "generated/items.h"
 #include "generated/species.h"
 
-#include "struct_decls/struct_02061830_decl.h"
+#include "struct_decls/map_object_manager.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_defs/wi_fi_history.h"
 

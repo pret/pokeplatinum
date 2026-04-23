@@ -2,10 +2,10 @@
 #define POKEPLATINUM_STRUCT_OV61_0222AFCC_H
 
 typedef struct {
-    u8 unk_00;
+    u8 version;
     u8 language;
-    u8 unk_02;
-    u8 unk_03;
+    u8 month;
+    u8 appearance;
     u16 unk_04;
     u8 unk_06_0 : 1;
     u8 unk_06_1 : 7;
