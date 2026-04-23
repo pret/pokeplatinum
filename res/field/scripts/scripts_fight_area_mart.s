@@ -2,48 +2,48 @@
 #include "res/text/bank/fight_area_mart.h"
 
 
-    ScriptEntry _0012
-    ScriptEntry _0028
-    ScriptEntry _002A
-    ScriptEntry _0086
+    ScriptEntry FightAreaMart_CommonVendor
+    ScriptEntry FightAreaMart_Unused
+    ScriptEntry FightAreaMart_Socialite
+    ScriptEntry FightAreaMart_Clown
     ScriptEntryEnd
 
-_0012:
+FightAreaMart_CommonVendor:
     PokeMartCommonWithGreeting
     End
 
-_0028:
+FightAreaMart_Unused:
     End
 
-_002A:
+FightAreaMart_Socialite:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x00D5, _0071
-    Message 0
+    GoToIfSet FLAG_RECEIVED_FIGHT_AREA_MART_SCOPE_LENS, FightAreaMart_DilemmaEveryTime
+    Message FightAreaMart_Text_HoldWhatItems
     SetVar VAR_0x8004, ITEM_SCOPE_LENS
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _007C
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, FightAreaMart_BagIsFull
     Common_GiveItemQuantity
-    SetFlag FLAG_UNK_0x00D5
-    GoTo _0071
+    SetFlag FLAG_RECEIVED_FIGHT_AREA_MART_SCOPE_LENS
+    GoTo FightAreaMart_DilemmaEveryTime
     End
 
-_0071:
-    Message 1
+FightAreaMart_DilemmaEveryTime:
+    Message FightAreaMart_Text_DilemmaEveryTime
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_007C:
+FightAreaMart_BagIsFull:
     Common_MessageBagIsFull
     CloseMessage
     ReleaseAll
     End
 
-_0086:
-    NPCMessage 2
+FightAreaMart_Clown:
+    NPCMessage FightAreaMart_Text_TheyDontSellThat
     End
 
     .balign 4, 0

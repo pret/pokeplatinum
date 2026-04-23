@@ -2,7 +2,7 @@
   "key": 50186,
   "messages": [
     {
-      "id": "pl_msg_00000198_00000",
+      "id": "FightAreaSouthHouse_Text_AttractedHardiestTrainers",
       "en_US": [
         "The Battle Zone used to attract only\n",
         "the hardiest of the Trainers.\r",
@@ -16,7 +16,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000198_00001",
+      "id": "FightAreaSouthHouse_Text_EarlyEccentrics",
       "en_US": [
         "He was one of those early eccentrics\n",
         "who were around during the early days\r",
@@ -24,11 +24,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000198_00002",
+      "id": "FightAreaSouthHouse_Text_TorchicCry",
       "en_US": "TORCHIC: Chiic chic!"
     },
     {
-      "id": "pl_msg_00000198_00003",
+      "id": "FightAreaSouthHouse_Text_IAmTheItemExpert",
       "en_US": [
         "I am the Item Expert!\n",
         "I have mastery in the way of items!\r",
@@ -41,14 +41,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000198_00004",
+      "id": "FightAreaSouthHouse_Text_DescribeWhichItem",
       "en_US": [
         "Which item would you like me to\n",
         "describe?"
       ]
     },
     {
-      "id": "pl_msg_00000198_00005",
+      "id": "FightAreaSouthHouse_Text_VarietyOfOtherItems",
       "en_US": [
         "There’s a great variety of other items,\n",
         "of course.\r",
@@ -59,7 +59,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000198_00006",
+      "id": "FightAreaSouthHouse_Text_DescribeLumBerry",
       "en_US": [
         "Lum Berry!\r",
         "When held by a Pokémon, it instantly\n",
@@ -71,7 +71,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000198_00007",
+      "id": "FightAreaSouthHouse_Text_DescribeFocusSash",
       "en_US": [
         "Focus Sash!\r",
         "This hold item will prevent a Pokémon\n",
@@ -83,7 +83,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000198_00008",
+      "id": "FightAreaSouthHouse_Text_DescribeExpertBelt",
       "en_US": [
         "Expert Belt!\r",
         "This hold item boosts the power of a\n",
@@ -93,7 +93,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000198_00009",
+      "id": "FightAreaSouthHouse_Text_DescribeLifeOrb",
       "en_US": [
         "Life Orb!\r",
         "This hold item boosts the power of\n",
@@ -103,7 +103,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000198_00010",
+      "id": "FightAreaSouthHouse_Text_DescribeChoiceScarf",
       "en_US": [
         "Choice Scarf!\r",
         "This hold item boosts the Speed of the\n",
@@ -113,7 +113,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000198_00011",
+      "id": "FightAreaSouthHouse_Text_DescribeChoiceBand",
       "en_US": [
         "Choice Band!\r",
         "This hold item boosts the Attack stat\n",
@@ -123,7 +123,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000198_00012",
+      "id": "FightAreaSouthHouse_Text_DescribeChoiceSpecs",
       "en_US": [
         "Choice Specs!\r",
         "This hold item boosts the Special Attack\n",
@@ -133,7 +133,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000198_00013",
+      "id": "FightAreaSouthHouse_Text_DescribeLeftovers",
       "en_US": [
         "Leftovers!\r",
         "At the end of a turn, after both sides\n",
@@ -144,39 +144,39 @@
       ]
     },
     {
-      "id": "pl_msg_00000198_00014",
+      "id": "FightAreaSouthHouse_Text_LumBerry",
       "en_US": "LUM BERRY"
     },
     {
-      "id": "pl_msg_00000198_00015",
+      "id": "FightAreaSouthHouse_Text_FocusSash",
       "en_US": "FOCUS SASH"
     },
     {
-      "id": "pl_msg_00000198_00016",
+      "id": "FightAreaSouthHouse_Text_ExpertBelt",
       "en_US": "EXPERT BELT"
     },
     {
-      "id": "pl_msg_00000198_00017",
+      "id": "FightAreaSouthHouse_Text_LifeOrb",
       "en_US": "LIFE ORB"
     },
     {
-      "id": "pl_msg_00000198_00018",
+      "id": "FightAreaSouthHouse_Text_ChoiceScarf",
       "en_US": "CHOICE SCARF"
     },
     {
-      "id": "pl_msg_00000198_00019",
+      "id": "FightAreaSouthHouse_Text_ChoiceBand",
       "en_US": "CHOICE BAND"
     },
     {
-      "id": "pl_msg_00000198_00020",
+      "id": "FightAreaSouthHouse_Text_ChoiceSpecs",
       "en_US": "CHOICE SPECS"
     },
     {
-      "id": "pl_msg_00000198_00021",
+      "id": "FightAreaSouthHouse_Text_Leftovers",
       "en_US": "LEFTOVERS"
     },
     {
-      "id": "pl_msg_00000198_00022",
+      "id": "FightAreaSouthHouse_Text_Exit",
       "en_US": "EXIT"
     }
   ]

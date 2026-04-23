@@ -1,27 +1,28 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/fight_area_pokecenter_1f.h"
+#include "res/field/events/events_fight_area_pokecenter_1f.h"
 
 
-    ScriptEntry _0012
-    ScriptEntry _001E
-    ScriptEntry _0031
-    ScriptEntry _0044
+    ScriptEntry FightAreaPokecenter1F_Nurse
+    ScriptEntry FightAreaPokecenter1F_Guitarist
+    ScriptEntry FightAreaPokecenter1F_Waitress
+    ScriptEntry FightAreaPokecenter1F_BlackBelt
     ScriptEntryEnd
 
-_0012:
-    Common_CallPokecenterNurse 0
+FightAreaPokecenter1F_Nurse:
+    Common_CallPokecenterNurse LOCALID_POKECENTER_NURSE
     End
 
-_001E:
-    NPCMessage 0
+FightAreaPokecenter1F_Guitarist:
+    NPCMessage FightAreaPokecenter1F_Text_BattleFrontiersTough
     End
 
-_0031:
-    NPCMessage 1
+FightAreaPokecenter1F_Waitress:
+    NPCMessage FightAreaPokecenter1F_Text_BestTrainersAtBattleZone
     End
 
-_0044:
-    NPCMessage 2
+FightAreaPokecenter1F_BlackBelt:
+    NPCMessage FightAreaPokecenter1F_Text_ToToughenMyself
     End
 
     .balign 4, 0
