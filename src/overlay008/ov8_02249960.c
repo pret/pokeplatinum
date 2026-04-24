@@ -93,6 +93,11 @@
 #define HEARTHOME_NUM_TRAINER_ROOMS 2
 #define HEARTHOME_ROOM_MAX_TRAINERS 16
 
+#define HEARTHOME_ROOM_1_SIZE_X 15
+#define HEARTHOME_ROOM_1_SIZE_Z 8
+#define HEARTHOME_ROOM_2_SIZE_X 27
+#define HEARTHOME_ROOM_2_SIZE_Z 20
+
 #define HEARTHOME_DOOR_ID_CIRCLE   0
 #define HEARTHOME_DOOR_ID_SQUARE   1
 #define HEARTHOME_DOOR_ID_TRIANGLE 2
@@ -294,11 +299,11 @@ typedef struct {
     int numExitDoors;
     int offsetX;
     int offsetZ;
-    int width;
-    int length;
+    int sizeX;
+    int sizeZ;
 } HearthomeGymTrainerRoomLayout;
 
-typedef struct {
+typedef struct HearthomeGymFog {
     UnkStruct_ov5_021D57D8 *fogSystem;
     int fogSlope;
     u8 fogR;
@@ -308,7 +313,7 @@ typedef struct {
     char fogDensity[32];
 } HearthomeGymFog;
 
-typedef struct {
+typedef struct HearthomeGymTrainerRoomDoor {
     int id;
     s16 x;
     s16 z;
@@ -316,7 +321,7 @@ typedef struct {
 
 typedef struct HearthomeGymSystem HearthomeGymSystem;
 
-typedef struct {
+typedef struct HearthomeGymTrainer {
     int initialized;
     int initialDir;
     int unk_08;
@@ -355,11 +360,11 @@ static BOOL ov8_0224C0C8(UnkStruct_ov8_0224C098 *param0, UnkStruct_ov8_0224B80C 
 static void ov8_0224C0FC(UnkStruct_ov8_0224C098 *param0, int param1);
 static void ov8_0224C11C(UnkStruct_ov8_0224C098 *param0, int param1);
 static void ov8_0224C170(UnkStruct_ov8_0224C098 *param0, fx32 param1);
-static void HearthomeGym_EmptyTask(SysTask *task, void *param1);
-static void HearthomeGym_InitFog(HearthomeGymSystem *param0);
-static void HearthomeGym_InitTrainers(HearthomeGymSystem *param0);
-static void HearthomeGym_FreeTrainers(HearthomeGymSystem *param0);
-static void HearthomeGym_EmptyTrainerTask(SysTask *param0, void *param1);
+static void HearthomeGym_EmptyTask(SysTask *task, void *data);
+static void HearthomeGym_InitFog(HearthomeGymSystem *gymSystem);
+static void HearthomeGym_InitTrainers(HearthomeGymSystem *gymSystem);
+static void HearthomeGym_FreeTrainers(HearthomeGymSystem *gymSystem);
+static void HearthomeGym_EmptyTrainerTask(SysTask *task, void *data);
 
 static u8 ov8_02249960(const u8 param0, const int param1)
 {
@@ -3684,8 +3689,8 @@ static const HearthomeGymTrainerRoomLayout sTrainerRoomLayouts[HEARTHOME_NUM_TRA
         .numExitDoors = 3,
         .offsetX = 1,
         .offsetZ = 3,
-        .width = 15,
-        .length = 8,
+        .sizeX = HEARTHOME_ROOM_1_SIZE_X,
+        .sizeZ = HEARTHOME_ROOM_1_SIZE_Z,
     },
     {
         .mapID = MAP_HEADER_HEARTHOME_CITY_GYM_TRAINER_ROOM_2,
@@ -3693,14 +3698,14 @@ static const HearthomeGymTrainerRoomLayout sTrainerRoomLayouts[HEARTHOME_NUM_TRA
         .numExitDoors = 5,
         .offsetX = 1,
         .offsetZ = 3,
-        .width = 27,
-        .length = 20,
+        .sizeX = HEARTHOME_ROOM_2_SIZE_X,
+        .sizeZ = HEARTHOME_ROOM_2_SIZE_Z,
     }
 };
 
 // clang-format off
 // 0 = Clue can be placed there, 1 = Clue can not be placed there
-static const u8 sTrainerRoom1CluePositions[120] = {
+static const u8 sTrainerRoom1CluePositions[HEARTHOME_ROOM_1_SIZE_X * HEARTHOME_ROOM_1_SIZE_Z] = {
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 
     1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 
@@ -3711,7 +3716,7 @@ static const u8 sTrainerRoom1CluePositions[120] = {
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
 };
 
-static const u8 sTrainerRoom2CluePositions[540] = {
+static const u8 sTrainerRoom2CluePositions[HEARTHOME_ROOM_2_SIZE_X * HEARTHOME_ROOM_2_SIZE_Z] = {
     0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
     0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
     0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0,
@@ -3814,17 +3819,17 @@ void HearthomeGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
 
             do {
                 do {
-                    features->clueX = MTRNG_Next() % room->width;
-                    features->clueZ = MTRNG_Next() % room->length;
-                } while (cluePositions[(features->clueZ * room->width) + features->clueX] == 1);
+                    features->clueX = MTRNG_Next() % room->sizeX;
+                    features->clueZ = MTRNG_Next() % room->sizeZ;
+                } while (cluePositions[(features->clueZ * room->sizeX) + features->clueX] == 1);
 
                 features->clueX += room->offsetX;
                 features->clueZ += room->offsetZ;
             } while (sub_0206326C(fieldSystem->mapObjMan, features->clueX, features->clueZ, 0) != NULL);
 
             GF_ASSERT(features->correctDoorID < room->firstDoorID + room->numExitDoors);
-            GF_ASSERT(features->clueX < room->offsetX + room->width);
-            GF_ASSERT(features->clueZ < room->offsetZ + room->length);
+            GF_ASSERT(features->clueX < room->offsetX + room->sizeX);
+            GF_ASSERT(features->clueZ < room->offsetZ + room->sizeZ);
             GF_ASSERT(!TerrainCollisionManager_CheckCollision(fieldSystem, features->clueX, features->clueZ));
         }
     }
@@ -3889,32 +3894,32 @@ static void HearthomeGym_InitFog(HearthomeGymSystem *gymSystem)
     ov5_021D585C(fogSystem, fog->fogDensity);
 }
 
-static void HearthomeGym_InitTrainers(HearthomeGymSystem *param0)
+static void HearthomeGym_InitTrainers(HearthomeGymSystem *gymSystem)
 {
-    int objIndex, i, taskPriority, localID;
-    MapObject *trainerObj;
-    HearthomeGymTrainer *trainer = param0->trainers;
-    const MapObjectManager *mapObjMan = param0->fieldSystem->mapObjMan;
+    int objIndex, localID;
+    HearthomeGymTrainer *trainer = gymSystem->trainers;
+    const MapObjectManager *mapObjMan = gymSystem->fieldSystem->mapObjMan;
 
     objIndex = 0;
-    i = 0;
-    taskPriority = MapObjectMan_GetTaskBasePriority(mapObjMan) + 2;
+    int i = 0;
+    int taskPriority = MapObjectMan_GetTaskBasePriority(mapObjMan) + 2;
 
+    MapObject *trainerObj;
     while (MapObjectMan_FindObjectWithStatus(mapObjMan, &trainerObj, &objIndex, MAP_OBJ_STATUS_0)) {
         localID = MapObject_GetLocalID(trainerObj);
         trainer->unk_08 = MapObject_GetDataAt(trainerObj, 0);
 
-        if (localID == LOCALID_PLAYER || MapObject_GetTrainerType(trainerObj) == TRAINER_TYPE_NORMAL && trainer->unk_08) {
+        if (localID == LOCALID_PLAYER || MapObject_GetTrainerType(trainerObj) == TRAINER_TYPE_NORMAL && trainer->unk_08 != 0) {
             trainer->initialized = TRUE;
             trainer->initialDir = MapObject_GetFacingDir(trainerObj);
             trainer->mapObj = trainerObj;
-            trainer->gymSystem = param0;
+            trainer->gymSystem = gymSystem;
 
             if (localID == LOCALID_PLAYER) {
                 trainer->unk_08 = 2;
             }
 
-            trainer->animMan = ov5_021F4840(param0->fieldSystem->fieldEffMan, trainerObj, trainer->unk_08, 3);
+            trainer->animMan = ov5_021F4840(gymSystem->fieldSystem->fieldEffMan, trainerObj, trainer->unk_08, 3);
             trainer->emptyTask = SysTask_Start(HearthomeGym_EmptyTrainerTask, trainer, taskPriority);
             GF_ASSERT(trainer->emptyTask);
 

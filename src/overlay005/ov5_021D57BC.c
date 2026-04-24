@@ -49,14 +49,14 @@ GXRgb ov5_021D57F8(UnkStruct_ov5_021D57D8 *param0)
     return param0->unk_10;
 }
 
-void ov5_021D57FC(UnkStruct_ov5_021D57D8 *param0, int param1, BOOL fogEnable, int forMode, int fogSlope, int fogOffset)
+void ov5_021D57FC(UnkStruct_ov5_021D57D8 *param0, int param1, BOOL fogEnable, int fogMode, int fogSlope, int fogOffset)
 {
     if (param1 & 1) {
         param0->fogEnable = fogEnable;
     }
 
     if (param1 & (1 << 1)) {
-        param0->fogMode = forMode;
+        param0->fogMode = fogMode;
     }
 
     if (param1 & (1 << 2)) {

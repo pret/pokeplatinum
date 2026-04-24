@@ -39,11 +39,11 @@ typedef struct PastoriaGymPersistedFeature {
     u8 pressedButton;
 } PastoriaGymPersistedFeature;
 
-typedef struct {
+typedef struct HearthomeGymPersistedFeatureDP {
     u8 isMovingUp;
 } HearthomeGymPersistedFeatureDP;
 
-typedef struct {
+typedef struct HearthomeGymPersistedFeatures {
     s16 initialized;
     s16 correctDoorID;
     s16 clueX;
@@ -75,6 +75,6 @@ void HearthomeGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem);
 void HearthomeGym_DynamicMapFeaturesFree(FieldSystem *fieldSystem);
 BOOL HearthomeGym_CheckIfPlayerSeesTrainer(FieldSystem *fieldSystem);
 BOOL HearthomeGym_SetTrainerPostBattleMovement(FieldSystem *fieldSystem, MapObject *trainerObj);
-BOOL HearthomeGym_CheckIfEnteredIncorrectDoor(FieldSystem *fieldSystem, int playerX, int playerY, int *transitionDir);
+BOOL HearthomeGym_CheckIfEnteredIncorrectDoor(FieldSystem *fieldSystem, int playerX, int playerZ, int *transitionDir);
 
 #endif // POKEPLATINUM_OV8_02249960_H
