@@ -927,7 +927,7 @@ pokeplatinum_c = files(
     'overlay104/ov104_02231F74.c',
     'overlay104/ov104_022332B4.c',
     'overlay104/ov104_022339B4.c',
-    'overlay104/ov104_02234838.c',
+    'overlay104/frscrcmd_battle_hall.c',
     'overlay104/ov104_02234DB4.c',
     'overlay104/ov104_022358E8.c',
     'overlay104/ov104_022361B4.c',

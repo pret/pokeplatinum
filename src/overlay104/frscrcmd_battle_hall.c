@@ -1,4 +1,4 @@
-#include "overlay104/ov104_02234838.h"
+#include "overlay104/frscrcmd_battle_hall.h"
 
 #include <nitro.h>
 
