@@ -6,17 +6,17 @@
 
 typedef struct UnkStruct_02030A80_t {
     u16 unk_00[8];
-    u32 unk_10;
-    u8 unk_14;
-    u8 unk_15;
-    u8 unk_16;
-    u8 unk_17;
-    u8 unk_18;
-    u8 unk_19;
+    u32 id;
+    u8 gender;
+    u8 month;
+    u8 appearance;
+    u8 country;
+    u8 region;
+    u8 version;
     u8 language;
-    u8 unk_1B_0 : 1;
-    u8 unk_1B_1 : 7;
-    u16 unk_1C;
+    u8 isEgg : 1;
+    u8 form : 7;
+    u16 species;
     u8 unk_1E;
     u8 unk_1F;
     union {

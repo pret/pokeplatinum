@@ -12,7 +12,6 @@
 #include "game_options.h"
 #include "journal.h"
 #include "party.h"
-#include "pokemon.h"
 #include "savedata.h"
 #include "string_template.h"
 #include "sys_task_manager.h"

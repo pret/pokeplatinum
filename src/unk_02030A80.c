@@ -15,6 +15,7 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "savedata_misc.h"
+#include "species.h"
 #include "string_gf.h"
 #include "system_data.h"
 #include "trainer_info.h"
@@ -40,35 +41,35 @@ void sub_02030AA0(UnkStruct_02030A80 *param0, SaveData *saveData)
 {
     TrainerInfo *v0 = SaveData_GetTrainerInfo(saveData);
     WiFiHistory *wiFiHistory = SaveData_WiFiHistory(saveData);
-    SystemData *v2 = SaveData_GetSystemData(saveData);
-    const MiscSaveBlock *v3 = SaveData_MiscSaveBlockConst(saveData);
-    int v4, v5, v6;
+    SystemData *systemData = SaveData_GetSystemData(saveData);
+    const MiscSaveBlock *miscSaveBlock = SaveData_MiscSaveBlockConst(saveData);
+    int species, form, isEgg;
     int v7;
-    OSOwnerInfo v8;
+    OSOwnerInfo ownerInfo;
 
-    OS_GetOwnerInfo(&v8);
+    OS_GetOwnerInfo(&ownerInfo);
 
-    MiscSaveBlock_FavoriteMon(v3, &v4, &v5, &v6);
+    MiscSaveBlock_FavoriteMon(miscSaveBlock, &species, &form, &isEgg);
     MI_CpuClear8(param0, sizeof(UnkStruct_02030A80));
     CharCode_Copy(param0->unk_00, TrainerInfo_Name(v0));
 
-    param0->unk_10 = TrainerInfo_ID(v0);
-    param0->unk_14 = TrainerInfo_Gender(v0);
-    param0->unk_1C = v4;
-    param0->unk_1B_1 = v5;
-    param0->unk_1B_0 = v6;
-    param0->unk_17 = WiFiHistory_GetCountry(wiFiHistory);
-    param0->unk_18 = WiFiHistory_GetRegion(wiFiHistory);
+    param0->id = TrainerInfo_ID(v0);
+    param0->gender = TrainerInfo_Gender(v0);
+    param0->species = species;
+    param0->form = form;
+    param0->isEgg = isEgg;
+    param0->country = WiFiHistory_GetCountry(wiFiHistory);
+    param0->region = WiFiHistory_GetRegion(wiFiHistory);
 
     for (v7 = 0; v7 < 40; v7++) {
         param0->unk_20_val2[v7] = 0xffff;
     }
 
-    MiscSaveBlock_IntroMsg(v3, &param0->unk_20_val1);
+    MiscSaveBlock_IntroMsg(miscSaveBlock, &param0->unk_20_val1);
 
-    param0->unk_15 = v8.birthday.month;
-    param0->unk_16 = Appearance_GetData(TrainerInfo_Gender(v0), TrainerInfo_Appearance(v0), APPEARANCE_DATA_INDEX);
-    param0->unk_19 = GAME_VERSION;
+    param0->month = ownerInfo.birthday.month;
+    param0->appearance = Appearance_GetData(TrainerInfo_Gender(v0), TrainerInfo_Appearance(v0), APPEARANCE_DATA_INDEX);
+    param0->version = GAME_VERSION;
     param0->language = GAME_LANGUAGE;
     param0->unk_7C.unk_00 = SaveData_CalculateChecksum(saveData, param0, sizeof(UnkStruct_02030A80) - (sizeof(UnkStruct_0202F298_sub1)));
 }
@@ -83,60 +84,60 @@ String *sub_02030B94(const UnkStruct_02030A80 *param0, enum HeapID heapID)
 
 u32 sub_02030BAC(const UnkStruct_02030A80 *param0)
 {
-    if ((param0->unk_14 != 0) && (param0->unk_14 != 1)) {
+    if ((param0->gender != GENDER_MALE) && (param0->gender != GENDER_FEMALE)) {
         return 0;
     }
 
-    return param0->unk_14;
+    return param0->gender;
 }
 
 int sub_02030BBC(const UnkStruct_02030A80 *param0)
 {
-    if (param0->unk_1C >= 495) {
+    if (param0->species >= MAX_SPECIES) {
         return 0;
     }
 
-    return param0->unk_1C;
+    return param0->species;
 }
 
 int sub_02030BCC(const UnkStruct_02030A80 *param0)
 {
-    if (param0->unk_1C >= 495) {
+    if (param0->species >= MAX_SPECIES) {
         return 0;
     }
 
-    return Pokemon_SanitizeFormId(param0->unk_1C, param0->unk_1B_1);
+    return Pokemon_SanitizeFormId(param0->species, param0->form);
 }
 
 int sub_02030BEC(const UnkStruct_02030A80 *param0)
 {
-    if (param0->unk_1B_0 > 1) {
+    if (param0->isEgg > 1) {
         return 1;
     }
 
-    return param0->unk_1B_0;
+    return param0->isEgg;
 }
 
 int sub_02030BFC(const UnkStruct_02030A80 *param0)
 {
-    if (param0->unk_17 >= 234) {
+    if (param0->country >= 234) {
         return 0;
     }
 
-    return param0->unk_17;
+    return param0->country;
 }
 
 int sub_02030C08(const UnkStruct_02030A80 *param0)
 {
-    if (param0->unk_17 >= 234) {
+    if (param0->country >= 234) {
         return 0;
     }
 
-    if (sub_020996F4(param0->unk_17) < param0->unk_18) {
+    if (sub_020996F4(param0->country) < param0->region) {
         return 0;
     }
 
-    return param0->unk_18;
+    return param0->region;
 }
 
 String *sub_02030C28(const UnkStruct_02030A80 *param0, Sentence *param1, enum HeapID heapID)
@@ -176,8 +177,8 @@ String *sub_02030C28(const UnkStruct_02030A80 *param0, Sentence *param1, enum He
 
 int sub_02030CCC(const UnkStruct_02030A80 *param0)
 {
-    if ((param0->unk_15 >= 1) && (param0->unk_15 <= 12)) {
-        return param0->unk_15;
+    if ((param0->month >= 1) && (param0->month <= 12)) {
+        return param0->month;
     }
 
     return 1;
@@ -185,9 +186,9 @@ int sub_02030CCC(const UnkStruct_02030A80 *param0)
 
 int sub_02030CDC(const UnkStruct_02030A80 *param0)
 {
-    if (param0->unk_16 > 15) {
+    if (param0->appearance > 15) {
         return 0;
     }
 
-    return param0->unk_16;
+    return param0->appearance;
 }
