@@ -30,18 +30,6 @@ def bytecode_scripts_order_only_deps(fileString: str) -> str:
         fileString
     )
 
-def pch_order_only_deps(fileString: str) -> str:
-    '''
-    Express dependencies attached to the PCH as order-only.
-    This is to address a Meson bug where the PCH is flagged as having implicit
-    dependencies on generated sources and headers.
-    '''
-    return re.sub(
-        r"build main.nef.p/global_pch.h.mch: c_PCH ../include/pch/global_pch.h \| ([\w\s\/\.\-]+)",
-        r"build main.nef.p/global_pch.h.mch: c_PCH ../include/pch/global_pch.h || \1",
-        fileString
-    )
-
 
 def main():
     BUILD_NINJA         = f'{BUILD_DIRECTORY}/build.ninja'
@@ -56,7 +44,6 @@ def main():
     build_ninja_string = fix_static_libs(build_ninja_string)
     build_ninja_string = nasm_to_asm(build_ninja_string)
     build_ninja_string = bytecode_scripts_order_only_deps(build_ninja_string)
-    build_ninja_string = pch_order_only_deps(build_ninja_string)
 
     # compile_commands.json edits
     compile_commands_string = backslash_to_forward_slash(compile_commands_string)
