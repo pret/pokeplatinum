@@ -113,3 +113,4 @@ area_data_narc = custom_target('area_data.narc',
 )
 
 nitrofs_files += area_data_narc
+naix_headers += area_data_narc[1]

@@ -160,9 +160,6 @@ subdir('lib')
 ############################################################
 subdir('res')
 
-# Phony-like target to build all generated data files
-alias_target('data', nitrofs_files)
-
 ############################################################
 ###                     ARM9 BINARY                      ###
 ############################################################
