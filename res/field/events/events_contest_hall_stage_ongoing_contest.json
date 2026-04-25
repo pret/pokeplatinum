@@ -18,7 +18,7 @@
         },
         {
             "id": "CONTEST_HALL_STAGE_ONGOING_CONTEST_CONTESTANT1",
-            "graphics_id": "OBJ_EVENT_GFX_COUNTERPART",
+            "graphics_id": "OBJ_EVENT_GFX_VAR_0",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_CONTEST_HALL_STAGE_CONTESTANT1",
@@ -33,7 +33,7 @@
         },
         {
             "id": "CONTEST_HALL_STAGE_ONGOING_CONTEST_CONTESTANT2",
-            "graphics_id": "OBJ_EVENT_GFX_UNK_102",
+            "graphics_id": "OBJ_EVENT_GFX_VAR_1",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_CONTEST_HALL_STAGE_CONTESTANT2",
@@ -48,7 +48,7 @@
         },
         {
             "id": "CONTEST_HALL_STAGE_ONGOING_CONTEST_CONTESTANT3",
-            "graphics_id": "OBJ_EVENT_GFX_UNK_103",
+            "graphics_id": "OBJ_EVENT_GFX_VAR_2",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_CONTEST_HALL_STAGE_CONTESTANT3",
@@ -63,7 +63,7 @@
         },
         {
             "id": "CONTEST_HALL_STAGE_ONGOING_CONTEST_CONTESTANT4",
-            "graphics_id": "OBJ_EVENT_GFX_UNK_104",
+            "graphics_id": "OBJ_EVENT_GFX_VAR_3",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_CONTEST_HALL_STAGE_CONTESTANT4",
@@ -78,7 +78,7 @@
         },
         {
             "id": "CONTEST_HALL_STAGE_ONGOING_CONTEST_CONTESTANT_WINNER",
-            "graphics_id": "OBJ_EVENT_GFX_UNK_105",
+            "graphics_id": "OBJ_EVENT_GFX_VAR_4",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_CONTEST_HALL_STAGE_CONTESTANT_WINNER",

@@ -761,7 +761,7 @@ ScriptCommand(SCRCMD_INITPERSISTEDMAPFEATURESFORVILLA,                     ScrCm
 ScriptCommand(SCRCMD_2F1,                                                  ScrCmd_2F1)
 ScriptCommand(SCRCMD_INITPERSISTEDMAPFEATURESFORDISTORTIONWORLD,           ScrCmd_InitPersistedMapFeaturesForDistortionWorld)
 ScriptCommand(SCRCMD_BUFFERTRAINERNAME,                                    ScrCmd_BufferTrainerName)
-ScriptCommand(SCRCMD_2F4,                                                  ScrCmd_2F4)
+ScriptCommand(ScrCmd_GETRANDOMBATTLEGROUNDTRAINERS,                        ScrCmd_GetRandomBattlegroundTrainers)
 ScriptCommand(SCRCMD_BUFFERVALUEPADDINGDIGITS,                             ScrCmd_BufferValuePaddingDigits)
 ScriptCommand(SCRCMD_2F6,                                                  ScrCmd_2F6)
 ScriptCommand(SCRCMD_2F7,                                                  ScrCmd_2F7)

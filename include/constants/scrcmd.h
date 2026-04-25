@@ -5,6 +5,8 @@
 #include "constants/menu.h"
 #include "generated/backdrops.h"
 
+#define BATTLEGROUND_TRAINER_NONE 0xFFF
+
 #define BERRY_WATERING_START 0
 #define BERRY_WATERING_END   1
 
