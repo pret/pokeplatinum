@@ -7,7 +7,7 @@
 #include "party.h"
 #include "savedata.h"
 
-typedef struct {
+typedef struct BattleHallAppArgs {
     SaveData *saveData;
     u8 challengeType;
     u8 cursorPos;
