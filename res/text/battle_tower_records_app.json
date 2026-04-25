@@ -2,123 +2,123 @@
   "key": 12299,
   "messages": [
     {
-      "id": "pl_msg_00000022_00000",
+      "id": "BattleTowerRecordsApp_Text_Results",
       "en_US": "Battle Room Results"
     },
     {
-      "id": "pl_msg_00000022_00001",
+      "id": "BattleTowerRecordsApp_Text_MultiResults",
       "en_US": "Multi Battle Room Results"
     },
     {
-      "id": "pl_msg_00000022_00002",
+      "id": "BattleTowerRecordsApp_Text_WifResults",
       "en_US": "Wi-Fi Battle Room Results"
     },
     {
-      "id": "pl_msg_00000022_00003",
+      "id": "BattleTowerRecordsApp_Text_SingleRecord",
       "en_US": [
         "{COLOR 1}Single{COLOR 3} {COLOR 2}\n",
         "{COLOR 1}Record{COLOR 0}"
       ]
     },
     {
-      "id": "pl_msg_00000022_00004",
+      "id": "BattleTowerRecordsApp_Text_MultiRecord",
       "en_US": [
         "{COLOR 1}Multi{COLOR 3} {COLOR 0}\n",
         "{COLOR 1}Record{COLOR 0}"
       ]
     },
     {
-      "id": "pl_msg_00000022_00005",
+      "id": "BattleTowerRecordsApp_Text_CurrentRank",
       "en_US": [
         "{COLOR 1}Current{COLOR 3} {COLOR 0}\n",
         "{COLOR 1}Rank{COLOR 0}"
       ]
     },
     {
-      "id": "pl_msg_00000022_00006",
+      "id": "BattleTowerRecordsApp_Text_DoubleRecord",
       "en_US": [
         "{COLOR 1}Double{COLOR 3} {COLOR 0}\n",
         "{COLOR 1}Record{COLOR 0}"
       ]
     },
     {
-      "id": "pl_msg_00000022_00007",
+      "id": "BattleTowerRecordsApp_Text_LinkRecord",
       "en_US": [
         "{COLOR 1}Link{COLOR 3} {COLOR 0}\n",
         "{COLOR 1}Record{COLOR 0}"
       ]
     },
     {
-      "id": "pl_msg_00000022_00008",
+      "id": "BattleTowerRecordsApp_Text_WifiRecord",
       "en_US": [
         "{COLOR 1}Wi-Fi{COLOR 0}\n",
         "{COLOR 1}Record{COLOR 0}"
       ]
     },
     {
-      "id": "pl_msg_00000022_00009",
+      "id": "BattleTowerRecordsApp_Text_Prev",
       "en_US": "{COLOR 1}PREV{COLOR 0}"
     },
     {
-      "id": "pl_msg_00000022_00010",
+      "id": "BattleTowerRecordsApp_Text_Current",
       "en_US": "{COLOR 1}CURRENT{COLOR 0}"
     },
     {
-      "id": "pl_msg_00000022_00011",
+      "id": "BattleTowerRecordsApp_Text_Record",
       "en_US": "{COLOR 1}RECORD{COLOR 0}"
     },
     {
-      "id": "pl_msg_00000022_00012",
+      "id": "BattleTowerRecordsApp_Text_Rank",
       "en_US": "{COLOR 1}RANK{COLOR 0}"
     },
     {
-      "id": "pl_msg_00000022_00013",
+      "id": "BattleTowerRecordsApp_Text_WinStreak",
       "en_US": "Win streak: {COLOR 2}{STRVAR_1 53, 0, 0}{COLOR 0} "
     },
     {
-      "id": "pl_msg_00000022_00014",
+      "id": "BattleTowerRecordsApp_Text_RankTemplate",
       "en_US": "{STRVAR_1 51, 0, 0}"
     },
     {
-      "id": "pl_msg_00000022_00015",
+      "id": "BattleTowerRecordsApp_Text_RankingsHeader",
       "en_US": "Rank {STRVAR_1 51, 0, 0}, Battle Room {STRVAR_1 52, 1, 0}"
     },
     {
-      "id": "pl_msg_00000022_00016",
+      "id": "BattleTowerRecordsApp_Text_ListOfLeaders",
       "en_US": "LIST OF LEADERS"
     },
     {
-      "id": "pl_msg_00000022_00017",
+      "id": "BattleTowerRecordsApp_Text_UnusedTemplate",
       "en_US": "{STRVAR_1 3, 0, 0}"
     },
     {
-      "id": "pl_msg_00000022_00018",
+      "id": "BattleTowerRecordsApp_Text_Cancel",
       "en_US": "CANCEL"
     },
     {
-      "id": "pl_msg_00000022_00019",
+      "id": "BattleTowerRecordsApp_Text_CountryAndCity",
       "en_US": [
         "{STRVAR_1 36, 0, 0}\n",
         "{STRVAR_1 37, 1, 0}"
       ]
     },
     {
-      "id": "pl_msg_00000022_00020",
+      "id": "BattleTowerRecordsApp_Text_Country",
       "en_US": "{STRVAR_1 36, 0, 0}"
     },
     {
-      "id": "pl_msg_00000022_00021",
+      "id": "BattleTowerRecordsApp_Text_HomeCountryUnRegisterd",
       "en_US": [
         "Home country\n",
         "unregistered"
       ]
     },
     {
-      "id": "pl_msg_00000022_00022",
+      "id": "BattleTowerRecordsApp_Text_Plato",
       "en_US": "Plato"
     },
     {
-      "id": "pl_msg_00000022_00023",
+      "id": "BattleTowerRecordsApp_Text_Plato2",
       "en_US": "Plato"
     }
   ]

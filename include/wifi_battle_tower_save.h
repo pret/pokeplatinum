@@ -12,6 +12,8 @@
 #include "easy_chat_sentence.h"
 #include "savedata.h"
 
+#define BATTLE_TOWER_MAX_SAVED_WIFI_PLAYERS 30
+
 #define BATTLE_POINTS_FUNC_NONE 0
 #define BATTLE_POINTS_FUNC_SET  1
 #define BATTLE_POINTS_FUNC_ADD  5
