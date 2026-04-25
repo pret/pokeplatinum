@@ -25,8 +25,8 @@ def is_wsl_accessing_windows() -> bool:
 def bytecode_scripts_order_only_deps(fileString: str) -> str:
     '''Express bytecode-script dependencies on generated headers as order-only'''
     return re.sub(
-        r"build ([\w\/\.\-]+): (\w+) ([\w\/\.\-]+) \| ([\w\/\.\-]+\/make_script_bin\.sh) (.+)",
-        r"build \1: \2 \3 | \4 || \5",
+        r"build ([\w\/\.\-]+): (\w+) ([\w\/\.\-]+) \| ([\w\/\.\-]+\/make_script_bin\.sh) ((.*)(tools/enumproc/enumproc(\.exe)?)(.*))",
+        r"build \1: \2 \3 | \4 \7 || \6\9",
         fileString
     )
 
