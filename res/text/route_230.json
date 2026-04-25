@@ -2,14 +2,14 @@
   "key": 47768,
   "messages": [
     {
-      "id": "pl_msg_00000644_00000",
+      "id": "Route230_Text_SignRt230FightArea",
       "en_US": [
         "Rt. 230\n",
         "Fight Area"
       ]
     },
     {
-      "id": "pl_msg_00000644_00001",
+      "id": "Route230_Text_VisitBattleFrontier",
       "en_US": [
         "Hold it right there, Trainer!\r",
         "If you’re in the Fight Area, you’ve got\n",
@@ -21,7 +21,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000644_00002",
+      "id": "Route230_Text_ChallengeOtherTrainers",
       "en_US": [
         "Howdy, Trainer!\n",
         "You have a Pokédex, do you?\r",

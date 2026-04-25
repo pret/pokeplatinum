@@ -3189,8 +3189,8 @@
     .short SCRCMD_FINISHNPCTRADE
     .endm
 
-    .macro ScrCmd_22B
-    .short SCRCMD_22B
+    .macro TurnOnPokedexLanguageDetection
+    .short SCRCMD_TURNONPOKEDEXLANGUAGEDETECTION
     .endm
 
     .macro TurnOnPokedexFormDetection

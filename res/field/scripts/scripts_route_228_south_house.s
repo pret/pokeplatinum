@@ -2,53 +2,53 @@
 #include "res/text/bank/route_228_south_house.h"
 
 
-    ScriptEntry _0016
-    ScriptEntry _005F
-    ScriptEntry _0070
-    ScriptEntry _0081
-    ScriptEntry _0092
+    ScriptEntry Route228SouthHouse_Gentleman
+    ScriptEntry Route228SouthHouse_BooksSpace
+    ScriptEntry Route228SouthHouse_BooksTime
+    ScriptEntry Route228SouthHouse_BooksMind
+    ScriptEntry Route228SouthHouse_BooksMachines
     ScriptEntryEnd
 
-_0016:
+Route228SouthHouse_Gentleman:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 0
+    Message Route228SouthHouse_Text_LendAnEar
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _0041
-    GoToIfEq VAR_RESULT, MENU_NO, _004C
+    GoToIfEq VAR_RESULT, MENU_YES, Route228SouthHouse_ShouldntBurdenYou
+    GoToIfEq VAR_RESULT, MENU_NO, Route228SouthHouse_PayMeNoHeed
     End
 
-_0041:
-    Message 1
-    GoTo _0057
+Route228SouthHouse_ShouldntBurdenYou:
+    Message Route228SouthHouse_Text_ShouldntBurdenYou
+    GoTo Route228SouthHouse_GentlemanEnd
     End
 
-_004C:
-    Message 2
-    GoTo _0057
+Route228SouthHouse_PayMeNoHeed:
+    Message Route228SouthHouse_Text_PayMeNoHeed
+    GoTo Route228SouthHouse_GentlemanEnd
     End
 
-_0057:
+Route228SouthHouse_GentlemanEnd:
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_005F:
-    EventMessage 3
+Route228SouthHouse_BooksSpace:
+    EventMessage Route228SouthHouse_Text_SpaceAndTheGalaxies
     End
 
-_0070:
-    EventMessage 4
+Route228SouthHouse_BooksTime:
+    EventMessage Route228SouthHouse_Text_BeyondTimeAndSpace
     End
 
-_0081:
-    EventMessage 5
+Route228SouthHouse_BooksMind:
+    EventMessage Route228SouthHouse_Text_MindAndMatter
     End
 
-_0092:
-    EventMessage 6
+Route228SouthHouse_BooksMachines:
+    EventMessage Route228SouthHouse_Text_MachinesAndTheirConstruction
     End
 
     .balign 4, 0

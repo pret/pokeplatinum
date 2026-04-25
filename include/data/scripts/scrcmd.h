@@ -560,7 +560,7 @@ ScriptCommand(SCRCMD_GETNPCTRADESPECIES,                                   ScrCm
 ScriptCommand(SCRCMD_GETNPCTRADEREQUESTEDSPECIES,                          ScrCmd_GetNPCTradeRequestedSpecies)
 ScriptCommand(SCRCMD_STARTNPCTRADE,                                        ScrCmd_StartNPCTrade)
 ScriptCommand(SCRCMD_FINISHNPCTRADE,                                       ScrCmd_FinishNPCTrade)
-ScriptCommand(SCRCMD_22B,                                                  ScrCmd_22B)
+ScriptCommand(SCRCMD_TURNONPOKEDEXLANGUAGEDETECTION,                       ScrCmd_TurnOnPokedexLanguageDetection)
 ScriptCommand(SCRCMD_TURNONPOKEDEXFORMDETECTION,                           ScrCmd_TurnOnPokedexFormDetection)
 ScriptCommand(SCRCMD_GETSETNATIONALDEXENABLED,                             ScrCmd_GetSetNationalDexEnabled)
 ScriptCommand(SCRCMD_COUNTPARTYMONRIBBONS_UNUSED,                          ScrCmd_CountPartyMonRibbons_Unused)

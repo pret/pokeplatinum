@@ -605,7 +605,7 @@ static BOOL ScrCmd_GetNPCTradeSpecies(ScriptContext *ctx);
 static BOOL ScrCmd_GetNPCTradeRequestedSpecies(ScriptContext *ctx);
 static BOOL ScrCmd_StartNPCTrade(ScriptContext *ctx);
 static BOOL ScrCmd_FinishNPCTrade(ScriptContext *ctx);
-static BOOL ScrCmd_22B(ScriptContext *ctx);
+static BOOL ScrCmd_TurnOnPokedexLanguageDetection(ScriptContext *ctx);
 static BOOL ScrCmd_TurnOnPokedexFormDetection(ScriptContext *ctx);
 static BOOL ScrCmd_GetSetNationalDexEnabled(ScriptContext *ctx);
 static BOOL ScrCmd_GetPartyMonEVTotal(ScriptContext *ctx);
@@ -5453,7 +5453,7 @@ static BOOL ScrCmd_FinishNPCTrade(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_22B(ScriptContext *ctx)
+static BOOL ScrCmd_TurnOnPokedexLanguageDetection(ScriptContext *ctx)
 {
     Pokedex_TurnOnLanguageDetection(SaveData_GetPokedex(ctx->fieldSystem->saveData));
     return FALSE;

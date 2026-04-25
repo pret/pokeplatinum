@@ -1,86 +1,87 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/route_227.h"
+#include "res/field/events/events_route_227.h"
 
 
-    ScriptEntry _0012
-    ScriptEntry _01CC
-    ScriptEntry _01F6
-    ScriptEntry _01E3
+    ScriptEntry Route227_TriggerWakeRival
+    ScriptEntry Route227_ArrowSignpostStarkMountain
+    ScriptEntry Route227_TriggerBuck
+    ScriptEntry Route227_Buck
     ScriptEntryEnd
 
-_0012:
+Route227_TriggerWakeRival:
     LockAll
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    CallIfEq VAR_0x8004, 0x2E3, _00E7
-    ApplyMovement 4, _0188
-    ApplyMovement 3, _0154
-    ApplyMovement LOCALID_PLAYER, _0100
+    CallIfEq VAR_0x8004, 739, Route227_PlayerWalkWestOnSpotNorth
+    ApplyMovement LOCALID_CRASHER_WAKE, Route227_Movement_WakeNoticePlayer
+    ApplyMovement LOCALID_RIVAL, Route227_Movement_RivalNoticePlayer
+    ApplyMovement LOCALID_PLAYER, Route227_Movement_PlayerFaceNorth
     WaitMovement
     BufferPlayerName 0
-    Message 5
+    Message Route227_Text_IfItIsntPlayer
     CloseMessage
-    ApplyMovement 3, _0160
+    ApplyMovement LOCALID_RIVAL, Route227_Movement_RivalWalkOnSpotWest
     WaitMovement
     WaitTime 15, VAR_RESULT
     BufferRivalName 1
-    Message 6
+    Message Route227_Text_ThatsMyMaster
     CloseMessage
-    ApplyMovement 4, _0194
+    ApplyMovement LOCALID_CRASHER_WAKE, Route227_Movement_WakeWalkOnSpotEast
     WaitMovement
-    Message 7
+    Message Route227_Text_StillTroubleUnderstanding
     BufferRivalName 1
-    Message 8
-    ApplyMovement 4, _019C
+    Message Route227_Text_DontBeThatWay
+    ApplyMovement LOCALID_CRASHER_WAKE, Route227_Movement_WakeWalkOnSpotSouth
     WaitMovement
     BufferPlayerName 0
-    Message 9
+    Message Route227_Text_BetterBeFullyPrepared
     CloseMessage
-    ApplyMovement 4, _01B8
-    ApplyMovement LOCALID_PLAYER, _012C
-    ApplyMovement 3, _0168
+    ApplyMovement LOCALID_CRASHER_WAKE, Route227_Movement_WakeLeave
+    ApplyMovement LOCALID_PLAYER, Route227_Movement_PlayerWalkWestWatchWakeLeave
+    ApplyMovement LOCALID_RIVAL, Route227_Movement_RivalWatchWakeLeave
     WaitMovement
-    RemoveObject 4
-    ApplyMovement 3, _0170
-    ApplyMovement LOCALID_PLAYER, _0108
+    RemoveObject LOCALID_CRASHER_WAKE
+    ApplyMovement LOCALID_RIVAL, Route227_Movement_RivalWalkOnSpotSouth
+    ApplyMovement LOCALID_PLAYER, Route227_Movement_PlayerWalkToRival
     WaitMovement
     WaitTime 5, VAR_RESULT
     BufferRivalName 1
-    Message 10
-    Message 11
+    Message Route227_Text_OffToBattleFrontier
+    Message Route227_Text_WaitForMe
     CloseMessage
-    ApplyMovement 3, _0178
-    ApplyMovement LOCALID_PLAYER, _0118
+    ApplyMovement LOCALID_RIVAL, Route227_Movement_RivalLeave
+    ApplyMovement LOCALID_PLAYER, Route227_Movement_PlayerWatchRivalLeave
     WaitMovement
-    RemoveObject 3
-    SetVar VAR_UNK_0x408B, 1
+    RemoveObject LOCALID_RIVAL
+    SetVar VAR_ROUTE_227_WAKE_RIVAL_STATE, 1
     ReleaseAll
     End
 
-_00E7:
-    ApplyMovement LOCALID_PLAYER, _00F4
+Route227_PlayerWalkWestOnSpotNorth:
+    ApplyMovement LOCALID_PLAYER, Route227_Movement_PlayerWalkWestOnSpotNorth
     WaitMovement
     Return
 
     .balign 4, 0
-_00F4:
+Route227_Movement_PlayerWalkWestOnSpotNorth:
     WalkNormalWest
     WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
-_0100:
+Route227_Movement_PlayerFaceNorth:
     FaceNorth
     EndMovement
 
     .balign 4, 0
-_0108:
+Route227_Movement_PlayerWalkToRival:
     WalkNormalEast
     WalkNormalNorth
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_0118:
+Route227_Movement_PlayerWatchRivalLeave:
     Delay8
     WalkOnSpotNormalSouth
     EndMovement
@@ -90,7 +91,7 @@ Route227_UnusedMovement:
     EndMovement
 
     .balign 4, 0
-_012C:
+Route227_Movement_PlayerWalkWestWatchWakeLeave:
     WalkNormalWest
     WalkOnSpotNormalEast
     Delay4
@@ -105,28 +106,28 @@ Route227_UnusedMovement2:
     EndMovement
 
     .balign 4, 0
-_0154:
+Route227_Movement_RivalNoticePlayer:
     WalkOnSpotNormalSouth
     EmoteExclamationMark
     EndMovement
 
     .balign 4, 0
-_0160:
+Route227_Movement_RivalWalkOnSpotWest:
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_0168:
+Route227_Movement_RivalWatchWakeLeave:
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_0170:
+Route227_Movement_RivalWalkOnSpotSouth:
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_0178:
+Route227_Movement_RivalLeave:
     WalkFastSouth 9
     EndMovement
 
@@ -135,18 +136,18 @@ Route227_UnusedMovement3:
     EndMovement
 
     .balign 4, 0
-_0188:
+Route227_Movement_WakeNoticePlayer:
     WalkOnSpotNormalSouth
     EmoteExclamationMark
     EndMovement
 
     .balign 4, 0
-_0194:
+Route227_Movement_WakeWalkOnSpotEast:
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_019C:
+Route227_Movement_WakeWalkOnSpotSouth:
     WalkOnSpotNormalSouth
     EndMovement
 
@@ -160,7 +161,7 @@ Route227_UnusedMovement5:
     EndMovement
 
     .balign 4, 0
-_01B8:
+Route227_Movement_WakeLeave:
     Delay8 2
     WalkNormalSouth 9
     EndMovement
@@ -169,49 +170,49 @@ Route227_UnusedMovement6:
     WalkNormalSouth 9
     EndMovement
 
-_01CC:
-    ShowArrowSign 12
+Route227_ArrowSignpostStarkMountain:
+    ShowArrowSign Route227_Text_SignRt227StarkMountain
     End
 
-_01E3:
-    NPCMessage 4
+Route227_Buck:
+    NPCMessage Route227_Text_YoureInCharge
     End
 
-_01F6:
+Route227_TriggerBuck:
     LockAll
-    ApplyMovement 11, _0280
-    ApplyMovement LOCALID_PLAYER, _026C
+    ApplyMovement LOCALID_BUCK, Route227_Movement_BuckNoticePlayer
+    ApplyMovement LOCALID_PLAYER, Route227_Movement_PlayerFaceBuck
     WaitMovement
-    GoTo _0212
+    GoTo Route227_AskPatrolStarkMountain
     End
 
-_0212:
+Route227_AskPatrolStarkMountain:
     BufferPlayerName 0
-    Message 0
+    Message Route227_Text_PatrolStarkMountain
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _0243
-    GoToIfEq VAR_RESULT, MENU_NO, _0238
+    GoToIfEq VAR_RESULT, MENU_YES, Route227_GoonsCausingTrouble
+    GoToIfEq VAR_RESULT, MENU_NO, Route227_IllKeepAsking
     End
 
-_0238:
-    Message 3
-    GoTo _0212
+Route227_IllKeepAsking:
+    Message Route227_Text_IllKeepAsking
+    GoTo Route227_AskPatrolStarkMountain
     End
 
-_0243:
-    ApplyMovement 11, _0290
+Route227_GoonsCausingTrouble:
+    ApplyMovement LOCALID_BUCK, Route227_Movement_BuckWalkOnSpotNorth
     WaitMovement
-    Message 1
-    ApplyMovement 11, _0298
+    Message Route227_Text_GoonsCausingTrouble
+    ApplyMovement LOCALID_BUCK, Route227_Movement_BuckWalkOnSpotSouth
     WaitMovement
-    Message 2
+    Message Route227_Text_WhatMe
     CloseMessage
-    SetVar VAR_UNK_0x4119, 1
+    SetVar VAR_ROUTE_227_BUCK_STATE, 1
     ReleaseAll
     End
 
     .balign 4, 0
-_026C:
+Route227_Movement_PlayerFaceBuck:
     FaceNorth
     EndMovement
 
@@ -221,18 +222,18 @@ Route227_UnusedMovement7:
     EndMovement
 
     .balign 4, 0
-_0280:
+Route227_Movement_BuckNoticePlayer:
     WalkOnSpotNormalSouth
     EmoteExclamationMark
     WalkNormalSouth
     EndMovement
 
     .balign 4, 0
-_0290:
+Route227_Movement_BuckWalkOnSpotNorth:
     WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
-_0298:
+Route227_Movement_BuckWalkOnSpotSouth:
     WalkOnSpotNormalSouth
     EndMovement

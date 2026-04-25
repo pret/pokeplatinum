@@ -43,7 +43,7 @@
     ],
     "object_events": [
         {
-            "id": "ROUTE_226_ARROW_SIGNPOST_0",
+            "id": "LOCALID_ARROW_SIGNPOST_SURVIVAL_AREA",
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -105,7 +105,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_226_BERRY_SOIL_4",
+            "id": "LOCALID_BERRY_SOIL_1",
             "graphics_id": "OBJ_EVENT_GFX_BERRY_SOIL",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -122,7 +122,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_226_BERRY_SOIL_5",
+            "id": "LOCALID_BERRY_SOIL_2",
             "graphics_id": "OBJ_EVENT_GFX_BERRY_SOIL",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -139,7 +139,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_226_BERRY_SOIL_6",
+            "id": "LOCALID_BERRY_SOIL_3",
             "graphics_id": "OBJ_EVENT_GFX_BERRY_SOIL",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -156,7 +156,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_226_BERRY_SOIL_7",
+            "id": "LOCALID_BERRY_SOIL_4",
             "graphics_id": "OBJ_EVENT_GFX_BERRY_SOIL",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -173,7 +173,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_226_SWIMMER_LYDIA",
+            "id": "LOCALID_SWIMMER_LYDIA",
             "graphics_id": "OBJ_EVENT_GFX_SWIMMER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -190,12 +190,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_226_ARROW_SIGNPOST_9",
+            "id": "LOCALID_ARROW_SIGNPOST_ROUTE_227",
             "clone_id": 0,
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0193",
+            "hidden_flag": "MAP_HEADER_ROUTE_227",
             "script": 65535,
             "initial_dir": 0,
             "data": [
@@ -208,7 +208,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_226_ACE_TRAINER_GRAHAM",
+            "id": "LOCALID_ACE_TRAINER_GRAHAM",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_WALK_BACK_AND_FORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -225,7 +225,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_226_BIRD_KEEPER_GENEVA",
+            "id": "LOCALID_BIRD_KEEPER_GENEVA",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -242,7 +242,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_226_DRAGON_TAMER_STANLEY",
+            "id": "LOCALID_DRAGON_TAMER_STANLEY",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -259,7 +259,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_226_YOUNGSTER_13",
+            "id": "LOCALID_YOUNGSTER",
             "clone_id": 5,
             "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
@@ -275,7 +275,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_226_ARROW_SIGNPOST_14",
+            "id": "LOCALID_ARROW_SIGNPOST_RT_227_RT_228",
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -292,7 +292,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_226_SWIMMER_WADE",
+            "id": "LOCALID_SWIMMER_WADE",
             "graphics_id": "OBJ_EVENT_GFX_SWIMMER_M",
             "movement_type": "MOVEMENT_TYPE_ROTATE_COUNTERCLOCKWISE",
             "trainer_type": "TRAINER_TYPE_NORMAL",

@@ -2,7 +2,7 @@
   "key": 28314,
   "messages": [
     {
-      "id": "pl_msg_00000530_00000",
+      "id": "Route228SouthHouse_Text_LendAnEar",
       "en_US": [
         "That Badge...\n",
         "It’s from Sunyshore’s Gym?\r",
@@ -12,7 +12,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000530_00001",
+      "id": "Route228SouthHouse_Text_ShouldntBurdenYou",
       "en_US": [
         "No...\n",
         "I shouldn’t burden you with this.\r",
@@ -31,7 +31,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000530_00002",
+      "id": "Route228SouthHouse_Text_PayMeNoHeed",
       "en_US": [
         "Ah...\n",
         "Pay me no heed, then.\r",
@@ -40,7 +40,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000530_00003",
+      "id": "Route228SouthHouse_Text_SpaceAndTheGalaxies",
       "en_US": [
         "There are many old and difficult-looking\n",
         "books here.\r",
@@ -49,7 +49,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000530_00004",
+      "id": "Route228SouthHouse_Text_BeyondTimeAndSpace",
       "en_US": [
         "There are many old and difficult-looking\n",
         "books here.\r",
@@ -58,7 +58,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000530_00005",
+      "id": "Route228SouthHouse_Text_MindAndMatter",
       "en_US": [
         "There are many old and difficult-looking\n",
         "books here.\r",
@@ -67,7 +67,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000530_00006",
+      "id": "Route228SouthHouse_Text_MachinesAndTheirConstruction",
       "en_US": [
         "There are many old and difficult-looking\n",
         "books here.\r",

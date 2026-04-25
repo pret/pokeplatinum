@@ -2,29 +2,29 @@
 #include "res/text/bank/route_228_north_house.h"
 
 
-    ScriptEntry _000A
-    ScriptEntry _02C6
+    ScriptEntry Route228NorthHouse_ExpertM
+    ScriptEntry Route228NorthHouse_Sign
     ScriptEntryEnd
 
-_000A:
+Route228NorthHouse_ExpertM:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x0108, _003B
-    SetFlag FLAG_UNK_0x0108
-    Message 0
+    GoToIfSet FLAG_TALKED_TO_ROUTE_228_NORTH_HOUSE_EXPERT_M, Route228NorthHouse_AskTeachUltimateMove
+    SetFlag FLAG_TALKED_TO_ROUTE_228_NORTH_HOUSE_EXPERT_M
+    Message Route228NorthHouse_Text_RewardWithUltimateMove
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _0055
-    GoTo _028F
+    GoToIfEq VAR_RESULT, MENU_YES, Route228NorthHouse_TryTeachUltimateMove
+    GoTo Route228NorthHouse_ThatIsFine
 
-_003B:
-    Message 1
+Route228NorthHouse_AskTeachUltimateMove:
+    Message Route228NorthHouse_Text_TeachUltimateMove
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _0055
-    GoTo _028F
+    GoToIfEq VAR_RESULT, MENU_YES, Route228NorthHouse_TryTeachUltimateMove
+    GoTo Route228NorthHouse_ThatIsFine
 
-_0055:
-    Message 2
+Route228NorthHouse_TryTeachUltimateMove:
+    Message Route228NorthHouse_Text_TeachWhichPokemon
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
@@ -33,43 +33,43 @@ _0055:
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
-    GoToIfEq VAR_0x8000, 0xFF, _028F
+    GoToIfEq VAR_0x8000, PARTY_SLOT_NONE, Route228NorthHouse_ThatIsFine
     GetPartyMonSpecies VAR_0x8000, VAR_0x8001
-    GoToIfEq VAR_0x8001, 0, _02A5
-    Call _0195
-    GoToIfEq VAR_RESULT, 0, _029A
+    GoToIfEq VAR_0x8001, SPECIES_NONE, Route228NorthHouse_CantTeachEgg
+    Call Route228NorthHouse_CheckFinalStageStarter
+    GoToIfEq VAR_RESULT, 0, Route228NorthHouse_CantLearnMove
     SetVar VAR_0x8002, VAR_RESULT
-    Call _0251
-    GoToIfEq VAR_RESULT, 1, _02BB
+    Call Route228NorthHouse_CheckHasUltimateMove
+    GoToIfEq VAR_RESULT, TRUE, Route228NorthHouse_AlreadyKnowsMove
     GetPartyMonFriendship VAR_RESULT, VAR_0x8000
-    GoToIfLt VAR_RESULT, 0xFF, _02B0
+    GoToIfLt VAR_RESULT, 255, Route228NorthHouse_NotBondedEnough
     BufferPartyMonSpecies 0, VAR_0x8000
-    GoToIfEq VAR_0x8002, 1, _00FE
-    GoToIfEq VAR_0x8002, 2, _011E
-    GoTo _013E
+    GoToIfEq VAR_0x8002, 1, Route228NorthHouse_AskTeachBlastBurn
+    GoToIfEq VAR_0x8002, 2, Route228NorthHouse_AskTeachHydroCannon
+    GoTo Route228NorthHouse_AskTeachFrenzyPlant
 
-_00FE:
-    Message 9
+Route228NorthHouse_AskTeachBlastBurn:
+    Message Route228NorthHouse_Text_TeachBlastBurn
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _028F
-    SetVar VAR_0x8003, 0x133
-    GoTo _015E
+    GoToIfEq VAR_RESULT, MENU_NO, Route228NorthHouse_ThatIsFine
+    SetVar VAR_0x8003, MOVE_BLAST_BURN
+    GoTo Route228NorthHouse_TeachUltimateMove
 
-_011E:
-    Message 10
+Route228NorthHouse_AskTeachHydroCannon:
+    Message Route228NorthHouse_Text_TeachHydroCannon
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _028F
-    SetVar VAR_0x8003, 0x134
-    GoTo _015E
+    GoToIfEq VAR_RESULT, MENU_NO, Route228NorthHouse_ThatIsFine
+    SetVar VAR_0x8003, MOVE_HYDRO_CANNON
+    GoTo Route228NorthHouse_TeachUltimateMove
 
-_013E:
-    Message 11
+Route228NorthHouse_AskTeachFrenzyPlant:
+    Message Route228NorthHouse_Text_TeachFrenzyPlant
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _028F
-    SetVar VAR_0x8003, 0x152
-    GoTo _015E
+    GoToIfEq VAR_RESULT, MENU_NO, Route228NorthHouse_ThatIsFine
+    SetVar VAR_0x8003, MOVE_FRENZY_PLANT
+    GoTo Route228NorthHouse_TeachUltimateMove
 
-_015E:
+Route228NorthHouse_TeachUltimateMove:
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
@@ -78,92 +78,92 @@ _015E:
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
-    GoToIfEq VAR_RESULT, 0xFF, _028F
+    GoToIfEq VAR_RESULT, 0xFF, Route228NorthHouse_ThatIsFine
     ReleaseAll
     End
 
-_0195:
-    GoToIfEq VAR_0x8001, 6, _0239
-    GoToIfEq VAR_0x8001, 157, _0239
-    GoToIfEq VAR_0x8001, 0x101, _0239
-    GoToIfEq VAR_0x8001, 0x188, _0239
-    GoToIfEq VAR_0x8001, 9, _0241
-    GoToIfEq VAR_0x8001, 160, _0241
-    GoToIfEq VAR_0x8001, 0x104, _0241
-    GoToIfEq VAR_0x8001, 0x18B, _0241
-    GoToIfEq VAR_0x8001, 3, _0249
-    GoToIfEq VAR_0x8001, 154, _0249
-    GoToIfEq VAR_0x8001, 254, _0249
-    GoToIfEq VAR_0x8001, 0x185, _0249
+Route228NorthHouse_CheckFinalStageStarter:
+    GoToIfEq VAR_0x8001, SPECIES_CHARIZARD, Route228NorthHouse_SetVarFireStarter
+    GoToIfEq VAR_0x8001, SPECIES_TYPHLOSION, Route228NorthHouse_SetVarFireStarter
+    GoToIfEq VAR_0x8001, SPECIES_BLAZIKEN, Route228NorthHouse_SetVarFireStarter
+    GoToIfEq VAR_0x8001, SPECIES_INFERNAPE, Route228NorthHouse_SetVarFireStarter
+    GoToIfEq VAR_0x8001, SPECIES_BLASTOISE, Route228NorthHouse_SetVarWaterStarter
+    GoToIfEq VAR_0x8001, SPECIES_FERALIGATR, Route228NorthHouse_SetVarWaterStarter
+    GoToIfEq VAR_0x8001, SPECIES_SWAMPERT, Route228NorthHouse_SetVarWaterStarter
+    GoToIfEq VAR_0x8001, SPECIES_EMPOLEON, Route228NorthHouse_SetVarWaterStarter
+    GoToIfEq VAR_0x8001, SPECIES_VENUSAUR, Route228NorthHouse_SetVarGrassStarter
+    GoToIfEq VAR_0x8001, SPECIES_MEGANIUM, Route228NorthHouse_SetVarGrassStarter
+    GoToIfEq VAR_0x8001, SPECIES_SCEPTILE, Route228NorthHouse_SetVarGrassStarter
+    GoToIfEq VAR_0x8001, SPECIES_TORTERRA, Route228NorthHouse_SetVarGrassStarter
     SetVar VAR_RESULT, 0
     Return
 
-_0239:
+Route228NorthHouse_SetVarFireStarter:
     SetVar VAR_RESULT, 1
     Return
 
-_0241:
+Route228NorthHouse_SetVarWaterStarter:
     SetVar VAR_RESULT, 2
     Return
 
-_0249:
+Route228NorthHouse_SetVarGrassStarter:
     SetVar VAR_RESULT, 3
     Return
 
-_0251:
-    GoToIfEq VAR_0x8002, 1, _0271
-    GoToIfEq VAR_0x8002, 2, _027B
-    GoTo _0285
+Route228NorthHouse_CheckHasUltimateMove:
+    GoToIfEq VAR_0x8002, 1, Route228NorthHouse_CheckHasBlastBurn
+    GoToIfEq VAR_0x8002, 2, Route228NorthHouse_CheckHasHydroCannon
+    GoTo Route228NorthHouse_CheckHasFrenzyPlant
 
-_0271:
+Route228NorthHouse_CheckHasBlastBurn:
     CheckPartyMonHasMove VAR_RESULT, MOVE_BLAST_BURN, VAR_0x8000
     Return
 
-_027B:
+Route228NorthHouse_CheckHasHydroCannon:
     CheckPartyMonHasMove VAR_RESULT, MOVE_HYDRO_CANNON, VAR_0x8000
     Return
 
-_0285:
+Route228NorthHouse_CheckHasFrenzyPlant:
     CheckPartyMonHasMove VAR_RESULT, MOVE_FRENZY_PLANT, VAR_0x8000
     Return
 
-_028F:
-    Message 3
+Route228NorthHouse_ThatIsFine:
+    Message Route228NorthHouse_Text_ThatIsFine
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_029A:
-    Message 5
+Route228NorthHouse_CantLearnMove:
+    Message Route228NorthHouse_Text_CantLearnMove
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_02A5:
-    Message 6
+Route228NorthHouse_CantTeachEgg:
+    Message Route228NorthHouse_Text_CantTeachEgg
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_02B0:
-    Message 7
+Route228NorthHouse_NotBondedEnough:
+    Message Route228NorthHouse_Text_NotBondedEnough
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_02BB:
-    Message 8
+Route228NorthHouse_AlreadyKnowsMove:
+    Message Route228NorthHouse_Text_AlreadyKnowsMove
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_02C6:
-    EventMessage 18
+Route228NorthHouse_Sign:
+    EventMessage Route228NorthHouse_Text_PokemonListedLearnUltimateMoves
     End
 
     .balign 4, 0
