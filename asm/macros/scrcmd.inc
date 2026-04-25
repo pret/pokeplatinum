@@ -2741,10 +2741,10 @@
     .short \destVar
     .endm
 
-    .macro ScrCmd_1D9 arg0, arg1
-    .short SCRCMD_1D9
-    .short \arg0
-    .short \arg1
+    .macro OpenBattleTowerRecordsApp isRankingsScreen, resultsType
+    .short SCRCMD_OPENBATTLETOWERRECORDSAPP
+    .short \isRankingsScreen
+    .short \resultsType
     .endm
 
     .macro SetBattleTowerNull

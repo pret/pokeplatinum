@@ -18,6 +18,8 @@
 #include "message.h"
 #include "savedata.h"
 
+#include "res/text/bank/battle_tower_records_app.h"
+
 int WifiPlayerProfile_Size(void)
 {
     return sizeof(WifiPlayerProfile);
@@ -485,9 +487,9 @@ void WifiBattleTowerDownloadData_BuildOpponentDTO(WifiBattleTowerDownloadData *d
     trDataDTO->trainerType = record->trainerType;
 
     if (record->isAnonymous) {
-        MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0022, HEAP_ID_FIELD2);
+        MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BATTLE_TOWER_RECORDS_APP, HEAP_ID_FIELD2);
 
-        MessageLoader_Get(msgLoader, 22 + record->anonymousNameIdx, trDataDTO->trainerName);
+        MessageLoader_Get(msgLoader, BattleTowerRecordsApp_Text_Plato + record->anonymousNameIdx, trDataDTO->trainerName);
         MessageLoader_Free(msgLoader);
     } else {
         MI_CpuCopy8(record->trainerName, trDataDTO->trainerName, 16);
