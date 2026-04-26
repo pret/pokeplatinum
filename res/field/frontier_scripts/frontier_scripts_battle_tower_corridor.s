@@ -48,109 +48,76 @@ _002C:
 
     .balign 4, 0
 _0038:
-    .short 0x0027
-    .short 0x0001
-    .short 0x0005
-    .short 0x0003
-    .short 0x0000
-    .short 0x0001
-    .short 0xFD13
+    WarpIn
+    WalkSouth 3
+    FaceNorth
+    EndMovement
 
     .balign 4, 0
 _0048:
-    .short 0x0027
-    .short 0x0001
-    .short 0x0005
-    .short 0x0002
-    .short 0xFD13
+    WarpIn
+    WalkSouth 2
+    EndMovement
 
     .balign 4, 0
 _0054:
-    .short 0x0007
-    .short 0x0004
-    .short 0x0004
-    .short 0x0002
-    .short 0x0028
-    .short 0x0001
-    .short 0xFD13
+    WalkEast 4
+    WalkNorth 2
+    WarpOut
+    EndMovement
 
     .balign 4, 0
 _0064:
-    .short 0x0005
-    .short 0x0001
-    .short 0x0007
-    .short 0x0004
-    .short 0x0004
-    .short 0x0002
-    .short 0x0028
-    .short 0x0001
-    .short 0xFD13
+    WalkSouth
+    WalkEast 4
+    WalkNorth 2
+    WarpOut
+    EndMovement
 
     .balign 4, 0
 _0078:
-    .short 0x0007
-    .short 0x0008
-    .short 0x0004
-    .short 0x0002
-    .short 0x0028
-    .short 0x0001
-    .short 0xFD13
+    WalkEast 8
+    WalkNorth 2
+    WarpOut
+    EndMovement
 
     .balign 4, 0
 _0088:
-    .short 0x0005
-    .short 0x0001
-    .short 0x0007
-    .short 0x0008
-    .short 0x0004
-    .short 0x0002
-    .short 0x0028
-    .short 0x0001
-    .short 0xFD13
+    WalkSouth
+    WalkEast 8
+    WalkNorth 2
+    WarpOut
+    EndMovement
 
     .balign 4, 0
 _009C:
-    .short 0x0007
-    .short 0x000C
-    .short 0x0004
-    .short 0x0002
-    .short 0x0028
-    .short 0x0001
-    .short 0xFD13
+    WalkEast 12
+    WalkNorth 2
+    WarpOut
+    EndMovement
 
     .balign 4, 0
 _00AC:
-    .short 0x0005
-    .short 0x0001
-    .short 0x0007
-    .short 0x000C
-    .short 0x0004
-    .short 0x0002
-    .short 0x0028
-    .short 0x0001
-    .short 0xFD13
+    WalkSouth
+    WalkEast 12
+    WalkNorth 2
+    WarpOut
+    EndMovement
 
     .balign 4, 0
 _00C0:
-    .short 0x0007
-    .short 0x0010
-    .short 0x0004
-    .short 0x0002
-    .short 0x0028
-    .short 0x0001
-    .short 0xFD13
+    WalkEast 16
+    WalkNorth 2
+    WarpOut
+    EndMovement
 
     .balign 4, 0
 _00D0:
-    .short 0x0005
-    .short 0x0001
-    .short 0x0007
-    .short 0x0010
-    .short 0x0004
-    .short 0x0002
-    .short 0x0028
-    .short 0x0001
-    .short 0xFD13
+    WalkSouth
+    WalkEast 16
+    WalkNorth 2
+    WarpOut
+    EndMovement
 
 _00E2:
     CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, VAR_0x8008
@@ -194,37 +161,37 @@ _01A2:
     FrontierScrCmd_31 0, 0
     FrontierScrCmd_33 0
     FrontierScrCmd_32 0
-    FrontierScrCmd_28 1, _0038
-    FrontierScrCmd_29
-    FrontierScrCmd_28 0, _0048
-    FrontierScrCmd_29
+    ApplyMovement 1, _0038
+    WaitMovement
+    ApplyMovement 0, _0048
+    WaitMovement
     Return
 
 _01CA:
-    FrontierScrCmd_28 1, _0054
-    FrontierScrCmd_28 0, _0064
-    FrontierScrCmd_29
+    ApplyMovement 1, _0054
+    ApplyMovement 0, _0064
+    WaitMovement
     GoTo _0232
     End
 
 _01E4:
-    FrontierScrCmd_28 1, _0078
-    FrontierScrCmd_28 0, _0088
-    FrontierScrCmd_29
+    ApplyMovement 1, _0078
+    ApplyMovement 0, _0088
+    WaitMovement
     GoTo _0232
     End
 
 _01FE:
-    FrontierScrCmd_28 1, _009C
-    FrontierScrCmd_28 0, _00AC
-    FrontierScrCmd_29
+    ApplyMovement 1, _009C
+    ApplyMovement 0, _00AC
+    WaitMovement
     GoTo _0232
     End
 
 _0218:
-    FrontierScrCmd_28 1, _00C0
-    FrontierScrCmd_28 0, _00D0
-    FrontierScrCmd_29
+    ApplyMovement 1, _00C0
+    ApplyMovement 0, _00D0
+    WaitMovement
     GoTo _0232
     End
 

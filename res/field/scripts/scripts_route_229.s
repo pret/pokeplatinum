@@ -2,44 +2,44 @@
 #include "res/text/bank/route_229.h"
 
 
-    ScriptEntry _000A
-    ScriptEntry _008E
+    ScriptEntry Route229_PokefanM
+    ScriptEntry Route229_ArrowSignpostResortArea
     ScriptEntryEnd
 
-_000A:
+Route229_PokefanM:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x00DA, _0079
-    Message 0
+    GoToIfSet FLAG_RECEIVED_ROUTE_229_NUGGET, Route229_ThoseAreMyNuggets
+    Message Route229_Text_MakeItUpWithThis
     SetVar VAR_0x8004, ITEM_NUGGET
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0084
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Route229_BagIsFull
     Common_GiveItemQuantity
-    SetFlag FLAG_UNK_0x00DA
+    SetFlag FLAG_RECEIVED_ROUTE_229_NUGGET
     SetVar VAR_0x8004, ITEM_NUGGET
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0079
-    Message 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Route229_ThoseAreMyNuggets
+    Message Route229_Text_TakeAnother
     Common_GiveItemQuantity
-    GoTo _0079
+    GoTo Route229_ThoseAreMyNuggets
     End
 
-_0079:
-    Message 2
+Route229_ThoseAreMyNuggets:
+    Message Route229_Text_ThoseAreMyNuggets
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0084:
+Route229_BagIsFull:
     Common_MessageBagIsFull
     CloseMessage
     ReleaseAll
     End
 
-_008E:
-    ShowArrowSign 3
+Route229_ArrowSignpostResortArea:
+    ShowArrowSign Route229_Text_SignRt229ResortArea
     End
 
     .balign 4, 0

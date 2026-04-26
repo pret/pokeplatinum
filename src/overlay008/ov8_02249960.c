@@ -5,15 +5,16 @@
 
 #include "constants/field/dynamic_map_features.h"
 #include "constants/field/map.h"
+#include "constants/scrcmd.h"
 #include "generated/movement_actions.h"
 #include "generated/movement_types.h"
+#include "generated/object_events_gfx.h"
 
 #include "struct_decls/map_object.h"
 #include "struct_decls/map_object_manager.h"
 #include "struct_defs/struct_02071B30.h"
 #include "struct_defs/struct_02071B6C.h"
 #include "struct_defs/struct_02071BF8.h"
-#include "struct_defs/struct_02071C18.h"
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
@@ -28,8 +29,8 @@
 #include "overlay005/ov5_021F47B0.h"
 #include "overlay005/ov5_021F5A10.h"
 #include "overlay005/struct_ov5_021D57D8_decl.h"
-#include "overlay008/struct_ov8_02249FB8.h"
 
+#include "badges.h"
 #include "bg_window.h"
 #include "camera.h"
 #include "field_message.h"
@@ -58,6 +59,7 @@
 #include "terrain_collision_manager.h"
 #include "trainer_info.h"
 #include "trainer_see.h"
+#include "trainer_types.h"
 #include "unk_0205F180.h"
 #include "unk_020655F4.h"
 #include "vars_flags.h"
@@ -82,6 +84,29 @@
 #define PASTORIA_WATER_HEIGHT_HIGH   (MAP_OBJECT_TILE_SIZE * 4)
 
 #define PASTORIA_WATER_PLATE_INDEX 0
+
+#define HEARTHOME_DP_LIFT_HEIGHT_UP   (MAP_OBJECT_TILE_SIZE * 10)
+#define HEARTHOME_DP_LIFT_HEIGHT_DOWN 0
+
+#define HEARTHOME_DP_LIFT_PLATE_INDEX 0
+
+#define HEARTHOME_NUM_TRAINER_ROOMS 2
+#define HEARTHOME_ROOM_MAX_TRAINERS 16
+
+#define HEARTHOME_ROOM_1_SIZE_X 15
+#define HEARTHOME_ROOM_1_SIZE_Z 8
+#define HEARTHOME_ROOM_2_SIZE_X 27
+#define HEARTHOME_ROOM_2_SIZE_Z 20
+
+#define HEARTHOME_DOOR_ID_CIRCLE   0
+#define HEARTHOME_DOOR_ID_SQUARE   1
+#define HEARTHOME_DOOR_ID_TRIANGLE 2
+#define HEARTHOME_DOOR_ID_SUN      3
+#define HEARTHOME_DOOR_ID_DONUT    4
+#define HEARTHOME_DOOR_ID_MOOM     5
+#define HEARTHOME_DOOR_ID_STAR     6
+#define HEARTHOME_DOOR_ID_HEART    7
+#define HEARTHOME_DOOR_ID_EXIT     8
 
 typedef struct {
     int unk_00;
@@ -268,53 +293,51 @@ typedef struct {
     UnkStruct_ov8_0224C0C4 unk_40;
 } UnkStruct_ov8_0224C098;
 
-typedef struct {
-    int unk_00;
-    int unk_04;
+typedef struct HearthomeGymTrainerRoomLayout {
+    int mapID;
+    int firstDoorID;
+    int numExitDoors;
+    int offsetX;
+    int offsetZ;
+    int sizeX;
+    int sizeZ;
+} HearthomeGymTrainerRoomLayout;
+
+typedef struct HearthomeGymFog {
+    UnkStruct_ov5_021D57D8 *fogSystem;
+    int fogSlope;
+    u8 fogR;
+    u8 fogG;
+    u8 fogB;
+    u8 fogAlpha;
+    char fogDensity[32];
+} HearthomeGymFog;
+
+typedef struct HearthomeGymTrainerRoomDoor {
+    int id;
+    s16 x;
+    s16 z;
+} HearthomeGymTrainerRoomDoor;
+
+typedef struct HearthomeGymSystem HearthomeGymSystem;
+
+typedef struct HearthomeGymTrainer {
+    int initialized;
+    int initialDir;
     int unk_08;
-    int unk_0C;
-    int unk_10;
-    int unk_14;
-    int unk_18;
-} UnkStruct_ov8_0224C8D4;
+    SysTask *emptyTask;
+    OverworldAnimManager *animMan;
+    MapObject *mapObj;
+    HearthomeGymSystem *gymSystem;
+} HearthomeGymTrainer;
 
-typedef struct {
-    UnkStruct_ov5_021D57D8 *unk_00;
-    int unk_04;
-    u8 unk_08;
-    u8 unk_09;
-    u8 unk_0A;
-    u8 unk_0B;
-    char unk_0C[32];
-} UnkStruct_ov8_0224C3B4;
-
-typedef struct {
-    int unk_00;
-    s16 unk_04;
-    s16 unk_06;
-} UnkStruct_ov8_0224C7D0;
-
-typedef struct UnkStruct_ov8_0224C444_t UnkStruct_ov8_0224C444;
-
-typedef struct {
-    int unk_00;
-    int unk_04;
-    int unk_08;
-    SysTask *unk_0C;
-    OverworldAnimManager *unk_10;
-    MapObject *unk_14;
-    UnkStruct_ov8_0224C444 *unk_18;
-} UnkStruct_ov8_0224C4F8;
-
-typedef struct UnkStruct_ov8_0224C444_t {
+struct HearthomeGymSystem {
     FieldSystem *fieldSystem;
-    UnkStruct_ov8_0224C4F8 unk_04[16];
-    UnkStruct_ov8_0224C3B4 unk_1C4;
-    u32 unk_1F0;
-    SysTask *unk_1F4;
-} UnkStruct_ov8_0224C444;
-
-void include_ov8_02249960(void);
+    HearthomeGymTrainer trainers[HEARTHOME_ROOM_MAX_TRAINERS];
+    HearthomeGymFog fog;
+    u32 unused;
+    SysTask *emptyTask;
+};
 
 static u8 ov8_02249960(const u8 param0, const int param1);
 static void ov8_0224996C(const u8 param0, int *param1);
@@ -322,8 +345,8 @@ static BOOL PastoriaGym_PressOrangeButton(FieldTask *taskMan);
 static BOOL PastoriaGym_PressGreenButton(FieldTask *taskMan);
 static BOOL PastoriaGym_PressBlueButton(FieldTask *taskMan);
 static void PastoriaGym_UpdateButtonAnimations(const u8 pressedButton, MapPropAnimationManager *mapPropAnimMan);
-static BOOL ov8_0224A018(FieldTask *taskMan);
-static BOOL ov8_0224A0E8(FieldTask *taskMan);
+static BOOL HearthomeGymDP_RaiseLift(FieldTask *taskMan);
+static BOOL HearthomeGymDP_LowerLift(FieldTask *taskMan);
 static BOOL ov8_0224A4FC(FieldTask *taskMan);
 static BOOL ov8_0224A620(FieldTask *taskMan);
 static BOOL ov8_0224A770(FieldTask *taskMan);
@@ -337,11 +360,11 @@ static BOOL ov8_0224C0C8(UnkStruct_ov8_0224C098 *param0, UnkStruct_ov8_0224B80C 
 static void ov8_0224C0FC(UnkStruct_ov8_0224C098 *param0, int param1);
 static void ov8_0224C11C(UnkStruct_ov8_0224C098 *param0, int param1);
 static void ov8_0224C170(UnkStruct_ov8_0224C098 *param0, fx32 param1);
-static void ov8_0224C3B0(SysTask *task, void *param1);
-static void ov8_0224C3B4(UnkStruct_ov8_0224C444 *param0);
-static void ov8_0224C444(UnkStruct_ov8_0224C444 *param0);
-static void ov8_0224C4F8(UnkStruct_ov8_0224C444 *param0);
-static void ov8_0224C518(SysTask *param0, void *param1);
+static void HearthomeGym_EmptyTask(SysTask *task, void *data);
+static void HearthomeGym_InitFog(HearthomeGymSystem *gymSystem);
+static void HearthomeGym_InitTrainers(HearthomeGymSystem *gymSystem);
+static void HearthomeGym_FreeTrainers(HearthomeGymSystem *gymSystem);
+static void HearthomeGym_EmptyTrainerTask(SysTask *task, void *data);
 
 static u8 ov8_02249960(const u8 param0, const int param1)
 {
@@ -702,126 +725,112 @@ static void PastoriaGym_UpdateButtonAnimations(const u8 pressedButton, MapPropAn
     Sound_PlayEffect(SEQ_SE_DP_FW056);
 }
 
-void include_ov8_02249960(void)
+void GymDummy(void)
 {
-    VecFx32 dummy = { FX32_ONE * (16 * 9 + 8), 0, FX32_ONE * (16 * 13 + 8) };
-    VecFx32 *dummy2 = &dummy;
+    VecFx32 dummy = { FX32_CONST(152), 0, FX32_CONST(216) };
 }
 
-void ov8_02249FB8(FieldSystem *fieldSystem)
+void HearthomeGym_MoveLift(FieldSystem *fieldSystem)
 {
-    UnkStruct_ov8_0224997C *v0 = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(UnkStruct_ov8_0224997C));
-    v0->unk_00 = 0;
+    int *movementState = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(int));
+    *movementState = 0;
 
-    {
-        VecFx32 v1;
-        PersistedMapFeatures *v2;
-        UnkStruct_ov8_02249FB8 *v3;
+    PersistedMapFeatures *mapFeatures = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+    HearthomeGymPersistedFeatureDP *features = PersistedMapFeatures_GetBuffer(mapFeatures, DYNAMIC_MAP_FEATURES_HEARTHOME_GYM);
 
-        v2 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
-        v3 = (UnkStruct_ov8_02249FB8 *)PersistedMapFeatures_GetBuffer(v2, DYNAMIC_MAP_FEATURES_HEARTHOME_GYM);
+    VecFx32 currentPosition;
+    PlayerAvatar_PosVectorOut(fieldSystem->playerAvatar, &currentPosition);
 
-        PlayerAvatar_PosVectorOut(fieldSystem->playerAvatar, &v1);
-
-        if (v1.y == (FX32_ONE * 16 * 0)) {
-            FieldTask_InitCall(fieldSystem->task, ov8_0224A018, v0);
-            v3->unk_00 = 1;
-        } else {
-            FieldTask_InitCall(fieldSystem->task, ov8_0224A0E8, v0);
-            v3->unk_00 = 0;
-        }
+    if (currentPosition.y == HEARTHOME_DP_LIFT_HEIGHT_DOWN) {
+        FieldTask_InitCall(fieldSystem->task, HearthomeGymDP_RaiseLift, movementState);
+        features->isMovingUp = TRUE;
+    } else {
+        FieldTask_InitCall(fieldSystem->task, HearthomeGymDP_LowerLift, movementState);
+        features->isMovingUp = FALSE;
     }
 }
 
-static BOOL ov8_0224A018(FieldTask *taskMan)
+static BOOL HearthomeGymDP_RaiseLift(FieldTask *taskMan)
 {
-    MapProp *v0;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
-    UnkStruct_ov8_0224997C *v2 = FieldTask_GetEnv(taskMan);
+    int *state = FieldTask_GetEnv(taskMan);
 
-    switch (v2->unk_00) {
+    switch (*state) {
     case 0:
         PlayerAvatar_SetHeightCalculationEnabled(fieldSystem->playerAvatar, FALSE);
         Sound_PlayEffect(SEQ_SE_DP_ELEBETA);
-        (v2->unk_00)++;
+        (*state)++;
         break;
     case 1: {
-        v0 = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, iron_island_platform_lift_nsbmd);
+        MapProp *liftProp = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, iron_island_platform_lift_nsbmd);
 
-        {
-            VecFx32 v3;
+        VecFx32 liftPosition;
+        liftPosition = MapProp_GetPosition(liftProp);
+        liftPosition.y += FX32_ONE;
 
-            v3 = MapProp_GetPosition(v0);
-            v3.y += (FX32_ONE);
+        if (liftPosition.y >= HEARTHOME_DP_LIFT_HEIGHT_UP) {
+            liftPosition.y = HEARTHOME_DP_LIFT_HEIGHT_UP;
 
-            if (v3.y >= (FX32_ONE * 16 * 10)) {
-                v3.y = (FX32_ONE * 16 * 10);
-
-                Sound_StopEffect(1553, 0);
-                (v2->unk_00)++;
-            }
-
-            Player_SetYPos(fieldSystem->playerAvatar, v3.y);
-            MapProp_SetPosition(v0, &v3);
+            Sound_StopEffect(SEQ_SE_DP_ELEBETA, 0);
+            (*state)++;
         }
+
+        Player_SetYPos(fieldSystem->playerAvatar, liftPosition.y);
+        MapProp_SetPosition(liftProp, &liftPosition);
     } break;
     case 2:
-        DynamicTerrainHeightManager_SetHeight(0, FX32_ONE * 16 * 10, fieldSystem->dynamicTerrainHeightMan);
+        DynamicTerrainHeightManager_SetHeight(HEARTHOME_DP_LIFT_PLATE_INDEX, HEARTHOME_DP_LIFT_HEIGHT_UP, fieldSystem->dynamicTerrainHeightMan);
         PlayerAvatar_SetHeightCalculationEnabledAndUpdate(fieldSystem->playerAvatar, TRUE);
         Sound_PlayEffect(SEQ_SE_DP_KI_GASYAN);
-        (v2->unk_00)++;
+        (*state)++;
         break;
     case 3:
-        Heap_Free(v2);
-        return 1;
+        Heap_Free(state);
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov8_0224A0E8(FieldTask *taskMan)
+static BOOL HearthomeGymDP_LowerLift(FieldTask *taskMan)
 {
-    MapProp *v0;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
-    UnkStruct_ov8_0224997C *v2 = FieldTask_GetEnv(taskMan);
+    int *state = FieldTask_GetEnv(taskMan);
 
-    switch (v2->unk_00) {
+    switch (*state) {
     case 0:
         PlayerAvatar_SetHeightCalculationEnabled(fieldSystem->playerAvatar, FALSE);
         Sound_PlayEffect(SEQ_SE_DP_ELEBETA);
-        (v2->unk_00)++;
+        (*state)++;
         break;
     case 1: {
-        v0 = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, iron_island_platform_lift_nsbmd);
+        MapProp *liftProp = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, iron_island_platform_lift_nsbmd);
 
-        {
-            VecFx32 v3;
+        VecFx32 liftPosition;
+        liftPosition = MapProp_GetPosition(liftProp);
+        liftPosition.y -= FX32_ONE;
 
-            v3 = MapProp_GetPosition(v0);
-            v3.y -= (FX32_ONE);
-
-            if (v3.y <= (FX32_ONE * 0)) {
-                v3.y = (FX32_ONE * 0);
-                Sound_StopEffect(1553, 0);
-                (v2->unk_00)++;
-            }
-
-            Player_SetYPos(fieldSystem->playerAvatar, v3.y);
-            MapProp_SetPosition(v0, &v3);
+        if (liftPosition.y <= HEARTHOME_DP_LIFT_HEIGHT_DOWN) {
+            liftPosition.y = HEARTHOME_DP_LIFT_HEIGHT_DOWN;
+            Sound_StopEffect(SEQ_SE_DP_ELEBETA, 0);
+            (*state)++;
         }
+
+        Player_SetYPos(fieldSystem->playerAvatar, liftPosition.y);
+        MapProp_SetPosition(liftProp, &liftPosition);
     } break;
     case 2:
-        DynamicTerrainHeightManager_SetHeight(0, FX32_ONE * 16 * 0, fieldSystem->dynamicTerrainHeightMan);
+        DynamicTerrainHeightManager_SetHeight(HEARTHOME_DP_LIFT_PLATE_INDEX, HEARTHOME_DP_LIFT_HEIGHT_DOWN, fieldSystem->dynamicTerrainHeightMan);
         PlayerAvatar_SetHeightCalculationEnabledAndUpdate(fieldSystem->playerAvatar, TRUE);
         Sound_PlayEffect(SEQ_SE_DP_KI_GASYAN);
-        (v2->unk_00)++;
+        (*state)++;
         break;
     case 3:
-        Heap_Free(v2);
-        return 1;
+        Heap_Free(state);
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 // clang-format off
@@ -3673,354 +3682,362 @@ static void ov8_0224C170(UnkStruct_ov8_0224C098 *param0, fx32 param1)
     }
 }
 
-static const UnkStruct_ov8_0224C8D4 Unk_ov8_0224C8D4[2] = {
-    { 0x59, 0x0, 0x3, 0x1, 0x3, 0xF, 0x8 },
-    { 0x5A, 0x3, 0x5, 0x1, 0x3, 0x1B, 0x14 }
+static const HearthomeGymTrainerRoomLayout sTrainerRoomLayouts[HEARTHOME_NUM_TRAINER_ROOMS] = {
+    {
+        .mapID = MAP_HEADER_HEARTHOME_CITY_GYM_TRAINER_ROOM_1,
+        .firstDoorID = HEARTHOME_DOOR_ID_CIRCLE,
+        .numExitDoors = 3,
+        .offsetX = 1,
+        .offsetZ = 3,
+        .sizeX = HEARTHOME_ROOM_1_SIZE_X,
+        .sizeZ = HEARTHOME_ROOM_1_SIZE_Z,
+    },
+    {
+        .mapID = MAP_HEADER_HEARTHOME_CITY_GYM_TRAINER_ROOM_2,
+        .firstDoorID = HEARTHOME_DOOR_ID_SUN,
+        .numExitDoors = 5,
+        .offsetX = 1,
+        .offsetZ = 3,
+        .sizeX = HEARTHOME_ROOM_2_SIZE_X,
+        .sizeZ = HEARTHOME_ROOM_2_SIZE_Z,
+    }
 };
 
-static __attribute__((aligned(4))) const u8 Unk_ov8_0224E0A8[120] = {
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+// clang-format off
+// 0 = Clue can be placed there, 1 = Clue can not be placed there
+static const u8 sTrainerRoom1CluePositions[HEARTHOME_ROOM_1_SIZE_X * HEARTHOME_ROOM_1_SIZE_Z] = {
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 
+    1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 
+    0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 
+    0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 
+    0, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 
+    0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
 };
 
-static __attribute__((aligned(4))) const u8 Unk_ov8_0224E120[540] = {
-    0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+static const u8 sTrainerRoom2CluePositions[HEARTHOME_ROOM_2_SIZE_X * HEARTHOME_ROOM_2_SIZE_Z] = {
+    0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
+    0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
+    0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0,
+    0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0,
+    0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0,
+    0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0,
+    0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0,
+    1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0,
+    1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0,
+    0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1,
+    0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0,
+    1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1,
+    1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1,
+    1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1,
+    1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1,
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+};
+// clang-format on
+
+static const u8 *const sTrainerRoomValidCluePositions[HEARTHOME_NUM_TRAINER_ROOMS] = {
+    sTrainerRoom1CluePositions,
+    sTrainerRoom2CluePositions
 };
 
-static const u8 *const Unk_ov8_0224C6F8[2] = {
-    Unk_ov8_0224E0A8,
-    Unk_ov8_0224E120
+static const HearthomeGymTrainerRoomDoor sTrainerRoom1Doors[] = {
+    { .id = HEARTHOME_DOOR_ID_CIRCLE, .x = 4, .z = 2 },
+    { .id = HEARTHOME_DOOR_ID_SQUARE, .x = 8, .z = 2 },
+    { .id = HEARTHOME_DOOR_ID_TRIANGLE, .x = 12, .z = 2 },
+    { .id = HEARTHOME_DOOR_ID_EXIT, .x = 0, .z = 0 }
 };
 
-static const UnkStruct_ov8_0224C7D0 Unk_ov8_0224C7D0[] = {
-    { 0x0, 0x4, 0x2 },
-    { 0x1, 0x8, 0x2 },
-    { 0x2, 0xC, 0x2 },
-    { 8, 0x0, 0x0 }
+static const HearthomeGymTrainerRoomDoor sTrainerRoom2Doors[] = {
+    { .id = HEARTHOME_DOOR_ID_SUN, .x = 4, .z = 2 },
+    { .id = HEARTHOME_DOOR_ID_DONUT, .x = 9, .z = 2 },
+    { .id = HEARTHOME_DOOR_ID_MOOM, .x = 14, .z = 2 },
+    { .id = HEARTHOME_DOOR_ID_STAR, .x = 19, .z = 2 },
+    { .id = HEARTHOME_DOOR_ID_HEART, .x = 24, .z = 2 },
+    { .id = HEARTHOME_DOOR_ID_EXIT, .x = 0, .z = 0 }
 };
 
-static const UnkStruct_ov8_0224C7D0 Unk_ov8_0224C844[] = {
-    { 0x3, 0x4, 0x2 },
-    { 0x4, 0x9, 0x2 },
-    { 0x5, 0xE, 0x2 },
-    { 0x6, 0x13, 0x2 },
-    { 0x7, 0x18, 0x2 },
-    { 8, 0x0, 0x0 }
-};
-
-static const UnkStruct_ov8_0224C7D0 *const Unk_ov8_0224C708[2] = {
-    Unk_ov8_0224C7D0,
-    Unk_ov8_0224C844
+static const HearthomeGymTrainerRoomDoor *const sTrainerRoomDoors[HEARTHOME_NUM_TRAINER_ROOMS] = {
+    sTrainerRoom1Doors,
+    sTrainerRoom2Doors
 };
 
 void HearthomeGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
 {
-    PersistedMapFeatures *v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
-    UnkStruct_02071C18 *v1 = PersistedMapFeatures_GetBuffer(v0, DYNAMIC_MAP_FEATURES_HEARTHOME_GYM);
-    UnkStruct_ov8_0224C444 *v2 = Heap_Alloc(HEAP_ID_FIELD1, sizeof(UnkStruct_ov8_0224C444));
+    PersistedMapFeatures *mapFeatures = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+    HearthomeGymPersistedFeatures *features = PersistedMapFeatures_GetBuffer(mapFeatures, DYNAMIC_MAP_FEATURES_HEARTHOME_GYM);
+    HearthomeGymSystem *gymSystem = Heap_Alloc(HEAP_ID_FIELD1, sizeof(HearthomeGymSystem));
 
-    memset(v2, 0, sizeof(UnkStruct_ov8_0224C444));
+    memset(gymSystem, 0, sizeof(HearthomeGymSystem));
 
-    v2->fieldSystem = fieldSystem;
-    fieldSystem->unk_04->dynamicMapFeaturesData = v2;
+    gymSystem->fieldSystem = fieldSystem;
+    fieldSystem->unk_04->dynamicMapFeaturesData = gymSystem;
 
-    ov8_0224C3B4(v2);
+    HearthomeGym_InitFog(gymSystem);
     FieldEffectManager_InitRenderer(fieldSystem->fieldEffMan, 32);
-    MapObjectMan_SetEndMovement(fieldSystem->mapObjMan, 0);
+    MapObjectMan_SetEndMovement(fieldSystem->mapObjMan, FALSE);
 
-    {
-        int v3 = 0xd2;
-        PlayerAvatar *playerAvatar = fieldSystem->playerAvatar;
-        MapObject *v5 = Player_MapObject(playerAvatar);
+    int graphicsID = OBJ_EVENT_GFX_PLAYER_M_HEARTHOME_GYM;
+    PlayerAvatar *playerAvatar = fieldSystem->playerAvatar;
+    MapObject *playerObj = Player_MapObject(playerAvatar);
 
-        if (PlayerAvatar_Gender(fieldSystem->playerAvatar) == 1) {
-            v3 = 0xd3;
-        }
-
-        sub_02061AD4(v5, v3);
+    if (PlayerAvatar_Gender(fieldSystem->playerAvatar) == GENDER_FEMALE) {
+        graphicsID = OBJ_EVENT_GFX_PLAYER_F_HEARTHOME_GYM;
     }
 
-    ov5_021F5AA4(fieldSystem, 1);
-    ov8_0224C444(v2);
+    sub_02061AD4(playerObj, graphicsID);
 
-    {
-        int v6 = 0;
-        int v7 = fieldSystem->location->mapId;
-        const UnkStruct_ov8_0224C8D4 *v8 = Unk_ov8_0224C8D4;
+    ov5_021F5AA4(fieldSystem, TRUE);
+    HearthomeGym_InitTrainers(gymSystem);
 
-        do {
-            if (v8->unk_00 == v7) {
-                break;
-            }
+    int i = 0;
+    int mapID = fieldSystem->location->mapId;
+    const HearthomeGymTrainerRoomLayout *room = sTrainerRoomLayouts;
 
-            v8++;
-            v6++;
-        } while (v6 < 2);
+    do {
+        if (room->mapID == mapID) {
+            break;
+        }
 
-        if (v1->unk_00 == 0) {
-            v1->unk_00 = 1;
-            v1->unk_02 = 8;
+        room++;
+        i++;
+    } while (i < (int)NELEMS(sTrainerRoomLayouts));
 
-            if (v6 != 2) {
-                const u8 *v9 = Unk_ov8_0224C6F8[v6];
-                int v10 = MTRNG_Next() % v8->unk_08;
+    if (!features->initialized) {
+        features->initialized = TRUE;
+        features->correctDoorID = HEARTHOME_DOOR_ID_EXIT;
 
-                v1->unk_02 = v10 + v8->unk_04;
+        if (i != HEARTHOME_NUM_TRAINER_ROOMS) {
+            const u8 *cluePositions = sTrainerRoomValidCluePositions[i];
+            int correctDoor = MTRNG_Next() % room->numExitDoors;
 
+            features->correctDoorID = correctDoor + room->firstDoorID;
+
+            do {
                 do {
-                    do {
-                        v1->unk_04 = MTRNG_Next() % v8->unk_14;
-                        v1->unk_06 = MTRNG_Next() % v8->unk_18;
-                    } while (v9[(v1->unk_06 * v8->unk_14) + v1->unk_04] == 1);
+                    features->clueX = MTRNG_Next() % room->sizeX;
+                    features->clueZ = MTRNG_Next() % room->sizeZ;
+                } while (cluePositions[(features->clueZ * room->sizeX) + features->clueX] == 1);
 
-                    v1->unk_04 += v8->unk_0C;
-                    v1->unk_06 += v8->unk_10;
-                } while (sub_0206326C(fieldSystem->mapObjMan, v1->unk_04, v1->unk_06, 0) != NULL);
+                features->clueX += room->offsetX;
+                features->clueZ += room->offsetZ;
+            } while (sub_0206326C(fieldSystem->mapObjMan, features->clueX, features->clueZ, 0) != NULL);
 
-                GF_ASSERT(v1->unk_02 < (v8->unk_04 + v8->unk_08));
-                GF_ASSERT(v1->unk_04 < (v8->unk_0C + v8->unk_14));
-                GF_ASSERT(v1->unk_06 < (v8->unk_10 + v8->unk_18));
-                GF_ASSERT(TerrainCollisionManager_CheckCollision(fieldSystem, v1->unk_04, v1->unk_06) == 0);
-            }
-        }
-
-        if (v1->unk_02 != 8) {
-            int v11;
-            const UnkStruct_ov8_0224C7D0 *v12 = Unk_ov8_0224C708[v6];
-
-            while (v12->unk_00 != 8) {
-                if (v12->unk_00 != v1->unk_02) {
-                    v11 = MapHeaderData_GetIndexOfWarpEventAtPos(fieldSystem, v12->unk_04, v12->unk_06);
-                    MapHeaderData_SetWarpEventDestHeaderID(fieldSystem, v11, 88);
-                    MapHeaderData_SetWarpEventDestWarpID(fieldSystem, v11, 1);
-                }
-
-                v12++;
-            }
-
-            ov5_021F4CEC(fieldSystem->fieldEffMan, v1->unk_04, v1->unk_06, v1->unk_02);
+            GF_ASSERT(features->correctDoorID < room->firstDoorID + room->numExitDoors);
+            GF_ASSERT(features->clueX < room->offsetX + room->sizeX);
+            GF_ASSERT(features->clueZ < room->offsetZ + room->sizeZ);
+            GF_ASSERT(!TerrainCollisionManager_CheckCollision(fieldSystem, features->clueX, features->clueZ));
         }
     }
 
-    v2->unk_1F4 = SysTask_Start(ov8_0224C3B0, v2, 0);
+    if (features->correctDoorID != HEARTHOME_DOOR_ID_EXIT) {
+        const HearthomeGymTrainerRoomDoor *door = sTrainerRoomDoors[i];
+
+        while (door->id != HEARTHOME_DOOR_ID_EXIT) {
+            if (door->id != features->correctDoorID) {
+                int eventIndex = MapHeaderData_GetIndexOfWarpEventAtPos(fieldSystem, door->x, door->z);
+                MapHeaderData_SetWarpEventDestHeaderID(fieldSystem, eventIndex, MAP_HEADER_HEARTHOME_CITY_GYM_ENTRANCE_ROOM);
+                MapHeaderData_SetWarpEventDestWarpID(fieldSystem, eventIndex, 1);
+            }
+
+            door++;
+        }
+
+        ov5_021F4CEC(fieldSystem->fieldEffMan, features->clueX, features->clueZ, features->correctDoorID);
+    }
+
+    gymSystem->emptyTask = SysTask_Start(HearthomeGym_EmptyTask, gymSystem, 0);
 }
 
 void HearthomeGym_DynamicMapFeaturesFree(FieldSystem *fieldSystem)
 {
-    UnkStruct_ov8_0224C444 *v0 = fieldSystem->unk_04->dynamicMapFeaturesData;
+    HearthomeGymSystem *gymSystem = fieldSystem->unk_04->dynamicMapFeaturesData;
 
-    SysTask_Done(v0->unk_1F4);
-    ov8_0224C4F8(v0);
-    Heap_Free(v0);
+    SysTask_Done(gymSystem->emptyTask);
+    HearthomeGym_FreeTrainers(gymSystem);
+    Heap_Free(gymSystem);
 
     fieldSystem->unk_04->dynamicMapFeaturesData = NULL;
 }
 
-static void ov8_0224C3B0(SysTask *task, void *param1)
+static void HearthomeGym_EmptyTask(SysTask *task, void *data)
 {
-    return;
 }
 
-static void ov8_0224C3B4(UnkStruct_ov8_0224C444 *param0)
+static void HearthomeGym_InitFog(HearthomeGymSystem *gymSystem)
 {
-    UnkStruct_ov8_0224C3B4 *v0 = &param0->unk_1C4;
-    UnkStruct_ov5_021D57D8 *v1 = param0->fieldSystem->unk_48;
+    HearthomeGymFog *fog = &gymSystem->fog;
+    UnkStruct_ov5_021D57D8 *fogSystem = gymSystem->fieldSystem->unk_48;
 
-    v0->unk_00 = v1;
-    v0->unk_04 = 10;
-    v0->unk_08 = 1;
-    v0->unk_09 = 1;
-    v0->unk_0A = 1;
-    v0->unk_0B = 1;
+    fog->fogSystem = fogSystem;
+    fog->fogSlope = GX_FOGSLOPE_0x0020;
+    fog->fogR = 1;
+    fog->fogG = 1;
+    fog->fogB = 1;
+    fog->fogAlpha = 1;
 
-    {
-        char v2 = 109;
-        BOOL v3 = TrainerInfo_HasBadge(SaveData_GetTrainerInfo(param0->fieldSystem->saveData), 4);
-
-        if (v3 == 1) {
-            v2 = 91;
-        } else if (param0->fieldSystem->location->mapId == MAP_HEADER_HEARTHOME_CITY_GYM_TRAINER_ROOM_2) {
-            v2 = 119;
-        }
-
-        memset(v0->unk_0C, v2, 32);
+    char fogDensity = 109;
+    if (TrainerInfo_HasBadge(SaveData_GetTrainerInfo(gymSystem->fieldSystem->saveData), BADGE_ID_RELIC) == TRUE) {
+        fogDensity = 91;
+    } else if (gymSystem->fieldSystem->location->mapId == MAP_HEADER_HEARTHOME_CITY_GYM_TRAINER_ROOM_2) {
+        fogDensity = 119;
     }
 
-    ov5_021D57FC(v1, 0xffffffff, 1, 0, v0->unk_04, 0);
-    ov5_021D5834(v1, 0xffffffff, GX_RGB(v0->unk_08, v0->unk_09, v0->unk_0A), v0->unk_0B);
-    ov5_021D585C(v1, v0->unk_0C);
+    memset(fog->fogDensity, fogDensity, 32);
+
+    ov5_021D57FC(fogSystem, 0xffffffff, TRUE, GX_FOGBLEND_COLOR_ALPHA, fog->fogSlope, 0);
+    ov5_021D5834(fogSystem, 0xffffffff, GX_RGB(fog->fogR, fog->fogG, fog->fogB), fog->fogAlpha);
+    ov5_021D585C(fogSystem, fog->fogDensity);
 }
 
-static void ov8_0224C444(UnkStruct_ov8_0224C444 *param0)
+static void HearthomeGym_InitTrainers(HearthomeGymSystem *gymSystem)
 {
-    int v0, v1, v2, v3, v4;
-    MapObject *v5;
-    UnkStruct_ov8_0224C4F8 *v6 = param0->unk_04;
-    const MapObjectManager *mapObjMan = param0->fieldSystem->mapObjMan;
+    int objIndex, localID;
+    HearthomeGymTrainer *trainer = gymSystem->trainers;
+    const MapObjectManager *mapObjMan = gymSystem->fieldSystem->mapObjMan;
 
-    v0 = 0;
-    v1 = 0;
-    v3 = MapObjectMan_GetTaskBasePriority(mapObjMan) + 2;
+    objIndex = 0;
+    int i = 0;
+    int taskPriority = MapObjectMan_GetTaskBasePriority(mapObjMan) + 2;
 
-    while (MapObjectMan_FindObjectWithStatus(mapObjMan, &v5, &v0, 1 << 0)) {
-        v4 = MapObject_GetLocalID(v5);
-        v6->unk_08 = MapObject_GetDataAt(v5, 0);
+    MapObject *trainerObj;
+    while (MapObjectMan_FindObjectWithStatus(mapObjMan, &trainerObj, &objIndex, MAP_OBJ_STATUS_0)) {
+        localID = MapObject_GetLocalID(trainerObj);
+        trainer->unk_08 = MapObject_GetDataAt(trainerObj, 0);
 
-        if ((v4 == 0xff) || ((MapObject_GetTrainerType(v5) == 0x1) && v6->unk_08)) {
-            v6->unk_00 = 1;
-            v6->unk_04 = MapObject_GetFacingDir(v5);
-            v6->unk_14 = v5;
-            v6->unk_18 = param0;
+        if (localID == LOCALID_PLAYER || MapObject_GetTrainerType(trainerObj) == TRAINER_TYPE_NORMAL && trainer->unk_08 != 0) {
+            trainer->initialized = TRUE;
+            trainer->initialDir = MapObject_GetFacingDir(trainerObj);
+            trainer->mapObj = trainerObj;
+            trainer->gymSystem = gymSystem;
 
-            if (v4 == 0xff) {
-                v6->unk_08 = 2;
+            if (localID == LOCALID_PLAYER) {
+                trainer->unk_08 = 2;
             }
 
-            v6->unk_10 = ov5_021F4840(param0->fieldSystem->fieldEffMan, v5, v6->unk_08, 3);
-            v6->unk_0C = SysTask_Start(ov8_0224C518, v6, v3);
-            GF_ASSERT(v6->unk_0C);
+            trainer->animMan = ov5_021F4840(gymSystem->fieldSystem->fieldEffMan, trainerObj, trainer->unk_08, 3);
+            trainer->emptyTask = SysTask_Start(HearthomeGym_EmptyTrainerTask, trainer, taskPriority);
+            GF_ASSERT(trainer->emptyTask);
 
-            v1++;
-            GF_ASSERT(v1 < 16);
-            v6++;
+            i++;
+            GF_ASSERT(i < HEARTHOME_ROOM_MAX_TRAINERS);
+            trainer++;
         }
     }
 }
 
-static void ov8_0224C4F8(UnkStruct_ov8_0224C444 *param0)
+static void HearthomeGym_FreeTrainers(HearthomeGymSystem *gymSystem)
 {
-    int v0;
-    UnkStruct_ov8_0224C4F8 *v1 = param0->unk_04;
+    int i;
+    HearthomeGymTrainer *trainer = gymSystem->trainers;
 
-    for (v0 = 0; v0 < 16; v0++, v1++) {
-        if (v1->unk_00) {
-            SysTask_Done(v1->unk_0C);
-            v1->unk_00 = 0;
+    for (i = 0; i < HEARTHOME_ROOM_MAX_TRAINERS; i++, trainer++) {
+        if (trainer->initialized) {
+            SysTask_Done(trainer->emptyTask);
+            trainer->initialized = FALSE;
         }
     }
 }
 
-static void ov8_0224C518(SysTask *param0, void *param1)
+static void HearthomeGym_EmptyTrainerTask(SysTask *task, void *data)
 {
-    return;
 }
 
-BOOL ov8_0224C51C(FieldSystem *fieldSystem)
+BOOL HearthomeGym_CheckIfPlayerSeesTrainer(FieldSystem *fieldSystem)
 {
-    int v0, v1, v2, v3;
-    PersistedMapFeatures *v4;
-    PlayerAvatar *playerAvatar;
-    MapObjectManager *mapObjMan;
-    MapObject *v7;
-    MapObject *v8;
+    PersistedMapFeatures *mapFeatures = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
 
-    v4 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
-
-    if (PersistedMapFeatures_GetID(v4) != DYNAMIC_MAP_FEATURES_HEARTHOME_GYM) {
-        return 0;
+    if (PersistedMapFeatures_GetID(mapFeatures) != DYNAMIC_MAP_FEATURES_HEARTHOME_GYM) {
+        return FALSE;
     }
 
-    v0 = 0;
-    v7 = NULL;
-    mapObjMan = fieldSystem->mapObjMan;
-    playerAvatar = fieldSystem->playerAvatar;
-    v8 = Player_MapObject(playerAvatar);
-    v2 = 2;
-    v1 = Direction_GetOpposite(MapObject_GetFacingDir(v8));
+    int playerDirOpposite;
+    int objIndex = 0;
+    MapObject *trainerObj = NULL;
+    MapObjectManager *mapObjMan = fieldSystem->mapObjMan;
+    PlayerAvatar *playerAvatar = fieldSystem->playerAvatar;
+    MapObject *playerObj = Player_MapObject(playerAvatar);
+    playerDirOpposite = Direction_GetOpposite(MapObject_GetFacingDir(playerObj));
 
-    while (MapObjectMan_FindObjectWithStatus(mapObjMan, &v7, &v0, 1 << 0)) {
-        if ((v7 != v8) && (FieldSystem_IsTrainerDefated(fieldSystem, v7) == 1)) {
-            v3 = MapObject_GetDistanceToPlayer(v7, playerAvatar, v1, v2);
+    while (MapObjectMan_FindObjectWithStatus(mapObjMan, &trainerObj, &objIndex, MAP_OBJ_STATUS_0)) {
+        if (trainerObj != playerObj && FieldSystem_IsTrainerDefeated(fieldSystem, trainerObj) == TRUE) {
+            int trainerDistance = MapObject_GetDistanceToPlayer(trainerObj, playerAvatar, playerDirOpposite, 2);
 
-            if (v3 != -1) {
-                int v9 = MapObject_GetScript(v7);
+            if (trainerDistance != DISTANCE_INVALID) {
+                int scriptID = MapObject_GetScript(trainerObj);
 
-                ScriptManager_Set(fieldSystem, SCRIPT_ID(SINGLE_BATTLES, 928), v7);
-                ScriptManager_SetApproachingTrainer(fieldSystem, v7, v3, v1, v9, Script_GetTrainerID(v9), 0, 0);
-                return 1;
+                ScriptManager_Set(fieldSystem, SCRIPT_ID(SINGLE_BATTLES, 928), trainerObj);
+                ScriptManager_SetApproachingTrainer(fieldSystem, trainerObj, trainerDistance, playerDirOpposite, scriptID, Script_GetTrainerID(scriptID), APPROACH_TYPE_SINGLES, 0);
+                return TRUE;
             }
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
-BOOL ov8_0224C5DC(FieldSystem *fieldSystem, void *param1)
+BOOL HearthomeGym_SetTrainerPostBattleMovement(FieldSystem *fieldSystem, MapObject *trainerObj)
 {
-    PersistedMapFeatures *v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+    PersistedMapFeatures *mapFeatures = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
 
-    if (PersistedMapFeatures_GetID(v0) != DYNAMIC_MAP_FEATURES_HEARTHOME_GYM) {
-        return 0;
+    if (PersistedMapFeatures_GetID(mapFeatures) != DYNAMIC_MAP_FEATURES_HEARTHOME_GYM) {
+        return FALSE;
     }
 
-    {
-        MapObject *v1 = param1;
+    MapObject_SetXInitial(trainerObj, MapObject_GetX(trainerObj));
+    MapObject_SetZInitial(trainerObj, MapObject_GetZ(trainerObj));
+    MapObject_SetMovementRangeX(trainerObj, 2);
+    MapObject_SetMovementRangeZ(trainerObj, 2);
+    MapObject_SwitchMovementType(trainerObj, MOVEMENT_TYPE_WANDER_AROUND);
 
-        MapObject_SetXInitial(v1, MapObject_GetX(v1));
-        MapObject_SetZInitial(v1, MapObject_GetZ(v1));
-        MapObject_SetMovementRangeX(v1, 2);
-        MapObject_SetMovementRangeZ(v1, 2);
-        MapObject_SwitchMovementType(v1, MOVEMENT_TYPE_WANDER_AROUND);
-
-        return 1;
-    }
-
-    return 0;
+    return TRUE;
 }
 
-BOOL ov8_0224C62C(FieldSystem *fieldSystem, int param1, int param2, int *param3)
+BOOL HearthomeGym_CheckIfEnteredIncorrectDoor(FieldSystem *fieldSystem, int playerX, int playerZ, int *transitionDir)
 {
-    if ((*param3) != 0) {
-        return 0;
+    if (*transitionDir != DIR_NORTH) {
+        return FALSE;
     }
 
-    {
-        PersistedMapFeatures *v0;
-
-        v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
-
-        if (PersistedMapFeatures_GetID(v0) != DYNAMIC_MAP_FEATURES_HEARTHOME_GYM) {
-            return 0;
-        }
-
-        {
-            UnkStruct_02071C18 *v1;
-
-            v1 = PersistedMapFeatures_GetBuffer(v0, DYNAMIC_MAP_FEATURES_HEARTHOME_GYM);
-
-            if (v1->unk_02 == 8) {
-                return 0;
-            }
-
-            {
-                int v2 = 0;
-                int v3 = fieldSystem->location->mapId;
-                const UnkStruct_ov8_0224C8D4 *v4 = Unk_ov8_0224C8D4;
-                const UnkStruct_ov8_0224C7D0 *v5;
-
-                do {
-                    if (v4->unk_00 == v3) {
-                        break;
-                    }
-
-                    v4++;
-                    v2++;
-                } while (v2 < 2);
-
-                GF_ASSERT(v2 != 2);
-
-                v5 = Unk_ov8_0224C708[v2];
-
-                while (v5->unk_00 != 8) {
-                    if ((v5->unk_04 == param1) && (v5->unk_06 == param2) && (v5->unk_00 == v1->unk_02)) {
-                        return 0;
-                    }
-
-                    v5++;
-                }
-            }
-        }
+    PersistedMapFeatures *mapFeatures = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+    if (PersistedMapFeatures_GetID(mapFeatures) != DYNAMIC_MAP_FEATURES_HEARTHOME_GYM) {
+        return FALSE;
     }
 
-    (*param3) = 1;
-    return 1;
+    HearthomeGymPersistedFeatures *features = PersistedMapFeatures_GetBuffer(mapFeatures, DYNAMIC_MAP_FEATURES_HEARTHOME_GYM);
+    if (features->correctDoorID == HEARTHOME_DOOR_ID_EXIT) {
+        return FALSE;
+    }
+
+    int i = 0;
+    int mapID = fieldSystem->location->mapId;
+    const HearthomeGymTrainerRoomLayout *room = sTrainerRoomLayouts;
+
+    do {
+        if (room->mapID == mapID) {
+            break;
+        }
+
+        room++;
+        i++;
+    } while (i < HEARTHOME_NUM_TRAINER_ROOMS);
+
+    GF_ASSERT(i != HEARTHOME_NUM_TRAINER_ROOMS);
+
+    const HearthomeGymTrainerRoomDoor *door = sTrainerRoomDoors[i];
+
+    while (door->id != HEARTHOME_DOOR_ID_EXIT) {
+        if (door->x == playerX && door->z == playerZ && door->id == features->correctDoorID) {
+            return FALSE;
+        }
+
+        door++;
+    }
+
+    *transitionDir = DIR_SOUTH;
+    return TRUE;
 }

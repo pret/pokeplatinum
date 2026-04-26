@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "generated/movement_types.h"
+#include "generated/object_events_gfx.h"
 
 #include "struct_decls/struct_02061830_sub1_decl.h"
 #include "struct_defs/struct_020EDF0C.h"
@@ -909,8 +910,8 @@ static void sub_02062628(MapObject *mapObj)
 
 static int MapObject_GetFieldSystemGraphicsID(FieldSystem *fieldSystem, int graphicsID)
 {
-    if (graphicsID >= 0x65 && graphicsID <= 0x74) {
-        graphicsID -= 0x65;
+    if (graphicsID >= OBJ_EVENT_GFX_VAR_0 && graphicsID <= OBJ_EVENT_GFX_VAR_F) {
+        graphicsID -= OBJ_EVENT_GFX_VAR_0;
         graphicsID = FieldSystem_GetGraphicsID(fieldSystem, graphicsID);
     }
 

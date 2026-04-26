@@ -88,7 +88,7 @@ struct FrontierScriptManager {
     s8 numSetContexts;
     u16 scene;
     u8 unused[5];
-    u8 unk_59;
+    u8 movementCount;
     u8 isMsgBoxOpen;
     int unused2;
     FrontierMenuManager *menuMan;

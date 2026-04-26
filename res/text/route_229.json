@@ -2,7 +2,7 @@
   "key": 38588,
   "messages": [
     {
-      "id": "pl_msg_00000531_00000",
+      "id": "Route229_Text_MakeItUpWithThis",
       "en_US": [
         "Were you looking for me?\n",
         "Did you miss me?\r",
@@ -13,14 +13,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000531_00001",
+      "id": "Route229_Text_TakeAnother",
       "en_US": [
         "Oh, why not? Take another!\n",
         "It makes up for the wisdom I lack!\r"
       ]
     },
     {
-      "id": "pl_msg_00000531_00002",
+      "id": "Route229_Text_ThoseAreMyNuggets",
       "en_US": [
         "Those are my Nuggets!\n",
         "Try to spend them wisely!\r",
@@ -29,7 +29,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000531_00003",
+      "id": "Route229_Text_SignRt229ResortArea",
       "en_US": [
         "Rt. 229\n",
         "Resort Area"

@@ -33,7 +33,7 @@
         },
         {
             "id": "BATTLE_TOWER_MULTI_BATTLE_ROOM_LEADER",
-            "graphics_id": "OBJ_EVENT_GFX_COUNTERPART",
+            "graphics_id": "OBJ_EVENT_GFX_VAR_0",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
@@ -48,7 +48,7 @@
         },
         {
             "id": "BATTLE_TOWER_MULTI_BATTLE_ROOM_PARTNER",
-            "graphics_id": "OBJ_EVENT_GFX_UNK_102",
+            "graphics_id": "OBJ_EVENT_GFX_VAR_1",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
@@ -63,7 +63,7 @@
         },
         {
             "id": "BATTLE_TOWER_MULTI_BATTLE_ROOM_OPPONENT_2",
-            "graphics_id": "OBJ_EVENT_GFX_UNK_104",
+            "graphics_id": "OBJ_EVENT_GFX_VAR_3",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_MULTI_BATTLE_ROOM_OPPONENT_2",
@@ -78,7 +78,7 @@
         },
         {
             "id": "BATTLE_TOWER_MULTI_BATTLE_ROOM_OPPONENT_1",
-            "graphics_id": "OBJ_EVENT_GFX_UNK_103",
+            "graphics_id": "OBJ_EVENT_GFX_VAR_2",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_MULTI_BATTLE_ROOM_OPPONENT_1",

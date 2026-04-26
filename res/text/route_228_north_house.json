@@ -2,7 +2,7 @@
   "key": 61075,
   "messages": [
     {
-      "id": "pl_msg_00000529_00000",
+      "id": "Route228NorthHouse_Text_RewardWithUltimateMove",
       "en_US": [
         "Your quest for power has brought\n",
         "you here...\r",
@@ -14,91 +14,91 @@
       ]
     },
     {
-      "id": "pl_msg_00000529_00001",
+      "id": "Route228NorthHouse_Text_TeachUltimateMove",
       "en_US": [
         "The ultimate moves!\n",
         "Shall I teach them to your Pokémon?"
       ]
     },
     {
-      "id": "pl_msg_00000529_00002",
+      "id": "Route228NorthHouse_Text_TeachWhichPokemon",
       "en_US": [
         "To which Pokémon should I teach\n",
         "a move?\r"
       ]
     },
     {
-      "id": "pl_msg_00000529_00003",
+      "id": "Route228NorthHouse_Text_ThatIsFine",
       "en_US": [
         "Hmm... Well, that is fine, as well.\n",
         "Visit if you have a change of heart."
       ]
     },
     {
-      "id": "pl_msg_00000529_00004",
+      "id": "Route228NorthHouse_Text_TeachWhichPokemon2",
       "en_US": [
         "To which Pokémon should I teach\n",
         "a move?"
       ]
     },
     {
-      "id": "pl_msg_00000529_00005",
+      "id": "Route228NorthHouse_Text_CantLearnMove",
       "en_US": [
         "That Pokémon can’t learn a move!\n",
         "Read the poster! Keh!"
       ]
     },
     {
-      "id": "pl_msg_00000529_00006",
+      "id": "Route228NorthHouse_Text_CantTeachEgg",
       "en_US": [
         "Teach a move to an Egg?\n",
         "Impossible even for me! Keh!"
       ]
     },
     {
-      "id": "pl_msg_00000529_00007",
+      "id": "Route228NorthHouse_Text_NotBondedEnough",
       "en_US": [
         "You’ve not bonded strongly enough\n",
         "with your Pokémon! Keh!"
       ]
     },
     {
-      "id": "pl_msg_00000529_00008",
+      "id": "Route228NorthHouse_Text_AlreadyKnowsMove",
       "en_US": [
         "That Pokémon already knows the move\n",
         "I’ve offered to teach! Keh!"
       ]
     },
     {
-      "id": "pl_msg_00000529_00009",
+      "id": "Route228NorthHouse_Text_TeachBlastBurn",
       "en_US": [
         "I should teach Blast Burn to\n",
         "your {STRVAR_1 0, 0, 0}?"
       ]
     },
     {
-      "id": "pl_msg_00000529_00010",
+      "id": "Route228NorthHouse_Text_TeachHydroCannon",
       "en_US": [
         "I should teach Hydro Cannon to\n",
         "your {STRVAR_1 0, 0, 0}?"
       ]
     },
     {
-      "id": "pl_msg_00000529_00011",
+      "id": "Route228NorthHouse_Text_TeachFrenzyPlant",
       "en_US": [
         "I should teach Frenzy Plant to\n",
         "your {STRVAR_1 0, 0, 0}?"
       ]
     },
     {
-      "id": "pl_msg_00000529_00012",
+      "id": "Route228NorthHouse_Text_PokemonLearnedMove",
       "en_US": [
         "{STRVAR_1 0, 0, 0} learned\n",
         "{STRVAR_1 6, 1, 0}!"
       ]
     },
     {
-      "id": "pl_msg_00000529_00013",
+      "id": "Route228NorthHouse_Text_DeleteOlderMove",
       "en_US": [
         "{STRVAR_1 0, 0, 0} is trying to learn\n",
         "{STRVAR_1 6, 1, 0}.\r",
@@ -109,14 +109,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000529_00014",
+      "id": "Route228NorthHouse_Text_OKToForgetMove",
       "en_US": [
         "Is it OK to forget the\n",
         "move {STRVAR_1 6, 1, 0}?"
       ]
     },
     {
-      "id": "pl_msg_00000529_00015",
+      "id": "Route228NorthHouse_Text_ForgotMoveLearnedMove",
       "en_US": [
         "1, 2, and... ... ... Poof!\r",
         "{STRVAR_1 0, 0, 0} forgot how to\n",
@@ -126,18 +126,18 @@
       ]
     },
     {
-      "id": "pl_msg_00000529_00016",
+      "id": "Route228NorthHouse_Text_StopTryingToTeachMove",
       "en_US": "Stop trying to teach {STRVAR_1 6, 1, 0}?"
     },
     {
-      "id": "pl_msg_00000529_00017",
+      "id": "Route228NorthHouse_Text_PokemonDidntLearnMove",
       "en_US": [
         "{STRVAR_1 0, 0, 0} did not learn\n",
         "the move {STRVAR_1 6, 1, 0}."
       ]
     },
     {
-      "id": "pl_msg_00000529_00018",
+      "id": "Route228NorthHouse_Text_PokemonListedLearnUltimateMoves",
       "en_US": [
         "To the Pokémon listed here,\n",
         "the ultimate moves may be taught!\r",

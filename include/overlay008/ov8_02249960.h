@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_OV8_02249960_H
 #define POKEPLATINUM_OV8_02249960_H
 
+#include "struct_decls/map_object.h"
+
 #include "field/field_system_decl.h"
 
 #include "bg_window.h"
@@ -37,10 +39,21 @@ typedef struct PastoriaGymPersistedFeature {
     u8 pressedButton;
 } PastoriaGymPersistedFeature;
 
+typedef struct HearthomeGymPersistedFeatureDP {
+    u8 isMovingUp;
+} HearthomeGymPersistedFeatureDP;
+
+typedef struct HearthomeGymPersistedFeatures {
+    s16 initialized;
+    s16 correctDoorID;
+    s16 clueX;
+    s16 clueZ;
+} HearthomeGymPersistedFeatures;
+
 void PastoriaGym_PressButton(FieldSystem *fieldSystem);
 BOOL PastoriaGym_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileZ, const fx32 height, BOOL *isColliding);
 void PastoriaGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem);
-void ov8_02249FB8(FieldSystem *fieldSystem);
+void HearthomeGym_MoveLift(FieldSystem *fieldSystem);
 void CanalaveGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem);
 BOOL ov8_0224AAA8(FieldSystem *fieldSystem);
 void CanalaveGym_DynamicMapFeaturesFree(FieldSystem *fieldSystem);
@@ -60,8 +73,8 @@ BOOL VeilstoneGym_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, con
 BOOL ov8_0224BF4C(FieldSystem *fieldSystem);
 void HearthomeGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem);
 void HearthomeGym_DynamicMapFeaturesFree(FieldSystem *fieldSystem);
-BOOL ov8_0224C51C(FieldSystem *fieldSystem);
-BOOL ov8_0224C5DC(FieldSystem *fieldSystem, void *param1);
-BOOL ov8_0224C62C(FieldSystem *fieldSystem, int param1, int param2, int *param3);
+BOOL HearthomeGym_CheckIfPlayerSeesTrainer(FieldSystem *fieldSystem);
+BOOL HearthomeGym_SetTrainerPostBattleMovement(FieldSystem *fieldSystem, MapObject *trainerObj);
+BOOL HearthomeGym_CheckIfEnteredIncorrectDoor(FieldSystem *fieldSystem, int playerX, int playerZ, int *transitionDir);
 
 #endif // POKEPLATINUM_OV8_02249960_H

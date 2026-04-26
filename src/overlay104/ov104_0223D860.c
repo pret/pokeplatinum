@@ -64,7 +64,7 @@ void ov104_0223D8C4(UnkStruct_0209B75C *param0)
     v0 = sub_0209B9D0(param0);
 
     for (v1 = 0; v1 < 32; v1++) {
-        if ((v0->unk_00 != NULL) && (v0->unk_38 == NULL)) {
+        if ((v0->unk_00 != NULL) && (v0->movementTask == NULL)) {
             ov104_0223D898(param0, v0);
         }
 

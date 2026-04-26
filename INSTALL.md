@@ -11,12 +11,11 @@ This document details the steps necessary to build a copy of Pokémon Platinum
     - [Existing Installs](#existing-installs)
     - [Install Build Dependencies](#install-build-dependencies)
   - [Windows with MSYS2](#windows-with-msys2)
-  - [MacOS](#macos)
+  - [macOS](#macos)
   - [Linux](#linux)
-    - [Ubuntu (and other Debian derivatives)](#ubuntu-and-other-debian-derivatives)
-    - [Arch Linux (and derivatives)](#arch-linux-and-derivatives)
-    - [Fedora (and derivatives)](#fedora-and-derivatives)
-  - [Docker](#docker)
+    - [Debian (and derivatives, e.g., Ubuntu, Mint)](#debian-and-derivatives-eg-ubuntu-mint)
+    - [Arch Linux (and derivatives, e.g., Manjaro, Endeavour)](#arch-linux-and-derivatives-eg-manjaro-endeavour)
+    - [Fedora (and derivatives, e.g., AlmaLinux, Red Hat Enterprise Linux)](#fedora-and-derivatives-eg-almalinux-red-hat-enterprise-linux)
 - [2. Downloading the Repository](#2-downloading-the-repository)
 - [3. Building the Repository](#3-building-the-repository)
 - [4. Debugger Support](#4-debugger-support)
@@ -154,7 +153,7 @@ the following commands to install necessary build dependencies:
 
 4. [Download the repository](#2-downloading-the-repository).
 
-### MacOS
+### macOS
 
 1. Apple bundles a number of the requisite utilities into Xcode Command Line Tools;
 to install these, run:
@@ -173,12 +172,12 @@ to install these, run:
     brew install --cask wine-stable
     ```
 
-4. You may need to authorize the Wine installation to satisfy MacOS security
+4. You may need to authorize the Wine installation to satisfy macOS security
 requirements. To do this, open the Applications folder in Finder and locate the
 Wine Stable application. Control-Click on this icon to open the context menu,
 then Control-Click on Open and grant the requested permissions.
 
-5. If your MacOS installation is Monterey (12) or earlier, then you may also need
+5. If your macOS installation is Monterey (12) or earlier, then you may also need
 GNU `coreutils` installed to run the build scripts:
 
     ```zsh

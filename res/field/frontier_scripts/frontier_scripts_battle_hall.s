@@ -245,311 +245,223 @@ _0134:
 
     .balign 4, 0
 _0144:
-    .short 0x0023
-    .short 0x0001
-    .short 0x0027
-    .short 0x0001
-    .short 0x0005
-    .short 0x0009
-    .short 0x0023
-    .short 0x0001
-    .short 0x0023
-    .short 0x0001
-    .short 0x0005
-    .short 0x0001
-    .short 0x0028
-    .short 0x0001
-    .short 0xFD13
+    Delay8
+    WarpIn
+    WalkSouth 9
+    Delay8
+    Delay8
+    WalkSouth
+    WarpOut
+    EndMovement
 
     .balign 4, 0
 _0164:
-    .short 0x0023
-    .short 0x0001
-    .short 0x0023
-    .short 0x0001
-    .short 0x0027
-    .short 0x0001
-    .short 0x0005
-    .short 0x0008
-    .short 0x0023
-    .short 0x0001
-    .short 0x0023
-    .short 0x0001
-    .short 0x0005
-    .short 0x0002
-    .short 0x0028
-    .short 0x0001
-    .short 0xFD13
+    Delay8
+    Delay8
+    WarpIn
+    WalkSouth 8
+    Delay8
+    Delay8
+    WalkSouth 2
+    WarpOut
+    EndMovement
 
     .balign 4, 0
 _0188:
-    .short 0x0027
-    .short 0x0001
-    .short 0x0005
-    .short 0x0009
-    .short 0x0006
-    .short 0x0001
-    .short 0x0013
-    .short 0x0001
-    .short 0x0022
-    .short 0x0001
-    .short 0x0011
-    .short 0x0001
-    .short 0xFD13
+    WarpIn
+    WalkSouth 9
+    WalkWest
+    WalkOnSpotEast
+    Delay4
+    WalkOnSpotSouth
+    EndMovement
 
     .balign 4, 0
 _01A4:
-    .short 0x0012
-    .short 0x0001
-    .short 0xFD13
+    WalkOnSpotWest
+    EndMovement
 
     .balign 4, 0
 _01AC:
-    .short 0x0005
-    .short 0x000C
-    .short 0xFD13
+    WalkSouth 12
+    EndMovement
 
     .balign 4, 0
 _01B4:
-    .short 0x0005
-    .short 0x0004
-    .short 0xFD13
+    WalkSouth 4
+    EndMovement
 
     .balign 4, 0
 _01BC:
-    .short 0x0005
-    .short 0x0004
-    .short 0xFD13
+    WalkSouth 4
+    EndMovement
 
     .balign 4, 0
 _01C4:
-    .short 0x0005
-    .short 0x0004
-    .short 0xFD13
+    WalkSouth 4
+    EndMovement
 
     .balign 4, 0
 _01CC:
-    .short 0x0005
-    .short 0x000C
-    .short 0x0006
-    .short 0x0003
-    .short 0x0013
-    .short 0x0001
-    .short 0xFD13
+    WalkSouth 12
+    WalkWest 3
+    WalkOnSpotEast
+    EndMovement
 
     .balign 4, 0
 _01DC:
-    .short 0x0005
-    .short 0x000C
-    .short 0x0006
-    .short 0x0003
-    .short 0x0013
-    .short 0x0001
-    .short 0xFD13
+    WalkSouth 12
+    WalkWest 3
+    WalkOnSpotEast
+    EndMovement
 
     .balign 4, 0
 _01EC:
-    .short 0x0005
-    .short 0x000D
-    .short 0x0006
-    .short 0x0002
-    .short 0x0005
-    .short 0x0001
-    .short 0x0006
-    .short 0x0001
-    .short 0x0013
-    .short 0x0001
-    .short 0xFD13
+    WalkSouth 13
+    WalkWest 2
+    WalkSouth
+    WalkWest
+    WalkOnSpotEast
+    EndMovement
 
     .balign 4, 0
 _0204:
-    .short 0x0005
-    .short 0x000B
-    .short 0x0006
-    .short 0x0005
-    .short 0x0013
-    .short 0x0001
-    .short 0xFD13
+    WalkSouth 11
+    WalkWest 5
+    WalkOnSpotEast
+    EndMovement
 
     .balign 4, 0
 _0214:
-    .short 0x0007
-    .short 0x0001
-    .short 0xFD13
+    WalkEast
+    EndMovement
 
     .balign 4, 0
 _021C:
-    .short 0x0007
-    .short 0x0001
-    .short 0xFD13
+    WalkEast
+    EndMovement
 
     .balign 4, 0
 _0224:
-    .short 0x0006
-    .short 0x0001
-    .short 0xFD13
+    WalkWest
+    EndMovement
 
     .balign 4, 0
 _022C:
-    .short 0x0006
-    .short 0x0005
-    .short 0xFD13
+    WalkWest 5
+    EndMovement
 
     .balign 4, 0
 _0234:
-    .short 0x0007
-    .short 0x0005
-    .short 0x0012
-    .short 0x0001
-    .short 0xFD13
+    WalkEast 5
+    WalkOnSpotWest
+    EndMovement
 
     .balign 4, 0
 _0240:
-    .short 0x0027
-    .short 0x0001
-    .short 0x0005
-    .short 0x0006
-    .short 0x0007
-    .short 0x0003
-    .short 0x0012
-    .short 0x0001
-    .short 0xFD13
+    WarpIn
+    WalkSouth 6
+    WalkEast 3
+    WalkOnSpotWest
+    EndMovement
 
     .balign 4, 0
 _0254:
-    .short 0x0027
-    .short 0x0001
-    .short 0x0005
-    .short 0x0006
-    .short 0x0007
-    .short 0x0003
-    .short 0x0005
-    .short 0x0001
-    .short 0x0012
-    .short 0x0001
-    .short 0xFD13
+    WarpIn
+    WalkSouth 6
+    WalkEast 3
+    WalkSouth 1
+    WalkOnSpotWest
+    EndMovement
 
     .balign 4, 0
 _026C:
-    .short 0x0027
-    .short 0x0001
-    .short 0x0005
-    .short 0x0007
-    .short 0x0007
-    .short 0x0003
-    .short 0x0012
-    .short 0x0001
-    .short 0xFD13
+    WarpIn
+    WalkSouth 7
+    WalkEast 3
+    WalkOnSpotWest
+    EndMovement
 
     .balign 4, 0
 _0280:
-    .short 0x0028
-    .short 0x0001
-    .short 0x0004
-    .short 0x0006
-    .short 0x0011
-    .short 0x0001
-    .short 0x0026
-    .short 0x0001
-    .short 0x0026
-    .short 0x0001
-    .short 0xFD13
+    WarpOut
+    WalkNorth 6
+    WalkOnSpotSouth
+    Delay32
+    Delay32
+    EndMovement
 
     .balign 4, 0
 _0298:
-    .short 0x0005
-    .short 0x0004
-    .short 0x0012
-    .short 0x0001
-    .short 0xFD13
+    WalkSouth 4
+    WalkOnSpotWest
+    EndMovement
 
     .balign 4, 0
 _02A4:
-    .short 0x0005
-    .short 0x0004
-    .short 0x0013
-    .short 0x0001
-    .short 0xFD13
+    WalkSouth 4
+    WalkOnSpotEast
+    EndMovement
 
     .balign 4, 0
 _02B0:
-    .short 0x0005
-    .short 0x0004
-    .short 0x0007
-    .short 0x0003
-    .short 0x0012
-    .short 0x0001
-    .short 0xFD13
+    WalkSouth 4
+    WalkEast 3
+    WalkOnSpotWest
+    EndMovement
 
     .balign 4, 0
 _02C0:
-    .short 0x0027
-    .short 0x0001
-    .short 0xFD13
+    WarpIn
+    EndMovement
 
     .balign 4, 0
 _02C8:
-    .short 0x0006
-    .short 0x0002
-    .short 0x0004
-    .short 0x0007
-    .short 0x0028
-    .short 0x0001
-    .short 0xFD13
+    WalkWest 2
+    WalkNorth 7
+    WarpOut
+    EndMovement
 
     .balign 4, 0
 _02D8:
-    .short 0x0004
-    .short 0x0001
-    .short 0x0006
-    .short 0x0002
-    .short 0x0004
-    .short 0x0008
-    .short 0x0028
-    .short 0x0001
-    .short 0xFD13
+    WalkNorth
+    WalkWest 2
+    WalkNorth 8
+    WarpOut
+    EndMovement
 
     .balign 4, 0
 _02EC:
-    .short 0x0006
-    .short 0x0002
-    .short 0x0004
-    .short 0x0008
-    .short 0x0028
-    .short 0x0001
-    .short 0xFD13
+    WalkWest 2
+    WalkNorth 8
+    WarpOut
+    EndMovement
 
     .balign 4, 0
 _02FC:
-    .short 0x0007
-    .short 0x0001
-    .short 0xFD13
+    WalkEast
+    EndMovement
 
     .balign 4, 0
 _0304:
-    .short 0x0006
-    .short 0x0001
-    .short 0xFD13
+    WalkWest
+    EndMovement
 
     .balign 4, 0
 _030C:
-    .short 0x0006
-    .short 0x0001
-    .short 0x0013
-    .short 0x0001
-    .short 0xFD13
+    WalkWest
+    WalkOnSpotEast
+    EndMovement
 
     .balign 4, 0
 _0318:
-    .short 0x0004
-    .short 0x000C
-    .short 0xFD13
+    WalkNorth 12
+    EndMovement
 
     .balign 4, 0
 _0320:
-    .short 0x0013
-    .short 0x0001
-    .short 0xFD13
+    WalkOnSpotEast
+    EndMovement
 
 _0326:
     FrontierScrCmd_3E VAR_BATTLE_HALL_CHALLENGE_TYPE, VAR_0x8001
@@ -581,9 +493,9 @@ _03A6:
     FadeScreenIn
     CallBattleHallFunction BH_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _0404
-    FrontierScrCmd_28 3, _0188
-    FrontierScrCmd_28 10, _0144
-    FrontierScrCmd_29
+    ApplyMovement 3, _0188
+    ApplyMovement 10, _0144
+    WaitMovement
     PlaySoundEffect SEQ_SE_DP_KAIDAN2
     WaitSoundEffect SEQ_SE_DP_KAIDAN2
     FadeScreenOut
@@ -595,10 +507,10 @@ _03A6:
     End
 
 _0404:
-    FrontierScrCmd_28 3, _0188
-    FrontierScrCmd_28 1, _0144
-    FrontierScrCmd_28 2, _0164
-    FrontierScrCmd_29
+    ApplyMovement 3, _0188
+    ApplyMovement 1, _0144
+    ApplyMovement 2, _0164
+    WaitMovement
     PlaySoundEffect SEQ_SE_DP_KAIDAN2
     WaitSoundEffect SEQ_SE_DP_KAIDAN2
     FadeScreenOut
@@ -643,17 +555,17 @@ _04DC:
     SetVar VAR_0x8003, 0
     CallBattleHallFunction BH_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _0510
-    FrontierScrCmd_28 0, _01AC
-    FrontierScrCmd_28 10, _01CC
-    FrontierScrCmd_29
+    ApplyMovement 0, _01AC
+    ApplyMovement 10, _01CC
+    WaitMovement
     GoTo _0532
     End
 
 _0510:
-    FrontierScrCmd_28 0, _01AC
-    FrontierScrCmd_28 1, _01DC
-    FrontierScrCmd_28 2, _01EC
-    FrontierScrCmd_29
+    ApplyMovement 0, _01AC
+    ApplyMovement 1, _01DC
+    ApplyMovement 2, _01EC
+    WaitMovement
     GoTo _0532
     End
 
@@ -735,18 +647,18 @@ _0665:
     Call _13C3
     BufferNumber 0, VAR_0x8008
     Call _083D
-    FrontierScrCmd_28 98, _0240
-    FrontierScrCmd_29
+    ApplyMovement 98, _0240
+    WaitMovement
     WaitTime 15, VAR_0x8008
-    FrontierScrCmd_28 98, _01A4
-    FrontierScrCmd_29
+    ApplyMovement 98, _01A4
+    WaitMovement
     CallBattleHallFunction BH_FUNC_UNK_32, 0, 0, VAR_0x8008
     FrontierScrCmd_95 0
     WaitABPress
     CloseMessage
-    FrontierScrCmd_28 10, _0214
-    FrontierScrCmd_28 98, _0224
-    FrontierScrCmd_29
+    ApplyMovement 10, _0214
+    ApplyMovement 98, _0224
+    WaitMovement
     GoTo _0700
     End
 
@@ -785,42 +697,42 @@ _0762:
     ClearReceivedTempDataAllPlayers
     SyncConnectedPlayers 103
     Call _0858
-    FrontierScrCmd_28 98, _0254
-    FrontierScrCmd_28 99, _026C
-    FrontierScrCmd_29
+    ApplyMovement 98, _0254
+    ApplyMovement 99, _026C
+    WaitMovement
     WaitTime 15, VAR_0x8008
-    FrontierScrCmd_28 98, _01A4
-    FrontierScrCmd_29
+    ApplyMovement 98, _01A4
+    WaitMovement
     CallBattleHallFunction BH_FUNC_UNK_32, 0, 0, VAR_0x8008
     FrontierScrCmd_95 0
     WaitTime 30, VAR_0x8008
     CloseMessage
-    FrontierScrCmd_28 99, _01A4
-    FrontierScrCmd_29
+    ApplyMovement 99, _01A4
+    WaitMovement
     CallBattleHallFunction BH_FUNC_UNK_32, 0, 0, VAR_0x8008
     FrontierScrCmd_95 1
     WaitTime 30, VAR_0x8008
     CloseMessage
-    FrontierScrCmd_28 1, _0214
-    FrontierScrCmd_28 2, _021C
-    FrontierScrCmd_28 98, _0224
-    FrontierScrCmd_28 99, _0224
-    FrontierScrCmd_29
+    ApplyMovement 1, _0214
+    ApplyMovement 2, _021C
+    ApplyMovement 98, _0224
+    ApplyMovement 99, _0224
+    WaitMovement
     MessageNoSkip BattleHallScene_Text_PleaseWait
     GoTo _08A0
     End
 
 _080D:
-    FrontierScrCmd_28 10, _0320
-    FrontierScrCmd_28 11, _030C
-    FrontierScrCmd_29
+    ApplyMovement 10, _0320
+    ApplyMovement 11, _030C
+    WaitMovement
     Return
 
 _0821:
-    FrontierScrCmd_28 1, _0320
-    FrontierScrCmd_28 2, _0320
-    FrontierScrCmd_28 11, _030C
-    FrontierScrCmd_29
+    ApplyMovement 1, _0320
+    ApplyMovement 2, _0320
+    ApplyMovement 11, _030C
+    WaitMovement
     Return
 
 _083D:
@@ -903,13 +815,13 @@ _09B1:
     Return
 
 _09B7:
-    FrontierScrCmd_28 98, _02C8
-    FrontierScrCmd_29
+    ApplyMovement 98, _02C8
+    WaitMovement
     FrontierScrCmd_25 98
     FrontierScrCmd_23 VAR_0x800B
-    FrontierScrCmd_28 11, _02FC
-    FrontierScrCmd_28 10, _0304
-    FrontierScrCmd_29
+    ApplyMovement 11, _02FC
+    ApplyMovement 10, _0304
+    WaitMovement
     GoTo _0A41
     End
 
@@ -919,17 +831,17 @@ _09E3:
     WaitForParticleSystemEmitters
     FreeParticleSystem 0
     Call _141B
-    FrontierScrCmd_28 98, _02D8
-    FrontierScrCmd_28 99, _02EC
-    FrontierScrCmd_29
+    ApplyMovement 98, _02D8
+    ApplyMovement 99, _02EC
+    WaitMovement
     FrontierScrCmd_25 98
     FrontierScrCmd_25 99
     FrontierScrCmd_23 VAR_0x800B
     FrontierScrCmd_23 VAR_0x800C
-    FrontierScrCmd_28 11, _02FC
-    FrontierScrCmd_28 1, _0304
-    FrontierScrCmd_28 2, _0304
-    FrontierScrCmd_29
+    ApplyMovement 11, _02FC
+    ApplyMovement 1, _0304
+    ApplyMovement 2, _0304
+    WaitMovement
     GoTo _0A41
     End
 
@@ -1439,12 +1351,12 @@ _11BE:
     End
 
 _11E3:
-    FrontierScrCmd_28 98, _0234
-    FrontierScrCmd_29
+    ApplyMovement 98, _0234
+    WaitMovement
     WaitTime 30, VAR_0x8008
-    FrontierScrCmd_28 10, _0214
-    FrontierScrCmd_28 98, _0224
-    FrontierScrCmd_29
+    ApplyMovement 10, _0214
+    ApplyMovement 98, _0224
+    WaitMovement
     Return
 
 _1207:
@@ -1454,36 +1366,36 @@ _1207:
     FrontierScrCmd_4E 10, 160, 230, 192, 0, 0
     WaitTime 10, VAR_0x8008
     FrontierScrCmd_4E 10, 160, 230, 192, 54, 1
-    FrontierScrCmd_28 98, _0280
-    FrontierScrCmd_28 0, _0318
-    FrontierScrCmd_29
+    ApplyMovement 98, _0280
+    ApplyMovement 0, _0318
+    WaitMovement
     InitParticleSystem 0, battle_hall_spa
     CreateParticleSystemEmitter 0, HALL_EMITTER_UNK_16
     CreateParticleSystemEmitter 0, HALL_EMITTER_UNK_17
     WaitTime 90, VAR_0x8008
     CreateParticleSystemEmitter 0, HALL_EMITTER_UNK_18
-    FrontierScrCmd_28 98, _02C0
-    FrontierScrCmd_29
+    ApplyMovement 98, _02C0
+    WaitMovement
     PlaySoundEffect SEQ_SE_DP_DENDOU
     WaitSoundEffect SEQ_SE_DP_DENDOU
-    FrontierScrCmd_28 0, _01B4
-    FrontierScrCmd_28 98, _0298
-    FrontierScrCmd_29
+    ApplyMovement 0, _01B4
+    ApplyMovement 98, _0298
+    WaitMovement
     PlaySoundEffect SEQ_SE_DP_DENDOU
     CreateParticleSystemEmitter 0, HALL_EMITTER_UNK_11
     CreateParticleSystemEmitter 0, HALL_EMITTER_UNK_12
     WaitSoundEffect SEQ_SE_DP_DENDOU
     FrontierScrCmd_4E 10, 160, 230, 192, 10, 0
-    FrontierScrCmd_28 0, _01BC
-    FrontierScrCmd_28 98, _02A4
-    FrontierScrCmd_29
+    ApplyMovement 0, _01BC
+    ApplyMovement 98, _02A4
+    WaitMovement
     PlaySoundEffect SEQ_SE_DP_DENDOU
     CreateParticleSystemEmitter 0, HALL_EMITTER_UNK_11
     CreateParticleSystemEmitter 0, HALL_EMITTER_UNK_12
     WaitSoundEffect SEQ_SE_DP_DENDOU
-    FrontierScrCmd_28 0, _01C4
-    FrontierScrCmd_28 98, _02B0
-    FrontierScrCmd_29
+    ApplyMovement 0, _01C4
+    ApplyMovement 98, _02B0
+    WaitMovement
     FrontierScrCmd_46 0xC350
     CreateParticleSystemEmitter 0, HALL_EMITTER_UNK_20
     WaitTime 30, VAR_0x8008
@@ -1491,8 +1403,8 @@ _1207:
     CallBattleHallFunction BH_FUNC_TOGGLE_ENGINE_LAYER, 0, 0, VAR_0x8008
     FreeParticleSystem 0
     FadeScreenIn COLOR_WHITE
-    FrontierScrCmd_28 98, _022C
-    FrontierScrCmd_29
+    ApplyMovement 98, _022C
+    WaitMovement
     Return
 
 _1333:

@@ -2,7 +2,7 @@
   "key": 4043,
   "messages": [
     {
-      "id": "pl_msg_00000643_00000",
+      "id": "Route226House_Text_ImTheMeister",
       "en_US": [
         "Hey, konnichiwa!\n",
         "Glad to meet you, guten tag!\r",
@@ -14,7 +14,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000643_00001",
+      "id": "Route226House_Text_PowerUpPokedex",
       "en_US": [
         "So, sniff, sniff, I smell you!\n",
         "I smell something about you!\r",
@@ -38,7 +38,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000643_00002",
+      "id": "Route226House_Text_AskTradeFinneonForMagikarp",
       "en_US": [
         "Hey, konnichiwa!\n",
         "Bonjour and all the rest!\r",
@@ -49,7 +49,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000643_00003",
+      "id": "Route226House_Text_DankeSchon",
       "en_US": [
         "Danke schon, arigato, gracias,\n",
         "and what-have-you!\r",
@@ -59,7 +59,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000643_00004",
+      "id": "Route226House_Text_ThatIsNoFinneon",
       "en_US": [
         "Oh, non, non! That is no FINNEON!\n",
         "What I want is a FINNEON!\f",
@@ -67,7 +67,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000643_00005",
+      "id": "Route226House_Text_ThisIsATragedy",
       "en_US": [
         "Oh! This is a tragedy!\n",
         "A tragedy, I tell you!\r",
@@ -78,7 +78,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000643_00006",
+      "id": "Route226House_Text_MakeFriendsAnywhere",
       "en_US": [
         "Because there are Pokémon, I can\n",
         "make friends anywhere in the world.\r",
@@ -87,7 +87,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000643_00007",
+      "id": "Route226House_Text_VisitedOver150Countries",
       "en_US": [
         "There is something scribbled on this\n",
         "notice.\r",

@@ -17,7 +17,7 @@ SurvivalAreaPokecenter1F_AceTrainerM:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x00C8, SurvivalAreaPokecenter1F_ChallengeWithoutOwnPokemon
+    GoToIfSet FLAG_VISITED_BATTLEGROUND, SurvivalAreaPokecenter1F_ChallengeWithoutOwnPokemon
     Message SurvivalAreaPokecenter1F_Text_BuildingNextDoor
     WaitButton
     CloseMessage

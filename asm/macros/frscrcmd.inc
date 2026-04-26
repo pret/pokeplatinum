@@ -5,6 +5,7 @@
 #include "generated/sdat.h"
 #include "generated/trainer_score_events.h"
 #include "generated/vars_flags.h"
+#include "constants/battle_frontier_movements.h"
 #include "constants/battle_tower.h"
 #include "constants/colors.h"
 #include "constants/fade_screen.h"
@@ -247,14 +248,14 @@
     .short FRSCRCMD_DUMMY27
     .endm
 
-    .macro FrontierScrCmd_28 arg0, offset
-    .short FRSCRCMD_28
-    .short \arg0
+    .macro ApplyMovement localID, offset
+    .short FRSCRCMD_APPLYMOVEMENT
+    .short \localID
     .long \offset-.-4
     .endm
 
-    .macro FrontierScrCmd_29
-    .short FRSCRCMD_29
+    .macro WaitMovement
+    .short FRSCRCMD_WAITMOVEMENT
     .endm
 
     .macro FrontierScrCmd_2A offset
@@ -1161,7 +1162,214 @@
     CallIf 5, \offset
     .endm
 
+    .macro FaceNorth length=1
+    .short FRONTIER_MOVEMENT_FACE_NORTH
+    .short \length
+    .endm
 
+    .macro FaceSouth length=1
+    .short FRONTIER_MOVEMENT_FACE_SOUTH
+    .short \length
+    .endm
+
+    .macro FaceWest length=1
+    .short FRONTIER_MOVEMENT_FACE_WEST
+    .short \length
+    .endm
+
+    .macro FaceEast length=1
+    .short FRONTIER_MOVEMENT_FACE_EAST
+    .short \length
+    .endm
+
+    .macro WalkNorth length=1
+    .short FRONTIER_MOVEMENT_WALK_NORTH
+    .short \length
+    .endm
+
+    .macro WalkSouth length=1
+    .short FRONTIER_MOVEMENT_WALK_SOUTH
+    .short \length
+    .endm
+    
+    .macro WalkWest length=1
+    .short FRONTIER_MOVEMENT_WALK_WEST
+    .short \length
+    .endm
+
+    .macro WalkEast length=1
+    .short FRONTIER_MOVEMENT_WALK_EAST
+    .short \length
+    .endm
+
+    .macro WalkSlowNorth length=1
+    .short FRONTIER_MOVEMENT_WALK_SLOW_NORTH
+    .short \length
+    .endm
+
+    .macro WalkSlowSouth length=1
+    .short FRONTIER_MOVEMENT_WALK_SLOW_SOUTH
+    .short \length
+    .endm
+
+    .macro WalkSlowWest length=1
+    .short FRONTIER_MOVEMENT_WALK_SLOW_WEST
+    .short \length
+    .endm
+
+    .macro WalkSlowEast length=1
+    .short FRONTIER_MOVEMENT_WALK_SLOW_EAST
+    .short \length
+    .endm
+
+    .macro WalkFastNorth length=1
+    .short FRONTIER_MOVEMENT_WALK_FAST_NORTH
+    .short \length
+    .endm
+
+    .macro WalkFastSouth length=1
+    .short FRONTIER_MOVEMENT_WALK_FAST_SOUTH
+    .short \length
+    .endm
+
+    .macro WalkFastWest length=1
+    .short FRONTIER_MOVEMENT_WALK_FAST_WEST
+    .short \length
+    .endm
+
+    .macro WalkFastEast length=1
+    .short FRONTIER_MOVEMENT_WALK_FAST_EAST
+    .short \length
+    .endm
+
+    .macro WalkOnSpotNorth length=1
+    .short FRONTIER_MOVEMENT_WALK_ON_SPOT_NORTH
+    .short \length
+    .endm
+
+    .macro WalkOnSpotSouth length=1
+    .short FRONTIER_MOVEMENT_WALK_ON_SPOT_SOUTH
+    .short \length
+    .endm
+    
+    .macro WalkOnSpotWest length=1
+    .short FRONTIER_MOVEMENT_WALK_ON_SPOT_WEST
+    .short \length
+    .endm
+
+    .macro WalkOnSpotEast length=1
+    .short FRONTIER_MOVEMENT_WALK_ON_SPOT_EAST
+    .short \length
+    .endm
+
+    .macro WalkOnSpotSlowNorth length=1
+    .short FRONTIER_MOVEMENT_WALK_ON_SPOT_SLOW_NORTH
+    .short \length
+    .endm
+
+    .macro WalkOnSpotSlowSouth length=1
+    .short FRONTIER_MOVEMENT_WALK_ON_SPOT_SLOW_SOUTH
+    .short \length
+    .endm
+
+    .macro WalkOnSpotSlowWest length=1
+    .short FRONTIER_MOVEMENT_WALK_ON_SPOT_SLOW_WEST
+    .short \length
+    .endm
+
+    .macro WalkOnSpotSlowEast length=1
+    .short FRONTIER_MOVEMENT_WALK_ON_SPOT_SLOW_EAST
+    .short \length
+    .endm
+
+    .macro WalkOnSpotFastNorth length=1
+    .short FRONTIER_MOVEMENT_WALK_ON_SPOT_FAST_NORTH
+    .short \length
+    .endm
+
+    .macro WalkOnSpotFastSouth length=1
+    .short FRONTIER_MOVEMENT_WALK_ON_SPOT_FAST_SOUTH
+    .short \length
+    .endm
+
+    .macro WalkOnSpotFastWest length=1
+    .short FRONTIER_MOVEMENT_WALK_ON_SPOT_FAST_WEST
+    .short \length
+    .endm
+
+    .macro WalkOnSpotFastEast length=1
+    .short FRONTIER_MOVEMENT_WALK_ON_SPOT_FAST_EAST
+    .short \length
+    .endm
+
+    .macro WalkOnSpotFasterNorth length=1
+    .short FRONTIER_MOVEMENT_WALK_ON_SPOT_FASTER_NORTH
+    .short \length
+    .endm
+
+    .macro WalkOnSpotFasterSouth length=1
+    .short FRONTIER_MOVEMENT_WALK_ON_SPOT_FASTER_SOUTH
+    .short \length
+    .endm
+
+    .macro WalkOnSpotFasterWest length=1
+    .short FRONTIER_MOVEMENT_WALK_ON_SPOT_FASTER_WEST
+    .short \length
+    .endm
+
+    .macro WalkOnSpotFasterEast length=1
+    .short FRONTIER_MOVEMENT_WALK_ON_SPOT_FASTER_EAST
+    .short \length
+    .endm
+
+    .macro Delay1 length=1
+    .short FRONTIER_MOVEMENT_DELAY_1
+    .short \length
+    .endm
+
+    .macro Delay2 length=1
+    .short FRONTIER_MOVEMENT_DELAY_2
+    .short \length
+    .endm
+
+    .macro Delay4 length=1
+    .short FRONTIER_MOVEMENT_DELAY_4
+    .short \length
+    .endm
+
+    .macro Delay8 length=1
+    .short FRONTIER_MOVEMENT_DELAY_8
+    .short \length
+    .endm
+
+    .macro Delay15 length=1
+    .short FRONTIER_MOVEMENT_DELAY_15
+    .short \length
+    .endm
+
+    .macro Delay16 length=1
+    .short FRONTIER_MOVEMENT_DELAY_16
+    .short \length
+    .endm
+
+    .macro Delay32 length=1
+    .short FRONTIER_MOVEMENT_DELAY_32
+    .short \length
+    .endm
+
+    .macro WarpIn
+    .short FRONTIER_MOVEMENT_WARP_IN
+    .short 0x01
+    .endm
+
+    .macro WarpOut
+    .short FRONTIER_MOVEMENT_WARP_OUT
+    .short 0x01
+    .endm
+
+    .macro EndMovement
+    .short FRONTIER_MOVEMENT_END_MOVEMENT
+    .endm
 
     .text
     .globl _start

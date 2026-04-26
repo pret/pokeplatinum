@@ -1,7 +1,6 @@
 #include "persisted_map_features.h"
 
 #include <nitro.h>
-#include <string.h>
 
 void PersistedMapFeatures_Init(PersistedMapFeatures *persistedMapFeatures)
 {

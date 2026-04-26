@@ -59,101 +59,74 @@ _003C:
 
     .balign 4, 0
 _004C:
-    .short 0x0022
-    .short 0x0001
-    .short 0x0004
-    .short 0x0001
-    .short 0x0002
-    .short 0x0001
-    .short 0x0006
-    .short 0x0003
-    .short 0x0000
-    .short 0x0001
-    .short 0x0004
-    .short 0x0003
-    .short 0x0003
-    .short 0x0001
-    .short 0xFD13
+    Delay4
+    WalkNorth
+    FaceWest
+    WalkWest 3
+    FaceNorth
+    WalkNorth 3
+    FaceEast
+    EndMovement
 
     .balign 4, 0
 _006C:
-    .short 0x0007
-    .short 0x0003
-    .short 0x0005
-    .short 0x0003
-    .short 0x0002
-    .short 0x0001
-    .short 0xFD13
+    WalkEast 3
+    WalkSouth 3
+    FaceWest
+    EndMovement
 
     .balign 4, 0
 _007C:
-    .short 0x0007
-    .short 0x0001
-    .short 0xFD13
+    WalkEast
+    EndMovement
 
     .balign 4, 0
 _0084:
-    .short 0x0006
-    .short 0x0001
-    .short 0xFD13
+    WalkWest
+    EndMovement
 
     .balign 4, 0
 _008C:
-    .short 0x0007
-    .short 0x0001
-    .short 0x0004
-    .short 0x0002
-    .short 0x0006
-    .short 0x0003
-    .short 0x0004
-    .short 0x0001
-    .short 0xFD13
+    WalkEast
+    WalkNorth 2
+    WalkWest 3
+    WalkNorth
+    EndMovement
 
     .balign 4, 0
 _00A0:
-    .short 0x0006
-    .short 0x0001
-    .short 0x0002
-    .short 0x0001
-    .short 0xFD13
+    WalkWest
+    FaceWest
+    EndMovement
 
     .balign 4, 0
 _00AC:
-    .short 0x0007
-    .short 0x0001
-    .short 0xFD13
+    WalkEast
+    EndMovement
 
     .balign 4, 0
 _00B4:
-    .short 0x0003
-    .short 0x0001
-    .short 0xFD13
+    FaceEast
+    EndMovement
 
     .balign 4, 0
 _00BC:
-    .short 0x0002
-    .short 0x0001
-    .short 0x0006
-    .short 0x0001
-    .short 0x0003
-    .short 0x0001
-    .short 0xFD13
+    FaceWest
+    WalkWest
+    FaceEast
+    EndMovement
 
     .balign 4, 0
 _00CC:
-    .short 0x0002
-    .short 0x0001
-    .short 0xFD13
+    FaceWest
+    EndMovement
 
     .balign 4, 0
 _00D4:
-    .short 0x000B
-    .short 0x0003
-    .short 0x0009
-    .short 0x0003
-    .short 0x0002
-    .short 0x0001
-    .short 0xFD13
+    WalkSlowEast 3
+    WalkSlowSouth 3
+    FaceWest
+    EndMovement
 
 _00E2:
     InitNewBattleRecording
@@ -294,16 +267,16 @@ _0330:
     Return
 
 _034C:
-    FrontierScrCmd_28 2, _008C
-    FrontierScrCmd_29
+    ApplyMovement 2, _008C
+    WaitMovement
     FrontierScrCmd_25 2
     FrontierScrCmd_23 VAR_0x800B
     Return
 
 _0360:
-    FrontierScrCmd_28 3, _00A0
-    FrontierScrCmd_28 1, _00AC
-    FrontierScrCmd_29
+    ApplyMovement 3, _00A0
+    ApplyMovement 1, _00AC
+    WaitMovement
     Return
 
 _0374:
@@ -330,14 +303,14 @@ _0394:
     End
 
 _03CF:
-    FrontierScrCmd_28 3, _004C
-    FrontierScrCmd_29
+    ApplyMovement 3, _004C
+    WaitMovement
     Return
 
 _03DB:
-    FrontierScrCmd_28 1, _00AC
-    FrontierScrCmd_28 3, _00CC
-    FrontierScrCmd_29
+    ApplyMovement 1, _00AC
+    ApplyMovement 3, _00CC
+    WaitMovement
     Return
 
 _03EF:
@@ -385,14 +358,14 @@ _04A8:
     CallBattleTowerFunction BT_FUNC_GET_OPPONENT_OBJECT_ID, 0, VAR_0x800B
     FrontierScrCmd_22 _0010
     FrontierScrCmd_24 _003C
-    FrontierScrCmd_28 2, _006C
-    FrontierScrCmd_29
+    ApplyMovement 2, _006C
+    WaitMovement
     Return
 
 _04C8:
-    FrontierScrCmd_28 3, _007C
-    FrontierScrCmd_28 2, _0084
-    FrontierScrCmd_29
+    ApplyMovement 3, _007C
+    ApplyMovement 2, _0084
+    WaitMovement
     Return
 
 _04DC:
@@ -443,9 +416,9 @@ _05CD:
     End
 
 _05E1:
-    FrontierScrCmd_28 3, _00B4
-    FrontierScrCmd_28 1, _00BC
-    FrontierScrCmd_29
+    ApplyMovement 3, _00B4
+    ApplyMovement 1, _00BC
+    WaitMovement
     Return
 
 _05F5:
@@ -644,8 +617,8 @@ _092C:
     SetVar VAR_0x800B, 169
     FrontierScrCmd_22 _0010
     FrontierScrCmd_24 _003C
-    FrontierScrCmd_28 2, _00D4
-    FrontierScrCmd_29
+    ApplyMovement 2, _00D4
+    WaitMovement
     Return
 
     .balign 4, 0

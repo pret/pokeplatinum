@@ -130,89 +130,62 @@ _00A0:
 
     .balign 4, 0
 _00B8:
-    .short 0x0027
-    .short 0x0001
-    .short 0x0005
-    .short 0x0003
-    .short 0x0000
-    .short 0x0001
-    .short 0xFD13
+    WarpIn
+    WalkSouth 3
+    FaceNorth
+    EndMovement
 
     .balign 4, 0
 _00C8:
-    .short 0x0027
-    .short 0x0001
-    .short 0x0005
-    .short 0x0002
-    .short 0xFD13
+    WarpIn
+    WalkSouth 2
+    EndMovement
 
     .balign 4, 0
 _00D4:
-    .short 0x0005
-    .short 0x0001
-    .short 0x0007
-    .short 0x0005
-    .short 0xFD13
+    WalkSouth
+    WalkEast 5
+    EndMovement
 
     .balign 4, 0
 _00E0:
-    .short 0x0005
-    .short 0x0001
-    .short 0x0006
-    .short 0x0005
-    .short 0xFD13
+    WalkSouth
+    WalkWest 5
+    EndMovement
 
     .balign 4, 0
 _00EC:
-    .short 0x0004
-    .short 0x0002
-    .short 0x0028
-    .short 0x0001
-    .short 0xFD13
+    WalkNorth 2
+    WarpOut
+    EndMovement
 
     .balign 4, 0
 _00F8:
-    .short 0x0007
-    .short 0x0005
-    .short 0x0004
-    .short 0x0001
-    .short 0x0023
-    .short 0x0001
-    .short 0x0003
-    .short 0x0001
-    .short 0x0022
-    .short 0x0001
-    .short 0x0000
-    .short 0x0001
-    .short 0x0022
-    .short 0x0001
-    .short 0xFD13
+    WalkEast 5
+    WalkNorth
+    Delay8
+    FaceEast
+    Delay4
+    FaceNorth
+    Delay4
+    EndMovement
 
     .balign 4, 0
 _0118:
-    .short 0x0006
-    .short 0x0005
-    .short 0x0004
-    .short 0x0001
-    .short 0x0023
-    .short 0x0001
-    .short 0x0002
-    .short 0x0001
-    .short 0x0022
-    .short 0x0001
-    .short 0x0000
-    .short 0x0001
-    .short 0x0022
-    .short 0x0001
-    .short 0xFD13
+    WalkWest 5
+    WalkNorth
+    Delay8
+    FaceWest
+    Delay4
+    FaceNorth
+    Delay4
+    EndMovement
 
     .balign 4, 0
 _0138:
-    .short 0x0004
-    .short 0x0001
-    .short 0x0028
-    .short 0x0001
-    .short 0xFD13
+    WalkNorth
+    WarpOut
+    EndMovement
 
 _0142:
     FrontierScrCmd_3E VAR_UNK_0x40DD, VAR_0x8001
@@ -300,28 +273,28 @@ _02BE:
     FrontierScrCmd_33 0
     FrontierScrCmd_32 0
     FrontierScrCmd_32 1
-    FrontierScrCmd_28 1, _00B8
-    FrontierScrCmd_28 2, _00B8
-    FrontierScrCmd_29
-    FrontierScrCmd_28 VAR_0x8002, _00C8
-    FrontierScrCmd_28 VAR_0x8003, _00C8
-    FrontierScrCmd_29
+    ApplyMovement 1, _00B8
+    ApplyMovement 2, _00B8
+    WaitMovement
+    ApplyMovement VAR_0x8002, _00C8
+    ApplyMovement VAR_0x8003, _00C8
+    WaitMovement
     Return
 
 _02FC:
-    FrontierScrCmd_28 1, _00F8
-    FrontierScrCmd_28 VAR_0x8002, _00D4
-    FrontierScrCmd_28 2, _0118
-    FrontierScrCmd_28 VAR_0x8003, _00E0
-    FrontierScrCmd_29
+    ApplyMovement 1, _00F8
+    ApplyMovement VAR_0x8002, _00D4
+    ApplyMovement 2, _0118
+    ApplyMovement VAR_0x8003, _00E0
+    WaitMovement
     Return
 
 _0320:
-    FrontierScrCmd_28 1, _0138
-    FrontierScrCmd_28 2, _0138
-    FrontierScrCmd_28 VAR_0x8002, _00EC
-    FrontierScrCmd_28 VAR_0x8003, _00EC
-    FrontierScrCmd_29
+    ApplyMovement 1, _0138
+    ApplyMovement 2, _0138
+    ApplyMovement VAR_0x8002, _00EC
+    ApplyMovement VAR_0x8003, _00EC
+    WaitMovement
     Return
 
 _0344:

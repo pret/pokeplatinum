@@ -51,7 +51,7 @@
     ],
     "object_events": [
         {
-            "id": "ROUTE_228_ARROW_SIGNPOST_0",
+            "id": "LOCALID_ARROW_SIGNPOST_RT_226",
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -68,7 +68,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_228_ARROW_SIGNPOST_1",
+            "id": "LOCALID_ARROW_SIGNPOST_RT_229",
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -85,7 +85,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_228_ROCK_SMASH_2",
+            "id": "LOCALID_ROCK_SMASH_1",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -100,7 +100,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_228_ROCK_SMASH_3",
+            "id": "LOCALID_ROCK_SMASH_2",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -115,7 +115,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_228_ROCK_SMASH_4",
+            "id": "LOCALID_ROCK_SMASH_3",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -130,7 +130,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_228_ROCK_SMASH_5",
+            "id": "LOCALID_ROCK_SMASH_4",
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -220,7 +220,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_228_BERRY_SOIL_11",
+            "id": "LOCALID_BERRY_SOIL_1",
             "graphics_id": "OBJ_EVENT_GFX_BERRY_SOIL",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -237,7 +237,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_228_BERRY_SOIL_12",
+            "id": "LOCALID_BERRY_SOIL_2",
             "graphics_id": "OBJ_EVENT_GFX_BERRY_SOIL",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -254,7 +254,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_228_BERRY_SOIL_13",
+            "id": "LOCALID_BERRY_SOIL_3",
             "graphics_id": "OBJ_EVENT_GFX_BERRY_SOIL",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -271,7 +271,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_228_BERRY_SOIL_14",
+            "id": "LOCALID_BERRY_SOIL_4",
             "graphics_id": "OBJ_EVENT_GFX_BERRY_SOIL",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -288,7 +288,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_228_ACE_TRAINER_JOSE",
+            "id": "LOCALID_ACE_TRAINER_JOSE",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -305,7 +305,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_228_ACE_TRAINER_MOIRA",
+            "id": "LOCALID_ACE_TRAINER_MOIRA",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -322,7 +322,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_228_RANGER_KYLER",
+            "id": "LOCALID_RANGER_KYLER",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -339,7 +339,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_228_RANGER_KRISTA",
+            "id": "LOCALID_RANGER_KRISTA",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -356,7 +356,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_228_DRAGON_TAMER_KEEGAN",
+            "id": "LOCALID_DRAGON_TAMER_KEEGAN",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -373,7 +373,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_228_PSYCHIC_CORBIN",
+            "id": "LOCALID_PSYCHIC_CORBIN",
             "graphics_id": "OBJ_EVENT_GFX_PSYCHIC",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -390,7 +390,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_228_ACE_TRAINER_MEAGAN",
+            "id": "LOCALID_ACE_TRAINER_MEAGAN",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -407,7 +407,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_228_BLACK_BELT_DAVON",
+            "id": "LOCALID_BLACK_BELT_DAVON",
             "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
             "movement_type": "MOVEMENT_TYPE_DISGUISE_SAND",
             "trainer_type": "TRAINER_TYPE_VIEW_ALL_DIRECTIONS",
@@ -424,7 +424,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_228_VENT_23",
+            "id": "LOCALID_VENT_1",
             "graphics_id": "OBJ_EVENT_GFX_VENT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -439,7 +439,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_228_VENT_24",
+            "id": "LOCALID_VENT_2",
             "graphics_id": "OBJ_EVENT_GFX_VENT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -454,7 +454,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_228_VENT_25",
+            "id": "LOCALID_VENT_3",
             "graphics_id": "OBJ_EVENT_GFX_VENT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -469,7 +469,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_228_VENT_26",
+            "id": "LOCALID_VENT_4",
             "graphics_id": "OBJ_EVENT_GFX_VENT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
