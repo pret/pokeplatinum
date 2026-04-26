@@ -103,19 +103,6 @@ json_to_bin_gen = generator(msgenc_exe,
 
 text_bank_files += species_text_banks
 text_bank_files += trainer_text_banks
-
-frontier_text_banks = custom_target('frontier_text_banks',
-    output: frontier_text_bank_names,
-    command: [
-        'cp',
-        '@OUTDIR@/../trainers/frontier/frontier_trainer_messages.json',
-        '@OUTDIR@/../trainers/frontier/frontier_trainer_names.json',
-        '@OUTDIR@',
-    ],
-    env: trainer_env,
-    depends: [ datagen_frontier_out ],
-)
-
 text_bank_files += frontier_text_banks
 
 town_map_text_bank = custom_target('town_map_text_bank',

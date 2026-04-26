@@ -485,7 +485,7 @@ static void usage(const char *fmt, ...) {
     fputs("  -o OUTDIR    Write output files to OUTDIR. Does not affect DEPFILE.\n", f);
     fputs("               Defaults to the current working directory.\n", f);
     fputs("  -M DEPFILE   Specify the full path to an output dependency file.\n", f);
-    fputs("               Defaults to 'species_data.d'.\n", f);
+    fputs("               Defaults to 'trainer_data.d'.\n", f);
 #undef fputf
 
     exit(f == stdout ? EXIT_SUCCESS : EXIT_FAILURE);

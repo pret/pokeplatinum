@@ -32,6 +32,7 @@ typedef uint32_t u32;
 #define maxbit(bits)           ((1 << bits) - 1)
 #define boolean(path)          (dp_bool(dp_get(df, path)))
 #define u8(path)               (dp_u8(dp_get(df, path)))
+#define u16(path)              (dp_u16(dp_get(df, path)))
 #define s8(path)               (dp_s8(dp_get(df, path)))
 #define u8_maxbits(path, bits) (u8)(dp_u8range(dp_get(df, path), 0, maxbit(bits)) & maxbit(bits))
 #define enum_u8(path, type)    (dp_u8(dp_lookup(dp_get(df, path), #type)))
