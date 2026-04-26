@@ -722,8 +722,8 @@ _0A1B:
     CloseMessage
     Call _0A91
     FrontierScrCmd_3F 0
-    FrontierScrCmd_87
-    CheckWonTowerBattle VAR_0x8003
+    BattleTower_StartBattle
+    BattleTower_CheckWonBattle VAR_0x8003
     FadeScreenIn
     Return
 
@@ -772,8 +772,8 @@ _0ACD:
     SyncConnectedPlayers 4
     CloseMessage
     FrontierScrCmd_3F 0
-    FrontierScrCmd_87
-    CheckWonTowerBattle VAR_0x8003
+    BattleTower_StartBattle
+    BattleTower_CheckWonBattle VAR_0x8003
     FadeScreenIn
     Return
 

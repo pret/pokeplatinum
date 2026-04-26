@@ -24,15 +24,15 @@
 #include "string_gf.h"
 #include "trainer_info.h"
 
-FieldBattleDTO *ov104_0223BDD8(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104_02230BE4 *param1);
+FieldBattleDTO *ov104_0223BDD8(BattleArcade *param0, UnkStruct_ov104_02230BE4 *param1);
 static u32 ov104_0223BFD0(u8 param0);
-u8 ov104_0223BFFC(UnkStruct_ov104_0223BFFC *param0);
-void ov104_0223C04C(UnkStruct_ov104_0223BFFC *param0);
-void ov104_0223C010(UnkStruct_ov104_0223BFFC *param0, Pokemon *param1);
-void ov104_0223C034(UnkStruct_ov104_0223BFFC *param0, Party *param1, Pokemon *param2);
-u16 ov104_0223C0BC(UnkStruct_ov104_0223BFFC *param0, u8 param1);
-static u16 ov104_0223C0D0(UnkStruct_ov104_0223BFFC *param0);
-u16 ov104_0223C124(UnkStruct_ov104_0223BFFC *param0);
+u8 ov104_0223BFFC(BattleArcade *param0);
+void ov104_0223C04C(BattleArcade *param0);
+void ov104_0223C010(BattleArcade *param0, Pokemon *param1);
+void ov104_0223C034(BattleArcade *param0, Party *param1, Pokemon *param2);
+u16 ov104_0223C0BC(BattleArcade *param0, u8 param1);
+static u16 ov104_0223C0D0(BattleArcade *param0);
+u16 ov104_0223C124(BattleArcade *param0);
 void FieldBattleDTO_CopyPlayerInfoToTrainerData(FieldBattleDTO *param0);
 static int ov104_0223BCBC(u8 param0, int param1, int param2);
 void ov104_0223BD28(u8 param0, int param1, u16 param2[], u8 param3);
@@ -155,7 +155,7 @@ u8 BattleArcade_GetOpponentPartySize(u8 challengeType, BOOL includeBothOpponents
     return ARCADE_PARTY_SIZE_SOLO;
 }
 
-FieldBattleDTO *ov104_0223BDD8(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104_02230BE4 *param1)
+FieldBattleDTO *ov104_0223BDD8(BattleArcade *param0, UnkStruct_ov104_02230BE4 *param1)
 {
     int v0;
     u8 v2, v3, v4;
@@ -164,9 +164,9 @@ FieldBattleDTO *ov104_0223BDD8(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104
     Party *v12;
     Party *v13;
 
-    v2 = BattleArcade_GetPartySize(param0->unk_10, 0);
-    v3 = BattleArcade_GetOpponentPartySize(param0->unk_10, 0);
-    FieldBattleDTO *v5 = FieldBattleDTO_New(HEAP_ID_FIELD2, ov104_0223BFD0(param0->unk_10));
+    v2 = BattleArcade_GetPartySize(param0->challengeType, 0);
+    v3 = BattleArcade_GetOpponentPartySize(param0->challengeType, 0);
+    FieldBattleDTO *v5 = FieldBattleDTO_New(HEAP_ID_FIELD2, ov104_0223BFD0(param0->challengeType));
 
     FieldBattleDTO_InitFromGameState(v5, NULL, param1->saveData, param1->unk_1C, param1->journalEntry, param1->bagCursor, param1->unk_20);
 
@@ -177,7 +177,7 @@ FieldBattleDTO *ov104_0223BDD8(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104
     v12 = param0->unk_70;
     v13 = param0->unk_74;
 
-    if (param0->unk_13 == 27) {
+    if (param0->activeEffect == 27) {
         v12 = param0->unk_74;
         v13 = param0->unk_70;
     }
@@ -204,7 +204,7 @@ FieldBattleDTO *ov104_0223BDD8(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104
 
     Heap_Free(v8);
     ov104_0222E284(v5, &v7, v3, 1, 11);
-    Party_InitWithCapacity(v5->parties[1], BattleArcade_GetOpponentPartySize(param0->unk_10, 0));
+    Party_InitWithCapacity(v5->parties[1], BattleArcade_GetOpponentPartySize(param0->challengeType, 0));
 
     for (v0 = 0; v0 < 4; v0++) {
         v5->trainer[v0].header.aiMask = ov104_0223C0D0(param0);
@@ -219,7 +219,7 @@ FieldBattleDTO *ov104_0223BDD8(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104
 
     Heap_Free(v6);
 
-    switch (param0->unk_10) {
+    switch (param0->challengeType) {
     case 2:
     case 3:
         FieldBattleDTO_CopyPlayerInfoToTrainerData(v5);
@@ -230,7 +230,7 @@ FieldBattleDTO *ov104_0223BDD8(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104
         Heap_Free(v8);
 
         ov104_0222E284(v5, &v7, v3, 3, 11);
-        Party_InitWithCapacity(v5->parties[3], BattleArcade_GetOpponentPartySize(param0->unk_10, 0));
+        Party_InitWithCapacity(v5->parties[3], BattleArcade_GetOpponentPartySize(param0->challengeType, 0));
 
         v6 = Pokemon_New(HEAP_ID_FIELD2);
 
@@ -265,7 +265,7 @@ static u32 ov104_0223BFD0(u8 param0)
     return (0x0 | 0x1) | 0x80;
 }
 
-u8 ov104_0223BFFC(UnkStruct_ov104_0223BFFC *param0)
+u8 ov104_0223BFFC(BattleArcade *param0)
 {
     return 50;
 }
@@ -275,20 +275,20 @@ BOOL BattleArcade_IsMultiPlayerChallenge(u8 challengeType)
     return challengeType == FRONTIER_CHALLENGE_MULTI || challengeType == FRONTIER_CHALLENGE_MULTI_WFC;
 }
 
-void ov104_0223C010(UnkStruct_ov104_0223BFFC *param0, Pokemon *param1)
+void ov104_0223C010(BattleArcade *param0, Pokemon *param1)
 {
     Pokemon_UpdateAfterCatch(param1, SaveData_GetTrainerInfo(param0->saveData), 4, 0, 0, 11);
     return;
 }
 
-void ov104_0223C034(UnkStruct_ov104_0223BFFC *param0, Party *param1, Pokemon *param2)
+void ov104_0223C034(BattleArcade *param0, Party *param1, Pokemon *param2)
 {
     ov104_0223C010(param0, param2);
     Party_AddPokemon(param1, param2);
     return;
 }
 
-void ov104_0223C04C(UnkStruct_ov104_0223BFFC *param0)
+void ov104_0223C04C(BattleArcade *param0)
 {
     u32 v0;
     int v1, v2;
@@ -299,7 +299,7 @@ void ov104_0223C04C(UnkStruct_ov104_0223BFFC *param0)
 
     Party_Init(param0->unk_74);
 
-    v3 = BattleArcade_GetOpponentPartySize(param0->unk_10, 1);
+    v3 = BattleArcade_GetOpponentPartySize(param0->challengeType, 1);
     v5 = Pokemon_New(HEAP_ID_FIELD2);
 
     for (v1 = 0; v1 < v3; v1++) {
@@ -316,7 +316,7 @@ void ov104_0223C04C(UnkStruct_ov104_0223BFFC *param0)
     return;
 }
 
-u16 ov104_0223C0BC(UnkStruct_ov104_0223BFFC *param0, u8 param1)
+u16 ov104_0223C0BC(BattleArcade *param0, u8 param1)
 {
     u16 v0, v1;
 
@@ -343,11 +343,11 @@ u16 ov104_0223C0BC(UnkStruct_ov104_0223BFFC *param0, u8 param1)
     return v0;
 }
 
-static u16 ov104_0223C0D0(UnkStruct_ov104_0223BFFC *param0)
+static u16 ov104_0223C0D0(BattleArcade *param0)
 {
     u16 v0, v1;
 
-    if (param0->unk_10 == 0) {
+    if (param0->challengeType == 0) {
         if ((param0->unk_78[param0->unk_11] == 311) || (param0->unk_78[param0->unk_11] == 312)) {
             return 0x1 | 0x2 | 0x4;
         }
@@ -370,11 +370,11 @@ static u16 ov104_0223C0D0(UnkStruct_ov104_0223BFFC *param0)
     return v0;
 }
 
-u16 ov104_0223C124(UnkStruct_ov104_0223BFFC *param0)
+u16 ov104_0223C124(BattleArcade *param0)
 {
     u16 v0 = param0->unk_1A;
 
-    if (BattleArcade_IsMultiPlayerChallenge(param0->unk_10) == 1) {
+    if (BattleArcade_IsMultiPlayerChallenge(param0->challengeType) == 1) {
         if (param0->unk_A76 > param0->unk_1A) {
             v0 = param0->unk_A76;
         }
@@ -389,7 +389,7 @@ u8 BattleArcade_GetCategoryFromEffect(u8 effect)
         return ARCADE_EFFECT_CATEGORY_FOE;
     } else if (effect < ARCADE_EFFECT_SUNNY_BATTLE) {
         return ARCADE_EFFECT_CATEGORY_ALLY;
-    } else if (effect < ARCADE_EFFECT_RANDOMIZE_CURSOR) {
+    } else if (effect < ARCADE_EFFECT_SWAP_MONS) {
         return ARCADE_EFFECT_CATEGORY_ENV;
     }
 

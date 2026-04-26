@@ -1,7 +1,6 @@
 #include "overlay104/ov104_022339B4.h"
 
 #include <nitro.h>
-#include <string.h>
 
 #include "generated/game_records.h"
 
@@ -12,7 +11,6 @@
 #include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/ov104_0222ECE8.h"
 #include "overlay104/ov104_0223A7F4.h"
-#include "overlay104/struct_ov104_02234130.h"
 #include "overlay104/struct_ov104_0223ADA0.h"
 #include "overlay104/struct_ov104_0224028C.h"
 
@@ -28,28 +26,27 @@
 #include "unk_0205DFC4.h"
 #include "vars_flags.h"
 
-void ov104_02233B98(UnkStruct_ov104_0223ADA0 *param0, u16 param1);
-static void ov104_02233BAC(UnkStruct_ov104_0223ADA0 *param0);
-static void ov104_02233F1C(UnkStruct_ov104_0223ADA0 *param0);
-void ov104_022340D0(UnkStruct_ov104_0223ADA0 *param0);
-void ov104_0223410C(UnkStruct_ov104_0223ADA0 *param0, void *param1);
-u16 ov104_02234130(void *param0, u8 param1);
-void ov104_0223449C(UnkStruct_ov104_0223ADA0 *param0);
-void ov104_02234570(UnkStruct_ov104_0223ADA0 *param0);
-void ov104_022346A4(UnkStruct_ov104_0223ADA0 *param0);
-void ov104_0223470C(UnkStruct_ov104_0223ADA0 *param0);
-void ov104_02234790(UnkStruct_ov104_0223ADA0 *param0);
-static void ov104_02233D80(UnkStruct_ov104_0223ADA0 *param0, u8 param1, u8 param2);
-BOOL ov104_022347A4(UnkStruct_ov104_0223ADA0 *param0, u16 param1, u16 param2);
-void ov104_02234148(UnkStruct_ov104_0223ADA0 *param0, u8 param1);
-u16 ov104_02234430(UnkStruct_ov104_0223ADA0 *param0);
-u16 ov104_0223443C(UnkStruct_ov104_0223ADA0 *param0);
-u16 ov104_02234440(UnkStruct_ov104_0223ADA0 *param0, u8 param1);
-void ov104_02234474(UnkStruct_ov104_0223ADA0 *param0);
-void ov104_02234480(UnkStruct_ov104_0223ADA0 *param0);
-u16 ov104_022347F8(UnkStruct_ov104_0223ADA0 *param0);
+void ov104_02233B98(BattleFactory *param0, u16 param1);
+static void ov104_02233BAC(BattleFactory *param0);
+static void ov104_02233F1C(BattleFactory *param0);
+void ov104_022340D0(BattleFactory *param0);
+static u16 ov104_02234130(BattleFactoryAppArgs *args, u8 i);
+void ov104_0223449C(BattleFactory *param0);
+void ov104_02234570(BattleFactory *param0);
+void ov104_022346A4(BattleFactory *param0);
+void ov104_0223470C(BattleFactory *param0);
+void ov104_02234790(BattleFactory *param0);
+static void ov104_02233D80(BattleFactory *param0, u8 param1, u8 param2);
+BOOL ov104_022347A4(BattleFactory *param0, u16 param1, u16 param2);
+void ov104_02234148(BattleFactory *param0, u8 param1);
+u16 ov104_02234430(BattleFactory *param0);
+u16 ov104_0223443C(BattleFactory *param0);
+u16 ov104_02234440(BattleFactory *param0, u8 param1);
+void ov104_02234474(BattleFactory *param0);
+void ov104_02234480(BattleFactory *param0);
+u16 ov104_022347F8(BattleFactory *param0);
 
-UnkStruct_ov104_0223ADA0 *ov104_022339B4(SaveData *saveData, u16 param1, u8 param2, u8 param3)
+BattleFactory *ov104_022339B4(SaveData *saveData, u16 param1, u8 param2, u8 param3)
 {
     UnkStruct_0202FF58 *v0;
     UnkStruct_020300F4 *v1;
@@ -57,10 +54,10 @@ UnkStruct_ov104_0223ADA0 *ov104_022339B4(SaveData *saveData, u16 param1, u8 para
     u8 v3;
     u16 v4, v5;
     u32 v6;
-    static UnkStruct_ov104_0223ADA0 *v7;
+    static BattleFactory *v7;
 
-    v7 = Heap_Alloc(HEAP_ID_FIELD2, sizeof(UnkStruct_ov104_0223ADA0));
-    MI_CpuClear8(v7, sizeof(UnkStruct_ov104_0223ADA0));
+    v7 = Heap_Alloc(HEAP_ID_FIELD2, sizeof(BattleFactory));
+    MI_CpuClear8(v7, sizeof(BattleFactory));
 
     v7->unk_4F4 = sub_0202FF58(saveData);
     v7->saveData = saveData;
@@ -72,13 +69,13 @@ UnkStruct_ov104_0223ADA0 *ov104_022339B4(SaveData *saveData, u16 param1, u8 para
     v1 = sub_020300F4(saveData);
 
     if (param1 == 0) {
-        v7->unk_04 = param2;
+        v7->challengeType = param2;
         v7->unk_05 = param3;
         v7->unk_06 = 0;
 
         sub_0202FF4C(v0);
 
-        if (v7->unk_04 == 3) {
+        if (v7->challengeType == 3) {
             if (v7->unk_05 == 0) {
                 v6 = 102;
             } else {
@@ -87,36 +84,36 @@ UnkStruct_ov104_0223ADA0 *ov104_022339B4(SaveData *saveData, u16 param1, u8 para
 
             v3 = SystemVars_GetWiFiFrontierCleared(SaveData_GetVarsFlags(v7->saveData));
         } else {
-            v3 = (u8)sub_020300E0(v1, 10, (v7->unk_05 * 4) + v7->unk_04, NULL);
+            v3 = (u8)sub_020300E0(v1, 10, (v7->unk_05 * 4) + v7->challengeType, NULL);
         }
 
         if (v3 == 1) {
-            v7->unk_0C = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(v7->saveData), BattleFrontierStats_GetFactoryLatestStreakIdx(v7->unk_05, v7->unk_04), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetFactoryLatestStreakIdx(v7->unk_05, v7->unk_04)));
-            v7->unk_08 = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(v7->saveData), BattleFrontierStats_GetFactoryLatestTradeCountIndex(v7->unk_05, v7->unk_04), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetFactoryLatestTradeCountIndex(v7->unk_05, v7->unk_04)));
+            v7->currentStreak = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(v7->saveData), BattleFrontierStats_GetFactoryLatestStreakIdx(v7->unk_05, v7->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetFactoryLatestStreakIdx(v7->unk_05, v7->challengeType)));
+            v7->unk_08 = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(v7->saveData), BattleFrontierStats_GetFactoryLatestTradeCountIndex(v7->unk_05, v7->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetFactoryLatestTradeCountIndex(v7->unk_05, v7->challengeType)));
         } else {
-            v7->unk_0C = 0;
+            v7->currentStreak = 0;
             v7->unk_08 = 0;
         }
 
         v7->unk_10 = 0;
     } else {
-        v7->unk_04 = (u8)sub_02030030(v0, 1, 0, NULL);
+        v7->challengeType = (u8)sub_02030030(v0, 1, 0, NULL);
         v7->unk_05 = (u8)sub_02030030(v0, 0, 0, NULL);
         v7->unk_06 = (u8)sub_02030030(v0, 2, 0, NULL);
-        v7->unk_0C = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(v7->saveData), BattleFrontierStats_GetFactoryLatestStreakIdx(v7->unk_05, v7->unk_04), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetFactoryLatestStreakIdx(v7->unk_05, v7->unk_04)));
-        v7->unk_08 = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(v7->saveData), BattleFrontierStats_GetFactoryLatestTradeCountIndex(v7->unk_05, v7->unk_04), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetFactoryLatestTradeCountIndex(v7->unk_05, v7->unk_04)));
+        v7->currentStreak = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(v7->saveData), BattleFrontierStats_GetFactoryLatestStreakIdx(v7->unk_05, v7->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetFactoryLatestStreakIdx(v7->unk_05, v7->challengeType)));
+        v7->unk_08 = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(v7->saveData), BattleFrontierStats_GetFactoryLatestTradeCountIndex(v7->unk_05, v7->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetFactoryLatestTradeCountIndex(v7->unk_05, v7->challengeType)));
     }
 
-    v7->unk_0E = (u16)(v7->unk_0C / 7);
+    v7->unk_0E = (u16)(v7->currentStreak / 7);
 
-    if (BattleFactory_IsMultiplayerChallenge(v7->unk_04) == 1) {
+    if (BattleFactory_IsMultiplayerChallenge(v7->challengeType) == 1) {
         ov104_0222E630(v7->saveData);
     }
 
     return v7;
 }
 
-void ov104_02233B98(UnkStruct_ov104_0223ADA0 *param0, u16 param1)
+void ov104_02233B98(BattleFactory *param0, u16 param1)
 {
     if (param1 == 0) {
         ov104_02233BAC(param0);
@@ -127,7 +124,7 @@ void ov104_02233B98(UnkStruct_ov104_0223ADA0 *param0, u16 param1)
     return;
 }
 
-static void ov104_02233BAC(UnkStruct_ov104_0223ADA0 *param0)
+static void ov104_02233BAC(BattleFactory *param0)
 {
     int v0, v1;
     FrontierPokemonDataDTO v2[6 * 2];
@@ -135,7 +132,7 @@ static void ov104_02233BAC(UnkStruct_ov104_0223ADA0 *param0)
     u16 v5[6];
     u16 v6[6];
 
-    ov104_0223A860(param0->unk_04, ov104_0223AF34(param0), param0->unk_18, 7 * 2);
+    ov104_0223A860(param0->challengeType, ov104_0223AF34(param0), param0->unk_18, 7 * 2);
 
     ov104_0223AAA0(ov104_0223AF34(param0), param0->unk_05, param0->unk_254, param0->unk_280, param0->unk_260, param0->unk_268, param0->unk_08, NULL, NULL);
 
@@ -148,7 +145,7 @@ static void ov104_02233BAC(UnkStruct_ov104_0223ADA0 *param0)
         v2[v0] = param0->unk_280[v0];
     }
 
-    if (BattleFactory_IsMultiplayerChallenge(param0->unk_04) == 1) {
+    if (BattleFactory_IsMultiplayerChallenge(param0->challengeType) == 1) {
         for (v0 = 0; v0 < 6; v0++) {
             v5[v0] = param0->unk_280[v0].species;
             v6[v0] = param0->unk_280[v0].item;
@@ -166,7 +163,7 @@ static void ov104_02233BAC(UnkStruct_ov104_0223ADA0 *param0)
         }
     }
 
-    ov104_0223AB0C(ov104_0223AA74(param0->unk_04, 1), param0->unk_18[param0->unk_06], param0->unk_05, v2, param0->unk_3D2, param0->unk_3F0, param0->unk_3DA, param0->unk_3E0, v1);
+    ov104_0223AB0C(ov104_0223AA74(param0->challengeType, 1), param0->unk_18[param0->unk_06], param0->unk_05, v2, param0->unk_3D2, param0->unk_3F0, param0->unk_3DA, param0->unk_3E0, v1);
 
     for (v0 = 0; v0 < 6; v0++) {
         v4 = Pokemon_New(HEAP_ID_FIELD2);
@@ -182,7 +179,7 @@ static void ov104_02233BAC(UnkStruct_ov104_0223ADA0 *param0)
     return;
 }
 
-static void ov104_02233D80(UnkStruct_ov104_0223ADA0 *param0, u8 param1, u8 param2)
+static void ov104_02233D80(BattleFactory *param0, u8 param1, u8 param2)
 {
     u16 v0;
     u16 v1;
@@ -227,7 +224,7 @@ static void ov104_02233D80(UnkStruct_ov104_0223ADA0 *param0, u8 param1, u8 param
     return;
 }
 
-static void ov104_02233F1C(UnkStruct_ov104_0223ADA0 *param0)
+static void ov104_02233F1C(BattleFactory *param0)
 {
     int v0;
     FrontierPokemonDataDTO v4[6];
@@ -235,7 +232,7 @@ static void ov104_02233F1C(UnkStruct_ov104_0223ADA0 *param0)
     u16 v6[6];
     u32 v7[6];
 
-    u8 v3 = BattleFactory_GetPartySize(param0->unk_04);
+    u8 v3 = BattleFactory_GetPartySize(param0->challengeType);
 
     for (v0 = 0; v0 < (7 * 2); v0++) {
         param0->unk_18[v0] = (u16)sub_02030030(param0->unk_4F4, 3, v0, NULL);
@@ -282,7 +279,7 @@ static void ov104_02233F1C(UnkStruct_ov104_0223ADA0 *param0)
     return;
 }
 
-void ov104_022340D0(UnkStruct_ov104_0223ADA0 *param0)
+void ov104_022340D0(BattleFactory *param0)
 {
     int v0;
 
@@ -298,7 +295,7 @@ void ov104_022340D0(UnkStruct_ov104_0223ADA0 *param0)
         Heap_Free(param0->unk_4D8);
     }
 
-    MI_CpuClear8(param0, sizeof(UnkStruct_ov104_0223ADA0));
+    MI_CpuClear8(param0, sizeof(BattleFactory));
 
     Heap_Free(param0);
     param0 = NULL;
@@ -306,30 +303,24 @@ void ov104_022340D0(UnkStruct_ov104_0223ADA0 *param0)
     return;
 }
 
-void ov104_0223410C(UnkStruct_ov104_0223ADA0 *param0, void *param1)
+void BattleFactory_GetMonSelectionAppResult(BattleFactory *battleFactory, BattleFactoryAppArgs *args)
 {
-    int v0;
-
-    for (v0 = 0; v0 < 6; v0++) {
-        param0->unk_4DC[v0] = ov104_02234130(param1, v0);
+    for (int i = 0; i < 6; i++) {
+        battleFactory->unk_4DC[i] = ov104_02234130(args, i);
     }
-
-    return;
 }
 
-u16 ov104_02234130(void *param0, u8 param1)
+static u16 ov104_02234130(BattleFactoryAppArgs *args, u8 i)
 {
-    UnkStruct_ov104_02234130 *v0 = param0;
-
-    if (param1 >= 6) {
+    if (i >= 6) {
         GF_ASSERT(0);
         return 0;
     }
 
-    return v0->unk_10[param1];
+    return args->selectedIndices[i];
 }
 
-void ov104_02234148(UnkStruct_ov104_0223ADA0 *param0, u8 param1)
+void ov104_02234148(BattleFactory *param0, u8 param1)
 {
     u16 v0, v1, v2;
     u8 v3, v4;
@@ -343,36 +334,36 @@ void ov104_02234148(UnkStruct_ov104_0223ADA0 *param0, u8 param1)
     UnkStruct_020300F4 *v14 = sub_020300F4(param0->saveData);
 
     frontier = SaveData_GetBattleFrontier(param0->saveData);
-    v3 = BattleFactory_GetPartySize(param0->unk_04);
-    v4 = ov104_0223AA74(param0->unk_04, 1);
+    v3 = BattleFactory_GetPartySize(param0->challengeType);
+    v4 = ov104_0223AA74(param0->challengeType, 1);
 
     v5[0] = param0->unk_05;
     sub_0202FF84(param0->unk_4F4, 0, 0, v5);
 
-    v5[0] = param0->unk_04;
+    v5[0] = param0->challengeType;
     sub_0202FF84(param0->unk_4F4, 1, 0, v5);
     sub_0202FF70(param0->unk_4F4, 1);
 
     v5[0] = param0->unk_06;
     sub_0202FF84(param0->unk_4F4, 2, 0, v5);
-    BattleFrontierStats_SetStat(frontier, BattleFrontierStats_GetFactoryLatestTradeCountIndex(param0->unk_05, param0->unk_04), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetFactoryLatestTradeCountIndex(param0->unk_05, param0->unk_04)), param0->unk_08);
-    BattleFrontierStats_SetStat(frontier, BattleFrontierStats_GetFactoryLatestStreakIdx(param0->unk_05, param0->unk_04), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetFactoryLatestStreakIdx(param0->unk_05, param0->unk_04)), param0->unk_0C);
+    BattleFrontierStats_SetStat(frontier, BattleFrontierStats_GetFactoryLatestTradeCountIndex(param0->unk_05, param0->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetFactoryLatestTradeCountIndex(param0->unk_05, param0->challengeType)), param0->unk_08);
+    BattleFrontierStats_SetStat(frontier, BattleFrontierStats_GetFactoryLatestStreakIdx(param0->unk_05, param0->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetFactoryLatestStreakIdx(param0->unk_05, param0->challengeType)), param0->currentStreak);
 
     if (param1 != 2) {
-        v1 = BattleFrontierStats_GetStat(frontier, BattleFrontierStats_GetFactoryRecordStreakIdx(param0->unk_05, param0->unk_04), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetFactoryRecordStreakIdx(param0->unk_05, param0->unk_04)));
-        v8 = BattleFrontierStats_SetIfBetter(frontier, BattleFrontierStats_GetFactoryRecordStreakIdx(param0->unk_05, param0->unk_04), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetFactoryRecordStreakIdx(param0->unk_05, param0->unk_04)), param0->unk_0C);
-        v2 = BattleFrontierStats_GetStat(frontier, BattleFrontierStats_GetFactoryRecordStreakIdx(param0->unk_05, param0->unk_04), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetFactoryRecordStreakIdx(param0->unk_05, param0->unk_04)));
+        v1 = BattleFrontierStats_GetStat(frontier, BattleFrontierStats_GetFactoryRecordStreakIdx(param0->unk_05, param0->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetFactoryRecordStreakIdx(param0->unk_05, param0->challengeType)));
+        v8 = BattleFrontierStats_SetIfBetter(frontier, BattleFrontierStats_GetFactoryRecordStreakIdx(param0->unk_05, param0->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetFactoryRecordStreakIdx(param0->unk_05, param0->challengeType)), param0->currentStreak);
+        v2 = BattleFrontierStats_GetStat(frontier, BattleFrontierStats_GetFactoryRecordStreakIdx(param0->unk_05, param0->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetFactoryRecordStreakIdx(param0->unk_05, param0->challengeType)));
 
-        if (param0->unk_0C == v1) {
-            BattleFrontierStats_SetIfBetter(frontier, BattleFrontierStats_GetFactoryRecordTradeCountIndex(param0->unk_05, param0->unk_04), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetFactoryRecordTradeCountIndex(param0->unk_05, param0->unk_04)), param0->unk_08);
+        if (param0->currentStreak == v1) {
+            BattleFrontierStats_SetIfBetter(frontier, BattleFrontierStats_GetFactoryRecordTradeCountIndex(param0->unk_05, param0->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetFactoryRecordTradeCountIndex(param0->unk_05, param0->challengeType)), param0->unk_08);
         } else if (v1 < v2) {
-            BattleFrontierStats_SetStat(frontier, BattleFrontierStats_GetFactoryRecordTradeCountIndex(param0->unk_05, param0->unk_04), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetFactoryRecordTradeCountIndex(param0->unk_05, param0->unk_04)), param0->unk_08);
+            BattleFrontierStats_SetStat(frontier, BattleFrontierStats_GetFactoryRecordTradeCountIndex(param0->unk_05, param0->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetFactoryRecordTradeCountIndex(param0->unk_05, param0->challengeType)), param0->unk_08);
         }
 
         v5[0] = param0->unk_0A;
-        sub_020300B0(v14, 10, (param0->unk_05 * 4) + param0->unk_04, v5);
+        sub_020300B0(v14, 10, (param0->unk_05 * 4) + param0->challengeType, v5);
 
-        if (param0->unk_04 == 3) {
+        if (param0->challengeType == 3) {
             if (param0->unk_05 == 0) {
                 v10 = 102;
             } else {
@@ -421,18 +412,18 @@ void ov104_02234148(UnkStruct_ov104_0223ADA0 *param0, u8 param1)
     return;
 }
 
-u16 ov104_02234430(UnkStruct_ov104_0223ADA0 *param0)
+u16 ov104_02234430(BattleFactory *param0)
 {
     param0->unk_06++;
     return param0->unk_06;
 }
 
-u16 ov104_0223443C(UnkStruct_ov104_0223ADA0 *param0)
+u16 ov104_0223443C(BattleFactory *param0)
 {
     return param0->unk_06;
 }
 
-u16 ov104_02234440(UnkStruct_ov104_0223ADA0 *param0, u8 param1)
+u16 ov104_02234440(BattleFactory *param0, u8 param1)
 {
     FrontierTrainerDataDTO v0;
     u8 v2 = param0->unk_06 + (param1 * 7);
@@ -442,13 +433,13 @@ u16 ov104_02234440(UnkStruct_ov104_0223ADA0 *param0, u8 param1)
     return BattleTower_GetObjectIDFromTrainerClass(v0.trainerType);
 }
 
-void ov104_02234474(UnkStruct_ov104_0223ADA0 *param0)
+void ov104_02234474(BattleFactory *param0)
 {
     ov104_02234148(param0, 1);
     return;
 }
 
-void ov104_02234480(UnkStruct_ov104_0223ADA0 *param0)
+void ov104_02234480(BattleFactory *param0)
 {
     param0->unk_0A = 1;
 
@@ -462,15 +453,15 @@ void ov104_02234480(UnkStruct_ov104_0223ADA0 *param0)
     return;
 }
 
-void ov104_0223449C(UnkStruct_ov104_0223ADA0 *param0)
+void ov104_0223449C(BattleFactory *param0)
 {
     int v0;
     u8 v1, v2;
     Pokemon *v3;
     const UnkStruct_ov104_0224028C *v4;
 
-    v1 = BattleFactory_GetPartySize(param0->unk_04);
-    v2 = ov104_0223AA74(param0->unk_04, 1);
+    v1 = BattleFactory_GetPartySize(param0->challengeType);
+    v2 = ov104_0223AA74(param0->challengeType, 1);
 
     Party_Init(param0->unk_4D4);
 
@@ -492,7 +483,7 @@ void ov104_0223449C(UnkStruct_ov104_0223ADA0 *param0)
     return;
 }
 
-void ov104_02234570(UnkStruct_ov104_0223ADA0 *param0)
+void ov104_02234570(BattleFactory *param0)
 {
     int v0, v1, v2;
     u8 v3;
@@ -506,7 +497,7 @@ void ov104_02234570(UnkStruct_ov104_0223ADA0 *param0)
         v5[v0] = 0;
     }
 
-    v3 = ov104_0223AA74(param0->unk_04, 1);
+    v3 = ov104_0223AA74(param0->challengeType, 1);
     v1 = Party_GetCurrentCount(param0->unk_4D4);
 
     for (v0 = 0; v0 < v1; v0++) {
@@ -534,7 +525,7 @@ void ov104_02234570(UnkStruct_ov104_0223ADA0 *param0)
     return;
 }
 
-void ov104_022346A4(UnkStruct_ov104_0223ADA0 *param0)
+void ov104_022346A4(BattleFactory *param0)
 {
     Pokemon *v0;
 
@@ -553,15 +544,15 @@ void ov104_022346A4(UnkStruct_ov104_0223ADA0 *param0)
     return;
 }
 
-void ov104_0223470C(UnkStruct_ov104_0223ADA0 *param0)
+void ov104_0223470C(BattleFactory *param0)
 {
     int v0;
     u8 v1, v2;
     Pokemon *v3;
     int v4;
 
-    v1 = BattleFactory_GetPartySize(param0->unk_04);
-    v2 = ov104_0223AA74(param0->unk_04, 1);
+    v1 = BattleFactory_GetPartySize(param0->challengeType);
+    v2 = ov104_0223AA74(param0->challengeType, 1);
 
     Party_Init(param0->unk_4D8);
 
@@ -581,7 +572,7 @@ void ov104_0223470C(UnkStruct_ov104_0223ADA0 *param0)
     return;
 }
 
-void ov104_02234790(UnkStruct_ov104_0223ADA0 *param0)
+void ov104_02234790(BattleFactory *param0)
 {
     if (param0->unk_08 < 9999) {
         param0->unk_08++;
@@ -590,7 +581,7 @@ void ov104_02234790(UnkStruct_ov104_0223ADA0 *param0)
     return;
 }
 
-BOOL ov104_022347A4(UnkStruct_ov104_0223ADA0 *param0, u16 param1, u16 param2)
+BOOL ov104_022347A4(BattleFactory *param0, u16 param1, u16 param2)
 {
     int v0;
 
@@ -621,7 +612,7 @@ BOOL ov104_022347A4(UnkStruct_ov104_0223ADA0 *param0, u16 param1, u16 param2)
     return v0;
 }
 
-u16 ov104_022347F8(UnkStruct_ov104_0223ADA0 *param0)
+u16 ov104_022347F8(BattleFactory *param0)
 {
     u8 v0;
     u16 v1;
@@ -630,7 +621,7 @@ u16 ov104_022347F8(UnkStruct_ov104_0223ADA0 *param0)
 
     v1 = param0->unk_0E;
 
-    if ((param0->unk_04 == 0) || (param0->unk_04 == 1)) {
+    if ((param0->challengeType == 0) || (param0->challengeType == 1)) {
         if (v1 >= 8) {
             v0 = v2[8];
         } else {
@@ -644,8 +635,8 @@ u16 ov104_022347F8(UnkStruct_ov104_0223ADA0 *param0)
         }
     }
 
-    if (param0->unk_04 == 0) {
-        if ((param0->unk_0C == 21) || (param0->unk_0C == 49)) {
+    if (param0->challengeType == 0) {
+        if ((param0->currentStreak == 21) || (param0->currentStreak == 49)) {
             v0 = 20;
         }
     }

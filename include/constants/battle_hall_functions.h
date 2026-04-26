@@ -6,7 +6,7 @@
 #define BH_FUNC_SET_CHALLENGE_TYPE       2
 #define BH_FUNC_GET_SELECTED_TYPE_INDEX  3
 #define BH_FUNC_GET_CURRENT_STREAK       4
-#define BH_FUNC_INCREMENT_CURRENT_STEAK  5
+#define BH_FUNC_INCREMENT_CURRENT_STREAK 5
 #define BH_FUNC_UNK_6                    6
 #define BH_FUNC_RESET_SYSTEM             7
 #define BH_FUNC_UNK_8                    8

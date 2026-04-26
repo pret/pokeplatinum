@@ -85,11 +85,11 @@ void ov104_0223A860(u8 param0, int param1, u16 param2[], u8 param3);
 u8 BattleFactory_GetPartySize(u8 param0);
 u8 ov104_0223AA74(u8 param0, BOOL param1);
 static u32 ov104_0223AD74(u8 param0);
-u8 ov104_0223ADA0(UnkStruct_ov104_0223ADA0 *param0);
-void ov104_0223ADB0(UnkStruct_ov104_0223ADA0 *param0);
-void ov104_0223AE30(UnkStruct_ov104_0223ADA0 *param0);
-static u16 ov104_0223AEE4(UnkStruct_ov104_0223ADA0 *param0);
-u16 ov104_0223AF34(UnkStruct_ov104_0223ADA0 *param0);
+u8 ov104_0223ADA0(BattleFactory *param0);
+void ov104_0223ADB0(BattleFactory *param0);
+void ov104_0223AE30(BattleFactory *param0);
+static u16 ov104_0223AEE4(BattleFactory *param0);
+u16 ov104_0223AF34(BattleFactory *param0);
 void FieldBattleDTO_CopyPlayerInfoToTrainerData(FieldBattleDTO *param0);
 
 static int ov104_0223A7F4(u8 param0, int param1, int param2)
@@ -329,7 +329,7 @@ void ov104_0223AB0C(u8 param0, u16 param1, u8 param2, FrontierPokemonDataDTO *pa
     return;
 }
 
-FieldBattleDTO *ov104_0223ABA0(UnkStruct_ov104_0223ADA0 *param0, UnkStruct_ov104_02230BE4 *param1)
+FieldBattleDTO *ov104_0223ABA0(BattleFactory *param0, UnkStruct_ov104_02230BE4 *param1)
 {
     int v0;
     u32 v1;
@@ -338,13 +338,13 @@ FieldBattleDTO *ov104_0223ABA0(UnkStruct_ov104_0223ADA0 *param0, UnkStruct_ov104
     Pokemon *v5;
     FrontierTrainerDataDTO v6;
 
-    v2 = BattleFactory_GetPartySize(param0->unk_04);
-    v3 = ov104_0223AA74(param0->unk_04, 0);
+    v2 = BattleFactory_GetPartySize(param0->challengeType);
+    v3 = ov104_0223AA74(param0->challengeType, 0);
 
     Party_HealAllMembers(param0->unk_4D4);
     Party_HealAllMembers(param0->unk_4D8);
 
-    v4 = FieldBattleDTO_New(HEAP_ID_FIELD2, ov104_0223AD74(param0->unk_04));
+    v4 = FieldBattleDTO_New(HEAP_ID_FIELD2, ov104_0223AD74(param0->challengeType));
     FieldBattleDTO_InitFromGameState(v4, NULL, param1->saveData, param1->unk_1C, param1->journalEntry, param1->bagCursor, param1->unk_20);
 
     v4->background = BACKGROUND_BATTLE_FACTORY;
@@ -364,7 +364,7 @@ FieldBattleDTO *ov104_0223ABA0(UnkStruct_ov104_0223ADA0 *param0, UnkStruct_ov104
     Heap_Free(BattleTower_GetTrainerData(&v6, param0->unk_18[param0->unk_06], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
 
     ov104_0222E284(v4, &v6, v3, 1, 11);
-    Party_InitWithCapacity(v4->parties[1], ov104_0223AA74(param0->unk_04, 0));
+    Party_InitWithCapacity(v4->parties[1], ov104_0223AA74(param0->challengeType, 0));
 
     for (v0 = 0; v0 < 4; v0++) {
         v4->trainer[v0].header.aiMask = ov104_0223AEE4(param0);
@@ -379,7 +379,7 @@ FieldBattleDTO *ov104_0223ABA0(UnkStruct_ov104_0223ADA0 *param0, UnkStruct_ov104
 
     Heap_Free(v5);
 
-    switch (param0->unk_04) {
+    switch (param0->challengeType) {
     case 2:
     case 3:
         FieldBattleDTO_CopyPlayerInfoToTrainerData(v4);
@@ -389,7 +389,7 @@ FieldBattleDTO *ov104_0223ABA0(UnkStruct_ov104_0223ADA0 *param0, UnkStruct_ov104
         Heap_Free(BattleTower_GetTrainerData(&v6, param0->unk_18[param0->unk_06 + 7], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
 
         ov104_0222E284(v4, &v6, v3, 3, 11);
-        Party_InitWithCapacity(v4->parties[3], ov104_0223AA74(param0->unk_04, 0));
+        Party_InitWithCapacity(v4->parties[3], ov104_0223AA74(param0->challengeType, 0));
 
         v5 = Pokemon_New(HEAP_ID_FIELD2);
 
@@ -421,7 +421,7 @@ static u32 ov104_0223AD74(u8 param0)
     return (0x0 | 0x1) | 0x80;
 }
 
-u8 ov104_0223ADA0(UnkStruct_ov104_0223ADA0 *param0)
+u8 ov104_0223ADA0(BattleFactory *param0)
 {
     if (param0->unk_05 == 0) {
         return 50;
@@ -430,7 +430,7 @@ u8 ov104_0223ADA0(UnkStruct_ov104_0223ADA0 *param0)
     return 100;
 }
 
-void ov104_0223ADB0(UnkStruct_ov104_0223ADA0 *param0)
+void ov104_0223ADB0(BattleFactory *param0)
 {
     int v0;
     Pokemon *v1;
@@ -450,7 +450,7 @@ void ov104_0223ADB0(UnkStruct_ov104_0223ADA0 *param0)
     return;
 }
 
-void ov104_0223AE30(UnkStruct_ov104_0223ADA0 *param0)
+void ov104_0223AE30(BattleFactory *param0)
 {
     int v0, v1;
     Pokemon *v2;
@@ -481,11 +481,11 @@ BOOL BattleFactory_IsMultiplayerChallenge(u8 challengeType)
     return challengeType == FRONTIER_CHALLENGE_MULTI || challengeType == FRONTIER_CHALLENGE_MULTI_WFC;
 }
 
-static u16 ov104_0223AEE4(UnkStruct_ov104_0223ADA0 *param0)
+static u16 ov104_0223AEE4(BattleFactory *param0)
 {
     u16 v0, v1;
 
-    if (param0->unk_04 == 0) {
+    if (param0->challengeType == 0) {
         if ((param0->unk_18[param0->unk_06] == 309) || (param0->unk_18[param0->unk_06] == 310)) {
             return 0x1 | 0x2 | 0x4;
         }
@@ -508,11 +508,11 @@ static u16 ov104_0223AEE4(UnkStruct_ov104_0223ADA0 *param0)
     return v0;
 }
 
-u16 ov104_0223AF34(UnkStruct_ov104_0223ADA0 *param0)
+u16 ov104_0223AF34(BattleFactory *param0)
 {
     u16 v0 = param0->unk_0E;
 
-    if (BattleFactory_IsMultiplayerChallenge(param0->unk_04) == 1) {
+    if (BattleFactory_IsMultiplayerChallenge(param0->challengeType) == 1) {
         if (param0->unk_57E > param0->unk_0E) {
             v0 = param0->unk_57E;
         }

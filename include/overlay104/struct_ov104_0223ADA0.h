@@ -9,19 +9,19 @@
 #include "savedata.h"
 #include "sys_task_manager.h"
 
-typedef struct {
+typedef struct BattleFactory {
     int unk_00;
-    u8 unk_04;
+    u8 challengeType;
     u8 unk_05;
     u8 unk_06;
     u8 unk_07;
     u16 unk_08;
     u8 unk_0A;
     u8 unk_0B;
-    u16 unk_0C;
+    u16 currentStreak;
     u16 unk_0E;
     u32 unk_10;
-    int unk_14;
+    int wonBattle;
     u16 unk_18[14];
     FrontierDataDTO unk_34[2];
     u16 unk_254[6];
@@ -55,6 +55,6 @@ typedef struct {
     u16 unk_700;
     u8 unk_702;
     u32 unk_704;
-} UnkStruct_ov104_0223ADA0;
+} BattleFactory;
 
 #endif // POKEPLATINUM_STRUCT_OV104_0223ADA0_H

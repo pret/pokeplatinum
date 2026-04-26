@@ -13,14 +13,14 @@ typedef struct {
     SaveData *saveData;
     UnkStruct_020302DC *unk_08;
     void *unk_0C;
-    u8 unk_10;
+    u8 challengeType;
     u8 unk_11;
     u8 unk_12;
     u8 unk_13;
-    u16 unk_14;
+    u16 currentStreak;
     u16 unk_16;
     u32 unk_18;
-    int unk_1C;
+    int wonBattle;
     u16 unk_20;
     u16 unk_22;
     u8 unk_24[3];
@@ -35,10 +35,10 @@ typedef struct {
     FrontierPokemonDataDTO unk_288[4];
     u16 unk_368;
     u16 unk_36A[3];
-    u8 unk_370[4];
-    u8 unk_374[4];
-    u8 unk_378[4];
-    u8 unk_37C[4];
+    u8 appIdentityUnlocked[4];
+    u8 appLevelAdjustmentsUnlocked[4];
+    u8 appStatsUnlocked[4];
+    u8 appMovesUnlocked[4];
     u16 unk_380[6];
     u16 unk_38C[4];
     u16 unk_394[4][4];
@@ -56,9 +56,9 @@ typedef struct {
     u8 unk_A19;
     u8 unk_A1A;
     u8 unk_A1B;
-    u16 unk_A1C;
+    u16 partnersCP;
     u16 *unk_A20;
     u32 unk_A24;
-} UnkStruct_ov104_0223BA10;
+} BattleCastle;
 
 #endif // POKEPLATINUM_STRUCT_OV104_0223BA10_H

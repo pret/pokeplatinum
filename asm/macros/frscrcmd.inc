@@ -534,20 +534,20 @@
     .short FRSCRCMD_5E
     .endm
 
-    .macro FrontierScrCmd_5F
-    .short FRSCRCMD_5F
+    .macro OpenBattleFactoryAppInitial
+    .short FRSCRCMD_OPENBATTLEFACTORYAPPINITIAL
     .endm
 
-    .macro FrontierScrCmd_60
-    .short FRSCRCMD_60
+    .macro BattleFactory_CleanupBattle
+    .short FRSCRCMD_BATTLEFACTORY_CLEANUPBATTLE
     .endm
 
-    .macro FrontierScrCmd_61
-    .short FRSCRCMD_61
+    .macro BattleFactory_StartBattle
+    .short FRSCRCMD_BATTLEFACTORY_STARTBATTLE
     .endm
 
-    .macro FrontierScrCmd_62
-    .short FRSCRCMD_62
+    .macro OpenBattleFactoryAppForTrade
+    .short FRSCRCMD_OPENBATTLEFACTORYAPPFORTRADE
     .endm
 
     .macro FrontierScrCmd_63
@@ -566,17 +566,17 @@
     .short FRSCRCMD_66
     .endm
 
-    .macro FrontierScrCmd_67 arg0, arg1, arg2, arg3
-    .short FRSCRCMD_67
-    .byte \arg0
+    .macro CallBattleFactoryFunction command, arg1, arg2, destVar
+    .short FRSCRCMD_CALLBATTLEFACTORYFUNCTION
+    .byte \command
     .byte \arg1
     .byte \arg2
-    .short \arg3
+    .short \destVar
     .endm
 
-    .macro FrontierScrCmd_68 arg0
-    .short FRSCRCMD_68
-    .short \arg0
+    .macro BattleFactory_CheckWonBattle destVar
+    .short FRSCRCMD_BATTLEFACTORY_CHECKWONBATTLE
+    .short \destVar
     .endm
 
     .macro FrontierScrCmd_69 arg0, arg1, arg2
@@ -736,12 +736,12 @@
     .short FRSCRCMD_FREETOWERSTRUCT
     .endm
 
-    .macro FrontierScrCmd_87
-    .short FRSCRCMD_87
+    .macro BattleTower_StartBattle
+    .short FRSCRCMD_BATTLETOWER_STARTBATTLE
     .endm
 
-    .macro CheckWonTowerBattle destVar
-    .short FRSCRCMD_CHECKWONTOWERBATTLE
+    .macro BattleTower_CheckWonBattle destVar
+    .short FRSCRCMD_BATTLETOWER_CHECKWONBATTLE
     .short \destVar
     .endm
 
@@ -779,8 +779,8 @@
     .short FRSCRCMD_OPENBATTLEHALLAPP
     .endm
 
-    .macro BattleHall_CheckWonBattle
-    .short FRSCRCMD_BATTLEHALL_CHECKWONBATTLE
+    .macro BattleHall_CleanupBattle
+    .short FRSCRCMD_BATTLEHALL_CLEANUPBATTLE
     .endm
 
     .macro BattleHall_StartBattle
@@ -795,8 +795,8 @@
     .short \returnVar
     .endm
 
-    .macro BattleHall_GetBattleResult destVar
-    .short FRSCRCMD_BATTLEHALL_GETBATTLERESULT
+    .macro BattleHall_CheckWonBattle destVar
+    .short FRSCRCMD_BATTLEHALL_CHECKWONBATTLE
     .short \destVar
     .endm
 
@@ -841,20 +841,20 @@
     .short FRSCRCMD_99
     .endm
 
-    .macro FrontierScrCmd_9A
-    .short FRSCRCMD_9A
+    .macro OpenBattleCastleSelfApp
+    .short FRSCRCMD_OPENBATTLECASTLESELFAPP
     .endm
 
-    .macro FrontierScrCmd_9B
-    .short FRSCRCMD_9B
+    .macro BattleCastle_CleanupBattle
+    .short FRSCRCMD_BATTLECASTLE_CLEANUPBATTLE
     .endm
 
-    .macro FrontierScrCmd_9C
-    .short FRSCRCMD_9C
+    .macro BattleCastle_StartBattle
+    .short FRSCRCMD_BATTLECASTLE_STARTBATTLE
     .endm
 
-    .macro FrontierScrCmd_9D
-    .short FRSCRCMD_9D
+    .macro OpenBattleCastleOpponentApp
+    .short FRSCRCMD_OPENBATTLECASTLEOPPONENTAPP
     .endm
 
     .macro FrontierScrCmd_9E
@@ -865,17 +865,17 @@
     .short FRSCRCMD_9F
     .endm
 
-    .macro FrontierScrCmd_A0 arg0, arg1, arg2, arg3
-    .short FRSCRCMD_A0
-    .byte \arg0
+    .macro CallBattleCastleFunction command, arg1, arg2, destVar
+    .short FRSCRCMD_CALLBATTLECASTLEFUNCTION
+    .byte \command
     .byte \arg1
     .byte \arg2
-    .short \arg3
+    .short \destVar
     .endm
 
-    .macro FrontierScrCmd_A1 arg0
-    .short FRSCRCMD_A1
-    .short \arg0
+    .macro BattleCastle_CheckWonBattle destVar
+    .short FRSCRCMD_BATTLECASTLE_CHECKWONBATTLE
+    .short \destVar
     .endm
 
     .macro FrontierScrCmd_A2 arg0, arg1, arg2
@@ -1015,12 +1015,12 @@
     .short FRSCRCMD_BA
     .endm
 
-    .macro FrontierScrCmd_BB
-    .short FRSCRCMD_BB
+    .macro BattleArcade_CleanupBattle
+    .short FRSCRCMD_BATTLEARCADE_CLEANUPBATTLE
     .endm
 
-    .macro FrontierScrCmd_BC
-    .short FRSCRCMD_BC
+    .macro BattleArcade_StartBattle
+    .short FRSCRCMD_BATTLEARCADE_STARTBATTLE
     .endm
 
     .macro FrontierScrCmd_BD
@@ -1031,17 +1031,17 @@
     .short FRSCRCMD_BE
     .endm
 
-    .macro FrontierScrCmd_BF arg0, arg1, arg2, arg3
-    .short FRSCRCMD_BF
-    .byte \arg0
+    .macro CallBattleArcadeFunction command, arg1, arg2, destVar
+    .short FRSCRCMD_CALLBATTLEARCADEFUNCTION
+    .byte \command
     .short \arg1
     .short \arg2
-    .short \arg3
+    .short \destVar
     .endm
 
-    .macro FrontierScrCmd_C0 arg0
-    .short FRSCRCMD_C0
-    .short \arg0
+    .macro BattleArcade_CheckWonBattle destVar
+    .short FRSCRCMD_BATTLEARCADE_CHECKWONBATTLE
+    .short \destVar
     .endm
 
     .macro FrontierScrCmd_C1 arg0, arg1, arg2
@@ -1056,8 +1056,8 @@
     .short \arg0
     .endm
 
-    .macro FrontierScrCmd_C3
-    .short FRSCRCMD_C3
+    .macro OpenBattleArcadeApp
+    .short FRSCRCMD_OPENBATTLEARCADEAPP
     .endm
 
     .macro FrontierScrCmd_C4 arg0

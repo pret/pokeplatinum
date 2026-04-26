@@ -1,6 +1,10 @@
-#include <nitro.h>
-#include <string.h>
+#include "overlay104/ov104_022358E8.h"
 
+#include <nitro.h>
+
+#include "constants/battle_castle_functions.h"
+
+#include "applications/frontier/battle_castle/args.h"
 #include "applications/frontier/battle_castle/opponent_app.h"
 #include "applications/frontier/battle_castle/self_app.h"
 #include "overlay104/frontier_script_context.h"
@@ -11,7 +15,6 @@
 #include "overlay104/ov104_022361B4.h"
 #include "overlay104/ov104_0223B6F4.h"
 #include "overlay104/struct_ov104_02230BE4.h"
-#include "overlay104/struct_ov104_0223597C.h"
 #include "overlay104/struct_ov104_0223BA10.h"
 
 #include "battle_frontier_stats.h"
@@ -20,7 +23,6 @@
 #include "heap.h"
 #include "party.h"
 #include "pokemon.h"
-#include "string_gf.h"
 #include "unk_020302D0.h"
 #include "unk_0205DFC4.h"
 #include "unk_0209B6F8.h"
@@ -33,13 +35,13 @@ FS_EXTERN_OVERLAY(battle_castle_app);
 #include <nitro/code16.h>
 
 static BOOL ov104_02236008(FrontierScriptContext *param0);
-static void ov104_02235B3C(UnkStruct_ov104_0223597C *param0, UnkStruct_ov104_0223BA10 *param1);
+static void SetupBattleCastleAppArgs(BattleCastleAppArgs *args, BattleCastle *battleCastle);
 static BOOL ov104_02236058(FrontierScriptContext *param0);
-static void ov104_02235B84(void *param0);
+static void StoreBattleCastleAppResult(void *data);
 
 BOOL FrontierScrCmd_97(FrontierScriptContext *param0)
 {
-    UnkStruct_ov104_0223BA10 *v0;
+    BattleCastle *v0;
     UnkStruct_ov104_02230BE4 *v1;
     u16 v2 = FrontierScriptContext_GetVar(param0);
     u16 v3 = FrontierScriptContext_GetVar(param0);
@@ -58,7 +60,7 @@ BOOL FrontierScrCmd_97(FrontierScriptContext *param0)
 
 BOOL FrontierScrCmd_98(FrontierScriptContext *param0)
 {
-    UnkStruct_ov104_0223BA10 *v0;
+    BattleCastle *v0;
     u16 v1 = FrontierScriptContext_GetVar(param0);
 
     v0 = sub_0209B978(param0->scriptMan->unk_00);
@@ -69,178 +71,151 @@ BOOL FrontierScrCmd_98(FrontierScriptContext *param0)
 
 BOOL FrontierScrCmd_99(FrontierScriptContext *param0)
 {
-    UnkStruct_ov104_0223BA10 *v0 = sub_0209B978(param0->scriptMan->unk_00);
+    BattleCastle *v0 = sub_0209B978(param0->scriptMan->unk_00);
     ov104_022367AC(v0);
 
     return 0;
 }
 
-BOOL FrontierScrCmd_9A(FrontierScriptContext *param0)
+BOOL FrontierScrCmd_OpenBattleCastleSelfApp(FrontierScriptContext *ctx)
 {
-    int v0;
-    UnkStruct_ov104_0223BA10 *v1;
-    UnkStruct_ov104_0223597C *v2;
-    UnkStruct_ov104_02230BE4 *v3 = sub_0209B970(param0->scriptMan->unk_00);
+    UnkStruct_ov104_02230BE4 *v3 = sub_0209B970(ctx->scriptMan->unk_00);
 
     FS_EXTERN_OVERLAY(battle_castle_app);
 
-    static const ApplicationManagerTemplate v4 = {
+    static const ApplicationManagerTemplate sBattleCastleSelfAppTemplate = {
         BattleCastleSelfApp_Init,
         BattleCastleSelfApp_Main,
         BattleCastleSelfApp_Exit,
         FS_OVERLAY_ID(battle_castle_app)
     };
 
-    v1 = sub_0209B978(param0->scriptMan->unk_00);
-    v2 = Heap_Alloc(HEAP_ID_FIELD2, sizeof(UnkStruct_ov104_0223597C));
+    BattleCastle *battleCastle = sub_0209B978(ctx->scriptMan->unk_00);
+    BattleCastleAppArgs *args = Heap_Alloc(HEAP_ID_FIELD2, sizeof(BattleCastleAppArgs));
 
-    MI_CpuClear8(v2, sizeof(UnkStruct_ov104_0223597C));
-    v2->saveData = v3->saveData;
+    MI_CpuClear8(args, sizeof(BattleCastleAppArgs));
+    args->saveData = v3->saveData;
 
-    ov104_02235B3C(v2, v1);
-    sub_0209B988(param0->scriptMan->unk_00, &v4, v2, 0, ov104_02235B84);
-
-    return 1;
+    SetupBattleCastleAppArgs(args, battleCastle);
+    sub_0209B988(ctx->scriptMan->unk_00, &sBattleCastleSelfAppTemplate, args, 0, StoreBattleCastleAppResult);
+    return TRUE;
 }
 
-BOOL FrontierScrCmd_A4(FrontierScriptContext *param0)
+BOOL FrontierScrCmd_A4(FrontierScriptContext *ctx)
 {
-    int v0;
-    UnkStruct_ov104_0223BA10 *v1;
-    UnkStruct_ov104_0223597C *v2;
-    UnkStruct_ov104_02230BE4 *v3 = sub_0209B970(param0->scriptMan->unk_00);
+    UnkStruct_ov104_02230BE4 *v3 = sub_0209B970(ctx->scriptMan->unk_00);
 
     FS_EXTERN_OVERLAY(battle_castle_app);
 
-    static const ApplicationManagerTemplate v4 = {
+    static const ApplicationManagerTemplate sBattleCastleNullTemplate = {
         NULL,
         NULL,
         NULL,
         FS_OVERLAY_ID(battle_castle_app)
     };
 
-    v1 = sub_0209B978(param0->scriptMan->unk_00);
-    v2 = Heap_Alloc(HEAP_ID_FIELD2, sizeof(UnkStruct_ov104_0223597C));
+    BattleCastle *battleCastle = sub_0209B978(ctx->scriptMan->unk_00);
+    BattleCastleAppArgs *args = Heap_Alloc(HEAP_ID_FIELD2, sizeof(BattleCastleAppArgs));
 
-    MI_CpuClear8(v2, sizeof(UnkStruct_ov104_0223597C));
-    v2->saveData = v3->saveData;
+    MI_CpuClear8(args, sizeof(BattleCastleAppArgs));
+    args->saveData = v3->saveData;
 
-    ov104_02235B3C(v2, v1);
-    sub_0209B988(param0->scriptMan->unk_00, &v4, v2, 0, ov104_02235B84);
+    SetupBattleCastleAppArgs(args, battleCastle);
+    sub_0209B988(ctx->scriptMan->unk_00, &sBattleCastleNullTemplate, args, 0, StoreBattleCastleAppResult);
 
-    return 1;
+    return TRUE;
 }
 
-BOOL FrontierScrCmd_9B(FrontierScriptContext *param0)
+BOOL FrontierScrCmd_BattleCastle_CleanupBattle(FrontierScriptContext *ctx)
 {
-    int v0;
-    UnkStruct_ov104_0223BA10 *v1;
-    FieldBattleDTO *v2;
-    Pokemon *v3;
 
-    v1 = sub_0209B978(param0->scriptMan->unk_00);
-    v2 = v1->unk_0C;
+    BattleCastle *battleCastle = sub_0209B978(ctx->scriptMan->unk_00);
+    FieldBattleDTO *dto = battleCastle->unk_0C;
 
-    v3 = Party_GetPokemonBySlotIndex(v2->parties[0], 0);
-    Party_AddPokemonBySlotIndex(v1->unk_28, 0, v3);
+    Pokemon *mon = Party_GetPokemonBySlotIndex(dto->parties[BATTLER_PLAYER_1], 0);
+    Party_AddPokemonBySlotIndex(battleCastle->unk_28, 0, mon);
 
-    v3 = Party_GetPokemonBySlotIndex(v2->parties[0], 1);
-    Party_AddPokemonBySlotIndex(v1->unk_28, 1, v3);
+    mon = Party_GetPokemonBySlotIndex(dto->parties[BATTLER_PLAYER_1], 1);
+    Party_AddPokemonBySlotIndex(battleCastle->unk_28, 1, mon);
 
-    if (BattleCastle_IsMultiPlayerChallenge(v1->unk_10) == 0) {
-        v3 = Party_GetPokemonBySlotIndex(v2->parties[0], 2);
-        Party_AddPokemonBySlotIndex(v1->unk_28, 2, v3);
+    if (!BattleCastle_IsMultiPlayerChallenge(battleCastle->challengeType)) {
+        mon = Party_GetPokemonBySlotIndex(dto->parties[BATTLER_PLAYER_1], 2);
+        Party_AddPokemonBySlotIndex(battleCastle->unk_28, 2, mon);
     } else {
-        v3 = Party_GetPokemonBySlotIndex(v2->parties[2], 0);
-        Party_AddPokemonBySlotIndex(v1->unk_28, 2, v3);
+        mon = Party_GetPokemonBySlotIndex(dto->parties[BATTLER_PLAYER_2], 0);
+        Party_AddPokemonBySlotIndex(battleCastle->unk_28, 2, mon);
 
-        v3 = Party_GetPokemonBySlotIndex(v2->parties[2], 1);
-        Party_AddPokemonBySlotIndex(v1->unk_28, 3, v3);
+        mon = Party_GetPokemonBySlotIndex(dto->parties[BATTLER_PLAYER_2], 1);
+        Party_AddPokemonBySlotIndex(battleCastle->unk_28, 3, mon);
     }
 
-    v1->unk_1C = CheckPlayerWonBattle(v2->resultMask);
-    FieldBattleDTO_Free(v2);
-
-    return 0;
+    battleCastle->wonBattle = CheckPlayerWonBattle(dto->resultMask);
+    FieldBattleDTO_Free(dto);
+    return FALSE;
 }
 
-BOOL FrontierScrCmd_9C(FrontierScriptContext *param0)
+BOOL FrontierScrCmd_BattleCastle_StartBattle(FrontierScriptContext *ctx)
 {
-    FieldBattleDTO *v0;
-    UnkStruct_ov104_0223BA10 *v1;
-    UnkStruct_ov104_02230BE4 *v2 = sub_0209B970(param0->scriptMan->unk_00);
+    UnkStruct_ov104_02230BE4 *v2 = sub_0209B970(ctx->scriptMan->unk_00);
+    BattleCastle *battleCastle = sub_0209B978(ctx->scriptMan->unk_00);
 
-    v1 = sub_0209B978(param0->scriptMan->unk_00);
-    v0 = ov104_0223B810(v1, v2);
+    FieldBattleDTO *dto = ov104_0223B810(battleCastle, v2);
+    battleCastle->unk_0C = dto;
 
-    v1->unk_0C = v0;
-
-    sub_0209B988(param0->scriptMan->unk_00, &gBattleApplicationTemplate, v0, 0, NULL);
-    return 1;
+    sub_0209B988(ctx->scriptMan->unk_00, &gBattleApplicationTemplate, dto, 0, NULL);
+    return TRUE;
 }
 
-BOOL FrontierScrCmd_9D(FrontierScriptContext *param0)
+BOOL FrontierScrCmd_OpenBattleCastleOpponentApp(FrontierScriptContext *ctx)
 {
-    int v0;
-    UnkStruct_ov104_0223BA10 *v1;
-    UnkStruct_ov104_0223597C *v2;
-    UnkStruct_ov104_02230BE4 *v3 = sub_0209B970(param0->scriptMan->unk_00);
+    UnkStruct_ov104_02230BE4 *v3 = sub_0209B970(ctx->scriptMan->unk_00);
 
     FS_EXTERN_OVERLAY(battle_castle_app);
 
-    static const ApplicationManagerTemplate v4 = {
+    static const ApplicationManagerTemplate sBattleCastleOpponentAppTemplate = {
         BattleCastleOpponentApp_Init,
         BattleCastleOpponentApp_Main,
         BattleCastleOpponentApp_Exit,
         FS_OVERLAY_ID(battle_castle_app)
     };
 
-    v1 = sub_0209B978(param0->scriptMan->unk_00);
-    v2 = Heap_Alloc(HEAP_ID_FIELD2, sizeof(UnkStruct_ov104_0223597C));
+    BattleCastle *battleCastle = sub_0209B978(ctx->scriptMan->unk_00);
+    BattleCastleAppArgs *args = Heap_Alloc(HEAP_ID_FIELD2, sizeof(BattleCastleAppArgs));
 
-    MI_CpuClear8(v2, sizeof(UnkStruct_ov104_0223597C));
-    v2->saveData = v3->saveData;
+    MI_CpuClear8(args, sizeof(BattleCastleAppArgs));
+    args->saveData = v3->saveData;
 
-    ov104_02235B3C(v2, v1);
-    sub_0209B988(param0->scriptMan->unk_00, &v4, v2, 0, ov104_02235B84);
-
-    return 1;
+    SetupBattleCastleAppArgs(args, battleCastle);
+    sub_0209B988(ctx->scriptMan->unk_00, &sBattleCastleOpponentAppTemplate, args, 0, StoreBattleCastleAppResult);
+    return TRUE;
 }
 
-static void ov104_02235B3C(UnkStruct_ov104_0223597C *param0, UnkStruct_ov104_0223BA10 *param1)
+static void SetupBattleCastleAppArgs(BattleCastleAppArgs *args, BattleCastle *battleCastle)
 {
-    int v0;
+    args->challengeType = battleCastle->challengeType;
+    args->party = battleCastle->unk_28;
+    args->opponentsParty = battleCastle->unk_2C;
+    args->battleCastle = battleCastle;
+    args->partnersCP = battleCastle->partnersCP;
 
-    param0->unk_04 = param1->unk_10;
-    param0->unk_18 = param1->unk_28;
-    param0->unk_1C = param1->unk_2C;
-    param0->unk_24 = param1;
-    param0->unk_28 = param1->unk_A1C;
-
-    for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_08[v0] = param1->unk_370[v0];
-        param0->unk_0C[v0] = param1->unk_374[v0];
-        param0->unk_10[v0] = param1->unk_378[v0];
-        param0->unk_14[v0] = param1->unk_37C[v0];
+    for (int i = 0; i < 4; i++) {
+        args->identityUnlocked[i] = battleCastle->appIdentityUnlocked[i];
+        args->levelAdjustmentUnlocked[i] = battleCastle->appLevelAdjustmentsUnlocked[i];
+        args->statsUnlocked[i] = battleCastle->appStatsUnlocked[i];
+        args->movesUnlocked[i] = battleCastle->appMovesUnlocked[i];
     }
-
-    return;
 }
 
-static void ov104_02235B84(void *param0)
+static void StoreBattleCastleAppResult(void *data)
 {
-    int v0;
-    UnkStruct_ov104_0223597C *v1 = param0;
-
-    ov104_022367DC(v1->unk_24, param0);
-    Heap_Free(param0);
-
-    return;
+    BattleCastleAppArgs *args = data;
+    BattleCastle_StoreAppResults(args->battleCastle, data);
+    Heap_Free(data);
 }
 
 BOOL FrontierScrCmd_9E(FrontierScriptContext *param0)
 {
-    UnkStruct_ov104_0223BA10 *v0 = sub_0209B978(param0->scriptMan->unk_00);
+    BattleCastle *v0 = sub_0209B978(param0->scriptMan->unk_00);
     ov104_02236BF0(v0);
 
     return 0;
@@ -248,124 +223,114 @@ BOOL FrontierScrCmd_9E(FrontierScriptContext *param0)
 
 BOOL FrontierScrCmd_9F(FrontierScriptContext *param0)
 {
-    UnkStruct_ov104_0223BA10 *v0 = sub_0209B978(param0->scriptMan->unk_00);
+    BattleCastle *v0 = sub_0209B978(param0->scriptMan->unk_00);
     ov104_02236BF8(v0);
 
     return 0;
 }
 
-BOOL FrontierScrCmd_A0(FrontierScriptContext *param0)
+BOOL FrontierScrCmd_CallBattleCastleFunction(FrontierScriptContext *ctx)
 {
-    String *v0;
-    Pokemon *v1;
-    Party *v2;
-    UnkStruct_ov104_0223BA10 *v3;
-    u8 v4;
-    u32 v5[9][2];
-    u32 v6, v7;
-    int v8, v9, v10;
     UnkStruct_ov104_02230BE4 *v11;
-    FrontierGraphics *v12;
-    u8 v13[4];
-    u8 v14 = FrontierScriptContext_ReadByte(param0);
-    u8 v15 = FrontierScriptContext_ReadByte(param0);
-    u8 v16 = FrontierScriptContext_ReadByte(param0);
-    u16 *v17 = FrontierScriptContext_TryGetVarPointer(param0);
+    u8 command = FrontierScriptContext_ReadByte(ctx);
+    u8 arg1 = FrontierScriptContext_ReadByte(ctx);
+    u8 arg2 = FrontierScriptContext_ReadByte(ctx);
+    u16 *returnVar = FrontierScriptContext_TryGetVarPointer(ctx);
 
-    v3 = sub_0209B978(param0->scriptMan->unk_00);
-    v11 = sub_0209B970(param0->scriptMan->unk_00);
+    BattleCastle *battleCastle = sub_0209B978(ctx->scriptMan->unk_00);
+    v11 = sub_0209B970(ctx->scriptMan->unk_00);
 
-    switch (v14) {
-    case 2:
-        v3->unk_10 = v15;
+    switch (command) {
+    case BC_FUNC_SET_CHALLENGE_TYPE:
+        battleCastle->challengeType = arg1;
         break;
-    case 3:
-        *v17 = v3->unk_380[v15];
+    case BC_FUNC_UNK_3:
+        *returnVar = battleCastle->unk_380[arg1];
         break;
-    case 4:
-        *v17 = v3->unk_14;
+    case BC_FUNC_GET_CURRENT_STREAK:
+        *returnVar = battleCastle->currentStreak;
         break;
-    case 5:
-        if (v3->unk_14 < 9999) {
-            v3->unk_14++;
+    case BC_FUNC_INCREMENT_CURRENT_STREAK:
+        if (battleCastle->currentStreak < 9999) {
+            battleCastle->currentStreak++;
         }
         break;
-    case 7:
+    case BC_FUNC_RESET_SYSTEM:
         OS_ResetSystem(0);
         break;
-    case 9:
-        *v17 = sub_020302EC(v3->unk_08);
+    case BC_FUNC_UNK_9:
+        *returnVar = sub_020302EC(battleCastle->unk_08);
         break;
-    case 10:
-        ov104_02236848(v3, 2);
+    case BC_FUNC_UNK_10:
+        ov104_02236848(battleCastle, 2);
         break;
-    case 14:
-        *v17 = ov104_02236B48(v3);
+    case BC_FUNC_UNK_14:
+        *returnVar = ov104_02236B48(battleCastle);
         break;
-    case 15:
-        *v17 = v3->unk_288[v15].species;
+    case BC_FUNC_UNK_15:
+        *returnVar = battleCastle->unk_288[arg1].species;
         break;
-    case 16:
-        *v17 = v3->unk_288[v15].moves[v16];
+    case BC_FUNC_UNK_16:
+        *returnVar = battleCastle->unk_288[arg1].moves[arg2];
         break;
-    case 18:
-        v2 = SaveData_GetParty(v11->saveData);
+    case BC_FUNC_UNK_18: {
+        Party *v2 = SaveData_GetParty(v11->saveData);
 
-        for (v8 = 0; v8 < 3; v8++) {
-            v1 = Party_GetPokemonBySlotIndex(v2, v3->unk_24[v8]);
-            Pokemon_SetValue(v1, MON_DATA_HELD_ITEM, &v3->unk_36A[v8]);
+        for (int v8 = 0; v8 < 3; v8++) {
+            Pokemon *v1 = Party_GetPokemonBySlotIndex(v2, battleCastle->unk_24[v8]);
+            Pokemon_SetValue(v1, MON_DATA_HELD_ITEM, &battleCastle->unk_36A[v8]);
         }
+    } break;
+    case BC_FUNC_UNK_19:
+        *returnVar = ov104_0223BB60(battleCastle);
         break;
-    case 19:
-        *v17 = ov104_0223BB60(v3);
+    case BC_FUNC_UNK_20:
+        *returnVar = ov104_02236B58(battleCastle, arg1);
         break;
-    case 20:
-        *v17 = ov104_02236B58(v3, v15);
+    case BC_FUNC_UNK_21:
+        ov104_02236B8C(battleCastle);
         break;
-    case 21:
-        ov104_02236B8C(v3);
+    case BC_FUNC_UNK_22:
+        ov104_02236BD0(battleCastle);
         break;
-    case 22:
-        ov104_02236BD0(v3);
+    case BC_FUNC_UNK_23:
+        *returnVar = ov104_02236B54(battleCastle);
         break;
-    case 23:
-        *v17 = ov104_02236B54(v3);
+    case BC_FUNC_UNK_24:
+        *returnVar = battleCastle->unk_A10;
         break;
-    case 24:
-        *v17 = v3->unk_A10;
+    case BC_FUNC_UNK_26:
+        *returnVar = battleCastle->unk_A11;
         break;
-    case 26:
-        *v17 = v3->unk_A11;
+    case BC_FUNC_UNK_27:
+        *returnVar = ov104_02236D10(battleCastle);
+        ov104_02236ED8(battleCastle->saveData, battleCastle->challengeType, *returnVar);
         break;
-    case 27:
-        *v17 = ov104_02236D10(v3);
-        ov104_02236ED8(v3->saveData, v3->unk_10, *v17);
+    case BC_FUNC_UNK_28:
+        ov104_02236C50(battleCastle);
         break;
-    case 28:
-        ov104_02236C50(v3);
+    case BC_FUNC_UNK_29:
+        sub_0209BA80(battleCastle);
         break;
-    case 29:
-        sub_0209BA80(v3);
-        break;
-    case 30:
-        if (v3->unk_A1B >= 6) {
-            *v17 = (v3->unk_A1B - 6);
+    case BC_FUNC_UNK_30:
+        if (battleCastle->unk_A1B >= 6) {
+            *returnVar = (battleCastle->unk_A1B - 6);
         } else {
-            *v17 = v3->unk_A1B;
+            *returnVar = battleCastle->unk_A1B;
         }
         break;
-    case 31:
-        v3->unk_A1B = 0;
-        v3->unk_A19 = 0;
-        v3->unk_A18 = 0;
+    case BC_FUNC_UNK_31:
+        battleCastle->unk_A1B = 0;
+        battleCastle->unk_A19 = 0;
+        battleCastle->unk_A18 = 0;
         break;
-    case 32:
-        v3->unk_A18 = v15;
+    case BC_FUNC_UNK_32:
+        battleCastle->unk_A18 = arg1;
         break;
-    case 33:
-        v10 = 0;
+    case BC_FUNC_UNK_33: {
+        int v10 = 0;
 
-        if (v3->unk_A1B >= 6) {
+        if (battleCastle->unk_A1B >= 6) {
             if (CommSys_CurNetId() != 0) {
                 v10 = 1;
             }
@@ -376,101 +341,102 @@ BOOL FrontierScrCmd_A0(FrontierScriptContext *param0)
         }
 
         if (v10 == 1) {
-            ov104_0223BC2C(SaveData_GetBattleFrontier(v11->saveData), v3->unk_10, 50);
+            ov104_0223BC2C(SaveData_GetBattleFrontier(v11->saveData), battleCastle->challengeType, 50);
         } else {
-            v3->unk_A1C -= 50;
+            battleCastle->partnersCP -= 50;
         }
-        break;
-    case 34:
-        *v17 = 0;
+    } break;
+    case BC_FUNC_UNK_34:
+        *returnVar = 0;
 
-        if (BattleCastle_IsMultiPlayerChallenge(v3->unk_10) == 1) {
-            if (v3->unk_A1B >= 6) {
+        if (BattleCastle_IsMultiPlayerChallenge(battleCastle->challengeType) == 1) {
+            if (battleCastle->unk_A1B >= 6) {
                 if (CommSys_CurNetId() == 0) {
-                    *v17 = 1;
+                    *returnVar = 1;
                 }
             } else {
                 if (CommSys_CurNetId() != 0) {
-                    *v17 = 1;
+                    *returnVar = 1;
                 }
             }
         }
         break;
-    case 35:
-        *v17 = BattleCastle_IsMultiPlayerChallenge(v3->unk_10);
+    case BC_FUNC_IS_MULTIPLAYER_CHALLENGE:
+        *returnVar = BattleCastle_IsMultiPlayerChallenge(battleCastle->challengeType);
         break;
-    case 17:
-        *v17 = v3->unk_10;
+    case BC_FUNC_GET_CHALLENGE_TYPE:
+        *returnVar = battleCastle->challengeType;
         break;
-    case 25:
-        *v17 = v3->unk_12;
+    case BC_FUNC_UNK_25:
+        *returnVar = battleCastle->unk_12;
         break;
-    case 36:
-        v12 = FrontierScriptManager_GetGraphics(param0->scriptMan);
-        ov104_0223BB84(v12->bgConfig, v3, 3);
+    case BC_FUNC_UNK_36: {
+        FrontierGraphics *v12 = FrontierScriptManager_GetGraphics(ctx->scriptMan);
+        ov104_0223BB84(v12->bgConfig, battleCastle, 3);
+    } break;
+    case BC_FUNC_UNK_37:
+        ov104_0222E278(&(battleCastle->unk_4C[0]), battleCastle->unk_30[battleCastle->unk_11], HEAP_ID_FIELD2, 178);
+        ov104_0222E278(&(battleCastle->unk_4C[1]), battleCastle->unk_30[battleCastle->unk_11 + 7], HEAP_ID_FIELD2, 178);
         break;
-    case 37:
-        ov104_0222E278(&(v3->unk_4C[0]), v3->unk_30[v3->unk_11], HEAP_ID_FIELD2, 178);
-        ov104_0222E278(&(v3->unk_4C[1]), v3->unk_30[v3->unk_11 + 7], HEAP_ID_FIELD2, 178);
+    case BC_FUNC_UNK_38:
+        *returnVar = ov104_02237338(battleCastle);
         break;
-    case 38:
-        *v17 = ov104_02237338(v3);
-        break;
-    case 39:
-        *v17 = (u16)sub_02030470(sub_0203041C(v11->saveData), 10, 0, 0, NULL);
+    case BC_FUNC_UNK_39: {
+        u8 v13[4];
+        *returnVar = (u16)sub_02030470(sub_0203041C(v11->saveData), 10, 0, 0, NULL);
         v13[0] = 1;
         sub_02030430(sub_0203041C(v11->saveData), 10, 0, 0, v13);
-        break;
-    case 40:
-        *v17 = 0;
+    } break;
+    case BC_FUNC_UNK_40:
+        *returnVar = 0;
 
-        if (v3->unk_10 == 0) {
-            if ((v3->unk_14 + 1) == 21) {
-                *v17 = 1;
-            } else if ((v3->unk_14 + 1) == 49) {
-                *v17 = 2;
+        if (battleCastle->challengeType == 0) {
+            if ((battleCastle->currentStreak + 1) == 21) {
+                *returnVar = 1;
+            } else if ((battleCastle->currentStreak + 1) == 49) {
+                *returnVar = 2;
             }
         }
         break;
-    case 41:
-        ov104_0222E330(v3->unk_288, v3->unk_26C, v3->unk_274, v3->unk_278, NULL, 4, 11, 179);
+    case BC_FUNC_UNK_41:
+        ov104_0222E330(battleCastle->unk_288, battleCastle->unk_26C, battleCastle->unk_274, battleCastle->unk_278, NULL, 4, 11, 179);
         break;
-    case 42:
-        ov104_0223BAB8(v3);
+    case BC_FUNC_UNK_42:
+        ov104_0223BAB8(battleCastle);
         break;
-    case 43:
-        *v17 = v3->unk_13;
-        v3->unk_13 = 1;
+    case BC_FUNC_UNK_43:
+        *returnVar = battleCastle->unk_13;
+        battleCastle->unk_13 = 1;
         break;
-    case 44:
-        if (v3->unk_10 == 3) {
-            if (v15 == 0) {
-                v3->unk_22 = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(v11->saveData), BattleFrontierStats_GetCastleLatestCPIndex(v3->unk_10), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleLatestCPIndex(v3->unk_10)));
-                BattleFrontierStats_SetStat(SaveData_GetBattleFrontier(v11->saveData), BattleFrontierStats_GetCastleLatestCPIndex(v3->unk_10), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleLatestCPIndex(v3->unk_10)), v3->unk_20);
+    case BC_FUNC_UNK_44:
+        if (battleCastle->challengeType == 3) {
+            if (arg1 == 0) {
+                battleCastle->unk_22 = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(v11->saveData), BattleFrontierStats_GetCastleLatestCPIndex(battleCastle->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleLatestCPIndex(battleCastle->challengeType)));
+                BattleFrontierStats_SetStat(SaveData_GetBattleFrontier(v11->saveData), BattleFrontierStats_GetCastleLatestCPIndex(battleCastle->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleLatestCPIndex(battleCastle->challengeType)), battleCastle->unk_20);
             } else {
-                BattleFrontierStats_SetStat(SaveData_GetBattleFrontier(v11->saveData), BattleFrontierStats_GetCastleLatestCPIndex(v3->unk_10), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleLatestCPIndex(v3->unk_10)), v3->unk_22);
+                BattleFrontierStats_SetStat(SaveData_GetBattleFrontier(v11->saveData), BattleFrontierStats_GetCastleLatestCPIndex(battleCastle->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleLatestCPIndex(battleCastle->challengeType)), battleCastle->unk_22);
             }
         }
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
-BOOL FrontierScrCmd_A1(FrontierScriptContext *param0)
+BOOL FrontierScrCmd_BattleCastle_CheckWonBattle(FrontierScriptContext *ctx)
 {
-    UnkStruct_ov104_0223BA10 *v0;
-    u16 *v1 = FrontierScriptContext_TryGetVarPointer(param0);
+    BattleCastle *battleCastle;
+    u16 *destVar = FrontierScriptContext_TryGetVarPointer(ctx);
 
-    v0 = sub_0209B978(param0->scriptMan->unk_00);
-    *v1 = v0->unk_1C;
+    battleCastle = sub_0209B978(ctx->scriptMan->unk_00);
+    *destVar = battleCastle->wonBattle;
 
-    return 0;
+    return FALSE;
 }
 
 BOOL FrontierScrCmd_A2(FrontierScriptContext *param0)
 {
-    UnkStruct_ov104_0223BA10 *v0;
+    BattleCastle *v0;
     u16 v1 = FrontierScriptContext_GetVar(param0);
     u16 v2 = FrontierScriptContext_GetVar(param0);
     u16 *v3 = FrontierScriptContext_TryGetVarPointer(param0);
@@ -493,7 +459,7 @@ BOOL FrontierScrCmd_A3(FrontierScriptContext *param0)
 
 static BOOL ov104_02236008(FrontierScriptContext *param0)
 {
-    UnkStruct_ov104_0223BA10 *v0;
+    BattleCastle *v0;
     u16 v1 = FrontierScriptContext_TryGetVar(param0, param0->data[0]);
 
     v0 = sub_0209B978(param0->scriptMan->unk_00);
@@ -518,7 +484,7 @@ BOOL FrontierScrCmd_A5(FrontierScriptContext *param0)
 
 static BOOL ov104_02236058(FrontierScriptContext *param0)
 {
-    UnkStruct_ov104_0223BA10 *v0;
+    BattleCastle *v0;
     u16 *v1 = FrontierScriptContext_GetVarPointer(param0, param0->data[0]);
 
     v0 = sub_0209B978(param0->scriptMan->unk_00);
@@ -535,7 +501,7 @@ static BOOL ov104_02236058(FrontierScriptContext *param0)
 
 BOOL FrontierScrCmd_50(FrontierScriptContext *param0)
 {
-    UnkStruct_ov104_0223BA10 *v0 = sub_0209B978(param0->scriptMan->unk_00);
+    BattleCastle *v0 = sub_0209B978(param0->scriptMan->unk_00);
     ov104_02236FC0(param0->scriptMan, v0);
 
     return 0;
@@ -543,7 +509,7 @@ BOOL FrontierScrCmd_50(FrontierScriptContext *param0)
 
 BOOL FrontierScrCmd_51(FrontierScriptContext *param0)
 {
-    UnkStruct_ov104_0223BA10 *v0 = sub_0209B978(param0->scriptMan->unk_00);
+    BattleCastle *v0 = sub_0209B978(param0->scriptMan->unk_00);
     ov104_022370E0(param0->scriptMan, v0);
 
     return 0;
@@ -551,7 +517,7 @@ BOOL FrontierScrCmd_51(FrontierScriptContext *param0)
 
 BOOL FrontierScrCmd_52(FrontierScriptContext *param0)
 {
-    UnkStruct_ov104_0223BA10 *v0 = sub_0209B978(param0->scriptMan->unk_00);
+    BattleCastle *v0 = sub_0209B978(param0->scriptMan->unk_00);
     ov104_02237180(param0->scriptMan, v0);
 
     return 0;
@@ -597,7 +563,7 @@ BOOL FrontierScrCmd_A8(FrontierScriptContext *param0)
 BOOL FrontierScrCmd_A9(FrontierScriptContext *param0)
 {
     u16 *v0;
-    UnkStruct_ov104_0223BA10 *v1;
+    BattleCastle *v1;
     UnkStruct_ov104_02230BE4 *v2 = sub_0209B970(param0->scriptMan->unk_00);
     u16 v3 = FrontierScriptContext_ReadByte(param0);
 

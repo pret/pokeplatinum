@@ -7,19 +7,19 @@
 
 #include "party.h"
 #include "savedata.h"
-#include "sprite_system.h"
+#include "sprite.h"
 
 typedef struct {
     int unk_00;
     SaveData *saveData;
     UnkStruct_020304A0 *unk_08;
-    void *unk_0C;
-    u8 unk_10;
+    void *dto;
+    u8 challengeType;
     u8 unk_11;
     u8 unk_12;
-    u8 unk_13;
+    u8 activeEffect;
     int unk_14;
-    u16 unk_18;
+    u16 currentStreak;
     u16 unk_1A;
     u8 unk_1C;
     u8 unk_1D;
@@ -28,7 +28,7 @@ typedef struct {
     u16 unk_20;
     u16 unk_22;
     u32 unk_24;
-    int unk_28;
+    int wonBattle;
     u8 unk_2C[3];
     u8 unk_2F;
     ManagedSprite *unk_30[4];
@@ -38,12 +38,12 @@ typedef struct {
     Party *unk_70;
     Party *unk_74;
     u16 unk_78[14];
-    u32 unk_94[4];
-    u32 unk_A4[4];
-    u32 unk_B4[4];
-    u32 unk_C4[4];
-    u32 unk_D4[4];
-    u32 unk_E4[4];
+    u32 monHP[4];
+    u32 monAtk[4];
+    u32 monDef[4];
+    u32 monSpeed[4];
+    u32 monSpAtk[4];
+    u32 monSpDef[4];
     FrontierDataDTO unk_F4[2];
     u16 unk_314[4];
     u8 unk_31C[4];
@@ -51,7 +51,7 @@ typedef struct {
     FrontierPokemonDataDTO unk_330[4];
     u16 unk_410;
     u16 unk_412[3];
-    u16 unk_418[6];
+    u16 appCursorPos[6];
     u16 unk_424[40];
     u8 unk_474[512];
     u8 unk_674[2][512];
@@ -65,6 +65,6 @@ typedef struct {
     u8 unk_A7D;
     u16 *unk_A80;
     u32 unk_A84;
-} UnkStruct_ov104_0223BFFC;
+} BattleArcade;
 
 #endif // POKEPLATINUM_STRUCT_OV104_0223BFFC_H

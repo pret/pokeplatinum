@@ -47,7 +47,7 @@ typedef struct BattleTower {
     u8 unk_838[BT_PARTNERS_COUNT];
     u16 unk_83E[35];
     u16 unk_884[35];
-    int unk_8CC;
+    int wonBattle;
     void *unk_8D0;
     u8 unk_8D4;
     u8 unk_8D5;
