@@ -766,7 +766,7 @@ BOOL ScrCmd_30F(ScriptContext *param0)
             *v4 = 0;
         }
 
-        if (GameRecords_GetRecordValue(v1, RECORD_UNK_062) < 1) {
+        if (GameRecords_GetRecordValue(v1, RECORD_BATTLE_HALL_VICTORIES) < 1) {
             *v4 = 0;
         }
 

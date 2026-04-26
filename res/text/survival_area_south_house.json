@@ -2,7 +2,7 @@
   "key": 21534,
   "messages": [
     {
-      "id": "pl_msg_00000594_00000",
+      "id": "SurvivalAreaSouthHouse_Text_YouWantTM",
       "en_US": [
         "There’s a move that doubles in power\n",
         "if the Pokémon using it is poisoned,\f",
@@ -12,7 +12,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000594_00001",
+      "id": "SurvivalAreaSouthHouse_Text_ExplainFacade",
       "en_US": [
         "Facade’s a good move for your Pokémon\n",
         "to have.\r",

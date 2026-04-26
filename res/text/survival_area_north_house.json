@@ -2,7 +2,7 @@
   "key": 54295,
   "messages": [
     {
-      "id": "pl_msg_00000595_00000",
+      "id": "SurvivalAreaNorthHouse_Text_WantToTeachMove",
       "en_US": [
         "If you’d share your Shards with me,\n",
         "I can teach some moves.\r",
@@ -10,48 +10,48 @@
       ]
     },
     {
-      "id": "pl_msg_00000595_00001",
+      "id": "SurvivalAreaNorthHouse_Text_SeeYouThen",
       "en_US": "See you, then!"
     },
     {
-      "id": "pl_msg_00000595_00002",
+      "id": "SurvivalAreaNorthHouse_Text_TeachWhichPokemon",
       "en_US": "Which Pokémon should I teach?\r"
     },
     {
-      "id": "pl_msg_00000595_00003",
+      "id": "SurvivalAreaNorthHouse_Text_NoMovesToTeach",
       "en_US": [
         "There are no moves that can be taught\n",
         "to this Pokémon."
       ]
     },
     {
-      "id": "pl_msg_00000595_00004",
+      "id": "SurvivalAreaNorthHouse_Text_NotEnoughShards",
       "en_US": "You don’t have enough Shards."
     },
     {
-      "id": "pl_msg_00000595_00005",
+      "id": "SurvivalAreaNorthHouse_Text_TeachWhichMove",
       "en_US": [
         "Which move should be taught to\n",
         "{STRVAR_1 1, 0, 0}?"
       ]
     },
     {
-      "id": "pl_msg_00000595_00006",
+      "id": "SurvivalAreaNorthHouse_Text_Dummy6",
       "garbage": 16
     },
     {
-      "id": "pl_msg_00000595_00007",
+      "id": "SurvivalAreaNorthHouse_Text_Dummy7",
       "garbage": 28
     },
     {
-      "id": "pl_msg_00000595_00008",
+      "id": "SurvivalAreaNorthHouse_Text_PokemonLearnedMove",
       "en_US": [
         "{STRVAR_1 1, 0, 0} learned\n",
         "{STRVAR_1 6, 1, 0}!"
       ]
     },
     {
-      "id": "pl_msg_00000595_00009",
+      "id": "SurvivalAreaNorthHouse_Text_DeleteOlderMove",
       "en_US": [
         "{STRVAR_1 1, 0, 0} is trying to learn\n",
         "{STRVAR_1 6, 1, 0}.\r",
@@ -62,29 +62,29 @@
       ]
     },
     {
-      "id": "pl_msg_00000595_00010",
+      "id": "SurvivalAreaNorthHouse_Text_StopTryingToTeachMove",
       "en_US": "Stop trying to teach {STRVAR_1 6, 1, 0}?"
     },
     {
-      "id": "pl_msg_00000595_00011",
+      "id": "SurvivalAreaNorthHouse_Text_PokemonDidntLearnMove",
       "en_US": [
         "{STRVAR_1 1, 0, 0} did not learn\n",
         "the move {STRVAR_1 6, 1, 0}.\r"
       ]
     },
     {
-      "id": "pl_msg_00000595_00012",
+      "id": "SurvivalAreaNorthHouse_Text_OKToForgetMove",
       "en_US": [
         "Is it OK to forget the\n",
         "move {STRVAR_1 6, 1, 0}?"
       ]
     },
     {
-      "id": "pl_msg_00000595_00013",
+      "id": "SurvivalAreaNorthHouse_Text_OneTwoThreePoof",
       "en_US": "1,{PAUSE 20} 2,{PAUSE 20} and...{PAUSE 20} ...{PAUSE 20} Poof!"
     },
     {
-      "id": "pl_msg_00000595_00014",
+      "id": "SurvivalAreaNorthHouse_Text_PokemonForgotMove",
       "en_US": [
         "{STRVAR_1 1, 0, 0} forgot how to\n",
         "use {STRVAR_1 6, 1, 0}.\r",
@@ -92,18 +92,18 @@
       ]
     },
     {
-      "id": "pl_msg_00000595_00015",
+      "id": "SurvivalAreaNorthHouse_Text_PokemonLearnedMove2",
       "en_US": "{STRVAR_1 1, 0, 0} learned {STRVAR_1 6, 1, 0}."
     },
     {
-      "id": "pl_msg_00000595_00016",
+      "id": "SurvivalAreaNorthHouse_Text_CantTeachEgg",
       "en_US": [
         "Teach an Egg a move?\n",
         "That’s out of my league!"
       ]
     },
     {
-      "id": "pl_msg_00000595_00017",
+      "id": "SurvivalAreaNorthHouse_Text_LookingForwardToVisitors",
       "en_US": [
         "I started living here where no one\n",
         "could reach me without using Rock Climb.\r",
@@ -116,7 +116,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000595_00018",
+      "id": "SurvivalAreaNorthHouse_Text_ShardColorsEmphasize",
       "en_US": [
         "Red Shards emphasize power.\n",
         "Blue Shards are for special effects.\f",

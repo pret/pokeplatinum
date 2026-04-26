@@ -1168,7 +1168,7 @@ _07D9:
 
 _0821:
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 203
+    SyncConnectedPlayers 203
     ClearReceivedTempDataAllPlayers
     Call _0860
     GoTo _0883
@@ -1200,7 +1200,7 @@ _0883:
 
 _08A5:
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 204
+    SyncConnectedPlayers 204
     ClearReceivedTempDataAllPlayers
     GoTo _08B5
     End
@@ -1212,7 +1212,7 @@ _08B5:
     FrontierScrCmd_C2 VAR_0x8002
     ClearReceivedTempDataAllPlayers
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 158
+    SyncConnectedPlayers 158
     ClearReceivedTempDataAllPlayers
     FrontierScrCmd_C9 1
     GoTo _08EA
@@ -1225,7 +1225,7 @@ _08EA:
     FrontierScrCmd_C2 VAR_0x8002
     ClearReceivedTempDataAllPlayers
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 202
+    SyncConnectedPlayers 202
     ClearReceivedTempDataAllPlayers
     FrontierScrCmd_C9 0
     GoTo _091F
@@ -1286,7 +1286,7 @@ _0A07:
 _0A2D:
     FrontierScrCmd_BF 52, 0, 0, VAR_0x8008
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 205
+    SyncConnectedPlayers 205
     ClearReceivedTempDataAllPlayers
     GoTo _0A46
     End
@@ -1298,7 +1298,7 @@ _0A46:
     FrontierScrCmd_C2 VAR_0x8002
     ClearReceivedTempDataAllPlayers
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 206
+    SyncConnectedPlayers 206
     ClearReceivedTempDataAllPlayers
     FrontierScrCmd_BF 49, 0, 0, VAR_0x8008
     WaitTime 1, VAR_0x8008
@@ -1325,7 +1325,7 @@ _0AD5:
 
 _0AE1:
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 140
+    SyncConnectedPlayers 140
     ClearReceivedTempDataAllPlayers
     GoTo _0B20
     End
@@ -1379,7 +1379,7 @@ _0B8A:
     MessageNoSkip BattleArcadeScene_Text_ActivateBoard
     WaitTime 30, VAR_0x8008
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 143
+    SyncConnectedPlayers 143
     ClearReceivedTempDataAllPlayers
     GoTo _0BD4
     End
@@ -1418,7 +1418,7 @@ _0C9E:
 
 _0CA4:
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 200
+    SyncConnectedPlayers 200
     ClearReceivedTempDataAllPlayers
     Return
 
@@ -2435,7 +2435,7 @@ _2049:
 _2053:
     WaitTime 30, VAR_0x8008
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 147
+    SyncConnectedPlayers 147
     ClearReceivedTempDataAllPlayers
     GoTo _2069
     End
@@ -2585,7 +2585,7 @@ _2247:
 
 _224F:
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 146
+    SyncConnectedPlayers 146
     ClearReceivedTempDataAllPlayers
     GoTo _22DB
     End
@@ -2595,7 +2595,7 @@ _225F:
     FrontierScrCmd_BF 6, 0, 0, VAR_0x8008
     WaitTime 1, VAR_0x8008
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 180
+    SyncConnectedPlayers 180
     ClearReceivedTempDataAllPlayers
     Return
 
@@ -2604,7 +2604,7 @@ _227E:
     FrontierScrCmd_BF 6, 0, 0, VAR_0x8008
     WaitTime 1, VAR_0x8008
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 181
+    SyncConnectedPlayers 181
     ClearReceivedTempDataAllPlayers
     Return
 
@@ -2613,7 +2613,7 @@ _229D:
     FrontierScrCmd_BF 6, 0, 0, VAR_0x8008
     WaitTime 1, VAR_0x8008
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 182
+    SyncConnectedPlayers 182
     ClearReceivedTempDataAllPlayers
     Return
 
@@ -2622,7 +2622,7 @@ _22BC:
     FrontierScrCmd_BF 6, 0, 0, VAR_0x8008
     WaitTime 1, VAR_0x8008
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 183
+    SyncConnectedPlayers 183
     ClearReceivedTempDataAllPlayers
     Return
 
@@ -2679,7 +2679,7 @@ _23CC:
     WaitABPress
     MessageNoSkip BattleArcadeScene_Text_PleaseWait
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 149
+    SyncConnectedPlayers 149
     ClearReceivedTempDataAllPlayers
     CloseMessage
     FrontierScrCmd_28 3, _05B4
@@ -2747,7 +2747,7 @@ _24F2:
 
 _2506:
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 141
+    SyncConnectedPlayers 141
     ClearReceivedTempDataAllPlayers
     CloseMessage
     FrontierScrCmd_3F 2
@@ -3092,7 +3092,7 @@ _2B02:
     FrontierScrCmd_BF 24, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _2B49
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 142
+    SyncConnectedPlayers 142
     ClearReceivedTempDataAllPlayers
     GoTo _2B5E
     End
@@ -3223,7 +3223,7 @@ _2D19:
     Message BattleArcadeScene_Text_ReturnItems
     MessageNoSkip BattleArcadeScene_Text_PleaseWait
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 144
+    SyncConnectedPlayers 144
     ClearReceivedTempDataAllPlayers
     GoTo _2D31
     End
@@ -3282,7 +3282,7 @@ _2DD4:
 _2DF6:
     MessageNoSkip BattleArcadeScene_Text_PleaseWait
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 148
+    SyncConnectedPlayers 148
     ClearReceivedTempDataAllPlayers
     GoTo _2E0A
     End
@@ -3314,7 +3314,7 @@ _2E80:
 
 _2E86:
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 150
+    SyncConnectedPlayers 150
     ClearReceivedTempDataAllPlayers
     Return
 

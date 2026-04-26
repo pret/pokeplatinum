@@ -2,7 +2,7 @@
   "key": 17459,
   "messages": [
     {
-      "id": "pl_msg_00000197_00000",
+      "id": "FightAreaMiddleHouse_Text_SeePeakMtCoronet",
       "en_US": [
         "Even from here, we could see the\n",
         "peak of Mt. Coronet.\r",
@@ -13,14 +13,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000197_00001",
+      "id": "FightAreaMiddleHouse_Text_FanaticalAboutBattling",
       "en_US": [
         "Everyone’s fanatical about battling\n",
         "here."
       ]
     },
     {
-      "id": "pl_msg_00000197_00002",
+      "id": "FightAreaMiddleHouse_Text_CheckOutGlobalTerminal",
       "en_US": [
         "People are people, and I’m me.\n",
         "I don’t like to be compared.\r",

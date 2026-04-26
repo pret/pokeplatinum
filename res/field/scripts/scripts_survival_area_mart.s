@@ -2,23 +2,23 @@
 #include "res/text/bank/survival_area_mart.h"
 
 
-    ScriptEntry _0012
-    ScriptEntry _0028
-    ScriptEntry _002A
-    ScriptEntry _003D
+    ScriptEntry SurvivalAreaMart_CommonVendor
+    ScriptEntry SurvivalAreaMart_Unused
+    ScriptEntry SurvivalAreaMart_Hiker
+    ScriptEntry SurvivalAreaMart_AceTrainerF
     ScriptEntryEnd
 
-_0012:
+SurvivalAreaMart_CommonVendor:
     PokeMartCommonWithGreeting
     End
 
-_0028:
+SurvivalAreaMart_Unused:
     End
 
-_002A:
-    NPCMessage 0
+SurvivalAreaMart_Hiker:
+    NPCMessage SurvivalAreaMart_Text_WordOfAdvice
     End
 
-_003D:
-    NPCMessage 1
+SurvivalAreaMart_AceTrainerF:
+    NPCMessage SurvivalAreaMart_Text_WasOn54WinStreak
     End

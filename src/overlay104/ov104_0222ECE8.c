@@ -9,8 +9,8 @@
 #include "overlay104/ov104_0223A7F4.h"
 #include "overlay104/ov104_0223B6F4.h"
 #include "overlay104/ov104_0223BCBC.h"
+#include "overlay104/struct_battle_hall.h"
 #include "overlay104/struct_ov104_0223ADA0.h"
-#include "overlay104/struct_ov104_0223B5C0.h"
 #include "overlay104/struct_ov104_0223BA10.h"
 #include "overlay104/struct_ov104_0223BFFC.h"
 
@@ -40,15 +40,15 @@ void ov104_0222F210(int param0, int param1, void *param2, void *param3);
 BOOL ov104_0222F238(UnkStruct_ov104_0223ADA0 *param0);
 void ov104_0222F31C(int param0, int param1, void *param2, void *param3);
 void ov104_0222ECE8(int param0, int param1, void *param2, void *param3);
-BOOL ov104_0222ED00(UnkStruct_ov104_0223B5C0 *param0);
+BOOL ov104_0222ED00(BattleHall *param0);
 void ov104_0222ED2C(int param0, int param1, void *param2, void *param3);
-BOOL ov104_0222ED44(UnkStruct_ov104_0223B5C0 *param0);
+BOOL ov104_0222ED44(BattleHall *param0);
 void ov104_0222ED74(int param0, int param1, void *param2, void *param3);
-BOOL ov104_0222EDA8(UnkStruct_ov104_0223B5C0 *param0);
+BOOL ov104_0222EDA8(BattleHall *param0);
 void ov104_0222EDDC(int param0, int param1, void *param2, void *param3);
-BOOL ov104_0222EE14(UnkStruct_ov104_0223B5C0 *param0, u8 param1);
+BOOL ov104_0222EE14(BattleHall *param0, u8 param1);
 void ov104_0222EE38(int param0, int param1, void *param2, void *param3);
-BOOL ov104_0222EE60(UnkStruct_ov104_0223B5C0 *param0);
+BOOL ov104_0222EE60(BattleHall *param0);
 void ov104_0222EEA8(int param0, int param1, void *param2, void *param3);
 u8 *ov104_0222EED8(int param0, void *param1, int param2);
 BOOL ov104_0222F3B8(UnkStruct_ov104_0223BA10 *param0);
@@ -82,7 +82,7 @@ u8 *ov104_0222FBC4(int param0, void *param1, int param2);
 
 void ov104_0222ECE8(int param0, int param1, void *param2, void *param3)
 {
-    UnkStruct_ov104_0223B5C0 *v0 = param3;
+    BattleHall *v0 = param3;
     const u16 *v1 = param2;
 
     v0->unk_D90++;
@@ -94,7 +94,7 @@ void ov104_0222ECE8(int param0, int param1, void *param2, void *param3)
     return;
 }
 
-BOOL ov104_0222ED00(UnkStruct_ov104_0223B5C0 *param0)
+BOOL ov104_0222ED00(BattleHall *param0)
 {
     int v0, v1;
     TrainerInfo *v2;
@@ -119,7 +119,7 @@ BOOL ov104_0222ED00(UnkStruct_ov104_0223B5C0 *param0)
 void ov104_0222ED2C(int param0, int param1, void *param2, void *param3)
 {
     int v0, v1;
-    UnkStruct_ov104_0223B5C0 *v2 = param3;
+    BattleHall *v2 = param3;
     const u16 *v3 = param2;
 
     v1 = 0;
@@ -135,7 +135,7 @@ void ov104_0222ED2C(int param0, int param1, void *param2, void *param3)
     return;
 }
 
-BOOL ov104_0222ED44(UnkStruct_ov104_0223B5C0 *param0)
+BOOL ov104_0222ED44(BattleHall *param0)
 {
     Party *v0;
     Pokemon *v1;
@@ -163,7 +163,7 @@ BOOL ov104_0222ED44(UnkStruct_ov104_0223B5C0 *param0)
 void ov104_0222ED74(int param0, int param1, void *param2, void *param3)
 {
     int v0, v1;
-    UnkStruct_ov104_0223B5C0 *v2 = param3;
+    BattleHall *v2 = param3;
     const u16 *v3 = param2;
 
     v1 = 0;
@@ -186,7 +186,7 @@ void ov104_0222ED74(int param0, int param1, void *param2, void *param3)
     return;
 }
 
-BOOL ov104_0222EDA8(UnkStruct_ov104_0223B5C0 *param0)
+BOOL ov104_0222EDA8(BattleHall *param0)
 {
     int v0, v1;
     u16 *v2;
@@ -212,7 +212,7 @@ BOOL ov104_0222EDA8(UnkStruct_ov104_0223B5C0 *param0)
 void ov104_0222EDDC(int param0, int param1, void *param2, void *param3)
 {
     int v0, v1;
-    UnkStruct_ov104_0223B5C0 *v2 = param3;
+    BattleHall *v2 = param3;
     const u16 *v3 = param2;
 
     v1 = 0;
@@ -235,7 +235,7 @@ void ov104_0222EDDC(int param0, int param1, void *param2, void *param3)
     return;
 }
 
-BOOL ov104_0222EE14(UnkStruct_ov104_0223B5C0 *param0, u8 param1)
+BOOL ov104_0222EE14(BattleHall *param0, u8 param1)
 {
     u16 *v0;
     int v1, v2 = 44;
@@ -254,7 +254,7 @@ BOOL ov104_0222EE14(UnkStruct_ov104_0223B5C0 *param0, u8 param1)
 
 void ov104_0222EE38(int param0, int param1, void *param2, void *param3)
 {
-    UnkStruct_ov104_0223B5C0 *v0 = param3;
+    BattleHall *v0 = param3;
     const u16 *v1 = param2;
 
     v0->unk_D90++;
@@ -268,7 +268,7 @@ void ov104_0222EE38(int param0, int param1, void *param2, void *param3)
     return;
 }
 
-BOOL ov104_0222EE60(UnkStruct_ov104_0223B5C0 *param0)
+BOOL ov104_0222EE60(BattleHall *param0)
 {
     int v0, v1, v2, v3, v4;
     Pokemon *v5;
@@ -294,7 +294,7 @@ BOOL ov104_0222EE60(UnkStruct_ov104_0223B5C0 *param0)
 void ov104_0222EEA8(int param0, int param1, void *param2, void *param3)
 {
     int v0, v1, v2;
-    UnkStruct_ov104_0223B5C0 *v3 = param3;
+    BattleHall *v3 = param3;
     const u8 *v4 = param2;
 
     v1 = 0;
@@ -312,7 +312,7 @@ void ov104_0222EEA8(int param0, int param1, void *param2, void *param3)
 
 u8 *ov104_0222EED8(int param0, void *param1, int param2)
 {
-    UnkStruct_ov104_0223B5C0 *v0 = param1;
+    BattleHall *v0 = param1;
 
     GF_ASSERT(param2 <= 512);
     return v0->unk_984[param0];

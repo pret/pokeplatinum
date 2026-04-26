@@ -25,8 +25,8 @@
 #include "narc.h"
 #include "sys_task_manager.h"
 
-#define MAP_OBJECT_COORD_CENTER_TO_FX32(coord) ((coord << 4) * FX32_ONE) + (MAP_OBJECT_TILE_SIZE >> 1)
-#define MAP_OBJECT_COORD_EDGE_TO_FX32(coord)   ((coord << 4) * FX32_ONE)
+#define MAP_OBJECT_COORD_CENTER_TO_FX32(coord) (((coord) << 4) * FX32_ONE) + (MAP_OBJECT_TILE_SIZE >> 1)
+#define MAP_OBJECT_COORD_EDGE_TO_FX32(coord)   (((coord) << 4) * FX32_ONE)
 
 typedef struct MapObjectSave {
     u32 status;

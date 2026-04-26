@@ -106,14 +106,14 @@ BOOL BattleHallWinRecords_UpdateRecord(SaveData *saveData, enum BattleFrontierSt
     GF_ASSERT(recordIndex >= 34 && recordIndex <= 60);
     GF_ASSERT(speciesIndex == STAT_HALL_LATEST_SPECIES_SINGLE || speciesIndex == STAT_HALL_LATEST_SPECIES_DOUBLE || speciesIndex == STAT_HALL_LATEST_SPECIES_MULTI);
 
-    *resultCode = 1;
+    *resultCode = LOAD_RESULT_OK;
     *saveResult = 2;
 
     if (hostFriendID != 0xff) {
         return updated;
     }
 
-    if (SaveData_MiscSaveBlock_InitFlag(saveData) == 0) {
+    if (!SaveData_MiscSaveBlock_InitFlag(saveData)) {
         return updated;
     }
 
@@ -132,7 +132,7 @@ BOOL BattleHallWinRecords_UpdateRecord(SaveData *saveData, enum BattleFrontierSt
 
     if (newRecord != currentRecord) {
         *saveResult = BattleHallWinRecords_Save(saveData, records);
-        updated = 1;
+        updated = TRUE;
     }
 
     if (records != NULL) {

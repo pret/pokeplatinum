@@ -358,7 +358,7 @@ _037F:
     SetVar VAR_0x8006, 0
     Message BattleTowerMultiBattleRoom_Text_AwaitingResponseFromFriend
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 5
+    SyncConnectedPlayers 5
     CallBattleTowerFunction BT_FUNC_UNK_58, 0, VAR_0x8008
     GoTo _039F
     End
@@ -400,13 +400,13 @@ _0443:
     WaitTime 30, VAR_0x8008
     FrontierScrCmd_3D VAR_UNK_0x40D8, 1
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 6
+    SyncConnectedPlayers 6
     CallIfEq VAR_0x8004, 100, _04D1
     CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, VAR_0x8008
     CallIfEq VAR_0x8008, BATTLE_TOWER_MODE_6, _04DF
     FadeScreenOut
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 8
+    SyncConnectedPlayers 8
     CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, VAR_0x8008
     CallIfEq VAR_0x8008, BATTLE_TOWER_MODE_LINK_MULTI, _04F7
     FrontierScrCmd_25 0
@@ -802,7 +802,7 @@ _0ACD:
     Call _0A91
     MessageNoSkip BattleTowerMultiBattleRoom_Text_PleaseWait
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 4
+    SyncConnectedPlayers 4
     CloseMessage
     FrontierScrCmd_3F 0
     FrontierScrCmd_87
@@ -822,7 +822,7 @@ _0B4B:
     Message BattleTowerMultiBattleRoom_Text_YouHaveChosenToRetire
     WaitTime 30, VAR_0x8008
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 7
+    SyncConnectedPlayers 7
     CloseMessage
     GoTo _0765
     End

@@ -2,7 +2,7 @@
   "key": 50234,
   "messages": [
     {
-      "id": "pl_msg_00000196_00000",
+      "id": "Route225GateToFightArea_Text_NorthSurvivalArea",
       "en_US": [
         "To the north is the Survival Area and\n",
         "then Stark Mountain.\r",
@@ -11,7 +11,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000196_00001",
+      "id": "Route225GateToFightArea_Text_InterestingPokemon",
       "en_US": [
         "Are you stocked up on Poké Balls?\r",
         "In the tall grass past here, you’ll find\n",

@@ -535,7 +535,7 @@ SandgemTownLab_EnableNationalDex:
     WaitMovement
     Message SandgemTownLab_Text_LetMeUpgradeYourPokedex
     CallIfSet FLAG_GAME_COMPLETED, SandgemTownLab_GameCompletedReturn
-    CallIfGe VAR_UNK_0x4081, 2, _079C
+    CallIfGe VAR_FIGHT_AREA_STATE, 2, _079C
     SetNationalDexEnabled
     BufferPlayerName 0
     PlayFanfare SEQ_FANFA4
@@ -569,7 +569,7 @@ SandgemTownLab_EnableNationalDex:
     End
 
 _079C:
-    SetFlag FLAG_UNK_0x0294
+    SetFlag FLAG_HIDE_FIGHT_AREA_BLOCKADE
     Return
 
 SandgemTownLab_GameCompletedReturn:

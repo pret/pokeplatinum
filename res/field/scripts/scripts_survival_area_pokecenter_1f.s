@@ -1,41 +1,42 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/survival_area_pokecenter_1f.h"
+#include "res/field/events/events_survival_area_pokecenter_1f.h"
 
 
-    ScriptEntry _0012
-    ScriptEntry _001E
-    ScriptEntry _0047
-    ScriptEntry _005A
+    ScriptEntry SurvivalAreaPokecenter1F_Nurse
+    ScriptEntry SurvivalAreaPokecenter1F_AceTrainerM
+    ScriptEntry SurvivalAreaPokecenter1F_ExpertM
+    ScriptEntry SurvivalAreaPokecenter1F_Psychic
     ScriptEntryEnd
 
-_0012:
-    Common_CallPokecenterNurse 0
+SurvivalAreaPokecenter1F_Nurse:
+    Common_CallPokecenterNurse LOCALID_POKECENTER_NURSE
     End
 
-_001E:
+SurvivalAreaPokecenter1F_AceTrainerM:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x00C8, _003C
-    Message 0
+    GoToIfSet FLAG_UNK_0x00C8, SurvivalAreaPokecenter1F_ChallengeWithoutOwnPokemon
+    Message SurvivalAreaPokecenter1F_Text_BuildingNextDoor
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_003C:
-    Message 1
+SurvivalAreaPokecenter1F_ChallengeWithoutOwnPokemon:
+    Message SurvivalAreaPokecenter1F_Text_ChallengeWithoutOwnPokemon
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0047:
-    NPCMessage 2
+SurvivalAreaPokecenter1F_ExpertM:
+    NPCMessage SurvivalAreaPokecenter1F_Text_CoordinationIsVital
     End
 
-_005A:
-    NPCMessage 3
+SurvivalAreaPokecenter1F_Psychic:
+    NPCMessage SurvivalAreaPokecenter1F_Text_ShapedByEgg
     End
 
     .balign 4, 0
