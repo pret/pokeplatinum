@@ -86,6 +86,13 @@ typedef struct UnkStruct_ov5_021ED110 {
     BillboardResources *unk_04;
 } UnkStruct_ov5_021ED110;
 
+enum BillboardState {
+    BILLBOARD_STATE_INACTIVE = 0,
+    BILLBOARD_STATE_INITIALIZED,
+    BILLBOARD_STATE_VRAM_TRANSFER,
+    BILLBOARD_STATE_ACTIVE,
+};
+
 void Billboard_Reset(Billboard *billboard);
 void BillboardLists_Create(int count, enum HeapID heapID);
 void BillboardLists_Delete(void);

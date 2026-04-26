@@ -26,13 +26,6 @@ enum BillboardResourceValue {
     BILLBOARD_RESOURCE_TEXTURE,
 };
 
-enum BillboardState {
-    BILLBOARD_STATE_INACTIVE = 0,
-    BILLBOARD_STATE_INITIALIZED,
-    BILLBOARD_STATE_VRAM_TRANSFER,
-    BILLBOARD_STATE_ACTIVE,
-};
-
 static BillboardList *FindFirstFreeBillboardList(void);
 static void BillboardList_Reset(BillboardList *list);
 static void BillboardList_Draw(BillboardList *list);

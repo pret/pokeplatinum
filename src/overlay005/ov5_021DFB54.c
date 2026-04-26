@@ -1738,11 +1738,11 @@ static void PlayerAvatar_Redraw(PlayerAvatar *playerAvatar, int param1)
         Billboard *v3;
 
         fieldSystem = MapObject_FieldSystem(v0);
-        v1 = ov9_0224A520(fieldSystem, v0);
+        v1 = DistWorld_GetMapObjectRotatorAnimFrame(fieldSystem, v0);
         v3 = ov5_021EE3FC(v0, param1, ov5_021E10C0, playerAvatar);
 
         if (v3 != NULL) {
-            ov9_0224A558(fieldSystem, v3, v1);
+            DistWorld_BindMapObjectRotator(fieldSystem, v3, v1);
         }
     }
 }
@@ -1753,7 +1753,7 @@ static void ov5_021E10C0(void *param0, const Billboard *param1)
     MapObject *v1 = Player_MapObject(playerAvatar);
     FieldSystem *fieldSystem = MapObject_FieldSystem(v1);
 
-    ov9_0224A564(fieldSystem, param1);
+    DistWorld_UnbindMapObjectRotator(fieldSystem, param1);
 }
 
 static MapObject *ov5_021E10D4(PlayerAvatar *playerAvatar, int param1)

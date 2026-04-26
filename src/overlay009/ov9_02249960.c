@@ -599,6 +599,12 @@ enum SkyKind {
     SKY_KIND_COUNT,
 };
 
+enum MapObjectRotatorValidity {
+    MAP_OBJECT_ROTATOR_VALIDITY_OK = 0,
+    MAP_OBJECT_ROTATOR_VALIDITY_NEEDS_RESET,
+    MAP_OBJECT_ROTATOR_VALIDITY_NEEDS_FREE,
+};
+
 typedef struct DistWorldSystem DistWorldSystem;
 
 typedef struct DistWorldBounds {
@@ -696,7 +702,7 @@ typedef struct DistWorldFloatingPlatformJumpPointTemplate {
     s16 xDisplacement;
     s16 yDisplacement;
     s16 zDisplacement;
-    s16 unk_1A;
+    s16 playerSpriteRotAngle;
     s16 movementAnimSteps;
     u16 unk_1E;
     u16 unk_20;
@@ -830,26 +836,26 @@ typedef struct DistWorldFieldTaskContext {
     u8 data[FIELD_TASK_CONTEXT_MAX_SIZE];
 } DistWorldFieldTaskContext;
 
-typedef struct {
-    s16 unk_00;
-    s16 unk_02;
-    fx32 unk_04;
-    fx32 unk_08;
-    fx32 unk_0C;
-    NNSG3dAnmObj *unk_10;
-    u16 unk_14;
-    u16 unk_16;
-    MapObject *unk_18;
-    Billboard *unk_1C;
-} UnkStruct_ov9_0224A294;
+typedef struct DistWorldMapObjectRotator {
+    s16 finalRotAngle;
+    s16 animStepsLeft;
+    fx32 currRotAngle;
+    fx32 rotAngleDelta;
+    fx32 animFrame;
+    NNSG3dAnmObj *animObj;
+    u16 mapObjGraphicsID;
+    u16 mapObjLocalID;
+    MapObject *mapObj;
+    Billboard *billboard;
+} DistWorldMapObjectRotator;
 
-typedef struct {
-    int unk_00;
-    UnkStruct_ov9_0224A294 *unk_04;
-    void *unk_08;
-    void *unk_0C;
-    NNSFndAllocator unk_10;
-} UnkStruct_ov9_0224A228;
+typedef struct DistWorldMapObjectRotatorManager {
+    int count;
+    DistWorldMapObjectRotator *rotators;
+    void *animData;
+    void *anim;
+    NNSFndAllocator allocator;
+} DistWorldMapObjectRotatorManager;
 
 typedef struct DistWorldPropAnimInfo {
     u16 propKind;
@@ -1121,7 +1127,7 @@ struct DistWorldSystem {
     DistWorldFieldTaskContext fieldTaskCtx;
     DistWorldLoadedEvent loadedEvent;
     UnkStruct_ov9_02249E94 unk_184;
-    UnkStruct_ov9_0224A228 unk_188;
+    DistWorldMapObjectRotatorManager mapObjRotatorMan;
     DistWorldSkyClouds skyClouds;
     DistWorldPropRenderBuffers propRenderBuffs;
     UnkStruct_ov9_02249B04_sub1 unk_169C;
@@ -1421,17 +1427,17 @@ static void CameraInit(DistWorldSystem *system);
 static void CameraFree(DistWorldSystem *system);
 static void CameraTransitionTask(SysTask *sysTask, void *sysTaskParam);
 static BOOL DoCameraTransition(DistWorldSystem *system, const DistWorldCameraAngleTemplate *cameraAngleTemplate);
-static void ov9_0224A1E4(DistWorldSystem *param0, int param1);
-static void ov9_0224A228(UnkStruct_ov9_0224A228 *param0, UnkStruct_ov9_0224A294 *param1, Billboard *param2);
-static void ov9_0224A294(UnkStruct_ov9_0224A228 *param0, UnkStruct_ov9_0224A294 *param1);
-static void ov9_0224A2AC(UnkStruct_ov9_0224A228 *param0, UnkStruct_ov9_0224A294 *param1);
-static void ov9_0224A334(DistWorldSystem *param0);
-static void ov9_0224A390(DistWorldSystem *param0, MapObject *param1, int param2);
-static void ov9_0224A3C4(DistWorldSystem *param0, Billboard *param1, int param2);
-static void ov9_0224A408(DistWorldSystem *param0, const Billboard *param1);
-static void ov9_0224A49C(DistWorldSystem *param0);
-static void ov9_0224A4C8(Billboard *param0, void *param1);
-static void ov9_0224A4D0(DistWorldSystem *param0, MapObject *param1, int param2, int param3);
+static void InitMapObjectRotatorManager(DistWorldSystem *system, int rotatorCount);
+static void DistWorldMapObjectRotatorManager_PrepareRotator(DistWorldMapObjectRotatorManager *mapObjRotatorMan, DistWorldMapObjectRotator *mapObjRotator, Billboard *billboard);
+static void DistWorldMapObjectRotatorManager_FreeRotator(DistWorldMapObjectRotatorManager *mapObjRotatorMan, DistWorldMapObjectRotator *mapObjRotator);
+static void DistWorldMapObjectRotatorManager_ResetRotator(DistWorldMapObjectRotatorManager *mapObjRotatorMan, DistWorldMapObjectRotator *mapObjRotator);
+static void FreeMapObjectRotatorManager(DistWorldSystem *system);
+static void BindMapObjectRotator(DistWorldSystem *system, MapObject *mapObj, int initialAngle);
+static void BindMapObjectRotatorWithBillboard(DistWorldSystem *system, Billboard *billboard, int initialAngle);
+static void UnbindMapObjectRotatorWithBillboard(DistWorldSystem *system, const Billboard *billboard);
+static void TickAllMapObjectRotators(DistWorldSystem *system);
+static void MapObjectRotatorBillboardCallback(Billboard *billboard, void *cbParam);
+static void RotateMapObject(DistWorldSystem *system, MapObject *mapObj, int angle, int animSteps);
 static void FieldTaskContextNoOp1(DistWorldSystem *system);
 static void FieldTaskContextNoOp2(DistWorldSystem *system);
 static void *InitFieldTaskContext(DistWorldSystem *system, int ctxSize);
@@ -1712,7 +1718,7 @@ void DistWorld_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
     ov9_0224BE14(dwSystem);
     ov9_02249F50(dwSystem);
     ov9_02249F88(dwSystem);
-    ov9_0224A1E4(dwSystem, (4 + 2));
+    InitMapObjectRotatorManager(dwSystem, 6);
     InitPropRenderBuffers(dwSystem);
     InitSkyBackground(dwSystem);
     InitFog(dwSystem);
@@ -1760,7 +1766,7 @@ void DistWorld_DynamicMapFeaturesFree(FieldSystem *fieldSystem)
     Dummy0224B3F4(v0);
     FinishSkyBackground(v0);
     FreePropRenderBuffers(v0);
-    ov9_0224A334(v0);
+    FreeMapObjectRotatorManager(v0);
     ov9_02249F98(v0);
     ov9_02249F84(v0);
     ov9_0224BE8C(v0);
@@ -2047,7 +2053,7 @@ static void ov9_02249EDC(SysTask *param0, void *param1)
     UnkStruct_ov9_02249E94 *v1 = &v0->unk_184;
 
     {
-        ov9_0224A49C(v0);
+        TickAllMapObjectRotators(v0);
     }
 
     {
@@ -2248,286 +2254,272 @@ static BOOL DoCameraTransition(DistWorldSystem *system, const DistWorldCameraAng
     return TRUE;
 }
 
-static void ov9_0224A1E4(DistWorldSystem *param0, int param1)
+static void InitMapObjectRotatorManager(DistWorldSystem *system, int rotatorCount)
 {
-    UnkStruct_ov9_0224A228 *v0 = &param0->unk_188;
+    DistWorldMapObjectRotatorManager *mapObjRotatorMan = &system->mapObjRotatorMan;
+    mapObjRotatorMan->count = rotatorCount;
 
-    v0->unk_00 = param1;
-    param1 *= sizeof(UnkStruct_ov9_0224A294);
-    v0->unk_04 = Heap_Alloc(HEAP_ID_FIELD1, param1);
+    int rotatorSize = rotatorCount * sizeof(DistWorldMapObjectRotator);
+    mapObjRotatorMan->rotators = Heap_Alloc(HEAP_ID_FIELD1, rotatorSize);
+    memset(mapObjRotatorMan->rotators, 0, rotatorSize);
 
-    memset(v0->unk_04, 0, param1);
-    HeapExp_FndInitAllocator(&v0->unk_10, HEAP_ID_FIELD1, 4);
-
-    v0->unk_08 = FieldEffectManager_AllocAndReadNARCWholeMember(param0->fieldSystem->fieldEffMan, 197, 1);
-    v0->unk_0C = NNS_G3dGetAnmByIdx(v0->unk_08, 0);
+    HeapExp_FndInitAllocator(&mapObjRotatorMan->allocator, HEAP_ID_FIELD1, 4);
+    mapObjRotatorMan->animData = FieldEffectManager_AllocAndReadNARCWholeMember(system->fieldSystem->fieldEffMan, 197, TRUE);
+    mapObjRotatorMan->anim = NNS_G3dGetAnmByIdx(mapObjRotatorMan->animData, 0);
 }
 
-static void ov9_0224A228(UnkStruct_ov9_0224A228 *param0, UnkStruct_ov9_0224A294 *param1, Billboard *param2)
+static void DistWorldMapObjectRotatorManager_PrepareRotator(DistWorldMapObjectRotatorManager *mapObjRotatorMan, DistWorldMapObjectRotator *mapObjRotator, Billboard *billboard)
 {
-    NNSG3dResMdl *v0 = Billboard_GetModel2(param2);
-    NNSG3dResTex *v1 = Billboard_GetTexture(param2);
-    NNSG3dRenderObj *v2 = Billboard_GetRenderObj(param2);
+    NNSG3dResMdl *model = Billboard_GetModel2(billboard);
+    NNSG3dResTex *texture = Billboard_GetTexture(billboard);
+    NNSG3dRenderObj *renderObj = Billboard_GetRenderObj(billboard);
 
-    GF_ASSERT(param1->unk_10 == NULL);
+    GF_ASSERT(mapObjRotator->animObj == NULL);
 
-    param1->unk_1C = param2;
-    param1->unk_10 = NNS_G3dAllocAnmObj(&param0->unk_10, param0->unk_0C, v0);
+    mapObjRotator->billboard = billboard;
+    mapObjRotator->animObj = NNS_G3dAllocAnmObj(&mapObjRotatorMan->allocator, mapObjRotatorMan->anim, model);
 
-    NNS_G3dAnmObjInit(param1->unk_10, param0->unk_0C, v0, v1);
-    NNS_G3dRenderObjAddAnmObj(v2, param1->unk_10);
+    NNS_G3dAnmObjInit(mapObjRotator->animObj, mapObjRotatorMan->anim, model, texture);
+    NNS_G3dRenderObjAddAnmObj(renderObj, mapObjRotator->animObj);
 
-    Billboard_SetCallback(param2, ov9_0224A4C8, param1);
+    Billboard_SetCallback(billboard, MapObjectRotatorBillboardCallback, mapObjRotator);
 
-    if (param1->unk_18 != NULL) {
-        param1->unk_14 = MapObject_GetGraphicsID(param1->unk_18);
+    if (mapObjRotator->mapObj != NULL) {
+        mapObjRotator->mapObjGraphicsID = MapObject_GetGraphicsID(mapObjRotator->mapObj);
     }
 }
 
-static void ov9_0224A294(UnkStruct_ov9_0224A228 *param0, UnkStruct_ov9_0224A294 *param1)
+static void DistWorldMapObjectRotatorManager_FreeRotator(DistWorldMapObjectRotatorManager *mapObjRotatorMan, DistWorldMapObjectRotator *mapObjRotator)
 {
-    if (param1->unk_10 != NULL) {
-        NNS_G3dFreeAnmObj(&param0->unk_10, param1->unk_10);
-        param1->unk_10 = NULL;
+    if (mapObjRotator->animObj != NULL) {
+        NNS_G3dFreeAnmObj(&mapObjRotatorMan->allocator, mapObjRotator->animObj);
+        mapObjRotator->animObj = NULL;
     }
 }
 
-static void ov9_0224A2AC(UnkStruct_ov9_0224A228 *param0, UnkStruct_ov9_0224A294 *param1)
+static void DistWorldMapObjectRotatorManager_ResetRotator(DistWorldMapObjectRotatorManager *mapObjRotatorMan, DistWorldMapObjectRotator *mapObjRotator)
 {
-    ov9_0224A294(param0, param1);
-    memset(param1, 0, sizeof(UnkStruct_ov9_0224A294));
+    DistWorldMapObjectRotatorManager_FreeRotator(mapObjRotatorMan, mapObjRotator);
+    memset(mapObjRotator, 0, sizeof(DistWorldMapObjectRotator));
 }
 
-static void ov9_0224A2C0(UnkStruct_ov9_0224A228 *param0, UnkStruct_ov9_0224A294 *param1)
+static void DistWorldMapObjectRotatorManager_TryPrepareRotator(DistWorldMapObjectRotatorManager *mapObjRotatorMan, DistWorldMapObjectRotator *mapObjRotator)
 {
-    if (param1->unk_18 != NULL) {
-        if (param1->unk_10 == NULL) {
-            Billboard *v0 = ov5_021EB1A0(param1->unk_18);
+    if (mapObjRotator->mapObj != NULL) {
+        if (mapObjRotator->animObj == NULL) {
+            Billboard *billboard = ov5_021EB1A0(mapObjRotator->mapObj);
 
-            if (v0 == NULL) {
+            if (billboard == NULL) {
                 return;
             }
 
-            ov9_0224A228(param0, param1, v0);
+            DistWorldMapObjectRotatorManager_PrepareRotator(mapObjRotatorMan, mapObjRotator, billboard);
         }
     }
 }
 
-static int ov9_0224A2E4(UnkStruct_ov9_0224A294 *param0)
+static int DistWorldMapObjectRotator_GetValidity(DistWorldMapObjectRotator *mapObjRotator)
 {
-    if (param0->unk_18 != NULL) {
-        if (sub_02062CF8(param0->unk_18) == 0) {
-            return 1;
+    if (mapObjRotator->mapObj != NULL) {
+        if (!sub_02062CF8(mapObjRotator->mapObj)) {
+            return MAP_OBJECT_ROTATOR_VALIDITY_NEEDS_RESET;
+        } else if (MapObject_GetLocalID(mapObjRotator->mapObj) != mapObjRotator->mapObjLocalID) {
+            return MAP_OBJECT_ROTATOR_VALIDITY_NEEDS_RESET;
+        } else if (mapObjRotator->animObj != NULL && mapObjRotator->mapObjGraphicsID != MapObject_GetGraphicsID(mapObjRotator->mapObj)) {
+            return MAP_OBJECT_ROTATOR_VALIDITY_NEEDS_FREE;
+        }
+    } else if (Billboard_GetState(mapObjRotator->billboard) == BILLBOARD_STATE_INACTIVE) {
+        return MAP_OBJECT_ROTATOR_VALIDITY_NEEDS_RESET;
+    }
+
+    return MAP_OBJECT_ROTATOR_VALIDITY_OK;
+}
+
+static void FreeMapObjectRotatorManager(DistWorldSystem *system)
+{
+    DistWorldMapObjectRotatorManager *mapObjRotatorMan = &system->mapObjRotatorMan;
+    DistWorldMapObjectRotator *iter = mapObjRotatorMan->rotators;
+
+    for (int i = 0; i < mapObjRotatorMan->count; i++, iter++) {
+        DistWorldMapObjectRotatorManager_ResetRotator(mapObjRotatorMan, iter);
+    }
+
+    if (mapObjRotatorMan->animData != NULL) {
+        Heap_Free(mapObjRotatorMan->animData);
+        mapObjRotatorMan->animData = NULL;
+    }
+
+    Heap_Free(mapObjRotatorMan->rotators);
+    mapObjRotatorMan->rotators = NULL;
+}
+
+static void DistWorldMapObjectRotator_Init(DistWorldMapObjectRotator *mapObjRotator, MapObject *mapObj, int initialAngle)
+{
+    mapObjRotator->finalRotAngle = initialAngle;
+    mapObjRotator->currRotAngle = FX32_ONE * initialAngle;
+    mapObjRotator->animFrame = mapObjRotator->currRotAngle;
+
+    if (mapObj != NULL) {
+        mapObjRotator->mapObj = mapObj;
+        mapObjRotator->mapObjLocalID = MapObject_GetLocalID(mapObj);
+    }
+}
+
+static void BindMapObjectRotator(DistWorldSystem *system, MapObject *mapObj, int initialAngle)
+{
+    int i = 0;
+    DistWorldMapObjectRotatorManager *mapObjRotatorMan = &system->mapObjRotatorMan;
+    DistWorldMapObjectRotator *iter = mapObjRotatorMan->rotators;
+
+    while (i < mapObjRotatorMan->count) {
+        if (iter->mapObj == NULL && iter->billboard == NULL) {
+            DistWorldMapObjectRotator_Init(iter, mapObj, initialAngle);
+            return;
         }
 
-        if (MapObject_GetLocalID(param0->unk_18) != param0->unk_16) {
-            return 1;
+        i++;
+        iter++;
+    }
+
+    GF_ASSERT(FALSE);
+}
+
+static void BindMapObjectRotatorWithBillboard(DistWorldSystem *system, Billboard *billboard, int initialAngle)
+{
+    int i = 0;
+    DistWorldMapObjectRotatorManager *mapObjRotatorMan = &system->mapObjRotatorMan;
+    DistWorldMapObjectRotator *iter = mapObjRotatorMan->rotators;
+
+    while (i < mapObjRotatorMan->count) {
+        if (iter->mapObj == NULL && iter->billboard == NULL) {
+            DistWorldMapObjectRotator_Init(iter, NULL, initialAngle);
+            DistWorldMapObjectRotatorManager_PrepareRotator(mapObjRotatorMan, iter, billboard);
+            return;
         }
 
-        if (param0->unk_10 != NULL) {
-            if (param0->unk_14 != MapObject_GetGraphicsID(param0->unk_18)) {
-                return 2;
-            }
+        i++;
+        iter++;
+    }
+
+    GF_ASSERT(FALSE);
+}
+
+static void UnbindMapObjectRotatorWithBillboard(DistWorldSystem *system, const Billboard *billboard)
+{
+    int i = 0;
+    DistWorldMapObjectRotatorManager *mapObjRotatorMan = &system->mapObjRotatorMan;
+    DistWorldMapObjectRotator *iter = mapObjRotatorMan->rotators;
+
+    while (i < mapObjRotatorMan->count) {
+        if (iter->billboard == billboard) {
+            DistWorldMapObjectRotatorManager_ResetRotator(mapObjRotatorMan, iter);
+            return;
         }
-    } else if (Billboard_GetState(param0->unk_1C) == 0) {
-        return 1;
+
+        i++;
+        iter++;
+    }
+
+    GF_ASSERT(FALSE);
+}
+
+static void TickMapObjectRotator(DistWorldSystem *system, DistWorldMapObjectRotatorManager *mapObjRotatorMan, DistWorldMapObjectRotator *mapObjRotator)
+{
+    if (mapObjRotator->mapObj == NULL && mapObjRotator->billboard == NULL) {
+        return;
+    }
+
+    int validity = DistWorldMapObjectRotator_GetValidity(mapObjRotator);
+
+    if (validity == MAP_OBJECT_ROTATOR_VALIDITY_NEEDS_RESET) {
+        DistWorldMapObjectRotatorManager_ResetRotator(mapObjRotatorMan, mapObjRotator);
+        return;
+    } else if (validity == MAP_OBJECT_ROTATOR_VALIDITY_NEEDS_FREE) {
+        DistWorldMapObjectRotatorManager_FreeRotator(mapObjRotatorMan, mapObjRotator);
+    }
+
+    DistWorldMapObjectRotatorManager_TryPrepareRotator(mapObjRotatorMan, mapObjRotator);
+
+    if (mapObjRotator->animStepsLeft) {
+        mapObjRotator->animStepsLeft--;
+        ApplyRotationToTargetFx32(&mapObjRotator->currRotAngle, mapObjRotator->rotAngleDelta);
+
+        if (mapObjRotator->animStepsLeft == 0) {
+            mapObjRotator->currRotAngle = FX32_ONE * mapObjRotator->finalRotAngle;
+        }
+
+        mapObjRotator->animFrame = mapObjRotator->currRotAngle;
+    }
+}
+
+static void TickAllMapObjectRotators(DistWorldSystem *system)
+{
+    DistWorldMapObjectRotatorManager *mapObjRotatorMan = &system->mapObjRotatorMan;
+    DistWorldMapObjectRotator *iter = mapObjRotatorMan->rotators;
+
+    for (int i = 0; i < mapObjRotatorMan->count; i++, iter++) {
+        TickMapObjectRotator(system, mapObjRotatorMan, iter);
+    }
+}
+
+static void MapObjectRotatorBillboardCallback(Billboard *billboard, void *cbParam)
+{
+    DistWorldMapObjectRotator *mapObjRotator = cbParam;
+    NNS_G3dAnmObjSetFrame(mapObjRotator->animObj, mapObjRotator->animFrame);
+}
+
+static void RotateMapObject(DistWorldSystem *system, MapObject *mapObj, int angle, int animSteps)
+{
+    int i = 0;
+    DistWorldMapObjectRotatorManager *mapObjRotatorMan = &system->mapObjRotatorMan;
+    DistWorldMapObjectRotator *iter = mapObjRotatorMan->rotators;
+
+    while (i < mapObjRotatorMan->count) {
+        if (iter->mapObj == mapObj) {
+            iter->currRotAngle = FX32_ONE * iter->finalRotAngle;
+            iter->rotAngleDelta = FX32_ONE * angle / animSteps;
+            iter->animStepsLeft = animSteps;
+
+            ApplyRotationToTarget(&iter->finalRotAngle, angle);
+            return;
+        }
+
+        iter++;
+        i++;
+    }
+
+    GF_ASSERT(FALSE);
+}
+
+int DistWorld_GetMapObjectRotatorAnimFrame(FieldSystem *fieldSystem, MapObject *mapObj)
+{
+    int i = 0;
+    DistWorldSystem *dwSystem = fieldSystem->unk_04->dynamicMapFeaturesData;
+    DistWorldMapObjectRotatorManager *mapObjRotatorMan = &dwSystem->mapObjRotatorMan;
+    DistWorldMapObjectRotator *iter = mapObjRotatorMan->rotators;
+
+    while (i < mapObjRotatorMan->count) {
+        if (iter->mapObj == mapObj) {
+            return iter->animFrame / FX32_ONE;
+        }
+
+        iter++;
+        i++;
     }
 
     return 0;
 }
 
-static void ov9_0224A334(DistWorldSystem *param0)
+void DistWorld_BindMapObjectRotator(FieldSystem *fieldSystem, Billboard *billboard, int initialAngle)
 {
-    int v0;
-    UnkStruct_ov9_0224A228 *v1 = &param0->unk_188;
-    UnkStruct_ov9_0224A294 *v2 = v1->unk_04;
-
-    for (v0 = 0; v0 < v1->unk_00; v0++, v2++) {
-        ov9_0224A2AC(v1, v2);
-    }
-
-    if (v1->unk_08 != NULL) {
-        Heap_Free(v1->unk_08);
-        v1->unk_08 = NULL;
-    }
-
-    Heap_Free(v1->unk_04);
-    v1->unk_04 = NULL;
+    DistWorldSystem *dwSystem = fieldSystem->unk_04->dynamicMapFeaturesData;
+    BindMapObjectRotatorWithBillboard(dwSystem, billboard, initialAngle);
 }
 
-static void ov9_0224A374(UnkStruct_ov9_0224A294 *param0, MapObject *param1, int param2)
+void DistWorld_UnbindMapObjectRotator(FieldSystem *fieldSystem, const Billboard *billboard)
 {
-    param0->unk_00 = param2;
-    param0->unk_04 = (FX32_ONE * (param2));
-    param0->unk_0C = param0->unk_04;
-
-    if (param1 != NULL) {
-        param0->unk_18 = param1;
-        param0->unk_16 = MapObject_GetLocalID(param1);
-    }
-}
-
-static void ov9_0224A390(DistWorldSystem *system, MapObject *mapObj, int param2)
-{
-    int v0 = 0;
-    UnkStruct_ov9_0224A228 *v1 = &system->unk_188;
-    UnkStruct_ov9_0224A294 *v2 = v1->unk_04;
-
-    while (v0 < v1->unk_00) {
-        if (v2->unk_18 == NULL && v2->unk_1C == NULL) {
-            ov9_0224A374(v2, mapObj, param2);
-            return;
-        }
-
-        v0++;
-        v2++;
-    }
-
-    GF_ASSERT(0);
-}
-
-static void ov9_0224A3C4(DistWorldSystem *param0, Billboard *param1, int param2)
-{
-    int v0 = 0;
-    UnkStruct_ov9_0224A228 *v1 = &param0->unk_188;
-    UnkStruct_ov9_0224A294 *v2 = v1->unk_04;
-
-    while (v0 < v1->unk_00) {
-        if ((v2->unk_18 == NULL) && (v2->unk_1C == NULL)) {
-            ov9_0224A374(v2, NULL, param2);
-            ov9_0224A228(v1, v2, param1);
-            return;
-        }
-
-        v0++;
-        v2++;
-    }
-
-    GF_ASSERT(0);
-}
-
-static void ov9_0224A408(DistWorldSystem *param0, const Billboard *param1)
-{
-    int v0 = 0;
-    UnkStruct_ov9_0224A228 *v1 = &param0->unk_188;
-    UnkStruct_ov9_0224A294 *v2 = v1->unk_04;
-
-    while (v0 < v1->unk_00) {
-        if (v2->unk_1C == param1) {
-            ov9_0224A2AC(v1, v2);
-            return;
-        }
-
-        v0++;
-        v2++;
-    }
-
-    GF_ASSERT(0);
-}
-
-static void ov9_0224A438(DistWorldSystem *param0, UnkStruct_ov9_0224A228 *param1, UnkStruct_ov9_0224A294 *param2)
-{
-    int v0;
-
-    if ((param2->unk_18 == NULL) && (param2->unk_1C == NULL)) {
-        return;
-    }
-
-    v0 = ov9_0224A2E4(param2);
-
-    if (v0 == 1) {
-        ov9_0224A2AC(param1, param2);
-        return;
-    }
-
-    if (v0 == 2) {
-        ov9_0224A294(param1, param2);
-    }
-
-    ov9_0224A2C0(param1, param2);
-
-    if (param2->unk_02) {
-        param2->unk_02--;
-        ApplyRotationToTargetFx32(&param2->unk_04, param2->unk_08);
-
-        if (param2->unk_02 == 0) {
-            param2->unk_04 = (FX32_ONE * (param2->unk_00));
-        }
-
-        param2->unk_0C = param2->unk_04;
-    }
-}
-
-static void ov9_0224A49C(DistWorldSystem *param0)
-{
-    int v0;
-    UnkStruct_ov9_0224A228 *v1 = &param0->unk_188;
-    UnkStruct_ov9_0224A294 *v2 = v1->unk_04;
-
-    for (v0 = 0; v0 < v1->unk_00; v0++, v2++) {
-        ov9_0224A438(param0, v1, v2);
-    }
-}
-
-static void ov9_0224A4C8(Billboard *param0, void *param1)
-{
-    UnkStruct_ov9_0224A294 *v0 = param1;
-    NNS_G3dAnmObjSetFrame(v0->unk_10, v0->unk_0C);
-}
-
-static void ov9_0224A4D0(DistWorldSystem *param0, MapObject *param1, int param2, int param3)
-{
-    int v0 = 0;
-    UnkStruct_ov9_0224A228 *v1 = &param0->unk_188;
-    UnkStruct_ov9_0224A294 *v2 = v1->unk_04;
-
-    while (v0 < v1->unk_00) {
-        if (v2->unk_18 == param1) {
-            v2->unk_04 = (FX32_ONE * (v2->unk_00));
-            v2->unk_08 = (FX32_ONE * (param2)) / param3;
-            v2->unk_02 = param3;
-            ApplyRotationToTarget(&v2->unk_00, param2);
-            return;
-        }
-
-        v2++;
-        v0++;
-    }
-
-    GF_ASSERT(0);
-}
-
-int ov9_0224A520(FieldSystem *fieldSystem, MapObject *param1)
-{
-    int v0 = 0;
-    DistWorldSystem *v1 = fieldSystem->unk_04->dynamicMapFeaturesData;
-    UnkStruct_ov9_0224A228 *v2 = &v1->unk_188;
-    UnkStruct_ov9_0224A294 *v3 = v2->unk_04;
-
-    while (v0 < v2->unk_00) {
-        if (v3->unk_18 == param1) {
-            int v4 = ((v3->unk_0C) / FX32_ONE);
-
-            return v4;
-        }
-
-        v3++;
-        v0++;
-    }
-
-    return 0;
-}
-
-void ov9_0224A558(FieldSystem *fieldSystem, Billboard *param1, int param2)
-{
-    DistWorldSystem *v0 = fieldSystem->unk_04->dynamicMapFeaturesData;
-    ov9_0224A3C4(v0, param1, param2);
-}
-
-void ov9_0224A564(FieldSystem *fieldSystem, const Billboard *param1)
-{
-    DistWorldSystem *v0 = fieldSystem->unk_04->dynamicMapFeaturesData;
-    ov9_0224A408(v0, param1);
+    DistWorldSystem *dwSystem = fieldSystem->unk_04->dynamicMapFeaturesData;
+    UnbindMapObjectRotatorWithBillboard(dwSystem, billboard);
 }
 
 static void FieldTaskContextNoOp1(DistWorldSystem *system)
@@ -2792,7 +2784,7 @@ static void ov9_0224A8C0(DistWorldSystem *param0)
         PlayerAvatar_SetSurfMountAnimManager(playerAvatar, v9);
     }
 
-    ov9_0224A390(param0, v8, v6[v0]);
+    BindMapObjectRotator(param0, v8, v6[v0]);
 }
 
 static void ov9_0224A9E8(DistWorldSystem *param0)
@@ -2912,7 +2904,7 @@ static BOOL JumpOnFloatingPlatform(FieldTask *task)
 
         LocalMapObj_SetAnimationCode(playerMapObj, animCode);
         MapObject_TryFace(playerMapObj, playerDir);
-        ov9_0224A4D0(system, playerMapObj, ctx->template.unk_1A, ctx->template.movementAnimSteps);
+        RotateMapObject(system, playerMapObj, ctx->template.playerSpriteRotAngle, ctx->template.movementAnimSteps);
 
         ctx->state++;
     }
@@ -7355,7 +7347,7 @@ static BOOL AddMapObjectFromEvent(DistWorldSystem *system, MapObject **mapObj, c
     MapObject_SetHidden(*mapObj, TRUE);
 
     if (objEvent->rotated == TRUE) {
-        ov9_0224A390(system, *mapObj, objEvent->rotationAngle);
+        BindMapObjectRotator(system, *mapObj, objEvent->rotationAngle);
     }
 
     sub_02062FC4(*mapObj, TRUE);
@@ -8169,12 +8161,12 @@ static void UpdateCascadeDownCamera(DistWorldSystem *system, CmdRunDataCascadeDo
 
     if (runData->cameraAngleState == 0 && yOffset == CASCADE_DOWN_FIRST_CAMERA_ANGLE_Y_OFFSET) {
         DoCameraTransition(system, &sCascadeDownFirstCameraAngle);
-        ov9_0224A4D0(system, playerMapObj, -32, 72);
+        RotateMapObject(system, playerMapObj, -32, CASCADE_DOWN_FIRST_CAMERA_TRANSITION_STEPS);
         runData->cameraAngleState++;
     } else if (runData->cameraAngleState == 1 && yOffset == CASCADE_DOWN_SECOND_CAMERA_ANGLE_Y_OFFSET) {
         MapObject_TryFace(playerMapObj, FACE_LEFT);
         DoCameraTransition(system, &sCascadeDownSecondCameraAngle);
-        ov9_0224A4D0(system, playerMapObj, 32, 31);
+        RotateMapObject(system, playerMapObj, 32, CASCADE_DOWN_SECOND_CAMERA_TRANSITION_STEPS - 1);
         runData->cameraAngleState++;
     }
 
@@ -8206,7 +8198,7 @@ static int EventCmdCascadeDown_Init(DistWorldSystem *system, FieldTask *task, u1
     baseRunData->posDelta.z >>= 1;
     runData->spriteRotationAnimStepsLeft = CASCADE_DOWN_INITIAL_SPRITE_ROTATION_STEPS;
 
-    ov9_0224A4D0(system, playerMapObj, 90, runData->spriteRotationAnimStepsLeft);
+    RotateMapObject(system, playerMapObj, 90, runData->spriteRotationAnimStepsLeft);
 
     VecFx32 spritePosOffset = { 0, 0, 0 };
     MapObject_SetSpritePosOffset(playerMapObj, &spritePosOffset);
@@ -8357,7 +8349,7 @@ static int EventCmdCascadeDown_CascadeDown(DistWorldSystem *system, FieldTask *t
 
     if (updateRes == CASCADE_UPDATE_RES_FINISHING_POS_REACHED) {
         runData->spriteRotationAnimStepsLeft = CASCADE_DOWN_FINAL_SPRITE_ROTATION_STEPS;
-        ov9_0224A4D0(system, playerMapObj, 90, runData->spriteRotationAnimStepsLeft);
+        RotateMapObject(system, playerMapObj, 90, runData->spriteRotationAnimStepsLeft);
 
         runData->mountRotAnglesDelta.x = CASCADE_DOWN_FINAL_MOUNT_ROTATION_ANGLE_X / CASCADE_DOWN_FINAL_SPRITE_ROTATION_STEPS;
         runData->mountRotAnglesDelta.y = CASCADE_DOWN_FINAL_MOUNT_ROTATION_ANGLE_Y / CASCADE_DOWN_FINAL_SPRITE_ROTATION_STEPS;
@@ -8528,7 +8520,7 @@ static int EventCmdCascadeUp_Init(DistWorldSystem *system, FieldTask *task, u16 
     baseRunData->posDelta.z >>= 1;
     runData->spriteRotationAnimStepsLeft = CASCADE_UP_INITIAL_SPRITE_ROTATION_STEPS;
 
-    ov9_0224A4D0(system, playerMapObj, -90, runData->spriteRotationAnimStepsLeft);
+    RotateMapObject(system, playerMapObj, -90, runData->spriteRotationAnimStepsLeft);
 
     VecFx32 spritePosOffset = { 0, 0, 0 };
     MapObject_SetSpritePosOffset(playerMapObj, &spritePosOffset);
@@ -8654,7 +8646,7 @@ static int EventCmdCascadeUp_CascadeUp(DistWorldSystem *system, FieldTask *task,
 
     if (updateRes == CASCADE_UPDATE_RES_FINISHING_POS_REACHED) {
         runData->spriteRotationAnimStepsLeft = CASCADE_UP_FINAL_SPRITE_ROTATION_STEPS;
-        ov9_0224A4D0(system, playerMapObj, -90, runData->spriteRotationAnimStepsLeft);
+        RotateMapObject(system, playerMapObj, -90, runData->spriteRotationAnimStepsLeft);
 
         runData->mountRotAnglesDelta.x = CASCADE_UP_FINAL_MOUNT_ROTATION_ANGLE_X / CASCADE_UP_FINAL_SPRITE_ROTATION_STEPS;
         runData->mountRotAnglesDelta.y = CASCADE_UP_FINAL_MOUNT_ROTATION_ANGLE_Y / CASCADE_UP_FINAL_SPRITE_ROTATION_STEPS;
