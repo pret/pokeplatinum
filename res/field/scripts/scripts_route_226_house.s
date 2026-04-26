@@ -15,7 +15,7 @@ Route226House_Meister:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_TRADED_FOR_FOOPA_MAGIKARP, Route226House_MakeFriendsAnywhere
+    GoToIfSet FLAG_TRADED_FOR_FOPPA_MAGIKARP, Route226House_MakeFriendsAnywhere
     GoToIfSet FLAG_ENABLED_POKEDEX_LANGUAGE_DETECTION, Route226House_AskTrade
     Message Route226House_Text_ImTheMeister
     TurnOnPokedexLanguageDetection
@@ -40,14 +40,14 @@ Route226House_TryTrade:
     FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_RESULT, PARTY_SLOT_NONE, Route226House_ThisIsATragedy
-    InitNPCTrade NPC_TRADE_FOOPA_MAGIKARP
+    InitNPCTrade NPC_TRADE_FOPPA_MAGIKARP
     SetVar VAR_0x8004, VAR_RESULT
     GetPartyMonSpecies VAR_0x8004, VAR_0x8005
     GetNPCTradeRequestedSpecies VAR_RESULT
     GoToIfNe VAR_0x8005, VAR_RESULT, Route226House_ThatIsNoFinneon
     StartNPCTrade VAR_0x8004
     FinishNPCTrade
-    SetFlag FLAG_TRADED_FOR_FOOPA_MAGIKARP
+    SetFlag FLAG_TRADED_FOR_FOPPA_MAGIKARP
     Message Route226House_Text_DankeSchon
     WaitButton
     CloseMessage
