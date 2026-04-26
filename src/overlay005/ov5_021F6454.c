@@ -766,7 +766,7 @@ BOOL ScrCmd_30F(ScriptContext *param0)
             *v4 = 0;
         }
 
-        if (GameRecords_GetRecordValue(v1, RECORD_UNK_062) < 1) {
+        if (GameRecords_GetRecordValue(v1, RECORD_BATTLE_HALL_VICTORIES) < 1) {
             *v4 = 0;
         }
 
@@ -803,7 +803,7 @@ BOOL ScrCmd_30F(ScriptContext *param0)
         }
         break;
     case 16:
-        if (GameRecords_GetRecordValue(v1, RECORD_UNK_057) < 50) {
+        if (GameRecords_GetRecordValue(v1, RECORD_TIMES_BATTLED_AT_BATTLEGROUND) < 50) {
             *v4 = 0;
         }
         break;

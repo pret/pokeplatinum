@@ -691,7 +691,7 @@ _0480:
     Call _09A8
     Call _04C5
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 211
+    SyncConnectedPlayers 211
     ClearReceivedTempDataAllPlayers
     GoTo _04F0
     End
@@ -726,7 +726,7 @@ _04F0:
 
 _0510:
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 212
+    SyncConnectedPlayers 212
     ClearReceivedTempDataAllPlayers
     GoTo _0520
     End
@@ -738,7 +738,7 @@ _0520:
     FrontierScrCmd_A3 VAR_0x8002
     ClearReceivedTempDataAllPlayers
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 125
+    SyncConnectedPlayers 125
     ClearReceivedTempDataAllPlayers
     FrontierScrCmd_C9 1
     GoTo _0555
@@ -751,7 +751,7 @@ _0555:
     FrontierScrCmd_A3 VAR_0x8002
     ClearReceivedTempDataAllPlayers
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 210
+    SyncConnectedPlayers 210
     ClearReceivedTempDataAllPlayers
     FrontierScrCmd_C9 0
     GoTo _058A
@@ -793,7 +793,7 @@ _0612:
 
 _0630:
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 213
+    SyncConnectedPlayers 213
     ClearReceivedTempDataAllPlayers
     GoTo _0640
     End
@@ -805,7 +805,7 @@ _0640:
     FrontierScrCmd_A3 VAR_0x8002
     ClearReceivedTempDataAllPlayers
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 214
+    SyncConnectedPlayers 214
     ClearReceivedTempDataAllPlayers
     FrontierScrCmd_A0 41, 0, 0, VAR_0x8008
     FrontierScrCmd_A0 42, 0, 0, VAR_0x8008
@@ -848,7 +848,7 @@ _06EA:
 
 _06F6:
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 120
+    SyncConnectedPlayers 120
     ClearReceivedTempDataAllPlayers
     GoTo _0706
     End
@@ -934,7 +934,7 @@ _08A3:
 
 _08AC:
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 240
+    SyncConnectedPlayers 240
     ClearReceivedTempDataAllPlayers
     Return
 
@@ -973,7 +973,7 @@ _0955:
 
 _095A:
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 241
+    SyncConnectedPlayers 241
     ClearReceivedTempDataAllPlayers
     Return
 
@@ -1000,7 +1000,7 @@ _09A8:
     FrontierScrCmd_A0 29, 0, 0, VAR_0x8008
     WaitTime 1, VAR_0x8008
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 190
+    SyncConnectedPlayers 190
     ClearReceivedTempDataAllPlayers
     Return
 
@@ -1009,7 +1009,7 @@ _09C5:
     FrontierScrCmd_A0 29, 0, 0, VAR_0x8008
     WaitTime 1, VAR_0x8008
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 191
+    SyncConnectedPlayers 191
     ClearReceivedTempDataAllPlayers
     Return
 
@@ -1018,7 +1018,7 @@ _09E2:
     FrontierScrCmd_A0 29, 0, 0, VAR_0x8008
     WaitTime 1, VAR_0x8008
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 192
+    SyncConnectedPlayers 192
     ClearReceivedTempDataAllPlayers
     Return
 
@@ -1027,7 +1027,7 @@ _09FF:
     FrontierScrCmd_A0 29, 0, 0, VAR_0x8008
     WaitTime 1, VAR_0x8008
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 193
+    SyncConnectedPlayers 193
     ClearReceivedTempDataAllPlayers
     Return
 
@@ -1323,7 +1323,7 @@ _0F73:
 
 _0F83:
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 121
+    SyncConnectedPlayers 121
     ClearReceivedTempDataAllPlayers
     CloseMessage
     FrontierScrCmd_3F 4
@@ -1561,7 +1561,7 @@ _1372:
 _13AF:
     MessageNoSkip BattleCastleScene_Text_PleaseWait
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 127
+    SyncConnectedPlayers 127
     ClearReceivedTempDataAllPlayers
     Call _1B75
     BufferNumber 0, VAR_0x8008
@@ -1686,7 +1686,7 @@ _15C8:
     FrontierScrCmd_A0 24, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _160D
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 122
+    SyncConnectedPlayers 122
     ClearReceivedTempDataAllPlayers
     GoTo _1622
     End
@@ -1818,7 +1818,7 @@ _17D9:
     Message BattleCastleScene_Text_ReturnItems
     MessageNoSkip BattleCastleScene_Text_PleaseWait
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 124
+    SyncConnectedPlayers 124
     ClearReceivedTempDataAllPlayers
     GoTo _17F1
     End
@@ -1880,7 +1880,7 @@ _18B0:
 _18D0:
     MessageNoSkip BattleCastleScene_Text_PleaseWait
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 128
+    SyncConnectedPlayers 128
     ClearReceivedTempDataAllPlayers
     GoTo _18E4
     End
@@ -1909,7 +1909,7 @@ _1942:
 
 _1948:
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 129
+    SyncConnectedPlayers 129
     ClearReceivedTempDataAllPlayers
     Return
 
@@ -1939,7 +1939,7 @@ _1974:
 
 _199D:
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 126
+    SyncConnectedPlayers 126
     ClearReceivedTempDataAllPlayers
     FrontierScrCmd_A0 30, 0, 0, VAR_0x8008
     SetVar FR_VAR_0x8010, VAR_0x8008

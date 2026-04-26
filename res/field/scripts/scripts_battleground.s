@@ -1,151 +1,157 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/battleground.h"
+#include "res/field/events/events_battleground.h"
+
+#define LOCAL_FLAG_DECLINED_BATTLE_TRAINER_1 FLAG_UNK_0x0001
+#define LOCAL_FLAG_DECLINED_BATTLE_TRAINER_2 FLAG_UNK_0x0002
+#define LOCAL_FLAG_DECLINED_BATTLE_TRAINER_3 FLAG_UNK_0x0003
+#define LOCAL_FLAG_DECLINED_BATTLE_TRAINER_4 FLAG_UNK_0x0004
 
 
-    ScriptEntry _015A
-    ScriptEntry _0183
-    ScriptEntry _0278
-    ScriptEntry _0022
-    ScriptEntry _02B4
-    ScriptEntry _03CA
-    ScriptEntry _0457
-    ScriptEntry _04E4
+    ScriptEntry Battleground_ExpertM
+    ScriptEntry Battleground_Buck
+    ScriptEntry Battleground_OnFrameWelcome
+    ScriptEntry Battleground_OnTransition
+    ScriptEntry Battleground_Trainer1
+    ScriptEntry Battleground_Trainer2
+    ScriptEntry Battleground_Trainer3
+    ScriptEntry Battleground_Trainer4
     ScriptEntryEnd
 
-_0022:
-    SetFlag FLAG_UNK_0x00C8
-    GoToIfUnset FLAG_UNK_0x0AB7, _0039
-    Call _0140
+Battleground_OnTransition:
+    SetFlag FLAG_VISITED_BATTLEGROUND
+    GoToIfUnset FLAG_SET_BATTLEGROUND_TRAINERS, Battleground_SetTrainers
+    Call Battleground_SetTrainersGraphics
     End
 
-_0039:
-    SetFlag FLAG_UNK_0x0AB7
-    ScrCmd_2F4 VAR_UNK_0x4065, VAR_UNK_0x4066, VAR_UNK_0x4067, VAR_UNK_0x4068
-    Call _0140
-    ClearFlag FLAG_UNK_0x02A2
-    ClearFlag FLAG_UNK_0x02A3
-    ClearFlag FLAG_UNK_0x02A4
-    ClearFlag FLAG_UNK_0x02A5
-    CallIfEq VAR_OBJ_GFX_ID_2, 0xFFF, _00ED
-    CallIfEq VAR_OBJ_GFX_ID_3, 0xFFF, _00F3
-    CallIfEq VAR_OBJ_GFX_ID_4, 0xFFF, _00F9
-    CallIfEq VAR_OBJ_GFX_ID_4, 141, _00FF
-    CallIfEq VAR_OBJ_GFX_ID_4, 142, _010C
-    CallIfEq VAR_OBJ_GFX_ID_4, 143, _0119
-    CallIfEq VAR_OBJ_GFX_ID_4, 144, _0126
-    CallIfEq VAR_OBJ_GFX_ID_4, 145, _0133
-    ClearFlag FLAG_UNK_0x0001
-    ClearFlag FLAG_UNK_0x0002
-    ClearFlag FLAG_UNK_0x0003
-    ClearFlag FLAG_UNK_0x0004
-    ClearFlag FLAG_UNK_0x0005
-    ClearFlag FLAG_UNK_0x0006
-    ClearFlag FLAG_UNK_0x0007
-    ClearFlag FLAG_UNK_0x0008
-    GetRandom VAR_UNK_0x4061, 2
+Battleground_SetTrainers:
+    SetFlag FLAG_SET_BATTLEGROUND_TRAINERS
+    GetRandomBattlegroundTrainers VAR_BATTLEGROUND_TRAINER_1, VAR_BATTLEGROUND_TRAINER_2, VAR_BATTLEGROUND_TRAINER_3, VAR_BATTLEGROUND_TRAINER_4
+    Call Battleground_SetTrainersGraphics
+    ClearFlag FLAG_HIDE_BATTLEGROUND_TRAINER_1
+    ClearFlag FLAG_HIDE_BATTLEGROUND_TRAINER_2
+    ClearFlag FLAG_HIDE_BATTLEGROUND_TRAINER_3
+    ClearFlag FLAG_HIDE_BATTLEGROUND_TRAINER_4
+    CallIfEq VAR_OBJ_GFX_ID_2, BATTLEGROUND_TRAINER_NONE, Battleground_HideTrainer2
+    CallIfEq VAR_OBJ_GFX_ID_3, BATTLEGROUND_TRAINER_NONE, Battleground_HideTrainer3
+    CallIfEq VAR_OBJ_GFX_ID_4, BATTLEGROUND_TRAINER_NONE, Battleground_HideTrainer4
+    CallIfEq VAR_OBJ_GFX_ID_4, OBJ_EVENT_GFX_CHERYL, Battleground_TryHideCheryl
+    CallIfEq VAR_OBJ_GFX_ID_4, OBJ_EVENT_GFX_RILEY, Battleground_TryHideRiley
+    CallIfEq VAR_OBJ_GFX_ID_4, OBJ_EVENT_GFX_MARLEY, Battleground_TryHideMarley
+    CallIfEq VAR_OBJ_GFX_ID_4, OBJ_EVENT_GFX_BUCK, Battleground_TryHideBuck
+    CallIfEq VAR_OBJ_GFX_ID_4, OBJ_EVENT_GFX_MIRA, Battleground_TryHideMira
+    ClearFlag LOCAL_FLAG_DECLINED_BATTLE_TRAINER_1
+    ClearFlag LOCAL_FLAG_DECLINED_BATTLE_TRAINER_2
+    ClearFlag LOCAL_FLAG_DECLINED_BATTLE_TRAINER_3
+    ClearFlag LOCAL_FLAG_DECLINED_BATTLE_TRAINER_4
+    ClearFlag FLAG_DEFEATED_BATTLEGROUND_TRAINER_1
+    ClearFlag FLAG_DEFEATED_BATTLEGROUND_TRAINER_2
+    ClearFlag FLAG_DEFEATED_BATTLEGROUND_TRAINER_3
+    ClearFlag FLAG_DEFEATED_BATTLEGROUND_TRAINER_4
+    GetRandom VAR_RANDOM_BATTLEGROUND_MESSAGE, 2
     End
 
-_00ED:
-    SetFlag FLAG_UNK_0x02A3
+Battleground_HideTrainer2:
+    SetFlag FLAG_HIDE_BATTLEGROUND_TRAINER_2
     Return
 
-_00F3:
-    SetFlag FLAG_UNK_0x02A4
+Battleground_HideTrainer3:
+    SetFlag FLAG_HIDE_BATTLEGROUND_TRAINER_3
     Return
 
-_00F9:
-    SetFlag FLAG_UNK_0x02A5
+Battleground_HideTrainer4:
+    SetFlag FLAG_HIDE_BATTLEGROUND_TRAINER_4
     Return
 
-_00FF:
-    CallIfUnset FLAG_TRAVELED_WITH_CHERYL, _00F9
+Battleground_TryHideCheryl:
+    CallIfUnset FLAG_TRAVELED_WITH_CHERYL, Battleground_HideTrainer4
     Return
 
-_010C:
-    CallIfUnset FLAG_RECEIVED_RIOLU_EGG_FROM_RILEY, _00F9
+Battleground_TryHideRiley:
+    CallIfUnset FLAG_RECEIVED_RIOLU_EGG_FROM_RILEY, Battleground_HideTrainer4
     Return
 
-_0119:
-    CallIfUnset FLAG_TRAVELED_WITH_MARLEY, _00F9
+Battleground_TryHideMarley:
+    CallIfUnset FLAG_TRAVELED_WITH_MARLEY, Battleground_HideTrainer4
     Return
 
-_0126:
-    CallIfUnset FLAG_BUCK_LEFT_BATTLEGROUND, _00F9
+Battleground_TryHideBuck:
+    CallIfUnset FLAG_BUCK_LEFT_BATTLEGROUND, Battleground_HideTrainer4
     Return
 
-_0133:
-    CallIfUnset FLAG_TRAVELED_WITH_MIRA, _00F9
+Battleground_TryHideMira:
+    CallIfUnset FLAG_TRAVELED_WITH_MIRA, Battleground_HideTrainer4
     Return
 
-_0140:
-    SetVar VAR_OBJ_GFX_ID_1, VAR_UNK_0x4065
-    SetVar VAR_OBJ_GFX_ID_2, VAR_UNK_0x4066
-    SetVar VAR_OBJ_GFX_ID_3, VAR_UNK_0x4067
-    SetVar VAR_OBJ_GFX_ID_4, VAR_UNK_0x4068
+Battleground_SetTrainersGraphics:
+    SetVar VAR_OBJ_GFX_ID_1, VAR_BATTLEGROUND_TRAINER_1
+    SetVar VAR_OBJ_GFX_ID_2, VAR_BATTLEGROUND_TRAINER_2
+    SetVar VAR_OBJ_GFX_ID_3, VAR_BATTLEGROUND_TRAINER_3
+    SetVar VAR_OBJ_GFX_ID_4, VAR_BATTLEGROUND_TRAINER_4
     Return
 
-_015A:
+Battleground_ExpertM:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x00D7, _0178
-    Message 1
+    GoToIfSet FLAG_UNK_0x00D7, Battleground_MakeYourselfAtHome
+    Message Battleground_Text_TalkAboutStarkMountain
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0178:
-    Message 2
+Battleground_MakeYourselfAtHome:
+    Message Battleground_Text_MakeYourselfAtHome
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0183:
+Battleground_Buck:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     SetFlag FLAG_CAUGHT_MESPRIT
-    Message 5
+    Message Battleground_Text_OpenToToughestTrainers
     CloseMessage
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    CallIfEq VAR_0x8005, 7, _01D5
-    CallIfEq VAR_0x8005, 8, _01E9
-    CallIfEq VAR_0x8005, 9, _01FD
+    CallIfEq VAR_0x8005, 7, Battleground_BuckLeaveZ7
+    CallIfEq VAR_0x8005, 8, Battleground_BuckLeaveZ8
+    CallIfEq VAR_0x8005, 9, Battleground_BuckLeaveZ9
     PlaySE SEQ_SE_DP_KAIDAN2
-    RemoveObject 1
+    RemoveObject LOCALID_BUCK
     SetFlag FLAG_BUCK_LEFT_BATTLEGROUND
-    SetFlag FLAG_UNK_0x01D6
+    SetFlag FLAG_HIDE_BATTLEGROUND_BUCK
     ReleaseAll
     End
 
-_01D5:
-    ApplyMovement LOCALID_PLAYER, _0214
-    ApplyMovement 1, _0240
+Battleground_BuckLeaveZ7:
+    ApplyMovement LOCALID_PLAYER, Battleground_Movement_PlayerWatchBuckLeaveZ7
+    ApplyMovement LOCALID_BUCK, Battleground_Movement_BuckLeaveZ7
     WaitMovement
     Return
 
-_01E9:
-    ApplyMovement LOCALID_PLAYER, _0220
-    ApplyMovement 1, _0254
+Battleground_BuckLeaveZ8:
+    ApplyMovement LOCALID_PLAYER, Battleground_Movement_PlayerWatchBuckLeaveZ8
+    ApplyMovement LOCALID_BUCK, Battleground_Movement_BuckLeaveZ8
     WaitMovement
     Return
 
-_01FD:
-    ApplyMovement LOCALID_PLAYER, _0234
-    ApplyMovement 1, _0264
+Battleground_BuckLeaveZ9:
+    ApplyMovement LOCALID_PLAYER, Battleground_Movement_PlayerWatchBuckLeaveZ9
+    ApplyMovement LOCALID_BUCK, Battleground_Movement_BuckLeaveZ9
     WaitMovement
     Return
 
     .balign 4, 0
-_0214:
+Battleground_Movement_PlayerWatchBuckLeaveZ7:
     Delay8 2
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_0220:
+Battleground_Movement_PlayerWatchBuckLeaveZ8:
     Delay8
     WalkOnSpotNormalSouth
     Delay8
@@ -153,13 +159,13 @@ _0220:
     EndMovement
 
     .balign 4, 0
-_0234:
+Battleground_Movement_PlayerWatchBuckLeaveZ9:
     Delay8 2
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_0240:
+Battleground_Movement_BuckLeaveZ7:
     WalkNormalWest
     WalkNormalSouth
     WalkNormalWest 3
@@ -167,1108 +173,1108 @@ _0240:
     EndMovement
 
     .balign 4, 0
-_0254:
+Battleground_Movement_BuckLeaveZ8:
     WalkNormalSouth
     WalkNormalWest 4
     WalkNormalSouth 2
     EndMovement
 
     .balign 4, 0
-_0264:
+Battleground_Movement_BuckLeaveZ9:
     WalkNormalWest
     WalkNormalSouth
     WalkNormalWest 3
     WalkNormalSouth 2
     EndMovement
 
-_0278:
+Battleground_OnFrameWelcome:
     LockAll
-    SetVar VAR_UNK_0x40C1, 1
-    ApplyMovement 0, _02A0
+    SetVar VAR_BATTLEGROUND_STATE, 1
+    ApplyMovement LOCALID_EXPERT_M, Battleground_Movement_ExpertFExclamationMark
     WaitMovement
-    ApplyMovement LOCALID_PLAYER, _02A8
+    ApplyMovement LOCALID_PLAYER, Battleground_Movement_PlayerWalkToExpertF
     WaitMovement
-    Message 0
+    Message Battleground_Text_WelcomeToBattleground
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
     .balign 4, 0
-_02A0:
+Battleground_Movement_ExpertFExclamationMark:
     EmoteExclamationMark
     EndMovement
 
     .balign 4, 0
-_02A8:
+Battleground_Movement_PlayerWalkToExpertF:
     WalkNormalNorth 2
     WalkNormalEast 4
     EndMovement
 
-_02B4:
+Battleground_Trainer1:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     BufferPlayerName 0
     SetVar VAR_MAP_LOCAL_1, VAR_OBJ_GFX_ID_1
-    GoToIfSet FLAG_UNK_0x0005, _034D
-    Call _118A
-    GoToIfEq VAR_RESULT, 1, _034D
-    CallIfUnset FLAG_UNK_0x0001, _036E
-    CallIfSet FLAG_UNK_0x0001, _0376
+    GoToIfSet FLAG_DEFEATED_BATTLEGROUND_TRAINER_1, Battleground_PostBattle
+    Call Battleground_CheckDefeatedTrainer
+    GoToIfEq VAR_RESULT, TRUE, Battleground_PostBattle
+    CallIfUnset LOCAL_FLAG_DECLINED_BATTLE_TRAINER_1, Battleground_CallAskBattle
+    CallIfSet LOCAL_FLAG_DECLINED_BATTLE_TRAINER_1, Battleground_CallAskBattleAgain
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _0386
-    Call _032F
-    GoToIfEq VAR_0x8000, 0, _0398
-    SetFlag FLAG_UNK_0x0005
-    Call _1091
-    GoTo _034D
+    GoToIfEq VAR_RESULT, MENU_NO, Battleground_DeclinedBattleTrainer1
+    Call Battleground_DoBattle
+    GoToIfEq VAR_0x8000, FALSE, Battleground_LostBattle
+    SetFlag FLAG_DEFEATED_BATTLEGROUND_TRAINER_1
+    Call Battleground_SetFlagDefeatedTrainer
+    GoTo Battleground_PostBattle
     End
 
-_032F:
-    Call _0811
+Battleground_DoBattle:
+    Call Battleground_MessageIntro
     CloseMessage
-    IncrementGameRecord RECORD_UNK_057
-    Call _0605
+    IncrementGameRecord RECORD_TIMES_BATTLED_AT_BATTLEGROUND
+    Call Battleground_SetTrainer
     StartTrainerBattle VAR_MAP_LOCAL_5
     CheckWonBattle VAR_0x8000
     Return
 
-_034D:
-    Call _0571
-    GoToIfEq VAR_0x8001, 2, _039E
-    Call _0AFC
-    GoTo _037E
+Battleground_PostBattle:
+    Call Battleground_CheckBothRoarkAndByron
+    GoToIfEq VAR_0x8001, 2, Battleground_MessageBothRoarkAndByron
+    Call Battleground_MessageDefeat
+    GoTo Battleground_TrainerEnd
     End
 
-_036E:
-    Call _0718
+Battleground_CallAskBattle:
+    Call Battleground_MessageAskBattle
     Return
 
-_0376:
-    Call _0A03
+Battleground_CallAskBattleAgain:
+    Call Battleground_MessageAskBattleAgain
     Return
 
-_037E:
+Battleground_TrainerEnd:
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0386:
-    SetFlag FLAG_UNK_0x0001
-    Call _090A
-    GoTo _037E
+Battleground_DeclinedBattleTrainer1:
+    SetFlag LOCAL_FLAG_DECLINED_BATTLE_TRAINER_1
+    Call Battleground_MessageDeclinedBattle
+    GoTo Battleground_TrainerEnd
     End
 
-_0398:
+Battleground_LostBattle:
     BlackOutFromBattle
     ReleaseAll
     End
 
-_039E:
-    CallIfEq VAR_MAP_LOCAL_1, 126, _03C0
-    CallIfEq VAR_MAP_LOCAL_1, 132, _03C5
-    GoTo _037E
+Battleground_MessageBothRoarkAndByron:
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_ROARK, Battleground_RoarkDefeatByronPresent
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_BYRON, Battleground_ByronDefeatRoarkPresent
+    GoTo Battleground_TrainerEnd
     End
 
-_03C0:
-    Message 22
+Battleground_RoarkDefeatByronPresent:
+    Message Battleground_Text_RoarkDefeatByronPresent
     Return
 
-_03C5:
-    Message 73
+Battleground_ByronDefeatRoarkPresent:
+    Message Battleground_Text_ByronDefeatRoarkPresent
     Return
 
-_03CA:
+Battleground_Trainer2:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     BufferPlayerName 0
     SetVar VAR_MAP_LOCAL_1, VAR_OBJ_GFX_ID_2
-    GoToIfSet FLAG_UNK_0x0006, _034D
-    Call _118A
-    GoToIfEq VAR_RESULT, 1, _034D
-    CallIfUnset FLAG_UNK_0x0002, _036E
-    CallIfSet FLAG_UNK_0x0002, _0376
+    GoToIfSet FLAG_DEFEATED_BATTLEGROUND_TRAINER_2, Battleground_PostBattle
+    Call Battleground_CheckDefeatedTrainer
+    GoToIfEq VAR_RESULT, TRUE, Battleground_PostBattle
+    CallIfUnset LOCAL_FLAG_DECLINED_BATTLE_TRAINER_2, Battleground_CallAskBattle
+    CallIfSet LOCAL_FLAG_DECLINED_BATTLE_TRAINER_2, Battleground_CallAskBattleAgain
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _0445
-    Call _032F
-    GoToIfEq VAR_0x8000, FALSE, _0398
-    SetFlag FLAG_UNK_0x0006
-    Call _1091
-    GoTo _034D
+    GoToIfEq VAR_RESULT, MENU_NO, Battleground_DeclinedBattleTrainer2
+    Call Battleground_DoBattle
+    GoToIfEq VAR_0x8000, FALSE, Battleground_LostBattle
+    SetFlag FLAG_DEFEATED_BATTLEGROUND_TRAINER_2
+    Call Battleground_SetFlagDefeatedTrainer
+    GoTo Battleground_PostBattle
     End
 
-_0445:
-    SetFlag FLAG_UNK_0x0002
-    Call _090A
-    GoTo _037E
+Battleground_DeclinedBattleTrainer2:
+    SetFlag LOCAL_FLAG_DECLINED_BATTLE_TRAINER_2
+    Call Battleground_MessageDeclinedBattle
+    GoTo Battleground_TrainerEnd
     End
 
-_0457:
+Battleground_Trainer3:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     BufferPlayerName 0
     SetVar VAR_MAP_LOCAL_1, VAR_OBJ_GFX_ID_3
-    GoToIfSet FLAG_UNK_0x0007, _034D
-    Call _118A
-    GoToIfEq VAR_RESULT, 1, _034D
-    CallIfUnset FLAG_UNK_0x0003, _036E
-    CallIfSet FLAG_UNK_0x0003, _0376
+    GoToIfSet FLAG_DEFEATED_BATTLEGROUND_TRAINER_3, Battleground_PostBattle
+    Call Battleground_CheckDefeatedTrainer
+    GoToIfEq VAR_RESULT, TRUE, Battleground_PostBattle
+    CallIfUnset LOCAL_FLAG_DECLINED_BATTLE_TRAINER_3, Battleground_CallAskBattle
+    CallIfSet LOCAL_FLAG_DECLINED_BATTLE_TRAINER_3, Battleground_CallAskBattleAgain
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _04D2
-    Call _032F
-    GoToIfEq VAR_0x8000, 0, _0398
-    SetFlag FLAG_UNK_0x0007
-    Call _1091
-    GoTo _034D
+    GoToIfEq VAR_RESULT, MENU_NO, Battleground_DeclinedBattleTrainer3
+    Call Battleground_DoBattle
+    GoToIfEq VAR_0x8000, FALSE, Battleground_LostBattle
+    SetFlag FLAG_DEFEATED_BATTLEGROUND_TRAINER_3
+    Call Battleground_SetFlagDefeatedTrainer
+    GoTo Battleground_PostBattle
     End
 
-_04D2:
-    SetFlag FLAG_UNK_0x0003
-    Call _090A
-    GoTo _037E
+Battleground_DeclinedBattleTrainer3:
+    SetFlag LOCAL_FLAG_DECLINED_BATTLE_TRAINER_3
+    Call Battleground_MessageDeclinedBattle
+    GoTo Battleground_TrainerEnd
     End
 
-_04E4:
+Battleground_Trainer4:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     BufferPlayerName 0
     SetVar VAR_MAP_LOCAL_1, VAR_OBJ_GFX_ID_4
-    GoToIfSet FLAG_UNK_0x0008, _034D
-    Call _118A
-    GoToIfEq VAR_RESULT, 1, _034D
-    CallIfUnset FLAG_UNK_0x0004, _036E
-    CallIfSet FLAG_UNK_0x0004, _0376
+    GoToIfSet FLAG_DEFEATED_BATTLEGROUND_TRAINER_4, Battleground_PostBattle
+    Call Battleground_CheckDefeatedTrainer
+    GoToIfEq VAR_RESULT, TRUE, Battleground_PostBattle
+    CallIfUnset LOCAL_FLAG_DECLINED_BATTLE_TRAINER_4, Battleground_CallAskBattle
+    CallIfSet LOCAL_FLAG_DECLINED_BATTLE_TRAINER_4, Battleground_CallAskBattleAgain
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _055F
-    Call _032F
-    GoToIfEq VAR_0x8000, 0, _0398
-    SetFlag FLAG_UNK_0x0008
-    Call _1091
-    GoTo _034D
+    GoToIfEq VAR_RESULT, MENU_NO, Battleground_DeclinedBattleTrainer4
+    Call Battleground_DoBattle
+    GoToIfEq VAR_0x8000, FALSE, Battleground_LostBattle
+    SetFlag FLAG_DEFEATED_BATTLEGROUND_TRAINER_4
+    Call Battleground_SetFlagDefeatedTrainer
+    GoTo Battleground_PostBattle
     End
 
-_055F:
-    SetFlag FLAG_UNK_0x0004
-    Call _090A
-    GoTo _037E
+Battleground_DeclinedBattleTrainer4:
+    SetFlag LOCAL_FLAG_DECLINED_BATTLE_TRAINER_4
+    Call Battleground_MessageDeclinedBattle
+    GoTo Battleground_TrainerEnd
     End
 
-_0571:
+Battleground_CheckBothRoarkAndByron:
     SetVar VAR_0x8001, 0
-    GoToIfEq VAR_MAP_LOCAL_1, 126, _0593
-    GoToIfEq VAR_MAP_LOCAL_1, 132, _0593
+    GoToIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_ROARK, Battleground_IncreaseVarIfRoarkOrByron
+    GoToIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_BYRON, Battleground_IncreaseVarIfRoarkOrByron
     Return
 
-_0593:
-    CallIfEq VAR_OBJ_GFX_ID_1, 126, _05FD
-    CallIfEq VAR_OBJ_GFX_ID_2, 126, _05FD
-    CallIfEq VAR_OBJ_GFX_ID_3, 126, _05FD
-    CallIfEq VAR_OBJ_GFX_ID_4, 126, _05FD
-    CallIfEq VAR_OBJ_GFX_ID_1, 132, _05FD
-    CallIfEq VAR_OBJ_GFX_ID_2, 132, _05FD
-    CallIfEq VAR_OBJ_GFX_ID_3, 132, _05FD
-    CallIfEq VAR_OBJ_GFX_ID_4, 132, _05FD
+Battleground_IncreaseVarIfRoarkOrByron:
+    CallIfEq VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_ROARK, Battleground_IncreaseVar
+    CallIfEq VAR_OBJ_GFX_ID_2, OBJ_EVENT_GFX_ROARK, Battleground_IncreaseVar
+    CallIfEq VAR_OBJ_GFX_ID_3, OBJ_EVENT_GFX_ROARK, Battleground_IncreaseVar
+    CallIfEq VAR_OBJ_GFX_ID_4, OBJ_EVENT_GFX_ROARK, Battleground_IncreaseVar
+    CallIfEq VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_BYRON, Battleground_IncreaseVar
+    CallIfEq VAR_OBJ_GFX_ID_2, OBJ_EVENT_GFX_BYRON, Battleground_IncreaseVar
+    CallIfEq VAR_OBJ_GFX_ID_3, OBJ_EVENT_GFX_BYRON, Battleground_IncreaseVar
+    CallIfEq VAR_OBJ_GFX_ID_4, OBJ_EVENT_GFX_BYRON, Battleground_IncreaseVar
     Return
 
-_05FD:
+Battleground_IncreaseVar:
     AddVar VAR_0x8001, 1
     Return
 
-_0605:
-    CallIfEq VAR_MAP_LOCAL_1, 126, _06B0
-    CallIfEq VAR_MAP_LOCAL_1, 127, _06B8
-    CallIfEq VAR_MAP_LOCAL_1, 128, _06C0
-    CallIfEq VAR_MAP_LOCAL_1, 129, _06C8
-    CallIfEq VAR_MAP_LOCAL_1, 130, _06D0
-    CallIfEq VAR_MAP_LOCAL_1, 131, _06D8
-    CallIfEq VAR_MAP_LOCAL_1, 132, _06E0
-    CallIfEq VAR_MAP_LOCAL_1, 133, _06E8
-    CallIfEq VAR_MAP_LOCAL_1, 141, _06F0
-    CallIfEq VAR_MAP_LOCAL_1, 142, _06F8
-    CallIfEq VAR_MAP_LOCAL_1, 143, _0700
-    CallIfEq VAR_MAP_LOCAL_1, 144, _0708
-    CallIfEq VAR_MAP_LOCAL_1, 145, _0710
+Battleground_SetTrainer:
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_ROARK, Battleground_SetTrainerRoark
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_GARDENIA, Battleground_SetTrainerGardenia
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_CRASHER_WAKE, Battleground_SetTrainerWake
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_MAYLENE, Battleground_SetTrainerMaylene
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_FANTINA, Battleground_SetTrainerFantina
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_CANDICE, Battleground_SetTrainerCandice
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_BYRON, Battleground_SetTrainerByron
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_VOLKNER, Battleground_SetTrainerVolkner
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_CHERYL, Battleground_SetTrainerCheryl
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_RILEY, Battleground_SetTrainerRiley
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_MARLEY, Battleground_SetTrainerMarley
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_BUCK, Battleground_SetTrainerBuck
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_MIRA, Battleground_SetTrainerMira
     Return
 
-_06B0:
+Battleground_SetTrainerRoark:
     SetVar VAR_MAP_LOCAL_5, TRAINER_LEADER_ROARK_REMATCH
     Return
 
-_06B8:
+Battleground_SetTrainerGardenia:
     SetVar VAR_MAP_LOCAL_5, TRAINER_LEADER_GARDENIA_REMATCH
     Return
 
-_06C0:
+Battleground_SetTrainerWake:
     SetVar VAR_MAP_LOCAL_5, TRAINER_LEADER_WAKE_REMATCH
     Return
 
-_06C8:
+Battleground_SetTrainerMaylene:
     SetVar VAR_MAP_LOCAL_5, TRAINER_LEADER_MAYLENE_REMATCH
     Return
 
-_06D0:
+Battleground_SetTrainerFantina:
     SetVar VAR_MAP_LOCAL_5, TRAINER_LEADER_FANTINA_REMATCH
     Return
 
-_06D8:
+Battleground_SetTrainerCandice:
     SetVar VAR_MAP_LOCAL_5, TRAINER_LEADER_CANDICE_REMATCH
     Return
 
-_06E0:
+Battleground_SetTrainerByron:
     SetVar VAR_MAP_LOCAL_5, TRAINER_LEADER_BYRON_REMATCH
     Return
 
-_06E8:
+Battleground_SetTrainerVolkner:
     SetVar VAR_MAP_LOCAL_5, TRAINER_LEADER_VOLKNER_REMATCH
     Return
 
-_06F0:
+Battleground_SetTrainerCheryl:
     SetVar VAR_MAP_LOCAL_5, TRAINER_CHERYL_BATTLEGROUND
     Return
 
-_06F8:
+Battleground_SetTrainerRiley:
     SetVar VAR_MAP_LOCAL_5, TRAINER_RILEY_BATTLEGROUND
     Return
 
-_0700:
+Battleground_SetTrainerMarley:
     SetVar VAR_MAP_LOCAL_5, TRAINER_MARLEY_BATTLEGROUND
     Return
 
-_0708:
+Battleground_SetTrainerBuck:
     SetVar VAR_MAP_LOCAL_5, TRAINER_BUCK_BATTLEGROUND
     Return
 
-_0710:
+Battleground_SetTrainerMira:
     SetVar VAR_MAP_LOCAL_5, TRAINER_MIRA_BATTLEGROUND
     Return
 
-_0718:
-    GoToIfEq VAR_UNK_0x4061, 1, _0BF5
-    CallIfEq VAR_MAP_LOCAL_1, 126, _07D0
-    CallIfEq VAR_MAP_LOCAL_1, 127, _07D5
-    CallIfEq VAR_MAP_LOCAL_1, 128, _07DA
-    CallIfEq VAR_MAP_LOCAL_1, 129, _07DF
-    CallIfEq VAR_MAP_LOCAL_1, 130, _07E4
-    CallIfEq VAR_MAP_LOCAL_1, 131, _07E9
-    CallIfEq VAR_MAP_LOCAL_1, 132, _07EE
-    CallIfEq VAR_MAP_LOCAL_1, 133, _07F3
-    CallIfEq VAR_MAP_LOCAL_1, 141, _07F8
-    CallIfEq VAR_MAP_LOCAL_1, 142, _07FD
-    CallIfEq VAR_MAP_LOCAL_1, 143, _0802
-    CallIfEq VAR_MAP_LOCAL_1, 144, _0807
-    CallIfEq VAR_MAP_LOCAL_1, 145, _080C
+Battleground_MessageAskBattle:
+    GoToIfEq VAR_RANDOM_BATTLEGROUND_MESSAGE, 1, Battleground_MessageAskBattle2
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_ROARK, Battleground_RoarkAskBattle
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_GARDENIA, Battleground_GardeniaAskBattle
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_CRASHER_WAKE, Battleground_WakeAskBattle
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_MAYLENE, Battleground_MayleneAskBattle
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_FANTINA, Battleground_FantinaAskBattle
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_CANDICE, Battleground_CandiceAskBattle
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_BYRON, Battleground_ByronAskBattle
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_VOLKNER, Battleground_VolknerAskBattle
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_CHERYL, Battleground_CherylAskBattle
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_RILEY, Battleground_RileyAskBattle
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_MARLEY, Battleground_MarleyAskBattle
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_BUCK, Battleground_BuckAskBattle
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_MIRA, Battleground_MiraAskBattle
     Return
 
-_07D0:
-    Message 12
+Battleground_RoarkAskBattle:
+    Message Battleground_Text_RoarkAskBattle
     Return
 
-_07D5:
-    Message 23
+Battleground_GardeniaAskBattle:
+    Message Battleground_Text_GardeniaAskBattle
     Return
 
-_07DA:
-    Message 53
+Battleground_WakeAskBattle:
+    Message Battleground_Text_WakeAskBattle
     Return
 
-_07DF:
-    Message 43
+Battleground_MayleneAskBattle:
+    Message Battleground_Text_MayleneAskBattle
     Return
 
-_07E4:
-    Message 33
+Battleground_FantinaAskBattle:
+    Message Battleground_Text_FantinaAskBattle
     Return
 
-_07E9:
-    Message 74
+Battleground_CandiceAskBattle:
+    Message Battleground_Text_CandiceAskBattle
     Return
 
-_07EE:
-    Message 63
+Battleground_ByronAskBattle:
+    Message Battleground_Text_ByronAskBattle
     Return
 
-_07F3:
-    Message 84
+Battleground_VolknerAskBattle:
+    Message Battleground_Text_VolknerAskBattle
     Return
 
-_07F8:
-    Message 94
+Battleground_CherylAskBattle:
+    Message Battleground_Text_CherylAskBattle
     Return
 
-_07FD:
-    Message 114
+Battleground_RileyAskBattle:
+    Message Battleground_Text_RileyAskBattle
     Return
 
-_0802:
-    Message 124
+Battleground_MarleyAskBattle:
+    Message Battleground_Text_MarleyAskBattle
     Return
 
-_0807:
-    Message 134
+Battleground_BuckAskBattle:
+    Message Battleground_Text_BuckAskBattle
     Return
 
-_080C:
-    Message 104
+Battleground_MiraAskBattle:
+    Message Battleground_Text_MiraAskBattle
     Return
 
-_0811:
-    GoToIfEq VAR_UNK_0x4061, 1, _0CE1
-    CallIfEq VAR_MAP_LOCAL_1, 126, _08C9
-    CallIfEq VAR_MAP_LOCAL_1, 127, _08CE
-    CallIfEq VAR_MAP_LOCAL_1, 128, _08D3
-    CallIfEq VAR_MAP_LOCAL_1, 129, _08D8
-    CallIfEq VAR_MAP_LOCAL_1, 130, _08DD
-    CallIfEq VAR_MAP_LOCAL_1, 131, _08E2
-    CallIfEq VAR_MAP_LOCAL_1, 132, _08E7
-    CallIfEq VAR_MAP_LOCAL_1, 133, _08EC
-    CallIfEq VAR_MAP_LOCAL_1, 141, _08F1
-    CallIfEq VAR_MAP_LOCAL_1, 142, _08F6
-    CallIfEq VAR_MAP_LOCAL_1, 143, _08FB
-    CallIfEq VAR_MAP_LOCAL_1, 144, _0900
-    CallIfEq VAR_MAP_LOCAL_1, 145, _0905
+Battleground_MessageIntro:
+    GoToIfEq VAR_RANDOM_BATTLEGROUND_MESSAGE, 1, Battleground_MessageIntro2
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_ROARK, Battleground_RoarkIntro
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_GARDENIA, Battleground_GardeniaIntro
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_CRASHER_WAKE, Battleground_WakeIntro
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_MAYLENE, Battleground_MayleneIntro
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_FANTINA, Battleground_FantinaIntro
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_CANDICE, Battleground_CandiceIntro
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_BYRON, Battleground_ByronIntro
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_VOLKNER, Battleground_VolknerIntro
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_CHERYL, Battleground_CherylIntro
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_RILEY, Battleground_RileyIntro
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_MARLEY, Battleground_MarleyIntro
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_BUCK, Battleground_BuckIntro
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_MIRA, Battleground_MiraIntro
     Return
 
-_08C9:
-    Message 13
+Battleground_RoarkIntro:
+    Message Battleground_Text_RoarkIntro
     Return
 
-_08CE:
-    Message 24
+Battleground_GardeniaIntro:
+    Message Battleground_Text_GardeniaIntro
     Return
 
-_08D3:
-    Message 54
+Battleground_WakeIntro:
+    Message Battleground_Text_WakeIntro
     Return
 
-_08D8:
-    Message 44
+Battleground_MayleneIntro:
+    Message Battleground_Text_MayleneIntro
     Return
 
-_08DD:
-    Message 34
+Battleground_FantinaIntro:
+    Message Battleground_Text_FantinaIntro
     Return
 
-_08E2:
-    Message 75
+Battleground_CandiceIntro:
+    Message Battleground_Text_CandiceIntro
     Return
 
-_08E7:
-    Message 64
+Battleground_ByronIntro:
+    Message Battleground_Text_ByronIntro
     Return
 
-_08EC:
-    Message 85
+Battleground_VolknerIntro:
+    Message Battleground_Text_VolknerIntro
     Return
 
-_08F1:
-    Message 95
+Battleground_CherylIntro:
+    Message Battleground_Text_CherylIntro
     Return
 
-_08F6:
-    Message 115
+Battleground_RileyIntro:
+    Message Battleground_Text_RileyIntro
     Return
 
-_08FB:
-    Message 125
+Battleground_MarleyIntro:
+    Message Battleground_Text_MarleyIntro
     Return
 
-_0900:
-    Message 135
+Battleground_BuckIntro:
+    Message Battleground_Text_BuckIntro
     Return
 
-_0905:
-    Message 105
+Battleground_MiraIntro:
+    Message Battleground_Text_MiraIntro
     Return
 
-_090A:
-    GoToIfEq VAR_UNK_0x4061, 1, _0DCD
-    CallIfEq VAR_MAP_LOCAL_1, 126, _09C2
-    CallIfEq VAR_MAP_LOCAL_1, 127, _09C7
-    CallIfEq VAR_MAP_LOCAL_1, 128, _09CC
-    CallIfEq VAR_MAP_LOCAL_1, 129, _09D1
-    CallIfEq VAR_MAP_LOCAL_1, 130, _09D6
-    CallIfEq VAR_MAP_LOCAL_1, 131, _09DB
-    CallIfEq VAR_MAP_LOCAL_1, 132, _09E0
-    CallIfEq VAR_MAP_LOCAL_1, 133, _09E5
-    CallIfEq VAR_MAP_LOCAL_1, 141, _09EA
-    CallIfEq VAR_MAP_LOCAL_1, 142, _09EF
-    CallIfEq VAR_MAP_LOCAL_1, 143, _09F4
-    CallIfEq VAR_MAP_LOCAL_1, 144, _09F9
-    CallIfEq VAR_MAP_LOCAL_1, 145, _09FE
+Battleground_MessageDeclinedBattle:
+    GoToIfEq VAR_RANDOM_BATTLEGROUND_MESSAGE, 1, Battleground_MessageDeclinedBattle2
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_ROARK, Battleground_RoarkDeclinedBattle
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_GARDENIA, Battleground_GardeniaDeclinedBattle
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_CRASHER_WAKE, Battleground_WakeDeclinedBattle
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_MAYLENE, Battleground_MayleneDeclinedBattle
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_FANTINA, Battleground_FantinaDeclinedBattle
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_CANDICE, Battleground_CandiceDeclinedBattle
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_BYRON, Battleground_ByronDeclinedBattle
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_VOLKNER, Battleground_VolknerDeclinedBattle
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_CHERYL, Battleground_CherylDeclinedBattle
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_RILEY, Battleground_RileyDeclinedBattle
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_MARLEY, Battleground_MarleyDeclinedBattle
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_BUCK, Battleground_BuckDeclinedBattle
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_MIRA, Battleground_MiraDeclinedBattle
     Return
 
-_09C2:
-    Message 14
+Battleground_RoarkDeclinedBattle:
+    Message Battleground_Text_RoarkDeclinedBattle
     Return
 
-_09C7:
-    Message 25
+Battleground_GardeniaDeclinedBattle:
+    Message Battleground_Text_GardeniaDeclinedBattle
     Return
 
-_09CC:
-    Message 55
+Battleground_WakeDeclinedBattle:
+    Message Battleground_Text_WakeDeclinedBattle
     Return
 
-_09D1:
-    Message 45
+Battleground_MayleneDeclinedBattle:
+    Message Battleground_Text_MayleneDeclinedBattle
     Return
 
-_09D6:
-    Message 35
+Battleground_FantinaDeclinedBattle:
+    Message Battleground_Text_FantinaDeclinedBattle
     Return
 
-_09DB:
-    Message 76
+Battleground_CandiceDeclinedBattle:
+    Message Battleground_Text_CandiceDeclinedBattle
     Return
 
-_09E0:
-    Message 65
+Battleground_ByronDeclinedBattle:
+    Message Battleground_Text_ByronDeclinedBattle
     Return
 
-_09E5:
-    Message 86
+Battleground_VolknerDeclinedBattle:
+    Message Battleground_Text_VolknerDeclinedBattle
     Return
 
-_09EA:
-    Message 96
+Battleground_CherylDeclinedBattle:
+    Message Battleground_Text_CherylDeclinedBattle
     Return
 
-_09EF:
-    Message 116
+Battleground_RileyDeclinedBattle:
+    Message Battleground_Text_RileyDeclinedBattle
     Return
 
-_09F4:
-    Message 126
+Battleground_MarleyDeclinedBattle:
+    Message Battleground_Text_MarleyDeclinedBattle
     Return
 
-_09F9:
-    Message 136
+Battleground_BuckDeclinedBattle:
+    Message Battleground_Text_BuckDeclinedBattle
     Return
 
-_09FE:
-    Message 106
+Battleground_MiraDeclinedBattle:
+    Message Battleground_Text_MiraDeclinedBattle
     Return
 
-_0A03:
-    GoToIfEq VAR_UNK_0x4061, 1, _0EB9
-    CallIfEq VAR_MAP_LOCAL_1, 126, _0ABB
-    CallIfEq VAR_MAP_LOCAL_1, 127, _0AC0
-    CallIfEq VAR_MAP_LOCAL_1, 128, _0AC5
-    CallIfEq VAR_MAP_LOCAL_1, 129, _0ACA
-    CallIfEq VAR_MAP_LOCAL_1, 130, _0ACF
-    CallIfEq VAR_MAP_LOCAL_1, 131, _0AD4
-    CallIfEq VAR_MAP_LOCAL_1, 132, _0AD9
-    CallIfEq VAR_MAP_LOCAL_1, 133, _0ADE
-    CallIfEq VAR_MAP_LOCAL_1, 141, _0AE3
-    CallIfEq VAR_MAP_LOCAL_1, 142, _0AE8
-    CallIfEq VAR_MAP_LOCAL_1, 143, _0AED
-    CallIfEq VAR_MAP_LOCAL_1, 144, _0AF2
-    CallIfEq VAR_MAP_LOCAL_1, 145, _0AF7
+Battleground_MessageAskBattleAgain:
+    GoToIfEq VAR_RANDOM_BATTLEGROUND_MESSAGE, 1, Battleground_MessageAskBattleAgain2
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_ROARK, Battleground_RoarkAskBattleAgain
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_GARDENIA, Battleground_GardeniaAskBattleAgain
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_CRASHER_WAKE, Battleground_WakeAskBattleAgain
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_MAYLENE, Battleground_MayleneAskBattleAgain
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_FANTINA, Battleground_FantinaAskBattleAgain
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_CANDICE, Battleground_CandiceAskBattleAgain
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_BYRON, Battleground_ByronAskBattleAgain
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_VOLKNER, Battleground_VolknerAskBattleAgain
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_CHERYL, Battleground_CherylAskBattleAgain
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_RILEY, Battleground_RileyAskBattleAgain
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_MARLEY, Battleground_MarleyAskBattleAgain
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_BUCK, Battleground_BuckAskBattleAgain
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_MIRA, Battleground_MiraAskBattleAgain
     Return
 
-_0ABB:
-    Message 15
+Battleground_RoarkAskBattleAgain:
+    Message Battleground_Text_RoarkAskBattleAgain
     Return
 
-_0AC0:
-    Message 26
+Battleground_GardeniaAskBattleAgain:
+    Message Battleground_Text_GardeniaAskBattleAgain
     Return
 
-_0AC5:
-    Message 56
+Battleground_WakeAskBattleAgain:
+    Message Battleground_Text_WakeAskBattleAgain
     Return
 
-_0ACA:
-    Message 46
+Battleground_MayleneAskBattleAgain:
+    Message Battleground_Text_MayleneAskBattleAgain
     Return
 
-_0ACF:
-    Message 36
+Battleground_FantinaAskBattleAgain:
+    Message Battleground_Text_FantinaAskBattleAgain
     Return
 
-_0AD4:
-    Message 77
+Battleground_CandiceAskBattleAgain:
+    Message Battleground_Text_CandiceAskBattleAgain
     Return
 
-_0AD9:
-    Message 66
+Battleground_ByronAskBattleAgain:
+    Message Battleground_Text_ByronAskBattleAgain
     Return
 
-_0ADE:
-    Message 87
+Battleground_VolknerAskBattleAgain:
+    Message Battleground_Text_VolknerAskBattleAgain
     Return
 
-_0AE3:
-    Message 97
+Battleground_CherylAskBattleAgain:
+    Message Battleground_Text_CherylAskBattleAgain
     Return
 
-_0AE8:
-    Message 117
+Battleground_RileyAskBattleAgain:
+    Message Battleground_Text_RileyAskBattleAgain
     Return
 
-_0AED:
-    Message 127
+Battleground_MarleyAskBattleAgain:
+    Message Battleground_Text_MarleyAskBattleAgain
     Return
 
-_0AF2:
-    Message 137
+Battleground_BuckAskBattleAgain:
+    Message Battleground_Text_BuckAskBattleAgain
     Return
 
-_0AF7:
-    Message 107
+Battleground_MiraAskBattleAgain:
+    Message Battleground_Text_MiraAskBattleAgain
     Return
 
-_0AFC:
-    GoToIfEq VAR_UNK_0x4061, 1, _0FA5
-    CallIfEq VAR_MAP_LOCAL_1, 126, _0BB4
-    CallIfEq VAR_MAP_LOCAL_1, 127, _0BB9
-    CallIfEq VAR_MAP_LOCAL_1, 128, _0BBE
-    CallIfEq VAR_MAP_LOCAL_1, 129, _0BC3
-    CallIfEq VAR_MAP_LOCAL_1, 130, _0BC8
-    CallIfEq VAR_MAP_LOCAL_1, 131, _0BCD
-    CallIfEq VAR_MAP_LOCAL_1, 132, _0BD2
-    CallIfEq VAR_MAP_LOCAL_1, 133, _0BD7
-    CallIfEq VAR_MAP_LOCAL_1, 141, _0BDC
-    CallIfEq VAR_MAP_LOCAL_1, 142, _0BE1
-    CallIfEq VAR_MAP_LOCAL_1, 143, _0BE6
-    CallIfEq VAR_MAP_LOCAL_1, 144, _0BEB
-    CallIfEq VAR_MAP_LOCAL_1, 145, _0BF0
+Battleground_MessageDefeat:
+    GoToIfEq VAR_RANDOM_BATTLEGROUND_MESSAGE, 1, Battleground_MessageDefeat2
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_ROARK, Battleground_RoarkDefeat
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_GARDENIA, Battleground_GardeniaDefeat
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_CRASHER_WAKE, Battleground_WakeDefeat
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_MAYLENE, Battleground_MayleneDefeat
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_FANTINA, Battleground_FantinaDefeat
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_CANDICE, Battleground_CandiceDefeat
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_BYRON, Battleground_ByronDefeat
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_VOLKNER, Battleground_VolknerDefeat
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_CHERYL, Battleground_CherylDefeat
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_RILEY, Battleground_RileyDefeat
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_MARLEY, Battleground_MarleyDefeat
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_BUCK, Battleground_BuckDefeat
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_MIRA, Battleground_MiraDefeat
     Return
 
-_0BB4:
-    Message 16
+Battleground_RoarkDefeat:
+    Message Battleground_Text_RoarkDefeat
     Return
 
-_0BB9:
-    Message 27
+Battleground_GardeniaDefeat:
+    Message Battleground_Text_GardeniaDefeat
     Return
 
-_0BBE:
-    Message 57
+Battleground_WakeDefeat:
+    Message Battleground_Text_WakeDefeat
     Return
 
-_0BC3:
-    Message 47
+Battleground_MayleneDefeat:
+    Message Battleground_Text_MayleneDefeat
     Return
 
-_0BC8:
-    Message 37
+Battleground_FantinaDefeat:
+    Message Battleground_Text_FantinaDefeat
     Return
 
-_0BCD:
-    Message 78
+Battleground_CandiceDefeat:
+    Message Battleground_Text_CandiceDefeat
     Return
 
-_0BD2:
-    Message 67
+Battleground_ByronDefeat:
+    Message Battleground_Text_ByronDefeat
     Return
 
-_0BD7:
-    Message 88
+Battleground_VolknerDefeat:
+    Message Battleground_Text_VolknerDefeat
     Return
 
-_0BDC:
-    Message 98
+Battleground_CherylDefeat:
+    Message Battleground_Text_CherylDefeat
     Return
 
-_0BE1:
-    Message 118
+Battleground_RileyDefeat:
+    Message Battleground_Text_RileyDefeat
     Return
 
-_0BE6:
-    Message 128
+Battleground_MarleyDefeat:
+    Message Battleground_Text_MarleyDefeat
     Return
 
-_0BEB:
-    Message 138
+Battleground_BuckDefeat:
+    Message Battleground_Text_BuckDefeat
     Return
 
-_0BF0:
-    Message 108
+Battleground_MiraDefeat:
+    Message Battleground_Text_MiraDefeat
     Return
 
-_0BF5:
-    CallIfEq VAR_MAP_LOCAL_1, 126, _0CA0
-    CallIfEq VAR_MAP_LOCAL_1, 127, _0CA5
-    CallIfEq VAR_MAP_LOCAL_1, 128, _0CAA
-    CallIfEq VAR_MAP_LOCAL_1, 129, _0CAF
-    CallIfEq VAR_MAP_LOCAL_1, 130, _0CB4
-    CallIfEq VAR_MAP_LOCAL_1, 131, _0CB9
-    CallIfEq VAR_MAP_LOCAL_1, 132, _0CBE
-    CallIfEq VAR_MAP_LOCAL_1, 133, _0CC3
-    CallIfEq VAR_MAP_LOCAL_1, 141, _0CC8
-    CallIfEq VAR_MAP_LOCAL_1, 142, _0CCD
-    CallIfEq VAR_MAP_LOCAL_1, 143, _0CD2
-    CallIfEq VAR_MAP_LOCAL_1, 144, _0CD7
-    CallIfEq VAR_MAP_LOCAL_1, 145, _0CDC
+Battleground_MessageAskBattle2:
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_ROARK, Battleground_RoarkAskBattle2
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_GARDENIA, Battleground_GardeniaAskBattle2
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_CRASHER_WAKE, Battleground_WakeAskBattle2
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_MAYLENE, Battleground_MayleneAskBattle2
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_FANTINA, Battleground_FantinaAskBattle2
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_CANDICE, Battleground_CandiceAskBattle2
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_BYRON, Battleground_ByronAskBattle2
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_VOLKNER, Battleground_VolknerAskBattle2
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_CHERYL, Battleground_CherylAskBattle2
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_RILEY, Battleground_RileyAskBattle2
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_MARLEY, Battleground_MarleyAskBattle2
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_BUCK, Battleground_BuckAskBattle2
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_MIRA, Battleground_MiraAskBattle2
     Return
 
-_0CA0:
-    Message 17
+Battleground_RoarkAskBattle2:
+    Message Battleground_Text_RoarkAskBattle2
     Return
 
-_0CA5:
-    Message 28
+Battleground_GardeniaAskBattle2:
+    Message Battleground_Text_GardeniaAskBattle2
     Return
 
-_0CAA:
-    Message 58
+Battleground_WakeAskBattle2:
+    Message Battleground_Text_WakeAskBattle2
     Return
 
-_0CAF:
-    Message 48
+Battleground_MayleneAskBattle2:
+    Message Battleground_Text_MayleneAskBattle2
     Return
 
-_0CB4:
-    Message 38
+Battleground_FantinaAskBattle2:
+    Message Battleground_Text_FantinaAskBattle2
     Return
 
-_0CB9:
-    Message 79
+Battleground_CandiceAskBattle2:
+    Message Battleground_Text_CandiceAskBattle2
     Return
 
-_0CBE:
-    Message 68
+Battleground_ByronAskBattle2:
+    Message Battleground_Text_ByronAskBattle2
     Return
 
-_0CC3:
-    Message 89
+Battleground_VolknerAskBattle2:
+    Message Battleground_Text_VolknerAskBattle2
     Return
 
-_0CC8:
-    Message 99
+Battleground_CherylAskBattle2:
+    Message Battleground_Text_CherylAskBattle2
     Return
 
-_0CCD:
-    Message 119
+Battleground_RileyAskBattle2:
+    Message Battleground_Text_RileyAskBattle2
     Return
 
-_0CD2:
-    Message 129
+Battleground_MarleyAskBattle2:
+    Message Battleground_Text_MarleyAskBattle2
     Return
 
-_0CD7:
-    Message 139
+Battleground_BuckAskBattle2:
+    Message Battleground_Text_BuckAskBattle2
     Return
 
-_0CDC:
-    Message 109
+Battleground_MiraAskBattle2:
+    Message Battleground_Text_MiraAskBattle2
     Return
 
-_0CE1:
-    CallIfEq VAR_MAP_LOCAL_1, 126, _0D8C
-    CallIfEq VAR_MAP_LOCAL_1, 127, _0D91
-    CallIfEq VAR_MAP_LOCAL_1, 128, _0D96
-    CallIfEq VAR_MAP_LOCAL_1, 129, _0D9B
-    CallIfEq VAR_MAP_LOCAL_1, 130, _0DA0
-    CallIfEq VAR_MAP_LOCAL_1, 131, _0DA5
-    CallIfEq VAR_MAP_LOCAL_1, 132, _0DAA
-    CallIfEq VAR_MAP_LOCAL_1, 133, _0DAF
-    CallIfEq VAR_MAP_LOCAL_1, 141, _0DB4
-    CallIfEq VAR_MAP_LOCAL_1, 142, _0DB9
-    CallIfEq VAR_MAP_LOCAL_1, 143, _0DBE
-    CallIfEq VAR_MAP_LOCAL_1, 144, _0DC3
-    CallIfEq VAR_MAP_LOCAL_1, 145, _0DC8
+Battleground_MessageIntro2:
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_ROARK, Battleground_RoarkIntro2
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_GARDENIA, Battleground_GardeniaIntro2
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_CRASHER_WAKE, Battleground_WakeIntro2
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_MAYLENE, Battleground_MayleneIntro2
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_FANTINA, Battleground_FantinaIntro2
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_CANDICE, Battleground_CandiceIntro2
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_BYRON, Battleground_ByronIntro2
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_VOLKNER, Battleground_VolknerIntro2
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_CHERYL, Battleground_CherylIntro2
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_RILEY, Battleground_RileyIntro2
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_MARLEY, Battleground_MarleyIntro2
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_BUCK, Battleground_BuckIntro2
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_MIRA, Battleground_MiraIntro2
     Return
 
-_0D8C:
-    Message 18
+Battleground_RoarkIntro2:
+    Message Battleground_Text_RoarkIntro2
     Return
 
-_0D91:
-    Message 29
+Battleground_GardeniaIntro2:
+    Message Battleground_Text_GardeniaIntro2
     Return
 
-_0D96:
-    Message 59
+Battleground_WakeIntro2:
+    Message Battleground_Text_WakeIntro2
     Return
 
-_0D9B:
-    Message 49
+Battleground_MayleneIntro2:
+    Message Battleground_Text_MayleneIntro2
     Return
 
-_0DA0:
-    Message 39
+Battleground_FantinaIntro2:
+    Message Battleground_Text_FantinaIntro2
     Return
 
-_0DA5:
-    Message 80
+Battleground_CandiceIntro2:
+    Message Battleground_Text_CandiceIntro2
     Return
 
-_0DAA:
-    Message 69
+Battleground_ByronIntro2:
+    Message Battleground_Text_ByronIntro2
     Return
 
-_0DAF:
-    Message 90
+Battleground_VolknerIntro2:
+    Message Battleground_Text_VolknerIntro2
     Return
 
-_0DB4:
-    Message 100
+Battleground_CherylIntro2:
+    Message Battleground_Text_CherylIntro2
     Return
 
-_0DB9:
-    Message 120
+Battleground_RileyIntro2:
+    Message Battleground_Text_RileyIntro2
     Return
 
-_0DBE:
-    Message 130
+Battleground_MarleyIntro2:
+    Message Battleground_Text_MarleyIntro2
     Return
 
-_0DC3:
-    Message 140
+Battleground_BuckIntro2:
+    Message Battleground_Text_BuckIntro2
     Return
 
-_0DC8:
-    Message 110
+Battleground_MiraIntro2:
+    Message Battleground_Text_MiraIntro2
     Return
 
-_0DCD:
-    CallIfEq VAR_MAP_LOCAL_1, 126, _0E78
-    CallIfEq VAR_MAP_LOCAL_1, 127, _0E7D
-    CallIfEq VAR_MAP_LOCAL_1, 128, _0E82
-    CallIfEq VAR_MAP_LOCAL_1, 129, _0E87
-    CallIfEq VAR_MAP_LOCAL_1, 130, _0E8C
-    CallIfEq VAR_MAP_LOCAL_1, 131, _0E91
-    CallIfEq VAR_MAP_LOCAL_1, 132, _0E96
-    CallIfEq VAR_MAP_LOCAL_1, 133, _0E9B
-    CallIfEq VAR_MAP_LOCAL_1, 141, _0EA0
-    CallIfEq VAR_MAP_LOCAL_1, 142, _0EA5
-    CallIfEq VAR_MAP_LOCAL_1, 143, _0EAA
-    CallIfEq VAR_MAP_LOCAL_1, 144, _0EAF
-    CallIfEq VAR_MAP_LOCAL_1, 145, _0EB4
+Battleground_MessageDeclinedBattle2:
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_ROARK, Battleground_RoarkDeclinedBattle2
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_GARDENIA, Battleground_GardeniaDeclinedBattle2
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_CRASHER_WAKE, Battleground_WakeDeclinedBattle2
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_MAYLENE, Battleground_MayleneDeclinedBattle2
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_FANTINA, Battleground_FantinaDeclinedBattle2
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_CANDICE, Battleground_CandiceDeclinedBattle2
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_BYRON, Battleground_ByronDeclinedBattle2
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_VOLKNER, Battleground_VolknerDeclinedBattle2
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_CHERYL, Battleground_CherylDeclinedBattle2
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_RILEY, Battleground_RileyDeclinedBattle2
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_MARLEY, Battleground_MarleyDeclinedBattle2
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_BUCK, Battleground_BuckDeclinedBattle2
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_MIRA, Battleground_MiraDeclinedBattle2
     Return
 
-_0E78:
-    Message 19
+Battleground_RoarkDeclinedBattle2:
+    Message Battleground_Text_RoarkDeclinedBattle2
     Return
 
-_0E7D:
-    Message 30
+Battleground_GardeniaDeclinedBattle2:
+    Message Battleground_Text_GardeniaDeclinedBattle2
     Return
 
-_0E82:
-    Message 60
+Battleground_WakeDeclinedBattle2:
+    Message Battleground_Text_WakeDeclinedBattle2
     Return
 
-_0E87:
-    Message 50
+Battleground_MayleneDeclinedBattle2:
+    Message Battleground_Text_MayleneDeclinedBattle2
     Return
 
-_0E8C:
-    Message 40
+Battleground_FantinaDeclinedBattle2:
+    Message Battleground_Text_FantinaDeclinedBattle2
     Return
 
-_0E91:
-    Message 81
+Battleground_CandiceDeclinedBattle2:
+    Message Battleground_Text_CandiceDeclinedBattle2
     Return
 
-_0E96:
-    Message 70
+Battleground_ByronDeclinedBattle2:
+    Message Battleground_Text_ByronDeclinedBattle2
     Return
 
-_0E9B:
-    Message 91
+Battleground_VolknerDeclinedBattle2:
+    Message Battleground_Text_VolknerDeclinedBattle2
     Return
 
-_0EA0:
-    Message 101
+Battleground_CherylDeclinedBattle2:
+    Message Battleground_Text_CherylDeclinedBattle2
     Return
 
-_0EA5:
-    Message 121
+Battleground_RileyDeclinedBattle2:
+    Message Battleground_Text_RileyDeclinedBattle2
     Return
 
-_0EAA:
-    Message 131
+Battleground_MarleyDeclinedBattle2:
+    Message Battleground_Text_MarleyDeclinedBattle2
     Return
 
-_0EAF:
-    Message 141
+Battleground_BuckDeclinedBattle2:
+    Message Battleground_Text_BuckDeclinedBattle2
     Return
 
-_0EB4:
-    Message 111
+Battleground_MiraDeclinedBattle2:
+    Message Battleground_Text_MiraDeclinedBattle2
     Return
 
-_0EB9:
-    CallIfEq VAR_MAP_LOCAL_1, 126, _0F64
-    CallIfEq VAR_MAP_LOCAL_1, 127, _0F69
-    CallIfEq VAR_MAP_LOCAL_1, 128, _0F6E
-    CallIfEq VAR_MAP_LOCAL_1, 129, _0F73
-    CallIfEq VAR_MAP_LOCAL_1, 130, _0F78
-    CallIfEq VAR_MAP_LOCAL_1, 131, _0F7D
-    CallIfEq VAR_MAP_LOCAL_1, 132, _0F82
-    CallIfEq VAR_MAP_LOCAL_1, 133, _0F87
-    CallIfEq VAR_MAP_LOCAL_1, 141, _0F8C
-    CallIfEq VAR_MAP_LOCAL_1, 142, _0F91
-    CallIfEq VAR_MAP_LOCAL_1, 143, _0F96
-    CallIfEq VAR_MAP_LOCAL_1, 144, _0F9B
-    CallIfEq VAR_MAP_LOCAL_1, 145, _0FA0
+Battleground_MessageAskBattleAgain2:
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_ROARK, Battleground_RoarkAskBattleAgain2
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_GARDENIA, Battleground_GardeniaAskBattleAgain2
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_CRASHER_WAKE, Battleground_WakeAskBattleAgain2
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_MAYLENE, Battleground_MayleneAskBattleAgain2
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_FANTINA, Battleground_FantinaAskBattleAgain2
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_CANDICE, Battleground_CandiceAskBattleAgain2
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_BYRON, Battleground_ByronAskBattleAgain2
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_VOLKNER, Battleground_VolknerAskBattleAgain2
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_CHERYL, Battleground_CherylAskBattleAgain2
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_RILEY, Battleground_RileyAskBattleAgain2
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_MARLEY, Battleground_MarleyAskBattleAgain2
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_BUCK, Battleground_BuckAskBattleAgain2
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_MIRA, Battleground_MiraAskBattleAgain2
     Return
 
-_0F64:
-    Message 20
+Battleground_RoarkAskBattleAgain2:
+    Message Battleground_Text_RoarkAskBattleAgain2
     Return
 
-_0F69:
-    Message 31
+Battleground_GardeniaAskBattleAgain2:
+    Message Battleground_Text_GardeniaAskBattleAgain2
     Return
 
-_0F6E:
-    Message 61
+Battleground_WakeAskBattleAgain2:
+    Message Battleground_Text_WakeAskBattleAgain2
     Return
 
-_0F73:
-    Message 51
+Battleground_MayleneAskBattleAgain2:
+    Message Battleground_Text_MayleneAskBattleAgain2
     Return
 
-_0F78:
-    Message 41
+Battleground_FantinaAskBattleAgain2:
+    Message Battleground_Text_FantinaAskBattleAgain2
     Return
 
-_0F7D:
-    Message 82
+Battleground_CandiceAskBattleAgain2:
+    Message Battleground_Text_CandiceAskBattleAgain2
     Return
 
-_0F82:
-    Message 71
+Battleground_ByronAskBattleAgain2:
+    Message Battleground_Text_ByronAskBattleAgain2
     Return
 
-_0F87:
-    Message 92
+Battleground_VolknerAskBattleAgain2:
+    Message Battleground_Text_VolknerAskBattleAgain2
     Return
 
-_0F8C:
-    Message 102
+Battleground_CherylAskBattleAgain2:
+    Message Battleground_Text_CherylAskBattleAgain2
     Return
 
-_0F91:
-    Message 122
+Battleground_RileyAskBattleAgain2:
+    Message Battleground_Text_RileyAskBattleAgain2
     Return
 
-_0F96:
-    Message 132
+Battleground_MarleyAskBattleAgain2:
+    Message Battleground_Text_MarleyAskBattleAgain2
     Return
 
-_0F9B:
-    Message 142
+Battleground_BuckAskBattleAgain2:
+    Message Battleground_Text_BuckAskBattleAgain2
     Return
 
-_0FA0:
-    Message 112
+Battleground_MiraAskBattleAgain2:
+    Message Battleground_Text_MiraAskBattleAgain2
     Return
 
-_0FA5:
-    CallIfEq VAR_MAP_LOCAL_1, 126, _1050
-    CallIfEq VAR_MAP_LOCAL_1, 127, _1055
-    CallIfEq VAR_MAP_LOCAL_1, 128, _105A
-    CallIfEq VAR_MAP_LOCAL_1, 129, _105F
-    CallIfEq VAR_MAP_LOCAL_1, 130, _1064
-    CallIfEq VAR_MAP_LOCAL_1, 131, _1069
-    CallIfEq VAR_MAP_LOCAL_1, 132, _106E
-    CallIfEq VAR_MAP_LOCAL_1, 133, _1073
-    CallIfEq VAR_MAP_LOCAL_1, 141, _1078
-    CallIfEq VAR_MAP_LOCAL_1, 142, _107D
-    CallIfEq VAR_MAP_LOCAL_1, 143, _1082
-    CallIfEq VAR_MAP_LOCAL_1, 144, _1087
-    CallIfEq VAR_MAP_LOCAL_1, 145, _108C
+Battleground_MessageDefeat2:
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_ROARK, Battleground_RoarkDefeat2
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_GARDENIA, Battleground_GardeniaDefeat2
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_CRASHER_WAKE, Battleground_WakeDefeat2
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_MAYLENE, Battleground_MayleneDefeat2
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_FANTINA, Battleground_FantinaDefeat2
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_CANDICE, Battleground_CandiceDefeat2
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_BYRON, Battleground_ByronDefeat2
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_VOLKNER, Battleground_VolknerDefeat2
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_CHERYL, Battleground_CherylDefeat2
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_RILEY, Battleground_RileyDefeat2
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_MARLEY, Battleground_MarleyDefeat2
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_BUCK, Battleground_BuckDefeat2
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_MIRA, Battleground_MiraDefeat2
     Return
 
-_1050:
-    Message 21
+Battleground_RoarkDefeat2:
+    Message Battleground_Text_RoarkDefeat2
     Return
 
-_1055:
-    Message 32
+Battleground_GardeniaDefeat2:
+    Message Battleground_Text_GardeniaDefeat2
     Return
 
-_105A:
-    Message 62
+Battleground_WakeDefeat2:
+    Message Battleground_Text_WakeDefeat2
     Return
 
-_105F:
-    Message 52
+Battleground_MayleneDefeat2:
+    Message Battleground_Text_MayleneDefeat2
     Return
 
-_1064:
-    Message 42
+Battleground_FantinaDefeat2:
+    Message Battleground_Text_FantinaDefeat2
     Return
 
-_1069:
-    Message 83
+Battleground_CandiceDefeat2:
+    Message Battleground_Text_CandiceDefeat2
     Return
 
-_106E:
-    Message 72
+Battleground_ByronDefeat2:
+    Message Battleground_Text_ByronDefeat2
     Return
 
-_1073:
-    Message 93
+Battleground_VolknerDefeat2:
+    Message Battleground_Text_VolknerDefeat2
     Return
 
-_1078:
-    Message 103
+Battleground_CherylDefeat2:
+    Message Battleground_Text_CherylDefeat2
     Return
 
-_107D:
-    Message 123
+Battleground_RileyDefeat2:
+    Message Battleground_Text_RileyDefeat2
     Return
 
-_1082:
-    Message 133
+Battleground_MarleyDefeat2:
+    Message Battleground_Text_MarleyDefeat2
     Return
 
-_1087:
-    Message 143
+Battleground_BuckDefeat2:
+    Message Battleground_Text_BuckDefeat2
     Return
 
-_108C:
-    Message 113
+Battleground_MiraDefeat2:
+    Message Battleground_Text_MiraDefeat2
     Return
 
-_1091:
-    CallIfEq VAR_MAP_LOCAL_1, 126, _113C
-    CallIfEq VAR_MAP_LOCAL_1, 127, _1142
-    CallIfEq VAR_MAP_LOCAL_1, 128, _1148
-    CallIfEq VAR_MAP_LOCAL_1, 129, _114E
-    CallIfEq VAR_MAP_LOCAL_1, 130, _1154
-    CallIfEq VAR_MAP_LOCAL_1, 131, _115A
-    CallIfEq VAR_MAP_LOCAL_1, 132, _1160
-    CallIfEq VAR_MAP_LOCAL_1, 133, _1166
-    CallIfEq VAR_MAP_LOCAL_1, 141, _116C
-    CallIfEq VAR_MAP_LOCAL_1, 142, _1172
-    CallIfEq VAR_MAP_LOCAL_1, 143, _1178
-    CallIfEq VAR_MAP_LOCAL_1, 144, _117E
-    CallIfEq VAR_MAP_LOCAL_1, 145, _1184
+Battleground_SetFlagDefeatedTrainer:
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_ROARK, Battleground_SetFlagDefeatedRoark
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_GARDENIA, Battleground_SetFlagDefeatedGardenia
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_CRASHER_WAKE, Battleground_SetFlagDefeatedWake
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_MAYLENE, Battleground_SetFlagDefeatedMaylene
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_FANTINA, Battleground_SetFlagDefeatedFantina
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_CANDICE, Battleground_SetFlagDefeatedCandice
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_BYRON, Battleground_SetFlagDefeatedByron
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_VOLKNER, Battleground_SetFlagDefeatedVolkner
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_CHERYL, Battleground_SetFlagDefeatedCheryl
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_RILEY, Battleground_SetFlagDefeatedRiley
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_MARLEY, Battleground_SetFlagDefeatedMarley
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_BUCK, Battleground_SetFlagDefeatedBuck
+    CallIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_MIRA, Battleground_SetFlagDefeatedMira
     Return
 
-_113C:
-    SetFlag FLAG_UNK_0x0AB8
+Battleground_SetFlagDefeatedRoark:
+    SetFlag FLAG_DEFEATED_BATTLEGROUND_ROARK
     Return
 
-_1142:
-    SetFlag FLAG_UNK_0x0AB9
+Battleground_SetFlagDefeatedGardenia:
+    SetFlag FLAG_DEFEATED_BATTLEGROUND_GARDENIA
     Return
 
-_1148:
-    SetFlag FLAG_UNK_0x0ABA
+Battleground_SetFlagDefeatedWake:
+    SetFlag FLAG_DEFEATED_BATTLEGROUND_CRASHER_WAKE
     Return
 
-_114E:
-    SetFlag FLAG_UNK_0x0ABB
+Battleground_SetFlagDefeatedMaylene:
+    SetFlag FLAG_DEFEATED_BATTLEGROUND_MAYLENE
     Return
 
-_1154:
-    SetFlag FLAG_UNK_0x0AC5
+Battleground_SetFlagDefeatedFantina:
+    SetFlag FLAG_DEFEATED_BATTLEGROUND_FANTINA
     Return
 
-_115A:
-    SetFlag FLAG_UNK_0x0AC6
+Battleground_SetFlagDefeatedCandice:
+    SetFlag FLAG_DEFEATED_BATTLEGROUND_CANDICE
     Return
 
-_1160:
-    SetFlag FLAG_UNK_0x0AC7
+Battleground_SetFlagDefeatedByron:
+    SetFlag FLAG_DEFEATED_BATTLEGROUND_BYRON
     Return
 
-_1166:
-    SetFlag FLAG_UNK_0x0AC8
+Battleground_SetFlagDefeatedVolkner:
+    SetFlag FLAG_DEFEATED_BATTLEGROUND_VOLKNER
     Return
 
-_116C:
-    SetFlag FLAG_UNK_0x0AC9
+Battleground_SetFlagDefeatedCheryl:
+    SetFlag FLAG_DEFEATED_BATTLEGROUND_CHERYL
     Return
 
-_1172:
-    SetFlag FLAG_UNK_0x0ACA
+Battleground_SetFlagDefeatedRiley:
+    SetFlag FLAG_DEFEATED_BATTLEGROUND_RILEY
     Return
 
-_1178:
-    SetFlag FLAG_UNK_0x0ACB
+Battleground_SetFlagDefeatedMarley:
+    SetFlag FLAG_DEFEATED_BATTLEGROUND_MARLEY
     Return
 
-_117E:
-    SetFlag FLAG_UNK_0x0ACC
+Battleground_SetFlagDefeatedBuck:
+    SetFlag FLAG_DEFEATED_BATTLEGROUND_BUCK
     Return
 
-_1184:
-    SetFlag FLAG_UNK_0x0ACD
+Battleground_SetFlagDefeatedMira:
+    SetFlag FLAG_DEFEATED_BATTLEGROUND_MIRA
     Return
 
-_118A:
-    SetVar VAR_RESULT, 0
-    GoToIfEq VAR_MAP_LOCAL_1, 126, _123B
-    GoToIfEq VAR_MAP_LOCAL_1, 127, _1248
-    GoToIfEq VAR_MAP_LOCAL_1, 128, _1255
-    GoToIfEq VAR_MAP_LOCAL_1, 129, _1262
-    GoToIfEq VAR_MAP_LOCAL_1, 130, _126F
-    GoToIfEq VAR_MAP_LOCAL_1, 131, _127C
-    GoToIfEq VAR_MAP_LOCAL_1, 132, _1289
-    GoToIfEq VAR_MAP_LOCAL_1, 133, _1296
-    GoToIfEq VAR_MAP_LOCAL_1, 141, _12A3
-    GoToIfEq VAR_MAP_LOCAL_1, 142, _12B0
-    GoToIfEq VAR_MAP_LOCAL_1, 143, _12BD
-    GoToIfEq VAR_MAP_LOCAL_1, 144, _12CA
-    GoToIfEq VAR_MAP_LOCAL_1, 145, _12D7
+Battleground_CheckDefeatedTrainer:
+    SetVar VAR_RESULT, FALSE
+    GoToIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_ROARK, Battleground_CheckDefeatedRoark
+    GoToIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_GARDENIA, Battleground_CheckDefeatedGardenia
+    GoToIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_CRASHER_WAKE, Battleground_CheckDefeatedWake
+    GoToIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_MAYLENE, Battleground_CheckDefeatedMaylene
+    GoToIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_FANTINA, Battleground_CheckDefeatedFantina
+    GoToIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_CANDICE, Battleground_CheckDefeatedCandice
+    GoToIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_BYRON, Battleground_CheckDefeatedByron
+    GoToIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_VOLKNER, Battleground_CheckDefeatedVolkner
+    GoToIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_CHERYL, Battleground_CheckDefeatedCheryl
+    GoToIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_RILEY, Battleground_CheckDefeatedRiley
+    GoToIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_MARLEY, Battleground_CheckDefeatedMarley
+    GoToIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_BUCK, Battleground_CheckDefeatedBuck
+    GoToIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_MIRA, Battleground_CheckDefeatedMira
     Return
 
-_123B:
-    GoToIfSet FLAG_UNK_0x0AB8, _12E4
+Battleground_CheckDefeatedRoark:
+    GoToIfSet FLAG_DEFEATED_BATTLEGROUND_ROARK, Battleground_SetResultTrue
     Return
 
-_1248:
-    GoToIfSet FLAG_UNK_0x0AB9, _12E4
+Battleground_CheckDefeatedGardenia:
+    GoToIfSet FLAG_DEFEATED_BATTLEGROUND_GARDENIA, Battleground_SetResultTrue
     Return
 
-_1255:
-    GoToIfSet FLAG_UNK_0x0ABA, _12E4
+Battleground_CheckDefeatedWake:
+    GoToIfSet FLAG_DEFEATED_BATTLEGROUND_CRASHER_WAKE, Battleground_SetResultTrue
     Return
 
-_1262:
-    GoToIfSet FLAG_UNK_0x0ABB, _12E4
+Battleground_CheckDefeatedMaylene:
+    GoToIfSet FLAG_DEFEATED_BATTLEGROUND_MAYLENE, Battleground_SetResultTrue
     Return
 
-_126F:
-    GoToIfSet FLAG_UNK_0x0AC5, _12E4
+Battleground_CheckDefeatedFantina:
+    GoToIfSet FLAG_DEFEATED_BATTLEGROUND_FANTINA, Battleground_SetResultTrue
     Return
 
-_127C:
-    GoToIfSet FLAG_UNK_0x0AC6, _12E4
+Battleground_CheckDefeatedCandice:
+    GoToIfSet FLAG_DEFEATED_BATTLEGROUND_CANDICE, Battleground_SetResultTrue
     Return
 
-_1289:
-    GoToIfSet FLAG_UNK_0x0AC7, _12E4
+Battleground_CheckDefeatedByron:
+    GoToIfSet FLAG_DEFEATED_BATTLEGROUND_BYRON, Battleground_SetResultTrue
     Return
 
-_1296:
-    GoToIfSet FLAG_UNK_0x0AC8, _12E4
+Battleground_CheckDefeatedVolkner:
+    GoToIfSet FLAG_DEFEATED_BATTLEGROUND_VOLKNER, Battleground_SetResultTrue
     Return
 
-_12A3:
-    GoToIfSet FLAG_UNK_0x0AC9, _12E4
+Battleground_CheckDefeatedCheryl:
+    GoToIfSet FLAG_DEFEATED_BATTLEGROUND_CHERYL, Battleground_SetResultTrue
     Return
 
-_12B0:
-    GoToIfSet FLAG_UNK_0x0ACA, _12E4
+Battleground_CheckDefeatedRiley:
+    GoToIfSet FLAG_DEFEATED_BATTLEGROUND_RILEY, Battleground_SetResultTrue
     Return
 
-_12BD:
-    GoToIfSet FLAG_UNK_0x0ACB, _12E4
+Battleground_CheckDefeatedMarley:
+    GoToIfSet FLAG_DEFEATED_BATTLEGROUND_MARLEY, Battleground_SetResultTrue
     Return
 
-_12CA:
-    GoToIfSet FLAG_UNK_0x0ACC, _12E4
+Battleground_CheckDefeatedBuck:
+    GoToIfSet FLAG_DEFEATED_BATTLEGROUND_BUCK, Battleground_SetResultTrue
     Return
 
-_12D7:
-    GoToIfSet FLAG_UNK_0x0ACD, _12E4
+Battleground_CheckDefeatedMira:
+    GoToIfSet FLAG_DEFEATED_BATTLEGROUND_MIRA, Battleground_SetResultTrue
     Return
 
-_12E4:
-    SetVar VAR_RESULT, 1
+Battleground_SetResultTrue:
+    SetVar VAR_RESULT, TRUE
     Return

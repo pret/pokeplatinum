@@ -51,7 +51,7 @@ _0039:
     FrontierScrCmd_B2 0, 0, 0, VAR_0x8008
     WaitTime 1, VAR_0x8008
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 176
+    SyncConnectedPlayers 176
     ClearReceivedTempDataAllPlayers
     FrontierScrCmd_22 _000C
     FrontierScrCmd_24 _0014
@@ -174,7 +174,7 @@ _0260:
     FrontierScrCmd_B1 VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _02B8
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 170
+    SyncConnectedPlayers 170
     ClearReceivedTempDataAllPlayers
     GoTo _02C0
     End
@@ -416,7 +416,7 @@ _0766:
     FrontierScrCmd_B2 12, 0, 0, VAR_0x8008
     FrontierScrCmd_3D VAR_WIFI_FRONTIER_CLEARED, VAR_0x8008
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 175
+    SyncConnectedPlayers 175
     ClearReceivedTempDataAllPlayers
     MessageInstant pl_msg_00000015_00019
     ShowSavingIcon
@@ -427,7 +427,7 @@ _0766:
     MessageNoSkip pl_msg_00000015_00020
     WaitTime 10, VAR_0x8008
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 171
+    SyncConnectedPlayers 171
     ClearReceivedTempDataAllPlayers
     CloseMessage
     FadeScreenOut
@@ -501,13 +501,13 @@ _08B5:
 
 _08C9:
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 173
+    SyncConnectedPlayers 173
     ClearReceivedTempDataAllPlayers
     Return
 
 _08D3:
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 174
+    SyncConnectedPlayers 174
 
 _08D9:
     ClearReceivedTempDataAllPlayers
@@ -520,7 +520,7 @@ _08DD:
     FrontierScrCmd_B2 0, 0, 0, VAR_0x8008
     WaitTime 1, VAR_0x8008
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 177
+    SyncConnectedPlayers 177
     ClearReceivedTempDataAllPlayers
     FrontierScrCmd_22 _000C
     FrontierScrCmd_24 _0014
@@ -567,7 +567,7 @@ _09AD:
 
 _09C0:
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 172
+    SyncConnectedPlayers 172
     ClearReceivedTempDataAllPlayers
     CloseMessage
     GoTo _09D2
@@ -577,7 +577,7 @@ _09D2:
     FadeScreenOut
     FrontierScrCmd_AB
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 178
+    SyncConnectedPlayers 178
     ClearReceivedTempDataAllPlayers
     FrontierScrCmd_02
 

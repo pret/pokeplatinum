@@ -314,9 +314,9 @@
     .short FRSCRCMD_34
     .endm
 
-    .macro FrontierScrCmd_35 arg0
-    .short FRSCRCMD_35
-    .short \arg0
+    .macro SyncConnectedPlayers syncNo
+    .short FRSCRCMD_SYNCCONNECTEDPLAYERS
+    .short \syncNo
     .endm
 
     .macro ClearReceivedTempDataAllPlayers
@@ -644,9 +644,9 @@
     .short \destVar
     .endm
 
-    .macro FrontierScrCmd_76 arg0
-    .short FRSCRCMD_76
-    .short \arg0
+    .macro BattleHall_UpdateWinRecord destVar
+    .short FRSCRCMD_BATTLEHALL_UPDATEWINRECORD
+    .short \destVar
     .endm
 
     .macro ShowSavingIcon
@@ -778,25 +778,25 @@
     .short FRSCRCMD_OPENBATTLEHALLAPP
     .endm
 
-    .macro FrontierScrCmd_8F
-    .short FRSCRCMD_8F
+    .macro BattleHall_CheckWonBattle
+    .short FRSCRCMD_BATTLEHALL_CHECKWONBATTLE
     .endm
 
-    .macro FrontierScrCmd_90
-    .short FRSCRCMD_90
+    .macro BattleHall_StartBattle
+    .short FRSCRCMD_BATTLEHALL_STARTBATTLE
     .endm
 
-    .macro FrontierScrCmd_91 arg0, arg1, arg2, arg3
-    .short FRSCRCMD_91
-    .byte \arg0
+    .macro CallBattleHallFunction command, arg1, arg2, returnVar
+    .short FRSCRCMD_CALLBATTLEHALLFUNCTION
+    .byte \command
     .byte \arg1
     .byte \arg2
-    .short \arg3
+    .short \returnVar
     .endm
 
-    .macro FrontierScrCmd_92 arg0
-    .short FRSCRCMD_92
-    .short \arg0
+    .macro BattleHall_GetBattleResult destVar
+    .short FRSCRCMD_BATTLEHALL_GETBATTLERESULT
+    .short \destVar
     .endm
 
     .macro FrontierScrCmd_93 arg0, arg1, arg2

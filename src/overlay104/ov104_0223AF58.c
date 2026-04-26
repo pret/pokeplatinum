@@ -6,8 +6,8 @@
 #include "constants/battle_frontier.h"
 
 #include "overlay104/ov104_0222DCE0.h"
+#include "overlay104/struct_battle_hall.h"
 #include "overlay104/struct_ov104_02230BE4.h"
-#include "overlay104/struct_ov104_0223B5C0.h"
 
 #include "communication_information.h"
 #include "communication_system.h"
@@ -34,18 +34,18 @@ void FieldBattleDTO_CopyPlayerInfoToTrainerData(FieldBattleDTO *param0);
 void ov104_0223AF58(u8 param0, u8 param1, u8 param2, u8 param3, u16 param4[]);
 void ov104_0223AFB4(u8 param0, u8 param1, int param2, u8 param3, u8 param4, u16 param5[]);
 void ov104_0223B0C8(u8 param0, u8 param1, u8 param2, u8 param3, u16 param4, u16 param5[], u8 param6);
-u8 ov104_0223B500(u8 param0);
+u8 BattleHall_GetPartySize(u8 param0);
 u8 ov104_0223B50C(u8 param0);
-FieldBattleDTO *ov104_0223B250(UnkStruct_ov104_0223B5C0 *param0, UnkStruct_ov104_02230BE4 *param1);
+FieldBattleDTO *ov104_0223B250(BattleHall *param0, UnkStruct_ov104_02230BE4 *param1);
 static u32 ov104_0223B4D4(u8 param0);
 static void ov104_0223B518(FrontierPokemonDataDTO *param0, u8 param1, u16 param2, u16 param3[], int param4, int param5, int param6);
-static u32 ov104_0223B57C(UnkStruct_ov104_0223B5C0 *param0, u8 param1);
-u8 ov104_0223B5C0(UnkStruct_ov104_0223B5C0 *param0);
+static u32 ov104_0223B57C(BattleHall *param0, u8 param1);
+u8 ov104_0223B5C0(BattleHall *param0);
 static u8 ov104_0223B5F0(u8 param0);
-static u16 ov104_0223B604(UnkStruct_ov104_0223B5C0 *param0, u8 param1, u8 param2);
+static u16 ov104_0223B604(BattleHall *param0, u8 param1, u8 param2);
 static u16 ov104_0223B644(u8 param0);
-u16 ov104_0223B64C(UnkStruct_ov104_0223B5C0 *param0);
-static BOOL ov104_0223B4A4(UnkStruct_ov104_0223B5C0 *param0, u8 param1);
+u16 BattleHall_GetHighestLevelInParty(BattleHall *param0);
+static BOOL ov104_0223B4A4(BattleHall *param0, u8 param1);
 
 static const u16 Unk_ov104_0224041C[10][8] = {
     { 0x2, 0x3, 0x14, 0x15, 0x25, 0x24, 0x16, 0x1C },
@@ -1561,7 +1561,7 @@ void ov104_0223B0C8(u8 param0, u8 param1, u8 param2, u8 param3, u16 param4, u16 
     return;
 }
 
-FieldBattleDTO *ov104_0223B250(UnkStruct_ov104_0223B5C0 *param0, UnkStruct_ov104_02230BE4 *param1)
+FieldBattleDTO *ov104_0223B250(BattleHall *param0, UnkStruct_ov104_02230BE4 *param1)
 {
     int v1;
     u8 v7;
@@ -1569,13 +1569,13 @@ FieldBattleDTO *ov104_0223B250(UnkStruct_ov104_0223B5C0 *param0, UnkStruct_ov104
     FrontierTrainerDataDTO v10;
 
     u8 v6 = (param0->unk_05 * 2);
-    u8 v4 = ov104_0223B500(param0->unk_04);
-    u8 v5 = ov104_0223B50C(param0->unk_04);
+    u8 v4 = BattleHall_GetPartySize(param0->challengeType);
+    u8 v5 = ov104_0223B50C(param0->challengeType);
     Party *v13 = SaveData_GetParty(param0->saveData);
 
     Party_HealAllMembers(v13);
 
-    FieldBattleDTO *v8 = FieldBattleDTO_New(HEAP_ID_FIELD2, ov104_0223B4D4(param0->unk_04));
+    FieldBattleDTO *v8 = FieldBattleDTO_New(HEAP_ID_FIELD2, ov104_0223B4D4(param0->challengeType));
     FieldBattleDTO_InitFromGameState(v8, NULL, param1->saveData, param1->unk_1C, param1->journalEntry, param1->bagCursor, param1->unk_20);
 
     v8->background = BACKGROUND_BATTLE_HALL;
@@ -1596,9 +1596,9 @@ FieldBattleDTO *ov104_0223B250(UnkStruct_ov104_0223B5C0 *param0, UnkStruct_ov104
     ov104_0222E284(v8, &v10, v5, 1, 11);
     Party_InitWithCapacity(v8->parties[1], v5);
 
-    v7 = BattleHall_GetRankOfType(param0->unk_6F5, &param0->unk_704[param0->unk_04][0]);
+    v7 = BattleHall_GetRankOfType(param0->selectedTypeIdx, &param0->unk_704[param0->challengeType][0]);
 
-    if (param0->unk_04 == 2) {
+    if (param0->challengeType == 2) {
         v7 = (10 - 1);
     }
 
@@ -1627,7 +1627,7 @@ FieldBattleDTO *ov104_0223B250(UnkStruct_ov104_0223B5C0 *param0, UnkStruct_ov104
 
     Heap_Free(v9);
 
-    switch (param0->unk_04) {
+    switch (param0->challengeType) {
     case 2:
     case 3:
         FieldBattleDTO_CopyPlayerInfoToTrainerData(v8);
@@ -1658,7 +1658,7 @@ FieldBattleDTO *ov104_0223B250(UnkStruct_ov104_0223B5C0 *param0, UnkStruct_ov104
     return v8;
 }
 
-static BOOL ov104_0223B4A4(UnkStruct_ov104_0223B5C0 *param0, u8 param1)
+static BOOL ov104_0223B4A4(BattleHall *param0, u8 param1)
 {
     if (param0->unk_290[param1].personality > ((24 + 1) * 10001)) {
         param0->unk_290[param1].personality -= ((24 + 1) * 10001);
@@ -1685,10 +1685,10 @@ static u32 ov104_0223B4D4(u8 param0)
     return (0x0 | 0x1) | 0x80;
 }
 
-u8 ov104_0223B500(u8 param0)
+u8 BattleHall_GetPartySize(u8 challengeType)
 {
-    switch (param0) {
-    case 1:
+    switch (challengeType) {
+    case FRONTIER_CHALLENGE_DOUBLE:
         return 2;
     }
 
@@ -1727,7 +1727,7 @@ static void ov104_0223B518(FrontierPokemonDataDTO *param0, u8 param1, u16 param2
     return;
 }
 
-static u32 ov104_0223B57C(UnkStruct_ov104_0223B5C0 *param0, u8 param1)
+static u32 ov104_0223B57C(BattleHall *param0, u8 param1)
 {
     u8 v0;
     u32 v1;
@@ -1735,7 +1735,7 @@ static u32 ov104_0223B57C(UnkStruct_ov104_0223B5C0 *param0, u8 param1)
     v0 = (param0->unk_05 * 2);
 
     if ((param0->unk_18[v0] == 307) || (param0->unk_18[v0] == 308)) {
-        v1 = ov104_0223B64C(param0);
+        v1 = BattleHall_GetHighestLevelInParty(param0);
     } else {
         v1 = param0->unk_07;
     }
@@ -1776,7 +1776,7 @@ BOOL BattleHall_IsMultiPlayerChallenge(u8 challengeType)
     return challengeType == FRONTIER_CHALLENGE_MULTI || challengeType == FRONTIER_CHALLENGE_MULTI_WFC;
 }
 
-u8 ov104_0223B5C0(UnkStruct_ov104_0223B5C0 *param0)
+u8 ov104_0223B5C0(BattleHall *param0)
 {
     u32 v0;
     int v1;
@@ -1792,7 +1792,7 @@ static u8 ov104_0223B5F0(u8 param0)
     return Unk_ov104_0224033C[ov104_0223B644(param0)].unk_01;
 }
 
-static u16 ov104_0223B604(UnkStruct_ov104_0223B5C0 *param0, u8 param1, u8 param2)
+static u16 ov104_0223B604(BattleHall *param0, u8 param1, u8 param2)
 {
     u8 v0;
     u16 v1;
@@ -1805,7 +1805,7 @@ static u16 ov104_0223B604(UnkStruct_ov104_0223B5C0 *param0, u8 param1, u8 param2
         v1 = 0;
     }
 
-    if (param0->unk_04 == 0) {
+    if (param0->challengeType == 0) {
         v0 = (param1 * 2);
 
         if ((param0->unk_18[v0] == 307) || (param0->unk_18[v0] == 308)) {
@@ -1813,7 +1813,7 @@ static u16 ov104_0223B604(UnkStruct_ov104_0223B5C0 *param0, u8 param1, u8 param2
         }
     }
 
-    if (param0->unk_04 == 2) {
+    if (param0->challengeType == 2) {
         v1 = (0x1 | 0x2 | 0x4);
     }
 
@@ -1831,39 +1831,36 @@ static u16 ov104_0223B644(u8 param0)
     return v0;
 }
 
-u16 ov104_0223B64C(UnkStruct_ov104_0223B5C0 *param0)
+u16 BattleHall_GetHighestLevelInParty(BattleHall *param0)
 {
-    Party *v0;
-    Pokemon *v1;
-    u16 v2, v3;
 
-    v0 = SaveData_GetParty(param0->saveData);
-    v1 = Party_GetPokemonBySlotIndex(v0, param0->unk_260[0]);
-    v2 = Pokemon_GetValue(v1, MON_DATA_LEVEL, NULL);
+    Party *party = SaveData_GetParty(param0->saveData);
+    Pokemon *mon = Party_GetPokemonBySlotIndex(party, param0->unk_260[0]);
+    u16 firstMonsLevel = Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL);
 
-    if (ov104_0223B500(param0->unk_04) == 2) {
-        v1 = Party_GetPokemonBySlotIndex(v0, param0->unk_260[1]);
-        v3 = Pokemon_GetValue(v1, MON_DATA_LEVEL, NULL);
+    if (BattleHall_GetPartySize(param0->challengeType) == 2) {
+        mon = Party_GetPokemonBySlotIndex(party, param0->unk_260[1]);
+        u16 secondMonsLevel = Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL);
 
-        if (v2 > v3) {
-            return v2;
+        if (firstMonsLevel > secondMonsLevel) {
+            return firstMonsLevel;
         } else {
-            return v3;
+            return secondMonsLevel;
         }
     } else {
-        if (BattleHall_IsMultiPlayerChallenge(param0->unk_04) == 1) {
-            if (v2 > param0->unk_D84[0]) {
-                return v2;
+        if (BattleHall_IsMultiPlayerChallenge(param0->challengeType) == TRUE) {
+            if (firstMonsLevel > param0->unk_D84[0]) {
+                return firstMonsLevel;
             } else {
                 return param0->unk_D84[0];
             }
         }
     }
 
-    return v2;
+    return firstMonsLevel;
 }
 
-fx32 ov104_0223B6C4(u32 param0)
+fx32 BattleHall_GetLevelSquareRoot(u32 level)
 {
-    return FX_Sqrt(FX32_CONST(param0));
+    return FX_Sqrt(FX32_CONST(level));
 }

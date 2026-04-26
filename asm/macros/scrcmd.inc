@@ -4505,12 +4505,12 @@
     .short \trainerID
     .endm
 
-    .macro ScrCmd_2F4 arg0, arg1, arg2, arg3
-    .short SCRCMD_2F4
-    .short \arg0
-    .short \arg1
-    .short \arg2
-    .short \arg3
+    .macro GetRandomBattlegroundTrainers destVar1, destVar2, destVar3, destVar4
+    .short ScrCmd_GETRANDOMBATTLEGROUNDTRAINERS
+    .short \destVar1
+    .short \destVar2
+    .short \destVar3
+    .short \destVar4
     .endm
 
     .macro BufferValuePaddingDigits templateArg, value, paddingMode, maxDigits
