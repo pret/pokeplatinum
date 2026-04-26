@@ -24,6 +24,8 @@
 #include "unk_020996D0.h"
 #include "wifi_history_save_data.h"
 
+#include "res/text/bank/country_names.h"
+
 UnkStruct_02030A80 *sub_02030A80(enum HeapID heapID)
 {
     UnkStruct_02030A80 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_02030A80));
@@ -85,7 +87,7 @@ String *sub_02030B94(const UnkStruct_02030A80 *param0, enum HeapID heapID)
 u32 sub_02030BAC(const UnkStruct_02030A80 *param0)
 {
     if ((param0->gender != GENDER_MALE) && (param0->gender != GENDER_FEMALE)) {
-        return 0;
+        return GENDER_MALE;
     }
 
     return param0->gender;
@@ -94,7 +96,7 @@ u32 sub_02030BAC(const UnkStruct_02030A80 *param0)
 int sub_02030BBC(const UnkStruct_02030A80 *param0)
 {
     if (param0->species >= MAX_SPECIES) {
-        return 0;
+        return SPECIES_NONE;
     }
 
     return param0->species;
@@ -103,7 +105,7 @@ int sub_02030BBC(const UnkStruct_02030A80 *param0)
 int sub_02030BCC(const UnkStruct_02030A80 *param0)
 {
     if (param0->species >= MAX_SPECIES) {
-        return 0;
+        return SPECIES_NONE;
     }
 
     return Pokemon_SanitizeFormId(param0->species, param0->form);
@@ -120,8 +122,9 @@ int sub_02030BEC(const UnkStruct_02030A80 *param0)
 
 int sub_02030BFC(const UnkStruct_02030A80 *param0)
 {
+    // Note: 234 is the count of entries in the `country_names` text bank.
     if (param0->country >= 234) {
-        return 0;
+        return Country_Text_None;
     }
 
     return param0->country;
@@ -186,8 +189,8 @@ int sub_02030CCC(const UnkStruct_02030A80 *param0)
 
 int sub_02030CDC(const UnkStruct_02030A80 *param0)
 {
-    if (param0->appearance > 15) {
-        return 0;
+    if (param0->appearance > TRAINER_APPEARANCE_LADY) {
+        return TRAINER_APPEARANCE_SCHOOL_KID_M;
     }
 
     return param0->appearance;
