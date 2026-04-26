@@ -5,6 +5,7 @@
 
 #include "constants/field/dynamic_map_features.h"
 #include "constants/field/map.h"
+#include "constants/graphics.h"
 #include "constants/scrcmd.h"
 #include "generated/movement_actions.h"
 #include "generated/movement_types.h"
@@ -20,15 +21,14 @@
 #include "field/field_system_sub2_t.h"
 #include "overlay005/dynamic_terrain_height.h"
 #include "overlay005/field_effect_manager.h"
+#include "overlay005/fog_manager.h"
 #include "overlay005/land_data.h"
 #include "overlay005/map_prop.h"
 #include "overlay005/map_prop_animation.h"
-#include "overlay005/ov5_021D57BC.h"
 #include "overlay005/ov5_021F4018.h"
 #include "overlay005/ov5_021F428C.h"
 #include "overlay005/ov5_021F47B0.h"
 #include "overlay005/ov5_021F5A10.h"
-#include "overlay005/struct_ov5_021D57D8_decl.h"
 
 #include "badges.h"
 #include "bg_window.h"
@@ -304,13 +304,13 @@ typedef struct HearthomeGymTrainerRoomLayout {
 } HearthomeGymTrainerRoomLayout;
 
 typedef struct HearthomeGymFog {
-    UnkStruct_ov5_021D57D8 *fogSystem;
+    FogManager *fogMan;
     int fogSlope;
     u8 fogR;
     u8 fogG;
     u8 fogB;
     u8 fogAlpha;
-    char fogDensity[32];
+    char fogDensity[G3X_FOG_DENSITY_TABLE_SIZE];
 } HearthomeGymFog;
 
 typedef struct HearthomeGymTrainerRoomDoor {
@@ -1586,8 +1586,8 @@ void CanalaveGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
 
     Camera_SetClipping(FX32_ONE * 100, FX32_ONE * 1700, fieldSystem->camera);
 
-    ov5_021D57FC(fieldSystem->unk_48, 0xffffffff, 1, GX_FOGBLEND_COLOR_ALPHA, GX_FOGSLOPE_0x0200, 0x76a0);
-    ov5_021D5834(fieldSystem->unk_48, 0xffffffff, GX_RGB(0, 0, 0), 0);
+    FogManager_ApplyParameters(fieldSystem->fogMan, FOG_PARAMETER_ALL, TRUE, GX_FOGBLEND_COLOR_ALPHA, GX_FOGSLOPE_0x0200, 0x76a0);
+    FogManager_ApplyColor(fieldSystem->fogMan, FOG_PARAMETER_ALL, GX_RGB(0, 0, 0), 0);
 
     {
         int v7;
@@ -1597,7 +1597,7 @@ void CanalaveGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
             v8[v7] = v7 * (72 / 32);
         }
 
-        ov5_021D585C(fieldSystem->unk_48, v8);
+        FogManager_ApplyDensityTable(fieldSystem->fogMan, v8);
     }
 }
 
@@ -2316,7 +2316,7 @@ static const EternaClockHourHandJumpTile sEternaGymHourHandJumpTiles[ETERNA_CLOC
 
 // clang-format off
 static ALIGN_4 const u8 sEternaGymClockCollision[ETERNA_CLOCK_MAX][ETERNA_CLOCK_DIAMETER * ETERNA_CLOCK_DIAMETER] = {
-    [ETERNA_CLOCK_INITIAL] = { 
+    [ETERNA_CLOCK_INITIAL] = {
         1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
         1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
         1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
@@ -2331,7 +2331,7 @@ static ALIGN_4 const u8 sEternaGymClockCollision[ETERNA_CLOCK_MAX][ETERNA_CLOCK_
         1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
         0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0,
     },
-    [ETERNA_CLOCK_DEFEATED_FIRST_TRAINER] = { 
+    [ETERNA_CLOCK_DEFEATED_FIRST_TRAINER] = {
         1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
         1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
         1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
@@ -2346,7 +2346,7 @@ static ALIGN_4 const u8 sEternaGymClockCollision[ETERNA_CLOCK_MAX][ETERNA_CLOCK_
         1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1,
         0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0,
     },
-    [ETERNA_CLOCK_DEFEATED_SECOND_TRAINER] =  { 
+    [ETERNA_CLOCK_DEFEATED_SECOND_TRAINER] =  {
         0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
         1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
         1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
@@ -2361,7 +2361,7 @@ static ALIGN_4 const u8 sEternaGymClockCollision[ETERNA_CLOCK_MAX][ETERNA_CLOCK_
         1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
         0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0,
     },
-    [ETERNA_CLOCK_DEFEATED_THIRD_TRAINER] = { 
+    [ETERNA_CLOCK_DEFEATED_THIRD_TRAINER] = {
         0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0,
         1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1,
         1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1,
@@ -2376,7 +2376,7 @@ static ALIGN_4 const u8 sEternaGymClockCollision[ETERNA_CLOCK_MAX][ETERNA_CLOCK_
         1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
         0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0,
     },
-    [ETERNA_CLOCK_DEFEATED_GYM_LEADER] = { 
+    [ETERNA_CLOCK_DEFEATED_GYM_LEADER] = {
         0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0,
         1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1,
         1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1,
@@ -3706,13 +3706,13 @@ static const HearthomeGymTrainerRoomLayout sTrainerRoomLayouts[HEARTHOME_NUM_TRA
 // clang-format off
 // 0 = Clue can be placed there, 1 = Clue can not be placed there
 static const u8 sTrainerRoom1CluePositions[HEARTHOME_ROOM_1_SIZE_X * HEARTHOME_ROOM_1_SIZE_Z] = {
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 
-    1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 
-    0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 
-    0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 
-    0, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 
-    0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+    1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1,
+    0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0,
+    0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0,
+    0, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0,
+    0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0,
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
 };
 
@@ -3871,9 +3871,9 @@ static void HearthomeGym_EmptyTask(SysTask *task, void *data)
 static void HearthomeGym_InitFog(HearthomeGymSystem *gymSystem)
 {
     HearthomeGymFog *fog = &gymSystem->fog;
-    UnkStruct_ov5_021D57D8 *fogSystem = gymSystem->fieldSystem->unk_48;
+    FogManager *fogMan = gymSystem->fieldSystem->fogMan;
 
-    fog->fogSystem = fogSystem;
+    fog->fogMan = fogMan;
     fog->fogSlope = GX_FOGSLOPE_0x0020;
     fog->fogR = 1;
     fog->fogG = 1;
@@ -3887,11 +3887,11 @@ static void HearthomeGym_InitFog(HearthomeGymSystem *gymSystem)
         fogDensity = 119;
     }
 
-    memset(fog->fogDensity, fogDensity, 32);
+    memset(fog->fogDensity, fogDensity, sizeof(fog->fogDensity));
 
-    ov5_021D57FC(fogSystem, 0xffffffff, TRUE, GX_FOGBLEND_COLOR_ALPHA, fog->fogSlope, 0);
-    ov5_021D5834(fogSystem, 0xffffffff, GX_RGB(fog->fogR, fog->fogG, fog->fogB), fog->fogAlpha);
-    ov5_021D585C(fogSystem, fog->fogDensity);
+    FogManager_ApplyParameters(fogMan, FOG_PARAMETER_ALL, TRUE, GX_FOGBLEND_COLOR_ALPHA, fog->fogSlope, 0);
+    FogManager_ApplyColor(fogMan, FOG_PARAMETER_ALL, GX_RGB(fog->fogR, fog->fogG, fog->fogB), fog->fogAlpha);
+    FogManager_ApplyDensityTable(fogMan, fog->fogDensity);
 }
 
 static void HearthomeGym_InitTrainers(HearthomeGymSystem *gymSystem)

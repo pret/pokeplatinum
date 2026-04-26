@@ -27,14 +27,13 @@
 #include "overlay005/dist_world_surf_mount_renderer.h"
 #include "overlay005/field_effect_manager.h"
 #include "overlay005/fieldmap.h"
+#include "overlay005/fog_manager.h"
 #include "overlay005/land_data.h"
 #include "overlay005/land_data_manager_decl.h"
 #include "overlay005/map_object_anim_cmd.h"
-#include "overlay005/ov5_021D57BC.h"
 #include "overlay005/ov5_021EB1A0.h"
 #include "overlay005/ov5_021ECE40.h"
 #include "overlay005/ov5_021F348C.h"
-#include "overlay005/struct_ov5_021D57D8_decl.h"
 #include "overlay005/struct_ov5_021ED0A4.h"
 #include "overlay009/camera_configuration.h"
 #include "overlay009/struct_ov9_0224F6EC_decl.h"
@@ -3346,10 +3345,10 @@ static const OverworldAnimManagerFuncs sSkyCloudsAnimFuncs = {
 
 static void ov9_0224B3A8(DistWorldSystem *param0)
 {
-    UnkStruct_ov5_021D57D8 *v0 = param0->fieldSystem->unk_48;
+    FogManager *v0 = param0->fieldSystem->fogMan;
 
-    ov5_021D57FC(v0, 0xffffffff, 1, GX_FOGBLEND_COLOR_ALPHA, 6, 0x7600);
-    ov5_021D5834(v0, 0xffffffff, (GX_RGB(0, 0, 0)), 16);
+    FogManager_ApplyParameters(v0, FOG_PARAMETER_ALL, TRUE, GX_FOGBLEND_COLOR_ALPHA, GX_FOGSLOPE_0x0200, 0x7600);
+    FogManager_ApplyColor(v0, FOG_PARAMETER_ALL, (GX_RGB(0, 0, 0)), 16);
 
     {
         int v1 = 0;
@@ -3360,7 +3359,7 @@ static void ov9_0224B3A8(DistWorldSystem *param0)
             v1++;
         } while (v1 < 32);
 
-        ov5_021D585C(v0, v2);
+        FogManager_ApplyDensityTable(v0, v2);
     }
 }
 

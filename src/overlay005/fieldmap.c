@@ -18,6 +18,7 @@
 #include "overlay005/field_camera.h"
 #include "overlay005/field_effect_manager.h"
 #include "overlay005/field_effect_renderer.h"
+#include "overlay005/fog_manager.h"
 #include "overlay005/hblank_system.h"
 #include "overlay005/honey_tree.h"
 #include "overlay005/land_data.h"
@@ -26,7 +27,6 @@
 #include "overlay005/map_prop_animation.h"
 #include "overlay005/model_attributes.h"
 #include "overlay005/ov5_021D1A94.h"
-#include "overlay005/ov5_021D57BC.h"
 #include "overlay005/ov5_021D5BC0.h"
 #include "overlay005/ov5_021D5EB8.h"
 #include "overlay005/ov5_021EA714.h"
@@ -327,7 +327,7 @@ static BOOL FieldMap_Exit(ApplicationManager *appMan, int *param1)
             ov5_021EF4F8(fieldSystem->unk_04->unk_20);
             HBlankSystem_Delete(fieldSystem->unk_04->hBlankSystem);
             BerryPatchManager_Free(fieldSystem->unk_04->berryPatchManager);
-            ov5_021D57D8(&fieldSystem->unk_48);
+            FogManager_Free(&fieldSystem->fogMan);
             ModelAttributes_Free(&fieldSystem->areaModelAttrs);
             ov5_021D1570();
             ov5_021D1524(fieldSystem->bgConfig);
@@ -878,7 +878,7 @@ static void ov5_021D1968(FieldSystem *fieldSystem)
     GXLayers_TurnBothDispOn();
     fieldSystem->areaModelAttrs = ModelAttributes_New();
     FieldMap_InitModelAttributes(fieldSystem->areaModelAttrs);
-    fieldSystem->unk_48 = ov5_021D57BC();
+    fieldSystem->fogMan = FogManager_New();
 
     {
         int v0 = FieldOverworldState_GetCameraType(SaveData_GetFieldOverworldState(fieldSystem->saveData));

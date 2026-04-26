@@ -7,9 +7,8 @@
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
+#include "overlay005/fog_manager.h"
 #include "overlay005/hblank_system.h"
-#include "overlay005/ov5_021D57BC.h"
-#include "overlay005/struct_ov5_021D57D8_decl.h"
 
 #include "bg_window.h"
 #include "buffer_manager.h"
@@ -154,7 +153,7 @@ typedef struct {
 } UnkStruct_ov5_021D6538;
 
 typedef struct {
-    UnkStruct_ov5_021D57D8 *unk_00;
+    FogManager *unk_00;
     UnkStruct_ov5_021D64FC unk_04;
     UnkStruct_ov5_021D64FC unk_18;
     UnkStruct_ov5_021D64FC unk_2C;
@@ -163,7 +162,7 @@ typedef struct {
 } UnkStruct_ov5_021D7308;
 
 typedef struct {
-    UnkStruct_ov5_021D57D8 *unk_00;
+    FogManager *unk_00;
     char unk_04[32];
     s32 unk_24;
     s32 unk_28;
@@ -264,10 +263,10 @@ static void ov5_021D6EF0(UnkStruct_ov5_021D6FA8 *param0);
 static void ov5_021D7210(UnkStruct_ov5_021D7210 *param0, UnkStruct_ov5_021DB4B8 *param1, s32 param2, s32 param3, s32 param4, s32 param5, s32 param6, s32 param7, s32 param8, UnkFuncPtr_ov5_021D7210_1 param9);
 static void ov5_021D7238(UnkStruct_ov5_021D7210 *param0, s32 param1, s32 param2, s32 param3, s32 param4);
 static int ov5_021D7244(UnkStruct_ov5_021D7210 *param0);
-static void ov5_021D7308(UnkStruct_ov5_021D7308 *param0, UnkStruct_ov5_021D7480 *param1, UnkStruct_ov5_021D57D8 *param2, int param3, int param4, GXRgb param5, int param6, u32 param7);
+static void ov5_021D7308(UnkStruct_ov5_021D7308 *param0, UnkStruct_ov5_021D7480 *param1, FogManager *param2, int param3, int param4, GXRgb param5, int param6, u32 param7);
 static int ov5_021D735C(UnkStruct_ov5_021D7308 *param0, UnkStruct_ov5_021D7480 *param1, u32 param2);
-static void ov5_021D7384(UnkStruct_ov5_021D57D8 *param0, int param1, int param2, GXRgb param3);
-static void ov5_021D73B0(UnkStruct_ov5_021D7308 *param0, UnkStruct_ov5_021D57D8 *param1, int param2, int param3, GXRgb param4, int param5);
+static void ov5_021D7384(FogManager *param0, int param1, int param2, GXRgb param3);
+static void ov5_021D73B0(UnkStruct_ov5_021D7308 *param0, FogManager *param1, int param2, int param3, GXRgb param4, int param5);
 static BOOL ov5_021D7434(UnkStruct_ov5_021D7308 *param0);
 static void ov5_021D7480(UnkStruct_ov5_021D7480 *param0);
 static void ov5_021D749C(UnkStruct_ov5_021D7480 *param0, int param1, BOOL param2);
@@ -882,7 +881,7 @@ void ov5_021D63A4(UnkStruct_ov5_021D6594 **param0)
             ov5_021D68B8(*param0, v0);
         }
 
-        ov5_021D57FC((*param0)->fieldSystem->unk_48, 1, 0, 0, 0, 0);
+        FogManager_ApplyParameters((*param0)->fieldSystem->fogMan, FOG_PARAMETER_ENABLED, FALSE, GX_FOGBLEND_COLOR_ALPHA, GX_FOGSLOPE_0x8000, 0);
 
         G2_SetBG0Priority(1);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
@@ -918,7 +917,7 @@ BOOL ov5_021D6418(UnkStruct_ov5_021D6594 *param0, int param1, int param2)
         v0 = ov5_021D676C(param0, param2, 2, 1);
         break;
     case 4:
-        if (ov5_021D57EC(param0->fieldSystem->unk_48) == 1) {
+        if (FogManager_IsEnabled(param0->fieldSystem->fogMan) == 1) {
             v0 = ov5_021D676C(param0, param2, 0, 2);
         } else {
             v0 = ov5_021D676C(param0, param2, 0, 1);
@@ -1253,7 +1252,7 @@ static void ov5_021D68B8(UnkStruct_ov5_021D6594 *param0, int param1)
         v0->unk_08 = NULL;
     }
 
-    ov5_021D57FC(param0->fieldSystem->unk_48, 1, 0, 0, 0, 0);
+    FogManager_ApplyParameters(param0->fieldSystem->fogMan, FOG_PARAMETER_ENABLED, FALSE, GX_FOGBLEND_COLOR_ALPHA, GX_FOGSLOPE_0x8000, 0);
 }
 
 static void ov5_021D69B8(UnkStruct_ov5_021D69B8 *param0)
@@ -1834,7 +1833,7 @@ static int ov5_021D7244(UnkStruct_ov5_021D7210 *param0)
     return v1;
 }
 
-static void ov5_021D7308(UnkStruct_ov5_021D7308 *param0, UnkStruct_ov5_021D7480 *param1, UnkStruct_ov5_021D57D8 *param2, int param3, int param4, GXRgb param5, int param6, u32 param7)
+static void ov5_021D7308(UnkStruct_ov5_021D7308 *param0, UnkStruct_ov5_021D7480 *param1, FogManager *param2, int param3, int param4, GXRgb param5, int param6, u32 param7)
 {
     param1->unk_00 = param2;
 
@@ -1869,21 +1868,21 @@ static int ov5_021D735C(UnkStruct_ov5_021D7308 *param0, UnkStruct_ov5_021D7480 *
     return v1;
 }
 
-static void ov5_021D7384(UnkStruct_ov5_021D57D8 *param0, int param1, int param2, GXRgb param3)
+static void ov5_021D7384(FogManager *param0, int param1, int param2, GXRgb param3)
 {
-    ov5_021D57FC(param0, 0xffffffff, 1, GX_FOGBLEND_COLOR_ALPHA, param1, param2);
-    ov5_021D5834(param0, 0xffffffff, param3, 31);
+    FogManager_ApplyParameters(param0, FOG_PARAMETER_ALL, 1, GX_FOGBLEND_COLOR_ALPHA, param1, param2);
+    FogManager_ApplyColor(param0, FOG_PARAMETER_ALL, param3, 31);
 }
 
-static void ov5_021D73B0(UnkStruct_ov5_021D7308 *param0, UnkStruct_ov5_021D57D8 *param1, int param2, int param3, GXRgb param4, int param5)
+static void ov5_021D73B0(UnkStruct_ov5_021D7308 *param0, FogManager *param1, int param2, int param3, GXRgb param4, int param5)
 {
     int v0;
     int v1;
     GXRgb v2;
 
-    v0 = ov5_021D57F0(param1);
-    v1 = ov5_021D57F4(param1);
-    v2 = ov5_021D57F8(param1);
+    v0 = FogManager_GetSlope(param1);
+    v1 = FogManager_GetOffset(param1);
+    v2 = FogManager_GetColor(param1);
 
     param0->unk_00 = param1;
 
@@ -1915,7 +1914,7 @@ static void ov5_021D7480(UnkStruct_ov5_021D7480 *param0)
         param0->unk_04[v0] = 0;
     }
 
-    ov5_021D585C(param0->unk_00, param0->unk_04);
+    FogManager_ApplyDensityTable(param0->unk_00, param0->unk_04);
 }
 
 static void ov5_021D749C(UnkStruct_ov5_021D7480 *param0, int param1, BOOL param2)
@@ -1936,7 +1935,7 @@ static int ov5_021D74B8(UnkStruct_ov5_021D7480 *param0)
     int v0 = ov5_021D74F4(param0);
 
     if (param0->unk_28 == 0) {
-        ov5_021D585C(param0->unk_00, param0->unk_04);
+        FogManager_ApplyDensityTable(param0->unk_00, param0->unk_04);
     }
 
     return v0;
@@ -1953,7 +1952,7 @@ static void ov5_021D74D4(UnkStruct_ov5_021D7480 *param0)
     param0->unk_2E = 1;
 
     ov5_021D7534(param0);
-    ov5_021D585C(param0->unk_00, param0->unk_04);
+    FogManager_ApplyDensityTable(param0->unk_00, param0->unk_04);
 }
 
 static int ov5_021D74F4(UnkStruct_ov5_021D7480 *param0)
@@ -2100,7 +2099,7 @@ static void ov5_021D7658(SysTask *param0, void *param1)
     switch (v0->unk_BA2) {
     case 0:
         ov5_021D7210(&v2->unk_00, v0, 1, 8, 4, 0, -1, 1, 1, ov5_021D78A4);
-        ov5_021D7308(&v2->unk_4C, &v2->unk_1C, v0->unk_00->fieldSystem->unk_48, 3, 0x6F6F + 0x300, GX_RGB(26, 26, 26), 1, v0->unk_BA4);
+        ov5_021D7308(&v2->unk_4C, &v2->unk_1C, v0->unk_00->fieldSystem->fogMan, 3, 0x6F6F + 0x300, GX_RGB(26, 26, 26), 1, v0->unk_BA4);
 
         v2->unk_B4[0] = 0;
 
@@ -2124,7 +2123,7 @@ static void ov5_021D7658(SysTask *param0, void *param1)
         ov5_021D7210(&v2->unk_00, v0, 4, 0, 4, 0, -1, 1, 1, ov5_021D78A4);
 
         if (v0->unk_BA4 != 0) {
-            v2->unk_1C.unk_00 = v0->unk_00->fieldSystem->unk_48;
+            v2->unk_1C.unk_00 = v0->unk_00->fieldSystem->fogMan;
             ov5_021D7384(v2->unk_1C.unk_00, 3, 0x6F6F + 0x300, GX_RGB(26, 26, 26));
 
             ov5_021D74D4(&v2->unk_1C);
@@ -2174,7 +2173,7 @@ static void ov5_021D7658(SysTask *param0, void *param1)
         break;
     case 5:
         if (v0->unk_BA4 != 0) {
-            ov5_021D57FC(v2->unk_1C.unk_00, 1, 0, 0, 0, 0);
+            FogManager_ApplyParameters(v2->unk_1C.unk_00, FOG_PARAMETER_ENABLED, FALSE, GX_FOGBLEND_COLOR_ALPHA, GX_FOGSLOPE_0x8000, 0);
         }
 
         {
@@ -2296,7 +2295,7 @@ static void ov5_021D79F0(SysTask *param0, void *param1)
         ov5_021D7210(&v3->unk_00, v0, 1, 24, 1, 14, -5, 1, 0, ov5_021D7C40);
         v3->unk_B4[1] = 0;
 
-        ov5_021D7308(&v3->unk_4C, &v3->unk_1C, v0->unk_00->fieldSystem->unk_48, 3, 0x6F6F + 0x300, GX_RGB(26, 26, 26), 1, v0->unk_BA4);
+        ov5_021D7308(&v3->unk_4C, &v3->unk_1C, v0->unk_00->fieldSystem->fogMan, 3, 0x6F6F + 0x300, GX_RGB(26, 26, 26), 1, v0->unk_BA4);
         v3->unk_B4[0] = 16;
 
         v0->unk_BA2 = 1;
@@ -2321,7 +2320,7 @@ static void ov5_021D79F0(SysTask *param0, void *param1)
         v3->unk_B4[2] = 0;
 
         if (v0->unk_BA4 != 0) {
-            v3->unk_1C.unk_00 = v0->unk_00->fieldSystem->unk_48;
+            v3->unk_1C.unk_00 = v0->unk_00->fieldSystem->fogMan;
             ov5_021D7384(v3->unk_1C.unk_00, 3, 0x6F6F + 0x300, GX_RGB(26, 26, 26));
             ov5_021D74D4(&v3->unk_1C);
         }
@@ -2370,7 +2369,7 @@ static void ov5_021D79F0(SysTask *param0, void *param1)
         break;
     case 5:
         if (v0->unk_BA4 != 0) {
-            ov5_021D57FC(v3->unk_1C.unk_00, 1, 0, 0, 0, 0);
+            FogManager_ApplyParameters(v3->unk_1C.unk_00, FOG_PARAMETER_ENABLED, FALSE, GX_FOGBLEND_COLOR_ALPHA, GX_FOGSLOPE_0x8000, 0);
         }
 
         {
@@ -2533,7 +2532,7 @@ static void ov5_021D7E54(SysTask *param0, void *param1)
     switch (v0->unk_BA2) {
     case 0:
         ov5_021D7210(&v2->unk_00, v0, 1, 30, 6, 3, -5, 2, 1, ov5_021D8098);
-        ov5_021D7308(&v2->unk_4C, &v2->unk_1C, v0->unk_00->fieldSystem->unk_48, 3, 0x6F6F + -0x200, GX_RGB(24, 24, 24), 2, v0->unk_BA4);
+        ov5_021D7308(&v2->unk_4C, &v2->unk_1C, v0->unk_00->fieldSystem->fogMan, 3, 0x6F6F + -0x200, GX_RGB(24, 24, 24), 2, v0->unk_BA4);
 
         v2->unk_B4[0] = 8;
         v2->unk_B4[1] = 0;
@@ -2556,7 +2555,7 @@ static void ov5_021D7E54(SysTask *param0, void *param1)
         ov5_021D7210(&v2->unk_00, v0, 6, 3, 6, 3, -5, 2, 1, ov5_021D8098);
 
         if (v0->unk_BA4 != 0) {
-            v2->unk_1C.unk_00 = v0->unk_00->fieldSystem->unk_48;
+            v2->unk_1C.unk_00 = v0->unk_00->fieldSystem->fogMan;
             ov5_021D7384(v2->unk_1C.unk_00, 3, 0x6F6F + -0x200, GX_RGB(24, 24, 24));
             ov5_021D74D4(&v2->unk_1C);
         }
@@ -2603,7 +2602,7 @@ static void ov5_021D7E54(SysTask *param0, void *param1)
         break;
     case 5:
         if (v0->unk_BA4 != 0) {
-            ov5_021D57FC(v2->unk_1C.unk_00, 1, 0, 0, 0, 0);
+            FogManager_ApplyParameters(v2->unk_1C.unk_00, FOG_PARAMETER_ENABLED, FALSE, GX_FOGBLEND_COLOR_ALPHA, GX_FOGSLOPE_0x8000, 0);
         }
 
         {
@@ -2721,7 +2720,7 @@ static void ov5_021D823C(SysTask *param0, void *param1)
     switch (v0->unk_BA2) {
     case 0:
         ov5_021D7210(&v2->unk_00, v0, 1, 30, 6, 3, -5, 2, 1, ov5_021D8098);
-        ov5_021D7308(&v2->unk_4C, &v2->unk_1C, v0->unk_00->fieldSystem->unk_48, 3, 0x6F6F, GX_RGB(24, 24, 24), 2, v0->unk_BA4);
+        ov5_021D7308(&v2->unk_4C, &v2->unk_1C, v0->unk_00->fieldSystem->fogMan, 3, 0x6F6F, GX_RGB(24, 24, 24), 2, v0->unk_BA4);
 
         v2->unk_B4[0] = 8;
         v2->unk_B4[1] = 0;
@@ -2749,7 +2748,7 @@ static void ov5_021D823C(SysTask *param0, void *param1)
         ov5_021D7210(&v2->unk_00, v0, 6, 3, 6, 3, -5, 2, 1, ov5_021D8098);
 
         if (v0->unk_BA4 != 0) {
-            v2->unk_1C.unk_00 = v0->unk_00->fieldSystem->unk_48;
+            v2->unk_1C.unk_00 = v0->unk_00->fieldSystem->fogMan;
             ov5_021D7384(v2->unk_1C.unk_00, 3, 0x6F6F, GX_RGB(24, 24, 24));
 
             ov5_021D74D4(&v2->unk_1C);
@@ -2804,7 +2803,7 @@ static void ov5_021D823C(SysTask *param0, void *param1)
         break;
     case 5:
         if (v0->unk_BA4 != 0) {
-            ov5_021D57FC(v2->unk_1C.unk_00, 1, 0, 0, 0, 0);
+            FogManager_ApplyParameters(v2->unk_1C.unk_00, FOG_PARAMETER_ENABLED, FALSE, GX_FOGBLEND_COLOR_ALPHA, GX_FOGSLOPE_0x8000, 0);
         }
 
         {
@@ -2837,7 +2836,7 @@ static void ov5_021D84D4(SysTask *param0, void *param1)
 
     switch (v0->unk_BA2) {
     case 0:
-        ov5_021D7308(&v2->unk_30, &v2->unk_00, v0->unk_00->fieldSystem->unk_48, 3, 0x6F6F + 0x200, GX_RGB(26, 26, 26), 2, v0->unk_BA4);
+        ov5_021D7308(&v2->unk_30, &v2->unk_00, v0->unk_00->fieldSystem->fogMan, 3, 0x6F6F + 0x200, GX_RGB(26, 26, 26), 2, v0->unk_BA4);
         v2->unk_98[0] = 16;
 
         v0->unk_BA2 = 1;
@@ -2855,7 +2854,7 @@ static void ov5_021D84D4(SysTask *param0, void *param1)
         break;
     case 2:
         if (v0->unk_BA4 != 0) {
-            v2->unk_00.unk_00 = v0->unk_00->fieldSystem->unk_48;
+            v2->unk_00.unk_00 = v0->unk_00->fieldSystem->fogMan;
             ov5_021D7384(v2->unk_00.unk_00, 3, 0x6F6F + 0x200, GX_RGB(26, 26, 26));
             ov5_021D74D4(&v2->unk_00);
         }
@@ -2889,7 +2888,7 @@ static void ov5_021D84D4(SysTask *param0, void *param1)
         break;
     case 5:
         if (v0->unk_BA4 != 0) {
-            ov5_021D57FC(v2->unk_00.unk_00, 1, 0, 0, 0, 0);
+            FogManager_ApplyParameters(v2->unk_00.unk_00, FOG_PARAMETER_ENABLED, FALSE, GX_FOGBLEND_COLOR_ALPHA, GX_FOGSLOPE_0x8000, 0);
         }
 
         {
@@ -2913,7 +2912,7 @@ static void ov5_021D8638(SysTask *param0, void *param1)
 
     switch (v0->unk_BA2) {
     case 0:
-        ov5_021D7308(&v2->unk_30, &v2->unk_00, v0->unk_00->fieldSystem->unk_48, 3, 0x6F6F + -0x9E0, GX_RGB(26, 26, 26), 2, v0->unk_BA4);
+        ov5_021D7308(&v2->unk_30, &v2->unk_00, v0->unk_00->fieldSystem->fogMan, 3, 0x6F6F + -0x9E0, GX_RGB(26, 26, 26), 2, v0->unk_BA4);
         v2->unk_98[0] = 16;
         v0->unk_BA2 = 1;
         break;
@@ -2930,7 +2929,7 @@ static void ov5_021D8638(SysTask *param0, void *param1)
         break;
     case 2:
         if (v0->unk_BA4 != 0) {
-            v2->unk_00.unk_00 = v0->unk_00->fieldSystem->unk_48;
+            v2->unk_00.unk_00 = v0->unk_00->fieldSystem->fogMan;
             ov5_021D7384(v2->unk_00.unk_00, 3, 0x6F6F + -0x9E0, GX_RGB(26, 26, 26));
             ov5_021D74D4(&v2->unk_00);
         }
@@ -2964,7 +2963,7 @@ static void ov5_021D8638(SysTask *param0, void *param1)
         break;
     case 5:
         if (v0->unk_BA4 != 0) {
-            ov5_021D57FC(v2->unk_00.unk_00, 1, 0, 0, 0, 0);
+            FogManager_ApplyParameters(v2->unk_00.unk_00, FOG_PARAMETER_ENABLED, FALSE, GX_FOGBLEND_COLOR_ALPHA, GX_FOGSLOPE_0x8000, 0);
         }
 
         {
@@ -2988,7 +2987,7 @@ static void ov5_021D879C(SysTask *param0, void *param1)
 
     switch (v0->unk_BA2) {
     case 0:
-        ov5_021D7308(&v1->unk_44, &v1->unk_14, v0->unk_00->fieldSystem->unk_48, 5, 0x6F6F + 0xAA0, GX_RGB(31, 31, 31), 2, v0->unk_BA4);
+        ov5_021D7308(&v1->unk_44, &v1->unk_14, v0->unk_00->fieldSystem->fogMan, 5, 0x6F6F + 0xAA0, GX_RGB(31, 31, 31), 2, v0->unk_BA4);
         ov5_021D64FC(&v1->unk_00, 0, 16, 30);
         ov5_021D64E4(0, 16);
         G2_SetBG2Priority(3);
@@ -3007,7 +3006,7 @@ static void ov5_021D879C(SysTask *param0, void *param1)
         break;
     case 2:
         if (v0->unk_BA4 != 0) {
-            v1->unk_14.unk_00 = v0->unk_00->fieldSystem->unk_48;
+            v1->unk_14.unk_00 = v0->unk_00->fieldSystem->fogMan;
             ov5_021D7384(v1->unk_14.unk_00, 5, 0x6F6F + 0xAA0, GX_RGB(31, 31, 31));
             ov5_021D74D4(&v1->unk_14);
         }
@@ -3044,7 +3043,7 @@ static void ov5_021D879C(SysTask *param0, void *param1)
         break;
     case 5:
         if (v0->unk_BA4 != 0) {
-            ov5_021D57FC(v1->unk_14.unk_00, 1, 0, 0, 0, 0);
+            FogManager_ApplyParameters(v1->unk_14.unk_00, FOG_PARAMETER_ENABLED, FALSE, GX_FOGBLEND_COLOR_ALPHA, GX_FOGSLOPE_0x8000, 0);
         }
 
         {
@@ -3071,7 +3070,7 @@ static void ov5_021D8948(SysTask *param0, void *param1)
     switch (v0->unk_BA2) {
     case 0:
         ov5_021D7210(&v2->unk_00, v0, 1, 15, 8, 1, -2, 4, 2, ov5_021D8B88);
-        ov5_021D7308(&v2->unk_4C, &v2->unk_1C, v0->unk_00->fieldSystem->unk_48, 3, 28399, GX_RGB(26, 20, 5), 1, v0->unk_BA4);
+        ov5_021D7308(&v2->unk_4C, &v2->unk_1C, v0->unk_00->fieldSystem->fogMan, 3, 28399, GX_RGB(26, 20, 5), 1, v0->unk_BA4);
         v2->unk_B4[0] = 0;
         v2->unk_B4[1] = 0;
         v0->unk_BA2 = 1;
@@ -3093,7 +3092,7 @@ static void ov5_021D8948(SysTask *param0, void *param1)
         ov5_021D7210(&v2->unk_00, v0, 8, 1, 8, 1, -2, 4, 2, ov5_021D8B88);
 
         if (v0->unk_BA4 != 0) {
-            v2->unk_1C.unk_00 = v0->unk_00->fieldSystem->unk_48;
+            v2->unk_1C.unk_00 = v0->unk_00->fieldSystem->fogMan;
             ov5_021D7384(v2->unk_1C.unk_00, 3, 28399, GX_RGB(26, 20, 5));
             ov5_021D74D4(&v2->unk_1C);
         }
@@ -3140,7 +3139,7 @@ static void ov5_021D8948(SysTask *param0, void *param1)
         break;
     case 5:
         if (v0->unk_BA4 != 0) {
-            ov5_021D57FC(v2->unk_1C.unk_00, 1, 0, 0, 0, 0);
+            FogManager_ApplyParameters(v2->unk_1C.unk_00, FOG_PARAMETER_ENABLED, FALSE, GX_FOGBLEND_COLOR_ALPHA, GX_FOGSLOPE_0x8000, 0);
         }
 
         {
@@ -3261,7 +3260,7 @@ static void ov5_021D8D08(SysTask *param0, void *param1)
     switch (v0->unk_BA2) {
     case 0:
         ov5_021D7210(&v5->unk_00, v0, 1, 15, 8, 1, -2, 4, 2, ov5_021D8B88);
-        ov5_021D7308(&v5->unk_4C, &v5->unk_1C, v0->unk_00->fieldSystem->unk_48, 3, 28399, GX_RGB(26, 20, 5), 1, v0->unk_BA4);
+        ov5_021D7308(&v5->unk_4C, &v5->unk_1C, v0->unk_00->fieldSystem->fogMan, 3, 28399, GX_RGB(26, 20, 5), 1, v0->unk_BA4);
         v5->unk_B4[0] = 0;
         v5->unk_B4[1] = 0;
         v5->unk_B4[2] = 0;
@@ -3286,7 +3285,7 @@ static void ov5_021D8D08(SysTask *param0, void *param1)
         ov5_021D7210(&v5->unk_00, v0, 8, 1, 8, 1, -2, 4, 2, ov5_021D8B88);
 
         if (v0->unk_BA4 != 0) {
-            v5->unk_1C.unk_00 = v0->unk_00->fieldSystem->unk_48;
+            v5->unk_1C.unk_00 = v0->unk_00->fieldSystem->fogMan;
             ov5_021D7384(v5->unk_1C.unk_00, 3, 28399, GX_RGB(26, 20, 5));
             ov5_021D74D4(&v5->unk_1C);
         }
@@ -3347,7 +3346,7 @@ static void ov5_021D8D08(SysTask *param0, void *param1)
         break;
     case 5:
         if (v0->unk_BA4 != 0) {
-            ov5_021D57FC(v5->unk_1C.unk_00, 1, 0, 0, 0, 0);
+            FogManager_ApplyParameters(v5->unk_1C.unk_00, FOG_PARAMETER_ENABLED, FALSE, GX_FOGBLEND_COLOR_ALPHA, GX_FOGSLOPE_0x8000, 0);
         }
 
         {
@@ -3384,7 +3383,7 @@ static void ov5_021D8FF8(SysTask *param0, void *param1)
     switch (v0->unk_BA2) {
     case 0:
         ov5_021D7210(&v5->unk_00, v0, 1, 30, 10, 1, -4, 2, 3, ov5_021D92C4);
-        ov5_021D7308(&v5->unk_4C, &v5->unk_1C, v0->unk_00->fieldSystem->unk_48, 3, 0x6F6F + -0x400, GX_RGB(24, 24, 24), 1, v0->unk_BA4);
+        ov5_021D7308(&v5->unk_4C, &v5->unk_1C, v0->unk_00->fieldSystem->fogMan, 3, 0x6F6F + -0x400, GX_RGB(24, 24, 24), 1, v0->unk_BA4);
         v5->unk_B4[0] = 16;
         v5->unk_B4[1] = 0;
         v5->unk_B4[2] = 0;
@@ -3408,7 +3407,7 @@ static void ov5_021D8FF8(SysTask *param0, void *param1)
         ov5_021D7210(&v5->unk_00, v0, 10, 1, 10, 1, -4, 2, 3, ov5_021D92C4);
 
         if (v0->unk_BA4 != 0) {
-            v5->unk_1C.unk_00 = v0->unk_00->fieldSystem->unk_48;
+            v5->unk_1C.unk_00 = v0->unk_00->fieldSystem->fogMan;
             ov5_021D7384(v5->unk_1C.unk_00, 3, 0x6F6F + -0x400, GX_RGB(24, 24, 24));
             ov5_021D74D4(&v5->unk_1C);
         }
@@ -3468,7 +3467,7 @@ static void ov5_021D8FF8(SysTask *param0, void *param1)
         break;
     case 5:
         if (v0->unk_BA4 != 0) {
-            ov5_021D57FC(v5->unk_1C.unk_00, 1, 0, 0, 0, 0);
+            FogManager_ApplyParameters(v5->unk_1C.unk_00, FOG_PARAMETER_ENABLED, FALSE, GX_FOGBLEND_COLOR_ALPHA, GX_FOGSLOPE_0x8000, 0);
         }
 
         {
@@ -3590,7 +3589,7 @@ static void ov5_021D9464(SysTask *param0, void *param1)
     switch (v0->unk_BA2) {
     case 0:
         ov5_021D7210(&v2->unk_00, v0, 2, 16, 20, 2, -2, 4, 2, ov5_021D9690);
-        ov5_021D7308(&v2->unk_4C, &v2->unk_1C, v0->unk_00->fieldSystem->unk_48, 3, 0x6F6F + 0x200, GX_RGB(26, 26, 26), 1, v0->unk_BA4);
+        ov5_021D7308(&v2->unk_4C, &v2->unk_1C, v0->unk_00->fieldSystem->fogMan, 3, 0x6F6F + 0x200, GX_RGB(26, 26, 26), 1, v0->unk_BA4);
         v2->unk_B4[0] = 0;
         v0->unk_BA2 = 1;
         break;
@@ -3611,7 +3610,7 @@ static void ov5_021D9464(SysTask *param0, void *param1)
         ov5_021D7210(&v2->unk_00, v0, 20, 2, 20, 2, -2, 4, 2, ov5_021D9690);
 
         if (v0->unk_BA4 != 0) {
-            v2->unk_1C.unk_00 = v0->unk_00->fieldSystem->unk_48;
+            v2->unk_1C.unk_00 = v0->unk_00->fieldSystem->fogMan;
             ov5_021D7384(v2->unk_1C.unk_00, 3, 0x6F6F + 0x200, GX_RGB(26, 26, 26));
             ov5_021D74D4(&v2->unk_1C);
         }
@@ -3653,7 +3652,7 @@ static void ov5_021D9464(SysTask *param0, void *param1)
         break;
     case 5:
         if (v0->unk_BA4 != 0) {
-            ov5_021D57FC(v2->unk_1C.unk_00, 1, 0, 0, 0, 0);
+            FogManager_ApplyParameters(v2->unk_1C.unk_00, FOG_PARAMETER_ENABLED, FALSE, GX_FOGBLEND_COLOR_ALPHA, GX_FOGSLOPE_0x8000, 0);
         }
 
         {
@@ -3870,7 +3869,7 @@ static void ov5_021D97E8(SysTask *param0, void *param1)
 static void ov5_021D9984(UnkStruct_ov5_021DB4B8 *param0, UnkStruct_ov5_021D9984 *param1)
 {
     ov5_021D7210(&param1->unk_00, param0, 1, 15, 10, 0, -3, 2, 1, ov5_021DA0A8);
-    ov5_021D7308(&param1->unk_4C, &param1->unk_1C, param0->unk_00->fieldSystem->unk_48, 3, 0x6F6F, GX_RGB(26, 26, 26), 1, param0->unk_BA4);
+    ov5_021D7308(&param1->unk_4C, &param1->unk_1C, param0->unk_00->fieldSystem->fogMan, 3, 0x6F6F, GX_RGB(26, 26, 26), 1, param0->unk_BA4);
 
     param1->unk_B4[0] = 0;
     param1->unk_B4[1] = 0;
@@ -3904,7 +3903,7 @@ static void ov5_021D9A58(UnkStruct_ov5_021DB4B8 *param0, UnkStruct_ov5_021D9984 
     ov5_021D7210(&param1->unk_00, param0, 10, 0, 10, 0, -3, 2, 1, ov5_021DA0A8);
 
     if (param0->unk_BA4 != 0) {
-        param1->unk_1C.unk_00 = param0->unk_00->fieldSystem->unk_48;
+        param1->unk_1C.unk_00 = param0->unk_00->fieldSystem->fogMan;
         ov5_021D7384(param1->unk_1C.unk_00, 3, 0x6F6F, GX_RGB(26, 26, 26));
         ov5_021D74D4(&param1->unk_1C);
     }
@@ -3967,7 +3966,7 @@ static BOOL ov5_021D9B68(UnkStruct_ov5_021DB4B8 *param0, UnkStruct_ov5_021D9984 
 static void ov5_021D9BC0(UnkStruct_ov5_021DB4B8 *param0, UnkStruct_ov5_021D9984 *param1)
 {
     if (param0->unk_BA4 != 0) {
-        ov5_021D57FC(param1->unk_1C.unk_00, 1, 0, 0, 0, 0);
+        FogManager_ApplyParameters(param1->unk_1C.unk_00, FOG_PARAMETER_ENABLED, FALSE, GX_FOGBLEND_COLOR_ALPHA, GX_FOGSLOPE_0x8000, 0);
     }
 
     {
@@ -3997,8 +3996,8 @@ static void ov5_021D9C20(SysTask *param0, void *param1, u32 param2, u32 param3, 
     switch (v0->unk_BA2) {
     case 0:
         if (v0->unk_BA4 != 0) {
-            ov5_021D7384(v0->unk_00->fieldSystem->unk_48, 5, 28591, (GX_RGB(0, 0, 0)));
-            ov5_021D585C(v0->unk_00->fieldSystem->unk_48, Unk_ov5_021F8E14);
+            ov5_021D7384(v0->unk_00->fieldSystem->fogMan, 5, 28591, (GX_RGB(0, 0, 0)));
+            FogManager_ApplyDensityTable(v0->unk_00->fieldSystem->fogMan, Unk_ov5_021F8E14);
             ov5_021D64E4(param2, 16 - param2);
 
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
@@ -4014,8 +4013,8 @@ static void ov5_021D9C20(SysTask *param0, void *param1, u32 param2, u32 param3, 
         break;
     case 2:
         if (v0->unk_BA4 != 0) {
-            ov5_021D7384(v0->unk_00->fieldSystem->unk_48, 5, 28591, (GX_RGB(0, 0, 0)));
-            ov5_021D585C(v0->unk_00->fieldSystem->unk_48, Unk_ov5_021F8E14);
+            ov5_021D7384(v0->unk_00->fieldSystem->fogMan, 5, 28591, (GX_RGB(0, 0, 0)));
+            FogManager_ApplyDensityTable(v0->unk_00->fieldSystem->fogMan, Unk_ov5_021F8E14);
             ov5_021D64E4(param2, 16 - param2);
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
             v2->unk_98[0] = param4;
@@ -4058,7 +4057,7 @@ static void ov5_021D9C20(SysTask *param0, void *param1, u32 param2, u32 param3, 
         break;
     case 5:
         if (v0->unk_BA4 != 0) {
-            ov5_021D57FC(v0->unk_00->fieldSystem->unk_48, 1, 0, 0, 0, 0);
+            FogManager_ApplyParameters(v0->unk_00->fieldSystem->fogMan, FOG_PARAMETER_ENABLED, FALSE, GX_FOGBLEND_COLOR_ALPHA, GX_FOGSLOPE_0x8000, 0);
         }
 
         {
@@ -4078,7 +4077,7 @@ static void ov5_021D9DFC(UnkStruct_ov5_021DB4B8 *param0, UnkStruct_ov5_021D84D4 
 
     switch (param0->unk_BA2) {
     case 0:
-        ov5_021D7308(&param1->unk_30, &param1->unk_00, param0->unk_00->fieldSystem->unk_48, param2, param3, param4, param5, param0->unk_BA4);
+        ov5_021D7308(&param1->unk_30, &param1->unk_00, param0->unk_00->fieldSystem->fogMan, param2, param3, param4, param5, param0->unk_BA4);
         param0->unk_BA2 = 1;
         break;
     case 1:
@@ -4090,7 +4089,7 @@ static void ov5_021D9DFC(UnkStruct_ov5_021DB4B8 *param0, UnkStruct_ov5_021D84D4 
         break;
     case 2:
         if (param0->unk_BA4 != 0) {
-            param1->unk_00.unk_00 = param0->unk_00->fieldSystem->unk_48;
+            param1->unk_00.unk_00 = param0->unk_00->fieldSystem->fogMan;
             ov5_021D7384(param1->unk_00.unk_00, param2, param3, param4);
             ov5_021D74D4(&param1->unk_00);
         }
@@ -4119,7 +4118,7 @@ static void ov5_021D9DFC(UnkStruct_ov5_021DB4B8 *param0, UnkStruct_ov5_021D84D4 
         break;
     case 5:
         if (param0->unk_BA4 != 0) {
-            ov5_021D57FC(param1->unk_00.unk_00, 1, 0, 0, 0, 0);
+            FogManager_ApplyParameters(param1->unk_00.unk_00, FOG_PARAMETER_ENABLED, FALSE, GX_FOGBLEND_COLOR_ALPHA, GX_FOGSLOPE_0x8000, 0);
         }
 
         {
@@ -4333,7 +4332,7 @@ static void ov5_021DA244(SysTask *param0, void *param1)
         v7->unk_B4[4] = 0;
         v7->unk_B4[5] = 0;
 
-        ov5_021D7308(&v7->unk_4C, &v7->unk_1C, v0->unk_00->fieldSystem->unk_48, 3 + 0, 0x6F6F + -0x40, GX_RGB(20, 20, 14), 1, v0->unk_BA4);
+        ov5_021D7308(&v7->unk_4C, &v7->unk_1C, v0->unk_00->fieldSystem->fogMan, 3 + 0, 0x6F6F + -0x40, GX_RGB(20, 20, 14), 1, v0->unk_BA4);
 
         v7->unk_B4[0] = 0;
         v0->unk_BA2 = 1;
@@ -4362,7 +4361,7 @@ static void ov5_021DA244(SysTask *param0, void *param1)
         v7->unk_B4[5] = 0;
 
         if (v0->unk_BA4 != 0) {
-            v7->unk_1C.unk_00 = v0->unk_00->fieldSystem->unk_48;
+            v7->unk_1C.unk_00 = v0->unk_00->fieldSystem->fogMan;
             ov5_021D7384(v7->unk_1C.unk_00, 3, 0x6F6F + -0x40, GX_RGB(20, 20, 14));
             ov5_021D74D4(&v7->unk_1C);
         }
@@ -4412,7 +4411,7 @@ static void ov5_021DA244(SysTask *param0, void *param1)
         break;
     case 5:
         if (v0->unk_BA4 != 0) {
-            ov5_021D57FC(v7->unk_1C.unk_00, 1, 0, 0, 0, 0);
+            FogManager_ApplyParameters(v7->unk_1C.unk_00, FOG_PARAMETER_ENABLED, FALSE, GX_FOGBLEND_COLOR_ALPHA, GX_FOGSLOPE_0x8000, 0);
         }
 
         {
@@ -4923,7 +4922,7 @@ static void ov5_021DAD38(SysTask *param0, void *param1)
 
     switch (v0->unk_BA2) {
     case 0:
-        ov5_021D7308(&v1->unk_44, &v1->unk_14, v0->unk_00->fieldSystem->unk_48, 7, 30287, (GX_RGB(0, 0, 0)), 1, v0->unk_BA4);
+        ov5_021D7308(&v1->unk_44, &v1->unk_14, v0->unk_00->fieldSystem->fogMan, 7, 30287, (GX_RGB(0, 0, 0)), 1, v0->unk_BA4);
         ov5_021D64FC(&v1->unk_00, 0, 9, 30);
         ov5_021D64E4(0, 16);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
@@ -4941,7 +4940,7 @@ static void ov5_021DAD38(SysTask *param0, void *param1)
         break;
     case 2:
         if (v0->unk_BA4 != 0) {
-            v1->unk_14.unk_00 = v0->unk_00->fieldSystem->unk_48;
+            v1->unk_14.unk_00 = v0->unk_00->fieldSystem->fogMan;
             ov5_021D7384(v1->unk_14.unk_00, 7, 30287, (GX_RGB(0, 0, 0)));
             ov5_021D74D4(&v1->unk_14);
         }
@@ -4977,7 +4976,7 @@ static void ov5_021DAD38(SysTask *param0, void *param1)
         break;
     case 5:
         if (v0->unk_BA4 != 0) {
-            ov5_021D57FC(v1->unk_14.unk_00, 1, 0, 0, 0, 0);
+            FogManager_ApplyParameters(v1->unk_14.unk_00, FOG_PARAMETER_ENABLED, FALSE, GX_FOGBLEND_COLOR_ALPHA, GX_FOGSLOPE_0x8000, 0);
         }
 
         {
@@ -5001,7 +5000,7 @@ static void ov5_021DAEC0(SysTask *param0, void *param1)
 
     switch (v0->unk_BA2) {
     case 0:
-        ov5_021D7308(&v1->unk_44, &v1->unk_14, v0->unk_00->fieldSystem->unk_48, 6, 30037, (GX_RGB(31, 31, 31)), 1, v0->unk_BA4);
+        ov5_021D7308(&v1->unk_44, &v1->unk_14, v0->unk_00->fieldSystem->fogMan, 6, 30037, (GX_RGB(31, 31, 31)), 1, v0->unk_BA4);
         ov5_021D64FC(&v1->unk_00, 0, 9, 30);
         ov5_021D64E4(0, 16);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
@@ -5019,7 +5018,7 @@ static void ov5_021DAEC0(SysTask *param0, void *param1)
         break;
     case 2:
         if (v0->unk_BA4 != 0) {
-            v1->unk_14.unk_00 = v0->unk_00->fieldSystem->unk_48;
+            v1->unk_14.unk_00 = v0->unk_00->fieldSystem->fogMan;
             ov5_021D7384(v1->unk_14.unk_00, 6, 30037, (GX_RGB(31, 31, 31)));
             ov5_021D74D4(&v1->unk_14);
         }
@@ -5054,7 +5053,7 @@ static void ov5_021DAEC0(SysTask *param0, void *param1)
         break;
     case 5:
         if (v0->unk_BA4 != 0) {
-            ov5_021D57FC(v1->unk_14.unk_00, 1, 0, 0, 0, 0);
+            FogManager_ApplyParameters(v1->unk_14.unk_00, FOG_PARAMETER_ENABLED, FALSE, GX_FOGBLEND_COLOR_ALPHA, GX_FOGSLOPE_0x8000, 0);
         }
 
         {
@@ -5133,7 +5132,7 @@ static void ov5_021DB144(SysTask *param0, void *param1)
         ov5_021D64FC(&v1->unk_00, 0, 7, 8);
         ov5_021D64E4(0, 16);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
-        ov5_021D7308(&v1->unk_44, &v1->unk_14, v0->unk_00->fieldSystem->unk_48, 3, 0x6F6F + -1600, (GX_RGB(31, 31, 31)), 1, v0->unk_BA4);
+        ov5_021D7308(&v1->unk_44, &v1->unk_14, v0->unk_00->fieldSystem->fogMan, 3, 0x6F6F + -1600, (GX_RGB(31, 31, 31)), 1, v0->unk_BA4);
 
         v1->unk_AC = 0;
         v1->unk_B0 = 0;
@@ -5154,7 +5153,7 @@ static void ov5_021DB144(SysTask *param0, void *param1)
         ov5_021D64E4(7, 16 - 7);
 
         if (v0->unk_BA4 != 0) {
-            v1->unk_14.unk_00 = v0->unk_00->fieldSystem->unk_48;
+            v1->unk_14.unk_00 = v0->unk_00->fieldSystem->fogMan;
             ov5_021D7384(v1->unk_14.unk_00, 3, 0x6F6F + -1600, (GX_RGB(31, 31, 31)));
             ov5_021D74D4(&v1->unk_14);
         }
@@ -5189,7 +5188,7 @@ static void ov5_021DB144(SysTask *param0, void *param1)
         break;
     case 5:
         if (v0->unk_BA4 != 0) {
-            ov5_021D57FC(v1->unk_14.unk_00, 1, 0, 0, 0, 0);
+            FogManager_ApplyParameters(v1->unk_14.unk_00, FOG_PARAMETER_ENABLED, FALSE, GX_FOGBLEND_COLOR_ALPHA, GX_FOGSLOPE_0x8000, 0);
         }
 
         {
