@@ -2,7 +2,7 @@
   "key": 50102,
   "messages": [
     {
-      "id": "pl_msg_00000261_00000",
+      "id": "StarkMountainOutside_Text_LetsDoThis",
       "en_US": [
         "Grunt 1: This is it!\n",
         "Stark Mountain!\r",
@@ -11,7 +11,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000261_00001",
+      "id": "StarkMountainOutside_Text_CanHeReplaceCyrus",
       "en_US": [
         "Grunt 2: Yeah, but...\n",
         "Can that old guy really take over?\f",
@@ -19,7 +19,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000261_00002",
+      "id": "StarkMountainOutside_Text_GoodTimeToBeDone",
       "en_US": [
         "Grunt 1: Yeah, I hear you...\r",
         "That elder Charon is a Commander,\n",
@@ -29,7 +29,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000261_00003",
+      "id": "StarkMountainOutside_Text_InhaledVolcanicAsh",
       "en_US": [
         "Looker: Whew! The air outside, it is\n",
         "delicious, yes!\r",
@@ -39,7 +39,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000261_00004",
+      "id": "StarkMountainOutside_Text_MagmaStone",
       "en_US": [
         "Now, you two.\n",
         "This is what they were after.\r",
@@ -53,7 +53,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000261_00005",
+      "id": "StarkMountainOutside_Text_IllPutItBack",
       "en_US": [
         "Buck: Hey, don’t sweat it, stranger.\r",
         "Give me that Magma Stone.\n",
@@ -61,7 +61,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000261_00006",
+      "id": "StarkMountainOutside_Text_WorkIsFinished",
       "en_US": [
         "Looker: That boy, he has quite the\n",
         "energy, yes?\r",
@@ -80,7 +80,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000261_00007",
+      "id": "StarkMountainOutside_Text_SwingByMyPlace",
       "en_US": [
         "Buck: Hey, stranger!\n",
         "I put the Magma Stone where it belongs.\r",
@@ -95,7 +95,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000261_00008",
+      "id": "StarkMountainOutside_Text_FarewellMyFriend",
       "en_US": [
         "Looker: I, also, will take my leave.\r",
         "“The more wonderful the meeting, the\n",
@@ -109,7 +109,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000261_00009",
+      "id": "StarkMountainOutside_Text_SignStarkMountain",
       "en_US": [
         "Stark Mountain\n",
         "Eruption Zone!"

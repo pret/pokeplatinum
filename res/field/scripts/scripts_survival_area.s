@@ -48,7 +48,7 @@ SurvivalArea_Cameraman:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x00D7, SurvivalArea_AllSetToProduce
+    GoToIfSet FLAG_BATTLED_STARK_MOUNTAIN_ROOM_3_HEATRAN, SurvivalArea_AllSetToProduce
     Message SurvivalArea_Text_IFilmedRedGyarados
     WaitButton
     CloseMessage

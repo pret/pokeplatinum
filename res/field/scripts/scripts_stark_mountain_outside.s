@@ -1,57 +1,58 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/stark_mountain_outside.h"
+#include "res/field/events/events_stark_mountain_outside.h"
 
 
-    ScriptEntry _0012
-    ScriptEntry _0018
-    ScriptEntry _002F
-    ScriptEntry _0118
+    ScriptEntry StarkMountainOutside_OnTransition
+    ScriptEntry StarkMountainOutside_SignStarkMountain
+    ScriptEntry StarkMountainOutside_TriggerGrunts
+    ScriptEntry StarkMountainOutside_OnFrameLookerBuck
     ScriptEntryEnd
 
-_0012:
+StarkMountainOutside_OnTransition:
     SetFlag FLAG_FIRST_ARRIVAL_STARK_MOUNTAIN_EXTERIOR
     End
 
-_0018:
-    ShowLandmarkSign 9
+StarkMountainOutside_SignStarkMountain:
+    ShowLandmarkSign StarkMountainOutside_Text_SignStarkMountain
     End
 
-_002F:
+StarkMountainOutside_TriggerGrunts:
     LockAll
-    ApplyMovement 6, _00A4
-    ApplyMovement 7, _00E0
+    ApplyMovement LOCALID_GRUNT_M_1, StarkMountainOutside_Movement_GruntM1Enter
+    ApplyMovement LOCALID_GRUNT_M_2, StarkMountainOutside_Movement_GruntM2Enter
     WaitMovement
-    Message 0
+    Message StarkMountainOutside_Text_LetsDoThis
     CloseMessage
-    ApplyMovement 6, _00AC
-    ApplyMovement 7, _00EC
+    ApplyMovement LOCALID_GRUNT_M_1, StarkMountainOutside_Movement_GruntM1WalkToEntrance
+    ApplyMovement LOCALID_GRUNT_M_2, StarkMountainOutside_Movement_GruntM2WalkToEntrance
     WaitMovement
-    ApplyMovement 7, _0100
+    ApplyMovement LOCALID_GRUNT_M_2, StarkMountainOutside_Movement_GruntM2WalkOnSpotEast
     WaitMovement
-    Message 1
+    Message StarkMountainOutside_Text_CanHeReplaceCyrus
     CloseMessage
-    ApplyMovement 6, _00C4
+    ApplyMovement LOCALID_GRUNT_M_1, StarkMountainOutside_Movement_GruntM1WalkOnSpotWestNorth
     WaitMovement
-    Message 2
+    Message StarkMountainOutside_Text_GoodTimeToBeDone
     CloseMessage
-    ApplyMovement 6, _00D4
-    ApplyMovement 7, _0108
+    ApplyMovement LOCALID_GRUNT_M_1, StarkMountainOutside_Movement_GruntM1EnterStarkMountain
+    ApplyMovement LOCALID_GRUNT_M_2, StarkMountainOutside_Movement_GruntM2EnterStarkMountain
     WaitMovement
     PlaySE SEQ_SE_DP_KAIDAN2
-    RemoveObject 6
-    RemoveObject 7
+    RemoveObject LOCALID_GRUNT_M_1
+    RemoveObject LOCALID_GRUNT_M_2
     WaitSE SEQ_SE_DP_KAIDAN2
-    SetVar VAR_UNK_0x40A0, 1
+    SetVar VAR_STARK_MOUNTAIN_OUTSIDE_STATE, 1
     ReleaseAll
     End
 
     .balign 4, 0
-_00A4:
+StarkMountainOutside_Movement_GruntM1Enter:
     WalkNormalEast 4
     EndMovement
 
     .balign 4, 0
-_00AC:
+StarkMountainOutside_Movement_GruntM1WalkToEntrance:
     WalkNormalSouth 2
     WalkNormalEast 4
     WalkNormalNorth
@@ -62,26 +63,26 @@ StarkMountainOutside_UnusedMovement:
     EndMovement
 
     .balign 4, 0
-_00C4:
+StarkMountainOutside_Movement_GruntM1WalkOnSpotWestNorth:
     WalkOnSpotNormalWest
     Delay8 2
     WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
-_00D4:
+StarkMountainOutside_Movement_GruntM1EnterStarkMountain:
     WalkNormalNorth 2
     SetInvisible
     EndMovement
 
     .balign 4, 0
-_00E0:
+StarkMountainOutside_Movement_GruntM2Enter:
     WalkNormalNorth
     WalkNormalEast 3
     EndMovement
 
     .balign 4, 0
-_00EC:
+StarkMountainOutside_Movement_GruntM2WalkToEntrance:
     WalkNormalEast
     WalkNormalSouth 2
     WalkNormalEast 3
@@ -89,98 +90,98 @@ _00EC:
     EndMovement
 
     .balign 4, 0
-_0100:
+StarkMountainOutside_Movement_GruntM2WalkOnSpotEast:
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_0108:
+StarkMountainOutside_Movement_GruntM2EnterStarkMountain:
     WalkNormalEast
     WalkNormalNorth 2
     SetInvisible
     EndMovement
 
-_0118:
+StarkMountainOutside_OnFrameLookerBuck:
     LockAll
-    Message 3
+    Message StarkMountainOutside_Text_InhaledVolcanicAsh
     CloseMessage
     WaitTime 15, VAR_RESULT
-    Message 4
-    ApplyMovement 5, _01F0
+    Message StarkMountainOutside_Text_MagmaStone
+    ApplyMovement LOCALID_BUCK, StarkMountainOutside_Movement_BuckWalkOnSpotEast
     WaitMovement
-    Message 5
+    Message StarkMountainOutside_Text_IllPutItBack
     CloseMessage
-    ApplyMovement 5, _01F8
+    ApplyMovement LOCALID_BUCK, StarkMountainOutside_Movement_BuckEnterStarkMountain
     WaitMovement
-    ApplyMovement 4, _01CC
+    ApplyMovement LOCALID_LOOKER, StarkMountainOutside_Movement_LookerWalkOnSpotWestSouth
     WaitMovement
     BufferPlayerName 0
-    Message 6
+    Message StarkMountainOutside_Text_WorkIsFinished
     CloseMessage
     WaitTime 15, VAR_RESULT
-    ApplyMovement 5, _0204
-    ApplyMovement 4, _01DC
+    ApplyMovement LOCALID_BUCK, StarkMountainOutside_Movement_BuckExitStarkMountain
+    ApplyMovement LOCALID_LOOKER, StarkMountainOutside_Movement_LookerWalkOnSpotWest
     WaitMovement
     BufferPlayerName 0
-    Message 7
+    Message StarkMountainOutside_Text_SwingByMyPlace
     CloseMessage
-    ApplyMovement 5, _0214
-    ApplyMovement LOCALID_PLAYER, _0238
+    ApplyMovement LOCALID_BUCK, StarkMountainOutside_Movement_BuckLeave
+    ApplyMovement LOCALID_PLAYER, StarkMountainOutside_Movement_PlayerWalkOnSpotWest
     WaitMovement
-    RemoveObject 5
-    ApplyMovement 4, _01E8
-    ApplyMovement LOCALID_PLAYER, _0240
+    RemoveObject LOCALID_BUCK
+    ApplyMovement LOCALID_LOOKER, StarkMountainOutside_Movement_LookerWalkOnSpotSouth
+    ApplyMovement LOCALID_PLAYER, StarkMountainOutside_Movement_PlayerWalkOnSpotNorth
     WaitMovement
     BufferPlayerName 0
-    Message 8
+    Message StarkMountainOutside_Text_FarewellMyFriend
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
-    RemoveObject 4
+    RemoveObject LOCALID_LOOKER
     FadeScreenIn
     WaitFadeScreen
-    SetVar VAR_UNK_0x40A0, 3
+    SetVar VAR_STARK_MOUNTAIN_OUTSIDE_STATE, 3
     ReleaseAll
     End
 
     .balign 4, 0
-_01CC:
+StarkMountainOutside_Movement_LookerWalkOnSpotWestSouth:
     WalkOnSpotNormalWest
     Delay8 2
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_01DC:
+StarkMountainOutside_Movement_LookerWalkOnSpotWest:
     Delay8
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_01E8:
+StarkMountainOutside_Movement_LookerWalkOnSpotSouth:
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_01F0:
+StarkMountainOutside_Movement_BuckWalkOnSpotEast:
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_01F8:
+StarkMountainOutside_Movement_BuckEnterStarkMountain:
     WalkNormalNorth 2
     SetInvisible
     EndMovement
 
     .balign 4, 0
-_0204:
+StarkMountainOutside_Movement_BuckExitStarkMountain:
     SetVisible
     WalkNormalSouth
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_0214:
+StarkMountainOutside_Movement_BuckLeave:
     WalkNormalSouth 2
     WalkNormalWest 5
     WalkNormalNorth 2
@@ -192,11 +193,11 @@ _0214:
     EndMovement
 
     .balign 4, 0
-_0238:
+StarkMountainOutside_Movement_PlayerWalkOnSpotWest:
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_0240:
+StarkMountainOutside_Movement_PlayerWalkOnSpotNorth:
     WalkOnSpotNormalNorth
     EndMovement

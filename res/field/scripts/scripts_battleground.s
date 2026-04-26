@@ -94,7 +94,7 @@ Battleground_ExpertM:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x00D7, Battleground_MakeYourselfAtHome
+    GoToIfSet FLAG_BATTLED_STARK_MOUNTAIN_ROOM_3_HEATRAN, Battleground_MakeYourselfAtHome
     Message Battleground_Text_TalkAboutStarkMountain
     WaitButton
     CloseMessage

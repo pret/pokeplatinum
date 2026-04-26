@@ -32,7 +32,7 @@
             "y": 0
         },
         {
-            "id": "STARK_MOUNTAIN_OUTSIDE_DRAGON_TAMER_DARIEN",
+            "id": "LOCALID_DRAGON_TAMER_DARIEN",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -49,7 +49,7 @@
             "y": 0
         },
         {
-            "id": "STARK_MOUNTAIN_OUTSIDE_SIGNBOARD_3",
+            "id": "LOCALID_SIGNBOARD",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -64,11 +64,11 @@
             "y": 0
         },
         {
-            "id": "STARK_MOUNTAIN_OUTSIDE_LOOKER_4",
+            "id": "LOCALID_LOOKER",
             "graphics_id": "OBJ_EVENT_GFX_LOOKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x022E",
+            "hidden_flag": "FLAG_HIDE_STARK_MOUNTAIN_OUTSIDE_LOOKER",
             "script": 0,
             "initial_dir": 1,
             "data": [],
@@ -79,11 +79,11 @@
             "y": 0
         },
         {
-            "id": "STARK_MOUNTAIN_OUTSIDE_BUCK_5",
+            "id": "LOCALID_BUCK",
             "graphics_id": "OBJ_EVENT_GFX_BUCK",
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x022D",
+            "hidden_flag": "FLAG_HIDE_STARK_MOUNTAIN_OUTSIDE_BUCK",
             "script": 0,
             "initial_dir": 3,
             "data": [],
@@ -94,11 +94,11 @@
             "y": 0
         },
         {
-            "id": "STARK_MOUNTAIN_OUTSIDE_GRUNT_M_6",
+            "id": "LOCALID_GRUNT_M_1",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x022C",
+            "hidden_flag": "FLAG_HIDE_STARK_MOUNTAIN_OUTSIDE_GRUNTS",
             "script": 0,
             "initial_dir": 0,
             "data": [],
@@ -109,11 +109,11 @@
             "y": 0
         },
         {
-            "id": "STARK_MOUNTAIN_OUTSIDE_GRUNT_M_7",
+            "id": "LOCALID_GRUNT_M_2",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x022C",
+            "hidden_flag": "FLAG_HIDE_STARK_MOUNTAIN_OUTSIDE_GRUNTS",
             "script": 0,
             "initial_dir": 0,
             "data": [],
@@ -140,7 +140,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": "VAR_UNK_0x40A0",
+            "var": "VAR_STARK_MOUNTAIN_OUTSIDE_STATE",
             "value": 0
         }
     ]

@@ -158,7 +158,7 @@ PokemonLeagueHallOfFame_ResetSpearPillarPalkiaState:
 PokemonLeagueHallOfFame_TryShowStarkMountainHeatran:
     GoToIfUnset FLAG_CAUGHT_MESPRIT, PokemonLeagueHallOfFame_DontShowStarkMountainHeatran
     ClearFlag FLAG_HIDE_STARK_MOUNTAIN_ROOM_3_HEATRAN
-    SetVar VAR_UNK_0x409E, 1
+    SetVar VAR_STARK_MOUNTAIN_ROOM_3_STATE, 1
 PokemonLeagueHallOfFame_DontShowStarkMountainHeatran:
     Return
 

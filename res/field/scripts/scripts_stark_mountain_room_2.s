@@ -1,72 +1,73 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/stark_mountain_room_2.h"
+#include "res/field/events/events_stark_mountain_room_2.h"
 
 
-    ScriptEntry _0031
-    ScriptEntry _00FC
-    ScriptEntry _0154
-    ScriptEntry _021C
-    ScriptEntry _022F
-    ScriptEntry _001A
+    ScriptEntry StarkMountainRoom2_TriggerBuckStartFollowing
+    ScriptEntry StarkMountainRoom2_TriggerPlayerLeaveBuck
+    ScriptEntry StarkMountainRoom2_TriggerBuckLeavePlayer
+    ScriptEntry StarkMountainRoom2_Unused4
+    ScriptEntry StarkMountainRoom2_Unused5
+    ScriptEntry StarkMountainRoom2_OnTransition
     ScriptEntryEnd
 
-_001A:
-    GoToIfLt VAR_UNK_0x4094, 2, _0029
+StarkMountainRoom2_OnTransition:
+    GoToIfLt VAR_STARK_MOUNTAIN_ROOM_2_FOLLOWER_BUCK_STATE, 2, StarkMountainRoom2_ResetFollowerBuckState
     End
 
-_0029:
-    SetVar VAR_UNK_0x4094, 0
+StarkMountainRoom2_ResetFollowerBuckState:
+    SetVar VAR_STARK_MOUNTAIN_ROOM_2_FOLLOWER_BUCK_STATE, 0
     End
 
-_0031:
+StarkMountainRoom2_TriggerBuckStartFollowing:
     LockAll
     SetPlayerBike FALSE
-    CallIfUnset FLAG_UNK_0x00DD, _007D
-    CallIfSet FLAG_UNK_0x00DD, _00B7
+    CallIfUnset FLAG_TALKED_TO_STARK_MOUNTAIN_ROOM_2_BUCK, StarkMountainRoom2_BuckEnterStartFollowing
+    CallIfSet FLAG_TALKED_TO_STARK_MOUNTAIN_ROOM_2_BUCK, StarkMountainRoom2_BuckStartFollowing
     BufferPlayerName 0
     PlayFanfare SEQ_GONIN
-    Message 1
+    Message StarkMountainRoom2_Text_DecidedToGoWithBuck
     WaitFanfare
-    SetFlag FLAG_UNK_0x00DD
-    SetVar VAR_UNK_0x4094, 1
-    Message 2
+    SetFlag FLAG_TALKED_TO_STARK_MOUNTAIN_ROOM_2_BUCK
+    SetVar VAR_STARK_MOUNTAIN_ROOM_2_FOLLOWER_BUCK_STATE, 1
+    Message StarkMountainRoom2_Text_IllKeepPokemonHealthy
     WaitButton
     CloseMessage
     SetVar VAR_PARTNER_TRAINER_ID, TRAINER_BUCK_STARK_MOUNTAIN
     SetHasPartner
-    SetMovementType 14, 48
+    SetMovementType LOCALID_BUCK, MOVEMENT_TYPE_FOLLOW_PLAYER
     ReleaseAll
     End
 
 StarkMountainRoom2_Unused:
     Return
 
-_007D:
-    SetObjectEventPos 14, 42, 78
-    SetObjectEventDir 14, DIR_NORTH
-    SetObjectEventMovementType 14, MOVEMENT_TYPE_LOOK_NORTH
-    ClearFlag FLAG_UNK_0x01DA
-    AddObject 14
-    ApplyMovement 14, _00DC
+StarkMountainRoom2_BuckEnterStartFollowing:
+    SetObjectEventPos LOCALID_BUCK, 42, 78
+    SetObjectEventDir LOCALID_BUCK, DIR_NORTH
+    SetObjectEventMovementType LOCALID_BUCK, MOVEMENT_TYPE_LOOK_NORTH
+    ClearFlag FLAG_HIDE_STARK_MOUNTAIN_ROOM_2_BUCK
+    AddObject LOCALID_BUCK
+    ApplyMovement LOCALID_BUCK, StarkMountainRoom2_Movement_BuckEnter
     WaitMovement
-    ApplyMovement LOCALID_PLAYER, _00EC
+    ApplyMovement LOCALID_PLAYER, StarkMountainRoom2_Movement_PlayerWalkOnSpotSouth
     WaitMovement
     BufferPlayerName 0
-    Message 0
+    Message StarkMountainRoom2_Text_LetsTeamUp
     CloseMessage
     Return
 
-_00B7:
-    SetObjectEventPos 14, 42, 68
-    SetObjectEventDir 14, DIR_NORTH
-    SetObjectEventMovementType 14, MOVEMENT_TYPE_LOOK_NORTH
-    ApplyMovement 14, _0144
+StarkMountainRoom2_BuckStartFollowing:
+    SetObjectEventPos LOCALID_BUCK, 42, 68
+    SetObjectEventDir LOCALID_BUCK, DIR_NORTH
+    SetObjectEventMovementType LOCALID_BUCK, MOVEMENT_TYPE_LOOK_NORTH
+    ApplyMovement LOCALID_BUCK, StarkMountainRoom2_Movement_BuckWalkOnSpotSouth
     WaitMovement
-    Message 3
+    Message StarkMountainRoom2_Text_LetsGoTogether
     Return
 
     .balign 4, 0
-_00DC:
+StarkMountainRoom2_Movement_BuckEnter:
     WalkNormalNorth 8
     EndMovement
 
@@ -75,7 +76,7 @@ StarkMountainRoom2_UnusedMovement:
     EndMovement
 
     .balign 4, 0
-_00EC:
+StarkMountainRoom2_Movement_PlayerWalkOnSpotSouth:
     WalkOnSpotNormalSouth
     EndMovement
 
@@ -83,115 +84,115 @@ StarkMountainRoom2_UnusedMovement2:
     WalkNormalNorth
     EndMovement
 
-_00FC:
+StarkMountainRoom2_TriggerPlayerLeaveBuck:
     LockAll
-    ApplyMovement 14, _014C
-    ApplyMovement LOCALID_PLAYER, _0134
+    ApplyMovement LOCALID_BUCK, StarkMountainRoom2_Movement_BuckWalkOnSpotSouth2
+    ApplyMovement LOCALID_PLAYER, StarkMountainRoom2_Movement_PlayerWalkOnSpotNorth
     WaitMovement
-    Message 4
+    Message StarkMountainRoom2_Text_IllStickAround
     CloseMessage
-    SetVar VAR_UNK_0x4094, 0
+    SetVar VAR_STARK_MOUNTAIN_ROOM_2_FOLLOWER_BUCK_STATE, 0
     ClearHasPartner
-    SetMovementType 14, 15
-    ApplyMovement 14, _013C
+    SetMovementType LOCALID_BUCK, MOVEMENT_TYPE_LOOK_SOUTH
+    ApplyMovement LOCALID_BUCK, StarkMountainRoom2_Movement_BuckWalkNorth
     WaitMovement
     ReleaseAll
     End
 
     .balign 4, 0
-_0134:
+StarkMountainRoom2_Movement_PlayerWalkOnSpotNorth:
     WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
-_013C:
+StarkMountainRoom2_Movement_BuckWalkNorth:
     WalkNormalNorth
     EndMovement
 
     .balign 4, 0
-_0144:
+StarkMountainRoom2_Movement_BuckWalkOnSpotSouth:
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_014C:
+StarkMountainRoom2_Movement_BuckWalkOnSpotSouth2:
     WalkOnSpotNormalSouth
     EndMovement
 
-_0154:
+StarkMountainRoom2_TriggerBuckLeavePlayer:
     LockAll
     ClearHasPartner
-    SetMovementType 14, 15
+    SetMovementType LOCALID_BUCK, MOVEMENT_TYPE_LOOK_SOUTH
     GetPlayerDir VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _0177
-    GoTo _0191
+    GoToIfEq VAR_RESULT, DIR_NORTH, StarkMountainRoom2_BuckWalkToRoom3EntranceNorth
+    GoTo StarkMountainRoom2_BuckWalkToRoom3Entrance
     End
 
-_0177:
-    ApplyMovement 14, _01F0
-    ApplyMovement LOCALID_PLAYER, _01E4
+StarkMountainRoom2_BuckWalkToRoom3EntranceNorth:
+    ApplyMovement LOCALID_BUCK, StarkMountainRoom2_Movement_BuckWalkNorthOnSpotWest
+    ApplyMovement LOCALID_PLAYER, StarkMountainRoom2_Movement_PlayerMoveAside
     WaitMovement
-    GoTo _01AB
+    GoTo StarkMountainRoom2_HereWeAre
     End
 
-_0191:
-    ApplyMovement 14, _01FC
-    ApplyMovement LOCALID_PLAYER, _01E4
+StarkMountainRoom2_BuckWalkToRoom3Entrance:
+    ApplyMovement LOCALID_BUCK, StarkMountainRoom2_Movement_BuckWalkWest
+    ApplyMovement LOCALID_PLAYER, StarkMountainRoom2_Movement_PlayerMoveAside
     WaitMovement
-    GoTo _01AB
+    GoTo StarkMountainRoom2_HereWeAre
     End
 
-_01AB:
-    ApplyMovement 14, _0204
+StarkMountainRoom2_HereWeAre:
+    ApplyMovement LOCALID_BUCK, StarkMountainRoom2_Movement_BuckWalkOnSpotNorthWest
     WaitMovement
     BufferPlayerName 0
-    Message 5
+    Message StarkMountainRoom2_Text_HereWeAre
     CloseMessage
-    ApplyMovement 14, _0214
+    ApplyMovement LOCALID_BUCK, StarkMountainRoom2_Movement_BuckEnterRoom3
     WaitMovement
     WaitSE SEQ_SE_CONFIRM
     PlaySE SEQ_SE_DP_KAIDAN2
-    RemoveObject 14
+    RemoveObject LOCALID_BUCK
     WaitSE SEQ_SE_DP_KAIDAN2
-    SetVar VAR_UNK_0x4094, 2
+    SetVar VAR_STARK_MOUNTAIN_ROOM_2_FOLLOWER_BUCK_STATE, 2
     ReleaseAll
     End
 
     .balign 4, 0
-_01E4:
+StarkMountainRoom2_Movement_PlayerMoveAside:
     WalkNormalWest
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_01F0:
+StarkMountainRoom2_Movement_BuckWalkNorthOnSpotWest:
     WalkNormalNorth
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_01FC:
+StarkMountainRoom2_Movement_BuckWalkWest:
     WalkNormalWest
     EndMovement
 
     .balign 4, 0
-_0204:
+StarkMountainRoom2_Movement_BuckWalkOnSpotNorthWest:
     WalkOnSpotNormalNorth
     Delay8 2
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_0214:
+StarkMountainRoom2_Movement_BuckEnterRoom3:
     WalkNormalNorth
     EndMovement
 
-_021C:
-    NPCMessage 6
+StarkMountainRoom2_Unused4:
+    NPCMessage StarkMountainRoom2_Text_Dummy6
     End
 
-_022F:
-    NPCMessage 7
+StarkMountainRoom2_Unused5:
+    NPCMessage StarkMountainRoom2_Text_Dummy7
     End
 
     .balign 4, 0

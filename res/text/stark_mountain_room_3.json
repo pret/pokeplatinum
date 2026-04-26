@@ -2,7 +2,7 @@
   "key": 54315,
   "messages": [
     {
-      "id": "pl_msg_00000264_00000",
+      "id": "StarkMountainRoom3_Text_MagmaStoneWillBeMine",
       "en_US": [
         "Charon: ...Cyrus disappeared.\n",
         "Mars and Jupiter quit.\r",
@@ -21,14 +21,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000264_00001",
+      "id": "StarkMountainRoom3_Text_WhatsGoingOnHere",
       "en_US": [
         "Buck: Hey, you! Team Galactic!\n",
         "What’s going on here?!\r"
       ]
     },
     {
-      "id": "pl_msg_00000264_00002",
+      "id": "StarkMountainRoom3_Text_BossOfRebornGalactic",
       "en_US": [
         "Charon: Eh? What’s this, then?\n",
         "Chased me here, have you?\r",
@@ -43,22 +43,22 @@
       ]
     },
     {
-      "id": "pl_msg_00000264_00003",
+      "id": "StarkMountainRoom3_Text_GoGoGo",
       "en_US": "???: Go, go, go!\r"
     },
     {
-      "id": "pl_msg_00000264_00004",
+      "id": "StarkMountainRoom3_Text_NoTheMagmaStone",
       "en_US": [
         "Charon: No! The Magma Stone!\r",
         "What?! What is going on?!\r"
       ]
     },
     {
-      "id": "pl_msg_00000264_00005",
+      "id": "StarkMountainRoom3_Text_ExcellentWorkCroagunk",
       "en_US": "???: Excellent work, CROAGUNK!\r"
     },
     {
-      "id": "pl_msg_00000264_00006",
+      "id": "StarkMountainRoom3_Text_DisguisingWasNotEasy",
       "en_US": [
         "Looker: Pah!\r",
         "Disguising myself as a boulder for\n",
@@ -66,7 +66,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000264_00007",
+      "id": "StarkMountainRoom3_Text_RequestCooperation",
       "en_US": [
         "Now, old-timer, the International Police\n",
         "cordially requests your cooperation.\r",
@@ -77,14 +77,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000264_00008",
+      "id": "StarkMountainRoom3_Text_ItsThePolice",
       "en_US": [
         "Grunt 1: Hey!\n",
         "It’s the International Police!\r"
       ]
     },
     {
-      "id": "pl_msg_00000264_00009",
+      "id": "StarkMountainRoom3_Text_OneThingToBeDone",
       "en_US": [
         "Grunt 2: Yeah!\n",
         "It’s the International Police all right!\r",
@@ -92,14 +92,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000264_00010",
+      "id": "StarkMountainRoom3_Text_RunAway",
       "en_US": [
         "Grunt 1: Run away!\n",
         "Grunt 2: Run away!\r"
       ]
     },
     {
-      "id": "pl_msg_00000264_00011",
+      "id": "StarkMountainRoom3_Text_IKnowNothing",
       "en_US": [
         "Charon: Gah... What a mess...\r",
         "...Uh, International Police?\n",
@@ -113,7 +113,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000264_00012",
+      "id": "StarkMountainRoom3_Text_NoResistingArrest",
       "en_US": [
         "Looker: You can tell us all about it.\n",
         "We have plenty of time.\r",
@@ -124,7 +124,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000264_00013",
+      "id": "StarkMountainRoom3_Text_TakeHimSomewhereCool",
       "en_US": [
         "Looker: He is an old man.\n",
         "This heat cannot be good for him.\r",
@@ -133,7 +133,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000264_00014",
+      "id": "StarkMountainRoom3_Text_ExitThisEnvironment",
       "en_US": [
         "Looker: {STRVAR_1 3, 0, 0}!\r",
         "And you, unfamiliar boy!\n",
@@ -143,22 +143,22 @@
       ]
     },
     {
-      "id": "pl_msg_00000264_00015",
+      "id": "StarkMountainRoom3_Text_HeatranCry",
       "en_US": "Gwogobo gwobobobo!\r"
     },
     {
-      "id": "pl_msg_00000264_00016",
+      "id": "StarkMountainRoom3_Text_HeatranDisappeared",
       "en_US": [
         "HEATRAN disappeared into\n",
         "the volcano..."
       ]
     },
     {
-      "id": "pl_msg_00000264_00017",
+      "id": "StarkMountainRoom3_Text_Oof",
       "en_US": "Buck: Oof!\r"
     },
     {
-      "id": "pl_msg_00000264_00018",
+      "id": "StarkMountainRoom3_Text_ThatWasWicked",
       "en_US": [
         "Buck: Whoa! Wow!\r",
         "Hehehe! That was wicked!\n",
@@ -170,7 +170,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000264_00019",
+      "id": "StarkMountainRoom3_Text_Dummy19",
       "garbage": 127
     }
   ]

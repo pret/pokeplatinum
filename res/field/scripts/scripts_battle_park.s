@@ -63,8 +63,8 @@ _0032:
     Message 4
     CloseMessage
     WaitTime 30, VAR_RESULT
-    CallIfLt VAR_UNK_0x409E, 1, _019E
-    CallIfGe VAR_UNK_0x409E, 1, _01A3
+    CallIfLt VAR_STARK_MOUNTAIN_ROOM_3_STATE, 1, _019E
+    CallIfGe VAR_STARK_MOUNTAIN_ROOM_3_STATE, 1, _01A3
     CloseMessage
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     CallIfEq VAR_0x8004, 23, _0240

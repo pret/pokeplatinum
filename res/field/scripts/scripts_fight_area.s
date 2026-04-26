@@ -32,7 +32,7 @@
 
 FightArea_OnTransition:
     GoToIfEq VAR_FIGHT_AREA_STATE, 1, FightArea_SetRivalPositionBattleFrontierGate
-    GoToIfGe VAR_UNK_0x409E, 1, FightArea_HideRival
+    GoToIfGe VAR_STARK_MOUNTAIN_ROOM_3_STATE, 1, FightArea_HideRival
     End
 
 FightArea_SetRivalPositionBattleFrontierGate:
