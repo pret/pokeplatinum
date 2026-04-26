@@ -293,7 +293,7 @@ typedef struct {
     UnkStruct_ov8_0224C0C4 unk_40;
 } UnkStruct_ov8_0224C098;
 
-typedef struct {
+typedef struct HearthomeGymTrainerRoomLayout {
     int mapID;
     int firstDoorID;
     int numExitDoors;
