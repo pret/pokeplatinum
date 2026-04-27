@@ -78,8 +78,8 @@ BOOL DistWorld_HandlePlayerMoved(FieldSystem *fieldSystem, enum FaceDirection pl
 BOOL ov9_0224A67C(FieldSystem *fieldSystem, int param1);
 BOOL ov9_0224A71C(FieldSystem *fieldSystem);
 BOOL ov9_0224A800(FieldSystem *fieldSystem, int param1);
-void ov9_0224CA50(FieldSystem *fieldSystem);
-void ov9_0224CA5C(FieldSystem *fieldSystem);
+void DistWorld_RenderInactiveFloor(FieldSystem *fieldSystem);
+void DistWorld_TickInactiveFloor(FieldSystem *fieldSystem);
 void DistWorld_StartGiratinaShadowEvent(FieldSystem *fieldSystem, u16 eventIndex);
 void DistWorld_FinishGiratinaShadowEvent(FieldSystem *fieldSystem);
 void DistWorld_AddMapObjectWithLocalID(FieldSystem *fieldSystem, u16 mapObjLocalID);
