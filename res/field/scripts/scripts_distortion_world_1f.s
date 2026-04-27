@@ -77,7 +77,7 @@ DistortionWorld1F_OnFrame_FirstEntry:
     ApplyMovement LOCALID_CYNTHIA, DistortionWorld1F_Movement_CynthiaLeave
     WaitMovement
     DeleteDistortionWorldMapObject LOCALID_CYNTHIA
-    SetVar VAR_DISTORTION_WORLD_PROGRESS, 1
+    SetVar VAR_DISTORTION_WORLD_PROGRESS, DIST_WORLD_PROGRESS_ENTERED_1F
     ReleaseAll
     End
 

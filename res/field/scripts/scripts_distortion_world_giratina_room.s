@@ -27,7 +27,7 @@ DistortionWorldGiratinaRoom_OnLoad:
 
 DistortionWorldGiratinaRoom_RemoveGiratina:
     ResetDistortionWorldPersistedCameraAngles
-    SetVar VAR_DISTORTION_WORLD_PROGRESS, 14
+    SetVar VAR_DISTORTION_WORLD_PROGRESS, DIST_WORLD_PROGRESS_BATTLED_GIRATINA
     RemoveObject LOCALID_GIRATINA
     End
 

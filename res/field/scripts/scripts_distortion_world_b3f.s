@@ -32,7 +32,7 @@ DistortionWorldB3F_TwoWorldsMustBalance:
     ApplyMovement LOCALID_CYRUS, DistortionWorldB3F_Movement_CyrusLeave
     WaitMovement
     DeleteDistortionWorldMapObject LOCALID_CYRUS
-    SetVar VAR_DISTORTION_WORLD_PROGRESS, 6
+    SetVar VAR_DISTORTION_WORLD_PROGRESS, DIST_WORLD_PROGRESS_TALKED_TO_B3F_CYRUS
     ReleaseAll
     End
 

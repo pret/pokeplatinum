@@ -34,7 +34,7 @@ DistortionWorldB7F_OnFrame_FirstEntry:
     CloseMessage
     ApplyMovement LOCALID_CYNTHIA, DistortionWorldB7F_Movement_CynthiaWalkNorth
     WaitMovement
-    SetVar VAR_DISTORTION_WORLD_PROGRESS, 8
+    SetVar VAR_DISTORTION_WORLD_PROGRESS, DIST_WORLD_PROGRESS_ENTERED_B7F
     End
 
 DistortionWorldB7F_CoordEvent_CynthiaCyrus:
@@ -60,7 +60,7 @@ DistortionWorldB7F_Cyrus:
     StartTrainerBattle TRAINER_GALACTIC_BOSS_CYRUS_DISTORTION_WORLD
     CheckWonBattle VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, DistortionWorldB7F_LostBattle
-    SetVar VAR_DISTORTION_WORLD_PROGRESS, 10
+    SetVar VAR_DISTORTION_WORLD_PROGRESS, DIST_WORLD_PROGRESS_WON_CYRUS_BATTLE
     Message DistortionWorldB7F_Text_YoullDestroyThisWorld
     CloseMessage
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
@@ -122,7 +122,7 @@ DistortionWorldB7F_GiratinaIsEnraged:
     End
 
 DistortionWorldB7F_LostBattle:
-    SetVar VAR_DISTORTION_WORLD_PROGRESS, 9
+    SetVar VAR_DISTORTION_WORLD_PROGRESS, DIST_WORLD_PROGRESS_LISTENED_TO_CYNTHIA_CYRUS
     BlackOutFromBattle
     ReleaseAll
     End
@@ -130,7 +130,7 @@ DistortionWorldB7F_LostBattle:
 DistortionWorldB7F_Cynthia:
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    GoToIfGe VAR_DISTORTION_WORLD_PROGRESS, 10, DistortionWorldB7F_YourBondIsStrong
+    GoToIfGe VAR_DISTORTION_WORLD_PROGRESS, DIST_WORLD_PROGRESS_WON_CYRUS_BATTLE, DistortionWorldB7F_YourBondIsStrong
     Message DistortionWorldB7F_Text_ThatsNoJustice
     WaitButton
     CloseMessage

@@ -22,7 +22,7 @@ DistortionWorldB6F_OnTransition:
     End
 
 DistortionWorldB6F_Cynthia:
-    GoToIfEq VAR_DISTORTION_WORLD_PROGRESS, 7, DistortionWorldB6F_WereGettingClose
+    GoToIfEq VAR_DISTORTION_WORLD_PROGRESS, DIST_WORLD_PROGRESS_FINISHED_BOULDER_PUZZLE, DistortionWorldB6F_WereGettingClose
     GoToIfSet FLAG_DISTORTION_WORLD_PUZZLE_FINISHED, DistortionWorldB6F_CynthiaPuzzleFinished
     NPCMessage DistortionWorldB6F_Text_ThisPlaceGiantPuzzle
     End
@@ -38,7 +38,7 @@ DistortionWorldB6F_CynthiaPuzzleFinished:
     WaitMovement
     ApplyMovement LOCALID_CYNTHIA, DistortionWorldB6F_Movement_CynthiaJumpOnPlatform
     WaitMovement
-    SetVar VAR_DISTORTION_WORLD_PROGRESS, 7
+    SetVar VAR_DISTORTION_WORLD_PROGRESS, DIST_WORLD_PROGRESS_FINISHED_BOULDER_PUZZLE
     ReleaseAll
     End
 

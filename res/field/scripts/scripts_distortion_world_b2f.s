@@ -16,7 +16,7 @@ DistortionWorldB2F_OnTransition:
 DistortionWorldB2F_OnFrame_FirstEntry:
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    GoToIfEq VAR_DISTORTION_WORLD_PROGRESS, 5, DistortionWorldB2F_Cynthia
+    GoToIfEq VAR_DISTORTION_WORLD_PROGRESS, DIST_WORLD_PROGRESS_TALKED_TO_B2F_CYNTHIA, DistortionWorldB2F_Cynthia
     GetPlayer3DPos VAR_0x8004, VAR_0x8005, VAR_0x8006
     GoToIfEq VAR_0x8005, 232, DistortionWorldB2F_LetsSplitUpY232
     ApplyMovement LOCALID_CYNTHIA, DistortionWorldB2F_Movement_CynthiaFaceSouth
@@ -36,7 +36,7 @@ DistortionWorldB2F_LetsSplitUpY232:
     ApplyMovement LOCALID_PLAYER, _011C
     WaitMovement
 DistortionWorldB2F_IncreaseProgressVar:
-    SetVar VAR_DISTORTION_WORLD_PROGRESS, 5
+    SetVar VAR_DISTORTION_WORLD_PROGRESS, DIST_WORLD_PROGRESS_TALKED_TO_B2F_CYNTHIA
     ReleaseAll
     End
 
