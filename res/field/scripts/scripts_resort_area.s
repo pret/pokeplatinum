@@ -1,137 +1,138 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/resort_area.h"
+#include "res/field/events/events_resort_area.h"
 
 
-    ScriptEntry _00DA
-    ScriptEntry _00ED
-    ScriptEntry _0100
-    ScriptEntry _0130
-    ScriptEntry _0143
-    ScriptEntry _015A
-    ScriptEntry _0171
-    ScriptEntry _0184
-    ScriptEntry _03D4
-    ScriptEntry _043C
-    ScriptEntry _049C
-    ScriptEntry _04FC
-    ScriptEntry _055C
-    ScriptEntry _003E
-    ScriptEntry _05BC
+    ScriptEntry ResortArea_Beauty1
+    ScriptEntry ResortArea_Beauty2
+    ScriptEntry ResortArea_AceTrainerF
+    ScriptEntry ResortArea_BlackBelt
+    ScriptEntry ResortArea_MapSign
+    ScriptEntry ResortArea_SignRibbonSyndicate
+    ScriptEntry ResortArea_SwimmerM
+    ScriptEntry ResortArea_TriggerSchoolKidM
+    ScriptEntry ResortArea_ProfRowan
+    ScriptEntry ResortArea_Roark
+    ScriptEntry ResortArea_Gardenia
+    ScriptEntry ResortArea_Maylene
+    ScriptEntry ResortArea_Byron
+    ScriptEntry ResortArea_OnTransition
+    ScriptEntry ResortArea_SignVilla
     ScriptEntryEnd
 
-_003E:
-    SetFlag FLAG_UNK_0x02AA
-    SetFlag FLAG_UNK_0x02AD
-    SetFlag FLAG_UNK_0x02AF
-    SetFlag FLAG_UNK_0x02B2
-    SetFlag FLAG_UNK_0x02B5
-    GoToIfEq VAR_RESORT_VILLA_VISITOR, 0xFF, _00BA
-    GoToIfEq VAR_UNK_0x40C8, 0, _00BA
-    GoToIfSet FLAG_VILLA_VISITOR_INSIDE, _00BA
-    CallIfEq VAR_RESORT_VILLA_VISITOR, 2, _00BC
-    CallIfEq VAR_RESORT_VILLA_VISITOR, 4, _00C2
-    CallIfEq VAR_RESORT_VILLA_VISITOR, 5, _00C8
-    CallIfEq VAR_RESORT_VILLA_VISITOR, 7, _00CE
-    CallIfEq VAR_RESORT_VILLA_VISITOR, 9, _00D4
+ResortArea_OnTransition:
+    SetFlag FLAG_HIDE_RESORT_AREA_PROF_ROWAN
+    SetFlag FLAG_HIDE_RESORT_AREA_ROARK
+    SetFlag FLAG_HIDE_RESORT_AREA_GARDENIA
+    SetFlag FLAG_HIDE_RESORT_AREA_MAYLENE
+    SetFlag FLAG_HIDE_RESORT_AREA_BYRON
+    GoToIfEq VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_NONE, ResortArea_DontShowVisitor
+    GoToIfEq VAR_RESORT_AREA_STATE, 0, ResortArea_DontShowVisitor
+    GoToIfSet FLAG_VILLA_VISITOR_INSIDE, ResortArea_DontShowVisitor
+    CallIfEq VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_PROF_ROWAN, ResortArea_ShowProfRowan
+    CallIfEq VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_ROARK, ResortArea_ShowRoark
+    CallIfEq VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_GARDENIA, ResortArea_ShowGardenia
+    CallIfEq VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_MAYLENE, ResortArea_ShowMaylene
+    CallIfEq VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_BYRON, ResortArea_ShowByron
     End
 
-_00BA:
+ResortArea_DontShowVisitor:
     End
 
-_00BC:
-    ClearFlag FLAG_UNK_0x02AA
+ResortArea_ShowProfRowan:
+    ClearFlag FLAG_HIDE_RESORT_AREA_PROF_ROWAN
     Return
 
-_00C2:
-    ClearFlag FLAG_UNK_0x02AD
+ResortArea_ShowRoark:
+    ClearFlag FLAG_HIDE_RESORT_AREA_ROARK
     Return
 
-_00C8:
-    ClearFlag FLAG_UNK_0x02AF
+ResortArea_ShowGardenia:
+    ClearFlag FLAG_HIDE_RESORT_AREA_GARDENIA
     Return
 
-_00CE:
-    ClearFlag FLAG_UNK_0x02B2
+ResortArea_ShowMaylene:
+    ClearFlag FLAG_HIDE_RESORT_AREA_MAYLENE
     Return
 
-_00D4:
-    ClearFlag FLAG_UNK_0x02B5
+ResortArea_ShowByron:
+    ClearFlag FLAG_HIDE_RESORT_AREA_BYRON
     Return
 
-_00DA:
-    NPCMessage 0
+ResortArea_Beauty1:
+    NPCMessage ResortArea_Text_TraveledLongWay
     End
 
-_00ED:
-    NPCMessage 1
+ResortArea_Beauty2:
+    NPCMessage ResortArea_Text_NothingTooGood
     End
 
-_0100:
+ResortArea_AceTrainerF:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CallIfUnset FLAG_UNK_0x00FA, _0126
-    CallIfSet FLAG_UNK_0x00FA, _012B
+    CallIfUnset FLAG_JOINED_RIBBON_SYNDICATE, ResortArea_LongToBecomeMember
+    CallIfSet FLAG_JOINED_RIBBON_SYNDICATE, ResortArea_YouAreAMember
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0126:
-    Message 2
+ResortArea_LongToBecomeMember:
+    Message ResortArea_Text_LongToBecomeMember
     Return
 
-_012B:
-    Message 3
+ResortArea_YouAreAMember:
+    Message ResortArea_Text_YouAreAMember
     Return
 
-_0130:
-    NPCMessage 4
+ResortArea_BlackBelt:
+    NPCMessage ResortArea_Text_DigUpCoolStuff
     End
 
-_0143:
-    ShowMapSign 25
+ResortArea_MapSign:
+    ShowMapSign ResortArea_Text_MapSign
     End
 
-_015A:
-    ShowLandmarkSign 26
+ResortArea_SignRibbonSyndicate:
+    ShowLandmarkSign ResortArea_Text_SignRibbonSyndicate
     End
 
-_0171:
-    NPCMessage 5
+ResortArea_SwimmerM:
+    NPCMessage ResortArea_Text_SomethingLurks
     End
 
-_0184:
+ResortArea_TriggerSchoolKidM:
     LockAll
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    CallIfEq VAR_0x8005, 0x1D8, _0266
-    CallIfEq VAR_0x8005, 0x1D9, _0272
-    CallIfEq VAR_0x8005, 0x1DA, _0274
-    Message 6
+    CallIfEq VAR_0x8005, 472, ResortArea_SchoolKidMWalkToPlayerZ472
+    CallIfEq VAR_0x8005, 473, ResortArea_SchoolKidMWalkToPlayerZ473
+    CallIfEq VAR_0x8005, 474, ResortArea_SchoolKidMWalkToPlayerZ474
+    Message ResortArea_Text_HaveThisVilla
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _02BC
-    ScrCmd_30C
-    Message 7
+    GoToIfEq VAR_RESULT, MENU_NO, ResortArea_DeclinedVilla
+    SaveTVSegmentHomeAndManorNoFurniture
+    Message ResortArea_Text_LoadOffMyMind
     CloseMessage
-    CallIfEq VAR_0x8005, 0x1D8, _0280
-    CallIfEq VAR_0x8005, 0x1D9, _0294
-    CallIfEq VAR_0x8005, 0x1DA, _02A8
-    Message 9
+    CallIfEq VAR_0x8005, 472, ResortArea_WalkToVillaZ472
+    CallIfEq VAR_0x8005, 473, ResortArea_WalkToVillaZ473
+    CallIfEq VAR_0x8005, 474, ResortArea_WalkToVillaZ474
+    Message ResortArea_Text_StepInside
     CloseMessage
-    ApplyMovement 13, _0388
+    ApplyMovement LOCALID_SCHOOL_KID_M, ResortArea_Movement_SchoolKidMWalkOnSpotNorth
     WaitMovement
     LoadDoorAnimation 25, 14, 22, 21, ANIMATION_TAG_DOOR_1
     PlayDoorOpenAnimation ANIMATION_TAG_DOOR_1
     WaitForAnimation ANIMATION_TAG_DOOR_1
-    ApplyMovement 13, _0390
-    ApplyMovement LOCALID_PLAYER, _03C0
+    ApplyMovement LOCALID_SCHOOL_KID_M, ResortArea_Movement_SchoolKidMEnterVilla
+    ApplyMovement LOCALID_PLAYER, ResortArea_Movement_PlayerEnterVilla
     WaitMovement
     PlayDoorCloseAnimation ANIMATION_TAG_DOOR_1
     WaitForAnimation ANIMATION_TAG_DOOR_1
     UnloadAnimation ANIMATION_TAG_DOOR_1
-    RemoveObject 13
-    SetVar VAR_UNK_0x40C8, 1
-    SetVar VAR_RESORT_VILLA_VISITOR, 0xFF
+    RemoveObject LOCALID_SCHOOL_KID_M
+    SetVar VAR_RESORT_AREA_STATE, 1
+    SetVar VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_NONE
     FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_VILLA, 0, 10, 6, DIR_WEST
@@ -139,160 +140,160 @@ _0184:
     WaitFadeScreen
     End
 
-_0266:
-    ApplyMovement 13, _0328
+ResortArea_SchoolKidMWalkToPlayerZ472:
+    ApplyMovement LOCALID_SCHOOL_KID_M, ResortArea_Movement_SchoolKidMWalkToPlayerZ472
     WaitMovement
     Return
 
-_0272:
+ResortArea_SchoolKidMWalkToPlayerZ473:
     Return
 
-_0274:
-    ApplyMovement 13, _0334
+ResortArea_SchoolKidMWalkToPlayerZ474:
+    ApplyMovement LOCALID_SCHOOL_KID_M, ResortArea_Movement_SchoolKidMWalkToPlayerZ474
     WaitMovement
     Return
 
-_0280:
-    ApplyMovement 13, _0358
-    ApplyMovement LOCALID_PLAYER, _039C
+ResortArea_WalkToVillaZ472:
+    ApplyMovement LOCALID_SCHOOL_KID_M, ResortArea_Movement_SchoolKidMWalkToVillaZ472
+    ApplyMovement LOCALID_PLAYER, ResortArea_Movement_PlayerWalkToVillaZ472
     WaitMovement
     Return
 
-_0294:
-    ApplyMovement 13, _0368
-    ApplyMovement LOCALID_PLAYER, _03A8
+ResortArea_WalkToVillaZ473:
+    ApplyMovement LOCALID_SCHOOL_KID_M, ResortArea_Movement_SchoolKidMWalkToVillaZ473
+    ApplyMovement LOCALID_PLAYER, ResortArea_Movement_PlayerWalkToVillaZ473
     WaitMovement
     Return
 
-_02A8:
-    ApplyMovement 13, _0378
-    ApplyMovement LOCALID_PLAYER, _03B4
+ResortArea_WalkToVillaZ474:
+    ApplyMovement LOCALID_SCHOOL_KID_M, ResortArea_Movement_SchoolKidMWalkToVillaZ474
+    ApplyMovement LOCALID_PLAYER, ResortArea_Movement_PlayerWalkToVillaZ474
     WaitMovement
     Return
 
-_02BC:
-    Message 8
+ResortArea_DeclinedVilla:
+    Message ResortArea_Text_StillStrikeAsShady
     CloseMessage
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    CallIfEq VAR_0x8005, 0x1D8, _02F2
-    CallIfEq VAR_0x8005, 0x1D9, _0306
-    CallIfEq VAR_0x8005, 0x1DA, _0312
+    CallIfEq VAR_0x8005, 472, ResortArea_WalkBackZ472
+    CallIfEq VAR_0x8005, 473, ResortArea_WalkBackZ473
+    CallIfEq VAR_0x8005, 474, ResortArea_WalkBackZ474
     ReleaseAll
     End
 
-_02F2:
-    ApplyMovement 13, _0340
-    ApplyMovement LOCALID_PLAYER, _03CC
+ResortArea_WalkBackZ472:
+    ApplyMovement LOCALID_SCHOOL_KID_M, ResortArea_Movement_SchoolKidMWalkBackZ472
+    ApplyMovement LOCALID_PLAYER, ResortArea_Movement_PlayerWalkWest
     WaitMovement
     Return
 
-_0306:
-    ApplyMovement LOCALID_PLAYER, _03CC
+ResortArea_WalkBackZ473:
+    ApplyMovement LOCALID_PLAYER, ResortArea_Movement_PlayerWalkWest
     WaitMovement
     Return
 
-_0312:
-    ApplyMovement 13, _034C
-    ApplyMovement LOCALID_PLAYER, _03CC
+ResortArea_WalkBackZ474:
+    ApplyMovement LOCALID_SCHOOL_KID_M, ResortArea_Movement_SchoolKidMWalkBackZ474
+    ApplyMovement LOCALID_PLAYER, ResortArea_Movement_PlayerWalkWest
     WaitMovement
     Return
 
     .balign 4, 0
-_0328:
+ResortArea_Movement_SchoolKidMWalkToPlayerZ472:
     WalkNormalNorth
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_0334:
+ResortArea_Movement_SchoolKidMWalkToPlayerZ474:
     WalkNormalSouth
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_0340:
+ResortArea_Movement_SchoolKidMWalkBackZ472:
     WalkNormalSouth
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_034C:
+ResortArea_Movement_SchoolKidMWalkBackZ474:
     WalkNormalNorth
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_0358:
+ResortArea_Movement_SchoolKidMWalkToVillaZ472:
     WalkNormalEast 6
     WalkNormalNorth 2
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_0368:
+ResortArea_Movement_SchoolKidMWalkToVillaZ473:
     WalkNormalEast 6
     WalkNormalNorth 3
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_0378:
+ResortArea_Movement_SchoolKidMWalkToVillaZ474:
     WalkNormalEast 6
     WalkNormalNorth 4
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_0388:
+ResortArea_Movement_SchoolKidMWalkOnSpotNorth:
     WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
-_0390:
+ResortArea_Movement_SchoolKidMEnterVilla:
     WalkNormalNorth
     SetInvisible
     EndMovement
 
     .balign 4, 0
-_039C:
+ResortArea_Movement_PlayerWalkToVillaZ472:
     WalkNormalEast 7
     WalkNormalNorth
     EndMovement
 
     .balign 4, 0
-_03A8:
+ResortArea_Movement_PlayerWalkToVillaZ473:
     WalkNormalEast 7
     WalkNormalNorth 2
     EndMovement
 
     .balign 4, 0
-_03B4:
+ResortArea_Movement_PlayerWalkToVillaZ474:
     WalkNormalEast 7
     WalkNormalNorth 3
     EndMovement
 
     .balign 4, 0
-_03C0:
+ResortArea_Movement_PlayerEnterVilla:
     WalkNormalNorth 2
     SetInvisible
     EndMovement
 
     .balign 4, 0
-_03CC:
+ResortArea_Movement_PlayerWalkWest:
     WalkNormalWest
     EndMovement
 
-_03D4:
+ResortArea_ProfRowan:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 10
+    Message ResortArea_Text_RowanAskVisit
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _0429
-    Message 11
+    GoToIfEq VAR_RESULT, MENU_NO, ResortArea_ProfRowanDeclinedVisit
+    Message ResortArea_Text_RowanAcceptedVisit
     CloseMessage
-    SetFlag FLAG_UNK_0x02AA
-    SetVar VAR_RESORT_VILLA_VISITOR, 2
+    SetFlag FLAG_HIDE_RESORT_AREA_PROF_ROWAN
+    SetVar VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_PROF_ROWAN
     SetFlag FLAG_VILLA_VISITOR_INSIDE
     FadeScreenOut
     WaitFadeScreen
@@ -301,28 +302,28 @@ _03D4:
     WaitFadeScreen
     End
 
-_0429:
-    Message 12
-    GoTo _0434
+ResortArea_ProfRowanDeclinedVisit:
+    Message ResortArea_Text_RowanDeclinedVisit
+    GoTo ResortArea_VillaVisitorEnd
     End
 
-_0434:
+ResortArea_VillaVisitorEnd:
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_043C:
+ResortArea_Roark:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 13
+    Message ResortArea_Text_RoarkAskVisit
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _0491
-    Message 14
+    GoToIfEq VAR_RESULT, MENU_NO, ResortArea_RoarkDeclinedVisit
+    Message ResortArea_Text_RoarkAcceptedVisit
     CloseMessage
-    SetFlag FLAG_UNK_0x02AD
-    SetVar VAR_RESORT_VILLA_VISITOR, 4
+    SetFlag FLAG_HIDE_RESORT_AREA_ROARK
+    SetVar VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_ROARK
     SetFlag FLAG_VILLA_VISITOR_INSIDE
     FadeScreenOut
     WaitFadeScreen
@@ -331,22 +332,22 @@ _043C:
     WaitFadeScreen
     End
 
-_0491:
-    Message 15
-    GoTo _0434
+ResortArea_RoarkDeclinedVisit:
+    Message ResortArea_Text_RoarkDeclinedVisit
+    GoTo ResortArea_VillaVisitorEnd
     End
 
-_049C:
+ResortArea_Gardenia:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 16
+    Message ResortArea_Text_GardeniaAskVisit
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _04F1
-    Message 17
+    GoToIfEq VAR_RESULT, MENU_NO, ResortArea_GardeniaDeclinedVisit
+    Message ResortArea_Text_GardeniaAcceptedVisit
     CloseMessage
-    SetFlag FLAG_UNK_0x02AF
-    SetVar VAR_RESORT_VILLA_VISITOR, 5
+    SetFlag FLAG_HIDE_RESORT_AREA_GARDENIA
+    SetVar VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_GARDENIA
     SetFlag FLAG_VILLA_VISITOR_INSIDE
     FadeScreenOut
     WaitFadeScreen
@@ -355,22 +356,22 @@ _049C:
     WaitFadeScreen
     End
 
-_04F1:
-    Message 18
-    GoTo _0434
+ResortArea_GardeniaDeclinedVisit:
+    Message ResortArea_Text_GardeniaDeclinedVisit
+    GoTo ResortArea_VillaVisitorEnd
     End
 
-_04FC:
+ResortArea_Maylene:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 19
+    Message ResortArea_Text_MayleneAskVisit
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _0551
-    Message 20
+    GoToIfEq VAR_RESULT, MENU_NO, ResortArea_MayleneDeclinedVisit
+    Message ResortArea_Text_MayleneAcceptedVisit
     CloseMessage
-    SetFlag FLAG_UNK_0x02B2
-    SetVar VAR_RESORT_VILLA_VISITOR, 7
+    SetFlag FLAG_HIDE_RESORT_AREA_MAYLENE
+    SetVar VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_MAYLENE
     SetFlag FLAG_VILLA_VISITOR_INSIDE
     FadeScreenOut
     WaitFadeScreen
@@ -379,22 +380,22 @@ _04FC:
     WaitFadeScreen
     End
 
-_0551:
-    Message 21
-    GoTo _0434
+ResortArea_MayleneDeclinedVisit:
+    Message ResortArea_Text_MayleneDeclinedVisit
+    GoTo ResortArea_VillaVisitorEnd
     End
 
-_055C:
+ResortArea_Byron:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 22
+    Message ResortArea_Text_ByronAskVisit
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _05B1
-    Message 23
+    GoToIfEq VAR_RESULT, MENU_NO, ResortArea_ByronDeclinedVisit
+    Message ResortArea_Text_ByronAcceptedVisit
     CloseMessage
-    SetFlag FLAG_UNK_0x02B5
-    SetVar VAR_RESORT_VILLA_VISITOR, 9
+    SetFlag FLAG_HIDE_RESORT_AREA_BYRON
+    SetVar VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_BYRON
     SetFlag FLAG_VILLA_VISITOR_INSIDE
     FadeScreenOut
     WaitFadeScreen
@@ -403,13 +404,13 @@ _055C:
     WaitFadeScreen
     End
 
-_05B1:
-    Message 24
-    GoTo _0434
+ResortArea_ByronDeclinedVisit:
+    Message ResortArea_Text_ByronDeclinedVisit
+    GoTo ResortArea_VillaVisitorEnd
     End
 
-_05BC:
-    ShowLandmarkSign 27
+ResortArea_SignVilla:
+    ShowLandmarkSign ResortArea_Text_SignVilla
     End
 
     .balign 4, 0

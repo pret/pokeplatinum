@@ -33,9 +33,11 @@
 #include "generated/time_of_day.h"
 #include "generated/trainer_score_events.h"
 #include "generated/trainers.h"
-#include "constants/battle/battle_script.h"
+#include "generated/villa_furniture_type.h"
 #include "constants/animation_tags.h"
+#include "constants/battle.h"
 #include "constants/battle_tower.h"
+#include "constants/battle/battle_script.h"
 #include "constants/boat_cutscene.h"
 #include "constants/colors.h"
 #include "constants/elevator_dirs.h"
@@ -45,8 +47,8 @@
 #include "constants/init_script_types.h"
 #include "constants/items.h"
 #include "constants/map_object.h"
-#include "constants/overworld_weather.h"
 #include "constants/moves.h"
+#include "constants/overworld_weather.h"
 #include "constants/pokemon.h"
 #include "constants/regi_ruins.h"
 #include "constants/roamer_states.h"
@@ -54,7 +56,7 @@
 #include "constants/scrcmd.h"
 #include "constants/sound_volume.h"
 #include "constants/tv_broadcast.h"
-#include "constants/battle.h"
+#include "constants/villa_visitors.h"
 
 #include "data/scripts/scrcmd.h"
 #include "macros/movement.inc"
@@ -4533,8 +4535,8 @@
     .short \arg0
     .endm
 
-    .macro SetScene22
-    .short SCRCMD_SETSCENE22
+    .macro SetScenePlayBGMMusicBox
+    .short SCRCMD_SETSCENEPLAYBGMMUSICBOX
     .endm
 
     .macro SetFieldScene bgmID
@@ -4551,9 +4553,9 @@
     .short SCRCMD_2FB
     .endm
 
-    .macro ScrCmd_2FC arg0
-    .short SCRCMD_2FC
-    .short \arg0
+    .macro CheckABPress destVar
+    .short SCRCMD_CHECKABPRESS
+    .short \destVar
     .endm
 
     .macro BufferTypeName templateArg, type
@@ -4644,13 +4646,13 @@
     .short SCRCMD_30B
     .endm
 
-    .macro ScrCmd_30C
-    .short SCRCMD_30C
+    .macro SaveTVSegmentHomeAndManorNoFurniture
+    .short SCRCMD_SAVETVSEGMENTHOMEANDMANORNOFURNITURE
     .endm
 
-    .macro ScrCmd_30D arg0
-    .short SCRCMD_30D
-    .short \arg0
+    .macro SaveTVSegmentHomeAndManor furniture
+    .short SCRCMD_SAVETVSEGMENTHOMEANDMANOR
+    .short \furniture
     .endm
 
     .macro ScrCmd_30E arg0
@@ -4658,10 +4660,10 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_30F arg0, arg1
-    .short SCRCMD_30F
-    .short \arg0
-    .short \arg1
+    .macro CheckMetFurnitureRequirements furniture, destVar
+    .short SCRCMD_CHECKMETFURNITUREREQUIREMENTS
+    .short \furniture
+    .short \destVar
     .endm
 
     .macro StartLibraryTV

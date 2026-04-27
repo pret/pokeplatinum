@@ -1253,7 +1253,7 @@ _0F99:
     FadeScreenIn
     FrontierScrCmd_A1 VAR_0x8008
     GoToIfEq VAR_0x8008, 0, _180E
-    IncrementRecordValue RECORD_UNK_061
+    IncrementRecordValue RECORD_BATTLE_CASTLE_VICTORIES
     FrontierScrCmd_A0 35, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _1040
     FrontierScrCmd_A0 40, 0, 0, VAR_0x8008

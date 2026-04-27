@@ -1,152 +1,153 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/resort_area_ribbon_syndicate_2f.h"
+#include "res/field/events/events_resort_area_ribbon_syndicate_2f.h"
 
 
-    ScriptEntry _0012
-    ScriptEntry _02E8
-    ScriptEntry _02FB
-    ScriptEntry _030E
+    ScriptEntry ResortAreaRibbonSyndicate2F_Receptionist3
+    ScriptEntry ResortAreaRibbonSyndicate2F_Receptionist1
+    ScriptEntry ResortAreaRibbonSyndicate2F_Receptionist2
+    ScriptEntry ResortAreaRibbonSyndicate2F_Receptionist4
     ScriptEntryEnd
 
-_0012:
+ResortAreaRibbonSyndicate2F_Receptionist3:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x0AA5, _00E2
-    GoToIfEq VAR_MAP_LOCAL_A, 1, _00E2
+    GoToIfSet FLAG_GOT_SPA_TREATMENT_RESORT_AREA_RIBBON_SYNDICATE_2F, ResortAreaRibbonSyndicate2F_OneSessionADay
+    GoToIfEq VAR_MAP_LOCAL_A, 1, ResortAreaRibbonSyndicate2F_OneSessionADay
     GetFirstNonEggInParty VAR_MAP_LOCAL_0
     BufferPlayerName 0
     BufferPartyMonNickname 1, VAR_MAP_LOCAL_0
-    Message 0
+    Message ResortAreaRibbonSyndicate2F_Text_CareToHaveSpaTreatment
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _0058
-    GoTo _0063
+    GoToIfEq VAR_RESULT, MENU_NO, ResortAreaRibbonSyndicate2F_SeeYouAgain
+    GoTo ResortAreaRibbonSyndicate2F_RightThisWayPlease
 
-_0058:
-    Message 1
+ResortAreaRibbonSyndicate2F_SeeYouAgain:
+    Message ResortAreaRibbonSyndicate2F_Text_SeeYouAgain
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0063:
-    Message 2
+ResortAreaRibbonSyndicate2F_RightThisWayPlease:
+    Message ResortAreaRibbonSyndicate2F_Text_RightThisWayPlease
     CloseMessage
-    Call _0160
-    GoTo _0074
+    Call ResortAreaRibbonSyndicate2F_WalkToChair
+    GoTo ResortAreaRibbonSyndicate2F_ReadyToBegin
 
-_0074:
-    Message 3
+ResortAreaRibbonSyndicate2F_ReadyToBegin:
+    Message ResortAreaRibbonSyndicate2F_Text_ReadyToBegin
     GetRandom VAR_RESULT, 4
-    GoToIfEq VAR_RESULT, 0, _00AA
-    GoToIfEq VAR_RESULT, 1, _00B3
-    GoToIfEq VAR_RESULT, 2, _00BC
-    GoTo _00C5
+    GoToIfEq VAR_RESULT, 0, ResortAreaRibbonSyndicate2F_OilContainsDiamonds
+    GoToIfEq VAR_RESULT, 1, ResortAreaRibbonSyndicate2F_FoamContainsPearls
+    GoToIfEq VAR_RESULT, 2, ResortAreaRibbonSyndicate2F_ToxinsForcedOut
+    GoTo ResortAreaRibbonSyndicate2F_PerfumedByAroma
 
-_00AA:
-    Message 4
-    GoTo _00CE
+ResortAreaRibbonSyndicate2F_OilContainsDiamonds:
+    Message ResortAreaRibbonSyndicate2F_Text_OilContainsDiamonds
+    GoTo ResortAreaRibbonSyndicate2F_TreatmentEnd
 
-_00B3:
-    Message 5
-    GoTo _00CE
+ResortAreaRibbonSyndicate2F_FoamContainsPearls:
+    Message ResortAreaRibbonSyndicate2F_Text_FoamContainsPearls
+    GoTo ResortAreaRibbonSyndicate2F_TreatmentEnd
 
-_00BC:
-    Message 6
-    GoTo _00CE
+ResortAreaRibbonSyndicate2F_ToxinsForcedOut:
+    Message ResortAreaRibbonSyndicate2F_Text_ToxinsForcedOut
+    GoTo ResortAreaRibbonSyndicate2F_TreatmentEnd
 
-_00C5:
-    Message 7
-    GoTo _00CE
+ResortAreaRibbonSyndicate2F_PerfumedByAroma:
+    Message ResortAreaRibbonSyndicate2F_Text_PerfumedByAroma
+    GoTo ResortAreaRibbonSyndicate2F_TreatmentEnd
 
-_00CE:
+ResortAreaRibbonSyndicate2F_TreatmentEnd:
     CloseMessage
     PlaySE SEQ_SE_DP_FW367
-    Call _00ED
+    Call ResortAreaRibbonSyndicate2F_IncreaseFriendship
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_00E2:
-    Message 9
+ResortAreaRibbonSyndicate2F_OneSessionADay:
+    Message ResortAreaRibbonSyndicate2F_Text_OneSessionADay
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_00ED:
+ResortAreaRibbonSyndicate2F_IncreaseFriendship:
     GetRandom VAR_RESULT, 100
-    GoToIfLt VAR_RESULT, 5, _0113
-    GoToIfLt VAR_RESULT, 30, _0124
-    GoTo _0135
+    GoToIfLt VAR_RESULT, 5, ResortAreaRibbonSyndicate2F_MuchMoreFriendly
+    GoToIfLt VAR_RESULT, 30, ResortAreaRibbonSyndicate2F_MoreFriendly
+    GoTo ResortAreaRibbonSyndicate2F_LittleMoreFriendly
 
-_0113:
+ResortAreaRibbonSyndicate2F_MuchMoreFriendly:
     IncreasePartyMonFriendship 30, VAR_MAP_LOCAL_0
-    Call _0146
-    Message 8
+    Call ResortAreaRibbonSyndicate2F_FinishTreatment
+    Message ResortAreaRibbonSyndicate2F_Text_MuchMoreFriendly
     Return
 
-_0124:
+ResortAreaRibbonSyndicate2F_MoreFriendly:
     IncreasePartyMonFriendship 10, VAR_MAP_LOCAL_0
-    Call _0146
-    Message 10
+    Call ResortAreaRibbonSyndicate2F_FinishTreatment
+    Message ResortAreaRibbonSyndicate2F_Text_MoreFriendly
     Return
 
-_0135:
+ResortAreaRibbonSyndicate2F_LittleMoreFriendly:
     IncreasePartyMonFriendship 5, VAR_MAP_LOCAL_0
-    Call _0146
-    Message 11
+    Call ResortAreaRibbonSyndicate2F_FinishTreatment
+    Message ResortAreaRibbonSyndicate2F_Text_LittleMoreFriendly
     Return
 
-_0146:
+ResortAreaRibbonSyndicate2F_FinishTreatment:
     WaitSE SEQ_SE_DP_FW367
-    SetFlag FLAG_UNK_0x0AA5
+    SetFlag FLAG_GOT_SPA_TREATMENT_RESORT_AREA_RIBBON_SYNDICATE_2F
     SetVar VAR_MAP_LOCAL_A, 1
-    ApplyMovement 1, _02DC
+    ApplyMovement LOCALID_RECEPTIONIST_2, ResortAreaRibbonSyndicate2F_Movement_Receptionist2MoveAside
     WaitMovement
     Return
 
-_0160:
+ResortAreaRibbonSyndicate2F_WalkToChair:
     GetPlayerMapPos VAR_0x8005, VAR_0x8006
-    GoToIfEq VAR_0x8005, 11, _0193
-    GoToIfEq VAR_0x8005, 13, _01AB
-    GoToIfEq VAR_0x8006, 4, _01C3
-    GoTo _01DB
+    GoToIfEq VAR_0x8005, 11, ResortAreaRibbonSyndicate2F_WalkToChairX11
+    GoToIfEq VAR_0x8005, 13, ResortAreaRibbonSyndicate2F_WalkToChairX13
+    GoToIfEq VAR_0x8006, 4, ResortAreaRibbonSyndicate2F_WalkToChairZ4
+    GoTo ResortAreaRibbonSyndicate2F_WalkToChairZ6
 
-_0193:
-    ApplyMovement LOCALID_PLAYER, _026C
-    ApplyMovement 2, _0210
+ResortAreaRibbonSyndicate2F_WalkToChairX11:
+    ApplyMovement LOCALID_PLAYER, ResortAreaRibbonSyndicate2F_Movement_PlayerWalkToChairX11
+    ApplyMovement LOCALID_RECEPTIONIST_3, ResortAreaRibbonSyndicate2F_Movement_Receptionist3WalkToChairX11
     WaitMovement
-    GoTo _01F3
+    GoTo ResortAreaRibbonSyndicate2F_ReceptionistsSurroundPlayer
 
-_01AB:
-    ApplyMovement LOCALID_PLAYER, _0280
-    ApplyMovement 2, _0224
+ResortAreaRibbonSyndicate2F_WalkToChairX13:
+    ApplyMovement LOCALID_PLAYER, ResortAreaRibbonSyndicate2F_Movement_PlayerWalkToChairX13
+    ApplyMovement LOCALID_RECEPTIONIST_3, ResortAreaRibbonSyndicate2F_Movement_Receptionist3WalkToChairX13
     WaitMovement
-    GoTo _01F3
+    GoTo ResortAreaRibbonSyndicate2F_ReceptionistsSurroundPlayer
 
-_01C3:
-    ApplyMovement LOCALID_PLAYER, _0294
-    ApplyMovement 2, _023C
+ResortAreaRibbonSyndicate2F_WalkToChairZ4:
+    ApplyMovement LOCALID_PLAYER, ResortAreaRibbonSyndicate2F_Movement_PlayerWalkToChairZ4
+    ApplyMovement LOCALID_RECEPTIONIST_3, ResortAreaRibbonSyndicate2F_Movement_Receptionist3WalkToChairZ4
     WaitMovement
-    GoTo _01F3
+    GoTo ResortAreaRibbonSyndicate2F_ReceptionistsSurroundPlayer
 
-_01DB:
-    ApplyMovement LOCALID_PLAYER, _02AC
-    ApplyMovement 2, _0250
+ResortAreaRibbonSyndicate2F_WalkToChairZ6:
+    ApplyMovement LOCALID_PLAYER, ResortAreaRibbonSyndicate2F_Movement_PlayerWalkToChairZ6
+    ApplyMovement LOCALID_RECEPTIONIST_3, ResortAreaRibbonSyndicate2F_Movement_Receptionist3WalkToChairZ6
     WaitMovement
-    GoTo _01F3
+    GoTo ResortAreaRibbonSyndicate2F_ReceptionistsSurroundPlayer
 
-_01F3:
-    ApplyMovement 0, _02C4
-    ApplyMovement 1, _02CC
-    ApplyMovement 3, _02D4
+ResortAreaRibbonSyndicate2F_ReceptionistsSurroundPlayer:
+    ApplyMovement LOCALID_RECEPTIONIST_1, ResortAreaRibbonSyndicate2F_Movement_Receptionist1WalkToPlayer
+    ApplyMovement LOCALID_RECEPTIONIST_2, ResortAreaRibbonSyndicate2F_Movement_Receptionist2WalkToPlayer
+    ApplyMovement LOCALID_RECEPTIONIST_4, ResortAreaRibbonSyndicate2F_Movement_Receptionist4WalkToPlayer
     WaitMovement
     Return
 
     .balign 4, 0
-_0210:
+ResortAreaRibbonSyndicate2F_Movement_Receptionist3WalkToChairX11:
     WalkNormalEast 2
     WalkNormalSouth 2
     WalkNormalEast 3
@@ -154,7 +155,7 @@ _0210:
     EndMovement
 
     .balign 4, 0
-_0224:
+ResortAreaRibbonSyndicate2F_Movement_Receptionist3WalkToChairX13:
     WalkNormalSouth
     WalkNormalEast
     WalkNormalSouth
@@ -163,7 +164,7 @@ _0224:
     EndMovement
 
     .balign 4, 0
-_023C:
+ResortAreaRibbonSyndicate2F_Movement_Receptionist3WalkToChairZ4:
     WalkNormalEast 2
     WalkNormalSouth 2
     WalkNormalEast 3
@@ -171,7 +172,7 @@ _023C:
     EndMovement
 
     .balign 4, 0
-_0250:
+ResortAreaRibbonSyndicate2F_Movement_Receptionist3WalkToChairZ6:
     WalkNormalEast
     WalkNormalSouth
     WalkNormalEast 2
@@ -181,7 +182,7 @@ _0250:
     EndMovement
 
     .balign 4, 0
-_026C:
+ResortAreaRibbonSyndicate2F_Movement_PlayerWalkToChairX11:
     WalkNormalEast 3
     WalkNormalSouth 2
     WalkNormalEast 2
@@ -189,7 +190,7 @@ _026C:
     EndMovement
 
     .balign 4, 0
-_0280:
+ResortAreaRibbonSyndicate2F_Movement_PlayerWalkToChairX13:
     Delay8 2
     WalkNormalSouth 2
     WalkNormalEast 3
@@ -197,7 +198,7 @@ _0280:
     EndMovement
 
     .balign 4, 0
-_0294:
+ResortAreaRibbonSyndicate2F_Movement_PlayerWalkToChairZ4:
     WalkNormalSouth
     WalkNormalEast 3
     WalkNormalSouth 2
@@ -206,7 +207,7 @@ _0294:
     EndMovement
 
     .balign 4, 0
-_02AC:
+ResortAreaRibbonSyndicate2F_Movement_PlayerWalkToChairZ6:
     Delay8 2
     WalkNormalEast 3
     WalkNormalSouth
@@ -215,36 +216,36 @@ _02AC:
     EndMovement
 
     .balign 4, 0
-_02C4:
+ResortAreaRibbonSyndicate2F_Movement_Receptionist1WalkToPlayer:
     WalkNormalSouth
     EndMovement
 
     .balign 4, 0
-_02CC:
+ResortAreaRibbonSyndicate2F_Movement_Receptionist2WalkToPlayer:
     WalkNormalEast 3
     EndMovement
 
     .balign 4, 0
-_02D4:
+ResortAreaRibbonSyndicate2F_Movement_Receptionist4WalkToPlayer:
     WalkNormalNorth 4
     EndMovement
 
     .balign 4, 0
-_02DC:
+ResortAreaRibbonSyndicate2F_Movement_Receptionist2MoveAside:
     WalkNormalNorth
     WalkOnSpotNormalSouth
     EndMovement
 
-_02E8:
-    NPCMessage 12
+ResortAreaRibbonSyndicate2F_Receptionist1:
+    NPCMessage ResortAreaRibbonSyndicate2F_Text_KeepFromSeeingOthers
     End
 
-_02FB:
-    NPCMessage 13
+ResortAreaRibbonSyndicate2F_Receptionist2:
+    NPCMessage ResortAreaRibbonSyndicate2F_Text_OnlyFiveMembersADay
     End
 
-_030E:
-    NPCMessage 14
+ResortAreaRibbonSyndicate2F_Receptionist4:
+    NPCMessage ResortAreaRibbonSyndicate2F_Text_BringMembersCloser
     End
 
     .balign 4, 0

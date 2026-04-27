@@ -27,11 +27,11 @@
     ],
     "object_events": [
         {
-            "id": "VILLA_UNK_102_0",
+            "id": "LOCALID_COUNTERPART",
             "graphics_id": "OBJ_EVENT_GFX_VAR_1",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x02A8",
+            "hidden_flag": "FLAG_HIDE_VILLA_COUNTERPART",
             "script": 3,
             "initial_dir": 1,
             "data": [],
@@ -42,11 +42,11 @@
             "y": 0
         },
         {
-            "id": "VILLA_RIVAL_1",
+            "id": "LOCALID_RIVAL",
             "graphics_id": "OBJ_EVENT_GFX_BARRY",
             "movement_type": "MOVEMENT_TYPE_WANDER_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x02A7",
+            "hidden_flag": "FLAG_HIDE_VILLA_RIVAL",
             "script": 2,
             "initial_dir": 2,
             "data": [],
@@ -57,11 +57,11 @@
             "y": 0
         },
         {
-            "id": "VILLA_PROF_ROWAN_2",
+            "id": "LOCALID_PROF_ROWAN",
             "graphics_id": "OBJ_EVENT_GFX_PROF_ROWAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x02A9",
+            "hidden_flag": "FLAG_HIDE_VILLA_PROF_ROWAN",
             "script": 4,
             "initial_dir": 0,
             "data": [],
@@ -72,11 +72,11 @@
             "y": 0
         },
         {
-            "id": "VILLA_MOM_3",
+            "id": "LOCALID_MOM",
             "graphics_id": "OBJ_EVENT_GFX_MOM",
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x02AB",
+            "hidden_flag": "FLAG_HIDE_VILLA_MOM",
             "script": 5,
             "initial_dir": 3,
             "data": [],
@@ -87,11 +87,11 @@
             "y": 0
         },
         {
-            "id": "VILLA_ROARK_4",
+            "id": "LOCALID_ROARK",
             "graphics_id": "OBJ_EVENT_GFX_ROARK",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x02AC",
+            "hidden_flag": "FLAG_HIDE_VILLA_ROARK",
             "script": 6,
             "initial_dir": 1,
             "data": [],
@@ -102,11 +102,11 @@
             "y": 0
         },
         {
-            "id": "VILLA_GARDENIA_5",
+            "id": "LOCALID_GARDENIA",
             "graphics_id": "OBJ_EVENT_GFX_GARDENIA",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x02AE",
+            "hidden_flag": "FLAG_HIDE_VILLA_GARDENIA",
             "script": 7,
             "initial_dir": 1,
             "data": [],
@@ -117,11 +117,11 @@
             "y": 0
         },
         {
-            "id": "VILLA_FANTINA_6",
+            "id": "LOCALID_FANTINA",
             "graphics_id": "OBJ_EVENT_GFX_FANTINA",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x02B0",
+            "hidden_flag": "FLAG_HIDE_VILLA_FANTINA",
             "script": 8,
             "initial_dir": 0,
             "data": [],
@@ -132,11 +132,11 @@
             "y": 0
         },
         {
-            "id": "VILLA_MAYLENE_7",
+            "id": "LOCALID_MAYLENE",
             "graphics_id": "OBJ_EVENT_GFX_MAYLENE",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x02B1",
+            "hidden_flag": "FLAG_HIDE_VILLA_MAYLENE",
             "script": 9,
             "initial_dir": 3,
             "data": [],
@@ -147,11 +147,11 @@
             "y": 0
         },
         {
-            "id": "VILLA_BYRON_8",
+            "id": "LOCALID_BYRON",
             "graphics_id": "OBJ_EVENT_GFX_BYRON",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x02B4",
+            "hidden_flag": "FLAG_HIDE_VILLA_BYRON",
             "script": 11,
             "initial_dir": 1,
             "data": [],
@@ -162,11 +162,11 @@
             "y": 0
         },
         {
-            "id": "VILLA_CRASHER_WAKE_9",
+            "id": "LOCALID_CRASHER_WAKE",
             "graphics_id": "OBJ_EVENT_GFX_CRASHER_WAKE",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x02B3",
+            "hidden_flag": "FLAG_HIDE_VILLA_CRASHER_WAKE",
             "script": 10,
             "initial_dir": 0,
             "data": [],
@@ -177,11 +177,11 @@
             "y": 0
         },
         {
-            "id": "VILLA_CANDICE_10",
+            "id": "LOCALID_CANDICE",
             "graphics_id": "OBJ_EVENT_GFX_CANDICE",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x02B6",
+            "hidden_flag": "FLAG_HIDE_VILLA_CANDICE",
             "script": 12,
             "initial_dir": 1,
             "data": [],
@@ -192,11 +192,11 @@
             "y": 0
         },
         {
-            "id": "VILLA_VOLKNER_11",
+            "id": "LOCALID_VOLKNER",
             "graphics_id": "OBJ_EVENT_GFX_VOLKNER",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x02B7",
+            "hidden_flag": "FLAG_HIDE_VILLA_VOLKNER",
             "script": 13,
             "initial_dir": 2,
             "data": [],
@@ -207,11 +207,11 @@
             "y": 0
         },
         {
-            "id": "VILLA_CYNTHIA_12",
+            "id": "LOCALID_CYNTHIA",
             "graphics_id": "OBJ_EVENT_GFX_CYNTHIA",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x02B8",
+            "hidden_flag": "FLAG_HIDE_VILLA_CYNTHIA",
             "script": 14,
             "initial_dir": 2,
             "data": [],
@@ -222,11 +222,11 @@
             "y": 0
         },
         {
-            "id": "VILLA_FLINT_13",
+            "id": "LOCALID_FLINT",
             "graphics_id": "OBJ_EVENT_GFX_FLINT",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x02B9",
+            "hidden_flag": "FLAG_HIDE_VILLA_FLINT",
             "script": 15,
             "initial_dir": 2,
             "data": [],
@@ -237,11 +237,11 @@
             "y": 0
         },
         {
-            "id": "VILLA_SCHOOL_KID_M_14",
+            "id": "LOCALID_SCHOOL_KID_M",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x025A",
+            "hidden_flag": "FLAG_HIDE_VILLA_SCHOOL_KID_M",
             "script": 42,
             "initial_dir": 3,
             "data": [],
@@ -252,11 +252,11 @@
             "y": 0
         },
         {
-            "id": "VILLA_POKEMON_BREEDER_M_15",
+            "id": "LOCALID_DELIVERY_GUY",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x02C5",
+            "hidden_flag": "FLAG_HIDE_VILLA_DELIVERY_GUY",
             "script": 0,
             "initial_dir": 0,
             "data": [],
@@ -267,11 +267,11 @@
             "y": 0
         },
         {
-            "id": "VILLA_BOOK_16",
+            "id": "LOCALID_BOOK",
             "graphics_id": "OBJ_EVENT_GFX_BOOK",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x02C7",
+            "hidden_flag": "FLAG_HIDE_VILLA_BOOK",
             "script": 0,
             "initial_dir": 0,
             "data": [],
@@ -338,7 +338,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": "VAR_UNK_0x40A1",
+            "var": "VAR_VILLA_STATE",
             "value": 1
         }
     ]

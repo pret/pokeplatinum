@@ -1,27 +1,28 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/villa.h"
+#include "res/field/events/events_villa.h"
 
 
-    ScriptEntry _00B2
-    ScriptEntry _029C
-    ScriptEntry _030C
-    ScriptEntry _0432
-    ScriptEntry _049C
-    ScriptEntry _050C
-    ScriptEntry _0576
-    ScriptEntry _05E0
-    ScriptEntry _064A
-    ScriptEntry _06C4
-    ScriptEntry _0734
-    ScriptEntry _079E
-    ScriptEntry _0815
-    ScriptEntry _0944
-    ScriptEntry _09AE
-    ScriptEntry _0A50
-    ScriptEntry _0AF4
-    ScriptEntry _0B5C
-    ScriptEntry _0BBC
-    ScriptEntry _0C24
+    ScriptEntry Villa_OnTransition
+    ScriptEntry Villa_Rival
+    ScriptEntry Villa_Counterpart
+    ScriptEntry Villa_ProfRowan
+    ScriptEntry Villa_Mom
+    ScriptEntry Villa_Roark
+    ScriptEntry Villa_Gardenia
+    ScriptEntry Villa_Fantina
+    ScriptEntry Villa_Maylene
+    ScriptEntry Villa_CrasherWake
+    ScriptEntry Villa_Byron
+    ScriptEntry Villa_Candice
+    ScriptEntry Villa_Volkner
+    ScriptEntry Villa_Cynthia
+    ScriptEntry Villa_Flint
+    ScriptEntry Villa_MayleneAndCandice
+    ScriptEntry Villa_TriggerFantina
+    ScriptEntry Villa_TriggerCrasherWake
+    ScriptEntry Villa_TriggerCandice
+    ScriptEntry Villa_TriggerCynthia
     ScriptEntry Villa_Furniture_Table
     ScriptEntry Villa_Furniture_BigSofa
     ScriptEntry Villa_Furniture_SmallSofa
@@ -42,769 +43,769 @@
     ScriptEntry Villa_Furniture_Masterpiece
     ScriptEntry Villa_Furniture_TeaSet
     ScriptEntry Villa_Furniture_Chandelier
-    ScriptEntry _0E65
-    ScriptEntry _0EB4
-    ScriptEntry _15F3
-    ScriptEntry _1624
+    ScriptEntry Villa_OnFrameFirstEntry
+    ScriptEntry Villa_SchoolKidM
+    ScriptEntry Villa_TriggerDontGoYet
+    ScriptEntry Villa_OrderForm
     ScriptEntryEnd
 
-_00B2:
+Villa_OnTransition:
     InitPersistedMapFeaturesForVilla
     GetPlayerGender VAR_MAP_LOCAL_0
-    CallIfEq VAR_MAP_LOCAL_0, GENDER_MALE, _01EF
-    CallIfEq VAR_MAP_LOCAL_0, GENDER_FEMALE, _01F7
-    GoToIfSet FLAG_VILLA_VISITOR_OUTSIDE, _01ED
-    SetFlag FLAG_UNK_0x02A7
-    SetFlag FLAG_UNK_0x02A8
-    SetFlag FLAG_UNK_0x02A9
-    SetFlag FLAG_UNK_0x02AB
-    SetFlag FLAG_UNK_0x02AC
-    SetFlag FLAG_UNK_0x02AE
-    SetFlag FLAG_UNK_0x02B0
-    SetFlag FLAG_UNK_0x02B1
-    SetFlag FLAG_UNK_0x02B3
-    SetFlag FLAG_UNK_0x02B4
-    SetFlag FLAG_UNK_0x02B6
-    SetFlag FLAG_UNK_0x02B7
-    SetFlag FLAG_UNK_0x02B8
-    SetFlag FLAG_UNK_0x02B9
-    GoToIfEq VAR_RESORT_VILLA_VISITOR, 0xFF, _01FF
-    SetVar VAR_MAP_LOCAL_F, 0x404E
-    CallIfEq VAR_RESORT_VILLA_VISITOR, 0, _0201
-    CallIfEq VAR_RESORT_VILLA_VISITOR, 1, _0207
-    CallIfEq VAR_RESORT_VILLA_VISITOR, 2, _020D
-    CallIfEq VAR_RESORT_VILLA_VISITOR, 3, _021E
-    CallIfEq VAR_RESORT_VILLA_VISITOR, 4, _0224
-    CallIfEq VAR_RESORT_VILLA_VISITOR, 5, _0235
-    CallIfEq VAR_RESORT_VILLA_VISITOR, 6, _0246
-    CallIfEq VAR_RESORT_VILLA_VISITOR, 7, _0248
-    CallIfEq VAR_RESORT_VILLA_VISITOR, 8, _0259
-    CallIfEq VAR_RESORT_VILLA_VISITOR, 9, _025B
-    CallIfEq VAR_RESORT_VILLA_VISITOR, 10, _026C
-    CallIfEq VAR_RESORT_VILLA_VISITOR, 11, _026E
-    CallIfEq VAR_RESORT_VILLA_VISITOR, 12, _0274
-    CallIfEq VAR_RESORT_VILLA_VISITOR, 13, _0276
-    CallIfEq VAR_RESORT_VILLA_VISITOR, 14, _0280
+    CallIfEq VAR_MAP_LOCAL_0, GENDER_MALE, Villa_SetCounterpartGraphicsDawn
+    CallIfEq VAR_MAP_LOCAL_0, GENDER_FEMALE, Villa_SetCounterpartGraphicsLucas
+    GoToIfSet FLAG_VILLA_VISITOR_OUTSIDE, Villa_OnTransitionEnd
+    SetFlag FLAG_HIDE_VILLA_RIVAL
+    SetFlag FLAG_HIDE_VILLA_COUNTERPART
+    SetFlag FLAG_HIDE_VILLA_PROF_ROWAN
+    SetFlag FLAG_HIDE_VILLA_MOM
+    SetFlag FLAG_HIDE_VILLA_ROARK
+    SetFlag FLAG_HIDE_VILLA_GARDENIA
+    SetFlag FLAG_HIDE_VILLA_FANTINA
+    SetFlag FLAG_HIDE_VILLA_MAYLENE
+    SetFlag FLAG_HIDE_VILLA_CRASHER_WAKE
+    SetFlag FLAG_HIDE_VILLA_BYRON
+    SetFlag FLAG_HIDE_VILLA_CANDICE
+    SetFlag FLAG_HIDE_VILLA_VOLKNER
+    SetFlag FLAG_HIDE_VILLA_CYNTHIA
+    SetFlag FLAG_HIDE_VILLA_FLINT
+    GoToIfEq VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_NONE, Villa_DontShowVisitor
+    SetVar VAR_MAP_LOCAL_F, VAR_RESORT_VILLA_VISITOR
+    CallIfEq VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_RIVAL, Villa_ShowRival
+    CallIfEq VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_COUNTERPART, Villa_ShowCounterpart
+    CallIfEq VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_PROF_ROWAN, Villa_TryShowProfRowan
+    CallIfEq VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_MOM, Villa_ShowMom
+    CallIfEq VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_ROARK, Villa_TryShowRoark
+    CallIfEq VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_GARDENIA, Villa_TryShowGardenia
+    CallIfEq VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_FANTINA, Villa_OnTransitionFantinaReturn
+    CallIfEq VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_MAYLENE, Villa_TryShowMaylene
+    CallIfEq VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_CRASHER_WAKE, Villa_OnTransitionWakeReturn
+    CallIfEq VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_BYRON, Villa_TryShowByron
+    CallIfEq VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_CANDICE, Villa_OnTransitionCandiceReturn
+    CallIfEq VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_VOLKNER, Villa_ShowVolkner
+    CallIfEq VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_CYNTHIA, Villa_OnTransitionCynthiaReturn
+    CallIfEq VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_FLINT_VOLKNER, Villa_ShowFlintAndVolkner
+    CallIfEq VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_MAYLENE_CANDICE, Villa_ShowMayleneAndCandice
     End
 
-_01ED:
+Villa_OnTransitionEnd:
     End
 
-_01EF:
-    SetVar VAR_OBJ_GFX_ID_1, 97
+Villa_SetCounterpartGraphicsDawn:
+    SetVar VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_PLAYER_F
     Return
 
-_01F7:
-    SetVar VAR_OBJ_GFX_ID_1, 0
+Villa_SetCounterpartGraphicsLucas:
+    SetVar VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_PLAYER_M
     Return
 
-_01FF:
+Villa_DontShowVisitor:
     End
 
-_0201:
-    ClearFlag FLAG_UNK_0x02A7
+Villa_ShowRival:
+    ClearFlag FLAG_HIDE_VILLA_RIVAL
     Return
 
-_0207:
-    ClearFlag FLAG_UNK_0x02A8
+Villa_ShowCounterpart:
+    ClearFlag FLAG_HIDE_VILLA_COUNTERPART
     Return
 
-_020D:
-    GoToIfUnset FLAG_VILLA_VISITOR_INSIDE, _029A
-    ClearFlag FLAG_UNK_0x02A9
+Villa_TryShowProfRowan:
+    GoToIfUnset FLAG_VILLA_VISITOR_INSIDE, Villa_TryShowVisitorReturn
+    ClearFlag FLAG_HIDE_VILLA_PROF_ROWAN
     Return
 
-_021E:
-    ClearFlag FLAG_UNK_0x02AB
+Villa_ShowMom:
+    ClearFlag FLAG_HIDE_VILLA_MOM
     Return
 
-_0224:
-    GoToIfUnset FLAG_VILLA_VISITOR_INSIDE, _029A
-    ClearFlag FLAG_UNK_0x02AC
+Villa_TryShowRoark:
+    GoToIfUnset FLAG_VILLA_VISITOR_INSIDE, Villa_TryShowVisitorReturn
+    ClearFlag FLAG_HIDE_VILLA_ROARK
     Return
 
-_0235:
-    GoToIfUnset FLAG_VILLA_VISITOR_INSIDE, _029A
-    ClearFlag FLAG_UNK_0x02AE
+Villa_TryShowGardenia:
+    GoToIfUnset FLAG_VILLA_VISITOR_INSIDE, Villa_TryShowVisitorReturn
+    ClearFlag FLAG_HIDE_VILLA_GARDENIA
     Return
 
-_0246:
+Villa_OnTransitionFantinaReturn:
     Return
 
-_0248:
-    GoToIfUnset FLAG_VILLA_VISITOR_INSIDE, _029A
-    ClearFlag FLAG_UNK_0x02B1
+Villa_TryShowMaylene:
+    GoToIfUnset FLAG_VILLA_VISITOR_INSIDE, Villa_TryShowVisitorReturn
+    ClearFlag FLAG_HIDE_VILLA_MAYLENE
     Return
 
-_0259:
+Villa_OnTransitionWakeReturn:
     Return
 
-_025B:
-    GoToIfUnset FLAG_VILLA_VISITOR_INSIDE, _029A
-    ClearFlag FLAG_UNK_0x02B4
+Villa_TryShowByron:
+    GoToIfUnset FLAG_VILLA_VISITOR_INSIDE, Villa_TryShowVisitorReturn
+    ClearFlag FLAG_HIDE_VILLA_BYRON
     Return
 
-_026C:
+Villa_OnTransitionCandiceReturn:
     Return
 
-_026E:
-    ClearFlag FLAG_UNK_0x02B7
+Villa_ShowVolkner:
+    ClearFlag FLAG_HIDE_VILLA_VOLKNER
     Return
 
-_0274:
+Villa_OnTransitionCynthiaReturn:
     Return
 
-_0276:
-    ClearFlag FLAG_UNK_0x02B9
-    ClearFlag FLAG_UNK_0x02B7
+Villa_ShowFlintAndVolkner:
+    ClearFlag FLAG_HIDE_VILLA_FLINT
+    ClearFlag FLAG_HIDE_VILLA_VOLKNER
     Return
 
-_0280:
-    SetObjectEventPos 7, 6, 8
-    SetObjectEventPos 10, 7, 8
-    ClearFlag FLAG_UNK_0x02B1
-    ClearFlag FLAG_UNK_0x02B6
+Villa_ShowMayleneAndCandice:
+    SetObjectEventPos LOCALID_MAYLENE, 6, 8
+    SetObjectEventPos LOCALID_CANDICE, 7, 8
+    ClearFlag FLAG_HIDE_VILLA_MAYLENE
+    ClearFlag FLAG_HIDE_VILLA_CANDICE
     Return
 
-_029A:
+Villa_TryShowVisitorReturn:
     Return
 
-_029C:
+Villa_Rival:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     BufferRivalName 0
     BufferPlayerName 1
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, _02F3
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 1, _02F8
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 2, _02FD
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 3, _0302
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 4, _0307
-    GoTo _0AEC
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, Villa_RivalMessage0
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 1, Villa_RivalMessage1
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 2, Villa_RivalMessage2
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 3, Villa_RivalMessage3
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 4, Villa_RivalMessage4
+    GoTo Villa_VisitorEnd
     End
 
-_02F3:
-    Message pl_msg_00000602_00015
+Villa_RivalMessage0:
+    Message Villa_Text_RivalMessage0
     Return
 
-_02F8:
-    Message pl_msg_00000602_00016
+Villa_RivalMessage1:
+    Message Villa_Text_RivalMessage1
     Return
 
-_02FD:
-    Message pl_msg_00000602_00017
+Villa_RivalMessage2:
+    Message Villa_Text_RivalMessage2
     Return
 
-_0302:
-    Message pl_msg_00000602_00018
+Villa_RivalMessage3:
+    Message Villa_Text_RivalMessage3
     Return
 
-_0307:
-    Message pl_msg_00000602_00019
+Villa_RivalMessage4:
+    Message Villa_Text_RivalMessage4
     Return
 
-_030C:
+Villa_Counterpart:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     BufferPlayerName 1
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, _0360
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 1, _0380
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 2, _03A0
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 3, _03C0
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 4, _03E0
-    GoTo _0AEC
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, Villa_CounterpartMessage0
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 1, Villa_CounterpartMessage1
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 2, Villa_CounterpartMessage2
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 3, Villa_CounterpartMessage3
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 4, Villa_CounterpartMessage4
+    GoTo Villa_VisitorEnd
     End
 
-_0360:
+Villa_CounterpartMessage0:
     GetPlayerGender VAR_MAP_LOCAL_0
-    CallIfEq VAR_MAP_LOCAL_0, GENDER_MALE, _0400
-    CallIfEq VAR_MAP_LOCAL_0, GENDER_FEMALE, _0405
+    CallIfEq VAR_MAP_LOCAL_0, GENDER_MALE, Villa_DawnMessage0
+    CallIfEq VAR_MAP_LOCAL_0, GENDER_FEMALE, Villa_LucasMessage0
     Return
 
-_0380:
+Villa_CounterpartMessage1:
     GetPlayerGender VAR_MAP_LOCAL_0
-    CallIfEq VAR_MAP_LOCAL_0, GENDER_MALE, _040A
-    CallIfEq VAR_MAP_LOCAL_0, GENDER_FEMALE, _040F
+    CallIfEq VAR_MAP_LOCAL_0, GENDER_MALE, Villa_DawnMessage1
+    CallIfEq VAR_MAP_LOCAL_0, GENDER_FEMALE, Villa_LucasMessage1
     Return
 
-_03A0:
+Villa_CounterpartMessage2:
     GetPlayerGender VAR_MAP_LOCAL_0
-    CallIfEq VAR_MAP_LOCAL_0, GENDER_MALE, _0414
-    CallIfEq VAR_MAP_LOCAL_0, GENDER_FEMALE, _0419
+    CallIfEq VAR_MAP_LOCAL_0, GENDER_MALE, Villa_DawnMessage2
+    CallIfEq VAR_MAP_LOCAL_0, GENDER_FEMALE, Villa_LucasMessage2
     Return
 
-_03C0:
+Villa_CounterpartMessage3:
     GetPlayerGender VAR_MAP_LOCAL_0
-    CallIfEq VAR_MAP_LOCAL_0, GENDER_MALE, _041E
-    CallIfEq VAR_MAP_LOCAL_0, GENDER_FEMALE, _0423
+    CallIfEq VAR_MAP_LOCAL_0, GENDER_MALE, Villa_DawnMessage3
+    CallIfEq VAR_MAP_LOCAL_0, GENDER_FEMALE, Villa_LucasMessage3
     Return
 
-_03E0:
+Villa_CounterpartMessage4:
     GetPlayerGender VAR_MAP_LOCAL_0
-    CallIfEq VAR_MAP_LOCAL_0, GENDER_MALE, _0428
-    CallIfEq VAR_MAP_LOCAL_0, GENDER_FEMALE, _042D
+    CallIfEq VAR_MAP_LOCAL_0, GENDER_MALE, Villa_DawnMessage4
+    CallIfEq VAR_MAP_LOCAL_0, GENDER_FEMALE, Villa_LucasMessage4
     Return
 
-_0400:
-    Message pl_msg_00000602_00020
+Villa_DawnMessage0:
+    Message Villa_Text_DawnMessage0
     Return
 
-_0405:
-    Message pl_msg_00000602_00025
+Villa_LucasMessage0:
+    Message Villa_Text_LucasMessage0
     Return
 
-_040A:
-    Message pl_msg_00000602_00021
+Villa_DawnMessage1:
+    Message Villa_Text_DawnMessage1
     Return
 
-_040F:
-    Message pl_msg_00000602_00026
+Villa_LucasMessage1:
+    Message Villa_Text_LucasMessage1
     Return
 
-_0414:
-    Message pl_msg_00000602_00022
+Villa_DawnMessage2:
+    Message Villa_Text_DawnMessage2
     Return
 
-_0419:
-    Message pl_msg_00000602_00027
+Villa_LucasMessage2:
+    Message Villa_Text_LucasMessage2
     Return
 
-_041E:
-    Message pl_msg_00000602_00023
+Villa_DawnMessage3:
+    Message Villa_Text_DawnMessage3
     Return
 
-_0423:
-    Message pl_msg_00000602_00028
+Villa_LucasMessage3:
+    Message Villa_Text_LucasMessage3
     Return
 
-_0428:
-    Message pl_msg_00000602_00024
+Villa_DawnMessage4:
+    Message Villa_Text_DawnMessage4
     Return
 
-_042D:
-    Message pl_msg_00000602_00029
+Villa_LucasMessage4:
+    Message Villa_Text_LucasMessage4
     Return
 
-_0432:
+Villa_ProfRowan:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, _0483
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 1, _0488
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 2, _048D
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 3, _0492
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 4, _0497
-    GoTo _0AEC
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, Villa_RowanMessage0
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 1, Villa_RowanMessage1
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 2, Villa_RowanMessage2
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 3, Villa_RowanMessage3
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 4, Villa_RowanMessage4
+    GoTo Villa_VisitorEnd
     End
 
-_0483:
-    Message pl_msg_00000602_00030
+Villa_RowanMessage0:
+    Message Villa_Text_RowanMessage0
     Return
 
-_0488:
-    Message pl_msg_00000602_00031
+Villa_RowanMessage1:
+    Message Villa_Text_RowanMessage1
     Return
 
-_048D:
-    Message pl_msg_00000602_00032
+Villa_RowanMessage2:
+    Message Villa_Text_RowanMessage2
     Return
 
-_0492:
-    Message pl_msg_00000602_00033
+Villa_RowanMessage3:
+    Message Villa_Text_RowanMessage3
     Return
 
-_0497:
-    Message pl_msg_00000602_00034
+Villa_RowanMessage4:
+    Message Villa_Text_RowanMessage4
     Return
 
-_049C:
+Villa_Mom:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     BufferRivalName 0
     BufferPlayerName 1
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, _04F3
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 1, _04F8
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 2, _04FD
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 3, _0502
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 4, _0507
-    GoTo _0AEC
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, Villa_MomMessage0
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 1, Villa_MomMessage1
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 2, Villa_MomMessage2
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 3, Villa_MomMessage3
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 4, Villa_MomMessage4
+    GoTo Villa_VisitorEnd
     End
 
-_04F3:
-    Message pl_msg_00000602_00035
+Villa_MomMessage0:
+    Message Villa_Text_MomMessage0
     Return
 
-_04F8:
-    Message pl_msg_00000602_00036
+Villa_MomMessage1:
+    Message Villa_Text_MomMessage1
     Return
 
-_04FD:
-    Message pl_msg_00000602_00037
+Villa_MomMessage2:
+    Message Villa_Text_MomMessage2
     Return
 
-_0502:
-    Message pl_msg_00000602_00038
+Villa_MomMessage3:
+    Message Villa_Text_MomMessage3
     Return
 
-_0507:
-    Message pl_msg_00000602_00039
+Villa_MomMessage4:
+    Message Villa_Text_MomMessage4
     Return
 
-_050C:
+Villa_Roark:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, _055D
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 1, _0562
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 2, _0567
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 3, _056C
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 4, _0571
-    GoTo _0AEC
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, Villa_RoarkMessage0
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 1, Villa_RoarkMessage1
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 2, Villa_RoarkMessage2
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 3, Villa_RoarkMessage3
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 4, Villa_RoarkMessage4
+    GoTo Villa_VisitorEnd
     End
 
-_055D:
-    Message pl_msg_00000602_00040
+Villa_RoarkMessage0:
+    Message Villa_Text_RoarkMessage0
     Return
 
-_0562:
-    Message pl_msg_00000602_00041
+Villa_RoarkMessage1:
+    Message Villa_Text_RoarkMessage1
     Return
 
-_0567:
-    Message pl_msg_00000602_00042
+Villa_RoarkMessage2:
+    Message Villa_Text_RoarkMessage2
     Return
 
-_056C:
-    Message pl_msg_00000602_00043
+Villa_RoarkMessage3:
+    Message Villa_Text_RoarkMessage3
     Return
 
-_0571:
-    Message pl_msg_00000602_00044
+Villa_RoarkMessage4:
+    Message Villa_Text_RoarkMessage4
     Return
 
-_0576:
+Villa_Gardenia:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, _05C7
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 1, _05CC
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 2, _05D1
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 3, _05D6
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 4, _05DB
-    GoTo _0AEC
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, Villa_GardeniaMessage0
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 1, Villa_GardeniaMessage1
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 2, Villa_GardeniaMessage2
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 3, Villa_GardeniaMessage3
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 4, Villa_GardeniaMessage4
+    GoTo Villa_VisitorEnd
     End
 
-_05C7:
-    Message pl_msg_00000602_00045
+Villa_GardeniaMessage0:
+    Message Villa_Text_GardeniaMessage0
     Return
 
-_05CC:
-    Message pl_msg_00000602_00046
+Villa_GardeniaMessage1:
+    Message Villa_Text_GardeniaMessage1
     Return
 
-_05D1:
-    Message pl_msg_00000602_00047
+Villa_GardeniaMessage2:
+    Message Villa_Text_GardeniaMessage2
     Return
 
-_05D6:
-    Message pl_msg_00000602_00048
+Villa_GardeniaMessage3:
+    Message Villa_Text_GardeniaMessage3
     Return
 
-_05DB:
-    Message pl_msg_00000602_00049
+Villa_GardeniaMessage4:
+    Message Villa_Text_GardeniaMessage4
     Return
 
-_05E0:
+Villa_Fantina:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, _0631
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 1, _0636
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 2, _063B
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 3, _0640
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 4, _0645
-    GoTo _0AEC
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, Villa_FantinaMessage0
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 1, Villa_FantinaMessage1
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 2, Villa_FantinaMessage2
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 3, Villa_FantinaMessage3
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 4, Villa_FantinaMessage4
+    GoTo Villa_VisitorEnd
     End
 
-_0631:
-    Message pl_msg_00000602_00050
+Villa_FantinaMessage0:
+    Message Villa_Text_FantinaMessage0
     Return
 
-_0636:
-    Message pl_msg_00000602_00051
+Villa_FantinaMessage1:
+    Message Villa_Text_FantinaMessage1
     Return
 
-_063B:
-    Message pl_msg_00000602_00052
+Villa_FantinaMessage2:
+    Message Villa_Text_FantinaMessage2
     Return
 
-_0640:
-    Message pl_msg_00000602_00053
+Villa_FantinaMessage3:
+    Message Villa_Text_FantinaMessage3
     Return
 
-_0645:
-    Message pl_msg_00000602_00054
+Villa_FantinaMessage4:
+    Message Villa_Text_FantinaMessage4
     Return
 
-_064A:
-    GoToIfEq VAR_RESORT_VILLA_VISITOR, 14, _0A50
+Villa_Maylene:
+    GoToIfEq VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_MAYLENE_CANDICE, Villa_MayleneAndCandice
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     BufferPlayerName 1
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, _06AB
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 1, _06B0
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 2, _06B5
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 3, _06BA
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 4, _06BF
-    GoTo _0AEC
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, Villa_MayleneMessage0
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 1, Villa_MayleneMessage1
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 2, Villa_MayleneMessage2
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 3, Villa_MayleneMessage3
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 4, Villa_MayleneMessage4
+    GoTo Villa_VisitorEnd
     End
 
-_06AB:
-    Message pl_msg_00000602_00055
+Villa_MayleneMessage0:
+    Message Villa_Text_MayleneMessage0
     Return
 
-_06B0:
-    Message pl_msg_00000602_00056
+Villa_MayleneMessage1:
+    Message Villa_Text_MayleneMessage1
     Return
 
-_06B5:
-    Message pl_msg_00000602_00057
+Villa_MayleneMessage2:
+    Message Villa_Text_MayleneMessage2
     Return
 
-_06BA:
-    Message pl_msg_00000602_00058
+Villa_MayleneMessage3:
+    Message Villa_Text_MayleneMessage3
     Return
 
-_06BF:
-    Message pl_msg_00000602_00059
+Villa_MayleneMessage4:
+    Message Villa_Text_MayleneMessage4
     Return
 
-_06C4:
+Villa_CrasherWake:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, _0715
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 1, _071D
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 2, _0722
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 3, _072A
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 4, _072F
-    GoTo _0AEC
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, Villa_WakeMessage0
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 1, Villa_WakeMessage1
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 2, Villa_WakeMessage2
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 3, Villa_WakeMessage3
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 4, Villa_WakeMessage4
+    GoTo Villa_VisitorEnd
     End
 
-_0715:
+Villa_WakeMessage0:
     BufferRivalName 0
-    Message pl_msg_00000602_00060
+    Message Villa_Text_WakeMessage0
     Return
 
-_071D:
-    Message pl_msg_00000602_00061
+Villa_WakeMessage1:
+    Message Villa_Text_WakeMessage1
     Return
 
-_0722:
+Villa_WakeMessage2:
     BufferRivalName 0
-    Message pl_msg_00000602_00062
+    Message Villa_Text_WakeMessage2
     Return
 
-_072A:
-    Message pl_msg_00000602_00063
+Villa_WakeMessage3:
+    Message Villa_Text_WakeMessage3
     Return
 
-_072F:
-    Message pl_msg_00000602_00064
+Villa_WakeMessage4:
+    Message Villa_Text_WakeMessage4
     Return
 
-_0734:
+Villa_Byron:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, _0785
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 1, _078A
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 2, _078F
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 3, _0794
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 4, _0799
-    GoTo _0AEC
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, Villa_ByronMessage0
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 1, Villa_ByronMessage1
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 2, Villa_ByronMessage2
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 3, Villa_ByronMessage3
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 4, Villa_ByronMessage4
+    GoTo Villa_VisitorEnd
     End
 
-_0785:
-    Message pl_msg_00000602_00065
+Villa_ByronMessage0:
+    Message Villa_Text_ByronMessage0
     Return
 
-_078A:
-    Message pl_msg_00000602_00066
+Villa_ByronMessage1:
+    Message Villa_Text_ByronMessage1
     Return
 
-_078F:
-    Message pl_msg_00000602_00067
+Villa_ByronMessage2:
+    Message Villa_Text_ByronMessage2
     Return
 
-_0794:
-    Message pl_msg_00000602_00068
+Villa_ByronMessage3:
+    Message Villa_Text_ByronMessage3
     Return
 
-_0799:
-    Message pl_msg_00000602_00069
+Villa_ByronMessage4:
+    Message Villa_Text_ByronMessage4
     Return
 
-_079E:
-    GoToIfEq VAR_RESORT_VILLA_VISITOR, 14, _0A50
+Villa_Candice:
+    GoToIfEq VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_MAYLENE_CANDICE, Villa_MayleneAndCandice
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, _07FC
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 1, _0801
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 2, _0806
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 3, _080B
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 4, _0810
-    GoTo _0AEC
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, Villa_CandiceMessage0
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 1, Villa_CandiceMessage1
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 2, Villa_CandiceMessage2
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 3, Villa_CandiceMessage3
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 4, Villa_CandiceMessage4
+    GoTo Villa_VisitorEnd
     End
 
-_07FC:
-    Message pl_msg_00000602_00070
+Villa_CandiceMessage0:
+    Message Villa_Text_CandiceMessage0
     Return
 
-_0801:
-    Message pl_msg_00000602_00071
+Villa_CandiceMessage1:
+    Message Villa_Text_CandiceMessage1
     Return
 
-_0806:
-    Message pl_msg_00000602_00072
+Villa_CandiceMessage2:
+    Message Villa_Text_CandiceMessage2
     Return
 
-_080B:
-    Message pl_msg_00000602_00073
+Villa_CandiceMessage3:
+    Message Villa_Text_CandiceMessage3
     Return
 
-_0810:
-    Message pl_msg_00000602_00074
+Villa_CandiceMessage4:
+    Message Villa_Text_CandiceMessage4
     Return
 
-_0815:
-    GoToIfEq VAR_RESORT_VILLA_VISITOR, 13, _088C
+Villa_Volkner:
+    GoToIfEq VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_FLINT_VOLKNER, Villa_FlintAndVolkner
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, _0873
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 1, _0878
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 2, _087D
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 3, _0882
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 4, _0887
-    GoTo _0AEC
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, Villa_VolknerMessage0
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 1, Villa_VolknerMessage1
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 2, Villa_VolknerMessage2
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 3, Villa_VolknerMessage3
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 4, Villa_VolknerMessage4
+    GoTo Villa_VisitorEnd
     End
 
-_0873:
-    Message pl_msg_00000602_00075
+Villa_VolknerMessage0:
+    Message Villa_Text_VolknerMessage0
     Return
 
-_0878:
-    Message pl_msg_00000602_00076
+Villa_VolknerMessage1:
+    Message Villa_Text_VolknerMessage1
     Return
 
-_087D:
-    Message pl_msg_00000602_00077
+Villa_VolknerMessage2:
+    Message Villa_Text_VolknerMessage2
     Return
 
-_0882:
-    Message pl_msg_00000602_00078
+Villa_VolknerMessage3:
+    Message Villa_Text_VolknerMessage3
     Return
 
-_0887:
-    Message pl_msg_00000602_00079
+Villa_VolknerMessage4:
+    Message Villa_Text_VolknerMessage4
     Return
 
-_088C:
+Villa_FlintAndVolkner:
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, _08DB
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 1, _08E2
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 2, _08E9
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 3, _0900
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 4, _0917
-    GoTo _0AEC
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, Villa_FlintAndVolknerMessage0
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 1, Villa_FlintAndVolknerMessage1
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 2, Villa_FlintAndVolknerMessage2
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 3, Villa_FlintAndVolknerMessage3
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 4, Villa_FlintAndVolknerMessage4
+    GoTo Villa_VisitorEnd
     End
 
-_08DB:
+Villa_FlintAndVolknerMessage0:
     FacePlayer
-    Message pl_msg_00000602_00086
+    Message Villa_Text_FlintAndVolknerMessage0
     Return
 
-_08E2:
+Villa_FlintAndVolknerMessage1:
     FacePlayer
-    Message pl_msg_00000602_00088
+    Message Villa_Text_FlintAndVolknerMessage1
     Return
 
-_08E9:
-    ApplyMovement 11, _0930
-    ApplyMovement 13, _093C
+Villa_FlintAndVolknerMessage2:
+    ApplyMovement LOCALID_VOLKNER, Villa_Movement_VolknerFaceFlint
+    ApplyMovement LOCALID_FLINT, Villa_Movement_FlintFaceVolkner
     WaitMovement
-    Message pl_msg_00000602_00089
+    Message Villa_Text_FlintAndVolknerMessage2
     Return
 
-_0900:
-    ApplyMovement 11, _0930
-    ApplyMovement 13, _093C
+Villa_FlintAndVolknerMessage3:
+    ApplyMovement LOCALID_VOLKNER, Villa_Movement_VolknerFaceFlint
+    ApplyMovement LOCALID_FLINT, Villa_Movement_FlintFaceVolkner
     WaitMovement
-    Message pl_msg_00000602_00090
+    Message Villa_Text_FlintAndVolknerMessage3
     Return
 
-_0917:
-    ApplyMovement 11, _0930
-    ApplyMovement 13, _093C
+Villa_FlintAndVolknerMessage4:
+    ApplyMovement LOCALID_VOLKNER, Villa_Movement_VolknerFaceFlint
+    ApplyMovement LOCALID_FLINT, Villa_Movement_FlintFaceVolkner
     WaitMovement
-    Message pl_msg_00000602_00091
+    Message Villa_Text_FlintAndVolknerMessage4
     Return
 
     .balign 4, 0
-_0930:
+Villa_Movement_VolknerFaceFlint:
     Delay8
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_093C:
+Villa_Movement_FlintFaceVolkner:
     WalkOnSpotNormalWest
     EndMovement
 
-_0944:
+Villa_Cynthia:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, _0995
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 1, _099A
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 2, _099F
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 3, _09A4
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 4, _09A9
-    GoTo _0AEC
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, Villa_CynthiaMessage0
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 1, Villa_CynthiaMessage1
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 2, Villa_CynthiaMessage2
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 3, Villa_CynthiaMessage3
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 4, Villa_CynthiaMessage4
+    GoTo Villa_VisitorEnd
     End
 
-_0995:
-    Message pl_msg_00000602_00080
+Villa_CynthiaMessage0:
+    Message Villa_Text_CynthiaMessage0
     Return
 
-_099A:
-    Message pl_msg_00000602_00081
+Villa_CynthiaMessage1:
+    Message Villa_Text_CynthiaMessage1
     Return
 
-_099F:
-    Message pl_msg_00000602_00082
+Villa_CynthiaMessage2:
+    Message Villa_Text_CynthiaMessage2
     Return
 
-_09A4:
-    Message pl_msg_00000602_00083
+Villa_CynthiaMessage3:
+    Message Villa_Text_CynthiaMessage3
     Return
 
-_09A9:
-    Message pl_msg_00000602_00084
+Villa_CynthiaMessage4:
+    Message Villa_Text_CynthiaMessage4
     Return
 
-_09AE:
+Villa_Flint:
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, _09FD
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 1, _0A04
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 2, _0A0B
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 3, _0A22
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 4, _0A39
-    GoTo _0AEC
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, Villa_FlintMessage0
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 1, Villa_FlintMessage1
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 2, Villa_FlintMessage2
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 3, Villa_FlintMessage3
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 4, Villa_FlintMessage4
+    GoTo Villa_VisitorEnd
     End
 
-_09FD:
+Villa_FlintMessage0:
     FacePlayer
-    Message pl_msg_00000602_00085
+    Message Villa_Text_FlintMessage0
     Return
 
-_0A04:
+Villa_FlintMessage1:
     FacePlayer
-    Message pl_msg_00000602_00087
+    Message Villa_Text_FlintMessage1
     Return
 
-_0A0B:
-    ApplyMovement 11, _0930
-    ApplyMovement 13, _093C
+Villa_FlintMessage2:
+    ApplyMovement LOCALID_VOLKNER, Villa_Movement_VolknerFaceFlint
+    ApplyMovement LOCALID_FLINT, Villa_Movement_FlintFaceVolkner
     WaitMovement
-    Message pl_msg_00000602_00089
+    Message Villa_Text_FlintAndVolknerMessage2
     Return
 
-_0A22:
-    ApplyMovement 11, _0930
-    ApplyMovement 13, _093C
+Villa_FlintMessage3:
+    ApplyMovement LOCALID_VOLKNER, Villa_Movement_VolknerFaceFlint
+    ApplyMovement LOCALID_FLINT, Villa_Movement_FlintFaceVolkner
     WaitMovement
-    Message pl_msg_00000602_00090
+    Message Villa_Text_FlintAndVolknerMessage3
     Return
 
-_0A39:
-    ApplyMovement 11, _0930
-    ApplyMovement 13, _093C
+Villa_FlintMessage4:
+    ApplyMovement LOCALID_VOLKNER, Villa_Movement_VolknerFaceFlint
+    ApplyMovement LOCALID_FLINT, Villa_Movement_FlintFaceVolkner
     WaitMovement
-    Message pl_msg_00000602_00091
+    Message Villa_Text_FlintAndVolknerMessage4
     Return
 
-_0A50:
+Villa_MayleneAndCandice:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     BufferPlayerName 1
-    ApplyMovement 10, _0AE0
-    ApplyMovement 7, _0AD8
+    ApplyMovement LOCALID_CANDICE, Villa_Movement_CandiceFaceMaylene
+    ApplyMovement LOCALID_MAYLENE, Villa_Movement_MayleneFaceCandice
     WaitMovement
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, _0AB4
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 1, _0AB9
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 2, _0ABE
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 3, _0AC3
-    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 4, _0AC8
-    GoTo _0AEC
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, Villa_MayleneAndCandiceMessage0
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 1, Villa_MayleneAndCandiceMessage1
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 2, Villa_MayleneAndCandiceMessage2
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 3, Villa_MayleneAndCandiceMessage3
+    CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 4, Villa_MayleneAndCandiceMessage4
+    GoTo Villa_VisitorEnd
     End
 
-_0AB4:
-    Message pl_msg_00000602_00092
+Villa_MayleneAndCandiceMessage0:
+    Message Villa_Text_MayleneAndCandiceMessage0
     Return
 
-_0AB9:
-    Message pl_msg_00000602_00093
+Villa_MayleneAndCandiceMessage1:
+    Message Villa_Text_MayleneAndCandiceMessage1
     Return
 
-_0ABE:
-    Message pl_msg_00000602_00094
+Villa_MayleneAndCandiceMessage2:
+    Message Villa_Text_MayleneAndCandiceMessage2
     Return
 
-_0AC3:
-    Message pl_msg_00000602_00095
+Villa_MayleneAndCandiceMessage3:
+    Message Villa_Text_MayleneAndCandiceMessage3
     Return
 
-_0AC8:
-    GoToIfUnset FLAG_VILLA_FURNITURE_TEA_SET, _0AB4
-    Message pl_msg_00000602_00096
+Villa_MayleneAndCandiceMessage4:
+    GoToIfUnset FLAG_VILLA_FURNITURE_TEA_SET, Villa_MayleneAndCandiceMessage0
+    Message Villa_Text_MayleneAndCandiceMessage4
     Return
 
     .balign 4, 0
-_0AD8:
+Villa_Movement_MayleneFaceCandice:
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_0AE0:
+Villa_Movement_CandiceFaceMaylene:
     Delay8
     WalkOnSpotNormalWest
     EndMovement
 
-_0AEC:
+Villa_VisitorEnd:
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0AF4:
+Villa_TriggerFantina:
     LockAll
     PlaySE SEQ_SE_DP_DOOR_OPEN
-    ClearFlag FLAG_UNK_0x02B0
-    SetObjectEventPos 6, 11, 11
-    SetObjectEventMovementType 6, MOVEMENT_TYPE_LOOK_NORTH
-    SetObjectEventDir 6, DIR_NORTH
-    AddObject 6
+    ClearFlag FLAG_HIDE_VILLA_FANTINA
+    SetObjectEventPos LOCALID_FANTINA, 11, 11
+    SetObjectEventMovementType LOCALID_FANTINA, MOVEMENT_TYPE_LOOK_NORTH
+    SetObjectEventDir LOCALID_FANTINA, DIR_NORTH
+    AddObject LOCALID_FANTINA
     WaitSE SEQ_SE_DP_DOOR_OPEN
-    ApplyMovement LOCALID_PLAYER, _0B3C
-    ApplyMovement 6, _0B4C
+    ApplyMovement LOCALID_PLAYER, Villa_Movement_PlayerWatchFantinaEnter
+    ApplyMovement LOCALID_FANTINA, Villa_Movement_FantinaEnter
     WaitMovement
     SetFlag FLAG_VILLA_VISITOR_OUTSIDE
     SetVar VAR_MAP_LOCAL_F, 0
@@ -812,30 +813,30 @@ _0AF4:
     End
 
     .balign 4, 0
-_0B3C:
+Villa_Movement_PlayerWatchFantinaEnter:
     WalkOnSpotNormalSouth
     Delay8 5
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_0B4C:
+Villa_Movement_FantinaEnter:
     WalkNormalWest 2
     WalkNormalNorth 5
     WalkNormalWest 3
     EndMovement
 
-_0B5C:
+Villa_TriggerCrasherWake:
     LockAll
     PlaySE SEQ_SE_DP_DOOR_OPEN
-    ClearFlag FLAG_UNK_0x02B3
-    SetObjectEventPos 9, 11, 11
-    SetObjectEventMovementType 9, MOVEMENT_TYPE_LOOK_NORTH
-    SetObjectEventDir 9, DIR_NORTH
-    AddObject 9
+    ClearFlag FLAG_HIDE_VILLA_CRASHER_WAKE
+    SetObjectEventPos LOCALID_CRASHER_WAKE, 11, 11
+    SetObjectEventMovementType LOCALID_CRASHER_WAKE, MOVEMENT_TYPE_LOOK_NORTH
+    SetObjectEventDir LOCALID_CRASHER_WAKE, DIR_NORTH
+    AddObject LOCALID_CRASHER_WAKE
     WaitSE SEQ_SE_DP_DOOR_OPEN
-    ApplyMovement LOCALID_PLAYER, _0BAC
-    ApplyMovement 9, _0BA4
+    ApplyMovement LOCALID_PLAYER, Villa_Movement_PlayerWatchWakeEnter
+    ApplyMovement LOCALID_CRASHER_WAKE, Villa_Movement_WakeEnter
     WaitMovement
     SetFlag FLAG_VILLA_VISITOR_OUTSIDE
     SetVar VAR_MAP_LOCAL_F, 0
@@ -843,28 +844,28 @@ _0B5C:
     End
 
     .balign 4, 0
-_0BA4:
+Villa_Movement_WakeEnter:
     WalkNormalEast 8
     EndMovement
 
     .balign 4, 0
-_0BAC:
+Villa_Movement_PlayerWatchWakeEnter:
     WalkOnSpotNormalSouth
     Delay8 3
     WalkOnSpotNormalEast
     EndMovement
 
-_0BBC:
+Villa_TriggerCandice:
     LockAll
     PlaySE SEQ_SE_DP_DOOR_OPEN
-    ClearFlag FLAG_UNK_0x02B6
-    SetObjectEventPos 10, 11, 11
-    SetObjectEventMovementType 10, MOVEMENT_TYPE_LOOK_NORTH
-    SetObjectEventDir 10, DIR_NORTH
-    AddObject 10
+    ClearFlag FLAG_HIDE_VILLA_CANDICE
+    SetObjectEventPos LOCALID_CANDICE, 11, 11
+    SetObjectEventMovementType LOCALID_CANDICE, MOVEMENT_TYPE_LOOK_NORTH
+    SetObjectEventDir LOCALID_CANDICE, DIR_NORTH
+    AddObject LOCALID_CANDICE
     WaitSE SEQ_SE_DP_DOOR_OPEN
-    ApplyMovement LOCALID_PLAYER, _0C14
-    ApplyMovement 10, _0C04
+    ApplyMovement LOCALID_PLAYER, Villa_Movement_PlayerWatchCandiceEnter
+    ApplyMovement LOCALID_CANDICE, Villa_Movement_CandiceEnter
     WaitMovement
     SetFlag FLAG_VILLA_VISITOR_OUTSIDE
     SetVar VAR_MAP_LOCAL_F, 0
@@ -872,30 +873,30 @@ _0BBC:
     End
 
     .balign 4, 0
-_0C04:
+Villa_Movement_CandiceEnter:
     WalkNormalWest 2
     WalkNormalNorth 3
     WalkNormalWest 2
     EndMovement
 
     .balign 4, 0
-_0C14:
+Villa_Movement_PlayerWatchCandiceEnter:
     WalkOnSpotNormalSouth
     Delay8 4
     WalkOnSpotNormalWest
     EndMovement
 
-_0C24:
+Villa_TriggerCynthia:
     LockAll
     PlaySE SEQ_SE_DP_DOOR_OPEN
-    ClearFlag FLAG_UNK_0x02B8
-    SetObjectEventPos 12, 11, 11
-    SetObjectEventMovementType 12, MOVEMENT_TYPE_LOOK_NORTH
-    SetObjectEventDir 12, DIR_NORTH
-    AddObject 12
+    ClearFlag FLAG_HIDE_VILLA_CYNTHIA
+    SetObjectEventPos LOCALID_CYNTHIA, 11, 11
+    SetObjectEventMovementType LOCALID_CYNTHIA, MOVEMENT_TYPE_LOOK_NORTH
+    SetObjectEventDir LOCALID_CYNTHIA, DIR_NORTH
+    AddObject LOCALID_CYNTHIA
     WaitSE SEQ_SE_DP_DOOR_OPEN
-    ApplyMovement LOCALID_PLAYER, _0C78
-    ApplyMovement 12, _0C6C
+    ApplyMovement LOCALID_PLAYER, Villa_Movement_PlayerWatchCynthiaEnter
+    ApplyMovement LOCALID_CYNTHIA, Villa_Movement_CynthiaEnter
     WaitMovement
     SetFlag FLAG_VILLA_VISITOR_OUTSIDE
     SetVar VAR_MAP_LOCAL_F, 0
@@ -903,13 +904,13 @@ _0C24:
     End
 
     .balign 4, 0
-_0C6C:
+Villa_Movement_CynthiaEnter:
     WalkNormalWest 8
     WalkNormalNorth 6
     EndMovement
 
     .balign 4, 0
-_0C78:
+Villa_Movement_PlayerWatchCynthiaEnter:
     WalkOnSpotNormalSouth
     Delay8 5
     WalkOnSpotNormalWest
@@ -918,42 +919,42 @@ _0C78:
 Villa_Furniture_Table:
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    Message Villa_Text_Table
+    Message Villa_Text_DescriptionTable
     GoTo Villa_Furniture_End
     End
 
 Villa_Furniture_BigSofa:
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    Message Villa_Text_BigSofa
+    Message Villa_Text_DescriptionBigSofa
     GoTo Villa_Furniture_End
     End
 
 Villa_Furniture_SmallSofa:
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    Message Villa_Text_SmallSofa
+    Message Villa_Text_DescriptionSmallSofa
     GoTo Villa_Furniture_End
     End
 
 Villa_Furniture_Bed:
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    Message Villa_Text_Bed
+    Message Villa_Text_DescriptionBed
     GoTo Villa_Furniture_End
     End
 
 Villa_Furniture_NightTable:
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    Message Villa_Text_NightTable
+    Message Villa_Text_DescriptionNightTable
     GoTo Villa_Furniture_End
     End
 
 Villa_Furniture_TVDummy:
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    Message Villa_Text_TV
+    Message Villa_Text_DescriptionTV
     GoTo Villa_Furniture_End
     End
 
@@ -961,29 +962,29 @@ Villa_Furniture_AudioSystem:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     PlayMusic SEQ_PL_AUDIO
-    Message Villa_Text_AudioSystem
+    Message Villa_Text_DescriptionAudioSystem
     GoTo Villa_Furniture_End
     End
 
 Villa_Furniture_Bookshelf:
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    Message Villa_Text_Bookshelf
+    Message Villa_Text_DescriptionBookshelf
     GoTo Villa_Furniture_End
     End
 
 Villa_Furniture_Rack:
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    GoToIfSet FLAG_VILLA_FURNITURE_MUSIC_BOX, _0D63
-    Message Villa_Text_Rack
+    GoToIfSet FLAG_VILLA_FURNITURE_MUSIC_BOX, Villa_StartMusicBox
+    Message Villa_Text_DescriptionRack
     GoTo Villa_Furniture_End
     End
 
 Villa_Furniture_Houseplant:
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    Message Villa_Text_Houseplant
+    Message Villa_Text_DescriptionHouseplant
     GoTo Villa_Furniture_End
     End
 
@@ -991,61 +992,61 @@ Villa_Furniture_PCDesk:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     BufferPlayerName 0
-    Message Villa_Text_PCDesk
+    Message Villa_Text_DescriptionPCDesk
     GoTo Villa_Furniture_End
     End
 
 Villa_Furniture_MusicBox:
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    GoTo _0D63
+    GoTo Villa_StartMusicBox
     End
 
-_0D63:
-    Message Villa_Text_MusicBox
-    GoTo _0D6E
+Villa_StartMusicBox:
+    Message Villa_Text_DescriptionMusicBox
+    GoTo Villa_SetScenePlayBGMMusicBox
     End
 
-_0D6E:
+Villa_SetScenePlayBGMMusicBox:
     GetCurrentBGM VAR_0x8004
-    SetScene22
+    SetScenePlayBGMMusicBox
     SetVar VAR_0x8007, 0
     WaitTime 1, VAR_RESULT
-    GoTo _0D88
+    GoTo Villa_WaitSceneEndOrABPress
     End
 
-_0D88:
+Villa_WaitSceneEndOrABPress:
     AddVar VAR_0x8007, 1
     WaitTime 1, VAR_RESULT
     Dummy1F9 VAR_0x8007
-    ScrCmd_2FC VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _0DC2
+    CheckABPress VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, Villa_RestoreSceneAndBGM
     Dummy1F9 VAR_0x8007
-    GoToIfEq VAR_0x8007, 0x258, _0DC2
-    GoTo _0D88
+    GoToIfEq VAR_0x8007, 600, Villa_RestoreSceneAndBGM
+    GoTo Villa_WaitSceneEndOrABPress
     End
 
-_0DC2:
+Villa_RestoreSceneAndBGM:
     SetFieldScene VAR_0x8004
     CloseMessage
     ReleaseAll
     End
 
 Villa_Unused:
-    Message Villa_Text_Chandelier
+    Message Villa_Text_DescriptionChandelier
     Return
 
 Villa_Furniture_PokemonBust:
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    Message Villa_Text_PokemonBust
+    Message Villa_Text_DescriptionPokemonBust
     GoTo Villa_Furniture_End
     End
 
 Villa_Furniture_PokemonBustSilver:
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    Message Villa_Text_PokemonBustSilver
+    Message Villa_Text_DescriptionPokemonBustSilver
     GoTo Villa_Furniture_End
     End
 
@@ -1053,42 +1054,42 @@ Villa_Furniture_Piano:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     PlayMusic SEQ_PL_PIANO
-    Message Villa_Text_Piano
+    Message Villa_Text_DescriptionPiano
     GoTo Villa_Furniture_End
     End
 
 Villa_Furniture_GuestSet:
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    Message Villa_Text_GuestSet
+    Message Villa_Text_DescriptionGuestSet
     GoTo Villa_Furniture_End
     End
 
 Villa_Furniture_WallClock:
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    Message Villa_Text_WallClock
+    Message Villa_Text_DescriptionWallClock
     GoTo Villa_Furniture_End
     End
 
 Villa_Furniture_Masterpiece:
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    Message Villa_Text_Masterpiece
+    Message Villa_Text_DescriptionMasterpiece
     GoTo Villa_Furniture_End
     End
 
 Villa_Furniture_TeaSet:
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    Message Villa_Text_TeaSet
+    Message Villa_Text_DescriptionTeaSet
     GoTo Villa_Furniture_End
     End
 
 Villa_Furniture_Chandelier:
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    Message Villa_Text_Chandelier
+    Message Villa_Text_DescriptionChandelier
     GoTo Villa_Furniture_End
     End
 
@@ -1098,392 +1099,392 @@ Villa_Furniture_End:
     ReleaseAll
     End
 
-_0E65:
+Villa_OnFrameFirstEntry:
     LockAll
-    SetVar VAR_UNK_0x40A1, 1
+    SetVar VAR_VILLA_STATE, 1
     ShowMoney 21, 1
-    Message Villa_Text_TheOriginalOwnersFurnitureIsGone
+    Message Villa_Text_OriginalFurnitureIsGone
     InitLocalTextListMenu 1, 1, 0, VAR_0x8002
-    AddListMenuEntry 189, 0
+    AddListMenuEntry Villa_Text_EntryTableFree, 0
     ShowListMenu
-    GoToIfNe VAR_0x8002, 0, _0EA7
+    GoToIfNe VAR_0x8002, VILLA_FURNITURE_TABLE, Villa_OrderTable
     Call Villa_BuyFurniture
     CloseMessage
-    Call _1092
+    Call Villa_WarpAndShowDeliveryGuyAndBook
     ReleaseAll
     End
 
-_0EA7:
-    Message Villa_Text_GoAheadOrderATableFromThisOrderForm
+Villa_OrderTable:
+    Message Villa_Text_OrderTable
     WaitButton
     CloseMessage
     HideMoney
     ReleaseAll
     End
 
-_0EB4:
+Villa_SchoolKidM:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ShowMoney 21, 1
-    Message Villa_Text_GoAheadOrderATableFromThisOrderForm
+    Message Villa_Text_OrderTable
     InitLocalTextListMenu 1, 1, 0, VAR_0x8002
-    AddListMenuEntry 189, 0
+    AddListMenuEntry Villa_Text_EntryTableFree, 0
     ShowListMenu
-    GoToIfNe VAR_0x8002, 0, _1478
+    GoToIfNe VAR_0x8002, VILLA_FURNITURE_TABLE, Villa_OrderTable2
     Call Villa_BuyFurniture
     CloseMessage
-    Call _1092
+    Call Villa_WarpAndShowDeliveryGuyAndBook
     ReleaseAll
     End
 
-_0EF6:
+Villa_ShowFurnitureListMenu:
     InitLocalTextListMenu 1, 1, 0, VAR_0x8002
-    Call _19E4
-    Call _1A05
-    Call _1A26
-    Call _1A47
-    Call _1A68
-    Call _1A89
-    Call _1AAA
-    Call _1ACB
-    Call _1AEC
-    Call _1B0D
-    Call _1B2E
-    Call _1B4F
-    Call _1B7B
-    Call _1BAF
-    Call _1BE3
-    Call _1C17
-    Call _1C4B
-    Call _1C7F
-    Call _1CB3
-    Call _1CDF
+    Call Villa_AddMenuEntryTable
+    Call Villa_AddMenuEntryBigSofa
+    Call Villa_AddMenuEntrySmallSofa
+    Call Villa_AddMenuEntryBed
+    Call Villa_AddMenuEntryNightTable
+    Call Villa_AddMenuEntryTV
+    Call Villa_AddMenuEntryAudioSystem
+    Call Villa_AddMenuEntryBookshelf
+    Call Villa_AddMenuEntryRack
+    Call Villa_AddMenuEntryHouseplant
+    Call Villa_AddMenuEntryPCDesk
+    Call Villa_TryAddMenuEntryMusicBox
+    Call Villa_TryAddMenuEntryPokemonBust
+    Call Villa_TryAddMenuEntryPokemonBustSilver
+    Call Villa_TryAddMenuEntryPiano
+    Call Villa_TryAddMenuEntryGuestSet
+    Call Villa_TryAddMenuEntryWallClock
+    Call Villa_TryAddMenuEntryMasterpiece
+    Call Villa_TryAddMenuEntryTeaSet
+    Call Villa_TryAddMenuEntryChandelier
     ShowListMenuSetWidth 18
     Return
 
 Villa_BuyFurniture:
     PlaySE SEQ_SE_DP_REGI
-    CallIfEq VAR_0x8002, 0, Villa_BuyFurniture_Table
-    CallIfEq VAR_0x8002, 1, Villa_BuyFurniture_BigSofa
-    CallIfEq VAR_0x8002, 2, Villa_BuyFurniture_SmallSofa
-    CallIfEq VAR_0x8002, 3, Villa_BuyFurniture_Bed
-    CallIfEq VAR_0x8002, 4, Villa_BuyFurniture_NightTable
-    CallIfEq VAR_0x8002, 5, Villa_BuyFurniture_TV
-    CallIfEq VAR_0x8002, 6, Villa_BuyFurniture_AudioSystem
-    CallIfEq VAR_0x8002, 7, Villa_BuyFurniture_Bookshelf
-    CallIfEq VAR_0x8002, 8, Villa_BuyFurniture_Rack
-    CallIfEq VAR_0x8002, 9, Villa_BuyFurniture_Houseplant
-    CallIfEq VAR_0x8002, 10, Villa_BuyFurniture_PCDesk
-    CallIfEq VAR_0x8002, 11, Villa_BuyFurniture_MusicBox
-    CallIfEq VAR_0x8002, 12, Villa_BuyFurniture_PokemonBust
-    CallIfEq VAR_0x8002, 13, Villa_BuyFurniture_PokemonBustSilver
-    CallIfEq VAR_0x8002, 14, Villa_BuyFurniture_Piano
-    CallIfEq VAR_0x8002, 15, Villa_BuyFurniture_GuestSet
-    CallIfEq VAR_0x8002, 16, Villa_BuyFurniture_WallClock
-    CallIfEq VAR_0x8002, 17, Villa_BuyFurniture_Masterpiece
-    CallIfEq VAR_0x8002, 18, Villa_BuyFurniture_TeaSet
-    CallIfEq VAR_0x8002, 19, Villa_BuyFurniture_Chandelier
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_TABLE, Villa_BuyFurniture_Table
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_BIG_SOFA, Villa_BuyFurniture_BigSofa
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_SMALL_SOFA, Villa_BuyFurniture_SmallSofa
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_BED, Villa_BuyFurniture_Bed
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_NIGHT_TABLE, Villa_BuyFurniture_NightTable
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_TV, Villa_BuyFurniture_TV
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_AUDIO_SYSTEM, Villa_BuyFurniture_AudioSystem
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_BOOKSHELF, Villa_BuyFurniture_Bookshelf
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_RACK, Villa_BuyFurniture_Rack
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_HOUSEPLANT, Villa_BuyFurniture_Houseplant
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_PC_DESK, Villa_BuyFurniture_PCDesk
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_MUSIC_BOX, Villa_BuyFurniture_MusicBox
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_POKEMON_BUST, Villa_BuyFurniture_PokemonBust
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_POKEMON_BUST_SILVER, Villa_BuyFurniture_PokemonBustSilver
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_PIANO, Villa_BuyFurniture_Piano
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_GUEST_SET, Villa_BuyFurniture_GuestSet
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_WALL_CLOCK, Villa_BuyFurniture_WallClock
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_MASTERPIECE, Villa_BuyFurniture_Masterpiece
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_TEA_SET, Villa_BuyFurniture_TeaSet
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_CHANDELIER, Villa_BuyFurniture_Chandelier
     UpdateMoneyDisplay
     WaitSE SEQ_SE_DP_REGI
     HideMoney
-    ScrCmd_30D VAR_0x8002
+    SaveTVSegmentHomeAndManor VAR_0x8002
     Return
 
-_1092:
-    ClearFlag FLAG_UNK_0x02C5
-    ClearFlag FLAG_UNK_0x02C7
+Villa_WarpAndShowDeliveryGuyAndBook:
+    ClearFlag FLAG_HIDE_VILLA_DELIVERY_GUY
+    ClearFlag FLAG_HIDE_VILLA_BOOK
     FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_VILLA, 0, 10, 6, DIR_SOUTH
     FadeScreenIn
     WaitFadeScreen
-    GoToIfEq VAR_0x8002, 0, _1485
-    GoToIfNe VAR_0x8002, 0, _1514
+    GoToIfEq VAR_0x8002, VILLA_FURNITURE_TABLE, Villa_DeliverFreeTable
+    GoToIfNe VAR_0x8002, VILLA_FURNITURE_TABLE, Villa_DeliveringOrder
     End
 
-_10DA:
-    Call _2209
-    GoToIfEq VAR_RESORT_VILLA_VISITOR, 0, _1103
-    SetObjectEventPos 1, 11, 11
-    SetObjectEventMovementType 1, MOVEMENT_TYPE_LOOK_NORTH
-    SetObjectEventDir 1, DIR_NORTH
+Villa_AddTableRival:
+    Call Villa_TryRemoveVisitor
+    GoToIfEq VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_RIVAL, Villa_AddRival
+    SetObjectEventPos LOCALID_RIVAL, 11, 11
+    SetObjectEventMovementType LOCALID_RIVAL, MOVEMENT_TYPE_LOOK_NORTH
+    SetObjectEventDir LOCALID_RIVAL, DIR_NORTH
     Return
 
-_1103:
-    SetObjectEventPos 1, 10, 8
-    SetObjectEventMovementType 1, MOVEMENT_TYPE_LOOK_NORTH
-    SetObjectEventDir 1, DIR_NORTH
-    ClearFlag FLAG_UNK_0x02A7
-    AddObject 1
+Villa_AddRival:
+    SetObjectEventPos LOCALID_RIVAL, 10, 8
+    SetObjectEventMovementType LOCALID_RIVAL, MOVEMENT_TYPE_LOOK_NORTH
+    SetObjectEventDir LOCALID_RIVAL, DIR_NORTH
+    ClearFlag FLAG_HIDE_VILLA_RIVAL
+    AddObject LOCALID_RIVAL
     Return
 
-_1121:
-    Call _2209
-    GoToIfEq VAR_RESORT_VILLA_VISITOR, 1, _114A
-    SetObjectEventPos 0, 11, 11
-    SetObjectEventMovementType 0, MOVEMENT_TYPE_LOOK_NORTH
-    SetObjectEventDir 0, DIR_NORTH
+Villa_AddSmallSofaCounterpart:
+    Call Villa_TryRemoveVisitor
+    GoToIfEq VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_COUNTERPART, Villa_AddCounterpart
+    SetObjectEventPos LOCALID_COUNTERPART, 11, 11
+    SetObjectEventMovementType LOCALID_COUNTERPART, MOVEMENT_TYPE_LOOK_NORTH
+    SetObjectEventDir LOCALID_COUNTERPART, DIR_NORTH
     Return
 
-_114A:
-    SetObjectEventPos 0, 10, 8
-    SetObjectEventMovementType 0, MOVEMENT_TYPE_LOOK_NORTH
-    SetObjectEventDir 0, DIR_NORTH
-    ClearFlag FLAG_UNK_0x02A8
-    AddObject 0
+Villa_AddCounterpart:
+    SetObjectEventPos LOCALID_COUNTERPART, 10, 8
+    SetObjectEventMovementType LOCALID_COUNTERPART, MOVEMENT_TYPE_LOOK_NORTH
+    SetObjectEventDir LOCALID_COUNTERPART, DIR_NORTH
+    ClearFlag FLAG_HIDE_VILLA_COUNTERPART
+    AddObject LOCALID_COUNTERPART
     Return
 
-_1168:
-    Call _2209
-    GoToIfEq VAR_RESORT_VILLA_VISITOR, 2, _1199
-    GoTo _1183
+Villa_AddBookshelfRowan:
+    Call Villa_TryRemoveVisitor
+    GoToIfEq VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_PROF_ROWAN, Villa_TryAddRowan
+    GoTo Villa_SetPositionBookshelfRowan
     End
 
-_1183:
-    SetObjectEventPos 2, 11, 11
-    SetObjectEventMovementType 2, MOVEMENT_TYPE_LOOK_NORTH
-    SetObjectEventDir 2, DIR_NORTH
+Villa_SetPositionBookshelfRowan:
+    SetObjectEventPos LOCALID_PROF_ROWAN, 11, 11
+    SetObjectEventMovementType LOCALID_PROF_ROWAN, MOVEMENT_TYPE_LOOK_NORTH
+    SetObjectEventDir LOCALID_PROF_ROWAN, DIR_NORTH
     Return
 
-_1199:
-    GoToIfUnset FLAG_VILLA_VISITOR_INSIDE, _1183
-    SetObjectEventPos 2, 10, 8
-    SetObjectEventMovementType 2, MOVEMENT_TYPE_LOOK_NORTH
-    SetObjectEventDir 2, DIR_NORTH
-    ClearFlag FLAG_UNK_0x02A9
-    AddObject 2
+Villa_TryAddRowan:
+    GoToIfUnset FLAG_VILLA_VISITOR_INSIDE, Villa_SetPositionBookshelfRowan
+    SetObjectEventPos LOCALID_PROF_ROWAN, 10, 8
+    SetObjectEventMovementType LOCALID_PROF_ROWAN, MOVEMENT_TYPE_LOOK_NORTH
+    SetObjectEventDir LOCALID_PROF_ROWAN, DIR_NORTH
+    ClearFlag FLAG_HIDE_VILLA_PROF_ROWAN
+    AddObject LOCALID_PROF_ROWAN
     Return
 
-_11C2:
-    Call _2209
-    GoToIfEq VAR_RESORT_VILLA_VISITOR, 5, _11F3
-    GoTo _11DD
+Villa_AddHouseplantGardenia:
+    Call Villa_TryRemoveVisitor
+    GoToIfEq VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_GARDENIA, Villa_TryAddGardenia
+    GoTo Villa_SetPositionHouseplantGardenia
     End
 
-_11DD:
-    SetObjectEventPos 5, 11, 11
-    SetObjectEventMovementType 5, MOVEMENT_TYPE_LOOK_NORTH
-    SetObjectEventDir 5, DIR_NORTH
+Villa_SetPositionHouseplantGardenia:
+    SetObjectEventPos LOCALID_GARDENIA, 11, 11
+    SetObjectEventMovementType LOCALID_GARDENIA, MOVEMENT_TYPE_LOOK_NORTH
+    SetObjectEventDir LOCALID_GARDENIA, DIR_NORTH
     Return
 
-_11F3:
-    GoToIfUnset FLAG_VILLA_VISITOR_INSIDE, _11DD
-    SetObjectEventPos 5, 10, 8
-    SetObjectEventMovementType 5, MOVEMENT_TYPE_LOOK_NORTH
-    SetObjectEventDir 5, DIR_NORTH
-    ClearFlag FLAG_UNK_0x02AE
-    AddObject 5
+Villa_TryAddGardenia:
+    GoToIfUnset FLAG_VILLA_VISITOR_INSIDE, Villa_SetPositionHouseplantGardenia
+    SetObjectEventPos LOCALID_GARDENIA, 10, 8
+    SetObjectEventMovementType LOCALID_GARDENIA, MOVEMENT_TYPE_LOOK_NORTH
+    SetObjectEventDir LOCALID_GARDENIA, DIR_NORTH
+    ClearFlag FLAG_HIDE_VILLA_GARDENIA
+    AddObject LOCALID_GARDENIA
     Return
 
-_121C:
-    Call _2209
-    GoToIfEq VAR_RESORT_VILLA_VISITOR, 12, _1245
-    SetObjectEventPos 12, 11, 11
-    SetObjectEventMovementType 12, MOVEMENT_TYPE_LOOK_NORTH
-    SetObjectEventDir 12, DIR_NORTH
+Villa_AddPianoCynthia:
+    Call Villa_TryRemoveVisitor
+    GoToIfEq VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_CYNTHIA, Villa_AddCynthia
+    SetObjectEventPos LOCALID_CYNTHIA, 11, 11
+    SetObjectEventMovementType LOCALID_CYNTHIA, MOVEMENT_TYPE_LOOK_NORTH
+    SetObjectEventDir LOCALID_CYNTHIA, DIR_NORTH
     Return
 
-_1245:
-    SetObjectEventPos 12, 10, 8
-    SetObjectEventMovementType 12, MOVEMENT_TYPE_LOOK_NORTH
-    SetObjectEventDir 12, DIR_NORTH
-    ClearFlag FLAG_UNK_0x02B8
-    AddObject 12
+Villa_AddCynthia:
+    SetObjectEventPos LOCALID_CYNTHIA, 10, 8
+    SetObjectEventMovementType LOCALID_CYNTHIA, MOVEMENT_TYPE_LOOK_NORTH
+    SetObjectEventDir LOCALID_CYNTHIA, DIR_NORTH
+    ClearFlag FLAG_HIDE_VILLA_CYNTHIA
+    AddObject LOCALID_CYNTHIA
     Return
 
-_1263:
-    CallIfNe VAR_RESORT_VILLA_VISITOR, 0, _12A3
+Villa_EnterTableRival:
+    CallIfNe VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_RIVAL, Villa_RivalEnter
     SetFlag FLAG_VILLA_VISITOR_INSIDE
-    SetVar VAR_RESORT_VILLA_VISITOR, 0xFF
-    ApplyMovement LOCALID_PLAYER, _1454
+    SetVar VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_NONE
+    ApplyMovement LOCALID_PLAYER, Villa_Movement_PlayerWalkOnSpotSouth
     WaitMovement
     BufferRivalName 0
     BufferPlayerName 1
-    Message 9
+    Message Villa_Text_RivalMessageEntry
     CloseMessage
-    ApplyMovement 1, _1468
+    ApplyMovement LOCALID_RIVAL, Villa_Movement_RivalLeave
     WaitMovement
     PlaySE SEQ_SE_DP_KAIDAN2
-    RemoveObject 1
+    RemoveObject LOCALID_RIVAL
     Return
 
-_12A3:
-    ClearFlag FLAG_UNK_0x02A7
-    AddObject 1
+Villa_RivalEnter:
+    ClearFlag FLAG_HIDE_VILLA_RIVAL
+    AddObject LOCALID_RIVAL
     PlaySE SEQ_SE_DP_DOOR_OPEN
     WaitSE SEQ_SE_DP_DOOR_OPEN
-    ApplyMovement 1, _145C
+    ApplyMovement LOCALID_RIVAL, Villa_Movement_VisitorEnter
     WaitMovement
     Return
 
-_12BF:
-    CallIfNe VAR_RESORT_VILLA_VISITOR, 1, _1316
+Villa_EnterSmallSofaCounterpart:
+    CallIfNe VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_COUNTERPART, Villa_CounterpartEnter
     SetFlag FLAG_VILLA_VISITOR_INSIDE
-    SetVar VAR_RESORT_VILLA_VISITOR, 1
+    SetVar VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_COUNTERPART
     BufferRivalName 0
     BufferPlayerName 1
     GetPlayerGender VAR_RESULT
-    GoToIfEq VAR_RESULT, GENDER_MALE, _12FC
-    GoToIfEq VAR_RESULT, GENDER_FEMALE, _1307
+    GoToIfEq VAR_RESULT, GENDER_MALE, Villa_SmallSofaDawn
+    GoToIfEq VAR_RESULT, GENDER_FEMALE, Villa_SmallSofaLucas
     End
 
-_12FC:
-    Message pl_msg_00000602_00010
-    GoTo _1312
+Villa_SmallSofaDawn:
+    Message Villa_Text_DawnMessageEntry
+    GoTo Villa_SmallSofaCounterpartEnd
     End
 
-_1307:
-    Message pl_msg_00000602_00011
-    GoTo _1312
+Villa_SmallSofaLucas:
+    Message Villa_Text_LucasMessageEntry
+    GoTo Villa_SmallSofaCounterpartEnd
     End
 
-_1312:
+Villa_SmallSofaCounterpartEnd:
     CloseMessage
     Return
 
-_1316:
-    ClearFlag FLAG_UNK_0x02A8
-    AddObject 0
+Villa_CounterpartEnter:
+    ClearFlag FLAG_HIDE_VILLA_COUNTERPART
+    AddObject LOCALID_COUNTERPART
     PlaySE SEQ_SE_DP_DOOR_OPEN
     WaitSE SEQ_SE_DP_DOOR_OPEN
-    ApplyMovement 0, _145C
+    ApplyMovement LOCALID_COUNTERPART, Villa_Movement_VisitorEnter
     WaitMovement
     Return
 
-_1332:
-    CallIfNe VAR_RESORT_VILLA_VISITOR, 2, _1374
-    CallIfEq VAR_RESORT_VILLA_VISITOR, 2, _1367
+Villa_EnterBookshelfRowan:
+    CallIfNe VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_PROF_ROWAN, Villa_RowanEnter
+    CallIfEq VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_PROF_ROWAN, Villa_TryRowanEnter
     SetFlag FLAG_VILLA_VISITOR_INSIDE
-    SetFlag FLAG_UNK_0x02AA
-    SetVar VAR_RESORT_VILLA_VISITOR, 2
+    SetFlag FLAG_HIDE_RESORT_AREA_PROF_ROWAN
+    SetVar VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_PROF_ROWAN
     BufferRivalName 0
     BufferPlayerName 1
-    Message pl_msg_00000602_00012
+    Message Villa_Text_RowanMessageEntry
     CloseMessage
     Return
 
-_1367:
-    GoToIfUnset FLAG_VILLA_VISITOR_INSIDE, _1374
+Villa_TryRowanEnter:
+    GoToIfUnset FLAG_VILLA_VISITOR_INSIDE, Villa_RowanEnter
     Return
 
-_1374:
-    ClearFlag FLAG_UNK_0x02A9
-    AddObject 2
+Villa_RowanEnter:
+    ClearFlag FLAG_HIDE_VILLA_PROF_ROWAN
+    AddObject LOCALID_PROF_ROWAN
     PlaySE SEQ_SE_DP_DOOR_OPEN
     WaitSE SEQ_SE_DP_DOOR_OPEN
-    ApplyMovement 2, _145C
+    ApplyMovement LOCALID_PROF_ROWAN, Villa_Movement_VisitorEnter
     WaitMovement
     Return
 
-_1390:
-    CallIfNe VAR_RESORT_VILLA_VISITOR, 5, _13D2
-    CallIfEq VAR_RESORT_VILLA_VISITOR, 5, _13C5
+Villa_EnterHouseplantGardenia:
+    CallIfNe VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_GARDENIA, Villa_GardeniaEnter
+    CallIfEq VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_GARDENIA, Villa_TryGardeniaEnter
     SetFlag FLAG_VILLA_VISITOR_INSIDE
-    SetFlag FLAG_UNK_0x02B2
-    SetVar VAR_RESORT_VILLA_VISITOR, 5
+    SetFlag FLAG_HIDE_RESORT_AREA_MAYLENE
+    SetVar VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_GARDENIA
     BufferRivalName 0
     BufferPlayerName 1
-    Message pl_msg_00000602_00013
+    Message Villa_Text_GardeniaMessageEntry
     CloseMessage
     Return
 
-_13C5:
-    GoToIfUnset FLAG_VILLA_VISITOR_INSIDE, _13D2
+Villa_TryGardeniaEnter:
+    GoToIfUnset FLAG_VILLA_VISITOR_INSIDE, Villa_GardeniaEnter
     Return
 
-_13D2:
-    ClearFlag FLAG_UNK_0x02AE
-    AddObject 5
+Villa_GardeniaEnter:
+    ClearFlag FLAG_HIDE_VILLA_GARDENIA
+    AddObject LOCALID_GARDENIA
     PlaySE SEQ_SE_DP_DOOR_OPEN
     WaitSE SEQ_SE_DP_DOOR_OPEN
-    ApplyMovement 5, _145C
+    ApplyMovement LOCALID_GARDENIA, Villa_Movement_VisitorEnter
     WaitMovement
     Return
 
-_13EE:
-    CallIfNe VAR_RESORT_VILLA_VISITOR, 12, _1436
-    CallIfEq VAR_RESORT_VILLA_VISITOR, 12, _1429
+Villa_EnterPianoCynthia:
+    CallIfNe VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_CYNTHIA, Villa_CynthiaEnter
+    CallIfEq VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_CYNTHIA, Villa_TryCynthiaEnter
     SetFlag FLAG_VILLA_VISITOR_INSIDE
-    SetVar VAR_RESORT_VILLA_VISITOR, 12
+    SetVar VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_CYNTHIA
     SetVar VAR_MAP_LOCAL_F, 0
     SetFlag FLAG_VILLA_VISITOR_OUTSIDE
     BufferRivalName 0
     BufferPlayerName 1
-    Message pl_msg_00000602_00014
+    Message Villa_Text_CynthiaMessageEntry
     CloseMessage
     Return
 
-_1429:
-    GoToIfUnset FLAG_VILLA_VISITOR_OUTSIDE, _1436
+Villa_TryCynthiaEnter:
+    GoToIfUnset FLAG_VILLA_VISITOR_OUTSIDE, Villa_CynthiaEnter
     Return
 
-_1436:
-    ClearFlag FLAG_UNK_0x02B8
-    AddObject 12
+Villa_CynthiaEnter:
+    ClearFlag FLAG_HIDE_VILLA_CYNTHIA
+    AddObject LOCALID_CYNTHIA
     PlaySE SEQ_SE_DP_DOOR_OPEN
     WaitSE SEQ_SE_DP_DOOR_OPEN
-    ApplyMovement 12, _145C
+    ApplyMovement LOCALID_CYNTHIA, Villa_Movement_VisitorEnter
     WaitMovement
     Return
 
     .balign 4, 0
-_1454:
+Villa_Movement_PlayerWalkOnSpotSouth:
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_145C:
+Villa_Movement_VisitorEnter:
     WalkNormalWest
     WalkNormalNorth 3
     EndMovement
 
     .balign 4, 0
-_1468:
+Villa_Movement_RivalLeave:
     WalkNormalSouth 3
     WalkNormalEast
     WalkOnSpotNormalSouth
     EndMovement
 
-_1478:
-    Message Villa_Text_GoAheadOrderATableFromThisOrderForm
+Villa_OrderTable2:
+    Message Villa_Text_OrderTable
     WaitButton
     CloseMessage
     HideMoney
     ReleaseAll
     End
 
-_1485:
-    Message Villa_Text_ThankYouForWaitingImDeliveringYourOrder_WeHopeYoullKeepOrdering
+Villa_DeliverFreeTable:
+    Message Villa_Text_DeliveringOrderKeepOrdering
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
-    RemoveObject 15
+    RemoveObject LOCALID_DELIVERY_GUY
     FadeScreenIn
     WaitFadeScreen
-    ApplyMovement 14, _14FC
-    ApplyMovement LOCALID_PLAYER, _14F0
+    ApplyMovement LOCALID_SCHOOL_KID_M, Villa_Movement_SchoolKidMFacePlayer
+    ApplyMovement LOCALID_PLAYER, Villa_Movement_PlayerFaceSchoolKidM
     WaitMovement
-    Message 4
+    Message Villa_Text_FinallyRidOfVilla
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
-    RemoveObject 14
-    Call _156D
+    RemoveObject LOCALID_SCHOOL_KID_M
+    Call Villa_TryAddFurnitureVisitor
     FadeScreenIn
     WaitFadeScreen
-    Call _15B0
-    SetVar VAR_UNK_0x40A1, 2
+    Call Villa_TryEnterFurnitureVisitor
+    SetVar VAR_VILLA_STATE, 2
     Return
 
     .balign 4, 0
-_14F0:
+Villa_Movement_PlayerFaceSchoolKidM:
     Delay8
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_14FC:
+Villa_Movement_SchoolKidMFacePlayer:
     WalkOnSpotNormalEast
     EndMovement
 
@@ -1493,169 +1494,169 @@ Villa_UnusedMovement:
     WalkOnSpotNormalSouth
     EndMovement
 
-_1514:
-    Call Villa_CheckIfHasAllFurniture
-    GoToIfEq VAR_RESULT, TRUE, Villa_DeliveryGuy_HasAllFurniture
-    Message Villa_Text_ThankYouForWaitingImDeliveringYourOrder
-    GoTo _1532
+Villa_DeliveringOrder:
+    Call Villa_CheckHasAllFurniture
+    GoToIfEq VAR_RESULT, TRUE, Villa_HasAllFurniture
+    Message Villa_Text_DeliveringOrder
+    GoTo Villa_DeliveryGuyLeaveTryVisitorEnter
     End
 
-_1532:
+Villa_DeliveryGuyLeaveTryVisitorEnter:
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
-    RemoveObject 15
-    Call _156D
+    RemoveObject LOCALID_DELIVERY_GUY
+    Call Villa_TryAddFurnitureVisitor
     FadeScreenIn
     WaitFadeScreen
-    Call _15B0
+    Call Villa_TryEnterFurnitureVisitor
     Return
 
-Villa_DeliveryGuy_HasAllFurniture:
-    IncrementTrainerScore TRAINER_SCORE_EVENT_UNK_49
-    Message Villa_Text_ThankYouForWaitingImDeliveringYourOrder_AlsoAndIHateToSayThisBut
-    GoTo _1532
+Villa_HasAllFurniture:
+    IncrementTrainerScore TRAINER_SCORE_EVENT_BOUGHT_ALL_VILLA_FURNITURE
+    Message Villa_Text_DeliveringOrderOutOfFurniture
+    GoTo Villa_DeliveryGuyLeaveTryVisitorEnter
     End
 
-_156D:
-    CallIfEq VAR_0x8002, 0, _10DA
-    CallIfEq VAR_0x8002, 2, _1121
-    CallIfEq VAR_0x8002, 7, _1168
-    CallIfEq VAR_0x8002, 9, _11C2
-    CallIfEq VAR_0x8002, 14, _121C
+Villa_TryAddFurnitureVisitor:
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_TABLE, Villa_AddTableRival
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_SMALL_SOFA, Villa_AddSmallSofaCounterpart
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_BOOKSHELF, Villa_AddBookshelfRowan
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_HOUSEPLANT, Villa_AddHouseplantGardenia
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_PIANO, Villa_AddPianoCynthia
     Return
 
-_15B0:
-    CallIfEq VAR_0x8002, 0, _1263
-    CallIfEq VAR_0x8002, 2, _12BF
-    CallIfEq VAR_0x8002, 7, _1332
-    CallIfEq VAR_0x8002, 9, _1390
-    CallIfEq VAR_0x8002, 14, _13EE
+Villa_TryEnterFurnitureVisitor:
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_TABLE, Villa_EnterTableRival
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_SMALL_SOFA, Villa_EnterSmallSofaCounterpart
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_BOOKSHELF, Villa_EnterBookshelfRowan
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_HOUSEPLANT, Villa_EnterHouseplantGardenia
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_PIANO, Villa_EnterPianoCynthia
     Return
 
-_15F3:
+Villa_TriggerDontGoYet:
     LockAll
-    ApplyMovement 14, _1614
+    ApplyMovement LOCALID_SCHOOL_KID_M, Villa_Movement_SchoolKidMWalkOnSpotSouth
     WaitMovement
-    Message Villa_Text_WhoaWhoaDontGoYet
+    Message Villa_Text_DontGoYet
     CloseMessage
-    ApplyMovement LOCALID_PLAYER, _161C
+    ApplyMovement LOCALID_PLAYER, Villa_Movement_PlayerWalkNorth
     WaitMovement
     ReleaseAll
     End
 
     .balign 4, 0
-_1614:
+Villa_Movement_SchoolKidMWalkOnSpotSouth:
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_161C:
+Villa_Movement_PlayerWalkNorth:
     WalkNormalNorth
     EndMovement
 
-_1624:
+Villa_OrderForm:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     ShowMoney 21, 1
     BufferPlayerName 1
-    Message 119
-    Call Villa_CheckIfHasAllFurniture
-    GoToIfEq VAR_RESULT, TRUE, _1651
-    GoTo _165C
+    Message Villa_Text_PlayerOpenedOrderForm
+    Call Villa_CheckHasAllFurniture
+    GoToIfEq VAR_RESULT, TRUE, Villa_ListOfPurchases
+    GoTo Villa_OrderWhichFurniture
     End
 
-_1651:
-    Message Villa_Text_ThisIsTheListOfPurchasedFurniture
-    GoTo _1667
+Villa_ListOfPurchases:
+    Message Villa_Text_ListOfPurchases
+    GoTo Villa_TryBuyFurniture
     End
 
-_165C:
-    Message 120
-    GoTo _1667
+Villa_OrderWhichFurniture:
+    Message Villa_Text_OrderWhichFurniture
+    GoTo Villa_TryBuyFurniture
     End
 
-_1667:
-    Call _0EF6
-    SetVar VAR_0x8003, 1
-    CallIfEq VAR_0x8002, 0, _1EA5
-    CallIfEq VAR_0x8002, 1, _1EB2
-    CallIfEq VAR_0x8002, 2, _1EBF
-    CallIfEq VAR_0x8002, 3, _1ECC
-    CallIfEq VAR_0x8002, 4, _1ED9
-    CallIfEq VAR_0x8002, 5, _1EE6
-    CallIfEq VAR_0x8002, 6, _1EF3
-    CallIfEq VAR_0x8002, 7, _1F00
-    CallIfEq VAR_0x8002, 8, _1F0D
-    CallIfEq VAR_0x8002, 9, _1F1A
-    CallIfEq VAR_0x8002, 10, _1F27
-    CallIfEq VAR_0x8002, 11, _1F34
-    CallIfEq VAR_0x8002, 12, _1F41
-    CallIfEq VAR_0x8002, 13, _1F4E
-    CallIfEq VAR_0x8002, 14, _1F5B
-    CallIfEq VAR_0x8002, 15, _1F68
-    CallIfEq VAR_0x8002, 16, _1F75
-    CallIfEq VAR_0x8002, 17, _1F82
-    CallIfEq VAR_0x8002, 18, _1F8F
-    CallIfEq VAR_0x8002, 19, _1F9C
-    GoToIfEq VAR_0x8002, -2, _18DE
-    GoToIfEq VAR_0x8003, FALSE, _18C8
-    Message 121
+Villa_TryBuyFurniture:
+    Call Villa_ShowFurnitureListMenu
+    SetVar VAR_0x8003, TRUE
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_TABLE, Villa_CheckCanBuyTable
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_BIG_SOFA, Villa_CheckCanBuyBigSofa
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_SMALL_SOFA, Villa_CheckCanBuySmallSofa
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_BED, Villa_CheckCanBuyBedSofa
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_NIGHT_TABLE, Villa_CheckCanBuyNightTable
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_TV, Villa_CheckCanBuyTV
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_AUDIO_SYSTEM, Villa_CheckCanBuyAudioSystem
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_BOOKSHELF, Villa_CheckCanBuyBookshelf
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_RACK, Villa_CheckCanBuyRack
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_HOUSEPLANT, Villa_CheckCanBuyHouseplant
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_PC_DESK, Villa_CheckCanBuyPCDesk
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_MUSIC_BOX, Villa_CheckCanBuyMusicBox
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_POKEMON_BUST, Villa_CheckCanBuyPokemonBust
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_POKEMON_BUST_SILVER, Villa_CheckCanBuyPokemonBustSilver
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_PIANO, Villa_CheckCanBuyPiano
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_GUEST_SET, Villa_CheckCanBuyGuestSet
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_WALL_CLOCK, Villa_CheckCanBuyWallClock
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_MASTERPIECE, Villa_CheckCanBuyMasterpiece
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_TEA_SET, Villa_CheckCanBuyTeaSet
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_CHANDELIER, Villa_CheckCanBuyChandelier
+    GoToIfEq VAR_0x8002, -2, Villa_CanceledOrder
+    GoToIfEq VAR_0x8003, FALSE, Villa_AlreadyBoughtOne
+    Message Villa_Text_OrderChosenFurniture
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _18DE
-    CallIfEq VAR_0x8002, 0, Villa_CheckMoney_Table
-    CallIfEq VAR_0x8002, 1, Villa_CheckMoney_BigSofa
-    CallIfEq VAR_0x8002, 2, Villa_CheckMoney_SmallSofa
-    CallIfEq VAR_0x8002, 3, Villa_CheckMoney_Bed
-    CallIfEq VAR_0x8002, 4, Villa_CheckMoney_NightTable
-    CallIfEq VAR_0x8002, 5, Villa_CheckMoney_TV
-    CallIfEq VAR_0x8002, 6, Villa_CheckMoney_AudioSystem
-    CallIfEq VAR_0x8002, 7, Villa_CheckMoney_Bookshelf
-    CallIfEq VAR_0x8002, 8, Villa_CheckMoney_Rack
-    CallIfEq VAR_0x8002, 9, Villa_CheckMoney_Houseplant
-    CallIfEq VAR_0x8002, 10, Villa_CheckMoney_PCDesk
-    CallIfEq VAR_0x8002, 11, Villa_CheckMoney_MusicBox
-    CallIfEq VAR_0x8002, 12, Villa_CheckMoney_PokemonBust
-    CallIfEq VAR_0x8002, 13, Villa_CheckMoney_PokemonBustSilver
-    CallIfEq VAR_0x8002, 14, Villa_CheckMoney_Piano
-    CallIfEq VAR_0x8002, 15, Villa_CheckMoney_GuestSet
-    CallIfEq VAR_0x8002, 16, Villa_CheckMoney_WallClock
-    CallIfEq VAR_0x8002, 17, Villa_CheckMoney_Masterpiece
-    CallIfEq VAR_0x8002, 18, Villa_CheckMoney_TeaSet
-    CallIfEq VAR_0x8002, 19, Villa_CheckMoney_Chandelier
-    GoToIfEq VAR_0x8003, FALSE, _18D3
+    GoToIfEq VAR_RESULT, MENU_NO, Villa_CanceledOrder
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_TABLE, Villa_CheckMoney_Table
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_BIG_SOFA, Villa_CheckMoney_BigSofa
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_SMALL_SOFA, Villa_CheckMoney_SmallSofa
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_BED, Villa_CheckMoney_Bed
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_NIGHT_TABLE, Villa_CheckMoney_NightTable
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_TV, Villa_CheckMoney_TV
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_AUDIO_SYSTEM, Villa_CheckMoney_AudioSystem
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_BOOKSHELF, Villa_CheckMoney_Bookshelf
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_RACK, Villa_CheckMoney_Rack
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_HOUSEPLANT, Villa_CheckMoney_Houseplant
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_PC_DESK, Villa_CheckMoney_PCDesk
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_MUSIC_BOX, Villa_CheckMoney_MusicBox
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_POKEMON_BUST, Villa_CheckMoney_PokemonBust
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_POKEMON_BUST_SILVER, Villa_CheckMoney_PokemonBustSilver
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_PIANO, Villa_CheckMoney_Piano
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_GUEST_SET, Villa_CheckMoney_GuestSet
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_WALL_CLOCK, Villa_CheckMoney_WallClock
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_MASTERPIECE, Villa_CheckMoney_Masterpiece
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_TEA_SET, Villa_CheckMoney_TeaSet
+    CallIfEq VAR_0x8002, VILLA_FURNITURE_CHANDELIER, Villa_CheckMoney_Chandelier
+    GoToIfEq VAR_0x8003, FALSE, Villa_NotEnoughMoney
     Call Villa_BuyFurniture
     CloseMessage
-    Call _1092
+    Call Villa_WarpAndShowDeliveryGuyAndBook
     ReleaseAll
     End
 
-_18C8:
-    Message 122
-    GoTo _18E6
+Villa_AlreadyBoughtOne:
+    Message Villa_Text_AlreadyBoughtOne
+    GoTo Villa_OrderFormWaitButton
     End
 
-_18D3:
-    Message 123
-    GoTo _18E6
+Villa_NotEnoughMoney:
+    Message Villa_Text_NotEnoughMoney
+    GoTo Villa_OrderFormWaitButton
     End
 
-_18DE:
-    GoTo _18F0
+Villa_CanceledOrder:
+    GoTo Villa_OrderFormEnd
     End
 
-_18E6:
+Villa_OrderFormWaitButton:
     WaitButton
-    GoTo _18F0
+    GoTo Villa_OrderFormEnd
     End
 
-_18F0:
+Villa_OrderFormEnd:
     CloseMessage
     HideMoney
     ReleaseAll
     End
 
-Villa_CheckIfHasAllFurniture:
+Villa_CheckHasAllFurniture:
     GoToIfUnset FLAG_VILLA_FURNITURE_TABLE, Villa_DoesntHaveAllFurniture
     GoToIfUnset FLAG_VILLA_FURNITURE_BIG_SOFA, Villa_DoesntHaveAllFurniture
     GoToIfUnset FLAG_VILLA_FURNITURE_SMALL_SOFA, Villa_DoesntHaveAllFurniture
@@ -1683,387 +1684,387 @@ Villa_DoesntHaveAllFurniture:
     SetVar VAR_RESULT, FALSE
     Return
 
-_19E4:
+Villa_AddMenuEntryTable:
     BufferValuePaddingDigits 0, 0, PADDING_MODE_SPACES, 6
-    CallIfUnset FLAG_VILLA_FURNITURE_TABLE, _1D15
-    CallIfSet FLAG_VILLA_FURNITURE_TABLE, _1D1F
+    CallIfUnset FLAG_VILLA_FURNITURE_TABLE, Villa_AddMenuEntryTableAvailable
+    CallIfSet FLAG_VILLA_FURNITURE_TABLE, Villa_AddMenuEntryTableSoldOut
     Return
 
-_1A05:
+Villa_AddMenuEntryBigSofa:
     BufferValuePaddingDigits 0, 120000, PADDING_MODE_SPACES, 6
-    CallIfUnset FLAG_VILLA_FURNITURE_BIG_SOFA, _1D29
-    CallIfSet FLAG_VILLA_FURNITURE_BIG_SOFA, _1D33
+    CallIfUnset FLAG_VILLA_FURNITURE_BIG_SOFA, Villa_AddMenuEntryBigSofaAvailable
+    CallIfSet FLAG_VILLA_FURNITURE_BIG_SOFA, Villa_AddMenuEntryBigSofaSoldOut
     Return
 
-_1A26:
+Villa_AddMenuEntrySmallSofa:
     BufferValuePaddingDigits 0, 90000, PADDING_MODE_SPACES, 6
-    CallIfUnset FLAG_VILLA_FURNITURE_SMALL_SOFA, _1D3D
-    CallIfSet FLAG_VILLA_FURNITURE_SMALL_SOFA, _1D47
+    CallIfUnset FLAG_VILLA_FURNITURE_SMALL_SOFA, Villa_AddMenuEntrySmallSofaAvailable
+    CallIfSet FLAG_VILLA_FURNITURE_SMALL_SOFA, Villa_AddMenuEntrySmallSofaSoldOut
     Return
 
-_1A47:
+Villa_AddMenuEntryBed:
     BufferValuePaddingDigits 0, 187000, PADDING_MODE_SPACES, 6
-    CallIfUnset FLAG_VILLA_FURNITURE_BED, _1D51
-    CallIfSet FLAG_VILLA_FURNITURE_BED, _1D5B
+    CallIfUnset FLAG_VILLA_FURNITURE_BED, Villa_AddMenuEntryBedAvailable
+    CallIfSet FLAG_VILLA_FURNITURE_BED, Villa_AddMenuEntryBedSoldOut
     Return
 
-_1A68:
+Villa_AddMenuEntryNightTable:
     BufferValuePaddingDigits 0, 58000, PADDING_MODE_SPACES, 6
-    CallIfUnset FLAG_VILLA_FURNITURE_NIGHT_TABLE, _1D65
-    CallIfSet FLAG_VILLA_FURNITURE_NIGHT_TABLE, _1D6F
+    CallIfUnset FLAG_VILLA_FURNITURE_NIGHT_TABLE, Villa_AddMenuEntryNightTableAvailable
+    CallIfSet FLAG_VILLA_FURNITURE_NIGHT_TABLE, Villa_AddMenuEntryNightTableSoldOut
     Return
 
-_1A89:
+Villa_AddMenuEntryTV:
     BufferValuePaddingDigits 0, 220000, PADDING_MODE_SPACES, 6
-    CallIfUnset FLAG_VILLA_FURNITURE_TV, _1D79
-    CallIfSet FLAG_VILLA_FURNITURE_TV, _1D83
+    CallIfUnset FLAG_VILLA_FURNITURE_TV, Villa_AddMenuEntryTVAvailable
+    CallIfSet FLAG_VILLA_FURNITURE_TV, Villa_AddMenuEntryTVSoldOut
     Return
 
-_1AAA:
+Villa_AddMenuEntryAudioSystem:
     BufferValuePaddingDigits 0, 160000, PADDING_MODE_SPACES, 6
-    CallIfUnset FLAG_VILLA_FURNITURE_AUDIO_SYSTEM, _1D8D
-    CallIfSet FLAG_VILLA_FURNITURE_AUDIO_SYSTEM, _1D97
+    CallIfUnset FLAG_VILLA_FURNITURE_AUDIO_SYSTEM, Villa_AddMenuEntryAudioSystemAvailable
+    CallIfSet FLAG_VILLA_FURNITURE_AUDIO_SYSTEM, Villa_AddMenuEntryAudioSystemSoldOut
     Return
 
-_1ACB:
+Villa_AddMenuEntryBookshelf:
     BufferValuePaddingDigits 0, 150000, PADDING_MODE_SPACES, 6
-    CallIfUnset FLAG_VILLA_FURNITURE_BOOKSHELF, _1DA1
-    CallIfSet FLAG_VILLA_FURNITURE_BOOKSHELF, _1DAB
+    CallIfUnset FLAG_VILLA_FURNITURE_BOOKSHELF, Villa_AddMenuEntryBookshelfAvailable
+    CallIfSet FLAG_VILLA_FURNITURE_BOOKSHELF, Villa_AddMenuEntryBookshelfSoldOut
     Return
 
-_1AEC:
+Villa_AddMenuEntryRack:
     BufferValuePaddingDigits 0, 127000, PADDING_MODE_SPACES, 6
-    CallIfUnset FLAG_VILLA_FURNITURE_RACK, _1DB5
-    CallIfSet FLAG_VILLA_FURNITURE_RACK, _1DBF
+    CallIfUnset FLAG_VILLA_FURNITURE_RACK, Villa_AddMenuEntryRackAvailable
+    CallIfSet FLAG_VILLA_FURNITURE_RACK, Villa_AddMenuEntryRackSoldOut
     Return
 
-_1B0D:
+Villa_AddMenuEntryHouseplant:
     BufferValuePaddingDigits 0, 120000, PADDING_MODE_SPACES, 6
-    CallIfUnset FLAG_VILLA_FURNITURE_HOUSEPLANT, _1DC9
-    CallIfSet FLAG_VILLA_FURNITURE_HOUSEPLANT, _1DD3
+    CallIfUnset FLAG_VILLA_FURNITURE_HOUSEPLANT, Villa_AddMenuEntryHouseplantAvailable
+    CallIfSet FLAG_VILLA_FURNITURE_HOUSEPLANT, Villa_AddMenuEntryHouseplantSoldOut
     Return
 
-_1B2E:
+Villa_AddMenuEntryPCDesk:
     BufferValuePaddingDigits 0, 168000, PADDING_MODE_SPACES, 6
-    CallIfUnset FLAG_VILLA_FURNITURE_PC_DESK, _1DDD
-    CallIfSet FLAG_VILLA_FURNITURE_PC_DESK, _1DE7
+    CallIfUnset FLAG_VILLA_FURNITURE_PC_DESK, Villa_AddMenuEntryPCDeskAvailable
+    CallIfSet FLAG_VILLA_FURNITURE_PC_DESK, Villa_AddMenuEntryPCDeskSoldOut
     Return
 
-_1B4F:
-    GoToIfUnset FLAG_VILLA_FURNITURE_RACK, _1D13
+Villa_TryAddMenuEntryMusicBox:
+    GoToIfUnset FLAG_VILLA_FURNITURE_RACK, Villa_DontAddMenuEntry
     BufferValuePaddingDigits 0, 25300, PADDING_MODE_SPACES, 6
-    CallIfUnset FLAG_VILLA_FURNITURE_MUSIC_BOX, _1DF1
-    CallIfSet FLAG_VILLA_FURNITURE_MUSIC_BOX, _1DFB
+    CallIfUnset FLAG_VILLA_FURNITURE_MUSIC_BOX, Villa_AddMenuEntryMusicBoxAvailable
+    CallIfSet FLAG_VILLA_FURNITURE_MUSIC_BOX, Villa_AddMenuEntryMusicBoxSoldOut
     Return
 
-_1B7B:
-    ScrCmd_30F 13, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _1D13
+Villa_TryAddMenuEntryPokemonBust:
+    CheckMetFurnitureRequirements VILLA_FURNITURE_POKEMON_BUST + 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, Villa_DontAddMenuEntry
     BufferValuePaddingDigits 0, 150000, PADDING_MODE_SPACES, 6
-    CallIfUnset FLAG_VILLA_FURNITURE_POKEMON_BUST, _1E05
-    CallIfSet FLAG_VILLA_FURNITURE_POKEMON_BUST, _1E0F
+    CallIfUnset FLAG_VILLA_FURNITURE_POKEMON_BUST, Villa_AddMenuEntryPokemonBustAvailable
+    CallIfSet FLAG_VILLA_FURNITURE_POKEMON_BUST, Villa_AddMenuEntryPokemonBustSoldOut
     Return
 
-_1BAF:
-    ScrCmd_30F 14, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _1D13
+Villa_TryAddMenuEntryPokemonBustSilver:
+    CheckMetFurnitureRequirements VILLA_FURNITURE_POKEMON_BUST_SILVER + 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, Villa_DontAddMenuEntry
     BufferValuePaddingDigits 0, 150000, PADDING_MODE_SPACES, 6
-    CallIfUnset FLAG_VILLA_FURNITURE_POKEMON_BUST_SILVER, _1E19
-    CallIfSet FLAG_VILLA_FURNITURE_POKEMON_BUST_SILVER, _1E23
+    CallIfUnset FLAG_VILLA_FURNITURE_POKEMON_BUST_SILVER, Villa_AddMenuEntryPokemonBustSilverAvailable
+    CallIfSet FLAG_VILLA_FURNITURE_POKEMON_BUST_SILVER, Villa_AddMenuEntryPokemonBustSilverSoldOut
     Return
 
-_1BE3:
-    ScrCmd_30F 15, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _1D13
+Villa_TryAddMenuEntryPiano:
+    CheckMetFurnitureRequirements VILLA_FURNITURE_PIANO + 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, Villa_DontAddMenuEntry
     BufferValuePaddingDigits 0, 146700, PADDING_MODE_SPACES, 6
-    CallIfUnset FLAG_VILLA_FURNITURE_PIANO, _1E2D
-    CallIfSet FLAG_VILLA_FURNITURE_PIANO, _1E37
+    CallIfUnset FLAG_VILLA_FURNITURE_PIANO, Villa_AddMenuEntryPianoAvailable
+    CallIfSet FLAG_VILLA_FURNITURE_PIANO, Villa_AddMenuEntryPianoSoldOut
     Return
 
-_1C17:
-    ScrCmd_30F 16, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _1D13
+Villa_TryAddMenuEntryGuestSet:
+    CheckMetFurnitureRequirements VILLA_FURNITURE_GUEST_SET + 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, Villa_DontAddMenuEntry
     BufferValuePaddingDigits 0, 208000, PADDING_MODE_SPACES, 6
-    CallIfUnset FLAG_VILLA_FURNITURE_GUEST_SET, _1E41
-    CallIfSet FLAG_VILLA_FURNITURE_GUEST_SET, _1E4B
+    CallIfUnset FLAG_VILLA_FURNITURE_GUEST_SET, Villa_AddMenuEntryGuestSetAvailable
+    CallIfSet FLAG_VILLA_FURNITURE_GUEST_SET, Villa_AddMenuEntryGuestSetSoldOut
     Return
 
-_1C4B:
-    ScrCmd_30F 17, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _1D13
+Villa_TryAddMenuEntryWallClock:
+    CheckMetFurnitureRequirements VILLA_FURNITURE_WALL_CLOCK + 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, Villa_DontAddMenuEntry
     BufferValuePaddingDigits 0, 52000, PADDING_MODE_SPACES, 6
-    CallIfUnset FLAG_VILLA_FURNITURE_WALL_CLOCK, _1E55
-    CallIfSet FLAG_VILLA_FURNITURE_WALL_CLOCK, _1E5F
+    CallIfUnset FLAG_VILLA_FURNITURE_WALL_CLOCK, Villa_AddMenuEntryWallClockAvailable
+    CallIfSet FLAG_VILLA_FURNITURE_WALL_CLOCK, Villa_AddMenuEntryWallClockSoldOut
     Return
 
-_1C7F:
-    ScrCmd_30F 18, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _1D13
+Villa_TryAddMenuEntryMasterpiece:
+    CheckMetFurnitureRequirements VILLA_FURNITURE_MASTERPIECE + 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, Villa_DontAddMenuEntry
     BufferValuePaddingDigits 0, 140000, PADDING_MODE_SPACES, 6
-    CallIfUnset FLAG_VILLA_FURNITURE_MASTERPIECE, _1E69
-    CallIfSet FLAG_VILLA_FURNITURE_MASTERPIECE, _1E73
+    CallIfUnset FLAG_VILLA_FURNITURE_MASTERPIECE, Villa_AddMenuEntryMasterpieceAvailable
+    CallIfSet FLAG_VILLA_FURNITURE_MASTERPIECE, Villa_AddMenuEntryMasterpieceSoldOut
     Return
 
-_1CB3:
-    GoToIfUnset FLAG_VILLA_FURNITURE_GUEST_SET, _1D13
+Villa_TryAddMenuEntryTeaSet:
+    GoToIfUnset FLAG_VILLA_FURNITURE_GUEST_SET, Villa_DontAddMenuEntry
     BufferValuePaddingDigits 0, 108000, PADDING_MODE_SPACES, 6
-    CallIfUnset FLAG_VILLA_FURNITURE_TEA_SET, _1E7D
-    CallIfSet FLAG_VILLA_FURNITURE_TEA_SET, _1E87
+    CallIfUnset FLAG_VILLA_FURNITURE_TEA_SET, Villa_AddMenuEntryTeaSetAvailable
+    CallIfSet FLAG_VILLA_FURNITURE_TEA_SET, Villa_AddMenuEntryTeaSetSoldOut
     Return
 
-_1CDF:
-    ScrCmd_30F 20, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _1D13
+Villa_TryAddMenuEntryChandelier:
+    CheckMetFurnitureRequirements VILLA_FURNITURE_CHANDELIER + 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, Villa_DontAddMenuEntry
     BufferValuePaddingDigits 0, 120000, PADDING_MODE_SPACES, 6
-    CallIfUnset FLAG_VILLA_FURNITURE_CHANDELIER, _1E91
-    CallIfSet FLAG_VILLA_FURNITURE_CHANDELIER, _1E9B
+    CallIfUnset FLAG_VILLA_FURNITURE_CHANDELIER, Villa_AddMenuEntryChandelierAvailable
+    CallIfSet FLAG_VILLA_FURNITURE_CHANDELIER, Villa_AddMenuEntryChandelierSoldOut
     Return
 
-_1D13:
+Villa_DontAddMenuEntry:
     Return
 
-_1D15:
-    AddListMenuEntry 149, 0
+Villa_AddMenuEntryTableAvailable:
+    AddListMenuEntry Villa_Text_EntryTableAvailable, 0
     Return
 
-_1D1F:
-    AddListMenuEntry 169, 0
+Villa_AddMenuEntryTableSoldOut:
+    AddListMenuEntry Villa_Text_EntryTableSoldOut, 0
     Return
 
-_1D29:
-    AddListMenuEntry 150, 1
+Villa_AddMenuEntryBigSofaAvailable:
+    AddListMenuEntry Villa_Text_EntryBigSofaAvailable, 1
     Return
 
-_1D33:
-    AddListMenuEntry 170, 1
+Villa_AddMenuEntryBigSofaSoldOut:
+    AddListMenuEntry Villa_Text_EntryBigSofaSoldOut, 1
     Return
 
-_1D3D:
-    AddListMenuEntry 151, 2
+Villa_AddMenuEntrySmallSofaAvailable:
+    AddListMenuEntry Villa_Text_EntrySmallSofaAvailable, 2
     Return
 
-_1D47:
-    AddListMenuEntry 171, 2
+Villa_AddMenuEntrySmallSofaSoldOut:
+    AddListMenuEntry Villa_Text_EntrySmallSofaSoldOut, 2
     Return
 
-_1D51:
-    AddListMenuEntry 152, 3
+Villa_AddMenuEntryBedAvailable:
+    AddListMenuEntry Villa_Text_EntryBedAvailable, 3
     Return
 
-_1D5B:
-    AddListMenuEntry 172, 3
+Villa_AddMenuEntryBedSoldOut:
+    AddListMenuEntry Villa_Text_EntryBedSoldOut, 3
     Return
 
-_1D65:
-    AddListMenuEntry 153, 4
+Villa_AddMenuEntryNightTableAvailable:
+    AddListMenuEntry Villa_Text_EntryNightTableAvailable, 4
     Return
 
-_1D6F:
-    AddListMenuEntry 173, 4
+Villa_AddMenuEntryNightTableSoldOut:
+    AddListMenuEntry Villa_Text_EntryNightTableSoldOut, 4
     Return
 
-_1D79:
-    AddListMenuEntry 154, 5
+Villa_AddMenuEntryTVAvailable:
+    AddListMenuEntry Villa_Text_EntryTVAvailable, 5
     Return
 
-_1D83:
-    AddListMenuEntry 174, 5
+Villa_AddMenuEntryTVSoldOut:
+    AddListMenuEntry Villa_Text_EntryTVSoldOut, 5
     Return
 
-_1D8D:
-    AddListMenuEntry 155, 6
+Villa_AddMenuEntryAudioSystemAvailable:
+    AddListMenuEntry Villa_Text_EntryAudioSystemAvailable, 6
     Return
 
-_1D97:
-    AddListMenuEntry 175, 6
+Villa_AddMenuEntryAudioSystemSoldOut:
+    AddListMenuEntry Villa_Text_EntryAudioSystemSoldOut, 6
     Return
 
-_1DA1:
-    AddListMenuEntry 156, 7
+Villa_AddMenuEntryBookshelfAvailable:
+    AddListMenuEntry Villa_Text_EntryBookshelfAvailable, 7
     Return
 
-_1DAB:
-    AddListMenuEntry 176, 7
+Villa_AddMenuEntryBookshelfSoldOut:
+    AddListMenuEntry Villa_Text_EntryBookshelfSoldOut, 7
     Return
 
-_1DB5:
-    AddListMenuEntry 157, 8
+Villa_AddMenuEntryRackAvailable:
+    AddListMenuEntry Villa_Text_EntryRackAvailable, 8
     Return
 
-_1DBF:
-    AddListMenuEntry 177, 8
+Villa_AddMenuEntryRackSoldOut:
+    AddListMenuEntry Villa_Text_EntryRackSoldOut, 8
     Return
 
-_1DC9:
-    AddListMenuEntry 158, 9
+Villa_AddMenuEntryHouseplantAvailable:
+    AddListMenuEntry Villa_Text_EntryHouseplantAvailable, 9
     Return
 
-_1DD3:
-    AddListMenuEntry 178, 9
+Villa_AddMenuEntryHouseplantSoldOut:
+    AddListMenuEntry Villa_Text_EntryHouseplantSoldOut, 9
     Return
 
-_1DDD:
-    AddListMenuEntry 159, 10
+Villa_AddMenuEntryPCDeskAvailable:
+    AddListMenuEntry Villa_Text_EntryPCDeskAvailable, 10
     Return
 
-_1DE7:
-    AddListMenuEntry 179, 10
+Villa_AddMenuEntryPCDeskSoldOut:
+    AddListMenuEntry Villa_Text_EntryPCDeskSoldOut, 10
     Return
 
-_1DF1:
-    AddListMenuEntry 160, 11
+Villa_AddMenuEntryMusicBoxAvailable:
+    AddListMenuEntry Villa_Text_EntryMusicBoxAvailable, 11
     Return
 
-_1DFB:
-    AddListMenuEntry 180, 11
+Villa_AddMenuEntryMusicBoxSoldOut:
+    AddListMenuEntry Villa_Text_EntryMusicBoxSoldOut, 11
     Return
 
-_1E05:
-    AddListMenuEntry 161, 12
+Villa_AddMenuEntryPokemonBustAvailable:
+    AddListMenuEntry Villa_Text_EntryPokemonBustAvailable, 12
     Return
 
-_1E0F:
-    AddListMenuEntry 181, 12
+Villa_AddMenuEntryPokemonBustSoldOut:
+    AddListMenuEntry Villa_Text_EntryPokemonBustSoldOut, 12
     Return
 
-_1E19:
-    AddListMenuEntry 162, 13
+Villa_AddMenuEntryPokemonBustSilverAvailable:
+    AddListMenuEntry Villa_Text_EntryPokemonBustSilverAvailable, 13
     Return
 
-_1E23:
-    AddListMenuEntry 182, 13
+Villa_AddMenuEntryPokemonBustSilverSoldOut:
+    AddListMenuEntry Villa_Text_EntryPokemonBustSilverSoldOut, 13
     Return
 
-_1E2D:
-    AddListMenuEntry 163, 14
+Villa_AddMenuEntryPianoAvailable:
+    AddListMenuEntry Villa_Text_EntryPianoAvailable, 14
     Return
 
-_1E37:
-    AddListMenuEntry 183, 14
+Villa_AddMenuEntryPianoSoldOut:
+    AddListMenuEntry Villa_Text_EntryPianoSoldOut, 14
     Return
 
-_1E41:
-    AddListMenuEntry 164, 15
+Villa_AddMenuEntryGuestSetAvailable:
+    AddListMenuEntry Villa_Text_EntryGuestSetAvailable, 15
     Return
 
-_1E4B:
-    AddListMenuEntry 184, 15
+Villa_AddMenuEntryGuestSetSoldOut:
+    AddListMenuEntry Villa_Text_EntryGuestSetSoldOut, 15
     Return
 
-_1E55:
-    AddListMenuEntry 165, 16
+Villa_AddMenuEntryWallClockAvailable:
+    AddListMenuEntry Villa_Text_EntryWallClockAvailable, 16
     Return
 
-_1E5F:
-    AddListMenuEntry 185, 16
+Villa_AddMenuEntryWallClockSoldOut:
+    AddListMenuEntry Villa_Text_EntryWallClockSoldOut, 16
     Return
 
-_1E69:
-    AddListMenuEntry 166, 17
+Villa_AddMenuEntryMasterpieceAvailable:
+    AddListMenuEntry Villa_Text_EntryMasterpieceAvailable, 17
     Return
 
-_1E73:
-    AddListMenuEntry 186, 17
+Villa_AddMenuEntryMasterpieceSoldOut:
+    AddListMenuEntry Villa_Text_EntryMasterpieceSoldOut, 17
     Return
 
-_1E7D:
-    AddListMenuEntry 167, 18
+Villa_AddMenuEntryTeaSetAvailable:
+    AddListMenuEntry Villa_Text_EntryTeaSetAvailable, 18
     Return
 
-_1E87:
-    AddListMenuEntry 187, 18
+Villa_AddMenuEntryTeaSetSoldOut:
+    AddListMenuEntry Villa_Text_EntryTeaSetSoldOut, 18
     Return
 
-_1E91:
-    AddListMenuEntry 168, 19
+Villa_AddMenuEntryChandelierAvailable:
+    AddListMenuEntry Villa_Text_EntryChandelierAvailable, 19
     Return
 
-_1E9B:
-    AddListMenuEntry 188, 19
+Villa_AddMenuEntryChandelierSoldOut:
+    AddListMenuEntry Villa_Text_EntryChandelierSoldOut, 19
     Return
 
-_1EA5:
-    GoToIfSet FLAG_VILLA_FURNITURE_TABLE, _1FA9
+Villa_CheckCanBuyTable:
+    GoToIfSet FLAG_VILLA_FURNITURE_TABLE, Villa_CantBuyFurniture
     Return
 
-_1EB2:
-    GoToIfSet FLAG_VILLA_FURNITURE_BIG_SOFA, _1FA9
+Villa_CheckCanBuyBigSofa:
+    GoToIfSet FLAG_VILLA_FURNITURE_BIG_SOFA, Villa_CantBuyFurniture
     Return
 
-_1EBF:
-    GoToIfSet FLAG_VILLA_FURNITURE_SMALL_SOFA, _1FA9
+Villa_CheckCanBuySmallSofa:
+    GoToIfSet FLAG_VILLA_FURNITURE_SMALL_SOFA, Villa_CantBuyFurniture
     Return
 
-_1ECC:
-    GoToIfSet FLAG_VILLA_FURNITURE_BED, _1FA9
+Villa_CheckCanBuyBedSofa:
+    GoToIfSet FLAG_VILLA_FURNITURE_BED, Villa_CantBuyFurniture
     Return
 
-_1ED9:
-    GoToIfSet FLAG_VILLA_FURNITURE_NIGHT_TABLE, _1FA9
+Villa_CheckCanBuyNightTable:
+    GoToIfSet FLAG_VILLA_FURNITURE_NIGHT_TABLE, Villa_CantBuyFurniture
     Return
 
-_1EE6:
-    GoToIfSet FLAG_VILLA_FURNITURE_TV, _1FA9
+Villa_CheckCanBuyTV:
+    GoToIfSet FLAG_VILLA_FURNITURE_TV, Villa_CantBuyFurniture
     Return
 
-_1EF3:
-    GoToIfSet FLAG_VILLA_FURNITURE_AUDIO_SYSTEM, _1FA9
+Villa_CheckCanBuyAudioSystem:
+    GoToIfSet FLAG_VILLA_FURNITURE_AUDIO_SYSTEM, Villa_CantBuyFurniture
     Return
 
-_1F00:
-    GoToIfSet FLAG_VILLA_FURNITURE_BOOKSHELF, _1FA9
+Villa_CheckCanBuyBookshelf:
+    GoToIfSet FLAG_VILLA_FURNITURE_BOOKSHELF, Villa_CantBuyFurniture
     Return
 
-_1F0D:
-    GoToIfSet FLAG_VILLA_FURNITURE_RACK, _1FA9
+Villa_CheckCanBuyRack:
+    GoToIfSet FLAG_VILLA_FURNITURE_RACK, Villa_CantBuyFurniture
     Return
 
-_1F1A:
-    GoToIfSet FLAG_VILLA_FURNITURE_HOUSEPLANT, _1FA9
+Villa_CheckCanBuyHouseplant:
+    GoToIfSet FLAG_VILLA_FURNITURE_HOUSEPLANT, Villa_CantBuyFurniture
     Return
 
-_1F27:
-    GoToIfSet FLAG_VILLA_FURNITURE_PC_DESK, _1FA9
+Villa_CheckCanBuyPCDesk:
+    GoToIfSet FLAG_VILLA_FURNITURE_PC_DESK, Villa_CantBuyFurniture
     Return
 
-_1F34:
-    GoToIfSet FLAG_VILLA_FURNITURE_MUSIC_BOX, _1FA9
+Villa_CheckCanBuyMusicBox:
+    GoToIfSet FLAG_VILLA_FURNITURE_MUSIC_BOX, Villa_CantBuyFurniture
     Return
 
-_1F41:
-    GoToIfSet FLAG_VILLA_FURNITURE_POKEMON_BUST, _1FA9
+Villa_CheckCanBuyPokemonBust:
+    GoToIfSet FLAG_VILLA_FURNITURE_POKEMON_BUST, Villa_CantBuyFurniture
     Return
 
-_1F4E:
-    GoToIfSet FLAG_VILLA_FURNITURE_POKEMON_BUST_SILVER, _1FA9
+Villa_CheckCanBuyPokemonBustSilver:
+    GoToIfSet FLAG_VILLA_FURNITURE_POKEMON_BUST_SILVER, Villa_CantBuyFurniture
     Return
 
-_1F5B:
-    GoToIfSet FLAG_VILLA_FURNITURE_PIANO, _1FA9
+Villa_CheckCanBuyPiano:
+    GoToIfSet FLAG_VILLA_FURNITURE_PIANO, Villa_CantBuyFurniture
     Return
 
-_1F68:
-    GoToIfSet FLAG_VILLA_FURNITURE_GUEST_SET, _1FA9
+Villa_CheckCanBuyGuestSet:
+    GoToIfSet FLAG_VILLA_FURNITURE_GUEST_SET, Villa_CantBuyFurniture
     Return
 
-_1F75:
-    GoToIfSet FLAG_VILLA_FURNITURE_WALL_CLOCK, _1FA9
+Villa_CheckCanBuyWallClock:
+    GoToIfSet FLAG_VILLA_FURNITURE_WALL_CLOCK, Villa_CantBuyFurniture
     Return
 
-_1F82:
-    GoToIfSet FLAG_VILLA_FURNITURE_MASTERPIECE, _1FA9
+Villa_CheckCanBuyMasterpiece:
+    GoToIfSet FLAG_VILLA_FURNITURE_MASTERPIECE, Villa_CantBuyFurniture
     Return
 
-_1F8F:
-    GoToIfSet FLAG_VILLA_FURNITURE_TEA_SET, _1FA9
+Villa_CheckCanBuyTeaSet:
+    GoToIfSet FLAG_VILLA_FURNITURE_TEA_SET, Villa_CantBuyFurniture
     Return
 
-_1F9C:
-    GoToIfSet FLAG_VILLA_FURNITURE_CHANDELIER, _1FA9
+Villa_CheckCanBuyChandelier:
+    GoToIfSet FLAG_VILLA_FURNITURE_CHANDELIER, Villa_CantBuyFurniture
     Return
 
-_1FA9:
-    SetVar VAR_0x8003, 0
+Villa_CantBuyFurniture:
+    SetVar VAR_0x8003, FALSE
     Return
 
 Villa_CheckMoney_Table:
@@ -2266,104 +2267,104 @@ Villa_BuyFurniture_Chandelier:
     SetFlag FLAG_VILLA_FURNITURE_CHANDELIER
     Return
 
-_2209:
-    CallIfEq VAR_RESORT_VILLA_VISITOR, 0, _22CE
-    CallIfEq VAR_RESORT_VILLA_VISITOR, 1, _22D4
-    CallIfEq VAR_RESORT_VILLA_VISITOR, 2, _22DA
-    CallIfEq VAR_RESORT_VILLA_VISITOR, 3, _22EB
-    CallIfEq VAR_RESORT_VILLA_VISITOR, 4, _22F1
-    CallIfEq VAR_RESORT_VILLA_VISITOR, 5, _2302
-    CallIfEq VAR_RESORT_VILLA_VISITOR, 6, _2313
-    CallIfEq VAR_RESORT_VILLA_VISITOR, 7, _2324
-    CallIfEq VAR_RESORT_VILLA_VISITOR, 8, _2335
-    CallIfEq VAR_RESORT_VILLA_VISITOR, 9, _2346
-    CallIfEq VAR_RESORT_VILLA_VISITOR, 10, _2357
-    CallIfEq VAR_RESORT_VILLA_VISITOR, 11, _2368
-    CallIfEq VAR_RESORT_VILLA_VISITOR, 12, _236E
-    CallIfEq VAR_RESORT_VILLA_VISITOR, 13, _237F
-    CallIfEq VAR_RESORT_VILLA_VISITOR, 14, _2389
+Villa_TryRemoveVisitor:
+    CallIfEq VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_RIVAL, Villa_RemoveRival
+    CallIfEq VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_COUNTERPART, Villa_RemoveCounterpart
+    CallIfEq VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_PROF_ROWAN, Villa_TryRemoveRowan
+    CallIfEq VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_MOM, Villa_RemoveMom
+    CallIfEq VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_ROARK, Villa_TryRemoveRoark
+    CallIfEq VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_GARDENIA, Villa_TryRemoveGardenia
+    CallIfEq VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_FANTINA, Villa_TryRemoveFantina
+    CallIfEq VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_MAYLENE, Villa_TryRemoveMaylene
+    CallIfEq VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_CRASHER_WAKE, Villa_TryRemoveWake
+    CallIfEq VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_BYRON, Villa_TryRemoveByron
+    CallIfEq VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_CANDICE, Villa_TryRemoveCandice
+    CallIfEq VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_VOLKNER, Villa_RemoveVolkner
+    CallIfEq VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_CYNTHIA, Villa_TryRemoveCynthia
+    CallIfEq VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_FLINT_VOLKNER, Villa_RemoveFlintAndVolkner
+    CallIfEq VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_MAYLENE_CANDICE, Villa_RemoveMayleneAndCandice
     Return
 
-_22CE:
-    RemoveObject 1
+Villa_RemoveRival:
+    RemoveObject LOCALID_RIVAL
     Return
 
-_22D4:
-    RemoveObject 0
+Villa_RemoveCounterpart:
+    RemoveObject LOCALID_COUNTERPART
     Return
 
-_22DA:
-    GoToIfUnset FLAG_VILLA_VISITOR_INSIDE, _2395
-    RemoveObject 2
+Villa_TryRemoveRowan:
+    GoToIfUnset FLAG_VILLA_VISITOR_INSIDE, Villa_HideOutsideVisitors
+    RemoveObject LOCALID_PROF_ROWAN
     Return
 
-_22EB:
-    RemoveObject 3
+Villa_RemoveMom:
+    RemoveObject LOCALID_MOM
     Return
 
-_22F1:
-    GoToIfUnset FLAG_VILLA_VISITOR_INSIDE, _2395
-    RemoveObject 4
+Villa_TryRemoveRoark:
+    GoToIfUnset FLAG_VILLA_VISITOR_INSIDE, Villa_HideOutsideVisitors
+    RemoveObject LOCALID_ROARK
     Return
 
-_2302:
-    GoToIfUnset FLAG_VILLA_VISITOR_INSIDE, _2395
-    RemoveObject 5
+Villa_TryRemoveGardenia:
+    GoToIfUnset FLAG_VILLA_VISITOR_INSIDE, Villa_HideOutsideVisitors
+    RemoveObject LOCALID_GARDENIA
     Return
 
-_2313:
-    GoToIfUnset FLAG_VILLA_VISITOR_OUTSIDE, _2393
-    RemoveObject 6
+Villa_TryRemoveFantina:
+    GoToIfUnset FLAG_VILLA_VISITOR_OUTSIDE, Villa_DontRemoveVisitor
+    RemoveObject LOCALID_FANTINA
     Return
 
-_2324:
-    GoToIfUnset FLAG_VILLA_VISITOR_INSIDE, _2395
-    RemoveObject 7
+Villa_TryRemoveMaylene:
+    GoToIfUnset FLAG_VILLA_VISITOR_INSIDE, Villa_HideOutsideVisitors
+    RemoveObject LOCALID_MAYLENE
     Return
 
-_2335:
-    GoToIfUnset FLAG_VILLA_VISITOR_OUTSIDE, _2393
-    RemoveObject 9
+Villa_TryRemoveWake:
+    GoToIfUnset FLAG_VILLA_VISITOR_OUTSIDE, Villa_DontRemoveVisitor
+    RemoveObject LOCALID_CRASHER_WAKE
     Return
 
-_2346:
-    GoToIfUnset FLAG_VILLA_VISITOR_INSIDE, _2395
-    RemoveObject 8
+Villa_TryRemoveByron:
+    GoToIfUnset FLAG_VILLA_VISITOR_INSIDE, Villa_HideOutsideVisitors
+    RemoveObject LOCALID_BYRON
     Return
 
-_2357:
-    GoToIfUnset FLAG_VILLA_VISITOR_OUTSIDE, _2393
-    RemoveObject 10
+Villa_TryRemoveCandice:
+    GoToIfUnset FLAG_VILLA_VISITOR_OUTSIDE, Villa_DontRemoveVisitor
+    RemoveObject LOCALID_CANDICE
     Return
 
-_2368:
-    RemoveObject 11
+Villa_RemoveVolkner:
+    RemoveObject LOCALID_VOLKNER
     Return
 
-_236E:
-    GoToIfUnset FLAG_VILLA_VISITOR_OUTSIDE, _2393
-    RemoveObject 12
+Villa_TryRemoveCynthia:
+    GoToIfUnset FLAG_VILLA_VISITOR_OUTSIDE, Villa_DontRemoveVisitor
+    RemoveObject LOCALID_CYNTHIA
     Return
 
-_237F:
-    RemoveObject 13
-    RemoveObject 11
+Villa_RemoveFlintAndVolkner:
+    RemoveObject LOCALID_FLINT
+    RemoveObject LOCALID_VOLKNER
     Return
 
-_2389:
-    RemoveObject 7
-    RemoveObject 10
+Villa_RemoveMayleneAndCandice:
+    RemoveObject LOCALID_MAYLENE
+    RemoveObject LOCALID_CANDICE
     Return
 
-_2393:
+Villa_DontRemoveVisitor:
     Return
 
-_2395:
-    SetFlag FLAG_UNK_0x02AA
-    SetFlag FLAG_UNK_0x02AD
-    SetFlag FLAG_UNK_0x02AF
-    SetFlag FLAG_UNK_0x02B2
-    SetFlag FLAG_UNK_0x02B5
+Villa_HideOutsideVisitors:
+    SetFlag FLAG_HIDE_RESORT_AREA_PROF_ROWAN
+    SetFlag FLAG_HIDE_RESORT_AREA_ROARK
+    SetFlag FLAG_HIDE_RESORT_AREA_GARDENIA
+    SetFlag FLAG_HIDE_RESORT_AREA_MAYLENE
+    SetFlag FLAG_HIDE_RESORT_AREA_BYRON
     Return
 
     .balign 4, 0

@@ -10,6 +10,7 @@
 #include "generated/game_records.h"
 #include "generated/items.h"
 #include "generated/species.h"
+#include "generated/villa_furniture_type.h"
 
 #include "struct_decls/map_object.h"
 #include "struct_decls/map_object_manager.h"
@@ -740,91 +741,91 @@ BOOL ScrCmd_GetPartyMonForm2(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_30F(ScriptContext *param0)
+BOOL ScrCmd_CheckMetFurnitureRequirements(ScriptContext *ctx)
 {
-    VarsFlags *v0;
-    GameRecords *v1;
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    u16 v3 = ScriptContext_GetVar(param0);
-    u16 *v4 = ScriptContext_GetVarPointer(param0);
+    VarsFlags *varsFlags;
+    GameRecords *gameRecords;
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    u16 furniture = ScriptContext_GetVar(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    v0 = SaveData_GetVarsFlags(fieldSystem->saveData);
-    v1 = SaveData_GetGameRecords(fieldSystem->saveData);
-    *v4 = 1;
+    varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
+    gameRecords = SaveData_GetGameRecords(fieldSystem->saveData);
+    *destVar = TRUE;
 
-    switch (v3) {
-    case 13:
-        if (GameRecords_GetRecordValue(v1, RECORD_BATTLE_TOWER_VICTORIES) < 1) {
-            *v4 = 0;
+    switch (furniture) {
+    case VILLA_FURNITURE_POKEMON_BUST + 1:
+        if (GameRecords_GetRecordValue(gameRecords, RECORD_BATTLE_TOWER_VICTORIES) < 1) {
+            *destVar = FALSE;
         }
 
-        if (GameRecords_GetRecordValue(v1, RECORD_UNK_060) < 1) {
-            *v4 = 0;
+        if (GameRecords_GetRecordValue(gameRecords, RECORD_BATTLE_FACTORY_VICTORIES) < 1) {
+            *destVar = FALSE;
         }
 
-        if (GameRecords_GetRecordValue(v1, RECORD_UNK_061) < 1) {
-            *v4 = 0;
+        if (GameRecords_GetRecordValue(gameRecords, RECORD_BATTLE_CASTLE_VICTORIES) < 1) {
+            *destVar = FALSE;
         }
 
-        if (GameRecords_GetRecordValue(v1, RECORD_BATTLE_HALL_VICTORIES) < 1) {
-            *v4 = 0;
+        if (GameRecords_GetRecordValue(gameRecords, RECORD_BATTLE_HALL_VICTORIES) < 1) {
+            *destVar = FALSE;
         }
 
-        if (GameRecords_GetRecordValue(v1, RECORD_UNK_063) < 1) {
-            *v4 = 0;
+        if (GameRecords_GetRecordValue(gameRecords, RECORD_BATTLE_ARCADE_VICTORIES) < 1) {
+            *destVar = FALSE;
         }
         break;
-    case 14:
-        *v4 = 0;
+    case VILLA_FURNITURE_POKEMON_BUST_SILVER + 1:
+        *destVar = FALSE;
 
-        if (SystemVars_GetBattleFactoryPrintState(v0) >= 2) {
-            *v4 = 1;
-        }
-
-        if (SystemVars_GetBattleHallPrintState(v0) >= 2) {
-            *v4 = 1;
+        if (SystemVars_GetBattleFactoryPrintState(varsFlags) >= 2) {
+            *destVar = TRUE;
         }
 
-        if (SystemVars_GetBattleCastlePrintState(v0) >= 2) {
-            *v4 = 1;
+        if (SystemVars_GetBattleHallPrintState(varsFlags) >= 2) {
+            *destVar = TRUE;
         }
 
-        if (SystemVars_GetBattleArcadePrintState(v0) >= 2) {
-            *v4 = 1;
+        if (SystemVars_GetBattleCastlePrintState(varsFlags) >= 2) {
+            *destVar = TRUE;
         }
 
-        if (SystemVars_GetBattleTowerPrintState(v0) >= 2) {
-            *v4 = 1;
+        if (SystemVars_GetBattleArcadePrintState(varsFlags) >= 2) {
+            *destVar = TRUE;
+        }
+
+        if (SystemVars_GetBattleTowerPrintState(varsFlags) >= 2) {
+            *destVar = TRUE;
         }
         break;
-    case 15:
-        if (GameRecords_GetRecordValue(v1, RECORD_TIMES_ENTERED_HALL_OF_FAME) < 10) {
-            *v4 = 0;
+    case VILLA_FURNITURE_PIANO + 1:
+        if (GameRecords_GetRecordValue(gameRecords, RECORD_TIMES_ENTERED_HALL_OF_FAME) < 10) {
+            *destVar = FALSE;
         }
         break;
-    case 16:
-        if (GameRecords_GetRecordValue(v1, RECORD_TIMES_BATTLED_AT_BATTLEGROUND) < 50) {
-            *v4 = 0;
+    case VILLA_FURNITURE_GUEST_SET + 1:
+        if (GameRecords_GetRecordValue(gameRecords, RECORD_TIMES_BATTLED_AT_BATTLEGROUND) < 50) {
+            *destVar = FALSE;
         }
         break;
-    case 17:
-        if (GameRecords_GetRecordValue(v1, RECORD_BERRIES_PLANTED) < 50) {
-            *v4 = 0;
+    case VILLA_FURNITURE_WALL_CLOCK + 1:
+        if (GameRecords_GetRecordValue(gameRecords, RECORD_BERRIES_PLANTED) < 50) {
+            *destVar = FALSE;
         }
         break;
-    case 18:
-        if (GameRecords_GetRecordValue(v1, RECORD_EGGS_HATCHED) < 30) {
-            *v4 = 0;
+    case VILLA_FURNITURE_MASTERPIECE + 1:
+        if (GameRecords_GetRecordValue(gameRecords, RECORD_EGGS_HATCHED) < 30) {
+            *destVar = FALSE;
         }
         break;
-    case 20:
-        if (GameRecords_GetRecordValue(v1, RECORD_UNK_000) < 300000) {
-            *v4 = 0;
+    case VILLA_FURNITURE_CHANDELIER + 1:
+        if (GameRecords_GetRecordValue(gameRecords, RECORD_STEPS) < 300000) {
+            *destVar = FALSE;
         }
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
 BOOL ScrCmd_Dummy316(ScriptContext *ctx)

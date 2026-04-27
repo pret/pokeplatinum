@@ -100,13 +100,13 @@ BOOL ScrCmd_CallTVBroadcast(ScriptContext *ctx)
     } break;
     }
 
-    return 0;
+    return FALSE;
 }
 
 BOOL ScrCmd_236(ScriptContext *param0)
 {
     FieldSystem_SaveTVSegment_HiddenItemBreakingNews(param0->fieldSystem, ScriptContext_GetVar(param0));
-    return 0;
+    return FALSE;
 }
 
 BOOL ScrCmd_2B8(ScriptContext *param0)
@@ -115,27 +115,27 @@ BOOL ScrCmd_2B8(ScriptContext *param0)
     Pokemon *v1 = Party_GetPokemonBySlotIndex(v0, ScriptContext_GetVar(param0));
 
     FieldSystem_SaveTVSegment_RateThatNameChange(param0->fieldSystem, v1);
-    return 0;
+    return FALSE;
 }
 
 BOOL ScrCmd_30B(ScriptContext *param0)
 {
     FieldSystem_SaveTVSegment_PokemonStorageSpecialNewsBulletin(param0->fieldSystem);
-    return 0;
+    return FALSE;
 }
 
-BOOL ScrCmd_30C(ScriptContext *param0)
+BOOL ScrCmd_SaveTVSegmentHomeAndManorNoFurniture(ScriptContext *ctx)
 {
-    FieldSystem_SaveTVSegment_HomeAndManor_NoFurniture(param0->fieldSystem);
-    return 0;
+    FieldSystem_SaveTVSegment_HomeAndManor_NoFurniture(ctx->fieldSystem);
+    return FALSE;
 }
 
-BOOL ScrCmd_30D(ScriptContext *param0)
+BOOL ScrCmd_SaveTVSegmentHomeAndManor(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_GetVar(param0);
+    u16 furniture = ScriptContext_GetVar(ctx);
 
-    FieldSystem_SaveTVSegment_HomeAndManor(param0->fieldSystem, v0);
-    return 0;
+    FieldSystem_SaveTVSegment_HomeAndManor(ctx->fieldSystem, furniture);
+    return FALSE;
 }
 
 static const TVInterview sInterviews[TV_PROGRAM_TYPE_INTERVIEWS_NUM_SEGMENTS];
@@ -206,7 +206,7 @@ BOOL ScrCmd_27C(ScriptContext *param0)
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
 static void TVInterview_SaveResponse(FieldSystem *fieldSystem, int segmentID, u16 customMessageWord, u16 unused)
@@ -437,5 +437,5 @@ BOOL ScrCmd_329(ScriptContext *param0)
         break;
     }
 
-    return 0;
+    return FALSE;
 }

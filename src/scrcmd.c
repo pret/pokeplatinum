@@ -722,7 +722,7 @@ static u8 GetRandomBattlegroundStatTrainerID(u16 trainer1ID, u16 trainer2ID, u16
 static BOOL ScrCmd_2F6(ScriptContext *ctx);
 static BOOL ScrCmd_2F7(ScriptContext *ctx);
 static BOOL ScrCmd_2FB(ScriptContext *ctx);
-static BOOL ScrCmd_2FC(ScriptContext *ctx);
+static BOOL ScrCmd_CheckABPress(ScriptContext *ctx);
 static BOOL ScrCmd_GetRotomFormsInSave(ScriptContext *ctx);
 static BOOL ScrCmd_IncrementTrainerScore(ScriptContext *ctx);
 static BOOL ScrCmd_AddDistortionWorldMapObject(ScriptContext *ctx);
@@ -6889,18 +6889,18 @@ static BOOL ScrCmd_2FB(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_2FC(ScriptContext *ctx)
+static BOOL ScrCmd_CheckABPress(ScriptContext *ctx)
 {
-    u16 *v0 = ScriptContext_GetVarPointer(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *v0 = 0;
+    *destVar = FALSE;
 
     if (gSystem.heldKeys & PAD_BUTTON_A) {
-        *v0 = 1;
+        *destVar = TRUE;
     }
 
     if (gSystem.heldKeys & PAD_BUTTON_B) {
-        *v0 = 1;
+        *destVar = TRUE;
     }
 
     return FALSE;

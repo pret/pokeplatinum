@@ -1,11 +1,11 @@
 #include "macros/scrcmd.inc"
 
 
-    ScriptEntry _000A
+    ScriptEntry ResortAreaMart_CashierF
     ScriptEntry _0020
     ScriptEntryEnd
 
-_000A:
+ResortAreaMart_CashierF:
     PokeMartCommonWithGreeting
     End
 

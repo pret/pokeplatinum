@@ -44,7 +44,7 @@ static inline u32 HashEncodingSeed(GameRecords *records)
 
 static void EncodeGameRecords(GameRecords *records, int id)
 {
-    if (id == RECORD_UNK_000) {
+    if (id == RECORD_STEPS) {
         return;
     }
 
@@ -54,7 +54,7 @@ static void EncodeGameRecords(GameRecords *records, int id)
 
 static void DecodeGameRecords(GameRecords *records, int id)
 {
-    if (id == RECORD_UNK_000) {
+    if (id == RECORD_STEPS) {
         return;
     }
 
@@ -87,7 +87,7 @@ static u32 SetRecordValue(GameRecords *records, int id, u32 val)
 }
 
 static u8 sUsesHighLimit[MAX_RECORDS] = {
-    [RECORD_UNK_000] = TRUE,
+    [RECORD_STEPS] = TRUE,
     [RECORD_TRAINER_SCORE] = TRUE,
     [RECORD_UNK_002] = TRUE,
     [RECORD_UNK_003] = FALSE,
@@ -147,10 +147,10 @@ static u8 sUsesHighLimit[MAX_RECORDS] = {
     [RECORD_TIMES_BATTLED_AT_BATTLEGROUND] = TRUE,
     [RECORD_UNK_058] = TRUE,
     [RECORD_UNK_059] = TRUE,
-    [RECORD_UNK_060] = TRUE,
-    [RECORD_UNK_061] = TRUE,
+    [RECORD_BATTLE_FACTORY_VICTORIES] = TRUE,
+    [RECORD_BATTLE_CASTLE_VICTORIES] = TRUE,
     [RECORD_BATTLE_HALL_VICTORIES] = TRUE,
-    [RECORD_UNK_063] = TRUE,
+    [RECORD_BATTLE_ARCADE_VICTORIES] = TRUE,
     [RECORD_UNK_064] = TRUE,
     [RECORD_UNK_065] = TRUE,
     [RECORD_UNK_066] = TRUE,
@@ -307,7 +307,7 @@ static const u16 sTrainerScoreIncrements[MAX_TRAINER_SCORE_EVENTS] = {
     [TRAINER_SCORE_EVENT_UNK_46] = 15,
     [TRAINER_SCORE_EVENT_UNK_47] = 11,
     [TRAINER_SCORE_EVENT_UNK_48] = 11,
-    [TRAINER_SCORE_EVENT_UNK_49] = 10,
+    [TRAINER_SCORE_EVENT_BOUGHT_ALL_VILLA_FURNITURE] = 10,
     [TRAINER_SCORE_EVENT_UNK_50] = 10,
 };
 

@@ -6,7 +6,7 @@
     InitScriptEntryEnd
 
 InitScriptFrameTable:
-    InitScriptGoToIfEqual VAR_UNK_0x40A1, 0, 41
+    InitScriptGoToIfEqual VAR_VILLA_STATE, 0, 41
     InitScriptFrameTableEnd
 
     InitScriptEnd

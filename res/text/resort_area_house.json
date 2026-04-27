@@ -2,7 +2,7 @@
   "key": 50199,
   "messages": [
     {
-      "id": "pl_msg_00000604_00000",
+      "id": "ResortAreaHouse_Text_AllINeedIsTV",
       "en_US": [
         "All I need to be happy is my TV.\n",
         "That’s all I need.\r",
@@ -17,7 +17,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000604_00001",
+      "id": "ResortAreaHouse_Text_TheresBigTrouble",
       "en_US": [
         "There’s big trouble!\n",
         "They’re saying the volcano’ll erupt!\r",
@@ -25,7 +25,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000604_00002",
+      "id": "ResortAreaHouse_Text_BestTrainersAtFrontier",
       "en_US": [
         "The best Trainers from all over\n",
         "congregate at the Battle Frontier.\r",
@@ -36,7 +36,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000604_00003",
+      "id": "ResortAreaHouse_Text_SeenEveryPokemonSinnohMale",
       "en_US": [
         "You’ve seen every Pokémon in Sinnoh!\n",
         "That is so cool!\r",
@@ -45,7 +45,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000604_00004",
+      "id": "ResortAreaHouse_Text_SeenEveryPokemonSinnohFemale",
       "en_US": [
         "You’ve seen every Pokémon in Sinnoh!\n",
         "That is so cool!\r",

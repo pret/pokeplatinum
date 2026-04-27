@@ -214,14 +214,9 @@ BOOL ScrCmd_SetInitialVolumeForSequence(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_SetScene22(ScriptContext *ctx)
+BOOL ScrCmd_SetScenePlayBGMMusicBox(ScriptContext *ctx)
 {
-    if (gSystem.heldKeys & PAD_KEY_UP) {
-        Sound_SetSceneAndPlayBGM(SOUND_SCENE_22, SEQ_PL_TOWN02, 1);
-    } else {
-        Sound_SetSceneAndPlayBGM(SOUND_SCENE_22, SEQ_PL_TOWN02, 1);
-    }
-
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_VILLA_MUSIC_BOX, SEQ_PL_TOWN02, 1);
     return TRUE;
 }
 

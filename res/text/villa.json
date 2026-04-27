@@ -2,7 +2,7 @@
   "key": 17438,
   "messages": [
     {
-      "id": "Villa_Text_TheOriginalOwnersFurnitureIsGone",
+      "id": "Villa_Text_OriginalFurnitureIsGone",
       "en_US": [
         "The original owner’s furniture is gone,\n",
         "and I didn’t buy any.\r",
@@ -16,14 +16,14 @@
       ]
     },
     {
-      "id": "Villa_Text_GoAheadOrderATableFromThisOrderForm",
+      "id": "Villa_Text_OrderTable",
       "en_US": [
         "Go ahead, order a Table from this\n",
         "order form!"
       ]
     },
     {
-      "id": "Villa_Text_WhoaWhoaDontGoYet",
+      "id": "Villa_Text_DontGoYet",
       "en_US": [
         "Whoa, whoa!\n",
         "Don’t go yet!\r",
@@ -32,7 +32,7 @@
       ]
     },
     {
-      "id": "Villa_Text_ThankYouForWaitingImDeliveringYourOrder_WeHopeYoullKeepOrdering",
+      "id": "Villa_Text_DeliveringOrderKeepOrdering",
       "en_US": [
         "Thank you for waiting!\n",
         "I’m delivering your order!\r",
@@ -41,7 +41,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00004",
+      "id": "Villa_Text_FinallyRidOfVilla",
       "en_US": [
         "The furniture place’s service is great.\n",
         "They’re real eager for business.\r",
@@ -54,22 +54,22 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00005",
+      "id": "Villa_Text_Dummy5",
       "garbage": 25
     },
     {
-      "id": "pl_msg_00000602_00006",
+      "id": "Villa_Text_Dummy6",
       "garbage": 104
     },
     {
-      "id": "Villa_Text_ThankYouForWaitingImDeliveringYourOrder",
+      "id": "Villa_Text_DeliveringOrder",
       "en_US": [
         "Thank you for waiting!\n",
         "I’m delivering your order!\r"
       ]
     },
     {
-      "id": "Villa_Text_ThankYouForWaitingImDeliveringYourOrder_AlsoAndIHateToSayThisBut",
+      "id": "Villa_Text_DeliveringOrderOutOfFurniture",
       "en_US": [
         "Thank you for waiting!\n",
         "I’m delivering your order!\r",
@@ -82,7 +82,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00009",
+      "id": "Villa_Text_RivalMessageEntry",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: Hey, {STRVAR_1 3, 1, 0}!\n",
         "You got yourself a Villa now?\r",
@@ -93,7 +93,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00010",
+      "id": "Villa_Text_DawnMessageEntry",
       "en_US": [
         "Dawn: Wow, {STRVAR_1 3, 1, 0}, this sofa is\n",
         "so sumptuous!\r",
@@ -102,7 +102,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00011",
+      "id": "Villa_Text_LucasMessageEntry",
       "en_US": [
         "Lucas: Is this sofa to your taste,\n",
         "{STRVAR_1 3, 1, 0}?\r",
@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00012",
+      "id": "Villa_Text_RowanMessageEntry",
       "en_US": [
         "Rowan: Hm, that’s rather a good\n",
         "Bookshelf.\r",
@@ -122,7 +122,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00013",
+      "id": "Villa_Text_GardeniaMessageEntry",
       "en_US": [
         "Gardenia: Oh, hey! A Houseplant!\r",
         "It’s really nice!\n",
@@ -132,7 +132,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00014",
+      "id": "Villa_Text_CynthiaMessageEntry",
       "en_US": [
         "Cynthia: Oh...?\n",
         "This is a good piano.\r",
@@ -145,7 +145,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00015",
+      "id": "Villa_Text_RivalMessage0",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: Too slooooow!\r",
         "You keep me waiting all the time!\n",
@@ -153,7 +153,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00016",
+      "id": "Villa_Text_RivalMessage1",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: So, anyway, how are\n",
         "things at the Battle Frontier?\r",
@@ -162,7 +162,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00017",
+      "id": "Villa_Text_RivalMessage2",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: Oh, yeah, the other day\n",
         "at the Battle Tower...\r",
@@ -171,7 +171,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00018",
+      "id": "Villa_Text_RivalMessage3",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: This is a cool place you\n",
         "have here.\r",
@@ -180,7 +180,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00019",
+      "id": "Villa_Text_RivalMessage4",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: You know, I’ve been\n",
         "thinking lately...\r",
@@ -189,7 +189,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00020",
+      "id": "Villa_Text_DawnMessage0",
       "en_US": [
         "Dawn: {STRVAR_1 3, 1, 0}, are you going to\n",
         "collect furniture now?\r",
@@ -200,7 +200,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00021",
+      "id": "Villa_Text_DawnMessage1",
       "en_US": [
         "Dawn: I had no idea that you can get\n",
         "a Villa as a gift.\r",
@@ -208,7 +208,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00022",
+      "id": "Villa_Text_DawnMessage2",
       "en_US": [
         "Dawn: I’m envious of you having your\n",
         "own place.\r",
@@ -217,7 +217,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00023",
+      "id": "Villa_Text_DawnMessage3",
       "en_US": [
         "Dawn: Sigh...\r",
         "To be with that special someone in a\n",
@@ -226,7 +226,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00024",
+      "id": "Villa_Text_DawnMessage4",
       "en_US": [
         "Dawn: You run into so many Pokémon in\n",
         "the Battle Zone. It’s a bit much.\r",
@@ -235,7 +235,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00025",
+      "id": "Villa_Text_LucasMessage0",
       "en_US": [
         "Lucas: {STRVAR_1 3, 1, 0}, are you collecting\n",
         "furniture, too, now?\r",
@@ -246,7 +246,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00026",
+      "id": "Villa_Text_LucasMessage1",
       "en_US": [
         "Lucas: You could get a Villa as a\n",
         "gift? I did not know that.\r",
@@ -256,7 +256,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00027",
+      "id": "Villa_Text_LucasMessage2",
       "en_US": [
         "Lucas: The Battle Zone’s intense and\n",
         "fun, huh?\r",
@@ -266,7 +266,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00028",
+      "id": "Villa_Text_LucasMessage3",
       "en_US": [
         "Lucas: Having this Villa must be\n",
         "convenient.\r",
@@ -275,7 +275,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00029",
+      "id": "Villa_Text_LucasMessage4",
       "en_US": [
         "Lucas: You can find so many different\n",
         "kinds of Pokémon in the Battle Zone.\r",
@@ -284,7 +284,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00030",
+      "id": "Villa_Text_RowanMessage0",
       "en_US": [
         "Rowan: Hm!\n",
         "How are things going for you lately?\r",
@@ -297,7 +297,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00031",
+      "id": "Villa_Text_RowanMessage1",
       "en_US": [
         "Rowan: Hm!\n",
         "You seem well.\r",
@@ -311,7 +311,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00032",
+      "id": "Villa_Text_RowanMessage2",
       "en_US": [
         "Rowan: Hm!\n",
         "You seem well.\r",
@@ -327,7 +327,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00033",
+      "id": "Villa_Text_RowanMessage3",
       "en_US": [
         "Rowan: Hm!\n",
         "You look well.\r",
@@ -338,7 +338,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00034",
+      "id": "Villa_Text_RowanMessage4",
       "en_US": [
         "Rowan: Hmm...\r",
         "This place feels like the home I shared\n",
@@ -347,7 +347,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00035",
+      "id": "Villa_Text_MomMessage0",
       "en_US": [
         "Mom: Oh, {STRVAR_1 3, 1, 0}!\n",
         "I’d heard from {STRVAR_1 3, 0, 0}, but...\r",
@@ -357,7 +357,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00036",
+      "id": "Villa_Text_MomMessage1",
       "en_US": [
         "Mom: {STRVAR_1 3, 1, 0}, this Villa, if I\n",
         "were to give it a grade...\r",
@@ -366,7 +366,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00037",
+      "id": "Villa_Text_MomMessage2",
       "en_US": [
         "Mom: If it were me, I would put that\n",
         "piece of furniture over there...\r",
@@ -375,7 +375,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00038",
+      "id": "Villa_Text_MomMessage3",
       "en_US": [
         "Mom: It must make you happy collecting\n",
         "the furniture.\r",
@@ -386,7 +386,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00039",
+      "id": "Villa_Text_MomMessage4",
       "en_US": [
         "Mom: I think Contests and home designs\n",
         "say a lot about the person.\r",
@@ -395,7 +395,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00040",
+      "id": "Villa_Text_RoarkMessage0",
       "en_US": [
         "Roark: The Underground extends\n",
         "even underneath the Resort Area.\r",
@@ -405,7 +405,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00041",
+      "id": "Villa_Text_RoarkMessage1",
       "en_US": [
         "Roark: If it were me, I would display\n",
         "the things I dig up.\r",
@@ -416,7 +416,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00042",
+      "id": "Villa_Text_RoarkMessage2",
       "en_US": [
         "Roark: If it were me, I’d like to put\n",
         "a Fossil over there.\r",
@@ -425,7 +425,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00043",
+      "id": "Villa_Text_RoarkMessage3",
       "en_US": [
         "Roark: This place feels different from\n",
         "an underground Secret Base.\r",
@@ -434,7 +434,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00044",
+      "id": "Villa_Text_RoarkMessage4",
       "en_US": [
         "Roark: What I think about while digging\n",
         "underground...\r",
@@ -445,7 +445,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00045",
+      "id": "Villa_Text_GardeniaMessage0",
       "en_US": [
         "Gardenia: Sigh... This is so dreamy...\n",
         "The Resort Area’s a nice place.\r",
@@ -454,7 +454,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00046",
+      "id": "Villa_Text_GardeniaMessage1",
       "en_US": [
         "Gardenia: I know it’s a little abrupt,\n",
         "but don’t you think Grass-type Pokémon\f",
@@ -464,7 +464,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00047",
+      "id": "Villa_Text_GardeniaMessage2",
       "en_US": [
         "Gardenia: I could tell you ten good\n",
         "things about Grass-type Pokémon.\r",
@@ -474,7 +474,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00048",
+      "id": "Villa_Text_GardeniaMessage3",
       "en_US": [
         "Gardenia: Do you remember those rumors\n",
         "about the Old Chateau?\r",
@@ -485,7 +485,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00049",
+      "id": "Villa_Text_GardeniaMessage4",
       "en_US": [
         "Gardenia: ...I’m in a dilemma now.\r",
         "You see, I don’t like ghost Pokémon\n",
@@ -496,14 +496,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00050",
+      "id": "Villa_Text_FantinaMessage0",
       "en_US": [
         "Fantina: Oh, c’est fantastique!\n",
         "This is where you practice dancing, non?"
       ]
     },
     {
-      "id": "pl_msg_00000602_00051",
+      "id": "Villa_Text_FantinaMessage1",
       "en_US": [
         "Fantina: Whenever and wherever, dance,\n",
         "dance, dance!\r",
@@ -513,7 +513,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00052",
+      "id": "Villa_Text_FantinaMessage2",
       "en_US": [
         "Fantina: Ooh la la!\n",
         "This is very nice!\r",
@@ -526,7 +526,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00053",
+      "id": "Villa_Text_FantinaMessage3",
       "en_US": [
         "Fantina: Ooh la la!\n",
         "I have an inspiration!\r",
@@ -537,7 +537,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00054",
+      "id": "Villa_Text_FantinaMessage4",
       "en_US": [
         "Fantina: You!\r",
         "Have you met Dahlia?\n",
@@ -548,7 +548,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00055",
+      "id": "Villa_Text_MayleneMessage0",
       "en_US": [
         "Maylene: {STRVAR_1 3, 1, 0}, please hear how\n",
         "my training is going.\r",
@@ -558,7 +558,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00056",
+      "id": "Villa_Text_MayleneMessage1",
       "en_US": [
         "Maylene: {STRVAR_1 3, 1, 0}, please hear how\n",
         "my training is going.\r",
@@ -569,7 +569,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00057",
+      "id": "Villa_Text_MayleneMessage2",
       "en_US": [
         "Maylene: {STRVAR_1 3, 1, 0}, please hear how\n",
         "my training is going.\r",
@@ -580,7 +580,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00058",
+      "id": "Villa_Text_MayleneMessage3",
       "en_US": [
         "Maylene: {STRVAR_1 3, 1, 0}, please hear how\n",
         "my training is going.\r",
@@ -591,7 +591,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00059",
+      "id": "Villa_Text_MayleneMessage4",
       "en_US": [
         "Maylene: {STRVAR_1 3, 1, 0}, please hear how\n",
         "my training is going.\r",
@@ -603,7 +603,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00060",
+      "id": "Villa_Text_WakeMessage0",
       "en_US": [
         "Wake: Hey!\n",
         "{STRVAR_1 3, 0, 0} told me to come.\r",
@@ -615,7 +615,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00061",
+      "id": "Villa_Text_WakeMessage1",
       "en_US": [
         "Wake: Mmmmm...!\n",
         "Listen, you!\r",
@@ -626,7 +626,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00062",
+      "id": "Villa_Text_WakeMessage2",
       "en_US": [
         "Wake: I’ve been thinking, though.\r",
         "That pal of yours, {STRVAR_1 3, 0, 0}, and\n",
@@ -639,7 +639,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00063",
+      "id": "Villa_Text_WakeMessage3",
       "en_US": [
         "Wake: ...This place here...\n",
         "You don’t have a microphone handy?\r",
@@ -650,7 +650,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00064",
+      "id": "Villa_Text_WakeMessage4",
       "en_US": [
         "Wake: I was meaning to ask you, by the\n",
         "way...\r",
@@ -665,7 +665,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00065",
+      "id": "Villa_Text_ByronMessage0",
       "en_US": [
         "Byron: Gwahahahaha!\r",
         "I spent a long time living on Iron\n",
@@ -677,7 +677,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00066",
+      "id": "Villa_Text_ByronMessage1",
       "en_US": [
         "Byron: Well...\r",
         "I have to admit I’m not very interested\n",
@@ -689,7 +689,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00067",
+      "id": "Villa_Text_ByronMessage2",
       "en_US": [
         "Byron: Digging underneath Iron Island\n",
         "was a good time in my life.\r",
@@ -701,7 +701,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00068",
+      "id": "Villa_Text_ByronMessage3",
       "en_US": [
         "Byron: Roark is still a boy, but at the\n",
         "same time, he’s a man in his own right.\r",
@@ -713,7 +713,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00069",
+      "id": "Villa_Text_ByronMessage4",
       "en_US": [
         "Byron: You’re acquainted with a fellow\n",
         "named Riley, aren’t you?\r",
@@ -723,7 +723,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00070",
+      "id": "Villa_Text_CandiceMessage0",
       "en_US": [
         "Candice: Giving you an Icicle Badge made\n",
         "me think.\r",
@@ -733,7 +733,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00071",
+      "id": "Villa_Text_CandiceMessage1",
       "en_US": [
         "Candice: In a battle, when both sides\n",
         "are down to their last Pokémon...\r",
@@ -744,7 +744,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00072",
+      "id": "Villa_Text_CandiceMessage2",
       "en_US": [
         "Candice: Whew...\n",
         "The Resort Area is pretty warm.\f",
@@ -752,7 +752,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00073",
+      "id": "Villa_Text_CandiceMessage3",
       "en_US": [
         "Candice: This furniture...\n",
         "Oh, I get it... It’s like this...\r",
@@ -760,7 +760,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00074",
+      "id": "Villa_Text_CandiceMessage4",
       "en_US": [
         "Candice: Why does the Snowpoint Gym\n",
         "Leader have to guard that icy temple\f",
@@ -768,7 +768,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00075",
+      "id": "Villa_Text_VolknerMessage0",
       "en_US": [
         "Volkner: I was told by Flint that we’re\n",
         "meeting here.\r",
@@ -777,7 +777,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00076",
+      "id": "Villa_Text_VolknerMessage1",
       "en_US": [
         "Volkner: Every one of my Pokémon are\n",
         "top class in potential.\r",
@@ -785,7 +785,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00077",
+      "id": "Villa_Text_VolknerMessage2",
       "en_US": [
         "Volkner: Oh, yeah.\n",
         "I decided not to join the Elite Four.\r",
@@ -796,7 +796,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00078",
+      "id": "Villa_Text_VolknerMessage3",
       "en_US": [
         "Volkner: My ELECTIVIRE is a force of\n",
         "nature to be reckoned with.\r",
@@ -805,7 +805,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00079",
+      "id": "Villa_Text_VolknerMessage4",
       "en_US": [
         "Volkner: Hmm...\r",
         "This place gives me ideas about how\n",
@@ -813,7 +813,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00080",
+      "id": "Villa_Text_CynthiaMessage0",
       "en_US": [
         "Cynthia: I think I could get to like\n",
         "this atmosphere.\r",
@@ -824,7 +824,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00081",
+      "id": "Villa_Text_CynthiaMessage1",
       "en_US": [
         "Cynthia: It’s so relaxing here...\r",
         "Sigh...\n",
@@ -836,7 +836,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00082",
+      "id": "Villa_Text_CynthiaMessage2",
       "en_US": [
         "Cynthia: What’s necessary to become\n",
         "stronger?\r",
@@ -847,7 +847,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00083",
+      "id": "Villa_Text_CynthiaMessage3",
       "en_US": [
         "Cynthia: The Spear Pillar...\n",
         "The Distortion World...\r",
@@ -858,7 +858,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00084",
+      "id": "Villa_Text_CynthiaMessage4",
       "en_US": [
         "Cynthia: When you are facing a Trainer\n",
         "in a battle, you can learn everything\f",
@@ -872,7 +872,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00085",
+      "id": "Villa_Text_FlintMessage0",
       "en_US": [
         "Flint: Hey, you!\r",
         "You used my prize money to buy this\n",
@@ -882,14 +882,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00086",
+      "id": "Villa_Text_FlintAndVolknerMessage0",
       "en_US": [
         "Volkner: My relationship to Flint?\n",
         "There’s no love lost, that’s for sure."
       ]
     },
     {
-      "id": "pl_msg_00000602_00087",
+      "id": "Villa_Text_FlintMessage1",
       "en_US": [
         "Flint: Hey, listen, you!\r",
         "If that Volkner tries to sell you on\n",
@@ -899,7 +899,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00088",
+      "id": "Villa_Text_FlintAndVolknerMessage1",
       "en_US": [
         "Volkner: When I got my first Gym Badge,\n",
         "I used the move Thunderbolt.\r",
@@ -914,7 +914,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00089",
+      "id": "Villa_Text_FlintAndVolknerMessage2",
       "en_US": [
         "Flint: ...Volkner.\r",
         "Volkner: What?\r",
@@ -929,7 +929,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00090",
+      "id": "Villa_Text_FlintAndVolknerMessage3",
       "en_US": [
         "Flint: Hmm...\r",
         "Volkner: What’s wrong?\n",
@@ -945,7 +945,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00091",
+      "id": "Villa_Text_FlintAndVolknerMessage4",
       "en_US": [
         "Flint: Say, hey, Volkner.\n",
         "What do you say we battle here?\r",
@@ -958,7 +958,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00092",
+      "id": "Villa_Text_MayleneAndCandiceMessage0",
       "en_US": [
         "Maylene: What makes a Gym Leader a\n",
         "good one?\r",
@@ -969,7 +969,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00093",
+      "id": "Villa_Text_MayleneAndCandiceMessage1",
       "en_US": [
         "Maylene: ...You know those Accessories\n",
         "for Pokémon?\r",
@@ -983,7 +983,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00094",
+      "id": "Villa_Text_MayleneAndCandiceMessage2",
       "en_US": [
         "Maylene: ...Candice?\r",
         "Candice: Yes?\r",
@@ -994,7 +994,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00095",
+      "id": "Villa_Text_MayleneAndCandiceMessage3",
       "en_US": [
         "Maylene: Candice, what does it mean to\n",
         "be strong?\r",
@@ -1007,7 +1007,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00096",
+      "id": "Villa_Text_MayleneAndCandiceMessage4",
       "en_US": [
         "Maylene: ...This is delicious!\r",
         "Candice: Then have some more.\r",
@@ -1017,435 +1017,435 @@
       ]
     },
     {
-      "id": "pl_msg_00000602_00097",
+      "id": "Villa_Text_Dummy97",
       "garbage": 16
     },
     {
-      "id": "pl_msg_00000602_00098",
+      "id": "Villa_Text_Dummy98",
       "garbage": 25
     },
     {
-      "id": "Villa_Text_Table",
+      "id": "Villa_Text_DescriptionTable",
       "en_US": [
         "The table’s subtle curves accentuate\n",
         "its distinctive presence."
       ]
     },
     {
-      "id": "Villa_Text_BigSofa",
+      "id": "Villa_Text_DescriptionBigSofa",
       "en_US": [
         "A big sofa with a wonderful sense\n",
         "of presence."
       ]
     },
     {
-      "id": "Villa_Text_SmallSofa",
+      "id": "Villa_Text_DescriptionSmallSofa",
       "en_US": [
         "A smaller sofa with a wonderful sense\n",
         "of presence."
       ]
     },
     {
-      "id": "Villa_Text_Bed",
+      "id": "Villa_Text_DescriptionBed",
       "en_US": [
         "A canopied bed for deep, relaxing\n",
         "sleep."
       ]
     },
     {
-      "id": "Villa_Text_NightTable",
+      "id": "Villa_Text_DescriptionNightTable",
       "en_US": "A small night table for the bedside."
     },
     {
-      "id": "Villa_Text_TV",
+      "id": "Villa_Text_DescriptionTV",
       "en_US": "A TV featuring the latest technology."
     },
     {
-      "id": "Villa_Text_AudioSystem",
+      "id": "Villa_Text_DescriptionAudioSystem",
       "en_US": [
         "An audio system that maximally draws\n",
         "out the charms of music."
       ]
     },
     {
-      "id": "Villa_Text_Bookshelf",
+      "id": "Villa_Text_DescriptionBookshelf",
       "en_US": [
         "The shelves are lined with books left\n",
         "by Prof. Rowan."
       ]
     },
     {
-      "id": "Villa_Text_Rack",
+      "id": "Villa_Text_DescriptionRack",
       "en_US": [
         "An attractive rack that looks good with\n",
         "or without things on it."
       ]
     },
     {
-      "id": "Villa_Text_Houseplant",
+      "id": "Villa_Text_DescriptionHouseplant",
       "en_US": [
         "All houseplants give off the fragrance\n",
         "of life."
       ]
     },
     {
-      "id": "Villa_Text_PCDesk",
+      "id": "Villa_Text_DescriptionPCDesk",
       "en_US": [
         "A thin-bodied PC made for the design\n",
         "conscious."
       ]
     },
     {
-      "id": "Villa_Text_MusicBox",
+      "id": "Villa_Text_DescriptionMusicBox",
       "en_US": [
         "A handmade music box with a soothing\n",
         "melody."
       ]
     },
     {
-      "id": "Villa_Text_PokemonBust",
+      "id": "Villa_Text_DescriptionPokemonBust",
       "en_US": [
         "An almost lifelike Pokémon statue.\n",
         "It would be nice to have a pair."
       ]
     },
     {
-      "id": "Villa_Text_PokemonBustSilver",
+      "id": "Villa_Text_DescriptionPokemonBustSilver",
       "en_US": [
         "An almost lifelike Pokémon statue.\n",
         "It would be nice to have a pair."
       ]
     },
     {
-      "id": "Villa_Text_Piano",
+      "id": "Villa_Text_DescriptionPiano",
       "en_US": [
         "Even playing a simple scale will tell you\n",
         "this is a special piano."
       ]
     },
     {
-      "id": "Villa_Text_GuestSet",
+      "id": "Villa_Text_DescriptionGuestSet",
       "en_US": [
         "A guest set that exemplifies the\n",
         "meaning of comfort."
       ]
     },
     {
-      "id": "Villa_Text_WallClock",
+      "id": "Villa_Text_DescriptionWallClock",
       "en_US": [
         "A clock that teaches the beauty of\n",
         "precisely marking time."
       ]
     },
     {
-      "id": "Villa_Text_Masterpiece",
+      "id": "Villa_Text_DescriptionMasterpiece",
       "en_US": [
         "A breathtaking masterpiece that no\n",
         "words can ever do justice."
       ]
     },
     {
-      "id": "Villa_Text_TeaSet",
+      "id": "Villa_Text_DescriptionTeaSet",
       "en_US": [
         "An exquisitely designed tea set for\n",
         "luxuriantly elegant times."
       ]
     },
     {
-      "id": "Villa_Text_Chandelier",
+      "id": "Villa_Text_DescriptionChandelier",
       "en_US": [
         "Light makes the glass gleam, and the\n",
         "glass dazzlingly reflects the light."
       ]
     },
     {
-      "id": "pl_msg_00000602_00119",
+      "id": "Villa_Text_PlayerOpenedOrderForm",
       "en_US": "{STRVAR_1 3, 1, 0} opened the order form.\r"
     },
     {
-      "id": "pl_msg_00000602_00120",
+      "id": "Villa_Text_OrderWhichFurniture",
       "en_US": [
         "Which furniture would\n",
         "you like to order?"
       ]
     },
     {
-      "id": "pl_msg_00000602_00121",
+      "id": "Villa_Text_OrderChosenFurniture",
       "en_US": [
         "Order the chosen\n",
         "furniture?"
       ]
     },
     {
-      "id": "pl_msg_00000602_00122",
+      "id": "Villa_Text_AlreadyBoughtOne",
       "en_US": "You’ve already bought one."
     },
     {
-      "id": "pl_msg_00000602_00123",
+      "id": "Villa_Text_NotEnoughMoney",
       "en_US": "You don’t have enough money."
     },
     {
-      "id": "Villa_Text_ThisIsTheListOfPurchasedFurniture",
+      "id": "Villa_Text_ListOfPurchases",
       "en_US": "This is the list of purchased furniture."
     },
     {
-      "id": "pl_msg_00000602_00125",
+      "id": "Villa_Text_Dummy125",
       "garbage": 10
     },
     {
-      "id": "pl_msg_00000602_00126",
+      "id": "Villa_Text_Dummy126",
       "garbage": 13
     },
     {
-      "id": "pl_msg_00000602_00127",
+      "id": "Villa_Text_Dummy127",
       "garbage": 13
     },
     {
-      "id": "pl_msg_00000602_00128",
+      "id": "Villa_Text_Dummy128",
       "garbage": 9
     },
     {
-      "id": "pl_msg_00000602_00129",
+      "id": "Villa_Text_Dummy129",
       "garbage": 13
     },
     {
-      "id": "pl_msg_00000602_00130",
+      "id": "Villa_Text_Dummy130",
       "garbage": 12
     },
     {
-      "id": "pl_msg_00000602_00131",
+      "id": "Villa_Text_Dummy131",
       "garbage": 14
     },
     {
-      "id": "pl_msg_00000602_00132",
+      "id": "Villa_Text_Dummy132",
       "garbage": 10
     },
     {
-      "id": "pl_msg_00000602_00133",
+      "id": "Villa_Text_Dummy133",
       "garbage": 9
     },
     {
-      "id": "pl_msg_00000602_00134",
+      "id": "Villa_Text_Dummy134",
       "garbage": 13
     },
     {
-      "id": "pl_msg_00000602_00135",
+      "id": "Villa_Text_Dummy135",
       "garbage": 13
     },
     {
-      "id": "pl_msg_00000602_00136",
+      "id": "Villa_Text_Dummy136",
       "garbage": 11
     },
     {
-      "id": "pl_msg_00000602_00137",
+      "id": "Villa_Text_Dummy137",
       "garbage": 12
     },
     {
-      "id": "pl_msg_00000602_00138",
+      "id": "Villa_Text_Dummy138",
       "garbage": 12
     },
     {
-      "id": "pl_msg_00000602_00139",
+      "id": "Villa_Text_Dummy139",
       "garbage": 9
     },
     {
-      "id": "pl_msg_00000602_00140",
+      "id": "Villa_Text_Dummy140",
       "garbage": 13
     },
     {
-      "id": "pl_msg_00000602_00141",
+      "id": "Villa_Text_Dummy141",
       "garbage": 11
     },
     {
-      "id": "pl_msg_00000602_00142",
+      "id": "Villa_Text_Dummy142",
       "garbage": 14
     },
     {
-      "id": "pl_msg_00000602_00143",
+      "id": "Villa_Text_Dummy143",
       "garbage": 12
     },
     {
-      "id": "pl_msg_00000602_00144",
+      "id": "Villa_Text_Dummy144",
       "garbage": 12
     },
     {
-      "id": "pl_msg_00000602_00145",
+      "id": "Villa_Text_Dummy145",
       "garbage": 53
     },
     {
-      "id": "pl_msg_00000602_00146",
+      "id": "Villa_Text_Dummy146",
       "garbage": 90
     },
     {
-      "id": "pl_msg_00000602_00147",
+      "id": "Villa_Text_Dummy147",
       "garbage": 70
     },
     {
-      "id": "pl_msg_00000602_00148",
+      "id": "Villa_Text_Dummy148",
       "garbage": 70
     },
     {
-      "id": "pl_msg_00000602_00149",
+      "id": "Villa_Text_EntryTableAvailable",
       "en_US": "Table{CURSOR_X 96}{STRVAR_1 55, 0, 0}"
     },
     {
-      "id": "pl_msg_00000602_00150",
+      "id": "Villa_Text_EntryBigSofaAvailable",
       "en_US": "Big Sofa{CURSOR_X 96}{STRVAR_1 55, 0, 0}"
     },
     {
-      "id": "pl_msg_00000602_00151",
+      "id": "Villa_Text_EntrySmallSofaAvailable",
       "en_US": "Small Sofa{CURSOR_X 96}{STRVAR_1 55, 0, 0}"
     },
     {
-      "id": "pl_msg_00000602_00152",
+      "id": "Villa_Text_EntryBedAvailable",
       "en_US": "Bed{CURSOR_X 96}{STRVAR_1 55, 0, 0}"
     },
     {
-      "id": "pl_msg_00000602_00153",
+      "id": "Villa_Text_EntryNightTableAvailable",
       "en_US": "Night Table{CURSOR_X 96}{STRVAR_1 55, 0, 0}"
     },
     {
-      "id": "pl_msg_00000602_00154",
+      "id": "Villa_Text_EntryTVAvailable",
       "en_US": "TV{CURSOR_X 96}{STRVAR_1 55, 0, 0}"
     },
     {
-      "id": "pl_msg_00000602_00155",
+      "id": "Villa_Text_EntryAudioSystemAvailable",
       "en_US": "Audio System{CURSOR_X 96}{STRVAR_1 55, 0, 0}"
     },
     {
-      "id": "pl_msg_00000602_00156",
+      "id": "Villa_Text_EntryBookshelfAvailable",
       "en_US": "Bookshelf{CURSOR_X 96}{STRVAR_1 55, 0, 0}"
     },
     {
-      "id": "pl_msg_00000602_00157",
+      "id": "Villa_Text_EntryRackAvailable",
       "en_US": "Rack{CURSOR_X 96}{STRVAR_1 55, 0, 0}"
     },
     {
-      "id": "pl_msg_00000602_00158",
+      "id": "Villa_Text_EntryHouseplantAvailable",
       "en_US": "Houseplant{CURSOR_X 96}{STRVAR_1 55, 0, 0}"
     },
     {
-      "id": "pl_msg_00000602_00159",
+      "id": "Villa_Text_EntryPCDeskAvailable",
       "en_US": "PC Desk{CURSOR_X 96}{STRVAR_1 55, 0, 0}"
     },
     {
-      "id": "pl_msg_00000602_00160",
+      "id": "Villa_Text_EntryMusicBoxAvailable",
       "en_US": "Music Box{CURSOR_X 96}{STRVAR_1 55, 0, 0}"
     },
     {
-      "id": "pl_msg_00000602_00161",
+      "id": "Villa_Text_EntryPokemonBustAvailable",
       "en_US": "Pokémon Bust{CURSOR_X 96}{STRVAR_1 55, 0, 0}"
     },
     {
-      "id": "pl_msg_00000602_00162",
+      "id": "Villa_Text_EntryPokemonBustSilverAvailable",
       "en_US": "Pokémon Bust{CURSOR_X 96}{STRVAR_1 55, 0, 0}"
     },
     {
-      "id": "pl_msg_00000602_00163",
+      "id": "Villa_Text_EntryPianoAvailable",
       "en_US": "Piano{CURSOR_X 96}{STRVAR_1 55, 0, 0}"
     },
     {
-      "id": "pl_msg_00000602_00164",
+      "id": "Villa_Text_EntryGuestSetAvailable",
       "en_US": "Guest Set{CURSOR_X 96}{STRVAR_1 55, 0, 0}"
     },
     {
-      "id": "pl_msg_00000602_00165",
+      "id": "Villa_Text_EntryWallClockAvailable",
       "en_US": "Wall Clock{CURSOR_X 96}{STRVAR_1 55, 0, 0}"
     },
     {
-      "id": "pl_msg_00000602_00166",
+      "id": "Villa_Text_EntryMasterpieceAvailable",
       "en_US": "Masterpiece{CURSOR_X 96}{STRVAR_1 55, 0, 0}"
     },
     {
-      "id": "pl_msg_00000602_00167",
+      "id": "Villa_Text_EntryTeaSetAvailable",
       "en_US": "Tea Set{CURSOR_X 96}{STRVAR_1 55, 0, 0}"
     },
     {
-      "id": "pl_msg_00000602_00168",
+      "id": "Villa_Text_EntryChandelierAvailable",
       "en_US": "Chandelier{CURSOR_X 96}{STRVAR_1 55, 0, 0}"
     },
     {
-      "id": "pl_msg_00000602_00169",
+      "id": "Villa_Text_EntryTableSoldOut",
       "en_US": "Table{CURSOR_X 100}------"
     },
     {
-      "id": "pl_msg_00000602_00170",
+      "id": "Villa_Text_EntryBigSofaSoldOut",
       "en_US": "Big Sofa{CURSOR_X 100}------"
     },
     {
-      "id": "pl_msg_00000602_00171",
+      "id": "Villa_Text_EntrySmallSofaSoldOut",
       "en_US": "Small Sofa{CURSOR_X 100}------"
     },
     {
-      "id": "pl_msg_00000602_00172",
+      "id": "Villa_Text_EntryBedSoldOut",
       "en_US": "Bed{CURSOR_X 100}------"
     },
     {
-      "id": "pl_msg_00000602_00173",
+      "id": "Villa_Text_EntryNightTableSoldOut",
       "en_US": "Night Table{CURSOR_X 100}------"
     },
     {
-      "id": "pl_msg_00000602_00174",
+      "id": "Villa_Text_EntryTVSoldOut",
       "en_US": "TV{CURSOR_X 100}------"
     },
     {
-      "id": "pl_msg_00000602_00175",
+      "id": "Villa_Text_EntryAudioSystemSoldOut",
       "en_US": "Audio System{CURSOR_X 100}------"
     },
     {
-      "id": "pl_msg_00000602_00176",
+      "id": "Villa_Text_EntryBookshelfSoldOut",
       "en_US": "Bookshelf{CURSOR_X 100}------"
     },
     {
-      "id": "pl_msg_00000602_00177",
+      "id": "Villa_Text_EntryRackSoldOut",
       "en_US": "Rack{CURSOR_X 100}------"
     },
     {
-      "id": "pl_msg_00000602_00178",
+      "id": "Villa_Text_EntryHouseplantSoldOut",
       "en_US": "Houseplant{CURSOR_X 100}------"
     },
     {
-      "id": "pl_msg_00000602_00179",
+      "id": "Villa_Text_EntryPCDeskSoldOut",
       "en_US": "PC Desk{CURSOR_X 100}------"
     },
     {
-      "id": "pl_msg_00000602_00180",
+      "id": "Villa_Text_EntryMusicBoxSoldOut",
       "en_US": "Music Box{CURSOR_X 100}------"
     },
     {
-      "id": "pl_msg_00000602_00181",
+      "id": "Villa_Text_EntryPokemonBustSoldOut",
       "en_US": "Pokémon Bust{CURSOR_X 100}------"
     },
     {
-      "id": "pl_msg_00000602_00182",
+      "id": "Villa_Text_EntryPokemonBustSilverSoldOut",
       "en_US": "Pokémon Bust{CURSOR_X 100}------"
     },
     {
-      "id": "pl_msg_00000602_00183",
+      "id": "Villa_Text_EntryPianoSoldOut",
       "en_US": "Piano{CURSOR_X 100}------"
     },
     {
-      "id": "pl_msg_00000602_00184",
+      "id": "Villa_Text_EntryGuestSetSoldOut",
       "en_US": "Guest Set{CURSOR_X 100}------"
     },
     {
-      "id": "pl_msg_00000602_00185",
+      "id": "Villa_Text_EntryWallClockSoldOut",
       "en_US": "Wall Clock{CURSOR_X 100}------"
     },
     {
-      "id": "pl_msg_00000602_00186",
+      "id": "Villa_Text_EntryMasterpieceSoldOut",
       "en_US": "Masterpiece{CURSOR_X 100}------"
     },
     {
-      "id": "pl_msg_00000602_00187",
+      "id": "Villa_Text_EntryTeaSetSoldOut",
       "en_US": "Tea Set{CURSOR_X 100}------"
     },
     {
-      "id": "pl_msg_00000602_00188",
+      "id": "Villa_Text_EntryChandelierSoldOut",
       "en_US": "Chandelier{CURSOR_X 100}------"
     },
     {
-      "id": "pl_msg_00000602_00189",
+      "id": "Villa_Text_EntryTableFree",
       "en_US": "Table"
     }
   ]

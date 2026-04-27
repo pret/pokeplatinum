@@ -2,7 +2,7 @@
   "key": 17418,
   "messages": [
     {
-      "id": "pl_msg_00000600_00000",
+      "id": "ResortAreaRibbonSyndicate2F_Text_CareToHaveSpaTreatment",
       "en_US": [
         "How may we serve you today?\n",
         "Perhaps a spa treatment?\r",
@@ -13,53 +13,53 @@
       ]
     },
     {
-      "id": "pl_msg_00000600_00001",
+      "id": "ResortAreaRibbonSyndicate2F_Text_SeeYouAgain",
       "en_US": "We hope to see you again."
     },
     {
-      "id": "pl_msg_00000600_00002",
+      "id": "ResortAreaRibbonSyndicate2F_Text_RightThisWayPlease",
       "en_US": [
         "Ah, yes.\n",
         "Right this way, please...\r"
       ]
     },
     {
-      "id": "pl_msg_00000600_00003",
+      "id": "ResortAreaRibbonSyndicate2F_Text_ReadyToBegin",
       "en_US": [
         "We’re ready to begin.\n",
         "Please, relax all your muscles.\r"
       ]
     },
     {
-      "id": "pl_msg_00000600_00004",
+      "id": "ResortAreaRibbonSyndicate2F_Text_OilContainsDiamonds",
       "en_US": [
         "This oil contains dissolved diamonds\n",
         "for enhanced effectiveness.\r"
       ]
     },
     {
-      "id": "pl_msg_00000600_00005",
+      "id": "ResortAreaRibbonSyndicate2F_Text_FoamContainsPearls",
       "en_US": [
         "This foam contains an extract taken\n",
         "from pearls.\r"
       ]
     },
     {
-      "id": "pl_msg_00000600_00006",
+      "id": "ResortAreaRibbonSyndicate2F_Text_ToxinsForcedOut",
       "en_US": [
         "The body’s toxins are forced out with\n",
         "a foreign massage technique.\r"
       ]
     },
     {
-      "id": "pl_msg_00000600_00007",
+      "id": "ResortAreaRibbonSyndicate2F_Text_PerfumedByAroma",
       "en_US": [
         "The salon’s air is perfumed by an\n",
         "herbal aroma for relaxation.\r"
       ]
     },
     {
-      "id": "pl_msg_00000600_00008",
+      "id": "ResortAreaRibbonSyndicate2F_Text_MuchMoreFriendly",
       "en_US": [
         "There.\n",
         "All done.\r",
@@ -68,7 +68,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000600_00009",
+      "id": "ResortAreaRibbonSyndicate2F_Text_OneSessionADay",
       "en_US": [
         "Oh, I do apologize.\r",
         "We can only provide one spa\n",
@@ -76,7 +76,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000600_00010",
+      "id": "ResortAreaRibbonSyndicate2F_Text_MoreFriendly",
       "en_US": [
         "There.\n",
         "All done.\r",
@@ -85,7 +85,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000600_00011",
+      "id": "ResortAreaRibbonSyndicate2F_Text_LittleMoreFriendly",
       "en_US": [
         "There.\n",
         "All done.\r",
@@ -94,7 +94,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000600_00012",
+      "id": "ResortAreaRibbonSyndicate2F_Text_KeepFromSeeingOthers",
       "en_US": [
         "We keep our clients and Pokémon from\n",
         "seeing others.\r",
@@ -103,14 +103,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000600_00013",
+      "id": "ResortAreaRibbonSyndicate2F_Text_OnlyFiveMembersADay",
       "en_US": [
         "Our service is very exclusive.\n",
         "We only accept five members a day."
       ]
     },
     {
-      "id": "pl_msg_00000600_00014",
+      "id": "ResortAreaRibbonSyndicate2F_Text_BringMembersCloser",
       "en_US": [
         "We’ve developed a reputation for\n",
         "bringing our members closer to\f",

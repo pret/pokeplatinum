@@ -328,7 +328,7 @@ BOOL Sound_SetSceneAndPlayBGM(u8 scene, u16 bgmID, int unused)
     case SOUND_SCENE_23:
         Sound_Impl_PlayCutsceneBGM(scene, bgmID, unused);
         break;
-    case SOUND_SCENE_22:
+    case SOUND_SCENE_VILLA_MUSIC_BOX:
         Sound_Impl_PlayCutsceneBGM(scene, bgmID, unused);
         break;
     }

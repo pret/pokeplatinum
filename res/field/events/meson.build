@@ -443,7 +443,7 @@ events_files = files(
     'events_survival_area_south_house.json',
     'events_survival_area_north_house.json',
     'events_resort_area.json',
-    'events_resort_area_mart.json',
+    'events_unused_resort_area_mart.json',
     'events_resort_area_pokecenter_1f.json',
     'events_resort_area_pokecenter_2f.json',
     'events_resort_area_ribbon_syndicate_1f.json',

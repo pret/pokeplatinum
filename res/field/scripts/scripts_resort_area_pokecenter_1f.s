@@ -1,20 +1,21 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/resort_area_pokecenter_1f.h"
+#include "res/field/events/events_resort_area_pokecenter_1f.h"
 
 
-    ScriptEntry _000E
-    ScriptEntry _001A
-    ScriptEntry _002D
+    ScriptEntry ResortAreaPokecenter1F_Nurse
+    ScriptEntry ResortAreaPokecenter1F_RichBoy
+    ScriptEntry ResortAreaPokecenter1F_Idol
     ScriptEntryEnd
 
-_000E:
-    Common_CallPokecenterNurse 0
+ResortAreaPokecenter1F_Nurse:
+    Common_CallPokecenterNurse LOCALID_POKECENTER_NURSE
     End
 
-_001A:
-    NPCMessage 0
+ResortAreaPokecenter1F_RichBoy:
+    NPCMessage ResortAreaPokecenter1F_Text_DoAHeadstand
     End
 
-_002D:
-    NPCMessage 1
+ResortAreaPokecenter1F_Idol:
+    NPCMessage ResortAreaPokecenter1F_Text_EveryoneKnowsPokemon
     End

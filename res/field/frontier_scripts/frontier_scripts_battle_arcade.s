@@ -2582,7 +2582,7 @@ _2562:
     FadeScreenIn
     FrontierScrCmd_C0 VAR_0x8008
     GoToIfEq VAR_0x8008, 0, _2D52
-    IncrementRecordValue RECORD_UNK_063
+    IncrementRecordValue RECORD_BATTLE_ARCADE_VICTORIES
     FrontierScrCmd_BF 48, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _31DE
     GoToIfEq VAR_0x8008, 2, _3212
