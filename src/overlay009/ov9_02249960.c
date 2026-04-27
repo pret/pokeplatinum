@@ -740,8 +740,8 @@ typedef struct DistWorldFloatingPlatformJumpPointTemplate {
     s16 zDisplacement;
     s16 playerSpriteRotAngle;
     s16 movementAnimSteps;
-    u16 unk_1E;
-    u16 unk_20;
+    u16 jumpAxis;
+    u16 invertedJump;
     s16 finalFacingDir;
     s16 floatingPlatformKind;
     u16 floatingPlatformIndex;
@@ -860,7 +860,7 @@ typedef struct DistWorldFloatingPlatformJumpTaskContext {
     int state;
     int stepsRemaining;
     VecFx32 positionIncrementVec;
-    fx32 unk_14;
+    fx32 jumpOffsetIndex;
     fx32 positionIncrement;
     VecFx32 accumulatedMovement;
     VecFx32 positionIncrementVecAbs;
@@ -1695,7 +1695,7 @@ static const OverworldAnimManagerFuncs sSkyCloudsAnimFuncs;
 static const OverworldAnimManagerFuncs sMovingPlatformPropAnimFuncs;
 static const OverworldAnimManagerFuncs sGiratinaShadowPropAnimFuncs;
 static const OverworldAnimManagerFuncs sSimplePropAnimFuncs;
-static const fx32 Unk_ov9_02252CF8[16];
+static const fx32 sFloatingPlatformJumpOffsets[MAP_OBJECT_TILE_SIZE / FX32_ONE];
 static const FloatingPlatformJumpPointHandler sFloatingPlatformJumpPointHandlers[1];
 static const int sSkyCloudsCharNARCIndexes[SKY_CLOUD_RESOURCE_COUNT];
 static const int sSkyCloudsCellNARCIndexes[SKY_CLOUD_RESOURCE_COUNT];
@@ -3039,39 +3039,40 @@ static BOOL TickJumpOnFloatingPlatformMovementAnimation(DistWorldFloatingPlatfor
         MapObject_SetZ(playerMapObj, playerZ);
     }
 
-    int v3;
-    fx32 *v4;
-    VecFx32 *v5 = MapObject_GetSpriteJumpOffset1(playerMapObj);
-    const fx32 *v6 = Unk_ov9_02252CF8;
+    fx32 *targetOffset;
+    VecFx32 *spriteJumpOffset = MapObject_GetSpriteJumpOffset1(playerMapObj);
 
-    ctx->unk_14 += ctx->positionIncrement;
-    v3 = ((ctx->unk_14) / FX32_ONE);
+    ctx->jumpOffsetIndex += ctx->positionIncrement;
+    int offsetIndex = ctx->jumpOffsetIndex / FX32_ONE;
 
-    switch (template->unk_1E) {
-    case 0:
-        v4 = &v5->x;
+    switch (template->jumpAxis) {
+    case AXIS_X:
+        targetOffset = &spriteJumpOffset->x;
         break;
-    case 1:
-        v4 = &v5->y;
+
+    case AXIS_Y:
+        targetOffset = &spriteJumpOffset->y;
         break;
-    case 2:
-        v4 = &v5->z;
+
+    case AXIS_Z:
+        targetOffset = &spriteJumpOffset->z;
         break;
+
     default:
         GF_ASSERT(FALSE);
         break;
     }
 
-    *v4 = v6[v3];
+    *targetOffset = sFloatingPlatformJumpOffsets[offsetIndex];
 
-    if (template->unk_20 == 1) {
-        *v4 = -(*v4);
+    if (template->invertedJump == TRUE) {
+        *targetOffset = -(*targetOffset);
     }
 
     ctx->stepsRemaining--;
 
     if (ctx->stepsRemaining <= 0) {
-        *v4 = 0;
+        *targetOffset = 0;
 
         MapObject_UpdateCoords(playerMapObj);
         sub_02062B68(playerMapObj);
@@ -9834,7 +9835,7 @@ static void ov9_022511F4(MapObject *mapObj, const VecFx32 *pos)
     }
 }
 
-static const fx32 Unk_ov9_02252CF8[16] = {
+static const fx32 sFloatingPlatformJumpOffsets[MAP_OBJECT_TILE_SIZE / FX32_ONE] = {
     4 * FX32_ONE,
     6 * FX32_ONE,
     8 * FX32_ONE,
