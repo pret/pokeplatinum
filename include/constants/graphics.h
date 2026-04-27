@@ -63,6 +63,7 @@ enum DSScreen {
 
 #define G3X_DEPTH_MAX              0x7FFF
 #define G3X_FOG_DENSITY_TABLE_SIZE 32
+#define G3X_EDGE_COLOR_TABLE_SIZE  8
 
 #define RGBA_BLACK GX_RGBA(0, 0, 0, 0)
 #define RGBA_WHITE GX_RGBA(31, 31, 31, 1)
