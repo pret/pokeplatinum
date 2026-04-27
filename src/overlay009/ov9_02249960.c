@@ -672,19 +672,19 @@ typedef struct DistWorldSkyCloudAnimator {
     Sprite *sprite;
 } DistWorldSkyCloudAnimator;
 
-typedef struct {
+typedef struct DistWorldMapInfo {
     u32 mapHeaderID;
-    u16 unk_04;
-    s16 unk_06;
-    s16 unk_08;
-    s16 unk_0A;
-} UnkStruct_ov9_0224C034;
+    u16 mapFileIndex;
+    s16 offsetTileX;
+    s16 offsetAltitude;
+    s16 offsetTileZ;
+} DistWorldMapInfo;
 
-typedef struct {
-    int unk_00;
-    UnkStruct_ov9_0224C034 *unk_04;
-    void *unk_08;
-} UnkStruct_ov9_0224BFE0;
+typedef struct DistWorldMapInfoFile {
+    int count;
+    DistWorldMapInfo *infos;
+    void *buffer;
+} DistWorldMapInfoFile;
 
 typedef struct DistWorldFloatingPlatformTemplate {
     s16 kind;
@@ -793,8 +793,8 @@ typedef struct DistWorldFile {
     void *buffer;
 } DistWorldFile;
 
-typedef struct {
-    UnkStruct_ov9_0224BFE0 unk_00;
+typedef struct DistWorldMainArchive {
+    DistWorldMapInfoFile mapInfoFile;
     DistWorldFile distortionWorldFile;
     DistWorldFloatingPlatformManager floatingPlatformMan;
     DistWorldFileFloatingPlatformJumpPointSection floatingPlatformJumpPoints;
@@ -802,7 +802,7 @@ typedef struct {
     DistWorldGhostPropData ghostPropData;
     DistWorldFile inactiveDistortionWorldFile;
     DistWorldGhostPropData inactiveGhostPropData;
-} UnkStruct_ov9_02249B04_sub1;
+} DistWorldMainArchive;
 
 typedef struct DistWorldCameraTransition {
     BOOL isActive;
@@ -1130,7 +1130,7 @@ struct DistWorldSystem {
     DistWorldMapObjectRotatorManager mapObjRotatorMan;
     DistWorldSkyClouds skyClouds;
     DistWorldPropRenderBuffers propRenderBuffs;
-    UnkStruct_ov9_02249B04_sub1 unk_169C;
+    DistWorldMainArchive mainArchive;
     DistWorldGhostPropManager ghostPropMan;
     DistWorldGhostPropManager inactiveGhostPropMan;
     DistWorldMovingPlatformPropManager movingPlatformPropMan;
@@ -1486,15 +1486,15 @@ static void ov9_0224BE14(DistWorldSystem *param0);
 static void ov9_0224BE8C(DistWorldSystem *param0);
 static void ov9_0224BEB4(DistWorldSystem *param0, u32 param1);
 static void ov9_0224BF18(DistWorldSystem *param0, u32 param1);
-static void ov9_0224BF8C(NARC *param0, UnkStruct_ov9_0224BFE0 *param1);
-static void ov9_0224BFBC(DistWorldSystem *param0);
-static void ov9_0224BFE0(UnkStruct_ov9_0224BFE0 *param0);
-static void ov9_0224BFFC(DistWorldSystem *param0);
-static const UnkStruct_ov9_0224C034 *ov9_0224C00C(const UnkStruct_ov9_0224BFE0 *param0, enum MapHeader mapHeaderID);
-static const UnkStruct_ov9_0224C034 *ov9_0224C034(DistWorldSystem *system, enum MapHeader mapHeaderID);
-static u32 FindNARCIndex(DistWorldSystem *system, enum MapHeader mapHeaderID);
-static void ov9_0224C050(const UnkStruct_ov9_0224BFE0 *param0, int param1, int *param2, int *param3, int *param4);
-static void ov9_0224C070(DistWorldSystem *param0, int param1, int *param2, int *param3, int *param4);
+static void DistWorldMapInfoFile_Load(NARC *param0, DistWorldMapInfoFile *param1);
+static void DistWorldMapInfoFile_LoadSafe(DistWorldSystem *param0);
+static void DistWorldMapInfoFile_Free(DistWorldMapInfoFile *param0);
+static void FreeMapInfoFile(DistWorldSystem *param0);
+static const DistWorldMapInfo *DistWorldMapInfoFile_FindForMap(const DistWorldMapInfoFile *param0, enum MapHeader mapHeaderID);
+static const DistWorldMapInfo *FindMapInfo(DistWorldSystem *system, enum MapHeader mapHeaderID);
+static u32 FindMapFileIndex(DistWorldSystem *system, enum MapHeader mapHeaderID);
+static void DistWorldMapInfoFile_FindMapOffsets(const DistWorldMapInfoFile *param0, int param1, int *param2, int *param3, int *param4);
+static void FindMapOffsets(DistWorldSystem *param0, int param1, int *param2, int *param3, int *param4);
 static void DistWorldFile_Load(DistWorldSystem *system, DistWorldFile *file, enum MapHeader mapHeaderID);
 static void ov9_0224C0F8(DistWorldSystem *param0, enum MapHeader mapHeaderID, int param2);
 static void ov9_0224C10C(DistWorldSystem *param0, enum MapHeader mapHeaderID);
@@ -3970,7 +3970,7 @@ static void ov9_0224BE14(DistWorldSystem *param0)
     mapHeaderID = DistWorldSystem_GetMapHeaderID(param0);
     v1 = GetConnectionsForMap(mapHeaderID);
 
-    ov9_0224BFBC(param0);
+    DistWorldMapInfoFile_LoadSafe(param0);
     ov9_0224C0F8(param0, mapHeaderID, v1->nextID);
 
     InitFloatingPlatformManager(param0);
@@ -3996,7 +3996,7 @@ static void ov9_0224BE8C(DistWorldSystem *param0)
     ResetFloatingPlatformManager(param0);
     ResetAllGhostPropData(param0);
     ov9_0224C164(param0);
-    ov9_0224BFFC(param0);
+    FreeMapInfoFile(param0);
 }
 
 static void ov9_0224BEB4(DistWorldSystem *param0, u32 param1)
@@ -4041,80 +4041,77 @@ static void ov9_0224BF18(DistWorldSystem *param0, u32 param1)
     }
 }
 
-static void ov9_0224BF8C(NARC *mainNARC, UnkStruct_ov9_0224BFE0 *param1)
+static void DistWorldMapInfoFile_Load(NARC *mainNARC, DistWorldMapInfoFile *mapInfoFile)
 {
-    u32 v0 = NARC_GetMemberSize(mainNARC, 0);
+    u32 narcMemberSize = NARC_GetMemberSize(mainNARC, 0);
 
-    param1->unk_08 = Heap_Alloc(HEAP_ID_FIELD1, v0);
-    NARC_ReadWholeMember(mainNARC, 0, param1->unk_08);
+    mapInfoFile->buffer = Heap_Alloc(HEAP_ID_FIELD1, narcMemberSize);
+    NARC_ReadWholeMember(mainNARC, 0, mapInfoFile->buffer);
 
-    param1->unk_00 = *(int *)param1->unk_08;
-    param1->unk_04 = param1->unk_08;
-
-    (u8 *)param1->unk_04 += 4;
+    mapInfoFile->count = *(int *)mapInfoFile->buffer;
+    mapInfoFile->infos = (DistWorldMapInfo *)((u8 *)mapInfoFile->buffer + 4);
 }
 
-static void ov9_0224BFBC(DistWorldSystem *param0)
+static void DistWorldMapInfoFile_LoadSafe(DistWorldSystem *system)
 {
-    GF_ASSERT(param0->unk_169C.unk_00.unk_08 == NULL);
-    ov9_0224BF8C(param0->mainNARC, &param0->unk_169C.unk_00);
+    GF_ASSERT(system->mainArchive.mapInfoFile.buffer == NULL);
+    DistWorldMapInfoFile_Load(system->mainNARC, &system->mainArchive.mapInfoFile);
 }
 
-static void ov9_0224BFE0(UnkStruct_ov9_0224BFE0 *param0)
+static void DistWorldMapInfoFile_Free(DistWorldMapInfoFile *mapInfoFile)
 {
-    GF_ASSERT(param0->unk_08 != NULL);
+    GF_ASSERT(mapInfoFile->buffer != NULL);
 
-    Heap_Free(param0->unk_08);
-    param0->unk_08 = NULL;
+    Heap_Free(mapInfoFile->buffer);
+    mapInfoFile->buffer = NULL;
 }
 
-static void ov9_0224BFFC(DistWorldSystem *param0)
+static void FreeMapInfoFile(DistWorldSystem *system)
 {
-    ov9_0224BFE0(&param0->unk_169C.unk_00);
+    DistWorldMapInfoFile_Free(&system->mainArchive.mapInfoFile);
 }
 
-static const UnkStruct_ov9_0224C034 *ov9_0224C00C(const UnkStruct_ov9_0224BFE0 *param0, enum MapHeader mapHeaderID)
+static const DistWorldMapInfo *DistWorldMapInfoFile_FindForMap(const DistWorldMapInfoFile *mapInfoFile, enum MapHeader mapHeaderID)
 {
-    int v0 = 0;
-    const UnkStruct_ov9_0224C034 *v1 = param0->unk_04;
+    int i = 0;
+    const DistWorldMapInfo *iter = mapInfoFile->infos;
 
-    while (v0 < param0->unk_00) {
-        if (mapHeaderID == v1->mapHeaderID) {
-            return v1;
+    while (i < mapInfoFile->count) {
+        if (mapHeaderID == iter->mapHeaderID) {
+            return iter;
         }
 
-        v1++;
-        v0++;
+        iter++;
+        i++;
     }
 
-    GF_ASSERT(0);
-
+    GF_ASSERT(FALSE);
     return NULL;
 }
 
-static const UnkStruct_ov9_0224C034 *ov9_0224C034(DistWorldSystem *system, enum MapHeader mapHeaderID)
+static const DistWorldMapInfo *FindMapInfo(DistWorldSystem *system, enum MapHeader mapHeaderID)
 {
-    return ov9_0224C00C(&system->unk_169C.unk_00, mapHeaderID);
+    return DistWorldMapInfoFile_FindForMap(&system->mainArchive.mapInfoFile, mapHeaderID);
 }
 
-static u32 FindNARCIndex(DistWorldSystem *system, enum MapHeader mapHeaderID)
+static u32 FindMapFileIndex(DistWorldSystem *system, enum MapHeader mapHeaderID)
 {
-    const UnkStruct_ov9_0224C034 *v0 = ov9_0224C034(system, mapHeaderID);
-    return v0->unk_04 + 1;
+    const DistWorldMapInfo *mapInfo = FindMapInfo(system, mapHeaderID);
+    return mapInfo->mapFileIndex + 1;
 }
 
-static void ov9_0224C050(const UnkStruct_ov9_0224BFE0 *param0, int param1, int *param2, int *param3, int *param4)
+static void DistWorldMapInfoFile_FindMapOffsets(const DistWorldMapInfoFile *mapInfoFile, int mapHeaderID, int *offsetTileX, int *offsetAltitude, int *offsetTileZ)
 {
-    const UnkStruct_ov9_0224C034 *v0 = ov9_0224C00C(param0, param1);
+    const DistWorldMapInfo *mapInfo = DistWorldMapInfoFile_FindForMap(mapInfoFile, mapHeaderID);
 
-    *param2 = v0->unk_06;
-    *param3 = v0->unk_08;
-    *param4 = v0->unk_0A;
+    *offsetTileX = mapInfo->offsetTileX;
+    *offsetAltitude = mapInfo->offsetAltitude;
+    *offsetTileZ = mapInfo->offsetTileZ;
 }
 
-static void ov9_0224C070(DistWorldSystem *param0, int param1, int *param2, int *param3, int *param4)
+static void FindMapOffsets(DistWorldSystem *system, int mapHeaderID, int *offsetTileX, int *offsetAltitude, int *offsetTileZ)
 {
-    ov9_0224C050(&param0->unk_169C.unk_00, param1, param2, param3, param4);
+    DistWorldMapInfoFile_FindMapOffsets(&system->mainArchive.mapInfoFile, mapHeaderID, offsetTileX, offsetAltitude, offsetTileZ);
 }
 
 static void DistWorldFile_Load(DistWorldSystem *system, DistWorldFile *file, enum MapHeader mapHeaderID)
@@ -4129,7 +4126,7 @@ static void DistWorldFile_Load(DistWorldSystem *system, DistWorldFile *file, enu
         u32 narcMemberSize, narcIndex;
         DistWorldFileHeader *header;
 
-        narcIndex = FindNARCIndex(system, mapHeaderID);
+        narcIndex = FindMapFileIndex(system, mapHeaderID);
         narcMemberSize = NARC_GetMemberSize(system->mainNARC, narcIndex);
 
         file->buffer = Heap_AllocAtEnd(HEAP_ID_FIELD1, narcMemberSize);
@@ -4156,12 +4153,12 @@ static void ov9_0224C0F8(DistWorldSystem *param0, enum MapHeader mapHeaderID, in
 
 static void ov9_0224C10C(DistWorldSystem *param0, enum MapHeader mapHeaderID)
 {
-    DistWorldFile_Load(param0, &param0->unk_169C.distortionWorldFile, mapHeaderID);
+    DistWorldFile_Load(param0, &param0->mainArchive.distortionWorldFile, mapHeaderID);
 }
 
 static void ov9_0224C120(DistWorldSystem *param0, enum MapHeader mapHeaderID)
 {
-    DistWorldFile_Load(param0, &param0->unk_169C.inactiveDistortionWorldFile, mapHeaderID);
+    DistWorldFile_Load(param0, &param0->mainArchive.inactiveDistortionWorldFile, mapHeaderID);
 }
 
 static void DistWorldFile_Invalidate(DistWorldFile *file)
@@ -4187,31 +4184,31 @@ static void ov9_0224C164(DistWorldSystem *param0)
 
 static void ov9_0224C174(DistWorldSystem *param0)
 {
-    DistWorldFile_Free(&param0->unk_169C.distortionWorldFile);
+    DistWorldFile_Free(&param0->mainArchive.distortionWorldFile);
 }
 
 static void ov9_0224C184(DistWorldSystem *param0)
 {
-    DistWorldFile_Free(&param0->unk_169C.inactiveDistortionWorldFile);
+    DistWorldFile_Free(&param0->mainArchive.inactiveDistortionWorldFile);
 }
 
 static void ov9_0224C194(DistWorldSystem *param0)
 {
-    GF_ASSERT(param0->unk_169C.inactiveDistortionWorldFile.mapHeaderID == MAP_HEADER_COUNT);
-    GF_ASSERT(param0->unk_169C.inactiveDistortionWorldFile.buffer == NULL);
+    GF_ASSERT(param0->mainArchive.inactiveDistortionWorldFile.mapHeaderID == MAP_HEADER_COUNT);
+    GF_ASSERT(param0->mainArchive.inactiveDistortionWorldFile.buffer == NULL);
 
-    param0->unk_169C.inactiveDistortionWorldFile = param0->unk_169C.distortionWorldFile;
+    param0->mainArchive.inactiveDistortionWorldFile = param0->mainArchive.distortionWorldFile;
 
-    DistWorldFile_Invalidate(&param0->unk_169C.distortionWorldFile);
+    DistWorldFile_Invalidate(&param0->mainArchive.distortionWorldFile);
 }
 
 static void ov9_0224C1E4(DistWorldSystem *param0)
 {
-    GF_ASSERT(param0->unk_169C.distortionWorldFile.mapHeaderID == MAP_HEADER_COUNT);
-    GF_ASSERT(param0->unk_169C.distortionWorldFile.buffer == NULL);
+    GF_ASSERT(param0->mainArchive.distortionWorldFile.mapHeaderID == MAP_HEADER_COUNT);
+    GF_ASSERT(param0->mainArchive.distortionWorldFile.buffer == NULL);
 
-    param0->unk_169C.distortionWorldFile = param0->unk_169C.inactiveDistortionWorldFile;
-    DistWorldFile_Invalidate(&param0->unk_169C.inactiveDistortionWorldFile);
+    param0->mainArchive.distortionWorldFile = param0->mainArchive.inactiveDistortionWorldFile;
+    DistWorldFile_Invalidate(&param0->mainArchive.inactiveDistortionWorldFile);
 }
 
 static int DistWorldFile_GetFloatingPlatformSectionSize(DistWorldFile *file)
@@ -4270,13 +4267,13 @@ static DistWorldCameraAngleTemplate *DistWorldFile_GetCameraAngleTemplates(DistW
 
 static int GetActiveGhostPropFileSectionSize(DistWorldSystem *system)
 {
-    return system->unk_169C.distortionWorldFile.header->ghostPropSectionSize;
+    return system->mainArchive.distortionWorldFile.header->ghostPropSectionSize;
 }
 
 static int GetInactiveGhostPropFileSectionSize(DistWorldSystem *system)
 {
     int ghostPropSectionSize = 0;
-    DistWorldFile *inactiveFile = &system->unk_169C.inactiveDistortionWorldFile;
+    DistWorldFile *inactiveFile = &system->mainArchive.inactiveDistortionWorldFile;
 
     if (inactiveFile->mapHeaderID != MAP_HEADER_INVALID) {
         ghostPropSectionSize = inactiveFile->header->ghostPropSectionSize;
@@ -4309,12 +4306,12 @@ static const DistWorldGhostPropTrigger *DistWorldFile_GetGhostPropTriggers(DistW
 
 static void InitFloatingPlatformManager(DistWorldSystem *system)
 {
-    DistWorldFile *file = &system->unk_169C.distortionWorldFile;
+    DistWorldFile *file = &system->mainArchive.distortionWorldFile;
 
-    GF_ASSERT(system->unk_169C.floatingPlatformMan.templates == NULL);
+    GF_ASSERT(system->mainArchive.floatingPlatformMan.templates == NULL);
 
     if (DistWorldFile_GetFloatingPlatformSectionSize(file)) {
-        DistWorldFloatingPlatformManager *floatingPlatformMan = &system->unk_169C.floatingPlatformMan;
+        DistWorldFloatingPlatformManager *floatingPlatformMan = &system->mainArchive.floatingPlatformMan;
 
         floatingPlatformMan->platformCount = DistWorldFile_GetFloatingPlatformCount(file);
         floatingPlatformMan->templates = DistWorldFile_GetFloatingPlatformSectionTemplates(file);
@@ -4323,7 +4320,7 @@ static void InitFloatingPlatformManager(DistWorldSystem *system)
 
 static void ResetFloatingPlatformManager(DistWorldSystem *system)
 {
-    DistWorldFloatingPlatformManager *floatingPlatformMan = &system->unk_169C.floatingPlatformMan;
+    DistWorldFloatingPlatformManager *floatingPlatformMan = &system->mainArchive.floatingPlatformMan;
 
     if (floatingPlatformMan->terrainAttributes != NULL) {
         Heap_Free(floatingPlatformMan->terrainAttributes);
@@ -4334,7 +4331,7 @@ static void ResetFloatingPlatformManager(DistWorldSystem *system)
 
 static BOOL HasFloatingPlatformAtCoords(DistWorldSystem *system, int tileX, int tileY, int tileZ, s16 floatingPlatformKind)
 {
-    DistWorldFloatingPlatformManager *floatingPlatformMan = &system->unk_169C.floatingPlatformMan;
+    DistWorldFloatingPlatformManager *floatingPlatformMan = &system->mainArchive.floatingPlatformMan;
     const DistWorldFloatingPlatformTemplate *floatingPlatformTemplateIter = floatingPlatformMan->templates;
     int i = 0;
     int floatingPlatformCount = floatingPlatformMan->platformCount;
@@ -4359,7 +4356,7 @@ static BOOL HasFloatingPlatformAtCoords(DistWorldSystem *system, int tileX, int 
 
 static void FindAndPrepareNewCurrentFloatingPlatform(DistWorldSystem *system, int tileX, int tileY, int tileZ, s16 floatingPlatformKind)
 {
-    DistWorldFloatingPlatformManager *floatingPlatformMan = &system->unk_169C.floatingPlatformMan;
+    DistWorldFloatingPlatformManager *floatingPlatformMan = &system->mainArchive.floatingPlatformMan;
     const DistWorldFloatingPlatformTemplate *floatingPlatformTemplateIter = floatingPlatformMan->templates;
     int i = 0;
     int floatingPlatformCount = floatingPlatformMan->platformCount;
@@ -4394,7 +4391,7 @@ static void FindAndPrepareNewCurrentFloatingPlatform(DistWorldSystem *system, in
 
 static void PrepareNewCurrentFloatingPlatform(DistWorldSystem *system, u32 floatingPlatformIndex)
 {
-    DistWorldFloatingPlatformManager *floatingPlatformMan = &system->unk_169C.floatingPlatformMan;
+    DistWorldFloatingPlatformManager *floatingPlatformMan = &system->mainArchive.floatingPlatformMan;
     const DistWorldFloatingPlatformTemplate *floatingPlatformTemplates = floatingPlatformMan->templates;
     int floatingPlatformCount = floatingPlatformMan->platformCount;
 
@@ -4418,7 +4415,7 @@ static void PrepareNewCurrentFloatingPlatform(DistWorldSystem *system, u32 float
 
 static void FreeFloatingPlatformManagerTerrainAttrs(DistWorldSystem *system)
 {
-    DistWorldFloatingPlatformManager *floatingPlatformMan = &system->unk_169C.floatingPlatformMan;
+    DistWorldFloatingPlatformManager *floatingPlatformMan = &system->mainArchive.floatingPlatformMan;
 
     floatingPlatformMan->currentPlatformIndex = floatingPlatformMan->platformCount;
     SetPersistedCurrentFloatingPlatformIndex(system, floatingPlatformMan->platformCount);
@@ -4431,7 +4428,7 @@ static void FreeFloatingPlatformManagerTerrainAttrs(DistWorldSystem *system)
 
 static u32 GetCurrentFloatingPlatformKind2(DistWorldSystem *system)
 {
-    DistWorldFloatingPlatformManager *floatingPlatformMan = &system->unk_169C.floatingPlatformMan;
+    DistWorldFloatingPlatformManager *floatingPlatformMan = &system->mainArchive.floatingPlatformMan;
     int floatingPlatformCount = floatingPlatformMan->platformCount;
 
     if (floatingPlatformMan->platformCount == 0 || floatingPlatformMan->currentPlatformIndex >= floatingPlatformMan->platformCount) {
@@ -4444,7 +4441,7 @@ static u32 GetCurrentFloatingPlatformKind2(DistWorldSystem *system)
 
 static u32 GetCurrentFloatingPlatformKind(DistWorldSystem *system)
 {
-    DistWorldFloatingPlatformManager *floatingPlatformMan = &system->unk_169C.floatingPlatformMan;
+    DistWorldFloatingPlatformManager *floatingPlatformMan = &system->mainArchive.floatingPlatformMan;
     int floatingPlatformCount = floatingPlatformMan->platformCount;
 
     if (floatingPlatformMan->platformCount == 0 || floatingPlatformMan->currentPlatformIndex >= floatingPlatformMan->platformCount) {
@@ -4457,7 +4454,7 @@ static u32 GetCurrentFloatingPlatformKind(DistWorldSystem *system)
 
 static u32 GetCurrentFloatingPlatformKindSafely(DistWorldSystem *system, int tileX, int tileY, int tileZ)
 {
-    DistWorldFloatingPlatformManager *floatingPlatformMan = &system->unk_169C.floatingPlatformMan;
+    DistWorldFloatingPlatformManager *floatingPlatformMan = &system->mainArchive.floatingPlatformMan;
     int floatingPlatformCount = floatingPlatformMan->platformCount;
 
     if (floatingPlatformMan->platformCount == 0 || floatingPlatformMan->currentPlatformIndex >= floatingPlatformMan->platformCount) {
@@ -4475,7 +4472,7 @@ static u32 GetCurrentFloatingPlatformKindSafely(DistWorldSystem *system, int til
 
 static void LoadFloatingPlatformTerrainAttributes(DistWorldSystem *system, u32 distortionWorldAttrID)
 {
-    DistWorldFloatingPlatformManager *floatingPlatformMan = &system->unk_169C.floatingPlatformMan;
+    DistWorldFloatingPlatformManager *floatingPlatformMan = &system->mainArchive.floatingPlatformMan;
 
     if (floatingPlatformMan->terrainAttributes != NULL) {
         Heap_Free(floatingPlatformMan->terrainAttributes);
@@ -4489,7 +4486,7 @@ static void LoadFloatingPlatformTerrainAttributes(DistWorldSystem *system, u32 d
 
 static u16 GetCurrentFloatingPlatformTileAttributesRelative(DistWorldSystem *system, int tileRelativeVerticalPos, int tileRelativeHorizontalPos)
 {
-    DistWorldFloatingPlatformManager *floatingPlatformMan = &system->unk_169C.floatingPlatformMan;
+    DistWorldFloatingPlatformManager *floatingPlatformMan = &system->mainArchive.floatingPlatformMan;
     const DistWorldFloatingPlatformTemplate *currentFloatingPlatform = &floatingPlatformMan->templates[floatingPlatformMan->currentPlatformIndex];
 
     GF_ASSERT(floatingPlatformMan->terrainAttributes != NULL);
@@ -4500,7 +4497,7 @@ static u16 GetCurrentFloatingPlatformTileAttributes(DistWorldSystem *system, int
 {
     int tileRelativeVerticalPos = 0;
     int tileRelativeHorizontalPos = 0;
-    DistWorldFloatingPlatformManager *floatingPlatformMan = &system->unk_169C.floatingPlatformMan;
+    DistWorldFloatingPlatformManager *floatingPlatformMan = &system->mainArchive.floatingPlatformMan;
 
     if (floatingPlatformMan->platformCount == 0 || floatingPlatformMan->currentPlatformIndex >= floatingPlatformMan->platformCount) {
         return INVALID_TERRAIN_ATTRIBUTES;
@@ -4541,12 +4538,12 @@ static u16 GetCurrentFloatingPlatformTileAttributes(DistWorldSystem *system, int
 
 static void InitFloatingPlatformJumpPoint(DistWorldSystem *system)
 {
-    DistWorldFile *file = &system->unk_169C.distortionWorldFile;
+    DistWorldFile *file = &system->mainArchive.distortionWorldFile;
 
-    GF_ASSERT(system->unk_169C.floatingPlatformJumpPoints.templates == NULL);
+    GF_ASSERT(system->mainArchive.floatingPlatformJumpPoints.templates == NULL);
 
     if (DistWorldFile_GetFloatingPlatformJumpPointSectionSize(file)) {
-        DistWorldFileFloatingPlatformJumpPointSection *floatingPlatformJumpPoints = &system->unk_169C.floatingPlatformJumpPoints;
+        DistWorldFileFloatingPlatformJumpPointSection *floatingPlatformJumpPoints = &system->mainArchive.floatingPlatformJumpPoints;
 
         floatingPlatformJumpPoints->count = DistWorldFile_GetFloatingPlatformJumpPointCount(file);
         floatingPlatformJumpPoints->templates = DistWorldFile_GetFloatingPlatformJumpPointTemplates(file);
@@ -4555,13 +4552,13 @@ static void InitFloatingPlatformJumpPoint(DistWorldSystem *system)
 
 static void ResetFloatingPlatformJumpPoint(DistWorldSystem *system)
 {
-    DistWorldFileFloatingPlatformJumpPointSection *floatingPlatformJumpPoints = &system->unk_169C.floatingPlatformJumpPoints;
+    DistWorldFileFloatingPlatformJumpPointSection *floatingPlatformJumpPoints = &system->mainArchive.floatingPlatformJumpPoints;
     memset(floatingPlatformJumpPoints, 0, sizeof(DistWorldFileFloatingPlatformJumpPointSection));
 }
 
 static const DistWorldFloatingPlatformJumpPointTemplate *FindFloatingPlatformJumpPointAt(DistWorldSystem *system, int playerX, int playerY, int playerZ, enum FaceDirection playerDir)
 {
-    DistWorldFileFloatingPlatformJumpPointSection *floatingPlatformJumpPoints = &system->unk_169C.floatingPlatformJumpPoints;
+    DistWorldFileFloatingPlatformJumpPointSection *floatingPlatformJumpPoints = &system->mainArchive.floatingPlatformJumpPoints;
     DistWorldFloatingPlatformJumpPointTemplate *iter = floatingPlatformJumpPoints->templates;
     int i = floatingPlatformJumpPoints->count;
 
@@ -4581,12 +4578,12 @@ static const DistWorldFloatingPlatformJumpPointTemplate *FindFloatingPlatformJum
 
 static void InitCameraAngleTemplates(DistWorldSystem *system)
 {
-    DistWorldFile *file = &system->unk_169C.distortionWorldFile;
+    DistWorldFile *file = &system->mainArchive.distortionWorldFile;
 
-    GF_ASSERT(system->unk_169C.cameraAngleTemplates.templates == NULL);
+    GF_ASSERT(system->mainArchive.cameraAngleTemplates.templates == NULL);
 
     if (DistWorldFile_GetCameraAngleSectionSize(file)) {
-        DistWorldCameraAngleTemplates *cameraAngleTemplates = &system->unk_169C.cameraAngleTemplates;
+        DistWorldCameraAngleTemplates *cameraAngleTemplates = &system->mainArchive.cameraAngleTemplates;
 
         cameraAngleTemplates->count = DistWorldFile_GetCameraAngleCount(file);
         cameraAngleTemplates->templates = DistWorldFile_GetCameraAngleTemplates(file);
@@ -4595,13 +4592,13 @@ static void InitCameraAngleTemplates(DistWorldSystem *system)
 
 static void ResetCameraAngleTemplates(DistWorldSystem *system)
 {
-    DistWorldCameraAngleTemplates *cameraAngleTemplates = &system->unk_169C.cameraAngleTemplates;
+    DistWorldCameraAngleTemplates *cameraAngleTemplates = &system->mainArchive.cameraAngleTemplates;
     memset(cameraAngleTemplates, 0, sizeof(DistWorldCameraAngleTemplates));
 }
 
 static const DistWorldCameraAngleTemplate *FindCameraAngleForPlayerPosition(DistWorldSystem *system, int playerX, int playerY, int playerZ, enum FaceDirection playerDir)
 {
-    DistWorldCameraAngleTemplates *cameraAngleTemplates = &system->unk_169C.cameraAngleTemplates;
+    DistWorldCameraAngleTemplates *cameraAngleTemplates = &system->mainArchive.cameraAngleTemplates;
     DistWorldCameraAngleTemplate *cameraAngleTemplateIter = cameraAngleTemplates->templates;
     int i = cameraAngleTemplates->count;
 
@@ -4633,8 +4630,8 @@ static void DistWorldGhostPropData_InitFromFile(DistWorldFile *file, DistWorldGh
 static void InitActiveGhostPropData(DistWorldSystem *system)
 {
     if (GetActiveGhostPropFileSectionSize(system)) {
-        DistWorldFile *file = &system->unk_169C.distortionWorldFile;
-        DistWorldGhostPropData *ghostPropData = &system->unk_169C.ghostPropData;
+        DistWorldFile *file = &system->mainArchive.distortionWorldFile;
+        DistWorldGhostPropData *ghostPropData = &system->mainArchive.ghostPropData;
 
         DistWorldGhostPropData_InitFromFile(file, ghostPropData);
     }
@@ -4643,8 +4640,8 @@ static void InitActiveGhostPropData(DistWorldSystem *system)
 static void InitInactiveGhostPropData(DistWorldSystem *system)
 {
     if (GetInactiveGhostPropFileSectionSize(system)) {
-        DistWorldFile *file = &system->unk_169C.inactiveDistortionWorldFile;
-        DistWorldGhostPropData *ghostPropData = &system->unk_169C.inactiveGhostPropData;
+        DistWorldFile *file = &system->mainArchive.inactiveDistortionWorldFile;
+        DistWorldGhostPropData *ghostPropData = &system->mainArchive.inactiveGhostPropData;
 
         DistWorldGhostPropData_InitFromFile(file, ghostPropData);
     }
@@ -4663,12 +4660,12 @@ static void DistWorldGhostPropData_Reset(DistWorldGhostPropData *data)
 
 static void ResetActiveGhostPropData(DistWorldSystem *system)
 {
-    DistWorldGhostPropData_Reset(&system->unk_169C.ghostPropData);
+    DistWorldGhostPropData_Reset(&system->mainArchive.ghostPropData);
 }
 
 static void ResetInactiveGhostPropData(DistWorldSystem *system)
 {
-    DistWorldGhostPropData_Reset(&system->unk_169C.inactiveGhostPropData);
+    DistWorldGhostPropData_Reset(&system->mainArchive.inactiveGhostPropData);
 }
 
 static void ResetAllGhostPropData(DistWorldSystem *system)
@@ -4679,39 +4676,39 @@ static void ResetAllGhostPropData(DistWorldSystem *system)
 
 static void MoveActiveGhostPropDataToInactive(DistWorldSystem *system)
 {
-    system->unk_169C.inactiveGhostPropData = system->unk_169C.ghostPropData;
-    DistWorldGhostPropData_Reset(&system->unk_169C.ghostPropData);
+    system->mainArchive.inactiveGhostPropData = system->mainArchive.ghostPropData;
+    DistWorldGhostPropData_Reset(&system->mainArchive.ghostPropData);
 }
 
 static void MoveInactiveGhostPropDataToActive(DistWorldSystem *system)
 {
-    system->unk_169C.ghostPropData = system->unk_169C.inactiveGhostPropData;
-    DistWorldGhostPropData_Reset(&system->unk_169C.inactiveGhostPropData);
+    system->mainArchive.ghostPropData = system->mainArchive.inactiveGhostPropData;
+    DistWorldGhostPropData_Reset(&system->mainArchive.inactiveGhostPropData);
 }
 
 static const DistWorldGhostPropHeader *GetActiveGhostPropHeader(DistWorldSystem *system)
 {
-    return system->unk_169C.ghostPropData.header;
+    return system->mainArchive.ghostPropData.header;
 }
 
 static const DistWorldGhostPropHeader *GetInactiveGhostPropHeader(DistWorldSystem *system)
 {
-    return system->unk_169C.inactiveGhostPropData.header;
+    return system->mainArchive.inactiveGhostPropData.header;
 }
 
 static const DistWorldGhostPropTemplate *GetActiveGhostPropTemplates(DistWorldSystem *system)
 {
-    return system->unk_169C.ghostPropData.templates;
+    return system->mainArchive.ghostPropData.templates;
 }
 
 static const DistWorldGhostPropTemplate *GetInactiveGhostPropTemplates(DistWorldSystem *system)
 {
-    return system->unk_169C.inactiveGhostPropData.templates;
+    return system->mainArchive.inactiveGhostPropData.templates;
 }
 
 static const DistWorldGhostPropTrigger *GetActiveGhostPropTriggers(DistWorldSystem *system)
 {
-    return system->unk_169C.ghostPropData.triggers;
+    return system->mainArchive.ghostPropData.triggers;
 }
 
 static void ov9_0224C8E8(DistWorldSystem *param0)
@@ -4756,7 +4753,7 @@ static void ov9_0224C8E8(DistWorldSystem *param0)
     {
         int v7, v8, v9;
 
-        ov9_0224C070(param0, v1, &v7, &v8, &v9);
+        FindMapOffsets(param0, v1, &v7, &v8, &v9);
         LandDataManager_DistortionWorldSetOffsets(v2->unk_18, v7, v8, v9);
     }
 
@@ -5067,7 +5064,7 @@ static int ov9_0224CD84(DistWorldSystem *param0, UnkStruct_ov9_0224CBD8 *param1)
         v3 = LandDataManager_GetLandDataNARC(param0->fieldSystem->landDataMan);
         LandDataManager_DistortionWorldInit(v4->unk_18, v4->unk_10, v4->unk_14, v3);
 
-        ov9_0224C070(param0, v4->unk_00, &v0, &v1, &v2);
+        FindMapOffsets(param0, v4->unk_00, &v0, &v1, &v2);
         LandDataManager_DistortionWorldSetOffsets(v4->unk_18, v0, v1, v2);
         LandDataManager_SetInDistortionWorld(v4->unk_18, 1);
         LandDataManager_SetSkipMapProps(v4->unk_18, 1);
@@ -9650,12 +9647,12 @@ BOOL DistWorld_GetTileBehaviorOnCurrentFloatingPlatform(FieldSystem *fieldSystem
 
 void ov9_02251094(int param0, int *param1, int *param2, int *param3)
 {
-    UnkStruct_ov9_0224BFE0 v0;
+    DistWorldMapInfoFile v0;
     NARC *v1 = NARC_ctor(NARC_INDEX_FIELDDATA__TORNWORLD__TW_ARC, HEAP_ID_FIELD1);
 
-    ov9_0224BF8C(v1, &v0);
-    ov9_0224C050(&v0, param0, param1, param2, param3);
-    ov9_0224BFE0(&v0);
+    DistWorldMapInfoFile_Load(v1, &v0);
+    DistWorldMapInfoFile_FindMapOffsets(&v0, param0, param1, param2, param3);
+    DistWorldMapInfoFile_Free(&v0);
     NARC_dtor(v1);
 }
 
