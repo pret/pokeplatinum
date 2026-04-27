@@ -749,10 +749,10 @@ typedef struct DistWorldFloatingPlatformManager {
     u16 *terrainAttributes;
 } DistWorldFloatingPlatformManager;
 
-typedef struct DistWorldFileFloatingPlatformJumpPointSection {
+typedef struct DistWorldMapFileFloatingPlatformJumpPointSection {
     int count;
     DistWorldFloatingPlatformJumpPointTemplate *templates;
-} DistWorldFileFloatingPlatformJumpPointSection;
+} DistWorldMapFileFloatingPlatformJumpPointSection;
 
 typedef struct DistWorldCameraAngleTemplates {
     int count;
@@ -765,42 +765,42 @@ typedef struct DistWorldGhostPropData {
     const DistWorldGhostPropTrigger *triggers;
 } DistWorldGhostPropData;
 
-typedef struct DistWorldFileHeader {
+typedef struct DistWorldMapFileHeader {
     int dummy00;
     int floatingPlatformSectionSize;
     int floatingPlatformJumpPointSectionSize;
     int cameraAngleSectionSize;
     int ghostPropSectionSize;
-} DistWorldFileHeader;
+} DistWorldMapFileHeader;
 
-typedef struct DistWorldFileFloatingPlatformSection {
+typedef struct DistWorldMapFileFloatingPlatformSection {
     int count;
     DistWorldFloatingPlatformTemplate *templates;
-} DistWorldFileFloatingPlatformSection;
+} DistWorldMapFileFloatingPlatformSection;
 
-typedef struct DistWorldFileCameraAngleSection {
+typedef struct DistWorldMapFileCameraAngleSection {
     int count;
     DistWorldCameraAngleTemplate *templates;
-} DistWorldFileCameraAngleSection;
+} DistWorldMapFileCameraAngleSection;
 
-typedef struct DistWorldFile {
+typedef struct DistWorldMapFile {
     u32 mapHeaderID;
-    DistWorldFileFloatingPlatformSection *floatingPlatformSection;
-    DistWorldFileFloatingPlatformJumpPointSection *floatingPlatformJumpPointSection;
-    DistWorldFileCameraAngleSection *cameraAngleSection;
+    DistWorldMapFileFloatingPlatformSection *floatingPlatformSection;
+    DistWorldMapFileFloatingPlatformJumpPointSection *floatingPlatformJumpPointSection;
+    DistWorldMapFileCameraAngleSection *cameraAngleSection;
     void *ghostPropSection;
-    DistWorldFileHeader *header;
+    DistWorldMapFileHeader *header;
     void *buffer;
-} DistWorldFile;
+} DistWorldMapFile;
 
 typedef struct DistWorldMainArchive {
     DistWorldMapInfoFile mapInfoFile;
-    DistWorldFile distortionWorldFile;
+    DistWorldMapFile mapFile;
     DistWorldFloatingPlatformManager floatingPlatformMan;
-    DistWorldFileFloatingPlatformJumpPointSection floatingPlatformJumpPoints;
+    DistWorldMapFileFloatingPlatformJumpPointSection floatingPlatformJumpPoints;
     DistWorldCameraAngleTemplates cameraAngleTemplates;
     DistWorldGhostPropData ghostPropData;
-    DistWorldFile inactiveDistortionWorldFile;
+    DistWorldMapFile inactiveMapFile;
     DistWorldGhostPropData inactiveGhostPropData;
 } DistWorldMainArchive;
 
@@ -1495,30 +1495,30 @@ static const DistWorldMapInfo *FindMapInfo(DistWorldSystem *system, enum MapHead
 static u32 FindMapFileIndex(DistWorldSystem *system, enum MapHeader mapHeaderID);
 static void DistWorldMapInfoFile_FindMapOffsets(const DistWorldMapInfoFile *param0, int param1, int *param2, int *param3, int *param4);
 static void FindMapOffsets(DistWorldSystem *param0, int param1, int *param2, int *param3, int *param4);
-static void DistWorldFile_Load(DistWorldSystem *system, DistWorldFile *file, enum MapHeader mapHeaderID);
+static void DistWorldMapFile_Load(DistWorldSystem *system, DistWorldMapFile *file, enum MapHeader mapHeaderID);
 static void ov9_0224C0F8(DistWorldSystem *param0, enum MapHeader mapHeaderID, int param2);
 static void ov9_0224C10C(DistWorldSystem *param0, enum MapHeader mapHeaderID);
 static void ov9_0224C120(DistWorldSystem *param0, enum MapHeader mapHeaderID);
-static void DistWorldFile_Free(DistWorldFile *file);
+static void DistWorldMapFile_Free(DistWorldMapFile *file);
 static void ov9_0224C164(DistWorldSystem *param0);
 static void ov9_0224C174(DistWorldSystem *param0);
 static void ov9_0224C184(DistWorldSystem *param0);
 static void ov9_0224C194(DistWorldSystem *param0);
 static void ov9_0224C1E4(DistWorldSystem *param0);
-static int DistWorldFile_GetFloatingPlatformSectionSize(DistWorldFile *file);
-static int DistWorldFile_GetFloatingPlatformCount(DistWorldFile *file);
-static DistWorldFloatingPlatformTemplate *DistWorldFile_GetFloatingPlatformSectionTemplates(DistWorldFile *file);
-static int DistWorldFile_GetFloatingPlatformJumpPointSectionSize(DistWorldFile *file);
-static int DistWorldFile_GetFloatingPlatformJumpPointCount(DistWorldFile *file);
-static DistWorldFloatingPlatformJumpPointTemplate *DistWorldFile_GetFloatingPlatformJumpPointTemplates(DistWorldFile *file);
-static int DistWorldFile_GetCameraAngleSectionSize(DistWorldFile *file);
-static int DistWorldFile_GetCameraAngleCount(DistWorldFile *file);
-static DistWorldCameraAngleTemplate *DistWorldFile_GetCameraAngleTemplates(DistWorldFile *file);
+static int DistWorldMapFile_GetFloatingPlatformSectionSize(DistWorldMapFile *file);
+static int DistWorldMapFile_GetFloatingPlatformCount(DistWorldMapFile *file);
+static DistWorldFloatingPlatformTemplate *DistWorldMapFile_GetFloatingPlatformSectionTemplates(DistWorldMapFile *file);
+static int DistWorldMapFile_GetFloatingPlatformJumpPointSectionSize(DistWorldMapFile *file);
+static int DistWorldMapFile_GetFloatingPlatformJumpPointCount(DistWorldMapFile *file);
+static DistWorldFloatingPlatformJumpPointTemplate *DistWorldMapFile_GetFloatingPlatformJumpPointTemplates(DistWorldMapFile *file);
+static int DistWorldMapFile_GetCameraAngleSectionSize(DistWorldMapFile *file);
+static int DistWorldMapFile_GetCameraAngleCount(DistWorldMapFile *file);
+static DistWorldCameraAngleTemplate *DistWorldMapFile_GetCameraAngleTemplates(DistWorldMapFile *file);
 static int GetActiveGhostPropFileSectionSize(DistWorldSystem *system);
 static int GetInactiveGhostPropFileSectionSize(DistWorldSystem *system);
-static const DistWorldGhostPropHeader *DistWorldFile_GetGhostPropHeader(DistWorldFile *system);
-static const DistWorldGhostPropTemplate *DistWorldFile_GetGhostPropTemplates(DistWorldFile *system);
-static const DistWorldGhostPropTrigger *DistWorldFile_GetGhostPropTriggers(DistWorldFile *system);
+static const DistWorldGhostPropHeader *DistWorldMapFile_GetGhostPropHeader(DistWorldMapFile *system);
+static const DistWorldGhostPropTemplate *DistWorldMapFile_GetGhostPropTemplates(DistWorldMapFile *system);
+static const DistWorldGhostPropTrigger *DistWorldMapFile_GetGhostPropTriggers(DistWorldMapFile *system);
 static void InitFloatingPlatformManager(DistWorldSystem *system);
 static void ResetFloatingPlatformManager(DistWorldSystem *system);
 static void FindAndPrepareNewCurrentFloatingPlatform(DistWorldSystem *system, int tileX, int tileY, int tileZ, s16 floatingPlatformKind);
@@ -1536,7 +1536,7 @@ static const DistWorldFloatingPlatformJumpPointTemplate *FindFloatingPlatformJum
 static void InitCameraAngleTemplates(DistWorldSystem *system);
 static void ResetCameraAngleTemplates(DistWorldSystem *system);
 static const DistWorldCameraAngleTemplate *FindCameraAngleForPlayerPosition(DistWorldSystem *system, int playerX, int playerY, int playerZ, enum FaceDirection playerDir);
-static void DistWorldGhostPropData_InitFromFile(DistWorldFile *file, DistWorldGhostPropData *data);
+static void DistWorldGhostPropData_InitFromFile(DistWorldMapFile *file, DistWorldGhostPropData *data);
 static void InitActiveGhostPropData(DistWorldSystem *system);
 static void InitInactiveGhostPropData(DistWorldSystem *system);
 static void InitAllGhostPropData(DistWorldSystem *system);
@@ -4114,17 +4114,17 @@ static void FindMapOffsets(DistWorldSystem *system, int mapHeaderID, int *offset
     DistWorldMapInfoFile_FindMapOffsets(&system->mainArchive.mapInfoFile, mapHeaderID, offsetTileX, offsetAltitude, offsetTileZ);
 }
 
-static void DistWorldFile_Load(DistWorldSystem *system, DistWorldFile *file, enum MapHeader mapHeaderID)
+static void DistWorldMapFile_Load(DistWorldSystem *system, DistWorldMapFile *file, enum MapHeader mapHeaderID)
 {
     GF_ASSERT(file->buffer == NULL);
 
-    memset(file, 0, sizeof(DistWorldFile));
+    memset(file, 0, sizeof(DistWorldMapFile));
     file->mapHeaderID = mapHeaderID;
 
     if (mapHeaderID != MAP_HEADER_COUNT) {
         u8 *data;
         u32 narcMemberSize, narcIndex;
-        DistWorldFileHeader *header;
+        DistWorldMapFileHeader *header;
 
         narcIndex = FindMapFileIndex(system, mapHeaderID);
         narcMemberSize = NARC_GetMemberSize(system->mainNARC, narcIndex);
@@ -4136,11 +4136,11 @@ static void DistWorldFile_Load(DistWorldSystem *system, DistWorldFile *file, enu
         file->header = header;
 
         data = file->buffer;
-        data += sizeof(DistWorldFileHeader);
+        data += sizeof(DistWorldMapFileHeader);
 
-        file->floatingPlatformSection = (DistWorldFileFloatingPlatformSection *)data;
-        file->floatingPlatformJumpPointSection = (DistWorldFileFloatingPlatformJumpPointSection *)((u8 *)file->floatingPlatformSection + header->floatingPlatformSectionSize);
-        file->cameraAngleSection = (DistWorldFileCameraAngleSection *)((u8 *)file->floatingPlatformJumpPointSection + header->floatingPlatformJumpPointSectionSize);
+        file->floatingPlatformSection = (DistWorldMapFileFloatingPlatformSection *)data;
+        file->floatingPlatformJumpPointSection = (DistWorldMapFileFloatingPlatformJumpPointSection *)((u8 *)file->floatingPlatformSection + header->floatingPlatformSectionSize);
+        file->cameraAngleSection = (DistWorldMapFileCameraAngleSection *)((u8 *)file->floatingPlatformJumpPointSection + header->floatingPlatformJumpPointSectionSize);
         file->ghostPropSection = (u8 *)file->cameraAngleSection + header->cameraAngleSectionSize;
     }
 }
@@ -4153,27 +4153,27 @@ static void ov9_0224C0F8(DistWorldSystem *param0, enum MapHeader mapHeaderID, in
 
 static void ov9_0224C10C(DistWorldSystem *param0, enum MapHeader mapHeaderID)
 {
-    DistWorldFile_Load(param0, &param0->mainArchive.distortionWorldFile, mapHeaderID);
+    DistWorldMapFile_Load(param0, &param0->mainArchive.mapFile, mapHeaderID);
 }
 
 static void ov9_0224C120(DistWorldSystem *param0, enum MapHeader mapHeaderID)
 {
-    DistWorldFile_Load(param0, &param0->mainArchive.inactiveDistortionWorldFile, mapHeaderID);
+    DistWorldMapFile_Load(param0, &param0->mainArchive.inactiveMapFile, mapHeaderID);
 }
 
-static void DistWorldFile_Invalidate(DistWorldFile *file)
+static void DistWorldMapFile_Invalidate(DistWorldMapFile *file)
 {
-    memset(file, 0, sizeof(DistWorldFile));
+    memset(file, 0, sizeof(DistWorldMapFile));
     file->mapHeaderID = MAP_HEADER_COUNT;
 }
 
-static void DistWorldFile_Free(DistWorldFile *file)
+static void DistWorldMapFile_Free(DistWorldMapFile *file)
 {
     if (file->buffer != NULL) {
         Heap_Free(file->buffer);
     }
 
-    DistWorldFile_Invalidate(file);
+    DistWorldMapFile_Invalidate(file);
 }
 
 static void ov9_0224C164(DistWorldSystem *param0)
@@ -4184,44 +4184,44 @@ static void ov9_0224C164(DistWorldSystem *param0)
 
 static void ov9_0224C174(DistWorldSystem *param0)
 {
-    DistWorldFile_Free(&param0->mainArchive.distortionWorldFile);
+    DistWorldMapFile_Free(&param0->mainArchive.mapFile);
 }
 
 static void ov9_0224C184(DistWorldSystem *param0)
 {
-    DistWorldFile_Free(&param0->mainArchive.inactiveDistortionWorldFile);
+    DistWorldMapFile_Free(&param0->mainArchive.inactiveMapFile);
 }
 
 static void ov9_0224C194(DistWorldSystem *param0)
 {
-    GF_ASSERT(param0->mainArchive.inactiveDistortionWorldFile.mapHeaderID == MAP_HEADER_COUNT);
-    GF_ASSERT(param0->mainArchive.inactiveDistortionWorldFile.buffer == NULL);
+    GF_ASSERT(param0->mainArchive.inactiveMapFile.mapHeaderID == MAP_HEADER_COUNT);
+    GF_ASSERT(param0->mainArchive.inactiveMapFile.buffer == NULL);
 
-    param0->mainArchive.inactiveDistortionWorldFile = param0->mainArchive.distortionWorldFile;
+    param0->mainArchive.inactiveMapFile = param0->mainArchive.mapFile;
 
-    DistWorldFile_Invalidate(&param0->mainArchive.distortionWorldFile);
+    DistWorldMapFile_Invalidate(&param0->mainArchive.mapFile);
 }
 
 static void ov9_0224C1E4(DistWorldSystem *param0)
 {
-    GF_ASSERT(param0->mainArchive.distortionWorldFile.mapHeaderID == MAP_HEADER_COUNT);
-    GF_ASSERT(param0->mainArchive.distortionWorldFile.buffer == NULL);
+    GF_ASSERT(param0->mainArchive.mapFile.mapHeaderID == MAP_HEADER_COUNT);
+    GF_ASSERT(param0->mainArchive.mapFile.buffer == NULL);
 
-    param0->mainArchive.distortionWorldFile = param0->mainArchive.inactiveDistortionWorldFile;
-    DistWorldFile_Invalidate(&param0->mainArchive.inactiveDistortionWorldFile);
+    param0->mainArchive.mapFile = param0->mainArchive.inactiveMapFile;
+    DistWorldMapFile_Invalidate(&param0->mainArchive.inactiveMapFile);
 }
 
-static int DistWorldFile_GetFloatingPlatformSectionSize(DistWorldFile *file)
+static int DistWorldMapFile_GetFloatingPlatformSectionSize(DistWorldMapFile *file)
 {
     return file->header->floatingPlatformSectionSize;
 }
 
-static int DistWorldFile_GetFloatingPlatformCount(DistWorldFile *file)
+static int DistWorldMapFile_GetFloatingPlatformCount(DistWorldMapFile *file)
 {
     return file->floatingPlatformSection->count;
 }
 
-static DistWorldFloatingPlatformTemplate *DistWorldFile_GetFloatingPlatformSectionTemplates(DistWorldFile *file)
+static DistWorldFloatingPlatformTemplate *DistWorldMapFile_GetFloatingPlatformSectionTemplates(DistWorldMapFile *file)
 {
     u8 *templates = (u8 *)file->floatingPlatformSection;
     templates += sizeof(file->floatingPlatformSection->count);
@@ -4229,17 +4229,17 @@ static DistWorldFloatingPlatformTemplate *DistWorldFile_GetFloatingPlatformSecti
     return (DistWorldFloatingPlatformTemplate *)templates;
 }
 
-static int DistWorldFile_GetFloatingPlatformJumpPointSectionSize(DistWorldFile *file)
+static int DistWorldMapFile_GetFloatingPlatformJumpPointSectionSize(DistWorldMapFile *file)
 {
     return file->header->floatingPlatformJumpPointSectionSize;
 }
 
-static int DistWorldFile_GetFloatingPlatformJumpPointCount(DistWorldFile *file)
+static int DistWorldMapFile_GetFloatingPlatformJumpPointCount(DistWorldMapFile *file)
 {
     return file->floatingPlatformJumpPointSection->count;
 }
 
-static DistWorldFloatingPlatformJumpPointTemplate *DistWorldFile_GetFloatingPlatformJumpPointTemplates(DistWorldFile *file)
+static DistWorldFloatingPlatformJumpPointTemplate *DistWorldMapFile_GetFloatingPlatformJumpPointTemplates(DistWorldMapFile *file)
 {
     u8 *templates = (u8 *)file->floatingPlatformJumpPointSection;
     templates += sizeof(file->floatingPlatformJumpPointSection->count);
@@ -4247,17 +4247,17 @@ static DistWorldFloatingPlatformJumpPointTemplate *DistWorldFile_GetFloatingPlat
     return (DistWorldFloatingPlatformJumpPointTemplate *)templates;
 }
 
-static int DistWorldFile_GetCameraAngleSectionSize(DistWorldFile *file)
+static int DistWorldMapFile_GetCameraAngleSectionSize(DistWorldMapFile *file)
 {
     return file->header->cameraAngleSectionSize;
 }
 
-static int DistWorldFile_GetCameraAngleCount(DistWorldFile *file)
+static int DistWorldMapFile_GetCameraAngleCount(DistWorldMapFile *file)
 {
     return file->cameraAngleSection->count;
 }
 
-static DistWorldCameraAngleTemplate *DistWorldFile_GetCameraAngleTemplates(DistWorldFile *file)
+static DistWorldCameraAngleTemplate *DistWorldMapFile_GetCameraAngleTemplates(DistWorldMapFile *file)
 {
     u8 *templates = (u8 *)file->cameraAngleSection;
     templates += sizeof(int);
@@ -4267,13 +4267,13 @@ static DistWorldCameraAngleTemplate *DistWorldFile_GetCameraAngleTemplates(DistW
 
 static int GetActiveGhostPropFileSectionSize(DistWorldSystem *system)
 {
-    return system->mainArchive.distortionWorldFile.header->ghostPropSectionSize;
+    return system->mainArchive.mapFile.header->ghostPropSectionSize;
 }
 
 static int GetInactiveGhostPropFileSectionSize(DistWorldSystem *system)
 {
     int ghostPropSectionSize = 0;
-    DistWorldFile *inactiveFile = &system->mainArchive.inactiveDistortionWorldFile;
+    DistWorldMapFile *inactiveFile = &system->mainArchive.inactiveMapFile;
 
     if (inactiveFile->mapHeaderID != MAP_HEADER_INVALID) {
         ghostPropSectionSize = inactiveFile->header->ghostPropSectionSize;
@@ -4282,12 +4282,12 @@ static int GetInactiveGhostPropFileSectionSize(DistWorldSystem *system)
     return ghostPropSectionSize;
 }
 
-static const DistWorldGhostPropHeader *DistWorldFile_GetGhostPropHeader(DistWorldFile *file)
+static const DistWorldGhostPropHeader *DistWorldMapFile_GetGhostPropHeader(DistWorldMapFile *file)
 {
     return file->ghostPropSection;
 }
 
-static const DistWorldGhostPropTemplate *DistWorldFile_GetGhostPropTemplates(DistWorldFile *file)
+static const DistWorldGhostPropTemplate *DistWorldMapFile_GetGhostPropTemplates(DistWorldMapFile *file)
 {
     const u8 *templates = file->ghostPropSection;
     templates += sizeof(DistWorldGhostPropHeader);
@@ -4295,7 +4295,7 @@ static const DistWorldGhostPropTemplate *DistWorldFile_GetGhostPropTemplates(Dis
     return (DistWorldGhostPropTemplate *)templates;
 }
 
-static const DistWorldGhostPropTrigger *DistWorldFile_GetGhostPropTriggers(DistWorldFile *file)
+static const DistWorldGhostPropTrigger *DistWorldMapFile_GetGhostPropTriggers(DistWorldMapFile *file)
 {
     const DistWorldGhostPropHeader *header = file->ghostPropSection;
     const u8 *triggers = file->ghostPropSection;
@@ -4306,15 +4306,15 @@ static const DistWorldGhostPropTrigger *DistWorldFile_GetGhostPropTriggers(DistW
 
 static void InitFloatingPlatformManager(DistWorldSystem *system)
 {
-    DistWorldFile *file = &system->mainArchive.distortionWorldFile;
+    DistWorldMapFile *file = &system->mainArchive.mapFile;
 
     GF_ASSERT(system->mainArchive.floatingPlatformMan.templates == NULL);
 
-    if (DistWorldFile_GetFloatingPlatformSectionSize(file)) {
+    if (DistWorldMapFile_GetFloatingPlatformSectionSize(file)) {
         DistWorldFloatingPlatformManager *floatingPlatformMan = &system->mainArchive.floatingPlatformMan;
 
-        floatingPlatformMan->platformCount = DistWorldFile_GetFloatingPlatformCount(file);
-        floatingPlatformMan->templates = DistWorldFile_GetFloatingPlatformSectionTemplates(file);
+        floatingPlatformMan->platformCount = DistWorldMapFile_GetFloatingPlatformCount(file);
+        floatingPlatformMan->templates = DistWorldMapFile_GetFloatingPlatformSectionTemplates(file);
     }
 }
 
@@ -4538,27 +4538,27 @@ static u16 GetCurrentFloatingPlatformTileAttributes(DistWorldSystem *system, int
 
 static void InitFloatingPlatformJumpPoint(DistWorldSystem *system)
 {
-    DistWorldFile *file = &system->mainArchive.distortionWorldFile;
+    DistWorldMapFile *file = &system->mainArchive.mapFile;
 
     GF_ASSERT(system->mainArchive.floatingPlatformJumpPoints.templates == NULL);
 
-    if (DistWorldFile_GetFloatingPlatformJumpPointSectionSize(file)) {
-        DistWorldFileFloatingPlatformJumpPointSection *floatingPlatformJumpPoints = &system->mainArchive.floatingPlatformJumpPoints;
+    if (DistWorldMapFile_GetFloatingPlatformJumpPointSectionSize(file)) {
+        DistWorldMapFileFloatingPlatformJumpPointSection *floatingPlatformJumpPoints = &system->mainArchive.floatingPlatformJumpPoints;
 
-        floatingPlatformJumpPoints->count = DistWorldFile_GetFloatingPlatformJumpPointCount(file);
-        floatingPlatformJumpPoints->templates = DistWorldFile_GetFloatingPlatformJumpPointTemplates(file);
+        floatingPlatformJumpPoints->count = DistWorldMapFile_GetFloatingPlatformJumpPointCount(file);
+        floatingPlatformJumpPoints->templates = DistWorldMapFile_GetFloatingPlatformJumpPointTemplates(file);
     }
 }
 
 static void ResetFloatingPlatformJumpPoint(DistWorldSystem *system)
 {
-    DistWorldFileFloatingPlatformJumpPointSection *floatingPlatformJumpPoints = &system->mainArchive.floatingPlatformJumpPoints;
-    memset(floatingPlatformJumpPoints, 0, sizeof(DistWorldFileFloatingPlatformJumpPointSection));
+    DistWorldMapFileFloatingPlatformJumpPointSection *floatingPlatformJumpPoints = &system->mainArchive.floatingPlatformJumpPoints;
+    memset(floatingPlatformJumpPoints, 0, sizeof(DistWorldMapFileFloatingPlatformJumpPointSection));
 }
 
 static const DistWorldFloatingPlatformJumpPointTemplate *FindFloatingPlatformJumpPointAt(DistWorldSystem *system, int playerX, int playerY, int playerZ, enum FaceDirection playerDir)
 {
-    DistWorldFileFloatingPlatformJumpPointSection *floatingPlatformJumpPoints = &system->mainArchive.floatingPlatformJumpPoints;
+    DistWorldMapFileFloatingPlatformJumpPointSection *floatingPlatformJumpPoints = &system->mainArchive.floatingPlatformJumpPoints;
     DistWorldFloatingPlatformJumpPointTemplate *iter = floatingPlatformJumpPoints->templates;
     int i = floatingPlatformJumpPoints->count;
 
@@ -4578,15 +4578,15 @@ static const DistWorldFloatingPlatformJumpPointTemplate *FindFloatingPlatformJum
 
 static void InitCameraAngleTemplates(DistWorldSystem *system)
 {
-    DistWorldFile *file = &system->mainArchive.distortionWorldFile;
+    DistWorldMapFile *file = &system->mainArchive.mapFile;
 
     GF_ASSERT(system->mainArchive.cameraAngleTemplates.templates == NULL);
 
-    if (DistWorldFile_GetCameraAngleSectionSize(file)) {
+    if (DistWorldMapFile_GetCameraAngleSectionSize(file)) {
         DistWorldCameraAngleTemplates *cameraAngleTemplates = &system->mainArchive.cameraAngleTemplates;
 
-        cameraAngleTemplates->count = DistWorldFile_GetCameraAngleCount(file);
-        cameraAngleTemplates->templates = DistWorldFile_GetCameraAngleTemplates(file);
+        cameraAngleTemplates->count = DistWorldMapFile_GetCameraAngleCount(file);
+        cameraAngleTemplates->templates = DistWorldMapFile_GetCameraAngleTemplates(file);
     }
 }
 
@@ -4616,21 +4616,21 @@ static const DistWorldCameraAngleTemplate *FindCameraAngleForPlayerPosition(Dist
     return NULL;
 }
 
-static void DistWorldGhostPropData_InitFromFile(DistWorldFile *file, DistWorldGhostPropData *data)
+static void DistWorldGhostPropData_InitFromFile(DistWorldMapFile *file, DistWorldGhostPropData *data)
 {
     GF_ASSERT(data->header == NULL);
     GF_ASSERT(data->templates == NULL);
     GF_ASSERT(data->triggers == NULL);
 
-    data->header = DistWorldFile_GetGhostPropHeader(file);
-    data->templates = DistWorldFile_GetGhostPropTemplates(file);
-    data->triggers = DistWorldFile_GetGhostPropTriggers(file);
+    data->header = DistWorldMapFile_GetGhostPropHeader(file);
+    data->templates = DistWorldMapFile_GetGhostPropTemplates(file);
+    data->triggers = DistWorldMapFile_GetGhostPropTriggers(file);
 }
 
 static void InitActiveGhostPropData(DistWorldSystem *system)
 {
     if (GetActiveGhostPropFileSectionSize(system)) {
-        DistWorldFile *file = &system->mainArchive.distortionWorldFile;
+        DistWorldMapFile *file = &system->mainArchive.mapFile;
         DistWorldGhostPropData *ghostPropData = &system->mainArchive.ghostPropData;
 
         DistWorldGhostPropData_InitFromFile(file, ghostPropData);
@@ -4640,7 +4640,7 @@ static void InitActiveGhostPropData(DistWorldSystem *system)
 static void InitInactiveGhostPropData(DistWorldSystem *system)
 {
     if (GetInactiveGhostPropFileSectionSize(system)) {
-        DistWorldFile *file = &system->mainArchive.inactiveDistortionWorldFile;
+        DistWorldMapFile *file = &system->mainArchive.inactiveMapFile;
         DistWorldGhostPropData *ghostPropData = &system->mainArchive.inactiveGhostPropData;
 
         DistWorldGhostPropData_InitFromFile(file, ghostPropData);
