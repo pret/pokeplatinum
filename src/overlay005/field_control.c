@@ -215,7 +215,7 @@ BOOL FieldInput_Process(const FieldInput *input, FieldSystem *fieldSystem)
             playerEvent |= PLAYER_EVENT_USED_WATERFALL;
         }
 
-        if (PersistedMapFeatures_IsCurrentDynamicMap(fieldSystem, DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) == TRUE && ov9_02250F74(fieldSystem) == TRUE) {
+        if (PersistedMapFeatures_IsCurrentDynamicMap(fieldSystem, DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) == TRUE && DistWorld_ArePersistedFeaturesInit(fieldSystem) == TRUE) {
             playerEvent |= PLAYER_EVENT_DISTORTION_WORLD;
         }
 
@@ -240,7 +240,7 @@ BOOL FieldInput_Process(const FieldInput *input, FieldSystem *fieldSystem)
                 direction = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
             }
 
-            if (ov9_0224A67C(fieldSystem, direction) == TRUE) {
+            if (DistWorld_HandlePlayerMovementEnd(fieldSystem, direction) == TRUE) {
                 return TRUE;
             }
         }
@@ -317,7 +317,7 @@ BOOL FieldInput_Process(const FieldInput *input, FieldSystem *fieldSystem)
 
     if (input->mapTransition) {
         if (PersistedMapFeatures_IsCurrentDynamicMap(fieldSystem, DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) == TRUE) {
-            ov9_0224A800(fieldSystem, input->transitionDir);
+            DistWorld_CheckMapTransition(fieldSystem, input->transitionDir);
         } else if (Field_CheckMapTransition(fieldSystem, input) == TRUE) {
             Field_TrySetMapConnection(fieldSystem);
             return TRUE;
@@ -703,7 +703,7 @@ static BOOL Field_ProcessStep(FieldSystem *fieldSystem)
         return TRUE;
     }
 
-    if (PersistedMapFeatures_IsCurrentDynamicMap(fieldSystem, DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) == TRUE && ov9_0224A71C(fieldSystem) == TRUE) {
+    if (PersistedMapFeatures_IsCurrentDynamicMap(fieldSystem, DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) == TRUE && DistWorld_HandlePlayerPositionChanged(fieldSystem) == TRUE) {
         return TRUE;
     }
 
