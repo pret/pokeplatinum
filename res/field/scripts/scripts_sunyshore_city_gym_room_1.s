@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "constants/sunyshore_gym_buttons.h"
 #include "res/text/bank/sunyshore_city_gym_room_1.h"
 
 
@@ -14,7 +15,7 @@ SunyshoreGymRoom1_Init:
     End
 
 SunyshoreGymRoom1_Button:
-    SunyshoreGymButton 0
+    PressSunyshoreGymButton SUNYSHORE_GYM_BUTTON_NORMAL
     End
 
 SunyshoreGymRoom1_GymGuide:

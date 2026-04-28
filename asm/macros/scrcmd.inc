@@ -2158,14 +2158,14 @@
     .short SCRCMD_INITPERSISTEDMAPFEATURESFORVEILSTONEGYM
     .endm
 
-    .macro InitPersistedMapFeaturesForSunyshoreGym floorID
+    .macro InitPersistedMapFeaturesForSunyshoreGym roomID
     .short SCRCMD_INITPERSISTEDMAPFEATURESFORSUNYSHOREGYM
-    .byte \floorID
+    .byte \roomID
     .endm
 
-    .macro SunyshoreGymButton arg0
-    .short SCRCMD_SUNYSHOREGYMBUTTON
-    .byte \arg0
+    .macro PressSunyshoreGymButton buttonType
+    .short SCRCMD_PRESSSUNYSHOREGYMBUTTON
+    .byte \buttonType
     .endm
 
     .macro GetPartyCount destVarID

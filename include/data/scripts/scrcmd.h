@@ -379,7 +379,7 @@ ScriptCommand(SCRCMD_MOVEHEARTHOMEGYMDPLIFT,                               ScrCm
 ScriptCommand(SCRCMD_INITPERSISTEDMAPFEATURESFORCANALAVEGYM,               ScrCmd_InitPersistedMapFeaturesForCanalaveGym)
 ScriptCommand(SCRCMD_INITPERSISTEDMAPFEATURESFORVEILSTONEGYM,              ScrCmd_InitPersistedMapFeaturesForVeilstoneGym)
 ScriptCommand(SCRCMD_INITPERSISTEDMAPFEATURESFORSUNYSHOREGYM,              ScrCmd_InitPersistedMapFeaturesForSunyshoreGym)
-ScriptCommand(SCRCMD_SUNYSHOREGYMBUTTON,                                   ScrCmd_SunyshoreGymButton)
+ScriptCommand(SCRCMD_PRESSSUNYSHOREGYMBUTTON,                              ScrCmd_PressSunyshoreGymButton)
 ScriptCommand(SCRCMD_GETPARTYCOUNT,                                        ScrCmd_GetPartyCount)
 ScriptCommand(SCRCMD_OPENBAG,                                              ScrCmd_OpenBag)
 ScriptCommand(SCRCMD_GETSELECTEDITEM,                                      ScrCmd_GetSelectedItem)
