@@ -44,11 +44,11 @@
 #include "system_data.h"
 #include "text.h"
 #include "touch_pad.h"
-#include "unk_0202ACE0.h"
 #include "unk_02030CE8.h"
 #include "unk_020366A0.h"
 #include "unk_02038FFC.h"
 #include "vram_transfer.h"
+#include "wifi_list.h"
 
 typedef struct {
     UnkStruct_ov98_02246E88 *unk_00;

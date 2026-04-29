@@ -188,7 +188,6 @@
 #include "underground.h"
 #include "unk_02014D38.h"
 #include "unk_020298BC.h"
-#include "unk_0202ACE0.h"
 #include "unk_0202C9F4.h"
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
@@ -221,6 +220,7 @@
 #include "unk_0209B344.h"
 #include "unk_0209C194.h"
 #include "vars_flags.h"
+#include "wifi_list.h"
 
 #include "constdata/const_020F8BE0.h"
 #include "res/text/bank/mystery_gift_phrase.h"

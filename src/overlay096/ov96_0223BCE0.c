@@ -605,14 +605,14 @@ static int ov96_0223C5CC(UnkStruct_ov96_0223BF40 *param0)
 
 static int ov96_0223C680(UnkStruct_ov96_0223BF40 *param0)
 {
-    s32 v0 = SystemData_GetDWCProfileId(param0->unk_00->unk_08);
+    s32 profileId = SystemData_GetDWCProfileId(param0->unk_00->systemData);
 
-    if (v0 == 0) {
-        SystemData_SetDWCProfileId(param0->unk_00->unk_08, param0->unk_00->unk_1C);
+    if (profileId == 0) {
+        SystemData_SetDWCProfileId(param0->unk_00->systemData, param0->unk_00->profileId);
     }
 
-    v0 = SystemData_GetDWCProfileId(param0->unk_00->unk_08);
-    ov96_0223B140(v0, DWC_CreateFriendKey(param0->unk_00->unk_14));
+    profileId = SystemData_GetDWCProfileId(param0->unk_00->systemData);
+    ov96_0223B140(profileId, DWC_CreateFriendKey(param0->unk_00->userData));
 
     param0->unk_1C = 7;
 

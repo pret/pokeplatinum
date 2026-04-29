@@ -8,21 +8,17 @@
 
 #include "heap.h"
 #include "savedata.h"
-#include "unk_0202ACE0.h"
+#include "wifi_list.h"
 #include "wifi_overlays.h"
 
 int sub_02038FFC(enum HeapID heapID)
 {
-    int v0;
-    u8 *v1;
-    u8 *v2;
-
     Overlay_LoadWFCOverlay();
     Overlay_LoadHttpOverlay();
 
-    v1 = Heap_Alloc(heapID, DWC_INIT_WORK_SIZE + 32);
-    v2 = (u8 *)(((u32)v1 + 31) / 32 * 32);
-    v0 = DWC_Init(v2);
+    u8 *v1 = Heap_Alloc(heapID, DWC_INIT_WORK_SIZE + 32);
+    u8 *v2 = (u8 *)(((u32)v1 + 31) / 32 * 32);
+    int v0 = DWC_Init(v2);
 
     Heap_Free(v1);
     Overlay_UnloadWFCOverlay();
@@ -33,32 +29,31 @@ int sub_02038FFC(enum HeapID heapID)
 
 void sub_02039034(WiFiList *param0)
 {
-    DWCUserData *v0 = WiFiList_GetUserData(param0);
+    DWCUserData *userData = WiFiList_GetUserData(param0);
 
-    if (!DWC_CheckUserData(v0)) {
-        DWC_CreateUserData(v0, 'ADAJ');
-        DWC_ClearDirtyFlag(v0);
+    if (!DWC_CheckUserData(userData)) {
+        DWC_CreateUserData(userData, 'ADAJ');
+        DWC_ClearDirtyFlag(userData);
     }
 }
 
 int WiFiList_GetUserGsProfileId(WiFiList *wifiList)
 {
-    DWCUserData *v0 = WiFiList_GetUserData(wifiList);
-    DWCFriendData v1;
+    DWCUserData *userData = WiFiList_GetUserData(wifiList);
+    DWCFriendData friendData;
 
-    DWC_CreateExchangeToken(v0, &v1);
-    return DWC_GetGsProfileId(v0, &v1);
+    DWC_CreateExchangeToken(userData, &friendData);
+    return DWC_GetGsProfileId(userData, &friendData);
 }
 
 BOOL WiFiList_HasValidLogin(SaveData *saveData)
 {
-    WiFiList *v0 = SaveData_GetWiFiList(saveData);
-    DWCUserData *v1 = WiFiList_GetUserData(v0);
+    WiFiList *wiFiList = SaveData_GetWiFiList(saveData);
+    DWCUserData *userData = WiFiList_GetUserData(wiFiList);
 
-    if (DWC_CheckHasProfile(v1)
-        && DWC_CheckValidConsole(v1)) {
-        return 1;
+    if (DWC_CheckHasProfile(userData) && DWC_CheckValidConsole(userData)) {
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }

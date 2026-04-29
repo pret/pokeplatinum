@@ -68,7 +68,6 @@
 #include "text.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
-#include "unk_0202ACE0.h"
 #include "unk_0202D778.h"
 #include "unk_0202F180.h"
 #include "unk_020363E8.h"
@@ -80,6 +79,7 @@
 #include "unk_02095CD4.h"
 #include "vars_flags.h"
 #include "vram_transfer.h"
+#include "wifi_list.h"
 
 #include "constdata/const_020F410C.h"
 
@@ -113,7 +113,7 @@ static void ov88_0223E998(UnkStruct_02095E80 *param0);
 static void ov88_0223B710(StringTemplate *param0, Party *param1, int param2);
 static void ov88_0223B748(Window *param0, StringTemplate *param1, MessageLoader *param2, Party *param3, int param4);
 static void ov88_0223C8D8(Window *param0, int param1, Party *param2, int param3, UnkStruct_02095E80 *param4);
-static void ov88_0223E694(Party *param0, Party *param1, int param2, int param3, UnkStruct_ov88_0223C370 *param4);
+static void ov88_0223E694(Party *param0, Party *party, int slot1, int slot2, UnkStruct_ov88_0223C370 *param4);
 static void ov88_0223BF7C(UnkStruct_02095E80 *param0);
 static void ov88_0223B4F0(UnkStruct_02095E80 *param0);
 static void ov88_0223BFD8(UnkStruct_02095E80 *param0);
@@ -559,8 +559,8 @@ static int ov88_0223B914(UnkStruct_02095E80 *param0)
 
         int i, form, species;
 
-        for (i = 0; i < Party_GetCurrentCount(param0->unk_08->unk_08); i++) {
-            Pokemon *mon = Party_GetPokemonBySlotIndex(param0->unk_08->unk_08, i);
+        for (i = 0; i < Party_GetCurrentCount(param0->unk_08->party); i++) {
+            Pokemon *mon = Party_GetPokemonBySlotIndex(param0->unk_08->party, i);
 
             species = Pokemon_GetValue(mon, MON_DATA_SPECIES_OR_EGG, NULL);
 
@@ -1126,15 +1126,15 @@ static void ov88_0223C370(UnkStruct_02095E80 *param0, ApplicationManager *appMan
     param0->unk_2318 = 0;
     param0->unk_3704 = 0;
     param0->unk_3708 = 0;
-    param0->unk_2270 = v0->unk_08;
-    param0->unk_227C = v0->unk_0C;
+    param0->unk_2270 = v0->party;
+    param0->unk_227C = v0->palPad;
     param0->saveData = v0->saveData;
     param0->unk_2274 = Heap_Alloc(HEAP_ID_26, Party_SaveSize());
 
     Party_InitWithCapacity(param0->unk_2274, 6);
     memset(param0->unk_2274, 0xff, Party_SaveSize());
 
-    param0->unk_18C = TrainerInfo_NameNewString(v0->unk_04, 26);
+    param0->unk_18C = TrainerInfo_NameNewString(v0->trainerInfo, 26);
     param0->unk_190 = MessageLoader_GetNewString(param0->unk_184, 42);
 
     WiFiHistory_FlagGeonetLinkInfo(v0->wiFiHistory);
@@ -1706,7 +1706,7 @@ static void ov88_0223D1EC(UnkStruct_02095E80 *param0, int param1)
 {
     if (param1 == 0) {
         param0->unk_0C.monData = param0->unk_2270;
-        param0->unk_0C.monMax = Party_GetCurrentCount(param0->unk_08->unk_08);
+        param0->unk_0C.monMax = Party_GetCurrentCount(param0->unk_08->party);
 
         param0->unk_0C.chatotCry = NULL;
         PokemonSummaryScreen_SetPlayerProfile(&param0->unk_0C, CommInfo_TrainerInfo(CommSys_CurNetId()));
@@ -1722,7 +1722,7 @@ static void ov88_0223D1EC(UnkStruct_02095E80 *param0, int param1)
     param0->unk_0C.mode = SUMMARY_MODE_LOCK_MOVES;
     param0->unk_0C.move = 0;
     param0->unk_0C.showContest = PokemonSummaryScreen_ShowContestData(param0->unk_08->saveData);
-    param0->unk_0C.dexMode = param0->unk_08->unk_30;
+    param0->unk_0C.dexMode = param0->unk_08->dexMode;
     param0->unk_0C.options = param0->unk_08->options;
     param0->unk_0C.specialRibbons = SaveData_GetRibbons(param0->unk_08->saveData);
 
@@ -2453,15 +2453,13 @@ static int ov88_0223E5B8(UnkStruct_02095E80 *param0)
     return 0;
 }
 
-static void ov88_0223E694(Party *param0, Party *param1, int param2, int param3, UnkStruct_ov88_0223C370 *param4)
+static void ov88_0223E694(Party *param0, Party *party, int slot1, int slot2, UnkStruct_ov88_0223C370 *param4)
 {
-    Pokemon *v0, *v1;
+    Pokemon *v0 = Pokemon_New(HEAP_ID_26);
+    Pokemon *v1 = Pokemon_New(HEAP_ID_26);
 
-    v0 = Pokemon_New(HEAP_ID_26);
-    v1 = Pokemon_New(HEAP_ID_26);
-
-    Pokemon_Copy(Party_GetPokemonBySlotIndex(param0, param2), v0);
-    Pokemon_Copy(Party_GetPokemonBySlotIndex(param1, param3), v1);
+    Pokemon_Copy(Party_GetPokemonBySlotIndex(param0, slot1), v0);
+    Pokemon_Copy(Party_GetPokemonBySlotIndex(party, slot2), v1);
 
     if (Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL) == SPECIES_ARCEUS) {
         if (Pokemon_GetValue(v1, MON_DATA_FATEFUL_ENCOUNTER, NULL) || ((Pokemon_GetValue(v1, MON_DATA_MET_LOCATION, NULL) == 86) && (Pokemon_GetValue(v1, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 0))) {
@@ -2482,21 +2480,21 @@ static void ov88_0223E694(Party *param0, Party *param1, int param2, int param3, 
 
     UpdateMonStatusAndTrainerInfo(v1, CommInfo_TrainerInfo(CommSys_CurNetId()), 5, 0, HEAP_ID_FIELD2);
     Pokemon_ClearBallCapsuleData(v1);
-    Pokemon_Copy(v0, param4->unk_3C);
-    Pokemon_Copy(v1, param4->unk_40);
-    TrainerInfo_Copy(CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1), param4->unk_38);
+    Pokemon_Copy(v0, param4->receivingPokemon);
+    Pokemon_Copy(v1, param4->sendingPokemon);
+    TrainerInfo_Copy(CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1), param4->trainerInfoSize);
 
-    param4->unk_2C = param2;
+    param4->unk_2C = slot1;
 
     if (Party_HasSpecies(param0, SPECIES_CHATOT) == 0) {
-        ChatotCry *v4 = SaveData_GetChatotCry(param4->saveData);
-        ChatotCry_ResetStatus(v4);
+        ChatotCry *chatotCry = SaveData_GetChatotCry(param4->saveData);
+        ChatotCry_ResetStatus(chatotCry);
     }
 
     SaveData_UpdateCatchRecords(param4->saveData, v1);
-    Pokemon_Copy(v1, Party_GetPokemonBySlotIndex(param0, param2));
-    Pokemon_Copy(v0, Party_GetPokemonBySlotIndex(param1, param3));
-    ov88_0223E7F0(param4->unk_1C, v1);
+    Pokemon_Copy(v1, Party_GetPokemonBySlotIndex(param0, slot1));
+    Pokemon_Copy(v0, Party_GetPokemonBySlotIndex(party, slot2));
+    ov88_0223E7F0(param4->journalEntry, v1);
     GameRecords_IncrementRecordValue(param4->records, RECORD_LOCAL_LINK_TRADES);
     Heap_Free(v0);
     Heap_Free(v1);
@@ -2504,12 +2502,11 @@ static void ov88_0223E694(Party *param0, Party *param1, int param2, int param3, 
 
 static void ov88_0223E7F0(JournalEntry *journalEntry, Pokemon *mon)
 {
-    void *journalEntryOnlineEvent;
     TrainerInfo *trainerInfo = CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1);
     u16 nickname[MON_NAME_LEN + 1];
 
     Pokemon_GetValue(mon, MON_DATA_NICKNAME, nickname);
-    journalEntryOnlineEvent = JournalEntry_CreateEventGotPokemonFromTrade((u16 *)TrainerInfo_Name(trainerInfo), TrainerInfo_Gender(trainerInfo), nickname, Pokemon_GetGender(mon), 26);
+    void *journalEntryOnlineEvent = JournalEntry_CreateEventGotPokemonFromTrade((u16 *)TrainerInfo_Name(trainerInfo), TrainerInfo_Gender(trainerInfo), nickname, Pokemon_GetGender(mon), 26);
     JournalEntry_SaveData(journalEntry, journalEntryOnlineEvent, JOURNAL_ONLINE_EVENT);
 }
 
@@ -2545,13 +2542,12 @@ static void ov88_0223E8B4(UnkStruct_02095E80 *param0)
 
 static int ov88_0223E8D0(UnkStruct_02095E80 *param0)
 {
-    int v0;
     int v1 = 0;
     int v2 = Party_GetCurrentCount(param0->unk_2270);
 
-    for (v0 = 0; v0 < v2; v0++) {
-        if (v0 != param0->unk_88[0]) {
-            v1 += param0->unk_6F4[v0].unk_05;
+    for (int i = 0; i < v2; i++) {
+        if (i != param0->unk_88[0]) {
+            v1 += param0->unk_6F4[i].unk_05;
         }
     }
 
@@ -2564,13 +2560,11 @@ static int ov88_0223E8D0(UnkStruct_02095E80 *param0)
 
 static int ov88_0223E914(UnkStruct_02095E80 *param0)
 {
-    int v0, v1;
     Pokemon *v2;
+    int v1 = Party_GetCurrentCount(param0->unk_2270);
 
-    v1 = Party_GetCurrentCount(param0->unk_2270);
-
-    for (v0 = 0; v0 < v1; v0++) {
-        v2 = Party_GetPokemonBySlotIndex(param0->unk_2270, v0);
+    for (int i = 0; i < v1; i++) {
+        v2 = Party_GetPokemonBySlotIndex(param0->unk_2270, i);
 
         if (Pokemon_GetValue(v2, MON_DATA_CHECKSUM_FAILED, NULL)) {
             return 1;
@@ -2579,8 +2573,8 @@ static int ov88_0223E914(UnkStruct_02095E80 *param0)
 
     v1 = Party_GetCurrentCount(param0->unk_2274);
 
-    for (v0 = 0; v0 < v1; v0++) {
-        v2 = Party_GetPokemonBySlotIndex(param0->unk_2274, v0);
+    for (int i = 0; i < v1; i++) {
+        v2 = Party_GetPokemonBySlotIndex(param0->unk_2274, i);
 
         if (Pokemon_GetValue(v2, MON_DATA_CHECKSUM_FAILED, NULL)) {
             return 2;

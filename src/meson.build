@@ -110,7 +110,7 @@ pokeplatinum_c = files(
     'mail.c',
     'underground.c',
     'unk_020298BC.c',
-    'unk_0202ACE0.c',
+    'wifi_list.c',
     'record_mixed_rng.c',
     'journal.c',
     'trainer_case_save_data.c',

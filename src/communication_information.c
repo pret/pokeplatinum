@@ -17,10 +17,10 @@
 #include "savedata.h"
 #include "trainer_info.h"
 #include "underground.h"
-#include "unk_0202ACE0.h"
 #include "unk_02033200.h"
 #include "unk_0203909C.h"
 #include "wifi_history_save_data.h"
+#include "wifi_list.h"
 
 typedef struct CommPlayerInfo {
     u8 regulationBuffer[32];

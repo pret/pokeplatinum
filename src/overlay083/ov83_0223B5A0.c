@@ -37,11 +37,11 @@
 #include "sprite.h"
 #include "system.h"
 #include "tv_segment.h"
-#include "unk_0202ACE0.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
 #include "unk_0203909C.h"
 #include "vram_transfer.h"
+#include "wifi_list.h"
 
 typedef int (*UnkFuncPtr_ov83_0224024C)(UnkStruct_ov83_0223C344 *, UnkStruct_ov83_0223B784 *, int *);
 

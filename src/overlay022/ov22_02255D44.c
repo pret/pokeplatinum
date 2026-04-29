@@ -212,11 +212,11 @@ int ov22_02255D44(ApplicationManager *appMan, int *param1)
 
     ov22_0225894C(v2->fashionCase, &v0->unk_1E8);
     ov22_022566C0(v0);
-    ov22_02259484(&v0->unk_3C0, (700 + 1 + 18), HEAP_ID_13);
+    ov22_02259484(&v0->unk_3C0, 700 + 1 + 18, HEAP_ID_13);
 
     v0->unk_3C8 = ov22_02254DE0(700, HEAP_ID_13);
 
-    ov22_02256708(v0, v2->unk_00, 10, 0);
+    ov22_02256708(v0, v2->pokemon, 10, 0);
     ov22_022567FC(v0);
     ov22_02256948(v0, 0);
     ov22_0225699C(v0);
@@ -361,7 +361,7 @@ int ov22_02256098(ApplicationManager *appMan, int *param1)
 
     if (v0->unk_71C == 1) {
         GameRecords_IncrementTrainerScore(v2->records, TRAINER_SCORE_EVENT_UNK_07);
-        ov22_02256F38(v2->photo, &v0->unk_458, v2->unk_14);
+        ov22_02256F38(v2->photo, &v0->unk_458, v2->trainerInfo);
     }
 
     if (v2->unk_18 != NULL) {
@@ -439,7 +439,7 @@ int VisualCompetition_Init(ApplicationManager *appMan, int *param1)
     ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_32K);
     ReserveSlotsForWirelessIconPalette(NNS_G2D_VRAM_TYPE_2DMAIN);
 
-    ov22_02259484(&v0->unk_3C0, (700 + 1 + 18), HEAP_ID_13);
+    ov22_02259484(&v0->unk_3C0, 700 + 1 + 18, HEAP_ID_13);
 
     v0->unk_3C8 = ov22_02254DE0(700, HEAP_ID_13);
     v0->options = appArgs->options;
@@ -474,7 +474,7 @@ int VisualCompetition_Main(ApplicationManager *appMan, int *param1)
 
     switch (*param1) {
     case 0:
-        Sound_FadeOutBGM((127 / 3), 30);
+        Sound_FadeOutBGM(127 / 3, 30);
         (*param1)++;
         break;
     case 1:
@@ -615,7 +615,7 @@ int VisualCompetition_Main(ApplicationManager *appMan, int *param1)
             v1 = 1;
 
             GX_SetVisibleWnd(GX_WNDMASK_NONE);
-            ov22_02257AB0(&v0->unk_458, -(8 * 8), (5 * 8));
+            ov22_02257AB0(&v0->unk_458, -(8 * 8), 5 * 8);
         }
         break;
     }
@@ -757,19 +757,18 @@ static void ov22_022567FC(UnkStruct_ov22_02255D44 *param0)
     ov22_022582C0(&param0->unk_3CC, 0, 0);
 
     {
-        int v1, v2;
         int v3;
 
-        for (v1 = 0; v1 < 100; v1++) {
-            v3 = ov22_0225899C(&param0->unk_1E8, v1);
+        for (int i = 0; i < 100; i++) {
+            v3 = ov22_0225899C(&param0->unk_1E8, i);
 
-            for (v2 = 0; v2 < v3; v2++) {
-                ov22_022580A4(&param0->unk_3CC, 0, v1);
+            for (int v2 = 0; v2 < v3; v2++) {
+                ov22_022580A4(&param0->unk_3CC, 0, i);
             }
         }
 
-        for (v1 = 0; v1 < 18; v1++) {
-            v3 = ov22_022589B0(&param0->unk_1E8, v1);
+        for (int i = 0; i < 18; i++) {
+            v3 = ov22_022589B0(&param0->unk_1E8, i);
 
             if (v3 < 18) {
                 ov22_022580A4(&param0->unk_3CC, 1, v3);
@@ -894,11 +893,9 @@ static void ov22_02256B24(UnkStruct_ov22_02259C58 *param0, void *param1)
 static void ov22_02256B44(UnkStruct_ov22_02259C58 *param0, void *param1)
 {
     UnkStruct_ov22_02255D44 *v0 = param1;
-    int v1;
-    int v2;
 
     if (v0->unk_70C != 0) {
-        v1 = ov22_02258424(&v0->unk_3CC, 0);
+        int v1 = ov22_02258424(&v0->unk_3CC, 0);
 
         ov22_022582C0(&v0->unk_3CC, 0, v1);
         v0->unk_70C = 0;
@@ -932,7 +929,7 @@ static void ov22_02256BAC(UnkStruct_ov22_02255D44 *param0, const Options *option
     v0.options = options;
     v0.unk_24 = param0->unk_00.unk_5C;
 
-    ov22_0225A428(&param0->unk_5C4, &v0, (1 | 2 | 4 | 8));
+    ov22_0225A428(&param0->unk_5C4, &v0, 1 | 2 | 4 | 8);
 }
 
 static void ov22_02256BF4(UnkStruct_ov22_02255D44 *param0, int param1, int param2, UnkStruct_02095C60 *param3, const Options *options)
@@ -951,7 +948,7 @@ static void ov22_02256BF4(UnkStruct_ov22_02255D44 *param0, int param1, int param
     v0.options = options;
     v0.unk_24 = param0->unk_00.unk_5C;
 
-    ov22_0225A428(&param0->unk_5C4, &v0, (1 | 2 | 4 | 8 | 16 | 32));
+    ov22_0225A428(&param0->unk_5C4, &v0, 1 | 2 | 4 | 8 | 16 | 32);
 }
 
 static void ov22_02256C38(UnkStruct_ov22_02255D44 *param0)
@@ -1323,10 +1320,10 @@ static void ov22_022572A0(UnkStruct_ov22_02255D44 *param0, u32 param1, u8 param2
     int v2 = Options_Frame(param0->options);
 
     Font_LoadScreenIndicatorsPalette(0, 7 * 32, HEAP_ID_14);
-    Window_Add(param0->unk_00.unk_40, param0->unk_718, 3, param2, param3, param4, param5, 7, (0 + (29 * 4) + (18 + 12)));
+    Window_Add(param0->unk_00.unk_40, param0->unk_718, 3, param2, param3, param4, param5, 7, 0 + (29 * 4) + (18 + 12));
     Window_FillTilemap(param0->unk_718, 15);
-    LoadMessageBoxGraphics(param0->unk_00.unk_40, 3, (0 + (29 * 4)), 8, v2, HEAP_ID_14);
-    Window_DrawMessageBoxWithScrollCursor(param0->unk_718, 0, (0 + (29 * 4)), 8);
+    LoadMessageBoxGraphics(param0->unk_00.unk_40, 3, 0 + (29 * 4), 8, v2, HEAP_ID_14);
+    Window_DrawMessageBoxWithScrollCursor(param0->unk_718, 0, 0 + (29 * 4), 8);
 
     v0 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0385, HEAP_ID_13);
     v1 = MessageLoader_GetNewString(v0, param1);

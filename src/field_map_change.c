@@ -150,8 +150,6 @@ static BOOL FieldTask_LoadNewGameSpawn(FieldTask *task);
 static void FieldMapChange_SetNewLocation(FieldSystem *fieldSystem, const Location *param1);
 static void FieldMapChange_InitTerrainCollisionManager(FieldSystem *fieldSystem);
 static void FieldMapChange_RemoveTerrainCollisionManager(FieldSystem *fieldSystem);
-static void FieldMapChange_CreatePlayerObject(FieldSystem *fieldSystem);
-static void sub_02053374(FieldSystem *fieldSystem);
 static void sub_020534BC(FieldSystem *fieldSystem);
 static BOOL FieldTask_MapChangeFly(FieldTask *task);
 static void FieldTask_FinishFly(FieldTask *task);
@@ -342,15 +340,11 @@ void FieldMapChange_UpdateGameDataDistortionWorld(FieldSystem *fieldSystem, BOOL
 
 static void FieldMapChange_CreateObjects(FieldSystem *fieldSystem)
 {
-    int gender;
-    FieldOverworldState *fieldState;
-    PlayerData *playerData;
-
     fieldSystem->mapObjMan = MapObjectMan_New(fieldSystem, 64, 5);
 
-    gender = TrainerInfo_Gender(SaveData_GetTrainerInfo(fieldSystem->saveData));
-    fieldState = SaveData_GetFieldOverworldState(fieldSystem->saveData);
-    playerData = FieldOverworldState_GetPlayerData(fieldState);
+    int gender = TrainerInfo_Gender(SaveData_GetTrainerInfo(fieldSystem->saveData));
+    FieldOverworldState *fieldState = SaveData_GetFieldOverworldState(fieldSystem->saveData);
+    PlayerData *playerData = FieldOverworldState_GetPlayerData(fieldState);
 
     fieldSystem->playerAvatar = PlayerAvatar_Init(fieldSystem->mapObjMan, fieldSystem->location->x, fieldSystem->location->z, fieldSystem->location->faceDirection, playerData->form, gender, 0, playerData);
 
@@ -506,7 +500,7 @@ static BOOL FieldTask_LoadSavedGameMap(FieldTask *task)
 
         if (Journal_CheckOpenOnContinue(SaveData_GetJournal(fieldSystem->saveData), CheckJournalAcquired(varsFlags))) {
             sub_0203D30C(fieldSystem, NULL);
-            (*state) = 4;
+            *state = 4;
             break;
         }
     case 1:
@@ -533,17 +527,17 @@ static BOOL FieldTask_LoadSavedGameMap(FieldTask *task)
 
         sub_02053494(fieldSystem);
         sub_020705CC(fieldSystem);
-        (*state) = 2;
+        *state = 2;
         break;
     case 2:
         FieldTransition_StartMapAndFadeIn(task);
-        (*state) = 3;
+        *state = 3;
         break;
     case 3:
         return TRUE;
     case 4:
-        if (!(FieldSystem_IsRunningApplication(fieldSystem))) {
-            (*state) = 1;
+        if (!FieldSystem_IsRunningApplication(fieldSystem)) {
+            *state = 1;
         }
         break;
     }

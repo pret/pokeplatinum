@@ -81,7 +81,6 @@
 #include "text.h"
 #include "trainer_info.h"
 #include "tv_segment.h"
-#include "unk_0202ACE0.h"
 #include "unk_0202D05C.h"
 #include "unk_0202F1D4.h"
 #include "unk_02033200.h"
@@ -90,6 +89,7 @@
 #include "unk_0205DFC4.h"
 #include "unk_0209B6F8.h"
 #include "vars_flags.h"
+#include "wifi_list.h"
 
 #include "constdata/const_020EA358.h"
 

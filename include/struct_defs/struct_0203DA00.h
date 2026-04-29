@@ -10,12 +10,12 @@
 #include "trainer_info.h"
 
 typedef struct {
-    Pokemon *unk_00;
+    Pokemon *pokemon;
     DressUpPhoto *photo;
     const FashionCase *fashionCase;
     const Options *options;
     GameRecords *records;
-    const TrainerInfo *unk_14;
+    const TrainerInfo *trainerInfo;
     BOOL *unk_18;
     BOOL unk_1C;
 } UnkStruct_0203DA00;

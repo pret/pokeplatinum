@@ -28,9 +28,9 @@
 #include "system.h"
 #include "system_data.h"
 #include "text.h"
-#include "unk_0202ACE0.h"
 #include "unk_02030CE8.h"
 #include "unk_020366A0.h"
+#include "wifi_list.h"
 
 #include "res/text/bank/gts.h"
 #include "res/text/bank/unk_0674.h"

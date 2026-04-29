@@ -48,12 +48,12 @@
 #include "system.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_0202ACE0.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
 #include "unk_0203909C.h"
 #include "unk_02094EDC.h"
 #include "vram_transfer.h"
+#include "wifi_list.h"
 #include "yes_no_touch_menu.h"
 
 typedef struct {

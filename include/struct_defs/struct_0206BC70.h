@@ -13,12 +13,12 @@
 typedef struct {
     UnkStruct_0202D750 *unk_00;
     UnkStruct_0202D764 *unk_04;
-    SystemData *unk_08;
+    SystemData *systemData;
     SaveData *saveData;
     Options *options;
-    DWCUserData *unk_14;
+    DWCUserData *userData;
     int unk_18;
-    int unk_1C;
+    int profileId;
     int unk_20;
     int unk_24;
 } UnkStruct_0206BC70;

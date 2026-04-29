@@ -126,47 +126,41 @@ static int sub_0206BA84(UnkStruct_0206B9D8 *param0, FieldSystem *fieldSystem)
 
 static int sub_0206BAE0(UnkStruct_0206B9D8 *param0, FieldSystem *fieldSystem, enum HeapID heapID)
 {
-    PokemonSummary *v0;
-    SaveData *saveData;
-    static const u8 v2[] = {
-        0, 1, 2, 4, 3, 5, 6, 7, 8
-    };
+    static const u8 visiblePages[] = { 0, 1, 2, 4, 3, 5, 6, 7, 8 };
 
-    saveData = fieldSystem->saveData;
-    v0 = Heap_AllocAtEnd(heapID, sizeof(PokemonSummary));
-    MI_CpuClear8(v0, sizeof(PokemonSummary));
+    SaveData *saveData = fieldSystem->saveData;
+    PokemonSummary *monSummary = Heap_AllocAtEnd(heapID, sizeof(PokemonSummary));
+    MI_CpuClear8(monSummary, sizeof(PokemonSummary));
 
-    v0->options = SaveData_GetOptions(saveData);
-    v0->monData = SaveData_GetParty(saveData);
-    v0->dexMode = SaveData_GetDexMode(saveData);
-    v0->showContest = PokemonSummaryScreen_ShowContestData(saveData);
-    v0->dataType = SUMMARY_DATA_PARTY_MON;
-    v0->monIndex = param0->unk_0D;
-    v0->monMax = Party_GetCurrentCount(v0->monData);
-    v0->move = 0;
-    v0->mode = param0->unk_09;
-    v0->specialRibbons = SaveData_GetRibbons(saveData);
+    monSummary->options = SaveData_GetOptions(saveData);
+    monSummary->monData = SaveData_GetParty(saveData);
+    monSummary->dexMode = SaveData_GetDexMode(saveData);
+    monSummary->showContest = PokemonSummaryScreen_ShowContestData(saveData);
+    monSummary->dataType = SUMMARY_DATA_PARTY_MON;
+    monSummary->monIndex = param0->unk_0D;
+    monSummary->monMax = Party_GetCurrentCount(monSummary->monData);
+    monSummary->move = 0;
+    monSummary->mode = param0->unk_09;
+    monSummary->specialRibbons = SaveData_GetRibbons(saveData);
 
-    PokemonSummaryScreen_FlagVisiblePages(v0, v2);
-    PokemonSummaryScreen_SetPlayerProfile(v0, SaveData_GetTrainerInfo(saveData));
-    FieldSystem_StartChildProcess(fieldSystem, &gPokemonSummaryScreenApp, v0);
-    *(param0->unk_14) = v0;
+    PokemonSummaryScreen_FlagVisiblePages(monSummary, visiblePages);
+    PokemonSummaryScreen_SetPlayerProfile(monSummary, SaveData_GetTrainerInfo(saveData));
+    FieldSystem_StartChildProcess(fieldSystem, &gPokemonSummaryScreenApp, monSummary);
+    *param0->unk_14 = monSummary;
 
     return 3;
 }
 
 static int sub_0206BB6C(UnkStruct_0206B9D8 *param0, FieldSystem *fieldSystem)
 {
-    PokemonSummary *v0;
-
     if (FieldSystem_IsRunningApplication(fieldSystem)) {
         return 3;
     }
 
-    v0 = *(param0->unk_14);
-    param0->unk_0D = v0->monIndex;
-    Heap_Free(v0);
-    *(param0->unk_14) = NULL;
+    PokemonSummary *monSummary = *param0->unk_14;
+    param0->unk_0D = monSummary->monIndex;
+    Heap_Free(monSummary);
+    *param0->unk_14 = NULL;
 
     return 0;
 }
@@ -217,22 +211,17 @@ void sub_0206BBFC(FieldTask *param0, void **param1, u8 param2, u8 param3, u8 par
 
 static int sub_0206BC48(UnkStruct_0206BC48 *param0, FieldSystem *fieldSystem)
 {
-    SaveData *saveData;
-
     if (WiFiList_HasValidLogin(fieldSystem->saveData)) {
         param0->unk_08 = sub_0203E1AC(fieldSystem, param0->unk_12, param0->unk_14);
         return 1;
-    } else {
-        param0->unk_00 = 1;
-        return 2;
     }
+
+    param0->unk_00 = 1;
+    return 2;
 }
 
 static int sub_0206BC70(UnkStruct_0206BC48 *param0, FieldSystem *fieldSystem)
 {
-    u8 v0;
-    UnkStruct_0206BC70 *v1;
-
     if (FieldSystem_IsRunningApplication(fieldSystem)) {
         return 1;
     }
@@ -243,11 +232,10 @@ static int sub_0206BC70(UnkStruct_0206BC48 *param0, FieldSystem *fieldSystem)
     return 2;
 }
 
-static BOOL sub_0206BC94(FieldTask *param0)
+static BOOL sub_0206BC94(FieldTask *taskMan)
 {
-    u16 *v0;
-    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
-    UnkStruct_0206BC48 *v2 = FieldTask_GetEnv(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
+    UnkStruct_0206BC48 *v2 = FieldTask_GetEnv(taskMan);
 
     switch (v2->unk_04) {
     case 0:
@@ -257,7 +245,7 @@ static BOOL sub_0206BC94(FieldTask *param0)
         v2->unk_04 = sub_0206BC70(v2, fieldSystem);
         break;
     case 2:
-        v0 = FieldSystem_GetVarPointer(fieldSystem, v2->unk_10);
+        u16 *v0 = FieldSystem_GetVarPointer(fieldSystem, v2->unk_10);
         *v0 = v2->unk_00;
         Heap_Free(v2);
         return 1;
@@ -266,9 +254,9 @@ static BOOL sub_0206BC94(FieldTask *param0)
     return 0;
 }
 
-void sub_0206BCE4(FieldTask *param0, u16 param1, u16 param2, u16 param3)
+void sub_0206BCE4(FieldTask *taskMan, u16 param1, u16 param2, u16 param3)
 {
-    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     UnkStruct_0206BC48 *v1 = Heap_Alloc(HEAP_ID_FIELD2, sizeof(UnkStruct_0206BC48));
 
     MI_CpuClear8(v1, sizeof(UnkStruct_0206BC48));
@@ -282,18 +270,16 @@ void sub_0206BCE4(FieldTask *param0, u16 param1, u16 param2, u16 param3)
 
 static BOOL sub_0206BD1C(FieldTask *param0)
 {
-    u16 *v0;
-    const void *v1;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
     UnkStruct_0206BD88 *v3 = FieldTask_GetEnv(param0);
 
-    v1 = sub_0203664C(1 - CommSys_CurNetId());
+    const void *v1 = sub_0203664C(1 - CommSys_CurNetId());
 
     if (v1 == NULL) {
         return 0;
     }
 
-    v0 = FieldSystem_GetVarPointer(fieldSystem, v3->unk_02);
+    u16 *v0 = FieldSystem_GetVarPointer(fieldSystem, v3->unk_02);
 
     switch (v3->unk_00) {
     case 0:
@@ -325,44 +311,38 @@ void sub_0206BD88(FieldTask *param0, u16 param1, u16 param2)
 
 u16 sub_0206BDBC(SaveData *saveData)
 {
-    BattleFrontier *frontier;
-    UnkStruct_0202D750 *v1;
-    Underground *v2;
-    u16 v3;
-    u8 v4, v5, v6, v7, v8, v9;
-
-    frontier = SaveData_GetBattleFrontier(saveData);
-    v3 = BattleFrontierStats_GetStat(frontier, STAT_TOWER_RECORD_STREAK_SINGLE, 0xff);
+    BattleFrontier *frontier = SaveData_GetBattleFrontier(saveData);
+    u16 v3 = BattleFrontierStats_GetStat(frontier, STAT_TOWER_RECORD_STREAK_SINGLE, 0xff);
 
     if (v3 < 20) {
         return 0;
     }
 
-    v1 = sub_0202D750(saveData);
-    v4 = sub_0202D414(v1, 13, 0);
-    v5 = sub_0202D414(v1, 0, 0);
-    v6 = sub_0202D414(v1, 1, 0);
-    v7 = sub_0202D414(v1, 14, 0);
-    v8 = sub_0202D414(v1, 2, 0);
-    v9 = sub_0202D414(v1, 3, 0);
+    UnkStruct_0202D750 *v1 = sub_0202D750(saveData);
+    u8 v4 = sub_0202D414(v1, 13, 0);
+    u8 v5 = sub_0202D414(v1, 0, 0);
+    u8 v6 = sub_0202D414(v1, 1, 0);
+    u8 v7 = sub_0202D414(v1, 14, 0);
+    u8 v8 = sub_0202D414(v1, 2, 0);
+    u8 v9 = sub_0202D414(v1, 3, 0);
 
     if (v4 && v5 && v6) {
         return 0;
     }
 
-    v2 = SaveData_GetUnderground(saveData);
+    Underground *v2 = SaveData_GetUnderground(saveData);
 
     if (!v4) {
         if (Underground_IsRoomForGoodsInPC(v2, 85)) {
             sub_0202D414(v1, 13, 1);
             return 1;
-        } else {
-            if (!v7) {
-                sub_0202D414(v1, 14, 1);
-            }
-
-            return 4;
         }
+
+        if (!v7) {
+            sub_0202D414(v1, 14, 1);
+        }
+
+        return 4;
     }
 
     if (v3 < 50) {
@@ -373,52 +353,47 @@ u16 sub_0206BDBC(SaveData *saveData)
         if (Underground_IsRoomForGoodsInPC(v2, 86)) {
             sub_0202D414(v1, 0, 1);
             return 2;
-        } else {
-            if (!v8) {
-                sub_0202D414(v1, 2, 1);
-            }
-
-            return 4;
         }
+
+        if (!v8) {
+            sub_0202D414(v1, 2, 1);
+        }
+
+        return 4;
     }
 
-    if ((v3 < 100) || (v6)) {
+    if ((v3 < 100) || v6) {
         return 0;
     }
 
     if (Underground_IsRoomForGoodsInPC(v2, 87)) {
         sub_0202D414(v1, 1, 1);
         return 3;
-    } else {
-        if (!v9) {
-            sub_0202D414(v1, 3, 1);
-        }
-
-        return 4;
     }
+
+    if (!v9) {
+        sub_0202D414(v1, 3, 1);
+    }
+
+    return 4;
 }
 
 u16 sub_0206BF04(SaveData *saveData)
 {
-    BattleFrontier *frontier;
-    UnkStruct_0202D750 *v1;
-    u16 v2;
-    u8 v3, v4, v5, v6, v7, v8;
+    BattleFrontier *frontier = SaveData_GetBattleFrontier(saveData);
+    u16 frontierStats = BattleFrontierStats_GetStat(frontier, STAT_TOWER_RECORD_STREAK_SINGLE, 0xff);
 
-    frontier = SaveData_GetBattleFrontier(saveData);
-    v2 = BattleFrontierStats_GetStat(frontier, STAT_TOWER_RECORD_STREAK_SINGLE, 0xff);
-
-    if (v2 < 20) {
+    if (frontierStats < 20) {
         return 0;
     }
 
-    v1 = sub_0202D750(saveData);
-    v3 = sub_0202D414(v1, 13, 0);
-    v4 = sub_0202D414(v1, 0, 0);
-    v5 = sub_0202D414(v1, 1, 0);
-    v6 = sub_0202D414(v1, 14, 0);
-    v7 = sub_0202D414(v1, 2, 0);
-    v8 = sub_0202D414(v1, 3, 0);
+    UnkStruct_0202D750 *v1 = sub_0202D750(saveData);
+    u8 v3 = sub_0202D414(v1, 13, 0);
+    u8 v4 = sub_0202D414(v1, 0, 0);
+    u8 v5 = sub_0202D414(v1, 1, 0);
+    u8 v6 = sub_0202D414(v1, 14, 0);
+    u8 v7 = sub_0202D414(v1, 2, 0);
+    u8 v8 = sub_0202D414(v1, 3, 0);
 
     if (v3 && v4 && v5) {
         return 0;
@@ -432,7 +407,7 @@ u16 sub_0206BF04(SaveData *saveData)
         return 1;
     }
 
-    if (v2 < 50) {
+    if (frontierStats < 50) {
         return 0;
     }
 
@@ -444,7 +419,7 @@ u16 sub_0206BF04(SaveData *saveData)
         return 2;
     }
 
-    if (v2 < 100) {
+    if (frontierStats < 100) {
         return 0;
     }
 
@@ -481,14 +456,13 @@ u32 sub_0206C008(SaveData *saveData)
 
 u32 sub_0206C02C(SaveData *saveData)
 {
-    u32 v0, v1;
     UnkStruct_0202D750 *v2 = sub_0202D750(saveData);
 
-    v1 = sub_0202D474(v2);
+    u32 v1 = sub_0202D474(v2);
     v1 = sub_0206BFFC(v1);
 
     sub_0202D470(v2, v1);
-    v0 = sub_0206BFF0(v1);
+    u32 v0 = sub_0206BFF0(v1);
     sub_0202D140(sub_0202D740(saveData), 10, &v0);
 
     return v0;
@@ -496,14 +470,13 @@ u32 sub_0206C02C(SaveData *saveData)
 
 u32 sub_0206C068(SaveData *saveData)
 {
-    int v0, v1;
-    u32 v2, v3;
     UnkStruct_0202D750 *v4 = sub_0202D750(saveData);
     UnkStruct_0202D060 *v5 = sub_0202D740(saveData);
 
-    v3 = sub_0202D474(v4);
-    v2 = sub_0206BFF0(v3);
-    v1 = sub_0202D3B4(v4, sub_0202D0BC(v5, 0, NULL), 0);
+    int v0;
+    u32 v3 = sub_0202D474(v4);
+    u32 v2 = sub_0206BFF0(v3);
+    int v1 = sub_0202D3B4(v4, sub_0202D0BC(v5, 0, NULL), 0);
     v1 *= 24;
 
     for (v0 = 0; v0 < v1; v0++) {

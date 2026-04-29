@@ -60,11 +60,11 @@
 #include "system_flags.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_0202ACE0.h"
 #include "unk_0203909C.h"
 #include "unk_020890F4.h"
 #include "vars_flags.h"
 #include "vram_transfer.h"
+#include "wifi_list.h"
 
 #include "constdata/const_020F2DBC.h"
 

@@ -16,9 +16,9 @@
 #include "dwc_error.h"
 #include "heap.h"
 #include "savedata.h"
-#include "unk_0202ACE0.h"
 #include "unk_0203266C.h"
 #include "unk_020366A0.h"
+#include "wifi_list.h"
 
 #define RECEIVE_BUFFER_SIZE 4096
 

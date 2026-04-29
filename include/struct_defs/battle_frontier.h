@@ -16,7 +16,7 @@
 #include "struct_defs/struct_020304A0.h"
 #include "struct_defs/struct_020305B8.h"
 
-#include "unk_0202ACE0.h"
+#include "wifi_list.h"
 
 typedef struct BattleFrontierStats {
     u16 soloStats[STATS_NUM_SOLO_STATS_AND_ACTIVE_FLAGS];

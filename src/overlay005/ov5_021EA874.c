@@ -29,8 +29,8 @@
 #include "string_template.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_0202ACE0.h"
 #include "unk_0203909C.h"
+#include "wifi_list.h"
 
 typedef struct {
     StringList *unk_00;
