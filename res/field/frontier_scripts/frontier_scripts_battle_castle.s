@@ -1424,7 +1424,7 @@ _12C5:
 
 _12D3:
     FrontierScrCmd_A0 22, 0, 0, VAR_0x8008
-    FrontierScrCmd_3D VAR_UNK_0x40BC, 1
+    FrontierScrCmd_3D VAR_BATTLE_CASTLE_LOBBY_LOAD_ACTION, 1
     BufferPlayerName 0
     Message BattleCastleScene_Text_BPEarned
     BufferPlayerName 0
@@ -1690,7 +1690,7 @@ _1720:
     End
 
 _173E:
-    FrontierScrCmd_3D VAR_UNK_0x40BC, 2
+    FrontierScrCmd_3D VAR_BATTLE_CASTLE_LOBBY_LOAD_ACTION, 2
     FrontierScrCmd_A0 10, 0, 0, VAR_0x8008
     FreeBattleRecording
     FrontierScrCmd_99
@@ -1737,7 +1737,7 @@ _17D9:
 
 _17F1:
     FrontierScrCmd_A0 21, 0, 0, VAR_0x8008
-    FrontierScrCmd_3D VAR_UNK_0x40BC, 3
+    FrontierScrCmd_3D VAR_BATTLE_CASTLE_LOBBY_LOAD_ACTION, 3
     GoTo _18E4
     End
 
@@ -1778,7 +1778,7 @@ _1893:
 
 _189B:
     FrontierScrCmd_A0 21, 0, 0, VAR_0x8008
-    FrontierScrCmd_3D VAR_UNK_0x40BC, 3
+    FrontierScrCmd_3D VAR_BATTLE_CASTLE_LOBBY_LOAD_ACTION, 3
     GoTo _18B0
     End
 

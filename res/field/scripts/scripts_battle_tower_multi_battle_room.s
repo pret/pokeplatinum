@@ -59,7 +59,7 @@ BattleTowerMultiBattleRoom_EndChallenge:
     CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, VAR_RESULT
     GoToIfEq VAR_RESULT, BATTLE_TOWER_MODE_LINK_MULTI, BattleTowerMultiBattleRoom_EndLinkMultiChallenge
     WaitTime 30, VAR_RESULT
-    SetVar VAR_UNK_0x40D8, 1
+    SetVar VAR_BATTLE_TOWER_LOBBY_LOAD_ACTION, 1
     FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_BATTLE_TOWER, 0, 7, 6, DIR_NORTH
@@ -70,7 +70,7 @@ BattleTowerMultiBattleRoom_EndChallenge:
 
 BattleTowerMultiBattleRoom_EndLinkMultiChallenge:
     WaitTime 30, VAR_RESULT
-    SetVar VAR_UNK_0x40D8, 1
+    SetVar VAR_BATTLE_TOWER_LOBBY_LOAD_ACTION, 1
     ClearReceivedTempDataAllPlayers
     ScrCmd_135 6
     FadeScreenOut
@@ -150,7 +150,7 @@ BattleTowerMultiBattleRoom_EndChallengeAndUpdateGameRecordsAndJournal:
     End
 
 BattleTowerMultiBattleRoom_SaveAndQuitMultiChallenge:
-    SetVar VAR_UNK_0x40D8, 2
+    SetVar VAR_BATTLE_TOWER_LOBBY_LOAD_ACTION, 2
     CallBattleTowerFunction BT_FUNC_UNK_39, 0, 0
     FreeBattleTower
     Message BattleTowerMultiBattleRoom_Text_ThanksForParticipating

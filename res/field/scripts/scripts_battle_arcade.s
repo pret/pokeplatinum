@@ -1,134 +1,135 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/battle_arcade.h"
+#include "res/text/bank/menu_entries.h"
 #include "constants/battle_frontier.h"
 
 
-    ScriptEntry _0065
-    ScriptEntry _06B8
-    ScriptEntry _06F1
-    ScriptEntry _0700
-    ScriptEntry _0774
-    ScriptEntry _0081
-    ScriptEntry _079C
-    ScriptEntry _07AF
-    ScriptEntry _07C2
-    ScriptEntry _07D5
-    ScriptEntry _07E8
-    ScriptEntry _07FB
-    ScriptEntry _080E
-    ScriptEntry _0821
-    ScriptEntry _0046
-    ScriptEntry _0834
-    ScriptEntry _0845
+    ScriptEntry BattleArcade_SingleAttendant
+    ScriptEntry BattleArcade_OnFrameResumeChallenge
+    ScriptEntry BattleArcade_OnFrameDidntSaveBeforeQuit
+    ScriptEntry BattleArcade_OnFrameChallengeEndedCompletedRound
+    ScriptEntry BattleArcade_OnFrameChallengeEnded
+    ScriptEntry BattleArcade_MultiAttendant
+    ScriptEntry BattleArcade_Worker
+    ScriptEntry BattleArcade_ParasolLady
+    ScriptEntry BattleArcade_Psychic
+    ScriptEntry BattleArcade_BugCatcher
+    ScriptEntry BattleArcade_Waitress
+    ScriptEntry BattleArcade_Camper
+    ScriptEntry BattleArcade_Beauty
+    ScriptEntry BattleArcade_TuberF
+    ScriptEntry BattleArcade_OnTransition
+    ScriptEntry BattleArcade_Hiker1
+    ScriptEntry BattleArcade_Hiker2
     ScriptEntryEnd
 
-_0046:
+BattleArcade_OnTransition:
     CheckTVInterviewEligible TV_PROGRAM_SEGMENT_BATTLE_FRONTIER_FRONTLINE_NEWS_MULTI, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, 0, _005F
-    ClearFlag FLAG_UNK_0x02C3
+    GoToIfEq VAR_MAP_LOCAL_0, FALSE, BattleArcade_HideBattleFrontierReporter
+    ClearFlag FLAG_HIDE_BATTLE_FRONTIER_REPORTER
     End
 
-_005F:
-    SetFlag FLAG_UNK_0x02C3
+BattleArcade_HideBattleFrontierReporter:
+    SetFlag FLAG_HIDE_BATTLE_FRONTIER_REPORTER
     End
 
-_0065:
+BattleArcade_SingleAttendant:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     SetVar VAR_MAP_LOCAL_3, 0
     SetVar VAR_MAP_LOCAL_4, 0
-    GoTo _009D
+    GoTo BattleArcade_Attendant
     End
 
-_0081:
+BattleArcade_MultiAttendant:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     SetVar VAR_MAP_LOCAL_3, 0
     SetVar VAR_MAP_LOCAL_4, 1
-    GoTo _009D
+    GoTo BattleArcade_Attendant
     End
 
-_009D:
+BattleArcade_Attendant:
     RecordHeapMemory
-    CallIfEq VAR_MAP_LOCAL_4, 0, _0678
-    CallIfEq VAR_MAP_LOCAL_4, 1, _067D
-    GoTo _00C3
+    CallIfEq VAR_MAP_LOCAL_4, 0, BattleArcade_WelcomeToSingleDoubleChallenge
+    CallIfEq VAR_MAP_LOCAL_4, 1, BattleArcade_WelcomeToMultiChallenge
+    GoTo BattleArcade_SelectChallenge
     End
 
-_00C3:
-    CallIfEq VAR_MAP_LOCAL_4, 0, _0682
-    CallIfEq VAR_MAP_LOCAL_4, 1, _069A
-    AddMenuEntryImm 41, 2
-    AddMenuEntryImm 42, 3
+BattleArcade_SelectChallenge:
+    CallIfEq VAR_MAP_LOCAL_4, 0, BattleArcade_InitMenuSingleDoubleChallenge
+    CallIfEq VAR_MAP_LOCAL_4, 1, BattleArcade_InitMenuMultiChallenge
+    AddMenuEntryImm BattleArcade_Text_Info, 2
+    AddMenuEntryImm BattleArcade_Text_Cancel, 3
     ShowMenu
-    GoToIfEq VAR_RESULT, 0, _015E
-    GoToIfEq VAR_RESULT, 1, _018B
-    GoToIfEq VAR_RESULT, 2, _0123
-    GoToIfEq VAR_RESULT, 4, _01B8
-    GoTo _0145
+    GoToIfEq VAR_RESULT, 0, BattleArcade_TryTakeSingleChallenge
+    GoToIfEq VAR_RESULT, 1, BattleArcade_TryTakeDoubleChallenge
+    GoToIfEq VAR_RESULT, 2, BattleArcade_ExplainChallenge
+    GoToIfEq VAR_RESULT, 4, BattleArcade_TryTakeMultiChallenge
+    GoTo BattleArcade_EndChallenge
     End
 
-_0123:
-    CallIfEq VAR_MAP_LOCAL_4, 0, _06AE
-    CallIfEq VAR_MAP_LOCAL_4, 1, _06B3
-    GoTo _00C3
+BattleArcade_ExplainChallenge:
+    CallIfEq VAR_MAP_LOCAL_4, 0, BattleArcade_ExplainSingleDoubleChallenge
+    CallIfEq VAR_MAP_LOCAL_4, 1, BattleArcade_ExplainMultiChallenge
+    GoTo BattleArcade_SelectChallenge
     End
 
-_0145:
-    GoTo _014D
+BattleArcade_EndChallenge:
+    GoTo BattleArcade_HopeToSeeYouAgain
     End
 
-_014D:
-    SetVar VAR_UNK_0x40BF, 0
-    Message 6
+BattleArcade_HopeToSeeYouAgain:
+    SetVar VAR_BATTLE_ARCADE_LOBBY_LOAD_ACTION, 0
+    Message BattleArcade_Text_HopeToSeeYouAgain
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_015E:
+BattleArcade_TryTakeSingleChallenge:
     SetVar VAR_BATTLE_ARCADE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_SINGLE
     ScrCmd_2D9 0, 3, VAR_RESULT
     BufferNumber 0, 3
     BufferNumber 1, 3
-    GoToIfEq VAR_RESULT, 0, _01E5
-    GoTo _020B
+    GoToIfEq VAR_RESULT, 0, BattleArcade_NotEnoughEligiblePokemonSingleDouble
+    GoTo BattleArcade_SelectPokemon
     End
 
-_018B:
+BattleArcade_TryTakeDoubleChallenge:
     SetVar VAR_BATTLE_ARCADE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_DOUBLE
     ScrCmd_2D9 0, 3, VAR_RESULT
     BufferNumber 0, 3
     BufferNumber 1, 3
-    GoToIfEq VAR_RESULT, 0, _01E5
-    GoTo _020B
+    GoToIfEq VAR_RESULT, 0, BattleArcade_NotEnoughEligiblePokemonSingleDouble
+    GoTo BattleArcade_SelectPokemon
     End
 
-_01B8:
+BattleArcade_TryTakeMultiChallenge:
     SetVar VAR_BATTLE_ARCADE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI
     ScrCmd_2D9 0, 2, VAR_RESULT
     BufferNumber 0, 2
     BufferNumber 1, 2
-    GoToIfEq VAR_RESULT, 0, _01F8
-    GoTo _020B
+    GoToIfEq VAR_RESULT, 0, BattleArcade_NotEnoughEligiblePokemonMulti
+    GoTo BattleArcade_SelectPokemon
     End
 
-_01E5:
-    Message 8
-    MessageSeenBanlistSpecies 9, 3
-    GoTo _0145
+BattleArcade_NotEnoughEligiblePokemonSingleDouble:
+    Message BattleArcade_Text_NotEnoughEligiblePokemon
+    MessageSeenBanlistSpecies BattleArcade_Text_Banlist, 3
+    GoTo BattleArcade_EndChallenge
     End
 
-_01F8:
-    Message 8
-    MessageSeenBanlistSpecies 9, 2
-    GoTo _0145
+BattleArcade_NotEnoughEligiblePokemonMulti:
+    Message BattleArcade_Text_NotEnoughEligiblePokemon
+    MessageSeenBanlistSpecies BattleArcade_Text_Banlist, 2
+    GoTo BattleArcade_EndChallenge
     End
 
-_020B:
-    Message 7
+BattleArcade_SelectPokemon:
+    Message BattleArcade_Text_SelectPokemonToEnter
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
@@ -137,225 +138,225 @@ _020B:
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
-    GoToIfEq VAR_MAP_LOCAL_2, 0xFF, _0145
+    GoToIfEq VAR_MAP_LOCAL_2, 0xFF, BattleArcade_EndChallenge
     TryRevertPokemonForm VAR_MAP_LOCAL_2, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0xFF, _05E1
+    GoToIfEq VAR_RESULT, 0xFF, BattleArcade_GriseousOrbCouldNotBeRemoved
     TryRevertPokemonForm VAR_MAP_LOCAL_5, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0xFF, _05E1
+    GoToIfEq VAR_RESULT, 0xFF, BattleArcade_GriseousOrbCouldNotBeRemoved
     TryRevertPokemonForm VAR_MAP_LOCAL_6, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0xFF, _05E1
+    GoToIfEq VAR_RESULT, 0xFF, BattleArcade_GriseousOrbCouldNotBeRemoved
     GetPartyMonSpecies VAR_MAP_LOCAL_2, VAR_MAP_LOCAL_1
-    GoToIfEq VAR_MAP_LOCAL_1, 0, _0145
-    GoTo _029B
+    GoToIfEq VAR_MAP_LOCAL_1, 0, BattleArcade_EndChallenge
+    GoTo BattleArcade_TryStartChallenge
     End
 
-_029B:
-    GoTo _02A3
+BattleArcade_TryStartChallenge:
+    GoTo BattleArcade_HealAndSaveBeforeChallenge
     End
 
-_02A3:
-    CallIfEq VAR_BATTLE_ARCADE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_SINGLE, _0448
-    CallIfEq VAR_BATTLE_ARCADE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_DOUBLE, _0448
+BattleArcade_HealAndSaveBeforeChallenge:
+    CallIfEq VAR_BATTLE_ARCADE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_SINGLE, BattleArcade_SetChallengeInProgress
+    CallIfEq VAR_BATTLE_ARCADE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_DOUBLE, BattleArcade_SetChallengeInProgress
     SetVar VAR_MAP_LOCAL_0, 0
     HealParty
     Common_SaveGame
     SetVar VAR_RESULT, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_RESULT, 0, _0145
-    GoToIfEq VAR_BATTLE_ARCADE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI, _02F1
-    GoTo _04A9
+    GoToIfEq VAR_RESULT, 0, BattleArcade_EndChallenge
+    GoToIfEq VAR_BATTLE_ARCADE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI, BattleArcade_BecomeLeaderOrJoinGroup
+    GoTo BattleArcade_WalkIntoCorridor
     End
 
-_02F1:
-    Message 43
+BattleArcade_BecomeLeaderOrJoinGroup:
+    Message BattleArcade_Text_BecomeLeaderOrJoinGroup
     InitGlobalTextMenu 30, 1, 0, VAR_RESULT
     SetMenuXOriginToRight
-    AddMenuEntryImm 13, 0
-    AddMenuEntryImm 14, 1
-    AddMenuEntryImm 5, 2
+    AddMenuEntryImm MenuEntries_Text_JoinGroup, 0
+    AddMenuEntryImm MenuEntries_Text_BecomeLeader, 1
+    AddMenuEntryImm MenuEntries_Text_Exit, 2
     ShowMenu
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, 0, _0335
-    GoToIfEq VAR_0x8008, 1, _0389
-    GoTo _0145
+    GoToIfEq VAR_0x8008, 0, BattleArcade_LaunchWiFiToJoinGroup
+    GoToIfEq VAR_0x8008, 1, BattleArcade_LaunchWiFiToBecomeLeader
+    GoTo BattleArcade_EndChallenge
     End
 
-_0335:
-    Message 44
+BattleArcade_LaunchWiFiToJoinGroup:
+    Message BattleArcade_Text_NeedToLaunchWiFiComm
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _02F1
+    GoToIfEq VAR_RESULT, MENU_NO, BattleArcade_BecomeLeaderOrJoinGroup
     CloseMessage
     StartBattleClient 32, 0, 0, VAR_RESULT
-    GoToIfEq VAR_RESULT, COMM_CLUB_RET_CANCEL, _0377
-    GoToIfEq VAR_RESULT, COMM_CLUB_RET_ERROR, _037F
-    GoTo _03DD
+    GoToIfEq VAR_RESULT, COMM_CLUB_RET_CANCEL, BattleArcade_CancelJoiningGroup
+    GoToIfEq VAR_RESULT, COMM_CLUB_RET_ERROR, BattleArcade_ErrorJoiningGroup
+    GoTo BattleArcade_StartMultiChallenge
     End
 
-_0377:
-    GoTo _02F1
+BattleArcade_CancelJoiningGroup:
+    GoTo BattleArcade_BecomeLeaderOrJoinGroup
     End
 
-_037F:
+BattleArcade_ErrorJoiningGroup:
     EndCommunication
-    GoTo _02F1
+    GoTo BattleArcade_BecomeLeaderOrJoinGroup
     End
 
-_0389:
-    Message 44
+BattleArcade_LaunchWiFiToBecomeLeader:
+    Message BattleArcade_Text_NeedToLaunchWiFiComm
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _02F1
+    GoToIfEq VAR_RESULT, MENU_NO, BattleArcade_BecomeLeaderOrJoinGroup
     CloseMessage
     StartBattleServer 32, 0, 0, VAR_RESULT
-    GoToIfEq VAR_RESULT, COMM_CLUB_RET_CANCEL, _03CB
-    GoToIfEq VAR_RESULT, COMM_CLUB_RET_ERROR, _03D3
-    GoTo _03DD
+    GoToIfEq VAR_RESULT, COMM_CLUB_RET_CANCEL, BattleArcade_CancelBecomingLeader
+    GoToIfEq VAR_RESULT, COMM_CLUB_RET_ERROR, BattleArcade_ErrorBecomingLeader
+    GoTo BattleArcade_StartMultiChallenge
     End
 
-_03CB:
-    GoTo _02F1
+BattleArcade_CancelBecomingLeader:
+    GoTo BattleArcade_BecomeLeaderOrJoinGroup
     End
 
-_03D3:
+BattleArcade_ErrorBecomingLeader:
     EndCommunication
-    GoTo _02F1
+    GoTo BattleArcade_BecomeLeaderOrJoinGroup
     End
 
-_03DD:
+BattleArcade_StartMultiChallenge:
     ClearReceivedTempDataAllPlayers
     ScrCmd_135 154
     GetPartyMonSpecies VAR_MAP_LOCAL_2, VAR_0x8000
     GetPartyMonSpecies VAR_MAP_LOCAL_5, VAR_0x8001
     ScrCmd_2DA VAR_0x8000, VAR_0x8001, VAR_RESULT
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, 1, _0450
-    GoToIfEq VAR_0x8008, 2, _0466
-    GoToIfEq VAR_0x8008, 3, _047C
+    GoToIfEq VAR_0x8008, 1, BattleArcade_BothTrainerChosePokemon1
+    GoToIfEq VAR_0x8008, 2, BattleArcade_BothTrainerChosePokemon2
+    GoToIfEq VAR_0x8008, 3, BattleArcade_BothTrainerChosePokemon1And2
     ClearReceivedTempDataAllPlayers
     ScrCmd_135 156
-    Message 45
-    CallIfEq VAR_BATTLE_ARCADE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI, _0448
-    Call _06DF
-    GoTo _04A9
+    Message BattleArcade_Text_MustSaveFirst
+    CallIfEq VAR_BATTLE_ARCADE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI, BattleArcade_SetChallengeInProgress
+    Call BattleArcade_SaveGame
+    GoTo BattleArcade_WalkIntoCorridor
     End
 
-_0448:
-    SetVar VAR_UNK_0x40BF, 0xFF
+BattleArcade_SetChallengeInProgress:
+    SetVar VAR_BATTLE_ARCADE_LOBBY_LOAD_ACTION, 0xFF
     Return
 
-_0450:
-    Call _049F
+BattleArcade_BothTrainerChosePokemon1:
+    Call BattleArcade_EndCommunicationSamePokemon
     BufferPartyMonSpecies 0, VAR_MAP_LOCAL_2
-    Message 29
-    GoTo _0497
+    Message BattleArcade_Text_BothTrainersChoseThisPokemon
+    GoTo BattleArcade_ChoseSamePokemonCancel
     End
 
-_0466:
-    Call _049F
+BattleArcade_BothTrainerChosePokemon2:
+    Call BattleArcade_EndCommunicationSamePokemon
     BufferPartyMonSpecies 0, VAR_MAP_LOCAL_5
-    Message 29
-    GoTo _0497
+    Message BattleArcade_Text_BothTrainersChoseThisPokemon
+    GoTo BattleArcade_ChoseSamePokemonCancel
     End
 
-_047C:
-    Call _049F
+BattleArcade_BothTrainerChosePokemon1And2:
+    Call BattleArcade_EndCommunicationSamePokemon
     BufferPartyMonSpecies 0, VAR_MAP_LOCAL_2
     BufferPartyMonSpecies 1, VAR_MAP_LOCAL_5
-    Message 30
-    GoTo _0497
+    Message BattleArcade_Text_BothTrainersChoseThesePokemon
+    GoTo BattleArcade_ChoseSamePokemonCancel
     End
 
-_0497:
-    GoTo _0145
+BattleArcade_ChoseSamePokemonCancel:
+    GoTo BattleArcade_EndChallenge
     End
 
-_049F:
+BattleArcade_EndCommunicationSamePokemon:
     ClearReceivedTempDataAllPlayers
     ScrCmd_135 157
     EndCommunication
     Return
 
-_04A9:
-    CallIfEq VAR_BATTLE_ARCADE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_SINGLE, _0549
-    CallIfEq VAR_BATTLE_ARCADE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_DOUBLE, _0564
-    CallIfEq VAR_BATTLE_ARCADE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI, _057F
+BattleArcade_WalkIntoCorridor:
+    CallIfEq VAR_BATTLE_ARCADE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_SINGLE, BattleArcade_WalkToCorridorSingleChallenge
+    CallIfEq VAR_BATTLE_ARCADE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_DOUBLE, BattleArcade_WalkToCorridorDoubleChallenge
+    CallIfEq VAR_BATTLE_ARCADE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI, BattleArcade_WalkToCorridorMultiChallenge
     PlaySE SEQ_SE_DP_KAIDAN2
-    GoTo _04DC
+    GoTo BattleArcade_StartChallenge
     End
 
-_04DC:
+BattleArcade_StartChallenge:
     FadeScreenOut
     WaitFadeScreen
-    CallIfEq VAR_BATTLE_ARCADE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_SINGLE, _05A5
-    CallIfEq VAR_BATTLE_ARCADE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_DOUBLE, _05B9
-    CallIfEq VAR_BATTLE_ARCADE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI, _05CD
-    IncrementGameRecord RECORD_UNK_058
+    CallIfEq VAR_BATTLE_ARCADE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_SINGLE, BattleArcade_WalkBackInvisiblySingleChallenge
+    CallIfEq VAR_BATTLE_ARCADE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_DOUBLE, BattleArcade_WalkBackInvisiblyDoubleChallenge
+    CallIfEq VAR_BATTLE_ARCADE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI, BattleArcade_WalkBackInvisiblyMultiChallenge
+    IncrementGameRecord RECORD_TIMES_STARTED_BATTLE_FRONTIER_CHALLENGE
     CreateJournalEvent LOCATION_EVENT_BATTLE_ARCADE, 0, 0, 0, 0
     WaitForTransition
     ScrCmd_2C4 15
-    CallIfEq VAR_BATTLE_ARCADE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI, _0545
+    CallIfEq VAR_BATTLE_ARCADE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI, BattleArcade_EndCommunication
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
     AssertHeapMemory
     End
 
-_0545:
+BattleArcade_EndCommunication:
     EndCommunication
     Return
 
-_0549:
-    Message 32
+BattleArcade_WalkToCorridorSingleChallenge:
+    Message BattleArcade_Text_ThisWayPlease
     WaitABPress
     CloseMessage
-    ApplyMovement LOCALID_PLAYER, _05F0
-    ApplyMovement VAR_LAST_TALKED, _0610
+    ApplyMovement LOCALID_PLAYER, BattleArcade_Movement_PlayerWalkToCorridorSingleDoubleChallenge
+    ApplyMovement VAR_LAST_TALKED, BattleArcade_Movement_AttendantWalkToCorridorSingleDoubleChallenge
     WaitMovement
     Return
 
-_0564:
-    Message 32
+BattleArcade_WalkToCorridorDoubleChallenge:
+    Message BattleArcade_Text_ThisWayPlease
     WaitABPress
     CloseMessage
-    ApplyMovement LOCALID_PLAYER, _05F0
-    ApplyMovement VAR_LAST_TALKED, _0610
+    ApplyMovement LOCALID_PLAYER, BattleArcade_Movement_PlayerWalkToCorridorSingleDoubleChallenge
+    ApplyMovement VAR_LAST_TALKED, BattleArcade_Movement_AttendantWalkToCorridorSingleDoubleChallenge
     WaitMovement
     Return
 
-_057F:
-    MessageNoSkip 32
+BattleArcade_WalkToCorridorMultiChallenge:
+    MessageNoSkip BattleArcade_Text_ThisWayPlease
     WaitTime 10, VAR_RESULT
     ClearReceivedTempDataAllPlayers
     ScrCmd_135 155
     CloseMessage
-    ApplyMovement LOCALID_PLAYER, _0604
-    ApplyMovement VAR_LAST_TALKED, _0624
+    ApplyMovement LOCALID_PLAYER, BattleArcade_Movement_PlayerWalkToCorridorMultiChallenge
+    ApplyMovement VAR_LAST_TALKED, BattleArcade_Movement_AttendantWalkToCorridorMultiChallenge
     WaitMovement
     Return
 
-_05A5:
-    ApplyMovement LOCALID_PLAYER, _0630
-    ApplyMovement VAR_LAST_TALKED, _0658
+BattleArcade_WalkBackInvisiblySingleChallenge:
+    ApplyMovement LOCALID_PLAYER, BattleArcade_Movement_PlayerWalkBackSingleDoubleChallenge
+    ApplyMovement VAR_LAST_TALKED, BattleArcade_Movement_AttendantWalkBackSingleDoubleChallenge
     WaitMovement
     Return
 
-_05B9:
-    ApplyMovement LOCALID_PLAYER, _0630
-    ApplyMovement VAR_LAST_TALKED, _0658
+BattleArcade_WalkBackInvisiblyDoubleChallenge:
+    ApplyMovement LOCALID_PLAYER, BattleArcade_Movement_PlayerWalkBackSingleDoubleChallenge
+    ApplyMovement VAR_LAST_TALKED, BattleArcade_Movement_AttendantWalkBackSingleDoubleChallenge
     WaitMovement
     Return
 
-_05CD:
-    ApplyMovement LOCALID_PLAYER, _0648
-    ApplyMovement VAR_LAST_TALKED, _066C
+BattleArcade_WalkBackInvisiblyMultiChallenge:
+    ApplyMovement LOCALID_PLAYER, BattleArcade_Movement_PlayerWalkBackMultiChallenge
+    ApplyMovement VAR_LAST_TALKED, BattleArcade_Movement_AttendantWalkBackMultiChallenge
     WaitMovement
     Return
 
-_05E1:
-    SetVar VAR_UNK_0x40BF, 0
+BattleArcade_GriseousOrbCouldNotBeRemoved:
+    SetVar VAR_BATTLE_ARCADE_LOBBY_LOAD_ACTION, 0
     Common_GriseousOrbCouldNotBeRemoved
     End
 
     .balign 4, 0
-_05F0:
+BattleArcade_Movement_PlayerWalkToCorridorSingleDoubleChallenge:
     WalkNormalNorth 2
     WalkNormalEast
     WalkNormalNorth 2
@@ -363,13 +364,13 @@ _05F0:
     EndMovement
 
     .balign 4, 0
-_0604:
+BattleArcade_Movement_PlayerWalkToCorridorMultiChallenge:
     WalkNormalNorth 4
     SetInvisible
     EndMovement
 
     .balign 4, 0
-_0610:
+BattleArcade_Movement_AttendantWalkToCorridorSingleDoubleChallenge:
     WalkNormalNorth
     WalkNormalEast
     WalkNormalNorth 2
@@ -377,13 +378,13 @@ _0610:
     EndMovement
 
     .balign 4, 0
-_0624:
+BattleArcade_Movement_AttendantWalkToCorridorMultiChallenge:
     WalkNormalNorth 3
     SetInvisible
     EndMovement
 
     .balign 4, 0
-_0630:
+BattleArcade_Movement_PlayerWalkBackSingleDoubleChallenge:
     WalkFasterSouth 2
     WalkFasterWest
     WalkFasterSouth 2
@@ -392,14 +393,14 @@ _0630:
     EndMovement
 
     .balign 4, 0
-_0648:
+BattleArcade_Movement_PlayerWalkBackMultiChallenge:
     WalkFasterSouth 4
     FaceNorth
     SetVisible
     EndMovement
 
     .balign 4, 0
-_0658:
+BattleArcade_Movement_AttendantWalkBackSingleDoubleChallenge:
     WalkFasterSouth
     WalkFasterWest
     WalkFasterSouth 2
@@ -407,53 +408,53 @@ _0658:
     EndMovement
 
     .balign 4, 0
-_066C:
+BattleArcade_Movement_AttendantWalkBackMultiChallenge:
     WalkFasterSouth 3
     SetVisible
     EndMovement
 
-_0678:
-    Message 0
+BattleArcade_WelcomeToSingleDoubleChallenge:
+    Message BattleArcade_Text_WelcomeToSingleDoubleChallenge
     Return
 
-_067D:
-    Message 3
+BattleArcade_WelcomeToMultiChallenge:
+    Message BattleArcade_Text_WelcomeToMultiChallenge
     Return
 
-_0682:
+BattleArcade_InitMenuSingleDoubleChallenge:
     InitLocalTextMenu 31, 9, 0, VAR_RESULT
     SetMenuXOriginToRight
-    AddMenuEntryImm 38, 0
-    AddMenuEntryImm 39, 1
-    Message 1
+    AddMenuEntryImm BattleArcade_Text_SingleBattle, 0
+    AddMenuEntryImm BattleArcade_Text_DoubleBattle, 1
+    Message BattleArcade_Text_TakeWhichChallenge
     Return
 
-_069A:
+BattleArcade_InitMenuMultiChallenge:
     InitLocalTextMenu 31, 11, 0, VAR_RESULT
     SetMenuXOriginToRight
-    AddMenuEntryImm 40, 4
-    Message 4
+    AddMenuEntryImm BattleArcade_Text_TakeChallenge, 4
+    Message BattleArcade_Text_AskTakeMultiChallenge
     Return
 
-_06AE:
-    Message 2
+BattleArcade_ExplainSingleDoubleChallenge:
+    Message BattleArcade_Text_ExplainSingleDoubleChallenge
     Return
 
-_06B3:
-    Message 5
+BattleArcade_ExplainMultiChallenge:
+    Message BattleArcade_Text_ExplainMultiChallenge
     Return
 
-_06B8:
+BattleArcade_OnFrameResumeChallenge:
     RecordHeapMemory
     SetVar VAR_MAP_LOCAL_3, 1
-    SetVar VAR_UNK_0x40BF, 0
-    Message 33
-    Call _0448
-    Call _06DF
-    GoTo _04A9
+    SetVar VAR_BATTLE_ARCADE_LOBBY_LOAD_ACTION, 0
+    Message BattleArcade_Text_MustSaveBeforeResuming
+    Call BattleArcade_SetChallengeInProgress
+    Call BattleArcade_SaveGame
+    GoTo BattleArcade_WalkIntoCorridor
     End
 
-_06DF:
+BattleArcade_SaveGame:
     ShowSavingIcon
     TrySaveGame VAR_RESULT
     HideSavingIcon
@@ -461,45 +462,45 @@ _06DF:
     WaitSE SEQ_SE_DP_SAVE
     Return
 
-_06F1:
-    Message 34
+BattleArcade_OnFrameDidntSaveBeforeQuit:
+    Message BattleArcade_Text_DidntSaveBeforeQuit
     ScrCmd_2DC VAR_BATTLE_ARCADE_CHALLENGE_TYPE
-    GoTo _0145
+    GoTo BattleArcade_EndChallenge
     End
 
-_0700:
-    CallIfEq VAR_BATTLE_ARCADE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_SINGLE, _073C
-    CallIfEq VAR_BATTLE_ARCADE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_DOUBLE, _073C
-    CallIfEq VAR_BATTLE_ARCADE_PRINT_STATE, 1, _0742
-    CallIfEq VAR_BATTLE_ARCADE_PRINT_STATE, 3, _0759
-    GoTo _0145
+BattleArcade_OnFrameChallengeEndedCompletedRound:
+    CallIfEq VAR_BATTLE_ARCADE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_SINGLE, BattleArcade_IncrementTrainerScoreRoundCompleted
+    CallIfEq VAR_BATTLE_ARCADE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_DOUBLE, BattleArcade_IncrementTrainerScoreRoundCompleted
+    CallIfEq VAR_BATTLE_ARCADE_PRINT_STATE, 1, BattleArcade_EarnedSilverPrint
+    CallIfEq VAR_BATTLE_ARCADE_PRINT_STATE, 3, BattleArcade_EarnedGoldPrint
+    GoTo BattleArcade_EndChallenge
     End
 
-_073C:
-    IncrementTrainerScore TRAINER_SCORE_EVENT_UNK_41
+BattleArcade_IncrementTrainerScoreRoundCompleted:
+    IncrementTrainerScore TRAINER_SCORE_EVENT_BATTLE_ARCADE_ROUND_COMPLETED
     Return
 
-_0742:
-    Message 35
+BattleArcade_EarnedSilverPrint:
+    Message BattleArcade_Text_PrintForVictory
     BufferPlayerName 0
-    Message 37
+    Message BattleArcade_Text_SilverPrintAdded
     PlayFanfare SEQ_FANFA4
     WaitFanfare
     SetVar VAR_BATTLE_ARCADE_PRINT_STATE, 2
     Return
 
-_0759:
-    Message 35
+BattleArcade_EarnedGoldPrint:
+    Message BattleArcade_Text_PrintForVictory
     BufferPlayerName 0
-    Message 36
+    Message BattleArcade_Text_GoldPrintAdded
     PlayFanfare SEQ_FANFA4
     WaitFanfare
     SetVar VAR_BATTLE_ARCADE_PRINT_STATE, 4
     Common_CheckAllFrontierGoldPrintsObtained
     Return
 
-_0774:
-    GoTo _0145
+BattleArcade_OnFrameChallengeEnded:
+    GoTo BattleArcade_EndChallenge
     End
 
 BattleArcade_UnusedMovement:
@@ -514,44 +515,44 @@ BattleArcade_UnusedMovement2:
     WalkNormalNorth
     EndMovement
 
-_079C:
-    NPCMessage 46
+BattleArcade_Worker:
+    NPCMessage BattleArcade_Text_RuleGameBoard
     End
 
-_07AF:
-    NPCMessage 47
+BattleArcade_ParasolLady:
+    NPCMessage BattleArcade_Text_ComesDownToLuck
     End
 
-_07C2:
-    NPCMessage 48
+BattleArcade_Psychic:
+    NPCMessage BattleArcade_Text_NothingToDoAboutLuck
     End
 
-_07D5:
-    NPCMessage 49
+BattleArcade_BugCatcher:
+    NPCMessage BattleArcade_Text_DontBeAwestruck
     End
 
-_07E8:
-    NPCMessage 50
+BattleArcade_Waitress:
+    NPCMessage BattleArcade_Text_PeculiarFashionSense
     End
 
-_07FB:
-    NPCMessage 51
+BattleArcade_Camper:
+    NPCMessage BattleArcade_Text_StartBattlesWithTrickRoom
     End
 
-_080E:
-    NPCMessage 52
+BattleArcade_Beauty:
+    NPCMessage BattleArcade_Text_ThrilledByUnknownHand
     End
 
-_0821:
-    NPCMessage 53
+BattleArcade_TuberF:
+    NPCMessage BattleArcade_Text_BlamingGameBoardIsPitiful
     End
 
-_0834:
-    EventMessage 54
+BattleArcade_Hiker1:
+    EventMessage BattleArcade_Text_FigureThisOneOut
     End
 
-_0845:
-    EventMessage 55
+BattleArcade_Hiker2:
+    EventMessage BattleArcade_Text_GroundTypesArentAffected
     End
 
     .balign 4, 0

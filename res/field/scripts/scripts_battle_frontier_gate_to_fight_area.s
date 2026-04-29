@@ -1,295 +1,296 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/battle_frontier_gate_to_fight_area.h"
+#include "res/field/events/events_battle_frontier_gate_to_fight_area.h"
 
 
-    ScriptEntry _0038
-    ScriptEntry _007C
-    ScriptEntry _0154
-    ScriptEntry _019D
-    ScriptEntry _01E6
-    ScriptEntry _022F
-    ScriptEntry _0278
-    ScriptEntry _0358
-    ScriptEntry _036B
-    ScriptEntry _037E
-    ScriptEntry _0391
-    ScriptEntry _0032
+    ScriptEntry BattleFrontierGateToFightArea_OnFrameFirstEntry
+    ScriptEntry BattleFrontierGateToFightArea_AttendantGeneral
+    ScriptEntry BattleFrontierGateToFightArea_AttendantBattleTower
+    ScriptEntry BattleFrontierGateToFightArea_AttendantBattleFactory
+    ScriptEntry BattleFrontierGateToFightArea_AttendantBattleHall
+    ScriptEntry BattleFrontierGateToFightArea_AttendantBattleCastle
+    ScriptEntry BattleFrontierGateToFightArea_AttendantBattleArcade
+    ScriptEntry BattleFrontierGateToFightArea_RuinManiac
+    ScriptEntry BattleFrontierGateToFightArea_ExpertM
+    ScriptEntry BattleFrontierGateToFightArea_PokemonBreederM
+    ScriptEntry BattleFrontierGateToFightArea_Beauty
+    ScriptEntry BattleFrontierGateToFightArea_OnTransition
     ScriptEntryEnd
 
-_0032:
+BattleFrontierGateToFightArea_OnTransition:
     SetFlag FLAG_FIRST_ARRIVAL_BATTLE_PARK
     End
 
-_0038:
+BattleFrontierGateToFightArea_OnFrameFirstEntry:
     LockAll
-    SetVar VAR_UNK_0x4113, 1
+    SetVar VAR_BATTLE_FRONTIER_GATE_TO_FIGHT_AREA_STATE, 1
     SetFlag FLAG_HIDE_JUBILIFE_TV_3F_GLOBAL_RANKING_ROOM_WORKER
     SetFlag FLAG_HIDE_JUBILIFE_TV_3F_GROUP_RANKING_ROOM_WORKER
-    Call _02C1
-    Message 0
+    Call BattleFrontierGateToFightArea_AttendantsFaceSouth
+    Message BattleFrontierGateToFightArea_Text_RightThisWay
     CloseMessage
-    Call _02F5
-    Message 1
+    Call BattleFrontierGateToFightArea_PlayerWalkToAttendant
+    Message BattleFrontierGateToFightArea_Text_BorrowVsRecorder
     BufferPlayerName 0
     PlayFanfare SEQ_FANFA4
-    Message 2
+    Message BattleFrontierGateToFightArea_Text_VsRecorderWasUpgraded
     WaitFanfare
-    Message 3
-    Call _0095
-    Message 10
+    Message BattleFrontierGateToFightArea_Text_AnyQuestions
+    Call BattleFrontierGateToFightArea_QuestionsMenu
+    Message BattleFrontierGateToFightArea_Text_EnjoyYourVisit
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_007C:
+BattleFrontierGateToFightArea_AttendantGeneral:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 4
-    Call _0095
-    GoTo _0103
+    Message BattleFrontierGateToFightArea_Text_ExplainWhichTopic
+    Call BattleFrontierGateToFightArea_QuestionsMenu
+    GoTo BattleFrontierGateToFightArea_EnjoyYourVisit
     End
 
-_0095:
+BattleFrontierGateToFightArea_QuestionsMenu:
     InitLocalTextMenu 31, 5, 0, VAR_RESULT
     SetMenuXOriginToRight
-    AddMenuEntryImm 11, 0
-    AddMenuEntryImm 16, 1
-    AddMenuEntryImm 12, 2
-    AddMenuEntryImm 13, 3
-    AddMenuEntryImm 14, 4
-    AddMenuEntryImm 15, 5
+    AddMenuEntryImm BattleFrontierGateToFightArea_Text_BattleFrontier, 0
+    AddMenuEntryImm BattleFrontierGateToFightArea_Text_BasicRules, 1
+    AddMenuEntryImm BattleFrontierGateToFightArea_Text_BattlePoints, 2
+    AddMenuEntryImm BattleFrontierGateToFightArea_Text_ExchangeServiceCorner, 3
+    AddMenuEntryImm BattleFrontierGateToFightArea_Text_PerformanceMonitor, 4
+    AddMenuEntryImm BattleFrontierGateToFightArea_Text_Exit, 5
     ShowMenu
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, 0, _010E
-    GoToIfEq VAR_0x8008, 1, _0146
-    GoToIfEq VAR_0x8008, 2, _011C
-    GoToIfEq VAR_0x8008, 3, _012A
-    GoToIfEq VAR_0x8008, 4, _0138
+    GoToIfEq VAR_0x8008, 0, BattleFrontierGateToFightArea_ExplainBattleFrontier
+    GoToIfEq VAR_0x8008, 1, BattleFrontierGateToFightArea_ExplainBasicRules
+    GoToIfEq VAR_0x8008, 2, BattleFrontierGateToFightArea_ExplainBattlePoints
+    GoToIfEq VAR_0x8008, 3, BattleFrontierGateToFightArea_ExplainExchangeServiceCorner
+    GoToIfEq VAR_0x8008, 4, BattleFrontierGateToFightArea_ExplainPerformanceMonitor
     Return
 
-_0103:
-    Message 10
+BattleFrontierGateToFightArea_EnjoyYourVisit:
+    Message BattleFrontierGateToFightArea_Text_EnjoyYourVisit
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_010E:
-    Message 5
-    Message 4
-    GoTo _0095
+BattleFrontierGateToFightArea_ExplainBattleFrontier:
+    Message BattleFrontierGateToFightArea_Text_ExplainBattleFrontier
+    Message BattleFrontierGateToFightArea_Text_ExplainWhichTopic
+    GoTo BattleFrontierGateToFightArea_QuestionsMenu
     End
 
-_011C:
-    Message 7
-    Message 4
-    GoTo _0095
+BattleFrontierGateToFightArea_ExplainBattlePoints:
+    Message BattleFrontierGateToFightArea_Text_ExplainBattlePoints
+    Message BattleFrontierGateToFightArea_Text_ExplainWhichTopic
+    GoTo BattleFrontierGateToFightArea_QuestionsMenu
     End
 
-_012A:
-    Message 8
-    Message 4
-    GoTo _0095
+BattleFrontierGateToFightArea_ExplainExchangeServiceCorner:
+    Message BattleFrontierGateToFightArea_Text_ExplainExchangeServiceCorner
+    Message BattleFrontierGateToFightArea_Text_ExplainWhichTopic
+    GoTo BattleFrontierGateToFightArea_QuestionsMenu
     End
 
-_0138:
-    Message 9
-    Message 4
-    GoTo _0095
+BattleFrontierGateToFightArea_ExplainPerformanceMonitor:
+    Message BattleFrontierGateToFightArea_Text_ExplainPerformanceMonitor
+    Message BattleFrontierGateToFightArea_Text_ExplainWhichTopic
+    GoTo BattleFrontierGateToFightArea_QuestionsMenu
     End
 
-_0146:
-    Message 6
-    Message 4
-    GoTo _0095
+BattleFrontierGateToFightArea_ExplainBasicRules:
+    Message BattleFrontierGateToFightArea_Text_ExplainBasicRules
+    Message BattleFrontierGateToFightArea_Text_ExplainWhichTopic
+    GoTo BattleFrontierGateToFightArea_QuestionsMenu
     End
 
-_0154:
+BattleFrontierGateToFightArea_AttendantBattleTower:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 17
+    Message BattleFrontierGateToFightArea_Text_ShouldIExplainBattleTower
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _017F
-    GoToIfEq VAR_RESULT, MENU_NO, _018A
+    GoToIfEq VAR_RESULT, MENU_YES, BattleFrontierGateToFightArea_ExplainBattleTower
+    GoToIfEq VAR_RESULT, MENU_NO, BattleFrontierGateToFightArea_EnjoyVisitBattleTower
     End
 
-_017F:
-    Message 18
-    GoTo _018A
+BattleFrontierGateToFightArea_ExplainBattleTower:
+    Message BattleFrontierGateToFightArea_Text_ExplainBattleTower
+    GoTo BattleFrontierGateToFightArea_EnjoyVisitBattleTower
     End
 
-_018A:
-    Message 19
-    GoTo _0195
+BattleFrontierGateToFightArea_EnjoyVisitBattleTower:
+    Message BattleFrontierGateToFightArea_Text_EnjoyVisitBattleTower
+    GoTo BattleFrontierGateToFightArea_AttendantBattleTowerEnd
     End
 
-_0195:
+BattleFrontierGateToFightArea_AttendantBattleTowerEnd:
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_019D:
+BattleFrontierGateToFightArea_AttendantBattleFactory:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 20
+    Message BattleFrontierGateToFightArea_Text_ShouldIExplainBattleFactory
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _01C8
-    GoToIfEq VAR_RESULT, MENU_NO, _01D3
+    GoToIfEq VAR_RESULT, MENU_YES, BattleFrontierGateToFightArea_ExplainBattleFactory
+    GoToIfEq VAR_RESULT, MENU_NO, BattleFrontierGateToFightArea_EnjoyVisitBattleFactory
     End
 
-_01C8:
-    Message 21
-    GoTo _01D3
+BattleFrontierGateToFightArea_ExplainBattleFactory:
+    Message BattleFrontierGateToFightArea_Text_ExplainBattleFactory
+    GoTo BattleFrontierGateToFightArea_EnjoyVisitBattleFactory
     End
 
-_01D3:
-    Message 22
-    GoTo _01DE
+BattleFrontierGateToFightArea_EnjoyVisitBattleFactory:
+    Message BattleFrontierGateToFightArea_Text_EnjoyVisitBattleFactory
+    GoTo BattleFrontierGateToFightArea_AttendantBattleFactoryEnd
     End
 
-_01DE:
+BattleFrontierGateToFightArea_AttendantBattleFactoryEnd:
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_01E6:
+BattleFrontierGateToFightArea_AttendantBattleHall:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 23
+    Message BattleFrontierGateToFightArea_Text_ShouldIExplainBattleHall
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _0211
-    GoToIfEq VAR_RESULT, MENU_NO, _021C
+    GoToIfEq VAR_RESULT, MENU_YES, BattleFrontierGateToFightArea_ExplainBattleHall
+    GoToIfEq VAR_RESULT, MENU_NO, BattleFrontierGateToFightArea_EnjoyVisitBattleHall
     End
 
-_0211:
-    Message 24
-    GoTo _021C
+BattleFrontierGateToFightArea_ExplainBattleHall:
+    Message BattleFrontierGateToFightArea_Text_ExplainBattleHall
+    GoTo BattleFrontierGateToFightArea_EnjoyVisitBattleHall
     End
 
-_021C:
-    Message 25
-    GoTo _0227
+BattleFrontierGateToFightArea_EnjoyVisitBattleHall:
+    Message BattleFrontierGateToFightArea_Text_EnjoyVisitBattleHall
+    GoTo BattleFrontierGateToFightArea_AttendantBattleHallEnd
     End
 
-_0227:
+BattleFrontierGateToFightArea_AttendantBattleHallEnd:
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_022F:
+BattleFrontierGateToFightArea_AttendantBattleCastle:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 26
+    Message BattleFrontierGateToFightArea_Text_ShouldIExplainBattleCastle
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _025A
-    GoToIfEq VAR_RESULT, MENU_NO, _0265
+    GoToIfEq VAR_RESULT, MENU_YES, BattleFrontierGateToFightArea_ExplainBattleCastle
+    GoToIfEq VAR_RESULT, MENU_NO, BattleFrontierGateToFightArea_EnjoyVisitBattleCastle
     End
 
-_025A:
-    Message 27
-    GoTo _0265
+BattleFrontierGateToFightArea_ExplainBattleCastle:
+    Message BattleFrontierGateToFightArea_Text_ExplainBattleCastle
+    GoTo BattleFrontierGateToFightArea_EnjoyVisitBattleCastle
     End
 
-_0265:
-    Message 28
-    GoTo _0270
+BattleFrontierGateToFightArea_EnjoyVisitBattleCastle:
+    Message BattleFrontierGateToFightArea_Text_EnjoyVisitBattleCastle
+    GoTo BattleFrontierGateToFightArea_AttendantBattleCastleEnd
     End
 
-_0270:
+BattleFrontierGateToFightArea_AttendantBattleCastleEnd:
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0278:
+BattleFrontierGateToFightArea_AttendantBattleArcade:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 29
+    Message BattleFrontierGateToFightArea_Text_ShouldIExplainBattleArcade
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _02A3
-    GoToIfEq VAR_RESULT, MENU_NO, _02AE
+    GoToIfEq VAR_RESULT, MENU_YES, BattleFrontierGateToFightArea_ExplainBattleArcade
+    GoToIfEq VAR_RESULT, MENU_NO, BattleFrontierGateToFightArea_EnjoyVisitBattleArcade
     End
 
-_02A3:
-    Message 30
-    GoTo _02AE
+BattleFrontierGateToFightArea_ExplainBattleArcade:
+    Message BattleFrontierGateToFightArea_Text_ExplainBattleArcade
+    GoTo BattleFrontierGateToFightArea_EnjoyVisitBattleArcade
     End
 
-_02AE:
-    Message 31
-    GoTo _02B9
+BattleFrontierGateToFightArea_EnjoyVisitBattleArcade:
+    Message BattleFrontierGateToFightArea_Text_EnjoyVisitBattleArcade
+    GoTo BattleFrontierGateToFightArea_AttendantBattleArcadeEnd
     End
 
-_02B9:
+BattleFrontierGateToFightArea_AttendantBattleArcadeEnd:
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_02C1:
-    ApplyMovement 3, _0334
-    ApplyMovement 4, _0334
-    ApplyMovement 5, _0334
-    ApplyMovement 6, _0334
-    ApplyMovement 7, _0334
-    ApplyMovement 8, _0334
+BattleFrontierGateToFightArea_AttendantsFaceSouth:
+    ApplyMovement LOCALID_ATTENDANT_BATTLE_CASTLE, BattleFrontierGateToFightArea_Movement_AttendantFaceSouth
+    ApplyMovement LOCALID_ATTENDANT_BATTLE_FACTORY, BattleFrontierGateToFightArea_Movement_AttendantFaceSouth
+    ApplyMovement LOCALID_ATTENDANT_GENERAL, BattleFrontierGateToFightArea_Movement_AttendantFaceSouth
+    ApplyMovement LOCALID_ATTENDANT_BATTLE_ARCADE, BattleFrontierGateToFightArea_Movement_AttendantFaceSouth
+    ApplyMovement LOCALID_ATTENDANT_BATTLE_HALL, BattleFrontierGateToFightArea_Movement_AttendantFaceSouth
+    ApplyMovement LOCALID_ATTENDANT_BATTLE_TOWER, BattleFrontierGateToFightArea_Movement_AttendantFaceSouth
     WaitMovement
     Return
 
-_02F5:
-    ApplyMovement 3, _033C
-    ApplyMovement 4, _033C
-    ApplyMovement 5, _033C
-    ApplyMovement 6, _0344
-    ApplyMovement 7, _0344
-    ApplyMovement 8, _0344
-    ApplyMovement LOCALID_PLAYER, _034C
+BattleFrontierGateToFightArea_PlayerWalkToAttendant:
+    ApplyMovement LOCALID_ATTENDANT_BATTLE_CASTLE, BattleFrontierGateToFightArea_Movement_AttendantFaceEast
+    ApplyMovement LOCALID_ATTENDANT_BATTLE_FACTORY, BattleFrontierGateToFightArea_Movement_AttendantFaceEast
+    ApplyMovement LOCALID_ATTENDANT_GENERAL, BattleFrontierGateToFightArea_Movement_AttendantFaceEast
+    ApplyMovement LOCALID_ATTENDANT_BATTLE_ARCADE, BattleFrontierGateToFightArea_Movement_AttendantFaceWest
+    ApplyMovement LOCALID_ATTENDANT_BATTLE_HALL, BattleFrontierGateToFightArea_Movement_AttendantFaceWest
+    ApplyMovement LOCALID_ATTENDANT_BATTLE_TOWER, BattleFrontierGateToFightArea_Movement_AttendantFaceWest
+    ApplyMovement LOCALID_PLAYER, BattleFrontierGateToFightArea_Movement_PlayerWalkToAttendant
     WaitMovement
     Return
 
     .balign 4, 0
-_0334:
+BattleFrontierGateToFightArea_Movement_AttendantFaceSouth:
     FaceSouth
     EndMovement
 
     .balign 4, 0
-_033C:
+BattleFrontierGateToFightArea_Movement_AttendantFaceEast:
     FaceEast
     EndMovement
 
     .balign 4, 0
-_0344:
+BattleFrontierGateToFightArea_Movement_AttendantFaceWest:
     FaceWest
     EndMovement
 
     .balign 4, 0
-_034C:
+BattleFrontierGateToFightArea_Movement_PlayerWalkToAttendant:
     WalkNormalNorth 3
     WalkOnSpotNormalWest
     EndMovement
 
-_0358:
-    NPCMessage 32
+BattleFrontierGateToFightArea_RuinManiac:
+    NPCMessage BattleFrontierGateToFightArea_Text_FrontierUpAhead
     End
 
-_036B:
-    NPCMessage 33
+BattleFrontierGateToFightArea_ExpertM:
+    NPCMessage BattleFrontierGateToFightArea_Text_NoAcronymFacilities
     End
 
-_037E:
-    NPCMessage 34
+BattleFrontierGateToFightArea_PokemonBreederM:
+    NPCMessage BattleFrontierGateToFightArea_Text_VsRecorderIsNifty
     End
 
-_0391:
-    NPCMessage 35
+BattleFrontierGateToFightArea_Beauty:
+    NPCMessage BattleFrontierGateToFightArea_Text_DreamToBattlePalmer
     End

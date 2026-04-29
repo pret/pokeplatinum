@@ -4281,8 +4281,8 @@
     .short SCRCMD_UNUSED_2CE
     .endm
 
-    .macro BattleHallCheckUsingSameSpeciesAsPartner species, result
-    .short SCRCMD_BATTLEHALLCHECKUSINGSAMESPECIESASPARTNER
+    .macro CheckBattleHallPartnerUsesDifferentSpecies species, result
+    .short SCRCMD_CHECKBATTLEHALLPARTNERUSESDIFFERENTSPECIES
     .short \species
     .short \result
     .endm
@@ -4805,12 +4805,12 @@
     .short \form
     .endm
 
-    .macro ScrCmd_329 arg0, arg1, arg2, arg3
-    .short SCRCMD_329
-    .short \arg0
-    .short \arg1
-    .short \arg2
-    .short \arg3
+    .macro GetBattleFrontierReporterPosition x, z, dir, movementType
+    .short SCRCMD_GETBATTLEFRONTIERREPORTERPOSITION
+    .short \x
+    .short \z
+    .short \dir
+    .short \movementType
     .endm
 
     .macro ScrCmd_32A arg0

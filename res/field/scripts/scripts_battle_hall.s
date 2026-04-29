@@ -6,10 +6,10 @@
 
 
     ScriptEntry BattleHall_SingleAttendant
-    ScriptEntry BattleHall_ResumeChallenge
-    ScriptEntry BattleHall_DidntSaveBeforeQuit
-    ScriptEntry BattleHall_ChallengeEndedBPEarned
-    ScriptEntry BattleHall_ChallengeEnded
+    ScriptEntry BattleHall_OnFrameResumeChallenge
+    ScriptEntry BattleHall_OnFrameDidntSaveBeforeQuit
+    ScriptEntry BattleHall_OnFrameChallengeEndedCompletedRound
+    ScriptEntry BattleHall_OnFrameChallengeEnded
     ScriptEntry BattleHall_MultiAttendant
     ScriptEntry BattleHall_Hiker
     ScriptEntry BattleHall_SnowpointNPC
@@ -53,7 +53,7 @@ BattleHall_UpdateConditionalNPCs:
     Call BattleHall_UpdateReporter
     GetRandom VAR_MAP_LOCAL_7, 100
     CallIfUnset FLAG_HIDE_BATTLE_HALL_MAJOR_NPC, BattleHall_HideMajorNPC
-    GoToIfLt VAR_MAP_LOCAL_7, 30, _00E5
+    GoToIfLt VAR_MAP_LOCAL_7, 30, BattleHall_TryPickMajorNPC
     End
 
 BattleHall_HideMajorNPC:
@@ -61,12 +61,12 @@ BattleHall_HideMajorNPC:
     SetFlag FLAG_HIDE_BATTLE_HALL_MAJOR_NPC
     Return
 
-_00E5:
-    GoToIfUnset FLAG_UNK_0x0AC4, BattleHall_PickMajorNPC
+BattleHall_TryPickMajorNPC:
+    GoToIfUnset FLAG_SET_BATTLE_HALL_MAJOR_NPC, BattleHall_PickMajorNPC
     End
 
 BattleHall_PickMajorNPC:
-    SetFlag FLAG_UNK_0x0AC4
+    SetFlag FLAG_SET_BATTLE_HALL_MAJOR_NPC
     GetBattleHallTotalSinglesRecord VAR_MAP_LOCAL_8
     GoToIfGe VAR_MAP_LOCAL_8, 10000, BattleHall_PickMajorNPCAfter10000Record
     GoToIfGe VAR_MAP_LOCAL_8, 1000, BattleHall_PickMajorNPCAfter1000Record
@@ -95,22 +95,22 @@ BattleHall_ShowMajorNPC:
     End
 
 BattleHall_UpdateReporter:
-    CallIfUnset FLAG_BATTLE_HALL_HIDE_REPORTER, BattleHall_HideReporter
+    CallIfUnset FLAG_HIDE_BATTLE_HALL_REPORTER, BattleHall_RemoveReporter
     CheckTVInterviewEligible TV_PROGRAM_SEGMENT_BATTLE_FRONTIER_FRONTLINE_NEWS_SINGLE, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, 0, BattleHall_SetHideReporterFlag
+    GoToIfEq VAR_MAP_LOCAL_0, FALSE, BattleHall_HideReporter
     ScrCmd_32A VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, 0, BattleHall_SetHideReporterFlag
-    ClearFlag FLAG_BATTLE_HALL_HIDE_REPORTER
+    GoToIfEq VAR_MAP_LOCAL_0, 0, BattleHall_HideReporter
+    ClearFlag FLAG_HIDE_BATTLE_HALL_REPORTER
     AddObject LOCALID_REPORTER
     Return
 
-BattleHall_SetHideReporterFlag:
-    SetFlag FLAG_BATTLE_HALL_HIDE_REPORTER
+BattleHall_HideReporter:
+    SetFlag FLAG_HIDE_BATTLE_HALL_REPORTER
     Return
 
-BattleHall_HideReporter:
+BattleHall_RemoveReporter:
     RemoveObject LOCALID_REPORTER
-    SetFlag FLAG_BATTLE_HALL_HIDE_REPORTER
+    SetFlag FLAG_HIDE_BATTLE_HALL_REPORTER
     Return
 
 BattleHall_OnTransition:
@@ -119,7 +119,7 @@ BattleHall_OnTransition:
     CallIfEq VAR_MAP_LOCAL_0, GENDER_FEMALE, BattleHall_SetWinstonAsFan
     Call BattleHall_UpdateMajorNPC_GFX
     CheckTVInterviewEligible TV_PROGRAM_SEGMENT_BATTLE_FRONTIER_FRONTLINE_NEWS_SINGLE, VAR_MAP_LOCAL_0
-    CallIfEq VAR_MAP_LOCAL_0, 0, BattleHall_SetHideReporterFlag
+    CallIfEq VAR_MAP_LOCAL_0, 0, BattleHall_HideReporter
     End
 
 BattleHall_UpdateMajorNPC_GFX:
@@ -169,7 +169,7 @@ BattleHall_SingleAttendant:
     FacePlayer
     SetVar VAR_MAP_LOCAL_3, 0
     SetVar VAR_MAP_LOCAL_4, 0
-    GoTo BattleHall_PrintBattleHallWelcome
+    GoTo BattleHall_WelcomeToChallenge
     End
 
 BattleHall_MultiAttendant:
@@ -178,40 +178,40 @@ BattleHall_MultiAttendant:
     FacePlayer
     SetVar VAR_MAP_LOCAL_3, 0
     SetVar VAR_MAP_LOCAL_4, 1
-    GoTo BattleHall_PrintBattleHallWelcome
+    GoTo BattleHall_WelcomeToChallenge
     End
 
-BattleHall_PrintBattleHallWelcome:
+BattleHall_WelcomeToChallenge:
     RecordHeapMemory
-    CallIfEq VAR_MAP_LOCAL_4, 0, BattleHall_PrintSingleChallengeWelcome
-    CallIfEq VAR_MAP_LOCAL_4, 1, BattleHall_PrintMultiChallengeWelcome
-    GoTo BattleHall_ShowChallengeSelectionMenu
+    CallIfEq VAR_MAP_LOCAL_4, 0, BattleHall_WelcomeToSingleDoubleChallenge
+    CallIfEq VAR_MAP_LOCAL_4, 1, BattleHall_WelcomeToMultiChallenge
+    GoTo BattleHall_SelectChallenge
     End
 
-BattleHall_ShowChallengeSelectionMenu:
-    CallIfEq VAR_MAP_LOCAL_4, 0, BattleHall_GenerateSingleChallengeMenu
-    CallIfEq VAR_MAP_LOCAL_4, 1, BattleHall_GenerateMultiChallengeMenu
+BattleHall_SelectChallenge:
+    CallIfEq VAR_MAP_LOCAL_4, 0, BattleHall_InitMenuSingleDoubleChallenge
+    CallIfEq VAR_MAP_LOCAL_4, 1, BattleHall_InitMenuMultiChallenge
     AddMenuEntryImm BattleHall_Text_Info, 2
     AddMenuEntryImm BattleHall_Text_Cancel, 3
     ShowMenu
-    GoToIfEq VAR_RESULT, 0, BattleHall_CheckSingleBattleEligibility
-    GoToIfEq VAR_RESULT, 1, BattleHall_CheckDoubleBattleEligibility
-    GoToIfEq VAR_RESULT, 2, BattleHall_PrintChallengeInfo
-    GoToIfEq VAR_RESULT, 4, BattleHall_CheckMultiBattleEligibility
+    GoToIfEq VAR_RESULT, 0, BattleHall_TryTakeSingleChallenge
+    GoToIfEq VAR_RESULT, 1, BattleHall_TryTakeDoubleChallenge
+    GoToIfEq VAR_RESULT, 2, BattleHall_ExplainChallenge
+    GoToIfEq VAR_RESULT, 4, BattleHall_TryTakeMultiChallenge
     GoTo BattleHall_EndChallenge
     End
 
-BattleHall_PrintChallengeInfo:
-    CallIfEq VAR_MAP_LOCAL_4, 0, BattleHall_PrintSingleChallengeInfo
-    CallIfEq VAR_MAP_LOCAL_4, 1, BattleHall_PrintMultiChallengeInfo
-    GoTo BattleHall_ShowChallengeSelectionMenu
+BattleHall_ExplainChallenge:
+    CallIfEq VAR_MAP_LOCAL_4, 0, BattleHall_ExplainSingleDoubleChallenge
+    CallIfEq VAR_MAP_LOCAL_4, 1, BattleHall_ExplainMultiChallenge
+    GoTo BattleHall_SelectChallenge
     End
 
 BattleHall_EndChallenge:
-    GoTo _0355
+    GoTo BattleHall_HopeToSeeYouAgain
     End
 
-_0355:
+BattleHall_HopeToSeeYouAgain:
     SetVar VAR_BATTLE_HALL_LOBBY_LOAD_ACTION, 0
     Message BattleHall_Text_HopeToSeeYouAgain
     WaitButton
@@ -219,40 +219,40 @@ _0355:
     ReleaseAll
     End
 
-BattleHall_CheckSingleBattleEligibility:
+BattleHall_TryTakeSingleChallenge:
     SetVar VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_SINGLE
     ScrCmd_2CC 0, 1, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, BattleHall_PrintEligbilityRuleOnePokemon
-    GoTo BattleHall_SelectPokemonForChallenge
+    GoTo BattleHall_SelectPokemon
     End
 
-BattleHall_CheckDoubleBattleEligibility:
+BattleHall_TryTakeDoubleChallenge:
     SetVar VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_DOUBLE
     ScrCmd_2CC 0, 2, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, BattleHall_PrintEligbilityRulesForTwoPokemon
-    GoTo BattleHall_SelectPokemonForChallenge
+    GoTo BattleHall_SelectPokemon
     End
 
-BattleHall_CheckMultiBattleEligibility:
+BattleHall_TryTakeMultiChallenge:
     SetVar VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI
     ScrCmd_2CC 0, 1, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, BattleHall_PrintEligbilityRuleOnePokemon
-    GoTo BattleHall_SelectPokemonForChallenge
+    GoTo BattleHall_SelectPokemon
     End
 
 BattleHall_PrintEligbilityRuleOnePokemon:
     Message BattleHall_Text_NeedOneLvl30Pokemon
-    MessageSeenBanlistSpecies BattleHall_Text_BanList, 1
+    MessageSeenBanlistSpecies BattleHall_Text_Banlist, 1
     GoTo BattleHall_EndChallenge
     End
 
 BattleHall_PrintEligbilityRulesForTwoPokemon:
     Message BattleHall_Text_NeedTwoLvl30Pokemon
-    MessageSeenBanlistSpecies BattleHall_Text_BanList, 2
+    MessageSeenBanlistSpecies BattleHall_Text_Banlist, 2
     GoTo BattleHall_EndChallenge
     End
 
-BattleHall_SelectPokemonForChallenge:
+BattleHall_SelectPokemon:
     Message BattleHall_Text_ChoosePokemonToEnter
     CloseMessage
     FadeScreenOut
@@ -270,14 +270,14 @@ BattleHall_SelectPokemonForChallenge:
     GetPartyMonSpecies VAR_MAP_LOCAL_2, VAR_MAP_LOCAL_1
     GoToIfEq VAR_MAP_LOCAL_1, 0, BattleHall_EndChallenge
     ScrCmd_2CC 1, VAR_BATTLE_HALL_CHALLENGE_TYPE, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, BattleHall_HealAndSaveBeforeChallenge
+    GoToIfEq VAR_RESULT, 0, BattleHall_TryStartSingleDoubleChallenge
     ScrCmd_2CC 2, VAR_BATTLE_HALL_CHALLENGE_TYPE, VAR_RESULT
     BufferSpeciesNameFromVar 0, VAR_RESULT, 0, 0
-    GoToIfEq VAR_RESULT, VAR_MAP_LOCAL_1, BattleHall_HealAndSaveBeforeChallenge
-    GoTo BattleHall_TryToDeleteOngoingStreak
+    GoToIfEq VAR_RESULT, VAR_MAP_LOCAL_1, BattleHall_TryStartSingleDoubleChallenge
+    GoTo BattleHall_AskDeleteOngoingStreak
     End
 
-BattleHall_TryToDeleteOngoingStreak:
+BattleHall_AskDeleteOngoingStreak:
     BufferSpeciesNameFromVar 1, VAR_MAP_LOCAL_1, 0, 0
     Message BattleHall_Text_DeleteOngoingStreak
     InitGlobalTextListMenu 25, 13, 1, VAR_RESULT
@@ -291,43 +291,43 @@ BattleHall_TryToDeleteOngoingStreak:
 
 BattleHall_DeleteOngoingStreak:
     ScrCmd_2CC 3, VAR_BATTLE_HALL_CHALLENGE_TYPE, VAR_RESULT
+    GoTo BattleHall_TryStartSingleDoubleChallenge
+    End
+
+BattleHall_TryStartSingleDoubleChallenge:
     GoTo BattleHall_HealAndSaveBeforeChallenge
     End
 
 BattleHall_HealAndSaveBeforeChallenge:
-    GoTo _04FC
-    End
-
-_04FC:
-    CallIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_SINGLE, BattleHall_SetChallengeAsInProgress
-    CallIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_DOUBLE, BattleHall_SetChallengeAsInProgress
+    CallIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_SINGLE, BattleHall_SetChallengeInProgress
+    CallIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_DOUBLE, BattleHall_SetChallengeInProgress
     SetVar VAR_MAP_LOCAL_0, 0
     HealParty
     Common_SaveGame
     SetVar VAR_RESULT, VAR_MAP_LOCAL_0
     GoToIfEq VAR_RESULT, 0, BattleHall_EndChallenge
-    GoToIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI, BattleHall_StartWifiCommunication
+    GoToIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI, BattleHall_BecomeLeaderOrJoinGroup
     GoTo BattleHall_WalkIntoCorridor
     End
 
-BattleHall_StartWifiCommunication:
+BattleHall_BecomeLeaderOrJoinGroup:
     Message BattleHall_Text_BecomeLeaderOrJoinGroup
     InitGlobalTextMenu 30, 1, 0, VAR_RESULT
     SetMenuXOriginToRight
-    AddMenuEntryImm MenuEntries_Text_BattleTower_JoinGroup, 0
-    AddMenuEntryImm MenuEntries_Text_BattleTower_BecomeLeader, 1
+    AddMenuEntryImm MenuEntries_Text_JoinGroup, 0
+    AddMenuEntryImm MenuEntries_Text_BecomeLeader, 1
     AddMenuEntryImm MenuEntries_Text_Exit, 2
     ShowMenu
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, 0, BattleHall_LaunchWifiToJoinGroup
-    GoToIfEq VAR_0x8008, 1, BattleHall_LaunchWifiToBecomeLeader
+    GoToIfEq VAR_0x8008, 0, BattleHall_LaunchWiFiToJoinGroup
+    GoToIfEq VAR_0x8008, 1, BattleHall_LaunchWiFiToBecomeLeader
     GoTo BattleHall_EndChallenge
     End
 
-BattleHall_LaunchWifiToJoinGroup:
-    Message BattleHall_Text_NeedToLaunchWifiComm
+BattleHall_LaunchWiFiToJoinGroup:
+    Message BattleHall_Text_NeedToLaunchWiFiComm
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, BattleHall_StartWifiCommunication
+    GoToIfEq VAR_RESULT, MENU_NO, BattleHall_BecomeLeaderOrJoinGroup
     CloseMessage
     StartBattleClient 30, 0, 0, VAR_RESULT
     GoToIfEq VAR_RESULT, COMM_CLUB_RET_CANCEL, BattleHall_CancelJoiningGroup
@@ -336,18 +336,18 @@ BattleHall_LaunchWifiToJoinGroup:
     End
 
 BattleHall_CancelJoiningGroup:
-    GoTo BattleHall_StartWifiCommunication
+    GoTo BattleHall_BecomeLeaderOrJoinGroup
     End
 
 BattleHall_ErrorJoiningGroup:
     EndCommunication
-    GoTo BattleHall_StartWifiCommunication
+    GoTo BattleHall_BecomeLeaderOrJoinGroup
     End
 
-BattleHall_LaunchWifiToBecomeLeader:
-    Message BattleHall_Text_NeedToLaunchWifiComm
+BattleHall_LaunchWiFiToBecomeLeader:
+    Message BattleHall_Text_NeedToLaunchWiFiComm
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, BattleHall_StartWifiCommunication
+    GoToIfEq VAR_RESULT, MENU_NO, BattleHall_BecomeLeaderOrJoinGroup
     CloseMessage
     StartBattleServer 30, 0, 0, VAR_RESULT
     GoToIfEq VAR_RESULT, COMM_CLUB_RET_CANCEL, BattleHall_CancelBecomingLeader
@@ -356,114 +356,114 @@ BattleHall_LaunchWifiToBecomeLeader:
     End
 
 BattleHall_CancelBecomingLeader:
-    GoTo BattleHall_StartWifiCommunication
+    GoTo BattleHall_BecomeLeaderOrJoinGroup
     End
 
 BattleHall_ErrorBecomingLeader:
     EndCommunication
-    GoTo BattleHall_StartWifiCommunication
+    GoTo BattleHall_BecomeLeaderOrJoinGroup
     End
 
 BattleHall_StartMultiChallenge:
     ClearReceivedTempDataAllPlayers
     ScrCmd_135 108
-    BattleHallCheckUsingSameSpeciesAsPartner VAR_MAP_LOCAL_1, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, BattleHall_MultiChallengeMustUseSamePokemon
+    CheckBattleHallPartnerUsesDifferentSpecies VAR_MAP_LOCAL_1, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, BattleHall_MultiChallengeMustUseSamePokemon
     ClearReceivedTempDataAllPlayers
     ScrCmd_135 110
     Message BattleHall_Text_MustSaveFirst
-    CallIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI, BattleHall_SetChallengeAsInProgress
+    CallIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI, BattleHall_SetChallengeInProgress
     Call BattleHall_SaveGame
     GoTo BattleHall_WalkIntoCorridor
     End
 
-BattleHall_SetChallengeAsInProgress:
+BattleHall_SetChallengeInProgress:
     SetVar VAR_BATTLE_HALL_LOBBY_LOAD_ACTION, 0xFF
     Return
 
 BattleHall_MultiChallengeMustUseSamePokemon:
-    Call _068C
+    Call BattleHall_EndCommunicationDifferentPokemon
     Message BattleHall_Text_MultiChallengeMustUseSamePokemon
     GoTo BattleHall_EndChallenge
     End
 
-_068C:
+BattleHall_EndCommunicationDifferentPokemon:
     EndCommunication
     Return
 
 BattleHall_WalkIntoCorridor:
-    CallIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_SINGLE, BattleHall_WalkToStartSingleBattle
-    CallIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_DOUBLE, BattleHall_WalkToStartDoubleBattle
-    CallIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI, BattleHall_WalkToStartMultiBattle
+    CallIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_SINGLE, BattleHall_WalkToCorridorSingleChallenge
+    CallIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_DOUBLE, BattleHall_WalkToCorridorDoubleChallenge
+    CallIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI, BattleHall_WalkToCorridorMultiChallenge
     PlaySE SEQ_SE_DP_KAIDAN2
-    GoTo BattleHall_SetupAndRunFrontierScript
+    GoTo BattleHall_StartChallenge
     End
 
-BattleHall_SetupAndRunFrontierScript:
+BattleHall_StartChallenge:
     FadeScreenOut
     WaitFadeScreen
-    CallIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_SINGLE, _078C
-    CallIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_DOUBLE, _07A0
-    CallIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI, _07B4
-    IncrementGameRecord RECORD_UNK_058
+    CallIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_SINGLE, BattleHall_WalkBackInvisiblySingleChallenge
+    CallIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_DOUBLE, BattleHall_WalkBackInvisiblyDoubleChallenge
+    CallIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI, BattleHall_WalkBackInvisiblyMultiChallenge
+    IncrementGameRecord RECORD_TIMES_STARTED_BATTLE_FRONTIER_CHALLENGE
     CreateJournalEvent LOCATION_EVENT_BATTLE_HALL, 0, 0, 0, 0
     WaitForTransition
     ScrCmd_2C4 9
-    CallIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI, _072C
+    CallIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI, BattleHall_EndCommunication
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
     AssertHeapMemory
     End
 
-_072C:
+BattleHall_EndCommunication:
     EndCommunication
     Return
 
-BattleHall_WalkToStartSingleBattle:
+BattleHall_WalkToCorridorSingleChallenge:
     Message BattleHall_Text_ThisWayPlease
     WaitABPress
     CloseMessage
-    ApplyMovement LOCALID_PLAYER, Movement_PlayerStartChallenge
-    ApplyMovement VAR_LAST_TALKED, Movement_AttendantStartChallenge
+    ApplyMovement LOCALID_PLAYER, BattleHall_Movement_PlayerWalkToCorridorSingleDoubleChallenge
+    ApplyMovement VAR_LAST_TALKED, BattleHall_Movement_AttendantWalkToCorridorSingleDoubleChallenge
     WaitMovement
     Return
 
-BattleHall_WalkToStartDoubleBattle:
+BattleHall_WalkToCorridorDoubleChallenge:
     Message BattleHall_Text_ThisWayPlease
     WaitABPress
     CloseMessage
-    ApplyMovement LOCALID_PLAYER, Movement_PlayerStartChallenge
-    ApplyMovement VAR_LAST_TALKED, Movement_AttendantStartChallenge
+    ApplyMovement LOCALID_PLAYER, BattleHall_Movement_PlayerWalkToCorridorSingleDoubleChallenge
+    ApplyMovement VAR_LAST_TALKED, BattleHall_Movement_AttendantWalkToCorridorSingleDoubleChallenge
     WaitMovement
     Return
 
-BattleHall_WalkToStartMultiBattle:
-    MessageNoSkip 9
+BattleHall_WalkToCorridorMultiChallenge:
+    MessageNoSkip BattleHall_Text_ThisWayPlease
     WaitTime 10, VAR_RESULT
     ClearReceivedTempDataAllPlayers
     ScrCmd_135 109
     CloseMessage
-    ApplyMovement LOCALID_PLAYER, Movement_PlayerStartChallengeMulti
-    ApplyMovement VAR_LAST_TALKED, Movement_AttendantStartChallengeMulti
+    ApplyMovement LOCALID_PLAYER, BattleHall_Movement_PlayerWalkToCorridorMultiChallenge
+    ApplyMovement VAR_LAST_TALKED, BattleHall_Movement_AttendantWalkToCorridorMultiChallenge
     WaitMovement
     Return
 
-_078C:
-    ApplyMovement LOCALID_PLAYER, _0824
-    ApplyMovement VAR_LAST_TALKED, _0854
+BattleHall_WalkBackInvisiblySingleChallenge:
+    ApplyMovement LOCALID_PLAYER, BattleHall_Movement_PlayerWalkBackInvisiblySingleDoubleChallenge
+    ApplyMovement VAR_LAST_TALKED, BattleHall_Movement_AttendantWalkBackInvisiblySingleDoubleChallenge
     WaitMovement
     Return
 
-_07A0:
-    ApplyMovement LOCALID_PLAYER, _0824
-    ApplyMovement VAR_LAST_TALKED, _0854
+BattleHall_WalkBackInvisiblyDoubleChallenge:
+    ApplyMovement LOCALID_PLAYER, BattleHall_Movement_PlayerWalkBackInvisiblySingleDoubleChallenge
+    ApplyMovement VAR_LAST_TALKED, BattleHall_Movement_AttendantWalkBackInvisiblySingleDoubleChallenge
     WaitMovement
     Return
 
-_07B4:
-    ApplyMovement LOCALID_PLAYER, _0838
-    ApplyMovement VAR_LAST_TALKED, _0864
+BattleHall_WalkBackInvisiblyMultiChallenge:
+    ApplyMovement LOCALID_PLAYER, BattleHall_Movement_PlayerWalkBackInvisiblyMultiChallenge
+    ApplyMovement VAR_LAST_TALKED, BattleHall_Movement_AttendantWalkBackInvisiblyMultiChallenge
     WaitMovement
     Return
 
@@ -473,14 +473,14 @@ BattleHall_ShowGriseousOrbErrorAndExit:
     End
 
     .balign 4, 0
-Movement_PlayerStartChallenge:
+BattleHall_Movement_PlayerWalkToCorridorSingleDoubleChallenge:
     WalkNormalWest 4
     WalkNormalSouth 3
     SetInvisible
     EndMovement
 
     .balign 4, 0
-Movement_PlayerStartChallengeMulti:
+BattleHall_Movement_PlayerWalkToCorridorMultiChallenge:
     WalkNormalWest 2
     WalkNormalNorth
     WalkNormalWest 2
@@ -489,14 +489,14 @@ Movement_PlayerStartChallengeMulti:
     EndMovement
 
     .balign 4, 0
-Movement_AttendantStartChallenge:
+BattleHall_Movement_AttendantWalkToCorridorSingleDoubleChallenge:
     WalkNormalWest 3
     WalkNormalSouth 3
     SetInvisible
     EndMovement
 
     .balign 4, 0
-Movement_AttendantStartChallengeMulti:
+BattleHall_Movement_AttendantWalkToCorridorMultiChallenge:
     WalkNormalWest
     WalkNormalNorth
     WalkNormalWest 2
@@ -505,7 +505,7 @@ Movement_AttendantStartChallengeMulti:
     EndMovement
 
     .balign 4, 0
-_0824:
+BattleHall_Movement_PlayerWalkBackInvisiblySingleDoubleChallenge:
     WalkFasterEast 4
     WalkFasterNorth 3
     FaceWest
@@ -513,7 +513,7 @@ _0824:
     EndMovement
 
     .balign 4, 0
-_0838:
+BattleHall_Movement_PlayerWalkBackInvisiblyMultiChallenge:
     WalkFasterEast 2
     WalkFasterSouth
     WalkFasterEast 2
@@ -523,28 +523,28 @@ _0838:
     EndMovement
 
     .balign 4, 0
-_0854:
+BattleHall_Movement_AttendantWalkBackInvisiblySingleDoubleChallenge:
     WalkFasterNorth 3
     WalkFasterEast 3
     SetVisible
     EndMovement
 
     .balign 4, 0
-_0864:
+BattleHall_Movement_AttendantWalkBackInvisiblyMultiChallenge:
     WalkFasterNorth 2
     WalkFasterEast 3
     SetVisible
     EndMovement
 
-BattleHall_PrintSingleChallengeWelcome:
-    Message BattleHall_Text_WelcomeToSingleChallenge
+BattleHall_WelcomeToSingleDoubleChallenge:
+    Message BattleHall_Text_WelcomeToSingleDoubleChallenge
     Return
 
-BattleHall_PrintMultiChallengeWelcome:
+BattleHall_WelcomeToMultiChallenge:
     Message BattleHall_Text_WelcomeToMultiChallenge
     Return
 
-BattleHall_GenerateSingleChallengeMenu:
+BattleHall_InitMenuSingleDoubleChallenge:
     InitLocalTextMenu 31, 9, 0, VAR_RESULT
     SetMenuXOriginToRight
     AddMenuEntryImm BattleHall_Text_SingleBattle, 0
@@ -552,27 +552,27 @@ BattleHall_GenerateSingleChallengeMenu:
     Message BattleHall_Text_SelectChallenge
     Return
 
-BattleHall_GenerateMultiChallengeMenu:
+BattleHall_InitMenuMultiChallenge:
     InitLocalTextMenu 31, 11, 0, VAR_RESULT
     SetMenuXOriginToRight
     AddMenuEntryImm BattleHall_Text_TakeChallenge, 4
     Message BattleHall_Text_AcceptMultiChallenge
     Return
 
-BattleHall_PrintSingleChallengeInfo:
-    Message BattleHall_Text_SingleChallengeInfo
+BattleHall_ExplainSingleDoubleChallenge:
+    Message BattleHall_Text_ExplainSingleDoubleChallenge
     Return
 
-BattleHall_PrintMultiChallengeInfo:
-    Message BattleHall_Text_MultiChallengeInfo
+BattleHall_ExplainMultiChallenge:
+    Message BattleHall_Text_ExplainMultiChallenge
     Return
 
-BattleHall_ResumeChallenge:
+BattleHall_OnFrameResumeChallenge:
     RecordHeapMemory
     SetVar VAR_MAP_LOCAL_3, 1
     SetVar VAR_BATTLE_HALL_LOBBY_LOAD_ACTION, 0
     Message BattleHall_Text_MustSaveBeforeResuming
-    Call BattleHall_SetChallengeAsInProgress
+    Call BattleHall_SetChallengeInProgress
     Call BattleHall_SaveGame
     GoTo BattleHall_WalkIntoCorridor
     End
@@ -585,26 +585,26 @@ BattleHall_SaveGame:
     WaitSE SEQ_SE_DP_SAVE
     Return
 
-BattleHall_DidntSaveBeforeQuit:
+BattleHall_OnFrameDidntSaveBeforeQuit:
     Message BattleHall_Text_DidntSaveBeforeQuit
     ScrCmd_2D1 VAR_BATTLE_HALL_CHALLENGE_TYPE
     GoTo BattleHall_EndChallenge
     End
 
-BattleHall_ChallengeEndedBPEarned:
-    CallIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_SINGLE, BattleHall_IncrementTrainerScore
-    CallIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_DOUBLE, BattleHall_IncrementTrainerScore
-    CallIfEq VAR_BATTLE_HALL_PRINT_STATE, 1, BattleHall_SilverPrintEarned
-    CallIfEq VAR_BATTLE_HALL_PRINT_STATE, 3, BattleHall_GoldPrintEarned
+BattleHall_OnFrameChallengeEndedCompletedRound:
+    CallIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_SINGLE, BattleHall_IncrementTrainerScoreRoundCompleted
+    CallIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_DOUBLE, BattleHall_IncrementTrainerScoreRoundCompleted
+    CallIfEq VAR_BATTLE_HALL_PRINT_STATE, 1, BattleHall_EarnedSilverPrint
+    CallIfEq VAR_BATTLE_HALL_PRINT_STATE, 3, BattleHall_EarnedGoldPrint
     GoTo BattleHall_EndChallenge
     End
 
-BattleHall_IncrementTrainerScore:
+BattleHall_IncrementTrainerScoreRoundCompleted:
     IncrementTrainerScore TRAINER_SCORE_EVENT_BATTLE_HALL_ROUND_COMPLETED
     Return
 
-BattleHall_SilverPrintEarned:
-    Message BattleHall_Text_YouveEarnedAPrint
+BattleHall_EarnedSilverPrint:
+    Message BattleHall_Text_PrintForVictory
     BufferPlayerName 0
     Message BattleHall_Text_SilverPrintAdded
     PlayFanfare SEQ_FANFA4
@@ -612,8 +612,8 @@ BattleHall_SilverPrintEarned:
     SetVar VAR_BATTLE_HALL_PRINT_STATE, 2
     Return
 
-BattleHall_GoldPrintEarned:
-    Message BattleHall_Text_YouveEarnedAPrint
+BattleHall_EarnedGoldPrint:
+    Message BattleHall_Text_PrintForVictory
     BufferPlayerName 0
     Message BattleHall_Text_GoldPrintAdded
     PlayFanfare SEQ_FANFA4
@@ -622,7 +622,7 @@ BattleHall_GoldPrintEarned:
     Common_CheckAllFrontierGoldPrintsObtained
     Return
 
-BattleHall_ChallengeEnded:
+BattleHall_OnFrameChallengeEnded:
     GoTo BattleHall_EndChallenge
     End
 
@@ -651,7 +651,7 @@ BattleHall_Twin:
     End
 
 BattleHall_Pachirisu:
-    PokemonCryAndMessage SPECIES_PACHIRISU, BattleHall_Text_Pachirisu
+    PokemonCryAndMessage SPECIES_PACHIRISU, BattleHall_Text_PachirisuCry
     End
 
 BattleHall_ExpertM:
@@ -684,7 +684,7 @@ BattleHall_RecordKeeper:
     GoToIfEq VAR_RESULT, 2, BattleHall_RecordKeeperNextMilestoneInfo
     GoToIfEq VAR_RESULT, 3, BattleHall_RecordKeeperAllMilestonesMet
     BufferPlayerName 0
-    Message BattleHall_Text_StreakIsPresentlyX
+    Message BattleHall_Text_StreakRecordIsX
     Message BattleHall_Text_BPRewardForStreak
     PlayFanfare SEQ_PL_POINTGET3
     Message BattleHall_Text_PlayerReceivedBP

@@ -347,7 +347,7 @@ _03DD:
     GoToIfEq VAR_0x8008, BATTLE_TOWER_MODE_LINK_MULTI, _0437
     GoToIfEq VAR_0x8008, BATTLE_TOWER_MODE_6, _0443
     WaitTime 30, VAR_0x8008
-    FrontierScrCmd_3D VAR_UNK_0x40D8, 1
+    FrontierScrCmd_3D VAR_BATTLE_TOWER_LOBBY_LOAD_ACTION, 1
     FadeScreenOut
     FrontierScrCmd_25 0
     FrontierScrCmd_25 1
@@ -365,7 +365,7 @@ _0437:
 
 _0443:
     WaitTime 30, VAR_0x8008
-    FrontierScrCmd_3D VAR_UNK_0x40D8, 1
+    FrontierScrCmd_3D VAR_BATTLE_TOWER_LOBBY_LOAD_ACTION, 1
     ClearReceivedTempDataAllPlayers
     SyncConnectedPlayers 6
     CallIfEq VAR_0x8004, 100, _04D1
@@ -535,7 +535,7 @@ _06E7:
     End
 
 _0707:
-    FrontierScrCmd_3D VAR_UNK_0x40D8, 2
+    FrontierScrCmd_3D VAR_BATTLE_TOWER_LOBBY_LOAD_ACTION, 2
     CallBattleTowerFunction BT_FUNC_UNK_39, 0, VAR_0x8008
     FreeTowerStruct
     Message BattleTowerMultiBattleRoom_Text_ThanksForParticipating

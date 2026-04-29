@@ -54,11 +54,11 @@
       "en_US": "EXIT"
     },
     {
-      "id": "MenuEntries_Text_BattleTower_JoinGroup",
+      "id": "MenuEntries_Text_JoinGroup",
       "en_US": "JOIN GROUP"
     },
     {
-      "id": "MenuEntries_Text_BattleTower_BecomeLeader",
+      "id": "MenuEntries_Text_BecomeLeader",
       "en_US": "BECOME LEADER"
     },
     {

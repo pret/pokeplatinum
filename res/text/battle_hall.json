@@ -2,7 +2,7 @@
   "key": 5194,
   "messages": [
     {
-      "id": "BattleHall_Text_WelcomeToSingleChallenge",
+      "id": "BattleHall_Text_WelcomeToSingleDoubleChallenge",
       "en_US": [
         "Welcome to the Battle Hall!\r",
         "I am your guide to the Single and\n",
@@ -16,7 +16,7 @@
       "en_US": "Which challenge would you like to take?"
     },
     {
-      "id": "BattleHall_Text_SingleChallengeInfo",
+      "id": "BattleHall_Text_ExplainSingleDoubleChallenge",
       "en_US": [
         "At the Battle Hall, you may take Single\n",
         "or Double Battle challenges alone.\r",
@@ -59,7 +59,7 @@
       ]
     },
     {
-      "id": "BattleHall_Text_MultiChallengeInfo",
+      "id": "BattleHall_Text_ExplainMultiChallenge",
       "en_US": [
         "You may team up with a friend for a\n",
         "Multi Battle challenge using the\r",
@@ -113,7 +113,7 @@
       ]
     },
     {
-      "id": "BattleHall_Text_YouveEarnedAPrint",
+      "id": "BattleHall_Text_PrintForVictory",
       "en_US": [
         "Congratulations!\r",
         "In honor of your victory, we present\n",
@@ -200,7 +200,7 @@
       ]
     },
     {
-      "id": "BattleHall_Text_NeedToLaunchWifiComm",
+      "id": "BattleHall_Text_NeedToLaunchWiFiComm",
       "en_US": [
         "We need to launch DS Wireless\n",
         "Communications."
@@ -247,25 +247,25 @@
       ]
     },
     {
-      "id": "BattleHall_Text_BanList",
+      "id": "BattleHall_Text_Banlist",
       "en_US": "Also, Eggs are ineligible to enter.\r"
     },
     {
-      "id": "BattleHall_Text_BanList1",
+      "id": "BattleHall_Text_Banlist1",
       "en_US": [
         "Eggs and {STRVAR_1 0, 1, 0} are not allowed\n",
         "to enter.\r"
       ]
     },
     {
-      "id": "BattleHall_Text_BanList2",
+      "id": "BattleHall_Text_Banlist2",
       "en_US": [
         "Eggs, {STRVAR_1 0, 1, 0}, and {STRVAR_1 0, 2, 0}\n",
         "are not allowed to enter.\r"
       ]
     },
     {
-      "id": "BattleHall_Text_BanList3",
+      "id": "BattleHall_Text_Banlist3",
       "en_US": [
         "Eggs, {STRVAR_1 0, 1, 0}, {STRVAR_1 0, 2, 0},\n",
         "and {STRVAR_1 0, 3, 0} are not allowed\f",
@@ -273,7 +273,7 @@
       ]
     },
     {
-      "id": "BattleHall_Text_BanList4",
+      "id": "BattleHall_Text_Banlist4",
       "en_US": [
         "Eggs, {STRVAR_1 0, 1, 0}, {STRVAR_1 0, 2, 0},\n",
         "{STRVAR_1 0, 3, 0}, and {STRVAR_1 0, 4, 0}\f",
@@ -281,7 +281,7 @@
       ]
     },
     {
-      "id": "BattleHall_Text_BanList5",
+      "id": "BattleHall_Text_Banlist5",
       "en_US": [
         "Eggs, {STRVAR_1 0, 1, 0}, {STRVAR_1 0, 2, 0},\n",
         "{STRVAR_1 0, 3, 0}, {STRVAR_1 0, 4, 0}, and\f",
@@ -289,7 +289,7 @@
       ]
     },
     {
-      "id": "BattleHall_Text_BanList6",
+      "id": "BattleHall_Text_Banlist6",
       "en_US": [
         "Eggs, {STRVAR_1 0, 1, 0}, {STRVAR_1 0, 2, 0},\n",
         "{STRVAR_1 0, 3, 0}, {STRVAR_1 0, 4, 0},\f",
@@ -298,7 +298,7 @@
       ]
     },
     {
-      "id": "BattleHall_Text_BanList7",
+      "id": "BattleHall_Text_Banlist7",
       "en_US": [
         "Eggs, {STRVAR_1 0, 1, 0}, {STRVAR_1 0, 2, 0},\n",
         "{STRVAR_1 0, 3, 0}, {STRVAR_1 0, 4, 0},\f",
@@ -307,7 +307,7 @@
       ]
     },
     {
-      "id": "BattleHall_Text_BanList8",
+      "id": "BattleHall_Text_Banlist8",
       "en_US": [
         "Eggs, {STRVAR_1 0, 1, 0}, {STRVAR_1 0, 2, 0},\n",
         "{STRVAR_1 0, 3, 0}, {STRVAR_1 0, 4, 0},\f",
@@ -317,7 +317,7 @@
       ]
     },
     {
-      "id": "BattleHall_Text_BanList9",
+      "id": "BattleHall_Text_Banlist9",
       "en_US": [
         "Eggs, {STRVAR_1 0, 1, 0}, {STRVAR_1 0, 2, 0},\n",
         "{STRVAR_1 0, 3, 0}, {STRVAR_1 0, 4, 0},\f",
@@ -327,7 +327,7 @@
       ]
     },
     {
-      "id": "BattleHall_Text_BanList10",
+      "id": "BattleHall_Text_Banlist10",
       "en_US": [
         "Eggs, {STRVAR_1 0, 1, 0}, {STRVAR_1 0, 2, 0},\n",
         "{STRVAR_1 0, 3, 0}, {STRVAR_1 0, 4, 0},\f",
@@ -338,7 +338,7 @@
       ]
     },
     {
-      "id": "BattleHall_Text_BanList11",
+      "id": "BattleHall_Text_Banlist11",
       "en_US": [
         "Eggs, {STRVAR_1 0, 1, 0}, {STRVAR_1 0, 2, 0},\n",
         "{STRVAR_1 0, 3, 0}, {STRVAR_1 0, 4, 0},\f",
@@ -349,7 +349,7 @@
       ]
     },
     {
-      "id": "BattleHall_Text_BanList12",
+      "id": "BattleHall_Text_Banlist12",
       "en_US": [
         "Eggs, {STRVAR_1 0, 1, 0}, {STRVAR_1 0, 2, 0},\n",
         "{STRVAR_1 0, 3, 0}, {STRVAR_1 0, 4, 0},\f",
@@ -361,7 +361,7 @@
       ]
     },
     {
-      "id": "BattleHall_Text_BanList13",
+      "id": "BattleHall_Text_Banlist13",
       "en_US": [
         "Eggs, {STRVAR_1 0, 1, 0}, {STRVAR_1 0, 2, 0},\n",
         "{STRVAR_1 0, 3, 0}, {STRVAR_1 0, 4, 0},\f",
@@ -373,7 +373,7 @@
       ]
     },
     {
-      "id": "BattleHall_Text_BanList14",
+      "id": "BattleHall_Text_Banlist14",
       "en_US": [
         "Eggs, {STRVAR_1 0, 1, 0}, {STRVAR_1 0, 2, 0},\n",
         "{STRVAR_1 0, 3, 0}, {STRVAR_1 0, 4, 0},\f",
@@ -386,7 +386,7 @@
       ]
     },
     {
-      "id": "BattleHall_Text_BanList15",
+      "id": "BattleHall_Text_Banlist15",
       "en_US": [
         "Eggs, {STRVAR_1 0, 1, 0}, {STRVAR_1 0, 2, 0},\n",
         "{STRVAR_1 0, 3, 0}, {STRVAR_1 0, 4, 0},\f",
@@ -399,7 +399,7 @@
       ]
     },
     {
-      "id": "BattleHall_Text_BanList16",
+      "id": "BattleHall_Text_Banlist16",
       "en_US": [
         "Eggs, {STRVAR_1 0, 1, 0}, {STRVAR_1 0, 2, 0},\n",
         "{STRVAR_1 0, 3, 0}, {STRVAR_1 0, 4, 0},\f",
@@ -413,7 +413,7 @@
       ]
     },
     {
-      "id": "BattleHall_Text_BanList17",
+      "id": "BattleHall_Text_Banlist17",
       "en_US": [
         "Eggs, {STRVAR_1 0, 1, 0}, {STRVAR_1 0, 2, 0},\n",
         "{STRVAR_1 0, 3, 0}, {STRVAR_1 0, 4, 0},\f",
@@ -427,7 +427,7 @@
       ]
     },
     {
-      "id": "BattleHall_Text_BanList18",
+      "id": "BattleHall_Text_Banlist18",
       "en_US": [
         "Eggs, {STRVAR_1 0, 1, 0}, {STRVAR_1 0, 2, 0},\n",
         "{STRVAR_1 0, 3, 0}, {STRVAR_1 0, 4, 0},\f",
@@ -492,7 +492,7 @@
       ]
     },
     {
-      "id": "BattleHall_Text_Pachirisu",
+      "id": "BattleHall_Text_PachirisuCry",
       "en_US": "PACHIRISU: Pachipachi pacchipachii!"
     },
     {
@@ -562,7 +562,7 @@
       ]
     },
     {
-      "id": "BattleHall_Text_StreakIsPresentlyX",
+      "id": "BattleHall_Text_StreakRecordIsX",
       "en_US": [
         "When your total win-streak record hits\n",
         "certain figures, you will earn BP as\f",

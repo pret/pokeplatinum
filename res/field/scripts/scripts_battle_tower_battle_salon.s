@@ -118,7 +118,7 @@ BattleTowerBattleSalon_Attendant:
 BattleTowerBattleSalon_Quit:
     CloseMessage
     ReleaseAll
-    SetVar VAR_UNK_0x40D8, 3
+    SetVar VAR_BATTLE_TOWER_LOBBY_LOAD_ACTION, 3
     FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_BATTLE_TOWER, 0, 11, 6, DIR_NORTH
