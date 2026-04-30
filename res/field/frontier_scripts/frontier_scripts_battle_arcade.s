@@ -2693,7 +2693,7 @@ _278C:
 
 _279A:
     FrontierScrCmd_BF 22, 0, 0, VAR_0x8008
-    FrontierScrCmd_3D VAR_UNK_0x40BF, 1
+    FrontierScrCmd_3D VAR_BATTLE_ARCADE_LOBBY_LOAD_ACTION, 1
     Message BattleArcadeScene_Text_BPEarned
     BufferPlayerName 0
     FrontierScrCmd_BF 45, 0, 0, VAR_0x8008
@@ -2985,7 +2985,7 @@ _2C5A:
     End
 
 _2C78:
-    FrontierScrCmd_3D VAR_UNK_0x40BF, 2
+    FrontierScrCmd_3D VAR_BATTLE_ARCADE_LOBBY_LOAD_ACTION, 2
     FrontierScrCmd_BF 10, 0, 0, VAR_0x8008
     FreeBattleRecording
     FrontierScrCmd_BA
@@ -3032,7 +3032,7 @@ _2D19:
 
 _2D31:
     FrontierScrCmd_BF 21, 0, 0, VAR_0x8008
-    FrontierScrCmd_3D VAR_UNK_0x40BF, 3
+    FrontierScrCmd_3D VAR_BATTLE_ARCADE_LOBBY_LOAD_ACTION, 3
     GoTo _2E0A
     End
 
@@ -3070,7 +3070,7 @@ _2DB5:
 
 _2DBD:
     FrontierScrCmd_BF 21, 0, 0, VAR_0x8008
-    FrontierScrCmd_3D VAR_UNK_0x40BF, 3
+    FrontierScrCmd_3D VAR_BATTLE_ARCADE_LOBBY_LOAD_ACTION, 3
     GoTo _2DD4
     End
 

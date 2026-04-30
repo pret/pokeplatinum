@@ -3,7 +3,9 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/map_object.h"
 #include "constants/tv_broadcast.h"
+#include "generated/movement_types.h"
 #include "generated/trainer_score_events.h"
 
 #include "struct_decls/tv_broadcast.h"
@@ -390,50 +392,50 @@ BOOL ScrCmd_GetCurrentSafariGameCaughtNum(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_329(ScriptContext *param0)
+BOOL ScrCmd_GetBattleFrontierReporterPosition(ScriptContext *ctx)
 {
     TVBroadcast *broadcast;
     UnkStruct_0202E81C *v1;
-    u16 *v2 = ScriptContext_GetVarPointer(param0);
-    u16 *v3 = ScriptContext_GetVarPointer(param0);
-    u16 *v4 = ScriptContext_GetVarPointer(param0);
-    u16 *v5 = ScriptContext_GetVarPointer(param0);
+    u16 *x = ScriptContext_GetVarPointer(ctx);
+    u16 *z = ScriptContext_GetVarPointer(ctx);
+    u16 *dir = ScriptContext_GetVarPointer(ctx);
+    u16 *movementType = ScriptContext_GetVarPointer(ctx);
 
-    broadcast = SaveData_GetTVBroadcast(param0->fieldSystem->saveData);
+    broadcast = SaveData_GetTVBroadcast(ctx->fieldSystem->saveData);
     v1 = sub_0202E81C(broadcast);
 
     switch (v1->unk_01) {
     case 5:
-        *v2 = 25;
-        *v3 = 36;
-        *v4 = 0;
-        *v5 = 0xe;
+        *x = 25;
+        *z = 36;
+        *dir = DIR_NORTH;
+        *movementType = MOVEMENT_TYPE_LOOK_NORTH;
         break;
     case 4:
-        *v2 = 37;
-        *v3 = 61;
-        *v4 = 1;
-        *v5 = 0xf;
+        *x = 37;
+        *z = 61;
+        *dir = DIR_SOUTH;
+        *movementType = MOVEMENT_TYPE_LOOK_SOUTH;
         break;
     case 6:
-        *v2 = 59;
-        *v3 = 61;
-        *v4 = 1;
-        *v5 = 0xf;
+        *x = 59;
+        *z = 61;
+        *dir = DIR_SOUTH;
+        *movementType = MOVEMENT_TYPE_LOOK_SOUTH;
         break;
     case 2:
     case 3:
-        *v2 = 72;
-        *v3 = 36;
-        *v4 = 0;
-        *v5 = 0xe;
+        *x = 72;
+        *z = 36;
+        *dir = DIR_NORTH;
+        *movementType = MOVEMENT_TYPE_LOOK_NORTH;
         break;
     case 1:
     default:
-        *v2 = 47;
-        *v3 = 21;
-        *v4 = 0;
-        *v5 = 0xe;
+        *x = 47;
+        *z = 21;
+        *dir = DIR_NORTH;
+        *movementType = MOVEMENT_TYPE_LOOK_NORTH;
         break;
     }
 

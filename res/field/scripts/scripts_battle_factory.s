@@ -1,305 +1,306 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/battle_factory.h"
+#include "res/text/bank/menu_entries.h"
 #include "constants/battle_frontier.h"
 
 
-    ScriptEntry _0059
-    ScriptEntry _05B0
-    ScriptEntry _05E9
-    ScriptEntry _05FA
-    ScriptEntry _066E
-    ScriptEntry _0075
-    ScriptEntry _0698
-    ScriptEntry _06AB
-    ScriptEntry _06BE
-    ScriptEntry _06D1
-    ScriptEntry _06E4
-    ScriptEntry _06F7
-    ScriptEntry _070A
-    ScriptEntry _003A
+    ScriptEntry BattleFactory_SingleAttendant
+    ScriptEntry BattleFactory_OnFrameResumeChallenge
+    ScriptEntry BattleFactory_OnFrameDidntSaveBeforeQuit
+    ScriptEntry BattleFactory_OnFrameChallengeEndedCompletedRound
+    ScriptEntry BattleFactory_OnFrameChallengeEnded
+    ScriptEntry BattleFactory_MultiAttendant
+    ScriptEntry BattleFactory_PokemonBreederF
+    ScriptEntry BattleFactory_Sailor
+    ScriptEntry BattleFactory_Beauty
+    ScriptEntry BattleFactory_Youngster
+    ScriptEntry BattleFactory_Clown
+    ScriptEntry BattleFactory_Lady
+    ScriptEntry BattleFactory_Policeman
+    ScriptEntry BattleFactory_OnTransition
     ScriptEntryEnd
 
-_003A:
+BattleFactory_OnTransition:
     CheckTVInterviewEligible TV_PROGRAM_SEGMENT_BATTLE_FRONTIER_FRONTLINE_NEWS_MULTI, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, 0, _0053
-    ClearFlag FLAG_UNK_0x02C3
+    GoToIfEq VAR_MAP_LOCAL_0, FALSE, BattleFactory_HideBattleFrontierReporter
+    ClearFlag FLAG_HIDE_BATTLE_FRONTIER_REPORTER
     End
 
-_0053:
-    SetFlag FLAG_UNK_0x02C3
+BattleFactory_HideBattleFrontierReporter:
+    SetFlag FLAG_HIDE_BATTLE_FRONTIER_REPORTER
     End
 
-_0059:
+BattleFactory_SingleAttendant:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     SetVar VAR_MAP_LOCAL_3, 0
     SetVar VAR_MAP_LOCAL_4, 0
-    GoTo _0091
+    GoTo BattleFactory_Attendant
     End
 
-_0075:
+BattleFactory_MultiAttendant:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     SetVar VAR_MAP_LOCAL_3, 0
     SetVar VAR_MAP_LOCAL_4, 1
-    GoTo _0091
+    GoTo BattleFactory_Attendant
     End
 
-_0091:
+BattleFactory_Attendant:
     RecordHeapMemory
-    CallIfEq VAR_MAP_LOCAL_4, 0, _0570
-    CallIfEq VAR_MAP_LOCAL_4, 1, _0575
-    GoTo _00B7
+    CallIfEq VAR_MAP_LOCAL_4, 0, BattleFactory_WelcomeToSingleDoubleChallenge
+    CallIfEq VAR_MAP_LOCAL_4, 1, BattleFactory_WelcomeToMultiChallenge
+    GoTo BattleFactory_SelectChallenge
     End
 
-_00B7:
-    CallIfEq VAR_MAP_LOCAL_4, 0, _057A
-    CallIfEq VAR_MAP_LOCAL_4, 1, _0592
-    AddMenuEntryImm 19, 2
-    AddMenuEntryImm 20, 3
+BattleFactory_SelectChallenge:
+    CallIfEq VAR_MAP_LOCAL_4, 0, BattleFactory_InitMenuSingleDoubleChallenge
+    CallIfEq VAR_MAP_LOCAL_4, 1, BattleFactory_InitMenuMultiChallenge
+    AddMenuEntryImm BattleFactory_Text_Info, 2
+    AddMenuEntryImm BattleFactory_Text_CancelChallenge, 3
     ShowMenu
-    GoToIfEq VAR_RESULT, 0, _0152
-    GoToIfEq VAR_RESULT, 1, _0160
-    GoToIfEq VAR_RESULT, 2, _0117
-    GoToIfEq VAR_RESULT, 4, _016E
-    GoTo _0139
+    GoToIfEq VAR_RESULT, 0, BattleFactory_TryTakeSingleChallenge
+    GoToIfEq VAR_RESULT, 1, BattleFactory_TryTakeDoubleChallenge
+    GoToIfEq VAR_RESULT, 2, BattleFactory_ExplainChallenge
+    GoToIfEq VAR_RESULT, 4, BattleFactory_TryTakeMultiChallenge
+    GoTo BattleFactory_EndChallenge
     End
 
-_0117:
-    CallIfEq VAR_MAP_LOCAL_4, 0, _05A6
-    CallIfEq VAR_MAP_LOCAL_4, 1, _05AB
-    GoTo _00B7
+BattleFactory_ExplainChallenge:
+    CallIfEq VAR_MAP_LOCAL_4, 0, BattleFactory_ExplainSingleDoubleChallenge
+    CallIfEq VAR_MAP_LOCAL_4, 1, BattleFactory_ExplainMultiChallenge
+    GoTo BattleFactory_SelectChallenge
     End
 
-_0139:
-    GoTo _0141
+BattleFactory_EndChallenge:
+    GoTo BattleFactory_HopeToSeeYouAgain
     End
 
-_0141:
-    SetVar VAR_UNK_0x40B7, 0
-    Message 6
+BattleFactory_HopeToSeeYouAgain:
+    SetVar VAR_BATTLE_FACTORY_LOBBY_LOAD_ACTION, 0
+    Message BattleFactory_Text_HopeToSeeYouAgain
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0152:
+BattleFactory_TryTakeSingleChallenge:
     SetVar VAR_BATTLE_FACTORY_CHALLENGE_TYPE, FRONTIER_CHALLENGE_SINGLE
-    GoTo _017C
+    GoTo BattleFactory_SelectPokemon
     End
 
-_0160:
+BattleFactory_TryTakeDoubleChallenge:
     SetVar VAR_BATTLE_FACTORY_CHALLENGE_TYPE, FRONTIER_CHALLENGE_DOUBLE
-    GoTo _017C
+    GoTo BattleFactory_SelectPokemon
     End
 
-_016E:
+BattleFactory_TryTakeMultiChallenge:
     SetVar VAR_BATTLE_FACTORY_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI
-    GoTo _017C
+    GoTo BattleFactory_SelectPokemon
     End
 
-_017C:
-    Message 7
+BattleFactory_SelectPokemon:
+    Message BattleFactory_Text_WhichChallengeLevel
     InitLocalTextMenu 31, 11, 0, VAR_RESULT
     SetMenuXOriginToRight
-    AddMenuEntryImm 21, 0
-    AddMenuEntryImm 22, 1
-    AddMenuEntryImm 23, 2
+    AddMenuEntryImm BattleFactory_Text_Level50, 0
+    AddMenuEntryImm BattleFactory_Text_OpenLevel, 1
+    AddMenuEntryImm BattleFactory_Text_CancelLevel, 2
     ShowMenu
-    GoToIfEq VAR_RESULT, 0, _01BA
-    GoToIfEq VAR_RESULT, 1, _01C8
-    GoTo _0139
+    GoToIfEq VAR_RESULT, 0, BattleFactory_SetLevel50
+    GoToIfEq VAR_RESULT, 1, BattleFactory_SetOpenLevel
+    GoTo BattleFactory_EndChallenge
     End
 
-_01BA:
-    SetVar VAR_UNK_0x40B9, 0
-    GoTo _01D6
+BattleFactory_SetLevel50:
+    SetVar VAR_BATTLE_FACTORY_CHALLENGE_LEVEL, 0
+    GoTo BattleFactory_TryStartChallenge
     End
 
-_01C8:
-    SetVar VAR_UNK_0x40B9, 1
-    GoTo _01D6
+BattleFactory_SetOpenLevel:
+    SetVar VAR_BATTLE_FACTORY_CHALLENGE_LEVEL, 1
+    GoTo BattleFactory_TryStartChallenge
     End
 
-_01D6:
-    GoTo _01DE
+BattleFactory_TryStartChallenge:
+    GoTo BattleFactory_HealAndSaveBeforeChallenge
     End
 
-_01DE:
-    CallIfEq VAR_BATTLE_FACTORY_CHALLENGE_TYPE, FRONTIER_CHALLENGE_SINGLE, _0386
-    CallIfEq VAR_BATTLE_FACTORY_CHALLENGE_TYPE, FRONTIER_CHALLENGE_DOUBLE, _0386
+BattleFactory_HealAndSaveBeforeChallenge:
+    CallIfEq VAR_BATTLE_FACTORY_CHALLENGE_TYPE, FRONTIER_CHALLENGE_SINGLE, BattleFactory_SetChallengeInProgress
+    CallIfEq VAR_BATTLE_FACTORY_CHALLENGE_TYPE, FRONTIER_CHALLENGE_DOUBLE, BattleFactory_SetChallengeInProgress
     SetVar VAR_MAP_LOCAL_0, 0
     HealParty
     Common_SaveGame
     SetVar VAR_RESULT, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_RESULT, 0, _0139
-    GoToIfEq VAR_BATTLE_FACTORY_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI, _022C
-    GoTo _038E
+    GoToIfEq VAR_RESULT, 0, BattleFactory_EndChallenge
+    GoToIfEq VAR_BATTLE_FACTORY_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI, BattleFactory_BecomeLeaderOrJoinGroup
+    GoTo BattleFactory_WalkIntoCorridor
     End
 
-_022C:
-    Message 24
+BattleFactory_BecomeLeaderOrJoinGroup:
+    Message BattleFactory_Text_BecomeLeaderOrJoinGroup
     InitGlobalTextMenu 30, 1, 0, VAR_RESULT
     SetMenuXOriginToRight
-    AddMenuEntryImm 13, 0
-    AddMenuEntryImm 14, 1
-    AddMenuEntryImm 5, 2
+    AddMenuEntryImm MenuEntries_Text_JoinGroup, 0
+    AddMenuEntryImm MenuEntries_Text_BecomeLeader, 1
+    AddMenuEntryImm MenuEntries_Text_Exit, 2
     ShowMenu
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, 0, _0270
-    GoToIfEq VAR_0x8008, 1, _02EC
-    GoTo _0139
+    GoToIfEq VAR_0x8008, 0, BattleFactory_LaunchWiFiToJoinGroup
+    GoToIfEq VAR_0x8008, 1, BattleFactory_LaunchWiFiToBecomeLeader
+    GoTo BattleFactory_EndChallenge
     End
 
-_0270:
-    Message 25
+BattleFactory_LaunchWiFiToJoinGroup:
+    Message BattleFactory_Text_NeedToLaunchWiFiComm
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _022C
+    GoToIfEq VAR_RESULT, MENU_NO, BattleFactory_BecomeLeaderOrJoinGroup
     CloseMessage
-    CallIfEq VAR_UNK_0x40B9, 0, _02C2
-    CallIfEq VAR_UNK_0x40B9, 1, _02CE
-    GoToIfEq VAR_RESULT, COMM_CLUB_RET_CANCEL, _02DA
-    GoToIfEq VAR_RESULT, COMM_CLUB_RET_ERROR, _02E2
-    GoTo _0368
+    CallIfEq VAR_BATTLE_FACTORY_CHALLENGE_LEVEL, 0, BattleFactory_StartBattleClientLevel50
+    CallIfEq VAR_BATTLE_FACTORY_CHALLENGE_LEVEL, 1, BattleFactory_StartBattleClientOpenLevel
+    GoToIfEq VAR_RESULT, COMM_CLUB_RET_CANCEL, BattleFactory_CancelJoiningGroup
+    GoToIfEq VAR_RESULT, COMM_CLUB_RET_ERROR, BattleFactory_ErrorJoiningGroup
+    GoTo BattleFactory_StartMultiChallenge
     End
 
-_02C2:
+BattleFactory_StartBattleClientLevel50:
     StartBattleClient 27, 0, 0, VAR_RESULT
     Return
 
-_02CE:
+BattleFactory_StartBattleClientOpenLevel:
     StartBattleClient 28, 0, 0, VAR_RESULT
     Return
 
-_02DA:
-    GoTo _022C
+BattleFactory_CancelJoiningGroup:
+    GoTo BattleFactory_BecomeLeaderOrJoinGroup
     End
 
-_02E2:
+BattleFactory_ErrorJoiningGroup:
     EndCommunication
-    GoTo _022C
+    GoTo BattleFactory_BecomeLeaderOrJoinGroup
     End
 
-_02EC:
-    Message 25
+BattleFactory_LaunchWiFiToBecomeLeader:
+    Message BattleFactory_Text_NeedToLaunchWiFiComm
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _022C
+    GoToIfEq VAR_RESULT, MENU_NO, BattleFactory_BecomeLeaderOrJoinGroup
     CloseMessage
-    CallIfEq VAR_UNK_0x40B9, 0, _033E
-    CallIfEq VAR_UNK_0x40B9, 1, _034A
-    GoToIfEq VAR_RESULT, COMM_CLUB_RET_CANCEL, _0356
-    GoToIfEq VAR_RESULT, COMM_CLUB_RET_ERROR, _035E
-    GoTo _0368
+    CallIfEq VAR_BATTLE_FACTORY_CHALLENGE_LEVEL, 0, BattleFactory_StartBattleServerLevel50
+    CallIfEq VAR_BATTLE_FACTORY_CHALLENGE_LEVEL, 1, BattleFactory_StartBattleServerOpenLevel
+    GoToIfEq VAR_RESULT, COMM_CLUB_RET_CANCEL, BattleFactory_CancelBecomingLeader
+    GoToIfEq VAR_RESULT, COMM_CLUB_RET_ERROR, BattleFactory_ErrorBecomingLeader
+    GoTo BattleFactory_StartMultiChallenge
     End
 
-_033E:
+BattleFactory_StartBattleServerLevel50:
     StartBattleServer 27, 0, 0, VAR_RESULT
     Return
 
-_034A:
+BattleFactory_StartBattleServerOpenLevel:
     StartBattleServer 28, 0, 0, VAR_RESULT
     Return
 
-_0356:
-    GoTo _022C
+BattleFactory_CancelBecomingLeader:
+    GoTo BattleFactory_BecomeLeaderOrJoinGroup
     End
 
-_035E:
+BattleFactory_ErrorBecomingLeader:
     EndCommunication
-    GoTo _022C
+    GoTo BattleFactory_BecomeLeaderOrJoinGroup
     End
 
-_0368:
-    Message 26
-    CallIfEq VAR_BATTLE_FACTORY_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI, _0386
-    Call _05D7
-    GoTo _038E
+BattleFactory_StartMultiChallenge:
+    Message BattleFactory_Text_MustSaveFirst
+    CallIfEq VAR_BATTLE_FACTORY_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI, BattleFactory_SetChallengeInProgress
+    Call BattleFactory_SaveGame
+    GoTo BattleFactory_WalkIntoCorridor
     End
 
-_0386:
-    SetVar VAR_UNK_0x40B7, 0xFF
+BattleFactory_SetChallengeInProgress:
+    SetVar VAR_BATTLE_FACTORY_LOBBY_LOAD_ACTION, 0xFF
     Return
 
-_038E:
-    CallIfEq VAR_BATTLE_FACTORY_CHALLENGE_TYPE, FRONTIER_CHALLENGE_SINGLE, _042E
-    CallIfEq VAR_BATTLE_FACTORY_CHALLENGE_TYPE, FRONTIER_CHALLENGE_DOUBLE, _0449
-    CallIfEq VAR_BATTLE_FACTORY_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI, _0464
+BattleFactory_WalkIntoCorridor:
+    CallIfEq VAR_BATTLE_FACTORY_CHALLENGE_TYPE, FRONTIER_CHALLENGE_SINGLE, BattleFactory_WalkToCorridorSingleChallenge
+    CallIfEq VAR_BATTLE_FACTORY_CHALLENGE_TYPE, FRONTIER_CHALLENGE_DOUBLE, BattleFactory_WalkToCorridorDoubleChallenge
+    CallIfEq VAR_BATTLE_FACTORY_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI, BattleFactory_WalkToCorridorMultiChallenge
     PlaySE SEQ_SE_DP_KAIDAN2
-    GoTo _03C1
+    GoTo BattleFactory_StartChallenge
     End
 
-_03C1:
+BattleFactory_StartChallenge:
     FadeScreenOut
     WaitFadeScreen
-    CallIfEq VAR_BATTLE_FACTORY_CHALLENGE_TYPE, FRONTIER_CHALLENGE_SINGLE, _048A
-    CallIfEq VAR_BATTLE_FACTORY_CHALLENGE_TYPE, FRONTIER_CHALLENGE_DOUBLE, _049E
-    CallIfEq VAR_BATTLE_FACTORY_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI, _04B2
-    IncrementGameRecord RECORD_UNK_058
+    CallIfEq VAR_BATTLE_FACTORY_CHALLENGE_TYPE, FRONTIER_CHALLENGE_SINGLE, BattleFactory_WalkBackInvisiblySingleChallenge
+    CallIfEq VAR_BATTLE_FACTORY_CHALLENGE_TYPE, FRONTIER_CHALLENGE_DOUBLE, BattleFactory_WalkBackInvisiblyDoubleChallenge
+    CallIfEq VAR_BATTLE_FACTORY_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI, BattleFactory_WalkBackInvisiblyMultiChallenge
+    IncrementGameRecord RECORD_TIMES_STARTED_BATTLE_FRONTIER_CHALLENGE
     CreateJournalEvent LOCATION_EVENT_BATTLE_FACTORY, 0, 0, 0, 0
     WaitForTransition
     ScrCmd_2C4 3
-    CallIfEq VAR_BATTLE_FACTORY_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI, _042A
+    CallIfEq VAR_BATTLE_FACTORY_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI, BattleFactory_EndCommunication
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
     AssertHeapMemory
     End
 
-_042A:
+BattleFactory_EndCommunication:
     EndCommunication
     Return
 
-_042E:
-    Message 9
+BattleFactory_WalkToCorridorSingleChallenge:
+    Message BattleFactory_Text_ThisWayPlease
     WaitABPress
     CloseMessage
-    ApplyMovement LOCALID_PLAYER, _04C8
-    ApplyMovement VAR_LAST_TALKED, _04F0
+    ApplyMovement LOCALID_PLAYER, BattleFactory_Movement_PlayerWalkToCorridorSingleDoubleChallenge
+    ApplyMovement VAR_LAST_TALKED, BattleFactory_Movement_AttendantWalkToCorridorSingleDoubleChallenge
     WaitMovement
     Return
 
-_0449:
-    Message 9
+BattleFactory_WalkToCorridorDoubleChallenge:
+    Message BattleFactory_Text_ThisWayPlease
     WaitABPress
     CloseMessage
-    ApplyMovement LOCALID_PLAYER, _04C8
-    ApplyMovement VAR_LAST_TALKED, _04F0
+    ApplyMovement LOCALID_PLAYER, BattleFactory_Movement_PlayerWalkToCorridorSingleDoubleChallenge
+    ApplyMovement VAR_LAST_TALKED, BattleFactory_Movement_AttendantWalkToCorridorSingleDoubleChallenge
     WaitMovement
     Return
 
-_0464:
-    MessageNoSkip 9
+BattleFactory_WalkToCorridorMultiChallenge:
+    MessageNoSkip BattleFactory_Text_ThisWayPlease
     WaitTime 15, VAR_RESULT
     ClearReceivedTempDataAllPlayers
     ScrCmd_135 169
     CloseMessage
-    ApplyMovement LOCALID_PLAYER, _04DC
-    ApplyMovement VAR_LAST_TALKED, _0504
+    ApplyMovement LOCALID_PLAYER, BattleFactory_Movement_PlayerWalkToCorridorMultiChallenge
+    ApplyMovement VAR_LAST_TALKED, BattleFactory_Movement_AttendantWalkToCorridorMultiChallenge
     WaitMovement
     Return
 
-_048A:
-    ApplyMovement LOCALID_PLAYER, _0518
-    ApplyMovement VAR_LAST_TALKED, _0548
+BattleFactory_WalkBackInvisiblySingleChallenge:
+    ApplyMovement LOCALID_PLAYER, BattleFactory_Movement_PlayerWalkBackSingleDoubleChallenge
+    ApplyMovement VAR_LAST_TALKED, BattleFactory_Movement_AttendantWalkBackSingleDoubleChallenge
     WaitMovement
     Return
 
-_049E:
-    ApplyMovement LOCALID_PLAYER, _0518
-    ApplyMovement VAR_LAST_TALKED, _0548
+BattleFactory_WalkBackInvisiblyDoubleChallenge:
+    ApplyMovement LOCALID_PLAYER, BattleFactory_Movement_PlayerWalkBackSingleDoubleChallenge
+    ApplyMovement VAR_LAST_TALKED, BattleFactory_Movement_AttendantWalkBackSingleDoubleChallenge
     WaitMovement
     Return
 
-_04B2:
-    ApplyMovement LOCALID_PLAYER, _0530
-    ApplyMovement VAR_LAST_TALKED, _055C
+BattleFactory_WalkBackInvisiblyMultiChallenge:
+    ApplyMovement LOCALID_PLAYER, BattleFactory_Movement_PlayerWalkBackMultiChallenge
+    ApplyMovement VAR_LAST_TALKED, BattleFactory_Movement_AttendantWalkBackMultiChallenge
     WaitMovement
     Return
 
     .balign 4, 0
-_04C8:
+BattleFactory_Movement_PlayerWalkToCorridorSingleDoubleChallenge:
     WalkNormalNorth 3
     WalkNormalEast
     WalkNormalNorth 4
@@ -307,7 +308,7 @@ _04C8:
     EndMovement
 
     .balign 4, 0
-_04DC:
+BattleFactory_Movement_PlayerWalkToCorridorMultiChallenge:
     WalkNormalNorth 3
     WalkNormalWest
     WalkNormalNorth 4
@@ -315,7 +316,7 @@ _04DC:
     EndMovement
 
     .balign 4, 0
-_04F0:
+BattleFactory_Movement_AttendantWalkToCorridorSingleDoubleChallenge:
     WalkNormalNorth 2
     WalkNormalEast
     WalkNormalNorth 4
@@ -323,7 +324,7 @@ _04F0:
     EndMovement
 
     .balign 4, 0
-_0504:
+BattleFactory_Movement_AttendantWalkToCorridorMultiChallenge:
     WalkNormalNorth 2
     WalkNormalWest
     WalkNormalNorth 4
@@ -331,7 +332,7 @@ _0504:
     EndMovement
 
     .balign 4, 0
-_0518:
+BattleFactory_Movement_PlayerWalkBackSingleDoubleChallenge:
     WalkFasterSouth 3
     WalkFasterWest
     WalkFasterSouth 4
@@ -340,7 +341,7 @@ _0518:
     EndMovement
 
     .balign 4, 0
-_0530:
+BattleFactory_Movement_PlayerWalkBackMultiChallenge:
     WalkFasterSouth 3
     WalkFasterEast
     WalkFasterSouth 4
@@ -349,7 +350,7 @@ _0530:
     EndMovement
 
     .balign 4, 0
-_0548:
+BattleFactory_Movement_AttendantWalkBackSingleDoubleChallenge:
     WalkFasterSouth 2
     WalkFasterWest
     WalkFasterSouth 4
@@ -357,55 +358,55 @@ _0548:
     EndMovement
 
     .balign 4, 0
-_055C:
+BattleFactory_Movement_AttendantWalkBackMultiChallenge:
     WalkFasterSouth 2
     WalkFasterEast
     WalkFasterSouth 4
     SetVisible
     EndMovement
 
-_0570:
-    Message 0
+BattleFactory_WelcomeToSingleDoubleChallenge:
+    Message BattleFactory_Text_WelcomeToSingleDoubleChallenge
     Return
 
-_0575:
-    Message 3
+BattleFactory_WelcomeToMultiChallenge:
+    Message BattleFactory_Text_WelcomeToMultiChallenge
     Return
 
-_057A:
+BattleFactory_InitMenuSingleDoubleChallenge:
     InitLocalTextMenu 31, 9, 0, VAR_RESULT
     SetMenuXOriginToRight
-    AddMenuEntryImm 16, 0
-    AddMenuEntryImm 17, 1
-    Message 1
+    AddMenuEntryImm BattleFactory_Text_SingleBattle, 0
+    AddMenuEntryImm BattleFactory_Text_DoubleBattle, 1
+    Message BattleFactory_Text_TakeWhichChallenge
     Return
 
-_0592:
+BattleFactory_InitMenuMultiChallenge:
     InitLocalTextMenu 31, 11, 0, VAR_RESULT
     SetMenuXOriginToRight
-    AddMenuEntryImm 18, 4
-    Message 4
+    AddMenuEntryImm BattleFactory_Text_TakeChallenge, 4
+    Message BattleFactory_Text_AskTakeMultiChallenge
     Return
 
-_05A6:
-    Message 2
+BattleFactory_ExplainSingleDoubleChallenge:
+    Message BattleFactory_Text_ExplainSingleDoubleChallenge
     Return
 
-_05AB:
-    Message 5
+BattleFactory_ExplainMultiChallenge:
+    Message BattleFactory_Text_ExplainMultiChallenge
     Return
 
-_05B0:
+BattleFactory_OnFrameResumeChallenge:
     RecordHeapMemory
     SetVar VAR_MAP_LOCAL_3, 1
-    SetVar VAR_UNK_0x40B7, 0
-    Message 11
-    Call _0386
-    Call _05D7
-    GoTo _038E
+    SetVar VAR_BATTLE_FACTORY_LOBBY_LOAD_ACTION, 0
+    Message BattleFactory_Text_MustSaveBeforeResuming
+    Call BattleFactory_SetChallengeInProgress
+    Call BattleFactory_SaveGame
+    GoTo BattleFactory_WalkIntoCorridor
     End
 
-_05D7:
+BattleFactory_SaveGame:
     ShowSavingIcon
     TrySaveGame VAR_RESULT
     HideSavingIcon
@@ -413,45 +414,45 @@ _05D7:
     WaitSE SEQ_SE_DP_SAVE
     Return
 
-_05E9:
-    Message 12
-    ScrCmd_2C5 VAR_BATTLE_FACTORY_CHALLENGE_TYPE, VAR_UNK_0x40B9
-    GoTo _0139
+BattleFactory_OnFrameDidntSaveBeforeQuit:
+    Message BattleFactory_Text_DidntSaveBeforeQuit
+    ScrCmd_2C5 VAR_BATTLE_FACTORY_CHALLENGE_TYPE, VAR_BATTLE_FACTORY_CHALLENGE_LEVEL
+    GoTo BattleFactory_EndChallenge
     End
 
-_05FA:
-    CallIfEq VAR_BATTLE_FACTORY_CHALLENGE_TYPE, FRONTIER_CHALLENGE_SINGLE, _0636
-    CallIfEq VAR_BATTLE_FACTORY_CHALLENGE_TYPE, FRONTIER_CHALLENGE_DOUBLE, _0636
-    CallIfEq VAR_BATTLE_FACTORY_PRINT_STATE, 1, _063C
-    CallIfEq VAR_BATTLE_FACTORY_PRINT_STATE, 3, _0653
-    GoTo _0139
+BattleFactory_OnFrameChallengeEndedCompletedRound:
+    CallIfEq VAR_BATTLE_FACTORY_CHALLENGE_TYPE, FRONTIER_CHALLENGE_SINGLE, BattleFactory_IncrementTrainerScoreRoundCompleted
+    CallIfEq VAR_BATTLE_FACTORY_CHALLENGE_TYPE, FRONTIER_CHALLENGE_DOUBLE, BattleFactory_IncrementTrainerScoreRoundCompleted
+    CallIfEq VAR_BATTLE_FACTORY_PRINT_STATE, 1, BattleFactory_EarnedSilverPrint
+    CallIfEq VAR_BATTLE_FACTORY_PRINT_STATE, 3, BattleFactory_EarnedGoldPrint
+    GoTo BattleFactory_EndChallenge
     End
 
-_0636:
-    IncrementTrainerScore TRAINER_SCORE_EVENT_UNK_38
+BattleFactory_IncrementTrainerScoreRoundCompleted:
+    IncrementTrainerScore TRAINER_SCORE_EVENT_BATTLE_FACTORY_ROUND_COMPLETED
     Return
 
-_063C:
-    Message 13
+BattleFactory_EarnedSilverPrint:
+    Message BattleFactory_Text_PrintForVictory
     BufferPlayerName 0
-    Message 15
+    Message BattleFactory_Text_SilverPrintAdded
     PlayFanfare SEQ_FANFA4
     WaitFanfare
     SetVar VAR_BATTLE_FACTORY_PRINT_STATE, 2
     Return
 
-_0653:
-    Message 13
+BattleFactory_EarnedGoldPrint:
+    Message BattleFactory_Text_PrintForVictory
     BufferPlayerName 0
-    Message 14
+    Message BattleFactory_Text_GoldPrintAdded
     PlayFanfare SEQ_FANFA4
     WaitFanfare
     SetVar VAR_BATTLE_FACTORY_PRINT_STATE, 4
     Common_CheckAllFrontierGoldPrintsObtained
     Return
 
-_066E:
-    GoTo _0139
+BattleFactory_OnFrameChallengeEnded:
+    GoTo BattleFactory_EndChallenge
     End
 
     .balign 4, 0
@@ -467,32 +468,32 @@ BattleFactory_UnusedMovement2:
     WalkNormalNorth
     EndMovement
 
-_0698:
-    NPCMessage 27
+BattleFactory_PokemonBreederF:
+    NPCMessage BattleFactory_Text_StaffTellAboutNextTrainer
     End
 
-_06AB:
-    NPCMessage 28
+BattleFactory_Sailor:
+    NPCMessage BattleFactory_Text_GetOpponentsLineup
     End
 
-_06BE:
-    NPCMessage 29
+BattleFactory_Beauty:
+    NPCMessage BattleFactory_Text_MemorizeOpponentsMoves
     End
 
-_06D1:
-    NPCMessage 30
+BattleFactory_Youngster:
+    NPCMessage BattleFactory_Text_IllTeachMyStyle
     End
 
-_06E4:
-    NPCMessage 31
+BattleFactory_Clown:
+    NPCMessage BattleFactory_Text_ChallengeWithNothing
     End
 
-_06F7:
-    NPCMessage 32
+BattleFactory_Lady:
+    NPCMessage BattleFactory_Text_AlreadySixFavorites
     End
 
-_070A:
-    NPCMessage 33
+BattleFactory_Policeman:
+    NPCMessage BattleFactory_Text_WonMeOverWithPower
     End
 
     .balign 4, 0
