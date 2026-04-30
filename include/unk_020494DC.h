@@ -17,10 +17,10 @@ BOOL ScrCmd_1E4(ScriptContext *ctx);
 BOOL ScrCmd_ShowBattlePoints(ScriptContext *ctx);
 BOOL ScrCmd_HideBattlePoints(ScriptContext *ctx);
 BOOL ScrCmd_UpdateBPDisplay(ScriptContext *ctx);
-BOOL ScrCmd_297(ScriptContext *ctx);
-BOOL ScrCmd_298(ScriptContext *ctx);
-BOOL ScrCmd_299(ScriptContext *ctx);
-BOOL ScrCmd_29A(ScriptContext *ctx);
-BOOL ScrCmd_29B(ScriptContext *ctx);
+BOOL ScrCmd_GetBattlePoints(ScriptContext *ctx);
+BOOL ScrCmd_GiveBattlePoints(ScriptContext *ctx);
+BOOL ScrCmd_RemoveBattlePoints(ScriptContext *ctx);
+BOOL ScrCmd_CheckBattlePoints(ScriptContext *ctx);
+BOOL ScrCmd_GetExchangeServiceCornerItemAndCost(ScriptContext *ctx);
 
 #endif // POKEPLATINUM_UNK_020494DC_H

@@ -3962,33 +3962,33 @@
     .short SCRCMD_UPDATEBPDISPLAY
     .endm
 
-    .macro ScrCmd_297 arg0
-    .short SCRCMD_297
-    .short \arg0
+    .macro GetBattlePoints destVar
+    .short SCRCMD_GETBATTLEPOINTS
+    .short \destVar
     .endm
 
-    .macro ScrCmd_298 arg0
-    .short SCRCMD_298
-    .short \arg0
+    .macro GiveBattlePoints value
+    .short SCRCMD_GIVEBATTLEPOINTS
+    .short \value
     .endm
 
-    .macro ScrCmd_299 arg0
-    .short SCRCMD_299
-    .short \arg0
+    .macro RemoveBattlePoints value
+    .short SCRCMD_REMOVEBATTLEPOINTS
+    .short \value
     .endm
 
-    .macro ScrCmd_29A arg0, arg1
-    .short SCRCMD_29A
-    .short \arg0
-    .short \arg1
+    .macro CheckBattlePoints value, destVar
+    .short SCRCMD_CHECKBATTLEPOINTS
+    .short \value
+    .short \destVar
     .endm
 
-    .macro ScrCmd_29B arg0, arg1, arg2, arg3
-    .short SCRCMD_29B
-    .short \arg0
-    .short \arg1
-    .short \arg2
-    .short \arg3
+    .macro GetExchangeServiceCornerItemAndCost martID, prizeID, item, cost
+    .short SCRCMD_GetExchangeServiceCornerItemAndCost
+    .short \martID
+    .short \prizeID
+    .short \item
+    .short \cost
     .endm
 
     .macro CalculateTrainerInfoAppearance variant, destVar

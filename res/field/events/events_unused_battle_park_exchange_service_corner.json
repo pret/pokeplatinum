@@ -2,7 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
-            "id": "BATTLE_PARK_EXCHANGE_SERVICE_CORNER_MAID_0",
+            "id": "LOCALID_MAID_NORTH",
             "graphics_id": "OBJ_EVENT_GFX_MAID",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -17,7 +17,7 @@
             "y": 0
         },
         {
-            "id": "BATTLE_PARK_EXCHANGE_SERVICE_CORNER_MAID_1",
+            "id": "LOCALID_MAID_SOUTH",
             "graphics_id": "OBJ_EVENT_GFX_MAID",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -32,7 +32,7 @@
             "y": 0
         },
         {
-            "id": "BATTLE_PARK_EXCHANGE_SERVICE_CORNER_TWIN_2",
+            "id": "LOCALID_TWIN",
             "graphics_id": "OBJ_EVENT_GFX_TWIN",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -47,7 +47,7 @@
             "y": 0
         },
         {
-            "id": "BATTLE_PARK_EXCHANGE_SERVICE_CORNER_EXPERT_F_3",
+            "id": "LOCALID_EXPERT_F",
             "graphics_id": "OBJ_EVENT_GFX_EXPERT_F",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -62,7 +62,7 @@
             "y": 0
         },
         {
-            "id": "BATTLE_PARK_EXCHANGE_SERVICE_CORNER_GENTLEMAN_4",
+            "id": "LOCALID_GENTLEMAN",
             "graphics_id": "OBJ_EVENT_GFX_GENTLEMAN",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -77,7 +77,7 @@
             "y": 0
         },
         {
-            "id": "BATTLE_PARK_EXCHANGE_SERVICE_CORNER_SOCIALITE_5",
+            "id": "LOCALID_SOCIALITE",
             "graphics_id": "OBJ_EVENT_GFX_SOCIALITE",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -92,7 +92,7 @@
             "y": 0
         },
         {
-            "id": "BATTLE_PARK_EXCHANGE_SERVICE_CORNER_CLOWN_6",
+            "id": "LOCALID_CLOWN",
             "graphics_id": "OBJ_EVENT_GFX_CLOWN",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -107,7 +107,7 @@
             "y": 0
         },
         {
-            "id": "BATTLE_PARK_EXCHANGE_SERVICE_CORNER_COWGIRL_7",
+            "id": "LOCALID_COWGIRL",
             "graphics_id": "OBJ_EVENT_GFX_COWGIRL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -122,7 +122,7 @@
             "y": 0
         },
         {
-            "id": "BATTLE_PARK_EXCHANGE_SERVICE_CORNER_ROUGHNECK_8",
+            "id": "LOCALID_ROUGHNECK",
             "graphics_id": "OBJ_EVENT_GFX_ROUGHNECK",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_SOUTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -141,13 +141,13 @@
         {
             "x": 5,
             "z": 17,
-            "dest_header_id": "MAP_HEADER_BATTLE_PARK",
+            "dest_header_id": "MAP_HEADER_UNUSED_BATTLE_PARK",
             "dest_warp_id": 0
         },
         {
             "x": 21,
             "z": 17,
-            "dest_header_id": "MAP_HEADER_BATTLE_PARK",
+            "dest_header_id": "MAP_HEADER_UNUSED_BATTLE_PARK",
             "dest_warp_id": 1
         }
     ],

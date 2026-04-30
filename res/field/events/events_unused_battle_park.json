@@ -2,7 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
-            "id": "BATTLE_PARK_POKEFAN_M_0",
+            "id": "LOCALID_POKEFAN_M",
             "graphics_id": "OBJ_EVENT_GFX_POKEFAN_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -17,7 +17,7 @@
             "y": 0
         },
         {
-            "id": "BATTLE_PARK_SIGNBOARD_1",
+            "id": "LOCALID_SIGNBOARD_EXCHANGE_SERVICE_CORNER_1",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -32,7 +32,7 @@
             "y": 0
         },
         {
-            "id": "BATTLE_PARK_BABY_IN_PRAM_2",
+            "id": "LOCALID_BABY_IN_PRAM",
             "graphics_id": "OBJ_EVENT_GFX_BABY_IN_PRAM",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -47,7 +47,7 @@
             "y": 0
         },
         {
-            "id": "BATTLE_PARK_SIGNBOARD_3",
+            "id": "LOCALID_SIGNBOARD_BATTLE_TOWER",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -62,7 +62,7 @@
             "y": 0
         },
         {
-            "id": "BATTLE_PARK_BEAUTY_4",
+            "id": "LOCALID_BEAUTY",
             "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -77,7 +77,7 @@
             "y": 0
         },
         {
-            "id": "BATTLE_PARK_EXPERT_F_5",
+            "id": "LOCALID_EXPERT_F",
             "graphics_id": "OBJ_EVENT_GFX_EXPERT_F",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -92,7 +92,7 @@
             "y": 0
         },
         {
-            "id": "BATTLE_PARK_SCHOOL_KID_M_6",
+            "id": "LOCALID_SCHOOL_KID_M",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -107,7 +107,7 @@
             "y": 0
         },
         {
-            "id": "BATTLE_PARK_MIDDLE_AGED_MAN_7",
+            "id": "LOCALID_MIDDLE_AGED_MAN",
             "graphics_id": "OBJ_EVENT_GFX_MIDDLE_AGED_MAN",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -122,7 +122,7 @@
             "y": 0
         },
         {
-            "id": "BATTLE_PARK_BLACK_BELT_8",
+            "id": "LOCALID_BLACK_BELT",
             "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -137,7 +137,7 @@
             "y": 0
         },
         {
-            "id": "BATTLE_PARK_ACE_TRAINER_M_9",
+            "id": "LOCALID_ACE_TRAINER_M",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -167,11 +167,11 @@
             "y": 0
         },
         {
-            "id": "BATTLE_PARK_PALMER_11",
+            "id": "LOCALID_PALMER",
             "graphics_id": "OBJ_EVENT_GFX_PALMER",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0276",
+            "hidden_flag": "FLAG_HIDE_BATTLE_PARK_PALMER",
             "script": 0,
             "initial_dir": 0,
             "data": [],
@@ -182,11 +182,11 @@
             "y": 0
         },
         {
-            "id": "BATTLE_PARK_RIVAL_12",
+            "id": "LOCALID_RIVAL",
             "graphics_id": "OBJ_EVENT_GFX_BARRY",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0277",
+            "hidden_flag": "FLAG_HIDE_BATTLE_PARK_RIVAL",
             "script": 0,
             "initial_dir": 0,
             "data": [],
@@ -197,7 +197,7 @@
             "y": 0
         },
         {
-            "id": "BATTLE_PARK_SIGNBOARD_13",
+            "id": "LOCALID_SIGNBOARD_EXCHANGE_SERVICE_CORNER_2",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -216,25 +216,25 @@
         {
             "x": 20,
             "z": 33,
-            "dest_header_id": "MAP_HEADER_BATTLE_PARK_EXCHANGE_SERVICE_CORNER",
+            "dest_header_id": "MAP_HEADER_UNUSED_BATTLE_PARK_EXCHANGE_SERVICE_CORNER",
             "dest_warp_id": 0
         },
         {
             "x": 29,
             "z": 33,
-            "dest_header_id": "MAP_HEADER_BATTLE_PARK_EXCHANGE_SERVICE_CORNER",
+            "dest_header_id": "MAP_HEADER_UNUSED_BATTLE_PARK_EXCHANGE_SERVICE_CORNER",
             "dest_warp_id": 1
         },
         {
             "x": 24,
             "z": 53,
-            "dest_header_id": "MAP_HEADER_BATTLE_PARK_GATE_TO_FIGHT_AREA",
+            "dest_header_id": "MAP_HEADER_UNUSED_BATTLE_PARK_GATE_TO_FIGHT_AREA",
             "dest_warp_id": 0
         },
         {
             "x": 25,
             "z": 53,
-            "dest_header_id": "MAP_HEADER_BATTLE_PARK_GATE_TO_FIGHT_AREA",
+            "dest_header_id": "MAP_HEADER_UNUSED_BATTLE_PARK_GATE_TO_FIGHT_AREA",
             "dest_warp_id": 0
         }
     ],
@@ -246,7 +246,7 @@
             "y": 0,
             "width": 4,
             "length": 1,
-            "var": "VAR_UNK_0x410E",
+            "var": "VAR_BATTLE_PARK_STATE",
             "value": 0
         }
     ]

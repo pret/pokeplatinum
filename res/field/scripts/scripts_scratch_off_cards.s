@@ -42,9 +42,9 @@ _0085:
     Message 7
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, _0152
-    ScrCmd_29A 1, VAR_RESULT
+    CheckBattlePoints 1, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _0147
-    ScrCmd_299 1
+    RemoveBattlePoints 1
     UpdateBPDisplay
     Message 10
     FadeScreenOut

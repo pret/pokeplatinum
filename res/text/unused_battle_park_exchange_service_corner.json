@@ -2,7 +2,7 @@
   "key": 9314,
   "messages": [
     {
-      "id": "pl_msg_00000303_00000",
+      "id": "BattleParkExchangeServiceCorner_Text_ExchangeBPForItems",
       "en_US": [
         "Welcome to the Exchange Service\n",
         "Corner!\r",
@@ -11,39 +11,39 @@
       ]
     },
     {
-      "id": "pl_msg_00000303_00001",
+      "id": "BattleParkExchangeServiceCorner_Text_ExchangeBPForWhichPrize",
       "en_US": [
         "Which prize would you like in\n",
         "exchange for your BP?"
       ]
     },
     {
-      "id": "pl_msg_00000303_00002",
+      "id": "BattleParkExchangeServiceCorner_Text_YouveChosenThisItem",
       "en_US": [
         "You’ve chosen the {STRVAR_1 8, 0, 0}.\n",
         "Is that correct?"
       ]
     },
     {
-      "id": "pl_msg_00000303_00003",
+      "id": "BattleParkExchangeServiceCorner_Text_HereIsYourPrize",
       "en_US": "Here is your prize!\r"
     },
     {
-      "id": "pl_msg_00000303_00004",
+      "id": "BattleParkExchangeServiceCorner_Text_NotEnoughBP",
       "en_US": [
         "I’m so sorry...\n",
         "You don’t have enough BP...\r"
       ]
     },
     {
-      "id": "pl_msg_00000303_00005",
+      "id": "BattleParkExchangeServiceCorner_Text_NoRoomForItem",
       "en_US": [
         "Sorry, your Bag has no room for\n",
         "this {STRVAR_1 8, 0, 0}...\r"
       ]
     },
     {
-      "id": "pl_msg_00000303_00006",
+      "id": "BattleParkExchangeServiceCorner_Text_ThanksForVisiting",
       "en_US": [
         "Thank you for visiting.\r",
         "Please visit us again when you have\n",
@@ -51,21 +51,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000303_00007",
+      "id": "BattleParkExchangeServiceCorner_Text_YouveChosenThisTM",
       "en_US": [
         "You’ve chosen {STRVAR_1 8, 0, 0},\n",
         "{STRVAR_1 6, 1, 0}. Is that correct?"
       ]
     },
     {
-      "id": "pl_msg_00000303_00008",
+      "id": "BattleParkExchangeServiceCorner_Text_WhatToGetToday",
       "en_US": [
         "What to get today...\n",
         "Perhaps a Technical Machine will do."
       ]
     },
     {
-      "id": "pl_msg_00000303_00009",
+      "id": "BattleParkExchangeServiceCorner_Text_IMostCareAboutPower",
       "en_US": [
         "What I most care about is the\n",
         "crushing power of my darling Pokémon.\r",
@@ -74,7 +74,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000303_00010",
+      "id": "BattleParkExchangeServiceCorner_Text_GrabPrizesHere",
       "en_US": [
         "How’s it going?\r",
         "If things aren’t going well, why not\n",
@@ -84,7 +84,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000303_00011",
+      "id": "BattleParkExchangeServiceCorner_Text_HaveThisGrandma",
       "en_US": [
         "Gramma, Gramma!\n",
         "I went and traded!\r",
@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000303_00012",
+      "id": "BattleParkExchangeServiceCorner_Text_ThankYouDear",
       "en_US": [
         "Oh, what is it, dear?\n",
         "Oh, a Sludge Bomb...\r",
@@ -104,7 +104,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000303_00013",
+      "id": "BattleParkExchangeServiceCorner_Text_GirlIsLittleTerror",
       "en_US": [
         "Did you see that little girl with her\n",
         "grandmother upstairs?\r",
@@ -113,14 +113,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000303_00014",
+      "id": "BattleParkExchangeServiceCorner_Text_BuildingIsSoGrand",
       "en_US": [
         "This building is so grand...\n",
         "Why does it need to be so?"
       ]
     },
     {
-      "id": "pl_msg_00000303_00015",
+      "id": "BattleParkExchangeServiceCorner_Text_TradeBPForPrizes",
       "en_US": [
         "Welcome to the Exchange Service\n",
         "Corner!\r",

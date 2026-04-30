@@ -950,11 +950,11 @@
       "en_US": "{STRVAR_1 53, 0, 0} BP"
     },
     {
-      "id": "pl_msg_00000361_00231",
+      "id": "MenuEntries_Text_UnusedPrizeExchange_Prize",
       "en_US": "{STRVAR_1 8, 0, 0}{CURSOR_X 96}{STRVAR_1 52, 1, 0}BP"
     },
     {
-      "id": "pl_msg_00000361_00232",
+      "id": "MenuEntries_Text_UnusedPrizeExchange_NoThanks",
       "en_US": "NO THANKS"
     },
     {

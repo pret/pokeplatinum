@@ -2,22 +2,22 @@
   "key": 52138,
   "messages": [
     {
-      "id": "pl_msg_00000302_00000",
+      "id": "BattlePark_Text_BigThudPalmer",
       "en_US": "{SIZE 200}Thud!!{SIZE 100}\r"
     },
     {
-      "id": "pl_msg_00000302_00001",
+      "id": "BattlePark_Text_WhatThe",
       "en_US": "What the...\r"
     },
     {
-      "id": "pl_msg_00000302_00002",
+      "id": "BattlePark_Text_SorryAboutThat",
       "en_US": [
         "Whoops, sorry about that!\n",
         "I was in a rush.\r"
       ]
     },
     {
-      "id": "pl_msg_00000302_00003",
+      "id": "BattlePark_Text_YourePlayerFromTwinleaf",
       "en_US": [
         "Oh, wait a second...\n",
         "Aren’t you...\r",
@@ -30,11 +30,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000302_00004",
+      "id": "BattlePark_Text_BigThudRival",
       "en_US": "{SIZE 200}Thud!!{SIZE 100}\r"
     },
     {
-      "id": "pl_msg_00000302_00005",
+      "id": "BattlePark_Text_MeasureUpBeforeStarkMountain",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: What the...\r",
         "Oh, hey, {STRVAR_1 3, 1, 0}!\r",
@@ -52,7 +52,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000302_00006",
+      "id": "BattlePark_Text_MeasureUpForMyQuest",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: What the...\r",
         "Oh, hey, {STRVAR_1 3, 1, 0}!\r",
@@ -70,21 +70,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000302_00007",
+      "id": "BattlePark_Text_SignExchangeServiceCorner",
       "en_US": [
         "Exchange Service Corner\n",
         "A Cornucopia of Fabulous Prizes!"
       ]
     },
     {
-      "id": "pl_msg_00000302_00008",
+      "id": "BattlePark_Text_SignBattleTower",
       "en_US": [
         "Battle Tower\n",
         "Gather, All Ye Greatest!"
       ]
     },
     {
-      "id": "pl_msg_00000302_00009",
+      "id": "BattlePark_Text_SeventhTrainerIsBoss",
       "en_US": [
         "In the Battle Rooms, the seventh\n",
         "Trainer you face is the room’s boss.\r",
@@ -93,7 +93,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000302_00010",
+      "id": "BattlePark_Text_BattleRealSuperstars",
       "en_US": [
         "If you get a big win streak at the\n",
         "Battle Tower, you get to battle\f",
@@ -101,7 +101,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000302_00011",
+      "id": "BattlePark_Text_EarnedLotsOfBP",
       "en_US": [
         "Mwahahaha! We earned a lot of BP\n",
         "at the Battle Tower.\r",
@@ -110,11 +110,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000302_00012",
+      "id": "BattlePark_Text_Aah",
       "en_US": "Aah."
     },
     {
-      "id": "pl_msg_00000302_00013",
+      "id": "BattlePark_Text_ImABabysittingTrainer",
       "en_US": [
         "I’m a babysitting Trainer!\r",
         "I’m off to the Multi Battle Rooms\n",
@@ -122,7 +122,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000302_00014",
+      "id": "BattlePark_Text_WorldsBestGatherHere",
       "en_US": [
         "I heard that the world’s best\n",
         "gather here for battles.\r",
@@ -131,7 +131,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000302_00015",
+      "id": "BattlePark_Text_NoDetailCanBeOverlooked",
       "en_US": [
         "The types of Pokémon!\r",
         "The moves to be taught and used!\r",
@@ -141,7 +141,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000302_00016",
+      "id": "BattlePark_Text_HookUpWithBeauty",
       "en_US": [
         "I’d love to hook up with a Beauty\n",
         "for the Multi Battle Rooms."

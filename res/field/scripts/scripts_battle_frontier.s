@@ -147,7 +147,7 @@ _026A:
     FacePlayer
     Message 21
     CloseMessageWithoutErasing
-    PokeMartFrontier MART_FRONTIER_ID_EXCHANGE_SERVICE_CORNER_DOWN
+    PokeMartFrontier MART_FRONTIER_ID_EXCHANGE_SERVICE_CORNER_LEFT
     ReleaseAll
     End
 
@@ -170,7 +170,7 @@ _02A6:
     FacePlayer
     Message 23
     CloseMessageWithoutErasing
-    PokeMartFrontier MART_FRONTIER_ID_EXCHANGE_SERVICE_CORNER_UP
+    PokeMartFrontier MART_FRONTIER_ID_EXCHANGE_SERVICE_CORNER_RIGHT
     ReleaseAll
     End
 
