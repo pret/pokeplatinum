@@ -46,7 +46,7 @@ _0070:
 
 _007D:
     WaitTime 30, VAR_RESULT
-    SetVar VAR_UNK_0x40D8, 1
+    SetVar VAR_BATTLE_TOWER_LOBBY_LOAD_ACTION, 1
     CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, VAR_RESULT
     SetVar VAR_0x8008, VAR_RESULT
     GoToIfEq VAR_0x8008, BATTLE_TOWER_MODE_WIFI, _00D9
@@ -110,7 +110,7 @@ _019C:
     End
 
 _01AC:
-    SetVar VAR_UNK_0x40D8, 2
+    SetVar VAR_BATTLE_TOWER_LOBBY_LOAD_ACTION, 2
     CallBattleTowerFunction BT_FUNC_UNK_39, 0, 0
     FreeBattleTower
     Message 4

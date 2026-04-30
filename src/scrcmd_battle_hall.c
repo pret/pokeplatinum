@@ -59,8 +59,8 @@ enum BattleHallSelectionSubTask {
 
 static BOOL CheckPartyIsBattleHallEligible(u16 numPokemonNeeded, SaveData *saveData);
 
-static void CheckSameSpeciesAsPartner(FieldTask *param0, u16 param1, u16 *param2);
-static BOOL CheckSameSpeciesAsPartnerTask(FieldTask *param0);
+static void CheckPartnerUsesDifferentSpecies(FieldTask *param0, u16 param1, u16 *param2);
+static BOOL CheckPartnerUsesDifferentSpeciesTask(FieldTask *param0);
 
 static void SelectBattleHallChallengers(FieldTask *task, void **partySelect, u8 challengeType);
 static BOOL BattleHallSelectChallengersTask(FieldTask *task);
@@ -192,16 +192,16 @@ BOOL ScrCmd_2D1(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_BattleHallCheckUsingSameSpeciesAsPartner(ScriptContext *ctx)
+BOOL ScrCmd_CheckBattleHallPartnerUsesDifferentSpecies(ScriptContext *ctx)
 {
     u16 species = ScriptContext_GetVar(ctx);
     u16 *result = ScriptContext_GetVarPointer(ctx);
 
-    CheckSameSpeciesAsPartner(ctx->task, species, result);
+    CheckPartnerUsesDifferentSpecies(ctx->task, species, result);
     return TRUE;
 }
 
-static void CheckSameSpeciesAsPartner(FieldTask *task, u16 species, u16 *speciesAreDifferent)
+static void CheckPartnerUsesDifferentSpecies(FieldTask *task, u16 species, u16 *speciesAreDifferent)
 {
     BattleHallSameSpeciesCheck *taskEnv = Heap_Alloc(HEAP_ID_FIELD2, sizeof(BattleHallSameSpeciesCheck));
     memset(taskEnv, 0, sizeof(BattleHallSameSpeciesCheck));
@@ -211,11 +211,11 @@ static void CheckSameSpeciesAsPartner(FieldTask *task, u16 species, u16 *species
 
     CommFieldCmd_Init(taskEnv);
 
-    FieldTask_InitCall(task, CheckSameSpeciesAsPartnerTask, taskEnv);
+    FieldTask_InitCall(task, CheckPartnerUsesDifferentSpeciesTask, taskEnv);
     return;
 }
 
-static BOOL CheckSameSpeciesAsPartnerTask(FieldTask *task)
+static BOOL CheckPartnerUsesDifferentSpeciesTask(FieldTask *task)
 {
     BattleHallSameSpeciesCheck *data = FieldTask_GetEnv(task);
 

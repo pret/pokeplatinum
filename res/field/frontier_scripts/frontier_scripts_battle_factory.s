@@ -427,7 +427,7 @@ _02A8:
 
 _02D6:
     FrontierScrCmd_3E VAR_BATTLE_FACTORY_CHALLENGE_TYPE, VAR_0x8001
-    FrontierScrCmd_3E VAR_UNK_0x40B9, VAR_0x8002
+    FrontierScrCmd_3E VAR_BATTLE_FACTORY_CHALLENGE_LEVEL, VAR_0x8002
     FrontierScrCmd_3E VAR_MAP_LOCAL_3, VAR_0x8003
     GetPlayerObjEventGfx VAR_0x8007
     GoToIfEq VAR_0x8001, FRONTIER_CHALLENGE_MULTI, _0320
@@ -922,7 +922,7 @@ _0BCB:
 
 _0BD9:
     FrontierScrCmd_67 22, 0, 0, VAR_0x8008
-    FrontierScrCmd_3D VAR_UNK_0x40B7, 1
+    FrontierScrCmd_3D VAR_BATTLE_FACTORY_LOBBY_LOAD_ACTION, 1
     Message BattleFactoryScene_Text_BPEarned
     BufferPlayerName 0
     FrontierScrCmd_67 35, 0, 0, VAR_0x8008
@@ -1229,7 +1229,7 @@ _10B7:
     SetVar VAR_0x8003, 1
     MessageInstant BattleFactoryScene_Text_Saving
     ShowSavingIcon
-    FrontierScrCmd_3E VAR_UNK_0x40B9, VAR_0x8008
+    FrontierScrCmd_3E VAR_BATTLE_FACTORY_CHALLENGE_LEVEL, VAR_0x8008
     GoToIfEq VAR_0x8008, 0, _10DE
     GoTo _10F7
     End
@@ -1274,7 +1274,7 @@ _113E:
     End
 
 _115C:
-    FrontierScrCmd_3D VAR_UNK_0x40B7, 2
+    FrontierScrCmd_3D VAR_BATTLE_FACTORY_LOBBY_LOAD_ACTION, 2
     FrontierScrCmd_67 10, 0, 0, VAR_0x8008
     Call _137B
     CloseMessage
@@ -1322,7 +1322,7 @@ _11FE:
 
 _1216:
     FrontierScrCmd_67 21, 0, 0, VAR_0x8008
-    FrontierScrCmd_3D VAR_UNK_0x40B7, 3
+    FrontierScrCmd_3D VAR_BATTLE_FACTORY_LOBBY_LOAD_ACTION, 3
     GoTo _12F3
     End
 
@@ -1359,7 +1359,7 @@ _12A2:
 
 _12AA:
     FrontierScrCmd_67 21, 0, 0, VAR_0x8008
-    FrontierScrCmd_3D VAR_UNK_0x40B7, 3
+    FrontierScrCmd_3D VAR_BATTLE_FACTORY_LOBBY_LOAD_ACTION, 3
     GoTo _12BF
     End
 

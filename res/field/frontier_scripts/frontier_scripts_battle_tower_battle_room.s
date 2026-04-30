@@ -316,7 +316,7 @@ _03DB:
 _03EF:
     FreeBattleRecording
     WaitTime 30, VAR_0x8008
-    FrontierScrCmd_3D VAR_UNK_0x40D8, 1
+    FrontierScrCmd_3D VAR_BATTLE_TOWER_LOBBY_LOAD_ACTION, 1
     CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, VAR_0x8008
     SetVar FR_VAR_0x8010, VAR_0x8008
     GoToIfEq FR_VAR_0x8010, BATTLE_TOWER_MODE_WIFI, _043F
@@ -484,7 +484,7 @@ _06B3:
     End
 
 _06D3:
-    FrontierScrCmd_3D VAR_UNK_0x40D8, 2
+    FrontierScrCmd_3D VAR_BATTLE_TOWER_LOBBY_LOAD_ACTION, 2
     CallBattleTowerFunction BT_FUNC_UNK_39, 0, VAR_0x8008
     FreeTowerStruct
     Message BattleTowerBattleRoom_Text_Saving

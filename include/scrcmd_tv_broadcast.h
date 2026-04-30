@@ -13,6 +13,6 @@ BOOL ScrCmd_CallTVInterview(ScriptContext *ctx);
 BOOL ScrCmd_CheckTVInterviewEligible(ScriptContext *ctx);
 BOOL ScrCmd_27C(ScriptContext *param0);
 BOOL ScrCmd_GetCurrentSafariGameCaughtNum(ScriptContext *ctx);
-BOOL ScrCmd_329(ScriptContext *param0);
+BOOL ScrCmd_GetBattleFrontierReporterPosition(ScriptContext *ctx);
 
 #endif // POKEPLATINUM_SCRCMD_TV_BROADCAST_H

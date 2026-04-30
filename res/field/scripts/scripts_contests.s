@@ -487,8 +487,8 @@ ContestRegistration_ReceptionistLinkContest_EstablishGroup:
     Message ContestRegistration_Text_OnePersonMustBeLeader
     InitGlobalTextMenu 30, 1, 0, VAR_RESULT
     SetMenuXOriginToRight
-    AddMenuEntryImm MenuEntries_Text_BattleTower_JoinGroup, ReceptionistLinkContest_EstablishGroupMenuItem_JoinGroup
-    AddMenuEntryImm MenuEntries_Text_BattleTower_BecomeLeader, ReceptionistLinkContest_EstablishGroupMenuItem_BecomeLeader
+    AddMenuEntryImm MenuEntries_Text_JoinGroup, ReceptionistLinkContest_EstablishGroupMenuItem_JoinGroup
+    AddMenuEntryImm MenuEntries_Text_BecomeLeader, ReceptionistLinkContest_EstablishGroupMenuItem_BecomeLeader
     AddMenuEntryImm MenuEntries_Text_Exit, ReceptionistLinkContest_EstablishGroupMenuItem_Exit
     ShowMenu
     SetVar VAR_0x8008, VAR_RESULT
