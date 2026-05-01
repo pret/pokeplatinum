@@ -2,23 +2,23 @@
   "key": 20529,
   "messages": [
     {
-      "id": "pl_msg_00000361_00000",
+      "id": "MenuEntries_Text_Status_Poisoned",
       "en_US": "POISONED"
     },
     {
-      "id": "pl_msg_00000361_00001",
+      "id": "MenuEntries_Text_Status_Paralyzed",
       "en_US": "PARALYZED"
     },
     {
-      "id": "pl_msg_00000361_00002",
+      "id": "MenuEntries_Text_Status_Asleep",
       "en_US": "ASLEEP"
     },
     {
-      "id": "pl_msg_00000361_00003",
+      "id": "MenuEntries_Text_Status_Burned",
       "en_US": "BURNED"
     },
     {
-      "id": "pl_msg_00000361_00004",
+      "id": "MenuEntries_Text_Status_Frozen",
       "en_US": "FROZEN"
     },
     {

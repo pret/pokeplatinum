@@ -2,118 +2,118 @@
 #include "res/text/bank/cafe.h"
 
 
-    ScriptEntry _0012
-    ScriptEntry _0018
-    ScriptEntry _002B
-    ScriptEntry _016A
+    ScriptEntry Cafe_OnTransition
+    ScriptEntry Cafe_Rancher
+    ScriptEntry Cafe_Waitress
+    ScriptEntry Cafe_OldMan
     ScriptEntryEnd
 
-_0012:
+Cafe_OnTransition:
     SetFlag FLAG_FIRST_ARRIVAL_ROUTE_210_COFFEE_SHOP
     End
 
-_0018:
-    NPCMessage 0
+Cafe_Rancher:
+    NPCMessage Cafe_Text_CustomersWantToBattle
     End
 
-_002B:
+Cafe_Waitress:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ShowMoney 20, 2
-    Message 1
-    GoTo _0044
+    Message Cafe_Text_MoomooMilk500ABottle
+    GoTo Cafe_MoomooMilkMenu
     End
 
-_0044:
+Cafe_MoomooMilkMenu:
     InitLocalTextMenu 30, 11, 0, VAR_RESULT
     SetMenuXOriginToRight
-    AddMenuEntryImm 7, 0
-    AddMenuEntryImm 8, 1
-    AddMenuEntryImm 9, 2
+    AddMenuEntryImm Cafe_Text_1Bottle, 0
+    AddMenuEntryImm Cafe_Text_1Dozen, 1
+    AddMenuEntryImm Cafe_Text_NoThanks, 2
     ShowMenu
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, 0, _0092
-    GoToIfEq VAR_0x8008, 1, _00BB
-    GoToIfEq VAR_0x8008, 2, _015D
-    GoTo _015D
+    GoToIfEq VAR_0x8008, 0, Cafe_TryBuyBottle
+    GoToIfEq VAR_0x8008, 1, Cafe_TryBuyDozen
+    GoToIfEq VAR_0x8008, 2, Cafe_AllRightThen
+    GoTo Cafe_AllRightThen
     End
 
-_0092:
-    GoToIfNotEnoughMoney 500, _0150
+Cafe_TryBuyBottle:
+    GoToIfNotEnoughMoney 500, Cafe_YouDontHaveTheMoney
     SetVar VAR_0x8005, 1
     SetVar VAR_0x8006, 500
-    GoTo _00E4
+    GoTo Cafe_GiveMoomooMilk
     End
 
-_00BB:
-    GoToIfNotEnoughMoney 6000, _0150
+Cafe_TryBuyDozen:
+    GoToIfNotEnoughMoney 6000, Cafe_YouDontHaveTheMoney
     SetVar VAR_0x8005, 12
     SetVar VAR_0x8006, 6000
-    GoTo _00E4
+    GoTo Cafe_GiveMoomooMilk
     End
 
-_00E4:
+Cafe_GiveMoomooMilk:
     SetVar VAR_0x8004, ITEM_MOOMOO_MILK
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0143
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Cafe_YourBagsFull
     AddToGameRecord RECORD_MONEY_SPENT, VAR_0x8006
     RemoveMoney2 VAR_0x8006
     UpdateMoneyDisplay
     PlaySE SEQ_SE_DP_REGI
     WaitSE SEQ_SE_DP_REGI
-    CallIfEq VAR_0x8006, 500, _0139
-    CallIfEq VAR_0x8006, 6000, _013E
+    CallIfEq VAR_0x8006, 500, Cafe_HeresYourMoomooMilk
+    CallIfEq VAR_0x8006, 6000, Cafe_GetMoomooMilkByDozen
     Common_GiveItemQuantityNoLineFeed
     CloseMessage
     HideMoney
     ReleaseAll
     End
 
-_0139:
-    Message 2
+Cafe_HeresYourMoomooMilk:
+    Message Cafe_Text_HeresYourMoomooMilk
     Return
 
-_013E:
-    Message 6
+Cafe_GetMoomooMilkByDozen:
+    Message Cafe_Text_GetMoomooMilkByDozen
     Return
 
-_0143:
-    Message 3
+Cafe_YourBagsFull:
+    Message Cafe_Text_YourBagsFull
     WaitButton
     CloseMessage
     HideMoney
     ReleaseAll
     End
 
-_0150:
-    Message 4
+Cafe_YouDontHaveTheMoney:
+    Message Cafe_Text_YouDontHaveTheMoney
     WaitButton
     CloseMessage
     HideMoney
     ReleaseAll
     End
 
-_015D:
-    Message 5
+Cafe_AllRightThen:
+    Message Cafe_Text_AllRightThen
     WaitButton
     CloseMessage
     HideMoney
     ReleaseAll
     End
 
-_016A:
+Cafe_OldMan:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_USED_SECRETPOTION, _0188
-    Message 10
+    GoToIfSet FLAG_USED_SECRETPOTION, Cafe_RelievedPsyduckOfHeadaches
+    Message Cafe_Text_SeenPsyduckHuddledOutside
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0188:
-    Message 11
+Cafe_RelievedPsyduckOfHeadaches:
+    Message Cafe_Text_RelievedPsyduckOfHeadaches
     WaitButton
     CloseMessage
     ReleaseAll

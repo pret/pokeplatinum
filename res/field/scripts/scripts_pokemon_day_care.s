@@ -2,26 +2,26 @@
 #include "res/text/bank/pokemon_day_care.h"
 
 
-    ScriptEntry _000E
-    ScriptEntry _0021
-    ScriptEntry _005C
+    ScriptEntry PokemonDayCare_OnTransition
+    ScriptEntry PokemonDayCare_GymGuide
+    ScriptEntry PokemonDayCare_Sign
     ScriptEntryEnd
 
-_000E:
-    CallIfSet FLAG_UNK_0x00FE, _001B
+PokemonDayCare_OnTransition:
+    CallIfSet FLAG_UNK_0x00FE, PokemonDayCare_ShowGymGuide
     End
 
-_001B:
+PokemonDayCare_ShowGymGuide:
     ClearFlag FLAG_HIDE_DAY_CARE_GYM_GUIDE
     Return
 
-_0021:
+PokemonDayCare_GymGuide:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     CheckPoketchAppRegistered POKETCH_APPID_DAYCARECHECKER, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _0051
-    Message 0
+    GoToIfEq VAR_RESULT, TRUE, PokemonDayCare_CheckOnDayCarePokemon
+    Message PokemonDayCare_Text_SharePoketchApp
     SetVar VAR_0x8004, POKETCH_APPID_DAYCARECHECKER
     Common_GivePoketchApp
     WaitButton
@@ -29,15 +29,15 @@ _0021:
     ReleaseAll
     End
 
-_0051:
-    Message 1
+PokemonDayCare_CheckOnDayCarePokemon:
+    Message PokemonDayCare_Text_CheckOnDayCarePokemon
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_005C:
-    EventMessage 2
+PokemonDayCare_Sign:
+    EventMessage PokemonDayCare_Text_PokemonGrowsWithYou
     End
 
     .balign 4, 0
