@@ -31,8 +31,8 @@ typedef struct {
     int dexMode;
     int unk_34;
     TrainerInfo *trainerInfoSize;
-    Pokemon *receivingPokemon;
-    Pokemon *sendingPokemon;
+    Pokemon *sendingMon;
+    Pokemon *receivingMon;
 } UnkStruct_ov88_0223C370;
 
 #endif // POKEPLATINUM_STRUCT_OV88_0223C370_H

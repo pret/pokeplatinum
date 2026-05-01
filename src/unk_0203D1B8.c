@@ -545,7 +545,17 @@ PartyMenu *FieldSystem_OpenPartyMenu_SelectForSpinTrade(FieldSystem *fieldSystem
 
 PokemonSummary *sub_0203D670(FieldSystem *fieldSystem, enum HeapID heapID, int mode)
 {
-    static const u8 visiblePages[] = { 0, 1, 2, 4, 3, 5, 6, 7, 8 };
+    static const u8 visiblePages[] = {
+        SUMMARY_PAGE_INFO,
+        SUMMARY_PAGE_MEMO,
+        SUMMARY_PAGE_SKILLS,
+        SUMMARY_PAGE_CONDITION,
+        SUMMARY_PAGE_BATTLE_MOVES,
+        SUMMARY_PAGE_CONTEST_MOVES,
+        SUMMARY_PAGE_RIBBONS,
+        SUMMARY_PAGE_EXIT,
+        SUMMARY_PAGE_MAX,
+    };
 
     SaveData *saveData = fieldSystem->saveData;
     PokemonSummary *monSummary = Heap_AllocAtEnd(heapID, sizeof(PokemonSummary));
@@ -571,7 +581,11 @@ PokemonSummary *sub_0203D670(FieldSystem *fieldSystem, enum HeapID heapID, int m
 
 void *FieldSystem_OpenSummaryScreenSelectMove(enum HeapID heapID, FieldSystem *fieldSystem, u8 partySlot)
 {
-    static const u8 visiblePages[] = { 3, 5, 8 };
+    static const u8 visiblePages[] = {
+        SUMMARY_PAGE_BATTLE_MOVES,
+        SUMMARY_PAGE_CONTEST_MOVES,
+        SUMMARY_PAGE_MAX,
+    };
 
     PokemonSummary *summary = Heap_Alloc(heapID, sizeof(PokemonSummary));
 
@@ -910,8 +924,8 @@ static void sub_0203DB38(UnkStruct_ov88_0223C370 *param0, FieldSystem *fieldSyst
     param0->journalEntry = fieldSystem->journalEntry;
     param0->records = SaveData_GetGameRecords(fieldSystem->saveData);
     param0->trainerInfoSize = Heap_Alloc(HEAP_ID_FIELD3, TrainerInfo_Size());
-    param0->receivingPokemon = Heap_Alloc(HEAP_ID_FIELD3, Pokemon_GetStructSize());
-    param0->sendingPokemon = Heap_Alloc(HEAP_ID_FIELD3, Pokemon_GetStructSize());
+    param0->sendingMon = Heap_Alloc(HEAP_ID_FIELD3, Pokemon_GetStructSize());
+    param0->receivingMon = Heap_Alloc(HEAP_ID_FIELD3, Pokemon_GetStructSize());
     param0->fieldSystem = fieldSystem;
     param0->unk_34 = 0;
 }
@@ -923,14 +937,14 @@ static void sub_0203DBC0(UnkStruct_ov88_0223C370 *param0)
         param0->trainerInfoSize = NULL;
     }
 
-    if (param0->receivingPokemon) {
-        Heap_Free(param0->receivingPokemon);
-        param0->receivingPokemon = NULL;
+    if (param0->sendingMon) {
+        Heap_Free(param0->sendingMon);
+        param0->sendingMon = NULL;
     }
 
-    if (param0->sendingPokemon) {
-        Heap_Free(param0->sendingPokemon);
-        param0->sendingPokemon = NULL;
+    if (param0->receivingMon) {
+        Heap_Free(param0->receivingMon);
+        param0->receivingMon = NULL;
     }
 }
 
@@ -979,8 +993,8 @@ BOOL sub_0203DBF0(FieldTask *taskMan)
         break;
     case 4:
         taskEnv->unk_48.otherTrainer = taskEnv->unk_04.trainerInfoSize;
-        taskEnv->unk_48.sendingPokemon = Pokemon_GetBoxPokemon(taskEnv->unk_04.receivingPokemon);
-        taskEnv->unk_48.receivingPokemon = Pokemon_GetBoxPokemon(taskEnv->unk_04.sendingPokemon);
+        taskEnv->unk_48.sendingPokemon = Pokemon_GetBoxPokemon(taskEnv->unk_04.sendingMon);
+        taskEnv->unk_48.receivingPokemon = Pokemon_GetBoxPokemon(taskEnv->unk_04.receivingMon);
         taskEnv->unk_48.options = SaveData_GetOptions(fieldSystem->saveData);
         taskEnv->unk_48.tradeType = TRADE_TYPE_NORMAL;
 
@@ -1007,13 +1021,13 @@ BOOL sub_0203DBF0(FieldTask *taskMan)
         taskEnv->unk_00 = 5;
         break;
     case 5: {
-        int v3 = Pokemon_GetValue(taskEnv->unk_04.sendingPokemon, MON_DATA_HELD_ITEM, NULL);
+        int v3 = Pokemon_GetValue(taskEnv->unk_04.receivingMon, MON_DATA_HELD_ITEM, NULL);
         int v4;
         int v5;
 
-        if ((v4 = Pokemon_GetEvolutionTargetSpecies(NULL, taskEnv->unk_04.sendingPokemon, EVO_CLASS_BY_TRADE, v3, &v5)) != 0) {
+        if ((v4 = Pokemon_GetEvolutionTargetSpecies(NULL, taskEnv->unk_04.receivingMon, EVO_CLASS_BY_TRADE, v3, &v5)) != 0) {
             Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_26, 0x30000);
-            taskEnv->unk_60 = Evolution_Begin(NULL, taskEnv->unk_04.sendingPokemon, v4, SaveData_GetOptions(fieldSystem->saveData), PokemonSummaryScreen_ShowContestData(fieldSystem->saveData), SaveData_GetPokedex(fieldSystem->saveData), SaveData_GetBag(fieldSystem->saveData), SaveData_GetGameRecords(fieldSystem->saveData), SaveData_GetPoketch(fieldSystem->saveData), v5, 0x4, HEAP_ID_26);
+            taskEnv->unk_60 = Evolution_Begin(NULL, taskEnv->unk_04.receivingMon, v4, SaveData_GetOptions(fieldSystem->saveData), PokemonSummaryScreen_ShowContestData(fieldSystem->saveData), SaveData_GetPokedex(fieldSystem->saveData), SaveData_GetBag(fieldSystem->saveData), SaveData_GetGameRecords(fieldSystem->saveData), SaveData_GetPoketch(fieldSystem->saveData), v5, 0x4, HEAP_ID_26);
             taskEnv->unk_00 = 6;
         } else {
             taskEnv->unk_00 = 7;
@@ -1021,7 +1035,7 @@ BOOL sub_0203DBF0(FieldTask *taskMan)
     } break;
     case 6:
         if (Evolution_IsDone(taskEnv->unk_60)) {
-            Pokemon_Copy(taskEnv->unk_04.sendingPokemon, Party_GetPokemonBySlotIndex(taskEnv->unk_04.party, taskEnv->unk_04.unk_2C));
+            Pokemon_Copy(taskEnv->unk_04.receivingMon, Party_GetPokemonBySlotIndex(taskEnv->unk_04.party, taskEnv->unk_04.unk_2C));
             Evolution_Free(taskEnv->unk_60);
             Heap_Destroy(HEAP_ID_26);
             taskEnv->unk_00 = 7;
@@ -1636,8 +1650,6 @@ void *FieldSystem_ShowDiploma(FieldSystem *fieldSystem, enum HeapID heapID, BOOL
 
 void *FieldSystem_OpenBattleFrontierRecord(FieldSystem *fieldSystem, u8 challengeType, u8 facility, u16 species, enum HeapID heapID)
 {
-    FrontierRecordsAppArgs *args;
-
     FS_EXTERN_OVERLAY(frontier_records_app);
 
     static ApplicationManagerTemplate template = {
@@ -1647,7 +1659,7 @@ void *FieldSystem_OpenBattleFrontierRecord(FieldSystem *fieldSystem, u8 challeng
         FS_OVERLAY_ID(frontier_records_app)
     };
 
-    args = Heap_Alloc(heapID, sizeof(FrontierRecordsAppArgs));
+    FrontierRecordsAppArgs *args = Heap_Alloc(heapID, sizeof(FrontierRecordsAppArgs));
 
     args->challengeType = challengeType;
     args->facility = facility;

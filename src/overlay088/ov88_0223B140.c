@@ -113,7 +113,7 @@ static void ov88_0223E998(UnkStruct_02095E80 *param0);
 static void ov88_0223B710(StringTemplate *param0, Party *param1, int param2);
 static void ov88_0223B748(Window *param0, StringTemplate *param1, MessageLoader *param2, Party *param3, int param4);
 static void ov88_0223C8D8(Window *param0, int param1, Party *param2, int param3, UnkStruct_02095E80 *param4);
-static void ov88_0223E694(Party *param0, Party *party, int slot1, int slot2, UnkStruct_ov88_0223C370 *param4);
+static void ov88_0223E694(Party *trainerParty, Party *otherParty, int trainerSlot, int otherSlot, UnkStruct_ov88_0223C370 *trainer);
 static void ov88_0223BF7C(UnkStruct_02095E80 *param0);
 static void ov88_0223B4F0(UnkStruct_02095E80 *param0);
 static void ov88_0223BFD8(UnkStruct_02095E80 *param0);
@@ -1623,8 +1623,6 @@ static void *ov88_0223D08C(Party *param0, int param1)
 void ov88_0223D098(int param0, Party *param1, int param2)
 {
     if (CommSys_IsPlayerConnected(param0)) {
-        u8 v0 = param2;
-
         CommSys_SendDataHuge(22, ov88_0223D08C(param1, param2), 236 * 6 + 4 * 2);
     }
 }
@@ -1632,7 +1630,6 @@ void ov88_0223D098(int param0, Party *param1, int param2)
 static void ov88_0223D0C0(SaveData *saveData)
 {
     u8 *v0 = SaveData_GetRibbons(saveData);
-    int v1;
 
     CommSys_SendData(32, v0, 14);
 }
@@ -1690,16 +1687,16 @@ static int ov88_0223D150(UnkStruct_02095E80 *param0)
     return 0;
 }
 
-static const u8 Unk_ov88_0223F13C[] = {
-    0x0,
-    0x1,
-    0x2,
-    0x4,
-    0x3,
-    0x5,
-    0x6,
-    0x7,
-    0x8
+static const u8 visiblePages[] = {
+    SUMMARY_PAGE_INFO,
+    SUMMARY_PAGE_MEMO,
+    SUMMARY_PAGE_SKILLS,
+    SUMMARY_PAGE_CONDITION,
+    SUMMARY_PAGE_BATTLE_MOVES,
+    SUMMARY_PAGE_CONTEST_MOVES,
+    SUMMARY_PAGE_RIBBONS,
+    SUMMARY_PAGE_EXIT,
+    SUMMARY_PAGE_MAX,
 };
 
 static void ov88_0223D1EC(UnkStruct_02095E80 *param0, int param1)
@@ -1726,7 +1723,7 @@ static void ov88_0223D1EC(UnkStruct_02095E80 *param0, int param1)
     param0->unk_0C.options = param0->unk_08->options;
     param0->unk_0C.specialRibbons = SaveData_GetRibbons(param0->unk_08->saveData);
 
-    PokemonSummaryScreen_FlagVisiblePages(&param0->unk_0C, Unk_ov88_0223F13C);
+    PokemonSummaryScreen_FlagVisiblePages(&param0->unk_0C, visiblePages);
 
     param0->appMan = ApplicationManager_New(&gPokemonSummaryScreenApp, &param0->unk_0C, HEAP_ID_26);
     param0->unk_3C = param1;
@@ -2453,51 +2450,51 @@ static int ov88_0223E5B8(UnkStruct_02095E80 *param0)
     return 0;
 }
 
-static void ov88_0223E694(Party *param0, Party *party, int slot1, int slot2, UnkStruct_ov88_0223C370 *param4)
+static void ov88_0223E694(Party *trainerParty, Party *otherParty, int trainerSlot, int otherSlot, UnkStruct_ov88_0223C370 *trainer)
 {
-    Pokemon *v0 = Pokemon_New(HEAP_ID_26);
-    Pokemon *v1 = Pokemon_New(HEAP_ID_26);
+    Pokemon *sendingMon = Pokemon_New(HEAP_ID_26);
+    Pokemon *receivingMon = Pokemon_New(HEAP_ID_26);
 
-    Pokemon_Copy(Party_GetPokemonBySlotIndex(param0, slot1), v0);
-    Pokemon_Copy(Party_GetPokemonBySlotIndex(party, slot2), v1);
+    Pokemon_Copy(Party_GetPokemonBySlotIndex(trainerParty, trainerSlot), sendingMon);
+    Pokemon_Copy(Party_GetPokemonBySlotIndex(otherParty, otherSlot), receivingMon);
 
-    if (Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL) == SPECIES_ARCEUS) {
-        if (Pokemon_GetValue(v1, MON_DATA_FATEFUL_ENCOUNTER, NULL) || ((Pokemon_GetValue(v1, MON_DATA_MET_LOCATION, NULL) == 86) && (Pokemon_GetValue(v1, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 0))) {
-            VarsFlags *v2 = SaveData_GetVarsFlags(param4->saveData);
+    if (Pokemon_GetValue(receivingMon, MON_DATA_SPECIES, NULL) == SPECIES_ARCEUS) {
+        if (Pokemon_GetValue(receivingMon, MON_DATA_FATEFUL_ENCOUNTER, NULL) || Pokemon_GetValue(receivingMon, MON_DATA_MET_LOCATION, NULL) == 86 && Pokemon_GetValue(receivingMon, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 0) {
+            VarsFlags *varsFlag = SaveData_GetVarsFlags(trainer->saveData);
 
-            if (SystemVars_GetArceusEventState(v2) == 0) {
-                SystemVars_SetArceusEventState(v2, 1);
+            if (SystemVars_GetArceusEventState(varsFlag) == 0) {
+                SystemVars_SetArceusEventState(varsFlag, 1);
             }
         }
     }
 
-    Pokemon_SetValue(v1, MON_DATA_GENDER, NULL);
+    Pokemon_SetValue(receivingMon, MON_DATA_GENDER, NULL);
 
-    if (Pokemon_GetValue(v1, MON_DATA_IS_EGG, NULL) == 0) {
-        u8 v3 = 70;
-        Pokemon_SetValue(v1, MON_DATA_FRIENDSHIP, &v3);
+    if (Pokemon_GetValue(receivingMon, MON_DATA_IS_EGG, NULL) == 0) {
+        u8 friendship = 70;
+        Pokemon_SetValue(receivingMon, MON_DATA_FRIENDSHIP, &friendship);
     }
 
-    UpdateMonStatusAndTrainerInfo(v1, CommInfo_TrainerInfo(CommSys_CurNetId()), 5, 0, HEAP_ID_FIELD2);
-    Pokemon_ClearBallCapsuleData(v1);
-    Pokemon_Copy(v0, param4->receivingPokemon);
-    Pokemon_Copy(v1, param4->sendingPokemon);
-    TrainerInfo_Copy(CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1), param4->trainerInfoSize);
+    UpdateMonStatusAndTrainerInfo(receivingMon, CommInfo_TrainerInfo(CommSys_CurNetId()), 5, 0, HEAP_ID_FIELD2);
+    Pokemon_ClearBallCapsuleData(receivingMon);
+    Pokemon_Copy(sendingMon, trainer->sendingMon);
+    Pokemon_Copy(receivingMon, trainer->receivingMon);
+    TrainerInfo_Copy(CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1), trainer->trainerInfoSize);
 
-    param4->unk_2C = slot1;
+    trainer->unk_2C = trainerSlot;
 
-    if (Party_HasSpecies(param0, SPECIES_CHATOT) == 0) {
-        ChatotCry *chatotCry = SaveData_GetChatotCry(param4->saveData);
+    if (!Party_HasSpecies(trainerParty, SPECIES_CHATOT)) {
+        ChatotCry *chatotCry = SaveData_GetChatotCry(trainer->saveData);
         ChatotCry_ResetStatus(chatotCry);
     }
 
-    SaveData_UpdateCatchRecords(param4->saveData, v1);
-    Pokemon_Copy(v1, Party_GetPokemonBySlotIndex(param0, slot1));
-    Pokemon_Copy(v0, Party_GetPokemonBySlotIndex(party, slot2));
-    ov88_0223E7F0(param4->journalEntry, v1);
-    GameRecords_IncrementRecordValue(param4->records, RECORD_LOCAL_LINK_TRADES);
-    Heap_Free(v0);
-    Heap_Free(v1);
+    SaveData_UpdateCatchRecords(trainer->saveData, receivingMon);
+    Pokemon_Copy(receivingMon, Party_GetPokemonBySlotIndex(trainerParty, trainerSlot));
+    Pokemon_Copy(sendingMon, Party_GetPokemonBySlotIndex(otherParty, otherSlot));
+    ov88_0223E7F0(trainer->journalEntry, receivingMon);
+    GameRecords_IncrementRecordValue(trainer->records, RECORD_LOCAL_LINK_TRADES);
+    Heap_Free(sendingMon);
+    Heap_Free(receivingMon);
 }
 
 static void ov88_0223E7F0(JournalEntry *journalEntry, Pokemon *mon)

@@ -223,20 +223,18 @@ static void sub_0202B088(WiFiList *wiFiList, int param1, int param2)
 
 void sub_0202B0F8(WiFiList *wiFiList)
 {
-    int v0, v1 = -1;
+    int i, v1 = -1;
 
-    for (v0 = 0; v0 < 32; v0++) {
-        if (sub_0202AF78(wiFiList, v0)) {
+    for (i = 0; i < 32; i++) {
+        if (sub_0202AF78(wiFiList, i)) {
             if (v1 != -1) {
-                sub_0202B088(wiFiList, v1, v0);
+                sub_0202B088(wiFiList, v1, i);
 
-                v0 = -1;
+                i = -1;
                 v1 = -1;
             }
-        } else {
-            if (v1 == -1) {
-                v1 = v0;
-            }
+        } else if (v1 == -1) {
+            v1 = i;
         }
     }
 }

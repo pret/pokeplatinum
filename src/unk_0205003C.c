@@ -60,21 +60,13 @@ static BOOL sub_02050264(FieldTask *param0);
 BOOL ScrCmd_2D9(ScriptContext *param0)
 {
     u8 v0;
-    u8 v1[4];
-    u16 v2[4];
-    u16 v3, v4, v5;
-    u16 *v6, *v7;
-    void **v8;
-    UnkStruct_020304A0 *v10;
-    UnkStruct_020305B8 *v11;
-
-    v3 = ScriptContext_ReadHalfWord(param0);
-    v4 = ScriptContext_GetVar(param0);
-    v5 = ScriptContext_ReadHalfWord(param0);
-    v6 = FieldSystem_GetVarPointer(param0->fieldSystem, v5);
-    v10 = sub_020304A0(param0->fieldSystem->saveData);
-    v11 = sub_020305B8(param0->fieldSystem->saveData);
-    v8 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, 19);
+    u16 v3 = ScriptContext_ReadHalfWord(param0);
+    u16 v4 = ScriptContext_GetVar(param0);
+    u16 v5 = ScriptContext_ReadHalfWord(param0);
+    u16 *v6 = FieldSystem_GetVarPointer(param0->fieldSystem, v5);
+    UnkStruct_020304A0 *v10 = sub_020304A0(param0->fieldSystem->saveData);
+    UnkStruct_020305B8 *v11 = sub_020305B8(param0->fieldSystem->saveData);
+    void **v8 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, 19);
 
     switch (v3) {
     case 0:
@@ -114,10 +106,9 @@ BOOL ScrCmd_2D9(ScriptContext *param0)
 
 BOOL ScrCmd_2DC(ScriptContext *param0)
 {
-    UnkStruct_020305B8 *v0;
     u16 v1 = ScriptContext_GetVar(param0);
 
-    v0 = sub_020305B8(param0->fieldSystem->saveData);
+    UnkStruct_020305B8 *v0 = sub_020305B8(param0->fieldSystem->saveData);
     sub_02050174(param0->fieldSystem->saveData, v0, v1);
 
     return 0;
@@ -125,8 +116,6 @@ BOOL ScrCmd_2DC(ScriptContext *param0)
 
 static void sub_02050174(SaveData *saveData, UnkStruct_020305B8 *param1, u8 param2)
 {
-    int v0;
-    u16 v1[4];
     u8 v2[4];
 
     v2[0] = 0;
@@ -137,7 +126,6 @@ static void sub_02050174(SaveData *saveData, UnkStruct_020305B8 *param1, u8 para
     }
 
     BattleFrontierStats_SetStat(SaveData_GetBattleFrontier(saveData), BattleFrontierStats_GetArcadeLatestStreakIndex(param2), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetArcadeLatestStreakIndex(param2)), 0);
-    return;
 }
 
 BOOL ScrCmd_2DA(ScriptContext *param0)
@@ -207,7 +195,6 @@ void sub_020502E0(FieldTask *param0, void **param1, u8 param2)
     v1->unk_0C = param1;
 
     FieldTask_InitCall(fieldSystem->task, sub_02050314, v1);
-    return;
 }
 
 static BOOL sub_02050314(FieldTask *param0)
@@ -266,21 +253,19 @@ static int sub_0205037C(UnkStruct_0205037C *param0, FieldSystem *fieldSystem, in
     }
 
     FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMenu);
-    *(param0->unk_0C) = partyMenu;
+    *param0->unk_0C = partyMenu;
 
     return 1;
 }
 
 static int sub_02050448(UnkStruct_0205037C *param0, FieldSystem *fieldSystem)
 {
-    int v0;
-    PartyMenu *partyMenu;
 
     if (FieldSystem_IsRunningApplication(fieldSystem)) {
         return 1;
     }
 
-    partyMenu = *(param0->unk_0C);
+    PartyMenu *partyMenu = *param0->unk_0C;
 
     switch (partyMenu->selectedMonSlot) {
     case 7:
@@ -294,55 +279,59 @@ static int sub_02050448(UnkStruct_0205037C *param0, FieldSystem *fieldSystem)
     MI_CpuCopy8(partyMenu->selectionOrder, param0->unk_06, 3);
     param0->unk_05 = partyMenu->selectedMonSlot;
     Heap_Free(partyMenu);
-    *(param0->unk_0C) = NULL;
+    *param0->unk_0C = NULL;
 
     return 2;
 }
 
 static int sub_02050498(UnkStruct_0205037C *param0, FieldSystem *fieldSystem, enum HeapID heapID)
 {
-    PokemonSummary *v0;
-    SaveData *saveData;
-    static const u8 v2[] = {
-        0, 1, 2, 4, 3, 5, 6, 7, 8
+    static const u8 visiblePages[] = {
+        SUMMARY_PAGE_INFO,
+        SUMMARY_PAGE_MEMO,
+        SUMMARY_PAGE_SKILLS,
+        SUMMARY_PAGE_CONDITION,
+        SUMMARY_PAGE_BATTLE_MOVES,
+        SUMMARY_PAGE_CONTEST_MOVES,
+        SUMMARY_PAGE_RIBBONS,
+        SUMMARY_PAGE_EXIT,
+        SUMMARY_PAGE_MAX,
     };
 
-    saveData = fieldSystem->saveData;
-    v0 = Heap_AllocAtEnd(heapID, sizeof(PokemonSummary));
+    SaveData *saveData = fieldSystem->saveData;
+    PokemonSummary *monSummary = Heap_AllocAtEnd(heapID, sizeof(PokemonSummary));
 
-    MI_CpuClear8(v0, sizeof(PokemonSummary));
+    MI_CpuClear8(monSummary, sizeof(PokemonSummary));
 
-    v0->options = SaveData_GetOptions(saveData);
-    v0->monData = SaveData_GetParty(saveData);
-    v0->dexMode = SaveData_GetDexMode(saveData);
-    v0->showContest = PokemonSummaryScreen_ShowContestData(saveData);
-    v0->dataType = 1;
-    v0->monIndex = param0->unk_05;
-    v0->monMax = (u8)Party_GetCurrentCount(v0->monData);
-    v0->move = 0;
-    v0->mode = SUMMARY_MODE_NORMAL;
-    v0->specialRibbons = SaveData_GetRibbons(saveData);
+    monSummary->options = SaveData_GetOptions(saveData);
+    monSummary->monData = SaveData_GetParty(saveData);
+    monSummary->dexMode = SaveData_GetDexMode(saveData);
+    monSummary->showContest = PokemonSummaryScreen_ShowContestData(saveData);
+    monSummary->dataType = 1;
+    monSummary->monIndex = param0->unk_05;
+    monSummary->monMax = (u8)Party_GetCurrentCount(monSummary->monData);
+    monSummary->move = 0;
+    monSummary->mode = SUMMARY_MODE_NORMAL;
+    monSummary->specialRibbons = SaveData_GetRibbons(saveData);
 
-    PokemonSummaryScreen_FlagVisiblePages(v0, v2);
-    PokemonSummaryScreen_SetPlayerProfile(v0, SaveData_GetTrainerInfo(saveData));
-    FieldSystem_StartChildProcess(fieldSystem, &gPokemonSummaryScreenApp, v0);
+    PokemonSummaryScreen_FlagVisiblePages(monSummary, visiblePages);
+    PokemonSummaryScreen_SetPlayerProfile(monSummary, SaveData_GetTrainerInfo(saveData));
+    FieldSystem_StartChildProcess(fieldSystem, &gPokemonSummaryScreenApp, monSummary);
 
-    *(param0->unk_0C) = v0;
+    *param0->unk_0C = monSummary;
     return 3;
 }
 
 static int sub_02050520(UnkStruct_0205037C *param0, FieldSystem *fieldSystem)
 {
-    PokemonSummary *v0;
-
     if (FieldSystem_IsRunningApplication(fieldSystem)) {
         return 3;
     }
 
-    v0 = *(param0->unk_0C);
-    param0->unk_05 = v0->monIndex;
-    Heap_Free(v0);
-    *(param0->unk_0C) = NULL;
+    PokemonSummary *monSummary = *param0->unk_0C;
+    param0->unk_05 = monSummary->monIndex;
+    Heap_Free(monSummary);
+    *param0->unk_0C = NULL;
 
     return 0;
 }

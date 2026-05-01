@@ -126,7 +126,17 @@ static int sub_0206BA84(UnkStruct_0206B9D8 *param0, FieldSystem *fieldSystem)
 
 static int sub_0206BAE0(UnkStruct_0206B9D8 *param0, FieldSystem *fieldSystem, enum HeapID heapID)
 {
-    static const u8 visiblePages[] = { 0, 1, 2, 4, 3, 5, 6, 7, 8 };
+    static const u8 visiblePages[] = {
+        SUMMARY_PAGE_INFO,
+        SUMMARY_PAGE_MEMO,
+        SUMMARY_PAGE_SKILLS,
+        SUMMARY_PAGE_CONDITION,
+        SUMMARY_PAGE_BATTLE_MOVES,
+        SUMMARY_PAGE_CONTEST_MOVES,
+        SUMMARY_PAGE_RIBBONS,
+        SUMMARY_PAGE_EXIT,
+        SUMMARY_PAGE_MAX,
+    };
 
     SaveData *saveData = fieldSystem->saveData;
     PokemonSummary *monSummary = Heap_AllocAtEnd(heapID, sizeof(PokemonSummary));

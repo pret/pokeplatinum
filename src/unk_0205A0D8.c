@@ -114,40 +114,45 @@ static void sub_0205AAA0(UnkStruct_0205A0D8 *param0, BOOL param1);
 static void sub_0205AF18(UnkStruct_0205A0D8 *param0, int param1);
 static BOOL sub_0205AD20(UnkStruct_0205A0D8 *param0);
 
-static void sub_0205A0D8(UnkStruct_0205A0D8 *param0, FieldSystem *fieldSystem, Party *param2, int param3, int param4, enum HeapID heapID)
+static void sub_0205A0D8(UnkStruct_0205A0D8 *param0, FieldSystem *fieldSystem, Party *param2, int slot, int param4, enum HeapID heapID)
 {
-    PokemonSummary *v0;
-    SaveData *saveData;
-    static const u8 v2[] = {
-        0, 1, 2, 4, 3, 5, 6, 7, 8
+    static const u8 visiblePages[] = {
+        SUMMARY_PAGE_INFO,
+        SUMMARY_PAGE_MEMO,
+        SUMMARY_PAGE_SKILLS,
+        SUMMARY_PAGE_CONDITION,
+        SUMMARY_PAGE_BATTLE_MOVES,
+        SUMMARY_PAGE_CONTEST_MOVES,
+        SUMMARY_PAGE_RIBBONS,
+        SUMMARY_PAGE_EXIT,
+        SUMMARY_PAGE_MAX,
     };
 
-    saveData = fieldSystem->saveData;
-    v0 = Heap_AllocAtEnd(heapID, sizeof(PokemonSummary));
+    SaveData *saveData = fieldSystem->saveData;
+    PokemonSummary *monSummary = Heap_AllocAtEnd(heapID, sizeof(PokemonSummary));
 
-    MI_CpuClear8(v0, sizeof(PokemonSummary));
-    PokemonSummaryScreen_SetPlayerProfile(v0, SaveData_GetTrainerInfo(fieldSystem->saveData));
+    MI_CpuClear8(monSummary, sizeof(PokemonSummary));
+    PokemonSummaryScreen_SetPlayerProfile(monSummary, SaveData_GetTrainerInfo(fieldSystem->saveData));
 
-    v0->dexMode = SaveData_GetDexMode(saveData);
-    v0->showContest = PokemonSummaryScreen_ShowContestData(saveData);
-    v0->options = SaveData_GetOptions(saveData);
-    v0->monData = param2;
-    v0->dataType = SUMMARY_DATA_PARTY_MON;
-    v0->monIndex = param3;
-    v0->monMax = Party_GetCurrentCount(v0->monData);
-    v0->move = 0;
-    v0->mode = param4;
-    v0->specialRibbons = SaveData_GetRibbons(saveData);
+    monSummary->dexMode = SaveData_GetDexMode(saveData);
+    monSummary->showContest = PokemonSummaryScreen_ShowContestData(saveData);
+    monSummary->options = SaveData_GetOptions(saveData);
+    monSummary->monData = param2;
+    monSummary->dataType = SUMMARY_DATA_PARTY_MON;
+    monSummary->monIndex = slot;
+    monSummary->monMax = Party_GetCurrentCount(monSummary->monData);
+    monSummary->move = 0;
+    monSummary->mode = param4;
+    monSummary->specialRibbons = SaveData_GetRibbons(saveData);
 
-    PokemonSummaryScreen_FlagVisiblePages(v0, v2);
-    FieldSystem_StartChildProcess(fieldSystem, &gPokemonSummaryScreenApp, v0);
+    PokemonSummaryScreen_FlagVisiblePages(monSummary, visiblePages);
+    FieldSystem_StartChildProcess(fieldSystem, &gPokemonSummaryScreenApp, monSummary);
 
-    param0->unk_00 = v0;
+    param0->unk_00 = monSummary;
 }
 
 static void sub_0205A164(UnkStruct_0205A0D8 *param0, enum HeapID heapID)
 {
-    int v0;
     PartyMenu *partyMenu = Heap_Alloc(heapID, sizeof(PartyMenu));
 
     MI_CpuClear8(partyMenu, sizeof(PartyMenu));
@@ -170,8 +175,8 @@ static void sub_0205A164(UnkStruct_0205A0D8 *param0, enum HeapID heapID)
     partyMenu->reqLevel = 100;
     partyMenu->selectedMonSlot = param0->unk_3C;
 
-    for (v0 = 0; v0 < 6; v0++) {
-        partyMenu->selectionOrder[v0] = param0->unk_3D[v0];
+    for (int i = 0; i < 6; i++) {
+        partyMenu->selectionOrder[i] = param0->unk_3D[i];
     }
 
     FieldSystem_StartChildProcess(param0->fieldSystem, &gPokemonPartyAppTemplate, partyMenu);
@@ -180,8 +185,6 @@ static void sub_0205A164(UnkStruct_0205A0D8 *param0, enum HeapID heapID)
 
 static BOOL sub_0205A258(UnkStruct_0205A0D8 *param0, FieldSystem *fieldSystem)
 {
-    int v0;
-
     if (FieldSystem_IsRunningApplication(fieldSystem)) {
         return 0;
     }
@@ -209,8 +212,6 @@ static BOOL sub_0205A258(UnkStruct_0205A0D8 *param0, FieldSystem *fieldSystem)
 
 static BOOL sub_0205A2B0(UnkStruct_0205A0D8 *param0, FieldSystem *fieldSystem)
 {
-    PokemonSummary *v0;
-
     if (FieldSystem_IsRunningApplication(fieldSystem)) {
         return 0;
     }
@@ -235,12 +236,11 @@ static BOOL sub_0205A2DC(UnkStruct_0205A0D8 *param0)
 
 static BOOL sub_0205A2FC(void)
 {
-    int v0, v1;
+    int i;
+    int v1 = CommSys_ConnectedCount();
 
-    v1 = CommSys_ConnectedCount();
-
-    for (v0 = 0; v0 < v1; v0++) {
-        if (CommTool_GetSyncNo(v0) == 94) {
+    for (i = 0; i < v1; i++) {
+        if (CommTool_GetSyncNo(i) == 94) {
             return 1;
         }
     }
