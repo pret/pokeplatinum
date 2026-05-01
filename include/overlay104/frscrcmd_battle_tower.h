@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_OV104_02239130_H
-#define POKEPLATINUM_OV104_02239130_H
+#ifndef POKEPLATINUM_FRSCRCMD_BATTLE_TOWER_H
+#define POKEPLATINUM_FRSCRCMD_BATTLE_TOWER_H
 
 #include "overlay104/defs.h"
 
@@ -11,4 +11,4 @@ BOOL FrontierScrCmd_BattleTower_CheckWonBattle(FrontierScriptContext *ctx);
 BOOL FrontierScrCmd_89(FrontierScriptContext *param0);
 BOOL FrontierScrCmd_8A(FrontierScriptContext *param0);
 
-#endif // POKEPLATINUM_OV104_02239130_H
+#endif // POKEPLATINUM_FRSCRCMD_BATTLE_TOWER_H

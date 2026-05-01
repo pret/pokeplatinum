@@ -2,7 +2,7 @@
 #define POKEPLATINUM_OV104_022339B4_H
 
 #include "applications/frontier/battle_factory/main.h"
-#include "overlay104/struct_ov104_0223ADA0.h"
+#include "overlay104/struct_battle_factory.h"
 
 #include "savedata.h"
 

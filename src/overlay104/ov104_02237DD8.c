@@ -13,7 +13,7 @@
 #include "overlay104/ov104_0222ECE8.h"
 #include "overlay104/ov104_02231F74.h"
 #include "overlay104/ov104_0223BCBC.h"
-#include "overlay104/struct_ov104_0223BFFC.h"
+#include "overlay104/struct_battle_arcade.h"
 
 #include "battle_frontier_stats.h"
 #include "bg_window.h"

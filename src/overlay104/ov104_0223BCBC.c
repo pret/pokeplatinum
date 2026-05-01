@@ -8,8 +8,8 @@
 #include "struct_defs/battle_frontier_trainer_data.h"
 
 #include "overlay104/ov104_0222DCE0.h"
+#include "overlay104/struct_battle_arcade.h"
 #include "overlay104/struct_ov104_02230BE4.h"
-#include "overlay104/struct_ov104_0223BFFC.h"
 
 #include "communication_information.h"
 #include "communication_system.h"

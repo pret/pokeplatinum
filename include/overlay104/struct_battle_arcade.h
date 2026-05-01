@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_STRUCT_OV104_0223BFFC_H
-#define POKEPLATINUM_STRUCT_OV104_0223BFFC_H
+#ifndef POKEPLATINUM_STRUCT_BATTLE_ARCADE_H
+#define POKEPLATINUM_STRUCT_BATTLE_ARCADE_H
 
 #include "struct_decls/struct_020304A0_decl.h"
 
@@ -9,7 +9,7 @@
 #include "savedata.h"
 #include "sprite.h"
 
-typedef struct {
+typedef struct BattleArcade {
     int unk_00;
     SaveData *saveData;
     UnkStruct_020304A0 *unk_08;
@@ -67,4 +67,4 @@ typedef struct {
     u32 unk_A84;
 } BattleArcade;
 
-#endif // POKEPLATINUM_STRUCT_OV104_0223BFFC_H
+#endif // POKEPLATINUM_STRUCT_BATTLE_ARCADE_H

@@ -1,8 +1,8 @@
 #ifndef POKEPLATINUM_OV104_0223BCBC_H
 #define POKEPLATINUM_OV104_0223BCBC_H
 
+#include "overlay104/struct_battle_arcade.h"
 #include "overlay104/struct_ov104_02230BE4.h"
-#include "overlay104/struct_ov104_0223BFFC.h"
 
 #include "field_battle_data_transfer.h"
 #include "party.h"

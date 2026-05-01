@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_OV104_022358E8_H
-#define POKEPLATINUM_OV104_022358E8_H
+#ifndef POKEPLATINUM_FRSCRCMD_BATTLE_CASTLE_H
+#define POKEPLATINUM_FRSCRCMD_BATTLE_CASTLE_H
 
 #include "overlay104/defs.h"
 
@@ -26,4 +26,4 @@ BOOL FrontierScrCmd_A7(FrontierScriptContext *param0);
 BOOL FrontierScrCmd_A8(FrontierScriptContext *param0);
 BOOL FrontierScrCmd_A9(FrontierScriptContext *param0);
 
-#endif // POKEPLATINUM_OV104_022358E8_H
+#endif // POKEPLATINUM_FRSCRCMD_BATTLE_CASTLE_H

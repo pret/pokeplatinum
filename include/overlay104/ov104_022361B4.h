@@ -3,7 +3,7 @@
 
 #include "applications/frontier/battle_castle/args.h"
 #include "overlay104/defs.h"
-#include "overlay104/struct_ov104_0223BA10.h"
+#include "overlay104/struct_battle_castle.h"
 
 #include "savedata.h"
 

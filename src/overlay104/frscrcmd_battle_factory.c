@@ -1,4 +1,4 @@
-#include "overlay104/ov104_022332B4.h"
+#include "overlay104/frscrcmd_battle_factory.h"
 
 #include <nitro.h>
 
@@ -13,8 +13,8 @@
 #include "overlay104/ov104_02231F74.h"
 #include "overlay104/ov104_022339B4.h"
 #include "overlay104/ov104_0223A7F4.h"
+#include "overlay104/struct_battle_factory.h"
 #include "overlay104/struct_ov104_02230BE4.h"
-#include "overlay104/struct_ov104_0223ADA0.h"
 
 #include "bg_window.h"
 #include "field_battle_data_transfer.h"

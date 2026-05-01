@@ -3,7 +3,7 @@
 
 #include "applications/frontier/battle_arcade/main.h"
 #include "overlay104/frontier_graphics.h"
-#include "overlay104/struct_ov104_0223BFFC.h"
+#include "overlay104/struct_battle_arcade.h"
 
 #include "party.h"
 #include "savedata.h"

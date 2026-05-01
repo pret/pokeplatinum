@@ -1,4 +1,4 @@
-#include "overlay104/ov104_02237378.h"
+#include "overlay104/frscrcmd_battle_arcade.h"
 
 #include <nitro.h>
 
@@ -18,8 +18,8 @@
 #include "overlay104/ov104_02237DD8.h"
 #include "overlay104/ov104_0223B6F4.h"
 #include "overlay104/ov104_0223BCBC.h"
+#include "overlay104/struct_battle_arcade.h"
 #include "overlay104/struct_ov104_02230BE4.h"
-#include "overlay104/struct_ov104_0223BFFC.h"
 #include "overlay104/struct_ov104_0223C634.h"
 
 #include "communication_information.h"

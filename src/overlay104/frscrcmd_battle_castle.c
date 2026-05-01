@@ -1,4 +1,4 @@
-#include "overlay104/ov104_022358E8.h"
+#include "overlay104/frscrcmd_battle_castle.h"
 
 #include <nitro.h>
 
@@ -14,8 +14,8 @@
 #include "overlay104/ov104_02231F74.h"
 #include "overlay104/ov104_022361B4.h"
 #include "overlay104/ov104_0223B6F4.h"
+#include "overlay104/struct_battle_castle.h"
 #include "overlay104/struct_ov104_02230BE4.h"
-#include "overlay104/struct_ov104_0223BA10.h"
 
 #include "battle_frontier_stats.h"
 #include "communication_system.h"

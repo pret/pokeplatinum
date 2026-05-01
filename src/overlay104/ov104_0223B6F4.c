@@ -8,8 +8,8 @@
 #include "struct_defs/battle_frontier.h"
 
 #include "overlay104/ov104_0222DCE0.h"
+#include "overlay104/struct_battle_castle.h"
 #include "overlay104/struct_ov104_02230BE4.h"
-#include "overlay104/struct_ov104_0223BA10.h"
 
 #include "battle_frontier_stats.h"
 #include "bg_window.h"

@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_STRUCT_OV104_0223BA10_H
-#define POKEPLATINUM_STRUCT_OV104_0223BA10_H
+#ifndef POKEPLATINUM_STRUCT_BATTLE_CASTLE_H
+#define POKEPLATINUM_STRUCT_BATTLE_CASTLE_H
 
 #include "struct_decls/struct_020302DC_decl.h"
 
@@ -8,7 +8,7 @@
 #include "party.h"
 #include "savedata.h"
 
-typedef struct {
+typedef struct BattleCastle {
     int unk_00;
     SaveData *saveData;
     UnkStruct_020302DC *unk_08;
@@ -61,4 +61,4 @@ typedef struct {
     u32 unk_A24;
 } BattleCastle;
 
-#endif // POKEPLATINUM_STRUCT_OV104_0223BA10_H
+#endif // POKEPLATINUM_STRUCT_BATTLE_CASTLE_H
