@@ -156,7 +156,7 @@ pokemon_anims_narc = custom_target(pokemon_anims_target_name,
     ],
     input: script_bin_gen.process(
         pokemon_anims_files,
-        extra_args: ['--depfile', '--out-dir', pokemon_anims_private_dir]
+        extra_args: ['--out-dir', pokemon_anims_private_dir]
     ),
     command: [
         nitroarc_exe,

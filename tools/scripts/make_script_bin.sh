@@ -56,7 +56,8 @@ while [[ $# -gt 0 ]] ; do
             shift
             ;;
         -M|--depfile)
-            MD="-MD"
+            MD="-MD -MF $2"
+            shift
             shift
             ;;
         -P|--parent-dir)

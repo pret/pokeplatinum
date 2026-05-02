@@ -11,7 +11,7 @@ field_script_bin_gen = generator(make_script_bin_sh,
         '-i', relative_source_root / 'include',
         '-i', relative_source_root / 'asm',
         '-i', '.',
-        '--depfile',
+        '--depfile', '@DEPFILE@',
         '--enumproc', enumproc_exe.full_path(),
         '--assembler', arm_none_eabi_gcc_exe.full_path(),
         '--objcopy', arm_none_eabi_objcopy_exe.full_path(),
@@ -1166,7 +1166,7 @@ scr_seq_narc = custom_target('scr_seq.narc',
     ],
     input: field_script_bin_gen.process(
         scr_seq_files,
-        extra_args: ['--depfile', '--out-dir', scr_seq_private_dir]
+        extra_args: ['--out-dir', scr_seq_private_dir]
     ),
     command: [
         nitroarc_exe,
