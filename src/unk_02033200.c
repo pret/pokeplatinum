@@ -90,7 +90,7 @@ void CommServerClient_Init(TrainerInfo *trainerInfo, BOOL param1)
     sCommServerClient->unk_1504 = 0x333;
     sCommServerClient->personalTrainerInfo = trainerInfo;
 
-    sub_02014A84((Sentence *)&sCommServerClient->unk_14EC);
+    Sentence_Init((Sentence *)&sCommServerClient->unk_14EC);
     sub_020334DC(param1);
 }
 

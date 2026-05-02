@@ -2771,7 +2771,7 @@ static int ProcessItemApplication(PartyMenuApplication *application)
         switch (CheckItemUsageValidity(application)) {
         case 0:
             if (Item_IsMail(application->partyMenu->usedItemID) == TRUE) {
-                application->partyMenu->menuSelectionResult = PARTY_MENU_EXIT_CODE_MAIL;
+                application->partyMenu->menuSelectionResult = PARTY_MENU_EXIT_CODE_WRITE_MAIL;
                 return PARTY_MENU_STATE_32;
             }
 
@@ -2906,7 +2906,7 @@ static int ProcessPokemonItemSwap(PartyMenuApplication *application)
             if (Item_IsMail(application->partyMenu->usedItemID) == 1) {
                 Bag_TryRemoveItem(application->partyMenu->bag, (u16)v5, 1, HEAP_ID_PARTY_MENU);
                 SwapPokemonItem(application, mon, v4, v5);
-                application->partyMenu->menuSelectionResult = PARTY_MENU_EXIT_CODE_MAIL;
+                application->partyMenu->menuSelectionResult = PARTY_MENU_EXIT_CODE_WRITE_MAIL;
                 return PARTY_MENU_STATE_32;
             }
 

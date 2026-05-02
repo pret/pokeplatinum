@@ -22,32 +22,28 @@ static const u16 Unk_020E5498[] = {
     0x1C1
 };
 
-void sub_02014A84(Sentence *sentence)
+void Sentence_Init(Sentence *sentence)
 {
-    int v0;
-
     sentence->type = 0xffff;
 
-    for (v0 = 0; v0 < 2; v0++) {
-        sentence->words[v0] = 0xffff;
+    for (int i = 0; i < 2; i++) {
+        sentence->words[i] = 0xffff;
     }
 }
 
-void sub_02014A9C(Sentence *sentence, u32 param1)
+void Sentence_InitWithType(Sentence *sentence, u32 type)
 {
-    int v0;
-
-    sentence->type = param1;
+    sentence->type = type;
     sentence->id = 0;
 
-    for (v0 = 0; v0 < 2; v0++) {
-        sentence->words[v0] = 0xffff;
+    for (int i = 0; i < 2; i++) {
+        sentence->words[i] = 0xffff;
     }
 }
 
 void sub_02014AB4(Sentence *sentence)
 {
-    sub_02014A9C(sentence, 4);
+    Sentence_InitWithType(sentence, 4);
     sentence->id = 5;
 }
 
@@ -70,7 +66,7 @@ void sub_02014AC4(Sentence *sentence, int param1)
     GF_ASSERT(param1 < NELEMS(v0));
 
     if (param1 < NELEMS(v0)) {
-        sub_02014A9C(sentence, v0[param1].unk_00);
+        Sentence_InitWithType(sentence, v0[param1].unk_00);
         sentence->id = v0[param1].unk_01;
 
         if (v0[param1].unk_02 != -1) {
@@ -85,30 +81,25 @@ void sub_02014AC4(Sentence *sentence, int param1)
     }
 }
 
-String *sub_02014B34(const Sentence *sentence, enum HeapID heapID)
+String *Sentence_AsString(const Sentence *sentence, enum HeapID heapID)
 {
-    String *v0;
-    StringTemplate *v1;
-    MessageLoader *v2;
-    int v3;
+    StringTemplate *template = StringTemplate_Default(heapID);
 
-    v1 = StringTemplate_Default(heapID);
-
-    for (v3 = 0; v3 < 2; v3++) {
-        if (sentence->words[v3] != 0xffff) {
-            StringTemplate_SetCustomMessageWord(v1, v3, sentence->words[v3]);
+    for (int i = 0; i < 2; i++) {
+        if (sentence->words[i] != 0xffff) {
+            StringTemplate_SetCustomMessageWord(template, i, sentence->words[i]);
         } else {
             break;
         }
     }
 
-    v2 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, Unk_020E5498[sentence->type], heapID);
-    v0 = MessageUtil_ExpandedString(v1, v2, sentence->id, heapID);
+    MessageLoader *loader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, Unk_020E5498[sentence->type], heapID);
+    String *string = MessageUtil_ExpandedString(template, loader, sentence->id, heapID);
 
-    MessageLoader_Free(v2);
-    StringTemplate_Free(v1);
+    MessageLoader_Free(loader);
+    StringTemplate_Free(template);
 
-    return v0;
+    return string;
 }
 
 String *sub_02014BA0(const Sentence *sentence, u32 param1)
@@ -116,7 +107,7 @@ String *sub_02014BA0(const Sentence *sentence, u32 param1)
     return MessageBank_GetNewStringFromNARC(26, Unk_020E5498[sentence->type], sentence->id, param1);
 }
 
-BOOL sub_02014BBC(const Sentence *sentence)
+BOOL Sentence_IsValid(const Sentence *sentence)
 {
     return sentence->type != 0xffff;
 }
@@ -197,9 +188,9 @@ BOOL sub_02014C88(const Sentence *param0, const Sentence *param1)
     return 1;
 }
 
-void sub_02014CC0(Sentence *param0, const Sentence *param1)
+void Sentence_Set(Sentence *dest, const Sentence *src)
 {
-    *param0 = *param1;
+    *dest = *src;
 }
 
 u32 sub_02014CD4(u32 param0)

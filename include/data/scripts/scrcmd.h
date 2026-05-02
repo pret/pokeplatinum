@@ -441,7 +441,7 @@ ScriptCommand(SCRCMD_STOREPARTYMONINTODAYCARE,                             ScrCm
 ScriptCommand(SCRCMD_SHOWOBJECT,                                           ScrCmd_ShowObject)
 ScriptCommand(SCRCMD_HIDEOBJECT,                                           ScrCmd_HideObject)
 ScriptCommand(SCRCMD_1B3,                                                  ScrCmd_1B3)
-ScriptCommand(SCRCMD_1B4,                                                  ScrCmd_1B4)
+ScriptCommand(SCRCMD_COUNTMAILINMAILBOX,                                   ScrCmd_CountMailInMailbox)
 ScriptCommand(SCRCMD_STARTRANKINGSMACHINE,                                 ScrCmd_StartRankingsMachine)
 ScriptCommand(SCRCMD_GETTIMEOFDAY,                                         ScrCmd_GetTimeOfDay)
 ScriptCommand(SCRCMD_GETRANDOM,                                            ScrCmd_GetRandom)

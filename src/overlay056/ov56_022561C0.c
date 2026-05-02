@@ -801,7 +801,7 @@ static void ov56_02256EE8(UnkStruct_ov56_02256468 *param0, u32 param1, Sentence 
     v0->unk_00[*v2].unk_14 = *param2;
     v0->unk_00[*v2].unk_0C = param1;
     v0->unk_00[*v2].unk_10 = TrainerInfo_Gender(param3);
-    v0->unk_00[*v2].unk_04 = sub_02014B34(param2, HEAP_ID_89);
+    v0->unk_00[*v2].unk_04 = Sentence_AsString(param2, HEAP_ID_89);
     v0->unk_00[*v2].unk_08 = ov56_02256E5C(v1, param1, param0->unk_18, param0->unk_1C, param0->unk_10);
 
     (*v2)++;
@@ -815,7 +815,7 @@ static int ov56_02256FC8(UnkStruct_ov56_02256468 *param0, Sentence *param1, int 
 {
     int v0, v1;
 
-    if (!sub_02014BBC(param1)) {
+    if (!Sentence_IsValid(param1)) {
         return 0;
     }
 

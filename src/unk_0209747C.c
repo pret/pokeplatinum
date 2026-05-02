@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02014EC4_decl.h"
-#include "struct_decls/struct_0209747C_decl.h"
 #include "struct_defs/sentence.h"
 
 #include "game_options.h"
@@ -16,21 +15,6 @@
 #include "unk_02014A84.h"
 #include "unk_02014D38.h"
 #include "vars_flags.h"
-
-struct UnkStruct_0209747C_t {
-    u8 unk_00;
-    u8 unk_01;
-    u8 unk_02;
-    u8 unk_03;
-    u8 unk_04;
-    u8 unk_05;
-    int unk_08;
-    const Pokedex *unk_0C;
-    const UnkStruct_02014EC4 *unk_10;
-    Sentence unk_14;
-    u16 unk_1C[2];
-    u16 unk_20[2];
-};
 
 UnkStruct_0209747C *sub_0209747C(u32 param0, u32 param1, SaveData *saveData, enum HeapID heapID)
 {
@@ -47,7 +31,7 @@ UnkStruct_0209747C *sub_0209747C(u32 param0, u32 param1, SaveData *saveData, enu
     v0->unk_08 = Options_Frame(SaveData_GetOptions(saveData));
 
     if (param0 == 2) {
-        sub_02014A9C(&v0->unk_14, 3);
+        Sentence_InitWithType(&v0->unk_14, 3);
     } else {
         int v1;
 
@@ -114,7 +98,7 @@ void sub_02097534(const UnkStruct_0209747C *param0, u16 *param1)
 
 void sub_02097540(const UnkStruct_0209747C *param0, Sentence *param1)
 {
-    sub_02014CC0(param1, &(param0->unk_14));
+    Sentence_Set(param1, &(param0->unk_14));
 }
 
 u32 sub_02097550(const UnkStruct_0209747C *param0)

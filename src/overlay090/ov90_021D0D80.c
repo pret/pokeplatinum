@@ -824,7 +824,7 @@ static void ov90_021D1A48(UnkStruct_ov90_021D0ECC *param0)
     String *v0;
     UnkStruct_ov90_021D17F8 *v1 = &(param0->unk_BC[param0->unk_0B * 3 + param0->unk_0C]);
 
-    v0 = sub_02014B34(&v1->unk_08, param0->heapID);
+    v0 = Sentence_AsString(&v1->unk_08, param0->heapID);
 
     Window_FillTilemap(&param0->unk_6C[2], (0 << 4) | 0);
     Text_AddPrinterWithParamsAndColor(&param0->unk_6C[2], FONT_SYSTEM, v0, 0, 4, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);

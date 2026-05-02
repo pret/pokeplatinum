@@ -1208,7 +1208,7 @@ int sub_0205BF44(UnkStruct_0205B43C *param0, StringTemplate *param1)
         return 166;
     }
 
-    if (!sub_02014BBC(&param0->unk_178)) {
+    if (!Sentence_IsValid(&param0->unk_178)) {
         return 167;
     }
 
@@ -1250,7 +1250,7 @@ static void sub_0205BFF0(UnkStruct_0205B4F8 *param0)
 
 void sub_0205C010(UnkStruct_0205B43C *param0, Sentence *param1)
 {
-    sub_02014CC0(&param0->unk_178, param1);
+    Sentence_Set(&param0->unk_178, param1);
     param0->unk_180 = 1;
 }
 

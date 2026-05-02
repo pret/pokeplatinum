@@ -163,7 +163,7 @@ String *sub_02030C28(const UnkStruct_02030A80 *param0, Sentence *param1, enum He
         }
 
         if (v0 > 0) {
-            sub_02014A9C(param1, 4);
+            Sentence_InitWithType(param1, 4);
             param1->id = 0;
             param1->words[0] = sub_02014DFC(441, 99);
             param1->words[1] = 0xffff;

@@ -1606,9 +1606,9 @@ u8 BattleMessage_PrintTrainerMessage(BattleSystem *battleSys, int trainerID, int
             String *string;
 
             if (msgType == TRMSG_WIN) {
-                string = sub_02014B34(&battleSys->trainers[battler].winMsg, HEAP_ID_BATTLE);
+                string = Sentence_AsString(&battleSys->trainers[battler].winMsg, HEAP_ID_BATTLE);
             } else {
-                string = sub_02014B34(&battleSys->trainers[battler].loseMsg, HEAP_ID_BATTLE);
+                string = Sentence_AsString(&battleSys->trainers[battler].loseMsg, HEAP_ID_BATTLE);
             }
 
             Window_FillTilemap(window, 0xFF);

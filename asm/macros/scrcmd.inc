@@ -2508,9 +2508,9 @@
     .short SCRCMD_1B3
     .endm
 
-    .macro ScrCmd_1B4 arg0
-    .short SCRCMD_1B4
-    .short \arg0
+    .macro CountMailInMailbox destVar
+    .short SCRCMD_COUNTMAILINMAILBOX
+    .short \destVar
     .endm
 
     .macro StartRankingsMachine machineID

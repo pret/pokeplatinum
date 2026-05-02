@@ -335,7 +335,7 @@ Static main
 	Object main.nef.p/src_unk_020972FC.c.o
 	Object main.nef.p/src_berry_data.c.o
 	Object main.nef.p/src_unk_0209747C.c.o
-	Object main.nef.p/src_unk_02097624.c.o
+	Object main.nef.p/src_applications_mail.c.o
 	Object main.nef.p/src_unk_02097B18.c.o
 	Object main.nef.p/src_egg_hatch.c.o
 	Object main.nef.p/src_unk_020985E4.c.o
@@ -1267,10 +1267,10 @@ Overlay options_menu
 	Object main.nef.p/src_applications_options_menu.c.o
 }
 
-Overlay overlay75
+Overlay mail_viewer
 {
 	After main
-	Object main.nef.p/src_overlay075_ov75_021D0D80.c.o
+	Object main.nef.p/src_applications_mail_viewer.c.o
 }
 
 Overlay overlay76

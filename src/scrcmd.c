@@ -35,7 +35,6 @@
 #include "struct_defs/daycare.h"
 #include "struct_defs/dress_up_photo.h"
 #include "struct_defs/image_clips.h"
-#include "struct_defs/mail.h"
 #include "struct_defs/seal_case.h"
 #include "struct_defs/special_encounter.h"
 #include "struct_defs/struct_02029C88.h"
@@ -546,7 +545,7 @@ static BOOL ScrCmd_HatchEgg(ScriptContext *ctx);
 static BOOL ScrCmd_ShowObject(ScriptContext *ctx);
 static BOOL ScrCmd_HideObject(ScriptContext *ctx);
 static BOOL ScrCmd_1B3(ScriptContext *ctx);
-static BOOL ScrCmd_1B4(ScriptContext *ctx);
+static BOOL ScrCmd_CountMailInMailbox(ScriptContext *ctx);
 static BOOL ScrCmd_StartRankingsMachine(ScriptContext *ctx);
 static BOOL ScrCmd_GetTimeOfDay(ScriptContext *ctx);
 static BOOL ScrCmd_GetRandom(ScriptContext *ctx);
@@ -4916,13 +4915,13 @@ static BOOL ScrCmd_1B3(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_1B4(ScriptContext *ctx)
+static BOOL ScrCmd_CountMailInMailbox(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
     Mailbox *mailbox = SaveData_GetMailbox(fieldSystem->saveData);
 
-    *destVar = (u16)sub_02028494(mailbox, 0);
+    *destVar = Mailbox_CountMail(mailbox, MAIL_CONTEXT_MAILBOX);
     return FALSE;
 }
 

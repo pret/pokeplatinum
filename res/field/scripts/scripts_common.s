@@ -1055,7 +1055,7 @@ _0E83:
 
 _0EAB:
     CloseMessage
-    ScrCmd_1B4 VAR_RESULT
+    CountMailInMailbox VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _0EC6
     ScrCmd_1B3
     GoTo _0ECF

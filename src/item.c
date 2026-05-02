@@ -3337,7 +3337,7 @@ u8 Item_IsMail(u16 item)
     return FALSE;
 }
 
-u8 Item_MailNumber(u16 item)
+u8 Item_MailType(u16 item)
 {
     for (u32 i = 0; i < NUM_MAILS; i++) {
         if (sMailItemIDs[i] == item) {
@@ -3348,7 +3348,7 @@ u8 Item_MailNumber(u16 item)
     return ITEM_NONE;
 }
 
-u16 Item_ForMailNumber(u8 mail)
+u16 Item_ForMailType(u8 mail)
 {
     if (mail >= NUM_MAILS) {
         return ITEM_NONE;

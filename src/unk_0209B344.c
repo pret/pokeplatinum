@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0209747C_decl.h"
 #include "struct_defs/sentence.h"
 
 #include "field/field_system.h"
@@ -43,7 +42,7 @@ void sub_0209B344(FieldTask *param0, u16 *param1)
     v1->unk_14 = SaveData_MiscSaveBlock(fieldSystem->saveData);
     v1->unk_20 = param1;
 
-    sub_02014A9C(&v1->unk_08, 4);
+    Sentence_InitWithType(&v1->unk_08, 4);
     MiscSaveBlock_IntroMsg(v1->unk_14, &v1->unk_08);
     sub_02097520(v1->unk_10);
 

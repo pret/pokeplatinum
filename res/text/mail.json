@@ -2,19 +2,19 @@
   "key": 59412,
   "messages": [
     {
-      "id": "pl_msg_00000409_00000",
+      "id": "Mail_Text_Confirm",
       "en_US": "CONFIRM"
     },
     {
-      "id": "pl_msg_00000409_00001",
+      "id": "Mail_Text_Cancel",
       "en_US": "CANCEL"
     },
     {
-      "id": "pl_msg_00000409_00002",
+      "id": "Mail_Text_EnterPhraseOrWord",
       "en_US": "Please enter a phrase or word."
     },
     {
-      "id": "pl_msg_00000409_00003",
+      "id": "Mail_Text_StopGivingMailPrompt",
       "en_US": [
         "Stop giving the Pokémon\n",
         "Mail?"

@@ -374,7 +374,7 @@ u32 sub_0202D474(UnkStruct_0202D750 *param0)
 void sub_0202D478(SaveData *saveData, int param1, Sentence *param2)
 {
     BattleFrontier *frontier = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FRONTIER);
-    sub_02014CC0(&(frontier->unk_950.unk_168.unk_00[param1]), param2);
+    Sentence_Set(&(frontier->unk_950.unk_168.unk_00[param1]), param2);
 }
 
 Sentence *sub_0202D498(SaveData *saveData, int param1)

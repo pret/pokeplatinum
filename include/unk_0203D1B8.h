@@ -5,13 +5,12 @@
 #include "generated/items.h"
 #include "generated/pokemon_contest_types.h"
 
-#include "struct_decls/struct_0209747C_decl.h"
 #include "struct_defs/choose_starter_data.h"
 #include "struct_defs/clear_game_player_info.h"
 #include "struct_defs/hall_of_fame_display_data.h"
 #include "struct_defs/struct_0203E348.h"
-#include "struct_defs/struct_02097728.h"
 
+#include "applications/mail.h"
 #include "applications/naming_screen.h"
 #include "applications/party_menu/defs.h"
 #include "applications/pc_boxes/pokemon_storage_session.h"
@@ -31,6 +30,7 @@
 #include "pokemon.h"
 #include "savedata.h"
 #include "trainer_case.h"
+#include "unk_0209747C.h"
 
 void FieldSystem_StartBattleProcess(FieldSystem *fieldSystem, FieldBattleDTO *dto);
 void sub_0203D1E4(FieldSystem *fieldSystem, BagContext *param1);
@@ -63,9 +63,9 @@ void sub_0203D874(FieldSystem *fieldSystem, UnkStruct_0209747C *param1);
 void FieldSystem_OpenTownMap(FieldSystem *fieldSystem, TownMapContext *townMapCtx);
 void *FieldSystem_OpenTownMapItem(FieldSystem *fieldSystem);
 void *FieldSystem_OpenOptionsMenu(FieldSystem *fieldSystem);
-UnkStruct_02097728 *sub_0203D920(FieldSystem *fieldSystem, int param1, u8 param2, u8 mailType, int unusedHeapID);
-UnkStruct_02097728 *sub_0203D94C(FieldSystem *fieldSystem, int param1, u8 param2, enum HeapID heapID);
-UnkStruct_02097728 *sub_0203D984(FieldSystem *fieldSystem, Pokemon *param1, enum HeapID heapID);
+MailAppArgs *FieldSystem_LaunchMailApp_Write(FieldSystem *fieldSystem, enum MailContext context, u8 partySlot, u8 mailType, int unusedHeapID);
+MailAppArgs *FieldSystem_LaunchMailApp_Read(FieldSystem *fieldSystem, enum MailContext context, u8 mailType, enum HeapID heapID);
+MailAppArgs *FieldSystem_LaunchMailApp_ReadHeld(FieldSystem *fieldSystem, Pokemon *param1, enum HeapID heapID);
 PoffinCaseAppData *FieldSystem_LaunchPoffinCaseApp(FieldSystem *fieldSystem, enum HeapID heapID);
 void sub_0203D9D8(FieldSystem *fieldSystem, UnkStruct_ov90_021D0D80 *param1);
 void sub_0203DAC0(FieldTask *param0, u16 *param1, SaveData *saveData, u16 param3, u16 param4);

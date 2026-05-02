@@ -21,7 +21,6 @@
 #include "generated/species_data_params.h"
 
 #include "struct_defs/chatot_cry.h"
-#include "struct_defs/mail.h"
 #include "struct_defs/seal_case.h"
 #include "struct_defs/species_sprite_data.h"
 #include "struct_defs/sprite_animation_frame.h"
