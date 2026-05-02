@@ -96,9 +96,9 @@ static BOOL BtlCmd_ThrowPokeball(BattleSystem *battleSys, BattleContext *battleC
 static BOOL BtlCmd_TrainerSlideOut(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_TrainerSlideIn(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_BackgroundSlideIn(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_HealthbarSlideIn(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_HealthbarSlideInDelay(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_HealthbarSlideOut(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_BattlerInfoBoxSlideIn(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_BattlerInfoBoxSlideInDelay(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_BattlerInfoBoxSlideOut(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_Wait(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_CalcDamage(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_CalcMaxDamage(BattleSystem *battleSys, BattleContext *battleCtx);
@@ -151,7 +151,7 @@ static BOOL BtlCmd_SetMirrorMove(BattleSystem *battleSys, BattleContext *battleC
 static BOOL BtlCmd_ResetAllStatChanges(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_LockMoveChoice(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_UnlockMoveChoice(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_SetHealthbarStatus(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_SetBattlerInfoBoxStatusIcon(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_PrintTrainerMessage(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_PayPrizeMoney(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_PlayBattleAnimation(BattleSystem *battleSys, BattleContext *battleCtx);
@@ -1118,7 +1118,7 @@ static BOOL BtlCmd_BackgroundSlideIn(BattleSystem *battleSys, BattleContext *bat
  * @param battleCtx
  * @return FALSE
  */
-static BOOL BtlCmd_HealthbarSlideIn(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_BattlerInfoBoxSlideIn(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int i;
     int maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
@@ -1131,7 +1131,7 @@ static BOOL BtlCmd_HealthbarSlideIn(BattleSystem *battleSys, BattleContext *batt
     switch (battlerIn) {
     case BTLSCR_ALL_BATTLERS:
         for (i = 0; i < maxBattlers; i++) {
-            BattleController_EmitSlideHealthbarIn(battleSys, battleCtx, i, 0);
+            BattleController_EmitSlideBattlerInfoBoxIn(battleSys, battleCtx, i, 0);
         }
         break;
 
@@ -1140,7 +1140,7 @@ static BOOL BtlCmd_HealthbarSlideIn(BattleSystem *battleSys, BattleContext *batt
             battlerData = BattleSystem_GetBattlerData(battleSys, i);
 
             if ((battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
-                BattleController_EmitSlideHealthbarIn(battleSys, battleCtx, i, 0);
+                BattleController_EmitSlideBattlerInfoBoxIn(battleSys, battleCtx, i, 0);
             }
         }
         break;
@@ -1150,14 +1150,14 @@ static BOOL BtlCmd_HealthbarSlideIn(BattleSystem *battleSys, BattleContext *batt
             battlerData = BattleSystem_GetBattlerData(battleSys, i);
 
             if (battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) {
-                BattleController_EmitSlideHealthbarIn(battleSys, battleCtx, i, 0);
+                BattleController_EmitSlideBattlerInfoBoxIn(battleSys, battleCtx, i, 0);
             }
         }
         break;
 
     default:
         i = BattleScript_Battler(battleSys, battleCtx, battlerIn);
-        BattleController_EmitSlideHealthbarIn(battleSys, battleCtx, i, 0);
+        BattleController_EmitSlideBattlerInfoBoxIn(battleSys, battleCtx, i, 0);
         break;
     }
 
@@ -1175,7 +1175,7 @@ static BOOL BtlCmd_HealthbarSlideIn(BattleSystem *battleSys, BattleContext *batt
  * @param battleCtx
  * @return FALSE
  */
-static BOOL BtlCmd_HealthbarSlideInDelay(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_BattlerInfoBoxSlideInDelay(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int i;
     int maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
@@ -1189,7 +1189,7 @@ static BOOL BtlCmd_HealthbarSlideInDelay(BattleSystem *battleSys, BattleContext 
     switch (battlerIn) {
     case BTLSCR_ALL_BATTLERS:
         for (i = 0; i < maxBattlers; i++) {
-            BattleController_EmitSlideHealthbarIn(battleSys, battleCtx, i, 0);
+            BattleController_EmitSlideBattlerInfoBoxIn(battleSys, battleCtx, i, 0);
         }
         break;
 
@@ -1198,7 +1198,7 @@ static BOOL BtlCmd_HealthbarSlideInDelay(BattleSystem *battleSys, BattleContext 
             battlerData = BattleSystem_GetBattlerData(battleSys, i);
 
             if ((battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
-                BattleController_EmitSlideHealthbarIn(battleSys, battleCtx, i, wait);
+                BattleController_EmitSlideBattlerInfoBoxIn(battleSys, battleCtx, i, wait);
                 wait += 4;
             }
         }
@@ -1209,7 +1209,7 @@ static BOOL BtlCmd_HealthbarSlideInDelay(BattleSystem *battleSys, BattleContext 
             battlerData = BattleSystem_GetBattlerData(battleSys, i);
 
             if (battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) {
-                BattleController_EmitSlideHealthbarIn(battleSys, battleCtx, i, wait);
+                BattleController_EmitSlideBattlerInfoBoxIn(battleSys, battleCtx, i, wait);
                 wait += 4;
             }
         }
@@ -1217,7 +1217,7 @@ static BOOL BtlCmd_HealthbarSlideInDelay(BattleSystem *battleSys, BattleContext 
 
     default:
         i = BattleScript_Battler(battleSys, battleCtx, battlerIn);
-        BattleController_EmitSlideHealthbarIn(battleSys, battleCtx, i, wait);
+        BattleController_EmitSlideBattlerInfoBoxIn(battleSys, battleCtx, i, wait);
         break;
     }
 
@@ -1234,7 +1234,7 @@ static BOOL BtlCmd_HealthbarSlideInDelay(BattleSystem *battleSys, BattleContext 
  * @param battleCtx
  * @return FALSE
  */
-static BOOL BtlCmd_HealthbarSlideOut(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_BattlerInfoBoxSlideOut(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int i;
     int maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
@@ -1247,7 +1247,7 @@ static BOOL BtlCmd_HealthbarSlideOut(BattleSystem *battleSys, BattleContext *bat
     switch (battlerIn) {
     case BTLSCR_ALL_BATTLERS:
         for (i = 0; i < maxBattlers; i++) {
-            BattleController_EmitSlideHealthbarOut(battleSys, i);
+            BattleController_EmitSlideBattlerInfoBoxOut(battleSys, i);
         }
         break;
 
@@ -1257,7 +1257,7 @@ static BOOL BtlCmd_HealthbarSlideOut(BattleSystem *battleSys, BattleContext *bat
 
             if ((battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) == FALSE
                 && (battleCtx->battlersSwitchingMask & FlagIndex(i)) == FALSE) {
-                BattleController_EmitSlideHealthbarOut(battleSys, i);
+                BattleController_EmitSlideBattlerInfoBoxOut(battleSys, i);
             }
         }
         break;
@@ -1267,14 +1267,14 @@ static BOOL BtlCmd_HealthbarSlideOut(BattleSystem *battleSys, BattleContext *bat
             battlerData = BattleSystem_GetBattlerData(battleSys, i);
 
             if (battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) {
-                BattleController_EmitSlideHealthbarOut(battleSys, i);
+                BattleController_EmitSlideBattlerInfoBoxOut(battleSys, i);
             }
         }
         break;
 
     default:
         i = BattleScript_Battler(battleSys, battleCtx, battlerIn);
-        BattleController_EmitSlideHealthbarOut(battleSys, i);
+        BattleController_EmitSlideBattlerInfoBoxOut(battleSys, i);
         break;
     }
 
@@ -3597,17 +3597,17 @@ static BOOL BtlCmd_UnlockMoveChoice(BattleSystem *battleSys, BattleContext *batt
 }
 
 /**
- * @brief Set the status icon on a battler's HP gauge.
+ * @brief Set the status icon on a battler's info box.
  *
  * Inputs:
- * 1. The battler whose HP gauge should be updated.
- * 2. The status icon to apply to the HP gauge.
+ * 1. The battler whose info box should be updated.
+ * 2. The status icon to apply to the info box.
  *
  * @param battleSys
  * @param battleCtx
  * @return BOOL
  */
-static BOOL BtlCmd_SetHealthbarStatus(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_SetBattlerInfoBoxStatusIcon(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     int inBattler = BattleScript_Read(battleCtx);
