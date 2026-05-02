@@ -1034,7 +1034,7 @@ BOOL StartMenu_ExitPartyMenu(FieldTask *fieldTask)
         StartMenu_SetCallback(menu, StartMenu_ExitSummary);
         break;
     case PARTY_MENU_EXIT_CODE_WRITE_MAIL:
-        menu->taskData = FieldSystem_LaunchMailApp_Write(fieldSystem, MAIL_CONTEXT_WRITE, partyMenu->selectedMonSlot, Item_MailType(partyMenu->usedItemID), HEAP_ID_FIELD2);
+        menu->taskData = FieldSystem_LaunchMailApp_Write(fieldSystem, MAIL_CONTEXT_WRITE, partyMenu->selectedMonSlot, Item_GetMailType(partyMenu->usedItemID), HEAP_ID_FIELD2);
 
         if (partyMenu->mode == PARTY_MENU_MODE_GIVE_ITEM_DONE) {
             menu->additionalTaskContext = StartMenu_BuildMailData(partyMenu->usedItemID, MAIL_GIVE_FROM_PARTY_MENU, partyMenu->selectedMonSlot);
@@ -1218,7 +1218,7 @@ static BOOL StartMenu_ExitBag(FieldTask *fieldTask)
         Heap_Free(menu->additionalTaskContext);
 
         if (Item_IsMail(item) == TRUE && Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL) == ITEM_NONE) {
-            menu->taskData = FieldSystem_LaunchMailApp_Write(fieldSystem, MAIL_CONTEXT_WRITE, slot, Item_MailType(item), HEAP_ID_FIELD2);
+            menu->taskData = FieldSystem_LaunchMailApp_Write(fieldSystem, MAIL_CONTEXT_WRITE, slot, Item_GetMailType(item), HEAP_ID_FIELD2);
             menu->additionalTaskContext = StartMenu_BuildMailData(item, MAIL_GIVE_FROM_PARTY_MENU, slot);
             StartMenu_SetCallback(menu, StartMenu_ExitMail);
         } else {

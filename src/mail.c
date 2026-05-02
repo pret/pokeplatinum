@@ -64,7 +64,7 @@ void Mail_Reset(Mail *mail)
 
 BOOL Mail_IsValid(Mail *mail)
 {
-    if (0 <= mail->mailType && mail->mailType <= NUM_MAILS - 1) {
+    if (0 <= mail->mailType && mail->mailType <= NUM_MAIL_TYPES - 1) {
         return TRUE;
     }
 
@@ -150,7 +150,7 @@ u8 Mail_GetMailType(const Mail *mail)
 
 void Mail_SetMailType(Mail *mail, const u8 mailType)
 {
-    if (mailType >= NUM_MAILS) {
+    if (mailType >= NUM_MAIL_TYPES) {
         return;
     }
 

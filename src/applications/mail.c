@@ -264,7 +264,7 @@ static BOOL MailApp_Init(ApplicationManager *appMan, int *state)
         mailApp->viewerArgs->mailType = args->mailType;
     }
 
-    if (mailApp->viewerArgs->mailType >= NUM_MAILS) {
+    if (mailApp->viewerArgs->mailType >= NUM_MAIL_TYPES) {
         mailApp->viewerArgs->mailType = 0;
     }
 

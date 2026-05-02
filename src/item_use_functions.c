@@ -551,7 +551,7 @@ static void UseMailFromMenu(ItemMenuUseContext *usageContext, const ItemUseConte
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(usageContext->fieldTask);
     StartMenu *menu = FieldTask_GetEnv(usageContext->fieldTask);
-    MailAppArgs *args = FieldSystem_LaunchMailApp_Read(fieldSystem, MAIL_CONTEXT_CHECK, Item_MailType(usageContext->item), HEAP_ID_FIELD2);
+    MailAppArgs *args = FieldSystem_LaunchMailApp_Read(fieldSystem, MAIL_CONTEXT_CHECK, Item_GetMailType(usageContext->item), HEAP_ID_FIELD2);
 
     menu->additionalTaskContext = StartMenu_BuildMailData(usageContext->item, MAIL_READ_FROM_BAG, 0);
     menu->taskData = args;

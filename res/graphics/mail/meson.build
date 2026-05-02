@@ -1,3 +1,6 @@
+# if adding new mail files, make sure to add them to mail.order while keeping
+# identical file types together (ie. new NCGRs should go with existing ones)
+
 mail_pngs = files(
     'grass_mail_tiles.png',
     'flame_mail_tiles.png',
