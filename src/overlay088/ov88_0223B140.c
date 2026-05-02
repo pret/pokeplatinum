@@ -113,7 +113,7 @@ static void ov88_0223E998(UnkStruct_02095E80 *param0);
 static void ov88_0223B710(StringTemplate *param0, Party *param1, int param2);
 static void ov88_0223B748(Window *param0, StringTemplate *param1, MessageLoader *param2, Party *param3, int param4);
 static void ov88_0223C8D8(Window *param0, int param1, Party *param2, int param3, UnkStruct_02095E80 *param4);
-static void ov88_0223E694(Party *trainerParty, Party *otherParty, int trainerSlot, int otherSlot, UnkStruct_ov88_0223C370 *trainer);
+static void ov88_0223E694(Party *sender, Party *receiver, int senderSlot, int receiverSlot, UnkStruct_ov88_0223C370 *senderData);
 static void ov88_0223BF7C(UnkStruct_02095E80 *param0);
 static void ov88_0223B4F0(UnkStruct_02095E80 *param0);
 static void ov88_0223BFD8(UnkStruct_02095E80 *param0);
@@ -2450,17 +2450,17 @@ static int ov88_0223E5B8(UnkStruct_02095E80 *param0)
     return 0;
 }
 
-static void ov88_0223E694(Party *trainerParty, Party *otherParty, int trainerSlot, int otherSlot, UnkStruct_ov88_0223C370 *trainer)
+static void ov88_0223E694(Party *sender, Party *receiver, int senderSlot, int receiverSlot, UnkStruct_ov88_0223C370 *senderData)
 {
     Pokemon *sendingMon = Pokemon_New(HEAP_ID_26);
     Pokemon *receivingMon = Pokemon_New(HEAP_ID_26);
 
-    Pokemon_Copy(Party_GetPokemonBySlotIndex(trainerParty, trainerSlot), sendingMon);
-    Pokemon_Copy(Party_GetPokemonBySlotIndex(otherParty, otherSlot), receivingMon);
+    Pokemon_Copy(Party_GetPokemonBySlotIndex(sender, senderSlot), sendingMon);
+    Pokemon_Copy(Party_GetPokemonBySlotIndex(receiver, receiverSlot), receivingMon);
 
     if (Pokemon_GetValue(receivingMon, MON_DATA_SPECIES, NULL) == SPECIES_ARCEUS) {
         if (Pokemon_GetValue(receivingMon, MON_DATA_FATEFUL_ENCOUNTER, NULL) || Pokemon_GetValue(receivingMon, MON_DATA_MET_LOCATION, NULL) == 86 && Pokemon_GetValue(receivingMon, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 0) {
-            VarsFlags *varsFlag = SaveData_GetVarsFlags(trainer->saveData);
+            VarsFlags *varsFlag = SaveData_GetVarsFlags(senderData->saveData);
 
             if (SystemVars_GetArceusEventState(varsFlag) == 0) {
                 SystemVars_SetArceusEventState(varsFlag, 1);
@@ -2477,22 +2477,22 @@ static void ov88_0223E694(Party *trainerParty, Party *otherParty, int trainerSlo
 
     UpdateMonStatusAndTrainerInfo(receivingMon, CommInfo_TrainerInfo(CommSys_CurNetId()), 5, 0, HEAP_ID_FIELD2);
     Pokemon_ClearBallCapsuleData(receivingMon);
-    Pokemon_Copy(sendingMon, trainer->sendingMon);
-    Pokemon_Copy(receivingMon, trainer->receivingMon);
-    TrainerInfo_Copy(CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1), trainer->trainerInfoSize);
+    Pokemon_Copy(sendingMon, senderData->sendingMon);
+    Pokemon_Copy(receivingMon, senderData->receivingMon);
+    TrainerInfo_Copy(CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1), senderData->trainerInfoSize);
 
-    trainer->unk_2C = trainerSlot;
+    senderData->unk_2C = senderSlot;
 
-    if (!Party_HasSpecies(trainerParty, SPECIES_CHATOT)) {
-        ChatotCry *chatotCry = SaveData_GetChatotCry(trainer->saveData);
+    if (!Party_HasSpecies(sender, SPECIES_CHATOT)) {
+        ChatotCry *chatotCry = SaveData_GetChatotCry(senderData->saveData);
         ChatotCry_ResetStatus(chatotCry);
     }
 
-    SaveData_UpdateCatchRecords(trainer->saveData, receivingMon);
-    Pokemon_Copy(receivingMon, Party_GetPokemonBySlotIndex(trainerParty, trainerSlot));
-    Pokemon_Copy(sendingMon, Party_GetPokemonBySlotIndex(otherParty, otherSlot));
-    ov88_0223E7F0(trainer->journalEntry, receivingMon);
-    GameRecords_IncrementRecordValue(trainer->records, RECORD_LOCAL_LINK_TRADES);
+    SaveData_UpdateCatchRecords(senderData->saveData, receivingMon);
+    Pokemon_Copy(receivingMon, Party_GetPokemonBySlotIndex(sender, senderSlot));
+    Pokemon_Copy(sendingMon, Party_GetPokemonBySlotIndex(receiver, receiverSlot));
+    ov88_0223E7F0(senderData->journalEntry, receivingMon);
+    GameRecords_IncrementRecordValue(senderData->records, RECORD_LOCAL_LINK_TRADES);
     Heap_Free(sendingMon);
     Heap_Free(receivingMon);
 }
