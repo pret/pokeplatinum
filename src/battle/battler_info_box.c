@@ -424,9 +424,9 @@ static const SpriteTemplate sBattlerInfoBoxTemplate_SoloPlayer = {
     .plttIdx = 0,
     .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     .resources = {
-        healthbox_player_singles_NCGR_lz,
+        battler_info_box_player_singles_NCGR_lz,
         BATTLERINFOBOX_MAIN_PALETTE_RESID,
-        healthbox_tall_cell_NCER_lz,
+        battler_info_box_tall_cell_NCER_lz,
         misc_single_frame_anim_NANR_lz_6,
         SPRITE_RESOURCE_NONE,
         SPRITE_RESOURCE_NONE,
@@ -444,9 +444,9 @@ static const SpriteTemplate sBattlerInfoBoxTemplate_SoloEnemy = {
     .plttIdx = 0,
     .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     .resources = {
-        healthbox_enemy_NCGR_lz,
+        battler_info_box_enemy_NCGR_lz,
         BATTLERINFOBOX_MAIN_PALETTE_RESID,
-        healthbox_short_cell_NCER_lz,
+        battler_info_box_short_cell_NCER_lz,
         misc_single_frame_anim_NANR_lz_5,
         SPRITE_RESOURCE_NONE,
         SPRITE_RESOURCE_NONE,
@@ -464,9 +464,9 @@ static const SpriteTemplate sBattlerInfoBoxTemplate_PlayerSlot1 = {
     .plttIdx = 0,
     .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     .resources = {
-        healthbox_player_doubles_NCGR_lz,
+        battler_info_box_player_doubles_NCGR_lz,
         BATTLERINFOBOX_MAIN_PALETTE_RESID,
-        healthbox_short_cell_NCER_lz_3,
+        battler_info_box_short_cell_NCER_lz_3,
         misc_single_frame_anim_NANR_lz_9,
         SPRITE_RESOURCE_NONE,
         SPRITE_RESOURCE_NONE,
@@ -484,9 +484,9 @@ static const SpriteTemplate sBattlerInfoBoxTemplate_EnemySlot1 = {
     .plttIdx = 0,
     .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     .resources = {
-        healthbox_enemy_NCGR_lz_1,
+        battler_info_box_enemy_NCGR_lz_1,
         BATTLERINFOBOX_MAIN_PALETTE_RESID,
-        healthbox_short_cell_NCER_lz_1,
+        battler_info_box_short_cell_NCER_lz_1,
         misc_single_frame_anim_NANR_lz_7,
         SPRITE_RESOURCE_NONE,
         SPRITE_RESOURCE_NONE,
@@ -504,9 +504,9 @@ static const SpriteTemplate sBattlerInfoBoxTemplate_PlayerSlot2 = {
     .plttIdx = 0,
     .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     .resources = {
-        healthbox_player_doubles_NCGR_lz_1,
+        battler_info_box_player_doubles_NCGR_lz_1,
         BATTLERINFOBOX_MAIN_PALETTE_RESID,
-        healthbox_short_cell_NCER_lz_4,
+        battler_info_box_short_cell_NCER_lz_4,
         misc_single_frame_anim_NANR_lz_10,
         SPRITE_RESOURCE_NONE,
         SPRITE_RESOURCE_NONE,
@@ -524,9 +524,9 @@ static const SpriteTemplate sBattlerInfoBoxTemplate_EnemySlot2 = {
     .plttIdx = 0,
     .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     .resources = {
-        healthbox_enemy_NCGR_lz_2,
+        battler_info_box_enemy_NCGR_lz_2,
         BATTLERINFOBOX_MAIN_PALETTE_RESID,
-        healthbox_short_cell_NCER_lz_2,
+        battler_info_box_short_cell_NCER_lz_2,
         misc_single_frame_anim_NANR_lz_8,
         SPRITE_RESOURCE_NONE,
         SPRITE_RESOURCE_NONE,
@@ -544,10 +544,10 @@ static const SpriteTemplate sBattlerInfoBoxTemplate_Unk_ov16_0226F514 = {
     .plttIdx = 0,
     .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     .resources = {
-        healthbox_arrows_wide_NCGR_lz,
+        battler_info_box_arrows_wide_NCGR_lz,
         BATTLERINFOBOX_MAIN_PALETTE_RESID,
-        healthbox_arrows_wide_cell_NCER_lz,
-        healthbox_arrows_wide_anim_NANR_lz,
+        battler_info_box_arrows_wide_cell_NCER_lz,
+        battler_info_box_arrows_wide_anim_NANR_lz,
         SPRITE_RESOURCE_NONE,
         SPRITE_RESOURCE_NONE,
     },
@@ -564,9 +564,9 @@ static const SpriteTemplate sBattlerInfoBoxTemplate_NoPlayerMon = {
     .plttIdx = 0,
     .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     .resources = {
-        healthbox_safari_NCGR_lz,
+        battler_info_box_safari_NCGR_lz,
         BATTLERINFOBOX_SAFARI_PALETTE_RESID,
-        healthbox_safari_cell_NCER_lz,
+        battler_info_box_safari_cell_NCER_lz,
         misc_single_frame_anim_NANR_lz_15,
         SPRITE_RESOURCE_NONE,
         SPRITE_RESOURCE_NONE,
@@ -575,20 +575,20 @@ static const SpriteTemplate sBattlerInfoBoxTemplate_NoPlayerMon = {
     .vramTransfer = FALSE,
 };
 
-#include "res/graphics/battle/healthbox/healthbar_parts.4bpp.h"
+#include "res/graphics/battle/battler_info_box/info_box_parts.4bpp.h"
 
 void BattlerInfoBox_LoadResources(SpriteSystem *spriteSys, SpriteManager *spriteMan, NARC *narc, PaletteData *palette, enum BattlerInfoBoxType battlerInfoBoxType)
 {
     const SpriteTemplate *template = BattlerInfoBox_SpriteTemplate(battlerInfoBoxType);
 
     SpriteSystem_LoadCharResObjFromOpenNarc(spriteSys, spriteMan, narc, template->resources[SPRITE_RESOURCE_CHAR], TRUE, NNS_G2D_VRAM_TYPE_2DMAIN, template->resources[SPRITE_RESOURCE_CHAR]);
-    SpriteSystem_LoadPaletteBufferFromOpenNarc(palette, PLTTBUF_MAIN_OBJ, spriteSys, spriteMan, narc, healthbox_primary_NCLR, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, BATTLERINFOBOX_MAIN_PALETTE_RESID);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(palette, PLTTBUF_MAIN_OBJ, spriteSys, spriteMan, narc, battler_info_box_primary_NCLR, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, BATTLERINFOBOX_MAIN_PALETTE_RESID);
     SpriteSystem_LoadCellResObjFromOpenNarc(spriteSys, spriteMan, narc, template->resources[SPRITE_RESOURCE_CELL], TRUE, template->resources[SPRITE_RESOURCE_CELL]);
     SpriteSystem_LoadAnimResObjFromOpenNarc(spriteSys, spriteMan, narc, template->resources[SPRITE_RESOURCE_ANIM], TRUE, template->resources[SPRITE_RESOURCE_ANIM]);
-    SpriteSystem_LoadPaletteBufferFromOpenNarc(palette, PLTTBUF_MAIN_OBJ, spriteSys, spriteMan, narc, healthbox_primary_NCLR, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, BATTLERINFOBOX_EFFECTS_PALETTE_RESID);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(palette, PLTTBUF_MAIN_OBJ, spriteSys, spriteMan, narc, battler_info_box_primary_NCLR, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, BATTLERINFOBOX_EFFECTS_PALETTE_RESID);
 
     if (battlerInfoBoxType == BATTLERINFOBOX_TYPE_SAFARI_ZONE || battlerInfoBoxType == BATTLERINFOBOX_TYPE_PAL_PARK) {
-        SpriteSystem_LoadPaletteBufferFromOpenNarc(palette, PLTTBUF_MAIN_OBJ, spriteSys, spriteMan, narc, healthbox_safari_NCLR, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, BATTLERINFOBOX_SAFARI_PALETTE_RESID);
+        SpriteSystem_LoadPaletteBufferFromOpenNarc(palette, PLTTBUF_MAIN_OBJ, spriteSys, spriteMan, narc, battler_info_box_safari_NCLR, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, BATTLERINFOBOX_SAFARI_PALETTE_RESID);
     }
 }
 
@@ -598,7 +598,7 @@ static void BattlerInfoBox_LoadMainPalette(SpriteSystem *spriteSys, SpriteManage
 
     if (template != NULL) {
         SpriteSystem_LoadCharResObjFromOpenNarc(spriteSys, handler, narc, template->resources[SPRITE_RESOURCE_CHAR], TRUE, NNS_G2D_VRAM_TYPE_2DMAIN, template->resources[SPRITE_RESOURCE_CHAR]);
-        SpriteSystem_LoadPaletteBufferFromOpenNarc(palette, PLTTBUF_MAIN_OBJ, spriteSys, handler, narc, healthbox_primary_NCLR, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, BATTLERINFOBOX_MAIN_PALETTE_RESID);
+        SpriteSystem_LoadPaletteBufferFromOpenNarc(palette, PLTTBUF_MAIN_OBJ, spriteSys, handler, narc, battler_info_box_primary_NCLR, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, BATTLERINFOBOX_MAIN_PALETTE_RESID);
         SpriteSystem_LoadCellResObjFromOpenNarc(spriteSys, handler, narc, template->resources[SPRITE_RESOURCE_CELL], TRUE, template->resources[SPRITE_RESOURCE_CELL]);
         SpriteSystem_LoadAnimResObjFromOpenNarc(spriteSys, handler, narc, template->resources[SPRITE_RESOURCE_ANIM], TRUE, template->resources[SPRITE_RESOURCE_ANIM]);
     }
@@ -1634,7 +1634,7 @@ static u32 CalcGaugeFill(s32 curVal, s32 diff, s32 maxVal, u8 gaugeSize)
 
 static const u8 *GetBattlerInfoBoxPartsTile(enum BattlerInfoBoxPart part)
 {
-    return &sHealthbarPartsBitmap[part * TILE_SIZE_4BPP];
+    return &sInfoBoxPartsBitmap[part * TILE_SIZE_4BPP];
 }
 
 u8 BattlerInfoBox_Type(int battlerType, u32 battleType)

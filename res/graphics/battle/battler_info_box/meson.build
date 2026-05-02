@@ -1,4 +1,4 @@
-healthbox_nclr = custom_target(
+battler_info_box_nclr = custom_target(
   'primary.NCLR',
   output: 'primary.NCLR',
   input: files('player_singles.png'),
@@ -11,7 +11,7 @@ healthbox_nclr = custom_target(
   ],
 )
 
-healthbox_safari_nclr = custom_target(
+battler_info_box_safari_nclr = custom_target(
   'safari.NCLR',
   output: 'safari.NCLR',
   input: files('safari.png'),
@@ -29,8 +29,8 @@ tall_cell = files('tall_cell.json')
 
 battle_sprites += [
   copy_gen.process(
-    healthbox_nclr,
-    healthbox_safari_nclr,
+    battler_info_box_nclr,
+    battler_info_box_safari_nclr,
     preserve_path_from: base_build_directory,
   ),
 
@@ -90,14 +90,14 @@ battle_sprites += [
   )
 ]
 
-healthbar_parts_embed = custom_target(
-  'healthbar_parts.4bpp.h',
+info_box_parts_embed = custom_target(
+  'info_box_parts.4bpp.h',
   output: [
-    'healthbar_parts.4bpp',
-    'healthbar_parts.4bpp.h',
+    'info_box_parts.4bpp',
+    'info_box_parts.4bpp.h',
   ],
-  input: files('healthbar_parts.png'),
-  command: [ nitrogfx_exe, '@INPUT@', '@OUTPUT0@', '-embed', 'sHealthbarPartsBitmap' ],
+  input: files('info_box_parts.png'),
+  command: [ nitrogfx_exe, '@INPUT@', '@OUTPUT0@', '-embed', 'sInfoBoxPartsBitmap' ],
 )
 
-embed_headers += healthbar_parts_embed[1]
+embed_headers += info_box_parts_embed[1]
