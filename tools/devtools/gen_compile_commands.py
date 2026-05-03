@@ -361,6 +361,26 @@ dataproc_c_commands = [
     for file in (homedir / "tools" / "dataproc").rglob("*.c")
 ]
 
+msgenc_cpp_commands = [
+    {
+        "directory": builddir,
+        "arguments": [
+            "g++",
+            f"-I{homedir}/tools/dataproc/lib/include",
+            "-std=c++17",
+            "-Wall",
+            "-Wextra",
+            "-Wpedantic",
+            "-Wno-unused-parameter",
+            "-o",
+            file.with_suffix(".o"),
+            file.resolve(),
+        ],
+        "file": file.resolve(),
+    }
+    for file in (homedir / "tools" / "msgenc").rglob("*.cpp")
+]
+
 with open("compile_commands.json", "w") as ofp:
     json.dump(
         asm_commands
@@ -373,7 +393,8 @@ with open("compile_commands.json", "w") as ofp:
         + c_commands
         + datagen_cpp_commands
         + nitroarc_c_commands
-        + dataproc_c_commands,
+        + dataproc_c_commands
+        + msgenc_cpp_commands,
         ofp,
         default=str,
         indent=4,

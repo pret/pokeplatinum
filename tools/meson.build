@@ -4,13 +4,13 @@ rapidjson_dep = dependency('rapidjson')
 subdir('nitroarc') # libnitroarc
 subdir('enumproc') # libenum
 subdir('dataproc') # Requires libnitroarc and libenum
+subdir('msgenc')   # Requires libdataproc
 
 # Other native tools
 subdir('csv2bin')
 subdir('datagen')
 subdir('fixrom')
 subdir('jsoncnv')
-subdir('msgenc')
 subdir('nitrogfx')
 subdir('ordergen')
 subdir('postconf')
