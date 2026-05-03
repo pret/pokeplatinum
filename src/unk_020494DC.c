@@ -467,15 +467,18 @@ BOOL ScrCmd_CheckBattlePoints(ScriptContext *ctx)
     return FALSE;
 }
 
+#define FRONTIER_MART_ITEMS_START_ID 0
+#define FRONTIER_MART_TMS_START_ID   26
+
 BOOL ScrCmd_GetExchangeServiceCornerItemAndCost(ScriptContext *ctx)
 {
-    u8 startID = 0;
+    u8 startID = FRONTIER_MART_ITEMS_START_ID;
     u16 martID = ScriptContext_GetVar(ctx);
     u16 prizeID = ScriptContext_GetVar(ctx);
     u16 *item = ScriptContext_GetVarPointer(ctx);
     u16 *cost = ScriptContext_GetVarPointer(ctx);
     static const u16 prizeList[][2] = {
-        { ITEM_PROTEIN, 1 },
+        [FRONTIER_MART_ITEMS_START_ID] = { ITEM_PROTEIN, 1 },
         { ITEM_CALCIUM, 1 },
         { ITEM_IRON, 1 },
         { ITEM_ZINC, 1 },
@@ -501,7 +504,7 @@ BOOL ScrCmd_GetExchangeServiceCornerItemAndCost(ScriptContext *ctx)
         { ITEM_RAZOR_CLAW, 48 },
         { ITEM_RAZOR_FANG, 48 },
         { ITEM_RARE_CANDY, 48 },
-        { ITEM_TM06, 32 },
+        [FRONTIER_MART_TMS_START_ID] = { ITEM_TM06, 32 }, // update FRONTIER_MART_TMS_START_ID when adding entries above this line
         { ITEM_TM73, 32 },
         { ITEM_TM61, 32 },
         { ITEM_TM45, 32 },
@@ -519,9 +522,9 @@ BOOL ScrCmd_GetExchangeServiceCornerItemAndCost(ScriptContext *ctx)
     };
 
     if (martID == 1) {
-        startID = 26;
+        startID = FRONTIER_MART_TMS_START_ID;
     } else {
-        startID = 0;
+        startID = FRONTIER_MART_ITEMS_START_ID;
     }
 
     *item = prizeList[startID + prizeID][0];
