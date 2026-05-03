@@ -575,7 +575,7 @@ static const SpriteTemplate sHealthBoxTemplate_NoPlayerMon = {
     .vramTransfer = FALSE,
 };
 
-#include "res/graphics/battle/healthbox/info_box_parts.4bpp.h"
+#include "res/graphics/battle/healthbox/healthbox_parts.4bpp.h"
 
 void HealthBox_LoadResources(SpriteSystem *spriteSys, SpriteManager *spriteMan, NARC *narc, PaletteData *palette, enum HealthBoxType healthboxType)
 {
@@ -1634,7 +1634,7 @@ static u32 CalcGaugeFill(s32 curVal, s32 diff, s32 maxVal, u8 gaugeSize)
 
 static const u8 *GetHealthBoxPartsTile(enum HealthBoxPart part)
 {
-    return &sInfoBoxPartsBitmap[part * TILE_SIZE_4BPP];
+    return &sHealthBoxPartsBitmap[part * TILE_SIZE_4BPP];
 }
 
 u8 HealthBox_Type(int battlerType, u32 battleType)

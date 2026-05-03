@@ -3597,11 +3597,11 @@ static BOOL BtlCmd_UnlockMoveChoice(BattleSystem *battleSys, BattleContext *batt
 }
 
 /**
- * @brief Set the status icon on a battler's info box.
+ * @brief Set the status icon on a battler's healthbox.
  *
  * Inputs:
- * 1. The battler whose info box should be updated.
- * 2. The status icon to apply to the info box.
+ * 1. The battler whose healthbox should be updated.
+ * 2. The status icon to apply to the healthbox.
  *
  * @param battleSys
  * @param battleCtx
