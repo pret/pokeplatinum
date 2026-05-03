@@ -89,26 +89,26 @@ BattleTower_Unused:
     InitBattleTower 0, BATTLE_TOWER_MODE_DOUBLE
     Return
 
-_0158:
+BattleTower_SetVarsStartChallenge:
     SetVar VAR_BATTLE_TOWER_LOBBY_LOAD_ACTION, 0xFF
-    SetVar VAR_UNK_0x40DB, 1
-    SetVar VAR_UNK_0x40DC, 1
-    SetVar VAR_UNK_0x40D9, 1
+    SetVar VAR_BATTLE_TOWER_ELEVATOR_LOAD_ACTION, 1
+    SetVar VAR_BATTLE_TOWER_CORRIDOR_LOAD_ACTION, 1
+    SetVar VAR_BATTLE_TOWER_BATTLE_ROOM_LOAD_ACTION, 1
     Return
 
-_0172:
+BattleTower_SetVarsStartMultiChallenge:
     SetVar VAR_BATTLE_TOWER_LOBBY_LOAD_ACTION, 0xFF
-    SetVar VAR_UNK_0x40DB, 3
-    SetVar VAR_UNK_0x40DD, 1
-    SetVar VAR_UNK_0x40DE, 1
-    SetVar VAR_UNK_0x40DF, 1
+    SetVar VAR_BATTLE_TOWER_ELEVATOR_LOAD_ACTION, 3
+    SetVar VAR_BATTLE_TOWER_CORRIDOR_MULTI_LOAD_ACTION, 1
+    SetVar VAR_BATTLE_TOWER_MULTI_BATTLE_ROOM_LOAD_ACTION, 1
+    SetVar VAR_BATTLE_TOWER_BATTLE_SALON_STATE, 1
     Return
 
-_0192:
+BattleTower_SetVarsResumeChallenge:
     SetVar VAR_BATTLE_TOWER_LOBBY_LOAD_ACTION, 0xFF
-    SetVar VAR_UNK_0x40DB, 1
-    SetVar VAR_UNK_0x40DC, 1
-    SetVar VAR_UNK_0x40D9, 2
+    SetVar VAR_BATTLE_TOWER_ELEVATOR_LOAD_ACTION, 1
+    SetVar VAR_BATTLE_TOWER_CORRIDOR_LOAD_ACTION, 1
+    SetVar VAR_BATTLE_TOWER_BATTLE_ROOM_LOAD_ACTION, 2
     Return
 
 BattleTower_Teala:
@@ -263,7 +263,7 @@ BattleTower_SelectAndValidatePokemon:
     End
 
 BattleTower_HealAndSaveBeforeEnteringBattleRoom:
-    Call _0158
+    Call BattleTower_SetVarsStartChallenge
     CallBattleTowerFunction BT_FUNC_SET_COMMUNICATION_CLUB_ACCESSIBLE, 0, 0
     HealParty
     Call BattleTower_SaveGame
@@ -310,7 +310,7 @@ BattleTower_OnFrameResumeChallenge:
     InitBattleTower 1, 0xFFFF
     CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, VAR_RESULT
     GoToIfEq VAR_RESULT, BATTLE_TOWER_MODE_MULTI, BattleTower_HealAndSaveBeforeEnteringMultiBattleRoom
-    Call _0192
+    Call BattleTower_SetVarsResumeChallenge
     CallBattleTowerFunction BT_FUNC_SET_COMMUNICATION_CLUB_ACCESSIBLE, 0, 0
     Call BattleTower_TrySaveGame
     Message BattleTower_Text_ShowYouToBattleRoom
@@ -319,7 +319,7 @@ BattleTower_OnFrameResumeChallenge:
     End
 
 BattleTower_HealAndSaveBeforeEnteringMultiBattleRoom:
-    Call _0577
+    Call BattleTower_SetVarsResumeMultiChallenge
     CallBattleTowerFunction BT_FUNC_SET_COMMUNICATION_CLUB_ACCESSIBLE, 0, 0
     Call BattleTower_TrySaveGame
     CallBattleTowerFunction BT_FUNC_GET_PARTNER_ID, 0, VAR_RESULT
@@ -329,12 +329,12 @@ BattleTower_HealAndSaveBeforeEnteringMultiBattleRoom:
     GoTo BattleTower_EnterBattleRoom
     End
 
-_0577:
+BattleTower_SetVarsResumeMultiChallenge:
     SetVar VAR_BATTLE_TOWER_LOBBY_LOAD_ACTION, 0xFF
-    SetVar VAR_UNK_0x40DB, 2
-    SetVar VAR_UNK_0x40DD, 1
-    SetVar VAR_UNK_0x40DE, 2
-    SetVar VAR_UNK_0x40DF, 0
+    SetVar VAR_BATTLE_TOWER_ELEVATOR_LOAD_ACTION, 2
+    SetVar VAR_BATTLE_TOWER_CORRIDOR_MULTI_LOAD_ACTION, 1
+    SetVar VAR_BATTLE_TOWER_MULTI_BATTLE_ROOM_LOAD_ACTION, 2
+    SetVar VAR_BATTLE_TOWER_BATTLE_SALON_STATE, 0
     Return
 
 BattleTower_OnFrameDidntSaveBeforeQuit:
@@ -395,7 +395,7 @@ BattleTower_EnterLinkMultiBattleRoom:
     End
 
 _06A0:
-    SetVar VAR_UNK_0x40DB, 2
+    SetVar VAR_BATTLE_TOWER_ELEVATOR_LOAD_ACTION, 2
     GoTo BattleTower_WarpToElevator
     End
 
@@ -480,12 +480,12 @@ BattleTower_FreeBattleTower:
 
 BattleTower_ResetBattleTowerVars:
     SetVar VAR_BATTLE_TOWER_LOBBY_LOAD_ACTION, 0
-    SetVar VAR_UNK_0x40DB, 0
-    SetVar VAR_UNK_0x40DC, 0
-    SetVar VAR_UNK_0x40DD, 0
-    SetVar VAR_UNK_0x40D9, 0
-    SetVar VAR_UNK_0x40DE, 0
-    SetVar VAR_UNK_0x40DF, 0
+    SetVar VAR_BATTLE_TOWER_ELEVATOR_LOAD_ACTION, 0
+    SetVar VAR_BATTLE_TOWER_CORRIDOR_LOAD_ACTION, 0
+    SetVar VAR_BATTLE_TOWER_CORRIDOR_MULTI_LOAD_ACTION, 0
+    SetVar VAR_BATTLE_TOWER_BATTLE_ROOM_LOAD_ACTION, 0
+    SetVar VAR_BATTLE_TOWER_MULTI_BATTLE_ROOM_LOAD_ACTION, 0
+    SetVar VAR_BATTLE_TOWER_BATTLE_SALON_STATE, 0
     Return
 
 BattleTower_WiFiAttendant:
@@ -595,7 +595,7 @@ BattleTower_HealAndSaveBeforeWiFiChallenge:
     HealParty
     Call BattleTower_SaveGame
     GoToIfEq VAR_RESULT, 0, BattleTower_ClearCommunicationAndEnd
-    Call _0158
+    Call BattleTower_SetVarsStartChallenge
     CallBattleTowerFunction BT_FUNC_SET_COMMUNICATION_CLUB_ACCESSIBLE, 0, 0
     HealParty
     CloseMessage
@@ -719,7 +719,7 @@ BattleTower_SelectAndValidatePokemonMultiChallenge:
     TryRevertPokemonForm VAR_RESULT, VAR_RESULT
     GoToIfEq VAR_RESULT, 0xFF, BattleTower_GriseousOrbCouldNotBeRemoved
     GoToIfEq VAR_MAP_LOCAL_1, 1, BattleTower_HealAndSaveBeforeCommunicating
-    Call _0172
+    Call BattleTower_SetVarsStartMultiChallenge
     CallBattleTowerFunction BT_FUNC_SET_COMMUNICATION_CLUB_ACCESSIBLE, 0, 0
     HealParty
     Call BattleTower_SaveGame
@@ -848,7 +848,7 @@ BattleTower_EndCommunicationSamePokemon:
     Return
 
 _0E58:
-    Call _0172
+    Call BattleTower_SetVarsStartMultiChallenge
     CallBattleTowerFunction BT_FUNC_SET_COMMUNICATION_CLUB_ACCESSIBLE, 0, 0
     HealParty
     Message BattleTower_Text_RecordWillBeSaved

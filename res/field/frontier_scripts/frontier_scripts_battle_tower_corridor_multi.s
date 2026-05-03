@@ -188,7 +188,7 @@ _0138:
     EndMovement
 
 _0142:
-    FrontierScrCmd_3E VAR_UNK_0x40DD, VAR_0x8001
+    FrontierScrCmd_3E VAR_BATTLE_TOWER_CORRIDOR_MULTI_LOAD_ACTION, VAR_0x8001
     Call _0278
     Call _0344
     SetVar FR_VAR_0x800F, 232

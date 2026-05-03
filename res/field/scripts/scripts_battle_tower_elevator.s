@@ -1,15 +1,16 @@
 #include "macros/scrcmd.inc"
+#include "res/field/events/events_battle_tower_elevator.h"
 #include "generated/object_events_gfx.h"
 
 
-    ScriptEntry BattleTowerElevator_Init
-    ScriptEntry BattleTowerElevator_EnterBattleRoom
-    ScriptEntry BattleTowerElevator_EnterMultiBattleRoom
-    ScriptEntry BattleTowerElevator_EnterBattleSalon
+    ScriptEntry BattleTowerElevator_OnTransition
+    ScriptEntry BattleTowerElevator_OnFrameEnterBattleRoom
+    ScriptEntry BattleTowerElevator_OnFrameEnterMultiBattleRoom
+    ScriptEntry BattleTowerElevator_OnFrameEnterBattleSalon
     ScriptEntryEnd
 
-BattleTowerElevator_Init:
-    CallIfNe VAR_UNK_0x40DB, 0, _008A
+BattleTowerElevator_OnTransition:
+    CallIfNe VAR_BATTLE_TOWER_ELEVATOR_LOAD_ACTION, 0, BattleTowerElevator_HidePoketch
     CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, VAR_MAP_LOCAL_A
     Call BattleTowerElevator_SetSingleAttendantGraphics
     CallIfEq VAR_MAP_LOCAL_A, BATTLE_TOWER_MODE_MULTI, BattleTowerElevator_SetMultiAttendantGraphics
@@ -21,7 +22,7 @@ BattleTowerElevator_Init:
     CallIfEq VAR_MAP_LOCAL_A, BATTLE_TOWER_MODE_6, BattleTowerElevator_SetWiFiPlazaAttendantGraphics
     End
 
-_008A:
+BattleTowerElevator_HidePoketch:
     HidePoketch
     Return
 
@@ -73,21 +74,21 @@ BattleTowerElevator_ElevatorAnimation:
     Call BattleTowerElevator_Exit
     Return
 
-BattleTowerElevator_EnterBattleRoom:
+BattleTowerElevator_OnFrameEnterBattleRoom:
     LockAll
     SetVar VAR_MAP_LOCAL_0, ELEVATOR_DIR_UP
     Call BattleTowerElevator_ElevatorAnimation
     GoTo BattleTowerElevator_BattleRoomCheckWiFi
     End
 
-BattleTowerElevator_EnterMultiBattleRoom:
+BattleTowerElevator_OnFrameEnterMultiBattleRoom:
     LockAll
     SetVar VAR_MAP_LOCAL_0, ELEVATOR_DIR_UP
     Call BattleTowerElevator_ElevatorAnimation
     GoTo BattleTowerElevator_MultiBattleRoom
     End
 
-BattleTowerElevator_EnterBattleSalon:
+BattleTowerElevator_OnFrameEnterBattleSalon:
     LockAll
     SetVar VAR_MAP_LOCAL_0, ELEVATOR_DIR_DOWN
     Call BattleTowerElevator_ElevatorAnimation
@@ -95,13 +96,13 @@ BattleTowerElevator_EnterBattleSalon:
     End
 
 BattleTowerElevator_PlayerEnter:
-    ApplyMovement LOCALID_PLAYER, BattleTowerElevator_PlayerEnterMovement
+    ApplyMovement LOCALID_PLAYER, BattleTowerElevator_Movement_PlayerEnter
     WaitMovement
     Return
 
 BattleTowerElevator_Exit:
-    ApplyMovement 0, BattleTowerElevator_GuideExitMovement
-    ApplyMovement LOCALID_PLAYER, BattleTowerElevator_PlayerExitMovement
+    ApplyMovement LOCALID_ATTENDANT, BattleTowerElevator_Movement_AttendantExit
+    ApplyMovement LOCALID_PLAYER, BattleTowerElevator_Movement_PlayerExit
     WaitMovement
     Return
 
@@ -113,13 +114,13 @@ BattleTowerElevator_UnusedMovement:
     EndMovement
 
     .balign 4, 0
-BattleTowerElevator_PlayerEnterMovement:
+BattleTowerElevator_Movement_PlayerEnter:
     WalkNormalNorth 2
     FaceSouth
     EndMovement
 
     .balign 4, 0
-BattleTowerElevator_GuideExitMovement:
+BattleTowerElevator_Movement_AttendantExit:
     WalkNormalSouth
     FaceWest
     WalkNormalWest
@@ -129,7 +130,7 @@ BattleTowerElevator_GuideExitMovement:
     EndMovement
 
     .balign 4, 0
-BattleTowerElevator_PlayerExitMovement:
+BattleTowerElevator_Movement_PlayerExit:
     Delay8 2
     Delay2
     WalkNormalSouth 2

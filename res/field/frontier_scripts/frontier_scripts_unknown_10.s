@@ -458,7 +458,7 @@ _0838:
 
 _0842:
     FrontierScrCmd_B3
-    FrontierScrCmd_3D VAR_UNK_0x40DE, 1
+    FrontierScrCmd_3D VAR_BATTLE_TOWER_MULTI_BATTLE_ROOM_LOAD_ACTION, 1
     Call _08D3
     GoTo _0858
     End

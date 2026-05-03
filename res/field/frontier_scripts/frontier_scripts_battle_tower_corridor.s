@@ -132,7 +132,7 @@ _010C:
     FrontierScrCmd_2A _0028
     FrontierScrCmd_2C _002C
     FadeScreenIn
-    FrontierScrCmd_3E VAR_UNK_0x40DC, VAR_0x8001
+    FrontierScrCmd_3E VAR_BATTLE_TOWER_CORRIDOR_LOAD_ACTION, VAR_0x8001
     GoToIfEq VAR_0x8001, 1, _0161
     End
 

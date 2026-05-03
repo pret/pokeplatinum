@@ -7,7 +7,7 @@
     InitScriptEntryEnd
 
 InitScriptFrameTable:
-    InitScriptGoToIfEqual VAR_UNK_0x40DC, 1, 3
+    InitScriptGoToIfEqual VAR_BATTLE_TOWER_CORRIDOR_LOAD_ACTION, 1, 3
     InitScriptFrameTableEnd
 
     InitScriptEnd
