@@ -4576,15 +4576,15 @@
     .short \destVar
     .endm
 
-    .macro ScrCmd_300
-    .short SCRCMD_300
+    .macro SetFavoriteMon
+    .short SCRCMD_SETFAVORITEMON
     .endm
 
-    .macro ScrCmd_301 arg0, arg1, arg2
-    .short SCRCMD_301
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .macro GetFavoriteMon destVarSpecies, destVarForm, destVarIsEgg
+    .short SCRCMD_GETFAVORITEMON
+    .short \destVarSpecies
+    .short \destVarForm
+    .short \destVarIsEgg
     .endm
 
     .macro GetRotomFormsInSave destVarHeat, destVarWash, destVarFrost, destVarFan, destVarMow

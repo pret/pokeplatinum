@@ -51,7 +51,7 @@ void sub_02030AA0(UnkStruct_02030A80 *param0, SaveData *saveData)
 
     OS_GetOwnerInfo(&ownerInfo);
 
-    MiscSaveBlock_FavoriteMon(miscSaveBlock, &species, &form, &isEgg);
+    MiscSaveBlock_GetFavoriteMon(miscSaveBlock, &species, &form, &isEgg);
     MI_CpuClear8(param0, sizeof(UnkStruct_02030A80));
     CharCode_Copy(param0->unk_00, TrainerInfo_Name(v0));
 

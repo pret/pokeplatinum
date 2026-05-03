@@ -538,27 +538,27 @@
       "en_US": "NO THANKS"
     },
     {
-      "id": "pl_msg_00000361_00128",
+      "id": "MenuEntries_Text_GTS_Info",
       "en_US": "INFO"
     },
     {
-      "id": "pl_msg_00000361_00129",
+      "id": "MenuEntries_Text_GTS_Trade",
       "en_US": "TRADE"
     },
     {
-      "id": "pl_msg_00000361_00130",
+      "id": "MenuEntries_Text_GTS_Exit",
       "en_US": "EXIT"
     },
     {
-      "id": "pl_msg_00000361_00131",
+      "id": "MenuEntries_Text_GTS_OfferPokemon",
       "en_US": "OFFER POKéMON?"
     },
     {
-      "id": "pl_msg_00000361_00132",
+      "id": "MenuEntries_Text_GTS_SeekPokemon",
       "en_US": "SEEK POKéMON?"
     },
     {
-      "id": "pl_msg_00000361_00133",
+      "id": "MenuEntries_Text_GTS_Understood",
       "en_US": "UNDERSTOOD!"
     },
     {
