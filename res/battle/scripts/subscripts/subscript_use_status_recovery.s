@@ -55,6 +55,6 @@ _099:
 
 _104:
     Wait 
-    SetBattlerInfoBoxStatusIcon BTLSCR_ATTACKER, BATTLE_ANIMATION_NONE
+    SetHealthBoxStatusIcon BTLSCR_ATTACKER, BATTLE_ANIMATION_NONE
     WaitButtonABTime 30
     End 

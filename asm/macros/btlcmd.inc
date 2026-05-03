@@ -76,18 +76,18 @@
     .long BTLCMD_BACKGROUNDSLIDEIN
     .endm
 
-    .macro BattlerInfoBoxSlideIn battler
-    .long BTLCMD_BATTLERINFOBOXSLIDEIN
+    .macro HealthBoxSlideIn battler
+    .long BTLCMD_HEALTHBOXSLIDEIN
     .long \battler
     .endm
 
-    .macro BattlerInfoBoxSlideInDelay battler
-    .long BTLCMD_BATTLERINFOBOXSLIDEINDELAY
+    .macro HealthBoxSlideInDelay battler
+    .long BTLCMD_HEALTHBOXSLIDEINDELAY
     .long \battler
     .endm
 
-    .macro BattlerInfoBoxSlideOut battler
-    .long BTLCMD_BATTLERINFOBOXSLIDEOUT
+    .macro HealthBoxSlideOut battler
+    .long BTLCMD_HEALTHBOXSLIDEOUT
     .long \battler
     .endm
 
@@ -433,8 +433,8 @@
     .long \battler
     .endm
 
-    .macro SetBattlerInfoBoxStatusIcon battler, status
-    .long BTLCMD_SETBATTLERINFOBOXSTATUSICON
+    .macro SetHealthBoxStatusIcon battler, status
+    .long BTLCMD_SETHEALTHBOXSTATUSICON
     .long \battler
     .long \status
     .endm

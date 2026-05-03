@@ -243,7 +243,7 @@ void ov16_0223F32C(BattleSystem *battleSys, u8 *param1);
 void ov16_0223F338(BattleSystem *battleSys, u8 param1);
 void ov16_0223F344(BattleSystem *battleSys, u8 param1);
 void BattleSystem_SetCommandIsEndWait(BattleSystem *battleSys, u8 value);
-void *BattleSystem_GetBattlerInfoBox(BattleSystem *battleSys, int battler);
+void *BattleSystem_GetHealthBox(BattleSystem *battleSys, int battler);
 void ov16_0223F36C(BattleSystem *battleSys);
 void ov16_0223F3BC(BattleSystem *battleSys);
 void ov16_0223F3EC(BattleSystem *battleSys);

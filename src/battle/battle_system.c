@@ -26,8 +26,8 @@
 #include "battle/battle_display.h"
 #include "battle/battle_lib.h"
 #include "battle/battle_message.h"
-#include "battle/battler_info_box.h"
 #include "battle/common.h"
+#include "battle/healthbox.h"
 #include "battle/ov16_02268520.h"
 #include "battle/ov16_0226E148.h"
 #include "battle/pokemon_sprite_data.h"
@@ -1218,37 +1218,37 @@ void BattleSystem_SetCommandIsEndWait(BattleSystem *battleSys, u8 value)
     battleSys->commandIsEndWait = value;
 }
 
-void *BattleSystem_GetBattlerInfoBox(BattleSystem *battleSys, int battler)
+void *BattleSystem_GetHealthBox(BattleSystem *battleSys, int battler)
 {
-    return BattlerData_GetBattlerInfoBox(battleSys->battlers[battler]);
+    return BattlerData_GetHealthBox(battleSys->battlers[battler]);
 }
 
 void ov16_0223F36C(BattleSystem *battleSys)
 {
     int i;
-    BattlerInfoBox *battlerInfoBox;
+    HealthBox *healthbox;
 
     for (i = 0; i < battleSys->maxBattlers; i++) {
-        battlerInfoBox = BattlerData_GetBattlerInfoBox(battleSys->battlers[i]);
+        healthbox = BattlerData_GetHealthBox(battleSys->battlers[i]);
 
-        battlerInfoBox->battleSys = battleSys;
-        battlerInfoBox->type = BattlerInfoBox_Type(BattlerData_GetBattlerType(battleSys->battlers[i]), BattleSystem_GetBattleType(battleSys));
+        healthbox->battleSys = battleSys;
+        healthbox->type = HealthBox_Type(BattlerData_GetBattlerType(battleSys->battlers[i]), BattleSystem_GetBattleType(battleSys));
 
-        ov16_022672C4(battlerInfoBox);
-        BattlerInfoBox_Enable(battlerInfoBox, FALSE);
+        ov16_022672C4(healthbox);
+        HealthBox_Enable(healthbox, FALSE);
     }
 }
 
 void ov16_0223F3BC(BattleSystem *battleSys)
 {
     int i;
-    BattlerInfoBox *battlerInfoBox;
+    HealthBox *healthbox;
 
     for (i = 0; i < battleSys->maxBattlers; i++) {
-        battlerInfoBox = BattlerData_GetBattlerInfoBox(battleSys->battlers[i]);
+        healthbox = BattlerData_GetHealthBox(battleSys->battlers[i]);
 
-        if (battlerInfoBox->curHP) {
-            BattlerInfoBox_Enable(battlerInfoBox, TRUE);
+        if (healthbox->curHP) {
+            HealthBox_Enable(healthbox, TRUE);
         }
     }
 }
@@ -1256,22 +1256,22 @@ void ov16_0223F3BC(BattleSystem *battleSys)
 void ov16_0223F3EC(BattleSystem *battleSys)
 {
     int i;
-    BattlerInfoBox *battlerInfoBox;
+    HealthBox *healthbox;
 
     for (i = 0; i < battleSys->maxBattlers; i++) {
-        battlerInfoBox = BattlerData_GetBattlerInfoBox(battleSys->battlers[i]);
-        BattlerInfoBox_Enable(battlerInfoBox, FALSE);
+        healthbox = BattlerData_GetHealthBox(battleSys->battlers[i]);
+        HealthBox_Enable(healthbox, FALSE);
     }
 }
 
 void ov16_0223F414(BattleSystem *battleSys)
 {
     int i;
-    BattlerInfoBox *battlerInfoBox;
+    HealthBox *healthbox;
 
     for (i = 0; i < battleSys->maxBattlers; i++) {
-        battlerInfoBox = BattlerData_GetBattlerInfoBox(battleSys->battlers[i]);
-        ov16_02267360(battlerInfoBox);
+        healthbox = BattlerData_GetHealthBox(battleSys->battlers[i]);
+        ov16_02267360(healthbox);
     }
 }
 
@@ -1518,11 +1518,11 @@ void ov16_0223F8AC(BattleSystem *battleSys, PokemonSprite **monSprites)
 void BattleSystem_SetGaugePriority(BattleSystem *battleSys, int param1)
 {
     int battler;
-    BattlerInfoBox *battlerInfoBox;
+    HealthBox *healthbox;
 
     for (battler = 0; battler < battleSys->maxBattlers; battler++) {
-        battlerInfoBox = BattlerData_GetBattlerInfoBox(battleSys->battlers[battler]);
-        ov16_022675D8(battlerInfoBox, param1);
+        healthbox = BattlerData_GetHealthBox(battleSys->battlers[battler]);
+        ov16_022675D8(healthbox, param1);
     }
 }
 

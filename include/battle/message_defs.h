@@ -18,7 +18,7 @@ typedef struct PartyGaugeData {
     u8 status[MAX_PARTY_SIZE];
 } PartyGaugeData;
 
-typedef struct BattlerInfoBoxData {
+typedef struct HealthBoxData {
     u8 command;
     u8 level;
     s16 curHP;
@@ -31,7 +31,7 @@ typedef struct BattlerInfoBoxData {
     u32 expToNextLevel;
     int numSafariBalls;
     u8 delay;
-} BattlerInfoBoxData;
+} HealthBoxData;
 
 typedef struct BattleMessageInfo {
     u8 recipient;

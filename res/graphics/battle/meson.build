@@ -5,7 +5,7 @@ base_directory = meson.current_source_dir()
 base_build_directory = meson.current_build_dir()
 
 subdir('ball_throws')
-subdir('battler_info_box')
+subdir('healthbox')
 subdir('interface')
 subdir('misc')
 subdir('terrain')

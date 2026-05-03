@@ -1,4 +1,4 @@
-battler_info_box_nclr = custom_target(
+healthbox_nclr = custom_target(
   'primary.NCLR',
   output: 'primary.NCLR',
   input: files('player_singles.png'),
@@ -11,7 +11,7 @@ battler_info_box_nclr = custom_target(
   ],
 )
 
-battler_info_box_safari_nclr = custom_target(
+healthbox_safari_nclr = custom_target(
   'safari.NCLR',
   output: 'safari.NCLR',
   input: files('safari.png'),
@@ -29,8 +29,8 @@ tall_cell = files('tall_cell.json')
 
 battle_sprites += [
   copy_gen.process(
-    battler_info_box_nclr,
-    battler_info_box_safari_nclr,
+    healthbox_nclr,
+    healthbox_safari_nclr,
     preserve_path_from: base_build_directory,
   ),
 

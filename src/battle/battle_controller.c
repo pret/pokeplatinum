@@ -518,53 +518,53 @@ void BattleController_EmitSlideTrainerIn(BattleSystem *battleSys, int battler, i
 }
 
 /**
- * @brief Emits a message to slide the battlerInfoBox in for a given battler
+ * @brief Emits a message to slide the healthbox in for a given battler
  *
  * @param battleSys
  * @param battleCtx
  * @param battler
  * @param delay     Optional frame-delay to wait until execution.
  */
-void BattleController_EmitSlideBattlerInfoBoxIn(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int delay)
+void BattleController_EmitSlideHealthBoxIn(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int delay)
 {
-    BattlerInfoBoxData battlerInfoBoxData;
+    HealthBoxData healthboxData;
 
     Pokemon *mon = BattleSystem_GetPartyPokemon(battleSys, battler, battleCtx->selectedPartySlot[battler]);
     int species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
     int level = Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL);
 
-    battlerInfoBoxData.command = BATTLE_COMMAND_SLIDE_BATTLERINFOBOX_IN;
-    battlerInfoBoxData.level = battleCtx->battleMons[battler].level;
-    battlerInfoBoxData.curHP = battleCtx->battleMons[battler].curHP;
-    battlerInfoBoxData.maxHP = battleCtx->battleMons[battler].maxHP;
-    battlerInfoBoxData.selectedPartySlot = battleCtx->selectedPartySlot[battler];
-    battlerInfoBoxData.status = Battler_StatusCondition(battleCtx, battler);
+    healthboxData.command = BATTLE_COMMAND_SLIDE_HEALTHBOX_IN;
+    healthboxData.level = battleCtx->battleMons[battler].level;
+    healthboxData.curHP = battleCtx->battleMons[battler].curHP;
+    healthboxData.maxHP = battleCtx->battleMons[battler].maxHP;
+    healthboxData.selectedPartySlot = battleCtx->selectedPartySlot[battler];
+    healthboxData.status = Battler_StatusCondition(battleCtx, battler);
 
     if ((battleCtx->battleMons[battler].species == SPECIES_NIDORAN_F || battleCtx->battleMons[battler].species == SPECIES_NIDORAN_M)
         && battleCtx->battleMons[battler].hasNickname == FALSE) {
-        battlerInfoBoxData.gender = GENDER_NONE; // don't show the Gender marker for base-Nidoran forms
+        healthboxData.gender = GENDER_NONE; // don't show the Gender marker for base-Nidoran forms
     } else {
-        battlerInfoBoxData.gender = battleCtx->battleMons[battler].gender;
+        healthboxData.gender = battleCtx->battleMons[battler].gender;
     }
 
-    battlerInfoBoxData.expFromLastLevel = battleCtx->battleMons[battler].exp - Pokemon_GetSpeciesBaseExpAt(species, level);
-    battlerInfoBoxData.expToNextLevel = Pokemon_GetSpeciesBaseExpAt(species, level + 1) - Pokemon_GetSpeciesBaseExpAt(species, level);
-    battlerInfoBoxData.speciesCaught = BattleSystem_HasCaughtSpecies(battleSys, battleCtx->battleMons[battler].species);
-    battlerInfoBoxData.numSafariBalls = BattleSystem_GetNumSafariBalls(battleSys);
-    battlerInfoBoxData.delay = delay;
+    healthboxData.expFromLastLevel = battleCtx->battleMons[battler].exp - Pokemon_GetSpeciesBaseExpAt(species, level);
+    healthboxData.expToNextLevel = Pokemon_GetSpeciesBaseExpAt(species, level + 1) - Pokemon_GetSpeciesBaseExpAt(species, level);
+    healthboxData.speciesCaught = BattleSystem_HasCaughtSpecies(battleSys, battleCtx->battleMons[battler].species);
+    healthboxData.numSafariBalls = BattleSystem_GetNumSafariBalls(battleSys);
+    healthboxData.delay = delay;
 
-    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &battlerInfoBoxData, sizeof(BattlerInfoBoxData));
+    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &healthboxData, sizeof(HealthBoxData));
 }
 
 /**
- * @brief Emits a message to slide the battlerInfoBox out for a given battler
+ * @brief Emits a message to slide the healthbox out for a given battler
  *
  * @param battleSys
  * @param battler
  */
-void BattleController_EmitSlideBattlerInfoBoxOut(BattleSystem *battleSys, int battler)
+void BattleController_EmitSlideHealthBoxOut(BattleSystem *battleSys, int battler)
 {
-    int command = BATTLE_COMMAND_SLIDE_BATTLERINFOBOX_OUT;
+    int command = BATTLE_COMMAND_SLIDE_HEALTHBOX_OUT;
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &command, sizeof(int));
 }
 
@@ -1232,7 +1232,7 @@ void BattleController_EmitToggleVanish(BattleSystem *battleSys, int battler, int
 }
 
 /**
- * @brief Emits a message to set the status icon on the battler's BattlerInfoBox
+ * @brief Emits a message to set the status icon on the battler's HealthBox
  *
  * @param battleSys
  * @param battler
