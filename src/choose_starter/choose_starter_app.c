@@ -99,14 +99,14 @@ enum CursorPosition {
 };
 
 typedef struct ChooseStarter3DGraphics {
-    NNSG3dRenderObj unk_00;
-    void *unk_54;
-    NNSG3dResMdlSet *unk_58;
-    NNSG3dResMdl *unk_5C;
-    NNSG3dResTex *unk_60;
-    void *unk_64;
-    void *unk_68;
-    NNSG3dAnmObj *unk_6C;
+    NNSG3dRenderObj renderObj;
+    void *modelRes;
+    NNSG3dResMdlSet *modelSet;
+    NNSG3dResMdl *model;
+    NNSG3dResTex *texture;
+    void *animationSet;
+    void *animation;
+    NNSG3dAnmObj *animationObj;
     fx32 unk_70;
     BOOL unk_74;
     VecFx32 unk_78;
@@ -764,36 +764,36 @@ static void ov78_021D1604(ChooseStarter3DGraphics *param0, int param1, enum Heap
 
 static void ov78_021D1630(ChooseStarter3DGraphics *param0, int param1, enum HeapID heapID)
 {
-    param0->unk_54 = LoadMemberFromNARC(NARC_INDEX_GRAPHIC__EV_POKESELECT, param1, 0, heapID, 0);
-    param0->unk_58 = NNS_G3dGetMdlSet(param0->unk_54);
-    param0->unk_5C = NNS_G3dGetMdlByIdx(param0->unk_58, 0);
-    param0->unk_60 = NNS_G3dGetTex(param0->unk_54);
+    param0->modelRes = LoadMemberFromNARC(NARC_INDEX_GRAPHIC__EV_POKESELECT, param1, 0, heapID, 0);
+    param0->modelSet = NNS_G3dGetMdlSet(param0->modelRes);
+    param0->model = NNS_G3dGetMdlByIdx(param0->modelSet, 0);
+    param0->texture = NNS_G3dGetTex(param0->modelRes);
 
-    Easy3D_UploadTextureToVRAM(param0->unk_60);
-    Easy3D_BindTextureToResource(param0->unk_54, param0->unk_60);
+    Easy3D_UploadTextureToVRAM(param0->texture);
+    Easy3D_BindTextureToResource(param0->modelRes, param0->texture);
 
-    NNS_G3dRenderObjInit(&param0->unk_00, param0->unk_5C);
+    NNS_G3dRenderObjInit(&param0->renderObj, param0->model);
 }
 
 static void ov78_021D1694(ChooseStarter3DGraphics *param0, int param1, enum HeapID heapID, NNSFndAllocator *param3)
 {
-    param0->unk_64 = LoadMemberFromNARC(NARC_INDEX_GRAPHIC__EV_POKESELECT, param1, 0, heapID, 0);
-    param0->unk_68 = NNS_G3dGetAnmByIdx(param0->unk_64, 0);
-    param0->unk_6C = NNS_G3dAllocAnmObj(param3, param0->unk_68, param0->unk_5C);
+    param0->animationSet = LoadMemberFromNARC(NARC_INDEX_GRAPHIC__EV_POKESELECT, param1, 0, heapID, 0);
+    param0->animation = NNS_G3dGetAnmByIdx(param0->animationSet, 0);
+    param0->animationObj = NNS_G3dAllocAnmObj(param3, param0->animation, param0->model);
 
-    NNS_G3dAnmObjInit(param0->unk_6C, param0->unk_68, param0->unk_5C, param0->unk_60);
-    NNS_G3dRenderObjAddAnmObj(&param0->unk_00, param0->unk_6C);
+    NNS_G3dAnmObjInit(param0->animationObj, param0->animation, param0->model, param0->texture);
+    NNS_G3dRenderObjAddAnmObj(&param0->renderObj, param0->animationObj);
 }
 
 static void Delete3DObject(ChooseStarter3DGraphics *starter3DObjects, NNSFndAllocator *allocator)
 {
-    if (starter3DObjects->unk_54) {
-        Heap_Free(starter3DObjects->unk_54);
+    if (starter3DObjects->modelRes) {
+        Heap_Free(starter3DObjects->modelRes);
     }
 
-    if (starter3DObjects->unk_64) {
-        NNS_G3dFreeAnmObj(allocator, starter3DObjects->unk_6C);
-        Heap_Free(starter3DObjects->unk_64);
+    if (starter3DObjects->animationSet) {
+        NNS_G3dFreeAnmObj(allocator, starter3DObjects->animationObj);
+        Heap_Free(starter3DObjects->animationSet);
     }
 
     memset(starter3DObjects, 0, sizeof(ChooseStarter3DGraphics));
@@ -813,7 +813,7 @@ static void ov78_021D1708(ChooseStarter3DGraphics *param0)
     MTX_Concat33(&v1, &v0, &v0);
 
     if (param0->unk_74) {
-        Easy3D_DrawRenderObj(&param0->unk_00, &param0->unk_78, &v0, &param0->unk_84);
+        Easy3D_DrawRenderObj(&param0->renderObj, &param0->unk_78, &v0, &param0->unk_84);
     }
 }
 
@@ -845,7 +845,7 @@ static void ov78_021D17CC(ChooseStarter3DGraphics *param0, u16 param1, u16 param
 
 static BOOL ov78_021D17E4(ChooseStarter3DGraphics *param0)
 {
-    fx32 v0 = NNS_G3dAnmObjGetNumFrame(param0->unk_6C);
+    fx32 v0 = NNS_G3dAnmObjGetNumFrame(param0->animationObj);
     BOOL v1;
 
     if ((param0->unk_70 + FX32_ONE) < v0) {
@@ -856,23 +856,23 @@ static BOOL ov78_021D17E4(ChooseStarter3DGraphics *param0)
         v1 = 1;
     }
 
-    NNS_G3dAnmObjSetFrame(param0->unk_6C, param0->unk_70);
+    NNS_G3dAnmObjSetFrame(param0->animationObj, param0->unk_70);
 
     return v1;
 }
 
 static void ov78_021D180C(ChooseStarter3DGraphics *param0)
 {
-    fx32 v0 = NNS_G3dAnmObjGetNumFrame(param0->unk_6C);
+    fx32 v0 = NNS_G3dAnmObjGetNumFrame(param0->animationObj);
 
     param0->unk_70 = (param0->unk_70 + FX32_ONE) % v0;
-    NNS_G3dAnmObjSetFrame(param0->unk_6C, param0->unk_70);
+    NNS_G3dAnmObjSetFrame(param0->animationObj, param0->unk_70);
 }
 
 static void ov78_021D182C(ChooseStarter3DGraphics *param0, fx32 param1)
 {
     param0->unk_70 = param1;
-    NNS_G3dAnmObjSetFrame(param0->unk_6C, param1);
+    NNS_G3dAnmObjSetFrame(param0->animationObj, param1);
 }
 
 static void Make3DObjects(ChooseStarterApp *param0, enum HeapID heapID)
