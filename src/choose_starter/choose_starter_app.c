@@ -202,7 +202,7 @@ typedef struct ChooseStarterApp {
     ChooseStarterCursor cursor;
     GXRgb edgeMarkings[8];
     SoftwareSpriteManager *spriteDisplay;
-    StarterPreviewWindow unk_6A8;
+    StarterPreviewWindow previewWindow;
     int messageFrame;
     u32 messageFrameTextDelay;
     u8 unk_708;
@@ -351,7 +351,7 @@ BOOL ChooseStarter_Init(ApplicationManager *appMan, int *param1)
     MakeCursorOAM(app, &app->cursor, HEAP_ID_CHOOSE_STARTER_APP);
     AttachCursorCellActor(app, &app->cursor, HEAP_ID_CHOOSE_STARTER_APP);
     StartCursorMovement(&app->cursor);
-    MakePreviewWindow(&app->unk_6A8, app, HEAP_ID_CHOOSE_STARTER_APP);
+    MakePreviewWindow(&app->previewWindow, app, HEAP_ID_CHOOSE_STARTER_APP);
 
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_60, SEQ_NONE, 0);
 
@@ -428,7 +428,7 @@ BOOL ChooseStarter_Exit(ApplicationManager *appMan, int *param1)
     v2 = DisableTouchPad();
     GF_ASSERT(v2 == 1);
 
-    ov78_021D24E4(&v0->unk_6A8);
+    ov78_021D24E4(&v0->previewWindow);
     ov78_021D2350(&v0->cursor);
     ov78_021D2290(v0, &v0->cursor);
     ov78_021D241C(&v0->cursor);
@@ -1221,7 +1221,7 @@ static void ov78_021D1E44(ChooseStarterApp *param0, enum HeapID heapID)
         param0->unk_08 = 1;
         break;
     case 1:
-        ov78_021D2508(&param0->unk_6A8, 1);
+        ov78_021D2508(&param0->previewWindow, 1);
         PokemonSprite_SetAttribute(param0->sprites[param0->cursorPosition], MON_SPRITE_HIDE, FALSE);
 
         if (ov78_021D26A4(param0)) {
@@ -1255,7 +1255,7 @@ static void ov78_021D1E44(ChooseStarterApp *param0, enum HeapID heapID)
         if (ov78_021D26A4(param0)) {
             ov78_021D1C98(param0, -1);
             param0->unk_04 = 7;
-            ov78_021D2508(&param0->unk_6A8, 0);
+            ov78_021D2508(&param0->previewWindow, 0);
             PokemonSprite_SetAttribute(param0->sprites[param0->cursorPosition], MON_SPRITE_HIDE, TRUE);
             param0->unk_708 = ov78_021D1FB4(param0->messageWindow, heapID, 360, 7, TEXT_COLOR(1, 2, 15), TEXT_SPEED_NO_TRANSFER);
         }
@@ -1633,19 +1633,19 @@ static void ov78_021D2618(ChooseStarterApp *param0)
     v0 = param0->unk_7C[param0->cursorPosition][0] << FX32_SHIFT;
     v1 = (param0->unk_7C[param0->cursorPosition][1] + 48) << FX32_SHIFT;
 
-    ov78_021D2514(&param0->unk_6A8, v0, 128 << FX32_SHIFT, v1, 96 << FX32_SHIFT, FX32_CONST(0.40f), FX32_CONST(1.0f), 6);
+    ov78_021D2514(&param0->previewWindow, v0, 128 << FX32_SHIFT, v1, 96 << FX32_SHIFT, FX32_CONST(0.40f), FX32_CONST(1.0f), 6);
     ov78_021D26B4(&param0->unk_274, param0->sprites[param0->cursorPosition], v0, 128 << FX32_SHIFT, v1, 96 << FX32_SHIFT, FX32_CONST(0.40f), FX32_CONST(1.0f), 6);
 }
 
 static void ov78_021D2688(ChooseStarterApp *param0)
 {
-    ov78_021D256C(&param0->unk_6A8);
+    ov78_021D256C(&param0->previewWindow);
     ov78_021D270C(&param0->unk_274);
 }
 
 static BOOL ov78_021D26A4(ChooseStarterApp *param0)
 {
-    return ov78_021D2608(&param0->unk_6A8);
+    return ov78_021D2608(&param0->previewWindow);
 }
 
 static void ov78_021D26B4(StarterPreviewGraphics *param0, PokemonSprite *param1, fx32 param2, fx32 param3, fx32 param4, fx32 param5, fx32 param6, fx32 param7, int param8)
