@@ -272,7 +272,7 @@ static void ov78_021D182C(ChooseStarter3DGraphics *param0, fx32 param1);
 static void ov78_021D1630(ChooseStarter3DGraphics *param0, int param1, enum HeapID heapID);
 static void ov78_021D1694(ChooseStarter3DGraphics *param0, int param1, enum HeapID heapID, NNSFndAllocator *param3);
 static void MakePreviewWindow(StarterPreviewWindow *param0, ChooseStarterApp *param1, int param2);
-static void ov78_021D24E4(StarterPreviewWindow *param0);
+static void DeletePreviewWindow(StarterPreviewWindow *previewWindow);
 static void ov78_021D2508(StarterPreviewWindow *param0, BOOL param1);
 static void ov78_021D2514(StarterPreviewWindow *param0, fx32 param1, fx32 param2, fx32 param3, fx32 param4, fx32 param5, fx32 param6, int param7);
 static void ov78_021D256C(StarterPreviewWindow *param0);
@@ -428,7 +428,7 @@ BOOL ChooseStarter_Exit(ApplicationManager *appMan, int *param1)
     touchPadResult = DisableTouchPad();
     GF_ASSERT(touchPadResult == AUTO_SAMPLING_OPERATION_RESULT_SUCCESS);
 
-    ov78_021D24E4(&app->previewWindow);
+    DeletePreviewWindow(&app->previewWindow);
     ov78_021D2350(&app->cursor);
     ov78_021D2290(app, &app->cursor);
     ov78_021D241C(&app->cursor);
@@ -1552,13 +1552,13 @@ static void MakePreviewWindow(StarterPreviewWindow *param0, ChooseStarterApp *pa
     SoftwareSprite_SetCenter(param0->unk_08, 128 / 2, 128 / 2);
 }
 
-static void ov78_021D24E4(StarterPreviewWindow *param0)
+static void DeletePreviewWindow(StarterPreviewWindow *previewWindow)
 {
-    SoftwareSprite_Reset(param0->unk_08);
-    SoftwareSprite_FreeChars(param0->unk_00);
-    SoftwareSprite_FreePalette(param0->unk_04);
-    Heap_Free(param0->unk_0C);
-    Heap_Free(param0->unk_10);
+    SoftwareSprite_Reset(previewWindow->unk_08);
+    SoftwareSprite_FreeChars(previewWindow->unk_00);
+    SoftwareSprite_FreePalette(previewWindow->unk_04);
+    Heap_Free(previewWindow->unk_0C);
+    Heap_Free(previewWindow->unk_10);
 }
 
 static void ov78_021D2508(StarterPreviewWindow *param0, BOOL param1)
