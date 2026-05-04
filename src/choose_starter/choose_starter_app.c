@@ -262,7 +262,7 @@ static void ov78_021D1DF0(ChooseStarterApp *param0);
 static void ov78_021D1E28(ChooseStarterApp *param0);
 static void ov78_021D1E44(ChooseStarterApp *param0, enum HeapID heapID);
 static void MakePokemonSprite(PokemonSprite **sprite, ChooseStarterApp *app, int species);
-static void ov78_021D16D8(ChooseStarter3DGraphics *param0, NNSFndAllocator *param1);
+static void Delete3DObject(ChooseStarter3DGraphics *starter3DObjects, NNSFndAllocator *allocator);
 static void ov78_021D1708(ChooseStarter3DGraphics *param0);
 static void ov78_021D17A4(ChooseStarter3DGraphics *param0, BOOL param1);
 static void ov78_021D17A8(ChooseStarter3DGraphics *param0, fx32 param1, fx32 param2, fx32 param3);
@@ -785,18 +785,18 @@ static void ov78_021D1694(ChooseStarter3DGraphics *param0, int param1, enum Heap
     NNS_G3dRenderObjAddAnmObj(&param0->unk_00, param0->unk_6C);
 }
 
-static void ov78_021D16D8(ChooseStarter3DGraphics *param0, NNSFndAllocator *param1)
+static void Delete3DObject(ChooseStarter3DGraphics *starter3DObjects, NNSFndAllocator *allocator)
 {
-    if (param0->unk_54) {
-        Heap_Free(param0->unk_54);
+    if (starter3DObjects->unk_54) {
+        Heap_Free(starter3DObjects->unk_54);
     }
 
-    if (param0->unk_64) {
-        NNS_G3dFreeAnmObj(param1, param0->unk_6C);
-        Heap_Free(param0->unk_64);
+    if (starter3DObjects->unk_64) {
+        NNS_G3dFreeAnmObj(allocator, starter3DObjects->unk_6C);
+        Heap_Free(starter3DObjects->unk_64);
     }
 
-    memset(param0, 0, sizeof(ChooseStarter3DGraphics));
+    memset(starter3DObjects, 0, sizeof(ChooseStarter3DGraphics));
 }
 
 static void ov78_021D1708(ChooseStarter3DGraphics *param0)
@@ -903,7 +903,7 @@ static void Delete3DObjects(ChooseStarterApp *app)
     int objectIndex;
 
     for (objectIndex = 0; objectIndex < CHOOSE_STARTER_3D_OBJECTS_NUM; objectIndex++) {
-        ov78_021D16D8(&app->starter3DObjects[objectIndex], &app->allocator);
+        Delete3DObject(&app->starter3DObjects[objectIndex], &app->allocator);
     }
 }
 
