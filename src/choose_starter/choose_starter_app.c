@@ -417,32 +417,32 @@ BOOL ChooseStarter_Main(ApplicationManager *appMan, int *state)
 
 BOOL ChooseStarter_Exit(ApplicationManager *appMan, int *param1)
 {
-    ChooseStarterApp *v0 = ApplicationManager_Data(appMan);
-    ChooseStarterData *v1 = ApplicationManager_Args(appMan);
+    ChooseStarterApp *app = ApplicationManager_Data(appMan);
+    ChooseStarterData *data = ApplicationManager_Args(appMan);
     BOOL v2;
 
     SetVBlankCallback(NULL, NULL);
 
-    v1->species = GetSelectedSpecies(v0->cursorPosition);
+    data->species = GetSelectedSpecies(app->cursorPosition);
 
     v2 = DisableTouchPad();
     GF_ASSERT(v2 == 1);
 
-    ov78_021D24E4(&v0->previewWindow);
-    ov78_021D2350(&v0->cursor);
-    ov78_021D2290(v0, &v0->cursor);
-    ov78_021D241C(&v0->cursor);
+    ov78_021D24E4(&app->previewWindow);
+    ov78_021D2350(&app->cursor);
+    ov78_021D2290(app, &app->cursor);
+    ov78_021D241C(&app->cursor);
 
-    ov78_021D1B90(v0);
-    ov78_021D1908(v0);
-    ov78_021D1594(v0);
-    ov78_021D14BC(v0);
-    ov78_021D1518(v0);
-    ov78_021D13A0(v0);
-    ov78_021D2884(v0);
+    ov78_021D1B90(app);
+    ov78_021D1908(app);
+    ov78_021D1594(app);
+    ov78_021D14BC(app);
+    ov78_021D1518(app);
+    ov78_021D13A0(app);
+    ov78_021D2884(app);
 
-    ov78_021D12EC(v0->bgl);
-    Heap_Free(v0->bgl);
+    ov78_021D12EC(app->bgl);
+    Heap_Free(app->bgl);
     ov78_021D10DC();
 
     VramTransfer_Free();
