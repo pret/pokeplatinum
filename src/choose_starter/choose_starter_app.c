@@ -725,10 +725,10 @@ static void ov78_021D1518(ChooseStarterApp *param0)
 static void MakeCellActors(ChooseStarterApp *app, enum HeapID heapID)
 {
     app->spriteList = SpriteList_InitRendering(2, &app->unk_BC, heapID);
-    app->spriteResourceCollection[0] = SpriteResourceCollection_New(2, 0, heapID);
-    app->spriteResourceCollection[1] = SpriteResourceCollection_New(2, 1, heapID);
-    app->spriteResourceCollection[2] = SpriteResourceCollection_New(2, 2, heapID);
-    app->spriteResourceCollection[3] = SpriteResourceCollection_New(2, 3, heapID);
+    app->spriteResourceCollection[SPRITE_RESOURCE_CHAR] = SpriteResourceCollection_New(2, 0, heapID);
+    app->spriteResourceCollection[SPRITE_RESOURCE_PLTT] = SpriteResourceCollection_New(2, 1, heapID);
+    app->spriteResourceCollection[SPRITE_RESOURCE_CELL] = SpriteResourceCollection_New(2, 2, heapID);
+    app->spriteResourceCollection[SPRITE_RESOURCE_ANIM] = SpriteResourceCollection_New(2, 3, heapID);
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, TRUE);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, TRUE);
@@ -737,10 +737,10 @@ static void MakeCellActors(ChooseStarterApp *app, enum HeapID heapID)
 static void ov78_021D1594(ChooseStarterApp *param0)
 {
     SpriteList_Delete(param0->spriteList);
-    SpriteResourceCollection_Delete(param0->spriteResourceCollection[0]);
-    SpriteResourceCollection_Delete(param0->spriteResourceCollection[1]);
-    SpriteResourceCollection_Delete(param0->spriteResourceCollection[2]);
-    SpriteResourceCollection_Delete(param0->spriteResourceCollection[3]);
+    SpriteResourceCollection_Delete(param0->spriteResourceCollection[SPRITE_RESOURCE_CHAR]);
+    SpriteResourceCollection_Delete(param0->spriteResourceCollection[SPRITE_RESOURCE_PLTT]);
+    SpriteResourceCollection_Delete(param0->spriteResourceCollection[SPRITE_RESOURCE_CELL]);
+    SpriteResourceCollection_Delete(param0->spriteResourceCollection[SPRITE_RESOURCE_ANIM]);
 }
 
 static void ov78_021D15CC(ChooseStarter3DGraphics *param0, int param1, int param2, enum HeapID heapID, NNSFndAllocator *param4)
@@ -1404,29 +1404,29 @@ static BOOL ov78_021D2200(ChooseStarterCameraMovement *param0)
 
 static void MakeCursorOAM(ChooseStarterApp *app, ChooseStarterCursor *cursor, enum HeapID heapID)
 {
-    cursor->graphics[0] = SpriteResourceCollection_AddTiles(app->spriteResourceCollection[0], 82, 10, 0, 10, NNS_G2D_VRAM_TYPE_2DMAIN, heapID);
+    cursor->graphics[SPRITE_RESOURCE_CHAR] = SpriteResourceCollection_AddTiles(app->spriteResourceCollection[SPRITE_RESOURCE_CHAR], 82, 10, 0, 10, NNS_G2D_VRAM_TYPE_2DMAIN, heapID);
 
-    SpriteTransfer_RequestCharAtEnd(cursor->graphics[0]);
-    SpriteResource_ReleaseData(cursor->graphics[0]);
+    SpriteTransfer_RequestCharAtEnd(cursor->graphics[SPRITE_RESOURCE_CHAR]);
+    SpriteResource_ReleaseData(cursor->graphics[SPRITE_RESOURCE_CHAR]);
 
-    cursor->graphics[1] = SpriteResourceCollection_AddPalette(app->spriteResourceCollection[1], 82, 11, 0, 11, NNS_G2D_VRAM_TYPE_2DMAIN, 1, heapID);
+    cursor->graphics[SPRITE_RESOURCE_PLTT] = SpriteResourceCollection_AddPalette(app->spriteResourceCollection[SPRITE_RESOURCE_PLTT], 82, 11, 0, 11, NNS_G2D_VRAM_TYPE_2DMAIN, 1, heapID);
 
-    SpriteTransfer_RequestPlttFreeSpace(cursor->graphics[1]);
-    SpriteResource_ReleaseData(cursor->graphics[1]);
+    SpriteTransfer_RequestPlttFreeSpace(cursor->graphics[SPRITE_RESOURCE_PLTT]);
+    SpriteResource_ReleaseData(cursor->graphics[SPRITE_RESOURCE_PLTT]);
 
-    cursor->graphics[2] = SpriteResourceCollection_Add(app->spriteResourceCollection[2], 82, 12, 0, 12, 2, heapID);
-    cursor->graphics[3] = SpriteResourceCollection_Add(app->spriteResourceCollection[3], 82, 13, 0, 13, 3, heapID);
+    cursor->graphics[SPRITE_RESOURCE_CELL] = SpriteResourceCollection_Add(app->spriteResourceCollection[SPRITE_RESOURCE_CELL], 82, 12, 0, 12, 2, heapID);
+    cursor->graphics[SPRITE_RESOURCE_ANIM] = SpriteResourceCollection_Add(app->spriteResourceCollection[SPRITE_RESOURCE_ANIM], 82, 13, 0, 13, 3, heapID);
 }
 
 static void DeleteCursorOAM(ChooseStarterApp *app, ChooseStarterCursor *cursor)
 {
-    SpriteTransfer_ResetCharTransfer(cursor->graphics[0]);
-    SpriteTransfer_ResetPlttTransfer(cursor->graphics[1]);
+    SpriteTransfer_ResetCharTransfer(cursor->graphics[SPRITE_RESOURCE_CHAR]);
+    SpriteTransfer_ResetPlttTransfer(cursor->graphics[SPRITE_RESOURCE_PLTT]);
 
-    SpriteResourceCollection_Remove(app->spriteResourceCollection[0], cursor->graphics[0]);
-    SpriteResourceCollection_Remove(app->spriteResourceCollection[1], cursor->graphics[1]);
-    SpriteResourceCollection_Remove(app->spriteResourceCollection[2], cursor->graphics[2]);
-    SpriteResourceCollection_Remove(app->spriteResourceCollection[3], cursor->graphics[3]);
+    SpriteResourceCollection_Remove(app->spriteResourceCollection[SPRITE_RESOURCE_CHAR], cursor->graphics[SPRITE_RESOURCE_CHAR]);
+    SpriteResourceCollection_Remove(app->spriteResourceCollection[SPRITE_RESOURCE_PLTT], cursor->graphics[SPRITE_RESOURCE_PLTT]);
+    SpriteResourceCollection_Remove(app->spriteResourceCollection[SPRITE_RESOURCE_CELL], cursor->graphics[SPRITE_RESOURCE_CELL]);
+    SpriteResourceCollection_Remove(app->spriteResourceCollection[SPRITE_RESOURCE_ANIM], cursor->graphics[SPRITE_RESOURCE_ANIM]);
 }
 
 static void AttachCursorCellActor(ChooseStarterApp *app, ChooseStarterCursor *cursor, enum HeapID heapID)
@@ -1434,7 +1434,7 @@ static void AttachCursorCellActor(ChooseStarterApp *app, ChooseStarterCursor *cu
     SpriteResourcesHeader cursorResource;
     SpriteListTemplate cursorCellParams;
 
-    SpriteResourcesHeader_Init(&cursorResource, 10, 11, 12, 13, 0xffffffff, 0xffffffff, 0, 1, app->spriteResourceCollection[0], app->spriteResourceCollection[1], app->spriteResourceCollection[2], app->spriteResourceCollection[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&cursorResource, 10, 11, 12, 13, 0xffffffff, 0xffffffff, 0, 1, app->spriteResourceCollection[SPRITE_RESOURCE_CHAR], app->spriteResourceCollection[SPRITE_RESOURCE_PLTT], app->spriteResourceCollection[SPRITE_RESOURCE_CELL], app->spriteResourceCollection[SPRITE_RESOURCE_ANIM], NULL, NULL);
 
     cursorCellParams.list = app->spriteList;
     cursorCellParams.resourceData = &cursorResource;
