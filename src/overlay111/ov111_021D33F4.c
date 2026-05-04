@@ -35,10 +35,7 @@ BOOL ov111_021D353C(UnkStruct_ov111_021D33F4 *param0);
 
 UnkStruct_ov111_021D33F4 *ov111_021D33F4(UnkStruct_ov111_021D2F80 *param0, u32 param1, u32 param2, u16 param3, u16 param4, u8 param5, u32 param6, u32 param7)
 {
-    UnkStruct_ov111_021D33F4 *v0;
-    VecFx32 v1;
-
-    v0 = Heap_Alloc(HEAP_ID_115, sizeof(UnkStruct_ov111_021D33F4));
+    UnkStruct_ov111_021D33F4 *v0 = Heap_Alloc(HEAP_ID_115, sizeof(UnkStruct_ov111_021D33F4));
     memset(v0, 0, sizeof(UnkStruct_ov111_021D33F4));
     v0->unk_0C = ov111_021D3280(param0, param1, param2, param6, param7, param5);
     v0->unk_02 = param5;
@@ -58,13 +55,11 @@ void *ov111_021D3448(UnkStruct_ov111_021D33F4 *param0)
 void ov111_021D345C(UnkStruct_ov111_021D33F4 *param0, int param1)
 {
     Sprite_SetDrawFlag(param0->unk_0C, param1);
-    return;
 }
 
 void ov111_021D3468(UnkStruct_ov111_021D33F4 *param0, u32 param1)
 {
     Sprite_SetPriority(param0->unk_0C, param1);
-    return;
 }
 
 void ov111_021D3474(UnkStruct_ov111_021D33F4 *param0, int param1, int param2)
@@ -79,7 +74,6 @@ void ov111_021D3474(UnkStruct_ov111_021D33F4 *param0, int param1, int param2)
     }
 
     Sprite_SetPosition(param0->unk_0C, &v0);
-    return;
 }
 
 void ov111_021D349C(UnkStruct_ov111_021D33F4 *param0, int *param1, int *param2)
@@ -88,16 +82,12 @@ void ov111_021D349C(UnkStruct_ov111_021D33F4 *param0, int *param1, int *param2)
 
     *param1 = (v0->x / FX32_ONE);
     *param2 = (v0->y / FX32_ONE);
-
-    return;
 }
 
 void ov111_021D34C4(UnkStruct_ov111_021D33F4 *param0, u32 param1)
 {
     Sprite_SetAnimSpeed(param0->unk_0C, FX32_ONE);
     Sprite_SetAnimNoRestart(param0->unk_0C, param1);
-
-    return;
 }
 
 static const VecFx32 Unk_ov111_021D3834[] = {
@@ -116,24 +106,17 @@ static const VecFx32 Unk_ov111_021D3834[] = {
 
 void ov111_021D34E0(UnkStruct_ov111_021D33F4 *param0, u32 param1)
 {
-    u8 v0;
-    v0 = param1;
-
     Sprite_SetAffineScaleEx(param0->unk_0C, &Unk_ov111_021D3834[0], 1);
-
-    return;
 }
 
 void ov111_021D34F4(UnkStruct_ov111_021D33F4 *param0, VecFx32 *param1)
 {
     Sprite_SetAffineScaleEx(param0->unk_0C, param1, 2);
-    return;
 }
 
 void ov111_021D3500(UnkStruct_ov111_021D33F4 *param0, u32 param1)
 {
     Sprite_SetExplicitPaletteWithOffset(param0->unk_0C, param1);
-    return;
 }
 
 void ov111_021D350C(UnkStruct_ov111_021D33F4 *param0, int param1)
@@ -141,13 +124,11 @@ void ov111_021D350C(UnkStruct_ov111_021D33F4 *param0, int param1)
     Sprite_SetAnimateFlag(param0->unk_0C, param1);
     Sprite_SetAnimSpeed(param0->unk_0C, FX32_ONE);
     Sprite_SetAnim(param0->unk_0C, Sprite_GetActiveAnim(param0->unk_0C));
-    return;
 }
 
 void ov111_021D3530(UnkStruct_ov111_021D33F4 *param0, BOOL param1)
 {
     Sprite_SetMosaicFlag(param0->unk_0C, param1);
-    return;
 }
 
 BOOL ov111_021D353C(UnkStruct_ov111_021D33F4 *param0)

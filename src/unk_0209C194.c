@@ -32,7 +32,7 @@ typedef struct {
     UnkStruct_0209C194 *unk_28;
     FieldSystem *fieldSystem;
     PartyMenu *partyMenu;
-    PokemonSummary *unk_34;
+    PokemonSummary *monSummary;
 } UnkStruct_0209C1EC;
 
 static BOOL (*const Unk_020F951C[6])(UnkStruct_0209C1EC *);
@@ -71,7 +71,7 @@ void *sub_0209C1EC(FieldSystem *fieldSystem)
     v0->unk_08.unk_0C = fieldSystem->unk_80;
     v0->unk_08.options = SaveData_GetOptions(fieldSystem->saveData);
     v0->unk_08.records = SaveData_GetGameRecords(fieldSystem->saveData);
-    v0->unk_08.unk_18 = SaveData_GetJournal(fieldSystem->saveData);
+    v0->unk_08.journalEntry = SaveData_GetJournal(fieldSystem->saveData);
     v0->unk_08.unk_04 = Options_Frame(v0->unk_08.options);
     v0->unk_08.fieldSystem = fieldSystem;
 
@@ -123,10 +123,10 @@ static BOOL sub_0209C2C0(UnkStruct_0209C1EC *param0)
         Heap_Free(param0->partyMenu);
 
         if (param0->partyMenu->menuSelectionResult == 1) {
-            param0->unk_34 = sub_0203D670(param0->fieldSystem, HEAP_ID_APPLICATION, SUMMARY_MODE_NORMAL);
+            param0->monSummary = sub_0203D670(param0->fieldSystem, HEAP_ID_APPLICATION, SUMMARY_MODE_NORMAL);
             param0->unk_04 = v0;
-            param0->unk_34->monIndex = v0;
-            FieldSystem_OpenSummaryScreen(param0->fieldSystem, param0->unk_34);
+            param0->monSummary->monIndex = v0;
+            FieldSystem_OpenSummaryScreen(param0->fieldSystem, param0->monSummary);
             param0->unk_00 = 3;
         } else {
             param0->unk_28->unk_04 = v0;
@@ -142,7 +142,7 @@ static BOOL sub_0209C2C0(UnkStruct_0209C1EC *param0)
 static BOOL sub_0209C324(UnkStruct_0209C1EC *param0)
 {
     if (FieldSystem_IsRunningApplication(param0->fieldSystem) == 0) {
-        Heap_Free(param0->unk_34);
+        Heap_Free(param0->monSummary);
         param0->partyMenu = FieldSystem_OpenPartyMenu_SelectForSpinTrade(param0->fieldSystem, param0->unk_04);
         param0->unk_00 = 2;
     }

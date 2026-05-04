@@ -69,8 +69,6 @@ static volatile int sWirelessDriverStatus;
 
 void CommServerClient_Init(TrainerInfo *trainerInfo, BOOL param1)
 {
-    int v0;
-
     if (sCommServerClient != NULL) {
         return;
     }
@@ -105,11 +103,10 @@ BOOL sub_020332D0(void)
 
 static BOOL sub_020332E4(const u8 *param0, const u8 *param1, int param2)
 {
-    int v0;
     const u8 *v1 = param0;
     const u8 *v2 = param1;
 
-    for (v0 = 0; v0 < param2; v0++) {
+    for (int i = 0; i < param2; i++) {
         if (*v1 != *v2) {
             return 0;
         }
@@ -123,7 +120,6 @@ static BOOL sub_020332E4(const u8 *param0, const u8 *param1, int param2)
 
 static void sub_0203330C(WMBssDesc *param0)
 {
-    int v0;
     UnkStruct_0203330C *v1;
     int v2 = sub_0203895C();
     int v3 = sub_02038974();
@@ -134,13 +130,13 @@ static void sub_0203330C(WMBssDesc *param0)
         (void)0;
     } else if (sub_020326C4(v1->unk_04) && sub_020326C4(v2)) {
         (void)0;
-    } else if (v1->unk_54 && (v1->unk_04 == 10)) {
+    } else if (v1->unk_54 && v1->unk_04 == 10) {
         return;
     } else if (v1->unk_04 != v2) {
         return;
     }
 
-    if ((v2 != 14) && (v1->unk_05 != v3)) {
+    if (v2 != 14 && v1->unk_05 != v3) {
         return;
     }
 
@@ -151,13 +147,13 @@ static void sub_0203330C(WMBssDesc *param0)
 static void sub_02033380(void)
 {
     WMBssDesc *v0 = &sCommServerClient->unk_54;
-    int v1;
 
     if (!sCommServerClient->unk_1519_6) {
         return;
     }
 
     sCommServerClient->unk_1519_6 = 0;
+    int v1;
 
     for (v1 = 0; v1 < 16; ++v1) {
         if (sCommServerClient->unk_14C8[v1] == 0) {
@@ -234,13 +230,10 @@ void WirelessDriver_Shutdown(void)
 static void sub_020334DC(BOOL param0)
 {
     sCommServerClient->unk_14F4 = 0;
+    u32 v0 = (u32)sCommServerClient->unk_14E8;
 
-    {
-        u32 v0 = (u32)sCommServerClient->unk_14E8;
-
-        v0 = 32 - (v0 % 32) + v0;
-        (void)sub_02031BC4((void *)v0, param0);
-    }
+    v0 = 32 - (v0 % 32) + v0;
+    (void)sub_02031BC4((void *)v0, param0);
 
     sub_020318D0(sCommServerClient->unk_1504);
 }
@@ -270,7 +263,6 @@ static void sub_02033578(void)
     sCommServerClient->unk_1519_4 = 0;
     sCommServerClient->unk_1518 = 0;
     sCommServerClient->unk_1517 = 0;
-    return;
 }
 
 BOOL CommServerClient_InitServer(BOOL param0, BOOL param1, BOOL param2)
@@ -331,7 +323,8 @@ BOOL sub_020336D4(void)
             sub_020314C0();
             sCommServerClient->unk_1518 = 1;
             break;
-        } else if (sub_02031FD8()) {
+        }
+        if (sub_02031FD8()) {
             (void)0;
         } else {
             sub_02031EF4();
@@ -397,16 +390,14 @@ static void sub_020337C0(void)
 
 int sub_02033808(void)
 {
-    int v0, v1;
-
     if (!CommSys_IsInitialized()) {
         return 0;
     }
 
-    v1 = 0;
+    int v1 = 0;
 
-    for (v0 = 0; v0 < 16; ++v0) {
-        if (sCommServerClient->unk_14C8[v0] != 0) {
+    for (int i = 0; i < 16; ++i) {
+        if (sCommServerClient->unk_14C8[i] != 0) {
             v1++;
         }
     }
@@ -416,12 +407,12 @@ int sub_02033808(void)
 
 int sub_0203383C(int param0)
 {
-    int v0, v1 = 0;
+    int i, v1 = 0;
 
-    for (v0 = 0; v0 < 16; v0++) {
-        if (sCommServerClient->unk_14C8[v0] != 0) {
+    for (i = 0; i < 16; i++) {
+        if (sCommServerClient->unk_14C8[i] != 0) {
             if (v1 == param0) {
-                return v0;
+                return i;
             }
 
             v1++;
@@ -444,13 +435,8 @@ void sub_02033884(void)
 
 int sub_02033898(int param0)
 {
-    int v0;
-    UnkStruct_0203330C *v1;
-
-    v0 = 0;
-
     if (sCommServerClient->unk_14C8[param0] != 0) {
-        v1 = (UnkStruct_0203330C *)sCommServerClient->unk_188[param0].gameInfo.userGameInfo;
+        UnkStruct_0203330C *v1 = (UnkStruct_0203330C *)sCommServerClient->unk_188[param0].gameInfo.userGameInfo;
 
         if (v1->unk_06 == 0) {
             return 1;
@@ -464,13 +450,11 @@ int sub_02033898(int param0)
 
 static int sub_020338C8(int param0)
 {
-    int v0, v1;
+    for (int i = 16 - 1; i >= 0; i--) {
+        int v1 = sub_02033898(i);
 
-    for (v0 = 16 - 1; v0 >= 0; v0--) {
-        v1 = sub_02033898(v0);
-
-        if ((v1 > param0) && (v1 < (7 + 1))) {
-            return v0;
+        if (v1 > param0 && v1 < (7 + 1)) {
+            return i;
         }
     }
 
@@ -479,19 +463,17 @@ static int sub_020338C8(int param0)
 
 int sub_020338EC(void)
 {
-    int v0, v1;
-
     if (sub_02033808() == 0) {
         return -1;
     }
 
-    for (v0 = 16 - 1; v0 >= 0; v0--) {
-        if (sCommServerClient->unk_14C8[v0] != 0) {
-            if (sub_02034014(&sCommServerClient->unk_188[v0].bssid[0])) {
-                v1 = sub_02033898(v0);
+    for (int i = 16 - 1; i >= 0; i--) {
+        if (sCommServerClient->unk_14C8[i] != 0) {
+            if (sub_02034014(&sCommServerClient->unk_188[i].bssid[0])) {
+                int v1 = sub_02033898(i);
 
-                if ((v1 > 1) && (v1 < (7 + 1))) {
-                    return v0;
+                if (v1 > 1 && v1 < (7 + 1)) {
+                    return i;
                 }
             }
         }
@@ -502,11 +484,11 @@ int sub_020338EC(void)
 
 int sub_0203394C(void)
 {
-    int v0;
-
     if (sub_02033808() == 0) {
         return -1;
     }
+
+    int v0;
 
     for (v0 = 16 - 1; v0 >= 0; v0--) {
         if (sCommServerClient->unk_14C8[v0] != 0) {
@@ -533,15 +515,12 @@ int sub_0203394C(void)
 
 void sub_020339AC(int param0, TrainerInfo *param1)
 {
-    int v0, v1;
-    UnkStruct_0203330C *v2;
+    int i, v1 = 0;
 
-    v1 = 0;
-
-    for (v0 = 0; v0 < 16; ++v0) {
-        if (sCommServerClient->unk_14C8[v0] != 0) {
+    for (i = 0; i < 16; ++i) {
+        if (sCommServerClient->unk_14C8[i] != 0) {
             if (param0 == v1) {
-                TrainerInfo_Copy(sub_02033FB0(v0), param1);
+                TrainerInfo_Copy(sub_02033FB0(i), param1);
                 return;
             }
 
@@ -552,21 +531,19 @@ void sub_020339AC(int param0, TrainerInfo *param1)
 
 BOOL sub_020339E8(u16 param0)
 {
-    int v0;
-
     if (sub_02031934() == 2) {
         (void)sub_020314C0();
         return 0;
     }
 
     if (sub_02031934() == 1) {
-        v0 = sub_0203895C();
+        int v0 = sub_0203895C();
         sCommServerClient->unk_1514 = sCommServerClient->unk_188[param0].channel;
 
         if (sub_020326C4(v0)) {
             sub_02031220(1, sCommServerClient->unk_188[param0].bssid, 0);
         } else {
-            sub_02031DD8(1, &(sCommServerClient->unk_188[param0]));
+            sub_02031DD8(1, &sCommServerClient->unk_188[param0]);
         }
 
         return 1;
@@ -577,19 +554,17 @@ BOOL sub_020339E8(u16 param0)
 
 void sub_02033A5C(void)
 {
-    int v0;
-
     sub_02033380();
 
-    for (v0 = 0; v0 < 16; v0++) {
-        if (sCommServerClient->unk_14C8[v0] == 0) {
+    for (int i = 0; i < 16; i++) {
+        if (sCommServerClient->unk_14C8[i] == 0) {
             continue;
         }
 
-        if (sCommServerClient->unk_14C8[v0] > 0) {
-            sCommServerClient->unk_14C8[v0]--;
+        if (sCommServerClient->unk_14C8[i] > 0) {
+            sCommServerClient->unk_14C8[i]--;
 
-            if (sCommServerClient->unk_14C8[v0] == 0) {
+            if (sCommServerClient->unk_14C8[i] == 0) {
                 sCommServerClient->unk_14F8 = 1;
             }
         }
@@ -598,16 +573,12 @@ void sub_02033A5C(void)
 
 static void sub_02033AA8(void)
 {
-    u8 v0[6];
-    TrainerInfo *v1;
-    UnkStruct_0203330C *v2;
-    UnkStruct_02034168 *v3;
     int v4 = sub_0203895C();
 
-    v1 = sub_02033F9C();
+    TrainerInfo *v1 = sub_02033F9C();
 
     if (v4 != 15) {
-        v2 = (UnkStruct_0203330C *)sCommServerClient->unk_150C;
+        UnkStruct_0203330C *v2 = (UnkStruct_0203330C *)sCommServerClient->unk_150C;
 
         GF_ASSERT(32 >= BattleRegulation_Size());
         GF_ASSERT(32 == TrainerInfo_Size());
@@ -624,7 +595,7 @@ static void sub_02033AA8(void)
 
         v2->unk_54 = sub_0203214C();
     } else {
-        v3 = (UnkStruct_02034168 *)sCommServerClient->unk_150C;
+        UnkStruct_02034168 *v3 = (UnkStruct_02034168 *)sCommServerClient->unk_150C;
 
         v3->unk_00 = TrainerInfo_ID(v1);
         v3->unk_04 = sub_0203895C();
@@ -656,7 +627,7 @@ static void sub_02033BDC(u16 param0)
 
     sub_02033B88();
 
-    if ((sub_02031F90() == 0) && (!CommServerClient_IsClientConnecting())) {
+    if (sub_02031F90() == 0 && !CommServerClient_IsClientConnecting()) {
         if (sCommServerClient->unk_1519_2) {
             sCommServerClient->unk_1519_0 = 1;
         }
@@ -855,7 +826,7 @@ u16 sub_02033F0C(u16 param0)
         return v0 / 4;
     }
 
-    if ((9 == param0) || (13 == param0)) {
+    if (9 == param0 || 13 == param0) {
         return v0 / 4;
     }
 
@@ -873,7 +844,7 @@ WMBssDesc *sub_02033F3C(int param0)
 
 UnkStruct_0203330C *sub_02033F6C(int param0)
 {
-    if (sCommServerClient && (sCommServerClient->unk_14C8[param0] != 0)) {
+    if (sCommServerClient && sCommServerClient->unk_14C8[param0] != 0) {
         return (UnkStruct_0203330C *)sCommServerClient->unk_188[param0].gameInfo.userGameInfo;
     }
 
@@ -887,15 +858,12 @@ TrainerInfo *sub_02033F9C(void)
 
 TrainerInfo *sub_02033FB0(int param0)
 {
-    TrainerInfo *v0;
-    UnkStruct_0203330C *v1;
-
     if (sCommServerClient->unk_14C8[param0] == 0) {
         return NULL;
     }
 
-    v1 = (UnkStruct_0203330C *)sCommServerClient->unk_188[param0].gameInfo.userGameInfo;
-    v0 = (TrainerInfo *)&v1->unk_10[0];
+    UnkStruct_0203330C *v1 = (UnkStruct_0203330C *)sCommServerClient->unk_188[param0].gameInfo.userGameInfo;
+    TrainerInfo *v0 = (TrainerInfo *)&v1->unk_10[0];
 
     return v0;
 }
@@ -910,10 +878,8 @@ void sub_02033FDC(u8 *param0, int param1)
 
 static BOOL sub_02034014(u8 *param0)
 {
-    int v0;
-
-    for (v0 = 0; v0 < (7 + 1); v0++) {
-        if (WM_IsBssidEqual(sCommServerClient->unk_1498[v0], param0)) {
+    for (int i = 0; i < (7 + 1); i++) {
+        if (WM_IsBssidEqual(sCommServerClient->unk_1498[i], param0)) {
             return 1;
         }
     }
@@ -960,10 +926,10 @@ void sub_020340FC(void)
 
 int sub_02034120(int param0)
 {
-    int v0, v1 = 0;
+    int i, v1 = 0;
 
-    for (v0 = 0; v0 < 16; v0++) {
-        UnkStruct_0203330C *v2 = sub_02033F6C(v0);
+    for (i = 0; i < 16; i++) {
+        UnkStruct_0203330C *v2 = sub_02033F6C(i);
 
         if (v2) {
             if (v2->unk_04 == param0) {
@@ -988,10 +954,8 @@ void sub_02034150(void *param0)
 
 const void *sub_02034168(int param0)
 {
-    if (sCommServerClient && (sCommServerClient->unk_14C8[param0] != 0)) {
-        UnkStruct_02034168 *v0;
-
-        v0 = (UnkStruct_02034168 *)sCommServerClient->unk_188[param0].gameInfo.userGameInfo;
+    if (sCommServerClient && sCommServerClient->unk_14C8[param0] != 0) {
+        UnkStruct_02034168 *v0 = (UnkStruct_02034168 *)sCommServerClient->unk_188[param0].gameInfo.userGameInfo;
         return v0->unk_08;
     }
 
