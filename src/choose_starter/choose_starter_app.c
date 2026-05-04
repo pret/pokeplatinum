@@ -104,7 +104,7 @@ typedef struct ChooseStarter3DGraphics {
     NNSG3dResMdlSet *modelSet;
     NNSG3dResMdl *model;
     NNSG3dResTex *texture;
-    void *animationSet;
+    void *animationRes;
     void *animation;
     NNSG3dAnmObj *animationObj;
     fx32 unk_70;
@@ -777,8 +777,8 @@ static void ov78_021D1630(ChooseStarter3DGraphics *param0, int param1, enum Heap
 
 static void ov78_021D1694(ChooseStarter3DGraphics *param0, int param1, enum HeapID heapID, NNSFndAllocator *param3)
 {
-    param0->animationSet = LoadMemberFromNARC(NARC_INDEX_GRAPHIC__EV_POKESELECT, param1, 0, heapID, 0);
-    param0->animation = NNS_G3dGetAnmByIdx(param0->animationSet, 0);
+    param0->animationRes = LoadMemberFromNARC(NARC_INDEX_GRAPHIC__EV_POKESELECT, param1, 0, heapID, 0);
+    param0->animation = NNS_G3dGetAnmByIdx(param0->animationRes, 0);
     param0->animationObj = NNS_G3dAllocAnmObj(param3, param0->animation, param0->model);
 
     NNS_G3dAnmObjInit(param0->animationObj, param0->animation, param0->model, param0->texture);
@@ -791,9 +791,9 @@ static void Delete3DObject(ChooseStarter3DGraphics *starter3DObjects, NNSFndAllo
         Heap_Free(starter3DObjects->modelRes);
     }
 
-    if (starter3DObjects->animationSet) {
+    if (starter3DObjects->animationRes) {
         NNS_G3dFreeAnmObj(allocator, starter3DObjects->animationObj);
-        Heap_Free(starter3DObjects->animationSet);
+        Heap_Free(starter3DObjects->animationRes);
     }
 
     memset(starter3DObjects, 0, sizeof(ChooseStarter3DGraphics));
