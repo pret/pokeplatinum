@@ -186,7 +186,7 @@ typedef struct ChooseStarterApp {
     int unk_7C[NUM_STARTER_OPTIONS][2];
     BgConfig *bgl;
     Window *messageWindow;
-    Window *unk_9C[3];
+    Window *subplaneWindows[NUM_STARTER_OPTIONS];
     int unk_A8;
     String *unk_AC;
     WindowTemplate unk_B0;
@@ -232,8 +232,8 @@ static void DeleteMessageWindow(ChooseStarterApp *app);
 static u8 ov78_021D1FB4(Window *param0, enum HeapID heapID, int param2, int param3, TextColor param4, u32 param5);
 static u8 ov78_021D201C(Window *param0, enum HeapID heapID, int param2, int param3, u32 param4, u32 param5, String **param6);
 static void ov78_021D2090(ChooseStarterApp *param0);
-static void MakeSubplaneWindow(ChooseStarterApp *param0, enum HeapID heapID);
-static void DeleteSubplaneWindow(ChooseStarterApp *app);
+static void MakeSubplaneWindows(ChooseStarterApp *param0, enum HeapID heapID);
+static void DeleteSubplaneWindows(ChooseStarterApp *app);
 static void ov78_021D28A8(Window *param0, enum HeapID heapID, int param2, int param3, TextColor param4);
 static void ov78_021D2904(ChooseStarterApp *param0);
 static void MakeConfirmationWindow(ChooseStarterApp *param0, int param1);
@@ -341,7 +341,7 @@ BOOL ChooseStarter_Init(ApplicationManager *appMan, int *param1)
 
     MakeMessageWindow(app, HEAP_ID_CHOOSE_STARTER_APP);
     MakeConfirmationWindow(app, HEAP_ID_CHOOSE_STARTER_APP);
-    MakeSubplaneWindow(app, HEAP_ID_CHOOSE_STARTER_APP);
+    MakeSubplaneWindows(app, HEAP_ID_CHOOSE_STARTER_APP);
     MakeSprite(app, HEAP_ID_CHOOSE_STARTER_APP);
     MakeSpriteDisplay(app, HEAP_ID_CHOOSE_STARTER_APP);
     MakeCellActors(app, HEAP_ID_CHOOSE_STARTER_APP);
@@ -441,7 +441,7 @@ BOOL ChooseStarter_Exit(ApplicationManager *appMan, int *param1)
     DeleteSprite(app);
     DeleteSpriteDisplay(app);
     DeleteMessageWindow(app);
-    DeleteSubplaneWindow(app);
+    DeleteSubplaneWindows(app);
 
     DeleteBGL(app->bgl);
     Heap_Free(app->bgl);
@@ -1703,7 +1703,7 @@ static void ov78_021D2740(SysTask *param0, void *param1)
     v0->unk_04.unk_30 += v0->unk_04.unk_34;
 }
 
-static void MakeSubplaneWindow(ChooseStarterApp *param0, enum HeapID heapID)
+static void MakeSubplaneWindows(ChooseStarterApp *param0, enum HeapID heapID)
 {
     int starterIndex;
     int v1, v2;
@@ -1711,8 +1711,8 @@ static void MakeSubplaneWindow(ChooseStarterApp *param0, enum HeapID heapID)
     Graphics_LoadPalette(NARC_INDEX_GRAPHIC__EV_POKESELECT, 17, 0, 5 * 32, 32, heapID);
 
     for (starterIndex = 0; starterIndex < NUM_STARTER_OPTIONS; starterIndex++) {
-        param0->unk_9C[starterIndex] = Window_New(heapID, 1);
-        Window_Init(param0->unk_9C[starterIndex]);
+        param0->subplaneWindows[starterIndex] = Window_New(heapID, 1);
+        Window_Init(param0->subplaneWindows[starterIndex]);
 
         switch (starterIndex) {
         case 0:
@@ -1729,18 +1729,18 @@ static void MakeSubplaneWindow(ChooseStarterApp *param0, enum HeapID heapID)
             break;
         }
 
-        Window_Add(param0->bgl, param0->unk_9C[starterIndex], 3, v1, v2, 11, 4, 5, 1 + (64 * starterIndex));
-        ov78_021D28A8(param0->unk_9C[starterIndex], heapID, 360, 4 + starterIndex, TEXT_COLOR(1, 2, 10));
+        Window_Add(param0->bgl, param0->subplaneWindows[starterIndex], 3, v1, v2, 11, 4, 5, 1 + (64 * starterIndex));
+        ov78_021D28A8(param0->subplaneWindows[starterIndex], heapID, 360, 4 + starterIndex, TEXT_COLOR(1, 2, 10));
     }
 }
 
-static void DeleteSubplaneWindow(ChooseStarterApp *app)
+static void DeleteSubplaneWindows(ChooseStarterApp *app)
 {
     int starterIndex;
 
     for (starterIndex = 0; starterIndex < NUM_STARTER_OPTIONS; starterIndex++) {
-        Window_Remove(app->unk_9C[starterIndex]);
-        Heap_Free(app->unk_9C[starterIndex]);
+        Window_Remove(app->subplaneWindows[starterIndex]);
+        Heap_Free(app->subplaneWindows[starterIndex]);
     }
 }
 
@@ -1761,7 +1761,7 @@ static void ov78_021D28A8(Window *param0, enum HeapID heapID, int param2, int pa
 
 static void ov78_021D2904(ChooseStarterApp *param0)
 {
-    Window_ClearAndCopyToVRAM(param0->unk_9C[param0->unk_A8]);
+    Window_ClearAndCopyToVRAM(param0->subplaneWindows[param0->unk_A8]);
 }
 
 static u16 GetSelectedSpecies(u16 cursorPosition)
