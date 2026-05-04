@@ -247,7 +247,7 @@ static void ov78_021D1B90(ChooseStarterApp *param0);
 static void Make3DObjects(ChooseStarterApp *param0, enum HeapID heapID);
 static void ov78_021D1908(ChooseStarterApp *param0);
 static void ov78_021D192C(ChooseStarterApp *param0);
-static void MakeCursorOAM(ChooseStarterApp *param0, ChooseStarterCursor *param1, int param2);
+static void MakeCursorOAM(ChooseStarterApp *app, ChooseStarterCursor *cursor, enum HeapID heapID);
 static void ov78_021D2290(ChooseStarterApp *param0, ChooseStarterCursor *param1);
 static void AttachCursorCellActor(ChooseStarterApp *param0, ChooseStarterCursor *param1, int param2);
 static void ov78_021D2350(ChooseStarterCursor *param0);
@@ -1402,20 +1402,20 @@ static BOOL ov78_021D2200(ChooseStarterCameraMovement *param0)
     return param0->unk_3C;
 }
 
-static void MakeCursorOAM(ChooseStarterApp *param0, ChooseStarterCursor *param1, int param2)
+static void MakeCursorOAM(ChooseStarterApp *app, ChooseStarterCursor *cursor, enum HeapID heapID)
 {
-    param1->unk_04[0] = SpriteResourceCollection_AddTiles(param0->unk_24C[0], 82, 10, 0, 10, NNS_G2D_VRAM_TYPE_2DMAIN, param2);
+    cursor->unk_04[0] = SpriteResourceCollection_AddTiles(app->unk_24C[0], 82, 10, 0, 10, NNS_G2D_VRAM_TYPE_2DMAIN, heapID);
 
-    SpriteTransfer_RequestCharAtEnd(param1->unk_04[0]);
-    SpriteResource_ReleaseData(param1->unk_04[0]);
+    SpriteTransfer_RequestCharAtEnd(cursor->unk_04[0]);
+    SpriteResource_ReleaseData(cursor->unk_04[0]);
 
-    param1->unk_04[1] = SpriteResourceCollection_AddPalette(param0->unk_24C[1], 82, 11, 0, 11, NNS_G2D_VRAM_TYPE_2DMAIN, 1, param2);
+    cursor->unk_04[1] = SpriteResourceCollection_AddPalette(app->unk_24C[1], 82, 11, 0, 11, NNS_G2D_VRAM_TYPE_2DMAIN, 1, heapID);
 
-    SpriteTransfer_RequestPlttFreeSpace(param1->unk_04[1]);
-    SpriteResource_ReleaseData(param1->unk_04[1]);
+    SpriteTransfer_RequestPlttFreeSpace(cursor->unk_04[1]);
+    SpriteResource_ReleaseData(cursor->unk_04[1]);
 
-    param1->unk_04[2] = SpriteResourceCollection_Add(param0->unk_24C[2], 82, 12, 0, 12, 2, param2);
-    param1->unk_04[3] = SpriteResourceCollection_Add(param0->unk_24C[3], 82, 13, 0, 13, 3, param2);
+    cursor->unk_04[2] = SpriteResourceCollection_Add(app->unk_24C[2], 82, 12, 0, 12, 2, heapID);
+    cursor->unk_04[3] = SpriteResourceCollection_Add(app->unk_24C[3], 82, 13, 0, 13, 3, heapID);
 }
 
 static void ov78_021D2290(ChooseStarterApp *param0, ChooseStarterCursor *param1)
