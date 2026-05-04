@@ -140,9 +140,9 @@ typedef struct ChooseStarterRotation {
 } ChooseStarterRotation;
 
 typedef struct ChooseStarterCursor {
-    Sprite *unk_00;
-    SpriteResource *unk_04[6];
-    VecFx32 unk_1C;
+    Sprite *cellActor;
+    SpriteResource *graphics[6];
+    VecFx32 position;
     SysTask *unk_28;
     ChooseStarterRotation unk_2C;
 } ChooseStarterCursor;
@@ -190,8 +190,8 @@ typedef struct ChooseStarterApp {
     WindowTemplate unk_B0;
     Menu *unk_B8;
     G2dRenderer unk_BC;
-    SpriteList *unk_248;
-    SpriteResourceCollection *unk_24C[6];
+    SpriteList *spriteList;
+    SpriteResourceCollection *spriteResourceCollection[6];
     PokemonSpriteManager *spriteManager;
     PokemonSprite *sprites[NUM_STARTER_OPTIONS];
     StarterPreviewGraphics previewGraphics;
@@ -249,7 +249,7 @@ static void ov78_021D1908(ChooseStarterApp *param0);
 static void ov78_021D192C(ChooseStarterApp *param0);
 static void MakeCursorOAM(ChooseStarterApp *app, ChooseStarterCursor *cursor, enum HeapID heapID);
 static void DeleteCursorOAM(ChooseStarterApp *app, ChooseStarterCursor *cursor);
-static void AttachCursorCellActor(ChooseStarterApp *param0, ChooseStarterCursor *param1, int param2);
+static void AttachCursorCellActor(ChooseStarterApp *app, ChooseStarterCursor *cursor, enum HeapID heapID);
 static void ov78_021D2350(ChooseStarterCursor *param0);
 static void ov78_021D2430(ChooseStarterCursor *param0, BOOL param1);
 static void ov78_021D243C(ChooseStarterCursor *param0, int param1, int param2);
@@ -724,11 +724,11 @@ static void ov78_021D1518(ChooseStarterApp *param0)
 
 static void MakeCellActors(ChooseStarterApp *app, enum HeapID heapID)
 {
-    app->unk_248 = SpriteList_InitRendering(2, &app->unk_BC, heapID);
-    app->unk_24C[0] = SpriteResourceCollection_New(2, 0, heapID);
-    app->unk_24C[1] = SpriteResourceCollection_New(2, 1, heapID);
-    app->unk_24C[2] = SpriteResourceCollection_New(2, 2, heapID);
-    app->unk_24C[3] = SpriteResourceCollection_New(2, 3, heapID);
+    app->spriteList = SpriteList_InitRendering(2, &app->unk_BC, heapID);
+    app->spriteResourceCollection[0] = SpriteResourceCollection_New(2, 0, heapID);
+    app->spriteResourceCollection[1] = SpriteResourceCollection_New(2, 1, heapID);
+    app->spriteResourceCollection[2] = SpriteResourceCollection_New(2, 2, heapID);
+    app->spriteResourceCollection[3] = SpriteResourceCollection_New(2, 3, heapID);
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, TRUE);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, TRUE);
@@ -736,11 +736,11 @@ static void MakeCellActors(ChooseStarterApp *app, enum HeapID heapID)
 
 static void ov78_021D1594(ChooseStarterApp *param0)
 {
-    SpriteList_Delete(param0->unk_248);
-    SpriteResourceCollection_Delete(param0->unk_24C[0]);
-    SpriteResourceCollection_Delete(param0->unk_24C[1]);
-    SpriteResourceCollection_Delete(param0->unk_24C[2]);
-    SpriteResourceCollection_Delete(param0->unk_24C[3]);
+    SpriteList_Delete(param0->spriteList);
+    SpriteResourceCollection_Delete(param0->spriteResourceCollection[0]);
+    SpriteResourceCollection_Delete(param0->spriteResourceCollection[1]);
+    SpriteResourceCollection_Delete(param0->spriteResourceCollection[2]);
+    SpriteResourceCollection_Delete(param0->spriteResourceCollection[3]);
 }
 
 static void ov78_021D15CC(ChooseStarter3DGraphics *param0, int param1, int param2, enum HeapID heapID, NNSFndAllocator *param4)
@@ -1019,7 +1019,7 @@ static void DrawScene(ChooseStarterApp *param0)
     NNS_G3dGePopMtx(1);
 
     G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
-    SpriteList_Update(param0->unk_248);
+    SpriteList_Update(param0->spriteList);
 }
 
 static void MakeCamera(ChooseStarterApp *param0, int param1)
@@ -1404,57 +1404,57 @@ static BOOL ov78_021D2200(ChooseStarterCameraMovement *param0)
 
 static void MakeCursorOAM(ChooseStarterApp *app, ChooseStarterCursor *cursor, enum HeapID heapID)
 {
-    cursor->unk_04[0] = SpriteResourceCollection_AddTiles(app->unk_24C[0], 82, 10, 0, 10, NNS_G2D_VRAM_TYPE_2DMAIN, heapID);
+    cursor->graphics[0] = SpriteResourceCollection_AddTiles(app->spriteResourceCollection[0], 82, 10, 0, 10, NNS_G2D_VRAM_TYPE_2DMAIN, heapID);
 
-    SpriteTransfer_RequestCharAtEnd(cursor->unk_04[0]);
-    SpriteResource_ReleaseData(cursor->unk_04[0]);
+    SpriteTransfer_RequestCharAtEnd(cursor->graphics[0]);
+    SpriteResource_ReleaseData(cursor->graphics[0]);
 
-    cursor->unk_04[1] = SpriteResourceCollection_AddPalette(app->unk_24C[1], 82, 11, 0, 11, NNS_G2D_VRAM_TYPE_2DMAIN, 1, heapID);
+    cursor->graphics[1] = SpriteResourceCollection_AddPalette(app->spriteResourceCollection[1], 82, 11, 0, 11, NNS_G2D_VRAM_TYPE_2DMAIN, 1, heapID);
 
-    SpriteTransfer_RequestPlttFreeSpace(cursor->unk_04[1]);
-    SpriteResource_ReleaseData(cursor->unk_04[1]);
+    SpriteTransfer_RequestPlttFreeSpace(cursor->graphics[1]);
+    SpriteResource_ReleaseData(cursor->graphics[1]);
 
-    cursor->unk_04[2] = SpriteResourceCollection_Add(app->unk_24C[2], 82, 12, 0, 12, 2, heapID);
-    cursor->unk_04[3] = SpriteResourceCollection_Add(app->unk_24C[3], 82, 13, 0, 13, 3, heapID);
+    cursor->graphics[2] = SpriteResourceCollection_Add(app->spriteResourceCollection[2], 82, 12, 0, 12, 2, heapID);
+    cursor->graphics[3] = SpriteResourceCollection_Add(app->spriteResourceCollection[3], 82, 13, 0, 13, 3, heapID);
 }
 
 static void DeleteCursorOAM(ChooseStarterApp *app, ChooseStarterCursor *cursor)
 {
-    SpriteTransfer_ResetCharTransfer(cursor->unk_04[0]);
-    SpriteTransfer_ResetPlttTransfer(cursor->unk_04[1]);
+    SpriteTransfer_ResetCharTransfer(cursor->graphics[0]);
+    SpriteTransfer_ResetPlttTransfer(cursor->graphics[1]);
 
-    SpriteResourceCollection_Remove(app->unk_24C[0], cursor->unk_04[0]);
-    SpriteResourceCollection_Remove(app->unk_24C[1], cursor->unk_04[1]);
-    SpriteResourceCollection_Remove(app->unk_24C[2], cursor->unk_04[2]);
-    SpriteResourceCollection_Remove(app->unk_24C[3], cursor->unk_04[3]);
+    SpriteResourceCollection_Remove(app->spriteResourceCollection[0], cursor->graphics[0]);
+    SpriteResourceCollection_Remove(app->spriteResourceCollection[1], cursor->graphics[1]);
+    SpriteResourceCollection_Remove(app->spriteResourceCollection[2], cursor->graphics[2]);
+    SpriteResourceCollection_Remove(app->spriteResourceCollection[3], cursor->graphics[3]);
 }
 
-static void AttachCursorCellActor(ChooseStarterApp *param0, ChooseStarterCursor *param1, int param2)
+static void AttachCursorCellActor(ChooseStarterApp *app, ChooseStarterCursor *cursor, enum HeapID heapID)
 {
-    SpriteResourcesHeader v0;
-    SpriteListTemplate v1;
+    SpriteResourcesHeader cursorResource;
+    SpriteListTemplate cursorCellParams;
 
-    SpriteResourcesHeader_Init(&v0, 10, 11, 12, 13, 0xffffffff, 0xffffffff, 0, 1, param0->unk_24C[0], param0->unk_24C[1], param0->unk_24C[2], param0->unk_24C[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&cursorResource, 10, 11, 12, 13, 0xffffffff, 0xffffffff, 0, 1, app->spriteResourceCollection[0], app->spriteResourceCollection[1], app->spriteResourceCollection[2], app->spriteResourceCollection[3], NULL, NULL);
 
-    v1.list = param0->unk_248;
-    v1.resourceData = &v0;
-    v1.priority = 32;
-    v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v1.heapID = param2;
+    cursorCellParams.list = app->spriteList;
+    cursorCellParams.resourceData = &cursorResource;
+    cursorCellParams.priority = 32;
+    cursorCellParams.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
+    cursorCellParams.heapID = heapID;
 
-    v1.position.x = 0;
-    v1.position.y = 0;
+    cursorCellParams.position.x = 0;
+    cursorCellParams.position.y = 0;
 
-    param1->unk_00 = SpriteList_Add(&v1);
-    Sprite_SetDrawFlag(param1->unk_00, FALSE);
+    cursor->cellActor = SpriteList_Add(&cursorCellParams);
+    Sprite_SetDrawFlag(cursor->cellActor, FALSE);
 
-    param1->unk_1C.x = 0;
-    param1->unk_1C.y = 0;
+    cursor->position.x = 0;
+    cursor->position.y = 0;
 }
 
 static void ov78_021D2350(ChooseStarterCursor *param0)
 {
-    Sprite_Delete(param0->unk_00);
+    Sprite_Delete(param0->cellActor);
 }
 
 static void ov78_021D235C(ChooseStarterRotation *param0, fx32 param1, int param2)
@@ -1491,10 +1491,10 @@ static void ov78_021D23E8(SysTask *param0, void *param1)
 
     ov78_021D2368(&v0->unk_2C);
 
-    v1 = v0->unk_1C;
+    v1 = v0->position;
     v1.y += v0->unk_2C.unk_00;
 
-    Sprite_SetPosition(v0->unk_00, &v1);
+    Sprite_SetPosition(v0->cellActor, &v1);
 }
 
 static void ov78_021D241C(ChooseStarterCursor *param0)
@@ -1507,13 +1507,13 @@ static void ov78_021D241C(ChooseStarterCursor *param0)
 
 static void ov78_021D2430(ChooseStarterCursor *param0, BOOL param1)
 {
-    Sprite_SetDrawFlag(param0->unk_00, param1);
+    Sprite_SetDrawFlag(param0->cellActor, param1);
 }
 
 static void ov78_021D243C(ChooseStarterCursor *param0, int param1, int param2)
 {
-    param0->unk_1C.x = param1 << FX32_SHIFT;
-    param0->unk_1C.y = param2 << FX32_SHIFT;
+    param0->position.x = param1 << FX32_SHIFT;
+    param0->position.y = param2 << FX32_SHIFT;
 }
 
 static void MakePreviewWindow(StarterPreviewWindow *param0, ChooseStarterApp *param1, int param2)
