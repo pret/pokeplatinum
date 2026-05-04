@@ -90,7 +90,7 @@
 #define POKEMON_SPRITE_POS_Z      1023
 #define POKEMON_SPRITE_POLYGON_ID 0
 
-#define CHOOSE_STARTER_3D_OBJECTS_NUM 6
+#define CHOOSE_STARTER_3D_GRAPHICS_NUM 6
 
 enum CursorPosition {
     CURSOR_POSITION_LEFT = 0,
@@ -98,7 +98,7 @@ enum CursorPosition {
     CURSOR_POSITION_RIGHT,
 };
 
-typedef struct ChooseStarter3DGraphics {
+typedef struct ChooseStarter3DGraphic {
     NNSG3dRenderObj renderObj;
     void *modelRes;
     NNSG3dResMdlSet *modelSet;
@@ -114,7 +114,7 @@ typedef struct ChooseStarter3DGraphics {
     u16 unk_90;
     u16 unk_92;
     u16 unk_94;
-} ChooseStarter3DGraphics;
+} ChooseStarter3DGraphic;
 
 typedef struct ChooseStarterMovement {
     s32 unk_00;
@@ -198,7 +198,7 @@ typedef struct ChooseStarterApp {
     PokemonSprite *sprites[NUM_STARTER_OPTIONS];
     StarterPreviewGraphics previewGraphics;
     NNSFndAllocator allocator;
-    ChooseStarter3DGraphics starter3DObjects[CHOOSE_STARTER_3D_OBJECTS_NUM];
+    ChooseStarter3DGraphic starter3DGraphics[CHOOSE_STARTER_3D_GRAPHICS_NUM];
     Camera *camera;
     VecFx32 unk_64C;
     ChooseStarterCursor cursor;
@@ -246,8 +246,8 @@ static void DeleteCellActors(ChooseStarterApp *app);
 static void MakeCamera(ChooseStarterApp *param0, int param1);
 static void ov78_021D1B3C(Camera *camera, VecFx32 *param1);
 static void DeleteCamera(ChooseStarterApp *app);
-static void Make3DObjects(ChooseStarterApp *param0, enum HeapID heapID);
-static void Delete3DObjects(ChooseStarterApp *app);
+static void Make3DGraphics(ChooseStarterApp *param0, enum HeapID heapID);
+static void Delete3DGraphics(ChooseStarterApp *app);
 static void ov78_021D192C(ChooseStarterApp *param0);
 static void MakeCursorOAM(ChooseStarterApp *app, ChooseStarterCursor *cursor, enum HeapID heapID);
 static void DeleteCursorOAM(ChooseStarterApp *app, ChooseStarterCursor *cursor);
@@ -262,17 +262,17 @@ static void ov78_021D1DF0(ChooseStarterApp *param0);
 static void ov78_021D1E28(ChooseStarterApp *param0);
 static void ov78_021D1E44(ChooseStarterApp *param0, enum HeapID heapID);
 static void MakePokemonSprite(PokemonSprite **sprite, ChooseStarterApp *app, int species);
-static void Delete3DObject(ChooseStarter3DGraphics *starter3DObjects, NNSFndAllocator *allocator);
-static void ov78_021D1708(ChooseStarter3DGraphics *param0);
-static void ov78_021D17A4(ChooseStarter3DGraphics *param0, BOOL param1);
-static void ov78_021D17A8(ChooseStarter3DGraphics *param0, fx32 param1, fx32 param2, fx32 param3);
-static void ov78_021D17B4(ChooseStarter3DGraphics *param0, fx32 param1, fx32 param2, fx32 param3);
-static void ov78_021D17CC(ChooseStarter3DGraphics *param0, u16 param1, u16 param2, u16 param3);
-static BOOL ov78_021D17E4(ChooseStarter3DGraphics *param0);
-static void ov78_021D180C(ChooseStarter3DGraphics *param0);
-static void ov78_021D182C(ChooseStarter3DGraphics *param0, fx32 param1);
-static void ov78_021D1630(ChooseStarter3DGraphics *param0, int param1, enum HeapID heapID);
-static void ov78_021D1694(ChooseStarter3DGraphics *param0, int param1, enum HeapID heapID, NNSFndAllocator *param3);
+static void Delete3DGraphic(ChooseStarter3DGraphic *starter3DGraphics, NNSFndAllocator *allocator);
+static void ov78_021D1708(ChooseStarter3DGraphic *param0);
+static void ov78_021D17A4(ChooseStarter3DGraphic *param0, BOOL param1);
+static void ov78_021D17A8(ChooseStarter3DGraphic *param0, fx32 param1, fx32 param2, fx32 param3);
+static void ov78_021D17B4(ChooseStarter3DGraphic *param0, fx32 param1, fx32 param2, fx32 param3);
+static void ov78_021D17CC(ChooseStarter3DGraphic *param0, u16 param1, u16 param2, u16 param3);
+static BOOL ov78_021D17E4(ChooseStarter3DGraphic *param0);
+static void ov78_021D180C(ChooseStarter3DGraphic *param0);
+static void ov78_021D182C(ChooseStarter3DGraphic *param0, fx32 param1);
+static void ov78_021D1630(ChooseStarter3DGraphic *param0, int param1, enum HeapID heapID);
+static void ov78_021D1694(ChooseStarter3DGraphic *param0, int param1, enum HeapID heapID, NNSFndAllocator *param3);
 static void MakePreviewWindow(StarterPreviewWindow *param0, ChooseStarterApp *param1, int param2);
 static void DeletePreviewWindow(StarterPreviewWindow *previewWindow);
 static void ov78_021D2508(StarterPreviewWindow *param0, BOOL param1);
@@ -345,7 +345,7 @@ BOOL ChooseStarter_Init(ApplicationManager *appMan, int *param1)
     MakePokemonSprites(app, HEAP_ID_CHOOSE_STARTER_APP);
     MakeSpriteDisplay(app, HEAP_ID_CHOOSE_STARTER_APP);
     MakeCellActors(app, HEAP_ID_CHOOSE_STARTER_APP);
-    Make3DObjects(app, HEAP_ID_CHOOSE_STARTER_APP);
+    Make3DGraphics(app, HEAP_ID_CHOOSE_STARTER_APP);
     MakeCamera(app, HEAP_ID_CHOOSE_STARTER_APP);
 
     MakeSelectionMatrix(app);
@@ -436,7 +436,7 @@ BOOL ChooseStarter_Exit(ApplicationManager *appMan, int *param1)
     StopCursorMovement(&app->cursor);
 
     DeleteCamera(app);
-    Delete3DObjects(app);
+    Delete3DGraphics(app);
     DeleteCellActors(app);
     DeletePokemonSprites(app);
     DeleteSpriteDisplay(app);
@@ -745,24 +745,24 @@ static void DeleteCellActors(ChooseStarterApp *app)
     SpriteResourceCollection_Delete(app->spriteResourceCollection[SPRITE_RESOURCE_ANIM]);
 }
 
-static void ov78_021D15CC(ChooseStarter3DGraphics *param0, int param1, int param2, enum HeapID heapID, NNSFndAllocator *param4)
+static void ov78_021D15CC(ChooseStarter3DGraphic *param0, int param1, int param2, enum HeapID heapID, NNSFndAllocator *param4)
 {
-    memset(param0, 0, sizeof(ChooseStarter3DGraphics));
+    memset(param0, 0, sizeof(ChooseStarter3DGraphic));
 
     ov78_021D1630(param0, param1, heapID);
     ov78_021D1694(param0, param2, heapID, param4);
     ov78_021D17B4(param0, FX32_ONE, FX32_ONE, FX32_ONE);
 }
 
-static void ov78_021D1604(ChooseStarter3DGraphics *param0, int param1, enum HeapID heapID)
+static void ov78_021D1604(ChooseStarter3DGraphic *param0, int param1, enum HeapID heapID)
 {
-    memset(param0, 0, sizeof(ChooseStarter3DGraphics));
+    memset(param0, 0, sizeof(ChooseStarter3DGraphic));
 
     ov78_021D1630(param0, param1, heapID);
     ov78_021D17B4(param0, FX32_ONE, FX32_ONE, FX32_ONE);
 }
 
-static void ov78_021D1630(ChooseStarter3DGraphics *param0, int param1, enum HeapID heapID)
+static void ov78_021D1630(ChooseStarter3DGraphic *param0, int param1, enum HeapID heapID)
 {
     param0->modelRes = LoadMemberFromNARC(NARC_INDEX_GRAPHIC__EV_POKESELECT, param1, 0, heapID, 0);
     param0->modelSet = NNS_G3dGetMdlSet(param0->modelRes);
@@ -775,7 +775,7 @@ static void ov78_021D1630(ChooseStarter3DGraphics *param0, int param1, enum Heap
     NNS_G3dRenderObjInit(&param0->renderObj, param0->model);
 }
 
-static void ov78_021D1694(ChooseStarter3DGraphics *param0, int param1, enum HeapID heapID, NNSFndAllocator *param3)
+static void ov78_021D1694(ChooseStarter3DGraphic *param0, int param1, enum HeapID heapID, NNSFndAllocator *param3)
 {
     param0->animationRes = LoadMemberFromNARC(NARC_INDEX_GRAPHIC__EV_POKESELECT, param1, 0, heapID, 0);
     param0->animation = NNS_G3dGetAnmByIdx(param0->animationRes, 0);
@@ -785,21 +785,21 @@ static void ov78_021D1694(ChooseStarter3DGraphics *param0, int param1, enum Heap
     NNS_G3dRenderObjAddAnmObj(&param0->renderObj, param0->animationObj);
 }
 
-static void Delete3DObject(ChooseStarter3DGraphics *starter3DObjects, NNSFndAllocator *allocator)
+static void Delete3DGraphic(ChooseStarter3DGraphic *starter3DGraphic, NNSFndAllocator *allocator)
 {
-    if (starter3DObjects->modelRes) {
-        Heap_Free(starter3DObjects->modelRes);
+    if (starter3DGraphic->modelRes) {
+        Heap_Free(starter3DGraphic->modelRes);
     }
 
-    if (starter3DObjects->animationRes) {
-        NNS_G3dFreeAnmObj(allocator, starter3DObjects->animationObj);
-        Heap_Free(starter3DObjects->animationRes);
+    if (starter3DGraphic->animationRes) {
+        NNS_G3dFreeAnmObj(allocator, starter3DGraphic->animationObj);
+        Heap_Free(starter3DGraphic->animationRes);
     }
 
-    memset(starter3DObjects, 0, sizeof(ChooseStarter3DGraphics));
+    memset(starter3DGraphic, 0, sizeof(ChooseStarter3DGraphic));
 }
 
-static void ov78_021D1708(ChooseStarter3DGraphics *param0)
+static void ov78_021D1708(ChooseStarter3DGraphic *param0)
 {
     MtxFx33 v0;
     MtxFx33 v1;
@@ -817,33 +817,33 @@ static void ov78_021D1708(ChooseStarter3DGraphics *param0)
     }
 }
 
-static void ov78_021D17A4(ChooseStarter3DGraphics *param0, BOOL param1)
+static void ov78_021D17A4(ChooseStarter3DGraphic *param0, BOOL param1)
 {
     param0->unk_74 = param1;
 }
 
-static void ov78_021D17A8(ChooseStarter3DGraphics *param0, fx32 param1, fx32 param2, fx32 param3)
+static void ov78_021D17A8(ChooseStarter3DGraphic *param0, fx32 param1, fx32 param2, fx32 param3)
 {
     param0->unk_78.x = param1;
     param0->unk_78.y = param2;
     param0->unk_78.z = param3;
 }
 
-static void ov78_021D17B4(ChooseStarter3DGraphics *param0, fx32 param1, fx32 param2, fx32 param3)
+static void ov78_021D17B4(ChooseStarter3DGraphic *param0, fx32 param1, fx32 param2, fx32 param3)
 {
     param0->unk_84.x = param1;
     param0->unk_84.y = param2;
     param0->unk_84.z = param3;
 }
 
-static void ov78_021D17CC(ChooseStarter3DGraphics *param0, u16 param1, u16 param2, u16 param3)
+static void ov78_021D17CC(ChooseStarter3DGraphic *param0, u16 param1, u16 param2, u16 param3)
 {
     param0->unk_90 = param1;
     param0->unk_92 = param2;
     param0->unk_94 = param3;
 }
 
-static BOOL ov78_021D17E4(ChooseStarter3DGraphics *param0)
+static BOOL ov78_021D17E4(ChooseStarter3DGraphic *param0)
 {
     fx32 v0 = NNS_G3dAnmObjGetNumFrame(param0->animationObj);
     BOOL v1;
@@ -861,7 +861,7 @@ static BOOL ov78_021D17E4(ChooseStarter3DGraphics *param0)
     return v1;
 }
 
-static void ov78_021D180C(ChooseStarter3DGraphics *param0)
+static void ov78_021D180C(ChooseStarter3DGraphic *param0)
 {
     fx32 v0 = NNS_G3dAnmObjGetNumFrame(param0->animationObj);
 
@@ -869,55 +869,55 @@ static void ov78_021D180C(ChooseStarter3DGraphics *param0)
     NNS_G3dAnmObjSetFrame(param0->animationObj, param0->unk_70);
 }
 
-static void ov78_021D182C(ChooseStarter3DGraphics *param0, fx32 param1)
+static void ov78_021D182C(ChooseStarter3DGraphic *param0, fx32 param1)
 {
     param0->unk_70 = param1;
     NNS_G3dAnmObjSetFrame(param0->animationObj, param1);
 }
 
-static void Make3DObjects(ChooseStarterApp *param0, enum HeapID heapID)
+static void Make3DGraphics(ChooseStarterApp *param0, enum HeapID heapID)
 {
     int v0;
 
-    ov78_021D15CC(&param0->starter3DObjects[0], 1, 0, heapID, &param0->allocator);
-    ov78_021D17A4(&param0->starter3DObjects[0], 1);
+    ov78_021D15CC(&param0->starter3DGraphics[0], 1, 0, heapID, &param0->allocator);
+    ov78_021D17A4(&param0->starter3DGraphics[0], 1);
 
-    ov78_021D1604(&param0->starter3DObjects[1], 8, heapID);
-    ov78_021D17A4(&param0->starter3DObjects[1], 0);
+    ov78_021D1604(&param0->starter3DGraphics[1], 8, heapID);
+    ov78_021D17A4(&param0->starter3DGraphics[1], 0);
 
     for (v0 = 2; v0 <= 4; v0++) {
-        ov78_021D15CC(&param0->starter3DObjects[v0], 3 + (v0 - 2) * 2, 2 + (v0 - 2) * 2, heapID, &param0->allocator);
-        ov78_021D17A4(&param0->starter3DObjects[v0], 0);
+        ov78_021D15CC(&param0->starter3DGraphics[v0], 3 + (v0 - 2) * 2, 2 + (v0 - 2) * 2, heapID, &param0->allocator);
+        ov78_021D17A4(&param0->starter3DGraphics[v0], 0);
     }
 
-    ov78_021D1604(&param0->starter3DObjects[5], 9, heapID);
-    ov78_021D17A4(&param0->starter3DObjects[5], 1);
+    ov78_021D1604(&param0->starter3DGraphics[5], 9, heapID);
+    ov78_021D17A4(&param0->starter3DGraphics[5], 1);
 
-    ov78_021D17A8(&param0->starter3DObjects[5], 0, -28 * FX32_ONE, 40 * FX32_ONE);
-    ov78_021D17B4(&param0->starter3DObjects[5], FX32_CONST(3.50f), FX32_ONE, FX32_CONST(3.50f));
-    ov78_021D17CC(&param0->starter3DObjects[5], (0 * 0xffff) / 360, (180 * 0xffff) / 360, (0 * 0xffff) / 360);
+    ov78_021D17A8(&param0->starter3DGraphics[5], 0, -28 * FX32_ONE, 40 * FX32_ONE);
+    ov78_021D17B4(&param0->starter3DGraphics[5], FX32_CONST(3.50f), FX32_ONE, FX32_CONST(3.50f));
+    ov78_021D17CC(&param0->starter3DGraphics[5], (0 * 0xffff) / 360, (180 * 0xffff) / 360, (0 * 0xffff) / 360);
 }
 
-static void Delete3DObjects(ChooseStarterApp *app)
+static void Delete3DGraphics(ChooseStarterApp *app)
 {
-    int objectIndex;
+    int graphicIndex;
 
-    for (objectIndex = 0; objectIndex < CHOOSE_STARTER_3D_OBJECTS_NUM; objectIndex++) {
-        Delete3DObject(&app->starter3DObjects[objectIndex], &app->allocator);
+    for (graphicIndex = 0; graphicIndex < CHOOSE_STARTER_3D_GRAPHICS_NUM; graphicIndex++) {
+        Delete3DGraphic(&app->starter3DGraphics[graphicIndex], &app->allocator);
     }
 }
 
 static void ov78_021D192C(ChooseStarterApp *param0)
 {
-    int objectIndex;
+    int graphicIndex;
 
     NNS_G3dGlbLightVector(0, 0, -FX32_ONE, 0);
     NNS_G3dGlbLightColor(0, GX_RGB(31, 31, 31));
     NNS_G3dGlbMaterialColorDiffAmb(GX_RGB(31, 31, 31), GX_RGB(31, 31, 31), 0);
     NNS_G3dGlbMaterialColorSpecEmi(GX_RGB(31, 31, 31), GX_RGB(31, 31, 31), 0);
 
-    for (objectIndex = 0; objectIndex < CHOOSE_STARTER_3D_OBJECTS_NUM; objectIndex++) {
-        ov78_021D1708(&param0->starter3DObjects[objectIndex]);
+    for (graphicIndex = 0; graphicIndex < CHOOSE_STARTER_3D_GRAPHICS_NUM; graphicIndex++) {
+        ov78_021D1708(&param0->starter3DGraphics[graphicIndex]);
     }
 }
 
@@ -973,12 +973,12 @@ static void UpdateGraphics(ChooseStarterApp *param0, enum HeapID heapID)
         }
         break;
     case 2:
-        if (ov78_021D17E4(&param0->starter3DObjects[0])) {
-            ov78_021D17A4(&param0->starter3DObjects[0], 0);
-            ov78_021D17A4(&param0->starter3DObjects[1], 1);
-            ov78_021D17A4(&param0->starter3DObjects[2], 1);
-            ov78_021D17A4(&param0->starter3DObjects[3], 1);
-            ov78_021D17A4(&param0->starter3DObjects[4], 1);
+        if (ov78_021D17E4(&param0->starter3DGraphics[0])) {
+            ov78_021D17A4(&param0->starter3DGraphics[0], 0);
+            ov78_021D17A4(&param0->starter3DGraphics[1], 1);
+            ov78_021D17A4(&param0->starter3DGraphics[2], 1);
+            ov78_021D17A4(&param0->starter3DGraphics[3], 1);
+            ov78_021D17A4(&param0->starter3DGraphics[4], 1);
             ov78_021D1C98(param0, 1);
         }
         break;
@@ -1105,7 +1105,7 @@ static void SetSelectionMatrixObjects(ChooseStarterApp *param0)
     int starterIndex;
 
     for (starterIndex = 0; starterIndex < NUM_STARTER_OPTIONS; starterIndex++) {
-        ov78_021D17A8(&param0->starter3DObjects[starterIndex + 2], param0->unk_58[starterIndex][0] << FX32_SHIFT, param0->unk_58[starterIndex][1] << FX32_SHIFT, param0->unk_58[starterIndex][2] << FX32_SHIFT);
+        ov78_021D17A8(&param0->starter3DGraphics[starterIndex + 2], param0->unk_58[starterIndex][0] << FX32_SHIFT, param0->unk_58[starterIndex][1] << FX32_SHIFT, param0->unk_58[starterIndex][2] << FX32_SHIFT);
     }
 }
 
@@ -1197,9 +1197,9 @@ static void ov78_021D1DF0(ChooseStarterApp *param0)
 
     for (v0 = 0; v0 < 3; v0++) {
         if (param0->cursorPosition == v0) {
-            ov78_021D180C(&param0->starter3DObjects[2 + v0]);
+            ov78_021D180C(&param0->starter3DGraphics[2 + v0]);
         } else {
-            ov78_021D182C(&param0->starter3DObjects[2 + v0], 0);
+            ov78_021D182C(&param0->starter3DGraphics[2 + v0], 0);
         }
     }
 }
