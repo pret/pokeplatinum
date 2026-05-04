@@ -1,10 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/distortion_world_b1f.h"
 
-// NOTE: These constants must mirror those in ov9_02249960.c
-#define LOCALID_CYNTHIA 128
-#define LOCALID_MESPRIT 129
-
     ScriptEntry DistortionWorldB1F_OnTransition
     ScriptEntry DistortionWorldB1F_OnFrame_FirstEntry
     ScriptEntry DistortionWorldB1F_CoordEvent_Mesprit
@@ -17,14 +13,14 @@ DistortionWorldB1F_OnTransition:
 DistortionWorldB1F_OnFrame_FirstEntry:
     LockAll
     ApplyMovement LOCALID_PLAYER, DistortionWorldB1F_Movement_PlayerWalkOnSpotNorth
-    ApplyMovement LOCALID_CYNTHIA, DistortionWorldB1F_Movement_CynthiaWalkOnSpotSouth
+    ApplyMovement DIST_WORLD_MAP_OBJECT_B1F_CYNTHIA_ELEVATOR, DistortionWorldB1F_Movement_CynthiaWalkOnSpotSouth
     WaitMovement
     Message DistortionWorldB1F_Text_WillWeSeeGiratina
     CloseMessage
-    ApplyMovement LOCALID_CYNTHIA, DistortionWorldB1F_Movement_CynthiaLeave
+    ApplyMovement DIST_WORLD_MAP_OBJECT_B1F_CYNTHIA_ELEVATOR, DistortionWorldB1F_Movement_CynthiaLeave
     ApplyMovement LOCALID_PLAYER, DistortionWorldB1F_Movement_PlayerWatchCynthiaLeave
     WaitMovement
-    DeleteDistortionWorldMapObject LOCALID_CYNTHIA
+    DeleteDistortionWorldMapObject DIST_WORLD_MAP_OBJECT_B1F_CYNTHIA_ELEVATOR
     SetVar VAR_DISTORTION_WORLD_PROGRESS, DIST_WORLD_PROGRESS_ENTERED_B1F
     ReleaseAll
     End
@@ -35,11 +31,11 @@ DistortionWorldB1F_CoordEvent_Mesprit:
     Message DistortionWorldB1F_Text_MespritCry
     CloseMessage
     WaitCry
-    AddDistortionWorldMapObject LOCALID_MESPRIT
+    AddDistortionWorldMapObject DIST_WORLD_MAP_OBJECT_B1F_MESPRIT
     ApplyMovement LOCALID_PLAYER, DistortionWorldB1F_Movement_PlayerWatchMesprit
-    ApplyMovement LOCALID_MESPRIT, DistortionWorldB1F_Movement_MespritMoveNorth
+    ApplyMovement DIST_WORLD_MAP_OBJECT_B1F_MESPRIT, DistortionWorldB1F_Movement_MespritMoveNorth
     WaitMovement
-    DeleteDistortionWorldMapObject LOCALID_MESPRIT
+    DeleteDistortionWorldMapObject DIST_WORLD_MAP_OBJECT_B1F_MESPRIT
     ReleaseAll
     End
 

@@ -2,11 +2,6 @@
 #include "generated/hidden_locations.h"
 #include "res/text/bank/distortion_world_giratina_room.h"
 
-// NOTE: These constants must mirror those in ov9_02249960.c
-#define LOCALID_GIRATINA 128
-#define LOCALID_CYNTHIA  129
-#define LOCALID_CYRUS    130
-
     ScriptEntry DistortionWorldGiratinaRoom_OnTransition
     ScriptEntry DistortionWorldGiratinaRoom_OnLoad
     ScriptEntry DistortionWorldGiratinaRoom_Portal
@@ -28,7 +23,7 @@ DistortionWorldGiratinaRoom_OnLoad:
 DistortionWorldGiratinaRoom_RemoveGiratina:
     ResetDistortionWorldPersistedCameraAngles
     SetVar VAR_DISTORTION_WORLD_PROGRESS, DIST_WORLD_PROGRESS_BATTLED_GIRATINA
-    RemoveObject LOCALID_GIRATINA
+    RemoveObject DIST_WORLD_MAP_OBJECT_GIRATINA_ROOM_GIRATINA
     End
 
 DistortionWorldGiratinaRoom_Portal:
@@ -80,9 +75,9 @@ DistortionWorldGiratinaRoom_Giratina:
     GoToIfEq VAR_RESULT, BATTLE_RESULT_PLAYER_FLED, DistortionWorldGiratinaRoom_PlayerRan
     GoToIfEq VAR_RESULT, BATTLE_RESULT_ENEMY_FLED, DistortionWorldGiratinaRoom_PlayerRan
     GoToIfEq VAR_RESULT, BATTLE_RESULT_CAPTURED_MON, DistortionWorldGiratinaRoom_CaughtGiratina
-    AddDistortionWorldMapObject LOCALID_CYRUS
-    AddDistortionWorldMapObject LOCALID_CYNTHIA
-    ApplyMovement LOCALID_CYNTHIA, DistortionWorldGiratinaRoom_Movement_CynthiaJumpNorth
+    AddDistortionWorldMapObject DIST_WORLD_MAP_OBJECT_GIRATINA_ROOM_CYRUS
+    AddDistortionWorldMapObject DIST_WORLD_MAP_OBJECT_GIRATINA_ROOM_CYNTHIA
+    ApplyMovement DIST_WORLD_MAP_OBJECT_GIRATINA_ROOM_CYNTHIA, DistortionWorldGiratinaRoom_Movement_CynthiaJumpNorth
     WaitMovement
     Message DistortionWorldGiratinaRoom_Text_GiratinaUnderstoodUs
     CloseMessage
@@ -90,9 +85,9 @@ DistortionWorldGiratinaRoom_Giratina:
     GoTo DistortionWorldGiratinaRoom_PostBattle
 
 DistortionWorldGiratinaRoom_PlayerRan:
-    AddDistortionWorldMapObject LOCALID_CYRUS
-    AddDistortionWorldMapObject LOCALID_CYNTHIA
-    ApplyMovement LOCALID_CYNTHIA, DistortionWorldGiratinaRoom_Movement_CynthiaJumpNorth
+    AddDistortionWorldMapObject DIST_WORLD_MAP_OBJECT_GIRATINA_ROOM_CYRUS
+    AddDistortionWorldMapObject DIST_WORLD_MAP_OBJECT_GIRATINA_ROOM_CYNTHIA
+    ApplyMovement DIST_WORLD_MAP_OBJECT_GIRATINA_ROOM_CYNTHIA, DistortionWorldGiratinaRoom_Movement_CynthiaJumpNorth
     WaitMovement
     Message DistortionWorldGiratinaRoom_Text_GiratinaUnderstoodUs
     CloseMessage
@@ -103,9 +98,9 @@ DistortionWorldGiratinaRoom_CaughtGiratina:
     SetFlag FLAG_CAUGHT_GIRATINA
     SetFlag FLAG_HIDE_TURNBACK_CAVE_GIRATINA_ROOM_GIRATINA
     ClearFlag FLAG_HIDE_TURNBACK_CAVE_GIRATINA_ROOM_ITEM
-    AddDistortionWorldMapObject LOCALID_CYRUS
-    AddDistortionWorldMapObject LOCALID_CYNTHIA
-    ApplyMovement LOCALID_CYNTHIA, DistortionWorldGiratinaRoom_Movement_CynthiaJumpNorth
+    AddDistortionWorldMapObject DIST_WORLD_MAP_OBJECT_GIRATINA_ROOM_CYRUS
+    AddDistortionWorldMapObject DIST_WORLD_MAP_OBJECT_GIRATINA_ROOM_CYNTHIA
+    ApplyMovement DIST_WORLD_MAP_OBJECT_GIRATINA_ROOM_CYNTHIA, DistortionWorldGiratinaRoom_Movement_CynthiaJumpNorth
     WaitMovement
     Message DistortionWorldGiratinaRoom_Text_GiratinaUnderstoodUs
     CloseMessage
@@ -115,8 +110,8 @@ DistortionWorldGiratinaRoom_PostBattle:
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     AddFreeCamera VAR_0x8004, VAR_0x8005
     ApplyFreeCameraMovement DistortionWorldGiratinaRoom_Movement_CameraMoveSouth
-    ApplyMovement LOCALID_CYRUS, DistortionWorldGiratinaRoom_Movement_CyrusEnter
-    ApplyMovement LOCALID_CYNTHIA, DistortionWorldGiratinaRoom_Movement_CynthiaNoticeCyrus
+    ApplyMovement DIST_WORLD_MAP_OBJECT_GIRATINA_ROOM_CYRUS, DistortionWorldGiratinaRoom_Movement_CyrusEnter
+    ApplyMovement DIST_WORLD_MAP_OBJECT_GIRATINA_ROOM_CYNTHIA, DistortionWorldGiratinaRoom_Movement_CynthiaNoticeCyrus
     ApplyMovement LOCALID_PLAYER, DistortionWorldGiratinaRoom_Movement_PlayerNoticeCyrus
     WaitMovement
     Message DistortionWorldGiratinaRoom_Text_NewWorldCantBeMade
@@ -124,14 +119,14 @@ DistortionWorldGiratinaRoom_PostBattle:
     Message DistortionWorldGiratinaRoom_Text_BigSilence
     Message DistortionWorldGiratinaRoom_Text_EnoughBlathering
     CloseMessage
-    ApplyMovement LOCALID_CYRUS, DistortionWorldGiratinaRoom_Movement_CyrusLeave
+    ApplyMovement DIST_WORLD_MAP_OBJECT_GIRATINA_ROOM_CYRUS, DistortionWorldGiratinaRoom_Movement_CyrusLeave
     WaitMovement
-    DeleteDistortionWorldMapObject LOCALID_CYRUS
+    DeleteDistortionWorldMapObject DIST_WORLD_MAP_OBJECT_GIRATINA_ROOM_CYRUS
     ApplyFreeCameraMovement DistortionWorldGiratinaRoom_Movement_CameraMoveNorth
     WaitMovement
     RestoreCamera
     Message DistortionWorldGiratinaRoom_Text_WeCanFeelJoy
-    ApplyMovement LOCALID_CYNTHIA, DistortionWorldGiratinaRoom_Movement_CynthiaWalkOnSpotNorth
+    ApplyMovement DIST_WORLD_MAP_OBJECT_GIRATINA_ROOM_CYNTHIA, DistortionWorldGiratinaRoom_Movement_CynthiaWalkOnSpotNorth
     WaitMovement
     Message DistortionWorldGiratinaRoom_Text_LetsGoBackHome
     WaitButton
