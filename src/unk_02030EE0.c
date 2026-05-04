@@ -16,81 +16,89 @@
 #include "unk_0203266C.h"
 #include "unk_020366A0.h"
 
-typedef struct {
-    WMpparam unk_00 ATTRIBUTE_ALIGN(32);
-    u8 unk_40[3840] ATTRIBUTE_ALIGN(32);
-    u8 unk_F40[224] ATTRIBUTE_ALIGN(32);
-    u8 unk_1020[512] ATTRIBUTE_ALIGN(32);
-    WMbssDesc unk_1220 ATTRIBUTE_ALIGN(32);
-    WMscanParam unk_1354 ATTRIBUTE_ALIGN(32);
-    UnkFuncPtr_020312B8 unk_1374;
-    s32 unk_1378;
-    s32 unk_137C;
-    u16 unk_1380;
-    u16 unk_1382;
+/**
+ * @struct WirelessManager
+ * @brief Wrapper struct for NitroSDK's wm.c 
+ *
+ * WirelessManager is treated as a static class and 
+ * serves as a wrapper for the NitroSDK's wireless manager 
+ * (shortened to wm.c). 
+ */
+typedef struct WirelessManager {
+    WMpparam parentParam ATTRIBUTE_ALIGN(32);
+    u8 nitroManagerBuffer[3840] ATTRIBUTE_ALIGN(32);
+    u8 sendBuffer[224] ATTRIBUTE_ALIGN(32);
+    u8 recvBuffer[512] ATTRIBUTE_ALIGN(32);
+    WMbssDesc bssDesc ATTRIBUTE_ALIGN(32);
+    WMscanParam scanParam ATTRIBUTE_ALIGN(32);
+    WirelessManagerScanFunc scanCallback;
+    s32 sendBufferSize;
+    s32 recvBufferSize;
+    u16 channel;
+    u16 autoConnect;
     int state;
-    int unk_1388;
-    UnkFuncPtr_02031E6C unk_138C;
+    int connectionType;
+    WirelessManagerRecvFunc recvFunc;
 
     // clang-format off
-    BOOL (* unk_1390)(WMStartParentCallback *);
+    BOOL (* unusedCallback_1390)(WMStartParentCallback *);
     // clang-format on
 
-    UnkFuncPtr_020320FC unk_1394;
+    UnkFuncPtr_020320FC ggidScanCallback;
     UnkFuncPtr_02032110 disconnectCallback;
-    UnkFuncPtr_02032110 unk_139C;
-    u16 unk_13A0;
-    u16 unk_13A2;
-    int unk_13A4;
-    u8 unk_13A8;
-    u8 unk_13A9;
-    u32 unk_13AC;
-    u16 unk_13B0;
-    u16 unk_13B2;
-    u16 unk_13B4;
-    u8 unk_13B6;
-    u8 unk_13B7;
-    u8 unk_13B8;
-    u8 unk_13B9;
+    UnkFuncPtr_02032110 connectCallback;
+    u16 aid; //machine id. 0 for the server, 1~7 for clients
+    u16 connectedBitmap; //bitmap of (1 << aid) for connected machines
+    int errorCode;
+    u8 numConnectionsMax;
+    u8 pauseConnectionClient; //if this WirelessManager is a Client that has disconnected
+    u32 rand;
+    u16 measureChannel;
+    u16 measureChannelBusyRatio;
+    u16 leastUsedChannelBitmap;
+    u8 pauseConnection;
+    u8 pauseConnectSystem;
+    u8 setEntry;
+    u8 sentBeaconCount;
 } WirelessManager;
 
 void include_unk_021C07A8(void);
-static void sub_02031C58(void *param0);
-static BOOL sub_02031C70(BOOL param0);
-static void sub_02031CBC(void *param0);
-static u16 sub_020319F8(u16 param0);
-static void sub_02031A74(void *param0);
-static WMErrCode sub_02031AF0(WMCallbackFunc param0, u16 param1);
-static s16 sub_02031B30(u16 param0);
-static BOOL sub_02030F10(void);
-static void sub_02030F40(void *param0);
-static BOOL sub_02030F64(void);
-static void sub_02030FD0(void *param0);
-static BOOL sub_020310DC(void);
-static void sub_0203114C(void *param0);
-static BOOL sub_02031320(void);
-static void sub_020313E8(void *param0);
-static BOOL sub_020314E4(void);
-static void sub_02031500(void *param0);
-static BOOL sub_02031538(void);
-static void sub_020315A8(void *param0);
-static BOOL sub_02031668(void);
-static void sub_020316B8(void *param0);
-static BOOL sub_020317E8(void *param0, u16 param1, int param2, UnkFuncPtr_02031E9C param3);
-static void sub_02031840(void *param0);
-static void sub_02031868(void *param0);
-static BOOL sub_020311A8(void);
-static void sub_020311CC(void *param0);
-static BOOL sub_020311EC(void);
-static void sub_02031208(void *param0);
-static BOOL sub_0203171C(void);
-static void sub_02031740(void *param0);
-static BOOL sub_02031764(void);
-static void sub_0203178C(void *param0);
-static void sub_020318B0(void *param0);
-static BOOL sub_020317A4(void);
-static void sub_020317C8(void *param0);
-static u16 sub_02031900(void);
+static void WirelessManager_InidcateCallback(void *param0);
+static BOOL WirelessManager_InitializeWM(BOOL param0);
+static void WirelessManager_FinishInitializeWM(void *param0);
+static u16 WirelessManager_MeasureChannel(u16 param0);
+static void WirelessManager_FinishMeasureChannel(void *param0);
+static WMErrCode WirelessManager_MeasureChannelInternal(WMCallbackFunc param0, u16 param1);
+static s16 WirelessManager_GetRandomChannel(u16 param0);
+static BOOL WirelessManager_SetParentParameter(void);
+static void WirelessManager_FinishSetParentParameter(void *param0);
+static BOOL WirelessManager_StartServer(void);
+static void WirelessManager_FinishStartServer(void *param0);
+static BOOL WirelessManager_StartMPServer(void);
+static void WirelessManager_FinishStartMPServer(void *param0);
+static BOOL WirelessManager_StartScan(void);
+static void WirelessManager_FinishStartScan(void *param0);
+static BOOL WirelessManager_EndScan(void);
+static void WirelessManager_FinishEndScan(void *param0);
+static BOOL WirelessManager_StartClient(void);
+static void WirelessManager_FinishStartClient(void *param0);
+static BOOL WirelessManager_StartMPClient(void);
+static void WirelessManager_FinishStartMPClient(void *param0);
+static BOOL WirelessManager_SendMPMessage(void *param0, u16 param1, int param2, WirelessManagerSendFunc param3);
+static void WirelessManager_FinishSendMPMessage(void *param0);
+static void WirelessManager_RecvMessageCallback(void *param0);
+static BOOL WirelessManager_EndMPServer(void);
+static void WirelessManager_FinishEndMPServer(void *param0);
+static BOOL WirelessManager_EndServer(void);
+static void WirelessManager_FinishEndServer(void *param0);
+static BOOL WirelessManager_EndMPClient(void);
+static void WirelessManager_FinishEndMPClient(void *param0);
+static BOOL WirelessManager_DisconnectClient(void);
+static void WirelessManager_FinishDisconnectClient(void *param0);
+static void WirelessManager_FinishEnd(void *param0);
+static BOOL WirelessManager_ResetInternal(void);
+static void WirelessManager_FinishResetInternal(void *param0);
+static u16 WirelessManager_GetNumConnected(void);
 
 static WirelessManager *sWirelessManager;
 static void (*Unk_021C07A8)(const char *, ...) = NULL;
@@ -100,30 +108,45 @@ void include_unk_021C07A8(void)
     Unk_021C07A8;
 }
 
+/**
+ * @param Sets WirelessManager's state to the given WirelessManagerState
+ *
+ * @param state
+ */
 static void WirelessManager_SetState(int state)
 {
     sWirelessManager->state = state;
 }
 
-static void sub_02030EF4(int param0)
+/**
+ * @brief Sets WirelessManager's errorCode to the given NitroSDK WMErrCode or Pokeplatinum ExtendedWMErrCode enum
+ *
+ * @param errorCode
+ */
+static void WirelessManager_SetErrorCode(int errorCode)
 {
     if ((sWirelessManager->state == WIRELESS_STATE_ERROR) || (sWirelessManager->state == WIRELESS_STATE_FATAL_ERROR)) {
         return;
     }
 
-    sWirelessManager->unk_13A4 = param0;
+    sWirelessManager->errorCode = errorCode;
 }
 
-static BOOL sub_02030F10(void)
+/**
+ * @brief Sets the internal WM parent parameter before WirelessManager gets started as a server.
+ *
+ * @return TRUE if there is no error while setting the parent parameter
+ */
+static BOOL WirelessManager_SetParentParameter(void)
 {
-    WMErrCode v0;
+    WMErrCode errorCode;
 
     WirelessManager_SetState(WIRELESS_STATE_BUSY);
 
-    v0 = WM_SetParentParameter(sub_02030F40, &sWirelessManager->unk_00);
+    errorCode = WM_SetParentParameter(WirelessManager_FinishSetParentParameter, &sWirelessManager->parentParam);
 
-    if (v0 != WM_ERRCODE_OPERATING) {
-        sub_02030EF4(v0);
+    if (errorCode != WM_ERRCODE_OPERATING) {
+        WirelessManager_SetErrorCode(errorCode);
         WirelessManager_SetState(WIRELESS_STATE_ERROR);
         return FALSE;
     }
@@ -131,145 +154,163 @@ static BOOL sub_02030F10(void)
     return TRUE;
 }
 
-static void sub_02030F40(void *param0)
+/**
+ * @brief Callback used when the WM_SetParentParameter asynchronous process completes
+ *
+ * @param wm_callback
+ */
+static void WirelessManager_FinishSetParentParameter(void *wm_callback)
 {
-    WMCallback *v0 = (WMCallback *)param0;
+    WMCallback *callback = (WMCallback *)wm_callback;
 
-    if (v0->errcode != WM_ERRCODE_SUCCESS) {
-        sub_02030EF4(v0->errcode);
+    if (callback->errcode != WM_ERRCODE_SUCCESS) {
+        WirelessManager_SetErrorCode(callback->errcode);
         WirelessManager_SetState(WIRELESS_STATE_ERROR);
         return;
     }
 
-    {
-        if (!sub_02030F64()) {
-            WirelessManager_SetState(WIRELESS_STATE_ERROR);
-        }
+    if (!WirelessManager_StartServer()) {
+        WirelessManager_SetState(WIRELESS_STATE_ERROR);
     }
 }
 
-static BOOL sub_02030F64(void)
+/**
+ * @brief Starts the internal WM process as a parent/server
+ *
+ * @return TRUE if there is no issue starting the server
+ */
+static BOOL WirelessManager_StartServer(void)
 {
-    WMErrCode v0;
+    WMErrCode errorCode;
 
     if ((sWirelessManager->state == WIRELESS_STATE_CONNECTED) || (sWirelessManager->state == WIRELESS_STATE_TRANSMIT_KEY) || (sWirelessManager->state == WIRELESS_STATE_TRANSMIT_DATA)) {
         return TRUE;
     }
 
-    {
-        WMStatus *v1 = (WMStatus *)WMi_GetStatusAddress();
+    WMStatus *status = (WMStatus *)WMi_GetStatusAddress();
 
-        DC_InvalidateRange(&v1->wep_flag, sizeof(v1->wep_flag));
-        v1->wep_flag = 0;
-        DC_FlushRange(&v1->wep_flag, sizeof(v1->wep_flag));
-    }
-    v0 = WM_StartParent(sub_02030FD0);
+    DC_InvalidateRange(&status->wep_flag, sizeof(status->wep_flag));
+    status->wep_flag = 0;
+    DC_FlushRange(&status->wep_flag, sizeof(status->wep_flag));
 
-    if (v0 != WM_ERRCODE_OPERATING) {
-        sub_02030EF4(v0);
+    errorCode = WM_StartParent(WirelessManager_FinishStartServer);
+
+    if (errorCode != WM_ERRCODE_OPERATING) {
+        WirelessManager_SetErrorCode(errorCode);
         return FALSE;
     }
 
-    sWirelessManager->unk_13A0 = 0;
-    sWirelessManager->unk_13A2 = 1;
+    sWirelessManager->aid = 0;
+    sWirelessManager->connectedBitmap = 1;
 
     return TRUE;
 }
 
-static void sub_02030FD0(void *param0)
+/**
+ * @brief Callback used when the WM_StartParent asynchronous process completes.
+ *
+ * @param wm_startparentcallback
+ */
+static void WirelessManager_FinishStartServer(void *wm_startparentcallback)
 {
-    WMStartParentCallback *v0 = (WMStartParentCallback *)param0;
-    const u16 v1 = (u16)(1 << v0->aid);
+    WMStartParentCallback *callback = (WMStartParentCallback *)wm_startparentcallback;
+    const u16 connected = (u16)(1 << callback->aid);
 
-    if (v0->errcode != WM_ERRCODE_SUCCESS) {
-        sub_02030EF4(v0->errcode);
+    if (callback->errcode != WM_ERRCODE_SUCCESS) {
+        WirelessManager_SetErrorCode(callback->errcode);
         WirelessManager_SetState(WIRELESS_STATE_ERROR);
         return;
     }
 
-    switch (v0->state) {
+    switch (callback->state) {
     case WM_STATECODE_BEACON_SENT:
-        sWirelessManager->unk_13B9++;
+        sWirelessManager->sentBeaconCount++;
         break;
-    case WM_STATECODE_CONNECTED: {
-        if ((sWirelessManager->unk_13B7 == 1) || (sWirelessManager->unk_13B6 == 1) || (sub_02031900() >= sWirelessManager->unk_13A8) || (v0->ssid[0] != sub_0203895C()) || (0 != memcmp("DP", &v0->ssid[1], sizeof("DP")))) {
-            WMErrCode v2;
+    case WM_STATECODE_CONNECTED: 
+        if ((sWirelessManager->pauseConnectSystem == 1) || (sWirelessManager->pauseConnection == 1) || (WirelessManager_GetNumConnected() >= sWirelessManager->numConnectionsMax) || (callback->ssid[0] != sub_0203895C()) || (0 != memcmp("DP", &callback->ssid[1], sizeof("DP")))) {
+            WMErrCode disconnectCode;
 
-            v2 = WM_Disconnect(NULL, v0->aid);
+            disconnectCode = WM_Disconnect(NULL, callback->aid);
 
-            if (v2 != WM_ERRCODE_OPERATING) {
-                sub_02030EF4(v2);
+            if (disconnectCode != WM_ERRCODE_OPERATING) {
+                WirelessManager_SetErrorCode(disconnectCode);
                 WirelessManager_SetState(WIRELESS_STATE_ERROR);
             }
             break;
         }
 
-        sWirelessManager->unk_13A2 |= v1;
+        sWirelessManager->connectedBitmap |= connected;
 
-        if (sWirelessManager->unk_139C) {
-            sWirelessManager->unk_139C(v0->aid);
+        if (sWirelessManager->connectCallback) {
+            sWirelessManager->connectCallback(callback->aid);
         }
-    } break;
-    case WM_STATECODE_DISCONNECTED: {
-        sWirelessManager->unk_13A2 &= ~v1;
+        break;
+    case WM_STATECODE_DISCONNECTED: 
+        sWirelessManager->connectedBitmap &= ~connected;
 
         if (sWirelessManager->disconnectCallback) {
-            sWirelessManager->disconnectCallback(v0->aid);
+            sWirelessManager->disconnectCallback(callback->aid);
         }
-    } break;
+        break;
     case WM_STATECODE_DISCONNECTED_FROM_MYSELF:
         break;
-    case WM_STATECODE_PARENT_START: {
-        if (!sub_020310DC()) {
+    case WM_STATECODE_PARENT_START: 
+        if (!WirelessManager_StartMPServer()) {
             WirelessManager_SetState(WIRELESS_STATE_ERROR);
         }
-    } break;
+        break;
     default:
         break;
     }
 }
 
-static BOOL sub_020310DC(void)
+/**
+ * @brief Starts the internal MP_PARENT process 
+ *
+ * @return TRUE if there is no error while starting the MP
+ */
+static BOOL WirelessManager_StartMPServer(void)
 {
-    WMErrCode v0;
+    WMErrCode errorCode;
 
-    if ((sWirelessManager->state == WIRELESS_STATE_CONNECTED) || (sWirelessManager->state == WIRELESS_STATE_TRANSMIT_DATA) || (sWirelessManager->state == WIRELESS_STATE_TRANSMIT_DATA)) {
+    if ((sWirelessManager->state == WIRELESS_STATE_CONNECTED) || (sWirelessManager->state == WIRELESS_STATE_TRANSMIT_KEY) || (sWirelessManager->state == WIRELESS_STATE_TRANSMIT_DATA)) {
         return 1;
     }
 
     WirelessManager_SetState(WIRELESS_STATE_CONNECTED);
 
-    v0 = WM_StartMP(sub_0203114C, (u16 *)sWirelessManager->unk_1020, (u16)sWirelessManager->unk_137C, (u16 *)sWirelessManager->unk_F40, (u16)sWirelessManager->unk_1378, 1);
+    errorCode = WM_StartMP(WirelessManager_FinishStartMPServer, (u16 *)sWirelessManager->recvBuffer, (u16)sWirelessManager->recvBufferSize, (u16 *)sWirelessManager->sendBuffer, (u16)sWirelessManager->sendBufferSize, 1);
 
-    if (v0 != WM_ERRCODE_OPERATING) {
-        sub_02030EF4(v0);
-        return 0;
+    if (errorCode != WM_ERRCODE_OPERATING) {
+        WirelessManager_SetErrorCode(errorCode);
+        return FALSE;
     }
 
-    return 1;
+    return TRUE;
 }
 
-static void sub_0203114C(void *param0)
+/**
+ * @brief Callback used when the server's WM_StartMP asynchronous process completes.
+ *
+ * @param wm_startmpcallback
+ */
+static void WirelessManager_FinishStartMPServer(void *wm_startmpcallback)
 {
-    WMstartMPCallback *v0 = (WMstartMPCallback *)param0;
+    WMstartMPCallback *callback = (WMstartMPCallback *)wm_startmpcallback;
 
-    if (v0->errcode != WM_ERRCODE_SUCCESS) {
-        sub_02030EF4(v0->errcode);
+    if (callback->errcode != WM_ERRCODE_SUCCESS) {
+        WirelessManager_SetErrorCode(callback->errcode);
         WirelessManager_SetState(WIRELESS_STATE_ERROR);
         return;
     }
 
-    switch (v0->state) {
+    switch (callback->state) {
     case WM_STATECODE_MP_START:
-        if (sWirelessManager->unk_1388 == 2) {
-            if (sWirelessManager->state == WIRELESS_STATE_CONNECTED) {
-                (void)0;
-            } else if (sWirelessManager->state == WIRELESS_STATE_TRANSMIT_KEY) {
+        if (sWirelessManager->connectionType == WIRELESS_CONNECTION_TRANSMIT_KEY_SERVER) {
+            if (sWirelessManager->state != WIRELESS_STATE_CONNECTED && sWirelessManager->state == WIRELESS_STATE_TRANSMIT_KEY) {
                 return;
             }
-        } else if (sWirelessManager->unk_1388 == WIRELESS_STATE_CONNECTED) {
-            (void)0;
-        }
+        } 
 
         WirelessManager_SetState(WIRELESS_STATE_CONNECTED);
         break;
@@ -278,212 +319,257 @@ static void sub_0203114C(void *param0)
     case WM_STATECODE_MP_IND:
     case WM_STATECODE_MPACK_IND:
     default:
-
         break;
     }
 }
 
-static BOOL sub_020311A8(void)
+/**
+ * @brief Ends the internal MP_PARENT process
+ *
+ * @return TRUE if there is no error ending the MP
+ */
+static BOOL WirelessManager_EndMPServer(void)
 {
-    WMErrCode v0;
+    WMErrCode errorCode;
 
     WirelessManager_SetState(WIRELESS_STATE_BUSY);
 
-    v0 = WM_EndMP(sub_020311CC);
+    errorCode = WM_EndMP(WirelessManager_FinishEndMPServer);
 
-    if (v0 != WM_ERRCODE_OPERATING) {
-        sub_02030EF4(v0);
-        return 0;
+    if (errorCode != WM_ERRCODE_OPERATING) {
+        WirelessManager_SetErrorCode(errorCode);
+        return FALSE;
     }
 
-    return 1;
+    return TRUE;
 }
 
-static void sub_020311CC(void *param0)
+/**
+ * @brief Callback used when the server's WM_EndMP asynchronous process completes. 
+ *
+ * @param wm_callback
+ */
+static void WirelessManager_FinishEndMPServer(void *wm_callback)
 {
-    WMCallback *v0 = (WMCallback *)param0;
+    WMCallback *callback = (WMCallback *)wm_callback;
 
-    if (v0->errcode != WM_ERRCODE_SUCCESS) {
-        sub_02030EF4(v0->errcode);
-        sub_02031ECC();
+    if (callback->errcode != WM_ERRCODE_SUCCESS) {
+        WirelessManager_SetErrorCode(callback->errcode);
+        WirelessManager_Reset();
         return;
     }
 
-    if (!sub_020311EC()) {
-        sub_02031ECC();
+    if (!WirelessManager_EndServer()) {
+        WirelessManager_Reset();
         return;
     }
 }
 
-static BOOL sub_020311EC(void)
+/**
+ * @brief Ends the internal WM parent process
+ *
+ * @return TRUE if there is no error while ending the server
+ */
+static BOOL WirelessManager_EndServer(void)
 {
-    WMErrCode v0;
+    WMErrCode errorCode;
 
-    v0 = WM_EndParent(sub_02031208);
+    errorCode = WM_EndParent(WirelessManager_FinishEndServer);
 
-    if (v0 != WM_ERRCODE_OPERATING) {
-        sub_02030EF4(v0);
-        return 0;
+    if (errorCode != WM_ERRCODE_OPERATING) {
+        WirelessManager_SetErrorCode(errorCode);
+        return FALSE;
     }
 
-    return 1;
+    return TRUE;
 }
 
-static void sub_02031208(void *param0)
+/**
+ * @brief Callback used when the WM_EndParent asynchronous process completes. 
+ *
+ * @param wm_callback
+ */
+static void WirelessManager_FinishEndServer(void *wm_callback)
 {
-    WMCallback *v0 = (WMCallback *)param0;
+    WMCallback *callback = (WMCallback *)wm_callback;
 
-    if (v0->errcode != WM_ERRCODE_SUCCESS) {
-        sub_02030EF4(v0->errcode);
+    if (callback->errcode != WM_ERRCODE_SUCCESS) {
+        WirelessManager_SetErrorCode(callback->errcode);
         return;
     }
 
     WirelessManager_SetState(WIRELESS_STATE_IDLE);
 }
 
-BOOL sub_02031220(int param0, const u8 *param1, u16 param2)
+/**
+ * @brief Initializes the Wireless Manager as a client and starts the scan process. Automatically connects to a Server when found.
+ * 
+ * @param connectionType
+ * @param macAddress
+ * @param channel
+ *
+ * @return TRUE if there is no error while starting the scan
+ */
+BOOL WirelessManager_ConnectClientAuto(int connectionType, const u8 *macAddress, u16 channel)
 {
-    sWirelessManager->unk_137C = WM_SIZE_MP_CHILD_RECEIVE_BUFFER(MATH_MAX((12 * (1 + 7) + 4), 192), 0);
-    sWirelessManager->unk_1378 = MATH_MAX(WM_SIZE_MP_CHILD_SEND_BUFFER(12, 0), MATH_MAX(WM_SIZE_MP_CHILD_SEND_BUFFER(12, 0), WM_SIZE_MP_CHILD_SEND_BUFFER(38, 0)));
+    sWirelessManager->recvBufferSize = WM_SIZE_MP_CHILD_RECEIVE_BUFFER(MATH_MAX((12 * (1 + 7) + 4), 192), 0);
+    sWirelessManager->sendBufferSize = MATH_MAX(WM_SIZE_MP_CHILD_SEND_BUFFER(12, 0), MATH_MAX(WM_SIZE_MP_CHILD_SEND_BUFFER(12, 0), WM_SIZE_MP_CHILD_SEND_BUFFER(38, 0)));
 
     WirelessManager_SetState(WIRELESS_STATE_SCAN);
 
-    sWirelessManager->unk_1220.channel = 1;
-    *(u16 *)(&sWirelessManager->unk_1354.bssid[4]) = *(u16 *)(param1 + 4);
-    *(u16 *)(&sWirelessManager->unk_1354.bssid[2]) = *(u16 *)(param1 + 2);
-    *(u16 *)(&sWirelessManager->unk_1354.bssid[0]) = *(u16 *)(param1 + 0);
+    sWirelessManager->bssDesc.channel = 1;
+    *(u16 *)(&sWirelessManager->scanParam.bssid[4]) = *(u16 *)(macAddress + 4);
+    *(u16 *)(&sWirelessManager->scanParam.bssid[2]) = *(u16 *)(macAddress + 2);
+    *(u16 *)(&sWirelessManager->scanParam.bssid[0]) = *(u16 *)(macAddress + 0);
 
-    sWirelessManager->unk_1388 = param0;
+    sWirelessManager->connectionType = connectionType;
 
-    sWirelessManager->unk_1374 = NULL;
-    sWirelessManager->unk_1380 = param2;
-    sWirelessManager->unk_1354.channel = 0;
-    sWirelessManager->unk_1382 = 1;
+    sWirelessManager->scanCallback = NULL;
+    sWirelessManager->channel = channel;
+    sWirelessManager->scanParam.channel = 0;
+    sWirelessManager->autoConnect = TRUE;
 
-    if (!sub_02031320()) {
+    if (!WirelessManager_StartScan()) {
         WirelessManager_SetState(WIRELESS_STATE_ERROR);
-        return 0;
+        return FALSE;
     }
 
-    return 1;
+    return TRUE;
 }
 
-BOOL sub_020312B8(UnkFuncPtr_020312B8 param0, const u8 *param1, u16 param2)
+/**
+ * @brief Initializes the Wireless Manager as a client and starts the scan process with a given callback.
+ *
+ * @param scanCallback
+ * @param macAddress
+ * @param channel
+ *
+ * @return TRUE if there is no error while starting the scan
+ */
+BOOL WirelessManager_ConnectClientScanCallback(WirelessManagerScanFunc scanCallback, const u8 *macAddress, u16 channel)
 {
     WirelessManager_SetState(WIRELESS_STATE_SCAN);
 
-    sWirelessManager->unk_1374 = param0;
-    sWirelessManager->unk_1380 = param2;
-    sWirelessManager->unk_1354.channel = 0;
-    sWirelessManager->unk_1382 = 0;
+    sWirelessManager->scanCallback = scanCallback;
+    sWirelessManager->channel = channel;
+    sWirelessManager->scanParam.channel = 0;
+    sWirelessManager->autoConnect = FALSE;
 
-    *(u16 *)(&sWirelessManager->unk_1354.bssid[4]) = *(u16 *)(param1 + 4);
-    *(u16 *)(&sWirelessManager->unk_1354.bssid[2]) = *(u16 *)(param1 + 2);
-    *(u16 *)(&sWirelessManager->unk_1354.bssid[0]) = *(u16 *)(param1);
+    *(u16 *)(&sWirelessManager->scanParam.bssid[4]) = *(u16 *)(macAddress + 4);
+    *(u16 *)(&sWirelessManager->scanParam.bssid[2]) = *(u16 *)(macAddress + 2);
+    *(u16 *)(&sWirelessManager->scanParam.bssid[0]) = *(u16 *)(macAddress);
 
-    if (!sub_02031320()) {
+    if (!WirelessManager_StartScan()) {
         WirelessManager_SetState(WIRELESS_STATE_ERROR);
-        return 0;
+        return FALSE;
     }
 
-    return 1;
+    return TRUE;
 }
 
-static BOOL sub_02031320(void)
+/**
+ * @brief Starts the internal WM scan process 
+ *
+ * @return TRUE if there is no error while starting the scan
+ */ 
+static BOOL WirelessManager_StartScan(void)
 {
-    WMErrCode v0;
-    u16 v1 = WM_GetAllowedChannel();
+    WMErrCode errorCode;
+    u16 channel = WM_GetAllowedChannel();
 
-    if (v1 == 0x8000) {
-        sub_02030EF4(WM_ERRCODE_ILLEGAL_STATE);
+    if (channel == 0x8000) {
+        WirelessManager_SetErrorCode(WM_ERRCODE_ILLEGAL_STATE);
         Link_SetErrorState(1);
-        return 0;
+        return FALSE;
     }
 
-    if (v1 == 0) {
-        sub_02030EF4(22);
+    if (channel == 0) {
+        WirelessManager_SetErrorCode(WM_ERRCODE_DISCONNECTED_SERVER);
         Link_SetErrorState(1);
-        return 0;
+        return FALSE;
     }
 
-    if (sWirelessManager->unk_1380 == 0) {
+    if (sWirelessManager->channel == 0) {
         while (TRUE) {
-            sWirelessManager->unk_1354.channel++;
+            sWirelessManager->scanParam.channel++;
 
-            if (sWirelessManager->unk_1354.channel > 16) {
-                sWirelessManager->unk_1354.channel = 1;
+            if (sWirelessManager->scanParam.channel > 16) {
+                sWirelessManager->scanParam.channel = 1;
             }
 
-            if (v1 & (0x1 << (sWirelessManager->unk_1354.channel - 1))) {
+            if (channel & (0x1 << (sWirelessManager->scanParam.channel - 1))) {
                 break;
             }
         }
     } else {
-        sWirelessManager->unk_1354.channel = (u16)sWirelessManager->unk_1380;
+        sWirelessManager->scanParam.channel = (u16)sWirelessManager->channel;
     }
 
-    sWirelessManager->unk_1354.maxChannelTime = WM_GetDispersionScanPeriod() / 3;
-    sWirelessManager->unk_1354.scanBuf = &sWirelessManager->unk_1220;
+    sWirelessManager->scanParam.maxChannelTime = WM_GetDispersionScanPeriod() / 3;
+    sWirelessManager->scanParam.scanBuf = &sWirelessManager->bssDesc;
 
-    v0 = WM_StartScan(sub_020313E8, &sWirelessManager->unk_1354);
+    errorCode = WM_StartScan(WirelessManager_FinishStartScan, &sWirelessManager->scanParam);
 
-    if (v0 != WM_ERRCODE_OPERATING) {
-        sub_02030EF4(v0);
-        return 0;
+    if (errorCode != WM_ERRCODE_OPERATING) {
+        WirelessManager_SetErrorCode(errorCode);
+        return FALSE;
     }
 
-    return 1;
+    return TRUE;
 }
 
-static void sub_020313E8(void *param0)
+/**
+ * @brief Callback used when the WM_StartScan asynchronous process completes. Restarts the scan if necessary.
+ */ 
+static void WirelessManager_FinishStartScan(void *wm_startscancallback)
 {
-    WMstartScanCallback *v0 = (WMstartScanCallback *)param0;
+    WMstartScanCallback *callback = (WMstartScanCallback *)wm_startscancallback;
 
-    if (v0->errcode != WM_ERRCODE_SUCCESS) {
-        sub_02030EF4(v0->errcode);
+    if (callback->errcode != WM_ERRCODE_SUCCESS) {
+        WirelessManager_SetErrorCode(callback->errcode);
         WirelessManager_SetState(WIRELESS_STATE_ERROR);
         return;
     }
 
     if (sWirelessManager->state != WIRELESS_STATE_SCAN) {
-        sWirelessManager->unk_1382 = 0;
+        sWirelessManager->autoConnect = FALSE;
 
-        if (!sub_020314E4()) {
+        if (!WirelessManager_EndScan()) {
             WirelessManager_SetState(WIRELESS_STATE_ERROR);
         }
 
         return;
     }
 
-    switch (v0->state) {
+    switch (callback->state) {
     case WM_STATECODE_SCAN_START:
         return;
     case WM_STATECODE_PARENT_NOT_FOUND:
         break;
     case WM_STATECODE_PARENT_FOUND:
 
-        DC_InvalidateRange(&sWirelessManager->unk_1220, sizeof(WMbssDesc));
+        DC_InvalidateRange(&sWirelessManager->bssDesc, sizeof(WMbssDesc));
 
-        if ((sWirelessManager->unk_1394 != NULL) && (v0->gameInfoLength >= 8)) {
-            UnkStruct_0203330C *v1 = (UnkStruct_0203330C *)v0->gameInfo.userGameInfo;
+        if ((sWirelessManager->ggidScanCallback != NULL) && (callback->gameInfoLength >= 8)) {
+            UnkStruct_0203330C *v1 = (UnkStruct_0203330C *)callback->gameInfo.userGameInfo;
 
-            sWirelessManager->unk_1394(v0->gameInfo.ggid, v1->unk_04);
+            sWirelessManager->ggidScanCallback(callback->gameInfo.ggid, v1->unk_04);
         }
 
-        if ((v0->gameInfoLength < 8) || (v0->gameInfo.ggid != sWirelessManager->unk_00.ggid)) {
+        if ((callback->gameInfoLength < 8) || (callback->gameInfo.ggid != sWirelessManager->parentParam.ggid)) {
             break;
         }
 
-        if ((v0->gameInfo.gameNameCount_attribute & (WM_ATTR_FLAG_ENTRY | WM_ATTR_FLAG_MB)) != WM_ATTR_FLAG_ENTRY) {
+        if ((callback->gameInfo.gameNameCount_attribute & (WM_ATTR_FLAG_ENTRY | WM_ATTR_FLAG_MB)) != WM_ATTR_FLAG_ENTRY) {
             break;
         }
 
-        if (sWirelessManager->unk_1374 != NULL) {
-            sWirelessManager->unk_1374(&sWirelessManager->unk_1220);
+        if (sWirelessManager->scanCallback != NULL) {
+            sWirelessManager->scanCallback(&sWirelessManager->bssDesc);
         }
 
-        if (sWirelessManager->unk_1382) {
-            if (!sub_020314E4()) {
+        if (sWirelessManager->autoConnect) {
+            if (!WirelessManager_EndScan()) {
                 WirelessManager_SetState(WIRELESS_STATE_ERROR);
             }
 
@@ -492,94 +578,115 @@ static void sub_020313E8(void *param0)
         break;
     }
 
-    if (!sub_02031320()) {
+    if (!WirelessManager_StartScan()) {
         WirelessManager_SetState(WIRELESS_STATE_ERROR);
     }
 }
 
-BOOL sub_020314C0(void)
+/**
+ * @brief Changes the WirelessManager state to stop scanning.
+ *
+ * @return TRUE if the WirelessManager was in WIRELESS_STATE_SCAN, FALSE otherwise.
+ */
+BOOL WirelessManager_StopScan(void)
 {
     if (sWirelessManager->state != WIRELESS_STATE_SCAN) {
-        return 0;
+        return FALSE;
     }
 
     WirelessManager_SetState(WIRELESS_STATE_BUSY);
-    return 1;
+    return TRUE;
 }
 
-static BOOL sub_020314E4(void)
+/**
+ * @brief Ends the internal WM scan process.
+ *
+ * @return TRUE if there was no error while ending the scan
+ */
+static BOOL WirelessManager_EndScan(void)
 {
-    WMErrCode v0;
+    WMErrCode errorCode;
 
-    v0 = WM_EndScan(sub_02031500);
+    errorCode = WM_EndScan(WirelessManager_FinishEndScan);
 
-    if (v0 != WM_ERRCODE_OPERATING) {
-        sub_02030EF4(v0);
-        return 0;
+    if (errorCode != WM_ERRCODE_OPERATING) {
+        WirelessManager_SetErrorCode(errorCode);
+        return FALSE;
     }
 
-    return 1;
+    return TRUE;
 }
 
-static void sub_02031500(void *param0)
+/**
+ * @brief Callback used when the WM_EndScan asynchronous process completes.
+ *
+ * @param wm_callback
+ */
+static void WirelessManager_FinishEndScan(void *wm_callback)
 {
-    WMCallback *v0 = (WMCallback *)param0;
+    WMCallback *callback = (WMCallback *)wm_callback;
 
-    if (v0->errcode != WM_ERRCODE_SUCCESS) {
-        sub_02030EF4(v0->errcode);
+    if (callback->errcode != WM_ERRCODE_SUCCESS) {
+        WirelessManager_SetErrorCode(callback->errcode);
         return;
     }
 
     WirelessManager_SetState(WIRELESS_STATE_IDLE);
 
-    if (!sWirelessManager->unk_1382) {
+    if (!sWirelessManager->autoConnect) {
         return;
     }
 
-    {
-        if (!sub_02031538()) {
-            WirelessManager_SetState(WIRELESS_STATE_ERROR);
-        }
+    if (!WirelessManager_StartClient()) {
+        WirelessManager_SetState(WIRELESS_STATE_ERROR);
     }
 }
 
-static BOOL sub_02031538(void)
+/**
+ * @brief Starts the internal WM as a client/child
+ *
+ * @return TRUE if there was no issue starting the connection process or if the client is already connected
+ */
+static BOOL WirelessManager_StartClient(void)
 {
-    u8 v0[32];
-    WMErrCode v1;
+    u8 ssid[32];
+    WMErrCode errorCode;
 
     if ((sWirelessManager->state == WIRELESS_STATE_CONNECTED) || (sWirelessManager->state == WIRELESS_STATE_TRANSMIT_KEY) || (sWirelessManager->state == WIRELESS_STATE_TRANSMIT_DATA)) {
-        return 1;
+        return TRUE;
     }
 
     WirelessManager_SetState(WIRELESS_STATE_BUSY);
-    MI_CpuCopy8("DP", &v0[1], sizeof("DP"));
+    MI_CpuCopy8("DP", &ssid[1], sizeof("DP"));
 
-    v0[0] = sub_0203895C();
-    v1 = WM_StartConnectEx(sub_020315A8, &sWirelessManager->unk_1220, v0, 1, WM_AUTHMODE_OPEN_SYSTEM);
+    ssid[0] = sub_0203895C();
+    errorCode = WM_StartConnectEx(WirelessManager_FinishStartClient, &sWirelessManager->bssDesc, ssid, 1, WM_AUTHMODE_OPEN_SYSTEM);
 
-    if (v1 != WM_ERRCODE_OPERATING) {
-        sub_02030EF4(v1);
-        return 0;
+    if (errorCode != WM_ERRCODE_OPERATING) {
+        WirelessManager_SetErrorCode(errorCode);
+        return FALSE;
     }
 
-    return 1;
+    return TRUE;
 }
 
-static void sub_020315A8(void *param0)
+/**
+ * @brief Callback used when the Client's WM_StartConnectEx asynchronous process completes.
+ */
+static void WirelessManager_FinishStartClient(void *wm_connectcallback)
 {
-    WMStartConnectCallback *v0 = (WMStartConnectCallback *)param0;
+    WMStartConnectCallback *callback = (WMStartConnectCallback *)wm_connectcallback;
 
-    if (v0->errcode != WM_ERRCODE_SUCCESS) {
-        sub_02030EF4(v0->errcode);
+    if (callback->errcode != WM_ERRCODE_SUCCESS) {
+        WirelessManager_SetErrorCode(callback->errcode);
 
-        if (v0->errcode == WM_ERRCODE_OVER_MAX_ENTRY) {
+        if (callback->errcode == WM_ERRCODE_OVER_MAX_ENTRY) {
             WirelessManager_SetState(WIRELESS_STATE_ERROR);
             return;
-        } else if (v0->errcode == WM_ERRCODE_NO_ENTRY) {
+        } else if (callback->errcode == WM_ERRCODE_NO_ENTRY) {
             WirelessManager_SetState(WIRELESS_STATE_ERROR);
             return;
-        } else if (v0->errcode == WM_ERRCODE_FAILED) {
+        } else if (callback->errcode == WM_ERRCODE_FAILED) {
             if (sub_02038938()) {
                 WirelessManager_SetState(WIRELESS_STATE_ERROR);
             } else {
@@ -594,84 +701,88 @@ static void sub_020315A8(void *param0)
         return;
     }
 
-    if (v0->state == WM_STATECODE_BEACON_LOST) {
+    if (callback->state == WM_STATECODE_BEACON_LOST) {
         return;
     }
 
-    if (v0->state == WM_STATECODE_CONNECTED) {
-        if (sWirelessManager->unk_13A9) {
-            sub_02030EF4(20);
+    if (callback->state == WM_STATECODE_CONNECTED) {
+        if (sWirelessManager->pauseConnectionClient) {
+            WirelessManager_SetErrorCode(WM_ERRCODE_DISCONNECTED);
             WirelessManager_SetState(WIRELESS_STATE_ERROR);
             return;
         } else {
             WirelessManager_SetState(WIRELESS_STATE_CONNECTED);
 
-            if (!sub_02031668()) {
+            if (!WirelessManager_StartMPClient()) {
                 WirelessManager_SetState(WIRELESS_STATE_BUSY);
                 return;
             }
 
-            sWirelessManager->unk_13A0 = v0->aid;
+            sWirelessManager->aid = callback->aid;
             return;
         }
-    } else if (v0->state == WM_STATECODE_CONNECT_START) {
+    } else if (callback->state == WM_STATECODE_CONNECT_START) {
         return;
-    } else if (v0->state == WM_STATECODE_DISCONNECTED) {
-        sub_02030EF4(20);
+    } else if (callback->state == WM_STATECODE_DISCONNECTED) {
+        WirelessManager_SetErrorCode(WM_ERRCODE_DISCONNECTED);
         WirelessManager_SetState(WIRELESS_STATE_ERROR);
         return;
-    } else if (v0->state == WM_STATECODE_DISCONNECTED_FROM_MYSELF) {
+    } else if (callback->state == WM_STATECODE_DISCONNECTED_FROM_MYSELF) {
         return;
     }
 
     WirelessManager_SetState(WIRELESS_STATE_ERROR);
 }
 
-static BOOL sub_02031668(void)
+/**
+ * @brief Starts the internal MP_CHILD process.
+ *
+ * @return TRUE if there was no error while starting the MP_CHILD process.
+ */
+static BOOL WirelessManager_StartMPClient(void)
 {
-    WMErrCode v0;
+    WMErrCode errorCode;
 
-    v0 = WM_StartMP(sub_020316B8, (u16 *)sWirelessManager->unk_1020, (u16)sWirelessManager->unk_137C, (u16 *)sWirelessManager->unk_F40, (u16)sWirelessManager->unk_1378, 1);
+    errorCode = WM_StartMP(WirelessManager_FinishStartMPClient, (u16 *)sWirelessManager->recvBuffer, (u16)sWirelessManager->recvBufferSize, (u16 *)sWirelessManager->sendBuffer, (u16)sWirelessManager->sendBufferSize, 1);
 
-    if (v0 != WM_ERRCODE_OPERATING) {
-        sub_02030EF4(v0);
-        return 0;
+    if (errorCode != WM_ERRCODE_OPERATING) {
+        WirelessManager_SetErrorCode(errorCode);
+        return FALSE;
     }
 
-    return 1;
+    return TRUE;
 }
 
-static void sub_020316B8(void *param0)
+/**
+ * @brief Callback used when the Client's WM_StartMP asynchronous process completes.
+ *
+ * @param wm_startmpcallback
+ */
+static void WirelessManager_FinishStartMPClient(void *wm_startmpcallback)
 {
-    WMstartMPCallback *v0 = (WMstartMPCallback *)param0;
+    WMstartMPCallback *callback = (WMstartMPCallback *)wm_startmpcallback;
 
-    if (v0->errcode != WM_ERRCODE_SUCCESS) {
-        if (v0->errcode == WM_ERRCODE_SEND_FAILED) {
+    if (callback->errcode != WM_ERRCODE_SUCCESS) {
+        if (callback->errcode == WM_ERRCODE_SEND_FAILED) {
             return;
-        } else if (v0->errcode == WM_ERRCODE_TIMEOUT) {
+        } else if (callback->errcode == WM_ERRCODE_TIMEOUT) {
             return;
-        } else if (v0->errcode == WM_ERRCODE_INVALID_POLLBITMAP) {
+        } else if (callback->errcode == WM_ERRCODE_INVALID_POLLBITMAP) {
             return;
         }
 
-        sub_02030EF4(v0->errcode);
+        WirelessManager_SetErrorCode(callback->errcode);
         WirelessManager_SetState(WIRELESS_STATE_ERROR);
 
         return;
     }
 
-    switch (v0->state) {
+    switch (callback->state) {
     case WM_STATECODE_MP_START:
-        if (sWirelessManager->unk_1388 == 3) {
+        if (sWirelessManager->connectionType == WIRELESS_CONNECTION_TRANSMIT_KEY_CLIENT) {
             if (sWirelessManager->state == WIRELESS_STATE_TRANSMIT_KEY) {
                 return;
             }
-
-            if (sWirelessManager->state == WIRELESS_STATE_CONNECTED) {
-                (void)0;
-            }
-        } else if (sWirelessManager->unk_1388 == WIRELESS_STATE_TRANSMIT_DATA) {
-            (void)0;
         }
 
         WirelessManager_SetState(WIRELESS_STATE_CONNECTED);
@@ -682,92 +793,121 @@ static void sub_020316B8(void *param0)
         break;
     case WM_STATECODE_MPEND_IND:
     default:
-
         break;
     }
 }
 
-static BOOL sub_0203171C(void)
+/**
+ * @brief Ends the internal MP_CHILD process
+ *
+ * @return TRUE if there is no error while ending the MP 
+ */
+static BOOL WirelessManager_EndMPClient(void)
 {
-    WMErrCode v0;
+    WMErrCode error;
 
     WirelessManager_SetState(WIRELESS_STATE_BUSY);
-    v0 = WM_EndMP(sub_02031740);
+    error = WM_EndMP(WirelessManager_FinishEndMPClient);
 
-    if (v0 != WM_ERRCODE_OPERATING) {
-        sub_02030EF4(v0);
-        return 0;
+    if (error != WM_ERRCODE_OPERATING) {
+        WirelessManager_SetErrorCode(error);
+        return FALSE;
     }
 
-    return 1;
+    return TRUE;
 }
 
-static void sub_02031740(void *param0)
+/**
+ * @brief Callback used when the Client's WM_EndMP asynchronous process completes.
+ *
+ * @param wm_callback
+ */
+static void WirelessManager_FinishEndMPClient(void *wm_callback)
 {
-    WMCallback *v0 = (WMCallback *)param0;
+    WMCallback *callback = (WMCallback *)wm_callback;
 
-    if (v0->errcode != WM_ERRCODE_SUCCESS) {
-        sub_02030EF4(v0->errcode);
-        (void)sub_02031EF4();
+    if (callback->errcode != WM_ERRCODE_SUCCESS) {
+        WirelessManager_SetErrorCode(callback->errcode);
+        WirelessManager_Finalize();
         return;
     }
 
-    if (!sub_02031764()) {
+    if (!WirelessManager_DisconnectClient()) {
         WirelessManager_SetState(WIRELESS_STATE_ERROR);
     }
 }
 
-static BOOL sub_02031764(void)
+/**
+ * @brief Disconnects the internal wm client.
+ * 
+ * @return TRUE if there was no error while disconnecting
+ */
+static BOOL WirelessManager_DisconnectClient(void)
 {
-    WMErrCode v0;
+    WMErrCode errorCode;
 
     WirelessManager_SetState(WIRELESS_STATE_BUSY);
 
-    v0 = WM_Disconnect(sub_0203178C, 0);
+    errorCode = WM_Disconnect(WirelessManager_FinishDisconnectClient, 0);
 
-    if (v0 != WM_ERRCODE_OPERATING) {
-        sub_02030EF4(v0);
-        sub_02031ECC();
-        return 0;
+    if (errorCode != WM_ERRCODE_OPERATING) {
+        WirelessManager_SetErrorCode(errorCode);
+        WirelessManager_Reset();
+        return FALSE;
     }
 
-    return 1;
+    return TRUE;
 }
 
-static void sub_0203178C(void *param0)
+/**
+ * @brief Callback used when the Client's WM_Disconnect asynchronous process completes.
+ *
+ * @param wm_callback
+ */
+static void WirelessManager_FinishDisconnectClient(void *wm_callback)
 {
-    WMCallback *v0 = (WMCallback *)param0;
+    WMCallback *callback = (WMCallback *)wm_callback;
 
-    if (v0->errcode != WM_ERRCODE_SUCCESS) {
-        sub_02030EF4(v0->errcode);
+    if (callback->errcode != WM_ERRCODE_SUCCESS) {
+        WirelessManager_SetErrorCode(callback->errcode);
         return;
     }
 
     WirelessManager_SetState(WIRELESS_STATE_IDLE);
 }
 
-static BOOL sub_020317A4(void)
+/**
+ * @brief Resets the internal WM
+ *
+ * @return TRUE if there were no errors while reseting.
+ */
+static BOOL WirelessManager_ResetInternal(void)
 {
-    WMErrCode v0;
+    WMErrCode errorCode;
 
     WirelessManager_SetState(WIRELESS_STATE_BUSY);
-    v0 = WM_Reset(sub_020317C8);
+    errorCode = WM_Reset(WirelessManager_FinishResetInternal);
 
-    if (v0 != WM_ERRCODE_OPERATING) {
-        sub_02030EF4(v0);
-        return 0;
+    if (errorCode != WM_ERRCODE_OPERATING) {
+        WirelessManager_SetErrorCode(errorCode);
+        return FALSE;
     }
 
-    return 1;
+    return TRUE;
 }
 
-static void sub_020317C8(void *param0)
+/**
+ * @brief Callback used when the WM_Reset asynchronous process completes.
+ *
+ * @param wm_callback
+ */
+static void WirelessManager_FinishResetInternal(void *wm_callback)
 {
-    WMCallback *v0 = (WMCallback *)param0;
+    WMCallback *callback = (WMCallback *)wm_callback;
 
-    if (v0->errcode != WM_ERRCODE_SUCCESS) {
+    if (callback->errcode != WM_ERRCODE_SUCCESS) {
         WirelessManager_SetState(WIRELESS_STATE_ERROR);
-        sub_02030EF4(v0->errcode);
+        WirelessManager_SetErrorCode(callback->errcode);
 
         return;
     }
@@ -775,63 +915,79 @@ static void sub_020317C8(void *param0)
     WirelessManager_SetState(WIRELESS_STATE_IDLE);
 }
 
-static BOOL sub_020317E8(void *param0, u16 param1, int param2, UnkFuncPtr_02031E9C param3)
+/**
+ * @brief Send a message to a given port with a send callback functions
+ *
+ * @return TRUE if there was no error while sending the message
+ */
+static BOOL WirelessManager_SendMPMessage(void *message, u16 size, int port, WirelessManagerSendFunc sendCallback)
 {
-    WMErrCode v0;
+    WMErrCode errorCode;
 
-    DC_FlushRange(sWirelessManager->unk_F40, (u32)sWirelessManager->unk_1378);
+    DC_FlushRange(sWirelessManager->sendBuffer, (u32)sWirelessManager->sendBufferSize);
 
-    v0 = WM_SetMPDataToPortEx(sub_02031840, (void *)param3, param0, param1, 0xffff, param2, WM_PRIORITY_NORMAL);
+    errorCode = WM_SetMPDataToPortEx(WirelessManager_FinishSendMPMessage, (void *)sendCallback, message, size, 0xffff, port, WM_PRIORITY_NORMAL);
 
-    if (v0 != WM_ERRCODE_OPERATING) {
-        return 0;
+    if (errorCode != WM_ERRCODE_OPERATING) {
+        return FALSE;
     }
 
-    return 1;
+    return TRUE;
 }
 
-static void sub_02031840(void *param0)
+/**
+ * @brief Callback used when the WM_SetMPDataToPortEx asynchronous process completes.
+ *
+ * @param wm_portsendcallback
+ */
+static void WirelessManager_FinishSendMPMessage(void *wm_portsendcallback)
 {
-    WMPortSendCallback *v0 = (WMPortSendCallback *)param0;
+    WMPortSendCallback *callback = (WMPortSendCallback *)wm_portsendcallback;
 
-    if ((v0->errcode != WM_ERRCODE_SUCCESS) && (v0->errcode != WM_ERRCODE_SEND_FAILED)) {
-        sub_02030EF4(v0->errcode);
+    if ((callback->errcode != WM_ERRCODE_SUCCESS) && (callback->errcode != WM_ERRCODE_SEND_FAILED)) {
+        WirelessManager_SetErrorCode(callback->errcode);
         return;
     }
 
-    if (v0->arg != NULL) {
-        UnkFuncPtr_02031E9C v1 = (UnkFuncPtr_02031E9C)v0->arg;
+    if (callback->arg != NULL) {
+        WirelessManagerSendFunc sendFunc = (WirelessManagerSendFunc)callback->arg;
 
-        (*v1)(v0->errcode == WM_ERRCODE_SUCCESS);
+        (*sendFunc)(callback->errcode == WM_ERRCODE_SUCCESS);
     }
 }
 
-static void sub_02031868(void *param0)
+/**
+ * @brief Callback set with WM_SetPortCallback to receive messages 
+ *
+ * @param wm_portrecvcallback
+ */
+static void WirelessManager_RecvMessageCallback(void *wm_portrecvcallback)
 {
-    WMPortRecvCallback *v0 = (WMPortRecvCallback *)param0;
+    WMPortRecvCallback *callback = (WMPortRecvCallback *)wm_portrecvcallback;
 
-    if (v0->errcode != WM_ERRCODE_SUCCESS) {
-        sub_02030EF4(v0->errcode);
-    } else if (sWirelessManager->unk_138C != NULL) {
-        if (v0->state == WM_STATECODE_PORT_INIT) {
+    if (callback->errcode != WM_ERRCODE_SUCCESS) {
+        WirelessManager_SetErrorCode(callback->errcode);
+    } else if (sWirelessManager->recvFunc != NULL) {
+        if (callback->state == WM_STATECODE_PORT_INIT) {
             (void)0;
-        } else if (v0->state == WM_STATECODE_PORT_RECV) {
-            (*sWirelessManager->unk_138C)(v0->aid, v0->data, v0->length);
-        } else if (v0->state == WM_STATECODE_DISCONNECTED) {
-            (*sWirelessManager->unk_138C)(v0->aid, NULL, 0);
-        } else if (v0->state == WM_STATECODE_DISCONNECTED_FROM_MYSELF) {
-            (void)0;
-        } else if (v0->state == WM_STATECODE_CONNECTED) {
-            (void)0;
-        }
+        } else if (callback->state == WM_STATECODE_PORT_RECV) {
+            (*sWirelessManager->recvFunc)(callback->aid, callback->data, callback->length);
+        } else if (callback->state == WM_STATECODE_DISCONNECTED) {
+            (*sWirelessManager->recvFunc)(callback->aid, NULL, 0);
+        } 
     }
 }
 
-static void sub_020318B0(void *param0)
+/**
+ * @brief Callback used when the WM_End asynchronous process completes
+ *
+ * @param wm_callback
+ */
+static void WirelessManager_FinishEnd(void *wm_callback)
 {
-    WMCallback *v0 = (WMCallback *)param0;
+    WMCallback *callback = (WMCallback *)wm_callback;
 
-    if (v0->errcode != WM_ERRCODE_SUCCESS) {
+    if (callback->errcode != WM_ERRCODE_SUCCESS) {
         WirelessManager_SetState(WIRELESS_STATE_FATAL_ERROR);
         return;
     }
@@ -840,89 +996,125 @@ static void sub_020318B0(void *param0)
     WirelessManager_SetState(WIRELESS_STATE_STOP);
 }
 
-void sub_020318D0(u32 param0)
+/**
+ * @brief Sets the WirelessManager's parentParam.ggid
+ */
+void WirelessManager_SetParentParamGGID(u32 ggid)
 {
-    sWirelessManager->unk_00.ggid = param0;
+    sWirelessManager->parentParam.ggid = ggid;
 }
 
-void sub_020318DC(u16 *param0, u16 param1)
+/**
+ * @brief Sets the WirelessManager's parentParam userGameInfo and userGameInfoLength
+ */
+void WirelessManager_SetParentParamGameInfoAndLength(u16 *param0, u16 param1)
 {
-    sWirelessManager->unk_00.userGameInfo = param0;
-    sWirelessManager->unk_00.userGameInfoLength = param1;
+    sWirelessManager->parentParam.userGameInfo = param0;
+    sWirelessManager->parentParam.userGameInfoLength = param1;
 }
 
-u16 sub_020318EC(void)
+/**
+ * @brief Gets the connectedBitmap
+ *
+ * @return sWirelessManager->connectedBitmap
+ */
+u16 WirelessManager_GetConnectedBitmap(void)
 {
-    return sWirelessManager->unk_13A2;
+    return sWirelessManager->connectedBitmap;
 }
 
-static u16 sub_02031900(void)
+/**
+ * @brief Gets the number of connected machines
+ *
+ * @return Number of 1s in sWirelessManager->connectedBitmap
+ */
+static u16 WirelessManager_GetNumConnected(void)
 {
-    int v0 = 0, v1;
-    u16 v2 = sWirelessManager->unk_13A2;
+    int cnt = 0, i;
+    u16 connected = sWirelessManager->connectedBitmap;
 
-    for (v1 = 0; v1 < 16; v1++) {
-        if (v2 & 0x1) {
-            v0++;
+    for (i = 0; i < 16; i++) {
+        if (connected & 0x1) {
+            cnt++;
         }
 
-        v2 = v2 >> 1;
+        connected = connected >> 1;
     }
 
-    return v0;
+    return cnt;
 }
 
-int sub_02031934(void)
+/**
+ * @brief Gets the current WirelessManagerState
+ *
+ * @return sWirelessManager->state, using the enum WirelessManagerState
+ */
+int WirelessManager_GetState(void)
 {
     return sWirelessManager->state;
 }
 
-int sub_02031948(void)
+/**
+ * @brief Gets the current error code
+ *
+ * @return sWirelessManager->errorCode, using either the enum WMErrCode or ExtendedWMErrCode
+ */
+int WirelessManager_GetErrorCode(void)
 {
-    return sWirelessManager->unk_13A4;
+    return sWirelessManager->errorCode;
 }
 
-BOOL sub_0203195C(void)
+/**
+ * @brief Starts the internal process to measure the signal strength of each channel, starting a channel 1
+ *
+ * @return TRUE if there were no issues while measuring the channels
+ */
+BOOL WirelessManager_StartMeasureChannel(void)
 {
-    u16 v0;
-    u8 v1[6];
+    u16 errorCode;
+    u8 macAddress[6];
 
-    OS_GetMacAddress(v1);
+    OS_GetMacAddress(macAddress);
 
-    sWirelessManager->unk_13AC = (u32)(OS_GetVBlankCount() + *(u16 *)&v1[0] + *(u16 *)&v1[2] + *(u16 *)&v1[4]);
-    sWirelessManager->unk_13AC = sWirelessManager->unk_13AC * 69069UL + 12345;
-    sWirelessManager->unk_13B0 = 0;
-    sWirelessManager->unk_13B2 = 100 + 1;
+    sWirelessManager->rand = (u32)(OS_GetVBlankCount() + *(u16 *)&macAddress[0] + *(u16 *)&macAddress[2] + *(u16 *)&macAddress[4]);
+    sWirelessManager->rand = sWirelessManager->rand * 69069UL + 12345;
+    sWirelessManager->measureChannel = 0;
+    sWirelessManager->measureChannelBusyRatio = 100 + 1;
 
     WirelessManager_SetState(WIRELESS_STATE_BUSY);
 
-    v0 = sub_020319F8(1);
+    errorCode = WirelessManager_MeasureChannel(1);
 
-    if (v0 == 24) {
-        sub_02030EF4(24);
+    if (errorCode == WM_ERRCODE_FATAL) {
+        WirelessManager_SetErrorCode(WM_ERRCODE_FATAL);
         WirelessManager_SetState(WIRELESS_STATE_ERROR);
         Link_SetErrorState(1);
-        return 0;
+        return FALSE;
     }
 
-    if (v0 != WM_ERRCODE_OPERATING) {
-        sub_02030EF4(v0);
+    if (errorCode != WM_ERRCODE_OPERATING) {
+        WirelessManager_SetErrorCode(errorCode);
         WirelessManager_SetState(WIRELESS_STATE_ERROR);
-        return 0;
+        return FALSE;
     }
 
-    return 1;
+    return TRUE;
 }
 
-static u16 sub_020319F8(u16 param0)
+/**
+ * @brief Measures the signal strength of the given channel
+ *
+ * @return errorCode as returned by WM_MeasureChannel
+ */
+static u16 WirelessManager_MeasureChannel(u16 channel)
 {
-    u16 v0;
-    u16 v1;
+    u16 allowedChannel;
+    u16 errorCode;
 
-    v0 = WM_GetAllowedChannel();
+    allowedChannel = WM_GetAllowedChannel();
 
-    if (v0 == 0x8000) {
-        sub_02030EF4(WM_ERRCODE_ILLEGAL_STATE);
+    if (allowedChannel == 0x8000) {
+        WirelessManager_SetErrorCode(WM_ERRCODE_ILLEGAL_STATE);
 
         WirelessManager_SetState(WIRELESS_STATE_ERROR);
         Link_SetErrorState(1);
@@ -930,40 +1122,36 @@ static u16 sub_020319F8(u16 param0)
         return WM_ERRCODE_ILLEGAL_STATE;
     }
 
-    if (v0 == 0) {
-        sub_02030EF4(22);
+    if (allowedChannel == 0) {
+        WirelessManager_SetErrorCode(WM_ERRCODE_DISCONNECTED_SERVER);
 
         WirelessManager_SetState(WIRELESS_STATE_ERROR);
         Link_SetErrorState(1);
 
-        return 24;
+        return WM_ERRCODE_FATAL;
     }
 
-    while (((1 << (param0 - 1)) & v0) == 0) {
-        param0++;
+    while (((1 << (channel - 1)) & allowedChannel) == 0) {
+        channel++;
 
-        if (param0 > 16) {
-            return 24;
+        if (channel > 16) {
+            return WM_ERRCODE_FATAL;
         }
     }
 
-    v1 = sub_02031AF0(sub_02031A74, param0);
+    errorCode = WirelessManager_MeasureChannelInternal(WirelessManager_FinishMeasureChannel, channel);
 
-    if (v1 != WM_ERRCODE_OPERATING) {
-        return v1;
-    }
-
-    return v1;
+    return errorCode;
 }
 
-static void sub_02031A74(void *param0)
+static void WirelessManager_FinishMeasureChannel(void *param0)
 {
-    u16 v0;
-    u16 v1;
-    WMMeasureChannelCallback *v2 = (WMMeasureChannelCallback *)param0;
+    u16 errorCode;
+    u16 channel;
+    WMMeasureChannelCallback *measureChannelCallback = (WMMeasureChannelCallback *)param0;
 
-    if (v2->errcode != WM_ERRCODE_SUCCESS) {
-        sub_02030EF4(v2->errcode);
+    if (measureChannelCallback->errcode != WM_ERRCODE_SUCCESS) {
+        WirelessManager_SetErrorCode(measureChannelCallback->errcode);
 
         WirelessManager_SetState(WIRELESS_STATE_ERROR);
         Link_SetErrorState(1);
@@ -971,150 +1159,195 @@ static void sub_02031A74(void *param0)
         return;
     }
 
-    v1 = v2->channel;
+    channel = measureChannelCallback->channel;
 
-    if (sWirelessManager->unk_13B2 > v2->ccaBusyRatio) {
-        sWirelessManager->unk_13B2 = v2->ccaBusyRatio;
-        sWirelessManager->unk_13B4 = (u16)(1 << (v1 - 1));
-    } else if (sWirelessManager->unk_13B2 == v2->ccaBusyRatio) {
-        sWirelessManager->unk_13B4 |= 1 << (v1 - 1);
+    if (sWirelessManager->measureChannelBusyRatio > measureChannelCallback->ccaBusyRatio) {
+        sWirelessManager->measureChannelBusyRatio = measureChannelCallback->ccaBusyRatio;
+        sWirelessManager->leastUsedChannelBitmap = (u16)(1 << (channel - 1));
+    } else if (sWirelessManager->measureChannelBusyRatio == measureChannelCallback->ccaBusyRatio) {
+        sWirelessManager->leastUsedChannelBitmap |= 1 << (channel - 1);
     }
 
-    v0 = sub_020319F8(++v1);
+    errorCode = WirelessManager_MeasureChannel(++channel);
 
-    if (v0 == 24) {
+    if (errorCode == WM_ERRCODE_FATAL) {
         WirelessManager_SetState(WIRELESS_STATE_CHECK_CHANNEL);
         return;
     }
 
-    if (v0 != WM_ERRCODE_OPERATING) {
+    if (errorCode != WM_ERRCODE_OPERATING) {
         WirelessManager_SetState(WIRELESS_STATE_ERROR);
         return;
     }
 }
 
-static WMErrCode sub_02031AF0(WMCallbackFunc param0, u16 param1)
+/**
+ * @brief Wrapper for WM_MeasureChannel
+ *
+ * @param wm_callback
+ * @param channel
+ *
+ * @return WMErrCode as returned by WM_MeasureChannel
+ */
+static WMErrCode WirelessManager_MeasureChannelInternal(WMCallbackFunc callback, u16 channel)
 {
-    return WM_MeasureChannel(param0, 3, 17, param1, 30);
+    return WM_MeasureChannel(callback, 3, 17, channel, 30);
 }
-
-u16 sub_02031B04(void)
+/**
+ * @brief Sets the measured channel to a least utilized channel and returns the value
+ *
+ * @return sWirelessManager->measureChannel, after settting it
+ */
+u16 WirelessManager_GetMeasureChannel(void)
 {
     WirelessManager_SetState(WIRELESS_STATE_IDLE);
-    sWirelessManager->unk_13B0 = (u16)sub_02031B30(sWirelessManager->unk_13B4);
+    sWirelessManager->measureChannel = (u16)WirelessManager_GetRandomChannel(sWirelessManager->leastUsedChannelBitmap);
 
-    return sWirelessManager->unk_13B0;
+    return sWirelessManager->measureChannel;
 }
 
-static s16 sub_02031B30(u16 param0)
+/**
+ * @brief Gets a random channel from among channels in the bitmap
+ *
+ * @return A random channel in the bitmap. 0 if none is found.
+ */
+static s16 WirelessManager_GetRandomChannel(u16 bitmap)
 {
-    s16 v0;
-    s16 v1 = 0;
-    u16 v2 = 0;
-    u16 v3;
+    s16 i;
+    s16 channel = 0;
+    u16 cnt = 0;
+    u16 randChannel;
 
-    for (v0 = 0; v0 < 16; v0++) {
-        if (param0 & (1 << v0)) {
-            v1 = (s16)(v0 + 1);
-            v2++;
+    for (i = 0; i < 16; i++) {
+        if (bitmap & (1 << i)) {
+            channel = (s16)(i + 1);
+            cnt++;
         }
     }
 
-    if (v2 <= 1) {
-        return v1;
+    if (cnt <= 1) {
+        return channel;
     }
 
-    v3 = (u16)((((sWirelessManager->unk_13AC = sWirelessManager->unk_13AC * 69069UL + 12345) & 0xFF) * v2) / 0x100);
-    v1 = 1;
+    randChannel = (u16)((((sWirelessManager->rand = sWirelessManager->rand * 69069UL + 12345) & 0xFF) * cnt) / 0x100);
+    channel = 1;
 
-    for (v0 = 0; v0 < 16; v0++) {
-        if (param0 & 1) {
-            if (v3 == 0) {
-                return (s16)(v0 + 1);
+    for (i = 0; i < 16; i++) {
+        if (bitmap & 1) {
+            if (randChannel == 0) {
+                return (s16)(i + 1);
             }
 
-            v3--;
+            randChannel--;
         }
 
-        param0 >>= 1;
+        bitmap >>= 1;
     }
 
     return 0;
 }
 
-BOOL sub_02031BC4(void *param0, BOOL param1)
+/**
+ * @brief Initializes sWirelessManager with default params
+ *
+ * @param heap
+ * @param isNotListening
+ *
+ * @return TRUE if initialization is successful
+ */
+BOOL WirelessManager_Initialize(void *heap, BOOL isNotListening)
 {
-    u32 v0 = (u32)param0;
+    u32 heapAddress = (u32)heap;
 
-    if (v0 % 32) {
-        v0 += 32 - (v0 % 32);
+    if (heapAddress % 32) {
+        heapAddress += 32 - (heapAddress % 32);
     }
 
-    sWirelessManager = (WirelessManager *)v0;
-    sWirelessManager->unk_137C = 0;
-    sWirelessManager->unk_1378 = 0;
-    sWirelessManager->unk_138C = NULL;
-    sWirelessManager->unk_13A0 = 0;
-    sWirelessManager->unk_13A2 = 1;
-    sWirelessManager->unk_13A4 = WM_ERRCODE_SUCCESS;
+    sWirelessManager = (WirelessManager *)heapAddress;
+    sWirelessManager->recvBufferSize = 0;
+    sWirelessManager->sendBufferSize = 0;
+    sWirelessManager->recvFunc = NULL;
+    sWirelessManager->aid = 0;
+    sWirelessManager->connectedBitmap = 1;
+    sWirelessManager->errorCode = WM_ERRCODE_SUCCESS;
     sWirelessManager->state = WIRELESS_STATE_STOP;
-    sWirelessManager->unk_00.userGameInfo = NULL;
-    sWirelessManager->unk_00.userGameInfoLength = 0;
-    sWirelessManager->unk_1390 = NULL;
-    sWirelessManager->unk_13A8 = (7 + 1);
-    sWirelessManager->unk_13A9 = 0;
-    sWirelessManager->unk_13B6 = 0;
+    sWirelessManager->parentParam.userGameInfo = NULL;
+    sWirelessManager->parentParam.userGameInfoLength = 0;
+    sWirelessManager->unusedCallback_1390 = NULL;
+    sWirelessManager->numConnectionsMax = (7 + 1);
+    sWirelessManager->pauseConnectionClient = FALSE;
+    sWirelessManager->pauseConnection = 0;
 
-    if (!sub_02031C70(param1)) {
-        return 0;
+    if (!WirelessManager_InitializeWM(isNotListening)) {
+        return FALSE;
     }
 
-    return 1;
+    return TRUE;
 }
 
-int sub_02031C50(void)
+/**
+ * @brief Gets allocated heap size for sWirelessManager
+ *
+ * @return sizeof(WirelessManager) + 32
+ */
+int WirelessManager_GetHeapSize(void)
 {
     return sizeof(WirelessManager) + 32;
 }
 
-static void sub_02031C58(void *param0)
+/**
+ * @brief WM indicator callback for WM_SetIndCallback 
+ */
+static void WirelessManager_InidcateCallback(void *param0)
 {
-    WMindCallback *v0 = (WMindCallback *)param0;
+    WMindCallback *callback = (WMindCallback *)param0;
 
-    if (v0->errcode == WM_ERRCODE_FIFO_ERROR) {
+    if (callback->errcode == WM_ERRCODE_FIFO_ERROR) {
         WirelessManager_SetState(WIRELESS_STATE_ERROR);
-        sub_02030EF4(25);
+        WirelessManager_SetErrorCode(WM_ERRCODE_GF_MAX);
     }
 }
 
-static BOOL sub_02031C70(BOOL param0)
+/** 
+ * @brief Initializes the internal WM (for listening if isNotListening is FALSE)
+ *
+ * @param isNotListening
+ *
+ * @return TRUE if there was no error while running WM_Initialize or WM_InitializeForListening
+ */
+static BOOL WirelessManager_InitializeWM(BOOL isNotListening)
 {
-    WMErrCode v0;
+    WMErrCode errorCode;
 
     WirelessManager_SetState(WIRELESS_STATE_BUSY);
 
-    if (param0 == 1) {
-        v0 = WM_Initialize(&sWirelessManager->unk_40, sub_02031CBC, 2);
+    if (isNotListening == 1) {
+        errorCode = WM_Initialize(&sWirelessManager->nitroManagerBuffer, WirelessManager_FinishInitializeWM, 2);
     } else {
-        v0 = WM_InitializeForListening(&sWirelessManager->unk_40, sub_02031CBC, 2, 0);
+        errorCode = WM_InitializeForListening(&sWirelessManager->nitroManagerBuffer, WirelessManager_FinishInitializeWM, 2, 0);
     }
 
-    if (v0 != WM_ERRCODE_OPERATING) {
-        sub_02030EF4(v0);
+    if (errorCode != WM_ERRCODE_OPERATING) {
+        WirelessManager_SetErrorCode(errorCode);
         WirelessManager_SetState(WIRELESS_STATE_FATAL_ERROR);
-        return 0;
+        return FALSE;
     }
 
-    return 1;
+    return TRUE;
 }
 
-static void sub_02031CBC(void *param0)
+/**
+ * @brief Callback used when the WM_Initialize(ForListening) asynchronous process completes.
+ *
+ * @param wm_callback
+ */
+static void WirelessManager_FinishInitializeWM(void *wm_callback)
 {
-    WMErrCode v0;
-    WMCallback *v1 = (WMCallback *)param0;
+    WMErrCode errorCode;
+    WMCallback *callback = (WMCallback *)wm_callback;
 
-    if (v1->errcode != WM_ERRCODE_SUCCESS) {
-        sub_02030EF4(v1->errcode);
+    if (callback->errcode != WM_ERRCODE_SUCCESS) {
+        WirelessManager_SetErrorCode(callback->errcode);
 
         WirelessManager_SetState(WIRELESS_STATE_FATAL_ERROR);
         Link_SetErrorState(1);
@@ -1122,110 +1355,138 @@ static void sub_02031CBC(void *param0)
         return;
     }
 
-    v0 = WM_SetIndCallback(sub_02031C58);
+    errorCode = WM_SetIndCallback(WirelessManager_InidcateCallback);
 
-    if (v0 != WM_ERRCODE_SUCCESS) {
-        sub_02030EF4(v0);
+    if (errorCode != WM_ERRCODE_SUCCESS) {
+        WirelessManager_SetErrorCode(errorCode);
 
         WirelessManager_SetState(WIRELESS_STATE_FATAL_ERROR);
         Link_SetErrorState(1);
-
         return;
     }
 
-    WirelessManager_SetState(1);
+    WirelessManager_SetState(WIRELESS_STATE_IDLE);
 }
 
-static void sub_02031D00(void *param0)
+/**
+ * @brief Deadstripped. Callback used when the WM_SetLifeTime asynchronous process completes. 
+ *
+ * @param wm_callback
+ */
+static void WirelessManager_FinishSetLifeTime(void *wm_callback)
 {
-    WMCallback *v0 = (WMCallback *)param0;
+    (void)0;
 }
 
-BOOL sub_02031D04(int param0, u16 param1, u16 param2, u16 param3, u16 param4, BOOL param5)
+/**
+ * @brief Initializes the WirelessManager as a server and broadcasts a beacon for clients to connect to.
+ *
+ * @param connectionType
+ * @param tgid
+ * @param channel
+ * @param maxEntry
+ * @param beaconPeriod
+ * @param entryFlag
+ *
+ * @return TRUE if the initialization process begins without error
+ */
+BOOL WirelessManager_ConnectServer(int connectionType, u16 tgid, u16 channel, u16 maxEntry, u16 beaconPeriod, BOOL entryFlag)
 {
     if (sub_0203276C(sub_0203895C())) {
-        WM_SetLifeTime(sub_02031D00, 0xffff, 100, 5, 100);
+        WM_SetLifeTime(WirelessManager_FinishSetLifeTime, 0xffff, 100, 5, 100);
     }
 
-    sWirelessManager->unk_137C = MATH_MAX(WM_SIZE_MP_PARENT_RECEIVE_BUFFER(12, 7, 0), MATH_MAX(WM_SIZE_MP_PARENT_RECEIVE_BUFFER(12, 7, 0), WM_SIZE_MP_PARENT_RECEIVE_BUFFER(38, (5 - 1), 0)));
-    sWirelessManager->unk_1378 = WM_SIZE_MP_PARENT_SEND_BUFFER(MATH_MAX((12 * (1 + 7) + 4), 192), 0);
+    sWirelessManager->recvBufferSize = MATH_MAX(WM_SIZE_MP_PARENT_RECEIVE_BUFFER(12, 7, 0), MATH_MAX(WM_SIZE_MP_PARENT_RECEIVE_BUFFER(12, 7, 0), WM_SIZE_MP_PARENT_RECEIVE_BUFFER(38, (5 - 1), 0)));
+    sWirelessManager->sendBufferSize = WM_SIZE_MP_PARENT_SEND_BUFFER(MATH_MAX((12 * (1 + 7) + 4), 192), 0);
 
-    sWirelessManager->unk_1388 = param0;
+    sWirelessManager->connectionType = connectionType;
     WirelessManager_SetState(WIRELESS_STATE_BUSY);
 
-    sWirelessManager->unk_00.tgid = param1;
-    sWirelessManager->unk_00.channel = param2;
-    sWirelessManager->unk_00.beaconPeriod = param4;
+    sWirelessManager->parentParam.tgid = tgid;
+    sWirelessManager->parentParam.channel = channel;
+    sWirelessManager->parentParam.beaconPeriod = beaconPeriod;
 
-    switch (param0) {
-    case 0:
-        sWirelessManager->unk_00.parentMaxSize = 192;
+    switch (connectionType) {
+    case WIRELESS_CONNECTION_MP_SERVER:
+        sWirelessManager->parentParam.parentMaxSize = 192;
 
-        if (param3 >= 5) {
-            sWirelessManager->unk_00.childMaxSize = 12;
+        if (maxEntry >= 5) {
+            sWirelessManager->parentParam.childMaxSize = 12;
         } else {
-            sWirelessManager->unk_00.childMaxSize = 38;
+            sWirelessManager->parentParam.childMaxSize = 38;
         }
 
         break;
-    case 4:
-        sWirelessManager->unk_00.parentMaxSize = (12 * (1 + 7) + 4);
-        sWirelessManager->unk_00.childMaxSize = 12;
+    case WIRELESS_CONNECTION_TRANSMIT_DATA_SERVER:
+        sWirelessManager->parentParam.parentMaxSize = (12 * (1 + 7) + 4);
+        sWirelessManager->parentParam.childMaxSize = 12;
         break;
     }
 
-    sWirelessManager->unk_00.maxEntry = param3;
-    sWirelessManager->unk_00.CS_Flag = 0;
-    sWirelessManager->unk_00.multiBootFlag = 0;
-    sWirelessManager->unk_00.entryFlag = param5;
-    sWirelessManager->unk_00.KS_Flag = (u16)((param0 == 2) ? 1 : 0);
+    sWirelessManager->parentParam.maxEntry = maxEntry;
+    sWirelessManager->parentParam.CS_Flag = 0;
+    sWirelessManager->parentParam.multiBootFlag = 0;
+    sWirelessManager->parentParam.entryFlag = entryFlag;
+    sWirelessManager->parentParam.KS_Flag = (u16)((connectionType == WIRELESS_CONNECTION_TRANSMIT_KEY_SERVER) ? 1 : 0);
 
-    switch (param0) {
-    case 0:
-    case 2:
-    case 4:
-        return sub_02030F10();
+    switch (connectionType) {
+    case WIRELESS_CONNECTION_MP_SERVER:
+    case WIRELESS_CONNECTION_TRANSMIT_KEY_SERVER:
+    case WIRELESS_CONNECTION_TRANSMIT_DATA_SERVER:
+        return WirelessManager_SetParentParameter();
     default:
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
-BOOL sub_02031DD8(int param0, WMBssDesc *param1)
+/**
+ * @brief Initializes the WirelessManager as a client and begins scanning for servers using the data in bssDesc as a parameter.
+ * 
+ * @param connectionType
+ * @param bssDesc
+ *
+ * @return TRUE if the initialization process begins without error
+ */
+BOOL WirelessManager_ConnectClient(int connectionType, WMBssDesc *bssDesc)
 {
     if (sub_0203276C(sub_0203895C())) {
-        WM_SetLifeTime(sub_02031D00, 0xffff, 100, 5, 100);
+        WM_SetLifeTime(WirelessManager_FinishSetLifeTime, 0xffff, 100, 5, 100);
     }
 
-    sWirelessManager->unk_137C = WM_SIZE_MP_CHILD_RECEIVE_BUFFER(MATH_MAX((12 * (1 + 7) + 4), 192), 0);
-    sWirelessManager->unk_1378 = MATH_MAX(WM_SIZE_MP_CHILD_SEND_BUFFER(12, 0), MATH_MAX(WM_SIZE_MP_CHILD_SEND_BUFFER(12, 0), WM_SIZE_MP_CHILD_SEND_BUFFER(38, 0)));
+    sWirelessManager->recvBufferSize = WM_SIZE_MP_CHILD_RECEIVE_BUFFER(MATH_MAX((12 * (1 + 7) + 4), 192), 0);
+    sWirelessManager->sendBufferSize = MATH_MAX(WM_SIZE_MP_CHILD_SEND_BUFFER(12, 0), MATH_MAX(WM_SIZE_MP_CHILD_SEND_BUFFER(12, 0), WM_SIZE_MP_CHILD_SEND_BUFFER(38, 0)));
 
-    sWirelessManager->unk_1388 = param0;
+    sWirelessManager->connectionType = connectionType;
     WirelessManager_SetState(WIRELESS_STATE_BUSY);
 
-    switch (param0) {
-    case 1:
-    case 3:
-    case 5:
-        MI_CpuCopy8(param1, &sWirelessManager->unk_1220, sizeof(sWirelessManager->unk_1220));
-        DC_FlushRange(&sWirelessManager->unk_1220, sizeof(sWirelessManager->unk_1220));
+    switch (connectionType) {
+    case WIRELESS_CONNECTION_MP_CLIENT:
+    case WIRELESS_CONNECTION_TRANSMIT_KEY_CLIENT:
+    case WIRELESS_CONNECTION_TRANSMIT_DATA_CLIENT:
+        MI_CpuCopy8(bssDesc, &sWirelessManager->bssDesc, sizeof(sWirelessManager->bssDesc));
+        DC_FlushRange(&sWirelessManager->bssDesc, sizeof(sWirelessManager->bssDesc));
         DC_WaitWriteBufferEmpty();
-        {
-            return sub_02031538();
-        }
+        return WirelessManager_StartClient();
     default:
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
-void sub_02031E6C(UnkFuncPtr_02031E6C param0, int param1)
+/**
+ * @brief Sets the receive function on a given port
+ *
+ * @param recvFunction
+ * @param port
+ */
+void WirelessManager_SetRecvFunction(WirelessManagerRecvFunc recvFunction, int port)
 {
-    sWirelessManager->unk_138C = param0;
+    sWirelessManager->recvFunc = recvFunction;
 
-    if (WM_SetPortCallback(param1, sub_02031868, NULL) != WM_ERRCODE_SUCCESS) {
+    if (WM_SetPortCallback(port, WirelessManager_RecvMessageCallback, NULL) != WM_ERRCODE_SUCCESS) {
         WirelessManager_SetState(WIRELESS_STATE_ERROR);
 
         while (TRUE) {
@@ -1234,16 +1495,29 @@ void sub_02031E6C(UnkFuncPtr_02031E6C param0, int param1)
     }
 }
 
-BOOL sub_02031E9C(void *param0, u16 param1, int param2, UnkFuncPtr_02031E9C param3)
+/**
+ * @brief Sends a message to a given port
+ *
+ * @param message
+ * @param size
+ * @param port
+ * @param sendCallback
+ *
+ * @return TRUE if there were no issues in the SendMPMessage process
+ */
+BOOL WirelessManager_SendMessage(void *message, u16 size, int port, WirelessManagerSendFunc callback)
 {
-    if ((sub_02031F90() == 0) && !(0xfe & sub_020318EC())) {
-        return 0;
+    if ((WirelessManager_GetAID() == 0) && !(0xfe & WirelessManager_GetConnectedBitmap())) {
+        return FALSE;
     }
 
-    return sub_020317E8(param0, param1, param2, param3);
+    return WirelessManager_SendMPMessage(message, size, port, callback);
 }
 
-void sub_02031ECC(void)
+/**
+ * @brief Resets the internal WM. Hangs if scanning.
+ */
+void WirelessManager_Reset(void)
 {
     if (WIRELESS_STATE_SCAN == sWirelessManager->state) {
         while (TRUE) {
@@ -1251,172 +1525,271 @@ void sub_02031ECC(void)
         }
     }
 
-    if (!sub_020317A4()) {
+    if (!WirelessManager_ResetInternal()) {
         WirelessManager_SetState(WIRELESS_STATE_FATAL_ERROR);
     }
 }
 
-void sub_02031EF4(void)
+/**
+ * @brief Ends the internal MP process and resets the WirelessManager
+ */
+void WirelessManager_Finalize(void)
 {
-    if (sWirelessManager->state == 1) {
+    if (sWirelessManager->state == WIRELESS_STATE_IDLE) {
         return;
     }
 
     if ((sWirelessManager->state != WIRELESS_STATE_TRANSMIT_KEY) && (sWirelessManager->state != WIRELESS_STATE_TRANSMIT_DATA) && (sWirelessManager->state != WIRELESS_STATE_CONNECTED)) {
         WirelessManager_SetState(WIRELESS_STATE_BUSY);
-        sub_02031ECC();
+        WirelessManager_Reset();
         return;
     }
 
     WirelessManager_SetState(WIRELESS_STATE_BUSY);
 
-    switch (sWirelessManager->unk_1388) {
-    case 3:
+    switch (sWirelessManager->connectionType) {
+    case WIRELESS_CONNECTION_TRANSMIT_KEY_CLIENT:
         break;
-    case 5:
-    case 1:
-        if (!sub_0203171C()) {
-            sub_02031ECC();
+    case WIRELESS_CONNECTION_TRANSMIT_DATA_CLIENT:
+    case WIRELESS_CONNECTION_MP_CLIENT:
+        if (!WirelessManager_EndMPClient()) {
+            WirelessManager_Reset();
         }
         break;
-    case 2:
+    case WIRELESS_CONNECTION_TRANSMIT_KEY_SERVER:
         break;
-    case 4:
-    case 0:
-        if (!sub_020311A8()) {
-            sub_02031ECC();
+    case WIRELESS_CONNECTION_TRANSMIT_DATA_SERVER:
+    case WIRELESS_CONNECTION_MP_SERVER:
+        if (!WirelessManager_EndMPServer()) {
+            WirelessManager_Reset();
         }
     }
 }
 
-BOOL sub_02031F6C(void)
+/**
+ * @brief Ends the internal WM
+ *
+ * @return TRUE if there is no issue in the ending process.
+ */
+BOOL WirelessManager_End(void)
 {
-    int v0;
+    int errorCode;
 
     WirelessManager_SetState(WIRELESS_STATE_BUSY);
-    v0 = WM_End(sub_020318B0);
+    errorCode = WM_End(WirelessManager_FinishEnd);
 
-    if (v0 != WM_ERRCODE_OPERATING) {
+    if (errorCode != WM_ERRCODE_OPERATING) {
         WirelessManager_SetState(WIRELESS_STATE_ERROR);
 
-        return 0;
+        return FALSE;
     }
 
-    return 1;
+    return TRUE;
 }
 
-u16 sub_02031F90(void)
+/**
+ * @brief Gets the WirelessManager's AID
+ *
+ * @return sWirelessManager->aid
+ */
+u16 WirelessManager_GetAID(void)
 {
-    return sWirelessManager->unk_13A0;
+    return sWirelessManager->aid;
 }
 
-void sub_02031FA4(int param0)
+/**
+ * @brief Sets the max number of connections 
+ *
+ * @param numConnectionsMax
+ */
+void WirelessManager_SetMaxNumConnections(int numConnectionsMax)
 {
     if (sWirelessManager) {
-        sWirelessManager->unk_13A8 = param0;
+        sWirelessManager->numConnectionsMax = numConnectionsMax;
     }
 }
 
-BOOL sub_02031FBC(void)
+/**
+ * @brief Checks if the WirelessManager is idle.
+ *
+ * @return sWirelessManager->state == WIRELESS_STATE_IDLE
+ */
+BOOL WirelessManager_IsIdle(void)
 {
     return sWirelessManager->state == WIRELESS_STATE_IDLE;
 }
 
-BOOL sub_02031FD8(void)
+/**
+ * @brief Checks if the WirelessManager is busy.
+ *
+ * @return sWirelessManager->state == WIRELESS_STATE_BUSY
+ */
+BOOL WirelessManager_IsBusy(void)
 {
     return sWirelessManager->state == WIRELESS_STATE_BUSY;
 }
 
-BOOL sub_02031FF4(void)
+/**
+ * @brief Checks if the WirelessManager is erroring.
+ *
+ * @return sWirelessManager->state == WIRELESS_STATE_ERROR
+ */
+BOOL WirelessManager_IsError(void)
 {
     return sWirelessManager->state == WIRELESS_STATE_ERROR;
 }
 
-BOOL sub_02032010(void)
+/**
+ * @brief Checks if the WirelessManager is scanning.
+ *
+ * @return sWirelessManager->state == WIRELESS_STATE_SCAN
+ */
+BOOL WirelessManager_IsScanning(void)
 {
     if (sWirelessManager) {
         return sWirelessManager->state == WIRELESS_STATE_SCAN;
     }
 
-    return 0;
+    return FALSE;
 }
 
-void sub_02032034(void *param0, int param1, int param2, int param3)
+/**
+ * @brief Sets the internal WM GameInfo
+ *
+ * @param buffer
+ * @param size
+ * @param ggid
+ * @param tgid
+ */
+void WirelessManager_SetGameInfo(void *buffer, int size, int ggid, int tgid)
 {
     if (sWirelessManager->state == WIRELESS_STATE_CONNECTED) {
-        WM_SetGameInfo(NULL, param0, param1, param2, param3, WM_ATTR_FLAG_ENTRY);
-    } else {
-        (void)0;
+        WM_SetGameInfo(NULL, buffer, size, ggid, tgid, WM_ATTR_FLAG_ENTRY);
     }
 }
 
-static void sub_02032070(void *param0)
+/**
+ * @brief Callback used when the WM_SetEntry asynchronous process completes. Sets setEntry to TRUE on success.
+ *
+ * @param wm_callback
+ */
+static void WirelessManager_FinishSetEntry(void *wm_callback)
 {
-    WMCallback *v0 = param0;
+    WMCallback *callback = wm_callback;
 
-    if (v0->errcode == WM_ERRCODE_SUCCESS) {
-        sWirelessManager->unk_13B8 = 1;
+    if (callback->errcode == WM_ERRCODE_SUCCESS) {
+        sWirelessManager->setEntry = TRUE;
     }
 }
 
-BOOL sub_0203208C(BOOL param0)
+/**
+ * @brief Sets whether or not the WirelessManager can connect to clients
+ *
+ * @param enable
+ *
+ * @return TRUE if WM_SetEntry has no errors.
+ */
+BOOL WirelessManager_SetEntry(BOOL enable)
 {
-    sWirelessManager->unk_13B8 = 0;
+    sWirelessManager->setEntry = 0;
 
     if (sWirelessManager->state == WIRELESS_STATE_CONNECTED) {
-        if (WM_ERRCODE_OPERATING == WM_SetEntry(sub_02032070, param0)) {
-            return 1;
+        if (WM_ERRCODE_OPERATING == WM_SetEntry(WirelessManager_FinishSetEntry, enable)) {
+            return TRUE;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
-BOOL sub_020320C4(void)
+/**
+ * @brief Checks if all beacons have been sent by the server.
+ *
+ * @return sWirelessManager->sentBeaconCount >= 6
+ */
+BOOL WirelessManager_ServerSentAllBeacons(void)
 {
     if (sWirelessManager) {
-        return sWirelessManager->unk_13B9 >= 6;
+        return sWirelessManager->sentBeaconCount >= 6;
     }
 
-    return 0;
+    return FALSE;
 }
 
-void sub_020320E8(void)
+/**
+ * @brief Resets the beacon sent count used by the Server
+ */
+void WirelessManager_ResetBeaconSentCount(void)
 {
-    sWirelessManager->unk_13B9 = 0;
+    sWirelessManager->sentBeaconCount = 0;
 }
 
-void sub_020320FC(UnkFuncPtr_020320FC param0)
+/**
+ * @brief Sets the ggidScanCallback
+ *
+ * @param callback
+ */
+void WirelessManager_SetGGIDScanCallback(UnkFuncPtr_020320FC callback)
 {
-    sWirelessManager->unk_1394 = param0;
+    sWirelessManager->ggidScanCallback = callback;
 }
 
+/**
+ * @brief Sets the disconnectCallback
+ * 
+ * @param callback
+ */
 void sub_SetDisconnectCallback(UnkFuncPtr_02032110 callback)
 {
     sWirelessManager->disconnectCallback = callback;
 }
 
-void sub_02032124(UnkFuncPtr_02032110 param0)
+/**
+ * @brief Sets the connectCallback
+ * 
+ * @param callback
+ */
+void WirelessManager_SetConnectCallback(UnkFuncPtr_02032110 callback)
 {
-    sWirelessManager->unk_139C = param0;
+    sWirelessManager->connectCallback = callback;
 }
 
-void sub_02032138(BOOL param0)
+/**
+ * @brief Pauses or unpauses the connection
+ *
+ * @param pause
+ */
+void WirelessManager_SetPauseConnection(BOOL pause)
 {
-    sWirelessManager->unk_13B6 = param0;
+    sWirelessManager->pauseConnection = pause;
 }
 
-BOOL sub_0203214C(void)
+/**
+ * @brief Gets whether the connection is currently paused
+ *
+ * @return sWirelessManager->pauseConnection
+ */
+BOOL WirelessManager_GetPauseConnection(void)
 {
-    return sWirelessManager->unk_13B6;
+    return sWirelessManager->pauseConnection;
 }
 
-void sub_02032160(BOOL param0)
+/**
+ * @brief Sets whether the system is paused
+ *
+ * @param pause
+ */
+void WirelessManager_SetPauseConnectionSystem(BOOL pause)
 {
-    sWirelessManager->unk_13B7 = param0;
+    sWirelessManager->pauseConnectSystem = pause;
 }
 
-void sub_02032174(BOOL param0)
+/**
+ * @brief Sets whether the client is paused. WirelessManager must be initialized as a client for this to do anything.
+ *
+ * @param pause
+ */
+void WirelessManager_SetPauseClientConnection(BOOL pause)
 {
-    sWirelessManager->unk_13A9 = param0;
+    sWirelessManager->pauseConnectionClient = pause;
 }

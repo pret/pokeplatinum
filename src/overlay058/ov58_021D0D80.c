@@ -236,7 +236,7 @@ int ov58_021D0F08(ApplicationManager *appMan, int *param1)
     UnkStruct_02095EAC *v0 = ApplicationManager_Data(appMan);
 
     if ((CommSys_CurNetId() == 0) && (v0->unk_9418 != 0)) {
-        v0->unk_9418 &= sub_020318EC();
+        v0->unk_9418 &= WirelessManager_GetConnectedBitmap();
     }
 
     v0->unk_364 = *param1;
@@ -339,7 +339,7 @@ int ov58_021D1018(ApplicationManager *appMan, int *param1)
         break;
     case 2:
         if (v0->unk_9464) {
-            if (sub_020318EC() == 1) {
+            if (WirelessManager_GetConnectedBitmap() == 1) {
                 (*param1)++;
             }
         } else {
@@ -526,7 +526,7 @@ static void ov58_021D12C4(UnkStruct_02095EAC *param0)
     param0->unk_9458 = 1;
     param0->unk_945C = 0;
     param0->unk_37C = 2;
-    param0->unk_380 = sub_020318EC();
+    param0->unk_380 = WirelessManager_GetConnectedBitmap();
     param0->unk_9460 = 0;
     param0->unk_9464 = 0;
     param0->unk_368 = 0;
@@ -817,7 +817,7 @@ static void ov58_021D1A80(UnkStruct_02095EAC *param0)
         case 8:
             if (param0->unk_368 == 4) {
                 if (CommSys_CurNetId() == 0) {
-                    if (param0->unk_380 != sub_020318EC()) {
+                    if (param0->unk_380 != WirelessManager_GetConnectedBitmap()) {
                         Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
                         break;
                     }
@@ -1758,7 +1758,7 @@ static int ov58_021D2B5C(UnkStruct_02095EAC *param0)
     switch (v0) {
     case 1:
         if (param0->unk_368 <= 14) {
-            if (sub_020318EC() != 1) {
+            if (WirelessManager_GetConnectedBitmap() != 1) {
                 param0->unk_9464 = 1;
             }
 
@@ -1793,7 +1793,7 @@ static int ov58_021D2B5C(UnkStruct_02095EAC *param0)
 
     if (v0 < param0->unk_378) {
         param0->unk_37C = CommSys_ConnectedCount();
-        param0->unk_380 = sub_020318EC();
+        param0->unk_380 = WirelessManager_GetConnectedBitmap();
 
         if (param0->unk_9468) {
             if (!(param0->unk_380 & param0->unk_946C)) {
@@ -1811,7 +1811,7 @@ static int ov58_021D2B5C(UnkStruct_02095EAC *param0)
     if (param0->unk_37C < CommSys_ConnectedCount()) {
         param0->unk_9458 = 2;
         param0->unk_9468 = 1;
-        param0->unk_946C = param0->unk_380 ^ sub_020318EC();
+        param0->unk_946C = param0->unk_380 ^ WirelessManager_GetConnectedBitmap();
         GF_ASSERT((param0->unk_946C == 2) || (param0->unk_946C == 4) || (param0->unk_946C == 8) || (param0->unk_946C == 16));
     }
 

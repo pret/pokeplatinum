@@ -24,41 +24,61 @@ enum WirelessManagerState {
     WIRELESS_STATE_COUNT
 };
 
-BOOL sub_02031220(int param0, const u8 *param1, u16 param2);
-BOOL sub_020312B8(UnkFuncPtr_020312B8 param0, const u8 *param1, u16 param2);
-BOOL sub_020314C0(void);
-void sub_020318D0(u32 param0);
-void sub_020318DC(u16 *param0, u16 param1);
-u16 sub_020318EC(void);
-int sub_02031934(void);
-int sub_02031948(void);
-BOOL sub_0203195C(void);
-u16 sub_02031B04(void);
-BOOL sub_02031BC4(void *param0, BOOL param1);
-int sub_02031C50(void);
-BOOL sub_02031D04(int param0, u16 param1, u16 param2, u16 param3, u16 param4, BOOL param5);
-BOOL sub_02031DD8(int param0, WMBssDesc *param1);
-void sub_02031E6C(UnkFuncPtr_02031E6C param0, int param1);
-BOOL sub_02031E9C(void *param0, u16 param1, int param2, UnkFuncPtr_02031E9C param3);
-void sub_02031ECC(void);
-void sub_02031EF4(void);
-BOOL sub_02031F6C(void);
-u16 sub_02031F90(void);
-void sub_02031FA4(int param0);
-BOOL sub_02031FBC(void);
-BOOL sub_02031FD8(void);
-BOOL sub_02031FF4(void);
-BOOL sub_02032010(void);
-void sub_02032034(void *param0, int param1, int param2, int param3);
-BOOL sub_0203208C(BOOL param0);
-BOOL sub_020320C4(void);
-void sub_020320E8(void);
-void sub_020320FC(UnkFuncPtr_020320FC param0);
+enum WirelessConnectionType {
+    WIRELESS_CONNECTION_MP_SERVER,
+    WIRELESS_CONNECTION_MP_CLIENT,
+    WIRELESS_CONNECTION_TRANSMIT_KEY_SERVER,
+    WIRELESS_CONNECTION_TRANSMIT_KEY_CLIENT,
+    WIRELESS_CONNECTION_TRANSMIT_DATA_SERVER,
+    WIRELESS_CONNECTION_TRANSMIT_DATA_CLIENT,
+    WIRELESS_CONNECTION_COUNT
+};
+
+//Extention of the NitroSDK WMErrCode enum 
+enum ExtendedWMErrCode {
+    WM_ERRCODE_DISCONNECTED = WM_ERRCODE_MAX, //=20
+    WM_ERRCODE_NO_SERVER,
+    WM_ERRCODE_DISCONNECTED_SERVER,
+    WM_ERRCODE_NO_CHANNEL,
+    WM_ERRCODE_FATAL,
+    WM_ERRCODE_GF_MAX
+};
+
+BOOL WirelessManager_ConnectClientAuto(int param0, const u8 *param1, u16 param2);
+BOOL WirelessManager_ConnectClientScanCallback(WirelessManagerScanFunc param0, const u8 *param1, u16 param2);
+BOOL WirelessManager_StopScan(void);
+void WirelessManager_SetParentParamGGID(u32 param0);
+void WirelessManager_SetParentParamGameInfoAndLength(u16 *param0, u16 param1);
+u16 WirelessManager_GetConnectedBitmap(void);
+int WirelessManager_GetState(void);
+int WirelessManager_GetErrorCode(void);
+BOOL WirelessManager_StartMeasureChannel(void);
+u16 WirelessManager_GetMeasureChannel(void);
+BOOL WirelessManager_Initialize(void *param0, BOOL param1);
+int WirelessManager_GetHeapSize(void);
+BOOL WirelessManager_ConnectServer(int param0, u16 param1, u16 param2, u16 param3, u16 param4, BOOL param5);
+BOOL WirelessManager_ConnectClient(int param0, WMBssDesc *param1);
+void WirelessManager_SetRecvFunction(WirelessManagerRecvFunc param0, int param1);
+BOOL WirelessManager_SendMessage(void *param0, u16 param1, int param2, WirelessManagerSendFunc param3);
+void WirelessManager_Reset(void);
+void WirelessManager_Finalize(void);
+BOOL WirelessManager_End(void);
+u16 WirelessManager_GetAID(void);
+void WirelessManager_SetMaxNumConnections(int param0);
+BOOL WirelessManager_IsIdle(void);
+BOOL WirelessManager_IsBusy(void);
+BOOL WirelessManager_IsError(void);
+BOOL WirelessManager_IsScanning(void);
+void WirelessManager_SetGameInfo(void *param0, int param1, int param2, int param3);
+BOOL WirelessManager_SetEntry(BOOL param0);
+BOOL WirelessManager_ServerSentAllBeacons(void);
+void WirelessManager_ResetBeaconSentCount(void);
+void WirelessManager_SetGGIDScanCallback(UnkFuncPtr_020320FC param0);
 void sub_SetDisconnectCallback(UnkFuncPtr_02032110 param0);
-void sub_02032124(UnkFuncPtr_02032110 param0);
-void sub_02032138(BOOL param0);
-BOOL sub_0203214C(void);
-void sub_02032160(BOOL param0);
-void sub_02032174(BOOL param0);
+void WirelessManager_SetConnectCallback(UnkFuncPtr_02032110 param0);
+void WirelessManager_SetPauseConnection(BOOL param0);
+BOOL WirelessManager_GetPauseConnection(void);
+void WirelessManager_SetPauseConnectionSystem(BOOL param0);
+void WirelessManager_SetPauseClientConnection(BOOL param0);
 
 #endif // POKEPLATINUM_UNK_02030EE0_H

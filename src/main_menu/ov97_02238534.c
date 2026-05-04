@@ -39,7 +39,7 @@ typedef struct {
     u8 unk_11F4[1261];
 } UnkStruct_ov97_022403F8;
 
-typedef void (*UnkFuncPtr_020312B8)(WMBssDesc *);
+typedef void (*WirelessManagerScanFunc)(WMBssDesc *);
 
 static void ov97_02238AB4(UnkStruct_ov97_02238AB4 *param0);
 static int ov97_02238B34(UnkStruct_ov97_02238AB4 *param0);

@@ -78,8 +78,8 @@ void CommServerClient_Init(TrainerInfo *trainerInfo, BOOL param1)
     sCommServerClient = (CommServerClient *)Heap_Alloc(HEAP_ID_COMMUNICATION, sizeof(CommServerClient));
     MI_CpuClear8(sCommServerClient, sizeof(CommServerClient));
 
-    sCommServerClient->unk_14E8 = Heap_Alloc(HEAP_ID_COMMUNICATION, sub_02031C50());
-    MI_CpuClear8(sCommServerClient->unk_14E8, sub_02031C50());
+    sCommServerClient->unk_14E8 = Heap_Alloc(HEAP_ID_COMMUNICATION, WirelessManager_GetHeapSize());
+    MI_CpuClear8(sCommServerClient->unk_14E8, WirelessManager_GetHeapSize());
 
     sCommServerClient->unk_1500 = Heap_Alloc(HEAP_ID_COMMUNICATION, BattleRegulation_Size());
     MI_CpuClear8(sCommServerClient->unk_1500, BattleRegulation_Size());
@@ -239,10 +239,10 @@ static void sub_020334DC(BOOL param0)
         u32 v0 = (u32)sCommServerClient->unk_14E8;
 
         v0 = 32 - (v0 % 32) + v0;
-        (void)sub_02031BC4((void *)v0, param0);
+        (void)WirelessManager_Initialize((void *)v0, param0);
     }
 
-    sub_020318D0(sCommServerClient->unk_1504);
+    WirelessManager_SetParentParamGGID(sCommServerClient->unk_1504);
 }
 
 void sub_02033518(void)
@@ -277,17 +277,17 @@ BOOL CommServerClient_InitServer(BOOL param0, BOOL param1, BOOL param2)
 {
     sub_02033578();
     sub_02033550(param1);
-    sub_020320E8();
+    WirelessManager_ResetBeaconSentCount();
 
     if (!sCommServerClient->unk_1517) {
-        sub_02031E6C(sub_020351F8, 14);
+        WirelessManager_SetRecvFunction(sub_020351F8, 14);
         sCommServerClient->unk_1517 = 1;
     }
 
     sCommServerClient->unk_1519_5 = param2;
 
-    if (sub_02031934() == 1) {
-        if (sub_0203195C()) {
+    if (WirelessManager_GetState() == 1) {
+        if (WirelessManager_StartMeasureChannel()) {
             return 1;
         }
     }
@@ -304,14 +304,14 @@ BOOL CommServerClient_InitClient(BOOL param0, BOOL param1)
     }
 
     if (!sCommServerClient->unk_1517) {
-        sub_02031E6C(sub_0203509C, 14);
+        WirelessManager_SetRecvFunction(sub_0203509C, 14);
         sCommServerClient->unk_1517 = 1;
     }
 
-    if (sub_02031934() == 1) {
+    if (WirelessManager_GetState() == 1) {
         const u8 v0[6] = { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF };
 
-        if (sub_020312B8(sub_0203330C, v0, 0)) {
+        if (WirelessManager_ConnectClientScanCallback(sub_0203330C, v0, 0)) {
             return 1;
         }
     }
@@ -327,29 +327,29 @@ BOOL sub_020336D4(void)
 
     switch (sCommServerClient->unk_1518) {
     case 0:
-        if (sub_02032010()) {
-            sub_020314C0();
+        if (WirelessManager_IsScanning()) {
+            WirelessManager_StopScan();
             sCommServerClient->unk_1518 = 1;
             break;
-        } else if (sub_02031FD8()) {
+        } else if (WirelessManager_IsBusy()) {
             (void)0;
         } else {
-            sub_02031EF4();
+            WirelessManager_Finalize();
             sCommServerClient->unk_1518 = 2;
         }
         break;
     case 1:
-        if (!sub_02031FD8()) {
-            sub_02031EF4();
+        if (!WirelessManager_IsBusy()) {
+            WirelessManager_Finalize();
             sCommServerClient->unk_1518 = 2;
         }
         break;
     case 2:
-        if (sub_02031FBC()) {
+        if (WirelessManager_IsIdle()) {
             return 1;
         }
 
-        if (sub_02031FF4()) {
+        if (WirelessManager_IsError()) {
             sCommServerClient->unk_1518 = 1;
         }
         break;
@@ -363,7 +363,7 @@ BOOL sub_02033768(void)
     if (sCommServerClient) {
         if (sCommServerClient->unk_1516 == 0) {
             sCommServerClient->unk_1516 = 1;
-            sub_02031EF4();
+            WirelessManager_Finalize();
             return 1;
         }
     }
@@ -554,19 +554,19 @@ BOOL sub_020339E8(u16 param0)
 {
     int v0;
 
-    if (sub_02031934() == 2) {
-        (void)sub_020314C0();
+    if (WirelessManager_GetState() == 2) {
+        (void)WirelessManager_StopScan();
         return 0;
     }
 
-    if (sub_02031934() == 1) {
+    if (WirelessManager_GetState() == 1) {
         v0 = sub_0203895C();
         sCommServerClient->unk_1514 = sCommServerClient->unk_188[param0].channel;
 
         if (sub_020326C4(v0)) {
-            sub_02031220(1, sCommServerClient->unk_188[param0].bssid, 0);
+            WirelessManager_ConnectClientAuto(1, sCommServerClient->unk_188[param0].bssid, 0);
         } else {
-            sub_02031DD8(1, &(sCommServerClient->unk_188[param0]));
+            WirelessManager_ConnectClient(1, &(sCommServerClient->unk_188[param0]));
         }
 
         return 1;
@@ -622,7 +622,7 @@ static void sub_02033AA8(void)
 
         MI_CpuCopy8(&sCommServerClient->unk_14EC, &v2->unk_08, sizeof(Sentence));
 
-        v2->unk_54 = sub_0203214C();
+        v2->unk_54 = WirelessManager_GetPauseConnection();
     } else {
         v3 = (UnkStruct_02034168 *)sCommServerClient->unk_150C;
 
@@ -634,7 +634,7 @@ static void sub_02033AA8(void)
     }
 
     DC_FlushRange(sCommServerClient->unk_150C, MATH_MAX(sizeof(UnkStruct_02034168), sizeof(UnkStruct_0203330C)));
-    sub_020318DC(sCommServerClient->unk_150C, MATH_MAX(sizeof(UnkStruct_02034168), sizeof(UnkStruct_0203330C)));
+    WirelessManager_SetParentParamGameInfoAndLength(sCommServerClient->unk_150C, MATH_MAX(sizeof(UnkStruct_02034168), sizeof(UnkStruct_0203330C)));
 }
 
 static void sub_02033B88(void)
@@ -644,19 +644,19 @@ static void sub_02033B88(void)
     if (sub_02033DDC() != v0->unk_06) {
         v0->unk_06 = sub_02033DDC();
         DC_FlushRange(sCommServerClient->unk_150C, MATH_MAX(sizeof(UnkStruct_02034168), sizeof(UnkStruct_0203330C)));
-        sub_020318DC(sCommServerClient->unk_150C, MATH_MAX(sizeof(UnkStruct_02034168), sizeof(UnkStruct_0203330C)));
-        sub_02032034(sCommServerClient->unk_150C, MATH_MAX(sizeof(UnkStruct_02034168), sizeof(UnkStruct_0203330C)), sCommServerClient->unk_1504, Unk_021C07B8);
+        WirelessManager_SetParentParamGameInfoAndLength(sCommServerClient->unk_150C, MATH_MAX(sizeof(UnkStruct_02034168), sizeof(UnkStruct_0203330C)));
+        WirelessManager_SetGameInfo(sCommServerClient->unk_150C, MATH_MAX(sizeof(UnkStruct_02034168), sizeof(UnkStruct_0203330C)), sCommServerClient->unk_1504, Unk_021C07B8);
     }
 }
 
 static void sub_02033BDC(u16 param0)
 {
-    int v0 = sub_02031934();
+    int v0 = WirelessManager_GetState();
     int v1 = sub_02032E90();
 
     sub_02033B88();
 
-    if ((sub_02031F90() == 0) && (!CommServerClient_IsClientConnecting())) {
+    if ((WirelessManager_GetAID() == 0) && (!CommServerClient_IsClientConnecting())) {
         if (sCommServerClient->unk_1519_2) {
             sCommServerClient->unk_1519_0 = 1;
         }
@@ -676,7 +676,7 @@ static void sub_02033BDC(u16 param0)
         }
     }
 
-    if (25 == sub_02031948()) {
+    if (25 == WirelessManager_GetErrorCode()) {
         sub_020389FC(0);
     }
 
@@ -694,13 +694,13 @@ static void sub_02033BDC(u16 param0)
         break;
     case 1:
         if (sCommServerClient->unk_1516 == 1) {
-            if (sub_02031F6C()) {
+            if (WirelessManager_End()) {
                 return;
             }
         }
 
         if (sCommServerClient->unk_1516 == 2) {
-            if (sub_02031F6C()) {
+            if (WirelessManager_End()) {
                 return;
             }
         }
@@ -714,7 +714,7 @@ static void sub_02033BDC(u16 param0)
     case 7: {
         u16 v2;
 
-        v2 = sub_02031B04();
+        v2 = WirelessManager_GetMeasureChannel();
 
         if (sCommServerClient->unk_1515 == 0) {
             sCommServerClient->unk_1510 = v2;
@@ -730,7 +730,7 @@ static void sub_02033BDC(u16 param0)
         }
 
         sub_02033AA8();
-        (void)sub_02031D04(0, Unk_021C07B8, v2, CommLocal_MaxMachines(sub_0203895C()), sub_02033F0C(sub_0203895C()), sCommServerClient->unk_1519_5);
+        (void)WirelessManager_ConnectServer(0, Unk_021C07B8, v2, CommLocal_MaxMachines(sub_0203895C()), sub_02033F0C(sub_0203895C()), sCommServerClient->unk_1519_5);
         sCommServerClient->unk_1514 = v2;
     } break;
     default:
@@ -751,12 +751,12 @@ static BOOL sub_02033DA8(u16 param0)
         return 0;
     }
 
-    if (sub_02031934() != 4) {
+    if (WirelessManager_GetState() != 4) {
         return 0;
     }
 
     {
-        u16 v0 = sub_020318EC();
+        u16 v0 = WirelessManager_GetConnectedBitmap();
 
         if (v0 & (1 << param0)) {
             return 1;
@@ -795,7 +795,7 @@ BOOL CommServerClient_IsInitialized(void)
 BOOL sub_02033E30(void)
 {
     if (sCommServerClient) {
-        return sub_02031FBC();
+        return WirelessManager_IsIdle();
     }
 
     return 1;
@@ -804,7 +804,7 @@ BOOL sub_02033E30(void)
 BOOL CommServerClient_IsClientConnecting(void)
 {
     if (sCommServerClient) {
-        return sub_020318EC() & 0xfffe;
+        return WirelessManager_GetConnectedBitmap() & 0xfffe;
     }
 
     return 0;
@@ -812,7 +812,7 @@ BOOL CommServerClient_IsClientConnecting(void)
 
 BOOL sub_02033E68(void)
 {
-    if (CommServerClient_CheckError() && (20 == sub_02031948())) {
+    if (CommServerClient_CheckError() && (20 == WirelessManager_GetErrorCode())) {
         return 1;
     }
 
@@ -955,7 +955,7 @@ void *sub_020340E8(void)
 void sub_020340FC(void)
 {
     sub_02033AA8();
-    sub_02032034(sCommServerClient->unk_150C, MATH_MAX(sizeof(UnkStruct_02034168), sizeof(UnkStruct_0203330C)), sCommServerClient->unk_1504, Unk_021C07B8);
+    WirelessManager_SetGameInfo(sCommServerClient->unk_150C, MATH_MAX(sizeof(UnkStruct_02034168), sizeof(UnkStruct_0203330C)), sCommServerClient->unk_1504, Unk_021C07B8);
 }
 
 int sub_02034120(int param0)
@@ -977,7 +977,7 @@ int sub_02034120(int param0)
 
 BOOL sub_02034148(void)
 {
-    return sub_020320C4();
+    return WirelessManager_ServerSentAllBeacons();
 }
 
 void sub_02034150(void *param0)

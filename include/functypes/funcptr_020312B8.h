@@ -3,6 +3,6 @@
 
 #include <nitro/wm.h>
 
-typedef void (*UnkFuncPtr_020312B8)(WMBssDesc *);
+typedef void (*WirelessManagerScanFunc)(WMBssDesc *);
 
 #endif // POKEPLATINUM_FUNCPTR_020312B8_H

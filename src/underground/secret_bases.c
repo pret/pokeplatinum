@@ -2759,16 +2759,16 @@ void SecretBases_SetEntranceGraphicsEnabled(BOOL enabled)
 
 static void ov23_0224DC08(void)
 {
-    sub_02032174(TRUE);
-    sub_02032138(TRUE);
+    WirelessManager_SetPauseClientConnection(TRUE);
+    WirelessManager_SetPauseConnection(TRUE);
     sub_02036814(TRUE);
     sub_020340FC();
 }
 
 static void ov23_0224DC24(void)
 {
-    sub_02032174(FALSE);
-    sub_02032138(FALSE);
+    WirelessManager_SetPauseClientConnection(FALSE);
+    WirelessManager_SetPauseConnection(FALSE);
     sub_02036814(FALSE);
     sub_020340FC();
 }

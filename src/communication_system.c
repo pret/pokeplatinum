@@ -340,7 +340,7 @@ BOOL CommSys_InitServer(BOOL param0, BOOL param1, int param2, BOOL param3)
 
     if (!CommLocal_IsWifiGroup(sub_0203895C())) {
         ret = CommServerClient_InitServer(param0, param1, param3);
-        sub_02032124(sub_02034770);
+        WirelessManager_SetConnectCallback(sub_02034770);
     }
 
     CommSys_Init(param0, param2);
@@ -663,7 +663,7 @@ static void sub_02034B50(void)
                 sCommunicationSystem->unk_660++;
             }
         }
-    } else if (((sub_02031934() == 4) && (CommSys_IsPlayerConnected(CommSys_CurNetId()))) || CommSys_IsAlone()) {
+    } else if (((WirelessManager_GetState() == 4) && (CommSys_IsPlayerConnected(CommSys_CurNetId()))) || CommSys_IsAlone()) {
         while (TRUE) {
             if (Unk_02100A1D != 4) {
                 break;
@@ -741,9 +741,9 @@ static void CommSys_UpdateServerClient(void)
             Unk_021C07C4 = 1;
         }
 
-        if (sub_02031934() == 4
+        if (WirelessManager_GetState() == 4
             && !CommSys_IsAlone()
-            && !sub_02031E9C(sCommunicationSystem->sendBufferServer[sCommunicationSystem->unk_6A8], 192, 14, sub_020353B0)) {
+            && !WirelessManager_SendMessage(sCommunicationSystem->sendBufferServer[sCommunicationSystem->unk_6A8], 192, 14, sub_020353B0)) {
             Unk_02100A1C--;
         }
 
@@ -762,7 +762,7 @@ static void CommSys_UpdateServerClient(void)
             sCommunicationSystem->unk_6A8 = 1 - sCommunicationSystem->unk_6A8;
         }
 
-        if ((sub_02031934() != 4) || CommSys_IsAlone()) {
+        if ((WirelessManager_GetState() != 4) || CommSys_IsAlone()) {
             Unk_02100A1C++;
         }
     }
@@ -821,7 +821,7 @@ static void sub_02034F68(void)
                 (void)0;
             }
         }
-    } else if ((sub_02031934() == 4) || (CommSys_IsAlone())) {
+    } else if ((WirelessManager_GetState() == 4) || (CommSys_IsAlone())) {
         if (Unk_02100A1C != 4) {
             return;
         }
@@ -1047,7 +1047,7 @@ static void sub_020353CC(void)
         }
     }
 
-    if (sub_02031934() == 4) {
+    if (WirelessManager_GetState() == 4) {
         if (!CommSys_IsPlayerConnected(CommSys_CurNetId())) {
             if (CommSys_CurNetId() == 1) {
                 (void)0;
@@ -1060,13 +1060,13 @@ static void sub_020353CC(void)
             if (CommSys_CurNetId() != 0) {
                 Unk_02100A1D++;
 
-                if (!sub_02031E9C(sCommunicationSystem->sendBuffer[sCommunicationSystem->unk_6A7], v3, 14, sub_02035394)) {
+                if (!WirelessManager_SendMessage(sCommunicationSystem->sendBuffer[sCommunicationSystem->unk_6A7], v3, 14, sub_02035394)) {
                     Unk_02100A1D--;
                 } else {
                     sCommunicationSystem->unk_6A7 = 1 - sCommunicationSystem->unk_6A7;
                     sCommunicationSystem->unk_660++;
                 }
-            } else if (sub_020318EC() & 0xfffe) {
+            } else if (WirelessManager_GetConnectedBitmap() & 0xfffe) {
                 Unk_02100A1D++;
                 sub_02035394(1);
                 sub_02035200(0, (u16 *)sCommunicationSystem->sendBuffer[sCommunicationSystem->unk_6A7], v3);
@@ -1268,7 +1268,7 @@ static void sub_020358C0(u8 *param0)
         param0[1] = 0x1;
     }
 
-    u16 v1 = sub_020318EC();
+    u16 v1 = WirelessManager_GetConnectedBitmap();
 
     param0[2] = v1 >> 8;
     param0[3] = v1 & 0xff;
@@ -1557,14 +1557,14 @@ BOOL CommSys_IsPlayerConnected(u16 param0)
         return FALSE;
     }
 
-    if (sub_02031934() != 4) {
+    if (WirelessManager_GetState() != 4) {
         return FALSE;
     }
 
     if (CommSys_CurNetId() == param0) {
         return TRUE;
     } else if (CommSys_CurNetId() == 0) {
-        u16 v1 = sub_020318EC();
+        u16 v1 = WirelessManager_GetConnectedBitmap();
 
         if (v1 & (1 << param0)) {
             return TRUE;
@@ -1740,7 +1740,7 @@ u16 CommSys_CurNetId(void)
         } else if (CommSys_IsAlone()) {
             return 0;
         } else {
-            return sub_02031F90();
+            return WirelessManager_GetAID();
         }
     }
 

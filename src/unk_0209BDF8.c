@@ -169,7 +169,7 @@ static void sub_0209BF64(int param0, int param1, void *param2, void *param3)
 
             switch (v2->unk_02) {
             case 0:
-                if ((v0->unk_2C != CommSys_ConnectedCount()) || (v0->unk_2C != sub_0209C16C()) || (v0->unk_2C != MATH_CountPopulation(sub_020318EC()))) {
+                if ((v0->unk_2C != CommSys_ConnectedCount()) || (v0->unk_2C != sub_0209C16C()) || (v0->unk_2C != MATH_CountPopulation(WirelessManager_GetConnectedBitmap()))) {
                     v1.unk_03 = 0;
                 } else {
                     v0->unk_30 |= 1 << param0;

@@ -445,7 +445,7 @@ static int Field_CheckTrainerInfo(void)
 
 BOOL FieldInput_Process_UnionRoom(const FieldInput *input, FieldSystem *fieldSystem)
 {
-    if (sub_020318EC() & 0xfe) {
+    if (WirelessManager_GetConnectedBitmap() & 0xfe) {
         if (Field_CheckTrainerInfo() && CommSys_ConnectedCount() > 1) {
             ScriptManager_Set(fieldSystem, 5, NULL);
             return TRUE;
