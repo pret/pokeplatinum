@@ -45,9 +45,9 @@
 #include "terrain_collision_manager.h"
 #include "trainer_info.h"
 #include "underground.h"
-#include "wireless_manager.h"
 #include "unk_020366A0.h"
 #include "vars_flags.h"
+#include "wireless_manager.h"
 
 #include "res/graphics/trap_effects/trap_effects.naix"
 #include "res/text/bank/underground_common.h"

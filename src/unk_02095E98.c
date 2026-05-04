@@ -13,10 +13,10 @@
 
 #include "bg_window.h"
 #include "communication_system.h"
-#include "wireless_manager.h"
 #include "unk_02032798.h"
 #include "unk_020366A0.h"
 #include "unk_02099500.h"
+#include "wireless_manager.h"
 
 typedef struct UnkStruct_02095EAC_t UnkStruct_02095EAC;
 

@@ -28,7 +28,7 @@ enum WirelessConnectionType {
     WIRELESS_CONNECTION_COUNT
 };
 
-//Extention of the NitroSDK WMErrCode enum 
+// Extention of the NitroSDK WMErrCode enum
 enum ExtendedWMErrCode {
     WM_ERRCODE_DISCONNECTED = WM_ERRCODE_MAX, //=20
     WM_ERRCODE_NO_SERVER,

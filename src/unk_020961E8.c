@@ -13,10 +13,10 @@
 #include "communication_system.h"
 #include "math_util.h"
 #include "sound_playback.h"
-#include "wireless_manager.h"
 #include "unk_02032798.h"
 #include "unk_020366A0.h"
 #include "unk_02099500.h"
+#include "wireless_manager.h"
 
 typedef struct UnkStruct_020961E8_t UnkStruct_020961E8;
 

@@ -43,7 +43,6 @@
 #include "touch_pad.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
-#include "wireless_manager.h"
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
@@ -51,6 +50,7 @@
 #include "unk_0205C22C.h"
 #include "unk_02095E98.h"
 #include "vram_transfer.h"
+#include "wireless_manager.h"
 #include "yes_no_touch_menu.h"
 
 typedef struct {

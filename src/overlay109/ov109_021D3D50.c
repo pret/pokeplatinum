@@ -50,13 +50,13 @@
 #include "system.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "wireless_manager.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
 #include "unk_02038ED4.h"
 #include "unk_0205B33C.h"
 #include "unk_0209BDF8.h"
 #include "vram_transfer.h"
+#include "wireless_manager.h"
 
 static void ov109_021D40A8(void *param0);
 static void ov109_021D40D0(void);

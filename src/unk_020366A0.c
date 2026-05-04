@@ -19,11 +19,11 @@
 #include "sound_playback.h"
 #include "system.h"
 #include "trainer_info.h"
-#include "wireless_manager.h"
 #include "unk_0203266C.h"
 #include "unk_02032798.h"
 #include "unk_02033200.h"
 #include "unk_02039814.h"
+#include "wireless_manager.h"
 
 typedef void (*UnkFuncPtr_02036C94)(void);
 

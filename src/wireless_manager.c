@@ -12,11 +12,11 @@
 
 /**
  * @struct WirelessManager
- * @brief Wrapper struct for NitroSDK's wm.c 
+ * @brief Wrapper struct for NitroSDK's wm.c
  *
- * WirelessManager is treated as a static class and 
- * serves as a wrapper for the NitroSDK's wireless manager 
- * (shortened to wm.c). 
+ * WirelessManager is treated as a static class and
+ * serves as a wrapper for the NitroSDK's wireless manager
+ * (shortened to wm.c).
  */
 typedef struct WirelessManager {
     WMpparam parentParam ATTRIBUTE_ALIGN(32);
@@ -41,11 +41,11 @@ typedef struct WirelessManager {
     WirelessManagerGGIDScanFunc ggidScanCallback;
     WirelessManagerConnectFunc disconnectCallback;
     WirelessManagerConnectFunc connectCallback;
-    u16 aid; //machine id. 0 for the server, 1~7 for clients
-    u16 connectedBitmap; //bitmap of (1 << aid) for connected machines
+    u16 aid; // machine id. 0 for the server, 1~7 for clients
+    u16 connectedBitmap; // bitmap of (1 << aid) for connected machines
     int errorCode;
     u8 numConnectionsMax;
-    u8 pauseConnectionClient; //if this WirelessManager is a Client that has disconnected
+    u8 pauseConnectionClient; // if this WirelessManager is a Client that has disconnected
     u32 rand;
     u16 measureChannel;
     u16 measureChannelBusyRatio;
@@ -220,7 +220,7 @@ static void WirelessManager_FinishStartServer(void *wm_startparentcallback)
     case WM_STATECODE_BEACON_SENT:
         sWirelessManager->sentBeaconCount++;
         break;
-    case WM_STATECODE_CONNECTED: 
+    case WM_STATECODE_CONNECTED:
         if ((sWirelessManager->pauseConnectSystem == 1) || (sWirelessManager->pauseConnection == 1) || (WirelessManager_GetNumConnected() >= sWirelessManager->numConnectionsMax) || (callback->ssid[0] != sub_0203895C()) || (0 != memcmp("DP", &callback->ssid[1], sizeof("DP")))) {
             WMErrCode disconnectCode;
 
@@ -239,7 +239,7 @@ static void WirelessManager_FinishStartServer(void *wm_startparentcallback)
             sWirelessManager->connectCallback(callback->aid);
         }
         break;
-    case WM_STATECODE_DISCONNECTED: 
+    case WM_STATECODE_DISCONNECTED:
         sWirelessManager->connectedBitmap &= ~connected;
 
         if (sWirelessManager->disconnectCallback) {
@@ -248,7 +248,7 @@ static void WirelessManager_FinishStartServer(void *wm_startparentcallback)
         break;
     case WM_STATECODE_DISCONNECTED_FROM_MYSELF:
         break;
-    case WM_STATECODE_PARENT_START: 
+    case WM_STATECODE_PARENT_START:
         if (!WirelessManager_StartMPServer()) {
             WirelessManager_SetState(WIRELESS_STATE_ERROR);
         }
@@ -259,7 +259,7 @@ static void WirelessManager_FinishStartServer(void *wm_startparentcallback)
 }
 
 /**
- * @brief Starts the internal MP_PARENT process 
+ * @brief Starts the internal MP_PARENT process
  *
  * @return TRUE if there is no error while starting the MP
  */
@@ -304,7 +304,7 @@ static void WirelessManager_FinishStartMPServer(void *wm_startmpcallback)
             if (sWirelessManager->state != WIRELESS_STATE_CONNECTED && sWirelessManager->state == WIRELESS_STATE_TRANSMIT_KEY) {
                 return;
             }
-        } 
+        }
 
         WirelessManager_SetState(WIRELESS_STATE_CONNECTED);
         break;
@@ -339,7 +339,7 @@ static BOOL WirelessManager_EndMPServer(void)
 }
 
 /**
- * @brief Callback used when the server's WM_EndMP asynchronous process completes. 
+ * @brief Callback used when the server's WM_EndMP asynchronous process completes.
  *
  * @param wm_callback
  */
@@ -379,7 +379,7 @@ static BOOL WirelessManager_EndServer(void)
 }
 
 /**
- * @brief Callback used when the WM_EndParent asynchronous process completes. 
+ * @brief Callback used when the WM_EndParent asynchronous process completes.
  *
  * @param wm_callback
  */
@@ -397,7 +397,7 @@ static void WirelessManager_FinishEndServer(void *wm_callback)
 
 /**
  * @brief Initializes the Wireless Manager as a client and starts the scan process. Automatically connects to a Server when found.
- * 
+ *
  * @param connectionType
  * @param macAddress
  * @param channel
@@ -462,10 +462,10 @@ BOOL WirelessManager_ConnectClientScanCallback(WirelessManagerScanFunc scanCallb
 }
 
 /**
- * @brief Starts the internal WM scan process 
+ * @brief Starts the internal WM scan process
  *
  * @return TRUE if there is no error while starting the scan
- */ 
+ */
 static BOOL WirelessManager_StartScan(void)
 {
     WMErrCode errorCode;
@@ -514,7 +514,7 @@ static BOOL WirelessManager_StartScan(void)
 
 /**
  * @brief Callback used when the WM_StartScan asynchronous process completes. Restarts the scan if necessary.
- */ 
+ */
 static void WirelessManager_FinishStartScan(void *wm_startscancallback)
 {
     WMstartScanCallback *callback = (WMstartScanCallback *)wm_startscancallback;
@@ -794,7 +794,7 @@ static void WirelessManager_FinishStartMPClient(void *wm_startmpcallback)
 /**
  * @brief Ends the internal MP_CHILD process
  *
- * @return TRUE if there is no error while ending the MP 
+ * @return TRUE if there is no error while ending the MP
  */
 static BOOL WirelessManager_EndMPClient(void)
 {
@@ -833,7 +833,7 @@ static void WirelessManager_FinishEndMPClient(void *wm_callback)
 
 /**
  * @brief Disconnects the internal wm client.
- * 
+ *
  * @return TRUE if there was no error while disconnecting
  */
 static BOOL WirelessManager_DisconnectClient(void)
@@ -951,7 +951,7 @@ static void WirelessManager_FinishSendMPMessage(void *wm_portsendcallback)
 }
 
 /**
- * @brief Callback set with WM_SetPortCallback to receive messages 
+ * @brief Callback set with WM_SetPortCallback to receive messages
  *
  * @param wm_portrecvcallback
  */
@@ -968,7 +968,7 @@ static void WirelessManager_RecvMessageCallback(void *wm_portrecvcallback)
             (*sWirelessManager->recvFunc)(callback->aid, callback->data, callback->length);
         } else if (callback->state == WM_STATECODE_DISCONNECTED) {
             (*sWirelessManager->recvFunc)(callback->aid, NULL, 0);
-        } 
+        }
     }
 }
 
@@ -1293,7 +1293,7 @@ int WirelessManager_GetHeapSize(void)
 }
 
 /**
- * @brief WM indicator callback for WM_SetIndCallback 
+ * @brief WM indicator callback for WM_SetIndCallback
  *
  * @param wm_callback
  */
@@ -1307,7 +1307,7 @@ static void WirelessManager_InidcateCallback(void *wm_callback)
     }
 }
 
-/** 
+/**
  * @brief Initializes the internal WM (for listening if isNotListening is FALSE)
  *
  * @param isNotListening
@@ -1368,7 +1368,7 @@ static void WirelessManager_FinishInitializeWM(void *wm_callback)
 }
 
 /**
- * @brief Deadstripped. Callback used when the WM_SetLifeTime asynchronous process completes. 
+ * @brief Deadstripped. Callback used when the WM_SetLifeTime asynchronous process completes.
  *
  * @param wm_callback
  */
@@ -1442,7 +1442,7 @@ BOOL WirelessManager_ConnectServer(int connectionType, u16 tgid, u16 channel, u1
 
 /**
  * @brief Initializes the WirelessManager as a client and begins scanning for servers using the data in bssDesc as a parameter.
- * 
+ *
  * @param connectionType
  * @param bssDesc
  *
@@ -1597,7 +1597,7 @@ u16 WirelessManager_GetAID(void)
 }
 
 /**
- * @brief Sets the max number of connections 
+ * @brief Sets the max number of connections
  *
  * @param numConnectionsMax
  */
@@ -1735,7 +1735,7 @@ void WirelessManager_SetGGIDScanCallback(WirelessManagerGGIDScanFunc callback)
 
 /**
  * @brief Sets the disconnectCallback
- * 
+ *
  * @param callback
  */
 void sub_SetDisconnectCallback(WirelessManagerConnectFunc callback)
@@ -1745,7 +1745,7 @@ void sub_SetDisconnectCallback(WirelessManagerConnectFunc callback)
 
 /**
  * @brief Sets the connectCallback
- * 
+ *
  * @param callback
  */
 void WirelessManager_SetConnectCallback(WirelessManagerConnectFunc callback)

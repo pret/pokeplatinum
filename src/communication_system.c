@@ -19,13 +19,13 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
-#include "wireless_manager.h"
 #include "unk_020322D8.h"
 #include "unk_0203266C.h"
 #include "unk_02032798.h"
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
+#include "wireless_manager.h"
 
 enum TransmissionType {
     TRANSMISSION_TYPE_SERVER_CLIENT,

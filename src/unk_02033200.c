@@ -16,9 +16,9 @@
 #include "system.h"
 #include "trainer_info.h"
 #include "unk_02014A84.h"
-#include "wireless_manager.h"
 #include "unk_0203266C.h"
 #include "unk_020366A0.h"
+#include "wireless_manager.h"
 
 typedef struct {
     u8 unk_00[84];
