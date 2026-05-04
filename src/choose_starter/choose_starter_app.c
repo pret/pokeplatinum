@@ -237,8 +237,8 @@ static void DeleteSubplaneWindows(ChooseStarterApp *app);
 static void ov78_021D28A8(Window *param0, enum HeapID heapID, int param2, int param3, TextColor param4);
 static void ov78_021D2904(ChooseStarterApp *param0);
 static void MakeConfirmationWindow(ChooseStarterApp *param0, int param1);
-static void MakeSprite(ChooseStarterApp *app, enum HeapID heapID);
-static void DeleteSprite(ChooseStarterApp *app);
+static void MakePokemonSprites(ChooseStarterApp *app, enum HeapID heapID);
+static void DeletePokemonSprites(ChooseStarterApp *app);
 static void MakeSpriteDisplay(ChooseStarterApp *app, enum HeapID heapID);
 static void DeleteSpriteDisplay(ChooseStarterApp *app);
 static void MakeCellActors(ChooseStarterApp *param0, enum HeapID heapID);
@@ -342,7 +342,7 @@ BOOL ChooseStarter_Init(ApplicationManager *appMan, int *param1)
     MakeMessageWindow(app, HEAP_ID_CHOOSE_STARTER_APP);
     MakeConfirmationWindow(app, HEAP_ID_CHOOSE_STARTER_APP);
     MakeSubplaneWindows(app, HEAP_ID_CHOOSE_STARTER_APP);
-    MakeSprite(app, HEAP_ID_CHOOSE_STARTER_APP);
+    MakePokemonSprites(app, HEAP_ID_CHOOSE_STARTER_APP);
     MakeSpriteDisplay(app, HEAP_ID_CHOOSE_STARTER_APP);
     MakeCellActors(app, HEAP_ID_CHOOSE_STARTER_APP);
     Make3DObjects(app, HEAP_ID_CHOOSE_STARTER_APP);
@@ -438,7 +438,7 @@ BOOL ChooseStarter_Exit(ApplicationManager *appMan, int *param1)
     DeleteCamera(app);
     Delete3DObjects(app);
     DeleteCellActors(app);
-    DeleteSprite(app);
+    DeletePokemonSprites(app);
     DeleteSpriteDisplay(app);
     DeleteMessageWindow(app);
     DeleteSubplaneWindows(app);
@@ -658,7 +658,7 @@ static void DeleteMessageWindow(ChooseStarterApp *app)
     Heap_Free(app->messageWindow);
 }
 
-static void MakeSprite(ChooseStarterApp *app, enum HeapID heapID)
+static void MakePokemonSprites(ChooseStarterApp *app, enum HeapID heapID)
 {
     app->spriteManager = PokemonSpriteManager_New(heapID);
 
@@ -693,7 +693,7 @@ static void MakePokemonSprite(PokemonSprite **sprite, ChooseStarterApp *app, int
         NULL);
 }
 
-static void DeleteSprite(ChooseStarterApp *app)
+static void DeletePokemonSprites(ChooseStarterApp *app)
 {
     int starterIndex;
 
