@@ -178,7 +178,7 @@ typedef struct ChooseStarterApp {
     int unk_04;
     BOOL unk_08;
     int unk_0C;
-    ChooseStarterCameraMovement unk_10;
+    ChooseStarterCameraMovement cameraMovement;
     enum CursorPosition cursorPosition;
     int unk_58[3][3];
     int unk_7C[3][2];
@@ -1139,12 +1139,12 @@ static void ov78_021D1CA8(ChooseStarterApp *param0, enum HeapID heapID)
 {
     switch (param0->unk_04) {
     case 0:
-        ov78_021D213C(&param0->unk_10, param0->camera, &param0->unk_64C);
+        ov78_021D213C(&param0->cameraMovement, param0->camera, &param0->unk_64C);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
         param0->unk_04++;
         break;
     case 1:
-        if (ov78_021D2200(&param0->unk_10)) {
+        if (ov78_021D2200(&param0->cameraMovement)) {
             param0->unk_0C = 6;
             param0->unk_04++;
         }
