@@ -233,7 +233,7 @@ static u8 ov78_021D1FB4(Window *param0, enum HeapID heapID, int param2, int para
 static u8 ov78_021D201C(Window *param0, enum HeapID heapID, int param2, int param3, u32 param4, u32 param5, String **param6);
 static void ov78_021D2090(ChooseStarterApp *param0);
 static void MakeSubplaneWindow(ChooseStarterApp *param0, enum HeapID heapID);
-static void ov78_021D2884(ChooseStarterApp *param0);
+static void DeleteSubplaneWindow(ChooseStarterApp *app);
 static void ov78_021D28A8(Window *param0, enum HeapID heapID, int param2, int param3, TextColor param4);
 static void ov78_021D2904(ChooseStarterApp *param0);
 static void MakeConfirmationWindow(ChooseStarterApp *param0, int param1);
@@ -441,7 +441,7 @@ BOOL ChooseStarter_Exit(ApplicationManager *appMan, int *param1)
     ov78_021D14BC(app);
     DeleteSpriteDisplay(app);
     DeleteMessageWindow(app);
-    ov78_021D2884(app);
+    DeleteSubplaneWindow(app);
 
     ov78_021D12EC(app->bgl);
     Heap_Free(app->bgl);
@@ -1734,13 +1734,13 @@ static void MakeSubplaneWindow(ChooseStarterApp *param0, enum HeapID heapID)
     }
 }
 
-static void ov78_021D2884(ChooseStarterApp *param0)
+static void DeleteSubplaneWindow(ChooseStarterApp *app)
 {
     int v0;
 
     for (v0 = 0; v0 < 3; v0++) {
-        Window_Remove(param0->unk_9C[v0]);
-        Heap_Free(param0->unk_9C[v0]);
+        Window_Remove(app->unk_9C[v0]);
+        Heap_Free(app->unk_9C[v0]);
     }
 }
 
