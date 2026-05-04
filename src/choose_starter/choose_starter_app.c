@@ -419,14 +419,14 @@ BOOL ChooseStarter_Exit(ApplicationManager *appMan, int *param1)
 {
     ChooseStarterApp *app = ApplicationManager_Data(appMan);
     ChooseStarterData *data = ApplicationManager_Args(appMan);
-    BOOL v2;
+    BOOL touchPadResult;
 
     SetVBlankCallback(NULL, NULL);
 
     data->species = GetSelectedSpecies(app->cursorPosition);
 
-    v2 = DisableTouchPad();
-    GF_ASSERT(v2 == 1);
+    touchPadResult = DisableTouchPad();
+    GF_ASSERT(touchPadResult == AUTO_SAMPLING_OPERATION_RESULT_SUCCESS);
 
     ov78_021D24E4(&app->previewWindow);
     ov78_021D2350(&app->cursor);
