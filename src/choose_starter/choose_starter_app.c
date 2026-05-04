@@ -182,8 +182,8 @@ typedef struct ChooseStarterApp {
     int unk_0C;
     ChooseStarterCameraMovement cameraMovement;
     enum CursorPosition cursorPosition;
-    int unk_58[3][3];
-    int unk_7C[3][2];
+    int unk_58[NUM_STARTER_OPTIONS][3];
+    int unk_7C[NUM_STARTER_OPTIONS][2];
     BgConfig *bgl;
     Window *messageWindow;
     Window *unk_9C[3];
@@ -695,11 +695,11 @@ static void MakePokemonSprite(PokemonSprite **sprite, ChooseStarterApp *app, int
 
 static void DeleteSprite(ChooseStarterApp *app)
 {
-    int v0;
+    int starterIndex;
 
-    for (v0 = 0; v0 < 3; v0++) {
-        if (app->sprites[v0]) {
-            PokemonSprite_Delete(app->sprites[v0]);
+    for (starterIndex = 0; starterIndex < NUM_STARTER_OPTIONS; starterIndex++) {
+        if (app->sprites[starterIndex]) {
+            PokemonSprite_Delete(app->sprites[starterIndex]);
         }
     }
 
@@ -1060,41 +1060,41 @@ static void DeleteCamera(ChooseStarterApp *app)
 
 static void MakeSelectionMatrix(ChooseStarterApp *param0)
 {
-    int v0;
+    int starterIndex;
 
-    for (v0 = 0; v0 < 3; v0++) {
-        switch (v0) {
+    for (starterIndex = 0; starterIndex < NUM_STARTER_OPTIONS; starterIndex++) {
+        switch (starterIndex) {
         case 0:
-            param0->unk_58[v0][0] = -44;
-            param0->unk_58[v0][1] = -4;
-            param0->unk_58[v0][2] = 32;
+            param0->unk_58[starterIndex][0] = -44;
+            param0->unk_58[starterIndex][1] = -4;
+            param0->unk_58[starterIndex][2] = 32;
             break;
         case 1:
-            param0->unk_58[v0][0] = 0;
-            param0->unk_58[v0][1] = -4;
-            param0->unk_58[v0][2] = 62;
+            param0->unk_58[starterIndex][0] = 0;
+            param0->unk_58[starterIndex][1] = -4;
+            param0->unk_58[starterIndex][2] = 62;
             break;
         case 2:
-            param0->unk_58[v0][0] = 38;
-            param0->unk_58[v0][1] = -4;
-            param0->unk_58[v0][2] = 26;
+            param0->unk_58[starterIndex][0] = 38;
+            param0->unk_58[starterIndex][1] = -4;
+            param0->unk_58[starterIndex][2] = 26;
             break;
         }
     }
 
-    for (v0 = 0; v0 < 3; v0++) {
-        switch (v0) {
+    for (starterIndex = 0; starterIndex < NUM_STARTER_OPTIONS; starterIndex++) {
+        switch (starterIndex) {
         case 0:
-            param0->unk_7C[v0][0] = 78;
-            param0->unk_7C[v0][1] = 55;
+            param0->unk_7C[starterIndex][0] = 78;
+            param0->unk_7C[starterIndex][1] = 55;
             break;
         case 1:
-            param0->unk_7C[v0][0] = 130;
-            param0->unk_7C[v0][1] = 82;
+            param0->unk_7C[starterIndex][0] = 130;
+            param0->unk_7C[starterIndex][1] = 82;
             break;
         case 2:
-            param0->unk_7C[v0][0] = 172;
-            param0->unk_7C[v0][1] = 50;
+            param0->unk_7C[starterIndex][0] = 172;
+            param0->unk_7C[starterIndex][1] = 50;
             break;
         }
     }
@@ -1102,10 +1102,10 @@ static void MakeSelectionMatrix(ChooseStarterApp *param0)
 
 static void SetSelectionMatrixObjects(ChooseStarterApp *param0)
 {
-    int v0;
+    int starterIndex;
 
-    for (v0 = 0; v0 < 3; v0++) {
-        ov78_021D17A8(&param0->starter3DObjects[v0 + 2], param0->unk_58[v0][0] << FX32_SHIFT, param0->unk_58[v0][1] << FX32_SHIFT, param0->unk_58[v0][2] << FX32_SHIFT);
+    for (starterIndex = 0; starterIndex < NUM_STARTER_OPTIONS; starterIndex++) {
+        ov78_021D17A8(&param0->starter3DObjects[starterIndex + 2], param0->unk_58[starterIndex][0] << FX32_SHIFT, param0->unk_58[starterIndex][1] << FX32_SHIFT, param0->unk_58[starterIndex][2] << FX32_SHIFT);
     }
 }
 
@@ -1705,16 +1705,16 @@ static void ov78_021D2740(SysTask *param0, void *param1)
 
 static void MakeSubplaneWindow(ChooseStarterApp *param0, enum HeapID heapID)
 {
-    int v0;
+    int starterIndex;
     int v1, v2;
 
     Graphics_LoadPalette(NARC_INDEX_GRAPHIC__EV_POKESELECT, 17, 0, 5 * 32, 32, heapID);
 
-    for (v0 = 0; v0 < 3; v0++) {
-        param0->unk_9C[v0] = Window_New(heapID, 1);
-        Window_Init(param0->unk_9C[v0]);
+    for (starterIndex = 0; starterIndex < NUM_STARTER_OPTIONS; starterIndex++) {
+        param0->unk_9C[starterIndex] = Window_New(heapID, 1);
+        Window_Init(param0->unk_9C[starterIndex]);
 
-        switch (v0) {
+        switch (starterIndex) {
         case 0:
             v1 = 12;
             v2 = 4;
@@ -1729,18 +1729,18 @@ static void MakeSubplaneWindow(ChooseStarterApp *param0, enum HeapID heapID)
             break;
         }
 
-        Window_Add(param0->bgl, param0->unk_9C[v0], 3, v1, v2, 11, 4, 5, 1 + (64 * v0));
-        ov78_021D28A8(param0->unk_9C[v0], heapID, 360, 4 + v0, TEXT_COLOR(1, 2, 10));
+        Window_Add(param0->bgl, param0->unk_9C[starterIndex], 3, v1, v2, 11, 4, 5, 1 + (64 * starterIndex));
+        ov78_021D28A8(param0->unk_9C[starterIndex], heapID, 360, 4 + starterIndex, TEXT_COLOR(1, 2, 10));
     }
 }
 
 static void DeleteSubplaneWindow(ChooseStarterApp *app)
 {
-    int v0;
+    int starterIndex;
 
-    for (v0 = 0; v0 < 3; v0++) {
-        Window_Remove(app->unk_9C[v0]);
-        Heap_Free(app->unk_9C[v0]);
+    for (starterIndex = 0; starterIndex < NUM_STARTER_OPTIONS; starterIndex++) {
+        Window_Remove(app->unk_9C[starterIndex]);
+        Heap_Free(app->unk_9C[starterIndex]);
     }
 }
 
