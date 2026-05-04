@@ -243,7 +243,7 @@ static void MakeCellActors(ChooseStarterApp *param0, enum HeapID heapID);
 static void ov78_021D1594(ChooseStarterApp *param0);
 static void MakeCamera(ChooseStarterApp *param0, int param1);
 static void ov78_021D1B3C(Camera *camera, VecFx32 *param1);
-static void ov78_021D1B90(ChooseStarterApp *param0);
+static void DeleteCamera(ChooseStarterApp *app);
 static void Make3DObjects(ChooseStarterApp *param0, enum HeapID heapID);
 static void ov78_021D1908(ChooseStarterApp *param0);
 static void ov78_021D192C(ChooseStarterApp *param0);
@@ -433,7 +433,7 @@ BOOL ChooseStarter_Exit(ApplicationManager *appMan, int *param1)
     DeleteCursorOAM(app, &app->cursor);
     StopCursorMovement(&app->cursor);
 
-    ov78_021D1B90(app);
+    DeleteCamera(app);
     ov78_021D1908(app);
     ov78_021D1594(app);
     ov78_021D14BC(app);
@@ -1051,9 +1051,9 @@ static void ov78_021D1B3C(Camera *camera, VecFx32 *param1)
     Camera_SetAsActive(camera);
 }
 
-static void ov78_021D1B90(ChooseStarterApp *param0)
+static void DeleteCamera(ChooseStarterApp *app)
 {
-    Camera_Delete(param0->camera);
+    Camera_Delete(app->camera);
 }
 
 static void MakeSelectionMatrix(ChooseStarterApp *param0)
