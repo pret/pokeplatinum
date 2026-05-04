@@ -250,7 +250,7 @@ static void ov78_021D192C(ChooseStarterApp *param0);
 static void MakeCursorOAM(ChooseStarterApp *app, ChooseStarterCursor *cursor, enum HeapID heapID);
 static void DeleteCursorOAM(ChooseStarterApp *app, ChooseStarterCursor *cursor);
 static void AttachCursorCellActor(ChooseStarterApp *app, ChooseStarterCursor *cursor, enum HeapID heapID);
-static void ov78_021D2350(ChooseStarterCursor *param0);
+static void DeleteCursorCellActor(ChooseStarterCursor *cursor);
 static void ov78_021D2430(ChooseStarterCursor *param0, BOOL param1);
 static void ov78_021D243C(ChooseStarterCursor *param0, int param1, int param2);
 static void MakeSelectionMatrix(ChooseStarterApp *param0);
@@ -429,7 +429,7 @@ BOOL ChooseStarter_Exit(ApplicationManager *appMan, int *param1)
     GF_ASSERT(touchPadResult == AUTO_SAMPLING_OPERATION_RESULT_SUCCESS);
 
     DeletePreviewWindow(&app->previewWindow);
-    ov78_021D2350(&app->cursor);
+    DeleteCursorCellActor(&app->cursor);
     DeleteCursorOAM(app, &app->cursor);
     ov78_021D241C(&app->cursor);
 
@@ -1452,9 +1452,9 @@ static void AttachCursorCellActor(ChooseStarterApp *app, ChooseStarterCursor *cu
     cursor->position.y = 0;
 }
 
-static void ov78_021D2350(ChooseStarterCursor *param0)
+static void DeleteCursorCellActor(ChooseStarterCursor *cursor)
 {
-    Sprite_Delete(param0->cellActor);
+    Sprite_Delete(cursor->cellActor);
 }
 
 static void ov78_021D235C(ChooseStarterRotation *param0, fx32 param1, int param2)
