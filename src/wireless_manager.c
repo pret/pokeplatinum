@@ -1007,7 +1007,7 @@ void WirelessManager_SetParentParamGGID(u32 ggid)
 void WirelessManager_SetParentParamGameInfoAndLength(u16 *userGameInfo, u16 size)
 {
     sWirelessManager->parentParam.userGameInfo = userGameInfo;
-    sWirelessManager->parentParam.userGameInfoLength = param1;
+    sWirelessManager->parentParam.userGameInfoLength = size;
 }
 
 /**
