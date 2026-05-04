@@ -248,7 +248,7 @@ static void Make3DObjects(ChooseStarterApp *param0, enum HeapID heapID);
 static void ov78_021D1908(ChooseStarterApp *param0);
 static void ov78_021D192C(ChooseStarterApp *param0);
 static void MakeCursorOAM(ChooseStarterApp *app, ChooseStarterCursor *cursor, enum HeapID heapID);
-static void ov78_021D2290(ChooseStarterApp *param0, ChooseStarterCursor *param1);
+static void DeleteCursorOAM(ChooseStarterApp *app, ChooseStarterCursor *cursor);
 static void AttachCursorCellActor(ChooseStarterApp *param0, ChooseStarterCursor *param1, int param2);
 static void ov78_021D2350(ChooseStarterCursor *param0);
 static void ov78_021D2430(ChooseStarterCursor *param0, BOOL param1);
@@ -430,7 +430,7 @@ BOOL ChooseStarter_Exit(ApplicationManager *appMan, int *param1)
 
     DeletePreviewWindow(&app->previewWindow);
     ov78_021D2350(&app->cursor);
-    ov78_021D2290(app, &app->cursor);
+    DeleteCursorOAM(app, &app->cursor);
     ov78_021D241C(&app->cursor);
 
     ov78_021D1B90(app);
@@ -1418,15 +1418,15 @@ static void MakeCursorOAM(ChooseStarterApp *app, ChooseStarterCursor *cursor, en
     cursor->unk_04[3] = SpriteResourceCollection_Add(app->unk_24C[3], 82, 13, 0, 13, 3, heapID);
 }
 
-static void ov78_021D2290(ChooseStarterApp *param0, ChooseStarterCursor *param1)
+static void DeleteCursorOAM(ChooseStarterApp *app, ChooseStarterCursor *cursor)
 {
-    SpriteTransfer_ResetCharTransfer(param1->unk_04[0]);
-    SpriteTransfer_ResetPlttTransfer(param1->unk_04[1]);
+    SpriteTransfer_ResetCharTransfer(cursor->unk_04[0]);
+    SpriteTransfer_ResetPlttTransfer(cursor->unk_04[1]);
 
-    SpriteResourceCollection_Remove(param0->unk_24C[0], param1->unk_04[0]);
-    SpriteResourceCollection_Remove(param0->unk_24C[1], param1->unk_04[1]);
-    SpriteResourceCollection_Remove(param0->unk_24C[2], param1->unk_04[2]);
-    SpriteResourceCollection_Remove(param0->unk_24C[3], param1->unk_04[3]);
+    SpriteResourceCollection_Remove(app->unk_24C[0], cursor->unk_04[0]);
+    SpriteResourceCollection_Remove(app->unk_24C[1], cursor->unk_04[1]);
+    SpriteResourceCollection_Remove(app->unk_24C[2], cursor->unk_04[2]);
+    SpriteResourceCollection_Remove(app->unk_24C[3], cursor->unk_04[3]);
 }
 
 static void AttachCursorCellActor(ChooseStarterApp *param0, ChooseStarterCursor *param1, int param2)
