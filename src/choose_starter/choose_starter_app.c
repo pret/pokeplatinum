@@ -195,7 +195,7 @@ typedef struct ChooseStarterApp {
     PokemonSpriteManager *spriteManager;
     PokemonSprite *sprites[NUM_STARTER_OPTIONS];
     StarterPreviewGraphics previewGraphics;
-    NNSFndAllocator unk_2B4;
+    NNSFndAllocator allocator;
     ChooseStarter3DGraphics unk_2C4[6];
     Camera *camera;
     VecFx32 unk_64C;
@@ -306,7 +306,7 @@ BOOL ChooseStarter_Init(ApplicationManager *appMan, int *param1)
     GF_ASSERT(app);
     memset(app, 0, sizeof(ChooseStarterApp));
 
-    HeapExp_FndInitAllocator(&app->unk_2B4, HEAP_ID_CHOOSE_STARTER_APP, 32);
+    HeapExp_FndInitAllocator(&app->allocator, HEAP_ID_CHOOSE_STARTER_APP, 32);
 
     ChooseStarterData *data = ApplicationManager_Args(appMan);
     app->messageFrame = Options_Frame(data->options);
@@ -877,14 +877,14 @@ static void Make3DObjects(ChooseStarterApp *param0, enum HeapID heapID)
 {
     int v0;
 
-    ov78_021D15CC(&param0->unk_2C4[0], 1, 0, heapID, &param0->unk_2B4);
+    ov78_021D15CC(&param0->unk_2C4[0], 1, 0, heapID, &param0->allocator);
     ov78_021D17A4(&param0->unk_2C4[0], 1);
 
     ov78_021D1604(&param0->unk_2C4[1], 8, heapID);
     ov78_021D17A4(&param0->unk_2C4[1], 0);
 
     for (v0 = 2; v0 <= 4; v0++) {
-        ov78_021D15CC(&param0->unk_2C4[v0], 3 + (v0 - 2) * 2, 2 + (v0 - 2) * 2, heapID, &param0->unk_2B4);
+        ov78_021D15CC(&param0->unk_2C4[v0], 3 + (v0 - 2) * 2, 2 + (v0 - 2) * 2, heapID, &param0->allocator);
         ov78_021D17A4(&param0->unk_2C4[v0], 0);
     }
 
@@ -901,7 +901,7 @@ static void ov78_021D1908(ChooseStarterApp *param0)
     int v0;
 
     for (v0 = 0; v0 < 6; v0++) {
-        ov78_021D16D8(&param0->unk_2C4[v0], &param0->unk_2B4);
+        ov78_021D16D8(&param0->unk_2C4[v0], &param0->allocator);
     }
 }
 
