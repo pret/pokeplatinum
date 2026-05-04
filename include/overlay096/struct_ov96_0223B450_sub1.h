@@ -1,11 +1,15 @@
 #ifndef POKEPLATINUM_STRUCT_OV96_0223B450_SUB1_H
 #define POKEPLATINUM_STRUCT_OV96_0223B450_SUB1_H
 
+#include "constants/string.h"
+
 #include "struct_defs/struct_0202D314.h"
+
+#include "charcode.h"
 
 typedef struct {
     UnkStruct_0202D314 unk_00[3];
-    u16 name[8];
+    charcode_t name[TRAINER_NAME_LEN + 1];
     u8 version;
     u8 language;
     u8 country;

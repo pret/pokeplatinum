@@ -21,7 +21,7 @@ void sub_02073700(SaveData *saveData, int param1, UnkStruct_ov96_0223B450_sub1 *
     UnkStruct_0202D750 *v3 = sub_0202D750(saveData);
 
     MI_CpuClear8(param2, sizeof(UnkStruct_ov96_0223B450_sub1));
-    MI_CpuCopy8(TrainerInfo_Name(trainerInfo), param2->name, 8 * 2);
+    MI_CpuCopy8(TrainerInfo_Name(trainerInfo), param2->name, sizeof(param2->name));
     *(u32 *)param2->trainerInfoId = TrainerInfo_ID(trainerInfo);
 
     param2->version = gGameVersion;
