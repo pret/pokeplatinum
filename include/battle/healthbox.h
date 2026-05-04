@@ -112,11 +112,11 @@ ManagedSprite *HealthBox_DrawSprite(SpriteSystem *spriteSys, SpriteManager *spri
  * @param flags     The components to be drawn, as a bitmask.
  */
 void HealthBox_DrawInfo(HealthBox *healthbox, u32 hp, u32 flags);
-void ov16_02267220(HealthBox *healthbox);
-void ov16_02267258(HealthBox *healthbox);
-void ov16_022672C4(HealthBox *healthbox);
-void ov16_02267360(HealthBox *healthbox);
-void ov16_0226737C(HealthBox *healthbox);
+void Healthbox_DeleteMainSprite(HealthBox *healthbox);
+void Healthbox_UnloadMainSpriteObjects(HealthBox *healthbox);
+void Healthbox_CreateMainSprite(HealthBox *healthbox);
+void Healthbox_DestroySprites(HealthBox *healthbox);
+void Healthbox_ToggleHPDisplayMode(HealthBox *healthbox);
 
 /**
  * @brief Compute the battler's new HP after taking a given amount of
@@ -129,12 +129,12 @@ void ov16_0226737C(HealthBox *healthbox);
  *                  values are damage, positive values are recovery.
  */
 void HealthBox_CalcHP(HealthBox *healthbox, int damage);
-s32 ov16_022674F8(HealthBox *healthbox);
+s32 Healthbox_DrawHpBar(HealthBox *healthbox);
 void HealthBox_CalcExp(HealthBox *healthbox, int expReward);
-s32 ov16_02267560(HealthBox *healthbox);
-void ov16_0226757C(HealthBox *healthbox);
-void ov16_022675AC(HealthBox *healthbox);
-void ov16_022675D8(HealthBox *healthbox, int priority);
+s32 Healthbox_DrawExpBar(HealthBox *healthbox);
+void Healthbox_Activate(HealthBox *healthbox);
+void Healthbox_Deactivate(HealthBox *healthbox);
+void Healthbox_SetExplicitPriority(HealthBox *healthbox, int priority);
 
 /**
  * @brief Enable (or disable) the healthbox.
@@ -172,10 +172,10 @@ void HealthBox_Scroll(HealthBox *healthbox, enum HealthBoxScrollDirection direct
  * @return              The resulting healthbox type; see enum HealthBoxType.
  */
 u8 HealthBox_Type(int battlerType, u32 battleType);
-void ov16_0226834C(HealthBox *healthbox, u8 *param1);
+void Healthbox_StartLevelUpFlash(HealthBox *healthbox, u8 *param1);
 void ov16_02268468(HealthBox *healthbox);
 void ov16_0226846C(HealthBox *healthbox);
-void ov16_02268470(HealthBox *healthbox);
-void ov16_02268498(HealthBox *healthbox);
+void Healthbox_StartBobAnimation(HealthBox *healthbox);
+void Healthbox_StopBobAnimation(HealthBox *healthbox);
 
 #endif // POKEPLATINUM_HEALTHBOX_H

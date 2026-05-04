@@ -1234,7 +1234,7 @@ void ov16_0223F36C(BattleSystem *battleSys)
         healthbox->battleSys = battleSys;
         healthbox->type = HealthBox_Type(BattlerData_GetBattlerType(battleSys->battlers[i]), BattleSystem_GetBattleType(battleSys));
 
-        ov16_022672C4(healthbox);
+        Healthbox_CreateMainSprite(healthbox);
         HealthBox_Enable(healthbox, FALSE);
     }
 }
@@ -1264,14 +1264,14 @@ void ov16_0223F3EC(BattleSystem *battleSys)
     }
 }
 
-void ov16_0223F414(BattleSystem *battleSys)
+void BattleSystem_RemoveHealthboxesFromBattlers(BattleSystem *battleSys)
 {
     int i;
     HealthBox *healthbox;
 
     for (i = 0; i < battleSys->maxBattlers; i++) {
         healthbox = BattlerData_GetHealthBox(battleSys->battlers[i]);
-        ov16_02267360(healthbox);
+        Healthbox_DestroySprites(healthbox);
     }
 }
 
@@ -1522,7 +1522,7 @@ void BattleSystem_SetGaugePriority(BattleSystem *battleSys, int param1)
 
     for (battler = 0; battler < battleSys->maxBattlers; battler++) {
         healthbox = BattlerData_GetHealthBox(battleSys->battlers[battler]);
-        ov16_022675D8(healthbox, param1);
+        Healthbox_SetExplicitPriority(healthbox, param1);
     }
 }
 

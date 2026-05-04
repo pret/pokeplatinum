@@ -247,7 +247,7 @@ void *BattleSystem_GetHealthBox(BattleSystem *battleSys, int battler);
 void ov16_0223F36C(BattleSystem *battleSys);
 void ov16_0223F3BC(BattleSystem *battleSys);
 void ov16_0223F3EC(BattleSystem *battleSys);
-void ov16_0223F414(BattleSystem *battleSys);
+void BattleSystem_RemoveHealthboxesFromBattlers(BattleSystem *battleSys);
 u8 BattleSystem_GetResultMask(BattleSystem *battleSys);
 void BattleSystem_SetResultMask(BattleSystem *battleSys, u8 value);
 u8 BattleSystem_GetRedHPSoundFlag(BattleSystem *battleSys);

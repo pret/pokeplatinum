@@ -10672,7 +10672,7 @@ static void BattleScript_CatchMonTask(SysTask *task, void *inData)
             data->tmpPtr[0] = ApplicationManager_New(&gNamingScreenAppTemplate, namingScreenArgs, HEAP_ID_BATTLE);
             data->seqNum = SEQ_CATCH_MON_FREE_NAMING_SCREEN;
 
-            ov16_0223F414(data->battleSys);
+            BattleSystem_RemoveHealthboxesFromBattlers(data->battleSys);
 
             int i;
             BattlerData *battlerData;

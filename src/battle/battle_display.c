@@ -3253,7 +3253,7 @@ static void Task_PlayerSetCommandSelection(SysTask *task, void *data)
         }
         break;
     case 3:
-        ov16_0226757C(commandSetData->healthbox);
+        Healthbox_Activate(commandSetData->healthbox);
         ov16_02264798(battlerData, commandSetData->battleSys);
         commandSetData->state = 4;
     case 4:
@@ -3324,7 +3324,7 @@ static void Task_PlayerSetCommandSelection(SysTask *task, void *data)
 
             for (int i = 0; i < BattleSystem_GetMaxBattlers(commandSetData->battleSys); i++) {
                 battlerData = BattleSystem_GetBattlerData(commandSetData->battleSys, i);
-                ov16_0226737C(&battlerData->healthbox);
+                Healthbox_ToggleHPDisplayMode(&battlerData->healthbox);
             }
         }
 
@@ -3351,7 +3351,7 @@ static void Task_PlayerSetCommandSelection(SysTask *task, void *data)
                 ov16_02268C04(bgNarc, objNarc, v2, 0, 0, NULL);
                 ov16_0226BCCC(v2, 0);
                 ov16_0226846C(healthbox);
-                ov16_022675AC(commandSetData->healthbox);
+                Healthbox_Deactivate(commandSetData->healthbox);
                 ov16_022647D8(battlerData);
                 NARC_dtor(bgNarc);
                 NARC_dtor(objNarc);
@@ -3363,7 +3363,7 @@ static void Task_PlayerSetCommandSelection(SysTask *task, void *data)
                 ov16_02268C04(bgNarc, objNarc, v2, 0, 0, NULL);
                 ov16_0226BCCC(v2, 0);
                 ov16_0226846C(healthbox);
-                ov16_022675AC(commandSetData->healthbox);
+                Healthbox_Deactivate(commandSetData->healthbox);
                 ov16_022647D8(battlerData);
                 NARC_dtor(bgNarc);
                 NARC_dtor(objNarc);
@@ -3398,7 +3398,7 @@ static void Task_PlayerSetCommandSelection(SysTask *task, void *data)
             ov16_02268C04(bgNarc, objNarc, v2, 0, 0, NULL);
             ov16_0226BCCC(v2, 0);
             ov16_0226846C(healthbox);
-            ov16_022675AC(commandSetData->healthbox);
+            Healthbox_Deactivate(commandSetData->healthbox);
             ov16_022647D8(battlerData);
             ov16_02269218(v2);
 
@@ -3570,7 +3570,7 @@ static void Task_PlayerShowMoveSelectMenu(SysTask *task, void *data)
             if ((BattleSystem_GetBattleType(moveSelectMenuData->battleSys) & BATTLE_TYPE_DOUBLES) == FALSE) {
                 ov16_0226BCCC(v2, 0);
                 ov16_0226846C(healthbox);
-                ov16_022675AC(moveSelectMenuData->healthbox);
+                Healthbox_Deactivate(moveSelectMenuData->healthbox);
                 ov16_022647D8(battlerData);
             }
         }
@@ -3717,7 +3717,7 @@ static void Task_PlayerShowTargetSelectMenu(SysTask *task, void *data)
         break;
     case 2:
         if (targetSelectMenuData->input != 0xFF) {
-            ov16_022675AC(targetSelectMenuData->healthbox);
+            Healthbox_Deactivate(targetSelectMenuData->healthbox);
             ov16_022647D8(battlerData);
             ov16_0226846C(healthbox);
 
@@ -4185,7 +4185,7 @@ static void Task_PlayerShowBagMenu(SysTask *task, void *data)
         int battler = bagMenuData->partyMenuData->battlePartyCtx->selectedPartyIndex * 2;
         HealthBox *healthbox = BattleSystem_GetHealthBox(bagMenuData->battleSys, battler);
 
-        if (ov16_022674F8(healthbox) == -1) {
+        if (Healthbox_DrawHpBar(healthbox) == -1) {
             HealthBox_DrawInfo(healthbox, NULL, HEALTHBOX_INFO_STATUS);
             bagMenuData->state++;
         }
@@ -4720,7 +4720,7 @@ static void Task_PlayerShowYesNoMenu(SysTask *task, void *data)
             NARC *bgNarc = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, HEAP_ID_BATTLE);
             NARC *objNarc = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, HEAP_ID_BATTLE);
 
-            ov16_022675AC(yesNoMenuData->healthbox);
+            Healthbox_Deactivate(yesNoMenuData->healthbox);
             ov16_022647D8(battlerData);
             ov16_0226846C(healthbox);
             ov16_02269218(v2);
@@ -4917,7 +4917,7 @@ static void Task_UpdateHPGauge(SysTask *task, void *data)
         HealthBox_CalcHP(healthbox, healthbox->damage);
         healthbox->state++;
     case 1:
-        result = ov16_022674F8(healthbox);
+        result = Healthbox_DrawHpBar(healthbox);
 
         if (result == -1) {
             healthbox->state++;
@@ -4947,7 +4947,7 @@ static void Task_UpdateExpGauge(SysTask *task, void *data)
             healthbox->unk_4E++;
         }
 
-        result = ov16_02267560(healthbox);
+        result = Healthbox_DrawExpBar(healthbox);
 
         if (result == -1) {
             if (healthbox->unk_4E >= 8) {
@@ -5190,7 +5190,7 @@ static void Task_PlayLevelUpAnimation(SysTask *task, void *data)
 
     switch (playLevelUpAnimationData->state) {
     case 0:
-        ov16_0226834C(playLevelUpAnimationData->healthbox, &playLevelUpAnimationData->unk_0B);
+        Healthbox_StartLevelUpFlash(playLevelUpAnimationData->healthbox, &playLevelUpAnimationData->unk_0B);
         Sound_PlayEffect(SEQ_SE_DP_EXPMAX);
         playLevelUpAnimationData->state++;
         break;

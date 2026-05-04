@@ -238,7 +238,7 @@ void BattleSystem_ExecuteBattlerCommand(BattleSystem *battleSys, BattlerData *ba
 void ov16_0225C104(BattleSystem *battleSys, BattlerData *battlerData, int param2)
 {
     if (param2 != 2) {
-        ov16_02267360(&battlerData->healthbox);
+        Healthbox_DestroySprites(&battlerData->healthbox);
     }
 
     if (battlerData->managedSprite) {
@@ -626,7 +626,7 @@ static void ov16_0225C558(BattleSystem *battleSys, BattlerData *battlerData)
 
 static void BtlIOCmd_StopGaugeAnimation(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    ov16_022675AC(&battlerData->healthbox);
+    Healthbox_Deactivate(&battlerData->healthbox);
     ov16_022647D8(battlerData);
     BattleController_EmitClearCommand(battleSys, battlerData->battler, battlerData->data[0]);
     ZeroDataBuffer(battlerData);
@@ -739,7 +739,7 @@ static void BtlIOCmd_ClearTouchScreen(BattleSystem *battleSys, BattlerData *batt
             ov16_0226846C(healthbox);
         }
 
-        ov16_022675AC(&battlerData->healthbox);
+        Healthbox_Deactivate(&battlerData->healthbox);
         ov16_02269218(v0);
         ov16_022647D8(battlerData);
     }
