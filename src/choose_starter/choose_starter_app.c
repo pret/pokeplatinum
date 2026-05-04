@@ -240,7 +240,7 @@ static void MakeConfirmationWindow(ChooseStarterApp *param0, int param1);
 static void MakeSprite(ChooseStarterApp *app, enum HeapID heapID);
 static void ov78_021D14BC(ChooseStarterApp *param0);
 static void MakeSpriteDisplay(ChooseStarterApp *app, enum HeapID heapID);
-static void ov78_021D1518(ChooseStarterApp *param0);
+static void DeleteSpriteDisplay(ChooseStarterApp *app);
 static void MakeCellActors(ChooseStarterApp *param0, enum HeapID heapID);
 static void DeleteCellActors(ChooseStarterApp *app);
 static void MakeCamera(ChooseStarterApp *param0, int param1);
@@ -439,7 +439,7 @@ BOOL ChooseStarter_Exit(ApplicationManager *appMan, int *param1)
     Delete3DObjects(app);
     DeleteCellActors(app);
     ov78_021D14BC(app);
-    ov78_021D1518(app);
+    DeleteSpriteDisplay(app);
     ov78_021D13A0(app);
     ov78_021D2884(app);
 
@@ -719,9 +719,9 @@ static void MakeSpriteDisplay(ChooseStarterApp *param0, enum HeapID heapID)
     param0->spriteDisplay = SoftwareSpriteManager_New(&v0);
 }
 
-static void ov78_021D1518(ChooseStarterApp *param0)
+static void DeleteSpriteDisplay(ChooseStarterApp *app)
 {
-    SoftwareSpriteManager_Free(param0->spriteDisplay);
+    SoftwareSpriteManager_Free(app->spriteDisplay);
 }
 
 static void MakeCellActors(ChooseStarterApp *app, enum HeapID heapID)
