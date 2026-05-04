@@ -143,7 +143,7 @@ typedef struct ChooseStarterCursor {
     Sprite *cellActor;
     SpriteResource *graphics[6];
     VecFx32 position;
-    SysTask *unk_28;
+    SysTask *movementTask;
     ChooseStarterRotation unk_2C;
 } ChooseStarterCursor;
 
@@ -294,9 +294,9 @@ static void ov78_021D2368(ChooseStarterRotation *param0);
 static void ov78_021D213C(ChooseStarterCameraMovement *param0, Camera *camera, VecFx32 *param2);
 static void ov78_021D219C(SysTask *param0, void *param1);
 static BOOL ov78_021D2200(ChooseStarterCameraMovement *param0);
-static void StartCursorMovement(ChooseStarterCursor *param0);
+static void StartCursorMovement(ChooseStarterCursor *cursor);
 static void ov78_021D23E8(SysTask *param0, void *param1);
-static void ov78_021D241C(ChooseStarterCursor *param0);
+static void StopCursorMovement(ChooseStarterCursor *cursor);
 
 BOOL ChooseStarter_Init(ApplicationManager *appMan, int *param1)
 {
@@ -431,7 +431,7 @@ BOOL ChooseStarter_Exit(ApplicationManager *appMan, int *param1)
     DeletePreviewWindow(&app->previewWindow);
     DeleteCursorCellActor(&app->cursor);
     DeleteCursorOAM(app, &app->cursor);
-    ov78_021D241C(&app->cursor);
+    StopCursorMovement(&app->cursor);
 
     ov78_021D1B90(app);
     ov78_021D1908(app);
@@ -1476,12 +1476,12 @@ static void ov78_021D2368(ChooseStarterRotation *param0)
     param0->unk_0C = (param0->unk_0C + 1) % param0->unk_08;
 }
 
-static void StartCursorMovement(ChooseStarterCursor *param0)
+static void StartCursorMovement(ChooseStarterCursor *cursor)
 {
-    GF_ASSERT(param0->unk_28 == NULL);
+    GF_ASSERT(cursor->movementTask == NULL);
 
-    ov78_021D235C(&param0->unk_2C, 8 * FX32_ONE, 32);
-    param0->unk_28 = SysTask_Start(ov78_021D23E8, param0, 0);
+    ov78_021D235C(&cursor->unk_2C, 8 * FX32_ONE, 32);
+    cursor->movementTask = SysTask_Start(ov78_021D23E8, cursor, 0);
 }
 
 static void ov78_021D23E8(SysTask *param0, void *param1)
@@ -1497,11 +1497,11 @@ static void ov78_021D23E8(SysTask *param0, void *param1)
     Sprite_SetPosition(v0->cellActor, &v1);
 }
 
-static void ov78_021D241C(ChooseStarterCursor *param0)
+static void StopCursorMovement(ChooseStarterCursor *cursor)
 {
-    if (param0->unk_28) {
-        SysTask_Done(param0->unk_28);
-        param0->unk_28 = NULL;
+    if (cursor->movementTask) {
+        SysTask_Done(cursor->movementTask);
+        cursor->movementTask = NULL;
     }
 }
 
