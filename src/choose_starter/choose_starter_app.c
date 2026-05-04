@@ -242,7 +242,7 @@ static void ov78_021D14BC(ChooseStarterApp *param0);
 static void MakeSpriteDisplay(ChooseStarterApp *app, enum HeapID heapID);
 static void ov78_021D1518(ChooseStarterApp *param0);
 static void MakeCellActors(ChooseStarterApp *param0, enum HeapID heapID);
-static void ov78_021D1594(ChooseStarterApp *param0);
+static void DeleteCellActors(ChooseStarterApp *app);
 static void MakeCamera(ChooseStarterApp *param0, int param1);
 static void ov78_021D1B3C(Camera *camera, VecFx32 *param1);
 static void DeleteCamera(ChooseStarterApp *app);
@@ -437,7 +437,7 @@ BOOL ChooseStarter_Exit(ApplicationManager *appMan, int *param1)
 
     DeleteCamera(app);
     Delete3DObjects(app);
-    ov78_021D1594(app);
+    DeleteCellActors(app);
     ov78_021D14BC(app);
     ov78_021D1518(app);
     ov78_021D13A0(app);
@@ -736,13 +736,13 @@ static void MakeCellActors(ChooseStarterApp *app, enum HeapID heapID)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, TRUE);
 }
 
-static void ov78_021D1594(ChooseStarterApp *param0)
+static void DeleteCellActors(ChooseStarterApp *app)
 {
-    SpriteList_Delete(param0->spriteList);
-    SpriteResourceCollection_Delete(param0->spriteResourceCollection[SPRITE_RESOURCE_CHAR]);
-    SpriteResourceCollection_Delete(param0->spriteResourceCollection[SPRITE_RESOURCE_PLTT]);
-    SpriteResourceCollection_Delete(param0->spriteResourceCollection[SPRITE_RESOURCE_CELL]);
-    SpriteResourceCollection_Delete(param0->spriteResourceCollection[SPRITE_RESOURCE_ANIM]);
+    SpriteList_Delete(app->spriteList);
+    SpriteResourceCollection_Delete(app->spriteResourceCollection[SPRITE_RESOURCE_CHAR]);
+    SpriteResourceCollection_Delete(app->spriteResourceCollection[SPRITE_RESOURCE_PLTT]);
+    SpriteResourceCollection_Delete(app->spriteResourceCollection[SPRITE_RESOURCE_CELL]);
+    SpriteResourceCollection_Delete(app->spriteResourceCollection[SPRITE_RESOURCE_ANIM]);
 }
 
 static void ov78_021D15CC(ChooseStarter3DGraphics *param0, int param1, int param2, enum HeapID heapID, NNSFndAllocator *param4)
