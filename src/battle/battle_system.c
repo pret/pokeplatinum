@@ -1264,14 +1264,13 @@ void ov16_0223F3EC(BattleSystem *battleSys)
     }
 }
 
-void BattleSystem_RemoveHealthboxesFromBattlers(BattleSystem *battleSys)
+void BattleSystem_DestroyHealthboxes(BattleSystem *battleSys)
 {
     int i;
     HealthBox *healthbox;
 
     for (i = 0; i < battleSys->maxBattlers; i++) {
-        healthbox = BattlerData_GetHealthBox(battleSys->battlers[i]);
-        Healthbox_DestroySprites(healthbox);
+        Healthbox_DestroySprites(BattlerData_GetHealthBox(battleSys->battlers[i]));
     }
 }
 
@@ -1515,14 +1514,13 @@ void ov16_0223F8AC(BattleSystem *battleSys, PokemonSprite **monSprites)
     }
 }
 
-void BattleSystem_SetGaugePriority(BattleSystem *battleSys, int param1)
+void BattleSystem_SetHealthboxPriority(BattleSystem *battleSys, int param1)
 {
     int battler;
     HealthBox *healthbox;
 
     for (battler = 0; battler < battleSys->maxBattlers; battler++) {
-        healthbox = BattlerData_GetHealthBox(battleSys->battlers[battler]);
-        Healthbox_SetExplicitPriority(healthbox, param1);
+        Healthbox_SetExplicitPriority(BattlerData_GetHealthBox(battleSys->battlers[battler]), param1);
     }
 }
 

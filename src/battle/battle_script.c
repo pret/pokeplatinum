@@ -9902,7 +9902,7 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
         Bg_SetPriority(BG_LAYER_MAIN_1, 1);
         Bg_SetPriority(BG_LAYER_MAIN_2, 0);
 
-        BattleSystem_SetGaugePriority(data->battleSys, 0 + 2); // gauge's default is 0
+        BattleSystem_SetHealthboxPriority(data->battleSys, 0 + 2); // gauge's default is 0
 
         LoadStandardWindowTiles(bgl, 2, 1, 0, HEAP_ID_BATTLE);
         PaletteData_LoadBufferFromFileStart(paletteSys, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetStandardWindowPaletteNARCMember(), HEAP_ID_BATTLE, 0, 0x20, 8 * 0x10);
@@ -9990,7 +9990,7 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
         Bg_SetPriority(BG_LAYER_MAIN_1, 0);
         Bg_SetPriority(BG_LAYER_MAIN_2, 1);
 
-        BattleSystem_SetGaugePriority(data->battleSys, 0);
+        BattleSystem_SetHealthboxPriority(data->battleSys, 0);
 
         if (data->battleCtx->selectedPartySlot[expBattler] != slot) {
             BattleScript_FreePartyLevelUpIcon(data->battleSys, data);
@@ -10672,7 +10672,7 @@ static void BattleScript_CatchMonTask(SysTask *task, void *inData)
             data->tmpPtr[0] = ApplicationManager_New(&gNamingScreenAppTemplate, namingScreenArgs, HEAP_ID_BATTLE);
             data->seqNum = SEQ_CATCH_MON_FREE_NAMING_SCREEN;
 
-            BattleSystem_RemoveHealthboxesFromBattlers(data->battleSys);
+            BattleSystem_DestroyHealthboxes(data->battleSys);
 
             int i;
             BattlerData *battlerData;

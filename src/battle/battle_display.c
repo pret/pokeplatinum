@@ -4185,7 +4185,7 @@ static void Task_PlayerShowBagMenu(SysTask *task, void *data)
         int battler = bagMenuData->partyMenuData->battlePartyCtx->selectedPartyIndex * 2;
         HealthBox *healthbox = BattleSystem_GetHealthBox(bagMenuData->battleSys, battler);
 
-        if (Healthbox_DrawHpBar(healthbox) == -1) {
+        if (Healthbox_DrawHPBar(healthbox) == -1) {
             HealthBox_DrawInfo(healthbox, NULL, HEALTHBOX_INFO_STATUS);
             bagMenuData->state++;
         }
@@ -4917,7 +4917,7 @@ static void Task_UpdateHPGauge(SysTask *task, void *data)
         HealthBox_CalcHP(healthbox, healthbox->damage);
         healthbox->state++;
     case 1:
-        result = Healthbox_DrawHpBar(healthbox);
+        result = Healthbox_DrawHPBar(healthbox);
 
         if (result == -1) {
             healthbox->state++;

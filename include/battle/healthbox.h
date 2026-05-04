@@ -84,7 +84,7 @@ typedef struct HealthBox {
     u8 unused_4F_2 : 1;
     u8 numberMode : 1;
     u8 padding : 4;
-    SysTask *task_50;
+    SysTask *bobbingAnimTask;
     u16 degrees;
 } HealthBox;
 
@@ -129,7 +129,7 @@ void Healthbox_ToggleHPDisplayMode(HealthBox *healthbox);
  *                  values are damage, positive values are recovery.
  */
 void HealthBox_CalcHP(HealthBox *healthbox, int damage);
-s32 Healthbox_DrawHpBar(HealthBox *healthbox);
+s32 Healthbox_DrawHPBar(HealthBox *healthbox);
 void HealthBox_CalcExp(HealthBox *healthbox, int expReward);
 s32 Healthbox_DrawExpBar(HealthBox *healthbox);
 void Healthbox_Activate(HealthBox *healthbox);
