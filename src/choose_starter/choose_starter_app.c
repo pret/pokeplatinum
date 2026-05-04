@@ -220,7 +220,7 @@ static BOOL IsSelectionMade(ChooseStarterApp *param0, int param1);
 static void UpdateGraphics(ChooseStarterApp *param0, enum HeapID heapID);
 static void DrawScene(ChooseStarterApp *param0);
 static void SetupDrawing(ChooseStarterApp *app, enum HeapID heapID);
-static void ov78_021D10DC(void);
+static void DeleteDrawing(void);
 static void SetupVRAMBank(void);
 static void SetupOAM(enum HeapID heapID);
 static void Setup3D(ChooseStarterApp *app);
@@ -445,7 +445,7 @@ BOOL ChooseStarter_Exit(ApplicationManager *appMan, int *param1)
 
     DeleteBGL(app->bgl);
     Heap_Free(app->bgl);
-    ov78_021D10DC();
+    DeleteDrawing();
 
     VramTransfer_Free();
     ApplicationManager_FreeData(appMan);
@@ -486,7 +486,7 @@ static void SetupDrawing(ChooseStarterApp *app, enum HeapID heap)
     Setup3D(app);
 }
 
-static void ov78_021D10DC(void)
+static void DeleteDrawing(void)
 {
     RenderOam_Free();
     CharTransfer_Free();
