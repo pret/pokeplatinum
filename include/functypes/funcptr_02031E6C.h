@@ -1,6 +1,0 @@
-#ifndef POKEPLATINUM_FUNCPTR_02031E6C_H
-#define POKEPLATINUM_FUNCPTR_02031E6C_H
-
-typedef void (*WirelessManagerRecvFunc)(u16, u16 *, u16);
-
-#endif // POKEPLATINUM_FUNCPTR_02031E6C_H

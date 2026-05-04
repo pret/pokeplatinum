@@ -3,12 +3,6 @@
 
 #include <nitro/wm.h>
 
-#include "functypes/funcptr_020312B8.h"
-#include "functypes/funcptr_02031E6C.h"
-#include "functypes/funcptr_02031E9C.h"
-#include "functypes/funcptr_020320FC.h"
-#include "functypes/funcptr_02032110.h"
-
 enum WirelessManagerState {
     WIRELESS_STATE_STOP,
     WIRELESS_STATE_IDLE,
@@ -44,41 +38,47 @@ enum ExtendedWMErrCode {
     WM_ERRCODE_GF_MAX
 };
 
-BOOL WirelessManager_ConnectClientAuto(int param0, const u8 *param1, u16 param2);
-BOOL WirelessManager_ConnectClientScanCallback(WirelessManagerScanFunc param0, const u8 *param1, u16 param2);
+typedef void (*WirelessManagerScanFunc)(WMBssDesc *);
+typedef void (*WirelessManagerRecvFunc)(u16, u16 *, u16);
+typedef void (*WirelessManagerSendFunc)(BOOL);
+typedef void (*WirelessManagerGGIDScanFunc)(u32, int);
+typedef void (*WirelessManagerConnectFunc)(int);
+
+BOOL WirelessManager_ConnectClientAuto(int connectionType, const u8 *macAddress, u16 channel);
+BOOL WirelessManager_ConnectClientScanCallback(WirelessManagerScanFunc scanCallback, const u8 *macAddress, u16 channel);
 BOOL WirelessManager_StopScan(void);
-void WirelessManager_SetParentParamGGID(u32 param0);
-void WirelessManager_SetParentParamGameInfoAndLength(u16 *param0, u16 param1);
+void WirelessManager_SetParentParamGGID(u32 ggid);
+void WirelessManager_SetParentParamGameInfoAndLength(u16 *userGameInfo, u16 size);
 u16 WirelessManager_GetConnectedBitmap(void);
 int WirelessManager_GetState(void);
 int WirelessManager_GetErrorCode(void);
 BOOL WirelessManager_StartMeasureChannel(void);
 u16 WirelessManager_GetMeasureChannel(void);
-BOOL WirelessManager_Initialize(void *param0, BOOL param1);
+BOOL WirelessManager_Initialize(void *heap, BOOL isNotListening);
 int WirelessManager_GetHeapSize(void);
-BOOL WirelessManager_ConnectServer(int param0, u16 param1, u16 param2, u16 param3, u16 param4, BOOL param5);
-BOOL WirelessManager_ConnectClient(int param0, WMBssDesc *param1);
-void WirelessManager_SetRecvFunction(WirelessManagerRecvFunc param0, int param1);
-BOOL WirelessManager_SendMessage(void *param0, u16 param1, int param2, WirelessManagerSendFunc param3);
+BOOL WirelessManager_ConnectServer(int connectionType, u16 tgid, u16 channel, u16 maxEntry, u16 beaconPeriod, BOOL entryFlag);
+BOOL WirelessManager_ConnectClient(int connectionType, WMBssDesc *bssDesc);
+void WirelessManager_SetRecvFunction(WirelessManagerRecvFunc recvFunction, int port);
+BOOL WirelessManager_SendMessage(void *message, u16 size, int port, WirelessManagerSendFunc callback);
 void WirelessManager_Reset(void);
 void WirelessManager_Finalize(void);
 BOOL WirelessManager_End(void);
 u16 WirelessManager_GetAID(void);
-void WirelessManager_SetMaxNumConnections(int param0);
+void WirelessManager_SetMaxNumConnections(int numConnectionsMax);
 BOOL WirelessManager_IsIdle(void);
 BOOL WirelessManager_IsBusy(void);
 BOOL WirelessManager_IsError(void);
 BOOL WirelessManager_IsScanning(void);
-void WirelessManager_SetGameInfo(void *param0, int param1, int param2, int param3);
-BOOL WirelessManager_SetEntry(BOOL param0);
+void WirelessManager_SetGameInfo(void *buffer, int size, int ggid, int tgid);
+BOOL WirelessManager_SetEntry(BOOL enable);
 BOOL WirelessManager_ServerSentAllBeacons(void);
 void WirelessManager_ResetBeaconSentCount(void);
-void WirelessManager_SetGGIDScanCallback(UnkFuncPtr_020320FC param0);
-void sub_SetDisconnectCallback(UnkFuncPtr_02032110 param0);
-void WirelessManager_SetConnectCallback(UnkFuncPtr_02032110 param0);
-void WirelessManager_SetPauseConnection(BOOL param0);
+void WirelessManager_SetGGIDScanCallback(WirelessManagerGGIDScanFunc callback);
+void sub_SetDisconnectCallback(WirelessManagerConnectFunc callback);
+void WirelessManager_SetConnectCallback(WirelessManagerConnectFunc callback);
+void WirelessManager_SetPauseConnection(BOOL pause);
 BOOL WirelessManager_GetPauseConnection(void);
-void WirelessManager_SetPauseConnectionSystem(BOOL param0);
-void WirelessManager_SetPauseClientConnection(BOOL param0);
+void WirelessManager_SetPauseConnectionSystem(BOOL pause);
+void WirelessManager_SetPauseClientConnection(BOOL pause);
 
 #endif // POKEPLATINUM_UNK_02030EE0_H

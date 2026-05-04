@@ -18,7 +18,7 @@
 #include "communication_information.h"
 #include "communication_system.h"
 #include "heap.h"
-#include "unk_02030EE0.h"
+#include "wireless_manager.h"
 #include "unk_02032798.h"
 #include "unk_020366A0.h"
 #include "unk_0205B33C.h"

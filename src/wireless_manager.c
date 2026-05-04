@@ -1,4 +1,4 @@
-#include "unk_02030EE0.h"
+#include "wireless_manager.h"
 
 #include <nitro.h>
 #include <nitro/cht.h>
@@ -6,12 +6,6 @@
 #include <string.h>
 
 #include "struct_defs/struct_0203330C.h"
-
-#include "functypes/funcptr_020312B8.h"
-#include "functypes/funcptr_02031E6C.h"
-#include "functypes/funcptr_02031E9C.h"
-#include "functypes/funcptr_020320FC.h"
-#include "functypes/funcptr_02032110.h"
 
 #include "unk_0203266C.h"
 #include "unk_020366A0.h"
@@ -44,9 +38,9 @@ typedef struct WirelessManager {
     BOOL (* unusedCallback_1390)(WMStartParentCallback *);
     // clang-format on
 
-    UnkFuncPtr_020320FC ggidScanCallback;
-    UnkFuncPtr_02032110 disconnectCallback;
-    UnkFuncPtr_02032110 connectCallback;
+    WirelessManagerGGIDScanFunc ggidScanCallback;
+    WirelessManagerConnectFunc disconnectCallback;
+    WirelessManagerConnectFunc connectCallback;
     u16 aid; //machine id. 0 for the server, 1~7 for clients
     u16 connectedBitmap; //bitmap of (1 << aid) for connected machines
     int errorCode;
@@ -63,41 +57,41 @@ typedef struct WirelessManager {
 } WirelessManager;
 
 void include_unk_021C07A8(void);
-static void WirelessManager_InidcateCallback(void *param0);
-static BOOL WirelessManager_InitializeWM(BOOL param0);
-static void WirelessManager_FinishInitializeWM(void *param0);
-static u16 WirelessManager_MeasureChannel(u16 param0);
-static void WirelessManager_FinishMeasureChannel(void *param0);
-static WMErrCode WirelessManager_MeasureChannelInternal(WMCallbackFunc param0, u16 param1);
-static s16 WirelessManager_GetRandomChannel(u16 param0);
+static void WirelessManager_InidcateCallback(void *callback);
+static BOOL WirelessManager_InitializeWM(BOOL isNotListening);
+static void WirelessManager_FinishInitializeWM(void *callback);
+static u16 WirelessManager_MeasureChannel(u16 chanel);
+static void WirelessManager_FinishMeasureChannel(void *callback);
+static WMErrCode WirelessManager_MeasureChannelInternal(WMCallbackFunc callback, u16 port);
+static s16 WirelessManager_GetRandomChannel(u16 bitmap);
 static BOOL WirelessManager_SetParentParameter(void);
-static void WirelessManager_FinishSetParentParameter(void *param0);
+static void WirelessManager_FinishSetParentParameter(void *callback);
 static BOOL WirelessManager_StartServer(void);
-static void WirelessManager_FinishStartServer(void *param0);
+static void WirelessManager_FinishStartServer(void *callback);
 static BOOL WirelessManager_StartMPServer(void);
-static void WirelessManager_FinishStartMPServer(void *param0);
+static void WirelessManager_FinishStartMPServer(void *callback);
 static BOOL WirelessManager_StartScan(void);
-static void WirelessManager_FinishStartScan(void *param0);
+static void WirelessManager_FinishStartScan(void *callback);
 static BOOL WirelessManager_EndScan(void);
-static void WirelessManager_FinishEndScan(void *param0);
+static void WirelessManager_FinishEndScan(void *callback);
 static BOOL WirelessManager_StartClient(void);
-static void WirelessManager_FinishStartClient(void *param0);
+static void WirelessManager_FinishStartClient(void *callback);
 static BOOL WirelessManager_StartMPClient(void);
-static void WirelessManager_FinishStartMPClient(void *param0);
-static BOOL WirelessManager_SendMPMessage(void *param0, u16 param1, int param2, WirelessManagerSendFunc param3);
-static void WirelessManager_FinishSendMPMessage(void *param0);
-static void WirelessManager_RecvMessageCallback(void *param0);
+static void WirelessManager_FinishStartMPClient(void *callback);
+static BOOL WirelessManager_SendMPMessage(void *message, u16 size, int port, WirelessManagerSendFunc callback);
+static void WirelessManager_FinishSendMPMessage(void *callback);
+static void WirelessManager_RecvMessageCallback(void *callback);
 static BOOL WirelessManager_EndMPServer(void);
-static void WirelessManager_FinishEndMPServer(void *param0);
+static void WirelessManager_FinishEndMPServer(void *callback);
 static BOOL WirelessManager_EndServer(void);
-static void WirelessManager_FinishEndServer(void *param0);
+static void WirelessManager_FinishEndServer(void *callback);
 static BOOL WirelessManager_EndMPClient(void);
-static void WirelessManager_FinishEndMPClient(void *param0);
+static void WirelessManager_FinishEndMPClient(void *callback);
 static BOOL WirelessManager_DisconnectClient(void);
-static void WirelessManager_FinishDisconnectClient(void *param0);
-static void WirelessManager_FinishEnd(void *param0);
+static void WirelessManager_FinishDisconnectClient(void *callback);
+static void WirelessManager_FinishEnd(void *callback);
 static BOOL WirelessManager_ResetInternal(void);
-static void WirelessManager_FinishResetInternal(void *param0);
+static void WirelessManager_FinishResetInternal(void *callback);
 static u16 WirelessManager_GetNumConnected(void);
 
 static WirelessManager *sWirelessManager;
@@ -1006,10 +1000,13 @@ void WirelessManager_SetParentParamGGID(u32 ggid)
 
 /**
  * @brief Sets the WirelessManager's parentParam userGameInfo and userGameInfoLength
+ *
+ * @param userGameInfo
+ * @param size
  */
-void WirelessManager_SetParentParamGameInfoAndLength(u16 *param0, u16 param1)
+void WirelessManager_SetParentParamGameInfoAndLength(u16 *userGameInfo, u16 size)
 {
-    sWirelessManager->parentParam.userGameInfo = param0;
+    sWirelessManager->parentParam.userGameInfo = userGameInfo;
     sWirelessManager->parentParam.userGameInfoLength = param1;
 }
 
@@ -1297,10 +1294,12 @@ int WirelessManager_GetHeapSize(void)
 
 /**
  * @brief WM indicator callback for WM_SetIndCallback 
+ *
+ * @param wm_callback
  */
-static void WirelessManager_InidcateCallback(void *param0)
+static void WirelessManager_InidcateCallback(void *wm_callback)
 {
-    WMindCallback *callback = (WMindCallback *)param0;
+    WMindCallback *callback = (WMindCallback *)wm_callback;
 
     if (callback->errcode == WM_ERRCODE_FIFO_ERROR) {
         WirelessManager_SetState(WIRELESS_STATE_ERROR);
@@ -1729,7 +1728,7 @@ void WirelessManager_ResetBeaconSentCount(void)
  *
  * @param callback
  */
-void WirelessManager_SetGGIDScanCallback(UnkFuncPtr_020320FC callback)
+void WirelessManager_SetGGIDScanCallback(WirelessManagerGGIDScanFunc callback)
 {
     sWirelessManager->ggidScanCallback = callback;
 }
@@ -1739,7 +1738,7 @@ void WirelessManager_SetGGIDScanCallback(UnkFuncPtr_020320FC callback)
  * 
  * @param callback
  */
-void sub_SetDisconnectCallback(UnkFuncPtr_02032110 callback)
+void sub_SetDisconnectCallback(WirelessManagerConnectFunc callback)
 {
     sWirelessManager->disconnectCallback = callback;
 }
@@ -1749,7 +1748,7 @@ void sub_SetDisconnectCallback(UnkFuncPtr_02032110 callback)
  * 
  * @param callback
  */
-void WirelessManager_SetConnectCallback(UnkFuncPtr_02032110 callback)
+void WirelessManager_SetConnectCallback(WirelessManagerConnectFunc callback)
 {
     sWirelessManager->connectCallback = callback;
 }

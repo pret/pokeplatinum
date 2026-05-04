@@ -13,7 +13,7 @@
 #include "communication_system.h"
 #include "math_util.h"
 #include "sound_playback.h"
-#include "unk_02030EE0.h"
+#include "wireless_manager.h"
 #include "unk_02032798.h"
 #include "unk_020366A0.h"
 #include "unk_02099500.h"

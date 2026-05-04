@@ -45,7 +45,7 @@
 #include "terrain_collision_manager.h"
 #include "trainer_info.h"
 #include "underground.h"
-#include "unk_02030EE0.h"
+#include "wireless_manager.h"
 #include "unk_020366A0.h"
 #include "vars_flags.h"
 
