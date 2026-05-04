@@ -238,7 +238,7 @@ static void ov78_021D28A8(Window *param0, enum HeapID heapID, int param2, int pa
 static void ov78_021D2904(ChooseStarterApp *param0);
 static void MakeConfirmationWindow(ChooseStarterApp *param0, int param1);
 static void MakeSprite(ChooseStarterApp *app, enum HeapID heapID);
-static void ov78_021D14BC(ChooseStarterApp *param0);
+static void DeleteSprite(ChooseStarterApp *app);
 static void MakeSpriteDisplay(ChooseStarterApp *app, enum HeapID heapID);
 static void DeleteSpriteDisplay(ChooseStarterApp *app);
 static void MakeCellActors(ChooseStarterApp *param0, enum HeapID heapID);
@@ -438,7 +438,7 @@ BOOL ChooseStarter_Exit(ApplicationManager *appMan, int *param1)
     DeleteCamera(app);
     Delete3DObjects(app);
     DeleteCellActors(app);
-    ov78_021D14BC(app);
+    DeleteSprite(app);
     DeleteSpriteDisplay(app);
     DeleteMessageWindow(app);
     DeleteSubplaneWindow(app);
@@ -693,17 +693,17 @@ static void MakePokemonSprite(PokemonSprite **sprite, ChooseStarterApp *app, int
         NULL);
 }
 
-static void ov78_021D14BC(ChooseStarterApp *param0)
+static void DeleteSprite(ChooseStarterApp *app)
 {
     int v0;
 
     for (v0 = 0; v0 < 3; v0++) {
-        if (param0->sprites[v0]) {
-            PokemonSprite_Delete(param0->sprites[v0]);
+        if (app->sprites[v0]) {
+            PokemonSprite_Delete(app->sprites[v0]);
         }
     }
 
-    PokemonSpriteManager_Free(param0->spriteManager);
+    PokemonSpriteManager_Free(app->spriteManager);
 }
 
 static void MakeSpriteDisplay(ChooseStarterApp *param0, enum HeapID heapID)
