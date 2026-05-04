@@ -90,6 +90,8 @@
 #define POKEMON_SPRITE_POS_Z      1023
 #define POKEMON_SPRITE_POLYGON_ID 0
 
+#define CHOOSE_STARTER_3D_OBJECTS_NUM 6
+
 enum CursorPosition {
     CURSOR_POSITION_LEFT = 0,
     CURSOR_POSITION_CENTER,
@@ -196,7 +198,7 @@ typedef struct ChooseStarterApp {
     PokemonSprite *sprites[NUM_STARTER_OPTIONS];
     StarterPreviewGraphics previewGraphics;
     NNSFndAllocator allocator;
-    ChooseStarter3DGraphics unk_2C4[6];
+    ChooseStarter3DGraphics starter3DObjects[CHOOSE_STARTER_3D_OBJECTS_NUM];
     Camera *camera;
     VecFx32 unk_64C;
     ChooseStarterCursor cursor;
@@ -877,45 +879,45 @@ static void Make3DObjects(ChooseStarterApp *param0, enum HeapID heapID)
 {
     int v0;
 
-    ov78_021D15CC(&param0->unk_2C4[0], 1, 0, heapID, &param0->allocator);
-    ov78_021D17A4(&param0->unk_2C4[0], 1);
+    ov78_021D15CC(&param0->starter3DObjects[0], 1, 0, heapID, &param0->allocator);
+    ov78_021D17A4(&param0->starter3DObjects[0], 1);
 
-    ov78_021D1604(&param0->unk_2C4[1], 8, heapID);
-    ov78_021D17A4(&param0->unk_2C4[1], 0);
+    ov78_021D1604(&param0->starter3DObjects[1], 8, heapID);
+    ov78_021D17A4(&param0->starter3DObjects[1], 0);
 
     for (v0 = 2; v0 <= 4; v0++) {
-        ov78_021D15CC(&param0->unk_2C4[v0], 3 + (v0 - 2) * 2, 2 + (v0 - 2) * 2, heapID, &param0->allocator);
-        ov78_021D17A4(&param0->unk_2C4[v0], 0);
+        ov78_021D15CC(&param0->starter3DObjects[v0], 3 + (v0 - 2) * 2, 2 + (v0 - 2) * 2, heapID, &param0->allocator);
+        ov78_021D17A4(&param0->starter3DObjects[v0], 0);
     }
 
-    ov78_021D1604(&param0->unk_2C4[5], 9, heapID);
-    ov78_021D17A4(&param0->unk_2C4[5], 1);
+    ov78_021D1604(&param0->starter3DObjects[5], 9, heapID);
+    ov78_021D17A4(&param0->starter3DObjects[5], 1);
 
-    ov78_021D17A8(&param0->unk_2C4[5], 0, -28 * FX32_ONE, 40 * FX32_ONE);
-    ov78_021D17B4(&param0->unk_2C4[5], FX32_CONST(3.50f), FX32_ONE, FX32_CONST(3.50f));
-    ov78_021D17CC(&param0->unk_2C4[5], (0 * 0xffff) / 360, (180 * 0xffff) / 360, (0 * 0xffff) / 360);
+    ov78_021D17A8(&param0->starter3DObjects[5], 0, -28 * FX32_ONE, 40 * FX32_ONE);
+    ov78_021D17B4(&param0->starter3DObjects[5], FX32_CONST(3.50f), FX32_ONE, FX32_CONST(3.50f));
+    ov78_021D17CC(&param0->starter3DObjects[5], (0 * 0xffff) / 360, (180 * 0xffff) / 360, (0 * 0xffff) / 360);
 }
 
 static void Delete3DObjects(ChooseStarterApp *app)
 {
-    int v0;
+    int objectIndex;
 
-    for (v0 = 0; v0 < 6; v0++) {
-        ov78_021D16D8(&app->unk_2C4[v0], &app->allocator);
+    for (objectIndex = 0; objectIndex < CHOOSE_STARTER_3D_OBJECTS_NUM; objectIndex++) {
+        ov78_021D16D8(&app->starter3DObjects[objectIndex], &app->allocator);
     }
 }
 
 static void ov78_021D192C(ChooseStarterApp *param0)
 {
-    int v0;
+    int objectIndex;
 
     NNS_G3dGlbLightVector(0, 0, -FX32_ONE, 0);
     NNS_G3dGlbLightColor(0, GX_RGB(31, 31, 31));
     NNS_G3dGlbMaterialColorDiffAmb(GX_RGB(31, 31, 31), GX_RGB(31, 31, 31), 0);
     NNS_G3dGlbMaterialColorSpecEmi(GX_RGB(31, 31, 31), GX_RGB(31, 31, 31), 0);
 
-    for (v0 = 0; v0 < 6; v0++) {
-        ov78_021D1708(&param0->unk_2C4[v0]);
+    for (objectIndex = 0; objectIndex < CHOOSE_STARTER_3D_OBJECTS_NUM; objectIndex++) {
+        ov78_021D1708(&param0->starter3DObjects[objectIndex]);
     }
 }
 
@@ -971,12 +973,12 @@ static void UpdateGraphics(ChooseStarterApp *param0, enum HeapID heapID)
         }
         break;
     case 2:
-        if (ov78_021D17E4(&param0->unk_2C4[0])) {
-            ov78_021D17A4(&param0->unk_2C4[0], 0);
-            ov78_021D17A4(&param0->unk_2C4[1], 1);
-            ov78_021D17A4(&param0->unk_2C4[2], 1);
-            ov78_021D17A4(&param0->unk_2C4[3], 1);
-            ov78_021D17A4(&param0->unk_2C4[4], 1);
+        if (ov78_021D17E4(&param0->starter3DObjects[0])) {
+            ov78_021D17A4(&param0->starter3DObjects[0], 0);
+            ov78_021D17A4(&param0->starter3DObjects[1], 1);
+            ov78_021D17A4(&param0->starter3DObjects[2], 1);
+            ov78_021D17A4(&param0->starter3DObjects[3], 1);
+            ov78_021D17A4(&param0->starter3DObjects[4], 1);
             ov78_021D1C98(param0, 1);
         }
         break;
@@ -1103,7 +1105,7 @@ static void SetSelectionMatrixObjects(ChooseStarterApp *param0)
     int v0;
 
     for (v0 = 0; v0 < 3; v0++) {
-        ov78_021D17A8(&param0->unk_2C4[v0 + 2], param0->unk_58[v0][0] << FX32_SHIFT, param0->unk_58[v0][1] << FX32_SHIFT, param0->unk_58[v0][2] << FX32_SHIFT);
+        ov78_021D17A8(&param0->starter3DObjects[v0 + 2], param0->unk_58[v0][0] << FX32_SHIFT, param0->unk_58[v0][1] << FX32_SHIFT, param0->unk_58[v0][2] << FX32_SHIFT);
     }
 }
 
@@ -1195,9 +1197,9 @@ static void ov78_021D1DF0(ChooseStarterApp *param0)
 
     for (v0 = 0; v0 < 3; v0++) {
         if (param0->cursorPosition == v0) {
-            ov78_021D180C(&param0->unk_2C4[2 + v0]);
+            ov78_021D180C(&param0->starter3DObjects[2 + v0]);
         } else {
-            ov78_021D182C(&param0->unk_2C4[2 + v0], 0);
+            ov78_021D182C(&param0->starter3DObjects[2 + v0], 0);
         }
     }
 }
