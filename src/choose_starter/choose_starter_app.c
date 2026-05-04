@@ -228,7 +228,7 @@ static void ov78_021D1218(void);
 static void SetupBGL(BgConfig *bgl, enum HeapID heapID);
 static void ov78_021D12EC(BgConfig *param0);
 static void MakeMessageWindow(ChooseStarterApp *app, enum HeapID heapID);
-static void ov78_021D13A0(ChooseStarterApp *param0);
+static void DeleteMessageWindow(ChooseStarterApp *app);
 static u8 ov78_021D1FB4(Window *param0, enum HeapID heapID, int param2, int param3, TextColor param4, u32 param5);
 static u8 ov78_021D201C(Window *param0, enum HeapID heapID, int param2, int param3, u32 param4, u32 param5, String **param6);
 static void ov78_021D2090(ChooseStarterApp *param0);
@@ -440,7 +440,7 @@ BOOL ChooseStarter_Exit(ApplicationManager *appMan, int *param1)
     DeleteCellActors(app);
     ov78_021D14BC(app);
     DeleteSpriteDisplay(app);
-    ov78_021D13A0(app);
+    DeleteMessageWindow(app);
     ov78_021D2884(app);
 
     ov78_021D12EC(app->bgl);
@@ -652,10 +652,10 @@ static void MakeMessageWindow(ChooseStarterApp *app, enum HeapID heapID)
     Window_DrawMessageBoxWithScrollCursor(app->messageWindow, 0, FRAME_TEXT_START, FRAME_TEXT_PALETTE_INDEX);
 }
 
-static void ov78_021D13A0(ChooseStarterApp *param0)
+static void DeleteMessageWindow(ChooseStarterApp *app)
 {
-    Window_Remove(param0->messageWindow);
-    Heap_Free(param0->messageWindow);
+    Window_Remove(app->messageWindow);
+    Heap_Free(app->messageWindow);
 }
 
 static void MakeSprite(ChooseStarterApp *app, enum HeapID heapID)
