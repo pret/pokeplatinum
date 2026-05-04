@@ -334,8 +334,8 @@ BOOL ChooseStarter_Init(ApplicationManager *appMan, int *param1)
     SetAllGraphicsModes(&bglHeader);
 
     SetupBGL(app->bgl, HEAP_ID_CHOOSE_STARTER_APP);
-    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
-    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, TRUE);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, FALSE);
 
     MakeMessageWindow(app, HEAP_ID_CHOOSE_STARTER_APP);
     MakeConfirmationWindow(app, HEAP_ID_CHOOSE_STARTER_APP);
@@ -730,8 +730,8 @@ static void MakeCellActors(ChooseStarterApp *param0, enum HeapID heapID)
     param0->unk_24C[2] = SpriteResourceCollection_New(2, 2, heapID);
     param0->unk_24C[3] = SpriteResourceCollection_New(2, 3, heapID);
 
-    GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
-    GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, TRUE);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, TRUE);
 }
 
 static void ov78_021D1594(ChooseStarterApp *param0)
@@ -1140,7 +1140,7 @@ static void ov78_021D1CA8(ChooseStarterApp *param0, enum HeapID heapID)
     switch (param0->unk_04) {
     case 0:
         ov78_021D213C(&param0->cameraMovement, param0->camera, &param0->unk_64C);
-        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
+        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, TRUE);
         param0->unk_04++;
         break;
     case 1:
