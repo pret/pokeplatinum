@@ -204,7 +204,7 @@ typedef struct ChooseStarterApp {
     SoftwareSpriteManager *spriteDisplay;
     StarterPreviewWindow unk_6A8;
     int messageFrame;
-    u32 unk_704;
+    u32 messageFrameTextDelay;
     u8 unk_708;
     u8 unk_709[3];
 } ChooseStarterApp;
@@ -310,7 +310,7 @@ BOOL ChooseStarter_Init(ApplicationManager *appMan, int *param1)
 
     ChooseStarterData *data = ApplicationManager_Args(appMan);
     app->messageFrame = Options_Frame(data->options);
-    app->unk_704 = Options_TextFrameDelay(data->options);
+    app->messageFrameTextDelay = Options_TextFrameDelay(data->options);
 
     VramTransfer_New(8, HEAP_ID_CHOOSE_STARTER_APP);
     SetVBlankCallback(ChooseStarterAppMainCallback, app);
@@ -1158,7 +1158,7 @@ static void ov78_021D1CA8(ChooseStarterApp *param0, enum HeapID heapID)
         }
         break;
     case 3:
-        param0->unk_708 = ov78_021D201C(param0->messageWindow, heapID, 360, 0, TEXT_COLOR(1, 2, 15), param0->unk_704, &param0->unk_AC);
+        param0->unk_708 = ov78_021D201C(param0->messageWindow, heapID, 360, 0, TEXT_COLOR(1, 2, 15), param0->messageFrameTextDelay, &param0->unk_AC);
         param0->unk_04++;
         break;
     case 4:
@@ -1168,7 +1168,7 @@ static void ov78_021D1CA8(ChooseStarterApp *param0, enum HeapID heapID)
         }
         break;
     case 5:
-        param0->unk_708 = ov78_021D201C(param0->messageWindow, heapID, 360, 7, TEXT_COLOR(1, 2, 15), param0->unk_704, &param0->unk_AC);
+        param0->unk_708 = ov78_021D201C(param0->messageWindow, heapID, 360, 7, TEXT_COLOR(1, 2, 15), param0->messageFrameTextDelay, &param0->unk_AC);
         param0->unk_04++;
         break;
     case 6:
