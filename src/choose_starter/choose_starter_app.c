@@ -199,7 +199,7 @@ typedef struct ChooseStarterApp {
     ChooseStarter3DGraphics unk_2C4[6];
     Camera *camera;
     VecFx32 unk_64C;
-    ChooseStarterCursor unk_658;
+    ChooseStarterCursor cursor;
     GXRgb edgeMarkings[8];
     SoftwareSpriteManager *spriteDisplay;
     StarterPreviewWindow unk_6A8;
@@ -348,9 +348,9 @@ BOOL ChooseStarter_Init(ApplicationManager *appMan, int *param1)
 
     MakeSelectionMatrix(app);
     SetSelectionMatrixObjects(app);
-    MakeCursorOAM(app, &app->unk_658, HEAP_ID_CHOOSE_STARTER_APP);
-    AttachCursorCellActor(app, &app->unk_658, HEAP_ID_CHOOSE_STARTER_APP);
-    StartCursorMovement(&app->unk_658);
+    MakeCursorOAM(app, &app->cursor, HEAP_ID_CHOOSE_STARTER_APP);
+    AttachCursorCellActor(app, &app->cursor, HEAP_ID_CHOOSE_STARTER_APP);
+    StartCursorMovement(&app->cursor);
     MakePreviewWindow(&app->unk_6A8, app, HEAP_ID_CHOOSE_STARTER_APP);
 
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_60, SEQ_NONE, 0);
@@ -429,9 +429,9 @@ BOOL ChooseStarter_Exit(ApplicationManager *appMan, int *param1)
     GF_ASSERT(v2 == 1);
 
     ov78_021D24E4(&v0->unk_6A8);
-    ov78_021D2350(&v0->unk_658);
-    ov78_021D2290(v0, &v0->unk_658);
-    ov78_021D241C(&v0->unk_658);
+    ov78_021D2350(&v0->cursor);
+    ov78_021D2290(v0, &v0->cursor);
+    ov78_021D241C(&v0->cursor);
 
     ov78_021D1B90(v0);
     ov78_021D1908(v0);
@@ -1178,7 +1178,7 @@ static void ov78_021D1CA8(ChooseStarterApp *param0, enum HeapID heapID)
         }
         break;
     case 7:
-        ov78_021D2430(&param0->unk_658, 1);
+        ov78_021D2430(&param0->cursor, 1);
         param0->unk_08 = 0;
         param0->unk_04++;
         break;
@@ -1204,7 +1204,7 @@ static void ov78_021D1DF0(ChooseStarterApp *param0)
 
 static void ov78_021D1E28(ChooseStarterApp *param0)
 {
-    ov78_021D243C(&param0->unk_658, param0->unk_7C[param0->cursorPosition][0], param0->unk_7C[param0->cursorPosition][1]);
+    ov78_021D243C(&param0->cursor, param0->unk_7C[param0->cursorPosition][0], param0->unk_7C[param0->cursorPosition][1]);
 }
 
 static void ov78_021D1E44(ChooseStarterApp *param0, enum HeapID heapID)
@@ -1213,7 +1213,7 @@ static void ov78_021D1E44(ChooseStarterApp *param0, enum HeapID heapID)
 
     switch (param0->unk_04) {
     case 0:
-        ov78_021D2430(&param0->unk_658, 0);
+        ov78_021D2430(&param0->cursor, 0);
         ov78_021D1E28(param0);
         ov78_021D2904(param0);
         ov78_021D2618(param0);
