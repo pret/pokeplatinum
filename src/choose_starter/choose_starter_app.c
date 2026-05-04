@@ -226,7 +226,7 @@ static void SetupOAM(enum HeapID heapID);
 static void Setup3D(ChooseStarterApp *app);
 static void ov78_021D1218(void);
 static void SetupBGL(BgConfig *bgl, enum HeapID heapID);
-static void ov78_021D12EC(BgConfig *param0);
+static void DeleteBGL(BgConfig *bgl);
 static void MakeMessageWindow(ChooseStarterApp *app, enum HeapID heapID);
 static void DeleteMessageWindow(ChooseStarterApp *app);
 static u8 ov78_021D1FB4(Window *param0, enum HeapID heapID, int param2, int param3, TextColor param4, u32 param5);
@@ -443,7 +443,7 @@ BOOL ChooseStarter_Exit(ApplicationManager *appMan, int *param1)
     DeleteMessageWindow(app);
     DeleteSubplaneWindow(app);
 
-    ov78_021D12EC(app->bgl);
+    DeleteBGL(app->bgl);
     Heap_Free(app->bgl);
     ov78_021D10DC();
 
@@ -632,11 +632,11 @@ static void SetupBGL(BgConfig *bgl, enum HeapID heapID)
     }
 }
 
-static void ov78_021D12EC(BgConfig *param0)
+static void DeleteBGL(BgConfig *bgl)
 {
-    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_1);
-    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_2);
-    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_3);
+    Bg_FreeTilemapBuffer(bgl, BG_LAYER_MAIN_1);
+    Bg_FreeTilemapBuffer(bgl, BG_LAYER_MAIN_2);
+    Bg_FreeTilemapBuffer(bgl, BG_LAYER_MAIN_3);
 }
 
 static void MakeMessageWindow(ChooseStarterApp *app, enum HeapID heapID)
