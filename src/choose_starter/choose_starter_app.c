@@ -245,7 +245,7 @@ static void MakeCamera(ChooseStarterApp *param0, int param1);
 static void ov78_021D1B3C(Camera *camera, VecFx32 *param1);
 static void DeleteCamera(ChooseStarterApp *app);
 static void Make3DObjects(ChooseStarterApp *param0, enum HeapID heapID);
-static void ov78_021D1908(ChooseStarterApp *param0);
+static void Delete3DObjects(ChooseStarterApp *app);
 static void ov78_021D192C(ChooseStarterApp *param0);
 static void MakeCursorOAM(ChooseStarterApp *app, ChooseStarterCursor *cursor, enum HeapID heapID);
 static void DeleteCursorOAM(ChooseStarterApp *app, ChooseStarterCursor *cursor);
@@ -434,7 +434,7 @@ BOOL ChooseStarter_Exit(ApplicationManager *appMan, int *param1)
     StopCursorMovement(&app->cursor);
 
     DeleteCamera(app);
-    ov78_021D1908(app);
+    Delete3DObjects(app);
     ov78_021D1594(app);
     ov78_021D14BC(app);
     ov78_021D1518(app);
@@ -896,12 +896,12 @@ static void Make3DObjects(ChooseStarterApp *param0, enum HeapID heapID)
     ov78_021D17CC(&param0->unk_2C4[5], (0 * 0xffff) / 360, (180 * 0xffff) / 360, (0 * 0xffff) / 360);
 }
 
-static void ov78_021D1908(ChooseStarterApp *param0)
+static void Delete3DObjects(ChooseStarterApp *app)
 {
     int v0;
 
     for (v0 = 0; v0 < 6; v0++) {
-        ov78_021D16D8(&param0->unk_2C4[v0], &param0->allocator);
+        ov78_021D16D8(&app->unk_2C4[v0], &app->allocator);
     }
 }
 
