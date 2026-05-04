@@ -194,7 +194,7 @@ typedef struct ChooseStarterApp {
     SpriteResourceCollection *unk_24C[6];
     PokemonSpriteManager *spriteManager;
     PokemonSprite *sprites[NUM_STARTER_OPTIONS];
-    StarterPreviewGraphics unk_274;
+    StarterPreviewGraphics previewGraphics;
     NNSFndAllocator unk_2B4;
     ChooseStarter3DGraphics unk_2C4[6];
     Camera *camera;
@@ -1634,13 +1634,13 @@ static void ov78_021D2618(ChooseStarterApp *param0)
     v1 = (param0->unk_7C[param0->cursorPosition][1] + 48) << FX32_SHIFT;
 
     ov78_021D2514(&param0->previewWindow, v0, 128 << FX32_SHIFT, v1, 96 << FX32_SHIFT, FX32_CONST(0.40f), FX32_CONST(1.0f), 6);
-    ov78_021D26B4(&param0->unk_274, param0->sprites[param0->cursorPosition], v0, 128 << FX32_SHIFT, v1, 96 << FX32_SHIFT, FX32_CONST(0.40f), FX32_CONST(1.0f), 6);
+    ov78_021D26B4(&param0->previewGraphics, param0->sprites[param0->cursorPosition], v0, 128 << FX32_SHIFT, v1, 96 << FX32_SHIFT, FX32_CONST(0.40f), FX32_CONST(1.0f), 6);
 }
 
 static void ov78_021D2688(ChooseStarterApp *param0)
 {
     ov78_021D256C(&param0->previewWindow);
-    ov78_021D270C(&param0->unk_274);
+    ov78_021D270C(&param0->previewGraphics);
 }
 
 static BOOL ov78_021D26A4(ChooseStarterApp *param0)
