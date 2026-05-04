@@ -722,13 +722,13 @@ static void ov78_021D1518(ChooseStarterApp *param0)
     SoftwareSpriteManager_Free(param0->spriteDisplay);
 }
 
-static void MakeCellActors(ChooseStarterApp *param0, enum HeapID heapID)
+static void MakeCellActors(ChooseStarterApp *app, enum HeapID heapID)
 {
-    param0->unk_248 = SpriteList_InitRendering(2, &param0->unk_BC, heapID);
-    param0->unk_24C[0] = SpriteResourceCollection_New(2, 0, heapID);
-    param0->unk_24C[1] = SpriteResourceCollection_New(2, 1, heapID);
-    param0->unk_24C[2] = SpriteResourceCollection_New(2, 2, heapID);
-    param0->unk_24C[3] = SpriteResourceCollection_New(2, 3, heapID);
+    app->unk_248 = SpriteList_InitRendering(2, &app->unk_BC, heapID);
+    app->unk_24C[0] = SpriteResourceCollection_New(2, 0, heapID);
+    app->unk_24C[1] = SpriteResourceCollection_New(2, 1, heapID);
+    app->unk_24C[2] = SpriteResourceCollection_New(2, 2, heapID);
+    app->unk_24C[3] = SpriteResourceCollection_New(2, 3, heapID);
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, TRUE);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, TRUE);
