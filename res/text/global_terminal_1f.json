@@ -2,7 +2,7 @@
   "key": 50234,
   "messages": [
     {
-      "id": "pl_msg_00000046_00000",
+      "id": "GlobalTerminal1F_Text_ThisIsGTSDoGlobalTrade",
       "en_US": [
         "Welcome! This is the Global Trade\n",
         "Station, or GTS for short.\r",
@@ -13,7 +13,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000046_00001",
+      "id": "GlobalTerminal1F_Text_DoGlobalTrade",
       "en_US": [
         "Hello!\n",
         "Welcome to the GTS!\r",
@@ -22,7 +22,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000046_00002",
+      "id": "GlobalTerminal1F_Text_ExplainGTS",
       "en_US": [
         "You may trade Pokémon one of two\n",
         "ways at the GTS.\r",
@@ -33,7 +33,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000046_00003",
+      "id": "GlobalTerminal1F_Text_ExplainOfferPokemon",
       "en_US": [
         "You will be asked to put up the\n",
         "Pokémon you are offering to trade.\r",
@@ -46,7 +46,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000046_00004",
+      "id": "GlobalTerminal1F_Text_ExplainSeekPokemon",
       "en_US": [
         "You may search among the Pokémon\n",
         "that are offered by other Trainers.\r",
@@ -59,25 +59,25 @@
       ]
     },
     {
-      "id": "pl_msg_00000046_00005",
+      "id": "GlobalTerminal1F_Text_MakeGlobalTrade",
       "en_US": [
         "Would you like to make a global\n",
         "Pokémon trade?"
       ]
     },
     {
-      "id": "pl_msg_00000046_00006",
+      "id": "GlobalTerminal1F_Text_PleaseVisitAgain",
       "en_US": "Please do visit again."
     },
     {
-      "id": "pl_msg_00000046_00007",
+      "id": "GlobalTerminal1F_Text_EnjoyVisitToGTS",
       "en_US": [
         "I hope you enjoy your visit\n",
         "to the GTS!\r"
       ]
     },
     {
-      "id": "pl_msg_00000046_00008",
+      "id": "GlobalTerminal1F_Text_BoxesAreFull",
       "en_US": [
         "...Uh-oh!\r",
         "I’m sorry, but your team and all\n",
@@ -87,7 +87,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000046_00009",
+      "id": "GlobalTerminal1F_Text_MustHaveTwoPokemon",
       "en_US": [
         "...Uh-oh!\n",
         "You only have one Pokémon with you.\r",
@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000046_00010",
+      "id": "GlobalTerminal1F_Text_BigGlobeEh",
       "en_US": [
         "That’s a big globe, eh?\r",
         "Where do I live on it now?\n",
@@ -106,7 +106,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000046_00011",
+      "id": "GlobalTerminal1F_Text_LocationIsRecorded",
       "en_US": [
         "They say if you communicate with\n",
         "someone, their location is\f",
@@ -114,7 +114,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000046_00012",
+      "id": "GlobalTerminal1F_Text_LeavePokemonToTrade",
       "en_US": [
         "All I need to do is leave a Pokémon\n",
         "here to trade.\r",
@@ -123,7 +123,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000046_00013",
+      "id": "GlobalTerminal1F_Text_TradeAroundTheWorld",
       "en_US": [
         "You can easily trade Pokémon with\n",
         "Pokémon fans around the world.\r",
@@ -131,7 +131,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000046_00014",
+      "id": "GlobalTerminal1F_Text_RegisterWhereYouLive",
       "en_US": [
         "You can register where you live on\n",
         "this giant globe.\r",
@@ -140,7 +140,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000046_00015",
+      "id": "GlobalTerminal1F_Text_IsWFCEasyToUse",
       "en_US": [
         "Is Nintendo WFC something even I\n",
         "can use easily?\r",
@@ -149,7 +149,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000046_00016",
+      "id": "GlobalTerminal1F_Text_IllDoIt",
       "en_US": [
         "This week, I’ll do it!\r",
         "I really want to make the Top 8 of the\n",
@@ -157,7 +157,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000046_00017",
+      "id": "GlobalTerminal1F_Text_GTSHasThreeFloors",
       "en_US": [
         "The Global Terminal has three floors.\r",
         "You use warp panels for getting from\n",
@@ -171,46 +171,46 @@
       ]
     },
     {
-      "id": "pl_msg_00000046_00018",
+      "id": "GlobalTerminal1F_Text_FavoriteIsPokemon",
       "en_US": [
         "Your favorite is {STRVAR_1 0, 0, 0},\n",
         "isn’t it?"
       ]
     },
     {
-      "id": "pl_msg_00000046_00019",
+      "id": "GlobalTerminal1F_Text_FavoriteIsEgg",
       "en_US": "Your favorite is that Egg, isn’t it?"
     },
     {
-      "id": "pl_msg_00000046_00020",
+      "id": "GlobalTerminal1F_Text_IWasRight",
       "en_US": [
         "Yes, I was right!\n",
         "I thought so!"
       ]
     },
     {
-      "id": "pl_msg_00000046_00021",
+      "id": "GlobalTerminal1F_Text_FavoriteReallyIsPokemon",
       "en_US": [
         "...Oh? Your favorite really is\n",
         "{STRVAR_1 0, 0, 0}, isn’t it?"
       ]
     },
     {
-      "id": "pl_msg_00000046_00022",
+      "id": "GlobalTerminal1F_Text_FavoriteReallyIsEgg",
       "en_US": [
         "...Oh? Your favorite really is that Egg,\n",
         "isn’t it?"
       ]
     },
     {
-      "id": "pl_msg_00000046_00023",
+      "id": "GlobalTerminal1F_Text_WantToKnowFavorites",
       "en_US": [
         "I want to know everyone’s favorite\n",
         "kinds of Pokémon."
       ]
     },
     {
-      "id": "pl_msg_00000046_00024",
+      "id": "GlobalTerminal1F_Text_IHaveBackdropForYou",
       "en_US": [
         "Hi, have you visited the Dress-Up\n",
         "Data Studio?\r",
@@ -221,11 +221,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000046_00025",
+      "id": "GlobalTerminal1F_Text_Dummy25",
       "garbage": 28
     },
     {
-      "id": "pl_msg_00000046_00026",
+      "id": "GlobalTerminal1F_Text_GoToFittingRoom",
       "en_US": [
         "If you want to use that Backdrop,\n",
         "please go to the fitting room on the\f",
@@ -233,21 +233,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000046_00027",
+      "id": "GlobalTerminal1F_Text_ShareDressUpData",
       "en_US": [
         "Please share your dreamy Dress-Up\n",
         "Data with everyone!"
       ]
     },
     {
-      "id": "pl_msg_00000046_00028",
+      "id": "GlobalTerminal1F_Text_ObtainedBackdrop",
       "en_US": [
         "Obtained a Backdrop for use in\n",
         "Jubilife TV’s fitting room."
       ]
     },
     {
-      "id": "pl_msg_00000046_00029",
+      "id": "GlobalTerminal1F_Text_TellMeYo",
       "en_US": [
         "Yo, yo, yo!\r",
         "Wanna let the world know about you?\n",
@@ -255,7 +255,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000046_00030",
+      "id": "GlobalTerminal1F_Text_IKnowAll",
       "en_US": [
         "Yo, I know all I need to know about\n",
         "you now.\r",
@@ -264,7 +264,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000046_00031",
+      "id": "GlobalTerminal1F_Text_NothingToSay",
       "en_US": [
         "Yo! You don’t have anything you want\n",
         "to say?\r",
@@ -273,7 +273,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000046_00032",
+      "id": "GlobalTerminal1F_Text_GiveMachinesATry",
       "en_US": [
         "There are several portal machines here\n",
         "at the Global Terminal.\r",
@@ -284,7 +284,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000046_00033",
+      "id": "GlobalTerminal1F_Text_WelcomeToGlobalTerminal",
       "en_US": [
         "Welcome to the Global Terminal!\r",
         "Here, you may join the huge community\n",
@@ -296,14 +296,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000046_00034",
+      "id": "GlobalTerminal1F_Text_ConnectForTrainerRankings",
       "en_US": [
         "Connect to Nintendo Wi-Fi Connection\n",
         "and examine the Trainer Rankings?"
       ]
     },
     {
-      "id": "pl_msg_00000046_00035",
+      "id": "GlobalTerminal1F_Text_ExplainTrainerRankings",
       "en_US": [
         "Trainer Rankings is a team-based\n",
         "ranking system for Trainers around\f",
@@ -321,14 +321,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000046_00036",
+      "id": "GlobalTerminal1F_Text_ConnectForBattleVideoRankings",
       "en_US": [
         "Connect to Nintendo Wi-Fi Connection\n",
         "and examine the Battle Video Rankings?"
       ]
     },
     {
-      "id": "pl_msg_00000046_00037",
+      "id": "GlobalTerminal1F_Text_ExplainBattleVideoRankings",
       "en_US": [
         "Battle Video Rankings is a gallery of\n",
         "popular Battle Videos.\r",
@@ -337,19 +337,19 @@
       ]
     },
     {
-      "id": "pl_msg_00000046_00038",
+      "id": "GlobalTerminal1F_Text_Use",
       "en_US": "USE"
     },
     {
-      "id": "pl_msg_00000046_00039",
+      "id": "GlobalTerminal1F_Text_Info",
       "en_US": "INFO"
     },
     {
-      "id": "pl_msg_00000046_00040",
+      "id": "GlobalTerminal1F_Text_Cancel",
       "en_US": "CANCEL"
     },
     {
-      "id": "pl_msg_00000046_00041",
+      "id": "GlobalTerminal1F_Text_PanelsLeadTo2F3F",
       "en_US": [
         "The green panel leads to the studios\n",
         "for Box Data and Dress-Up Data on 2F.\r",
@@ -358,7 +358,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000046_00042",
+      "id": "GlobalTerminal1F_Text_GiveSomethingIfFashionCase",
       "en_US": [
         "Hi, have you visited the Dress-Up\n",
         "Data Studio?\r",

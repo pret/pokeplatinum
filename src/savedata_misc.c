@@ -98,7 +98,7 @@ void MiscSaveBlock_SetFavoriteMon(MiscSaveBlock *miscSave, int species, int form
     miscSave->favoriteMonIsEgg = isEgg;
 }
 
-void MiscSaveBlock_FavoriteMon(const MiscSaveBlock *miscSave, int *species, int *form, int *isEgg)
+void MiscSaveBlock_GetFavoriteMon(const MiscSaveBlock *miscSave, int *species, int *form, int *isEgg)
 {
     *species = miscSave->favoriteMon;
     *form = miscSave->favoriteMonForm;

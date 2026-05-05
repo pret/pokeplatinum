@@ -4,71 +4,71 @@
 #include "constants/map_object.h"
 
 
-    ScriptEntry _00F0
-    ScriptEntry _00F2
-    ScriptEntry GlobalTerminal1f_GTS_Clerk_Talk
-    ScriptEntry _0374
-    ScriptEntry _0387
-    ScriptEntry _039A
-    ScriptEntry _03AD
-    ScriptEntry _03C0
-    ScriptEntry _03D3
-    ScriptEntry _03E6
-    ScriptEntry _03F9
-    ScriptEntry _006B
-    ScriptEntry _0056
-    ScriptEntry _040C
-    ScriptEntry _0496
-    ScriptEntry _0520
-    ScriptEntry _0533
-    ScriptEntry _0546
-    ScriptEntry _0601
-    ScriptEntry _0652
-    ScriptEntry _074C
+    ScriptEntry GlobalTerminal1F_Unused1
+    ScriptEntry GlobalTerminal1F_Unused2
+    ScriptEntry GlobalTerminal1F_ReceptionistGTS
+    ScriptEntry GlobalTerminal1F_Collector
+    ScriptEntry GlobalTerminal1F_BugCatcher
+    ScriptEntry GlobalTerminal1F_Guitarist
+    ScriptEntry GlobalTerminal1F_ExpertM
+    ScriptEntry GlobalTerminal1F_AceTrainerM
+    ScriptEntry GlobalTerminal1F_Beauty1
+    ScriptEntry GlobalTerminal1F_Picnicker
+    ScriptEntry GlobalTerminal1F_Youngster
+    ScriptEntry GlobalTerminal1F_OnFrameExitGTSRoom
+    ScriptEntry GlobalTerminal1F_OnResume
+    ScriptEntry GlobalTerminal1F_BattleVideoRankingsMachine
+    ScriptEntry GlobalTerminal1F_TrainerRankingsMachine
+    ScriptEntry GlobalTerminal1F_RepectionistEntryNorth
+    ScriptEntry GlobalTerminal1F_RepectionistEntrySouth
+    ScriptEntry GlobalTerminal1F_PokemonBreederF
+    ScriptEntry GlobalTerminal1F_PokemonBreederM
+    ScriptEntry GlobalTerminal1F_Beauty2
+    ScriptEntry GlobalTerminal1F_Sign
     ScriptEntryEnd
 
-_0056:
-    CallIfEq VAR_UNK_0x40D5, 6, _0065
+GlobalTerminal1F_OnResume:
+    CallIfEq VAR_UNK_0x40D5, 6, GlobalTerminal1F_HidePlayer
     End
 
-_0065:
+GlobalTerminal1F_HidePlayer:
     HideObject LOCALID_PLAYER
     Return
 
-_006B:
+GlobalTerminal1F_OnFrameExitGTSRoom:
     LockAll
-    Call GlobalTerminal1f_GTS_WalkOut
+    Call GlobalTerminal1F_ExitGTSRoom
     ReleaseAll
     End
 
-GlobalTerminal1f_GTS_WalkOut:
+GlobalTerminal1F_ExitGTSRoom:
     LoadDoorAnimation 0, 0, 8, 2, ANIMATION_TAG_DOOR_1
-    Call _00C5
+    Call GlobalTerminal1F_PlayDoorOpenAnimation
     ShowObject LOCALID_PLAYER
-    ApplyMovement LOCALID_PLAYER, _00D8
+    ApplyMovement LOCALID_PLAYER, GlobalTerminal1F_Movement_PlayerExitGTSRoom
     WaitMovement
-    Call _00CD
+    Call GlobalTerminal1F_PlayDoorCloseAnimation
     LoadDoorAnimation 0, 0, 8, 4, ANIMATION_TAG_DOOR_1
-    Call _00C5
-    ApplyMovement LOCALID_PLAYER, _00E8
+    Call GlobalTerminal1F_PlayDoorOpenAnimation
+    ApplyMovement LOCALID_PLAYER, GlobalTerminal1F_Movement_PlayerWalkSouth
     WaitMovement
-    Call _00CD
+    Call GlobalTerminal1F_PlayDoorCloseAnimation
     SetVar VAR_UNK_0x40D5, 0
     Return
 
-_00C5:
+GlobalTerminal1F_PlayDoorOpenAnimation:
     PlayDoorOpenAnimation ANIMATION_TAG_DOOR_1
     WaitForAnimation ANIMATION_TAG_DOOR_1
     Return
 
-_00CD:
+GlobalTerminal1F_PlayDoorCloseAnimation:
     PlayDoorCloseAnimation ANIMATION_TAG_DOOR_1
     WaitForAnimation ANIMATION_TAG_DOOR_1
     UnloadAnimation ANIMATION_TAG_DOOR_1
     Return
 
     .balign 4, 0
-_00D8:
+GlobalTerminal1F_Movement_PlayerExitGTSRoom:
     WalkNormalSouth
     EndMovement
 
@@ -77,460 +77,460 @@ GlobalTerminal1F_UnusedMovement:
     EndMovement
 
     .balign 4, 0
-_00E8:
+GlobalTerminal1F_Movement_PlayerWalkSouth:
     WalkNormalSouth 2
     EndMovement
 
-_00F0:
+GlobalTerminal1F_Unused1:
     End
 
-_00F2:
+GlobalTerminal1F_Unused2:
     End
 
-GlobalTerminal1f_GTS_Clerk_Talk:
+GlobalTerminal1F_ReceptionistGTS:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     CheckPartyHasBadEgg VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, GlobalTerminal1f_GTS_Exit_BadEgg
-    GoToIfSet FLAG_GTS_INTRO_COMPLETED, GlobalTerminal1f_GTS_Clerk_ShortIntro
-    SetFlag FLAG_GTS_INTRO_COMPLETED
-    Message pl_msg_00000046_00000
-    GoTo GlobalTerminal1f_GTS_Clerk_Menu
+    GoToIfEq VAR_RESULT, TRUE, GlobalTerminal1F_HasBadEgg
+    GoToIfSet FLAG_TALKED_TO_GLOBAL_TERMINAL_1F_RECEPTIONIST_GTS, GlobalTerminal1F_AskDoGlobalTrade
+    SetFlag FLAG_TALKED_TO_GLOBAL_TERMINAL_1F_RECEPTIONIST_GTS
+    Message GlobalTerminal1F_Text_ThisIsGTSDoGlobalTrade
+    GoTo GlobalTerminal1F_GTSMenu
     End
 
-GlobalTerminal1f_GTS_Clerk_Menu:
+GlobalTerminal1F_GTSMenu:
     InitGlobalTextMenu 1, 1, 0, VAR_RESULT
-    AddMenuEntryImm pl_msg_00000361_00129, 0
-    AddMenuEntryImm pl_msg_00000361_00128, 1
-    AddMenuEntryImm pl_msg_00000361_00130, 2
+    AddMenuEntryImm MenuEntries_Text_GTS_Trade, 0
+    AddMenuEntryImm MenuEntries_Text_GTS_Info, 1
+    AddMenuEntryImm MenuEntries_Text_GTS_Exit, 2
     ShowMenu
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, 0, GlobalTerminal1f_CheckPartyCount
-    GoToIfEq VAR_0x8008, 1, _0172
-    GoToIfEq VAR_0x8008, 2, GlobalTerminal1f_GTS_Clerk_EndTalk
-    GoTo GlobalTerminal1f_GTS_Clerk_EndTalk
+    GoToIfEq VAR_0x8008, 0, GlobalTerminal1F_CheckCanTrade
+    GoToIfEq VAR_0x8008, 1, GlobalTerminal1F_ExplainGTS
+    GoToIfEq VAR_0x8008, 2, GlobalTerminal1F_ReceptionistGTSEnd
+    GoTo GlobalTerminal1F_ReceptionistGTSEnd
     End
 
-_0172:
-    Message pl_msg_00000046_00002
-    GoTo _017D
+GlobalTerminal1F_ExplainGTS:
+    Message GlobalTerminal1F_Text_ExplainGTS
+    GoTo GlobalTerminal1F_MoreInfoMenu
     End
 
-_017D:
+GlobalTerminal1F_MoreInfoMenu:
     InitGlobalTextMenu 1, 1, 0, VAR_RESULT
-    AddMenuEntryImm pl_msg_00000361_00131, 0
-    AddMenuEntryImm pl_msg_00000361_00132, 1
-    AddMenuEntryImm pl_msg_00000361_00133, 2
+    AddMenuEntryImm MenuEntries_Text_GTS_OfferPokemon, 0
+    AddMenuEntryImm MenuEntries_Text_GTS_SeekPokemon, 1
+    AddMenuEntryImm MenuEntries_Text_GTS_Understood, 2
     ShowMenu
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, 0, _01C8
-    GoToIfEq VAR_0x8008, 1, _01D3
-    GoToIfEq VAR_0x8008, 2, _01DE
-    GoTo _01DE
+    GoToIfEq VAR_0x8008, 0, GlobalTerminal1F_ExplainOfferPokemon
+    GoToIfEq VAR_0x8008, 1, GlobalTerminal1F_ExplainSeekPokemon
+    GoToIfEq VAR_0x8008, 2, GlobalTerminal1F_AskMakeGlobalTrade
+    GoTo GlobalTerminal1F_AskMakeGlobalTrade
     End
 
-_01C8:
-    Message pl_msg_00000046_00003
-    GoTo _017D
+GlobalTerminal1F_ExplainOfferPokemon:
+    Message GlobalTerminal1F_Text_ExplainOfferPokemon
+    GoTo GlobalTerminal1F_MoreInfoMenu
     End
 
-_01D3:
-    Message pl_msg_00000046_00004
-    GoTo _017D
+GlobalTerminal1F_ExplainSeekPokemon:
+    Message GlobalTerminal1F_Text_ExplainSeekPokemon
+    GoTo GlobalTerminal1F_MoreInfoMenu
     End
 
-_01DE:
-    Message pl_msg_00000046_00005
-    GoTo GlobalTerminal1f_GTS_Clerk_Menu
+GlobalTerminal1F_AskMakeGlobalTrade:
+    Message GlobalTerminal1F_Text_MakeGlobalTrade
+    GoTo GlobalTerminal1F_GTSMenu
     End
 
-GlobalTerminal1f_CheckPartyCount:
+GlobalTerminal1F_CheckCanTrade:
     CountPartyNonEggs VAR_RESULT
-    GoToIfLt VAR_RESULT, 2, GlobalTerminal1f_GTS_Exit_NotEnoughPokemon
-    GoTo GlobalTerminal1f_CheckFreePartySlot
+    GoToIfLt VAR_RESULT, 2, GlobalTerminal1F_MustHaveTwoPokemon
+    GoTo GlobalTerminal1F_CheckFreePartySlot
     End
 
-GlobalTerminal1f_GTS_Exit_NotEnoughPokemon:
-    Message pl_msg_00000046_00009
+GlobalTerminal1F_MustHaveTwoPokemon:
+    Message GlobalTerminal1F_Text_MustHaveTwoPokemon
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-GlobalTerminal1f_BeginTrade:
+GlobalTerminal1F_BeginTrade:
     Common_SaveGame
     SetVar VAR_RESULT, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_RESULT, 0, GlobalTerminal1f_GTS_Clerk_EndTalk
+    GoToIfEq VAR_RESULT, 0, GlobalTerminal1F_ReceptionistGTSEnd
     HealParty
     SetVar VAR_UNK_0x40D5, 6
-    Message pl_msg_00000046_00007
+    Message GlobalTerminal1F_Text_EnjoyVisitToGTS
     CloseMessage
-    ApplyMovement LOCALID_PLAYER, _0344
+    ApplyMovement LOCALID_PLAYER, GlobalTerminal1F_Movement_PlayerWalkToGate
     WaitMovement
     LoadDoorAnimation 0, 0, 8, 4, ANIMATION_TAG_DOOR_1
-    Call _00C5
-    ApplyMovement LOCALID_PLAYER, _0358
+    Call GlobalTerminal1F_PlayDoorOpenAnimation
+    ApplyMovement LOCALID_PLAYER, GlobalTerminal1F_Movement_PlayerWalkToDoor
     WaitMovement
-    Call _00CD
+    Call GlobalTerminal1F_PlayDoorCloseAnimation
     LoadDoorAnimation 0, 0, 8, 2, ANIMATION_TAG_DOOR_1
-    Call _00C5
-    ApplyMovement LOCALID_PLAYER, _0350
+    Call GlobalTerminal1F_PlayDoorOpenAnimation
+    ApplyMovement LOCALID_PLAYER, GlobalTerminal1F_Movement_PlayerEnterGTSRoom
     WaitMovement
     HideObject LOCALID_PLAYER
-    ApplyMovement LOCALID_PLAYER, _0360
+    ApplyMovement LOCALID_PLAYER, GlobalTerminal1F_Movement_PlayerFaceSouth
     WaitMovement
-    Call _00CD
+    Call GlobalTerminal1F_PlayDoorCloseAnimation
     FadeScreenOut
     WaitFadeScreen
     ScrCmd_2B2
     ScrCmd_0B3 VAR_RESULT
     SetVar VAR_0x8004, VAR_RESULT
     TryStartGTSApp VAR_0x8004, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, GlobalTerminal1f_GTS_Exit
+    GoToIfEq VAR_RESULT, 0, GlobalTerminal1F_ExitAndEnd
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
-    Call GlobalTerminal1f_GTS_WalkOut
+    Call GlobalTerminal1F_ExitGTSRoom
     ReleaseAll
     End
 
-GlobalTerminal1f_GTS_Exit:
+GlobalTerminal1F_ExitAndEnd:
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
-    Call GlobalTerminal1f_GTS_WalkOut
-    GoTo GlobalTerminal1f_GTS_Clerk_EndTalk
+    Call GlobalTerminal1F_ExitGTSRoom
+    GoTo GlobalTerminal1F_ReceptionistGTSEnd
     End
 
-GlobalTerminal1f_GTS_Clerk_EndTalk:
+GlobalTerminal1F_ReceptionistGTSEnd:
     SetVar VAR_UNK_0x40D5, 0
-    Message pl_msg_00000046_00006
+    Message GlobalTerminal1F_Text_PleaseVisitAgain
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-GlobalTerminal1f_GTS_Clerk_ShortIntro:
-    Message pl_msg_00000046_00001
-    GoTo GlobalTerminal1f_GTS_Clerk_Menu
+GlobalTerminal1F_AskDoGlobalTrade:
+    Message GlobalTerminal1F_Text_DoGlobalTrade
+    GoTo GlobalTerminal1F_GTSMenu
     End
 
-GlobalTerminal1f_CheckFreePartySlot:
+GlobalTerminal1F_CheckFreePartySlot:
     GetPartyCount VAR_RESULT
-    GoToIfEq VAR_RESULT, 6, GlobalTerminal1f_CheckFreeBoxSlot
-    GoTo GlobalTerminal1f_BeginTrade
+    GoToIfEq VAR_RESULT, MAX_PARTY_SIZE, GlobalTerminal1F_CheckFreeBoxSlot
+    GoTo GlobalTerminal1F_BeginTrade
     End
 
-GlobalTerminal1f_CheckFreeBoxSlot:
+GlobalTerminal1F_CheckFreeBoxSlot:
     GetPCBoxesFreeSlotCount VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, GlobalTerminal1f_GTS_Exit_NoSpace
-    GoTo GlobalTerminal1f_BeginTrade
+    GoToIfEq VAR_RESULT, 0, GlobalTerminal1F_BoxesAreFull
+    GoTo GlobalTerminal1F_BeginTrade
     End
 
-GlobalTerminal1f_GTS_Exit_NoSpace:
-    Message pl_msg_00000046_00008
+GlobalTerminal1F_BoxesAreFull:
+    Message GlobalTerminal1F_Text_BoxesAreFull
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
     .balign 4, 0
-_0344:
+GlobalTerminal1F_Movement_PlayerWalkToGate:
     WalkNormalEast
     WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
-_0350:
+GlobalTerminal1F_Movement_PlayerEnterGTSRoom:
     WalkNormalNorth
     EndMovement
 
     .balign 4, 0
-_0358:
+GlobalTerminal1F_Movement_PlayerWalkToDoor:
     WalkNormalNorth 2
     EndMovement
 
     .balign 4, 0
-_0360:
+GlobalTerminal1F_Movement_PlayerFaceSouth:
     FaceSouth
     EndMovement
 
-GlobalTerminal1f_GTS_Exit_BadEgg:
+GlobalTerminal1F_HasBadEgg:
     CallCommonScript 0x2338 @ CommonScript_HasBadEgg; outputs pl_msg_00000221_00127
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0374:
-    NPCMessage pl_msg_00000046_00010
+GlobalTerminal1F_Collector:
+    NPCMessage GlobalTerminal1F_Text_BigGlobeEh
     End
 
-_0387:
-    NPCMessage pl_msg_00000046_00011
+GlobalTerminal1F_BugCatcher:
+    NPCMessage GlobalTerminal1F_Text_LocationIsRecorded
     End
 
-_039A:
-    NPCMessage pl_msg_00000046_00012
+GlobalTerminal1F_Guitarist:
+    NPCMessage GlobalTerminal1F_Text_LeavePokemonToTrade
     End
 
-_03AD:
-    NPCMessage pl_msg_00000046_00013
+GlobalTerminal1F_ExpertM:
+    NPCMessage GlobalTerminal1F_Text_TradeAroundTheWorld
     End
 
-_03C0:
-    NPCMessage pl_msg_00000046_00014
+GlobalTerminal1F_AceTrainerM:
+    NPCMessage GlobalTerminal1F_Text_RegisterWhereYouLive
     End
 
-_03D3:
-    NPCMessage pl_msg_00000046_00015
+GlobalTerminal1F_Beauty1:
+    NPCMessage GlobalTerminal1F_Text_IsWFCEasyToUse
     End
 
-_03E6:
-    NPCMessage pl_msg_00000046_00016
+GlobalTerminal1F_Picnicker:
+    NPCMessage GlobalTerminal1F_Text_IllDoIt
     End
 
-_03F9:
-    NPCMessage pl_msg_00000046_00017
+GlobalTerminal1F_Youngster:
+    NPCMessage GlobalTerminal1F_Text_GTSHasThreeFloors
     End
 
-_040C:
+GlobalTerminal1F_BattleVideoRankingsMachine:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     SetVar VAR_0x8005, 3
-    GoTo _0420
+    GoTo GlobalTerminal1F_BattleVideoRankingsMenu
     End
 
-_0420:
-    Message pl_msg_00000046_00036
+GlobalTerminal1F_BattleVideoRankingsMenu:
+    Message GlobalTerminal1F_Text_ConnectForBattleVideoRankings
     InitLocalTextMenu 31, 11, 0, VAR_RESULT
     SetMenuXOriginToRight
-    AddMenuEntryImm pl_msg_00000361_00038, 0
-    AddMenuEntryImm pl_msg_00000361_00039, 1
-    AddMenuEntryImm pl_msg_00000361_00040, 2
+    AddMenuEntryImm GlobalTerminal1F_Text_Use, 0
+    AddMenuEntryImm GlobalTerminal1F_Text_Info, 1
+    AddMenuEntryImm GlobalTerminal1F_Text_Cancel, 2
     ShowMenu
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, 0, _046A
-    GoToIfEq VAR_0x8008, 1, _048B
-    GoTo _0464
+    GoToIfEq VAR_0x8008, 0, GlobalTerminal1F_UseBattleVideoRankingsMachine
+    GoToIfEq VAR_0x8008, 1, GlobalTerminal1F_ExplainBattleVideoRankings
+    GoTo GlobalTerminal1F_BattleVideoRankingsMachineEnd
     End
 
-_0464:
+GlobalTerminal1F_BattleVideoRankingsMachineEnd:
     CloseMessage
     ReleaseAll
     End
 
-_046A:
+GlobalTerminal1F_UseBattleVideoRankingsMachine:
     Common_SaveGame
     SetVar VAR_RESULT, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_RESULT, 0, _0464
+    GoToIfEq VAR_RESULT, 0, GlobalTerminal1F_BattleVideoRankingsMachineEnd
     CloseMessage
     CallCommonScript 0x802
     ReleaseAll
     End
 
-_048B:
-    Message pl_msg_00000046_00037
-    GoTo _0420
+GlobalTerminal1F_ExplainBattleVideoRankings:
+    Message GlobalTerminal1F_Text_ExplainBattleVideoRankings
+    GoTo GlobalTerminal1F_BattleVideoRankingsMenu
     End
 
-_0496:
+GlobalTerminal1F_TrainerRankingsMachine:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     SetVar VAR_0x8005, 4
-    GoTo _04AA
+    GoTo GlobalTerminal1F_TrainerRankingsMenu
     End
 
-_04AA:
-    Message pl_msg_00000046_00034
+GlobalTerminal1F_TrainerRankingsMenu:
+    Message GlobalTerminal1F_Text_ConnectForTrainerRankings
     InitLocalTextMenu 31, 11, 0, VAR_RESULT
     SetMenuXOriginToRight
-    AddMenuEntryImm pl_msg_00000361_00038, 0
-    AddMenuEntryImm pl_msg_00000361_00039, 1
-    AddMenuEntryImm pl_msg_00000361_00040, 2
+    AddMenuEntryImm GlobalTerminal1F_Text_Use, 0
+    AddMenuEntryImm GlobalTerminal1F_Text_Info, 1
+    AddMenuEntryImm GlobalTerminal1F_Text_Cancel, 2
     ShowMenu
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, 0, _04F4
-    GoToIfEq VAR_0x8008, 1, _0515
-    GoTo _04EE
+    GoToIfEq VAR_0x8008, 0, GlobalTerminal1F_UseTrainerRankingsMachine
+    GoToIfEq VAR_0x8008, 1, GlobalTerminal1F_ExplainTrainerRankings
+    GoTo GlobalTerminal1F_TrainerRankingsMachineEnd
     End
 
-_04EE:
+GlobalTerminal1F_TrainerRankingsMachineEnd:
     CloseMessage
     ReleaseAll
     End
 
-_04F4:
+GlobalTerminal1F_UseTrainerRankingsMachine:
     Common_SaveGame
     SetVar VAR_RESULT, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_RESULT, 0, _04EE
+    GoToIfEq VAR_RESULT, 0, GlobalTerminal1F_TrainerRankingsMachineEnd
     CloseMessage
     CallCommonScript 0x802
     ReleaseAll
     End
 
-_0515:
-    Message pl_msg_00000046_00035
-    GoTo _04AA
+GlobalTerminal1F_ExplainTrainerRankings:
+    Message GlobalTerminal1F_Text_ExplainTrainerRankings
+    GoTo GlobalTerminal1F_TrainerRankingsMenu
     End
 
-_0520:
-    NPCMessage pl_msg_00000046_00032
+GlobalTerminal1F_RepectionistEntryNorth:
+    NPCMessage GlobalTerminal1F_Text_GiveMachinesATry
     End
 
-_0533:
-    NPCMessage pl_msg_00000046_00033
+GlobalTerminal1F_RepectionistEntrySouth:
+    NPCMessage GlobalTerminal1F_Text_WelcomeToGlobalTerminal
     End
 
-_0546:
+GlobalTerminal1F_PokemonBreederF:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     CheckPartyHasBadEgg VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _05A0
+    GoToIfEq VAR_RESULT, TRUE, GlobalTerminal1F_WantToKnowFavorites
     SetVar VAR_0x8000, 0
     GetPartyMonSpecies VAR_0x8000, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _05CB
+    GoToIfEq VAR_RESULT, SPECIES_NONE, GlobalTerminal1F_AskFavoriteIsEgg
     BufferPartyMonSpecies 0, 0
-    Message pl_msg_00000046_00018
+    Message GlobalTerminal1F_Text_FavoriteIsPokemon
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _05AB
-    GoToIfEq VAR_RESULT, MENU_NO, _05B8
+    GoToIfEq VAR_RESULT, MENU_YES, GlobalTerminal1F_SetFavoriteMon
+    GoToIfEq VAR_RESULT, MENU_NO, GlobalTerminal1F_FavoriteReallyIsPokemon
     End
 
-_05A0:
-    Message pl_msg_00000046_00023
-    GoTo _05F9
+GlobalTerminal1F_WantToKnowFavorites:
+    Message GlobalTerminal1F_Text_WantToKnowFavorites
+    GoTo GlobalTerminal1F_PokemonBreederFEnd
     End
 
-_05AB:
-    ScrCmd_300
-    Message pl_msg_00000046_00020
-    GoTo _05F9
+GlobalTerminal1F_SetFavoriteMon:
+    SetFavoriteMon
+    Message GlobalTerminal1F_Text_IWasRight
+    GoTo GlobalTerminal1F_PokemonBreederFEnd
     End
 
-_05B8:
+GlobalTerminal1F_FavoriteReallyIsPokemon:
     BufferPartyMonSpecies 0, 0
-    Message pl_msg_00000046_00021
-    GoTo _05F9
+    Message GlobalTerminal1F_Text_FavoriteReallyIsPokemon
+    GoTo GlobalTerminal1F_PokemonBreederFEnd
     End
 
 GlobalTerminal1F_Unused:
-    Message 18
-_05CB:
-    Message pl_msg_00000046_00019
+    Message GlobalTerminal1F_Text_FavoriteIsPokemon
+GlobalTerminal1F_AskFavoriteIsEgg:
+    Message GlobalTerminal1F_Text_FavoriteIsEgg
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _05AB
-    GoToIfEq VAR_RESULT, MENU_NO, _05EE
+    GoToIfEq VAR_RESULT, MENU_YES, GlobalTerminal1F_SetFavoriteMon
+    GoToIfEq VAR_RESULT, MENU_NO, GlobalTerminal1F_FavoriteReallyIsEgg
     End
 
-_05EE:
-    Message pl_msg_00000046_00022
-    GoTo _05F9
+GlobalTerminal1F_FavoriteReallyIsEgg:
+    Message GlobalTerminal1F_Text_FavoriteReallyIsEgg
+    GoTo GlobalTerminal1F_PokemonBreederFEnd
     End
 
-_05F9:
+GlobalTerminal1F_PokemonBreederFEnd:
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0601:
+GlobalTerminal1F_PokemonBreederM:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message pl_msg_00000046_00029
+    Message GlobalTerminal1F_Text_TellMeYo
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _0647
+    GoToIfEq VAR_RESULT, MENU_NO, GlobalTerminal1F_NothingToSay
     FadeScreenOut
     WaitFadeScreen
     CloseMessage
     ScrCmd_30E VAR_0x8004
-    GoToIfEq VAR_0x8004, 0, _0647
-    Message pl_msg_00000046_00030
+    GoToIfEq VAR_0x8004, 0, GlobalTerminal1F_NothingToSay
+    Message GlobalTerminal1F_Text_IKnowAll
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0647:
-    Message pl_msg_00000046_00031
+GlobalTerminal1F_NothingToSay:
+    Message GlobalTerminal1F_Text_NothingToSay
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0652:
+GlobalTerminal1F_Beauty2:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     CheckItem ITEM_FASHION_CASE, 1, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _0696
-    GoToIfSet FLAG_UNK_0x0AC3, _06FD
-    GoToIfSet FLAG_UNK_0x00CF, _06F2
-    Message pl_msg_00000046_00024
-    SetVar VAR_0x8004, 1
-    GoTo _06A1
+    GoToIfEq VAR_RESULT, FALSE, GlobalTerminal1F_GiveSomethingIfFashionCase
+    GoToIfSet FLAG_RECEIVED_DAILY_GLOBAL_TERMINAL_1F_BACKDROP, GlobalTerminal1F_GoToFittingRoom
+    GoToIfSet FLAG_RECEIVED_ALL_GLOBAL_TERMINAL_1F_BACKDROPS, GlobalTerminal1F_ShareDressUpData
+    Message GlobalTerminal1F_Text_IHaveBackdropForYou
+    SetVar VAR_0x8004, BACKDROP_RANCH
+    GoTo GlobalTerminal1F_TryGiveBackDrop
     End
 
-_0696:
-    Message pl_msg_00000046_00042
-    GoTo _0708
+GlobalTerminal1F_GiveSomethingIfFashionCase:
+    Message GlobalTerminal1F_Text_GiveSomethingIfFashionCase
+    GoTo GlobalTerminal1F_Beauty2End
     End
 
-_06A1:
+GlobalTerminal1F_TryGiveBackDrop:
     CheckBackdrop VAR_0x8004, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _06D3
+    GoToIfEq VAR_RESULT, FALSE, GlobalTerminal1F_GiveBackdrop
     AddVar VAR_0x8004, 1
-    GoToIfLe VAR_0x8004, 13, _06A1
-    SetFlag FLAG_UNK_0x00CF
-    GoTo _06F2
+    GoToIfLe VAR_0x8004, BACKDROP_GINGERBREAD_ROOM, GlobalTerminal1F_TryGiveBackDrop
+    SetFlag FLAG_RECEIVED_ALL_GLOBAL_TERMINAL_1F_BACKDROPS
+    GoTo GlobalTerminal1F_ShareDressUpData
     End
 
-_06D3:
-    SetVar VAR_0x8005, 1
+GlobalTerminal1F_GiveBackdrop:
+    SetVar VAR_0x8005, BACKDROP_RANCH
     Common_ObtainContestBackdrop
-    Message pl_msg_00000046_00028
-    Call _0710
-    SetFlag FLAG_UNK_0x0AC3
-    GoTo _0708
+    Message GlobalTerminal1F_Text_ObtainedBackdrop
+    Call GlobalTerminal1F_CheckReceivedAllBackdrops
+    SetFlag FLAG_RECEIVED_DAILY_GLOBAL_TERMINAL_1F_BACKDROP
+    GoTo GlobalTerminal1F_Beauty2End
     End
 
-_06F2:
-    Message pl_msg_00000046_00027
-    GoTo _0708
+GlobalTerminal1F_ShareDressUpData:
+    Message GlobalTerminal1F_Text_ShareDressUpData
+    GoTo GlobalTerminal1F_Beauty2End
     End
 
-_06FD:
-    Message pl_msg_00000046_00026
-    GoTo _0708
+GlobalTerminal1F_GoToFittingRoom:
+    Message GlobalTerminal1F_Text_GoToFittingRoom
+    GoTo GlobalTerminal1F_Beauty2End
     End
 
-_0708:
+GlobalTerminal1F_Beauty2End:
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0710:
-    SetVar VAR_0x8004, 1
-    GoTo _071E
+GlobalTerminal1F_CheckReceivedAllBackdrops:
+    SetVar VAR_0x8004, BACKDROP_RANCH
+    GoTo GlobalTerminal1F_CheckReceivedBackdrop
     End
 
-_071E:
+GlobalTerminal1F_CheckReceivedBackdrop:
     CheckBackdrop VAR_0x8004, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _074A
+    GoToIfEq VAR_RESULT, FALSE, GlobalTerminal1F_DidntReceivAllBackdrops
     AddVar VAR_0x8004, 1
-    GoToIfLe VAR_0x8004, 13, _071E
-    SetFlag FLAG_UNK_0x00CF
+    GoToIfLe VAR_0x8004, BACKDROP_GINGERBREAD_ROOM, GlobalTerminal1F_CheckReceivedBackdrop
+    SetFlag FLAG_RECEIVED_ALL_GLOBAL_TERMINAL_1F_BACKDROPS
     Return
 
-_074A:
+GlobalTerminal1F_DidntReceivAllBackdrops:
     Return
 
-_074C:
-    EventMessage pl_msg_00000046_00041
+GlobalTerminal1F_Sign:
+    EventMessage GlobalTerminal1F_Text_PanelsLeadTo2F3F
     End
 
     .balign 4, 0

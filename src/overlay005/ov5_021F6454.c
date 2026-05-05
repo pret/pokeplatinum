@@ -695,37 +695,36 @@ static void CalcHiddenPowerTypeAndPower(Pokemon *mon, int *outPower, int *outTyp
     }
 }
 
-BOOL ScrCmd_300(ScriptContext *param0)
+BOOL ScrCmd_SetFavoriteMon(ScriptContext *ctx)
 {
-    MiscSaveBlock *v0;
-    Pokemon *v1;
-    FieldSystem *fieldSystem = param0->fieldSystem;
+    FieldSystem *fieldSystem = ctx->fieldSystem;
 
-    v1 = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), 0);
-    v0 = SaveData_MiscSaveBlock(fieldSystem->saveData);
+    Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), 0);
+    MiscSaveBlock *miscSave = SaveData_MiscSaveBlock(fieldSystem->saveData);
 
-    MiscSaveBlock_SetFavoriteMon(v0, Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL), Pokemon_GetValue(v1, MON_DATA_FORM, NULL), Pokemon_GetValue(v1, MON_DATA_IS_EGG, NULL));
-    return 0;
+    MiscSaveBlock_SetFavoriteMon(miscSave,
+        Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL),
+        Pokemon_GetValue(mon, MON_DATA_FORM, NULL),
+        Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL));
+    return FALSE;
 }
 
-BOOL ScrCmd_301(ScriptContext *param0)
+BOOL ScrCmd_GetFavoriteMon(ScriptContext *ctx)
 {
-    int v0, v1, v2;
-    MiscSaveBlock *v3;
-    Pokemon *v4;
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    u16 *v6 = ScriptContext_GetVarPointer(param0);
-    u16 *v7 = ScriptContext_GetVarPointer(param0);
-    u16 *v8 = ScriptContext_GetVarPointer(param0);
+    int species, form, isEgg;
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    u16 *destVarSpecies = ScriptContext_GetVarPointer(ctx);
+    u16 *destVarForm = ScriptContext_GetVarPointer(ctx);
+    u16 *destVarIsEgg = ScriptContext_GetVarPointer(ctx);
 
-    v3 = SaveData_MiscSaveBlock(fieldSystem->saveData);
-    MiscSaveBlock_FavoriteMon(v3, &v0, &v1, &v2);
+    MiscSaveBlock *miscSave = SaveData_MiscSaveBlock(fieldSystem->saveData);
+    MiscSaveBlock_GetFavoriteMon(miscSave, &species, &form, &isEgg);
 
-    *v6 = v0;
-    *v7 = v1;
-    *v8 = v2;
+    *destVarSpecies = species;
+    *destVarForm = form;
+    *destVarIsEgg = isEgg;
 
-    return 0;
+    return FALSE;
 }
 
 BOOL ScrCmd_GetPartyMonForm2(ScriptContext *ctx)
