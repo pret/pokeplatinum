@@ -65,6 +65,6 @@ TrainerCase *TrainerCase_New(u16 heapID);
 void TrainerCase_Free(TrainerCase *trainerCase);
 u8 TrainerCase_CalculateTrainerCardLevel(FieldSystem *fieldSystem);
 void TrainerCase_SaveBadgePolish(FieldSystem *fieldSystem, const TrainerCase *trainerCase);
-void sub_02072204(FieldSystem *fieldSystem);
+void TrainerCase_OpenUnionRoomCase(FieldSystem *fieldSystem);
 
 #endif // POKEPLATINUM_TRAINER_CASE_H

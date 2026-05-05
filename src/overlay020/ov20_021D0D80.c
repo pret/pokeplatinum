@@ -259,9 +259,9 @@ static UnkStruct_ov20_021D16E8 *ov20_021D0EC8(ApplicationManager *appMan)
 
 static void ov20_021D0F64(UnkStruct_ov20_021D0F64 *param0, Sentence *param1)
 {
-    param0->unk_00 = sub_02014C80(param1);
+    param0->unk_00 = Sentence_GetType(param1);
     param0->unk_03 = sub_02014CD4(param0->unk_00);
-    param0->unk_02 = sub_02014C84(param1);
+    param0->unk_02 = Sentence_GetID(param1);
 }
 
 static void ov20_021D0F88(UnkStruct_ov20_021D0F64 *param0, Sentence *param1)
@@ -1295,7 +1295,7 @@ u32 ov20_021D1F94(const UnkStruct_ov20_021D16E8 *param0)
 
 u32 ov20_021D1F9C(const UnkStruct_ov20_021D16E8 *param0)
 {
-    return sub_02014C80(&param0->unk_08);
+    return Sentence_GetType(&param0->unk_08);
 }
 
 u16 ov20_021D1FA8(const UnkStruct_ov20_021D16E8 *param0, int param1)

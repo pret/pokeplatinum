@@ -385,7 +385,7 @@ static BOOL ScrCmd_1D8(ScriptContext *ctx);
 static BOOL ScrCmd_1D9(ScriptContext *ctx);
 static BOOL ScrCmd_OpenPokemonStorage(ScriptContext *ctx);
 static BOOL ScrCmd_0AC(ScriptContext *ctx);
-static BOOL ScrCmd_0AD(ScriptContext *ctx);
+static BOOL ScrCmd_OpenUnionRoomTrainerCase(ScriptContext *ctx);
 static BOOL ScrCmd_0AE(ScriptContext *ctx);
 static BOOL ScrCmd_0AF(ScriptContext *ctx);
 static BOOL ScrCmd_ClearGame(ScriptContext *ctx);
@@ -457,15 +457,15 @@ static BOOL ScrCmd_135(ScriptContext *ctx);
 static BOOL sub_02043678(ScriptContext *ctx);
 static BOOL ScrCmd_ClearReceivedTempDataAllPlayers(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_137(ScriptContext *ctx);
-static BOOL ScrCmd_138(ScriptContext *ctx);
+static BOOL ScrCmd_GetUnionRoomTealaMessage(ScriptContext *ctx);
 static BOOL ScrCmd_139(ScriptContext *ctx);
 static BOOL ScrCmd_13B(ScriptContext *ctx);
 static BOOL ScrCmd_13A(ScriptContext *ctx);
-static BOOL ScrCmd_13C(ScriptContext *ctx);
-static BOOL ScrCmd_13D(ScriptContext *ctx);
+static BOOL ScrCmd_DoUnionRoomGreeting(ScriptContext *ctx);
+static BOOL ScrCmd_InitCommFieldCmd(ScriptContext *ctx);
 static BOOL ScrCmd_13E(ScriptContext *ctx);
 static BOOL sub_020437E8(ScriptContext *ctx);
-static BOOL ScrCmd_13F(ScriptContext *ctx);
+static BOOL ScrCmd_GetUnionRoomMessage(ScriptContext *ctx);
 static BOOL ScrCmd_140(ScriptContext *ctx);
 static BOOL ScrCmd_146(ScriptContext *ctx);
 static BOOL ScrCmd_141(ScriptContext *ctx);
@@ -685,7 +685,7 @@ static BOOL ScrCmd_CheckItemIsPlate(ScriptContext *ctx);
 static BOOL ScrCmd_CheckIsMysteryGiftPhrase(ScriptContext *ctx);
 static BOOL ScrCmd_2AB(ScriptContext *ctx);
 static BOOL ScrCmd_UnlockMysteryGift(ScriptContext *ctx);
-static BOOL ScrCmd_2AF(ScriptContext *ctx);
+static BOOL ScrCmd_GetTrainerCasePlayerMessage(ScriptContext *ctx);
 static BOOL ScrCmd_2B0(ScriptContext *ctx);
 static BOOL ScrCmd_DestroyNetworkIcon(ScriptContext *ctx);
 static BOOL ScrCmd_2B2(ScriptContext *ctx);
@@ -704,7 +704,7 @@ static BOOL ScrCmd_SetMenuXOriginSide(ScriptContext *ctx);
 static BOOL ScrCmd_SetMenuYOriginSide(ScriptContext *ctx);
 static BOOL ScrCmd_2C4(ScriptContext *ctx);
 static BOOL ScrCmd_2C6(ScriptContext *ctx);
-static BOOL ScrCmd_2C7(ScriptContext *ctx);
+static BOOL ScrCmd_IsCommGameCodePlatinum(ScriptContext *ctx);
 static BOOL ScrCmd_AdvanceEternaGymClock(ScriptContext *ctx);
 static BOOL ScrCmd_2CD(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_2CE(ScriptContext *ctx);
@@ -3312,9 +3312,9 @@ static BOOL ScrCmd_0AC(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_0AD(ScriptContext *ctx)
+static BOOL ScrCmd_OpenUnionRoomTrainerCase(ScriptContext *ctx)
 {
-    sub_02072204(ctx->fieldSystem);
+    TrainerCase_OpenUnionRoomCase(ctx->fieldSystem);
     return TRUE;
 }
 
@@ -3489,15 +3489,15 @@ static BOOL ScrCmd_2C6(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_2C7(ScriptContext *ctx)
+static BOOL ScrCmd_IsCommGameCodePlatinum(ScriptContext *ctx)
 {
-    u16 *v0 = ScriptContext_GetVarPointer(ctx);
-    u8 v1 = sub_0205BE38();
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    u8 gameCode = UnionRoom_GetCommInfoGameCode();
 
-    if (v1 == TrainerInfo_DPGameCode()) {
-        *v0 = 0;
+    if (gameCode == TrainerInfo_DPGameCode()) {
+        *destVar = FALSE;
     } else {
-        *v0 = 1;
+        *destVar = TRUE;
     }
 
     return FALSE;
@@ -4205,17 +4205,17 @@ static BOOL ScrCmd_Unused_137(ScriptContext *ctx)
     StringTemplate **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u16 *v2 = ScriptContext_GetVarPointer(ctx);
 
-    *v2 = sub_0205BC50(*v1);
+    *v2 = UnionRoom_GetTrainerCasePlayerMessage(*v1);
     return FALSE;
 }
 
-static BOOL ScrCmd_138(ScriptContext *ctx)
+static BOOL ScrCmd_GetUnionRoomTealaMessage(ScriptContext *ctx)
 {
-    u16 *v0 = ScriptContext_GetVarPointer(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    StringTemplate **v2 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
+    StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
 
-    *v0 = sub_0205BF44(ctx->fieldSystem->unk_7C, *v2);
+    *destVar = UnionRoom_GetTealaMessage(ctx->fieldSystem->unk_7C, *strTemplate);
     return FALSE;
 }
 
@@ -4236,26 +4236,26 @@ static BOOL ScrCmd_139(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_13C(ScriptContext *ctx)
+static BOOL ScrCmd_DoUnionRoomGreeting(ScriptContext *ctx)
 {
-    MapObject **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_TARGET_OBJECT);
-    StringTemplate **v1 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
+    MapObject **mapObj = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_TARGET_OBJECT);
+    StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u16 v2 = ScriptContext_ReadHalfWord(ctx);
-    TrainerInfo *v3 = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(ctx->fieldSystem));
+    TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(ctx->fieldSystem));
     UnkStruct_02014EC4 *v4 = sub_02014EC4(FieldSystem_GetSaveData(ctx->fieldSystem));
     u16 v5;
 
     if (v2 == 0) {
-        v5 = MapObject_GetLocalID(*v0);
+        v5 = MapObject_GetLocalID(*mapObj);
     } else {
         v5 = 0;
     }
 
-    sub_0205C040(*v1, v2, v5, v3, v4);
+    UnionRoom_DoGreeting(*strTemplate, v2, v5, trainerInfo, v4);
     return FALSE;
 }
 
-static BOOL ScrCmd_13D(ScriptContext *ctx)
+static BOOL ScrCmd_InitCommFieldCmd(ScriptContext *ctx)
 {
     CommFieldCmd_Init(ctx->fieldSystem);
     return FALSE;
@@ -4277,14 +4277,14 @@ static BOOL sub_020437E8(ScriptContext *ctx)
     return CommSys_ConnectedCount() < 2;
 }
 
-static BOOL ScrCmd_13F(ScriptContext *ctx)
+static BOOL ScrCmd_GetUnionRoomMessage(ScriptContext *ctx)
 {
-    MapObject **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_TARGET_OBJECT);
-    u16 v1 = ScriptContext_ReadHalfWord(ctx);
-    u16 *v2 = ScriptContext_GetVarPointer(ctx);
-    StringTemplate **v3 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
+    MapObject **mapObj = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_TARGET_OBJECT);
+    u16 msgType = ScriptContext_ReadHalfWord(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
 
-    *v2 = sub_0205BCF4(ctx->fieldSystem->unk_7C, MapObject_GetLocalID(*v0), v1, *v3);
+    *destVar = UnionRoom_GetMessage(ctx->fieldSystem->unk_7C, MapObject_GetLocalID(*mapObj), msgType, *strTemplate);
     return FALSE;
 }
 
@@ -6469,13 +6469,13 @@ static BOOL ScrCmd_UnlockMysteryGift(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_2AF(ScriptContext *ctx)
+static BOOL ScrCmd_GetTrainerCasePlayerMessage(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    u16 *v1 = ScriptContext_GetVarPointer(ctx);
-    StringTemplate **v2 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
 
-    *v1 = sub_0205BC50(*v2);
+    *destVar = UnionRoom_GetTrainerCasePlayerMessage(*strTemplate);
     return FALSE;
 }
 

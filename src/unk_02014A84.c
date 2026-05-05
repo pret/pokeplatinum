@@ -161,12 +161,12 @@ u16 Sentence_GetWord(const Sentence *sentence, int slot)
     return sentence->words[slot];
 }
 
-u32 sub_02014C80(const Sentence *sentence)
+u32 Sentence_GetType(const Sentence *sentence)
 {
     return sentence->type;
 }
 
-u32 sub_02014C84(const Sentence *sentence)
+u32 Sentence_GetID(const Sentence *sentence)
 {
     return sentence->id;
 }

@@ -42,7 +42,7 @@
       "en_US": "MULTI BATTLE"
     },
     {
-      "id": "MenuEntries_Text_Battle_Info",
+      "id": "MenuEntries_Text_Info",
       "en_US": "INFO"
     },
     {
@@ -90,11 +90,11 @@
       "en_US": "SMART"
     },
     {
-      "id": "pl_msg_00000361_00022",
+      "id": "MenuEntries_Text_UnionRoom_Trade",
       "en_US": "TRADE"
     },
     {
-      "id": "pl_msg_00000361_00023",
+      "id": "MenuEntries_Text_UnionRoom_Cancel",
       "en_US": "CANCEL"
     },
     {
@@ -198,7 +198,7 @@
       "garbage": 3
     },
     {
-      "id": "pl_msg_00000361_00049",
+      "id": "MenuEntries_Text_UnionRoom_Battle",
       "en_US": "BATTLE"
     },
     {
@@ -226,7 +226,7 @@
       "en_US": "PLANT BERRY"
     },
     {
-      "id": "pl_msg_00000361_00056",
+      "id": "MenuEntries_Text_UnionRoom_Draw",
       "en_US": "DRAW"
     },
     {
@@ -582,11 +582,11 @@
       "en_US": "LEFT"
     },
     {
-      "id": "pl_msg_00000361_00139",
+      "id": "MenuEntries_Text_UnionRoom_Spin",
       "en_US": "SPIN"
     },
     {
-      "id": "pl_msg_00000361_00140",
+      "id": "MenuEntries_Text_UnionRoom_Records",
       "en_US": "RECORDS"
     },
     {
@@ -686,15 +686,15 @@
       "en_US": "BATTLES FOR FOUR"
     },
     {
-      "id": "pl_msg_00000361_00165",
+      "id": "MenuEntries_Text_UnionRoom_Greet",
       "en_US": "GREET"
     },
     {
-      "id": "pl_msg_00000361_00166",
+      "id": "MenuEntries_Text_UnionRoom_Converse",
       "en_US": "CONVERSE"
     },
     {
-      "id": "pl_msg_00000361_00167",
+      "id": "MenuEntries_Text_UnionRoom_Chat",
       "en_US": "CHAT"
     },
     {

@@ -1,4 +1,3 @@
-#include "constants/accessories.h"
 #include "generated/badges.h"
 #include "generated/battle_tower_modes.h"
 #include "generated/battle_tower_functions.h"
@@ -34,6 +33,7 @@
 #include "generated/trainer_score_events.h"
 #include "generated/trainers.h"
 #include "generated/villa_furniture_type.h"
+#include "constants/accessories.h"
 #include "constants/animation_tags.h"
 #include "constants/battle.h"
 #include "constants/battle_tower.h"
@@ -56,6 +56,7 @@
 #include "constants/scrcmd.h"
 #include "constants/sound_volume.h"
 #include "constants/tv_broadcast.h"
+#include "constants/union_room_message_types.h"
 #include "constants/villa_visitors.h"
 
 #include "data/scripts/scrcmd.h"
@@ -1113,8 +1114,8 @@
     .short SCRCMD_0AC
     .endm
 
-    .macro ScrCmd_0AD
-    .short SCRCMD_0AD
+    .macro OpenUnionRoomTrainerCase
+    .short SCRCMD_OPENUNIONROOMTRAINERCASE
     .endm
 
     .macro ScrCmd_0AE
@@ -1865,9 +1866,9 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_138 arg0
-    .short SCRCMD_138
-    .short \arg0
+    .macro GetUnionRoomTealaMessage destVar
+    .short SCRCMD_GETUNIONROOMTEALAMESSAGE
+    .short \destVar
     .endm
 
     .macro ScrCmd_139 arg0
@@ -1883,23 +1884,23 @@
     .short SCRCMD_13B
     .endm
 
-    .macro ScrCmd_13C arg0
-    .short SCRCMD_13C
+    .macro DoUnionRoomGreeting arg0
+    .short SCRCMD_DOUNIONROOMGREETING
     .short \arg0
     .endm
 
-    .macro ScrCmd_13D
-    .short SCRCMD_13D
+    .macro InitCommFieldCmd
+    .short SCRCMD_INITCOMMFIELDCMD
     .endm
 
     .macro ScrCmd_13E
     .short SCRCMD_13E
     .endm
 
-    .macro ScrCmd_13F arg0, arg1
-    .short SCRCMD_13F
-    .short \arg0
-    .short \arg1
+    .macro GetUnionRoomMessage msgType, destVar
+    .short SCRCMD_GETUNIONROOMMESSAGE
+    .short \msgType
+    .short \destVar
     .endm
 
     .macro ScrCmd_140 arg0
@@ -4123,9 +4124,9 @@
     .short \destVar
     .endm
 
-    .macro ScrCmd_2AF arg0
-    .short SCRCMD_2AF
-    .short \arg0
+    .macro GetTrainerCasePlayerMessage destVar
+    .short SCRCMD_GETTRAINERCASEPLAYERMESSAGE
+    .short \destVar
     .endm
 
     .macro ScrCmd_2B0
@@ -4240,9 +4241,9 @@
     .short SCRCMD_2C6
     .endm
 
-    .macro ScrCmd_2C7 arg0
-    .short SCRCMD_2C7
-    .short \arg0
+    .macro IsCommGameCodePlatinum destVar
+    .short SCRCMD_ISCOMMGAMECODEPLATINUM
+    .short \destVar
     .endm
 
     .macro OpenFrontierRecordsApp challengeType, facility, species
