@@ -291,10 +291,7 @@ static void proc_messages(datafile_t *df, enum TrainerID trainer) {
             }
         }
 
-        if (dp_hasmemb(entry, "garbage")) {
-            p_messages->garbage[i] = dp_u64(dp_objmemb(entry, "garbage"));
-        }
-        else if (dp_hasmemb(entry, "en_US")) {
+        if (dp_hasmemb(entry, "en_US")) {
             datanode_t content = dp_objmemb(entry, "en_US");
             if (content.type == DATAPROC_T_STRING) {
                 const char *line           = dp_string(content);
@@ -313,6 +310,9 @@ static void proc_messages(datafile_t *df, enum TrainerID trainer) {
             else {
                 dp_error(&content, "expected message content to be a string or an array");
             }
+        }
+        else if (dp_hasmemb(entry, "garbage")) {
+            p_messages->garbage[i] = dp_u64(dp_objmemb(entry, "garbage"));
         }
         else {
             dp_error(&entry, "expected exactly one of either 'en_US' or 'garbage'");
