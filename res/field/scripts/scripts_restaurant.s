@@ -1,62 +1,63 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/restaurant.h"
+#include "res/field/events/events_restaurant.h"
 
 
-    ScriptEntry _031E
-    ScriptEntry _0058
-    ScriptEntry _02DF
-    ScriptEntry _0331
-    ScriptEntry _04DB
-    ScriptEntry _0685
-    ScriptEntry _082F
-    ScriptEntry _09D9
-    ScriptEntry _0B83
-    ScriptEntry _0D2D
-    ScriptEntry _0ED7
-    ScriptEntry _1081
-    ScriptEntry _122B
-    ScriptEntry _13D5
-    ScriptEntry _157F
-    ScriptEntry _1729
-    ScriptEntry _18D3
-    ScriptEntry _1A7D
-    ScriptEntry _1C27
-    ScriptEntry _1DD1
-    ScriptEntry _1F7B
+    ScriptEntry Restaurant_Waiter
+    ScriptEntry Restaurant_OnTransition
+    ScriptEntry Restaurant_OnFrameClosed
+    ScriptEntry Restaurant_ArtistIsmael
+    ScriptEntry Restaurant_BeautyHarley
+    ScriptEntry Restaurant_RichBoyRoman
+    ScriptEntry Restaurant_LadyKylie
+    ScriptEntry Restaurant_GentlemanLeonardo
+    ScriptEntry Restaurant_SocialiteRebecca
+    ScriptEntry Restaurant_CollectorEugene
+    ScriptEntry Restaurant_AromaLadyAlison
+    ScriptEntry Restaurant_SchoolKidEsteban
+    ScriptEntry Restaurant_PokefanMeredith
+    ScriptEntry Restaurant_VeteranEmanuel
+    ScriptEntry Restaurant_LassBlythe
+    ScriptEntry Restaurant_CameramanDarryl
+    ScriptEntry Restaurant_ReporterValerie
+    ScriptEntry Restaurant_PIKendrick
+    ScriptEntry Restaurant_BeautyGabriella
+    ScriptEntry Restaurant_ScientistEmilio
+    ScriptEntry Restaurant_BreederKaylee
     ScriptEntryEnd
     End
 
-_0058:
+Restaurant_OnTransition:
     SetFlag FLAG_FIRST_ARRIVAL_VALOR_LAKEFRONT_RESTAURANT
     GetHour VAR_MAP_LOCAL_0
-    GoToIfLt VAR_MAP_LOCAL_0, 9, _0087
-    GoToIfGe VAR_MAP_LOCAL_0, 23, _0087
-    GoToIfUnset FLAG_UNK_0x0AAB, _00B3
+    GoToIfLt VAR_MAP_LOCAL_0, 9, Restaurant_SetClosed
+    GoToIfGe VAR_MAP_LOCAL_0, 23, Restaurant_SetClosed
+    GoToIfUnset FLAG_SET_RESTAURANT_TRAINERS, Restaurant_ResetTrainers
     End
 
-_0087:
-    SetFlag FLAG_UNK_0x0244
-    SetFlag FLAG_UNK_0x0245
-    SetFlag FLAG_UNK_0x0246
-    SetFlag FLAG_UNK_0x0247
-    SetFlag FLAG_UNK_0x0248
-    SetFlag FLAG_UNK_0x0249
-    SetFlag FLAG_UNK_0x024A
-    SetFlag FLAG_UNK_0x024B
-    SetFlag FLAG_UNK_0x024C
-    SetVar VAR_UNK_0x4104, 1
+Restaurant_SetClosed:
+    SetFlag FLAG_HIDE_RESTAURANT_ISMAEL_HARLEY
+    SetFlag FLAG_HIDE_RESTAURANT_ROMAN_KYLIE
+    SetFlag FLAG_HIDE_RESTAURANT_LEONARDO_REBECCA
+    SetFlag FLAG_HIDE_RESTAURANT_EUGENE_ALISON
+    SetFlag FLAG_HIDE_RESTAURANT_ESTEBAN_MEREDITH
+    SetFlag FLAG_HIDE_RESTAURANT_EMANUEL_BLYTHE
+    SetFlag FLAG_HIDE_RESTAURANT_DARRYL_VALERIE
+    SetFlag FLAG_HIDE_RESTAURANT_KENDRICK_GABRIELLA
+    SetFlag FLAG_HIDE_RESTAURANT_EMILIO_KAYLEE
+    SetVar VAR_RESTAURANT_STATE, 1
     End
 
-_00B3:
-    SetFlag FLAG_UNK_0x0244
-    SetFlag FLAG_UNK_0x0245
-    SetFlag FLAG_UNK_0x0246
-    SetFlag FLAG_UNK_0x0247
-    SetFlag FLAG_UNK_0x0248
-    SetFlag FLAG_UNK_0x0249
-    SetFlag FLAG_UNK_0x024A
-    SetFlag FLAG_UNK_0x024B
-    SetFlag FLAG_UNK_0x024C
+Restaurant_ResetTrainers:
+    SetFlag FLAG_HIDE_RESTAURANT_ISMAEL_HARLEY
+    SetFlag FLAG_HIDE_RESTAURANT_ROMAN_KYLIE
+    SetFlag FLAG_HIDE_RESTAURANT_LEONARDO_REBECCA
+    SetFlag FLAG_HIDE_RESTAURANT_EUGENE_ALISON
+    SetFlag FLAG_HIDE_RESTAURANT_ESTEBAN_MEREDITH
+    SetFlag FLAG_HIDE_RESTAURANT_EMANUEL_BLYTHE
+    SetFlag FLAG_HIDE_RESTAURANT_DARRYL_VALERIE
+    SetFlag FLAG_HIDE_RESTAURANT_KENDRICK_GABRIELLA
+    SetFlag FLAG_HIDE_RESTAURANT_EMILIO_KAYLEE
     ClearTrainerFlag TRAINER_ARTIST_ISMAEL
     ClearTrainerFlag TRAINER_BEAUTY_HARLEY
     ClearTrainerFlag TRAINER_RICH_BOY_ROMAN
@@ -75,2320 +76,2320 @@ _00B3:
     ClearTrainerFlag TRAINER_BEAUTY_GABRIELLA
     ClearTrainerFlag TRAINER_SCIENTIST_EMILIO
     ClearTrainerFlag TRAINER_BREEDER_KAYLEE
-    SetVar VAR_UNK_0x4104, 0
+    SetVar VAR_RESTAURANT_STATE, 0
     GetRandom VAR_MAP_LOCAL_1, 1
     SetVar VAR_MAP_LOCAL_0, 5
-    SetVar VAR_MAP_LOCAL_A, 0x2710
-_0137:
+    SetVar VAR_MAP_LOCAL_A, 10000
+Restaurant_InitTrainers:
     GetRandom2 VAR_MAP_LOCAL_1, 9
-    CallIfEq VAR_MAP_LOCAL_1, 0, _01D8
-    CallIfEq VAR_MAP_LOCAL_1, 1, _01F5
-    CallIfEq VAR_MAP_LOCAL_1, 2, _0212
-    CallIfEq VAR_MAP_LOCAL_1, 3, _022F
-    CallIfEq VAR_MAP_LOCAL_1, 4, _024C
-    CallIfEq VAR_MAP_LOCAL_1, 5, _0269
-    CallIfEq VAR_MAP_LOCAL_1, 6, _0286
-    CallIfEq VAR_MAP_LOCAL_1, 7, _02A3
-    CallIfEq VAR_MAP_LOCAL_1, 8, _02C0
+    CallIfEq VAR_MAP_LOCAL_1, 0, Restaurant_InitTrainersIsmaelHarley
+    CallIfEq VAR_MAP_LOCAL_1, 1, Restaurant_InitTrainersRomanKylie
+    CallIfEq VAR_MAP_LOCAL_1, 2, Restaurant_InitTrainersLeonardoRebecca
+    CallIfEq VAR_MAP_LOCAL_1, 3, Restaurant_InitTrainersEugeneAlison
+    CallIfEq VAR_MAP_LOCAL_1, 4, Restaurant_InitTrainersEstebanMeredith
+    CallIfEq VAR_MAP_LOCAL_1, 5, Restaurant_InitTrainersEmanuelBlythe
+    CallIfEq VAR_MAP_LOCAL_1, 6, Restaurant_InitTrainersDarrylValerie
+    CallIfEq VAR_MAP_LOCAL_1, 7, Restaurant_InitTrainersKendrickGabriella
+    CallIfEq VAR_MAP_LOCAL_1, 8, Restaurant_InitTrainersEmilioKaylee
     SubVar VAR_MAP_LOCAL_A, 1
-    GoToIfEq VAR_MAP_LOCAL_A, 0, _01D2
-    GoToIfNe VAR_MAP_LOCAL_0, 0, _0137
-_01D2:
-    SetFlag FLAG_UNK_0x0AAB
+    GoToIfEq VAR_MAP_LOCAL_A, 0, Restaurant_FinishedInitTrainers
+    GoToIfNe VAR_MAP_LOCAL_0, 0, Restaurant_InitTrainers
+Restaurant_FinishedInitTrainers:
+    SetFlag FLAG_SET_RESTAURANT_TRAINERS
     End
 
-_01D8:
-    GoToIfUnset FLAG_UNK_0x0244, _02DD
-    ClearFlag FLAG_UNK_0x0244
-    GetRandom2 VAR_UNK_0x40FB, 3
+Restaurant_InitTrainersIsmaelHarley:
+    GoToIfUnset FLAG_HIDE_RESTAURANT_ISMAEL_HARLEY, Restaurant_InitTrainersReturn
+    ClearFlag FLAG_HIDE_RESTAURANT_ISMAEL_HARLEY
+    GetRandom2 VAR_RESTAURANT_RANDOM_MESSAGE_ISMAEL_HARLEY, 3
     SubVar VAR_MAP_LOCAL_0, 1
     Return
 
-_01F5:
-    GoToIfUnset FLAG_UNK_0x0245, _02DD
-    ClearFlag FLAG_UNK_0x0245
-    GetRandom2 VAR_UNK_0x40FC, 3
+Restaurant_InitTrainersRomanKylie:
+    GoToIfUnset FLAG_HIDE_RESTAURANT_ROMAN_KYLIE, Restaurant_InitTrainersReturn
+    ClearFlag FLAG_HIDE_RESTAURANT_ROMAN_KYLIE
+    GetRandom2 VAR_RESTAURANT_RANDOM_MESSAGE_ROMAN_KYLIE, 3
     SubVar VAR_MAP_LOCAL_0, 1
     Return
 
-_0212:
-    GoToIfUnset FLAG_UNK_0x0246, _02DD
-    ClearFlag FLAG_UNK_0x0246
-    GetRandom2 VAR_UNK_0x40FD, 3
+Restaurant_InitTrainersLeonardoRebecca:
+    GoToIfUnset FLAG_HIDE_RESTAURANT_LEONARDO_REBECCA, Restaurant_InitTrainersReturn
+    ClearFlag FLAG_HIDE_RESTAURANT_LEONARDO_REBECCA
+    GetRandom2 VAR_RESTAURANT_RANDOM_MESSAGE_LEONARDO_REBECCA, 3
     SubVar VAR_MAP_LOCAL_0, 1
     Return
 
-_022F:
-    GoToIfUnset FLAG_UNK_0x0247, _02DD
-    ClearFlag FLAG_UNK_0x0247
-    GetRandom2 VAR_UNK_0x40FE, 3
+Restaurant_InitTrainersEugeneAlison:
+    GoToIfUnset FLAG_HIDE_RESTAURANT_EUGENE_ALISON, Restaurant_InitTrainersReturn
+    ClearFlag FLAG_HIDE_RESTAURANT_EUGENE_ALISON
+    GetRandom2 VAR_RESTAURANT_RANDOM_MESSAGE_EUGENE_ALISON, 3
     SubVar VAR_MAP_LOCAL_0, 1
     Return
 
-_024C:
-    GoToIfUnset FLAG_UNK_0x0248, _02DD
-    ClearFlag FLAG_UNK_0x0248
-    GetRandom2 VAR_UNK_0x40FF, 3
+Restaurant_InitTrainersEstebanMeredith:
+    GoToIfUnset FLAG_HIDE_RESTAURANT_ESTEBAN_MEREDITH, Restaurant_InitTrainersReturn
+    ClearFlag FLAG_HIDE_RESTAURANT_ESTEBAN_MEREDITH
+    GetRandom2 VAR_RESTAURANT_RANDOM_MESSAGE_ESTEBAN_MEREDITH, 3
     SubVar VAR_MAP_LOCAL_0, 1
     Return
 
-_0269:
-    GoToIfUnset FLAG_UNK_0x0249, _02DD
-    ClearFlag FLAG_UNK_0x0249
-    GetRandom2 VAR_UNK_0x4100, 3
+Restaurant_InitTrainersEmanuelBlythe:
+    GoToIfUnset FLAG_HIDE_RESTAURANT_EMANUEL_BLYTHE, Restaurant_InitTrainersReturn
+    ClearFlag FLAG_HIDE_RESTAURANT_EMANUEL_BLYTHE
+    GetRandom2 VAR_RESTAURANT_RANDOM_MESSAGE_EMANUEL_BLYTHE, 3
     SubVar VAR_MAP_LOCAL_0, 1
     Return
 
-_0286:
-    GoToIfUnset FLAG_UNK_0x024A, _02DD
-    ClearFlag FLAG_UNK_0x024A
-    GetRandom2 VAR_UNK_0x4101, 3
+Restaurant_InitTrainersDarrylValerie:
+    GoToIfUnset FLAG_HIDE_RESTAURANT_DARRYL_VALERIE, Restaurant_InitTrainersReturn
+    ClearFlag FLAG_HIDE_RESTAURANT_DARRYL_VALERIE
+    GetRandom2 VAR_RESTAURANT_RANDOM_MESSAGE_DARRYL_VALERIE, 3
     SubVar VAR_MAP_LOCAL_0, 1
     Return
 
-_02A3:
-    GoToIfUnset FLAG_UNK_0x024B, _02DD
-    ClearFlag FLAG_UNK_0x024B
-    GetRandom2 VAR_UNK_0x4102, 3
+Restaurant_InitTrainersKendrickGabriella:
+    GoToIfUnset FLAG_HIDE_RESTAURANT_KENDRICK_GABRIELLA, Restaurant_InitTrainersReturn
+    ClearFlag FLAG_HIDE_RESTAURANT_KENDRICK_GABRIELLA
+    GetRandom2 VAR_RESTAURANT_RANDOM_MESSAGE_KENDRICK_GABRIELLA, 3
     SubVar VAR_MAP_LOCAL_0, 1
     Return
 
-_02C0:
-    GoToIfUnset FLAG_UNK_0x024C, _02DD
-    ClearFlag FLAG_UNK_0x024C
-    GetRandom2 VAR_UNK_0x4103, 3
+Restaurant_InitTrainersEmilioKaylee:
+    GoToIfUnset FLAG_HIDE_RESTAURANT_EMILIO_KAYLEE, Restaurant_InitTrainersReturn
+    ClearFlag FLAG_HIDE_RESTAURANT_EMILIO_KAYLEE
+    GetRandom2 VAR_RESTAURANT_RANDOM_MESSAGE_EMILIO_KAYLEE, 3
     SubVar VAR_MAP_LOCAL_0, 1
     Return
 
-_02DD:
+Restaurant_InitTrainersReturn:
     Return
 
-_02DF:
+Restaurant_OnFrameClosed:
     LockAll
-    ApplyMovement LOCALID_PLAYER, _212C
+    ApplyMovement LOCALID_PLAYER, Restaurant_Movement_FaceEast
     WaitMovement
     WaitTime 20, VAR_RESULT
-    Message 1
+    Message Restaurant_Text_WeAreNowClosed
     CloseMessage
     ReleaseAll
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_VALOR_LAKEFRONT, 0, 0x2C2, 0x317, DIR_SOUTH
+    Warp MAP_HEADER_VALOR_LAKEFRONT, 0, 706, 791, DIR_SOUTH
     FadeScreenIn
     WaitFadeScreen
     End
 
-_031E:
-    NPCMessage 0
+Restaurant_Waiter:
+    NPCMessage Restaurant_Text_PartakeInBattles
     End
 
-_0331:
+Restaurant_ArtistIsmael:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     CheckTrainerFlag TRAINER_ARTIST_ISMAEL
-    GoToIfDefeated TRAINER_ARTIST_ISMAEL, _046C
+    GoToIfDefeated TRAINER_ARTIST_ISMAEL, Restaurant_IsmaelDefeated
     CountAliveMonsExcept VAR_RESULT, 6
-    GoToIfEq VAR_RESULT, 1, _04BC
-    SetVar VAR_0x8008, VAR_UNK_0x40FB
-    GoToIfEq VAR_0x8008, 0, _038A
-    GoToIfEq VAR_0x8008, 1, _03A9
-    GoToIfEq VAR_0x8008, 2, _03C8
+    GoToIfEq VAR_RESULT, 1, Restaurant_IsmaelNeedMultiplePokemon
+    SetVar VAR_0x8008, VAR_RESTAURANT_RANDOM_MESSAGE_ISMAEL_HARLEY
+    GoToIfEq VAR_0x8008, 0, Restaurant_IsmaelAskBattle0
+    GoToIfEq VAR_0x8008, 1, Restaurant_IsmaelAskBattle1
+    GoToIfEq VAR_0x8008, 2, Restaurant_IsmaelAskBattle2
     ReleaseAll
     End
 
-_038A:
-    Message 4
+Restaurant_IsmaelAskBattle0:
+    Message Restaurant_Text_IsmaelIntro0
     FacePlayer
-    Message 5
+    Message Restaurant_Text_IsmaelAskBattle0
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _03E7
-    GoTo _0460
+    GoToIfEq VAR_RESULT, MENU_YES, Restaurant_IsmaelBattle
+    GoTo Restaurant_IsmaelDeclineBattle
 
-_03A9:
-    Message 12
+Restaurant_IsmaelAskBattle1:
+    Message Restaurant_Text_IsmaelIntro1
     FacePlayer
-    Message 13
+    Message Restaurant_Text_IsmaelAskBattle1
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _03E7
-    GoTo _0460
+    GoToIfEq VAR_RESULT, MENU_YES, Restaurant_IsmaelBattle
+    GoTo Restaurant_IsmaelDeclineBattle
 
-_03C8:
-    Message 20
+Restaurant_IsmaelAskBattle2:
+    Message Restaurant_Text_IsmaelIntro2
     FacePlayer
-    Message 21
+    Message Restaurant_Text_IsmaelAskBattle2
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _03E7
-    GoTo _0460
+    GoToIfEq VAR_RESULT, MENU_YES, Restaurant_IsmaelBattle
+    GoTo Restaurant_IsmaelDeclineBattle
 
-_03E7:
+Restaurant_IsmaelBattle:
     CloseMessage
     StartTrainerBattle TRAINER_ARTIST_ISMAEL, TRAINER_BEAUTY_HARLEY
     CheckWonBattle VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, _2125
+    GoToIfEq VAR_RESULT, FALSE, Restaurant_LostBattle
     SetTrainerFlag TRAINER_ARTIST_ISMAEL
     SetTrainerFlag TRAINER_BEAUTY_HARLEY
-    Call _04CF
-    SetVar VAR_0x8008, VAR_UNK_0x40FB
-    GoToIfEq VAR_0x8008, 0, _043F
-    GoToIfEq VAR_0x8008, 1, _044A
-    GoToIfEq VAR_0x8008, 2, _0455
+    Call Restaurant_IsmaelFaceEast
+    SetVar VAR_0x8008, VAR_RESTAURANT_RANDOM_MESSAGE_ISMAEL_HARLEY
+    GoToIfEq VAR_0x8008, 0, Restaurant_IsmaelPostBattle0
+    GoToIfEq VAR_0x8008, 1, Restaurant_IsmaelPostBattle1
+    GoToIfEq VAR_0x8008, 2, Restaurant_IsmaelPostBattle2
     ReleaseAll
     End
 
-_043F:
-    Message 7
+Restaurant_IsmaelPostBattle0:
+    Message Restaurant_Text_IsmaelDefeated0
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_044A:
-    Message 15
+Restaurant_IsmaelPostBattle1:
+    Message Restaurant_Text_IsmaelDefeated1
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0455:
-    Message 23
+Restaurant_IsmaelPostBattle2:
+    Message Restaurant_Text_IsmaelDefeated2
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0460:
+Restaurant_IsmaelDeclineBattle:
     CloseMessage
-    Call _04CF
+    Call Restaurant_IsmaelFaceEast
     ReleaseAll
     End
 
-_046C:
-    SetVar VAR_0x8008, VAR_UNK_0x40FB
-    GoToIfEq VAR_0x8008, 0, _049B
-    GoToIfEq VAR_0x8008, 1, _04A6
-    GoToIfEq VAR_0x8008, 2, _04B1
+Restaurant_IsmaelDefeated:
+    SetVar VAR_0x8008, VAR_RESTAURANT_RANDOM_MESSAGE_ISMAEL_HARLEY
+    GoToIfEq VAR_0x8008, 0, Restaurant_IsmaelDefeated0
+    GoToIfEq VAR_0x8008, 1, Restaurant_IsmaelDefeated1
+    GoToIfEq VAR_0x8008, 2, Restaurant_IsmaelDefeated2
     End
 
-_049B:
-    Message 7
+Restaurant_IsmaelDefeated0:
+    Message Restaurant_Text_IsmaelDefeated0
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_04A6:
-    Message 15
+Restaurant_IsmaelDefeated1:
+    Message Restaurant_Text_IsmaelDefeated1
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_04B1:
-    Message 23
+Restaurant_IsmaelDefeated2:
+    Message Restaurant_Text_IsmaelDefeated2
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_04BC:
+Restaurant_IsmaelNeedMultiplePokemon:
     FacePlayer
-    Message 2
+    Message Restaurant_Text_IsmaelNeedMultiplePokemon
     WaitButton
     CloseMessage
-    Call _04CF
+    Call Restaurant_IsmaelFaceEast
     ReleaseAll
     End
 
-_04CF:
-    ApplyMovement 6, _212C
+Restaurant_IsmaelFaceEast:
+    ApplyMovement LOCALID_ARTIST_ISMAEL, Restaurant_Movement_FaceEast
     WaitMovement
     Return
 
-_04DB:
+Restaurant_BeautyHarley:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     CheckTrainerFlag TRAINER_BEAUTY_HARLEY
-    GoToIfDefeated TRAINER_BEAUTY_HARLEY, _0616
+    GoToIfDefeated TRAINER_BEAUTY_HARLEY, Restaurant_HarleyDefeated
     CountAliveMonsExcept VAR_RESULT, 6
-    GoToIfEq VAR_RESULT, 1, _0666
-    SetVar VAR_0x8008, VAR_UNK_0x40FB
-    GoToIfEq VAR_0x8008, 0, _0534
-    GoToIfEq VAR_0x8008, 1, _0553
-    GoToIfEq VAR_0x8008, 2, _0572
+    GoToIfEq VAR_RESULT, 1, Restaurant_HarleyNeedMultiplePokemon
+    SetVar VAR_0x8008, VAR_RESTAURANT_RANDOM_MESSAGE_ISMAEL_HARLEY
+    GoToIfEq VAR_0x8008, 0, Restaurant_HarleyAskBattle0
+    GoToIfEq VAR_0x8008, 1, Restaurant_HarleyAskBattle1
+    GoToIfEq VAR_0x8008, 2, Restaurant_HarleyAskBattle2
     ReleaseAll
     End
 
-_0534:
-    Message 8
+Restaurant_HarleyAskBattle0:
+    Message Restaurant_Text_HarleyIntro0
     FacePlayer
-    Message 9
+    Message Restaurant_Text_HarleyAskBattle0
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _0591
-    GoTo _060A
+    GoToIfEq VAR_RESULT, MENU_YES, Restaurant_HarleyBattle
+    GoTo Restaurant_HarleyDeclineBattle
 
-_0553:
-    Message 16
+Restaurant_HarleyAskBattle1:
+    Message Restaurant_Text_HarleyIntro1
     FacePlayer
-    Message 17
+    Message Restaurant_Text_HarleyAskBattle1
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _0591
-    GoTo _060A
+    GoToIfEq VAR_RESULT, MENU_YES, Restaurant_HarleyBattle
+    GoTo Restaurant_HarleyDeclineBattle
 
-_0572:
-    Message 24
+Restaurant_HarleyAskBattle2:
+    Message Restaurant_Text_HarleyIntro2
     FacePlayer
-    Message 25
+    Message Restaurant_Text_HarleyAskBattle2
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _0591
-    GoTo _060A
+    GoToIfEq VAR_RESULT, MENU_YES, Restaurant_HarleyBattle
+    GoTo Restaurant_HarleyDeclineBattle
 
-_0591:
+Restaurant_HarleyBattle:
     CloseMessage
     StartTrainerBattle TRAINER_ARTIST_ISMAEL, TRAINER_BEAUTY_HARLEY
     CheckWonBattle VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, _2125
+    GoToIfEq VAR_RESULT, FALSE, Restaurant_LostBattle
     SetTrainerFlag TRAINER_ARTIST_ISMAEL
     SetTrainerFlag TRAINER_BEAUTY_HARLEY
-    Call _0679
-    SetVar VAR_0x8008, VAR_UNK_0x40FB
-    GoToIfEq VAR_0x8008, 0, _05E9
-    GoToIfEq VAR_0x8008, 1, _05F4
-    GoToIfEq VAR_0x8008, 2, _05FF
+    Call Restaurant_HarleyFaceWest
+    SetVar VAR_0x8008, VAR_RESTAURANT_RANDOM_MESSAGE_ISMAEL_HARLEY
+    GoToIfEq VAR_0x8008, 0, Restaurant_HarleyPostBattle0
+    GoToIfEq VAR_0x8008, 1, Restaurant_HarleyPostBattle1
+    GoToIfEq VAR_0x8008, 2, Restaurant_HarleyPostBattle2
     ReleaseAll
     End
 
-_05E9:
-    Message 11
+Restaurant_HarleyPostBattle0:
+    Message Restaurant_Text_HarleyDefeated0
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_05F4:
-    Message 19
+Restaurant_HarleyPostBattle1:
+    Message Restaurant_Text_HarleyDefeated1
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_05FF:
-    Message 27
+Restaurant_HarleyPostBattle2:
+    Message Restaurant_Text_HarleyDefeated2
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_060A:
+Restaurant_HarleyDeclineBattle:
     CloseMessage
-    Call _0679
+    Call Restaurant_HarleyFaceWest
     ReleaseAll
     End
 
-_0616:
-    SetVar VAR_0x8008, VAR_UNK_0x40FB
-    GoToIfEq VAR_0x8008, 0, _0645
-    GoToIfEq VAR_0x8008, 1, _0650
-    GoToIfEq VAR_0x8008, 2, _065B
+Restaurant_HarleyDefeated:
+    SetVar VAR_0x8008, VAR_RESTAURANT_RANDOM_MESSAGE_ISMAEL_HARLEY
+    GoToIfEq VAR_0x8008, 0, Restaurant_HarleyDefeated0
+    GoToIfEq VAR_0x8008, 1, Restaurant_HarleyDefeated1
+    GoToIfEq VAR_0x8008, 2, Restaurant_HarleyDefeated2
     End
 
-_0645:
-    Message 11
+Restaurant_HarleyDefeated0:
+    Message Restaurant_Text_HarleyDefeated0
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0650:
-    Message 19
+Restaurant_HarleyDefeated1:
+    Message Restaurant_Text_HarleyDefeated1
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_065B:
-    Message 27
+Restaurant_HarleyDefeated2:
+    Message Restaurant_Text_HarleyDefeated2
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0666:
+Restaurant_HarleyNeedMultiplePokemon:
     FacePlayer
-    Message 3
+    Message Restaurant_Text_HarleyNeedMultiplePokemon
     WaitButton
     CloseMessage
-    Call _0679
+    Call Restaurant_HarleyFaceWest
     ReleaseAll
     End
 
-_0679:
-    ApplyMovement 9, _2134
+Restaurant_HarleyFaceWest:
+    ApplyMovement LOCALID_BEAUTY_HARLEY, Restaurant_Movement_FaceWest
     WaitMovement
     Return
 
-_0685:
+Restaurant_RichBoyRoman:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     CheckTrainerFlag TRAINER_RICH_BOY_ROMAN
-    GoToIfDefeated TRAINER_RICH_BOY_ROMAN, _07C0
+    GoToIfDefeated TRAINER_RICH_BOY_ROMAN, Restaurant_RomanDefeated
     CountAliveMonsExcept VAR_RESULT, 6
-    GoToIfEq VAR_RESULT, 1, _0810
-    SetVar VAR_0x8008, VAR_UNK_0x40FC
-    GoToIfEq VAR_0x8008, 0, _06DE
-    GoToIfEq VAR_0x8008, 1, _06FD
-    GoToIfEq VAR_0x8008, 2, _071C
+    GoToIfEq VAR_RESULT, 1, Restaurant_RomanNeedMultiplePokemon
+    SetVar VAR_0x8008, VAR_RESTAURANT_RANDOM_MESSAGE_ROMAN_KYLIE
+    GoToIfEq VAR_0x8008, 0, Restaurant_RomanAskBattle0
+    GoToIfEq VAR_0x8008, 1, Restaurant_RomanAskBattle1
+    GoToIfEq VAR_0x8008, 2, Restaurant_RomanAskBattle2
     ReleaseAll
     End
 
-_06DE:
-    Message 30
+Restaurant_RomanAskBattle0:
+    Message Restaurant_Text_RomanIntro0
     FacePlayer
-    Message 31
+    Message Restaurant_Text_RomanAskBattle0
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _073B
-    GoTo _07B4
+    GoToIfEq VAR_RESULT, MENU_YES, Restaurant_RomanBattle
+    GoTo Restaurant_RomanDeclineBattle
 
-_06FD:
-    Message 38
+Restaurant_RomanAskBattle1:
+    Message Restaurant_Text_RomanIntro1
     FacePlayer
-    Message 39
+    Message Restaurant_Text_RomanAskBattle1
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _073B
-    GoTo _07B4
+    GoToIfEq VAR_RESULT, MENU_YES, Restaurant_RomanBattle
+    GoTo Restaurant_RomanDeclineBattle
 
-_071C:
-    Message 46
+Restaurant_RomanAskBattle2:
+    Message Restaurant_Text_RomanIntro2
     FacePlayer
-    Message 47
+    Message Restaurant_Text_RomanAskBattle2
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _073B
-    GoTo _07B4
+    GoToIfEq VAR_RESULT, MENU_YES, Restaurant_RomanBattle
+    GoTo Restaurant_RomanDeclineBattle
 
-_073B:
+Restaurant_RomanBattle:
     CloseMessage
     StartTrainerBattle TRAINER_RICH_BOY_ROMAN, TRAINER_LADY_KYLIE
     CheckWonBattle VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, _2125
+    GoToIfEq VAR_RESULT, FALSE, Restaurant_LostBattle
     SetTrainerFlag TRAINER_RICH_BOY_ROMAN
     SetTrainerFlag TRAINER_LADY_KYLIE
-    Call _0823
-    SetVar VAR_0x8008, VAR_UNK_0x40FC
-    GoToIfEq VAR_0x8008, 0, _0793
-    GoToIfEq VAR_0x8008, 1, _079E
-    GoToIfEq VAR_0x8008, 2, _07A9
+    Call Restaurant_RomanFaceEast
+    SetVar VAR_0x8008, VAR_RESTAURANT_RANDOM_MESSAGE_ROMAN_KYLIE
+    GoToIfEq VAR_0x8008, 0, Restaurant_RomanPostBattle0
+    GoToIfEq VAR_0x8008, 1, Restaurant_RomanPostBattle1
+    GoToIfEq VAR_0x8008, 2, Restaurant_RomanPostBattle2
     ReleaseAll
     End
 
-_0793:
-    Message 33
+Restaurant_RomanPostBattle0:
+    Message Restaurant_Text_RomanDefeated0
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_079E:
-    Message 41
+Restaurant_RomanPostBattle1:
+    Message Restaurant_Text_RomanDefeated1
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_07A9:
-    Message 49
+Restaurant_RomanPostBattle2:
+    Message Restaurant_Text_RomanDefeated2
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_07B4:
+Restaurant_RomanDeclineBattle:
     CloseMessage
-    Call _0823
+    Call Restaurant_RomanFaceEast
     ReleaseAll
     End
 
-_07C0:
-    SetVar VAR_0x8008, VAR_UNK_0x40FC
-    GoToIfEq VAR_0x8008, 0, _07EF
-    GoToIfEq VAR_0x8008, 1, _07FA
-    GoToIfEq VAR_0x8008, 2, _0805
+Restaurant_RomanDefeated:
+    SetVar VAR_0x8008, VAR_RESTAURANT_RANDOM_MESSAGE_ROMAN_KYLIE
+    GoToIfEq VAR_0x8008, 0, Restaurant_RomanDefeated0
+    GoToIfEq VAR_0x8008, 1, Restaurant_RomanDefeated1
+    GoToIfEq VAR_0x8008, 2, Restaurant_RomanDefeated2
     End
 
-_07EF:
-    Message 33
+Restaurant_RomanDefeated0:
+    Message Restaurant_Text_RomanDefeated0
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_07FA:
-    Message 41
+Restaurant_RomanDefeated1:
+    Message Restaurant_Text_RomanDefeated1
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0805:
-    Message 49
+Restaurant_RomanDefeated2:
+    Message Restaurant_Text_RomanDefeated2
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0810:
+Restaurant_RomanNeedMultiplePokemon:
     FacePlayer
-    Message 28
+    Message Restaurant_Text_RomanNeedMultiplePokemon
     WaitButton
     CloseMessage
-    Call _0823
+    Call Restaurant_RomanFaceEast
     ReleaseAll
     End
 
-_0823:
-    ApplyMovement 2, _212C
+Restaurant_RomanFaceEast:
+    ApplyMovement LOCALID_RICH_BOY_ROMAN, Restaurant_Movement_FaceEast
     WaitMovement
     Return
 
-_082F:
+Restaurant_LadyKylie:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     CheckTrainerFlag TRAINER_LADY_KYLIE
-    GoToIfDefeated TRAINER_LADY_KYLIE, _096A
+    GoToIfDefeated TRAINER_LADY_KYLIE, Restaurant_KylieDefeated
     CountAliveMonsExcept VAR_RESULT, 6
-    GoToIfEq VAR_RESULT, 1, _09BA
-    SetVar VAR_0x8008, VAR_UNK_0x40FC
-    GoToIfEq VAR_0x8008, 0, _0888
-    GoToIfEq VAR_0x8008, 1, _08A7
-    GoToIfEq VAR_0x8008, 2, _08C6
+    GoToIfEq VAR_RESULT, 1, Restaurant_KylieNeedMultiplePokemon
+    SetVar VAR_0x8008, VAR_RESTAURANT_RANDOM_MESSAGE_ROMAN_KYLIE
+    GoToIfEq VAR_0x8008, 0, Restaurant_KylieAskBattle0
+    GoToIfEq VAR_0x8008, 1, Restaurant_KylieAskBattle1
+    GoToIfEq VAR_0x8008, 2, Restaurant_KylieAskBattle2
     ReleaseAll
     End
 
-_0888:
-    Message 34
+Restaurant_KylieAskBattle0:
+    Message Restaurant_Text_KylieIntro0
     FacePlayer
-    Message 35
+    Message Restaurant_Text_KylieAskBattle0
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _08E5
-    GoTo _095E
+    GoToIfEq VAR_RESULT, MENU_YES, Restaurant_KylieBattle
+    GoTo Restaurant_KylieDeclineBattle
 
-_08A7:
-    Message 42
+Restaurant_KylieAskBattle1:
+    Message Restaurant_Text_KylieIntro1
     FacePlayer
-    Message 43
+    Message Restaurant_Text_KylieAskBattle1
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _08E5
-    GoTo _095E
+    GoToIfEq VAR_RESULT, MENU_YES, Restaurant_KylieBattle
+    GoTo Restaurant_KylieDeclineBattle
 
-_08C6:
-    Message 50
+Restaurant_KylieAskBattle2:
+    Message Restaurant_Text_KylieIntro2
     FacePlayer
-    Message 51
+    Message Restaurant_Text_KylieAskBattle2
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _08E5
-    GoTo _095E
+    GoToIfEq VAR_RESULT, MENU_YES, Restaurant_KylieBattle
+    GoTo Restaurant_KylieDeclineBattle
 
-_08E5:
+Restaurant_KylieBattle:
     CloseMessage
     StartTrainerBattle TRAINER_RICH_BOY_ROMAN, TRAINER_LADY_KYLIE
     CheckWonBattle VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, _2125
+    GoToIfEq VAR_RESULT, FALSE, Restaurant_LostBattle
     SetTrainerFlag TRAINER_RICH_BOY_ROMAN
     SetTrainerFlag TRAINER_LADY_KYLIE
-    Call _09CD
-    SetVar VAR_0x8008, VAR_UNK_0x40FC
-    GoToIfEq VAR_0x8008, 0, _093D
-    GoToIfEq VAR_0x8008, 1, _0948
-    GoToIfEq VAR_0x8008, 2, _0953
+    Call Restaurant_KylieFaceWest
+    SetVar VAR_0x8008, VAR_RESTAURANT_RANDOM_MESSAGE_ROMAN_KYLIE
+    GoToIfEq VAR_0x8008, 0, Restaurant_KyliePostBattle0
+    GoToIfEq VAR_0x8008, 1, Restaurant_KyliePostBattle1
+    GoToIfEq VAR_0x8008, 2, Restaurant_KyliePostBattle2
     ReleaseAll
     End
 
-_093D:
-    Message 37
+Restaurant_KyliePostBattle0:
+    Message Restaurant_Text_KylieDefeated0
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0948:
-    Message 45
+Restaurant_KyliePostBattle1:
+    Message Restaurant_Text_KylieDefeated1
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0953:
-    Message 53
+Restaurant_KyliePostBattle2:
+    Message Restaurant_Text_KylieDefeated2
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_095E:
+Restaurant_KylieDeclineBattle:
     CloseMessage
-    Call _09CD
+    Call Restaurant_KylieFaceWest
     ReleaseAll
     End
 
-_096A:
-    SetVar VAR_0x8008, VAR_UNK_0x40FC
-    GoToIfEq VAR_0x8008, 0, _0999
-    GoToIfEq VAR_0x8008, 1, _09A4
-    GoToIfEq VAR_0x8008, 2, _09AF
+Restaurant_KylieDefeated:
+    SetVar VAR_0x8008, VAR_RESTAURANT_RANDOM_MESSAGE_ROMAN_KYLIE
+    GoToIfEq VAR_0x8008, 0, Restaurant_KylieDefeated0
+    GoToIfEq VAR_0x8008, 1, Restaurant_KylieDefeated1
+    GoToIfEq VAR_0x8008, 2, Restaurant_KylieDefeated2
     End
 
-_0999:
-    Message 37
+Restaurant_KylieDefeated0:
+    Message Restaurant_Text_KylieDefeated0
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_09A4:
-    Message 45
+Restaurant_KylieDefeated1:
+    Message Restaurant_Text_KylieDefeated1
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_09AF:
-    Message 53
+Restaurant_KylieDefeated2:
+    Message Restaurant_Text_KylieDefeated2
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_09BA:
+Restaurant_KylieNeedMultiplePokemon:
     FacePlayer
-    Message 29
+    Message Restaurant_Text_KylieNeedMultiplePokemon
     WaitButton
     CloseMessage
-    Call _09CD
+    Call Restaurant_KylieFaceWest
     ReleaseAll
     End
 
-_09CD:
-    ApplyMovement 3, _2134
+Restaurant_KylieFaceWest:
+    ApplyMovement LOCALID_LADY_KYLIE, Restaurant_Movement_FaceWest
     WaitMovement
     Return
 
-_09D9:
+Restaurant_GentlemanLeonardo:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     CheckTrainerFlag TRAINER_GENTLEMAN_LEONARDO
-    GoToIfDefeated TRAINER_GENTLEMAN_LEONARDO, _0B14
+    GoToIfDefeated TRAINER_GENTLEMAN_LEONARDO, Restaurant_LeonardoDefeated
     CountAliveMonsExcept VAR_RESULT, 6
-    GoToIfEq VAR_RESULT, 1, _0B64
-    SetVar VAR_0x8008, VAR_UNK_0x40FD
-    GoToIfEq VAR_0x8008, 0, _0A32
-    GoToIfEq VAR_0x8008, 1, _0A51
-    GoToIfEq VAR_0x8008, 2, _0A70
+    GoToIfEq VAR_RESULT, 1, Restaurant_LeonardoNeedMultiplePokemon
+    SetVar VAR_0x8008, VAR_RESTAURANT_RANDOM_MESSAGE_LEONARDO_REBECCA
+    GoToIfEq VAR_0x8008, 0, Restaurant_LeonardoAskBattle0
+    GoToIfEq VAR_0x8008, 1, Restaurant_LeonardoAskBattle1
+    GoToIfEq VAR_0x8008, 2, Restaurant_LeonardoAskBattle2
     ReleaseAll
     End
 
-_0A32:
-    Message 56
+Restaurant_LeonardoAskBattle0:
+    Message Restaurant_Text_LeonardoIntro0
     FacePlayer
-    Message 57
+    Message Restaurant_Text_LeonardoAskBattle0
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _0A8F
-    GoTo _0B08
+    GoToIfEq VAR_RESULT, MENU_YES, Restaurant_LeonardoBattle
+    GoTo Restaurant_LeonardoDeclineBattle
 
-_0A51:
-    Message 64
+Restaurant_LeonardoAskBattle1:
+    Message Restaurant_Text_LeonardoIntro1
     FacePlayer
-    Message 65
+    Message Restaurant_Text_LeonardoAskBattle1
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _0A8F
-    GoTo _0B08
+    GoToIfEq VAR_RESULT, MENU_YES, Restaurant_LeonardoBattle
+    GoTo Restaurant_LeonardoDeclineBattle
 
-_0A70:
-    Message 72
+Restaurant_LeonardoAskBattle2:
+    Message Restaurant_Text_LeonardoIntro2
     FacePlayer
-    Message 73
+    Message Restaurant_Text_LeonardoAskBattle2
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _0A8F
-    GoTo _0B08
+    GoToIfEq VAR_RESULT, MENU_YES, Restaurant_LeonardoBattle
+    GoTo Restaurant_LeonardoDeclineBattle
 
-_0A8F:
+Restaurant_LeonardoBattle:
     CloseMessage
     StartTrainerBattle TRAINER_GENTLEMAN_LEONARDO, TRAINER_SOCIALITE_REBECCA
     CheckWonBattle VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, _2125
+    GoToIfEq VAR_RESULT, FALSE, Restaurant_LostBattle
     SetTrainerFlag TRAINER_GENTLEMAN_LEONARDO
     SetTrainerFlag TRAINER_SOCIALITE_REBECCA
-    Call _0B77
-    SetVar VAR_0x8008, VAR_UNK_0x40FD
-    GoToIfEq VAR_0x8008, 0, _0AE7
-    GoToIfEq VAR_0x8008, 1, _0AF2
-    GoToIfEq VAR_0x8008, 2, _0AFD
+    Call Restaurant_LeonardoFaceEast
+    SetVar VAR_0x8008, VAR_RESTAURANT_RANDOM_MESSAGE_LEONARDO_REBECCA
+    GoToIfEq VAR_0x8008, 0, Restaurant_LeonardoPostBattle0
+    GoToIfEq VAR_0x8008, 1, Restaurant_LeonardoPostBattle1
+    GoToIfEq VAR_0x8008, 2, Restaurant_LeonardoPostBattle2
     ReleaseAll
     End
 
-_0AE7:
-    Message 59
+Restaurant_LeonardoPostBattle0:
+    Message Restaurant_Text_LeonardoDefeated0
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0AF2:
-    Message 67
+Restaurant_LeonardoPostBattle1:
+    Message Restaurant_Text_LeonardoDefeated1
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0AFD:
-    Message 75
+Restaurant_LeonardoPostBattle2:
+    Message Restaurant_Text_LeonardoDefeated2
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0B08:
+Restaurant_LeonardoDeclineBattle:
     CloseMessage
-    Call _0B77
+    Call Restaurant_LeonardoFaceEast
     ReleaseAll
     End
 
-_0B14:
-    SetVar VAR_0x8008, VAR_UNK_0x40FD
-    GoToIfEq VAR_0x8008, 0, _0B43
-    GoToIfEq VAR_0x8008, 1, _0B4E
-    GoToIfEq VAR_0x8008, 2, _0B59
+Restaurant_LeonardoDefeated:
+    SetVar VAR_0x8008, VAR_RESTAURANT_RANDOM_MESSAGE_LEONARDO_REBECCA
+    GoToIfEq VAR_0x8008, 0, Restaurant_LeonardoDefeated0
+    GoToIfEq VAR_0x8008, 1, Restaurant_LeonardoDefeated1
+    GoToIfEq VAR_0x8008, 2, Restaurant_LeonardoDefeated2
     End
 
-_0B43:
-    Message 59
+Restaurant_LeonardoDefeated0:
+    Message Restaurant_Text_LeonardoDefeated0
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0B4E:
-    Message 67
+Restaurant_LeonardoDefeated1:
+    Message Restaurant_Text_LeonardoDefeated1
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0B59:
-    Message 75
+Restaurant_LeonardoDefeated2:
+    Message Restaurant_Text_LeonardoDefeated2
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0B64:
+Restaurant_LeonardoNeedMultiplePokemon:
     FacePlayer
-    Message 54
+    Message Restaurant_Text_LeonardoNeedMultiplePokemon
     WaitButton
     CloseMessage
-    Call _0B77
+    Call Restaurant_LeonardoFaceEast
     ReleaseAll
     End
 
-_0B77:
-    ApplyMovement 0, _212C
+Restaurant_LeonardoFaceEast:
+    ApplyMovement LOCALID_GENTLEMAN_LEONARDO, Restaurant_Movement_FaceEast
     WaitMovement
     Return
 
-_0B83:
+Restaurant_SocialiteRebecca:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     CheckTrainerFlag TRAINER_SOCIALITE_REBECCA
-    GoToIfDefeated TRAINER_SOCIALITE_REBECCA, _0CBE
+    GoToIfDefeated TRAINER_SOCIALITE_REBECCA, Restaurant_RebeccaDefeated
     CountAliveMonsExcept VAR_RESULT, 6
-    GoToIfEq VAR_RESULT, 1, _0D0E
-    SetVar VAR_0x8008, VAR_UNK_0x40FD
-    GoToIfEq VAR_0x8008, 0, _0BDC
-    GoToIfEq VAR_0x8008, 1, _0BFB
-    GoToIfEq VAR_0x8008, 2, _0C1A
+    GoToIfEq VAR_RESULT, 1, Restaurant_RebeccaNeedMultiplePokemon
+    SetVar VAR_0x8008, VAR_RESTAURANT_RANDOM_MESSAGE_LEONARDO_REBECCA
+    GoToIfEq VAR_0x8008, 0, Restaurant_RebeccaAskBattle0
+    GoToIfEq VAR_0x8008, 1, Restaurant_RebeccaAskBattle1
+    GoToIfEq VAR_0x8008, 2, Restaurant_RebeccaAskBattle2
     ReleaseAll
     End
 
-_0BDC:
-    Message 60
+Restaurant_RebeccaAskBattle0:
+    Message Restaurant_Text_RebeccaIntro0
     FacePlayer
-    Message 61
+    Message Restaurant_Text_RebeccaAskBattle0
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _0C39
-    GoTo _0CB2
+    GoToIfEq VAR_RESULT, MENU_YES, Restaurant_RebeccaBattle
+    GoTo Restaurant_RebeccaDeclineBattle
 
-_0BFB:
-    Message 68
+Restaurant_RebeccaAskBattle1:
+    Message Restaurant_Text_RebeccaIntro1
     FacePlayer
-    Message 69
+    Message Restaurant_Text_RebeccaAskBattle1
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _0C39
-    GoTo _0CB2
+    GoToIfEq VAR_RESULT, MENU_YES, Restaurant_RebeccaBattle
+    GoTo Restaurant_RebeccaDeclineBattle
 
-_0C1A:
-    Message 76
+Restaurant_RebeccaAskBattle2:
+    Message Restaurant_Text_RebeccaIntro2
     FacePlayer
-    Message 77
+    Message Restaurant_Text_RebeccaAskBattle2
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _0C39
-    GoTo _0CB2
+    GoToIfEq VAR_RESULT, MENU_YES, Restaurant_RebeccaBattle
+    GoTo Restaurant_RebeccaDeclineBattle
 
-_0C39:
+Restaurant_RebeccaBattle:
     CloseMessage
     StartTrainerBattle TRAINER_GENTLEMAN_LEONARDO, TRAINER_SOCIALITE_REBECCA
     CheckWonBattle VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, _2125
+    GoToIfEq VAR_RESULT, FALSE, Restaurant_LostBattle
     SetTrainerFlag TRAINER_GENTLEMAN_LEONARDO
     SetTrainerFlag TRAINER_SOCIALITE_REBECCA
-    Call _0D21
-    SetVar VAR_0x8008, VAR_UNK_0x40FD
-    GoToIfEq VAR_0x8008, 0, _0C91
-    GoToIfEq VAR_0x8008, 1, _0C9C
-    GoToIfEq VAR_0x8008, 2, _0CA7
+    Call Restaurant_RebeccaFaceWest
+    SetVar VAR_0x8008, VAR_RESTAURANT_RANDOM_MESSAGE_LEONARDO_REBECCA
+    GoToIfEq VAR_0x8008, 0, Restaurant_RebeccaPostBattle0
+    GoToIfEq VAR_0x8008, 1, Restaurant_RebeccaPostBattle1
+    GoToIfEq VAR_0x8008, 2, Restaurant_RebeccaPostBattle2
     ReleaseAll
     End
 
-_0C91:
-    Message 63
+Restaurant_RebeccaPostBattle0:
+    Message Restaurant_Text_RebeccaDefeated0
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0C9C:
-    Message 71
+Restaurant_RebeccaPostBattle1:
+    Message Restaurant_Text_RebeccaDefeated1
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0CA7:
-    Message 79
+Restaurant_RebeccaPostBattle2:
+    Message Restaurant_Text_RebeccaDefeated2
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0CB2:
+Restaurant_RebeccaDeclineBattle:
     CloseMessage
-    Call _0D21
+    Call Restaurant_RebeccaFaceWest
     ReleaseAll
     End
 
-_0CBE:
-    SetVar VAR_0x8008, VAR_UNK_0x40FD
-    GoToIfEq VAR_0x8008, 0, _0CED
-    GoToIfEq VAR_0x8008, 1, _0CF8
-    GoToIfEq VAR_0x8008, 2, _0D03
+Restaurant_RebeccaDefeated:
+    SetVar VAR_0x8008, VAR_RESTAURANT_RANDOM_MESSAGE_LEONARDO_REBECCA
+    GoToIfEq VAR_0x8008, 0, Restaurant_RebeccaDefeated0
+    GoToIfEq VAR_0x8008, 1, Restaurant_RebeccaDefeated1
+    GoToIfEq VAR_0x8008, 2, Restaurant_RebeccaDefeated2
     End
 
-_0CED:
-    Message 63
+Restaurant_RebeccaDefeated0:
+    Message Restaurant_Text_RebeccaDefeated0
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0CF8:
-    Message 71
+Restaurant_RebeccaDefeated1:
+    Message Restaurant_Text_RebeccaDefeated1
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0D03:
-    Message 79
+Restaurant_RebeccaDefeated2:
+    Message Restaurant_Text_RebeccaDefeated2
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0D0E:
+Restaurant_RebeccaNeedMultiplePokemon:
     FacePlayer
-    Message 55
+    Message Restaurant_Text_RebeccaNeedMultiplePokemon
     WaitButton
     CloseMessage
-    Call _0D21
+    Call Restaurant_RebeccaFaceWest
     ReleaseAll
     End
 
-_0D21:
-    ApplyMovement 1, _2134
+Restaurant_RebeccaFaceWest:
+    ApplyMovement LOCALID_SOCIALITE_REBECCA, Restaurant_Movement_FaceWest
     WaitMovement
     Return
 
-_0D2D:
+Restaurant_CollectorEugene:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     CheckTrainerFlag TRAINER_COLLECTOR_EUGENE
-    GoToIfDefeated TRAINER_COLLECTOR_EUGENE, _0E68
+    GoToIfDefeated TRAINER_COLLECTOR_EUGENE, Restaurant_EugeneDefeated
     CountAliveMonsExcept VAR_RESULT, 6
-    GoToIfEq VAR_RESULT, 1, _0EB8
-    SetVar VAR_0x8008, VAR_UNK_0x40FE
-    GoToIfEq VAR_0x8008, 0, _0D86
-    GoToIfEq VAR_0x8008, 1, _0DA5
-    GoToIfEq VAR_0x8008, 2, _0DC4
+    GoToIfEq VAR_RESULT, 1, Restaurant_EugeneNeedMultiplePokemon
+    SetVar VAR_0x8008, VAR_RESTAURANT_RANDOM_MESSAGE_EUGENE_ALISON
+    GoToIfEq VAR_0x8008, 0, Restaurant_EugeneAskBattle0
+    GoToIfEq VAR_0x8008, 1, Restaurant_EugeneAskBattle1
+    GoToIfEq VAR_0x8008, 2, Restaurant_EugeneAskBattle2
     ReleaseAll
     End
 
-_0D86:
-    Message 82
+Restaurant_EugeneAskBattle0:
+    Message Restaurant_Text_EugeneIntro0
     FacePlayer
-    Message 83
+    Message Restaurant_Text_EugeneAskBattle0
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _0DE3
-    GoTo _0E5C
+    GoToIfEq VAR_RESULT, MENU_YES, Restaurant_EugeneBattle
+    GoTo Restaurant_EugeneDeclineBattle
 
-_0DA5:
-    Message 90
+Restaurant_EugeneAskBattle1:
+    Message Restaurant_Text_EugeneIntro1
     FacePlayer
-    Message 91
+    Message Restaurant_Text_EugeneAskBattle1
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _0DE3
-    GoTo _0E5C
+    GoToIfEq VAR_RESULT, MENU_YES, Restaurant_EugeneBattle
+    GoTo Restaurant_EugeneDeclineBattle
 
-_0DC4:
-    Message 98
+Restaurant_EugeneAskBattle2:
+    Message Restaurant_Text_EugeneIntro2
     FacePlayer
-    Message 99
+    Message Restaurant_Text_EugeneAskBattle2
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _0DE3
-    GoTo _0E5C
+    GoToIfEq VAR_RESULT, MENU_YES, Restaurant_EugeneBattle
+    GoTo Restaurant_EugeneDeclineBattle
 
-_0DE3:
+Restaurant_EugeneBattle:
     CloseMessage
     StartTrainerBattle TRAINER_COLLECTOR_EUGENE, TRAINER_AROMA_LADY_ALISON
     CheckWonBattle VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, _2125
+    GoToIfEq VAR_RESULT, FALSE, Restaurant_LostBattle
     SetTrainerFlag TRAINER_COLLECTOR_EUGENE
     SetTrainerFlag TRAINER_AROMA_LADY_ALISON
-    Call _0ECB
-    SetVar VAR_0x8008, VAR_UNK_0x40FE
-    GoToIfEq VAR_0x8008, 0, _0E3B
-    GoToIfEq VAR_0x8008, 1, _0E46
-    GoToIfEq VAR_0x8008, 2, _0E51
+    Call Restaurant_EugeneFaceEast
+    SetVar VAR_0x8008, VAR_RESTAURANT_RANDOM_MESSAGE_EUGENE_ALISON
+    GoToIfEq VAR_0x8008, 0, Restaurant_EugenePostBattle0
+    GoToIfEq VAR_0x8008, 1, Restaurant_EugenePostBattle1
+    GoToIfEq VAR_0x8008, 2, Restaurant_EugenePostBattle2
     ReleaseAll
     End
 
-_0E3B:
-    Message 85
+Restaurant_EugenePostBattle0:
+    Message Restaurant_Text_EugeneDefeated0
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0E46:
-    Message 93
+Restaurant_EugenePostBattle1:
+    Message Restaurant_Text_EugeneDefeated1
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0E51:
-    Message 101
+Restaurant_EugenePostBattle2:
+    Message Restaurant_Text_EugeneDefeated2
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0E5C:
+Restaurant_EugeneDeclineBattle:
     CloseMessage
-    Call _0ECB
+    Call Restaurant_EugeneFaceEast
     ReleaseAll
     End
 
-_0E68:
-    SetVar VAR_0x8008, VAR_UNK_0x40FE
-    GoToIfEq VAR_0x8008, 0, _0E97
-    GoToIfEq VAR_0x8008, 1, _0EA2
-    GoToIfEq VAR_0x8008, 2, _0EAD
+Restaurant_EugeneDefeated:
+    SetVar VAR_0x8008, VAR_RESTAURANT_RANDOM_MESSAGE_EUGENE_ALISON
+    GoToIfEq VAR_0x8008, 0, Restaurant_EugeneDefeated0
+    GoToIfEq VAR_0x8008, 1, Restaurant_EugeneDefeated1
+    GoToIfEq VAR_0x8008, 2, Restaurant_EugeneDefeated2
     End
 
-_0E97:
-    Message 85
+Restaurant_EugeneDefeated0:
+    Message Restaurant_Text_EugeneDefeated0
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0EA2:
-    Message 93
+Restaurant_EugeneDefeated1:
+    Message Restaurant_Text_EugeneDefeated1
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0EAD:
-    Message 101
+Restaurant_EugeneDefeated2:
+    Message Restaurant_Text_EugeneDefeated2
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0EB8:
+Restaurant_EugeneNeedMultiplePokemon:
     FacePlayer
-    Message 80
+    Message Restaurant_Text_EugeneNeedMultiplePokemon
     WaitButton
     CloseMessage
-    Call _0ECB
+    Call Restaurant_EugeneFaceEast
     ReleaseAll
     End
 
-_0ECB:
-    ApplyMovement 17, _212C
+Restaurant_EugeneFaceEast:
+    ApplyMovement LOCALID_COLLECTOR_EUGINE, Restaurant_Movement_FaceEast
     WaitMovement
     Return
 
-_0ED7:
+Restaurant_AromaLadyAlison:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     CheckTrainerFlag TRAINER_AROMA_LADY_ALISON
-    GoToIfDefeated TRAINER_AROMA_LADY_ALISON, _1012
+    GoToIfDefeated TRAINER_AROMA_LADY_ALISON, Restaurant_AlisonDefeated
     CountAliveMonsExcept VAR_RESULT, 6
-    GoToIfEq VAR_RESULT, 1, _1062
-    SetVar VAR_0x8008, VAR_UNK_0x40FE
-    GoToIfEq VAR_0x8008, 0, _0F30
-    GoToIfEq VAR_0x8008, 1, _0F4F
-    GoToIfEq VAR_0x8008, 2, _0F6E
+    GoToIfEq VAR_RESULT, 1, Restaurant_AlisonNeedMultiplePokemon
+    SetVar VAR_0x8008, VAR_RESTAURANT_RANDOM_MESSAGE_EUGENE_ALISON
+    GoToIfEq VAR_0x8008, 0, Restaurant_AlisonAskBattle0
+    GoToIfEq VAR_0x8008, 1, Restaurant_AlisonAskBattle1
+    GoToIfEq VAR_0x8008, 2, Restaurant_AlisonAskBattle2
     ReleaseAll
     End
 
-_0F30:
-    Message 86
+Restaurant_AlisonAskBattle0:
+    Message Restaurant_Text_AlisonIntro0
     FacePlayer
-    Message 87
+    Message Restaurant_Text_AlisonAskBattle0
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _0F8D
-    GoTo _1006
+    GoToIfEq VAR_RESULT, MENU_YES, Restaurant_AlisonBattle
+    GoTo Restaurant_AlisonDeclineBattle
 
-_0F4F:
-    Message 94
+Restaurant_AlisonAskBattle1:
+    Message Restaurant_Text_AlisonIntro1
     FacePlayer
-    Message 95
+    Message Restaurant_Text_AlisonAskBattle1
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _0F8D
-    GoTo _1006
+    GoToIfEq VAR_RESULT, MENU_YES, Restaurant_AlisonBattle
+    GoTo Restaurant_AlisonDeclineBattle
 
-_0F6E:
-    Message 102
+Restaurant_AlisonAskBattle2:
+    Message Restaurant_Text_AlisonIntro2
     FacePlayer
-    Message 103
+    Message Restaurant_Text_AlisonAskBattle2
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _0F8D
-    GoTo _1006
+    GoToIfEq VAR_RESULT, MENU_YES, Restaurant_AlisonBattle
+    GoTo Restaurant_AlisonDeclineBattle
 
-_0F8D:
+Restaurant_AlisonBattle:
     CloseMessage
     StartTrainerBattle TRAINER_COLLECTOR_EUGENE, TRAINER_AROMA_LADY_ALISON
     CheckWonBattle VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, _2125
+    GoToIfEq VAR_RESULT, FALSE, Restaurant_LostBattle
     SetTrainerFlag TRAINER_COLLECTOR_EUGENE
     SetTrainerFlag TRAINER_AROMA_LADY_ALISON
-    Call _1075
-    SetVar VAR_0x8008, VAR_UNK_0x40FE
-    GoToIfEq VAR_0x8008, 0, _0FE5
-    GoToIfEq VAR_0x8008, 1, _0FF0
-    GoToIfEq VAR_0x8008, 2, _0FFB
+    Call Restaurant_AlisonFaceWest
+    SetVar VAR_0x8008, VAR_RESTAURANT_RANDOM_MESSAGE_EUGENE_ALISON
+    GoToIfEq VAR_0x8008, 0, Restaurant_AlisonPostBattle0
+    GoToIfEq VAR_0x8008, 1, Restaurant_AlisonPostBattle1
+    GoToIfEq VAR_0x8008, 2, Restaurant_AlisonPostBattle2
     ReleaseAll
     End
 
-_0FE5:
-    Message 89
+Restaurant_AlisonPostBattle0:
+    Message Restaurant_Text_AlisonDefeated0
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0FF0:
-    Message 97
+Restaurant_AlisonPostBattle1:
+    Message Restaurant_Text_AlisonDefeated1
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0FFB:
-    Message 105
+Restaurant_AlisonPostBattle2:
+    Message Restaurant_Text_AlisonDefeated2
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_1006:
+Restaurant_AlisonDeclineBattle:
     CloseMessage
-    Call _1075
+    Call Restaurant_AlisonFaceWest
     ReleaseAll
     End
 
-_1012:
-    SetVar VAR_0x8008, VAR_UNK_0x40FE
-    GoToIfEq VAR_0x8008, 0, _1041
-    GoToIfEq VAR_0x8008, 1, _104C
-    GoToIfEq VAR_0x8008, 2, _1057
+Restaurant_AlisonDefeated:
+    SetVar VAR_0x8008, VAR_RESTAURANT_RANDOM_MESSAGE_EUGENE_ALISON
+    GoToIfEq VAR_0x8008, 0, Restaurant_AlisonDefeated0
+    GoToIfEq VAR_0x8008, 1, Restaurant_AlisonDefeated1
+    GoToIfEq VAR_0x8008, 2, Restaurant_AlisonDefeated2
     End
 
-_1041:
-    Message 89
+Restaurant_AlisonDefeated0:
+    Message Restaurant_Text_AlisonDefeated0
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_104C:
-    Message 97
+Restaurant_AlisonDefeated1:
+    Message Restaurant_Text_AlisonDefeated1
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_1057:
-    Message 105
+Restaurant_AlisonDefeated2:
+    Message Restaurant_Text_AlisonDefeated2
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_1062:
+Restaurant_AlisonNeedMultiplePokemon:
     FacePlayer
-    Message 81
+    Message Restaurant_Text_AlisonNeedMultiplePokemon
     WaitButton
     CloseMessage
-    Call _1075
+    Call Restaurant_AlisonFaceWest
     ReleaseAll
     End
 
-_1075:
-    ApplyMovement 10, _2134
+Restaurant_AlisonFaceWest:
+    ApplyMovement LOCALID_AROMA_LADY_ALISON, Restaurant_Movement_FaceWest
     WaitMovement
     Return
 
-_1081:
+Restaurant_SchoolKidEsteban:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     CheckTrainerFlag TRAINER_SCHOOL_KID_ESTEBAN
-    GoToIfDefeated TRAINER_SCHOOL_KID_ESTEBAN, _11BC
+    GoToIfDefeated TRAINER_SCHOOL_KID_ESTEBAN, Restaurant_EstebanDefeated
     CountAliveMonsExcept VAR_RESULT, 6
-    GoToIfEq VAR_RESULT, 1, _120C
-    SetVar VAR_0x8008, VAR_UNK_0x40FF
-    GoToIfEq VAR_0x8008, 0, _10DA
-    GoToIfEq VAR_0x8008, 1, _10F9
-    GoToIfEq VAR_0x8008, 2, _1118
+    GoToIfEq VAR_RESULT, 1, Restaurant_EstebanNeedMultiplePokemon
+    SetVar VAR_0x8008, VAR_RESTAURANT_RANDOM_MESSAGE_ESTEBAN_MEREDITH
+    GoToIfEq VAR_0x8008, 0, Restaurant_EstebanAskBattle0
+    GoToIfEq VAR_0x8008, 1, Restaurant_EstebanAskBattle1
+    GoToIfEq VAR_0x8008, 2, Restaurant_EstebanAskBattle2
     ReleaseAll
     End
 
-_10DA:
-    Message 108
+Restaurant_EstebanAskBattle0:
+    Message Restaurant_Text_EstebanIntro0
     FacePlayer
-    Message 109
+    Message Restaurant_Text_EstebanAskBattle0
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _1137
-    GoTo _11B0
+    GoToIfEq VAR_RESULT, MENU_YES, Restaurant_EstebanBattle
+    GoTo Restaurant_EstebanDeclineBattle
 
-_10F9:
-    Message 116
+Restaurant_EstebanAskBattle1:
+    Message Restaurant_Text_EstebanIntro1
     FacePlayer
-    Message 117
+    Message Restaurant_Text_EstebanAskBattle1
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _1137
-    GoTo _11B0
+    GoToIfEq VAR_RESULT, MENU_YES, Restaurant_EstebanBattle
+    GoTo Restaurant_EstebanDeclineBattle
 
-_1118:
-    Message 124
+Restaurant_EstebanAskBattle2:
+    Message Restaurant_Text_EstebanIntro2
     FacePlayer
-    Message 125
+    Message Restaurant_Text_EstebanAskBattle2
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _1137
-    GoTo _11B0
+    GoToIfEq VAR_RESULT, MENU_YES, Restaurant_EstebanBattle
+    GoTo Restaurant_EstebanDeclineBattle
 
-_1137:
+Restaurant_EstebanBattle:
     CloseMessage
     StartTrainerBattle TRAINER_SCHOOL_KID_ESTEBAN, TRAINER_POKEFAN_MEREDITH
     CheckWonBattle VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, _2125
+    GoToIfEq VAR_RESULT, FALSE, Restaurant_LostBattle
     SetTrainerFlag TRAINER_SCHOOL_KID_ESTEBAN
     SetTrainerFlag TRAINER_POKEFAN_MEREDITH
-    Call _121F
-    SetVar VAR_0x8008, VAR_UNK_0x40FF
-    GoToIfEq VAR_0x8008, 0, _118F
-    GoToIfEq VAR_0x8008, 1, _119A
-    GoToIfEq VAR_0x8008, 2, _11A5
+    Call Restaurant_EstebanFaceEast
+    SetVar VAR_0x8008, VAR_RESTAURANT_RANDOM_MESSAGE_ESTEBAN_MEREDITH
+    GoToIfEq VAR_0x8008, 0, Restaurant_EstebanPostBattle0
+    GoToIfEq VAR_0x8008, 1, Restaurant_EstebanPostBattle1
+    GoToIfEq VAR_0x8008, 2, Restaurant_EstebanPostBattle2
     ReleaseAll
     End
 
-_118F:
-    Message 111
+Restaurant_EstebanPostBattle0:
+    Message Restaurant_Text_EstebanDefeated0
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_119A:
-    Message 119
+Restaurant_EstebanPostBattle1:
+    Message Restaurant_Text_EstebanDefeated1
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_11A5:
-    Message 127
+Restaurant_EstebanPostBattle2:
+    Message Restaurant_Text_EstebanDefeated2
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_11B0:
+Restaurant_EstebanDeclineBattle:
     CloseMessage
-    Call _121F
+    Call Restaurant_EstebanFaceEast
     ReleaseAll
     End
 
-_11BC:
-    SetVar VAR_0x8008, VAR_UNK_0x40FF
-    GoToIfEq VAR_0x8008, 0, _11EB
-    GoToIfEq VAR_0x8008, 1, _11F6
-    GoToIfEq VAR_0x8008, 2, _1201
+Restaurant_EstebanDefeated:
+    SetVar VAR_0x8008, VAR_RESTAURANT_RANDOM_MESSAGE_ESTEBAN_MEREDITH
+    GoToIfEq VAR_0x8008, 0, Restaurant_EstebanDefeated0
+    GoToIfEq VAR_0x8008, 1, Restaurant_EstebanDefeated1
+    GoToIfEq VAR_0x8008, 2, Restaurant_EstebanDefeated2
     End
 
-_11EB:
-    Message 111
+Restaurant_EstebanDefeated0:
+    Message Restaurant_Text_EstebanDefeated0
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_11F6:
-    Message 119
+Restaurant_EstebanDefeated1:
+    Message Restaurant_Text_EstebanDefeated1
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_1201:
-    Message 127
+Restaurant_EstebanDefeated2:
+    Message Restaurant_Text_EstebanDefeated2
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_120C:
+Restaurant_EstebanNeedMultiplePokemon:
     FacePlayer
-    Message 106
+    Message Restaurant_Text_EstebanNeedMultiplePokemon
     WaitButton
     CloseMessage
-    Call _121F
+    Call Restaurant_EstebanFaceEast
     ReleaseAll
     End
 
-_121F:
-    ApplyMovement 15, _212C
+Restaurant_EstebanFaceEast:
+    ApplyMovement LOCALID_SCHOOL_KID_ESTEBAN, Restaurant_Movement_FaceEast
     WaitMovement
     Return
 
-_122B:
+Restaurant_PokefanMeredith:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     CheckTrainerFlag TRAINER_POKEFAN_MEREDITH
-    GoToIfDefeated TRAINER_POKEFAN_MEREDITH, _1366
+    GoToIfDefeated TRAINER_POKEFAN_MEREDITH, Restaurant_MeredithDefeated
     CountAliveMonsExcept VAR_RESULT, 6
-    GoToIfEq VAR_RESULT, 1, _13B6
-    SetVar VAR_0x8008, VAR_UNK_0x40FF
-    GoToIfEq VAR_0x8008, 0, _1284
-    GoToIfEq VAR_0x8008, 1, _12A3
-    GoToIfEq VAR_0x8008, 2, _12C2
+    GoToIfEq VAR_RESULT, 1, Restaurant_MeredithNeedMultiplePokemon
+    SetVar VAR_0x8008, VAR_RESTAURANT_RANDOM_MESSAGE_ESTEBAN_MEREDITH
+    GoToIfEq VAR_0x8008, 0, Restaurant_MeredithAskBattle0
+    GoToIfEq VAR_0x8008, 1, Restaurant_MeredithAskBattle1
+    GoToIfEq VAR_0x8008, 2, Restaurant_MeredithAskBattle2
     ReleaseAll
     End
 
-_1284:
-    Message 112
+Restaurant_MeredithAskBattle0:
+    Message Restaurant_Text_MeredithIntro0
     FacePlayer
-    Message 113
+    Message Restaurant_Text_MeredithAskBattle0
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _12E1
-    GoTo _135A
+    GoToIfEq VAR_RESULT, MENU_YES, Restaurant_MeredithBattle
+    GoTo Restaurant_MeredithDeclineBattle
 
-_12A3:
-    Message 120
+Restaurant_MeredithAskBattle1:
+    Message Restaurant_Text_MeredithIntro1
     FacePlayer
-    Message 121
+    Message Restaurant_Text_MeredithAskBattle1
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _12E1
-    GoTo _135A
+    GoToIfEq VAR_RESULT, MENU_YES, Restaurant_MeredithBattle
+    GoTo Restaurant_MeredithDeclineBattle
 
-_12C2:
-    Message 128
+Restaurant_MeredithAskBattle2:
+    Message Restaurant_Text_MeredithIntro2
     FacePlayer
-    Message 129
+    Message Restaurant_Text_MeredithAskBattle2
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _12E1
-    GoTo _135A
+    GoToIfEq VAR_RESULT, MENU_YES, Restaurant_MeredithBattle
+    GoTo Restaurant_MeredithDeclineBattle
 
-_12E1:
+Restaurant_MeredithBattle:
     CloseMessage
     StartTrainerBattle TRAINER_SCHOOL_KID_ESTEBAN, TRAINER_POKEFAN_MEREDITH
     CheckWonBattle VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, _2125
+    GoToIfEq VAR_RESULT, FALSE, Restaurant_LostBattle
     SetTrainerFlag TRAINER_SCHOOL_KID_ESTEBAN
     SetTrainerFlag TRAINER_POKEFAN_MEREDITH
-    Call _13C9
-    SetVar VAR_0x8008, VAR_UNK_0x40FF
-    GoToIfEq VAR_0x8008, 0, _1339
-    GoToIfEq VAR_0x8008, 1, _1344
-    GoToIfEq VAR_0x8008, 2, _134F
+    Call Restaurant_MeredithFaceWest
+    SetVar VAR_0x8008, VAR_RESTAURANT_RANDOM_MESSAGE_ESTEBAN_MEREDITH
+    GoToIfEq VAR_0x8008, 0, Restaurant_MeredithPostBattle0
+    GoToIfEq VAR_0x8008, 1, Restaurant_MeredithPostBattle1
+    GoToIfEq VAR_0x8008, 2, Restaurant_MeredithPostBattle2
     ReleaseAll
     End
 
-_1339:
-    Message 115
+Restaurant_MeredithPostBattle0:
+    Message Restaurant_Text_MeredithDefeated0
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_1344:
-    Message 123
+Restaurant_MeredithPostBattle1:
+    Message Restaurant_Text_MeredithDefeated1
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_134F:
-    Message 131
+Restaurant_MeredithPostBattle2:
+    Message Restaurant_Text_MeredithDefeated2
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_135A:
+Restaurant_MeredithDeclineBattle:
     CloseMessage
-    Call _13C9
+    Call Restaurant_MeredithFaceWest
     ReleaseAll
     End
 
-_1366:
-    SetVar VAR_0x8008, VAR_UNK_0x40FF
-    GoToIfEq VAR_0x8008, 0, _1395
-    GoToIfEq VAR_0x8008, 1, _13A0
-    GoToIfEq VAR_0x8008, 2, _13AB
+Restaurant_MeredithDefeated:
+    SetVar VAR_0x8008, VAR_RESTAURANT_RANDOM_MESSAGE_ESTEBAN_MEREDITH
+    GoToIfEq VAR_0x8008, 0, Restaurant_MeredithDefeated0
+    GoToIfEq VAR_0x8008, 1, Restaurant_MeredithDefeated1
+    GoToIfEq VAR_0x8008, 2, Restaurant_MeredithDefeated2
     End
 
-_1395:
-    Message 115
+Restaurant_MeredithDefeated0:
+    Message Restaurant_Text_MeredithDefeated0
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_13A0:
-    Message 123
+Restaurant_MeredithDefeated1:
+    Message Restaurant_Text_MeredithDefeated1
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_13AB:
-    Message 131
+Restaurant_MeredithDefeated2:
+    Message Restaurant_Text_MeredithDefeated2
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_13B6:
+Restaurant_MeredithNeedMultiplePokemon:
     FacePlayer
-    Message 107
+    Message Restaurant_Text_MeredithNeedMultiplePokemon
     WaitButton
     CloseMessage
-    Call _13C9
+    Call Restaurant_MeredithFaceWest
     ReleaseAll
     End
 
-_13C9:
-    ApplyMovement 13, _2134
+Restaurant_MeredithFaceWest:
+    ApplyMovement LOCALID_POKEFAN_MEREDITH, Restaurant_Movement_FaceWest
     WaitMovement
     Return
 
-_13D5:
+Restaurant_VeteranEmanuel:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     CheckTrainerFlag TRAINER_VETERAN_EMANUEL
-    GoToIfDefeated TRAINER_VETERAN_EMANUEL, _1510
+    GoToIfDefeated TRAINER_VETERAN_EMANUEL, Restaurant_EmanuelDefeated
     CountAliveMonsExcept VAR_RESULT, 6
-    GoToIfEq VAR_RESULT, 1, _1560
-    SetVar VAR_0x8008, VAR_UNK_0x4100
-    GoToIfEq VAR_0x8008, 0, _142E
-    GoToIfEq VAR_0x8008, 1, _144D
-    GoToIfEq VAR_0x8008, 2, _146C
+    GoToIfEq VAR_RESULT, 1, Restaurant_EmanuelNeedMultiplePokemon
+    SetVar VAR_0x8008, VAR_RESTAURANT_RANDOM_MESSAGE_EMANUEL_BLYTHE
+    GoToIfEq VAR_0x8008, 0, Restaurant_EmanuelAskBattle0
+    GoToIfEq VAR_0x8008, 1, Restaurant_EmanuelAskBattle1
+    GoToIfEq VAR_0x8008, 2, Restaurant_EmanuelAskBattle2
     ReleaseAll
     End
 
-_142E:
-    Message 134
+Restaurant_EmanuelAskBattle0:
+    Message Restaurant_Text_EmanuelIntro0
     FacePlayer
-    Message 135
+    Message Restaurant_Text_EmanuelAskBattle0
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _148B
-    GoTo _1504
+    GoToIfEq VAR_RESULT, MENU_YES, Restaurant_EmanuelBattle
+    GoTo Restaurant_EmanuelDeclineBattle
 
-_144D:
-    Message 142
+Restaurant_EmanuelAskBattle1:
+    Message Restaurant_Text_EmanuelIntro1
     FacePlayer
-    Message 143
+    Message Restaurant_Text_EmanuelAskBattle1
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _148B
-    GoTo _1504
+    GoToIfEq VAR_RESULT, MENU_YES, Restaurant_EmanuelBattle
+    GoTo Restaurant_EmanuelDeclineBattle
 
-_146C:
-    Message 150
+Restaurant_EmanuelAskBattle2:
+    Message Restaurant_Text_EmanuelIntro2
     FacePlayer
-    Message 151
+    Message Restaurant_Text_EmanuelAskBattle2
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _148B
-    GoTo _1504
+    GoToIfEq VAR_RESULT, MENU_YES, Restaurant_EmanuelBattle
+    GoTo Restaurant_EmanuelDeclineBattle
 
-_148B:
+Restaurant_EmanuelBattle:
     CloseMessage
     StartTrainerBattle TRAINER_VETERAN_EMANUEL, TRAINER_LASS_BLYTHE
     CheckWonBattle VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, _2125
+    GoToIfEq VAR_RESULT, FALSE, Restaurant_LostBattle
     SetTrainerFlag TRAINER_VETERAN_EMANUEL
     SetTrainerFlag TRAINER_LASS_BLYTHE
-    Call _1573
-    SetVar VAR_0x8008, VAR_UNK_0x4100
-    GoToIfEq VAR_0x8008, 0, _14E3
-    GoToIfEq VAR_0x8008, 1, _14EE
-    GoToIfEq VAR_0x8008, 2, _14F9
+    Call Restaurant_EmanuelFaceEast
+    SetVar VAR_0x8008, VAR_RESTAURANT_RANDOM_MESSAGE_EMANUEL_BLYTHE
+    GoToIfEq VAR_0x8008, 0, Restaurant_EmanuelPostBattle0
+    GoToIfEq VAR_0x8008, 1, Restaurant_EmanuelPostBattle1
+    GoToIfEq VAR_0x8008, 2, Restaurant_EmanuelPostBattle2
     ReleaseAll
     End
 
-_14E3:
-    Message 137
+Restaurant_EmanuelPostBattle0:
+    Message Restaurant_Text_EmanuelDefeated0
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_14EE:
-    Message 145
+Restaurant_EmanuelPostBattle1:
+    Message Restaurant_Text_EmanuelDefeated1
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_14F9:
-    Message 153
+Restaurant_EmanuelPostBattle2:
+    Message Restaurant_Text_EmanuelDefeated2
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_1504:
+Restaurant_EmanuelDeclineBattle:
     CloseMessage
-    Call _1573
+    Call Restaurant_EmanuelFaceEast
     ReleaseAll
     End
 
-_1510:
-    SetVar VAR_0x8008, VAR_UNK_0x4100
-    GoToIfEq VAR_0x8008, 0, _153F
-    GoToIfEq VAR_0x8008, 1, _154A
-    GoToIfEq VAR_0x8008, 2, _1555
+Restaurant_EmanuelDefeated:
+    SetVar VAR_0x8008, VAR_RESTAURANT_RANDOM_MESSAGE_EMANUEL_BLYTHE
+    GoToIfEq VAR_0x8008, 0, Restaurant_EmanuelDefeated0
+    GoToIfEq VAR_0x8008, 1, Restaurant_EmanuelDefeated1
+    GoToIfEq VAR_0x8008, 2, Restaurant_EmanuelDefeated2
     End
 
-_153F:
-    Message 137
+Restaurant_EmanuelDefeated0:
+    Message Restaurant_Text_EmanuelDefeated0
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_154A:
-    Message 145
+Restaurant_EmanuelDefeated1:
+    Message Restaurant_Text_EmanuelDefeated1
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_1555:
-    Message 153
+Restaurant_EmanuelDefeated2:
+    Message Restaurant_Text_EmanuelDefeated2
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_1560:
+Restaurant_EmanuelNeedMultiplePokemon:
     FacePlayer
-    Message 132
+    Message Restaurant_Text_EmanuelNeedMultiplePokemon
     WaitButton
     CloseMessage
-    Call _1573
+    Call Restaurant_EmanuelFaceEast
     ReleaseAll
     End
 
-_1573:
-    ApplyMovement 11, _212C
+Restaurant_EmanuelFaceEast:
+    ApplyMovement LOCALID_VETERAN_EMANUEL, Restaurant_Movement_FaceEast
     WaitMovement
     Return
 
-_157F:
+Restaurant_LassBlythe:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     CheckTrainerFlag TRAINER_LASS_BLYTHE
-    GoToIfDefeated TRAINER_LASS_BLYTHE, _16BA
+    GoToIfDefeated TRAINER_LASS_BLYTHE, Restaurant_BlytheDefeated
     CountAliveMonsExcept VAR_RESULT, 6
-    GoToIfEq VAR_RESULT, 1, _170A
-    SetVar VAR_0x8008, VAR_UNK_0x4100
-    GoToIfEq VAR_0x8008, 0, _15D8
-    GoToIfEq VAR_0x8008, 1, _15F7
-    GoToIfEq VAR_0x8008, 2, _1616
+    GoToIfEq VAR_RESULT, 1, Restaurant_BlytheNeedMultiplePokemon
+    SetVar VAR_0x8008, VAR_RESTAURANT_RANDOM_MESSAGE_EMANUEL_BLYTHE
+    GoToIfEq VAR_0x8008, 0, Restaurant_BlytheAskBattle0
+    GoToIfEq VAR_0x8008, 1, Restaurant_BlytheAskBattle1
+    GoToIfEq VAR_0x8008, 2, Restaurant_BlytheAskBattle2
     ReleaseAll
     End
 
-_15D8:
-    Message 138
+Restaurant_BlytheAskBattle0:
+    Message Restaurant_Text_BlytheIntro0
     FacePlayer
-    Message 139
+    Message Restaurant_Text_BlytheAskBattle0
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _1635
-    GoTo _16AE
+    GoToIfEq VAR_RESULT, MENU_YES, Restaurant_BlytheBattle
+    GoTo Restaurant_BlytheDeclineBattle
 
-_15F7:
-    Message 146
+Restaurant_BlytheAskBattle1:
+    Message Restaurant_Text_BlytheIntro1
     FacePlayer
-    Message 147
+    Message Restaurant_Text_BlytheAskBattle1
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _1635
-    GoTo _16AE
+    GoToIfEq VAR_RESULT, MENU_YES, Restaurant_BlytheBattle
+    GoTo Restaurant_BlytheDeclineBattle
 
-_1616:
-    Message 154
+Restaurant_BlytheAskBattle2:
+    Message Restaurant_Text_BlytheIntro2
     FacePlayer
-    Message 155
+    Message Restaurant_Text_BlytheAskBattle2
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _1635
-    GoTo _16AE
+    GoToIfEq VAR_RESULT, MENU_YES, Restaurant_BlytheBattle
+    GoTo Restaurant_BlytheDeclineBattle
 
-_1635:
+Restaurant_BlytheBattle:
     CloseMessage
     StartTrainerBattle TRAINER_VETERAN_EMANUEL, TRAINER_LASS_BLYTHE
     CheckWonBattle VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, _2125
+    GoToIfEq VAR_RESULT, FALSE, Restaurant_LostBattle
     SetTrainerFlag TRAINER_VETERAN_EMANUEL
     SetTrainerFlag TRAINER_LASS_BLYTHE
-    Call _171D
-    SetVar VAR_0x8008, VAR_UNK_0x4100
-    GoToIfEq VAR_0x8008, 0, _168D
-    GoToIfEq VAR_0x8008, 1, _1698
-    GoToIfEq VAR_0x8008, 2, _16A3
+    Call Restaurant_BlytheFaceWest
+    SetVar VAR_0x8008, VAR_RESTAURANT_RANDOM_MESSAGE_EMANUEL_BLYTHE
+    GoToIfEq VAR_0x8008, 0, Restaurant_BlythePostBattle0
+    GoToIfEq VAR_0x8008, 1, Restaurant_BlythePostBattle1
+    GoToIfEq VAR_0x8008, 2, Restaurant_BlythePostBattle2
     ReleaseAll
     End
 
-_168D:
-    Message 141
+Restaurant_BlythePostBattle0:
+    Message Restaurant_Text_BlytheDefeated0
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_1698:
-    Message 149
+Restaurant_BlythePostBattle1:
+    Message Restaurant_Text_BlytheDefeated1
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_16A3:
-    Message 157
+Restaurant_BlythePostBattle2:
+    Message Restaurant_Text_BlytheDefeated2
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_16AE:
+Restaurant_BlytheDeclineBattle:
     CloseMessage
-    Call _171D
+    Call Restaurant_BlytheFaceWest
     ReleaseAll
     End
 
-_16BA:
-    SetVar VAR_0x8008, VAR_UNK_0x4100
-    GoToIfEq VAR_0x8008, 0, _16E9
-    GoToIfEq VAR_0x8008, 1, _16F4
-    GoToIfEq VAR_0x8008, 2, _16FF
+Restaurant_BlytheDefeated:
+    SetVar VAR_0x8008, VAR_RESTAURANT_RANDOM_MESSAGE_EMANUEL_BLYTHE
+    GoToIfEq VAR_0x8008, 0, Restaurant_BlytheDefeated0
+    GoToIfEq VAR_0x8008, 1, Restaurant_BlytheDefeated1
+    GoToIfEq VAR_0x8008, 2, Restaurant_BlytheDefeated2
     End
 
-_16E9:
-    Message 141
+Restaurant_BlytheDefeated0:
+    Message Restaurant_Text_BlytheDefeated0
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_16F4:
-    Message 149
+Restaurant_BlytheDefeated1:
+    Message Restaurant_Text_BlytheDefeated1
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_16FF:
-    Message 157
+Restaurant_BlytheDefeated2:
+    Message Restaurant_Text_BlytheDefeated2
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_170A:
+Restaurant_BlytheNeedMultiplePokemon:
     FacePlayer
-    Message 133
+    Message Restaurant_Text_BlytheNeedMultiplePokemon
     WaitButton
     CloseMessage
-    Call _171D
+    Call Restaurant_BlytheFaceWest
     ReleaseAll
     End
 
-_171D:
-    ApplyMovement 12, _2134
+Restaurant_BlytheFaceWest:
+    ApplyMovement LOCALID_LASS_BLYTHE, Restaurant_Movement_FaceWest
     WaitMovement
     Return
 
-_1729:
+Restaurant_CameramanDarryl:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     CheckTrainerFlag TRAINER_CAMERAMAN_DARRYL
-    GoToIfDefeated TRAINER_CAMERAMAN_DARRYL, _1864
+    GoToIfDefeated TRAINER_CAMERAMAN_DARRYL, Restaurant_DarrylDefeated
     CountAliveMonsExcept VAR_RESULT, 6
-    GoToIfEq VAR_RESULT, 1, _18B4
-    SetVar VAR_0x8008, VAR_UNK_0x4101
-    GoToIfEq VAR_0x8008, 0, _1782
-    GoToIfEq VAR_0x8008, 1, _17A1
-    GoToIfEq VAR_0x8008, 2, _17C0
+    GoToIfEq VAR_RESULT, 1, Restaurant_DarrylNeedMultiplePokemon
+    SetVar VAR_0x8008, VAR_RESTAURANT_RANDOM_MESSAGE_DARRYL_VALERIE
+    GoToIfEq VAR_0x8008, 0, Restaurant_DarrylAskBattle0
+    GoToIfEq VAR_0x8008, 1, Restaurant_DarrylAskBattle1
+    GoToIfEq VAR_0x8008, 2, Restaurant_DarrylAskBattle2
     ReleaseAll
     End
 
-_1782:
-    Message 160
+Restaurant_DarrylAskBattle0:
+    Message Restaurant_Text_DarrylIntro0
     FacePlayer
-    Message 161
+    Message Restaurant_Text_DarrylAskBattle0
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _17DF
-    GoTo _1858
+    GoToIfEq VAR_RESULT, MENU_YES, Restaurant_DarrylBattle
+    GoTo Restaurant_DarrylDeclineBattle
 
-_17A1:
-    Message 168
+Restaurant_DarrylAskBattle1:
+    Message Restaurant_Text_DarrylIntro1
     FacePlayer
-    Message 169
+    Message Restaurant_Text_DarrylAskBattle1
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _17DF
-    GoTo _1858
+    GoToIfEq VAR_RESULT, MENU_YES, Restaurant_DarrylBattle
+    GoTo Restaurant_DarrylDeclineBattle
 
-_17C0:
-    Message 176
+Restaurant_DarrylAskBattle2:
+    Message Restaurant_Text_DarrylIntro2
     FacePlayer
-    Message 177
+    Message Restaurant_Text_DarrylAskBattle2
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _17DF
-    GoTo _1858
+    GoToIfEq VAR_RESULT, MENU_YES, Restaurant_DarrylBattle
+    GoTo Restaurant_DarrylDeclineBattle
 
-_17DF:
+Restaurant_DarrylBattle:
     CloseMessage
     StartTrainerBattle TRAINER_CAMERAMAN_DARRYL, TRAINER_REPORTER_VALERIE
     CheckWonBattle VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, _2125
+    GoToIfEq VAR_RESULT, FALSE, Restaurant_LostBattle
     SetTrainerFlag TRAINER_CAMERAMAN_DARRYL
     SetTrainerFlag TRAINER_REPORTER_VALERIE
-    Call _18C7
-    SetVar VAR_0x8008, VAR_UNK_0x4101
-    GoToIfEq VAR_0x8008, 0, _1837
-    GoToIfEq VAR_0x8008, 1, _1842
-    GoToIfEq VAR_0x8008, 2, _184D
+    Call Restaurant_DarrylFaceEast
+    SetVar VAR_0x8008, VAR_RESTAURANT_RANDOM_MESSAGE_DARRYL_VALERIE
+    GoToIfEq VAR_0x8008, 0, Restaurant_DarrylPostBattle0
+    GoToIfEq VAR_0x8008, 1, Restaurant_DarrylPostBattle1
+    GoToIfEq VAR_0x8008, 2, Restaurant_DarrylPostBattle2
     ReleaseAll
     End
 
-_1837:
-    Message 163
+Restaurant_DarrylPostBattle0:
+    Message Restaurant_Text_DarrylDefeated0
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_1842:
-    Message 171
+Restaurant_DarrylPostBattle1:
+    Message Restaurant_Text_DarrylDefeated1
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_184D:
-    Message 179
+Restaurant_DarrylPostBattle2:
+    Message Restaurant_Text_DarrylDefeated2
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_1858:
+Restaurant_DarrylDeclineBattle:
     CloseMessage
-    Call _18C7
+    Call Restaurant_DarrylFaceEast
     ReleaseAll
     End
 
-_1864:
-    SetVar VAR_0x8008, VAR_UNK_0x4101
-    GoToIfEq VAR_0x8008, 0, _1893
-    GoToIfEq VAR_0x8008, 1, _189E
-    GoToIfEq VAR_0x8008, 2, _18A9
+Restaurant_DarrylDefeated:
+    SetVar VAR_0x8008, VAR_RESTAURANT_RANDOM_MESSAGE_DARRYL_VALERIE
+    GoToIfEq VAR_0x8008, 0, Restaurant_DarrylDefeated0
+    GoToIfEq VAR_0x8008, 1, Restaurant_DarrylDefeated1
+    GoToIfEq VAR_0x8008, 2, Restaurant_DarrylDefeated2
     End
 
-_1893:
-    Message 163
+Restaurant_DarrylDefeated0:
+    Message Restaurant_Text_DarrylDefeated0
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_189E:
-    Message 171
+Restaurant_DarrylDefeated1:
+    Message Restaurant_Text_DarrylDefeated1
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_18A9:
-    Message 179
+Restaurant_DarrylDefeated2:
+    Message Restaurant_Text_DarrylDefeated2
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_18B4:
+Restaurant_DarrylNeedMultiplePokemon:
     FacePlayer
-    Message 158
+    Message Restaurant_Text_DarrylNeedMultiplePokemon
     WaitButton
     CloseMessage
-    Call _18C7
+    Call Restaurant_DarrylFaceEast
     ReleaseAll
     End
 
-_18C7:
-    ApplyMovement 5, _212C
+Restaurant_DarrylFaceEast:
+    ApplyMovement LOCALID_CAMERAMAN_DARRYL, Restaurant_Movement_FaceEast
     WaitMovement
     Return
 
-_18D3:
+Restaurant_ReporterValerie:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     CheckTrainerFlag TRAINER_REPORTER_VALERIE
-    GoToIfDefeated TRAINER_REPORTER_VALERIE, _1A0E
+    GoToIfDefeated TRAINER_REPORTER_VALERIE, Restaurant_ValerieDefeated
     CountAliveMonsExcept VAR_RESULT, 6
-    GoToIfEq VAR_RESULT, 1, _1A5E
-    SetVar VAR_0x8008, VAR_UNK_0x4101
-    GoToIfEq VAR_0x8008, 0, _192C
-    GoToIfEq VAR_0x8008, 1, _194B
-    GoToIfEq VAR_0x8008, 2, _196A
+    GoToIfEq VAR_RESULT, 1, Restaurant_ValerieNeedMultiplePokemon
+    SetVar VAR_0x8008, VAR_RESTAURANT_RANDOM_MESSAGE_DARRYL_VALERIE
+    GoToIfEq VAR_0x8008, 0, Restaurant_ValerieAskBattle0
+    GoToIfEq VAR_0x8008, 1, Restaurant_ValerieAskBattle1
+    GoToIfEq VAR_0x8008, 2, Restaurant_ValerieAskBattle2
     ReleaseAll
     End
 
-_192C:
-    Message 164
+Restaurant_ValerieAskBattle0:
+    Message Restaurant_Text_ValerieIntro0
     FacePlayer
-    Message 165
+    Message Restaurant_Text_ValerieAskBattle0
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _1989
-    GoTo _1A02
+    GoToIfEq VAR_RESULT, MENU_YES, Restaurant_ValerieBattle
+    GoTo Restaurant_ValerieDeclineBattle
 
-_194B:
-    Message 172
+Restaurant_ValerieAskBattle1:
+    Message Restaurant_Text_ValerieIntro1
     FacePlayer
-    Message 173
+    Message Restaurant_Text_ValerieAskBattle1
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _1989
-    GoTo _1A02
+    GoToIfEq VAR_RESULT, MENU_YES, Restaurant_ValerieBattle
+    GoTo Restaurant_ValerieDeclineBattle
 
-_196A:
-    Message 180
+Restaurant_ValerieAskBattle2:
+    Message Restaurant_Text_ValerieIntro2
     FacePlayer
-    Message 181
+    Message Restaurant_Text_ValerieAskBattle2
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _1989
-    GoTo _1A02
+    GoToIfEq VAR_RESULT, MENU_YES, Restaurant_ValerieBattle
+    GoTo Restaurant_ValerieDeclineBattle
 
-_1989:
+Restaurant_ValerieBattle:
     CloseMessage
     StartTrainerBattle TRAINER_CAMERAMAN_DARRYL, TRAINER_REPORTER_VALERIE
     CheckWonBattle VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, _2125
+    GoToIfEq VAR_RESULT, FALSE, Restaurant_LostBattle
     SetTrainerFlag TRAINER_CAMERAMAN_DARRYL
     SetTrainerFlag TRAINER_REPORTER_VALERIE
-    Call _1A71
-    SetVar VAR_0x8008, VAR_UNK_0x4101
-    GoToIfEq VAR_0x8008, 0, _19E1
-    GoToIfEq VAR_0x8008, 1, _19EC
-    GoToIfEq VAR_0x8008, 2, _19F7
+    Call Restaurant_ValerieFaceWest
+    SetVar VAR_0x8008, VAR_RESTAURANT_RANDOM_MESSAGE_DARRYL_VALERIE
+    GoToIfEq VAR_0x8008, 0, Restaurant_ValeriePostBattle0
+    GoToIfEq VAR_0x8008, 1, Restaurant_ValeriePostBattle1
+    GoToIfEq VAR_0x8008, 2, Restaurant_ValeriePostBattle2
     ReleaseAll
     End
 
-_19E1:
-    Message 167
+Restaurant_ValeriePostBattle0:
+    Message Restaurant_Text_ValerieDefeated0
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_19EC:
-    Message 175
+Restaurant_ValeriePostBattle1:
+    Message Restaurant_Text_ValerieDefeated1
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_19F7:
-    Message 183
+Restaurant_ValeriePostBattle2:
+    Message Restaurant_Text_ValerieDefeated2
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_1A02:
+Restaurant_ValerieDeclineBattle:
     CloseMessage
-    Call _1A71
+    Call Restaurant_ValerieFaceWest
     ReleaseAll
     End
 
-_1A0E:
-    SetVar VAR_0x8008, VAR_UNK_0x4101
-    GoToIfEq VAR_0x8008, 0, _1A3D
-    GoToIfEq VAR_0x8008, 1, _1A48
-    GoToIfEq VAR_0x8008, 2, _1A53
+Restaurant_ValerieDefeated:
+    SetVar VAR_0x8008, VAR_RESTAURANT_RANDOM_MESSAGE_DARRYL_VALERIE
+    GoToIfEq VAR_0x8008, 0, Restaurant_ValerieDefeated0
+    GoToIfEq VAR_0x8008, 1, Restaurant_ValerieDefeated1
+    GoToIfEq VAR_0x8008, 2, Restaurant_ValerieDefeated2
     End
 
-_1A3D:
-    Message 167
+Restaurant_ValerieDefeated0:
+    Message Restaurant_Text_ValerieDefeated0
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_1A48:
-    Message 175
+Restaurant_ValerieDefeated1:
+    Message Restaurant_Text_ValerieDefeated1
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_1A53:
-    Message 183
+Restaurant_ValerieDefeated2:
+    Message Restaurant_Text_ValerieDefeated2
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_1A5E:
+Restaurant_ValerieNeedMultiplePokemon:
     FacePlayer
-    Message 159
+    Message Restaurant_Text_ValerieNeedMultiplePokemon
     WaitButton
     CloseMessage
-    Call _1A71
+    Call Restaurant_ValerieFaceWest
     ReleaseAll
     End
 
-_1A71:
-    ApplyMovement 4, _2134
+Restaurant_ValerieFaceWest:
+    ApplyMovement LOCALID_REPORTER_VALERIE, Restaurant_Movement_FaceWest
     WaitMovement
     Return
 
-_1A7D:
+Restaurant_PIKendrick:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     CheckTrainerFlag TRAINER_PI_KENDRICK
-    GoToIfDefeated TRAINER_PI_KENDRICK, _1BB8
+    GoToIfDefeated TRAINER_PI_KENDRICK, Restaurant_KendrickDefeated
     CountAliveMonsExcept VAR_RESULT, 6
-    GoToIfEq VAR_RESULT, 1, _1C08
-    SetVar VAR_0x8008, VAR_UNK_0x4102
-    GoToIfEq VAR_0x8008, 0, _1AD6
-    GoToIfEq VAR_0x8008, 1, _1AF5
-    GoToIfEq VAR_0x8008, 2, _1B14
+    GoToIfEq VAR_RESULT, 1, Restaurant_KendrickNeedMultiplePokemon
+    SetVar VAR_0x8008, VAR_RESTAURANT_RANDOM_MESSAGE_KENDRICK_GABRIELLA
+    GoToIfEq VAR_0x8008, 0, Restaurant_KendrickAskBattle0
+    GoToIfEq VAR_0x8008, 1, Restaurant_KendrickAskBattle1
+    GoToIfEq VAR_0x8008, 2, Restaurant_KendrickAskBattle2
     ReleaseAll
     End
 
-_1AD6:
-    Message 186
+Restaurant_KendrickAskBattle0:
+    Message Restaurant_Text_KendrickIntro0
     FacePlayer
-    Message 187
+    Message Restaurant_Text_KendrickAskBattle0
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _1B33
-    GoTo _1BAC
+    GoToIfEq VAR_RESULT, MENU_YES, Restaurant_KendrickBattle
+    GoTo Restaurant_KendrickDeclineBattle
 
-_1AF5:
-    Message 194
+Restaurant_KendrickAskBattle1:
+    Message Restaurant_Text_KendrickIntro1
     FacePlayer
-    Message 195
+    Message Restaurant_Text_KendrickAskBattle1
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _1B33
-    GoTo _1BAC
+    GoToIfEq VAR_RESULT, MENU_YES, Restaurant_KendrickBattle
+    GoTo Restaurant_KendrickDeclineBattle
 
-_1B14:
-    Message 202
+Restaurant_KendrickAskBattle2:
+    Message Restaurant_Text_KendrickIntro2
     FacePlayer
-    Message 203
+    Message Restaurant_Text_KendrickAskBattle2
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _1B33
-    GoTo _1BAC
+    GoToIfEq VAR_RESULT, MENU_YES, Restaurant_KendrickBattle
+    GoTo Restaurant_KendrickDeclineBattle
 
-_1B33:
+Restaurant_KendrickBattle:
     CloseMessage
     StartTrainerBattle TRAINER_PI_KENDRICK, TRAINER_BEAUTY_GABRIELLA
     CheckWonBattle VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, _2125
+    GoToIfEq VAR_RESULT, FALSE, Restaurant_LostBattle
     SetTrainerFlag TRAINER_PI_KENDRICK
     SetTrainerFlag TRAINER_BEAUTY_GABRIELLA
-    Call _1C1B
-    SetVar VAR_0x8008, VAR_UNK_0x4102
-    GoToIfEq VAR_0x8008, 0, _1B8B
-    GoToIfEq VAR_0x8008, 1, _1B96
-    GoToIfEq VAR_0x8008, 2, _1BA1
+    Call Restaurant_KendrickFaceEast
+    SetVar VAR_0x8008, VAR_RESTAURANT_RANDOM_MESSAGE_KENDRICK_GABRIELLA
+    GoToIfEq VAR_0x8008, 0, Restaurant_KendrickPostBattle0
+    GoToIfEq VAR_0x8008, 1, Restaurant_KendrickPostBattle1
+    GoToIfEq VAR_0x8008, 2, Restaurant_KendrickPostBattle2
     ReleaseAll
     End
 
-_1B8B:
-    Message 189
+Restaurant_KendrickPostBattle0:
+    Message Restaurant_Text_KendrickDefeated0
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_1B96:
-    Message 197
+Restaurant_KendrickPostBattle1:
+    Message Restaurant_Text_KendrickDefeated1
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_1BA1:
-    Message 205
+Restaurant_KendrickPostBattle2:
+    Message Restaurant_Text_KendrickDefeated2
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_1BAC:
+Restaurant_KendrickDeclineBattle:
     CloseMessage
-    Call _1C1B
+    Call Restaurant_KendrickFaceEast
     ReleaseAll
     End
 
-_1BB8:
-    SetVar VAR_0x8008, VAR_UNK_0x4102
-    GoToIfEq VAR_0x8008, 0, _1BE7
-    GoToIfEq VAR_0x8008, 1, _1BF2
-    GoToIfEq VAR_0x8008, 2, _1BFD
+Restaurant_KendrickDefeated:
+    SetVar VAR_0x8008, VAR_RESTAURANT_RANDOM_MESSAGE_KENDRICK_GABRIELLA
+    GoToIfEq VAR_0x8008, 0, Restaurant_KendrickDefeated0
+    GoToIfEq VAR_0x8008, 1, Restaurant_KendrickDefeated1
+    GoToIfEq VAR_0x8008, 2, Restaurant_KendrickDefeated2
     End
 
-_1BE7:
-    Message 189
+Restaurant_KendrickDefeated0:
+    Message Restaurant_Text_KendrickDefeated0
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_1BF2:
-    Message 197
+Restaurant_KendrickDefeated1:
+    Message Restaurant_Text_KendrickDefeated1
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_1BFD:
-    Message 205
+Restaurant_KendrickDefeated2:
+    Message Restaurant_Text_KendrickDefeated2
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_1C08:
+Restaurant_KendrickNeedMultiplePokemon:
     FacePlayer
-    Message 184
+    Message Restaurant_Text_KendrickNeedMultiplePokemon
     WaitButton
     CloseMessage
-    Call _1C1B
+    Call Restaurant_KendrickFaceEast
     ReleaseAll
     End
 
-_1C1B:
-    ApplyMovement 7, _212C
+Restaurant_KendrickFaceEast:
+    ApplyMovement LOCALID_PI_KENDRICK, Restaurant_Movement_FaceEast
     WaitMovement
     Return
 
-_1C27:
+Restaurant_BeautyGabriella:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     CheckTrainerFlag TRAINER_BEAUTY_GABRIELLA
-    GoToIfDefeated TRAINER_BEAUTY_GABRIELLA, _1D62
+    GoToIfDefeated TRAINER_BEAUTY_GABRIELLA, Restaurant_GabriellaDefeated
     CountAliveMonsExcept VAR_RESULT, 6
-    GoToIfEq VAR_RESULT, 1, _1DB2
-    SetVar VAR_0x8008, VAR_UNK_0x4102
-    GoToIfEq VAR_0x8008, 0, _1C80
-    GoToIfEq VAR_0x8008, 1, _1C9F
-    GoToIfEq VAR_0x8008, 2, _1CBE
+    GoToIfEq VAR_RESULT, 1, Restaurant_GabriellaNeedMultiplePokemon
+    SetVar VAR_0x8008, VAR_RESTAURANT_RANDOM_MESSAGE_KENDRICK_GABRIELLA
+    GoToIfEq VAR_0x8008, 0, Restaurant_GabriellaAskBattle0
+    GoToIfEq VAR_0x8008, 1, Restaurant_GabriellaAskBattle1
+    GoToIfEq VAR_0x8008, 2, Restaurant_GabriellaAskBattle2
     ReleaseAll
     End
 
-_1C80:
-    Message 190
+Restaurant_GabriellaAskBattle0:
+    Message Restaurant_Text_GabriellaIntro0
     FacePlayer
-    Message 191
+    Message Restaurant_Text_GabriellaAskBattle0
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _1CDD
-    GoTo _1D56
+    GoToIfEq VAR_RESULT, MENU_YES, Restaurant_GabriellaBattle
+    GoTo Restaurant_GabriellaDeclineBattle
 
-_1C9F:
-    Message 198
+Restaurant_GabriellaAskBattle1:
+    Message Restaurant_Text_GabriellaIntro1
     FacePlayer
-    Message 199
+    Message Restaurant_Text_GabriellaAskBattle1
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _1CDD
-    GoTo _1D56
+    GoToIfEq VAR_RESULT, MENU_YES, Restaurant_GabriellaBattle
+    GoTo Restaurant_GabriellaDeclineBattle
 
-_1CBE:
-    Message 206
+Restaurant_GabriellaAskBattle2:
+    Message Restaurant_Text_GabriellaIntro2
     FacePlayer
-    Message 207
+    Message Restaurant_Text_GabriellaAskBattle2
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _1CDD
-    GoTo _1D56
+    GoToIfEq VAR_RESULT, MENU_YES, Restaurant_GabriellaBattle
+    GoTo Restaurant_GabriellaDeclineBattle
 
-_1CDD:
+Restaurant_GabriellaBattle:
     CloseMessage
     StartTrainerBattle TRAINER_PI_KENDRICK, TRAINER_BEAUTY_GABRIELLA
     CheckWonBattle VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, _2125
+    GoToIfEq VAR_RESULT, FALSE, Restaurant_LostBattle
     SetTrainerFlag TRAINER_PI_KENDRICK
     SetTrainerFlag TRAINER_BEAUTY_GABRIELLA
-    Call _1DC5
-    SetVar VAR_0x8008, VAR_UNK_0x4102
-    GoToIfEq VAR_0x8008, 0, _1D35
-    GoToIfEq VAR_0x8008, 1, _1D40
-    GoToIfEq VAR_0x8008, 2, _1D4B
+    Call Restaurant_GabriellaFaceWest
+    SetVar VAR_0x8008, VAR_RESTAURANT_RANDOM_MESSAGE_KENDRICK_GABRIELLA
+    GoToIfEq VAR_0x8008, 0, Restaurant_GabriellaPostBattle0
+    GoToIfEq VAR_0x8008, 1, Restaurant_GabriellaPostBattle1
+    GoToIfEq VAR_0x8008, 2, Restaurant_GabriellaPostBattle2
     ReleaseAll
     End
 
-_1D35:
-    Message 193
+Restaurant_GabriellaPostBattle0:
+    Message Restaurant_Text_GabriellaDefeated0
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_1D40:
-    Message 201
+Restaurant_GabriellaPostBattle1:
+    Message Restaurant_Text_GabriellaDefeated1
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_1D4B:
-    Message 209
+Restaurant_GabriellaPostBattle2:
+    Message Restaurant_Text_GabriellaDefeated2
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_1D56:
+Restaurant_GabriellaDeclineBattle:
     CloseMessage
-    Call _1DC5
+    Call Restaurant_GabriellaFaceWest
     ReleaseAll
     End
 
-_1D62:
-    SetVar VAR_0x8008, VAR_UNK_0x4102
-    GoToIfEq VAR_0x8008, 0, _1D91
-    GoToIfEq VAR_0x8008, 1, _1D9C
-    GoToIfEq VAR_0x8008, 2, _1DA7
+Restaurant_GabriellaDefeated:
+    SetVar VAR_0x8008, VAR_RESTAURANT_RANDOM_MESSAGE_KENDRICK_GABRIELLA
+    GoToIfEq VAR_0x8008, 0, Restaurant_GabriellaDefeated0
+    GoToIfEq VAR_0x8008, 1, Restaurant_GabriellaDefeated1
+    GoToIfEq VAR_0x8008, 2, Restaurant_GabriellaDefeated2
     End
 
-_1D91:
-    Message 193
+Restaurant_GabriellaDefeated0:
+    Message Restaurant_Text_GabriellaDefeated0
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_1D9C:
-    Message 201
+Restaurant_GabriellaDefeated1:
+    Message Restaurant_Text_GabriellaDefeated1
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_1DA7:
-    Message 209
+Restaurant_GabriellaDefeated2:
+    Message Restaurant_Text_GabriellaDefeated2
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_1DB2:
+Restaurant_GabriellaNeedMultiplePokemon:
     FacePlayer
-    Message 185
+    Message Restaurant_Text_GabriellaNeedMultiplePokemon
     WaitButton
     CloseMessage
-    Call _1DC5
+    Call Restaurant_GabriellaFaceWest
     ReleaseAll
     End
 
-_1DC5:
-    ApplyMovement 8, _2134
+Restaurant_GabriellaFaceWest:
+    ApplyMovement LOCALID_BEAUTY_GABRIELLA, Restaurant_Movement_FaceWest
     WaitMovement
     Return
 
-_1DD1:
+Restaurant_ScientistEmilio:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     CheckTrainerFlag TRAINER_SCIENTIST_EMILIO
-    GoToIfDefeated TRAINER_SCIENTIST_EMILIO, _1F0C
+    GoToIfDefeated TRAINER_SCIENTIST_EMILIO, Restaurant_EmilioDefeated
     CountAliveMonsExcept VAR_RESULT, 6
-    GoToIfEq VAR_RESULT, 1, _1F5C
-    SetVar VAR_0x8008, VAR_UNK_0x4103
-    GoToIfEq VAR_0x8008, 0, _1E2A
-    GoToIfEq VAR_0x8008, 1, _1E49
-    GoToIfEq VAR_0x8008, 2, _1E68
+    GoToIfEq VAR_RESULT, 1, Restaurant_EmilioNeedMultiplePokemon
+    SetVar VAR_0x8008, VAR_RESTAURANT_RANDOM_MESSAGE_EMILIO_KAYLEE
+    GoToIfEq VAR_0x8008, 0, Restaurant_EmilioAskBattle0
+    GoToIfEq VAR_0x8008, 1, Restaurant_EmilioAskBattle1
+    GoToIfEq VAR_0x8008, 2, Restaurant_EmilioAskBattle2
     ReleaseAll
     End
 
-_1E2A:
-    Message 212
+Restaurant_EmilioAskBattle0:
+    Message Restaurant_Text_EmilioIntro0
     FacePlayer
-    Message 213
+    Message Restaurant_Text_EmilioAskBattle0
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _1E87
-    GoTo _1F00
+    GoToIfEq VAR_RESULT, MENU_YES, Restaurant_EmilioBattle
+    GoTo Restaurant_EmilioDeclineBattle
 
-_1E49:
-    Message 220
+Restaurant_EmilioAskBattle1:
+    Message Restaurant_Text_EmilioIntro1
     FacePlayer
-    Message 221
+    Message Restaurant_Text_EmilioAskBattle1
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _1E87
-    GoTo _1F00
+    GoToIfEq VAR_RESULT, MENU_YES, Restaurant_EmilioBattle
+    GoTo Restaurant_EmilioDeclineBattle
 
-_1E68:
-    Message 228
+Restaurant_EmilioAskBattle2:
+    Message Restaurant_Text_EmilioIntro2
     FacePlayer
-    Message 229
+    Message Restaurant_Text_EmilioAskBattle2
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _1E87
-    GoTo _1F00
+    GoToIfEq VAR_RESULT, MENU_YES, Restaurant_EmilioBattle
+    GoTo Restaurant_EmilioDeclineBattle
 
-_1E87:
+Restaurant_EmilioBattle:
     CloseMessage
     StartTrainerBattle TRAINER_SCIENTIST_EMILIO, TRAINER_BREEDER_KAYLEE
     CheckWonBattle VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, _2125
+    GoToIfEq VAR_RESULT, FALSE, Restaurant_LostBattle
     SetTrainerFlag TRAINER_SCIENTIST_EMILIO
     SetTrainerFlag TRAINER_BREEDER_KAYLEE
-    Call _1F6F
-    SetVar VAR_0x8008, VAR_UNK_0x4103
-    GoToIfEq VAR_0x8008, 0, _1EDF
-    GoToIfEq VAR_0x8008, 1, _1EEA
-    GoToIfEq VAR_0x8008, 2, _1EF5
+    Call Restaurant_EmilioFaceEast
+    SetVar VAR_0x8008, VAR_RESTAURANT_RANDOM_MESSAGE_EMILIO_KAYLEE
+    GoToIfEq VAR_0x8008, 0, Restaurant_EmilioPostBattle0
+    GoToIfEq VAR_0x8008, 1, Restaurant_EmilioPostBattle1
+    GoToIfEq VAR_0x8008, 2, Restaurant_EmilioPostBattle2
     ReleaseAll
     End
 
-_1EDF:
-    Message 215
+Restaurant_EmilioPostBattle0:
+    Message Restaurant_Text_EmilioDefeated0
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_1EEA:
-    Message 223
+Restaurant_EmilioPostBattle1:
+    Message Restaurant_Text_EmilioDefeated1
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_1EF5:
-    Message 231
+Restaurant_EmilioPostBattle2:
+    Message Restaurant_Text_EmilioDefeated2
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_1F00:
+Restaurant_EmilioDeclineBattle:
     CloseMessage
-    Call _1F6F
+    Call Restaurant_EmilioFaceEast
     ReleaseAll
     End
 
-_1F0C:
-    SetVar VAR_0x8008, VAR_UNK_0x4103
-    GoToIfEq VAR_0x8008, 0, _1F3B
-    GoToIfEq VAR_0x8008, 1, _1F46
-    GoToIfEq VAR_0x8008, 2, _1F51
+Restaurant_EmilioDefeated:
+    SetVar VAR_0x8008, VAR_RESTAURANT_RANDOM_MESSAGE_EMILIO_KAYLEE
+    GoToIfEq VAR_0x8008, 0, Restaurant_EmilioDefeated0
+    GoToIfEq VAR_0x8008, 1, Restaurant_EmilioDefeated1
+    GoToIfEq VAR_0x8008, 2, Restaurant_EmilioDefeated2
     End
 
-_1F3B:
-    Message 215
+Restaurant_EmilioDefeated0:
+    Message Restaurant_Text_EmilioDefeated0
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_1F46:
-    Message 223
+Restaurant_EmilioDefeated1:
+    Message Restaurant_Text_EmilioDefeated1
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_1F51:
-    Message 231
+Restaurant_EmilioDefeated2:
+    Message Restaurant_Text_EmilioDefeated2
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_1F5C:
+Restaurant_EmilioNeedMultiplePokemon:
     FacePlayer
-    Message 210
+    Message Restaurant_Text_EmilioNeedMultiplePokemon
     WaitButton
     CloseMessage
-    Call _1F6F
+    Call Restaurant_EmilioFaceEast
     ReleaseAll
     End
 
-_1F6F:
-    ApplyMovement 14, _212C
+Restaurant_EmilioFaceEast:
+    ApplyMovement LOCALID_SCIENTIST_EMILIO, Restaurant_Movement_FaceEast
     WaitMovement
     Return
 
-_1F7B:
+Restaurant_BreederKaylee:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     CheckTrainerFlag TRAINER_BREEDER_KAYLEE
-    GoToIfDefeated TRAINER_BREEDER_KAYLEE, _20B6
+    GoToIfDefeated TRAINER_BREEDER_KAYLEE, Restaurant_KayleeDefeated
     CountAliveMonsExcept VAR_RESULT, 6
-    GoToIfEq VAR_RESULT, 1, _2106
-    SetVar VAR_0x8008, VAR_UNK_0x4103
-    GoToIfEq VAR_0x8008, 0, _1FD4
-    GoToIfEq VAR_0x8008, 1, _1FF3
-    GoToIfEq VAR_0x8008, 2, _2012
+    GoToIfEq VAR_RESULT, 1, Restaurant_KayleeNeedMultiplePokemon
+    SetVar VAR_0x8008, VAR_RESTAURANT_RANDOM_MESSAGE_EMILIO_KAYLEE
+    GoToIfEq VAR_0x8008, 0, Restaurant_KayleeAskBattle0
+    GoToIfEq VAR_0x8008, 1, Restaurant_KayleeAskBattle1
+    GoToIfEq VAR_0x8008, 2, Restaurant_KayleeAskBattle2
     ReleaseAll
     End
 
-_1FD4:
-    Message 216
+Restaurant_KayleeAskBattle0:
+    Message Restaurant_Text_KayleeIntro0
     FacePlayer
-    Message 217
+    Message Restaurant_Text_KayleeAskBattle0
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _2031
-    GoTo _20AA
+    GoToIfEq VAR_RESULT, MENU_YES, Restaurant_KayleeBattle
+    GoTo Restaurant_KayleeDeclineBattle
 
-_1FF3:
-    Message 224
+Restaurant_KayleeAskBattle1:
+    Message Restaurant_Text_KayleeIntro1
     FacePlayer
-    Message 225
+    Message Restaurant_Text_KayleeAskBattle1
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _2031
-    GoTo _20AA
+    GoToIfEq VAR_RESULT, MENU_YES, Restaurant_KayleeBattle
+    GoTo Restaurant_KayleeDeclineBattle
 
-_2012:
-    Message 232
+Restaurant_KayleeAskBattle2:
+    Message Restaurant_Text_KayleeIntro2
     FacePlayer
-    Message 233
+    Message Restaurant_Text_KayleeAskBattle2
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _2031
-    GoTo _20AA
+    GoToIfEq VAR_RESULT, MENU_YES, Restaurant_KayleeBattle
+    GoTo Restaurant_KayleeDeclineBattle
 
-_2031:
+Restaurant_KayleeBattle:
     CloseMessage
     StartTrainerBattle TRAINER_SCIENTIST_EMILIO, TRAINER_BREEDER_KAYLEE
     CheckWonBattle VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, _2125
+    GoToIfEq VAR_RESULT, FALSE, Restaurant_LostBattle
     SetTrainerFlag TRAINER_SCIENTIST_EMILIO
     SetTrainerFlag TRAINER_BREEDER_KAYLEE
-    Call _2119
-    SetVar VAR_0x8008, VAR_UNK_0x4103
-    GoToIfEq VAR_0x8008, 0, _2089
-    GoToIfEq VAR_0x8008, 1, _2094
-    GoToIfEq VAR_0x8008, 2, _209F
+    Call Restaurant_KayleeFaceWest
+    SetVar VAR_0x8008, VAR_RESTAURANT_RANDOM_MESSAGE_EMILIO_KAYLEE
+    GoToIfEq VAR_0x8008, 0, Restaurant_KayleePostBattle0
+    GoToIfEq VAR_0x8008, 1, Restaurant_KayleePostBattle1
+    GoToIfEq VAR_0x8008, 2, Restaurant_KayleePostBattle2
     ReleaseAll
     End
 
-_2089:
-    Message 219
+Restaurant_KayleePostBattle0:
+    Message Restaurant_Text_KayleeDefeated0
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_2094:
-    Message 227
+Restaurant_KayleePostBattle1:
+    Message Restaurant_Text_KayleeDefeated1
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_209F:
-    Message 235
+Restaurant_KayleePostBattle2:
+    Message Restaurant_Text_KayleeDefeated2
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_20AA:
+Restaurant_KayleeDeclineBattle:
     CloseMessage
-    Call _2119
+    Call Restaurant_KayleeFaceWest
     ReleaseAll
     End
 
-_20B6:
-    SetVar VAR_0x8008, VAR_UNK_0x4103
-    GoToIfEq VAR_0x8008, 0, _20E5
-    GoToIfEq VAR_0x8008, 1, _20F0
-    GoToIfEq VAR_0x8008, 2, _20FB
+Restaurant_KayleeDefeated:
+    SetVar VAR_0x8008, VAR_RESTAURANT_RANDOM_MESSAGE_EMILIO_KAYLEE
+    GoToIfEq VAR_0x8008, 0, Restaurant_KayleeDefeated0
+    GoToIfEq VAR_0x8008, 1, Restaurant_KayleeDefeated1
+    GoToIfEq VAR_0x8008, 2, Restaurant_KayleeDefeated2
     End
 
-_20E5:
-    Message 219
+Restaurant_KayleeDefeated0:
+    Message Restaurant_Text_KayleeDefeated0
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_20F0:
-    Message 227
+Restaurant_KayleeDefeated1:
+    Message Restaurant_Text_KayleeDefeated1
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_20FB:
-    Message 235
+Restaurant_KayleeDefeated2:
+    Message Restaurant_Text_KayleeDefeated2
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_2106:
+Restaurant_KayleeNeedMultiplePokemon:
     FacePlayer
-    Message 211
+    Message Restaurant_Text_KayleeNeedMultiplePokemon
     WaitButton
     CloseMessage
-    Call _2119
+    Call Restaurant_KayleeFaceWest
     ReleaseAll
     End
 
-_2119:
-    ApplyMovement 16, _2134
+Restaurant_KayleeFaceWest:
+    ApplyMovement LOCALID_BREEDER_KAYLEE, Restaurant_Movement_FaceWest
     WaitMovement
     Return
 
-_2125:
+Restaurant_LostBattle:
     BlackOutFromBattle
     ReleaseAll
     End
 
     .balign 4, 0
-_212C:
+Restaurant_Movement_FaceEast:
     FaceEast
     EndMovement
 
     .balign 4, 0
-_2134:
+Restaurant_Movement_FaceWest:
     FaceWest
     EndMovement
