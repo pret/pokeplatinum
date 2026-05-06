@@ -327,8 +327,10 @@ BOOL ChooseStarter_Init(ApplicationManager *appMan, int *param1)
 
     SetupDrawing(app, HEAP_ID_CHOOSE_STARTER_APP);
 
-    GraphicsModes bgHeader;
     app->bgConfig = BgConfig_New(HEAP_ID_CHOOSE_STARTER_APP);
+
+    // changing to designated initializers breaks the checksum.
+    GraphicsModes bgHeader;
     bgHeader.displayMode = GX_DISPMODE_GRAPHICS;
     bgHeader.mainBgMode = GX_BGMODE_0;
     bgHeader.subBgMode = GX_BGMODE_1;
