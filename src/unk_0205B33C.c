@@ -748,38 +748,38 @@ void sub_0205BAAC(int param0)
     CommSys_SendData(101, &v0, 1);
 }
 
-static const int sMessagesShowingTrainerCase[2][2] = {
+static const int sMessagesShowingTrainerCase[][2] = {
     { UnionRoom_Text_ShowTrainerCaseMale, UnionRoom_Text_ShowTrainerCaseFemale },
     { UnionRoom_Text_ShowingTrainerCaseMale, UnionRoom_Text_ShowingTrainerCaseFemale }
 };
 
-static const int sMessagesDrawing[4][2] = {
+static const int sMessagesDrawing[][2] = {
     { UnionRoom_Text_DrawingMale1, UnionRoom_Text_DrawingFemale1 },
     { UnionRoom_Text_DrawingMale2, UnionRoom_Text_DrawingFemale2 },
     { UnionRoom_Text_DrawingMale3, UnionRoom_Text_DrawingFemale3 },
     { UnionRoom_Text_DrawingMale4, UnionRoom_Text_DrawingFemale4 }
 };
 
-static const int sMessagesBattling[4][2] = {
+static const int sMessagesBattling[][2] = {
     { UnionRoom_Text_BattlingMale1, UnionRoom_Text_BattlingFemale1 },
     { UnionRoom_Text_BattlingMale2, UnionRoom_Text_BattlingFemale2 },
     { UnionRoom_Text_BattlingMale3, UnionRoom_Text_BattlingFemale3 },
     { UnionRoom_Text_BattlingMale4, UnionRoom_Text_BattlingFemale4 }
 };
 
-static const int sMessagesTrading[2][2] = {
+static const int sMessagesTrading[][2] = {
     { UnionRoom_Text_TradingMale1, UnionRoom_Text_TradingFemale1 },
     { UnionRoom_Text_TradingMale2, UnionRoom_Text_TradingFemale2 }
 };
 
-static const int sMessagesMixingRecords[4][2] = {
+static const int sMessagesMixingRecords[][2] = {
     { UnionRoom_Text_MixingRecordsMale1, UnionRoom_Text_MixingRecordsFemale1 },
     { UnionRoom_Text_MixingRecordsMale2, UnionRoom_Text_MixingRecordsFemale2 },
     { UnionRoom_Text_MixingRecordsMale3, UnionRoom_Text_MixingRecordsFemale3 },
     { UnionRoom_Text_MixingRecordsMale4, UnionRoom_Text_MixingRecordsFemale4 }
 };
 
-static const int sMessagesSpinTrading[4][2] = {
+static const int sMessagesSpinTrading[][2] = {
     { UnionRoom_Text_SpinTradingMale1, UnionRoom_Text_SpinTradingFemale1 },
     { UnionRoom_Text_SpinTradingMale2, UnionRoom_Text_SpinTradingFemale2 },
     { UnionRoom_Text_SpinTradingMale3, UnionRoom_Text_SpinTradingFemale3 },
@@ -931,27 +931,27 @@ static int UnionRoom_GetTrainerBusyMessage(UnkStruct_0205B43C *param0, int param
         return sMessagesTrainerAppearsBusy[gender];
         break;
     case 5:
-        return sMessagesShowingTrainerCase[LCRNG_Next() % 2][gender];
+        return sMessagesShowingTrainerCase[LCRNG_Next() % (int)NELEMS(sMessagesShowingTrainerCase)][gender];
         break;
     case 6:
-        return sMessagesBattling[LCRNG_Next() % 4][gender];
+        return sMessagesBattling[LCRNG_Next() % (int)NELEMS(sMessagesBattling)][gender];
         break;
     case 7:
-        return sMessagesTrading[LCRNG_Next() % 2][gender];
+        return sMessagesTrading[LCRNG_Next() % (int)NELEMS(sMessagesTrading)][gender];
         break;
     case 8:
     case 1:
-        return sMessagesDrawing[LCRNG_Next() % 4][gender];
+        return sMessagesDrawing[LCRNG_Next() % (int)NELEMS(sMessagesDrawing)][gender];
         break;
     case 9:
     case 2:
-        return sMessagesMixingRecords[LCRNG_Next() % 4][gender];
+        return sMessagesMixingRecords[LCRNG_Next() % (int)NELEMS(sMessagesMixingRecords)][gender];
         break;
     case 10:
     case 3:
     case 12:
     case 13:
-        return sMessagesSpinTrading[LCRNG_Next() % 4][gender];
+        return sMessagesSpinTrading[LCRNG_Next() % (int)NELEMS(sMessagesSpinTrading)][gender];
         break;
     }
 
