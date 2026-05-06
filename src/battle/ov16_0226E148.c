@@ -72,7 +72,7 @@ static void ov16_0226E188(SysTask *param0, void *param1)
         }
         break;
     case 2:
-        if (ov16_0223F7A4(v0->battleSys) == 1) {
+        if (BattleSystem_IsPlaybackActive(v0->battleSys) == 1) {
             if (BattleSystem_MenuInput(v1) == 1) {
                 Sound_PlayEffect(SEQ_SE_DP_DECIDE);
                 v0->unk_04++;

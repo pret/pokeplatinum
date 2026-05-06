@@ -377,7 +377,7 @@ void ov16_0223B53C(BattleSystem *battleSys)
     Bg_FreeTilemapBuffer(battleSys->bgConfig, BG_LAYER_MAIN_1);
     Bg_FreeTilemapBuffer(battleSys->bgConfig, BG_LAYER_MAIN_2);
     Bg_FreeTilemapBuffer(battleSys->bgConfig, BG_LAYER_MAIN_3);
-    ov16_0223F3EC(battleSys);
+    BattleSystem_HideHealthboxes(battleSys);
 }
 
 void ov16_0223B578(BattleSystem *battleSys)
@@ -585,7 +585,7 @@ static void BattleMain_InitGraphics(ApplicationManager *appMan)
     battleSys->monSpriteMan = PokemonSpriteManager_New(HEAP_ID_BATTLE);
     PokemonSpriteManager_SetPlttBaseAddrAndSize(battleSys->monSpriteMan, 0, PALETTE_SIZE_BYTES * 6);
 
-    ov16_0223F36C(battleSys);
+    BattleSystem_CreateHealthboxes(battleSys);
     ov16_0223CE28();
 
     battleSys->battleAnimSys = BattleAnimSystem_New(HEAP_ID_BATTLE);
@@ -760,8 +760,8 @@ static void BattleMain_CopyBattleSysToDTOAndFree(ApplicationManager *appMan)
     RenderControlFlags_SetSpeedUpOnTouch(FALSE);
     Windows_Delete(battleSys->windows, 3);
     Heap_Free(battleSys->bgConfig);
-    Heap_Free(battleSys->unk_21C);
-    Heap_Free(battleSys->unk_220);
+    Heap_Free(battleSys->bgTileSnapshot);
+    Heap_Free(battleSys->bgPaletteSnapshot);
     FontSpecialChars_Free(battleSys->specialCharsHP);
     Font_Free(FONT_SUBSCREEN);
     SysTask_Done(battleSys->taskDrawSprites);
@@ -915,8 +915,8 @@ static void ov16_0223C210(BattleSystem *battleSys)
     int selectedPartySlot;
     Pokemon *mon;
 
-    ov16_022686CC(&battleSys->unk_17C[0], battleSys, 0, terrain);
-    ov16_022686CC(&battleSys->unk_17C[1], battleSys, 1, terrain);
+    ov16_022686CC(&battleSys->battlerPlatforms[0], battleSys, 0, terrain);
+    ov16_022686CC(&battleSys->battlerPlatforms[1], battleSys, 1, terrain);
 
     BattleContext *battleCtx = BattleSystem_GetBattleContext(battleSys);
 

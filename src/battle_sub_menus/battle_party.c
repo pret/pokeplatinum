@@ -243,7 +243,7 @@ void BattlePartyTask_Start(BattlePartyContext *context)
     battleParty->palette = BattleSystem_GetPaletteData(context->battleSys);
     battleParty->currentState = TASK_STATE_INITIALIZE;
     battleParty->partySlotLearningMove = context->selectedPartyIndex;
-    battleParty->hasVisitedContestHall = BattleSystem_GetVisistedContestHall(context->battleSys);
+    battleParty->hasVisitedContestHall = BattleSystem_GetVisitedContestHall(context->battleSys);
     battleParty->battlerSlot = BattleSystem_GetBattlerType(context->battleSys, context->battler);
 }
 

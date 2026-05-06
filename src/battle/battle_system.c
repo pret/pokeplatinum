@@ -182,9 +182,9 @@ SpriteManager *BattleSystem_GetSpriteManager(BattleSystem *battleSys)
     return battleSys->spriteMan;
 }
 
-UnkStruct_ov16_02268520 *ov16_0223E020(BattleSystem *battleSys, int param1)
+BattlerPlatform *BattlerSystem_GetBattlerPlatform(BattleSystem *battleSys, int param1)
 {
-    return &battleSys->unk_17C[param1];
+    return &battleSys->battlerPlatforms[param1];
 }
 
 UnkStruct_ov16_02268A14 *ov16_0223E02C(BattleSystem *battleSys)
@@ -803,19 +803,19 @@ int BattleSystem_GetBackgroundTimeOffset(BattleSystem *battleSys)
     return offset;
 }
 
-u8 ov16_0223EC58(BattleSystem *battleSys, int battler, u8 param2)
+u8 BattleSystem_IsSlot2WaitingForPartner(BattleSystem *battleSys, int battler, u8 canPickCommand)
 {
-    u16 v0;
+    u16 actionTemp;
 
     if ((BattleSystem_GetBattlerType(battleSys, battler) == BATTLER_TYPE_PLAYER_SIDE_SLOT_2) && ((battleSys->battleType & BATTLE_TYPE_2vs2) == FALSE)) {
         if (battleSys->battleType & BATTLE_TYPE_LINK) {
-            if ((param2 & FlagIndex(BattleSystem_GetPartner(battleSys, battler))) == FALSE) {
+            if ((canPickCommand & FlagIndex(BattleSystem_GetPartner(battleSys, battler))) == FALSE) {
                 return 1;
             }
         } else {
-            v0 = BattleContext_Get(battleSys, battleSys->battleCtx, BATTLECTX_ACTION_TEMP_FOR, 0) & 0xFFFF;
+            actionTemp = BattleContext_Get(battleSys, battleSys->battleCtx, BATTLECTX_ACTION_TEMP_FOR, 0) & 0xFFFF;
 
-            if ((BattleContext_Get(battleSys, battleSys->battleCtx, BATTLECTX_ACTION_FOR, 0) == 14 && v0 > 16) || (param2 & FlagIndex(0))) {
+            if ((BattleContext_Get(battleSys, battleSys->battleCtx, BATTLECTX_ACTION_FOR, 0) == 14 && actionTemp > 16) || (canPickCommand & FlagIndex(0))) {
                 return 0;
             } else {
                 return 1;
@@ -992,101 +992,101 @@ void BattleSystem_InitCaptureAttempt(BattleSystem *battleSys, Pokemon *mon)
     CaptureAttempt_Init(battleSys->captureAttempt, mon, battleSys->resultMask, battleSys->ballsThrown, HEAP_ID_BATTLE);
 }
 
-void ov16_0223EF8C(BattleSystem *battleSys)
+void BattleSystem_BakeSpritesToBackground(BattleSystem *battleSys)
 {
-    NNSG2dImageProxy *v0;
-    int v1, v2, v3, v4, v5, v6;
-    u8 *v7;
+    NNSG2dImageProxy *imageProxy;
+    int bgTileX, bgTileY, spriteTileX, spriteTileY, colorIdx, pixelIdx;
+    u8 *objCharPtr;
 
-    battleSys->unk_21C = Heap_Alloc(HEAP_ID_BATTLE, 0x10000);
-    battleSys->unk_220 = Heap_Alloc(HEAP_ID_BATTLE, 0x200);
+    battleSys->bgTileSnapshot = Heap_Alloc(HEAP_ID_BATTLE, 0x10000);
+    battleSys->bgPaletteSnapshot = Heap_Alloc(HEAP_ID_BATTLE, 0x200);
 
-    MI_CpuCopy32((void *)(HW_BG_VRAM + 0x10000), battleSys->unk_21C, 0x10000);
-    MI_CpuCopy32(PaletteData_GetUnfadedBuffer(battleSys->paletteData, 0), battleSys->unk_220, HW_BG_PLTT_SIZE);
+    MI_CpuCopy32((void *)(HW_BG_VRAM + 0x10000), battleSys->bgTileSnapshot, 0x10000);
+    MI_CpuCopy32(PaletteData_GetUnfadedBuffer(battleSys->paletteData, 0), battleSys->bgPaletteSnapshot, HW_BG_PLTT_SIZE);
 
-    v7 = G2_GetOBJCharPtr();
-    v0 = Sprite_GetImageProxy(battleSys->unk_17C[1].unk_00->sprite);
-    v7 += v0->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN];
+    objCharPtr = G2_GetOBJCharPtr();
+    imageProxy = Sprite_GetImageProxy(battleSys->battlerPlatforms[1].managedSprite->sprite);
+    objCharPtr += imageProxy->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN];
 
-    for (v2 = 20; v2 < 20 + 8; v2++) {
-        for (v1 = 16; v1 < 32; v1++) {
-            v3 = v1 - 16;
-            v4 = v2 - 20;
+    for (bgTileY = 20; bgTileY < 20 + 8; bgTileY++) {
+        for (bgTileX = 16; bgTileX < 32; bgTileX++) {
+            spriteTileX = bgTileX - 16;
+            spriteTileY = bgTileY - 20;
 
-            for (v6 = 0; v6 < 0x40; v6++) {
-                if (v3 < 8) {
-                    if (v6 & 1) {
-                        v5 = (v7[v4 * 0x100 + v3 * 0x20 + v6 / 2] & 0xf0) >> 4;
+            for (pixelIdx = 0; pixelIdx < 0x40; pixelIdx++) {
+                if (spriteTileX < 8) {
+                    if (pixelIdx & 1) {
+                        colorIdx = (objCharPtr[spriteTileY * 0x100 + spriteTileX * 0x20 + pixelIdx / 2] & 0xf0) >> 4;
                     } else {
-                        v5 = (v7[v4 * 0x100 + v3 * 0x20 + v6 / 2] & 0xf);
+                        colorIdx = (objCharPtr[spriteTileY * 0x100 + spriteTileX * 0x20 + pixelIdx / 2] & 0xf);
                     }
                 } else {
-                    if (v6 & 1) {
-                        v5 = (v7[0x700 + v4 * 0x100 + v3 * 0x20 + v6 / 2] & 0xf0) >> 4;
+                    if (pixelIdx & 1) {
+                        colorIdx = (objCharPtr[0x700 + spriteTileY * 0x100 + spriteTileX * 0x20 + pixelIdx / 2] & 0xf0) >> 4;
                     } else {
-                        v5 = (v7[0x700 + v4 * 0x100 + v3 * 0x20 + v6 / 2] & 0xf);
+                        colorIdx = (objCharPtr[0x700 + spriteTileY * 0x100 + spriteTileX * 0x20 + pixelIdx / 2] & 0xf);
                     }
                 }
 
-                if (v5) {
-                    battleSys->unk_21C[v2 * 0x800 + v1 * 0x40 + v6] = v5 + 0x70;
+                if (colorIdx) {
+                    battleSys->bgTileSnapshot[bgTileY * 0x800 + bgTileX * 0x40 + pixelIdx] = colorIdx + 0x70;
                 }
             }
         }
     }
 
-    v7 = G2_GetOBJCharPtr();
-    v0 = Sprite_GetImageProxy(battleSys->unk_17C[0].unk_00->sprite);
-    v7 += v0->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN];
+    objCharPtr = G2_GetOBJCharPtr();
+    imageProxy = Sprite_GetImageProxy(battleSys->battlerPlatforms[0].managedSprite->sprite);
+    objCharPtr += imageProxy->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN];
 
-    for (v6 = 0; v6 < 0x40 * 32; v6++) {
-        if (v6 & 1) {
-            v5 = (v7[v6 / 2] & 0xf0) >> 4;
+    for (pixelIdx = 0; pixelIdx < 0x40 * 32; pixelIdx++) {
+        if (pixelIdx & 1) {
+            colorIdx = (objCharPtr[pixelIdx / 2] & 0xf0) >> 4;
         } else {
-            v5 = (v7[v6 / 2] & 0xf);
+            colorIdx = (objCharPtr[pixelIdx / 2] & 0xf);
         }
 
-        if (v5) {
-            battleSys->unk_21C[19 * 0x800 + v6] = v5 + 0x70;
+        if (colorIdx) {
+            battleSys->bgTileSnapshot[19 * 0x800 + pixelIdx] = colorIdx + 0x70;
         }
     }
 
-    for (v2 = 28; v2 < 28 + 4; v2++) {
-        for (v1 = 0; v1 < 24; v1++) {
-            v3 = v1;
-            v4 = v2 - 28;
+    for (bgTileY = 28; bgTileY < 28 + 4; bgTileY++) {
+        for (bgTileX = 0; bgTileX < 24; bgTileX++) {
+            spriteTileX = bgTileX;
+            spriteTileY = bgTileY - 28;
 
-            for (v6 = 0; v6 < 0x40; v6++) {
-                if (v6 & 1) {
-                    v5 = (v7[0x400 + (v3 / 8) * 0x400 + ((v3 % 8) * 0x20) + (v4 * 0x100) + v6 / 2] & 0xf0) >> 4;
+            for (pixelIdx = 0; pixelIdx < 0x40; pixelIdx++) {
+                if (pixelIdx & 1) {
+                    colorIdx = (objCharPtr[0x400 + (spriteTileX / 8) * 0x400 + ((spriteTileX % 8) * 0x20) + (spriteTileY * 0x100) + pixelIdx / 2] & 0xf0) >> 4;
                 } else {
-                    v5 = (v7[0x400 + (v3 / 8) * 0x400 + ((v3 % 8) * 0x20) + (v4 * 0x100) + v6 / 2] & 0xf);
+                    colorIdx = (objCharPtr[0x400 + (spriteTileX / 8) * 0x400 + ((spriteTileX % 8) * 0x20) + (spriteTileY * 0x100) + pixelIdx / 2] & 0xf);
                 }
 
-                if (v5) {
-                    battleSys->unk_21C[v2 * 0x800 + v1 * 0x40 + v6] = v5 + 0x70;
+                if (colorIdx) {
+                    battleSys->bgTileSnapshot[bgTileY * 0x800 + bgTileX * 0x40 + pixelIdx] = colorIdx + 0x70;
                 }
             }
         }
     }
 
-    Bg_LoadTiles(battleSys->bgConfig, 3, battleSys->unk_21C, 0x10000, 0);
+    Bg_LoadTiles(battleSys->bgConfig, 3, battleSys->bgTileSnapshot, 0x10000, 0);
 
-    ov16_02268700(&battleSys->unk_17C[0]);
-    ov16_02268700(&battleSys->unk_17C[1]);
+    ov16_02268700(&battleSys->battlerPlatforms[0]);
+    ov16_02268700(&battleSys->battlerPlatforms[1]);
 }
 
-u8 *ov16_0223F1E8(BattleSystem *battleSys)
+u8 *BattleSystem_GetBgTileSnapshot(BattleSystem *battleSys)
 {
-    return battleSys->unk_21C;
+    return battleSys->bgTileSnapshot;
 }
 
-u16 *ov16_0223F1F0(BattleSystem *battleSys)
+u16 *BattleSystem_GetBgPaletteSnapshot(BattleSystem *battleSys)
 {
-    return battleSys->unk_220;
+    return battleSys->bgPaletteSnapshot;
 }
 
-int BattleSystem_GetVisistedContestHall(BattleSystem *battleSys)
+int BattleSystem_GetVisitedContestHall(BattleSystem *battleSys)
 {
     return battleSys->visitedContestHall;
 }
@@ -1223,7 +1223,7 @@ void *BattleSystem_GetHealthBox(BattleSystem *battleSys, int battler)
     return BattlerData_GetHealthBox(battleSys->battlers[battler]);
 }
 
-void ov16_0223F36C(BattleSystem *battleSys)
+void BattleSystem_CreateHealthboxes(BattleSystem *battleSys)
 {
     int i;
     HealthBox *healthbox;
@@ -1239,7 +1239,7 @@ void ov16_0223F36C(BattleSystem *battleSys)
     }
 }
 
-void ov16_0223F3BC(BattleSystem *battleSys)
+void BattleSystem_ShowHealthboxes(BattleSystem *battleSys)
 {
     int i;
     HealthBox *healthbox;
@@ -1253,7 +1253,7 @@ void ov16_0223F3BC(BattleSystem *battleSys)
     }
 }
 
-void ov16_0223F3EC(BattleSystem *battleSys)
+void BattleSystem_HideHealthboxes(BattleSystem *battleSys)
 {
     int i;
     HealthBox *healthbox;
@@ -1326,51 +1326,51 @@ void BattleSystem_SetSeedDTO(BattleSystem *battleSys, u32 value)
     battleSys->seedDTO = value;
 }
 
-void BattleSystem_Record(BattleSystem *battleSys, int param1, u8 param2)
+void BattleSystem_Record(BattleSystem *battleSys, int battler, u8 param2)
 {
-    if (((battleSys->battleStatusMask & BATTLE_STATUS_RECORDING) == FALSE) && (battleSys->unk_245C[param1] < 0x400)) {
-        sub_0202F868(param1, battleSys->unk_245C[param1], param2);
-        battleSys->unk_245C[param1]++;
+    if (((battleSys->battleStatusMask & BATTLE_STATUS_RECORDING) == FALSE) && (battleSys->recordingAckPos[battler] < 0x400)) {
+        sub_0202F868(battler, battleSys->recordingAckPos[battler], param2);
+        battleSys->recordingAckPos[battler]++;
     }
 }
 
-BOOL ov16_0223F530(BattleSystem *battleSys, int param1, u8 *param2)
+BOOL BattleSystem_ReadNextRecordedInput(BattleSystem *battleSys, int battler, u8 *outInput)
 {
     BOOL result;
 
-    *param2 = 0xFF;
+    *outInput = 0xFF;
 
-    if ((battleSys->battleStatusMask & BATTLE_STATUS_RECORDING) && (battleSys->unk_245C[param1] < 0x400)) {
-        *param2 = sub_0202F884(param1, battleSys->unk_245C[param1]);
-        battleSys->unk_245C[param1]++;
+    if ((battleSys->battleStatusMask & BATTLE_STATUS_RECORDING) && (battleSys->recordingAckPos[battler] < 0x400)) {
+        *outInput = sub_0202F884(battler, battleSys->recordingAckPos[battler]);
+        battleSys->recordingAckPos[battler]++;
         result = 0;
-    } else if ((battleSys->battleStatusMask & BATTLE_STATUS_RECORDING) && (battleSys->unk_245C[param1] >= 0x400)) {
+    } else if ((battleSys->battleStatusMask & BATTLE_STATUS_RECORDING) && (battleSys->recordingAckPos[battler] >= 0x400)) {
         result = 1;
     }
 
     return result;
 }
 
-u8 ov16_0223F58C(BattleSystem *battleSys, u8 *param1)
+u8 BattleSystem_CollectNewRecordedInputs(BattleSystem *battleSys, u8 *outBuffer)
 {
-    u8 battler, v1;
-    u8 v2 = 0;
+    u8 battler, inputIdx;
+    u8 byteCount = 0;
 
     for (battler = 0; battler < battleSys->maxBattlers; battler++) {
-        if (battleSys->unk_245C[battler] != battleSys->unk_244C[battler]) {
-            param1[v2++] = battler;
-            param1[v2++] = battleSys->unk_245C[battler] - battleSys->unk_244C[battler];
+        if (battleSys->recordingAckPos[battler] != battleSys->recordingCollectedPos[battler]) {
+            outBuffer[byteCount++] = battler;
+            outBuffer[byteCount++] = battleSys->recordingAckPos[battler] - battleSys->recordingCollectedPos[battler];
 
-            for (v1 = 0; v1 < battleSys->unk_245C[battler] - battleSys->unk_244C[battler]; v1++) {
-                param1[v2++] = sub_0202F884(battler, battleSys->unk_244C[battler] + v1);
+            for (inputIdx = 0; inputIdx < battleSys->recordingAckPos[battler] - battleSys->recordingCollectedPos[battler]; inputIdx++) {
+                outBuffer[byteCount++] = sub_0202F884(battler, battleSys->recordingCollectedPos[battler] + inputIdx);
             }
 
-            battleSys->unk_244C[battler] = battleSys->unk_245C[battler];
+            battleSys->recordingCollectedPos[battler] = battleSys->recordingAckPos[battler];
         }
     }
 
-    GF_ASSERT(v2 <= 28);
-    return v2;
+    GF_ASSERT(byteCount <= 28);
+    return byteCount;
 }
 
 void ov16_0223F638(BattleSystem *battleSys, u16 param1, u8 *param2)
@@ -1446,7 +1446,7 @@ void BattleSystem_SetStopRecording(BattleSystem *battleSys, int flag)
     return;
 }
 
-BOOL ov16_0223F7A4(BattleSystem *battleSys)
+BOOL BattleSystem_IsPlaybackActive(BattleSystem *battleSys)
 {
     if (((battleSys->battleStatusMask & BATTLE_STATUS_RECORDING) == FALSE)
         || battleSys->recordingStopped
@@ -1501,7 +1501,7 @@ void BattleSystem_SetBattlerTypes(BattleSystem *battleSys, u8 *battlerTypes)
     }
 }
 
-void ov16_0223F8AC(BattleSystem *battleSys, PokemonSprite **monSprites)
+void BattleSystem_PopulateMonSprites(BattleSystem *battleSys, PokemonSprite **monSprites)
 {
     int battler;
 
@@ -2292,11 +2292,11 @@ static void BattleMessage_Format(BattleSystem *battleSys, MessageLoader *msgLoad
     String_Free(string);
 }
 
-static BOOL BattleMessage_Callback(TextPrinterTemplate *unused, u16 param1)
+static BOOL BattleMessage_Callback(TextPrinterTemplate *unused, u16 soundCommand)
 {
     BOOL result = FALSE;
 
-    switch (param1) {
+    switch (soundCommand) {
     case 1:
         result = Sound_IsAnyEffectPlaying();
         break;

@@ -711,7 +711,7 @@ static void BtlIOCmd_ChangeWeatherForm(BattleSystem *battleSys, BattlerData *bat
 
 static void BtlIOCmd_UpdateBg(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    ov16_0223EF8C(battleSys);
+    BattleSystem_BakeSpritesToBackground(battleSys);
     BattleController_EmitClearCommand(battleSys, battlerData->battler, BATTLE_COMMAND_UPDATE_BG);
     ZeroDataBuffer(battlerData);
 }

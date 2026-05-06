@@ -71,7 +71,7 @@ struct BattleSystem {
     u16 trainerIDs[MAX_BATTLERS];
     u8 unk_A8[4];
     Trainer trainers[MAX_BATTLERS];
-    UnkStruct_ov16_02268520 unk_17C[2];
+    BattlerPlatform battlerPlatforms[2];
     UnkStruct_ov16_02268A14 *unk_198;
     PartyGauge *partyGauges[2];
     FontSpecialCharsContext *specialCharsHP;
@@ -87,8 +87,8 @@ struct BattleSystem {
     PokemonSpriteData pokemonSpriteDataArray[4];
     BattleRecords unusedBattleRecords;
     GameRecords *records;
-    u8 *unk_21C;
-    u16 *unk_220;
+    u8 *bgTileSnapshot;
+    u16 *bgPaletteSnapshot;
     u8 serverMessage[4096];
     u8 clientMessage[4096];
     u16 unk_2224[112];
@@ -133,9 +133,9 @@ struct BattleSystem {
     u16 networkID;
     u32 seedRandNext;
     u32 seedDTO;
-    u16 unk_244C[MAX_BATTLERS];
+    u16 recordingCollectedPos[MAX_BATTLERS];
     u16 unk_2454[4];
-    u16 unk_245C[MAX_BATTLERS];
+    u16 recordingAckPos[MAX_BATTLERS];
     int unk_2464[MAX_BATTLERS];
     u32 recordingStopped : 1;
     u32 padding_2474_1 : 31;

@@ -1789,7 +1789,7 @@ static void ov16_02269668(UnkStruct_ov16_02268A14 *param0, int param1, int param
     UnkStruct_ov16_02269668 *v6 = &param0->unk_1A.val1;
     v5 = v6->unk_00;
 
-    param0->unk_6C1 = v6->unk_08;
+    param0->unk_6C1 = v6->isWaitingForPartner;
 
     v4 = BattleSystem_GetMessageLoader(param0->battleSys);
 

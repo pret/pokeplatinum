@@ -1741,7 +1741,7 @@ void BattleController_EmitPrintLinkWaitMessage(BattleSystem *battleSys, int batt
     message.unk_02 = 0;
 
     if ((battleType & BATTLE_TYPE_LINK) && BattleRecording_Exists() == TRUE && (battleSys->battleStatusMask & SYSCTL_HIT_DURING_DIVE) == FALSE) {
-        message.unk_02 = ov16_0223F58C(battleSys, &message.unk_04[0]);
+        message.unk_02 = BattleSystem_CollectNewRecordedInputs(battleSys, &message.unk_04[0]);
         GF_ASSERT(message.unk_02 < 28);
         SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &message, sizeof(LinkWaitMsgMessage));
     }
@@ -1836,7 +1836,7 @@ void BattleController_EmitEscapeMessage(BattleSystem *battleSys, BattleContext *
     }
 
     if ((battleType & BATTLE_TYPE_LINK) && BattleRecording_Exists() == TRUE && (battleSys->battleStatusMask & SYSCTL_HIT_DURING_DIVE) == FALSE) {
-        message.unk_02 = ov16_0223F58C(battleSys, &message.unk_04[0]);
+        message.unk_02 = BattleSystem_CollectNewRecordedInputs(battleSys, &message.unk_04[0]);
         GF_ASSERT(message.unk_02 < 28);
     }
 
@@ -1857,7 +1857,7 @@ void BattleController_EmitForfeitMessage(BattleSystem *battleSys)
     message.unk_02 = 0;
 
     if ((battleType & BATTLE_TYPE_LINK) && BattleRecording_Exists() == TRUE && (battleSys->battleStatusMask & SYSCTL_HIT_DURING_DIVE) == FALSE) {
-        message.unk_02 = ov16_0223F58C(battleSys, &message.unk_04[0]);
+        message.unk_02 = BattleSystem_CollectNewRecordedInputs(battleSys, &message.unk_04[0]);
         GF_ASSERT(message.unk_02 < 28);
     }
 
@@ -1951,7 +1951,7 @@ void BattleController_EmitSubmitResult(BattleSystem *battleSys)
     message.unk_02 = 0;
 
     if ((battleType & BATTLE_TYPE_LINK) && BattleRecording_Exists() == TRUE && (battleSys->battleStatusMask & SYSCTL_HIT_DURING_DIVE) == FALSE) {
-        message.unk_02 = ov16_0223F58C(battleSys, &message.unk_08[0]);
+        message.unk_02 = BattleSystem_CollectNewRecordedInputs(battleSys, &message.unk_08[0]);
         GF_ASSERT(message.unk_02 <= 28);
     }
 

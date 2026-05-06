@@ -5,13 +5,13 @@
 
 #include "sprite_system.h"
 
-typedef struct {
-    ManagedSprite *unk_00;
+typedef struct BattlerPlatform {
+    ManagedSprite *managedSprite;
     BattleSystem *unk_04;
     u8 unk_08;
     u8 unk_09;
     s16 unk_0A;
     s16 unk_0C;
-} UnkStruct_ov16_02268520;
+} BattlerPlatform;
 
 #endif // POKEPLATINUM_STRUCT_OV16_02268520_H
