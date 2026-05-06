@@ -373,7 +373,6 @@ enum ChooseStarterAppState {
 BOOL ChooseStarter_Main(ApplicationManager *appMan, int *state)
 {
     ChooseStarterApp *app = ApplicationManager_Data(appMan);
-    BOOL selectionMade;
     u16 palette = 0x08C3;
 
     switch (*state) {
@@ -392,7 +391,7 @@ BOOL ChooseStarter_Main(ApplicationManager *appMan, int *state)
         break;
 
     case CHOOSE_STARTER_MAIN_LOOP:
-        selectionMade = IsSelectionMade(app, HEAP_ID_CHOOSE_STARTER_APP);
+        BOOL selectionMade = IsSelectionMade(app, HEAP_ID_CHOOSE_STARTER_APP);
         UpdateGraphics(app, HEAP_ID_CHOOSE_STARTER_APP);
 
         if (selectionMade == TRUE) {
@@ -423,13 +422,12 @@ BOOL ChooseStarter_Exit(ApplicationManager *appMan, int *param1)
 {
     ChooseStarterApp *app = ApplicationManager_Data(appMan);
     ChooseStarterData *data = ApplicationManager_Args(appMan);
-    BOOL touchPadResult;
 
     SetVBlankCallback(NULL, NULL);
 
     data->species = GetSelectedSpecies(app->cursorPosition);
 
-    touchPadResult = DisableTouchPad();
+    BOOL touchPadResult = DisableTouchPad();
     GF_ASSERT(touchPadResult == AUTO_SAMPLING_OPERATION_RESULT_SUCCESS);
 
     DeletePreviewWindow(&app->previewWindow);
@@ -877,17 +875,15 @@ static void ov78_021D182C(ChooseStarter3DGraphics *param0, fx32 param1)
 
 static void Make3DGraphics(ChooseStarterApp *param0, enum HeapID heapID)
 {
-    int v0;
-
     ov78_021D15CC(&param0->starter3DGraphics[0], 1, 0, heapID, &param0->allocator);
     ov78_021D17A4(&param0->starter3DGraphics[0], 1);
 
     ov78_021D1604(&param0->starter3DGraphics[1], 8, heapID);
     ov78_021D17A4(&param0->starter3DGraphics[1], 0);
 
-    for (v0 = 2; v0 <= 4; v0++) {
-        ov78_021D15CC(&param0->starter3DGraphics[v0], 3 + (v0 - 2) * 2, 2 + (v0 - 2) * 2, heapID, &param0->allocator);
-        ov78_021D17A4(&param0->starter3DGraphics[v0], 0);
+    for (int i = 2; i <= 4; i++) {
+        ov78_021D15CC(&param0->starter3DGraphics[i], 3 + (i - 2) * 2, 2 + (i - 2) * 2, heapID, &param0->allocator);
+        ov78_021D17A4(&param0->starter3DGraphics[i], 0);
     }
 
     ov78_021D1604(&param0->starter3DGraphics[5], 9, heapID);
@@ -1430,6 +1426,7 @@ static void AttachCursorCellActor(ChooseStarterApp *app, ChooseStarterCursor *cu
 
     SpriteResourcesHeader_Init(&cursorResource, 10, 11, 12, 13, 0xffffffff, 0xffffffff, 0, 1, app->spriteResourceCollection[SPRITE_RESOURCE_CHAR], app->spriteResourceCollection[SPRITE_RESOURCE_PLTT], app->spriteResourceCollection[SPRITE_RESOURCE_CELL], app->spriteResourceCollection[SPRITE_RESOURCE_ANIM], NULL, NULL);
 
+    // changing to designated initializers breaks the checksum.
     cursorCellParams.list = app->spriteList;
     cursorCellParams.resourceData = &cursorResource;
     cursorCellParams.priority = 32;
@@ -1512,24 +1509,27 @@ static void ov78_021D243C(ChooseStarterCursor *param0, int param1, int param2)
 
 static void MakePreviewWindow(StarterPreviewWindow *param0, ChooseStarterApp *param1, int param2)
 {
-    SoftwareSpriteCharsTemplate v0;
     SoftwareSpritePaletteTemplate v1;
     SoftwareSpriteTemplate v2;
 
     param0->unk_0C = Graphics_GetCharData(NARC_INDEX_GRAPHIC__EV_POKESELECT, 14, 0, &param0->unk_14, param2);
     param0->unk_10 = Graphics_GetPlttData(NARC_INDEX_GRAPHIC__EV_POKESELECT, 15, &param0->unk_18, param2);
 
-    v0.softSpriteMan = param1->spriteDisplay;
-    v0.charsData = param0->unk_14;
+    SoftwareSpriteCharsTemplate v0 = {
+        .softSpriteMan = param1->spriteDisplay,
+        .charsData = param0->unk_14
+    };
 
     param0->unk_00 = SoftwareSprite_LoadChars(&v0);
 
+    // changing to designated initializers breaks the checksum.
     v1.softSpriteMan = param1->spriteDisplay;
     v1.paletteData = param0->unk_18;
     v1.paletteSlot = 1;
 
     param0->unk_04 = SoftwareSprite_LoadPalette(&v1);
 
+    // changing to designated initializers breaks the checksum.
     v2.softSpriteMan = param1->spriteDisplay;
     v2.chars = param0->unk_00;
     v2.palette = param0->unk_04;
@@ -1735,12 +1735,9 @@ static void DeleteSubplaneWindows(ChooseStarterApp *app)
 
 static void ov78_021D28A8(Window *param0, enum HeapID heapID, int param2, int param3, TextColor param4)
 {
-    MessageLoader *v0;
-    String *v1;
-
-    v0 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, param2, heapID);
+    MessageLoader *v0 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, param2, heapID);
     GF_ASSERT(v0);
-    v1 = MessageLoader_GetNewString(v0, param3);
+    String *v1 = MessageLoader_GetNewString(v0, param3);
 
     Window_FillTilemap(param0, ((param4) >> 0) & 0xff);
     Text_AddPrinterWithParamsAndColor(param0, FONT_SYSTEM, v1, 1, 0, TEXT_SPEED_NO_TRANSFER, param4, NULL);
