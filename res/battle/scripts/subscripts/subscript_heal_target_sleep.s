@@ -7,7 +7,7 @@ _000:
     // {0} woke up!
     PrintMessage BattleStrings_Text_PokemonWokeUp_Ally, TAG_NICKNAME, BTLSCR_DEFENDER
     Wait 
-    SetHealthbarStatus BTLSCR_DEFENDER, BATTLE_ANIMATION_NONE
+    SetHealthBoxStatusIcon BTLSCR_DEFENDER, BATTLE_ANIMATION_NONE
     WaitButtonABTime 30
 
 _020:

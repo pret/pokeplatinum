@@ -5,6 +5,10 @@
 #include <stddef.h>
 #include <stdint.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 enum format {
     DATAPROC_F_NONE = 0,
     DATAPROC_F_JSON,
@@ -133,5 +137,9 @@ void       dp_obj_putfloat(datanode_t *dn, const char *k, double v);
 void       dp_obj_putstring(datanode_t *dn, const char *k, const char *v);
 datanode_t dp_obj_putarray(datanode_t *dn, const char *k);
 datanode_t dp_obj_putobject(datanode_t *dn, const char *k);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif // DATAPROC_H

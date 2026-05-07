@@ -25,7 +25,7 @@
 #include "battle/battle_lib.h"
 #include "battle/battle_system.h"
 #include "battle/common.h"
-#include "battle/healthbar.h"
+#include "battle/healthbox.h"
 #include "battle/ov16_02268520.h"
 #include "battle/ov16_0226E148.h"
 #include "battle_anim/battle_anim_system.h"
@@ -1529,7 +1529,7 @@ static void SysTask_UpdateRedHPSound(SysTask *task, void *inBattleSys)
 {
     BattleSystem *battleSys = inBattleSys;
     BattlerData *battlerData;
-    Healthbar *healthbar;
+    HealthBox *healthbox;
 
     int maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
     int flags = 0;
@@ -1553,10 +1553,10 @@ static void SysTask_UpdateRedHPSound(SysTask *task, void *inBattleSys)
 
         if ((BattlerData_GetBootState(battlerData) == BATTLER_BOOT_STATE_NORMAL && (BattleSystem_GetBattleStatusMask(battleSys) & BATTLE_STATUS_RECORDING) == FALSE)
             || (BattleSystem_GetBattlerSide(battleSys, i) == BATTLER_US && BattleSystem_GetBattleStatusMask(battleSys) & BATTLE_STATUS_RECORDING)) {
-            healthbar = BattlerData_GetHealthbar(battlerData);
+            healthbox = BattlerData_GetHealthBox(battlerData);
 
-            if (healthbar != NULL) {
-                if (HealthBar_Color(healthbar->curHP, healthbar->maxHP, 8 * 6) == BARCOLOR_RED) {
+            if (healthbox != NULL) {
+                if (HealthBar_Color(healthbox->curHP, healthbox->maxHP, 8 * 6) == BARCOLOR_RED) {
                     flags |= FlagIndex(i);
                 }
             }

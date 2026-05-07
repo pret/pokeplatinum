@@ -130,7 +130,7 @@ _00D4:
 
 _00E2:
     InitNewBattleRecording
-    FrontierScrCmd_3E VAR_UNK_0x40D9, VAR_0x8001
+    FrontierScrCmd_3E VAR_BATTLE_TOWER_BATTLE_ROOM_LOAD_ACTION, VAR_0x8001
     Call _0176
     Call _018F
     CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, VAR_0x8008
@@ -174,8 +174,8 @@ _019E:
     Return
 
 _01A0:
-    FrontierScrCmd_3D VAR_UNK_0x40D9, 3
-    FrontierScrCmd_3E VAR_UNK_0x40D9, VAR_0x8001
+    FrontierScrCmd_3D VAR_BATTLE_TOWER_BATTLE_ROOM_LOAD_ACTION, 3
+    FrontierScrCmd_3E VAR_BATTLE_TOWER_BATTLE_ROOM_LOAD_ACTION, VAR_0x8001
     CallBattleTowerFunction BT_FUNC_CHECK_IS_NULL, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _03EF
     Call _03CF
@@ -292,8 +292,8 @@ _0382:
     Return
 
 _0394:
-    FrontierScrCmd_3D VAR_UNK_0x40D9, 3
-    FrontierScrCmd_3E VAR_UNK_0x40D9, VAR_0x8001
+    FrontierScrCmd_3D VAR_BATTLE_TOWER_BATTLE_ROOM_LOAD_ACTION, 3
+    FrontierScrCmd_3E VAR_BATTLE_TOWER_BATTLE_ROOM_LOAD_ACTION, VAR_0x8001
     SetVar VAR_0x8003, 1
     CallBattleTowerFunction BT_FUNC_CHECK_IS_NULL, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _03EF
@@ -335,8 +335,8 @@ _043F:
     FrontierScrCmd_02
 
 _0459:
-    FrontierScrCmd_3D VAR_UNK_0x40D9, 0
-    FrontierScrCmd_3E VAR_UNK_0x40D9, VAR_0x8001
+    FrontierScrCmd_3D VAR_BATTLE_TOWER_BATTLE_ROOM_LOAD_ACTION, 0
+    FrontierScrCmd_3E VAR_BATTLE_TOWER_BATTLE_ROOM_LOAD_ACTION, VAR_0x8001
     Call _046D
     End
 

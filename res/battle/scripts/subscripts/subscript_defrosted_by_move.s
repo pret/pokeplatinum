@@ -6,6 +6,6 @@ _000:
     // {0} was defrosted by {1}!
     PrintMessage BattleStrings_Text_PokemonWasDefrostedByMove_Ally, TAG_NICKNAME_MOVE, BTLSCR_ATTACKER, BTLSCR_ATTACKER
     Wait 
-    SetHealthbarStatus BTLSCR_ATTACKER, BATTLE_ANIMATION_NONE
+    SetHealthBoxStatusIcon BTLSCR_ATTACKER, BATTLE_ANIMATION_NONE
     WaitButtonABTime 30
     End 

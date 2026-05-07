@@ -1,122 +1,123 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/union_room.h"
+#include "res/text/bank/menu_entries.h"
 
 
-    ScriptEntry _0022
-    ScriptEntry _0024
-    ScriptEntry _0026
-    ScriptEntry _002A
-    ScriptEntry _07BA
-    ScriptEntry _0BC0
-    ScriptEntry _0BD3
-    ScriptEntry _0BE3
+    ScriptEntry UnionRoom_OnTransition
+    ScriptEntry UnionRoom_OnLoad
+    ScriptEntry UnionRoom_OnResume
+    ScriptEntry UnionRoom_Player
+    ScriptEntry UnionRoom_PlayerContactedYou
+    ScriptEntry UnionRoom_UnusedEntry6
+    ScriptEntry UnionRoom_PlayerBusy
+    ScriptEntry UnionRoom_Teala
     ScriptEntryEnd
 
-_0022:
+UnionRoom_OnTransition:
     End
 
-_0024:
+UnionRoom_OnLoad:
     End
 
-_0026:
+UnionRoom_OnResume:
     ScrCmd_142
     End
 
-_002A:
+UnionRoom_Player:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_140 VAR_RESULT
     SetVar VAR_0x8004, VAR_RESULT
-    GoToIfEq VAR_RESULT, 5, _0497
-    ScrCmd_13C 0
-    GoToIfEq VAR_RESULT, 2, _04AD
-    GoToIfEq VAR_RESULT, 3, _053A
-    GoToIfEq VAR_RESULT, 4, _05AF
+    GoToIfEq VAR_RESULT, 5, UnionRoom_TrainerAppearsBusy
+    DoUnionRoomGreeting 0
+    GoToIfEq VAR_RESULT, 2, UnionRoom_PlayerAskJoinDraw
+    GoToIfEq VAR_RESULT, 3, UnionRoom_PlayerAskJoinMixRecords
+    GoToIfEq VAR_RESULT, 4, UnionRoom_PlayerAskJoinSpinTrade
     ScrCmd_146 VAR_0x8004, VAR_RESULT
     ScrCmd_140 VAR_RESULT
-    GoToIfEq VAR_RESULT, 5, _0497
-    Message 199
+    GoToIfEq VAR_RESULT, 5, UnionRoom_TrainerAppearsBusy
+    Message UnionRoom_Text_TalkingToPlayer
     ScrCmd_141 VAR_RESULT
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, 3, _07BA
-    GoToIfEq VAR_0x8008, 2, _0486
-    GoTo _00BA
+    GoToIfEq VAR_0x8008, 3, UnionRoom_PlayerContactedYou
+    GoToIfEq VAR_0x8008, 2, UnionRoom_SorrySomethingElseToDo
+    GoTo UnionRoom_ThisIsPlayerDoSomething
     End
 
-_00BA:
+UnionRoom_ThisIsPlayerDoSomething:
     ScrCmd_135 100
-    ScrCmd_13F 2, VAR_RESULT
+    GetUnionRoomMessage UR_MSG_THIS_IS_PLAYER_ASK_DO_SOMETHING, VAR_RESULT
     MessageAutoScroll VAR_RESULT
-    GoTo _00EA
+    GoTo UnionRoom_ActivityMenu
     End
 
-_00D0:
+UnionRoom_DoSomethingElse:
     ScrCmd_135 100
     ScrCmd_139 11
-    ScrCmd_13F 22, VAR_RESULT
+    GetUnionRoomMessage UR_MSG_DO_SOMETHING_ELSE, VAR_RESULT
     MessageVar VAR_RESULT
-    GoTo _00EA
+    GoTo UnionRoom_ActivityMenu
     End
 
-_00EA:
+UnionRoom_ActivityMenu:
     InitGlobalTextMenu 31, 3, 0, VAR_RESULT
     SetMenuXOriginToRight
-    AddMenuEntryImm 165, 0
-    AddMenuEntryImm 56, 1
-    AddMenuEntryImm 49, 2
-    AddMenuEntryImm 22, 3
-    AddMenuEntryImm 140, 4
-    AddMenuEntryImm 139, 5
-    AddMenuEntryImm 23, 99
+    AddMenuEntryImm MenuEntries_Text_UnionRoom_Greet, 0
+    AddMenuEntryImm MenuEntries_Text_UnionRoom_Draw, 1
+    AddMenuEntryImm MenuEntries_Text_UnionRoom_Battle, 2
+    AddMenuEntryImm MenuEntries_Text_UnionRoom_Trade, 3
+    AddMenuEntryImm MenuEntries_Text_UnionRoom_Records, 4
+    AddMenuEntryImm MenuEntries_Text_UnionRoom_Spin, 5
+    AddMenuEntryImm MenuEntries_Text_UnionRoom_Cancel, 99
     ShowUnionRoomMenu
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, 0, _0182
-    GoToIfEq VAR_0x8008, 1, _0334
-    GoToIfEq VAR_0x8008, 2, _0274
-    GoToIfEq VAR_0x8008, 3, _01EB
-    GoToIfEq VAR_0x8008, 4, _0394
-    GoToIfEq VAR_0x8008, 5, _03F4
-    GoToIfEq VAR_0x8008, 7, _0792
+    GoToIfEq VAR_0x8008, 0, UnionRoom_AskPlayerGreet
+    GoToIfEq VAR_0x8008, 1, UnionRoom_AskPlayerDraw
+    GoToIfEq VAR_0x8008, 2, UnionRoom_AskPlayerBattle
+    GoToIfEq VAR_0x8008, 3, UnionRoom_AskPlayerTrade
+    GoToIfEq VAR_0x8008, 4, UnionRoom_AskPlayerMixRecords
+    GoToIfEq VAR_0x8008, 5, UnionRoom_AskPlayerSpinTrade
+    GoToIfEq VAR_0x8008, 7, UnionRoom_OtherPlayerSomethingElseToDo
     ScrCmd_143 0, 7
-    GoTo _0776
+    GoTo UnionRoom_CancelPlayerInteraction
     End
 
-_0182:
+UnionRoom_AskPlayerGreet:
     ScrCmd_143 0, 1
-    ScrCmd_13F 9, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _019F
+    GetUnionRoomMessage UR_MSG_WAIT_FOR_ANSWER, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, UnionRoom_TryShowTrainerCase
     MessageVar VAR_RESULT
-_019F:
+UnionRoom_TryShowTrainerCase:
     ScrCmd_144 VAR_RESULT
-    GoToIfEq VAR_RESULT, 7, _06A0
+    GoToIfEq VAR_RESULT, 7, UnionRoom_OtherPlayerDeclinedGreet
     ScrCmd_139 5
-    ScrCmd_13F 1, VAR_RESULT
+    GetUnionRoomMessage UR_MSG_LETS_START, VAR_RESULT
     MessageVar VAR_RESULT
     WaitTime 30, VAR_RESULT
     ScrCmd_135 1
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
-    ScrCmd_0AD
+    OpenUnionRoomTrainerCase
     ReturnToField
-    Call _0BB2
-    MessageInstant 16
-    GoTo _00D0
+    Call UnionRoom_InitCommFieldCmd
+    MessageInstant UnionRoom_Text_WaitOtherPlayerFinish
+    GoTo UnionRoom_DoSomethingElse
     End
 
-_01EB:
+UnionRoom_AskPlayerTrade:
     CountPartyNonEggs VAR_RESULT
-    GoToIfLt VAR_RESULT, 2, _0262
+    GoToIfLt VAR_RESULT, 2, UnionRoom_NeedTwoPokemonDoSomethingElse
     ScrCmd_143 0, 3
-    ScrCmd_13F 9, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _0219
+    GetUnionRoomMessage UR_MSG_WAIT_FOR_ANSWER, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, UnionRoom_TryTrade
     MessageVar VAR_RESULT
-_0219:
+UnionRoom_TryTrade:
     ScrCmd_144 VAR_RESULT
-    GoToIfEq VAR_RESULT, 7, _06E8
+    GoToIfEq VAR_RESULT, 7, UnionRoom_OtherPlayerDeclinedTrade
     ScrCmd_139 7
-    ScrCmd_13F 1, VAR_RESULT
+    GetUnionRoomMessage UR_MSG_LETS_START, VAR_RESULT
     MessageVar VAR_RESULT
     WaitTime 30, VAR_RESULT
     ScrCmd_135 3
@@ -125,28 +126,28 @@ _0219:
     WaitFadeScreen
     ScrCmd_0AE
     ReturnToField
-    Call _0BB2
-    GoTo _00D0
+    Call UnionRoom_InitCommFieldCmd
+    GoTo UnionRoom_DoSomethingElse
     End
 
-_0262:
-    ScrCmd_13F 20, VAR_RESULT
+UnionRoom_NeedTwoPokemonDoSomethingElse:
+    GetUnionRoomMessage UR_MSG_CANT_TRADE_IF_ONE_POKEMON, VAR_RESULT
     MessageVar VAR_RESULT
-    GoTo _00D0
+    GoTo UnionRoom_DoSomethingElse
     End
 
-_0274:
+UnionRoom_AskPlayerBattle:
     CountPartyMonsBelowLevelThreshold VAR_RESULT, 30
-    GoToIfLt VAR_RESULT, 2, _0322
+    GoToIfLt VAR_RESULT, 2, UnionRoom_NeedTwoPokemonLv30DoSomethingElse
     ScrCmd_143 0, 2
-    ScrCmd_13F 9, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _02A4
+    GetUnionRoomMessage UR_MSG_WAIT_FOR_ANSWER, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, UnionRoom_TryBattle
     MessageVar VAR_RESULT
-_02A4:
+UnionRoom_TryBattle:
     ScrCmd_144 VAR_RESULT
-    GoToIfEq VAR_RESULT, 7, _06D0
+    GoToIfEq VAR_RESULT, 7, UnionRoom_OtherPlayerDeclinedBattle
     ScrCmd_139 6
-    ScrCmd_13F 1, VAR_RESULT
+    GetUnionRoomMessage UR_MSG_LETS_START, VAR_RESULT
     MessageVar VAR_RESULT
     WaitTime 30, VAR_RESULT
     ScrCmd_135 2
@@ -156,32 +157,32 @@ _02A4:
     SelectPokemonForUnionRoomBattle
     FadeScreenIn
     WaitFadeScreen
-    Message 202
+    Message UnionRoom_Text_WaitOtherPlayersChoice
     ScrCmd_135 102
     CloseMessage
     ScrCmd_2BA VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _0B63
-    GoToIfEq VAR_RESULT, 2, _0B63
+    GoToIfEq VAR_RESULT, 1, UnionRoom_BattleHasBeenCanceled
+    GoToIfEq VAR_RESULT, 2, UnionRoom_BattleHasBeenCanceled
     StartLinkBattle
-    Call _0BB2
-    GoTo _00D0
+    Call UnionRoom_InitCommFieldCmd
+    GoTo UnionRoom_DoSomethingElse
     End
 
-_0322:
-    ScrCmd_13F 19, VAR_RESULT
+UnionRoom_NeedTwoPokemonLv30DoSomethingElse:
+    GetUnionRoomMessage UR_MSG_NEED_TWO_LV_30_POKEMON_TO_BATTLE, VAR_RESULT
     MessageVar VAR_RESULT
-    GoTo _00D0
+    GoTo UnionRoom_DoSomethingElse
     End
 
-_0334:
+UnionRoom_AskPlayerDraw:
     ScrCmd_143 0, 4
-    ScrCmd_13F 9, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _0351
+    GetUnionRoomMessage UR_MSG_WAIT_FOR_ANSWER, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, UnionRoom_TryDraw
     MessageVar VAR_RESULT
-_0351:
+UnionRoom_TryDraw:
     ScrCmd_144 VAR_RESULT
-    GoToIfEq VAR_RESULT, 7, _06B8
-    ScrCmd_13F 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, 7, UnionRoom_OtherPlayerDeclinedDraw
+    GetUnionRoomMessage UR_MSG_LETS_START, VAR_RESULT
     MessageVar VAR_RESULT
     WaitABPressTime 30
     ScrCmd_135 4
@@ -190,19 +191,19 @@ _0351:
     WaitFadeScreen
     ScrCmd_0AC
     ReturnToField
-    Call _0BB2
-    GoTo _0476
+    Call UnionRoom_InitCommFieldCmd
+    GoTo UnionRoom_PlayerInteractionEnd
     End
 
-_0394:
+UnionRoom_AskPlayerMixRecords:
     ScrCmd_143 0, 5
-    ScrCmd_13F 9, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _03B1
+    GetUnionRoomMessage UR_MSG_WAIT_FOR_ANSWER, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, UnionRoom_TryMixRecords
     MessageVar VAR_RESULT
-_03B1:
+UnionRoom_TryMixRecords:
     ScrCmd_144 VAR_RESULT
-    GoToIfEq VAR_RESULT, 7, _0718
-    ScrCmd_13F 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, 7, UnionRoom_OtherPlayerDeclinedMixRecords
+    GetUnionRoomMessage UR_MSG_LETS_START, VAR_RESULT
     MessageVar VAR_RESULT
     WaitABPressTime 30
     ScrCmd_135 5
@@ -211,23 +212,23 @@ _03B1:
     WaitFadeScreen
     ScrCmd_0AF
     ReturnToField
-    Call _0BB2
-    GoTo _0476
+    Call UnionRoom_InitCommFieldCmd
+    GoTo UnionRoom_PlayerInteractionEnd
     End
 
-_03F4:
+UnionRoom_AskPlayerSpinTrade:
     CountPartyEggs VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _0741
-    ScrCmd_2C7 VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _0753
+    GoToIfEq VAR_RESULT, 0, UnionRoom_SpinTradeNeedEgg
+    IsCommGameCodePlatinum VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, UnionRoom_CantSpinTradeDiamondPearl
     ScrCmd_143 0, 6
-    ScrCmd_13F 9, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _0433
+    GetUnionRoomMessage UR_MSG_WAIT_FOR_ANSWER, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, UnionRoom_TrySpin
     MessageVar VAR_RESULT
-_0433:
+UnionRoom_TrySpin:
     ScrCmd_144 VAR_RESULT
-    GoToIfEq VAR_RESULT, 7, _075E
-    ScrCmd_13F 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, 7, UnionRoom_OtherPlayerDeclinedSpinTrade
+    GetUnionRoomMessage UR_MSG_LETS_START, VAR_RESULT
     MessageVar VAR_RESULT
     WaitABPressTime 30
     ScrCmd_135 6
@@ -236,11 +237,11 @@ _0433:
     WaitFadeScreen
     ScrCmd_2C6
     ReturnToField
-    Call _0BB2
-    GoTo _0476
+    Call UnionRoom_InitCommFieldCmd
+    GoTo UnionRoom_PlayerInteractionEnd
     End
 
-_0476:
+UnionRoom_PlayerInteractionEnd:
     ReleaseAll
     End
 
@@ -250,17 +251,17 @@ UnionRoom_Unused:
     ReleaseAll
     End
 
-_0486:
-    Message 38
+UnionRoom_SorrySomethingElseToDo:
+    Message UnionRoom_Text_SorrySomethingElseToDoMale
     WaitTime 30, VAR_RESULT
     CloseMessage
     ScrCmd_13B
     ReleaseAll
     End
 
-_0497:
+UnionRoom_TrainerAppearsBusy:
     ScrCmd_13A
-    ScrCmd_13F 0, VAR_RESULT
+    GetUnionRoomMessage UR_MSG_TRAINER_BUSY, VAR_RESULT
     MessageVar VAR_RESULT
     WaitABPress
     CloseMessage
@@ -268,17 +269,17 @@ _0497:
     ReleaseAll
     End
 
-_04AD:
+UnionRoom_PlayerAskJoinDraw:
     ScrCmd_13A
-    ScrCmd_13F 10, VAR_RESULT
+    GetUnionRoomMessage UR_MSG_ASK_JOIN_DRAW, VAR_RESULT
     MessageVar VAR_RESULT
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _0522
+    GoToIfEq VAR_RESULT, MENU_NO, UnionRoom_DeclinedJoinDraw
     ScrCmd_146 VAR_0x8004, VAR_RESULT
-    GoToIfEq VAR_RESULT, 5, _0486
+    GoToIfEq VAR_RESULT, 5, UnionRoom_SorrySomethingElseToDo
     ScrCmd_141 VAR_RESULT
-    GoToIfEq VAR_RESULT, 2, _0486
-    ScrCmd_13F 13, VAR_RESULT
+    GoToIfEq VAR_RESULT, 2, UnionRoom_SorrySomethingElseToDo
+    GetUnionRoomMessage UR_MSG_JOINED_DRAW, VAR_RESULT
     MessageVar VAR_RESULT
     WaitTime 30, VAR_RESULT
     CloseMessage
@@ -287,11 +288,11 @@ _04AD:
     ScrCmd_0AC
     ReturnToField
     FadeScreenIn
-    GoTo _0476
+    GoTo UnionRoom_PlayerInteractionEnd
     End
 
-_0522:
-    ScrCmd_13F 16, VAR_RESULT
+UnionRoom_DeclinedJoinDraw:
+    GetUnionRoomMessage UR_MSG_DECLINED_JOIN_DRAW, VAR_RESULT
     MessageVar VAR_RESULT
     WaitTime 30, VAR_RESULT
     ScrCmd_13B
@@ -299,17 +300,17 @@ _0522:
     ReleaseAll
     End
 
-_053A:
+UnionRoom_PlayerAskJoinMixRecords:
     ScrCmd_13A
-    ScrCmd_13F 11, VAR_RESULT
+    GetUnionRoomMessage UR_MSG_ASK_JOIN_MIX_RECORDS, VAR_RESULT
     MessageVar VAR_RESULT
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _0646
+    GoToIfEq VAR_RESULT, MENU_NO, UnionRoom_DeclinedJoinMixRecords
     ScrCmd_146 VAR_0x8004, VAR_RESULT
-    GoToIfEq VAR_RESULT, 5, _0486
+    GoToIfEq VAR_RESULT, 5, UnionRoom_SorrySomethingElseToDo
     ScrCmd_141 VAR_RESULT
-    GoToIfEq VAR_RESULT, 2, _0486
-    ScrCmd_13F 14, VAR_RESULT
+    GoToIfEq VAR_RESULT, 2, UnionRoom_SorrySomethingElseToDo
+    GetUnionRoomMessage UR_MSG_JOINED_MIX_RECORDS, VAR_RESULT
     MessageVar VAR_RESULT
     WaitTime 30, VAR_RESULT
     CloseMessage
@@ -318,24 +319,24 @@ _053A:
     ScrCmd_0AF
     ReturnToField
     FadeScreenIn
-    GoTo _0476
+    GoTo UnionRoom_PlayerInteractionEnd
     End
 
-_05AF:
+UnionRoom_PlayerAskJoinSpinTrade:
     ScrCmd_13A
-    ScrCmd_13F 12, VAR_RESULT
+    GetUnionRoomMessage UR_MSG_ASK_JOIN_SPIN_TRADE, VAR_RESULT
     MessageVar VAR_RESULT
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _065E
+    GoToIfEq VAR_RESULT, MENU_NO, UnionRoom_DeclinedJoinSpinTrade
     CountPartyEggs VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _068A
+    GoToIfEq VAR_RESULT, 0, UnionRoom_NeedEggToSpinTrade
     CheckPartyHasBadEgg VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _0674
+    GoToIfEq VAR_RESULT, 1, UnionRoom_CantJoinSpinTradeWithBadEgg
     ScrCmd_146 VAR_0x8004, VAR_RESULT
-    GoToIfEq VAR_RESULT, 5, _0486
+    GoToIfEq VAR_RESULT, 5, UnionRoom_SorrySomethingElseToDo
     ScrCmd_141 VAR_RESULT
-    GoToIfEq VAR_RESULT, 2, _0486
-    ScrCmd_13F 15, VAR_RESULT
+    GoToIfEq VAR_RESULT, 2, UnionRoom_SorrySomethingElseToDo
+    GetUnionRoomMessage UR_MSG_JOINED_SPIN_TRADE, VAR_RESULT
     MessageVar VAR_RESULT
     WaitTime 30, VAR_RESULT
     CloseMessage
@@ -344,11 +345,11 @@ _05AF:
     ScrCmd_2C6
     ReturnToField
     FadeScreenIn
-    GoTo _0476
+    GoTo UnionRoom_PlayerInteractionEnd
     End
 
-_0646:
-    ScrCmd_13F 17, VAR_RESULT
+UnionRoom_DeclinedJoinMixRecords:
+    GetUnionRoomMessage UR_MSG_DECLINED_JOIN_MIX_RECORDS, VAR_RESULT
     MessageVar VAR_RESULT
     WaitTime 30, VAR_RESULT
     CloseMessage
@@ -356,108 +357,98 @@ _0646:
     ReleaseAll
     End
 
-_065E:
-    ScrCmd_13F 18, VAR_RESULT
+UnionRoom_DeclinedJoinSpinTrade:
+    GetUnionRoomMessage UR_MSG_DECLINED_JOIN_SPIN_TRADE, VAR_RESULT
     MessageVar VAR_RESULT
     WaitTime 30, VAR_RESULT
     CloseMessage
     ReleaseAll
     End
 
-_0674:
-    ScrCmd_13F 26, VAR_RESULT
+UnionRoom_CantJoinSpinTradeWithBadEgg:
+    GetUnionRoomMessage UR_MSG_CANT_SPIN_TRADE_BAD_EGG, VAR_RESULT
     MessageVar VAR_RESULT
     WaitTime 30, VAR_RESULT
     CloseMessage
     ReleaseAll
     End
 
-_068A:
-    ScrCmd_13F 21, VAR_RESULT
+UnionRoom_NeedEggToSpinTrade:
+    GetUnionRoomMessage UR_MSG_NEED_EGG_TO_SPIN_TRADE, VAR_RESULT
     MessageVar VAR_RESULT
     WaitTime 30, VAR_RESULT
     CloseMessage
     ReleaseAll
     End
 
-_06A0:
-    ScrCmd_13F 3, VAR_RESULT
+UnionRoom_OtherPlayerDeclinedGreet:
+    GetUnionRoomMessage UR_MSG_DECLINED_GREET, VAR_RESULT
     MessageVar VAR_RESULT
     WaitTime 30, VAR_RESULT
-    GoTo _07AE
+    GoTo UnionRoom_OtherPlayerDeclinedEnd
     End
 
-_06B8:
-    ScrCmd_13F 4, VAR_RESULT
+UnionRoom_OtherPlayerDeclinedDraw:
+    GetUnionRoomMessage UR_MSG_DECLINED_DRAW, VAR_RESULT
     MessageVar VAR_RESULT
     WaitTime 30, VAR_RESULT
-    GoTo _07AE
+    GoTo UnionRoom_OtherPlayerDeclinedEnd
     End
 
-_06D0:
-    ScrCmd_13F 5, VAR_RESULT
+UnionRoom_OtherPlayerDeclinedBattle:
+    GetUnionRoomMessage UR_MSG_DECLINED_BATTLE, VAR_RESULT
     MessageVar VAR_RESULT
     WaitTime 30, VAR_RESULT
-    GoTo _07AE
+    GoTo UnionRoom_OtherPlayerDeclinedEnd
     End
 
-_06E8:
-    ScrCmd_13F 6, VAR_RESULT
+UnionRoom_OtherPlayerDeclinedTrade:
+    GetUnionRoomMessage UR_MSG_DECLINED_TRADE, VAR_RESULT
     MessageVar VAR_RESULT
     WaitTime 30, VAR_RESULT
-    GoTo _07AE
+    GoTo UnionRoom_OtherPlayerDeclinedEnd
     End
 
-UnionRoom_Unused2:
-    ScrCmd_13F 7, VAR_RESULT
+UnionRoom_UnusedDecline:
+    GetUnionRoomMessage UR_MSG_DECLINED_UNUSED, VAR_RESULT
     MessageVar VAR_RESULT
     WaitTime 30, VAR_RESULT
-    GoTo _07AE
+    GoTo UnionRoom_OtherPlayerDeclinedEnd
     End
 
-_0718:
-    ScrCmd_13F 8, VAR_RESULT
+UnionRoom_OtherPlayerDeclinedMixRecords:
+    GetUnionRoomMessage UR_MSG_DECLINED_SPIN_TRADE_MIX_RECORDS, VAR_RESULT
     MessageVar VAR_RESULT
     WaitTime 30, VAR_RESULT
-    GoTo _07AE
+    GoTo UnionRoom_OtherPlayerDeclinedEnd
     End
 
-_0730:
+UnionRoom_YouDontHaveAnEgg:
     ScrCmd_143 1, 1
-    Message 36
-    GoTo _0B9A
+    Message UnionRoom_Text_YouDontHaveAnEgg
+    GoTo UnionRoom_DeclinedEnd
     End
 
-_0741:
-    ScrCmd_13F 21, VAR_RESULT
+UnionRoom_SpinTradeNeedEgg:
+    GetUnionRoomMessage UR_MSG_NEED_EGG_TO_SPIN_TRADE, VAR_RESULT
     MessageVar VAR_RESULT
-    GoTo _00D0
+    GoTo UnionRoom_DoSomethingElse
     End
 
-_0753:
-    Message 218
-    GoTo _00D0
+UnionRoom_CantSpinTradeDiamondPearl:
+    Message UnionRoom_Text_CantSpinTradeDiamondPearl
+    GoTo UnionRoom_DoSomethingElse
     End
 
-_075E:
-    ScrCmd_13F 8, VAR_RESULT
-    MessageVar VAR_RESULT
-    WaitTime 30, VAR_RESULT
-    GoTo _07AE
-    End
-
-_0776:
-    ScrCmd_13F 23, VAR_RESULT
+UnionRoom_OtherPlayerDeclinedSpinTrade:
+    GetUnionRoomMessage UR_MSG_DECLINED_SPIN_TRADE_MIX_RECORDS, VAR_RESULT
     MessageVar VAR_RESULT
     WaitTime 30, VAR_RESULT
-    ScrCmd_135 101
-    CloseMessage
-    ScrCmd_13E
-    ReleaseAll
+    GoTo UnionRoom_OtherPlayerDeclinedEnd
     End
 
-_0792:
-    ScrCmd_13F 24, VAR_RESULT
+UnionRoom_CancelPlayerInteraction:
+    GetUnionRoomMessage UR_MSG_ASK_IF_YOU_WANT_SOMETHING, VAR_RESULT
     MessageVar VAR_RESULT
     WaitTime 30, VAR_RESULT
     ScrCmd_135 101
@@ -466,47 +457,57 @@ _0792:
     ReleaseAll
     End
 
-_07AE:
+UnionRoom_OtherPlayerSomethingElseToDo:
+    GetUnionRoomMessage UR_MSG_SOMETHING_ELSE_TO_DO, VAR_RESULT
+    MessageVar VAR_RESULT
+    WaitTime 30, VAR_RESULT
     ScrCmd_135 101
     CloseMessage
     ScrCmd_13E
     ReleaseAll
     End
 
-_07BA:
+UnionRoom_OtherPlayerDeclinedEnd:
+    ScrCmd_135 101
+    CloseMessage
+    ScrCmd_13E
+    ReleaseAll
+    End
+
+UnionRoom_PlayerContactedYou:
     LockAll
     PlaySE SEQ_SE_DP_BUTTON9
-    ScrCmd_13C 1
-    MessageAutoScroll 7
+    DoUnionRoomGreeting 1
+    MessageAutoScroll UnionRoom_Text_PlayerContactedYou
     WaitABPressTime 30
-    GoTo _07D4
+    GoTo UnionRoom_AwaitingResponse
     End
 
-_07D4:
-    Message 9
+UnionRoom_AwaitingResponse:
+    Message UnionRoom_Text_AwaitingResponseFromPlayer
     ScrCmd_135 100
     ScrCmd_139 11
     ScrCmd_145 VAR_RESULT
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, 1, _0853
-    GoToIfEq VAR_0x8008, 4, _0AED
-    GoToIfEq VAR_0x8008, 2, _095C
-    GoToIfEq VAR_0x8008, 3, _08C7
-    GoToIfEq VAR_0x8008, 5, _0A28
-    GoToIfEq VAR_0x8008, 6, _0A82
-    GoToIfEq VAR_0x8008, 7, _0B78
-    GoToIfEq VAR_0x8008, 8, _0B89
+    GoToIfEq VAR_0x8008, 1, UnionRoom_PlayerAskShowTrainerCase
+    GoToIfEq VAR_0x8008, 4, UnionRoom_PlayerAskDraw
+    GoToIfEq VAR_0x8008, 2, UnionRoom_PlayerAskBattle
+    GoToIfEq VAR_0x8008, 3, UnionRoom_PlayerAskTrade
+    GoToIfEq VAR_0x8008, 5, UnionRoom_PlayerAskMixRecords
+    GoToIfEq VAR_0x8008, 6, UnionRoom_PlayerAskSpinTrade
+    GoToIfEq VAR_0x8008, 7, UnionRoom_ChatHasBeenDropped
+    GoToIfEq VAR_0x8008, 8, UnionRoom_ChatWasEnded
     End
 
-_0853:
-    Message 11
+UnionRoom_PlayerAskShowTrainerCase:
+    Message UnionRoom_Text_ShowTrainerCase
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _08B6
+    GoToIfEq VAR_RESULT, MENU_NO, UnionRoom_DeclinedOfferShowTrainerCase
     ScrCmd_143 1, 0
     CloseMessage
     ScrCmd_144 VAR_RESULT
-    GoToIfEq VAR_RESULT, 7, _0B58
-    ScrCmd_2AF VAR_RESULT
+    GoToIfEq VAR_RESULT, 7, UnionRoom_DeclinedShowTrainerCase
+    GetTrainerCasePlayerMessage VAR_RESULT
     MessageVar VAR_RESULT
     WaitTime 30, VAR_RESULT
     ScrCmd_135 1
@@ -514,29 +515,29 @@ _0853:
     ScrCmd_139 5
     FadeScreenOut
     WaitFadeScreen
-    ScrCmd_0AD
+    OpenUnionRoomTrainerCase
     ReturnToField
-    Call _0BB2
-    GoTo _07D4
+    Call UnionRoom_InitCommFieldCmd
+    GoTo UnionRoom_AwaitingResponse
     End
 
-_08B6:
+UnionRoom_DeclinedOfferShowTrainerCase:
     ScrCmd_143 1, 1
-    Message 17
-    GoTo _0B9A
+    Message UnionRoom_Text_DeclinedOfferShowTrainerCase
+    GoTo UnionRoom_DeclinedEnd
     End
 
-_08C7:
-    Message 26
+UnionRoom_PlayerAskTrade:
+    Message UnionRoom_Text_AcceptTradeOffer
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _093A
+    GoToIfEq VAR_RESULT, MENU_NO, UnionRoom_DeclinedInvitationTrade
     CountPartyNonEggs VAR_RESULT
-    GoToIfLt VAR_RESULT, 2, _094B
+    GoToIfLt VAR_RESULT, 2, UnionRoom_NeedTwoPokemonEnd
     ScrCmd_143 1, 0
     CloseMessage
     ScrCmd_144 VAR_RESULT
-    GoToIfEq VAR_RESULT, 7, _0B78
-    Message 27
+    GoToIfEq VAR_RESULT, 7, UnionRoom_ChatHasBeenDropped
+    Message UnionRoom_Text_TradeWillBeStarted
     WaitTime 30, VAR_RESULT
     ScrCmd_135 3
     CloseMessage
@@ -546,33 +547,33 @@ _08C7:
     ScrCmd_0AE
     ReturnToField
     ScrCmd_139 11
-    Call _0BB2
-    GoTo _07D4
+    Call UnionRoom_InitCommFieldCmd
+    GoTo UnionRoom_AwaitingResponse
     End
 
-_093A:
+UnionRoom_DeclinedInvitationTrade:
     ScrCmd_143 1, 1
-    Message 20
-    GoTo _0B9A
+    Message UnionRoom_Text_DeclinedInvitationTrade
+    GoTo UnionRoom_DeclinedEnd
     End
 
-_094B:
+UnionRoom_NeedTwoPokemonEnd:
     ScrCmd_143 1, 1
-    Message 29
-    GoTo _0B9A
+    Message UnionRoom_Text_NeedAtLeastTwoPokemon
+    GoTo UnionRoom_DeclinedEnd
     End
 
-_095C:
-    Message 21
+UnionRoom_PlayerAskBattle:
+    Message UnionRoom_Text_AcceptBattleChallenge
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _0A06
+    GoToIfEq VAR_RESULT, MENU_NO, UnionRoom_DeclinedBattleSpinTradeMixRecords
     CountPartyMonsBelowLevelThreshold VAR_RESULT, 30
-    GoToIfLt VAR_RESULT, 2, _0A17
+    GoToIfLt VAR_RESULT, 2, UnionRoom_NeedTwoPokemonLv30End
     ScrCmd_143 1, 0
     CloseMessage
     ScrCmd_144 VAR_RESULT
-    GoToIfEq VAR_RESULT, 7, _0B78
-    Message 22
+    GoToIfEq VAR_RESULT, 7, UnionRoom_ChatHasBeenDropped
+    Message UnionRoom_Text_BattleWillBeStarted
     WaitTime 30, VAR_RESULT
     ScrCmd_135 2
     CloseMessage
@@ -582,39 +583,39 @@ _095C:
     SelectPokemonForUnionRoomBattle
     FadeScreenIn
     WaitFadeScreen
-    Message 202
+    Message UnionRoom_Text_WaitOtherPlayersChoice
     ScrCmd_135 102
     CloseMessage
     ScrCmd_2BA VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _0B63
-    GoToIfEq VAR_RESULT, 2, _0B63
+    GoToIfEq VAR_RESULT, 1, UnionRoom_BattleHasBeenCanceled
+    GoToIfEq VAR_RESULT, 2, UnionRoom_BattleHasBeenCanceled
     StartLinkBattle
     ScrCmd_139 11
-    Call _0BB2
-    GoTo _07D4
+    Call UnionRoom_InitCommFieldCmd
+    GoTo UnionRoom_AwaitingResponse
     End
 
-_0A06:
+UnionRoom_DeclinedBattleSpinTradeMixRecords:
     ScrCmd_143 1, 1
-    Message 23
-    GoTo _0B9A
+    Message UnionRoom_Text_DeclinedToTakePart
+    GoTo UnionRoom_DeclinedEnd
     End
 
-_0A17:
+UnionRoom_NeedTwoPokemonLv30End:
     ScrCmd_143 1, 1
-    Message 24
-    GoTo _0B9A
+    Message UnionRoom_Text_NeedTwoPokemonLv30
+    GoTo UnionRoom_DeclinedEnd
     End
 
-_0A28:
-    Message 30
+UnionRoom_PlayerAskMixRecords:
+    Message UnionRoom_Text_MixRecordsWithPlayer
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _0A06
+    GoToIfEq VAR_RESULT, MENU_NO, UnionRoom_DeclinedBattleSpinTradeMixRecords
     ScrCmd_143 1, 0
     CloseMessage
     ScrCmd_144 VAR_RESULT
-    GoToIfEq VAR_RESULT, 7, _0B78
-    Message 31
+    GoToIfEq VAR_RESULT, 7, UnionRoom_ChatHasBeenDropped
+    Message UnionRoom_Text_RecordMixingWillBeStarted
     WaitTime 30, VAR_RESULT
     ScrCmd_135 5
     CloseMessage
@@ -623,21 +624,21 @@ _0A28:
     WaitFadeScreen
     ScrCmd_0AF
     ReturnToField
-    Call _0BB2
+    Call UnionRoom_InitCommFieldCmd
     ReleaseAll
     End
 
-_0A82:
-    Message 33
+UnionRoom_PlayerAskSpinTrade:
+    Message UnionRoom_Text_TakePartInSpinTrade
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _0A06
+    GoToIfEq VAR_RESULT, MENU_NO, UnionRoom_DeclinedBattleSpinTradeMixRecords
     ScrCmd_143 1, 0
     CloseMessage
     CountPartyEggs VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _0730
+    GoToIfEq VAR_RESULT, 0, UnionRoom_YouDontHaveAnEgg
     ScrCmd_144 VAR_RESULT
-    GoToIfEq VAR_RESULT, 7, _0B78
-    Message 34
+    GoToIfEq VAR_RESULT, 7, UnionRoom_ChatHasBeenDropped
+    Message UnionRoom_Text_StartingTheSpinTrade
     WaitTime 30, VAR_RESULT
     ScrCmd_135 6
     CloseMessage
@@ -646,19 +647,19 @@ _0A82:
     WaitFadeScreen
     ScrCmd_2C6
     ReturnToField
-    Call _0BB2
+    Call UnionRoom_InitCommFieldCmd
     ReleaseAll
     End
 
-_0AED:
-    Message 18
+UnionRoom_PlayerAskDraw:
+    Message UnionRoom_Text_JoinOtherPlayerAndDraw
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _0B47
+    GoToIfEq VAR_RESULT, MENU_NO, UnionRoom_DeclinedDraw
     ScrCmd_143 1, 0
     CloseMessage
     ScrCmd_144 VAR_RESULT
-    GoToIfEq VAR_RESULT, 7, _0B78
-    Message 19
+    GoToIfEq VAR_RESULT, 7, UnionRoom_ChatHasBeenDropped
+    Message UnionRoom_Text_LetsGetDrawing
     WaitTime 30, VAR_RESULT
     ScrCmd_135 4
     CloseMessage
@@ -667,41 +668,41 @@ _0AED:
     WaitFadeScreen
     ScrCmd_0AC
     ReturnToField
-    Call _0BB2
+    Call UnionRoom_InitCommFieldCmd
     ReleaseAll
     End
 
-_0B47:
+UnionRoom_DeclinedDraw:
     ScrCmd_143 1, 1
-    Message 28
-    GoTo _0B9A
+    Message UnionRoom_Text_DeclinedDraw
+    GoTo UnionRoom_DeclinedEnd
     End
 
-_0B58:
-    Message 35
-    GoTo _0B9A
+UnionRoom_DeclinedShowTrainerCase:
+    Message UnionRoom_Text_DeclinedInvitationShowTrainerCase
+    GoTo UnionRoom_DeclinedEnd
     End
 
-_0B63:
+UnionRoom_BattleHasBeenCanceled:
     ScrCmd_139 11
-    Message 25
+    Message UnionRoom_Text_BattleHasBeenCanceled
     WaitTime 30, VAR_RESULT
-    GoTo _0B9A
+    GoTo UnionRoom_DeclinedEnd
     End
 
-_0B78:
-    Message 8
+UnionRoom_ChatHasBeenDropped:
+    Message UnionRoom_Text_ChatHasBeenDropped
     WaitTime 30, VAR_RESULT
-    GoTo _0B9A
+    GoTo UnionRoom_DeclinedEnd
     End
 
-_0B89:
-    Message 10
+UnionRoom_ChatWasEnded:
+    Message UnionRoom_Text_ChatWasEnded
     WaitTime 30, VAR_RESULT
-    GoTo _0B9A
+    GoTo UnionRoom_DeclinedEnd
     End
 
-_0B9A:
+UnionRoom_DeclinedEnd:
     ScrCmd_135 101
     CloseMessage
     ScrCmd_13E
@@ -714,118 +715,118 @@ UnionRoom_Unused3:
     ReleaseAll
     End
 
-_0BB2:
-    ScrCmd_13D
+UnionRoom_InitCommFieldCmd:
+    InitCommFieldCmd
     FadeScreenIn
     Return
 
-_0BC0:
-    NPCMessage 207
+UnionRoom_UnusedEntry6:
+    NPCMessage UnionRoom_Text_Dummy207
     End
 
-_0BD3:
+UnionRoom_PlayerBusy:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoTo _0497
+    GoTo UnionRoom_TrainerAppearsBusy
     End
 
-_0BE3:
+UnionRoom_Teala:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoTo _0BF3
+    GoTo UnionRoom_TealaMenu
     End
 
-_0BF3:
+UnionRoom_TealaMenu:
     ScrCmd_13A
-    CallIfSet FLAG_UNK_0x00BB, _0C50
-    CallIfUnset FLAG_UNK_0x00BB, _0C55
-    SetFlag FLAG_UNK_0x00BB
+    CallIfSet FLAG_TALKED_TO_UNION_ROOM_TEALA, UnionRoom_HowMayIHelp
+    CallIfUnset FLAG_TALKED_TO_UNION_ROOM_TEALA, UnionRoom_WelcomeToUnionRoom
+    SetFlag FLAG_TALKED_TO_UNION_ROOM_TEALA
     InitGlobalTextMenu 31, 11, 0, VAR_RESULT
     SetMenuXOriginToRight
-    AddMenuEntryImm 10, 0
-    AddMenuEntryImm 166, 1
-    AddMenuEntryImm 23, 2
+    AddMenuEntryImm MenuEntries_Text_Info, 0
+    AddMenuEntryImm MenuEntries_Text_UnionRoom_Converse, 1
+    AddMenuEntryImm MenuEntries_Text_UnionRoom_Cancel, 2
     ShowMenu
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, 0, _0C72
-    GoToIfEq VAR_0x8008, 1, _0C5A
-    GoTo _0C6A
+    GoToIfEq VAR_0x8008, 0, UnionRoom_InfoMenu
+    GoToIfEq VAR_0x8008, 1, UnionRoom_Converse
+    GoTo UnionRoom_TealaEnd
     End
 
-_0C50:
-    Message 158
+UnionRoom_HowMayIHelp:
+    Message UnionRoom_Text_HowMayIHelp
     Return
 
-_0C55:
-    Message 157
+UnionRoom_WelcomeToUnionRoom:
+    Message UnionRoom_Text_WelcomeToUnionRoom
     Return
 
-_0C5A:
-    ScrCmd_138 VAR_RESULT
+UnionRoom_Converse:
+    GetUnionRoomTealaMessage VAR_RESULT
     MessageVar VAR_RESULT
-    GoTo _0BF3
+    GoTo UnionRoom_TealaMenu
     End
 
-_0C6A:
+UnionRoom_TealaEnd:
     ScrCmd_13B
     CloseMessage
     ReleaseAll
     End
 
-_0C72:
-    Message 159
+UnionRoom_InfoMenu:
+    Message UnionRoom_Text_ExplainWhichTopic
     InitGlobalTextMenu 31, 3, 0, VAR_RESULT
     SetMenuXOriginToRight
-    AddMenuEntryImm 49, 0
-    AddMenuEntryImm 22, 1
-    AddMenuEntryImm 140, 2
-    AddMenuEntryImm 56, 3
-    AddMenuEntryImm 167, 4
-    AddMenuEntryImm 139, 5
-    AddMenuEntryImm 12, 6
+    AddMenuEntryImm MenuEntries_Text_UnionRoom_Battle, 0
+    AddMenuEntryImm MenuEntries_Text_UnionRoom_Trade, 1
+    AddMenuEntryImm MenuEntries_Text_UnionRoom_Records, 2
+    AddMenuEntryImm MenuEntries_Text_UnionRoom_Draw, 3
+    AddMenuEntryImm MenuEntries_Text_UnionRoom_Chat, 4
+    AddMenuEntryImm MenuEntries_Text_UnionRoom_Spin, 5
+    AddMenuEntryImm MenuEntries_Text_ListMenu_Exit, 6
     ShowMenu
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, 0, _0CFA
-    GoToIfEq VAR_0x8008, 1, _0D05
-    GoToIfEq VAR_0x8008, 2, _0D10
-    GoToIfEq VAR_0x8008, 3, _0D1B
-    GoToIfEq VAR_0x8008, 4, _0D26
-    GoToIfEq VAR_0x8008, 5, _0D31
-    GoTo _0BF3
+    GoToIfEq VAR_0x8008, 0, UnionRoom_ExplainBattle
+    GoToIfEq VAR_0x8008, 1, UnionRoom_ExplainTrade
+    GoToIfEq VAR_0x8008, 2, UnionRoom_ExplainRecordMixing
+    GoToIfEq VAR_0x8008, 3, UnionRoom_ExplainDraw
+    GoToIfEq VAR_0x8008, 4, UnionRoom_ExplainChat
+    GoToIfEq VAR_0x8008, 5, UnionRoom_ExplainSpinTrade
+    GoTo UnionRoom_TealaMenu
     End
 
-_0CFA:
-    Message 160
-    GoTo _0C72
+UnionRoom_ExplainBattle:
+    Message UnionRoom_Text_ExplainBattle
+    GoTo UnionRoom_InfoMenu
     End
 
-_0D05:
-    Message 161
-    GoTo _0C72
+UnionRoom_ExplainTrade:
+    Message UnionRoom_Text_ExplainTrade
+    GoTo UnionRoom_InfoMenu
     End
 
-_0D10:
-    Message 162
-    GoTo _0C72
+UnionRoom_ExplainRecordMixing:
+    Message UnionRoom_Text_ExplainRecordMixing
+    GoTo UnionRoom_InfoMenu
     End
 
-_0D1B:
-    Message 164
-    GoTo _0C72
+UnionRoom_ExplainDraw:
+    Message UnionRoom_Text_ExplainDraw
+    GoTo UnionRoom_InfoMenu
     End
 
-_0D26:
-    Message 165
-    GoTo _0C72
+UnionRoom_ExplainChat:
+    Message UnionRoom_Text_ExplainChat
+    GoTo UnionRoom_InfoMenu
     End
 
-_0D31:
-    Message 163
-    GoTo _0C72
+UnionRoom_ExplainSpinTrade:
+    Message UnionRoom_Text_ExplainSpinTrade
+    GoTo UnionRoom_InfoMenu
     End
 
 UnionRoom_Unused4:
-    GoTo _0BF3
+    GoTo UnionRoom_TealaMenu
     End

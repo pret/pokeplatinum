@@ -25,7 +25,7 @@ _014:
     Call BATTLE_SUBSCRIPT_UPDATE_HP
     PlayFaintAnimation 
     Wait 
-    HealthbarSlideOut BTLSCR_FAINTED_MON
+    HealthBoxSlideOut BTLSCR_FAINTED_MON
     // {0} fainted!
     PrintMessage BattleStrings_Text_PokemonFainted_Ally, TAG_NICKNAME, BTLSCR_FAINTED_MON
     Wait 
@@ -63,7 +63,7 @@ _141:
     Wait 
     DeletePokemon BTLSCR_ATTACKER
     Wait 
-    HealthbarSlideOut BTLSCR_ATTACKER
+    HealthBoxSlideOut BTLSCR_ATTACKER
     Wait 
     UpdateVar OPCODE_FLAG_ON, BTLVAR_BATTLE_CTX_STATUS_2, SYSCTL_UTURN_ACTIVE
     UpdateVar OPCODE_FLAG_OFF, BTLVAR_BATTLE_CTX_STATUS, SYSCTL_TRY_SYNCHRONIZE_STATUS

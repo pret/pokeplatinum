@@ -7,6 +7,7 @@
 #include "generated/battle_tower_functions.h"
 #include "generated/battle_tower_modes.h"
 #include "generated/game_records.h"
+#include "generated/items.h"
 #include "generated/object_events_gfx.h"
 
 #include "struct_defs/battle_tower.h"
@@ -224,7 +225,7 @@ BOOL ScrCmd_1DF(ScriptContext *ctx)
     v3 = FieldSystem_GetVarPointer(ctx->fieldSystem, v0);
     *v3 = sub_0206BDBC(ctx->fieldSystem->saveData);
 
-    return 0;
+    return FALSE;
 }
 
 BOOL ScrCmd_1E0(ScriptContext *ctx)
@@ -236,7 +237,7 @@ BOOL ScrCmd_1E0(ScriptContext *ctx)
     v3 = FieldSystem_GetVarPointer(ctx->fieldSystem, v0);
     *v3 = sub_0206BF04(ctx->fieldSystem->saveData);
 
-    return 0;
+    return FALSE;
 }
 
 BOOL ScrCmd_1E1(ScriptContext *ctx)
@@ -323,10 +324,10 @@ static BOOL sub_02049A20(ScriptContext *ctx)
         battleTower->unk_8D4 = 0;
         *v2 = battleTower->unk_8D8;
 
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 BOOL ScrCmd_1E3(ScriptContext *ctx)
@@ -340,7 +341,7 @@ BOOL ScrCmd_1E3(ScriptContext *ctx)
     *v1 = v0.unk_00;
     *v2 = v0.unk_04;
 
-    return 0;
+    return FALSE;
 }
 
 BOOL ScrCmd_1E4(ScriptContext *ctx)
@@ -413,119 +414,121 @@ BOOL ScrCmd_UpdateBPDisplay(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_297(ScriptContext *ctx)
+BOOL ScrCmd_GetBattlePoints(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     SaveData *saveData = fieldSystem->saveData;
-    u16 *v2 = ScriptContext_GetVarPointer(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *v2 = BattlePoints_ApplyFuncAndGet(sub_0202D750(saveData), 0, BATTLE_POINTS_FUNC_NONE);
-    return 0;
+    *destVar = BattlePoints_ApplyFuncAndGet(sub_0202D750(saveData), 0, BATTLE_POINTS_FUNC_NONE);
+    return FALSE;
 }
 
-BOOL ScrCmd_298(ScriptContext *ctx)
+BOOL ScrCmd_GiveBattlePoints(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     SaveData *saveData = fieldSystem->saveData;
-    u16 v2 = ScriptContext_GetVar(ctx);
+    u16 value = ScriptContext_GetVar(ctx);
 
-    GameRecords_AddToRecordValue(SaveData_GetGameRecords(ctx->fieldSystem->saveData), RECORD_BATTLE_POINTS_RECEIVED, v2);
-    BattlePoints_ApplyFuncAndGet(sub_0202D750(saveData), v2, BATTLE_POINTS_FUNC_ADD);
+    GameRecords_AddToRecordValue(SaveData_GetGameRecords(ctx->fieldSystem->saveData), RECORD_BATTLE_POINTS_RECEIVED, value);
+    BattlePoints_ApplyFuncAndGet(sub_0202D750(saveData), value, BATTLE_POINTS_FUNC_ADD);
 
-    return 0;
+    return FALSE;
 }
 
-BOOL ScrCmd_299(ScriptContext *ctx)
+BOOL ScrCmd_RemoveBattlePoints(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     SaveData *saveData = fieldSystem->saveData;
-    u16 v2 = ScriptContext_GetVar(ctx);
+    u16 value = ScriptContext_GetVar(ctx);
 
-    GameRecords_AddToRecordValue(SaveData_GetGameRecords(ctx->fieldSystem->saveData), RECORD_BATTLE_POINTS_SPENT, v2);
-    BattlePoints_ApplyFuncAndGet(sub_0202D750(saveData), v2, BATTLE_POINTS_FUNC_SUB);
+    GameRecords_AddToRecordValue(SaveData_GetGameRecords(ctx->fieldSystem->saveData), RECORD_BATTLE_POINTS_SPENT, value);
+    BattlePoints_ApplyFuncAndGet(sub_0202D750(saveData), value, BATTLE_POINTS_FUNC_SUB);
 
-    return 0;
+    return FALSE;
 }
 
-BOOL ScrCmd_29A(ScriptContext *ctx)
+BOOL ScrCmd_CheckBattlePoints(ScriptContext *ctx)
 {
-    u16 v0;
+    u16 battlePoints;
     FieldSystem *fieldSystem = ctx->fieldSystem;
     SaveData *saveData = fieldSystem->saveData;
-    u16 v3 = ScriptContext_GetVar(ctx);
-    u16 *v4 = ScriptContext_GetVarPointer(ctx);
+    u16 value = ScriptContext_GetVar(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    v0 = BattlePoints_ApplyFuncAndGet(
-        sub_0202D750(saveData), 0, BATTLE_POINTS_FUNC_NONE);
+    battlePoints = BattlePoints_ApplyFuncAndGet(sub_0202D750(saveData), 0, BATTLE_POINTS_FUNC_NONE);
 
-    if (v0 < v3) {
-        *v4 = 0;
+    if (battlePoints < value) {
+        *destVar = FALSE;
     } else {
-        *v4 = 1;
+        *destVar = TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-BOOL ScrCmd_29B(ScriptContext *ctx)
+#define FRONTIER_MART_ITEMS_START_ID 0
+#define FRONTIER_MART_TMS_START_ID   26
+
+BOOL ScrCmd_GetExchangeServiceCornerItemAndCost(ScriptContext *ctx)
 {
-    u8 v0 = 0;
-    u16 v1 = ScriptContext_GetVar(ctx);
-    u16 v2 = ScriptContext_GetVar(ctx);
-    u16 *v3 = ScriptContext_GetVarPointer(ctx);
-    u16 *v4 = ScriptContext_GetVarPointer(ctx);
-    static const u16 v5[][2] = {
-        { 0x2E, 0x1 },
-        { 0x31, 0x1 },
-        { 0x2F, 0x1 },
-        { 0x34, 0x1 },
-        { 0x30, 0x1 },
-        { 0x2D, 0x1 },
-        { 0x121, 0x10 },
-        { 0x122, 0x10 },
-        { 0x123, 0x10 },
-        { 0x124, 0x10 },
-        { 0x125, 0x10 },
-        { 0x126, 0x10 },
-        { 0x110, 0x10 },
-        { 0x111, 0x10 },
-        { 0xD6, 0x20 },
-        { 0x10F, 0x20 },
-        { 0xD5, 0x30 },
-        { 0xDC, 0x30 },
-        { 0xE6, 0x30 },
-        { 0xE8, 0x30 },
-        { 0x10A, 0x30 },
-        { 0x113, 0x30 },
-        { 0x11F, 0x30 },
-        { 0x146, 0x30 },
-        { 0x147, 0x30 },
-        { 0x32, 0x30 },
-        { 0x14D, 0x20 },
-        { 0x190, 0x20 },
-        { 0x184, 0x20 },
-        { 0x174, 0x20 },
-        { 0x16F, 0x28 },
-        { 0x166, 0x28 },
-        { 0x14F, 0x30 },
-        { 0x14B, 0x30 },
-        { 0x198, 0x40 },
-        { 0x165, 0x40 },
-        { 0x17C, 0x40 },
-        { 0x16B, 0x50 },
-        { 0x182, 0x50 },
-        { 0x18E, 0x50 },
-        { 0x161, 0x50 }
+    u8 startID = FRONTIER_MART_ITEMS_START_ID;
+    u16 martID = ScriptContext_GetVar(ctx);
+    u16 prizeID = ScriptContext_GetVar(ctx);
+    u16 *item = ScriptContext_GetVarPointer(ctx);
+    u16 *cost = ScriptContext_GetVarPointer(ctx);
+    static const u16 prizeList[][2] = {
+        [FRONTIER_MART_ITEMS_START_ID] = { ITEM_PROTEIN, 1 },
+        { ITEM_CALCIUM, 1 },
+        { ITEM_IRON, 1 },
+        { ITEM_ZINC, 1 },
+        { ITEM_CARBOS, 1 },
+        { ITEM_HP_UP, 1 },
+        { ITEM_POWER_BRACER, 16 },
+        { ITEM_POWER_BELT, 16 },
+        { ITEM_POWER_LENS, 16 },
+        { ITEM_POWER_BAND, 16 },
+        { ITEM_POWER_ANKLET, 16 },
+        { ITEM_POWER_WEIGHT, 16 },
+        { ITEM_TOXIC_ORB, 16 },
+        { ITEM_FLAME_ORB, 16 },
+        { ITEM_WHITE_HERB, 32 },
+        { ITEM_POWER_HERB, 32 },
+        { ITEM_BRIGHTPOWDER, 48 },
+        { ITEM_CHOICE_BAND, 48 },
+        { ITEM_FOCUS_BAND, 48 },
+        { ITEM_SCOPE_LENS, 48 },
+        { ITEM_MUSCLE_BAND, 48 },
+        { ITEM_FOCUS_SASH, 48 },
+        { ITEM_CHOICE_SCARF, 48 },
+        { ITEM_RAZOR_CLAW, 48 },
+        { ITEM_RAZOR_FANG, 48 },
+        { ITEM_RARE_CANDY, 48 },
+        [FRONTIER_MART_TMS_START_ID] = { ITEM_TM06, 32 }, // update FRONTIER_MART_TMS_START_ID when adding entries above this line
+        { ITEM_TM73, 32 },
+        { ITEM_TM61, 32 },
+        { ITEM_TM45, 32 },
+        { ITEM_TM40, 40 },
+        { ITEM_TM31, 40 },
+        { ITEM_TM08, 48 },
+        { ITEM_TM04, 48 },
+        { ITEM_TM81, 64 },
+        { ITEM_TM30, 64 },
+        { ITEM_TM53, 64 },
+        { ITEM_TM36, 80 },
+        { ITEM_TM59, 80 },
+        { ITEM_TM71, 80 },
+        { ITEM_TM26, 80 }
     };
 
-    if (v1 == 1) {
-        v0 = 26;
+    if (martID == 1) {
+        startID = FRONTIER_MART_TMS_START_ID;
     } else {
-        v0 = 0;
+        startID = FRONTIER_MART_ITEMS_START_ID;
     }
 
-    *v3 = v5[v0 + v2][0];
-    *v4 = v5[v0 + v2][1];
+    *item = prizeList[startID + prizeID][0];
+    *cost = prizeList[startID + prizeID][1];
 
-    return 0;
+    return FALSE;
 }

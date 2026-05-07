@@ -6,7 +6,7 @@ _000:
     IncrementGameRecord BTLSCR_FAINTED_MON, BATTLER_TYPE_SOLO_PLAYER, RECORD_FAINTED_ENEMY_MON
     PlayFaintAnimation 
     Wait 
-    HealthbarSlideOut BTLSCR_FAINTED_MON
+    HealthBoxSlideOut BTLSCR_FAINTED_MON
     // {0} fainted!
     PrintMessage BattleStrings_Text_PokemonFainted_Ally, TAG_NICKNAME, BTLSCR_FAINTED_MON
     Wait 

@@ -1,15 +1,11 @@
 #include "mail.h"
 
 #include <nitro.h>
-#include <string.h>
 
 #include "constants/forms.h"
 #include "constants/items.h"
 #include "generated/genders.h"
 #include "generated/species.h"
-
-#include "struct_defs/mail.h"
-#include "struct_defs/union_02028328.h"
 
 #include "charcode_util.h"
 #include "heap.h"
@@ -21,52 +17,54 @@
 #include "trainer_info.h"
 #include "unk_02014A84.h"
 
-static int Mail_GetEmptySlotInArray_(Mail *array, int arraySize);
-static int Mail_GetEmptySlotCountInArray(Mail *array, int arraySize);
-static Mail *Mailbox_GetMailFromSlot(Mailbox *mailbox, int param1, int slot);
+#include "res/pokemon/pl_poke_icon.naix"
+#include "res/pokemon/species_icon_palettes.h"
+
+#define IconTilesIndex(icon) (icon + icon_00000_NCGR)
+
+static int Mail_GetEmptySlot(Mail array[], int arraySize);
+static int Mail_CountValidMail(Mail array[], int arraySize);
+static Mail *GetMailAtMailboxSlot(Mailbox *mailbox, enum MailContext context, int slot);
 
 static const struct {
-    u16 unk_00;
-    u16 unk_02;
+    u16 baseSpriteIndex;
+    u16 formSpriteIndex;
     u16 species;
     u8 form;
-    u8 unk_07;
-} Unk_020E5B0C[] = {
-    { 0x1EE, 0x21C, SPECIES_GIRATINA, GIRATINA_FORM_ORIGIN },
-    { 0x1F3, 0x21D, SPECIES_SHAYMIN, SHAYMIN_FORM_SKY },
-    { 0x1E6, 0x21E, SPECIES_ROTOM, ROTOM_FORM_HEAT },
-    { 0x1E6, 0x21F, SPECIES_ROTOM, ROTOM_FORM_WASH },
-    { 0x1E6, 0x220, SPECIES_ROTOM, ROTOM_FORM_FROST },
-    { 0x1E6, 0x221, SPECIES_ROTOM, ROTOM_FORM_FAN },
-    { 0x1E6, 0x222, SPECIES_ROTOM, ROTOM_FORM_MOW }
+} sPlatExclusiveFormData[] = {
+    { .baseSpriteIndex = IconTilesIndex(SPECIES_GIRATINA), .formSpriteIndex = IconTilesIndex(ICON_GIRATINA_ORIGIN), .species = SPECIES_GIRATINA, .form = GIRATINA_FORM_ORIGIN },
+    { .baseSpriteIndex = IconTilesIndex(SPECIES_SHAYMIN), .formSpriteIndex = IconTilesIndex(ICON_SHAYMIN_SKY), .species = SPECIES_SHAYMIN, .form = SHAYMIN_FORM_SKY },
+    { .baseSpriteIndex = IconTilesIndex(SPECIES_ROTOM), .formSpriteIndex = IconTilesIndex(ICON_ROTOM_HEAT), .species = SPECIES_ROTOM, .form = ROTOM_FORM_HEAT },
+    { .baseSpriteIndex = IconTilesIndex(SPECIES_ROTOM), .formSpriteIndex = IconTilesIndex(ICON_ROTOM_WASH), .species = SPECIES_ROTOM, .form = ROTOM_FORM_WASH },
+    { .baseSpriteIndex = IconTilesIndex(SPECIES_ROTOM), .formSpriteIndex = IconTilesIndex(ICON_ROTOM_FROST), .species = SPECIES_ROTOM, .form = ROTOM_FORM_FROST },
+    { .baseSpriteIndex = IconTilesIndex(SPECIES_ROTOM), .formSpriteIndex = IconTilesIndex(ICON_ROTOM_FAN), .species = SPECIES_ROTOM, .form = ROTOM_FORM_FAN },
+    { .baseSpriteIndex = IconTilesIndex(SPECIES_ROTOM), .formSpriteIndex = IconTilesIndex(ICON_ROTOM_MOW), .species = SPECIES_ROTOM, .form = ROTOM_FORM_MOW }
 };
 
-void Mail_Init(Mail *mail)
+void Mail_Reset(Mail *mail)
 {
-    int i;
-
     mail->trainerID = 0;
     mail->trainerGender = GENDER_MALE;
     mail->language = gGameLanguage;
     mail->gameVersion = gGameVersion;
-    mail->mailType = 0xFFFF;
+    mail->mailType = MAIL_TYPE_NONE;
 
-    CharCode_FillWithEOS(mail->trainerName, 8);
+    CharCode_FillWithEOS(mail->trainerName, TRAINER_NAME_LEN + 1);
 
-    for (i = 0; i < 3; i++) {
-        mail->unk_18[i].val2 = 0xFFFF;
+    for (int i = 0; i < MAIL_MAX_ICONS; i++) {
+        mail->iconData[i].asValue = MAIL_MON_ICON_NONE;
     }
 
-    mail->unk_1E = 0;
+    mail->platExclusiveFormIcons = 0;
 
-    for (i = 0; i < 3; i++) {
-        sub_02014A84(&mail->unk_20[i]);
+    for (int i = 0; i < MAIL_MAX_SENTENCES; i++) {
+        Sentence_Init(&mail->sentences[i]);
     }
 }
 
-BOOL Mail_IsEmpty(Mail *mail)
+BOOL Mail_IsValid(Mail *mail)
 {
-    if ((mail->mailType >= 0) && (mail->mailType <= 11)) {
+    if (0 <= mail->mailType && mail->mailType <= NUM_MAIL_TYPES - 1) {
         return TRUE;
     }
 
@@ -76,7 +74,7 @@ BOOL Mail_IsEmpty(Mail *mail)
 Mail *Mail_New(enum HeapID heapID)
 {
     Mail *mail = Heap_AllocAtEnd(heapID, sizeof(Mail));
-    Mail_Init(mail);
+    Mail_Reset(mail);
 
     return mail;
 }
@@ -86,49 +84,45 @@ void Mail_Copy(Mail *src, Mail *dest)
     MI_CpuCopy8(src, dest, sizeof(Mail));
 }
 
-void sub_020281AC(Mail *mail, u8 mailType, u8 param2, SaveData *saveData)
+void Mail_SetTrainerAndIconData(Mail *mail, u8 mailType, u8 selectedPartySlot, SaveData *saveData)
 {
-    u8 i, v1, palIndex, j;
-    u16 species;
-    u32 spriteIndex, isEgg, form;
-    TrainerInfo *trainerInfo;
-    Pokemon *mon;
+    u32 isEgg;
 
-    Mail_Init(mail);
+    Mail_Reset(mail);
 
     mail->mailType = mailType;
     Party *party = SaveData_GetParty(saveData);
-    trainerInfo = SaveData_GetTrainerInfo(saveData);
+    TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(saveData);
 
     CharCode_Copy(mail->trainerName, TrainerInfo_Name(trainerInfo));
 
-    mail->trainerGender = (u8)TrainerInfo_Gender(trainerInfo);
+    mail->trainerGender = TrainerInfo_Gender(trainerInfo);
     mail->trainerID = TrainerInfo_ID(trainerInfo);
-    mail->unk_1E = 0;
+    mail->platExclusiveFormIcons = 0;
 
-    for (i = param2, v1 = 0; i < Party_GetCurrentCount(party); i++) {
-        mon = Party_GetPokemonBySlotIndex(party, i);
-        species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
+    for (u8 slot = selectedPartySlot, i = 0; slot < Party_GetCurrentCount(party); slot++) {
+        Pokemon *mon = Party_GetPokemonBySlotIndex(party, slot);
+        u16 species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
         isEgg = Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL);
-        form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
-        spriteIndex = Pokemon_IconSpriteIndex(mon);
-        palIndex = PokeIconPaletteIndex(species, form, isEgg);
+        u32 form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
+        u32 spriteIndex = Pokemon_IconSpriteIndex(mon);
+        u8 palIndex = PokeIconPaletteIndex(species, form, isEgg);
 
-        mail->unk_18[v1].val1_0 = (u16)spriteIndex;
-        mail->unk_18[v1].val1_12 = palIndex;
+        mail->iconData[i].asStruct.spriteIndex = spriteIndex;
+        mail->iconData[i].asStruct.palIndex = palIndex;
 
-        for (j = 0; j < NELEMS(Unk_020E5B0C); j++) {
-            if ((Unk_020E5B0C[j].unk_02 == mail->unk_18[v1].val1_0) && (Unk_020E5B0C[j].form == form)) {
-                mail->unk_18[v1].val1_0 = Unk_020E5B0C[j].unk_00;
-                mail->unk_18[v1].val1_12 = PokeIconPaletteIndex(species, 0, isEgg);
-                mail->unk_1E |= Unk_020E5B0C[j].form << (v1 * 5);
+        for (u8 j = 0; j < NELEMS(sPlatExclusiveFormData); j++) {
+            if (sPlatExclusiveFormData[j].formSpriteIndex == mail->iconData[i].asStruct.spriteIndex && sPlatExclusiveFormData[j].form == form) {
+                mail->iconData[i].asStruct.spriteIndex = sPlatExclusiveFormData[j].baseSpriteIndex;
+                mail->iconData[i].asStruct.palIndex = PokeIconPaletteIndex(species, 0, isEgg);
+                mail->platExclusiveFormIcons |= sPlatExclusiveFormData[j].form << (i * 5);
                 break;
             }
         }
 
-        v1++;
+        i++;
 
-        if (v1 >= 3) {
+        if (i >= MAIL_MAX_ICONS) {
             break;
         }
     }
@@ -139,9 +133,9 @@ u32 Mail_GetTrainerID(const Mail *mail)
     return mail->trainerID;
 }
 
-u16 *Mail_GetTrainerName(Mail *mail)
+charcode_t *Mail_GetTrainerName(Mail *mail)
 {
-    return &(mail->trainerName[0]);
+    return &mail->trainerName[0];
 }
 
 u8 Mail_GetTrainerGender(const Mail *mail)
@@ -156,7 +150,7 @@ u8 Mail_GetMailType(const Mail *mail)
 
 void Mail_SetMailType(Mail *mail, const u8 mailType)
 {
-    if (mailType >= NUM_MAILS) {
+    if (mailType >= NUM_MAIL_TYPES) {
         return;
     }
 
@@ -173,62 +167,59 @@ u8 Mail_GetGameVersion(const Mail *mail)
     return mail->gameVersion;
 }
 
-u16 sub_02028328(const Mail *mail, u8 param1, u8 param2, u16 param3)
+u16 Mail_GetIconData(const Mail *mail, u8 index, enum MailIconDataType type, u16 platExclusiveFormIcons)
 {
-    UnkUnion_02028328 v0;
-    int i;
+    if (index < MAIL_MAX_ICONS) {
+        MailIconData iconData = mail->iconData[index];
 
-    if (param1 < 3) {
-        v0 = mail->unk_18[param1];
-
-        for (i = 0; i < NELEMS(Unk_020E5B0C); i++) {
-            if ((Unk_020E5B0C[i].unk_00 == v0.val1_0) && (Unk_020E5B0C[i].form == ((param3 >> (param1 * 5)) & 0x1f))) {
-                v0.val1_0 = Unk_020E5B0C[i].unk_02;
-                v0.val1_12 = PokeIconPaletteIndex(Unk_020E5B0C[i].species, Unk_020E5B0C[i].form, FALSE);
+        for (int i = 0; i < NELEMS(sPlatExclusiveFormData); i++) {
+            if (sPlatExclusiveFormData[i].baseSpriteIndex == iconData.asStruct.spriteIndex && sPlatExclusiveFormData[i].form == ((platExclusiveFormIcons >> (index * 5)) & 0x1F)) {
+                iconData.asStruct.spriteIndex = sPlatExclusiveFormData[i].formSpriteIndex;
+                iconData.asStruct.palIndex = PokeIconPaletteIndex(sPlatExclusiveFormData[i].species, sPlatExclusiveFormData[i].form, FALSE);
                 break;
             }
         }
 
-        if (v0.val1_0 > 546) {
-            v0.val1_0 = 7;
-            v0.val1_12 = 0;
+        if (iconData.asStruct.spriteIndex > IconTilesIndex(ICON_ROTOM_MOW)) {
+            iconData.asStruct.spriteIndex = icon_00000_NCGR;
+            iconData.asStruct.palIndex = 0;
         }
 
-        switch (param2) {
-        case 0:
-            return v0.val1_0;
-        case 1:
-            return v0.val1_12;
-        case 2:
+        switch (type) {
+        case ICON_DATA_SPRITE_INDEX:
+            return iconData.asStruct.spriteIndex;
+        case ICON_DATA_PLTT_INDEX:
+            return iconData.asStruct.palIndex;
+        case ICON_DATA_VALUE:
         default:
-            return v0.val2;
+            return iconData.asValue;
         }
     } else {
         return 0;
     }
 }
 
-u16 sub_02028408(const Mail *param0)
+u16 Mail_GetPlatExclusiveFormIcons(const Mail *mail)
 {
-    return param0->unk_1E;
+    return mail->platExclusiveFormIcons;
 }
 
-Sentence *sub_0202840C(Mail *param0, u8 param1)
+Sentence *Mail_GetSentence(Mail *mail, u8 index)
 {
-    if (param1 < 3) {
-        return &(param0->unk_20[param1]);
+    if (index < MAIL_MAX_SENTENCES) {
+        return &mail->sentences[index];
     } else {
-        return &(param0->unk_20[0]);
+        return &mail->sentences[0];
     }
 }
 
-void sub_0202841C(Mail *param0, Sentence *param1, u8 param2)
+void Mail_SetSentence(Mail *mail, Sentence *sentence, u8 index)
 {
-    if (param2 >= 3) {
+    if (index >= MAIL_MAX_SENTENCES) {
         return;
     }
 
-    sub_02014CC0(&param0->unk_20[param2], param1);
+    Sentence_Set(&mail->sentences[index], sentence);
 }
 
 Mailbox *SaveData_GetMailbox(SaveData *saveData)
@@ -243,98 +234,87 @@ int Mailbox_SaveSize(void)
 
 void Mailbox_Init(Mailbox *mailbox)
 {
-    int i = 0;
-
-    for (i = 0; i < MAILBOX_SIZE; i++) {
-        Mail_Init(&mailbox->mail[i]);
+    for (int i = 0; i < MAILBOX_SIZE; i++) {
+        Mail_Reset(&mailbox->mail[i]);
     }
 }
 
-int Mail_GetEmptySlotInArray(Mailbox *mailbox, int param1)
+int Mail_GetEmptyMailSlot(Mailbox *mailbox, enum MailContext context)
 {
-    switch (param1) {
-    case 0:
-        return Mail_GetEmptySlotInArray_(mailbox->mail, MAILBOX_SIZE);
-    default:
-        return 0xFFFFFFFF;
+    if (context == MAIL_CONTEXT_MAILBOX) {
+        return Mail_GetEmptySlot(mailbox->mail, MAILBOX_SIZE);
+    } else {
+        return -1;
     }
-
-    return 0xFFFFFFFF;
 }
 
-void sub_02028470(Mailbox *mailbox, int param1, int slot)
+void Mailbox_ClearMailAtSlot(Mailbox *mailbox, enum MailContext context, int slot)
 {
-    Mail *mail = Mailbox_GetMailFromSlot(mailbox, param1, slot);
+    Mail *mail = GetMailAtMailboxSlot(mailbox, context, slot);
 
     if (mail != NULL) {
-        Mail_Init(mail);
+        Mail_Reset(mail);
     }
 }
 
-void Mailbox_CopyMailToSlot(Mailbox *mailbox, int param1, int slot, Mail *src)
+void Mailbox_CopyMailToSlot(Mailbox *mailbox, enum MailContext context, int slot, Mail *src)
 {
-    Mail *dest = Mailbox_GetMailFromSlot(mailbox, param1, slot);
+    Mail *dest = GetMailAtMailboxSlot(mailbox, context, slot);
 
     if (dest != NULL) {
         Mail_Copy(src, dest);
     }
 }
 
-int sub_02028494(Mailbox *mailbox, int param1)
+int Mailbox_CountMail(Mailbox *mailbox, enum MailContext context)
 {
-    switch (param1) {
-    case 0:
-        return Mail_GetEmptySlotCountInArray(mailbox->mail, MAILBOX_SIZE);
-    default:
+    if (context == MAIL_CONTEXT_MAILBOX) {
+        return Mail_CountValidMail(mailbox->mail, MAILBOX_SIZE);
+    } else {
         return 0;
     }
-
-    return 0;
 }
 
-Mail *sub_020284A8(Mailbox *mailbox, int param1, int slot, enum HeapID heapID)
+Mail *Mailbox_CopyMailAtSlot(Mailbox *mailbox, enum MailContext context, int slot, enum HeapID heapID)
 {
-    Mail *v0 = Mailbox_GetMailFromSlot(mailbox, param1, slot);
-    Mail *v1 = Mail_New(heapID);
+    Mail *mail = GetMailAtMailboxSlot(mailbox, context, slot);
+    Mail *ret = Mail_New(heapID);
 
-    if (v0 != NULL) {
-        Mail_Copy(v0, v1);
+    if (mail != NULL) {
+        Mail_Copy(mail, ret);
     }
 
-    return v1;
+    return ret;
 }
 
-void sub_020284CC(Mailbox *mailbox, int param1, int param2, Mail *param3)
+void Mailbox_GetMailAtSlot(Mailbox *mailbox, enum MailContext context, int slot, Mail *out)
 {
-    Mail *v0 = Mailbox_GetMailFromSlot(mailbox, param1, param2);
+    Mail *mail = GetMailAtMailboxSlot(mailbox, context, slot);
 
-    if (v0 == NULL) {
-        Mail_Init(param3);
+    if (mail == NULL) {
+        Mail_Reset(out);
     } else {
-        Mail_Copy(v0, param3);
+        Mail_Copy(mail, out);
     }
 }
 
-static int Mail_GetEmptySlotInArray_(Mail *array, int arraySize)
+static int Mail_GetEmptySlot(Mail array[], int arraySize)
 {
-    int i = 0;
-
-    for (i = 0; i < arraySize; i++) {
-        if (!Mail_IsEmpty(&array[i])) {
+    for (int i = 0; i < arraySize; i++) {
+        if (!Mail_IsValid(&array[i])) {
             return i;
         }
     }
 
-    return 0xFFFFFFFF;
+    return -1;
 }
 
-static int Mail_GetEmptySlotCountInArray(Mail *array, int arraySize)
+static int Mail_CountValidMail(Mail array[], int arraySize)
 {
-    int i = 0;
     int count = 0;
 
-    for (i = 0; i < arraySize; i++) {
-        if (Mail_IsEmpty(&array[i])) {
+    for (int i = 0; i < arraySize; i++) {
+        if (Mail_IsValid(&array[i])) {
             count++;
         }
     }
@@ -342,19 +322,12 @@ static int Mail_GetEmptySlotCountInArray(Mail *array, int arraySize)
     return count;
 }
 
-static Mail *Mailbox_GetMailFromSlot(Mailbox *mailbox, int param1, int slot)
+static Mail *GetMailAtMailboxSlot(Mailbox *mailbox, enum MailContext context, int slot)
 {
     Mail *mail = NULL;
 
-    switch (param1) {
-    case 0:
-        if (slot < MAILBOX_SIZE) {
-            mail = &(mailbox->mail[slot]);
-        }
-
-        break;
-    default:
-        break;
+    if (context == MAIL_CONTEXT_MAILBOX && slot < MAILBOX_SIZE) {
+        mail = &mailbox->mail[slot];
     }
 
     return mail;

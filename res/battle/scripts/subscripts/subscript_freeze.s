@@ -35,7 +35,7 @@ _073:
     // {0} was frozen solid!
     PrintMessage BattleStrings_Text_PokemonWasFrozenSolid_Ally, TAG_NICKNAME, BTLSCR_SIDE_EFFECT_MON
     Wait 
-    SetHealthbarStatus BTLSCR_SIDE_EFFECT_MON, BATTLE_ANIMATION_FROZEN
+    SetHealthBoxStatusIcon BTLSCR_SIDE_EFFECT_MON, BATTLE_ANIMATION_FROZEN
     WaitButtonABTime 30
     End 
 

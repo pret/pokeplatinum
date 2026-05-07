@@ -200,10 +200,7 @@ static void emit_trainer_messages(datafile_t *df, const char *stem) {
         const char *type  = dp_string(type_node);
         datanode_t  entry = dp_arr_appobject(&textbanks[T_TRAINER_MESSAGES].root);
         dp_obj_putstring(&entry, "id", sfmt("FrontierTrainerMessages_Text_%s_%s", stem, type));
-        if (dp_hasmemb(message, "garbage")) {
-            dp_obj_putint(&entry, "garbage", dp_u64(dp_objmemb(message, "garbage")));
-        }
-        else if (dp_hasmemb(message, "en_US")) {
+        if (dp_hasmemb(message, "en_US")) {
             datanode_t content = dp_objmemb(message, "en_US");
             if (content.type == DATAPROC_T_STRING) {
                 dp_obj_putstring(&entry, "en_US", dp_string(content));
@@ -218,6 +215,9 @@ static void emit_trainer_messages(datafile_t *df, const char *stem) {
             else {
                 dp_error(&content, "expected message content to be a string or an array");
             }
+        }
+        else if (dp_hasmemb(message, "garbage")) {
+            dp_obj_putint(&entry, "garbage", dp_u64(dp_objmemb(message, "garbage")));
         }
         else {
             dp_error(&message, "expected exactly one of either 'en_US' or 'garbage'");

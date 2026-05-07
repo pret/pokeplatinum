@@ -7,7 +7,7 @@ _000:
     // {0} was healed of paralysis!
     PrintMessage BattleStrings_Text_PokemonWasHealedOfParalysis_Ally, TAG_NICKNAME, BTLSCR_DEFENDER
     Wait 
-    SetHealthbarStatus BTLSCR_DEFENDER, BATTLE_ANIMATION_NONE
+    SetHealthBoxStatusIcon BTLSCR_DEFENDER, BATTLE_ANIMATION_NONE
     WaitButtonABTime 30
 
 _020:

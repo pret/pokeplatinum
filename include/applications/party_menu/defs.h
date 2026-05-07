@@ -5,7 +5,6 @@
 #include "constants/pokemon.h"
 
 #include "struct_defs/function_ptr_pair.h"
-#include "struct_defs/mail.h"
 #include "struct_defs/tv.h"
 
 #include "field/field_system_decl.h"
@@ -19,6 +18,7 @@
 #include "g3d_pipeline.h"
 #include "game_options.h"
 #include "grid_menu_cursor_position.h"
+#include "mail.h"
 #include "menu.h"
 #include "message.h"
 #include "particle_system.h"
@@ -77,7 +77,7 @@ enum PartyMenuExitCodes {
     PARTY_MENU_EXIT_CODE_GIVE_ITEM,
     PARTY_MENU_EXIT_CODE_OVERWRITE_MOVE_TM_HM,
     PARTY_MENU_EXIT_CODE_OVERWRITE_MOVE_LEVEL_UP,
-    PARTY_MENU_EXIT_CODE_MAIL,
+    PARTY_MENU_EXIT_CODE_WRITE_MAIL,
     PARTY_MENU_EXIT_CODE_READ_MAIL,
     PARTY_MENU_EXIT_CODE_EVOLVE_BY_ITEM,
     PARTY_MENU_EXIT_CODE_EVOLVE_BY_LEVEL,

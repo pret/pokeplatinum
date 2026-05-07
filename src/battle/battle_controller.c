@@ -518,53 +518,53 @@ void BattleController_EmitSlideTrainerIn(BattleSystem *battleSys, int battler, i
 }
 
 /**
- * @brief Emits a message to slide the healthbar in for a given battler
+ * @brief Emits a message to slide the healthbox in for a given battler
  *
  * @param battleSys
  * @param battleCtx
  * @param battler
  * @param delay     Optional frame-delay to wait until execution.
  */
-void BattleController_EmitSlideHealthbarIn(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int delay)
+void BattleController_EmitSlideHealthBoxIn(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int delay)
 {
-    HealthbarData healthbar;
+    HealthBoxData healthboxData;
 
     Pokemon *mon = BattleSystem_GetPartyPokemon(battleSys, battler, battleCtx->selectedPartySlot[battler]);
     int species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
     int level = Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL);
 
-    healthbar.command = BATTLE_COMMAND_SLIDE_HEALTHBAR_IN;
-    healthbar.level = battleCtx->battleMons[battler].level;
-    healthbar.curHP = battleCtx->battleMons[battler].curHP;
-    healthbar.maxHP = battleCtx->battleMons[battler].maxHP;
-    healthbar.selectedPartySlot = battleCtx->selectedPartySlot[battler];
-    healthbar.status = Battler_StatusCondition(battleCtx, battler);
+    healthboxData.command = BATTLE_COMMAND_SLIDE_HEALTHBOX_IN;
+    healthboxData.level = battleCtx->battleMons[battler].level;
+    healthboxData.curHP = battleCtx->battleMons[battler].curHP;
+    healthboxData.maxHP = battleCtx->battleMons[battler].maxHP;
+    healthboxData.selectedPartySlot = battleCtx->selectedPartySlot[battler];
+    healthboxData.status = Battler_StatusCondition(battleCtx, battler);
 
     if ((battleCtx->battleMons[battler].species == SPECIES_NIDORAN_F || battleCtx->battleMons[battler].species == SPECIES_NIDORAN_M)
         && battleCtx->battleMons[battler].hasNickname == FALSE) {
-        healthbar.gender = GENDER_NONE; // don't show the Gender marker for base-Nidoran forms
+        healthboxData.gender = GENDER_NONE; // don't show the Gender marker for base-Nidoran forms
     } else {
-        healthbar.gender = battleCtx->battleMons[battler].gender;
+        healthboxData.gender = battleCtx->battleMons[battler].gender;
     }
 
-    healthbar.expFromLastLevel = battleCtx->battleMons[battler].exp - Pokemon_GetSpeciesBaseExpAt(species, level);
-    healthbar.expToNextLevel = Pokemon_GetSpeciesBaseExpAt(species, level + 1) - Pokemon_GetSpeciesBaseExpAt(species, level);
-    healthbar.speciesCaught = BattleSystem_HasCaughtSpecies(battleSys, battleCtx->battleMons[battler].species);
-    healthbar.numSafariBalls = BattleSystem_GetNumSafariBalls(battleSys);
-    healthbar.delay = delay;
+    healthboxData.expFromLastLevel = battleCtx->battleMons[battler].exp - Pokemon_GetSpeciesBaseExpAt(species, level);
+    healthboxData.expToNextLevel = Pokemon_GetSpeciesBaseExpAt(species, level + 1) - Pokemon_GetSpeciesBaseExpAt(species, level);
+    healthboxData.speciesCaught = BattleSystem_HasCaughtSpecies(battleSys, battleCtx->battleMons[battler].species);
+    healthboxData.numSafariBalls = BattleSystem_GetNumSafariBalls(battleSys);
+    healthboxData.delay = delay;
 
-    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &healthbar, sizeof(HealthbarData));
+    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &healthboxData, sizeof(HealthBoxData));
 }
 
 /**
- * @brief Emits a message to slide the healthbar out for a given battler
+ * @brief Emits a message to slide the healthbox out for a given battler
  *
  * @param battleSys
  * @param battler
  */
-void BattleController_EmitSlideHealthbarOut(BattleSystem *battleSys, int battler)
+void BattleController_EmitSlideHealthBoxOut(BattleSystem *battleSys, int battler)
 {
-    int command = BATTLE_COMMAND_SLIDE_HEALTHBAR_OUT;
+    int command = BATTLE_COMMAND_SLIDE_HEALTHBOX_OUT;
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &command, sizeof(int));
 }
 
@@ -1232,7 +1232,7 @@ void BattleController_EmitToggleVanish(BattleSystem *battleSys, int battler, int
 }
 
 /**
- * @brief Emits a message to set the status icon on the battler's Healthbar
+ * @brief Emits a message to set the status icon on the battler's HealthBox
  *
  * @param battleSys
  * @param battler

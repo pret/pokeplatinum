@@ -10,10 +10,18 @@
 #include <unistd.h>
 
 #include "dataproc.h"
-#include "enum.h"
+#include "libenum.h"
+#include "libexpr.h"
 #include "nitroarc.h"
 
 #define MAX_LOADED_ENUMS 128
+
+typedef struct enum_t enum_t;
+struct enum_t {
+    lookup_t *members;
+    size_t    size;
+    char     *pool;
+};
 
 static enum_t loaded_enums[MAX_LOADED_ENUMS] = { 0 };
 static size_t num_loaded_enums = 0;
@@ -194,7 +202,7 @@ static void load_header_template(header_template_t *h, FILE *depfile) {
     memcpy(template_fname + len_out_fname, HEADER_TEMPLATE_SUFFIX, sizeof(HEADER_TEMPLATE_SUFFIX));
 
     char *full_path = pathjoin(TEMPLATES_DIR, NULL, template_fname);
-    char *template  = fload(full_path);
+    char *template  = fload(full_path, NULL);
     char *marker    = strstr(template, HEADER_TEMPLATE_MAGIC);
     char *footer    = marker + sizeof(HEADER_TEMPLATE_MAGIC);
     *marker         = '\0';
@@ -210,7 +218,10 @@ static void load_header_template(header_template_t *h, FILE *depfile) {
 }
 
 static void unload_enums(void) {
-    for (size_t i = 0; i < num_loaded_enums; i++) enum_free(&loaded_enums[i]);
+    for (size_t i = 0; i < num_loaded_enums; i++) {
+        free(loaded_enums[i].pool);
+        free(loaded_enums[i].members);
+    }
 }
 
 static void finish_outputs(void) {
@@ -364,11 +375,12 @@ void splitenv(const char *name, char ***target, size_t *target_len, const char *
     }
 }
 
-char* fload(const char *filename) {
+char* fload(const char *filename, size_t *out_size) {
     char *buf = NULL;
     FILE *f   = fopen(filename, "rb");
     if (f == NULL) {
         fprintf(stderr, "could not open file '%s': %s\n", filename, strerror(errno));
+        if (*out_size) *out_size = 0;
         return NULL;
     }
 
@@ -390,6 +402,7 @@ char* fload(const char *filename) {
     buf[fsize] = 0;
 
 cleanup:
+    if (out_size) *out_size = fsize;
     fclose(f);
     return buf;
 }
@@ -463,6 +476,21 @@ static const char *include_paths[MAX_INCLUDES] = {
     REPO_BUILD,
 };
 
+static int membercmp(const void *lhs, const void *rhs) {
+    const lookup_t *l = lhs;
+    const lookup_t *r = rhs;
+
+    if (l == NULL && r == NULL) return 0;
+    else if (l == NULL) return 1;
+    else if (r == NULL) return -1;
+
+    if (l->def == NULL && r->def == NULL) return 0;
+    else if (l->def == NULL) return 1;
+    else if (r->def == NULL) return -1;
+
+    return strcmp(l->def, r->def);
+}
+
 static enum_t dp_include(
     const char *from_file,
     const char *with_prefix,
@@ -471,6 +499,9 @@ static enum_t dp_include(
     FILE       *depfile
 ) {
     assert(from_file && "included filename must not be NULL");
+    if (!from_defs) {
+        assert(strncmp("enum", for_type, sizeof("enum") - 1) == 0 && "'for_type' value must be prefixed with 'enum '");
+    }
 
     char *found_file = NULL;
     for (int i = 0; i < MAX_INCLUDES && include_paths[i]; i++) {
@@ -484,16 +515,55 @@ static enum_t dp_include(
         exit(EXIT_FAILURE);
     }
 
-    char  *buf    = fload(found_file);
-    enum_t result = from_defs
-        ? enum_parse_def(buf, with_prefix, ENUM_F_SORT | ENUM_F_CONVERT)
-        : enum_parse_one(buf, ENUM_F_SORT | ENUM_F_CONVERT, NULL);
+    size_t     bufsize  = 0;
+    char      *endptr   = NULL;
+    char      *buf      = fload(found_file, &bufsize);
+    enum_seq_t parsed   = from_defs
+        ? libenum_loadcpp(buf, bufsize, with_prefix, &endptr)
+        : libenum_find(buf, bufsize, &for_type[5], &endptr); // strip 'enum ' prefix
 
-    dp_register((lookup_t *)result.syms, result.len, for_type);
+    if (parsed.errc != LIBENUM_E_OK) {
+        // TODO: line number + column number of the error
+        fprintf(stderr, "syntax error while parsing included file '%s': %s\n",
+                found_file, libenum_errs(parsed.errc));
+        exit(EXIT_FAILURE);
+    }
+    else if (parsed.members == NULL) {
+        fprintf(stderr, "enum named '%s' could not be found in file '%s'\n",
+                for_type, found_file);
+        exit(EXIT_FAILURE);
+    }
+
+    enum_t result = {
+        .members = calloc(parsed.size, sizeof(*result.members)),
+        .size    = parsed.size,
+        .pool    = parsed.pool,
+    };
+
+    long curr = 0;
+    for (size_t i = 0; i < parsed.size; i++) {
+        result.members[i].def = parsed.members[i].name;
+        if (parsed.members[i].expr == NULL) {
+            result.members[i].val = curr++;
+        }
+        else {
+            // WARN: this cast is filthy, but it works!
+            result.members[i].val = libexpr_eval(parsed.members[i].expr, &endptr, (scope_t *)&result);
+            curr                  = result.members[i].val + 1;
+            if (*endptr) {
+                fprintf(stderr, "syntax error while parsing expression '%s' from included file '%s'\n",
+                        parsed.members[i].expr, found_file);
+                exit(EXIT_FAILURE);
+            }
+        }
+    }
+
+    qsort(result.members, result.size, sizeof(*result.members), membercmp);
+
+    dp_register(result.members, result.size, for_type);
     fputs(found_file, depfile);
     fputc(' ',        depfile);
 
-    free(buf);
     free(found_file);
     return result;
 }

@@ -7,9 +7,10 @@
 #include "constants/field/dynamic_map_features.h"
 #include "constants/field/map.h"
 #include "constants/graphics.h"
+#include "constants/heap.h"
 #include "constants/map_object.h"
+#include "constants/quadrant.h"
 #include "constants/scrcmd.h"
-#include "constants/species.h"
 #include "constants/types.h"
 #include "generated/map_headers.h"
 #include "generated/movement_actions.h"
@@ -605,6 +606,35 @@ enum MapObjectRotatorValidity {
     MAP_OBJECT_ROTATOR_VALIDITY_NEEDS_FREE,
 };
 
+enum FloorLoadDirection {
+    FLOOR_LOAD_NONE = 0,
+    FLOOR_LOAD_PREVIOUS,
+    FLOOR_LOAD_NEXT,
+};
+
+enum FloorLoadHandlerResult {
+    FLOOR_LOAD_HANDLER_RES_CONTINUE = 0,
+    FLOOR_LOAD_HANDLER_RES_LOOP,
+    FLOOR_LOAD_HANDLER_RES_FINISH,
+};
+
+enum FloorLoadNextState {
+    FLOOR_LOAD_NEXT_STATE_PREPARE_UNLOAD_ACTIVE = 0,
+    FLOOR_LOAD_NEXT_STATE_MOVE_INACTIVE_TO_ACTIVE,
+    FLOOR_LOAD_NEXT_STATE_PREPARE_LOAD_INACTIVE,
+    FLOOR_LOAD_NEXT_STATE_LOAD_INACTIVE,
+    FLOOR_LOAD_NEXT_STATE_FINISH,
+    FLOOR_LOAD_NEXT_STATE_COUNT,
+};
+
+enum FloorLoadPreviousState {
+    FLOOR_LOAD_PREVIOUS_STATE_PREPARE_UNLOAD_INACTIVE = 0,
+    FLOOR_LOAD_PREVIOUS_STATE_PREPARE_LOAD_ACTIVE,
+    FLOOR_LOAD_PREVIOUS_STATE_LOAD_ACTIVE,
+    FLOOR_LOAD_PREVIOUS_STATE_FINISH,
+    FLOOR_LOAD_PREVIOUS_STATE_COUNT,
+};
+
 typedef struct DistWorldSystem DistWorldSystem;
 
 typedef struct DistWorldBounds {
@@ -672,19 +702,19 @@ typedef struct DistWorldSkyCloudAnimator {
     Sprite *sprite;
 } DistWorldSkyCloudAnimator;
 
-typedef struct {
+typedef struct DistWorldMapInfo {
     u32 mapHeaderID;
-    u16 unk_04;
-    s16 unk_06;
-    s16 unk_08;
-    s16 unk_0A;
-} UnkStruct_ov9_0224C034;
+    u16 mapFileIndex;
+    s16 offsetTileX;
+    s16 offsetAltitude;
+    s16 offsetTileZ;
+} DistWorldMapInfo;
 
-typedef struct {
-    int unk_00;
-    UnkStruct_ov9_0224C034 *unk_04;
-    void *unk_08;
-} UnkStruct_ov9_0224BFE0;
+typedef struct DistWorldMapInfoFile {
+    int count;
+    DistWorldMapInfo *infos;
+    void *buffer;
+} DistWorldMapInfoFile;
 
 typedef struct DistWorldFloatingPlatformTemplate {
     s16 kind;
@@ -749,10 +779,10 @@ typedef struct DistWorldFloatingPlatformManager {
     u16 *terrainAttributes;
 } DistWorldFloatingPlatformManager;
 
-typedef struct DistWorldFileFloatingPlatformJumpPointSection {
+typedef struct DistWorldMapFileFloatingPlatformJumpPointSection {
     int count;
     DistWorldFloatingPlatformJumpPointTemplate *templates;
-} DistWorldFileFloatingPlatformJumpPointSection;
+} DistWorldMapFileFloatingPlatformJumpPointSection;
 
 typedef struct DistWorldCameraAngleTemplates {
     int count;
@@ -765,44 +795,44 @@ typedef struct DistWorldGhostPropData {
     const DistWorldGhostPropTrigger *triggers;
 } DistWorldGhostPropData;
 
-typedef struct DistWorldFileHeader {
+typedef struct DistWorldMapFileHeader {
     int dummy00;
     int floatingPlatformSectionSize;
     int floatingPlatformJumpPointSectionSize;
     int cameraAngleSectionSize;
     int ghostPropSectionSize;
-} DistWorldFileHeader;
+} DistWorldMapFileHeader;
 
-typedef struct DistWorldFileFloatingPlatformSection {
+typedef struct DistWorldMapFileFloatingPlatformSection {
     int count;
     DistWorldFloatingPlatformTemplate *templates;
-} DistWorldFileFloatingPlatformSection;
+} DistWorldMapFileFloatingPlatformSection;
 
-typedef struct DistWorldFileCameraAngleSection {
+typedef struct DistWorldMapFileCameraAngleSection {
     int count;
     DistWorldCameraAngleTemplate *templates;
-} DistWorldFileCameraAngleSection;
+} DistWorldMapFileCameraAngleSection;
 
-typedef struct DistWorldFile {
+typedef struct DistWorldMapFile {
     u32 mapHeaderID;
-    DistWorldFileFloatingPlatformSection *floatingPlatformSection;
-    DistWorldFileFloatingPlatformJumpPointSection *floatingPlatformJumpPointSection;
-    DistWorldFileCameraAngleSection *cameraAngleSection;
+    DistWorldMapFileFloatingPlatformSection *floatingPlatformSection;
+    DistWorldMapFileFloatingPlatformJumpPointSection *floatingPlatformJumpPointSection;
+    DistWorldMapFileCameraAngleSection *cameraAngleSection;
     void *ghostPropSection;
-    DistWorldFileHeader *header;
+    DistWorldMapFileHeader *header;
     void *buffer;
-} DistWorldFile;
+} DistWorldMapFile;
 
-typedef struct {
-    UnkStruct_ov9_0224BFE0 unk_00;
-    DistWorldFile distortionWorldFile;
+typedef struct DistWorldMainArchive {
+    DistWorldMapInfoFile mapInfoFile;
+    DistWorldMapFile mapFile;
     DistWorldFloatingPlatformManager floatingPlatformMan;
-    DistWorldFileFloatingPlatformJumpPointSection floatingPlatformJumpPoints;
+    DistWorldMapFileFloatingPlatformJumpPointSection floatingPlatformJumpPoints;
     DistWorldCameraAngleTemplates cameraAngleTemplates;
     DistWorldGhostPropData ghostPropData;
-    DistWorldFile inactiveDistortionWorldFile;
+    DistWorldMapFile inactiveMapFile;
     DistWorldGhostPropData inactiveGhostPropData;
-} UnkStruct_ov9_02249B04_sub1;
+} DistWorldMainArchive;
 
 typedef struct DistWorldCameraTransition {
     BOOL isActive;
@@ -901,15 +931,15 @@ typedef struct DistWorldGhostPropManager {
     OverworldAnimManager **animMans;
 } DistWorldGhostPropManager;
 
-typedef struct {
-    int unk_00;
-    int unk_04;
-    u32 unk_08;
-    NARC *unk_0C;
-    MapMatrix *unk_10;
-    AreaDataManager *unk_14;
-    LandDataManager *unk_18;
-} UnkStruct_ov9_0224C8E8;
+typedef struct DistWorldInactiveFloor {
+    int mapHeaderID;
+    BOOL valid;
+    BOOL ready;
+    NARC *dummy0C;
+    MapMatrix *mapMatrix;
+    AreaDataManager *areaDataMan;
+    LandDataManager *landDataMan;
+} DistWorldInactiveFloor;
 
 typedef struct DistWorldMovingPlatformPropUserData {
     s16 tileX;
@@ -963,7 +993,7 @@ typedef struct DistWorldMovingPlatformMapTemplates {
 
 typedef struct DistWorldMovingPlatformPropAnimator {
     u8 valid;
-    u8 unk_01;
+    u8 preventDeletion;
     u16 mapHeaderID;
     DistWorldMovingPlatformTemplate template;
     MapObject *mapObj;
@@ -1092,30 +1122,30 @@ typedef struct DistWorldGiratinaShadowPropRenderer {
     OverworldAnimManager *animMan;
 } DistWorldGiratinaShadowPropRenderer;
 
-typedef struct {
-    u8 unk_00;
-    u8 unk_01;
-    u8 unk_02;
-    u8 unk_03;
-    int unk_04;
-    int unk_08;
-    int unk_0C[4];
-    DistWorldMovingPlatformPropAnimator *unk_1C;
-} UnkStruct_ov9_0224CA5C;
+typedef struct DistWorldInactiveFloorLoader {
+    u8 loadDir;
+    u8 state;
+    u8 loadedMapsCount;
+    u8 dummy03;
+    int playerPosX;
+    int playerPosZ;
+    int mapMatrixIndexes[QUADRANT_COUNT];
+    DistWorldMovingPlatformPropAnimator *movingPlatformAnimator;
+} DistWorldInactiveFloorLoader;
 
-typedef struct {
-    u32 unk_00;
-    u16 unk_04;
-    u16 unk_06;
-    s16 unk_08;
-    s16 unk_0A;
-    int unk_0C;
-    int unk_10[4];
-    int unk_20;
-    AreaDataManager *unk_24;
-    DistWorldMovingPlatformPropAnimator *unk_28;
-    SysTask *unk_2C;
-} UnkStruct_ov9_0224CBD8;
+typedef struct DistWorldFloorLoader {
+    enum FloorLoadDirection loadDir;
+    u16 state;
+    u16 loadedMapsCount;
+    s16 playerPosX;
+    s16 playerPosZ;
+    int mapHeaderID;
+    int mapMatrixIndexes[QUADRANT_COUNT];
+    BOOL waitingToLoadInactive;
+    AreaDataManager *areaDataMan;
+    DistWorldMovingPlatformPropAnimator *movingPlatformAnimator;
+    SysTask *loadTask;
+} DistWorldFloorLoader;
 
 struct DistWorldSystem {
     FieldSystem *fieldSystem;
@@ -1130,16 +1160,16 @@ struct DistWorldSystem {
     DistWorldMapObjectRotatorManager mapObjRotatorMan;
     DistWorldSkyClouds skyClouds;
     DistWorldPropRenderBuffers propRenderBuffs;
-    UnkStruct_ov9_02249B04_sub1 unk_169C;
+    DistWorldMainArchive mainArchive;
     DistWorldGhostPropManager ghostPropMan;
     DistWorldGhostPropManager inactiveGhostPropMan;
     DistWorldMovingPlatformPropManager movingPlatformPropMan;
     DistWorldSimplePropManager simplePropMan;
     DistWorldMapObjectManager mapObjMan;
-    UnkStruct_ov9_0224CA5C unk_1CB0;
-    UnkStruct_ov9_0224CBD8 unk_1CD0;
+    DistWorldInactiveFloorLoader inactiveFloorLoader;
+    DistWorldFloorLoader floorLoader;
     DistWorldSkyBackground skyBg;
-    UnkStruct_ov9_0224C8E8 unk_1E88;
+    DistWorldInactiveFloor inactiveFloor;
     DistWorldGiratinaShadowPropRenderer giratinaShadowPropRenderer;
     GXRgb unk_1EB0[8];
     u16 playingGiratinaArrival;
@@ -1393,9 +1423,10 @@ typedef struct CmdRunDataGiratinaRoomPlatforms {
 
 typedef void (*FloatingPlatformJumpPointHandler)(DistWorldSystem *, const DistWorldFloatingPlatformJumpPointTemplate *);
 typedef int (*ElevatorPlatformHandler)(DistWorldSystem *, DistWorldElevatorPlatform *);
+typedef int (*FloorLoadHandler)(DistWorldSystem *, DistWorldFloorLoader *);
 
-static void ov9_02249B04(DistWorldSystem *param0);
-static void ov9_02249B68(DistWorldSystem *param0);
+static void LoadNextFloorElements(DistWorldSystem *system);
+static void LoadPreviousFloorElements(DistWorldSystem *system);
 static void OpenArchives(DistWorldSystem *system);
 static void CloseArchives(DistWorldSystem *system);
 static void ov9_02249CC4(DistWorldSystem *param0);
@@ -1484,41 +1515,41 @@ static void MoveInactiveGhostPropManagerToActive(DistWorldSystem *system);
 static u16 GetAnimManagerGhostPropKind(OverworldAnimManager *system);
 static void ov9_0224BE14(DistWorldSystem *param0);
 static void ov9_0224BE8C(DistWorldSystem *param0);
-static void ov9_0224BEB4(DistWorldSystem *param0, u32 param1);
-static void ov9_0224BF18(DistWorldSystem *param0, u32 param1);
-static void ov9_0224BF8C(NARC *param0, UnkStruct_ov9_0224BFE0 *param1);
-static void ov9_0224BFBC(DistWorldSystem *param0);
-static void ov9_0224BFE0(UnkStruct_ov9_0224BFE0 *param0);
-static void ov9_0224BFFC(DistWorldSystem *param0);
-static const UnkStruct_ov9_0224C034 *ov9_0224C00C(const UnkStruct_ov9_0224BFE0 *param0, enum MapHeader mapHeaderID);
-static const UnkStruct_ov9_0224C034 *ov9_0224C034(DistWorldSystem *system, enum MapHeader mapHeaderID);
-static u32 FindNARCIndex(DistWorldSystem *system, enum MapHeader mapHeaderID);
-static void ov9_0224C050(const UnkStruct_ov9_0224BFE0 *param0, int param1, int *param2, int *param3, int *param4);
-static void ov9_0224C070(DistWorldSystem *param0, int param1, int *param2, int *param3, int *param4);
-static void DistWorldFile_Load(DistWorldSystem *system, DistWorldFile *file, enum MapHeader mapHeaderID);
+static void PrepareLoadingActiveFloor(DistWorldSystem *system, u32 mapHeaderID);
+static void PrepareLoadingInactiveFloor(DistWorldSystem *system, u32 mapHeaderID);
+static void DistWorldMapInfoFile_Load(NARC *param0, DistWorldMapInfoFile *param1);
+static void DistWorldMapInfoFile_LoadSafe(DistWorldSystem *param0);
+static void DistWorldMapInfoFile_Free(DistWorldMapInfoFile *param0);
+static void FreeMapInfoFile(DistWorldSystem *param0);
+static const DistWorldMapInfo *DistWorldMapInfoFile_FindForMap(const DistWorldMapInfoFile *param0, enum MapHeader mapHeaderID);
+static const DistWorldMapInfo *FindMapInfo(DistWorldSystem *system, enum MapHeader mapHeaderID);
+static u32 FindMapFileIndex(DistWorldSystem *system, enum MapHeader mapHeaderID);
+static void DistWorldMapInfoFile_FindMapOffsets(const DistWorldMapInfoFile *param0, int param1, int *param2, int *param3, int *param4);
+static void FindMapOffsets(DistWorldSystem *param0, int param1, int *param2, int *param3, int *param4);
+static void DistWorldMapFile_Load(DistWorldSystem *system, DistWorldMapFile *file, enum MapHeader mapHeaderID);
 static void ov9_0224C0F8(DistWorldSystem *param0, enum MapHeader mapHeaderID, int param2);
 static void ov9_0224C10C(DistWorldSystem *param0, enum MapHeader mapHeaderID);
 static void ov9_0224C120(DistWorldSystem *param0, enum MapHeader mapHeaderID);
-static void DistWorldFile_Free(DistWorldFile *file);
+static void DistWorldMapFile_Free(DistWorldMapFile *file);
 static void ov9_0224C164(DistWorldSystem *param0);
 static void ov9_0224C174(DistWorldSystem *param0);
 static void ov9_0224C184(DistWorldSystem *param0);
 static void ov9_0224C194(DistWorldSystem *param0);
 static void ov9_0224C1E4(DistWorldSystem *param0);
-static int DistWorldFile_GetFloatingPlatformSectionSize(DistWorldFile *file);
-static int DistWorldFile_GetFloatingPlatformCount(DistWorldFile *file);
-static DistWorldFloatingPlatformTemplate *DistWorldFile_GetFloatingPlatformSectionTemplates(DistWorldFile *file);
-static int DistWorldFile_GetFloatingPlatformJumpPointSectionSize(DistWorldFile *file);
-static int DistWorldFile_GetFloatingPlatformJumpPointCount(DistWorldFile *file);
-static DistWorldFloatingPlatformJumpPointTemplate *DistWorldFile_GetFloatingPlatformJumpPointTemplates(DistWorldFile *file);
-static int DistWorldFile_GetCameraAngleSectionSize(DistWorldFile *file);
-static int DistWorldFile_GetCameraAngleCount(DistWorldFile *file);
-static DistWorldCameraAngleTemplate *DistWorldFile_GetCameraAngleTemplates(DistWorldFile *file);
+static int DistWorldMapFile_GetFloatingPlatformSectionSize(DistWorldMapFile *file);
+static int DistWorldMapFile_GetFloatingPlatformCount(DistWorldMapFile *file);
+static DistWorldFloatingPlatformTemplate *DistWorldMapFile_GetFloatingPlatformSectionTemplates(DistWorldMapFile *file);
+static int DistWorldMapFile_GetFloatingPlatformJumpPointSectionSize(DistWorldMapFile *file);
+static int DistWorldMapFile_GetFloatingPlatformJumpPointCount(DistWorldMapFile *file);
+static DistWorldFloatingPlatformJumpPointTemplate *DistWorldMapFile_GetFloatingPlatformJumpPointTemplates(DistWorldMapFile *file);
+static int DistWorldMapFile_GetCameraAngleSectionSize(DistWorldMapFile *file);
+static int DistWorldMapFile_GetCameraAngleCount(DistWorldMapFile *file);
+static DistWorldCameraAngleTemplate *DistWorldMapFile_GetCameraAngleTemplates(DistWorldMapFile *file);
 static int GetActiveGhostPropFileSectionSize(DistWorldSystem *system);
 static int GetInactiveGhostPropFileSectionSize(DistWorldSystem *system);
-static const DistWorldGhostPropHeader *DistWorldFile_GetGhostPropHeader(DistWorldFile *system);
-static const DistWorldGhostPropTemplate *DistWorldFile_GetGhostPropTemplates(DistWorldFile *system);
-static const DistWorldGhostPropTrigger *DistWorldFile_GetGhostPropTriggers(DistWorldFile *system);
+static const DistWorldGhostPropHeader *DistWorldMapFile_GetGhostPropHeader(DistWorldMapFile *system);
+static const DistWorldGhostPropTemplate *DistWorldMapFile_GetGhostPropTemplates(DistWorldMapFile *system);
+static const DistWorldGhostPropTrigger *DistWorldMapFile_GetGhostPropTriggers(DistWorldMapFile *system);
 static void InitFloatingPlatformManager(DistWorldSystem *system);
 static void ResetFloatingPlatformManager(DistWorldSystem *system);
 static void FindAndPrepareNewCurrentFloatingPlatform(DistWorldSystem *system, int tileX, int tileY, int tileZ, s16 floatingPlatformKind);
@@ -1536,7 +1567,7 @@ static const DistWorldFloatingPlatformJumpPointTemplate *FindFloatingPlatformJum
 static void InitCameraAngleTemplates(DistWorldSystem *system);
 static void ResetCameraAngleTemplates(DistWorldSystem *system);
 static const DistWorldCameraAngleTemplate *FindCameraAngleForPlayerPosition(DistWorldSystem *system, int playerX, int playerY, int playerZ, enum FaceDirection playerDir);
-static void DistWorldGhostPropData_InitFromFile(DistWorldFile *file, DistWorldGhostPropData *data);
+static void DistWorldGhostPropData_InitFromFile(DistWorldMapFile *file, DistWorldGhostPropData *data);
 static void InitActiveGhostPropData(DistWorldSystem *system);
 static void InitInactiveGhostPropData(DistWorldSystem *system);
 static void InitAllGhostPropData(DistWorldSystem *system);
@@ -1550,16 +1581,16 @@ static const DistWorldGhostPropHeader *GetInactiveGhostPropHeader(DistWorldSyste
 static const DistWorldGhostPropTemplate *GetActiveGhostPropTemplates(DistWorldSystem *system);
 static const DistWorldGhostPropTemplate *GetInactiveGhostPropTemplates(DistWorldSystem *system);
 static const DistWorldGhostPropTrigger *GetActiveGhostPropTriggers(DistWorldSystem *system);
-static void ov9_0224C8E8(DistWorldSystem *param0);
-static void ov9_0224C9E8(DistWorldSystem *param0);
-static void ov9_0224CA98(DistWorldSystem *param0);
-static void ov9_0224CB30(DistWorldSystem *param0);
-static void ov9_0224CBD8(DistWorldSystem *param0);
-static void ov9_0224CBF8(DistWorldSystem *param0);
-static void ov9_0224CC08(SysTask *param0, void *param1);
+static void InitialLoadInactiveFloor(DistWorldSystem *system);
+static void FreeInactiveFloor(DistWorldSystem *system);
+static void LoadInactiveFloorNext(DistWorldSystem *system);
+static void LoadInactiveFloorPrevious(DistWorldSystem *system);
+static void StartLoadFloorTask(DistWorldSystem *system);
+static void FinishLoadFloorTask(DistWorldSystem *system);
+static void Task_LoadFloor(SysTask *sysTask, void *sysTaskParam);
 static void Dummy0224CC4C(DistWorldSystem *system);
-static void ov9_0224CC50(DistWorldSystem *param0, DistWorldMovingPlatformPropAnimator *param1, u32 param2);
-static BOOL ov9_0224CC7C(DistWorldSystem *param0);
+static void LoadFloor(DistWorldSystem *system, DistWorldMovingPlatformPropAnimator *movingPlatformAnimator, enum FloorLoadDirection loadDir);
+static BOOL IsFloorLoaderActive(DistWorldSystem *system);
 static BOOL HandleElevatorPlatformPropAnimatorAt(DistWorldSystem *system, int playerX, int playerY, int playerZ);
 static void CreateElevatorPlatformHandlerTask(DistWorldSystem *system, DistWorldMovingPlatformPropAnimator *animator);
 static BOOL CallElevatorPlatformHandler(FieldTask *task);
@@ -1603,7 +1634,7 @@ static void DistWorldMovingPlatformPropAnimator_InitFromTemplate(DistWorldSystem
 static void DistWorldMovingPlatformPropAnimator_Finish(DistWorldSystem *system, DistWorldMovingPlatformPropAnimator *animator);
 static void DistWorldMovingPlatformPropAnimator_FinishAndDeleteMapObject(DistWorldSystem *system, DistWorldMovingPlatformPropAnimator *animator);
 static void DistWorldMovingPlatformPropAnimator_ChangeMaps(DistWorldSystem *system, DistWorldMovingPlatformPropAnimator *animator, u32 mapHeaderID);
-static void ov9_0224E0DC(DistWorldMovingPlatformPropAnimator *param0, BOOL param1);
+static void DistWorldMovingPlatformPropAnimator_SetPreventDeletion(DistWorldMovingPlatformPropAnimator *animator, BOOL preventDeletion);
 static BOOL HasActiveMovingPlatformProp2(DistWorldSystem *system, u32 propKind);
 static BOOL HasActiveMovingPlatformPropAnim(DistWorldSystem *system, u32 animKind);
 static BOOL HasActiveMovingPlatformProp(DistWorldSystem *system, int propKind);
@@ -1733,8 +1764,8 @@ void DistWorld_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
     ResetMovingPlatformManager(dwSystem);
     UnloadEvent(dwSystem);
     ov9_02249E94(dwSystem);
-    ov9_0224C8E8(dwSystem);
-    ov9_0224CBD8(dwSystem);
+    InitialLoadInactiveFloor(dwSystem);
+    StartLoadFloorTask(dwSystem);
     InitMovingPlatformPropsForCurrentAndNextMaps(dwSystem);
     InitSkyCloudAnimators(dwSystem, dwSystem->fieldSystem->fieldEffMan, &dwSystem->skyClouds);
     Dummy0224E984(dwSystem);
@@ -1746,109 +1777,107 @@ void DistWorld_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
 
 void DistWorld_DynamicMapFeaturesFree(FieldSystem *fieldSystem)
 {
-    DistWorldSystem *v0 = fieldSystem->unk_04->dynamicMapFeaturesData;
+    DistWorldSystem *dwSystem = fieldSystem->unk_04->dynamicMapFeaturesData;
 
-    FinishSkyPalettesUpdateTask(v0);
-    FinishGiratinaShadowPropRenderer(v0);
-    ov9_0224CBF8(v0);
-    ov9_0224C9E8(v0);
-    ov9_02249EC8(v0);
-    Dummy0224E34C(v0);
-    FinishAllMovingPlatformPropAnimators(v0);
-    FinishAllGhostPropManagers(v0);
-    FinishAllSimplePropAnimators(v0);
-    Dummy0224EE6C(v0);
-    ov9_0224A9E8(v0);
-    FieldTaskContextNoOp2(v0);
-    CameraFree(v0);
-    Dummy0224F760(v0);
-    FreeSkyClouds(&v0->skyClouds);
-    Dummy0224B3F4(v0);
-    FinishSkyBackground(v0);
-    FreePropRenderBuffers(v0);
-    FreeMapObjectRotatorManager(v0);
-    ov9_02249F98(v0);
-    ov9_02249F84(v0);
-    ov9_0224BE8C(v0);
-    CloseArchives(v0);
+    FinishSkyPalettesUpdateTask(dwSystem);
+    FinishGiratinaShadowPropRenderer(dwSystem);
+    FinishLoadFloorTask(dwSystem);
+    FreeInactiveFloor(dwSystem);
+    ov9_02249EC8(dwSystem);
+    Dummy0224E34C(dwSystem);
+    FinishAllMovingPlatformPropAnimators(dwSystem);
+    FinishAllGhostPropManagers(dwSystem);
+    FinishAllSimplePropAnimators(dwSystem);
+    Dummy0224EE6C(dwSystem);
+    ov9_0224A9E8(dwSystem);
+    FieldTaskContextNoOp2(dwSystem);
+    CameraFree(dwSystem);
+    Dummy0224F760(dwSystem);
+    FreeSkyClouds(&dwSystem->skyClouds);
+    Dummy0224B3F4(dwSystem);
+    FinishSkyBackground(dwSystem);
+    FreePropRenderBuffers(dwSystem);
+    FreeMapObjectRotatorManager(dwSystem);
+    ov9_02249F98(dwSystem);
+    ov9_02249F84(dwSystem);
+    ov9_0224BE8C(dwSystem);
+    CloseArchives(dwSystem);
 
-    Heap_Free(v0);
-
+    Heap_Free(dwSystem);
     fieldSystem->unk_04->dynamicMapFeaturesData = NULL;
 }
 
-static void ov9_02249B04(DistWorldSystem *param0)
+static void LoadNextFloorElements(DistWorldSystem *system)
 {
-    u32 v0 = DistWorldSystem_GetMapHeaderID(param0);
-    const DistWorldMapConnections *v1 = GetConnectionsForMap(v0);
+    u32 mapHeaderID = DistWorldSystem_GetMapHeaderID(system);
+    const DistWorldMapConnections *mapConnections = GetConnectionsForMap(mapHeaderID);
 
-    FinishActiveGhostPropManager(param0);
-    SetPersistedHiddenGhostPropGroups(param0, 0);
-    FinishSimplePropAnimatorForMap(param0, v1->prevID);
-    FinishMovingPlatformPropAnimatorForMap(param0, v1->prevID);
-    DeleteMapObjectsForMap(param0, v1->prevID);
-    ov9_0224BF18(param0, v1->nextID);
-    FreeUnusedPropRenderers(param0);
-    InitInactiveGhostPropManager(param0);
-    InitSimplePropsForMap(param0, v1->nextID);
-    InitMovingPlatformPropsForMap(param0, v1->nextID);
-    AddMapObjectsForMap(param0, v1->nextID);
+    FinishActiveGhostPropManager(system);
+    SetPersistedHiddenGhostPropGroups(system, 0);
+    FinishSimplePropAnimatorForMap(system, mapConnections->prevID);
+    FinishMovingPlatformPropAnimatorForMap(system, mapConnections->prevID);
+    DeleteMapObjectsForMap(system, mapConnections->prevID);
+    PrepareLoadingInactiveFloor(system, mapConnections->nextID);
+    FreeUnusedPropRenderers(system);
+    InitInactiveGhostPropManager(system);
+    InitSimplePropsForMap(system, mapConnections->nextID);
+    InitMovingPlatformPropsForMap(system, mapConnections->nextID);
+    AddMapObjectsForMap(system, mapConnections->nextID);
 }
 
-static void ov9_02249B68(DistWorldSystem *param0)
+static void LoadPreviousFloorElements(DistWorldSystem *system)
 {
-    u32 v0 = DistWorldSystem_GetMapHeaderID(param0);
-    const DistWorldMapConnections *v1 = GetConnectionsForMap(v0);
+    u32 mapHeaderID = DistWorldSystem_GetMapHeaderID(system);
+    const DistWorldMapConnections *mapConnections = GetConnectionsForMap(mapHeaderID);
+    mapConnections = GetConnectionsForMap(mapConnections->nextID);
 
-    v1 = GetConnectionsForMap(v1->nextID);
-
-    FinishInactiveGhostPropManager(param0);
-    SetPersistedHiddenGhostPropGroups(param0, 0);
-    FinishSimplePropAnimatorForMap(param0, v1->nextID);
-    FinishMovingPlatformPropAnimatorForMap(param0, v1->nextID);
-    DeleteMapObjectsForMap(param0, v1->nextID);
-    ov9_0224BEB4(param0, v0);
-    FreeUnusedPropRenderers(param0);
-    InitActiveGhostPropManager(param0, TRUE);
-    InitSimplePropsForMap(param0, v0);
-    InitMovingPlatformPropsForMap(param0, v0);
-    AddMapObjectsForMap(param0, v0);
+    FinishInactiveGhostPropManager(system);
+    SetPersistedHiddenGhostPropGroups(system, 0);
+    FinishSimplePropAnimatorForMap(system, mapConnections->nextID);
+    FinishMovingPlatformPropAnimatorForMap(system, mapConnections->nextID);
+    DeleteMapObjectsForMap(system, mapConnections->nextID);
+    PrepareLoadingActiveFloor(system, mapHeaderID);
+    FreeUnusedPropRenderers(system);
+    InitActiveGhostPropManager(system, TRUE);
+    InitSimplePropsForMap(system, mapHeaderID);
+    InitMovingPlatformPropsForMap(system, mapHeaderID);
+    AddMapObjectsForMap(system, mapHeaderID);
 }
 
-static void ov9_02249BD4(DistWorldSystem *param0, u32 param1)
+static void PrepareUnloadingActiveFloor(DistWorldSystem *system, u32 mapHeaderID)
 {
-    FinishActiveGhostPropManager(param0);
-    SetPersistedHiddenGhostPropGroups(param0, 0);
-    FinishSimplePropAnimatorForMap(param0, param1);
-    FinishMovingPlatformPropAnimatorForMap(param0, param1);
-    DeleteMapObjectsForMap(param0, param1);
-    FreeUnusedPropRenderers(param0);
+    FinishActiveGhostPropManager(system);
+    SetPersistedHiddenGhostPropGroups(system, 0);
+    FinishSimplePropAnimatorForMap(system, mapHeaderID);
+    FinishMovingPlatformPropAnimatorForMap(system, mapHeaderID);
+    DeleteMapObjectsForMap(system, mapHeaderID);
+    FreeUnusedPropRenderers(system);
 }
 
-static void ov9_02249C08(DistWorldSystem *param0, u32 param1)
+static void FinishLoadingInactiveFloor(DistWorldSystem *system, u32 mapHeaderID)
 {
-    InitInactiveGhostPropManager(param0);
-    InitSimplePropsForMap(param0, param1);
-    InitMovingPlatformPropsForMap(param0, param1);
-    AddMapObjectsForMap(param0, param1);
+    InitInactiveGhostPropManager(system);
+    InitSimplePropsForMap(system, mapHeaderID);
+    InitMovingPlatformPropsForMap(system, mapHeaderID);
+    AddMapObjectsForMap(system, mapHeaderID);
 }
 
-static void ov9_02249C2C(DistWorldSystem *param0, u32 param1)
+static void PrepareUnloadingInactiveFloor(DistWorldSystem *system, u32 mapHeaderID)
 {
-    FinishInactiveGhostPropManager(param0);
-    SetPersistedHiddenGhostPropGroups(param0, 0);
-    FinishSimplePropAnimatorForMap(param0, param1);
-    FinishMovingPlatformPropAnimatorForMap(param0, param1);
-    DeleteMapObjectsForMap(param0, param1);
-    FreeUnusedPropRenderers(param0);
+    FinishInactiveGhostPropManager(system);
+    SetPersistedHiddenGhostPropGroups(system, 0);
+    FinishSimplePropAnimatorForMap(system, mapHeaderID);
+    FinishMovingPlatformPropAnimatorForMap(system, mapHeaderID);
+    DeleteMapObjectsForMap(system, mapHeaderID);
+    FreeUnusedPropRenderers(system);
 }
 
-static void ov9_02249C60(DistWorldSystem *param0, u32 param1)
+static void FinishLoadingActiveFloor(DistWorldSystem *system, u32 mapHeaderID)
 {
-    InitActiveGhostPropManager(param0, TRUE);
-    InitSimplePropsForMap(param0, param1);
-    InitMovingPlatformPropsForMap(param0, param1);
-    AddMapObjectsForMap(param0, param1);
+    InitActiveGhostPropManager(system, TRUE);
+    InitSimplePropsForMap(system, mapHeaderID);
+    InitMovingPlatformPropsForMap(system, mapHeaderID);
+    AddMapObjectsForMap(system, mapHeaderID);
 }
 
 static void OpenArchives(DistWorldSystem *system)
@@ -3970,7 +3999,7 @@ static void ov9_0224BE14(DistWorldSystem *param0)
     mapHeaderID = DistWorldSystem_GetMapHeaderID(param0);
     v1 = GetConnectionsForMap(mapHeaderID);
 
-    ov9_0224BFBC(param0);
+    DistWorldMapInfoFile_LoadSafe(param0);
     ov9_0224C0F8(param0, mapHeaderID, v1->nextID);
 
     InitFloatingPlatformManager(param0);
@@ -3996,140 +4025,137 @@ static void ov9_0224BE8C(DistWorldSystem *param0)
     ResetFloatingPlatformManager(param0);
     ResetAllGhostPropData(param0);
     ov9_0224C164(param0);
-    ov9_0224BFFC(param0);
+    FreeMapInfoFile(param0);
 }
 
-static void ov9_0224BEB4(DistWorldSystem *param0, u32 param1)
+static void PrepareLoadingActiveFloor(DistWorldSystem *system, u32 mapHeaderID)
 {
-    ResetInactiveGhostPropData(param0);
-    ov9_0224C184(param0);
-    ResetCameraAngleTemplates(param0);
-    ResetFloatingPlatformJumpPoint(param0);
-    ResetFloatingPlatformManager(param0);
-    ov9_0224C194(param0);
-    MoveActiveGhostPropDataToInactive(param0);
-    MoveActiveGhostPropManagerToInactive(param0);
-    ResetActiveGhostPropManager(param0);
-    ov9_0224C10C(param0, param1);
-    InitFloatingPlatformManager(param0);
-    FreeFloatingPlatformManagerTerrainAttrs(param0);
-    InitFloatingPlatformJumpPoint(param0);
-    InitCameraAngleTemplates(param0);
-    InitActiveGhostPropData(param0);
+    ResetInactiveGhostPropData(system);
+    ov9_0224C184(system);
+    ResetCameraAngleTemplates(system);
+    ResetFloatingPlatformJumpPoint(system);
+    ResetFloatingPlatformManager(system);
+    ov9_0224C194(system);
+    MoveActiveGhostPropDataToInactive(system);
+    MoveActiveGhostPropManagerToInactive(system);
+    ResetActiveGhostPropManager(system);
+    ov9_0224C10C(system, mapHeaderID);
+    InitFloatingPlatformManager(system);
+    FreeFloatingPlatformManagerTerrainAttrs(system);
+    InitFloatingPlatformJumpPoint(system);
+    InitCameraAngleTemplates(system);
+    InitActiveGhostPropData(system);
 }
 
-static void ov9_0224BF18(DistWorldSystem *param0, u32 param1)
+static void PrepareLoadingInactiveFloor(DistWorldSystem *system, u32 mapHeaderID)
 {
-    ResetCameraAngleTemplates(param0);
-    ResetFloatingPlatformJumpPoint(param0);
-    ResetFloatingPlatformManager(param0);
-    ResetActiveGhostPropData(param0);
-    ov9_0224C174(param0);
-    ov9_0224C1E4(param0);
-    MoveInactiveGhostPropDataToActive(param0);
-    MoveInactiveGhostPropManagerToActive(param0);
-    PersistActiveHiddenGhostPropGroups(param0);
-    ResetInactiveGhostPropManager(param0);
-    InitFloatingPlatformManager(param0);
-    FreeFloatingPlatformManagerTerrainAttrs(param0);
-    InitFloatingPlatformJumpPoint(param0);
-    InitCameraAngleTemplates(param0);
+    ResetCameraAngleTemplates(system);
+    ResetFloatingPlatformJumpPoint(system);
+    ResetFloatingPlatformManager(system);
+    ResetActiveGhostPropData(system);
+    ov9_0224C174(system);
+    ov9_0224C1E4(system);
+    MoveInactiveGhostPropDataToActive(system);
+    MoveInactiveGhostPropManagerToActive(system);
+    PersistActiveHiddenGhostPropGroups(system);
+    ResetInactiveGhostPropManager(system);
+    InitFloatingPlatformManager(system);
+    FreeFloatingPlatformManagerTerrainAttrs(system);
+    InitFloatingPlatformJumpPoint(system);
+    InitCameraAngleTemplates(system);
 
-    if (param1 != 593) {
-        ov9_0224C120(param0, param1);
-        InitInactiveGhostPropData(param0);
+    if (mapHeaderID != MAP_HEADER_INVALID) {
+        ov9_0224C120(system, mapHeaderID);
+        InitInactiveGhostPropData(system);
     }
 }
 
-static void ov9_0224BF8C(NARC *mainNARC, UnkStruct_ov9_0224BFE0 *param1)
+static void DistWorldMapInfoFile_Load(NARC *mainNARC, DistWorldMapInfoFile *mapInfoFile)
 {
-    u32 v0 = NARC_GetMemberSize(mainNARC, 0);
+    u32 narcMemberSize = NARC_GetMemberSize(mainNARC, 0);
 
-    param1->unk_08 = Heap_Alloc(HEAP_ID_FIELD1, v0);
-    NARC_ReadWholeMember(mainNARC, 0, param1->unk_08);
+    mapInfoFile->buffer = Heap_Alloc(HEAP_ID_FIELD1, narcMemberSize);
+    NARC_ReadWholeMember(mainNARC, 0, mapInfoFile->buffer);
 
-    param1->unk_00 = *(int *)param1->unk_08;
-    param1->unk_04 = param1->unk_08;
-
-    (u8 *)param1->unk_04 += 4;
+    mapInfoFile->count = *(int *)mapInfoFile->buffer;
+    mapInfoFile->infos = (DistWorldMapInfo *)((u8 *)mapInfoFile->buffer + 4);
 }
 
-static void ov9_0224BFBC(DistWorldSystem *param0)
+static void DistWorldMapInfoFile_LoadSafe(DistWorldSystem *system)
 {
-    GF_ASSERT(param0->unk_169C.unk_00.unk_08 == NULL);
-    ov9_0224BF8C(param0->mainNARC, &param0->unk_169C.unk_00);
+    GF_ASSERT(system->mainArchive.mapInfoFile.buffer == NULL);
+    DistWorldMapInfoFile_Load(system->mainNARC, &system->mainArchive.mapInfoFile);
 }
 
-static void ov9_0224BFE0(UnkStruct_ov9_0224BFE0 *param0)
+static void DistWorldMapInfoFile_Free(DistWorldMapInfoFile *mapInfoFile)
 {
-    GF_ASSERT(param0->unk_08 != NULL);
+    GF_ASSERT(mapInfoFile->buffer != NULL);
 
-    Heap_Free(param0->unk_08);
-    param0->unk_08 = NULL;
+    Heap_Free(mapInfoFile->buffer);
+    mapInfoFile->buffer = NULL;
 }
 
-static void ov9_0224BFFC(DistWorldSystem *param0)
+static void FreeMapInfoFile(DistWorldSystem *system)
 {
-    ov9_0224BFE0(&param0->unk_169C.unk_00);
+    DistWorldMapInfoFile_Free(&system->mainArchive.mapInfoFile);
 }
 
-static const UnkStruct_ov9_0224C034 *ov9_0224C00C(const UnkStruct_ov9_0224BFE0 *param0, enum MapHeader mapHeaderID)
+static const DistWorldMapInfo *DistWorldMapInfoFile_FindForMap(const DistWorldMapInfoFile *mapInfoFile, enum MapHeader mapHeaderID)
 {
-    int v0 = 0;
-    const UnkStruct_ov9_0224C034 *v1 = param0->unk_04;
+    int i = 0;
+    const DistWorldMapInfo *iter = mapInfoFile->infos;
 
-    while (v0 < param0->unk_00) {
-        if (mapHeaderID == v1->mapHeaderID) {
-            return v1;
+    while (i < mapInfoFile->count) {
+        if (mapHeaderID == iter->mapHeaderID) {
+            return iter;
         }
 
-        v1++;
-        v0++;
+        iter++;
+        i++;
     }
 
-    GF_ASSERT(0);
-
+    GF_ASSERT(FALSE);
     return NULL;
 }
 
-static const UnkStruct_ov9_0224C034 *ov9_0224C034(DistWorldSystem *system, enum MapHeader mapHeaderID)
+static const DistWorldMapInfo *FindMapInfo(DistWorldSystem *system, enum MapHeader mapHeaderID)
 {
-    return ov9_0224C00C(&system->unk_169C.unk_00, mapHeaderID);
+    return DistWorldMapInfoFile_FindForMap(&system->mainArchive.mapInfoFile, mapHeaderID);
 }
 
-static u32 FindNARCIndex(DistWorldSystem *system, enum MapHeader mapHeaderID)
+static u32 FindMapFileIndex(DistWorldSystem *system, enum MapHeader mapHeaderID)
 {
-    const UnkStruct_ov9_0224C034 *v0 = ov9_0224C034(system, mapHeaderID);
-    return v0->unk_04 + 1;
+    const DistWorldMapInfo *mapInfo = FindMapInfo(system, mapHeaderID);
+    return mapInfo->mapFileIndex + 1;
 }
 
-static void ov9_0224C050(const UnkStruct_ov9_0224BFE0 *param0, int param1, int *param2, int *param3, int *param4)
+static void DistWorldMapInfoFile_FindMapOffsets(const DistWorldMapInfoFile *mapInfoFile, int mapHeaderID, int *offsetTileX, int *offsetAltitude, int *offsetTileZ)
 {
-    const UnkStruct_ov9_0224C034 *v0 = ov9_0224C00C(param0, param1);
+    const DistWorldMapInfo *mapInfo = DistWorldMapInfoFile_FindForMap(mapInfoFile, mapHeaderID);
 
-    *param2 = v0->unk_06;
-    *param3 = v0->unk_08;
-    *param4 = v0->unk_0A;
+    *offsetTileX = mapInfo->offsetTileX;
+    *offsetAltitude = mapInfo->offsetAltitude;
+    *offsetTileZ = mapInfo->offsetTileZ;
 }
 
-static void ov9_0224C070(DistWorldSystem *param0, int param1, int *param2, int *param3, int *param4)
+static void FindMapOffsets(DistWorldSystem *system, int mapHeaderID, int *offsetTileX, int *offsetAltitude, int *offsetTileZ)
 {
-    ov9_0224C050(&param0->unk_169C.unk_00, param1, param2, param3, param4);
+    DistWorldMapInfoFile_FindMapOffsets(&system->mainArchive.mapInfoFile, mapHeaderID, offsetTileX, offsetAltitude, offsetTileZ);
 }
 
-static void DistWorldFile_Load(DistWorldSystem *system, DistWorldFile *file, enum MapHeader mapHeaderID)
+static void DistWorldMapFile_Load(DistWorldSystem *system, DistWorldMapFile *file, enum MapHeader mapHeaderID)
 {
     GF_ASSERT(file->buffer == NULL);
 
-    memset(file, 0, sizeof(DistWorldFile));
+    memset(file, 0, sizeof(DistWorldMapFile));
     file->mapHeaderID = mapHeaderID;
 
     if (mapHeaderID != MAP_HEADER_COUNT) {
         u8 *data;
         u32 narcMemberSize, narcIndex;
-        DistWorldFileHeader *header;
+        DistWorldMapFileHeader *header;
 
-        narcIndex = FindNARCIndex(system, mapHeaderID);
+        narcIndex = FindMapFileIndex(system, mapHeaderID);
         narcMemberSize = NARC_GetMemberSize(system->mainNARC, narcIndex);
 
         file->buffer = Heap_AllocAtEnd(HEAP_ID_FIELD1, narcMemberSize);
@@ -4139,11 +4165,11 @@ static void DistWorldFile_Load(DistWorldSystem *system, DistWorldFile *file, enu
         file->header = header;
 
         data = file->buffer;
-        data += sizeof(DistWorldFileHeader);
+        data += sizeof(DistWorldMapFileHeader);
 
-        file->floatingPlatformSection = (DistWorldFileFloatingPlatformSection *)data;
-        file->floatingPlatformJumpPointSection = (DistWorldFileFloatingPlatformJumpPointSection *)((u8 *)file->floatingPlatformSection + header->floatingPlatformSectionSize);
-        file->cameraAngleSection = (DistWorldFileCameraAngleSection *)((u8 *)file->floatingPlatformJumpPointSection + header->floatingPlatformJumpPointSectionSize);
+        file->floatingPlatformSection = (DistWorldMapFileFloatingPlatformSection *)data;
+        file->floatingPlatformJumpPointSection = (DistWorldMapFileFloatingPlatformJumpPointSection *)((u8 *)file->floatingPlatformSection + header->floatingPlatformSectionSize);
+        file->cameraAngleSection = (DistWorldMapFileCameraAngleSection *)((u8 *)file->floatingPlatformJumpPointSection + header->floatingPlatformJumpPointSectionSize);
         file->ghostPropSection = (u8 *)file->cameraAngleSection + header->cameraAngleSectionSize;
     }
 }
@@ -4156,27 +4182,27 @@ static void ov9_0224C0F8(DistWorldSystem *param0, enum MapHeader mapHeaderID, in
 
 static void ov9_0224C10C(DistWorldSystem *param0, enum MapHeader mapHeaderID)
 {
-    DistWorldFile_Load(param0, &param0->unk_169C.distortionWorldFile, mapHeaderID);
+    DistWorldMapFile_Load(param0, &param0->mainArchive.mapFile, mapHeaderID);
 }
 
 static void ov9_0224C120(DistWorldSystem *param0, enum MapHeader mapHeaderID)
 {
-    DistWorldFile_Load(param0, &param0->unk_169C.inactiveDistortionWorldFile, mapHeaderID);
+    DistWorldMapFile_Load(param0, &param0->mainArchive.inactiveMapFile, mapHeaderID);
 }
 
-static void DistWorldFile_Invalidate(DistWorldFile *file)
+static void DistWorldMapFile_Invalidate(DistWorldMapFile *file)
 {
-    memset(file, 0, sizeof(DistWorldFile));
+    memset(file, 0, sizeof(DistWorldMapFile));
     file->mapHeaderID = MAP_HEADER_COUNT;
 }
 
-static void DistWorldFile_Free(DistWorldFile *file)
+static void DistWorldMapFile_Free(DistWorldMapFile *file)
 {
     if (file->buffer != NULL) {
         Heap_Free(file->buffer);
     }
 
-    DistWorldFile_Invalidate(file);
+    DistWorldMapFile_Invalidate(file);
 }
 
 static void ov9_0224C164(DistWorldSystem *param0)
@@ -4187,44 +4213,44 @@ static void ov9_0224C164(DistWorldSystem *param0)
 
 static void ov9_0224C174(DistWorldSystem *param0)
 {
-    DistWorldFile_Free(&param0->unk_169C.distortionWorldFile);
+    DistWorldMapFile_Free(&param0->mainArchive.mapFile);
 }
 
 static void ov9_0224C184(DistWorldSystem *param0)
 {
-    DistWorldFile_Free(&param0->unk_169C.inactiveDistortionWorldFile);
+    DistWorldMapFile_Free(&param0->mainArchive.inactiveMapFile);
 }
 
 static void ov9_0224C194(DistWorldSystem *param0)
 {
-    GF_ASSERT(param0->unk_169C.inactiveDistortionWorldFile.mapHeaderID == MAP_HEADER_COUNT);
-    GF_ASSERT(param0->unk_169C.inactiveDistortionWorldFile.buffer == NULL);
+    GF_ASSERT(param0->mainArchive.inactiveMapFile.mapHeaderID == MAP_HEADER_COUNT);
+    GF_ASSERT(param0->mainArchive.inactiveMapFile.buffer == NULL);
 
-    param0->unk_169C.inactiveDistortionWorldFile = param0->unk_169C.distortionWorldFile;
+    param0->mainArchive.inactiveMapFile = param0->mainArchive.mapFile;
 
-    DistWorldFile_Invalidate(&param0->unk_169C.distortionWorldFile);
+    DistWorldMapFile_Invalidate(&param0->mainArchive.mapFile);
 }
 
 static void ov9_0224C1E4(DistWorldSystem *param0)
 {
-    GF_ASSERT(param0->unk_169C.distortionWorldFile.mapHeaderID == MAP_HEADER_COUNT);
-    GF_ASSERT(param0->unk_169C.distortionWorldFile.buffer == NULL);
+    GF_ASSERT(param0->mainArchive.mapFile.mapHeaderID == MAP_HEADER_COUNT);
+    GF_ASSERT(param0->mainArchive.mapFile.buffer == NULL);
 
-    param0->unk_169C.distortionWorldFile = param0->unk_169C.inactiveDistortionWorldFile;
-    DistWorldFile_Invalidate(&param0->unk_169C.inactiveDistortionWorldFile);
+    param0->mainArchive.mapFile = param0->mainArchive.inactiveMapFile;
+    DistWorldMapFile_Invalidate(&param0->mainArchive.inactiveMapFile);
 }
 
-static int DistWorldFile_GetFloatingPlatformSectionSize(DistWorldFile *file)
+static int DistWorldMapFile_GetFloatingPlatformSectionSize(DistWorldMapFile *file)
 {
     return file->header->floatingPlatformSectionSize;
 }
 
-static int DistWorldFile_GetFloatingPlatformCount(DistWorldFile *file)
+static int DistWorldMapFile_GetFloatingPlatformCount(DistWorldMapFile *file)
 {
     return file->floatingPlatformSection->count;
 }
 
-static DistWorldFloatingPlatformTemplate *DistWorldFile_GetFloatingPlatformSectionTemplates(DistWorldFile *file)
+static DistWorldFloatingPlatformTemplate *DistWorldMapFile_GetFloatingPlatformSectionTemplates(DistWorldMapFile *file)
 {
     u8 *templates = (u8 *)file->floatingPlatformSection;
     templates += sizeof(file->floatingPlatformSection->count);
@@ -4232,17 +4258,17 @@ static DistWorldFloatingPlatformTemplate *DistWorldFile_GetFloatingPlatformSecti
     return (DistWorldFloatingPlatformTemplate *)templates;
 }
 
-static int DistWorldFile_GetFloatingPlatformJumpPointSectionSize(DistWorldFile *file)
+static int DistWorldMapFile_GetFloatingPlatformJumpPointSectionSize(DistWorldMapFile *file)
 {
     return file->header->floatingPlatformJumpPointSectionSize;
 }
 
-static int DistWorldFile_GetFloatingPlatformJumpPointCount(DistWorldFile *file)
+static int DistWorldMapFile_GetFloatingPlatformJumpPointCount(DistWorldMapFile *file)
 {
     return file->floatingPlatformJumpPointSection->count;
 }
 
-static DistWorldFloatingPlatformJumpPointTemplate *DistWorldFile_GetFloatingPlatformJumpPointTemplates(DistWorldFile *file)
+static DistWorldFloatingPlatformJumpPointTemplate *DistWorldMapFile_GetFloatingPlatformJumpPointTemplates(DistWorldMapFile *file)
 {
     u8 *templates = (u8 *)file->floatingPlatformJumpPointSection;
     templates += sizeof(file->floatingPlatformJumpPointSection->count);
@@ -4250,17 +4276,17 @@ static DistWorldFloatingPlatformJumpPointTemplate *DistWorldFile_GetFloatingPlat
     return (DistWorldFloatingPlatformJumpPointTemplate *)templates;
 }
 
-static int DistWorldFile_GetCameraAngleSectionSize(DistWorldFile *file)
+static int DistWorldMapFile_GetCameraAngleSectionSize(DistWorldMapFile *file)
 {
     return file->header->cameraAngleSectionSize;
 }
 
-static int DistWorldFile_GetCameraAngleCount(DistWorldFile *file)
+static int DistWorldMapFile_GetCameraAngleCount(DistWorldMapFile *file)
 {
     return file->cameraAngleSection->count;
 }
 
-static DistWorldCameraAngleTemplate *DistWorldFile_GetCameraAngleTemplates(DistWorldFile *file)
+static DistWorldCameraAngleTemplate *DistWorldMapFile_GetCameraAngleTemplates(DistWorldMapFile *file)
 {
     u8 *templates = (u8 *)file->cameraAngleSection;
     templates += sizeof(int);
@@ -4270,13 +4296,13 @@ static DistWorldCameraAngleTemplate *DistWorldFile_GetCameraAngleTemplates(DistW
 
 static int GetActiveGhostPropFileSectionSize(DistWorldSystem *system)
 {
-    return system->unk_169C.distortionWorldFile.header->ghostPropSectionSize;
+    return system->mainArchive.mapFile.header->ghostPropSectionSize;
 }
 
 static int GetInactiveGhostPropFileSectionSize(DistWorldSystem *system)
 {
     int ghostPropSectionSize = 0;
-    DistWorldFile *inactiveFile = &system->unk_169C.inactiveDistortionWorldFile;
+    DistWorldMapFile *inactiveFile = &system->mainArchive.inactiveMapFile;
 
     if (inactiveFile->mapHeaderID != MAP_HEADER_INVALID) {
         ghostPropSectionSize = inactiveFile->header->ghostPropSectionSize;
@@ -4285,12 +4311,12 @@ static int GetInactiveGhostPropFileSectionSize(DistWorldSystem *system)
     return ghostPropSectionSize;
 }
 
-static const DistWorldGhostPropHeader *DistWorldFile_GetGhostPropHeader(DistWorldFile *file)
+static const DistWorldGhostPropHeader *DistWorldMapFile_GetGhostPropHeader(DistWorldMapFile *file)
 {
     return file->ghostPropSection;
 }
 
-static const DistWorldGhostPropTemplate *DistWorldFile_GetGhostPropTemplates(DistWorldFile *file)
+static const DistWorldGhostPropTemplate *DistWorldMapFile_GetGhostPropTemplates(DistWorldMapFile *file)
 {
     const u8 *templates = file->ghostPropSection;
     templates += sizeof(DistWorldGhostPropHeader);
@@ -4298,7 +4324,7 @@ static const DistWorldGhostPropTemplate *DistWorldFile_GetGhostPropTemplates(Dis
     return (DistWorldGhostPropTemplate *)templates;
 }
 
-static const DistWorldGhostPropTrigger *DistWorldFile_GetGhostPropTriggers(DistWorldFile *file)
+static const DistWorldGhostPropTrigger *DistWorldMapFile_GetGhostPropTriggers(DistWorldMapFile *file)
 {
     const DistWorldGhostPropHeader *header = file->ghostPropSection;
     const u8 *triggers = file->ghostPropSection;
@@ -4309,21 +4335,21 @@ static const DistWorldGhostPropTrigger *DistWorldFile_GetGhostPropTriggers(DistW
 
 static void InitFloatingPlatformManager(DistWorldSystem *system)
 {
-    DistWorldFile *file = &system->unk_169C.distortionWorldFile;
+    DistWorldMapFile *file = &system->mainArchive.mapFile;
 
-    GF_ASSERT(system->unk_169C.floatingPlatformMan.templates == NULL);
+    GF_ASSERT(system->mainArchive.floatingPlatformMan.templates == NULL);
 
-    if (DistWorldFile_GetFloatingPlatformSectionSize(file)) {
-        DistWorldFloatingPlatformManager *floatingPlatformMan = &system->unk_169C.floatingPlatformMan;
+    if (DistWorldMapFile_GetFloatingPlatformSectionSize(file)) {
+        DistWorldFloatingPlatformManager *floatingPlatformMan = &system->mainArchive.floatingPlatformMan;
 
-        floatingPlatformMan->platformCount = DistWorldFile_GetFloatingPlatformCount(file);
-        floatingPlatformMan->templates = DistWorldFile_GetFloatingPlatformSectionTemplates(file);
+        floatingPlatformMan->platformCount = DistWorldMapFile_GetFloatingPlatformCount(file);
+        floatingPlatformMan->templates = DistWorldMapFile_GetFloatingPlatformSectionTemplates(file);
     }
 }
 
 static void ResetFloatingPlatformManager(DistWorldSystem *system)
 {
-    DistWorldFloatingPlatformManager *floatingPlatformMan = &system->unk_169C.floatingPlatformMan;
+    DistWorldFloatingPlatformManager *floatingPlatformMan = &system->mainArchive.floatingPlatformMan;
 
     if (floatingPlatformMan->terrainAttributes != NULL) {
         Heap_Free(floatingPlatformMan->terrainAttributes);
@@ -4334,7 +4360,7 @@ static void ResetFloatingPlatformManager(DistWorldSystem *system)
 
 static BOOL HasFloatingPlatformAtCoords(DistWorldSystem *system, int tileX, int tileY, int tileZ, s16 floatingPlatformKind)
 {
-    DistWorldFloatingPlatformManager *floatingPlatformMan = &system->unk_169C.floatingPlatformMan;
+    DistWorldFloatingPlatformManager *floatingPlatformMan = &system->mainArchive.floatingPlatformMan;
     const DistWorldFloatingPlatformTemplate *floatingPlatformTemplateIter = floatingPlatformMan->templates;
     int i = 0;
     int floatingPlatformCount = floatingPlatformMan->platformCount;
@@ -4359,7 +4385,7 @@ static BOOL HasFloatingPlatformAtCoords(DistWorldSystem *system, int tileX, int 
 
 static void FindAndPrepareNewCurrentFloatingPlatform(DistWorldSystem *system, int tileX, int tileY, int tileZ, s16 floatingPlatformKind)
 {
-    DistWorldFloatingPlatformManager *floatingPlatformMan = &system->unk_169C.floatingPlatformMan;
+    DistWorldFloatingPlatformManager *floatingPlatformMan = &system->mainArchive.floatingPlatformMan;
     const DistWorldFloatingPlatformTemplate *floatingPlatformTemplateIter = floatingPlatformMan->templates;
     int i = 0;
     int floatingPlatformCount = floatingPlatformMan->platformCount;
@@ -4394,7 +4420,7 @@ static void FindAndPrepareNewCurrentFloatingPlatform(DistWorldSystem *system, in
 
 static void PrepareNewCurrentFloatingPlatform(DistWorldSystem *system, u32 floatingPlatformIndex)
 {
-    DistWorldFloatingPlatformManager *floatingPlatformMan = &system->unk_169C.floatingPlatformMan;
+    DistWorldFloatingPlatformManager *floatingPlatformMan = &system->mainArchive.floatingPlatformMan;
     const DistWorldFloatingPlatformTemplate *floatingPlatformTemplates = floatingPlatformMan->templates;
     int floatingPlatformCount = floatingPlatformMan->platformCount;
 
@@ -4418,7 +4444,7 @@ static void PrepareNewCurrentFloatingPlatform(DistWorldSystem *system, u32 float
 
 static void FreeFloatingPlatformManagerTerrainAttrs(DistWorldSystem *system)
 {
-    DistWorldFloatingPlatformManager *floatingPlatformMan = &system->unk_169C.floatingPlatformMan;
+    DistWorldFloatingPlatformManager *floatingPlatformMan = &system->mainArchive.floatingPlatformMan;
 
     floatingPlatformMan->currentPlatformIndex = floatingPlatformMan->platformCount;
     SetPersistedCurrentFloatingPlatformIndex(system, floatingPlatformMan->platformCount);
@@ -4431,7 +4457,7 @@ static void FreeFloatingPlatformManagerTerrainAttrs(DistWorldSystem *system)
 
 static u32 GetCurrentFloatingPlatformKind2(DistWorldSystem *system)
 {
-    DistWorldFloatingPlatformManager *floatingPlatformMan = &system->unk_169C.floatingPlatformMan;
+    DistWorldFloatingPlatformManager *floatingPlatformMan = &system->mainArchive.floatingPlatformMan;
     int floatingPlatformCount = floatingPlatformMan->platformCount;
 
     if (floatingPlatformMan->platformCount == 0 || floatingPlatformMan->currentPlatformIndex >= floatingPlatformMan->platformCount) {
@@ -4444,7 +4470,7 @@ static u32 GetCurrentFloatingPlatformKind2(DistWorldSystem *system)
 
 static u32 GetCurrentFloatingPlatformKind(DistWorldSystem *system)
 {
-    DistWorldFloatingPlatformManager *floatingPlatformMan = &system->unk_169C.floatingPlatformMan;
+    DistWorldFloatingPlatformManager *floatingPlatformMan = &system->mainArchive.floatingPlatformMan;
     int floatingPlatformCount = floatingPlatformMan->platformCount;
 
     if (floatingPlatformMan->platformCount == 0 || floatingPlatformMan->currentPlatformIndex >= floatingPlatformMan->platformCount) {
@@ -4457,7 +4483,7 @@ static u32 GetCurrentFloatingPlatformKind(DistWorldSystem *system)
 
 static u32 GetCurrentFloatingPlatformKindSafely(DistWorldSystem *system, int tileX, int tileY, int tileZ)
 {
-    DistWorldFloatingPlatformManager *floatingPlatformMan = &system->unk_169C.floatingPlatformMan;
+    DistWorldFloatingPlatformManager *floatingPlatformMan = &system->mainArchive.floatingPlatformMan;
     int floatingPlatformCount = floatingPlatformMan->platformCount;
 
     if (floatingPlatformMan->platformCount == 0 || floatingPlatformMan->currentPlatformIndex >= floatingPlatformMan->platformCount) {
@@ -4475,7 +4501,7 @@ static u32 GetCurrentFloatingPlatformKindSafely(DistWorldSystem *system, int til
 
 static void LoadFloatingPlatformTerrainAttributes(DistWorldSystem *system, u32 distortionWorldAttrID)
 {
-    DistWorldFloatingPlatformManager *floatingPlatformMan = &system->unk_169C.floatingPlatformMan;
+    DistWorldFloatingPlatformManager *floatingPlatformMan = &system->mainArchive.floatingPlatformMan;
 
     if (floatingPlatformMan->terrainAttributes != NULL) {
         Heap_Free(floatingPlatformMan->terrainAttributes);
@@ -4489,7 +4515,7 @@ static void LoadFloatingPlatformTerrainAttributes(DistWorldSystem *system, u32 d
 
 static u16 GetCurrentFloatingPlatformTileAttributesRelative(DistWorldSystem *system, int tileRelativeVerticalPos, int tileRelativeHorizontalPos)
 {
-    DistWorldFloatingPlatformManager *floatingPlatformMan = &system->unk_169C.floatingPlatformMan;
+    DistWorldFloatingPlatformManager *floatingPlatformMan = &system->mainArchive.floatingPlatformMan;
     const DistWorldFloatingPlatformTemplate *currentFloatingPlatform = &floatingPlatformMan->templates[floatingPlatformMan->currentPlatformIndex];
 
     GF_ASSERT(floatingPlatformMan->terrainAttributes != NULL);
@@ -4500,7 +4526,7 @@ static u16 GetCurrentFloatingPlatformTileAttributes(DistWorldSystem *system, int
 {
     int tileRelativeVerticalPos = 0;
     int tileRelativeHorizontalPos = 0;
-    DistWorldFloatingPlatformManager *floatingPlatformMan = &system->unk_169C.floatingPlatformMan;
+    DistWorldFloatingPlatformManager *floatingPlatformMan = &system->mainArchive.floatingPlatformMan;
 
     if (floatingPlatformMan->platformCount == 0 || floatingPlatformMan->currentPlatformIndex >= floatingPlatformMan->platformCount) {
         return INVALID_TERRAIN_ATTRIBUTES;
@@ -4541,27 +4567,27 @@ static u16 GetCurrentFloatingPlatformTileAttributes(DistWorldSystem *system, int
 
 static void InitFloatingPlatformJumpPoint(DistWorldSystem *system)
 {
-    DistWorldFile *file = &system->unk_169C.distortionWorldFile;
+    DistWorldMapFile *file = &system->mainArchive.mapFile;
 
-    GF_ASSERT(system->unk_169C.floatingPlatformJumpPoints.templates == NULL);
+    GF_ASSERT(system->mainArchive.floatingPlatformJumpPoints.templates == NULL);
 
-    if (DistWorldFile_GetFloatingPlatformJumpPointSectionSize(file)) {
-        DistWorldFileFloatingPlatformJumpPointSection *floatingPlatformJumpPoints = &system->unk_169C.floatingPlatformJumpPoints;
+    if (DistWorldMapFile_GetFloatingPlatformJumpPointSectionSize(file)) {
+        DistWorldMapFileFloatingPlatformJumpPointSection *floatingPlatformJumpPoints = &system->mainArchive.floatingPlatformJumpPoints;
 
-        floatingPlatformJumpPoints->count = DistWorldFile_GetFloatingPlatformJumpPointCount(file);
-        floatingPlatformJumpPoints->templates = DistWorldFile_GetFloatingPlatformJumpPointTemplates(file);
+        floatingPlatformJumpPoints->count = DistWorldMapFile_GetFloatingPlatformJumpPointCount(file);
+        floatingPlatformJumpPoints->templates = DistWorldMapFile_GetFloatingPlatformJumpPointTemplates(file);
     }
 }
 
 static void ResetFloatingPlatformJumpPoint(DistWorldSystem *system)
 {
-    DistWorldFileFloatingPlatformJumpPointSection *floatingPlatformJumpPoints = &system->unk_169C.floatingPlatformJumpPoints;
-    memset(floatingPlatformJumpPoints, 0, sizeof(DistWorldFileFloatingPlatformJumpPointSection));
+    DistWorldMapFileFloatingPlatformJumpPointSection *floatingPlatformJumpPoints = &system->mainArchive.floatingPlatformJumpPoints;
+    memset(floatingPlatformJumpPoints, 0, sizeof(DistWorldMapFileFloatingPlatformJumpPointSection));
 }
 
 static const DistWorldFloatingPlatformJumpPointTemplate *FindFloatingPlatformJumpPointAt(DistWorldSystem *system, int playerX, int playerY, int playerZ, enum FaceDirection playerDir)
 {
-    DistWorldFileFloatingPlatformJumpPointSection *floatingPlatformJumpPoints = &system->unk_169C.floatingPlatformJumpPoints;
+    DistWorldMapFileFloatingPlatformJumpPointSection *floatingPlatformJumpPoints = &system->mainArchive.floatingPlatformJumpPoints;
     DistWorldFloatingPlatformJumpPointTemplate *iter = floatingPlatformJumpPoints->templates;
     int i = floatingPlatformJumpPoints->count;
 
@@ -4581,27 +4607,27 @@ static const DistWorldFloatingPlatformJumpPointTemplate *FindFloatingPlatformJum
 
 static void InitCameraAngleTemplates(DistWorldSystem *system)
 {
-    DistWorldFile *file = &system->unk_169C.distortionWorldFile;
+    DistWorldMapFile *file = &system->mainArchive.mapFile;
 
-    GF_ASSERT(system->unk_169C.cameraAngleTemplates.templates == NULL);
+    GF_ASSERT(system->mainArchive.cameraAngleTemplates.templates == NULL);
 
-    if (DistWorldFile_GetCameraAngleSectionSize(file)) {
-        DistWorldCameraAngleTemplates *cameraAngleTemplates = &system->unk_169C.cameraAngleTemplates;
+    if (DistWorldMapFile_GetCameraAngleSectionSize(file)) {
+        DistWorldCameraAngleTemplates *cameraAngleTemplates = &system->mainArchive.cameraAngleTemplates;
 
-        cameraAngleTemplates->count = DistWorldFile_GetCameraAngleCount(file);
-        cameraAngleTemplates->templates = DistWorldFile_GetCameraAngleTemplates(file);
+        cameraAngleTemplates->count = DistWorldMapFile_GetCameraAngleCount(file);
+        cameraAngleTemplates->templates = DistWorldMapFile_GetCameraAngleTemplates(file);
     }
 }
 
 static void ResetCameraAngleTemplates(DistWorldSystem *system)
 {
-    DistWorldCameraAngleTemplates *cameraAngleTemplates = &system->unk_169C.cameraAngleTemplates;
+    DistWorldCameraAngleTemplates *cameraAngleTemplates = &system->mainArchive.cameraAngleTemplates;
     memset(cameraAngleTemplates, 0, sizeof(DistWorldCameraAngleTemplates));
 }
 
 static const DistWorldCameraAngleTemplate *FindCameraAngleForPlayerPosition(DistWorldSystem *system, int playerX, int playerY, int playerZ, enum FaceDirection playerDir)
 {
-    DistWorldCameraAngleTemplates *cameraAngleTemplates = &system->unk_169C.cameraAngleTemplates;
+    DistWorldCameraAngleTemplates *cameraAngleTemplates = &system->mainArchive.cameraAngleTemplates;
     DistWorldCameraAngleTemplate *cameraAngleTemplateIter = cameraAngleTemplates->templates;
     int i = cameraAngleTemplates->count;
 
@@ -4619,22 +4645,22 @@ static const DistWorldCameraAngleTemplate *FindCameraAngleForPlayerPosition(Dist
     return NULL;
 }
 
-static void DistWorldGhostPropData_InitFromFile(DistWorldFile *file, DistWorldGhostPropData *data)
+static void DistWorldGhostPropData_InitFromFile(DistWorldMapFile *file, DistWorldGhostPropData *data)
 {
     GF_ASSERT(data->header == NULL);
     GF_ASSERT(data->templates == NULL);
     GF_ASSERT(data->triggers == NULL);
 
-    data->header = DistWorldFile_GetGhostPropHeader(file);
-    data->templates = DistWorldFile_GetGhostPropTemplates(file);
-    data->triggers = DistWorldFile_GetGhostPropTriggers(file);
+    data->header = DistWorldMapFile_GetGhostPropHeader(file);
+    data->templates = DistWorldMapFile_GetGhostPropTemplates(file);
+    data->triggers = DistWorldMapFile_GetGhostPropTriggers(file);
 }
 
 static void InitActiveGhostPropData(DistWorldSystem *system)
 {
     if (GetActiveGhostPropFileSectionSize(system)) {
-        DistWorldFile *file = &system->unk_169C.distortionWorldFile;
-        DistWorldGhostPropData *ghostPropData = &system->unk_169C.ghostPropData;
+        DistWorldMapFile *file = &system->mainArchive.mapFile;
+        DistWorldGhostPropData *ghostPropData = &system->mainArchive.ghostPropData;
 
         DistWorldGhostPropData_InitFromFile(file, ghostPropData);
     }
@@ -4643,8 +4669,8 @@ static void InitActiveGhostPropData(DistWorldSystem *system)
 static void InitInactiveGhostPropData(DistWorldSystem *system)
 {
     if (GetInactiveGhostPropFileSectionSize(system)) {
-        DistWorldFile *file = &system->unk_169C.inactiveDistortionWorldFile;
-        DistWorldGhostPropData *ghostPropData = &system->unk_169C.inactiveGhostPropData;
+        DistWorldMapFile *file = &system->mainArchive.inactiveMapFile;
+        DistWorldGhostPropData *ghostPropData = &system->mainArchive.inactiveGhostPropData;
 
         DistWorldGhostPropData_InitFromFile(file, ghostPropData);
     }
@@ -4663,12 +4689,12 @@ static void DistWorldGhostPropData_Reset(DistWorldGhostPropData *data)
 
 static void ResetActiveGhostPropData(DistWorldSystem *system)
 {
-    DistWorldGhostPropData_Reset(&system->unk_169C.ghostPropData);
+    DistWorldGhostPropData_Reset(&system->mainArchive.ghostPropData);
 }
 
 static void ResetInactiveGhostPropData(DistWorldSystem *system)
 {
-    DistWorldGhostPropData_Reset(&system->unk_169C.inactiveGhostPropData);
+    DistWorldGhostPropData_Reset(&system->mainArchive.inactiveGhostPropData);
 }
 
 static void ResetAllGhostPropData(DistWorldSystem *system)
@@ -4679,304 +4705,282 @@ static void ResetAllGhostPropData(DistWorldSystem *system)
 
 static void MoveActiveGhostPropDataToInactive(DistWorldSystem *system)
 {
-    system->unk_169C.inactiveGhostPropData = system->unk_169C.ghostPropData;
-    DistWorldGhostPropData_Reset(&system->unk_169C.ghostPropData);
+    system->mainArchive.inactiveGhostPropData = system->mainArchive.ghostPropData;
+    DistWorldGhostPropData_Reset(&system->mainArchive.ghostPropData);
 }
 
 static void MoveInactiveGhostPropDataToActive(DistWorldSystem *system)
 {
-    system->unk_169C.ghostPropData = system->unk_169C.inactiveGhostPropData;
-    DistWorldGhostPropData_Reset(&system->unk_169C.inactiveGhostPropData);
+    system->mainArchive.ghostPropData = system->mainArchive.inactiveGhostPropData;
+    DistWorldGhostPropData_Reset(&system->mainArchive.inactiveGhostPropData);
 }
 
 static const DistWorldGhostPropHeader *GetActiveGhostPropHeader(DistWorldSystem *system)
 {
-    return system->unk_169C.ghostPropData.header;
+    return system->mainArchive.ghostPropData.header;
 }
 
 static const DistWorldGhostPropHeader *GetInactiveGhostPropHeader(DistWorldSystem *system)
 {
-    return system->unk_169C.inactiveGhostPropData.header;
+    return system->mainArchive.inactiveGhostPropData.header;
 }
 
 static const DistWorldGhostPropTemplate *GetActiveGhostPropTemplates(DistWorldSystem *system)
 {
-    return system->unk_169C.ghostPropData.templates;
+    return system->mainArchive.ghostPropData.templates;
 }
 
 static const DistWorldGhostPropTemplate *GetInactiveGhostPropTemplates(DistWorldSystem *system)
 {
-    return system->unk_169C.inactiveGhostPropData.templates;
+    return system->mainArchive.inactiveGhostPropData.templates;
 }
 
 static const DistWorldGhostPropTrigger *GetActiveGhostPropTriggers(DistWorldSystem *system)
 {
-    return system->unk_169C.ghostPropData.triggers;
+    return system->mainArchive.ghostPropData.triggers;
 }
 
-static void ov9_0224C8E8(DistWorldSystem *param0)
+static void InitialLoadInactiveFloor(DistWorldSystem *system)
 {
-    enum MapHeader mapHeaderID, v1;
-    UnkStruct_ov9_0224C8E8 *v2 = &param0->unk_1E88;
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    const DistWorldMapConnections *v4, *v5;
+    DistWorldInactiveFloor *inactiveFloor = &system->inactiveFloor;
+    FieldSystem *fieldSystem = system->fieldSystem;
 
-    mapHeaderID = DistWorldSystem_GetMapHeaderID(param0);
-    v4 = GetConnectionsForMap(mapHeaderID);
-    v1 = v4->nextID;
+    enum MapHeader mapHeaderID = DistWorldSystem_GetMapHeaderID(system);
+    const DistWorldMapConnections *mapConnections = GetConnectionsForMap(mapHeaderID);
+    enum MapHeader nextMapHeaderID = mapConnections->nextID;
 
-    if (v1 == MAP_HEADER_INVALID) {
+    if (nextMapHeaderID == MAP_HEADER_INVALID) {
         return;
     }
 
-    v5 = GetConnectionsForMap(v1);
-    v2->unk_00 = v1;
+    const DistWorldMapConnections *nextMapConnections = GetConnectionsForMap(nextMapHeaderID);
+    inactiveFloor->mapHeaderID = nextMapHeaderID;
 
-    {
-        v2->unk_10 = MapMatrix_NewWithHeapID(4);
-        MapMatrix_Load(v1, v2->unk_10);
-    }
+    inactiveFloor->mapMatrix = MapMatrix_NewWithHeapID(HEAP_ID_FIELD1);
+    MapMatrix_Load(nextMapHeaderID, inactiveFloor->mapMatrix);
+    inactiveFloor->areaDataMan = fieldSystem->areaDataManager;
 
-    {
-        v2->unk_14 = fieldSystem->areaDataManager;
-    }
+    NARC *landDataNARC = LandDataManager_GetLandDataNARC(fieldSystem->landDataMan);
+    inactiveFloor->landDataMan = LandDataManager_DistortionWorldNew(inactiveFloor->mapMatrix, inactiveFloor->areaDataMan, landDataNARC);
+    LandDataManager_TrackTarget(PlayerAvatar_PosVector(fieldSystem->playerAvatar), inactiveFloor->landDataMan);
+    LandDataManager_SetInDistortionWorld(inactiveFloor->landDataMan, TRUE);
+    LandDataManager_SetSkipMapProps(inactiveFloor->landDataMan, TRUE);
 
-    {
-        NARC *v6 = LandDataManager_GetLandDataNARC(fieldSystem->landDataMan);
+    int offsetTileX;
+    int offsetAltitude;
+    int offsetTileZ;
 
-        v2->unk_18 = LandDataManager_DistortionWorldNew(v2->unk_10, v2->unk_14, v6);
-        LandDataManager_TrackTarget(PlayerAvatar_PosVector(fieldSystem->playerAvatar), v2->unk_18);
-    }
+    FindMapOffsets(system, nextMapHeaderID, &offsetTileX, &offsetAltitude, &offsetTileZ);
+    LandDataManager_DistortionWorldSetOffsets(inactiveFloor->landDataMan, offsetTileX, offsetAltitude, offsetTileZ);
 
-    {
-        LandDataManager_SetInDistortionWorld(v2->unk_18, 1);
-        LandDataManager_SetSkipMapProps(v2->unk_18, 1);
-    }
+    int playerPosX = Player_GetXPos(fieldSystem->playerAvatar);
+    int playerPosZ = Player_GetZPos(fieldSystem->playerAvatar);
 
-    {
-        int v7, v8, v9;
+    LandDataManager_DistortionWorldInitialLoad(inactiveFloor->landDataMan, playerPosX, playerPosZ);
+    inactiveFloor->ready = TRUE;
+    inactiveFloor->valid = TRUE;
 
-        ov9_0224C070(param0, v1, &v7, &v8, &v9);
-        LandDataManager_DistortionWorldSetOffsets(v2->unk_18, v7, v8, v9);
-    }
+    if (!IsPersistedDataValid(system)) {
+        MapObject *playerMapObj = Player_MapObject(fieldSystem->playerAvatar);
+        VecFx32 mapOffset;
+        VecFx32 playerPos;
 
-    {
-        int v10 = Player_GetXPos(fieldSystem->playerAvatar);
-        int v11 = Player_GetZPos(fieldSystem->playerAvatar);
+        MapObject_GetPosPtr(playerMapObj, &playerPos);
+        LandDataManager_GetOffset(fieldSystem->landDataMan, &mapOffset);
 
-        LandDataManager_DistortionWorldInitialLoad(v2->unk_18, v10, v11);
-        v2->unk_08 = 1;
-    }
+        playerPos.y = mapOffset.y + MAP_OBJECT_TILE_SIZE;
 
-    v2->unk_04 = 1;
-
-    if (IsPersistedDataValid(param0) == 0) {
-        VecFx32 v12, v13;
-        MapObject *v14 = Player_MapObject(fieldSystem->playerAvatar);
-
-        MapObject_GetPosPtr(v14, &v13);
-        LandDataManager_GetOffset(fieldSystem->landDataMan, &v12);
-
-        v13.y = v12.y + ((1 << 4) * FX32_ONE);
-
-        MapObject_SetPos(v14, &v13);
-        MapObject_SetYPrev(v14, MapObject_GetY(v14));
-        MapObject_SetY(v14, (((v13.y) >> 3) / FX32_ONE));
+        MapObject_SetPos(playerMapObj, &playerPos);
+        MapObject_SetYPrev(playerMapObj, MapObject_GetY(playerMapObj));
+        MapObject_SetY(playerMapObj, (playerPos.y >> 3) / FX32_ONE);
     }
 }
 
-static void ov9_0224C9E8(DistWorldSystem *param0)
+static void FreeInactiveFloor(DistWorldSystem *system)
 {
-    UnkStruct_ov9_0224C8E8 *v0 = &param0->unk_1E88;
+    DistWorldInactiveFloor *inactiveFloor = &system->inactiveFloor;
 
-    if (v0->unk_04) {
-        LandDataManager_ForgetTrackedTarget(v0->unk_18);
-        LandDataManager_DistortionWorldEnd(v0->unk_18);
+    if (inactiveFloor->valid) {
+        LandDataManager_ForgetTrackedTarget(inactiveFloor->landDataMan);
+        LandDataManager_DistortionWorldEnd(inactiveFloor->landDataMan);
 
-        if (v0->unk_14 != NULL) {
-            v0->unk_14 = NULL;
+        if (inactiveFloor->areaDataMan != NULL) {
+            inactiveFloor->areaDataMan = NULL;
         }
 
-        if (v0->unk_18 != NULL) {
-            LandDataManager_DistortionWorldFreeLoadedMapBuffers(v0->unk_18);
-            v0->unk_18 = NULL;
+        if (inactiveFloor->landDataMan != NULL) {
+            LandDataManager_DistortionWorldFreeLoadedMapBuffers(inactiveFloor->landDataMan);
+            inactiveFloor->landDataMan = NULL;
         }
 
-        if (v0->unk_10 != NULL) {
-            MapMatrix_Free(v0->unk_10);
-            v0->unk_10 = NULL;
+        if (inactiveFloor->mapMatrix != NULL) {
+            MapMatrix_Free(inactiveFloor->mapMatrix);
+            inactiveFloor->mapMatrix = NULL;
         }
 
-        v0->unk_04 = 0;
+        inactiveFloor->valid = FALSE;
     }
 }
 
-static void ov9_0224CA30(DistWorldSystem *param0)
+static void RenderInactiveFloor(DistWorldSystem *system)
 {
-    UnkStruct_ov9_0224C8E8 *v0 = &param0->unk_1E88;
+    DistWorldInactiveFloor *inactiveFloor = &system->inactiveFloor;
 
-    if (v0->unk_08) {
-        LandDataManager_DistortionWorldRenderNextFloorMaps(v0->unk_18, param0->fieldSystem->areaModelAttrs);
+    if (inactiveFloor->ready) {
+        LandDataManager_DistortionWorldRenderInactiveFloor(inactiveFloor->landDataMan, system->fieldSystem->areaModelAttrs);
     }
 }
 
-void ov9_0224CA50(FieldSystem *fieldSystem)
+void DistWorld_RenderInactiveFloor(FieldSystem *fieldSystem)
 {
-    DistWorldSystem *v0 = fieldSystem->unk_04->dynamicMapFeaturesData;
-    ov9_0224CA30(v0);
+    DistWorldSystem *dwSystem = fieldSystem->unk_04->dynamicMapFeaturesData;
+    RenderInactiveFloor(dwSystem);
 }
 
-void ov9_0224CA5C(FieldSystem *fieldSystem)
+void DistWorld_TickInactiveFloor(FieldSystem *fieldSystem)
 {
-    DistWorldSystem *v0 = fieldSystem->unk_04->dynamicMapFeaturesData;
-    UnkStruct_ov9_0224C8E8 *v1 = &v0->unk_1E88;
+    DistWorldSystem *dwSystem = fieldSystem->unk_04->dynamicMapFeaturesData;
+    DistWorldInactiveFloor *inactiveFloor = &dwSystem->inactiveFloor;
+    DistWorldInactiveFloorLoader *inactiveFloorLoader = &dwSystem->inactiveFloorLoader;
 
-    {
-        UnkStruct_ov9_0224CA5C *v2 = &v0->unk_1CB0;
-
-        if (v2->unk_00 == 1) {
-            ov9_0224CB30(v0);
-        } else if (v2->unk_00 == 2) {
-            ov9_0224CA98(v0);
-        }
+    if (inactiveFloorLoader->loadDir == FLOOR_LOAD_PREVIOUS) {
+        LoadInactiveFloorPrevious(dwSystem);
+    } else if (inactiveFloorLoader->loadDir == FLOOR_LOAD_NEXT) {
+        LoadInactiveFloorNext(dwSystem);
     }
 
-    if (v1->unk_08 == 1) {
-        LandDataManager_DistortionWorldTick(fieldSystem, v1->unk_18);
+    if (inactiveFloor->ready == TRUE) {
+        LandDataManager_DistortionWorldTick(fieldSystem, inactiveFloor->landDataMan);
     }
 }
 
-static void ov9_0224CA98(DistWorldSystem *param0)
+static void LoadInactiveFloorNext(DistWorldSystem *system)
 {
-    UnkStruct_ov9_0224CA5C *v0 = &param0->unk_1CB0;
-    UnkStruct_ov9_0224C8E8 *v1 = &param0->unk_1E88;
+    DistWorldInactiveFloorLoader *inactiveFloorLoader = &system->inactiveFloorLoader;
+    DistWorldInactiveFloor *inactiveFloor = &system->inactiveFloor;
 
-    switch (v0->unk_01) {
+    switch (inactiveFloorLoader->state) {
     case 0:
-        LandDataManager_DistortionWorldInitLoadedMaps(v1->unk_18, v0->unk_04, v0->unk_08, v0->unk_0C);
-        v0->unk_01++;
+        LandDataManager_DistortionWorldInitLoadedMaps(inactiveFloor->landDataMan, inactiveFloorLoader->playerPosX, inactiveFloorLoader->playerPosZ, inactiveFloorLoader->mapMatrixIndexes);
+        inactiveFloorLoader->state++;
+
         break;
+
     case 1:
-        LandDataManager_DistortionWorldLoadAndInvalidate(v1->unk_18, v0->unk_02, v0->unk_0C[v0->unk_02]);
-        v0->unk_02++;
+        LandDataManager_DistortionWorldLoadAndInvalidate(inactiveFloor->landDataMan, inactiveFloorLoader->loadedMapsCount, inactiveFloorLoader->mapMatrixIndexes[inactiveFloorLoader->loadedMapsCount]);
+        inactiveFloorLoader->loadedMapsCount++;
 
-        if (v0->unk_02 >= 4) {
-            v0->unk_01++;
+        if (inactiveFloorLoader->loadedMapsCount >= QUADRANT_COUNT) {
+            inactiveFloorLoader->state++;
         }
+
         break;
+
     case 2:
-        LandDataManager_DistortionWorldUpdateTrackedTargetValues(v1->unk_18, v0->unk_04, v0->unk_08);
+        LandDataManager_DistortionWorldUpdateTrackedTargetValues(inactiveFloor->landDataMan, inactiveFloorLoader->playerPosX, inactiveFloorLoader->playerPosZ);
 
-        {
-            int v2 = 0;
-
-            do {
-                LandDataManager_SetLoadedMapValid(v1->unk_18, v2, 1);
-                v2++;
-            } while (v2 < 4);
+        for (int i = 0; i < QUADRANT_COUNT; i++) {
+            LandDataManager_SetLoadedMapValid(inactiveFloor->landDataMan, i, TRUE);
         }
 
-        ov9_02249B04(param0);
+        LoadNextFloorElements(system);
 
-        if (v0->unk_1C != NULL) {
-            ov9_0224E0DC(v0->unk_1C, 0);
+        if (inactiveFloorLoader->movingPlatformAnimator != NULL) {
+            DistWorldMovingPlatformPropAnimator_SetPreventDeletion(inactiveFloorLoader->movingPlatformAnimator, FALSE);
         }
 
-        v1->unk_08 = 1;
-        v0->unk_00 = 0;
+        inactiveFloor->ready = TRUE;
+        inactiveFloorLoader->loadDir = FLOOR_LOAD_NONE;
     }
 }
 
-static void ov9_0224CB30(DistWorldSystem *param0)
+static void LoadInactiveFloorPrevious(DistWorldSystem *system)
 {
-    UnkStruct_ov9_0224CA5C *v0 = &param0->unk_1CB0;
-    UnkStruct_ov9_0224C8E8 *v1 = &param0->unk_1E88;
-    FieldSystem *fieldSystem = param0->fieldSystem;
+    DistWorldInactiveFloorLoader *inactiveFloorLoader = &system->inactiveFloorLoader;
+    DistWorldInactiveFloor *inactiveFloor = &system->inactiveFloor;
+    FieldSystem *fieldSystem = system->fieldSystem;
 
-    switch (v0->unk_01) {
+    switch (inactiveFloorLoader->state) {
     case 0:
-        LandDataManager_DistortionWorldInvalidateLoadedMaps(fieldSystem->landDataMan, v0->unk_04, v0->unk_08, v0->unk_0C);
-        v0->unk_01++;
+        LandDataManager_DistortionWorldInvalidateLoadedMaps(fieldSystem->landDataMan, inactiveFloorLoader->playerPosX, inactiveFloorLoader->playerPosZ, inactiveFloorLoader->mapMatrixIndexes);
+        inactiveFloorLoader->state++;
+
         break;
+
     case 1:
-        LandDataManager_DistortionWorldLoadEntire(fieldSystem->landDataMan, v0->unk_02, v0->unk_0C[v0->unk_02]);
-        v0->unk_02++;
+        LandDataManager_DistortionWorldLoadEntire(fieldSystem->landDataMan, inactiveFloorLoader->loadedMapsCount, inactiveFloorLoader->mapMatrixIndexes[inactiveFloorLoader->loadedMapsCount]);
+        inactiveFloorLoader->loadedMapsCount++;
 
-        if (v0->unk_02 >= 4) {
-            v0->unk_01++;
+        if (inactiveFloorLoader->loadedMapsCount >= QUADRANT_COUNT) {
+            inactiveFloorLoader->state++;
         }
+
         break;
+
     case 2:
-        LandDataManager_DistortionWorldUpdateTrackedTargetValues(fieldSystem->landDataMan, v0->unk_04, v0->unk_08);
+        LandDataManager_DistortionWorldUpdateTrackedTargetValues(fieldSystem->landDataMan, inactiveFloorLoader->playerPosX, inactiveFloorLoader->playerPosZ);
 
-        {
-            int v3 = 0;
-
-            do {
-                LandDataManager_SetLoadedMapValid(fieldSystem->landDataMan, v3, 1);
-                v3++;
-            } while (v3 < 4);
+        for (int i = 0; i < QUADRANT_COUNT; i++) {
+            LandDataManager_SetLoadedMapValid(fieldSystem->landDataMan, i, TRUE);
         }
 
-        ov9_02249B68(param0);
+        LoadPreviousFloorElements(system);
 
-        if (v0->unk_1C != NULL) {
-            ov9_0224E0DC(v0->unk_1C, 0);
+        if (inactiveFloorLoader->movingPlatformAnimator != NULL) {
+            DistWorldMovingPlatformPropAnimator_SetPreventDeletion(inactiveFloorLoader->movingPlatformAnimator, FALSE);
         }
 
-        v0->unk_00 = 0;
+        inactiveFloorLoader->loadDir = FLOOR_LOAD_NONE;
     }
 }
 
-static int (*const Unk_ov9_022514E0[5])(DistWorldSystem *, UnkStruct_ov9_0224CBD8 *);
-static int (*const Unk_ov9_02251428[4])(DistWorldSystem *, UnkStruct_ov9_0224CBD8 *);
+static const FloorLoadHandler sLoadNextFloorHandlers[FLOOR_LOAD_NEXT_STATE_COUNT];
+static const FloorLoadHandler sLoadPreviousFloorHandlers[FLOOR_LOAD_PREVIOUS_STATE_COUNT];
 
-static void ov9_0224CBBC(LandDataManager *param0, BOOL param1)
+static void SetAllLoadedMapsValid(LandDataManager *landDataMan, BOOL valid)
 {
-    int v0 = 0;
+    int i = 0;
 
     do {
-        LandDataManager_SetLoadedMapValid(param0, v0++, param1);
-    } while (v0 < 4);
+        LandDataManager_SetLoadedMapValid(landDataMan, i++, valid);
+    } while (i < QUADRANT_COUNT);
 }
 
-static void ov9_0224CBD8(DistWorldSystem *param0)
+static void StartLoadFloorTask(DistWorldSystem *system)
 {
-    UnkStruct_ov9_0224CBD8 *v0 = &param0->unk_1CD0;
+    DistWorldFloorLoader *floorLoader = &system->floorLoader;
 
-    v0->unk_00 = 0;
-    v0->unk_2C = SysTask_Start(ov9_0224CC08, param0, 1);
+    floorLoader->loadDir = FLOOR_LOAD_NONE;
+    floorLoader->loadTask = SysTask_Start(Task_LoadFloor, system, 1);
 }
 
-static void ov9_0224CBF8(DistWorldSystem *param0)
+static void FinishLoadFloorTask(DistWorldSystem *system)
 {
-    UnkStruct_ov9_0224CBD8 *v0 = &param0->unk_1CD0;
-
-    SysTask_Done(v0->unk_2C);
+    DistWorldFloorLoader *floorLoader = &system->floorLoader;
+    SysTask_Done(floorLoader->loadTask);
 }
 
-static void ov9_0224CC08(SysTask *param0, void *param1)
+static void Task_LoadFloor(SysTask *sysTask, void *sysTaskParam)
 {
-    DistWorldSystem *v0 = param1;
-    UnkStruct_ov9_0224CBD8 *v1 = &v0->unk_1CD0;
+    DistWorldSystem *system = sysTaskParam;
+    DistWorldFloorLoader *floorLoader = &system->floorLoader;
+    FloorLoadHandler *floorLoadHandlers = NULL;
 
-    int (*const *v2)(DistWorldSystem *, UnkStruct_ov9_0224CBD8 *) = NULL;
-
-    if (v1->unk_00 == 2) {
-        v2 = Unk_ov9_022514E0;
-    } else if (v1->unk_00 == 1) {
-        v2 = Unk_ov9_02251428;
+    if (floorLoader->loadDir == FLOOR_LOAD_NEXT) {
+        floorLoadHandlers = sLoadNextFloorHandlers;
+    } else if (floorLoader->loadDir == FLOOR_LOAD_PREVIOUS) {
+        floorLoadHandlers = sLoadPreviousFloorHandlers;
     }
 
-    if (v2 != NULL) {
-        int v3;
+    if (floorLoadHandlers != NULL) {
+        int handlerRes;
 
         do {
-            v3 = v2[v1->unk_04](v0, v1);
-        } while (v3 == 1);
+            handlerRes = floorLoadHandlers[floorLoader->state](system, floorLoader);
+        } while (handlerRes == FLOOR_LOAD_HANDLER_RES_LOOP);
 
-        if (v3 == 2) {
-            v1->unk_00 = 0;
+        if (handlerRes == FLOOR_LOAD_HANDLER_RES_FINISH) {
+            floorLoader->loadDir = FLOOR_LOAD_NONE;
         }
     }
 }
@@ -4985,261 +4989,251 @@ static void Dummy0224CC4C(DistWorldSystem *system)
 {
 }
 
-static void ov9_0224CC50(DistWorldSystem *param0, DistWorldMovingPlatformPropAnimator *param1, u32 param2)
+static void LoadFloor(DistWorldSystem *system, DistWorldMovingPlatformPropAnimator *movingPlatformAnimator, enum FloorLoadDirection loadDir)
 {
-    UnkStruct_ov9_0224CBD8 *v0 = &param0->unk_1CD0;
+    DistWorldFloorLoader *floorLoader = &system->floorLoader;
 
-    GF_ASSERT(v0->unk_00 == 0);
-    GF_ASSERT(param2 != 0);
+    GF_ASSERT(floorLoader->loadDir == FLOOR_LOAD_NONE);
+    GF_ASSERT(loadDir != FLOOR_LOAD_NONE);
 
-    v0->unk_00 = param2;
-    v0->unk_04 = 0;
-    v0->unk_06 = 0;
-    v0->unk_28 = param1;
+    floorLoader->loadDir = loadDir;
+    floorLoader->state = 0;
+    floorLoader->loadedMapsCount = 0;
+    floorLoader->movingPlatformAnimator = movingPlatformAnimator;
 }
 
-static BOOL ov9_0224CC7C(DistWorldSystem *param0)
+static BOOL IsFloorLoaderActive(DistWorldSystem *system)
 {
-    UnkStruct_ov9_0224CBD8 *v0 = &param0->unk_1CD0;
-
-    if (v0->unk_00 != 0) {
-        return 1;
-    }
-
-    return 0;
+    return system->floorLoader.loadDir != FLOOR_LOAD_NONE;
 }
 
-static int ov9_0224CC90(DistWorldSystem *param0, UnkStruct_ov9_0224CBD8 *param1)
+static int FloorLoadNext_PrepareUnloadActive(DistWorldSystem *system, DistWorldFloorLoader *floorLoader)
 {
-    ov9_0224CBBC(param0->fieldSystem->landDataMan, 0);
-    ov9_02249BD4(param0, DistWorldSystem_GetMapHeaderID(param0));
+    SetAllLoadedMapsValid(system->fieldSystem->landDataMan, FALSE);
+    PrepareUnloadingActiveFloor(system, DistWorldSystem_GetMapHeaderID(system));
 
-    param1->unk_04 = 1;
-    return 0;
+    floorLoader->state = FLOOR_LOAD_NEXT_STATE_MOVE_INACTIVE_TO_ACTIVE;
+    return FLOOR_LOAD_HANDLER_RES_CONTINUE;
 }
 
-static int ov9_0224CCB8(DistWorldSystem *param0, UnkStruct_ov9_0224CBD8 *param1)
+static int FloorLoadNext_MoveInactiveToActive(DistWorldSystem *system, DistWorldFloorLoader *floorLoader)
 {
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    UnkStruct_ov9_0224C8E8 *v1 = &param0->unk_1E88;
-    const DistWorldMapConnections *v2 = GetConnectionsForMap(DistWorldSystem_GetMapHeaderID(param0));
-    GF_ASSERT(v2->nextID != MAP_HEADER_INVALID);
+    FieldSystem *fieldSystem = system->fieldSystem;
+    DistWorldInactiveFloor *inactiveFloor = &system->inactiveFloor;
+    const DistWorldMapConnections *mapConnections = GetConnectionsForMap(DistWorldSystem_GetMapHeaderID(system));
+    GF_ASSERT(mapConnections->nextID != MAP_HEADER_INVALID);
 
-    v2 = GetConnectionsForMap(v2->nextID);
-    param1->unk_0C = v2->currID;
+    mapConnections = GetConnectionsForMap(mapConnections->nextID);
+    floorLoader->mapHeaderID = mapConnections->currID;
 
-    FieldMap_ChangeZoneDistortionWorld(param0->fieldSystem, param1->unk_0C);
-    ov9_0224BF18(param0, v2->nextID);
+    FieldMap_ChangeZoneDistortionWorld(system->fieldSystem, floorLoader->mapHeaderID);
+    PrepareLoadingInactiveFloor(system, mapConnections->nextID);
     LandDataManager_DistortionWorldEndWithoutFreeing(fieldSystem->landDataMan);
 
-    param1->unk_08 = Player_GetXPos(fieldSystem->playerAvatar);
-    param1->unk_0A = Player_GetZPos(fieldSystem->playerAvatar);
+    floorLoader->playerPosX = Player_GetXPos(fieldSystem->playerAvatar);
+    floorLoader->playerPosZ = Player_GetZPos(fieldSystem->playerAvatar);
 
-    LandDataManager_DistortionWorldPrepareNextFloor(v1->unk_10, v1->unk_14, v1->unk_18, fieldSystem->landDataMan, param1->unk_08, param1->unk_0A);
-    v1->unk_08 = 0;
-    ov9_0224CBBC(v1->unk_18, 0);
+    LandDataManager_DistortionWorldPrepareNextFloor(inactiveFloor->mapMatrix, inactiveFloor->areaDataMan, inactiveFloor->landDataMan, fieldSystem->landDataMan, floorLoader->playerPosX, floorLoader->playerPosZ);
+    inactiveFloor->ready = FALSE;
+    SetAllLoadedMapsValid(inactiveFloor->landDataMan, FALSE);
 
-    MapMatrix_Free(v1->unk_10);
-    v1->unk_10 = NULL;
+    MapMatrix_Free(inactiveFloor->mapMatrix);
+    inactiveFloor->mapMatrix = NULL;
 
-    ov9_0224CBBC(param0->fieldSystem->landDataMan, 1);
-    v1->unk_00 = v2->nextID;
+    SetAllLoadedMapsValid(system->fieldSystem->landDataMan, TRUE);
+    inactiveFloor->mapHeaderID = mapConnections->nextID;
 
-    if (v1->unk_00 != 593) {
-        v2 = GetConnectionsForMap(v2->nextID);
-        v1->unk_10 = MapMatrix_NewWithHeapID(4);
-        MapMatrix_Load(v2->currID, v1->unk_10);
-        param1->unk_04 = 2;
+    if (inactiveFloor->mapHeaderID != MAP_HEADER_INVALID) {
+        mapConnections = GetConnectionsForMap(mapConnections->nextID);
+        inactiveFloor->mapMatrix = MapMatrix_NewWithHeapID(HEAP_ID_FIELD1);
+        MapMatrix_Load(mapConnections->currID, inactiveFloor->mapMatrix);
+        floorLoader->state = FLOOR_LOAD_NEXT_STATE_PREPARE_LOAD_INACTIVE;
     } else {
-        param1->unk_04 = 4;
+        floorLoader->state = FLOOR_LOAD_NEXT_STATE_FINISH;
     }
 
-    return 0;
+    return FLOOR_LOAD_HANDLER_RES_CONTINUE;
 }
 
-static int ov9_0224CD84(DistWorldSystem *param0, UnkStruct_ov9_0224CBD8 *param1)
+static int FloorLoadNext_PrepareLoadInactive(DistWorldSystem *system, DistWorldFloorLoader *floorLoader)
 {
-    if (param1->unk_20 == 0) {
-        int v0, v1, v2;
-        NARC *v3;
-        UnkStruct_ov9_0224C8E8 *v4 = &param0->unk_1E88;
+    if (!floorLoader->waitingToLoadInactive) {
+        DistWorldInactiveFloor *inactiveFloor = &system->inactiveFloor;
 
-        v3 = LandDataManager_GetLandDataNARC(param0->fieldSystem->landDataMan);
-        LandDataManager_DistortionWorldInit(v4->unk_18, v4->unk_10, v4->unk_14, v3);
+        NARC *landDataNARC = LandDataManager_GetLandDataNARC(system->fieldSystem->landDataMan);
+        LandDataManager_DistortionWorldInit(inactiveFloor->landDataMan, inactiveFloor->mapMatrix, inactiveFloor->areaDataMan, landDataNARC);
 
-        ov9_0224C070(param0, v4->unk_00, &v0, &v1, &v2);
-        LandDataManager_DistortionWorldSetOffsets(v4->unk_18, v0, v1, v2);
-        LandDataManager_SetInDistortionWorld(v4->unk_18, 1);
-        LandDataManager_SetSkipMapProps(v4->unk_18, 1);
-        LandDataManager_DistortionWorldInitLoadedMaps(v4->unk_18, param1->unk_08, param1->unk_0A, param1->unk_10);
+        int offsetTileX;
+        int offsetAltitude;
+        int offsetTileZ;
 
-        param1->unk_04 = 3;
-        return 1;
+        FindMapOffsets(system, inactiveFloor->mapHeaderID, &offsetTileX, &offsetAltitude, &offsetTileZ);
+        LandDataManager_DistortionWorldSetOffsets(inactiveFloor->landDataMan, offsetTileX, offsetAltitude, offsetTileZ);
+        LandDataManager_SetInDistortionWorld(inactiveFloor->landDataMan, TRUE);
+        LandDataManager_SetSkipMapProps(inactiveFloor->landDataMan, TRUE);
+        LandDataManager_DistortionWorldInitLoadedMaps(inactiveFloor->landDataMan, floorLoader->playerPosX, floorLoader->playerPosZ, floorLoader->mapMatrixIndexes);
+
+        floorLoader->state = FLOOR_LOAD_NEXT_STATE_LOAD_INACTIVE;
+        return FLOOR_LOAD_HANDLER_RES_LOOP;
     }
 
-    return 0;
+    return FLOOR_LOAD_HANDLER_RES_CONTINUE;
 }
 
-static int ov9_0224CE00(DistWorldSystem *param0, UnkStruct_ov9_0224CBD8 *param1)
+static int FloorLoadNext_LoadInactive(DistWorldSystem *system, DistWorldFloorLoader *floorLoader)
 {
-    UnkStruct_ov9_0224C8E8 *v0 = &param0->unk_1E88;
+    DistWorldInactiveFloor *inactiveFloor = &system->inactiveFloor;
+    LandDataManager_DistortionWorldLoadAndInvalidate(inactiveFloor->landDataMan, floorLoader->loadedMapsCount, floorLoader->mapMatrixIndexes[floorLoader->loadedMapsCount]);
 
-    LandDataManager_DistortionWorldLoadAndInvalidate(v0->unk_18, param1->unk_06, param1->unk_10[param1->unk_06]);
+    floorLoader->loadedMapsCount++;
 
-    param1->unk_06++;
-
-    if (param1->unk_06 >= 4) {
-        param1->unk_04 = 4;
+    if (floorLoader->loadedMapsCount >= QUADRANT_COUNT) {
+        floorLoader->state = FLOOR_LOAD_NEXT_STATE_FINISH;
     }
 
-    return 0;
+    return FLOOR_LOAD_HANDLER_RES_CONTINUE;
 }
 
-static int ov9_0224CE2C(DistWorldSystem *param0, UnkStruct_ov9_0224CBD8 *param1)
+static int FloorLoadNext_Finish(DistWorldSystem *system, DistWorldFloorLoader *floorLoader)
 {
-    const DistWorldMapConnections *v0;
-    UnkStruct_ov9_0224C8E8 *v1 = &param0->unk_1E88;
+    DistWorldInactiveFloor *inactiveFloor = &system->inactiveFloor;
 
-    if (v1->unk_00 != 593) {
-        v1->unk_08 = 1;
-        ov9_0224CBBC(v1->unk_18, 1);
-        LandDataManager_DistortionWorldUpdateTrackedTargetValues(v1->unk_18, param1->unk_08, param1->unk_0A);
+    if (inactiveFloor->mapHeaderID != MAP_HEADER_INVALID) {
+        inactiveFloor->ready = TRUE;
+        SetAllLoadedMapsValid(inactiveFloor->landDataMan, TRUE);
+        LandDataManager_DistortionWorldUpdateTrackedTargetValues(inactiveFloor->landDataMan, floorLoader->playerPosX, floorLoader->playerPosZ);
     }
 
-    v0 = GetConnectionsForMap(param1->unk_0C);
-    ov9_02249C08(param0, v0->nextID);
+    const DistWorldMapConnections *mapConnections = GetConnectionsForMap(floorLoader->mapHeaderID);
+    FinishLoadingInactiveFloor(system, mapConnections->nextID);
 
-    if (param1->unk_28 != NULL) {
-        ov9_0224E0DC(param1->unk_28, 0);
+    if (floorLoader->movingPlatformAnimator != NULL) {
+        DistWorldMovingPlatformPropAnimator_SetPreventDeletion(floorLoader->movingPlatformAnimator, FALSE);
     }
 
-    return 2;
+    return FLOOR_LOAD_HANDLER_RES_FINISH;
 }
 
-static int (*const Unk_ov9_022514E0[5])(DistWorldSystem *, UnkStruct_ov9_0224CBD8 *) = {
-    ov9_0224CC90,
-    ov9_0224CCB8,
-    ov9_0224CD84,
-    ov9_0224CE00,
-    ov9_0224CE2C
+static const FloorLoadHandler sLoadNextFloorHandlers[FLOOR_LOAD_NEXT_STATE_COUNT] = {
+    [FLOOR_LOAD_NEXT_STATE_PREPARE_UNLOAD_ACTIVE] = FloorLoadNext_PrepareUnloadActive,
+    [FLOOR_LOAD_NEXT_STATE_MOVE_INACTIVE_TO_ACTIVE] = FloorLoadNext_MoveInactiveToActive,
+    [FLOOR_LOAD_NEXT_STATE_PREPARE_LOAD_INACTIVE] = FloorLoadNext_PrepareLoadInactive,
+    [FLOOR_LOAD_NEXT_STATE_LOAD_INACTIVE] = FloorLoadNext_LoadInactive,
+    [FLOOR_LOAD_NEXT_STATE_FINISH] = FloorLoadNext_Finish
 };
 
-static int ov9_0224CE80(DistWorldSystem *param0, UnkStruct_ov9_0224CBD8 *param1)
+static int FloorLoadPrevious_PrepareUnloadInactive(DistWorldSystem *system, DistWorldFloorLoader *floorLoader)
 {
-    const DistWorldMapConnections *v0;
-    UnkStruct_ov9_0224C8E8 *v1 = &param0->unk_1E88;
+    DistWorldInactiveFloor *inactiveFloor = &system->inactiveFloor;
+    inactiveFloor->ready = FALSE;
 
-    v1->unk_08 = 0;
-
-    if (v1->unk_04 == 1) {
-        ov9_0224CBBC(v1->unk_18, 0);
+    if (inactiveFloor->valid == TRUE) {
+        SetAllLoadedMapsValid(inactiveFloor->landDataMan, FALSE);
     }
 
-    v0 = GetConnectionsForMap(DistWorldSystem_GetMapHeaderID(param0));
-    ov9_02249C2C(param0, v0->nextID);
+    const DistWorldMapConnections *mapConnections = GetConnectionsForMap(DistWorldSystem_GetMapHeaderID(system));
+    PrepareUnloadingInactiveFloor(system, mapConnections->nextID);
 
-    param1->unk_04 = 1;
-    return 0;
+    floorLoader->state = FLOOR_LOAD_PREVIOUS_STATE_PREPARE_LOAD_ACTIVE;
+    return FLOOR_LOAD_HANDLER_RES_CONTINUE;
 }
 
-static int ov9_0224CEBC(DistWorldSystem *param0, UnkStruct_ov9_0224CBD8 *param1)
+static int FloorLoadPrevious_PrepareLoadActive(DistWorldSystem *system, DistWorldFloorLoader *floorLoader)
 {
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    UnkStruct_ov9_0224C8E8 *v1 = &param0->unk_1E88;
-    const DistWorldMapConnections *v2 = GetConnectionsForMap(DistWorldSystem_GetMapHeaderID(param0));
-    GF_ASSERT(v2->prevID != MAP_HEADER_INVALID);
-    v2 = GetConnectionsForMap(v2->prevID);
+    FieldSystem *fieldSystem = system->fieldSystem;
+    DistWorldInactiveFloor *inactiveFloor = &system->inactiveFloor;
+    const DistWorldMapConnections *mapConnections = GetConnectionsForMap(DistWorldSystem_GetMapHeaderID(system));
+    GF_ASSERT(mapConnections->prevID != MAP_HEADER_INVALID);
 
-    param1->unk_0C = v2->currID;
+    mapConnections = GetConnectionsForMap(mapConnections->prevID);
+    floorLoader->mapHeaderID = mapConnections->currID;
 
-    FieldMap_ChangeZoneDistortionWorld(param0->fieldSystem, param1->unk_0C);
-    ov9_0224BEB4(param0, param1->unk_0C);
+    FieldMap_ChangeZoneDistortionWorld(system->fieldSystem, floorLoader->mapHeaderID);
+    PrepareLoadingActiveFloor(system, floorLoader->mapHeaderID);
 
-    if (v1->unk_10 == NULL) {
-        v1->unk_10 = MapMatrix_NewWithHeapID(4);
+    if (inactiveFloor->mapMatrix == NULL) {
+        inactiveFloor->mapMatrix = MapMatrix_NewWithHeapID(HEAP_ID_FIELD1);
     }
 
-    if (v1->unk_14 == NULL) {
-        v1->unk_14 = fieldSystem->areaDataManager;
+    if (inactiveFloor->areaDataMan == NULL) {
+        inactiveFloor->areaDataMan = fieldSystem->areaDataManager;
     }
 
-    if (v1->unk_04 == 0) {
-        NARC *v3 = LandDataManager_GetLandDataNARC(fieldSystem->landDataMan);
+    if (!inactiveFloor->valid) {
+        NARC *landDataNARC = LandDataManager_GetLandDataNARC(fieldSystem->landDataMan);
 
-        v1->unk_18 = LandDataManager_DistortionWorldNew(NULL, v1->unk_14, v3);
-        LandDataManager_DistortionWorldNewLoadedMapsWithoutAttributesAndModel(v1->unk_18);
+        inactiveFloor->landDataMan = LandDataManager_DistortionWorldNew(NULL, inactiveFloor->areaDataMan, landDataNARC);
+        LandDataManager_DistortionWorldNewLoadedMapsWithoutAttributesAndModel(inactiveFloor->landDataMan);
     }
 
-    if (v1->unk_04 == 1) {
-        LandDataManager_DistortionWorldInitLoadedMapPropManagers(v1->unk_18);
+    if (inactiveFloor->valid == TRUE) {
+        LandDataManager_DistortionWorldInitLoadedMapPropManagers(inactiveFloor->landDataMan);
     }
 
     LandDataManager_DistortionWorldInitLoadedMapPropManagers(fieldSystem->landDataMan);
-    LandDataManager_SetMapMatrix(v1->unk_18, v1->unk_10);
-    LandDataManager_DistortionWorldPreparePreviousFloor(v1->unk_18, fieldSystem->landDataMan);
+    LandDataManager_SetMapMatrix(inactiveFloor->landDataMan, inactiveFloor->mapMatrix);
+    LandDataManager_DistortionWorldPreparePreviousFloor(inactiveFloor->landDataMan, fieldSystem->landDataMan);
 
-    v1->unk_04 = 1;
-    v1->unk_08 = 1;
+    inactiveFloor->valid = TRUE;
+    inactiveFloor->ready = TRUE;
 
-    ov9_0224CBBC(v1->unk_18, 1);
-    ov9_0224CBBC(param0->fieldSystem->landDataMan, 0);
-    MapMatrix_Load(v2->currID, fieldSystem->mapMatrix);
+    SetAllLoadedMapsValid(inactiveFloor->landDataMan, TRUE);
+    SetAllLoadedMapsValid(system->fieldSystem->landDataMan, FALSE);
+    MapMatrix_Load(mapConnections->currID, fieldSystem->mapMatrix);
 
-    {
-        int v4 = 0, v5 = 0, v6 = 0;
+    int offsetTileX = 0;
+    int offsetAltitude = 0;
+    int offsetTileZ = 0;
 
-        LandDataManager_DistortionWorldInitWithoutNARC(fieldSystem->landDataMan, fieldSystem->mapMatrix, fieldSystem->areaDataManager);
-        ov9_02251094(v2->currID, &v4, &v5, &v6);
-        LandDataManager_DistortionWorldSetOffsets(fieldSystem->landDataMan, v4, v5, v6);
-        LandDataManager_SetInDistortionWorld(fieldSystem->landDataMan, 1);
-        LandDataManager_SetSkipMapProps(fieldSystem->landDataMan, 1);
+    LandDataManager_DistortionWorldInitWithoutNARC(fieldSystem->landDataMan, fieldSystem->mapMatrix, fieldSystem->areaDataManager);
+    DistWorld_LoadFloorOffsets(mapConnections->currID, &offsetTileX, &offsetAltitude, &offsetTileZ);
+    LandDataManager_DistortionWorldSetOffsets(fieldSystem->landDataMan, offsetTileX, offsetAltitude, offsetTileZ);
+    LandDataManager_SetInDistortionWorld(fieldSystem->landDataMan, TRUE);
+    LandDataManager_SetSkipMapProps(fieldSystem->landDataMan, TRUE);
 
-        param1->unk_08 = fieldSystem->location->x;
-        param1->unk_0A = fieldSystem->location->z;
+    floorLoader->playerPosX = fieldSystem->location->x;
+    floorLoader->playerPosZ = fieldSystem->location->z;
 
-        LandDataManager_DistortionWorldInvalidateLoadedMaps(fieldSystem->landDataMan, param1->unk_08, param1->unk_0A, param1->unk_10);
-    }
+    LandDataManager_DistortionWorldInvalidateLoadedMaps(fieldSystem->landDataMan, floorLoader->playerPosX, floorLoader->playerPosZ, floorLoader->mapMatrixIndexes);
 
-    param1->unk_04 = 2;
-    return 0;
+    floorLoader->state = FLOOR_LOAD_PREVIOUS_STATE_LOAD_ACTIVE;
+    return FLOOR_LOAD_HANDLER_RES_CONTINUE;
 }
 
-static int ov9_0224CFE0(DistWorldSystem *param0, UnkStruct_ov9_0224CBD8 *param1)
+static int FloorLoadPrevious_LoadActive(DistWorldSystem *system, DistWorldFloorLoader *floorLoader)
 {
-    FieldSystem *fieldSystem = param0->fieldSystem;
+    FieldSystem *fieldSystem = system->fieldSystem;
+    LandDataManager_DistortionWorldLoadEntire(fieldSystem->landDataMan, floorLoader->loadedMapsCount, floorLoader->mapMatrixIndexes[floorLoader->loadedMapsCount]);
 
-    LandDataManager_DistortionWorldLoadEntire(fieldSystem->landDataMan, param1->unk_06, param1->unk_10[param1->unk_06]);
+    floorLoader->loadedMapsCount++;
 
-    param1->unk_06++;
-
-    if (param1->unk_06 >= 4) {
-        param1->unk_04 = 3;
+    if (floorLoader->loadedMapsCount >= QUADRANT_COUNT) {
+        floorLoader->state = FLOOR_LOAD_PREVIOUS_STATE_FINISH;
     }
 
-    return 0;
+    return FLOOR_LOAD_HANDLER_RES_CONTINUE;
 }
 
-static int ov9_0224D008(DistWorldSystem *param0, UnkStruct_ov9_0224CBD8 *param1)
+static int FloorLoadPrevious_Finish(DistWorldSystem *system, DistWorldFloorLoader *floorLoader)
 {
-    FieldSystem *fieldSystem = param0->fieldSystem;
+    FieldSystem *fieldSystem = system->fieldSystem;
 
-    LandDataManager_DistortionWorldUpdateTrackedTargetValues(fieldSystem->landDataMan, param1->unk_08, param1->unk_0A);
-    ov9_02249C60(param0, param1->unk_0C);
+    LandDataManager_DistortionWorldUpdateTrackedTargetValues(fieldSystem->landDataMan, floorLoader->playerPosX, floorLoader->playerPosZ);
+    FinishLoadingActiveFloor(system, floorLoader->mapHeaderID);
 
-    if (param1->unk_28 != NULL) {
-        ov9_0224E0DC(param1->unk_28, 0);
+    if (floorLoader->movingPlatformAnimator != NULL) {
+        DistWorldMovingPlatformPropAnimator_SetPreventDeletion(floorLoader->movingPlatformAnimator, FALSE);
     }
 
-    ov9_0224CBBC(param0->fieldSystem->landDataMan, 1);
-
-    return 2;
+    SetAllLoadedMapsValid(system->fieldSystem->landDataMan, TRUE);
+    return FLOOR_LOAD_HANDLER_RES_FINISH;
 }
 
-static int (*const Unk_ov9_02251428[4])(DistWorldSystem *, UnkStruct_ov9_0224CBD8 *) = {
-    ov9_0224CE80,
-    ov9_0224CEBC,
-    ov9_0224CFE0,
-    ov9_0224D008
+static const FloorLoadHandler sLoadPreviousFloorHandlers[FLOOR_LOAD_PREVIOUS_STATE_COUNT] = {
+    [FLOOR_LOAD_PREVIOUS_STATE_PREPARE_UNLOAD_INACTIVE] = FloorLoadPrevious_PrepareUnloadInactive,
+    [FLOOR_LOAD_PREVIOUS_STATE_PREPARE_LOAD_ACTIVE] = FloorLoadPrevious_PrepareLoadActive,
+    [FLOOR_LOAD_PREVIOUS_STATE_LOAD_ACTIVE] = FloorLoadPrevious_LoadActive,
+    [FLOOR_LOAD_PREVIOUS_STATE_FINISH] = FloorLoadPrevious_Finish
 };
 
 static BOOL HandleElevatorPlatformPropAnimatorAt(DistWorldSystem *system, int playerX, int playerY, int playerZ)
@@ -5481,7 +5475,7 @@ static int DistWorldElevatorPlatform_MoveFirstHalf(DistWorldSystem *system, Dist
 
 static int DistWorldElevatorPlatform_ChangeMaps(DistWorldSystem *system, DistWorldElevatorPlatform *elevatorPlatform)
 {
-    ov9_0224E0DC(elevatorPlatform->animator, TRUE);
+    DistWorldMovingPlatformPropAnimator_SetPreventDeletion(elevatorPlatform->animator, TRUE);
 
     if (elevatorPlatform->nextPathIndex == ELEVATOR_PLATFORM_PATH_INVALID) {
         if (elevatorPlatform->persistedFlagToSet != DIST_WORLD_PLATFORM_FLAG_INVALID) {
@@ -5507,9 +5501,9 @@ static int DistWorldElevatorPlatform_ChangeMaps(DistWorldSystem *system, DistWor
     }
 
     if (elevatorPlatform->dir == MOVING_PLATFORM_ELEVATOR_DIR_DOWN) {
-        ov9_0224CC50(system, elevatorPlatform->animator, 2);
+        LoadFloor(system, elevatorPlatform->animator, FLOOR_LOAD_NEXT);
     } else if (elevatorPlatform->dir == MOVING_PLATFORM_ELEVATOR_DIR_UP) {
-        ov9_0224CC50(system, elevatorPlatform->animator, 1);
+        LoadFloor(system, elevatorPlatform->animator, FLOOR_LOAD_PREVIOUS);
     } else {
         GF_ASSERT(FALSE);
     }
@@ -5584,7 +5578,7 @@ static int DistWorldElevatorPlatform_MoveSecondHalf(DistWorldSystem *system, Dis
 
 static int DistWorldElevatorPlatform_EndMovement(DistWorldSystem *system, DistWorldElevatorPlatform *elevatorPlatform)
 {
-    if (ov9_0224CC7C(system) == FALSE) {
+    if (!IsFloorLoaderActive(system)) {
         MapObject *playerMapObj = Player_MapObject(system->fieldSystem->playerAvatar);
 
         MapObject_SetX(playerMapObj, elevatorPlatform->finalPlayerTileX);
@@ -5975,7 +5969,7 @@ static void FinishMovingPlatformPropAnimatorForMap(DistWorldSystem *system, u32 
     DistWorldMovingPlatformPropManager *movingPlatformPropMan = &system->movingPlatformPropMan;
 
     for (int i = 0; i < MOVING_PLATFORM_MANAGER_ANIMATOR_COUNT; i++) {
-        if (movingPlatformPropMan->animators[i].valid && movingPlatformPropMan->animators[i].mapHeaderID == mapHeaderID && !movingPlatformPropMan->animators[i].unk_01) {
+        if (movingPlatformPropMan->animators[i].valid && movingPlatformPropMan->animators[i].mapHeaderID == mapHeaderID && !movingPlatformPropMan->animators[i].preventDeletion) {
             DistWorldMovingPlatformPropAnimator_FinishAndDeleteMapObject(system, &movingPlatformPropMan->animators[i]);
         }
     }
@@ -6215,9 +6209,9 @@ static void DistWorldMovingPlatformPropAnimator_ChangeMaps(DistWorldSystem *syst
     MapObject_SetDataAt(mapObj, animator->template.elevatorPathIndex, MOVING_PLATFORM_MAP_OBJ_DATA_EVELATOR_PATH_INDEX);
 }
 
-static void ov9_0224E0DC(DistWorldMovingPlatformPropAnimator *param0, BOOL param1)
+static void DistWorldMovingPlatformPropAnimator_SetPreventDeletion(DistWorldMovingPlatformPropAnimator *animator, BOOL preventDeletion)
 {
-    param0->unk_01 = param1;
+    animator->preventDeletion = preventDeletion;
 }
 
 static BOOL HasActiveMovingPlatformProp2(DistWorldSystem *system, u32 propKind)
@@ -8084,9 +8078,9 @@ static BOOL CmdRunDataCascadeBase_Update(DistWorldSystem *system, CmdRunDataCasc
     if (!runData->targetMapLoaded) {
         if (runData->currPosOffset.x == runData->mapLoadPosOffset.x && runData->currPosOffset.y == runData->mapLoadPosOffset.y && runData->currPosOffset.z == runData->mapLoadPosOffset.z) {
             if (runData->movementDir == CASCADE_MOVEMENT_DIR_UP) {
-                ov9_0224CC50(system, NULL, 1);
+                LoadFloor(system, NULL, FLOOR_LOAD_PREVIOUS);
             } else {
-                ov9_0224CC50(system, NULL, 2);
+                LoadFloor(system, NULL, FLOOR_LOAD_NEXT);
             }
 
             runData->targetMapLoaded++;
@@ -9648,15 +9642,15 @@ BOOL DistWorld_GetTileBehaviorOnCurrentFloatingPlatform(FieldSystem *fieldSystem
     return TRUE;
 }
 
-void ov9_02251094(int param0, int *param1, int *param2, int *param3)
+void DistWorld_LoadFloorOffsets(int mapHeaderID, int *offsetTileX, int *offsetAltitude, int *offsetTileZ)
 {
-    UnkStruct_ov9_0224BFE0 v0;
-    NARC *v1 = NARC_ctor(NARC_INDEX_FIELDDATA__TORNWORLD__TW_ARC, HEAP_ID_FIELD1);
+    DistWorldMapInfoFile file;
+    NARC *narc = NARC_ctor(NARC_INDEX_FIELDDATA__TORNWORLD__TW_ARC, HEAP_ID_FIELD1);
 
-    ov9_0224BF8C(v1, &v0);
-    ov9_0224C050(&v0, param0, param1, param2, param3);
-    ov9_0224BFE0(&v0);
-    NARC_dtor(v1);
+    DistWorldMapInfoFile_Load(narc, &file);
+    DistWorldMapInfoFile_FindMapOffsets(&file, mapHeaderID, offsetTileX, offsetAltitude, offsetTileZ);
+    DistWorldMapInfoFile_Free(&file);
+    NARC_dtor(narc);
 }
 
 static u32 DistWorldSystem_GetMapHeaderID(DistWorldSystem *system)

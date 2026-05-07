@@ -10,43 +10,43 @@
     ScriptEntry BattleTowerBattleSalon_Riley
     ScriptEntry BattleTowerBattleSalon_Marley
     ScriptEntry BattleTowerBattleSalon_Buck
-    ScriptEntry BattleTowerBattleSalon_CheckShowCheryl
-    ScriptEntry _015D
-    ScriptEntry BattleTowerBattleSalon_Enter
-    ScriptEntry BattleTowerBattleSalon_EnterBattleRoom
+    ScriptEntry BattleTowerBattleSalon_OnTransition
+    ScriptEntry BattleTowerBattleSalon_OnResume
+    ScriptEntry BattleTowerBattleSalon_OnFrameEnterBattleSalon
+    ScriptEntry BattleTowerBattleSalon_OnFrameEnterBattleRoom
     ScriptEntryEnd
 
-BattleTowerBattleSalon_CheckShowCheryl:
+BattleTowerBattleSalon_OnTransition:
     GoToIfUnset FLAG_TRAVELED_WITH_CHERYL, BattleTowerBattleSalon_HideCheryl
-    GoToIfNe VAR_UNK_0x40DF, 2, BattleTowerBattleSalon_ShowCheryl
+    GoToIfNe VAR_BATTLE_TOWER_BATTLE_SALON_STATE, 2, BattleTowerBattleSalon_ShowCheryl
     CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, BT_PARAM_PARTNER_ID, VAR_MAP_LOCAL_9
     GoToIfEq VAR_MAP_LOCAL_9, BT_PARTNER_CHERYL, BattleTowerBattleSalon_HideCheryl
 BattleTowerBattleSalon_ShowCheryl:
     ClearFlag FLAG_HIDE_BATTLE_SALON_CHERYL
 BattleTowerBattleSalon_CheckShowMira:
     GoToIfUnset FLAG_TRAVELED_WITH_MIRA, BattleTowerBattleSalon_HideMira
-    GoToIfNe VAR_UNK_0x40DF, 2, BattleTowerBattleSalon_ShowMira
+    GoToIfNe VAR_BATTLE_TOWER_BATTLE_SALON_STATE, 2, BattleTowerBattleSalon_ShowMira
     CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, BT_PARAM_PARTNER_ID, VAR_MAP_LOCAL_9
     GoToIfEq VAR_MAP_LOCAL_9, BT_PARTNER_MIRA, BattleTowerBattleSalon_HideMira
 BattleTowerBattleSalon_ShowMira:
     ClearFlag FLAG_HIDE_BATTLE_SALON_MIRA
 BattleTowerBattleSalon_CheckShowRiley:
     GoToIfUnset FLAG_RECEIVED_RIOLU_EGG_FROM_RILEY, BattleTowerBattleSalon_HideRiley
-    GoToIfNe VAR_UNK_0x40DF, 2, BattleTowerBattleSalon_ShowRiley
+    GoToIfNe VAR_BATTLE_TOWER_BATTLE_SALON_STATE, 2, BattleTowerBattleSalon_ShowRiley
     CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, BT_PARAM_PARTNER_ID, VAR_MAP_LOCAL_9
     GoToIfEq VAR_MAP_LOCAL_9, BT_PARTNER_RILEY, BattleTowerBattleSalon_HideRiley
 BattleTowerBattleSalon_ShowRiley:
     ClearFlag FLAG_HIDE_BATTLE_SALON_RILEY
 BattleTowerBattleSalon_CheckShowMarley:
     GoToIfUnset FLAG_TRAVELED_WITH_MARLEY, BattleTowerBattleSalon_HideMarley
-    GoToIfNe VAR_UNK_0x40DF, 2, BattleTowerBattleSalon_ShowMarley
+    GoToIfNe VAR_BATTLE_TOWER_BATTLE_SALON_STATE, 2, BattleTowerBattleSalon_ShowMarley
     CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, BT_PARAM_PARTNER_ID, VAR_MAP_LOCAL_9
     GoToIfEq VAR_MAP_LOCAL_9, BT_PARTNER_MARLEY, BattleTowerBattleSalon_HideMarley
 BattleTowerBattleSalon_ShowMarley:
     ClearFlag FLAG_HIDE_BATTLE_SALON_MARLEY
 BattleTowerBattleSalon_CheckShowBuck:
     GoToIfUnset FLAG_BUCK_LEFT_BATTLEGROUND, BattleTowerBattleSalon_HideBuck
-    GoToIfNe VAR_UNK_0x40DF, 2, BattleTowerBattleSalon_ShowBuck
+    GoToIfNe VAR_BATTLE_TOWER_BATTLE_SALON_STATE, 2, BattleTowerBattleSalon_ShowBuck
     CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, BT_PARAM_PARTNER_ID, VAR_MAP_LOCAL_9
     GoToIfEq VAR_MAP_LOCAL_9, BT_PARTNER_BUCK, BattleTowerBattleSalon_HideBuck
 BattleTowerBattleSalon_ShowBuck:
@@ -79,9 +79,9 @@ BattleTowerBattleSalon_HideBuck:
     GoTo BattleTowerBattleSalon_EndCheckShowPartners
     End
 
-_015D:
-    CallIfEq VAR_UNK_0x40DF, 1, BattleTowerBattleSalon_HidePlayer
-    GoToIfEq VAR_UNK_0x40DF, 2, BattleTowerBattleSalon_SetAttendantPositionAtDoor
+BattleTowerBattleSalon_OnResume:
+    CallIfEq VAR_BATTLE_TOWER_BATTLE_SALON_STATE, 1, BattleTowerBattleSalon_HidePlayer
+    GoToIfEq VAR_BATTLE_TOWER_BATTLE_SALON_STATE, 2, BattleTowerBattleSalon_SetAttendantPositionAtDoor
     End
 
 BattleTowerBattleSalon_HidePlayer:
@@ -89,13 +89,13 @@ BattleTowerBattleSalon_HidePlayer:
     Return
 
 BattleTowerBattleSalon_SetAttendantPositionAtDoor:
-    SetPosition BATTLE_TOWER_BATTLE_SALON_TEALA, 8, 0, 3, DIR_SOUTH
+    SetPosition LOCALID_TEALA, 8, 0, 3, DIR_SOUTH
     End
 
-BattleTowerBattleSalon_Enter:
+BattleTowerBattleSalon_OnFrameEnterBattleSalon:
     LockAll
-    SetVar VAR_UNK_0x40DF, 0
-    Call BattleTowerBattleSalon_PlayEnterBattleSalonAnimation
+    SetVar VAR_BATTLE_TOWER_BATTLE_SALON_STATE, 0
+    Call BattleTowerBattleSalon_EnterBattleSalon
     Message BattleTowerBattleSalon_Text_PleaseFindAPartner
     CloseMessage
     CallBattleTowerFunction BT_FUNC_UNK_56, 0, 0
@@ -126,13 +126,13 @@ BattleTowerBattleSalon_Quit:
     WaitFadeScreen
     End
 
-BattleTowerBattleSalon_EnterBattleRoom:
+BattleTowerBattleSalon_OnFrameEnterBattleRoom:
     LockAll
-    SetVar VAR_UNK_0x40DF, 0
+    SetVar VAR_BATTLE_TOWER_BATTLE_SALON_STATE, 0
     Message BattleTowerBattleSalon_Text_ShowYouToMultiBattleRoom
     CloseMessage
-    Call BattleTowerBattleSalon_PlayEnterBattleRoomAnimation
-    SetVar VAR_UNK_0x40DB, 2
+    Call BattleTowerBattleSalon_EnterBattleRoom
+    SetVar VAR_BATTLE_TOWER_ELEVATOR_LOAD_ACTION, 2
     FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_BATTLE_TOWER_ELEVATOR, 0, 3, 6, DIR_NORTH
@@ -154,7 +154,7 @@ BattleTowerBattleSalon_Cheryl:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfEq VAR_UNK_0x40DF, 2, BattleTowerBattleSalon_CherylDontTeamUp
+    GoToIfEq VAR_BATTLE_TOWER_BATTLE_SALON_STATE, 2, BattleTowerBattleSalon_CherylDontTeamUp
     SetVar VAR_MAP_LOCAL_9, BT_PARTNER_CHERYL
     GetBattleTowerPartnerSpeciesAndMove VAR_MAP_LOCAL_9, 0, VAR_0x8004, VAR_0x8005
     BufferSpeciesNameWithArticle 0, VAR_0x8004
@@ -162,7 +162,7 @@ BattleTowerBattleSalon_Cheryl:
     GetBattleTowerPartnerSpeciesAndMove VAR_MAP_LOCAL_9, 1, VAR_0x8004, VAR_0x8005
     BufferSpeciesNameWithArticle 2, VAR_0x8004
     BufferMoveName 3, VAR_0x8005
-    Message BattleTowerBattleSalon_Text_CherylWouldYouLikeToTeamUp
+    Message BattleTowerBattleSalon_Text_CherylAskTeamUp
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_YES, BattleTowerBattleSalon_CherylTeamUp
 BattleTowerBattleSalon_CherylDontTeamUp:
@@ -174,11 +174,11 @@ BattleTowerBattleSalon_CherylDontTeamUp:
 
 BattleTowerBattleSalon_CherylTeamUp:
     CallBattleTowerFunction BT_FUNC_SET_PARTNER_ID, VAR_MAP_LOCAL_9, 0
-    SetVar VAR_UNK_0x40DF, 2
+    SetVar VAR_BATTLE_TOWER_BATTLE_SALON_STATE, 2
     Message BattleTowerBattleSalon_Text_CherylTeamUp
     CloseMessage
     ReleaseAll
-    LockObject BATTLE_TOWER_BATTLE_SALON_CHERYL
+    LockObject LOCALID_CHERYL
     GoTo BattleTowerBattleSalon_CherylWalkToAttendant
     End
 
@@ -186,11 +186,11 @@ BattleTowerBattleSalon_Mira:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfEq VAR_UNK_0x40DF, 2, BattleTowerBattleSalon_MiraDontTeamUp
+    GoToIfEq VAR_BATTLE_TOWER_BATTLE_SALON_STATE, 2, BattleTowerBattleSalon_MiraDontTeamUp
     SetVar VAR_MAP_LOCAL_9, BT_PARTNER_MIRA
     Call BattleTowerBattleSalon_BufferSpeciesAndMoveNames
     BufferPlayerName 4
-    Message BattleTowerBattleSalon_Text_MiraWouldYouLikeToTeamUp
+    Message BattleTowerBattleSalon_Text_MiraAskTeamUp
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_YES, BattleTowerBattleSalon_MiraTeamUp
 BattleTowerBattleSalon_MiraDontTeamUp:
@@ -202,12 +202,12 @@ BattleTowerBattleSalon_MiraDontTeamUp:
 
 BattleTowerBattleSalon_MiraTeamUp:
     CallBattleTowerFunction BT_FUNC_SET_PARTNER_ID, VAR_MAP_LOCAL_9, 0
-    SetVar VAR_UNK_0x40DF, 2
+    SetVar VAR_BATTLE_TOWER_BATTLE_SALON_STATE, 2
     BufferPlayerName 0
     Message BattleTowerBattleSalon_Text_MiraTeamUp
     CloseMessage
     ReleaseAll
-    LockObject BATTLE_TOWER_BATTLE_SALON_MIRA
+    LockObject LOCALID_MIRA
     GoTo BattleTowerBattleSalon_MiraWalkToAttendant
     End
 
@@ -215,10 +215,10 @@ BattleTowerBattleSalon_Riley:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfEq VAR_UNK_0x40DF, 2, BattleTowerBattleSalon_RileyDontTeamUp
+    GoToIfEq VAR_BATTLE_TOWER_BATTLE_SALON_STATE, 2, BattleTowerBattleSalon_RileyDontTeamUp
     SetVar VAR_MAP_LOCAL_9, BT_PARTNER_RILEY
     Call BattleTowerBattleSalon_BufferSpeciesAndMoveNames
-    Message BattleTowerBattleSalon_Text_RileyWouldYouLikeToTeamUp
+    Message BattleTowerBattleSalon_Text_RileyAskTeamUp
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_YES, BattleTowerBattleSalon_RileyTeamUp
 BattleTowerBattleSalon_RileyDontTeamUp:
@@ -230,11 +230,11 @@ BattleTowerBattleSalon_RileyDontTeamUp:
 
 BattleTowerBattleSalon_RileyTeamUp:
     CallBattleTowerFunction BT_FUNC_SET_PARTNER_ID, VAR_MAP_LOCAL_9, 0
-    SetVar VAR_UNK_0x40DF, 2
+    SetVar VAR_BATTLE_TOWER_BATTLE_SALON_STATE, 2
     Message BattleTowerBattleSalon_Text_RileyTeamUp
     CloseMessage
     ReleaseAll
-    LockObject BATTLE_TOWER_BATTLE_SALON_RILEY
+    LockObject LOCALID_RILEY
     GoTo BattleTowerBattleSalon_RileyWalkToAttendant
     End
 
@@ -242,10 +242,10 @@ BattleTowerBattleSalon_Marley:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfEq VAR_UNK_0x40DF, 2, BattleTowerBattleSalon_MarleyDontTeamUp
+    GoToIfEq VAR_BATTLE_TOWER_BATTLE_SALON_STATE, 2, BattleTowerBattleSalon_MarleyDontTeamUp
     SetVar VAR_MAP_LOCAL_9, BT_PARTNER_MARLEY
     Call BattleTowerBattleSalon_BufferSpeciesAndMoveNames
-    Message BattleTowerBattleSalon_Text_MarleyWouldYouLikeToTeamUp
+    Message BattleTowerBattleSalon_Text_MarleyAskTeamUp
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_YES, BattleTowerBattleSalon_MarleyTeamUp
 BattleTowerBattleSalon_MarleyDontTeamUp:
@@ -257,11 +257,11 @@ BattleTowerBattleSalon_MarleyDontTeamUp:
 
 BattleTowerBattleSalon_MarleyTeamUp:
     CallBattleTowerFunction BT_FUNC_SET_PARTNER_ID, VAR_MAP_LOCAL_9, 0
-    SetVar VAR_UNK_0x40DF, 2
+    SetVar VAR_BATTLE_TOWER_BATTLE_SALON_STATE, 2
     Message BattleTowerBattleSalon_Text_MarleyTeamUp
     CloseMessage
     ReleaseAll
-    LockObject BATTLE_TOWER_BATTLE_SALON_MARLEY
+    LockObject LOCALID_MARLEY
     GoTo BattleTowerBattleSalon_MarleyWalkToAttendant
     End
 
@@ -269,10 +269,10 @@ BattleTowerBattleSalon_Buck:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfEq VAR_UNK_0x40DF, 2, BattleTowerBattleSalon_BuckDontTeamUp
+    GoToIfEq VAR_BATTLE_TOWER_BATTLE_SALON_STATE, 2, BattleTowerBattleSalon_BuckDontTeamUp
     SetVar VAR_MAP_LOCAL_9, BT_PARTNER_BUCK
     Call BattleTowerBattleSalon_BufferSpeciesAndMoveNames
-    Message BattleTowerBattleSalon_Text_BuckWouldYouLikeToTeamUp
+    Message BattleTowerBattleSalon_Text_BuckAskTeamUp
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_YES, BattleTowerBattleSalon_BuckTeamUp
 BattleTowerBattleSalon_BuckDontTeamUp:
@@ -284,11 +284,11 @@ BattleTowerBattleSalon_BuckDontTeamUp:
 
 BattleTowerBattleSalon_BuckTeamUp:
     CallBattleTowerFunction BT_FUNC_SET_PARTNER_ID, VAR_MAP_LOCAL_9, 0
-    SetVar VAR_UNK_0x40DF, 2
+    SetVar VAR_BATTLE_TOWER_BATTLE_SALON_STATE, 2
     Message BattleTowerBattleSalon_Text_BuckTeamUp
     CloseMessage
     ReleaseAll
-    LockObject BATTLE_TOWER_BATTLE_SALON_BUCK
+    LockObject LOCALID_BUCK
     GoTo BattleTowerBattleSalon_BuckWalkToAttendant
     End
 
@@ -304,38 +304,38 @@ BattleTowerBattleSalon_PlayCloseDoorAnimation:
     UnloadAnimation ANIMATION_TAG_DOOR_1
     Return
 
-BattleTowerBattleSalon_PlayEnterBattleSalonAnimation:
+BattleTowerBattleSalon_EnterBattleSalon:
     Call BattleTowerBattleSalon_PlayOpenDoorAnimation
-    ApplyMovement BATTLE_TOWER_BATTLE_SALON_TEALA, BattleTowerBattleSalon_AttendantEnterBattleSalonMovement
+    ApplyMovement LOCALID_TEALA, BattleTowerBattleSalon_Movement_AttendantEnterBattleSalon
     WaitMovement
     ShowObject LOCALID_PLAYER
-    ApplyMovement LOCALID_PLAYER, BattleTowerBattleSalon_PlayerEnterBattleSalonMovement
+    ApplyMovement LOCALID_PLAYER, BattleTowerBattleSalon_Movement_PlayerEnterBattleSalon
     WaitMovement
     Call BattleTowerBattleSalon_PlayCloseDoorAnimation
-    ApplyMovement BATTLE_TOWER_BATTLE_SALON_TEALA, BattleTowerBattleSalon_AttendantBlockDoorMovement
+    ApplyMovement LOCALID_TEALA, BattleTowerBattleSalon_Movement_AttendantBlockDoor
     WaitMovement
-    ApplyMovement LOCALID_PLAYER, BattleTowerBattleSalon_PlayerFaceNorthMovement
+    ApplyMovement LOCALID_PLAYER, BattleTowerBattleSalon_Movement_PlayerFaceNorth
     WaitMovement
     Return
 
-BattleTowerBattleSalon_PlayEnterBattleRoomAnimation:
+BattleTowerBattleSalon_EnterBattleRoom:
     Call BattleTowerBattleSalon_PlayOpenDoorAnimation
-    ApplyMovement BATTLE_TOWER_BATTLE_SALON_TEALA, BattleTowerBattleSalon_AttendantEnterBattleRoomMovement
-    ApplyMovement LOCALID_PLAYER, BattleTowerBattleSalon_PlayerEnterBattleRoomMovement
+    ApplyMovement LOCALID_TEALA, BattleTowerBattleSalon_Movement_AttendantEnterBattleRoom
+    ApplyMovement LOCALID_PLAYER, BattleTowerBattleSalon_Movement_PlayerEnterBattleRoom
     WaitMovement
     Call BattleTowerBattleSalon_PlayCloseDoorAnimation
     Return
 
 BattleTowerBattleSalon_PartnerEnterBattleRoom:
-    ApplyMovement VAR_MAP_LOCAL_0, BattleTowerBattleSalon_PartnerFaceNorthMovement
+    ApplyMovement VAR_MAP_LOCAL_0, BattleTowerBattleSalon_Movement_PartnerFaceNorth
     WaitMovement
-    ApplyMovement BATTLE_TOWER_BATTLE_SALON_TEALA, BattleTowerBattleSalon_AttendantMoveAwayMovement
+    ApplyMovement LOCALID_TEALA, BattleTowerBattleSalon_Movement_AttendantMoveAway
     WaitMovement
     Call BattleTowerBattleSalon_PlayOpenDoorAnimation
-    ApplyMovement VAR_MAP_LOCAL_0, BattleTowerBattleSalon_PartnerEnterBattleRoomMovement
+    ApplyMovement VAR_MAP_LOCAL_0, BattleTowerBattleSalon_Movement_PartnerEnterBattleRoom
     WaitMovement
     Call BattleTowerBattleSalon_PlayCloseDoorAnimation
-    ApplyMovement BATTLE_TOWER_BATTLE_SALON_TEALA, BattleTowerBattleSalon_AttendantMoveBackMovement
+    ApplyMovement LOCALID_TEALA, BattleTowerBattleSalon_Movement_AttendantMoveBack
     WaitMovement
     FadeScreenOut
     WaitFadeScreen
@@ -346,161 +346,161 @@ BattleTowerBattleSalon_PartnerEnterBattleRoom:
     End
 
 BattleTowerBattleSalon_CherylWalkToAttendant:
-    SetVar VAR_MAP_LOCAL_0, BATTLE_TOWER_BATTLE_SALON_CHERYL
+    SetVar VAR_MAP_LOCAL_0, LOCALID_CHERYL
     GetPlayerMapPos VAR_0x8000, VAR_0x8001
     GoToIfEq VAR_0x8000, 12, BattleTowerBattleSalon_CherylWalkWestToAttendant
     GoTo BattleTowerBattleSalon_CherylWalkSouthToAttendant
     End
 
 BattleTowerBattleSalon_CherylWalkWestToAttendant:
-    ApplyMovement BATTLE_TOWER_BATTLE_SALON_CHERYL, BattleTowerBattleSalon_CherylWalkSouthToAttendantMovement
+    ApplyMovement LOCALID_CHERYL, BattleTowerBattleSalon_Movement_CherylWalkSouthToAttendant
     WaitMovement
     GoTo BattleTowerBattleSalon_PartnerEnterBattleRoom
     End
 
 BattleTowerBattleSalon_CherylWalkSouthToAttendant:
-    ApplyMovement BATTLE_TOWER_BATTLE_SALON_CHERYL, BattleTowerBattleSalon_CherylWalkWestToAttendantMovement
+    ApplyMovement LOCALID_CHERYL, BattleTowerBattleSalon_Movement_CherylWalkWestToAttendant
     WaitMovement
     GoTo BattleTowerBattleSalon_PartnerEnterBattleRoom
     End
 
 BattleTowerBattleSalon_MiraWalkToAttendant:
-    SetVar VAR_MAP_LOCAL_0, BATTLE_TOWER_BATTLE_SALON_MIRA
+    SetVar VAR_MAP_LOCAL_0, LOCALID_MIRA
     GetPlayerMapPos VAR_0x8000, VAR_0x8001
     GoToIfEq VAR_0x8000, 4, BattleTowerBattleSalon_MiraWalkEastToAttendant
     GoTo BattleTowerBattleSalon_MiraWalkNorthToAttendant
     End
 
 BattleTowerBattleSalon_MiraWalkEastToAttendant:
-    ApplyMovement BATTLE_TOWER_BATTLE_SALON_MIRA, BattleTowerBattleSalon_MiraWalkEastToAttendantMovement
+    ApplyMovement LOCALID_MIRA, BattleTowerBattleSalon_Movement_MiraWalkEastToAttendant
     WaitMovement
     GoTo BattleTowerBattleSalon_PartnerEnterBattleRoom
     End
 
 BattleTowerBattleSalon_MiraWalkNorthToAttendant:
-    ApplyMovement BATTLE_TOWER_BATTLE_SALON_MIRA, BattleTowerBattleSalon_MiraWalkNorthToAttendantMovement
+    ApplyMovement LOCALID_MIRA, BattleTowerBattleSalon_Movement_MiraWalkNorthToAttendant
     WaitMovement
     GoTo BattleTowerBattleSalon_PartnerEnterBattleRoom
     End
 
 BattleTowerBattleSalon_RileyWalkToAttendant:
-    SetVar VAR_MAP_LOCAL_0, BATTLE_TOWER_BATTLE_SALON_RILEY
+    SetVar VAR_MAP_LOCAL_0, LOCALID_RILEY
     GetPlayerMapPos VAR_0x8000, VAR_0x8001
     GoToIfEq VAR_0x8001, 7, BattleTowerBattleSalon_RileyWalkWestToAttendant
     GoTo BattleTowerBattleSalon_RileyWalkNorthToAttendant
     End
 
 BattleTowerBattleSalon_RileyWalkWestToAttendant:
-    ApplyMovement BATTLE_TOWER_BATTLE_SALON_RILEY, BattleTowerBattleSalon_RileyWalkWestToAttendantMovement
+    ApplyMovement LOCALID_RILEY, BattleTowerBattleSalon_Movement_RileyWalkWestToAttendant
     WaitMovement
     GoTo BattleTowerBattleSalon_PartnerEnterBattleRoom
     End
 
 BattleTowerBattleSalon_RileyWalkNorthToAttendant:
-    ApplyMovement BATTLE_TOWER_BATTLE_SALON_RILEY, BattleTowerBattleSalon_RileyWalkNorthToAttendantMovement
+    ApplyMovement LOCALID_RILEY, BattleTowerBattleSalon_Movement_RileyWalkNorthToAttendant
     WaitMovement
     GoTo BattleTowerBattleSalon_PartnerEnterBattleRoom
     End
 
 BattleTowerBattleSalon_MarleyWalkToAttendant:
-    SetVar VAR_MAP_LOCAL_0, BATTLE_TOWER_BATTLE_SALON_MARLEY
+    SetVar VAR_MAP_LOCAL_0, LOCALID_MARLEY
     GetPlayerMapPos VAR_0x8000, VAR_0x8001
     GoToIfEq VAR_0x8001, 9, BattleTowerBattleSalon_MarleyWalkSouthToAttendant
     GoTo BattleTowerBattleSalon_MarleyWalkNorthToAttendant
     End
 
 BattleTowerBattleSalon_MarleyWalkSouthToAttendant:
-    ApplyMovement BATTLE_TOWER_BATTLE_SALON_MARLEY, BattleTowerBattleSalon_MarleyWalkSouthToAttendantMovement
+    ApplyMovement LOCALID_MARLEY, BattleTowerBattleSalon_Movement_MarleyWalkSouthToAttendant
     WaitMovement
     GoTo BattleTowerBattleSalon_PartnerEnterBattleRoom
     End
 
 BattleTowerBattleSalon_MarleyWalkNorthToAttendant:
-    ApplyMovement BATTLE_TOWER_BATTLE_SALON_MARLEY, BattleTowerBattleSalon_MarleyWalkNorthToAttendantMovement
+    ApplyMovement LOCALID_MARLEY, BattleTowerBattleSalon_Movement_MarleyWalkNorthToAttendant
     WaitMovement
     GoTo BattleTowerBattleSalon_PartnerEnterBattleRoom
     End
 
 BattleTowerBattleSalon_BuckWalkToAttendant:
-    SetVar VAR_MAP_LOCAL_0, BATTLE_TOWER_BATTLE_SALON_BUCK
+    SetVar VAR_MAP_LOCAL_0, LOCALID_BUCK
     GetPlayerMapPos VAR_0x8000, VAR_0x8001
     GoToIfEq VAR_0x8000, 8, BattleTowerBattleSalon_BuckWalkWestToAttendant
     GoTo BattleTowerBattleSalon_BuckWalkEastToAttendant
     End
 
 BattleTowerBattleSalon_BuckWalkWestToAttendant:
-    ApplyMovement BATTLE_TOWER_BATTLE_SALON_BUCK, BattleTowerBattleSalon_BuckWalkWestToAttendantMovement
+    ApplyMovement LOCALID_BUCK, BattleTowerBattleSalon_Movement_BuckWalkWestToAttendant
     WaitMovement
     GoTo BattleTowerBattleSalon_PartnerEnterBattleRoom
     End
 
 BattleTowerBattleSalon_BuckWalkEastToAttendant:
-    ApplyMovement BATTLE_TOWER_BATTLE_SALON_BUCK, BattleTowerBattleSalon_BuckWalkEastToAttendantMovement
+    ApplyMovement LOCALID_BUCK, BattleTowerBattleSalon_Movement_BuckWalkEastToAttendant
     WaitMovement
     GoTo BattleTowerBattleSalon_PartnerEnterBattleRoom
     End
 
     .balign 4, 0
-BattleTowerBattleSalon_PlayerEnterBattleSalonMovement:
+BattleTowerBattleSalon_Movement_PlayerEnterBattleSalon:
     WalkNormalSouth 2
     EndMovement
 
     .balign 4, 0
-BattleTowerBattleSalon_PlayerFaceNorthMovement:
+BattleTowerBattleSalon_Movement_PlayerFaceNorth:
     FaceNorth
     EndMovement
 
     .balign 4, 0
-BattleTowerBattleSalon_AttendantEnterBattleSalonMovement:
+BattleTowerBattleSalon_Movement_AttendantEnterBattleSalon:
     WalkNormalSouth 2
     WalkNormalWest
     FaceEast
     EndMovement
 
     .balign 4, 0
-BattleTowerBattleSalon_AttendantBlockDoorMovement:
+BattleTowerBattleSalon_Movement_AttendantBlockDoor:
     WalkNormalEast
     FaceSouth
     EndMovement
 
     .balign 4, 0
-BattleTowerBattleSalon_AttendantMoveAwayMovement:
+BattleTowerBattleSalon_Movement_AttendantMoveAway:
     FaceSouth
     WalkFastWest
     FaceEast
     EndMovement
 
     .balign 4, 0
-BattleTowerBattleSalon_AttendantMoveBackMovement:
+BattleTowerBattleSalon_Movement_AttendantMoveBack:
     WalkFastEast
     FaceSouth
     EndMovement
 
     .balign 4, 0
-BattleTowerBattleSalon_PlayerEnterBattleRoomMovement:
+BattleTowerBattleSalon_Movement_PlayerEnterBattleRoom:
     WalkNormalNorth 2
     SetInvisible
     EndMovement
 
     .balign 4, 0
-BattleTowerBattleSalon_AttendantEnterBattleRoomMovement:
+BattleTowerBattleSalon_Movement_AttendantEnterBattleRoom:
     WalkNormalNorth
     SetInvisible
     EndMovement
 
     .balign 4, 0
-BattleTowerBattleSalon_PartnerFaceNorthMovement:
+BattleTowerBattleSalon_Movement_PartnerFaceNorth:
     FaceNorth
     EndMovement
 
     .balign 4, 0
-BattleTowerBattleSalon_PartnerEnterBattleRoomMovement:
+BattleTowerBattleSalon_Movement_PartnerEnterBattleRoom:
     WalkFastNorth 2
     SetInvisible
     EndMovement
 
     .balign 4, 0
-BattleTowerBattleSalon_CherylWalkSouthToAttendantMovement:
+BattleTowerBattleSalon_Movement_CherylWalkSouthToAttendant:
     WalkFastSouth
     WalkFastWest 3
     WalkFastNorth 7
@@ -508,7 +508,7 @@ BattleTowerBattleSalon_CherylWalkSouthToAttendantMovement:
     EndMovement
 
     .balign 4, 0
-BattleTowerBattleSalon_CherylWalkWestToAttendantMovement:
+BattleTowerBattleSalon_Movement_CherylWalkWestToAttendant:
     WalkFastWest
     WalkFastNorth
     WalkFastWest 2
@@ -517,33 +517,33 @@ BattleTowerBattleSalon_CherylWalkWestToAttendantMovement:
     EndMovement
 
     .balign 4, 0
-BattleTowerBattleSalon_MiraWalkEastToAttendantMovement:
+BattleTowerBattleSalon_Movement_MiraWalkEastToAttendant:
     WalkFastEast
     WalkFastNorth 2
     WalkFastEast 3
     EndMovement
 
     .balign 4, 0
-BattleTowerBattleSalon_MiraWalkNorthToAttendantMovement:
+BattleTowerBattleSalon_Movement_MiraWalkNorthToAttendant:
     WalkFastNorth 2
     WalkFastEast 4
     EndMovement
 
     .balign 4, 0
-BattleTowerBattleSalon_RileyWalkWestToAttendantMovement:
+BattleTowerBattleSalon_Movement_RileyWalkWestToAttendant:
     WalkFastWest
     WalkFastNorth 4
     WalkFastWest 2
     EndMovement
 
     .balign 4, 0
-BattleTowerBattleSalon_RileyWalkNorthToAttendantMovement:
+BattleTowerBattleSalon_Movement_RileyWalkNorthToAttendant:
     WalkFastNorth 4
     WalkFastWest 3
     EndMovement
 
     .balign 4, 0
-BattleTowerBattleSalon_MarleyWalkSouthToAttendantMovement:
+BattleTowerBattleSalon_Movement_MarleyWalkSouthToAttendant:
     WalkFastSouth
     WalkFastEast 4
     WalkFastNorth 7
@@ -551,7 +551,7 @@ BattleTowerBattleSalon_MarleyWalkSouthToAttendantMovement:
     EndMovement
 
     .balign 4, 0
-BattleTowerBattleSalon_MarleyWalkNorthToAttendantMovement:
+BattleTowerBattleSalon_Movement_MarleyWalkNorthToAttendant:
     WalkFastNorth
     WalkFastEast 4
     WalkFastNorth 5
@@ -559,14 +559,14 @@ BattleTowerBattleSalon_MarleyWalkNorthToAttendantMovement:
     EndMovement
 
     .balign 4, 0
-BattleTowerBattleSalon_BuckWalkWestToAttendantMovement:
+BattleTowerBattleSalon_Movement_BuckWalkWestToAttendant:
     WalkFastWest
     WalkFastNorth 5
     WalkFastEast 2
     EndMovement
 
     .balign 4, 0
-BattleTowerBattleSalon_BuckWalkEastToAttendantMovement:
+BattleTowerBattleSalon_Movement_BuckWalkEastToAttendant:
     WalkFastEast 3
     WalkFastNorth 5
     WalkFastWest 2

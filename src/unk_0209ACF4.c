@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0209747C_decl.h"
 #include "struct_defs/sentence.h"
 
 #include "field/field_system.h"
@@ -136,19 +135,19 @@ static BOOL sub_0209AE14(FieldTask *param0)
 
             switch (v0->unk_64) {
             case 0:
-                sub_02014CC0(&(v0->unk_48), sub_0202D498(v0->fieldSystem->saveData, 0));
+                Sentence_Set(&(v0->unk_48), sub_0202D498(v0->fieldSystem->saveData, 0));
                 v0->unk_54 = 3;
                 break;
             case 1:
-                sub_02014CC0(&(v0->unk_48), sub_0202D498(v0->fieldSystem->saveData, 1));
+                Sentence_Set(&(v0->unk_48), sub_0202D498(v0->fieldSystem->saveData, 1));
                 v0->unk_54 = 3;
                 break;
             case 2:
-                sub_02014CC0(&(v0->unk_48), sub_0202D498(v0->fieldSystem->saveData, 2));
+                Sentence_Set(&(v0->unk_48), sub_0202D498(v0->fieldSystem->saveData, 2));
                 v0->unk_54 = 3;
                 break;
             case 3:
-                sub_02014CC0(&(v0->unk_48), sub_0202D498(v0->fieldSystem->saveData, 3));
+                Sentence_Set(&(v0->unk_48), sub_0202D498(v0->fieldSystem->saveData, 3));
                 v0->unk_54 = 3;
                 break;
             case 4:

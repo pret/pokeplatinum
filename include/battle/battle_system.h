@@ -243,11 +243,11 @@ void ov16_0223F32C(BattleSystem *battleSys, u8 *param1);
 void ov16_0223F338(BattleSystem *battleSys, u8 param1);
 void ov16_0223F344(BattleSystem *battleSys, u8 param1);
 void BattleSystem_SetCommandIsEndWait(BattleSystem *battleSys, u8 value);
-void *BattleSystem_GetHealthbar(BattleSystem *battleSys, int battler);
+void *BattleSystem_GetHealthBox(BattleSystem *battleSys, int battler);
 void ov16_0223F36C(BattleSystem *battleSys);
 void ov16_0223F3BC(BattleSystem *battleSys);
 void ov16_0223F3EC(BattleSystem *battleSys);
-void ov16_0223F414(BattleSystem *battleSys);
+void BattleSystem_DestroyHealthboxes(BattleSystem *battleSys);
 u8 BattleSystem_GetResultMask(BattleSystem *battleSys);
 void BattleSystem_SetResultMask(BattleSystem *battleSys, u8 value);
 u8 BattleSystem_GetRedHPSoundFlag(BattleSystem *battleSys);
@@ -273,7 +273,7 @@ u8 BattleSystem_GetRecordedChatter(BattleSystem *battleSys, int battler);
 void ov16_0223F858(BattleSystem *battleSys, u8 *param1);
 void BattleSystem_SetBattlerTypes(BattleSystem *battleSys, u8 *battlerTypes);
 void ov16_0223F8AC(BattleSystem *battleSys, PokemonSprite **monSprites);
-void BattleSystem_SetGaugePriority(BattleSystem *battleSys, int param1);
+void BattleSystem_SetHealthboxPriority(BattleSystem *battleSys, int param1);
 
 /**
  * @brief Calculate the money penalty for losing a battle.

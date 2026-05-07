@@ -37,18 +37,18 @@ u8 *sub_0205BA5C(int param0, void *param1, int param2);
 void sub_0205BA6C(int param0, int param1, void *param2, void *param3);
 u16 sub_0205BA7C(UnkStruct_0205B43C *param0);
 void sub_0205BAAC(int param0);
-int sub_0205BC50(StringTemplate *param0);
-int sub_0205BCF4(UnkStruct_0205B43C *param0, int param1, int param2, StringTemplate *param3);
-u8 sub_0205BE38(void);
+int UnionRoom_GetTrainerCasePlayerMessage(StringTemplate *strTemplate);
+int UnionRoom_GetMessage(UnkStruct_0205B43C *param0, int param1, int msgType, StringTemplate *strTemplate);
+u8 UnionRoom_GetCommInfoGameCode(void);
 void sub_0205BEA8(int param0);
-int sub_0205BF44(UnkStruct_0205B43C *param0, StringTemplate *param1);
+int UnionRoom_GetTealaMessage(UnkStruct_0205B43C *param0, StringTemplate *strTemplate);
 void sub_0205C010(UnkStruct_0205B43C *param0, Sentence *param1);
 Sentence *sub_0205C028(UnkStruct_0205B43C *param0);
-void sub_0205C040(StringTemplate *param0, int param1, int param2, TrainerInfo *param3, UnkStruct_02014EC4 *param4);
+void UnionRoom_DoGreeting(StringTemplate *strTemplate, int param1, int param2, TrainerInfo *playerTrainerInfo, UnkStruct_02014EC4 *param4);
 void sub_0205C12C(Sentence *param0);
 void sub_0205C154(UnkStruct_0205B43C *param0);
-void *sub_0205C17C(UnkStruct_0205B43C *param0);
+void *UnionRoom_GetTrainerCase(UnkStruct_0205B43C *param0);
 void sub_0205C1F0(UnkStruct_0205B43C *param0);
-void sub_0205C214(UnkStruct_0205B43C *param0);
+void UnionRoom_SendTrainerCase(UnkStruct_0205B43C *param0);
 
 #endif // POKEPLATINUM_UNK_0205B33C_H

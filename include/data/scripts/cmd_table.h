@@ -8,18 +8,18 @@
         .set \x, \x + 1
     .endm
 
-    .macro enum_start x=0
+    .macro new_enum x=0
         .set __enum__, \x
     .endm
 
-    .macro enum constant:req
+    .macro inc_enum constant:req
         .equiv \constant, __enum__
         inc __enum__
     .endm
 
-    enum_start
+    new_enum
 
-#define ScriptCommand(constant, function) enum constant
+#define ScriptCommand(constant, function) inc_enum constant
 #else
 #define ScriptCommand(constant, function) function,
 #endif

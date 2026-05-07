@@ -5,6 +5,7 @@
 
 #include "generated/items.h"
 
+#include "applications/mail.h"
 #include "applications/party_menu/defs.h"
 #include "applications/party_menu/form_change.h"
 #include "applications/party_menu/main.h"
@@ -29,7 +30,6 @@
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_02097624.h"
 
 #include "res/text/bank/party_menu.h"
 
@@ -310,7 +310,7 @@ static int sub_0208384C(void *applicationPtr)
     application = applicationPtr;
     v1 = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
 
-    if (sub_02097788(application->partyMenu->mailbox, v1, HEAP_ID_PARTY_MENU) != 0xFFFFFFFF) {
+    if (Mail_TransferFromMonToMailbox(application->partyMenu->mailbox, v1, HEAP_ID_PARTY_MENU) != 0xFFFFFFFF) {
         application->partyMembers[application->currPartySlot].heldItem = ITEM_NONE;
         PartyMenu_DrawMemberHeldItem(application, application->currPartySlot, application->partyMembers[application->currPartySlot].heldItem);
         PartyMenu_PrintLongMessage(application, PartyMenu_Text_MailWasSentToYourPC, FALSE);

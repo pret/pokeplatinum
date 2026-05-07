@@ -53,7 +53,7 @@ _076:
 
 _089:
     Wait 
-    HealthbarSlideOut BTLSCR_ENEMY
+    HealthBoxSlideOut BTLSCR_ENEMY
     Wait 
     TrainerSlideIn BTLSCR_ENEMY_SLOT_1, BATTLER_TYPE_SOLO_ENEMY
     Wait 

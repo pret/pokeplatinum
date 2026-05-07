@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_BATTLER_DATA_H
 #define POKEPLATINUM_STRUCT_BATTLER_DATA_H
 
-#include "battle/healthbar.h"
+#include "battle/healthbox.h"
 #include "battle/struct_ov16_0226C378.h"
 #include "battle_anim/struct_ball_rotation_decl.h"
 #include "battle_anim/struct_ov12_02223764.h"
@@ -29,7 +29,7 @@ typedef struct BattlerData {
     PokemonSprite *monSpriteBackup;
     PokemonSprite *monSprite;
     Window *unused_24;
-    Healthbar healthbar;
+    HealthBox healthbox;
     UnkStruct_ov16_0226C378 unk_7B;
     BallRotation *ballRotation;
     UnkStruct_ov12_02223764 *unk_88;

@@ -495,7 +495,7 @@ static void ov5_021D134C(FieldSystem *fieldSystem, u8 param1)
         LandDataManager_Tick(fieldSystem, fieldSystem->landDataMan);
 
         if (FieldMap_InDistortionWorld(fieldSystem) == TRUE) {
-            ov9_0224CA5C(fieldSystem);
+            DistWorld_TickInactiveFloor(fieldSystem);
         }
     }
 
@@ -698,7 +698,7 @@ static void ov5_021D15F4(FieldSystem *fieldSystem)
     LandDataManager_RenderLoadedMaps(fieldSystem->landDataMan, fieldSystem->areaModelAttrs);
 
     if (FieldMap_InDistortionWorld(fieldSystem) == TRUE) {
-        ov9_0224CA50(fieldSystem);
+        DistWorld_RenderInactiveFloor(fieldSystem);
     }
 
     MapPropManager_Render2(fieldSystem->mapPropManager, fieldSystem->areaDataManager);
@@ -793,7 +793,7 @@ static void FieldSystem_InitLandManager(FieldSystem *fieldSystem)
     if (FieldMap_InDistortionWorld(fieldSystem) == TRUE) {
         int v0 = 0, v1 = 0, v2 = 0;
 
-        ov9_02251094(fieldSystem->location->mapId, &v0, &v1, &v2);
+        DistWorld_LoadFloorOffsets(fieldSystem->location->mapId, &v0, &v1, &v2);
         LandDataManager_DistortionWorldSetOffsets(fieldSystem->landDataMan, v0, v1, v2);
         LandDataManager_SetInDistortionWorld(fieldSystem->landDataMan, TRUE);
         LandDataManager_SetSkipMapProps(fieldSystem->landDataMan, TRUE);

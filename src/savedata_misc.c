@@ -27,7 +27,7 @@ void MiscSaveBlock_Init(MiscSaveBlock *miscSave)
     MI_CpuFill16(miscSave->rivalName, CHAR_EOS, TRAINER_NAME_LEN + 1);
     MI_CpuFill16(miscSave->tabletName, CHAR_EOS, TABLET_NAME_LEN + 1);
 
-    sub_02014A9C(&miscSave->introMsg, 4);
+    Sentence_InitWithType(&miscSave->introMsg, 4);
 
     miscSave->introMsg.id = 0;
     miscSave->introMsg.words[0] = sub_02014DFC(441, 99);
@@ -98,7 +98,7 @@ void MiscSaveBlock_SetFavoriteMon(MiscSaveBlock *miscSave, int species, int form
     miscSave->favoriteMonIsEgg = isEgg;
 }
 
-void MiscSaveBlock_FavoriteMon(const MiscSaveBlock *miscSave, int *species, int *form, int *isEgg)
+void MiscSaveBlock_GetFavoriteMon(const MiscSaveBlock *miscSave, int *species, int *form, int *isEgg)
 {
     *species = miscSave->favoriteMon;
     *form = miscSave->favoriteMonForm;

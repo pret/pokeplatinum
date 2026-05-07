@@ -78,7 +78,7 @@
         },
         {
             "id": "LOCALID_DAILY_TRAINER_1",
-            "graphics_id": "OBJ_EVENT_GFX_POKECENTER_DAILY_TRAINER_1",
+            "graphics_id": "OBJ_EVENT_GFX_VAR_A",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_POKECENTER_DAILY_TRAINER_1",
@@ -93,7 +93,7 @@
         },
         {
             "id": "LOCALID_DAILY_TRAINER_2",
-            "graphics_id": "OBJ_EVENT_GFX_POKECENTER_DAILY_TRAINER_2",
+            "graphics_id": "OBJ_EVENT_GFX_VAR_B",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_POKECENTER_DAILY_TRAINER_2",

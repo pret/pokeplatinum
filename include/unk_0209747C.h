@@ -2,11 +2,25 @@
 #define POKEPLATINUM_UNK_0209747C_H
 
 #include "struct_decls/struct_02014EC4_decl.h"
-#include "struct_decls/struct_0209747C_decl.h"
 #include "struct_defs/sentence.h"
 
 #include "pokedex.h"
 #include "savedata.h"
+
+typedef struct UnkStruct_0209747C {
+    u8 unk_00;
+    u8 unk_01;
+    u8 unk_02;
+    u8 unk_03;
+    u8 unk_04;
+    u8 unk_05;
+    int unk_08;
+    const Pokedex *unk_0C;
+    const UnkStruct_02014EC4 *unk_10;
+    Sentence unk_14;
+    u16 unk_1C[2];
+    u16 unk_20[2];
+} UnkStruct_0209747C;
 
 UnkStruct_0209747C *sub_0209747C(u32 param0, u32 param1, SaveData *saveData, enum HeapID heapID);
 void sub_020974EC(UnkStruct_0209747C *param0);

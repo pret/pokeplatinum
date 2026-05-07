@@ -148,7 +148,7 @@ BattleFrontier_AttendantSouthwest:
     FacePlayer
     Message BattleFrontier_Text_TradeBPForPrizes
     CloseMessageWithoutErasing
-    PokeMartFrontier MART_FRONTIER_ID_EXCHANGE_SERVICE_CORNER_DOWN
+    PokeMartFrontier MART_FRONTIER_ID_EXCHANGE_SERVICE_CORNER_LEFT
     ReleaseAll
     End
 
@@ -171,7 +171,7 @@ BattleFrontier_AttendantSoutheast:
     FacePlayer
     Message BattleFrontier_Text_TradeBPForPrizes2
     CloseMessageWithoutErasing
-    PokeMartFrontier MART_FRONTIER_ID_EXCHANGE_SERVICE_CORNER_UP
+    PokeMartFrontier MART_FRONTIER_ID_EXCHANGE_SERVICE_CORNER_RIGHT
     ReleaseAll
     End
 

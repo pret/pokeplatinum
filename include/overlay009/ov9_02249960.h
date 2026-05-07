@@ -78,8 +78,8 @@ BOOL DistWorld_HandlePlayerMoved(FieldSystem *fieldSystem, enum FaceDirection pl
 BOOL ov9_0224A67C(FieldSystem *fieldSystem, int param1);
 BOOL ov9_0224A71C(FieldSystem *fieldSystem);
 BOOL ov9_0224A800(FieldSystem *fieldSystem, int param1);
-void ov9_0224CA50(FieldSystem *fieldSystem);
-void ov9_0224CA5C(FieldSystem *fieldSystem);
+void DistWorld_RenderInactiveFloor(FieldSystem *fieldSystem);
+void DistWorld_TickInactiveFloor(FieldSystem *fieldSystem);
 void DistWorld_StartGiratinaShadowEvent(FieldSystem *fieldSystem, u16 eventIndex);
 void DistWorld_FinishGiratinaShadowEvent(FieldSystem *fieldSystem);
 void DistWorld_AddMapObjectWithLocalID(FieldSystem *fieldSystem, u16 mapObjLocalID);
@@ -95,7 +95,7 @@ BOOL DistWorld_IsValidTileOnCurrentFloatingPlatform(FieldSystem *fieldSystem, in
 BOOL ov9_02250FD8(FieldSystem *fieldSystem, int param1, int param2, int param3);
 void ov9_02251000(FieldSystem *fieldSystem, int param1, int param2, int param3);
 BOOL DistWorld_GetTileBehaviorOnCurrentFloatingPlatform(FieldSystem *fieldSystem, int tileX, int tileY, int tileZ, u32 *tileBehavior);
-void ov9_02251094(int param0, int *param1, int *param2, int *param3);
+void DistWorld_LoadFloorOffsets(int mapHeaderID, int *offsetTileX, int *offsetAltitude, int *offsetTileZ);
 BOOL ov9_022511A0(FieldSystem *fieldSystem, int param1, int param2, int param3);
 
 #endif // POKEPLATINUM_OV9_02249960_H

@@ -26,7 +26,7 @@
       ]
     },
     {
-      "id": "BattleTowerBattleSalon_Text_RileyWouldYouLikeToTeamUp",
+      "id": "BattleTowerBattleSalon_Text_RileyAskTeamUp",
       "en_US": [
         "Riley: The partners I have now?\r",
         "Well, my {STRVAR_1 0, 0, 0}’s nasty with its\n",
@@ -51,7 +51,7 @@
       ]
     },
     {
-      "id": "BattleTowerBattleSalon_Text_CherylWouldYouLikeToTeamUp",
+      "id": "BattleTowerBattleSalon_Text_CherylAskTeamUp",
       "en_US": [
         "Cheryl: I have {STRVAR_1 0, 0, 0} that\n",
         "is very good with {STRVAR_1 6, 1, 0},\r",
@@ -72,7 +72,7 @@
       "en_US": "Cheryl: I’ll go on ahead, then.\r"
     },
     {
-      "id": "BattleTowerBattleSalon_Text_BuckWouldYouLikeToTeamUp",
+      "id": "BattleTowerBattleSalon_Text_BuckAskTeamUp",
       "en_US": [
         "Buck: Yo, are you looking to team\n",
         "up? Let me tell you what I’ve got.\r",
@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "BattleTowerBattleSalon_Text_MarleyWouldYouLikeToTeamUp",
+      "id": "BattleTowerBattleSalon_Text_MarleyAskTeamUp",
       "en_US": [
         "Marley: ...My {STRVAR_1 0, 0, 0} uses\n",
         "{STRVAR_1 6, 1, 0} well...\r",
@@ -117,7 +117,7 @@
       "en_US": "Marley: ...I’ll go ahead...\r"
     },
     {
-      "id": "BattleTowerBattleSalon_Text_MiraWouldYouLikeToTeamUp",
+      "id": "BattleTowerBattleSalon_Text_MiraAskTeamUp",
       "en_US": [
         "Mira: Hi, hi!\n",
         "I’m with my {STRVAR_1 0, 0, 0}!\f",

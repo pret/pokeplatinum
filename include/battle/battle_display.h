@@ -6,7 +6,7 @@
 #include "struct_defs/move_animation.h"
 
 #include "battle/battle_message.h"
-#include "battle/healthbar.h"
+#include "battle/healthbox.h"
 #include "battle/message_defs.h"
 #include "battle/struct_ov16_0226C378.h"
 
@@ -24,21 +24,21 @@ void BattleDisplay_InitTaskSlideTrainerOut(BattleSystem *battleSys, BattlerData 
 void BattleDisplay_InitTaskSlideTrainerIn(BattleSystem *battleSys, BattlerData *battlerData, TrainerSlideInMessage *message);
 
 /**
- * @brief Slide the healthbar into the screen.
+ * @brief Slide the healthbox into the screen.
  *
  * @param battleSys
  * @param battlerData
- * @param healthbarData
+ * @param healthboxData
  */
-void BattleDisplay_InitTaskSlideHealthbarIn(BattleSystem *battleSys, BattlerData *battlerData, HealthbarData *healthbarData);
+void BattleDisplay_InitTaskSlideHealthBoxIn(BattleSystem *battleSys, BattlerData *battlerData, HealthBoxData *healthboxData);
 
 /**
- * @brief Slide the healthbar out of the screen.
+ * @brief Slide the healthbox out of the screen.
  *
  * @param battleSys
  * @param battlerData
  */
-void BattleDisplay_InitTaskSlideHealthbarOut(BattleSystem *battleSys, BattlerData *battlerData);
+void BattleDisplay_InitTaskSlideHealthBoxOut(BattleSystem *battleSys, BattlerData *battlerData);
 void BattleDisplay_InitTaskSetCommandSelection(BattleSystem *battleSys, BattlerData *battlerData, CommandSetMessage *message);
 void BattleDisplay_InitTaskShowMoveSelectMenu(BattleSystem *battleSys, BattlerData *battlerData, MoveSelectMenuMessage *message);
 void BattleDisplay_InitTaskShowTargetSelectMenu(BattleSystem *battleSys, BattlerData *battlerData, TargetSelectMenuMessage *message);
@@ -124,7 +124,7 @@ void BattlerData_SetTaskFuncs(BattleSystem *battleSys, BattlerData *battlerData)
 u8 BattlerData_GetBattlerType(BattlerData *battlerData);
 u8 BattlerData_GetBootState(BattlerData *battlerData);
 PokemonSprite *BattlerData_GetPokemonSprite(BattlerData *battlerData);
-Healthbar *BattlerData_GetHealthbar(BattlerData *battlerData);
+HealthBox *BattlerData_GetHealthBox(BattlerData *battlerData);
 UnkStruct_ov16_0226C378 *ov16_02263B0C(BattlerData *battlerData);
 void ov16_02263B10(BattlerData *battlerData);
 void ov16_02263B20(BattlerData *battlerData, BOOL draw);

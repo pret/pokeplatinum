@@ -1,9 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/mail.h"
-#include "struct_defs/struct_02097728.h"
-
+#include "applications/mail.h"
 #include "applications/party_menu/defs.h"
 #include "applications/party_menu/main.h"
 #include "field/field_system.h"
@@ -40,7 +38,6 @@
 #include "system.h"
 #include "text.h"
 #include "unk_0203D1B8.h"
-#include "unk_02097624.h"
 
 typedef struct {
     u8 unk_00;
@@ -101,7 +98,7 @@ typedef struct {
     Window unk_184;
     Window unk_194;
     ScrollPrompts *unk_1A4;
-    UnkStruct_02097728 *unk_1A8;
+    MailAppArgs *unk_1A8;
     Mailbox *mailbox;
     Bag *bag;
     PartyMenu *partyMenu;
@@ -908,7 +905,7 @@ static void sub_02072F30(UnkStruct_02072334 *param0, SaveData *saveData, enum He
     mail = Mail_New(heapID);
 
     for (i = 0; i < MAILBOX_SIZE; i++) {
-        sub_020284CC(mailbox, 0, i, mail);
+        Mailbox_GetMailAtSlot(mailbox, MAIL_CONTEXT_MAILBOX, i, mail);
 
         v7 = &(param0->unk_1C[i]);
         v8 = &(param0->unk_1C[param0->unk_19]);
@@ -917,14 +914,14 @@ static void sub_02072F30(UnkStruct_02072334 *param0, SaveData *saveData, enum He
 
         v7->unk_00 = i;
 
-        if (!Mail_IsEmpty(mail)) {
+        if (!Mail_IsValid(mail)) {
             continue;
         }
 
         v7->unk_01 = 1;
         v7->trainerGender = Mail_GetTrainerGender(mail);
         v7->mailType = Mail_GetMailType(mail);
-        v7->item = Item_ForMailNumber(v7->mailType);
+        v7->item = Item_ForMailType(v7->mailType);
 
         String_CopyChars(v7->unk_08, Mail_GetTrainerName(mail));
 
@@ -967,7 +964,7 @@ static BOOL sub_02073060(UnkStruct_02072334 *param0)
         Bag_TryAddItem(param0->bag, v0->item, 1, param0->heapID);
     }
 
-    sub_02028470(param0->mailbox, 0, param0->unk_18);
+    Mailbox_ClearMailAtSlot(param0->mailbox, MAIL_CONTEXT_MAILBOX, param0->unk_18);
     sub_02073020(param0, param0->unk_18);
     sub_02072EB8(v0, param0->unk_18);
 
@@ -989,7 +986,7 @@ static void sub_020730B8(UnkStruct_02072334 *param0, u8 param1, BOOL param2)
     v1 = SaveData_GetParty(FieldSystem_GetSaveData(param0->fieldSystem));
     v2 = Party_GetPokemonBySlotIndex(v1, param1);
 
-    sub_020977E4(param0->mailbox, param0->unk_18, v2, param0->heapID);
+    Mail_TransferFromMailboxToMon(param0->mailbox, param0->unk_18, v2, param0->heapID);
 
     if (param2) {
         if (Bag_CanFitItem(param0->bag, v0->item, 1, param0->heapID)) {
@@ -1234,9 +1231,9 @@ static int sub_020735E8(UnkStruct_02072334 *param0)
     switch (param0->unk_12) {
     case 0:
         if (param0->unk_1C[param0->unk_18].unk_01) {
-            param0->unk_1A8 = sub_0203D94C(param0->fieldSystem, 0, param0->unk_18, param0->heapID);
+            param0->unk_1A8 = FieldSystem_LaunchMailApp_Read(param0->fieldSystem, MAIL_CONTEXT_MAILBOX, param0->unk_18, param0->heapID);
         } else {
-            param0->unk_1A8 = sub_0203D920(param0->fieldSystem, 0, param0->unk_17, param0->unk_1C[param0->unk_18].mailType, param0->heapID);
+            param0->unk_1A8 = FieldSystem_LaunchMailApp_Write(param0->fieldSystem, MAIL_CONTEXT_MAILBOX, param0->unk_17, param0->unk_1C[param0->unk_18].mailType, param0->heapID);
         }
 
         param0->unk_12++;
@@ -1246,16 +1243,16 @@ static int sub_020735E8(UnkStruct_02072334 *param0)
             break;
         }
 
-        if (sub_02097728(param0->unk_1A8)) {
+        if (MailApp_WasMailWritten(param0->unk_1A8)) {
             param0->unk_1C[param0->unk_18].unk_01 = 1;
-            sub_0209772C(param0->unk_1A8, 0, param0->unk_1C[param0->unk_18].unk_00);
+            MailApp_CopyWrittenMailToMailboxSlot(param0->unk_1A8, MAIL_CONTEXT_MAILBOX, param0->unk_1C[param0->unk_18].unk_00);
 
             v0 = 2;
         } else {
             v0 = 1;
         }
 
-        sub_02097770(param0->unk_1A8);
+        MailAppArgs_Free(param0->unk_1A8);
         param0->unk_12 = 0;
         return v0;
     }

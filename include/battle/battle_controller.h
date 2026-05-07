@@ -20,8 +20,8 @@ void BattleController_EmitSetTrainerEncounter(BattleSystem *battleSys, int battl
 void BattleController_EmitThrowTrainerBall(BattleSystem *battleSys, int battler, int ballTypeIn);
 void BattleController_EmitSlideTrainerOut(BattleSystem *battleSys, int battler);
 void BattleController_EmitSlideTrainerIn(BattleSystem *battleSys, int battler, int posIn);
-void BattleController_EmitSlideHealthbarIn(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int delay);
-void BattleController_EmitSlideHealthbarOut(BattleSystem *battleSys, int battler);
+void BattleController_EmitSlideHealthBoxIn(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int delay);
+void BattleController_EmitSlideHealthBoxOut(BattleSystem *battleSys, int battler);
 void BattleController_EmitSetCommandSelection(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int partySlot);
 void ov16_022656D4(BattleSystem *battleSys, int battler, int command);
 void BattleController_EmitShowMoveSelectMenu(BattleSystem *battleSys, BattleContext *battleCtx, int battler);

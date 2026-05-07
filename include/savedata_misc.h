@@ -47,7 +47,7 @@ void MiscSaveBlock_SetTabletName(MiscSaveBlock *miscSave, String *name);
 void MiscSaveBlock_SetInitFlag(MiscSaveBlock *miscSave);
 u32 MiscSaveBlock_InitFlag(const MiscSaveBlock *miscSave);
 void MiscSaveBlock_SetFavoriteMon(MiscSaveBlock *miscSave, int species, int form, int isEgg);
-void MiscSaveBlock_FavoriteMon(const MiscSaveBlock *miscSave, int *species, int *form, int *isEgg);
+void MiscSaveBlock_GetFavoriteMon(const MiscSaveBlock *miscSave, int *species, int *form, int *isEgg);
 void MiscSaveBlock_IntroMsg(const MiscSaveBlock *miscSave, Sentence *message);
 void MiscSaveBlock_SetIntroMsg(MiscSaveBlock *miscSave, const Sentence *message);
 void MiscSaveBlock_VsRecorderColor(const MiscSaveBlock *miscSave, u8 *color);

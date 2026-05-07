@@ -7,8 +7,8 @@
 #include "constants/savedata/vars_flags.h"
 
 #include "struct_decls/map_object.h"
-#include "struct_defs/struct_02097728.h"
 
+#include "applications/mail.h"
 #include "applications/party_menu/defs.h"
 #include "applications/party_menu/main.h"
 #include "applications/poffin_case/main.h"
@@ -551,10 +551,10 @@ static void UseMailFromMenu(ItemMenuUseContext *usageContext, const ItemUseConte
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(usageContext->fieldTask);
     StartMenu *menu = FieldTask_GetEnv(usageContext->fieldTask);
-    UnkStruct_02097728 *v2 = sub_0203D94C(fieldSystem, 3, Item_MailNumber(usageContext->item), HEAP_ID_FIELD2);
+    MailAppArgs *args = FieldSystem_LaunchMailApp_Read(fieldSystem, MAIL_CONTEXT_CHECK, Item_GetMailType(usageContext->item), HEAP_ID_FIELD2);
 
-    menu->additionalTaskContext = sub_0203C540(usageContext->item, 3, 0);
-    menu->taskData = v2;
+    menu->additionalTaskContext = StartMenu_BuildMailData(usageContext->item, MAIL_READ_FROM_BAG, 0);
+    menu->taskData = args;
 
     StartMenu_SetCallback(menu, StartMenu_ExitMail);
 }

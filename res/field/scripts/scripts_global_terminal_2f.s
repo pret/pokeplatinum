@@ -2,147 +2,147 @@
 #include "res/text/bank/global_terminal_2f.h"
 
 
-    ScriptEntry _0107
-    ScriptEntry _003A
-    ScriptEntry _004D
-    ScriptEntry _0060
-    ScriptEntry _0073
-    ScriptEntry _0086
-    ScriptEntry _0099
-    ScriptEntry _00AC
-    ScriptEntry _00BF
-    ScriptEntry _00D2
-    ScriptEntry _00E5
-    ScriptEntry _00F6
-    ScriptEntry _0109
-    ScriptEntry _0193
+    ScriptEntry GlobalTerminal2F_Unused1
+    ScriptEntry GlobalTerminal2F_Artist
+    ScriptEntry GlobalTerminal2F_Hiker
+    ScriptEntry GlobalTerminal2F_BattleGirl
+    ScriptEntry GlobalTerminal2F_Idol
+    ScriptEntry GlobalTerminal2F_ExpertF
+    ScriptEntry GlobalTerminal2F_PokefanF
+    ScriptEntry GlobalTerminal2F_Beauty
+    ScriptEntry GlobalTerminal2F_Lass
+    ScriptEntry GlobalTerminal2F_Twin
+    ScriptEntry GlobalTerminal2F_SignWarp1F
+    ScriptEntry GlobalTerminal2F_SignWarp3F
+    ScriptEntry GlobalTerminal2F_BoxDataMachine
+    ScriptEntry GlobalTerminal2F_DressUpDataMachine
     ScriptEntryEnd
 
-_003A:
-    NPCMessage 0
+GlobalTerminal2F_Artist:
+    NPCMessage GlobalTerminal2F_Text_ThisIsDiscriminatory
     End
 
-_004D:
-    NPCMessage 1
+GlobalTerminal2F_Hiker:
+    NPCMessage GlobalTerminal2F_Text_SneakingAPeek
     End
 
-_0060:
-    NPCMessage 2
+GlobalTerminal2F_BattleGirl:
+    NPCMessage GlobalTerminal2F_Text_DidYouKnow
     End
 
-_0073:
-    NPCMessage 3
+GlobalTerminal2F_Idol:
+    NPCMessage GlobalTerminal2F_Text_IVisitEveryDay
     End
 
-_0086:
-    NPCMessage 4
+GlobalTerminal2F_ExpertF:
+    NPCMessage GlobalTerminal2F_Text_ThisIsAlmostScandalous
     End
 
-_0099:
-    NPCMessage 5
+GlobalTerminal2F_PokefanF:
+    NPCMessage GlobalTerminal2F_Text_CombinationWasWonderful
     End
 
-_00AC:
-    NPCMessage 6
+GlobalTerminal2F_Beauty:
+    NPCMessage GlobalTerminal2F_Text_DifferentImpressions
     End
 
-_00BF:
-    NPCMessage 7
+GlobalTerminal2F_Lass:
+    NPCMessage GlobalTerminal2F_Text_BackdropFromNiceLady
     End
 
-_00D2:
-    NPCMessage 8
+GlobalTerminal2F_Twin:
+    NPCMessage GlobalTerminal2F_Text_ILikeSneakingGlances
     End
 
-_00E5:
-    EventMessage 9
+GlobalTerminal2F_SignWarp1F:
+    EventMessage GlobalTerminal2F_Text_WarpsTo1F
     End
 
-_00F6:
-    EventMessage 10
+GlobalTerminal2F_SignWarp3F:
+    EventMessage GlobalTerminal2F_Text_WarpsTo3F
     End
 
-_0107:
+GlobalTerminal2F_Unused1:
     End
 
-_0109:
+GlobalTerminal2F_BoxDataMachine:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     SetVar VAR_0x8005, 6
-    GoTo _011D
+    GoTo GlobalTerminal2F_BoxDataMenu
     End
 
-_011D:
-    Message 13
+GlobalTerminal2F_BoxDataMenu:
+    Message GlobalTerminal2F_Text_ConnectForBoxData
     InitLocalTextMenu 31, 11, 0, VAR_RESULT
     SetMenuXOriginToRight
-    AddMenuEntryImm 15, 0
-    AddMenuEntryImm 16, 1
-    AddMenuEntryImm 17, 2
+    AddMenuEntryImm GlobalTerminal2F_Text_Use, 0
+    AddMenuEntryImm GlobalTerminal2F_Text_Info, 1
+    AddMenuEntryImm GlobalTerminal2F_Text_Cancel, 2
     ShowMenu
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, 0, _0167
-    GoToIfEq VAR_0x8008, 1, _0188
-    GoTo _0161
+    GoToIfEq VAR_0x8008, 0, GlobalTerminal2F_UseBoxDataMachine
+    GoToIfEq VAR_0x8008, 1, GlobalTerminal2F_ExplainBoxData
+    GoTo GlobalTerminal2F_BoxDataMachineEnd
     End
 
-_0161:
+GlobalTerminal2F_BoxDataMachineEnd:
     CloseMessage
     ReleaseAll
     End
 
-_0167:
+GlobalTerminal2F_UseBoxDataMachine:
     Common_SaveGame
     SetVar VAR_RESULT, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_RESULT, 0, _0161
+    GoToIfEq VAR_RESULT, 0, GlobalTerminal2F_BoxDataMachineEnd
     CloseMessage
     CallCommonScript 0x802
     ReleaseAll
     End
 
-_0188:
-    Message 14
-    GoTo _011D
+GlobalTerminal2F_ExplainBoxData:
+    Message GlobalTerminal2F_Text_ExplainBoxData
+    GoTo GlobalTerminal2F_BoxDataMenu
     End
 
-_0193:
+GlobalTerminal2F_DressUpDataMachine:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     SetVar VAR_0x8005, 5
-    GoTo _01A7
+    GoTo GlobalTerminal2F_DressUpDataMenu
     End
 
-_01A7:
-    Message 11
+GlobalTerminal2F_DressUpDataMenu:
+    Message GlobalTerminal2F_Text_ConnectForDressUpData
     InitLocalTextMenu 31, 11, 0, VAR_RESULT
     SetMenuXOriginToRight
-    AddMenuEntryImm 15, 0
-    AddMenuEntryImm 16, 1
-    AddMenuEntryImm 17, 2
+    AddMenuEntryImm GlobalTerminal2F_Text_Use, 0
+    AddMenuEntryImm GlobalTerminal2F_Text_Info, 1
+    AddMenuEntryImm GlobalTerminal2F_Text_Cancel, 2
     ShowMenu
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, 0, _01F1
-    GoToIfEq VAR_0x8008, 1, _0212
-    GoTo _01EB
+    GoToIfEq VAR_0x8008, 0, GlobalTerminal2F_UseDressUpDataMachine
+    GoToIfEq VAR_0x8008, 1, GlobalTerminal2F_ExplainDressUpData
+    GoTo GlobalTerminal2F_DressUpDataMachineEnd
     End
 
-_01EB:
+GlobalTerminal2F_DressUpDataMachineEnd:
     CloseMessage
     ReleaseAll
     End
 
-_01F1:
+GlobalTerminal2F_UseDressUpDataMachine:
     Common_SaveGame
     SetVar VAR_RESULT, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_RESULT, 0, _01EB
+    GoToIfEq VAR_RESULT, 0, GlobalTerminal2F_DressUpDataMachineEnd
     CloseMessage
     CallCommonScript 0x802
     ReleaseAll
     End
 
-_0212:
-    Message 12
-    GoTo _01A7
+GlobalTerminal2F_ExplainDressUpData:
+    Message GlobalTerminal2F_Text_ExplainDressUpData
+    GoTo GlobalTerminal2F_DressUpDataMenu
     End
 
     .balign 4, 0

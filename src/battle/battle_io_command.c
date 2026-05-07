@@ -16,7 +16,7 @@
 #include "battle/battle_message.h"
 #include "battle/battle_system.h"
 #include "battle/common.h"
-#include "battle/healthbar.h"
+#include "battle/healthbox.h"
 #include "battle/message_defs.h"
 #include "battle/ov16_02264798.h"
 #include "battle/party_gauge.h"
@@ -54,8 +54,8 @@ static void BtlIOCmd_SetTrainerEncounter(BattleSystem *battleSys, BattlerData *b
 static void BtlIOCmd_ThrowTrainerBall(BattleSystem *battleSys, BattlerData *battlerData);
 static void BtlIOCmd_SlideTrainerOut(BattleSystem *battleSys, BattlerData *battlerData);
 static void BtlIOCmd_SlideTrainerIn(BattleSystem *battleSys, BattlerData *battlerData);
-static void BtlIOCmd_SlideHealthbarIn(BattleSystem *battleSys, BattlerData *battlerData);
-static void BtlIOCmd_SlideHealthbarOut(BattleSystem *battleSys, BattlerData *battlerData);
+static void BtlIOCmd_SlideHealthBoxIn(BattleSystem *battleSys, BattlerData *battlerData);
+static void BtlIOCmd_SlideHealthBoxOut(BattleSystem *battleSys, BattlerData *battlerData);
 static void BtlIOCmd_SetCommandSelection(BattleSystem *battleSys, BattlerData *battlerData);
 static void BtlIOCmd_ShowMoveSelectMenu(BattleSystem *battleSys, BattlerData *battlerData);
 static void BtlIOCmd_ShowTargetSelectMenu(BattleSystem *battleSys, BattlerData *battlerData);
@@ -170,8 +170,8 @@ static const BattleCommandPtr sBattleCommands[] = {
     [BATTLE_COMMAND_THROW_TRAINER_BALL] = BtlIOCmd_ThrowTrainerBall,
     [BATTLE_COMMAND_SLIDE_TRAINER_OUT] = BtlIOCmd_SlideTrainerOut,
     [BATTLE_COMMAND_SLIDE_TRAINER_IN] = BtlIOCmd_SlideTrainerIn,
-    [BATTLE_COMMAND_SLIDE_HEALTHBAR_IN] = BtlIOCmd_SlideHealthbarIn,
-    [BATTLE_COMMAND_SLIDE_HEALTHBAR_OUT] = BtlIOCmd_SlideHealthbarOut,
+    [BATTLE_COMMAND_SLIDE_HEALTHBOX_IN] = BtlIOCmd_SlideHealthBoxIn,
+    [BATTLE_COMMAND_SLIDE_HEALTHBOX_OUT] = BtlIOCmd_SlideHealthBoxOut,
     [BATTLE_COMMAND_SET_COMMAND_SELECTION] = BtlIOCmd_SetCommandSelection,
     [BATTLE_COMMAND_SHOW_MOVE_SELECT_MENU] = BtlIOCmd_ShowMoveSelectMenu,
     [BATTLE_COMMAND_SHOW_TARGET_SELECT_MENU] = BtlIOCmd_ShowTargetSelectMenu,
@@ -238,7 +238,7 @@ void BattleSystem_ExecuteBattlerCommand(BattleSystem *battleSys, BattlerData *ba
 void ov16_0225C104(BattleSystem *battleSys, BattlerData *battlerData, int param2)
 {
     if (param2 != 2) {
-        ov16_02267360(&battlerData->healthbar);
+        Healthbox_DestroySprites(&battlerData->healthbox);
     }
 
     if (battlerData->managedSprite) {
@@ -344,28 +344,28 @@ static void BtlIOCmd_SlideTrainerIn(BattleSystem *battleSys, BattlerData *battle
 }
 
 /**
- * @brief Slide a healthbar in on the screen.
+ * @brief Slide a healthbox in on the screen.
  *
  * @param battleSys
  * @param battlerData
  */
-static void BtlIOCmd_SlideHealthbarIn(BattleSystem *battleSys, BattlerData *battlerData)
+static void BtlIOCmd_SlideHealthBoxIn(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    HealthbarData *healthbar = (HealthbarData *)&battlerData->data[0];
+    HealthBoxData *healthboxData = (HealthBoxData *)&battlerData->data[0];
 
-    BattleDisplay_InitTaskSlideHealthbarIn(battleSys, battlerData, healthbar);
+    BattleDisplay_InitTaskSlideHealthBoxIn(battleSys, battlerData, healthboxData);
     ZeroDataBuffer(battlerData);
 }
 
 /**
- * @brief Slide a healthbar out of the screen.
+ * @brief Slide a healthbox out of the screen.
  *
  * @param battleSys
  * @param battlerData
  */
-static void BtlIOCmd_SlideHealthbarOut(BattleSystem *battleSys, BattlerData *battlerData)
+static void BtlIOCmd_SlideHealthBoxOut(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    BattleDisplay_InitTaskSlideHealthbarOut(battleSys, battlerData);
+    BattleDisplay_InitTaskSlideHealthBoxOut(battleSys, battlerData);
     ZeroDataBuffer(battlerData);
 }
 
@@ -626,7 +626,7 @@ static void ov16_0225C558(BattleSystem *battleSys, BattlerData *battlerData)
 
 static void BtlIOCmd_StopGaugeAnimation(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    ov16_022675AC(&battlerData->healthbar);
+    Healthbox_Deactivate(&battlerData->healthbox);
     ov16_022647D8(battlerData);
     BattleController_EmitClearCommand(battleSys, battlerData->battler, battlerData->data[0]);
     ZeroDataBuffer(battlerData);
@@ -721,7 +721,7 @@ static void BtlIOCmd_ClearTouchScreen(BattleSystem *battleSys, BattlerData *batt
     if (battlerData->bootState == BATTLER_BOOT_STATE_NORMAL) {
         UnkStruct_ov16_02268A14 *v0;
         int partner;
-        Healthbar *healthbar;
+        HealthBox *healthbox;
         NARC *v3 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, HEAP_ID_BATTLE);
         NARC *v4 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, HEAP_ID_BATTLE);
         v0 = ov16_0223E02C(battleSys);
@@ -735,11 +735,11 @@ static void BtlIOCmd_ClearTouchScreen(BattleSystem *battleSys, BattlerData *batt
         partner = BattleSystem_GetPartner(battleSys, battlerData->battler);
 
         if (partner != battlerData->battler) {
-            healthbar = BattleSystem_GetHealthbar(battleSys, partner);
-            ov16_0226846C(healthbar);
+            healthbox = BattleSystem_GetHealthBox(battleSys, partner);
+            ov16_0226846C(healthbox);
         }
 
-        ov16_022675AC(&battlerData->healthbar);
+        Healthbox_Deactivate(&battlerData->healthbox);
         ov16_02269218(v0);
         ov16_022647D8(battlerData);
     }

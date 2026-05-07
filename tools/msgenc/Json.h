@@ -11,7 +11,7 @@
 #include <string>
 #include <vector>
 
-#include "rapidjson/document.h"
+#include "dataproc.h"
 
 #include "MessagesConverter.h"
 
@@ -22,7 +22,7 @@ class Json {
 
     char row_no_buf[_row_no_buf_ndigit + 1] = {0};
     string filename;
-    rapidjson::Document doc;
+    datafile_t doc;
     vector<string> id_strings;
     vector<string> messages;
 
@@ -46,6 +46,8 @@ class Json {
 public:
     Json(string &_filename, ios::openmode _openmode) : filename(_filename) {
         memset(row_no_buf, '0', _row_no_buf_ndigit);
+        memset(&this->doc, 0, sizeof(this->doc));
+        dp_init(DATAPROC_F_JSON);
     }
 
     int FromFile(MessagesConverter &converter);

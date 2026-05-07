@@ -9,7 +9,7 @@ _000:
     SetTrainerEncounter BTLSCR_PLAYER
     PlayEncounterAnimation 
     WaitTime 122
-    HealthbarSlideInDelay BTLSCR_ENEMY
+    HealthBoxSlideInDelay BTLSCR_ENEMY
     Wait 
     CompareVarToValue OPCODE_FLAG_SET, BTLVAR_BATTLE_SYS_STATUS, BATTLE_STATUS_DISTORTION, _073
     CompareVarToValue OPCODE_FLAG_SET, BTLVAR_BATTLE_SYS_STATUS, BATTLE_STATUS_LEGENDARY, _067
@@ -61,7 +61,7 @@ _100:
     ThrowPokeball BTLSCR_PLAYER, BTLSCR_THROW_POKE_BALL
     PokemonSlideIn BTLSCR_PLAYER
     WaitTime 96
-    HealthbarSlideInDelay BTLSCR_PLAYER
+    HealthBoxSlideInDelay BTLSCR_PLAYER
     Wait 
     OAMToSprite BTLSCR_ENEMY
     Wait 
@@ -83,14 +83,14 @@ _118:
     ThrowPokeball BTLSCR_ENEMY, BTLSCR_THROW_POKE_BALL
     PokemonSlideIn BTLSCR_ENEMY
     WaitTime 112
-    HealthbarSlideInDelay BTLSCR_ENEMY
+    HealthBoxSlideInDelay BTLSCR_ENEMY
     Wait 
     PrintFirstSendOutMessage BTLSCR_PLAYER
     HideBattleStartPartyGauge BTLSCR_PLAYER
     ThrowPokeball BTLSCR_PLAYER, BTLSCR_THROW_POKE_BALL
     PokemonSlideIn BTLSCR_PLAYER
     WaitTime 96
-    HealthbarSlideInDelay BTLSCR_PLAYER
+    HealthBoxSlideInDelay BTLSCR_PLAYER
     Wait 
     FreePartyGaugeGraphics 
     GoTo _258
@@ -110,14 +110,14 @@ _169:
     ThrowPokeball BTLSCR_PLAYER, BTLSCR_THROW_POKE_BALL
     PokemonSlideIn BTLSCR_PLAYER
     WaitTime 96
-    HealthbarSlideInDelay BTLSCR_PLAYER
+    HealthBoxSlideInDelay BTLSCR_PLAYER
     Wait 
     PrintFirstSendOutMessage BTLSCR_ENEMY
     HideBattleStartPartyGauge BTLSCR_ENEMY
     ThrowPokeball BTLSCR_ENEMY, BTLSCR_THROW_POKE_BALL
     PokemonSlideIn BTLSCR_ENEMY
     WaitTime 112
-    HealthbarSlideInDelay BTLSCR_ENEMY
+    HealthBoxSlideInDelay BTLSCR_ENEMY
     Wait 
     FreePartyGaugeGraphics 
     GoTo _258
@@ -127,12 +127,12 @@ _215:
     SetTrainerEncounter BTLSCR_PLAYER
     PlayEncounterAnimation 
     WaitTime 122
-    HealthbarSlideInDelay BTLSCR_ENEMY
+    HealthBoxSlideInDelay BTLSCR_ENEMY
     Wait 
     // A wild {0} appeared!
     PrintGlobalMessage BattleStrings_Text_AWildPokemonAppeared, TAG_NICKNAME, BTLSCR_ENEMY
     Wait 
-    HealthbarSlideIn BTLSCR_PLAYER
+    HealthBoxSlideIn BTLSCR_PLAYER
     WaitButtonABTime 7
     Wait 
     GoTo _258
@@ -142,12 +142,12 @@ _237:
     SetTrainerEncounter BTLSCR_PLAYER
     PlayEncounterAnimation 
     WaitTime 122
-    HealthbarSlideInDelay BTLSCR_ENEMY
+    HealthBoxSlideInDelay BTLSCR_ENEMY
     Wait 
     // Wow! {0}’s {1} is drawing close!
     PrintGlobalMessage BattleStrings_Text_01219, TAG_TRNAME_NICKNAME, BTLSCR_ENEMY, BTLSCR_ENEMY
     Wait 
-    HealthbarSlideIn BTLSCR_PLAYER
+    HealthBoxSlideIn BTLSCR_PLAYER
     WaitButtonABTime 7
     Wait 
 

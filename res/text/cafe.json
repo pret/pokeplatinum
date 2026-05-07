@@ -2,7 +2,7 @@
   "key": 54005,
   "messages": [
     {
-      "id": "pl_msg_00000484_00000",
+      "id": "Cafe_Text_CustomersWantToBattle",
       "en_US": [
         "Howdy, traveler!\r",
         "Some of our customers are rowdy\n",
@@ -12,7 +12,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000484_00001",
+      "id": "Cafe_Text_MoomooMilk500ABottle",
       "en_US": [
         "How are ya doing?\n",
         "Whatcha having?\r",
@@ -24,28 +24,28 @@
       ]
     },
     {
-      "id": "pl_msg_00000484_00002",
+      "id": "Cafe_Text_HeresYourMoomooMilk",
       "en_US": [
         "Here’s your Moomoo Milk.\n",
         "Enjoy.\r"
       ]
     },
     {
-      "id": "pl_msg_00000484_00003",
+      "id": "Cafe_Text_YourBagsFull",
       "en_US": [
         "Oh!\n",
         "Your Bag’s full, sweetie."
       ]
     },
     {
-      "id": "pl_msg_00000484_00004",
+      "id": "Cafe_Text_YouDontHaveTheMoney",
       "en_US": [
         "Oh!\n",
         "You don’t have the money, sweetie."
       ]
     },
     {
-      "id": "pl_msg_00000484_00005",
+      "id": "Cafe_Text_AllRightThen",
       "en_US": [
         "All right, then.\r",
         "I should tell you, it’s not that we\n",
@@ -55,26 +55,26 @@
       ]
     },
     {
-      "id": "pl_msg_00000484_00006",
+      "id": "Cafe_Text_GetMoomooMilkByDozen",
       "en_US": [
         "Get your Moomoo Milk by the dozen.\n",
         "That’s of course twelve to a dozen.\r"
       ]
     },
     {
-      "id": "pl_msg_00000484_00007",
+      "id": "Cafe_Text_1Bottle",
       "en_US": "1 BOTTLE"
     },
     {
-      "id": "pl_msg_00000484_00008",
+      "id": "Cafe_Text_1Dozen",
       "en_US": "1 DOZEN"
     },
     {
-      "id": "pl_msg_00000484_00009",
+      "id": "Cafe_Text_NoThanks",
       "en_US": "NO THANKS"
     },
     {
-      "id": "pl_msg_00000484_00010",
+      "id": "Cafe_Text_SeenPsyduckHuddledOutside",
       "en_US": [
         "Youngster, you’ve seen the\n",
         "PSYDUCK huddled outside?\r",
@@ -85,7 +85,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000484_00011",
+      "id": "Cafe_Text_RelievedPsyduckOfHeadaches",
       "en_US": [
         "Well, well! So I hear you’ve relieved\n",
         "the PSYDUCK of their headaches.\r",

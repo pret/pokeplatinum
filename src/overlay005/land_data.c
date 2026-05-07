@@ -2139,7 +2139,7 @@ static void LandDataManager_DistortionWorldLoad(const int mapMatrixIndex, const 
     landDataMan->loadedMaps[loadedMapIndex]->mapMatrixIndex = mapMatrixIndex;
 }
 
-void LandDataManager_DistortionWorldRenderNextFloorMaps(const LandDataManager *landDataMan, const ModelAttributes *modelAttrs)
+void LandDataManager_DistortionWorldRenderInactiveFloor(const LandDataManager *landDataMan, const ModelAttributes *modelAttrs)
 {
     for (int i = 0; i < QUADRANT_COUNT; i++) {
         if (landDataMan->loadedMaps[i]->mapMatrixIndex != INVALID_MAP_MATRIX_INDEX) {

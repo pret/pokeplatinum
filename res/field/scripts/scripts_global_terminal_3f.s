@@ -2,106 +2,106 @@
 #include "res/text/bank/global_terminal_3f.h"
 
 
-    ScriptEntry _0103
-    ScriptEntry _0036
-    ScriptEntry _0049
-    ScriptEntry _005C
-    ScriptEntry _006F
-    ScriptEntry _0082
-    ScriptEntry _0095
-    ScriptEntry _00A8
-    ScriptEntry _00BB
-    ScriptEntry _00CE
-    ScriptEntry _00E1
-    ScriptEntry _00F2
-    ScriptEntry _0105
+    ScriptEntry GlobalTerminal3F_Unused1
+    ScriptEntry GlobalTerminal3F_Youngster
+    ScriptEntry GlobalTerminal3F_SchoolKidF
+    ScriptEntry GlobalTerminal3F_AceTrainerM
+    ScriptEntry GlobalTerminal3F_PokefanM
+    ScriptEntry GlobalTerminal3F_Camper
+    ScriptEntry GlobalTerminal3F_Gentleman
+    ScriptEntry GlobalTerminal3F_Clown
+    ScriptEntry GlobalTerminal3F_Guitarist
+    ScriptEntry GlobalTerminal3F_Hiker
+    ScriptEntry GlobalTerminal3F_SignWarp1F
+    ScriptEntry GlobalTerminal3F_SignWarp2F
+    ScriptEntry GlobalTerminal3F_BattleVideosMachine
     ScriptEntryEnd
 
-_0036:
-    NPCMessage 0
+GlobalTerminal3F_Youngster:
+    NPCMessage GlobalTerminal3F_Text_SeePeopleLovePokemon
     End
 
-_0049:
-    NPCMessage 1
+GlobalTerminal3F_SchoolKidF:
+    NPCMessage GlobalTerminal3F_Text_ThisIsAGreatIdea
     End
 
-_005C:
-    NPCMessage 2
+GlobalTerminal3F_AceTrainerM:
+    NPCMessage GlobalTerminal3F_Text_ThisBattleVideoRocks
     End
 
-_006F:
-    NPCMessage 3
+GlobalTerminal3F_PokefanM:
+    NPCMessage GlobalTerminal3F_Text_BattleVideosOfClefairy
     End
 
-_0082:
-    NPCMessage 4
+GlobalTerminal3F_Camper:
+    NPCMessage GlobalTerminal3F_Text_WhatAnAmazingCollection
     End
 
-_0095:
-    NPCMessage 5
+GlobalTerminal3F_Gentleman:
+    NPCMessage GlobalTerminal3F_Text_TreatToBattleVideos
     End
 
-_00A8:
-    NPCMessage 6
+GlobalTerminal3F_Clown:
+    NPCMessage GlobalTerminal3F_Text_MyFavoriteBattleVideo
     End
 
-_00BB:
-    NPCMessage 7
+GlobalTerminal3F_Guitarist:
+    NPCMessage GlobalTerminal3F_Text_AlphabetRapJubilife
     End
 
-_00CE:
-    NPCMessage 8
+GlobalTerminal3F_Hiker:
+    NPCMessage GlobalTerminal3F_Text_Hiker2FIsBrother
     End
 
-_00E1:
-    EventMessage 9
+GlobalTerminal3F_SignWarp1F:
+    EventMessage GlobalTerminal3F_Text_WarpsTo1F
     End
 
-_00F2:
-    EventMessage 10
+GlobalTerminal3F_SignWarp2F:
+    EventMessage GlobalTerminal3F_Text_WarpsTo2F
     End
 
-_0103:
+GlobalTerminal3F_Unused1:
     End
 
-_0105:
+GlobalTerminal3F_BattleVideosMachine:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     SetVar VAR_0x8005, 2
-    GoTo _0119
+    GoTo GlobalTerminal3F_BattleVideosMenu
     End
 
-_0119:
-    Message 11
+GlobalTerminal3F_BattleVideosMenu:
+    Message GlobalTerminal3F_Text_ConnectForBattleVideos
     InitLocalTextMenu 31, 11, 0, VAR_RESULT
     SetMenuXOriginToRight
-    AddMenuEntryImm 13, 0
-    AddMenuEntryImm 14, 1
-    AddMenuEntryImm 15, 2
+    AddMenuEntryImm GlobalTerminal3F_Text_Use, 0
+    AddMenuEntryImm GlobalTerminal3F_Text_Info, 1
+    AddMenuEntryImm GlobalTerminal3F_Text_Cancel, 2
     ShowMenu
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, 0, _0163
-    GoToIfEq VAR_0x8008, 1, _0184
-    GoTo _015D
+    GoToIfEq VAR_0x8008, 0, GlobalTerminal3F_UseBattleVideosMachine
+    GoToIfEq VAR_0x8008, 1, GlobalTerminal3F_ExplainBattleVideos
+    GoTo GlobalTerminal3F_BattleVideosMachineEnd
     End
 
-_015D:
+GlobalTerminal3F_BattleVideosMachineEnd:
     CloseMessage
     ReleaseAll
     End
 
-_0163:
+GlobalTerminal3F_UseBattleVideosMachine:
     Common_SaveGame
     SetVar VAR_RESULT, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_RESULT, 0, _015D
+    GoToIfEq VAR_RESULT, 0, GlobalTerminal3F_BattleVideosMachineEnd
     CloseMessage
     CallCommonScript 0x802
     ReleaseAll
     End
 
-_0184:
-    Message 12
-    GoTo _0119
+GlobalTerminal3F_ExplainBattleVideos:
+    Message GlobalTerminal3F_Text_ExplainBattleVideos
+    GoTo GlobalTerminal3F_BattleVideosMenu
     End
 
     .balign 4, 0

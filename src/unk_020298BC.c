@@ -542,7 +542,7 @@ void DressUpPhoto_SetTitle(DressUpPhoto *photo, u16 word)
 {
     GF_ASSERT(DressUpPhoto_IsValid(photo));
 
-    sub_02014A84(&photo->title);
+    Sentence_Init(&photo->title);
     Sentence_SetWord(&photo->title, 0, word);
 }
 

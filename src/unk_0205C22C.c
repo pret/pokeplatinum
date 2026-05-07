@@ -492,7 +492,7 @@ static void sub_0205C8DC(UnkStruct_0205C924 *param0)
     param0->unk_04 = NULL;
     param0->unk_08 = NULL;
 
-    sub_02014A9C(&param0->unk_14, 0);
+    Sentence_InitWithType(&param0->unk_14, 0);
 
     param0->unk_10 = 0;
     param0->unk_0C = 0;

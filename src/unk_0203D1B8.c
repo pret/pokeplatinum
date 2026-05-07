@@ -9,7 +9,6 @@
 #include "generated/pokemon_contest_types.h"
 #include "generated/trainer_score_events.h"
 
-#include "struct_decls/struct_0209747C_decl.h"
 #include "struct_defs/choose_starter_data.h"
 #include "struct_defs/clear_game_player_info.h"
 #include "struct_defs/dress_up_photo.h"
@@ -24,12 +23,12 @@
 #include "struct_defs/struct_0203E608.h"
 #include "struct_defs/struct_0203E6C0.h"
 #include "struct_defs/struct_0206BC70.h"
-#include "struct_defs/struct_02097728.h"
 
 #include "applications/bag/application.h"
 #include "applications/diploma.h"
 #include "applications/frontier/records/main.h"
 #include "applications/journal_display/journal_controller.h"
+#include "applications/mail.h"
 #include "applications/move_reminder.h"
 #include "applications/naming_screen.h"
 #include "applications/options_menu.h"
@@ -126,7 +125,6 @@
 #include "unk_020559DC.h"
 #include "unk_0205B33C.h"
 #include "unk_0209747C.h"
-#include "unk_02097624.h"
 #include "vars_flags.h"
 #include "wifi_history_save_data.h"
 
@@ -751,42 +749,42 @@ void *FieldSystem_OpenOptionsMenu(FieldSystem *fieldSystem)
     return optionsMenu;
 }
 
-extern const ApplicationManagerTemplate Unk_020F64B0;
+extern const ApplicationManagerTemplate gMailAppArgsTemplate;
 
-static void sub_0203D910(FieldSystem *fieldSystem, UnkStruct_02097728 *param1)
+static void LaunchMailApp(FieldSystem *fieldSystem, MailAppArgs *mailAppArgs)
 {
-    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F64B0, param1);
+    FieldSystem_StartChildProcess(fieldSystem, &gMailAppArgsTemplate, mailAppArgs);
 }
 
-UnkStruct_02097728 *sub_0203D920(FieldSystem *fieldSystem, int param1, u8 param2, u8 mailType, int unusedHeapID)
+MailAppArgs *FieldSystem_LaunchMailApp_Write(FieldSystem *fieldSystem, enum MailContext context, u8 partySlot, u8 mailType, int unusedHeapID)
 {
-    UnkStruct_02097728 *v0 = sub_02097624(FieldSystem_GetSaveData(fieldSystem), param1, param2, mailType, HEAP_ID_FIELD2);
-    sub_0203D910(fieldSystem, v0);
+    MailAppArgs *mailAppArgs = MailAppArgs_New_Write(FieldSystem_GetSaveData(fieldSystem), context, partySlot, mailType, HEAP_ID_FIELD2);
+    LaunchMailApp(fieldSystem, mailAppArgs);
 
-    return v0;
+    return mailAppArgs;
 }
 
-UnkStruct_02097728 *sub_0203D94C(FieldSystem *fieldSystem, int param1, u8 param2, enum HeapID heapID)
+MailAppArgs *FieldSystem_LaunchMailApp_Read(FieldSystem *fieldSystem, enum MailContext context, u8 param2, enum HeapID heapID)
 {
-    UnkStruct_02097728 *v0;
+    MailAppArgs *mailAppArgs;
 
-    if (param1 == 3) {
-        v0 = sub_020976F4(FieldSystem_GetSaveData(fieldSystem), param2, heapID);
+    if (context == MAIL_CONTEXT_CHECK) {
+        mailAppArgs = MailAppArgs_New_Check(FieldSystem_GetSaveData(fieldSystem), param2, heapID);
     } else {
-        v0 = sub_0209767C(FieldSystem_GetSaveData(fieldSystem), param1, param2, heapID);
+        mailAppArgs = MailAppArgs_New_ReadFromMailbox(FieldSystem_GetSaveData(fieldSystem), context, param2, heapID);
     }
 
-    sub_0203D910(fieldSystem, v0);
+    LaunchMailApp(fieldSystem, mailAppArgs);
 
-    return v0;
+    return mailAppArgs;
 }
 
-UnkStruct_02097728 *sub_0203D984(FieldSystem *fieldSystem, Pokemon *param1, enum HeapID heapID)
+MailAppArgs *FieldSystem_LaunchMailApp_ReadHeld(FieldSystem *fieldSystem, Pokemon *mon, enum HeapID heapID)
 {
-    UnkStruct_02097728 *v0 = sub_020976BC(FieldSystem_GetSaveData(fieldSystem), param1, heapID);
-    sub_0203D910(fieldSystem, v0);
+    MailAppArgs *mailAppArgs = MailAppArgs_New_ReadHeld(FieldSystem_GetSaveData(fieldSystem), mon, heapID);
+    LaunchMailApp(fieldSystem, mailAppArgs);
 
-    return v0;
+    return mailAppArgs;
 }
 
 static void OpenPoffinCaseApp(FieldSystem *fieldSystem, PoffinCaseAppData *poffinCaseAppData)

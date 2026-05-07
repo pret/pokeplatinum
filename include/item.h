@@ -275,20 +275,20 @@ u8 Item_TMHMNumber(u16 item);
 u8 Item_IsMail(u16 item);
 
 /**
- * @brief Get the mail number for a given item.
+ * @brief Get the mail type for a given item.
  *
  * @param item
- * @return The mail number for the item, or ITEM_NONE if the item is not mail.
+ * @return The mail type for the item, or ITEM_NONE if the item is not mail.
  */
-u8 Item_MailNumber(u16 item);
+u8 Item_GetMailType(u16 item);
 
 /**
- * @brief Get the item for a given mail number.
+ * @brief Get the item for a given mail type.
  *
  * @param mail
- * @return The item for the mail number, or ITEM_NONE if none exists.
+ * @return The item for the mail type, or ITEM_NONE if none exists.
  */
-u16 Item_ForMailNumber(u8 mail);
+u16 Item_ForMailType(u8 mailType);
 
 /**
  * @brief Check if a given item is a berry.

@@ -231,7 +231,7 @@ u32 Sentence_SaveSize(void)
     return sizeof(UnkStruct_02014EC4);
 }
 
-void Sentence_Init(void *param0)
+void SentenceSaveData_Init(void *param0)
 {
     static const struct {
         u8 language;

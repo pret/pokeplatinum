@@ -8,7 +8,7 @@ _000:
     // {0}’s status returned to normal!
     PrintMessage BattleStrings_Text_PokemonsStatusReturnedToNormal_Ally, TAG_NICKNAME, BTLSCR_ATTACKER
     Wait 
-    SetHealthbarStatus BTLSCR_ATTACKER, BATTLE_ANIMATION_NONE
+    SetHealthBoxStatusIcon BTLSCR_ATTACKER, BATTLE_ANIMATION_NONE
     WaitButtonABTime 30
     End 
 

@@ -12,12 +12,7 @@
 #include <string_view>
 #include <vector>
 
-#include "rapidjson/document.h"
-#include "rapidjson/error/en.h"
-#include "rapidjson/error/error.h"
-#include "rapidjson/prettywriter.h"
-#include "rapidjson/rapidjson.h"
-#include "rapidjson/stringbuffer.h"
+#include "dataproc.h"
 
 #include "MessagesConverter.h"
 
@@ -97,103 +92,63 @@ void Json::WriteHeader(const string &_filename) {
 
 // Read messages from JSON into memory to be converted
 int Json::FromFile(MessagesConverter &converter) {
-    static char errbuf[256] = {0};
-
-    string json = ReadWholeFile(filename);
-    rapidjson::ParseResult result = doc.Parse(json.c_str());
-    if (!result) {
-        throw runtime_error(rapidjson::GetParseError_En(result.Code()));
-    }
-
-    if (!doc.IsObject()) {
-        throw runtime_error("Input document is not an object.");
-    }
-
-    int i = 0;
     int key = JSON_KEY_NOT_DEFINED;
 
-    if (auto membKey = doc.FindMember("key"); membKey != doc.MemberEnd()) {
-        if (!membKey->value.IsInt()) {
-            throw runtime_error("Non-numeric value for `key`.");
-        }
-
-        key = membKey->value.GetInt();
+    if (dp_load(&this->doc, filename.c_str()) == 0) {
+        key = dp_u16(dp_get(&this->doc, ".key"));
         key &= 0xFFFF;
         key |= 0x10000;
-    }
 
-    auto membMessages = doc.FindMember("messages");
-    if (membMessages == doc.MemberEnd()) {
-        throw runtime_error("Bank: missing required member `messages`.");
-    } else if (!membMessages->value.IsArray()) {
-        throw runtime_error("Bank.messages: expected an array.");
-    }
+        datanode_t messages = dp_get(&this->doc, ".messages");
+        std::size_t numMessages = dp_arrlen(messages);
+        for (std::size_t i = 0; i < numMessages; i++) {
+            string message;
+            datanode_t elem = dp_arrelem(messages, i);
+            if (dp_hasmemb(elem, "en_US")) {
+                datanode_t content = dp_objmemb(elem, "en_US");
+                std::size_t numLines = 0;
+                switch (content.type) {
+                case DATAPROC_T_STRING:
+                    message.append(dp_string(content));
+                    break;
 
-    for (const auto &entry : membMessages->value.GetArray()) {
-        if (!entry.IsObject()) {
-            sprintf(errbuf, "Bank.messages[%d]: expected an object.", i);
-            throw runtime_error(errbuf);
-        }
+                case DATAPROC_T_ARRAY:
+                    numLines = dp_arrlen(content);
+                    for (std::size_t j = 0; j < numLines; j++) {
+                        const char *line = dp_string(dp_arrelem(content, j));
+                        if (line) message.append(line);
+                    }
+                    break;
 
-        string message;
-        auto membId = entry.FindMember("id");
-        auto membGarbage = entry.FindMember("garbage");
-        auto membText = entry.FindMember("en_US"); // TODO: Multi-language support
-
-        if (membId == entry.MemberEnd()) {
-            sprintf(errbuf, "Bank.messages[%d]: missing required member `id`.", i);
-            throw runtime_error(errbuf);
-        } else if (!membId->value.IsString()) {
-            sprintf(errbuf, "Bank.messages[%d].id: expected a string.", i);
-            throw runtime_error(errbuf);
-        }
-
-        if (membGarbage != entry.MemberEnd()) {
-            if (!membGarbage->value.IsInt()) {
-                sprintf(errbuf, "Bank.messages[%d].garbage: expected an integer.", i);
-                throw runtime_error(errbuf);
-            }
-
-            message.resize(membGarbage->value.GetInt(), ' ');
-            goto enqueue_message;
-        }
-
-        if (membText == entry.MemberEnd()) {
-            sprintf(errbuf, "Bank.messages[%d]: missing required member `en_US`.", i);
-            throw runtime_error(errbuf);
-        } else if (!membText->value.IsString() && !membText->value.IsArray()) {
-            sprintf(errbuf, "Bank.messages[%d].en_US: expected a string or multi-line array of strings.", i);
-            throw runtime_error(errbuf);
-        }
-
-        if (membText->value.IsString()) {
-            message.assign(membText->value.GetString());
-        } else if (membText->value.IsArray()) {
-            for (const auto &line : membText->value.GetArray()) {
-                if (!line.IsString()) {
-                    goto content_error;
+                default:
+                    dp_error(&content, "expected an array or string");
+                    continue;
                 }
-
-                message.append(line.GetString());
             }
-        } else {
-        content_error:
-            sprintf(errbuf, "Bank.messages[%d].en_US: expected a string or array of strings.", i);
-            throw runtime_error(errbuf);
-        }
+            else if (dp_hasmemb(elem, "garbage")) {
+                message.resize(dp_int(dp_objmemb(elem, "garbage")), ' ');
+            }
+            else {
+                dp_error(&elem, "expected a definition for one of 'garbage' or 'en_US'");
+                continue;
+            }
 
-    enqueue_message:
-        converter.GetDecodedMessages().emplace_back(message); // emplace a copy
-        id_strings.emplace_back(membId->value.GetString());
-        messages.push_back(message);
-        i++;
-        IncRowNoBuf();
+            converter.GetDecodedMessages().emplace_back(message); // emplace a copy
+            id_strings.emplace_back(dp_string(dp_objmemb(elem, "id")));
+            this->messages.push_back(message);
+            IncRowNoBuf();
+        }
+    }
+
+    if (dp_report(&this->doc) == DIAG_ERROR) {
+        throw std::runtime_error("JSON parse error");
     }
 
     if (!converter.GetHeaderFilename().empty()) {
         WriteHeader(converter.GetHeaderFilename());
     }
 
+    dp_free(&this->doc);
     return key;
 }
 
@@ -203,60 +158,47 @@ void Json::ToFile(MessagesConverter &converter) {
     }
 
     auto it = id_strings.cbegin();
-    doc.SetObject();
-    doc.AddMember("key", converter.GetKey(), doc.GetAllocator());
+    this->doc = dp_new();
+    datanode_t root = dp_set_obj(&this->doc);
+    dp_obj_putint(&root, "key", converter.GetKey());
 
-    rapidjson::Value messages(rapidjson::kArrayType);
+    datanode_t messages = dp_obj_putarray(&root, "messages");
 
     char keybuf[256];
     string prefix = filename.substr(filename.find_last_of('/') + 1);
     prefix = prefix.substr(0, prefix.find_first_of('.'));
+
     for (const auto &message : converter.GetDecodedMessages()) {
-        rapidjson::Value entry_name(rapidjson::kStringType);
+        datanode_t entry = dp_arr_appobject(&messages);
+
         if (it != id_strings.cend()) {
-            entry_name.SetString(it->c_str(), doc.GetAllocator());
+            dp_obj_putstring(&entry, "id", it->c_str());
             it++;
         } else {
-            sprintf(keybuf, "%s_%s", prefix.c_str(), row_no_buf);
-            entry_name.SetString(keybuf, doc.GetAllocator());
+            std::snprintf(keybuf, 256, "%s_%s", prefix.c_str(), row_no_buf);
+            dp_obj_putstring(&entry, "id", keybuf);
         }
 
-        rapidjson::Value entry(rapidjson::kObjectType);
-        entry.AddMember("id", entry_name, doc.GetAllocator());
-
         if (message.find_first_not_of(' ') == string::npos) {
-            rapidjson::Value garbage(rapidjson::kNumberType);
-            garbage.SetInt(message.size());
-            entry.AddMember("garbage", garbage, doc.GetAllocator());
+            dp_obj_putuint(&entry, "garbage", message.size());
         } else {
             vector<string> message_lines = SplitMessage(message, true);
             if (message_lines.size() == 1) {
-                rapidjson::Value entry_message(rapidjson::kStringType);
-                entry_message.SetString(message.c_str(), message.size(), doc.GetAllocator());
-                entry.AddMember("en_US", entry_message, doc.GetAllocator());
+                dp_obj_putstring(&entry, "en_US", message.c_str());
             } else {
-                rapidjson::Value entry_lines(rapidjson::kArrayType);
+                datanode_t lines = dp_obj_putarray(&entry, "en_US");
                 for (const auto& line : message_lines) {
-                    rapidjson::Value entry_line(rapidjson::kStringType);
-                    entry_line.SetString(line.c_str(), line.size(), doc.GetAllocator());
-                    entry_lines.PushBack(entry_line, doc.GetAllocator());
+                    dp_arr_appstring(&lines, line.c_str());
                 }
-                entry.AddMember("en_US", entry_lines, doc.GetAllocator());
             }
         }
 
-        messages.PushBack(entry, doc.GetAllocator());
         IncRowNoBuf();
     }
 
-    doc.AddMember("messages", messages, doc.GetAllocator());
-
-    rapidjson::StringBuffer buffer;
-    rapidjson::PrettyWriter<rapidjson::StringBuffer> writer(buffer);
-    doc.Accept(writer);
-
+    const char *output = dp_dump(&this->doc);
     ofstream jstrm(filename);
-    jstrm << buffer.GetString() << endl;
+    jstrm << output << endl;
 }
 
 vector<string> Json::SplitMessage(const string &message, bool preserve) {

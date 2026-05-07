@@ -149,12 +149,12 @@ static void GetStringFromSentence(ScriptMessage *msgData, u16 sentenceType, u16 
     Sentence sentence;
     String *string;
 
-    sub_02014A84(&sentence);
+    Sentence_Init(&sentence);
     sub_02014CE0(&sentence, sentenceType, sentenceID);
     Sentence_SetWord(&sentence, 0, word1);
     Sentence_SetWord(&sentence, 1, word2);
 
-    string = sub_02014B34(&sentence, HEAP_ID_FIELD3);
+    string = Sentence_AsString(&sentence, HEAP_ID_FIELD3);
 
     String_Copy(msgData->msgBuf, string);
     String_Free(string);

@@ -27,7 +27,7 @@
 #include "battle/battle_lib.h"
 #include "battle/battle_message.h"
 #include "battle/common.h"
-#include "battle/healthbar.h"
+#include "battle/healthbox.h"
 #include "battle/ov16_02268520.h"
 #include "battle/ov16_0226E148.h"
 #include "battle/pokemon_sprite_data.h"
@@ -1218,37 +1218,37 @@ void BattleSystem_SetCommandIsEndWait(BattleSystem *battleSys, u8 value)
     battleSys->commandIsEndWait = value;
 }
 
-void *BattleSystem_GetHealthbar(BattleSystem *battleSys, int battler)
+void *BattleSystem_GetHealthBox(BattleSystem *battleSys, int battler)
 {
-    return BattlerData_GetHealthbar(battleSys->battlers[battler]);
+    return BattlerData_GetHealthBox(battleSys->battlers[battler]);
 }
 
 void ov16_0223F36C(BattleSystem *battleSys)
 {
     int i;
-    Healthbar *healthbar;
+    HealthBox *healthbox;
 
     for (i = 0; i < battleSys->maxBattlers; i++) {
-        healthbar = BattlerData_GetHealthbar(battleSys->battlers[i]);
+        healthbox = BattlerData_GetHealthBox(battleSys->battlers[i]);
 
-        healthbar->battleSys = battleSys;
-        healthbar->type = Healthbar_Type(BattlerData_GetBattlerType(battleSys->battlers[i]), BattleSystem_GetBattleType(battleSys));
+        healthbox->battleSys = battleSys;
+        healthbox->type = HealthBox_Type(BattlerData_GetBattlerType(battleSys->battlers[i]), BattleSystem_GetBattleType(battleSys));
 
-        ov16_022672C4(healthbar);
-        Healthbar_Enable(healthbar, FALSE);
+        Healthbox_CreateMainSprite(healthbox);
+        HealthBox_Enable(healthbox, FALSE);
     }
 }
 
 void ov16_0223F3BC(BattleSystem *battleSys)
 {
     int i;
-    Healthbar *healthbar;
+    HealthBox *healthbox;
 
     for (i = 0; i < battleSys->maxBattlers; i++) {
-        healthbar = BattlerData_GetHealthbar(battleSys->battlers[i]);
+        healthbox = BattlerData_GetHealthBox(battleSys->battlers[i]);
 
-        if (healthbar->curHP) {
-            Healthbar_Enable(healthbar, TRUE);
+        if (healthbox->curHP) {
+            HealthBox_Enable(healthbox, TRUE);
         }
     }
 }
@@ -1256,22 +1256,21 @@ void ov16_0223F3BC(BattleSystem *battleSys)
 void ov16_0223F3EC(BattleSystem *battleSys)
 {
     int i;
-    Healthbar *healthbar;
+    HealthBox *healthbox;
 
     for (i = 0; i < battleSys->maxBattlers; i++) {
-        healthbar = BattlerData_GetHealthbar(battleSys->battlers[i]);
-        Healthbar_Enable(healthbar, FALSE);
+        healthbox = BattlerData_GetHealthBox(battleSys->battlers[i]);
+        HealthBox_Enable(healthbox, FALSE);
     }
 }
 
-void ov16_0223F414(BattleSystem *battleSys)
+void BattleSystem_DestroyHealthboxes(BattleSystem *battleSys)
 {
     int i;
-    Healthbar *healthbar;
+    HealthBox *healthbox;
 
     for (i = 0; i < battleSys->maxBattlers; i++) {
-        healthbar = BattlerData_GetHealthbar(battleSys->battlers[i]);
-        ov16_02267360(healthbar);
+        Healthbox_DestroySprites(BattlerData_GetHealthBox(battleSys->battlers[i]));
     }
 }
 
@@ -1515,14 +1514,13 @@ void ov16_0223F8AC(BattleSystem *battleSys, PokemonSprite **monSprites)
     }
 }
 
-void BattleSystem_SetGaugePriority(BattleSystem *battleSys, int param1)
+void BattleSystem_SetHealthboxPriority(BattleSystem *battleSys, int param1)
 {
     int battler;
-    Healthbar *healthbar;
+    HealthBox *healthbox;
 
     for (battler = 0; battler < battleSys->maxBattlers; battler++) {
-        healthbar = BattlerData_GetHealthbar(battleSys->battlers[battler]);
-        ov16_022675D8(healthbar, param1);
+        Healthbox_SetExplicitPriority(BattlerData_GetHealthBox(battleSys->battlers[battler]), param1);
     }
 }
 
@@ -1606,9 +1604,9 @@ u8 BattleMessage_PrintTrainerMessage(BattleSystem *battleSys, int trainerID, int
             String *string;
 
             if (msgType == TRMSG_WIN) {
-                string = sub_02014B34(&battleSys->trainers[battler].winMsg, HEAP_ID_BATTLE);
+                string = Sentence_AsString(&battleSys->trainers[battler].winMsg, HEAP_ID_BATTLE);
             } else {
-                string = sub_02014B34(&battleSys->trainers[battler].loseMsg, HEAP_ID_BATTLE);
+                string = Sentence_AsString(&battleSys->trainers[battler].loseMsg, HEAP_ID_BATTLE);
             }
 
             Window_FillTilemap(window, 0xFF);

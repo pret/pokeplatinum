@@ -51,7 +51,7 @@ void sub_02030AA0(UnkStruct_02030A80 *param0, SaveData *saveData)
 
     OS_GetOwnerInfo(&ownerInfo);
 
-    MiscSaveBlock_FavoriteMon(miscSaveBlock, &species, &form, &isEgg);
+    MiscSaveBlock_GetFavoriteMon(miscSaveBlock, &species, &form, &isEgg);
     MI_CpuClear8(param0, sizeof(UnkStruct_02030A80));
     CharCode_Copy(param0->unk_00, TrainerInfo_Name(v0));
 
@@ -163,7 +163,7 @@ String *sub_02030C28(const UnkStruct_02030A80 *param0, Sentence *param1, enum He
         }
 
         if (v0 > 0) {
-            sub_02014A9C(param1, 4);
+            Sentence_InitWithType(param1, 4);
             param1->id = 0;
             param1->words[0] = sub_02014DFC(441, 99);
             param1->words[1] = 0xffff;

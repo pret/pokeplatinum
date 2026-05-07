@@ -1,10 +1,10 @@
 #ifndef POKEPLATINUM_UNK_020998EC_H
 #define POKEPLATINUM_UNK_020998EC_H
 
-#include "struct_decls/struct_0209747C_decl.h"
 #include "struct_decls/struct_020998EC_decl.h"
 
 #include "string_gf.h"
+#include "unk_0209747C.h"
 
 UnkStruct_020998EC *sub_020998EC(u32 heapID, const UnkStruct_0209747C *param1);
 void sub_0209992C(UnkStruct_020998EC *param0);

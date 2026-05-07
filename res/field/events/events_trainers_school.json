@@ -19,7 +19,7 @@
     ],
     "object_events": [
         {
-            "id": "TRAINERS_SCHOOL_ACE_TRAINER_F_0",
+            "id": "LOCALID_ACE_TRAINER_F",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -34,11 +34,11 @@
             "y": 0
         },
         {
-            "id": "TRAINERS_SCHOOL_RIVAL_1",
+            "id": "LOCALID_RIVAL",
             "graphics_id": "OBJ_EVENT_GFX_BARRY",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x01F4",
+            "hidden_flag": "FLAG_HIDE_TRAINERS_SCHOOL_RIVAL",
             "script": 1,
             "initial_dir": 0,
             "data": [],
@@ -49,7 +49,7 @@
             "y": 0
         },
         {
-            "id": "TRAINERS_SCHOOL_YOUNGSTER_2",
+            "id": "LOCALID_YOUNGSTER_1",
             "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -64,7 +64,7 @@
             "y": 0
         },
         {
-            "id": "TRAINERS_SCHOOL_LASS_3",
+            "id": "LOCALID_LASS",
             "graphics_id": "OBJ_EVENT_GFX_LASS",
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -79,7 +79,7 @@
             "y": 0
         },
         {
-            "id": "TRAINERS_SCHOOL_YOUNGSTER_4",
+            "id": "LOCALID_YOUNGSTER_2",
             "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -94,7 +94,7 @@
             "y": 0
         },
         {
-            "id": "TRAINERS_SCHOOL_BOOK_5",
+            "id": "LOCALID_BOOK",
             "graphics_id": "OBJ_EVENT_GFX_BOOK",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -109,7 +109,7 @@
             "y": 0
         },
         {
-            "id": "TRAINERS_SCHOOL_SCHOOL_KID_M_6",
+            "id": "LOCALID_SCHOOL_KID_HARRISON",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -124,7 +124,7 @@
             "y": 0
         },
         {
-            "id": "TRAINERS_SCHOOL_SCHOOL_KID_F_7",
+            "id": "LOCALID_SCHOOL_KID_CHRISTINE",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_F",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",

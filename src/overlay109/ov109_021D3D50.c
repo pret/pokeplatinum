@@ -1041,15 +1041,13 @@ static int ov109_021D4CA8(UnkStruct_ov109_021D5140 *param0, int param1)
 
 static int ov109_021D4CC8(UnkStruct_ov109_021D5140 *param0, int param1)
 {
-    void *journalEntryOnlineEvent;
-
     gSystem.inhibitReset = 1;
 
-    journalEntryOnlineEvent = JournalEntry_CreateEventMixedRecords(95);
-    JournalEntry_SaveData(param0->unk_0C->unk_14.unk_18, journalEntryOnlineEvent, JOURNAL_ONLINE_EVENT);
+    void *journalEntryOnlineEvent = JournalEntry_CreateEventMixedRecords(95);
+    JournalEntry_SaveData(param0->unk_0C->unk_14.journalEntry, journalEntryOnlineEvent, JOURNAL_ONLINE_EVENT);
 
     journalEntryOnlineEvent = JournalEntry_CreateEventMisc(95, ONLINE_EVENT_SPIN_TRADE);
-    JournalEntry_SaveData(param0->unk_0C->unk_14.unk_18, journalEntryOnlineEvent, JOURNAL_ONLINE_EVENT);
+    JournalEntry_SaveData(param0->unk_0C->unk_14.journalEntry, journalEntryOnlineEvent, JOURNAL_ONLINE_EVENT);
     GameRecords_IncrementTrainerScore(param0->unk_0C->unk_14.records, TRAINER_SCORE_EVENT_UNK_20);
     sub_02038ED4(&param0->unk_414);
     param0->unk_3B8 = 28;

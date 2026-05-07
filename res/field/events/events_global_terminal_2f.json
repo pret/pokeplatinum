@@ -83,7 +83,7 @@
     ],
     "object_events": [
         {
-            "id": "GLOBAL_TERMINAL_2F_BATTLE_GIRL_0",
+            "id": "LOCALID_BATTLE_GIRL",
             "graphics_id": "OBJ_EVENT_GFX_BATTLE_GIRL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -98,7 +98,7 @@
             "y": 0
         },
         {
-            "id": "GLOBAL_TERMINAL_2F_TWIN_1",
+            "id": "LOCALID_TWIN",
             "graphics_id": "OBJ_EVENT_GFX_TWIN",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -113,7 +113,7 @@
             "y": 0
         },
         {
-            "id": "GLOBAL_TERMINAL_2F_POKEFAN_F_2",
+            "id": "LOCALID_POKEFAN_F",
             "graphics_id": "OBJ_EVENT_GFX_POKEFAN_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -128,7 +128,7 @@
             "y": 0
         },
         {
-            "id": "GLOBAL_TERMINAL_2F_BEAUTY_3",
+            "id": "LOCALID_BEAUTY",
             "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -143,7 +143,7 @@
             "y": 0
         },
         {
-            "id": "GLOBAL_TERMINAL_2F_LASS_4",
+            "id": "LOCALID_LASS",
             "graphics_id": "OBJ_EVENT_GFX_LASS",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -158,7 +158,7 @@
             "y": 0
         },
         {
-            "id": "GLOBAL_TERMINAL_2F_EXPERT_F_5",
+            "id": "LOCALID_EXPERT_F",
             "graphics_id": "OBJ_EVENT_GFX_EXPERT_F",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -173,7 +173,7 @@
             "y": 0
         },
         {
-            "id": "GLOBAL_TERMINAL_2F_HIKER_6",
+            "id": "LOCALID_HIKER",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -188,7 +188,7 @@
             "y": 0
         },
         {
-            "id": "GLOBAL_TERMINAL_2F_IDOL_7",
+            "id": "LOCALID_IDOL",
             "graphics_id": "OBJ_EVENT_GFX_IDOL",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -203,7 +203,7 @@
             "y": 0
         },
         {
-            "id": "GLOBAL_TERMINAL_2F_ARTIST_8",
+            "id": "LOCALID_ARTIST",
             "graphics_id": "OBJ_EVENT_GFX_ARTIST",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",

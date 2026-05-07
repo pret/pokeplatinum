@@ -33,17 +33,17 @@
 #define TRAINER_CASE_MAX_LINK_BATTLE_RESULTS 9999
 #define TRAINER_CASE_MAX_LINK_TRADES         99999
 
-typedef struct {
-    int unk_00;
-    TrainerCase *unk_04;
-} UnkStruct_02072204;
+typedef struct OpenCaseData {
+    int state;
+    TrainerCase *trainerCase;
+} OpenCaseData;
 
 static void TrainerCase_SetFields(u8 badgesInteractable, u8 gameVersion, u8 cardLevel, u8 gymLeadersToHide, u8 language, TrainerCase *trainerCase);
 static void TrainerCase_SetTrainerInfo(u16 id, u8 gender, const u16 *name, u32 money, u32 seenPokemon, BOOL pokedexObtained, u32 score, TrainerCase *trainerCase);
 static void TrainerCase_SetDates(u8 gameCompleted, const PlayTime *playTime, const RTCDate *adventureStartedDate, const RTCDate *hofDebutDate, const RTCTime *hofDebutTime, u8 param5, TrainerCase *trainerCase);
 static void TrainerCase_SetLinkDataAndSignature(u32 timesLinked, u32 linkBattleWins, u32 linkBattleLosses, u32 linkTrades, const u8 *signature, TrainerCase *trainerCase);
 static void TrainerCase_SetBadgeData(TrainerInfo *trainerInfo, FieldSystem *fieldSystem, TrainerCase *trainerCase);
-static BOOL sub_02072230(FieldTask *param0);
+static BOOL FieldTask_OpenUnionRoomCaseTask(FieldTask *task);
 
 void TrainerCase_Init(u8 badgesInteractable, u8 liveTimeDisplay, u8 gymLeadersToHide, u8 trainerAppearance, FieldSystem *fieldSystem, TrainerCase *trainerCase)
 {
@@ -244,42 +244,42 @@ void TrainerCase_SaveBadgePolish(FieldSystem *fieldSystem, const TrainerCase *tr
     }
 }
 
-void sub_02072204(FieldSystem *fieldSystem)
+void TrainerCase_OpenUnionRoomCase(FieldSystem *fieldSystem)
 {
-    UnkStruct_02072204 *v0 = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(UnkStruct_02072204));
+    OpenCaseData *data = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(OpenCaseData));
 
-    v0->unk_00 = 0;
-    v0->unk_04 = (TrainerCase *)sub_0205C17C(fieldSystem->unk_7C);
+    data->state = 0;
+    data->trainerCase = (TrainerCase *)UnionRoom_GetTrainerCase(fieldSystem->unk_7C);
 
-    FieldTask_InitCall(fieldSystem->task, sub_02072230, v0);
+    FieldTask_InitCall(fieldSystem->task, FieldTask_OpenUnionRoomCaseTask, data);
 }
 
-static BOOL sub_02072230(FieldTask *param0)
+static BOOL FieldTask_OpenUnionRoomCaseTask(FieldTask *task)
 {
-    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
-    UnkStruct_02072204 *v1 = FieldTask_GetEnv(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
+    OpenCaseData *data = FieldTask_GetEnv(task);
 
-    switch (v1->unk_00) {
+    switch (data->state) {
     case 0:
-        sub_0205C214(fieldSystem->unk_7C);
-        v1->unk_00 = 1;
+        UnionRoom_SendTrainerCase(fieldSystem->unk_7C);
+        data->state = 1;
     case 1:
-        if (v1->unk_04->unk_66A != 0) {
-            v1->unk_00 = 10;
+        if (data->trainerCase->unk_66A != 0) {
+            data->state = 10;
         }
         break;
     case 10:
-        FieldSystem_OpenTrainerCase(fieldSystem, v1->unk_04);
-        v1->unk_00 = 11;
+        FieldSystem_OpenTrainerCase(fieldSystem, data->trainerCase);
+        data->state = 11;
         break;
     case 11:
         if (!FieldSystem_IsRunningApplication(fieldSystem)) {
             sub_0205C1F0(fieldSystem->unk_7C);
-            Heap_Free(v1);
-            return 1;
+            Heap_Free(data);
+            return TRUE;
         }
         break;
     }
 
-    return 0;
+    return FALSE;
 }
