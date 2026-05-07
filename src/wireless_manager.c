@@ -1706,7 +1706,7 @@ void WirelessManager_SetGGIDScanCallback(WirelessManagerGGIDScanFunc callback)
  *
  * @param callback
  */
-void sub_SetDisconnectCallback(WirelessManagerConnectFunc callback)
+void WirelessManager_SetDisconnectCallback(WirelessManagerConnectFunc callback)
 {
     sWirelessManager->disconnectCallback = callback;
 }

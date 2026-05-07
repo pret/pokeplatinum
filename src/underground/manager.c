@@ -161,7 +161,7 @@ static void UndergroundMan_Init(UndergroundManager *dest, FieldSystem *fieldSyst
 
     SystemFlag_SetEnteredUnderground(SaveData_GetVarsFlags(sUndergroundMan->fieldSystem->saveData));
     sUndergroundMan->sysTask = SysTask_Start(UndergroundMan_ClearPrinterIDsTask, NULL, 0);
-    sub_SetDisconnectCallback(UndergroundMan_DisconnectCallback);
+    WirelessManager_SetDisconnectCallback(UndergroundMan_DisconnectCallback);
 }
 
 static void UndergroundMan_Free(void)
@@ -172,7 +172,7 @@ static void UndergroundMan_Free(void)
         }
     }
 
-    sub_SetDisconnectCallback(NULL);
+    WirelessManager_SetDisconnectCallback(NULL);
     SysTask_Done(sUndergroundMan->sysTask);
 
     UndergroundTextPrinter_Free(sUndergroundMan->commonTextPrinter);

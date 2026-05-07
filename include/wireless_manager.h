@@ -74,7 +74,7 @@ BOOL WirelessManager_SetEntry(BOOL enable);
 BOOL WirelessManager_ServerSentAllBeacons(void);
 void WirelessManager_ResetBeaconSentCount(void);
 void WirelessManager_SetGGIDScanCallback(WirelessManagerGGIDScanFunc callback);
-void sub_SetDisconnectCallback(WirelessManagerConnectFunc callback);
+void WirelessManager_SetDisconnectCallback(WirelessManagerConnectFunc callback);
 void WirelessManager_SetConnectCallback(WirelessManagerConnectFunc callback);
 void WirelessManager_SetPauseConnection(BOOL pause);
 BOOL WirelessManager_GetPauseConnection(void);
