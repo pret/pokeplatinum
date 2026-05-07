@@ -94,7 +94,6 @@ static void BattleMessage_SetTrainerName(BattleSystem *battleSys, u32 idx, int b
 static void BattleMessage_SetPCBoxName(BattleSystem *battleSys, u32 idx, int boxIdx);
 static u8 BattleRecording_ReadByte(u8 *inputBuffer, u8 *byteOffset, u16 *byteCount);
 
-
 BgConfig *BattleSystem_GetBgConfig(BattleSystem *battleSys)
 {
     return battleSys->bgConfig;
