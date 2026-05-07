@@ -10687,7 +10687,7 @@ static void BattleScript_CatchMonTask(SysTask *task, void *inData)
             }
 
             ov16_0223B3E4(data->battleSys);
-            ov16_0223F314(data->battleSys, 1);
+            BattleSystem_GetRenderMode(data->battleSys, 1);
         }
         break;
     case SEQ_CATCH_MON_FREE_NAMING_SCREEN:
@@ -10702,7 +10702,7 @@ static void BattleScript_CatchMonTask(SysTask *task, void *inData)
 
             NamingScreenArgs_Free(namingScreenArgs);
             ApplicationManager_Free(data->tmpPtr[0]);
-            ov16_0223F314(data->battleSys, 2);
+            BattleSystem_GetRenderMode(data->battleSys, 2);
 
             data->seqNum = SEQ_CATCH_MON_GAVE_NICKNAME;
         }

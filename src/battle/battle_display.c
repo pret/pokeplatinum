@@ -2001,7 +2001,7 @@ static void Task_ShowEncounter(SysTask *task, void *data)
                 monShowData->unk_10 = ov12_02223764(monShowData->battleSys, HEAP_ID_BATTLE);
             }
         } else if ((BattleSystem_GetBattleStatusMask(monShowData->battleSys) & BATTLE_STATUS_RECORDED) == FALSE) {
-            if (ov16_0223ED60(monShowData->battleSys) == 1 && monShowData->battlerType == BATTLER_TYPE_PLAYER_SIDE_SLOT_1) {
+            if (BattleSystem_IsInitialized(monShowData->battleSys) == 1 && monShowData->battlerType == BATTLER_TYPE_PLAYER_SIDE_SLOT_1) {
                 monShowData->unk_10 = ov12_02223764(monShowData->battleSys, HEAP_ID_BATTLE);
             } else if (monShowData->battlerType == BATTLER_TYPE_SOLO_PLAYER) {
                 monShowData->unk_10 = ov12_02223764(monShowData->battleSys, HEAP_ID_BATTLE);
@@ -3737,7 +3737,7 @@ static void Task_PlayerShowTargetSelectMenu(SysTask *task, void *data)
             u32 battleType = BattleSystem_GetBattleType(targetSelectMenuData->battleSys);
 
             if (input != 0xFF) {
-                ov16_0223F858(targetSelectMenuData->battleSys, &v10[0]);
+                BattleSystem_SetBattlersByType(targetSelectMenuData->battleSys, &v10[0]);
 
                 if (battleType & BATTLE_TYPE_DOUBLES) {
                     input = v10[2 + (targetSelectMenuData->input - 1)] + 1;
@@ -5358,16 +5358,16 @@ static void ov16_02263014(SysTask *task, void *data)
         }
 
         if (v0->unk_15 == 28) {
-            MI_CpuCopy16(ov16_0223F204(v0->battleSys), PaletteData_GetUnfadedBuffer(paletteData, 0), PALETTE_SIZE_BYTES * 7);
+            MI_CpuCopy16(BattleSystem_GetSavedBgPalettes(v0->battleSys), PaletteData_GetUnfadedBuffer(paletteData, 0), PALETTE_SIZE_BYTES * 7);
 
             if (BattleSystem_GetBattleType(v0->battleSys) == BATTLE_TYPE_AI_PARTNER) {
-                MI_CpuCopy16(ov16_0223F210(v0->battleSys), PaletteData_GetUnfadedBuffer(paletteData, 2), PALETTE_SIZE_BYTES * 5);
+                MI_CpuCopy16(BattleSystem_GetSavedObjPalettes(v0->battleSys), PaletteData_GetUnfadedBuffer(paletteData, 2), PALETTE_SIZE_BYTES * 5);
             } else if (BattleSystem_GetBattleType(v0->battleSys) & BATTLE_TYPE_DOUBLES) {
-                MI_CpuCopy16(ov16_0223F210(v0->battleSys), PaletteData_GetUnfadedBuffer(paletteData, 2), PALETTE_SIZE_BYTES * 7);
+                MI_CpuCopy16(BattleSystem_GetSavedObjPalettes(v0->battleSys), PaletteData_GetUnfadedBuffer(paletteData, 2), PALETTE_SIZE_BYTES * 7);
             } else if (BattleSystem_GetBattleType(v0->battleSys) & BATTLE_TYPE_TRAINER) {
-                MI_CpuCopy16(ov16_0223F210(v0->battleSys), PaletteData_GetUnfadedBuffer(paletteData, 2), PALETTE_SIZE_BYTES * 5);
+                MI_CpuCopy16(BattleSystem_GetSavedObjPalettes(v0->battleSys), PaletteData_GetUnfadedBuffer(paletteData, 2), PALETTE_SIZE_BYTES * 5);
             } else {
-                MI_CpuCopy16(ov16_0223F210(v0->battleSys), PaletteData_GetUnfadedBuffer(paletteData, 2), PALETTE_SIZE_BYTES * 4);
+                MI_CpuCopy16(BattleSystem_GetSavedObjPalettes(v0->battleSys), PaletteData_GetUnfadedBuffer(paletteData, 2), PALETTE_SIZE_BYTES * 4);
             }
 
             PaletteData_StartFade(paletteData, PLTTBUF_MAIN_BG_F, 0xF3FF, 0, 16, 0, fadeTarget);
@@ -5396,16 +5396,16 @@ static void ov16_02263014(SysTask *task, void *data)
         ov12_02237F74(v0->unk_04);
         v0->unk_14++;
     case 5:
-        MI_CpuCopy16(ov16_0223F204(v0->battleSys), PaletteData_GetUnfadedBuffer(paletteData, 0), PALETTE_SIZE_BYTES * 7);
+        MI_CpuCopy16(BattleSystem_GetSavedBgPalettes(v0->battleSys), PaletteData_GetUnfadedBuffer(paletteData, 0), PALETTE_SIZE_BYTES * 7);
 
         if (BattleSystem_GetBattleType(v0->battleSys) == BATTLE_TYPE_AI_PARTNER) {
-            MI_CpuCopy16(ov16_0223F210(v0->battleSys), PaletteData_GetUnfadedBuffer(paletteData, 2), PALETTE_SIZE_BYTES * 5);
+            MI_CpuCopy16(BattleSystem_GetSavedObjPalettes(v0->battleSys), PaletteData_GetUnfadedBuffer(paletteData, 2), PALETTE_SIZE_BYTES * 5);
         } else if (BattleSystem_GetBattleType(v0->battleSys) & BATTLE_TYPE_DOUBLES) {
-            MI_CpuCopy16(ov16_0223F210(v0->battleSys), PaletteData_GetUnfadedBuffer(paletteData, 2), PALETTE_SIZE_BYTES * 7);
+            MI_CpuCopy16(BattleSystem_GetSavedObjPalettes(v0->battleSys), PaletteData_GetUnfadedBuffer(paletteData, 2), PALETTE_SIZE_BYTES * 7);
         } else if (BattleSystem_GetBattleType(v0->battleSys) & BATTLE_TYPE_TRAINER) {
-            MI_CpuCopy16(ov16_0223F210(v0->battleSys), PaletteData_GetUnfadedBuffer(paletteData, 2), PALETTE_SIZE_BYTES * 5);
+            MI_CpuCopy16(BattleSystem_GetSavedObjPalettes(v0->battleSys), PaletteData_GetUnfadedBuffer(paletteData, 2), PALETTE_SIZE_BYTES * 5);
         } else {
-            MI_CpuCopy16(ov16_0223F210(v0->battleSys), PaletteData_GetUnfadedBuffer(paletteData, 2), PALETTE_SIZE_BYTES * 4);
+            MI_CpuCopy16(BattleSystem_GetSavedObjPalettes(v0->battleSys), PaletteData_GetUnfadedBuffer(paletteData, 2), PALETTE_SIZE_BYTES * 4);
         }
 
         PaletteData_StartFade(paletteData, PLTTBUF_MAIN_BG_F, 0xFFFF, 0, 0, 0, 0x7FFF);
@@ -5676,7 +5676,7 @@ void BattlerData_SetTaskFuncs(BattleSystem *battleSys, BattlerData *battlerData)
         }
     } else if ((battleType & (BATTLE_TYPE_2vs2 | BATTLE_TYPE_FRONTIER)) == (BATTLE_TYPE_2vs2 | BATTLE_TYPE_FRONTIER)) {
         if (battlerData->battlerType & BATTLER_THEM) {
-            if (ov16_0223ED60(battleSys)) {
+            if (BattleSystem_IsInitialized(battleSys)) {
                 battlerData->taskFuncs.setCommandSelection = &Task_TrainerSetCommandSelection;
                 battlerData->taskFuncs.showMoveSelectMenu = &Task_TrainerShowMoveSelectMenu;
                 battlerData->taskFuncs.showTargetSelectMenu = &Task_TrainerShowTargetSelectMenu;

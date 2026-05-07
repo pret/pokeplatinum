@@ -76,7 +76,7 @@
 static void BattleMessage_CheckSide(BattleSystem *battleSys, BattleMessage *battleMsg);
 static void BattleMessage_FillFormatBuffers(BattleSystem *battleSys, BattleMessage *battleMsg);
 static void BattleMessage_Format(BattleSystem *battleSys, MessageLoader *msgLoader, BattleMessage *battleMsg);
-static BOOL BattleMessage_Callback(TextPrinterTemplate *unused, u16 param1);
+static BOOL BattleMessage_Callback(TextPrinterTemplate *unused, u16 soundCommand);
 static void BattleMessage_SetNickname(BattleSystem *battleSys, u32 idx, int nicknameTag);
 static void BattleMessage_SetMoveName(BattleSystem *battleSys, u32 idx, int moveID);
 static void BattleMessage_SetItemName(BattleSystem *battleSys, u32 idx, int itemID);
@@ -92,7 +92,8 @@ static void BattleMessage_SetFlavorName(BattleSystem *battleSys, u32 idx, int fl
 static void BattleMessage_SetTrainerClassName(BattleSystem *battleSys, u32 idx, int battler);
 static void BattleMessage_SetTrainerName(BattleSystem *battleSys, u32 idx, int battler);
 static void BattleMessage_SetPCBoxName(BattleSystem *battleSys, u32 idx, int boxIdx);
-static u8 ov16_0223F6D4(u8 *param0, u8 *param1, u16 *param2);
+static u8 BattleRecording_ReadByte(u8 *inputBuffer, u8 *byteOffset, u16 *byteCount);
+
 
 BgConfig *BattleSystem_GetBgConfig(BattleSystem *battleSys)
 {
@@ -182,9 +183,9 @@ SpriteManager *BattleSystem_GetSpriteManager(BattleSystem *battleSys)
     return battleSys->spriteMan;
 }
 
-BattlerPlatform *BattlerSystem_GetBattlerPlatform(BattleSystem *battleSys, int param1)
+BattlerPlatform *BattlerSystem_GetBattlerPlatform(BattleSystem *battleSys, int idx)
 {
-    return &battleSys->battlerPlatforms[param1];
+    return &battleSys->battlerPlatforms[idx];
 }
 
 UnkStruct_ov16_02268A14 *ov16_0223E02C(BattleSystem *battleSys)
@@ -857,9 +858,9 @@ u16 Battle_FindEvolvingPartyMember(FieldBattleDTO *dto, int *outPartySlot, int *
     return species;
 }
 
-u8 ov16_0223ED60(BattleSystem *battleSys)
+u8 BattleSystem_IsInitialized(BattleSystem *battleSys)
 {
-    return battleSys->unk_23F8;
+    return battleSys->battleInitialized;
 }
 
 u8 BattleSystem_GetSafariEscapeCount(BattleSystem *battleSys)
@@ -940,7 +941,7 @@ void BattleSystem_SetBurmyForm(BattleSystem *battleSys)
         Pokemon *mon = BattleSystem_GetPartyPokemon(battleSys, 0, i);
         u16 species = Pokemon_GetValue(mon, MON_DATA_SPECIES_OR_EGG, NULL);
 
-        if (species == SPECIES_BURMY && (battleSys->unk_2414[0] & FlagIndex(i))) {
+        if (species == SPECIES_BURMY && (battleSys->battleParticipantMask[0] & FlagIndex(i))) {
             switch (BattleSystem_GetTerrain(battleSys)) {
             default:
             case TERRAIN_GRASS:
@@ -975,9 +976,9 @@ void BattleSystem_SetBurmyForm(BattleSystem *battleSys)
     }
 }
 
-void ov16_0223EF2C(BattleSystem *battleSys, int param1, int param2)
+void BattleSystem_GetBattleParticipantMask(BattleSystem *battleSys, int battler, int partySlot)
 {
-    battleSys->unk_2414[param1] |= FlagIndex(param2);
+    battleSys->battleParticipantMask[battler] |= FlagIndex(partySlot);
 }
 
 void BattleSystem_EnqueuePokemonHistory(BattleSystem *battleSys, Pokemon *mon)
@@ -1091,14 +1092,14 @@ int BattleSystem_GetVisitedContestHall(BattleSystem *battleSys)
     return battleSys->visitedContestHall;
 }
 
-u16 *ov16_0223F204(BattleSystem *battleSys)
+u16 *BattleSystem_GetSavedBgPalettes(BattleSystem *battleSys)
 {
-    return &battleSys->unk_2224[0];
+    return &battleSys->savedBgPalettes[0];
 }
 
-u16 *ov16_0223F210(BattleSystem *battleSys)
+u16 *BattleSystem_GetSavedObjPalettes(BattleSystem *battleSys)
 {
-    return &battleSys->unk_2304[0];
+    return &battleSys->savedObjPalettes[0];
 }
 
 int BattleSystem_GetFieldWeather(BattleSystem *battleSys)
@@ -1188,9 +1189,9 @@ void PokemonSpriteData_SetYOffset(PokemonSpriteData *pokemonSpriteData, int idx,
     pokemonSpriteData[idx].yOffset = value;
 }
 
-void ov16_0223F314(BattleSystem *battleSys, int param1)
+void BattleSystem_GetRenderMode(BattleSystem *battleSys, int renderMode)
 {
-    battleSys->unk_23F9 = param1;
+    battleSys->renderMode = renderMode;
 }
 
 void ov16_0223F320(BattleSystem *battleSys, u8 *param1)
@@ -1326,10 +1327,10 @@ void BattleSystem_SetSeedDTO(BattleSystem *battleSys, u32 value)
     battleSys->seedDTO = value;
 }
 
-void BattleSystem_Record(BattleSystem *battleSys, int battler, u8 param2)
+void BattleSystem_Record(BattleSystem *battleSys, int battler, u8 action)
 {
     if (((battleSys->battleStatusMask & BATTLE_STATUS_RECORDING) == FALSE) && (battleSys->recordingAckPos[battler] < 0x400)) {
-        sub_0202F868(battler, battleSys->recordingAckPos[battler], param2);
+        sub_0202F868(battler, battleSys->recordingAckPos[battler], action);
         battleSys->recordingAckPos[battler]++;
     }
 }
@@ -1373,37 +1374,37 @@ u8 BattleSystem_CollectNewRecordedInputs(BattleSystem *battleSys, u8 *outBuffer)
     return byteCount;
 }
 
-void ov16_0223F638(BattleSystem *battleSys, u16 param1, u8 *param2)
+void BattleSystem_ReceiveRecordedInputs(BattleSystem *battleSys, u16 byteCount, u8 *inputBuffer)
 {
-    int v0;
-    u8 v1;
-    u8 v2;
-    u8 v3 = 0;
+    int i;
+    u8 battler;
+    u8 inputCount;
+    u8 byteOffset = 0;
 
     if ((battleSys->battleType & BATTLE_TYPE_LINK) == FALSE) {
         return;
     }
 
-    if (battleSys->unk_23F8) {
+    if (battleSys->battleInitialized) {
         return;
     }
 
-    while (param1) {
-        v1 = ov16_0223F6D4(param2, &v3, &param1);
-        v2 = ov16_0223F6D4(param2, &v3, &param1);
+    while (byteCount) {
+        battler = BattleRecording_ReadByte(inputBuffer, &byteOffset, &byteCount);
+        inputCount = BattleRecording_ReadByte(inputBuffer, &byteOffset, &byteCount);
 
-        for (v0 = 0; v0 < v2; v0++) {
-            sub_0202F868(v1, battleSys->unk_2454[v1] + v0, ov16_0223F6D4(param2, &v3, &param1));
+        for (i = 0; i < inputCount; i++) {
+            sub_0202F868(battler, battleSys->recordingWritePos[battler] + i, BattleRecording_ReadByte(inputBuffer, &byteOffset, &byteCount));
         }
 
-        battleSys->unk_2454[v1] += v2;
+        battleSys->recordingWritePos[battler] += inputCount;
     }
 }
 
-static u8 ov16_0223F6D4(u8 *param0, u8 *param1, u16 *param2)
+static u8 BattleRecording_ReadByte(u8 *inputBuffer, u8 *byteOffset, u16 *byteCount)
 {
-    param2[0]--;
-    return param0[param1[0]++];
+    byteCount[0]--;
+    return inputBuffer[byteOffset[0]++];
 }
 
 u16 BattleSystem_GetNetworkID(BattleSystem *battleSys)
@@ -1479,12 +1480,12 @@ u8 BattleSystem_GetRecordedChatter(BattleSystem *battleSys, int battler)
     }
 }
 
-void ov16_0223F858(BattleSystem *battleSys, u8 *param1)
+void BattleSystem_SetBattlersByType(BattleSystem *battleSys, u8 *battlersByType)
 {
     int battler;
 
     for (battler = 0; battler < battleSys->maxBattlers; battler++) {
-        param1[BattlerData_GetBattlerType(battleSys->battlers[battler])] = battler;
+        battlersByType[BattlerData_GetBattlerType(battleSys->battlers[battler])] = battler;
     }
 }
 
@@ -1514,13 +1515,13 @@ void BattleSystem_PopulateMonSprites(BattleSystem *battleSys, PokemonSprite **mo
     }
 }
 
-void BattleSystem_SetHealthboxPriority(BattleSystem *battleSys, int param1)
+void BattleSystem_SetHealthboxPriority(BattleSystem *battleSys, int priority)
 {
     int battler;
     HealthBox *healthbox;
 
     for (battler = 0; battler < battleSys->maxBattlers; battler++) {
-        Healthbox_SetExplicitPriority(BattlerData_GetHealthBox(battleSys->battlers[battler]), param1);
+        Healthbox_SetExplicitPriority(BattlerData_GetHealthBox(battleSys->battlers[battler]), priority);
     }
 }
 
@@ -1667,25 +1668,25 @@ u8 BattleMessage_Print(BattleSystem *battleSys, MessageLoader *msgLoader, Battle
     return Text_AddPrinterWithParams(textWindow, FONT_MESSAGE, battleSys->msgBuffer, 0, 0, renderDelay, BattleMessage_Callback);
 }
 
-u8 BattleMessage_PrintToWindow(BattleSystem *battleSys, Window *window, MessageLoader *msgLoader, BattleMessage *battleMsg, int xOffset, int yOffset, int param6, int param7, int renderDelay)
+u8 BattleMessage_PrintToWindow(BattleSystem *battleSys, Window *window, MessageLoader *msgLoader, BattleMessage *battleMsg, int xOffset, int yOffset, int flags, int alignWidth, int renderDelay)
 {
-    int v0;
+    int xAdjust;
 
     BattleMessage_CheckSide(battleSys, battleMsg);
     BattleMessage_FillFormatBuffers(battleSys, battleMsg);
     BattleMessage_Format(battleSys, msgLoader, battleMsg);
 
-    if (param6 & 0x1) {
+    if (flags & 0x1) {
         Window_FillTilemap(window, 0xFF);
     }
 
-    if (param6 & 0x2) {
-        v0 = param7 - Font_CalcStringWidth(FONT_SYSTEM, battleSys->msgBuffer, 0);
+    if (flags & 0x2) {
+        xAdjust = alignWidth - Font_CalcStringWidth(FONT_SYSTEM, battleSys->msgBuffer, 0);
     } else {
-        v0 = 0;
+        xAdjust = 0;
     }
 
-    return Text_AddPrinterWithParams(window, FONT_SYSTEM, battleSys->msgBuffer, xOffset + v0, yOffset, renderDelay, BattleMessage_Callback);
+    return Text_AddPrinterWithParams(window, FONT_SYSTEM, battleSys->msgBuffer, xOffset + xAdjust, yOffset, renderDelay, BattleMessage_Callback);
 }
 
 /**
@@ -2247,8 +2248,8 @@ static void BattleMessage_SetStatusName(BattleSystem *battleSys, u32 idx, int st
 
 static void BattleMessage_SetPokemonName(BattleSystem *battleSys, u32 idx, int monTag)
 {
-    Pokemon *v0 = BattleSystem_GetPartyPokemon(battleSys, monTag & 0xFF, (monTag & 0xFF00) >> 8);
-    StringTemplate_SetSpeciesName(battleSys->strFormatter, idx, &v0->box);
+    Pokemon *mon = BattleSystem_GetPartyPokemon(battleSys, monTag & 0xFF, (monTag & 0xFF00) >> 8);
+    StringTemplate_SetSpeciesName(battleSys->strFormatter, idx, &mon->box);
 }
 
 static void BattleMessage_SetPoffinName(BattleSystem *battleSys, u32 idx, int poffin)

@@ -91,8 +91,8 @@ struct BattleSystem {
     u16 *bgPaletteSnapshot;
     u8 serverMessage[4096];
     u8 clientMessage[4096];
-    u16 unk_2224[112];
-    u16 unk_2304[112];
+    u16 savedBgPalettes[112];
+    u16 savedObjPalettes[112];
     u16 serverReadIndex;
     u16 serverWriteIndex;
     u16 serverEndIndex;
@@ -101,12 +101,12 @@ struct BattleSystem {
     u16 clientEndIndex;
     u8 *unk_23F0;
     u8 *unk_23F4;
-    u8 unk_23F8;
-    u8 unk_23F9;
+    u8 battleInitialized;
+    u8 renderMode;
     u8 commandIsEndWait;
-    u8 unk_23FB_0 : 1;
-    u8 unk_23FB_1 : 1;
-    u8 unk_23FB_2 : 1;
+    u8 pendingBlendReset : 1;
+    u8 pendingBattleVramSetup : 1;
+    u8 pendingSubMenuVramSetup : 1;
     u8 redHPSoundFlag : 2;
     u8 redHPSoundEffectDelay : 3;
     enum BattleTerrain terrain;
@@ -115,7 +115,7 @@ struct BattleSystem {
     u32 battleStatusMask;
     enum TimeOfDay time;
     int safariBalls;
-    u8 unk_2414[4];
+    u8 battleParticipantMask[MAX_BATTLERS];
     u32 rulesetMask;
     u8 resultMask;
     u8 catchingTutorialLowHP;
@@ -128,13 +128,13 @@ struct BattleSystem {
     int yOffset;
     int caughtBattlerIdx;
     int commandSelectionFlags;
-    u8 unk_2440;
+    u8 unk_2440; // CLEANUP: written to but never read
     u8 overlayFlags;
     u16 networkID;
     u32 seedRandNext;
     u32 seedDTO;
     u16 recordingCollectedPos[MAX_BATTLERS];
-    u16 unk_2454[4];
+    u16 recordingWritePos[4];
     u16 recordingAckPos[MAX_BATTLERS];
     int unk_2464[MAX_BATTLERS];
     u32 recordingStopped : 1;

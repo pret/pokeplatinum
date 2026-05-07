@@ -832,7 +832,7 @@ static void BtlIOCmd_PrintLinkWaitMessage(BattleSystem *battleSys, BattlerData *
 {
     LinkWaitMsgMessage *message = (LinkWaitMsgMessage *)&battlerData->data[0];
 
-    ov16_0223F638(battleSys, message->unk_02, message->unk_04);
+    BattleSystem_ReceiveRecordedInputs(battleSys, message->unk_02, message->unk_04);
     BattleDisplay_PrintLinkWaitMessage(battleSys, battlerData);
     ZeroDataBuffer(battlerData);
 }
@@ -867,7 +867,7 @@ static void BtlIOCmd_PrintEscapeMessage(BattleSystem *battleSys, BattlerData *ba
 {
     EscapeMsgMessage *message = (EscapeMsgMessage *)&battlerData->data[0];
 
-    ov16_0223F638(battleSys, message->unk_02, message->unk_04);
+    BattleSystem_ReceiveRecordedInputs(battleSys, message->unk_02, message->unk_04);
     BattleDisplay_PrintEscapeMessage(battleSys, battlerData, message);
     ZeroDataBuffer(battlerData);
 }
@@ -876,7 +876,7 @@ static void BtlIOCmd_PrintForfeitMessage(BattleSystem *battleSys, BattlerData *b
 {
     ForfeitMsgMessage *message = (ForfeitMsgMessage *)&battlerData->data[0];
 
-    ov16_0223F638(battleSys, message->unk_02, message->unk_04);
+    BattleSystem_ReceiveRecordedInputs(battleSys, message->unk_02, message->unk_04);
     BattleDisplay_PrintForfeitMessage(battleSys, battlerData);
     ZeroDataBuffer(battlerData);
 }
@@ -915,7 +915,7 @@ static void BtlIOCmd_SubmitResult(BattleSystem *battleSys, BattlerData *battlerD
     int playerHP = 0;
     int enemyHP = 0;
 
-    ov16_0223F638(battleSys, message->unk_02, message->unk_08);
+    BattleSystem_ReceiveRecordedInputs(battleSys, message->unk_02, message->unk_08);
 
     if (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_FRONTIER) {
         BattleSystem_SetResultMask(battleSys, message->resultMask);
