@@ -532,7 +532,7 @@ void sub_020339AC(int param0, TrainerInfo *param1)
 BOOL sub_020339E8(u16 param0)
 {
     if (WirelessManager_GetState() == 2) {
-        (void)sub_020314C0();
+        (void)WirelessManager_StopScan();
         return 0;
     }
 
