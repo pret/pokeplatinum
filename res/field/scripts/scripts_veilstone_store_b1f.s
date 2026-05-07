@@ -1,13 +1,13 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/veilstone_store_b1f.h"
 
-#define LOCALID_SPICINESS  VAR_0x8007
-#define LOCALID_DRYNESS    VAR_0x8000
-#define LOCALID_SWEETNESS  VAR_0x8001
-#define LOCALID_BITTERNESS VAR_0x8002
-#define LOCALID_SOURNESS   VAR_0x8003
+#define LOCAL_VAR_SPICINESS  VAR_0x8007
+#define LOCAL_VAR_DRYNESS    VAR_0x8000
+#define LOCAL_VAR_SWEETNESS  VAR_0x8001
+#define LOCAL_VAR_BITTERNESS VAR_0x8002
+#define LOCAL_VAR_SOURNESS   VAR_0x8003
 // All purchasable poffins have the same smoothness
-#define LOCALID_SMOOTHNESS 20
+#define LOCAL_VAR_SMOOTHNESS 20
 
     ScriptEntry VeilstoneStoreB1F_Gentleman
     ScriptEntry VeilstoneStoreB1F_Socialite1
@@ -24,7 +24,7 @@
     ScriptEntryEnd
 
 VeilstoneStoreB1F_Gentleman:
-    NPCMessage VeilstoneStoreB1F_Text_IBoughtAllTheRageCandyBars
+    NPCMessage VeilstoneStoreB1F_Text_BoughtAllRageCandyBars
     End
 
 VeilstoneStoreB1F_Socialite1:
@@ -32,7 +32,7 @@ VeilstoneStoreB1F_Socialite1:
     End
 
 VeilstoneStoreB1F_Socialite2:
-    NPCMessage VeilstoneStoreB1F_Text_FlavorsOfPoffinsAffectConditionOfPokemon
+    NPCMessage VeilstoneStoreB1F_Text_FlavorsAffectCondition
     End
 
 VeilstoneStoreB1F_Attendant1:
@@ -52,7 +52,7 @@ VeilstoneStoreB1F_ProfRowan:
     LockAll
     GoToIfSet FLAG_VEILSTONE_STORE_B1F_SPOKEN_TO_PROF_ROWAN, VeilstoneStoreB1F_ProfRowanAfterSpokenTo
     SetFlag FLAG_VEILSTONE_STORE_B1F_SPOKEN_TO_PROF_ROWAN
-    SetFlag FLAG_VEILSTONE_STORE_B1F_HIDE_PROF_ROWAN
+    SetFlag FLAG_HIDE_VEILSTONE_STORE_B1F_PROF_ROWAN
     Message VeilstoneStoreB1F_Text_RageCandyBarsAreTooPopular
     FacePlayer
     BufferPlayerName 0
@@ -267,7 +267,7 @@ VeilstoneStoreB1F_PoffinVendorCheckCaseIsFull:
 
 VeilstoneStoreB1F_PoffinVendorGivePoffin:
     GoToIfEq VAR_0x8005, 0, VeilstoneStoreB1F_PoffinVendorThankYou
-    GivePoffin VAR_RESULT, LOCALID_SPICINESS, LOCALID_DRYNESS, LOCALID_SWEETNESS, LOCALID_BITTERNESS, LOCALID_SOURNESS, LOCALID_SMOOTHNESS
+    GivePoffin VAR_RESULT, LOCAL_VAR_SPICINESS, LOCAL_VAR_DRYNESS, LOCAL_VAR_SWEETNESS, LOCAL_VAR_BITTERNESS, LOCAL_VAR_SOURNESS, LOCAL_VAR_SMOOTHNESS
     AddToGameRecord RECORD_MONEY_SPENT, 6400
     RemoveMoney2 6400
     SubVar VAR_0x8005, 1
@@ -310,83 +310,83 @@ VeilstoneStoreB1F_PoffinVendorClose2:
     End
 
 VeilstoneStoreB1F_PoffinVendorCreateSpicyDry:
-    SetVar LOCALID_SPICINESS, 32
-    SetVar LOCALID_DRYNESS, 32
-    SetVar LOCALID_SWEETNESS, 0
-    SetVar LOCALID_BITTERNESS, 0
-    SetVar LOCALID_SOURNESS, 0
+    SetVar LOCAL_VAR_SPICINESS, 32
+    SetVar LOCAL_VAR_DRYNESS, 32
+    SetVar LOCAL_VAR_SWEETNESS, 0
+    SetVar LOCAL_VAR_BITTERNESS, 0
+    SetVar LOCAL_VAR_SOURNESS, 0
     Return
 
 VeilstoneStoreB1F_PoffinVendorCreateSpicySweet:
-    SetVar LOCALID_SPICINESS, 32
-    SetVar LOCALID_DRYNESS, 0
-    SetVar LOCALID_SWEETNESS, 32
-    SetVar LOCALID_BITTERNESS, 0
-    SetVar LOCALID_SOURNESS, 0
+    SetVar LOCAL_VAR_SPICINESS, 32
+    SetVar LOCAL_VAR_DRYNESS, 0
+    SetVar LOCAL_VAR_SWEETNESS, 32
+    SetVar LOCAL_VAR_BITTERNESS, 0
+    SetVar LOCAL_VAR_SOURNESS, 0
     Return
 
 VeilstoneStoreB1F_PoffinVendorCreateSpicyBitter:
-    SetVar LOCALID_SPICINESS, 32
-    SetVar LOCALID_DRYNESS, 0
-    SetVar LOCALID_SWEETNESS, 0
-    SetVar LOCALID_BITTERNESS, 32
-    SetVar LOCALID_SOURNESS, 0
+    SetVar LOCAL_VAR_SPICINESS, 32
+    SetVar LOCAL_VAR_DRYNESS, 0
+    SetVar LOCAL_VAR_SWEETNESS, 0
+    SetVar LOCAL_VAR_BITTERNESS, 32
+    SetVar LOCAL_VAR_SOURNESS, 0
     Return
 
 VeilstoneStoreB1F_PoffinVendorCreateSpicySour:
-    SetVar LOCALID_SPICINESS, 32
-    SetVar LOCALID_DRYNESS, 0
-    SetVar LOCALID_SWEETNESS, 0
-    SetVar LOCALID_BITTERNESS, 0
-    SetVar LOCALID_SOURNESS, 32
+    SetVar LOCAL_VAR_SPICINESS, 32
+    SetVar LOCAL_VAR_DRYNESS, 0
+    SetVar LOCAL_VAR_SWEETNESS, 0
+    SetVar LOCAL_VAR_BITTERNESS, 0
+    SetVar LOCAL_VAR_SOURNESS, 32
     Return
 
 VeilstoneStoreB1F_PoffinVendorCreateDrySweet:
-    SetVar LOCALID_SPICINESS, 0
-    SetVar LOCALID_DRYNESS, 32
-    SetVar LOCALID_SWEETNESS, 32
-    SetVar LOCALID_BITTERNESS, 0
-    SetVar LOCALID_SOURNESS, 0
+    SetVar LOCAL_VAR_SPICINESS, 0
+    SetVar LOCAL_VAR_DRYNESS, 32
+    SetVar LOCAL_VAR_SWEETNESS, 32
+    SetVar LOCAL_VAR_BITTERNESS, 0
+    SetVar LOCAL_VAR_SOURNESS, 0
     Return
 
 VeilstoneStoreB1F_PoffinVendorCreateDryBitter:
-    SetVar LOCALID_SPICINESS, 0
-    SetVar LOCALID_DRYNESS, 32
-    SetVar LOCALID_SWEETNESS, 0
-    SetVar LOCALID_BITTERNESS, 32
-    SetVar LOCALID_SOURNESS, 0
+    SetVar LOCAL_VAR_SPICINESS, 0
+    SetVar LOCAL_VAR_DRYNESS, 32
+    SetVar LOCAL_VAR_SWEETNESS, 0
+    SetVar LOCAL_VAR_BITTERNESS, 32
+    SetVar LOCAL_VAR_SOURNESS, 0
     Return
 
 VeilstoneStoreB1F_PoffinVendorCreateDrySour:
-    SetVar LOCALID_SPICINESS, 0
-    SetVar LOCALID_DRYNESS, 32
-    SetVar LOCALID_SWEETNESS, 0
-    SetVar LOCALID_BITTERNESS, 0
-    SetVar LOCALID_SOURNESS, 32
+    SetVar LOCAL_VAR_SPICINESS, 0
+    SetVar LOCAL_VAR_DRYNESS, 32
+    SetVar LOCAL_VAR_SWEETNESS, 0
+    SetVar LOCAL_VAR_BITTERNESS, 0
+    SetVar LOCAL_VAR_SOURNESS, 32
     Return
 
 VeilstoneStoreB1F_PoffinVendorCreateSweetBitter:
-    SetVar LOCALID_SPICINESS, 0
-    SetVar LOCALID_DRYNESS, 0
-    SetVar LOCALID_SWEETNESS, 32
-    SetVar LOCALID_BITTERNESS, 32
-    SetVar LOCALID_SOURNESS, 0
+    SetVar LOCAL_VAR_SPICINESS, 0
+    SetVar LOCAL_VAR_DRYNESS, 0
+    SetVar LOCAL_VAR_SWEETNESS, 32
+    SetVar LOCAL_VAR_BITTERNESS, 32
+    SetVar LOCAL_VAR_SOURNESS, 0
     Return
 
 VeilstoneStoreB1F_PoffinVendorCreateSweetSour:
-    SetVar LOCALID_SPICINESS, 0
-    SetVar LOCALID_DRYNESS, 0
-    SetVar LOCALID_SWEETNESS, 32
-    SetVar LOCALID_BITTERNESS, 0
-    SetVar LOCALID_SOURNESS, 32
+    SetVar LOCAL_VAR_SPICINESS, 0
+    SetVar LOCAL_VAR_DRYNESS, 0
+    SetVar LOCAL_VAR_SWEETNESS, 32
+    SetVar LOCAL_VAR_BITTERNESS, 0
+    SetVar LOCAL_VAR_SOURNESS, 32
     Return
 
 VeilstoneStoreB1F_PoffinVendorCreateBitterSour:
-    SetVar LOCALID_SPICINESS, 0
-    SetVar LOCALID_DRYNESS, 0
-    SetVar LOCALID_SWEETNESS, 0
-    SetVar LOCALID_BITTERNESS, 32
-    SetVar LOCALID_SOURNESS, 32
+    SetVar LOCAL_VAR_SPICINESS, 0
+    SetVar LOCAL_VAR_DRYNESS, 0
+    SetVar LOCAL_VAR_SWEETNESS, 0
+    SetVar LOCAL_VAR_BITTERNESS, 32
+    SetVar LOCAL_VAR_SOURNESS, 32
     Return
 
 VeilstoneStoreB1F_PoffinVendorMenu:

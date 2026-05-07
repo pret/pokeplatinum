@@ -204,7 +204,7 @@ PokemonLeagueHallOfFame_ResetRoamingArticuno:
     Return
 
 PokemonLeagueHallOfFame_ShowVeilstoneStoreB1FProfRowan:
-    ClearFlag FLAG_VEILSTONE_STORE_B1F_HIDE_PROF_ROWAN
+    ClearFlag FLAG_HIDE_VEILSTONE_STORE_B1F_PROF_ROWAN
     Return
 
     .balign 4, 0

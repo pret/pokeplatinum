@@ -178,7 +178,7 @@
       "en_US": "EXIT"
     },
     {
-      "id": "pl_msg_00000361_00044",
+      "id": "MenuEntries_Text_Fossil_Cancel",
       "en_US": "CANCEL"
     },
     {
@@ -650,31 +650,31 @@
       "en_US": "TELL ME AGAIN"
     },
     {
-      "id": "pl_msg_00000361_00156",
+      "id": "MenuEntries_Text_Fossil_OldAmber",
       "en_US": "OLD AMBER"
     },
     {
-      "id": "pl_msg_00000361_00157",
+      "id": "MenuEntries_Text_Fossil_Helix",
       "en_US": "HELIX FOSSIL"
     },
     {
-      "id": "pl_msg_00000361_00158",
+      "id": "MenuEntries_Text_Fossil_Dome",
       "en_US": "DOME FOSSIL"
     },
     {
-      "id": "pl_msg_00000361_00159",
+      "id": "MenuEntries_Text_Fossil_Root",
       "en_US": "ROOT FOSSIL"
     },
     {
-      "id": "pl_msg_00000361_00160",
+      "id": "MenuEntries_Text_Fossil_Claw",
       "en_US": "CLAW FOSSIL"
     },
     {
-      "id": "pl_msg_00000361_00161",
+      "id": "MenuEntries_Text_Fossil_Armor",
       "en_US": "ARMOR FOSSIL"
     },
     {
-      "id": "pl_msg_00000361_00162",
+      "id": "MenuEntries_Text_Fossil_Skull",
       "en_US": "SKULL FOSSIL"
     },
     {
