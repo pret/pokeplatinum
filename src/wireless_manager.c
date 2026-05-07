@@ -119,7 +119,7 @@ static void WirelessManager_SetState(int state)
  */
 static void WirelessManager_SetErrorCode(int errorCode)
 {
-    if ((sWirelessManager->state == WIRELESS_STATE_ERROR) || (sWirelessManager->state == WIRELESS_STATE_FATAL_ERROR)) {
+    if (sWirelessManager->state == WIRELESS_STATE_ERROR || sWirelessManager->state == WIRELESS_STATE_FATAL_ERROR) {
         return;
     }
 
@@ -133,11 +133,9 @@ static void WirelessManager_SetErrorCode(int errorCode)
  */
 static BOOL WirelessManager_SetParentParameter(void)
 {
-    WMErrCode errorCode;
-
     WirelessManager_SetState(WIRELESS_STATE_BUSY);
 
-    errorCode = WM_SetParentParameter(WirelessManager_FinishSetParentParameter, &sWirelessManager->parentParam);
+    WMErrCode errorCode = WM_SetParentParameter(WirelessManager_FinishSetParentParameter, &sWirelessManager->parentParam);
 
     if (errorCode != WM_ERRCODE_OPERATING) {
         WirelessManager_SetErrorCode(errorCode);
@@ -175,8 +173,6 @@ static void WirelessManager_FinishSetParentParameter(void *wm_callback)
  */
 static BOOL WirelessManager_StartServer(void)
 {
-    WMErrCode errorCode;
-
     if ((sWirelessManager->state == WIRELESS_STATE_CONNECTED) || (sWirelessManager->state == WIRELESS_STATE_TRANSMIT_KEY) || (sWirelessManager->state == WIRELESS_STATE_TRANSMIT_DATA)) {
         return TRUE;
     }
@@ -187,7 +183,7 @@ static BOOL WirelessManager_StartServer(void)
     status->wep_flag = 0;
     DC_FlushRange(&status->wep_flag, sizeof(status->wep_flag));
 
-    errorCode = WM_StartParent(WirelessManager_FinishStartServer);
+    WMErrCode errorCode = WM_StartParent(WirelessManager_FinishStartServer);
 
     if (errorCode != WM_ERRCODE_OPERATING) {
         WirelessManager_SetErrorCode(errorCode);
@@ -221,7 +217,7 @@ static void WirelessManager_FinishStartServer(void *wm_startparentcallback)
         sWirelessManager->sentBeaconCount++;
         break;
     case WM_STATECODE_CONNECTED:
-        if ((sWirelessManager->pauseConnectSystem == 1) || (sWirelessManager->pauseConnection == 1) || (WirelessManager_GetNumConnected() >= sWirelessManager->numConnectionsMax) || (callback->ssid[0] != sub_0203895C()) || (0 != memcmp("DP", &callback->ssid[1], sizeof("DP")))) {
+        if (sWirelessManager->pauseConnectSystem == TRUE || sWirelessManager->pauseConnection == TRUE || WirelessManager_GetNumConnected() >= sWirelessManager->numConnectionsMax || callback->ssid[0] != sub_0203895C() || 0 != memcmp("DP", &callback->ssid[1], sizeof("DP"))) {
             WMErrCode disconnectCode;
 
             disconnectCode = WM_Disconnect(NULL, callback->aid);
@@ -265,15 +261,13 @@ static void WirelessManager_FinishStartServer(void *wm_startparentcallback)
  */
 static BOOL WirelessManager_StartMPServer(void)
 {
-    WMErrCode errorCode;
-
     if ((sWirelessManager->state == WIRELESS_STATE_CONNECTED) || (sWirelessManager->state == WIRELESS_STATE_TRANSMIT_KEY) || (sWirelessManager->state == WIRELESS_STATE_TRANSMIT_DATA)) {
-        return 1;
+        return TRUE;
     }
 
     WirelessManager_SetState(WIRELESS_STATE_CONNECTED);
 
-    errorCode = WM_StartMP(WirelessManager_FinishStartMPServer, (u16 *)sWirelessManager->recvBuffer, (u16)sWirelessManager->recvBufferSize, (u16 *)sWirelessManager->sendBuffer, (u16)sWirelessManager->sendBufferSize, 1);
+    WMErrCode errorCode = WM_StartMP(WirelessManager_FinishStartMPServer, (u16 *)sWirelessManager->recvBuffer, (u16)sWirelessManager->recvBufferSize, (u16 *)sWirelessManager->sendBuffer, (u16)sWirelessManager->sendBufferSize, 1);
 
     if (errorCode != WM_ERRCODE_OPERATING) {
         WirelessManager_SetErrorCode(errorCode);
@@ -324,11 +318,9 @@ static void WirelessManager_FinishStartMPServer(void *wm_startmpcallback)
  */
 static BOOL WirelessManager_EndMPServer(void)
 {
-    WMErrCode errorCode;
-
     WirelessManager_SetState(WIRELESS_STATE_BUSY);
 
-    errorCode = WM_EndMP(WirelessManager_FinishEndMPServer);
+    WMErrCode errorCode = WM_EndMP(WirelessManager_FinishEndMPServer);
 
     if (errorCode != WM_ERRCODE_OPERATING) {
         WirelessManager_SetErrorCode(errorCode);
@@ -366,9 +358,7 @@ static void WirelessManager_FinishEndMPServer(void *wm_callback)
  */
 static BOOL WirelessManager_EndServer(void)
 {
-    WMErrCode errorCode;
-
-    errorCode = WM_EndParent(WirelessManager_FinishEndServer);
+    WMErrCode errorCode = WM_EndParent(WirelessManager_FinishEndServer);
 
     if (errorCode != WM_ERRCODE_OPERATING) {
         WirelessManager_SetErrorCode(errorCode);
@@ -468,7 +458,6 @@ BOOL WirelessManager_ConnectClientScanCallback(WirelessManagerScanFunc scanCallb
  */
 static BOOL WirelessManager_StartScan(void)
 {
-    WMErrCode errorCode;
     u16 channel = WM_GetAllowedChannel();
 
     if (channel == 0x8000) {
@@ -502,7 +491,7 @@ static BOOL WirelessManager_StartScan(void)
     sWirelessManager->scanParam.maxChannelTime = WM_GetDispersionScanPeriod() / 3;
     sWirelessManager->scanParam.scanBuf = &sWirelessManager->bssDesc;
 
-    errorCode = WM_StartScan(WirelessManager_FinishStartScan, &sWirelessManager->scanParam);
+    WMErrCode errorCode = WM_StartScan(WirelessManager_FinishStartScan, &sWirelessManager->scanParam);
 
     if (errorCode != WM_ERRCODE_OPERATING) {
         WirelessManager_SetErrorCode(errorCode);
@@ -599,9 +588,7 @@ BOOL WirelessManager_StopScan(void)
  */
 static BOOL WirelessManager_EndScan(void)
 {
-    WMErrCode errorCode;
-
-    errorCode = WM_EndScan(WirelessManager_FinishEndScan);
+    WMErrCode errorCode = WM_EndScan(WirelessManager_FinishEndScan);
 
     if (errorCode != WM_ERRCODE_OPERATING) {
         WirelessManager_SetErrorCode(errorCode);
@@ -644,7 +631,6 @@ static void WirelessManager_FinishEndScan(void *wm_callback)
 static BOOL WirelessManager_StartClient(void)
 {
     u8 ssid[32];
-    WMErrCode errorCode;
 
     if ((sWirelessManager->state == WIRELESS_STATE_CONNECTED) || (sWirelessManager->state == WIRELESS_STATE_TRANSMIT_KEY) || (sWirelessManager->state == WIRELESS_STATE_TRANSMIT_DATA)) {
         return TRUE;
@@ -654,7 +640,7 @@ static BOOL WirelessManager_StartClient(void)
     MI_CpuCopy8("DP", &ssid[1], sizeof("DP"));
 
     ssid[0] = sub_0203895C();
-    errorCode = WM_StartConnectEx(WirelessManager_FinishStartClient, &sWirelessManager->bssDesc, ssid, 1, WM_AUTHMODE_OPEN_SYSTEM);
+    WMErrCode errorCode = WM_StartConnectEx(WirelessManager_FinishStartClient, &sWirelessManager->bssDesc, ssid, 1, WM_AUTHMODE_OPEN_SYSTEM);
 
     if (errorCode != WM_ERRCODE_OPERATING) {
         WirelessManager_SetErrorCode(errorCode);
@@ -735,9 +721,7 @@ static void WirelessManager_FinishStartClient(void *wm_connectcallback)
  */
 static BOOL WirelessManager_StartMPClient(void)
 {
-    WMErrCode errorCode;
-
-    errorCode = WM_StartMP(WirelessManager_FinishStartMPClient, (u16 *)sWirelessManager->recvBuffer, (u16)sWirelessManager->recvBufferSize, (u16 *)sWirelessManager->sendBuffer, (u16)sWirelessManager->sendBufferSize, 1);
+    WMErrCode errorCode = WM_StartMP(WirelessManager_FinishStartMPClient, (u16 *)sWirelessManager->recvBuffer, (u16)sWirelessManager->recvBufferSize, (u16 *)sWirelessManager->sendBuffer, (u16)sWirelessManager->sendBufferSize, 1);
 
     if (errorCode != WM_ERRCODE_OPERATING) {
         WirelessManager_SetErrorCode(errorCode);
@@ -798,13 +782,11 @@ static void WirelessManager_FinishStartMPClient(void *wm_startmpcallback)
  */
 static BOOL WirelessManager_EndMPClient(void)
 {
-    WMErrCode error;
-
     WirelessManager_SetState(WIRELESS_STATE_BUSY);
-    error = WM_EndMP(WirelessManager_FinishEndMPClient);
+    WMErrCode errorCode = WM_EndMP(WirelessManager_FinishEndMPClient);
 
-    if (error != WM_ERRCODE_OPERATING) {
-        WirelessManager_SetErrorCode(error);
+    if (errorCode != WM_ERRCODE_OPERATING) {
+        WirelessManager_SetErrorCode(errorCode);
         return FALSE;
     }
 
@@ -838,11 +820,9 @@ static void WirelessManager_FinishEndMPClient(void *wm_callback)
  */
 static BOOL WirelessManager_DisconnectClient(void)
 {
-    WMErrCode errorCode;
-
     WirelessManager_SetState(WIRELESS_STATE_BUSY);
 
-    errorCode = WM_Disconnect(WirelessManager_FinishDisconnectClient, 0);
+    WMErrCode errorCode = WM_Disconnect(WirelessManager_FinishDisconnectClient, 0);
 
     if (errorCode != WM_ERRCODE_OPERATING) {
         WirelessManager_SetErrorCode(errorCode);
@@ -877,10 +857,8 @@ static void WirelessManager_FinishDisconnectClient(void *wm_callback)
  */
 static BOOL WirelessManager_ResetInternal(void)
 {
-    WMErrCode errorCode;
-
     WirelessManager_SetState(WIRELESS_STATE_BUSY);
-    errorCode = WM_Reset(WirelessManager_FinishResetInternal);
+    WMErrCode errorCode = WM_Reset(WirelessManager_FinishResetInternal);
 
     if (errorCode != WM_ERRCODE_OPERATING) {
         WirelessManager_SetErrorCode(errorCode);
@@ -916,17 +894,11 @@ static void WirelessManager_FinishResetInternal(void *wm_callback)
  */
 static BOOL WirelessManager_SendMPMessage(void *message, u16 size, int port, WirelessManagerSendFunc sendCallback)
 {
-    WMErrCode errorCode;
-
     DC_FlushRange(sWirelessManager->sendBuffer, (u32)sWirelessManager->sendBufferSize);
 
-    errorCode = WM_SetMPDataToPortEx(WirelessManager_FinishSendMPMessage, (void *)sendCallback, message, size, 0xffff, port, WM_PRIORITY_NORMAL);
+    WMErrCode errorCode = WM_SetMPDataToPortEx(WirelessManager_FinishSendMPMessage, (void *)sendCallback, message, size, 0xFFFF, port, WM_PRIORITY_NORMAL);
 
-    if (errorCode != WM_ERRCODE_OPERATING) {
-        return FALSE;
-    }
-
-    return TRUE;
+    return errorCode == WM_ERRCODE_OPERATING;
 }
 
 /**
@@ -963,7 +935,7 @@ static void WirelessManager_RecvMessageCallback(void *wm_portrecvcallback)
         WirelessManager_SetErrorCode(callback->errcode);
     } else if (sWirelessManager->recvFunc != NULL) {
         if (callback->state == WM_STATECODE_PORT_INIT) {
-            (void)0;
+            ;
         } else if (callback->state == WM_STATECODE_PORT_RECV) {
             (*sWirelessManager->recvFunc)(callback->aid, callback->data, callback->length);
         } else if (callback->state == WM_STATECODE_DISCONNECTED) {
@@ -1068,7 +1040,6 @@ int WirelessManager_GetErrorCode(void)
  */
 BOOL WirelessManager_StartMeasureChannel(void)
 {
-    u16 errorCode;
     u8 macAddress[6];
 
     OS_GetMacAddress(macAddress);
@@ -1080,7 +1051,7 @@ BOOL WirelessManager_StartMeasureChannel(void)
 
     WirelessManager_SetState(WIRELESS_STATE_BUSY);
 
-    errorCode = WirelessManager_MeasureChannel(1);
+    u16 errorCode = WirelessManager_MeasureChannel(1);
 
     if (errorCode == WM_ERRCODE_FATAL) {
         WirelessManager_SetErrorCode(WM_ERRCODE_FATAL);
@@ -1105,10 +1076,7 @@ BOOL WirelessManager_StartMeasureChannel(void)
  */
 static u16 WirelessManager_MeasureChannel(u16 channel)
 {
-    u16 allowedChannel;
-    u16 errorCode;
-
-    allowedChannel = WM_GetAllowedChannel();
+    u16 allowedChannel = WM_GetAllowedChannel();
 
     if (allowedChannel == 0x8000) {
         WirelessManager_SetErrorCode(WM_ERRCODE_ILLEGAL_STATE);
@@ -1136,16 +1104,19 @@ static u16 WirelessManager_MeasureChannel(u16 channel)
         }
     }
 
-    errorCode = WirelessManager_MeasureChannelInternal(WirelessManager_FinishMeasureChannel, channel);
+    u16 errorCode = WirelessManager_MeasureChannelInternal(WirelessManager_FinishMeasureChannel, channel);
 
     return errorCode;
 }
 
-static void WirelessManager_FinishMeasureChannel(void *param0)
+/**
+ * @brief Callbacked used when the WM_MeasureChannel asynchronous process completes
+ *
+ * @param wm_measurechannelcallback
+ */
+static void WirelessManager_FinishMeasureChannel(void *wm_measurechannelcallback)
 {
-    u16 errorCode;
-    u16 channel;
-    WMMeasureChannelCallback *measureChannelCallback = (WMMeasureChannelCallback *)param0;
+    WMMeasureChannelCallback *measureChannelCallback = (WMMeasureChannelCallback *)wm_measurechannelcallback;
 
     if (measureChannelCallback->errcode != WM_ERRCODE_SUCCESS) {
         WirelessManager_SetErrorCode(measureChannelCallback->errcode);
@@ -1156,7 +1127,7 @@ static void WirelessManager_FinishMeasureChannel(void *param0)
         return;
     }
 
-    channel = measureChannelCallback->channel;
+    u16 channel = measureChannelCallback->channel;
 
     if (sWirelessManager->measureChannelBusyRatio > measureChannelCallback->ccaBusyRatio) {
         sWirelessManager->measureChannelBusyRatio = measureChannelCallback->ccaBusyRatio;
@@ -1165,7 +1136,7 @@ static void WirelessManager_FinishMeasureChannel(void *param0)
         sWirelessManager->leastUsedChannelBitmap |= 1 << (channel - 1);
     }
 
-    errorCode = WirelessManager_MeasureChannel(++channel);
+    u16 errorCode = WirelessManager_MeasureChannel(++channel);
 
     if (errorCode == WM_ERRCODE_FATAL) {
         WirelessManager_SetState(WIRELESS_STATE_CHECK_CHANNEL);
@@ -1342,7 +1313,6 @@ static BOOL WirelessManager_InitializeWM(BOOL isNotListening)
  */
 static void WirelessManager_FinishInitializeWM(void *wm_callback)
 {
-    WMErrCode errorCode;
     WMCallback *callback = (WMCallback *)wm_callback;
 
     if (callback->errcode != WM_ERRCODE_SUCCESS) {
@@ -1354,7 +1324,7 @@ static void WirelessManager_FinishInitializeWM(void *wm_callback)
         return;
     }
 
-    errorCode = WM_SetIndCallback(WirelessManager_InidcateCallback);
+    WMErrCode errorCode = WM_SetIndCallback(WirelessManager_InidcateCallback);
 
     if (errorCode != WM_ERRCODE_SUCCESS) {
         WirelessManager_SetErrorCode(errorCode);
@@ -1374,7 +1344,6 @@ static void WirelessManager_FinishInitializeWM(void *wm_callback)
  */
 static void WirelessManager_FinishSetLifeTime(void *wm_callback)
 {
-    (void)0;
 }
 
 /**
@@ -1392,7 +1361,7 @@ static void WirelessManager_FinishSetLifeTime(void *wm_callback)
 BOOL WirelessManager_ConnectServer(int connectionType, u16 tgid, u16 channel, u16 maxEntry, u16 beaconPeriod, BOOL entryFlag)
 {
     if (sub_0203276C(sub_0203895C())) {
-        WM_SetLifeTime(WirelessManager_FinishSetLifeTime, 0xffff, 100, 5, 100);
+        WM_SetLifeTime(WirelessManager_FinishSetLifeTime, 0xFFFF, 100, 5, 100);
     }
 
     sWirelessManager->recvBufferSize = MATH_MAX(WM_SIZE_MP_PARENT_RECEIVE_BUFFER(12, 7, 0), MATH_MAX(WM_SIZE_MP_PARENT_RECEIVE_BUFFER(12, 7, 0), WM_SIZE_MP_PARENT_RECEIVE_BUFFER(38, (5 - 1), 0)));
@@ -1451,7 +1420,7 @@ BOOL WirelessManager_ConnectServer(int connectionType, u16 tgid, u16 channel, u1
 BOOL WirelessManager_ConnectClient(int connectionType, WMBssDesc *bssDesc)
 {
     if (sub_0203276C(sub_0203895C())) {
-        WM_SetLifeTime(WirelessManager_FinishSetLifeTime, 0xffff, 100, 5, 100);
+        WM_SetLifeTime(WirelessManager_FinishSetLifeTime, 0xFFFF, 100, 5, 100);
     }
 
     sWirelessManager->recvBufferSize = WM_SIZE_MP_CHILD_RECEIVE_BUFFER(MATH_MAX((12 * (1 + 7) + 4), 192), 0);
@@ -1489,7 +1458,7 @@ void WirelessManager_SetRecvFunction(WirelessManagerRecvFunc recvFunction, int p
         WirelessManager_SetState(WIRELESS_STATE_ERROR);
 
         while (TRUE) {
-            (void)0;
+            ;
         }
     }
 }
@@ -1506,7 +1475,7 @@ void WirelessManager_SetRecvFunction(WirelessManagerRecvFunc recvFunction, int p
  */
 BOOL WirelessManager_SendMessage(void *message, u16 size, int port, WirelessManagerSendFunc callback)
 {
-    if ((WirelessManager_GetAID() == 0) && !(0xfe & WirelessManager_GetConnectedBitmap())) {
+    if ((WirelessManager_GetAID() == 0) && !(0xFE & WirelessManager_GetConnectedBitmap())) {
         return FALSE;
     }
 
@@ -1520,7 +1489,6 @@ void WirelessManager_Reset(void)
 {
     if (WIRELESS_STATE_SCAN == sWirelessManager->state) {
         while (TRUE) {
-            (void)0;
         }
     }
 

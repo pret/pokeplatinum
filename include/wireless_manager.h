@@ -1,10 +1,10 @@
-#ifndef POKEPLATINUM_UNK_02030EE0_H
-#define POKEPLATINUM_UNK_02030EE0_H
+#ifndef POKEPLATINUM_WIRELESS_MANAGER_H
+#define POKEPLATINUM_WIRELESS_MANAGER_H
 
 #include <nitro/wm.h>
 
 enum WirelessManagerState {
-    WIRELESS_STATE_STOP,
+    WIRELESS_STATE_STOP = 0,
     WIRELESS_STATE_IDLE,
     WIRELESS_STATE_SCAN,
     WIRELESS_STATE_BUSY,
@@ -19,7 +19,7 @@ enum WirelessManagerState {
 };
 
 enum WirelessConnectionType {
-    WIRELESS_CONNECTION_MP_SERVER,
+    WIRELESS_CONNECTION_MP_SERVER = 0,
     WIRELESS_CONNECTION_MP_CLIENT,
     WIRELESS_CONNECTION_TRANSMIT_KEY_SERVER,
     WIRELESS_CONNECTION_TRANSMIT_KEY_CLIENT,
@@ -81,4 +81,4 @@ BOOL WirelessManager_GetPauseConnection(void);
 void WirelessManager_SetPauseConnectionSystem(BOOL pause);
 void WirelessManager_SetPauseClientConnection(BOOL pause);
 
-#endif // POKEPLATINUM_UNK_02030EE0_H
+#endif // POKEPLATINUM_WIRELESS_MANAGER_H
