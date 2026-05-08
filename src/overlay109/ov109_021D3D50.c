@@ -50,13 +50,13 @@
 #include "system.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_02030EE0.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
 #include "unk_02038ED4.h"
 #include "unk_0205B33C.h"
 #include "unk_0209BDF8.h"
 #include "vram_transfer.h"
+#include "wireless_manager.h"
 
 static void ov109_021D40A8(void *param0);
 static void ov109_021D40D0(void);
@@ -230,7 +230,7 @@ int ov109_021D3EB0(ApplicationManager *appMan, int *param1)
     UnkStruct_ov109_021D5140 *v0 = ApplicationManager_Data(appMan);
 
     if ((CommSys_CurNetId() == 0) && (v0->unk_10->unk_30 != 0)) {
-        v0->unk_10->unk_30 &= sub_020318EC();
+        v0->unk_10->unk_30 &= WirelessManager_GetConnectedBitmap();
     }
 
     switch (v0->unk_00) {
@@ -1722,7 +1722,7 @@ static int ov109_021D58AC(UnkStruct_ov109_021D5140 *param0, int param1)
 
     switch (v0) {
     case 1:
-        if ((CommSys_ConnectedCount() > 1) || (sub_020318EC() > 1)) {
+        if ((CommSys_ConnectedCount() > 1) || (WirelessManager_GetConnectedBitmap() > 1)) {
             return 1;
         }
 

@@ -45,9 +45,9 @@
 #include "terrain_collision_manager.h"
 #include "trainer_info.h"
 #include "underground.h"
-#include "unk_02030EE0.h"
 #include "unk_020366A0.h"
 #include "vars_flags.h"
+#include "wireless_manager.h"
 
 #include "res/graphics/trap_effects/trap_effects.naix"
 #include "res/text/bank/underground_common.h"
@@ -161,7 +161,7 @@ static void UndergroundMan_Init(UndergroundManager *dest, FieldSystem *fieldSyst
 
     SystemFlag_SetEnteredUnderground(SaveData_GetVarsFlags(sUndergroundMan->fieldSystem->saveData));
     sUndergroundMan->sysTask = SysTask_Start(UndergroundMan_ClearPrinterIDsTask, NULL, 0);
-    sub_SetDisconnectCallback(UndergroundMan_DisconnectCallback);
+    WirelessManager_SetDisconnectCallback(UndergroundMan_DisconnectCallback);
 }
 
 static void UndergroundMan_Free(void)
@@ -172,7 +172,7 @@ static void UndergroundMan_Free(void)
         }
     }
 
-    sub_SetDisconnectCallback(NULL);
+    WirelessManager_SetDisconnectCallback(NULL);
     SysTask_Done(sUndergroundMan->sysTask);
 
     UndergroundTextPrinter_Free(sUndergroundMan->commonTextPrinter);

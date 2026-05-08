@@ -19,11 +19,11 @@
 #include "sound_playback.h"
 #include "system.h"
 #include "trainer_info.h"
-#include "unk_02030EE0.h"
 #include "unk_0203266C.h"
 #include "unk_02032798.h"
 #include "unk_02033200.h"
 #include "unk_02039814.h"
+#include "wireless_manager.h"
 
 typedef void (*UnkFuncPtr_02036C94)(void);
 
@@ -338,7 +338,7 @@ void sub_02036978(void)
 
 void sub_02036994(BOOL param0)
 {
-    sub_0203208C(param0);
+    WirelessManager_SetEntry(param0);
 }
 
 BOOL sub_0203699C(void)
@@ -387,7 +387,7 @@ void sub_02036A38(int param0)
     Unk_021C07D4->unk_49 = param0;
     Unk_021C07D4->unk_44 = 3;
 
-    sub_02032138(1);
+    WirelessManager_SetPauseConnection(1);
     NetworkIcon_Init();
     CommMan_SetTask(sub_020375A4, 0);
 }
@@ -432,7 +432,7 @@ BOOL sub_02036AA0(void)
 
 void sub_02036AC4(void)
 {
-    sub_02032138(0);
+    WirelessManager_SetPauseConnection(0);
 
     if (!((Unk_021C07D4->unk_4F == 1) && (Unk_021C07D4->unk_50 == 1)) || (Unk_021C07D4->unk_4A == 9)) {
         CommMan_SetErrorHandling(0, 0);
@@ -443,10 +443,10 @@ void sub_02036AC4(void)
     Unk_021C07D4->unk_4A = 9;
     Unk_021C07D4->unk_53 = 0;
 
-    sub_02031FA4(Unk_021C07D4->unk_46);
+    WirelessManager_SetMaxNumConnections(Unk_021C07D4->unk_46);
 
     if (CommSys_CurNetId() == 0) {
-        sub_02032160(1);
+        WirelessManager_SetPauseConnectionSystem(1);
         CommMan_SetTask(sub_02037354, 15);
     } else {
         CommMan_SetTask(sub_0203739C, 5);
@@ -486,7 +486,7 @@ void sub_02036B84(void)
     }
 
     Unk_021C07D4->unk_53 = 1;
-    sub_02032138(1);
+    WirelessManager_SetPauseConnection(1);
 }
 
 void sub_02036BA0(void)
@@ -497,7 +497,7 @@ void sub_02036BA0(void)
 
     Unk_021C07D4->unk_53 = 1;
 
-    sub_02032138(1);
+    WirelessManager_SetPauseConnection(1);
     CommMan_SetTask(sub_020377E4, 0);
 }
 
@@ -986,7 +986,7 @@ static void sub_02037344(void)
 static void sub_02037354(void)
 {
     if (CommSys_ConnectedCount() <= 1) {
-        sub_02032160(0);
+        WirelessManager_SetPauseConnectionSystem(0);
         CommSys_ResetDS();
         CommMan_SetTask(sub_02037474, 0);
     }
@@ -996,7 +996,7 @@ static void sub_02037354(void)
         return;
     }
 
-    sub_02032160(0);
+    WirelessManager_SetPauseConnectionSystem(0);
     CommSys_ResetDS();
     CommMan_SetTask(sub_02037474, 0);
 }
@@ -1038,7 +1038,7 @@ static void sub_020373F0(void)
     }
 
     CommServerClient_Init(Unk_021C07D4->unk_2C, 1);
-    sub_02031FA4(Unk_021C07D4->unk_46);
+    WirelessManager_SetMaxNumConnections(Unk_021C07D4->unk_46);
     CommInfo_Init(Unk_021C07D4->saveData, NULL);
 
     if (CommSys_InitClient(1, 1, 512)) {
@@ -1495,7 +1495,7 @@ void sub_02037B58(int param0)
 {
     if (Unk_021C07D4) {
         Unk_021C07D4->unk_46 = param0;
-        sub_02031FA4(param0);
+        WirelessManager_SetMaxNumConnections(param0);
     }
 }
 
@@ -1599,7 +1599,7 @@ static void sub_02037D08(void)
 
     CommServerClient_Init(Unk_021C07D4->unk_2C, 0);
     CommInfo_Init(Unk_021C07D4->saveData, NULL);
-    sub_020320FC(sub_02037C5C);
+    WirelessManager_SetGGIDScanCallback(sub_02037C5C);
     CommMan_SetTask(sub_02037CE4, 0);
 }
 

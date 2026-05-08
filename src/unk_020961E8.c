@@ -13,10 +13,10 @@
 #include "communication_system.h"
 #include "math_util.h"
 #include "sound_playback.h"
-#include "unk_02030EE0.h"
 #include "unk_02032798.h"
 #include "unk_020366A0.h"
 #include "unk_02099500.h"
+#include "wireless_manager.h"
 
 typedef struct UnkStruct_020961E8_t UnkStruct_020961E8;
 
@@ -210,7 +210,7 @@ void sub_02096274(int param0, int param1, void *param2, void *param3)
 
             switch (v2->unk_02) {
             case 0:
-                if ((v0->unk_4AAC != CommSys_ConnectedCount()) || (v0->unk_4AAC != ov59_021D2544()) || (v0->unk_4AAC != MATH_CountPopulation(sub_020318EC()))) {
+                if ((v0->unk_4AAC != CommSys_ConnectedCount()) || (v0->unk_4AAC != ov59_021D2544()) || (v0->unk_4AAC != MATH_CountPopulation(WirelessManager_GetConnectedBitmap()))) {
                     v1.unk_03 = 0;
                 } else {
                     v0->unk_4AB4 |= 1 << param0;

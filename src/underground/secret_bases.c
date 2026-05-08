@@ -58,12 +58,12 @@
 #include "terrain_collision_manager.h"
 #include "trainer_info.h"
 #include "underground.h"
-#include "unk_02030EE0.h"
 #include "unk_02033200.h"
 #include "unk_020366A0.h"
 #include "unk_0205F180.h"
 #include "unk_020655F4.h"
 #include "vars_flags.h"
+#include "wireless_manager.h"
 
 #include "res/field/props/models/prop_models.naix"
 #include "res/graphics/trap_effects/trap_effects.naix"
@@ -2759,16 +2759,16 @@ void SecretBases_SetEntranceGraphicsEnabled(BOOL enabled)
 
 static void ov23_0224DC08(void)
 {
-    sub_02032174(TRUE);
-    sub_02032138(TRUE);
+    WirelessManager_SetPauseClientConnection(TRUE);
+    WirelessManager_SetPauseConnection(TRUE);
     sub_02036814(TRUE);
     sub_020340FC();
 }
 
 static void ov23_0224DC24(void)
 {
-    sub_02032174(FALSE);
-    sub_02032138(FALSE);
+    WirelessManager_SetPauseClientConnection(FALSE);
+    WirelessManager_SetPauseConnection(FALSE);
     sub_02036814(FALSE);
     sub_020340FC();
 }
