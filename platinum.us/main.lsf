@@ -334,7 +334,7 @@ Static main
 	Object main.nef.p/src_item_use_pokemon.c.o
 	Object main.nef.p/src_unk_020972FC.c.o
 	Object main.nef.p/src_berry_data.c.o
-	Object main.nef.p/src_unk_0209747C.c.o
+	Object main.nef.p/src_easy_chat_args.c.o
 	Object main.nef.p/src_applications_mail.c.o
 	Object main.nef.p/src_unk_02097B18.c.o
 	Object main.nef.p/src_egg_hatch.c.o
@@ -760,18 +760,18 @@ Overlay pc_boxes
 	Object main.nef.p/src_applications_pc_boxes_box_menu.c.o
 }
 
-Overlay overlay20
+Overlay easy_chat
 {
 	After main
-	Object main.nef.p/src_overlay020_ov20_021D0D80.c.o
-	Object main.nef.p/src_overlay020_ov20_021D2098.c.o
-	Object main.nef.p/src_overlay020_ov20_021D2EA4.c.o
-	Object main.nef.p/src_overlay020_ov20_021D3864.c.o
-	Object main.nef.p/src_overlay020_ov20_021D3A54.c.o
-	Object main.nef.p/src_overlay020_ov20_021D40E8.c.o
-	Object main.nef.p/src_overlay020_ov20_021D4728.c.o
-	Object main.nef.p/src_overlay020_ov20_021D4E38.c.o
-	Object main.nef.p/src_overlay020_ov20_021D5044.c.o
+	Object main.nef.p/src_applications_easy_chat_main.c.o
+	Object main.nef.p/src_applications_easy_chat_ov20_021D2098.c.o
+	Object main.nef.p/src_applications_easy_chat_ov20_021D2EA4.c.o
+	Object main.nef.p/src_applications_easy_chat_ov20_021D3864.c.o
+	Object main.nef.p/src_applications_easy_chat_categories.c.o
+	Object main.nef.p/src_applications_easy_chat_ov20_021D40E8.c.o
+	Object main.nef.p/src_applications_easy_chat_ov20_021D4728.c.o
+	Object main.nef.p/src_applications_easy_chat_ov20_021D4E38.c.o
+	Object main.nef.p/src_applications_easy_chat_abc_mode.c.o
 }
 
 Overlay pokedex

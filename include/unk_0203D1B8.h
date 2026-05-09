@@ -22,6 +22,7 @@
 #include "overlay090/struct_ov90_021D0D80.h"
 
 #include "bag_context.h"
+#include "easy_chat_args.h"
 #include "field_battle_data_transfer.h"
 #include "field_move_tasks.h"
 #include "field_task.h"
@@ -30,7 +31,6 @@
 #include "pokemon.h"
 #include "savedata.h"
 #include "trainer_case.h"
-#include "unk_0209747C.h"
 
 void FieldSystem_StartBattleProcess(FieldSystem *fieldSystem, FieldBattleDTO *dto);
 void sub_0203D1E4(FieldSystem *fieldSystem, BagContext *param1);
@@ -59,7 +59,7 @@ void *FieldSystem_OpenSummaryScreenSelectMove(enum HeapID heapID, FieldSystem *f
 int PokemonSummary_GetSelectedMoveSlot(void *summary);
 void FieldSystem_OpenPokemonStorage(FieldSystem *fieldSystem, PokemonStorageSession *pokemonStorageSession);
 void sub_0203D80C(FieldTask *param0, u16 *param1, u16 *param2, u16 *param3);
-void sub_0203D874(FieldSystem *fieldSystem, UnkStruct_0209747C *param1);
+void FieldSystem_OpenEasyChat(FieldSystem *fieldSystem, EasyChatArgs *param1);
 void FieldSystem_OpenTownMap(FieldSystem *fieldSystem, TownMapContext *townMapCtx);
 void *FieldSystem_OpenTownMapItem(FieldSystem *fieldSystem);
 void *FieldSystem_OpenOptionsMenu(FieldSystem *fieldSystem);

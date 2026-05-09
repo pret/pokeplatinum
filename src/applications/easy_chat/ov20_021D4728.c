@@ -1,4 +1,4 @@
-#include "overlay020/ov20_021D4728.h"
+#include "applications/easy_chat/ov20_021D4728.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -7,10 +7,9 @@
 
 #include "struct_decls/struct_020998EC_decl.h"
 
-#include "overlay020/ov20_021D0D80.h"
-#include "overlay020/ov20_021D2098.h"
-#include "overlay020/struct_ov20_021D16E8_decl.h"
-#include "overlay020/struct_ov20_021D2128_decl.h"
+#include "applications/easy_chat/main.h"
+#include "applications/easy_chat/ov20_021D2098.h"
+#include "applications/easy_chat/struct_ov20_021D2128_decl.h"
 
 #include "bg_window.h"
 #include "font.h"
@@ -33,7 +32,7 @@ typedef struct {
 
 typedef struct UnkStruct_ov20_021D4AD4_t {
     UnkStruct_ov20_021D2128 *unk_00;
-    const UnkStruct_ov20_021D16E8 *unk_04;
+    const EasyChatApp *unk_04;
     const UnkStruct_020998EC *unk_08;
     BgConfig *unk_0C;
     SpriteList *unk_10;
@@ -67,7 +66,7 @@ static void ov20_021D4B2C(UnkStruct_ov20_021D4B2C *param0);
 static void ov20_021D4C40(SysTask *param0, void *param1);
 static Sprite *ov20_021D4B40(UnkStruct_ov20_021D4AD4 *param0, NNSG2dImageProxy *param1, NNSG2dImagePaletteProxy *param2, UnkStruct_ov20_021D4B2C *param3, int param4, int param5, int param6, int param7);
 
-UnkStruct_ov20_021D4AD4 *ov20_021D4728(UnkStruct_ov20_021D2128 *param0, const UnkStruct_ov20_021D16E8 *param1, const UnkStruct_020998EC *param2)
+UnkStruct_ov20_021D4AD4 *ov20_021D4728(UnkStruct_ov20_021D2128 *param0, const EasyChatApp *param1, const UnkStruct_020998EC *param2)
 {
     UnkStruct_ov20_021D4AD4 *v0 = Heap_Alloc(HEAP_ID_35, sizeof(UnkStruct_ov20_021D4AD4));
 
@@ -97,7 +96,7 @@ void ov20_021D4774(UnkStruct_ov20_021D4AD4 *param0, NARC *param1)
     ov20_021D4874(param0, param1);
     ov20_021D48C4(param0, param1);
 
-    if (ov20_021D1F94(param0->unk_04) == 0) {
+    if (EasyChat_GetMode(param0->unk_04) == 0) {
         Bg_CopyToTilemapRect(param0->unk_0C, 4, 3, 3, 11, 7, param0->unk_2C[3], 0, 0, 11, 7);
         Bg_CopyToTilemapRect(param0->unk_0C, 4, 3, 14, 11, 7, param0->unk_2C[4], 0, 0, 11, 7);
     } else {
@@ -296,7 +295,7 @@ void ov20_021D4BA4(UnkStruct_ov20_021D4AD4 *param0)
             { 0x1, 0x3, 0x3, 0x3, 0x4, 0x3, 0xE },
             { 0x5, 0x7, 0x3, 0xE, 0x0, 0x3, 0x3 }
         };
-        int v2 = ov20_021D1F94(param0->unk_04);
+        int v2 = EasyChat_GetMode(param0->unk_04);
 
         v0->unk_00 = param0;
         v0->unk_04 = 0;

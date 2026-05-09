@@ -1,22 +1,20 @@
-#include "overlay020/ov20_021D2098.h"
+#include "applications/easy_chat/ov20_021D2098.h"
 
 #include <nitro.h>
 #include <string.h>
 
 #include "struct_decls/struct_020998EC_decl.h"
 
-#include "overlay020/ov20_021D0D80.h"
-#include "overlay020/ov20_021D2EA4.h"
-#include "overlay020/ov20_021D3864.h"
-#include "overlay020/ov20_021D3A54.h"
-#include "overlay020/ov20_021D40E8.h"
-#include "overlay020/ov20_021D4728.h"
-#include "overlay020/struct_ov20_021D16E8_decl.h"
-#include "overlay020/struct_ov20_021D30F8_decl.h"
-#include "overlay020/struct_ov20_021D3980_decl.h"
-#include "overlay020/struct_ov20_021D3E0C_decl.h"
-#include "overlay020/struct_ov20_021D4210_decl.h"
-#include "overlay020/struct_ov20_021D4AD4_decl.h"
+#include "applications/easy_chat/categories.h"
+#include "applications/easy_chat/main.h"
+#include "applications/easy_chat/ov20_021D2EA4.h"
+#include "applications/easy_chat/ov20_021D3864.h"
+#include "applications/easy_chat/ov20_021D40E8.h"
+#include "applications/easy_chat/ov20_021D4728.h"
+#include "applications/easy_chat/struct_ov20_021D30F8_decl.h"
+#include "applications/easy_chat/struct_ov20_021D3980_decl.h"
+#include "applications/easy_chat/struct_ov20_021D4210_decl.h"
+#include "applications/easy_chat/struct_ov20_021D4AD4_decl.h"
 
 #include "bg_window.h"
 #include "graphics.h"
@@ -35,7 +33,7 @@ typedef struct UnkStruct_ov20_021D2128_t {
     SysTask *unk_00;
     SysTask *unk_04;
     SysTask *unk_08[4];
-    const UnkStruct_ov20_021D16E8 *unk_18;
+    const EasyChatApp *unk_18;
     const UnkStruct_020998EC *unk_1C;
     BgConfig *unk_20;
     SpriteList *unk_24;
@@ -48,14 +46,14 @@ typedef struct UnkStruct_ov20_021D2128_t {
     void *unk_23C[2];
     UnkStruct_ov20_021D30F8 *unk_244;
     UnkStruct_ov20_021D3980 *unk_248;
-    UnkStruct_ov20_021D3E0C *unk_24C;
+    EasyChatCategoriesContext *unk_24C;
     UnkStruct_ov20_021D4210 *unk_250;
     UnkStruct_ov20_021D4AD4 *unk_254;
 } UnkStruct_ov20_021D2128;
 
 typedef struct {
     UnkStruct_ov20_021D2128 *unk_00;
-    const UnkStruct_ov20_021D16E8 *unk_04;
+    const EasyChatApp *unk_04;
     const UnkStruct_020998EC *unk_08;
     u32 unk_0C;
     int unk_10;
@@ -97,7 +95,7 @@ static void ov20_021D2DA0(SysTask *param0, void *param1);
 static void ov20_021D2DBC(SysTask *param0, void *param1);
 static void ov20_021D2DD8(SysTask *param0, void *param1);
 
-UnkStruct_ov20_021D2128 *ov20_021D2098(const UnkStruct_ov20_021D16E8 *param0, const UnkStruct_020998EC *param1)
+UnkStruct_ov20_021D2128 *ov20_021D2098(const EasyChatApp *param0, const UnkStruct_020998EC *param1)
 {
     UnkStruct_ov20_021D2128 *v0 = Heap_Alloc(HEAP_ID_35, sizeof(UnkStruct_ov20_021D2128));
 
@@ -173,35 +171,35 @@ static void ov20_021D217C(SysTask *param0, void *param1)
 void ov20_021D21A0(UnkStruct_ov20_021D2128 *param0, int param1)
 {
     static const SysTaskFunc v0[] = {
-        ov20_021D2260,
-        ov20_021D2414,
-        ov20_021D2570,
-        ov20_021D25C0,
-        ov20_021D25EC,
-        ov20_021D2630,
-        ov20_021D2660,
-        ov20_021D27E4,
-        ov20_021D2848,
-        ov20_021D28E8,
-        ov20_021D29BC,
-        ov20_021D2A9C,
-        ov20_021D2B74,
-        ov20_021D2B94,
-        ov20_021D2BB4,
-        ov20_021D2BD4,
-        ov20_021D2BF4,
-        ov20_021D2C44,
-        ov20_021D2C60,
-        ov20_021D2CB0,
-        ov20_021D2D00,
-        ov20_021D2D1C,
-        ov20_021D2D3C,
-        ov20_021D26D8,
-        ov20_021D2740,
-        ov20_021D2D84,
-        ov20_021D2DA0,
-        ov20_021D2DBC,
-        ov20_021D2DD8,
+        [EASY_CHAT_SYSTASK_00] = ov20_021D2260,
+        [EASY_CHAT_SYSTASK_01] = ov20_021D2414,
+        [EASY_CHAT_SYSTASK_02] = ov20_021D2570,
+        [EASY_CHAT_SYSTASK_03] = ov20_021D25C0,
+        [EASY_CHAT_SYSTASK_04] = ov20_021D25EC,
+        [EASY_CHAT_SYSTASK_05] = ov20_021D2630,
+        [EASY_CHAT_SYSTASK_06] = ov20_021D2660,
+        [EASY_CHAT_SYSTASK_07] = ov20_021D27E4,
+        [EASY_CHAT_SYSTASK_08] = ov20_021D2848,
+        [EASY_CHAT_SYSTASK_09] = ov20_021D28E8,
+        [EASY_CHAT_SYSTASK_10] = ov20_021D29BC,
+        [EASY_CHAT_SYSTASK_11] = ov20_021D2A9C,
+        [EASY_CHAT_SYSTASK_12] = ov20_021D2B74,
+        [EASY_CHAT_SYSTASK_13] = ov20_021D2B94,
+        [EASY_CHAT_SYSTASK_14] = ov20_021D2BB4,
+        [EASY_CHAT_SYSTASK_15] = ov20_021D2BD4,
+        [EASY_CHAT_SYSTASK_16] = ov20_021D2BF4,
+        [EASY_CHAT_SYSTASK_17] = ov20_021D2C44,
+        [EASY_CHAT_SYSTASK_18] = ov20_021D2C60,
+        [EASY_CHAT_SYSTASK_19] = ov20_021D2CB0,
+        [EASY_CHAT_SYSTASK_20] = ov20_021D2D00,
+        [EASY_CHAT_SYSTASK_21] = ov20_021D2D1C,
+        [EASY_CHAT_SYSTASK_22] = ov20_021D2D3C,
+        [EASY_CHAT_SYSTASK_23] = ov20_021D26D8,
+        [EASY_CHAT_SYSTASK_24] = ov20_021D2740,
+        [EASY_CHAT_SYSTASK_25] = ov20_021D2D84,
+        [EASY_CHAT_SYSTASK_26] = ov20_021D2DA0,
+        [EASY_CHAT_SYSTASK_27] = ov20_021D2DBC,
+        [EASY_CHAT_SYSTASK_28] = ov20_021D2DD8,
     };
 
     if (param1 < NELEMS(v0)) {
@@ -269,7 +267,6 @@ static void ov20_021D2238(UnkStruct_ov20_021D2238 *param0)
 static void ov20_021D2260(SysTask *param0, void *param1)
 {
     UnkStruct_ov20_021D2238 *v0 = param1;
-    NARC *v1;
 
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
@@ -279,31 +276,31 @@ static void ov20_021D2260(SysTask *param0, void *param1)
     GX_SetOBJVRamModeChar(GX_OBJVRAMMODE_CHAR_1D_64K);
     GXS_SetOBJVRamModeChar(GX_OBJVRAMMODE_CHAR_1D_32K);
 
-    v1 = NARC_ctor(NARC_INDEX_GRAPHIC__PMSI, HEAP_ID_35);
+    NARC *narc = NARC_ctor(NARC_INDEX_GRAPHIC__PMSI, HEAP_ID_35);
 
     ov20_021D24EC(v0);
-    ov20_021D2370(v0, v1);
+    ov20_021D2370(v0, narc);
 
     v0->unk_00->unk_244 = ov20_021D2EA4(v0->unk_00, v0->unk_04, v0->unk_08);
-    ov20_021D2F50(v0->unk_00->unk_244, v1);
+    ov20_021D2F50(v0->unk_00->unk_244, narc);
 
     v0->unk_00->unk_248 = ov20_021D3864(v0->unk_00, v0->unk_04, v0->unk_08);
-    ov20_021D3898(v0->unk_00->unk_248, v1);
+    ov20_021D3898(v0->unk_00->unk_248, narc);
 
-    v0->unk_00->unk_24C = ov20_021D3A54(v0->unk_00, v0->unk_04, v0->unk_08);
-    ov20_021D3A98(v0->unk_00->unk_24C, v1);
+    v0->unk_00->unk_24C = EasyChatCategoriesContext_New(v0->unk_00, v0->unk_04, v0->unk_08);
+    EasyChatCategories_DrawInterface(v0->unk_00->unk_24C, narc);
 
     v0->unk_00->unk_250 = ov20_021D40E8(v0->unk_00, v0->unk_04, v0->unk_08);
     ov20_021D41A8(v0->unk_00->unk_250);
 
     v0->unk_00->unk_254 = ov20_021D4728(v0->unk_00, v0->unk_04, v0->unk_08);
-    ov20_021D4774(v0->unk_00->unk_254, v1);
+    ov20_021D4774(v0->unk_00->unk_254, narc);
 
-    GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
-    GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, TRUE);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, TRUE);
     GX_DispOn();
 
-    NARC_dtor(v1);
+    NARC_dtor(narc);
 
     ov20_021D2238(v0);
 }
@@ -343,7 +340,7 @@ static void ov20_021D2414(SysTask *param0, void *param1)
 
             ov20_021D2EF0(v0->unk_00->unk_244);
             ov20_021D3880(v0->unk_00->unk_248);
-            ov20_021D3A80(v0->unk_00->unk_24C);
+            EasyChatCategoriesContext_Free(v0->unk_00->unk_24C);
             ov20_021D4164(v0->unk_00->unk_250);
             ov20_021D4764(v0->unk_00->unk_254);
 
@@ -502,7 +499,7 @@ static void ov20_021D25C0(SysTask *param0, void *param1)
     UnkStruct_ov20_021D2128 *v1 = v0->unk_00;
 
     ov20_021D3228(v1->unk_244);
-    ov20_021D3700(v1->unk_244, ov20_021D1FCC(v0->unk_04));
+    ov20_021D3700(v1->unk_244, EasyChat_GetCurrentWordSlot(v0->unk_04));
 
     ov20_021D2238(v0);
 }
@@ -547,7 +544,7 @@ static void ov20_021D2660(SysTask *param0, void *param1)
     case 1:
         if (ov20_021D3F10(v1->unk_24C)) {
             ov20_021D3A2C(v1->unk_248);
-            ov20_021D3E74(v1->unk_24C, ov20_021D1FDC(v1->unk_18));
+            EasyChatCategories_DrawCursor(v1->unk_24C, EasyChat_GetCategoryCursorPos(v1->unk_18));
             ov20_021D3E48(v1->unk_24C, 1);
             ov20_021D2238(v0);
         }
@@ -602,7 +599,7 @@ static void ov20_021D2740(SysTask *param0, void *param1)
         break;
     case 3:
         if (ov20_021D4C2C(v1->unk_254)) {
-            ov20_021D3E74(v1->unk_24C, ov20_021D1FDC(v1->unk_18));
+            EasyChatCategories_DrawCursor(v1->unk_24C, EasyChat_GetCategoryCursorPos(v1->unk_18));
             ov20_021D3E48(v1->unk_24C, 1);
             ov20_021D2238(v0);
         }
@@ -690,7 +687,7 @@ static void ov20_021D28E8(SysTask *param0, void *param1)
     case 4:
         if (ov20_021D4078(v1->unk_24C)
             && ov20_021D4C2C(v1->unk_254)) {
-            ov20_021D3E74(v1->unk_24C, ov20_021D1FDC(v1->unk_18));
+            EasyChatCategories_DrawCursor(v1->unk_24C, EasyChat_GetCategoryCursorPos(v1->unk_18));
             ov20_021D3E48(v1->unk_24C, 1);
             ov20_021D2238(v0);
         }
@@ -776,7 +773,7 @@ static void ov20_021D2B74(SysTask *param0, void *param1)
     UnkStruct_ov20_021D2238 *v0 = param1;
     UnkStruct_ov20_021D2128 *v1 = v0->unk_00;
 
-    ov20_021D3700(v1->unk_244, ov20_021D1FCC(v1->unk_18));
+    ov20_021D3700(v1->unk_244, EasyChat_GetCurrentWordSlot(v1->unk_18));
     ov20_021D2238(v0);
 }
 
@@ -794,7 +791,7 @@ static void ov20_021D2BB4(SysTask *param0, void *param1)
     UnkStruct_ov20_021D2238 *v0 = param1;
     UnkStruct_ov20_021D2128 *v1 = v0->unk_00;
 
-    ov20_021D3E74(v1->unk_24C, ov20_021D1FDC(v1->unk_18));
+    EasyChatCategories_DrawCursor(v1->unk_24C, EasyChat_GetCategoryCursorPos(v1->unk_18));
     ov20_021D2238(v0);
 }
 
