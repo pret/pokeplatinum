@@ -1,0 +1,30 @@
+{
+  "name": "Toxic Orb",
+  "plural": "Toxic Orbs",
+  "article": "a",
+  "description": [
+    "An item to be held by a Pokémon.\n",
+    "It is a bizarre orb that badly poisons\n",
+    "the holder in battle."
+  ],
+  "icon": {
+    "sprite": "toxic_orb_NCGR",
+    "palette": "toxic_orb_NCLR"
+  },
+  "gbaID": "GBA_ITEM_NONE",
+  "price": 100,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_PSN_USER",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_BADLY_POISON",
+  "flingPower": 30,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseFunc": 0,
+  "itemUseParams": null
+}

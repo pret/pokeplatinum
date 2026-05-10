@@ -1,0 +1,31 @@
+{
+  "name": "TM23",
+  "plural": "TM23s",
+  "article": "a",
+  "description": [
+    "The foe is slammed with a sturdy\n",
+    "tail of steel. It may also lower the\n",
+    "target’s Defense stat if it hits."
+  ],
+  "icon": {
+    "sprite": "tm_NCGR",
+    "palette": "tm_steel_NCLR"
+  },
+  "gbaID": "GBA_ITEM_TM23",
+  "price": 3000,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 0,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_TMHMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_TM_HM",
+  "battleUseFunc": 0,
+  "itemUseParams": null,
+  "teachesMove": "MOVE_IRON_TAIL"
+}

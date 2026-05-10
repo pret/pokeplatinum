@@ -1,0 +1,43 @@
+{
+  "name": "Wiki Berry",
+  "plural": "Wiki Berries",
+  "article": "a",
+  "description": [
+    "A Poffin ingredient. If held by a\n",
+    "Pokémon, it restores the user’s HP in\n",
+    "a pinch, but may also cause confusion."
+  ],
+  "icon": {
+    "sprite": "wiki_berry_NCGR",
+    "palette": "wiki_berry_NCLR"
+  },
+  "gbaID": "GBA_ITEM_WIKI_BERRY",
+  "price": 20,
+  "effectParam": 8,
+  "holdEffect": "HOLD_EFFECT_HP_RESTORE_DRY",
+  "pluckEffect": "PLUCK_EFFECT_HP_RESTORE_DRY",
+  "flingEffect": "FLING_EFFECT_HP_RESTORE_DRY",
+  "flingPower": 10,
+  "naturalGiftPower": 60,
+  "naturalGiftType": "TYPE_ROCK",
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_BERRIES",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_BERRY",
+  "battleUseFunc": 0,
+  "itemUseParams": {},
+  "berryData": {
+    "size": 115,
+    "firmness": "FIRMNESS_HARD",
+    "baseYield": 1,
+    "stageDuration": 5,
+    "moistureDrainRate": 10,
+    "spiciness": 0,
+    "dryness": 15,
+    "sweetness": 0,
+    "bitterness": 0,
+    "sourness": 0,
+    "smoothness": 25
+  }
+}

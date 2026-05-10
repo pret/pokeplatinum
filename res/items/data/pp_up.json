@@ -1,0 +1,35 @@
+{
+  "name": "PP Up",
+  "plural": "PP Ups",
+  "article": "a",
+  "description": [
+    "It slightly raises the maximum PP of\n",
+    "a selected move that has been learned\n",
+    "by the target Pokémon."
+  ],
+  "icon": {
+    "sprite": "pp_up_NCGR",
+    "palette": "pp_up_NCLR"
+  },
+  "gbaID": "GBA_ITEM_PP_UP",
+  "price": 9800,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 30,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_MEDICINE",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_HEALING",
+  "battleUseFunc": 0,
+  "itemUseParams": {
+    "ppUp": true,
+    "friendshipLow": 5,
+    "friendshipMed": 3,
+    "friendshipHigh": 2
+  }
+}

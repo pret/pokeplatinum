@@ -1,0 +1,43 @@
+{
+  "name": "Pinap Berry",
+  "plural": "Pinap Berries",
+  "article": "a",
+  "description": [
+    "A Poffin ingredient.\n",
+    "Bury it in soft soil to grow a\n",
+    "Pinap Plant."
+  ],
+  "icon": {
+    "sprite": "pinap_berry_NCGR",
+    "palette": "pinap_berry_NCLR"
+  },
+  "gbaID": "GBA_ITEM_PINAP_BERRY",
+  "price": 20,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 10,
+  "naturalGiftPower": 70,
+  "naturalGiftType": "TYPE_GRASS",
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_BERRIES",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_BERRY",
+  "battleUseFunc": 0,
+  "itemUseParams": {},
+  "berryData": {
+    "size": 80,
+    "firmness": "FIRMNESS_HARD",
+    "baseYield": 2,
+    "stageDuration": 2,
+    "moistureDrainRate": 35,
+    "spiciness": 10,
+    "dryness": 0,
+    "sweetness": 0,
+    "bitterness": 0,
+    "sourness": 10,
+    "smoothness": 20
+  }
+}

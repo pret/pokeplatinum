@@ -1,0 +1,31 @@
+{
+  "name": "HM07",
+  "plural": "HM07s",
+  "article": "an",
+  "description": [
+    "The user charges the foe at an\n",
+    "awesome speed. It can also be used\n",
+    "to climb a waterfall."
+  ],
+  "icon": {
+    "sprite": "hm_NCGR",
+    "palette": "tm_water_NCLR"
+  },
+  "gbaID": "GBA_ITEM_HM07",
+  "price": 0,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 0,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": true,
+  "canRegister": false,
+  "fieldPocket": "POCKET_TMHMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_TM_HM",
+  "battleUseFunc": 0,
+  "itemUseParams": null,
+  "teachesMove": "MOVE_WATERFALL"
+}

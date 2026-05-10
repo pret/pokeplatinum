@@ -1,0 +1,30 @@
+{
+  "name": "DeepSeaScale",
+  "plural": "DeepSeaScales",
+  "article": "a",
+  "description": [
+    "An item to be held by CLAMPERL.\n",
+    "A scale that shines a faint pink, it\n",
+    "raises the Sp. Def stat."
+  ],
+  "icon": {
+    "sprite": "deepseascale_NCGR",
+    "palette": "deepseascale_NCLR"
+  },
+  "gbaID": "GBA_ITEM_DEEP_SEA_SCALE",
+  "price": 200,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_CLAMPERL_SPDEF",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 30,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseFunc": 0,
+  "itemUseParams": null
+}

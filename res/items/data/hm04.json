@@ -1,0 +1,31 @@
+{
+  "name": "HM04",
+  "plural": "HM04s",
+  "article": "an",
+  "description": [
+    "The foe is slugged with a punch thrown\n",
+    "at maximum power. It can also be used\n",
+    "to move boulders."
+  ],
+  "icon": {
+    "sprite": "hm_NCGR",
+    "palette": "tm_normal_NCLR"
+  },
+  "gbaID": "GBA_ITEM_HM04",
+  "price": 0,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 0,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": true,
+  "canRegister": false,
+  "fieldPocket": "POCKET_TMHMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_TM_HM",
+  "battleUseFunc": 0,
+  "itemUseParams": null,
+  "teachesMove": "MOVE_STRENGTH"
+}

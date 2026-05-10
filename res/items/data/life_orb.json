@@ -1,0 +1,30 @@
+{
+  "name": "Life Orb",
+  "plural": "Life Orbs",
+  "article": "a",
+  "description": [
+    "An item to be held by a Pokémon.\n",
+    "It boosts the power of moves, but at\n",
+    "the cost of some HP on each hit."
+  ],
+  "icon": {
+    "sprite": "life_orb_NCGR",
+    "palette": "life_orb_NCLR"
+  },
+  "gbaID": "GBA_ITEM_NONE",
+  "price": 200,
+  "effectParam": 30,
+  "holdEffect": "HOLD_EFFECT_HP_DRAIN_ON_ATK",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 30,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseFunc": 0,
+  "itemUseParams": null
+}

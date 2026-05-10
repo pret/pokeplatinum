@@ -1,0 +1,43 @@
+{
+  "name": "Salac Berry",
+  "plural": "Salac Berries",
+  "article": "a",
+  "description": [
+    "A Poffin ingredient.\n",
+    "If held by a Pokémon, it raises its\n",
+    "Speed stat in a pinch."
+  ],
+  "icon": {
+    "sprite": "salac_berry_NCGR",
+    "palette": "salac_berry_NCLR"
+  },
+  "gbaID": "GBA_ITEM_SALAC_BERRY",
+  "price": 20,
+  "effectParam": 4,
+  "holdEffect": "HOLD_EFFECT_PINCH_SPEED_UP",
+  "pluckEffect": "PLUCK_EFFECT_SPEED_UP",
+  "flingEffect": "FLING_EFFECT_SPEED_UP",
+  "flingPower": 10,
+  "naturalGiftPower": 80,
+  "naturalGiftType": "TYPE_FIGHTING",
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_BERRIES",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_BERRY",
+  "battleUseFunc": 0,
+  "itemUseParams": {},
+  "berryData": {
+    "size": 95,
+    "firmness": "FIRMNESS_VERY_HARD",
+    "baseYield": 1,
+    "stageDuration": 24,
+    "moistureDrainRate": 4,
+    "spiciness": 0,
+    "dryness": 0,
+    "sweetness": 30,
+    "bitterness": 10,
+    "sourness": 30,
+    "smoothness": 40
+  }
+}

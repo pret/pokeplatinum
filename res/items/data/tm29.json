@@ -1,0 +1,31 @@
+{
+  "name": "TM29",
+  "plural": "TM29s",
+  "article": "a",
+  "description": [
+    "The foe is hit by a strong telekinetic\n",
+    "force. It may also reduce the foe’s\n",
+    "Sp. Def stat."
+  ],
+  "icon": {
+    "sprite": "tm_NCGR",
+    "palette": "tm_psychic_NCLR"
+  },
+  "gbaID": "GBA_ITEM_TM29",
+  "price": 3000,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 0,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_TMHMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_TM_HM",
+  "battleUseFunc": 0,
+  "itemUseParams": null,
+  "teachesMove": "MOVE_PSYCHIC"
+}

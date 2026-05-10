@@ -1,0 +1,30 @@
+{
+  "name": "Metal Powder",
+  "plural": "Metal Powders",
+  "article": "a",
+  "description": [
+    "An item to be held by DITTO.\n",
+    "Extremely fine yet hard, this odd\n",
+    "powder boosts the Defense stat."
+  ],
+  "icon": {
+    "sprite": "metal_powder_NCGR",
+    "palette": "metal_powder_NCLR"
+  },
+  "gbaID": "GBA_ITEM_METAL_POWDER",
+  "price": 10,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_DITTO_DEF_UP",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 10,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseFunc": 0,
+  "itemUseParams": null
+}

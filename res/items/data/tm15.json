@@ -1,0 +1,31 @@
+{
+  "name": "TM15",
+  "plural": "TM15s",
+  "article": "a",
+  "description": [
+    "The foe is attacked with a powerful\n",
+    "beam. The user must rest on the next\n",
+    "turn to regain its energy."
+  ],
+  "icon": {
+    "sprite": "tm_NCGR",
+    "palette": "tm_normal_NCLR"
+  },
+  "gbaID": "GBA_ITEM_TM15",
+  "price": 7500,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 0,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_TMHMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_TM_HM",
+  "battleUseFunc": 0,
+  "itemUseParams": null,
+  "teachesMove": "MOVE_HYPER_BEAM"
+}

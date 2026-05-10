@@ -1,0 +1,43 @@
+{
+  "name": "Aguav Berry",
+  "plural": "Aguav Berries",
+  "article": "an",
+  "description": [
+    "A Poffin ingredient. If held by a\n",
+    "Pokémon, it restores the user’s HP in\n",
+    "a pinch, but may also cause confusion."
+  ],
+  "icon": {
+    "sprite": "aguav_berry_NCGR",
+    "palette": "aguav_berry_NCLR"
+  },
+  "gbaID": "GBA_ITEM_AGUAV_BERRY",
+  "price": 20,
+  "effectParam": 8,
+  "holdEffect": "HOLD_EFFECT_HP_RESTORE_BITTER",
+  "pluckEffect": "PLUCK_EFFECT_HP_RESTORE_BITTER",
+  "flingEffect": "FLING_EFFECT_HP_RESTORE_BITTER",
+  "flingPower": 10,
+  "naturalGiftPower": 60,
+  "naturalGiftType": "TYPE_DRAGON",
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_BERRIES",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_BERRY",
+  "battleUseFunc": 0,
+  "itemUseParams": {},
+  "berryData": {
+    "size": 64,
+    "firmness": "FIRMNESS_SUPER_HARD",
+    "baseYield": 1,
+    "stageDuration": 5,
+    "moistureDrainRate": 10,
+    "spiciness": 0,
+    "dryness": 0,
+    "sweetness": 0,
+    "bitterness": 15,
+    "sourness": 0,
+    "smoothness": 25
+  }
+}

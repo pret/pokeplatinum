@@ -1,0 +1,30 @@
+{
+  "name": "Explorer Kit",
+  "plural": "Explorer Kits",
+  "article": "an",
+  "description": [
+    "A bag filled with convenient tools\n",
+    "for exploring. It provides access to\n",
+    "the Underground."
+  ],
+  "icon": {
+    "sprite": "explorer_kit_NCGR",
+    "palette": "explorer_kit_NCLR"
+  },
+  "gbaID": "GBA_ITEM_NONE",
+  "price": 0,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 0,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": true,
+  "canRegister": true,
+  "fieldPocket": "POCKET_KEY_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_EXPLORER_KIT",
+  "battleUseFunc": 0,
+  "itemUseParams": null
+}

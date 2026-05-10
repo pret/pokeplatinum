@@ -1,0 +1,30 @@
+{
+  "name": "Thick Club",
+  "plural": "Thick Clubs",
+  "article": "a",
+  "description": [
+    "An item to be held by CUBONE or\n",
+    "MAROWAK. It is a hard bone of some\n",
+    "sort that boosts the Attack stat."
+  ],
+  "icon": {
+    "sprite": "rare_bone_NCGR",
+    "palette": "rare_bone_NCLR"
+  },
+  "gbaID": "GBA_ITEM_THICK_CLUB",
+  "price": 500,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_CUBONE_ATK_UP",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 90,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseFunc": 0,
+  "itemUseParams": null
+}

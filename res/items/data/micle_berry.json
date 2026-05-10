@@ -1,0 +1,43 @@
+{
+  "name": "Micle Berry",
+  "plural": "Micle Berries",
+  "article": "a",
+  "description": [
+    "A Poffin ingredient. If held by a\n",
+    "Pokémon, it raises the accuracy of a\n",
+    "move just once in a pinch."
+  ],
+  "icon": {
+    "sprite": "micle_berry_NCGR",
+    "palette": "micle_berry_NCLR"
+  },
+  "gbaID": "GBA_ITEM_NONE",
+  "price": 20,
+  "effectParam": 4,
+  "holdEffect": "HOLD_EFFECT_PINCH_ACC_UP",
+  "pluckEffect": "PLUCK_EFFECT_TEMP_ACC_UP",
+  "flingEffect": "FLING_EFFECT_TEMP_ACC_UP",
+  "flingPower": 10,
+  "naturalGiftPower": 80,
+  "naturalGiftType": "TYPE_ROCK",
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_BERRIES",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_BERRY",
+  "battleUseFunc": 0,
+  "itemUseParams": {},
+  "berryData": {
+    "size": 41,
+    "firmness": "FIRMNESS_SOFT",
+    "baseYield": 1,
+    "stageDuration": 24,
+    "moistureDrainRate": 7,
+    "spiciness": 0,
+    "dryness": 40,
+    "sweetness": 10,
+    "bitterness": 0,
+    "sourness": 0,
+    "smoothness": 60
+  }
+}

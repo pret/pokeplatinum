@@ -1,0 +1,30 @@
+{
+  "name": "Adamant Orb",
+  "plural": "Adamant Orbs",
+  "article": "an",
+  "description": [
+    "A brightly gleaming orb to be held by\n",
+    "DIALGA. It boosts the power of Dragon-\n",
+    "and Steel-type moves."
+  ],
+  "icon": {
+    "sprite": "adamant_orb_NCGR",
+    "palette": "adamant_orb_NCLR"
+  },
+  "gbaID": "GBA_ITEM_NONE",
+  "price": 10000,
+  "effectParam": 20,
+  "holdEffect": "HOLD_EFFECT_DIALGA_BOOST",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 60,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseFunc": 0,
+  "itemUseParams": null
+}

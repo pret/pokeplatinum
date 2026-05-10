@@ -1,0 +1,30 @@
+{
+  "name": "White Flute",
+  "plural": "White Flutes",
+  "article": "a",
+  "description": [
+    "A white flute made from blown glass.\n",
+    "Its melody makes wild Pokémon more\n",
+    "likely to appear."
+  ],
+  "icon": {
+    "sprite": "blue_flute_NCGR",
+    "palette": "white_flute_NCLR"
+  },
+  "gbaID": "GBA_ITEM_WHITE_FLUTE",
+  "price": 500,
+  "effectParam": 150,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 30,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_BAG_MESSAGE",
+  "battleUseFunc": 0,
+  "itemUseParams": {}
+}

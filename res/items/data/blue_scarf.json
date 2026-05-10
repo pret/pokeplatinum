@@ -1,0 +1,30 @@
+{
+  "name": "Blue Scarf",
+  "plural": "Blue Scarves",
+  "article": "a",
+  "description": [
+    "An item to be held by a Pokémon.\n",
+    "It boosts the “Beauty” aspect of the\n",
+    "holder in a Contest."
+  ],
+  "icon": {
+    "sprite": "red_scarf_NCGR",
+    "palette": "blue_scarf_NCLR"
+  },
+  "gbaID": "GBA_ITEM_BLUE_SCARF",
+  "price": 100,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 10,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseFunc": 0,
+  "itemUseParams": null
+}
