@@ -738,31 +738,3 @@ item_icon_unused_nclrs = files(
     'unused_465.NCLR',
     'unused_710.NCLR',
 )
-
-item_icon_order = files('item_icon.order')
-
-item_icon_narc = custom_target('item_icon.narc',
-    output: [
-        'item_icon.narc',
-        'item_icon.naix',
-    ],
-    input: [
-        item_icon_ncgrs,
-        item_icon_nclrs,
-        copy_gen.process(item_icon_unused_ncgrs),
-        copy_gen.process(item_icon_unused_nclrs),
-        item_icon_nanrs,
-        item_icon_ncers,
-    ],
-    command: [
-        nitroarc_exe,
-        '--create',
-        '--index',
-        '--files-from', files('item_icon.order'),
-        '--file', '@OUTPUT0@',
-        '@PRIVATE_DIR@',
-    ],
-)
-
-nitrofs_files += item_icon_narc
-naix_headers += item_icon_narc[1]
