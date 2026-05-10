@@ -7,7 +7,6 @@ subdir('dataproc') # Requires libnitroarc and libenum
 subdir('msgenc')   # Requires libdataproc
 
 # Other native tools
-subdir('csv2bin')
 subdir('datagen')
 subdir('fixrom')
 subdir('jsoncnv')
