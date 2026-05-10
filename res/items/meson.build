@@ -1,3 +1,31 @@
+subdir('icons')
+
+item_icon_narc = custom_target('item_icon.narc',
+    output: [
+        'item_icon.narc',
+        'item_icon.naix',
+    ],
+    input: [
+        item_icon_ncgrs,
+        item_icon_nclrs,
+        copy_gen.process(item_icon_unused_ncgrs),
+        copy_gen.process(item_icon_unused_nclrs),
+        item_icon_nanrs,
+        item_icon_ncers,
+    ],
+    command: [
+        nitroarc_exe,
+        '--create',
+        '--index',
+        '--files-from', files('item_icon.order'),
+        '--file', '@OUTPUT0@',
+        '@PRIVATE_DIR@',
+    ],
+)
+
+nitrofs_files += item_icon_narc
+naix_headers += item_icon_narc[1]
+
 nuts_data_format_txt     = files('nuts_data_format.txt')
 nuts_data_csv            = files('nuts_data.csv')
 
