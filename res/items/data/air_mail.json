@@ -1,0 +1,30 @@
+{
+  "name": "Air Mail",
+  "plural": "Air Mail",
+  "article": "an",
+  "description": [
+    "Stationery featuring a print of\n",
+    "colorful letter sets.\n",
+    "Let a Pokémon hold it for delivery."
+  ],
+  "icon": {
+    "sprite": "air_mail_NCGR",
+    "palette": "air_mail_NCLR"
+  },
+  "gbaID": "GBA_ITEM_NONE",
+  "price": 50,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 0,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_MAIL",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_MAIL",
+  "battleUseFunc": 0,
+  "itemUseParams": null
+}

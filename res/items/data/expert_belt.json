@@ -1,0 +1,30 @@
+{
+  "name": "Expert Belt",
+  "plural": "Expert Belts",
+  "article": "an",
+  "description": [
+    "An item to be held by a Pokémon. It is\n",
+    "a well-worn belt that slightly boosts\n",
+    "the power of supereffective moves."
+  ],
+  "icon": {
+    "sprite": "expert_belt_NCGR",
+    "palette": "expert_belt_NCLR"
+  },
+  "gbaID": "GBA_ITEM_NONE",
+  "price": 200,
+  "effectParam": 20,
+  "holdEffect": "HOLD_EFFECT_POWER_UP_SE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 10,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseFunc": 0,
+  "itemUseParams": null
+}

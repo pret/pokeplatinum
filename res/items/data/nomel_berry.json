@@ -1,0 +1,43 @@
+{
+  "name": "Nomel Berry",
+  "plural": "Nomel Berries",
+  "article": "a",
+  "description": [
+    "A Poffin ingredient.\n",
+    "Bury it in soft soil to grow a\n",
+    "Nomel Plant."
+  ],
+  "icon": {
+    "sprite": "nomel_berry_NCGR",
+    "palette": "nomel_berry_NCLR"
+  },
+  "gbaID": "GBA_ITEM_NOMEL_BERRY",
+  "price": 20,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 10,
+  "naturalGiftPower": 70,
+  "naturalGiftType": "TYPE_DRAGON",
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_BERRIES",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_BERRY",
+  "battleUseFunc": 0,
+  "itemUseParams": {},
+  "berryData": {
+    "size": 285,
+    "firmness": "FIRMNESS_SUPER_HARD",
+    "baseYield": 2,
+    "stageDuration": 6,
+    "moistureDrainRate": 10,
+    "spiciness": 10,
+    "dryness": 0,
+    "sweetness": 0,
+    "bitterness": 0,
+    "sourness": 20,
+    "smoothness": 30
+  }
+}

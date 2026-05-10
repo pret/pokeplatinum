@@ -1,0 +1,30 @@
+{
+  "name": "Dive Ball",
+  "plural": "Dive Balls",
+  "article": "a",
+  "description": [
+    "A somewhat different Poké Ball that\n",
+    "works especially well on Pokémon that\n",
+    "live in the sea."
+  ],
+  "icon": {
+    "sprite": "dive_ball_NCGR",
+    "palette": "dive_ball_NCLR"
+  },
+  "gbaID": "GBA_ITEM_DIVE_BALL",
+  "price": 1000,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 0,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_BALLS",
+  "battlePocket": "BATTLE_POCKET_MASK_POKE_BALLS",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseFunc": 1,
+  "itemUseParams": null
+}

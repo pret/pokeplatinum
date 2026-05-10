@@ -1,0 +1,31 @@
+{
+  "name": "TM67",
+  "plural": "TM67s",
+  "article": "a",
+  "description": [
+    "The user recycles a single-use item\n",
+    "that has been used in battle so it can\n",
+    "be used again."
+  ],
+  "icon": {
+    "sprite": "tm_NCGR",
+    "palette": "tm_normal_NCLR"
+  },
+  "gbaID": "GBA_ITEM_NONE",
+  "price": 1000,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 0,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_TMHMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_TM_HM",
+  "battleUseFunc": 0,
+  "itemUseParams": null,
+  "teachesMove": "MOVE_RECYCLE"
+}

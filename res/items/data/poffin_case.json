@@ -1,0 +1,29 @@
+{
+  "name": "Poffin Case",
+  "plural": "Poffin Cases",
+  "article": "a",
+  "description": [
+    "A case for storing Poffin cooked from\n",
+    "Berries.\n"
+  ],
+  "icon": {
+    "sprite": "poffin_case_NCGR",
+    "palette": "poffin_case_NCLR"
+  },
+  "gbaID": "GBA_ITEM_NONE",
+  "price": 0,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 0,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": true,
+  "canRegister": true,
+  "fieldPocket": "POCKET_KEY_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_POFFIN_CASE",
+  "battleUseFunc": 0,
+  "itemUseParams": null
+}

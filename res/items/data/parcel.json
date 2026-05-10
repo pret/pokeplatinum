@@ -1,0 +1,30 @@
+{
+  "name": "Parcel",
+  "plural": "Parcels",
+  "article": "a",
+  "description": [
+    "A parcel entrusted in your care.\n",
+    "You are supposed to deliver it to your\n",
+    "childhood friend who left Twinleaf Town."
+  ],
+  "icon": {
+    "sprite": "parcel_NCGR",
+    "palette": "parcel_NCLR"
+  },
+  "gbaID": "GBA_ITEM_OAKS_PARCEL",
+  "price": 0,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 0,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": true,
+  "canRegister": false,
+  "fieldPocket": "POCKET_KEY_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseFunc": 0,
+  "itemUseParams": null
+}

@@ -1,0 +1,37 @@
+{
+  "name": "Full Heal",
+  "plural": "Full Heals",
+  "article": "a",
+  "description": [
+    "A spray-type medicine.\n",
+    "It heals all the status problems of a\n",
+    "single Pokémon."
+  ],
+  "icon": {
+    "sprite": "full_heal_NCGR",
+    "palette": "full_heal_NCLR"
+  },
+  "gbaID": "GBA_ITEM_FULL_HEAL",
+  "price": 600,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 30,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_MEDICINE",
+  "battlePocket": "BATTLE_POCKET_MASK_RECOVER_STATUS",
+  "fieldUseFunc": "ITEM_USE_FUNC_HEALING",
+  "battleUseFunc": 2,
+  "itemUseParams": {
+    "healSleep": true,
+    "healPoison": true,
+    "healBurn": true,
+    "healFreeze": true,
+    "healParalysis": true,
+    "healConfusion": true
+  }
+}

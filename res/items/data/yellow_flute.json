@@ -1,0 +1,32 @@
+{
+  "name": "Yellow Flute",
+  "plural": "Yellow Flutes",
+  "article": "a",
+  "description": [
+    "A yellow flute made from blown glass.\n",
+    "Its melody snaps a single Pokémon out\n",
+    "of confusion."
+  ],
+  "icon": {
+    "sprite": "blue_flute_NCGR",
+    "palette": "yellow_flute_NCLR"
+  },
+  "gbaID": "GBA_ITEM_YELLOW_FLUTE",
+  "price": 200,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 30,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_BATTLE_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_RECOVER_STATUS",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseFunc": 0,
+  "itemUseParams": {
+    "healConfusion": true
+  }
+}

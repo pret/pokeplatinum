@@ -1,0 +1,30 @@
+{
+  "name": "Silk Scarf",
+  "plural": "Silk Scarves",
+  "article": "a",
+  "description": [
+    "An item to be held by a Pokémon.\n",
+    "It is a sumptuous scarf that boosts\n",
+    "the power of Normal-type moves."
+  ],
+  "icon": {
+    "sprite": "silk_scarf_NCGR",
+    "palette": "silk_scarf_NCLR"
+  },
+  "gbaID": "GBA_ITEM_SILK_SCARF",
+  "price": 100,
+  "effectParam": 20,
+  "holdEffect": "HOLD_EFFECT_STRENGTHEN_NORMAL",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 10,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseFunc": 0,
+  "itemUseParams": null
+}

@@ -1,0 +1,30 @@
+{
+  "name": "Rare Bone",
+  "plural": "Rare Bones",
+  "article": "a",
+  "description": [
+    "A bone that is extremely valuable for\n",
+    "Pokémon archaeology. It can be sold\n",
+    "for a high price to shops."
+  ],
+  "icon": {
+    "sprite": "rare_bone_NCGR",
+    "palette": "rare_bone_NCLR"
+  },
+  "gbaID": "GBA_ITEM_NONE",
+  "price": 10000,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 100,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseFunc": 0,
+  "itemUseParams": {}
+}

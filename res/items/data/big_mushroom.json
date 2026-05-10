@@ -1,0 +1,30 @@
+{
+  "name": "Big Mushroom",
+  "plural": "Big Mushrooms",
+  "article": "a",
+  "description": [
+    "A large and rare mushroom.\n",
+    "It is very popular among certain\n",
+    "maniacal fan segments."
+  ],
+  "icon": {
+    "sprite": "big_mushroom_NCGR",
+    "palette": "tinymushroom_NCLR"
+  },
+  "gbaID": "GBA_ITEM_BIG_MUSHROOM",
+  "price": 5000,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 30,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseFunc": 0,
+  "itemUseParams": {}
+}

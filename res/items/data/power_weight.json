@@ -1,0 +1,30 @@
+{
+  "name": "Power Weight",
+  "plural": "Power Weights",
+  "article": "a",
+  "description": [
+    "A Pokémon hold item that promotes\n",
+    "HP gain on leveling, but reduces the\n",
+    "Speed stat."
+  ],
+  "icon": {
+    "sprite": "power_weight_NCGR",
+    "palette": "power_weight_NCLR"
+  },
+  "gbaID": "GBA_ITEM_NONE",
+  "price": 3000,
+  "effectParam": 4,
+  "holdEffect": "HOLD_EFFECT_LVLUP_HP_EV_UP",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 70,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseFunc": 0,
+  "itemUseParams": null
+}

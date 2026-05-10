@@ -1,0 +1,30 @@
+{
+  "name": "Grip Claw",
+  "plural": "Grip Claws",
+  "article": "a",
+  "description": [
+    "A Pokémon hold item that extends the\n",
+    "duration of multiturn attacks like\n",
+    "Bind and Wrap."
+  ],
+  "icon": {
+    "sprite": "grip_claw_NCGR",
+    "palette": "grip_claw_NCLR"
+  },
+  "gbaID": "GBA_ITEM_NONE",
+  "price": 200,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_EXTEND_TRAPPING",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 90,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseFunc": 0,
+  "itemUseParams": null
+}

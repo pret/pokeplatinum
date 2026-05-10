@@ -1,0 +1,48 @@
+{
+  "name": "Grepa Berry",
+  "plural": "Grepa Berries",
+  "article": "a",
+  "description": [
+    "A Poffin ingredient. Using it on a\n",
+    "Pokémon makes it more friendly, but\n",
+    "it also lowers its base Sp. Def stat."
+  ],
+  "icon": {
+    "sprite": "grepa_berry_NCGR",
+    "palette": "grepa_berry_NCLR"
+  },
+  "gbaID": "GBA_ITEM_GREPA_BERRY",
+  "price": 20,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 10,
+  "naturalGiftPower": 70,
+  "naturalGiftType": "TYPE_FLYING",
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_BERRIES",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_BERRY",
+  "battleUseFunc": 0,
+  "itemUseParams": {
+    "spdefEVs": -10,
+    "friendshipLow": 10,
+    "friendshipMed": 5,
+    "friendshipHigh": 2
+  },
+  "berryData": {
+    "size": 149,
+    "firmness": "FIRMNESS_SOFT",
+    "baseYield": 1,
+    "stageDuration": 8,
+    "moistureDrainRate": 8,
+    "spiciness": 0,
+    "dryness": 10,
+    "sweetness": 10,
+    "bitterness": 0,
+    "sourness": 10,
+    "smoothness": 20
+  }
+}

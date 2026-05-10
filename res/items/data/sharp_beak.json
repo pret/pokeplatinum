@@ -1,0 +1,30 @@
+{
+  "name": "Sharp Beak",
+  "plural": "Sharp Beaks",
+  "article": "a",
+  "description": [
+    "An item to be held by a Pokémon.\n",
+    "It is a long, sharp beak that boosts\n",
+    "the power of Flying-type moves."
+  ],
+  "icon": {
+    "sprite": "sharp_beak_NCGR",
+    "palette": "sharp_beak_NCLR"
+  },
+  "gbaID": "GBA_ITEM_SHARP_BEAK",
+  "price": 100,
+  "effectParam": 20,
+  "holdEffect": "HOLD_EFFECT_STRENGTHEN_FLYING",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 50,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseFunc": 0,
+  "itemUseParams": null
+}

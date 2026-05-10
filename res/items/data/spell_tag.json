@@ -1,0 +1,30 @@
+{
+  "name": "Spell Tag",
+  "plural": "Spell Tags",
+  "article": "a",
+  "description": [
+    "An item to be held by a Pokémon.\n",
+    "It is a sinister, eerie tag that boosts\n",
+    "the power of Ghost-type moves."
+  ],
+  "icon": {
+    "sprite": "spell_tag_NCGR",
+    "palette": "spell_tag_NCLR"
+  },
+  "gbaID": "GBA_ITEM_SPELL_TAG",
+  "price": 100,
+  "effectParam": 20,
+  "holdEffect": "HOLD_EFFECT_STRENGTHEN_GHOST",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 30,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseFunc": 0,
+  "itemUseParams": null
+}

@@ -1,0 +1,30 @@
+{
+  "name": "Lucky Punch",
+  "plural": "Lucky Punches",
+  "article": "a",
+  "description": [
+    "An item to be held by CHANSEY. It is a\n",
+    "pair of gloves that boosts CHANSEY’s\n",
+    "critical-hit ratio."
+  ],
+  "icon": {
+    "sprite": "lucky_punch_NCGR",
+    "palette": "lucky_punch_NCLR"
+  },
+  "gbaID": "GBA_ITEM_LUCKY_PUNCH",
+  "price": 10,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_CHANSEY_CRITRATE_UP",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 40,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseFunc": 0,
+  "itemUseParams": null
+}

@@ -1,0 +1,30 @@
+{
+  "name": "S.S. Ticket",
+  "plural": "S.S. Tickets",
+  "article": "an",
+  "description": [
+    "The ticket required for sailing on the\n",
+    "ferry S.S. Anne. It has a drawing of a\n",
+    "ship on it."
+  ],
+  "icon": {
+    "sprite": "s_s_ticket_NCGR",
+    "palette": "s_s_ticket_NCLR"
+  },
+  "gbaID": "GBA_ITEM_SS_TICKET",
+  "price": 0,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 0,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": true,
+  "canRegister": false,
+  "fieldPocket": "POCKET_KEY_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseFunc": 0,
+  "itemUseParams": null
+}

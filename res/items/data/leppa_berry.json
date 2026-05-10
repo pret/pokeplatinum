@@ -1,0 +1,45 @@
+{
+  "name": "Leppa Berry",
+  "plural": "Leppa Berries",
+  "article": "a",
+  "description": [
+    "A Poffin ingredient. It may be used\n",
+    "or held by a Pokémon to restore a\n",
+    "move’s PP by 10."
+  ],
+  "icon": {
+    "sprite": "leppa_berry_NCGR",
+    "palette": "leppa_berry_NCLR"
+  },
+  "gbaID": "GBA_ITEM_LEPPA_BERRY",
+  "price": 20,
+  "effectParam": 10,
+  "holdEffect": "HOLD_EFFECT_PP_RESTORE",
+  "pluckEffect": "PLUCK_EFFECT_PP_RESTORE",
+  "flingEffect": "FLING_EFFECT_PP_RESTORE",
+  "flingPower": 10,
+  "naturalGiftPower": 60,
+  "naturalGiftType": "TYPE_FIGHTING",
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_BERRIES",
+  "battlePocket": "BATTLE_POCKET_MASK_RECOVER_PP",
+  "fieldUseFunc": "ITEM_USE_FUNC_BERRY",
+  "battleUseFunc": 0,
+  "itemUseParams": {
+    "ppRestored": 10
+  },
+  "berryData": {
+    "size": 28,
+    "firmness": "FIRMNESS_VERY_HARD",
+    "baseYield": 1,
+    "stageDuration": 4,
+    "moistureDrainRate": 15,
+    "spiciness": 10,
+    "dryness": 0,
+    "sweetness": 10,
+    "bitterness": 10,
+    "sourness": 10,
+    "smoothness": 20
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "name": "Shiny Stone",
+  "plural": "Shiny Stones",
+  "article": "a",
+  "description": [
+    "A peculiar stone that makes certain\n",
+    "species of Pokémon evolve.\n",
+    "It shines with a dazzling light."
+  ],
+  "icon": {
+    "sprite": "shiny_stone_NCGR",
+    "palette": "shiny_stone_NCLR"
+  },
+  "gbaID": "GBA_ITEM_NONE",
+  "price": 2100,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 80,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_EVO_STONE",
+  "battleUseFunc": 0,
+  "itemUseParams": {}
+}
