@@ -78,7 +78,6 @@ int GMM::FromFile(MessagesConverter &converter) {
     const auto &node = doc.find_child([](const auto &n) {
         return strcmp(n.name(), "body") == 0;
     });
-    int i = 0;
     int key = GMM_KEY_NOT_DEFINED;
     string rowname_pref = filename.substr(filename.find_last_of('/') + 1).substr(0, filename.find_first_of('.'));
     for (const auto &subnode : node.children()) {
@@ -105,7 +104,6 @@ int GMM::FromFile(MessagesConverter &converter) {
             }
             id_strings.emplace_back(row_id);
             messages.emplace_back(message);
-            i++;
             IncRowNoBuf();
         }
         if (strcmp(subnode.name(), "key") == 0) {
