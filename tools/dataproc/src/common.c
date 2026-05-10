@@ -29,19 +29,19 @@ static size_t num_loaded_enums = 0;
 static void   unload_enums(void);
 static void   finish_outputs(void);
 static FILE*  open_depfile(const char *depfile_path);
-static void   load_header_template(header_template_t *h, FILE *depfile);
+static void   load_header_template(header_template_t *h);
 static enum_t dp_include(
     const char *from_file,
     const char *with_prefix,
     const char *for_type,
-    bool        from_defs,
-    FILE       *depfile
+    bool        from_defs
 );
 
 static archive_template_t  *s_archives   = NULL;
 static header_template_t   *s_headers    = NULL;
 static textbank_template_t *s_textbanks  = NULL;
 static const char          *s_output_dir = NULL;
+static FILE                *s_depfile    = NULL;
 
 static void* crt_malloc(void *ctx, unsigned items, unsigned size) {
     (void)ctx;
@@ -83,6 +83,56 @@ static FILE* open_depfile(const char *depfile_path) {
     return depfile;
 }
 
+enum_seq_t _common_initenum(initenum_params_t params) {
+    size_t size = 0;
+    char  *data = fload(params.basefile, &size);
+    char  *endp = NULL;
+
+    enum_seq_t result = libenum_find(data, size, "Item", &endp);
+    if (result.errc != LIBENUM_E_OK) { // handles the empty-case
+        fprintf(stderr, "libenum error: %s\n", libenum_errs(result.errc));
+        exit(EXIT_FAILURE);
+    }
+
+    if (result.size > UINT16_MAX) {
+        fprintf(stderr, "count of enum members %zu exceeds maximum of %u\n",
+                result.size, UINT16_MAX);
+        exit(EXIT_FAILURE);
+    }
+
+    if (strncmp(result.members[result.size - 1].name, "MAX_", lengthof("MAX_")) == 0) {
+        result.size--;
+    }
+
+    u16 count = 0;
+    if (params.filter) {
+        for (size_t i = 0; i < result.size; i++) {
+            count += params.filter(result.members[i].name);
+        }
+    }
+    else count = (u16)result.size;
+
+    for (archive_template_t *t = params.archives; t && t->out_filename; t++) {
+        t->num_files = count;
+    }
+
+    common_init(
+        params.format,
+        params.enums,
+        params.archives,
+        params.headers,
+        params.textbanks,
+        params.sourcefile,
+        params.depfile,
+        params.outdir,
+        params.hook_before,
+        params.hook_after
+    );
+
+    free(data);
+    return result;
+}
+
 void common_init(
     enum format          format,
     enum_template_t     *lookups,
@@ -105,7 +155,7 @@ void common_init(
     atexit(unload_enums);
     atexit(finish_outputs);
 
-    FILE *depfile = open_depfile(depfile_path);
+    s_depfile = open_depfile(depfile_path);
 
     // Initialize all the requested iteratively-packed archives
     for (archive_template_t *to_init = archives; to_init && to_init->out_filename; to_init++) {
@@ -124,8 +174,7 @@ void common_init(
         }
 
         char *full_path = pathjoin(output_dir, NULL, to_init->out_filename);
-        fputs(full_path, depfile);
-        fputc(' ',       depfile);
+        declare_dep(full_path);
         free(full_path);
     }
 
@@ -140,9 +189,7 @@ void common_init(
         }
 
         fprintf(to_init->out_file, header_comment, source_name);
-
-        fputs(full_path, depfile);
-        fputc(' ',       depfile);
+        declare_dep(full_path);
         free(full_path);
     }
 
@@ -161,12 +208,11 @@ void common_init(
         dp_obj_putint(&to_init->root, "key", to_init->key);
         to_init->root = dp_obj_putarray(&to_init->root, "messages"); // Nothing else should be touched
 
-        fputs(full_path, depfile);
-        fputc(' ',       depfile);
+        declare_dep(full_path);
         free(full_path);
     }
 
-    fputs(": ", depfile);
+    fputs(": ", s_depfile);
 
     // Load all the requested lookup-tables from their sources
     for (enum_template_t *to_load = lookups; to_load && to_load->from_file; to_load++) {
@@ -174,25 +220,23 @@ void common_init(
             to_load->from_file,
             to_load->with_prefix,
             to_load->for_type,
-            to_load->from_defs,
-            depfile
+            to_load->from_defs
         );
     }
 
     // Second pass: load a header template as a dependency
     for (header_template_t *to_init = headers; to_init && to_init->out_filename; to_init++) {
-        load_header_template(to_init, depfile);
+        load_header_template(to_init);
         fputs(to_init->header, to_init->out_file);
     }
 
     if (post_init_hook) post_init_hook();
-    fclose(depfile);
 }
 
 #define HEADER_TEMPLATE_SUFFIX ".template"
 #define HEADER_TEMPLATE_MAGIC  "/* =========== MAGIC CONTENT MARKER =========== */"
 
-static void load_header_template(header_template_t *h, FILE *depfile) {
+static void load_header_template(header_template_t *h) {
     size_t len_out_fname  = strlen(h->out_filename);
     char  *template_fname = calloc(len_out_fname + sizeof(HEADER_TEMPLATE_SUFFIX) + 1, 1);
     assert(template_fname);
@@ -210,9 +254,7 @@ static void load_header_template(header_template_t *h, FILE *depfile) {
     h->header = template;
     h->footer = footer;
 
-    fputs(full_path, depfile);
-    fputc(' ',       depfile);
-
+    declare_dep(full_path);
     free(full_path);
     free(template_fname);
 }
@@ -250,7 +292,13 @@ int common_done(int errc, int (*addl_done_hook)(void)) {
         if (fdump_narc(&a->packer, a->out_filename, errc == 0)) errc = EXIT_FAILURE;
     }
 
+    fclose(s_depfile);
     return errc;
+}
+
+void declare_dep(const char *filename) {
+    fputs(filename, s_depfile);
+    fputc(' ',      s_depfile);
 }
 
 char* strremove(char *s, const char *sub) {
@@ -313,6 +361,16 @@ char* strupper(const char *s) {
     for (size_t i = 0; i < strlen(s); i++) {
         capped[i] = s[i];
         if (capped[i] >= 'a' && capped[i] <= 'z') capped[i] -= ('a' - 'A');
+    }
+
+    return capped;
+}
+
+char* strlower(const char *s) {
+    char *capped = calloc(strlen(s) + 1, 1);
+    for (size_t i = 0; i < strlen(s); i++) {
+        capped[i] = s[i];
+        if (capped[i] >= 'A' && capped[i] <= 'Z') capped[i] += ('a' - 'A');
     }
 
     return capped;
@@ -462,9 +520,14 @@ int fdump_narc(nitroarc_packer_t *p, const char *dest, bool ok) {
     return errc;
 }
 
-int fdump_blobnarc(const void *data, u32 size, const char *name) {
+nitroarc_packer_t init_narc(u16 num_files, bool named, bool stripped) {
     nitroarc_packer_t p = default_packer();
-    nitroarc_pinit(&p, 1, false, false);
+    nitroarc_pinit(&p, num_files, named, stripped);
+    return p;
+}
+
+int fdump_blobnarc(const void *data, u32 size, const char *name) {
+    nitroarc_packer_t p = init_narc(1, false, false);
     nitroarc_ppack(&p, (void *)data, size, NULL);
     return fdump_narc(&p, name, true);
 }
@@ -495,8 +558,7 @@ static enum_t dp_include(
     const char *from_file,
     const char *with_prefix,
     const char *for_type,
-    bool        from_defs,
-    FILE       *depfile
+    bool        from_defs
 ) {
     assert(from_file && "included filename must not be NULL");
     if (!from_defs) {
@@ -561,8 +623,7 @@ static enum_t dp_include(
     qsort(result.members, result.size, sizeof(*result.members), membercmp);
 
     dp_register(result.members, result.size, for_type);
-    fputs(found_file, depfile);
-    fputc(' ',        depfile);
+    declare_dep(found_file);
 
     free(found_file);
     return result;
