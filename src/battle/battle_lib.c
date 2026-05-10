@@ -5459,7 +5459,7 @@ s32 Battler_HeldItemPower(BattleContext *battleCtx, int battler, enum HeldItemPo
         break;
     }
 
-    return BattleSystem_GetItemData(battleCtx, item, ITEM_PARAM_HOLD_EFFECT_PARAM);
+    return BattleSystem_GetItemData(battleCtx, item, ITEM_PARAM_EFFECT_PARAM);
 }
 
 s32 Battler_NaturalGiftPower(BattleContext *battleCtx, int battler)
@@ -5854,7 +5854,7 @@ BOOL BattleSystem_PluckBerry(BattleSystem *battleSys, BattleContext *battleCtx, 
 BOOL BattleSystem_FlingItem(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
 {
     int effect = Battler_ItemFlingEffect(battleCtx, battler);
-    int effectPower = Battler_HeldItemPower(battleCtx, battler, ITEM_PARAM_HOLD_EFFECT_PARAM);
+    int effectPower = Battler_HeldItemPower(battleCtx, battler, ITEM_PARAM_EFFECT_PARAM);
 
     battleCtx->movePower = Battler_ItemFlingPower(battleCtx, battler);
     battleCtx->flingScript = 0;
@@ -6661,11 +6661,11 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
 
     itemTmp = Battler_HeldItem(battleCtx, attacker);
     attackerParams.heldItemEffect = BattleSystem_GetItemData(battleCtx, itemTmp, ITEM_PARAM_HOLD_EFFECT);
-    attackerParams.heldItemPower = BattleSystem_GetItemData(battleCtx, itemTmp, ITEM_PARAM_HOLD_EFFECT_PARAM);
+    attackerParams.heldItemPower = BattleSystem_GetItemData(battleCtx, itemTmp, ITEM_PARAM_EFFECT_PARAM);
 
     itemTmp = Battler_HeldItem(battleCtx, defender);
     defenderParams.heldItemEffect = BattleSystem_GetItemData(battleCtx, itemTmp, ITEM_PARAM_HOLD_EFFECT);
-    defenderParams.heldItemPower = BattleSystem_GetItemData(battleCtx, itemTmp, ITEM_PARAM_HOLD_EFFECT_PARAM);
+    defenderParams.heldItemPower = BattleSystem_GetItemData(battleCtx, itemTmp, ITEM_PARAM_EFFECT_PARAM);
 
     battleType = BattleSystem_GetBattleType(battleSys);
 

@@ -3060,21 +3060,21 @@ u16 Item_FileID(u16 item, enum ItemFileType type)
         return sItemArchiveIDs[item].dataID;
     case ITEM_FILE_TYPE_ICON:
         if (item == ITEM_NONE) {
-            return 707; // TODO: Use NAIX generated from item_icon.narc
+            return none_NCGR;
         }
 
         if (item == ITEM_RETURN_ID) {
-            return 709; // TODO: Use NAIX generated from item_icon.narc
+            return unused_709_NCGR;
         }
 
         return sItemArchiveIDs[item].iconID;
     case ITEM_FILE_TYPE_PALETTE:
         if (item == ITEM_NONE) {
-            return 708; // TODO: Use NAIX generated from item_icon.narc
+            return none_NCLR;
         }
 
         if (item == ITEM_RETURN_ID) {
-            return 710; // TODO: Use NAIX generated from item_icon.narc
+            return unused_710_NCLR;
         }
 
         return sItemArchiveIDs[item].paletteID;
@@ -3102,12 +3102,12 @@ u16 Item_FromGBAID(u16 gbaID)
 
 u16 Item_IconNCERFile(void)
 {
-    return 1; // TODO: Use NAIX generated from item_icon.narc
+    return generic_cell_NCER;
 }
 
 u16 Item_IconNANRFile(void)
 {
-    return 0; // TODO: Use NAIX generated from item_icon.narc
+    return generic_anim_NANR;
 }
 
 void *Item_Load(u16 item, enum ItemFileType type, enum HeapID heapID)
@@ -3123,9 +3123,9 @@ void *Item_Load(u16 item, enum ItemFileType type, enum HeapID heapID)
         return NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, sItemArchiveIDs[item].iconID, heapID);
     case ITEM_FILE_TYPE_PALETTE:
         return NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, sItemArchiveIDs[item].paletteID, heapID);
+    default:
+        return NULL;
     }
-
-    return NULL;
 }
 
 void Item_LoadName(String *dst, u16 item, enum HeapID heapID)
@@ -3160,12 +3160,12 @@ s32 Item_Get(ItemData *itemData, enum ItemDataParam param)
         return (s32)itemData->price;
     case ITEM_PARAM_HOLD_EFFECT:
         return (s32)itemData->holdEffect;
-    case ITEM_PARAM_HOLD_EFFECT_PARAM:
-        return (s32)itemData->holdEffectParam;
+    case ITEM_PARAM_EFFECT_PARAM:
+        return (s32)itemData->effectParam;
     case ITEM_PARAM_PREVENT_TOSS:
         return (s32)itemData->preventToss;
-    case ITEM_PARAM_IS_SELECTABLE:
-        return (s32)itemData->isSelectable;
+    case ITEM_PARAM_CAN_REGISTER:
+        return (s32)itemData->canRegister;
     case ITEM_PARAM_FIELD_POCKET:
         return (s32)itemData->fieldPocket;
     case ITEM_PARAM_FIELD_USE_FUNC:
@@ -3291,12 +3291,12 @@ static s32 ItemPartyParam_Get(ItemPartyParam *partyParam, enum ItemDataParam att
         return (s32)partyParam->friendshipMed;
     case ITEM_PARAM_FRIENDSHIP_HIGH:
         return (s32)partyParam->friendshipHigh;
+    default:
+        return 0;
     }
-
-    return 0;
 }
 
-const u16 Item_MoveForTMHM(u16 item)
+u16 Item_MoveForTMHM(u16 item)
 {
     if (item < ITEM_TM01 || item > ITEM_HM08) {
         return MOVE_NONE;
