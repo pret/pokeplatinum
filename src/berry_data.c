@@ -39,8 +39,8 @@ u32 BerryData_GetAttribute(BerryData *berryData, u32 attributeID)
         return berryData->size;
     case BERRYATTR_FIRMNESS:
         return berryData->firmness;
-    case BERRYATTR_YIELD_CATEGORY:
-        return berryData->yieldCategory;
+    case BERRYATTR_BASE_YIELD:
+        return berryData->baseYield;
     case BERRYATTR_STAGE_DURATION:
         return berryData->stageDuration;
     case BERRYATTR_MOISTURE_DRAIN_RATE:

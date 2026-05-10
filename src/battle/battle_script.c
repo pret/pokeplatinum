@@ -7976,7 +7976,7 @@ static BOOL BtlCmd_GetItemEffectParam(BattleSystem *battleSys, BattleContext *ba
     int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
     u16 item = Battler_HeldItem(battleCtx, battler);
 
-    *var = BattleSystem_GetItemData(battleCtx, item, ITEM_PARAM_HOLD_EFFECT_PARAM);
+    *var = BattleSystem_GetItemData(battleCtx, item, ITEM_PARAM_EFFECT_PARAM);
 
     return FALSE;
 }
@@ -10226,7 +10226,7 @@ static void BattleScript_CalcEffortValues(Party *party, int slot, int species, i
     Pokemon *mon = Party_GetPokemonBySlotIndex(party, slot);
     item = Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL);
     itemEffect = Item_LoadParam(item, ITEM_PARAM_HOLD_EFFECT, HEAP_ID_BATTLE);
-    itemPower = Item_LoadParam(item, ITEM_PARAM_HOLD_EFFECT_PARAM, HEAP_ID_BATTLE);
+    itemPower = Item_LoadParam(item, ITEM_PARAM_EFFECT_PARAM, HEAP_ID_BATTLE);
     sumEVs = 0;
 
     for (stat = 0; stat < STAT_MAX; stat++) {

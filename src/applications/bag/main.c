@@ -1983,7 +1983,7 @@ static void MakeItemActionsMenu(BagController *controller)
                 itemActionsIdx++;
             }
         }
-        if (Item_Get(itemData, ITEM_PARAM_IS_SELECTABLE)) {
+        if (Item_Get(itemData, ITEM_PARAM_CAN_REGISTER)) {
             if (Bag_GetRegisteredItem(controller->bag) == controller->bagCtx->selectedItem) {
                 itemActions[itemActionsIdx] = ITEM_ACTION_DESELECT;
             } else {
@@ -2261,7 +2261,7 @@ static String *TryUseRepel(BagController *controller, u16 item)
         return MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_RepelEffectsLinger);
     }
 
-    u32 stepCount = Item_LoadParam(item, ITEM_PARAM_HOLD_EFFECT_PARAM, HEAP_ID_BAG);
+    u32 stepCount = Item_LoadParam(item, ITEM_PARAM_EFFECT_PARAM, HEAP_ID_BAG);
     SetRepelSteps(controller, stepCount);
     controller->selectedItemCount = 1;
     Sound_PlayEffect(SEQ_SE_DP_CARD2);
