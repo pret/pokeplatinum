@@ -188,7 +188,7 @@ typedef struct ChooseStarterApp {
     Window *messageWindow;
     Window *subplaneWindows[NUM_STARTER_OPTIONS];
     int unk_A8;
-    String *unk_AC;
+    String *string;
     WindowTemplate unk_B0;
     Menu *unk_B8;
     G2dRenderer unk_BC;
@@ -229,8 +229,8 @@ static void SetupBGs(BgConfig *bgConfig, enum HeapID heapID);
 static void DeleteBGs(BgConfig *bgConfig);
 static void MakeMessageWindow(ChooseStarterApp *app, enum HeapID heapID);
 static void DeleteMessageWindow(ChooseStarterApp *app);
-static u8 ov78_021D1FB4(Window *param0, enum HeapID heapID, int param2, int param3, TextColor param4, u32 param5);
-static u8 ov78_021D201C(Window *param0, enum HeapID heapID, int param2, int param3, u32 param4, u32 param5, String **param6);
+static u8 SetMessageWindowText(Window *window, enum HeapID heapID, int bankID, int entryID, TextColor textColor, u32 renderDelay);
+static u8 SetMessageWindowTextAndSaveToString(Window *window, enum HeapID heapID, int bankID, int entryID, TextColor textColor, u32 renderDelay, String **string);
 static void ov78_021D2090(ChooseStarterApp *param0);
 static void MakeSubplaneWindows(ChooseStarterApp *param0, enum HeapID heapID);
 static void DeleteSubplaneWindows(ChooseStarterApp *app);
@@ -649,7 +649,7 @@ static void MakeMessageWindow(ChooseStarterApp *app, enum HeapID heapID)
     Window_FillTilemap(app->messageWindow, 15);
     LoadMessageBoxGraphics(app->bgConfig, BG_LAYER_MAIN_1, FRAME_TEXT_START, FRAME_TEXT_PALETTE_INDEX, app->messageFrame, heapID);
     Graphics_LoadPalette(NARC_INDEX_GRAPHIC__EV_POKESELECT, 16, 0, FRAME_PALETTE_INDEX * 32, 32, heapID);
-    Window_DrawMessageBoxWithScrollCursor(app->messageWindow, 0, FRAME_TEXT_START, FRAME_TEXT_PALETTE_INDEX);
+    Window_DrawMessageBoxWithScrollCursor(app->messageWindow, FALSE, FRAME_TEXT_START, FRAME_TEXT_PALETTE_INDEX);
 }
 
 static void DeleteMessageWindow(ChooseStarterApp *app)
@@ -1123,56 +1123,56 @@ static int GetChoiceStep(ChooseStarterApp *app)
     return app->choiceStep;
 }
 
-static void ov78_021D1CA8(ChooseStarterApp *param0, enum HeapID heapID)
+static void ov78_021D1CA8(ChooseStarterApp *app, enum HeapID heapID)
 {
-    switch (param0->unk_04) {
+    switch (app->unk_04) {
     case 0:
-        ov78_021D213C(&param0->cameraMovement, param0->camera, &param0->cameraTarget);
+        ov78_021D213C(&app->cameraMovement, app->camera, &app->cameraTarget);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, TRUE);
-        param0->unk_04++;
+        app->unk_04++;
         break;
     case 1:
-        if (ov78_021D2200(&param0->cameraMovement)) {
-            param0->unk_0C = 6;
-            param0->unk_04++;
+        if (ov78_021D2200(&app->cameraMovement)) {
+            app->unk_0C = 6;
+            app->unk_04++;
         }
         break;
     case 2:
-        param0->unk_0C--;
+        app->unk_0C--;
 
-        if (param0->unk_0C < 0) {
-            ov78_021D1E28(param0);
-            param0->unk_04++;
+        if (app->unk_0C < 0) {
+            ov78_021D1E28(app);
+            app->unk_04++;
         }
         break;
     case 3:
-        param0->unk_708 = ov78_021D201C(param0->messageWindow, heapID, 360, 0, TEXT_COLOR(1, 2, 15), param0->textFrameDelay, &param0->unk_AC);
-        param0->unk_04++;
+        app->unk_708 = SetMessageWindowTextAndSaveToString(app->messageWindow, heapID, 360, 0, TEXT_COLOR(1, 2, 15), app->textFrameDelay, &app->string);
+        app->unk_04++;
         break;
     case 4:
-        if (Text_IsPrinterActive(param0->unk_708) == 0) {
-            ov78_021D2090(param0);
-            param0->unk_04++;
+        if (Text_IsPrinterActive(app->unk_708) == 0) {
+            ov78_021D2090(app);
+            app->unk_04++;
         }
         break;
     case 5:
-        param0->unk_708 = ov78_021D201C(param0->messageWindow, heapID, 360, 7, TEXT_COLOR(1, 2, 15), param0->textFrameDelay, &param0->unk_AC);
-        param0->unk_04++;
+        app->unk_708 = SetMessageWindowTextAndSaveToString(app->messageWindow, heapID, 360, 7, TEXT_COLOR(1, 2, 15), app->textFrameDelay, &app->string);
+        app->unk_04++;
         break;
     case 6:
-        if (Text_IsPrinterActive(param0->unk_708) == 0) {
-            ov78_021D2090(param0);
-            param0->unk_04++;
+        if (Text_IsPrinterActive(app->unk_708) == 0) {
+            ov78_021D2090(app);
+            app->unk_04++;
         }
         break;
     case 7:
-        ov78_021D2430(&param0->cursor, 1);
-        param0->unk_08 = 0;
-        param0->unk_04++;
+        ov78_021D2430(&app->cursor, 1);
+        app->unk_08 = 0;
+        app->unk_04++;
         break;
     case 8:
-        ov78_021D1DF0(param0);
-        ov78_021D1E28(param0);
+        ov78_021D1DF0(app);
+        ov78_021D1E28(app);
         break;
     }
 }
@@ -1217,7 +1217,7 @@ static void ov78_021D1E44(ChooseStarterApp *param0, enum HeapID heapID)
         }
         break;
     case 2:
-        ov78_021D1FB4(param0->messageWindow, heapID, 360, 1 + param0->cursorPosition, TEXT_COLOR(1, 2, 15), TEXT_SPEED_NO_TRANSFER);
+        SetMessageWindowText(param0->messageWindow, heapID, 360, 1 + param0->cursorPosition, TEXT_COLOR(1, 2, 15), TEXT_SPEED_NO_TRANSFER);
         param0->unk_B8 = Menu_MakeYesNoChoice(param0->bgConfig, &param0->unk_B0, 512 + (18 + 12) + 128, 1, heapID);
         param0->unk_08 = 0;
         param0->unk_04++;
@@ -1243,56 +1243,49 @@ static void ov78_021D1E44(ChooseStarterApp *param0, enum HeapID heapID)
             param0->unk_04 = 7;
             ov78_021D2508(&param0->previewWindow, 0);
             PokemonSprite_SetAttribute(param0->sprites[param0->cursorPosition], MON_SPRITE_HIDE, TRUE);
-            param0->unk_708 = ov78_021D1FB4(param0->messageWindow, heapID, 360, 7, TEXT_COLOR(1, 2, 15), TEXT_SPEED_NO_TRANSFER);
+            param0->unk_708 = SetMessageWindowText(param0->messageWindow, heapID, 360, 7, TEXT_COLOR(1, 2, 15), TEXT_SPEED_NO_TRANSFER);
         }
         break;
     }
 }
 
-static u8 ov78_021D1FB4(Window *param0, enum HeapID heapID, int param2, int param3, TextColor param4, u32 param5)
+static u8 SetMessageWindowText(Window *window, enum HeapID heapID, int bankID, int entryID, TextColor textColor, u32 renderDelay)
 {
-    MessageLoader *v0;
-    String *v1;
-    u8 v2;
+    MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, bankID, heapID);
+    GF_ASSERT(msgLoader);
+    String *string = MessageLoader_GetNewString(msgLoader, entryID);
 
-    v0 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, param2, heapID);
-    GF_ASSERT(v0);
-    v1 = MessageLoader_GetNewString(v0, param3);
+    Window_FillTilemap(window, 15);
+    u8 printerID = Text_AddPrinterWithParamsAndColor(window, FONT_MESSAGE, string, 0, 0, renderDelay, textColor, NULL);
+    Window_DrawMessageBoxWithScrollCursor(window, FALSE, FRAME_TEXT_START, FRAME_TEXT_PALETTE_INDEX);
 
-    Window_FillTilemap(param0, 15);
-    v2 = Text_AddPrinterWithParamsAndColor(param0, FONT_MESSAGE, v1, 0, 0, param5, param4, NULL);
-    Window_DrawMessageBoxWithScrollCursor(param0, 0, 512, 0);
+    String_Free(string);
+    MessageLoader_Free(msgLoader);
 
-    String_Free(v1);
-    MessageLoader_Free(v0);
-
-    return v2;
+    return printerID;
 }
 
-static u8 ov78_021D201C(Window *param0, enum HeapID heapID, int param2, int param3, u32 param4, u32 param5, String **param6)
+static u8 SetMessageWindowTextAndSaveToString(Window *window, enum HeapID heapID, int bankID, int entryID, TextColor textColor, u32 renderDelay, String **string)
 {
-    MessageLoader *v0;
-    u8 v1;
+    GF_ASSERT((*string) == NULL);
 
-    GF_ASSERT((*param6) == NULL);
+    MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, bankID, heapID);
+    GF_ASSERT(msgLoader);
 
-    v0 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, param2, heapID);
-    GF_ASSERT(v0);
+    *string = MessageLoader_GetNewString(msgLoader, entryID);
+    Window_FillTilemap(window, 15);
+    u8 printerID = Text_AddPrinterWithParamsAndColor(window, FONT_MESSAGE, *string, 0, 0, renderDelay, textColor, NULL);
 
-    *param6 = MessageLoader_GetNewString(v0, param3);
-    Window_FillTilemap(param0, 15);
-    v1 = Text_AddPrinterWithParamsAndColor(param0, FONT_MESSAGE, *param6, 0, 0, param5, param4, NULL);
+    Window_DrawMessageBoxWithScrollCursor(window, FALSE, FRAME_TEXT_START, FRAME_TEXT_PALETTE_INDEX);
+    MessageLoader_Free(msgLoader);
 
-    Window_DrawMessageBoxWithScrollCursor(param0, 0, 512, 0);
-    MessageLoader_Free(v0);
-
-    return v1;
+    return printerID;
 }
 
 static void ov78_021D2090(ChooseStarterApp *param0)
 {
-    String_Free(param0->unk_AC);
-    param0->unk_AC = NULL;
+    String_Free(param0->string);
+    param0->string = NULL;
 }
 
 static void MakeConfirmationWindow(ChooseStarterApp *param0, int param1)
