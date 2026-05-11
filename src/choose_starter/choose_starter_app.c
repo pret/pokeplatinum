@@ -248,7 +248,7 @@ static void ov78_021D1B3C(Camera *camera, VecFx32 *param1);
 static void DeleteCamera(ChooseStarterApp *app);
 static void Make3DGraphics(ChooseStarterApp *param0, enum HeapID heapID);
 static void Delete3DGraphics(ChooseStarterApp *app);
-static void ov78_021D192C(ChooseStarterApp *param0);
+static void Draw3DGraphicsWithLightAndColor(ChooseStarterApp *app);
 static void MakeCursorOAM(ChooseStarterApp *app, ChooseStarterCursor *cursor, enum HeapID heapID);
 static void DeleteCursorOAM(ChooseStarterApp *app, ChooseStarterCursor *cursor);
 static void AttachCursorCellActor(ChooseStarterApp *app, ChooseStarterCursor *cursor, enum HeapID heapID);
@@ -901,15 +901,15 @@ static void Delete3DGraphics(ChooseStarterApp *app)
     }
 }
 
-static void ov78_021D192C(ChooseStarterApp *param0)
+static void Draw3DGraphicsWithLightAndColor(ChooseStarterApp *app)
 {
     NNS_G3dGlbLightVector(0, 0, -FX32_ONE, 0);
     NNS_G3dGlbLightColor(0, GX_RGB(31, 31, 31));
-    NNS_G3dGlbMaterialColorDiffAmb(GX_RGB(31, 31, 31), GX_RGB(31, 31, 31), 0);
-    NNS_G3dGlbMaterialColorSpecEmi(GX_RGB(31, 31, 31), GX_RGB(31, 31, 31), 0);
+    NNS_G3dGlbMaterialColorDiffAmb(GX_RGB(31, 31, 31), GX_RGB(31, 31, 31), FALSE);
+    NNS_G3dGlbMaterialColorSpecEmi(GX_RGB(31, 31, 31), GX_RGB(31, 31, 31), FALSE);
 
     for (int i = 0; i < CHOOSE_STARTER_3D_GRAPHICS_NUM; i++) {
-        Draw3DGraphics(&param0->starter3DGraphics[i]);
+        Draw3DGraphics(&app->starter3DGraphics[i]);
     }
 }
 
@@ -1007,7 +1007,7 @@ static void DrawScene(ChooseStarterApp *param0)
 
     {
         Camera_ComputeViewMatrix();
-        ov78_021D192C(param0);
+        Draw3DGraphicsWithLightAndColor(param0);
     }
 
     NNS_G3dGePopMtx(1);
