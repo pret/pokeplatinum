@@ -160,7 +160,7 @@ typedef struct StarterPreviewAnimation {
 typedef struct StarterPreviewWindow {
     SoftwareSpriteChars *unk_00;
     SoftwareSpritePalette *unk_04;
-    SoftwareSprite *unk_08;
+    SoftwareSprite *sprite;
     void *unk_0C;
     void *unk_10;
     NNSG2dCharacterData *unk_14;
@@ -275,7 +275,7 @@ static void Load3DGraphicsModel(ChooseStarter3DGraphics *starter3DGraphics, int 
 static void Load3DGraphicsAnimation(ChooseStarter3DGraphics *starter3DGraphics, int narcMemberIdx, enum HeapID heapID, NNSFndAllocator *allocator);
 static void MakePreviewWindow(StarterPreviewWindow *param0, ChooseStarterApp *param1, int param2);
 static void DeletePreviewWindow(StarterPreviewWindow *previewWindow);
-static void ov78_021D2508(StarterPreviewWindow *param0, BOOL param1);
+static void ShowPreviewWindow(StarterPreviewWindow *previewWindow, BOOL show);
 static void ov78_021D2514(StarterPreviewWindow *param0, fx32 param1, fx32 param2, fx32 param3, fx32 param4, fx32 param5, fx32 param6, int param7);
 static void ov78_021D256C(StarterPreviewWindow *param0);
 static void ov78_021D25A0(SysTask *param0, void *param1);
@@ -1207,7 +1207,7 @@ static void ov78_021D1E44(ChooseStarterApp *param0, enum HeapID heapID)
         param0->unk_08 = 1;
         break;
     case 1:
-        ov78_021D2508(&param0->previewWindow, 1);
+        ShowPreviewWindow(&param0->previewWindow, TRUE);
         PokemonSprite_SetAttribute(param0->sprites[param0->cursorPosition], MON_SPRITE_HIDE, FALSE);
 
         if (ov78_021D26A4(param0)) {
@@ -1241,7 +1241,7 @@ static void ov78_021D1E44(ChooseStarterApp *param0, enum HeapID heapID)
         if (ov78_021D26A4(param0)) {
             AdvanceChoiceStep(param0, -1);
             param0->unk_04 = 7;
-            ov78_021D2508(&param0->previewWindow, 0);
+            ShowPreviewWindow(&param0->previewWindow, FALSE);
             PokemonSprite_SetAttribute(param0->sprites[param0->cursorPosition], MON_SPRITE_HIDE, TRUE);
             param0->unk_708 = SetMessageWindowText(param0->messageWindow, heapID, 360, 7, TEXT_COLOR(1, 2, 15), TEXT_SPEED_NO_TRANSFER);
         }
@@ -1529,24 +1529,24 @@ static void MakePreviewWindow(StarterPreviewWindow *param0, ChooseStarterApp *pa
     v2.priority = 1022;
     v2.paletteSlot = 0;
 
-    param0->unk_08 = SoftwareSprite_Load(&v2);
+    param0->sprite = SoftwareSprite_Load(&v2);
 
-    SoftwareSprite_SetVisible(param0->unk_08, 0);
-    SoftwareSprite_SetCenter(param0->unk_08, 128 / 2, 128 / 2);
+    SoftwareSprite_SetVisible(param0->sprite, 0);
+    SoftwareSprite_SetCenter(param0->sprite, 128 / 2, 128 / 2);
 }
 
 static void DeletePreviewWindow(StarterPreviewWindow *previewWindow)
 {
-    SoftwareSprite_Reset(previewWindow->unk_08);
+    SoftwareSprite_Reset(previewWindow->sprite);
     SoftwareSprite_FreeChars(previewWindow->unk_00);
     SoftwareSprite_FreePalette(previewWindow->unk_04);
     Heap_Free(previewWindow->unk_0C);
     Heap_Free(previewWindow->unk_10);
 }
 
-static void ov78_021D2508(StarterPreviewWindow *param0, BOOL param1)
+static void ShowPreviewWindow(StarterPreviewWindow *previewWindow, BOOL show)
 {
-    SoftwareSprite_SetVisible(param0->unk_08, param1);
+    SoftwareSprite_SetVisible(previewWindow->sprite, show);
 }
 
 static void ov78_021D2514(StarterPreviewWindow *param0, fx32 param1, fx32 param2, fx32 param3, fx32 param4, fx32 param5, fx32 param6, int param7)
@@ -1589,8 +1589,8 @@ static void ov78_021D25A0(SysTask *param0, void *param1)
     v2 = v0->unk_1C.unk_00.unk_00 - ((128 / 2) * FX32_ONE);
     v3 = v0->unk_1C.unk_10.unk_00 - ((128 / 2) * FX32_ONE);
 
-    SoftwareSprite_SetPosition(v0->unk_08, v2 >> FX32_SHIFT, v3 >> FX32_SHIFT);
-    SoftwareSprite_SetScalingFactors(v0->unk_08, v0->unk_1C.unk_20.unk_00, v0->unk_1C.unk_20.unk_00);
+    SoftwareSprite_SetPosition(v0->sprite, v2 >> FX32_SHIFT, v3 >> FX32_SHIFT);
+    SoftwareSprite_SetScalingFactors(v0->sprite, v0->unk_1C.unk_20.unk_00, v0->unk_1C.unk_20.unk_00);
 
     if ((v1 == 1) || (v0->unk_1C.unk_30 < 0)) {
         SysTask_Done(param0);
