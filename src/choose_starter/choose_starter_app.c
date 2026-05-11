@@ -258,7 +258,7 @@ static void SetCursorPosition(ChooseStarterCursor *cursor, int x, int y);
 static void MakeSelectionMatrix(ChooseStarterApp *param0);
 static void SetSelectionMatrixObjects(ChooseStarterApp *param0);
 static void ov78_021D1CA8(ChooseStarterApp *param0, enum HeapID heapID);
-static void ov78_021D1DF0(ChooseStarterApp *app);
+static void UpdateSelectedPokeballAnimation(ChooseStarterApp *app);
 static void UpdateCursorPosition(ChooseStarterApp *app);
 static void ov78_021D1E44(ChooseStarterApp *param0, enum HeapID heapID);
 static void MakePokemonSprite(PokemonSprite **sprite, ChooseStarterApp *app, int species);
@@ -1171,13 +1171,13 @@ static void ov78_021D1CA8(ChooseStarterApp *app, enum HeapID heapID)
         app->unk_04++;
         break;
     case 8:
-        ov78_021D1DF0(app);
+        UpdateSelectedPokeballAnimation(app);
         UpdateCursorPosition(app);
         break;
     }
 }
 
-static void ov78_021D1DF0(ChooseStarterApp *app)
+static void UpdateSelectedPokeballAnimation(ChooseStarterApp *app)
 {
     for (int i = 0; i < NUM_STARTER_OPTIONS; i++) {
         if (app->cursorPosition == i) {
