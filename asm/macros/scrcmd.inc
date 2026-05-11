@@ -1153,8 +1153,8 @@
     .short SCRCMD_SAVECHOSENSTARTER
     .endm
 
-    .macro ScrCmd_0B6 approachNum
-    .short SCRCMD_0B6
+    .macro StartApproachingTrainerTask approachNum
+    .short SCRCMD_STARTAPPROACHINGTRAINERTASK
     .short \approachNum
     .endm
 
@@ -1164,8 +1164,8 @@
     .short \destVar
     .endm
 
-    .macro ScrCmd_0B8 destVar
-    .short SCRCMD_0B8
+    .macro GetApproachingTrainerType destVar
+    .short SCRCMD_GETAPPROACHINGTRAINERTYPE
     .short \destVar
     .endm
 
@@ -3025,8 +3025,8 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_20B
-    .short SCRCMD_20B
+    .macro SetMoveCodeForFacingDirection
+    .short SCRCMD_SETMOVECODEFORFACINGDIRECTION
     .endm
 
     .macro MessageFromTrainerType

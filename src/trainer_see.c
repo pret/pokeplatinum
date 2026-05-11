@@ -38,20 +38,20 @@ typedef struct ApproachingTrainerTemplate {
     MapObject *trainerMapObj;
 } ApproachingTrainerTemplate;
 
-typedef struct {
-    int unk_00;
-    int unk_04;
+typedef struct ApproachingTrainerData {
+    int state;
+    int done;
     int direction;
     int sightRange;
-    int unk_10;
-    int unk_14;
+    int unused;
+    int approachType;
     int approachNum;
-    int unk_1C;
-    OverworldAnimManager *unk_20;
+    int delay;
+    OverworldAnimManager *animMan;
     MapObject *mapObj;
     PlayerAvatar *playerAvatar;
     FieldSystem *fieldSystem;
-} UnkStruct_020EF6D0;
+} ApproachingTrainerData;
 
 static BOOL FindUndefeatedTrainerInSight(FieldSystem *fieldSystem, MapObjectManager *mapObjMan, PlayerAvatar *playerAvatar, const MapObject *knownTrainer, ApproachingTrainerTemplate *apprTrTemplate);
 static void ApproachingTrainer_Init(ApproachingTrainerTemplate *apprTrTemplate, MapObject *trainerMapObj, int distance, int direction);
@@ -61,10 +61,10 @@ static int GetDistanceToPlayerFromDir(const MapObject *mapObj, int direction, in
 static BOOL IsPathInterrupted(const MapObject *mapObj, int direction, int distance);
 static int GetTrainerIDFromMapObj(MapObject *mapObj);
 static MapObject *FindTrainerPartner(FieldSystem *fieldSystem, MapObjectManager *mapObjMan, MapObject *trainerMapObj, int trainerID);
-static SysTask *sub_02067FF0(FieldSystem *fieldSystem, MapObject *param1, PlayerAvatar *playerAvatar, int param3, int param4, int param5, int param6, int param7);
-static int sub_02068048(SysTask *param0);
-static void sub_02068054(SysTask *param0);
-static void sub_0206806C(SysTask *param0, void *param1);
+static SysTask *StartApproachingTrainerTask(FieldSystem *fieldSystem, MapObject *mapObj, PlayerAvatar *playerAvatar, int direction, int sightRange, int unused, int approachType, int approachNum);
+static BOOL IsApproachingTrainerTaskDone(SysTask *task);
+static void FreeApproachingTrainerTask(SysTask *task);
+static void SysTask_ApproachingTrainer(SysTask *task, void *inData);
 static int GetDistanceNorth(const MapObject *mapObj, int range, int playerX, int playerZ, int unused);
 static int GetDistanceSouth(const MapObject *mapObj, int range, int playerX, int playerZ, int unused);
 static int GetDistanceWest(const MapObject *mapObj, int range, int playerX, int playerZ, int unused);
@@ -78,7 +78,7 @@ static const DistanceFunc sGetMapObjDistToPlayerFuncs[] = {
     [DIR_EAST] = GetDistanceEast
 };
 
-int (*const Unk_020EF6D0[])(UnkStruct_020EF6D0 *);
+int (*const sApproachingTrainerTask[])(ApproachingTrainerData *);
 
 BOOL FieldSystem_CheckForTrainersWantingBattle(FieldSystem *fieldSystem, BOOL hasTwoAliveMons)
 {
@@ -386,313 +386,332 @@ BOOL FieldSystem_IsTrainerDefeated(FieldSystem *fieldSystem, MapObject *mapObj)
     return FALSE;
 }
 
-SysTask *sub_02067FB8(FieldSystem *fieldSystem, MapObject *mapObj, PlayerAvatar *playerAvatar, int direction, int sightRange, int param5, int param6, int approachNum)
+SysTask *TrainerSee_StartApproachingTrainerTask(FieldSystem *fieldSystem, MapObject *mapObj, PlayerAvatar *playerAvatar, int direction, int sightRange, int unused, int approachType, int approachNum)
 {
-    return sub_02067FF0(fieldSystem, mapObj, playerAvatar, direction, sightRange, param5, param6, approachNum);
+    return StartApproachingTrainerTask(fieldSystem, mapObj, playerAvatar, direction, sightRange, unused, approachType, approachNum);
 }
 
-int sub_02067FD4(SysTask *task)
+BOOL TrainerSee_IsApproachingTrainerTaskDone(SysTask *task)
 {
     GF_ASSERT(task != NULL);
-    return sub_02068048(task);
+    return IsApproachingTrainerTaskDone(task);
 }
 
-void sub_02067FE8(SysTask *task)
+void TrainerSee_FreeApproachingTrainerTask(SysTask *task)
 {
-    sub_02068054(task);
+    FreeApproachingTrainerTask(task);
 }
 
-static SysTask *sub_02067FF0(FieldSystem *fieldSystem, MapObject *mapObj, PlayerAvatar *playerAvatar, int direction, int sightRange, int param5, int param6, int approachNum)
+static SysTask *StartApproachingTrainerTask(FieldSystem *fieldSystem, MapObject *mapObj, PlayerAvatar *playerAvatar, int direction, int sightRange, int unused, int approachType, int approachNum)
 {
     SysTask *task;
-    UnkStruct_020EF6D0 *v1 = Heap_AllocAtEnd(HEAP_ID_FIELD1, (sizeof(UnkStruct_020EF6D0)));
-    GF_ASSERT(v1 != NULL);
+    ApproachingTrainerData *data = Heap_AllocAtEnd(HEAP_ID_FIELD1, (sizeof(ApproachingTrainerData)));
+    GF_ASSERT(data != NULL);
 
-    memset(v1, 0, (sizeof(UnkStruct_020EF6D0)));
+    memset(data, 0, (sizeof(ApproachingTrainerData)));
 
-    v1->direction = direction;
-    v1->sightRange = sightRange;
-    v1->unk_10 = param5;
-    v1->unk_14 = param6;
-    v1->approachNum = approachNum;
-    v1->fieldSystem = fieldSystem;
-    v1->mapObj = mapObj;
-    v1->playerAvatar = playerAvatar;
+    data->direction = direction;
+    data->sightRange = sightRange;
+    data->unused = unused;
+    data->approachType = approachType;
+    data->approachNum = approachNum;
+    data->fieldSystem = fieldSystem;
+    data->mapObj = mapObj;
+    data->playerAvatar = playerAvatar;
 
-    task = SysTask_Start(sub_0206806C, v1, 0xff);
+    task = SysTask_Start(SysTask_ApproachingTrainer, data, 0xFF);
     GF_ASSERT(task != NULL);
 
     return task;
 }
 
-static int sub_02068048(SysTask *task)
+static BOOL IsApproachingTrainerTaskDone(SysTask *task)
 {
-    UnkStruct_020EF6D0 *v0 = SysTask_GetParam(task);
-    return v0->unk_04;
+    ApproachingTrainerData *data = SysTask_GetParam(task);
+    return data->done;
 }
 
-static void sub_02068054(SysTask *task)
+static void FreeApproachingTrainerTask(SysTask *task)
 {
-    UnkStruct_020EF6D0 *v0 = SysTask_GetParam(task);
+    ApproachingTrainerData *data = SysTask_GetParam(task);
 
-    Heap_FreeExplicit(HEAP_ID_FIELD1, v0);
+    Heap_FreeExplicit(HEAP_ID_FIELD1, data);
     SysTask_Done(task);
 }
 
-static void sub_0206806C(SysTask *task, void *param1)
+static void SysTask_ApproachingTrainer(SysTask *task, void *inData)
 {
-    UnkStruct_020EF6D0 *v0 = param1;
+    ApproachingTrainerData *data = inData;
 
-    while (Unk_020EF6D0[v0->unk_00](v0) == 1) {
+    while (sApproachingTrainerTask[data->state](data) == 1) {
         (void)0;
     }
 }
 
-static int sub_02068088(UnkStruct_020EF6D0 *param0)
-{
-    MapObject *v0 = param0->mapObj;
+enum ApproachingTrainerTaskState {
+    STATE_UNPAUSE_MOVEMENT = 0,
+    STATE_TRY_FACE_DIRECTION,
+    STATE_CHECK_REVEAL_OR_FACE_DIRECTION,
+    STATE_FACE_DIRECTION,
+    STATE_WAIT_FACE_DIRECTION,
+    STATE_UNK_05,
+    STATE_UNK_06,
+    STATE_REVEAL_TRAINER,
+    STATE_WAIT_REVEAL_TRAINER,
+    STATE_DELAY_CHECK_NEXT_TO_PLAYER,
+    STATE_CHECK_NEXT_TO_PLAYER,
+    STATE_STEP_TOWARDS_PLAYER,
+    STATE_WAIT_STEP_TOWARDS_PLAYER,
+    STATE_DELAY_NEXT_TO_PLAYER,
+    STATE_TRY_PLAYER_FACE_TRAINER,
+    STATE_WAIT_PLAYER_FACE_TRAINER,
+    STATE_SWITCH_MOVEMENT_TYPE_NONE,
+    STATE_DONE,
+};
 
-    if (MapObject_IsMoving(v0) == 1) {
-        MapObject_SetPauseMovementOff(v0);
+static int ApproachTrainerTask_UnpauseMovement(ApproachingTrainerData *data)
+{
+    MapObject *mapObj = data->mapObj;
+
+    if (MapObject_IsMoving(mapObj) == TRUE) {
+        MapObject_SetPauseMovementOff(mapObj);
     }
 
-    param0->unk_00 = 1;
+    data->state = STATE_TRY_FACE_DIRECTION;
     return 1;
 }
 
-static int sub_020680A4(UnkStruct_020EF6D0 *param0)
+static int ApproachTrainerTask_TryFaceDirection(ApproachingTrainerData *data)
 {
-    MapObject *v0 = param0->mapObj;
+    MapObject *mapObj = data->mapObj;
 
-    if (MapObject_IsMoving(v0) == 1) {
+    if (MapObject_IsMoving(mapObj) == TRUE) {
         return 0;
     }
 
-    ov5_021ECDFC(param0->mapObj, param0->direction);
-    MapObject_SetStatusFlagOn(v0, MAP_OBJ_STATUS_PAUSE_MOVEMENT);
+    ov5_021ECDFC(data->mapObj, data->direction);
+    MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_PAUSE_MOVEMENT);
 
-    param0->unk_00 = 2;
+    data->state = STATE_CHECK_REVEAL_OR_FACE_DIRECTION;
     return 1;
 }
 
-static int sub_020680D0(UnkStruct_020EF6D0 *param0)
+static int ApproachTrainerTask_CheckRevealOrFaceDirection(ApproachingTrainerData *data)
 {
-    MapObject *v0 = Player_MapObject(param0->playerAvatar);
+    MapObject *mapObj = Player_MapObject(data->playerAvatar);
 
-    if (LocalMapObj_CheckAnimationFinished(v0) == 0) {
+    if (LocalMapObj_CheckAnimationFinished(mapObj) == FALSE) {
         return 0;
     }
 
-    {
-        u32 v1 = MapObject_GetMovementType(param0->mapObj);
+    u32 movementType = MapObject_GetMovementType(data->mapObj);
 
-        switch (v1) {
-        case 0x33:
-        case 0x34:
-        case 0x35:
-        case 0x36:
-            param0->unk_00 = 7;
-            return 1;
-        }
-    }
-
-    param0->unk_00 = 3;
-    return 1;
-}
-
-static int sub_02068118(UnkStruct_020EF6D0 *param0)
-{
-    int v0;
-
-    if (LocalMapObj_IsAnimationSet(param0->mapObj) == 0) {
-        return 0;
-    }
-
-    GF_ASSERT(param0->direction != -1);
-
-    v0 = MovementAction_TurnActionTowardsDir(param0->direction, MOVEMENT_ACTION_FACE_NORTH);
-    LocalMapObj_SetAnimationCode(param0->mapObj, v0);
-    param0->unk_00 = 4;
-
-    return 0;
-}
-
-static int sub_02068150(UnkStruct_020EF6D0 *param0)
-{
-    if (LocalMapObj_CheckAnimationFinished(param0->mapObj) == 0) {
-        return 0;
-    }
-
-    param0->unk_00 = 5;
-    return 1;
-}
-
-static int sub_0206816C(UnkStruct_020EF6D0 *param0)
-{
-    param0->unk_20 = ov5_021F5D8C(param0->mapObj, 0, 0, 0);
-    param0->unk_00 = 6;
-
-    return 0;
-}
-
-static int sub_02068188(UnkStruct_020EF6D0 *param0)
-{
-    if (ov5_021F5C4C(param0->unk_20) == 1) {
-        OverworldAnimManager_Finish(param0->unk_20);
-        param0->unk_00 = 9;
-    }
-
-    return 0;
-}
-
-static int sub_020681A4(UnkStruct_020EF6D0 *param0)
-{
-    LocalMapObj_SetAnimationCode(param0->mapObj, MOVEMENT_ACTION_REVEAL_TRAINER);
-    param0->unk_00 = 8;
-
-    return 0;
-}
-
-static int sub_020681B8(UnkStruct_020EF6D0 *param0)
-{
-    if (LocalMapObj_CheckAnimationFinished(param0->mapObj) == 1) {
-        param0->unk_00 = 9;
-    }
-
-    return 0;
-}
-
-static int sub_020681D0(UnkStruct_020EF6D0 *param0)
-{
-    param0->unk_1C++;
-
-    if (param0->unk_1C >= 30) {
-        param0->unk_1C = 0;
-        param0->unk_00 = 10;
-    }
-
-    return 0;
-}
-
-static int sub_020681E8(UnkStruct_020EF6D0 *param0)
-{
-    if (param0->sightRange <= 1) {
-        param0->unk_00 = 13;
+    switch (movementType) {
+    case MOVEMENT_TYPE_DISGUISE_SNOW:
+    case MOVEMENT_TYPE_DISGUISE_SAND:
+    case MOVEMENT_TYPE_DISGUISE_ROCK:
+    case MOVEMENT_TYPE_DISGUISE_GRASS:
+        data->state = STATE_REVEAL_TRAINER;
         return 1;
     }
 
-    param0->unk_00 = 11;
+    data->state = STATE_FACE_DIRECTION;
     return 1;
 }
 
-static int sub_02068200(UnkStruct_020EF6D0 *param0)
+static int ApproachTrainerTask_FaceDirection(ApproachingTrainerData *data)
 {
-    int v0;
+    int movementAction;
 
-    if (LocalMapObj_IsAnimationSet(param0->mapObj) == 1) {
-        v0 = MovementAction_TurnActionTowardsDir(param0->direction, MOVEMENT_ACTION_WALK_NORMAL_NORTH);
-        LocalMapObj_SetAnimationCode(param0->mapObj, v0);
-        param0->unk_00 = 12;
+    if (LocalMapObj_IsAnimationSet(data->mapObj) == FALSE) {
+        return 0;
+    }
+
+    GF_ASSERT(data->direction != -1);
+
+    movementAction = MovementAction_TurnActionTowardsDir(data->direction, MOVEMENT_ACTION_FACE_NORTH);
+    LocalMapObj_SetAnimationCode(data->mapObj, movementAction);
+    data->state = STATE_WAIT_FACE_DIRECTION;
+
+    return 0;
+}
+
+static int ApproachTrainerTask_WaitFaceDirection(ApproachingTrainerData *data)
+{
+    if (LocalMapObj_CheckAnimationFinished(data->mapObj) == FALSE) {
+        return 0;
+    }
+
+    data->state = STATE_UNK_05;
+    return 1;
+}
+
+static int ApproachTrainerTask_Unk_05(ApproachingTrainerData *data)
+{
+    data->animMan = ov5_021F5D8C(data->mapObj, 0, 0, 0);
+    data->state = STATE_UNK_06;
+
+    return 0;
+}
+
+static int ApproachTrainerTask_Unk_06(ApproachingTrainerData *data)
+{
+    if (ov5_021F5C4C(data->animMan) == 1) {
+        OverworldAnimManager_Finish(data->animMan);
+        data->state = STATE_DELAY_CHECK_NEXT_TO_PLAYER;
     }
 
     return 0;
 }
 
-static int sub_02068228(UnkStruct_020EF6D0 *param0)
+static int ApproachTrainerTask_RevealTrainer(ApproachingTrainerData *data)
 {
-    if (LocalMapObj_CheckAnimationFinished(param0->mapObj) == 0) {
+    LocalMapObj_SetAnimationCode(data->mapObj, MOVEMENT_ACTION_REVEAL_TRAINER);
+    data->state = STATE_WAIT_REVEAL_TRAINER;
+
+    return 0;
+}
+
+static int ApproachTrainerTask_WaitRevealTrainer(ApproachingTrainerData *data)
+{
+    if (LocalMapObj_CheckAnimationFinished(data->mapObj) == TRUE) {
+        data->state = STATE_DELAY_CHECK_NEXT_TO_PLAYER;
+    }
+
+    return 0;
+}
+
+static int ApproachTrainerTask_DelayCheckNextToPlayer(ApproachingTrainerData *data)
+{
+    data->delay++;
+
+    if (data->delay >= 30) {
+        data->delay = 0;
+        data->state = STATE_CHECK_NEXT_TO_PLAYER;
+    }
+
+    return 0;
+}
+
+static int ApproachTrainerTask_CheckNextToPlayer(ApproachingTrainerData *data)
+{
+    if (data->sightRange <= 1) {
+        data->state = STATE_DELAY_NEXT_TO_PLAYER;
+        return 1;
+    }
+
+    data->state = STATE_STEP_TOWARDS_PLAYER;
+    return 1;
+}
+
+static int ApproachTrainerTask_StepTowardsPlayer(ApproachingTrainerData *data)
+{
+    int movementAction;
+
+    if (LocalMapObj_IsAnimationSet(data->mapObj) == TRUE) {
+        movementAction = MovementAction_TurnActionTowardsDir(data->direction, MOVEMENT_ACTION_WALK_NORMAL_NORTH);
+        LocalMapObj_SetAnimationCode(data->mapObj, movementAction);
+        data->state = STATE_WAIT_STEP_TOWARDS_PLAYER;
+    }
+
+    return 0;
+}
+
+static int ApproachTrainerTask_WaitStepTowardsPlayer(ApproachingTrainerData *data)
+{
+    if (LocalMapObj_CheckAnimationFinished(data->mapObj) == FALSE) {
         return 0;
     }
 
-    param0->sightRange--;
-    param0->unk_00 = 10;
+    data->sightRange--;
+    data->state = STATE_CHECK_NEXT_TO_PLAYER;
 
     return 1;
 }
 
-static int sub_02068248(UnkStruct_020EF6D0 *param0)
+static int ApproachTrainerTask_DelayNextToPlayer(ApproachingTrainerData *data)
 {
-    param0->unk_1C++;
+    data->delay++;
 
-    if (param0->unk_1C < 8) {
+    if (data->delay < 8) {
         return 0;
     }
 
-    param0->unk_1C = 0;
-    param0->unk_00 = 14;
+    data->delay = 0;
+    data->state = STATE_TRY_PLAYER_FACE_TRAINER;
 
     return 1;
 }
 
-static int sub_02068264(UnkStruct_020EF6D0 *param0)
+static int ApproachTrainerTask_TryPlayerFaceTrainer(ApproachingTrainerData *data)
 {
-    int v0, v1;
-    MapObject *v2 = Player_MapObject(param0->playerAvatar);
-    v1 = sub_02064488(MapObject_GetX(v2), MapObject_GetZ(v2), MapObject_GetX(param0->mapObj), MapObject_GetZ(param0->mapObj));
+    MapObject *mapObj = Player_MapObject(data->playerAvatar);
+    int movementAction, dir = Direction_GetBetweenCoords(MapObject_GetX(mapObj), MapObject_GetZ(mapObj), MapObject_GetX(data->mapObj), MapObject_GetZ(data->mapObj));
 
-    if ((PlayerAvatar_GetDir(param0->playerAvatar) != v1) && ((param0->approachNum == 0) || (param0->unk_14 == 2))) {
-        if (LocalMapObj_IsAnimationSet(v2) == 1) {
-            MapObject_SetStatusFlagOff(v2, MAP_OBJ_STATUS_LOCK_DIR);
-            v0 = MovementAction_TurnActionTowardsDir(v1, MOVEMENT_ACTION_FACE_NORTH);
-            LocalMapObj_SetAnimationCode(v2, v0);
-            param0->unk_00 = 15;
+    if (PlayerAvatar_GetDir(data->playerAvatar) != dir && (data->approachNum == 0 || data->approachType == APPROACH_TYPE_VS2)) {
+        if (LocalMapObj_IsAnimationSet(mapObj) == TRUE) {
+            MapObject_SetStatusFlagOff(mapObj, MAP_OBJ_STATUS_LOCK_DIR);
+            movementAction = MovementAction_TurnActionTowardsDir(dir, MOVEMENT_ACTION_FACE_NORTH);
+            LocalMapObj_SetAnimationCode(mapObj, movementAction);
+            data->state = STATE_WAIT_PLAYER_FACE_TRAINER;
         }
     } else {
-        param0->unk_00 = 16;
+        data->state = STATE_SWITCH_MOVEMENT_TYPE_NONE;
     }
 
     return 0;
 }
 
-static int sub_020682E0(UnkStruct_020EF6D0 *param0)
+static int ApproachTrainerTask_WaitPlayerFaceTrainer(ApproachingTrainerData *data)
 {
-    MapObject *v0 = Player_MapObject(param0->playerAvatar);
+    MapObject *mapObj = Player_MapObject(data->playerAvatar);
 
-    if (LocalMapObj_CheckAnimationFinished(v0) == 0) {
+    if (LocalMapObj_CheckAnimationFinished(mapObj) == FALSE) {
         return 0;
     }
 
-    sub_020656AC(v0);
-    param0->unk_00 = 16;
+    sub_020656AC(mapObj);
+    data->state = STATE_SWITCH_MOVEMENT_TYPE_NONE;
 
     return 1;
 }
 
-static int sub_02068308(UnkStruct_020EF6D0 *param0)
+static int ApproachTrainerTask_SwitchMovementTypeNone(ApproachingTrainerData *data)
 {
-    sub_020656AC(param0->mapObj);
+    sub_020656AC(data->mapObj);
 
-    if ((PersistedMapFeatures_IsCurrentDynamicMap(param0->fieldSystem, DYNAMIC_MAP_FEATURES_HEARTHOME_GYM) == 0) || (HearthomeGym_SetTrainerPostBattleMovement(param0->fieldSystem, param0->mapObj) == 0)) {
-        MapObject_SwitchMovementType(param0->mapObj, MOVEMENT_TYPE_NONE);
+    if (PersistedMapFeatures_IsCurrentDynamicMap(data->fieldSystem, DYNAMIC_MAP_FEATURES_HEARTHOME_GYM) == FALSE
+        || HearthomeGym_SetTrainerPostBattleMovement(data->fieldSystem, data->mapObj) == FALSE) {
+        MapObject_SwitchMovementType(data->mapObj, MOVEMENT_TYPE_NONE);
     }
 
-    param0->unk_00 = 17;
+    data->state = STATE_DONE;
     return 1;
 }
 
-static int sub_0206833C(UnkStruct_020EF6D0 *param0)
+static int ApproachTrainerTask_Done(ApproachingTrainerData *data)
 {
-    param0->unk_04 = 1;
+    data->done = TRUE;
     return 0;
 }
 
-static int (*const Unk_020EF6D0[])(UnkStruct_020EF6D0 *) = {
-    sub_02068088,
-    sub_020680A4,
-    sub_020680D0,
-    sub_02068118,
-    sub_02068150,
-    sub_0206816C,
-    sub_02068188,
-    sub_020681A4,
-    sub_020681B8,
-    sub_020681D0,
-    sub_020681E8,
-    sub_02068200,
-    sub_02068228,
-    sub_02068248,
-    sub_02068264,
-    sub_020682E0,
-    sub_02068308,
-    sub_0206833C
+static int (*const sApproachingTrainerTask[])(ApproachingTrainerData *) = {
+    [STATE_UNPAUSE_MOVEMENT] = ApproachTrainerTask_UnpauseMovement,
+    [STATE_TRY_FACE_DIRECTION] = ApproachTrainerTask_TryFaceDirection,
+    [STATE_CHECK_REVEAL_OR_FACE_DIRECTION] = ApproachTrainerTask_CheckRevealOrFaceDirection,
+    [STATE_FACE_DIRECTION] = ApproachTrainerTask_FaceDirection,
+    [STATE_WAIT_FACE_DIRECTION] = ApproachTrainerTask_WaitFaceDirection,
+    [STATE_UNK_05] = ApproachTrainerTask_Unk_05,
+    [STATE_UNK_06] = ApproachTrainerTask_Unk_06,
+    [STATE_REVEAL_TRAINER] = ApproachTrainerTask_RevealTrainer,
+    [STATE_WAIT_REVEAL_TRAINER] = ApproachTrainerTask_WaitRevealTrainer,
+    [STATE_DELAY_CHECK_NEXT_TO_PLAYER] = ApproachTrainerTask_DelayCheckNextToPlayer,
+    [STATE_CHECK_NEXT_TO_PLAYER] = ApproachTrainerTask_CheckNextToPlayer,
+    [STATE_STEP_TOWARDS_PLAYER] = ApproachTrainerTask_StepTowardsPlayer,
+    [STATE_WAIT_STEP_TOWARDS_PLAYER] = ApproachTrainerTask_WaitStepTowardsPlayer,
+    [STATE_DELAY_NEXT_TO_PLAYER] = ApproachTrainerTask_DelayNextToPlayer,
+    [STATE_TRY_PLAYER_FACE_TRAINER] = ApproachTrainerTask_TryPlayerFaceTrainer,
+    [STATE_WAIT_PLAYER_FACE_TRAINER] = ApproachTrainerTask_WaitPlayerFaceTrainer,
+    [STATE_SWITCH_MOVEMENT_TYPE_NONE] = ApproachTrainerTask_SwitchMovementTypeNone,
+    [STATE_DONE] = ApproachTrainerTask_Done
 };

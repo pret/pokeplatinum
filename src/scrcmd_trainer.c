@@ -26,7 +26,7 @@
 #include "unk_02054884.h"
 #include "vars_flags.h"
 
-BOOL ScrCmd_0B6(ScriptContext *ctx)
+BOOL ScrCmd_StartApproachingTrainerTask(ScriptContext *ctx)
 {
     int *sightRange;
     int *scriptID;
@@ -58,7 +58,7 @@ BOOL ScrCmd_0B6(ScriptContext *ctx)
     }
 
     playerAvatar = fieldSystem->playerAvatar;
-    *task = sub_02067FB8(fieldSystem, *mapObj, playerAvatar, *direction, *sightRange, 0, *approachType, approachNum);
+    *task = TrainerSee_StartApproachingTrainerTask(fieldSystem, *mapObj, playerAvatar, *direction, *sightRange, 0, *approachType, approachNum);
 
     return FALSE;
 }
@@ -82,8 +82,8 @@ BOOL ScrCmd_CheckIsApproachingTrainerTaskDone(ScriptContext *ctx)
         return TRUE;
     }
 
-    if (sub_02067FD4(*task) == 1) {
-        sub_02067FE8(*task);
+    if (TrainerSee_IsApproachingTrainerTaskDone(*task) == TRUE) {
+        TrainerSee_FreeApproachingTrainerTask(*task);
         *task = NULL;
         *destVar = TRUE;
     }
@@ -91,12 +91,12 @@ BOOL ScrCmd_CheckIsApproachingTrainerTaskDone(ScriptContext *ctx)
     return TRUE;
 }
 
-BOOL ScrCmd_0B8(ScriptContext *ctx)
+BOOL ScrCmd_GetApproachingTrainerType(ScriptContext *ctx)
 {
-    u16 *v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_TRAINER_0_TYPE);
+    u16 *approachType = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_TRAINER_0_TYPE);
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *destVar = *v0;
+    *destVar = *approachType;
     return FALSE;
 }
 
