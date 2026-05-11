@@ -1,8 +1,8 @@
 #include "macros/scrcmd.inc"
 
 
-    ScriptEntry _0006
+    ScriptEntry OreburghCityPokecenter2F_UnusedEntry1
     ScriptEntryEnd
 
-_0006:
+OreburghCityPokecenter2F_UnusedEntry1:
     End

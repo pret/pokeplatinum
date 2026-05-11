@@ -344,7 +344,7 @@ events_files = files(
     'events_route_205_north.json',
     'events_route_206.json',
     'events_route_206_cycling_road_south_gate.json',
-    'events_gate_between_eterna_city_route_206.json',
+    'events_unused_gate_between_eterna_city_route_206.json',
     'events_route_207.json',
     'events_route_208.json',
     'events_route_208_house.json',

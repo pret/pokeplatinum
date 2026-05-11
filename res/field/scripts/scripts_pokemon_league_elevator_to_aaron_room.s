@@ -2,7 +2,7 @@
 
 
     ScriptEntry PokemonLeagueElevatorToAaronRoom_OnTransition
-    ScriptEntry _0029
+    ScriptEntry PokemonLeagueElevatorToAaronRoom_DisablePlatformLift
     ScriptEntry PokemonLeagueElevatorToAaronRoom_TriggerPlatformLift
     ScriptEntryEnd
 
@@ -10,10 +10,10 @@ PokemonLeagueElevatorToAaronRoom_OnTransition:
     SetVar VAR_MAP_LOCAL_0, 0
     InitPersistedMapFeaturesForPlatformLift
     CheckPlatformLiftNotUsedWhenEnteredMap VAR_MAP_LOCAL_1
-    GoToIfEq VAR_MAP_LOCAL_1, 0, _0029
+    GoToIfEq VAR_MAP_LOCAL_1, FALSE, PokemonLeagueElevatorToAaronRoom_DisablePlatformLift
     End
 
-_0029:
+PokemonLeagueElevatorToAaronRoom_DisablePlatformLift:
     SetVar VAR_MAP_LOCAL_0, 1
     End
 
