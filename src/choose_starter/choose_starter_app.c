@@ -234,8 +234,8 @@ static u8 SetMessageWindowTextAndSaveToString(Window *window, enum HeapID heapID
 static void DeleteStringBuffer(ChooseStarterApp *app);
 static void MakeSubplaneWindows(ChooseStarterApp *param0, enum HeapID heapID);
 static void DeleteSubplaneWindows(ChooseStarterApp *app);
-static void ov78_021D28A8(Window *param0, enum HeapID heapID, int param2, int param3, TextColor param4);
-static void ov78_021D2904(ChooseStarterApp *param0);
+static void SetSubplaneWindowText(Window *window, enum HeapID heapID, int bankID, int entryID, TextColor textColor);
+static void DeleteSubplaneWindow(ChooseStarterApp *app);
 static void MakeConfirmationWindow(ChooseStarterApp *param0, int param1);
 static void MakePokemonSprites(ChooseStarterApp *app, enum HeapID heapID);
 static void DeletePokemonSprites(ChooseStarterApp *app);
@@ -1201,7 +1201,7 @@ static void ov78_021D1E44(ChooseStarterApp *param0, enum HeapID heapID)
     case 0:
         ov78_021D2430(&param0->cursor, 0);
         ov78_021D1E28(param0);
-        ov78_021D2904(param0);
+        DeleteSubplaneWindow(param0);
         ov78_021D2618(param0);
         param0->unk_04++;
         param0->unk_08 = 1;
@@ -1710,7 +1710,7 @@ static void MakeSubplaneWindows(ChooseStarterApp *param0, enum HeapID heapID)
         }
 
         Window_Add(param0->bgConfig, param0->subplaneWindows[i], 3, v1, v2, 11, 4, 5, 1 + (64 * i));
-        ov78_021D28A8(param0->subplaneWindows[i], heapID, 360, 4 + i, TEXT_COLOR(1, 2, 10));
+        SetSubplaneWindowText(param0->subplaneWindows[i], heapID, 360, 4 + i, TEXT_COLOR(1, 2, 10));
     }
 }
 
@@ -1722,21 +1722,21 @@ static void DeleteSubplaneWindows(ChooseStarterApp *app)
     }
 }
 
-static void ov78_021D28A8(Window *param0, enum HeapID heapID, int param2, int param3, TextColor param4)
+static void SetSubplaneWindowText(Window *window, enum HeapID heapID, int bankID, int entryID, TextColor textColor)
 {
-    MessageLoader *v0 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, param2, heapID);
-    GF_ASSERT(v0);
-    String *v1 = MessageLoader_GetNewString(v0, param3);
+    MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, bankID, heapID);
+    GF_ASSERT(msgLoader);
+    String *string = MessageLoader_GetNewString(msgLoader, entryID);
 
-    Window_FillTilemap(param0, ((param4) >> 0) & 0xff);
-    Text_AddPrinterWithParamsAndColor(param0, FONT_SYSTEM, v1, 1, 0, TEXT_SPEED_NO_TRANSFER, param4, NULL);
-    String_Free(v1);
-    MessageLoader_Free(v0);
+    Window_FillTilemap(window, ((textColor) >> 0) & 0xff);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 1, 0, TEXT_SPEED_NO_TRANSFER, textColor, NULL);
+    String_Free(string);
+    MessageLoader_Free(msgLoader);
 }
 
-static void ov78_021D2904(ChooseStarterApp *param0)
+static void DeleteSubplaneWindow(ChooseStarterApp *app)
 {
-    Window_ClearAndCopyToVRAM(param0->subplaneWindows[param0->unk_A8]);
+    Window_ClearAndCopyToVRAM(app->subplaneWindows[app->unk_A8]);
 }
 
 static u16 GetSelectedSpecies(u16 cursorPosition)
