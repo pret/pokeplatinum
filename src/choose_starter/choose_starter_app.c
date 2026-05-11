@@ -176,7 +176,7 @@ typedef struct StarterPreviewGraphics {
 } StarterPreviewGraphics;
 
 typedef struct ChooseStarterApp {
-    int unk_00;
+    int choiceStep;
     int unk_04;
     BOOL unk_08;
     int unk_0C;
@@ -216,8 +216,8 @@ static void StartFadeIn(ChooseStarterApp *param0);
 static void StartFadeOut(ChooseStarterApp *param0);
 static BOOL IsFadeDone(ChooseStarterApp *param0);
 static u16 GetSelectedSpecies(u16 cursorPosition);
-static BOOL IsSelectionMade(ChooseStarterApp *param0, int param1);
-static void UpdateGraphics(ChooseStarterApp *param0, enum HeapID heapID);
+static BOOL IsSelectionMade(ChooseStarterApp *app, int param1);
+static void UpdateGraphics(ChooseStarterApp *app, enum HeapID heapID);
 static void DrawScene(ChooseStarterApp *param0);
 static void SetupDrawing(ChooseStarterApp *app, enum HeapID heapID);
 static void DeleteDrawing(void);
@@ -286,9 +286,9 @@ static BOOL ov78_021D26A4(ChooseStarterApp *param0);
 static void ov78_021D26B4(StarterPreviewGraphics *param0, PokemonSprite *param1, fx32 param2, fx32 param3, fx32 param4, fx32 param5, fx32 param6, fx32 param7, int param8);
 static void ov78_021D270C(StarterPreviewGraphics *param0);
 static void ov78_021D2740(SysTask *param0, void *param1);
-static void ov78_021D1C58(ChooseStarterApp *param0);
-static void ov78_021D1C98(ChooseStarterApp *param0, int param1);
-static int ov78_021D1CA4(ChooseStarterApp *param0);
+static void ChangePokeballChoice(ChooseStarterApp *app);
+static void AdvanceChoiceStep(ChooseStarterApp *app, int param1);
+static int GetChoiceStep(ChooseStarterApp *app);
 static void ov78_021D2108(ChooseStarterMovement *param0, s32 param1, s32 param2, s32 param3);
 static BOOL ov78_021D2114(ChooseStarterMovement *param0, s32 param1);
 static void ov78_021D235C(ChooseStarterRotation *param0, fx32 param1, int param2);
@@ -911,13 +911,13 @@ static void Draw3DGraphicsWithLightAndColor(ChooseStarterApp *app)
     }
 }
 
-static BOOL IsSelectionMade(ChooseStarterApp *param0, int param1)
+static BOOL IsSelectionMade(ChooseStarterApp *app, int param1)
 {
-    if (param0->unk_08 == 1) {
-        return 0;
+    if (app->unk_08 == TRUE) {
+        return FALSE;
     }
 
-    switch (ov78_021D1CA4(param0)) {
+    switch (GetChoiceStep(app)) {
     case 0:
         break;
     case 1:
@@ -925,10 +925,10 @@ static BOOL IsSelectionMade(ChooseStarterApp *param0, int param1)
     case 2:
         break;
     case 3:
-        ov78_021D1C58(param0);
+        ChangePokeballChoice(app);
 
         if (gSystem.pressedKeys & PAD_BUTTON_A) {
-            ov78_021D1C98(param0, 1);
+            AdvanceChoiceStep(app, 1);
 
             Sound_PlayEffect(SEQ_SE_CONFIRM);
         }
@@ -936,47 +936,47 @@ static BOOL IsSelectionMade(ChooseStarterApp *param0, int param1)
     case 4:
         break;
     case 5:
-        return 1;
+        return TRUE;
     default:
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static void UpdateGraphics(ChooseStarterApp *param0, enum HeapID heapID)
+static void UpdateGraphics(ChooseStarterApp *app, enum HeapID heapID)
 {
-    switch (ov78_021D1CA4(param0)) {
+    switch (GetChoiceStep(app)) {
     case 0:
 
-        param0->unk_08 = 1;
-        param0->unk_0C = 36;
-        ov78_021D1C98(param0, 1);
+        app->unk_08 = 1;
+        app->unk_0C = 36;
+        AdvanceChoiceStep(app, 1);
         G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG3, GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_OBJ, 10, 16 - 10);
         break;
     case 1:
-        param0->unk_0C--;
+        app->unk_0C--;
 
-        if (param0->unk_0C < 0) {
-            ov78_021D1C98(param0, 1);
+        if (app->unk_0C < 0) {
+            AdvanceChoiceStep(app, 1);
             Sound_PlayEffect(SEQ_SE_DP_BAG_030);
         }
         break;
     case 2:
-        if (Advance3DGraphicsAnimationIfNotLastFrame(&param0->starter3DGraphics[0])) {
-            Show3DGraphics(&param0->starter3DGraphics[0], FALSE);
-            Show3DGraphics(&param0->starter3DGraphics[1], TRUE);
-            Show3DGraphics(&param0->starter3DGraphics[2], TRUE);
-            Show3DGraphics(&param0->starter3DGraphics[3], TRUE);
-            Show3DGraphics(&param0->starter3DGraphics[4], TRUE);
-            ov78_021D1C98(param0, 1);
+        if (Advance3DGraphicsAnimationIfNotLastFrame(&app->starter3DGraphics[0])) {
+            Show3DGraphics(&app->starter3DGraphics[0], FALSE);
+            Show3DGraphics(&app->starter3DGraphics[1], TRUE);
+            Show3DGraphics(&app->starter3DGraphics[2], TRUE);
+            Show3DGraphics(&app->starter3DGraphics[3], TRUE);
+            Show3DGraphics(&app->starter3DGraphics[4], TRUE);
+            AdvanceChoiceStep(app, 1);
         }
         break;
     case 3:
-        ov78_021D1CA8(param0, heapID);
+        ov78_021D1CA8(app, heapID);
         break;
     case 4:
-        ov78_021D1E44(param0, heapID);
+        ov78_021D1E44(app, heapID);
         break;
     case 5:
         G2_BlendNone();
@@ -1095,32 +1095,32 @@ static void SetSelectionMatrixObjects(ChooseStarterApp *param0)
     }
 }
 
-static void ov78_021D1C58(ChooseStarterApp *param0)
+static void ChangePokeballChoice(ChooseStarterApp *app)
 {
     if (gSystem.pressedKeys & PAD_KEY_LEFT) {
-        if (param0->cursorPosition - 1 >= 0) {
-            param0->cursorPosition -= 1;
+        if (app->cursorPosition - 1 >= 0) {
+            app->cursorPosition -= 1;
             Sound_PlayEffect(SEQ_SE_CONFIRM);
         }
     }
 
     if (gSystem.pressedKeys & PAD_KEY_RIGHT) {
-        if (param0->cursorPosition + 1 < 3) {
-            param0->cursorPosition += 1;
+        if (app->cursorPosition + 1 < 3) {
+            app->cursorPosition += 1;
             Sound_PlayEffect(SEQ_SE_CONFIRM);
         }
     }
 }
 
-static void ov78_021D1C98(ChooseStarterApp *param0, int param1)
+static void AdvanceChoiceStep(ChooseStarterApp *app, int advanceAmount)
 {
-    param0->unk_00 += param1;
-    param0->unk_04 = 0;
+    app->choiceStep += advanceAmount;
+    app->unk_04 = 0;
 }
 
-static int ov78_021D1CA4(ChooseStarterApp *param0)
+static int GetChoiceStep(ChooseStarterApp *app)
 {
-    return param0->unk_00;
+    return app->choiceStep;
 }
 
 static void ov78_021D1CA8(ChooseStarterApp *param0, enum HeapID heapID)
@@ -1229,7 +1229,7 @@ static void ov78_021D1E44(ChooseStarterApp *param0, enum HeapID heapID)
         case 0xffffffff:
             break;
         case 0:
-            ov78_021D1C98(param0, 1);
+            AdvanceChoiceStep(param0, 1);
             break;
         case 0xfffffffe:
             param0->unk_04++;
@@ -1239,7 +1239,7 @@ static void ov78_021D1E44(ChooseStarterApp *param0, enum HeapID heapID)
         break;
     case 4:
         if (ov78_021D26A4(param0)) {
-            ov78_021D1C98(param0, -1);
+            AdvanceChoiceStep(param0, -1);
             param0->unk_04 = 7;
             ov78_021D2508(&param0->previewWindow, 0);
             PokemonSprite_SetAttribute(param0->sprites[param0->cursorPosition], MON_SPRITE_HIDE, TRUE);
