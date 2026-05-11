@@ -1,6 +1,7 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/common_strings.h"
 #include "generated/trainer_message_types.h"
+#include "constants/approach_type.h"
 
 
     ScriptEntry Battles_Trainer
@@ -1052,9 +1053,9 @@ Battles_Movement_RevealTrainer:
 Battles_ApproachingTrainer:
     LockAll
     GetApproachingTrainerType VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, Battles_ApproachingTrainerSingles
-    GoToIfEq VAR_RESULT, 1, Battles_ApproachingTrainerDoubles
-    GoToIfEq VAR_RESULT, 2, Battles_ApproachingTrainerVS2
+    GoToIfEq VAR_RESULT, APPROACH_TYPE_SINGLES, Battles_ApproachingTrainerSingles
+    GoToIfEq VAR_RESULT, APPROACH_TYPE_DOUBLES, Battles_ApproachingTrainerDoubles
+    GoToIfEq VAR_RESULT, APPROACH_TYPE_VS2, Battles_ApproachingTrainerVS2
     End
 
 Battles_ApproachingTrainerSingles:

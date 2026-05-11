@@ -1,4 +1,4 @@
-#include "trainer_see.h"
+#include "trainer_encounter.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -386,18 +386,18 @@ BOOL FieldSystem_IsTrainerDefeated(FieldSystem *fieldSystem, MapObject *mapObj)
     return FALSE;
 }
 
-SysTask *TrainerSee_StartApproachingTrainerTask(FieldSystem *fieldSystem, MapObject *mapObj, PlayerAvatar *playerAvatar, int direction, int sightRange, int unused, int approachType, int approachNum)
+SysTask *TrainerEncounter_StartApproachingTrainerTask(FieldSystem *fieldSystem, MapObject *mapObj, PlayerAvatar *playerAvatar, int direction, int sightRange, int unused, int approachType, int approachNum)
 {
     return StartApproachingTrainerTask(fieldSystem, mapObj, playerAvatar, direction, sightRange, unused, approachType, approachNum);
 }
 
-BOOL TrainerSee_IsApproachingTrainerTaskDone(SysTask *task)
+BOOL TrainerEncounter_IsApproachingTrainerTaskDone(SysTask *task)
 {
     GF_ASSERT(task != NULL);
     return IsApproachingTrainerTaskDone(task);
 }
 
-void TrainerSee_FreeApproachingTrainerTask(SysTask *task)
+void TrainerEncounter_FreeApproachingTrainerTask(SysTask *task)
 {
     FreeApproachingTrainerTask(task);
 }
@@ -469,7 +469,7 @@ enum ApproachingTrainerTaskState {
     STATE_DONE,
 };
 
-static int ApproachTrainerTask_UnpauseMovement(ApproachingTrainerData *data)
+static int ApproachingTrainerTask_UnpauseMovement(ApproachingTrainerData *data)
 {
     MapObject *mapObj = data->mapObj;
 
@@ -481,7 +481,7 @@ static int ApproachTrainerTask_UnpauseMovement(ApproachingTrainerData *data)
     return 1;
 }
 
-static int ApproachTrainerTask_TryFaceDirection(ApproachingTrainerData *data)
+static int ApproachingTrainerTask_TryFaceDirection(ApproachingTrainerData *data)
 {
     MapObject *mapObj = data->mapObj;
 
@@ -496,7 +496,7 @@ static int ApproachTrainerTask_TryFaceDirection(ApproachingTrainerData *data)
     return 1;
 }
 
-static int ApproachTrainerTask_CheckRevealOrFaceDirection(ApproachingTrainerData *data)
+static int ApproachingTrainerTask_CheckRevealOrFaceDirection(ApproachingTrainerData *data)
 {
     MapObject *mapObj = Player_MapObject(data->playerAvatar);
 
@@ -519,7 +519,7 @@ static int ApproachTrainerTask_CheckRevealOrFaceDirection(ApproachingTrainerData
     return 1;
 }
 
-static int ApproachTrainerTask_FaceDirection(ApproachingTrainerData *data)
+static int ApproachingTrainerTask_FaceDirection(ApproachingTrainerData *data)
 {
     int movementAction;
 
@@ -536,7 +536,7 @@ static int ApproachTrainerTask_FaceDirection(ApproachingTrainerData *data)
     return 0;
 }
 
-static int ApproachTrainerTask_WaitFaceDirection(ApproachingTrainerData *data)
+static int ApproachingTrainerTask_WaitFaceDirection(ApproachingTrainerData *data)
 {
     if (LocalMapObj_CheckAnimationFinished(data->mapObj) == FALSE) {
         return 0;
@@ -546,7 +546,7 @@ static int ApproachTrainerTask_WaitFaceDirection(ApproachingTrainerData *data)
     return 1;
 }
 
-static int ApproachTrainerTask_Unk_05(ApproachingTrainerData *data)
+static int ApproachingTrainerTask_Unk_05(ApproachingTrainerData *data)
 {
     data->animMan = ov5_021F5D8C(data->mapObj, 0, 0, 0);
     data->state = STATE_UNK_06;
@@ -554,7 +554,7 @@ static int ApproachTrainerTask_Unk_05(ApproachingTrainerData *data)
     return 0;
 }
 
-static int ApproachTrainerTask_Unk_06(ApproachingTrainerData *data)
+static int ApproachingTrainerTask_Unk_06(ApproachingTrainerData *data)
 {
     if (ov5_021F5C4C(data->animMan) == 1) {
         OverworldAnimManager_Finish(data->animMan);
@@ -564,7 +564,7 @@ static int ApproachTrainerTask_Unk_06(ApproachingTrainerData *data)
     return 0;
 }
 
-static int ApproachTrainerTask_RevealTrainer(ApproachingTrainerData *data)
+static int ApproachingTrainerTask_RevealTrainer(ApproachingTrainerData *data)
 {
     LocalMapObj_SetAnimationCode(data->mapObj, MOVEMENT_ACTION_REVEAL_TRAINER);
     data->state = STATE_WAIT_REVEAL_TRAINER;
@@ -572,7 +572,7 @@ static int ApproachTrainerTask_RevealTrainer(ApproachingTrainerData *data)
     return 0;
 }
 
-static int ApproachTrainerTask_WaitRevealTrainer(ApproachingTrainerData *data)
+static int ApproachingTrainerTask_WaitRevealTrainer(ApproachingTrainerData *data)
 {
     if (LocalMapObj_CheckAnimationFinished(data->mapObj) == TRUE) {
         data->state = STATE_DELAY_CHECK_NEXT_TO_PLAYER;
@@ -581,7 +581,7 @@ static int ApproachTrainerTask_WaitRevealTrainer(ApproachingTrainerData *data)
     return 0;
 }
 
-static int ApproachTrainerTask_DelayCheckNextToPlayer(ApproachingTrainerData *data)
+static int ApproachingTrainerTask_DelayCheckNextToPlayer(ApproachingTrainerData *data)
 {
     data->delay++;
 
@@ -593,7 +593,7 @@ static int ApproachTrainerTask_DelayCheckNextToPlayer(ApproachingTrainerData *da
     return 0;
 }
 
-static int ApproachTrainerTask_CheckNextToPlayer(ApproachingTrainerData *data)
+static int ApproachingTrainerTask_CheckNextToPlayer(ApproachingTrainerData *data)
 {
     if (data->sightRange <= 1) {
         data->state = STATE_DELAY_NEXT_TO_PLAYER;
@@ -604,7 +604,7 @@ static int ApproachTrainerTask_CheckNextToPlayer(ApproachingTrainerData *data)
     return 1;
 }
 
-static int ApproachTrainerTask_StepTowardsPlayer(ApproachingTrainerData *data)
+static int ApproachingTrainerTask_StepTowardsPlayer(ApproachingTrainerData *data)
 {
     int movementAction;
 
@@ -617,7 +617,7 @@ static int ApproachTrainerTask_StepTowardsPlayer(ApproachingTrainerData *data)
     return 0;
 }
 
-static int ApproachTrainerTask_WaitStepTowardsPlayer(ApproachingTrainerData *data)
+static int ApproachingTrainerTask_WaitStepTowardsPlayer(ApproachingTrainerData *data)
 {
     if (LocalMapObj_CheckAnimationFinished(data->mapObj) == FALSE) {
         return 0;
@@ -629,7 +629,7 @@ static int ApproachTrainerTask_WaitStepTowardsPlayer(ApproachingTrainerData *dat
     return 1;
 }
 
-static int ApproachTrainerTask_DelayNextToPlayer(ApproachingTrainerData *data)
+static int ApproachingTrainerTask_DelayNextToPlayer(ApproachingTrainerData *data)
 {
     data->delay++;
 
@@ -643,7 +643,7 @@ static int ApproachTrainerTask_DelayNextToPlayer(ApproachingTrainerData *data)
     return 1;
 }
 
-static int ApproachTrainerTask_TryPlayerFaceTrainer(ApproachingTrainerData *data)
+static int ApproachingTrainerTask_TryPlayerFaceTrainer(ApproachingTrainerData *data)
 {
     MapObject *mapObj = Player_MapObject(data->playerAvatar);
     int movementAction, dir = Direction_GetBetweenCoords(MapObject_GetX(mapObj), MapObject_GetZ(mapObj), MapObject_GetX(data->mapObj), MapObject_GetZ(data->mapObj));
@@ -662,7 +662,7 @@ static int ApproachTrainerTask_TryPlayerFaceTrainer(ApproachingTrainerData *data
     return 0;
 }
 
-static int ApproachTrainerTask_WaitPlayerFaceTrainer(ApproachingTrainerData *data)
+static int ApproachingTrainerTask_WaitPlayerFaceTrainer(ApproachingTrainerData *data)
 {
     MapObject *mapObj = Player_MapObject(data->playerAvatar);
 
@@ -676,7 +676,7 @@ static int ApproachTrainerTask_WaitPlayerFaceTrainer(ApproachingTrainerData *dat
     return 1;
 }
 
-static int ApproachTrainerTask_SwitchMovementTypeNone(ApproachingTrainerData *data)
+static int ApproachingTrainerTask_SwitchMovementTypeNone(ApproachingTrainerData *data)
 {
     sub_020656AC(data->mapObj);
 
@@ -689,29 +689,29 @@ static int ApproachTrainerTask_SwitchMovementTypeNone(ApproachingTrainerData *da
     return 1;
 }
 
-static int ApproachTrainerTask_Done(ApproachingTrainerData *data)
+static int ApproachingTrainerTask_Done(ApproachingTrainerData *data)
 {
     data->done = TRUE;
     return 0;
 }
 
 static int (*const sApproachingTrainerTask[])(ApproachingTrainerData *) = {
-    [STATE_UNPAUSE_MOVEMENT] = ApproachTrainerTask_UnpauseMovement,
-    [STATE_TRY_FACE_DIRECTION] = ApproachTrainerTask_TryFaceDirection,
-    [STATE_CHECK_REVEAL_OR_FACE_DIRECTION] = ApproachTrainerTask_CheckRevealOrFaceDirection,
-    [STATE_FACE_DIRECTION] = ApproachTrainerTask_FaceDirection,
-    [STATE_WAIT_FACE_DIRECTION] = ApproachTrainerTask_WaitFaceDirection,
-    [STATE_UNK_05] = ApproachTrainerTask_Unk_05,
-    [STATE_UNK_06] = ApproachTrainerTask_Unk_06,
-    [STATE_REVEAL_TRAINER] = ApproachTrainerTask_RevealTrainer,
-    [STATE_WAIT_REVEAL_TRAINER] = ApproachTrainerTask_WaitRevealTrainer,
-    [STATE_DELAY_CHECK_NEXT_TO_PLAYER] = ApproachTrainerTask_DelayCheckNextToPlayer,
-    [STATE_CHECK_NEXT_TO_PLAYER] = ApproachTrainerTask_CheckNextToPlayer,
-    [STATE_STEP_TOWARDS_PLAYER] = ApproachTrainerTask_StepTowardsPlayer,
-    [STATE_WAIT_STEP_TOWARDS_PLAYER] = ApproachTrainerTask_WaitStepTowardsPlayer,
-    [STATE_DELAY_NEXT_TO_PLAYER] = ApproachTrainerTask_DelayNextToPlayer,
-    [STATE_TRY_PLAYER_FACE_TRAINER] = ApproachTrainerTask_TryPlayerFaceTrainer,
-    [STATE_WAIT_PLAYER_FACE_TRAINER] = ApproachTrainerTask_WaitPlayerFaceTrainer,
-    [STATE_SWITCH_MOVEMENT_TYPE_NONE] = ApproachTrainerTask_SwitchMovementTypeNone,
-    [STATE_DONE] = ApproachTrainerTask_Done
+    [STATE_UNPAUSE_MOVEMENT] = ApproachingTrainerTask_UnpauseMovement,
+    [STATE_TRY_FACE_DIRECTION] = ApproachingTrainerTask_TryFaceDirection,
+    [STATE_CHECK_REVEAL_OR_FACE_DIRECTION] = ApproachingTrainerTask_CheckRevealOrFaceDirection,
+    [STATE_FACE_DIRECTION] = ApproachingTrainerTask_FaceDirection,
+    [STATE_WAIT_FACE_DIRECTION] = ApproachingTrainerTask_WaitFaceDirection,
+    [STATE_UNK_05] = ApproachingTrainerTask_Unk_05,
+    [STATE_UNK_06] = ApproachingTrainerTask_Unk_06,
+    [STATE_REVEAL_TRAINER] = ApproachingTrainerTask_RevealTrainer,
+    [STATE_WAIT_REVEAL_TRAINER] = ApproachingTrainerTask_WaitRevealTrainer,
+    [STATE_DELAY_CHECK_NEXT_TO_PLAYER] = ApproachingTrainerTask_DelayCheckNextToPlayer,
+    [STATE_CHECK_NEXT_TO_PLAYER] = ApproachingTrainerTask_CheckNextToPlayer,
+    [STATE_STEP_TOWARDS_PLAYER] = ApproachingTrainerTask_StepTowardsPlayer,
+    [STATE_WAIT_STEP_TOWARDS_PLAYER] = ApproachingTrainerTask_WaitStepTowardsPlayer,
+    [STATE_DELAY_NEXT_TO_PLAYER] = ApproachingTrainerTask_DelayNextToPlayer,
+    [STATE_TRY_PLAYER_FACE_TRAINER] = ApproachingTrainerTask_TryPlayerFaceTrainer,
+    [STATE_WAIT_PLAYER_FACE_TRAINER] = ApproachingTrainerTask_WaitPlayerFaceTrainer,
+    [STATE_SWITCH_MOVEMENT_TYPE_NONE] = ApproachingTrainerTask_SwitchMovementTypeNone,
+    [STATE_DONE] = ApproachingTrainerTask_Done
 };

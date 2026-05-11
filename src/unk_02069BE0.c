@@ -18,7 +18,7 @@
 #include "overworld_anim_manager.h"
 #include "player_avatar.h"
 #include "terrain_collision_manager.h"
-#include "trainer_see.h"
+#include "trainer_encounter.h"
 #include "unk_020655F4.h"
 
 typedef struct {

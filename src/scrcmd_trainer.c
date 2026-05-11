@@ -21,7 +21,7 @@
 #include "sys_task_manager.h"
 #include "system_flags.h"
 #include "system_vars.h"
-#include "trainer_see.h"
+#include "trainer_encounter.h"
 #include "unk_020528D0.h"
 #include "unk_02054884.h"
 #include "vars_flags.h"
@@ -58,7 +58,7 @@ BOOL ScrCmd_StartApproachingTrainerTask(ScriptContext *ctx)
     }
 
     playerAvatar = fieldSystem->playerAvatar;
-    *task = TrainerSee_StartApproachingTrainerTask(fieldSystem, *mapObj, playerAvatar, *direction, *sightRange, 0, *approachType, approachNum);
+    *task = TrainerEncounter_StartApproachingTrainerTask(fieldSystem, *mapObj, playerAvatar, *direction, *sightRange, 0, *approachType, approachNum);
 
     return FALSE;
 }
@@ -82,8 +82,8 @@ BOOL ScrCmd_CheckIsApproachingTrainerTaskDone(ScriptContext *ctx)
         return TRUE;
     }
 
-    if (TrainerSee_IsApproachingTrainerTaskDone(*task) == TRUE) {
-        TrainerSee_FreeApproachingTrainerTask(*task);
+    if (TrainerEncounter_IsApproachingTrainerTaskDone(*task) == TRUE) {
+        TrainerEncounter_FreeApproachingTrainerTask(*task);
         *task = NULL;
         *destVar = TRUE;
     }
