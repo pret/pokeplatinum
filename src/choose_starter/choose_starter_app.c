@@ -253,13 +253,13 @@ static void MakeCursorOAM(ChooseStarterApp *app, ChooseStarterCursor *cursor, en
 static void DeleteCursorOAM(ChooseStarterApp *app, ChooseStarterCursor *cursor);
 static void AttachCursorCellActor(ChooseStarterApp *app, ChooseStarterCursor *cursor, enum HeapID heapID);
 static void DeleteCursorCellActor(ChooseStarterCursor *cursor);
-static void ov78_021D2430(ChooseStarterCursor *param0, BOOL param1);
-static void ov78_021D243C(ChooseStarterCursor *param0, int param1, int param2);
+static void ShowCursor(ChooseStarterCursor *cursor, BOOL show);
+static void SetCursorPosition(ChooseStarterCursor *cursor, int x, int y);
 static void MakeSelectionMatrix(ChooseStarterApp *param0);
 static void SetSelectionMatrixObjects(ChooseStarterApp *param0);
 static void ov78_021D1CA8(ChooseStarterApp *param0, enum HeapID heapID);
 static void ov78_021D1DF0(ChooseStarterApp *app);
-static void ov78_021D1E28(ChooseStarterApp *param0);
+static void UpdateCursorPosition(ChooseStarterApp *app);
 static void ov78_021D1E44(ChooseStarterApp *param0, enum HeapID heapID);
 static void MakePokemonSprite(PokemonSprite **sprite, ChooseStarterApp *app, int species);
 static void Delete3DGraphic(ChooseStarter3DGraphics *starter3DGraphics, NNSFndAllocator *allocator);
@@ -1141,7 +1141,7 @@ static void ov78_021D1CA8(ChooseStarterApp *app, enum HeapID heapID)
         app->unk_0C--;
 
         if (app->unk_0C < 0) {
-            ov78_021D1E28(app);
+            UpdateCursorPosition(app);
             app->unk_04++;
         }
         break;
@@ -1166,13 +1166,13 @@ static void ov78_021D1CA8(ChooseStarterApp *app, enum HeapID heapID)
         }
         break;
     case 7:
-        ov78_021D2430(&app->cursor, 1);
+        ShowCursor(&app->cursor, TRUE);
         app->unk_08 = 0;
         app->unk_04++;
         break;
     case 8:
         ov78_021D1DF0(app);
-        ov78_021D1E28(app);
+        UpdateCursorPosition(app);
         break;
     }
 }
@@ -1188,9 +1188,9 @@ static void ov78_021D1DF0(ChooseStarterApp *app)
     }
 }
 
-static void ov78_021D1E28(ChooseStarterApp *param0)
+static void UpdateCursorPosition(ChooseStarterApp *app)
 {
-    ov78_021D243C(&param0->cursor, param0->unk_7C[param0->cursorPosition][0], param0->unk_7C[param0->cursorPosition][1]);
+    SetCursorPosition(&app->cursor, app->unk_7C[app->cursorPosition][0], app->unk_7C[app->cursorPosition][1]);
 }
 
 static void ov78_021D1E44(ChooseStarterApp *param0, enum HeapID heapID)
@@ -1199,8 +1199,8 @@ static void ov78_021D1E44(ChooseStarterApp *param0, enum HeapID heapID)
 
     switch (param0->unk_04) {
     case 0:
-        ov78_021D2430(&param0->cursor, 0);
-        ov78_021D1E28(param0);
+        ShowCursor(&param0->cursor, FALSE);
+        UpdateCursorPosition(param0);
         DeleteSubplaneWindow(param0);
         ov78_021D2618(param0);
         param0->unk_04++;
@@ -1485,15 +1485,15 @@ static void StopCursorMovement(ChooseStarterCursor *cursor)
     }
 }
 
-static void ov78_021D2430(ChooseStarterCursor *param0, BOOL param1)
+static void ShowCursor(ChooseStarterCursor *cursor, BOOL show)
 {
-    Sprite_SetDrawFlag(param0->sprite, param1);
+    Sprite_SetDrawFlag(cursor->sprite, show);
 }
 
-static void ov78_021D243C(ChooseStarterCursor *param0, int param1, int param2)
+static void SetCursorPosition(ChooseStarterCursor *cursor, int x, int y)
 {
-    param0->position.x = param1 << FX32_SHIFT;
-    param0->position.y = param2 << FX32_SHIFT;
+    cursor->position.x = x << FX32_SHIFT;
+    cursor->position.y = y << FX32_SHIFT;
 }
 
 static void MakePreviewWindow(StarterPreviewWindow *param0, ChooseStarterApp *param1, int param2)
