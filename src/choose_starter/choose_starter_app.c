@@ -224,7 +224,7 @@ static void DeleteDrawing(void);
 static void SetupVRAMBank(void);
 static void SetupOAM(enum HeapID heapID);
 static void Setup3D(ChooseStarterApp *app);
-static void ov78_021D1218(void);
+static void ResetFrm(void);
 static void SetupBGs(BgConfig *bgConfig, enum HeapID heapID);
 static void DeleteBGs(BgConfig *bgConfig);
 static void MakeMessageWindow(ChooseStarterApp *app, enum HeapID heapID);
@@ -492,7 +492,7 @@ static void DeleteDrawing(void)
     CharTransfer_Free();
     PlttTransfer_Free();
 
-    ov78_021D1218();
+    ResetFrm();
 }
 
 static void SetupVRAMBank(void)
@@ -558,7 +558,7 @@ static void Setup3D(ChooseStarterApp *app)
     NNS_GfdInitFrmPlttVramManager(0x4000, TRUE);
 }
 
-static void ov78_021D1218(void)
+static void ResetFrm(void)
 {
     NNS_GfdResetFrmTexVramState();
     NNS_GfdResetFrmPlttVramState();
