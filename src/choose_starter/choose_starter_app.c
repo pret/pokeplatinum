@@ -110,7 +110,7 @@ typedef struct ChooseStarter3DGraphics {
     fx32 unk_70;
     BOOL unk_74;
     VecFx32 unk_78;
-    VecFx32 unk_84;
+    VecFx32 scale;
     u16 unk_90;
     u16 unk_92;
     u16 unk_94;
@@ -266,13 +266,13 @@ static void Delete3DGraphic(ChooseStarter3DGraphics *starter3DGraphics, NNSFndAl
 static void ov78_021D1708(ChooseStarter3DGraphics *param0);
 static void ov78_021D17A4(ChooseStarter3DGraphics *param0, BOOL param1);
 static void ov78_021D17A8(ChooseStarter3DGraphics *param0, fx32 param1, fx32 param2, fx32 param3);
-static void ov78_021D17B4(ChooseStarter3DGraphics *param0, fx32 param1, fx32 param2, fx32 param3);
+static void Set3DGraphicsScale(ChooseStarter3DGraphics *starter3DGraphics, fx32 x, fx32 y, fx32 z);
 static void ov78_021D17CC(ChooseStarter3DGraphics *param0, u16 param1, u16 param2, u16 param3);
 static BOOL ov78_021D17E4(ChooseStarter3DGraphics *param0);
 static void ov78_021D180C(ChooseStarter3DGraphics *param0);
 static void ov78_021D182C(ChooseStarter3DGraphics *param0, fx32 param1);
-static void ov78_021D1630(ChooseStarter3DGraphics *param0, int param1, enum HeapID heapID);
-static void ov78_021D1694(ChooseStarter3DGraphics *param0, int param1, enum HeapID heapID, NNSFndAllocator *param3);
+static void Load3DGraphicsModel(ChooseStarter3DGraphics *starter3DGraphics, int narcMemberIdx, enum HeapID heapID);
+static void Load3DGraphicsAnimation(ChooseStarter3DGraphics *starter3DGraphics, int narcMemberIdx, enum HeapID heapID, NNSFndAllocator *allocator);
 static void MakePreviewWindow(StarterPreviewWindow *param0, ChooseStarterApp *param1, int param2);
 static void DeletePreviewWindow(StarterPreviewWindow *previewWindow);
 static void ov78_021D2508(StarterPreviewWindow *param0, BOOL param1);
@@ -743,44 +743,44 @@ static void DeleteCellActors(ChooseStarterApp *app)
     SpriteResourceCollection_Delete(app->spriteResourceCollection[SPRITE_RESOURCE_ANIM]);
 }
 
-static void ov78_021D15CC(ChooseStarter3DGraphics *param0, int param1, int param2, enum HeapID heapID, NNSFndAllocator *param4)
+static void Load3DGraphics(ChooseStarter3DGraphics *starter3DGraphics, int modelNarcMemberIdx, int animNarcMemberIdx, enum HeapID heapID, NNSFndAllocator *allocator)
 {
-    memset(param0, 0, sizeof(ChooseStarter3DGraphics));
+    memset(starter3DGraphics, 0, sizeof(ChooseStarter3DGraphics));
 
-    ov78_021D1630(param0, param1, heapID);
-    ov78_021D1694(param0, param2, heapID, param4);
-    ov78_021D17B4(param0, FX32_ONE, FX32_ONE, FX32_ONE);
+    Load3DGraphicsModel(starter3DGraphics, modelNarcMemberIdx, heapID);
+    Load3DGraphicsAnimation(starter3DGraphics, animNarcMemberIdx, heapID, allocator);
+    Set3DGraphicsScale(starter3DGraphics, FX32_ONE, FX32_ONE, FX32_ONE);
 }
 
-static void ov78_021D1604(ChooseStarter3DGraphics *param0, int param1, enum HeapID heapID)
+static void Load3DGraphicsWithoutAnimation(ChooseStarter3DGraphics *starter3DGraphics, int modelNarcMemberIdx, enum HeapID heapID)
 {
-    memset(param0, 0, sizeof(ChooseStarter3DGraphics));
+    memset(starter3DGraphics, 0, sizeof(ChooseStarter3DGraphics));
 
-    ov78_021D1630(param0, param1, heapID);
-    ov78_021D17B4(param0, FX32_ONE, FX32_ONE, FX32_ONE);
+    Load3DGraphicsModel(starter3DGraphics, modelNarcMemberIdx, heapID);
+    Set3DGraphicsScale(starter3DGraphics, FX32_ONE, FX32_ONE, FX32_ONE);
 }
 
-static void ov78_021D1630(ChooseStarter3DGraphics *param0, int param1, enum HeapID heapID)
+static void Load3DGraphicsModel(ChooseStarter3DGraphics *starter3DGraphics, int narcMemberIdx, enum HeapID heapID)
 {
-    param0->modelRes = LoadMemberFromNARC(NARC_INDEX_GRAPHIC__EV_POKESELECT, param1, 0, heapID, 0);
-    param0->modelSet = NNS_G3dGetMdlSet(param0->modelRes);
-    param0->model = NNS_G3dGetMdlByIdx(param0->modelSet, 0);
-    param0->texture = NNS_G3dGetTex(param0->modelRes);
+    starter3DGraphics->modelRes = LoadMemberFromNARC(NARC_INDEX_GRAPHIC__EV_POKESELECT, narcMemberIdx, FALSE, heapID, FALSE);
+    starter3DGraphics->modelSet = NNS_G3dGetMdlSet(starter3DGraphics->modelRes);
+    starter3DGraphics->model = NNS_G3dGetMdlByIdx(starter3DGraphics->modelSet, 0);
+    starter3DGraphics->texture = NNS_G3dGetTex(starter3DGraphics->modelRes);
 
-    Easy3D_UploadTextureToVRAM(param0->texture);
-    Easy3D_BindTextureToResource(param0->modelRes, param0->texture);
+    Easy3D_UploadTextureToVRAM(starter3DGraphics->texture);
+    Easy3D_BindTextureToResource(starter3DGraphics->modelRes, starter3DGraphics->texture);
 
-    NNS_G3dRenderObjInit(&param0->renderObj, param0->model);
+    NNS_G3dRenderObjInit(&starter3DGraphics->renderObj, starter3DGraphics->model);
 }
 
-static void ov78_021D1694(ChooseStarter3DGraphics *param0, int param1, enum HeapID heapID, NNSFndAllocator *param3)
+static void Load3DGraphicsAnimation(ChooseStarter3DGraphics *starter3DGraphics, int narcMemberIdx, enum HeapID heapID, NNSFndAllocator *allocator)
 {
-    param0->animationRes = LoadMemberFromNARC(NARC_INDEX_GRAPHIC__EV_POKESELECT, param1, 0, heapID, 0);
-    param0->animation = NNS_G3dGetAnmByIdx(param0->animationRes, 0);
-    param0->animationObj = NNS_G3dAllocAnmObj(param3, param0->animation, param0->model);
+    starter3DGraphics->animationRes = LoadMemberFromNARC(NARC_INDEX_GRAPHIC__EV_POKESELECT, narcMemberIdx, FALSE, heapID, FALSE);
+    starter3DGraphics->animation = NNS_G3dGetAnmByIdx(starter3DGraphics->animationRes, 0);
+    starter3DGraphics->animationObj = NNS_G3dAllocAnmObj(allocator, starter3DGraphics->animation, starter3DGraphics->model);
 
-    NNS_G3dAnmObjInit(param0->animationObj, param0->animation, param0->model, param0->texture);
-    NNS_G3dRenderObjAddAnmObj(&param0->renderObj, param0->animationObj);
+    NNS_G3dAnmObjInit(starter3DGraphics->animationObj, starter3DGraphics->animation, starter3DGraphics->model, starter3DGraphics->texture);
+    NNS_G3dRenderObjAddAnmObj(&starter3DGraphics->renderObj, starter3DGraphics->animationObj);
 }
 
 static void Delete3DGraphic(ChooseStarter3DGraphics *starter3DGraphic, NNSFndAllocator *allocator)
@@ -811,7 +811,7 @@ static void ov78_021D1708(ChooseStarter3DGraphics *param0)
     MTX_Concat33(&v1, &v0, &v0);
 
     if (param0->unk_74) {
-        Easy3D_DrawRenderObj(&param0->renderObj, &param0->unk_78, &v0, &param0->unk_84);
+        Easy3D_DrawRenderObj(&param0->renderObj, &param0->unk_78, &v0, &param0->scale);
     }
 }
 
@@ -827,11 +827,11 @@ static void ov78_021D17A8(ChooseStarter3DGraphics *param0, fx32 param1, fx32 par
     param0->unk_78.z = param3;
 }
 
-static void ov78_021D17B4(ChooseStarter3DGraphics *param0, fx32 param1, fx32 param2, fx32 param3)
+static void Set3DGraphicsScale(ChooseStarter3DGraphics *starter3DGraphics, fx32 x, fx32 y, fx32 z)
 {
-    param0->unk_84.x = param1;
-    param0->unk_84.y = param2;
-    param0->unk_84.z = param3;
+    starter3DGraphics->scale.x = x;
+    starter3DGraphics->scale.y = y;
+    starter3DGraphics->scale.z = z;
 }
 
 static void ov78_021D17CC(ChooseStarter3DGraphics *param0, u16 param1, u16 param2, u16 param3)
@@ -875,22 +875,22 @@ static void ov78_021D182C(ChooseStarter3DGraphics *param0, fx32 param1)
 
 static void Make3DGraphics(ChooseStarterApp *param0, enum HeapID heapID)
 {
-    ov78_021D15CC(&param0->starter3DGraphics[0], 1, 0, heapID, &param0->allocator);
+    Load3DGraphics(&param0->starter3DGraphics[0], 1, 0, heapID, &param0->allocator);
     ov78_021D17A4(&param0->starter3DGraphics[0], 1);
 
-    ov78_021D1604(&param0->starter3DGraphics[1], 8, heapID);
+    Load3DGraphicsWithoutAnimation(&param0->starter3DGraphics[1], 8, heapID);
     ov78_021D17A4(&param0->starter3DGraphics[1], 0);
 
     for (int i = 2; i <= 4; i++) {
-        ov78_021D15CC(&param0->starter3DGraphics[i], 3 + (i - 2) * 2, 2 + (i - 2) * 2, heapID, &param0->allocator);
+        Load3DGraphics(&param0->starter3DGraphics[i], 3 + (i - 2) * 2, 2 + (i - 2) * 2, heapID, &param0->allocator);
         ov78_021D17A4(&param0->starter3DGraphics[i], 0);
     }
 
-    ov78_021D1604(&param0->starter3DGraphics[5], 9, heapID);
+    Load3DGraphicsWithoutAnimation(&param0->starter3DGraphics[5], 9, heapID);
     ov78_021D17A4(&param0->starter3DGraphics[5], 1);
 
     ov78_021D17A8(&param0->starter3DGraphics[5], 0, -28 * FX32_ONE, 40 * FX32_ONE);
-    ov78_021D17B4(&param0->starter3DGraphics[5], FX32_CONST(3.50f), FX32_ONE, FX32_CONST(3.50f));
+    Set3DGraphicsScale(&param0->starter3DGraphics[5], FX32_CONST(3.50f), FX32_ONE, FX32_CONST(3.50f));
     ov78_021D17CC(&param0->starter3DGraphics[5], (0 * 0xffff) / 360, (180 * 0xffff) / 360, (0 * 0xffff) / 360);
 }
 
