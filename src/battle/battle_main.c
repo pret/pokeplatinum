@@ -7,6 +7,7 @@
 
 #include "constants/battle.h"
 #include "constants/battle/battle_controller.h"
+#include "constants/communication/comm_error.h"
 #include "constants/heap.h"
 #include "generated/game_records.h"
 #include "generated/trainer_classes.h"
@@ -1735,7 +1736,7 @@ static BOOL ov16_0223D354(ApplicationManager *appMan)
             v0->unk_1022++;
 
             if (v0->unk_1022 > (60 * 30)) {
-                Link_SetErrorState(1);
+                CommManager_SetCommError(COMM_ERROR_RESET_SAVEPOINT);
             }
         }
         break;
@@ -1913,7 +1914,7 @@ static BOOL ov16_0223D354(ApplicationManager *appMan)
             v0->unk_1022++;
 
             if (v0->unk_1022 > (60 * 30)) {
-                Link_SetErrorState(1);
+                CommManager_SetCommError(COMM_ERROR_RESET_SAVEPOINT);
             }
         }
         break;

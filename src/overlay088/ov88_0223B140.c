@@ -16,6 +16,7 @@
 #include "overlay088/struct_ov88_0223C370.h"
 #include "overlay088/struct_ov88_0223C8AC.h"
 
+#include "constants/communication/comm_error.h"
 #include "bag.h"
 #include "battle_frontier_stats.h"
 #include "bg_window.h"
@@ -2593,7 +2594,7 @@ static void ov88_0223E998(UnkStruct_02095E80 *param0)
         param0->unk_3708++;
 
         if (param0->unk_3708 > (30 * 60)) {
-            Link_SetErrorState(4);
+            CommManager_SetCommError(COMM_ERROR_4);
         }
     }
 }

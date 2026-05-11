@@ -462,7 +462,7 @@ BOOL FieldInput_Process_UnionRoom(const FieldInput *input, FieldSystem *fieldSys
                 sub_0205F5E4(fieldSystem->playerAvatar, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
             }
 
-            sub_02036B84();
+            CommManager_PauseUnionClient();
             ScriptManager_Set(fieldSystem, MapObject_GetScript(object), object);
 
             return TRUE;
@@ -478,7 +478,7 @@ BOOL FieldInput_Process_UnionRoom(const FieldInput *input, FieldSystem *fieldSys
         Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN);
         StartMenu_OpenUnionRoom(fieldSystem);
         sub_0205BEA8(4);
-        sub_02036BA0();
+        CommManager_PauseUnionServer();
         return TRUE;
     }
 

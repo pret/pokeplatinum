@@ -1165,12 +1165,12 @@ static BOOL ov65_02237464(u32 param0, u32 param1)
     if (v0 == 1) {
         switch (param1) {
         case 0:
-            sub_02038B00();
+            CommManager_SetState_WifiPoffin();
             break;
         case 1:
         case 2:
         case 3:
-            sub_02038B20();
+            CommManager_SetState_WifiClub();
             break;
         }
     }
@@ -2106,7 +2106,7 @@ static BOOL ov65_0223806C(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *p
 
     sub_02038378();
     ov65_022375CC(param0);
-    sub_02038B60();
+    CommManager_SetState_LoginWifi();
     CommMan_SetErrorHandling(0, 1);
 
     return 1;
@@ -2144,7 +2144,7 @@ static BOOL ov65_02238104(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *p
     }
 
     sub_02038378();
-    sub_02038B60();
+    CommManager_SetState_LoginWifi();
     ov65_022375CC(param0);
     param0->unk_00.unk_07 = 0;
     CommMan_SetErrorHandling(0, 1);
@@ -2304,7 +2304,7 @@ static BOOL ov65_02238314(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *p
     param0->unk_00.unk_05 = 7;
 
     sub_02038378();
-    sub_02038B60();
+    CommManager_SetState_LoginWifi();
 
     return 0;
 }
@@ -2511,7 +2511,7 @@ static BOOL ov65_022385AC(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *p
     }
 
     sub_02038378();
-    sub_02038B60();
+    CommManager_SetState_LoginWifi();
 
     param0->unk_00.unk_07 = 0;
 
@@ -2740,7 +2740,7 @@ static BOOL ov65_022388FC(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *p
 static BOOL ov65_02238910(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *param1, u32 heapID)
 {
     sub_02038378();
-    sub_02038B60();
+    CommManager_SetState_LoginWifi();
 
     param0->unk_00.unk_07 = 0;
     CommMan_SetErrorHandling(0, 1);

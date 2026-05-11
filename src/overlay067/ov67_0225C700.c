@@ -228,7 +228,7 @@ int ov67_0225C820(ApplicationManager *appMan, int *param1)
         UnkStruct_ov66_0222E71C *v3;
 
         v3 = ov66_0222E3BC(v1->unk_04);
-        sub_0203878C(v0->saveData, v3);
+        CommManager_LoginWifiLobby(v0->saveData, v3);
     }
 
         ov67_0225D210(&v0->unk_70, 23);
@@ -236,18 +236,18 @@ int ov67_0225C820(ApplicationManager *appMan, int *param1)
         (*param1)++;
         break;
     case 5:
-        if (sub_020383E8() || sub_0203881C()) {
+        if (sub_020383E8() || CommManager_IsWifiLobbyError()) {
             ov67_0225D310(&v0->unk_70);
             (*param1) = 9;
         }
 
-        if (sub_02038804() == 1) {
+        if (CommManager_GetWifiLobbyLoginSuccess() == 1) {
             ov66_0222F16C(v1->unk_04);
             (*param1)++;
         }
         break;
     case 6:
-        if (sub_020383E8() || sub_0203881C()) {
+        if (sub_020383E8() || CommManager_IsWifiLobbyError()) {
             ov67_0225D310(&v0->unk_70);
             (*param1) = 9;
         }
@@ -324,7 +324,7 @@ int ov67_0225C820(ApplicationManager *appMan, int *param1)
 
         switch (v11) {
         case 0:
-            sub_020387E8();
+            CommManager_LogoutWifiLobby();
             (*param1) = 13;
             break;
         case 0xfffffffe:
@@ -341,7 +341,7 @@ int ov67_0225C820(ApplicationManager *appMan, int *param1)
         ov67_0225D294(&v0->unk_40);
         ov67_0225D294(&v0->unk_70);
         ov67_0225D294(&v0->unk_A0);
-        sub_020387E8();
+        CommManager_LogoutWifiLobby();
         (*param1)++;
         break;
     case 15:
@@ -437,7 +437,7 @@ int ov67_0225CC6C(ApplicationManager *appMan, int *param1)
     case 2:
         ov67_0225D210(&v0->unk_40, 26);
 
-        if (sub_020383E8() || sub_0203881C()) {
+        if (sub_020383E8() || CommManager_IsWifiLobbyError()) {
             (*param1) = 5;
             ov67_0225D2EC(&v0->unk_40);
         } else {
@@ -461,7 +461,7 @@ int ov67_0225CC6C(ApplicationManager *appMan, int *param1)
         }
         break;
     case 5:
-        sub_020387E8();
+        CommManager_LogoutWifiLobby();
         (*param1) = 6;
         break;
     case 6:

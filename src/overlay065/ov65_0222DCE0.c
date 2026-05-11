@@ -663,17 +663,17 @@ static int ov65_0222DF88(UnkStruct_ov65_0222EBE0 *param0)
 static void ov65_0222DFD4(int param0)
 {
     if ((param0 == 19) || (18 == param0)) {
-        sub_02038B00();
+        CommManager_SetState_WifiPoffin();
     } else if (ov65_0222DD64(param0)) {
-        sub_02038B20();
+        CommManager_SetState_WifiClub();
     } else if (param0 == 16) {
-        sub_02038B60();
+        CommManager_SetState_LoginWifi();
     } else if ((param0 == 21) || (param0 == 20)) {
         sub_0203632C(0);
-        sub_02038EA4();
+        CommManager_SetState_FrontierWifi();
     } else {
         sub_0203632C(1);
-        sub_02038B84();
+        CommManager_SetState_SingleBattleWifi();
     }
 }
 
@@ -2368,7 +2368,7 @@ static int ov65_0222FFAC(UnkStruct_ov65_0222EBE0 *param0, int param1)
     ov65_0222FEEC(param0);
     ov65_02232E58(param0, 16);
 
-    sub_02038B60();
+    CommManager_SetState_LoginWifi();
     param0->unk_3D0 = -1;
 
     NARC_dtor(v3);
@@ -2892,7 +2892,7 @@ static int ov65_02230AF8(UnkStruct_ov65_0222EBE0 *param0, int param1)
     if ((gSystem.pressedKeys & (PAD_BUTTON_B | PAD_BUTTON_A)) || (param0->unk_3BC == 0)) {
         ov65_02232DFC(param0);
         sub_02038378();
-        sub_02038B60();
+        CommManager_SetState_LoginWifi();
 
         if (ov65_02235194(&param0->unk_3EC) == 0) {
             param0->unk_3BC = 20;
@@ -2946,7 +2946,7 @@ static int ov65_02230C04(UnkStruct_ov65_0222EBE0 *param0, int param1)
         ov65_02232DFC(param0);
         ov65_02232E58(param0, 16);
 
-        sub_02038B60();
+        CommManager_SetState_LoginWifi();
 
         if (ov65_02235194(&param0->unk_3EC) == 0) {
             param0->unk_3A8 = ov65_0222EBB8();
@@ -3038,7 +3038,7 @@ static int ov65_02230D6C(UnkStruct_ov65_0222EBE0 *param0, int param1)
         return param1;
     } else if (v1 == 0) {
         ov65_02232E58(param0, 16);
-        sub_02038B60();
+        CommManager_SetState_LoginWifi();
         ov65_0223503C(param0);
     } else {
         ov65_0223503C(param0);
@@ -3468,7 +3468,7 @@ static int ov65_02231440(UnkStruct_ov65_0222EBE0 *param0, int param1)
             v1 = 0;
         } else {
             ov65_02234FCC(param0, -1, v0);
-            sub_02038B84();
+            CommManager_SetState_SingleBattleWifi();
         }
 
         ov65_0223500C(param0, v1);

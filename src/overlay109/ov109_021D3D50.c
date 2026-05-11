@@ -205,8 +205,8 @@ int ov109_021D3D50(ApplicationManager *appMan, int *param1)
         ov109_021D45F4(v0);
         Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_52, SEQ_NONE, 0);
         sub_0209BE50(v2->unk_34);
-        sub_020378B8();
-        sub_02037B58(3);
+        CommManager_SetState_SpinTrade();
+        CommManager_SetMaxNumConnections(3);
 
         if (CommSys_CurNetId() == 0) {
             sub_0205BEA8(13);
@@ -1682,7 +1682,7 @@ static void ov109_021D5858(UnkStruct_ov109_021D5140 *param0, int param1)
 {
     if (CommSys_CurNetId() == 0) {
         if (param1 == -1) {
-            sub_02037B58(1);
+            CommManager_SetMaxNumConnections(1);
         } else {
             int v0 = CommSys_ConnectedCount() + param1;
 
@@ -1690,7 +1690,7 @@ static void ov109_021D5858(UnkStruct_ov109_021D5140 *param0, int param1)
                 v0 = 5;
             }
 
-            sub_02037B58(v0);
+            CommManager_SetMaxNumConnections(v0);
         }
 
         if (param1 == -1) {

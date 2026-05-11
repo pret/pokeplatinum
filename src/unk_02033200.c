@@ -121,8 +121,8 @@ static BOOL sub_020332E4(const u8 *param0, const u8 *param1, int param2)
 static void sub_0203330C(WMBssDesc *param0)
 {
     UnkStruct_0203330C *v1;
-    int v2 = sub_0203895C();
-    int v3 = sub_02038974();
+    int v2 = CommManager_GetCommType();
+    int v3 = CommManager_GetContestRegulation();
 
     v1 = (UnkStruct_0203330C *)param0->gameInfo.userGameInfo;
 
@@ -537,7 +537,7 @@ BOOL sub_020339E8(u16 param0)
     }
 
     if (WirelessManager_GetState() == 1) {
-        int v0 = sub_0203895C();
+        int v0 = CommManager_GetCommType();
         sCommServerClient->unk_1514 = sCommServerClient->unk_188[param0].channel;
 
         if (sub_020326C4(v0)) {
@@ -573,7 +573,7 @@ void sub_02033A5C(void)
 
 static void sub_02033AA8(void)
 {
-    int v4 = sub_0203895C();
+    int v4 = CommManager_GetCommType();
 
     TrainerInfo *v1 = sub_02033F9C();
 
@@ -588,8 +588,8 @@ static void sub_02033AA8(void)
         MI_CpuCopy8(sCommServerClient->unk_1500, v2->unk_30, BattleRegulation_Size());
 
         v2->unk_00 = TrainerInfo_ID(v1);
-        v2->unk_04 = sub_0203895C();
-        v2->unk_05 = sub_02038974();
+        v2->unk_04 = CommManager_GetCommType();
+        v2->unk_05 = CommManager_GetContestRegulation();
 
         MI_CpuCopy8(&sCommServerClient->unk_14EC, &v2->unk_08, sizeof(Sentence));
 
@@ -598,8 +598,8 @@ static void sub_02033AA8(void)
         UnkStruct_02034168 *v3 = (UnkStruct_02034168 *)sCommServerClient->unk_150C;
 
         v3->unk_00 = TrainerInfo_ID(v1);
-        v3->unk_04 = sub_0203895C();
-        v3->unk_05 = sub_02038974();
+        v3->unk_04 = CommManager_GetCommType();
+        v3->unk_05 = CommManager_GetContestRegulation();
 
         MI_CpuCopy8(sCommServerClient->unk_00, v3->unk_08, 84);
     }
@@ -701,7 +701,7 @@ static void sub_02033BDC(u16 param0)
         }
 
         sub_02033AA8();
-        (void)WirelessManager_ConnectServer(0, Unk_021C07B8, v2, CommLocal_MaxMachines(sub_0203895C()), sub_02033F0C(sub_0203895C()), sCommServerClient->unk_1519_5);
+        (void)WirelessManager_ConnectServer(0, Unk_021C07B8, v2, CommLocal_MaxMachines(CommManager_GetCommType()), sub_02033F0C(CommManager_GetCommType()), sCommServerClient->unk_1519_5);
         sCommServerClient->unk_1514 = v2;
     } break;
     default:

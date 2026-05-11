@@ -383,7 +383,7 @@ void VoiceChat_Start(enum HeapID heapID, int codec, int numConferenceSessions)
 
     VCTConfig voiceChatConfig;
 
-    if (!sub_0203272C(sub_0203895C())) {
+    if (!sub_0203272C(CommManager_GetCommType())) {
         voiceChatConfig.mode = VCT_MODE_PHONE;
     } else {
         voiceChatConfig.mode = VCT_MODE_CONFERENCE;

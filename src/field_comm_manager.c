@@ -261,13 +261,13 @@ static void Task_ClientWait(void)
 
 static void Task_ConnectBattleClient(void)
 {
-    sub_02036948(sFieldCommMan->unk_3E);
+    CommManager_ConnectBattleClient(sFieldCommMan->unk_3E);
     FieldCommMan_SetTask(sub_02059964, 0);
 }
 
 static void sub_02059964(void)
 {
-    if (!sub_0203699C()) {
+    if (!CommManager_IsWaitingBattle()) {
         return;
     }
 
@@ -513,7 +513,7 @@ static void sub_02059D58(void)
 
     v1 = (0x4 | 0x1);
 
-    switch (sub_0203895C()) {
+    switch (CommManager_GetCommType()) {
     case 4:
     case 5:
         v1 = (((0x4 | 0x1) | 0x2) | 0x8);
@@ -589,7 +589,7 @@ static void sub_02059E50(void)
 
 static void sub_02059E80(void)
 {
-    sub_02036964();
+    CommManager_ResetBattleClient();
     FieldCommMan_SetTask(sub_02059E94, 2);
 }
 
@@ -710,7 +710,7 @@ static void sub_0205A058(void)
         return;
     }
 
-    sub_02036978();
+    CommManager_EndBattle();
     FieldCommMan_SetTask(FieldCommMan_Delete, 0);
 }
 

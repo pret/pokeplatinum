@@ -123,7 +123,7 @@ BOOL ov70_02265F38(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DEE8 *par
             break;
         }
 
-        if (sub_020388AC() == 0) {
+        if (CommManager_GetWifiP2PConnectState() == 0) {
             v1->unk_00 = 4;
             ov70_02262E88(param0, 23);
             break;
@@ -269,7 +269,7 @@ BOOL ov70_02265F38(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DEE8 *par
             ov70_0225DFBC(param1);
         }
 
-        sub_0203883C(v1->unk_01);
+        CommManager_StartWifiP2P(v1->unk_01);
 
         if (ov66_02233374() == 1) {
             ov66_0222EA10(v2, v1->unk_02, 1, param2, 0, 0, 0, 0);
@@ -284,7 +284,7 @@ BOOL ov70_02265F38(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DEE8 *par
         u32 v6;
         u32 v7;
 
-        v6 = sub_020388AC();
+        v6 = CommManager_GetWifiP2PConnectState();
         v7 = ov66_02233224(v1->unk_01);
         v0->unk_00 = ov66_022332F8(v1->unk_01);
 
@@ -401,7 +401,7 @@ BOOL ov70_02265F38(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DEE8 *par
         ov70_02266CCC(&v0->unk_3C, 0);
         ov70_02266CF0(&v0->unk_3C, param1, 0);
 
-        v12 = sub_020388AC();
+        v12 = CommManager_GetWifiP2PConnectState();
         v13 = ov66_02233224(v1->unk_01);
 
         switch (sub_020380E4()) {
@@ -438,7 +438,7 @@ BOOL ov70_02265F38(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DEE8 *par
         ov70_02266CF0(&v0->unk_3C, param1, 0);
         ov66_0222E3E4(ov70_0225DEE8(param1), v1->unk_03);
 
-        sub_02038B40();
+        CommManager_SetState_WifiLobby();
         CommInfo_Init(ov66_0222E0C4(ov70_0225DEE8(param1)), NULL);
         CommInfo_SetPersonalTrainerInfo(ov66_0222E918(v2));
         sub_0203632C(0);
@@ -686,13 +686,13 @@ BOOL ov70_02265F38(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DEE8 *par
     } break;
     case 23:
         CommInfo_Delete();
-        sub_0203888C();
+        CommManager_EndWifiP2P();
         ov70_02262E88(param0, 24);
         break;
     case 24: {
         u32 v34;
 
-        v34 = sub_020388AC();
+        v34 = CommManager_GetWifiP2PConnectState();
 
         if (v34 == 0) {
             ov70_02262E88(param0, 28);
@@ -746,7 +746,7 @@ BOOL ov70_022669B8(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DEE8 *par
 
         if (sub_020382C0() == 0) {
             CommInfo_Delete();
-            sub_0203888C();
+            CommManager_EndWifiP2P();
         }
 
         ov70_02262E88(param0, 1);
@@ -880,7 +880,7 @@ static BOOL ov70_02266BAC(UnkStruct_ov70_02266AF0 *param0, UnkStruct_ov70_0225DE
     u32 v0;
     u32 v1;
     UnkStruct_ov66_0222DFF8 *v2 = ov70_0225DEE8(param1);
-    v0 = sub_020388AC();
+    v0 = CommManager_GetWifiP2PConnectState();
     v1 = ov66_02233224(param2->unk_01);
 
     if (v0 == 0) {

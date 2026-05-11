@@ -1461,7 +1461,7 @@ BOOL sub_020590C4(void)
         { 4, 8 },
         { 11, 8 }
     };
-    int connectedPlayers = CommType_MaxPlayers(sub_0203895C());
+    int connectedPlayers = CommType_MaxPlayers(CommManager_GetCommType());
     int netId, netJd, playerCnt = 0, v6[4], v7;
     int v8 = 0;
     UnkStruct_020590C4 *v9;
@@ -1520,7 +1520,7 @@ static UnkStruct_020590C4 Unk_02100B74[] = {
 
 static void sub_020591A8(void)
 {
-    int connectedPlayers = CommType_MaxPlayers(sub_0203895C());
+    int connectedPlayers = CommType_MaxPlayers(CommManager_GetCommType());
     int netJd = 0;
     UnkStruct_020590C4 *v6;
     u8 netId;
@@ -1564,7 +1564,7 @@ void CommPlayer_SetBattleDir(void)
 
 BOOL sub_0205928C(void)
 {
-    int connectedPlayers = CommType_MaxPlayers(sub_0203895C());
+    int connectedPlayers = CommType_MaxPlayers(CommManager_GetCommType());
     int netId = 0, dir;
 
     for (netId = 0; netId < connectedPlayers; netId++) {

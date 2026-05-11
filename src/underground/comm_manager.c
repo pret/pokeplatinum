@@ -73,14 +73,14 @@ void CommManUnderground_InitUnderground(FieldSystem *fieldSystem)
         return;
     }
 
-    sub_02036794(FieldSystem_GetSaveData(fieldSystem));
+    CommManager_StartUnderground(FieldSystem_GetSaveData(fieldSystem));
     FieldCommMan_Init(fieldSystem);
 
     fieldCommMan = FieldCommMan_Get();
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_UNDERGROUND, HEAP_SIZE_UNDERGROUND);
 
     if (!SystemFlag_CheckHasSeenUndergroundRoarkIntro(SaveData_GetVarsFlags(fieldCommMan->fieldSystem->saveData))) {
-        sub_02036894();
+        CommManager_SetDoNotConnectUndergroundFlag();
     }
 }
 
@@ -108,7 +108,7 @@ void CommManUnderground_ExitUnderground(void)
 
 void CommManUnderground_CloseSecretBase(void)
 {
-    CommMan_CloseSecretBase();
+    CommManager_CloseSecretBase();
     CommManUnderground_SetFieldCommManTask(CommManUnderground_CloseSecretBaseTask, 0);
 }
 
@@ -270,7 +270,7 @@ static void CommManUnderground_WaitForRoarkSceneTask(void)
         return;
     }
 
-    sub_020367F0();
+    CommManager_ResetUnderground();
     sub_02059524();
 
     CommManUnderground_SetFieldCommManTask(CommManUnderground_CheckForConnectionsTask, 12 * 2);
@@ -293,7 +293,7 @@ static void CommManUnderground_CheckForConnectionsTask(void)
     UndergroundMan_Process();
     sub_02059524();
 
-    if (sub_02036834()) {
+    if (CommManager_IsConnectingUnderground()) {
         if (CommSys_CurNetId() == 0) {
             SecretBases_ClearAllBaseInfo();
             CommManUnderground_SetFieldCommManTask(CommManUnderground_ConnectTaskServer, 60);
@@ -312,7 +312,7 @@ static void CommManUnderground_ConnectTaskClient(void)
     }
 
     if (sub_02033E68() || CommSys_CheckError() || fieldCommMan->timer == 0) {
-        sub_020367F0();
+        CommManager_ResetUnderground();
         CommManUnderground_SetFieldCommManTask(CommManUnderground_RestartTaskClient, 0);
     } else if (CommSys_IsPlayerConnected(CommSys_CurNetId())) {
         if (fieldCommMan->timer != 0) {
@@ -387,7 +387,7 @@ static void CommManUnderground_MainTaskServer(void)
         Traps_ForceEndCurrentTrapEffectClient(CommSys_CurNetId(), TRUE);
         UndergroundMan_ForceEndCurrentSysTask();
 
-        sub_02036824();
+        CommManager_ResetUndergroundServer();
         CommManUnderground_SetFieldCommManTask(CommManUnderground_WaitUntilAloneTaskServer, 0);
     }
 }
@@ -549,7 +549,7 @@ static void CommManUnderground_RestartClient(void)
     Mining_ClearMessageQueue();
     CommPlayerMan_Stop();
     UndergroundMan_ForceEndCurrentSysTask();
-    sub_020367F0();
+    CommManager_ResetUnderground();
     UndergroundPlayer_ResetHeldFlagInfo();
     CommManUnderground_SetFieldCommManTask(CommManUnderground_RestartTaskClient, 0);
 }
@@ -592,7 +592,7 @@ static void CommManUnderground_BaseTransitionEndTaskClient(void)
         SecretBases_ResetAllBaseInfo();
         CommPlayerMan_Stop();
         UndergroundMan_ForceEndCurrentSysTask();
-        sub_020367F0();
+        CommManager_ResetUnderground();
         UndergroundPlayer_ResetHeldFlagInfo();
         CommManUnderground_SetFieldCommManTask(CommManUnderground_RestartTaskClient, 0);
     } else {
@@ -651,7 +651,7 @@ static void CommManUnderground_ExitUndergroundTask(void)
 
     UndergroundMan_FreeAllResources();
 
-    sub_020367D0();
+    CommManager_EndUnderground();
     Heap_Destroy(HEAP_ID_UNDERGROUND);
 
     fieldCommMan->isUnderground = FALSE;

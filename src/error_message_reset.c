@@ -157,7 +157,7 @@ void ErrorMessageReset_PrintErrorAndReset(void)
         HandleConsoleFold();
         CommSys_Update();
 
-        if (sub_02038AB8()) {
+        if (CommManager_CheckResetFinished()) {
             break;
         }
 

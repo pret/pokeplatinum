@@ -219,7 +219,7 @@ static void WaitFrame(void)
 
 static void TrySystemReset(enum OSResetParameter resetParam)
 {
-    if (sub_02038AB8() && CARD_TryWaitBackupAsync() == TRUE) {
+    if (CommManager_CheckResetFinished() && CARD_TryWaitBackupAsync() == TRUE) {
         OS_ResetSystem(resetParam);
     }
 

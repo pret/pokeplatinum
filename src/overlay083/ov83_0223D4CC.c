@@ -57,7 +57,7 @@ UnkStruct_ov83_0223D4CC *ov83_0223D4CC(const CommCmdTable *param0, int param1, v
 BOOL ov83_0223D508(int param0, const void *param1, int param2, UnkStruct_ov83_0223D4CC *param3)
 {
     if (param3->unk_00 == 1) {
-        if (sub_0203895C() == 29) {
+        if (CommManager_GetCommType() == 29) {
             BOOL v0 = 1;
 
             if (CommSys_IsCmdQueued(param0)) {

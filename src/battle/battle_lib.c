@@ -5,6 +5,7 @@
 
 #include "constants/battle.h"
 #include "constants/battle/battle_script.h"
+#include "constants/communication/comm_error.h"
 #include "constants/flavor.h"
 #include "constants/heap.h"
 #include "constants/items.h"
@@ -287,7 +288,7 @@ void BattleIO_UpdateTimeout(BattleContext *battleCtx)
 {
     battleCtx->linkBattleTimeout++;
     if (battleCtx->linkBattleTimeout > LINK_BATTLE_TIMEOUT) {
-        Link_SetErrorState(LINK_BATTLE_RESET_SAVEPOINT);
+        CommManager_SetCommError(COMM_ERROR_RESET_SAVEPOINT);
     }
 }
 

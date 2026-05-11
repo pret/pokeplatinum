@@ -216,7 +216,7 @@ void FieldSystem_SaveStateIfCommunicationOff(FieldSystem *fieldSystem)
         return;
     }
 
-    if (sub_02038EB4() == TRUE) {
+    if (CommManager_IsInitializedNotPoketch() == TRUE) {
         return;
     }
 

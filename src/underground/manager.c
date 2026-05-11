@@ -722,7 +722,7 @@ void UndergroundMan_Process(void)
             }
         }
 
-        sub_02037B58(UndergroundMan_CountInitializedPlayers() + 2);
+        CommManager_SetMaxNumConnections(UndergroundMan_CountInitializedPlayers() + 2);
     }
 
     sUndergroundMan->dummyCounter++;

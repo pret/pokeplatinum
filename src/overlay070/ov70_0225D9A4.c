@@ -696,7 +696,7 @@ int ov70_0225DB90(ApplicationManager *appMan, int *param1)
 
         if (sub_020383E8()) {
             ov70_0225F184(&v0->unk_3F4, &v0->unk_340);
-        } else if (sub_0203881C()) {
+        } else if (CommManager_IsWifiLobbyError()) {
             ov70_0225F1C0(&v0->unk_3F4, &v0->unk_340, ov66_022326DC());
         } else {
             ov70_0225F1F0(&v0->unk_3F4, &v0->unk_340, ov66_0222DFF8(v0->unk_34));

@@ -273,7 +273,7 @@ int ov66_02231718(int param0, int param1)
 
 BOOL ov66_02231760(void)
 {
-    if (sub_020383E8() || sub_0203881C()) {
+    if (sub_020383E8() || CommManager_IsWifiLobbyError()) {
         return 1;
     }
 

@@ -2761,7 +2761,7 @@ static void ov23_0224DC08(void)
 {
     WirelessManager_SetPauseClientConnection(TRUE);
     WirelessManager_SetPauseConnection(TRUE);
-    sub_02036814(TRUE);
+    CommManager_SetPauseUnderground(TRUE);
     sub_020340FC();
 }
 
@@ -2769,6 +2769,6 @@ static void ov23_0224DC24(void)
 {
     WirelessManager_SetPauseClientConnection(FALSE);
     WirelessManager_SetPauseConnection(FALSE);
-    sub_02036814(FALSE);
+    CommManager_SetPauseUnderground(FALSE);
     sub_020340FC();
 }

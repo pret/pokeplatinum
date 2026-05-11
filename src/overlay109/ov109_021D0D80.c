@@ -1411,8 +1411,8 @@ static int ov109_021D1B2C(UnkStruct_ov109_021D0F70 *param0)
     if (param0->unk_18 == 0) {
         if (CommTiming_IsSyncState(202)) {
             CommMan_SetErrorHandling(0, 0);
-            sub_02037B58(1);
-            sub_02036AC4();
+            CommManager_SetMaxNumConnections(1);
+            CommManager_UnionRestartSearch();
             param0->unk_00 = 50;
         }
     } else {
@@ -1423,8 +1423,8 @@ static int ov109_021D1B2C(UnkStruct_ov109_021D0F70 *param0)
 
             if (param0->unk_D0->unk_3C == 0) {
                 CommMan_SetErrorHandling(0, 0);
-                sub_02037B58(1);
-                sub_02036AC4();
+                CommManager_SetMaxNumConnections(1);
+                CommManager_UnionRestartSearch();
             }
 
             param0->unk_00 = 50;

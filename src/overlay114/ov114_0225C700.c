@@ -1067,7 +1067,7 @@ BOOL ov114_0225CA98(const UnkStruct_ov114_0225C76C *param0)
 
     if (CommInfo_IsInitialized() == 1) {
         CommInfo_Delete();
-        sub_0203888C();
+        CommManager_EndWifiP2P();
     } else {
         if (sub_020382C0() == 1) {
             return 1;

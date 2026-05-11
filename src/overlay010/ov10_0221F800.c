@@ -2372,7 +2372,7 @@ static void ov10_022227A4(UnkStruct_ov10_0221F800 *param0)
         journalEntryOnlineEvent = JournalEntry_CreateEventUnionBattle(opponentName1, opponentGender1, battleResult, param0->heapID);
         Heap_Free(opponentName1);
     } else {
-        switch (sub_0203895C()) {
+        switch (CommManager_GetCommType()) {
         case 1:
             opponentGender1 = TrainerClass_Gender(param0->unk_00->trainer[v6 ^ 1].header.trainerType);
             opponentName1 = Heap_Alloc(param0->heapID, sizeof(u16) * (TRAINER_NAME_LEN + 1));

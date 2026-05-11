@@ -216,7 +216,7 @@ void sub_02096274(int param0, int param1, void *param2, void *param3)
                     v0->unk_4AB4 |= 1 << param0;
                     v1.unk_03 = 1;
 
-                    sub_02037B58(CommSys_ConnectedCount());
+                    CommManager_SetMaxNumConnections(CommSys_ConnectedCount());
                 }
                 break;
             case 1:

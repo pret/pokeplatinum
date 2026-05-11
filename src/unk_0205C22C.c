@@ -444,7 +444,7 @@ void sub_0205C820(MapObjectManager *mapObjMan, UnkStruct_0205C22C *param1)
     }
 
     if (LocalMapObj_IsAnimationSet(mapObj) == 1) {
-        if (sub_02036AA0() || sub_02036A68()) {
+        if (CommManager_IsConnectUnionServer() || CommManager_IsConnectedUnionClientSuccess()) {
             int v2;
 
             for (v2 = 0; v2 < 10; v2++) {

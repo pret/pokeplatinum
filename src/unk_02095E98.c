@@ -237,7 +237,7 @@ void sub_02095FE4(int param0, int param1, void *param2, void *param3)
                 } else {
                     v0->unk_9418 |= 1 << param0;
                     v1.unk_03 = 1;
-                    sub_02037B58(CommSys_ConnectedCount());
+                    CommManager_SetMaxNumConnections(CommSys_ConnectedCount());
                 }
                 break;
             case 1:

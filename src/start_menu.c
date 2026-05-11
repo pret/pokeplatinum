@@ -723,7 +723,7 @@ static void sub_0203B2EC(StartMenu *menu, FieldSystem *fieldSystem)
         if (menu->inUnionRoom) {
             sub_0205C2B0(fieldSystem->unk_80);
 
-            sub_02036AC4();
+            CommManager_UnionRestartSearch();
             sub_0205BEA8(0);
         }
     }

@@ -4,6 +4,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/communication/comm_type.h"
+#include "constants/communication/comm_error.h"
 #include "nintendo_wfc/main.h"
 #include "overlay065/struct_ov65_0222F6EC.h"
 #include "overlay066/ov66_022324F0.h"
@@ -25,165 +27,172 @@
 #include "unk_02039814.h"
 #include "wireless_manager.h"
 
-typedef void (*UnkFuncPtr_02036C94)(void);
+typedef void (*CommTaskFunc)(void);
 
 typedef struct {
     void *unk_00;
     u8 unk_04[6];
-    MATHRandContext32 unk_0C;
-    UnkFuncPtr_02036C94 task;
+    MATHRandContext32 rand;
+    CommTaskFunc task;
     SaveData *saveData;
-    TrainerInfo *unk_2C;
-    const BattleRegulation *unk_30;
+    TrainerInfo *trainerInfo;
+    const BattleRegulation *battleRegulation;
     UnkStruct_ov65_0222F6EC unk_34;
     int timer;
-    u16 unk_44;
-    u8 unk_46;
-    u8 unk_47;
+    u16 retryConnectionAttempts;
+    u8 maxNumConnection;
+    u8 connectedCount;
     u8 unk_48;
-    u8 unk_49;
-    u8 unk_4A;
-    u8 unk_4B;
+    u8 connectionID;
+    u8 commType;
+    u8 contestRegulation;
     u8 unk_4C;
     s8 unk_4D;
     u8 unk_4E;
-    u8 unk_4F;
+    u8 errorDisconnect;
     u8 unk_50;
     u8 unk_51;
     u8 unk_52;
-    u8 unk_53; // network service
+    u8 pauseUnion;
     u8 unk_54;
-    u8 unk_55;
+    u8 initializeAsServer; //always FALSE
     u8 unk_56;
-    u8 unk_57;
+    u8 doNotConnectUnderground;
     u8 unk_58;
-    u8 unk_59;
-    u8 unk_5A;
+    u8 commError;
+    u8 pauseUnderground;
     const void *unk_5C;
-    u8 unk_60;
+    u8 lobbyLoginSuccess;
     u8 unk_61[3];
-} UnkStruct_021C07D4;
+} CommunicationManager;
 
-static void CommMan_SetTask(UnkFuncPtr_02036C94 param0, int param1);
-static void sub_02036CA4(void);
+static void CommManager_SetTask(CommTaskFunc param0, int param1);
+static void CommTask_StartUnderground(void);
 static void sub_02036E08(void);
-static void sub_02036D80(void);
-static void sub_02036E5C(void);
+static void CommTask_ReinitUnderground(void);
+static void CommTask_SearchUndergroundClient(void);
 static void sub_02036EDC(void);
 static void sub_02036F44(void);
-static void sub_020370B8(void);
-static void sub_0203712C(void);
-static void sub_02036FA4(void);
+static void CommTask_ConnectUndergroundClient(void);
+static void CommTask_ResetUnderground(void);
+static void CommTask_ResetUndergroundServer(void);
 static void sub_02036FBC(void);
-static void sub_02036FD4(void);
-static void sub_02037040(void);
+static void CommTask_InitUndergroundServer(void);
+static void CommTask_WaitUndergroundServer(void);
 static void sub_02037094(void);
-static void sub_020370B4(void);
-static void sub_02037344(void);
-static void sub_020370EC(void);
-static void sub_02037144(void);
-static void sub_020371A8(void);
+static void CommTask_ConnectUndergroundServer(void);
+static void CommManager_EndConnectionUnderground(void);
+static void CommTask_RestartSecretBase(void);
+static void CommTask_StartBattleServer(void);
+static void CommTask_WaitBattleServer(void);
 static void sub_0203718C(void);
-static void sub_020371C0(void);
+static void CommTask_StartBattleClient(void);
 static void sub_02037208(void);
-static void sub_02037210(void);
+static void CommTask_ConnectBattleClient(void);
 static void sub_02037238(void);
-static void sub_020372C4(void);
+static void CommTask_WaitBattleClient(void);
 static void sub_020372DC(void);
 static void sub_020372F0(void);
 static void sub_02037270(void);
 static void sub_02037284(void);
-static void sub_02037108(void);
-static void sub_020373F0(void);
-static void sub_02037444(void);
-static void sub_02037474(void);
-static void sub_0203748C(void);
+static void CommTask_StartWirelessClient(void);
+static void CommTask_StartUnion(void);
+static void CommTask_SearchUnionClient(void);
+static void CommTask_EndUnionClient(void);
+static void CommTask_InitializeServerUnion(void);
 static void sub_020374F4(void);
-static void sub_0203754C(void);
+static void CommTask_RestartUnionClient(void);
 static void sub_020376A8(void);
 static void sub_020375A4(void);
 static void sub_020375BC(void);
 static void sub_020375E8(void);
 static void sub_0203764C(void);
-static void sub_02037724(void);
-static void sub_0203773C(void);
-static void sub_02037740(void);
-static void sub_02037790(void);
-static void sub_020377E4(void);
-static void sub_02037E20(void);
-static void sub_02037E68(void);
-static void sub_02037330(void);
-static void sub_02037334(void);
+static void CommTask_SuccededConnectUnionClient(void);
+static void CommTask_FailedConnectUnionClient(void);
+static void CommTask_ResetUnionClient(void);
+static void CommTask_ConnectUnionServer(void);
+static void CommTask_PauseUnionServer(void);
+static void CommTask_StartRandomBattleServer(void);
+static void CommTask_StartMysteryGiftClient(void);
+static void CommTask_None(void);
+static void CommTask_End(void);
 static void sub_02037354(void);
 static void sub_0203739C(void);
-static void sub_020373B8(void);
+static void CommTask_EndConnection(void);
 static void sub_02038164(void);
 static void sub_02038314(void);
-static void sub_02038BA8(void);
-static void sub_02038C1C(void);
-static void sub_02038C68(void);
-static void sub_02038D80(void);
-static void sub_02038D94(void);
-static void sub_02038DC8(void);
-static void sub_02038DCC(void);
-static void sub_02038DEC(void);
-static void sub_02038E38(void);
-static void sub_02038E84(void);
-static BOOL sub_02038C74(int param0);
-static BOOL sub_02038D10(void);
-static BOOL sub_02038D44(void);
-static BOOL sub_02038D5C(u32 *param0);
-static void sub_020378F8(void);
-static void sub_02037910(void);
-static void sub_0203794C(void);
-static void sub_020379D0(void);
+static void CommTask_StartWifiLobby(void);
+static void CommTask_LogInWifiLobby(void);
+static void CommTask_ConnectWifiLobby(void);
+static void CommTask_LogoutWifiLobby(void);
+static void CommTask_WaitLogoutWifiLobby(void);
+static void CommTask_WifiLobbyError(void);
+static void CommTask_ConnectWifiLobbyP2P(void);
+static void CommTask_WaitWifiLobbyMatchServerP2P(void);
+static void CommTask_DisconnectWifiLobbyP2P(void);
+static void CommTask_WifiLobbyTimeout(void);
+static BOOL CommManager_ProcessWifiLobbyDWCError(int param0);
+static BOOL CommManager_UpdateWifiLobby(void);
+static BOOL CommManager_UpdateWifiLobbyCommon(void);
+static BOOL CommManager_UpdateWifiLobbyMatchmaking(u32 *param0);
+static void CommTask_StartDrawClient(void);
+static void CommTask_InitDrawClient(void);
+static void CommTask_ConnectDraw(void);
+static void CommTask_ConnectingDraw(void);
 
-static UnkStruct_021C07D4 *Unk_021C07D4 = NULL;
+static CommunicationManager *sCommMan = NULL;
 static u8 Unk_02100A20[] = { "FREAK" };
 static u8 Unk_02100A30[] = { " GAME" };
 static u8 Unk_02100A28[] = { " FULL" };
 
-static void sub_020366A0(SaveData *saveData, int param1)
+/**
+ * @brief Initializes sCommMan with the given commType
+ *
+ * @param SaveData
+ * @param commType
+ */
+static void CommManager_Initialize(SaveData *saveData, int commType)
 {
-    void *v0;
-
-    if (Unk_021C07D4 != NULL) {
+    if (sCommMan != NULL) {
         return;
     }
 
     GF_ASSERT(saveData);
     WirelessDriver_Init();
 
-    Unk_021C07D4 = (UnkStruct_021C07D4 *)Heap_Alloc(HEAP_ID_COMMUNICATION, sizeof(UnkStruct_021C07D4));
-    MI_CpuFill8(Unk_021C07D4, 0, sizeof(UnkStruct_021C07D4));
+    sCommMan = (CommunicationManager *)Heap_Alloc(HEAP_ID_COMMUNICATION, sizeof(CommunicationManager));
+    MI_CpuFill8(sCommMan, 0, sizeof(CommunicationManager));
 
-    Unk_021C07D4->timer = 50;
-    Unk_021C07D4->unk_4E = 1;
-    Unk_021C07D4->saveData = saveData;
-    Unk_021C07D4->unk_2C = SaveData_GetTrainerInfo(saveData);
-    Unk_021C07D4->unk_46 = 1 + 1;
-    Unk_021C07D4->unk_48 = 0;
-    Unk_021C07D4->unk_53 = 0;
-    Unk_021C07D4->unk_4A = param1;
+    sCommMan->timer = 50;
+    sCommMan->unk_4E = 1;
+    sCommMan->saveData = saveData;
+    sCommMan->trainerInfo = SaveData_GetTrainerInfo(saveData);
+    sCommMan->maxNumConnection = 1 + 1;
+    sCommMan->unk_48 = 0;
+    sCommMan->pauseUnion = FALSE;
+    sCommMan->commType = commType;
 
-    CommSys_Seed(&Unk_021C07D4->unk_0C);
+    CommSys_Seed(&sCommMan->rand);
     CommCmd_Init(NULL, 0, NULL);
 
-    if ((param1 != 9) && (param1 != 17) && (param1 != 15)) {
+    if ((commType != COMM_TYPE_UNION) && (commType != COMM_TYPE_PARTY) && (commType != COMM_TYPE_MYSTERY_GIFT)) {
         NetworkIcon_Init();
     }
 }
 
-static void sub_02036734(void)
+/**
+ * @brief Frees sCommMan, if it exists
+ */
+static void CommMan_Free(void)
 {
-    if (Unk_021C07D4 == NULL) {
+    if (sCommMan == NULL) {
         return;
     }
 
     sub_020327E0();
 
-    if (Unk_021C07D4->unk_00) {
-        Heap_Free(Unk_021C07D4->unk_00);
+    if (sCommMan->unk_00) {
+        Heap_Free(sCommMan->unk_00);
     }
 
     if (CommMan_IsConnectedToWifi()) {
@@ -192,181 +201,261 @@ static void sub_02036734(void)
 
     NetworkIcon_Destroy();
     WirelessDriver_Shutdown();
-    Heap_Free(Unk_021C07D4);
+    Heap_Free(sCommMan);
     Heap_Destroy(HEAP_ID_COMMUNICATION);
 
-    Unk_021C07D4 = NULL;
+    sCommMan = NULL;
 }
 
+/**
+ * @brief Checks if sCommMan is initialized
+ *
+ * @return TRUE if sCommMan is not NULL
+ */
 BOOL CommMan_IsInitialized(void)
 {
-    if (Unk_021C07D4) {
-        return 1;
+    if (sCommMan) {
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-void sub_02036794(SaveData *saveData)
+/**
+ * @brief Initializes the Communication Manager for Underground play
+ */
+void CommManager_StartUnderground(SaveData *saveData)
 {
-    if (Unk_021C07D4 != NULL) {
+    if (sCommMan != NULL) {
         return;
     }
 
     Heap_CreateAtEnd(HEAP_ID_APPLICATION, HEAP_ID_COMMUNICATION, 0xF000);
-    sub_020366A0(saveData, 10);
+    CommManager_Initialize(saveData, COMM_TYPE_UNDERGROUND);
 
-    Unk_021C07D4->unk_4B = 0;
+    sCommMan->contestRegulation = 0;
 
-    CommMan_SetTask(sub_02036CA4, 50);
+    CommManager_SetTask(CommTask_StartUnderground, 50);
 }
 
-void sub_020367D0(void)
+/**
+ * @brief Shuts down and ends the Communication Manager for Underground play
+ */
+void CommManager_EndUnderground(void)
 {
-    if (Unk_021C07D4 == NULL) {
+    if (sCommMan == NULL) {
         return;
     }
 
     CommSys_StartShutdown();
-    CommMan_SetTask(sub_02037344, 0);
+    CommManager_SetTask(CommManager_EndConnectionUnderground, 0);
 }
 
-void sub_020367F0(void)
+/**
+ * @brief Resets the Commmunication Manager for the underground
+ */
+void CommManager_ResetUnderground(void)
 {
     CommSys_Reset();
-    Unk_021C07D4->unk_44 = CommSys_CurNetId();
-    CommMan_SetTask(sub_0203712C, 0);
+    sCommMan->retryConnectionAttempts = CommSys_CurNetId();
+    CommManager_SetTask(CommTask_ResetUnderground, 0);
 }
 
-void sub_02036814(BOOL param0)
+/**
+ * @brief Sets a flag to pause underground connection that pauses the client search process
+ *
+ * @param pause
+ */
+void CommManager_SetPauseUnderground(BOOL pause)
 {
-    Unk_021C07D4->unk_5A = param0;
+    sCommMan->pauseUnderground = pause;
 }
 
-void sub_02036824(void)
+/**
+ * @brief Resets the Communication Manager as a server for the underground
+ */
+void CommManager_ResetUndergroundServer(void)
 {
-    CommMan_SetTask(sub_02036FA4, 0);
+    CommManager_SetTask(CommTask_ResetUndergroundServer, 0);
 }
 
-BOOL sub_02036834(void)
+/**
+ * @brief Checks if the current CommManager task is an underground connecting task. Unused
+ *
+ * @return TRUE if the current sCommMan->task is CommTask_ConnectUndergroundClient or CommTask_ConnectUndergroundServer
+ */
+BOOL CommManager_IsConnectingUnderground(void)
 {
-    int v0;
-    u32 v1[] = {
-        (u32)sub_020370B8, (u32)sub_020370B4, 0
+    int i;
+    u32 connectFunctions[] = {
+        (u32)CommTask_ConnectUndergroundClient, (u32)CommTask_ConnectUndergroundServer, 0
     };
-    u32 v2 = (u32)Unk_021C07D4->task;
+    u32 task = (u32)sCommMan->task;
 
-    if (Unk_021C07D4 == NULL) {
-        return 0;
+    if (sCommMan == NULL) {
+        return FALSE;
     }
 
-    for (v0 = 0; v1[v0] != 0; v0++) {
-        if (v2 == v1[v0]) {
-            return 1;
+    for (i = 0; connectFunctions[i] != 0; i++) {
+        if (task == connectFunctions[i]) {
+            return TRUE;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
-void CommMan_CloseSecretBase(void)
+/**
+ * @brief Closes the secret base and switches to single player underground mode
+ */
+void CommManager_CloseSecretBase(void)
 {
-    CommMan_SetTask(sub_020370EC, 0);
+    CommManager_SetTask(CommTask_RestartSecretBase, 0);
 }
 
-void sub_02036894(void)
+/**
+ * @brief Sets a flag that prevents the CommManager from connecting after initializing for the underground
+ */
+void CommManager_SetDoNotConnectUndergroundFlag(void)
 {
-    Unk_021C07D4->unk_57 = 1;
+    sCommMan->doNotConnectUnderground = TRUE;
 }
 
+/**
+ * @brief Reopens the underground secret base to Wireless/Online play
+ */
 void CommMan_ReopenSecretBase(void)
 {
     WirelessDriver_Init();
-    CommMan_SetTask(sub_02037108, 0);
+    CommManager_SetTask(CommTask_StartWirelessClient, 0);
 }
 
-void CommMan_StartBattleServer(SaveData *saveData, int param1, int param2, const BattleRegulation *param3, BOOL param4)
+/**
+ * @brief Initializes the Communication Manager for battles as a server
+ *
+ * @param saveData
+ * @param commType
+ * @param contestRegulation
+ * @param battleRegulation
+ * @param unusedBool
+ */
+void CommMan_StartBattleServer(SaveData *saveData, int commType, int contestRegulation, const BattleRegulation *battleRegulation, BOOL unusedBool)
 {
     if (CommSys_IsInitialized()) {
         return;
     }
 
     Heap_CreateAtEnd(HEAP_ID_APPLICATION, HEAP_ID_COMMUNICATION, 0x7080);
-    sub_020366A0(saveData, param1);
+    CommManager_Initialize(saveData, commType);
 
-    Unk_021C07D4->unk_4B = param2;
-    Unk_021C07D4->unk_30 = param3;
+    sCommMan->contestRegulation = contestRegulation;
+    sCommMan->battleRegulation = battleRegulation;
 
-    CommMan_SetTask(sub_02037144, 0);
+    CommManager_SetTask(CommTask_StartBattleServer, 0);
 }
 
-void CommMan_StartBattleClient(SaveData *saveData, int param1, int param2, const BattleRegulation *param3, BOOL param4)
+/**
+ * @brief Initializes the Communication Manager for battles as a client
+ *
+ * @param saveData
+ * @param commType
+ * @param contestRegulation
+ * @param battleRegulation
+ * @param unusedBool
+ */
+void CommMan_StartBattleClient(SaveData *saveData, int commType, int contestRegulation, const BattleRegulation *battleRegulation, BOOL unusedBool)
 {
     if (CommSys_IsInitialized()) {
         return;
     }
 
     Heap_CreateAtEnd(HEAP_ID_APPLICATION, HEAP_ID_COMMUNICATION, 0x7080);
-    sub_020366A0(saveData, param1);
+    CommManager_Initialize(saveData, commType);
 
-    Unk_021C07D4->unk_4B = param2;
-    Unk_021C07D4->unk_30 = param3;
+    sCommMan->contestRegulation = contestRegulation;
+    sCommMan->battleRegulation = battleRegulation;
 
-    CommMan_SetTask(sub_020371C0, 0);
+    CommManager_SetTask(CommTask_StartBattleClient, 0);
 }
 
-void sub_02036948(int param0)
+/**
+ * @brief Connects a client to the battle with the given connectionID
+ *
+ * @param connectionID
+ */
+void CommManager_ConnectBattleClient(int connectionID)
 {
-    Unk_021C07D4->unk_49 = param0;
-    CommMan_SetTask(sub_02037210, 0);
+    sCommMan->connectionID = connectionID;
+    CommManager_SetTask(CommTask_ConnectBattleClient, 0);
 }
 
-void sub_02036964(void)
+/**
+ * @brief Resets the communication system and manager for battles for the client
+ */
+void CommManager_ResetBattleClient(void)
 {
     CommSys_ResetBattleClient();
-    CommMan_SetTask(sub_020372DC, 0);
+    CommManager_SetTask(sub_020372DC, 0);
 }
 
-void sub_02036978(void)
+/**
+ * @brief Ends the communication for battles
+ */
+void CommManager_EndBattle(void)
 {
-    if (Unk_021C07D4 == NULL) {
+    if (sCommMan == NULL) {
         return;
     }
 
-    CommMan_SetTask(sub_020373B8, 5);
+    CommManager_SetTask(CommTask_EndConnection, 5);
 }
 
-void sub_02036994(BOOL param0)
+/**
+ * @brief Calls WirelessManager_SetEntry(entry)
+ *
+ * @param entry
+ */
+void WirelessManager_SetEntry2(BOOL entry)
 {
-    WirelessManager_SetEntry(param0);
+    WirelessManager_SetEntry(entry);
 }
 
-BOOL sub_0203699C(void)
+/**
+ * @brief Checks if the current CommManager task is a battle waiting task.
+ *
+ * @return TRUE if the current sCommMan->task is CommTask_WaitBattleServer or CommTask_WaitBattleClient
+ */
+BOOL CommManager_IsWaitingBattle(void)
 {
-    int v0;
-    u32 v1[] = {
-        (u32)sub_020371A8,
-        (u32)sub_020372C4,
+    int i;
+    u32 waitFunctions[] = {
+        (u32)CommTask_WaitBattleServer,
+        (u32)CommTask_WaitBattleClient,
         0,
     };
-    u32 v2 = (u32)Unk_021C07D4->task;
+    u32 task = (u32)sCommMan->task;
 
-    if (Unk_021C07D4 == NULL) {
-        return 0;
+    if (sCommMan == NULL) {
+        return FALSE;
     }
 
-    for (v0 = 0; v1[v0] != 0; v0++) {
-        if (v2 == v1[v0]) {
-            return 1;
+    for (i = 0; waitFunctions[i] != 0; i++) {
+        if (task == waitFunctions[i]) {
+            return TRUE;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
-void sub_020369EC(SaveData *saveData)
+/**
+ * @brief Initializes the Communication Manager for Union play
+ *
+ * @param saveData
+ */
+void CommManager_StartUnion(SaveData *saveData)
 {
-    if (Unk_021C07D4 != NULL) {
+    if (sCommMan != NULL) {
         return;
     }
 
@@ -374,171 +463,224 @@ void sub_020369EC(SaveData *saveData)
         NetworkError_DisplayGTSCriticalError();
     }
 
-    sub_020366A0(saveData, 9);
+    CommManager_Initialize(saveData, COMM_TYPE_UNION);
 
-    Unk_021C07D4->unk_4A = 9;
-    Unk_021C07D4->unk_4B = 0;
+    sCommMan->commType = COMM_TYPE_UNION;
+    sCommMan->contestRegulation = 0;
 
-    CommMan_SetTask(sub_020373F0, 0);
+    CommManager_SetTask(CommTask_StartUnion, 0);
 }
 
-void sub_02036A38(int param0)
+/**
+ * @brief Connect to the union with the given connectionID
+ *
+ * @param connectionID
+ */
+void CommManager_ConnectUnion(int connectionID)
 {
-    Unk_021C07D4->unk_49 = param0;
-    Unk_021C07D4->unk_44 = 3;
+    sCommMan->connectionID = connectionID;
+    sCommMan->retryConnectionAttempts = 3;
 
     WirelessManager_SetPauseConnection(1);
     NetworkIcon_Init();
-    CommMan_SetTask(sub_020375A4, 0);
+    CommManager_SetTask(sub_020375A4, 0);
 }
 
-int sub_02036A68(void)
+/**
+ * @brief Checks if the current CommManager task is the union client connection success task
+ *
+ * @return TRUE if the task is CommTask_SuccededConnectUnionClient, -1 if sCommMan isn't initialized or the current task is CommTask_FailedConnectUnionClient, FALSE otherwise
+ */
+int CommManager_IsConnectedUnionClientSuccess(void)
 {
-    u32 v0;
-
-    if (Unk_021C07D4 == NULL) {
+    u32 task;
+    
+    if (sCommMan == NULL) {
         return -1;
     }
 
-    v0 = (u32)Unk_021C07D4->task;
+    task = (u32)sCommMan->task;
 
-    if (v0 == (u32)sub_02037724) {
-        return 1;
+    if (task == (u32)CommTask_SuccededConnectUnionClient) {
+        return TRUE;
     }
 
-    if (v0 == (u32)sub_0203773C) {
+    if (task == (u32)CommTask_FailedConnectUnionClient) {
         return -1;
     }
 
-    return 0;
+    return FALSE;
 }
 
-BOOL sub_02036AA0(void)
+/**
+ * @brief Checks if the current CommManager task is the union server connect task
+ *
+ * @return TRUE if the task is CommTask_ConnectUnionServer, FALSE otherwise or if sCommMan isn't initialized or the current task 
+ */
+BOOL CommManager_IsConnectUnionServer(void)
 {
-    u32 v0;
-
-    if (Unk_021C07D4 == NULL) {
-        return 0;
+    u32 task;
+    
+    if (sCommMan == NULL) {
+        return FALSE;
     }
 
-    v0 = (u32)Unk_021C07D4->task;
+    task = (u32)sCommMan->task;
 
-    if (v0 == (u32)sub_02037790) {
-        return 1;
+    if (task == (u32)CommTask_ConnectUnionServer) {
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-void sub_02036AC4(void)
+/**
+ * @brief Restarts the search for clients in the union and resets the connection
+ */
+void CommManager_UnionRestartSearch(void)
 {
     WirelessManager_SetPauseConnection(0);
 
-    if (!((Unk_021C07D4->unk_4F == 1) && (Unk_021C07D4->unk_50 == 1)) || (Unk_021C07D4->unk_4A == 9)) {
+    if (!((sCommMan->errorDisconnect == 1) && (sCommMan->unk_50 == 1)) || (sCommMan->commType == COMM_TYPE_UNION)) {
         CommMan_SetErrorHandling(0, 0);
     }
 
     NetworkIcon_Destroy();
 
-    Unk_021C07D4->unk_4A = 9;
-    Unk_021C07D4->unk_53 = 0;
+    sCommMan->commType = COMM_TYPE_UNION;
+    sCommMan->pauseUnion = FALSE;
 
-    WirelessManager_SetMaxNumConnections(Unk_021C07D4->unk_46);
+    WirelessManager_SetMaxNumConnections(sCommMan->maxNumConnection);
 
     if (CommSys_CurNetId() == 0) {
         WirelessManager_SetPauseConnectionSystem(1);
-        CommMan_SetTask(sub_02037354, 15);
+        CommManager_SetTask(sub_02037354, 15);
     } else {
-        CommMan_SetTask(sub_0203739C, 5);
+        CommManager_SetTask(sub_0203739C, 5);
     }
 }
 
-BOOL sub_02036B44(void)
+/**
+ * @brief Checks if the Comm Manager has restarted successfully for Union play
+ *
+ * @return TRUE when sCommMan is NULL or when the current task is not CommTask_EndUnionClient
+ */
+BOOL CommManager_UnionRestartSuccess(void)
 {
-    u32 v0;
+    u32 task;
 
-    if (Unk_021C07D4 == NULL) {
-        return 1;
+    if (sCommMan == NULL) {
+        return TRUE;
     }
 
-    v0 = (u32)Unk_021C07D4->task;
+    task = (u32)sCommMan->task;
 
-    if (v0 == (u32)sub_02037474) {
-        return 0;
+    if (task == (u32)CommTask_EndUnionClient) {
+        return FALSE;
     }
 
-    return 1;
+    return TRUE;
 }
 
-void sub_02036B68(void)
+/**
+ * @brief Starts the Communication Manager end connection task for union play
+ */
+void CommManager_ExitUnion(void)
 {
-    if (Unk_021C07D4 == NULL) {
+    if (sCommMan == NULL) {
         return;
     }
 
-    CommMan_SetTask(sub_020373B8, 5);
+    CommManager_SetTask(CommTask_EndConnection, 5);
 }
 
-void sub_02036B84(void)
+/**
+ * @brief Pauses the client connection to the server for union play
+ */
+void CommManager_PauseUnionClient(void)
 {
-    if (Unk_021C07D4 == NULL) {
+    if (sCommMan == NULL) {
         return;
     }
 
-    Unk_021C07D4->unk_53 = 1;
+    sCommMan->pauseUnion = TRUE;
     WirelessManager_SetPauseConnection(1);
 }
 
-void sub_02036BA0(void)
+/**
+ * @brief Pauses the server connection to the clients for union play
+ */
+void CommManager_PauseUnionServer(void)
 {
-    if (Unk_021C07D4 == NULL) {
+    if (sCommMan == NULL) {
         return;
     }
 
-    Unk_021C07D4->unk_53 = 1;
+    sCommMan->pauseUnion = TRUE;
 
     WirelessManager_SetPauseConnection(1);
-    CommMan_SetTask(sub_020377E4, 0);
+    CommManager_SetTask(CommTask_PauseUnionServer, 0);
 }
 
-void sub_02036BC8(void)
+/**
+ * @brief Sets sCommMan->commType to COMM_TYPE_UNION_APP
+ */
+void CommManager_SetState_UnionApp(void)
 {
-    Unk_021C07D4->unk_4A = 18;
+    sCommMan->commType = COMM_TYPE_UNION_APP;
 }
 
-void sub_02036BD8(void)
+/**
+ * @brief Sets sCommMan->commType to COMM_TYPE_UNION
+ */
+void CommManager_SetState_Union(void)
 {
-    Unk_021C07D4->unk_4A = 9;
+    sCommMan->commType = COMM_TYPE_UNION;
 }
 
-void sub_02036BE8(SaveData *saveData, int param1)
+/**
+ * @brief Initializes the Communication Manager as a server to play a battle against a random opponent
+ *
+ * @param saveData
+ * @param commType
+ */
+void CommManager_StartRandomBattleServer(SaveData *saveData, int commType)
 {
     if (CommSys_IsInitialized()) {
         return;
     }
 
     Heap_CreateAtEnd(HEAP_ID_APPLICATION, HEAP_ID_COMMUNICATION, 0x7080);
-    sub_020366A0(saveData, param1);
-    CommMan_SetTask(sub_02037E20, 0);
+    CommManager_Initialize(saveData, commType);
+    CommManager_SetTask(CommTask_StartRandomBattleServer, 0);
 }
 
-void sub_02036C1C(SaveData *saveData, int param1)
+/**
+ * @brief Initializes the Communication Manager as a client to play a battle against a random opponent
+ *
+ * @param saveData
+ * @param commType
+ */
+void CommManager_StartRandomBattleClient(SaveData *saveData, int commType)
 {
     if (CommSys_IsInitialized()) {
         return;
     }
 
     Heap_CreateAtEnd(HEAP_ID_APPLICATION, HEAP_ID_COMMUNICATION, 0x7080);
-    sub_020366A0(saveData, param1);
-    CommMan_SetTask(sub_02037E68, 0);
+    CommManager_Initialize(saveData, commType);
+    CommManager_SetTask(CommTask_StartMysteryGiftClient, 0);
 }
 
-void sub_02036C50(void)
+/**
+ * @brief Calls the current task function and updates the network icon
+ */
+void CommManager_Update(void)
 {
-    if (Unk_021C07D4) {
-        if (Unk_021C07D4->task != NULL) {
-            UnkFuncPtr_02036C94 v0 = Unk_021C07D4->task;
-            v0();
+    if (sCommMan) {
+        if (sCommMan->task != NULL) {
+            CommTaskFunc task = sCommMan->task;
+            task();
         }
     }
 
@@ -549,18 +691,25 @@ void sub_02036C50(void)
     }
 }
 
-static void CommMan_SetTask(UnkFuncPtr_02036C94 task, int timer)
+/**
+ * @brief Sets the Communication Manager's current task and timer
+ *
+ * @param task
+ * @param timer
+ */
+static void CommManager_SetTask(CommTaskFunc task, int timer)
 {
-    Unk_021C07D4->task = task;
-    Unk_021C07D4->timer = timer;
+    sCommMan->task = task;
+    sCommMan->timer = timer;
 }
 
-static void sub_02036CA4(void)
+/**
+ * @brief Starts the Underground process
+ */
+static void CommTask_StartUnderground(void)
 {
-    void *v0;
-
-    if (Unk_021C07D4->timer != 0) {
-        Unk_021C07D4->timer--;
+    if (sCommMan->timer != 0) {
+        sCommMan->timer--;
         return;
     }
 
@@ -568,32 +717,35 @@ static void sub_02036CA4(void)
         return;
     }
 
-    CommServerClient_Init(Unk_021C07D4->unk_2C, 1);
-    CommInfo_Init(Unk_021C07D4->saveData, NULL);
+    CommServerClient_Init(sCommMan->trainerInfo, 1);
+    CommInfo_Init(sCommMan->saveData, NULL);
     CommSys_SetAlone(1);
     CommSys_EnableSendMovementData();
 
-    if (Unk_021C07D4->unk_55) {
-        if (CommSys_InitServer(1, Unk_021C07D4->unk_4E, 500, 1)) {
-            u32 v1 = MATH_Rand32(&Unk_021C07D4->unk_0C, 40 / 2);
+    if (sCommMan->initializeAsServer) {
+        if (CommSys_InitServer(1, sCommMan->unk_4E, 500, 1)) {
+            u32 rand = MATH_Rand32(&sCommMan->rand, 40 / 2);
 
-            Unk_021C07D4->unk_4E = 0;
-            CommMan_SetTask(sub_02037040, 40 / 2 + v1);
+            sCommMan->unk_4E = 0;
+            CommManager_SetTask(CommTask_WaitUndergroundServer, 40 / 2 + rand);
         }
     } else {
         if (CommSys_InitClient(1, 1, 500)) {
-            if (Unk_021C07D4->unk_57) {
-                CommMan_SetTask(sub_02037330, 0);
+            if (sCommMan->doNotConnectUnderground) {
+                CommManager_SetTask(CommTask_None, 0);
             } else {
-                CommMan_SetTask(sub_02036E5C, 32 * 2);
+                CommManager_SetTask(CommTask_SearchUndergroundClient, 32 * 2);
             }
         }
     }
 }
 
-static void sub_02036D80(void)
+/**
+ * @brief Reinitializes the Communication Manager for underground play
+ */
+static void CommTask_ReinitUnderground(void)
 {
-    BOOL v0;
+    BOOL ret;
 
     if (!sub_02033E30()) {
         return;
@@ -602,91 +754,91 @@ static void sub_02036D80(void)
     CommSys_SetAlone(1);
     CommSys_EnableSendMovementData();
 
-    if (Unk_021C07D4->unk_55) {
-        CommMan_SetTask(sub_02036FD4, 0);
+    if (sCommMan->initializeAsServer) {
+        CommManager_SetTask(CommTask_InitUndergroundServer, 0);
     } else {
-        v0 = CommSys_InitClient(0, 1, 500);
+        ret = CommSys_InitClient(0, 1, 500);
 
-        if (v0) {
-            u32 v1 = MATH_Rand32(&Unk_021C07D4->unk_0C, 32 * 2);
+        if (ret) {
+            u32 rand = MATH_Rand32(&sCommMan->rand, 32 * 2);
 
-            if (Unk_021C07D4->unk_44 > 0) {
-                v1 = 2 * 32 * Unk_021C07D4->unk_44;
-                Unk_021C07D4->unk_44 = 0;
+            if (sCommMan->retryConnectionAttempts > 0) {
+                rand = 2 * 32 * sCommMan->retryConnectionAttempts;
+                sCommMan->retryConnectionAttempts = 0;
             }
 
-            CommMan_SetTask(sub_02036E5C, v1);
+            CommManager_SetTask(CommTask_SearchUndergroundClient, rand);
         }
     }
 }
 
 static void sub_02036E08(void)
 {
-    BOOL v0;
+    BOOL ret;
 
     if (!sub_02033E30()) {
         return;
     }
 
-    v0 = CommSys_InitClient(0, 0, 500);
+    ret = CommSys_InitClient(0, 0, 500);
 
-    if (v0) {
-        u32 v1 = MATH_Rand32(&Unk_021C07D4->unk_0C, 32);
-        CommMan_SetTask(sub_02036E5C, 32 / 2 + v1);
+    if (ret) {
+        u32 rand = MATH_Rand32(&sCommMan->rand, 32);
+        CommManager_SetTask(CommTask_SearchUndergroundClient, 32 / 2 + rand);
     }
 }
 
-static void sub_02036E5C(void)
+static void CommTask_SearchUndergroundClient(void)
 {
     int v0;
 
     sub_02033A5C();
 
-    if (Unk_021C07D4->unk_5A || Unk_021C07D4->unk_56) {
+    if (sCommMan->pauseUnderground || sCommMan->unk_56) {
         return;
     }
 
     v0 = sub_020338EC();
 
     if (v0 != -1) {
-        Unk_021C07D4->unk_49 = v0;
-        CommMan_SetTask(sub_02036EDC, 32);
+        sCommMan->connectionID = v0;
+        CommManager_SetTask(sub_02036EDC, 32);
         return;
     }
 
-    if (Unk_021C07D4->timer != 0) {
-        Unk_021C07D4->timer--;
+    if (sCommMan->timer != 0) {
+        sCommMan->timer--;
         return;
     }
 
     v0 = sub_0203394C();
 
     if (v0 != -1) {
-        Unk_021C07D4->unk_49 = v0;
-        CommMan_SetTask(sub_02036EDC, 32);
+        sCommMan->connectionID = v0;
+        CommManager_SetTask(sub_02036EDC, 32);
         return;
     }
 
-    CommMan_SetTask(sub_02036FA4, 0);
+    CommManager_SetTask(CommTask_ResetUndergroundServer, 0);
 }
 
 static void sub_02036EDC(void)
 {
     sub_02033A5C();
 
-    if (sub_02033898(Unk_021C07D4->unk_49) != 0) {
-        if (sub_02034984(Unk_021C07D4->unk_49)) {
-            CommMan_SetTask(sub_02036F44, 100);
+    if (sub_02033898(sCommMan->connectionID) != 0) {
+        if (sub_02034984(sCommMan->connectionID)) {
+            CommManager_SetTask(sub_02036F44, 100);
             return;
         }
     }
 
     if (CommSys_CheckError()) {
-        CommMan_SetTask(sub_02036FA4, 0);
-    } else if (Unk_021C07D4->timer != 0) {
-        Unk_021C07D4->timer--;
+        CommManager_SetTask(CommTask_ResetUndergroundServer, 0);
+    } else if (sCommMan->timer != 0) {
+        sCommMan->timer--;
     } else {
-        CommMan_SetTask(sub_02036FA4, 0);
+        CommManager_SetTask(CommTask_ResetUndergroundServer, 0);
     }
 }
 
@@ -696,30 +848,30 @@ static void sub_02036F44(void)
         CommSys_Reset();
         CommSys_SetAlone(0);
         CommSys_EnableSendMovementData();
-        CommMan_SetTask(sub_020370B8, 0);
+        CommManager_SetTask(CommTask_ConnectUndergroundClient, 0);
         return;
     }
 
     if (CommSys_CheckError()) {
-        CommMan_SetTask(sub_02036FA4, 0);
+        CommManager_SetTask(CommTask_ResetUndergroundServer, 0);
         return;
     }
 
-    if (Unk_021C07D4->timer != 0) {
-        Unk_021C07D4->timer--;
+    if (sCommMan->timer != 0) {
+        sCommMan->timer--;
         return;
     }
 
-    CommMan_SetTask(sub_02036FA4, 0);
+    CommManager_SetTask(CommTask_ResetUndergroundServer, 0);
 }
 
-static void sub_02036FA4(void)
+static void CommTask_ResetUndergroundServer(void)
 {
     if (!sub_020336D4()) {
         return;
     }
 
-    CommMan_SetTask(sub_02036FD4, 0);
+    CommManager_SetTask(CommTask_InitUndergroundServer, 0);
 }
 
 static void sub_02036FBC(void)
@@ -728,46 +880,44 @@ static void sub_02036FBC(void)
         return;
     }
 
-    CommMan_SetTask(sub_02036E08, 0);
+    CommManager_SetTask(sub_02036E08, 0);
 }
 
-static void sub_02036FD4(void)
+static void CommTask_InitUndergroundServer(void)
 {
-    TrainerInfo *v0;
-
     if (!sub_02033E30()) {
         return;
     }
 
     CommSys_SetAlone(1);
 
-    if (CommSys_InitServer(0, Unk_021C07D4->unk_4E, 500, 1)) {
-        u32 v1 = MATH_Rand32(&Unk_021C07D4->unk_0C, 40 / 2);
+    if (CommSys_InitServer(0, sCommMan->unk_4E, 500, 1)) {
+        u32 rand = MATH_Rand32(&sCommMan->rand, 40 / 2);
 
-        Unk_021C07D4->unk_4E = 0;
-        CommMan_SetTask(sub_02037040, 40 / 2 + v1);
+        sCommMan->unk_4E = 0;
+        CommManager_SetTask(CommTask_WaitUndergroundServer, 40 / 2 + rand);
     }
 }
 
-static void sub_02037040(void)
+static void CommTask_WaitUndergroundServer(void)
 {
     if (CommSys_IsClientConnecting()) {
-        Unk_021C07D4->unk_4E = 1;
-        CommMan_SetTask(sub_02037094, 0);
+        sCommMan->unk_4E = 1;
+        CommManager_SetTask(sub_02037094, 0);
         return;
     }
 
-    if (Unk_021C07D4->timer != 0) {
-        Unk_021C07D4->timer--;
+    if (sCommMan->timer != 0) {
+        sCommMan->timer--;
         return;
     }
 
-    if (Unk_021C07D4->unk_55) {
+    if (sCommMan->initializeAsServer) {
         return;
     }
 
     if (sub_020336D4()) {
-        CommMan_SetTask(sub_02036FBC, 2);
+        CommManager_SetTask(sub_02036FBC, 2);
     }
 }
 
@@ -776,20 +926,20 @@ static void sub_02037094(void)
     CommSys_SetAlone(0);
     sub_02033EA8(1);
     CommSys_EnableSendMovementData();
-    CommMan_SetTask(sub_020370B4, 0);
+    CommManager_SetTask(CommTask_ConnectUndergroundServer, 0);
 }
 
-static void sub_020370B4(void)
+static void CommTask_ConnectUndergroundServer(void)
 {
     return;
 }
 
-static void sub_020370B8(void)
+static void CommTask_ConnectUndergroundClient(void)
 {
     return;
 }
 
-static void sub_020370BC(void)
+static void CommTask_StartSecretBase(void)
 {
     if (!CommMan_IsConnectedToWifi()) {
         if (!sub_02033E30()) {
@@ -801,20 +951,20 @@ static void sub_020370BC(void)
         CommServerClient_SetSecretBaseClosedState(TRUE);
     }
 
-    CommMan_SetTask(sub_02037330, 0);
+    CommManager_SetTask(CommTask_None, 0);
 }
 
-static void sub_020370EC(void)
+static void CommTask_RestartSecretBase(void)
 {
     if (!sub_020336D4()) {
         return;
     }
 
     CommSys_Reset();
-    CommMan_SetTask(sub_020370BC, 0);
+    CommManager_SetTask(CommTask_StartSecretBase, 0);
 }
 
-static void sub_02037108(void)
+static void CommTask_StartWirelessClient(void)
 {
     if (!WirelessDriver_IsReady()) {
         return;
@@ -822,32 +972,30 @@ static void sub_02037108(void)
 
     CommServerClient_SetSecretBaseClosedState(FALSE);
     CommSys_Reset();
-    CommMan_SetTask(sub_02036D80, 0);
+    CommManager_SetTask(CommTask_ReinitUnderground, 0);
 }
 
-static void sub_0203712C(void)
+static void CommTask_ResetUnderground(void)
 {
     if (!sub_020336D4()) {
         return;
     }
 
-    CommMan_SetTask(sub_02036D80, 0);
+    CommManager_SetTask(CommTask_ReinitUnderground, 0);
 }
 
-static void sub_02037144(void)
+static void CommTask_StartBattleServer(void)
 {
-    TrainerInfo *v0;
-
     if (!WirelessDriver_IsReady()) {
         return;
     }
 
-    CommServerClient_Init(Unk_021C07D4->unk_2C, 1);
-    CommInfo_Init(Unk_021C07D4->saveData, Unk_021C07D4->unk_30);
+    CommServerClient_Init(sCommMan->trainerInfo, 1);
+    CommInfo_Init(sCommMan->saveData, sCommMan->battleRegulation);
 
     if (CommSys_InitServer(1, 1, 512, 1)) {
         CommSys_SwitchTransitionTypeToParallel();
-        CommMan_SetTask(sub_0203718C, 0);
+        CommManager_SetTask(sub_0203718C, 0);
     }
 }
 
@@ -857,28 +1005,28 @@ static void sub_0203718C(void)
         return;
     }
 
-    CommMan_SetTask(sub_020371A8, 0);
+    CommManager_SetTask(CommTask_WaitBattleServer, 0);
 }
 
-static void sub_020371A8(void)
+static void CommTask_WaitBattleServer(void)
 {
     if (!CommSys_IsInitialized()) {
-        CommMan_SetTask(sub_02037334, 0);
+        CommManager_SetTask(CommTask_End, 0);
     }
 }
 
-static void sub_020371C0(void)
+static void CommTask_StartBattleClient(void)
 {
     if (!WirelessDriver_IsReady()) {
         return;
     }
 
-    CommServerClient_Init(Unk_021C07D4->unk_2C, 1);
-    CommInfo_Init(Unk_021C07D4->saveData, Unk_021C07D4->unk_30);
+    CommServerClient_Init(sCommMan->trainerInfo, 1);
+    CommInfo_Init(sCommMan->saveData, sCommMan->battleRegulation);
 
     if (CommSys_InitClient(1, 1, 512)) {
         CommSys_SwitchTransitionTypeToParallel();
-        CommMan_SetTask(sub_02037208, 0);
+        CommManager_SetTask(sub_02037208, 0);
     }
 }
 
@@ -887,38 +1035,38 @@ static void sub_02037208(void)
     sub_02033A5C();
 }
 
-static void sub_02037210(void)
+static void CommTask_ConnectBattleClient(void)
 {
     sub_02033A5C();
 
-    if (sub_02034984(Unk_021C07D4->unk_49)) {
-        CommMan_SetTask(sub_02037238, 10);
+    if (sub_02034984(sCommMan->connectionID)) {
+        CommManager_SetTask(sub_02037238, 10);
     }
 }
 
 static void sub_02037238(void)
 {
     if (CommSys_CheckError()) {
-        CommMan_SetTask(sub_02037270, 0);
+        CommManager_SetTask(sub_02037270, 0);
     }
 
     if (CommSys_IsPlayerConnected(CommSys_CurNetId()) && (0 != CommSys_CurNetId())) {
-        CommMan_SetTask(sub_020372C4, 0);
+        CommManager_SetTask(CommTask_WaitBattleClient, 0);
     }
 }
 
 static void sub_02037270(void)
 {
     sub_020336D4();
-    CommMan_SetTask(sub_02037284, 2);
+    CommManager_SetTask(sub_02037284, 2);
 }
 
 static void sub_02037284(void)
 {
     TrainerInfo *v0;
 
-    if (Unk_021C07D4->timer != 0) {
-        Unk_021C07D4->timer--;
+    if (sCommMan->timer != 0) {
+        sCommMan->timer--;
         return;
     }
 
@@ -928,29 +1076,27 @@ static void sub_02037284(void)
 
     if (CommSys_InitClient(0, 1, 512)) {
         CommSys_SwitchTransitionTypeToParallel();
-        CommMan_SetTask(sub_02037210, 10);
+        CommManager_SetTask(CommTask_ConnectBattleClient, 10);
     }
 }
 
-static void sub_020372C4(void)
+static void CommTask_WaitBattleClient(void)
 {
     if (!CommSys_IsInitialized()) {
-        CommMan_SetTask(sub_02037334, 0);
+        CommManager_SetTask(CommTask_End, 0);
     }
 }
 
 static void sub_020372DC(void)
 {
     sub_020336D4();
-    CommMan_SetTask(sub_020372F0, 2);
+    CommManager_SetTask(sub_020372F0, 2);
 }
 
 static void sub_020372F0(void)
 {
-    TrainerInfo *v0;
-
-    if (Unk_021C07D4->timer != 0) {
-        Unk_021C07D4->timer--;
+    if (sCommMan->timer != 0) {
+        sCommMan->timer--;
         return;
     }
 
@@ -960,27 +1106,36 @@ static void sub_020372F0(void)
 
     if (CommSys_InitClient(0, 1, 512)) {
         CommSys_SwitchTransitionTypeToParallel();
-        CommMan_SetTask(sub_02037208, 10);
+        CommManager_SetTask(sub_02037208, 10);
     }
 }
 
-static void sub_02037330(void)
+/**
+ * @brief Blank task, does nothing when called
+ */
+static void CommTask_None(void)
 {
     return;
 }
 
-static void sub_02037334(void)
+/**
+ * @brief Deletes the Communication Manager after the connection ended
+ */
+static void CommTask_End(void)
 {
     if (CommSys_IsInitialized()) {
         return;
     }
 
-    sub_02036734();
+    CommMan_Free();
 }
 
-static void sub_02037344(void)
+/**
+ * @brief Calls the end connection function for underground connections
+ */
+static void CommManager_EndConnectionUnderground(void)
 {
-    CommMan_SetTask(sub_020373B8, 5);
+    CommManager_SetTask(CommTask_EndConnection, 5);
 }
 
 static void sub_02037354(void)
@@ -988,17 +1143,17 @@ static void sub_02037354(void)
     if (CommSys_ConnectedCount() <= 1) {
         WirelessManager_SetPauseConnectionSystem(0);
         CommSys_ResetDS();
-        CommMan_SetTask(sub_02037474, 0);
+        CommManager_SetTask(CommTask_EndUnionClient, 0);
     }
 
-    if (Unk_021C07D4->timer != 0) {
-        Unk_021C07D4->timer--;
+    if (sCommMan->timer != 0) {
+        sCommMan->timer--;
         return;
     }
 
     WirelessManager_SetPauseConnectionSystem(0);
     CommSys_ResetDS();
-    CommMan_SetTask(sub_02037474, 0);
+    CommManager_SetTask(CommTask_EndUnionClient, 0);
 }
 
 static void sub_0203739C(void)
@@ -1008,53 +1163,60 @@ static void sub_0203739C(void)
     }
 
     CommSys_Reset();
-    CommMan_SetTask(sub_02037474, 0);
+    CommManager_SetTask(CommTask_EndUnionClient, 0);
 }
 
-static void sub_020373B8(void)
+/**
+ * @brief Handles ending the connection and deletes the Communication System
+ */
+static void CommTask_EndConnection(void)
 {
-    if (Unk_021C07D4->timer != 0) {
-        Unk_021C07D4->timer--;
+    if (sCommMan->timer != 0) {
+        sCommMan->timer--;
     }
 
     if (!sub_020336D4()) {
         return;
     }
 
-    if (Unk_021C07D4->timer != 0) {
+    if (sCommMan->timer != 0) {
         return;
     }
 
     CommSys_Delete();
-    CommMan_SetTask(sub_02037334, 0);
+    CommManager_SetTask(CommTask_End, 0);
 }
 
-static void sub_020373F0(void)
+/**
+ * @brief Task to initialize sCommMan for Union play
+ */
+static void CommTask_StartUnion(void)
 {
-    void *v0;
-
     if (!WirelessDriver_IsReady()) {
         return;
     }
 
-    CommServerClient_Init(Unk_021C07D4->unk_2C, 1);
-    WirelessManager_SetMaxNumConnections(Unk_021C07D4->unk_46);
-    CommInfo_Init(Unk_021C07D4->saveData, NULL);
+    CommServerClient_Init(sCommMan->trainerInfo, 1);
+    WirelessManager_SetMaxNumConnections(sCommMan->maxNumConnection);
+    CommInfo_Init(sCommMan->saveData, NULL);
 
     if (CommSys_InitClient(1, 1, 512)) {
         CommSys_SwitchTransitionTypeToParallel();
-        CommMan_SetTask(sub_02037444, 32 * 2);
+        CommManager_SetTask(CommTask_SearchUnionClient, 32 * 2);
     }
 }
 
-static void sub_02037444(void)
+/**
+ * @brief Searches for parents to connect to as a client for union play, initializes as a server if none are found
+ */
+static void CommTask_SearchUnionClient(void)
 {
     int v0;
 
     sub_02033A5C();
 
-    if (Unk_021C07D4->timer != 0) {
-        Unk_021C07D4->timer--;
+    if (sCommMan->timer != 0) {
+        sCommMan->timer--;
         return;
     }
 
@@ -1062,30 +1224,33 @@ static void sub_02037444(void)
         return;
     }
 
-    CommMan_SetTask(sub_0203748C, 0);
+    CommManager_SetTask(CommTask_InitializeServerUnion, 0);
 }
 
-static void sub_02037474(void)
+static void CommTask_EndUnionClient(void)
 {
     if (!sub_020336D4()) {
         return;
     }
 
-    CommMan_SetTask(sub_0203748C, 0);
+    CommManager_SetTask(CommTask_InitializeServerUnion, 0);
 }
 
-static void sub_0203748C(void)
+/**
+ * @brief Initializes the current CommManager as a server for union play
+ */
+static void CommTask_InitializeServerUnion(void)
 {
     if (!sub_02033E30()) {
         return;
     }
 
-    if (CommSys_InitServer(0, Unk_021C07D4->unk_4E, 512, 1)) {
-        u32 v1 = MATH_Rand32(&Unk_021C07D4->unk_0C, 40 * 2);
+    if (CommSys_InitServer(0, sCommMan->unk_4E, 512, 1)) {
+        u32 rand = MATH_Rand32(&sCommMan->rand, 40 * 2);
 
         CommSys_SwitchTransitionTypeToParallel();
-        Unk_021C07D4->unk_4E = 0;
-        CommMan_SetTask(sub_020374F4, 10000);
+        sCommMan->unk_4E = 0;
+        CommManager_SetTask(sub_020374F4, 10000);
     }
 }
 
@@ -1095,26 +1260,26 @@ static void sub_020374F4(void)
         (void)0;
     } else {
         if (CommSys_IsClientConnecting()) {
-            Unk_021C07D4->unk_4E = 1;
+            sCommMan->unk_4E = 1;
             NetworkIcon_Init();
-            CommMan_SetTask(sub_02037790, 0);
+            CommManager_SetTask(CommTask_ConnectUnionServer, 0);
             return;
         }
 
-        if (Unk_021C07D4->timer != 0) {
-            Unk_021C07D4->timer--;
+        if (sCommMan->timer != 0) {
+            sCommMan->timer--;
             return;
         }
     }
 
     if (sub_020336D4()) {
-        CommMan_SetTask(sub_0203754C, 0);
+        CommManager_SetTask(CommTask_RestartUnionClient, 0);
     }
 }
 
-static void sub_0203754C(void)
+static void CommTask_RestartUnionClient(void)
 {
-    u32 v1;
+    u32 rand;
 
     if (!sub_02033E30()) {
         return;
@@ -1122,8 +1287,8 @@ static void sub_0203754C(void)
 
     if (CommSys_InitClient(0, 0, 512)) {
         CommSys_SwitchTransitionTypeToParallel();
-        v1 = MATH_Rand32(&Unk_021C07D4->unk_0C, 32);
-        CommMan_SetTask(sub_02037444, v1);
+        rand = MATH_Rand32(&sCommMan->rand, 32);
+        CommManager_SetTask(CommTask_SearchUnionClient, rand);
     }
 }
 
@@ -1133,7 +1298,7 @@ static void sub_020375A4(void)
         return;
     }
 
-    CommMan_SetTask(sub_020375BC, 0);
+    CommManager_SetTask(sub_020375BC, 0);
 }
 
 static void sub_020375BC(void)
@@ -1144,114 +1309,114 @@ static void sub_020375BC(void)
 
     if (CommSys_InitClient(0, 0, 512)) {
         CommSys_SwitchTransitionTypeToParallel();
-        CommMan_SetTask(sub_020375E8, 100);
+        CommManager_SetTask(sub_020375E8, 100);
     }
 }
 
 static void sub_020375E8(void)
 {
-    if (sub_02033898(Unk_021C07D4->unk_49) != 0) {
-        if (sub_02034984(Unk_021C07D4->unk_49)) {
-            CommMan_SetTask(sub_0203764C, 100);
+    if (sub_02033898(sCommMan->connectionID) != 0) {
+        if (sub_02034984(sCommMan->connectionID)) {
+            CommManager_SetTask(sub_0203764C, 100);
             return;
         }
     }
 
     if (CommSys_CheckError()) {
-        CommMan_SetTask(sub_02037740, 0);
-    } else if (Unk_021C07D4->timer != 0) {
-        Unk_021C07D4->timer--;
+        CommManager_SetTask(CommTask_ResetUnionClient, 0);
+    } else if (sCommMan->timer != 0) {
+        sCommMan->timer--;
     } else {
-        CommMan_SetTask(sub_02037740, 0);
+        CommManager_SetTask(CommTask_ResetUnionClient, 0);
     }
 }
 
 static void sub_0203764C(void)
 {
     if (CommSys_CheckError()) {
-        CommMan_SetTask(sub_02037740, 0);
+        CommManager_SetTask(CommTask_ResetUnionClient, 0);
         return;
     }
 
     if (CommSys_IsPlayerConnected(CommSys_CurNetId())) {
-        Unk_021C07D4->unk_48 = 0;
-        CommMan_SetTask(sub_020376A8, 120);
+        sCommMan->unk_48 = 0;
+        CommManager_SetTask(sub_020376A8, 120);
         return;
     }
 
-    if (Unk_021C07D4->timer != 0) {
-        Unk_021C07D4->timer--;
+    if (sCommMan->timer != 0) {
+        sCommMan->timer--;
         return;
     }
 
-    CommMan_SetTask(sub_02037740, 0);
+    CommManager_SetTask(CommTask_ResetUnionClient, 0);
 }
 
 static void sub_020376A8(void)
 {
     if (CommSys_CheckError()) {
-        CommMan_SetTask(sub_02037740, 0);
+        CommManager_SetTask(CommTask_ResetUnionClient, 0);
         return;
     }
 
-    if (Unk_021C07D4->unk_48 == 2) {
-        CommMan_SetTask(sub_0203773C, 0);
+    if (sCommMan->unk_48 == 2) {
+        CommManager_SetTask(CommTask_FailedConnectUnionClient, 0);
         return;
     }
 
-    if (Unk_021C07D4->unk_48 == 1) {
+    if (sCommMan->unk_48 == 1) {
         CommInfo_SendPlayerInfo();
-        CommMan_SetTask(sub_02037724, 0);
+        CommManager_SetTask(CommTask_SuccededConnectUnionClient, 0);
         return;
     }
 
-    if (Unk_021C07D4->timer > (120 - 10)) {
+    if (sCommMan->timer > (120 - 10)) {
         CommSys_SendDataFixedSize(6, Unk_02100A20);
     }
 
-    if (Unk_021C07D4->timer != 0) {
-        Unk_021C07D4->timer--;
+    if (sCommMan->timer != 0) {
+        sCommMan->timer--;
         return;
     }
 
-    CommMan_SetTask(sub_02037740, 0);
+    CommManager_SetTask(CommTask_ResetUnionClient, 0);
 }
 
-static void sub_02037724(void)
+static void CommTask_SuccededConnectUnionClient(void)
 {
     if (CommSys_CheckError()) {
-        CommMan_SetTask(sub_02037740, 0);
+        CommManager_SetTask(CommTask_ResetUnionClient, 0);
         return;
     }
 }
 
-static void sub_0203773C(void)
+static void CommTask_FailedConnectUnionClient(void)
 {
     return;
 }
 
-static void sub_02037740(void)
+static void CommTask_ResetUnionClient(void)
 {
-    Unk_021C07D4->unk_48 = 0;
+    sCommMan->unk_48 = 0;
 
     if (!sub_020336D4()) {
         return;
     }
 
-    if (Unk_021C07D4->unk_44 != 0) {
-        Unk_021C07D4->unk_44--;
-        CommMan_SetTask(sub_020375BC, 0);
+    if (sCommMan->retryConnectionAttempts != 0) {
+        sCommMan->retryConnectionAttempts--;
+        CommManager_SetTask(sub_020375BC, 0);
     } else {
-        CommMan_SetTask(sub_0203773C, 0);
+        CommManager_SetTask(CommTask_FailedConnectUnionClient, 0);
     }
 }
 
-static void sub_02037790(void)
+static void CommTask_ConnectUnionServer(void)
 {
     if (!CommSys_IsClientConnecting()) {
         if (!sub_02038938()) {
             if (sub_020336D4()) {
-                CommMan_SetTask(sub_0203754C, 0);
+                CommManager_SetTask(CommTask_RestartUnionClient, 0);
             }
         }
     } else {
@@ -1262,29 +1427,27 @@ static void sub_02037790(void)
 
     if (CommSys_CheckError()) {
         if (!sub_02038938()) {
-            CommMan_SetTask(sub_02037740, 0);
+            CommManager_SetTask(CommTask_ResetUnionClient, 0);
             return;
         }
     }
 }
 
-static void sub_020377E4(void)
+static void CommTask_PauseUnionServer(void)
 {
-    u32 v1;
-
     if (!sub_02033E30()) {
         return;
     }
 
-    if (CommSys_InitServer(0, Unk_021C07D4->unk_4E, 512, 0)) {
+    if (CommSys_InitServer(0, sCommMan->unk_4E, 512, 0)) {
         CommSys_SwitchTransitionTypeToParallel();
-        CommMan_SetTask(sub_02037330, 0);
+        CommManager_SetTask(CommTask_None, 0);
     }
 }
 
-void sub_0203781C(void)
+void CommManager_StartDrawServer(void)
 {
-    Unk_021C07D4->unk_4A = 13;
+    sCommMan->commType = COMM_TYPE_DRAW;
 
     if (CommSys_CurNetId() == 0) {
         u8 v0 = 0;
@@ -1295,121 +1458,124 @@ void sub_0203781C(void)
     }
 }
 
-void sub_02037854(int param0)
+void CommManager_StartDrawClient(int param0)
 {
-    Unk_021C07D4->unk_49 = param0;
-    Unk_021C07D4->unk_44 = 3;
-    CommMan_SetTask(sub_020378F8, 0);
+    sCommMan->connectionID = param0;
+    sCommMan->retryConnectionAttempts = 3;
+    CommManager_SetTask(CommTask_StartDrawClient, 0);
 }
 
-void sub_02037878(void)
+void CommManager_SetState_MixRecords(void)
 {
-    Unk_021C07D4->unk_4A = 7;
+    sCommMan->commType = COMM_TYPE_MIX_RECORDS;
 }
 
-void sub_02037888(int param0)
+void CommManager_StartMixRecordsClient(int param0)
 {
-    Unk_021C07D4->unk_49 = param0;
-    Unk_021C07D4->unk_4A = 7;
-    Unk_021C07D4->unk_44 = 3;
+    sCommMan->connectionID = param0;
+    sCommMan->commType = COMM_TYPE_MIX_RECORDS;
+    sCommMan->retryConnectionAttempts = 3;
 
     NetworkIcon_Init();
-    CommMan_SetTask(sub_020375A4, 0);
+    CommManager_SetTask(sub_020375A4, 0);
 }
 
-void sub_020378B8(void)
+/**
+ * @brief Sets sCommMan->commType to COMM_TYPE_SPIN_TRADE
+ */
+void CommManager_SetState_SpinTrade(void)
 {
-    Unk_021C07D4->unk_4A = 26;
+    sCommMan->commType = COMM_TYPE_SPIN_TRADE;
 }
 
-void sub_020378C8(int param0)
+void CommManager_StartSpinTradeClient(int param0)
 {
-    Unk_021C07D4->unk_49 = param0;
-    Unk_021C07D4->unk_4A = 26;
-    Unk_021C07D4->unk_44 = 3;
+    sCommMan->connectionID = param0;
+    sCommMan->commType = COMM_TYPE_SPIN_TRADE;
+    sCommMan->retryConnectionAttempts = 3;
 
     NetworkIcon_Init();
-    CommMan_SetTask(sub_020375A4, 0);
+    CommManager_SetTask(sub_020375A4, 0);
 }
 
-static void sub_020378F8(void)
+static void CommTask_StartDrawClient(void)
 {
     if (sub_020336D4()) {
-        CommMan_SetTask(sub_02037910, 0);
+        CommManager_SetTask(CommTask_InitDrawClient, 0);
     }
 }
 
-static void sub_02037910(void)
+static void CommTask_InitDrawClient(void)
 {
     if (!sub_02033E30()) {
         return;
     }
 
-    Unk_021C07D4->unk_4A = 13;
+    sCommMan->commType = COMM_TYPE_DRAW;
 
     if (CommSys_InitClient(0, 0, 512)) {
         CommSys_SwitchTransitionTypeToServerClient();
-        CommMan_SetTask(sub_0203794C, 100);
+        CommManager_SetTask(CommTask_ConnectDraw, 100);
     }
 }
 
-static void sub_0203794C(void)
+static void CommTask_ConnectDraw(void)
 {
-    if (sub_02033898(Unk_021C07D4->unk_49) != 0) {
-        if (sub_02034984(Unk_021C07D4->unk_49)) {
-            CommMan_SetTask(sub_020379D0, 100);
+    if (sub_02033898(sCommMan->connectionID) != 0) {
+        if (sub_02034984(sCommMan->connectionID)) {
+            CommManager_SetTask(CommTask_ConnectingDraw, 100);
             return;
         }
     }
 
-    if (CommSys_CheckError() || (Unk_021C07D4->timer == 0)) {
-        Unk_021C07D4->unk_44--;
+    if (CommSys_CheckError() || (sCommMan->timer == 0)) {
+        sCommMan->retryConnectionAttempts--;
 
-        if (Unk_021C07D4->unk_44 == 0) {
-            CommMan_SetTask(sub_0203773C, 0);
+        if (sCommMan->retryConnectionAttempts == 0) {
+            CommManager_SetTask(CommTask_FailedConnectUnionClient, 0);
         } else {
-            CommMan_SetTask(sub_020378F8, 0);
+            CommManager_SetTask(CommTask_StartDrawClient, 0);
         }
-    } else if (Unk_021C07D4->timer != 0) {
-        Unk_021C07D4->timer--;
+    } else if (sCommMan->timer != 0) {
+        sCommMan->timer--;
     }
 }
 
-static void sub_020379D0(void)
+static void CommTask_ConnectingDraw(void)
 {
-    if (Unk_021C07D4->timer > 90) {
-        Unk_021C07D4->timer--;
+    if (sCommMan->timer > 90) {
+        sCommMan->timer--;
         return;
     }
 
     if (CommSys_CheckError()) {
-        Unk_021C07D4->unk_44--;
+        sCommMan->retryConnectionAttempts--;
 
-        if (Unk_021C07D4->unk_44 == 0) {
-            CommMan_SetTask(sub_0203773C, 0);
+        if (sCommMan->retryConnectionAttempts == 0) {
+            CommManager_SetTask(CommTask_FailedConnectUnionClient, 0);
         } else {
-            CommMan_SetTask(sub_020378F8, 0);
+            CommManager_SetTask(CommTask_StartDrawClient, 0);
         }
 
         return;
     }
 
     if (CommSys_IsPlayerConnected(CommSys_CurNetId())) {
-        CommMan_SetTask(sub_02037724, 0);
+        CommManager_SetTask(CommTask_SuccededConnectUnionClient, 0);
         return;
     }
 
-    if (Unk_021C07D4->timer != 0) {
-        Unk_021C07D4->timer--;
+    if (sCommMan->timer != 0) {
+        sCommMan->timer--;
         return;
     }
 
-    Unk_021C07D4->unk_44--;
+    sCommMan->retryConnectionAttempts--;
 
-    if (Unk_021C07D4->unk_44 == 0) {
-        CommMan_SetTask(sub_0203773C, 0);
+    if (sCommMan->retryConnectionAttempts == 0) {
+        CommManager_SetTask(CommTask_FailedConnectUnionClient, 0);
     } else {
-        CommMan_SetTask(sub_020378F8, 0);
+        CommManager_SetTask(CommTask_StartDrawClient, 0);
     }
 }
 
@@ -1432,7 +1598,7 @@ void sub_02037A78(int param0, int param1, void *param2, void *param3)
         }
     }
 
-    if (v2 && (!Unk_021C07D4->unk_53)) {
+    if (v2 && (!sCommMan->pauseUnion)) {
         Unk_02100A30[0] = param0;
         CommSys_SendDataFixedSizeServer(7, Unk_02100A30);
         return;
@@ -1460,7 +1626,7 @@ void sub_02037AD8(int param0, int param1, void *param2, void *param3)
         v0 = v2[0];
 
         if (v0 == CommSys_CurNetId()) {
-            Unk_021C07D4->unk_48 = 1;
+            sCommMan->unk_48 = 1;
         }
 
         return;
@@ -1479,7 +1645,7 @@ void sub_02037AD8(int param0, int param1, void *param2, void *param3)
         v0 = v2[0];
 
         if (v0 == (u8)CommSys_CurNetId()) {
-            Unk_021C07D4->unk_48 = 2;
+            sCommMan->unk_48 = 2;
         }
 
         return;
@@ -1491,10 +1657,10 @@ int sub_02037B54(void)
     return sizeof(Unk_02100A20);
 }
 
-void sub_02037B58(int param0)
+void CommManager_SetMaxNumConnections(int param0)
 {
-    if (Unk_021C07D4) {
-        Unk_021C07D4->unk_46 = param0;
+    if (sCommMan) {
+        sCommMan->maxNumConnection = param0;
         WirelessManager_SetMaxNumConnections(param0);
     }
 }
@@ -1510,12 +1676,12 @@ static void sub_02037B78(void)
         return;
     }
 
-    CommServerClient_Init(Unk_021C07D4->unk_2C, 1);
-    CommInfo_Init(Unk_021C07D4->saveData, NULL);
+    CommServerClient_Init(sCommMan->trainerInfo, 1);
+    CommInfo_Init(sCommMan->saveData, NULL);
 
     if (CommSys_InitClient(1, 1, 32)) {
         CommSys_SwitchTransitionTypeToParallel();
-        CommMan_SetTask(sub_02037B70, 0);
+        CommManager_SetTask(sub_02037B70, 0);
     }
 }
 
@@ -1526,20 +1692,20 @@ void sub_02037BC0(SaveData *saveData)
     }
 
     Heap_CreateAtEnd(HEAP_ID_APPLICATION, HEAP_ID_COMMUNICATION, 0x7000);
-    sub_020366A0(saveData, 14);
+    CommManager_Initialize(saveData, COMM_TYPE_POKETCH);
 
-    Unk_021C07D4->unk_4B = 0;
+    sCommMan->contestRegulation = 0;
 
-    CommMan_SetTask(sub_02037B78, 0);
+    CommManager_SetTask(sub_02037B78, 0);
 }
 
 void sub_02037BFC(void)
 {
-    if (Unk_021C07D4 == NULL) {
+    if (sCommMan == NULL) {
         return;
     }
 
-    CommMan_SetTask(sub_020373B8, 5);
+    CommManager_SetTask(CommTask_EndConnection, 5);
 }
 
 BOOL sub_02037C18(void)
@@ -1548,9 +1714,9 @@ BOOL sub_02037C18(void)
     u32 v1[] = {
         (u32)sub_02037B70, 0
     };
-    u32 v2 = (u32)Unk_021C07D4->task;
+    u32 v2 = (u32)sCommMan->task;
 
-    if (Unk_021C07D4 == NULL) {
+    if (sCommMan == NULL) {
         return 0;
     }
 
@@ -1568,17 +1734,17 @@ static void sub_02037C5C(u32 param0, int param1)
     switch (param0) {
     case 0x333:
         if (param1 == 15) {
-            Unk_021C07D4->unk_54 |= 0x1;
+            sCommMan->unk_54 |= 0x1;
         }
         break;
     case 0x400318:
-        Unk_021C07D4->unk_54 |= 0x1;
+        sCommMan->unk_54 |= 0x1;
         break;
     case 0x400131:
-        Unk_021C07D4->unk_54 |= 0x2;
+        sCommMan->unk_54 |= 0x2;
         break;
     case 0x400286:
-        Unk_021C07D4->unk_54 |= 0x4;
+        sCommMan->unk_54 |= 0x4;
         break;
     }
 }
@@ -1587,7 +1753,7 @@ static void sub_02037CE4(void)
 {
     if (CommSys_InitClient(1, 1, 32)) {
         CommSys_SwitchTransitionTypeToParallel();
-        CommMan_SetTask(sub_02037B70, 0);
+        CommManager_SetTask(sub_02037B70, 0);
     }
 }
 
@@ -1597,10 +1763,10 @@ static void sub_02037D08(void)
         return;
     }
 
-    CommServerClient_Init(Unk_021C07D4->unk_2C, 0);
-    CommInfo_Init(Unk_021C07D4->saveData, NULL);
+    CommServerClient_Init(sCommMan->trainerInfo, 0);
+    CommInfo_Init(sCommMan->saveData, NULL);
     WirelessManager_SetGGIDScanCallback(sub_02037C5C);
-    CommMan_SetTask(sub_02037CE4, 0);
+    CommManager_SetTask(sub_02037CE4, 0);
 }
 
 void sub_02037D48(SaveData *saveData)
@@ -1610,82 +1776,80 @@ void sub_02037D48(SaveData *saveData)
     }
 
     Heap_CreateAtEnd(HEAP_ID_APPLICATION, HEAP_ID_COMMUNICATION, 0x7000);
-    sub_020366A0(saveData, 17);
-    Unk_021C07D4->unk_4B = 0;
-    CommMan_SetTask(sub_02037D08, 0);
+    CommManager_Initialize(saveData, COMM_TYPE_PARTY);
+    sCommMan->contestRegulation = 0;
+    CommManager_SetTask(sub_02037D08, 0);
 }
 
 void sub_02037D84(void)
 {
-    if (Unk_021C07D4 == NULL) {
+    if (sCommMan == NULL) {
         return;
     }
 
-    CommMan_SetTask(sub_020373B8, 5);
+    CommManager_SetTask(CommTask_EndConnection, 5);
 }
 
 u8 sub_02037DA0(void)
 {
-    return Unk_021C07D4->unk_54;
+    return sCommMan->unk_54;
 }
 
 BOOL sub_02037DB0(void)
 {
     CommSys_StartShutdown();
 
-    if (Unk_021C07D4 == NULL) {
+    if (sCommMan == NULL) {
         return 1;
     }
 
-    if ((Unk_021C07D4->unk_4A == 24) || (Unk_021C07D4->unk_4A == 25) || (Unk_021C07D4->unk_4A == 36)) {
+    if ((sCommMan->commType == COMM_TYPE_24) || (sCommMan->commType == COMM_TYPE_25) || (sCommMan->commType == COMM_TYPE_EMAIL_WIFI)) {
         NintendoWFC_Stop();
         return 1;
     } else if (CommMan_IsConnectedToWifi()) {
-        if (Unk_021C07D4->unk_4A == 33) {
-            CommMan_SetTask(sub_02038D80, 0);
+        if (sCommMan->commType == COMM_TYPE_LOBBY_WIFI) {
+            CommManager_SetTask(CommTask_LogoutWifiLobby, 0);
         } else {
-            CommMan_SetTask(sub_02038314, 0);
+            CommManager_SetTask(sub_02038314, 0);
         }
     } else {
-        CommMan_SetTask(sub_020370EC, 0);
+        CommManager_SetTask(CommTask_RestartSecretBase, 0);
     }
 
     return 0;
 }
 
-static void sub_02037E20(void)
+static void CommTask_StartRandomBattleServer(void)
 {
-    TrainerInfo *v0;
-
     if (!WirelessDriver_IsReady()) {
         return;
     }
 
-    CommServerClient_Init(Unk_021C07D4->unk_2C, 1);
-    CommInfo_Init(Unk_021C07D4->saveData, NULL);
+    CommServerClient_Init(sCommMan->trainerInfo, 1);
+    CommInfo_Init(sCommMan->saveData, NULL);
 
     if (CommSys_InitServer(1, 1, 512, 1)) {
         CommSys_SwitchTransitionTypeToParallel();
-        CommMan_SetTask(sub_0203718C, 0);
+        CommManager_SetTask(sub_0203718C, 0);
     }
 }
 
-static void sub_02037E68(void)
+static void CommTask_StartMysteryGiftClient(void)
 {
     if (!WirelessDriver_IsReady()) {
         return;
     }
 
-    CommServerClient_Init(Unk_021C07D4->unk_2C, 1);
-    CommInfo_Init(Unk_021C07D4->saveData, NULL);
+    CommServerClient_Init(sCommMan->trainerInfo, 1);
+    CommInfo_Init(sCommMan->saveData, NULL);
 
     if (CommSys_InitClient(1, 1, 512)) {
         CommSys_SwitchTransitionTypeToParallel();
-        CommMan_SetTask(sub_02037208, 0);
+        CommManager_SetTask(sub_02037208, 0);
     }
 }
 
-static void sub_02037EB0(void)
+static void CommTask_WifiBattleError(void)
 {
     return;
 }
@@ -1695,18 +1859,18 @@ static void sub_02037EB4(void)
     int v0 = NintendoWFC_Process(0);
 
     if (v0 < 0) {
-        CommMan_SetTask(sub_02037EB0, 0);
+        CommManager_SetTask(CommTask_WifiBattleError, 0);
     } else if (v0 == ((DWC_ERROR_NUM) + 3)) {
         (void)0;
     }
 }
 
-static void sub_02037ED0(void)
+static void CommTask_DisconnectWifiBattle(void)
 {
     return;
 }
 
-static void sub_02037ED4(void)
+static void CommTask_WifiBattleFailed(void)
 {
     return;
 }
@@ -1720,28 +1884,28 @@ static void sub_02037ED8(void)
     v0 = NintendoWFC_Process(0);
 
     if ((v0 >= DWC_ERROR_FRIENDS_SHORTAGE) && ((DWC_ERROR_NUM) > v0)) {
-        CommMan_SetTask(sub_02037ED4, 0);
+        CommManager_SetTask(CommTask_WifiBattleFailed, 0);
     } else if (v0 < 0) {
-        CommMan_SetTask(sub_02037EB0, 0);
+        CommManager_SetTask(CommTask_WifiBattleError, 0);
     } else if (v0 == ((DWC_ERROR_NUM) + 3)) {
-        CommMan_SetTask(sub_02037EB4, 0);
+        CommManager_SetTask(sub_02037EB4, 0);
     } else if (v0 == ((DWC_ERROR_NUM) + 4)) {
-        if (Unk_021C07D4->unk_4F) {
-            CommMan_SetTask(sub_02037EB0, 0);
+        if (sCommMan->errorDisconnect) {
+            CommManager_SetTask(CommTask_WifiBattleError, 0);
         } else {
-            CommMan_SetTask(sub_02037ED0, 0);
+            CommManager_SetTask(CommTask_DisconnectWifiBattle, 0);
         }
     } else if (v0 == ((DWC_ERROR_NUM) + 1)) {
-        if (Unk_021C07D4->unk_4F) {
-            CommMan_SetTask(sub_02037EB0, 0);
+        if (sCommMan->errorDisconnect) {
+            CommManager_SetTask(CommTask_WifiBattleError, 0);
         } else {
-            CommMan_SetTask(sub_02037ED0, 0);
+            CommManager_SetTask(CommTask_DisconnectWifiBattle, 0);
         }
     }
 
-    if (Unk_021C07D4->unk_4F) {
-        if (Unk_021C07D4->unk_47 != CommSys_ConnectedCount()) {
-            CommMan_SetTask(sub_02037EB0, 0);
+    if (sCommMan->errorDisconnect) {
+        if (sCommMan->connectedCount != CommSys_ConnectedCount()) {
+            CommManager_SetTask(CommTask_WifiBattleError, 0);
         }
     }
 }
@@ -1750,16 +1914,16 @@ void sub_02037F94(int param0, int param1, int param2)
 {
     int v0;
 
-    if (Unk_021C07D4) {
+    if (sCommMan) {
         if ((param0 == ((DWC_ERROR_NUM) + 6)) || (param0 == ((DWC_ERROR_NUM) + 5))) {
             v0 = param0;
         } else {
             v0 = -param0;
         }
 
-        Unk_021C07D4->unk_34.unk_00 = v0;
-        Unk_021C07D4->unk_34.unk_04 = param1;
-        Unk_021C07D4->unk_34.unk_08 = param2;
+        sCommMan->unk_34.unk_00 = v0;
+        sCommMan->unk_34.unk_04 = param1;
+        sCommMan->unk_34.unk_08 = param2;
     }
 }
 
@@ -1768,17 +1932,17 @@ static void sub_02037FBC(void)
     int v0 = NintendoWFC_Process(0);
 
     if ((v0 >= DWC_ERROR_FRIENDS_SHORTAGE) && ((DWC_ERROR_NUM) > v0)) {
-        CommMan_SetTask(sub_02037ED4, 0);
+        CommManager_SetTask(CommTask_WifiBattleFailed, 0);
     } else if (v0 < 0) {
-        CommMan_SetTask(sub_02037EB0, 0);
+        CommManager_SetTask(CommTask_WifiBattleError, 0);
     } else if (v0 == NINTENDO_WFC_RESULT_MATCHMAKING_SUCCESS) {
-        CommMan_SetTask(sub_02037ED8, 0);
+        CommManager_SetTask(sub_02037ED8, 0);
     } else if (v0 == NINTENDO_WFC_RESULT_CONN_RESET) {
-        CommMan_SetTask(sub_02037ED0, 0);
+        CommManager_SetTask(CommTask_DisconnectWifiBattle, 0);
     } else if (v0 == NINTENDO_WFC_RESULT_CONN_RESET_AFTER_HOST_LEFT) {
-        CommMan_SetTask(sub_02037ED4, 0);
+        CommManager_SetTask(CommTask_WifiBattleFailed, 0);
     } else if (v0 == NINTENDO_WFC_RESULT_CONNECTION_CLOSED) {
-        CommMan_SetTask(sub_02037ED0, 0);
+        CommManager_SetTask(CommTask_DisconnectWifiBattle, 0);
     }
 }
 
@@ -1787,21 +1951,21 @@ static void sub_0203802C(void)
     int v0 = NintendoWFC_Process(1);
 
     if (v0 < 0) {
-        CommMan_SetTask(sub_02037EB0, 0);
+        CommManager_SetTask(CommTask_WifiBattleError, 0);
     } else {
-        int v1 = NintendoWFC_StartConnectionWithFriends(Unk_021C07D4->unk_4D, CommLocal_MaxMachines(Unk_021C07D4->unk_4A) + 1, 0);
+        int v1 = NintendoWFC_StartConnectionWithFriends(sCommMan->unk_4D, CommLocal_MaxMachines(sCommMan->commType) + 1, 0);
 
         switch (v1) {
         case 0:
             CommSys_Reset();
 
-            CommMan_SetTask(sub_02037FBC, 0);
+            CommManager_SetTask(sub_02037FBC, 0);
             break;
         case -1:
         case -2:
             break;
         case -3:
-            CommMan_SetTask(sub_02037EB0, 0);
+            CommManager_SetTask(CommTask_WifiBattleError, 0);
             break;
         }
     }
@@ -1809,47 +1973,47 @@ static void sub_0203802C(void)
 
 int sub_020380A0(int param0)
 {
-    if (Unk_021C07D4->task != sub_02037FBC) {
+    if (sCommMan->task != sub_02037FBC) {
         return 0;
     }
 
     NintendoDWC_SetDataTransferCallbacks(sub_020351F8, sub_0203509C);
-    Unk_021C07D4->unk_4D = param0;
-    CommMan_SetTask(sub_0203802C, 0);
+    sCommMan->unk_4D = param0;
+    CommManager_SetTask(sub_0203802C, 0);
     return 1;
 }
 
 int sub_020380E4(void)
 {
-    if (Unk_021C07D4->task == sub_02037FBC) {
+    if (sCommMan->task == sub_02037FBC) {
         return 0;
     }
 
-    if (Unk_021C07D4->task == sub_02037ED8) {
+    if (sCommMan->task == sub_02037ED8) {
         return 1;
     }
 
-    if (Unk_021C07D4->task == sub_02037EB4) {
+    if (sCommMan->task == sub_02037EB4) {
         return 3;
     }
 
-    if (Unk_021C07D4->task == sub_02037ED0) {
+    if (sCommMan->task == CommTask_DisconnectWifiBattle) {
         return 4;
     }
 
-    if (Unk_021C07D4->task == sub_02037ED4) {
+    if (sCommMan->task == CommTask_WifiBattleFailed) {
         return 5;
     }
 
-    if (Unk_021C07D4->task == sub_02038DEC) {
+    if (sCommMan->task == CommTask_WaitWifiLobbyMatchServerP2P) {
         return 0;
     }
 
-    if (Unk_021C07D4->task == sub_02038DCC) {
+    if (sCommMan->task == CommTask_ConnectWifiLobbyP2P) {
         return 1;
     }
 
-    if (Unk_021C07D4->task == sub_02038E84) {
+    if (sCommMan->task == CommTask_WifiLobbyTimeout) {
         return 3;
     }
 
@@ -1867,15 +2031,15 @@ static void sub_02038164(void)
 
     switch (v0) {
     case 0:
-        Unk_021C07D4->unk_58 = 0;
+        sCommMan->unk_58 = 0;
         CommSys_Reset();
-        CommMan_SetTask(sub_02037FBC, 0);
+        CommManager_SetTask(sub_02037FBC, 0);
         break;
     case -1:
     case -2:
         break;
     case -3:
-        CommMan_SetTask(sub_02037EB0, 0);
+        CommManager_SetTask(CommTask_WifiBattleError, 0);
         break;
     case -4:
         return;
@@ -1884,9 +2048,9 @@ static void sub_02038164(void)
     v1 = NintendoWFC_HandleError();
 
     if (v1 < 0) {
-        CommMan_SetTask(sub_02037EB0, 0);
+        CommManager_SetTask(CommTask_WifiBattleError, 0);
     } else if (v1 == ((DWC_ERROR_NUM) + 6)) {
-        CommMan_SetTask(sub_02037EB0, 0);
+        CommManager_SetTask(CommTask_WifiBattleError, 0);
     }
 }
 
@@ -1896,11 +2060,11 @@ static void sub_020381F0(void)
 
     CommSys_SetWifiConnected(0);
 
-    if (NintendoWFC_EndConnection(Unk_021C07D4->unk_4C)) {
+    if (NintendoWFC_EndConnection(sCommMan->unk_4C)) {
         if (NintendoWFC_ReturnToReadyState()) {
             CommInfo_Delete();
 
-            CommMan_SetTask(sub_02038164, 0);
+            CommManager_SetTask(sub_02038164, 0);
             return;
         }
     }
@@ -1908,37 +2072,37 @@ static void sub_020381F0(void)
     v0 = NintendoWFC_Process(0);
 
     if (v0 < 0) {
-        CommMan_SetTask(sub_02037EB0, 0);
+        CommManager_SetTask(CommTask_WifiBattleError, 0);
     }
 }
 
 void sub_02038240(int param0, int param1, void *param2, void *param3)
 {
     if (CommSys_CurNetId() == 0) {
-        Unk_021C07D4->unk_4C = 0;
-        CommMan_SetTask(sub_020381F0, 0);
+        sCommMan->unk_4C = 0;
+        CommManager_SetTask(sub_020381F0, 0);
     } else {
-        Unk_021C07D4->unk_4C = 1;
-        CommMan_SetTask(sub_020381F0, 0);
+        sCommMan->unk_4C = 1;
+        CommManager_SetTask(sub_020381F0, 0);
     }
 
-    Unk_021C07D4->unk_58 = 1;
+    sCommMan->unk_58 = 1;
 }
 
 BOOL sub_02038284(void)
 {
-    return Unk_021C07D4->unk_58;
+    return sCommMan->unk_58;
 }
 
 BOOL sub_02038294(void)
 {
-    u32 v0 = (u32)Unk_021C07D4->task;
+    u32 v0 = (u32)sCommMan->task;
 
     if (v0 == (u32)sub_02038164) {
         return 1;
     }
 
-    if (v0 == (u32)sub_02038C68) {
+    if (v0 == (u32)CommTask_ConnectWifiLobby) {
         return 1;
     }
 
@@ -1947,7 +2111,7 @@ BOOL sub_02038294(void)
 
 BOOL sub_020382C0(void)
 {
-    u32 v0 = (u32)Unk_021C07D4->task;
+    u32 v0 = (u32)sCommMan->task;
 
     if (v0 == (u32)sub_02037FBC) {
         return 1;
@@ -1957,7 +2121,7 @@ BOOL sub_020382C0(void)
         return 1;
     }
 
-    if (v0 == (u32)sub_02038C68) {
+    if (v0 == (u32)CommTask_ConnectWifiLobby) {
         return 1;
     }
 
@@ -1966,8 +2130,8 @@ BOOL sub_020382C0(void)
 
 UnkStruct_ov65_0222F6EC *sub_020382F8(void)
 {
-    GF_ASSERT(Unk_021C07D4);
-    return &Unk_021C07D4->unk_34;
+    GF_ASSERT(sCommMan);
+    return &sCommMan->unk_34;
 }
 
 static void sub_02038314(void)
@@ -1978,52 +2142,52 @@ static void sub_02038314(void)
 
     if (NintendoWFC_EndConnection(0)) {
         NintendoWFC_ReturnToReadyState();
-        CommMan_SetTask(sub_020373B8, 0);
+        CommManager_SetTask(CommTask_EndConnection, 0);
     }
 
     v0 = NintendoWFC_Process(0);
 
     if (v0 < 0) {
-        CommMan_SetTask(sub_02037EB0, 0);
+        CommManager_SetTask(CommTask_WifiBattleError, 0);
     }
 }
 
 void sub_02038350(void)
 {
-    if (Unk_021C07D4 == NULL) {
+    if (sCommMan == NULL) {
         return;
     }
 
     ResetUnlock(RESET_LOCK_0x1);
     CommInfo_Delete();
-    CommMan_SetTask(sub_020373B8, 5);
+    CommManager_SetTask(CommTask_EndConnection, 5);
 }
 
 void sub_02038378(void)
 {
-    if (Unk_021C07D4 == NULL) {
+    if (sCommMan == NULL) {
         return;
     }
 
-    Unk_021C07D4->unk_4C = 0;
-    CommMan_SetTask(sub_020381F0, 0);
+    sCommMan->unk_4C = 0;
+    CommManager_SetTask(sub_020381F0, 0);
 }
 
 void sub_02038398(void)
 {
-    if (Unk_021C07D4 == NULL) {
+    if (sCommMan == NULL) {
         return;
     }
 
     CommMan_SetErrorHandling(0, 1);
 
     if (CommSys_CurNetId() == 0) {
-        Unk_021C07D4->unk_4C = 0;
+        sCommMan->unk_4C = 0;
     } else {
-        Unk_021C07D4->unk_4C = 1;
+        sCommMan->unk_4C = 1;
     }
 
-    CommMan_SetTask(sub_020381F0, 0);
+    CommManager_SetTask(sub_020381F0, 0);
 }
 
 void sub_020383D4(void)
@@ -2035,18 +2199,18 @@ void sub_020383D4(void)
 
 BOOL sub_020383E8(void)
 {
-    if (Unk_021C07D4) {
-        u32 v0 = (u32)Unk_021C07D4->task;
+    if (sCommMan) {
+        u32 v0 = (u32)sCommMan->task;
 
-        if (v0 == (u32)sub_02037EB0) {
+        if (v0 == (u32)CommTask_WifiBattleError) {
             return 1;
         }
 
-        if ((v0 == (u32)sub_02037EB4) && Unk_021C07D4->unk_4F) {
+        if ((v0 == (u32)sub_02037EB4) && sCommMan->errorDisconnect) {
             return 1;
         }
 
-        if ((v0 == (u32)sub_02038E84) && Unk_021C07D4->unk_4F) {
+        if ((v0 == (u32)CommTask_WifiLobbyTimeout) && sCommMan->errorDisconnect) {
             return 1;
         }
     }
@@ -2056,13 +2220,13 @@ BOOL sub_020383E8(void)
 
 void sub_02038438(SaveData *saveData)
 {
-    if (!Unk_021C07D4) {
+    if (!sCommMan) {
         Heap_CreateAtEnd(HEAP_ID_APPLICATION, HEAP_ID_COMMUNICATION, 0x100);
-        Unk_021C07D4 = (UnkStruct_021C07D4 *)Heap_Alloc(HEAP_ID_COMMUNICATION, sizeof(UnkStruct_021C07D4));
-        MI_CpuFill8(Unk_021C07D4, 0, sizeof(UnkStruct_021C07D4));
-        Unk_021C07D4->unk_4A = 24;
-        Unk_021C07D4->unk_51 = 1;
-        Unk_021C07D4->saveData = saveData;
+        sCommMan = (CommunicationManager *)Heap_Alloc(HEAP_ID_COMMUNICATION, sizeof(CommunicationManager));
+        MI_CpuFill8(sCommMan, 0, sizeof(CommunicationManager));
+        sCommMan->commType = COMM_TYPE_24;
+        sCommMan->unk_51 = 1;
+        sCommMan->saveData = saveData;
         CommMan_SetErrorHandling(0, 1);
         ResetLock(RESET_LOCK_0x1);
     }
@@ -2070,24 +2234,24 @@ void sub_02038438(SaveData *saveData)
 
 void sub_0203848C(void)
 {
-    if (Unk_021C07D4) {
+    if (sCommMan) {
         ResetUnlock(RESET_LOCK_0x1);
         CommMan_SetErrorHandling(0, 0);
-        Heap_Free(Unk_021C07D4);
-        Unk_021C07D4 = NULL;
+        Heap_Free(sCommMan);
+        sCommMan = NULL;
         Heap_Destroy(HEAP_ID_COMMUNICATION);
     }
 }
 
 void sub_020384C0(SaveData *saveData)
 {
-    if (!Unk_021C07D4) {
+    if (!sCommMan) {
         Heap_CreateAtEnd(HEAP_ID_APPLICATION, HEAP_ID_COMMUNICATION, 0x100);
-        Unk_021C07D4 = (UnkStruct_021C07D4 *)Heap_Alloc(HEAP_ID_COMMUNICATION, sizeof(UnkStruct_021C07D4));
-        MI_CpuFill8(Unk_021C07D4, 0, sizeof(UnkStruct_021C07D4));
-        Unk_021C07D4->unk_4A = 25;
-        Unk_021C07D4->unk_51 = 1;
-        Unk_021C07D4->saveData = saveData;
+        sCommMan = (CommunicationManager *)Heap_Alloc(HEAP_ID_COMMUNICATION, sizeof(CommunicationManager));
+        MI_CpuFill8(sCommMan, 0, sizeof(CommunicationManager));
+        sCommMan->commType = COMM_TYPE_25;
+        sCommMan->unk_51 = 1;
+        sCommMan->saveData = saveData;
         CommMan_SetErrorHandling(0, 1);
         ResetLock(RESET_LOCK_0x1);
     }
@@ -2095,24 +2259,24 @@ void sub_020384C0(SaveData *saveData)
 
 void sub_02038514(void)
 {
-    if (Unk_021C07D4) {
+    if (sCommMan) {
         ResetUnlock(RESET_LOCK_0x1);
         CommMan_SetErrorHandling(0, 0);
-        Heap_Free(Unk_021C07D4);
-        Unk_021C07D4 = NULL;
+        Heap_Free(sCommMan);
+        sCommMan = NULL;
         Heap_Destroy(HEAP_ID_COMMUNICATION);
     }
 }
 
 void sub_02038548(SaveData *saveData)
 {
-    if (!Unk_021C07D4) {
+    if (!sCommMan) {
         Heap_CreateAtEnd(HEAP_ID_APPLICATION, HEAP_ID_COMMUNICATION, 0x100);
-        Unk_021C07D4 = (UnkStruct_021C07D4 *)Heap_Alloc(HEAP_ID_COMMUNICATION, sizeof(UnkStruct_021C07D4));
-        MI_CpuFill8(Unk_021C07D4, 0, sizeof(UnkStruct_021C07D4));
-        Unk_021C07D4->unk_4A = 36;
-        Unk_021C07D4->unk_51 = 1;
-        Unk_021C07D4->saveData = saveData;
+        sCommMan = (CommunicationManager *)Heap_Alloc(HEAP_ID_COMMUNICATION, sizeof(CommunicationManager));
+        MI_CpuFill8(sCommMan, 0, sizeof(CommunicationManager));
+        sCommMan->commType = COMM_TYPE_EMAIL_WIFI;
+        sCommMan->unk_51 = 1;
+        sCommMan->saveData = saveData;
         CommMan_SetErrorHandling(0, 1);
         ResetLock(RESET_LOCK_0x1);
     }
@@ -2120,11 +2284,11 @@ void sub_02038548(SaveData *saveData)
 
 void sub_0203859C(void)
 {
-    if (Unk_021C07D4) {
+    if (sCommMan) {
         ResetUnlock(RESET_LOCK_0x1);
         CommMan_SetErrorHandling(0, 0);
-        Heap_Free(Unk_021C07D4);
-        Unk_021C07D4 = NULL;
+        Heap_Free(sCommMan);
+        sCommMan = NULL;
         Heap_Destroy(HEAP_ID_COMMUNICATION);
     }
 }
@@ -2134,18 +2298,18 @@ BOOL sub_020385D0(void)
     int v0, v1;
     DWCErrorType v2;
 
-    if (!Unk_021C07D4) {
+    if (!sCommMan) {
         return 0;
     }
 
-    if ((Unk_021C07D4->unk_4A == 24) || (Unk_021C07D4->unk_4A == 36)) {
+    if ((sCommMan->commType == COMM_TYPE_24) || (sCommMan->commType == COMM_TYPE_EMAIL_WIFI)) {
         v1 = DWC_GetLastErrorEx(&v0, &v2);
 
         if (v1 != 0) {
             DWC_ClearError();
             return 1;
         }
-    } else if (Unk_021C07D4->unk_4A == 25) {
+    } else if (sCommMan->commType == COMM_TYPE_25) {
         v1 = DWC_GetLastErrorEx(&v0, &v2);
 
         if (v1 != 0) {
@@ -2158,84 +2322,86 @@ BOOL sub_020385D0(void)
     return 0;
 }
 
-static void sub_0203862C(void)
+static void CommTask_ConnectWifiBattle(void)
 {
     int v0 = NintendoWFC_ConnectToDWCServer();
 
-    Unk_021C07D4->timer--;
+    sCommMan->timer--;
 
     if (v0 == NINTENDO_WFC_RESULT_CONNECTED_TO_SERVER) {
-        if (Unk_021C07D4->unk_4A == 33) {
+        if (sCommMan->commType == COMM_TYPE_LOBBY_WIFI) {
             BOOL v1;
 
-            v1 = ov66_02232714(Unk_021C07D4->unk_5C);
+            v1 = ov66_02232714(sCommMan->unk_5C);
 
             if (v1 == TRUE) {
-                Unk_021C07D4->unk_60 = 1;
-                CommMan_SetTask(sub_02038C1C, Unk_021C07D4->timer);
+                sCommMan->lobbyLoginSuccess = TRUE;
+                CommManager_SetTask(CommTask_LogInWifiLobby, sCommMan->timer);
                 return;
             } else {
-                CommMan_SetTask(sub_02038DC8, 0);
+                CommManager_SetTask(CommTask_WifiLobbyError, 0);
                 return;
             }
         } else {
-            CommMan_SetTask(sub_02038164, 0);
+            CommManager_SetTask(sub_02038164, 0);
             return;
         }
     } else if (v0 != 0) {
-        CommMan_SetTask(sub_02037EB0, 0);
+        CommManager_SetTask(CommTask_WifiBattleError, 0);
     }
 
-    if (Unk_021C07D4->timer <= 0) {
-        CommMan_SetTask(sub_02037EB0, 0);
+    if (sCommMan->timer <= 0) {
+        CommManager_SetTask(CommTask_WifiBattleError, 0);
     }
 }
 
-static void sub_020386B4(void)
+static void CommTask_StartWifiBattleServer(void)
 {
-    TrainerInfo *v0;
-
     if (!WirelessDriver_IsReady()) {
         return;
     }
-
-    {
-        Heap_CreateAtEnd(HEAP_ID_APPLICATION, HEAP_ID_NINTENDO_WFC, (0x2A000 + 0xA000 + 0x1400));
-    }
-
+    
+    Heap_CreateAtEnd(HEAP_ID_APPLICATION, HEAP_ID_NINTENDO_WFC, (0x2A000 + 0xA000 + 0x1400));
+    
     if (CommSys_InitServer(1, 1, 512, 1)) {
-        NintendoWFC_Init(Unk_021C07D4->saveData, HEAP_ID_NINTENDO_WFC, (0x2B000 + 0x1400), CommLocal_MaxMachines(Unk_021C07D4->unk_4A) + 1);
+        NintendoWFC_Init(sCommMan->saveData, HEAP_ID_NINTENDO_WFC, (0x2B000 + 0x1400), CommLocal_MaxMachines(sCommMan->commType) + 1);
         NintendoWFC_SetFatalErrorCallback(sub_020389FC);
         CommSys_SwitchTransitionTypeToParallel();
-        CommMan_SetTask(sub_0203862C, (30 * 60 * 2));
+        CommManager_SetTask(CommTask_ConnectWifiBattle, (30 * 60 * 2));
     }
 }
 
 void *sub_0203871C(SaveData *saveData, int param1)
 {
     TrainerInfo *v0 = SaveData_GetTrainerInfo(saveData);
-
+    
     if (CommSys_IsInitialized()) {
         return NULL;
     }
 
     ResetLock(RESET_LOCK_0x1);
     Heap_CreateAtEnd(HEAP_ID_APPLICATION, HEAP_ID_COMMUNICATION, 0x7080);
-    sub_020366A0(saveData, 23);
-    Unk_021C07D4->unk_00 = Heap_Alloc(HEAP_ID_COMMUNICATION, param1);
-    MI_CpuFill8(Unk_021C07D4->unk_00, 0, param1);
+    CommManager_Initialize(saveData, COMM_TYPE_LOGIN_WIFI);
+    sCommMan->unk_00 = Heap_Alloc(HEAP_ID_COMMUNICATION, param1);
+    MI_CpuFill8(sCommMan->unk_00, 0, param1);
 
-    Unk_021C07D4->unk_4B = 0;
-    Unk_021C07D4->saveData = saveData;
+    sCommMan->contestRegulation = 0;
+    sCommMan->saveData = saveData;
 
-    CommMan_SetTask(sub_020386B4, 0);
+    CommManager_SetTask(CommTask_StartWifiBattleServer, 0);
 
-    return Unk_021C07D4->unk_00;
+    return sCommMan->unk_00;
 }
 
-void sub_0203878C(SaveData *saveData, const void *param1)
+/**
+ * @brief Initializes the Communication Manager for the Wifi Lobby 
+ *
+ * @param saveData
+ * @param param1
+ */
+void CommManager_LoginWifiLobby(SaveData *saveData, const void *param1)
 {
-    TrainerInfo *v0 = SaveData_GetTrainerInfo(saveData);
+    TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(saveData);
 
     if (CommSys_IsInitialized()) {
         return;
@@ -2243,84 +2409,101 @@ void sub_0203878C(SaveData *saveData, const void *param1)
 
     ResetLock(RESET_LOCK_0x1);
     Heap_CreateAtEnd(HEAP_ID_APPLICATION, HEAP_ID_COMMUNICATION, 0x7080);
-    sub_020366A0(saveData, 33);
+    CommManager_Initialize(saveData, COMM_TYPE_LOBBY_WIFI);
 
-    Unk_021C07D4->unk_00 = NULL;
-    Unk_021C07D4->unk_5C = param1;
-    Unk_021C07D4->unk_60 = 0;
-    Unk_021C07D4->unk_4B = 0;
-    Unk_021C07D4->saveData = saveData;
+    sCommMan->unk_00 = NULL;
+    sCommMan->unk_5C = param1;
+    sCommMan->lobbyLoginSuccess = FALSE;
+    sCommMan->contestRegulation = 0;
+    sCommMan->saveData = saveData;
 
-    CommMan_SetTask(sub_02038BA8, 0);
+    CommManager_SetTask(CommTask_StartWifiLobby, 0);
 }
 
-void sub_020387E8(void)
+/**
+ * @brief Begins the Communication Manager's log out of wifi lobby task
+ */
+void CommManager_LogoutWifiLobby(void)
 {
-    if (Unk_021C07D4 == NULL) {
+    if (sCommMan == NULL) {
         return;
     }
 
-    CommMan_SetTask(sub_02038D80, 0);
+    CommManager_SetTask(CommTask_LogoutWifiLobby, 0);
 }
 
-BOOL sub_02038804(void)
+/**
+ * @brief Gets the flag for whether the login task has been reached successfully
+ *
+ * @return sCommMan->lobbyLoginSuccess
+ */
+BOOL CommManager_GetWifiLobbyLoginSuccess(void)
 {
-    if (Unk_021C07D4 == NULL) {
+    if (sCommMan == NULL) {
         return 0;
     }
 
-    return Unk_021C07D4->unk_60;
+    return sCommMan->lobbyLoginSuccess;
 }
 
-BOOL sub_0203881C(void)
+/**
+ * @brief Checks if the current Communication Manager is in a Wifi Lobby Error state
+ *
+ * @return TRUE if the current task is CommTask_WifiLobbyError
+ */
+BOOL CommManager_IsWifiLobbyError(void)
 {
-    if (Unk_021C07D4) {
-        u32 v0 = (u32)Unk_021C07D4->task;
+    if (sCommMan) {
+        u32 task = (u32)sCommMan->task;
 
-        if (v0 == (u32)sub_02038DC8) {
-            return 1;
+        if (task == (u32)CommTask_WifiLobbyError) {
+            return TRUE;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
-void sub_0203883C(UnkEnum_ov66_02232F38 param0)
+/**
+ * @brief Starts the wifi p2p connection
+ */
+void CommManager_StartWifiP2P(UnkEnum_ov66_02232F38 param0)
 {
-    GF_ASSERT(Unk_021C07D4);
+    GF_ASSERT(sCommMan);
     GF_ASSERT(sub_020382C0() == 1);
 
     if (ov66_02233184(param0) == 0) {
         ov66_02232F38(param0, 4);
-        CommMan_SetTask(sub_02038DEC, 0);
+        CommManager_SetTask(CommTask_WaitWifiLobbyMatchServerP2P, 0);
     } else {
         ov66_02233260(param0);
-        CommMan_SetTask(sub_02038DEC, 0);
+        CommManager_SetTask(CommTask_WaitWifiLobbyMatchServerP2P, 0);
     }
 }
 
-void sub_0203888C(void)
+/**
+ * @brief Ends the wifi p2p connection
+ */
+void CommManager_EndWifiP2P(void)
 {
-    u32 v0;
-
     if (ov66_02233374() == 1) {
         ov66_02233064();
     }
 
     ov66_0223361C();
-    CommMan_SetTask(sub_02038E38, 0);
+    CommManager_SetTask(CommTask_DisconnectWifiLobbyP2P, 0);
 }
 
-u32 sub_020388AC(void)
+u32 CommManager_GetWifiP2PConnectState(void)
 {
-    if (Unk_021C07D4) {
-        u32 v0 = (u32)Unk_021C07D4->task;
+    if (sCommMan) {
+        u32 task = (u32)sCommMan->task;
 
-        if (v0 == (u32)sub_02038DCC) {
+        if (task == (u32)CommTask_ConnectWifiLobbyP2P) {
             return 2;
-        } else if (v0 == (u32)sub_02038DEC) {
+        } else if (task == (u32)CommTask_WaitWifiLobbyMatchServerP2P) {
             return 1;
-        } else if (v0 == (u32)sub_02038E38) {
+        } else if (task == (u32)CommTask_DisconnectWifiLobbyP2P) {
             return 3;
         }
     }
@@ -2330,52 +2513,62 @@ u32 sub_020388AC(void)
 
 void *sub_020388E8(void)
 {
-    return Unk_021C07D4->unk_00;
+    return sCommMan->unk_00;
 }
 
-void CommMan_SetErrorHandling(BOOL param0, BOOL param1)
+void CommMan_SetErrorHandling(BOOL errorDisconnect, BOOL param1)
 {
-    if (Unk_021C07D4) {
-        Unk_021C07D4->unk_4F = param0;
-        Unk_021C07D4->unk_50 = param1;
+    if (sCommMan) {
+        sCommMan->errorDisconnect = errorDisconnect;
+        sCommMan->unk_50 = param1;
 
-        if (param0) {
-            Unk_021C07D4->unk_47 = CommSys_ConnectedCount();
+        if (errorDisconnect) {
+            sCommMan->connectedCount = CommSys_ConnectedCount();
         } else {
-            Unk_021C07D4->unk_47 = 0;
+            sCommMan->connectedCount = 0;
         }
     }
 
-    sub_02033EA8(param0);
-    sub_02033ED4(param0);
+    sub_02033EA8(errorDisconnect);
+    sub_02033ED4(errorDisconnect);
 }
 
 BOOL sub_02038938(void)
 {
-    if (Unk_021C07D4) {
-        if (Unk_021C07D4->unk_59 != 0) {
-            return 1;
+    if (sCommMan) {
+        if (sCommMan->commError != 0) {
+            return TRUE;
         }
 
-        return Unk_021C07D4->unk_50;
+        return sCommMan->unk_50;
     }
 
-    return 0;
+    return FALSE;
 }
 
-int sub_0203895C(void)
+/**
+ * @brief Gets the Communication Manager's current communication type
+ *
+ * @return sCommMan->commType (default COMM_TYPE_SINGLE_BATTLE)
+ */
+int CommManager_GetCommType(void)
 {
-    if (Unk_021C07D4) {
-        return Unk_021C07D4->unk_4A;
+    if (sCommMan) {
+        return sCommMan->commType;
     }
 
-    return 1;
+    return COMM_TYPE_SINGLE_BATTLE;
 }
 
-int sub_02038974(void)
+/**
+ * @brief Gets the Communication Manager's current contest regulation type
+ *
+ * @return sCommMan->contestRegulation (default 0)
+ */
+int CommManager_GetContestRegulation(void)
 {
-    if (Unk_021C07D4) {
-        return Unk_021C07D4->unk_4B;
+    if (sCommMan) {
+        return sCommMan->contestRegulation;
     }
 
     return 0;
@@ -2383,23 +2576,23 @@ int sub_02038974(void)
 
 void sub_0203898C(u8 *param0)
 {
-    MI_CpuCopy8(param0, Unk_021C07D4->unk_04, NELEMS(Unk_021C07D4->unk_04));
+    MI_CpuCopy8(param0, sCommMan->unk_04, NELEMS(sCommMan->unk_04));
 }
 
 void sub_020389A0(u8 *param0)
 {
-    MI_CpuCopy8(Unk_021C07D4->unk_04, param0, NELEMS(Unk_021C07D4->unk_04));
+    MI_CpuCopy8(sCommMan->unk_04, param0, NELEMS(sCommMan->unk_04));
 }
 
 BOOL CommMan_IsConnectedToWifi(void)
 {
-    return CommLocal_IsWifiGroup(sub_0203895C());
+    return CommLocal_IsWifiGroup(CommManager_GetCommType());
 }
 
 void sub_020389C4(u8 param0)
 {
-    if (Unk_021C07D4) {
-        Unk_021C07D4->unk_52 = param0;
+    if (sCommMan) {
+        sCommMan->unk_52 = param0;
     }
 }
 
@@ -2409,8 +2602,8 @@ u8 sub_020389D8(void)
         return 0;
     }
 
-    if (Unk_021C07D4) {
-        return Unk_021C07D4->unk_52;
+    if (sCommMan) {
+        return sCommMan->unk_52;
     }
 
     return 0;
@@ -2418,23 +2611,26 @@ u8 sub_020389D8(void)
 
 void sub_020389FC(int param0)
 {
-    int v0 = 0;
+    int i = 0;
 
     NetworkError_DisplayNetworkError(HEAP_ID_SYSTEM, 1, param0);
 
     while (TRUE) {
-        v0++;
+        i++;
     }
 }
 
+/**
+ * @brief Displays the GTS Critical Error screen and halts the game
+ */
 void NetworkError_DisplayGTSCriticalError(void)
 {
-    int v0 = 0;
+    int i = 0;
 
     NetworkError_DisplayNetworkError(HEAP_ID_SYSTEM, 4, 0);
 
     while (TRUE) {
-        v0++;
+        i++;
     }
 }
 
@@ -2447,19 +2643,19 @@ void sub_02038A20(int param0)
 {
     if (sub_02038938()) {
         if (CommSys_CheckError() || sub_020383E8() || sub_020385D0()
-            || (Unk_021C07D4->unk_59 != 0) || sub_0203881C()) {
+            || (sCommMan->commError != COMM_ERROR_NONE) || CommManager_IsWifiLobbyError()) {
             if (!HeapCanaryOK()) {
                 if (!sub_020389D8()) {
                     Sound_StopWaveOutAndSequences();
-                    SaveData_SaveStateCancel(Unk_021C07D4->saveData);
+                    SaveData_SaveStateCancel(sCommMan->saveData);
                     gSystem.touchAutoSampling = TRUE;
 
-                    if (Unk_021C07D4->unk_59 == 3) {
-                        sub_020389C4(3);
-                    } else if ((Unk_021C07D4->unk_4A == 25) || (Unk_021C07D4->unk_4A == 15) || (Unk_021C07D4->unk_4A == 36)) {
-                        sub_020389C4(2);
+                    if (sCommMan->commError == COMM_ERROR_3) {
+                        sub_020389C4(COMM_ERROR_3);
+                    } else if ((sCommMan->commType == COMM_TYPE_25) || (sCommMan->commType == COMM_TYPE_MYSTERY_GIFT) || (sCommMan->commType == COMM_TYPE_EMAIL_WIFI)) {
+                        sub_020389C4(COMM_ERROR_RESET_TITLE);
                     } else {
-                        sub_020389C4(1);
+                        sub_020389C4(COMM_ERROR_RESET_SAVEPOINT);
                     }
                 }
             }
@@ -2467,254 +2663,321 @@ void sub_02038A20(int param0)
     }
 }
 
-BOOL sub_02038AB8(void)
+/**
+ * @brief Checks if the Commmunication Manager is in a state that indicates it's finished being reset
+ *
+ * @return TRUE if it has been reset
+ */
+BOOL CommManager_CheckResetFinished(void)
 {
     if (CommServerClient_IsInClosedSecretBase() || !CommMan_IsInitialized()) {
-        return 1;
+        return TRUE;
     }
 
     if (!sub_020332D0()) {
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-BOOL Link_SetErrorState(int param0)
+/**
+ * @brief Sets the Communication Manager's current comm error
+ *
+ * @param error
+ *
+ * @return TRUE if sCommMan is initialized 
+ */
+BOOL CommManager_SetCommError(int error)
 {
-    if (Unk_021C07D4) {
-        Unk_021C07D4->unk_59 = param0;
+    if (sCommMan) {
+        sCommMan->commError = error;
         CommSys_StartShutdown();
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-void sub_02038B00(void)
+/**
+ * @brief Sets sCommMan->commType to COMM_TYPE_POFFIN_WIFI and updates the data transfer callbacks
+ */
+void CommManager_SetState_WifiPoffin(void)
 {
-    Unk_021C07D4->unk_4A = 29;
+    sCommMan->commType = COMM_TYPE_POFFIN_WIFI;
     NintendoDWC_SetDataTransferCallbacks(sub_020352C0, sub_020352C0);
 }
 
-void sub_02038B20(void)
+/**
+ * @brief Sets sCommMan->commType to COMM_TYPE_CLUB_WIFI and updates the data transfer callbacks
+ */
+void CommManager_SetState_WifiClub(void)
 {
-    Unk_021C07D4->unk_4A = 35;
+    sCommMan->commType = COMM_TYPE_CLUB_WIFI;
     NintendoDWC_SetDataTransferCallbacks(sub_020352C0, sub_020352C0);
 }
 
-void sub_02038B40(void)
+/**
+ * @brief Sets sCommMan->commType to COMM_TYPE_LOBBY_WIFI and updates the data transfer callbacks
+ */
+void CommManager_SetState_WifiLobby(void)
 {
-    Unk_021C07D4->unk_4A = 33;
+    sCommMan->commType = COMM_TYPE_LOBBY_WIFI;
     NintendoDWC_SetDataTransferCallbacks(sub_020352C0, sub_020352C0);
 }
 
-void sub_02038B60(void)
+/**
+ * @brief Sets sCommMan->commType to COMM_TYPE_LOGIN_WIFI and updates the data transfer callbacks
+ */
+void CommManager_SetState_LoginWifi(void)
 {
-    Unk_021C07D4->unk_4A = 23;
+    sCommMan->commType = COMM_TYPE_LOGIN_WIFI;
     NintendoDWC_SetDataTransferCallbacks(sub_020351F8, sub_0203509C);
 }
 
-void sub_02038B84(void)
+/**
+ * @brief Sets sCommMan->commType to COMM_TYPE_SINGLE_BATTLE and updates the data transfer callbacks
+ */
+void CommManager_SetState_SingleBattleWifi(void)
 {
-    Unk_021C07D4->unk_4A = 19;
+    sCommMan->commType = COMM_TYPE_SINGLE_BATTLE_WIFI;
     NintendoDWC_SetDataTransferCallbacks(sub_020351F8, sub_0203509C);
 }
 
-static void sub_02038BA8(void)
+/**
+ * @brief Task to initialize the Communication Manager for the Wifi Lobby and battle
+ */
+static void CommTask_StartWifiLobby(void)
 {
     if (!WirelessDriver_IsReady()) {
         return;
     }
 
-    {
-        Heap_CreateAtEnd(HEAP_ID_APPLICATION, HEAP_ID_NINTENDO_WFC, 0x60000);
-    }
+    Heap_CreateAtEnd(HEAP_ID_APPLICATION, HEAP_ID_NINTENDO_WFC, 0x60000);
 
     if (CommSys_InitServer(1, 1, 512, 1)) {
-        NintendoWFC_Init(Unk_021C07D4->saveData, HEAP_ID_NINTENDO_WFC, 0x58000, CommLocal_MaxMachines(Unk_021C07D4->unk_4A) + 1);
+        NintendoWFC_Init(sCommMan->saveData, HEAP_ID_NINTENDO_WFC, 0x58000, CommLocal_MaxMachines(sCommMan->commType) + 1);
         NintendoWFC_SetFatalErrorCallback(sub_020389FC);
         CommSys_SwitchTransitionTypeToParallel();
         NintendoWFC_SetVoiceChatEnabled(0);
         sub_0203632C(0);
-        CommMan_SetTask(sub_0203862C, (30 * 60 * 2));
+        CommManager_SetTask(CommTask_ConnectWifiBattle, (30 * 60 * 2));
     }
 }
 
-static void sub_02038C1C(void)
+/** 
+ * @brief Task while logging in to the wifi lobby, errors if timed out
+ */
+static void CommTask_LogInWifiLobby(void)
 {
-    BOOL v0;
+    BOOL result;
 
-    Unk_021C07D4->timer--;
+    sCommMan->timer--;
 
-    if (Unk_021C07D4->timer <= 0) {
-        CommMan_SetTask(sub_02037EB0, 0);
+    if (sCommMan->timer <= 0) {
+        CommManager_SetTask(CommTask_WifiBattleError, 0);
         return;
     }
 
     CommSys_SetWifiConnected(1);
 
-    v0 = sub_02038D44();
+    result = CommManager_UpdateWifiLobbyCommon();
+
+    if (result == 0) {
+        return;
+    }
+
+    result = ov66_02232804();
+
+    if (result) {
+        CommManager_SetTask(CommTask_ConnectWifiLobby, 0);
+    }
+}
+
+/**
+ * @brief Task while connecting to the wifi lobby. Internal process handled entirely by CommManager_UpdateWifiLobbyCommon
+ */
+static void CommTask_ConnectWifiLobby(void)
+{
+    BOOL v0 = CommManager_UpdateWifiLobbyCommon();
 
     if (v0 == 0) {
         return;
     }
-
-    v0 = ov66_02232804();
-
-    if (v0) {
-        CommMan_SetTask(sub_02038C68, 0);
-    }
 }
 
-static void sub_02038C68(void)
+/**
+ * @brief Processes any DWC Error when handling the wifi connection for the wifi lobby
+ *
+ * @return TRUE if no error occured
+ */
+static BOOL CommManager_ProcessWifiLobbyDWCError(int dwcError)
 {
-    BOOL v0 = sub_02038D44();
+    BOOL ret = TRUE;
 
-    if (v0 == 0) {
-        return;
-    }
-}
+    if ((dwcError >= DWC_ERROR_FRIENDS_SHORTAGE) && ((DWC_ERROR_NUM) > dwcError)) {
+        CommManager_SetTask(CommTask_WifiBattleFailed, 0);
+        ret = FALSE;
+    } else if (dwcError < 0) {
+        CommManager_SetTask(CommTask_WifiBattleError, 0);
+        ret = FALSE;
+    } else if (dwcError == ((DWC_ERROR_NUM) + 3)) {
+        CommManager_SetTask(CommTask_WifiLobbyTimeout, 0);
+        ret = FALSE;
+    } else if (dwcError == ((DWC_ERROR_NUM) + 4)) {
+        ret = FALSE;
 
-static BOOL sub_02038C74(int param0)
-{
-    BOOL v0 = 1;
-
-    if ((param0 >= DWC_ERROR_FRIENDS_SHORTAGE) && ((DWC_ERROR_NUM) > param0)) {
-        CommMan_SetTask(sub_02037ED4, 0);
-        v0 = 0;
-    } else if (param0 < 0) {
-        CommMan_SetTask(sub_02037EB0, 0);
-        v0 = 0;
-    } else if (param0 == ((DWC_ERROR_NUM) + 3)) {
-        CommMan_SetTask(sub_02038E84, 0);
-        v0 = 0;
-    } else if (param0 == ((DWC_ERROR_NUM) + 4)) {
-        v0 = 0;
-
-        if (Unk_021C07D4->unk_4F) {
-            CommMan_SetTask(sub_02037EB0, 0);
+        if (sCommMan->errorDisconnect) {
+            CommManager_SetTask(CommTask_WifiBattleError, 0);
         } else {
-            CommMan_SetTask(sub_02037ED0, 0);
+            CommManager_SetTask(CommTask_DisconnectWifiBattle, 0);
         }
     }
 
-    if (Unk_021C07D4->unk_4F) {
-        if (Unk_021C07D4->unk_47 != CommSys_ConnectedCount()) {
-            CommMan_SetTask(sub_02037EB0, 0);
-            v0 = 0;
+    if (sCommMan->errorDisconnect) {
+        if (sCommMan->connectedCount != CommSys_ConnectedCount()) {
+            CommManager_SetTask(CommTask_WifiBattleError, 0);
+            ret = 0;
         }
     }
 
-    return v0;
+    return ret;
 }
 
-static BOOL sub_02038D10(void)
+/**
+ * @brief Calls the updates wifi lobby function
+ *
+ * @return TRUE if no error occured processing the lobby
+ */
+static BOOL CommManager_UpdateWifiLobby(void)
 {
     UnkEnum_ov66_0223287C v0;
-    BOOL v1 = 1;
+    BOOL noError = TRUE;
 
-    v0 = ov66_022325D8();
+    v0 = ov66_022325D8(); //Wifi lobby update function
 
     switch (v0) {
-    case UnkEnum_ov66_0223287C_00:
-    case UnkEnum_ov66_0223287C_01:
-    case UnkEnum_ov66_0223287C_02:
-    case UnkEnum_ov66_0223287C_03:
+    case UnkEnum_ov66_0223287C_00: //none
+    case UnkEnum_ov66_0223287C_01: //login wait
+    case UnkEnum_ov66_0223287C_02: //connect
+    case UnkEnum_ov66_0223287C_03: //logout wait
         break;
 
-    case UnkEnum_ov66_0223287C_04:
-        CommMan_SetTask(sub_02038DC8, 0);
-        v1 = 0;
+    case UnkEnum_ov66_0223287C_04: //error
+        CommManager_SetTask(CommTask_WifiLobbyError, 0);
+        noError = FALSE;
         break;
     }
 
-    return v1;
+    return noError;
 }
 
-static BOOL sub_02038D44(void)
+/**
+ * @brief Calls the update wifi lobby function and wifi connection process function
+ *
+ * @return TRUE if no error occured processing the lobby or handling the connection
+ */
+static BOOL CommManager_UpdateWifiLobbyCommon(void)
 {
     int v0;
-    BOOL v1;
+    BOOL ret;
 
     v0 = NintendoWFC_Process(0);
 
-    v1 = sub_02038C74(v0);
+    ret = CommManager_ProcessWifiLobbyDWCError(v0);
 
-    if (v1 == 0) {
-        return v1;
+    if (ret == 0) {
+        return ret;
     }
 
-    v1 = sub_02038D10();
-    return v1;
+    ret = CommManager_UpdateWifiLobby();
+    return ret;
 }
 
-static BOOL sub_02038D5C(u32 *param0)
+/**
+ * @brief Updates the wifi lobby matchmaking
+ *
+ * @param matchmakingRet
+ *
+ * @return TRUE if no errors occurred while updating the lobby or while processing matchmaking
+ */
+static BOOL CommManager_UpdateWifiLobbyMatchmaking(u32 *matchmakingRet)
 {
-    int v0;
-    BOOL v1;
+    int wfcResult;
+    BOOL ret;
 
-    v0 = NintendoWFC_Process(0);
+    wfcResult = NintendoWFC_Process(0);
 
-    if (v0 >= NINTENDO_WFC_RESULT_MATCHMAKING_SUCCESS) {
-        *param0 = v0;
+    if (wfcResult >= NINTENDO_WFC_RESULT_MATCHMAKING_SUCCESS) {
+        *matchmakingRet = wfcResult;
     } else {
-        *param0 = 0;
+        *matchmakingRet = 0;
 
-        v1 = sub_02038C74(v0);
+        ret = CommManager_ProcessWifiLobbyDWCError(wfcResult);
 
-        if (v1 == 0) {
-            return v1;
+        if (ret == 0) {
+            return ret;
         }
     }
 
-    v1 = sub_02038D10();
-    return v1;
+    ret = CommManager_UpdateWifiLobby();
+    return ret;
 }
 
-static void sub_02038D80(void)
+/**
+ * @brief Calls the Wifi Lobby logout function and waits
+ */
+static void CommTask_LogoutWifiLobby(void)
 {
     ov66_0223282C();
-    CommMan_SetTask(sub_02038D94, 0);
+    CommManager_SetTask(CommTask_WaitLogoutWifiLobby, 0);
 }
 
-static void sub_02038D94(void)
+/**
+ * @brief Waits until the Wifi logout function is complete, then ends communication
+ */
+static void CommTask_WaitLogoutWifiLobby(void)
 {
-    BOOL v0;
+    BOOL result;
 
     NintendoWFC_Process(0);
-    sub_02038D10();
+    CommManager_UpdateWifiLobby();
 
-    v0 = ov66_02232854();
+    result = ov66_02232854();
 
-    if (v0) {
+    if (result) {
         ResetUnlock(RESET_LOCK_0x1);
         CommInfo_Delete();
-        CommMan_SetTask(sub_020373B8, 5);
+        CommManager_SetTask(CommTask_EndConnection, 5);
         CommSys_SetWifiConnected(0);
     }
 }
 
-static void sub_02038DC8(void)
+/**
+ * @brief Task the Comm Manager uses to indicate that an error has occured in the wifi lobby. Does nothing when called.
+ */
+static void CommTask_WifiLobbyError(void)
 {
     return;
 }
 
-static void sub_02038DCC(void)
+/**
+ * @brief Connects to the Wifi Lobby using a p2p connection
+ */
+static void CommTask_ConnectWifiLobbyP2P(void)
 {
     BOOL v0;
-
-    sub_02038D44();
+    CommManager_UpdateWifiLobbyCommon();
 
     v0 = ov66_02233164();
 
     if (v0 == 1) {
         ov66_0223361C();
-        CommMan_SetTask(sub_02038E38, 0);
+        CommManager_SetTask(CommTask_DisconnectWifiLobbyP2P, 0);
     }
 }
 
-static void sub_02038DEC(void)
+static void CommTask_WaitWifiLobbyMatchServerP2P(void)
 {
     BOOL v0;
     u32 v1;
@@ -2723,72 +2986,86 @@ static void sub_02038DEC(void)
 
     if (v0 == 1) {
         ov66_0223361C();
-        CommMan_SetTask(sub_02038E38, 0);
+        CommManager_SetTask(CommTask_DisconnectWifiLobbyP2P, 0);
         return;
     }
 
-    sub_02038D5C(&v1);
+    CommManager_UpdateWifiLobbyMatchmaking(&v1);
 
     switch (v1) {
     case 0:
         break;
     case (DWC_ERROR_NUM):
-        CommMan_SetTask(sub_02038DCC, 0);
+        CommManager_SetTask(CommTask_ConnectWifiLobbyP2P, 0);
         break;
     default:
         ov66_0223361C();
-        CommMan_SetTask(sub_02038C68, 0);
+        CommManager_SetTask(CommTask_ConnectWifiLobby, 0);
         break;
     }
 }
 
-static void sub_02038E38(void)
+/**
+ * @brief Handles a wifi lobby p2p disconnect and updates the wifi lobby
+ */
+static void CommTask_DisconnectWifiLobbyP2P(void)
 {
-    BOOL v0;
-    int v1 = NintendoWFC_Process(1);
+    BOOL updateResult;
+    int ret = NintendoWFC_Process(1);
 
-    if (v1 < 0) {
-        CommMan_SetTask(sub_02037EB0, 0);
+    if (ret < 0) {
+        CommManager_SetTask(CommTask_WifiBattleError, 0);
         return;
     }
 
-    v0 = sub_02038D10();
+    updateResult = CommManager_UpdateWifiLobby();
 
-    if (v0 == 0) {
+    if (updateResult == 0) {
         return;
     }
 
     if (NintendoWFC_EndConnection(0)) {
-        v1 = NintendoWFC_ReturnToReadyState();
+        ret = NintendoWFC_ReturnToReadyState();
 
-        if (v1) {
+        if (ret) {
             CommSys_Reset();
             sub_0203632C(0);
-            CommMan_SetTask(sub_02038C68, 0);
+            CommManager_SetTask(CommTask_ConnectWifiLobby, 0);
         }
     }
 }
 
-static void sub_02038E84(void)
+/**
+ * @brief Handles a wifi lobby timeout and updates the wifi lobby
+ */
+static void CommTask_WifiLobbyTimeout(void)
 {
-    int v0 = NintendoWFC_Process(0);
+    int ret = NintendoWFC_Process(0);
 
-    if (v0 < 0) {
-        CommMan_SetTask(sub_02037EB0, 0);
+    if (ret < 0) {
+        CommManager_SetTask(CommTask_WifiBattleError, 0);
     }
 
-    sub_02038D10();
+    CommManager_UpdateWifiLobby();
 }
 
-void sub_02038EA4(void)
+/**
+ * @brief Sets the Communication Manager's commType to COMM_TYPE_FRONTIER_WIFI
+ */
+void CommManager_SetState_FrontierWifi(void)
 {
-    Unk_021C07D4->unk_4A = 34;
+    sCommMan->commType = COMM_TYPE_FRONTIER_WIFI;
 }
 
-BOOL sub_02038EB4(void)
+/**
+ * @brief Checks if the Communication System is initialized and the comm type isn't poketch
+ *
+ * @return TRUE if the Communication System is initialized and the comm type isn't poketch
+ */
+BOOL CommManager_IsInitializedNotPoketch(void)
 {
-    if (Unk_021C07D4 && (Unk_021C07D4->unk_4A == 14)) {
-        return 0;
+    if (sCommMan && (sCommMan->commType == COMM_TYPE_POKETCH)) {
+        return FALSE;
     }
 
     return CommSys_IsInitialized();

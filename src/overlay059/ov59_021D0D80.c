@@ -205,8 +205,8 @@ int ov59_021D0D80(ApplicationManager *appMan, int *param1)
 
         Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_52, SEQ_NONE, 0);
         sub_020961E8(v0);
-        sub_02037878();
-        sub_02037B58(3);
+        CommManager_SetState_MixRecords();
+        CommManager_SetMaxNumConnections(3);
 
         if (CommSys_CurNetId() == 0) {
             sub_0205BEA8(2);
@@ -306,8 +306,8 @@ int ov59_021D0FF4(ApplicationManager *appMan, int *unused)
     ov59_021D17C8(v0);
     ov59_021D1354(v0->unk_00);
 
-    sub_02037B58(2);
-    sub_02036AC4();
+    CommManager_SetMaxNumConnections(2);
+    CommManager_UnionRestartSearch();
     sub_0205C2C8(v0->unk_08->unk_04);
     MessageLoader_Free(v0->unk_28);
     StringTemplate_Free(v0->unk_24);
@@ -1632,7 +1632,7 @@ static void ov59_021D28D8(UnkStruct_020961E8 *param0, int param1)
 {
     if (CommSys_CurNetId() == 0) {
         if (param1 == -1) {
-            sub_02037B58(1);
+            CommManager_SetMaxNumConnections(1);
         } else {
             int v0 = CommSys_ConnectedCount() + param1;
 
@@ -1640,7 +1640,7 @@ static void ov59_021D28D8(UnkStruct_020961E8 *param0, int param1)
                 v0 = 5;
             }
 
-            sub_02037B58(v0);
+            CommManager_SetMaxNumConnections(v0);
         }
 
         if (param1 == -1) {
