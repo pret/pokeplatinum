@@ -111,9 +111,9 @@ typedef struct ChooseStarter3DGraphics {
     BOOL unk_74;
     VecFx32 position;
     VecFx32 scale;
-    u16 unk_90;
-    u16 unk_92;
-    u16 unk_94;
+    u16 rotation_x;
+    u16 rotation_y;
+    u16 rotation_z;
 } ChooseStarter3DGraphics;
 
 typedef struct ChooseStarterMovement {
@@ -267,7 +267,7 @@ static void ov78_021D1708(ChooseStarter3DGraphics *param0);
 static void ov78_021D17A4(ChooseStarter3DGraphics *param0, BOOL param1);
 static void Set3DGraphicsPosition(ChooseStarter3DGraphics *starter3DGraphics, fx32 x, fx32 y, fx32 z);
 static void Set3DGraphicsScale(ChooseStarter3DGraphics *starter3DGraphics, fx32 x, fx32 y, fx32 z);
-static void ov78_021D17CC(ChooseStarter3DGraphics *param0, u16 param1, u16 param2, u16 param3);
+static void Set3DGraphicsRotation(ChooseStarter3DGraphics *starter3DGraphics, u16 x, u16 y, u16 z);
 static BOOL ov78_021D17E4(ChooseStarter3DGraphics *param0);
 static void ov78_021D180C(ChooseStarter3DGraphics *param0);
 static void ov78_021D182C(ChooseStarter3DGraphics *param0, fx32 param1);
@@ -803,11 +803,11 @@ static void ov78_021D1708(ChooseStarter3DGraphics *param0)
     MtxFx33 v1;
 
     MTX_Identity33(&v0);
-    MTX_RotX33(&v1, FX_SinIdx(param0->unk_90), FX_CosIdx(param0->unk_90));
+    MTX_RotX33(&v1, FX_SinIdx(param0->rotation_x), FX_CosIdx(param0->rotation_x));
     MTX_Concat33(&v1, &v0, &v0);
-    MTX_RotY33(&v1, FX_SinIdx(param0->unk_92), FX_CosIdx(param0->unk_92));
+    MTX_RotY33(&v1, FX_SinIdx(param0->rotation_y), FX_CosIdx(param0->rotation_y));
     MTX_Concat33(&v1, &v0, &v0);
-    MTX_RotZ33(&v1, FX_SinIdx(param0->unk_94), FX_CosIdx(param0->unk_94));
+    MTX_RotZ33(&v1, FX_SinIdx(param0->rotation_z), FX_CosIdx(param0->rotation_z));
     MTX_Concat33(&v1, &v0, &v0);
 
     if (param0->unk_74) {
@@ -834,11 +834,11 @@ static void Set3DGraphicsScale(ChooseStarter3DGraphics *starter3DGraphics, fx32 
     starter3DGraphics->scale.z = z;
 }
 
-static void ov78_021D17CC(ChooseStarter3DGraphics *param0, u16 param1, u16 param2, u16 param3)
+static void Set3DGraphicsRotation(ChooseStarter3DGraphics *starter3DGraphics, u16 x, u16 y, u16 z)
 {
-    param0->unk_90 = param1;
-    param0->unk_92 = param2;
-    param0->unk_94 = param3;
+    starter3DGraphics->rotation_x = x;
+    starter3DGraphics->rotation_y = y;
+    starter3DGraphics->rotation_z = z;
 }
 
 static BOOL ov78_021D17E4(ChooseStarter3DGraphics *param0)
@@ -891,7 +891,7 @@ static void Make3DGraphics(ChooseStarterApp *param0, enum HeapID heapID)
 
     Set3DGraphicsPosition(&param0->starter3DGraphics[5], 0, -28 * FX32_ONE, 40 * FX32_ONE);
     Set3DGraphicsScale(&param0->starter3DGraphics[5], FX32_CONST(3.50f), FX32_ONE, FX32_CONST(3.50f));
-    ov78_021D17CC(&param0->starter3DGraphics[5], (0 * 0xffff) / 360, (180 * 0xffff) / 360, (0 * 0xffff) / 360);
+    Set3DGraphicsRotation(&param0->starter3DGraphics[5], (0 * 0xffff) / 360, (180 * 0xffff) / 360, (0 * 0xffff) / 360);
 }
 
 static void Delete3DGraphics(ChooseStarterApp *app)
