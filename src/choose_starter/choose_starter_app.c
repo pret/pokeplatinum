@@ -263,7 +263,7 @@ static void ov78_021D1E28(ChooseStarterApp *param0);
 static void ov78_021D1E44(ChooseStarterApp *param0, enum HeapID heapID);
 static void MakePokemonSprite(PokemonSprite **sprite, ChooseStarterApp *app, int species);
 static void Delete3DGraphic(ChooseStarter3DGraphics *starter3DGraphics, NNSFndAllocator *allocator);
-static void ov78_021D1708(ChooseStarter3DGraphics *param0);
+static void Draw3DGraphics(ChooseStarter3DGraphics *starter3DGraphics);
 static void Show3DGraphics(ChooseStarter3DGraphics *starter3DGraphics, BOOL show);
 static void Set3DGraphicsPosition(ChooseStarter3DGraphics *starter3DGraphics, fx32 x, fx32 y, fx32 z);
 static void Set3DGraphicsScale(ChooseStarter3DGraphics *starter3DGraphics, fx32 x, fx32 y, fx32 z);
@@ -797,21 +797,21 @@ static void Delete3DGraphic(ChooseStarter3DGraphics *starter3DGraphic, NNSFndAll
     memset(starter3DGraphic, 0, sizeof(ChooseStarter3DGraphics));
 }
 
-static void ov78_021D1708(ChooseStarter3DGraphics *param0)
+static void Draw3DGraphics(ChooseStarter3DGraphics *starter3DGraphics)
 {
-    MtxFx33 v0;
-    MtxFx33 v1;
+    MtxFx33 rotation;
+    MtxFx33 temp;
 
-    MTX_Identity33(&v0);
-    MTX_RotX33(&v1, FX_SinIdx(param0->rotation_x), FX_CosIdx(param0->rotation_x));
-    MTX_Concat33(&v1, &v0, &v0);
-    MTX_RotY33(&v1, FX_SinIdx(param0->rotation_y), FX_CosIdx(param0->rotation_y));
-    MTX_Concat33(&v1, &v0, &v0);
-    MTX_RotZ33(&v1, FX_SinIdx(param0->rotation_z), FX_CosIdx(param0->rotation_z));
-    MTX_Concat33(&v1, &v0, &v0);
+    MTX_Identity33(&rotation);
+    MTX_RotX33(&temp, FX_SinIdx(starter3DGraphics->rotation_x), FX_CosIdx(starter3DGraphics->rotation_x));
+    MTX_Concat33(&temp, &rotation, &rotation);
+    MTX_RotY33(&temp, FX_SinIdx(starter3DGraphics->rotation_y), FX_CosIdx(starter3DGraphics->rotation_y));
+    MTX_Concat33(&temp, &rotation, &rotation);
+    MTX_RotZ33(&temp, FX_SinIdx(starter3DGraphics->rotation_z), FX_CosIdx(starter3DGraphics->rotation_z));
+    MTX_Concat33(&temp, &rotation, &rotation);
 
-    if (param0->show) {
-        Easy3D_DrawRenderObj(&param0->renderObj, &param0->position, &v0, &param0->scale);
+    if (starter3DGraphics->show) {
+        Easy3D_DrawRenderObj(&starter3DGraphics->renderObj, &starter3DGraphics->position, &rotation, &starter3DGraphics->scale);
     }
 }
 
@@ -909,7 +909,7 @@ static void ov78_021D192C(ChooseStarterApp *param0)
     NNS_G3dGlbMaterialColorSpecEmi(GX_RGB(31, 31, 31), GX_RGB(31, 31, 31), 0);
 
     for (int i = 0; i < CHOOSE_STARTER_3D_GRAPHICS_NUM; i++) {
-        ov78_021D1708(&param0->starter3DGraphics[i]);
+        Draw3DGraphics(&param0->starter3DGraphics[i]);
     }
 }
 
