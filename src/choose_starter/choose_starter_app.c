@@ -231,7 +231,7 @@ static void MakeMessageWindow(ChooseStarterApp *app, enum HeapID heapID);
 static void DeleteMessageWindow(ChooseStarterApp *app);
 static u8 SetMessageWindowText(Window *window, enum HeapID heapID, int bankID, int entryID, TextColor textColor, u32 renderDelay);
 static u8 SetMessageWindowTextAndSaveToString(Window *window, enum HeapID heapID, int bankID, int entryID, TextColor textColor, u32 renderDelay, String **string);
-static void ov78_021D2090(ChooseStarterApp *param0);
+static void DeleteStringBuffer(ChooseStarterApp *app);
 static void MakeSubplaneWindows(ChooseStarterApp *param0, enum HeapID heapID);
 static void DeleteSubplaneWindows(ChooseStarterApp *app);
 static void ov78_021D28A8(Window *param0, enum HeapID heapID, int param2, int param3, TextColor param4);
@@ -1151,7 +1151,7 @@ static void ov78_021D1CA8(ChooseStarterApp *app, enum HeapID heapID)
         break;
     case 4:
         if (Text_IsPrinterActive(app->unk_708) == 0) {
-            ov78_021D2090(app);
+            DeleteStringBuffer(app);
             app->unk_04++;
         }
         break;
@@ -1161,7 +1161,7 @@ static void ov78_021D1CA8(ChooseStarterApp *app, enum HeapID heapID)
         break;
     case 6:
         if (Text_IsPrinterActive(app->unk_708) == 0) {
-            ov78_021D2090(app);
+            DeleteStringBuffer(app);
             app->unk_04++;
         }
         break;
@@ -1282,10 +1282,10 @@ static u8 SetMessageWindowTextAndSaveToString(Window *window, enum HeapID heapID
     return printerID;
 }
 
-static void ov78_021D2090(ChooseStarterApp *param0)
+static void DeleteStringBuffer(ChooseStarterApp *app)
 {
-    String_Free(param0->string);
-    param0->string = NULL;
+    String_Free(app->string);
+    app->string = NULL;
 }
 
 static void MakeConfirmationWindow(ChooseStarterApp *param0, int param1)
