@@ -109,7 +109,7 @@ typedef struct ChooseStarter3DGraphics {
     NNSG3dAnmObj *animationObj;
     fx32 unk_70;
     BOOL unk_74;
-    VecFx32 unk_78;
+    VecFx32 position;
     VecFx32 scale;
     u16 unk_90;
     u16 unk_92;
@@ -265,7 +265,7 @@ static void MakePokemonSprite(PokemonSprite **sprite, ChooseStarterApp *app, int
 static void Delete3DGraphic(ChooseStarter3DGraphics *starter3DGraphics, NNSFndAllocator *allocator);
 static void ov78_021D1708(ChooseStarter3DGraphics *param0);
 static void ov78_021D17A4(ChooseStarter3DGraphics *param0, BOOL param1);
-static void ov78_021D17A8(ChooseStarter3DGraphics *param0, fx32 param1, fx32 param2, fx32 param3);
+static void Set3DGraphicsPosition(ChooseStarter3DGraphics *starter3DGraphics, fx32 x, fx32 y, fx32 z);
 static void Set3DGraphicsScale(ChooseStarter3DGraphics *starter3DGraphics, fx32 x, fx32 y, fx32 z);
 static void ov78_021D17CC(ChooseStarter3DGraphics *param0, u16 param1, u16 param2, u16 param3);
 static BOOL ov78_021D17E4(ChooseStarter3DGraphics *param0);
@@ -811,7 +811,7 @@ static void ov78_021D1708(ChooseStarter3DGraphics *param0)
     MTX_Concat33(&v1, &v0, &v0);
 
     if (param0->unk_74) {
-        Easy3D_DrawRenderObj(&param0->renderObj, &param0->unk_78, &v0, &param0->scale);
+        Easy3D_DrawRenderObj(&param0->renderObj, &param0->position, &v0, &param0->scale);
     }
 }
 
@@ -820,11 +820,11 @@ static void ov78_021D17A4(ChooseStarter3DGraphics *param0, BOOL param1)
     param0->unk_74 = param1;
 }
 
-static void ov78_021D17A8(ChooseStarter3DGraphics *param0, fx32 param1, fx32 param2, fx32 param3)
+static void Set3DGraphicsPosition(ChooseStarter3DGraphics *starter3DGraphics, fx32 x, fx32 y, fx32 z)
 {
-    param0->unk_78.x = param1;
-    param0->unk_78.y = param2;
-    param0->unk_78.z = param3;
+    starter3DGraphics->position.x = x;
+    starter3DGraphics->position.y = y;
+    starter3DGraphics->position.z = z;
 }
 
 static void Set3DGraphicsScale(ChooseStarter3DGraphics *starter3DGraphics, fx32 x, fx32 y, fx32 z)
@@ -889,7 +889,7 @@ static void Make3DGraphics(ChooseStarterApp *param0, enum HeapID heapID)
     Load3DGraphicsWithoutAnimation(&param0->starter3DGraphics[5], 9, heapID);
     ov78_021D17A4(&param0->starter3DGraphics[5], 1);
 
-    ov78_021D17A8(&param0->starter3DGraphics[5], 0, -28 * FX32_ONE, 40 * FX32_ONE);
+    Set3DGraphicsPosition(&param0->starter3DGraphics[5], 0, -28 * FX32_ONE, 40 * FX32_ONE);
     Set3DGraphicsScale(&param0->starter3DGraphics[5], FX32_CONST(3.50f), FX32_ONE, FX32_CONST(3.50f));
     ov78_021D17CC(&param0->starter3DGraphics[5], (0 * 0xffff) / 360, (180 * 0xffff) / 360, (0 * 0xffff) / 360);
 }
@@ -1093,7 +1093,7 @@ static void MakeSelectionMatrix(ChooseStarterApp *param0)
 static void SetSelectionMatrixObjects(ChooseStarterApp *param0)
 {
     for (int i = 0; i < NUM_STARTER_OPTIONS; i++) {
-        ov78_021D17A8(&param0->starter3DGraphics[i + 2], param0->unk_58[i][0] << FX32_SHIFT, param0->unk_58[i][1] << FX32_SHIFT, param0->unk_58[i][2] << FX32_SHIFT);
+        Set3DGraphicsPosition(&param0->starter3DGraphics[i + 2], param0->unk_58[i][0] << FX32_SHIFT, param0->unk_58[i][1] << FX32_SHIFT, param0->unk_58[i][2] << FX32_SHIFT);
     }
 }
 
