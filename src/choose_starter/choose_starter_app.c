@@ -268,8 +268,8 @@ static void Show3DGraphics(ChooseStarter3DGraphics *starter3DGraphics, BOOL show
 static void Set3DGraphicsPosition(ChooseStarter3DGraphics *starter3DGraphics, fx32 x, fx32 y, fx32 z);
 static void Set3DGraphicsScale(ChooseStarter3DGraphics *starter3DGraphics, fx32 x, fx32 y, fx32 z);
 static void Set3DGraphicsRotation(ChooseStarter3DGraphics *starter3DGraphics, u16 x, u16 y, u16 z);
-static BOOL ov78_021D17E4(ChooseStarter3DGraphics *param0);
-static void Advance3DGraphicsAnimationToNextFrame(ChooseStarter3DGraphics *starter3DGraphics);
+static BOOL Advance3DGraphicsAnimationIfNotLastFrame(ChooseStarter3DGraphics *starter3DGraphics);
+static void Advance3DGraphicsAnimationOnLoop(ChooseStarter3DGraphics *starter3DGraphics);
 static void Set3DGraphicsAnimationFrame(ChooseStarter3DGraphics *starter3DGraphics, fx32 frame);
 static void Load3DGraphicsModel(ChooseStarter3DGraphics *starter3DGraphics, int narcMemberIdx, enum HeapID heapID);
 static void Load3DGraphicsAnimation(ChooseStarter3DGraphics *starter3DGraphics, int narcMemberIdx, enum HeapID heapID, NNSFndAllocator *allocator);
@@ -841,25 +841,25 @@ static void Set3DGraphicsRotation(ChooseStarter3DGraphics *starter3DGraphics, u1
     starter3DGraphics->rotation_z = z;
 }
 
-static BOOL ov78_021D17E4(ChooseStarter3DGraphics *param0)
+static BOOL Advance3DGraphicsAnimationIfNotLastFrame(ChooseStarter3DGraphics *starter3DGraphics)
 {
-    fx32 v0 = NNS_G3dAnmObjGetNumFrame(param0->animationObj);
-    BOOL v1;
+    fx32 lastFrame = NNS_G3dAnmObjGetNumFrame(starter3DGraphics->animationObj);
+    BOOL isLastFrame;
 
-    if ((param0->animation_frame + FX32_ONE) < v0) {
-        param0->animation_frame += FX32_ONE;
-        v1 = 0;
+    if ((starter3DGraphics->animation_frame + FX32_ONE) < lastFrame) {
+        starter3DGraphics->animation_frame += FX32_ONE;
+        isLastFrame = FALSE;
     } else {
-        param0->animation_frame = v0;
-        v1 = 1;
+        starter3DGraphics->animation_frame = lastFrame;
+        isLastFrame = TRUE;
     }
 
-    NNS_G3dAnmObjSetFrame(param0->animationObj, param0->animation_frame);
+    NNS_G3dAnmObjSetFrame(starter3DGraphics->animationObj, starter3DGraphics->animation_frame);
 
-    return v1;
+    return isLastFrame;
 }
 
-static void Advance3DGraphicsAnimationToNextFrame(ChooseStarter3DGraphics *starter3DGraphics)
+static void Advance3DGraphicsAnimationOnLoop(ChooseStarter3DGraphics *starter3DGraphics)
 {
     starter3DGraphics->animation_frame = (starter3DGraphics->animation_frame + FX32_ONE) % NNS_G3dAnmObjGetNumFrame(starter3DGraphics->animationObj);
     NNS_G3dAnmObjSetFrame(starter3DGraphics->animationObj, starter3DGraphics->animation_frame);
@@ -963,7 +963,7 @@ static void UpdateGraphics(ChooseStarterApp *param0, enum HeapID heapID)
         }
         break;
     case 2:
-        if (ov78_021D17E4(&param0->starter3DGraphics[0])) {
+        if (Advance3DGraphicsAnimationIfNotLastFrame(&param0->starter3DGraphics[0])) {
             Show3DGraphics(&param0->starter3DGraphics[0], FALSE);
             Show3DGraphics(&param0->starter3DGraphics[1], TRUE);
             Show3DGraphics(&param0->starter3DGraphics[2], TRUE);
@@ -1181,7 +1181,7 @@ static void ov78_021D1DF0(ChooseStarterApp *app)
 {
     for (int i = 0; i < NUM_STARTER_OPTIONS; i++) {
         if (app->cursorPosition == i) {
-            Advance3DGraphicsAnimationToNextFrame(&app->starter3DGraphics[2 + i]);
+            Advance3DGraphicsAnimationOnLoop(&app->starter3DGraphics[2 + i]);
         } else {
             Set3DGraphicsAnimationFrame(&app->starter3DGraphics[2 + i], 0);
         }
