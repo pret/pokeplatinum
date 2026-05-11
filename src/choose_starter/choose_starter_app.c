@@ -108,7 +108,7 @@ typedef struct ChooseStarter3DGraphics {
     void *animation;
     NNSG3dAnmObj *animationObj;
     fx32 unk_70;
-    BOOL unk_74;
+    BOOL show;
     VecFx32 position;
     VecFx32 scale;
     u16 rotation_x;
@@ -264,7 +264,7 @@ static void ov78_021D1E44(ChooseStarterApp *param0, enum HeapID heapID);
 static void MakePokemonSprite(PokemonSprite **sprite, ChooseStarterApp *app, int species);
 static void Delete3DGraphic(ChooseStarter3DGraphics *starter3DGraphics, NNSFndAllocator *allocator);
 static void ov78_021D1708(ChooseStarter3DGraphics *param0);
-static void ov78_021D17A4(ChooseStarter3DGraphics *param0, BOOL param1);
+static void Show3DGraphics(ChooseStarter3DGraphics *starter3DGraphics, BOOL show);
 static void Set3DGraphicsPosition(ChooseStarter3DGraphics *starter3DGraphics, fx32 x, fx32 y, fx32 z);
 static void Set3DGraphicsScale(ChooseStarter3DGraphics *starter3DGraphics, fx32 x, fx32 y, fx32 z);
 static void Set3DGraphicsRotation(ChooseStarter3DGraphics *starter3DGraphics, u16 x, u16 y, u16 z);
@@ -810,14 +810,14 @@ static void ov78_021D1708(ChooseStarter3DGraphics *param0)
     MTX_RotZ33(&v1, FX_SinIdx(param0->rotation_z), FX_CosIdx(param0->rotation_z));
     MTX_Concat33(&v1, &v0, &v0);
 
-    if (param0->unk_74) {
+    if (param0->show) {
         Easy3D_DrawRenderObj(&param0->renderObj, &param0->position, &v0, &param0->scale);
     }
 }
 
-static void ov78_021D17A4(ChooseStarter3DGraphics *param0, BOOL param1)
+static void Show3DGraphics(ChooseStarter3DGraphics *starter3DGraphics, BOOL show)
 {
-    param0->unk_74 = param1;
+    starter3DGraphics->show = show;
 }
 
 static void Set3DGraphicsPosition(ChooseStarter3DGraphics *starter3DGraphics, fx32 x, fx32 y, fx32 z)
@@ -876,18 +876,18 @@ static void ov78_021D182C(ChooseStarter3DGraphics *param0, fx32 param1)
 static void Make3DGraphics(ChooseStarterApp *param0, enum HeapID heapID)
 {
     Load3DGraphics(&param0->starter3DGraphics[0], 1, 0, heapID, &param0->allocator);
-    ov78_021D17A4(&param0->starter3DGraphics[0], 1);
+    Show3DGraphics(&param0->starter3DGraphics[0], TRUE);
 
     Load3DGraphicsWithoutAnimation(&param0->starter3DGraphics[1], 8, heapID);
-    ov78_021D17A4(&param0->starter3DGraphics[1], 0);
+    Show3DGraphics(&param0->starter3DGraphics[1], FALSE);
 
     for (int i = 2; i <= 4; i++) {
         Load3DGraphics(&param0->starter3DGraphics[i], 3 + (i - 2) * 2, 2 + (i - 2) * 2, heapID, &param0->allocator);
-        ov78_021D17A4(&param0->starter3DGraphics[i], 0);
+        Show3DGraphics(&param0->starter3DGraphics[i], FALSE);
     }
 
     Load3DGraphicsWithoutAnimation(&param0->starter3DGraphics[5], 9, heapID);
-    ov78_021D17A4(&param0->starter3DGraphics[5], 1);
+    Show3DGraphics(&param0->starter3DGraphics[5], TRUE);
 
     Set3DGraphicsPosition(&param0->starter3DGraphics[5], 0, -28 * FX32_ONE, 40 * FX32_ONE);
     Set3DGraphicsScale(&param0->starter3DGraphics[5], FX32_CONST(3.50f), FX32_ONE, FX32_CONST(3.50f));
@@ -966,11 +966,11 @@ static void UpdateGraphics(ChooseStarterApp *param0, enum HeapID heapID)
         break;
     case 2:
         if (ov78_021D17E4(&param0->starter3DGraphics[0])) {
-            ov78_021D17A4(&param0->starter3DGraphics[0], 0);
-            ov78_021D17A4(&param0->starter3DGraphics[1], 1);
-            ov78_021D17A4(&param0->starter3DGraphics[2], 1);
-            ov78_021D17A4(&param0->starter3DGraphics[3], 1);
-            ov78_021D17A4(&param0->starter3DGraphics[4], 1);
+            Show3DGraphics(&param0->starter3DGraphics[0], FALSE);
+            Show3DGraphics(&param0->starter3DGraphics[1], TRUE);
+            Show3DGraphics(&param0->starter3DGraphics[2], TRUE);
+            Show3DGraphics(&param0->starter3DGraphics[3], TRUE);
+            Show3DGraphics(&param0->starter3DGraphics[4], TRUE);
             ov78_021D1C98(param0, 1);
         }
         break;
