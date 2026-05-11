@@ -200,7 +200,7 @@ typedef struct ChooseStarterApp {
     NNSFndAllocator allocator;
     ChooseStarter3DGraphics starter3DGraphics[CHOOSE_STARTER_3D_GRAPHICS_NUM];
     Camera *camera;
-    VecFx32 unk_64C;
+    VecFx32 cameraTarget;
     ChooseStarterCursor cursor;
     GXRgb edgeMarkings[8];
     SoftwareSpriteManager *spriteDisplay;
@@ -243,8 +243,8 @@ static void MakeSpriteDisplay(ChooseStarterApp *app, enum HeapID heapID);
 static void DeleteSpriteDisplay(ChooseStarterApp *app);
 static void MakeCellActors(ChooseStarterApp *param0, enum HeapID heapID);
 static void DeleteCellActors(ChooseStarterApp *app);
-static void MakeCamera(ChooseStarterApp *param0, int param1);
-static void ov78_021D1B3C(Camera *camera, VecFx32 *param1);
+static void MakeCamera(ChooseStarterApp *app, enum HeapID heapID);
+static void SetupCamera(Camera *camera, VecFx32 *param1);
 static void DeleteCamera(ChooseStarterApp *app);
 static void Make3DGraphics(ChooseStarterApp *param0, enum HeapID heapID);
 static void Delete3DGraphics(ChooseStarterApp *app);
@@ -1014,26 +1014,26 @@ static void DrawScene(ChooseStarterApp *param0)
     SpriteList_Update(param0->spriteList);
 }
 
-static void MakeCamera(ChooseStarterApp *param0, int param1)
+static void MakeCamera(ChooseStarterApp *app, enum HeapID heapID)
 {
-    param0->camera = Camera_Alloc(param1);
-    ov78_021D1B3C(param0->camera, &param0->unk_64C);
+    app->camera = Camera_Alloc(heapID);
+    SetupCamera(app->camera, &app->cameraTarget);
 }
 
-static void ov78_021D1B3C(Camera *camera, VecFx32 *param1)
+static void SetupCamera(Camera *camera, VecFx32 *target)
 {
-    CameraAngle v0;
+    CameraAngle angle;
     VecFx32 v1;
 
-    param1->x = 0;
-    param1->y = 0;
-    param1->z = 0;
+    target->x = 0;
+    target->y = 0;
+    target->z = 0;
 
-    v0.x = ((-30 * 0xffff) / 360);
-    v0.y = ((0 * 0xffff) / 360);
-    v0.z = ((0 * 0xffff) / 360);
+    angle.x = ((-30 * 0xffff) / 360);
+    angle.y = ((0 * 0xffff) / 360);
+    angle.z = ((0 * 0xffff) / 360);
 
-    Camera_InitWithTarget(param1, 300 << FX32_SHIFT, &v0, (22 * 0xffff) / 360, 0, 1, camera);
+    Camera_InitWithTarget(target, 300 << FX32_SHIFT, &angle, (22 * 0xffff) / 360, 0, 1, camera);
 
     v1.x = 0;
     v1.y = FX32_ONE;
@@ -1127,7 +1127,7 @@ static void ov78_021D1CA8(ChooseStarterApp *param0, enum HeapID heapID)
 {
     switch (param0->unk_04) {
     case 0:
-        ov78_021D213C(&param0->cameraMovement, param0->camera, &param0->unk_64C);
+        ov78_021D213C(&param0->cameraMovement, param0->camera, &param0->cameraTarget);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, TRUE);
         param0->unk_04++;
         break;
