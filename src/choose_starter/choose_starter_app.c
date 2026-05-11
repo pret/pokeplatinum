@@ -107,7 +107,7 @@ typedef struct ChooseStarter3DGraphics {
     void *animationRes;
     void *animation;
     NNSG3dAnmObj *animationObj;
-    fx32 unk_70;
+    fx32 animation_frame;
     BOOL show;
     VecFx32 position;
     VecFx32 scale;
@@ -258,7 +258,7 @@ static void ov78_021D243C(ChooseStarterCursor *param0, int param1, int param2);
 static void MakeSelectionMatrix(ChooseStarterApp *param0);
 static void SetSelectionMatrixObjects(ChooseStarterApp *param0);
 static void ov78_021D1CA8(ChooseStarterApp *param0, enum HeapID heapID);
-static void ov78_021D1DF0(ChooseStarterApp *param0);
+static void ov78_021D1DF0(ChooseStarterApp *app);
 static void ov78_021D1E28(ChooseStarterApp *param0);
 static void ov78_021D1E44(ChooseStarterApp *param0, enum HeapID heapID);
 static void MakePokemonSprite(PokemonSprite **sprite, ChooseStarterApp *app, int species);
@@ -269,8 +269,8 @@ static void Set3DGraphicsPosition(ChooseStarter3DGraphics *starter3DGraphics, fx
 static void Set3DGraphicsScale(ChooseStarter3DGraphics *starter3DGraphics, fx32 x, fx32 y, fx32 z);
 static void Set3DGraphicsRotation(ChooseStarter3DGraphics *starter3DGraphics, u16 x, u16 y, u16 z);
 static BOOL ov78_021D17E4(ChooseStarter3DGraphics *param0);
-static void ov78_021D180C(ChooseStarter3DGraphics *param0);
-static void ov78_021D182C(ChooseStarter3DGraphics *param0, fx32 param1);
+static void Advance3DGraphicsAnimationToNextFrame(ChooseStarter3DGraphics *starter3DGraphics);
+static void Set3DGraphicsAnimationFrame(ChooseStarter3DGraphics *starter3DGraphics, fx32 frame);
 static void Load3DGraphicsModel(ChooseStarter3DGraphics *starter3DGraphics, int narcMemberIdx, enum HeapID heapID);
 static void Load3DGraphicsAnimation(ChooseStarter3DGraphics *starter3DGraphics, int narcMemberIdx, enum HeapID heapID, NNSFndAllocator *allocator);
 static void MakePreviewWindow(StarterPreviewWindow *param0, ChooseStarterApp *param1, int param2);
@@ -846,31 +846,29 @@ static BOOL ov78_021D17E4(ChooseStarter3DGraphics *param0)
     fx32 v0 = NNS_G3dAnmObjGetNumFrame(param0->animationObj);
     BOOL v1;
 
-    if ((param0->unk_70 + FX32_ONE) < v0) {
-        param0->unk_70 += FX32_ONE;
+    if ((param0->animation_frame + FX32_ONE) < v0) {
+        param0->animation_frame += FX32_ONE;
         v1 = 0;
     } else {
-        param0->unk_70 = v0;
+        param0->animation_frame = v0;
         v1 = 1;
     }
 
-    NNS_G3dAnmObjSetFrame(param0->animationObj, param0->unk_70);
+    NNS_G3dAnmObjSetFrame(param0->animationObj, param0->animation_frame);
 
     return v1;
 }
 
-static void ov78_021D180C(ChooseStarter3DGraphics *param0)
+static void Advance3DGraphicsAnimationToNextFrame(ChooseStarter3DGraphics *starter3DGraphics)
 {
-    fx32 v0 = NNS_G3dAnmObjGetNumFrame(param0->animationObj);
-
-    param0->unk_70 = (param0->unk_70 + FX32_ONE) % v0;
-    NNS_G3dAnmObjSetFrame(param0->animationObj, param0->unk_70);
+    starter3DGraphics->animation_frame = (starter3DGraphics->animation_frame + FX32_ONE) % NNS_G3dAnmObjGetNumFrame(starter3DGraphics->animationObj);
+    NNS_G3dAnmObjSetFrame(starter3DGraphics->animationObj, starter3DGraphics->animation_frame);
 }
 
-static void ov78_021D182C(ChooseStarter3DGraphics *param0, fx32 param1)
+static void Set3DGraphicsAnimationFrame(ChooseStarter3DGraphics *starter3DGraphics, fx32 frame)
 {
-    param0->unk_70 = param1;
-    NNS_G3dAnmObjSetFrame(param0->animationObj, param1);
+    starter3DGraphics->animation_frame = frame;
+    NNS_G3dAnmObjSetFrame(starter3DGraphics->animationObj, frame);
 }
 
 static void Make3DGraphics(ChooseStarterApp *param0, enum HeapID heapID)
@@ -1179,15 +1177,13 @@ static void ov78_021D1CA8(ChooseStarterApp *param0, enum HeapID heapID)
     }
 }
 
-static void ov78_021D1DF0(ChooseStarterApp *param0)
+static void ov78_021D1DF0(ChooseStarterApp *app)
 {
-    int v0;
-
-    for (v0 = 0; v0 < 3; v0++) {
-        if (param0->cursorPosition == v0) {
-            ov78_021D180C(&param0->starter3DGraphics[2 + v0]);
+    for (int i = 0; i < NUM_STARTER_OPTIONS; i++) {
+        if (app->cursorPosition == i) {
+            Advance3DGraphicsAnimationToNextFrame(&app->starter3DGraphics[2 + i]);
         } else {
-            ov78_021D182C(&param0->starter3DGraphics[2 + v0], 0);
+            Set3DGraphicsAnimationFrame(&app->starter3DGraphics[2 + i], 0);
         }
     }
 }
