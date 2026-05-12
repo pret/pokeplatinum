@@ -165,7 +165,7 @@ typedef struct StarterPreviewWindow {
     void *unk_10;
     NNSG2dCharacterData *unk_14;
     NNSG2dPaletteData *unk_18;
-    StarterPreviewAnimation unk_1C;
+    StarterPreviewAnimation previewAnimation;
     SysTask *movementTask;
 } StarterPreviewWindow;
 
@@ -278,7 +278,7 @@ static void DeletePreviewWindow(StarterPreviewWindow *previewWindow);
 static void ShowPreviewWindow(StarterPreviewWindow *previewWindow, BOOL show);
 static void StartPreviewWindowMovement(StarterPreviewWindow *previewWindow, fx32 param1, fx32 param2, fx32 param3, fx32 param4, fx32 param5, fx32 param6, int param7);
 static void StartOtherPreviewMovement(StarterPreviewWindow *previewWindow);
-static void ov78_021D25A0(SysTask *param0, void *param1);
+static void AdvancePreviewMovement(SysTask *task, void *previewWindowParam);
 static BOOL ov78_021D2608(StarterPreviewWindow *param0);
 static void ov78_021D2618(ChooseStarterApp *param0);
 static void ov78_021D2688(ChooseStarterApp *param0);
@@ -1546,51 +1546,49 @@ static void StartPreviewWindowMovement(StarterPreviewWindow *previewWindow, fx32
 {
     GF_ASSERT(previewWindow->movementTask == NULL);
 
-    SetupStarterMovement(&previewWindow->unk_1C.x, param1, param2, param7);
-    SetupStarterMovement(&previewWindow->unk_1C.y, param3, param4, param7);
-    SetupStarterMovement(&previewWindow->unk_1C.scale, param5, param6, param7);
+    SetupStarterMovement(&previewWindow->previewAnimation.x, param1, param2, param7);
+    SetupStarterMovement(&previewWindow->previewAnimation.y, param3, param4, param7);
+    SetupStarterMovement(&previewWindow->previewAnimation.scale, param5, param6, param7);
 
-    previewWindow->unk_1C.frameCount = 0;
-    previewWindow->unk_1C.frameCountIncrement = 1;
-    previewWindow->movementTask = SysTask_Start(ov78_021D25A0, previewWindow, 0);
+    previewWindow->previewAnimation.frameCount = 0;
+    previewWindow->previewAnimation.frameCountIncrement = 1;
+    previewWindow->movementTask = SysTask_Start(AdvancePreviewMovement, previewWindow, 0);
 }
 
 static void StartOtherPreviewMovement(StarterPreviewWindow *previewWindow)
 {
     GF_ASSERT(previewWindow->movementTask == NULL);
 
-    previewWindow->unk_1C.frameCountIncrement = -2;
+    previewWindow->previewAnimation.frameCountIncrement = -2;
 
-    if (previewWindow->unk_1C.frameCount >= previewWindow->unk_1C.x.frameCountMax) {
-        previewWindow->unk_1C.frameCount = previewWindow->unk_1C.x.frameCountMax + previewWindow->unk_1C.frameCountIncrement;
+    if (previewWindow->previewAnimation.frameCount >= previewWindow->previewAnimation.x.frameCountMax) {
+        previewWindow->previewAnimation.frameCount = previewWindow->previewAnimation.x.frameCountMax + previewWindow->previewAnimation.frameCountIncrement;
     }
 
-    previewWindow->movementTask = SysTask_Start(ov78_021D25A0, previewWindow, 0);
+    previewWindow->movementTask = SysTask_Start(AdvancePreviewMovement, previewWindow, 0);
 }
 
-static void ov78_021D25A0(SysTask *param0, void *param1)
+static void AdvancePreviewMovement(SysTask *task, void *previewWindowParam)
 {
-    StarterPreviewWindow *v0 = param1;
-    BOOL v1;
-    fx32 v2, v3;
+    StarterPreviewWindow *previewWindow = previewWindowParam;
 
-    v1 = AdvanceStarterMovement(&v0->unk_1C.x, v0->unk_1C.frameCount);
+    BOOL hasFrameCountReachedMax = AdvanceStarterMovement(&previewWindow->previewAnimation.x, previewWindow->previewAnimation.frameCount);
 
-    AdvanceStarterMovement(&v0->unk_1C.y, v0->unk_1C.frameCount);
-    AdvanceStarterMovement(&v0->unk_1C.scale, v0->unk_1C.frameCount);
+    AdvanceStarterMovement(&previewWindow->previewAnimation.y, previewWindow->previewAnimation.frameCount);
+    AdvanceStarterMovement(&previewWindow->previewAnimation.scale, previewWindow->previewAnimation.frameCount);
 
-    v2 = v0->unk_1C.x.frameCount - ((128 / 2) * FX32_ONE);
-    v3 = v0->unk_1C.y.frameCount - ((128 / 2) * FX32_ONE);
+    fx32 x = previewWindow->previewAnimation.x.frameCount - ((128 / 2) * FX32_ONE);
+    fx32 y = previewWindow->previewAnimation.y.frameCount - ((128 / 2) * FX32_ONE);
 
-    SoftwareSprite_SetPosition(v0->sprite, v2 >> FX32_SHIFT, v3 >> FX32_SHIFT);
-    SoftwareSprite_SetScalingFactors(v0->sprite, v0->unk_1C.scale.frameCount, v0->unk_1C.scale.frameCount);
+    SoftwareSprite_SetPosition(previewWindow->sprite, x >> FX32_SHIFT, y >> FX32_SHIFT);
+    SoftwareSprite_SetScalingFactors(previewWindow->sprite, previewWindow->previewAnimation.scale.frameCount, previewWindow->previewAnimation.scale.frameCount);
 
-    if ((v1 == 1) || (v0->unk_1C.frameCount < 0)) {
-        SysTask_Done(param0);
-        v0->movementTask = NULL;
+    if ((hasFrameCountReachedMax == TRUE) || (previewWindow->previewAnimation.frameCount < 0)) {
+        SysTask_Done(task);
+        previewWindow->movementTask = NULL;
     }
 
-    v0->unk_1C.frameCount += v0->unk_1C.frameCountIncrement;
+    previewWindow->previewAnimation.frameCount += previewWindow->previewAnimation.frameCountIncrement;
 }
 
 static BOOL ov78_021D2608(StarterPreviewWindow *param0)
