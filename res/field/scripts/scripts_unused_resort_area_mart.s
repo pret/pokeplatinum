@@ -2,14 +2,14 @@
 
 
     ScriptEntry ResortAreaMart_CashierF
-    ScriptEntry _0020
+    ScriptEntry ResortAreaMart_UnusedEntry2
     ScriptEntryEnd
 
 ResortAreaMart_CashierF:
     PokeMartCommonWithGreeting
     End
 
-_0020:
+ResortAreaMart_UnusedEntry2:
     End
 
     .balign 4, 0

@@ -1,10 +1,10 @@
 #include "macros/scrcmd.inc"
 
 
-    ScriptEntry _0006
+    ScriptEntry InitNewGame
     ScriptEntryEnd
 
-_0006:
+InitNewGame:
     SetFlag FLAG_HIDE_TWINLEAF_TOWN_PLAYER_HOUSE_2F_RIVAL
     SetFlag FLAG_HIDE_ROUTE_201_COUNTERPART
     SetFlag FLAG_HIDE_ROUTE_201_PROF_ROWAN
