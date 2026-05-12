@@ -811,7 +811,7 @@ u8 BattleSystem_IsSlot2WaitingForPartner(BattleSystem *battleSys, int battler, u
                 return 1;
             }
         } else {
-            u16 actionTemp = BattleContext_Get(battleSys, battleSys->battleCtx, BATTLECTX_ACTION_TEMP_FOR, 0) & 0xFFFF;
+            u16 actionTemp = BattleContext_Get(battleSys, battleSys->battleCtx, BATTLECTX_ACTION_TEMP_FOR, 0);
 
             if ((BattleContext_Get(battleSys, battleSys->battleCtx, BATTLECTX_ACTION_FOR, 0) == 14 && actionTemp > 16) || (canPickCommand & FlagIndex(0))) {
                 return 0;
