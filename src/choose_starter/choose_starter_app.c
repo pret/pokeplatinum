@@ -124,13 +124,13 @@ typedef struct ChooseStarterMovement {
 } ChooseStarterMovement;
 
 typedef struct ChooseStarterCameraMovement {
-    ChooseStarterMovement unk_00;
-    ChooseStarterMovement unk_10;
-    ChooseStarterMovement unk_20;
+    ChooseStarterMovement xRotation;
+    ChooseStarterMovement distance;
+    ChooseStarterMovement zTarget;
     Camera *camera;
     VecFx32 *target;
-    s32 unk_38;
-    BOOL unk_3C;
+    s32 frameCount;
+    BOOL finished;
     SysTask *movementTask;
 } ChooseStarterCameraMovement;
 
@@ -294,8 +294,8 @@ static BOOL AdvanceStarterMovement(ChooseStarterMovement *starterMovement, s32 f
 static void SetupStarterRotation(ChooseStarterRotation *starterRotation, fx32 verticalOffsetMultiplier, int frameCountMax);
 static void AdvanceCursorMovementRotation(ChooseStarterRotation *starterRotation);
 static void startCameraMovement(ChooseStarterCameraMovement *cameraMovement, Camera *camera, VecFx32 *target);
-static void ov78_021D219C(SysTask *param0, void *param1);
-static BOOL ov78_021D2200(ChooseStarterCameraMovement *param0);
+static void AdvanceCameraMovement(SysTask *task, void *cameraMovementParam);
+static BOOL HasCameraMovementFinished(ChooseStarterCameraMovement *cameraMovement);
 static void StartCursorMovement(ChooseStarterCursor *cursor);
 static void AdvanceCursorMovement(SysTask *task, void *cursorParam);
 static void StopCursorMovement(ChooseStarterCursor *cursor);
@@ -1132,7 +1132,7 @@ static void ov78_021D1CA8(ChooseStarterApp *app, enum HeapID heapID)
         app->unk_04++;
         break;
     case 1:
-        if (ov78_021D2200(&app->cameraMovement)) {
+        if (HasCameraMovementFinished(&app->cameraMovement)) {
             app->unk_0C = 6;
             app->unk_04++;
         }
@@ -1333,48 +1333,48 @@ static void startCameraMovement(ChooseStarterCameraMovement *cameraMovement, Cam
 {
     GF_ASSERT(cameraMovement->movementTask == NULL);
 
-    SetupStarterMovement(&cameraMovement->unk_00, (-30 * 0xffff) / 360, (-50 * 0xffff) / 360, 6);
-    SetupStarterMovement(&cameraMovement->unk_10, 300 << FX32_SHIFT, 200 << FX32_SHIFT, 6);
-    SetupStarterMovement(&cameraMovement->unk_20, 0, 36 * FX32_ONE, 6);
+    SetupStarterMovement(&cameraMovement->xRotation, (-30 * 0xffff) / 360, (-50 * 0xffff) / 360, 6);
+    SetupStarterMovement(&cameraMovement->distance, 300 << FX32_SHIFT, 200 << FX32_SHIFT, 6);
+    SetupStarterMovement(&cameraMovement->zTarget, 0, 36 * FX32_ONE, 6);
 
-    cameraMovement->unk_3C = 0;
+    cameraMovement->finished = FALSE;
     cameraMovement->camera = camera;
     cameraMovement->target = target;
-    cameraMovement->unk_38 = 0;
+    cameraMovement->frameCount = 0;
 
-    SysTask_Start(ov78_021D219C, cameraMovement, 0);
+    SysTask_Start(AdvanceCameraMovement, cameraMovement, 0);
 }
 
-static void ov78_021D219C(SysTask *param0, void *param1)
+static void AdvanceCameraMovement(SysTask *task, void *cameraMovementParam)
 {
-    ChooseStarterCameraMovement *v0 = param1;
-    BOOL v1;
-    CameraAngle v2;
+    ChooseStarterCameraMovement *cameraMovement = cameraMovementParam;
+    CameraAngle angle;
 
-    v1 = AdvanceStarterMovement(&v0->unk_00, v0->unk_38);
-    AdvanceStarterMovement(&v0->unk_10, v0->unk_38);
-    AdvanceStarterMovement(&v0->unk_20, v0->unk_38);
+    BOOL hasFrameCountReachedMax = AdvanceStarterMovement(&cameraMovement->xRotation, cameraMovement->frameCount);
+    AdvanceStarterMovement(&cameraMovement->distance, cameraMovement->frameCount);
+    AdvanceStarterMovement(&cameraMovement->zTarget, cameraMovement->frameCount);
 
-    v2.x = v0->unk_00.current;
-    v2.y = ((0 * 0xffff) / 360);
-    v2.z = ((0 * 0xffff) / 360);
+    // changing to designated initializers breaks the checksum.
+    angle.x = cameraMovement->xRotation.current;
+    angle.y = ((0 * 0xffff) / 360);
+    angle.z = ((0 * 0xffff) / 360);
 
-    Camera_SetAngleAroundTarget(&v2, v0->camera);
-    Camera_SetDistance(v0->unk_10.current, v0->camera);
+    Camera_SetAngleAroundTarget(&angle, cameraMovement->camera);
+    Camera_SetDistance(cameraMovement->distance.current, cameraMovement->camera);
 
-    v0->target->z = v0->unk_20.current;
-    v0->unk_38++;
+    cameraMovement->target->z = cameraMovement->zTarget.current;
+    cameraMovement->frameCount++;
 
-    if (v1 == 1) {
-        SysTask_Done(param0);
-        v0->movementTask = NULL;
-        v0->unk_3C = 1;
+    if (hasFrameCountReachedMax == TRUE) {
+        SysTask_Done(task);
+        cameraMovement->movementTask = NULL;
+        cameraMovement->finished = TRUE;
     }
 }
 
-static BOOL ov78_021D2200(ChooseStarterCameraMovement *param0)
+static BOOL HasCameraMovementFinished(ChooseStarterCameraMovement *cameraMovement)
 {
-    return param0->unk_3C;
+    return cameraMovement->finished;
 }
 
 static void MakeCursorOAM(ChooseStarterApp *app, ChooseStarterCursor *cursor, enum HeapID heapID)
