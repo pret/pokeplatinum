@@ -293,7 +293,7 @@ static void SetupStarterMovement(ChooseStarterMovement *starterMovement, s32 sta
 static BOOL AdvanceStarterMovement(ChooseStarterMovement *starterMovement, s32 frameCount);
 static void SetupStarterRotation(ChooseStarterRotation *starterRotation, fx32 verticalOffsetMultiplier, int frameCountMax);
 static void AdvanceCursorMovementRotation(ChooseStarterRotation *starterRotation);
-static void startCameraMovement(ChooseStarterCameraMovement *cameraMovement, Camera *camera, VecFx32 *target);
+static void StartCameraMovement(ChooseStarterCameraMovement *cameraMovement, Camera *camera, VecFx32 *target);
 static void AdvanceCameraMovement(SysTask *task, void *cameraMovementParam);
 static BOOL HasCameraMovementFinished(ChooseStarterCameraMovement *cameraMovement);
 static void StartCursorMovement(ChooseStarterCursor *cursor);
@@ -1127,7 +1127,7 @@ static void ov78_021D1CA8(ChooseStarterApp *app, enum HeapID heapID)
 {
     switch (app->unk_04) {
     case 0:
-        startCameraMovement(&app->cameraMovement, app->camera, &app->cameraTarget);
+        StartCameraMovement(&app->cameraMovement, app->camera, &app->cameraTarget);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, TRUE);
         app->unk_04++;
         break;
@@ -1329,7 +1329,7 @@ static BOOL AdvanceStarterMovement(ChooseStarterMovement *starterMovement, s32 f
     return hasFrameCountReachedMax;
 }
 
-static void startCameraMovement(ChooseStarterCameraMovement *cameraMovement, Camera *camera, VecFx32 *target)
+static void StartCameraMovement(ChooseStarterCameraMovement *cameraMovement, Camera *camera, VecFx32 *target)
 {
     GF_ASSERT(cameraMovement->movementTask == NULL);
 
