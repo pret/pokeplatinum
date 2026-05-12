@@ -216,7 +216,7 @@ static void StartFadeIn(ChooseStarterApp *app);
 static void StartFadeOut(ChooseStarterApp *app);
 static BOOL IsFadeDone(ChooseStarterApp *app);
 static u16 GetSelectedSpecies(u16 cursorPosition);
-static BOOL IsSelectionMade(ChooseStarterApp *app, int param1);
+static BOOL IsSelectionMade(ChooseStarterApp *app, enum HeapID heapID);
 static void UpdateGraphics(ChooseStarterApp *app, enum HeapID heapID);
 static void DrawScene(ChooseStarterApp *app);
 static void SetupDrawing(ChooseStarterApp *app, enum HeapID heapID);
@@ -236,7 +236,7 @@ static void MakeSubplaneWindows(ChooseStarterApp *app, enum HeapID heapID);
 static void DeleteSubplaneWindows(ChooseStarterApp *app);
 static void SetSubplaneWindowText(Window *window, enum HeapID heapID, int bankID, int entryID, TextColor textColor);
 static void DeleteSubplaneWindow(ChooseStarterApp *app);
-static void MakeConfirmationWindow(ChooseStarterApp *app, int param1);
+static void MakeConfirmationWindow(ChooseStarterApp *app, enum HeapID heapID);
 static void MakePokemonSprites(ChooseStarterApp *app, enum HeapID heapID);
 static void DeletePokemonSprites(ChooseStarterApp *app);
 static void MakeSpriteDisplay(ChooseStarterApp *app, enum HeapID heapID);
@@ -244,7 +244,7 @@ static void DeleteSpriteDisplay(ChooseStarterApp *app);
 static void MakeCellActors(ChooseStarterApp *app, enum HeapID heapID);
 static void DeleteCellActors(ChooseStarterApp *app);
 static void MakeCamera(ChooseStarterApp *app, enum HeapID heapID);
-static void SetupCamera(Camera *camera, VecFx32 *param1);
+static void SetupCamera(Camera *camera, VecFx32 *target);
 static void DeleteCamera(ChooseStarterApp *app);
 static void Make3DGraphics(ChooseStarterApp *app, enum HeapID heapID);
 static void Delete3DGraphics(ChooseStarterApp *app);
@@ -273,10 +273,10 @@ static void Advance3DGraphicsAnimationOnLoop(ChooseStarter3DGraphics *starter3DG
 static void Set3DGraphicsAnimationFrame(ChooseStarter3DGraphics *starter3DGraphics, fx32 frame);
 static void Load3DGraphicsModel(ChooseStarter3DGraphics *starter3DGraphics, int narcMemberIdx, enum HeapID heapID);
 static void Load3DGraphicsAnimation(ChooseStarter3DGraphics *starter3DGraphics, int narcMemberIdx, enum HeapID heapID, NNSFndAllocator *allocator);
-static void MakePreviewWindow(StarterPreviewWindow *param0, ChooseStarterApp *param1, int param2);
+static void MakePreviewWindow(StarterPreviewWindow *previewWindow, ChooseStarterApp *app, enum HeapID heapID);
 static void DeletePreviewWindow(StarterPreviewWindow *previewWindow);
 static void ShowPreviewWindow(StarterPreviewWindow *previewWindow, BOOL show);
-static void StartPreviewWindowMovement(StarterPreviewWindow *previewWindow, fx32 param1, fx32 param2, fx32 param3, fx32 param4, fx32 param5, fx32 param6, int param7);
+static void StartPreviewWindowMovement(StarterPreviewWindow *previewWindow, fx32 xStart, fx32 xEnd, fx32 yStart, fx32 yEnd, fx32 scaleStart, fx32 scaleEnd, int frameCountMax);
 static void StartOtherPreviewMovement(StarterPreviewWindow *previewWindow);
 static void AdvancePreviewMovement(SysTask *task, void *previewWindowParam);
 static BOOL HasPreviewWindowMovementFinished(StarterPreviewWindow *previewWindow);
@@ -287,7 +287,7 @@ static void StartPreviewGraphicsMovement(StarterPreviewGraphics *previewGraphics
 static void StartOtherPreviewGraphicsMovement(StarterPreviewGraphics *previewGraphics);
 static void AdvancePreviewGraphicsMovement(SysTask *task, void *previewGraphicsParam);
 static void ChangePokeballChoice(ChooseStarterApp *app);
-static void AdvanceChoiceStep(ChooseStarterApp *app, int param1);
+static void AdvanceChoiceStep(ChooseStarterApp *app, int advanceAmount);
 static int GetChoiceStep(ChooseStarterApp *app);
 static void SetupStarterMovement(ChooseStarterMovement *starterMovement, s32 start, s32 end, s32 frameCountMax);
 static BOOL AdvanceStarterMovement(ChooseStarterMovement *starterMovement, s32 frameCount);
@@ -911,7 +911,7 @@ static void Draw3DGraphicsWithLightAndColor(ChooseStarterApp *app)
     }
 }
 
-static BOOL IsSelectionMade(ChooseStarterApp *app, int param1)
+static BOOL IsSelectionMade(ChooseStarterApp *app, enum HeapID heapID)
 {
     if (app->unk_08 == TRUE) {
         return FALSE;
@@ -1288,7 +1288,7 @@ static void DeleteStringBuffer(ChooseStarterApp *app)
     app->string = NULL;
 }
 
-static void MakeConfirmationWindow(ChooseStarterApp *app, int param1)
+static void MakeConfirmationWindow(ChooseStarterApp *app, enum HeapID heapID)
 {
     app->unk_B0.bgLayer = 1;
     app->unk_B0.tilemapLeft = 23;
@@ -1298,8 +1298,8 @@ static void MakeConfirmationWindow(ChooseStarterApp *app, int param1)
     app->unk_B0.palette = 3;
     app->unk_B0.baseTile = ((18 + 12) + 9 + 128);
 
-    LoadStandardWindowGraphics(app->bgConfig, BG_LAYER_MAIN_1, 512 + (18 + 12) + 128, 1, 0, param1);
-    Font_LoadTextPalette(0, 3 * 32, param1);
+    LoadStandardWindowGraphics(app->bgConfig, BG_LAYER_MAIN_1, 512 + (18 + 12) + 128, 1, 0, heapID);
+    Font_LoadTextPalette(0, 3 * 32, heapID);
 }
 
 static void SetupStarterMovement(ChooseStarterMovement *starterMovement, s32 start, s32 end, s32 frameCountMax)
@@ -1489,32 +1489,32 @@ static void SetCursorPosition(ChooseStarterCursor *cursor, int x, int y)
     cursor->position.y = y << FX32_SHIFT;
 }
 
-static void MakePreviewWindow(StarterPreviewWindow *param0, ChooseStarterApp *param1, int param2)
+static void MakePreviewWindow(StarterPreviewWindow *previewWindow, ChooseStarterApp *app, enum HeapID heapID)
 {
     SoftwareSpritePaletteTemplate v1;
     SoftwareSpriteTemplate v2;
 
-    param0->unk_0C = Graphics_GetCharData(NARC_INDEX_GRAPHIC__EV_POKESELECT, 14, 0, &param0->unk_14, param2);
-    param0->unk_10 = Graphics_GetPlttData(NARC_INDEX_GRAPHIC__EV_POKESELECT, 15, &param0->unk_18, param2);
+    previewWindow->unk_0C = Graphics_GetCharData(NARC_INDEX_GRAPHIC__EV_POKESELECT, 14, 0, &previewWindow->unk_14, heapID);
+    previewWindow->unk_10 = Graphics_GetPlttData(NARC_INDEX_GRAPHIC__EV_POKESELECT, 15, &previewWindow->unk_18, heapID);
 
     SoftwareSpriteCharsTemplate v0 = {
-        .softSpriteMan = param1->spriteDisplay,
-        .charsData = param0->unk_14
+        .softSpriteMan = app->spriteDisplay,
+        .charsData = previewWindow->unk_14
     };
 
-    param0->unk_00 = SoftwareSprite_LoadChars(&v0);
+    previewWindow->unk_00 = SoftwareSprite_LoadChars(&v0);
 
     // changing to designated initializers breaks the checksum.
-    v1.softSpriteMan = param1->spriteDisplay;
-    v1.paletteData = param0->unk_18;
+    v1.softSpriteMan = app->spriteDisplay;
+    v1.paletteData = previewWindow->unk_18;
     v1.paletteSlot = 1;
 
-    param0->unk_04 = SoftwareSprite_LoadPalette(&v1);
+    previewWindow->unk_04 = SoftwareSprite_LoadPalette(&v1);
 
     // changing to designated initializers breaks the checksum.
-    v2.softSpriteMan = param1->spriteDisplay;
-    v2.chars = param0->unk_00;
-    v2.palette = param0->unk_04;
+    v2.softSpriteMan = app->spriteDisplay;
+    v2.chars = previewWindow->unk_00;
+    v2.palette = previewWindow->unk_04;
     v2.xPos = 0;
     v2.yPos = 0;
     v2.rotation = 0;
@@ -1522,10 +1522,10 @@ static void MakePreviewWindow(StarterPreviewWindow *param0, ChooseStarterApp *pa
     v2.priority = 1022;
     v2.paletteSlot = 0;
 
-    param0->sprite = SoftwareSprite_Load(&v2);
+    previewWindow->sprite = SoftwareSprite_Load(&v2);
 
-    SoftwareSprite_SetVisible(param0->sprite, 0);
-    SoftwareSprite_SetCenter(param0->sprite, 128 / 2, 128 / 2);
+    SoftwareSprite_SetVisible(previewWindow->sprite, 0);
+    SoftwareSprite_SetCenter(previewWindow->sprite, 128 / 2, 128 / 2);
 }
 
 static void DeletePreviewWindow(StarterPreviewWindow *previewWindow)
