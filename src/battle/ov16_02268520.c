@@ -137,7 +137,7 @@ ALIGN_4 static const u16 sTerrainPaletteSource[TERRAIN_MAX][3] = {
 };
 // clang-format on
 
-void ov16_02268520(BattlerPlatform *battlerPfm)
+void ov16_02268520(Terrain *terrain)
 {
     SpriteSystem *v0;
     SpriteManager *v1;
@@ -145,20 +145,20 @@ void ov16_02268520(BattlerPlatform *battlerPfm)
     int v3, v4, v5, v6, v7, v8;
     int v9;
     NARC *v10 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, HEAP_ID_BATTLE);
-    v0 = BattleSystem_GetSpriteSystem(battlerPfm->unk_04);
-    v1 = BattleSystem_GetSpriteManager(battlerPfm->unk_04);
-    v9 = BattleSystem_GetBackgroundTimeOffset(battlerPfm->unk_04);
-    v2 = &sTerrainSpriteTemplates[battlerPfm->unk_08];
+    v0 = BattleSystem_GetSpriteSystem(terrain->battleSys);
+    v1 = BattleSystem_GetSpriteManager(terrain->battleSys);
+    v9 = BattleSystem_GetBackgroundTimeOffset(terrain->battleSys);
+    v2 = &sTerrainSpriteTemplates[terrain->unk_08];
 
-    if (battlerPfm->unk_08 == 0) {
-        v3 = sTerrainSpriteSource_PlayerSide[battlerPfm->unk_09];
+    if (terrain->unk_08 == 0) {
+        v3 = sTerrainSpriteSource_PlayerSide[terrain->unk_09];
         v4 = 20013;
         v5 = terrain_player_cell_NCER_lz;
         v6 = 20005;
         v7 = terrain_player_anim_NANR_lz;
         v8 = 20005;
     } else {
-        v3 = sTerrainSpriteSource_EnemySide[battlerPfm->unk_09];
+        v3 = sTerrainSpriteSource_EnemySide[terrain->unk_09];
         v4 = 20014;
         v5 = terrain_enemy_cell_NCER_lz;
         v6 = 20006;
@@ -167,45 +167,45 @@ void ov16_02268520(BattlerPlatform *battlerPfm)
     }
 
     SpriteSystem_LoadCharResObjFromOpenNarc(v0, v1, v10, v3, TRUE, NNS_G2D_VRAM_TYPE_2DMAIN, v4);
-    SpriteSystem_LoadPaletteBufferFromOpenNarc(BattleSystem_GetPaletteData(battlerPfm->unk_04), PLTTBUF_MAIN_OBJ, v0, v1, v10, sTerrainPaletteSource[battlerPfm->unk_09][v9], FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 20009);
-    PaletteData_LoadBufferFromFileStart(BattleSystem_GetPaletteData(battlerPfm->unk_04), NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, sTerrainPaletteSource[battlerPfm->unk_09][v9], 5, PLTTBUF_MAIN_BG, 0x20, 0x7 * 0x10);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(BattleSystem_GetPaletteData(terrain->battleSys), PLTTBUF_MAIN_OBJ, v0, v1, v10, sTerrainPaletteSource[terrain->unk_09][v9], FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 20009);
+    PaletteData_LoadBufferFromFileStart(BattleSystem_GetPaletteData(terrain->battleSys), NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, sTerrainPaletteSource[terrain->unk_09][v9], 5, PLTTBUF_MAIN_BG, 0x20, 0x7 * 0x10);
     SpriteSystem_LoadCellResObjFromOpenNarc(v0, v1, v10, v5, TRUE, v6);
     SpriteSystem_LoadAnimResObjFromOpenNarc(v0, v1, v10, v7, TRUE, v8);
     NARC_dtor(v10);
 }
 
-void ov16_0226862C(BattlerPlatform *battlerPfm)
+void ov16_0226862C(Terrain *terrain)
 {
     SpriteSystem *v0;
     SpriteManager *v1;
     const SpriteTemplate *v2;
 
-    v0 = BattleSystem_GetSpriteSystem(battlerPfm->unk_04);
-    v1 = BattleSystem_GetSpriteManager(battlerPfm->unk_04);
-    v2 = &sTerrainSpriteTemplates[battlerPfm->unk_08];
+    v0 = BattleSystem_GetSpriteSystem(terrain->battleSys);
+    v1 = BattleSystem_GetSpriteManager(terrain->battleSys);
+    v2 = &sTerrainSpriteTemplates[terrain->unk_08];
 
-    battlerPfm->managedSprite = SpriteSystem_NewSprite(v0, v1, v2);
-    Sprite_TickFrame(battlerPfm->managedSprite->sprite);
+    terrain->managedSprite = SpriteSystem_NewSprite(v0, v1, v2);
+    Sprite_TickFrame(terrain->managedSprite->sprite);
 }
 
-void ov16_02268660(BattlerPlatform *battlerPfm)
+void ov16_02268660(Terrain *terrain)
 {
-    if (battlerPfm->managedSprite == NULL) {
+    if (terrain->managedSprite == NULL) {
         return;
     }
 
-    Sprite_DeleteAndFreeResources(battlerPfm->managedSprite);
-    battlerPfm->managedSprite = NULL;
+    Sprite_DeleteAndFreeResources(terrain->managedSprite);
+    terrain->managedSprite = NULL;
 }
 
-void ov16_02268674(BattlerPlatform *battlerPfm)
+void ov16_02268674(Terrain *terrain)
 {
     SpriteManager *v0;
     int v1, v2, v3;
 
-    v0 = BattleSystem_GetSpriteManager(battlerPfm->unk_04);
+    v0 = BattleSystem_GetSpriteManager(terrain->battleSys);
 
-    if (battlerPfm->unk_08 == 0) {
+    if (terrain->unk_08 == 0) {
         v1 = 20013;
         v2 = 20005;
         v3 = 20005;
@@ -221,35 +221,35 @@ void ov16_02268674(BattlerPlatform *battlerPfm)
     SpriteManager_UnloadAnimObjById(v0, v3);
 }
 
-void ov16_022686BC(BattlerPlatform *battlerPfm, int param1)
+void ov16_022686BC(Terrain *terrain, int param1)
 {
-    if (battlerPfm->managedSprite == NULL) {
+    if (terrain->managedSprite == NULL) {
         return;
     }
 
-    ManagedSprite_SetDrawFlag(battlerPfm->managedSprite, param1);
+    ManagedSprite_SetDrawFlag(terrain->managedSprite, param1);
 }
 
-void ov16_022686CC(BattlerPlatform *battlerPfm, BattleSystem *battleSys, u16 param2, int param3)
+void ov16_022686CC(Terrain *terrain, BattleSystem *battleSys, u16 param2, int param3)
 {
-    MI_CpuClearFast(battlerPfm, sizeof(BattlerPlatform));
+    MI_CpuClearFast(terrain, sizeof(Terrain));
 
-    battlerPfm->unk_04 = battleSys;
-    battlerPfm->unk_08 = param2;
-    battlerPfm->unk_09 = param3;
+    terrain->battleSys = battleSys;
+    terrain->unk_08 = param2;
+    terrain->unk_09 = param3;
 
     if (param3 >= TERRAIN_MAX) {
         GF_ASSERT(FALSE);
-        battlerPfm->unk_09 = 0;
+        terrain->unk_09 = 0;
     }
 
-    ov16_02268520(battlerPfm);
-    ov16_0226862C(battlerPfm);
+    ov16_02268520(terrain);
+    ov16_0226862C(terrain);
 }
 
-void ov16_02268700(BattlerPlatform *battlerPfm)
+void ov16_02268700(Terrain *terrain)
 {
-    ov16_02268660(battlerPfm);
-    ov16_02268674(battlerPfm);
-    MI_CpuClearFast(battlerPfm, sizeof(BattlerPlatform));
+    ov16_02268660(terrain);
+    ov16_02268674(terrain);
+    MI_CpuClearFast(terrain, sizeof(Terrain));
 }

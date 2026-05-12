@@ -10555,8 +10555,8 @@ static void BattleScript_CatchMonTask(SysTask *task, void *inData)
             ov12_0223783C(data->ballRotation);
             PokemonSpriteManager_DeleteAll(monSpriteMan);
             ov16_0223B53C(data->battleSys);
-            ov16_022686BC(BattlerSystem_GetBattlerPlatform(data->battleSys, 0), 0);
-            ov16_022686BC(BattlerSystem_GetBattlerPlatform(data->battleSys, 1), 0);
+            ov16_022686BC(BattlerSystem_GetTerrain(data->battleSys, 0), 0);
+            ov16_022686BC(BattlerSystem_GetTerrain(data->battleSys, 1), 0);
             ov16_02263B20(BattleSystem_GetBattlerData(data->battleSys, 0), FALSE);
 
             v12.unk_00 = BattleSystem_GetBgConfig(data->battleSys);
@@ -10687,7 +10687,7 @@ static void BattleScript_CatchMonTask(SysTask *task, void *inData)
             }
 
             ov16_0223B3E4(data->battleSys);
-            BattleSystem_GetRenderMode(data->battleSys, 1);
+            BattleSystem_SetRenderMode(data->battleSys, 1);
         }
         break;
     case SEQ_CATCH_MON_FREE_NAMING_SCREEN:
@@ -10702,7 +10702,7 @@ static void BattleScript_CatchMonTask(SysTask *task, void *inData)
 
             NamingScreenArgs_Free(namingScreenArgs);
             ApplicationManager_Free(data->tmpPtr[0]);
-            BattleSystem_GetRenderMode(data->battleSys, 2);
+            BattleSystem_SetRenderMode(data->battleSys, 2);
 
             data->seqNum = SEQ_CATCH_MON_GAVE_NICKNAME;
         }

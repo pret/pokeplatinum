@@ -182,9 +182,9 @@ SpriteManager *BattleSystem_GetSpriteManager(BattleSystem *battleSys)
     return battleSys->spriteMan;
 }
 
-BattlerPlatform *BattlerSystem_GetBattlerPlatform(BattleSystem *battleSys, int idx)
+Terrain *BattlerSystem_GetTerrain(BattleSystem *battleSys, int index)
 {
-    return &battleSys->battlerPlatforms[idx];
+    return &battleSys->terrains[index];
 }
 
 UnkStruct_ov16_02268A14 *ov16_0223E02C(BattleSystem *battleSys)
@@ -805,15 +805,13 @@ int BattleSystem_GetBackgroundTimeOffset(BattleSystem *battleSys)
 
 u8 BattleSystem_IsSlot2WaitingForPartner(BattleSystem *battleSys, int battler, u8 canPickCommand)
 {
-    u16 actionTemp;
-
     if ((BattleSystem_GetBattlerType(battleSys, battler) == BATTLER_TYPE_PLAYER_SIDE_SLOT_2) && ((battleSys->battleType & BATTLE_TYPE_2vs2) == FALSE)) {
         if (battleSys->battleType & BATTLE_TYPE_LINK) {
             if ((canPickCommand & FlagIndex(BattleSystem_GetPartner(battleSys, battler))) == FALSE) {
                 return 1;
             }
         } else {
-            actionTemp = BattleContext_Get(battleSys, battleSys->battleCtx, BATTLECTX_ACTION_TEMP_FOR, 0) & 0xFFFF;
+            u16 actionTemp = BattleContext_Get(battleSys, battleSys->battleCtx, BATTLECTX_ACTION_TEMP_FOR, 0) & 0xFFFF;
 
             if ((BattleContext_Get(battleSys, battleSys->battleCtx, BATTLECTX_ACTION_FOR, 0) == 14 && actionTemp > 16) || (canPickCommand & FlagIndex(0))) {
                 return 0;
@@ -1005,7 +1003,7 @@ void BattleSystem_BakeSpritesToBackground(BattleSystem *battleSys)
     MI_CpuCopy32(PaletteData_GetUnfadedBuffer(battleSys->paletteData, 0), battleSys->bgPaletteSnapshot, HW_BG_PLTT_SIZE);
 
     objCharPtr = G2_GetOBJCharPtr();
-    imageProxy = Sprite_GetImageProxy(battleSys->battlerPlatforms[1].managedSprite->sprite);
+    imageProxy = Sprite_GetImageProxy(battleSys->terrains[1].managedSprite->sprite);
     objCharPtr += imageProxy->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN];
 
     for (bgTileY = 20; bgTileY < 20 + 8; bgTileY++) {
@@ -1036,7 +1034,7 @@ void BattleSystem_BakeSpritesToBackground(BattleSystem *battleSys)
     }
 
     objCharPtr = G2_GetOBJCharPtr();
-    imageProxy = Sprite_GetImageProxy(battleSys->battlerPlatforms[0].managedSprite->sprite);
+    imageProxy = Sprite_GetImageProxy(battleSys->terrains[0].managedSprite->sprite);
     objCharPtr += imageProxy->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN];
 
     for (pixelIdx = 0; pixelIdx < 0x40 * 32; pixelIdx++) {
@@ -1072,8 +1070,8 @@ void BattleSystem_BakeSpritesToBackground(BattleSystem *battleSys)
 
     Bg_LoadTiles(battleSys->bgConfig, 3, battleSys->bgTileSnapshot, 0x10000, 0);
 
-    ov16_02268700(&battleSys->battlerPlatforms[0]);
-    ov16_02268700(&battleSys->battlerPlatforms[1]);
+    ov16_02268700(&battleSys->terrains[0]);
+    ov16_02268700(&battleSys->terrains[1]);
 }
 
 u8 *BattleSystem_GetBgTileSnapshot(BattleSystem *battleSys)
@@ -1188,7 +1186,7 @@ void PokemonSpriteData_SetYOffset(PokemonSpriteData *pokemonSpriteData, int idx,
     pokemonSpriteData[idx].yOffset = value;
 }
 
-void BattleSystem_GetRenderMode(BattleSystem *battleSys, int renderMode)
+void BattleSystem_SetRenderMode(BattleSystem *battleSys, int renderMode)
 {
     battleSys->renderMode = renderMode;
 }
@@ -1343,9 +1341,9 @@ BOOL BattleSystem_ReadNextRecordedInput(BattleSystem *battleSys, int battler, u8
     if ((battleSys->battleStatusMask & BATTLE_STATUS_RECORDING) && (battleSys->recordingAckPos[battler] < 0x400)) {
         *outInput = sub_0202F884(battler, battleSys->recordingAckPos[battler]);
         battleSys->recordingAckPos[battler]++;
-        result = 0;
+        result = FALSE;
     } else if ((battleSys->battleStatusMask & BATTLE_STATUS_RECORDING) && (battleSys->recordingAckPos[battler] >= 0x400)) {
-        result = 1;
+        result = TRUE;
     }
 
     return result;

@@ -306,10 +306,10 @@ void ov16_0223B384(BattleSystem *battleSys)
     ov16_02268A14(battleSys->unk_198);
     ov16_022687A0(battleSys->bgConfig);
 
-    battleSys->pendingSubMenuVramSetup = 1;
+    battleSys->pendingSubMenuVRAMSetup = 1;
 
     Font_Free(FONT_SUBSCREEN);
-    BattleSystem_GetRenderMode(battleSys, 3);
+    BattleSystem_SetRenderMode(battleSys, 3);
 
     if (battleSys->overlayFlags == FALSE) {
         Overlay_UnloadByID(FS_OVERLAY_ID(battle_anim));
@@ -345,7 +345,7 @@ void ov16_0223B430(BattleSystem *battleSys)
         Overlay_LoadByID(FS_OVERLAY_ID(trainer_ai), OVERLAY_LOAD_ASYNC);
     }
 
-    BattleSystem_GetRenderMode(battleSys, 0);
+    BattleSystem_SetRenderMode(battleSys, 0);
     MI_CpuFill16((void *)GetHardwareSubBgPaletteAddress(), 0, GetHardwareSubBgPaletteSize());
 
     NARC *bgNarc = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, HEAP_ID_BATTLE);
@@ -354,7 +354,7 @@ void ov16_0223B430(BattleSystem *battleSys)
 
     Font_InitManager(FONT_SUBSCREEN, HEAP_ID_BATTLE);
 
-    battleSys->pendingBattleVramSetup = 1;
+    battleSys->pendingBattleVRAMSetup = 1;
 
     ov16_02268744(battleSys->bgConfig);
 
@@ -459,7 +459,7 @@ void ov16_0223B578(BattleSystem *battleSys)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, TRUE);
     SetVBlankCallback(ov16_0223CE68, battleSys);
 
-    battleSys->pendingBattleVramSetup = 1;
+    battleSys->pendingBattleVRAMSetup = 1;
 
     Window_Add(battleSys->bgConfig, battleSys->windows, 1, 2, 19, 27, 4, 11, (18 + 12) + 1);
     Window_FillTilemap(battleSys->windows, 0xFF);
@@ -915,8 +915,8 @@ static void ov16_0223C210(BattleSystem *battleSys)
     int selectedPartySlot;
     Pokemon *mon;
 
-    ov16_022686CC(&battleSys->battlerPlatforms[0], battleSys, 0, terrain);
-    ov16_022686CC(&battleSys->battlerPlatforms[1], battleSys, 1, terrain);
+    ov16_022686CC(&battleSys->terrains[0], battleSys, 0, terrain);
+    ov16_022686CC(&battleSys->terrains[1], battleSys, 1, terrain);
 
     BattleContext *battleCtx = BattleSystem_GetBattleContext(battleSys);
 
@@ -1449,8 +1449,8 @@ static void ov16_0223CE68(void *inBattleSys)
         G2S_BlendNone();
     }
 
-    if (battleSys->pendingBattleVramSetup) {
-        battleSys->pendingBattleVramSetup = 0;
+    if (battleSys->pendingBattleVRAMSetup) {
+        battleSys->pendingBattleVRAMSetup = 0;
 
         GXBanks banks = {
             GX_VRAM_BG_128_A,
@@ -1468,8 +1468,8 @@ static void ov16_0223CE68(void *inBattleSys)
         GXLayers_SetBanks(&banks);
     }
 
-    if (battleSys->pendingSubMenuVramSetup) {
-        battleSys->pendingSubMenuVramSetup = 0;
+    if (battleSys->pendingSubMenuVRAMSetup) {
+        battleSys->pendingSubMenuVRAMSetup = 0;
 
         GXBanks banks = {
             GX_VRAM_BG_128_A,

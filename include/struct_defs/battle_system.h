@@ -71,7 +71,7 @@ struct BattleSystem {
     u16 trainerIDs[MAX_BATTLERS];
     u8 unk_A8[4];
     Trainer trainers[MAX_BATTLERS];
-    BattlerPlatform battlerPlatforms[2];
+    Terrain terrains[2];
     UnkStruct_ov16_02268A14 *unk_198;
     PartyGauge *partyGauges[2];
     FontSpecialCharsContext *specialCharsHP;
@@ -105,8 +105,8 @@ struct BattleSystem {
     u8 renderMode;
     u8 commandIsEndWait;
     u8 pendingBlendReset : 1;
-    u8 pendingBattleVramSetup : 1;
-    u8 pendingSubMenuVramSetup : 1;
+    u8 pendingBattleVRAMSetup : 1;
+    u8 pendingSubMenuVRAMSetup : 1;
     u8 redHPSoundFlag : 2;
     u8 redHPSoundEffectDelay : 3;
     enum BattleTerrain terrain;
@@ -134,7 +134,7 @@ struct BattleSystem {
     u32 seedRandNext;
     u32 seedDTO;
     u16 recordingCollectedPos[MAX_BATTLERS];
-    u16 recordingWritePos[4];
+    u16 recordingWritePos[MAX_BATTLERS];
     u16 recordingAckPos[MAX_BATTLERS];
     int unk_2464[MAX_BATTLERS];
     u32 recordingStopped : 1;

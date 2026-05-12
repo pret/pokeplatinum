@@ -93,7 +93,7 @@
 
 typedef struct TrainerEncounterData {
     BattleSystem *battleSys;
-    BattlerPlatform *battlerPlatform;
+    Terrain *terrain;
     ManagedSprite *managedSprite;
     u8 command;
     u8 battler;
@@ -215,7 +215,7 @@ typedef struct MonEncounterData {
     BattleSystem *battleSys;
     BattlerData *battlerData;
     PokemonSprite *sprite;
-    BattlerPlatform *battlerPlatform;
+    Terrain *terrain;
     u8 command;
     u8 battler;
     u8 state;
@@ -250,12 +250,12 @@ void BattleDisplay_InitTaskSetEncounter(BattleSystem *battleSys, BattlerData *ba
 
     if (battlerData->battlerType & BATTLER_THEM) {
         monEncounterData->face = FACE_FRONT;
-        monEncounterData->battlerPlatform = BattlerSystem_GetBattlerPlatform(battleSys, 1);
-        ManagedSprite_SetPositionXY(monEncounterData->battlerPlatform->managedSprite, gEncounterCoords[battlerData->battlerType & BATTLER_THEM][0], 8 * 11);
+        monEncounterData->terrain = BattlerSystem_GetTerrain(battleSys, 1);
+        ManagedSprite_SetPositionXY(monEncounterData->terrain->managedSprite, gEncounterCoords[battlerData->battlerType & BATTLER_THEM][0], 8 * 11);
     } else {
         monEncounterData->face = FACE_BACK;
-        monEncounterData->battlerPlatform = BattlerSystem_GetBattlerPlatform(battleSys, 0);
-        ManagedSprite_SetPositionXY(monEncounterData->battlerPlatform->managedSprite, gEncounterCoords[battlerData->battlerType & BATTLER_THEM][0], 128 + 8);
+        monEncounterData->terrain = BattlerSystem_GetTerrain(battleSys, 0);
+        ManagedSprite_SetPositionXY(monEncounterData->terrain->managedSprite, gEncounterCoords[battlerData->battlerType & BATTLER_THEM][0], 128 + 8);
     }
 
     isShiny = !!message->isShiny;
@@ -525,12 +525,12 @@ void BattleDisplay_InitTaskSetTrainerEncounter(BattleSystem *battleSys, BattlerD
 
     if (battlerData->battlerType & BATTLER_THEM) {
         trainerEncounterData->face = FACE_FRONT;
-        trainerEncounterData->battlerPlatform = BattlerSystem_GetBattlerPlatform(battleSys, 1);
-        ManagedSprite_SetPositionXY(trainerEncounterData->battlerPlatform->managedSprite, gEncounterCoords[battlerData->battlerType & BATTLER_THEM][0], 8 * 11);
+        trainerEncounterData->terrain = BattlerSystem_GetTerrain(battleSys, 1);
+        ManagedSprite_SetPositionXY(trainerEncounterData->terrain->managedSprite, gEncounterCoords[battlerData->battlerType & BATTLER_THEM][0], 8 * 11);
     } else {
         trainerEncounterData->face = FACE_BACK;
-        trainerEncounterData->battlerPlatform = BattlerSystem_GetBattlerPlatform(battleSys, 0);
-        ManagedSprite_SetPositionXY(trainerEncounterData->battlerPlatform->managedSprite, gEncounterCoords[battlerData->battlerType & BATTLER_THEM][0], 128 + 8);
+        trainerEncounterData->terrain = BattlerSystem_GetTerrain(battleSys, 0);
+        ManagedSprite_SetPositionXY(trainerEncounterData->terrain->managedSprite, gEncounterCoords[battlerData->battlerType & BATTLER_THEM][0], 128 + 8);
     }
 
     if ((BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_2vs2)
@@ -1754,17 +1754,17 @@ static void Task_SetEncounter(SysTask *task, void *data)
         monEncounterData->state++;
     case 2:
         if (monEncounterData->face == FACE_FRONT) {
-            ManagedSprite_GetPositionXY(monEncounterData->battlerPlatform->managedSprite, &x, &y);
+            ManagedSprite_GetPositionXY(monEncounterData->terrain->managedSprite, &x, &y);
 
             if (monEncounterData->battlerType == BATTLER_TYPE_SOLO_ENEMY || monEncounterData->battlerType == BATTLER_TYPE_ENEMY_SIDE_SLOT_1) {
                 if (x < (24 * 8)) {
-                    ManagedSprite_OffsetPositionXY(monEncounterData->battlerPlatform->managedSprite, 8, 0);
+                    ManagedSprite_OffsetPositionXY(monEncounterData->terrain->managedSprite, 8, 0);
                 } else {
-                    ManagedSprite_SetPositionXY(monEncounterData->battlerPlatform->managedSprite, 24 * 8, 8 * 11);
+                    ManagedSprite_SetPositionXY(monEncounterData->terrain->managedSprite, 24 * 8, 8 * 11);
                 }
             }
 
-            ManagedSprite_GetPositionXY(monEncounterData->battlerPlatform->managedSprite, &x, &y);
+            ManagedSprite_GetPositionXY(monEncounterData->terrain->managedSprite, &x, &y);
 
             if (monEncounterData->battlerType == BATTLER_TYPE_SOLO_ENEMY) {
                 PokemonSprite_SetAttribute(monEncounterData->sprite, MON_SPRITE_X_CENTER, x);
@@ -1800,24 +1800,24 @@ static void Task_SetEncounter(SysTask *task, void *data)
                     cryDelay);
 
                 if (monEncounterData->battlerType == BATTLER_TYPE_SOLO_ENEMY || monEncounterData->battlerType == BATTLER_TYPE_ENEMY_SIDE_SLOT_1) {
-                    ManagedSprite_SetPositionXY(monEncounterData->battlerPlatform->managedSprite, 24 * 8, 8 * 11);
+                    ManagedSprite_SetPositionXY(monEncounterData->terrain->managedSprite, 24 * 8, 8 * 11);
                 }
 
                 PokemonSprite_StartFade(monEncounterData->sprite, 8, 0, 0, 0);
                 monEncounterData->state++;
             }
         } else {
-            ManagedSprite_GetPositionXY(monEncounterData->battlerPlatform->managedSprite, &x, &y);
+            ManagedSprite_GetPositionXY(monEncounterData->terrain->managedSprite, &x, &y);
 
             if (monEncounterData->battlerType == BATTLER_TYPE_SOLO_PLAYER || monEncounterData->battlerType == BATTLER_TYPE_PLAYER_SIDE_SLOT_1) {
                 if (x > 64) {
-                    ManagedSprite_OffsetPositionXY(monEncounterData->battlerPlatform->managedSprite, -8, 0);
+                    ManagedSprite_OffsetPositionXY(monEncounterData->terrain->managedSprite, -8, 0);
                 } else {
-                    ManagedSprite_SetPositionXY(monEncounterData->battlerPlatform->managedSprite, 64, 128 + 8);
+                    ManagedSprite_SetPositionXY(monEncounterData->terrain->managedSprite, 64, 128 + 8);
                 }
             }
 
-            ManagedSprite_GetPositionXY(monEncounterData->battlerPlatform->managedSprite, &x, &y);
+            ManagedSprite_GetPositionXY(monEncounterData->terrain->managedSprite, &x, &y);
 
             if (monEncounterData->battlerType == BATTLER_TYPE_SOLO_PLAYER) {
                 PokemonSprite_SetAttribute(monEncounterData->sprite, MON_SPRITE_X_CENTER, x);
@@ -1855,7 +1855,7 @@ static void Task_SetEncounter(SysTask *task, void *data)
                     cryDelay);
 
                 if (monEncounterData->battlerType == BATTLER_TYPE_SOLO_PLAYER || monEncounterData->battlerType == BATTLER_TYPE_PLAYER_SIDE_SLOT_1) {
-                    ManagedSprite_SetPositionXY(monEncounterData->battlerPlatform->managedSprite, 64, 128 + 8);
+                    ManagedSprite_SetPositionXY(monEncounterData->terrain->managedSprite, 64, 128 + 8);
                 }
 
                 monEncounterData->state++;
@@ -1910,17 +1910,17 @@ static void Task_SetGiratinaEncounter(SysTask *task, void *data)
 
         monEncounterData->state++;
     case 2:
-        ManagedSprite_GetPositionXY(monEncounterData->battlerPlatform->managedSprite, &x, &y);
+        ManagedSprite_GetPositionXY(monEncounterData->terrain->managedSprite, &x, &y);
 
         if (monEncounterData->battlerType == BATTLER_TYPE_SOLO_ENEMY || monEncounterData->battlerType == BATTLER_TYPE_ENEMY_SIDE_SLOT_1) {
             if (x < (24 * 8)) {
-                ManagedSprite_OffsetPositionXY(monEncounterData->battlerPlatform->managedSprite, 8, 0);
+                ManagedSprite_OffsetPositionXY(monEncounterData->terrain->managedSprite, 8, 0);
             } else {
-                ManagedSprite_SetPositionXY(monEncounterData->battlerPlatform->managedSprite, 24 * 8, 8 * 11);
+                ManagedSprite_SetPositionXY(monEncounterData->terrain->managedSprite, 24 * 8, 8 * 11);
             }
         }
 
-        ManagedSprite_GetPositionXY(monEncounterData->battlerPlatform->managedSprite, &x, &y);
+        ManagedSprite_GetPositionXY(monEncounterData->terrain->managedSprite, &x, &y);
         PokemonSprite_AddAttribute(monEncounterData->sprite, MON_SPRITE_Y_CENTER, 8 / 2);
 
         if (PokemonSprite_GetAttribute(monEncounterData->sprite, MON_SPRITE_Y_CENTER) >= monEncounterData->unk_14) {
@@ -1949,7 +1949,7 @@ static void Task_SetGiratinaEncounter(SysTask *task, void *data)
                 HEAP_ID_BATTLE,
                 cryDelay);
 
-            ManagedSprite_SetPositionXY(monEncounterData->battlerPlatform->managedSprite, 24 * 8, 8 * 11);
+            ManagedSprite_SetPositionXY(monEncounterData->terrain->managedSprite, 24 * 8, 8 * 11);
             PokemonSprite_StartFade(monEncounterData->sprite, 8, 0, 0, 0);
 
             monEncounterData->state++;
@@ -2001,7 +2001,7 @@ static void Task_ShowEncounter(SysTask *task, void *data)
                 monShowData->unk_10 = ov12_02223764(monShowData->battleSys, HEAP_ID_BATTLE);
             }
         } else if ((BattleSystem_GetBattleStatusMask(monShowData->battleSys) & BATTLE_STATUS_RECORDED) == FALSE) {
-            if (BattleSystem_IsInitialized(monShowData->battleSys) == 1 && monShowData->battlerType == BATTLER_TYPE_PLAYER_SIDE_SLOT_1) {
+            if (BattleSystem_IsInitialized(monShowData->battleSys) == TRUE && monShowData->battlerType == BATTLER_TYPE_PLAYER_SIDE_SLOT_1) {
                 monShowData->unk_10 = ov12_02223764(monShowData->battleSys, HEAP_ID_BATTLE);
             } else if (monShowData->battlerType == BATTLER_TYPE_SOLO_PLAYER) {
                 monShowData->unk_10 = ov12_02223764(monShowData->battleSys, HEAP_ID_BATTLE);
@@ -2661,19 +2661,19 @@ static void Task_SetTrainerEncounter(SysTask *task, void *data)
 
         trainerEncounterData->state = 2;
     case 2:
-        ManagedSprite_GetPositionXY(trainerEncounterData->battlerPlatform->managedSprite, &x1, &y1);
+        ManagedSprite_GetPositionXY(trainerEncounterData->terrain->managedSprite, &x1, &y1);
         ManagedSprite_GetPositionXY(trainerEncounterData->managedSprite, &x2, &y2);
 
         if (trainerEncounterData->face == FACE_FRONT) {
             if (trainerEncounterData->battlerType == BATTLER_TYPE_SOLO_ENEMY || trainerEncounterData->battlerType == BATTLER_TYPE_ENEMY_SIDE_SLOT_1) {
                 if (x1 < (24 * 8)) {
-                    ManagedSprite_OffsetPositionXY(trainerEncounterData->battlerPlatform->managedSprite, 8, 0);
+                    ManagedSprite_OffsetPositionXY(trainerEncounterData->terrain->managedSprite, 8, 0);
                 } else {
-                    ManagedSprite_SetPositionXY(trainerEncounterData->battlerPlatform->managedSprite, 24 * 8, 8 * 11);
+                    ManagedSprite_SetPositionXY(trainerEncounterData->terrain->managedSprite, 24 * 8, 8 * 11);
                 }
             }
 
-            ManagedSprite_GetPositionXY(trainerEncounterData->battlerPlatform->managedSprite, &x1, &y1);
+            ManagedSprite_GetPositionXY(trainerEncounterData->terrain->managedSprite, &x1, &y1);
 
             if (trainerEncounterData->battlerType == BATTLER_TYPE_SOLO_ENEMY
                 || (trainerEncounterData->battlerType == BATTLER_TYPE_ENEMY_SIDE_SLOT_1 && (battleType == BATTLE_TYPE_TRAINER_DOUBLES || battleType == BATTLE_TYPE_FRONTIER_DOUBLES || battleType == ((BATTLE_TYPE_LINK | BATTLE_TYPE_TRAINER) | BATTLE_TYPE_DOUBLES)))) {
@@ -2696,7 +2696,7 @@ static void Task_SetTrainerEncounter(SysTask *task, void *data)
                 ManagedSprite_SetPositionXY(trainerEncounterData->managedSprite, trainerEncounterData->unk_10, y2);
 
                 if (trainerEncounterData->battlerType == BATTLER_TYPE_SOLO_ENEMY || trainerEncounterData->battlerType == BATTLER_TYPE_ENEMY_SIDE_SLOT_1) {
-                    ManagedSprite_SetPositionXY(trainerEncounterData->battlerPlatform->managedSprite, 24 * 8, 8 * 11);
+                    ManagedSprite_SetPositionXY(trainerEncounterData->terrain->managedSprite, 24 * 8, 8 * 11);
                 }
 
                 if (ManagedSprite_GetNumFrames(trainerEncounterData->managedSprite) > 1) {
@@ -2711,13 +2711,13 @@ static void Task_SetTrainerEncounter(SysTask *task, void *data)
         } else {
             if (trainerEncounterData->battlerType == BATTLER_TYPE_SOLO_PLAYER || trainerEncounterData->battlerType == BATTLER_TYPE_PLAYER_SIDE_SLOT_1) {
                 if (x1 > 64) {
-                    ManagedSprite_OffsetPositionXY(trainerEncounterData->battlerPlatform->managedSprite, -8, 0);
+                    ManagedSprite_OffsetPositionXY(trainerEncounterData->terrain->managedSprite, -8, 0);
                 } else {
-                    ManagedSprite_SetPositionXY(trainerEncounterData->battlerPlatform->managedSprite, 64, 128 + 8);
+                    ManagedSprite_SetPositionXY(trainerEncounterData->terrain->managedSprite, 64, 128 + 8);
                 }
             }
 
-            ManagedSprite_GetPositionXY(trainerEncounterData->battlerPlatform->managedSprite, &x1, &y1);
+            ManagedSprite_GetPositionXY(trainerEncounterData->terrain->managedSprite, &x1, &y1);
 
             if (trainerEncounterData->battlerType == BATTLER_TYPE_SOLO_PLAYER
                 || (trainerEncounterData->battlerType == BATTLER_TYPE_PLAYER_SIDE_SLOT_1
@@ -2741,7 +2741,7 @@ static void Task_SetTrainerEncounter(SysTask *task, void *data)
                 ManagedSprite_SetPositionXY(trainerEncounterData->managedSprite, trainerEncounterData->unk_10, y2);
 
                 if (trainerEncounterData->battlerType == BATTLER_TYPE_SOLO_PLAYER || trainerEncounterData->battlerType == BATTLER_TYPE_PLAYER_SIDE_SLOT_1) {
-                    ManagedSprite_SetPositionXY(trainerEncounterData->battlerPlatform->managedSprite, 64, 128 + 8);
+                    ManagedSprite_SetPositionXY(trainerEncounterData->terrain->managedSprite, 64, 128 + 8);
                 }
 
                 trainerEncounterData->state = 4;

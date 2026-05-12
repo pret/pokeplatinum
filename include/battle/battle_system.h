@@ -89,7 +89,7 @@ PokemonSpriteManager *BattleSystem_GetPokemonSpriteManager(BattleSystem *battleS
 BattleAnimSystem *BattleSystem_GetBattleAnimSystem(BattleSystem *battleSys);
 SpriteSystem *BattleSystem_GetSpriteSystem(BattleSystem *battleSys);
 SpriteManager *BattleSystem_GetSpriteManager(BattleSystem *battleSys);
-BattlerPlatform *BattlerSystem_GetBattlerPlatform(BattleSystem *battleSys, int idx);
+Terrain *BattlerSystem_GetTerrain(BattleSystem *battleSys, int index);
 UnkStruct_ov16_02268A14 *ov16_0223E02C(BattleSystem *battleSys);
 PartyGauge *BattleSystem_GetPartyGauge(BattleSystem *battleSys, enum PartyGaugeSide partyGaugeSide);
 void BattleSystem_SetPartyGauge(BattleSystem *battleSys, enum PartyGaugeSide partyGaugeSide, PartyGauge *partyGauge);
@@ -237,7 +237,7 @@ u8 *PokemonSpriteData_GetTiles(PokemonSpriteData *pokemonSpriteData, int idx);
 void PokemonSpriteData_SetNarcID(PokemonSpriteData *pokemonSpriteData, int idx, int value);
 void PokemonSpriteData_SetPalette(PokemonSpriteData *pokemonSpriteData, int idx, int value);
 void PokemonSpriteData_SetYOffset(PokemonSpriteData *pokemonSpriteData, int idx, int value);
-void BattleSystem_GetRenderMode(BattleSystem *battleSys, int renderMode);
+void BattleSystem_SetRenderMode(BattleSystem *battleSys, int renderMode);
 void ov16_0223F320(BattleSystem *battleSys, u8 *param1);
 void ov16_0223F32C(BattleSystem *battleSys, u8 *param1);
 void ov16_0223F338(BattleSystem *battleSys, u8 param1);
