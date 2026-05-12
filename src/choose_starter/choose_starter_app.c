@@ -212,13 +212,13 @@ typedef struct ChooseStarterApp {
 } ChooseStarterApp;
 
 static void ChooseStarterAppMainCallback(void *data);
-static void StartFadeIn(ChooseStarterApp *param0);
-static void StartFadeOut(ChooseStarterApp *param0);
-static BOOL IsFadeDone(ChooseStarterApp *param0);
+static void StartFadeIn(ChooseStarterApp *app);
+static void StartFadeOut(ChooseStarterApp *app);
+static BOOL IsFadeDone(ChooseStarterApp *app);
 static u16 GetSelectedSpecies(u16 cursorPosition);
 static BOOL IsSelectionMade(ChooseStarterApp *app, int param1);
 static void UpdateGraphics(ChooseStarterApp *app, enum HeapID heapID);
-static void DrawScene(ChooseStarterApp *param0);
+static void DrawScene(ChooseStarterApp *app);
 static void SetupDrawing(ChooseStarterApp *app, enum HeapID heapID);
 static void DeleteDrawing(void);
 static void SetupVRAMBank(void);
@@ -232,21 +232,21 @@ static void DeleteMessageWindow(ChooseStarterApp *app);
 static u8 SetMessageWindowText(Window *window, enum HeapID heapID, int bankID, int entryID, TextColor textColor, u32 renderDelay);
 static u8 SetMessageWindowTextAndSaveToString(Window *window, enum HeapID heapID, int bankID, int entryID, TextColor textColor, u32 renderDelay, String **string);
 static void DeleteStringBuffer(ChooseStarterApp *app);
-static void MakeSubplaneWindows(ChooseStarterApp *param0, enum HeapID heapID);
+static void MakeSubplaneWindows(ChooseStarterApp *app, enum HeapID heapID);
 static void DeleteSubplaneWindows(ChooseStarterApp *app);
 static void SetSubplaneWindowText(Window *window, enum HeapID heapID, int bankID, int entryID, TextColor textColor);
 static void DeleteSubplaneWindow(ChooseStarterApp *app);
-static void MakeConfirmationWindow(ChooseStarterApp *param0, int param1);
+static void MakeConfirmationWindow(ChooseStarterApp *app, int param1);
 static void MakePokemonSprites(ChooseStarterApp *app, enum HeapID heapID);
 static void DeletePokemonSprites(ChooseStarterApp *app);
 static void MakeSpriteDisplay(ChooseStarterApp *app, enum HeapID heapID);
 static void DeleteSpriteDisplay(ChooseStarterApp *app);
-static void MakeCellActors(ChooseStarterApp *param0, enum HeapID heapID);
+static void MakeCellActors(ChooseStarterApp *app, enum HeapID heapID);
 static void DeleteCellActors(ChooseStarterApp *app);
 static void MakeCamera(ChooseStarterApp *app, enum HeapID heapID);
 static void SetupCamera(Camera *camera, VecFx32 *param1);
 static void DeleteCamera(ChooseStarterApp *app);
-static void Make3DGraphics(ChooseStarterApp *param0, enum HeapID heapID);
+static void Make3DGraphics(ChooseStarterApp *app, enum HeapID heapID);
 static void Delete3DGraphics(ChooseStarterApp *app);
 static void Draw3DGraphicsWithLightAndColor(ChooseStarterApp *app);
 static void MakeCursorOAM(ChooseStarterApp *app, ChooseStarterCursor *cursor, enum HeapID heapID);
@@ -255,12 +255,12 @@ static void AttachCursorCellActor(ChooseStarterApp *app, ChooseStarterCursor *cu
 static void DeleteCursorCellActor(ChooseStarterCursor *cursor);
 static void ShowCursor(ChooseStarterCursor *cursor, BOOL show);
 static void SetCursorPosition(ChooseStarterCursor *cursor, int x, int y);
-static void MakeSelectionMatrix(ChooseStarterApp *param0);
-static void SetSelectionMatrixObjects(ChooseStarterApp *param0);
-static void ov78_021D1CA8(ChooseStarterApp *param0, enum HeapID heapID);
+static void MakeSelectionMatrix(ChooseStarterApp *app);
+static void SetSelectionMatrixObjects(ChooseStarterApp *app);
+static void ov78_021D1CA8(ChooseStarterApp *app, enum HeapID heapID);
 static void UpdateSelectedPokeballAnimation(ChooseStarterApp *app);
 static void UpdateCursorPosition(ChooseStarterApp *app);
-static void ov78_021D1E44(ChooseStarterApp *param0, enum HeapID heapID);
+static void ov78_021D1E44(ChooseStarterApp *app, enum HeapID heapID);
 static void MakePokemonSprite(PokemonSprite **sprite, ChooseStarterApp *app, int species);
 static void Delete3DGraphic(ChooseStarter3DGraphics *starter3DGraphics, NNSFndAllocator *allocator);
 static void Draw3DGraphics(ChooseStarter3DGraphics *starter3DGraphics);
@@ -464,17 +464,17 @@ static void ChooseStarterAppMainCallback(void *data)
     VramTransfer_Process();
 }
 
-static void StartFadeIn(ChooseStarterApp *param0)
+static void StartFadeIn(ChooseStarterApp *app)
 {
     StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, HEAP_ID_CHOOSE_STARTER_APP);
 }
 
-static void StartFadeOut(ChooseStarterApp *param0)
+static void StartFadeOut(ChooseStarterApp *app)
 {
     StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_CHOOSE_STARTER_APP);
 }
 
-static BOOL IsFadeDone(ChooseStarterApp *param0)
+static BOOL IsFadeDone(ChooseStarterApp *app)
 {
     return IsScreenFadeDone();
 }
@@ -704,7 +704,7 @@ static void DeletePokemonSprites(ChooseStarterApp *app)
     PokemonSpriteManager_Free(app->spriteManager);
 }
 
-static void MakeSpriteDisplay(ChooseStarterApp *param0, enum HeapID heapID)
+static void MakeSpriteDisplay(ChooseStarterApp *app, enum HeapID heapID)
 {
     SoftwareSpriteManagerTemplate v0 = {
         .numSprites = 1,
@@ -714,7 +714,7 @@ static void MakeSpriteDisplay(ChooseStarterApp *param0, enum HeapID heapID)
     };
 
     v0.heapID = heapID;
-    param0->spriteDisplay = SoftwareSpriteManager_New(&v0);
+    app->spriteDisplay = SoftwareSpriteManager_New(&v0);
 }
 
 static void DeleteSpriteDisplay(ChooseStarterApp *app)
@@ -871,25 +871,25 @@ static void Set3DGraphicsAnimationFrame(ChooseStarter3DGraphics *starter3DGraphi
     NNS_G3dAnmObjSetFrame(starter3DGraphics->animationObj, frame);
 }
 
-static void Make3DGraphics(ChooseStarterApp *param0, enum HeapID heapID)
+static void Make3DGraphics(ChooseStarterApp *app, enum HeapID heapID)
 {
-    Load3DGraphics(&param0->starter3DGraphics[0], 1, 0, heapID, &param0->allocator);
-    Show3DGraphics(&param0->starter3DGraphics[0], TRUE);
+    Load3DGraphics(&app->starter3DGraphics[0], 1, 0, heapID, &app->allocator);
+    Show3DGraphics(&app->starter3DGraphics[0], TRUE);
 
-    Load3DGraphicsWithoutAnimation(&param0->starter3DGraphics[1], 8, heapID);
-    Show3DGraphics(&param0->starter3DGraphics[1], FALSE);
+    Load3DGraphicsWithoutAnimation(&app->starter3DGraphics[1], 8, heapID);
+    Show3DGraphics(&app->starter3DGraphics[1], FALSE);
 
     for (int i = 2; i <= 4; i++) {
-        Load3DGraphics(&param0->starter3DGraphics[i], 3 + (i - 2) * 2, 2 + (i - 2) * 2, heapID, &param0->allocator);
-        Show3DGraphics(&param0->starter3DGraphics[i], FALSE);
+        Load3DGraphics(&app->starter3DGraphics[i], 3 + (i - 2) * 2, 2 + (i - 2) * 2, heapID, &app->allocator);
+        Show3DGraphics(&app->starter3DGraphics[i], FALSE);
     }
 
-    Load3DGraphicsWithoutAnimation(&param0->starter3DGraphics[5], 9, heapID);
-    Show3DGraphics(&param0->starter3DGraphics[5], TRUE);
+    Load3DGraphicsWithoutAnimation(&app->starter3DGraphics[5], 9, heapID);
+    Show3DGraphics(&app->starter3DGraphics[5], TRUE);
 
-    Set3DGraphicsPosition(&param0->starter3DGraphics[5], 0, -28 * FX32_ONE, 40 * FX32_ONE);
-    Set3DGraphicsScale(&param0->starter3DGraphics[5], FX32_CONST(3.50f), FX32_ONE, FX32_CONST(3.50f));
-    Set3DGraphicsRotation(&param0->starter3DGraphics[5], (0 * 0xffff) / 360, (180 * 0xffff) / 360, (0 * 0xffff) / 360);
+    Set3DGraphicsPosition(&app->starter3DGraphics[5], 0, -28 * FX32_ONE, 40 * FX32_ONE);
+    Set3DGraphicsScale(&app->starter3DGraphics[5], FX32_CONST(3.50f), FX32_ONE, FX32_CONST(3.50f));
+    Set3DGraphicsRotation(&app->starter3DGraphics[5], (0 * 0xffff) / 360, (180 * 0xffff) / 360, (0 * 0xffff) / 360);
 }
 
 static void Delete3DGraphics(ChooseStarterApp *app)
@@ -986,7 +986,7 @@ static void UpdateGraphics(ChooseStarterApp *app, enum HeapID heapID)
     }
 }
 
-static void DrawScene(ChooseStarterApp *param0)
+static void DrawScene(ChooseStarterApp *app)
 {
     G3_ResetG3X();
 
@@ -996,8 +996,8 @@ static void DrawScene(ChooseStarterApp *param0)
         NNS_G3dGeFlushBuffer();
         NNS_G2dSetupSoftwareSpriteCamera();
 
-        PokemonSpriteManager_DrawSprites(param0->spriteManager);
-        SoftwareSpriteManager_DrawVisible(param0->spriteDisplay);
+        PokemonSpriteManager_DrawSprites(app->spriteManager);
+        SoftwareSpriteManager_DrawVisible(app->spriteDisplay);
     }
 
     NNS_G3dGePopMtx(1);
@@ -1005,13 +1005,13 @@ static void DrawScene(ChooseStarterApp *param0)
 
     {
         Camera_ComputeViewMatrix();
-        Draw3DGraphicsWithLightAndColor(param0);
+        Draw3DGraphicsWithLightAndColor(app);
     }
 
     NNS_G3dGePopMtx(1);
 
     G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
-    SpriteList_Update(param0->spriteList);
+    SpriteList_Update(app->spriteList);
 }
 
 static void MakeCamera(ChooseStarterApp *app, enum HeapID heapID)
@@ -1048,24 +1048,24 @@ static void DeleteCamera(ChooseStarterApp *app)
     Camera_Delete(app->camera);
 }
 
-static void MakeSelectionMatrix(ChooseStarterApp *param0)
+static void MakeSelectionMatrix(ChooseStarterApp *app)
 {
     for (int i = 0; i < NUM_STARTER_OPTIONS; i++) {
         switch (i) {
         case 0:
-            param0->unk_58[i][0] = -44;
-            param0->unk_58[i][1] = -4;
-            param0->unk_58[i][2] = 32;
+            app->unk_58[i][0] = -44;
+            app->unk_58[i][1] = -4;
+            app->unk_58[i][2] = 32;
             break;
         case 1:
-            param0->unk_58[i][0] = 0;
-            param0->unk_58[i][1] = -4;
-            param0->unk_58[i][2] = 62;
+            app->unk_58[i][0] = 0;
+            app->unk_58[i][1] = -4;
+            app->unk_58[i][2] = 62;
             break;
         case 2:
-            param0->unk_58[i][0] = 38;
-            param0->unk_58[i][1] = -4;
-            param0->unk_58[i][2] = 26;
+            app->unk_58[i][0] = 38;
+            app->unk_58[i][1] = -4;
+            app->unk_58[i][2] = 26;
             break;
         }
     }
@@ -1073,25 +1073,25 @@ static void MakeSelectionMatrix(ChooseStarterApp *param0)
     for (int i = 0; i < NUM_STARTER_OPTIONS; i++) {
         switch (i) {
         case 0:
-            param0->unk_7C[i][0] = 78;
-            param0->unk_7C[i][1] = 55;
+            app->unk_7C[i][0] = 78;
+            app->unk_7C[i][1] = 55;
             break;
         case 1:
-            param0->unk_7C[i][0] = 130;
-            param0->unk_7C[i][1] = 82;
+            app->unk_7C[i][0] = 130;
+            app->unk_7C[i][1] = 82;
             break;
         case 2:
-            param0->unk_7C[i][0] = 172;
-            param0->unk_7C[i][1] = 50;
+            app->unk_7C[i][0] = 172;
+            app->unk_7C[i][1] = 50;
             break;
         }
     }
 }
 
-static void SetSelectionMatrixObjects(ChooseStarterApp *param0)
+static void SetSelectionMatrixObjects(ChooseStarterApp *app)
 {
     for (int i = 0; i < NUM_STARTER_OPTIONS; i++) {
-        Set3DGraphicsPosition(&param0->starter3DGraphics[i + 2], param0->unk_58[i][0] << FX32_SHIFT, param0->unk_58[i][1] << FX32_SHIFT, param0->unk_58[i][2] << FX32_SHIFT);
+        Set3DGraphicsPosition(&app->starter3DGraphics[i + 2], app->unk_58[i][0] << FX32_SHIFT, app->unk_58[i][1] << FX32_SHIFT, app->unk_58[i][2] << FX32_SHIFT);
     }
 }
 
@@ -1193,57 +1193,57 @@ static void UpdateCursorPosition(ChooseStarterApp *app)
     SetCursorPosition(&app->cursor, app->unk_7C[app->cursorPosition][0], app->unk_7C[app->cursorPosition][1]);
 }
 
-static void ov78_021D1E44(ChooseStarterApp *param0, enum HeapID heapID)
+static void ov78_021D1E44(ChooseStarterApp *app, enum HeapID heapID)
 {
     u32 v0;
 
-    switch (param0->unk_04) {
+    switch (app->unk_04) {
     case 0:
-        ShowCursor(&param0->cursor, FALSE);
-        UpdateCursorPosition(param0);
-        DeleteSubplaneWindow(param0);
-        StartPreviewWindowAndGraphicsMovements(param0);
-        param0->unk_04++;
-        param0->unk_08 = 1;
+        ShowCursor(&app->cursor, FALSE);
+        UpdateCursorPosition(app);
+        DeleteSubplaneWindow(app);
+        StartPreviewWindowAndGraphicsMovements(app);
+        app->unk_04++;
+        app->unk_08 = 1;
         break;
     case 1:
-        ShowPreviewWindow(&param0->previewWindow, TRUE);
-        PokemonSprite_SetAttribute(param0->sprites[param0->cursorPosition], MON_SPRITE_HIDE, FALSE);
+        ShowPreviewWindow(&app->previewWindow, TRUE);
+        PokemonSprite_SetAttribute(app->sprites[app->cursorPosition], MON_SPRITE_HIDE, FALSE);
 
-        if (HasAppPreviewWindowMovementFinished(param0)) {
-            Sound_PlayPokemonCry(GetSelectedSpecies(param0->cursorPosition), 0);
+        if (HasAppPreviewWindowMovementFinished(app)) {
+            Sound_PlayPokemonCry(GetSelectedSpecies(app->cursorPosition), 0);
 
-            param0->unk_04++;
+            app->unk_04++;
         }
         break;
     case 2:
-        SetMessageWindowText(param0->messageWindow, heapID, 360, 1 + param0->cursorPosition, TEXT_COLOR(1, 2, 15), TEXT_SPEED_NO_TRANSFER);
-        param0->unk_B8 = Menu_MakeYesNoChoice(param0->bgConfig, &param0->unk_B0, 512 + (18 + 12) + 128, 1, heapID);
-        param0->unk_08 = 0;
-        param0->unk_04++;
+        SetMessageWindowText(app->messageWindow, heapID, 360, 1 + app->cursorPosition, TEXT_COLOR(1, 2, 15), TEXT_SPEED_NO_TRANSFER);
+        app->unk_B8 = Menu_MakeYesNoChoice(app->bgConfig, &app->unk_B0, 512 + (18 + 12) + 128, 1, heapID);
+        app->unk_08 = 0;
+        app->unk_04++;
         break;
     case 3:
-        v0 = Menu_ProcessInputAndHandleExit(param0->unk_B8, heapID);
+        v0 = Menu_ProcessInputAndHandleExit(app->unk_B8, heapID);
 
         switch (v0) {
         case 0xffffffff:
             break;
         case 0:
-            AdvanceChoiceStep(param0, 1);
+            AdvanceChoiceStep(app, 1);
             break;
         case 0xfffffffe:
-            param0->unk_04++;
-            StartOtherPreviewWindowAndGraphicsMovements(param0);
+            app->unk_04++;
+            StartOtherPreviewWindowAndGraphicsMovements(app);
             break;
         }
         break;
     case 4:
-        if (HasAppPreviewWindowMovementFinished(param0)) {
-            AdvanceChoiceStep(param0, -1);
-            param0->unk_04 = 7;
-            ShowPreviewWindow(&param0->previewWindow, FALSE);
-            PokemonSprite_SetAttribute(param0->sprites[param0->cursorPosition], MON_SPRITE_HIDE, TRUE);
-            param0->unk_708 = SetMessageWindowText(param0->messageWindow, heapID, 360, 7, TEXT_COLOR(1, 2, 15), TEXT_SPEED_NO_TRANSFER);
+        if (HasAppPreviewWindowMovementFinished(app)) {
+            AdvanceChoiceStep(app, -1);
+            app->unk_04 = 7;
+            ShowPreviewWindow(&app->previewWindow, FALSE);
+            PokemonSprite_SetAttribute(app->sprites[app->cursorPosition], MON_SPRITE_HIDE, TRUE);
+            app->unk_708 = SetMessageWindowText(app->messageWindow, heapID, 360, 7, TEXT_COLOR(1, 2, 15), TEXT_SPEED_NO_TRANSFER);
         }
         break;
     }
@@ -1288,17 +1288,17 @@ static void DeleteStringBuffer(ChooseStarterApp *app)
     app->string = NULL;
 }
 
-static void MakeConfirmationWindow(ChooseStarterApp *param0, int param1)
+static void MakeConfirmationWindow(ChooseStarterApp *app, int param1)
 {
-    param0->unk_B0.bgLayer = 1;
-    param0->unk_B0.tilemapLeft = 23;
-    param0->unk_B0.tilemapTop = 12;
-    param0->unk_B0.width = 5;
-    param0->unk_B0.height = 4;
-    param0->unk_B0.palette = 3;
-    param0->unk_B0.baseTile = ((18 + 12) + 9 + 128);
+    app->unk_B0.bgLayer = 1;
+    app->unk_B0.tilemapLeft = 23;
+    app->unk_B0.tilemapTop = 12;
+    app->unk_B0.width = 5;
+    app->unk_B0.height = 4;
+    app->unk_B0.palette = 3;
+    app->unk_B0.baseTile = ((18 + 12) + 9 + 128);
 
-    LoadStandardWindowGraphics(param0->bgConfig, BG_LAYER_MAIN_1, 512 + (18 + 12) + 128, 1, 0, param1);
+    LoadStandardWindowGraphics(app->bgConfig, BG_LAYER_MAIN_1, 512 + (18 + 12) + 128, 1, 0, param1);
     Font_LoadTextPalette(0, 3 * 32, param1);
 }
 
@@ -1671,15 +1671,15 @@ static void AdvancePreviewGraphicsMovement(SysTask *task, void *previewGraphicsP
     previewGraphics->previewAnimation.frameCount += previewGraphics->previewAnimation.frameCountIncrement;
 }
 
-static void MakeSubplaneWindows(ChooseStarterApp *param0, enum HeapID heapID)
+static void MakeSubplaneWindows(ChooseStarterApp *app, enum HeapID heapID)
 {
     int v1, v2;
 
     Graphics_LoadPalette(NARC_INDEX_GRAPHIC__EV_POKESELECT, 17, 0, 5 * 32, 32, heapID);
 
     for (int i = 0; i < NUM_STARTER_OPTIONS; i++) {
-        param0->subplaneWindows[i] = Window_New(heapID, 1);
-        Window_Init(param0->subplaneWindows[i]);
+        app->subplaneWindows[i] = Window_New(heapID, 1);
+        Window_Init(app->subplaneWindows[i]);
 
         switch (i) {
         case 0:
@@ -1696,8 +1696,8 @@ static void MakeSubplaneWindows(ChooseStarterApp *param0, enum HeapID heapID)
             break;
         }
 
-        Window_Add(param0->bgConfig, param0->subplaneWindows[i], 3, v1, v2, 11, 4, 5, 1 + (64 * i));
-        SetSubplaneWindowText(param0->subplaneWindows[i], heapID, 360, 4 + i, TEXT_COLOR(1, 2, 10));
+        Window_Add(app->bgConfig, app->subplaneWindows[i], 3, v1, v2, 11, 4, 5, 1 + (64 * i));
+        SetSubplaneWindowText(app->subplaneWindows[i], heapID, 360, 4 + i, TEXT_COLOR(1, 2, 10));
     }
 }
 
