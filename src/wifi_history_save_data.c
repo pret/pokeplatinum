@@ -53,7 +53,7 @@ int WiFiHistory_GetGeonetCommunicatedWith(const WiFiHistory *wiFiHistory, int co
     GF_ASSERT(country < 256);
     GF_ASSERT(region < 64);
 
-    if (country == 0) {
+    if (country == Country_Text_None) {
         return 0;
     }
 

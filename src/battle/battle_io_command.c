@@ -727,7 +727,7 @@ static void BtlIOCmd_ClearTouchScreen(BattleSystem *battleSys, BattlerData *batt
         v0 = ov16_0223E02C(battleSys);
 
         ov16_02268C04(v3, v4, v0, 0, 0, NULL);
-        ov16_0226BCCC(v0, 0);
+        ov16_Dummy3(v0, 0);
 
         NARC_dtor(v3);
         NARC_dtor(v4);

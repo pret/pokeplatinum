@@ -39,6 +39,7 @@
 #include "unk_02099500.h"
 
 #include "constdata/const_020ED570.h"
+#include "res/text/bank/country_names.h"
 #include "res/text/bank/union_room.h"
 
 typedef void (*UnkFuncPtr_0205B43C)(UnkStruct_0205B43C *);
@@ -965,7 +966,7 @@ int UnionRoom_GetTrainerCasePlayerMessage(StringTemplate *strTemplate)
     u8 playerRegion = CommInfo_PlayerRegion(CommSys_CurNetId());
     u8 commRegion = CommInfo_PlayerRegion(CommSys_CurNetId() ^ 1);
 
-    if (commCountry == 0) {
+    if (commCountry == Country_Text_None) {
         return UnionRoom_Text_PlayersTrainerCase;
     }
 
