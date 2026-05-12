@@ -135,10 +135,10 @@ typedef struct ChooseStarterCameraMovement {
 } ChooseStarterCameraMovement;
 
 typedef struct ChooseStarterRotation {
-    fx32 unk_00;
-    fx32 unk_04;
-    int unk_08;
-    int unk_0C;
+    fx32 verticalOffset;
+    fx32 verticalOffsetMultiplier;
+    int frameCountMax;
+    int frameCount;
 } ChooseStarterRotation;
 
 typedef struct ChooseStarterCursor {
@@ -146,7 +146,7 @@ typedef struct ChooseStarterCursor {
     SpriteResource *resources[6];
     VecFx32 position;
     SysTask *movementTask;
-    ChooseStarterRotation unk_2C;
+    ChooseStarterRotation starterRotation;
 } ChooseStarterCursor;
 
 typedef struct StarterPreviewAnimation {
@@ -291,13 +291,13 @@ static void AdvanceChoiceStep(ChooseStarterApp *app, int param1);
 static int GetChoiceStep(ChooseStarterApp *app);
 static void ov78_021D2108(ChooseStarterMovement *param0, s32 param1, s32 param2, s32 param3);
 static BOOL ov78_021D2114(ChooseStarterMovement *param0, s32 param1);
-static void ov78_021D235C(ChooseStarterRotation *param0, fx32 param1, int param2);
-static void ov78_021D2368(ChooseStarterRotation *param0);
+static void SetupStarterRotation(ChooseStarterRotation *starterRotation, fx32 verticalOffsetMultiplier, int frameCountMax);
+static void AdvanceCursorMovementRotation(ChooseStarterRotation *starterRotation);
 static void startCameraMovement(ChooseStarterCameraMovement *cameraMovement, Camera *camera, VecFx32 *target);
 static void ov78_021D219C(SysTask *param0, void *param1);
 static BOOL ov78_021D2200(ChooseStarterCameraMovement *param0);
 static void StartCursorMovement(ChooseStarterCursor *cursor);
-static void ov78_021D23E8(SysTask *param0, void *param1);
+static void AdvanceCursorMovement(SysTask *task, void *cursorParam);
 static void StopCursorMovement(ChooseStarterCursor *cursor);
 
 BOOL ChooseStarter_Init(ApplicationManager *appMan, int *param1)
@@ -1437,44 +1437,41 @@ static void DeleteCursorCellActor(ChooseStarterCursor *cursor)
     Sprite_Delete(cursor->sprite);
 }
 
-static void ov78_021D235C(ChooseStarterRotation *param0, fx32 param1, int param2)
+static void SetupStarterRotation(ChooseStarterRotation *starterRotation, fx32 verticalOffsetMultiplier, int frameCountMax)
 {
-    param0->unk_00 = 0;
-    param0->unk_04 = param1;
-    param0->unk_08 = param2;
-    param0->unk_0C = 0;
+    starterRotation->verticalOffset = 0;
+    starterRotation->verticalOffsetMultiplier = verticalOffsetMultiplier;
+    starterRotation->frameCountMax = frameCountMax;
+    starterRotation->frameCount = 0;
 }
 
-static void ov78_021D2368(ChooseStarterRotation *param0)
+static void AdvanceCursorMovementRotation(ChooseStarterRotation *starterRotation)
 {
-    u16 v0;
-    int v1 = ((360 * 0xffff) / 360) * param0->unk_0C;
-    v1 = v1 / param0->unk_08;
-    v0 = v1;
+    int calculation = ((360 * 0xffff) / 360) * starterRotation->frameCount;
+    u16 rotation = calculation / starterRotation->frameCountMax;
 
-    param0->unk_00 = FX_Mul(FX_SinIdx(v0), param0->unk_04);
-    param0->unk_0C = (param0->unk_0C + 1) % param0->unk_08;
+    starterRotation->verticalOffset = FX_Mul(FX_SinIdx(rotation), starterRotation->verticalOffsetMultiplier);
+    starterRotation->frameCount = (starterRotation->frameCount + 1) % starterRotation->frameCountMax;
 }
 
 static void StartCursorMovement(ChooseStarterCursor *cursor)
 {
     GF_ASSERT(cursor->movementTask == NULL);
 
-    ov78_021D235C(&cursor->unk_2C, 8 * FX32_ONE, 32);
-    cursor->movementTask = SysTask_Start(ov78_021D23E8, cursor, 0);
+    SetupStarterRotation(&cursor->starterRotation, 8 * FX32_ONE, 32);
+    cursor->movementTask = SysTask_Start(AdvanceCursorMovement, cursor, 0);
 }
 
-static void ov78_021D23E8(SysTask *param0, void *param1)
+static void AdvanceCursorMovement(SysTask *task, void *cursorParam)
 {
-    ChooseStarterCursor *v0 = param1;
-    VecFx32 v1;
+    ChooseStarterCursor *cursor = cursorParam;
 
-    ov78_021D2368(&v0->unk_2C);
+    AdvanceCursorMovementRotation(&cursor->starterRotation);
 
-    v1 = v0->position;
-    v1.y += v0->unk_2C.unk_00;
+    VecFx32 newPosition = cursor->position;
+    newPosition.y += cursor->starterRotation.verticalOffset;
 
-    Sprite_SetPosition(v0->sprite, &v1);
+    Sprite_SetPosition(cursor->sprite, &newPosition);
 }
 
 static void StopCursorMovement(ChooseStarterCursor *cursor)
