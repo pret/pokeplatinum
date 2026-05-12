@@ -28,7 +28,7 @@ VeilstoneStore4F_Attendant:
 
 VeilstoneStore4F_AttendantPersonalized:
     BufferPlayerName 0
-    Message VeilstoneStore4F_Text_MayIHelpYouPersonalized
+    Message VeilstoneStore4F_Text_PlayerMayIHelpYou
     InitGlobalTextMenu 1, 1, 0, VAR_RESULT
     AddMenuEntryImm MenuEntries_Text_WhatIsRecommended, 0
     AddMenuEntryImm MenuEntries_Text_NothingThanks, 1
@@ -48,43 +48,43 @@ VeilstoneStore4F_AttendantPleaseEnjoyYourself:
     End
 
 VeilstoneStore4F_AttendantYellowCushion:
-    Message VeilstoneStore4F_Text_YellowCushionIsSoftAndFirm
+    Message VeilstoneStore4F_Text_YellowCushionIsPopular
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
 VeilstoneStore4F_AttendantCupboards:
-    Message VeilstoneStore4F_Text_SurprisedHowManyBuyCupboards
+    Message VeilstoneStore4F_Text_ManyBuyCupboards
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
 VeilstoneStore4F_AttendantBuizelDoll:
-    Message VeilstoneStore4F_Text_BuizelDollIsVeryPopular
+    Message VeilstoneStore4F_Text_BuizelDollVeryPopular
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
 VeilstoneStore4F_AttendantMantykeDoll:
-    Message VeilstoneStore4F_Text_MantykeDollHasBeenHotSeller
+    Message VeilstoneStore4F_Text_MantykeDollHotSeller
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
 VeilstoneStore4F_NinjaBoy:
-    NPCMessage VeilstoneStore4F_Text_ChuckAQuickBallOrTimerBall
+    NPCMessage VeilstoneStore4F_Text_QuickBallOrTimerBall
     End
 
 VeilstoneStore4F_Pokefan:
-    NPCMessage VeilstoneStore4F_Text_ThatBoySaysHeIsTrainingHisImage
+    NPCMessage VeilstoneStore4F_Text_BoyIsTrainingHisImage
     End
 
 VeilstoneStore4F_SchoolBoy:
-    NPCMessage VeilstoneStore4F_Text_NeedAnotherCopyOfGameToChallengePapa
+    NPCMessage VeilstoneStore4F_Text_NeedAnotherCopyOfGame
     End
 
 VeilstoneStore4F_TopDecorVendor:

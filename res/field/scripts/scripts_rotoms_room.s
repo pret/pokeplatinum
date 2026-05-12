@@ -2,45 +2,46 @@
 #include "generated/distribution_events.h"
 #include "constants/moves.h"
 #include "res/text/bank/rotoms_room.h"
+#include "res/field/events/events_rotoms_room.h"
 
-#define LOCALID_PARTY_SLOT VAR_0x8000
-#define LOCALID_MOVE_TO_LEARN VAR_0x8001
-#define LOCALID_ROTOM_FORM VAR_0x8004
+#define LOCAL_VAR_PARTY_SLOT    VAR_0x8000
+#define LOCAL_VAR_MOVE_TO_LEARN VAR_0x8001
+#define LOCAL_VAR_ROTOM_FORM    VAR_0x8004
 
 
-    ScriptEntry RotomsRoom_MicrowaveOven
+    ScriptEntry RotomsRoom_Microwave
     ScriptEntry RotomsRoom_Refrigerator
     ScriptEntry RotomsRoom_WashingMachine
-    ScriptEntry RotomsRoom_RotaryFan
+    ScriptEntry RotomsRoom_Fan
     ScriptEntry RotomsRoom_LawnMower
     ScriptEntry RotomsRoom_MysteriousNotebook
-    ScriptEntry RotomsRoom_InitFlags
-    ScriptEntry _002E
-    ScriptEntry _07BB
+    ScriptEntry RotomsRoom_OnTransition
+    ScriptEntry RotomsRoom_OnResume
+    ScriptEntry RotomsRoom_ApplianceSpot
     ScriptEntry RotomsRoom_OldNotebook
-    ScriptEntry RotomsRoom_ProfessorRowan
+    ScriptEntry RotomsRoom_OnFrameProfRowan
     ScriptEntryEnd
 
-_002E:
+RotomsRoom_OnResume:
     End
 
-RotomsRoom_InitFlags:
-    SetFlag FLAG_ROTOM_ROOM_HIDE_MICROWAVE_OVEN
-    SetFlag FLAG_ROTOM_ROOM_HIDE_WASHING_MACHINE
-    SetFlag FLAG_ROTOM_ROOM_HIDE_REFRIGERATOR
-    SetFlag FLAG_ROTOM_ROOM_HIDE_ROTARY_FAN
-    SetFlag FLAG_ROTOM_ROOM_HIDE_LAWN_MOWER
+RotomsRoom_OnTransition:
+    SetFlag FLAG_HIDE_ROTOMS_ROOM_MICROWAVE
+    SetFlag FLAG_HIDE_ROTOMS_ROOM_WASHING_MACHINE
+    SetFlag FLAG_HIDE_ROTOMS_ROOM_REFRIGERATOR
+    SetFlag FLAG_HIDE_ROTOMS_ROOM_FAN
+    SetFlag FLAG_HIDE_ROTOMS_ROOM_LAWN_MOWER
     CheckDistributionEvent DISTRIBUTION_EVENT_ROTOM, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, FALSE, _00A5
+    GoToIfEq VAR_MAP_LOCAL_0, FALSE, RotomsRoom_RemoveBgEvents
     GetRotomFormsInSave VAR_MAP_LOCAL_0, VAR_MAP_LOCAL_1, VAR_MAP_LOCAL_2, VAR_MAP_LOCAL_3, VAR_MAP_LOCAL_4
-    CallIfEq VAR_MAP_LOCAL_0, FALSE, RotomsRoom_InitShowMicrowaveOven
-    CallIfEq VAR_MAP_LOCAL_1, FALSE, RotomsRoom_InitShowWashingMachine
-    CallIfEq VAR_MAP_LOCAL_2, FALSE, RotomsRoom_InitShowRefrigerator
-    CallIfEq VAR_MAP_LOCAL_3, FALSE, RotomsRoom_InitShowRotaryFan
-    CallIfEq VAR_MAP_LOCAL_4, FALSE, RotomsRoom_InitShowLawnMower
+    CallIfEq VAR_MAP_LOCAL_0, FALSE, RotomsRoom_ShowMicrowave
+    CallIfEq VAR_MAP_LOCAL_1, FALSE, RotomsRoom_ShowWashingMachine
+    CallIfEq VAR_MAP_LOCAL_2, FALSE, RotomsRoom_ShowRefrigerator
+    CallIfEq VAR_MAP_LOCAL_3, FALSE, RotomsRoom_ShowFan
+    CallIfEq VAR_MAP_LOCAL_4, FALSE, RotomsRoom_ShowLawnMower
     End
 
-_00A5:
+RotomsRoom_RemoveBgEvents:
     SetBgEventPos 0, 4, 1
     SetBgEventPos 1, 4, 1
     SetBgEventPos 2, 4, 1
@@ -48,58 +49,58 @@ _00A5:
     SetBgEventPos 4, 4, 1
     End
 
-RotomsRoom_InitShowMicrowaveOven:
-    ClearFlag FLAG_ROTOM_ROOM_HIDE_MICROWAVE_OVEN
+RotomsRoom_ShowMicrowave:
+    ClearFlag FLAG_HIDE_ROTOMS_ROOM_MICROWAVE
     Return
 
-RotomsRoom_InitShowWashingMachine:
-    ClearFlag FLAG_ROTOM_ROOM_HIDE_WASHING_MACHINE
+RotomsRoom_ShowWashingMachine:
+    ClearFlag FLAG_HIDE_ROTOMS_ROOM_WASHING_MACHINE
     Return
 
-RotomsRoom_InitShowRefrigerator:
-    ClearFlag FLAG_ROTOM_ROOM_HIDE_REFRIGERATOR
+RotomsRoom_ShowRefrigerator:
+    ClearFlag FLAG_HIDE_ROTOMS_ROOM_REFRIGERATOR
     Return
 
-RotomsRoom_InitShowRotaryFan:
-    ClearFlag FLAG_ROTOM_ROOM_HIDE_ROTARY_FAN
+RotomsRoom_ShowFan:
+    ClearFlag FLAG_HIDE_ROTOMS_ROOM_FAN
     Return
 
-RotomsRoom_InitShowLawnMower:
-    ClearFlag FLAG_ROTOM_ROOM_HIDE_LAWN_MOWER
+RotomsRoom_ShowLawnMower:
+    ClearFlag FLAG_HIDE_ROTOMS_ROOM_LAWN_MOWER
     Return
 
-RotomsRoom_MicrowaveOven:
+RotomsRoom_Microwave:
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    SetVar LOCALID_ROTOM_FORM, ROTOM_FORM_HEAT
+    SetVar LOCAL_VAR_ROTOM_FORM, ROTOM_FORM_HEAT
     GoTo RotomsRoom_CheckAppliance
     End
 
 RotomsRoom_Refrigerator:
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    SetVar LOCALID_ROTOM_FORM, ROTOM_FORM_FROST
+    SetVar LOCAL_VAR_ROTOM_FORM, ROTOM_FORM_FROST
     GoTo RotomsRoom_CheckAppliance
     End
 
 RotomsRoom_WashingMachine:
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    SetVar LOCALID_ROTOM_FORM, ROTOM_FORM_WASH
+    SetVar LOCAL_VAR_ROTOM_FORM, ROTOM_FORM_WASH
     GoTo RotomsRoom_CheckAppliance
     End
 
-RotomsRoom_RotaryFan:
+RotomsRoom_Fan:
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    SetVar LOCALID_ROTOM_FORM, ROTOM_FORM_FAN
+    SetVar LOCAL_VAR_ROTOM_FORM, ROTOM_FORM_FAN
     GoTo RotomsRoom_CheckAppliance
     End
 
 RotomsRoom_LawnMower:
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    SetVar LOCALID_ROTOM_FORM, ROTOM_FORM_MOW
+    SetVar LOCAL_VAR_ROTOM_FORM, ROTOM_FORM_MOW
     GoTo RotomsRoom_CheckAppliance
     End
 
@@ -110,66 +111,66 @@ RotomsRoom_CheckAppliance:
     GoToIfEq VAR_RESULT, FALSE, RotomsRoom_ItsAnAppliance
     CheckDistributionEvent DISTRIBUTION_EVENT_ROTOM, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, RotomsRoom_ItsAnAppliance
-    CallIfEq LOCALID_ROTOM_FORM, ROTOM_FORM_HEAT, RotomsRoom_ItsAMicrowaveOvenRotomWantsToGoIntoTheMotor
-    CallIfEq LOCALID_ROTOM_FORM, ROTOM_FORM_FROST, RotomsRoom_ItsARefrigeratorRotomWantsToGoIntoTheMotor
-    CallIfEq LOCALID_ROTOM_FORM, ROTOM_FORM_WASH, RotomsRoom_ItsAWashingMachineRotomWantsToGoIntoTheMotor
-    CallIfEq LOCALID_ROTOM_FORM, ROTOM_FORM_FAN, RotomsRoom_ItsARotaryFanRotomWantsToGoIntoTheMotor
-    CallIfEq LOCALID_ROTOM_FORM, ROTOM_FORM_MOW, RotomsRoom_ItsALawnMowerRotomWantsToGoIntoTheMotor
+    CallIfEq LOCAL_VAR_ROTOM_FORM, ROTOM_FORM_HEAT, RotomsRoom_AllowRotomEnterMicrowave
+    CallIfEq LOCAL_VAR_ROTOM_FORM, ROTOM_FORM_FROST, RotomsRoom_AllowRotomEnterRefrigerator
+    CallIfEq LOCAL_VAR_ROTOM_FORM, ROTOM_FORM_WASH, RotomsRoom_AllowRotomEnterWashingMachine
+    CallIfEq LOCAL_VAR_ROTOM_FORM, ROTOM_FORM_FAN, RotomsRoom_AllowRotomEnterFan
+    CallIfEq LOCAL_VAR_ROTOM_FORM, ROTOM_FORM_MOW, RotomsRoom_AllowRotomEnterLawnMower
     GetPartyRotomCountAndFirst VAR_0x8003, VAR_RESULT
-    GoToIfGe VAR_0x8003, 1, _0254
+    GoToIfGe VAR_0x8003, 1, RotomsRoom_EnterMotorMenu
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, RotomsRoom_RotomGaveUpEnteringTheMotor
-    GoTo _01F8
+    GoToIfEq VAR_RESULT, MENU_NO, RotomsRoom_RotomGaveUpEnteringMotor
+    GoTo RotomsRoom_GetRotomForEnter
     End
 
-_01F8:
-    CallIfEq LOCALID_ROTOM_FORM, ROTOM_FORM_HEAT, RotomsRoom_SetVarOverheat
-    CallIfEq LOCALID_ROTOM_FORM, ROTOM_FORM_FROST, RotomsRoom_SetVarBlizzard
-    CallIfEq LOCALID_ROTOM_FORM, ROTOM_FORM_WASH, RotomsRoom_SetVarHydroPump
-    CallIfEq LOCALID_ROTOM_FORM, ROTOM_FORM_FAN, RotomsRoom_SetVarAirSlash
-    CallIfEq LOCALID_ROTOM_FORM, ROTOM_FORM_MOW, RotomsRoom_SetVarLeafStorm
+RotomsRoom_GetRotomForEnter:
+    CallIfEq LOCAL_VAR_ROTOM_FORM, ROTOM_FORM_HEAT, RotomsRoom_SetVarOverheat
+    CallIfEq LOCAL_VAR_ROTOM_FORM, ROTOM_FORM_FROST, RotomsRoom_SetVarBlizzard
+    CallIfEq LOCAL_VAR_ROTOM_FORM, ROTOM_FORM_WASH, RotomsRoom_SetVarHydroPump
+    CallIfEq LOCAL_VAR_ROTOM_FORM, ROTOM_FORM_FAN, RotomsRoom_SetVarAirSlash
+    CallIfEq LOCAL_VAR_ROTOM_FORM, ROTOM_FORM_MOW, RotomsRoom_SetVarLeafStorm
     CountRepeatedSpeciesInParty VAR_RESULT, SPECIES_ROTOM
     GoToIfEq VAR_RESULT, 1, RotomsRoom_GetRotomPartySlot
-    GoTo _0403
+    GoTo RotomsRoom_ChooseRotomForEnter
     End
 
-_0254:
+RotomsRoom_EnterMotorMenu:
     InitLocalTextMenu 31, 11, 0, VAR_RESULT
     SetMenuXOriginToRight
-    AddMenuEntryImm 15, 0
-    AddMenuEntryImm 16, 1
-    AddMenuEntryImm 14, 2
+    AddMenuEntryImm RotomsRoom_Text_Yes, 0
+    AddMenuEntryImm RotomsRoom_Text_No, 1
+    AddMenuEntryImm RotomsRoom_Text_Recall, 2
     ShowMenu
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, 0, _01F8
-    GoToIfEq VAR_0x8008, 2, _0295
-    GoTo RotomsRoom_RotomGaveUpEnteringTheMotor
+    GoToIfEq VAR_0x8008, 0, RotomsRoom_GetRotomForEnter
+    GoToIfEq VAR_0x8008, 2, RotomsRoom_GetRotomForRecall
+    GoTo RotomsRoom_RotomGaveUpEnteringMotor
     End
 
-_0295:
+RotomsRoom_GetRotomForRecall:
     GetPartyRotomCountAndFirst VAR_0x8003, VAR_RESULT
-    SetVar LOCALID_PARTY_SLOT, VAR_RESULT
-    GoToIfGe VAR_0x8003, 2, RotomsRoom_ChooseARotom
-    GoTo _02B6
+    SetVar LOCAL_VAR_PARTY_SLOT, VAR_RESULT
+    GoToIfGe VAR_0x8003, 2, RotomsRoom_ChooseRotomForRecall
+    GoTo RotomsRoom_RecallRotom
     End
 
-_02B6:
-    BufferPartyMonNickname 0, LOCALID_PARTY_SLOT
+RotomsRoom_RecallRotom:
+    BufferPartyMonNickname 0, LOCAL_VAR_PARTY_SLOT
     Message RotomsRoom_Text_PokemonEmergedFromTheMotor
-    SetRotomForm LOCALID_PARTY_SLOT, 0, 0, ROTOM_FORM_BASE
+    SetRotomForm LOCAL_VAR_PARTY_SLOT, 0, 0, ROTOM_FORM_BASE
     FadeScreenOut
     WaitFadeScreen
     CloseMessage
-    GetPartyMonForm2 LOCALID_PARTY_SLOT, LOCALID_ROTOM_FORM
-    CallIfEq LOCALID_ROTOM_FORM, ROTOM_FORM_HEAT, RotomsRoom_AddMicrowaveOven
-    CallIfEq LOCALID_ROTOM_FORM, ROTOM_FORM_FAN, RotomsRoom_AddRotaryFan
-    CallIfEq LOCALID_ROTOM_FORM, ROTOM_FORM_FROST, RotomsRoom_AddRefrigerator
-    CallIfEq LOCALID_ROTOM_FORM, ROTOM_FORM_WASH, RotomsRoom_AddWashingMachine
-    CallIfEq LOCALID_ROTOM_FORM, ROTOM_FORM_MOW, RotomsRoom_AddLawnMower
-    GoTo _0325
+    GetPartyMonForm2 LOCAL_VAR_PARTY_SLOT, LOCAL_VAR_ROTOM_FORM
+    CallIfEq LOCAL_VAR_ROTOM_FORM, ROTOM_FORM_HEAT, RotomsRoom_AddMicrowave
+    CallIfEq LOCAL_VAR_ROTOM_FORM, ROTOM_FORM_FAN, RotomsRoom_AddFan
+    CallIfEq LOCAL_VAR_ROTOM_FORM, ROTOM_FORM_FROST, RotomsRoom_AddRefrigerator
+    CallIfEq LOCAL_VAR_ROTOM_FORM, ROTOM_FORM_WASH, RotomsRoom_AddWashingMachine
+    CallIfEq LOCAL_VAR_ROTOM_FORM, ROTOM_FORM_MOW, RotomsRoom_AddLawnMower
+    GoTo RotomsRoom_WarpInPlace
     End
 
-_0325:
+RotomsRoom_WarpInPlace:
     GetPlayerMapPos VAR_0x8006, VAR_0x8007
     GetPlayerDir VAR_RESULT
     Warp MAP_HEADER_ROTOMS_ROOM, 0, VAR_0x8006, VAR_0x8007, VAR_RESULT
@@ -177,104 +178,104 @@ _0325:
     WaitFadeScreen
     End
 
-RotomsRoom_AddMicrowaveOven:
-    ClearFlag FLAG_ROTOM_ROOM_HIDE_MICROWAVE_OVEN
-    AddObject 0
+RotomsRoom_AddMicrowave:
+    ClearFlag FLAG_HIDE_ROTOMS_ROOM_MICROWAVE
+    AddObject LOCALID_MICROWAVE
     Return
 
 RotomsRoom_AddRefrigerator:
-    ClearFlag FLAG_ROTOM_ROOM_HIDE_REFRIGERATOR
-    AddObject 2
+    ClearFlag FLAG_HIDE_ROTOMS_ROOM_REFRIGERATOR
+    AddObject LOCALID_REFRIGERATOR
     Return
 
 RotomsRoom_AddWashingMachine:
-    ClearFlag FLAG_ROTOM_ROOM_HIDE_WASHING_MACHINE
-    AddObject 3
+    ClearFlag FLAG_HIDE_ROTOMS_ROOM_WASHING_MACHINE
+    AddObject LOCALID_WASHING_MACHINE
     Return
 
-RotomsRoom_AddRotaryFan:
-    ClearFlag FLAG_ROTOM_ROOM_HIDE_ROTARY_FAN
-    AddObject 1
+RotomsRoom_AddFan:
+    ClearFlag FLAG_HIDE_ROTOMS_ROOM_FAN
+    AddObject LOCALID_FAN
     Return
 
 RotomsRoom_AddLawnMower:
-    ClearFlag FLAG_ROTOM_ROOM_HIDE_LAWN_MOWER
-    AddObject 4
+    ClearFlag FLAG_HIDE_ROTOMS_ROOM_LAWN_MOWER
+    AddObject LOCALID_LAWN_MOWER
     Return
 
-RotomsRoom_ChooseARotom:
-    Message RotomsRoom_Text_WhichRotomAreYouChoosing
+RotomsRoom_ChooseRotomForRecall:
+    Message RotomsRoom_Text_ChooseWhichRotom
     FadeScreenOut
     WaitFadeScreen
     CloseMessage
     SelectMoveTutorPokemon
-    GetSelectedPartySlot LOCALID_PARTY_SLOT
+    GetSelectedPartySlot LOCAL_VAR_PARTY_SLOT
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
-    GoToIfEq LOCALID_PARTY_SLOT, 0xFF, RotomsRoom_End
-    GetPartyMonSpecies LOCALID_PARTY_SLOT, VAR_RESULT
-    GoToIfEq VAR_RESULT, SPECIES_NONE, RotomsRoom_AnEggCantEnterAMotor
-    GoToIfNe VAR_RESULT, SPECIES_ROTOM, RotomsRoom_ThatPokemonCantEnterAMotor
-    GetPartyMonForm2 LOCALID_PARTY_SLOT, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _03E8
-    GoTo _02B6
+    GoToIfEq LOCAL_VAR_PARTY_SLOT, PARTY_SLOT_NONE, RotomsRoom_End
+    GetPartyMonSpecies LOCAL_VAR_PARTY_SLOT, VAR_RESULT
+    GoToIfEq VAR_RESULT, SPECIES_NONE, RotomsRoom_EggCantEnter
+    GoToIfNe VAR_RESULT, SPECIES_ROTOM, RotomsRoom_ThatPokemonCantEnter
+    GetPartyMonForm2 LOCAL_VAR_PARTY_SLOT, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, RotomsRoom_RotomHasntEnteredMotor
+    GoTo RotomsRoom_RecallRotom
     End
 
-_03E8:
-    Message RotomsRoom_Text_ThatRotomHasntEnteredAMotor
-    GoTo RotomsRoom_CloseMessage
+RotomsRoom_RotomHasntEnteredMotor:
+    Message RotomsRoom_Text_RotomHasntEnteredMotor
+    GoTo RotomsRoom_ApplianceEnd
     End
 
 RotomsRoom_End:
     End
 
 RotomsRoom_GetRotomPartySlot:
-    FindPartySlotWithSpecies LOCALID_PARTY_SLOT, SPECIES_ROTOM
-    GoTo _0473
+    FindPartySlotWithSpecies LOCAL_VAR_PARTY_SLOT, SPECIES_ROTOM
+    GoTo RotomsRoom_EnterMotorCheckMove
     End
 
-_0403:
-    Message RotomsRoom_Text_WhichRotomAreYouChoosing
+RotomsRoom_ChooseRotomForEnter:
+    Message RotomsRoom_Text_ChooseWhichRotom
     FadeScreenOut
     WaitFadeScreen
     CloseMessage
     SelectMoveTutorPokemon
-    GetSelectedPartySlot LOCALID_PARTY_SLOT
+    GetSelectedPartySlot LOCAL_VAR_PARTY_SLOT
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
-    GoToIfEq LOCALID_PARTY_SLOT, 0xFF, RotomsRoom_RotomGaveUpEnteringTheMotor
-    GetPartyMonSpecies LOCALID_PARTY_SLOT, VAR_RESULT
-    GoToIfEq VAR_RESULT, SPECIES_NONE, RotomsRoom_AnEggCantEnterAMotor
-    GoToIfNe VAR_RESULT, SPECIES_ROTOM, RotomsRoom_ThatPokemonCantEnterAMotor
-    GoTo _0473
+    GoToIfEq LOCAL_VAR_PARTY_SLOT, PARTY_SLOT_NONE, RotomsRoom_RotomGaveUpEnteringMotor
+    GetPartyMonSpecies LOCAL_VAR_PARTY_SLOT, VAR_RESULT
+    GoToIfEq VAR_RESULT, SPECIES_NONE, RotomsRoom_EggCantEnter
+    GoToIfNe VAR_RESULT, SPECIES_ROTOM, RotomsRoom_ThatPokemonCantEnter
+    GoTo RotomsRoom_EnterMotorCheckMove
     End
 
-RotomsRoom_AnEggCantEnterAMotor:
-    Message RotomsRoom_Text_AnEggCantEnterAMotor
-    GoTo RotomsRoom_CloseMessage
+RotomsRoom_EggCantEnter:
+    Message RotomsRoom_Text_EggCantEnter
+    GoTo RotomsRoom_ApplianceEnd
     End
 
-RotomsRoom_ThatPokemonCantEnterAMotor:
-    Message RotomsRoom_Text_ThatPokemonCantEnterAMotor
-    GoTo RotomsRoom_CloseMessage
+RotomsRoom_ThatPokemonCantEnter:
+    Message RotomsRoom_Text_ThatPokemonCantEnter
+    GoTo RotomsRoom_ApplianceEnd
     End
 
-_0473:
-    CheckPartyMonHasMove VAR_RESULT, MOVE_OVERHEAT, LOCALID_PARTY_SLOT
+RotomsRoom_EnterMotorCheckMove:
+    CheckPartyMonHasMove VAR_RESULT, MOVE_OVERHEAT, LOCAL_VAR_PARTY_SLOT
     GoToIfEq VAR_RESULT, TRUE, RotomsRoom_SetVarMoveNone
-    CheckPartyMonHasMove VAR_RESULT, MOVE_BLIZZARD, LOCALID_PARTY_SLOT
+    CheckPartyMonHasMove VAR_RESULT, MOVE_BLIZZARD, LOCAL_VAR_PARTY_SLOT
     GoToIfEq VAR_RESULT, TRUE, RotomsRoom_SetVarMoveNone
-    CheckPartyMonHasMove VAR_RESULT, MOVE_HYDRO_PUMP, LOCALID_PARTY_SLOT
+    CheckPartyMonHasMove VAR_RESULT, MOVE_HYDRO_PUMP, LOCAL_VAR_PARTY_SLOT
     GoToIfEq VAR_RESULT, TRUE, RotomsRoom_SetVarMoveNone
-    CheckPartyMonHasMove VAR_RESULT, MOVE_AIR_SLASH, LOCALID_PARTY_SLOT
+    CheckPartyMonHasMove VAR_RESULT, MOVE_AIR_SLASH, LOCAL_VAR_PARTY_SLOT
     GoToIfEq VAR_RESULT, TRUE, RotomsRoom_SetVarMoveNone
-    CheckPartyMonHasMove VAR_RESULT, MOVE_LEAF_STORM, LOCALID_PARTY_SLOT
+    CheckPartyMonHasMove VAR_RESULT, MOVE_LEAF_STORM, LOCAL_VAR_PARTY_SLOT
     GoToIfEq VAR_RESULT, TRUE, RotomsRoom_SetVarMoveNone
-    GetPartyMonMoveCount VAR_RESULT, LOCALID_PARTY_SLOT
+    GetPartyMonMoveCount VAR_RESULT, LOCAL_VAR_PARTY_SLOT
     SetVar VAR_0x8002, VAR_RESULT
-    GoToIfEq VAR_RESULT, LEARNED_MOVES_MAX, RotomsRoom_Text_PokemonTryingToLearnMove
+    GoToIfEq VAR_RESULT, LEARNED_MOVES_MAX, RotomsRoom_AskLearnMove
     GoTo RotomsRoom_PokemonEnteredMotor
     End
 
@@ -284,17 +285,17 @@ RotomsRoom_SetVarMoveNone:
     End
 
 RotomsRoom_PokemonEnteredMotor:
-    BufferPartyMonNickname 0, LOCALID_PARTY_SLOT
+    BufferPartyMonNickname 0, LOCAL_VAR_PARTY_SLOT
     Message RotomsRoom_Text_PokemonEnteredMotor
     GoTo RotomsRoom_SetRotomForm
     End
 
-RotomsRoom_Text_PokemonTryingToLearnMove:
-    BufferPartyMonNickname 0, LOCALID_PARTY_SLOT
-    BufferMoveName 1, LOCALID_MOVE_TO_LEARN
-    Message RotomsRoom_Text_PokemonEnteredMotorTryingToLearnMove
+RotomsRoom_AskLearnMove:
+    BufferPartyMonNickname 0, LOCAL_VAR_PARTY_SLOT
+    BufferMoveName 1, LOCAL_VAR_MOVE_TO_LEARN
+    Message RotomsRoom_Text_TryingToLearnMove
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, RotomsRoom_DidNotLearnMoveEmergedFromTheMotor
+    GoToIfEq VAR_RESULT, MENU_NO, RotomsRoom_DidNotLearnMoveEmergedFromMotor
     GoTo RotomsRoom_LearnMove
     End
 
@@ -302,28 +303,28 @@ RotomsRoom_LearnMove:
     FadeScreenOut
     WaitFadeScreen
     CloseMessage
-    OpenSummaryScreenTeachMove LOCALID_PARTY_SLOT, LOCALID_MOVE_TO_LEARN
+    OpenSummaryScreenTeachMove LOCAL_VAR_PARTY_SLOT, LOCAL_VAR_MOVE_TO_LEARN
     GetSummarySelectedMoveSlot VAR_0x8002
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_0x8002, LEARNED_MOVES_MAX, RotomsRoom_GiveUpLearningMove
-    GetPartyMonMove VAR_RESULT, LOCALID_PARTY_SLOT, VAR_0x8002
+    GetPartyMonMove VAR_RESULT, LOCAL_VAR_PARTY_SLOT, VAR_0x8002
     BufferMoveName 1, VAR_RESULT
     Message RotomsRoom_Text_TheMoveWillBeForgotten
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, RotomsRoom_DidNotLearnMoveEmergedFromTheMotor
-    BufferPartyMonNickname 0, LOCALID_PARTY_SLOT
-    GetPartyMonMove VAR_RESULT, LOCALID_PARTY_SLOT, VAR_0x8002
+    GoToIfEq VAR_RESULT, MENU_NO, RotomsRoom_DidNotLearnMoveEmergedFromMotor
+    BufferPartyMonNickname 0, LOCAL_VAR_PARTY_SLOT
+    GetPartyMonMove VAR_RESULT, LOCAL_VAR_PARTY_SLOT, VAR_0x8002
     BufferMoveName 1, VAR_RESULT
     Message RotomsRoom_Text_12andPoof
     PlaySE SEQ_SE_DP_KON
     WaitSE SEQ_SE_DP_KON
     WaitTime 30, VAR_RESULT
-    Message RotomsRoom_Text_PokemonForgotHowToUseMove
+    Message RotomsRoom_Text_PokemonForgotMove
     WaitTime 32, VAR_RESULT
     PlayFanfare SEQ_FANFA1
-    BufferMoveName 1, LOCALID_MOVE_TO_LEARN
+    BufferMoveName 1, LOCAL_VAR_MOVE_TO_LEARN
     Message RotomsRoom_Text_PokemonLearnedMove
     WaitFanfare
     WaitTime 16, VAR_RESULT
@@ -331,105 +332,105 @@ RotomsRoom_LearnMove:
     End
 
 RotomsRoom_GiveUpLearningMove:
-    BufferMoveName 1, LOCALID_MOVE_TO_LEARN
+    BufferMoveName 1, LOCAL_VAR_MOVE_TO_LEARN
     Message RotomsRoom_Text_GiveUpLearningMove
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, RotomsRoom_LearnMove
-    GoTo RotomsRoom_DidNotLearnMoveEmergedFromTheMotor
+    GoTo RotomsRoom_DidNotLearnMoveEmergedFromMotor
     End
 
-RotomsRoom_DidNotLearnMoveEmergedFromTheMotor:
-    BufferPartyMonNickname 0, LOCALID_PARTY_SLOT
-    BufferMoveName 1, LOCALID_MOVE_TO_LEARN
-    Message RotomsRoom_Text_PokemonDidNotLearnMoveEmergedFromTheMotor
-    GoTo RotomsRoom_CloseMessage
+RotomsRoom_DidNotLearnMoveEmergedFromMotor:
+    BufferPartyMonNickname 0, LOCAL_VAR_PARTY_SLOT
+    BufferMoveName 1, LOCAL_VAR_MOVE_TO_LEARN
+    Message RotomsRoom_Text_DidNotLearnMoveEmergedFromMotor
+    GoTo RotomsRoom_ApplianceEnd
     End
 
 RotomsRoom_SetRotomForm:
-    SetRotomForm LOCALID_PARTY_SLOT, VAR_0x8002, LOCALID_MOVE_TO_LEARN, LOCALID_ROTOM_FORM
+    SetRotomForm LOCAL_VAR_PARTY_SLOT, VAR_0x8002, LOCAL_VAR_MOVE_TO_LEARN, LOCAL_VAR_ROTOM_FORM
     FadeScreenOut
     WaitFadeScreen
     CloseMessage
-    CallIfEq LOCALID_ROTOM_FORM, ROTOM_FORM_HEAT, RotomsRoom_RemoveMicrowaveOven
-    CallIfEq LOCALID_ROTOM_FORM, ROTOM_FORM_FAN, RotomsRoom_RemoveRotaryFan
-    CallIfEq LOCALID_ROTOM_FORM, ROTOM_FORM_FROST, RotomsRoom_RemoveRefrigerator
-    CallIfEq LOCALID_ROTOM_FORM, ROTOM_FORM_WASH, RotomsRoom_RemoveWashingMachine
-    CallIfEq LOCALID_ROTOM_FORM, ROTOM_FORM_MOW, RotomsRoom_RemoveLawnMower
-    GoToIfUnset FLAG_UNK_0x0077, _080C
-    GoTo _0325
+    CallIfEq LOCAL_VAR_ROTOM_FORM, ROTOM_FORM_HEAT, RotomsRoom_RemoveMicrowave
+    CallIfEq LOCAL_VAR_ROTOM_FORM, ROTOM_FORM_FAN, RotomsRoom_RemoveFan
+    CallIfEq LOCAL_VAR_ROTOM_FORM, ROTOM_FORM_FROST, RotomsRoom_RemoveRefrigerator
+    CallIfEq LOCAL_VAR_ROTOM_FORM, ROTOM_FORM_WASH, RotomsRoom_RemoveWashingMachine
+    CallIfEq LOCAL_VAR_ROTOM_FORM, ROTOM_FORM_MOW, RotomsRoom_RemoveLawnMower
+    GoToIfUnset FLAG_USED_ROTOM_APPLIANCE, RotomsRoom_SetStateEnterProfRowan
+    GoTo RotomsRoom_WarpInPlace
     End
 
-RotomsRoom_RemoveMicrowaveOven:
-    RemoveObject 0
+RotomsRoom_RemoveMicrowave:
+    RemoveObject LOCALID_MICROWAVE
     Return
 
 RotomsRoom_RemoveRefrigerator:
-    RemoveObject 2
+    RemoveObject LOCALID_REFRIGERATOR
     Return
 
 RotomsRoom_RemoveWashingMachine:
-    RemoveObject 3
+    RemoveObject LOCALID_WASHING_MACHINE
     Return
 
-RotomsRoom_RemoveRotaryFan:
-    RemoveObject 1
+RotomsRoom_RemoveFan:
+    RemoveObject LOCALID_FAN
     Return
 
 RotomsRoom_RemoveLawnMower:
-    RemoveObject 4
+    RemoveObject LOCALID_LAWN_MOWER
     Return
 
 RotomsRoom_SetVarOverheat:
-    SetVar LOCALID_MOVE_TO_LEARN, MOVE_OVERHEAT
+    SetVar LOCAL_VAR_MOVE_TO_LEARN, MOVE_OVERHEAT
     Return
 
 RotomsRoom_SetVarBlizzard:
-    SetVar LOCALID_MOVE_TO_LEARN, MOVE_BLIZZARD
+    SetVar LOCAL_VAR_MOVE_TO_LEARN, MOVE_BLIZZARD
     Return
 
 RotomsRoom_SetVarHydroPump:
-    SetVar LOCALID_MOVE_TO_LEARN, MOVE_HYDRO_PUMP
+    SetVar LOCAL_VAR_MOVE_TO_LEARN, MOVE_HYDRO_PUMP
     Return
 
 RotomsRoom_SetVarAirSlash:
-    SetVar LOCALID_MOVE_TO_LEARN, MOVE_AIR_SLASH
+    SetVar LOCAL_VAR_MOVE_TO_LEARN, MOVE_AIR_SLASH
     Return
 
 RotomsRoom_SetVarLeafStorm:
-    SetVar LOCALID_MOVE_TO_LEARN, MOVE_LEAF_STORM
+    SetVar LOCAL_VAR_MOVE_TO_LEARN, MOVE_LEAF_STORM
     Return
 
-RotomsRoom_ItsAMicrowaveOvenRotomWantsToGoIntoTheMotor:
-    Message RotomsRoom_Text_ItsAMicrowaveOvenRotomWantsToGoIntoTheMotor
+RotomsRoom_AllowRotomEnterMicrowave:
+    Message RotomsRoom_Text_AllowRotomEnterMicrowave
     Return
 
-RotomsRoom_ItsARefrigeratorRotomWantsToGoIntoTheMotor:
-    Message RotomsRoom_Text_ItsARefrigeratorRotomWantsToGoIntoTheMotor
+RotomsRoom_AllowRotomEnterRefrigerator:
+    Message RotomsRoom_Text_AllowRotomEnterRefrigerator
     Return
 
-RotomsRoom_ItsAWashingMachineRotomWantsToGoIntoTheMotor:
-    Message RotomsRoom_Text_ItsAWashingMachineRotomWantsToGoIntoTheMotor
+RotomsRoom_AllowRotomEnterWashingMachine:
+    Message RotomsRoom_Text_AllowRotomEnterWashingMachine
     Return
 
-RotomsRoom_ItsARotaryFanRotomWantsToGoIntoTheMotor:
-    Message RotomsRoom_Text_ItsARotaryFanRotomWantsToGoIntoTheMotor
+RotomsRoom_AllowRotomEnterFan:
+    Message RotomsRoom_Text_AllowRotomEnterFan
     Return
 
-RotomsRoom_ItsALawnMowerRotomWantsToGoIntoTheMotor:
-    Message RotomsRoom_Text_ItsALawnMowerRotomWantsToGoIntoTheMotor
+RotomsRoom_AllowRotomEnterLawnMower:
+    Message RotomsRoom_Text_AllowRotomEnterLawnMower
     Return
 
 RotomsRoom_ItsAnAppliance:
-    CallIfEq LOCALID_ROTOM_FORM, ROTOM_FORM_HEAT, RotomsRoom_ItsAMicrowaveOven
-    CallIfEq LOCALID_ROTOM_FORM, ROTOM_FORM_FROST, RotomsRoom_ItsARefrigerator
-    CallIfEq LOCALID_ROTOM_FORM, ROTOM_FORM_WASH, RotomsRoom_ItsAWashingMachine
-    CallIfEq LOCALID_ROTOM_FORM, ROTOM_FORM_FAN, RotomsRoom_ItsARotaryFan
-    CallIfEq LOCALID_ROTOM_FORM, ROTOM_FORM_MOW, RotomsRoom_ItsALawnMower
-    GoTo RotomsRoom_CloseMessage
+    CallIfEq LOCAL_VAR_ROTOM_FORM, ROTOM_FORM_HEAT, RotomsRoom_ItsAMicrowave
+    CallIfEq LOCAL_VAR_ROTOM_FORM, ROTOM_FORM_FROST, RotomsRoom_ItsARefrigerator
+    CallIfEq LOCAL_VAR_ROTOM_FORM, ROTOM_FORM_WASH, RotomsRoom_ItsAWashingMachine
+    CallIfEq LOCAL_VAR_ROTOM_FORM, ROTOM_FORM_FAN, RotomsRoom_ItsAFan
+    CallIfEq LOCAL_VAR_ROTOM_FORM, ROTOM_FORM_MOW, RotomsRoom_ItsALawnMower
+    GoTo RotomsRoom_ApplianceEnd
     End
 
-RotomsRoom_ItsAMicrowaveOven:
-    Message RotomsRoom_Text_ItsAMicrowaveOven
+RotomsRoom_ItsAMicrowave:
+    Message RotomsRoom_Text_ItsAMicrowave
     Return
 
 RotomsRoom_ItsARefrigerator:
@@ -440,146 +441,146 @@ RotomsRoom_ItsAWashingMachine:
     Message RotomsRoom_Text_ItsAWashingMachine
     Return
 
-RotomsRoom_ItsARotaryFan:
-    Message RotomsRoom_Text_ItsARotaryFan
+RotomsRoom_ItsAFan:
+    Message RotomsRoom_Text_ItsAFan
     Return
 
 RotomsRoom_ItsALawnMower:
     Message RotomsRoom_Text_ItsALawnMower
     Return
 
-RotomsRoom_RotomGaveUpEnteringTheMotor:
-    CallIfEq LOCALID_ROTOM_FORM, ROTOM_FORM_HEAT, RotomsRoom_RotomGaveUpEnteringTheMicrowaveOven
-    CallIfEq LOCALID_ROTOM_FORM, ROTOM_FORM_FROST, RotomsRoom_RotomGaveUpEnteringTheRefrigerator
-    CallIfEq LOCALID_ROTOM_FORM, ROTOM_FORM_WASH, RotomsRoom_RotomGaveUpEnteringTheWashingMachine
-    CallIfEq LOCALID_ROTOM_FORM, ROTOM_FORM_FAN, RotomsRoom_RotomGaveUpEnteringTheRotaryFan
-    CallIfEq LOCALID_ROTOM_FORM, ROTOM_FORM_MOW, RotomsRoom_RotomGaveUpEnteringTheLawnMower
-    GoTo RotomsRoom_CloseMessage
+RotomsRoom_RotomGaveUpEnteringMotor:
+    CallIfEq LOCAL_VAR_ROTOM_FORM, ROTOM_FORM_HEAT, RotomsRoom_RotomGaveUpEnteringMicrowave
+    CallIfEq LOCAL_VAR_ROTOM_FORM, ROTOM_FORM_FROST, RotomsRoom_RotomGaveUpEnteringRefrigerator
+    CallIfEq LOCAL_VAR_ROTOM_FORM, ROTOM_FORM_WASH, RotomsRoom_RotomGaveUpEnteringWashingMachine
+    CallIfEq LOCAL_VAR_ROTOM_FORM, ROTOM_FORM_FAN, RotomsRoom_RotomGaveUpEnteringFan
+    CallIfEq LOCAL_VAR_ROTOM_FORM, ROTOM_FORM_MOW, RotomsRoom_RotomGaveUpEnteringLawnMower
+    GoTo RotomsRoom_ApplianceEnd
     End
 
-RotomsRoom_RotomGaveUpEnteringTheMicrowaveOven:
-    Message RotomsRoom_Text_RotomGaveUpEnteringTheMicrowaveOvensMotor
+RotomsRoom_RotomGaveUpEnteringMicrowave:
+    Message RotomsRoom_Text_RotomGaveUpEnteringMicrowave
     Return
 
-RotomsRoom_RotomGaveUpEnteringTheRefrigerator:
-    Message RotomsRoom_Text_RotomGaveUpEnteringTheRefrigeratorsMotor
+RotomsRoom_RotomGaveUpEnteringRefrigerator:
+    Message RotomsRoom_Text_RotomGaveUpEnteringRefrigerator
     Return
 
-RotomsRoom_RotomGaveUpEnteringTheWashingMachine:
-    Message RotomsRoom_Text_RotomGaveUpEnteringTheWashingMachinesMotor
+RotomsRoom_RotomGaveUpEnteringWashingMachine:
+    Message RotomsRoom_Text_RotomGaveUpEnteringWashingMachine
     Return
 
-RotomsRoom_RotomGaveUpEnteringTheRotaryFan:
-    Message RotomsRoom_Text_RotomGaveUpEnteringTheRotaryFansMotor
+RotomsRoom_RotomGaveUpEnteringFan:
+    Message RotomsRoom_Text_RotomGaveUpEnteringFan
     Return
 
-RotomsRoom_RotomGaveUpEnteringTheLawnMower:
-    Message RotomsRoom_Text_RotomGaveUpEnteringTheLawnMowersMotor
+RotomsRoom_RotomGaveUpEnteringLawnMower:
+    Message RotomsRoom_Text_RotomGaveUpEnteringLawnMower
     Return
 
-RotomsRoom_CloseMessage:
+RotomsRoom_ApplianceEnd:
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
 RotomsRoom_MysteriousNotebook:
-    EventMessage RotomsRoom_Text_ThereIsAMysteriousNotebookHere
+    EventMessage RotomsRoom_Text_InformationAboutRotom
     End
 
-_07BB:
+RotomsRoom_ApplianceSpot:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     GetPartyRotomCountAndFirst VAR_0x8003, VAR_RESULT
-    GoToIfEq VAR_0x8003, 0, _0801
-    Message RotomsRoom_Text_OhRotomWantsToRevertToItsOriginalForm
+    GoToIfEq VAR_0x8003, 0, RotomsRoom_ThereWasAnApplianceHere
+    Message RotomsRoom_Text_RevertRotomToOriginalForm
     InitLocalTextMenu 31, 15, 0, VAR_RESULT
     SetMenuXOriginToRight
-    AddMenuEntryImm 14, 0
+    AddMenuEntryImm RotomsRoom_Text_Recall, 0
     ShowMenu
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, 0, _0295
+    GoToIfEq VAR_0x8008, 0, RotomsRoom_GetRotomForRecall
     CloseMessage
     ReleaseAll
     End
 
-_0801:
+RotomsRoom_ThereWasAnApplianceHere:
     Message RotomsRoom_Text_ThereWasAnApplianceHere
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_080C:
-    SetFlag FLAG_UNK_0x0077
-    SetVar VAR_UNK_0x411B, 1
-    GoTo _0325
+RotomsRoom_SetStateEnterProfRowan:
+    SetFlag FLAG_USED_ROTOM_APPLIANCE
+    SetVar VAR_ROTOMS_ROOM_STATE, 1
+    GoTo RotomsRoom_WarpInPlace
     End
 
-RotomsRoom_ProfessorRowan:
+RotomsRoom_OnFrameProfRowan:
     LockAll
-    ClearFlag FLAG_UNK_0x02C0
+    ClearFlag FLAG_HIDE_ROTOMS_ROOM_PROF_ROWAN
     PlaySE SEQ_SE_DP_KAIDAN2
-    AddObject 6
+    AddObject LOCALID_PROF_ROWAN
     WaitSE SEQ_SE_DP_KAIDAN2
-    ApplyMovement LOCALID_PLAYER, _08AC
-    ApplyMovement 6, _08D4
+    ApplyMovement LOCALID_PLAYER, RotomsRoom_Movement_PlayerNoticeRowan
+    ApplyMovement LOCALID_PROF_ROWAN, RotomsRoom_Movement_RowanEnter
     WaitMovement
     BufferPlayerName 0
-    Message RotomsRoom_Text_RowanAhImagineFindingYouHere
+    Message RotomsRoom_Text_ImagineFindingYouHere
     CloseMessage
     GetPlayerMapPos VAR_0x8006, VAR_0x8007
-    CallIfGe VAR_0x8006, 10, _08A8
-    CallIfLe VAR_0x8006, 4, _08AA
-    ApplyMovement 6, _08DC
+    CallIfGe VAR_0x8006, 10, RotomsRoom_EastReturn
+    CallIfLe VAR_0x8006, 4, RotomsRoom_WestReturn
+    ApplyMovement LOCALID_PROF_ROWAN, RotomsRoom_Movement_RowanWalkAround
     WaitMovement
-    Message RotomsRoom_Text_APokemonThatSlipsIntoElectricAppliancesYouSay
+    Message RotomsRoom_Text_PokemonThatSlipsIntoAppliances
     CloseMessage
-    ApplyMovement 6, _08F4
+    ApplyMovement LOCALID_PROF_ROWAN, RotomsRoom_Movement_RowanWalkBack
     WaitMovement
-    Message RotomsRoom_Text_AnywayThisRotomWhatAnInterestingPokemon
+    Message RotomsRoom_Text_RotomInterestingPokemon
     CloseMessage
-    ApplyMovement 6, _0900
+    ApplyMovement LOCALID_PROF_ROWAN, RotomsRoom_Movement_RowanLeave
     WaitMovement
     PlaySE SEQ_SE_DP_KAIDAN2
-    RemoveObject 6
+    RemoveObject LOCALID_PROF_ROWAN
     WaitSE SEQ_SE_DP_KAIDAN2
-    SetVar VAR_UNK_0x411B, 2
+    SetVar VAR_ROTOMS_ROOM_STATE, 2
     ReleaseAll
     End
 
-_08A8:
+RotomsRoom_EastReturn:
     Return
 
-_08AA:
+RotomsRoom_WestReturn:
     Return
 
     .balign 4, 0
-_08AC:
+RotomsRoom_Movement_PlayerNoticeRowan:
     WalkOnSpotNormalSouth
     EmoteExclamationMark
     EndMovement
 
-RotomsRoom_UnusedMovement:
+RotomsRoom_Movement_Unused:
     WalkOnSpotNormalWest
     EndMovement
 
-RotomsRoom_UnusedMovement2:
+RotomsRoom_Movement_Unused2:
     WalkOnSpotNormalEast
     EndMovement
 
-RotomsRoom_UnusedMovement3:
+RotomsRoom_Movement_Unused3:
     Delay8
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_08D4:
+RotomsRoom_Movement_RowanEnter:
     WalkNormalNorth 2
     EndMovement
 
     .balign 4, 0
-_08DC:
+RotomsRoom_Movement_RowanWalkAround:
     WalkNormalWest 2
     WalkOnSpotNormalNorth
     Delay8 2
@@ -588,13 +589,13 @@ _08DC:
     EndMovement
 
     .balign 4, 0
-_08F4:
+RotomsRoom_Movement_RowanWalkBack:
     WalkNormalWest 2
     WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
-_0900:
+RotomsRoom_Movement_RowanLeave:
     WalkNormalSouth 2
     EndMovement
 
@@ -602,43 +603,43 @@ RotomsRoom_OldNotebook:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message RotomsRoom_Text_ItsAnOldNotebook
+    Message RotomsRoom_Text_ReadOldNotebook
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _09CF
-    Message RotomsRoom_Text_OurEncounterWasASuddenOne
+    GoToIfEq VAR_RESULT, MENU_NO, RotomsRoom_StopReading
+    Message RotomsRoom_Text_PokemonEmergedFromLawnMower
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _09CF
-    Message RotomsRoom_Text_ThePokemonHoveredInTheAir
+    GoToIfEq VAR_RESULT, MENU_NO, RotomsRoom_StopReading
+    Message RotomsRoom_Text_PokemonHoveredInTheAir
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _09CF
-    Message RotomsRoom_Text_ThePokemonOnlyWishedToBeFriends
+    GoToIfEq VAR_RESULT, MENU_NO, RotomsRoom_StopReading
+    Message RotomsRoom_Text_INameThisRotom
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _09CF
-    Message RotomsRoom_Text_RotomIsAPokemonThatIsSensational
+    GoToIfEq VAR_RESULT, MENU_NO, RotomsRoom_StopReading
+    Message RotomsRoom_Text_AbilityToEnterMachinery
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _09CF
-    Message RotomsRoom_Text_RotomAndIBecameFastFriends
+    GoToIfEq VAR_RESULT, MENU_NO, RotomsRoom_StopReading
+    Message RotomsRoom_Text_RotomAndIBecameFriends
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _09CF
-    Message RotomsRoom_Text_AFeelingOfMischiefGotTheBetterOfMe
+    GoToIfEq VAR_RESULT, MENU_NO, RotomsRoom_StopReading
+    Message RotomsRoom_Text_FeelingOfMischief
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _09CF
-    Message RotomsRoom_Text_WhenICameToRotomDisappeared
+    GoToIfEq VAR_RESULT, MENU_NO, RotomsRoom_StopReading
+    Message RotomsRoom_Text_RotomDisappeared
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _09CF
-    Message RotomsRoom_Text_MySearchForRotomCarriedMeFarFromHome
+    GoToIfEq VAR_RESULT, MENU_NO, RotomsRoom_StopReading
+    Message RotomsRoom_Text_SearchForRotom
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _09CF
-    Message RotomsRoom_Text_TheRobotEyesLitUpHappilyAsIHeldIt
-    GoTo _09D5
+    GoToIfEq VAR_RESULT, MENU_NO, RotomsRoom_StopReading
+    Message RotomsRoom_Text_NotebookEnds
+    GoTo RotomsRoom_NotebookEnd
     End
 
-_09CF:
+RotomsRoom_StopReading:
     CloseMessage
     ReleaseAll
     End
 
-_09D5:
+RotomsRoom_NotebookEnd:
     WaitButton
     CloseMessage
     ReleaseAll

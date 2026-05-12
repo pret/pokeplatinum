@@ -1985,8 +1985,8 @@
     .short SCRCMD_ENDCOMMUNICATION
     .endm
 
-    .macro ScrCmd_151
-    .short SCRCMD_151
+    .macro FieldCommEnterBattleRoom
+    .short SCRCMD_FIELDCOMMENTERBATTLEROOM
     .endm
 
     .macro SetCommPlayerDir dir

@@ -1,8 +1,8 @@
 #include "macros/scrcmd.inc"
 
 
-    ScriptEntry _0006
+    ScriptEntry SunyshoreCityUnknownHouse1_Unused
     ScriptEntryEnd
 
-_0006:
+SunyshoreCityUnknownHouse1_Unused:
     End

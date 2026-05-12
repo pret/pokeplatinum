@@ -586,24 +586,24 @@ BOOL ScrCmd_2F1(ScriptContext *param0)
 
 BOOL ScrCmd_GetPartyRotomCountAndFirst(ScriptContext *ctx)
 {
-    int partyCount, i, count;
+    int partyCount;
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u16 *destVarCount = ScriptContext_GetVarPointer(ctx);
     u16 *destVarPartySlot = ScriptContext_GetVarPointer(ctx);
 
-    count = 0;
-    *destVarPartySlot = 0xff;
+    int count = 0;
+    *destVarPartySlot = PARTY_SLOT_NONE;
     Party *party = SaveData_GetParty(fieldSystem->saveData);
     partyCount = Party_GetCurrentCount(party);
 
-    for (i = 0; i < partyCount; i++) {
+    for (int i = 0; i < partyCount; i++) {
         Pokemon *mon = Party_GetPokemonBySlotIndex(party, i);
         u32 species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
         u32 form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
         u32 isEgg = Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL);
 
         if (species == SPECIES_ROTOM && form != ROTOM_FORM_BASE && isEgg == FALSE) {
-            if (*destVarPartySlot == 0xff) {
+            if (*destVarPartySlot == PARTY_SLOT_NONE) {
                 *destVarPartySlot = i;
             }
 
@@ -612,7 +612,7 @@ BOOL ScrCmd_GetPartyRotomCountAndFirst(ScriptContext *ctx)
     }
 
     *destVarCount = count;
-    return 0;
+    return FALSE;
 }
 
 BOOL ScrCmd_SetRotomForm(ScriptContext *ctx)
