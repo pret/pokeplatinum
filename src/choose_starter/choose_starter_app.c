@@ -117,10 +117,10 @@ typedef struct ChooseStarter3DGraphics {
 } ChooseStarter3DGraphics;
 
 typedef struct ChooseStarterMovement {
-    s32 unk_00;
-    s32 unk_04;
-    s32 unk_08;
-    s32 unk_0C;
+    s32 current;
+    s32 start;
+    s32 range;
+    s32 frameCountMax;
 } ChooseStarterMovement;
 
 typedef struct ChooseStarterCameraMovement {
@@ -289,8 +289,8 @@ static void ov78_021D2740(SysTask *param0, void *param1);
 static void ChangePokeballChoice(ChooseStarterApp *app);
 static void AdvanceChoiceStep(ChooseStarterApp *app, int param1);
 static int GetChoiceStep(ChooseStarterApp *app);
-static void ov78_021D2108(ChooseStarterMovement *param0, s32 param1, s32 param2, s32 param3);
-static BOOL ov78_021D2114(ChooseStarterMovement *param0, s32 param1);
+static void SetupStarterMovement(ChooseStarterMovement *starterMovement, s32 start, s32 end, s32 frameCountMax);
+static BOOL AdvanceStarterMovement(ChooseStarterMovement *starterMovement, s32 frameCount);
 static void SetupStarterRotation(ChooseStarterRotation *starterRotation, fx32 verticalOffsetMultiplier, int frameCountMax);
 static void AdvanceCursorMovementRotation(ChooseStarterRotation *starterRotation);
 static void startCameraMovement(ChooseStarterCameraMovement *cameraMovement, Camera *camera, VecFx32 *target);
@@ -1302,44 +1302,40 @@ static void MakeConfirmationWindow(ChooseStarterApp *param0, int param1)
     Font_LoadTextPalette(0, 3 * 32, param1);
 }
 
-static void ov78_021D2108(ChooseStarterMovement *param0, s32 param1, s32 param2, s32 param3)
+static void SetupStarterMovement(ChooseStarterMovement *starterMovement, s32 start, s32 end, s32 frameCountMax)
 {
-    param0->unk_00 = param1;
-    param0->unk_04 = param1;
-    param0->unk_08 = param2 - param1;
-    param0->unk_0C = param3;
+    starterMovement->current = start;
+    starterMovement->start = start;
+    starterMovement->range = end - start;
+    starterMovement->frameCountMax = frameCountMax;
 }
 
-static BOOL ov78_021D2114(ChooseStarterMovement *param0, s32 param1)
+static BOOL AdvanceStarterMovement(ChooseStarterMovement *starterMovement, s32 frameCount)
 {
-    s32 v0;
-    BOOL v1;
-    s32 v2;
+    BOOL hasFrameCountReachedMax;
 
-    if (param1 >= param0->unk_0C) {
-        v0 = param0->unk_0C;
-        v1 = 1;
+    if (frameCount >= starterMovement->frameCountMax) {
+        hasFrameCountReachedMax = TRUE;
     } else {
-        v0 = param1;
-        v1 = 0;
+        hasFrameCountReachedMax = FALSE;
     }
 
-    v2 = param0->unk_08 * param1;
-    v2 = v2 / param0->unk_0C;
-    v2 += param0->unk_04;
+    s32 newCurrent = starterMovement->range * frameCount;
+    newCurrent = newCurrent / starterMovement->frameCountMax;
+    newCurrent += starterMovement->start;
 
-    param0->unk_00 = v2;
+    starterMovement->current = newCurrent;
 
-    return v1;
+    return hasFrameCountReachedMax;
 }
 
 static void startCameraMovement(ChooseStarterCameraMovement *cameraMovement, Camera *camera, VecFx32 *target)
 {
     GF_ASSERT(cameraMovement->movementTask == NULL);
 
-    ov78_021D2108(&cameraMovement->unk_00, (-30 * 0xffff) / 360, (-50 * 0xffff) / 360, 6);
-    ov78_021D2108(&cameraMovement->unk_10, 300 << FX32_SHIFT, 200 << FX32_SHIFT, 6);
-    ov78_021D2108(&cameraMovement->unk_20, 0, 36 * FX32_ONE, 6);
+    SetupStarterMovement(&cameraMovement->unk_00, (-30 * 0xffff) / 360, (-50 * 0xffff) / 360, 6);
+    SetupStarterMovement(&cameraMovement->unk_10, 300 << FX32_SHIFT, 200 << FX32_SHIFT, 6);
+    SetupStarterMovement(&cameraMovement->unk_20, 0, 36 * FX32_ONE, 6);
 
     cameraMovement->unk_3C = 0;
     cameraMovement->camera = camera;
@@ -1355,18 +1351,18 @@ static void ov78_021D219C(SysTask *param0, void *param1)
     BOOL v1;
     CameraAngle v2;
 
-    v1 = ov78_021D2114(&v0->unk_00, v0->unk_38);
-    ov78_021D2114(&v0->unk_10, v0->unk_38);
-    ov78_021D2114(&v0->unk_20, v0->unk_38);
+    v1 = AdvanceStarterMovement(&v0->unk_00, v0->unk_38);
+    AdvanceStarterMovement(&v0->unk_10, v0->unk_38);
+    AdvanceStarterMovement(&v0->unk_20, v0->unk_38);
 
-    v2.x = v0->unk_00.unk_00;
+    v2.x = v0->unk_00.current;
     v2.y = ((0 * 0xffff) / 360);
     v2.z = ((0 * 0xffff) / 360);
 
     Camera_SetAngleAroundTarget(&v2, v0->camera);
-    Camera_SetDistance(v0->unk_10.unk_00, v0->camera);
+    Camera_SetDistance(v0->unk_10.current, v0->camera);
 
-    v0->target->z = v0->unk_20.unk_00;
+    v0->target->z = v0->unk_20.current;
     v0->unk_38++;
 
     if (v1 == 1) {
@@ -1550,9 +1546,9 @@ static void StartPreviewWindowMovement(StarterPreviewWindow *previewWindow, fx32
 {
     GF_ASSERT(previewWindow->movementTask == NULL);
 
-    ov78_021D2108(&previewWindow->unk_1C.unk_00, param1, param2, param7);
-    ov78_021D2108(&previewWindow->unk_1C.unk_10, param3, param4, param7);
-    ov78_021D2108(&previewWindow->unk_1C.unk_20, param5, param6, param7);
+    SetupStarterMovement(&previewWindow->unk_1C.unk_00, param1, param2, param7);
+    SetupStarterMovement(&previewWindow->unk_1C.unk_10, param3, param4, param7);
+    SetupStarterMovement(&previewWindow->unk_1C.unk_20, param5, param6, param7);
 
     previewWindow->unk_1C.unk_30 = 0;
     previewWindow->unk_1C.unk_34 = 1;
@@ -1565,8 +1561,8 @@ static void StartOtherPreviewMovement(StarterPreviewWindow *previewWindow)
 
     previewWindow->unk_1C.unk_34 = -2;
 
-    if (previewWindow->unk_1C.unk_30 >= previewWindow->unk_1C.unk_00.unk_0C) {
-        previewWindow->unk_1C.unk_30 = previewWindow->unk_1C.unk_00.unk_0C + previewWindow->unk_1C.unk_34;
+    if (previewWindow->unk_1C.unk_30 >= previewWindow->unk_1C.unk_00.frameCountMax) {
+        previewWindow->unk_1C.unk_30 = previewWindow->unk_1C.unk_00.frameCountMax + previewWindow->unk_1C.unk_34;
     }
 
     previewWindow->movementTask = SysTask_Start(ov78_021D25A0, previewWindow, 0);
@@ -1578,16 +1574,16 @@ static void ov78_021D25A0(SysTask *param0, void *param1)
     BOOL v1;
     fx32 v2, v3;
 
-    v1 = ov78_021D2114(&v0->unk_1C.unk_00, v0->unk_1C.unk_30);
+    v1 = AdvanceStarterMovement(&v0->unk_1C.unk_00, v0->unk_1C.unk_30);
 
-    ov78_021D2114(&v0->unk_1C.unk_10, v0->unk_1C.unk_30);
-    ov78_021D2114(&v0->unk_1C.unk_20, v0->unk_1C.unk_30);
+    AdvanceStarterMovement(&v0->unk_1C.unk_10, v0->unk_1C.unk_30);
+    AdvanceStarterMovement(&v0->unk_1C.unk_20, v0->unk_1C.unk_30);
 
-    v2 = v0->unk_1C.unk_00.unk_00 - ((128 / 2) * FX32_ONE);
-    v3 = v0->unk_1C.unk_10.unk_00 - ((128 / 2) * FX32_ONE);
+    v2 = v0->unk_1C.unk_00.current - ((128 / 2) * FX32_ONE);
+    v3 = v0->unk_1C.unk_10.current - ((128 / 2) * FX32_ONE);
 
     SoftwareSprite_SetPosition(v0->sprite, v2 >> FX32_SHIFT, v3 >> FX32_SHIFT);
-    SoftwareSprite_SetScalingFactors(v0->sprite, v0->unk_1C.unk_20.unk_00, v0->unk_1C.unk_20.unk_00);
+    SoftwareSprite_SetScalingFactors(v0->sprite, v0->unk_1C.unk_20.current, v0->unk_1C.unk_20.current);
 
     if ((v1 == 1) || (v0->unk_1C.unk_30 < 0)) {
         SysTask_Done(param0);
@@ -1632,9 +1628,9 @@ static void StartPreviewGraphicsMovement(StarterPreviewGraphics *previewGraphics
 {
     GF_ASSERT(previewGraphics->movementTask == NULL);
 
-    ov78_021D2108(&previewGraphics->unk_04.unk_00, param2, param3, param8);
-    ov78_021D2108(&previewGraphics->unk_04.unk_10, param4, param5, param8);
-    ov78_021D2108(&previewGraphics->unk_04.unk_20, param6, param7, param8);
+    SetupStarterMovement(&previewGraphics->unk_04.unk_00, param2, param3, param8);
+    SetupStarterMovement(&previewGraphics->unk_04.unk_10, param4, param5, param8);
+    SetupStarterMovement(&previewGraphics->unk_04.unk_20, param6, param7, param8);
 
     previewGraphics->sprite = sprite;
     previewGraphics->unk_04.unk_30 = 0;
@@ -1648,8 +1644,8 @@ static void StartOtherPreviewGraphicsMovement(StarterPreviewGraphics *previewGra
 
     previewGraphics->unk_04.unk_34 = -2;
 
-    if (previewGraphics->unk_04.unk_30 >= previewGraphics->unk_04.unk_00.unk_0C) {
-        previewGraphics->unk_04.unk_30 = previewGraphics->unk_04.unk_00.unk_0C + previewGraphics->unk_04.unk_34;
+    if (previewGraphics->unk_04.unk_30 >= previewGraphics->unk_04.unk_00.frameCountMax) {
+        previewGraphics->unk_04.unk_30 = previewGraphics->unk_04.unk_00.frameCountMax + previewGraphics->unk_04.unk_34;
     }
 
     previewGraphics->movementTask = SysTask_Start(ov78_021D2740, previewGraphics, 0);
@@ -1661,15 +1657,15 @@ static void ov78_021D2740(SysTask *param0, void *param1)
     BOOL v1;
     u32 v2;
 
-    v1 = ov78_021D2114(&v0->unk_04.unk_00, v0->unk_04.unk_30);
+    v1 = AdvanceStarterMovement(&v0->unk_04.unk_00, v0->unk_04.unk_30);
 
-    ov78_021D2114(&v0->unk_04.unk_10, v0->unk_04.unk_30);
-    ov78_021D2114(&v0->unk_04.unk_20, v0->unk_04.unk_30);
+    AdvanceStarterMovement(&v0->unk_04.unk_10, v0->unk_04.unk_30);
+    AdvanceStarterMovement(&v0->unk_04.unk_20, v0->unk_04.unk_30);
 
-    v2 = FX_Mul(0x100 * FX32_ONE, v0->unk_04.unk_20.unk_00) >> FX32_SHIFT;
+    v2 = FX_Mul(0x100 * FX32_ONE, v0->unk_04.unk_20.current) >> FX32_SHIFT;
 
-    PokemonSprite_SetAttribute(v0->sprite, MON_SPRITE_X_CENTER, v0->unk_04.unk_00.unk_00 >> FX32_SHIFT);
-    PokemonSprite_SetAttribute(v0->sprite, MON_SPRITE_Y_CENTER, v0->unk_04.unk_10.unk_00 >> FX32_SHIFT);
+    PokemonSprite_SetAttribute(v0->sprite, MON_SPRITE_X_CENTER, v0->unk_04.unk_00.current >> FX32_SHIFT);
+    PokemonSprite_SetAttribute(v0->sprite, MON_SPRITE_Y_CENTER, v0->unk_04.unk_10.current >> FX32_SHIFT);
     PokemonSprite_SetAttribute(v0->sprite, MON_SPRITE_SCALE_X, v2);
     PokemonSprite_SetAttribute(v0->sprite, MON_SPRITE_SCALE_Y, v2);
 
