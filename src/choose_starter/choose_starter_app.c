@@ -280,10 +280,10 @@ static void StartPreviewWindowMovement(StarterPreviewWindow *previewWindow, fx32
 static void StartOtherPreviewMovement(StarterPreviewWindow *previewWindow);
 static void AdvancePreviewMovement(SysTask *task, void *previewWindowParam);
 static BOOL HasPreviewWindowMovementFinished(StarterPreviewWindow *previewWindow);
-static void ov78_021D2618(ChooseStarterApp *param0);
-static void ov78_021D2688(ChooseStarterApp *param0);
-static BOOL ov78_021D26A4(ChooseStarterApp *param0);
-static void StartPreviewGraphicsMovement(StarterPreviewGraphics *previewGraphics, PokemonSprite *sprite, fx32 param2, fx32 param3, fx32 param4, fx32 param5, fx32 param6, fx32 param7, int param8);
+static void StartPreviewWindowAndGraphicsMovements(ChooseStarterApp *app);
+static void StartOtherPreviewWindowAndGraphicsMovements(ChooseStarterApp *app);
+static BOOL HasAppPreviewWindowMovementFinished(ChooseStarterApp *app);
+static void StartPreviewGraphicsMovement(StarterPreviewGraphics *previewGraphics, PokemonSprite *sprite, fx32 xStart, fx32 xEnd, fx32 yStart, fx32 yEnd, fx32 scaleStart, fx32 scaleEnd, int frameCount);
 static void StartOtherPreviewGraphicsMovement(StarterPreviewGraphics *previewGraphics);
 static void AdvancePreviewGraphicsMovement(SysTask *task, void *previewGraphicsParam);
 static void ChangePokeballChoice(ChooseStarterApp *app);
@@ -1202,7 +1202,7 @@ static void ov78_021D1E44(ChooseStarterApp *param0, enum HeapID heapID)
         ShowCursor(&param0->cursor, FALSE);
         UpdateCursorPosition(param0);
         DeleteSubplaneWindow(param0);
-        ov78_021D2618(param0);
+        StartPreviewWindowAndGraphicsMovements(param0);
         param0->unk_04++;
         param0->unk_08 = 1;
         break;
@@ -1210,7 +1210,7 @@ static void ov78_021D1E44(ChooseStarterApp *param0, enum HeapID heapID)
         ShowPreviewWindow(&param0->previewWindow, TRUE);
         PokemonSprite_SetAttribute(param0->sprites[param0->cursorPosition], MON_SPRITE_HIDE, FALSE);
 
-        if (ov78_021D26A4(param0)) {
+        if (HasAppPreviewWindowMovementFinished(param0)) {
             Sound_PlayPokemonCry(GetSelectedSpecies(param0->cursorPosition), 0);
 
             param0->unk_04++;
@@ -1233,12 +1233,12 @@ static void ov78_021D1E44(ChooseStarterApp *param0, enum HeapID heapID)
             break;
         case 0xfffffffe:
             param0->unk_04++;
-            ov78_021D2688(param0);
+            StartOtherPreviewWindowAndGraphicsMovements(param0);
             break;
         }
         break;
     case 4:
-        if (ov78_021D26A4(param0)) {
+        if (HasAppPreviewWindowMovementFinished(param0)) {
             AdvanceChoiceStep(param0, -1);
             param0->unk_04 = 7;
             ShowPreviewWindow(&param0->previewWindow, FALSE);
@@ -1542,13 +1542,13 @@ static void ShowPreviewWindow(StarterPreviewWindow *previewWindow, BOOL show)
     SoftwareSprite_SetVisible(previewWindow->sprite, show);
 }
 
-static void StartPreviewWindowMovement(StarterPreviewWindow *previewWindow, fx32 param1, fx32 param2, fx32 param3, fx32 param4, fx32 param5, fx32 param6, int param7)
+static void StartPreviewWindowMovement(StarterPreviewWindow *previewWindow, fx32 xStart, fx32 xEnd, fx32 yStart, fx32 yEnd, fx32 scaleStart, fx32 scaleEnd, int frameCountMax)
 {
     GF_ASSERT(previewWindow->movementTask == NULL);
 
-    SetupStarterMovement(&previewWindow->previewAnimation.x, param1, param2, param7);
-    SetupStarterMovement(&previewWindow->previewAnimation.y, param3, param4, param7);
-    SetupStarterMovement(&previewWindow->previewAnimation.scale, param5, param6, param7);
+    SetupStarterMovement(&previewWindow->previewAnimation.x, xStart, xEnd, frameCountMax);
+    SetupStarterMovement(&previewWindow->previewAnimation.y, yStart, yEnd, frameCountMax);
+    SetupStarterMovement(&previewWindow->previewAnimation.scale, scaleStart, scaleEnd, frameCountMax);
 
     previewWindow->previewAnimation.frameCount = 0;
     previewWindow->previewAnimation.frameCountIncrement = 1;
@@ -1600,35 +1600,33 @@ static BOOL HasPreviewWindowMovementFinished(StarterPreviewWindow *previewWindow
     return TRUE;
 }
 
-static void ov78_021D2618(ChooseStarterApp *param0)
+static void StartPreviewWindowAndGraphicsMovements(ChooseStarterApp *app)
 {
-    fx32 v0, v1;
+    fx32 xStart = app->unk_7C[app->cursorPosition][0] << FX32_SHIFT;
+    fx32 yStart = (app->unk_7C[app->cursorPosition][1] + 48) << FX32_SHIFT;
 
-    v0 = param0->unk_7C[param0->cursorPosition][0] << FX32_SHIFT;
-    v1 = (param0->unk_7C[param0->cursorPosition][1] + 48) << FX32_SHIFT;
-
-    StartPreviewWindowMovement(&param0->previewWindow, v0, 128 << FX32_SHIFT, v1, 96 << FX32_SHIFT, FX32_CONST(0.40f), FX32_CONST(1.0f), 6);
-    StartPreviewGraphicsMovement(&param0->previewGraphics, param0->sprites[param0->cursorPosition], v0, 128 << FX32_SHIFT, v1, 96 << FX32_SHIFT, FX32_CONST(0.40f), FX32_CONST(1.0f), 6);
+    StartPreviewWindowMovement(&app->previewWindow, xStart, 128 << FX32_SHIFT, yStart, 96 << FX32_SHIFT, FX32_CONST(0.40f), FX32_CONST(1.0f), 6);
+    StartPreviewGraphicsMovement(&app->previewGraphics, app->sprites[app->cursorPosition], xStart, 128 << FX32_SHIFT, yStart, 96 << FX32_SHIFT, FX32_CONST(0.40f), FX32_CONST(1.0f), 6);
 }
 
-static void ov78_021D2688(ChooseStarterApp *param0)
+static void StartOtherPreviewWindowAndGraphicsMovements(ChooseStarterApp *app)
 {
-    StartOtherPreviewMovement(&param0->previewWindow);
-    StartOtherPreviewGraphicsMovement(&param0->previewGraphics);
+    StartOtherPreviewMovement(&app->previewWindow);
+    StartOtherPreviewGraphicsMovement(&app->previewGraphics);
 }
 
-static BOOL ov78_021D26A4(ChooseStarterApp *param0)
+static BOOL HasAppPreviewWindowMovementFinished(ChooseStarterApp *app)
 {
-    return HasPreviewWindowMovementFinished(&param0->previewWindow);
+    return HasPreviewWindowMovementFinished(&app->previewWindow);
 }
 
-static void StartPreviewGraphicsMovement(StarterPreviewGraphics *previewGraphics, PokemonSprite *sprite, fx32 param2, fx32 param3, fx32 param4, fx32 param5, fx32 param6, fx32 param7, int param8)
+static void StartPreviewGraphicsMovement(StarterPreviewGraphics *previewGraphics, PokemonSprite *sprite, fx32 xStart, fx32 xEnd, fx32 yStart, fx32 yEnd, fx32 scaleStart, fx32 scaleEnd, int frameCountMax)
 {
     GF_ASSERT(previewGraphics->movementTask == NULL);
 
-    SetupStarterMovement(&previewGraphics->previewAnimation.x, param2, param3, param8);
-    SetupStarterMovement(&previewGraphics->previewAnimation.y, param4, param5, param8);
-    SetupStarterMovement(&previewGraphics->previewAnimation.scale, param6, param7, param8);
+    SetupStarterMovement(&previewGraphics->previewAnimation.x, xStart, xEnd, frameCountMax);
+    SetupStarterMovement(&previewGraphics->previewAnimation.y, yStart, yEnd, frameCountMax);
+    SetupStarterMovement(&previewGraphics->previewAnimation.scale, scaleStart, scaleEnd, frameCountMax);
 
     previewGraphics->sprite = sprite;
     previewGraphics->previewAnimation.frameCount = 0;
