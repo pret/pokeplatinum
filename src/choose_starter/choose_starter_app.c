@@ -128,10 +128,10 @@ typedef struct ChooseStarterCameraMovement {
     ChooseStarterMovement unk_10;
     ChooseStarterMovement unk_20;
     Camera *camera;
-    VecFx32 *unk_34;
+    VecFx32 *target;
     s32 unk_38;
     BOOL unk_3C;
-    SysTask *unk_40;
+    SysTask *movementTask;
 } ChooseStarterCameraMovement;
 
 typedef struct ChooseStarterRotation {
@@ -166,13 +166,13 @@ typedef struct StarterPreviewWindow {
     NNSG2dCharacterData *unk_14;
     NNSG2dPaletteData *unk_18;
     StarterPreviewAnimation unk_1C;
-    SysTask *unk_54;
+    SysTask *movementTask;
 } StarterPreviewWindow;
 
 typedef struct StarterPreviewGraphics {
-    PokemonSprite *unk_00;
+    PokemonSprite *sprite;
     StarterPreviewAnimation unk_04;
-    SysTask *unk_3C;
+    SysTask *movementTask;
 } StarterPreviewGraphics;
 
 typedef struct ChooseStarterApp {
@@ -276,15 +276,15 @@ static void Load3DGraphicsAnimation(ChooseStarter3DGraphics *starter3DGraphics, 
 static void MakePreviewWindow(StarterPreviewWindow *param0, ChooseStarterApp *param1, int param2);
 static void DeletePreviewWindow(StarterPreviewWindow *previewWindow);
 static void ShowPreviewWindow(StarterPreviewWindow *previewWindow, BOOL show);
-static void ov78_021D2514(StarterPreviewWindow *param0, fx32 param1, fx32 param2, fx32 param3, fx32 param4, fx32 param5, fx32 param6, int param7);
-static void ov78_021D256C(StarterPreviewWindow *param0);
+static void StartPreviewWindowMovement(StarterPreviewWindow *previewWindow, fx32 param1, fx32 param2, fx32 param3, fx32 param4, fx32 param5, fx32 param6, int param7);
+static void StartOtherPreviewMovement(StarterPreviewWindow *previewWindow);
 static void ov78_021D25A0(SysTask *param0, void *param1);
 static BOOL ov78_021D2608(StarterPreviewWindow *param0);
 static void ov78_021D2618(ChooseStarterApp *param0);
 static void ov78_021D2688(ChooseStarterApp *param0);
 static BOOL ov78_021D26A4(ChooseStarterApp *param0);
-static void ov78_021D26B4(StarterPreviewGraphics *param0, PokemonSprite *param1, fx32 param2, fx32 param3, fx32 param4, fx32 param5, fx32 param6, fx32 param7, int param8);
-static void ov78_021D270C(StarterPreviewGraphics *param0);
+static void StartPreviewGraphicsMovement(StarterPreviewGraphics *previewGraphics, PokemonSprite *sprite, fx32 param2, fx32 param3, fx32 param4, fx32 param5, fx32 param6, fx32 param7, int param8);
+static void StartOtherPreviewGraphicsMovement(StarterPreviewGraphics *previewGraphics);
 static void ov78_021D2740(SysTask *param0, void *param1);
 static void ChangePokeballChoice(ChooseStarterApp *app);
 static void AdvanceChoiceStep(ChooseStarterApp *app, int param1);
@@ -293,7 +293,7 @@ static void ov78_021D2108(ChooseStarterMovement *param0, s32 param1, s32 param2,
 static BOOL ov78_021D2114(ChooseStarterMovement *param0, s32 param1);
 static void ov78_021D235C(ChooseStarterRotation *param0, fx32 param1, int param2);
 static void ov78_021D2368(ChooseStarterRotation *param0);
-static void ov78_021D213C(ChooseStarterCameraMovement *param0, Camera *camera, VecFx32 *param2);
+static void startCameraMovement(ChooseStarterCameraMovement *cameraMovement, Camera *camera, VecFx32 *target);
 static void ov78_021D219C(SysTask *param0, void *param1);
 static BOOL ov78_021D2200(ChooseStarterCameraMovement *param0);
 static void StartCursorMovement(ChooseStarterCursor *cursor);
@@ -1127,7 +1127,7 @@ static void ov78_021D1CA8(ChooseStarterApp *app, enum HeapID heapID)
 {
     switch (app->unk_04) {
     case 0:
-        ov78_021D213C(&app->cameraMovement, app->camera, &app->cameraTarget);
+        startCameraMovement(&app->cameraMovement, app->camera, &app->cameraTarget);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, TRUE);
         app->unk_04++;
         break;
@@ -1333,20 +1333,20 @@ static BOOL ov78_021D2114(ChooseStarterMovement *param0, s32 param1)
     return v1;
 }
 
-static void ov78_021D213C(ChooseStarterCameraMovement *param0, Camera *camera, VecFx32 *param2)
+static void startCameraMovement(ChooseStarterCameraMovement *cameraMovement, Camera *camera, VecFx32 *target)
 {
-    GF_ASSERT(param0->unk_40 == NULL);
+    GF_ASSERT(cameraMovement->movementTask == NULL);
 
-    ov78_021D2108(&param0->unk_00, (-30 * 0xffff) / 360, (-50 * 0xffff) / 360, 6);
-    ov78_021D2108(&param0->unk_10, 300 << FX32_SHIFT, 200 << FX32_SHIFT, 6);
-    ov78_021D2108(&param0->unk_20, 0, 36 * FX32_ONE, 6);
+    ov78_021D2108(&cameraMovement->unk_00, (-30 * 0xffff) / 360, (-50 * 0xffff) / 360, 6);
+    ov78_021D2108(&cameraMovement->unk_10, 300 << FX32_SHIFT, 200 << FX32_SHIFT, 6);
+    ov78_021D2108(&cameraMovement->unk_20, 0, 36 * FX32_ONE, 6);
 
-    param0->unk_3C = 0;
-    param0->camera = camera;
-    param0->unk_34 = param2;
-    param0->unk_38 = 0;
+    cameraMovement->unk_3C = 0;
+    cameraMovement->camera = camera;
+    cameraMovement->target = target;
+    cameraMovement->unk_38 = 0;
 
-    SysTask_Start(ov78_021D219C, param0, 0);
+    SysTask_Start(ov78_021D219C, cameraMovement, 0);
 }
 
 static void ov78_021D219C(SysTask *param0, void *param1)
@@ -1366,12 +1366,12 @@ static void ov78_021D219C(SysTask *param0, void *param1)
     Camera_SetAngleAroundTarget(&v2, v0->camera);
     Camera_SetDistance(v0->unk_10.unk_00, v0->camera);
 
-    v0->unk_34->z = v0->unk_20.unk_00;
+    v0->target->z = v0->unk_20.unk_00;
     v0->unk_38++;
 
     if (v1 == 1) {
         SysTask_Done(param0);
-        v0->unk_40 = NULL;
+        v0->movementTask = NULL;
         v0->unk_3C = 1;
     }
 }
@@ -1549,30 +1549,30 @@ static void ShowPreviewWindow(StarterPreviewWindow *previewWindow, BOOL show)
     SoftwareSprite_SetVisible(previewWindow->sprite, show);
 }
 
-static void ov78_021D2514(StarterPreviewWindow *param0, fx32 param1, fx32 param2, fx32 param3, fx32 param4, fx32 param5, fx32 param6, int param7)
+static void StartPreviewWindowMovement(StarterPreviewWindow *previewWindow, fx32 param1, fx32 param2, fx32 param3, fx32 param4, fx32 param5, fx32 param6, int param7)
 {
-    GF_ASSERT(param0->unk_54 == NULL);
+    GF_ASSERT(previewWindow->movementTask == NULL);
 
-    ov78_021D2108(&param0->unk_1C.unk_00, param1, param2, param7);
-    ov78_021D2108(&param0->unk_1C.unk_10, param3, param4, param7);
-    ov78_021D2108(&param0->unk_1C.unk_20, param5, param6, param7);
+    ov78_021D2108(&previewWindow->unk_1C.unk_00, param1, param2, param7);
+    ov78_021D2108(&previewWindow->unk_1C.unk_10, param3, param4, param7);
+    ov78_021D2108(&previewWindow->unk_1C.unk_20, param5, param6, param7);
 
-    param0->unk_1C.unk_30 = 0;
-    param0->unk_1C.unk_34 = 1;
-    param0->unk_54 = SysTask_Start(ov78_021D25A0, param0, 0);
+    previewWindow->unk_1C.unk_30 = 0;
+    previewWindow->unk_1C.unk_34 = 1;
+    previewWindow->movementTask = SysTask_Start(ov78_021D25A0, previewWindow, 0);
 }
 
-static void ov78_021D256C(StarterPreviewWindow *param0)
+static void StartOtherPreviewMovement(StarterPreviewWindow *previewWindow)
 {
-    GF_ASSERT(param0->unk_54 == NULL);
+    GF_ASSERT(previewWindow->movementTask == NULL);
 
-    param0->unk_1C.unk_34 = -2;
+    previewWindow->unk_1C.unk_34 = -2;
 
-    if (param0->unk_1C.unk_30 >= param0->unk_1C.unk_00.unk_0C) {
-        param0->unk_1C.unk_30 = param0->unk_1C.unk_00.unk_0C + param0->unk_1C.unk_34;
+    if (previewWindow->unk_1C.unk_30 >= previewWindow->unk_1C.unk_00.unk_0C) {
+        previewWindow->unk_1C.unk_30 = previewWindow->unk_1C.unk_00.unk_0C + previewWindow->unk_1C.unk_34;
     }
 
-    param0->unk_54 = SysTask_Start(ov78_021D25A0, param0, 0);
+    previewWindow->movementTask = SysTask_Start(ov78_021D25A0, previewWindow, 0);
 }
 
 static void ov78_021D25A0(SysTask *param0, void *param1)
@@ -1594,7 +1594,7 @@ static void ov78_021D25A0(SysTask *param0, void *param1)
 
     if ((v1 == 1) || (v0->unk_1C.unk_30 < 0)) {
         SysTask_Done(param0);
-        v0->unk_54 = NULL;
+        v0->movementTask = NULL;
     }
 
     v0->unk_1C.unk_30 += v0->unk_1C.unk_34;
@@ -1602,7 +1602,7 @@ static void ov78_021D25A0(SysTask *param0, void *param1)
 
 static BOOL ov78_021D2608(StarterPreviewWindow *param0)
 {
-    if (param0->unk_54) {
+    if (param0->movementTask) {
         return 0;
     }
 
@@ -1616,14 +1616,14 @@ static void ov78_021D2618(ChooseStarterApp *param0)
     v0 = param0->unk_7C[param0->cursorPosition][0] << FX32_SHIFT;
     v1 = (param0->unk_7C[param0->cursorPosition][1] + 48) << FX32_SHIFT;
 
-    ov78_021D2514(&param0->previewWindow, v0, 128 << FX32_SHIFT, v1, 96 << FX32_SHIFT, FX32_CONST(0.40f), FX32_CONST(1.0f), 6);
-    ov78_021D26B4(&param0->previewGraphics, param0->sprites[param0->cursorPosition], v0, 128 << FX32_SHIFT, v1, 96 << FX32_SHIFT, FX32_CONST(0.40f), FX32_CONST(1.0f), 6);
+    StartPreviewWindowMovement(&param0->previewWindow, v0, 128 << FX32_SHIFT, v1, 96 << FX32_SHIFT, FX32_CONST(0.40f), FX32_CONST(1.0f), 6);
+    StartPreviewGraphicsMovement(&param0->previewGraphics, param0->sprites[param0->cursorPosition], v0, 128 << FX32_SHIFT, v1, 96 << FX32_SHIFT, FX32_CONST(0.40f), FX32_CONST(1.0f), 6);
 }
 
 static void ov78_021D2688(ChooseStarterApp *param0)
 {
-    ov78_021D256C(&param0->previewWindow);
-    ov78_021D270C(&param0->previewGraphics);
+    StartOtherPreviewMovement(&param0->previewWindow);
+    StartOtherPreviewGraphicsMovement(&param0->previewGraphics);
 }
 
 static BOOL ov78_021D26A4(ChooseStarterApp *param0)
@@ -1631,31 +1631,31 @@ static BOOL ov78_021D26A4(ChooseStarterApp *param0)
     return ov78_021D2608(&param0->previewWindow);
 }
 
-static void ov78_021D26B4(StarterPreviewGraphics *param0, PokemonSprite *param1, fx32 param2, fx32 param3, fx32 param4, fx32 param5, fx32 param6, fx32 param7, int param8)
+static void StartPreviewGraphicsMovement(StarterPreviewGraphics *previewGraphics, PokemonSprite *sprite, fx32 param2, fx32 param3, fx32 param4, fx32 param5, fx32 param6, fx32 param7, int param8)
 {
-    GF_ASSERT(param0->unk_3C == NULL);
+    GF_ASSERT(previewGraphics->movementTask == NULL);
 
-    ov78_021D2108(&param0->unk_04.unk_00, param2, param3, param8);
-    ov78_021D2108(&param0->unk_04.unk_10, param4, param5, param8);
-    ov78_021D2108(&param0->unk_04.unk_20, param6, param7, param8);
+    ov78_021D2108(&previewGraphics->unk_04.unk_00, param2, param3, param8);
+    ov78_021D2108(&previewGraphics->unk_04.unk_10, param4, param5, param8);
+    ov78_021D2108(&previewGraphics->unk_04.unk_20, param6, param7, param8);
 
-    param0->unk_00 = param1;
-    param0->unk_04.unk_30 = 0;
-    param0->unk_04.unk_34 = 1;
-    param0->unk_3C = SysTask_Start(ov78_021D2740, param0, 0);
+    previewGraphics->sprite = sprite;
+    previewGraphics->unk_04.unk_30 = 0;
+    previewGraphics->unk_04.unk_34 = 1;
+    previewGraphics->movementTask = SysTask_Start(ov78_021D2740, previewGraphics, 0);
 }
 
-static void ov78_021D270C(StarterPreviewGraphics *param0)
+static void StartOtherPreviewGraphicsMovement(StarterPreviewGraphics *previewGraphics)
 {
-    GF_ASSERT(param0->unk_3C == NULL);
+    GF_ASSERT(previewGraphics->movementTask == NULL);
 
-    param0->unk_04.unk_34 = -2;
+    previewGraphics->unk_04.unk_34 = -2;
 
-    if (param0->unk_04.unk_30 >= param0->unk_04.unk_00.unk_0C) {
-        param0->unk_04.unk_30 = param0->unk_04.unk_00.unk_0C + param0->unk_04.unk_34;
+    if (previewGraphics->unk_04.unk_30 >= previewGraphics->unk_04.unk_00.unk_0C) {
+        previewGraphics->unk_04.unk_30 = previewGraphics->unk_04.unk_00.unk_0C + previewGraphics->unk_04.unk_34;
     }
 
-    param0->unk_3C = SysTask_Start(ov78_021D2740, param0, 0);
+    previewGraphics->movementTask = SysTask_Start(ov78_021D2740, previewGraphics, 0);
 }
 
 static void ov78_021D2740(SysTask *param0, void *param1)
@@ -1671,14 +1671,14 @@ static void ov78_021D2740(SysTask *param0, void *param1)
 
     v2 = FX_Mul(0x100 * FX32_ONE, v0->unk_04.unk_20.unk_00) >> FX32_SHIFT;
 
-    PokemonSprite_SetAttribute(v0->unk_00, MON_SPRITE_X_CENTER, v0->unk_04.unk_00.unk_00 >> FX32_SHIFT);
-    PokemonSprite_SetAttribute(v0->unk_00, MON_SPRITE_Y_CENTER, v0->unk_04.unk_10.unk_00 >> FX32_SHIFT);
-    PokemonSprite_SetAttribute(v0->unk_00, MON_SPRITE_SCALE_X, v2);
-    PokemonSprite_SetAttribute(v0->unk_00, MON_SPRITE_SCALE_Y, v2);
+    PokemonSprite_SetAttribute(v0->sprite, MON_SPRITE_X_CENTER, v0->unk_04.unk_00.unk_00 >> FX32_SHIFT);
+    PokemonSprite_SetAttribute(v0->sprite, MON_SPRITE_Y_CENTER, v0->unk_04.unk_10.unk_00 >> FX32_SHIFT);
+    PokemonSprite_SetAttribute(v0->sprite, MON_SPRITE_SCALE_X, v2);
+    PokemonSprite_SetAttribute(v0->sprite, MON_SPRITE_SCALE_Y, v2);
 
     if ((v1 == 1) || (v0->unk_04.unk_30 < 0)) {
         SysTask_Done(param0);
-        v0->unk_3C = NULL;
+        v0->movementTask = NULL;
     }
 
     v0->unk_04.unk_30 += v0->unk_04.unk_34;
