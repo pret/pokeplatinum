@@ -279,7 +279,7 @@ static void ShowPreviewWindow(StarterPreviewWindow *previewWindow, BOOL show);
 static void StartPreviewWindowMovement(StarterPreviewWindow *previewWindow, fx32 param1, fx32 param2, fx32 param3, fx32 param4, fx32 param5, fx32 param6, int param7);
 static void StartOtherPreviewMovement(StarterPreviewWindow *previewWindow);
 static void AdvancePreviewMovement(SysTask *task, void *previewWindowParam);
-static BOOL ov78_021D2608(StarterPreviewWindow *param0);
+static BOOL HasPreviewWindowMovementFinished(StarterPreviewWindow *previewWindow);
 static void ov78_021D2618(ChooseStarterApp *param0);
 static void ov78_021D2688(ChooseStarterApp *param0);
 static BOOL ov78_021D26A4(ChooseStarterApp *param0);
@@ -1591,13 +1591,13 @@ static void AdvancePreviewMovement(SysTask *task, void *previewWindowParam)
     previewWindow->previewAnimation.frameCount += previewWindow->previewAnimation.frameCountIncrement;
 }
 
-static BOOL ov78_021D2608(StarterPreviewWindow *param0)
+static BOOL HasPreviewWindowMovementFinished(StarterPreviewWindow *previewWindow)
 {
-    if (param0->movementTask) {
-        return 0;
+    if (previewWindow->movementTask) {
+        return FALSE;
     }
 
-    return 1;
+    return TRUE;
 }
 
 static void ov78_021D2618(ChooseStarterApp *param0)
@@ -1619,7 +1619,7 @@ static void ov78_021D2688(ChooseStarterApp *param0)
 
 static BOOL ov78_021D26A4(ChooseStarterApp *param0)
 {
-    return ov78_021D2608(&param0->previewWindow);
+    return HasPreviewWindowMovementFinished(&param0->previewWindow);
 }
 
 static void StartPreviewGraphicsMovement(StarterPreviewGraphics *previewGraphics, PokemonSprite *sprite, fx32 param2, fx32 param3, fx32 param4, fx32 param5, fx32 param6, fx32 param7, int param8)
