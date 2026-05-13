@@ -33,6 +33,7 @@
 #include "bg_window.h"
 #include "catching_show.h"
 #include "dexmode_checker.h"
+#include "easy_chat_args.h"
 #include "evolution.h"
 #include "field_bgm.h"
 #include "field_move_tasks.h"
@@ -85,10 +86,10 @@
 #include "unk_0205F180.h"
 #include "unk_0206B9D8.h"
 #include "unk_020972FC.h"
-#include "unk_0209747C.h"
 #include "vars_flags.h"
 
 #include "res/graphics/start_menu/start_menu.naix"
+#include "res/text/bank/easy_chat.h"
 #include "res/text/bank/location_names.h"
 #include "res/text/bank/start_menu.h"
 
@@ -1403,12 +1404,12 @@ static BOOL StartMenu_Chat(FieldTask *fieldTask)
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(fieldTask);
     StartMenu *menu = FieldTask_GetEnv(fieldTask);
 
-    menu->taskData = sub_0209747C(2, 0, fieldSystem->saveData, HEAP_ID_FIELD2);
+    menu->taskData = EasyChatArgs_New(EASY_CHAT_TYPE_SENTENCE, EasyChat_Text_ChooseWordOrPhrase, fieldSystem->saveData, HEAP_ID_FIELD2);
 
     Sentence sentence;
     Sentence_InitWithType(&sentence, 4);
-    sub_02097500(menu->taskData, &sentence);
-    sub_0203D874(fieldSystem, (UnkStruct_0209747C *)menu->taskData);
+    EasyChatArgs_SetSentence(menu->taskData, &sentence);
+    FieldSystem_OpenEasyChat(fieldSystem, (EasyChatArgs *)menu->taskData);
 
     menu->callback = StartMenu_ExitChat;
 
@@ -1420,9 +1421,9 @@ static BOOL StartMenu_ExitChat(FieldTask *fieldTask)
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(fieldTask);
     StartMenu *menu = FieldTask_GetEnv(fieldTask);
 
-    if (sub_02097528(menu->taskData) == 0) {
+    if (!EasyChatArgs_IsUnmodified(menu->taskData)) {
         Sentence sentence;
-        sub_02097540(menu->taskData, &sentence);
+        EasyChatArgs_CopySentenceTo(menu->taskData, &sentence);
 
         if (CommServerClient_IsInitialized()) {
             sub_0205C12C(&sentence);
@@ -1434,7 +1435,7 @@ static BOOL StartMenu_ExitChat(FieldTask *fieldTask)
         menu->state = START_MENU_STATE_REINIT;
     }
 
-    sub_020974EC((UnkStruct_0209747C *)menu->taskData);
+    EasyChatArgs_Free((EasyChatArgs *)menu->taskData);
     FieldSystem_StartFieldMap(fieldSystem);
     sub_0205C2B0(fieldSystem->unk_80);
 

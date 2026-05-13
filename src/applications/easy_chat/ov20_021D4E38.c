@@ -1,11 +1,11 @@
-#include "overlay020/ov20_021D4E38.h"
+#include "applications/easy_chat/ov20_021D4E38.h"
 
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay020/ov20_021D2098.h"
-#include "overlay020/struct_ov20_021D4E8C.h"
-#include "overlay020/struct_ov20_021D4FF0.h"
+#include "applications/easy_chat/ov20_021D2098.h"
+#include "applications/easy_chat/struct_ov20_021D4E8C.h"
+#include "applications/easy_chat/struct_ov20_021D4FF0.h"
 
 #include "bg_window.h"
 #include "sys_task.h"

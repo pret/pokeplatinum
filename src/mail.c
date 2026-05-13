@@ -219,7 +219,7 @@ void Mail_SetSentence(Mail *mail, Sentence *sentence, u8 index)
         return;
     }
 
-    Sentence_Set(&mail->sentences[index], sentence);
+    Sentence_Copy(&mail->sentences[index], sentence);
 }
 
 Mailbox *SaveData_GetMailbox(SaveData *saveData)

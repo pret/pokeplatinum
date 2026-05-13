@@ -3,10 +3,10 @@
 
 #include "struct_decls/struct_020998EC_decl.h"
 
+#include "easy_chat_args.h"
 #include "string_gf.h"
-#include "unk_0209747C.h"
 
-UnkStruct_020998EC *sub_020998EC(u32 heapID, const UnkStruct_0209747C *param1);
+UnkStruct_020998EC *sub_020998EC(u32 heapID, const EasyChatArgs *param1);
 void sub_0209992C(UnkStruct_020998EC *param0);
 u32 sub_02099CA0(const UnkStruct_020998EC *param0, u32 param1);
 void sub_02099CA8(const UnkStruct_020998EC *param0, u32 param1, u32 param2, String *param3);

@@ -3,7 +3,11 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/charcode.h"
+
 #include "struct_defs/sentence.h"
+
+#include "applications/easy_chat/defs.h"
 
 #include "charcode.h"
 #include "message.h"
@@ -12,7 +16,7 @@
 #include "string_template.h"
 #include "unk_02014D38.h"
 
-static u32 sub_02014C00(u32 param0, u32 param1);
+static u32 Sentence_CountSelectableWords(u32 type, u32 id);
 
 static const u16 Unk_020E5498[] = {
     0x1C0,
@@ -27,7 +31,7 @@ void Sentence_Init(Sentence *sentence)
     sentence->type = 0xffff;
 
     for (int i = 0; i < 2; i++) {
-        sentence->words[i] = 0xffff;
+        sentence->words[i] = WORD_NONE;
     }
 }
 
@@ -37,7 +41,7 @@ void Sentence_InitWithType(Sentence *sentence, u32 type)
     sentence->id = 0;
 
     for (int i = 0; i < 2; i++) {
-        sentence->words[i] = 0xffff;
+        sentence->words[i] = WORD_NONE;
     }
 }
 
@@ -86,7 +90,7 @@ String *Sentence_AsString(const Sentence *sentence, enum HeapID heapID)
     StringTemplate *template = StringTemplate_Default(heapID);
 
     for (int i = 0; i < 2; i++) {
-        if (sentence->words[i] != 0xffff) {
+        if (sentence->words[i] != WORD_NONE) {
             StringTemplate_SetCustomMessageWord(template, i, sentence->words[i]);
         } else {
             break;
@@ -102,9 +106,9 @@ String *Sentence_AsString(const Sentence *sentence, enum HeapID heapID)
     return string;
 }
 
-String *sub_02014BA0(const Sentence *sentence, u32 param1)
+String *Sentence_GetTemplateString(const Sentence *sentence, u32 heapID)
 {
-    return MessageBank_GetNewStringFromNARC(26, Unk_020E5498[sentence->type], sentence->id, param1);
+    return MessageBank_GetNewStringFromNARC(NARC_INDEX_MSGDATA__PL_MSG, Unk_020E5498[sentence->type], sentence->id, heapID);
 }
 
 BOOL Sentence_IsValid(const Sentence *sentence)
@@ -112,48 +116,42 @@ BOOL Sentence_IsValid(const Sentence *sentence)
     return sentence->type != 0xffff;
 }
 
-BOOL sub_02014BD0(const Sentence *sentence)
+BOOL Sentence_IsComplete(const Sentence *sentence)
 {
-    u32 v0, v1;
+    u32 count = Sentence_CountSelectableWords(sentence->type, sentence->id);
 
-    v0 = sub_02014C00(sentence->type, sentence->id);
-
-    for (v1 = 0; v1 < v0; v1++) {
-        if (sentence->words[v1] == 0xffff) {
-            return 0;
+    for (u32 i = 0; i < count; i++) {
+        if (sentence->words[i] == WORD_NONE) {
+            return FALSE;
         }
     }
 
-    return 1;
+    return TRUE;
 }
 
-static u32 sub_02014C00(u32 param0, u32 param1)
+static u32 Sentence_CountSelectableWords(u32 type, u32 id)
 {
-    String *v0;
-    const u16 *v1;
-    u32 v2;
+    GF_ASSERT(type < 5);
+    GF_ASSERT(id < sub_02014CD4(type));
 
-    GF_ASSERT(param0 < 5);
-    GF_ASSERT(param1 < sub_02014CD4(param0));
+    String *string = MessageBank_GetNewStringFromNARC(NARC_INDEX_MSGDATA__PL_MSG, Unk_020E5498[type], id, HEAP_ID_SYSTEM);
+    const charcode_t *iter = String_GetData(string);
+    u32 count = 0;
 
-    v0 = MessageBank_GetNewStringFromNARC(26, Unk_020E5498[param0], param1, 0);
-    v1 = String_GetData(v0);
-    v2 = 0;
-
-    while (*v1 != 0xffff) {
-        if (*v1 == 0xfffe) {
-            if (CharCode_IsFormatArg(v1)) {
-                v2++;
+    while (*iter != CHAR_EOS) {
+        if (*iter == CHAR_FORMAT_ARG) {
+            if (CharCode_IsFormatArg(iter)) {
+                count++;
             }
 
-            v1 = CharCode_SkipFormatArg(v1);
+            iter = CharCode_SkipFormatArg(iter);
         } else {
-            v1++;
+            iter++;
         }
     }
 
-    String_Free(v0);
-    return v2;
+    String_Free(string);
+    return count;
 }
 
 u16 Sentence_GetWord(const Sentence *sentence, int slot)
@@ -188,7 +186,7 @@ BOOL sub_02014C88(const Sentence *param0, const Sentence *param1)
     return 1;
 }
 
-void Sentence_Set(Sentence *dest, const Sentence *src)
+void Sentence_Copy(Sentence *dest, const Sentence *src)
 {
     *dest = *src;
 }
@@ -216,13 +214,11 @@ void Sentence_SetWord(Sentence *sentence, u32 index, u16 word)
     sentence->words[index] = word;
 }
 
-void sub_02014D10(Sentence *sentence)
+void Sentence_ClearUnusedWords(Sentence *sentence)
 {
-    u32 v0, v1;
+    u32 count = Sentence_CountSelectableWords(sentence->type, sentence->id);
 
-    v0 = sub_02014C00(sentence->type, sentence->id);
-
-    for (v1 = v0; v1 < 2; v1++) {
-        sentence->words[v1] = 0xffff;
+    for (u32 i = count; i < 2; i++) {
+        sentence->words[i] = WORD_NONE;
     }
 }

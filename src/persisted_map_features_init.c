@@ -6,7 +6,6 @@
 #include "constants/field/dynamic_map_features.h"
 #include "constants/great_marsh_tram.h"
 
-#include "struct_defs/struct_02071B30.h"
 #include "struct_defs/struct_02071B6C.h"
 #include "struct_defs/struct_02071BF8.h"
 
@@ -21,33 +20,33 @@
 #include "persisted_map_features.h"
 #include "savedata_misc.h"
 
-static void sub_02071C80(const u8 param0, const u8 param1, int *param2);
+static void SetCanalaveGymPlatformInitialState(const u8 index, const u8 startInPositionB, int *platformStates);
 
-static const u8 Unk_020F04CC[24] = {
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x1,
-    0x1,
-    0x1,
-    0x0,
-    0x1,
-    0x1,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x1,
-    0x0,
-    0x1,
-    0x1,
-    0x0,
-    0x1,
-    0x0,
-    0x1
+static const u8 sCanalaveGymPlatformsStartInPositionB[CANALAVE_GYM_NUM_PLATFORMS] = {
+    FALSE,
+    FALSE,
+    FALSE,
+    FALSE,
+    FALSE,
+    FALSE,
+    TRUE,
+    TRUE,
+    TRUE,
+    FALSE,
+    TRUE,
+    TRUE,
+    FALSE,
+    FALSE,
+    FALSE,
+    FALSE,
+    TRUE,
+    FALSE,
+    TRUE,
+    TRUE,
+    FALSE,
+    TRUE,
+    FALSE,
+    TRUE
 };
 
 void PersistedMapFeatures_InitForPastoriaGym(FieldSystem *fieldSystem)
@@ -64,10 +63,10 @@ void PersistedMapFeatures_InitForCanalaveGym(FieldSystem *fieldSystem)
     PersistedMapFeatures *persistedMapFeatures = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
     PersistedMapFeatures_InitWithID(persistedMapFeatures, DYNAMIC_MAP_FEATURES_CANALAVE_GYM);
 
-    UnkStruct_02071B30 *data = PersistedMapFeatures_GetBuffer(persistedMapFeatures, DYNAMIC_MAP_FEATURES_CANALAVE_GYM);
+    CanalaveGymPersistedFeature *data = PersistedMapFeatures_GetBuffer(persistedMapFeatures, DYNAMIC_MAP_FEATURES_CANALAVE_GYM);
 
-    for (int i = 0; i < 24; i++) {
-        sub_02071C80(i, Unk_020F04CC[i], &data->unk_00);
+    for (int i = 0; i < CANALAVE_GYM_NUM_PLATFORMS; i++) {
+        SetCanalaveGymPlatformInitialState(i, sCanalaveGymPlatformsStartInPositionB[i], &data->platformStates);
     }
 }
 
@@ -149,15 +148,15 @@ void PersistedMapFeatures_InitForDistortionWorld(FieldSystem *fieldSystem)
     memset(data, 0, sizeof(DistWorldPersistedData));
 }
 
-static void sub_02071C80(const u8 param0, const u8 param1, int *param2)
+static void SetCanalaveGymPlatformInitialState(const u8 index, const u8 startInPositionB, int *platformStates)
 {
-    GF_ASSERT(param1 <= 1);
+    GF_ASSERT(startInPositionB <= 1);
 
-    int v0 = (*param2) & (0xffffffff << (param0 + 1));
-    int v2 = (*param2) & (0xffffffff >> (32 - param0));
-    int v1 = param1 << param0;
+    int allUpperFlags = *platformStates & (0xFFFFFFFF << (index + 1));
+    int allLowerFlags = *platformStates & (0xFFFFFFFF >> (32 - index));
+    int indexedPlatformFlag = startInPositionB << index;
 
-    (*param2) = (v0 | v1 | v2);
+    *platformStates = allUpperFlags | indexedPlatformFlag | allLowerFlags;
 }
 
 BOOL PersistedMapFeatures_IsCurrentDynamicMap(FieldSystem *fieldSystem, int dynamicMapFeaturesID)

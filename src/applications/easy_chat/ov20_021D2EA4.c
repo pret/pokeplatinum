@@ -1,14 +1,13 @@
-#include "overlay020/ov20_021D2EA4.h"
+#include "applications/easy_chat/ov20_021D2EA4.h"
 
 #include <nitro.h>
 #include <string.h>
 
 #include "struct_decls/struct_020998EC_decl.h"
 
-#include "overlay020/ov20_021D0D80.h"
-#include "overlay020/ov20_021D2098.h"
-#include "overlay020/struct_ov20_021D16E8_decl.h"
-#include "overlay020/struct_ov20_021D2128_decl.h"
+#include "applications/easy_chat/main.h"
+#include "applications/easy_chat/ov20_021D2098.h"
+#include "applications/easy_chat/struct_ov20_021D2128_decl.h"
 
 #include "bg_window.h"
 #include "charcode.h"
@@ -38,7 +37,7 @@ typedef struct {
 
 typedef struct UnkStruct_ov20_021D30F8_t {
     UnkStruct_ov20_021D2128 *unk_00;
-    const UnkStruct_ov20_021D16E8 *unk_04;
+    const EasyChatApp *unk_04;
     const UnkStruct_020998EC *unk_08;
     Window unk_0C;
     Window unk_1C;
@@ -70,7 +69,7 @@ static void ov20_021D34F4(Window *param0, const UnkStruct_ov20_021D34CC *param1)
 static void ov20_021D351C(UnkStruct_ov20_021D30F8 *param0, Window *param1, const UnkStruct_ov20_021D34CC *param2, u16 param3);
 static void ov20_021D375C(UnkStruct_ov20_021D30F8 *param0, BOOL param1);
 
-UnkStruct_ov20_021D30F8 *ov20_021D2EA4(UnkStruct_ov20_021D2128 *param0, const UnkStruct_ov20_021D16E8 *param1, const UnkStruct_020998EC *param2)
+UnkStruct_ov20_021D30F8 *ov20_021D2EA4(UnkStruct_ov20_021D2128 *param0, const EasyChatApp *param1, const UnkStruct_020998EC *param2)
 {
     UnkStruct_ov20_021D30F8 *v0 = Heap_Alloc(HEAP_ID_35, sizeof(UnkStruct_ov20_021D30F8));
 
@@ -81,7 +80,7 @@ UnkStruct_ov20_021D30F8 *ov20_021D2EA4(UnkStruct_ov20_021D2128 *param0, const Un
     v0->unk_40 = NULL;
     v0->unk_44 = NULL;
     v0->unk_4C = String_Init(128, HEAP_ID_35);
-    v0->unk_48 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0437, HEAP_ID_35);
+    v0->unk_48 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_EASY_CHAT, HEAP_ID_35);
     v0->unk_50 = ColoredArrow_New(HEAP_ID_35);
 
     return v0;
@@ -146,7 +145,7 @@ void ov20_021D2F50(UnkStruct_ov20_021D30F8 *param0, NARC *param1)
     v1 += 9;
 
     Graphics_LoadPalette(NARC_INDEX_GRAPHIC__PL_WINFRAME, 24, 0, 14 * 0x20, 0x20, HEAP_ID_35);
-    LoadMessageBoxGraphics(v0, BG_LAYER_MAIN_0, v1, 15, ov20_021D2080(param0->unk_04), HEAP_ID_35);
+    LoadMessageBoxGraphics(v0, BG_LAYER_MAIN_0, v1, 15, EasyChat_GetFrame(param0->unk_04), HEAP_ID_35);
     Window_DrawMessageBox(&param0->unk_1C, v1, 15);
     Window_PutToTilemap(&param0->unk_0C);
     Window_PutToTilemap(&param0->unk_1C);
@@ -176,7 +175,7 @@ static void ov20_021D30A4(UnkStruct_ov20_021D30F8 *param0, NARC *param1)
 
 static void ov20_021D30F8(UnkStruct_ov20_021D30F8 *param0)
 {
-    if (ov20_021D1F84(param0->unk_04) == 2) {
+    if (EasyChat_GetType(param0->unk_04) == EASY_CHAT_TYPE_SENTENCE) {
         int v0 = 1 + ov20_021D1F9C(param0->unk_04);
         GX_LoadBGPltt(param0->unk_70[v0], 0 * 0x20, 0x20);
     } else {
@@ -186,20 +185,20 @@ static void ov20_021D30F8(UnkStruct_ov20_021D30F8 *param0)
 
 static void ov20_021D312C(UnkStruct_ov20_021D30F8 *param0)
 {
-    switch (ov20_021D1F84(param0->unk_04)) {
-    case 0:
+    switch (EasyChat_GetType(param0->unk_04)) {
+    case EASY_CHAT_TYPE_ONE_WORD:
         param0->unk_54[0].unk_00 = 104;
         param0->unk_54[0].unk_02 = 16;
         param0->unk_5C = 1;
         break;
-    case 1:
+    case EASY_CHAT_TYPE_TWO_WORDS:
         param0->unk_54[0].unk_00 = 48;
         param0->unk_54[0].unk_02 = 16;
         param0->unk_54[1].unk_00 = 160;
         param0->unk_54[1].unk_02 = 16;
         param0->unk_5C = 2;
         break;
-    case 2:
+    case EASY_CHAT_TYPE_SENTENCE:
         param0->unk_5C = 0;
         break;
     }
@@ -228,7 +227,7 @@ static void ov20_021D3184(UnkStruct_ov20_021D30F8 *param0)
 
     Sprite_SetAnim(param0->unk_44, 12);
 
-    if (ov20_021D1F84(param0->unk_04) != 2) {
+    if (EasyChat_GetType(param0->unk_04) != EASY_CHAT_TYPE_SENTENCE) {
         Sprite_SetDrawFlag(param0->unk_44, FALSE);
         Sprite_SetDrawFlag(param0->unk_40, FALSE);
     }
@@ -239,18 +238,18 @@ void ov20_021D3228(UnkStruct_ov20_021D30F8 *param0)
     ov20_021D30F8(param0);
     Window_FillTilemap(&param0->unk_0C, 13);
 
-    switch (ov20_021D1F84(param0->unk_04)) {
-    case 0:
+    switch (EasyChat_GetType(param0->unk_04)) {
+    case EASY_CHAT_TYPE_ONE_WORD:
         ov20_021D34F4(&param0->unk_0C, &param0->unk_54[0]);
-        ov20_021D351C(param0, &param0->unk_0C, &(param0->unk_54[0]), ov20_021D1FA8(param0->unk_04, 0));
+        ov20_021D351C(param0, &param0->unk_0C, &(param0->unk_54[0]), EasyChat_GetWordAtSlot(param0->unk_04, 0));
         break;
-    case 1:
+    case EASY_CHAT_TYPE_TWO_WORDS:
         ov20_021D34F4(&param0->unk_0C, &param0->unk_54[0]);
         ov20_021D34F4(&param0->unk_0C, &param0->unk_54[1]);
-        ov20_021D351C(param0, &param0->unk_0C, &(param0->unk_54[0]), ov20_021D1FA8(param0->unk_04, 0));
-        ov20_021D351C(param0, &param0->unk_0C, &(param0->unk_54[1]), ov20_021D1FA8(param0->unk_04, 1));
+        ov20_021D351C(param0, &param0->unk_0C, &(param0->unk_54[0]), EasyChat_GetWordAtSlot(param0->unk_04, 0));
+        ov20_021D351C(param0, &param0->unk_0C, &(param0->unk_54[1]), EasyChat_GetWordAtSlot(param0->unk_04, 1));
         break;
-    case 2:
+    case EASY_CHAT_TYPE_SENTENCE:
         param0->unk_5C = ov20_021D32D0(param0);
         break;
     }
@@ -281,7 +280,7 @@ static u32 ov20_021D32D0(UnkStruct_ov20_021D30F8 *param0)
             param0->unk_54[v3].unk_00 = v1 + (96 / 2);
             param0->unk_54[v3].unk_02 = v2 + (16 / 2);
             ov20_021D34F4(&param0->unk_0C, &(param0->unk_54[v3]));
-            v5 = ov20_021D1FA8(param0->unk_04, v3);
+            v5 = EasyChat_GetWordAtSlot(param0->unk_04, v3);
 
             if (v5 != 0xffff) {
                 ov20_021D351C(param0, &param0->unk_0C, &(param0->unk_54[v3]), v5);
@@ -432,7 +431,7 @@ void ov20_021D3578(UnkStruct_ov20_021D30F8 *param0, u32 param1)
         String *v1 = String_Init(300, HEAP_ID_SYSTEM);
 
         StringTemplate_SetBagPocketName(v0, 0, 0);
-        MessageLoader_GetString(param0->unk_48, 0 + ov20_021D1F88(param0->unk_04), param0->unk_4C);
+        MessageLoader_GetString(param0->unk_48, EasyChat_GetInstructionBankEntry(param0->unk_04), param0->unk_4C);
         StringTemplate_Format(v0, v1, param0->unk_4C);
         Text_AddPrinterWithParamsAndColor(&param0->unk_1C, FONT_MESSAGE, v1, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 9), NULL);
 
@@ -474,7 +473,7 @@ void ov20_021D369C(UnkStruct_ov20_021D30F8 *param0, BOOL param1)
 
 void ov20_021D36B0(UnkStruct_ov20_021D30F8 *param0)
 {
-    if (ov20_021D1F84(param0->unk_04) == 2) {
+    if (EasyChat_GetType(param0->unk_04) == EASY_CHAT_TYPE_SENTENCE) {
         Sprite_SetDrawFlag(param0->unk_40, FALSE);
         Sprite_SetDrawFlag(param0->unk_44, FALSE);
     }
@@ -482,7 +481,7 @@ void ov20_021D36B0(UnkStruct_ov20_021D30F8 *param0)
 
 void ov20_021D36D0(UnkStruct_ov20_021D30F8 *param0)
 {
-    if (ov20_021D1F84(param0->unk_04) == 2) {
+    if (EasyChat_GetType(param0->unk_04) == EASY_CHAT_TYPE_SENTENCE) {
         Sprite_SetDrawFlag(param0->unk_40, TRUE);
         Sprite_SetDrawFlag(param0->unk_44, TRUE);
 
