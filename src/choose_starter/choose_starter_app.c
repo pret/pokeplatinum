@@ -200,7 +200,7 @@ typedef struct ChooseStarterApp {
     enum ChoiceStep choiceStep;
     enum ChooseStarterStep chooseStarterStep;
     BOOL disableCursorMovement;
-    int unk_0C;
+    int delayFrameCount;
     ChooseStarterCameraMovement cameraMovement;
     enum CursorPosition cursorPosition;
     int selectionMatrix[NUM_STARTER_OPTIONS][3];
@@ -971,14 +971,14 @@ static void UpdateGraphics(ChooseStarterApp *app, enum HeapID heapID)
     case CHOICE_STEP_BLEND_BGS:
 
         app->disableCursorMovement = TRUE;
-        app->unk_0C = 36;
+        app->delayFrameCount = 36;
         AdvanceChoiceStep(app, 1);
         G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG3, GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_OBJ, 10, 16 - 10);
         break;
     case CHOICE_STEP_PLAY_BAG_NOISE:
-        app->unk_0C--;
+        app->delayFrameCount--;
 
-        if (app->unk_0C < 0) {
+        if (app->delayFrameCount < 0) {
             AdvanceChoiceStep(app, 1);
             Sound_PlayEffect(SEQ_SE_DP_BAG_030);
         }
@@ -1154,14 +1154,14 @@ static void AdvancePokeballChoiceGraphics(ChooseStarterApp *app, enum HeapID hea
         break;
     case CHOOSE_STARTER_STEP_WAIT_FOR_CAMERA_MOVEMENT_FINISH:
         if (HasCameraMovementFinished(&app->cameraMovement)) {
-            app->unk_0C = 6;
+            app->delayFrameCount = 6;
             app->chooseStarterStep++;
         }
         break;
     case CHOOSE_STARTER_STEP_UPDATE_CURSOR_POSITION:
-        app->unk_0C--;
+        app->delayFrameCount--;
 
-        if (app->unk_0C < 0) {
+        if (app->delayFrameCount < 0) {
             UpdateCursorPosition(app);
             app->chooseStarterStep++;
         }
