@@ -340,7 +340,7 @@ BOOL ChooseStarter_Init(ApplicationManager *appMan, int *param1)
     DisableHBlank();
 
     EnableTouchPad();
-    GF_ASSERT(InitializeTouchPad(4) == 1);
+    GF_ASSERT(InitializeTouchPad(4) == TRUE);
 
     RenderControlFlags_SetCanABSpeedUpPrint(TRUE);
     RenderControlFlags_SetAutoScrollFlags(AUTO_SCROLL_DISABLED);
