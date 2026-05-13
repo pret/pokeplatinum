@@ -924,7 +924,7 @@ static void BattleAnimTask_QuickAttack(SysTask *task, void *param)
 
     SpriteSystem_DrawSprites(ctx->pokemonSpriteManager);
 
-    for (int i = 0; i < SNELEMS(transformsActive); i++) {
+    for (int i = 0; i < (int)NELEMS(transformsActive); i++) {
         if (transformsActive[i] == TRUE) {
             return;
         }

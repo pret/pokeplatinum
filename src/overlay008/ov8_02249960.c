@@ -3752,7 +3752,7 @@ void HearthomeGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
 
         room++;
         i++;
-    } while (i < SNELEMS(sTrainerRoomLayouts));
+    } while (i < (int)NELEMS(sTrainerRoomLayouts));
 
     if (!features->initialized) {
         features->initialized = TRUE;

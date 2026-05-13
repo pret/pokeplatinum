@@ -964,7 +964,7 @@ static void LoadSprites(UnkStruct_ov90_021D0ECC *param0)
     SDK_COMPILER_ASSERT(NELEMS(sSpriteTemplates) == SPRITE_TEMPLATE_MAX);
     SDK_COMPILER_ASSERT(NELEMS(sSpriteTemplates) == NELEMS(param0->sprites));
 
-    for (int i = 0; i < SNELEMS(param0->sprites); i++) {
+    for (int i = 0; i < (int)NELEMS(param0->sprites); i++) {
         param0->sprites[i] = SpriteSystem_NewSpriteFromResourceHeader(param0->unk_29C, param0->unk_2A0, &sSpriteTemplates[i]);
     }
 
@@ -978,7 +978,7 @@ static void LoadSprites(UnkStruct_ov90_021D0ECC *param0)
 
 static void DeleteSprites(UnkStruct_ov90_021D0ECC *param0)
 {
-    for (int i = 0; i < SNELEMS(param0->sprites); i++) {
+    for (int i = 0; i < (int)NELEMS(param0->sprites); i++) {
         Sprite_Delete2(param0->sprites[i]);
     }
 }

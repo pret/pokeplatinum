@@ -372,19 +372,19 @@ static u16 CalculateGBABoxMonChecksum(GBABoxPokemon *gbaBoxMon)
     union GBAPokemonSubstruct *substruct2 = GetGBASubstruct(gbaBoxMon, gbaBoxMon->personality, 2);
     union GBAPokemonSubstruct *substruct3 = GetGBASubstruct(gbaBoxMon, gbaBoxMon->personality, 3);
 
-    for (int i = 0; i < SNELEMS(substruct0->raw); i++) {
+    for (int i = 0; i < (int)NELEMS(substruct0->raw); i++) {
         checksum += substruct0->raw[i];
     }
 
-    for (int i = 0; i < SNELEMS(substruct1->raw); i++) {
+    for (int i = 0; i < (int)NELEMS(substruct1->raw); i++) {
         checksum += substruct1->raw[i];
     }
 
-    for (int i = 0; i < SNELEMS(substruct2->raw); i++) {
+    for (int i = 0; i < (int)NELEMS(substruct2->raw); i++) {
         checksum += substruct2->raw[i];
     }
 
-    for (int i = 0; i < SNELEMS(substruct3->raw); i++) {
+    for (int i = 0; i < (int)NELEMS(substruct3->raw); i++) {
         checksum += substruct3->raw[i];
     }
 

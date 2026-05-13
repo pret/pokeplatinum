@@ -88,7 +88,7 @@ BOOL FrontierScriptContext_Run(FrontierScriptContext *ctx)
 
 static BOOL FrontierScriptContext_Push(FrontierScriptContext *ctx, const u8 *ptr)
 {
-    if (ctx->stackPointer + 1 >= SNELEMS(ctx->stack)) {
+    if (ctx->stackPointer + 1 >= (int)NELEMS(ctx->stack)) {
         return TRUE;
     }
 

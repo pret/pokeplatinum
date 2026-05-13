@@ -1228,7 +1228,7 @@ static int BoxPokemon_HasUnusedRibbons(BoxPokemon *boxMon)
     int count = 0;
     int reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
 
-    for (int i = 0; i < SNELEMS(sUnusedRibbons); i++) {
+    for (int i = 0; i < (int)NELEMS(sUnusedRibbons); i++) {
         count += BoxPokemon_GetValue(boxMon, sUnusedRibbons[i], NULL);
     }
 

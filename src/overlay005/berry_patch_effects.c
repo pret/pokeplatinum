@@ -313,7 +313,7 @@ static void BerryPatchSparkleEffect_Update(OverworldAnimManager *effect, void *c
         sparkleEffect->isAnimating = FALSE;
         sparkleEffect->animationFrame++;
 
-        if (sparkleEffect->animationFrame >= SNELEMS(animationSpeeds)) {
+        if (sparkleEffect->animationFrame >= (int)NELEMS(animationSpeeds)) {
             FieldEffectManager_FinishAnimManager(effect);
             return;
         }
