@@ -8,7 +8,7 @@ typedef struct {
     u8 unk_03;
     s16 unk_04;
     u16 unk_06;
-    u8 unk_08;
+    u8 isWaitingForPartner;
     u8 unk_09[3];
 } UnkStruct_ov16_02269668;
 

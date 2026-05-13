@@ -93,7 +93,7 @@
 
 typedef struct TrainerEncounterData {
     BattleSystem *battleSys;
-    UnkStruct_ov16_02268520 *unk_04;
+    Terrain *terrain;
     ManagedSprite *managedSprite;
     u8 command;
     u8 battler;
@@ -215,7 +215,7 @@ typedef struct MonEncounterData {
     BattleSystem *battleSys;
     BattlerData *battlerData;
     PokemonSprite *sprite;
-    UnkStruct_ov16_02268520 *unk_0C;
+    Terrain *terrain;
     u8 command;
     u8 battler;
     u8 state;
@@ -250,12 +250,12 @@ void BattleDisplay_InitTaskSetEncounter(BattleSystem *battleSys, BattlerData *ba
 
     if (battlerData->battlerType & BATTLER_THEM) {
         monEncounterData->face = FACE_FRONT;
-        monEncounterData->unk_0C = ov16_0223E020(battleSys, 1);
-        ManagedSprite_SetPositionXY(monEncounterData->unk_0C->unk_00, gEncounterCoords[battlerData->battlerType & BATTLER_THEM][0], 8 * 11);
+        monEncounterData->terrain = BattlerSystem_GetTerrain(battleSys, 1);
+        ManagedSprite_SetPositionXY(monEncounterData->terrain->managedSprite, gEncounterCoords[battlerData->battlerType & BATTLER_THEM][0], 8 * 11);
     } else {
         monEncounterData->face = FACE_BACK;
-        monEncounterData->unk_0C = ov16_0223E020(battleSys, 0);
-        ManagedSprite_SetPositionXY(monEncounterData->unk_0C->unk_00, gEncounterCoords[battlerData->battlerType & BATTLER_THEM][0], 128 + 8);
+        monEncounterData->terrain = BattlerSystem_GetTerrain(battleSys, 0);
+        ManagedSprite_SetPositionXY(monEncounterData->terrain->managedSprite, gEncounterCoords[battlerData->battlerType & BATTLER_THEM][0], 128 + 8);
     }
 
     isShiny = !!message->isShiny;
@@ -525,12 +525,12 @@ void BattleDisplay_InitTaskSetTrainerEncounter(BattleSystem *battleSys, BattlerD
 
     if (battlerData->battlerType & BATTLER_THEM) {
         trainerEncounterData->face = FACE_FRONT;
-        trainerEncounterData->unk_04 = ov16_0223E020(battleSys, 1);
-        ManagedSprite_SetPositionXY(trainerEncounterData->unk_04->unk_00, gEncounterCoords[battlerData->battlerType & BATTLER_THEM][0], 8 * 11);
+        trainerEncounterData->terrain = BattlerSystem_GetTerrain(battleSys, 1);
+        ManagedSprite_SetPositionXY(trainerEncounterData->terrain->managedSprite, gEncounterCoords[battlerData->battlerType & BATTLER_THEM][0], 8 * 11);
     } else {
         trainerEncounterData->face = FACE_BACK;
-        trainerEncounterData->unk_04 = ov16_0223E020(battleSys, 0);
-        ManagedSprite_SetPositionXY(trainerEncounterData->unk_04->unk_00, gEncounterCoords[battlerData->battlerType & BATTLER_THEM][0], 128 + 8);
+        trainerEncounterData->terrain = BattlerSystem_GetTerrain(battleSys, 0);
+        ManagedSprite_SetPositionXY(trainerEncounterData->terrain->managedSprite, gEncounterCoords[battlerData->battlerType & BATTLER_THEM][0], 128 + 8);
     }
 
     if ((BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_2vs2)
@@ -1754,17 +1754,17 @@ static void Task_SetEncounter(SysTask *task, void *data)
         monEncounterData->state++;
     case 2:
         if (monEncounterData->face == FACE_FRONT) {
-            ManagedSprite_GetPositionXY(monEncounterData->unk_0C->unk_00, &x, &y);
+            ManagedSprite_GetPositionXY(monEncounterData->terrain->managedSprite, &x, &y);
 
             if (monEncounterData->battlerType == BATTLER_TYPE_SOLO_ENEMY || monEncounterData->battlerType == BATTLER_TYPE_ENEMY_SIDE_SLOT_1) {
                 if (x < (24 * 8)) {
-                    ManagedSprite_OffsetPositionXY(monEncounterData->unk_0C->unk_00, 8, 0);
+                    ManagedSprite_OffsetPositionXY(monEncounterData->terrain->managedSprite, 8, 0);
                 } else {
-                    ManagedSprite_SetPositionXY(monEncounterData->unk_0C->unk_00, 24 * 8, 8 * 11);
+                    ManagedSprite_SetPositionXY(monEncounterData->terrain->managedSprite, 24 * 8, 8 * 11);
                 }
             }
 
-            ManagedSprite_GetPositionXY(monEncounterData->unk_0C->unk_00, &x, &y);
+            ManagedSprite_GetPositionXY(monEncounterData->terrain->managedSprite, &x, &y);
 
             if (monEncounterData->battlerType == BATTLER_TYPE_SOLO_ENEMY) {
                 PokemonSprite_SetAttribute(monEncounterData->sprite, MON_SPRITE_X_CENTER, x);
@@ -1800,24 +1800,24 @@ static void Task_SetEncounter(SysTask *task, void *data)
                     cryDelay);
 
                 if (monEncounterData->battlerType == BATTLER_TYPE_SOLO_ENEMY || monEncounterData->battlerType == BATTLER_TYPE_ENEMY_SIDE_SLOT_1) {
-                    ManagedSprite_SetPositionXY(monEncounterData->unk_0C->unk_00, 24 * 8, 8 * 11);
+                    ManagedSprite_SetPositionXY(monEncounterData->terrain->managedSprite, 24 * 8, 8 * 11);
                 }
 
                 PokemonSprite_StartFade(monEncounterData->sprite, 8, 0, 0, 0);
                 monEncounterData->state++;
             }
         } else {
-            ManagedSprite_GetPositionXY(monEncounterData->unk_0C->unk_00, &x, &y);
+            ManagedSprite_GetPositionXY(monEncounterData->terrain->managedSprite, &x, &y);
 
             if (monEncounterData->battlerType == BATTLER_TYPE_SOLO_PLAYER || monEncounterData->battlerType == BATTLER_TYPE_PLAYER_SIDE_SLOT_1) {
                 if (x > 64) {
-                    ManagedSprite_OffsetPositionXY(monEncounterData->unk_0C->unk_00, -8, 0);
+                    ManagedSprite_OffsetPositionXY(monEncounterData->terrain->managedSprite, -8, 0);
                 } else {
-                    ManagedSprite_SetPositionXY(monEncounterData->unk_0C->unk_00, 64, 128 + 8);
+                    ManagedSprite_SetPositionXY(monEncounterData->terrain->managedSprite, 64, 128 + 8);
                 }
             }
 
-            ManagedSprite_GetPositionXY(monEncounterData->unk_0C->unk_00, &x, &y);
+            ManagedSprite_GetPositionXY(monEncounterData->terrain->managedSprite, &x, &y);
 
             if (monEncounterData->battlerType == BATTLER_TYPE_SOLO_PLAYER) {
                 PokemonSprite_SetAttribute(monEncounterData->sprite, MON_SPRITE_X_CENTER, x);
@@ -1855,7 +1855,7 @@ static void Task_SetEncounter(SysTask *task, void *data)
                     cryDelay);
 
                 if (monEncounterData->battlerType == BATTLER_TYPE_SOLO_PLAYER || monEncounterData->battlerType == BATTLER_TYPE_PLAYER_SIDE_SLOT_1) {
-                    ManagedSprite_SetPositionXY(monEncounterData->unk_0C->unk_00, 64, 128 + 8);
+                    ManagedSprite_SetPositionXY(monEncounterData->terrain->managedSprite, 64, 128 + 8);
                 }
 
                 monEncounterData->state++;
@@ -1910,17 +1910,17 @@ static void Task_SetGiratinaEncounter(SysTask *task, void *data)
 
         monEncounterData->state++;
     case 2:
-        ManagedSprite_GetPositionXY(monEncounterData->unk_0C->unk_00, &x, &y);
+        ManagedSprite_GetPositionXY(monEncounterData->terrain->managedSprite, &x, &y);
 
         if (monEncounterData->battlerType == BATTLER_TYPE_SOLO_ENEMY || monEncounterData->battlerType == BATTLER_TYPE_ENEMY_SIDE_SLOT_1) {
             if (x < (24 * 8)) {
-                ManagedSprite_OffsetPositionXY(monEncounterData->unk_0C->unk_00, 8, 0);
+                ManagedSprite_OffsetPositionXY(monEncounterData->terrain->managedSprite, 8, 0);
             } else {
-                ManagedSprite_SetPositionXY(monEncounterData->unk_0C->unk_00, 24 * 8, 8 * 11);
+                ManagedSprite_SetPositionXY(monEncounterData->terrain->managedSprite, 24 * 8, 8 * 11);
             }
         }
 
-        ManagedSprite_GetPositionXY(monEncounterData->unk_0C->unk_00, &x, &y);
+        ManagedSprite_GetPositionXY(monEncounterData->terrain->managedSprite, &x, &y);
         PokemonSprite_AddAttribute(monEncounterData->sprite, MON_SPRITE_Y_CENTER, 8 / 2);
 
         if (PokemonSprite_GetAttribute(monEncounterData->sprite, MON_SPRITE_Y_CENTER) >= monEncounterData->unk_14) {
@@ -1949,7 +1949,7 @@ static void Task_SetGiratinaEncounter(SysTask *task, void *data)
                 HEAP_ID_BATTLE,
                 cryDelay);
 
-            ManagedSprite_SetPositionXY(monEncounterData->unk_0C->unk_00, 24 * 8, 8 * 11);
+            ManagedSprite_SetPositionXY(monEncounterData->terrain->managedSprite, 24 * 8, 8 * 11);
             PokemonSprite_StartFade(monEncounterData->sprite, 8, 0, 0, 0);
 
             monEncounterData->state++;
@@ -2001,7 +2001,7 @@ static void Task_ShowEncounter(SysTask *task, void *data)
                 monShowData->unk_10 = ov12_02223764(monShowData->battleSys, HEAP_ID_BATTLE);
             }
         } else if ((BattleSystem_GetBattleStatusMask(monShowData->battleSys) & BATTLE_STATUS_RECORDED) == FALSE) {
-            if (ov16_0223ED60(monShowData->battleSys) == 1 && monShowData->battlerType == BATTLER_TYPE_PLAYER_SIDE_SLOT_1) {
+            if (BattleSystem_IsInitialized(monShowData->battleSys) == TRUE && monShowData->battlerType == BATTLER_TYPE_PLAYER_SIDE_SLOT_1) {
                 monShowData->unk_10 = ov12_02223764(monShowData->battleSys, HEAP_ID_BATTLE);
             } else if (monShowData->battlerType == BATTLER_TYPE_SOLO_PLAYER) {
                 monShowData->unk_10 = ov12_02223764(monShowData->battleSys, HEAP_ID_BATTLE);
@@ -2661,19 +2661,19 @@ static void Task_SetTrainerEncounter(SysTask *task, void *data)
 
         trainerEncounterData->state = 2;
     case 2:
-        ManagedSprite_GetPositionXY(trainerEncounterData->unk_04->unk_00, &x1, &y1);
+        ManagedSprite_GetPositionXY(trainerEncounterData->terrain->managedSprite, &x1, &y1);
         ManagedSprite_GetPositionXY(trainerEncounterData->managedSprite, &x2, &y2);
 
         if (trainerEncounterData->face == FACE_FRONT) {
             if (trainerEncounterData->battlerType == BATTLER_TYPE_SOLO_ENEMY || trainerEncounterData->battlerType == BATTLER_TYPE_ENEMY_SIDE_SLOT_1) {
                 if (x1 < (24 * 8)) {
-                    ManagedSprite_OffsetPositionXY(trainerEncounterData->unk_04->unk_00, 8, 0);
+                    ManagedSprite_OffsetPositionXY(trainerEncounterData->terrain->managedSprite, 8, 0);
                 } else {
-                    ManagedSprite_SetPositionXY(trainerEncounterData->unk_04->unk_00, 24 * 8, 8 * 11);
+                    ManagedSprite_SetPositionXY(trainerEncounterData->terrain->managedSprite, 24 * 8, 8 * 11);
                 }
             }
 
-            ManagedSprite_GetPositionXY(trainerEncounterData->unk_04->unk_00, &x1, &y1);
+            ManagedSprite_GetPositionXY(trainerEncounterData->terrain->managedSprite, &x1, &y1);
 
             if (trainerEncounterData->battlerType == BATTLER_TYPE_SOLO_ENEMY
                 || (trainerEncounterData->battlerType == BATTLER_TYPE_ENEMY_SIDE_SLOT_1 && (battleType == BATTLE_TYPE_TRAINER_DOUBLES || battleType == BATTLE_TYPE_FRONTIER_DOUBLES || battleType == ((BATTLE_TYPE_LINK | BATTLE_TYPE_TRAINER) | BATTLE_TYPE_DOUBLES)))) {
@@ -2696,7 +2696,7 @@ static void Task_SetTrainerEncounter(SysTask *task, void *data)
                 ManagedSprite_SetPositionXY(trainerEncounterData->managedSprite, trainerEncounterData->unk_10, y2);
 
                 if (trainerEncounterData->battlerType == BATTLER_TYPE_SOLO_ENEMY || trainerEncounterData->battlerType == BATTLER_TYPE_ENEMY_SIDE_SLOT_1) {
-                    ManagedSprite_SetPositionXY(trainerEncounterData->unk_04->unk_00, 24 * 8, 8 * 11);
+                    ManagedSprite_SetPositionXY(trainerEncounterData->terrain->managedSprite, 24 * 8, 8 * 11);
                 }
 
                 if (ManagedSprite_GetNumFrames(trainerEncounterData->managedSprite) > 1) {
@@ -2711,13 +2711,13 @@ static void Task_SetTrainerEncounter(SysTask *task, void *data)
         } else {
             if (trainerEncounterData->battlerType == BATTLER_TYPE_SOLO_PLAYER || trainerEncounterData->battlerType == BATTLER_TYPE_PLAYER_SIDE_SLOT_1) {
                 if (x1 > 64) {
-                    ManagedSprite_OffsetPositionXY(trainerEncounterData->unk_04->unk_00, -8, 0);
+                    ManagedSprite_OffsetPositionXY(trainerEncounterData->terrain->managedSprite, -8, 0);
                 } else {
-                    ManagedSprite_SetPositionXY(trainerEncounterData->unk_04->unk_00, 64, 128 + 8);
+                    ManagedSprite_SetPositionXY(trainerEncounterData->terrain->managedSprite, 64, 128 + 8);
                 }
             }
 
-            ManagedSprite_GetPositionXY(trainerEncounterData->unk_04->unk_00, &x1, &y1);
+            ManagedSprite_GetPositionXY(trainerEncounterData->terrain->managedSprite, &x1, &y1);
 
             if (trainerEncounterData->battlerType == BATTLER_TYPE_SOLO_PLAYER
                 || (trainerEncounterData->battlerType == BATTLER_TYPE_PLAYER_SIDE_SLOT_1
@@ -2741,7 +2741,7 @@ static void Task_SetTrainerEncounter(SysTask *task, void *data)
                 ManagedSprite_SetPositionXY(trainerEncounterData->managedSprite, trainerEncounterData->unk_10, y2);
 
                 if (trainerEncounterData->battlerType == BATTLER_TYPE_SOLO_PLAYER || trainerEncounterData->battlerType == BATTLER_TYPE_PLAYER_SIDE_SLOT_1) {
-                    ManagedSprite_SetPositionXY(trainerEncounterData->unk_04->unk_00, 64, 128 + 8);
+                    ManagedSprite_SetPositionXY(trainerEncounterData->terrain->managedSprite, 64, 128 + 8);
                 }
 
                 trainerEncounterData->state = 4;
@@ -3272,7 +3272,7 @@ static void Task_PlayerSetCommandSelection(SysTask *task, void *data)
         v11.unk_04 = commandSetData->curHP;
         v11.unk_06 = commandSetData->maxHP;
         v11.unk_03 = commandSetData->ballStatusBattler;
-        v11.unk_08 = ov16_0223EC58(commandSetData->battleSys, commandSetData->battler, commandSetData->switchingOrCanPickCommandMask);
+        v11.isWaitingForPartner = BattleSystem_IsSlot2WaitingForPartner(commandSetData->battleSys, commandSetData->battler, commandSetData->switchingOrCanPickCommandMask);
 
         if (battlerData->unk_193) {
             ov16_0226BCCC(v2, 1);
@@ -3492,7 +3492,7 @@ static void Task_RecordingSetCommandSelection(SysTask *task, void *data)
     CommandSetData *commandSetData = data;
     u8 v1;
 
-    if (ov16_0223F530(commandSetData->battleSys, commandSetData->battler, &v1) == 1) {
+    if (BattleSystem_ReadNextRecordedInput(commandSetData->battleSys, commandSetData->battler, &v1) == 1) {
         ov16_0226474C(commandSetData->battleSys);
     }
 
@@ -3648,7 +3648,7 @@ static void Task_RecordingShowMoveSelectMenu(SysTask *task, void *data)
     MoveSelectMenuData *moveSelectMenuData = data;
     u8 moveSlot;
 
-    if (ov16_0223F530(moveSelectMenuData->battleSys, moveSelectMenuData->battler, &moveSlot) == 1) {
+    if (BattleSystem_ReadNextRecordedInput(moveSelectMenuData->battleSys, moveSelectMenuData->battler, &moveSlot) == 1) {
         ov16_0226474C(moveSelectMenuData->battleSys);
     }
 
@@ -3737,7 +3737,7 @@ static void Task_PlayerShowTargetSelectMenu(SysTask *task, void *data)
             u32 battleType = BattleSystem_GetBattleType(targetSelectMenuData->battleSys);
 
             if (input != 0xFF) {
-                ov16_0223F858(targetSelectMenuData->battleSys, &v10[0]);
+                BattleSystem_SetBattlersByType(targetSelectMenuData->battleSys, &v10[0]);
 
                 if (battleType & BATTLE_TYPE_DOUBLES) {
                     input = v10[2 + (targetSelectMenuData->input - 1)] + 1;
@@ -3785,7 +3785,7 @@ static void Task_RecordingShowTargetSelectMenu(SysTask *task, void *data)
     TargetSelectMenuData *targetSelectMenuData = data;
     u8 v1;
 
-    if (ov16_0223F530(targetSelectMenuData->battleSys, targetSelectMenuData->battler, &v1) == 1) {
+    if (BattleSystem_ReadNextRecordedInput(targetSelectMenuData->battleSys, targetSelectMenuData->battler, &v1) == 1) {
         ov16_0226474C(targetSelectMenuData->battleSys);
     }
 
@@ -4363,19 +4363,19 @@ static void Task_RecordingShowBagMenu(SysTask *task, void *data)
     BattleItemUse used;
     u8 v2;
 
-    if (ov16_0223F530(bagMenuData->battleSys, bagMenuData->battler, &v2) == 1) {
+    if (BattleSystem_ReadNextRecordedInput(bagMenuData->battleSys, bagMenuData->battler, &v2) == 1) {
         ov16_0226474C(bagMenuData->battleSys);
     }
 
     used.item = v2;
 
-    if (ov16_0223F530(bagMenuData->battleSys, bagMenuData->battler, &v2) == 1) {
+    if (BattleSystem_ReadNextRecordedInput(bagMenuData->battleSys, bagMenuData->battler, &v2) == 1) {
         ov16_0226474C(bagMenuData->battleSys);
     }
 
     used.item |= (v2 << 8);
 
-    if (ov16_0223F530(bagMenuData->battleSys, bagMenuData->battler, &v2) == 1) {
+    if (BattleSystem_ReadNextRecordedInput(bagMenuData->battleSys, bagMenuData->battler, &v2) == 1) {
         ov16_0226474C(bagMenuData->battleSys);
     }
 
@@ -4594,7 +4594,7 @@ static void Task_RecordingShowPartyMenu(SysTask *task, void *data)
     PartyMenuData *partyMenuData = data;
     u8 v1;
 
-    if (ov16_0223F530(partyMenuData->battleSys, partyMenuData->battler, &v1) == 1) {
+    if (BattleSystem_ReadNextRecordedInput(partyMenuData->battleSys, partyMenuData->battler, &v1) == 1) {
         ov16_0226474C(partyMenuData->battleSys);
     }
 
@@ -4772,7 +4772,7 @@ static void Task_RecordingShowYesNoMenu(SysTask *task, void *data)
     YesNoMenuData *yesNoMenuData = data;
     u8 v1;
 
-    if (ov16_0223F530(yesNoMenuData->battleSys, yesNoMenuData->battler, &v1) == 1) {
+    if (BattleSystem_ReadNextRecordedInput(yesNoMenuData->battleSys, yesNoMenuData->battler, &v1) == 1) {
         ov16_0226474C(yesNoMenuData->battleSys);
     }
 
@@ -4819,7 +4819,7 @@ static void Task_SetMoveAnimation(SysTask *task, void *data)
         BattleSystem_SetRedHPSoundFlag(setMoveAnimationData->battleSys, 2);
 
         if (setMoveAnimationData->unk_6B) {
-            ov16_0223F3EC(setMoveAnimationData->battleSys);
+            BattleSystem_HideHealthboxes(setMoveAnimationData->battleSys);
         }
 
         if (setMoveAnimationData->unk_6C) {
@@ -4833,7 +4833,7 @@ static void Task_SetMoveAnimation(SysTask *task, void *data)
         BattleSystem_SetRedHPSoundFlag(setMoveAnimationData->battleSys, 0);
 
         if (setMoveAnimationData->unk_6B) {
-            ov16_0223F3BC(setMoveAnimationData->battleSys);
+            BattleSystem_ShowHealthboxes(setMoveAnimationData->battleSys);
         }
 
         if (setMoveAnimationData->unk_6C) {
@@ -5358,16 +5358,16 @@ static void ov16_02263014(SysTask *task, void *data)
         }
 
         if (v0->unk_15 == 28) {
-            MI_CpuCopy16(ov16_0223F204(v0->battleSys), PaletteData_GetUnfadedBuffer(paletteData, 0), PALETTE_SIZE_BYTES * 7);
+            MI_CpuCopy16(BattleSystem_GetSavedBgPalettes(v0->battleSys), PaletteData_GetUnfadedBuffer(paletteData, 0), PALETTE_SIZE_BYTES * 7);
 
             if (BattleSystem_GetBattleType(v0->battleSys) == BATTLE_TYPE_AI_PARTNER) {
-                MI_CpuCopy16(ov16_0223F210(v0->battleSys), PaletteData_GetUnfadedBuffer(paletteData, 2), PALETTE_SIZE_BYTES * 5);
+                MI_CpuCopy16(BattleSystem_GetSavedObjPalettes(v0->battleSys), PaletteData_GetUnfadedBuffer(paletteData, 2), PALETTE_SIZE_BYTES * 5);
             } else if (BattleSystem_GetBattleType(v0->battleSys) & BATTLE_TYPE_DOUBLES) {
-                MI_CpuCopy16(ov16_0223F210(v0->battleSys), PaletteData_GetUnfadedBuffer(paletteData, 2), PALETTE_SIZE_BYTES * 7);
+                MI_CpuCopy16(BattleSystem_GetSavedObjPalettes(v0->battleSys), PaletteData_GetUnfadedBuffer(paletteData, 2), PALETTE_SIZE_BYTES * 7);
             } else if (BattleSystem_GetBattleType(v0->battleSys) & BATTLE_TYPE_TRAINER) {
-                MI_CpuCopy16(ov16_0223F210(v0->battleSys), PaletteData_GetUnfadedBuffer(paletteData, 2), PALETTE_SIZE_BYTES * 5);
+                MI_CpuCopy16(BattleSystem_GetSavedObjPalettes(v0->battleSys), PaletteData_GetUnfadedBuffer(paletteData, 2), PALETTE_SIZE_BYTES * 5);
             } else {
-                MI_CpuCopy16(ov16_0223F210(v0->battleSys), PaletteData_GetUnfadedBuffer(paletteData, 2), PALETTE_SIZE_BYTES * 4);
+                MI_CpuCopy16(BattleSystem_GetSavedObjPalettes(v0->battleSys), PaletteData_GetUnfadedBuffer(paletteData, 2), PALETTE_SIZE_BYTES * 4);
             }
 
             PaletteData_StartFade(paletteData, PLTTBUF_MAIN_BG_F, 0xF3FF, 0, 16, 0, fadeTarget);
@@ -5396,16 +5396,16 @@ static void ov16_02263014(SysTask *task, void *data)
         ov12_02237F74(v0->unk_04);
         v0->unk_14++;
     case 5:
-        MI_CpuCopy16(ov16_0223F204(v0->battleSys), PaletteData_GetUnfadedBuffer(paletteData, 0), PALETTE_SIZE_BYTES * 7);
+        MI_CpuCopy16(BattleSystem_GetSavedBgPalettes(v0->battleSys), PaletteData_GetUnfadedBuffer(paletteData, 0), PALETTE_SIZE_BYTES * 7);
 
         if (BattleSystem_GetBattleType(v0->battleSys) == BATTLE_TYPE_AI_PARTNER) {
-            MI_CpuCopy16(ov16_0223F210(v0->battleSys), PaletteData_GetUnfadedBuffer(paletteData, 2), PALETTE_SIZE_BYTES * 5);
+            MI_CpuCopy16(BattleSystem_GetSavedObjPalettes(v0->battleSys), PaletteData_GetUnfadedBuffer(paletteData, 2), PALETTE_SIZE_BYTES * 5);
         } else if (BattleSystem_GetBattleType(v0->battleSys) & BATTLE_TYPE_DOUBLES) {
-            MI_CpuCopy16(ov16_0223F210(v0->battleSys), PaletteData_GetUnfadedBuffer(paletteData, 2), PALETTE_SIZE_BYTES * 7);
+            MI_CpuCopy16(BattleSystem_GetSavedObjPalettes(v0->battleSys), PaletteData_GetUnfadedBuffer(paletteData, 2), PALETTE_SIZE_BYTES * 7);
         } else if (BattleSystem_GetBattleType(v0->battleSys) & BATTLE_TYPE_TRAINER) {
-            MI_CpuCopy16(ov16_0223F210(v0->battleSys), PaletteData_GetUnfadedBuffer(paletteData, 2), PALETTE_SIZE_BYTES * 5);
+            MI_CpuCopy16(BattleSystem_GetSavedObjPalettes(v0->battleSys), PaletteData_GetUnfadedBuffer(paletteData, 2), PALETTE_SIZE_BYTES * 5);
         } else {
-            MI_CpuCopy16(ov16_0223F210(v0->battleSys), PaletteData_GetUnfadedBuffer(paletteData, 2), PALETTE_SIZE_BYTES * 4);
+            MI_CpuCopy16(BattleSystem_GetSavedObjPalettes(v0->battleSys), PaletteData_GetUnfadedBuffer(paletteData, 2), PALETTE_SIZE_BYTES * 4);
         }
 
         PaletteData_StartFade(paletteData, PLTTBUF_MAIN_BG_F, 0xFFFF, 0, 0, 0, 0x7FFF);
@@ -5676,7 +5676,7 @@ void BattlerData_SetTaskFuncs(BattleSystem *battleSys, BattlerData *battlerData)
         }
     } else if ((battleType & (BATTLE_TYPE_2vs2 | BATTLE_TYPE_FRONTIER)) == (BATTLE_TYPE_2vs2 | BATTLE_TYPE_FRONTIER)) {
         if (battlerData->battlerType & BATTLER_THEM) {
-            if (ov16_0223ED60(battleSys)) {
+            if (BattleSystem_IsInitialized(battleSys)) {
                 battlerData->taskFuncs.setCommandSelection = &Task_TrainerSetCommandSelection;
                 battlerData->taskFuncs.showMoveSelectMenu = &Task_TrainerShowMoveSelectMenu;
                 battlerData->taskFuncs.showTargetSelectMenu = &Task_TrainerShowTargetSelectMenu;
@@ -6344,12 +6344,12 @@ static void ov16_02264408(BattleSystem *battleSys, BattlerData *battlerData, Bat
     }
 
     BattleSystem_SetBattlerTypes(battleSys, &(battlerContext.battlerTypes[0]));
-    ov16_0223F8AC(battleSys, &(battlerContext.pokemonSprites[0]));
+    BattleSystem_PopulateMonSprites(battleSys, &(battlerContext.pokemonSprites[0]));
 
     battlerContext.battleType = BattleSystem_GetBattleType(battleSys);
     battlerContext.chatotCry = BattleSystem_GetChatotCry(battleSys, battlerData->battler);
-    battlerContext.bgTiles = ov16_0223F1E8(battleSys);
-    battlerContext.bgPaletteBuffer = ov16_0223F1F0(battleSys);
+    battlerContext.bgTiles = BattleSystem_GetBgTileSnapshot(battleSys);
+    battlerContext.bgPaletteBuffer = BattleSystem_GetBgPaletteSnapshot(battleSys);
     battlerContext.battleBgRef.narcID = 7;
     battlerContext.battleBgRef.tilesNarcMemberIdx = 3 + BattleSystem_GetBackground(battleSys);
     battlerContext.battleBgRef.paletteNarcMemberIdx = 172 + BattleSystem_GetBackground(battleSys) * 3 + BattleSystem_GetBackgroundTimeOffset(battleSys);
@@ -6375,7 +6375,7 @@ static void ov16_02264530(BattleSystem *battleSys, MoveAnimation *animation, Unk
     }
 
     BattleSystem_SetBattlerTypes(battleSys, &(param2->types[0]));
-    ov16_0223F8AC(battleSys, &(param2->sprites[0]));
+    BattleSystem_PopulateMonSprites(battleSys, &(param2->sprites[0]));
 }
 
 static void ov16_022645B8(u8 *param0, u8 *param1, int param2, int param3, u16 param4)
