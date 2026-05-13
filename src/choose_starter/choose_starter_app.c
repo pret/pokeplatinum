@@ -199,7 +199,7 @@ typedef struct StarterPreviewGraphics {
 typedef struct ChooseStarterApp {
     enum ChoiceStep choiceStep;
     enum ChooseStarterStep chooseStarterStep;
-    BOOL unk_08;
+    BOOL disableCursorMovement;
     int unk_0C;
     ChooseStarterCameraMovement cameraMovement;
     enum CursorPosition cursorPosition;
@@ -934,7 +934,7 @@ static void Draw3DGraphicsWithLightAndColor(ChooseStarterApp *app)
 
 static BOOL IsSelectionMade(ChooseStarterApp *app, enum HeapID heapID)
 {
-    if (app->unk_08 == TRUE) {
+    if (app->disableCursorMovement == TRUE) {
         return FALSE;
     }
 
@@ -970,7 +970,7 @@ static void UpdateGraphics(ChooseStarterApp *app, enum HeapID heapID)
     switch (GetChoiceStep(app)) {
     case CHOICE_STEP_BLEND_BGS:
 
-        app->unk_08 = 1;
+        app->disableCursorMovement = TRUE;
         app->unk_0C = 36;
         AdvanceChoiceStep(app, 1);
         G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG3, GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_OBJ, 10, 16 - 10);
@@ -1188,7 +1188,7 @@ static void AdvancePokeballChoiceGraphics(ChooseStarterApp *app, enum HeapID hea
         break;
     case CHOOSE_STARTER_STEP_SHOW_CURSOR:
         ShowCursor(&app->cursor, TRUE);
-        app->unk_08 = 0;
+        app->disableCursorMovement = FALSE;
         app->chooseStarterStep++;
         break;
     case CHOOSE_STARTER_STEP_CHANGE_POKEBALL:
@@ -1223,7 +1223,7 @@ static void AdvancePokeballConfirmGraphics(ChooseStarterApp *app, enum HeapID he
         DeleteSubplaneWindow(app);
         StartPreviewWindowAndGraphicsMovements(app);
         app->chooseStarterStep++;
-        app->unk_08 = 1;
+        app->disableCursorMovement = TRUE;
         break;
     case CHOOSE_STARTER_STEP_WAIT_FOR_CAMERA_MOVEMENT_FINISH:
         ShowPreviewWindow(&app->previewWindow, TRUE);
@@ -1238,7 +1238,7 @@ static void AdvancePokeballConfirmGraphics(ChooseStarterApp *app, enum HeapID he
     case CHOOSE_STARTER_STEP_UPDATE_CURSOR_POSITION:
         SetMessageWindowText(app->messageWindow, heapID, 360, 1 + app->cursorPosition, TEXT_COLOR(1, 2, 15), TEXT_SPEED_NO_TRANSFER);
         app->unk_B8 = Menu_MakeYesNoChoice(app->bgConfig, &app->unk_B0, 512 + (18 + 12) + 128, 1, heapID);
-        app->unk_08 = 0;
+        app->disableCursorMovement = FALSE;
         app->chooseStarterStep++;
         break;
     case CHOOSE_STARTER_STEP_PRINT_THESE_ARE_POKE_BALLS_TEXT:
