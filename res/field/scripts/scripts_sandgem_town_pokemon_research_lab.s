@@ -6,16 +6,16 @@
     ScriptEntry SandgemTownLab_OnTransition
     ScriptEntry SandgemTownLab_OnFrameGetPokedex
     ScriptEntry SandgemTownLab_ProfRowan
-    ScriptEntry _01AC
+    ScriptEntry SandgemTownLab_UnusedEntry4
     ScriptEntry SandgemTownLab_ScientistM
     ScriptEntry SandgemTownLab_ScientistF
-    ScriptEntry _0592
+    ScriptEntry SandgemTownLab_UnusedEntry7
     ScriptEntry SandgemTownLab_BookshelfAdventureRuleNo1
     ScriptEntry SandgemTownLab_BookshelfAdventureRuleNo2
     ScriptEntry SandgemTownLab_BookshelfBooks
     ScriptEntry SandgemTownLab_BookshelfReferenceMaterial
     ScriptEntry SandgemTownLab_PC
-    ScriptEntry _05EC
+    ScriptEntry SandgemTownLab_UnusedEntry13
     ScriptEntry SandgemTownLab_Refrigerator
     ScriptEntry SandgemTownLab_OnFrameReturnedFromDistortionWorld
     ScriptEntryEnd
@@ -123,7 +123,7 @@ SandgemTownLab_Movement_CounterpartTurnOnSpot:
     WalkOnSpotNormalSouth
     EndMovement
 
-_01AC:
+SandgemTownLab_UnusedEntry4:
     End
 
 SandgemTownLab_OnFrameGetPokedex:
@@ -441,7 +441,7 @@ SandgemTownLab_HearingWhatWasHappeningGaveMeShivers:
     ReleaseAll
     End
 
-_0592:
+SandgemTownLab_UnusedEntry7:
     End
 
 SandgemTownLab_BookshelfAdventureRuleNo1:
@@ -465,7 +465,7 @@ SandgemTownLab_PC:
     EventMessage SandgemTownLab_Text_PlayerCheckedThePC
     End
 
-_05EC:
+SandgemTownLab_UnusedEntry13:
     EventMessage SandgemTownLab_Text_ResearchMaterialsAreCarefullyTuckedAway
     End
 

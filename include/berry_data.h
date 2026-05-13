@@ -14,7 +14,7 @@
 enum BerryAttribute {
     BERRYATTR_SIZE = 0,
     BERRYATTR_FIRMNESS,
-    BERRYATTR_YIELD_CATEGORY,
+    BERRYATTR_BASE_YIELD,
     BERRYATTR_STAGE_DURATION,
     BERRYATTR_MOISTURE_DRAIN_RATE,
     BERRYATTR_SPICINESS,
@@ -28,7 +28,7 @@ enum BerryAttribute {
 typedef struct BerryData {
     u16 size;
     u8 firmness;
-    u8 yieldCategory;
+    u8 baseYield;
     u8 stageDuration;
     u8 moistureDrainRate;
     u8 spiciness;

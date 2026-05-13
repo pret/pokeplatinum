@@ -1,0 +1,31 @@
+{
+  "name": "TM30",
+  "plural": "TM30s",
+  "article": "a",
+  "description": [
+    "The user hurls a shadowy blob at the\n",
+    "foe. It may also lower the foe’s\n",
+    "Sp. Def stat."
+  ],
+  "icon": {
+    "sprite": "tm_NCGR",
+    "palette": "tm_ghost_NCLR"
+  },
+  "gbaID": "GBA_ITEM_TM30",
+  "price": 3000,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 0,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_TMHMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_TM_HM",
+  "battleUseFunc": 0,
+  "itemUseParams": null,
+  "teachesMove": "MOVE_SHADOW_BALL"
+}

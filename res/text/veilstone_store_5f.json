@@ -17,7 +17,7 @@
       ]
     },
     {
-      "id": "VeilstoneStore5F_Text_AGiftOfThisStickyBarb",
+      "id": "VeilstoneStore5F_Text_GiftThisStickyBarb",
       "en_US": [
         "Ah, young Pokémon Trainer...\r",
         "As your senior in life, let me make\n",
@@ -25,7 +25,7 @@
       ]
     },
     {
-      "id": "VeilstoneStore5F_Text_SticksToTheFoeAndInflictsDamage",
+      "id": "VeilstoneStore5F_Text_SticksToFoeInflictsDamage",
       "en_US": [
         "That Sticky Barb is a hold item.\n",
         "If the Pokémon holding it is hit...\r",

@@ -1,0 +1,31 @@
+{
+  "name": "TM61",
+  "plural": "TM61s",
+  "article": "a",
+  "description": [
+    "The user shoots a sinister, bluish\n",
+    "white flame at the foe to inflict a\n",
+    "burn."
+  ],
+  "icon": {
+    "sprite": "tm_NCGR",
+    "palette": "tm_fire_NCLR"
+  },
+  "gbaID": "GBA_ITEM_NONE",
+  "price": 2000,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 0,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_TMHMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_TM_HM",
+  "battleUseFunc": 0,
+  "itemUseParams": null,
+  "teachesMove": "MOVE_WILL_O_WISP"
+}

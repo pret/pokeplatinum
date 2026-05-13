@@ -1,0 +1,30 @@
+{
+  "name": "Seal Case",
+  "plural": "Seal Cases",
+  "article": "a",
+  "description": [
+    "A case for storing Seals that can be\n",
+    "applied to the capsule cases of Poké\n",
+    "Balls."
+  ],
+  "icon": {
+    "sprite": "seal_case_NCGR",
+    "palette": "seal_case_NCLR"
+  },
+  "gbaID": "GBA_ITEM_NONE",
+  "price": 0,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 0,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": true,
+  "canRegister": true,
+  "fieldPocket": "POCKET_KEY_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_BAG_MESSAGE",
+  "battleUseFunc": 0,
+  "itemUseParams": null
+}

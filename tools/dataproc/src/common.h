@@ -6,24 +6,36 @@
 #include <stdio.h>
 
 #include "dataproc.h"
+#include "libenum.h"
 #include "nitroarc.h"
 
-#define countof(_a) (sizeof(_a)/sizeof(*(_a)))
+#define countof(_a)  (sizeof(_a)/sizeof(*(_a)))
+#define lengthof(_s) (countof(_s) - 1)
 
 #define POKEPLATINUM_GENERATED_ENUM
 #define POKEPLATINUM_GENERATED_LOOKUP
 #define POKEPLATINUM_GENERATED_LOOKUP_IMPL
 
+// Make sure that we don't walk into "narc.h", which contains references to the Nitro
+// stuff that we don't care about in these tools.
+#define POKEPLATINUM_NARC_H
+typedef struct NARC NARC;
+
 #define ALIGN_4 __attribute__((aligned(4)))
+
+#define include_defs(filename, prefix) { .from_file = filename, .with_prefix = prefix, .for_type = prefix, .from_defs = true }
+#define include_enum(filename, type)   { .from_file = filename, .for_type = type }
 
 #define dp_regmetang(type) dp_register((lookup_t *)lookup__##type, lengthof__##type, #type)
 
 typedef int8_t   s8;
 typedef int16_t  s16;
 typedef int32_t  s32;
+typedef int64_t  s64;
 typedef uint8_t  u8;
 typedef uint16_t u16;
 typedef uint32_t u32;
+typedef uint64_t u64;
 
 #define BOOL  bool
 #define TRUE  true
@@ -111,6 +123,34 @@ void common_init(
     void               (*post_init_hook)(void)
 );
 
+typedef bool (*enum_member_filter_t)(const char*);
+
+typedef struct initenum_params initenum_params_t;
+struct initenum_params {
+    const char *sourcefile; // Full path of the calling source-file.
+    const char *basefile;   // Full path of the input file.
+    const char *enumname;   // Name of the enum to be loaded (minus the `enum` prefix).
+    const char *depfile;    // Basename of the output dep-file.
+    const char *outdir;     // Path of the output directory.
+    enum format format;     // The dataproc format to use for parsing.
+
+    void (*hook_before)(void); // Hook to execute after initializing `dataproc` and before any requests are fulfilled.
+    void (*hook_after)(void);  // Hook to execute after all requests have been fulfilled.
+
+    enum_template_t     *enums;     // Requested constants to be loaded for processing data files.
+    archive_template_t  *archives;  // Requested archives to be created as output.
+    header_template_t   *headers;   // Requested headers to be created as output.
+    textbank_template_t *textbanks; // Requested text-banks to be created as output.
+
+    // A filter-expression against an enum-member. If this function evaluates to `true` for a given
+    // enum-member's name, then that member should be counted as part of the primary output archives.
+    enum_member_filter_t filter;
+};
+
+#define common_initenum(filename, enum_name, ...) \
+    (_common_initenum((initenum_params_t){ .basefile = filename, .enumname = enum_name, __VA_ARGS__ }))
+enum_seq_t _common_initenum(initenum_params_t params);
+
 // Common completion routine. Write the footer-content for each output header,
 // seal the initialized archives, and dump everything to disk.
 //
@@ -119,10 +159,17 @@ void common_init(
 // for this function.
 int common_done(int errc, int (*addl_done_hook)(void));
 
+// Declare an additional dependency for the output files.
+void declare_dep(const char *filename);
+
+#define BUFSIZE 256
+#define strfmt(fmt, ...) (snprintf(buf, BUFSIZE, fmt, __VA_ARGS__), buf)
+
 char* strremove(char *s, const char *sub);
 char* strreplace(char *s, char r, char c);
 char* strreplstr(const char *s, const char *repl, const char *with);
 char* strupper(const char *s);
+char* strlower(const char *s);
 char* strjoin(const char *s, const char *with, const char *sep);
 
 void  splitenv(const char *name, char ***target, size_t *target_len, const char **extra, size_t extra_len);
@@ -130,8 +177,10 @@ char* fload(const char *filename, size_t *out_size);
 char* pathjoin(const char *basedir, const char *subdir, const char *file);
 char* guardify(const char *path);
 
-int fdump_blob(const void *data, size_t size, const char *dest); // write_blob
-int fdump_narc(nitroarc_packer_t *p, const char *dest, bool ok); // write_narc
-int fdump_blobnarc(const void *data, u32 size, const char *dest); // write_narc_onefile
+int fdump_blob(const void *data, size_t size, const char *dest);
+int fdump_narc(nitroarc_packer_t *p, const char *dest, bool ok);
+int fdump_blobnarc(const void *data, u32 size, const char *dest);
+
+nitroarc_packer_t init_narc(u16 num_files, bool named, bool stripped);
 
 #endif // DATAPROC_COMMON_H

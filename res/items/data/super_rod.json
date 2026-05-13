@@ -1,0 +1,30 @@
+{
+  "name": "Super Rod",
+  "plural": "Super Rods",
+  "article": "a",
+  "description": [
+    "An awesome, high-tech fishing rod.\n",
+    "Use it by any body of water to fish for\n",
+    "wild aquatic Pokémon."
+  ],
+  "icon": {
+    "sprite": "super_rod_NCGR",
+    "palette": "super_rod_NCLR"
+  },
+  "gbaID": "GBA_ITEM_SUPER_ROD",
+  "price": 0,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 0,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": true,
+  "canRegister": true,
+  "fieldPocket": "POCKET_KEY_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_SUPER_ROD",
+  "battleUseFunc": 0,
+  "itemUseParams": null
+}

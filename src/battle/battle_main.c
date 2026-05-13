@@ -306,10 +306,10 @@ void ov16_0223B384(BattleSystem *battleSys)
     ov16_02268A14(battleSys->unk_198);
     ov16_022687A0(battleSys->bgConfig);
 
-    battleSys->unk_23FB_2 = 1;
+    battleSys->pendingSubMenuVRAMSetup = 1;
 
     Font_Free(FONT_SUBSCREEN);
-    ov16_0223F314(battleSys, 3);
+    BattleSystem_SetRenderMode(battleSys, 3);
 
     if (battleSys->overlayFlags == FALSE) {
         Overlay_UnloadByID(FS_OVERLAY_ID(battle_anim));
@@ -345,7 +345,7 @@ void ov16_0223B430(BattleSystem *battleSys)
         Overlay_LoadByID(FS_OVERLAY_ID(trainer_ai), OVERLAY_LOAD_ASYNC);
     }
 
-    ov16_0223F314(battleSys, 0);
+    BattleSystem_SetRenderMode(battleSys, 0);
     MI_CpuFill16((void *)GetHardwareSubBgPaletteAddress(), 0, GetHardwareSubBgPaletteSize());
 
     NARC *bgNarc = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, HEAP_ID_BATTLE);
@@ -354,7 +354,7 @@ void ov16_0223B430(BattleSystem *battleSys)
 
     Font_InitManager(FONT_SUBSCREEN, HEAP_ID_BATTLE);
 
-    battleSys->unk_23FB_1 = 1;
+    battleSys->pendingBattleVRAMSetup = 1;
 
     ov16_02268744(battleSys->bgConfig);
 
@@ -377,12 +377,12 @@ void ov16_0223B53C(BattleSystem *battleSys)
     Bg_FreeTilemapBuffer(battleSys->bgConfig, BG_LAYER_MAIN_1);
     Bg_FreeTilemapBuffer(battleSys->bgConfig, BG_LAYER_MAIN_2);
     Bg_FreeTilemapBuffer(battleSys->bgConfig, BG_LAYER_MAIN_3);
-    ov16_0223F3EC(battleSys);
+    BattleSystem_HideHealthboxes(battleSys);
 }
 
 void ov16_0223B578(BattleSystem *battleSys)
 {
-    battleSys->unk_23FB_0 = 1;
+    battleSys->pendingBlendReset = 1;
 
     BgTemplate bgTemplates[] = {
         {
@@ -459,7 +459,7 @@ void ov16_0223B578(BattleSystem *battleSys)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, TRUE);
     SetVBlankCallback(ov16_0223CE68, battleSys);
 
-    battleSys->unk_23FB_1 = 1;
+    battleSys->pendingBattleVRAMSetup = 1;
 
     Window_Add(battleSys->bgConfig, battleSys->windows, 1, 2, 19, 27, 4, 11, (18 + 12) + 1);
     Window_FillTilemap(battleSys->windows, 0xFF);
@@ -585,7 +585,7 @@ static void BattleMain_InitGraphics(ApplicationManager *appMan)
     battleSys->monSpriteMan = PokemonSpriteManager_New(HEAP_ID_BATTLE);
     PokemonSpriteManager_SetPlttBaseAddrAndSize(battleSys->monSpriteMan, 0, PALETTE_SIZE_BYTES * 6);
 
-    ov16_0223F36C(battleSys);
+    BattleSystem_CreateHealthboxes(battleSys);
     ov16_0223CE28();
 
     battleSys->battleAnimSys = BattleAnimSystem_New(HEAP_ID_BATTLE);
@@ -600,8 +600,8 @@ static void BattleMain_InitGraphics(ApplicationManager *appMan)
     battleSys->strFormatter = StringTemplate_Default(HEAP_ID_BATTLE);
     battleSys->msgBuffer = String_Init(2 * 160, HEAP_ID_BATTLE);
 
-    MI_CpuCopy16(PaletteData_GetUnfadedBuffer(battleSys->paletteData, 0), &battleSys->unk_2224[0], PALETTE_SIZE_BYTES * 7);
-    MI_CpuCopy16(PaletteData_GetUnfadedBuffer(battleSys->paletteData, 2), &battleSys->unk_2304[0], PALETTE_SIZE_BYTES * 7);
+    MI_CpuCopy16(PaletteData_GetUnfadedBuffer(battleSys->paletteData, 0), &battleSys->savedBgPalettes[0], PALETTE_SIZE_BYTES * 7);
+    MI_CpuCopy16(PaletteData_GetUnfadedBuffer(battleSys->paletteData, 2), &battleSys->savedObjPalettes[0], PALETTE_SIZE_BYTES * 7);
 
     int offset = BattleSystem_GetBackgroundTimeOffset(battleSys);
 
@@ -640,7 +640,7 @@ static int BattleMain_ExecuteBattlerCommands(ApplicationManager *appMan)
     int battler;
 
     if (battleSys->battleType & BATTLE_TYPE_LINK && (battleSys->battleStatusMask & BATTLE_STATUS_RECORDING) == FALSE) {
-        if (battleSys->unk_23F8) {
+        if (battleSys->battleInitialized) {
             BattleContext_Main(battleSys, battleSys->battleCtx);
         }
 
@@ -648,7 +648,7 @@ static int BattleMain_ExecuteBattlerCommands(ApplicationManager *appMan)
             BattleSystem_ExecuteBattlerCommand(battleSys, battleSys->battlers[battler]);
         }
     } else {
-        if (battleSys->unk_23F8) {
+        if (battleSys->battleInitialized) {
             battleSys->commandIsEndWait = BattleContext_Main(battleSys, battleSys->battleCtx);
             BattleController_TryRecvLocalMessage(battleSys, COMM_RECIPIENT_CLIENT);
         }
@@ -659,7 +659,7 @@ static int BattleMain_ExecuteBattlerCommands(ApplicationManager *appMan)
         }
 
         if (battleSys->commandIsEndWait == FALSE) {
-            if (battleSys->unk_23F8) {
+            if (battleSys->battleInitialized) {
                 battleSys->commandIsEndWait = BattleContext_Main(battleSys, battleSys->battleCtx);
                 BattleController_TryRecvLocalMessage(battleSys, COMM_RECIPIENT_CLIENT);
             }
@@ -746,12 +746,12 @@ static void BattleMain_CopyBattleSysToDTOAndFree(ApplicationManager *appMan)
     BattleContext_Free(battleSys->battleCtx);
 
     for (battlerId = 0; battlerId < battleSys->maxBattlers; battlerId++) {
-        ov16_0225C104(battleSys, battleSys->battlers[battlerId], battleSys->unk_23F9);
+        ov16_0225C104(battleSys, battleSys->battlers[battlerId], battleSys->renderMode);
     }
 
     PokemonSpriteManager_Free(battleSys->monSpriteMan);
 
-    if (battleSys->unk_23F9 != 2) {
+    if (battleSys->renderMode != 2) {
         ov16_0223B3E4(battleSys);
     }
 
@@ -760,8 +760,8 @@ static void BattleMain_CopyBattleSysToDTOAndFree(ApplicationManager *appMan)
     RenderControlFlags_SetSpeedUpOnTouch(FALSE);
     Windows_Delete(battleSys->windows, 3);
     Heap_Free(battleSys->bgConfig);
-    Heap_Free(battleSys->unk_21C);
-    Heap_Free(battleSys->unk_220);
+    Heap_Free(battleSys->bgTileSnapshot);
+    Heap_Free(battleSys->bgPaletteSnapshot);
     FontSpecialChars_Free(battleSys->specialCharsHP);
     Font_Free(FONT_SUBSCREEN);
     SysTask_Done(battleSys->taskDrawSprites);
@@ -830,7 +830,7 @@ static void ov16_0223C004(BattleSystem *battleSys, BgConfig *bgConfig)
 
     SetAllGraphicsModes(&graphicsModes);
 
-    battleSys->unk_23FB_0 = 1;
+    battleSys->pendingBlendReset = 1;
 
     BgTemplate bgTemplates[] = {
         {
@@ -915,8 +915,8 @@ static void ov16_0223C210(BattleSystem *battleSys)
     int selectedPartySlot;
     Pokemon *mon;
 
-    ov16_022686CC(&battleSys->unk_17C[0], battleSys, 0, terrain);
-    ov16_022686CC(&battleSys->unk_17C[1], battleSys, 1, terrain);
+    ov16_022686CC(&battleSys->terrains[0], battleSys, 0, terrain);
+    ov16_022686CC(&battleSys->terrains[1], battleSys, 1, terrain);
 
     BattleContext *battleCtx = BattleSystem_GetBattleContext(battleSys);
 
@@ -1251,7 +1251,7 @@ static void BattleSys_New(BattleSystem *battleSys, FieldBattleDTO *dto)
             }
         }
         BattleSystem_InitPartyOrder(battleSys, battleSys->battleCtx);
-        battleSys->unk_23F8 = 1;
+        battleSys->battleInitialized = 1;
     } else if (battleSys->battleType & BATTLE_TYPE_2vs2) {
         for (i = 0; i < MAX_BATTLERS; i++) {
             battlerInitData.battler = i;
@@ -1281,7 +1281,7 @@ static void BattleSys_New(BattleSystem *battleSys, FieldBattleDTO *dto)
         }
 
         BattleSystem_InitPartyOrder(battleSys, battleSys->battleCtx);
-        battleSys->unk_23F8 = 1;
+        battleSys->battleInitialized = 1;
     } else if (battleSys->battleType & BATTLE_TYPE_DOUBLES) {
         for (i = 0; i < MAX_BATTLERS; i++) {
             battlerInitData.battler = i;
@@ -1320,7 +1320,7 @@ static void BattleSys_New(BattleSystem *battleSys, FieldBattleDTO *dto)
         }
 
         BattleSystem_InitPartyOrder(battleSys, battleSys->battleCtx);
-        battleSys->unk_23F8 = 1;
+        battleSys->battleInitialized = 1;
     } else {
         for (i = 0; i < MAX_BATTLERS / 2; i++) {
             battlerInitData.battler = i;
@@ -1348,7 +1348,7 @@ static void BattleSys_New(BattleSystem *battleSys, FieldBattleDTO *dto)
         }
 
         BattleSystem_InitPartyOrder(battleSys, battleSys->battleCtx);
-        battleSys->unk_23F8 = 1;
+        battleSys->battleInitialized = 1;
     }
 
     if (battleSys->battleType & BATTLE_TYPE_PAL_PARK) {
@@ -1443,14 +1443,14 @@ static void ov16_0223CE68(void *inBattleSys)
 {
     BattleSystem *battleSys = inBattleSys;
 
-    if (battleSys->unk_23FB_0) {
-        battleSys->unk_23FB_0 = 0;
+    if (battleSys->pendingBlendReset) {
+        battleSys->pendingBlendReset = 0;
         G2_BlendNone();
         G2S_BlendNone();
     }
 
-    if (battleSys->unk_23FB_1) {
-        battleSys->unk_23FB_1 = 0;
+    if (battleSys->pendingBattleVRAMSetup) {
+        battleSys->pendingBattleVRAMSetup = 0;
 
         GXBanks banks = {
             GX_VRAM_BG_128_A,
@@ -1468,8 +1468,8 @@ static void ov16_0223CE68(void *inBattleSys)
         GXLayers_SetBanks(&banks);
     }
 
-    if (battleSys->unk_23FB_2) {
-        battleSys->unk_23FB_2 = 0;
+    if (battleSys->pendingSubMenuVRAMSetup) {
+        battleSys->pendingSubMenuVRAMSetup = 0;
 
         GXBanks banks = {
             GX_VRAM_BG_128_A,
@@ -1513,8 +1513,8 @@ static void SysTask_DrawSprites(SysTask *task, void *inBattleSys)
 
     sub_02038A1C(HEAP_ID_BATTLE, battleSys->bgConfig);
 
-    if (battleSys->unk_23F9 == 0 || battleSys->unk_23F9 == 3) {
-        if (battleSys->unk_23F9 == 0) {
+    if (battleSys->renderMode == 0 || battleSys->renderMode == 3) {
+        if (battleSys->renderMode == 0) {
             ParticleHelper_DrawParticleSystems();
         }
 
@@ -2200,7 +2200,7 @@ static void ov16_0223DD90(BattleSystem *battleSys, FieldBattleDTO *dto)
     int v6[4];
 
     if (battleSys->battleStatusMask & BATTLE_STATUS_RECORDING) {
-        battleSys->unk_23F8 = 1;
+        battleSys->battleInitialized = 1;
         return;
     }
 
@@ -2226,7 +2226,7 @@ static void ov16_0223DD90(BattleSystem *battleSys, FieldBattleDTO *dto)
     }
 
     if (v5[0] == netID) {
-        battleSys->unk_23F8 = 1;
+        battleSys->battleInitialized = 1;
     } else {
         if ((battleSys->battleType & BATTLE_TYPE_FRONTIER) == FALSE) {
             if (battleSys->battleType & BATTLE_TYPE_2vs2) {

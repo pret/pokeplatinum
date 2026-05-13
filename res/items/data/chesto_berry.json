@@ -1,0 +1,45 @@
+{
+  "name": "Chesto Berry",
+  "plural": "Chesto Berries",
+  "article": "a",
+  "description": [
+    "A Poffin ingredient. It may be used\n",
+    "or held by a Pokémon to recover from\n",
+    "sleep."
+  ],
+  "icon": {
+    "sprite": "chesto_berry_NCGR",
+    "palette": "chesto_berry_NCLR"
+  },
+  "gbaID": "GBA_ITEM_CHESTO_BERRY",
+  "price": 20,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_SLP_RESTORE",
+  "pluckEffect": "PLUCK_EFFECT_SLP_RESTORE",
+  "flingEffect": "FLING_EFFECT_SLP_RESTORE",
+  "flingPower": 10,
+  "naturalGiftPower": 60,
+  "naturalGiftType": "TYPE_WATER",
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_BERRIES",
+  "battlePocket": "BATTLE_POCKET_MASK_RECOVER_STATUS",
+  "fieldUseFunc": "ITEM_USE_FUNC_BERRY",
+  "battleUseFunc": 0,
+  "itemUseParams": {
+    "healSleep": true
+  },
+  "berryData": {
+    "size": 80,
+    "firmness": "FIRMNESS_SUPER_HARD",
+    "baseYield": 1,
+    "stageDuration": 3,
+    "moistureDrainRate": 15,
+    "spiciness": 0,
+    "dryness": 10,
+    "sweetness": 0,
+    "bitterness": 0,
+    "sourness": 0,
+    "smoothness": 25
+  }
+}

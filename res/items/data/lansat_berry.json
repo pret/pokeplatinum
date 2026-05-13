@@ -1,0 +1,43 @@
+{
+  "name": "Lansat Berry",
+  "plural": "Lansat Berries",
+  "article": "a",
+  "description": [
+    "A Poffin ingredient.\n",
+    "If held by a Pokémon, it raises its\n",
+    "critical-hit ratio in a pinch."
+  ],
+  "icon": {
+    "sprite": "lansat_berry_NCGR",
+    "palette": "lansat_berry_NCLR"
+  },
+  "gbaID": "GBA_ITEM_LANSAT_BERRY",
+  "price": 20,
+  "effectParam": 4,
+  "holdEffect": "HOLD_EFFECT_PINCH_CRITRATE_UP",
+  "pluckEffect": "PLUCK_EFFECT_CRIT_UP",
+  "flingEffect": "FLING_EFFECT_CRIT_UP",
+  "flingPower": 10,
+  "naturalGiftPower": 80,
+  "naturalGiftType": "TYPE_FLYING",
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_BERRIES",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_BERRY",
+  "battleUseFunc": 0,
+  "itemUseParams": {},
+  "berryData": {
+    "size": 97,
+    "firmness": "FIRMNESS_SOFT",
+    "baseYield": 1,
+    "stageDuration": 24,
+    "moistureDrainRate": 4,
+    "spiciness": 30,
+    "dryness": 10,
+    "sweetness": 30,
+    "bitterness": 10,
+    "sourness": 30,
+    "smoothness": 50
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "name": "Miracle Seed",
+  "plural": "Miracle Seeds",
+  "article": "a",
+  "description": [
+    "An item to be held by a Pokémon.\n",
+    "It is a seed imbued with life that ups\n",
+    "the power of Grass-type moves."
+  ],
+  "icon": {
+    "sprite": "miracle_seed_NCGR",
+    "palette": "miracle_seed_NCLR"
+  },
+  "gbaID": "GBA_ITEM_MIRACLE_SEED",
+  "price": 100,
+  "effectParam": 20,
+  "holdEffect": "HOLD_EFFECT_STRENGTHEN_GRASS",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 30,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseFunc": 0,
+  "itemUseParams": null
+}

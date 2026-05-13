@@ -1,0 +1,34 @@
+{
+  "name": "X Attack",
+  "plural": "X Attacks",
+  "article": "an",
+  "description": [
+    "An item that raises the Attack stat\n",
+    "of a Pokémon in battle. It wears off if\n",
+    "the Pokémon is withdrawn."
+  ],
+  "icon": {
+    "sprite": "guard_spec_NCGR",
+    "palette": "x_attack_NCLR"
+  },
+  "gbaID": "GBA_ITEM_X_ATTACK",
+  "price": 500,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 30,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_BATTLE_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_BATTLE_ITEMS",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseFunc": 0,
+  "itemUseParams": {
+    "atkStages": 1,
+    "friendshipLow": 1,
+    "friendshipMed": 1
+  }
+}

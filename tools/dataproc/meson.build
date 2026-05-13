@@ -51,7 +51,7 @@ commonproc_dep = declare_dependency(
         ],
         native: true,
     ),
-    dependencies: [ dataproc_dep, nitroarc_dep ],
+    dependencies: [ dataproc_dep, nitroarc_dep, libenum_dep ],
 )
 
 cc = meson.get_compiler('c', native: true)
@@ -97,6 +97,15 @@ trainerproc_exe = executable(
 frontierproc_exe = executable(
     'frontierproc',
     sources: [ files('src/frontierproc.c'), c_consts_generators ],
+    c_args: dataproc_cflags,
+    include_directories: [ public_includes, toplevel_includes ],
+    dependencies: commonproc_dep,
+    native: true,
+)
+
+itemproc_exe = executable(
+    'itemproc',
+    sources: [ files('src/itemproc.c'), c_consts_generators ],
     c_args: dataproc_cflags,
     include_directories: [ public_includes, toplevel_includes ],
     dependencies: commonproc_dep,

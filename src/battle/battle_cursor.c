@@ -1668,7 +1668,7 @@ static void ov16_02269668(UnkStruct_ov16_02268A14 *param0, int unused1, int unus
     UnkStruct_ov16_02269668 *v6 = &param0->unk_1A.val1;
     int v5 = v6->unk_00;
 
-    param0->unk_6C1 = v6->unk_08;
+    param0->unk_6C1 = v6->isWaitingForPartner;
 
     MessageLoader *msgLoader = BattleSystem_GetMessageLoader(param0->battleSys);
 
@@ -1980,7 +1980,7 @@ static void ov16_0226A12C(UnkStruct_ov16_02268A14 *param0, int unused1, int unus
     ov16_0226A698(param0);
     ov16_0226AAF8(param0);
     BattleSystem_SetBattlerTypes(param0->battleSys, battlerTypes);
-    ov16_0223F858(param0->battleSys, v11);
+    BattleSystem_SetBattlersByType(param0->battleSys, v11);
 
     string = String_Init(12 + 2 + 5 * 2, HEAP_ID_BATTLE);
 
@@ -2781,8 +2781,8 @@ static void ov16_0226B20C(UnkStruct_ov16_02268A14 *param0, u8 *param1, BOOL para
 {
     u8 v2[6];
 
-    UnkStruct_ov16_02260F14 *v0 = &param0->unk_1A.val3;
-    ov16_0223F858(param0->battleSys, v2);
+    v0 = &param0->unk_1A.val3;
+    BattleSystem_SetBattlersByType(param0->battleSys, v2);
 
     for (int i = 0; i < (int)NELEMS(param1); i++) {
         int v3 = v2[2 + i];

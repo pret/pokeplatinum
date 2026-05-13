@@ -5,13 +5,14 @@
 
 #include "sprite_system.h"
 
-typedef struct {
-    ManagedSprite *unk_00;
-    BattleSystem *unk_04;
+// This is the circular platform that the battler sprites stand on
+typedef struct Terrain {
+    ManagedSprite *managedSprite;
+    BattleSystem *battleSys;
     u8 unk_08;
     u8 unk_09;
     s16 unk_0A;
     s16 unk_0C;
-} UnkStruct_ov16_02268520;
+} Terrain;
 
 #endif // POKEPLATINUM_STRUCT_OV16_02268520_H

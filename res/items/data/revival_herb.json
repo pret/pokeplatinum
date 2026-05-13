@@ -1,0 +1,36 @@
+{
+  "name": "Revival Herb",
+  "plural": "Revival Herbs",
+  "article": "a",
+  "description": [
+    "A very bitter medicinal herb.\n",
+    "It revives a fainted Pokémon, fully\n",
+    "restoring its HP."
+  ],
+  "icon": {
+    "sprite": "revival_herb_NCGR",
+    "palette": "revival_herb_NCLR"
+  },
+  "gbaID": "GBA_ITEM_REVIVAL_HERB",
+  "price": 2800,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 30,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_MEDICINE",
+  "battlePocket": "BATTLE_POCKET_MASK_RECOVER_STATUS",
+  "fieldUseFunc": "ITEM_USE_FUNC_HEALING",
+  "battleUseFunc": 2,
+  "itemUseParams": {
+    "revive": true,
+    "hpRestored": -1,
+    "friendshipLow": -15,
+    "friendshipMed": -15,
+    "friendshipHigh": -20
+  }
+}

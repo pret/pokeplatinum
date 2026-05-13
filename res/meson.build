@@ -76,6 +76,7 @@ copy_gen = generator(copy_exe,
 # is a dependency of some later build-rule.
 subdir('pokemon')
 subdir('trainers')
+subdir('items')
 subdir('graphics')
 subdir('town_map')
 subdir('text')
@@ -116,6 +117,5 @@ script_bin_gen = generator(make_script_bin_sh,
 subdir('battle')
 subdir('field')
 subdir('fonts')
-subdir('items')
 subdir('pokemon_anims')
 subdir('sound')

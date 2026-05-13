@@ -28,7 +28,7 @@ VeilstoneStore3F_Attendant:
 
 VeilstoneStore3F_AttendantPersonalized:
     BufferPlayerName 0
-    Message VeilstoneStore3F_Text_MayIHelpYouPersonalized
+    Message VeilstoneStore3F_Text_PlayerMayIHelpYou
     InitGlobalTextMenu 1, 1, 0, VAR_RESULT
     AddMenuEntryImm MenuEntries_Text_WhatIsRecommended, 0
     AddMenuEntryImm MenuEntries_Text_NothingThanks, 1
@@ -48,21 +48,21 @@ VeilstoneStore3F_AttendantPleaseEnjoyYourself:
     End
 
 VeilstoneStore3F_AttendantFalseSwipe:
-    Message VeilstoneStore3F_Text_FalseSwipeMakesPokemonEasierToCatch
+    Message VeilstoneStore3F_Text_FalseSwipeMakesCatchingEasier
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
 VeilstoneStore3F_AttendantFireBlast:
-    Message VeilstoneStore3F_Text_ForFireTypesSuggestFireBlast
+    Message VeilstoneStore3F_Text_FireBlastForFireTypes
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
 VeilstoneStore3F_AttendantProtect:
-    Message VeilstoneStore3F_Text_ProtectIsForDodgingAttacks
+    Message VeilstoneStore3F_Text_ProtectForDodgingAttacks
     WaitButton
     CloseMessage
     ReleaseAll
@@ -84,7 +84,7 @@ VeilstoneStore3F_Guitarist:
     End
 
 VeilstoneStore3F_Breeder:
-    NPCMessage VeilstoneStore3F_Text_WouldLoveToBuyAllTheMerchandise
+    NPCMessage VeilstoneStore3F_Text_WantToBuyAllMerchandise
     End
 
 VeilstoneStore3F_TopVendor:

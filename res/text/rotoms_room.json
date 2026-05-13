@@ -2,7 +2,7 @@
   "key": 5131,
   "messages": [
     {
-      "id": "RotomsRoom_Text_PokemonEnteredMotorTryingToLearnMove",
+      "id": "RotomsRoom_Text_TryingToLearnMove",
       "en_US": [
         "{STRVAR_1 0, 0, 0} entered the motor.\r",
         "{STRVAR_1 0, 0, 0} is trying to\n",
@@ -21,7 +21,7 @@
       ]
     },
     {
-      "id": "RotomsRoom_Text_PokemonDidNotLearnMoveEmergedFromTheMotor",
+      "id": "RotomsRoom_Text_DidNotLearnMoveEmergedFromMotor",
       "en_US": [
         "{STRVAR_1 0, 0, 0} did not learn\n",
         "{STRVAR_1 6, 1, 0}.\r",
@@ -40,7 +40,7 @@
       "en_US": "1,{PAUSE 20} 2,{PAUSE 20} and...{PAUSE 20} ...{PAUSE 20} Poof!"
     },
     {
-      "id": "RotomsRoom_Text_PokemonForgotHowToUseMove",
+      "id": "RotomsRoom_Text_PokemonForgotMove",
       "en_US": [
         "{STRVAR_1 1, 0, 0} forgot how to\n",
         "use {STRVAR_1 6, 1, 0}.\r",
@@ -55,15 +55,15 @@
       ]
     },
     {
-      "id": "RotomsRoom_Text_WhichRotomAreYouChoosing",
+      "id": "RotomsRoom_Text_ChooseWhichRotom",
       "en_US": "Which ROTOM are you choosing?\r"
     },
     {
-      "id": "RotomsRoom_Text_AnEggCantEnterAMotor",
+      "id": "RotomsRoom_Text_EggCantEnter",
       "en_US": "An Egg can’t enter a motor."
     },
     {
-      "id": "RotomsRoom_Text_ThatPokemonCantEnterAMotor",
+      "id": "RotomsRoom_Text_ThatPokemonCantEnter",
       "en_US": "That Pokémon can’t enter a motor."
     },
     {
@@ -75,11 +75,11 @@
       "en_US": "{STRVAR_1 0, 0, 0} emerged from the motor.\r"
     },
     {
-      "id": "RotomsRoom_Text_00012",
+      "id": "RotomsRoom_Text_Dummy12",
       "garbage": 24
     },
     {
-      "id": "RotomsRoom_Text_OhRotomWantsToRevertToItsOriginalForm",
+      "id": "RotomsRoom_Text_RevertRotomToOriginalForm",
       "en_US": [
         "Oh? ROTOM appears as if it wants to\n",
         "revert to its original form.\r",
@@ -100,7 +100,7 @@
       "en_US": "NO"
     },
     {
-      "id": "RotomsRoom_Text_ThatRotomHasntEnteredAMotor",
+      "id": "RotomsRoom_Text_RotomHasntEnteredMotor",
       "en_US": "That ROTOM hasn’t entered a motor."
     },
     {
@@ -111,14 +111,14 @@
       ]
     },
     {
-      "id": "RotomsRoom_Text_ItsAMicrowaveOven",
+      "id": "RotomsRoom_Text_ItsAMicrowave",
       "en_US": [
         "It’s a microwave oven.\n",
         "It has an odd-shaped motor on it."
       ]
     },
     {
-      "id": "RotomsRoom_Text_ItsAMicrowaveOvenRotomWantsToGoIntoTheMotor",
+      "id": "RotomsRoom_Text_AllowRotomEnterMicrowave",
       "en_US": [
         "It’s a microwave oven.\n",
         "It has an odd-shaped motor on it.\r",
@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "RotomsRoom_Text_RotomGaveUpEnteringTheMicrowaveOvensMotor",
+      "id": "RotomsRoom_Text_RotomGaveUpEnteringMicrowave",
       "en_US": [
         "ROTOM reluctantly gave up on entering\n",
         "the microwave oven’s motor..."
@@ -142,7 +142,7 @@
       ]
     },
     {
-      "id": "RotomsRoom_Text_ItsARefrigeratorRotomWantsToGoIntoTheMotor",
+      "id": "RotomsRoom_Text_AllowRotomEnterRefrigerator",
       "en_US": [
         "It’s a refrigerator.\n",
         "It has an odd-shaped motor on it.\r",
@@ -152,7 +152,7 @@
       ]
     },
     {
-      "id": "RotomsRoom_Text_RotomGaveUpEnteringTheRefrigeratorsMotor",
+      "id": "RotomsRoom_Text_RotomGaveUpEnteringRefrigerator",
       "en_US": [
         "ROTOM reluctantly gave up on entering\n",
         "the refrigerator’s motor..."
@@ -166,7 +166,7 @@
       ]
     },
     {
-      "id": "RotomsRoom_Text_ItsAWashingMachineRotomWantsToGoIntoTheMotor",
+      "id": "RotomsRoom_Text_AllowRotomEnterWashingMachine",
       "en_US": [
         "It’s a washing machine.\n",
         "It has an odd-shaped motor on it.\r",
@@ -176,21 +176,21 @@
       ]
     },
     {
-      "id": "RotomsRoom_Text_RotomGaveUpEnteringTheWashingMachinesMotor",
+      "id": "RotomsRoom_Text_RotomGaveUpEnteringWashingMachine",
       "en_US": [
         "ROTOM reluctantly gave up on entering\n",
         "the washing machine’s motor..."
       ]
     },
     {
-      "id": "RotomsRoom_Text_ItsARotaryFan",
+      "id": "RotomsRoom_Text_ItsAFan",
       "en_US": [
         "It’s a rotary fan.\n",
         "It has an odd-shaped motor on it."
       ]
     },
     {
-      "id": "RotomsRoom_Text_ItsARotaryFanRotomWantsToGoIntoTheMotor",
+      "id": "RotomsRoom_Text_AllowRotomEnterFan",
       "en_US": [
         "It’s a rotary fan.\n",
         "It has an odd-shaped motor on it.\r",
@@ -200,7 +200,7 @@
       ]
     },
     {
-      "id": "RotomsRoom_Text_RotomGaveUpEnteringTheRotaryFansMotor",
+      "id": "RotomsRoom_Text_RotomGaveUpEnteringFan",
       "en_US": [
         "ROTOM reluctantly gave up on entering\n",
         "the rotary fan’s motor..."
@@ -214,7 +214,7 @@
       ]
     },
     {
-      "id": "RotomsRoom_Text_ItsALawnMowerRotomWantsToGoIntoTheMotor",
+      "id": "RotomsRoom_Text_AllowRotomEnterLawnMower",
       "en_US": [
         "It’s a lawn mower.\n",
         "It has an odd-shaped motor on it.\r",
@@ -224,14 +224,14 @@
       ]
     },
     {
-      "id": "RotomsRoom_Text_RotomGaveUpEnteringTheLawnMowersMotor",
+      "id": "RotomsRoom_Text_RotomGaveUpEnteringLawnMower",
       "en_US": [
         "ROTOM reluctantly gave up on entering\n",
         "the lawn mower’s motor..."
       ]
     },
     {
-      "id": "RotomsRoom_Text_ThereIsAMysteriousNotebookHere",
+      "id": "RotomsRoom_Text_InformationAboutRotom",
       "en_US": [
         "There is a mysterious notebook here.\n",
         "Its age is impossible to tell.\r",
@@ -257,7 +257,7 @@
       ]
     },
     {
-      "id": "RotomsRoom_Text_RowanAhImagineFindingYouHere",
+      "id": "RotomsRoom_Text_ImagineFindingYouHere",
       "en_US": [
         "Rowan: Ah, imagine finding you here!\r",
         "You must be eager to fill your Pokédex\n",
@@ -270,7 +270,7 @@
       ]
     },
     {
-      "id": "RotomsRoom_Text_APokemonThatSlipsIntoElectricAppliancesYouSay",
+      "id": "RotomsRoom_Text_PokemonThatSlipsIntoAppliances",
       "en_US": [
         "A Pokémon that slips into electric\n",
         "appliances, you say...\r",
@@ -290,7 +290,7 @@
       ]
     },
     {
-      "id": "RotomsRoom_Text_AnywayThisRotomWhatAnInterestingPokemon",
+      "id": "RotomsRoom_Text_RotomInterestingPokemon",
       "en_US": [
         "Anyway, this ROTOM...\n",
         "What an interesting Pokémon.\r",
@@ -310,7 +310,7 @@
       ]
     },
     {
-      "id": "RotomsRoom_Text_ItsAnOldNotebook",
+      "id": "RotomsRoom_Text_ReadOldNotebook",
       "en_US": [
         "It’s an old notebook.\n",
         "There’s no telling how old it is.\r",
@@ -318,7 +318,7 @@
       ]
     },
     {
-      "id": "RotomsRoom_Text_OurEncounterWasASuddenOne",
+      "id": "RotomsRoom_Text_PokemonEmergedFromLawnMower",
       "en_US": [
         "“Our encounter was a sudden one.\r",
         "“It was when I found my toy robot,\n",
@@ -331,7 +331,7 @@
       ]
     },
     {
-      "id": "RotomsRoom_Text_ThePokemonHoveredInTheAir",
+      "id": "RotomsRoom_Text_PokemonHoveredInTheAir",
       "en_US": [
         "“The Pokémon hovered in the air, held\n",
         "aloft by a power unseen.\r",
@@ -349,7 +349,7 @@
       ]
     },
     {
-      "id": "RotomsRoom_Text_ThePokemonOnlyWishedToBeFriends",
+      "id": "RotomsRoom_Text_INameThisRotom",
       "en_US": [
         "“Finally, I came to realize that the\n",
         "Pokémon only wished to be friends.\r",
@@ -363,7 +363,7 @@
       ]
     },
     {
-      "id": "RotomsRoom_Text_RotomIsAPokemonThatIsSensational",
+      "id": "RotomsRoom_Text_AbilityToEnterMachinery",
       "en_US": [
         "“ROTOM is a Pokémon that is simply\n",
         "sensational.\r",
@@ -376,7 +376,7 @@
       ]
     },
     {
-      "id": "RotomsRoom_Text_RotomAndIBecameFastFriends",
+      "id": "RotomsRoom_Text_RotomAndIBecameFriends",
       "en_US": [
         "“ROTOM and I became fast friends.\n",
         "We were perpetual companions.\r",
@@ -390,7 +390,7 @@
       ]
     },
     {
-      "id": "RotomsRoom_Text_AFeelingOfMischiefGotTheBetterOfMe",
+      "id": "RotomsRoom_Text_FeelingOfMischief",
       "en_US": [
         "“A feeling of mischief got the better\n",
         "of me one day.\r",
@@ -404,7 +404,7 @@
       ]
     },
     {
-      "id": "RotomsRoom_Text_WhenICameToRotomDisappeared",
+      "id": "RotomsRoom_Text_RotomDisappeared",
       "en_US": [
         "“When I came to, to my horror I\n",
         "realized that ROTOM had disappeared.\r",
@@ -419,7 +419,7 @@
       ]
     },
     {
-      "id": "RotomsRoom_Text_MySearchForRotomCarriedMeFarFromHome",
+      "id": "RotomsRoom_Text_SearchForRotom",
       "en_US": [
         "“My search for ROTOM carried me far\n",
         "from home.\r",
@@ -435,7 +435,7 @@
       ]
     },
     {
-      "id": "RotomsRoom_Text_TheRobotEyesLitUpHappilyAsIHeldIt",
+      "id": "RotomsRoom_Text_NotebookEnds",
       "en_US": [
         "“The robot’s eyes lit up happily as\n",
         "I held it.\r",
@@ -449,35 +449,35 @@
       ]
     },
     {
-      "id": "RotomsRoom_Text_00048",
+      "id": "RotomsRoom_Text_Dummy48",
       "garbage": 14
     },
     {
-      "id": "RotomsRoom_Text_00049",
+      "id": "RotomsRoom_Text_Dummy49",
       "garbage": 14
     },
     {
-      "id": "RotomsRoom_Text_00050",
+      "id": "RotomsRoom_Text_Dummy50",
       "garbage": 14
     },
     {
-      "id": "RotomsRoom_Text_00051",
+      "id": "RotomsRoom_Text_Dummy51",
       "garbage": 14
     },
     {
-      "id": "RotomsRoom_Text_00052",
+      "id": "RotomsRoom_Text_Dummy52",
       "garbage": 14
     },
     {
-      "id": "RotomsRoom_Text_00053",
+      "id": "RotomsRoom_Text_Dummy53",
       "garbage": 20
     },
     {
-      "id": "RotomsRoom_Text_00054",
+      "id": "RotomsRoom_Text_Dummy54",
       "garbage": 2
     },
     {
-      "id": "RotomsRoom_Text_00055",
+      "id": "RotomsRoom_Text_Dummy55",
       "garbage": 3
     }
   ]

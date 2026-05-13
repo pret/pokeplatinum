@@ -1,0 +1,30 @@
+{
+  "name": "Soft Sand",
+  "plural": "Soft Sand",
+  "article": "a",
+  "description": [
+    "An item to be held by a Pokémon.\n",
+    "It is a loose, silky sand that boosts\n",
+    "the power of Ground-type moves."
+  ],
+  "icon": {
+    "sprite": "soft_sand_NCGR",
+    "palette": "soft_sand_NCLR"
+  },
+  "gbaID": "GBA_ITEM_SOFT_SAND",
+  "price": 100,
+  "effectParam": 20,
+  "holdEffect": "HOLD_EFFECT_STRENGTHEN_GROUND",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 10,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseFunc": 0,
+  "itemUseParams": null
+}

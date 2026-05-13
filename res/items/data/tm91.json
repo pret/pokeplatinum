@@ -1,0 +1,31 @@
+{
+  "name": "TM91",
+  "plural": "TM91s",
+  "article": "a",
+  "description": [
+    "The user gathers all its light energy\n",
+    "and releases it in one shot. It may\n",
+    "also lower the foe’s Sp. Def stat."
+  ],
+  "icon": {
+    "sprite": "tm_NCGR",
+    "palette": "tm_steel_NCLR"
+  },
+  "gbaID": "GBA_ITEM_NONE",
+  "price": 3000,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 0,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_TMHMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_TM_HM",
+  "battleUseFunc": 0,
+  "itemUseParams": null,
+  "teachesMove": "MOVE_FLASH_CANNON"
+}

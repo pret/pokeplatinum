@@ -61,7 +61,7 @@ BerryGrowthData *BerryGrowthData_Init(enum HeapID heapID)
 
         growthData[i].stageDuration = BerryData_GetAttribute(berryData, BERRYATTR_STAGE_DURATION);
         growthData[i].moistureDrainRate = BerryData_GetAttribute(berryData, BERRYATTR_MOISTURE_DRAIN_RATE);
-        growthData[i].yieldCategory = BerryData_GetAttribute(berryData, BERRYATTR_YIELD_CATEGORY);
+        growthData[i].baseYield = BerryData_GetAttribute(berryData, BERRYATTR_BASE_YIELD);
 
         Heap_Free(berryData);
     }
@@ -86,7 +86,7 @@ static void ZeroBerryPatch(BerryPatch *berryPatch)
 
 static int CalcBerryYield(BerryPatch *berryPatch, const BerryGrowthData *growthData)
 {
-    return growthData[berryPatch->berryID - 1].yieldCategory * berryPatch->yieldRating;
+    return growthData[berryPatch->berryID - 1].baseYield * berryPatch->yieldRating;
 }
 
 static int CalcMinutesRemainingInStage(const BerryGrowthData *growthData, int berryID, enum MulchType mulchType)

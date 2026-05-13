@@ -58,9 +58,6 @@ static void pack_trainer(datafile_t *df);
 static void emit_trainer_name(datafile_t *df, const char *stem);
 static void emit_trainer_messages(datafile_t *df, const char *stem);
 
-#define sfmt(fmt, ...) (snprintf(buf, BUFSIZE, fmt, __VA_ARGS__), buf)
-#define BUFSIZE        256
-
 typedef struct dynlookup dynlookup_t;
 struct dynlookup {
     lookup_t *data;
@@ -85,7 +82,7 @@ int main(int argc, char *argv[]) {
 
     // Parse available Pokemon sets and ingest their names into a lookup table.
     for (size_t i = 0; i < len_pk_registry; i++) {
-        char *path = pathjoin(base_dir, "pokemon", sfmt("%s.json", pk_registry[i]));
+        char *path = pathjoin(base_dir, "pokemon", strfmt("%s.json", pk_registry[i]));
         if (dp_load(&df, path) == 0) {
             pack_pokemon_set(&df);
             sets[i] = (lookup_t){ .val = i, .def = pk_registry[i] };
@@ -102,7 +99,7 @@ int main(int argc, char *argv[]) {
 
     // Now we can process the trainers.
     for (size_t i = 0; i < len_tr_registry; i++) {
-        char *path = pathjoin(base_dir, "data", sfmt("%s.json", tr_registry[i]));
+        char *path = pathjoin(base_dir, "data", strfmt("%s.json", tr_registry[i]));
         if (dp_load(&df, path) == 0) {
             pack_trainer(&df);
             emit_trainer_name(&df, tr_registry[i]);
@@ -182,7 +179,7 @@ static void emit_trainer_name(datafile_t *df, const char *stem) {
 
     const char *name  = dp_string(dp_get(df, ".name"));
     datanode_t  entry = dp_arr_appobject(&textbanks[T_TRAINER_NAMES].root);
-    dp_obj_putstring(&entry, "id", sfmt("FrontierTrainerNames_Text_%s", stem));
+    dp_obj_putstring(&entry, "id", strfmt("FrontierTrainerNames_Text_%s", stem));
     dp_obj_putstring(&entry, "en_US", name);
 }
 
@@ -199,7 +196,7 @@ static void emit_trainer_messages(datafile_t *df, const char *stem) {
 
         const char *type  = dp_string(type_node);
         datanode_t  entry = dp_arr_appobject(&textbanks[T_TRAINER_MESSAGES].root);
-        dp_obj_putstring(&entry, "id", sfmt("FrontierTrainerMessages_Text_%s_%s", stem, type));
+        dp_obj_putstring(&entry, "id", strfmt("FrontierTrainerMessages_Text_%s_%s", stem, type));
         if (dp_hasmemb(message, "en_US")) {
             datanode_t content = dp_objmemb(message, "en_US");
             if (content.type == DATAPROC_T_STRING) {

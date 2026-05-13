@@ -1,0 +1,30 @@
+{
+  "name": "BrightPowder",
+  "plural": "BrightPowders",
+  "article": "a",
+  "description": [
+    "An item to be held by a Pokémon.\n",
+    "It casts a tricky glare that lowers\n",
+    "the opponent’s accuracy."
+  ],
+  "icon": {
+    "sprite": "brightpowder_NCGR",
+    "palette": "brightpowder_NCLR"
+  },
+  "gbaID": "GBA_ITEM_BRIGHT_POWDER",
+  "price": 10,
+  "effectParam": 10,
+  "holdEffect": "HOLD_EFFECT_ACC_REDUCE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 10,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseFunc": 0,
+  "itemUseParams": null
+}

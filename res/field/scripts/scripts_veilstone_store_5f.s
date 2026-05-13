@@ -3,11 +3,11 @@
 #include "res/text/bank/menu_entries.h"
 
 
-#define LOCALID_DRINK_CHOICE      VAR_0x8000
-#define LOCALID_DRINK_ID          VAR_0x8001
-#define LOCALID_ITEM_ID           VAR_0x8004
-#define LOCALID_COUNT             VAR_0x8005
-#define LOCALID_DRINK_CHOICE_COPY VAR_0x8008
+#define LOCAL_VAR_DRINK_CHOICE      VAR_0x8000
+#define LOCAL_VAR_DRINK_ID          VAR_0x8001
+#define LOCAL_VAR_ITEM_ID           VAR_0x8004
+#define LOCAL_VAR_COUNT             VAR_0x8005
+#define LOCAL_VAR_DRINK_CHOICE_COPY VAR_0x8008
 
     ScriptEntry VeilstoneStore5F_BugCatcher
     ScriptEntry VeilstoneStore5F_MiddleAgedWoman
@@ -30,17 +30,17 @@ VeilstoneStore5F_Collector1:
     LockAll
     FacePlayer
     GoToIfSet FLAG_VEILSTONE_STORE_5F_RECEIVED_STICKY_BARB, VeilstoneStore5F_Collector1AfterItemGiven
-    Message VeilstoneStore5F_Text_AGiftOfThisStickyBarb
-    SetVar LOCALID_ITEM_ID, ITEM_STICKY_BARB
-    SetVar LOCALID_COUNT, 1
-    GoToIfCannotFitItem LOCALID_ITEM_ID, LOCALID_COUNT, VAR_RESULT, VeilstoneStore5F_Collector1BagIsFull
+    Message VeilstoneStore5F_Text_GiftThisStickyBarb
+    SetVar LOCAL_VAR_ITEM_ID, ITEM_STICKY_BARB
+    SetVar LOCAL_VAR_COUNT, 1
+    GoToIfCannotFitItem LOCAL_VAR_ITEM_ID, LOCAL_VAR_COUNT, VAR_RESULT, VeilstoneStore5F_Collector1BagIsFull
     Common_GiveItemQuantity
     SetFlag FLAG_VEILSTONE_STORE_5F_RECEIVED_STICKY_BARB
     GoTo VeilstoneStore5F_Collector1AfterItemGiven
     End
 
 VeilstoneStore5F_Collector1AfterItemGiven:
-    Message VeilstoneStore5F_Text_SticksToTheFoeAndInflictsDamage
+    Message VeilstoneStore5F_Text_SticksToFoeInflictsDamage
     WaitButton
     CloseMessage
     ReleaseAll
@@ -68,29 +68,29 @@ VeilstoneStore5F_VendingMachine:
     GoTo VeilstoneStore5F_VendingMachineMenu
 
 VeilstoneStore5F_VendingMachineMenu:
-    InitGlobalTextMenu 1, 1, 0, LOCALID_DRINK_CHOICE
+    InitGlobalTextMenu 1, 1, 0, LOCAL_VAR_DRINK_CHOICE
     AddMenuEntryImm MenuEntries_Text_FreshWater, 0
     AddMenuEntryImm MenuEntries_Text_SodaPop, 1
     AddMenuEntryImm MenuEntries_Text_Lemonade, 2
     AddMenuEntryImm MenuEntries_Text_NoThanks, 3
     ShowMenu
-    SetVar LOCALID_DRINK_CHOICE_COPY, LOCALID_DRINK_CHOICE
-    GoToIfEq LOCALID_DRINK_CHOICE_COPY, 0, VeilstoneStore5F_VendingMachineChooseFreshWater
-    GoToIfEq LOCALID_DRINK_CHOICE_COPY, 1, VeilstoneStore5F_VendingMachineChooseSodaPop
-    GoToIfEq LOCALID_DRINK_CHOICE_COPY, 2, VeilstoneStore5F_VendingMachineChooseLemonade
+    SetVar LOCAL_VAR_DRINK_CHOICE_COPY, LOCAL_VAR_DRINK_CHOICE
+    GoToIfEq LOCAL_VAR_DRINK_CHOICE_COPY, 0, VeilstoneStore5F_VendingMachineChooseFreshWater
+    GoToIfEq LOCAL_VAR_DRINK_CHOICE_COPY, 1, VeilstoneStore5F_VendingMachineChooseSodaPop
+    GoToIfEq LOCAL_VAR_DRINK_CHOICE_COPY, 2, VeilstoneStore5F_VendingMachineChooseLemonade
     Message VeilstoneStore5F_Text_DecidedNotToBuyADrink
     GoTo VeilstoneStore5F_VendingMachineClose
 
 VeilstoneStore5F_VendingMachineChooseFreshWater:
-    SetVar LOCALID_DRINK_ID, ITEM_FRESH_WATER
+    SetVar LOCAL_VAR_DRINK_ID, ITEM_FRESH_WATER
     GoTo VeilstoneStore5F_VendingMachineDispenseDrink
 
 VeilstoneStore5F_VendingMachineChooseSodaPop:
-    SetVar LOCALID_DRINK_ID, ITEM_SODA_POP
+    SetVar LOCAL_VAR_DRINK_ID, ITEM_SODA_POP
     GoTo VeilstoneStore5F_VendingMachineDispenseDrink
 
 VeilstoneStore5F_VendingMachineChooseLemonade:
-    SetVar LOCALID_DRINK_ID, ITEM_LEMONADE
+    SetVar LOCAL_VAR_DRINK_ID, ITEM_LEMONADE
     GoTo VeilstoneStore5F_VendingMachineDispenseDrink
 
 VeilstoneStore5F_VendingMachineCheckFreshWaterMoney:
@@ -121,31 +121,31 @@ VeilstoneStore5F_VendingMachineBuyLemonade:
     Return
 
 VeilstoneStore5F_VendingMachineDispenseDrink:
-    CallIfEq LOCALID_DRINK_CHOICE, 0, VeilstoneStore5F_VendingMachineCheckFreshWaterMoney
-    CallIfEq LOCALID_DRINK_CHOICE, 1, VeilstoneStore5F_VendingMachineCheckSodaPopMoney
-    CallIfEq LOCALID_DRINK_CHOICE, 2, VeilstoneStore5F_VendingMachineCheckLemonadeMoney
+    CallIfEq LOCAL_VAR_DRINK_CHOICE, 0, VeilstoneStore5F_VendingMachineCheckFreshWaterMoney
+    CallIfEq LOCAL_VAR_DRINK_CHOICE, 1, VeilstoneStore5F_VendingMachineCheckSodaPopMoney
+    CallIfEq LOCAL_VAR_DRINK_CHOICE, 2, VeilstoneStore5F_VendingMachineCheckLemonadeMoney
     GoToIfEq VAR_RESULT, 0, VeilstoneStore5F_VendingMachineNotEnoughMoney
-    GoToIfCannotFitItem LOCALID_DRINK_ID, 1, VAR_RESULT, VeilstoneStore5F_VendingMachineBagIsFull
-    CallIfEq LOCALID_DRINK_CHOICE, 0, VeilstoneStore5F_VendingMachineBuyFreshWater
-    CallIfEq LOCALID_DRINK_CHOICE, 1, VeilstoneStore5F_VendingMachineBuySodaPop
-    CallIfEq LOCALID_DRINK_CHOICE, 2, VeilstoneStore5F_VendingMachineBuyLemonade
+    GoToIfCannotFitItem LOCAL_VAR_DRINK_ID, 1, VAR_RESULT, VeilstoneStore5F_VendingMachineBagIsFull
+    CallIfEq LOCAL_VAR_DRINK_CHOICE, 0, VeilstoneStore5F_VendingMachineBuyFreshWater
+    CallIfEq LOCAL_VAR_DRINK_CHOICE, 1, VeilstoneStore5F_VendingMachineBuySodaPop
+    CallIfEq LOCAL_VAR_DRINK_CHOICE, 2, VeilstoneStore5F_VendingMachineBuyLemonade
     UpdateMoneyDisplay
-    BufferItemName 0, LOCALID_DRINK_ID
+    BufferItemName 0, LOCAL_VAR_DRINK_ID
     PlaySE SEQ_SE_DP_JIHANKI
-    BufferItemName 0, LOCALID_DRINK_ID
+    BufferItemName 0, LOCAL_VAR_DRINK_ID
     Message VeilstoneStore5F_Text_ACanDroppedDown
-    SetVar LOCALID_ITEM_ID, LOCALID_DRINK_ID
-    SetVar LOCALID_COUNT, 1
+    SetVar LOCAL_VAR_ITEM_ID, LOCAL_VAR_DRINK_ID
+    SetVar LOCAL_VAR_COUNT, 1
     Common_GiveItemQuantity
     // 1 in 64 chance for a bonus can
     GetRandom VAR_RESULT, 64
     GoToIfNe VAR_RESULT, 0, VeilstoneStore5F_VendingMachineBuyAnotherDrink
-    GoToIfCannotFitItem LOCALID_DRINK_ID, 1, VAR_RESULT, VeilstoneStore5F_VendingMachineBagIsFull
+    GoToIfCannotFitItem LOCAL_VAR_DRINK_ID, 1, VAR_RESULT, VeilstoneStore5F_VendingMachineBagIsFull
     PlaySE SEQ_SE_DP_JIHANKI
-    BufferItemName 0, LOCALID_DRINK_ID
+    BufferItemName 0, LOCAL_VAR_DRINK_ID
     Message VeilstoneStore5F_Text_ABonusCanDroppedDown
-    SetVar LOCALID_ITEM_ID, LOCALID_DRINK_ID
-    SetVar LOCALID_COUNT, 1
+    SetVar LOCAL_VAR_ITEM_ID, LOCAL_VAR_DRINK_ID
+    SetVar LOCAL_VAR_COUNT, 1
     Common_GiveItemQuantity
     GoTo VeilstoneStore5F_VendingMachineBuyAnotherDrink
 

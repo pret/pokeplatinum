@@ -15,7 +15,6 @@
 #include "applications/pokemon_summary_screen/main.h"
 #include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/ov104_0223A7F4.h"
-#include "overlay104/struct_ov104_02234130.h"
 
 #include "bg_window.h"
 #include "communication_information.h"
@@ -386,15 +385,15 @@ int BattleFactoryApp_Init(ApplicationManager *appMan, int *state)
     app->bgConfig = BgConfig_New(HEAP_ID_BATTLE_FACTORY_APP);
     app->appMan = appMan;
 
-    UnkStruct_ov104_02234130 *v2 = ApplicationManager_Args(appMan);
+    BattleFactoryAppArgs *args = ApplicationManager_Args(appMan);
 
-    app->saveData = v2->saveData;
-    app->challengeType = v2->unk_04;
-    app->unk_0A = v2->unk_05;
-    app->isExchangeMode = v2->unk_06;
-    app->personalParty = v2->unk_08;
-    app->receivableParty = v2->unk_0C;
-    app->selectedIndicesFinal = &v2->unk_10[0];
+    app->saveData = args->saveData;
+    app->challengeType = args->challengeType;
+    app->unk_0A = args->unk_05;
+    app->isExchangeMode = args->isExchangeMode;
+    app->personalParty = args->personalParty;
+    app->receivableParty = args->receivableParty;
+    app->selectedIndicesFinal = &args->selectedIndices[0];
     app->options = SaveData_GetOptions(app->saveData);
     app->wheelPaletteCounter = 8;
 

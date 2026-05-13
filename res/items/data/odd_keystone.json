@@ -1,0 +1,30 @@
+{
+  "name": "Odd Keystone",
+  "plural": "Odd Keystones",
+  "article": "an",
+  "description": [
+    "A vital item that is needed to keep a\n",
+    "stone tower from collapsing. Voices\n",
+    "can be heard from it occasionally."
+  ],
+  "icon": {
+    "sprite": "odd_keystone_NCGR",
+    "palette": "odd_keystone_NCLR"
+  },
+  "gbaID": "GBA_ITEM_NONE",
+  "price": 2100,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 80,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseFunc": 0,
+  "itemUseParams": {}
+}
