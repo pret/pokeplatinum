@@ -1,6 +1,7 @@
 # include "macros/frscrcmd.inc"
 # include "res/graphics/frontier/particles/frontier_particles.naix"
 # include "res/text/bank/battle_factory_scene.h"
+# include "constants/battle_factory_functions.h"
 # include "constants/battle_frontier.h"
 # include "constants/battle_frontier_emitters.h"
 
@@ -451,8 +452,8 @@ _033E:
     FrontierScrCmd_24 _0088
     InitNewBattleRecording
     FrontierScrCmd_5C VAR_0x8003, VAR_0x8001, VAR_0x8002
-    FrontierScrCmd_67 31, 0, 0, VAR_0x8008
-    FrontierScrCmd_67 28, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_UNK_31, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _0377
     GoTo _03B6
     End
@@ -476,7 +477,7 @@ _0385:
 
 _03B6:
     FrontierScrCmd_5D VAR_0x8003
-    FrontierScrCmd_67 28, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _03D6
     GoTo _0407
     End
@@ -496,7 +497,7 @@ _03D6:
 _0407:
     FadeScreenIn
     SetVar VAR_0x8003, 0
-    FrontierScrCmd_67 28, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _0447
     ApplyMovement 4, _0188
     ApplyMovement 5, _0198
@@ -516,7 +517,7 @@ _0447:
 _0471:
     FrontierScrCmd_25 5
     FrontierScrCmd_23 FR_VAR_0x800F
-    FrontierScrCmd_67 23, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_UNK_23, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 0, _049B
     SetVar VAR_0x8003, 1
     GoTo _0C29
@@ -528,7 +529,7 @@ _049B:
     End
 
 _04A9:
-    FrontierScrCmd_67 28, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _04C5
     GoTo _05F3
     End
@@ -549,8 +550,8 @@ _04D5:
     ClearReceivedTempDataAllPlayers
     SyncConnectedPlayers 232
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_67 39, 0, 0, VAR_0x8008
-    FrontierScrCmd_67 19, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_UNK_39, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_UNK_19, 0, 0, VAR_0x8008
     SetVar VAR_0x8009, VAR_0x8008
     CallIfEq VAR_0x8009, 0, _0555
     CallIfEq VAR_0x8009, 1, _0597
@@ -560,35 +561,35 @@ _04D5:
     Return
 
 _0555:
-    FrontierScrCmd_67 15, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_UNK_15, 0, 0, VAR_0x8008
     BufferSpeciesName 1, VAR_0x8008
-    FrontierScrCmd_67 15, 1, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_UNK_15, 1, 0, VAR_0x8008
     BufferSpeciesName 2, VAR_0x8008
-    FrontierScrCmd_67 15, 2, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_UNK_15, 2, 0, VAR_0x8008
     BufferSpeciesName 3, VAR_0x8008
-    FrontierScrCmd_67 15, 3, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_UNK_15, 3, 0, VAR_0x8008
     BufferSpeciesName 4, VAR_0x8008
     Message BattleFactoryScene_Text_MultiOpponentInfo4Mon
     Return
 
 _0597:
-    FrontierScrCmd_67 15, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_UNK_15, 0, 0, VAR_0x8008
     BufferSpeciesName 1, VAR_0x8008
-    FrontierScrCmd_67 15, 2, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_UNK_15, 2, 0, VAR_0x8008
     BufferSpeciesName 2, VAR_0x8008
     Message BattleFactoryScene_Text_MultiOpponentInfo2Mon
     Return
 
 _05BB:
-    FrontierScrCmd_67 16, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_UNK_16, 0, 0, VAR_0x8008
     BufferMoveName 0, VAR_0x8008
-    FrontierScrCmd_67 16, 2, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_UNK_16, 2, 0, VAR_0x8008
     BufferMoveName 1, VAR_0x8008
     Message BattleFactoryScene_Text_MultiOpponentInfoFirstMoves
     Return
 
 _05D9:
-    FrontierScrCmd_67 16, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_UNK_16, 0, 0, VAR_0x8008
     BufferMoveName 0, VAR_0x8008
     Message BattleFactoryScene_Text_MultiOpponentInfoCommonType
     Return
@@ -598,7 +599,7 @@ _05EB:
     End
 
 _05F3:
-    FrontierScrCmd_67 19, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_UNK_19, 0, 0, VAR_0x8008
     SetVar VAR_0x8009, VAR_0x8008
     CallIfEq VAR_0x8009, 0, _0643
     CallIfEq VAR_0x8009, 1, _0676
@@ -608,39 +609,39 @@ _05F3:
     Return
 
 _0643:
-    FrontierScrCmd_67 15, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_UNK_15, 0, 0, VAR_0x8008
     BufferSpeciesName 1, VAR_0x8008
-    FrontierScrCmd_67 15, 1, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_UNK_15, 1, 0, VAR_0x8008
     BufferSpeciesName 3, VAR_0x8008
-    FrontierScrCmd_67 15, 2, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_UNK_15, 2, 0, VAR_0x8008
     BufferSpeciesName 5, VAR_0x8008
     Message BattleFactoryScene_Text_OpponentInfo3Mon
     Return
 
 _0676:
-    FrontierScrCmd_67 15, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_UNK_15, 0, 0, VAR_0x8008
     BufferSpeciesName 1, VAR_0x8008
-    FrontierScrCmd_67 15, 1, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_UNK_15, 1, 0, VAR_0x8008
     BufferSpeciesName 3, VAR_0x8008
     Message BattleFactoryScene_Text_OpponentInfo2Mon
     Return
 
 _069A:
-    FrontierScrCmd_67 16, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_UNK_16, 0, 0, VAR_0x8008
     BufferMoveName 0, VAR_0x8008
-    FrontierScrCmd_67 15, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_UNK_15, 0, 0, VAR_0x8008
     BufferSpeciesName 1, VAR_0x8008
     Message BattleFactoryScene_Text_OpponentInfo1Mon
     Return
 
 _06BB:
-    FrontierScrCmd_67 16, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_UNK_16, 0, 0, VAR_0x8008
     BufferMoveName 0, VAR_0x8008
     Message BattleFactoryScene_Text_OpponentInfoFirstMove
     Return
 
 _06CD:
-    FrontierScrCmd_67 18, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_UNK_18, 0, 0, VAR_0x8008
     CallIfNe VAR_0x8008, 255, _06F0
     CallIfEq VAR_0x8008, 255, _06FB
     Return
@@ -656,7 +657,7 @@ _06FB:
 
 _0701:
     Message BattleFactoryScene_Text_ChoosePokemon
-    FrontierScrCmd_67 28, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _0721
     GoTo _0765
     End
@@ -672,7 +673,7 @@ _072D:
     GoToIfEq VAR_0x8008, 0, _072D
     FrontierScrCmd_6A VAR_0x8002
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_67 40, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_UNK_40, 0, 0, VAR_0x8008
     ClearReceivedTempDataAllPlayers
     SyncConnectedPlayers 160
     ClearReceivedTempDataAllPlayers
@@ -682,14 +683,14 @@ _072D:
 _0765:
     FadeScreenOut
     CloseMessage
-    FrontierScrCmd_67 32, 0, 0, VAR_0x8008
-    FrontierScrCmd_67 28, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_UNK_32, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     CallIfEq VAR_0x8008, 1, _07D2
-    FrontierScrCmd_5F
-    FrontierScrCmd_67 36, 0, 0, VAR_0x8008
+    OpenBattleFactoryAppInitial
+    CallBattleFactoryFunction BF_FUNC_UNK_36, 0, 0, VAR_0x8008
     FrontierScrCmd_63
-    FrontierScrCmd_67 31, 0, 0, VAR_0x8008
-    FrontierScrCmd_67 28, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_UNK_31, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     CallIfEq VAR_0x8008, 1, _07C8
     FadeScreenIn
     GoTo _07DC
@@ -708,7 +709,7 @@ _07D2:
     Return
 
 _07DC:
-    FrontierScrCmd_67 28, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _0812
     Message BattleFactoryScene_Text_GoIn
     WaitABPress
@@ -736,13 +737,13 @@ _084E:
     PlaySoundEffect SEQ_SE_DP_KAIDAN2
     WaitSoundEffect SEQ_SE_DP_KAIDAN2
     FadeScreenOut
-    FrontierScrCmd_67 28, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _0927
     FrontierScrCmd_25 0
     FrontierScrCmd_25 3
     FrontierScrCmd_25 4
     FrontierScrCmd_23 30
-    FrontierScrCmd_67 32, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_UNK_32, 0, 0, VAR_0x8008
     FrontierScrCmd_03 4
     GetPlayerObjEventGfx VAR_0x8007
     FrontierScrCmd_22 _00F8
@@ -751,7 +752,7 @@ _084E:
     ApplyMovement 4, _01F4
     WaitMovement
     Call _1471
-    FrontierScrCmd_67 37, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_UNK_37, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _14E6
     GoToIfEq VAR_0x8008, 2, _150B
     Call _1612
@@ -762,7 +763,7 @@ _084E:
     WaitTime 15, VAR_0x8008
     ApplyMovement 98, _01EC
     WaitMovement
-    FrontierScrCmd_67 33, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_UNK_33, 0, 0, VAR_0x8008
     FrontierScrCmd_6B 0
     WaitABPress
     CloseMessage
@@ -779,7 +780,7 @@ _0927:
     FrontierScrCmd_25 3
     FrontierScrCmd_25 4
     FrontierScrCmd_23 30
-    FrontierScrCmd_67 32, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_UNK_32, 0, 0, VAR_0x8008
     FrontierScrCmd_03 4
     GetPlayerObjEventGfx VAR_0x8007
     FrontierScrCmd_22 _0100
@@ -797,13 +798,13 @@ _0927:
     WaitTime 15, VAR_0x8008
     ApplyMovement 98, _01EC
     WaitMovement
-    FrontierScrCmd_67 33, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_UNK_33, 0, 0, VAR_0x8008
     FrontierScrCmd_6B 0
     WaitTime 30, VAR_0x8008
     CloseMessage
     ApplyMovement 99, _01EC
     WaitMovement
-    FrontierScrCmd_67 33, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_UNK_33, 0, 0, VAR_0x8008
     FrontierScrCmd_6B 1
     WaitTime 30, VAR_0x8008
     CloseMessage
@@ -812,17 +813,17 @@ _0927:
     End
 
 _09E4:
-    FrontierScrCmd_67 20, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_UNK_20, 0, 0, VAR_0x8008
     SetVar VAR_0x800B, VAR_0x8008
     FrontierScrCmd_22 _0150
     FrontierScrCmd_24 _0160
     Return
 
 _09FF:
-    FrontierScrCmd_67 20, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_UNK_20, 0, 0, VAR_0x8008
     SetVar VAR_0x800B, VAR_0x8008
     FrontierScrCmd_22 _0150
-    FrontierScrCmd_67 20, 1, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_UNK_20, 1, 0, VAR_0x8008
     SetVar VAR_0x800C, VAR_0x8008
     FrontierScrCmd_22 _0158
     FrontierScrCmd_24 _0170
@@ -835,9 +836,9 @@ _0A2D:
     Return
 
 _0A41:
-    FrontierScrCmd_67 28, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _0A92
-    FrontierScrCmd_67 37, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_UNK_37, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _0A82
     GoToIfEq VAR_0x8008, 2, _0A82
     FrontierScrCmd_3F 3
@@ -856,7 +857,7 @@ _0A92:
     GoToIfEq VAR_0x8008, 0, _0A92
     FrontierScrCmd_6A VAR_0x8002
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_67 38, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_UNK_38, 0, 0, VAR_0x8008
     ClearReceivedTempDataAllPlayers
     SyncConnectedPlayers 161
     ClearReceivedTempDataAllPlayers
@@ -866,14 +867,14 @@ _0A92:
     End
 
 _0AD0:
-    FrontierScrCmd_61
-    FrontierScrCmd_60
-    FrontierScrCmd_67 30, 4, 0, VAR_0x8008
+    BattleFactory_StartBattle
+    BattleFactory_CleanupBattle
+    CallBattleFactoryFunction BF_FUNC_UNK_30, 4, 0, VAR_0x8008
     FadeScreenIn
-    FrontierScrCmd_68 VAR_0x8008
+    BattleFactory_CheckWonBattle VAR_0x8008
     GoToIfEq VAR_0x8008, 0, _1233
     IncrementRecordValue RECORD_BATTLE_FACTORY_VICTORIES
-    FrontierScrCmd_67 37, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_UNK_37, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _15AA
     GoToIfEq VAR_0x8008, 2, _15DE
     Call _1612
@@ -892,9 +893,9 @@ _0B3E:
     End
 
 _0B4C:
-    FrontierScrCmd_67 14, 1, 0, VAR_0x8008
-    FrontierScrCmd_67 5, 0, 0, VAR_0x8008
-    FrontierScrCmd_67 23, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_UNK_14, 1, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_INCREMENT_CURRENT_STREAK, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_UNK_23, 0, 0, VAR_0x8008
     GoToIfNe VAR_0x8008, 7, _0C17
     GoTo _0B76
     End
@@ -921,11 +922,11 @@ _0BCB:
     End
 
 _0BD9:
-    FrontierScrCmd_67 22, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_UNK_22, 0, 0, VAR_0x8008
     FrontierScrCmd_3D VAR_BATTLE_FACTORY_LOBBY_LOAD_ACTION, 1
     Message BattleFactoryScene_Text_BPEarned
     BufferPlayerName 0
-    FrontierScrCmd_67 35, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_UNK_35, 0, 0, VAR_0x8008
     BufferNumber 1, VAR_0x8008
     GiveBattlePoints VAR_0x8008
     Message BattleFactoryScene_Text_ReceiveBP
@@ -946,7 +947,7 @@ _0C17:
     End
 
 _0C29:
-    FrontierScrCmd_67 37, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_UNK_37, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _14AE
     GoToIfEq VAR_0x8008, 2, _14AE
     GoTo _0C52
@@ -959,7 +960,7 @@ _0C52:
     End
 
 _0C65:
-    FrontierScrCmd_67 23, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_UNK_23, 0, 0, VAR_0x8008
     AddVar VAR_0x8008, 1
     BufferNumber 0, VAR_0x8008
     Message BattleFactoryScene_Text_AreYouReady
@@ -967,7 +968,7 @@ _0C65:
     End
 
 _0C83:
-    FrontierScrCmd_67 28, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _0CAC
     GoToIfEq VAR_0x8003, 0, _0CFC
     GoTo _0CEE
@@ -1054,7 +1055,7 @@ _0DDE:
     End
 
 _0E1A:
-    FrontierScrCmd_67 28, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _0E36
     GoTo _0E9F
     End
@@ -1071,7 +1072,7 @@ _0E45:
     GoToIfEq VAR_0x8008, 0, _0E45
     FrontierScrCmd_6A VAR_0x8002
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_67 24, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_UNK_24, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _0E8A
     ClearReceivedTempDataAllPlayers
     SyncConnectedPlayers 162
@@ -1090,7 +1091,7 @@ _0E9F:
     SetVar VAR_0x8003, 0
     FrontierScrCmd_64
     Call _04A9
-    FrontierScrCmd_67 0, 1, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_UNK_0, 1, 0, VAR_0x8008
     Message BattleFactoryScene_Text_TradeQuestion
     ShowYesNoMenu VAR_0x8008, MENU_YES
     GoToIfEq VAR_0x8008, 1, _0FBF
@@ -1098,7 +1099,7 @@ _0E9F:
     End
 
 _0ED2:
-    FrontierScrCmd_67 28, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _0EEE
     GoTo _0F23
     End
@@ -1120,7 +1121,7 @@ _0EFA:
 _0F23:
     FadeScreenOut
     CloseMessage
-    FrontierScrCmd_67 28, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _0F4D
     GoTo _0F5D
     End
@@ -1133,13 +1134,13 @@ _0F4D:
     End
 
 _0F5D:
-    FrontierScrCmd_67 32, 0, 0, VAR_0x8008
-    FrontierScrCmd_67 28, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_UNK_32, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     CallIfEq VAR_0x8008, 1, _0FAB
-    FrontierScrCmd_62
+    OpenBattleFactoryAppForTrade
     FrontierScrCmd_65
-    FrontierScrCmd_67 31, 0, 0, VAR_0x8008
-    FrontierScrCmd_67 28, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_UNK_31, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     CallIfEq VAR_0x8008, 1, _0FB5
     FadeScreenIn
     GoTo _102C
@@ -1158,7 +1159,7 @@ _0FB5:
     Return
 
 _0FBF:
-    FrontierScrCmd_67 28, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _0FDB
     GoTo _1022
     End
@@ -1173,7 +1174,7 @@ _0FE5:
     GoToIfEq VAR_0x8008, 0, _0FE5
     FrontierScrCmd_6A VAR_0x8002
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_67 26, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_UNK_26, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 0, _0F23
     GoTo _1022
     End
@@ -1218,7 +1219,7 @@ _1092:
     End
 
 _10A6:
-    FrontierScrCmd_67 4, 0, 0, VAR_0x8005
+    CallBattleFactoryFunction BF_FUNC_GET_CURRENT_STREAK, 0, 0, VAR_0x8005
     Return
 
 _10AF:
@@ -1235,13 +1236,13 @@ _10B7:
     End
 
 _10DE:
-    FrontierScrCmd_67 29, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_GET_CHALLENGE_TYPE, 0, 0, VAR_0x8008
     FrontierScrCmd_6D 2, VAR_0x8008, VAR_0x8005, VAR_0x8005
     GoTo _1110
     End
 
 _10F7:
-    FrontierScrCmd_67 29, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_GET_CHALLENGE_TYPE, 0, 0, VAR_0x8008
     FrontierScrCmd_6D 3, VAR_0x8008, VAR_0x8005, VAR_0x8005
     GoTo _1110
     End
@@ -1275,14 +1276,14 @@ _113E:
 
 _115C:
     FrontierScrCmd_3D VAR_BATTLE_FACTORY_LOBBY_LOAD_ACTION, 2
-    FrontierScrCmd_67 10, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_UNK_10, 0, 0, VAR_0x8008
     Call _137B
     CloseMessage
     FadeScreenOut
-    FrontierScrCmd_67 32, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_UNK_32, 0, 0, VAR_0x8008
     FreeBattleRecording
     FrontierScrCmd_5E
-    FrontierScrCmd_67 7, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_RESET_SYSTEM, 0, 0, VAR_0x8008
     End
 
 _1191:
@@ -1293,7 +1294,7 @@ _1199:
     Message BattleFactoryScene_Text_RetireQuestion
     ShowYesNoMenu VAR_0x8008, MENU_NO
     GoToIfEq VAR_0x8008, 1, _122B
-    FrontierScrCmd_67 28, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _11CF
     Message BattleFactoryScene_Text_ReturnPokemon
     GoTo _1216
@@ -1321,7 +1322,7 @@ _11FE:
     End
 
 _1216:
-    FrontierScrCmd_67 21, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_UNK_21, 0, 0, VAR_0x8008
     FrontierScrCmd_3D VAR_BATTLE_FACTORY_LOBBY_LOAD_ACTION, 3
     GoTo _12F3
     End
@@ -1358,14 +1359,14 @@ _12A2:
     End
 
 _12AA:
-    FrontierScrCmd_67 21, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_UNK_21, 0, 0, VAR_0x8008
     FrontierScrCmd_3D VAR_BATTLE_FACTORY_LOBBY_LOAD_ACTION, 3
     GoTo _12BF
     End
 
 _12BF:
     Message BattleFactoryScene_Text_ReturnPokemon
-    FrontierScrCmd_67 28, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _12DF
     GoTo _12F3
     End
@@ -1385,14 +1386,14 @@ _12F3:
     End
 
 _1303:
-    FrontierScrCmd_67 28, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     CallIfEq VAR_0x8008, 1, _135E
     FadeScreenOut
-    FrontierScrCmd_67 29, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_GET_CHALLENGE_TYPE, 0, 0, VAR_0x8008
     CallIfEq VAR_0x8008, 2, _1358
-    FrontierScrCmd_67 29, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_GET_CHALLENGE_TYPE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 3, _1368
-    FrontierScrCmd_67 32, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_UNK_32, 0, 0, VAR_0x8008
     FreeBattleRecording
     FrontierScrCmd_5E
     FrontierScrCmd_02
@@ -1408,7 +1409,7 @@ _135E:
     Return
 
 _1368:
-    FrontierScrCmd_67 32, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_UNK_32, 0, 0, VAR_0x8008
     FreeBattleRecording
     FrontierScrCmd_5E
     FrontierScrCmd_04 14, 1
@@ -1427,12 +1428,12 @@ _1391:
     PlaySoundEffect SEQ_SE_DP_KAIDAN2
     WaitSoundEffect SEQ_SE_DP_KAIDAN2
     FadeScreenOut
-    FrontierScrCmd_67 28, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _13EA
     FrontierScrCmd_25 0
     FrontierScrCmd_25 4
     FrontierScrCmd_03 3
-    FrontierScrCmd_67 31, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_UNK_31, 0, 0, VAR_0x8008
     GetPlayerObjEventGfx VAR_0x8007
     FrontierScrCmd_22 _0008
     FrontierScrCmd_24 _0098
@@ -1444,7 +1445,7 @@ _13EA:
     FrontierScrCmd_25 2
     FrontierScrCmd_25 4
     FrontierScrCmd_03 3
-    FrontierScrCmd_67 31, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_UNK_31, 0, 0, VAR_0x8008
     GetPlayerObjEventGfx VAR_0x8007
     FrontierScrCmd_22 _0014
     FrontierScrCmd_24 _00BC
@@ -1452,7 +1453,7 @@ _13EA:
     Return
 
 _141F:
-    FrontierScrCmd_67 28, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _1447
     ApplyMovement 98, _0278
     WaitMovement
@@ -1472,20 +1473,20 @@ _1447:
     Return
 
 _1471:
-    FrontierScrCmd_67 30, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_UNK_30, 0, 0, VAR_0x8008
     WaitTime 3, VAR_0x8008
-    FrontierScrCmd_67 30, 1, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_UNK_30, 1, 0, VAR_0x8008
     WaitTime 3, VAR_0x8008
-    FrontierScrCmd_67 30, 2, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_UNK_30, 2, 0, VAR_0x8008
     WaitTime 3, VAR_0x8008
-    FrontierScrCmd_67 30, 3, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_UNK_30, 3, 0, VAR_0x8008
     WaitTime 3, VAR_0x8008
-    FrontierScrCmd_67 30, 4, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_UNK_30, 4, 0, VAR_0x8008
     Return
 
 _14AE:
     GoToIfEq VAR_0x8003, 1, _0C52
-    FrontierScrCmd_67 41, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_UNK_41, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _0C52
     Call _1612
     BufferNumber 0, VAR_0x8008
@@ -1514,7 +1515,7 @@ _150B:
     End
 
 _1530:
-    FrontierScrCmd_67 34, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_UNK_34, 0, 0, VAR_0x8008
     GetRandom VAR_0x8008, 90
     AddVar VAR_0x8008, 10
     BufferNumber 3, VAR_0x8008
@@ -1569,7 +1570,7 @@ _160A:
     Return
 
 _1612:
-    FrontierScrCmd_67 4, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_GET_CURRENT_STREAK, 0, 0, VAR_0x8008
     GoToIfGe VAR_0x8008, 9999, _162E
     AddVar VAR_0x8008, 1
     Return
@@ -1579,7 +1580,7 @@ _162E:
 
 _1630:
     WaitTime 1, VAR_0x8008
-    FrontierScrCmd_67 27, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_UNK_27, 0, 0, VAR_0x8008
     WaitTime 1, VAR_0x8008
     ClearReceivedTempDataAllPlayers
     SyncConnectedPlayers 195
@@ -1588,7 +1589,7 @@ _1630:
 
 _164D:
     WaitTime 1, VAR_0x8008
-    FrontierScrCmd_67 27, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_UNK_27, 0, 0, VAR_0x8008
     WaitTime 1, VAR_0x8008
     ClearReceivedTempDataAllPlayers
     SyncConnectedPlayers 196
@@ -1597,7 +1598,7 @@ _164D:
 
 _166A:
     WaitTime 1, VAR_0x8008
-    FrontierScrCmd_67 27, 0, 0, VAR_0x8008
+    CallBattleFactoryFunction BF_FUNC_UNK_27, 0, 0, VAR_0x8008
     WaitTime 1, VAR_0x8008
     ClearReceivedTempDataAllPlayers
     SyncConnectedPlayers 197
