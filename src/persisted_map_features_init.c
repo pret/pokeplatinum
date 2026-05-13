@@ -152,8 +152,8 @@ static void SetCanalaveGymPlatformInitialState(const u8 index, const u8 startInP
 {
     GF_ASSERT(startInPositionB <= 1);
 
-    int allUpperFlags = *platformStates & (0xffffffff << (index + 1));
-    int allLowerFlags = *platformStates & (0xffffffff >> (32 - index));
+    int allUpperFlags = *platformStates & (0XFFFFFFFF << (index + 1));
+    int allLowerFlags = *platformStates & (0XFFFFFFFF >> (32 - index));
     int indexedPlatformFlag = startInPositionB << index;
 
     *platformStates = allUpperFlags | indexedPlatformFlag | allLowerFlags;

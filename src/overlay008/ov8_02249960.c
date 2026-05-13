@@ -132,7 +132,7 @@ typedef struct CanalaveGymSystem {
     int floor2PropIndex;
     int floor3PropIndex;
     int floor4PropIndex;
-    u8 platformCurrentfloors[CANALAVE_GYM_NUM_PLATFORMS];
+    u8 platformCurrentFloors[CANALAVE_GYM_NUM_PLATFORMS];
     u8 platformsPropIndices[CANALAVE_GYM_NUM_PLATFORMS];
     CanalavePlatformPosition platformPositions[CANALAVE_GYM_NUM_PLATFORMS];
     int platformModelIDs[CANALAVE_GYM_NUM_PLATFORMS];
@@ -347,9 +347,9 @@ static BOOL PastoriaGym_PressBlueButton(FieldTask *taskMan);
 static void PastoriaGym_UpdateButtonAnimations(const u8 pressedButton, MapPropAnimationManager *mapPropAnimMan);
 static BOOL HearthomeGymDP_RaiseLift(FieldTask *taskMan);
 static BOOL HearthomeGymDP_LowerLift(FieldTask *taskMan);
-static BOOL CanalaveGym_MovePlatformUpDown(FieldTask *taskMan);
-static BOOL CanalaveGym_MovePlatformEastWest(FieldTask *taskMan);
-static BOOL CanalaveGym_MovePlatformNorthSouth(FieldTask *taskMan);
+static BOOL FieldTask_CanalaveGym_MovePlatformUpDown(FieldTask *taskMan);
+static BOOL FieldTask_CanalaveGym_MovePlatformEastWest(FieldTask *taskMan);
+static BOOL FieldTask_CanalaveGym_MovePlatformNorthSouth(FieldTask *taskMan);
 static BOOL ov8_0224ADE8(FieldTask *param0);
 static void ov8_0224B8D0(UnkStruct_ov8_0224B8D0 *param0);
 static void ov8_0224B958(UnkStruct_ov8_0224B8D0 *param0);
@@ -1179,7 +1179,7 @@ static const struct {
 static void CanalaveGym_UpdatePlatformsVisibility(const CanalaveGymSystem *gymSystem, const BOOL hidden, const int floor)
 {
     for (int i = 0; i < CANALAVE_GYM_NUM_PLATFORMS; i++) {
-        if (gymSystem->platformCurrentfloors[i] == floor) {
+        if (gymSystem->platformCurrentFloors[i] == floor) {
             MapProp *platformProp = MapPropManager_GetLoadedProp(gymSystem->fieldSystem->mapPropManager, gymSystem->platformsPropIndices[i]);
             MapProp_SetHidden(platformProp, hidden);
         }
@@ -1231,7 +1231,7 @@ static void CanalaveGym_MovePlatform(CanalaveGymSystem *gymSystem, const u8 plat
             gymSystem->platformPositions[platformIndex] = sCanalavePlatformPaths[platformIndex].positionB;
         }
 
-        FieldSystem_CreateTask(gymSystem->fieldSystem, CanalaveGym_MovePlatformEastWest, state);
+        FieldSystem_CreateTask(gymSystem->fieldSystem, FieldTask_CanalaveGym_MovePlatformEastWest, state);
     } else if (modelID == canalave_gym_platform_z_direction_nsbmd) {
         if (inPositionB) {
             gymSystem->movementDir = CANALAVE_PLATFORM_MOVE_NORTH;
@@ -1243,20 +1243,20 @@ static void CanalaveGym_MovePlatform(CanalaveGymSystem *gymSystem, const u8 plat
             gymSystem->platformPositions[platformIndex] = sCanalavePlatformPaths[platformIndex].positionB;
         }
 
-        FieldSystem_CreateTask(gymSystem->fieldSystem, CanalaveGym_MovePlatformNorthSouth, state);
+        FieldSystem_CreateTask(gymSystem->fieldSystem, FieldTask_CanalaveGym_MovePlatformNorthSouth, state);
     } else {
         if (inPositionB) {
             gymSystem->movementDir = CANALAVE_PLATFORM_MOVE_DOWN;
             gymSystem->destination = sCanalavePlatformPaths[platformIndex].positionA.y * MAP_OBJECT_TILE_SIZE;
             gymSystem->platformPositions[platformIndex] = sCanalavePlatformPaths[platformIndex].positionA;
-            gymSystem->platformCurrentfloors[platformIndex] = sCanalavePlatformPaths[platformIndex].floorA;
+            gymSystem->platformCurrentFloors[platformIndex] = sCanalavePlatformPaths[platformIndex].floorA;
         } else {
             gymSystem->movementDir = CANALAVE_PLATFORM_MOVE_UP;
             gymSystem->destination = sCanalavePlatformPaths[platformIndex].positionB.y * MAP_OBJECT_TILE_SIZE;
             gymSystem->platformPositions[platformIndex] = sCanalavePlatformPaths[platformIndex].positionB;
         }
 
-        FieldSystem_CreateTask(gymSystem->fieldSystem, CanalaveGym_MovePlatformUpDown, state);
+        FieldSystem_CreateTask(gymSystem->fieldSystem, FieldTask_CanalaveGym_MovePlatformUpDown, state);
     }
 }
 
@@ -1291,7 +1291,7 @@ static void CanalaveGym_UpdateVisibleProps(CanalaveGymSystem *gymSystem, const f
     }
 }
 
-static BOOL CanalaveGym_MovePlatformUpDown(FieldTask *taskMan)
+static BOOL FieldTask_CanalaveGym_MovePlatformUpDown(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     int *state = FieldTask_GetEnv(taskMan);
@@ -1315,7 +1315,7 @@ static BOOL CanalaveGym_MovePlatformUpDown(FieldTask *taskMan)
 
             if (platformPos.y >= gymSystem->destination) {
                 platformPos.y = gymSystem->destination;
-                gymSystem->platformCurrentfloors[gymSystem->movingPlatform] = sCanalavePlatformPaths[gymSystem->movingPlatform].floorB;
+                gymSystem->platformCurrentFloors[gymSystem->movingPlatform] = sCanalavePlatformPaths[gymSystem->movingPlatform].floorB;
                 Sound_StopEffect(SEQ_SE_DP_ELEBETA, 0);
                 (*state)++;
             }
@@ -1349,7 +1349,7 @@ static BOOL CanalaveGym_MovePlatformUpDown(FieldTask *taskMan)
     return FALSE;
 }
 
-static BOOL CanalaveGym_MovePlatformEastWest(FieldTask *taskMan)
+static BOOL FieldTask_CanalaveGym_MovePlatformEastWest(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     int *state = FieldTask_GetEnv(taskMan);
@@ -1422,7 +1422,7 @@ static BOOL CanalaveGym_MovePlatformEastWest(FieldTask *taskMan)
     return FALSE;
 }
 
-static BOOL CanalaveGym_MovePlatformNorthSouth(FieldTask *taskMan)
+static BOOL FieldTask_CanalaveGym_MovePlatformNorthSouth(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     int *state = FieldTask_GetEnv(taskMan);
@@ -1528,14 +1528,14 @@ void CanalaveGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
             platformPosition.z = MAP_OBJECT_TILE_SIZE * sCanalavePlatformPaths[i].positionB.z;
 
             gymSystem->platformPositions[i] = sCanalavePlatformPaths[i].positionB;
-            gymSystem->platformCurrentfloors[i] = sCanalavePlatformPaths[i].floorB;
+            gymSystem->platformCurrentFloors[i] = sCanalavePlatformPaths[i].floorB;
         } else {
             platformPosition.x = MAP_OBJECT_TILE_SIZE * sCanalavePlatformPaths[i].positionA.x;
             platformPosition.y = MAP_OBJECT_TILE_SIZE * sCanalavePlatformPaths[i].positionA.y;
             platformPosition.z = MAP_OBJECT_TILE_SIZE * sCanalavePlatformPaths[i].positionA.z;
 
             gymSystem->platformPositions[i] = sCanalavePlatformPaths[i].positionA;
-            gymSystem->platformCurrentfloors[i] = sCanalavePlatformPaths[i].floorA;
+            gymSystem->platformCurrentFloors[i] = sCanalavePlatformPaths[i].floorA;
         }
 
         platformPosition.x += CANALAVE_XZ_OFFSET;
