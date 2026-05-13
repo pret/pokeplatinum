@@ -92,6 +92,27 @@
 
 #define CHOOSE_STARTER_3D_GRAPHICS_NUM 6
 
+enum ChoiceStep {
+    CHOICE_STEP_BLEND_BGS = 0,
+    CHOICE_STEP_PLAY_BAG_NOISE,
+    CHOICE_STEP_SHOW_3D_GRAPHICS,
+    CHOICE_STEP_CHOOSE_POKEBALL,
+    CHOICE_STEP_CONFIRM_POKEBALL,
+    CHOICE_STEP_FINISH,
+};
+
+enum ChooseStarterStep {
+    CHOOSE_STARTER_STEP_START_CAMERA_MOVEMENT = 0,
+    CHOOSE_STARTER_STEP_WAIT_FOR_CAMERA_MOVEMENT_FINISH,
+    CHOOSE_STARTER_STEP_UPDATE_CURSOR_POSITION,
+    CHOOSE_STARTER_STEP_PRINT_THESE_ARE_POKE_BALLS_TEXT,
+    CHOOSE_STARTER_STEP_DELETE_THESE_ARE_POKE_BALLS_TEXT,
+    CHOOSE_STARTER_STEP_PRINT_NOW_CHOOSE_TEXT,
+    CHOOSE_STARTER_STEP_DELETE_NOW_CHOOSE_TEXT,
+    CHOOSE_STARTER_STEP_SHOW_CURSOR,
+    CHOOSE_STARTER_STEP_CHANGE_POKEBALL,
+};
+
 enum CursorPosition {
     CURSOR_POSITION_LEFT = 0,
     CURSOR_POSITION_CENTER,
@@ -176,8 +197,8 @@ typedef struct StarterPreviewGraphics {
 } StarterPreviewGraphics;
 
 typedef struct ChooseStarterApp {
-    int choiceStep;
-    int unk_04;
+    enum ChoiceStep choiceStep;
+    enum ChooseStarterStep chooseStarterStep;
     BOOL unk_08;
     int unk_0C;
     ChooseStarterCameraMovement cameraMovement;
@@ -257,10 +278,10 @@ static void ShowCursor(ChooseStarterCursor *cursor, BOOL show);
 static void SetCursorPosition(ChooseStarterCursor *cursor, int x, int y);
 static void MakeSelectionMatrix(ChooseStarterApp *app);
 static void SetSelectionMatrixObjects(ChooseStarterApp *app);
-static void ov78_021D1CA8(ChooseStarterApp *app, enum HeapID heapID);
+static void AdvancePokeballChoiceGraphics(ChooseStarterApp *app, enum HeapID heapID);
 static void UpdateSelectedPokeballAnimation(ChooseStarterApp *app);
 static void UpdateCursorPosition(ChooseStarterApp *app);
-static void ov78_021D1E44(ChooseStarterApp *app, enum HeapID heapID);
+static void AdvancePokeballConfirmGraphics(ChooseStarterApp *app, enum HeapID heapID);
 static void MakePokemonSprite(PokemonSprite **sprite, ChooseStarterApp *app, int species);
 static void Delete3DGraphic(ChooseStarter3DGraphics *starter3DGraphics, NNSFndAllocator *allocator);
 static void Draw3DGraphics(ChooseStarter3DGraphics *starter3DGraphics);
@@ -288,7 +309,7 @@ static void StartOtherPreviewGraphicsMovement(StarterPreviewGraphics *previewGra
 static void AdvancePreviewGraphicsMovement(SysTask *task, void *previewGraphicsParam);
 static void ChangePokeballChoice(ChooseStarterApp *app);
 static void AdvanceChoiceStep(ChooseStarterApp *app, int advanceAmount);
-static int GetChoiceStep(ChooseStarterApp *app);
+static enum ChoiceStep GetChoiceStep(ChooseStarterApp *app);
 static void SetupStarterMovement(ChooseStarterMovement *starterMovement, s32 start, s32 end, s32 frameCountMax);
 static BOOL AdvanceStarterMovement(ChooseStarterMovement *starterMovement, s32 frameCount);
 static void SetupStarterRotation(ChooseStarterRotation *starterRotation, fx32 verticalOffsetMultiplier, int frameCountMax);
@@ -918,13 +939,13 @@ static BOOL IsSelectionMade(ChooseStarterApp *app, enum HeapID heapID)
     }
 
     switch (GetChoiceStep(app)) {
-    case 0:
+    case CHOICE_STEP_BLEND_BGS:
         break;
-    case 1:
+    case CHOICE_STEP_PLAY_BAG_NOISE:
         break;
-    case 2:
+    case CHOICE_STEP_SHOW_3D_GRAPHICS:
         break;
-    case 3:
+    case CHOICE_STEP_CHOOSE_POKEBALL:
         ChangePokeballChoice(app);
 
         if (gSystem.pressedKeys & PAD_BUTTON_A) {
@@ -933,9 +954,9 @@ static BOOL IsSelectionMade(ChooseStarterApp *app, enum HeapID heapID)
             Sound_PlayEffect(SEQ_SE_CONFIRM);
         }
         break;
-    case 4:
+    case CHOICE_STEP_CONFIRM_POKEBALL:
         break;
-    case 5:
+    case CHOICE_STEP_FINISH:
         return TRUE;
     default:
         break;
@@ -947,14 +968,14 @@ static BOOL IsSelectionMade(ChooseStarterApp *app, enum HeapID heapID)
 static void UpdateGraphics(ChooseStarterApp *app, enum HeapID heapID)
 {
     switch (GetChoiceStep(app)) {
-    case 0:
+    case CHOICE_STEP_BLEND_BGS:
 
         app->unk_08 = 1;
         app->unk_0C = 36;
         AdvanceChoiceStep(app, 1);
         G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG3, GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_OBJ, 10, 16 - 10);
         break;
-    case 1:
+    case CHOICE_STEP_PLAY_BAG_NOISE:
         app->unk_0C--;
 
         if (app->unk_0C < 0) {
@@ -962,7 +983,7 @@ static void UpdateGraphics(ChooseStarterApp *app, enum HeapID heapID)
             Sound_PlayEffect(SEQ_SE_DP_BAG_030);
         }
         break;
-    case 2:
+    case CHOICE_STEP_SHOW_3D_GRAPHICS:
         if (Advance3DGraphicsAnimationIfNotLastFrame(&app->starter3DGraphics[0])) {
             Show3DGraphics(&app->starter3DGraphics[0], FALSE);
             Show3DGraphics(&app->starter3DGraphics[1], TRUE);
@@ -972,13 +993,13 @@ static void UpdateGraphics(ChooseStarterApp *app, enum HeapID heapID)
             AdvanceChoiceStep(app, 1);
         }
         break;
-    case 3:
-        ov78_021D1CA8(app, heapID);
+    case CHOICE_STEP_CHOOSE_POKEBALL:
+        AdvancePokeballChoiceGraphics(app, heapID);
         break;
-    case 4:
-        ov78_021D1E44(app, heapID);
+    case CHOICE_STEP_CONFIRM_POKEBALL:
+        AdvancePokeballConfirmGraphics(app, heapID);
         break;
-    case 5:
+    case CHOICE_STEP_FINISH:
         G2_BlendNone();
         break;
     default:
@@ -1115,62 +1136,62 @@ static void ChangePokeballChoice(ChooseStarterApp *app)
 static void AdvanceChoiceStep(ChooseStarterApp *app, int advanceAmount)
 {
     app->choiceStep += advanceAmount;
-    app->unk_04 = 0;
+    app->chooseStarterStep = 0;
 }
 
-static int GetChoiceStep(ChooseStarterApp *app)
+static enum ChoiceStep GetChoiceStep(ChooseStarterApp *app)
 {
     return app->choiceStep;
 }
 
-static void ov78_021D1CA8(ChooseStarterApp *app, enum HeapID heapID)
+static void AdvancePokeballChoiceGraphics(ChooseStarterApp *app, enum HeapID heapID)
 {
-    switch (app->unk_04) {
-    case 0:
+    switch (app->chooseStarterStep) {
+    case CHOOSE_STARTER_STEP_START_CAMERA_MOVEMENT:
         StartCameraMovement(&app->cameraMovement, app->camera, &app->cameraTarget);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, TRUE);
-        app->unk_04++;
+        app->chooseStarterStep++;
         break;
-    case 1:
+    case CHOOSE_STARTER_STEP_WAIT_FOR_CAMERA_MOVEMENT_FINISH:
         if (HasCameraMovementFinished(&app->cameraMovement)) {
             app->unk_0C = 6;
-            app->unk_04++;
+            app->chooseStarterStep++;
         }
         break;
-    case 2:
+    case CHOOSE_STARTER_STEP_UPDATE_CURSOR_POSITION:
         app->unk_0C--;
 
         if (app->unk_0C < 0) {
             UpdateCursorPosition(app);
-            app->unk_04++;
+            app->chooseStarterStep++;
         }
         break;
-    case 3:
+    case CHOOSE_STARTER_STEP_PRINT_THESE_ARE_POKE_BALLS_TEXT:
         app->unk_708 = SetMessageWindowTextAndSaveToString(app->messageWindow, heapID, 360, 0, TEXT_COLOR(1, 2, 15), app->textFrameDelay, &app->string);
-        app->unk_04++;
+        app->chooseStarterStep++;
         break;
-    case 4:
+    case CHOOSE_STARTER_STEP_DELETE_THESE_ARE_POKE_BALLS_TEXT:
         if (Text_IsPrinterActive(app->unk_708) == 0) {
             DeleteStringBuffer(app);
-            app->unk_04++;
+            app->chooseStarterStep++;
         }
         break;
-    case 5:
+    case CHOOSE_STARTER_STEP_PRINT_NOW_CHOOSE_TEXT:
         app->unk_708 = SetMessageWindowTextAndSaveToString(app->messageWindow, heapID, 360, 7, TEXT_COLOR(1, 2, 15), app->textFrameDelay, &app->string);
-        app->unk_04++;
+        app->chooseStarterStep++;
         break;
-    case 6:
+    case CHOOSE_STARTER_STEP_DELETE_NOW_CHOOSE_TEXT:
         if (Text_IsPrinterActive(app->unk_708) == 0) {
             DeleteStringBuffer(app);
-            app->unk_04++;
+            app->chooseStarterStep++;
         }
         break;
-    case 7:
+    case CHOOSE_STARTER_STEP_SHOW_CURSOR:
         ShowCursor(&app->cursor, TRUE);
         app->unk_08 = 0;
-        app->unk_04++;
+        app->chooseStarterStep++;
         break;
-    case 8:
+    case CHOOSE_STARTER_STEP_CHANGE_POKEBALL:
         UpdateSelectedPokeballAnimation(app);
         UpdateCursorPosition(app);
         break;
@@ -1193,58 +1214,58 @@ static void UpdateCursorPosition(ChooseStarterApp *app)
     SetCursorPosition(&app->cursor, app->unk_7C[app->cursorPosition][0], app->unk_7C[app->cursorPosition][1]);
 }
 
-static void ov78_021D1E44(ChooseStarterApp *app, enum HeapID heapID)
+static void AdvancePokeballConfirmGraphics(ChooseStarterApp *app, enum HeapID heapID)
 {
-    u32 v0;
-
-    switch (app->unk_04) {
-    case 0:
+    switch (app->chooseStarterStep) {
+    case CHOOSE_STARTER_STEP_START_CAMERA_MOVEMENT:
         ShowCursor(&app->cursor, FALSE);
         UpdateCursorPosition(app);
         DeleteSubplaneWindow(app);
         StartPreviewWindowAndGraphicsMovements(app);
-        app->unk_04++;
+        app->chooseStarterStep++;
         app->unk_08 = 1;
         break;
-    case 1:
+    case CHOOSE_STARTER_STEP_WAIT_FOR_CAMERA_MOVEMENT_FINISH:
         ShowPreviewWindow(&app->previewWindow, TRUE);
         PokemonSprite_SetAttribute(app->sprites[app->cursorPosition], MON_SPRITE_HIDE, FALSE);
 
         if (HasAppPreviewWindowMovementFinished(app)) {
             Sound_PlayPokemonCry(GetSelectedSpecies(app->cursorPosition), 0);
 
-            app->unk_04++;
+            app->chooseStarterStep++;
         }
         break;
-    case 2:
+    case CHOOSE_STARTER_STEP_UPDATE_CURSOR_POSITION:
         SetMessageWindowText(app->messageWindow, heapID, 360, 1 + app->cursorPosition, TEXT_COLOR(1, 2, 15), TEXT_SPEED_NO_TRANSFER);
         app->unk_B8 = Menu_MakeYesNoChoice(app->bgConfig, &app->unk_B0, 512 + (18 + 12) + 128, 1, heapID);
         app->unk_08 = 0;
-        app->unk_04++;
+        app->chooseStarterStep++;
         break;
-    case 3:
-        v0 = Menu_ProcessInputAndHandleExit(app->unk_B8, heapID);
+    case CHOOSE_STARTER_STEP_PRINT_THESE_ARE_POKE_BALLS_TEXT:
+        u32 menuResult = Menu_ProcessInputAndHandleExit(app->unk_B8, heapID);
 
-        switch (v0) {
+        switch (menuResult) {
         case 0xffffffff:
             break;
-        case 0:
+        case MENU_YES:
             AdvanceChoiceStep(app, 1);
             break;
         case 0xfffffffe:
-            app->unk_04++;
+            app->chooseStarterStep++;
             StartOtherPreviewWindowAndGraphicsMovements(app);
             break;
         }
         break;
-    case 4:
+    case CHOOSE_STARTER_STEP_DELETE_THESE_ARE_POKE_BALLS_TEXT:
         if (HasAppPreviewWindowMovementFinished(app)) {
             AdvanceChoiceStep(app, -1);
-            app->unk_04 = 7;
+            app->chooseStarterStep = 7;
             ShowPreviewWindow(&app->previewWindow, FALSE);
             PokemonSprite_SetAttribute(app->sprites[app->cursorPosition], MON_SPRITE_HIDE, TRUE);
             app->unk_708 = SetMessageWindowText(app->messageWindow, heapID, 360, 7, TEXT_COLOR(1, 2, 15), TEXT_SPEED_NO_TRANSFER);
         }
+        break;
+    default:
         break;
     }
 }
