@@ -179,13 +179,13 @@ typedef struct StarterPreviewAnimation {
 } StarterPreviewAnimation;
 
 typedef struct StarterPreviewWindow {
-    SoftwareSpriteChars *unk_00;
-    SoftwareSpritePalette *unk_04;
+    SoftwareSpriteChars *spriteChars;
+    SoftwareSpritePalette *spritePalette;
     SoftwareSprite *sprite;
-    void *unk_0C;
-    void *unk_10;
-    NNSG2dCharacterData *unk_14;
-    NNSG2dPaletteData *unk_18;
+    void *charDataPtr;
+    void *paletteDataPtr;
+    NNSG2dCharacterData *charData;
+    NNSG2dPaletteData *paletteData;
     StarterPreviewAnimation previewAnimation;
     SysTask *movementTask;
 } StarterPreviewWindow;
@@ -1512,38 +1512,38 @@ static void SetCursorPosition(ChooseStarterCursor *cursor, int x, int y)
 
 static void MakePreviewWindow(StarterPreviewWindow *previewWindow, ChooseStarterApp *app, enum HeapID heapID)
 {
-    SoftwareSpritePaletteTemplate v1;
-    SoftwareSpriteTemplate v2;
+    SoftwareSpritePaletteTemplate spritePaletteTemplate;
+    SoftwareSpriteTemplate spriteTemplate;
 
-    previewWindow->unk_0C = Graphics_GetCharData(NARC_INDEX_GRAPHIC__EV_POKESELECT, 14, 0, &previewWindow->unk_14, heapID);
-    previewWindow->unk_10 = Graphics_GetPlttData(NARC_INDEX_GRAPHIC__EV_POKESELECT, 15, &previewWindow->unk_18, heapID);
+    previewWindow->charDataPtr = Graphics_GetCharData(NARC_INDEX_GRAPHIC__EV_POKESELECT, 14, 0, &previewWindow->charData, heapID);
+    previewWindow->paletteDataPtr = Graphics_GetPlttData(NARC_INDEX_GRAPHIC__EV_POKESELECT, 15, &previewWindow->paletteData, heapID);
 
-    SoftwareSpriteCharsTemplate v0 = {
+    SoftwareSpriteCharsTemplate spriteCharsTemplate = {
         .softSpriteMan = app->spriteDisplay,
-        .charsData = previewWindow->unk_14
+        .charsData = previewWindow->charData
     };
 
-    previewWindow->unk_00 = SoftwareSprite_LoadChars(&v0);
+    previewWindow->spriteChars = SoftwareSprite_LoadChars(&spriteCharsTemplate);
 
     // changing to designated initializers breaks the checksum.
-    v1.softSpriteMan = app->spriteDisplay;
-    v1.paletteData = previewWindow->unk_18;
-    v1.paletteSlot = 1;
+    spritePaletteTemplate.softSpriteMan = app->spriteDisplay;
+    spritePaletteTemplate.paletteData = previewWindow->paletteData;
+    spritePaletteTemplate.paletteSlot = 1;
 
-    previewWindow->unk_04 = SoftwareSprite_LoadPalette(&v1);
+    previewWindow->spritePalette = SoftwareSprite_LoadPalette(&spritePaletteTemplate);
 
     // changing to designated initializers breaks the checksum.
-    v2.softSpriteMan = app->spriteDisplay;
-    v2.chars = previewWindow->unk_00;
-    v2.palette = previewWindow->unk_04;
-    v2.xPos = 0;
-    v2.yPos = 0;
-    v2.rotation = 0;
-    v2.alpha = 31;
-    v2.priority = 1022;
-    v2.paletteSlot = 0;
+    spriteTemplate.softSpriteMan = app->spriteDisplay;
+    spriteTemplate.chars = previewWindow->spriteChars;
+    spriteTemplate.palette = previewWindow->spritePalette;
+    spriteTemplate.xPos = 0;
+    spriteTemplate.yPos = 0;
+    spriteTemplate.rotation = 0;
+    spriteTemplate.alpha = 31;
+    spriteTemplate.priority = 1022;
+    spriteTemplate.paletteSlot = 0;
 
-    previewWindow->sprite = SoftwareSprite_Load(&v2);
+    previewWindow->sprite = SoftwareSprite_Load(&spriteTemplate);
 
     SoftwareSprite_SetVisible(previewWindow->sprite, 0);
     SoftwareSprite_SetCenter(previewWindow->sprite, 128 / 2, 128 / 2);
@@ -1552,10 +1552,10 @@ static void MakePreviewWindow(StarterPreviewWindow *previewWindow, ChooseStarter
 static void DeletePreviewWindow(StarterPreviewWindow *previewWindow)
 {
     SoftwareSprite_Reset(previewWindow->sprite);
-    SoftwareSprite_FreeChars(previewWindow->unk_00);
-    SoftwareSprite_FreePalette(previewWindow->unk_04);
-    Heap_Free(previewWindow->unk_0C);
-    Heap_Free(previewWindow->unk_10);
+    SoftwareSprite_FreeChars(previewWindow->spriteChars);
+    SoftwareSprite_FreePalette(previewWindow->spritePalette);
+    Heap_Free(previewWindow->charDataPtr);
+    Heap_Free(previewWindow->paletteDataPtr);
 }
 
 static void ShowPreviewWindow(StarterPreviewWindow *previewWindow, BOOL show)
