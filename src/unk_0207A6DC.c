@@ -31,22 +31,22 @@
 #include "unk_020363E8.h"
 
 void sub_0207A81C(BattleSystem *battleSys, int param1, int param2, void *param3, u8 param4);
-BOOL sub_0207A8F4(LinkBattleCommState *param0, u32 param1);
-BOOL sub_0207A960(LinkBattleCommState *param0);
-BOOL sub_0207A988(LinkBattleCommState *param0);
-BOOL sub_0207A9CC(LinkBattleCommState *param0);
-BOOL sub_0207A9F8(LinkBattleCommState *param0);
-BOOL sub_0207AA38(LinkBattleCommState *param0);
-BOOL sub_0207AA5C(LinkBattleCommState *param0);
-BOOL sub_0207AAA0(LinkBattleCommState *param0);
-BOOL sub_0207AAC8(LinkBattleCommState *param0);
-BOOL sub_0207AB9C(LinkBattleCommState *param0, int param1);
-BOOL sub_0207ABD0(LinkBattleCommState *param0, int param1, int param2);
-BOOL sub_0207AC28(LinkBattleCommState *param0, int param1);
-BOOL sub_0207AC54(LinkBattleCommState *param0, int param1, int param2);
+BOOL sub_0207A8F4(LinkBattleCommState *linkBattleCommState, u32 param1);
+BOOL sub_0207A960(LinkBattleCommState *linkBattleCommState);
+BOOL sub_0207A988(LinkBattleCommState *linkBattleCommState);
+BOOL sub_0207A9CC(LinkBattleCommState *linkBattleCommState);
+BOOL sub_0207A9F8(LinkBattleCommState *linkBattleCommState);
+BOOL sub_0207AA38(LinkBattleCommState *linkBattleCommState);
+BOOL sub_0207AA5C(LinkBattleCommState *linkBattleCommState);
+BOOL sub_0207AAA0(LinkBattleCommState *linkBattleCommState);
+BOOL sub_0207AAC8(LinkBattleCommState *linkBattleCommState);
+BOOL sub_0207AB9C(LinkBattleCommState *linkBattleCommState, int param1);
+BOOL sub_0207ABD0(LinkBattleCommState *linkBattleCommState, int param1, int param2);
+BOOL sub_0207AC28(LinkBattleCommState *linkBattleCommState, int param1);
+BOOL sub_0207AC54(LinkBattleCommState *linkBattleCommState, int param1, int param2);
 void sub_0207A744(void *param0);
-BOOL sub_0207AB58(LinkBattleCommState *param0);
-BOOL sub_0207AAFC(LinkBattleCommState *param0);
+BOOL sub_0207AB58(LinkBattleCommState *linkBattleCommState);
+BOOL sub_0207AAFC(LinkBattleCommState *linkBattleCommState);
 static int sub_0207A758(void);
 static int sub_0207A75C(void);
 static int sub_0207A764(void);
@@ -152,9 +152,9 @@ static int sub_0207A774(void)
     return sizeof(Trainer);
 }
 
-static u8 *sub_0207A778(int param0, void *param1, int param2)
+static u8 *sub_0207A778(int param0, void *commState, int param2)
 {
-    LinkBattleCommState *linkBattleCommState = param1;
+    LinkBattleCommState *linkBattleCommState = commState;
 
     if (linkBattleCommState->dto->battleType & BATTLE_TYPE_FRONTIER) {
         return (u8 *)linkBattleCommState->dto->trainerInfo[param0 * 2];
@@ -163,9 +163,9 @@ static u8 *sub_0207A778(int param0, void *param1, int param2)
     }
 }
 
-static u8 *sub_0207A798(int param0, void *param1, int param2)
+static u8 *sub_0207A798(int param0, void *commState, int param2)
 {
-    LinkBattleCommState *linkBattleCommState = param1;
+    LinkBattleCommState *linkBattleCommState = commState;
 
     if (linkBattleCommState->dto->battleType & BATTLE_TYPE_FRONTIER) {
         return (u8 *)&linkBattleCommState->dto->trainer[param0 * 2];
@@ -174,9 +174,9 @@ static u8 *sub_0207A798(int param0, void *param1, int param2)
     }
 }
 
-static u8 *sub_0207A7B8(int param0, void *param1, int param2)
+static u8 *sub_0207A7B8(int param0, void *commState, int param2)
 {
-    LinkBattleCommState *linkBattleCommState = param1;
+    LinkBattleCommState *linkBattleCommState = commState;
 
     if (linkBattleCommState->dto->battleType & BATTLE_TYPE_FRONTIER) {
         return (u8 *)linkBattleCommState->dto->parties[param0 * 2];
@@ -185,9 +185,9 @@ static u8 *sub_0207A7B8(int param0, void *param1, int param2)
     }
 }
 
-static u8 *sub_0207A7D4(int param0, void *param1, int param2)
+static u8 *sub_0207A7D4(int param0, void *commState, int param2)
 {
-    LinkBattleCommState *linkBattleCommState = param1;
+    LinkBattleCommState *linkBattleCommState = commState;
 
     if (linkBattleCommState->dto->battleType & BATTLE_TYPE_FRONTIER) {
         return (u8 *)linkBattleCommState->dto->chatotCries[param0 * 2];
@@ -196,33 +196,33 @@ static u8 *sub_0207A7D4(int param0, void *param1, int param2)
     }
 }
 
-static u8 *sub_0207A7F4(int param0, void *param1, int param2)
+static u8 *sub_0207A7F4(int param0, void *commState, int param2)
 {
-    LinkBattleCommState *linkBattleCommState = param1;
+    LinkBattleCommState *linkBattleCommState = commState;
     return (u8 *)&linkBattleCommState->dto->trainer[1];
 }
 
-static u8 *sub_0207A7FC(int param0, void *param1, int param2)
+static u8 *sub_0207A7FC(int param0, void *commState, int param2)
 {
-    LinkBattleCommState *linkBattleCommState = param1;
+    LinkBattleCommState *linkBattleCommState = commState;
     return (u8 *)&linkBattleCommState->dto->trainer[3];
 }
 
-static u8 *sub_0207A804(int param0, void *param1, int param2)
+static u8 *sub_0207A804(int param0, void *commState, int param2)
 {
-    LinkBattleCommState *linkBattleCommState = param1;
+    LinkBattleCommState *linkBattleCommState = commState;
     return (u8 *)linkBattleCommState->dto->parties[1];
 }
 
-static u8 *sub_0207A80C(int param0, void *param1, int param2)
+static u8 *sub_0207A80C(int param0, void *commState, int param2)
 {
-    LinkBattleCommState *linkBattleCommState = param1;
+    LinkBattleCommState *linkBattleCommState = commState;
     return (u8 *)linkBattleCommState->dto->parties[3];
 }
 
-static u8 *sub_0207A814(int param0, void *param1, int param2)
+static u8 *sub_0207A814(int param0, void *commState, int param2)
 {
-    LinkBattleCommState *linkBattleCommState = param1;
+    LinkBattleCommState *linkBattleCommState = commState;
     return (u8 *)linkBattleCommState->palPad[param0];
 }
 
@@ -337,9 +337,9 @@ BOOL sub_0207A988(LinkBattleCommState *linkBattleCommState)
     return CommSys_SendDataHuge(25, (void *)&linkBattleCommState->sendBuffer[0], TrainerInfo_Size());
 }
 
-static void sub_0207A9BC(int param0, int param1, void *param2, void *param3)
+static void sub_0207A9BC(int param0, int param1, void *param2, void *commState)
 {
-    LinkBattleCommState *linkBattleCommState = (LinkBattleCommState *)param3;
+    LinkBattleCommState *linkBattleCommState = (LinkBattleCommState *)commState;
     linkBattleCommState->recvCount++;
 }
 
@@ -370,9 +370,9 @@ BOOL sub_0207A9F8(LinkBattleCommState *linkBattleCommState)
     return CommSys_SendDataHuge(26, (void *)&linkBattleCommState->sendBuffer[0], sizeof(Trainer));
 }
 
-static void sub_0207AA28(int param0, int param1, void *param2, void *param3)
+static void sub_0207AA28(int param0, int param1, void *param2, void *commState)
 {
-    LinkBattleCommState *linkBattleCommState = (LinkBattleCommState *)param3;
+    LinkBattleCommState *linkBattleCommState = (LinkBattleCommState *)commState;
     linkBattleCommState->recvCount++;
 }
 
@@ -403,9 +403,9 @@ BOOL sub_0207AA5C(LinkBattleCommState *linkBattleCommState)
     return CommSys_SendDataHuge(27, (void *)&linkBattleCommState->sendBuffer[0], Party_SaveSize());
 }
 
-static void sub_0207AA90(int param0, int param1, void *param2, void *param3)
+static void sub_0207AA90(int param0, int param1, void *param2, void *commState)
 {
-    LinkBattleCommState *linkBattleCommState = (LinkBattleCommState *)param3;
+    LinkBattleCommState *linkBattleCommState = (LinkBattleCommState *)commState;
 
     linkBattleCommState->recvCount++;
 }
@@ -480,9 +480,9 @@ BOOL sub_0207AB58(LinkBattleCommState *linkBattleCommState) // SEND pal pad data
     return CommSys_SendDataHuge(33, (void *)linkBattleCommState->sendBuffer, 1000);
 }
 
-static void sub_0207AB8C(int param0, int param1, void *param2, void *param3)
+static void sub_0207AB8C(int param0, int param1, void *param2, void *commState)
 {
-    LinkBattleCommState *linkBattleCommState = (LinkBattleCommState *)param3;
+    LinkBattleCommState *linkBattleCommState = (LinkBattleCommState *)commState;
     linkBattleCommState->recvCount++;
 }
 
@@ -517,9 +517,9 @@ BOOL sub_0207ABD0(LinkBattleCommState *linkBattleCommState, int param1, int para
     }
 }
 
-static void sub_0207AC18(int param0, int param1, void *param2, void *param3)
+static void sub_0207AC18(int param0, int param1, void *param2, void *commState)
 {
-    LinkBattleCommState *linkBattleCommState = (LinkBattleCommState *)param3;
+    LinkBattleCommState *linkBattleCommState = (LinkBattleCommState *)commState;
     linkBattleCommState->recvCount++;
 }
 
@@ -554,9 +554,9 @@ BOOL sub_0207AC54(LinkBattleCommState *linkBattleCommState, int param1, int para
     }
 }
 
-static void sub_0207ACA4(int param0, int param1, void *param2, void *param3)
+static void sub_0207ACA4(int param0, int param1, void *param2, void *commState)
 {
-    LinkBattleCommState *linkBattleCommState = (LinkBattleCommState *)param3;
+    LinkBattleCommState *linkBattleCommState = (LinkBattleCommState *)commState;
     linkBattleCommState->recvCount++;
 }
 
@@ -667,9 +667,9 @@ static void PalPad_CreateNetworkObject(TrainerInfo *trainerInfo, PalPad *source,
     }
 }
 
-void sub_0207AE34(int param0, int param1, void *param2, void *param3)
+void sub_0207AE34(int param0, int param1, void *param2, void *commState)
 {
-    LinkBattleCommState *linkBattleCommState = (LinkBattleCommState *)param3;
+    LinkBattleCommState *linkBattleCommState = (LinkBattleCommState *)commState;
 
     if (CommSys_CurNetId() != param0) {
         PalPad_PushEntries(linkBattleCommState->dto->palPad, (PalPad *)param2, 1, HEAP_ID_BATTLE);

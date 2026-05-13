@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_STRUCT_OV10_0221F800_H
-#define POKEPLATINUM_STRUCT_OV10_0221F800_H
+#ifndef POKEPLATINUM_BATTLE_TRAINER_INTRO_DATA_H
+#define POKEPLATINUM_BATTLE_TRAINER_INTRO_DATA_H
 
 #include "field_battle_data_transfer.h"
 #include "party.h"
@@ -18,4 +18,4 @@ typedef struct TrainerIntroData {
     u8 padding[3]; // to align the struct
 } TrainerIntroData;
 
-#endif // POKEPLATINUM_STRUCT_OV10_0221F800_H
+#endif // POKEPLATINUM_BATTLE_TRAINER_INTRO_DATA_H

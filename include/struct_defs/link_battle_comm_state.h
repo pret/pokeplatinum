@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_STRUCT_0207A778_H
-#define POKEPLATINUM_STRUCT_0207A778_H
+#ifndef POKEPLATINUM_STRUCT_LINK_BATTLE_COMM_STATE_H
+#define POKEPLATINUM_STRUCT_LINK_BATTLE_COMM_STATE_H
 
 #include "bg_window.h"
 #include "field_battle_data_transfer.h"
@@ -19,4 +19,4 @@ typedef struct LinkBattleCommState {
     void *waitDial;
 } LinkBattleCommState;
 
-#endif // POKEPLATINUM_STRUCT_0207A778_H
+#endif // POKEPLATINUM_STRUCT_LINK_BATTLE_COMM_STATE_H
