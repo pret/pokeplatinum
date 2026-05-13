@@ -212,7 +212,7 @@ typedef struct ChooseStarterApp {
     String *string;
     WindowTemplate unk_B0;
     Menu *unk_B8;
-    G2dRenderer unk_BC;
+    G2dRenderer g2dRenderer;
     SpriteList *spriteList;
     SpriteResourceCollection *spriteResourceCollection[6];
     PokemonSpriteManager *spriteManager;
@@ -745,7 +745,7 @@ static void DeleteSpriteDisplay(ChooseStarterApp *app)
 
 static void MakeCellActors(ChooseStarterApp *app, enum HeapID heapID)
 {
-    app->spriteList = SpriteList_InitRendering(2, &app->unk_BC, heapID);
+    app->spriteList = SpriteList_InitRendering(2, &app->g2dRenderer, heapID);
     app->spriteResourceCollection[SPRITE_RESOURCE_CHAR] = SpriteResourceCollection_New(2, 0, heapID);
     app->spriteResourceCollection[SPRITE_RESOURCE_PLTT] = SpriteResourceCollection_New(2, 1, heapID);
     app->spriteResourceCollection[SPRITE_RESOURCE_CELL] = SpriteResourceCollection_New(2, 2, heapID);
