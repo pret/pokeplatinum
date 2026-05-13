@@ -246,16 +246,14 @@ Essentially the same as Strength.
 HM05 (Defog) is a Flying-type move, but its TM/HM icon in the bag erroneously
 uses the water-type palette instead of the flying-type palette.
 
-**Fix:** Edit the `sItemArchiveIDs` entry for `ITEM_HM05` in [`src/item.c`](https://github.com/pret/pokeplatinum/blob/main/src/item.c):
+**Fix:** Edit the `icon.palette` entry for the item data in [`res/items/data/hm05.json`](https://github.com/pret/pokeplatinum/blob/main/res/items/data/hm05.json):
 
 ```diff
-     [ITEM_HM05] = {
-         .dataID = 0x192,
-         .iconID = hm_NCGR,
--        .paletteID = tm_water_NCLR, // BUG: Defog is a flying type move, but erroneously uses the water palette.
-+        .paletteID = tm_flying_NCLR,
-         .gen3ID = GBA_ITEM_HM05,
-     },
+  "icon": {
+    "sprite": "hm_NCGR",
+-   "palette": "tm_water_NCLR"
++   "palette": "tm_flying_NCLR"
+  },
 ```
 
 ## Wild Encounters
