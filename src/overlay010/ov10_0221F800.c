@@ -9,7 +9,8 @@
 
 #include "applications/party_menu/main.h"
 #include "applications/pokemon_summary_screen/main.h"
-#include "overlay010/struct_ov10_0221F800.h"
+
+#include "battle/trainer_intro_data.h"
 
 #include "bag.h"
 #include "bg_window.h"
@@ -192,7 +193,7 @@ static void ov10_022222A4(UnkStruct_ov10_0221FB28 *param0);
 static void ov10_02222340(UnkStruct_ov10_0221FB28 *param0, s16 param1);
 static u32 ov10_02221928(u32 param0, BOOL param1);
 static u32 ov10_0222194C(u32 param0, BOOL param1);
-static void ov10_022227A4(TrainerIntroData *param0);
+static void ov10_022227A4(TrainerIntroData *trainerIntroData);
 static u8 ov10_02220700(UnkStruct_ov10_0221FB28 *param0);
 static u8 ov10_022208B0(UnkStruct_ov10_0221FB28 *param0);
 static void ov10_02220F1C(UnkStruct_ov10_0221FB28 *param0);
@@ -372,18 +373,18 @@ static const WindowTemplate Unk_ov10_02222A68 = {
     0x94
 };
 
-void ov10_0221F800(TrainerIntroData *param0)
+void ov10_0221F800(TrainerIntroData *trainerIntroData)
 {
-    UnkStruct_ov10_0221FB28 *v0 = SysTask_GetParam(SysTask_StartAndAllocateParam(ov10_0221F870, sizeof(UnkStruct_ov10_0221FB28), 100, param0->heapID));
+    UnkStruct_ov10_0221FB28 *v0 = SysTask_GetParam(SysTask_StartAndAllocateParam(ov10_0221F870, sizeof(UnkStruct_ov10_0221FB28), 100, trainerIntroData->heapID));
     memset(v0, 0, sizeof(UnkStruct_ov10_0221FB28));
 
-    v0->trainerIntroData = param0;
+    v0->trainerIntroData = trainerIntroData;
     v0->unk_B73 = 0;
     v0->unk_BBC = sub_0202FAC0();
 
     if (v0->unk_BBC == 1) {
-        if ((v0->trainerIntroData->fieldBattleDTO != NULL) && (v0->trainerIntroData->fieldBattleDTO->saveData != NULL)) {
-            v0->unk_BBC = Bag_CanRemoveItem(SaveData_GetBag(v0->trainerIntroData->fieldBattleDTO->saveData), ITEM_VS_RECORDER, 1, param0->heapID);
+        if ((v0->trainerIntroData->dto != NULL) && (v0->trainerIntroData->dto->saveData != NULL)) {
+            v0->unk_BBC = Bag_CanRemoveItem(SaveData_GetBag(v0->trainerIntroData->dto->saveData), ITEM_VS_RECORDER, 1, trainerIntroData->heapID);
         }
     }
 }
@@ -409,7 +410,7 @@ static void ov10_0221F870(SysTask *param0, void *param1)
             }
         }
 
-        if (v0->trainerIntroData->unk_28 == 2) {
+        if (v0->trainerIntroData->mode == 2) {
             ov10_0221F930(v0);
         }
         break;
@@ -424,7 +425,7 @@ static void ov10_0221F870(SysTask *param0, void *param1)
         SpriteSystem_DrawSprites(v0->unk_194);
     }
 
-    if (v0->trainerIntroData->unk_28 != 0) {
+    if (v0->trainerIntroData->mode != 0) {
         G3_SwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
     }
 }
@@ -551,7 +552,7 @@ static u8 ov10_0221FB28(UnkStruct_ov10_0221FB28 *param0)
     param0->unk_B75 = 8;
     param0->unk_B74 = 0;
 
-    switch (param0->trainerIntroData->unk_28) {
+    switch (param0->trainerIntroData->mode) {
     case 0:
         param0->unk_04 = Unk_ov10_02222AD0;
         break;
@@ -559,7 +560,7 @@ static u8 ov10_0221FB28(UnkStruct_ov10_0221FB28 *param0)
         param0->unk_04 = Unk_ov10_02222AA8;
         break;
     case 2:
-        if (param0->trainerIntroData->unk_2A == 3) {
+        if (param0->trainerIntroData->battleResult == 3) {
             param0->unk_04 = Unk_ov10_02222C38;
         } else {
             param0->unk_04 = Unk_ov10_02222CA8;
@@ -640,7 +641,7 @@ static u8 ov10_0221FD00(UnkStruct_ov10_0221FB28 *param0)
             BOOL v0;
             int v1;
 
-            v0 = sub_0202F330(param0->trainerIntroData->fieldBattleDTO->saveData, param0->trainerIntroData->heapID, &v1, 0);
+            v0 = sub_0202F330(param0->trainerIntroData->dto->saveData, param0->trainerIntroData->heapID, &v1, 0);
             param0->unk_BC0 = v1;
         }
         {
@@ -749,7 +750,7 @@ static u8 ov10_02220014(UnkStruct_ov10_0221FB28 *param0)
     }
 
     if (param0->unk_B76 == 0) {
-        if (param0->trainerIntroData->unk_28 == 1) {
+        if (param0->trainerIntroData->mode == 1) {
             Sound_PlayEffect(SEQ_SE_DP_VSDEMO01);
         } else {
             Sound_PlayEffect(SEQ_SE_DP_GASHIN);
@@ -849,13 +850,13 @@ static u8 ov10_02220350(UnkStruct_ov10_0221FB28 *param0)
 static u8 ov10_02220360(UnkStruct_ov10_0221FB28 *param0)
 {
     if (ov10_02220AD0() == 1) {
-        if (param0->trainerIntroData->unk_2A == 1) {
+        if (param0->trainerIntroData->battleResult == 1) {
             param0->unk_B72 = 0;
         } else {
             param0->unk_B72 = 1;
         }
     } else {
-        if (param0->trainerIntroData->unk_2A == 1) {
+        if (param0->trainerIntroData->battleResult == 1) {
             param0->unk_B72 = 1;
         } else {
             param0->unk_B72 = 0;
@@ -1007,7 +1008,7 @@ static u8 ov10_02220700(UnkStruct_ov10_0221FB28 *param0)
     case 1: {
         int v0;
 
-        v0 = sub_0202F41C(param0->trainerIntroData->fieldBattleDTO->saveData, param0->trainerIntroData->unk_2C, 0, 0, &param0->unk_B78, &param0->unk_B7A);
+        v0 = sub_0202F41C(param0->trainerIntroData->dto->saveData, param0->trainerIntroData->recordingType, 0, 0, &param0->unk_B78, &param0->unk_B7A);
 
         if (v0 == 2) {
             MessageLoader_GetString(param0->unk_BA0, 6, param0->unk_BA8);
@@ -1080,13 +1081,13 @@ static u8 ov10_022208B0(UnkStruct_ov10_0221FB28 *param0)
 static u8 ov10_0222094C(UnkStruct_ov10_0221FB28 *param0)
 {
     if (ov10_02220AD0() == 1) {
-        if (param0->trainerIntroData->unk_2A == 1) {
+        if (param0->trainerIntroData->battleResult == 1) {
             PaletteData_CopyBuffer(param0->unk_08, 0, 4 * 16, 0, 3 * 16, 0x20);
         } else {
             PaletteData_CopyBuffer(param0->unk_08, 0, 4 * 16, 0, 0 * 16, 0x20);
         }
     } else {
-        if (param0->trainerIntroData->unk_2A == 1) {
+        if (param0->trainerIntroData->battleResult == 1) {
             PaletteData_CopyBuffer(param0->unk_08, 0, 4 * 16, 0, 0 * 16, 0x20);
         } else {
             PaletteData_CopyBuffer(param0->unk_08, 0, 4 * 16, 0, 3 * 16, 0x20);
@@ -1135,7 +1136,7 @@ static u8 ov10_02220A50(SysTask *param0, UnkStruct_ov10_0221FB28 *param1)
     SetVBlankCallback(NULL, NULL);
     ov10_02222A48(param1);
 
-    if (param1->trainerIntroData->unk_28 != 0) {
+    if (param1->trainerIntroData->mode != 0) {
         ov10_02220DCC(param1);
         ov10_02220DFC(param1);
         ov10_02220E30(param1);
@@ -1152,7 +1153,7 @@ static u8 ov10_02220A50(SysTask *param0, UnkStruct_ov10_0221FB28 *param1)
     PaletteData_FreeBuffer(param1->unk_08, 0);
     PaletteData_Free(param1->unk_08);
 
-    param1->trainerIntroData->unk_2B = 1;
+    param1->trainerIntroData->isDone = 1;
     SysTask_FinishAndFreeParam(param0);
 
     return 1;
@@ -1424,8 +1425,8 @@ static void ov10_02220F1C(UnkStruct_ov10_0221FB28 *param0)
 {
     int v0;
 
-    GF_ASSERT(param0->unk_B9C == GX_BG0_AS_2D && param0->trainerIntroData != NULL && param0->trainerIntroData->fieldBattleDTO != NULL && param0->trainerIntroData->fieldBattleDTO->options != NULL);
-    v0 = Options_Frame(param0->trainerIntroData->fieldBattleDTO->options);
+    GF_ASSERT(param0->unk_B9C == GX_BG0_AS_2D && param0->trainerIntroData != NULL && param0->trainerIntroData->dto != NULL && param0->trainerIntroData->dto->options != NULL);
+    v0 = Options_Frame(param0->trainerIntroData->dto->options);
 
     LoadMessageBoxGraphics(param0->unk_0C, BG_LAYER_MAIN_0, 1, 15, v0, param0->trainerIntroData->heapID);
     PaletteData_LoadBufferFromHardware(param0->unk_08, 0, 15 * 16, 0x20 * 1);
@@ -1528,7 +1529,7 @@ static void ov10_022211F0(UnkStruct_ov10_0221FB28 *param0, Party *param1, u16 pa
 
 static void ov10_022212AC(UnkStruct_ov10_0221FB28 *param0)
 {
-    if (param0->trainerIntroData->unk_29 == 0) {
+    if (param0->trainerIntroData->playerSide == 0) {
         ov10_022211F0(param0, param0->trainerIntroData->party[0], 6, 0);
         ov10_022211F0(param0, param0->trainerIntroData->party[1], 6, 6);
     } else {
@@ -1575,7 +1576,7 @@ static void ov10_022213B8(UnkStruct_ov10_0221FB28 *param0)
     ov10_0222130C(param0, 0, param0->trainerIntroData->trainerNames[0]);
     ov10_0222130C(param0, 2, param0->trainerIntroData->trainerNames[1]);
 
-    if (param0->trainerIntroData->unk_29 == 1) {
+    if (param0->trainerIntroData->playerSide == 1) {
         ov10_0222130C(param0, 1, param0->trainerIntroData->trainerNames[2]);
         ov10_0222130C(param0, 3, param0->trainerIntroData->trainerNames[3]);
     } else {
@@ -1596,7 +1597,7 @@ static void ov10_0222146C(UnkStruct_ov10_0221FB28 *param0)
 {
     u32 v0;
 
-    if (param0->trainerIntroData->unk_28 == 0) {
+    if (param0->trainerIntroData->mode == 0) {
         return;
     }
 
@@ -1609,7 +1610,7 @@ static void ov10_0222146C(UnkStruct_ov10_0221FB28 *param0)
 
 static void ov10_022214A0(UnkStruct_ov10_0221FB28 *param0, int param1, int param2)
 {
-    if (param0->trainerIntroData->unk_29 == 1) {
+    if (param0->trainerIntroData->playerSide == 1) {
         param0->unk_B58[0] = (24 - 4);
         param0->unk_B5C[0] = (140 + 6) + param1;
         param0->unk_B58[1] = ((24 - 4) + 19 * 3 + 4);
@@ -1687,14 +1688,14 @@ static void ov10_022216E0(UnkStruct_ov10_0221FB28 *param0)
     ManagedSprite_SetDrawFlag(param0->unk_198[12], 0);
     ManagedSprite_SetDrawFlag(param0->unk_198[13], 0);
 
-    if (param0->trainerIntroData->unk_2A == 3) {
+    if (param0->trainerIntroData->battleResult == 3) {
         ManagedSprite_SetPositionXY(param0->unk_198[12], 128, 96 - 24);
         ManagedSprite_SetAnim(param0->unk_198[12], 3 - 1);
         return;
     }
 
     if (ov10_02220AD0() == 1) {
-        if (param0->trainerIntroData->unk_2A == 1) {
+        if (param0->trainerIntroData->battleResult == 1) {
             ManagedSprite_SetPositionXY(param0->unk_198[12], 48, 96 - 24);
             ManagedSprite_SetPositionXY(param0->unk_198[13], 208, 96 - 24);
         } else {
@@ -1702,7 +1703,7 @@ static void ov10_022216E0(UnkStruct_ov10_0221FB28 *param0)
             ManagedSprite_SetPositionXY(param0->unk_198[13], 48, 96 - 24);
         }
     } else {
-        if (param0->trainerIntroData->unk_2A == 1) {
+        if (param0->trainerIntroData->battleResult == 1) {
             ManagedSprite_SetPositionXY(param0->unk_198[12], 208, 96 - 24);
             ManagedSprite_SetPositionXY(param0->unk_198[13], 48, 96 - 24);
         } else {
@@ -1746,7 +1747,7 @@ static int ov10_022218BC(UnkStruct_ov10_0221FB28 *param0)
     const MtxFx43 *v0;
     int v1;
 
-    if (param0->trainerIntroData->unk_28 != 1) {
+    if (param0->trainerIntroData->mode != 1) {
         return 0;
     }
 
@@ -1764,7 +1765,7 @@ static int ov10_022218BC(UnkStruct_ov10_0221FB28 *param0)
 
 static void ov10_022218F4(UnkStruct_ov10_0221FB28 *param0)
 {
-    if (param0->trainerIntroData->unk_28 != 1) {
+    if (param0->trainerIntroData->mode != 1) {
         return;
     }
 
@@ -1931,7 +1932,7 @@ static void ov10_02221AE4(UnkStruct_ov10_0221FB28 *param0)
             Bg_ChangeTilemapRectPalette(
                 param0->unk_0C, 2, Unk_ov10_02222A70[v1][0], Unk_ov10_02222A70[v1][1], 16, 6, 3 + v1);
 
-            if (((v1 < 3) && (param0->trainerIntroData->unk_29 == 1)) || ((v1 >= 3) && (param0->trainerIntroData->unk_29 == 0))) {
+            if (((v1 < 3) && (param0->trainerIntroData->playerSide == 1)) || ((v1 >= 3) && (param0->trainerIntroData->playerSide == 0))) {
                 Bg_LoadPalette(
                     2, (void *)&param0->unk_4D8[16 * 1], 16 * 2, (3 + v1) * 16 * 2);
             } else {
@@ -1951,7 +1952,7 @@ static void ov10_02221BC8(UnkStruct_ov10_0221FB28 *param0, u16 *param1, u8 param
 
     v0 = Bg_GetTilemapBuffer(param0->unk_0C, param2);
 
-    if (param0->trainerIntroData->unk_29 == 0) {
+    if (param0->trainerIntroData->playerSide == 0) {
         v1 = 16;
     } else {
         v1 = 0;
@@ -1974,7 +1975,7 @@ static void ov10_02221C14(UnkStruct_ov10_0221FB28 *param0)
 
 static void ov10_02221C48(UnkStruct_ov10_0221FB28 *param0, u8 param1)
 {
-    if (param0->trainerIntroData->unk_29 == 0) {
+    if (param0->trainerIntroData->playerSide == 0) {
         Bg_CopyToTilemapRect(param0->unk_0C, 1, 16 + 16 - param1, 0, param1, 24, (const void *)&param0->unk_538[0][0], 0, 0, 16, 24);
         Bg_CopyToTilemapRect(param0->unk_0C, 2, 16 + 16 - param1, 0, param1, 24, (const void *)&param0->unk_538[1][0], 0, 0, 16, 24);
     } else {
@@ -2172,7 +2173,7 @@ static void ov10_02222340(UnkStruct_ov10_0221FB28 *param0, s16 param1)
 {
     s32 v0, v1, v2;
 
-    if (param0->trainerIntroData->unk_29 == 0) {
+    if (param0->trainerIntroData->playerSide == 0) {
         v2 = 3;
         param1 *= 8;
     } else {
@@ -2357,15 +2358,15 @@ static void ov10_022227A4(TrainerIntroData *trainerIntroData)
     u8 battleResult;
     u8 v6;
 
-    if (trainerIntroData->fieldBattleDTO == NULL) {
+    if (trainerIntroData->dto == NULL) {
         return;
     }
 
     v6 = CommSys_CurNetId();
-    battleResult = trainerIntroData->unk_2A - 1;
+    battleResult = trainerIntroData->battleResult - 1;
 
-    if (MapHeader_IsUnionRoom(trainerIntroData->fieldBattleDTO->mapHeaderID) == 1) {
-        opponentGender1 = TrainerClass_Gender(trainerIntroData->fieldBattleDTO->trainer[v6 ^ 1].header.trainerType);
+    if (MapHeader_IsUnionRoom(trainerIntroData->dto->mapHeaderID) == 1) {
+        opponentGender1 = TrainerClass_Gender(trainerIntroData->dto->trainer[v6 ^ 1].header.trainerType);
         opponentName1 = Heap_Alloc(trainerIntroData->heapID, sizeof(u16) * (TRAINER_NAME_LEN + 1));
 
         String_ToChars(trainerIntroData->trainerNames[sub_020362F4(v6 ^ 1)], opponentName1, TRAINER_NAME_LEN + 1);
@@ -2374,7 +2375,7 @@ static void ov10_022227A4(TrainerIntroData *trainerIntroData)
     } else {
         switch (sub_0203895C()) {
         case 1:
-            opponentGender1 = TrainerClass_Gender(trainerIntroData->fieldBattleDTO->trainer[v6 ^ 1].header.trainerType);
+            opponentGender1 = TrainerClass_Gender(trainerIntroData->dto->trainer[v6 ^ 1].header.trainerType);
             opponentName1 = Heap_Alloc(trainerIntroData->heapID, sizeof(u16) * (TRAINER_NAME_LEN + 1));
 
             String_ToChars(trainerIntroData->trainerNames[sub_020362F4(v6 ^ 1)], opponentName1, TRAINER_NAME_LEN + 1);
@@ -2383,7 +2384,7 @@ static void ov10_022227A4(TrainerIntroData *trainerIntroData)
             Heap_Free(opponentName1);
             break;
         case 2:
-            opponentGender1 = TrainerClass_Gender(trainerIntroData->fieldBattleDTO->trainer[v6 ^ 1].header.trainerType);
+            opponentGender1 = TrainerClass_Gender(trainerIntroData->dto->trainer[v6 ^ 1].header.trainerType);
             opponentName1 = Heap_Alloc(trainerIntroData->heapID, sizeof(u16) * (TRAINER_NAME_LEN + 1));
 
             String_ToChars(trainerIntroData->trainerNames[sub_020362F4(v6 ^ 1)], opponentName1, TRAINER_NAME_LEN + 1);
@@ -2392,7 +2393,7 @@ static void ov10_022227A4(TrainerIntroData *trainerIntroData)
             Heap_Free(opponentName1);
             break;
         case 3:
-            opponentGender1 = TrainerClass_Gender(trainerIntroData->fieldBattleDTO->trainer[v6 ^ 1].header.trainerType);
+            opponentGender1 = TrainerClass_Gender(trainerIntroData->dto->trainer[v6 ^ 1].header.trainerType);
             opponentName1 = Heap_Alloc(trainerIntroData->heapID, sizeof(u16) * (TRAINER_NAME_LEN + 1));
 
             String_ToChars(trainerIntroData->trainerNames[sub_020362F4(v6 ^ 1)], opponentName1, TRAINER_NAME_LEN + 1);
@@ -2405,14 +2406,14 @@ static void ov10_022227A4(TrainerIntroData *trainerIntroData)
             opponentName2 = Heap_Alloc(trainerIntroData->heapID, sizeof(u16) * (TRAINER_NAME_LEN + 1));
 
             if (ov10_02220AD0() == 1) {
-                opponentGender1 = TrainerClass_Gender(trainerIntroData->fieldBattleDTO->trainer[1].header.trainerType);
-                opponentGender2 = TrainerClass_Gender(trainerIntroData->fieldBattleDTO->trainer[3].header.trainerType);
+                opponentGender1 = TrainerClass_Gender(trainerIntroData->dto->trainer[1].header.trainerType);
+                opponentGender2 = TrainerClass_Gender(trainerIntroData->dto->trainer[3].header.trainerType);
 
                 String_ToChars(trainerIntroData->trainerNames[1], opponentName1, TRAINER_NAME_LEN + 1);
                 String_ToChars(trainerIntroData->trainerNames[3], opponentName2, TRAINER_NAME_LEN + 1);
             } else {
-                opponentGender1 = TrainerClass_Gender(trainerIntroData->fieldBattleDTO->trainer[0].header.trainerType);
-                opponentGender2 = TrainerClass_Gender(trainerIntroData->fieldBattleDTO->trainer[2].header.trainerType);
+                opponentGender1 = TrainerClass_Gender(trainerIntroData->dto->trainer[0].header.trainerType);
+                opponentGender2 = TrainerClass_Gender(trainerIntroData->dto->trainer[2].header.trainerType);
 
                 String_ToChars(trainerIntroData->trainerNames[0], opponentName1, TRAINER_NAME_LEN + 1);
                 String_ToChars(trainerIntroData->trainerNames[2], opponentName2, TRAINER_NAME_LEN + 1);
@@ -2428,7 +2429,7 @@ static void ov10_022227A4(TrainerIntroData *trainerIntroData)
         }
     }
 
-    JournalEntry_SaveData(trainerIntroData->fieldBattleDTO->journalEntry, journalEntryOnlineEvent, JOURNAL_ONLINE_EVENT);
+    JournalEntry_SaveData(trainerIntroData->dto->journalEntry, journalEntryOnlineEvent, JOURNAL_ONLINE_EVENT);
 }
 
 static void ov10_022229D4(UnkStruct_ov10_0221FB28 *param0)
@@ -2439,7 +2440,7 @@ static void ov10_022229D4(UnkStruct_ov10_0221FB28 *param0)
 
 static BOOL ov10_02222A08(UnkStruct_ov10_0221FB28 *param0)
 {
-    if ((param0->trainerIntroData->fieldBattleDTO->saveData == NULL) || (BattleRecording_Exists() == 0)) {
+    if ((param0->trainerIntroData->dto->saveData == NULL) || (BattleRecording_Exists() == 0)) {
         return 0;
     }
 
