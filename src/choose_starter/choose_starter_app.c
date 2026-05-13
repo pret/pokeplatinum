@@ -211,7 +211,7 @@ typedef struct ChooseStarterApp {
     int unk_A8;
     String *string;
     WindowTemplate unk_B0;
-    Menu *unk_B8;
+    Menu *confirmationMenu;
     G2dRenderer g2dRenderer;
     SpriteList *spriteList;
     SpriteResourceCollection *spriteResourceCollection[6];
@@ -1237,12 +1237,12 @@ static void AdvancePokeballConfirmGraphics(ChooseStarterApp *app, enum HeapID he
         break;
     case CHOOSE_STARTER_STEP_UPDATE_CURSOR_POSITION:
         SetMessageWindowText(app->messageWindow, heapID, 360, 1 + app->cursorPosition, TEXT_COLOR(1, 2, 15), TEXT_SPEED_NO_TRANSFER);
-        app->unk_B8 = Menu_MakeYesNoChoice(app->bgConfig, &app->unk_B0, 512 + (18 + 12) + 128, 1, heapID);
+        app->confirmationMenu = Menu_MakeYesNoChoice(app->bgConfig, &app->unk_B0, 512 + (18 + 12) + 128, 1, heapID);
         app->disableCursorMovement = FALSE;
         app->chooseStarterStep++;
         break;
     case CHOOSE_STARTER_STEP_PRINT_THESE_ARE_POKE_BALLS_TEXT:
-        u32 menuResult = Menu_ProcessInputAndHandleExit(app->unk_B8, heapID);
+        u32 menuResult = Menu_ProcessInputAndHandleExit(app->confirmationMenu, heapID);
 
         switch (menuResult) {
         case 0xffffffff:
