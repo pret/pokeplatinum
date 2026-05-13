@@ -51,7 +51,7 @@ BOOL ov104_0222E6A8(FrontierScriptManager *scriptMan)
     }
 
     if (scriptMan->unk_38 == 0) {
-        for (int i = 0; i < (int)NELEMS(scriptMan->ctx); i++) {
+        for (int i = 0; i < SNELEMS(scriptMan->ctx); i++) {
             FrontierScriptContext *ctx = scriptMan->ctx[i];
 
             if (ctx != NULL) {
@@ -105,7 +105,7 @@ void FrontierScriptManager_Load(FrontierScriptManager *scriptMan, int scene, int
 
 static BOOL FrontierScriptManager_SetContext(FrontierScriptManager *scriptMan, FrontierScriptContext *ctx)
 {
-    for (int i = 0; i < (int)NELEMS(scriptMan->ctx); i++) {
+    for (int i = 0; i < SNELEMS(scriptMan->ctx); i++) {
         if (scriptMan->ctx[i] == NULL) {
             scriptMan->ctx[i] = ctx;
             scriptMan->numSetContexts++;
@@ -154,7 +154,7 @@ void FrontierScriptManager_UpdateMessageLoader(FrontierScriptManager *scriptMan,
 
     MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, newBankID, heapID);
 
-    for (int i = 0; i < (int)NELEMS(scriptMan->ctx); i++) {
+    for (int i = 0; i < SNELEMS(scriptMan->ctx); i++) {
         FrontierScriptContext *ctx = scriptMan->ctx[i];
 
         if (ctx != NULL) {

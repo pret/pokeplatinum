@@ -932,27 +932,27 @@ static int UnionRoom_GetTrainerBusyMessage(UnkStruct_0205B43C *param0, int param
         return sMessagesTrainerAppearsBusy[gender];
         break;
     case 5:
-        return sMessagesShowingTrainerCase[LCRNG_Next() % (int)NELEMS(sMessagesShowingTrainerCase)][gender];
+        return sMessagesShowingTrainerCase[LCRNG_Next() % SNELEMS(sMessagesShowingTrainerCase)][gender];
         break;
     case 6:
-        return sMessagesBattling[LCRNG_Next() % (int)NELEMS(sMessagesBattling)][gender];
+        return sMessagesBattling[LCRNG_Next() % SNELEMS(sMessagesBattling)][gender];
         break;
     case 7:
-        return sMessagesTrading[LCRNG_Next() % (int)NELEMS(sMessagesTrading)][gender];
+        return sMessagesTrading[LCRNG_Next() % SNELEMS(sMessagesTrading)][gender];
         break;
     case 8:
     case 1:
-        return sMessagesDrawing[LCRNG_Next() % (int)NELEMS(sMessagesDrawing)][gender];
+        return sMessagesDrawing[LCRNG_Next() % SNELEMS(sMessagesDrawing)][gender];
         break;
     case 9:
     case 2:
-        return sMessagesMixingRecords[LCRNG_Next() % (int)NELEMS(sMessagesMixingRecords)][gender];
+        return sMessagesMixingRecords[LCRNG_Next() % SNELEMS(sMessagesMixingRecords)][gender];
         break;
     case 10:
     case 3:
     case 12:
     case 13:
-        return sMessagesSpinTrading[LCRNG_Next() % (int)NELEMS(sMessagesSpinTrading)][gender];
+        return sMessagesSpinTrading[LCRNG_Next() % SNELEMS(sMessagesSpinTrading)][gender];
         break;
     }
 
