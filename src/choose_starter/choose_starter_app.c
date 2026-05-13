@@ -128,13 +128,13 @@ typedef struct ChooseStarter3DGraphics {
     void *animationRes;
     void *animation;
     NNSG3dAnmObj *animationObj;
-    fx32 animation_frame;
+    fx32 animationFrame;
     BOOL show;
     VecFx32 position;
     VecFx32 scale;
-    u16 rotation_x;
-    u16 rotation_y;
-    u16 rotation_z;
+    u16 xRotation;
+    u16 yRotation;
+    u16 zRotation;
 } ChooseStarter3DGraphics;
 
 typedef struct ChooseStarterMovement {
@@ -824,11 +824,11 @@ static void Draw3DGraphics(ChooseStarter3DGraphics *starter3DGraphics)
     MtxFx33 temp;
 
     MTX_Identity33(&rotation);
-    MTX_RotX33(&temp, FX_SinIdx(starter3DGraphics->rotation_x), FX_CosIdx(starter3DGraphics->rotation_x));
+    MTX_RotX33(&temp, FX_SinIdx(starter3DGraphics->xRotation), FX_CosIdx(starter3DGraphics->xRotation));
     MTX_Concat33(&temp, &rotation, &rotation);
-    MTX_RotY33(&temp, FX_SinIdx(starter3DGraphics->rotation_y), FX_CosIdx(starter3DGraphics->rotation_y));
+    MTX_RotY33(&temp, FX_SinIdx(starter3DGraphics->yRotation), FX_CosIdx(starter3DGraphics->yRotation));
     MTX_Concat33(&temp, &rotation, &rotation);
-    MTX_RotZ33(&temp, FX_SinIdx(starter3DGraphics->rotation_z), FX_CosIdx(starter3DGraphics->rotation_z));
+    MTX_RotZ33(&temp, FX_SinIdx(starter3DGraphics->zRotation), FX_CosIdx(starter3DGraphics->zRotation));
     MTX_Concat33(&temp, &rotation, &rotation);
 
     if (starter3DGraphics->show) {
@@ -857,9 +857,9 @@ static void Set3DGraphicsScale(ChooseStarter3DGraphics *starter3DGraphics, fx32 
 
 static void Set3DGraphicsRotation(ChooseStarter3DGraphics *starter3DGraphics, u16 x, u16 y, u16 z)
 {
-    starter3DGraphics->rotation_x = x;
-    starter3DGraphics->rotation_y = y;
-    starter3DGraphics->rotation_z = z;
+    starter3DGraphics->xRotation = x;
+    starter3DGraphics->yRotation = y;
+    starter3DGraphics->zRotation = z;
 }
 
 static BOOL Advance3DGraphicsAnimationIfNotLastFrame(ChooseStarter3DGraphics *starter3DGraphics)
@@ -867,28 +867,28 @@ static BOOL Advance3DGraphicsAnimationIfNotLastFrame(ChooseStarter3DGraphics *st
     fx32 lastFrame = NNS_G3dAnmObjGetNumFrame(starter3DGraphics->animationObj);
     BOOL isLastFrame;
 
-    if ((starter3DGraphics->animation_frame + FX32_ONE) < lastFrame) {
-        starter3DGraphics->animation_frame += FX32_ONE;
+    if ((starter3DGraphics->animationFrame + FX32_ONE) < lastFrame) {
+        starter3DGraphics->animationFrame += FX32_ONE;
         isLastFrame = FALSE;
     } else {
-        starter3DGraphics->animation_frame = lastFrame;
+        starter3DGraphics->animationFrame = lastFrame;
         isLastFrame = TRUE;
     }
 
-    NNS_G3dAnmObjSetFrame(starter3DGraphics->animationObj, starter3DGraphics->animation_frame);
+    NNS_G3dAnmObjSetFrame(starter3DGraphics->animationObj, starter3DGraphics->animationFrame);
 
     return isLastFrame;
 }
 
 static void Advance3DGraphicsAnimationOnLoop(ChooseStarter3DGraphics *starter3DGraphics)
 {
-    starter3DGraphics->animation_frame = (starter3DGraphics->animation_frame + FX32_ONE) % NNS_G3dAnmObjGetNumFrame(starter3DGraphics->animationObj);
-    NNS_G3dAnmObjSetFrame(starter3DGraphics->animationObj, starter3DGraphics->animation_frame);
+    starter3DGraphics->animationFrame = (starter3DGraphics->animationFrame + FX32_ONE) % NNS_G3dAnmObjGetNumFrame(starter3DGraphics->animationObj);
+    NNS_G3dAnmObjSetFrame(starter3DGraphics->animationObj, starter3DGraphics->animationFrame);
 }
 
 static void Set3DGraphicsAnimationFrame(ChooseStarter3DGraphics *starter3DGraphics, fx32 frame)
 {
-    starter3DGraphics->animation_frame = frame;
+    starter3DGraphics->animationFrame = frame;
     NNS_G3dAnmObjSetFrame(starter3DGraphics->animationObj, frame);
 }
 
