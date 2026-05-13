@@ -128,7 +128,6 @@ BOOL FrontierScrCmd_A4(FrontierScriptContext *ctx)
 
 BOOL FrontierScrCmd_BattleCastle_CleanupBattle(FrontierScriptContext *ctx)
 {
-
     BattleCastle *battleCastle = sub_0209B978(ctx->scriptMan->unk_00);
     FieldBattleDTO *dto = battleCastle->unk_0C;
 

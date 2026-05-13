@@ -4,7 +4,7 @@
 #include <nitro/code16.h>
 
 #include "constants/battle_tower.h"
-#include "generated/battle_tower_functions.h"
+#include "constants/battle_tower_functions.h"
 #include "generated/battle_tower_modes.h"
 #include "generated/game_records.h"
 #include "generated/object_events_gfx.h"

@@ -1,4 +1,3 @@
-#include "generated/battle_tower_functions.h"
 #include "generated/battle_tower_modes.h"
 #include "generated/fade_types.h"
 #include "generated/game_records.h"
@@ -6,6 +5,7 @@
 #include "generated/trainer_score_events.h"
 #include "generated/vars_flags.h"
 #include "constants/battle_frontier_movements.h"
+#include "constants/battle_tower_functions.h"
 #include "constants/battle_tower.h"
 #include "constants/colors.h"
 #include "constants/fade_screen.h"

@@ -152,7 +152,7 @@ BOOL FrontierScrCmd_OpenBattleFactoryAppForTrade(FrontierScriptContext *ctx)
     args->saveData = v3->saveData;
     args->challengeType = battleFactory->challengeType;
     args->unk_05 = battleFactory->unk_05;
-    args->isExchangeMode = 1;
+    args->isExchangeMode = TRUE;
     args->personalParty = battleFactory->unk_4D4;
     args->receivableParty = battleFactory->unk_4D8;
     args->battleFactory = battleFactory;
