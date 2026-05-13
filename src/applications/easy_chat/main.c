@@ -1144,9 +1144,9 @@ static BOOL EasyChat_IsEntryComplete(EasyChatApp *easyChatApp)
 {
     switch (easyChatApp->type) {
     case EASY_CHAT_TYPE_ONE_WORD:
-        return easyChatApp->words[0] != 0xffff;
+        return easyChatApp->words[0] != WORD_NONE;
     case EASY_CHAT_TYPE_TWO_WORDS:
-        return easyChatApp->words[0] != 0xffff && easyChatApp->words[1] != 0xffff;
+        return easyChatApp->words[0] != WORD_NONE && easyChatApp->words[1] != WORD_NONE;
     case EASY_CHAT_TYPE_SENTENCE:
         return Sentence_IsComplete(&easyChatApp->sentence);
     }

@@ -7,6 +7,8 @@
 
 #include "struct_defs/sentence.h"
 
+#include "applications/easy_chat/defs.h"
+
 #include "charcode.h"
 #include "message.h"
 #include "message_util.h"
@@ -29,7 +31,7 @@ void Sentence_Init(Sentence *sentence)
     sentence->type = 0xffff;
 
     for (int i = 0; i < 2; i++) {
-        sentence->words[i] = 0xffff;
+        sentence->words[i] = WORD_NONE;
     }
 }
 
@@ -39,7 +41,7 @@ void Sentence_InitWithType(Sentence *sentence, u32 type)
     sentence->id = 0;
 
     for (int i = 0; i < 2; i++) {
-        sentence->words[i] = 0xffff;
+        sentence->words[i] = WORD_NONE;
     }
 }
 
@@ -88,7 +90,7 @@ String *Sentence_AsString(const Sentence *sentence, enum HeapID heapID)
     StringTemplate *template = StringTemplate_Default(heapID);
 
     for (int i = 0; i < 2; i++) {
-        if (sentence->words[i] != 0xffff) {
+        if (sentence->words[i] != WORD_NONE) {
             StringTemplate_SetCustomMessageWord(template, i, sentence->words[i]);
         } else {
             break;
@@ -119,7 +121,7 @@ BOOL Sentence_IsComplete(const Sentence *sentence)
     u32 count = Sentence_CountSelectableWords(sentence->type, sentence->id);
 
     for (u32 i = 0; i < count; i++) {
-        if (sentence->words[i] == 0xffff) {
+        if (sentence->words[i] == WORD_NONE) {
             return FALSE;
         }
     }
@@ -217,6 +219,6 @@ void Sentence_ClearUnusedWords(Sentence *sentence)
     u32 count = Sentence_CountSelectableWords(sentence->type, sentence->id);
 
     for (u32 i = count; i < 2; i++) {
-        sentence->words[i] = 0xffff;
+        sentence->words[i] = WORD_NONE;
     }
 }

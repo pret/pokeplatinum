@@ -35,7 +35,7 @@ EasyChatArgs *EasyChatArgs_New(u32 type, u32 instructionBankEntry, SaveData *sav
         Sentence_InitWithType(&args->sentence, 3);
     } else {
         for (int v1 = 0; v1 < MAX_EASY_CHAT_WORDS; v1++) {
-            args->words[v1] = 0xffff;
+            args->words[v1] = WORD_NONE;
         }
     }
 
