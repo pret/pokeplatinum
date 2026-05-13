@@ -203,8 +203,8 @@ typedef struct ChooseStarterApp {
     int unk_0C;
     ChooseStarterCameraMovement cameraMovement;
     enum CursorPosition cursorPosition;
-    int unk_58[NUM_STARTER_OPTIONS][3];
-    int unk_7C[NUM_STARTER_OPTIONS][2];
+    int selectionMatrix[NUM_STARTER_OPTIONS][3];
+    int otherSelectionMatrix[NUM_STARTER_OPTIONS][2];
     BgConfig *bgConfig;
     Window *messageWindow;
     Window *subplaneWindows[NUM_STARTER_OPTIONS];
@@ -276,7 +276,7 @@ static void AttachCursorCellActor(ChooseStarterApp *app, ChooseStarterCursor *cu
 static void DeleteCursorCellActor(ChooseStarterCursor *cursor);
 static void ShowCursor(ChooseStarterCursor *cursor, BOOL show);
 static void SetCursorPosition(ChooseStarterCursor *cursor, int x, int y);
-static void MakeSelectionMatrix(ChooseStarterApp *app);
+static void MakeSelectionMatrices(ChooseStarterApp *app);
 static void SetSelectionMatrixObjects(ChooseStarterApp *app);
 static void AdvancePokeballChoiceGraphics(ChooseStarterApp *app, enum HeapID heapID);
 static void UpdateSelectedPokeballAnimation(ChooseStarterApp *app);
@@ -371,7 +371,7 @@ BOOL ChooseStarter_Init(ApplicationManager *appMan, int *param1)
     Make3DGraphics(app, HEAP_ID_CHOOSE_STARTER_APP);
     MakeCamera(app, HEAP_ID_CHOOSE_STARTER_APP);
 
-    MakeSelectionMatrix(app);
+    MakeSelectionMatrices(app);
     SetSelectionMatrixObjects(app);
     MakeCursorOAM(app, &app->cursor, HEAP_ID_CHOOSE_STARTER_APP);
     AttachCursorCellActor(app, &app->cursor, HEAP_ID_CHOOSE_STARTER_APP);
@@ -1069,24 +1069,24 @@ static void DeleteCamera(ChooseStarterApp *app)
     Camera_Delete(app->camera);
 }
 
-static void MakeSelectionMatrix(ChooseStarterApp *app)
+static void MakeSelectionMatrices(ChooseStarterApp *app)
 {
     for (int i = 0; i < NUM_STARTER_OPTIONS; i++) {
         switch (i) {
         case 0:
-            app->unk_58[i][0] = -44;
-            app->unk_58[i][1] = -4;
-            app->unk_58[i][2] = 32;
+            app->selectionMatrix[i][0] = -44;
+            app->selectionMatrix[i][1] = -4;
+            app->selectionMatrix[i][2] = 32;
             break;
         case 1:
-            app->unk_58[i][0] = 0;
-            app->unk_58[i][1] = -4;
-            app->unk_58[i][2] = 62;
+            app->selectionMatrix[i][0] = 0;
+            app->selectionMatrix[i][1] = -4;
+            app->selectionMatrix[i][2] = 62;
             break;
         case 2:
-            app->unk_58[i][0] = 38;
-            app->unk_58[i][1] = -4;
-            app->unk_58[i][2] = 26;
+            app->selectionMatrix[i][0] = 38;
+            app->selectionMatrix[i][1] = -4;
+            app->selectionMatrix[i][2] = 26;
             break;
         }
     }
@@ -1094,16 +1094,16 @@ static void MakeSelectionMatrix(ChooseStarterApp *app)
     for (int i = 0; i < NUM_STARTER_OPTIONS; i++) {
         switch (i) {
         case 0:
-            app->unk_7C[i][0] = 78;
-            app->unk_7C[i][1] = 55;
+            app->otherSelectionMatrix[i][0] = 78;
+            app->otherSelectionMatrix[i][1] = 55;
             break;
         case 1:
-            app->unk_7C[i][0] = 130;
-            app->unk_7C[i][1] = 82;
+            app->otherSelectionMatrix[i][0] = 130;
+            app->otherSelectionMatrix[i][1] = 82;
             break;
         case 2:
-            app->unk_7C[i][0] = 172;
-            app->unk_7C[i][1] = 50;
+            app->otherSelectionMatrix[i][0] = 172;
+            app->otherSelectionMatrix[i][1] = 50;
             break;
         }
     }
@@ -1112,7 +1112,7 @@ static void MakeSelectionMatrix(ChooseStarterApp *app)
 static void SetSelectionMatrixObjects(ChooseStarterApp *app)
 {
     for (int i = 0; i < NUM_STARTER_OPTIONS; i++) {
-        Set3DGraphicsPosition(&app->starter3DGraphics[i + 2], app->unk_58[i][0] << FX32_SHIFT, app->unk_58[i][1] << FX32_SHIFT, app->unk_58[i][2] << FX32_SHIFT);
+        Set3DGraphicsPosition(&app->starter3DGraphics[i + 2], app->selectionMatrix[i][0] << FX32_SHIFT, app->selectionMatrix[i][1] << FX32_SHIFT, app->selectionMatrix[i][2] << FX32_SHIFT);
     }
 }
 
@@ -1211,7 +1211,7 @@ static void UpdateSelectedPokeballAnimation(ChooseStarterApp *app)
 
 static void UpdateCursorPosition(ChooseStarterApp *app)
 {
-    SetCursorPosition(&app->cursor, app->unk_7C[app->cursorPosition][0], app->unk_7C[app->cursorPosition][1]);
+    SetCursorPosition(&app->cursor, app->otherSelectionMatrix[app->cursorPosition][0], app->otherSelectionMatrix[app->cursorPosition][1]);
 }
 
 static void AdvancePokeballConfirmGraphics(ChooseStarterApp *app, enum HeapID heapID)
@@ -1623,8 +1623,8 @@ static BOOL HasPreviewWindowMovementFinished(StarterPreviewWindow *previewWindow
 
 static void StartPreviewWindowAndGraphicsMovements(ChooseStarterApp *app)
 {
-    fx32 xStart = app->unk_7C[app->cursorPosition][0] << FX32_SHIFT;
-    fx32 yStart = (app->unk_7C[app->cursorPosition][1] + 48) << FX32_SHIFT;
+    fx32 xStart = app->otherSelectionMatrix[app->cursorPosition][0] << FX32_SHIFT;
+    fx32 yStart = (app->otherSelectionMatrix[app->cursorPosition][1] + 48) << FX32_SHIFT;
 
     StartPreviewWindowMovement(&app->previewWindow, xStart, 128 << FX32_SHIFT, yStart, 96 << FX32_SHIFT, FX32_CONST(0.40f), FX32_CONST(1.0f), 6);
     StartPreviewGraphicsMovement(&app->previewGraphics, app->sprites[app->cursorPosition], xStart, 128 << FX32_SHIFT, yStart, 96 << FX32_SHIFT, FX32_CONST(0.40f), FX32_CONST(1.0f), 6);
