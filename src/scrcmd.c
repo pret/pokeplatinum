@@ -389,8 +389,8 @@ static BOOL ScrCmd_OpenUnionRoomTrainerCase(ScriptContext *ctx);
 static BOOL ScrCmd_0AE(ScriptContext *ctx);
 static BOOL ScrCmd_0AF(ScriptContext *ctx);
 static BOOL ScrCmd_ClearGame(ScriptContext *ctx);
-static BOOL ScrCmd_0B1(ScriptContext *ctx);
-static BOOL ScrCmd_336(ScriptContext *ctx);
+static BOOL ScrCmd_OpenPCHallOfFameScreen(ScriptContext *ctx);
+static BOOL ScrCmd_IsHallOfFameCorrupted(ScriptContext *ctx);
 static BOOL ScrCmd_TryStartGTSApp(ScriptContext *ctx);
 static BOOL ScrCmd_0B3(ScriptContext *ctx);
 static BOOL ScrCmd_StartChooseStarterScene(ScriptContext *ctx);
@@ -445,7 +445,7 @@ static BOOL ScrCmd_StartCatchingTutorial(ScriptContext *ctx);
 static BOOL ScrCmd_SlatherHoneyTree(ScriptContext *ctx);
 static BOOL ScrCmd_GetHoneyTreeStatus(ScriptContext *ctx);
 static BOOL ScrCmd_StartHoneyTreeBattle(ScriptContext *ctx);
-static BOOL ScrCmd_12A(ScriptContext *ctx);
+static BOOL ScrCmd_HoneyTreeStopShaking(ScriptContext *ctx);
 static BOOL ScrCmd_StartSignatureApp(ScriptContext *ctx);
 static BOOL ScrCmd_CheckSaveType(ScriptContext *ctx);
 static BOOL ScrCmd_TrySaveGame(ScriptContext *ctx);
@@ -683,7 +683,7 @@ static BOOL ScrCmd_2A3(ScriptContext *ctx);
 static BOOL ScrCmd_2A4(ScriptContext *ctx);
 static BOOL ScrCmd_CheckItemIsPlate(ScriptContext *ctx);
 static BOOL ScrCmd_CheckIsMysteryGiftPhrase(ScriptContext *ctx);
-static BOOL ScrCmd_2AB(ScriptContext *ctx);
+static BOOL ScrCmd_CountUniqueSealsInSealCase(ScriptContext *ctx);
 static BOOL ScrCmd_UnlockMysteryGift(ScriptContext *ctx);
 static BOOL ScrCmd_GetTrainerCasePlayerMessage(ScriptContext *ctx);
 static BOOL ScrCmd_2B0(ScriptContext *ctx);
@@ -2539,7 +2539,7 @@ static BOOL ScrCmd_Unused_06E(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_2AB(ScriptContext *ctx)
+static BOOL ScrCmd_CountUniqueSealsInSealCase(ScriptContext *ctx)
 {
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
@@ -3340,28 +3340,28 @@ static BOOL ScrCmd_ClearGame(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_0B1(ScriptContext *ctx)
+static BOOL ScrCmd_OpenPCHallOfFameScreen(ScriptContext *ctx)
 {
-    void **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
+    void **data = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
 
-    *v0 = FieldTask_OpenPCHallOfFameScreen(ctx->fieldSystem);
+    *data = FieldTask_OpenPCHallOfFameScreen(ctx->fieldSystem);
     ScriptContext_Pause(ctx, sub_02041CC8);
 
     return TRUE;
 }
 
-static BOOL ScrCmd_336(ScriptContext *ctx)
+static BOOL ScrCmd_IsHallOfFameCorrupted(ScriptContext *ctx)
 {
-    int v1;
-    HallOfFame *v2 = SaveData_HallOfFame(ctx->fieldSystem->saveData, HEAP_ID_FIELD1, &v1);
-    u16 *v0 = ScriptContext_GetVarPointer(ctx);
-    *v0 = 0;
+    int resultCode;
+    HallOfFame *hallOfFame = SaveData_HallOfFame(ctx->fieldSystem->saveData, HEAP_ID_FIELD1, &resultCode);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    *destVar = FALSE;
 
-    if (v1 == 2) {
-        *v0 = 1;
+    if (resultCode == LOAD_RESULT_CORRUPT) {
+        *destVar = TRUE;
     }
 
-    Heap_Free(v2);
+    Heap_Free(hallOfFame);
     return FALSE;
 }
 
@@ -4078,7 +4078,7 @@ static BOOL ScrCmd_StartHoneyTreeBattle(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_12A(ScriptContext *ctx)
+static BOOL ScrCmd_HoneyTreeStopShaking(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
 

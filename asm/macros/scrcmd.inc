@@ -1130,8 +1130,8 @@
     .short SCRCMD_CLEARGAME
     .endm
 
-    .macro ScrCmd_0B1
-    .short SCRCMD_0B1
+    .macro OpenPCHallOfFameScreen
+    .short SCRCMD_OPENPCHALLOFFAMESCREEN
     .endm
 
     .macro TryStartGTSApp connectToWiFi, destVar
@@ -1797,8 +1797,8 @@
     .short SCRCMD_STARTHONEYTREEBATTLE
     .endm
 
-    .macro ScrCmd_12A
-    .short SCRCMD_12A
+    .macro HoneyTreeStopShaking
+    .short SCRCMD_HONEYTREESTOPSHAKING
     .endm
 
     .macro StartSignatureApp
@@ -4103,9 +4103,9 @@
     .short \customMessageWord4
     .endm
 
-    .macro ScrCmd_2AB arg0
-    .short SCRCMD_2AB
-    .short \arg0
+    .macro CountUniqueSealsInSealCase destVar
+    .short SCRCMD_COUNTUNIQUESEALSINSEALCASE
+    .short \destVar
     .endm
 
     .macro UnlockMysteryGift
@@ -4643,8 +4643,8 @@
     .short \scoreID
     .endm
 
-    .macro ScrCmd_30B
-    .short SCRCMD_30B
+    .macro SaveTVSegmentPokemonStorageBulletin
+    .short SCRCMD_SAVETVSEGMENTPOKEMONSTORAGEBULLETIN
     .endm
 
     .macro SaveTVSegmentHomeAndManorNoFurniture
@@ -4876,9 +4876,9 @@
     .long \value
     .endm
 
-    .macro ScrCmd_336 arg0
-    .short SCRCMD_336
-    .short \arg0
+    .macro IsHallOfFameCorrupted destVar
+    .short SCRCMD_ISHALLOFFAMECORRUPTED
+    .short \destVar
     .endm
 
     .macro CheckHasSeenSpecies species, ret

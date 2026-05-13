@@ -10,7 +10,7 @@
     ScriptEntryEnd
 
 CelesticTownPokecenter1F_Nurse:
-    Common_CallPokecenterNurse LOCALID_POKECENTER_NURSE
+    Common_CallPokecenterNurse LOCALID_CELESTIC_NURSE
     End
 
 CelesticTownPokecenter1F_ExpertF:

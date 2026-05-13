@@ -2,7 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
-            "id": "LOCALID_SCHOOL_KID_M",
+            "id": "LOCALID_ETERNA_SCHOOL_KID_M",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_WANDER_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -17,7 +17,7 @@
             "y": 0
         },
         {
-            "id": "LOCALID_BATTLE_GIRL",
+            "id": "LOCALID_ETERNA_BATTLE_GIRL",
             "graphics_id": "OBJ_EVENT_GFX_BATTLE_GIRL",
             "movement_type": "MOVEMENT_TYPE_WANDER_NORTH_AND_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -32,7 +32,7 @@
             "y": 0
         },
         {
-            "id": "LOCALID_BUNEARY",
+            "id": "LOCALID_ETERNA_BUNEARY",
             "graphics_id": "OBJ_EVENT_GFX_BUNEARY",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -47,7 +47,7 @@
             "y": 0
         },
         {
-            "id": "LOCALID_POKECENTER_NURSE",
+            "id": "LOCALID_ETERNA_NURSE",
             "graphics_id": "OBJ_EVENT_GFX_POKECENTER_NURSE",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -62,7 +62,7 @@
             "y": 0
         },
         {
-            "id": "LOCALID_POKEMON_BREEDER_F",
+            "id": "LOCALID_ETERNA_POKEMON_BREEDER_F",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -77,7 +77,7 @@
             "y": 0
         },
         {
-            "id": "LOCALID_DAILY_TRAINER_1",
+            "id": "LOCALID_ETERNA_DAILY_TRAINER_1",
             "graphics_id": "OBJ_EVENT_GFX_VAR_A",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -92,7 +92,7 @@
             "y": 0
         },
         {
-            "id": "LOCALID_DAILY_TRAINER_2",
+            "id": "LOCALID_ETERNA_DAILY_TRAINER_2",
             "graphics_id": "OBJ_EVENT_GFX_VAR_B",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",

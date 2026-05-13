@@ -10,7 +10,7 @@
     ScriptEntryEnd
 
 SurvivalAreaPokecenter1F_Nurse:
-    Common_CallPokecenterNurse LOCALID_POKECENTER_NURSE
+    Common_CallPokecenterNurse LOCALID_SURVIVAL_AREA_NURSE
     End
 
 SurvivalAreaPokecenter1F_AceTrainerM:

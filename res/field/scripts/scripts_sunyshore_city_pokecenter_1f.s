@@ -10,7 +10,7 @@
     ScriptEntryEnd
 
 SunyshoreCityPokecenter1F_Nurse:
-    Common_CallPokecenterNurse LOCALID_POKECENTER_NURSE
+    Common_CallPokecenterNurse LOCALID_SUNYSHORE_NURSE
     End
 
 SunyshoreCityPokecenter1F_OldMan:

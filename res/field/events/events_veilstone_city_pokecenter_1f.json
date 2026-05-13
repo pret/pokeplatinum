@@ -2,7 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
-            "id": "LOCALID_POKECENTER_NURSE",
+            "id": "LOCALID_VEILSTONE_NURSE",
             "graphics_id": "OBJ_EVENT_GFX_POKECENTER_NURSE",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -17,7 +17,7 @@
             "y": 0
         },
         {
-            "id": "LOCALID_SOCIALITE",
+            "id": "LOCALID_VEILSTONE_SOCIALITE",
             "graphics_id": "OBJ_EVENT_GFX_SOCIALITE",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -32,7 +32,7 @@
             "y": 0
         },
         {
-            "id": "LOCALID_SCHOOL_KID_M",
+            "id": "LOCALID_VEILSTONE_SCHOOL_KID_M",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -47,7 +47,7 @@
             "y": 0
         },
         {
-            "id": "LOCALID_DAILY_TRAINER_1",
+            "id": "LOCALID_VEILSTONE_DAILY_TRAINER_1",
             "graphics_id": "OBJ_EVENT_GFX_VAR_A",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -62,7 +62,7 @@
             "y": 0
         },
         {
-            "id": "LOCALID_DAILY_TRAINER_2",
+            "id": "LOCALID_VEILSTONE_DAILY_TRAINER_2",
             "graphics_id": "OBJ_EVENT_GFX_VAR_B",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
