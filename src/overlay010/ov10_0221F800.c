@@ -76,7 +76,7 @@ typedef struct {
 } UnkStruct_ov10_0221FB28_sub1;
 
 typedef struct UnkStruct_ov10_0221FB28_t {
-    UnkStruct_ov10_0221F800 *unk_00;
+    TrainerIntroData *trainerIntroData;
     const UnkFuncPtr_ov10_02222AD0 *unk_04;
     PaletteData *unk_08;
     BgConfig *unk_0C;
@@ -192,7 +192,7 @@ static void ov10_022222A4(UnkStruct_ov10_0221FB28 *param0);
 static void ov10_02222340(UnkStruct_ov10_0221FB28 *param0, s16 param1);
 static u32 ov10_02221928(u32 param0, BOOL param1);
 static u32 ov10_0222194C(u32 param0, BOOL param1);
-static void ov10_022227A4(UnkStruct_ov10_0221F800 *param0);
+static void ov10_022227A4(TrainerIntroData *param0);
 static u8 ov10_02220700(UnkStruct_ov10_0221FB28 *param0);
 static u8 ov10_022208B0(UnkStruct_ov10_0221FB28 *param0);
 static void ov10_02220F1C(UnkStruct_ov10_0221FB28 *param0);
@@ -372,18 +372,18 @@ static const WindowTemplate Unk_ov10_02222A68 = {
     0x94
 };
 
-void ov10_0221F800(UnkStruct_ov10_0221F800 *param0)
+void ov10_0221F800(TrainerIntroData *param0)
 {
     UnkStruct_ov10_0221FB28 *v0 = SysTask_GetParam(SysTask_StartAndAllocateParam(ov10_0221F870, sizeof(UnkStruct_ov10_0221FB28), 100, param0->heapID));
     memset(v0, 0, sizeof(UnkStruct_ov10_0221FB28));
 
-    v0->unk_00 = param0;
+    v0->trainerIntroData = param0;
     v0->unk_B73 = 0;
     v0->unk_BBC = sub_0202FAC0();
 
     if (v0->unk_BBC == 1) {
-        if ((v0->unk_00->unk_00 != NULL) && (v0->unk_00->unk_00->saveData != NULL)) {
-            v0->unk_BBC = Bag_CanRemoveItem(SaveData_GetBag(v0->unk_00->unk_00->saveData), ITEM_VS_RECORDER, 1, param0->heapID);
+        if ((v0->trainerIntroData->fieldBattleDTO != NULL) && (v0->trainerIntroData->fieldBattleDTO->saveData != NULL)) {
+            v0->unk_BBC = Bag_CanRemoveItem(SaveData_GetBag(v0->trainerIntroData->fieldBattleDTO->saveData), ITEM_VS_RECORDER, 1, param0->heapID);
         }
     }
 }
@@ -409,7 +409,7 @@ static void ov10_0221F870(SysTask *param0, void *param1)
             }
         }
 
-        if (v0->unk_00->unk_28 == 2) {
+        if (v0->trainerIntroData->unk_28 == 2) {
             ov10_0221F930(v0);
         }
         break;
@@ -424,7 +424,7 @@ static void ov10_0221F870(SysTask *param0, void *param1)
         SpriteSystem_DrawSprites(v0->unk_194);
     }
 
-    if (v0->unk_00->unk_28 != 0) {
+    if (v0->trainerIntroData->unk_28 != 0) {
         G3_SwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
     }
 }
@@ -482,13 +482,13 @@ static void ov10_0221F930(UnkStruct_ov10_0221FB28 *param0)
         Window_DrawMessageBoxWithScrollCursor(&param0->unk_B8C, 0, 1, 15);
 
         param0->unk_BAC = Text_AddPrinterWithParams(&param0->unk_B8C, FONT_MESSAGE, param0->unk_BA8, 0, 0, TEXT_SPEED_INSTANT, NULL);
-        param0->unk_BB4 = Menu_MakeYesNoChoiceWithCursorAt(param0->unk_0C, &Unk_ov10_02222A68, 1 + (18 + 12), 14, 1, param0->unk_00->heapID);
+        param0->unk_BB4 = Menu_MakeYesNoChoiceWithCursorAt(param0->unk_0C, &Unk_ov10_02222A68, 1 + (18 + 12), 14, 1, param0->trainerIntroData->heapID);
 
         Bg_ScheduleTilemapTransfer(param0->unk_0C, 0);
         param0->unk_BB0 = 4;
         break;
     case 4: {
-        u32 v0 = Menu_ProcessInputAndHandleExit(param0->unk_BB4, param0->unk_00->heapID);
+        u32 v0 = Menu_ProcessInputAndHandleExit(param0->unk_BB4, param0->trainerIntroData->heapID);
 
         switch (v0) {
         case 0:
@@ -512,7 +512,7 @@ static void ov10_0221F930(UnkStruct_ov10_0221FB28 *param0)
         break;
     case 7:
         if (param0->unk_BB4 != NULL) {
-            Menu_DestroyForExit(param0->unk_BB4, param0->unk_00->heapID);
+            Menu_DestroyForExit(param0->unk_BB4, param0->trainerIntroData->heapID);
             param0->unk_BB4 = NULL;
         }
 
@@ -541,17 +541,17 @@ static u8 ov10_0221FB28(UnkStruct_ov10_0221FB28 *param0)
 
     ov10_0221F900();
 
-    param0->unk_0C = BgConfig_New(param0->unk_00->heapID);
-    param0->unk_08 = PaletteData_New(param0->unk_00->heapID);
+    param0->unk_0C = BgConfig_New(param0->trainerIntroData->heapID);
+    param0->unk_08 = PaletteData_New(param0->trainerIntroData->heapID);
 
-    PaletteData_AllocBuffer(param0->unk_08, 0, 32 * 16, param0->unk_00->heapID);
+    PaletteData_AllocBuffer(param0->unk_08, 0, 32 * 16, param0->trainerIntroData->heapID);
     Bg_MaskPalette(BG_LAYER_SUB_0, 0x0);
 
     param0->unk_B76 = 0;
     param0->unk_B75 = 8;
     param0->unk_B74 = 0;
 
-    switch (param0->unk_00->unk_28) {
+    switch (param0->trainerIntroData->unk_28) {
     case 0:
         param0->unk_04 = Unk_ov10_02222AD0;
         break;
@@ -559,13 +559,13 @@ static u8 ov10_0221FB28(UnkStruct_ov10_0221FB28 *param0)
         param0->unk_04 = Unk_ov10_02222AA8;
         break;
     case 2:
-        if (param0->unk_00->unk_2A == 3) {
+        if (param0->trainerIntroData->unk_2A == 3) {
             param0->unk_04 = Unk_ov10_02222C38;
         } else {
             param0->unk_04 = Unk_ov10_02222CA8;
         }
 
-        ov10_022227A4(param0->unk_00);
+        ov10_022227A4(param0->trainerIntroData);
         break;
     }
 
@@ -591,7 +591,7 @@ static u8 ov10_0221FBFC(UnkStruct_ov10_0221FB28 *param0)
         ov10_02222720(param0);
         ov10_02221C14(param0);
         NetworkIcon_Init();
-        App_StartScreenFade(FALSE, param0->unk_00->heapID);
+        App_StartScreenFade(FALSE, param0->trainerIntroData->heapID);
         SetVBlankCallback(ov10_02220C64, param0);
         return 1;
     }
@@ -615,7 +615,7 @@ static u8 ov10_0221FC78(UnkStruct_ov10_0221FB28 *param0)
         ov10_022217CC(param0);
         break;
     case 2:
-        App_StartScreenFade(FALSE, param0->unk_00->heapID);
+        App_StartScreenFade(FALSE, param0->trainerIntroData->heapID);
         SetVBlankCallback(ov10_02220C64, param0);
         param0->unk_B76 = 0;
         param0->unk_B70 = 8;
@@ -640,7 +640,7 @@ static u8 ov10_0221FD00(UnkStruct_ov10_0221FB28 *param0)
             BOOL v0;
             int v1;
 
-            v0 = sub_0202F330(param0->unk_00->unk_00->saveData, param0->unk_00->heapID, &v1, 0);
+            v0 = sub_0202F330(param0->trainerIntroData->fieldBattleDTO->saveData, param0->trainerIntroData->heapID, &v1, 0);
             param0->unk_BC0 = v1;
         }
         {
@@ -667,15 +667,15 @@ static u8 ov10_0221FD00(UnkStruct_ov10_0221FB28 *param0)
         NetworkIcon_Init();
         break;
     case 2:
-        App_StartScreenFade(FALSE, param0->unk_00->heapID);
+        App_StartScreenFade(FALSE, param0->trainerIntroData->heapID);
         SetVBlankCallback(ov10_02220C64, param0);
         param0->unk_B76 = 0;
         param0->unk_B70 = 4;
         param0->unk_B71 = 2;
         param0->unk_B68 = 12;
-        param0->unk_BA0 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BATTLE_VIDEO, param0->unk_00->heapID);
-        param0->unk_BA4 = StringTemplate_Default(param0->unk_00->heapID);
-        param0->unk_BA8 = String_Init(2 * 160, param0->unk_00->heapID);
+        param0->unk_BA0 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BATTLE_VIDEO, param0->trainerIntroData->heapID);
+        param0->unk_BA4 = StringTemplate_Default(param0->trainerIntroData->heapID);
+        param0->unk_BA8 = String_Init(2 * 160, param0->trainerIntroData->heapID);
         param0->unk_BB0 = 1;
 
         return 1;
@@ -749,7 +749,7 @@ static u8 ov10_02220014(UnkStruct_ov10_0221FB28 *param0)
     }
 
     if (param0->unk_B76 == 0) {
-        if (param0->unk_00->unk_28 == 1) {
+        if (param0->trainerIntroData->unk_28 == 1) {
             Sound_PlayEffect(SEQ_SE_DP_VSDEMO01);
         } else {
             Sound_PlayEffect(SEQ_SE_DP_GASHIN);
@@ -810,7 +810,7 @@ static u8 ov10_02220014(UnkStruct_ov10_0221FB28 *param0)
 static u8 ov10_02220228(UnkStruct_ov10_0221FB28 *param0)
 {
     if (param0->unk_B76 == 8) {
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_WHITE, 6, 1, param0->unk_00->heapID);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_WHITE, 6, 1, param0->trainerIntroData->heapID);
     }
 
     if ((param0->unk_B76 >= 8) && (IsScreenFadeDone() == TRUE)) {
@@ -849,13 +849,13 @@ static u8 ov10_02220350(UnkStruct_ov10_0221FB28 *param0)
 static u8 ov10_02220360(UnkStruct_ov10_0221FB28 *param0)
 {
     if (ov10_02220AD0() == 1) {
-        if (param0->unk_00->unk_2A == 1) {
+        if (param0->trainerIntroData->unk_2A == 1) {
             param0->unk_B72 = 0;
         } else {
             param0->unk_B72 = 1;
         }
     } else {
-        if (param0->unk_00->unk_2A == 1) {
+        if (param0->trainerIntroData->unk_2A == 1) {
             param0->unk_B72 = 1;
         } else {
             param0->unk_B72 = 0;
@@ -1007,7 +1007,7 @@ static u8 ov10_02220700(UnkStruct_ov10_0221FB28 *param0)
     case 1: {
         int v0;
 
-        v0 = sub_0202F41C(param0->unk_00->unk_00->saveData, param0->unk_00->unk_2C, 0, 0, &param0->unk_B78, &param0->unk_B7A);
+        v0 = sub_0202F41C(param0->trainerIntroData->fieldBattleDTO->saveData, param0->trainerIntroData->unk_2C, 0, 0, &param0->unk_B78, &param0->unk_B7A);
 
         if (v0 == 2) {
             MessageLoader_GetString(param0->unk_BA0, 6, param0->unk_BA8);
@@ -1080,13 +1080,13 @@ static u8 ov10_022208B0(UnkStruct_ov10_0221FB28 *param0)
 static u8 ov10_0222094C(UnkStruct_ov10_0221FB28 *param0)
 {
     if (ov10_02220AD0() == 1) {
-        if (param0->unk_00->unk_2A == 1) {
+        if (param0->trainerIntroData->unk_2A == 1) {
             PaletteData_CopyBuffer(param0->unk_08, 0, 4 * 16, 0, 3 * 16, 0x20);
         } else {
             PaletteData_CopyBuffer(param0->unk_08, 0, 4 * 16, 0, 0 * 16, 0x20);
         }
     } else {
-        if (param0->unk_00->unk_2A == 1) {
+        if (param0->trainerIntroData->unk_2A == 1) {
             PaletteData_CopyBuffer(param0->unk_08, 0, 4 * 16, 0, 0 * 16, 0x20);
         } else {
             PaletteData_CopyBuffer(param0->unk_08, 0, 4 * 16, 0, 3 * 16, 0x20);
@@ -1121,7 +1121,7 @@ static u8 ov10_022209E0(UnkStruct_ov10_0221FB28 *param0)
 
 static u8 ov10_02220A34(UnkStruct_ov10_0221FB28 *param0)
 {
-    App_StartScreenFade(TRUE, param0->unk_00->heapID);
+    App_StartScreenFade(TRUE, param0->trainerIntroData->heapID);
     param0->unk_B73 = 2;
     return 1;
 }
@@ -1135,7 +1135,7 @@ static u8 ov10_02220A50(SysTask *param0, UnkStruct_ov10_0221FB28 *param1)
     SetVBlankCallback(NULL, NULL);
     ov10_02222A48(param1);
 
-    if (param1->unk_00->unk_28 != 0) {
+    if (param1->trainerIntroData->unk_28 != 0) {
         ov10_02220DCC(param1);
         ov10_02220DFC(param1);
         ov10_02220E30(param1);
@@ -1152,7 +1152,7 @@ static u8 ov10_02220A50(SysTask *param0, UnkStruct_ov10_0221FB28 *param1)
     PaletteData_FreeBuffer(param1->unk_08, 0);
     PaletteData_Free(param1->unk_08);
 
-    param1->unk_00->unk_2B = 1;
+    param1->trainerIntroData->unk_2B = 1;
     SysTask_FinishAndFreeParam(param0);
 
     return 1;
@@ -1174,9 +1174,9 @@ static BOOL ov10_02220AD0(void)
 
 static void ov10_02220B00(UnkStruct_ov10_0221FB28 *param0, SpriteResourceCapacities *param1, int param2)
 {
-    VramTransfer_New(64, param0->unk_00->heapID);
+    VramTransfer_New(64, param0->trainerIntroData->heapID);
 
-    param0->unk_190 = SpriteSystem_Alloc(param0->unk_00->heapID);
+    param0->unk_190 = SpriteSystem_Alloc(param0->trainerIntroData->heapID);
     param0->unk_194 = SpriteManager_New(param0->unk_190);
     {
         RenderOamTemplate v0 = {
@@ -1408,13 +1408,13 @@ static void ov10_02220E30(UnkStruct_ov10_0221FB28 *param0)
 
 static void ov10_02220E70(UnkStruct_ov10_0221FB28 *param0)
 {
-    NARC *v0 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__VS_DEMO_GRA, param0->unk_00->heapID);
+    NARC *v0 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__VS_DEMO_GRA, param0->trainerIntroData->heapID);
 
-    Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 0, param0->unk_0C, 1, 0, 0, 0, param0->unk_00->heapID);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 4, param0->unk_0C, 1, 0, 0, 0, param0->unk_00->heapID);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 2, param0->unk_0C, 2, 0, 0, 0, param0->unk_00->heapID);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 3, param0->unk_0C, 3, 0, 0, 0, param0->unk_00->heapID);
-    Graphics_LoadPaletteFromOpenNARC(v0, 1, 0, 0, 0, param0->unk_00->heapID);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 0, param0->unk_0C, 1, 0, 0, 0, param0->trainerIntroData->heapID);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 4, param0->unk_0C, 1, 0, 0, 0, param0->trainerIntroData->heapID);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 2, param0->unk_0C, 2, 0, 0, 0, param0->trainerIntroData->heapID);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 3, param0->unk_0C, 3, 0, 0, 0, param0->trainerIntroData->heapID);
+    Graphics_LoadPaletteFromOpenNARC(v0, 1, 0, 0, 0, param0->trainerIntroData->heapID);
     PaletteData_LoadBufferFromHardware(param0->unk_08, 0, 0, 0x20 * 5);
     Bg_MaskPalette(BG_LAYER_MAIN_1, 0x18c6);
     NARC_dtor(v0);
@@ -1424,14 +1424,14 @@ static void ov10_02220F1C(UnkStruct_ov10_0221FB28 *param0)
 {
     int v0;
 
-    GF_ASSERT(param0->unk_B9C == GX_BG0_AS_2D && param0->unk_00 != NULL && param0->unk_00->unk_00 != NULL && param0->unk_00->unk_00->options != NULL);
-    v0 = Options_Frame(param0->unk_00->unk_00->options);
+    GF_ASSERT(param0->unk_B9C == GX_BG0_AS_2D && param0->trainerIntroData != NULL && param0->trainerIntroData->fieldBattleDTO != NULL && param0->trainerIntroData->fieldBattleDTO->options != NULL);
+    v0 = Options_Frame(param0->trainerIntroData->fieldBattleDTO->options);
 
-    LoadMessageBoxGraphics(param0->unk_0C, BG_LAYER_MAIN_0, 1, 15, v0, param0->unk_00->heapID);
+    LoadMessageBoxGraphics(param0->unk_0C, BG_LAYER_MAIN_0, 1, 15, v0, param0->trainerIntroData->heapID);
     PaletteData_LoadBufferFromHardware(param0->unk_08, 0, 15 * 16, 0x20 * 1);
-    LoadStandardWindowGraphics(param0->unk_0C, BG_LAYER_MAIN_0, 1 + (18 + 12), 14, 0, param0->unk_00->heapID);
+    LoadStandardWindowGraphics(param0->unk_0C, BG_LAYER_MAIN_0, 1 + (18 + 12), 14, 0, param0->trainerIntroData->heapID);
     PaletteData_LoadBufferFromHardware(param0->unk_08, 0, 14 * 16, 0x20 * 1);
-    Font_LoadTextPalette(0, 13 * 0x20, param0->unk_00->heapID);
+    Font_LoadTextPalette(0, 13 * 0x20, param0->trainerIntroData->heapID);
     PaletteData_LoadBufferFromHardware(param0->unk_08, 0, 13 * 16, 0x20 * 1);
     Window_Add(param0->unk_0C, &param0->unk_B7C, 0, 0x2, 0x13, 27, 4, 13, (1 + (18 + 12)) + 9);
     Window_Add(param0->unk_0C, &param0->unk_B8C, 0, 0x2, 0x13, 27, 4, 13, (1 + (18 + 12)) + 9);
@@ -1473,7 +1473,7 @@ static void ov10_0222101C(UnkStruct_ov10_0221FB28 *param0)
 
 static void ov10_022210F4(UnkStruct_ov10_0221FB28 *param0)
 {
-    NARC *v0 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, param0->unk_00->heapID);
+    NARC *v0 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, param0->trainerIntroData->heapID);
 
     SpriteSystem_LoadCharResObjFromOpenNarc(param0->unk_190, param0->unk_194, v0, 208, TRUE, NNS_G2D_VRAM_TYPE_2DMAIN, 47111);
     SpriteSystem_LoadPlttResObj(param0->unk_190, param0->unk_194, NARC_INDEX_BATTLE__GRAPHIC__VS_DEMO_GRA, 8, FALSE, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 47111);
@@ -1528,14 +1528,14 @@ static void ov10_022211F0(UnkStruct_ov10_0221FB28 *param0, Party *param1, u16 pa
 
 static void ov10_022212AC(UnkStruct_ov10_0221FB28 *param0)
 {
-    if (param0->unk_00->unk_29 == 0) {
-        ov10_022211F0(param0, param0->unk_00->unk_04[0], 6, 0);
-        ov10_022211F0(param0, param0->unk_00->unk_04[1], 6, 6);
+    if (param0->trainerIntroData->unk_29 == 0) {
+        ov10_022211F0(param0, param0->trainerIntroData->party[0], 6, 0);
+        ov10_022211F0(param0, param0->trainerIntroData->party[1], 6, 6);
     } else {
-        ov10_022211F0(param0, param0->unk_00->unk_04[0], 3, 0);
-        ov10_022211F0(param0, param0->unk_00->unk_04[2], 3, 3);
-        ov10_022211F0(param0, param0->unk_00->unk_04[1], 3, 6);
-        ov10_022211F0(param0, param0->unk_00->unk_04[3], 3, 9);
+        ov10_022211F0(param0, param0->trainerIntroData->party[0], 3, 0);
+        ov10_022211F0(param0, param0->trainerIntroData->party[2], 3, 3);
+        ov10_022211F0(param0, param0->trainerIntroData->party[1], 3, 6);
+        ov10_022211F0(param0, param0->trainerIntroData->party[3], 3, 9);
     }
 }
 
@@ -1560,7 +1560,7 @@ static void ov10_0222130C(UnkStruct_ov10_0221FB28 *param0, u32 param1, String *p
     v1.unk_20 = 2;
     v1.unk_24 = 0;
     v1.unk_28 = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v1.heapID = param0->unk_00->heapID;
+    v1.heapID = param0->trainerIntroData->heapID;
 
     param0->unk_B3C[param1] = sub_020127E8(&v1);
 
@@ -1570,17 +1570,17 @@ static void ov10_0222130C(UnkStruct_ov10_0221FB28 *param0, u32 param1, String *p
 
 static void ov10_022213B8(UnkStruct_ov10_0221FB28 *param0)
 {
-    param0->unk_B38 = sub_02012744(8, param0->unk_00->heapID);
+    param0->unk_B38 = sub_02012744(8, param0->trainerIntroData->heapID);
 
-    ov10_0222130C(param0, 0, param0->unk_00->unk_14[0]);
-    ov10_0222130C(param0, 2, param0->unk_00->unk_14[1]);
+    ov10_0222130C(param0, 0, param0->trainerIntroData->trainerNames[0]);
+    ov10_0222130C(param0, 2, param0->trainerIntroData->trainerNames[1]);
 
-    if (param0->unk_00->unk_29 == 1) {
-        ov10_0222130C(param0, 1, param0->unk_00->unk_14[2]);
-        ov10_0222130C(param0, 3, param0->unk_00->unk_14[3]);
+    if (param0->trainerIntroData->unk_29 == 1) {
+        ov10_0222130C(param0, 1, param0->trainerIntroData->trainerNames[2]);
+        ov10_0222130C(param0, 3, param0->trainerIntroData->trainerNames[3]);
     } else {
-        ov10_0222130C(param0, 1, param0->unk_00->unk_14[0]);
-        ov10_0222130C(param0, 3, param0->unk_00->unk_14[1]);
+        ov10_0222130C(param0, 1, param0->trainerIntroData->trainerNames[0]);
+        ov10_0222130C(param0, 3, param0->trainerIntroData->trainerNames[1]);
 
         sub_020129D0(param0->unk_B3C[1], 0);
         sub_020129D0(param0->unk_B3C[3], 0);
@@ -1596,7 +1596,7 @@ static void ov10_0222146C(UnkStruct_ov10_0221FB28 *param0)
 {
     u32 v0;
 
-    if (param0->unk_00->unk_28 == 0) {
+    if (param0->trainerIntroData->unk_28 == 0) {
         return;
     }
 
@@ -1609,7 +1609,7 @@ static void ov10_0222146C(UnkStruct_ov10_0221FB28 *param0)
 
 static void ov10_022214A0(UnkStruct_ov10_0221FB28 *param0, int param1, int param2)
 {
-    if (param0->unk_00->unk_29 == 1) {
+    if (param0->trainerIntroData->unk_29 == 1) {
         param0->unk_B58[0] = (24 - 4);
         param0->unk_B5C[0] = (140 + 6) + param1;
         param0->unk_B58[1] = ((24 - 4) + 19 * 3 + 4);
@@ -1674,7 +1674,7 @@ static void ov10_02221588(UnkStruct_ov10_0221FB28 *param0)
 
 static void ov10_0222166C(UnkStruct_ov10_0221FB28 *param0)
 {
-    NARC *v0 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__VS_DEMO_GRA, param0->unk_00->heapID);
+    NARC *v0 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__VS_DEMO_GRA, param0->trainerIntroData->heapID);
 
     SpriteSystem_LoadCharResObjFromOpenNarc(param0->unk_190, param0->unk_194, v0, 5, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 47112);
     SpriteSystem_LoadCellResObjFromOpenNarc(param0->unk_190, param0->unk_194, v0, 6, FALSE, 47112);
@@ -1687,14 +1687,14 @@ static void ov10_022216E0(UnkStruct_ov10_0221FB28 *param0)
     ManagedSprite_SetDrawFlag(param0->unk_198[12], 0);
     ManagedSprite_SetDrawFlag(param0->unk_198[13], 0);
 
-    if (param0->unk_00->unk_2A == 3) {
+    if (param0->trainerIntroData->unk_2A == 3) {
         ManagedSprite_SetPositionXY(param0->unk_198[12], 128, 96 - 24);
         ManagedSprite_SetAnim(param0->unk_198[12], 3 - 1);
         return;
     }
 
     if (ov10_02220AD0() == 1) {
-        if (param0->unk_00->unk_2A == 1) {
+        if (param0->trainerIntroData->unk_2A == 1) {
             ManagedSprite_SetPositionXY(param0->unk_198[12], 48, 96 - 24);
             ManagedSprite_SetPositionXY(param0->unk_198[13], 208, 96 - 24);
         } else {
@@ -1702,7 +1702,7 @@ static void ov10_022216E0(UnkStruct_ov10_0221FB28 *param0)
             ManagedSprite_SetPositionXY(param0->unk_198[13], 48, 96 - 24);
         }
     } else {
-        if (param0->unk_00->unk_2A == 1) {
+        if (param0->trainerIntroData->unk_2A == 1) {
             ManagedSprite_SetPositionXY(param0->unk_198[12], 208, 96 - 24);
             ManagedSprite_SetPositionXY(param0->unk_198[13], 48, 96 - 24);
         } else {
@@ -1720,18 +1720,18 @@ static void ov10_022217CC(UnkStruct_ov10_0221FB28 *param0)
     Camera *camera;
     void *v1;
 
-    param0->unk_B4C = G3DPipeline_Init(param0->unk_00->heapID, TEXTURE_VRAM_SIZE_512K, PALETTE_VRAM_SIZE_32K, NULL);
+    param0->unk_B4C = G3DPipeline_Init(param0->trainerIntroData->heapID, TEXTURE_VRAM_SIZE_512K, PALETTE_VRAM_SIZE_32K, NULL);
 
     G3X_AlphaBlend(1);
     ParticleSystem_ZeroAll();
 
-    param0->unk_B54 = Heap_Alloc(param0->unk_00->heapID, 0x4800);
-    param0->unk_B50 = ParticleSystem_New(ov10_02221928, ov10_0222194C, param0->unk_B54, 0x4800, 1, param0->unk_00->heapID);
+    param0->unk_B54 = Heap_Alloc(param0->trainerIntroData->heapID, 0x4800);
+    param0->unk_B50 = ParticleSystem_New(ov10_02221928, ov10_0222194C, param0->unk_B54, 0x4800, 1, param0->trainerIntroData->heapID);
 
     camera = ParticleSystem_GetCamera(param0->unk_B50);
     Camera_SetClipping(FX32_ONE, FX32_ONE * 900, camera);
 
-    v1 = ParticleSystem_LoadResourceFromNARC(61, 2, param0->unk_00->heapID);
+    v1 = ParticleSystem_LoadResourceFromNARC(61, 2, param0->trainerIntroData->heapID);
     ParticleSystem_SetResource(param0->unk_B50, v1, (1 << 1) | (1 << 3), 1);
 
     ParticleSystem_CreateEmitterWithCallback(param0->unk_B50, 0, NULL, NULL);
@@ -1746,7 +1746,7 @@ static int ov10_022218BC(UnkStruct_ov10_0221FB28 *param0)
     const MtxFx43 *v0;
     int v1;
 
-    if (param0->unk_00->unk_28 != 1) {
+    if (param0->trainerIntroData->unk_28 != 1) {
         return 0;
     }
 
@@ -1764,7 +1764,7 @@ static int ov10_022218BC(UnkStruct_ov10_0221FB28 *param0)
 
 static void ov10_022218F4(UnkStruct_ov10_0221FB28 *param0)
 {
-    if (param0->unk_00->unk_28 != 1) {
+    if (param0->trainerIntroData->unk_28 != 1) {
         return;
     }
 
@@ -1888,17 +1888,17 @@ static void ov10_02221A10(UnkStruct_ov10_0221FB28 *param0)
 
 static void ov10_02221A3C(UnkStruct_ov10_0221FB28 *param0)
 {
-    NARC *v0 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PLIST_GRA, param0->unk_00->heapID);
+    NARC *v0 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PLIST_GRA, param0->trainerIntroData->heapID);
 
-    Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 15, param0->unk_0C, 3, 0, 0, 0, param0->unk_00->heapID);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 17, param0->unk_0C, 3, 0, 0, 0, param0->unk_00->heapID);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 15, param0->unk_0C, 3, 0, 0, 0, param0->trainerIntroData->heapID);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 17, param0->unk_0C, 3, 0, 0, 0, param0->trainerIntroData->heapID);
 
     {
         NNSG2dPaletteData *v1;
         void *v2;
         u16 *v3;
 
-        v2 = NARC_AllocAndReadWholeMember(v0, 16, param0->unk_00->heapID);
+        v2 = NARC_AllocAndReadWholeMember(v0, 16, param0->trainerIntroData->heapID);
         NNS_G2dGetUnpackedPaletteData(v2, &v1);
         Bg_LoadPalette(3, (void *)v1->pRawData, v1->szByte, 0);
 
@@ -1907,7 +1907,7 @@ static void ov10_02221A3C(UnkStruct_ov10_0221FB28 *param0)
         Heap_Free(v2);
     }
 
-    PartyMenu_LoadMemberPanelTilemaps(param0->unk_00->heapID, param0->unk_298, param0->unk_358, param0->unk_418);
+    PartyMenu_LoadMemberPanelTilemaps(param0->trainerIntroData->heapID, param0->unk_298, param0->unk_358, param0->unk_418);
     NARC_dtor(v0);
 }
 
@@ -1931,7 +1931,7 @@ static void ov10_02221AE4(UnkStruct_ov10_0221FB28 *param0)
             Bg_ChangeTilemapRectPalette(
                 param0->unk_0C, 2, Unk_ov10_02222A70[v1][0], Unk_ov10_02222A70[v1][1], 16, 6, 3 + v1);
 
-            if (((v1 < 3) && (param0->unk_00->unk_29 == 1)) || ((v1 >= 3) && (param0->unk_00->unk_29 == 0))) {
+            if (((v1 < 3) && (param0->trainerIntroData->unk_29 == 1)) || ((v1 >= 3) && (param0->trainerIntroData->unk_29 == 0))) {
                 Bg_LoadPalette(
                     2, (void *)&param0->unk_4D8[16 * 1], 16 * 2, (3 + v1) * 16 * 2);
             } else {
@@ -1951,7 +1951,7 @@ static void ov10_02221BC8(UnkStruct_ov10_0221FB28 *param0, u16 *param1, u8 param
 
     v0 = Bg_GetTilemapBuffer(param0->unk_0C, param2);
 
-    if (param0->unk_00->unk_29 == 0) {
+    if (param0->trainerIntroData->unk_29 == 0) {
         v1 = 16;
     } else {
         v1 = 0;
@@ -1974,7 +1974,7 @@ static void ov10_02221C14(UnkStruct_ov10_0221FB28 *param0)
 
 static void ov10_02221C48(UnkStruct_ov10_0221FB28 *param0, u8 param1)
 {
-    if (param0->unk_00->unk_29 == 0) {
+    if (param0->trainerIntroData->unk_29 == 0) {
         Bg_CopyToTilemapRect(param0->unk_0C, 1, 16 + 16 - param1, 0, param1, 24, (const void *)&param0->unk_538[0][0], 0, 0, 16, 24);
         Bg_CopyToTilemapRect(param0->unk_0C, 2, 16 + 16 - param1, 0, param1, 24, (const void *)&param0->unk_538[1][0], 0, 0, 16, 24);
     } else {
@@ -2030,8 +2030,8 @@ static void ov10_02221E58(UnkStruct_ov10_0221FB28 *param0)
 {
     memset(param0->unk_214, 0, sizeof(UnkStruct_ov10_0221FB28_sub1) * 6);
 
-    ov10_02221D14(param0, param0->unk_00->unk_04[0], 0);
-    ov10_02221D14(param0, param0->unk_00->unk_04[2], 3);
+    ov10_02221D14(param0, param0->trainerIntroData->party[0], 0);
+    ov10_02221D14(param0, param0->trainerIntroData->party[2], 3);
 }
 
 static u8 ov10_02221E84(UnkStruct_ov10_0221FB28 *param0, u32 param1)
@@ -2122,7 +2122,7 @@ static void ov10_02222050(UnkStruct_ov10_0221FB28 *param0)
 static void ov10_022220B4(UnkStruct_ov10_0221FB28 *param0)
 {
     u32 v0;
-    NARC *v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, param0->unk_00->heapID);
+    NARC *v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, param0->trainerIntroData->heapID);
 
     SpriteSystem_LoadPlttResObjFromOpenNarc(param0->unk_190, param0->unk_194, v1, PokeIconPalettesFileIndex(), FALSE, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 47112);
     SpriteSystem_LoadCellResObjFromOpenNarc(param0->unk_190, param0->unk_194, v1, PokeIcon32KCellsFileIndex(), FALSE, 47113);
@@ -2137,7 +2137,7 @@ static void ov10_022220B4(UnkStruct_ov10_0221FB28 *param0)
 
 static void ov10_0222216C(UnkStruct_ov10_0221FB28 *param0)
 {
-    NARC *v0 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PLIST_GRA, param0->unk_00->heapID);
+    NARC *v0 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PLIST_GRA, param0->trainerIntroData->heapID);
 
     SpriteSystem_LoadCharResObjFromOpenNarc(param0->unk_190, param0->unk_194, v0, 20, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 47119);
     SpriteSystem_LoadPlttResObjFromOpenNarc(param0->unk_190, param0->unk_194, v0, 21, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 47113);
@@ -2148,7 +2148,7 @@ static void ov10_0222216C(UnkStruct_ov10_0221FB28 *param0)
 
 static void ov10_02222208(UnkStruct_ov10_0221FB28 *param0)
 {
-    NARC *v0 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PST_GRA, param0->unk_00->heapID);
+    NARC *v0 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PST_GRA, param0->trainerIntroData->heapID);
 
     SpriteSystem_LoadCharResObjFromOpenNarc(param0->unk_190, param0->unk_194, v0, 64, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 47120);
     SpriteSystem_LoadPlttResObjFromOpenNarc(param0->unk_190, param0->unk_194, v0, 65, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 47114);
@@ -2159,7 +2159,7 @@ static void ov10_02222208(UnkStruct_ov10_0221FB28 *param0)
 
 static void ov10_022222A4(UnkStruct_ov10_0221FB28 *param0)
 {
-    NARC *v0 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PLIST_GRA, param0->unk_00->heapID);
+    NARC *v0 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PLIST_GRA, param0->trainerIntroData->heapID);
 
     SpriteSystem_LoadCharResObjFromOpenNarc(param0->unk_190, param0->unk_194, v0, 2, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 47121);
     SpriteSystem_LoadPlttResObjFromOpenNarc(param0->unk_190, param0->unk_194, v0, 8, FALSE, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 47115);
@@ -2172,7 +2172,7 @@ static void ov10_02222340(UnkStruct_ov10_0221FB28 *param0, s16 param1)
 {
     s32 v0, v1, v2;
 
-    if (param0->unk_00->unk_29 == 0) {
+    if (param0->trainerIntroData->unk_29 == 0) {
         v2 = 3;
         param1 *= 8;
     } else {
@@ -2215,9 +2215,9 @@ static void ov10_02222400(UnkStruct_ov10_0221FB28 *param0, MessageLoader *param1
     v1 = &param0->unk_10[param5 * 4 + 0];
 
     if (param5 < 3) {
-        v0 = Party_GetPokemonBySlotIndex(param0->unk_00->unk_04[0], param5);
+        v0 = Party_GetPokemonBySlotIndex(param0->trainerIntroData->party[0], param5);
     } else {
-        v0 = Party_GetPokemonBySlotIndex(param0->unk_00->unk_04[2], param5 - 3);
+        v0 = Party_GetPokemonBySlotIndex(param0->trainerIntroData->party[2], param5 - 3);
     }
 
     v2 = MessageLoader_GetNewString(param1, 8 + param5);
@@ -2328,10 +2328,10 @@ static void ov10_02222720(UnkStruct_ov10_0221FB28 *param0)
     String *v3;
     u32 v4;
 
-    v0 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_PARTY_MENU, param0->unk_00->heapID);
-    v1 = FontSpecialChars_Init(15, 14, 0, param0->unk_00->heapID);
-    v2 = StringTemplate_Default(param0->unk_00->heapID);
-    v3 = String_Init(32, param0->unk_00->heapID);
+    v0 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_PARTY_MENU, param0->trainerIntroData->heapID);
+    v1 = FontSpecialChars_Init(15, 14, 0, param0->trainerIntroData->heapID);
+    v2 = StringTemplate_Default(param0->trainerIntroData->heapID);
+    v3 = String_Init(32, param0->trainerIntroData->heapID);
 
     for (v4 = 0; v4 < 6; v4++) {
         if (param0->unk_214[v4].unk_04 == 0) {
@@ -2347,7 +2347,7 @@ static void ov10_02222720(UnkStruct_ov10_0221FB28 *param0)
     StringTemplate_Free(v2);
 }
 
-static void ov10_022227A4(UnkStruct_ov10_0221F800 *param0)
+static void ov10_022227A4(TrainerIntroData *trainerIntroData)
 {
     void *journalEntryOnlineEvent;
     u16 *opponentName1;
@@ -2357,68 +2357,68 @@ static void ov10_022227A4(UnkStruct_ov10_0221F800 *param0)
     u8 battleResult;
     u8 v6;
 
-    if (param0->unk_00 == NULL) {
+    if (trainerIntroData->fieldBattleDTO == NULL) {
         return;
     }
 
     v6 = CommSys_CurNetId();
-    battleResult = param0->unk_2A - 1;
+    battleResult = trainerIntroData->unk_2A - 1;
 
-    if (MapHeader_IsUnionRoom(param0->unk_00->mapHeaderID) == 1) {
-        opponentGender1 = TrainerClass_Gender(param0->unk_00->trainer[v6 ^ 1].header.trainerType);
-        opponentName1 = Heap_Alloc(param0->heapID, sizeof(u16) * (TRAINER_NAME_LEN + 1));
+    if (MapHeader_IsUnionRoom(trainerIntroData->fieldBattleDTO->mapHeaderID) == 1) {
+        opponentGender1 = TrainerClass_Gender(trainerIntroData->fieldBattleDTO->trainer[v6 ^ 1].header.trainerType);
+        opponentName1 = Heap_Alloc(trainerIntroData->heapID, sizeof(u16) * (TRAINER_NAME_LEN + 1));
 
-        String_ToChars(param0->unk_14[sub_020362F4(v6 ^ 1)], opponentName1, TRAINER_NAME_LEN + 1);
-        journalEntryOnlineEvent = JournalEntry_CreateEventUnionBattle(opponentName1, opponentGender1, battleResult, param0->heapID);
+        String_ToChars(trainerIntroData->trainerNames[sub_020362F4(v6 ^ 1)], opponentName1, TRAINER_NAME_LEN + 1);
+        journalEntryOnlineEvent = JournalEntry_CreateEventUnionBattle(opponentName1, opponentGender1, battleResult, trainerIntroData->heapID);
         Heap_Free(opponentName1);
     } else {
         switch (sub_0203895C()) {
         case 1:
-            opponentGender1 = TrainerClass_Gender(param0->unk_00->trainer[v6 ^ 1].header.trainerType);
-            opponentName1 = Heap_Alloc(param0->heapID, sizeof(u16) * (TRAINER_NAME_LEN + 1));
+            opponentGender1 = TrainerClass_Gender(trainerIntroData->fieldBattleDTO->trainer[v6 ^ 1].header.trainerType);
+            opponentName1 = Heap_Alloc(trainerIntroData->heapID, sizeof(u16) * (TRAINER_NAME_LEN + 1));
 
-            String_ToChars(param0->unk_14[sub_020362F4(v6 ^ 1)], opponentName1, TRAINER_NAME_LEN + 1);
+            String_ToChars(trainerIntroData->trainerNames[sub_020362F4(v6 ^ 1)], opponentName1, TRAINER_NAME_LEN + 1);
 
-            journalEntryOnlineEvent = JournalEntry_CreateEventSingleBattle(opponentName1, opponentGender1, battleResult, param0->heapID);
+            journalEntryOnlineEvent = JournalEntry_CreateEventSingleBattle(opponentName1, opponentGender1, battleResult, trainerIntroData->heapID);
             Heap_Free(opponentName1);
             break;
         case 2:
-            opponentGender1 = TrainerClass_Gender(param0->unk_00->trainer[v6 ^ 1].header.trainerType);
-            opponentName1 = Heap_Alloc(param0->heapID, sizeof(u16) * (TRAINER_NAME_LEN + 1));
+            opponentGender1 = TrainerClass_Gender(trainerIntroData->fieldBattleDTO->trainer[v6 ^ 1].header.trainerType);
+            opponentName1 = Heap_Alloc(trainerIntroData->heapID, sizeof(u16) * (TRAINER_NAME_LEN + 1));
 
-            String_ToChars(param0->unk_14[sub_020362F4(v6 ^ 1)], opponentName1, TRAINER_NAME_LEN + 1);
+            String_ToChars(trainerIntroData->trainerNames[sub_020362F4(v6 ^ 1)], opponentName1, TRAINER_NAME_LEN + 1);
 
-            journalEntryOnlineEvent = JournalEntry_CreateEventDoubleBattle(opponentName1, opponentGender1, battleResult, param0->heapID);
+            journalEntryOnlineEvent = JournalEntry_CreateEventDoubleBattle(opponentName1, opponentGender1, battleResult, trainerIntroData->heapID);
             Heap_Free(opponentName1);
             break;
         case 3:
-            opponentGender1 = TrainerClass_Gender(param0->unk_00->trainer[v6 ^ 1].header.trainerType);
-            opponentName1 = Heap_Alloc(param0->heapID, sizeof(u16) * (TRAINER_NAME_LEN + 1));
+            opponentGender1 = TrainerClass_Gender(trainerIntroData->fieldBattleDTO->trainer[v6 ^ 1].header.trainerType);
+            opponentName1 = Heap_Alloc(trainerIntroData->heapID, sizeof(u16) * (TRAINER_NAME_LEN + 1));
 
-            String_ToChars(param0->unk_14[sub_020362F4(v6 ^ 1)], opponentName1, TRAINER_NAME_LEN + 1);
+            String_ToChars(trainerIntroData->trainerNames[sub_020362F4(v6 ^ 1)], opponentName1, TRAINER_NAME_LEN + 1);
 
-            journalEntryOnlineEvent = JournalEntry_CreateEventMixSingleBattle(opponentName1, opponentGender1, battleResult, param0->heapID);
+            journalEntryOnlineEvent = JournalEntry_CreateEventMixSingleBattle(opponentName1, opponentGender1, battleResult, trainerIntroData->heapID);
             Heap_Free(opponentName1);
             break;
         case 4:
-            opponentName1 = Heap_Alloc(param0->heapID, sizeof(u16) * (TRAINER_NAME_LEN + 1));
-            opponentName2 = Heap_Alloc(param0->heapID, sizeof(u16) * (TRAINER_NAME_LEN + 1));
+            opponentName1 = Heap_Alloc(trainerIntroData->heapID, sizeof(u16) * (TRAINER_NAME_LEN + 1));
+            opponentName2 = Heap_Alloc(trainerIntroData->heapID, sizeof(u16) * (TRAINER_NAME_LEN + 1));
 
             if (ov10_02220AD0() == 1) {
-                opponentGender1 = TrainerClass_Gender(param0->unk_00->trainer[1].header.trainerType);
-                opponentGender2 = TrainerClass_Gender(param0->unk_00->trainer[3].header.trainerType);
+                opponentGender1 = TrainerClass_Gender(trainerIntroData->fieldBattleDTO->trainer[1].header.trainerType);
+                opponentGender2 = TrainerClass_Gender(trainerIntroData->fieldBattleDTO->trainer[3].header.trainerType);
 
-                String_ToChars(param0->unk_14[1], opponentName1, TRAINER_NAME_LEN + 1);
-                String_ToChars(param0->unk_14[3], opponentName2, TRAINER_NAME_LEN + 1);
+                String_ToChars(trainerIntroData->trainerNames[1], opponentName1, TRAINER_NAME_LEN + 1);
+                String_ToChars(trainerIntroData->trainerNames[3], opponentName2, TRAINER_NAME_LEN + 1);
             } else {
-                opponentGender1 = TrainerClass_Gender(param0->unk_00->trainer[0].header.trainerType);
-                opponentGender2 = TrainerClass_Gender(param0->unk_00->trainer[2].header.trainerType);
+                opponentGender1 = TrainerClass_Gender(trainerIntroData->fieldBattleDTO->trainer[0].header.trainerType);
+                opponentGender2 = TrainerClass_Gender(trainerIntroData->fieldBattleDTO->trainer[2].header.trainerType);
 
-                String_ToChars(param0->unk_14[0], opponentName1, TRAINER_NAME_LEN + 1);
-                String_ToChars(param0->unk_14[2], opponentName2, TRAINER_NAME_LEN + 1);
+                String_ToChars(trainerIntroData->trainerNames[0], opponentName1, TRAINER_NAME_LEN + 1);
+                String_ToChars(trainerIntroData->trainerNames[2], opponentName2, TRAINER_NAME_LEN + 1);
             }
 
-            journalEntryOnlineEvent = JournalEntry_CreateEventMultiBattle(opponentName1, opponentName2, opponentGender1, opponentGender2, battleResult, param0->heapID);
+            journalEntryOnlineEvent = JournalEntry_CreateEventMultiBattle(opponentName1, opponentName2, opponentGender1, opponentGender2, battleResult, trainerIntroData->heapID);
 
             Heap_Free(opponentName1);
             Heap_Free(opponentName2);
@@ -2428,7 +2428,7 @@ static void ov10_022227A4(UnkStruct_ov10_0221F800 *param0)
         }
     }
 
-    JournalEntry_SaveData(param0->unk_00->journalEntry, journalEntryOnlineEvent, JOURNAL_ONLINE_EVENT);
+    JournalEntry_SaveData(trainerIntroData->fieldBattleDTO->journalEntry, journalEntryOnlineEvent, JOURNAL_ONLINE_EVENT);
 }
 
 static void ov10_022229D4(UnkStruct_ov10_0221FB28 *param0)
@@ -2439,7 +2439,7 @@ static void ov10_022229D4(UnkStruct_ov10_0221FB28 *param0)
 
 static BOOL ov10_02222A08(UnkStruct_ov10_0221FB28 *param0)
 {
-    if ((param0->unk_00->unk_00->saveData == NULL) || (BattleRecording_Exists() == 0)) {
+    if ((param0->trainerIntroData->fieldBattleDTO->saveData == NULL) || (BattleRecording_Exists() == 0)) {
         return 0;
     }
 

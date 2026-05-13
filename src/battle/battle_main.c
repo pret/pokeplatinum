@@ -101,23 +101,23 @@ static const u32 BattleServerVersion = 0x140;
 static void BattleMain_InitGraphics(ApplicationManager *appMan);
 static int BattleMain_ExecuteBattlerCommands(ApplicationManager *appMan);
 static void BattleMain_CopyBattleSysToDTOAndFree(ApplicationManager *appMan);
-static BOOL ov16_0223D800(ApplicationManager *appMan);
-static BOOL ov16_0223D944(ApplicationManager *appMan);
-static BOOL ov16_0223D98C(ApplicationManager *appMan);
-static BOOL ov16_0223DAD4(ApplicationManager *appMan);
+static BOOL BattleMain_InitPartnerIntro(ApplicationManager *appMan);
+static BOOL BattleMain_WaitPartnerIntro(ApplicationManager *appMan);
+static BOOL BattleMain_InitTrainerIntro(ApplicationManager *appMan);
+static BOOL BattleMain_WaitTrainerIntro(ApplicationManager *appMan);
 static BOOL BattleMain_HandleLinkBattleResult(ApplicationManager *appMan);
-static BOOL ov16_0223DD10(ApplicationManager *appMan);
-static void ov16_0223D10C(ApplicationManager *appMan, FieldBattleDTO *dto);
-static BOOL ov16_0223D354(ApplicationManager *appMan);
-static void ov16_0223D7B4(ApplicationManager *appMan);
-static void ov16_0223C004(BattleSystem *battleSys, BgConfig *bgConfig);
-static void ov16_0223C210(BattleSystem *battleSys);
-static void ov16_0223C288(BgConfig *bgConfig);
+static BOOL BattleMain_WaitLinkBattleEnd(ApplicationManager *appMan);
+static void BattleMain_InitLinkCommScreen(ApplicationManager *appMan, FieldBattleDTO *dto);
+static BOOL BattleMain_HandleLinkCommHandshake(ApplicationManager *appMan);
+static void BattleMain_FreeeLinkCommScreen(ApplicationManager *appMan);
+static void BattleMain_InitBattleGraphics(BattleSystem *battleSys, BgConfig *bgConfig);
+static void BattleMain_InitTerrains(BattleSystem *battleSys);
+static void BattleMain_FreeBgLayers(BgConfig *bgConfig);
 static void Dummy_0223C2BC(BattleSystem *battleSys);
 static void BattleSys_New(BattleSystem *battleSys, FieldBattleDTO *dto);
-static void ov16_0223CE28(void);
-static void ov16_0223CE68(void *inBattleSys);
-static void ov16_0223CF1C(void *inBattleSys);
+static void BattleMain_InitParticleSystem(void);
+static void BattleMain_VBlankCallback(void *inBattleSys);
+static void BattleMain_LinkCommVBlankCallback(void *inBattleSys);
 static void SysTask_DrawSprites(SysTask *task, void *inBattleSys);
 static void SysTask_UpdateRedHPSound(SysTask *task, void *inBattleSys);
 static G3DPipelineBuffers *InitG3DPipelineBuffers(void);
@@ -126,7 +126,7 @@ static void G3DPipeline_SetupCallback(void);
 static void BattleSys_SetRenderControlFlags(BattleSystem *battleSys);
 static void SysTask_FlyInMessageBox(SysTask *task, void *inBattleSys);
 static BOOL TrainerIsGymLeaderE4OrChampion(u16 trainerClass);
-static void ov16_0223DD90(BattleSystem *battleSys, FieldBattleDTO *dto);
+static void BattleMain_AssignRecordingRoles(BattleSystem *battleSys, FieldBattleDTO *dto);
 static void BattleMain_SetNetworkIconStrength(void);
 
 static const RenderOamTemplate sOamTemplate = {
@@ -161,13 +161,13 @@ const SpriteResourceCapacities sCapacities = {
 
 enum BattleState {
     BATTLE_STATE_CREATE_HEAP,
-    BATTLE_STATE_UNK_01,
-    BATTLE_STATE_UNK_02,
-    BATTLE_STATE_UNK_03,
-    BATTLE_STATE_UNK_04,
-    BATTLE_STATE_UNK_05,
-    BATTLE_STATE_UNK_06,
-    BATTLE_STATE_UNK_07,
+    BATTLE_STATE_INIT_LINK_COMM,
+    BATTLE_STATE_WAIT_LINK_COMM,
+    BATTLE_STATE_INIT_PARTNER_INTRO,
+    BATTLE_STATE_WAIT_PARTNER_INTRO,
+    BATTLE_STATE_INIT_TRAINER_INTRO,
+    BATTLE_STATE_WAIT_TRAINER_INTRO,
+    BATTLE_STATE_SYNC_BATTLE_START,
     BATTLE_STATE_INIT_GRAPHICS,
     BATTLE_STATE_MAIN,
     BATTLE_STATE_HANDLE_BATTLE_RESULT,
@@ -187,13 +187,13 @@ BOOL Battle_Main(ApplicationManager *appMan, int *state)
         Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_BATTLE, 0xB0000);
 
         if (dto->battleType & BATTLE_TYPE_LINK && (dto->battleStatusMask & BATTLE_STATUS_RECORDING) == FALSE) {
-            *state = BATTLE_STATE_UNK_01;
+            *state = BATTLE_STATE_INIT_LINK_COMM;
         } else {
-            *state = BATTLE_STATE_UNK_03;
+            *state = BATTLE_STATE_INIT_PARTNER_INTRO;
         }
         break;
-    case BATTLE_STATE_UNK_01:
-        ov16_0223D10C(appMan, dto);
+    case BATTLE_STATE_INIT_LINK_COMM:
+        BattleMain_InitLinkCommScreen(appMan, dto);
         WiFiHistory_FlagGeonetLinkInfo(dto->wiFiHistory);
 
         if (!CommMan_IsConnectedToWifi()) {
@@ -201,41 +201,41 @@ BOOL Battle_Main(ApplicationManager *appMan, int *state)
         } else {
             GameRecords_IncrementRecordValue(dto->records, RECORD_UNK_025);
         }
-        *state = BATTLE_STATE_UNK_02;
+        *state = BATTLE_STATE_WAIT_LINK_COMM;
         break;
-    case BATTLE_STATE_UNK_02:
-        if (ov16_0223D354(appMan) == TRUE) {
-            ov16_0223D7B4(appMan);
-            *state = BATTLE_STATE_UNK_03;
+    case BATTLE_STATE_WAIT_LINK_COMM:
+        if (BattleMain_HandleLinkCommHandshake(appMan) == TRUE) {
+            BattleMain_FreeeLinkCommScreen(appMan);
+            *state = BATTLE_STATE_INIT_PARTNER_INTRO;
         }
         break;
-    case BATTLE_STATE_UNK_03:
-        if (ov16_0223D800(appMan) == TRUE) {
-            *state = BATTLE_STATE_UNK_04;
+    case BATTLE_STATE_INIT_PARTNER_INTRO:
+        if (BattleMain_InitPartnerIntro(appMan) == TRUE) {
+            *state = BATTLE_STATE_WAIT_PARTNER_INTRO;
         } else {
-            *state = BATTLE_STATE_UNK_05;
+            *state = BATTLE_STATE_INIT_TRAINER_INTRO;
         }
         break;
-    case BATTLE_STATE_UNK_04:
-        if (ov16_0223D944(appMan) == TRUE) {
-            *state = BATTLE_STATE_UNK_05;
+    case BATTLE_STATE_WAIT_PARTNER_INTRO:
+        if (BattleMain_WaitPartnerIntro(appMan) == TRUE) {
+            *state = BATTLE_STATE_INIT_TRAINER_INTRO;
         }
         break;
-    case BATTLE_STATE_UNK_05:
-        if (ov16_0223D98C(appMan) == TRUE) {
-            *state = BATTLE_STATE_UNK_06;
+    case BATTLE_STATE_INIT_TRAINER_INTRO:
+        if (BattleMain_InitTrainerIntro(appMan) == TRUE) {
+            *state = BATTLE_STATE_WAIT_TRAINER_INTRO;
         } else {
             *state = BATTLE_STATE_INIT_GRAPHICS;
         }
         break;
-    case BATTLE_STATE_UNK_06:
-        if (ov16_0223DAD4(appMan) == TRUE) {
+    case BATTLE_STATE_WAIT_TRAINER_INTRO:
+        if (BattleMain_WaitTrainerIntro(appMan) == TRUE) {
             Overlay_UnloadByID(FS_OVERLAY_ID(overlay10));
-            *state = BATTLE_STATE_UNK_07;
+            *state = BATTLE_STATE_SYNC_BATTLE_START;
             CommTiming_StartSync(61);
         }
         break;
-    case BATTLE_STATE_UNK_07:
+    case BATTLE_STATE_SYNC_BATTLE_START:
         if (CommTiming_IsSyncState(61)) {
             *state = BATTLE_STATE_INIT_GRAPHICS;
         }
@@ -261,7 +261,7 @@ BOOL Battle_Main(ApplicationManager *appMan, int *state)
         }
         break;
     case BATTLE_STATE_LINK_BATTLE_END:
-        if (ov16_0223DD10(appMan) == TRUE) {
+        if (BattleMain_WaitLinkBattleEnd(appMan) == TRUE) {
             Overlay_UnloadByID(FS_OVERLAY_ID(overlay10));
             Heap_Destroy(HEAP_ID_BATTLE);
             *state = BATTLE_STATE_LINK_BATTLE_FINISH;
@@ -301,7 +301,7 @@ BOOL Battle_Main(ApplicationManager *appMan, int *state)
     return FALSE;
 }
 
-void ov16_0223B384(BattleSystem *battleSys)
+void BattleSystem_EnterSubMenu(BattleSystem *battleSys)
 {
     ov16_02268A14(battleSys->unk_198);
     ov16_022687A0(battleSys->bgConfig);
@@ -320,13 +320,13 @@ void ov16_0223B384(BattleSystem *battleSys)
     Overlay_LoadByID(FS_OVERLAY_ID(battle_sub_menus), OVERLAY_LOAD_ASYNC);
 }
 
-void ov16_0223B3E4(BattleSystem *battleSys)
+void BattleSystem_FreeGraphics(BattleSystem *battleSys)
 {
     SetVBlankCallback(NULL, NULL);
     ov16_02268A14(battleSys->unk_198);
     Window_Remove(&battleSys->windows[0]);
 
-    ov16_0223C288(battleSys->bgConfig);
+    BattleMain_FreeBgLayers(battleSys->bgConfig);
     Dummy_0223C2BC(battleSys);
 
     SpriteSystem_FreeResourcesAndManager(battleSys->spriteSys, battleSys->spriteMan);
@@ -335,7 +335,7 @@ void ov16_0223B3E4(BattleSystem *battleSys)
     Font_Free(FONT_SUBSCREEN);
 }
 
-void ov16_0223B430(BattleSystem *battleSys)
+void BattleSystem_ExitSubMenu(BattleSystem *battleSys)
 {
     Overlay_UnloadByID(FS_OVERLAY_ID(battle_sub_menus));
 
@@ -369,7 +369,7 @@ void ov16_0223B430(BattleSystem *battleSys)
     SetSubScreenViewRect(SpriteSystem_GetRenderer(battleSys->spriteSys), 0, (192 + 80) << FX32_SHIFT);
 }
 
-void ov16_0223B53C(BattleSystem *battleSys)
+void BattleSystem_HideBattleScreen(BattleSystem *battleSys)
 {
     Window_Remove(&battleSys->windows[0]);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, FALSE);
@@ -380,7 +380,7 @@ void ov16_0223B53C(BattleSystem *battleSys)
     BattleSystem_HideHealthboxes(battleSys);
 }
 
-void ov16_0223B578(BattleSystem *battleSys)
+void BattleSystem_SetupBattleScreen(BattleSystem *battleSys)
 {
     battleSys->pendingBlendReset = 1;
 
@@ -457,7 +457,7 @@ void ov16_0223B578(BattleSystem *battleSys)
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, TRUE);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, TRUE);
-    SetVBlankCallback(ov16_0223CE68, battleSys);
+    SetVBlankCallback(BattleMain_VBlankCallback, battleSys);
 
     battleSys->pendingBattleVRAMSetup = 1;
 
@@ -553,7 +553,7 @@ static void BattleMain_InitGraphics(ApplicationManager *appMan)
     NARC_dtor(bgNarc);
     NARC_dtor(objNarc);
 
-    ov16_0223C004(battleSys, battleSys->bgConfig);
+    BattleMain_InitBattleGraphics(battleSys, battleSys->bgConfig);
 
     Window_Add(battleSys->bgConfig, &battleSys->windows[0], 1, 2, 0x13, 27, 4, 11, (18 + 12) + 1);
     Window_FillTilemap(&battleSys->windows[0], 0xFF);
@@ -586,11 +586,11 @@ static void BattleMain_InitGraphics(ApplicationManager *appMan)
     PokemonSpriteManager_SetPlttBaseAddrAndSize(battleSys->monSpriteMan, 0, PALETTE_SIZE_BYTES * 6);
 
     BattleSystem_CreateHealthboxes(battleSys);
-    ov16_0223CE28();
+    BattleMain_InitParticleSystem();
 
     battleSys->battleAnimSys = BattleAnimSystem_New(HEAP_ID_BATTLE);
 
-    ov16_0223C210(battleSys);
+    BattleMain_InitTerrains(battleSys);
 
     EnableTouchPad();
     InitializeTouchPad(4);
@@ -752,7 +752,7 @@ static void BattleMain_CopyBattleSysToDTOAndFree(ApplicationManager *appMan)
     PokemonSpriteManager_Free(battleSys->monSpriteMan);
 
     if (battleSys->renderMode != 2) {
-        ov16_0223B3E4(battleSys);
+        BattleSystem_FreeGraphics(battleSys);
     }
 
     RenderControlFlags_SetCanABSpeedUpPrint(FALSE);
@@ -795,7 +795,7 @@ static void BattleMain_CopyBattleSysToDTOAndFree(ApplicationManager *appMan)
     }
 }
 
-static void ov16_0223C004(BattleSystem *battleSys, BgConfig *bgConfig)
+static void BattleMain_InitBattleGraphics(BattleSystem *battleSys, BgConfig *bgConfig)
 {
     GXLayers_DisableEngineALayers();
     ResetScreenMasterBrightness(DS_SCREEN_MAIN);
@@ -906,10 +906,10 @@ static void ov16_0223C004(BattleSystem *battleSys, BgConfig *bgConfig)
     GXLayers_TurnBothDispOn();
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, TRUE);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, TRUE);
-    SetVBlankCallback(ov16_0223CE68, battleSys);
+    SetVBlankCallback(BattleMain_VBlankCallback, battleSys);
 }
 
-static void ov16_0223C210(BattleSystem *battleSys)
+static void BattleMain_InitTerrains(BattleSystem *battleSys)
 {
     int terrain = BattleSystem_GetTerrain(battleSys);
     int selectedPartySlot;
@@ -929,7 +929,7 @@ static void ov16_0223C210(BattleSystem *battleSys)
     BattleMain_SetNetworkIconStrength();
 }
 
-static void ov16_0223C288(BgConfig *bgConfig)
+static void BattleMain_FreeBgLayers(BgConfig *bgConfig)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, FALSE);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, FALSE);
@@ -940,7 +940,7 @@ static void ov16_0223C288(BgConfig *bgConfig)
     ov16_022687A0(bgConfig);
 }
 
-static void Dummy_0223C2BC(BattleSystem *battleSys)
+static void Dummy_0223C2BC(BattleSystem *battleSys) // CLEANUP: remove
 {
 }
 
@@ -1085,7 +1085,7 @@ static void BattleSys_New(BattleSystem *battleSys, FieldBattleDTO *dto)
         sub_0207A6DC(battleSys);
         u8 networkID = BattleSystem_GetNetworkID(battleSys);
 
-        ov16_0223DD90(battleSys, dto);
+        BattleMain_AssignRecordingRoles(battleSys, dto);
 
         if (battleSys->battleType & BATTLE_TYPE_FRONTIER) {
             for (i = 0; i < MAX_BATTLERS; i++) {
@@ -1424,22 +1424,18 @@ static void FreeG3DPipelineBuffers(G3DPipelineBuffers *pipelineBuffers)
     G3DPipelineBuffers_Free(pipelineBuffers);
 }
 
-static void ov16_0223CE28(void)
+static void BattleMain_InitParticleSystem(void)
 {
     NNSGfdTexKey texKey = NNS_GfdAllocTexVram(0x2000 * 4, 0, 0);
     NNSGfdPlttKey plttKey = NNS_GfdAllocPlttVram(0x20 * (4 + 2), 0, 0);
-    u32 texKeyAddr, plttKeyAddr;
 
     GF_ASSERT(texKey != NNS_GFD_ALLOC_ERROR_TEXKEY);
     GF_ASSERT(plttKey != NNS_GFD_ALLOC_ERROR_PLTTKEY);
 
-    texKeyAddr = NNS_GfdGetTexKeyAddr(texKey);
-    plttKeyAddr = NNS_GfdGetPlttKeyAddr(plttKey);
-
     ParticleSystem_ZeroAll();
 }
 
-static void ov16_0223CE68(void *inBattleSys)
+static void BattleMain_VBlankCallback(void *inBattleSys)
 {
     BattleSystem *battleSys = inBattleSys;
 
@@ -1496,7 +1492,7 @@ static void ov16_0223CE68(void *inBattleSys)
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-static void ov16_0223CF1C(void *param0)
+static void BattleMain_LinkCommVBlankCallback(void *param0)
 {
     UnkStruct_0207A778 *v0 = param0;
 
@@ -1605,7 +1601,7 @@ static void NitroStaticInit(void)
     }
 }
 
-static void ov16_0223D10C(ApplicationManager *appMan, FieldBattleDTO *dto)
+static void BattleMain_InitLinkCommScreen(ApplicationManager *appMan, FieldBattleDTO *dto)
 {
     UnkStruct_0207A778 *v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_0207A778), HEAP_ID_BATTLE);
 
@@ -1695,7 +1691,7 @@ static void ov16_0223D10C(ApplicationManager *appMan, FieldBattleDTO *dto)
     String_Free(string);
     MessageLoader_Free(msgLoader);
 
-    SetVBlankCallback(ov16_0223CF1C, v0);
+    SetVBlankCallback(BattleMain_LinkCommVBlankCallback, v0);
     PaletteData_StartFade(v0->unk_0C, PLTTBUF_MAIN_BG_F | PLTTBUF_MAIN_OBJ_F, 0xFFFF, 0, 16, 0, 0);
 
     v0->unk_1024 = Window_AddWaitDial(v0->unk_08, 1);
@@ -1703,7 +1699,7 @@ static void ov16_0223D10C(ApplicationManager *appMan, FieldBattleDTO *dto)
     BattleMain_SetNetworkIconStrength();
 }
 
-static BOOL ov16_0223D354(ApplicationManager *appMan)
+static BOOL BattleMain_HandleLinkCommHandshake(ApplicationManager *appMan)
 {
     UnkStruct_0207A778 *v0 = ApplicationManager_Data(appMan);
 
@@ -1929,7 +1925,7 @@ static BOOL ov16_0223D354(ApplicationManager *appMan)
     return result;
 }
 
-static void ov16_0223D7B4(ApplicationManager *appMan)
+static void BattleMain_FreeeLinkCommScreen(ApplicationManager *appMan)
 {
     UnkStruct_0207A778 *v0 = ApplicationManager_Data(appMan);
 
@@ -1944,7 +1940,7 @@ static void ov16_0223D7B4(ApplicationManager *appMan)
     Heap_Free(v0);
 }
 
-static BOOL ov16_0223D800(ApplicationManager *appMan)
+static BOOL BattleMain_InitPartnerIntro(ApplicationManager *appMan)
 {
     BattleSystem *battleSys = ApplicationManager_NewData(appMan, sizeof(BattleSystem), HEAP_ID_BATTLE);
     FieldBattleDTO *dto = ApplicationManager_Args(appMan);
@@ -1966,61 +1962,61 @@ static BOOL ov16_0223D800(ApplicationManager *appMan)
         return FALSE;
     }
 
-    battleSys->unk_1C0 = Heap_Alloc(HEAP_ID_BATTLE, sizeof(UnkStruct_ov10_0221F800));
-    MI_CpuClearFast(battleSys->unk_1C0, sizeof(UnkStruct_ov10_0221F800));
+    battleSys->trainerIntroData = Heap_Alloc(HEAP_ID_BATTLE, sizeof(TrainerIntroData));
+    MI_CpuClearFast(battleSys->trainerIntroData, sizeof(TrainerIntroData));
     netID = CommSys_CurNetId();
 
     switch (sub_020362F4(netID)) {
     case 0:
     case 3:
-        battleSys->unk_1C0->unk_04[0] = battleSys->parties[netID];
-        battleSys->unk_1C0->unk_04[2] = battleSys->parties[BattleSystem_GetPartner(battleSys, netID)];
+        battleSys->trainerIntroData->party[0] = battleSys->parties[netID];
+        battleSys->trainerIntroData->party[2] = battleSys->parties[BattleSystem_GetPartner(battleSys, netID)];
         break;
     case 1:
     case 2:
-        battleSys->unk_1C0->unk_04[0] = battleSys->parties[BattleSystem_GetPartner(battleSys, netID)];
-        battleSys->unk_1C0->unk_04[2] = battleSys->parties[netID];
+        battleSys->trainerIntroData->party[0] = battleSys->parties[BattleSystem_GetPartner(battleSys, netID)];
+        battleSys->trainerIntroData->party[2] = battleSys->parties[netID];
         break;
     }
 
-    battleSys->unk_1C0->heapID = HEAP_ID_BATTLE;
-    battleSys->unk_1C0->unk_28 = 0;
+    battleSys->trainerIntroData->heapID = HEAP_ID_BATTLE;
+    battleSys->trainerIntroData->unk_28 = 0;
 
     switch (sub_020362F4(netID)) {
     case 0:
     case 3:
-        battleSys->unk_1C0->unk_29 = 0;
+        battleSys->trainerIntroData->unk_29 = 0;
         break;
     case 1:
     case 2:
-        battleSys->unk_1C0->unk_29 = 1;
+        battleSys->trainerIntroData->unk_29 = 1;
         break;
     }
 
-    ov10_0221F800(battleSys->unk_1C0);
+    ov10_0221F800(battleSys->trainerIntroData);
 
     return TRUE;
 }
 
-static BOOL ov16_0223D944(ApplicationManager *appMan)
+static BOOL BattleMain_WaitPartnerIntro(ApplicationManager *appMan)
 {
     BattleSystem *battleSys = ApplicationManager_Data(appMan);
 
-    if (battleSys->unk_1C0->unk_2B) {
+    if (battleSys->trainerIntroData->unk_2B) {
         for (int i = 0; i < 4; i++) {
-            if (battleSys->unk_1C0->unk_14[i] != NULL) {
-                Heap_Free(battleSys->unk_1C0->unk_14[i]);
+            if (battleSys->trainerIntroData->trainerNames[i] != NULL) {
+                Heap_Free(battleSys->trainerIntroData->trainerNames[i]);
             }
         }
 
-        Heap_Free(battleSys->unk_1C0);
+        Heap_Free(battleSys->trainerIntroData);
         return TRUE;
     }
 
     return FALSE;
 }
 
-static BOOL ov16_0223D98C(ApplicationManager *appMan)
+static BOOL BattleMain_InitTrainerIntro(ApplicationManager *appMan)
 {
     BattleSystem *battleSys = ApplicationManager_Data(appMan);
     FieldBattleDTO *dto = ApplicationManager_Args(appMan);
@@ -2033,46 +2029,46 @@ static BOOL ov16_0223D98C(ApplicationManager *appMan)
     }
 
     u8 netID = CommSys_CurNetId();
-    battleSys->unk_1C0 = Heap_Alloc(HEAP_ID_BATTLE, sizeof(UnkStruct_ov10_0221F800));
+    battleSys->trainerIntroData = Heap_Alloc(HEAP_ID_BATTLE, sizeof(TrainerIntroData));
 
-    MI_CpuClearFast(battleSys->unk_1C0, sizeof(UnkStruct_ov10_0221F800));
+    MI_CpuClearFast(battleSys->trainerIntroData, sizeof(TrainerIntroData));
 
     if (battleSys->battleType & BATTLE_TYPE_2vs2) {
         for (int i = 0; i < MAX_BATTLERS; i++) {
-            battleSys->unk_1C0->unk_04[sub_020362F4(i)] = battleSys->parties[i];
-            battleSys->unk_1C0->unk_14[sub_020362F4(i)] = TrainerInfo_NameNewString(battleSys->trainerInfo[i], HEAP_ID_BATTLE);
+            battleSys->trainerIntroData->party[sub_020362F4(i)] = battleSys->parties[i];
+            battleSys->trainerIntroData->trainerNames[sub_020362F4(i)] = TrainerInfo_NameNewString(battleSys->trainerInfo[i], HEAP_ID_BATTLE);
         }
 
-        battleSys->unk_1C0->heapID = HEAP_ID_BATTLE;
-        battleSys->unk_1C0->unk_28 = 1;
-        battleSys->unk_1C0->unk_29 = 1;
+        battleSys->trainerIntroData->heapID = HEAP_ID_BATTLE;
+        battleSys->trainerIntroData->unk_28 = 1;
+        battleSys->trainerIntroData->unk_29 = 1;
     } else {
-        battleSys->unk_1C0->unk_04[sub_020362F4(netID)] = battleSys->parties[netID];
-        battleSys->unk_1C0->unk_04[sub_020362F4(netID ^ 1)] = battleSys->parties[netID ^ 1];
-        battleSys->unk_1C0->unk_14[sub_020362F4(netID)] = TrainerInfo_NameNewString(battleSys->trainerInfo[netID], HEAP_ID_BATTLE);
-        battleSys->unk_1C0->unk_14[sub_020362F4(netID ^ 1)] = TrainerInfo_NameNewString(battleSys->trainerInfo[netID ^ 1], HEAP_ID_BATTLE);
-        battleSys->unk_1C0->heapID = HEAP_ID_BATTLE;
-        battleSys->unk_1C0->unk_28 = 1;
-        battleSys->unk_1C0->unk_29 = 0;
+        battleSys->trainerIntroData->party[sub_020362F4(netID)] = battleSys->parties[netID];
+        battleSys->trainerIntroData->party[sub_020362F4(netID ^ 1)] = battleSys->parties[netID ^ 1];
+        battleSys->trainerIntroData->trainerNames[sub_020362F4(netID)] = TrainerInfo_NameNewString(battleSys->trainerInfo[netID], HEAP_ID_BATTLE);
+        battleSys->trainerIntroData->trainerNames[sub_020362F4(netID ^ 1)] = TrainerInfo_NameNewString(battleSys->trainerInfo[netID ^ 1], HEAP_ID_BATTLE);
+        battleSys->trainerIntroData->heapID = HEAP_ID_BATTLE;
+        battleSys->trainerIntroData->unk_28 = 1;
+        battleSys->trainerIntroData->unk_29 = 0;
     }
 
-    ov10_0221F800(battleSys->unk_1C0);
+    ov10_0221F800(battleSys->trainerIntroData);
 
     return TRUE;
 }
 
-static BOOL ov16_0223DAD4(ApplicationManager *appMan)
+static BOOL BattleMain_WaitTrainerIntro(ApplicationManager *appMan)
 {
     BattleSystem *battleSys = ApplicationManager_Data(appMan);
 
-    if (battleSys->unk_1C0->unk_2B) {
+    if (battleSys->trainerIntroData->unk_2B) {
         for (int i = 0; i < 4; i++) {
-            if (battleSys->unk_1C0->unk_14[i] != NULL) {
-                Heap_Free(battleSys->unk_1C0->unk_14[i]);
+            if (battleSys->trainerIntroData->trainerNames[i] != NULL) {
+                Heap_Free(battleSys->trainerIntroData->trainerNames[i]);
             }
         }
 
-        Heap_Free(battleSys->unk_1C0);
+        Heap_Free(battleSys->trainerIntroData);
         return TRUE;
     }
 
@@ -2091,11 +2087,11 @@ static BOOL BattleMain_HandleLinkBattleResult(ApplicationManager *appMan)
 
     u8 netID = CommSys_CurNetId();
     Overlay_LoadByID(FS_OVERLAY_ID(overlay10), OVERLAY_LOAD_ASYNC);
-    UnkStruct_ov10_0221F800 *v1 = Heap_Alloc(HEAP_ID_BATTLE, sizeof(UnkStruct_ov10_0221F800));
+    TrainerIntroData *trainerIntroData = Heap_Alloc(HEAP_ID_BATTLE, sizeof(TrainerIntroData));
 
-    dto->unk_170 = v1;
-    MI_CpuClearFast(v1, sizeof(UnkStruct_ov10_0221F800));
-    v1->unk_00 = dto;
+    dto->unk_170 = trainerIntroData;
+    MI_CpuClearFast(trainerIntroData, sizeof(TrainerIntroData));
+    trainerIntroData->fieldBattleDTO = dto;
 
     switch (dto->resultMask) {
     case BATTLE_RESULT_WIN:
@@ -2124,55 +2120,55 @@ static BOOL BattleMain_HandleLinkBattleResult(ApplicationManager *appMan)
 
     if (dto->battleType & BATTLE_TYPE_2vs2) {
         for (int i = 0; i < MAX_BATTLERS; i++) {
-            v1->unk_04[sub_020362F4(i)] = dto->parties[i];
-            v1->unk_14[sub_020362F4(i)] = TrainerInfo_NameNewString(dto->trainerInfo[i], HEAP_ID_BATTLE);
+            trainerIntroData->party[sub_020362F4(i)] = dto->parties[i];
+            trainerIntroData->trainerNames[sub_020362F4(i)] = TrainerInfo_NameNewString(dto->trainerInfo[i], HEAP_ID_BATTLE);
         }
 
-        v1->heapID = HEAP_ID_BATTLE;
-        v1->unk_28 = 2;
-        v1->unk_29 = 1;
+        trainerIntroData->heapID = HEAP_ID_BATTLE;
+        trainerIntroData->unk_28 = 2;
+        trainerIntroData->unk_29 = 1;
 
         if (dto->resultMask != BATTLE_RESULT_PLAYER_FLED) {
-            v1->unk_2A = dto->resultMask;
+            trainerIntroData->unk_2A = dto->resultMask;
         } else {
-            v1->unk_2A = 3;
+            trainerIntroData->unk_2A = 3;
         }
     } else {
-        v1->unk_04[sub_020362F4(netID)] = dto->parties[netID];
-        v1->unk_04[sub_020362F4(netID ^ 1)] = dto->parties[netID ^ 1];
-        v1->unk_14[sub_020362F4(netID)] = TrainerInfo_NameNewString(dto->trainerInfo[netID], HEAP_ID_BATTLE);
-        v1->unk_14[sub_020362F4(netID ^ 1)] = TrainerInfo_NameNewString(dto->trainerInfo[netID ^ 1], HEAP_ID_BATTLE);
-        v1->heapID = HEAP_ID_BATTLE;
-        v1->unk_28 = 2;
-        v1->unk_29 = 0;
+        trainerIntroData->party[sub_020362F4(netID)] = dto->parties[netID];
+        trainerIntroData->party[sub_020362F4(netID ^ 1)] = dto->parties[netID ^ 1];
+        trainerIntroData->trainerNames[sub_020362F4(netID)] = TrainerInfo_NameNewString(dto->trainerInfo[netID], HEAP_ID_BATTLE);
+        trainerIntroData->trainerNames[sub_020362F4(netID ^ 1)] = TrainerInfo_NameNewString(dto->trainerInfo[netID ^ 1], HEAP_ID_BATTLE);
+        trainerIntroData->heapID = HEAP_ID_BATTLE;
+        trainerIntroData->unk_28 = 2;
+        trainerIntroData->unk_29 = 0;
 
         if (dto->resultMask != BATTLE_RESULT_PLAYER_FLED) {
-            v1->unk_2A = dto->resultMask;
+            trainerIntroData->unk_2A = dto->resultMask;
         } else {
-            v1->unk_2A = 3;
+            trainerIntroData->unk_2A = 3;
         }
     }
 
-    v1->unk_2C = dto->unk_18A;
+    trainerIntroData->unk_2C = dto->unk_18A;
 
-    ov10_0221F800(v1);
+    ov10_0221F800(trainerIntroData);
 
     return TRUE;
 }
 
-static BOOL ov16_0223DD10(ApplicationManager *appMan)
+static BOOL BattleMain_WaitLinkBattleEnd(ApplicationManager *appMan)
 {
     FieldBattleDTO *dto = ApplicationManager_Args(appMan);
-    UnkStruct_ov10_0221F800 *v2 = dto->unk_170;
+    TrainerIntroData *trainerIntroData = dto->unk_170;
 
-    if (v2->unk_2B) {
+    if (trainerIntroData->unk_2B) {
         for (int i = 0; i < 4; i++) {
-            if (v2->unk_14[i] != NULL) {
-                Heap_Free(v2->unk_14[i]);
+            if (trainerIntroData->trainerNames[i] != NULL) {
+                Heap_Free(trainerIntroData->trainerNames[i]);
             }
         }
 
-        Heap_Free(v2);
+        Heap_Free(trainerIntroData);
         return TRUE;
     }
 
@@ -2193,7 +2189,7 @@ static void BattleSys_SetRenderControlFlags(BattleSystem *battleSys)
     }
 }
 
-static void ov16_0223DD90(BattleSystem *battleSys, FieldBattleDTO *dto)
+static void BattleMain_AssignRecordingRoles(BattleSystem *battleSys, FieldBattleDTO *dto)
 {
     int i, j, v2;
     int v5[4];

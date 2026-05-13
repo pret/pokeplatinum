@@ -5,10 +5,10 @@
 #include "party.h"
 #include "string_gf.h"
 
-typedef struct {
-    FieldBattleDTO *unk_00;
-    Party *unk_04[4];
-    String *unk_14[4];
+typedef struct TrainerIntroData {
+    FieldBattleDTO *fieldBattleDTO;
+    Party *party[4];
+    String *trainerNames[4];
     enum HeapID heapID;
     u8 unk_28;
     u8 unk_29;
@@ -16,6 +16,6 @@ typedef struct {
     u8 unk_2B;
     u8 unk_2C;
     u8 unk_2D[3];
-} UnkStruct_ov10_0221F800;
+} TrainerIntroData;
 
 #endif // POKEPLATINUM_STRUCT_OV10_0221F800_H

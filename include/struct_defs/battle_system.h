@@ -81,7 +81,7 @@ struct BattleSystem {
     PalPad *palPad;
     WaitDial *waitDial;
     u8 *subscreenCursorOn;
-    UnkStruct_ov10_0221F800 *unk_1C0;
+    TrainerIntroData *trainerIntroData;
     PokemonAnimManager *monAnimMan;
     NNSG2dCellTransferState *cellTransferState;
     PokemonSpriteData pokemonSpriteDataArray[4];
