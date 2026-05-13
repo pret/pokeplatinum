@@ -3,11 +3,11 @@
 
 #include "struct_decls/struct_020998EC_decl.h"
 
-#include "overlay020/struct_ov20_021D16E8_decl.h"
-#include "overlay020/struct_ov20_021D2128_decl.h"
-#include "overlay020/struct_ov20_021D4210_decl.h"
+#include "applications/easy_chat/main.h"
+#include "applications/easy_chat/struct_ov20_021D2128_decl.h"
+#include "applications/easy_chat/struct_ov20_021D4210_decl.h"
 
-UnkStruct_ov20_021D4210 *ov20_021D40E8(UnkStruct_ov20_021D2128 *param0, const UnkStruct_ov20_021D16E8 *param1, const UnkStruct_020998EC *param2);
+UnkStruct_ov20_021D4210 *ov20_021D40E8(UnkStruct_ov20_021D2128 *param0, const EasyChatApp *param1, const UnkStruct_020998EC *param2);
 void ov20_021D4164(UnkStruct_ov20_021D4210 *param0);
 void ov20_021D41A8(UnkStruct_ov20_021D4210 *param0);
 void ov20_021D4294(UnkStruct_ov20_021D4210 *param0);

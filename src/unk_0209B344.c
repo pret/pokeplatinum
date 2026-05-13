@@ -8,6 +8,7 @@
 #include "field/field_system.h"
 #include "overlay005/fieldmap.h"
 
+#include "easy_chat_args.h"
 #include "field_task.h"
 #include "heap.h"
 #include "savedata_misc.h"
@@ -15,13 +16,14 @@
 #include "string_template.h"
 #include "unk_02014A84.h"
 #include "unk_0203D1B8.h"
-#include "unk_0209747C.h"
+
+#include "res/text/bank/easy_chat.h"
 
 typedef struct {
     FieldSystem *fieldSystem;
     StringTemplate *unk_04;
     Sentence unk_08;
-    UnkStruct_0209747C *unk_10;
+    EasyChatArgs *unk_10;
     MiscSaveBlock *unk_14;
     int unk_18;
     int unk_1C;
@@ -38,7 +40,7 @@ void sub_0209B344(FieldTask *param0, u16 *param1)
 
     v1->fieldSystem = fieldSystem;
     v1->unk_04 = StringTemplate_Default(HEAP_ID_FIELD3);
-    v1->unk_10 = sub_0209747C(2, 0, v1->fieldSystem->saveData, HEAP_ID_FIELD3);
+    v1->unk_10 = EasyChatArgs_New(EASY_CHAT_TYPE_SENTENCE, EasyChat_Text_ChooseWordOrPhrase, v1->fieldSystem->saveData, HEAP_ID_FIELD3);
     v1->unk_14 = SaveData_MiscSaveBlock(fieldSystem->saveData);
     v1->unk_20 = param1;
 
@@ -54,7 +56,7 @@ void sub_0209B344(FieldTask *param0, u16 *param1)
 
 static void sub_0209B3AC(UnkStruct_0209B3AC *param0)
 {
-    sub_020974EC(param0->unk_10);
+    EasyChatArgs_Free(param0->unk_10);
     StringTemplate_Free(param0->unk_04);
     Heap_Free(param0);
 }
@@ -65,9 +67,9 @@ static BOOL sub_0209B3C4(FieldTask *param0)
 
     switch (v0->unk_18) {
     case 0:
-        sub_02097500(v0->unk_10, &(v0->unk_08));
-        sub_02097514(v0->unk_10);
-        sub_0203D874(v0->fieldSystem, v0->unk_10);
+        EasyChatArgs_SetSentence(v0->unk_10, &(v0->unk_08));
+        EasyChatArgs_FlagAsUnmodified(v0->unk_10);
+        FieldSystem_OpenEasyChat(v0->fieldSystem, v0->unk_10);
         v0->unk_18 = 1;
         break;
     case 1:
@@ -84,12 +86,12 @@ static BOOL sub_0209B3C4(FieldTask *param0)
         break;
     case 3:
         if (IsScreenFadeDone()) {
-            if (sub_02097528(v0->unk_10)) {
+            if (EasyChatArgs_IsUnmodified(v0->unk_10)) {
                 *v0->unk_20 = 0;
                 v0->unk_18 = 4;
             } else {
                 *v0->unk_20 = 1;
-                sub_02097540(v0->unk_10, &(v0->unk_08));
+                EasyChatArgs_CopySentenceTo(v0->unk_10, &(v0->unk_08));
 
                 MiscSaveBlock_SetIntroMsg(v0->unk_14, &v0->unk_08);
 

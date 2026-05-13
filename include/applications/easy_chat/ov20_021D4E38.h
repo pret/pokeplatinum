@@ -1,8 +1,8 @@
 #ifndef POKEPLATINUM_OV20_021D4E38_H
 #define POKEPLATINUM_OV20_021D4E38_H
 
-#include "overlay020/struct_ov20_021D4E8C.h"
-#include "overlay020/struct_ov20_021D4FF0.h"
+#include "applications/easy_chat/struct_ov20_021D4E8C.h"
+#include "applications/easy_chat/struct_ov20_021D4FF0.h"
 
 #include "bg_window.h"
 

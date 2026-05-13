@@ -6,9 +6,10 @@
 #include "generated/game_records.h"
 #include "generated/trainer_score_events.h"
 
+#include "applications/easy_chat/main.h"
 #include "applications/mail_viewer.h"
-#include "overlay020/ov20_021D0D80.h"
 
+#include "easy_chat_args.h"
 #include "game_records.h"
 #include "heap.h"
 #include "item.h"
@@ -19,15 +20,16 @@
 #include "savedata.h"
 #include "string_gf.h"
 #include "unk_02014A84.h"
-#include "unk_0209747C.h"
 
-FS_EXTERN_OVERLAY(overlay20);
+#include "res/text/bank/easy_chat.h"
+
+FS_EXTERN_OVERLAY(easy_chat);
 FS_EXTERN_OVERLAY(mail_viewer);
 
 typedef struct MailApp {
     enum HeapID heapID;
     u8 padding[4];
-    UnkStruct_0209747C *unk_08;
+    EasyChatArgs *easyChatArgs;
     ApplicationManager *appMan;
     MailViewerAppArgs *viewerArgs;
     Sentence selectedSentence;
@@ -212,7 +214,7 @@ static MailViewerAppArgs *MailViewerAppArgs_New(Mail *mail, enum HeapID heapID)
     }
 
     for (u16 i = 0; i < MAIL_MAX_SENTENCES; i++) {
-        Sentence_Set(&args->sentences[i], Mail_GetSentence(mail, i));
+        Sentence_Copy(&args->sentences[i], Mail_GetSentence(mail, i));
     }
 
     return args;
@@ -279,7 +281,7 @@ static BOOL MailApp_Main(ApplicationManager *appMan, int *state)
     MailAppArgs *args = ApplicationManager_Args(appMan);
 
     FS_EXTERN_OVERLAY(mail_viewer);
-    FS_EXTERN_OVERLAY(overlay20);
+    FS_EXTERN_OVERLAY(easy_chat);
 
     static const ApplicationManagerTemplate mailViewerTemplate = {
         MailViewer_Init,
@@ -287,11 +289,11 @@ static BOOL MailApp_Main(ApplicationManager *appMan, int *state)
         MailViewer_Exit,
         FS_OVERLAY_ID(mail_viewer),
     };
-    static const ApplicationManagerTemplate v3 = {
-        ov20_021D0D80,
-        ov20_021D0DF8,
-        ov20_021D0EA8,
-        FS_OVERLAY_ID(overlay20),
+    static const ApplicationManagerTemplate easyChatTemplate = {
+        EasyChat_Init,
+        EasyChat_Main,
+        EasyChat_Exit,
+        FS_OVERLAY_ID(easy_chat),
     };
 
     switch (*state) {
@@ -333,16 +335,16 @@ static BOOL MailApp_Main(ApplicationManager *appMan, int *state)
 
         return TRUE;
     case MAIL_STATE_EDIT_SENTENCE_START:
-        mailApp->unk_08 = sub_0209747C(2, 0, args->saveData, mailApp->heapID);
+        mailApp->easyChatArgs = EasyChatArgs_New(EASY_CHAT_TYPE_SENTENCE, EasyChat_Text_ChooseWordOrPhrase, args->saveData, mailApp->heapID);
 
         if (Sentence_IsValid(&mailApp->viewerArgs->sentences[mailApp->viewerArgs->sentenceIndex])) {
-            Sentence_Set(&mailApp->selectedSentence, &mailApp->viewerArgs->sentences[mailApp->viewerArgs->sentenceIndex]);
+            Sentence_Copy(&mailApp->selectedSentence, &mailApp->viewerArgs->sentences[mailApp->viewerArgs->sentenceIndex]);
         } else {
             Sentence_InitWithType(&mailApp->selectedSentence, 3);
         }
 
-        sub_02097500(mailApp->unk_08, &mailApp->selectedSentence);
-        mailApp->appMan = ApplicationManager_New(&v3, mailApp->unk_08, mailApp->heapID);
+        EasyChatArgs_SetSentence(mailApp->easyChatArgs, &mailApp->selectedSentence);
+        mailApp->appMan = ApplicationManager_New(&easyChatTemplate, mailApp->easyChatArgs, mailApp->heapID);
         *state = MAIL_STATE_EDITING;
         break;
     case MAIL_STATE_EDITING:
@@ -350,11 +352,11 @@ static BOOL MailApp_Main(ApplicationManager *appMan, int *state)
             break;
         }
 
-        if (sub_02097528(mailApp->unk_08) == 0) {
-            sub_02097540(mailApp->unk_08, &mailApp->viewerArgs->sentences[mailApp->viewerArgs->sentenceIndex]);
+        if (!EasyChatArgs_IsUnmodified(mailApp->easyChatArgs)) {
+            EasyChatArgs_CopySentenceTo(mailApp->easyChatArgs, &mailApp->viewerArgs->sentences[mailApp->viewerArgs->sentenceIndex]);
         }
 
-        sub_020974EC(mailApp->unk_08);
+        EasyChatArgs_Free(mailApp->easyChatArgs);
         *state = MAIL_STATE_OPEN_VIEWER;
         break;
     }
