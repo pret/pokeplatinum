@@ -2,84 +2,84 @@
 #include "res/text/bank/mystery_gift_deliveryman.h"
 
 
-    ScriptEntry _000A
-    ScriptEntry _0035
+    ScriptEntry MysteryGiftDeliverman_OnMartTransition
+    ScriptEntry MysteryGiftDeliverman_Deliveryman
     ScriptEntryEnd
 
-_000A:
+MysteryGiftDeliverman_OnMartTransition:
     LoadMysteryGift
-    CheckAvailableMysteryGift VAR_UNK_0x40ED
-    GoToIfEq VAR_UNK_0x40ED, 0, _002B
+    CheckAvailableMysteryGift VAR_AVAILABLE_MYSTERY_GIFT_EXISTS
+    GoToIfEq VAR_AVAILABLE_MYSTERY_GIFT_EXISTS, FALSE, MysteryGiftDeliverman_HideDeliveryman
     ClearFlag FLAG_HIDE_MART_MYSTERY_GIFT_DELIVERYMAN
-    UnloadMysteryGift
+    UnloadMysteryGiftNotReceived
     End
 
-_002B:
+MysteryGiftDeliverman_HideDeliveryman:
     SetFlag FLAG_HIDE_MART_MYSTERY_GIFT_DELIVERYMAN
-    UnloadMysteryGift
+    UnloadMysteryGiftNotReceived
     End
 
-_0035:
+MysteryGiftDeliverman_Deliveryman:
     LoadMysteryGift
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     CheckAvailableMysteryGift VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _00EE
+    GoToIfEq VAR_RESULT, FALSE, MysteryGiftDeliveryman_NoMoreGifts
     GetTimeOfDay VAR_RESULT
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, 0, _007E
-    GoToIfEq VAR_0x8008, 1, _008A
-    GoTo _0096
+    GoToIfEq VAR_0x8008, TIMEOFDAY_MORNING, MysteryGiftDeliveryman_MorningGreeting
+    GoToIfEq VAR_0x8008, TIMEOFDAY_DAY, MysteryGiftDeliveryman_MiddayGreeting
+    GoTo MysteryGiftDeliveryman_EveningGreeting
 
-_007E:
+MysteryGiftDeliveryman_MorningGreeting:
     BufferPlayerName 0
-    Message 0
-    GoTo _00A2
+    Message MysteryGiftDeliveryman_Text_MorningGreeting
+    GoTo MysteryGiftDeliveryman_TryGiveMysteryGift
 
-_008A:
+MysteryGiftDeliveryman_MiddayGreeting:
     BufferPlayerName 0
-    Message 1
-    GoTo _00A2
+    Message MysteryGiftDeliveryman_Text_MiddayGreeting
+    GoTo MysteryGiftDeliveryman_TryGiveMysteryGift
 
-_0096:
+MysteryGiftDeliveryman_EveningGreeting:
     BufferPlayerName 0
-    Message 2
-    GoTo _00A2
+    Message MysteryGiftDeliveryman_Text_EveningGreeting
+    GoTo MysteryGiftDeliveryman_TryGiveMysteryGift
 
-_00A2:
+MysteryGiftDeliveryman_TryGiveMysteryGift:
     CheckCanReceiveMysteryGift VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _00D8
+    GoToIfEq VAR_RESULT, FALSE, MysteryGiftDeliveryman_CantReceiveGift
     PlayFanfare SEQ_FANFA4
     PrepareMysteryGiftReceivedMsg VAR_0x8005, VAR_0x8006
     MessageFromBank VAR_0x8005, VAR_0x8006
     WaitFanfare
-    Message 18
+    Message MysteryGiftDeliveryman_Text_LookForwardNextVisit
     WaitButton
     GiveMysteryGift
-    GoTo _0103
+    GoTo MysteryGiftDeliveryman_UnloadGiftReceived
 
-_00D8:
+MysteryGiftDeliveryman_CantReceiveGift:
     PrepareMysterGiftCantReceiveMsg VAR_0x8005, VAR_0x8006
     MessageFromBank VAR_0x8005, VAR_0x8006
     WaitButton
-    GoTo _00F9
+    GoTo MysteryGiftDeliveryman_UnloadGiftNotReceived
 
-_00EE:
-    Message 3
+MysteryGiftDeliveryman_NoMoreGifts:
+    Message MysteryGiftDeliveryman_Text_NoMoreGifts
     WaitButton
-    GoTo _00F9
+    GoTo MysteryGiftDeliveryman_UnloadGiftNotReceived
 
-_00F9:
+MysteryGiftDeliveryman_UnloadGiftNotReceived:
     CloseMessage
     ReleaseAll
-    UnloadMysteryGift
+    UnloadMysteryGiftNotReceived
     End
 
-_0103:
+MysteryGiftDeliveryman_UnloadGiftReceived:
     CloseMessage
     ReleaseAll
-    UnloadMysteryGift2
+    UnloadMysteryGiftReceived
     End
 
     .balign 4, 0

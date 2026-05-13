@@ -92,10 +92,10 @@ BOOL ScrCmd_MysteryGiftGive(ScriptContext *ctx)
     case MYSTERY_GIFT_LOAD:
         MysteryGift_Load(ctx->fieldSystem->saveData, 32);
         break;
-    case MYSTERY_GIFT_UNLOAD_RECEIVED:
+    case MYSTERY_GIFT_UNLOAD_NOT_RECEIVED:
         MysteryGift_Unload(ctx->fieldSystem->saveData, 0);
         break;
-    case MYSTERY_GIFT_UNLOAD_NOT_RECEIVED:
+    case MYSTERY_GIFT_UNLOAD_RECEIVED:
         MysteryGift_Unload(ctx->fieldSystem->saveData, 1);
         break;
     case MYSTERY_GIFT_CHECK_AVAILABLE_PGT: {

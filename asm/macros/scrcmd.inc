@@ -3451,12 +3451,12 @@
     MysteryGiftGive MYSTERY_GIFT_CANT_RECEIVE, \destTextBank, \destStringID
     .endm
 
-    .macro UnloadMysteryGift
-    MysteryGiftGive MYSTERY_GIFT_UNLOAD_RECEIVED
+    .macro UnloadMysteryGiftNotReceived
+    MysteryGiftGive MYSTERY_GIFT_UNLOAD_NOT_RECEIVED
     .endm
 
-    .macro UnloadMysteryGift2
-    MysteryGiftGive MYSTERY_GIFT_UNLOAD_NOT_RECEIVED
+    .macro UnloadMysteryGiftReceived
+    MysteryGiftGive MYSTERY_GIFT_UNLOAD_RECEIVED
     .endm
 
     .macro Dummy23F
