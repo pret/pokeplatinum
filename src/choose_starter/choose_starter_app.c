@@ -208,7 +208,7 @@ typedef struct ChooseStarterApp {
     BgConfig *bgConfig;
     Window *messageWindow;
     Window *subplaneWindows[NUM_STARTER_OPTIONS];
-    int unk_A8;
+    int subplaneWindowIndex;
     String *string;
     WindowTemplate confirmationMenuWindowTemplate;
     Menu *confirmationMenu;
@@ -1744,7 +1744,7 @@ static void SetSubplaneWindowText(Window *window, enum HeapID heapID, int bankID
 
 static void DeleteSubplaneWindow(ChooseStarterApp *app)
 {
-    Window_ClearAndCopyToVRAM(app->subplaneWindows[app->unk_A8]);
+    Window_ClearAndCopyToVRAM(app->subplaneWindows[app->subplaneWindowIndex]);
 }
 
 static u16 GetSelectedSpecies(u16 cursorPosition)
