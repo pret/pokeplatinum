@@ -210,7 +210,7 @@ typedef struct ChooseStarterApp {
     Window *subplaneWindows[NUM_STARTER_OPTIONS];
     int unk_A8;
     String *string;
-    WindowTemplate unk_B0;
+    WindowTemplate confirmationMenuWindowTemplate;
     Menu *confirmationMenu;
     G2dRenderer g2dRenderer;
     SpriteList *spriteList;
@@ -1237,7 +1237,7 @@ static void AdvancePokeballConfirmGraphics(ChooseStarterApp *app, enum HeapID he
         break;
     case CHOOSE_STARTER_STEP_UPDATE_CURSOR_POSITION:
         SetMessageWindowText(app->messageWindow, heapID, 360, 1 + app->cursorPosition, TEXT_COLOR(1, 2, 15), TEXT_SPEED_NO_TRANSFER);
-        app->confirmationMenu = Menu_MakeYesNoChoice(app->bgConfig, &app->unk_B0, 512 + (18 + 12) + 128, 1, heapID);
+        app->confirmationMenu = Menu_MakeYesNoChoice(app->bgConfig, &app->confirmationMenuWindowTemplate, 512 + (18 + 12) + 128, 1, heapID);
         app->disableCursorMovement = FALSE;
         app->chooseStarterStep++;
         break;
@@ -1311,13 +1311,13 @@ static void DeleteStringBuffer(ChooseStarterApp *app)
 
 static void MakeConfirmationWindow(ChooseStarterApp *app, enum HeapID heapID)
 {
-    app->unk_B0.bgLayer = 1;
-    app->unk_B0.tilemapLeft = 23;
-    app->unk_B0.tilemapTop = 12;
-    app->unk_B0.width = 5;
-    app->unk_B0.height = 4;
-    app->unk_B0.palette = 3;
-    app->unk_B0.baseTile = ((18 + 12) + 9 + 128);
+    app->confirmationMenuWindowTemplate.bgLayer = 1;
+    app->confirmationMenuWindowTemplate.tilemapLeft = 23;
+    app->confirmationMenuWindowTemplate.tilemapTop = 12;
+    app->confirmationMenuWindowTemplate.width = 5;
+    app->confirmationMenuWindowTemplate.height = 4;
+    app->confirmationMenuWindowTemplate.palette = 3;
+    app->confirmationMenuWindowTemplate.baseTile = ((18 + 12) + 9 + 128);
 
     LoadStandardWindowGraphics(app->bgConfig, BG_LAYER_MAIN_1, 512 + (18 + 12) + 128, 1, 0, heapID);
     Font_LoadTextPalette(0, 3 * 32, heapID);
