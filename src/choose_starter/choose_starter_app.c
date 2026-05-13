@@ -228,7 +228,7 @@ typedef struct ChooseStarterApp {
     StarterPreviewWindow previewWindow;
     int messageFrame;
     u32 textFrameDelay;
-    u8 unk_708;
+    u8 messagePrinterID;
     u8 unk_709[3];
 } ChooseStarterApp;
 
@@ -1167,21 +1167,21 @@ static void AdvancePokeballChoiceGraphics(ChooseStarterApp *app, enum HeapID hea
         }
         break;
     case CHOOSE_STARTER_STEP_PRINT_THESE_ARE_POKE_BALLS_TEXT:
-        app->unk_708 = SetMessageWindowTextAndSaveToString(app->messageWindow, heapID, 360, 0, TEXT_COLOR(1, 2, 15), app->textFrameDelay, &app->string);
+        app->messagePrinterID = SetMessageWindowTextAndSaveToString(app->messageWindow, heapID, 360, 0, TEXT_COLOR(1, 2, 15), app->textFrameDelay, &app->string);
         app->chooseStarterStep++;
         break;
     case CHOOSE_STARTER_STEP_DELETE_THESE_ARE_POKE_BALLS_TEXT:
-        if (Text_IsPrinterActive(app->unk_708) == 0) {
+        if (Text_IsPrinterActive(app->messagePrinterID) == 0) {
             DeleteStringBuffer(app);
             app->chooseStarterStep++;
         }
         break;
     case CHOOSE_STARTER_STEP_PRINT_NOW_CHOOSE_TEXT:
-        app->unk_708 = SetMessageWindowTextAndSaveToString(app->messageWindow, heapID, 360, 7, TEXT_COLOR(1, 2, 15), app->textFrameDelay, &app->string);
+        app->messagePrinterID = SetMessageWindowTextAndSaveToString(app->messageWindow, heapID, 360, 7, TEXT_COLOR(1, 2, 15), app->textFrameDelay, &app->string);
         app->chooseStarterStep++;
         break;
     case CHOOSE_STARTER_STEP_DELETE_NOW_CHOOSE_TEXT:
-        if (Text_IsPrinterActive(app->unk_708) == 0) {
+        if (Text_IsPrinterActive(app->messagePrinterID) == 0) {
             DeleteStringBuffer(app);
             app->chooseStarterStep++;
         }
@@ -1262,7 +1262,7 @@ static void AdvancePokeballConfirmGraphics(ChooseStarterApp *app, enum HeapID he
             app->chooseStarterStep = 7;
             ShowPreviewWindow(&app->previewWindow, FALSE);
             PokemonSprite_SetAttribute(app->sprites[app->cursorPosition], MON_SPRITE_HIDE, TRUE);
-            app->unk_708 = SetMessageWindowText(app->messageWindow, heapID, 360, 7, TEXT_COLOR(1, 2, 15), TEXT_SPEED_NO_TRANSFER);
+            app->messagePrinterID = SetMessageWindowText(app->messageWindow, heapID, 360, 7, TEXT_COLOR(1, 2, 15), TEXT_SPEED_NO_TRANSFER);
         }
         break;
     default:
