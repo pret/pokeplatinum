@@ -414,7 +414,7 @@ static void DetectWirelessConnections(MainMenuAppData *appData)
         appData->wirelessCheckState = MAIN_MENU_WIRELESS_CHECK_INIT_WIRELESS;
         break;
     case MAIN_MENU_WIRELESS_CHECK_INIT_WIRELESS:
-        sub_02037D48(appData->saveData);
+        CommManager_InitializeSearchParty(appData->saveData);
 
         appData->wirelessCheckTimeout = 120;
         appData->wirelessCheckState = MAIN_MENU_WIRELESS_CHECK_CHECK_RESULT;
@@ -430,7 +430,7 @@ static void DetectWirelessConnections(MainMenuAppData *appData)
             break;
         }
 
-        int availableConnections = sub_02037DA0();
+        int availableConnections = CommManager_GetUnk54();
         availableConnections = ~appData->pendingAlerts & availableConnections;
 
         if (availableConnections && (appData->alertsState == MAIN_MENU_ALERTS_STATE_WAIT) && (appData->alertsPending == FALSE) && (appData->pendingAlerts != availableConnections)) {
@@ -456,12 +456,12 @@ static void DetectWirelessConnections(MainMenuAppData *appData)
         }
 
         if (--appData->wirelessCheckTimeout == 0) {
-            sub_02037D84();
+            CommManager_EndSearchParty();
             appData->wirelessCheckState = MAIN_MENU_WIRELESS_CHECK_IDLE;
         }
         break;
     case MAIN_MENU_WIRELESS_CHECK_STOP:
-        sub_02037D84();
+        CommManager_EndSearchParty();
         appData->wirelessCheckState = MAIN_MENU_WIRELESS_CHECK_IDLE;
         break;
     }
@@ -1211,7 +1211,7 @@ static BOOL MainMenu_Main(ApplicationManager *appMan, int *state)
                 if (appData->nextApplication == NEXT_APP_GBA_MIGRATION) {
                     if (CTRDG_IsPulledOut() == TRUE) {
                         if (appData->wirelessCheckState != MAIN_MENU_WIRELESS_CHECK_IDLE) {
-                            sub_02037D84();
+                            CommManager_EndSearchParty();
                         }
 
                         sub_0209A8E0(HEAP_ID_MAIN_MENU);

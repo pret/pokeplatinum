@@ -694,7 +694,7 @@ int ov70_0225DB90(ApplicationManager *appMan, int *param1)
         ov70_0225F024(&v0->unk_428);
         ov70_0225F100(&v0->unk_404);
 
-        if (sub_020383E8()) {
+        if (CommManager_CheckWifiError()) {
             ov70_0225F184(&v0->unk_3F4, &v0->unk_340);
         } else if (CommManager_IsWifiLobbyError()) {
             ov70_0225F1C0(&v0->unk_3F4, &v0->unk_340, ov66_022326DC());
@@ -1904,7 +1904,7 @@ static void ov70_0225F184(UnkStruct_ov70_0225F114 *param0, UnkStruct_ov70_0225F2
 {
     u32 v0;
     String *v1;
-    UnkStruct_ov65_0222F6EC *v2 = sub_020382F8();
+    UnkStruct_ov65_0222F6EC *v2 = CommManager_GetUnk34();
     v0 = ov66_022316F4(v2->unk_00, v2->unk_04);
 
     ov70_0225F2A8(param1, v2->unk_00, 5, 0, 2);

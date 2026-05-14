@@ -669,7 +669,7 @@ static void WirelessManager_FinishStartClient(void *wm_connectcallback)
             WirelessManager_SetState(WIRELESS_STATE_ERROR);
             return;
         } else if (callback->errcode == WM_ERRCODE_FAILED) {
-            if (sub_02038938()) {
+            if (CommManager_CheckError()) {
                 WirelessManager_SetState(WIRELESS_STATE_ERROR);
             } else {
                 WirelessManager_SetState(WIRELESS_STATE_BAD_CONNECTION);

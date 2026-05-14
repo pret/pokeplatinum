@@ -425,7 +425,7 @@ int ov109_021D0D80(ApplicationManager *appMan, int *param1)
     UnkStruct_ov109_021D0F70 *v0;
     UnkStruct_0209C194 *v1 = ApplicationManager_Args(appMan);
 
-    CommMan_SetErrorHandling(1, 1);
+    CommManager_SetErrorHandling(1, 1);
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     ResetLock(RESET_LOCK_0x2);
@@ -1410,7 +1410,7 @@ static int ov109_021D1B2C(UnkStruct_ov109_021D0F70 *param0)
 {
     if (param0->unk_18 == 0) {
         if (CommTiming_IsSyncState(202)) {
-            CommMan_SetErrorHandling(0, 0);
+            CommManager_SetErrorHandling(0, 0);
             CommManager_SetMaxNumConnections(1);
             CommManager_UnionRestartSearch();
             param0->unk_00 = 50;
@@ -1422,7 +1422,7 @@ static int ov109_021D1B2C(UnkStruct_ov109_021D0F70 *param0)
             param0->unk_0C = 0;
 
             if (param0->unk_D0->unk_3C == 0) {
-                CommMan_SetErrorHandling(0, 0);
+                CommManager_SetErrorHandling(0, 0);
                 CommManager_SetMaxNumConnections(1);
                 CommManager_UnionRestartSearch();
             }

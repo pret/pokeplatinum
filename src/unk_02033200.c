@@ -648,7 +648,7 @@ static void sub_02033BDC(u16 param0)
     }
 
     if (25 == WirelessManager_GetErrorCode()) {
-        sub_020389FC(0);
+        NetworkError_DisplayFatalError(0);
     }
 
     switch (v0) {

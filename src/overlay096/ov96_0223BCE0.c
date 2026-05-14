@@ -187,7 +187,7 @@ int ov96_0223BCE0(UnkStruct_ov96_0223BF40 *param0, int param1)
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 1);
-    sub_02038438(param0->unk_00->saveData);
+    CommManager_InitializeGlobalWifi(param0->unk_00->saveData);
     ov96_0223D948(param0);
 
     param0->unk_8C = sub_0202D2C0(param0->unk_00->unk_00, 0);
@@ -423,7 +423,7 @@ static int ov96_0223C420(UnkStruct_ov96_0223BF40 *param0)
 
     if (v0 != 0xffffffff) {
         if (v0 == 0xfffffffe) {
-            sub_0203848C();
+            CommManager_EndGlobalWifi();
             ov96_0223BC5C(param0, 0, 0);
             param0->unk_1C = 46;
         } else {
@@ -1426,7 +1426,7 @@ static int ov96_0223D524(UnkStruct_ov96_0223BF40 *param0)
 static int ov96_0223D528(UnkStruct_ov96_0223BF40 *param0)
 {
     NetworkIcon_Destroy();
-    sub_0203848C();
+    CommManager_EndGlobalWifi();
     StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 8, 1, HEAP_ID_68);
 
     param0->unk_1C = 0;
@@ -1490,7 +1490,7 @@ static int ov96_0223D5FC(UnkStruct_ov96_0223BF40 *param0)
         break;
     case 1:
         if (Text_IsPrinterActive(param0->unk_BF0) == 0) {
-            sub_0203848C();
+            CommManager_EndGlobalWifi();
             DWC_CleanupInet();
             param0->unk_FF0++;
         }

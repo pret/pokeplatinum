@@ -205,7 +205,7 @@ int ov58_021D0D80(ApplicationManager *appMan, int *param1)
         GX_SetDispSelect(GX_DISP_SELECT_SUB_MAIN);
 
         sub_02095E98(v0);
-        CommMan_SetErrorHandling(0, 1);
+        CommManager_SetErrorHandling(0, 1);
 
         if (CommSys_CurNetId() == 0) {
             CommManager_SetMaxNumConnections(3);

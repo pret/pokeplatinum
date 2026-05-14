@@ -197,7 +197,7 @@ BOOL Battle_Main(ApplicationManager *appMan, int *state)
         ov16_0223D10C(appMan, dto);
         WiFiHistory_FlagGeonetLinkInfo(dto->wiFiHistory);
 
-        if (!CommMan_IsConnectedToWifi()) {
+        if (!CommManager_IsConnectedToWifi()) {
             GameRecords_IncrementRecordValue(dto->records, RECORD_UNK_020);
         } else {
             GameRecords_IncrementRecordValue(dto->records, RECORD_UNK_025);
@@ -791,7 +791,7 @@ static void BattleMain_CopyBattleSysToDTOAndFree(ApplicationManager *appMan)
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay11));
     Overlay_UnloadByID(FS_OVERLAY_ID(battle_anim));
 
-    if (!CommMan_IsConnectedToWifi()) {
+    if (!CommManager_IsConnectedToWifi()) {
         Overlay_UnloadByID(FS_OVERLAY_ID(pokedex));
     }
 }
@@ -1512,7 +1512,7 @@ static void SysTask_DrawSprites(SysTask *task, void *inBattleSys)
 {
     BattleSystem *battleSys = inBattleSys;
 
-    sub_02038A1C(HEAP_ID_BATTLE, battleSys->bgConfig);
+    CommManager_deadstripped_02038A1C(HEAP_ID_BATTLE, battleSys->bgConfig);
 
     if (battleSys->unk_23F9 == 0 || battleSys->unk_23F9 == 3) {
         if (battleSys->unk_23F9 == 0) {
@@ -1601,7 +1601,7 @@ static void SysTask_FlyInMessageBox(SysTask *task, void *inBattleSys)
 
 static void NitroStaticInit(void)
 {
-    if (!CommMan_IsConnectedToWifi()) {
+    if (!CommManager_IsConnectedToWifi()) {
         Overlay_LoadByID(FS_OVERLAY_ID(pokedex), OVERLAY_LOAD_ASYNC);
     }
 }
@@ -1708,7 +1708,7 @@ static BOOL ov16_0223D354(ApplicationManager *appMan)
 {
     UnkStruct_0207A778 *v0 = ApplicationManager_Data(appMan);
 
-    sub_02038A1C(HEAP_ID_BATTLE, v0->unk_04);
+    CommManager_deadstripped_02038A1C(HEAP_ID_BATTLE, v0->unk_04);
 
     BOOL result = 0;
 
@@ -2100,14 +2100,14 @@ static BOOL BattleMain_HandleLinkBattleResult(ApplicationManager *appMan)
 
     switch (dto->resultMask) {
     case BATTLE_RESULT_WIN:
-        if (!CommMan_IsConnectedToWifi()) {
+        if (!CommManager_IsConnectedToWifi()) {
             GameRecords_IncrementRecordValue(dto->records, RECORD_LOCAL_LINK_BATTLE_WINS);
         } else {
             GameRecords_IncrementRecordValue(dto->records, RECORD_WIFI_BATTLE_WINS);
         }
         break;
     case BATTLE_RESULT_LOSE:
-        if (!CommMan_IsConnectedToWifi()) {
+        if (!CommManager_IsConnectedToWifi()) {
             GameRecords_IncrementRecordValue(dto->records, RECORD_LOCAL_LINK_BATTLE_LOSSES);
         } else {
             GameRecords_IncrementRecordValue(dto->records, RECORD_WIFI_BATTLE_LOSSES);
@@ -2115,7 +2115,7 @@ static BOOL BattleMain_HandleLinkBattleResult(ApplicationManager *appMan)
         break;
     case BATTLE_RESULT_DRAW:
     case BATTLE_RESULT_PLAYER_FLED:
-        if (!CommMan_IsConnectedToWifi()) {
+        if (!CommManager_IsConnectedToWifi()) {
             GameRecords_IncrementRecordValue(dto->records, RECORD_UNK_023);
         } else {
             GameRecords_IncrementRecordValue(dto->records, RECORD_UNK_028);
@@ -2258,7 +2258,7 @@ static void BattleMain_SetNetworkIconStrength(void)
 {
     NetworkIcon_Init();
 
-    if (CommMan_IsConnectedToWifi()) {
+    if (CommManager_IsConnectedToWifi()) {
         NetworkIcon_SetStrength(WM_LINK_LEVEL_3 - DWC_GetLinkLevel());
     } else if (CommServerClient_IsInitialized()) {
         NetworkIcon_SetStrength(WM_LINK_LEVEL_3 - WM_GetLinkLevel());

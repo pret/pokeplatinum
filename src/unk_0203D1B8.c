@@ -967,7 +967,7 @@ BOOL sub_0203DBF0(FieldTask *taskMan)
 
     switch (taskEnv->unk_00) {
     case 0:
-        if (!CommMan_IsConnectedToWifi()) {
+        if (!CommManager_IsConnectedToWifi()) {
             FieldTransition_FinishMap(taskMan);
         }
 
@@ -1011,7 +1011,7 @@ BOOL sub_0203DBF0(FieldTask *taskMan)
             break;
         }
 
-        if (CommMan_IsConnectedToWifi()) {
+        if (CommManager_IsConnectedToWifi()) {
             taskEnv->unk_48.background = TRADE_BACKGROUND_WIFI;
         }
 
@@ -1047,7 +1047,7 @@ BOOL sub_0203DBF0(FieldTask *taskMan)
             GameRecords *gameRecords = SaveData_GetGameRecords(fieldSystem->saveData);
             GameRecords_IncrementTrainerScore(gameRecords, TRAINER_SCORE_EVENT_UNK_16);
 
-            if (CommMan_IsConnectedToWifi()) {
+            if (CommManager_IsConnectedToWifi()) {
                 GameRecords_IncrementRecordValue(gameRecords, RECORD_UNK_113);
             }
         }

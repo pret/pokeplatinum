@@ -136,7 +136,7 @@ static int ov61_0222B14C(UnkStruct_ov62_022349A8 *param0, UnkStruct_ov61_0222B13
     DWC_ClearError();
     DWC_CleanupInet();
 
-    sub_0203848C();
+    CommManager_EndGlobalWifi();
     param0->unk_3C8 = 0;
 
     return 1;

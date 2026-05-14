@@ -318,7 +318,7 @@ void sub_0209612C(int param0, int param1, void *param2, void *param3)
         }
     }
 
-    CommMan_SetErrorHandling(0, 1);
+    CommManager_SetErrorHandling(0, 1);
 }
 
 static void sub_02096170(int param0, int param1, void *param2, void *param3)

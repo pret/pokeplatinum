@@ -104,7 +104,7 @@ static BOOL sub_0209C280(UnkStruct_0209C1EC *param0)
         if (sub_0209C1E8(param0->unk_28) == 0) {
             param0->unk_00 = 5;
         } else {
-            CommMan_SetErrorHandling(1, 1);
+            CommManager_SetErrorHandling(1, 1);
 
             param0->partyMenu = FieldSystem_OpenPartyMenu_SelectForSpinTrade(param0->fieldSystem, param0->unk_04);
             param0->unk_28->unk_00 = 1;

@@ -112,7 +112,7 @@ int ov82_0223B24C(ApplicationManager *appMan, int *param1)
             return 1;
         }
 
-        CommMan_SetErrorHandling(0, 1);
+        CommManager_SetErrorHandling(0, 1);
         CommTiming_StartSync(4);
         (*param1)++;
         break;

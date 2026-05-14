@@ -31,7 +31,7 @@ typedef void (*CommTaskFunc)(void);
 
 typedef struct {
     void *unk_00;
-    u8 unk_04[6];
+    u8 party[6];
     MATHRandContext32 rand;
     CommTaskFunc task;
     SaveData *saveData;
@@ -42,23 +42,23 @@ typedef struct {
     u16 retryConnectionAttempts;
     u8 maxNumConnection;
     u8 connectedCount;
-    u8 unk_48;
+    u8 unionConnectState;
     u8 connectionID;
     u8 commType;
     u8 contestRegulation;
     u8 unk_4C;
-    s8 unk_4D;
+    s8 wifiTarget;
     u8 unk_4E;
     u8 errorDisconnect;
-    u8 unk_50;
-    u8 unk_51;
-    u8 unk_52;
+    u8 errorUnknown_50;
+    u8 globalWifi;
+    u8 resetType;
     u8 pauseUnion;
     u8 unk_54;
     u8 initializeAsServer; //always FALSE
     u8 unk_56;
     u8 doNotConnectUnderground;
-    u8 unk_58;
+    u8 disconnectedWifi;
     u8 commError;
     u8 pauseUnderground;
     const void *unk_5C;
@@ -68,59 +68,59 @@ typedef struct {
 
 static void CommManager_SetTask(CommTaskFunc param0, int param1);
 static void CommTask_StartUnderground(void);
-static void sub_02036E08(void);
+static void CommTask_ReinitUndergroundClient(void);
 static void CommTask_ReinitUnderground(void);
 static void CommTask_SearchUndergroundClient(void);
-static void sub_02036EDC(void);
-static void sub_02036F44(void);
+static void CommTask_ForceConnectUndergroundClient(void);
+static void CommTask_ConnectingUndergroundClient(void);
 static void CommTask_ConnectUndergroundClient(void);
 static void CommTask_ResetUnderground(void);
 static void CommTask_ResetUndergroundServer(void);
-static void sub_02036FBC(void);
+static void CommTask_ResetUndergroundClient(void);
 static void CommTask_InitUndergroundServer(void);
 static void CommTask_WaitUndergroundServer(void);
-static void sub_02037094(void);
+static void CommTask_InitConnectUndergroundServer(void);
 static void CommTask_ConnectUndergroundServer(void);
 static void CommManager_EndConnectionUnderground(void);
 static void CommTask_RestartSecretBase(void);
 static void CommTask_StartBattleServer(void);
 static void CommTask_WaitBattleServer(void);
-static void sub_0203718C(void);
+static void CommTask_ConnectingBattleServer(void);
 static void CommTask_StartBattleClient(void);
-static void sub_02037208(void);
+static void CommTask_ScanBattleClient(void);
 static void CommTask_ConnectBattleClient(void);
-static void sub_02037238(void);
+static void CommTask_ConnectingBattleClient(void);
 static void CommTask_WaitBattleClient(void);
-static void sub_020372DC(void);
-static void sub_020372F0(void);
-static void sub_02037270(void);
-static void sub_02037284(void);
-static void CommTask_StartWirelessClient(void);
+static void CommTask_RetryBattleClient(void);
+static void CommTask_ReinitBattleClient(void);
+static void CommTask_ResetBattleClient(void);
+static void CommTask_ReconnectBattleClient(void);
+static void CommTask_StartUndergroundWifiClient(void);
 static void CommTask_StartUnion(void);
 static void CommTask_SearchUnionClient(void);
 static void CommTask_EndUnionClient(void);
 static void CommTask_InitializeServerUnion(void);
-static void sub_020374F4(void);
+static void CommTask_WaitUnionServer(void);
 static void CommTask_RestartUnionClient(void);
-static void sub_020376A8(void);
-static void sub_020375A4(void);
-static void sub_020375BC(void);
-static void sub_020375E8(void);
-static void sub_0203764C(void);
+static void CommTask_ConnectUnionClient(void);
+static void CommTask_StartForceConnectUnion1(void);
+static void CommTask_StartForceConnectUnion2(void);
+static void CommTask_ForceConnectUnion(void);
+static void CommTask_ConnectingUnionClient(void);
 static void CommTask_SuccededConnectUnionClient(void);
 static void CommTask_FailedConnectUnionClient(void);
 static void CommTask_ResetUnionClient(void);
 static void CommTask_ConnectUnionServer(void);
 static void CommTask_PauseUnionServer(void);
 static void CommTask_StartRandomBattleServer(void);
-static void CommTask_StartMysteryGiftClient(void);
+static void CommTask_StartRandomBattleClient(void);
 static void CommTask_None(void);
 static void CommTask_End(void);
-static void sub_02037354(void);
-static void sub_0203739C(void);
+static void CommTask_WaitEndConnectionUnionClient(void);
+static void CommTask_EndConnectionUnionClient(void);
 static void CommTask_EndConnection(void);
-static void sub_02038164(void);
-static void sub_02038314(void);
+static void CommTask_WifiBattleLogin(void);
+static void CommTask_LogoutWifi(void);
 static void CommTask_StartWifiLobby(void);
 static void CommTask_LogInWifiLobby(void);
 static void CommTask_ConnectWifiLobby(void);
@@ -141,9 +141,9 @@ static void CommTask_ConnectDraw(void);
 static void CommTask_ConnectingDraw(void);
 
 static CommunicationManager *sCommMan = NULL;
-static u8 Unk_02100A20[] = { "FREAK" };
-static u8 Unk_02100A30[] = { " GAME" };
-static u8 Unk_02100A28[] = { " FULL" };
+static u8 sFreakConfirmationMessage[] = { "FREAK" };
+static u8 sGameConfirmationMessage[] = { " GAME" };
+static u8 sFullConfirmationMessage[] = { " FULL" };
 
 /**
  * @brief Initializes sCommMan with the given commType
@@ -168,7 +168,7 @@ static void CommManager_Initialize(SaveData *saveData, int commType)
     sCommMan->saveData = saveData;
     sCommMan->trainerInfo = SaveData_GetTrainerInfo(saveData);
     sCommMan->maxNumConnection = 1 + 1;
-    sCommMan->unk_48 = 0;
+    sCommMan->unionConnectState = 0;
     sCommMan->pauseUnion = FALSE;
     sCommMan->commType = commType;
 
@@ -195,7 +195,7 @@ static void CommMan_Free(void)
         Heap_Free(sCommMan->unk_00);
     }
 
-    if (CommMan_IsConnectedToWifi()) {
+    if (CommManager_IsConnectedToWifi()) {
         Heap_Destroy(HEAP_ID_NINTENDO_WFC);
     }
 
@@ -327,7 +327,7 @@ void CommManager_SetDoNotConnectUndergroundFlag(void)
 void CommMan_ReopenSecretBase(void)
 {
     WirelessDriver_Init();
-    CommManager_SetTask(CommTask_StartWirelessClient, 0);
+    CommManager_SetTask(CommTask_StartUndergroundWifiClient, 0);
 }
 
 /**
@@ -395,7 +395,7 @@ void CommManager_ConnectBattleClient(int connectionID)
 void CommManager_ResetBattleClient(void)
 {
     CommSys_ResetBattleClient();
-    CommManager_SetTask(sub_020372DC, 0);
+    CommManager_SetTask(CommTask_RetryBattleClient, 0);
 }
 
 /**
@@ -483,7 +483,7 @@ void CommManager_ConnectUnion(int connectionID)
 
     WirelessManager_SetPauseConnection(1);
     NetworkIcon_Init();
-    CommManager_SetTask(sub_020375A4, 0);
+    CommManager_SetTask(CommTask_StartForceConnectUnion1, 0);
 }
 
 /**
@@ -541,8 +541,8 @@ void CommManager_UnionRestartSearch(void)
 {
     WirelessManager_SetPauseConnection(0);
 
-    if (!((sCommMan->errorDisconnect == 1) && (sCommMan->unk_50 == 1)) || (sCommMan->commType == COMM_TYPE_UNION)) {
-        CommMan_SetErrorHandling(0, 0);
+    if (!((sCommMan->errorDisconnect == 1) && (sCommMan->errorUnknown_50 == 1)) || (sCommMan->commType == COMM_TYPE_UNION)) {
+        CommManager_SetErrorHandling(0, 0);
     }
 
     NetworkIcon_Destroy();
@@ -554,9 +554,9 @@ void CommManager_UnionRestartSearch(void)
 
     if (CommSys_CurNetId() == 0) {
         WirelessManager_SetPauseConnectionSystem(1);
-        CommManager_SetTask(sub_02037354, 15);
+        CommManager_SetTask(CommTask_WaitEndConnectionUnionClient, 15);
     } else {
-        CommManager_SetTask(sub_0203739C, 5);
+        CommManager_SetTask(CommTask_EndConnectionUnionClient, 5);
     }
 }
 
@@ -669,7 +669,7 @@ void CommManager_StartRandomBattleClient(SaveData *saveData, int commType)
 
     Heap_CreateAtEnd(HEAP_ID_APPLICATION, HEAP_ID_COMMUNICATION, 0x7080);
     CommManager_Initialize(saveData, commType);
-    CommManager_SetTask(CommTask_StartMysteryGiftClient, 0);
+    CommManager_SetTask(CommTask_StartRandomBattleClient, 0);
 }
 
 /**
@@ -684,7 +684,7 @@ void CommManager_Update(void)
         }
     }
 
-    if (CommMan_IsConnectedToWifi()) {
+    if (CommManager_IsConnectedToWifi()) {
         NetworkIcon_SetStrength(WM_LINK_LEVEL_3 - DWC_GetLinkLevel());
     } else if (CommServerClient_IsInitialized()) {
         NetworkIcon_SetStrength(WM_LINK_LEVEL_3 - WM_GetLinkLevel());
@@ -772,7 +772,10 @@ static void CommTask_ReinitUnderground(void)
     }
 }
 
-static void sub_02036E08(void)
+/**
+ * @brief Reinitializes the Communication Manager for underground play. Only allows the Communication Manager to be initialized as a client.
+ */
+static void CommTask_ReinitUndergroundClient(void)
 {
     BOOL ret;
 
@@ -788,9 +791,12 @@ static void sub_02036E08(void)
     }
 }
 
+/**
+ * @brief Task indicating the client is searching for servers to connect to for underground play
+ */
 static void CommTask_SearchUndergroundClient(void)
 {
-    int v0;
+    int connectionID;
 
     sub_02033A5C();
 
@@ -798,11 +804,11 @@ static void CommTask_SearchUndergroundClient(void)
         return;
     }
 
-    v0 = sub_020338EC();
+    connectionID = sub_020338EC();
 
-    if (v0 != -1) {
-        sCommMan->connectionID = v0;
-        CommManager_SetTask(sub_02036EDC, 32);
+    if (connectionID != -1) {
+        sCommMan->connectionID = connectionID;
+        CommManager_SetTask(CommTask_ForceConnectUndergroundClient, 32);
         return;
     }
 
@@ -811,24 +817,27 @@ static void CommTask_SearchUndergroundClient(void)
         return;
     }
 
-    v0 = sub_0203394C();
+    connectionID = sub_0203394C();
 
-    if (v0 != -1) {
-        sCommMan->connectionID = v0;
-        CommManager_SetTask(sub_02036EDC, 32);
+    if (connectionID != -1) {
+        sCommMan->connectionID = connectionID;
+        CommManager_SetTask(CommTask_ForceConnectUndergroundClient, 32);
         return;
     }
 
     CommManager_SetTask(CommTask_ResetUndergroundServer, 0);
 }
 
-static void sub_02036EDC(void)
+/**
+ * @brief Forcibly opens an underground connection by connecting a client to a found server or restarting the Communication Manager as a server if that isn't possible
+ */
+static void CommTask_ForceConnectUndergroundClient(void)
 {
     sub_02033A5C();
 
     if (sub_02033898(sCommMan->connectionID) != 0) {
         if (sub_02034984(sCommMan->connectionID)) {
-            CommManager_SetTask(sub_02036F44, 100);
+            CommManager_SetTask(CommTask_ConnectingUndergroundClient, 100);
             return;
         }
     }
@@ -842,7 +851,10 @@ static void sub_02036EDC(void)
     }
 }
 
-static void sub_02036F44(void)
+/**
+ * @brief Task indicating the client is connecting to a server for underground play
+ */
+static void CommTask_ConnectingUndergroundClient(void)
 {
     if (CommSys_IsPlayerConnected(CommSys_CurNetId())) {
         CommSys_Reset();
@@ -865,6 +877,9 @@ static void sub_02036F44(void)
     CommManager_SetTask(CommTask_ResetUndergroundServer, 0);
 }
 
+/**
+ * @brief Switches to a server mode and initializes the Communication Manager as a server
+ */
 static void CommTask_ResetUndergroundServer(void)
 {
     if (!sub_020336D4()) {
@@ -874,15 +889,21 @@ static void CommTask_ResetUndergroundServer(void)
     CommManager_SetTask(CommTask_InitUndergroundServer, 0);
 }
 
-static void sub_02036FBC(void)
+/**
+ * @brief Switches to a client mode and initializes the Communication Manager as a client
+ */
+static void CommTask_ResetUndergroundClient(void)
 {
     if (!sub_020336D4()) {
         return;
     }
 
-    CommManager_SetTask(sub_02036E08, 0);
+    CommManager_SetTask(CommTask_ReinitUndergroundClient, 0);
 }
 
+/**
+ * @brief Initializes the Communication Manager as a server for underground play
+ */
 static void CommTask_InitUndergroundServer(void)
 {
     if (!sub_02033E30()) {
@@ -899,11 +920,14 @@ static void CommTask_InitUndergroundServer(void)
     }
 }
 
+/**
+ * @brief Wait task for the server for underground play. Times out if no clients connect.
+ */
 static void CommTask_WaitUndergroundServer(void)
 {
     if (CommSys_IsClientConnecting()) {
         sCommMan->unk_4E = 1;
-        CommManager_SetTask(sub_02037094, 0);
+        CommManager_SetTask(CommTask_InitConnectUndergroundServer, 0);
         return;
     }
 
@@ -917,11 +941,14 @@ static void CommTask_WaitUndergroundServer(void)
     }
 
     if (sub_020336D4()) {
-        CommManager_SetTask(sub_02036FBC, 2);
+        CommManager_SetTask(CommTask_ResetUndergroundClient, 2);
     }
 }
 
-static void sub_02037094(void)
+/**
+ * @brief Initializes all server variables for underground play as a server.
+ */
+static void CommTask_InitConnectUndergroundServer(void)
 {
     CommSys_SetAlone(0);
     sub_02033EA8(1);
@@ -929,19 +956,28 @@ static void sub_02037094(void)
     CommManager_SetTask(CommTask_ConnectUndergroundServer, 0);
 }
 
+/**
+ * @brief State task to indicate the Communication Manager is connected as a server for underground play. Does nothing when called.
+ */
 static void CommTask_ConnectUndergroundServer(void)
 {
     return;
 }
 
+/**
+ * @brief State task to indicate the Communication Manager is connected as a client for underground play. Does nothing when called.
+ */
 static void CommTask_ConnectUndergroundClient(void)
 {
     return;
 }
 
+/**
+ * @brief Starts a secret base connection. Only one person is allowed in the secret base at a time.
+ */
 static void CommTask_StartSecretBase(void)
 {
-    if (!CommMan_IsConnectedToWifi()) {
+    if (!CommManager_IsConnectedToWifi()) {
         if (!sub_02033E30()) {
             return;
         }
@@ -954,6 +990,9 @@ static void CommTask_StartSecretBase(void)
     CommManager_SetTask(CommTask_None, 0);
 }
 
+/**
+ * @brief Restarts a secret base connection and the communication system
+ */
 static void CommTask_RestartSecretBase(void)
 {
     if (!sub_020336D4()) {
@@ -964,7 +1003,10 @@ static void CommTask_RestartSecretBase(void)
     CommManager_SetTask(CommTask_StartSecretBase, 0);
 }
 
-static void CommTask_StartWirelessClient(void)
+/**
+ * @brief Starts the Communication Manager for underground online play as a client
+ */
+static void CommTask_StartUndergroundWifiClient(void)
 {
     if (!WirelessDriver_IsReady()) {
         return;
@@ -975,6 +1017,9 @@ static void CommTask_StartWirelessClient(void)
     CommManager_SetTask(CommTask_ReinitUnderground, 0);
 }
 
+/**
+ * @brief Resets and reinitializes the communication manager for underground play
+ */
 static void CommTask_ResetUnderground(void)
 {
     if (!sub_020336D4()) {
@@ -984,6 +1029,9 @@ static void CommTask_ResetUnderground(void)
     CommManager_SetTask(CommTask_ReinitUnderground, 0);
 }
 
+/**
+ * @brief Initializes the communication manager for battles as a server
+ */
 static void CommTask_StartBattleServer(void)
 {
     if (!WirelessDriver_IsReady()) {
@@ -995,11 +1043,14 @@ static void CommTask_StartBattleServer(void)
 
     if (CommSys_InitServer(1, 1, 512, 1)) {
         CommSys_SwitchTransitionTypeToParallel();
-        CommManager_SetTask(sub_0203718C, 0);
+        CommManager_SetTask(CommTask_ConnectingBattleServer, 0);
     }
 }
 
-static void sub_0203718C(void)
+/**
+ * @brief Task that indicates the Communication Manager is connecting to a battle as a server
+ */
+static void CommTask_ConnectingBattleServer(void)
 {
     if (!CommSys_IsPlayerConnected(CommSys_CurNetId())) {
         return;
@@ -1008,6 +1059,9 @@ static void sub_0203718C(void)
     CommManager_SetTask(CommTask_WaitBattleServer, 0);
 }
 
+/**
+ * @brief Task that indicates the Communication Manager is waiting during battle as a server
+ */
 static void CommTask_WaitBattleServer(void)
 {
     if (!CommSys_IsInitialized()) {
@@ -1015,6 +1069,9 @@ static void CommTask_WaitBattleServer(void)
     }
 }
 
+/**
+ * @brief Initializes the Communication Manager and System as a client for battles
+ */
 static void CommTask_StartBattleClient(void)
 {
     if (!WirelessDriver_IsReady()) {
@@ -1026,28 +1083,37 @@ static void CommTask_StartBattleClient(void)
 
     if (CommSys_InitClient(1, 1, 512)) {
         CommSys_SwitchTransitionTypeToParallel();
-        CommManager_SetTask(sub_02037208, 0);
+        CommManager_SetTask(CommTask_ScanBattleClient, 0);
     }
 }
 
-static void sub_02037208(void)
+/**
+ * @brief Task that indicates the client is scanning for servers to connect to for battles
+ */
+static void CommTask_ScanBattleClient(void)
 {
     sub_02033A5C();
 }
 
+/**
+ * @brief Begins connecting the client for battles
+ */
 static void CommTask_ConnectBattleClient(void)
 {
     sub_02033A5C();
 
     if (sub_02034984(sCommMan->connectionID)) {
-        CommManager_SetTask(sub_02037238, 10);
+        CommManager_SetTask(CommTask_ConnectingBattleClient, 10);
     }
 }
 
-static void sub_02037238(void)
+/**
+ * @brief Task that indicates the Communication Manager is connecting to a battle as a client
+ */
+static void CommTask_ConnectingBattleClient(void)
 {
     if (CommSys_CheckError()) {
-        CommManager_SetTask(sub_02037270, 0);
+        CommManager_SetTask(CommTask_ResetBattleClient, 0);
     }
 
     if (CommSys_IsPlayerConnected(CommSys_CurNetId()) && (0 != CommSys_CurNetId())) {
@@ -1055,16 +1121,20 @@ static void sub_02037238(void)
     }
 }
 
-static void sub_02037270(void)
+/**
+ * @brief Resets the client's connection for battles
+ */
+static void CommTask_ResetBattleClient(void)
 {
     sub_020336D4();
-    CommManager_SetTask(sub_02037284, 2);
+    CommManager_SetTask(CommTask_ReconnectBattleClient, 2);
 }
 
-static void sub_02037284(void)
+/**
+ * @brief Task that indicates the Communication Manager is attempting to reconnect during battle as a client.
+ */
+static void CommTask_ReconnectBattleClient(void)
 {
-    TrainerInfo *v0;
-
     if (sCommMan->timer != 0) {
         sCommMan->timer--;
         return;
@@ -1080,6 +1150,9 @@ static void sub_02037284(void)
     }
 }
 
+/**
+ * @brief Task that indicates the Communication Manager is waiting during battle as a client
+ */
 static void CommTask_WaitBattleClient(void)
 {
     if (!CommSys_IsInitialized()) {
@@ -1087,13 +1160,19 @@ static void CommTask_WaitBattleClient(void)
     }
 }
 
-static void sub_020372DC(void)
+/**
+ * @brief Attempts to retry the connection for the battle client
+ */ 
+static void CommTask_RetryBattleClient(void)
 {
     sub_020336D4();
-    CommManager_SetTask(sub_020372F0, 2);
+    CommManager_SetTask(CommTask_ReinitBattleClient, 2);
 }
 
-static void sub_020372F0(void)
+/**
+ * @brief Task that indicates the Communication Manager is trying to reconnect during battle as a client, reinitializes the client if it fails
+ */
+static void CommTask_ReinitBattleClient(void)
 {
     if (sCommMan->timer != 0) {
         sCommMan->timer--;
@@ -1106,7 +1185,7 @@ static void sub_020372F0(void)
 
     if (CommSys_InitClient(0, 1, 512)) {
         CommSys_SwitchTransitionTypeToParallel();
-        CommManager_SetTask(sub_02037208, 10);
+        CommManager_SetTask(CommTask_ScanBattleClient, 10);
     }
 }
 
@@ -1138,7 +1217,10 @@ static void CommManager_EndConnectionUnderground(void)
     CommManager_SetTask(CommTask_EndConnection, 5);
 }
 
-static void sub_02037354(void)
+/**
+ * @brief Wait task to end the client's connection to the union
+ */
+static void CommTask_WaitEndConnectionUnionClient(void)
 {
     if (CommSys_ConnectedCount() <= 1) {
         WirelessManager_SetPauseConnectionSystem(0);
@@ -1156,7 +1238,10 @@ static void sub_02037354(void)
     CommManager_SetTask(CommTask_EndUnionClient, 0);
 }
 
-static void sub_0203739C(void)
+/**
+ * @brief Task to end the client's connection to the union, without wait
+ */
+static void CommTask_EndConnectionUnionClient(void)
 {
     if (!sub_020336D4()) {
         return;
@@ -1211,8 +1296,6 @@ static void CommTask_StartUnion(void)
  */
 static void CommTask_SearchUnionClient(void)
 {
-    int v0;
-
     sub_02033A5C();
 
     if (sCommMan->timer != 0) {
@@ -1227,6 +1310,9 @@ static void CommTask_SearchUnionClient(void)
     CommManager_SetTask(CommTask_InitializeServerUnion, 0);
 }
 
+/**
+ * @brief Ends the clients connection to the union. Reinitializes as a server if applicable.
+ */
 static void CommTask_EndUnionClient(void)
 {
     if (!sub_020336D4()) {
@@ -1250,14 +1336,17 @@ static void CommTask_InitializeServerUnion(void)
 
         CommSys_SwitchTransitionTypeToParallel();
         sCommMan->unk_4E = 0;
-        CommManager_SetTask(sub_020374F4, 10000);
+        CommManager_SetTask(CommTask_WaitUnionServer, 10000);
     }
 }
 
-static void sub_020374F4(void)
+/**
+ * @brief Wait task for the server's union connection
+ */
+static void CommTask_WaitUnionServer(void)
 {
     if (sub_02034148()) {
-        (void)0;
+        
     } else {
         if (CommSys_IsClientConnecting()) {
             sCommMan->unk_4E = 1;
@@ -1277,6 +1366,9 @@ static void sub_020374F4(void)
     }
 }
 
+/**
+ * @brief Restarts the communication manager and reinitializes it as a client for union play
+ */
 static void CommTask_RestartUnionClient(void)
 {
     u32 rand;
@@ -1292,16 +1384,22 @@ static void CommTask_RestartUnionClient(void)
     }
 }
 
-static void sub_020375A4(void)
+/**
+ * @brief Starts to force connects to the union. Part 1 waits for a potential internal swap between server and client.
+ */
+static void CommTask_StartForceConnectUnion1(void)
 {
     if (!sub_020336D4()) {
         return;
     }
 
-    CommManager_SetTask(sub_020375BC, 0);
+    CommManager_SetTask(CommTask_StartForceConnectUnion2, 0);
 }
 
-static void sub_020375BC(void)
+/**
+ * @brief Starts to force connects to the union. Part 2 initializes the Communication Manager as a client
+ */
+static void CommTask_StartForceConnectUnion2(void)
 {
     if (!sub_02033E30()) {
         return;
@@ -1309,15 +1407,18 @@ static void sub_020375BC(void)
 
     if (CommSys_InitClient(0, 0, 512)) {
         CommSys_SwitchTransitionTypeToParallel();
-        CommManager_SetTask(sub_020375E8, 100);
+        CommManager_SetTask(CommTask_ForceConnectUnion, 100);
     }
 }
 
-static void sub_020375E8(void)
+/**
+ * @brief Forces a connection to the union. If not possible, resets the communication manager as a client.
+ */
+static void CommTask_ForceConnectUnion(void)
 {
     if (sub_02033898(sCommMan->connectionID) != 0) {
         if (sub_02034984(sCommMan->connectionID)) {
-            CommManager_SetTask(sub_0203764C, 100);
+            CommManager_SetTask(CommTask_ConnectingUnionClient, 100);
             return;
         }
     }
@@ -1331,7 +1432,10 @@ static void sub_020375E8(void)
     }
 }
 
-static void sub_0203764C(void)
+/**
+ * @brief Task that indicates a client is connecting to the union. Resets on timeout or error.
+ */
+static void CommTask_ConnectingUnionClient(void)
 {
     if (CommSys_CheckError()) {
         CommManager_SetTask(CommTask_ResetUnionClient, 0);
@@ -1339,8 +1443,8 @@ static void sub_0203764C(void)
     }
 
     if (CommSys_IsPlayerConnected(CommSys_CurNetId())) {
-        sCommMan->unk_48 = 0;
-        CommManager_SetTask(sub_020376A8, 120);
+        sCommMan->unionConnectState = 0;
+        CommManager_SetTask(CommTask_ConnectUnionClient, 120);
         return;
     }
 
@@ -1352,26 +1456,29 @@ static void sub_0203764C(void)
     CommManager_SetTask(CommTask_ResetUnionClient, 0);
 }
 
-static void sub_020376A8(void)
+/**
+ * @brief Connects the client to the union server. Resets on error or timeout.
+ */
+static void CommTask_ConnectUnionClient(void)
 {
     if (CommSys_CheckError()) {
         CommManager_SetTask(CommTask_ResetUnionClient, 0);
         return;
     }
 
-    if (sCommMan->unk_48 == 2) {
+    if (sCommMan->unionConnectState == 2) {
         CommManager_SetTask(CommTask_FailedConnectUnionClient, 0);
         return;
     }
 
-    if (sCommMan->unk_48 == 1) {
+    if (sCommMan->unionConnectState == 1) {
         CommInfo_SendPlayerInfo();
         CommManager_SetTask(CommTask_SuccededConnectUnionClient, 0);
         return;
     }
 
     if (sCommMan->timer > (120 - 10)) {
-        CommSys_SendDataFixedSize(6, Unk_02100A20);
+        CommSys_SendDataFixedSize(6, sFreakConfirmationMessage);
     }
 
     if (sCommMan->timer != 0) {
@@ -1382,6 +1489,9 @@ static void sub_020376A8(void)
     CommManager_SetTask(CommTask_ResetUnionClient, 0);
 }
 
+/**
+ * @brief Task that indicates a client has sucessfully connected to the union. Monitors for errors and resets on error.
+ */
 static void CommTask_SuccededConnectUnionClient(void)
 {
     if (CommSys_CheckError()) {
@@ -1390,14 +1500,20 @@ static void CommTask_SuccededConnectUnionClient(void)
     }
 }
 
+/**
+ * @brief Task that indicates the client failed to connect to the union server. Does nothing when called.
+ */
 static void CommTask_FailedConnectUnionClient(void)
 {
     return;
 }
 
+/**
+ * @brief Resets the Communication Manager as a client for union play. Fails after retrying too many times.
+ */
 static void CommTask_ResetUnionClient(void)
 {
-    sCommMan->unk_48 = 0;
+    sCommMan->unionConnectState = 0;
 
     if (!sub_020336D4()) {
         return;
@@ -1405,16 +1521,19 @@ static void CommTask_ResetUnionClient(void)
 
     if (sCommMan->retryConnectionAttempts != 0) {
         sCommMan->retryConnectionAttempts--;
-        CommManager_SetTask(sub_020375BC, 0);
+        CommManager_SetTask(CommTask_StartForceConnectUnion2, 0);
     } else {
         CommManager_SetTask(CommTask_FailedConnectUnionClient, 0);
     }
 }
 
+/**
+ * @brief Connection task for the server for union play
+ */
 static void CommTask_ConnectUnionServer(void)
 {
     if (!CommSys_IsClientConnecting()) {
-        if (!sub_02038938()) {
+        if (!CommManager_CheckError()) {
             if (sub_020336D4()) {
                 CommManager_SetTask(CommTask_RestartUnionClient, 0);
             }
@@ -1426,13 +1545,16 @@ static void CommTask_ConnectUnionServer(void)
     }
 
     if (CommSys_CheckError()) {
-        if (!sub_02038938()) {
+        if (!CommManager_CheckError()) {
             CommManager_SetTask(CommTask_ResetUnionClient, 0);
             return;
         }
     }
 }
 
+/**
+ * @brief Task to indicate the connection is paused without causing errors. Reinitializes the connection when unpaused.
+ */
 static void CommTask_PauseUnionServer(void)
 {
     if (!sub_02033E30()) {
@@ -1445,39 +1567,55 @@ static void CommTask_PauseUnionServer(void)
     }
 }
 
+/**
+ * @brief Initializes the Communication Manager for the Drawing minigame in the union as a server
+ */
 void CommManager_StartDrawServer(void)
 {
     sCommMan->commType = COMM_TYPE_DRAW;
 
     if (CommSys_CurNetId() == 0) {
-        u8 v0 = 0;
-        CommSys_SendDataFixedSize(10, &v0);
+        u8 data = 0;
+        CommSys_SendDataFixedSize(10, &data);
     } else {
-        u8 v0 = 0;
-        CommSys_SendDataFixedSize(10, &v0);
+        u8 data = 0;
+        CommSys_SendDataFixedSize(10, &data);
     }
 }
 
-void CommManager_StartDrawClient(int param0)
+/**
+ * @brief Initializes the Communication Manager for the Drawing minigame in the union as a client
+ *
+ * @param connectionID
+ */
+void CommManager_StartDrawClient(int connectionID)
 {
-    sCommMan->connectionID = param0;
+    sCommMan->connectionID = connectionID;
     sCommMan->retryConnectionAttempts = 3;
     CommManager_SetTask(CommTask_StartDrawClient, 0);
 }
 
+/**
+ * @brief Sets the current commType to COMM_TYPE_MIX_RECORDS
+ */
 void CommManager_SetState_MixRecords(void)
 {
     sCommMan->commType = COMM_TYPE_MIX_RECORDS;
 }
 
-void CommManager_StartMixRecordsClient(int param0)
+/**
+ * @brief Initializes the Communication Manager to Mix Records as a client 
+ *
+ * @param connectionID
+ */
+void CommManager_StartMixRecordsClient(int connectionID)
 {
-    sCommMan->connectionID = param0;
+    sCommMan->connectionID = connectionID;
     sCommMan->commType = COMM_TYPE_MIX_RECORDS;
     sCommMan->retryConnectionAttempts = 3;
 
     NetworkIcon_Init();
-    CommManager_SetTask(sub_020375A4, 0);
+    CommManager_SetTask(CommTask_StartForceConnectUnion1, 0);
 }
 
 /**
@@ -1488,16 +1626,24 @@ void CommManager_SetState_SpinTrade(void)
     sCommMan->commType = COMM_TYPE_SPIN_TRADE;
 }
 
-void CommManager_StartSpinTradeClient(int param0)
+/**
+ * @brief Initializes the Communication Manager for Spin Trade as a client 
+ *
+ * @param connectionID
+ */
+void CommManager_StartSpinTradeClient(int connectionID)
 {
-    sCommMan->connectionID = param0;
+    sCommMan->connectionID = connectionID;
     sCommMan->commType = COMM_TYPE_SPIN_TRADE;
     sCommMan->retryConnectionAttempts = 3;
 
     NetworkIcon_Init();
-    CommManager_SetTask(sub_020375A4, 0);
+    CommManager_SetTask(CommTask_StartForceConnectUnion1, 0);
 }
 
+/**
+ * @brief Task to start the draw connection for clients
+ */
 static void CommTask_StartDrawClient(void)
 {
     if (sub_020336D4()) {
@@ -1505,6 +1651,9 @@ static void CommTask_StartDrawClient(void)
     }
 }
 
+/**
+ * @brief Task to initialize the Communication Manager for the union Draw minigame for clients
+ */
 static void CommTask_InitDrawClient(void)
 {
     if (!sub_02033E30()) {
@@ -1519,6 +1668,9 @@ static void CommTask_InitDrawClient(void)
     }
 }
 
+/**
+ * @brief Connects the Communication Manager to other players for the union Draw minigame.
+ */
 static void CommTask_ConnectDraw(void)
 {
     if (sub_02033898(sCommMan->connectionID) != 0) {
@@ -1541,6 +1693,9 @@ static void CommTask_ConnectDraw(void)
     }
 }
 
+/**
+ * @brief Task that indicates the Communication Manager is connecting to other players for the union Draw minigame
+ */
 static void CommTask_ConnectingDraw(void)
 {
     if (sCommMan->timer > 90) {
@@ -1579,98 +1734,132 @@ static void CommTask_ConnectingDraw(void)
     }
 }
 
-void sub_02037A78(int param0, int param1, void *param2, void *param3)
+/**
+ * @brief Validates a confirmation message that should be "FREAK" to ensure communication has been established. Sends a response with the user's netID based on the result
+ *
+ * @param netID
+ * @param unused_1
+ * @param confirmationMessage
+ * @param unused_3
+ */
+void CommManager_ValidateConfirmationMessage(int netID, int unused_1, void *msg, void *unused_3)
 {
-    int v0;
-    u8 *v1 = param2;
-    BOOL v2 = 1;
+    int i;
+    u8 *confirmation = msg;
+    BOOL success = 1;
 
     if (CommSys_CurNetId() != 0) {
         return;
     }
 
-    v2 = 1;
+    success = 1;
 
-    for (v0 = 0; v0 < sizeof(Unk_02100A20); v0++) {
-        if (v1[v0] != Unk_02100A20[v0]) {
-            v2 = 0;
+    for (i = 0; i < sizeof(sFreakConfirmationMessage); i++) {
+        if (confirmation[i] != sFreakConfirmationMessage[i]) {
+            success = 0;
             break;
         }
     }
 
-    if (v2 && (!sCommMan->pauseUnion)) {
-        Unk_02100A30[0] = param0;
-        CommSys_SendDataFixedSizeServer(7, Unk_02100A30);
+    if (success && (!sCommMan->pauseUnion)) {
+        sGameConfirmationMessage[0] = netID;
+        // "[netID]GAME" indicates a success
+        CommSys_SendDataFixedSizeServer(7, sGameConfirmationMessage);
         return;
     }
 
-    Unk_02100A28[0] = param0;
-    CommSys_SendDataFixedSizeServer(7, Unk_02100A28);
+    // "[netID]FULL" indicates a failure
+    sFullConfirmationMessage[0] = netID;
+    CommSys_SendDataFixedSizeServer(7, sFullConfirmationMessage);
 }
 
-void sub_02037AD8(int param0, int param1, void *param2, void *param3)
+/**
+ * @brief Validates a confirmation response message that should be "[netID]GAME" or "[netID]FULL" to ensure communication has been established. 
+ *
+ * @param unused_0
+ * @param unused_1
+ * @param confirmationMessage
+ * @param unused_3
+ */
+void CommManager_ValidateConfirmationResponseMessage(int unused_0, int unused_1, void *msg, void *unused_3)
 {
-    u8 v0;
-    int v1;
-    u8 *v2 = param2;
-    BOOL v3 = 1;
+    u8 netID;
+    int i;
+    u8 *response = msg;
+    BOOL noMismatch = 1;
 
-    for (v1 = 1; v1 < sizeof(Unk_02100A30); v1++) {
-        if (v2[v1] != Unk_02100A30[v1]) {
-            v3 = 0;
+    for (i = 1; i < sizeof(sGameConfirmationMessage); i++) {
+        if (response[i] != sGameConfirmationMessage[i]) {
+            noMismatch = 0;
             break;
         }
     }
 
-    if (v3) {
-        v0 = v2[0];
+    if (noMismatch) {
+        netID = response[0];
 
-        if (v0 == CommSys_CurNetId()) {
-            sCommMan->unk_48 = 1;
+        if (netID == CommSys_CurNetId()) {
+            sCommMan->unionConnectState = 1;
         }
 
         return;
     }
 
-    v3 = 1;
+    noMismatch = 1;
 
-    for (v1 = 1; v1 < sizeof(Unk_02100A28); v1++) {
-        if (v2[v1] != Unk_02100A28[v1]) {
-            v3 = 0;
+    for (i = 1; i < sizeof(sFullConfirmationMessage); i++) {
+        if (response[i] != sFullConfirmationMessage[i]) {
+            noMismatch = 0;
             break;
         }
     }
 
-    if (v3) {
-        v0 = v2[0];
+    if (noMismatch) {
+        netID = response[0];
 
-        if (v0 == (u8)CommSys_CurNetId()) {
-            sCommMan->unk_48 = 2;
+        if (netID == (u8)CommSys_CurNetId()) {
+            sCommMan->unionConnectState = 2;
         }
 
         return;
     }
 }
 
-int sub_02037B54(void)
+/**
+ * @brief Gets the size of the confirmation messages used to validate connections
+ *
+ * @return sizeof(sFreakConfirmationMessage)
+ */
+int CommManager_ConfirmationMessage_sizeof(void)
 {
-    return sizeof(Unk_02100A20);
+    return sizeof(sFreakConfirmationMessage);
 }
 
-void CommManager_SetMaxNumConnections(int param0)
+/**
+ * @brief Sets the max number of connections allowed by the Communication Manager
+ *
+ * @param maxNumConnection
+ */
+void CommManager_SetMaxNumConnections(int maxNumConnection)
 {
     if (sCommMan) {
-        sCommMan->maxNumConnection = param0;
-        WirelessManager_SetMaxNumConnections(param0);
+        sCommMan->maxNumConnection = maxNumConnection;
+        WirelessManager_SetMaxNumConnections(maxNumConnection);
     }
 }
 
-static void sub_02037B70(void)
+/**
+ * @brief Scans for other connections for the Poketch Link Search feature
+ */
+static void CommTask_ScanPoketch(void)
 {
     sub_02033A5C();
 }
 
-static void sub_02037B78(void)
+/**
+ * @brief Starts the connection for the Poketch Link Search feature as as client
+ */
+static void CommTask_StartPoketchClient(void)
 {
     if (!WirelessDriver_IsReady()) {
         return;
@@ -1681,11 +1870,16 @@ static void sub_02037B78(void)
 
     if (CommSys_InitClient(1, 1, 32)) {
         CommSys_SwitchTransitionTypeToParallel();
-        CommManager_SetTask(sub_02037B70, 0);
+        CommManager_SetTask(CommTask_ScanPoketch, 0);
     }
 }
 
-void sub_02037BC0(SaveData *saveData)
+/**
+ * @brief Initializes the Communication Manager for the Link Search poketch app. Always initializes as a client.
+ *
+ * @param saveData
+ */
+void CommManager_InitializePoketchLinkSearch(SaveData *saveData)
 {
     if (CommSys_IsInitialized()) {
         return;
@@ -1696,10 +1890,13 @@ void sub_02037BC0(SaveData *saveData)
 
     sCommMan->contestRegulation = 0;
 
-    CommManager_SetTask(sub_02037B78, 0);
+    CommManager_SetTask(CommTask_StartPoketchClient, 0);
 }
 
-void sub_02037BFC(void)
+/**
+ * @brief Ends the connection used by the Poketch Link Search app
+ */
+void CommManager_EndPoketchLinkSearch(void)
 {
     if (sCommMan == NULL) {
         return;
@@ -1708,32 +1905,43 @@ void sub_02037BFC(void)
     CommManager_SetTask(CommTask_EndConnection, 5);
 }
 
-BOOL sub_02037C18(void)
+/**
+ * @brief Checks if the communication manager is in a poketch search state
+ *
+ * @return TRUE if the current task is CommTask_ScanPoketch
+ */
+BOOL CommManager_IsPoketchSearching(void)
 {
-    int v0;
-    u32 v1[] = {
-        (u32)sub_02037B70, 0
+    int i;
+    u32 tasks[] = {
+        (u32)CommTask_ScanPoketch, 0
     };
-    u32 v2 = (u32)sCommMan->task;
+    u32 task = (u32)sCommMan->task;
 
     if (sCommMan == NULL) {
-        return 0;
+        return FALSE;
     }
 
-    for (v0 = 0; v1[v0] != 0; v0++) {
-        if (v2 == v1[v0]) {
-            return 1;
+    for (i = 0; tasks[i] != 0; i++) {
+        if (task == tasks[i]) {
+            return TRUE;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
-static void sub_02037C5C(u32 param0, int param1)
+/**
+ * @brief Callback used by WirelessManager_SetGGIDScanCallback
+ *
+ * @param ggid
+ * @param commType
+ */
+static void CommManager_GGIDScanCallback(u32 ggid, int commType)
 {
-    switch (param0) {
+    switch (ggid) {
     case 0x333:
-        if (param1 == 15) {
+        if (commType == COMM_TYPE_MYSTERY_GIFT) {
             sCommMan->unk_54 |= 0x1;
         }
         break;
@@ -1749,15 +1957,21 @@ static void sub_02037C5C(u32 param0, int param1)
     }
 }
 
-static void sub_02037CE4(void)
+/**
+ * @brief Initializes the communication system for the party search and switches to the scan mode used by the poketch
+ */
+static void CommTask_SearchPartyClient(void)
 {
     if (CommSys_InitClient(1, 1, 32)) {
         CommSys_SwitchTransitionTypeToParallel();
-        CommManager_SetTask(sub_02037B70, 0);
+        CommManager_SetTask(CommTask_ScanPoketch, 0);
     }
 }
 
-static void sub_02037D08(void)
+/**
+ * @brief Task to initialize the party search as a client
+ */
+static void CommTask_InitSearchPartyClient(void)
 {
     if (!WirelessDriver_IsReady()) {
         return;
@@ -1765,11 +1979,16 @@ static void sub_02037D08(void)
 
     CommServerClient_Init(sCommMan->trainerInfo, 0);
     CommInfo_Init(sCommMan->saveData, NULL);
-    WirelessManager_SetGGIDScanCallback(sub_02037C5C);
-    CommManager_SetTask(sub_02037CE4, 0);
+    WirelessManager_SetGGIDScanCallback(CommManager_GGIDScanCallback);
+    CommManager_SetTask(CommTask_SearchPartyClient, 0);
 }
 
-void sub_02037D48(SaveData *saveData)
+/**
+ * @brief Initializes the Communication Manager to search for a party to join
+ *
+ * @param saveData
+ */
+void CommManager_InitializeSearchParty(SaveData *saveData)
 {
     if (CommSys_IsInitialized()) {
         return;
@@ -1778,10 +1997,13 @@ void sub_02037D48(SaveData *saveData)
     Heap_CreateAtEnd(HEAP_ID_APPLICATION, HEAP_ID_COMMUNICATION, 0x7000);
     CommManager_Initialize(saveData, COMM_TYPE_PARTY);
     sCommMan->contestRegulation = 0;
-    CommManager_SetTask(sub_02037D08, 0);
+    CommManager_SetTask(CommTask_InitSearchPartyClient, 0);
 }
 
-void sub_02037D84(void)
+/**
+ * @brief Ends the party searc communication
+ */
+void CommManager_EndSearchParty(void)
 {
     if (sCommMan == NULL) {
         return;
@@ -1790,35 +2012,48 @@ void sub_02037D84(void)
     CommManager_SetTask(CommTask_EndConnection, 5);
 }
 
-u8 sub_02037DA0(void)
+/**
+ * @brief Gets the Communication Manager's unk_54
+ *
+ * @return sCommMan->unk_54
+ */
+u8 CommManager_GetUnk54(void)
 {
     return sCommMan->unk_54;
 }
 
-BOOL sub_02037DB0(void)
+/**
+ * @brief Shuts down or resets the Communication Manager, depending on commType
+ *
+ * @return TRUE if the CommManager shut down, FALSE if it reset
+ */
+BOOL CommManager_ExitOrReset(void)
 {
     CommSys_StartShutdown();
 
     if (sCommMan == NULL) {
-        return 1;
+        return TRUE;
     }
 
     if ((sCommMan->commType == COMM_TYPE_24) || (sCommMan->commType == COMM_TYPE_25) || (sCommMan->commType == COMM_TYPE_EMAIL_WIFI)) {
         NintendoWFC_Stop();
-        return 1;
-    } else if (CommMan_IsConnectedToWifi()) {
+        return TRUE;
+    } else if (CommManager_IsConnectedToWifi()) {
         if (sCommMan->commType == COMM_TYPE_LOBBY_WIFI) {
             CommManager_SetTask(CommTask_LogoutWifiLobby, 0);
         } else {
-            CommManager_SetTask(sub_02038314, 0);
+            CommManager_SetTask(CommTask_LogoutWifi, 0);
         }
     } else {
         CommManager_SetTask(CommTask_RestartSecretBase, 0);
     }
 
-    return 0;
+    return FALSE;
 }
 
+/**
+ * @brief Task to initialize the connection to a random battle as a server
+ */
 static void CommTask_StartRandomBattleServer(void)
 {
     if (!WirelessDriver_IsReady()) {
@@ -1830,11 +2065,14 @@ static void CommTask_StartRandomBattleServer(void)
 
     if (CommSys_InitServer(1, 1, 512, 1)) {
         CommSys_SwitchTransitionTypeToParallel();
-        CommManager_SetTask(sub_0203718C, 0);
+        CommManager_SetTask(CommTask_ConnectingBattleServer, 0);
     }
 }
 
-static void CommTask_StartMysteryGiftClient(void)
+/**
+ * @brief Task to initialize the connection to a random battle as a client
+ */
+static void CommTask_StartRandomBattleClient(void)
 {
     if (!WirelessDriver_IsReady()) {
         return;
@@ -1845,57 +2083,70 @@ static void CommTask_StartMysteryGiftClient(void)
 
     if (CommSys_InitClient(1, 1, 512)) {
         CommSys_SwitchTransitionTypeToParallel();
-        CommManager_SetTask(sub_02037208, 0);
+        CommManager_SetTask(CommTask_ScanBattleClient, 0);
     }
 }
 
+/**
+ * @brief Task that indicates there was an error during a wifi battle. Does nothing when called.
+ */
 static void CommTask_WifiBattleError(void)
 {
     return;
 }
 
-static void sub_02037EB4(void)
+/**
+ * @brief Task that indicates there was an timeout during a wifi battle. 
+ */
+static void CommTask_WifiBattleTimeout(void)
 {
-    int v0 = NintendoWFC_Process(0);
+    int ret = NintendoWFC_Process(0);
 
-    if (v0 < 0) {
+    if (ret < 0) {
         CommManager_SetTask(CommTask_WifiBattleError, 0);
-    } else if (v0 == ((DWC_ERROR_NUM) + 3)) {
-        (void)0;
-    }
+    } 
 }
 
+/**
+ * @brief Task that indicates there was a disconnect during a wifi battle. 
+ */
 static void CommTask_DisconnectWifiBattle(void)
 {
     return;
 }
 
+/**
+ * @brief Task that indicates there was a failure during a wifi battle. 
+ */
 static void CommTask_WifiBattleFailed(void)
 {
     return;
 }
 
-static void sub_02037ED8(void)
+/**
+ * @brief Task that establishes a connection for the wifi battle
+ */
+static void CommTask_ConnectWifiBattle(void)
 {
-    int v0, v1;
+    int ret;
 
     CommSys_SetWifiConnected(1);
 
-    v0 = NintendoWFC_Process(0);
+    ret = NintendoWFC_Process(0);
 
-    if ((v0 >= DWC_ERROR_FRIENDS_SHORTAGE) && ((DWC_ERROR_NUM) > v0)) {
+    if ((ret >= DWC_ERROR_FRIENDS_SHORTAGE) && ((DWC_ERROR_NUM) > ret)) {
         CommManager_SetTask(CommTask_WifiBattleFailed, 0);
-    } else if (v0 < 0) {
+    } else if (ret < 0) {
         CommManager_SetTask(CommTask_WifiBattleError, 0);
-    } else if (v0 == ((DWC_ERROR_NUM) + 3)) {
-        CommManager_SetTask(sub_02037EB4, 0);
-    } else if (v0 == ((DWC_ERROR_NUM) + 4)) {
+    } else if (ret == ((DWC_ERROR_NUM) + 3)) {
+        CommManager_SetTask(CommTask_WifiBattleTimeout, 0);
+    } else if (ret == ((DWC_ERROR_NUM) + 4)) {
         if (sCommMan->errorDisconnect) {
             CommManager_SetTask(CommTask_WifiBattleError, 0);
         } else {
             CommManager_SetTask(CommTask_DisconnectWifiBattle, 0);
         }
-    } else if (v0 == ((DWC_ERROR_NUM) + 1)) {
+    } else if (ret == ((DWC_ERROR_NUM) + 1)) {
         if (sCommMan->errorDisconnect) {
             CommManager_SetTask(CommTask_WifiBattleError, 0);
         } else {
@@ -1910,56 +2161,69 @@ static void sub_02037ED8(void)
     }
 }
 
-void sub_02037F94(int param0, int param1, int param2)
+/**
+ * @brief Sets sCommMan->unk34 struct with the given variables
+ *
+ * @param errorCode
+ * @param errorType
+ * @param error
+ */
+void CommManager_SetUnk34(int errorCode, int errorType, int error)
 {
-    int v0;
+    int correctedCode;
 
     if (sCommMan) {
-        if ((param0 == ((DWC_ERROR_NUM) + 6)) || (param0 == ((DWC_ERROR_NUM) + 5))) {
-            v0 = param0;
+        if ((errorCode == ((DWC_ERROR_NUM) + 6)) || (errorCode == ((DWC_ERROR_NUM) + 5))) {
+            correctedCode = errorCode;
         } else {
-            v0 = -param0;
+            correctedCode = -errorCode;
         }
 
-        sCommMan->unk_34.unk_00 = v0;
-        sCommMan->unk_34.unk_04 = param1;
-        sCommMan->unk_34.unk_08 = param2;
+        sCommMan->unk_34.unk_00 = correctedCode;
+        sCommMan->unk_34.unk_04 = errorType;
+        sCommMan->unk_34.unk_08 = error;
     }
 }
 
-static void sub_02037FBC(void)
+/**
+ * @brief Processes the matchmaking result from the internal libraries for battles
+ */
+static void CommTask_WifiBattleMatchmaking(void)
 {
-    int v0 = NintendoWFC_Process(0);
+    int ret = NintendoWFC_Process(0);
 
-    if ((v0 >= DWC_ERROR_FRIENDS_SHORTAGE) && ((DWC_ERROR_NUM) > v0)) {
+    if ((ret >= DWC_ERROR_FRIENDS_SHORTAGE) && ((DWC_ERROR_NUM) > ret)) {
         CommManager_SetTask(CommTask_WifiBattleFailed, 0);
-    } else if (v0 < 0) {
+    } else if (ret < 0) {
         CommManager_SetTask(CommTask_WifiBattleError, 0);
-    } else if (v0 == NINTENDO_WFC_RESULT_MATCHMAKING_SUCCESS) {
-        CommManager_SetTask(sub_02037ED8, 0);
-    } else if (v0 == NINTENDO_WFC_RESULT_CONN_RESET) {
+    } else if (ret == NINTENDO_WFC_RESULT_MATCHMAKING_SUCCESS) {
+        CommManager_SetTask(CommTask_ConnectWifiBattle, 0);
+    } else if (ret == NINTENDO_WFC_RESULT_CONN_RESET) {
         CommManager_SetTask(CommTask_DisconnectWifiBattle, 0);
-    } else if (v0 == NINTENDO_WFC_RESULT_CONN_RESET_AFTER_HOST_LEFT) {
+    } else if (ret == NINTENDO_WFC_RESULT_CONN_RESET_AFTER_HOST_LEFT) {
         CommManager_SetTask(CommTask_WifiBattleFailed, 0);
-    } else if (v0 == NINTENDO_WFC_RESULT_CONNECTION_CLOSED) {
+    } else if (ret == NINTENDO_WFC_RESULT_CONNECTION_CLOSED) {
         CommManager_SetTask(CommTask_DisconnectWifiBattle, 0);
     }
 }
 
-static void sub_0203802C(void)
+/**
+ * @brief Cancels the wifi battle connection
+ */
+static void CommTask_CancelWifiBattle(void)
 {
-    int v0 = NintendoWFC_Process(1);
+    int ret = NintendoWFC_Process(1);
 
-    if (v0 < 0) {
+    if (ret < 0) {
         CommManager_SetTask(CommTask_WifiBattleError, 0);
     } else {
-        int v1 = NintendoWFC_StartConnectionWithFriends(sCommMan->unk_4D, CommLocal_MaxMachines(sCommMan->commType) + 1, 0);
+        int result = NintendoWFC_StartConnectionWithFriends(sCommMan->wifiTarget, CommLocal_MaxMachines(sCommMan->commType) + 1, 0);
 
-        switch (v1) {
+        switch (result) {
         case 0:
             CommSys_Reset();
 
-            CommManager_SetTask(sub_02037FBC, 0);
+            CommManager_SetTask(CommTask_WifiBattleMatchmaking, 0);
             break;
         case -1:
         case -2:
@@ -1971,29 +2235,41 @@ static void sub_0203802C(void)
     }
 }
 
-int sub_020380A0(int param0)
+/**
+ * @brief Starts the Wifi Battle connection
+ *
+ * @param target
+ *
+ * @return FALSE if the Communication Manager is still matchmaking, TRUE on success
+ */
+int CommManager_StartWifiBattle(int target)
 {
-    if (sCommMan->task != sub_02037FBC) {
-        return 0;
+    if (sCommMan->task != CommTask_WifiBattleMatchmaking) {
+        return FALSE;
     }
 
     NintendoDWC_SetDataTransferCallbacks(sub_020351F8, sub_0203509C);
-    sCommMan->unk_4D = param0;
-    CommManager_SetTask(sub_0203802C, 0);
-    return 1;
+    sCommMan->wifiTarget = target;
+    CommManager_SetTask(CommTask_CancelWifiBattle, 0);
+    return TRUE;
 }
 
-int sub_020380E4(void)
+/**
+ * @brief Checks if the Communication Manager is in a battle matchmaking state and gets the result
+ *
+ * return 0 - matchmaking, 1 connecting, 2 - default, 3 - timeout, 4 - disconnect, 5 - failed
+ */
+int CommManager_GetMatchmakingState(void)
 {
-    if (sCommMan->task == sub_02037FBC) {
+    if (sCommMan->task == CommTask_WifiBattleMatchmaking) {
         return 0;
     }
 
-    if (sCommMan->task == sub_02037ED8) {
+    if (sCommMan->task == CommTask_ConnectWifiBattle) {
         return 1;
     }
 
-    if (sCommMan->task == sub_02037EB4) {
+    if (sCommMan->task == CommTask_WifiBattleTimeout) {
         return 3;
     }
 
@@ -2020,20 +2296,23 @@ int sub_020380E4(void)
     return 2;
 }
 
-static void sub_02038164(void)
+/**
+ * @brief Logs in to the wifi, sets data transfer callbacks, and prrocesses errors during battle
+ */
+static void CommTask_WifiBattleLogin(void)
 {
-    int v0;
-    int v1;
+    int ret;
+    int errorRet;
 
     NintendoDWC_SetDataTransferCallbacks(sub_020351F8, sub_0203509C);
 
-    v0 = NintendoWFC_StartConnectionWithFriends(-1, 4, 1);
+    ret = NintendoWFC_StartConnectionWithFriends(-1, 4, 1);
 
-    switch (v0) {
+    switch (ret) {
     case 0:
-        sCommMan->unk_58 = 0;
+        sCommMan->disconnectedWifi = 0;
         CommSys_Reset();
-        CommManager_SetTask(sub_02037FBC, 0);
+        CommManager_SetTask(CommTask_WifiBattleMatchmaking, 0);
         break;
     case -1:
     case -2:
@@ -2045,18 +2324,21 @@ static void sub_02038164(void)
         return;
     }
 
-    v1 = NintendoWFC_HandleError();
+    errorRet = NintendoWFC_HandleError();
 
-    if (v1 < 0) {
+    if (errorRet < 0) {
         CommManager_SetTask(CommTask_WifiBattleError, 0);
-    } else if (v1 == ((DWC_ERROR_NUM) + 6)) {
+    } else if (errorRet == ((DWC_ERROR_NUM) + 6)) {
         CommManager_SetTask(CommTask_WifiBattleError, 0);
     }
 }
 
-static void sub_020381F0(void)
+/**
+ * @brief Wifi matchmaking end task
+ */
+static void CommTask_EndMatchmakingWifi(void)
 {
-    int v0;
+    int ret;
 
     CommSys_SetWifiConnected(0);
 
@@ -2064,79 +2346,105 @@ static void sub_020381F0(void)
         if (NintendoWFC_ReturnToReadyState()) {
             CommInfo_Delete();
 
-            CommManager_SetTask(sub_02038164, 0);
+            CommManager_SetTask(CommTask_WifiBattleLogin, 0);
             return;
         }
     }
 
-    v0 = NintendoWFC_Process(0);
+    ret = NintendoWFC_Process(0);
 
-    if (v0 < 0) {
+    if (ret < 0) {
         CommManager_SetTask(CommTask_WifiBattleError, 0);
     }
 }
 
-void sub_02038240(int param0, int param1, void *param2, void *param3)
+/**
+ * @brief Ends wifi matchmaking and sets the disconnected from wifi flag. Params unused
+ */
+void CommManager_DisconnectWifi(int param0, int param1, void *param2, void *param3)
 {
     if (CommSys_CurNetId() == 0) {
         sCommMan->unk_4C = 0;
-        CommManager_SetTask(sub_020381F0, 0);
+        CommManager_SetTask(CommTask_EndMatchmakingWifi, 0);
     } else {
         sCommMan->unk_4C = 1;
-        CommManager_SetTask(sub_020381F0, 0);
+        CommManager_SetTask(CommTask_EndMatchmakingWifi, 0);
     }
 
-    sCommMan->unk_58 = 1;
+    sCommMan->disconnectedWifi = TRUE;
 }
 
-BOOL sub_02038284(void)
+/**
+ * @brief Gets the wifi disconnected flag
+ *
+ * @return sCommMan->disconnectedWifi
+ */
+BOOL CommManager_GetDisconnectedWifi(void)
 {
-    return sCommMan->unk_58;
+    return sCommMan->disconnectedWifi;
 }
 
-BOOL sub_02038294(void)
+/**
+ * @brief Checks if the current task is loging in to the wifi battle
+ *
+ * @return TRUE if task is CommTask_WifiBattleLogin, or CommTask_ConnectWifiLobby
+ */
+BOOL CommManager_IsLoginBattleWifi(void)
 {
-    u32 v0 = (u32)sCommMan->task;
+    u32 task = (u32)sCommMan->task;
 
-    if (v0 == (u32)sub_02038164) {
+    if (task == (u32)CommTask_WifiBattleLogin) {
         return 1;
     }
 
-    if (v0 == (u32)CommTask_ConnectWifiLobby) {
+    if (task == (u32)CommTask_ConnectWifiLobby) {
         return 1;
     }
 
     return 0;
 }
 
-BOOL sub_020382C0(void)
+/**
+ * @brief Checks if the current task is loging in to the wifi battle matchmaking
+ *
+ * @return TRUE if task is CommTask_WifiBattleMatchmaking, CommTask_WifiBattleLogin, or CommTask_ConnectWifiLobby
+ */
+BOOL CommManager_IsLoginBattleMatchWifi(void)
 {
-    u32 v0 = (u32)sCommMan->task;
+    u32 task = (u32)sCommMan->task;
 
-    if (v0 == (u32)sub_02037FBC) {
+    if (task == (u32)CommTask_WifiBattleMatchmaking) {
         return 1;
     }
 
-    if (v0 == (u32)sub_02038164) {
+    if (task == (u32)CommTask_WifiBattleLogin) {
         return 1;
     }
 
-    if (v0 == (u32)CommTask_ConnectWifiLobby) {
+    if (task == (u32)CommTask_ConnectWifiLobby) {
         return 1;
     }
 
     return 0;
 }
 
-UnkStruct_ov65_0222F6EC *sub_020382F8(void)
+/**
+ * @brief Gets sCommMan->unk_34. Related to wifi errors.
+ *
+ * @return &sCommMan->unk_34
+ */
+UnkStruct_ov65_0222F6EC *CommManager_GetUnk34(void)
 {
     GF_ASSERT(sCommMan);
     return &sCommMan->unk_34;
 }
 
-static void sub_02038314(void)
+/**
+ * @brief Wifi logout task. Handles errors and ends the connection.
+ */
+static void CommTask_LogoutWifi(void)
 {
-    int v0;
+    int ret;
 
     CommSys_SetWifiConnected(0);
 
@@ -2145,14 +2453,17 @@ static void sub_02038314(void)
         CommManager_SetTask(CommTask_EndConnection, 0);
     }
 
-    v0 = NintendoWFC_Process(0);
+    ret = NintendoWFC_Process(0);
 
-    if (v0 < 0) {
+    if (ret < 0) {
         CommManager_SetTask(CommTask_WifiBattleError, 0);
     }
 }
 
-void sub_02038350(void)
+/**
+ * @brief Logs out of wifi and ends the connection
+ */
+void CommManager_LogoutWifi(void)
 {
     if (sCommMan == NULL) {
         return;
@@ -2163,23 +2474,29 @@ void sub_02038350(void)
     CommManager_SetTask(CommTask_EndConnection, 5);
 }
 
-void sub_02038378(void)
+/**
+ * @brief Ends wifi matchmaking 
+ */
+void CommManager_EndWifiMatch(void)
 {
     if (sCommMan == NULL) {
         return;
     }
 
     sCommMan->unk_4C = 0;
-    CommManager_SetTask(sub_020381F0, 0);
+    CommManager_SetTask(CommTask_EndMatchmakingWifi, 0);
 }
 
-void sub_02038398(void)
+/**
+ * @brief Ends trade wifi matchmaking and sets error handling
+ */
+void CommManager_EndTradeWifiMatch(void)
 {
     if (sCommMan == NULL) {
         return;
     }
 
-    CommMan_SetErrorHandling(0, 1);
+    CommManager_SetErrorHandling(0, 1);
 
     if (CommSys_CurNetId() == 0) {
         sCommMan->unk_4C = 0;
@@ -2187,148 +2504,184 @@ void sub_02038398(void)
         sCommMan->unk_4C = 1;
     }
 
-    CommManager_SetTask(sub_020381F0, 0);
+    CommManager_SetTask(CommTask_EndMatchmakingWifi, 0);
 }
 
-void sub_020383D4(void)
+/**
+ * @brief Ends battle wifi matchmaking and sends the exit wifi message
+ */
+void CommManager_EndBattleWifiMatch(void)
 {
-    u8 v0 = CommSys_CurNetId();
+    u8 netID = CommSys_CurNetId();
 
-    CommSys_SendDataFixedSize(21, &v0);
+    CommSys_SendDataFixedSize(21, &netID);
 }
 
-BOOL sub_020383E8(void)
+/**
+ * @brief Checks if the Communication Manager is in a wifi error task
+ *
+ * @return TRUE if task is CommTask_WifiBattleError, CommTask_WifiBattleTimeout, or CommTask_WifiLobbyTimeout
+ */
+BOOL CommManager_CheckWifiError(void)
 {
     if (sCommMan) {
-        u32 v0 = (u32)sCommMan->task;
+        u32 task = (u32)sCommMan->task;
 
-        if (v0 == (u32)CommTask_WifiBattleError) {
-            return 1;
+        if (task == (u32)CommTask_WifiBattleError) {
+            return TRUE;
         }
 
-        if ((v0 == (u32)sub_02037EB4) && sCommMan->errorDisconnect) {
-            return 1;
+        if ((task == (u32)CommTask_WifiBattleTimeout) && sCommMan->errorDisconnect) {
+            return TRUE;
         }
 
-        if ((v0 == (u32)CommTask_WifiLobbyTimeout) && sCommMan->errorDisconnect) {
-            return 1;
+        if ((task == (u32)CommTask_WifiLobbyTimeout) && sCommMan->errorDisconnect) {
+            return TRUE;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
-void sub_02038438(SaveData *saveData)
+/**
+ * @brief Initializes the Communication Manager for the GTS and Global Matchmaking
+ *
+ * @param saveData
+ */
+void CommManager_InitializeGlobalWifi(SaveData *saveData)
 {
     if (!sCommMan) {
         Heap_CreateAtEnd(HEAP_ID_APPLICATION, HEAP_ID_COMMUNICATION, 0x100);
         sCommMan = (CommunicationManager *)Heap_Alloc(HEAP_ID_COMMUNICATION, sizeof(CommunicationManager));
         MI_CpuFill8(sCommMan, 0, sizeof(CommunicationManager));
         sCommMan->commType = COMM_TYPE_24;
-        sCommMan->unk_51 = 1;
+        sCommMan->globalWifi = 1;
         sCommMan->saveData = saveData;
-        CommMan_SetErrorHandling(0, 1);
+        CommManager_SetErrorHandling(0, 1);
         ResetLock(RESET_LOCK_0x1);
     }
 }
 
-void sub_0203848C(void)
+/**
+ * @brief Ends the Communication Manager for the GTS and Global Matchmaking
+ */
+void CommManager_EndGlobalWifi(void)
 {
     if (sCommMan) {
         ResetUnlock(RESET_LOCK_0x1);
-        CommMan_SetErrorHandling(0, 0);
+        CommManager_SetErrorHandling(0, 0);
         Heap_Free(sCommMan);
         sCommMan = NULL;
         Heap_Destroy(HEAP_ID_COMMUNICATION);
     }
 }
 
-void sub_020384C0(SaveData *saveData)
+/**
+ * @brief Starts the mystery gift wifi connection
+ */
+void CommManager_StartMysteryGiftWifi(SaveData *saveData)
 {
     if (!sCommMan) {
         Heap_CreateAtEnd(HEAP_ID_APPLICATION, HEAP_ID_COMMUNICATION, 0x100);
         sCommMan = (CommunicationManager *)Heap_Alloc(HEAP_ID_COMMUNICATION, sizeof(CommunicationManager));
         MI_CpuFill8(sCommMan, 0, sizeof(CommunicationManager));
         sCommMan->commType = COMM_TYPE_25;
-        sCommMan->unk_51 = 1;
+        sCommMan->globalWifi = 1;
         sCommMan->saveData = saveData;
-        CommMan_SetErrorHandling(0, 1);
+        CommManager_SetErrorHandling(0, 1);
         ResetLock(RESET_LOCK_0x1);
     }
 }
 
-void sub_02038514(void)
+/**
+ * @brief Ends the mystery gift wifi connection
+ */
+void CommManager_EndMysteryGiftWifi(void)
 {
     if (sCommMan) {
         ResetUnlock(RESET_LOCK_0x1);
-        CommMan_SetErrorHandling(0, 0);
+        CommManager_SetErrorHandling(0, 0);
         Heap_Free(sCommMan);
         sCommMan = NULL;
         Heap_Destroy(HEAP_ID_COMMUNICATION);
     }
 }
 
-void sub_02038548(SaveData *saveData)
+/**
+ * @brief Starts the mail wifi connection
+ */
+void CommManager_StartWifiMail(SaveData *saveData)
 {
     if (!sCommMan) {
         Heap_CreateAtEnd(HEAP_ID_APPLICATION, HEAP_ID_COMMUNICATION, 0x100);
         sCommMan = (CommunicationManager *)Heap_Alloc(HEAP_ID_COMMUNICATION, sizeof(CommunicationManager));
         MI_CpuFill8(sCommMan, 0, sizeof(CommunicationManager));
         sCommMan->commType = COMM_TYPE_EMAIL_WIFI;
-        sCommMan->unk_51 = 1;
+        sCommMan->globalWifi = 1;
         sCommMan->saveData = saveData;
-        CommMan_SetErrorHandling(0, 1);
+        CommManager_SetErrorHandling(0, 1);
         ResetLock(RESET_LOCK_0x1);
     }
 }
 
-void sub_0203859C(void)
+/**
+ * @brief Ends the mail wifi connection
+ */
+void CommManager_EndWifiMail(void)
 {
     if (sCommMan) {
         ResetUnlock(RESET_LOCK_0x1);
-        CommMan_SetErrorHandling(0, 0);
+        CommManager_SetErrorHandling(0, 0);
         Heap_Free(sCommMan);
         sCommMan = NULL;
         Heap_Destroy(HEAP_ID_COMMUNICATION);
     }
 }
 
-BOOL sub_020385D0(void)
+/**
+ * @brief Checks if there is a DWC error. Only applicable to certain wifi comm types (24, 25, email)
+ *
+ * @return TRUE if there is a DWC error, FALSE otherwise
+ */
+BOOL CommManager_GetDWCError(void)
 {
-    int v0, v1;
-    DWCErrorType v2;
+    int errorCode, ret;
+    DWCErrorType dwcError;
 
     if (!sCommMan) {
-        return 0;
+        return FALSE;
     }
 
     if ((sCommMan->commType == COMM_TYPE_24) || (sCommMan->commType == COMM_TYPE_EMAIL_WIFI)) {
-        v1 = DWC_GetLastErrorEx(&v0, &v2);
+        ret = DWC_GetLastErrorEx(&errorCode, &dwcError);
 
-        if (v1 != 0) {
+        if (ret != 0) {
             DWC_ClearError();
-            return 1;
+            return TRUE;
         }
     } else if (sCommMan->commType == COMM_TYPE_25) {
-        v1 = DWC_GetLastErrorEx(&v0, &v2);
+        ret = DWC_GetLastErrorEx(&errorCode, &dwcError);
 
-        if (v1 != 0) {
-            if (v2 == DWC_ETYPE_FATAL) {
-                return 1;
+        if (ret != 0) {
+            if (dwcError == DWC_ETYPE_FATAL) {
+                return TRUE;
             }
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
-static void CommTask_ConnectWifiBattle(void)
+/**
+ * @brief Task to indicate the Communication Manager is connecting to a wifi battle. Errors on timeout
+ */
+static void CommTask_ConnectingWifiBattle(void)
 {
-    int v0 = NintendoWFC_ConnectToDWCServer();
+    int ret = NintendoWFC_ConnectToDWCServer();
 
     sCommMan->timer--;
 
-    if (v0 == NINTENDO_WFC_RESULT_CONNECTED_TO_SERVER) {
+    if (ret == NINTENDO_WFC_RESULT_CONNECTED_TO_SERVER) {
         if (sCommMan->commType == COMM_TYPE_LOBBY_WIFI) {
             BOOL v1;
 
@@ -2343,10 +2696,10 @@ static void CommTask_ConnectWifiBattle(void)
                 return;
             }
         } else {
-            CommManager_SetTask(sub_02038164, 0);
+            CommManager_SetTask(CommTask_WifiBattleLogin, 0);
             return;
         }
-    } else if (v0 != 0) {
+    } else if (ret != 0) {
         CommManager_SetTask(CommTask_WifiBattleError, 0);
     }
 
@@ -2355,6 +2708,9 @@ static void CommTask_ConnectWifiBattle(void)
     }
 }
 
+/**
+ * @brief Initializes the Communication Manager as a server for wifi battles
+ */
 static void CommTask_StartWifiBattleServer(void)
 {
     if (!WirelessDriver_IsReady()) {
@@ -2365,15 +2721,23 @@ static void CommTask_StartWifiBattleServer(void)
     
     if (CommSys_InitServer(1, 1, 512, 1)) {
         NintendoWFC_Init(sCommMan->saveData, HEAP_ID_NINTENDO_WFC, (0x2B000 + 0x1400), CommLocal_MaxMachines(sCommMan->commType) + 1);
-        NintendoWFC_SetFatalErrorCallback(sub_020389FC);
+        NintendoWFC_SetFatalErrorCallback(NetworkError_DisplayFatalError);
         CommSys_SwitchTransitionTypeToParallel();
-        CommManager_SetTask(CommTask_ConnectWifiBattle, (30 * 60 * 2));
+        CommManager_SetTask(CommTask_ConnectingWifiBattle, (30 * 60 * 2));
     }
 }
 
-void *sub_0203871C(SaveData *saveData, int param1)
+/**
+ * @brief Initializes the Communication Manager and logs in for wifi battles as a server
+ *
+ * @param saveData
+ * @param size
+ *
+ * @return sCommMan->unk_00
+ */
+void *CommManager_LoginWifiBattleServer(SaveData *saveData, int size)
 {
-    TrainerInfo *v0 = SaveData_GetTrainerInfo(saveData);
+    SaveData_GetTrainerInfo(saveData);
     
     if (CommSys_IsInitialized()) {
         return NULL;
@@ -2382,8 +2746,8 @@ void *sub_0203871C(SaveData *saveData, int param1)
     ResetLock(RESET_LOCK_0x1);
     Heap_CreateAtEnd(HEAP_ID_APPLICATION, HEAP_ID_COMMUNICATION, 0x7080);
     CommManager_Initialize(saveData, COMM_TYPE_LOGIN_WIFI);
-    sCommMan->unk_00 = Heap_Alloc(HEAP_ID_COMMUNICATION, param1);
-    MI_CpuFill8(sCommMan->unk_00, 0, param1);
+    sCommMan->unk_00 = Heap_Alloc(HEAP_ID_COMMUNICATION, size);
+    MI_CpuFill8(sCommMan->unk_00, 0, size);
 
     sCommMan->contestRegulation = 0;
     sCommMan->saveData = saveData;
@@ -2470,7 +2834,7 @@ BOOL CommManager_IsWifiLobbyError(void)
 void CommManager_StartWifiP2P(UnkEnum_ov66_02232F38 param0)
 {
     GF_ASSERT(sCommMan);
-    GF_ASSERT(sub_020382C0() == 1);
+    GF_ASSERT(CommManager_IsLoginBattleMatchWifi() == 1);
 
     if (ov66_02233184(param0) == 0) {
         ov66_02232F38(param0, 4);
@@ -2494,6 +2858,11 @@ void CommManager_EndWifiP2P(void)
     CommManager_SetTask(CommTask_DisconnectWifiLobbyP2P, 0);
 }
 
+/**
+ * @brief Gets the current p2p connection state based on the current task
+ *
+ * @return 0 - none, 1 - wait, 2 - connect, 3 - disconnect
+ */
 u32 CommManager_GetWifiP2PConnectState(void)
 {
     if (sCommMan) {
@@ -2511,16 +2880,27 @@ u32 CommManager_GetWifiP2PConnectState(void)
     return 0;
 }
 
-void *sub_020388E8(void)
+/**
+ * @brief Gets unk_00
+ *
+ * @return sCommMan->unk_00
+ */
+void *CommManager_GetUnk00(void)
 {
     return sCommMan->unk_00;
 }
 
-void CommMan_SetErrorHandling(BOOL errorDisconnect, BOOL param1)
+/**
+ * @brief Sets and handles errors for the Communication Manager
+ *
+ * @param errorDisconnect
+ * @param errorUnknown
+ */
+void CommManager_SetErrorHandling(BOOL errorDisconnect, BOOL errorUnknown)
 {
     if (sCommMan) {
         sCommMan->errorDisconnect = errorDisconnect;
-        sCommMan->unk_50 = param1;
+        sCommMan->errorUnknown_50 = errorUnknown;
 
         if (errorDisconnect) {
             sCommMan->connectedCount = CommSys_ConnectedCount();
@@ -2533,14 +2913,19 @@ void CommMan_SetErrorHandling(BOOL errorDisconnect, BOOL param1)
     sub_02033ED4(errorDisconnect);
 }
 
-BOOL sub_02038938(void)
+/**
+ * @brief Checks if the communication manager has a reported error
+ *
+ * @return TRUE if commError is not COMM_ERROR_NONE, errorUnknown_50 otherwise
+ */
+BOOL CommManager_CheckError(void)
 {
     if (sCommMan) {
-        if (sCommMan->commError != 0) {
+        if (sCommMan->commError != COMM_ERROR_NONE) {
             return TRUE;
         }
 
-        return sCommMan->unk_50;
+        return sCommMan->errorUnknown_50;
     }
 
     return FALSE;
@@ -2574,42 +2959,70 @@ int CommManager_GetContestRegulation(void)
     return 0;
 }
 
-void sub_0203898C(u8 *param0)
+/**
+ * @brief Sets the party species list for battle preview
+ *
+ * @return src
+ */
+void CommManager_SetParty(u8 *src)
 {
-    MI_CpuCopy8(param0, sCommMan->unk_04, NELEMS(sCommMan->unk_04));
+    MI_CpuCopy8(src, sCommMan->party, NELEMS(sCommMan->party));
 }
 
-void sub_020389A0(u8 *param0)
+/**
+ * @brief Gets the party species list for battle preview
+ *
+ * @return dest
+ */
+void CommManager_GetParty(u8 *dest)
 {
-    MI_CpuCopy8(sCommMan->unk_04, param0, NELEMS(sCommMan->unk_04));
+    MI_CpuCopy8(sCommMan->party, dest, NELEMS(sCommMan->party));
 }
 
-BOOL CommMan_IsConnectedToWifi(void)
+/**
+ * @brief Checks if the Communication Manager is connected to the proper wifi group
+ *
+ * @return CommLocal_IsWifiGroup(CommManager_GetCommType())
+ */
+BOOL CommManager_IsConnectedToWifi(void)
 {
     return CommLocal_IsWifiGroup(CommManager_GetCommType());
 }
 
-void sub_020389C4(u8 param0)
+/**
+ * @brief Sets the Communication Manager's resetType
+ *
+ * @param resetType
+ */
+void CommManager_SetResetType(u8 resetType)
 {
     if (sCommMan) {
-        sCommMan->unk_52 = param0;
+        sCommMan->resetType = resetType;
     }
 }
 
-u8 sub_020389D8(void)
+/**
+ * @brief Gets the Communication Manager's resetType
+ *
+ * @return sCommMan->resetType (default 0)
+ */
+u8 CommManager_GetResetType(void)
 {
     if (HeapCanaryOK()) {
         return 0;
     }
 
     if (sCommMan) {
-        return sCommMan->unk_52;
+        return sCommMan->resetType;
     }
 
     return 0;
 }
 
-void sub_020389FC(int param0)
+/**
+ * @brief Displays the Fatal Error screen and halts the game
+ */
+void NetworkError_DisplayFatalError(int param0)
 {
     int i = 0;
 
@@ -2634,28 +3047,39 @@ void NetworkError_DisplayGTSCriticalError(void)
     }
 }
 
-void sub_02038A1C(int param0, BgConfig *param1)
+/**
+ * @brief Deadstripped function. Does nothing when called
+ *
+ * @param unused_int
+ * @param unused_BgConfig
+ */
+void CommManager_deadstripped_02038A1C(int unused_int, BgConfig *bgConfig)
 {
     return;
 }
 
-void sub_02038A20(int param0)
+/**
+ * @brief Checks for a communication error and displays an error message
+ *
+ * @param unused
+ */
+void CommManager_DisplayError(int unused)
 {
-    if (sub_02038938()) {
-        if (CommSys_CheckError() || sub_020383E8() || sub_020385D0()
+    if (CommManager_CheckError()) {
+        if (CommSys_CheckError() || CommManager_CheckWifiError() || CommManager_GetDWCError()
             || (sCommMan->commError != COMM_ERROR_NONE) || CommManager_IsWifiLobbyError()) {
             if (!HeapCanaryOK()) {
-                if (!sub_020389D8()) {
+                if (!CommManager_GetResetType()) {
                     Sound_StopWaveOutAndSequences();
                     SaveData_SaveStateCancel(sCommMan->saveData);
                     gSystem.touchAutoSampling = TRUE;
 
                     if (sCommMan->commError == COMM_ERROR_3) {
-                        sub_020389C4(COMM_ERROR_3);
+                        CommManager_SetResetType(COMM_ERROR_3);
                     } else if ((sCommMan->commType == COMM_TYPE_25) || (sCommMan->commType == COMM_TYPE_MYSTERY_GIFT) || (sCommMan->commType == COMM_TYPE_EMAIL_WIFI)) {
-                        sub_020389C4(COMM_ERROR_RESET_TITLE);
+                        CommManager_SetResetType(COMM_ERROR_RESET_TITLE);
                     } else {
-                        sub_020389C4(COMM_ERROR_RESET_SAVEPOINT);
+                        CommManager_SetResetType(COMM_ERROR_RESET_SAVEPOINT);
                     }
                 }
             }
@@ -2757,11 +3181,11 @@ static void CommTask_StartWifiLobby(void)
 
     if (CommSys_InitServer(1, 1, 512, 1)) {
         NintendoWFC_Init(sCommMan->saveData, HEAP_ID_NINTENDO_WFC, 0x58000, CommLocal_MaxMachines(sCommMan->commType) + 1);
-        NintendoWFC_SetFatalErrorCallback(sub_020389FC);
+        NintendoWFC_SetFatalErrorCallback(NetworkError_DisplayFatalError);
         CommSys_SwitchTransitionTypeToParallel();
         NintendoWFC_SetVoiceChatEnabled(0);
         sub_0203632C(0);
-        CommManager_SetTask(CommTask_ConnectWifiBattle, (30 * 60 * 2));
+        CommManager_SetTask(CommTask_ConnectingWifiBattle, (30 * 60 * 2));
     }
 }
 
@@ -2799,9 +3223,9 @@ static void CommTask_LogInWifiLobby(void)
  */
 static void CommTask_ConnectWifiLobby(void)
 {
-    BOOL v0 = CommManager_UpdateWifiLobbyCommon();
+    BOOL ret = CommManager_UpdateWifiLobbyCommon();
 
-    if (v0 == 0) {
+    if (ret == 0) {
         return;
     }
 }
@@ -2851,12 +3275,12 @@ static BOOL CommManager_ProcessWifiLobbyDWCError(int dwcError)
  */
 static BOOL CommManager_UpdateWifiLobby(void)
 {
-    UnkEnum_ov66_0223287C v0;
+    UnkEnum_ov66_0223287C ret;
     BOOL noError = TRUE;
 
-    v0 = ov66_022325D8(); //Wifi lobby update function
+    ret = ov66_022325D8(); //Wifi lobby update function
 
-    switch (v0) {
+    switch (ret) {
     case UnkEnum_ov66_0223287C_00: //none
     case UnkEnum_ov66_0223287C_01: //login wait
     case UnkEnum_ov66_0223287C_02: //connect
@@ -2879,12 +3303,12 @@ static BOOL CommManager_UpdateWifiLobby(void)
  */
 static BOOL CommManager_UpdateWifiLobbyCommon(void)
 {
-    int v0;
+    int errorCode;
     BOOL ret;
 
-    v0 = NintendoWFC_Process(0);
+    errorCode = NintendoWFC_Process(0);
 
-    ret = CommManager_ProcessWifiLobbyDWCError(v0);
+    ret = CommManager_ProcessWifiLobbyDWCError(errorCode);
 
     if (ret == 0) {
         return ret;
@@ -2966,25 +3390,28 @@ static void CommTask_WifiLobbyError(void)
  */
 static void CommTask_ConnectWifiLobbyP2P(void)
 {
-    BOOL v0;
+    BOOL ret;
     CommManager_UpdateWifiLobbyCommon();
 
-    v0 = ov66_02233164();
+    ret = ov66_02233164();
 
-    if (v0 == 1) {
+    if (ret == 1) {
         ov66_0223361C();
         CommManager_SetTask(CommTask_DisconnectWifiLobbyP2P, 0);
     }
 }
 
+/**
+ * @brief Task that indicates the server is waiting for a p2p connection for wifi lobby matchmaking. Disconnects if there's an error.
+ */
 static void CommTask_WaitWifiLobbyMatchServerP2P(void)
 {
-    BOOL v0;
+    BOOL ret;
     u32 v1;
 
-    v0 = ov66_02233164();
+    ret = ov66_02233164();
 
-    if (v0 == 1) {
+    if (ret == 1) {
         ov66_0223361C();
         CommManager_SetTask(CommTask_DisconnectWifiLobbyP2P, 0);
         return;

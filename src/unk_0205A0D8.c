@@ -392,7 +392,7 @@ static BOOL sub_0205A324(FieldTask *param0)
         }
         break;
     case 21:
-        sub_0203898C(v0->unk_3D);
+        CommManager_SetParty(v0->unk_3D);
 
         if (sub_0205A2DC(v0)) {
             v0->unk_43 = 5;

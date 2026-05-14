@@ -35,8 +35,8 @@ static const CommCmdTable Unk_020E5D64[] = {
     { CommInfo_RecvPlayerData, CommPlayerInfo_Size, NULL },
     { CommInfo_RecvPlayerDataArray, CommPlayerInfo_Size, NULL },
     { CommunicatitonInformaion_FinishReading, CommPacketSizeOf_Nothing, NULL },
-    { sub_02037A78, sub_02037B54, NULL },
-    { sub_02037AD8, sub_02037B54, NULL },
+    { CommManager_ValidateConfirmationMessage, CommManager_ConfirmationMessage_sizeof, NULL },
+    { CommManager_ValidateConfirmationResponseMessage, CommManager_ConfirmationMessage_sizeof, NULL },
     { NULL, NULL, NULL },
     { NULL, NULL, NULL },
     { sub_02036008, CommPacketSizeOf_NetId, NULL },
@@ -50,7 +50,7 @@ static const CommCmdTable Unk_020E5D64[] = {
     { CommCmd_18, sub_02032954, NULL },
     { sub_02036574, sub_02036590, NULL },
     { sub_02036670, CommTool_TempDataSize, NULL },
-    { sub_02038240, CommPacketSizeOf_Nothing, NULL }
+    { CommManager_DisconnectWifi, CommPacketSizeOf_Nothing, NULL }
 };
 
 static CommCmdManager *sCommCmdManager = NULL;

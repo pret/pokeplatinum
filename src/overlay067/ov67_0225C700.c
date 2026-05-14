@@ -236,7 +236,7 @@ int ov67_0225C820(ApplicationManager *appMan, int *param1)
         (*param1)++;
         break;
     case 5:
-        if (sub_020383E8() || CommManager_IsWifiLobbyError()) {
+        if (CommManager_CheckWifiError() || CommManager_IsWifiLobbyError()) {
             ov67_0225D310(&v0->unk_70);
             (*param1) = 9;
         }
@@ -247,12 +247,12 @@ int ov67_0225C820(ApplicationManager *appMan, int *param1)
         }
         break;
     case 6:
-        if (sub_020383E8() || CommManager_IsWifiLobbyError()) {
+        if (CommManager_CheckWifiError() || CommManager_IsWifiLobbyError()) {
             ov67_0225D310(&v0->unk_70);
             (*param1) = 9;
         }
 
-        if (sub_02038294()) {
+        if (CommManager_IsLoginBattleWifi()) {
             ov67_0225D310(&v0->unk_70);
 
             {
@@ -274,8 +274,8 @@ int ov67_0225C820(ApplicationManager *appMan, int *param1)
         UnkStruct_ov65_0222F6EC *v5;
         int v6, v7;
 
-        if (sub_020383E8()) {
-            v5 = sub_020382F8();
+        if (CommManager_CheckWifiError()) {
+            v5 = CommManager_GetUnk34();
             v6 = ov66_022316F4(v5->unk_00, v5->unk_04);
             v7 = v5->unk_00;
         } else {
@@ -296,8 +296,8 @@ int ov67_0225C820(ApplicationManager *appMan, int *param1)
             int v8;
             int v9;
 
-            if (sub_020383E8()) {
-                UnkStruct_ov65_0222F6EC *v10 = sub_020382F8();
+            if (CommManager_CheckWifiError()) {
+                UnkStruct_ov65_0222F6EC *v10 = CommManager_GetUnk34();
 
                 v8 = ov66_02231718(v10->unk_00, v10->unk_04);
 
@@ -437,7 +437,7 @@ int ov67_0225CC6C(ApplicationManager *appMan, int *param1)
     case 2:
         ov67_0225D210(&v0->unk_40, 26);
 
-        if (sub_020383E8() || CommManager_IsWifiLobbyError()) {
+        if (CommManager_CheckWifiError() || CommManager_IsWifiLobbyError()) {
             (*param1) = 5;
             ov67_0225D2EC(&v0->unk_40);
         } else {

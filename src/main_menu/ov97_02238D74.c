@@ -178,7 +178,7 @@ static void ov97_02238E88(void)
 static void ov97_02238E94(void)
 {
     NetworkIcon_Destroy();
-    sub_02038514();
+    CommManager_EndMysteryGiftWifi();
     Overlay_UnloadHttpOverlay();
     Overlay_UnloadWFCOverlay();
     WirelessDriver_Shutdown();
@@ -206,7 +206,7 @@ int ov97_02238EAC(ApplicationManager *appMan, int *param1)
     case 4097:
         if (WirelessDriver_IsReady()) {
             DWC_SetMemFunc(ov97_02238D74, ov97_02238D94);
-            sub_020384C0(v2->saveData);
+            CommManager_StartMysteryGiftWifi(v2->saveData);
             *param1 = 4098;
         }
         break;

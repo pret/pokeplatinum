@@ -255,7 +255,7 @@ static void sub_0205B4F8(UnkStruct_0205B43C *param0)
 
     if (CommSys_IsClientConnecting() && (sub_0205B4D4() == 1) && (v0->unk_1C != 4)) {
         CommInfo_SendPlayerInfo();
-        CommMan_SetErrorHandling(1, 1);
+        CommManager_SetErrorHandling(1, 1);
         sub_0205BEA8(11);
         sub_0205B5B4(param0, sub_0205B578, 0);
     }
@@ -270,7 +270,7 @@ static void sub_0205B4F8(UnkStruct_0205B43C *param0)
 
 static void sub_0205B578(UnkStruct_0205B43C *param0)
 {
-    if (sub_02038938() && (0 == CommSys_IsClientConnecting())) {
+    if (CommManager_CheckError() && (0 == CommSys_IsClientConnecting())) {
         return;
     }
 
@@ -374,7 +374,7 @@ static void sub_0205B6C4(UnkStruct_0205B43C *param0)
             param0->unk_1C = 1;
             param0->unk_44 = 0;
 
-            CommMan_SetErrorHandling(1, 1);
+            CommManager_SetErrorHandling(1, 1);
             sub_0205B5B4(param0, sub_0205B72C, 3);
         }
     } else if (0 == CommManager_IsConnectedUnionClientSuccess()) {
@@ -1016,7 +1016,7 @@ int UnionRoom_GetMessage(UnkStruct_0205B43C *param0, int param1, int msgType, St
     TrainerInfo *trainerInfo = sub_02033FB0(param1);
 
     if (trainerInfo == NULL) {
-        CommMan_SetErrorHandling(1, 1);
+        CommManager_SetErrorHandling(1, 1);
         CommManager_SetCommError(1);
         return 0;
     }

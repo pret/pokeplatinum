@@ -105,7 +105,7 @@ int ov117_02260474(ApplicationManager *appMan, int *param1)
         }
         break;
     case 6:
-        CommMan_SetErrorHandling(0, 1);
+        CommManager_SetErrorHandling(0, 1);
         CommTiming_StartSync(222);
         (*param1)++;
         break;

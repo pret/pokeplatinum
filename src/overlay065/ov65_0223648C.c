@@ -388,7 +388,7 @@ int ov65_0223648C(ApplicationManager *appMan, int *param1)
 
     Overlay_LoadByID(FS_OVERLAY_ID(overlay63), 2);
 
-    v2 = CommMan_IsConnectedToWifi();
+    v2 = CommManager_IsConnectedToWifi();
     GF_ASSERT(v2 == 1);
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_96, 0x18000);
@@ -402,7 +402,7 @@ int ov65_0223648C(ApplicationManager *appMan, int *param1)
 
     VramTransfer_New(16, HEAP_ID_96);
 
-    v0->unk_00.unk_00 = sub_020388E8();
+    v0->unk_00.unk_00 = CommManager_GetUnk00();
     v0->unk_00.unk_00->unk_00.unk_21 = v0->unk_00.unk_00->unk_00.unk_22;
     v0->unk_00.unk_04 = ov65_02236794(&v0->unk_00);
     v0->unk_00.unk_06 = 0xff;
@@ -1113,7 +1113,7 @@ static void ov65_02237370(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *p
             return;
         }
 
-        if (sub_020380E4() <= 2) {
+        if (CommManager_GetMatchmakingState() <= 2) {
             if ((ov65_02237548(param0) <= 1) && (ov65_02237450(param0) == 0)) {
                 return;
             }
@@ -1133,7 +1133,7 @@ static void ov65_02237370(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *p
         v1 = 0;
     }
 
-    if ((sub_020380E4() >= 3) || (sub_020383E8()) || sub_02038284() || (CommSys_IsPlayerConnected(0) == 0) || (ov65_02237450(param0) == 0) || (v1 == 1) || (v2 == 1) || (v0 == 1)) {
+    if ((CommManager_GetMatchmakingState() >= 3) || (CommManager_CheckWifiError()) || CommManager_GetDisconnectedWifi() || (CommSys_IsPlayerConnected(0) == 0) || (ov65_02237450(param0) == 0) || (v1 == 1) || (v2 == 1) || (v0 == 1)) {
         if (param0->unk_00.unk_04) {
             param0->unk_00.unk_05 = 27;
         } else {
@@ -1144,7 +1144,7 @@ static void ov65_02237370(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *p
 
 static void ov65_0223742C(UnkStruct_ov65_022367A8 *param0)
 {
-    if ((sub_020380E4() > 3) || sub_02038284() || (sub_020383E8())) {
+    if ((CommManager_GetMatchmakingState() > 3) || CommManager_GetDisconnectedWifi() || (CommManager_CheckWifiError())) {
         param0->unk_00.unk_05 = 15;
     }
 }
@@ -1160,7 +1160,7 @@ static BOOL ov65_02237450(const UnkStruct_ov65_022367A8 *param0)
 
 static BOOL ov65_02237464(u32 param0, u32 param1)
 {
-    BOOL v0 = sub_020380A0(param0);
+    BOOL v0 = CommManager_StartWifiBattle(param0);
 
     if (v0 == 1) {
         switch (param1) {
@@ -1623,7 +1623,7 @@ static BOOL ov65_02237A70(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *p
     }
 
     NintendoWFC_SetDisconnectIfAlone(0);
-    CommMan_SetErrorHandling(0, 1);
+    CommManager_SetErrorHandling(0, 1);
     ov65_022376D0(param0, CommSys_CurNetId(), heapID);
 
     param0->unk_00.unk_05 = 1;
@@ -1962,7 +1962,7 @@ static BOOL ov65_02237E54(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *p
 
 static BOOL ov65_02237EA4(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *param1, u32 heapID)
 {
-    CommMan_SetErrorHandling(1, 1);
+    CommManager_SetErrorHandling(1, 1);
     CommTiming_StartSync(18);
 
     param0->unk_00.unk_05 = 18;
@@ -2104,10 +2104,10 @@ static BOOL ov65_0223806C(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *p
 
     param0->unk_00.unk_07 = 0;
 
-    sub_02038378();
+    CommManager_EndWifiMatch();
     ov65_022375CC(param0);
     CommManager_SetState_LoginWifi();
-    CommMan_SetErrorHandling(0, 1);
+    CommManager_SetErrorHandling(0, 1);
 
     return 1;
 }
@@ -2143,11 +2143,11 @@ static BOOL ov65_02238104(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *p
         return 0;
     }
 
-    sub_02038378();
+    CommManager_EndWifiMatch();
     CommManager_SetState_LoginWifi();
     ov65_022375CC(param0);
     param0->unk_00.unk_07 = 0;
-    CommMan_SetErrorHandling(0, 1);
+    CommManager_SetErrorHandling(0, 1);
 
     return 1;
 }
@@ -2203,7 +2203,7 @@ static BOOL ov65_02238190(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *p
 static BOOL ov65_022381CC(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *param1, u32 heapID)
 {
     CommInfo_SendPlayerInfo();
-    CommMan_SetErrorHandling(0, 1);
+    CommManager_SetErrorHandling(0, 1);
     param0->unk_00.unk_05 = 1;
     return 0;
 }
@@ -2303,7 +2303,7 @@ static BOOL ov65_02238314(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *p
 
     param0->unk_00.unk_05 = 7;
 
-    sub_02038378();
+    CommManager_EndWifiMatch();
     CommManager_SetState_LoginWifi();
 
     return 0;
@@ -2318,7 +2318,7 @@ static BOOL ov65_02238350(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *p
     }
 
     param0->unk_00.unk_07 = 0;
-    CommMan_SetErrorHandling(0, 1);
+    CommManager_SetErrorHandling(0, 1);
 
     return 1;
 }
@@ -2457,7 +2457,7 @@ static BOOL ov65_022384BC(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *p
 
 static BOOL ov65_0223850C(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *param1, u32 heapID)
 {
-    CommMan_SetErrorHandling(1, 1);
+    CommManager_SetErrorHandling(1, 1);
     CommTiming_StartSync(18);
 
     param0->unk_00.unk_05 = 14;
@@ -2510,12 +2510,12 @@ static BOOL ov65_022385AC(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *p
         return 0;
     }
 
-    sub_02038378();
+    CommManager_EndWifiMatch();
     CommManager_SetState_LoginWifi();
 
     param0->unk_00.unk_07 = 0;
 
-    CommMan_SetErrorHandling(0, 1);
+    CommManager_SetErrorHandling(0, 1);
 
     return 1;
 }
@@ -2599,7 +2599,7 @@ static BOOL ov65_022386D0(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *p
     GF_ASSERT(param0->unk_00.unk_26 != 32);
     ov65_0223726C(&param0->unk_30, param1, 0, 0, heapID);
 
-    sub_02038378();
+    CommManager_EndWifiMatch();
     param0->unk_00.unk_27 = 0;
 
     ov65_02236E44(&param0->unk_30, param1, 132, heapID);
@@ -2676,7 +2676,7 @@ static BOOL ov65_022387E8(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *p
 {
     ov65_0223742C(param0);
 
-    if ((sub_020380E4() == 1) && (CommSys_IsPlayerConnected(0) == 1)) {
+    if ((CommManager_GetMatchmakingState() == 1) && (CommSys_IsPlayerConnected(0) == 1)) {
         sub_0203632C(0);
         ov65_022378C4(param0, param1, heapID);
         StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, heapID);
@@ -2739,11 +2739,11 @@ static BOOL ov65_022388FC(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *p
 
 static BOOL ov65_02238910(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *param1, u32 heapID)
 {
-    sub_02038378();
+    CommManager_EndWifiMatch();
     CommManager_SetState_LoginWifi();
 
     param0->unk_00.unk_07 = 0;
-    CommMan_SetErrorHandling(0, 1);
+    CommManager_SetErrorHandling(0, 1);
 
     return 1;
 }

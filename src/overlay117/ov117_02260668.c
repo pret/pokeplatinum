@@ -621,7 +621,7 @@ static void ov117_02260F7C(SysTask *param0, void *param1)
     SpriteSystem_DrawSprites(v0->unk_28);
     SpriteSystem_UpdateTransfer();
     G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
-    sub_02038A1C(110, v0->unk_2C);
+    CommManager_deadstripped_02038A1C(110, v0->unk_2C);
 }
 
 static void ov117_022610D8(BgConfig *param0)

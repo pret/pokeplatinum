@@ -1757,7 +1757,7 @@ void Traps_CallSecondTrapEffectServerFunc(int netID, int unused1, void *data, vo
     TrapServerFunc trapEffectFunc = sTrapEffectServerSecondFuncs[*trapID];
 
     if (*trapID != trapsEnv->triggeredTrapIDs[netID]) {
-        sub_020389C4(1);
+        CommManager_SetResetType(1);
         return;
     }
 

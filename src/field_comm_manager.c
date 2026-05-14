@@ -154,7 +154,7 @@ void FieldCommMan_EnterBattleRoom(FieldSystem *fieldSystem)
 {
     SetupScreenFadeRegisters(DS_SCREEN_MAIN, COLOR_BLACK);
     SetupScreenFadeRegisters(DS_SCREEN_SUB, COLOR_BLACK);
-    CommMan_SetErrorHandling(1, 1);
+    CommManager_SetErrorHandling(1, 1);
 
     if (!CommMan_IsInitialized()) {
         return;
@@ -192,7 +192,7 @@ void FieldCommMan_EndBattle(void)
         return;
     }
 
-    CommMan_SetErrorHandling(0, 0);
+    CommManager_SetErrorHandling(0, 0);
     FieldCommMan_SetTask(Task_EndBattle, 5);
 }
 
@@ -413,7 +413,7 @@ static void sub_02059B74(void)
         }
     }
 
-    sub_02038A1C(4, sFieldCommMan->fieldSystem->bgConfig);
+    CommManager_deadstripped_02038A1C(4, sFieldCommMan->fieldSystem->bgConfig);
 }
 
 static void sub_02059BF4(void)
@@ -523,7 +523,7 @@ static void sub_02059D58(void)
         break;
     }
 
-    sub_020389A0(v2);
+    CommManager_GetParty(v2);
 
     if (sFieldCommMan->party == NULL) {
         Encounter_NewVsLinkWithRecording(sFieldCommMan->fieldSystem, v2, v1);
@@ -691,7 +691,7 @@ static void sub_02059FD4(void)
 static void sub_0205A018(void)
 {
     if (CommTiming_IsSyncState(91)) {
-        CommMan_SetErrorHandling(0, 0);
+        CommManager_SetErrorHandling(0, 0);
         CommPlayerMan_Delete(1);
         FieldCommMan_SetTask(sub_0205A058, 5);
     }

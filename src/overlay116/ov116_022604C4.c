@@ -733,7 +733,7 @@ int ov116_0226126C(ApplicationManager *appMan, int *param1)
 
         ApplicationManager_FreeData(appMan);
         Heap_Destroy(HEAP_ID_106);
-        CommMan_SetErrorHandling(0, 1);
+        CommManager_SetErrorHandling(0, 1);
 
         if (v0 != 0) {
             return 1;

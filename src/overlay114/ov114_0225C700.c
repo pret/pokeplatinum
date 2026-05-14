@@ -1040,11 +1040,11 @@ BOOL ov114_0225CA54(UnkStruct_ov114_0225C76C *param0)
             v0 = 1;
         }
 
-        if (sub_02038284() == 1) {
+        if (CommManager_GetDisconnectedWifi() == 1) {
             v0 = 1;
         }
 
-        if (sub_020380E4() >= 2) {
+        if (CommManager_GetMatchmakingState() >= 2) {
             v0 = 1;
         }
 
@@ -1069,7 +1069,7 @@ BOOL ov114_0225CA98(const UnkStruct_ov114_0225C76C *param0)
         CommInfo_Delete();
         CommManager_EndWifiP2P();
     } else {
-        if (sub_020382C0() == 1) {
+        if (CommManager_IsLoginBattleMatchWifi() == 1) {
             return 1;
         }
     }

@@ -115,7 +115,7 @@ int GTSApplication_InitWFC_Init(GTSApplicationState *appState, int unused1)
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, TRUE);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, TRUE);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, TRUE);
-    sub_02038438(appState->playerData->saveData);
+    CommManager_InitializeGlobalWifi(appState->playerData->saveData);
 
     ov94_02245934(appState);
 
@@ -334,7 +334,7 @@ static int GTSApplication_WFCInit_ProcessSetupConfirmation(GTSApplicationState *
 
     if (menuInput != MENU_NOTHING_CHOSEN) {
         if (menuInput == MENU_CANCEL) {
-            sub_0203848C(); // free the network lock?
+            CommManager_EndGlobalWifi(); // free the network lock?
             GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_WFC_INIT, SCREEN_ARGUMENT_0);
             appState->currentScreenInstruction = 11;
         } else {
@@ -373,7 +373,7 @@ static int GTSApplication_WFCInit_RestartOrExit(GTSApplicationState *appState)
                 DWC_CleanupInet();
             }
 
-            sub_0203848C();
+            CommManager_EndGlobalWifi();
             GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_WFC_INIT, SCREEN_ARGUMENT_0);
             appState->currentScreenInstruction = 11;
         }
@@ -392,7 +392,7 @@ static int GTSApplication_WFCInit_ShowDisconnectingMessage(GTSApplicationState *
 
 static int GTSApplication_WFCInit_CleanupNetworking(GTSApplicationState *appState)
 {
-    sub_0203848C();
+    CommManager_EndGlobalWifi();
 
     DWC_CleanupInet();
     GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_WFC_INIT, SCREEN_ARGUMENT_0);
@@ -826,7 +826,7 @@ static int GTSApplication_WFCInit_FatalErrorDisconnectMessage(GTSApplicationStat
         break;
     case 1:
         if (Text_IsPrinterActive(appState->textPrinter) == FALSE) {
-            sub_0203848C();
+            CommManager_EndGlobalWifi();
             DWC_CleanupInet();
             appState->wfcDisconnectMessageIndex++;
         }

@@ -546,7 +546,7 @@ BOOL CommSys_Update(void)
         sub_02033D94(0);
     }
 
-    sub_02038A20(0);
+    CommManager_DisplayError(0);
     sub_0203650C();
 
     return TRUE;
@@ -1769,7 +1769,7 @@ BOOL CommSys_CheckError(void)
     }
 
     if (sCommunicationSystem && sCommunicationSystem->unk_6B1) {
-        CommMan_SetErrorHandling(1, 1);
+        CommManager_SetErrorHandling(1, 1);
         return TRUE;
     }
 

@@ -834,7 +834,7 @@ int NintendoWFC_HandleError(void)
     }
 
     if (error != 0) {
-        sub_02037F94(errorCode, errorType, error);
+        CommManager_SetUnk34(errorCode, errorType, error);
     }
 
     return ret;

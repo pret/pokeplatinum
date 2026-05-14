@@ -326,7 +326,7 @@ int ov98_022471C8(ApplicationManager *appMan, int *param1)
     case 12:
         if (!DWC_CheckInet() && (WiFiList_HasValidLogin(v0->unk_00->saveData) == 1)) {
             v0->unk_08 = 12;
-            sub_02038548(v0->unk_00->saveData);
+            CommManager_StartWifiMail(v0->unk_00->saveData);
             NetworkIcon_Init();
         } else {
             v0->unk_08 = 0;
@@ -1227,7 +1227,7 @@ static int ov98_022488F8(UnkStruct_ov98_02247704 *param0)
 
     if (v0 != 0xffffffff) {
         if (v0 == 0xfffffffe) {
-            sub_0203859C();
+            CommManager_EndWifiMail();
             ov98_02246E88(param0->unk_00, 6, 0);
             param0->unk_08 = 29;
         } else {
@@ -1250,7 +1250,7 @@ static int ov98_02248954(UnkStruct_ov98_02247704 *param0)
 
 static int ov98_0224897C(UnkStruct_ov98_02247704 *param0)
 {
-    sub_0203859C();
+    CommManager_EndWifiMail();
 
     DWC_CleanupInet();
 
@@ -1279,7 +1279,7 @@ static int ov98_022489DC(UnkStruct_ov98_02247704 *param0)
 {
     switch (param0->unk_94) {
     case 0:
-        sub_02038548(param0->unk_00->saveData);
+        CommManager_StartWifiMail(param0->unk_00->saveData);
         NetworkIcon_Init();
         ov98_02249714(param0, param0->unk_2C, 1, TEXT_SPEED_FAST, 0xf0f);
         ov98_02247AF0(param0);
@@ -1323,7 +1323,7 @@ static int ov98_02248A68(UnkStruct_ov98_02247704 *param0)
             DWC_CleanupInet();
 
             NetworkIcon_Destroy();
-            sub_0203859C();
+            CommManager_EndWifiMail();
             SleepUnlock(4);
 
             if (param0->unk_00->unk_11C == 1) {
@@ -1399,7 +1399,7 @@ static int ov98_02248B24(UnkStruct_ov98_02247704 *param0)
             DWC_CleanupInet();
 
             NetworkIcon_Destroy();
-            sub_0203859C();
+            CommManager_EndWifiMail();
             SleepUnlock(4);
 
             if (param0->unk_00->unk_11C == 1) {
@@ -1855,7 +1855,7 @@ static int ov98_02249320(UnkStruct_ov98_02247704 *param0)
         DWC_CleanupInet();
 
         NetworkIcon_Destroy();
-        sub_0203859C();
+        CommManager_EndWifiMail();
         SleepUnlock(4);
 
         if (param0->unk_00->unk_11C == 1) {
@@ -1912,7 +1912,7 @@ static int ov98_02249438(UnkStruct_ov98_02247704 *param0)
 static int ov98_02249464(UnkStruct_ov98_02247704 *param0)
 {
     if (param0->unk_08 != 30) {
-        sub_0203859C();
+        CommManager_EndWifiMail();
     }
 
     NetworkIcon_Destroy();
@@ -2014,7 +2014,7 @@ static int ov98_022495C4(UnkStruct_ov98_02247704 *param0)
         break;
     case 1:
         if (ov98_0224977C(param0->unk_44) == 0) {
-            sub_0203859C();
+            CommManager_EndWifiMail();
 
             DWC_CleanupInet();
 

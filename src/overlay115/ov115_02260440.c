@@ -379,7 +379,7 @@ int ov115_022608E4(ApplicationManager *appMan, int *param1)
 
         ApplicationManager_FreeData(appMan);
         Heap_Destroy(HEAP_ID_99);
-        CommMan_SetErrorHandling(0, 1);
+        CommManager_SetErrorHandling(0, 1);
 
         if (v2 == 1) {
             return 1;

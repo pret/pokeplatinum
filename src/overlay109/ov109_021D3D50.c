@@ -699,7 +699,7 @@ static void ov109_021D471C(UnkStruct_ov109_021D5140 *param0)
 
 static int ov109_021D474C(UnkStruct_ov109_021D5140 *param0, int param1)
 {
-    CommMan_SetErrorHandling(0, 1);
+    CommManager_SetErrorHandling(0, 1);
 
     if (CommSys_CurNetId() == 0) {
         if (CommSys_ConnectedCount() >= 2) {
@@ -1194,7 +1194,7 @@ static int ov109_021D4F4C(UnkStruct_ov109_021D5140 *param0, int param1)
 static int ov109_021D4F6C(UnkStruct_ov109_021D5140 *param0, int param1)
 {
     if (CommTiming_IsSyncState(202)) {
-        CommMan_SetErrorHandling(0, 0);
+        CommManager_SetErrorHandling(0, 0);
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_CIRCLE_OUT, FADE_TYPE_CIRCLE_OUT, COLOR_BLACK, 16, 1, HEAP_ID_95);
         param1 = 3;
     }
