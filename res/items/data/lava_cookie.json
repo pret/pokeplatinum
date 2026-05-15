@@ -1,0 +1,37 @@
+{
+  "name": "Lava Cookie",
+  "plural": "Lava Cookies",
+  "article": "a",
+  "description": [
+    "Lavaridge Town’s local specialty.\n",
+    "It heals all the status problems of\n",
+    "one Pokémon."
+  ],
+  "icon": {
+    "sprite": "lava_cookie_NCGR",
+    "palette": "lava_cookie_NCLR"
+  },
+  "gbaID": "GBA_ITEM_LAVA_COOKIE",
+  "price": 200,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 30,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_MEDICINE",
+  "battlePocket": "BATTLE_POCKET_MASK_RECOVER_STATUS",
+  "fieldUseFunc": "ITEM_USE_FUNC_HEALING",
+  "battleUseFunc": 2,
+  "itemUseParams": {
+    "healSleep": true,
+    "healPoison": true,
+    "healBurn": true,
+    "healFreeze": true,
+    "healParalysis": true,
+    "healConfusion": true
+  }
+}

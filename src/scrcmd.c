@@ -489,7 +489,7 @@ static BOOL ScrCmd_HealParty(ScriptContext *ctx);
 static BOOL ScrCmd_Dummy14F(ScriptContext *ctx);
 static BOOL ScrCmd_EndCommunication(ScriptContext *ctx);
 static BOOL ScriptContext_WaitForCommManIsDeleted(ScriptContext *ctx);
-static BOOL ScrCmd_151(ScriptContext *ctx);
+static BOOL ScrCmd_FieldCommEnterBattleRoom(ScriptContext *ctx);
 static BOOL ScrCmd_SetCommPlayerDir(ScriptContext *ctx);
 static BOOL ScrCmd_SetObjectEventPos(ScriptContext *ctx);
 static BOOL ScrCmd_SetPosition(ScriptContext *ctx);
@@ -4544,7 +4544,7 @@ static BOOL ScrCmd_2BB(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_151(ScriptContext *ctx)
+static BOOL ScrCmd_FieldCommEnterBattleRoom(ScriptContext *ctx)
 {
     FieldCommMan_EnterBattleRoom(ctx->fieldSystem);
     return FALSE;

@@ -699,7 +699,7 @@ u16 Field_TileBehaviorToScript(FieldSystem *fieldSystem, u8 behavior)
 
 static BOOL Field_ProcessStep(FieldSystem *fieldSystem)
 {
-    if (PersistedMapFeatures_IsCurrentDynamicMap(fieldSystem, DYNAMIC_MAP_FEATURES_CANALAVE_GYM) == TRUE && ov8_0224AAA8(fieldSystem)) {
+    if (PersistedMapFeatures_IsCurrentDynamicMap(fieldSystem, DYNAMIC_MAP_FEATURES_CANALAVE_GYM) == TRUE && CanalaveGym_CheckIfPlayerOnPlatform(fieldSystem)) {
         return TRUE;
     }
 

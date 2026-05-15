@@ -11,7 +11,7 @@
     ],
     "object_events": [
         {
-            "id": "VEILSTONE_STORE_B1F_RECEPTIONIST_0",
+            "id": "LOCALID_RECEPTIONIST_1",
             "graphics_id": "OBJ_EVENT_GFX_RECEPTIONIST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -26,7 +26,7 @@
             "y": 0
         },
         {
-            "id": "VEILSTONE_STORE_B1F_CASHIER_F_1",
+            "id": "LOCALID_CASHIER_F_LAVA_COOKIE",
             "graphics_id": "OBJ_EVENT_GFX_CASHIER_F",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -41,7 +41,7 @@
             "y": 0
         },
         {
-            "id": "VEILSTONE_STORE_B1F_CASHIER_F_2",
+            "id": "LOCALID_CASHIER_F_POFFIN",
             "graphics_id": "OBJ_EVENT_GFX_CASHIER_F",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -56,7 +56,7 @@
             "y": 0
         },
         {
-            "id": "VEILSTONE_STORE_B1F_SOCIALITE_3",
+            "id": "LOCALID_SOCIALITE_1",
             "graphics_id": "OBJ_EVENT_GFX_SOCIALITE",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -71,7 +71,7 @@
             "y": 0
         },
         {
-            "id": "VEILSTONE_STORE_B1F_RECEPTIONIST_4",
+            "id": "LOCALID_RECEPTIONIST_2",
             "graphics_id": "OBJ_EVENT_GFX_RECEPTIONIST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -86,7 +86,7 @@
             "y": 0
         },
         {
-            "id": "VEILSTONE_STORE_B1F_CASHIER_F_5",
+            "id": "LOCALID_CASHIER_F_BERRY",
             "graphics_id": "OBJ_EVENT_GFX_CASHIER_F",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -101,7 +101,7 @@
             "y": 0
         },
         {
-            "id": "VEILSTONE_STORE_B1F_CASHIER_F_6",
+            "id": "LOCALID_CASHIER_F_RAGE_CANDY_BAR",
             "graphics_id": "OBJ_EVENT_GFX_CASHIER_F",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -116,7 +116,7 @@
             "y": 0
         },
         {
-            "id": "VEILSTONE_STORE_B1F_SOCIALITE_7",
+            "id": "LOCALID_SOCIALITE_2",
             "graphics_id": "OBJ_EVENT_GFX_SOCIALITE",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -131,7 +131,7 @@
             "y": 0
         },
         {
-            "id": "VEILSTONE_STORE_B1F_GENTLEMAN_8",
+            "id": "LOCALID_GENTLEMAN",
             "graphics_id": "OBJ_EVENT_GFX_GENTLEMAN",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -146,11 +146,11 @@
             "y": 0
         },
         {
-            "id": "VEILSTONE_STORE_B1F_PROF_ROWAN_9",
+            "id": "LOCALID_PROF_ROWAN",
             "graphics_id": "OBJ_EVENT_GFX_PROF_ROWAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_VEILSTONE_STORE_B1F_HIDE_PROF_ROWAN",
+            "hidden_flag": "FLAG_HIDE_VEILSTONE_STORE_B1F_PROF_ROWAN",
             "script": 7,
             "initial_dir": 1,
             "data": [],

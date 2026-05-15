@@ -3862,7 +3862,7 @@ UnkStruct_ov12_02223764 *ov12_022234F8(BattleSystem *battleSys, enum HeapID heap
         }
 
         BattleSystem_SetBattlerTypes(battleSys, &(v2->unk_44[0]));
-        ov16_0223F8AC(battleSys, &(v2->unk_48[0]));
+        BattleSystem_PopulateMonSprites(battleSys, &(v2->unk_48[0]));
     }
 
     {

@@ -1,0 +1,43 @@
+{
+  "name": "Apicot Berry",
+  "plural": "Apicot Berries",
+  "article": "an",
+  "description": [
+    "A Poffin ingredient.\n",
+    "If held by a Pokémon, it raises its\n",
+    "Sp. Def stat in a pinch."
+  ],
+  "icon": {
+    "sprite": "apicot_berry_NCGR",
+    "palette": "apicot_berry_NCLR"
+  },
+  "gbaID": "GBA_ITEM_APICOT_BERRY",
+  "price": 20,
+  "effectParam": 4,
+  "holdEffect": "HOLD_EFFECT_PINCH_SPDEF_UP",
+  "pluckEffect": "PLUCK_EFFECT_SPDEF_UP",
+  "flingEffect": "FLING_EFFECT_SPDEF_UP",
+  "flingPower": 10,
+  "naturalGiftPower": 80,
+  "naturalGiftType": "TYPE_GROUND",
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_BERRIES",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_BERRY",
+  "battleUseFunc": 0,
+  "itemUseParams": {},
+  "berryData": {
+    "size": 75,
+    "firmness": "FIRMNESS_HARD",
+    "baseYield": 1,
+    "stageDuration": 24,
+    "moistureDrainRate": 4,
+    "spiciness": 10,
+    "dryness": 30,
+    "sweetness": 0,
+    "bitterness": 0,
+    "sourness": 30,
+    "smoothness": 40
+  }
+}

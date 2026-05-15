@@ -342,7 +342,7 @@ ScriptCommand(SCRCMD_GETPLAYERGENDER,                                      ScrCm
 ScriptCommand(SCRCMD_HEALPARTY,                                            ScrCmd_HealParty)
 ScriptCommand(SCRCMD_DUMMY14F,                                             ScrCmd_Dummy14F)
 ScriptCommand(SCRCMD_ENDCOMMUNICATION,                                     ScrCmd_EndCommunication)
-ScriptCommand(SCRCMD_151,                                                  ScrCmd_151)
+ScriptCommand(SCRCMD_FIELDCOMMENTERBATTLEROOM,                             ScrCmd_FieldCommEnterBattleRoom)
 ScriptCommand(SCRCMD_SETCOMMPLAYERDIR,                                     ScrCmd_SetCommPlayerDir)
 ScriptCommand(SCRCMD_153,                                                  ScrCmd_153)
 ScriptCommand(SCRCMD_LOADTRAINERAPPEARANCES,                               ScrCmd_LoadTrainerAppearances)

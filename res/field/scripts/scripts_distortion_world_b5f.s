@@ -2,12 +2,12 @@
 
 
     ScriptEntry DistortionWorldB5F_OnTransition
-    ScriptEntry _000E
+    ScriptEntry DistortionWorldB5F_UnusedEntry2
     ScriptEntryEnd
 
 DistortionWorldB5F_OnTransition:
     InitPersistedMapFeaturesForDistortionWorld
     End
 
-_000E:
+DistortionWorldB5F_UnusedEntry2:
     End

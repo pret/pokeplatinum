@@ -9,13 +9,13 @@
 #include "struct_decls/struct_0203041C_decl.h"
 #include "struct_defs/battle_frontier.h"
 
+#include "applications/frontier/battle_castle/args.h"
 #include "applications/frontier/battle_castle/helpers.h"
 #include "applications/frontier/battle_castle/sprite_manager.h"
 #include "applications/frontier/battle_castle/sprites.h"
 #include "applications/frontier/battle_castle/windows.h"
 #include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/ov104_0223B6F4.h"
-#include "overlay104/struct_ov104_0223597C.h"
 
 #include "battle_frontier_stats.h"
 #include "bg_window.h"
@@ -299,21 +299,21 @@ BOOL BattleCastleOpponentApp_Init(ApplicationManager *appMan, int *state)
     app->bgConfig = BgConfig_New(HEAP_ID_BATTLE_CASTLE_APP);
     app->appMan = appMan;
 
-    UnkStruct_ov104_0223597C *v2 = ApplicationManager_Args(appMan);
+    BattleCastleAppArgs *args = ApplicationManager_Args(appMan);
 
-    app->saveData = v2->saveData;
+    app->saveData = args->saveData;
     app->unk_150 = sub_020302DC(app->saveData);
     app->unk_154 = sub_0203041C(app->saveData);
-    app->challengeType = v2->unk_04;
-    app->selectedMonSlotPtr = &v2->unk_20;
+    app->challengeType = args->challengeType;
+    app->selectedMonSlotPtr = &args->selectedMonSlot;
     app->options = SaveData_GetOptions(app->saveData);
-    app->opponentsParty = v2->unk_1C;
-    app->identityUnlockedForSlot = &v2->unk_08[0];
-    app->levelAdjustmentForSlot = &v2->unk_0C[0];
-    app->statsUnlockedForSlot = &v2->unk_10[0];
-    app->movesUnlockedForSlot = &v2->unk_14[0];
+    app->opponentsParty = args->opponentsParty;
+    app->identityUnlockedForSlot = &args->identityUnlocked[0];
+    app->levelAdjustmentForSlot = &args->levelAdjustmentUnlocked[0];
+    app->statsUnlockedForSlot = &args->statsUnlocked[0];
+    app->movesUnlockedForSlot = &args->movesUnlocked[0];
     app->slotID = 0xff;
-    app->partnersCP = v2->unk_28;
+    app->partnersCP = args->partnersCP;
     app->frontier = SaveData_GetBattleFrontier(app->saveData);
 
     for (int i = 0; i < BATTLE_CASTLE_NUM_RANK_TYPES; i++) {

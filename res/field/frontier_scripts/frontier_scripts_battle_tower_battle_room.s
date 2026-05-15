@@ -349,8 +349,8 @@ _046D:
     Call _04C8
     FrontierScrCmd_3F 0
     CallBattleTowerFunction BT_FUNC_UNK_59, 0, VAR_0x8008
-    FrontierScrCmd_87
-    CheckWonTowerBattle VAR_0x800C
+    BattleTower_StartBattle
+    BattleTower_CheckWonBattle VAR_0x800C
     FadeScreenIn
     Return
 
@@ -573,8 +573,8 @@ _086E:
     Call _04C8
     IncrementRecordValue RECORD_UNK_059
     FrontierScrCmd_47 1
-    FrontierScrCmd_87
-    CheckWonTowerBattle VAR_0x800C
+    BattleTower_StartBattle
+    BattleTower_CheckWonBattle VAR_0x800C
     FadeScreenIn
     GoToIfEq VAR_0x800C, 0, _020F
     CallBattleTowerFunction BT_FUNC_UNK_36, 0, VAR_0x8008

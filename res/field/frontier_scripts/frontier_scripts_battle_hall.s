@@ -786,11 +786,11 @@ _08F1:
 
 _0907:
     BattleHall_StartBattle
-    BattleHall_CheckWonBattle
+    BattleHall_CleanupBattle
     CallBattleHallFunction BH_FUNC_UPDATE_HELD_ITEMS, 0, 0, VAR_0x8008
     CallBattleHallFunction BH_FUNC_TOGGLE_ENGINE_LAYER, 0, 0, VAR_0x8008
     FadeScreenIn
-    BattleHall_GetBattleResult VAR_0x8008
+    BattleHall_CheckWonBattle VAR_0x8008
     GoToIfEq VAR_0x8008, 0, _0F5D
     IncrementRecordValue RECORD_BATTLE_HALL_VICTORIES
     CallBattleHallFunction BH_FUNC_UNK_28, 0, 0, VAR_0x8008
@@ -851,7 +851,7 @@ _0A41:
 
 _0A49:
     CallBattleHallFunction BH_FUNC_UNK_14, 1, 0, VAR_0x8008
-    CallBattleHallFunction BH_FUNC_INCREMENT_CURRENT_STEAK, 0, 0, VAR_0x8008
+    CallBattleHallFunction BH_FUNC_INCREMENT_CURRENT_STREAK, 0, 0, VAR_0x8008
     CallBattleHallFunction BH_FUNC_UNK_23, 0, 0, VAR_0x8008
     GoToIfNe VAR_0x8008, 10, _0B25
     GoTo _0A73

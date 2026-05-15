@@ -198,10 +198,6 @@ early_exit:
     return (Container){ .header = header, .party = trparty };
 }
 
-#define sfmt(fmt, ...) (snprintf(buf, BUFSIZE, fmt, __VA_ARGS__), buf)
-
-#define BUFSIZE 256
-
 static void emit_name(datafile_t *df, enum TrainerID trainer, const TrainerHeader *trainer_header, const char *stem) {
     static const enum TrainerClass uncompressed_classes[] = {
         TRAINER_CLASS_RIVAL,
@@ -234,8 +230,8 @@ static void emit_name(datafile_t *df, enum TrainerID trainer, const TrainerHeade
     }
 
     datanode_t entry = dp_arr_appobject(&textbanks[T_TRAINER_NAMES].root);
-    dp_obj_putstring(&entry, "id", sfmt("NPCTrainerNames_Text_%s", stem));
-    dp_obj_putstring(&entry, "en_US", sfmt(compressed ? "{TRNAME}%s" : "%s", name));
+    dp_obj_putstring(&entry, "id", strfmt("NPCTrainerNames_Text_%s", stem));
+    dp_obj_putstring(&entry, "en_US", strfmt(compressed ? "{TRNAME}%s" : "%s", name));
 }
 
 typedef struct TrainerMessagesEntry {
@@ -359,7 +355,7 @@ static int postproc_messages(void) {
             p_trtbl++;
 
             datanode_t bank_entry = dp_arr_appobject(&textbanks[T_TRAINER_MESSAGES].root);
-            dp_obj_putstring(&bank_entry, "id", sfmt("NPCTrainerMessages_Text_%s_%zu", registry[i], message_id));
+            dp_obj_putstring(&bank_entry, "id", strfmt("NPCTrainerMessages_Text_%s_%zu", registry[i], message_id));
             if (entry->garbage[message_id]) {
                 dp_obj_putint(&bank_entry, "garbage", entry->garbage[message_id]);
             }

@@ -1,0 +1,30 @@
+{
+  "name": "Lunar Wing",
+  "plural": "Lunar Wings",
+  "article": "a",
+  "description": [
+    "A feather that glows like the moon.\n",
+    "It is said to possess the power to\n",
+    "dispel nightmares."
+  ],
+  "icon": {
+    "sprite": "lunar_wing_NCGR",
+    "palette": "lunar_wing_NCLR"
+  },
+  "gbaID": "GBA_ITEM_NONE",
+  "price": 0,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 0,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": true,
+  "canRegister": false,
+  "fieldPocket": "POCKET_KEY_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseFunc": 0,
+  "itemUseParams": null
+}

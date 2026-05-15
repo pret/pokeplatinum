@@ -1,0 +1,48 @@
+{
+  "name": "Hondew Berry",
+  "plural": "Hondew Berries",
+  "article": "a",
+  "description": [
+    "A Poffin ingredient. Using it on a\n",
+    "Pokémon makes it more friendly, but\n",
+    "it also lowers its base Sp. Atk stat."
+  ],
+  "icon": {
+    "sprite": "hondew_berry_NCGR",
+    "palette": "hondew_berry_NCLR"
+  },
+  "gbaID": "GBA_ITEM_HONDEW_BERRY",
+  "price": 20,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 10,
+  "naturalGiftPower": 70,
+  "naturalGiftType": "TYPE_GROUND",
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_BERRIES",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_BERRY",
+  "battleUseFunc": 0,
+  "itemUseParams": {
+    "spatkEVs": -10,
+    "friendshipLow": 10,
+    "friendshipMed": 5,
+    "friendshipHigh": 2
+  },
+  "berryData": {
+    "size": 162,
+    "firmness": "FIRMNESS_HARD",
+    "baseYield": 1,
+    "stageDuration": 8,
+    "moistureDrainRate": 8,
+    "spiciness": 10,
+    "dryness": 10,
+    "sweetness": 0,
+    "bitterness": 10,
+    "sourness": 0,
+    "smoothness": 20
+  }
+}

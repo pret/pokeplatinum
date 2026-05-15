@@ -48,6 +48,13 @@ frontier_text_bank_names = [
     'frontier_trainer_names.json'
 ]
 
+item_text_bank_names = [
+    'item_names.json',
+    'item_names_plural.json',
+    'item_names_with_articles.json',
+    'item_descriptions.json',
+]
+
 town_map_text_bank_name = [
     'town_map.json'
 ]
@@ -57,6 +64,7 @@ generated_text_banks = [
     species_text_bank_names,
     trainer_text_bank_names,
     frontier_text_bank_names,
+    item_text_bank_names,
     town_map_text_bank_name,
 ]
 
@@ -104,6 +112,7 @@ json_to_bin_gen = generator(msgenc_exe,
 text_bank_files += species_text_banks
 text_bank_files += trainer_text_banks
 text_bank_files += frontier_text_banks
+text_bank_files += item_text_banks
 
 town_map_text_bank = custom_target('town_map_text_bank',
     output: town_map_text_bank_name,

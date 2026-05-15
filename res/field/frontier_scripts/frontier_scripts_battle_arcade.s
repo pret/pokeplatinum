@@ -1,6 +1,7 @@
 # include "macros/frscrcmd.inc"
 # include "res/graphics/frontier/particles/frontier_particles.naix"
 # include "res/text/bank/battle_arcade_scene.h"
+# include "constants/battle_arcade_functions.h"
 # include "constants/battle_frontier_emitters.h"
 
     .data
@@ -891,7 +892,7 @@ _0662:
     InitNewBattleRecording
     FrontierScrCmd_B8 VAR_0x8003, VAR_0x8001, VAR_0x8004, VAR_0x8005, VAR_0x8006, VAR_0x8008
     GetPlayerObjEventGfx VAR_0x8007
-    FrontierScrCmd_BF 28, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _06BE
     SetVar FR_VAR_0x800F, 231
     Call _333A
@@ -909,7 +910,7 @@ _06BE:
 _06DC:
     Call _32C0
     FadeScreenIn
-    FrontierScrCmd_BF 28, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _0742
     ApplyMovement 20, _0274
     ApplyMovement 4, _0238
@@ -942,7 +943,7 @@ _0742:
 _0788:
     FrontierScrCmd_03 16
     SetVar VAR_0x800D, 0
-    FrontierScrCmd_BF 28, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _07BC
     SetVar FR_VAR_0x800F, 231
     Call _3383
@@ -950,7 +951,7 @@ _0788:
     End
 
 _07BC:
-    FrontierScrCmd_BF 37, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_37, 0, 0, VAR_0x8008
     SetVar FR_VAR_0x800F, 232
     Call _33A3
     GoTo _07D9
@@ -963,7 +964,7 @@ _07D9:
     Call _3246
     Call _32CB
     FadeScreenIn
-    FrontierScrCmd_BF 28, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _0821
     GoTo _0883
     End
@@ -995,7 +996,7 @@ _0860:
 
 _0883:
     FrontierScrCmd_B9 VAR_0x8003
-    FrontierScrCmd_BF 28, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _08A5
     GoTo _091F
     End
@@ -1035,7 +1036,7 @@ _08EA:
 
 _091F:
     SetVar VAR_0x8003, 0
-    FrontierScrCmd_BF 28, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _0975
     ApplyMovement 0, _0290
     ApplyMovement 4, _0298
@@ -1063,7 +1064,7 @@ _09B7:
     FrontierScrCmd_25 20
     FrontierScrCmd_23 FR_VAR_0x800F
     Call _3198
-    FrontierScrCmd_BF 23, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_23, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 0, _09F9
     Call _0A07
     ApplyMovement 3, _05E8
@@ -1079,14 +1080,14 @@ _09F9:
 
 _0A07:
     WaitTime 1, VAR_0x8008
-    FrontierScrCmd_BF 28, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     CallIfEq VAR_0x8008, 1, _0A2D
     FrontierScrCmd_BD
     Call _2EB2
     Return
 
 _0A2D:
-    FrontierScrCmd_BF 52, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_52, 0, 0, VAR_0x8008
     ClearReceivedTempDataAllPlayers
     SyncConnectedPlayers 205
     ClearReceivedTempDataAllPlayers
@@ -1102,9 +1103,9 @@ _0A46:
     ClearReceivedTempDataAllPlayers
     SyncConnectedPlayers 206
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_BF 49, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_49, 0, 0, VAR_0x8008
     WaitTime 1, VAR_0x8008
-    FrontierScrCmd_BF 50, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_50, 0, 0, VAR_0x8008
     WaitTime 1, VAR_0x8008
     Return
 
@@ -1113,9 +1114,9 @@ _0A8F:
     WaitMovement
     Message BattleArcadeScene_Text_Welcome
     PlaySoundEffect SEQ_SE_DP_DENDOU
-    FrontierScrCmd_BF 23, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_23, 0, 0, VAR_0x8008
     CallIfEq VAR_0x8008, 0, _0B1A
-    FrontierScrCmd_BF 28, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _0AD5
     GoTo _0B20
     End
@@ -1134,7 +1135,7 @@ _0AE1:
 
 _0AF1:
     InitParticleSystem 0, battle_arcade_1_spa
-    FrontierScrCmd_BF 39, VAR_0x8005, VAR_0x8006, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_39, VAR_0x8005, VAR_0x8006, VAR_0x8008
     WaitTime 120, VAR_0x8008
     FreeParticleSystem 0
     WaitTime 60, VAR_0x8008
@@ -1148,13 +1149,13 @@ _0B1A:
 _0B20:
     Call _32A0
     BufferNumber 0, VAR_0x8008
-    FrontierScrCmd_BF 28, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 0, _0B50
     GoToIfEq VAR_0x8008, 1, _0B8A
     End
 
 _0B50:
-    FrontierScrCmd_BF 23, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_23, 0, 0, VAR_0x8008
     AddVar VAR_0x8008, 1
     BufferNumber 0, VAR_0x8008
     Message BattleArcadeScene_Text_GameStart
@@ -1169,7 +1170,7 @@ _0B50:
     End
 
 _0B8A:
-    FrontierScrCmd_BF 23, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_23, 0, 0, VAR_0x8008
     AddVar VAR_0x8008, 1
     BufferNumber 0, VAR_0x8008
     MessageNoSkip BattleArcadeScene_Text_GameStart
@@ -1189,24 +1190,24 @@ _0B8A:
 _0BD4:
     FadeScreenOut
     CloseMessage
-    FrontierScrCmd_BF 48, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_48, 0, 0, VAR_0x8008
     CallIfEq VAR_0x8008, 1, _0C9E
     CallIfEq VAR_0x8008, 2, _0C9E
     Call _32A0
     Call _2F24
     Call _2F4A
     Call _3272
-    FrontierScrCmd_BF 28, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     CallIfEq VAR_0x8008, 1, _0CA4
-    FrontierScrCmd_C3
+    OpenBattleArcadeApp
     FrontierScrCmd_2A _01E8
     Call _3246
     Call _2EEC
-    FrontierScrCmd_BF 11, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_11, 0, 0, VAR_0x8008
     FrontierScrCmd_C5
-    FrontierScrCmd_BF 28, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     CallIfEq VAR_0x8008, 1, _227E
-    FrontierScrCmd_BF 28, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     CallIfEq VAR_0x8008, 1, _0860
     Call _32CB
     Call _32EA
@@ -1244,7 +1245,7 @@ _0CD0:
 
 _0CD6:
     InitParticleSystem 0, battle_arcade_1_spa
-    FrontierScrCmd_BF 16, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_16, 0, 0, VAR_0x8008
     PlaySoundEffect SEQ_SE_DP_DENDOU
     SetVar FR_VAR_0x8010, VAR_0x8008
     GoToIfEq FR_VAR_0x8010, 0, _0E93
@@ -1285,7 +1286,7 @@ _0E93:
     Message BattleArcadeScene_Text_CurrentEvent
     Call _3288
     Call _20AA
-    FrontierScrCmd_BF 28, 0, 0, VAR_0x8006
+    CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8006
     GoToIfEq VAR_0x8006, 0, _0F1F
     GoToIfEq VAR_0x8006, 1, _0F39
     End
@@ -1293,11 +1294,11 @@ _0E93:
 _0EC8:
     Call _32D6
     Call _21C5
-    FrontierScrCmd_BF 38, 0, 0, VAR_0x8008
-    FrontierScrCmd_BF 38, 1, 1, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_38, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_38, 1, 1, VAR_0x8008
     ApplyMovement 3, _05E0
     WaitMovement
-    FrontierScrCmd_BF 28, 0, 0, VAR_0x8006
+    CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8006
     CallIfEq VAR_0x8006, 0, _0F53
     CallIfEq VAR_0x8006, 1, _0F59
     PlaySoundEffect SEQ_SE_DP_DENDOU
@@ -1334,9 +1335,9 @@ _0F5F:
     SetVar VAR_0x8005, 34
     SetVar VAR_0x8006, 35
     Call _21A9
-    FrontierScrCmd_BF 38, 0, 0, VAR_0x8008
-    FrontierScrCmd_BF 38, 1, 1, VAR_0x8008
-    FrontierScrCmd_BF 28, 0, 0, VAR_0x8006
+    CallBattleArcadeFunction BA_FUNC_UNK_38, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_38, 1, 1, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8006
     CallIfEq VAR_0x8006, 0, _0FC8
     CallIfEq VAR_0x8006, 1, _0FE4
     PlaySoundEffect SEQ_SE_DP_DENDOU
@@ -1344,13 +1345,13 @@ _0F5F:
     End
 
 _0FC8:
-    FrontierScrCmd_BF 47, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_47, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _1000
     Message BattleArcadeScene_Text_SoloPoisoned
     Return
 
 _0FE4:
-    FrontierScrCmd_BF 47, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_47, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _1006
     Message BattleArcadeScene_Text_MultiPoisoned
     Return
@@ -1371,11 +1372,11 @@ _100C:
     SetVar VAR_0x8005, 46
     SetVar VAR_0x8006, 47
     Call _21A9
-    FrontierScrCmd_BF 38, 0, 0, VAR_0x8008
-    FrontierScrCmd_BF 38, 1, 1, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_38, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_38, 1, 1, VAR_0x8008
     ApplyMovement 3, _05E0
     WaitMovement
-    FrontierScrCmd_BF 28, 0, 0, VAR_0x8006
+    CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8006
     CallIfEq VAR_0x8006, 0, _107F
     CallIfEq VAR_0x8006, 1, _109B
     PlaySoundEffect SEQ_SE_DP_DENDOU
@@ -1383,13 +1384,13 @@ _100C:
     End
 
 _107F:
-    FrontierScrCmd_BF 47, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_47, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _10B7
     Message BattleArcadeScene_Text_SoloParalyzed
     Return
 
 _109B:
-    FrontierScrCmd_BF 47, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_47, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _10BD
     Message BattleArcadeScene_Text_MultiParalyzed
     Return
@@ -1410,9 +1411,9 @@ _10C3:
     SetVar VAR_0x8005, 38
     SetVar VAR_0x8006, 39
     Call _21A9
-    FrontierScrCmd_BF 38, 0, 0, VAR_0x8008
-    FrontierScrCmd_BF 38, 1, 1, VAR_0x8008
-    FrontierScrCmd_BF 28, 0, 0, VAR_0x8006
+    CallBattleArcadeFunction BA_FUNC_UNK_38, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_38, 1, 1, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8006
     CallIfEq VAR_0x8006, 0, _112C
     CallIfEq VAR_0x8006, 1, _1148
     PlaySoundEffect SEQ_SE_DP_DENDOU
@@ -1420,13 +1421,13 @@ _10C3:
     End
 
 _112C:
-    FrontierScrCmd_BF 47, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_47, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _1164
     Message BattleArcadeScene_Text_SoloBurned
     Return
 
 _1148:
-    FrontierScrCmd_BF 47, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_47, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _116A
     Message BattleArcadeScene_Text_MultiBurned
     Return
@@ -1447,11 +1448,11 @@ _1170:
     SetVar VAR_0x8005, 42
     SetVar VAR_0x8006, 43
     Call _21A9
-    FrontierScrCmd_BF 38, 0, 0, VAR_0x8008
-    FrontierScrCmd_BF 38, 1, 1, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_38, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_38, 1, 1, VAR_0x8008
     ApplyMovement 3, _05E0
     WaitMovement
-    FrontierScrCmd_BF 28, 0, 0, VAR_0x8006
+    CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8006
     CallIfEq VAR_0x8006, 0, _11E3
     CallIfEq VAR_0x8006, 1, _11FF
     PlaySoundEffect SEQ_SE_DP_DENDOU
@@ -1459,13 +1460,13 @@ _1170:
     End
 
 _11E3:
-    FrontierScrCmd_BF 47, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_47, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _121B
     Message BattleArcadeScene_Text_SoloAsleep
     Return
 
 _11FF:
-    FrontierScrCmd_BF 47, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_47, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _1221
     Message BattleArcadeScene_Text_MultiAsleep
     Return
@@ -1486,9 +1487,9 @@ _1227:
     SetVar VAR_0x8005, 30
     SetVar VAR_0x8006, 31
     Call _21A9
-    FrontierScrCmd_BF 38, 0, 0, VAR_0x8008
-    FrontierScrCmd_BF 38, 1, 1, VAR_0x8008
-    FrontierScrCmd_BF 28, 0, 0, VAR_0x8006
+    CallBattleArcadeFunction BA_FUNC_UNK_38, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_38, 1, 1, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8006
     CallIfEq VAR_0x8006, 0, _1290
     CallIfEq VAR_0x8006, 1, _12AC
     PlaySoundEffect SEQ_SE_DP_DENDOU
@@ -1496,13 +1497,13 @@ _1227:
     End
 
 _1290:
-    FrontierScrCmd_BF 47, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_47, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _12C8
     Message BattleArcadeScene_Text_SoloFrozen
     Return
 
 _12AC:
-    FrontierScrCmd_BF 47, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_47, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _12CE
     Message BattleArcadeScene_Text_MultiFrozen
     Return
@@ -1520,8 +1521,8 @@ _12D4:
     Call _20AA
     CloseMessage
     Call _2211
-    FrontierScrCmd_BF 38, 0, 0, VAR_0x8008
-    FrontierScrCmd_BF 15, 1, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_38, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_15, 1, 0, VAR_0x8008
     BufferItemName 2, VAR_0x8008
     FrontierScrCmd_C6 1, 0, 1
     FrontierScrCmd_C6 1, 1, 1
@@ -1530,7 +1531,7 @@ _12D4:
     Message BattleArcadeScene_Text_HereYouGo
     CloseMessage
     Call _221D
-    FrontierScrCmd_BF 28, 0, 0, VAR_0x8006
+    CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8006
     CallIfEq VAR_0x8006, 0, _1358
     CallIfEq VAR_0x8006, 1, _135E
     PlaySoundEffect SEQ_SE_DP_DENDOU
@@ -1542,7 +1543,7 @@ _1358:
     Return
 
 _135E:
-    FrontierScrCmd_BF 38, 1, 1, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_38, 1, 1, VAR_0x8008
     Message BattleArcadeScene_Text_MultiLoanItem
     Return
 
@@ -1551,8 +1552,8 @@ _136D:
     Call _20AA
     CloseMessage
     Call _2211
-    FrontierScrCmd_BF 38, 0, 0, VAR_0x8008
-    FrontierScrCmd_BF 15, 1, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_38, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_15, 1, 0, VAR_0x8008
     BufferItemName 2, VAR_0x8008
     FrontierScrCmd_C6 1, 0, 1
     FrontierScrCmd_C6 1, 1, 1
@@ -1561,7 +1562,7 @@ _136D:
     Message BattleArcadeScene_Text_HereYouGo
     CloseMessage
     Call _221D
-    FrontierScrCmd_BF 28, 0, 0, VAR_0x8006
+    CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8006
     CallIfEq VAR_0x8006, 0, _13F1
     CallIfEq VAR_0x8006, 1, _13F7
     PlaySoundEffect SEQ_SE_DP_DENDOU
@@ -1573,7 +1574,7 @@ _13F1:
     Return
 
 _13F7:
-    FrontierScrCmd_BF 38, 1, 1, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_38, 1, 1, VAR_0x8008
     Message BattleArcadeScene_Text_MultiLoanItem
     Return
 
@@ -1581,7 +1582,7 @@ _1406:
     Message BattleArcadeScene_Text_CurrentEvent
     Call _3288
     Call _20AA
-    FrontierScrCmd_BF 28, 0, 0, VAR_0x8006
+    CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8006
     GoToIfEq VAR_0x8006, 0, _1488
     GoToIfEq VAR_0x8006, 1, _14A2
     End
@@ -1589,9 +1590,9 @@ _1406:
 _143B:
     Call _32D6
     Call _21C5
-    FrontierScrCmd_BF 38, 0, 0, VAR_0x8008
-    FrontierScrCmd_BF 38, 1, 1, VAR_0x8008
-    FrontierScrCmd_BF 28, 0, 0, VAR_0x8006
+    CallBattleArcadeFunction BA_FUNC_UNK_38, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_38, 1, 1, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8006
     CallIfEq VAR_0x8006, 0, _14BC
     CallIfEq VAR_0x8006, 1, _14C2
     PlaySoundEffect SEQ_SE_DP_DENDOU
@@ -1624,7 +1625,7 @@ _14C8:
     Message BattleArcadeScene_Text_CurrentEvent
     Call _3294
     Call _2092
-    FrontierScrCmd_BF 28, 0, 0, VAR_0x8006
+    CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8006
     GoToIfEq VAR_0x8006, 0, _154A
     GoToIfEq VAR_0x8006, 1, _1564
     End
@@ -1632,9 +1633,9 @@ _14C8:
 _14FD:
     Call _32D6
     Call _21C5
-    FrontierScrCmd_BF 38, 0, 0, VAR_0x8008
-    FrontierScrCmd_BF 38, 1, 1, VAR_0x8008
-    FrontierScrCmd_BF 28, 0, 0, VAR_0x8006
+    CallBattleArcadeFunction BA_FUNC_UNK_38, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_38, 1, 1, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8006
     CallIfEq VAR_0x8006, 0, _157E
     CallIfEq VAR_0x8006, 1, _1584
     PlaySoundEffect SEQ_SE_DP_DENDOU
@@ -1671,11 +1672,11 @@ _158A:
     SetVar VAR_0x8005, 32
     SetVar VAR_0x8006, 33
     Call _21A9
-    FrontierScrCmd_BF 38, 0, 0, VAR_0x8008
-    FrontierScrCmd_BF 38, 1, 1, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_38, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_38, 1, 1, VAR_0x8008
     ApplyMovement 3, _05E0
     WaitMovement
-    FrontierScrCmd_BF 28, 0, 0, VAR_0x8006
+    CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8006
     CallIfEq VAR_0x8006, 0, _15FD
     CallIfEq VAR_0x8006, 1, _1619
     PlaySoundEffect SEQ_SE_DP_DENDOU
@@ -1683,13 +1684,13 @@ _158A:
     End
 
 _15FD:
-    FrontierScrCmd_BF 47, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_47, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _1635
     Message BattleArcadeScene_Text_SoloPoisoned
     Return
 
 _1619:
-    FrontierScrCmd_BF 47, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_47, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _163B
     Message BattleArcadeScene_Text_MultiPoisoned
     Return
@@ -1710,9 +1711,9 @@ _1641:
     SetVar VAR_0x8005, 44
     SetVar VAR_0x8006, 45
     Call _21A9
-    FrontierScrCmd_BF 38, 0, 0, VAR_0x8008
-    FrontierScrCmd_BF 38, 1, 1, VAR_0x8008
-    FrontierScrCmd_BF 28, 0, 0, VAR_0x8006
+    CallBattleArcadeFunction BA_FUNC_UNK_38, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_38, 1, 1, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8006
     CallIfEq VAR_0x8006, 0, _16AA
     CallIfEq VAR_0x8006, 1, _16C6
     PlaySoundEffect SEQ_SE_DP_DENDOU
@@ -1720,13 +1721,13 @@ _1641:
     End
 
 _16AA:
-    FrontierScrCmd_BF 47, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_47, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _16E2
     Message BattleArcadeScene_Text_SoloParalyzed
     Return
 
 _16C6:
-    FrontierScrCmd_BF 47, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_47, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _16E8
     Message BattleArcadeScene_Text_MultiParalyzed
     Return
@@ -1747,11 +1748,11 @@ _16EE:
     SetVar VAR_0x8005, 36
     SetVar VAR_0x8006, 37
     Call _21A9
-    FrontierScrCmd_BF 38, 0, 0, VAR_0x8008
-    FrontierScrCmd_BF 38, 1, 1, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_38, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_38, 1, 1, VAR_0x8008
     ApplyMovement 3, _05E0
     WaitMovement
-    FrontierScrCmd_BF 28, 0, 0, VAR_0x8006
+    CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8006
     CallIfEq VAR_0x8006, 0, _1761
     CallIfEq VAR_0x8006, 1, _177D
     PlaySoundEffect SEQ_SE_DP_DENDOU
@@ -1759,13 +1760,13 @@ _16EE:
     End
 
 _1761:
-    FrontierScrCmd_BF 47, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_47, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _1799
     Message BattleArcadeScene_Text_SoloBurned
     Return
 
 _177D:
-    FrontierScrCmd_BF 47, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_47, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _179F
     Message BattleArcadeScene_Text_MultiBurned
     Return
@@ -1786,9 +1787,9 @@ _17A5:
     SetVar VAR_0x8005, 40
     SetVar VAR_0x8006, 41
     Call _21A9
-    FrontierScrCmd_BF 38, 0, 0, VAR_0x8008
-    FrontierScrCmd_BF 38, 1, 1, VAR_0x8008
-    FrontierScrCmd_BF 28, 0, 0, VAR_0x8006
+    CallBattleArcadeFunction BA_FUNC_UNK_38, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_38, 1, 1, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8006
     CallIfEq VAR_0x8006, 0, _180E
     CallIfEq VAR_0x8006, 1, _182A
     PlaySoundEffect SEQ_SE_DP_DENDOU
@@ -1796,13 +1797,13 @@ _17A5:
     End
 
 _180E:
-    FrontierScrCmd_BF 47, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_47, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _1846
     Message BattleArcadeScene_Text_SoloAsleep
     Return
 
 _182A:
-    FrontierScrCmd_BF 47, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_47, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _184C
     Message BattleArcadeScene_Text_MultiAsleep
     Return
@@ -1823,11 +1824,11 @@ _1852:
     SetVar VAR_0x8005, 28
     SetVar VAR_0x8006, 29
     Call _21A9
-    FrontierScrCmd_BF 38, 0, 0, VAR_0x8008
-    FrontierScrCmd_BF 38, 1, 1, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_38, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_38, 1, 1, VAR_0x8008
     ApplyMovement 3, _05E0
     WaitMovement
-    FrontierScrCmd_BF 28, 0, 0, VAR_0x8006
+    CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8006
     CallIfEq VAR_0x8006, 0, _18C5
     CallIfEq VAR_0x8006, 1, _18E1
     PlaySoundEffect SEQ_SE_DP_DENDOU
@@ -1835,13 +1836,13 @@ _1852:
     End
 
 _18C5:
-    FrontierScrCmd_BF 47, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_47, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _18FD
     Message BattleArcadeScene_Text_SoloFrozen
     Return
 
 _18E1:
-    FrontierScrCmd_BF 47, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_47, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _1903
     Message BattleArcadeScene_Text_MultiFrozen
     Return
@@ -1859,8 +1860,8 @@ _1909:
     Call _2092
     CloseMessage
     Call _21ED
-    FrontierScrCmd_BF 38, 0, 0, VAR_0x8008
-    FrontierScrCmd_BF 15, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_38, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_15, 0, 0, VAR_0x8008
     BufferItemName 2, VAR_0x8008
     FrontierScrCmd_C6 0, 0, 1
     FrontierScrCmd_C6 0, 1, 1
@@ -1869,7 +1870,7 @@ _1909:
     Message BattleArcadeScene_Text_HereYouGo
     CloseMessage
     Call _21F9
-    FrontierScrCmd_BF 28, 0, 0, VAR_0x8006
+    CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8006
     CallIfEq VAR_0x8006, 0, _198D
     CallIfEq VAR_0x8006, 1, _1993
     PlaySoundEffect SEQ_SE_DP_DENDOU
@@ -1881,7 +1882,7 @@ _198D:
     Return
 
 _1993:
-    FrontierScrCmd_BF 38, 1, 1, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_38, 1, 1, VAR_0x8008
     Message BattleArcadeScene_Text_MultiLoanItem
     Return
 
@@ -1890,8 +1891,8 @@ _19A2:
     Call _2092
     CloseMessage
     Call _21ED
-    FrontierScrCmd_BF 38, 0, 0, VAR_0x8008
-    FrontierScrCmd_BF 15, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_38, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_15, 0, 0, VAR_0x8008
     BufferItemName 2, VAR_0x8008
     FrontierScrCmd_C6 0, 0, 1
     FrontierScrCmd_C6 0, 1, 1
@@ -1900,7 +1901,7 @@ _19A2:
     Message BattleArcadeScene_Text_HereYouGo
     CloseMessage
     Call _21F9
-    FrontierScrCmd_BF 28, 0, 0, VAR_0x8006
+    CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8006
     CallIfEq VAR_0x8006, 0, _1A26
     CallIfEq VAR_0x8006, 1, _1A2C
     PlaySoundEffect SEQ_SE_DP_DENDOU
@@ -1912,7 +1913,7 @@ _1A26:
     Return
 
 _1A2C:
-    FrontierScrCmd_BF 38, 1, 1, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_38, 1, 1, VAR_0x8008
     Message BattleArcadeScene_Text_MultiLoanItem
     Return
 
@@ -1920,7 +1921,7 @@ _1A3B:
     Message BattleArcadeScene_Text_CurrentEvent
     Call _3294
     Call _2092
-    FrontierScrCmd_BF 28, 0, 0, VAR_0x8006
+    CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8006
     GoToIfEq VAR_0x8006, 0, _1AC7
     GoToIfEq VAR_0x8006, 1, _1AE1
     End
@@ -1928,11 +1929,11 @@ _1A3B:
 _1A70:
     Call _32D6
     Call _21C5
-    FrontierScrCmd_BF 38, 0, 0, VAR_0x8008
-    FrontierScrCmd_BF 38, 1, 1, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_38, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_38, 1, 1, VAR_0x8008
     ApplyMovement 3, _05E0
     WaitMovement
-    FrontierScrCmd_BF 28, 0, 0, VAR_0x8006
+    CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8006
     CallIfEq VAR_0x8006, 0, _1AFB
     CallIfEq VAR_0x8006, 1, _1B01
     PlaySoundEffect SEQ_SE_DP_DENDOU
@@ -2033,7 +2034,7 @@ _1BEB:
 _1C15:
     Message BattleArcadeScene_Text_CurrentEvent
     Call _20D4
-    FrontierScrCmd_BF 28, 0, 0, VAR_0x8006
+    CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8006
     CallIfEq VAR_0x8006, 0, _1DEC
     CallIfEq VAR_0x8006, 1, _1E00
     FrontierScrCmd_31 4, 2
@@ -2041,45 +2042,45 @@ _1C15:
     FrontierScrCmd_31 6, 3
     FrontierScrCmd_31 7, 7
     PlaySoundEffect SEQ_SE_DP_Z_SEARCH
-    FrontierScrCmd_BF 41, 0, 3, VAR_0x8008
-    FrontierScrCmd_BF 42, 0, 3, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_41, 0, 3, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_42, 0, 3, VAR_0x8008
     FrontierScrCmd_C6 0, 3, 0
     FrontierScrCmd_C6 1, 3, 0
     WaitTime 14, VAR_0x8008
-    FrontierScrCmd_BF 41, 0, 2, VAR_0x8008
-    FrontierScrCmd_BF 42, 0, 2, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_41, 0, 2, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_42, 0, 2, VAR_0x8008
     FrontierScrCmd_C6 0, 2, 0
     FrontierScrCmd_C6 1, 2, 0
     WaitTime 14, VAR_0x8008
-    FrontierScrCmd_BF 41, 0, 1, VAR_0x8008
-    FrontierScrCmd_BF 42, 0, 1, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_41, 0, 1, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_42, 0, 1, VAR_0x8008
     FrontierScrCmd_C6 0, 1, 0
     FrontierScrCmd_C6 1, 1, 0
     WaitTime 14, VAR_0x8008
-    FrontierScrCmd_BF 41, 0, 0, VAR_0x8008
-    FrontierScrCmd_BF 42, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_41, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_42, 0, 0, VAR_0x8008
     FrontierScrCmd_C6 0, 0, 0
     FrontierScrCmd_C6 1, 0, 0
     WaitTime 14, VAR_0x8008
-    FrontierScrCmd_BF 25, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_25, 0, 0, VAR_0x8008
     PlaySoundEffect SEQ_SE_DP_Z_SEARCH
-    FrontierScrCmd_BF 41, 1, 0, VAR_0x8008
-    FrontierScrCmd_BF 42, 1, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_41, 1, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_42, 1, 0, VAR_0x8008
     FrontierScrCmd_C6 0, 0, 1
     FrontierScrCmd_C6 1, 0, 1
     WaitTime 14, VAR_0x8008
-    FrontierScrCmd_BF 41, 1, 1, VAR_0x8008
-    FrontierScrCmd_BF 42, 1, 1, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_41, 1, 1, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_42, 1, 1, VAR_0x8008
     FrontierScrCmd_C6 0, 1, 1
     FrontierScrCmd_C6 1, 1, 1
     WaitTime 14, VAR_0x8008
-    FrontierScrCmd_BF 41, 1, 2, VAR_0x8008
-    FrontierScrCmd_BF 42, 1, 2, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_41, 1, 2, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_42, 1, 2, VAR_0x8008
     FrontierScrCmd_C6 0, 2, 1
     FrontierScrCmd_C6 1, 2, 1
     WaitTime 14, VAR_0x8008
-    FrontierScrCmd_BF 41, 1, 3, VAR_0x8008
-    FrontierScrCmd_BF 42, 1, 3, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_41, 1, 3, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_42, 1, 3, VAR_0x8008
     FrontierScrCmd_C6 0, 3, 1
     FrontierScrCmd_C6 1, 3, 1
     WaitTime 14, VAR_0x8008
@@ -2087,7 +2088,7 @@ _1C15:
     WaitMovement
     Message BattleArcadeScene_Text_PokemonSwap
     StopSoundEffect SEQ_SE_DP_Z_SEARCH
-    FrontierScrCmd_BF 28, 0, 0, VAR_0x8006
+    CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8006
     CallIfEq VAR_0x8006, 0, _1E24
     CallIfEq VAR_0x8006, 1, _1E38
     PlaySoundEffect SEQ_SE_DP_DENDOU
@@ -2160,15 +2161,15 @@ _1EDA:
     Call _2092
     CloseMessage
     Call _21ED
-    FrontierScrCmd_BF 38, 0, 0, VAR_0x8008
-    FrontierScrCmd_BF 38, 1, 1, VAR_0x8008
-    FrontierScrCmd_BF 12, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_38, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_38, 1, 1, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_12, 0, 0, VAR_0x8008
     AddToRecordValue RECORD_UNK_067, VAR_0x8008
     GiveBattlePoints VAR_0x8008
     BufferNumber 2, VAR_0x8008
     StopSoundEffect SEQ_SE_DP_DENDOU
     PlayFanfare SEQ_PL_DON2
-    FrontierScrCmd_BF 28, 0, 0, VAR_0x8006
+    CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8006
     CallIfEq VAR_0x8006, 0, _1F65
     CallIfEq VAR_0x8006, 1, _1F6B
     WaitFanfare
@@ -2194,15 +2195,15 @@ _1F71:
     Call _2092
     CloseMessage
     Call _21ED
-    FrontierScrCmd_BF 38, 0, 0, VAR_0x8008
-    FrontierScrCmd_BF 38, 1, 1, VAR_0x8008
-    FrontierScrCmd_BF 12, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_38, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_38, 1, 1, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_12, 0, 0, VAR_0x8008
     AddToRecordValue RECORD_UNK_067, VAR_0x8008
     GiveBattlePoints VAR_0x8008
     BufferNumber 2, VAR_0x8008
     StopSoundEffect SEQ_SE_DP_DENDOU
     PlayFanfare SEQ_PL_DON2
-    FrontierScrCmd_BF 28, 0, 0, VAR_0x8006
+    CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8006
     CallIfEq VAR_0x8006, 0, _1F65
     CallIfEq VAR_0x8006, 1, _1F6B
     WaitFanfare
@@ -2224,7 +2225,7 @@ _1FFC:
     Call _2668
     Call _3288
     Message BattleArcadeScene_Text_SkipBattle
-    FrontierScrCmd_BF 28, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 0, _2049
     GoToIfEq VAR_0x8008, 1, _2053
     End
@@ -2246,7 +2247,7 @@ _2069:
     CloseMessage
     ApplyMovement 3, _05B4
     WaitMovement
-    FrontierScrCmd_BF 46, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_46, 0, 0, VAR_0x8008
     GoTo _26BC
     End
 
@@ -2263,16 +2264,16 @@ _2092:
     Return
 
 _20AA:
-    FrontierScrCmd_BF 28, 0, 0, VAR_0x8005
+    CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8005
     Call _0CBC
     PlaySoundEffect SEQ_SE_PL_FR05
     WaitTime 45, VAR_0x8008
-    FrontierScrCmd_BF 28, 0, 0, VAR_0x8005
+    CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8005
     Call _0CD0
     Return
 
 _20D4:
-    FrontierScrCmd_BF 28, 0, 0, VAR_0x8005
+    CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8005
     Call _0CAE
     Call _0CBC
     PlaySoundEffect SEQ_SE_PL_FR05
@@ -2376,7 +2377,7 @@ _221D:
     Return
 
 _2229:
-    FrontierScrCmd_BF 28, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _224F
     GoTo _2247
     End
@@ -2394,7 +2395,7 @@ _224F:
 
 _225F:
     WaitTime 1, VAR_0x8008
-    FrontierScrCmd_BF 6, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_6, 0, 0, VAR_0x8008
     WaitTime 1, VAR_0x8008
     ClearReceivedTempDataAllPlayers
     SyncConnectedPlayers 180
@@ -2403,7 +2404,7 @@ _225F:
 
 _227E:
     WaitTime 1, VAR_0x8008
-    FrontierScrCmd_BF 6, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_6, 0, 0, VAR_0x8008
     WaitTime 1, VAR_0x8008
     ClearReceivedTempDataAllPlayers
     SyncConnectedPlayers 181
@@ -2412,7 +2413,7 @@ _227E:
 
 _229D:
     WaitTime 1, VAR_0x8008
-    FrontierScrCmd_BF 6, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_6, 0, 0, VAR_0x8008
     WaitTime 1, VAR_0x8008
     ClearReceivedTempDataAllPlayers
     SyncConnectedPlayers 182
@@ -2421,7 +2422,7 @@ _229D:
 
 _22BC:
     WaitTime 1, VAR_0x8008
-    FrontierScrCmd_BF 6, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_6, 0, 0, VAR_0x8008
     WaitTime 1, VAR_0x8008
     ClearReceivedTempDataAllPlayers
     SyncConnectedPlayers 183
@@ -2429,9 +2430,9 @@ _22BC:
     Return
 
 _22DB:
-    FrontierScrCmd_BF 28, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _2337
-    FrontierScrCmd_BF 48, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_48, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _2FC0
     GoToIfEq VAR_0x8008, 2, _2FD9
     Call _32A0
@@ -2451,7 +2452,7 @@ _2337:
     Return
 
 _2357:
-    FrontierScrCmd_BF 28, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 0, _237C
     GoToIfEq VAR_0x8008, 1, _23CC
     End
@@ -2467,7 +2468,7 @@ _237C:
     WaitTime 15, VAR_0x8008
     ApplyMovement 98, _0288
     WaitMovement
-    FrontierScrCmd_BF 40, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_40, 0, 0, VAR_0x8008
     FrontierScrCmd_C4 0
     WaitABPress
     CloseMessage
@@ -2492,13 +2493,13 @@ _23CC:
     WaitTime 15, VAR_0x8008
     ApplyMovement 98, _0288
     WaitMovement
-    FrontierScrCmd_BF 40, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_40, 0, 0, VAR_0x8008
     FrontierScrCmd_C4 0
     WaitTime 30, VAR_0x8008
     CloseMessage
     ApplyMovement 99, _0288
     WaitMovement
-    FrontierScrCmd_BF 40, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_40, 0, 0, VAR_0x8008
     FrontierScrCmd_C4 1
     WaitTime 30, VAR_0x8008
     CloseMessage
@@ -2512,15 +2513,15 @@ _23CC:
     End
 
 _2462:
-    FrontierScrCmd_BF 20, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_20, 0, 0, VAR_0x8008
     SetVar VAR_0x800B, VAR_0x8008
     Call _3466
     Return
 
 _2479:
-    FrontierScrCmd_BF 20, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_20, 0, 0, VAR_0x8008
     SetVar VAR_0x800B, VAR_0x8008
-    FrontierScrCmd_BF 20, 1, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_20, 1, 0, VAR_0x8008
     SetVar VAR_0x800C, VAR_0x8008
     Call _347D
     Return
@@ -2531,9 +2532,9 @@ _249F:
     Return
 
 _24AD:
-    FrontierScrCmd_BF 28, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _2506
-    FrontierScrCmd_BF 48, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_48, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _24F2
     GoToIfEq VAR_0x8008, 2, _24F2
     FrontierScrCmd_3F 2
@@ -2561,7 +2562,7 @@ _251C:
     BufferNumber 0, VAR_0x8008
     Call _2F24
     Call _2F4A
-    FrontierScrCmd_BF 48, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_48, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _2562
     GoToIfEq VAR_0x8008, 2, _2562
     FreeParticleSystem 0
@@ -2572,18 +2573,18 @@ _2562:
     Call _32A0
     FrontierScrCmd_2B 2
     Call _3272
-    FrontierScrCmd_BC
-    FrontierScrCmd_BB
+    BattleArcade_StartBattle
+    BattleArcade_CleanupBattle
     Call _2EB2
-    FrontierScrCmd_BF 37, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_37, 0, 0, VAR_0x8008
     Call _3246
     Call _32CB
     Call _32EA
     FadeScreenIn
-    FrontierScrCmd_C0 VAR_0x8008
+    BattleArcade_CheckWonBattle VAR_0x8008
     GoToIfEq VAR_0x8008, 0, _2D52
     IncrementRecordValue RECORD_BATTLE_ARCADE_VICTORIES
-    FrontierScrCmd_BF 48, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_48, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _31DE
     GoToIfEq VAR_0x8008, 2, _3212
     Call _32A0
@@ -2597,7 +2598,7 @@ _25EE:
     End
 
 _25FC:
-    FrontierScrCmd_BF 28, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _262E
     ApplyMovement 98, _03F0
     ApplyMovement 4, _0414
@@ -2620,7 +2621,7 @@ _262E:
     Return
 
 _2668:
-    FrontierScrCmd_BF 28, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _2692
     ApplyMovement 98, _0408
     WaitMovement
@@ -2654,17 +2655,17 @@ _26CC:
     End
 
 _26E0:
-    FrontierScrCmd_BF 14, 1, 0, VAR_0x8008
-    FrontierScrCmd_BF 5, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_14, 1, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_INCREMENT_CURRENT_STREAK 0, 0, VAR_0x8008
     Return
 
 _26F4:
-    FrontierScrCmd_BF 28, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     CallIfEq VAR_0x8008, 1, _0860
     Return
 
 _270C:
-    FrontierScrCmd_BF 23, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_23, 0, 0, VAR_0x8008
     GoToIfNe VAR_0x8008, 7, _27DC
     GoTo _272A
     End
@@ -2692,11 +2693,11 @@ _278C:
     End
 
 _279A:
-    FrontierScrCmd_BF 22, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_22, 0, 0, VAR_0x8008
     FrontierScrCmd_3D VAR_BATTLE_ARCADE_LOBBY_LOAD_ACTION, 1
     Message BattleArcadeScene_Text_BPEarned
     BufferPlayerName 0
-    FrontierScrCmd_BF 45, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_45, 0, 0, VAR_0x8008
     BufferNumber 1, VAR_0x8008
     GiveBattlePoints VAR_0x8008
     Message BattleArcadeScene_Text_ReceiveBP
@@ -2714,7 +2715,7 @@ _27DC:
     Call _349D
     ApplyMovement 97, _0640
     WaitMovement
-    FrontierScrCmd_BF 28, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _2821
     ApplyMovement 4, _0654
     WaitMovement
@@ -2734,7 +2735,7 @@ _283B:
     WaitFanfare
     CloseMessage
     HealParty
-    FrontierScrCmd_BF 28, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _2879
     ApplyMovement 97, _064C
     ApplyMovement 4, _065C
@@ -2761,7 +2762,7 @@ _28AB:
     End
 
 _28B3:
-    FrontierScrCmd_BF 48, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_48, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _2F86
     GoToIfEq VAR_0x8008, 2, _2F86
     GoTo _28DE
@@ -2776,7 +2777,7 @@ _28DE:
 _28F1:
     Call _32A0
     BufferNumber 0, VAR_0x8008
-    FrontierScrCmd_BF 23, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_23, 0, 0, VAR_0x8008
     AddVar VAR_0x8008, 1
     BufferNumber 0, VAR_0x8008
     Message BattleArcadeScene_Text_AreYouReady
@@ -2784,7 +2785,7 @@ _28F1:
     End
 
 _291C:
-    FrontierScrCmd_BF 28, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _2954
     GoToIfEq VAR_0x800D, 1, _29A3
     GoToIfEq VAR_0x8003, 0, _29B1
@@ -2874,7 +2875,7 @@ _2A93:
 
 _2ACF:
     SetVar VAR_0x800D, 0
-    FrontierScrCmd_BF 28, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _2AF3
     GoTo _2B5E
     End
@@ -2891,7 +2892,7 @@ _2B02:
     GoToIfEq VAR_0x8008, 0, _2B02
     FrontierScrCmd_C2 VAR_0x8002
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_BF 24, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_24, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _2B49
     ClearReceivedTempDataAllPlayers
     SyncConnectedPlayers 142
@@ -2910,7 +2911,7 @@ _2B5E:
     SetVar VAR_0x8003, 0
     FrontierScrCmd_BE
     WaitTime 1, VAR_0x8008
-    FrontierScrCmd_BF 28, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     CallIfEq VAR_0x8008, 1, _0A2D
     GoTo _0B20
     End
@@ -2945,7 +2946,7 @@ _2BE6:
     End
 
 _2BFA:
-    FrontierScrCmd_BF 4, 0, 0, VAR_0x8009
+    CallBattleArcadeFunction BA_FUNC_UNK_4, 0, 0, VAR_0x8009
     Return
 
 _2C05:
@@ -2955,7 +2956,7 @@ _2C05:
 _2C0D:
     SetVar VAR_0x8003, 1
     MessageInstant BattleArcadeScene_Text_Saving
-    FrontierScrCmd_BF 17, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_GET_CHALLENGE_TYPE, 0, 0, VAR_0x8008
     ShowSavingIcon
     FrontierScrCmd_6D 6, VAR_0x8008, VAR_0x8009, VAR_0x8009
     HideSavingIcon
@@ -2986,13 +2987,13 @@ _2C5A:
 
 _2C78:
     FrontierScrCmd_3D VAR_BATTLE_ARCADE_LOBBY_LOAD_ACTION, 2
-    FrontierScrCmd_BF 10, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_10, 0, 0, VAR_0x8008
     FreeBattleRecording
     FrontierScrCmd_BA
     Call _2E9C
     FadeScreenOut
     CloseMessage
-    FrontierScrCmd_BF 7, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_RESET_SYSTEM, 0, 0, VAR_0x8008
     End
 
 _2CAA:
@@ -3003,7 +3004,7 @@ _2CB2:
     Message BattleArcadeScene_Text_RetireQuestion
     ShowYesNoMenu VAR_0x8008, MENU_NO
     GoToIfEq VAR_0x8008, 1, _2D4A
-    FrontierScrCmd_BF 28, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _2CEA
     Message BattleArcadeScene_Text_ReturnItems
     GoTo _2D31
@@ -3031,7 +3032,7 @@ _2D19:
     End
 
 _2D31:
-    FrontierScrCmd_BF 21, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_21, 0, 0, VAR_0x8008
     FrontierScrCmd_3D VAR_BATTLE_ARCADE_LOBBY_LOAD_ACTION, 3
     GoTo _2E0A
     End
@@ -3069,14 +3070,14 @@ _2DB5:
     End
 
 _2DBD:
-    FrontierScrCmd_BF 21, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_21, 0, 0, VAR_0x8008
     FrontierScrCmd_3D VAR_BATTLE_ARCADE_LOBBY_LOAD_ACTION, 3
     GoTo _2DD4
     End
 
 _2DD4:
     Message BattleArcadeScene_Text_ReturnItems
-    FrontierScrCmd_BF 28, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _2DF6
     GoTo _2E0A
     End
@@ -3096,15 +3097,15 @@ _2E0A:
     End
 
 _2E1A:
-    FrontierScrCmd_BF 28, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     CallIfEq VAR_0x8008, 1, _2E86
     FadeScreenOut
     Call _2F5E
     Call _2F4A
     Call _3272
-    FrontierScrCmd_BF 17, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_GET_CHALLENGE_TYPE, 0, 0, VAR_0x8008
     CallIfEq VAR_0x8008, 2, _2E80
-    FrontierScrCmd_BF 17, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_GET_CHALLENGE_TYPE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 3, _2E90
     FreeBattleRecording
     FrontierScrCmd_BA
@@ -3136,51 +3137,51 @@ _2E9C:
     Return
 
 _2EB2:
-    FrontierScrCmd_BF 29, 0, 0, VAR_0x8008
-    FrontierScrCmd_BF 33, 0, 0, VAR_0x8008
-    FrontierScrCmd_BF 35, 0, 0, VAR_0x8008
-    FrontierScrCmd_BF 31, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_29, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_33, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_35, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_31, 0, 0, VAR_0x8008
     Return
 
 _2ED8:
-    FrontierScrCmd_BF 35, 1, 0, VAR_0x8008
-    FrontierScrCmd_BF 31, 1, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_35, 1, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_31, 1, 0, VAR_0x8008
     Return
 
 _2EEC:
-    FrontierScrCmd_BF 29, 0, 0, VAR_0x8008
-    FrontierScrCmd_BF 33, 0, 0, VAR_0x8008
-    FrontierScrCmd_BF 35, 0, 0, VAR_0x8008
-    FrontierScrCmd_BF 35, 1, 0, VAR_0x8008
-    FrontierScrCmd_BF 31, 0, 0, VAR_0x8008
-    FrontierScrCmd_BF 31, 1, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_29, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_33, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_35, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_35, 1, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_31, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_31, 1, 0, VAR_0x8008
     Return
 
 _2F24:
-    FrontierScrCmd_BF 36, 0, 0, VAR_0x8008
-    FrontierScrCmd_BF 36, 1, 0, VAR_0x8008
-    FrontierScrCmd_BF 32, 0, 0, VAR_0x8008
-    FrontierScrCmd_BF 32, 1, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_36, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_36, 1, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_32, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_32, 1, 0, VAR_0x8008
     Return
 
 _2F4A:
-    FrontierScrCmd_BF 30, 0, 0, VAR_0x8008
-    FrontierScrCmd_BF 34, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_30, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_34, 0, 0, VAR_0x8008
     Return
 
 _2F5E:
-    FrontierScrCmd_BF 36, 0, 0, VAR_0x8008
-    FrontierScrCmd_BF 32, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_36, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_32, 0, 0, VAR_0x8008
     Return
 
 _2F72:
-    FrontierScrCmd_BF 36, 1, 0, VAR_0x8008
-    FrontierScrCmd_BF 32, 1, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_36, 1, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_32, 1, 0, VAR_0x8008
     Return
 
 _2F86:
     GoToIfEq VAR_0x8003, 1, _28DE
-    FrontierScrCmd_BF 51, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_51, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _28DE
     Call _32A0
     BufferNumber 0, VAR_0x8008
@@ -3344,7 +3345,7 @@ _3294:
     Return
 
 _32A0:
-    FrontierScrCmd_BF 4, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_4, 0, 0, VAR_0x8008
     GoToIfGe VAR_0x8008, 9999, _32BE
     AddVar VAR_0x8008, 1
     Return
@@ -3353,103 +3354,103 @@ _32BE:
     Return
 
 _32C0:
-    FrontierScrCmd_BF 43, 8, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_43, 8, 0, VAR_0x8008
     Return
 
 _32CB:
-    FrontierScrCmd_BF 43, 8, 1, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_43, 8, 1, VAR_0x8008
     Return
 
 _32D6:
-    FrontierScrCmd_BF 43, 0, 1, VAR_0x8008
-    FrontierScrCmd_BF 44, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_43, 0, 1, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_44, 0, 0, VAR_0x8008
     Return
 
 _32EA:
-    FrontierScrCmd_BF 44, 8, 3, VAR_0x8008
-    FrontierScrCmd_BF 44, 8, 98, VAR_0x8008
-    FrontierScrCmd_BF 28, 0, 0, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_44, 8, 3, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_44, 8, 98, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _331D
-    FrontierScrCmd_BF 44, 8, 4, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_44, 8, 4, VAR_0x8008
     Return
 
 _331D:
-    FrontierScrCmd_BF 44, 8, 1, VAR_0x8008
-    FrontierScrCmd_BF 44, 8, 2, VAR_0x8008
-    FrontierScrCmd_BF 44, 8, 99, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_44, 8, 1, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_44, 8, 2, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_44, 8, 99, VAR_0x8008
     Return
 
 _333A:
     FrontierScrCmd_22 _0008
     FrontierScrCmd_24 _001C
-    FrontierScrCmd_BF 44, 8, 20, VAR_0x8008
-    FrontierScrCmd_BF 44, 8, 4, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_44, 8, 20, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_44, 8, 4, VAR_0x8008
     Return
 
 _335A:
     FrontierScrCmd_22 _0010
     FrontierScrCmd_24 _0040
-    FrontierScrCmd_BF 44, 8, 20, VAR_0x8008
-    FrontierScrCmd_BF 44, 8, 1, VAR_0x8008
-    FrontierScrCmd_BF 44, 8, 2, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_44, 8, 20, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_44, 8, 1, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_44, 8, 2, VAR_0x8008
     Return
 
 _3383:
     FrontierScrCmd_22 _0070
     FrontierScrCmd_24 _00A0
-    FrontierScrCmd_BF 44, 8, 4, VAR_0x8008
-    FrontierScrCmd_BF 44, 8, 3, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_44, 8, 4, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_44, 8, 3, VAR_0x8008
     Return
 
 _33A3:
     FrontierScrCmd_22 _0078
     FrontierScrCmd_24 _00C4
-    FrontierScrCmd_BF 44, 8, 3, VAR_0x8008
-    FrontierScrCmd_BF 44, 8, 1, VAR_0x8008
-    FrontierScrCmd_BF 44, 8, 2, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_44, 8, 3, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_44, 8, 1, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_44, 8, 2, VAR_0x8008
     Return
 
 _33CC:
     FrontierScrCmd_22 _0098
     FrontierScrCmd_24 _00F4
-    FrontierScrCmd_BF 44, 8, 20, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_44, 8, 20, VAR_0x8008
     Return
 
 _33E3:
     FrontierScrCmd_22 _0088
     FrontierScrCmd_24 _0104
-    FrontierScrCmd_BF 44, 8, 5, VAR_0x8008
-    FrontierScrCmd_BF 44, 8, 6, VAR_0x8008
-    FrontierScrCmd_BF 44, 8, 7, VAR_0x8008
-    FrontierScrCmd_BF 44, 8, 8, VAR_0x8008
-    FrontierScrCmd_BF 44, 8, 9, VAR_0x8008
-    FrontierScrCmd_BF 44, 8, 11, VAR_0x8008
-    FrontierScrCmd_BF 44, 8, 12, VAR_0x8008
-    FrontierScrCmd_BF 44, 8, 13, VAR_0x8008
-    FrontierScrCmd_BF 44, 8, 14, VAR_0x8008
-    FrontierScrCmd_BF 44, 8, 15, VAR_0x8008
-    FrontierScrCmd_BF 44, 8, 16, VAR_0x8008
-    FrontierScrCmd_BF 44, 8, 17, VAR_0x8008
-    FrontierScrCmd_BF 44, 8, 18, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_44, 8, 5, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_44, 8, 6, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_44, 8, 7, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_44, 8, 8, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_44, 8, 9, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_44, 8, 11, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_44, 8, 12, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_44, 8, 13, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_44, 8, 14, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_44, 8, 15, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_44, 8, 16, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_44, 8, 17, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_44, 8, 18, VAR_0x8008
     Return
 
 _3466:
     FrontierScrCmd_22 _0198
     FrontierScrCmd_24 _01A8
-    FrontierScrCmd_BF 44, 8, 98, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_44, 8, 98, VAR_0x8008
     Return
 
 _347D:
     FrontierScrCmd_22 _01A0
     FrontierScrCmd_24 _01B8
-    FrontierScrCmd_BF 44, 8, 98, VAR_0x8008
-    FrontierScrCmd_BF 44, 8, 99, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_44, 8, 98, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_44, 8, 99, VAR_0x8008
     Return
 
 _349D:
     FrontierScrCmd_22 _01D0
     FrontierScrCmd_24 _01D8
-    FrontierScrCmd_BF 44, 8, 97, VAR_0x8008
+    CallBattleArcadeFunction BA_FUNC_UNK_44, 8, 97, VAR_0x8008
     Return
 
     .balign 4, 0

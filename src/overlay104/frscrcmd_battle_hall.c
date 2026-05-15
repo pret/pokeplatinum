@@ -120,7 +120,7 @@ BOOL FrontierScrCmd_OpenBattleHallApp(FrontierScriptContext *ctx)
     return TRUE;
 }
 
-BOOL FrontierScrCmd_BattleHall_CheckWonBattle(FrontierScriptContext *ctx)
+BOOL FrontierScrCmd_BattleHall_CleanupBattle(FrontierScriptContext *ctx)
 {
     BattleHall *battleHall = sub_0209B978(ctx->scriptMan->unk_00);
     FieldBattleDTO *dto = battleHall->unk_700;
@@ -174,7 +174,7 @@ BOOL FrontierScrCmd_CallBattleHallFunction(FrontierScriptContext *ctx)
     case BH_FUNC_GET_CURRENT_STREAK:
         *returnVar = battleHall->currentStreak;
         break;
-    case BH_FUNC_INCREMENT_CURRENT_STEAK:
+    case BH_FUNC_INCREMENT_CURRENT_STREAK:
         if (battleHall->currentStreak < 9999) {
             battleHall->currentStreak++;
         }
@@ -284,11 +284,11 @@ BOOL FrontierScrCmd_CallBattleHallFunction(FrontierScriptContext *ctx)
     return FALSE;
 }
 
-BOOL FrontierScrCmd_BattleHall_GetBattleResult(FrontierScriptContext *param0)
+BOOL FrontierScrCmd_BattleHall_CheckWonBattle(FrontierScriptContext *ctx)
 {
-    u16 *destVar = FrontierScriptContext_TryGetVarPointer(param0);
+    u16 *destVar = FrontierScriptContext_TryGetVarPointer(ctx);
 
-    BattleHall *battleHall = sub_0209B978(param0->scriptMan->unk_00);
+    BattleHall *battleHall = sub_0209B978(ctx->scriptMan->unk_00);
     *destVar = battleHall->wonBattle;
 
     return FALSE;

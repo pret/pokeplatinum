@@ -1,0 +1,30 @@
+{
+  "name": "Growth Mulch",
+  "plural": "Growth Mulch",
+  "article": "a",
+  "description": [
+    "A plant fertilizer spread on soft soil.\n",
+    "It speeds up the growth of Berries.\n",
+    "However, it also dries the soil faster."
+  ],
+  "icon": {
+    "sprite": "growth_mulch_NCGR",
+    "palette": "growth_mulch_NCLR"
+  },
+  "gbaID": "GBA_ITEM_NONE",
+  "price": 200,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 30,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_MULCH",
+  "battleUseFunc": 0,
+  "itemUseParams": {}
+}

@@ -1,0 +1,31 @@
+{
+  "name": "TM11",
+  "plural": "TM11s",
+  "article": "a",
+  "description": [
+    "The user intensifies the sun for\n",
+    "five turns, powering up Fire-type\n",
+    "moves."
+  ],
+  "icon": {
+    "sprite": "tm_NCGR",
+    "palette": "tm_fire_NCLR"
+  },
+  "gbaID": "GBA_ITEM_TM11",
+  "price": 2000,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 0,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_TMHMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_TM_HM",
+  "battleUseFunc": 0,
+  "itemUseParams": null,
+  "teachesMove": "MOVE_SUNNY_DAY"
+}

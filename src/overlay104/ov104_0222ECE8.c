@@ -9,10 +9,10 @@
 #include "overlay104/ov104_0223A7F4.h"
 #include "overlay104/ov104_0223B6F4.h"
 #include "overlay104/ov104_0223BCBC.h"
+#include "overlay104/struct_battle_arcade.h"
+#include "overlay104/struct_battle_castle.h"
+#include "overlay104/struct_battle_factory.h"
 #include "overlay104/struct_battle_hall.h"
-#include "overlay104/struct_ov104_0223ADA0.h"
-#include "overlay104/struct_ov104_0223BA10.h"
-#include "overlay104/struct_ov104_0223BFFC.h"
 
 #include "battle_frontier_stats.h"
 #include "communication_system.h"
@@ -25,19 +25,19 @@
 #include "unk_02030494.h"
 #include "unk_0205DFC4.h"
 
-BOOL ov104_0222EEF8(UnkStruct_ov104_0223ADA0 *param0);
+BOOL ov104_0222EEF8(BattleFactory *param0);
 void ov104_0222EF30(int param0, int param1, void *param2, void *param3);
-BOOL ov104_0222EF64(UnkStruct_ov104_0223ADA0 *param0);
+BOOL ov104_0222EF64(BattleFactory *param0);
 void ov104_0222EF94(int param0, int param1, void *param2, void *param3);
-BOOL ov104_0222EFCC(UnkStruct_ov104_0223ADA0 *param0);
+BOOL ov104_0222EFCC(BattleFactory *param0);
 void ov104_0222F03C(int param0, int param1, void *param2, void *param3);
-BOOL ov104_0222F0B4(UnkStruct_ov104_0223ADA0 *param0);
+BOOL ov104_0222F0B4(BattleFactory *param0);
 void ov104_0222F124(int param0, int param1, void *param2, void *param3);
-BOOL ov104_0222F1A0(UnkStruct_ov104_0223ADA0 *param0, u8 param1);
+BOOL ov104_0222F1A0(BattleFactory *param0, u8 param1);
 void ov104_0222F1C4(int param0, int param1, void *param2, void *param3);
-BOOL ov104_0222F1EC(UnkStruct_ov104_0223ADA0 *param0, u8 param1);
+BOOL ov104_0222F1EC(BattleFactory *param0, u8 param1);
 void ov104_0222F210(int param0, int param1, void *param2, void *param3);
-BOOL ov104_0222F238(UnkStruct_ov104_0223ADA0 *param0);
+BOOL ov104_0222F238(BattleFactory *param0);
 void ov104_0222F31C(int param0, int param1, void *param2, void *param3);
 void ov104_0222ECE8(int param0, int param1, void *param2, void *param3);
 BOOL ov104_0222ED00(BattleHall *param0);
@@ -51,32 +51,32 @@ void ov104_0222EE38(int param0, int param1, void *param2, void *param3);
 BOOL ov104_0222EE60(BattleHall *param0);
 void ov104_0222EEA8(int param0, int param1, void *param2, void *param3);
 u8 *ov104_0222EED8(int param0, void *param1, int param2);
-BOOL ov104_0222F3B8(UnkStruct_ov104_0223BA10 *param0);
+BOOL ov104_0222F3B8(BattleCastle *param0);
 void ov104_0222F418(int param0, int param1, void *param2, void *param3);
-BOOL ov104_0222F44C(UnkStruct_ov104_0223BA10 *param0);
+BOOL ov104_0222F44C(BattleCastle *param0);
 void ov104_0222F480(int param0, int param1, void *param2, void *param3);
-BOOL ov104_0222F4B8(UnkStruct_ov104_0223BA10 *param0);
+BOOL ov104_0222F4B8(BattleCastle *param0);
 void ov104_0222F530(int param0, int param1, void *param2, void *param3);
-BOOL ov104_0222F5D4(UnkStruct_ov104_0223BA10 *param0);
+BOOL ov104_0222F5D4(BattleCastle *param0);
 void ov104_0222F650(int param0, int param1, void *param2, void *param3);
-BOOL ov104_0222F6C8(UnkStruct_ov104_0223BA10 *param0, u16 param1);
+BOOL ov104_0222F6C8(BattleCastle *param0, u16 param1);
 void ov104_0222F6E8(int param0, int param1, void *param2, void *param3);
-BOOL ov104_0222F710(UnkStruct_ov104_0223BA10 *param0, u16 param1);
+BOOL ov104_0222F710(BattleCastle *param0, u16 param1);
 void ov104_0222F730(int param0, int param1, void *param2, void *param3);
-BOOL ov104_0222F758(UnkStruct_ov104_0223BA10 *param0);
+BOOL ov104_0222F758(BattleCastle *param0);
 void ov104_0222F7BC(int param0, int param1, void *param2, void *param3);
 u8 *ov104_0222F84C(int param0, void *param1, int param2);
-BOOL ov104_0222F86C(UnkStruct_ov104_0223BFFC *param0);
+BOOL ov104_0222F86C(BattleArcade *param0);
 void ov104_0222F8A0(int param0, int param1, void *param2, void *param3);
-BOOL ov104_0222F8D0(UnkStruct_ov104_0223BFFC *param0);
+BOOL ov104_0222F8D0(BattleArcade *param0);
 void ov104_0222F908(int param0, int param1, void *param2, void *param3);
-BOOL ov104_0222F944(UnkStruct_ov104_0223BFFC *param0);
+BOOL ov104_0222F944(BattleArcade *param0);
 void ov104_0222F9C0(int param0, int param1, void *param2, void *param3);
-BOOL ov104_0222FA38(UnkStruct_ov104_0223BFFC *param0, u16 param1);
+BOOL ov104_0222FA38(BattleArcade *param0, u16 param1);
 void ov104_0222FA5C(int param0, int param1, void *param2, void *param3);
-BOOL ov104_0222FA84(UnkStruct_ov104_0223BFFC *param0, u16 param1);
+BOOL ov104_0222FA84(BattleArcade *param0, u16 param1);
 void ov104_0222FAA8(int param0, int param1, void *param2, void *param3);
-BOOL ov104_0222FAD0(UnkStruct_ov104_0223BFFC *param0);
+BOOL ov104_0222FAD0(BattleArcade *param0);
 void ov104_0222FB34(int param0, int param1, void *param2, void *param3);
 u8 *ov104_0222FBC4(int param0, void *param1, int param2);
 
@@ -318,7 +318,7 @@ u8 *ov104_0222EED8(int param0, void *param1, int param2)
     return v0->unk_984[param0];
 }
 
-BOOL ov104_0222EEF8(UnkStruct_ov104_0223ADA0 *param0)
+BOOL ov104_0222EEF8(BattleFactory *param0)
 {
     int v0, v1;
     TrainerInfo *v2;
@@ -329,7 +329,7 @@ BOOL ov104_0222EEF8(UnkStruct_ov104_0223ADA0 *param0)
     v2 = SaveData_GetTrainerInfo(param0->saveData);
 
     v3[1] = param0->unk_08;
-    v3[2] = param0->unk_0C;
+    v3[2] = param0->currentStreak;
     v3[3] = param0->unk_0E;
 
     v1 += 4;
@@ -347,7 +347,7 @@ BOOL ov104_0222EEF8(UnkStruct_ov104_0223ADA0 *param0)
 void ov104_0222EF30(int param0, int param1, void *param2, void *param3)
 {
     int v0, v1;
-    UnkStruct_ov104_0223ADA0 *v2 = param3;
+    BattleFactory *v2 = param3;
     const u16 *v3 = param2;
 
     v1 = 0;
@@ -367,7 +367,7 @@ void ov104_0222EF30(int param0, int param1, void *param2, void *param3)
     return;
 }
 
-BOOL ov104_0222EF64(UnkStruct_ov104_0223ADA0 *param0)
+BOOL ov104_0222EF64(BattleFactory *param0)
 {
     int v0, v1;
     u16 *v2;
@@ -393,7 +393,7 @@ BOOL ov104_0222EF64(UnkStruct_ov104_0223ADA0 *param0)
 void ov104_0222EF94(int param0, int param1, void *param2, void *param3)
 {
     int v0, v1;
-    UnkStruct_ov104_0223ADA0 *v2 = param3;
+    BattleFactory *v2 = param3;
     const u16 *v3 = param2;
 
     v1 = 0;
@@ -416,7 +416,7 @@ void ov104_0222EF94(int param0, int param1, void *param2, void *param3)
     return;
 }
 
-BOOL ov104_0222EFCC(UnkStruct_ov104_0223ADA0 *param0)
+BOOL ov104_0222EFCC(BattleFactory *param0)
 {
     int v0, v1;
     u16 *v2;
@@ -456,7 +456,7 @@ void ov104_0222F03C(int param0, int param1, void *param2, void *param3)
 {
     int v0, v1;
     Pokemon *v2;
-    UnkStruct_ov104_0223ADA0 *v3 = param3;
+    BattleFactory *v3 = param3;
     const u16 *v4 = param2;
 
     v1 = 0;
@@ -492,7 +492,7 @@ void ov104_0222F03C(int param0, int param1, void *param2, void *param3)
     return;
 }
 
-BOOL ov104_0222F0B4(UnkStruct_ov104_0223ADA0 *param0)
+BOOL ov104_0222F0B4(BattleFactory *param0)
 {
     int v0, v1;
     u16 *v2;
@@ -531,7 +531,7 @@ BOOL ov104_0222F0B4(UnkStruct_ov104_0223ADA0 *param0)
 void ov104_0222F124(int param0, int param1, void *param2, void *param3)
 {
     int v0, v1;
-    UnkStruct_ov104_0223ADA0 *v2 = param3;
+    BattleFactory *v2 = param3;
     const u16 *v3 = param2;
 
     v1 = 0;
@@ -567,7 +567,7 @@ void ov104_0222F124(int param0, int param1, void *param2, void *param3)
     return;
 }
 
-BOOL ov104_0222F1A0(UnkStruct_ov104_0223ADA0 *param0, u8 param1)
+BOOL ov104_0222F1A0(BattleFactory *param0, u8 param1)
 {
     u16 *v0;
     int v1, v2 = 60;
@@ -586,7 +586,7 @@ BOOL ov104_0222F1A0(UnkStruct_ov104_0223ADA0 *param0, u8 param1)
 
 void ov104_0222F1C4(int param0, int param1, void *param2, void *param3)
 {
-    UnkStruct_ov104_0223ADA0 *v0 = param3;
+    BattleFactory *v0 = param3;
     const u16 *v1 = param2;
 
     v0->unk_702++;
@@ -600,7 +600,7 @@ void ov104_0222F1C4(int param0, int param1, void *param2, void *param3)
     return;
 }
 
-BOOL ov104_0222F1EC(UnkStruct_ov104_0223ADA0 *param0, u8 param1)
+BOOL ov104_0222F1EC(BattleFactory *param0, u8 param1)
 {
     u16 *v0;
     int v1, v2 = 60;
@@ -619,7 +619,7 @@ BOOL ov104_0222F1EC(UnkStruct_ov104_0223ADA0 *param0, u8 param1)
 
 void ov104_0222F210(int param0, int param1, void *param2, void *param3)
 {
-    UnkStruct_ov104_0223ADA0 *v0 = param3;
+    BattleFactory *v0 = param3;
     const u16 *v1 = param2;
 
     v0->unk_702++;
@@ -632,7 +632,7 @@ void ov104_0222F210(int param0, int param1, void *param2, void *param3)
     return;
 }
 
-BOOL ov104_0222F238(UnkStruct_ov104_0223ADA0 *param0)
+BOOL ov104_0222F238(BattleFactory *param0)
 {
     u8 v0;
     int v1, v2;
@@ -645,7 +645,7 @@ BOOL ov104_0222F238(UnkStruct_ov104_0223ADA0 *param0)
     v5 = 60;
     v3 = param0->unk_504;
     v2 = 0;
-    v0 = BattleFactory_GetPartySize(param0->unk_04);
+    v0 = BattleFactory_GetPartySize(param0->challengeType);
 
     for (v1 = 0; v1 < v0; v1++) {
         v8 = Party_GetPokemonBySlotIndex(param0->unk_4D4, v1);
@@ -688,7 +688,7 @@ void ov104_0222F31C(int param0, int param1, void *param2, void *param3)
     u32 v3[2];
     u8 v4[2];
     Pokemon *v5;
-    UnkStruct_ov104_0223ADA0 *v6 = param3;
+    BattleFactory *v6 = param3;
     const u16 *v7 = param2;
 
     v1 = 0;
@@ -698,7 +698,7 @@ void ov104_0222F31C(int param0, int param1, void *param2, void *param3)
         return;
     }
 
-    v2 = BattleFactory_GetPartySize(v6->unk_04);
+    v2 = BattleFactory_GetPartySize(v6->challengeType);
 
     for (v0 = 0; v0 < v2; v0++) {
         v6->unk_584[v0] = v7[v0];
@@ -722,20 +722,20 @@ void ov104_0222F31C(int param0, int param1, void *param2, void *param3)
     return;
 }
 
-BOOL ov104_0222F3B8(UnkStruct_ov104_0223BA10 *param0)
+BOOL ov104_0222F3B8(BattleCastle *param0)
 {
     int v0, v1, v2, v3;
     UnkStruct_0203041C *v4 = sub_0203041C(param0->saveData);
     v3 = 40;
     v1 = 0;
 
-    param0->unk_3C0[1] = param0->unk_14;
+    param0->unk_3C0[1] = param0->currentStreak;
     param0->unk_3C0[2] = param0->unk_16;
 
     v1 += 3;
     v1 += (7 + 1);
 
-    param0->unk_3C0[v1] = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(param0->saveData), BattleFrontierStats_GetCastleLatestCPIndex(param0->unk_10), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleLatestCPIndex(param0->unk_10)));
+    param0->unk_3C0[v1] = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(param0->saveData), BattleFrontierStats_GetCastleLatestCPIndex(param0->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleLatestCPIndex(param0->challengeType)));
     v1 += 1;
 
     if (CommSys_SendData(42, param0->unk_3C0, v3) == 1) {
@@ -750,7 +750,7 @@ BOOL ov104_0222F3B8(UnkStruct_ov104_0223BA10 *param0)
 void ov104_0222F418(int param0, int param1, void *param2, void *param3)
 {
     int v0, v1;
-    UnkStruct_ov104_0223BA10 *v2 = param3;
+    BattleCastle *v2 = param3;
     const u16 *v3 = param2;
 
     v1 = 0;
@@ -766,13 +766,13 @@ void ov104_0222F418(int param0, int param1, void *param2, void *param3)
     v1 += 3;
     v1 += (7 + 1);
 
-    v2->unk_A1C = v3[v1];
+    v2->partnersCP = v3[v1];
     v1 += 1;
 
     return;
 }
 
-BOOL ov104_0222F44C(UnkStruct_ov104_0223BA10 *param0)
+BOOL ov104_0222F44C(BattleCastle *param0)
 {
     int v0, v1, v2, v3;
 
@@ -797,7 +797,7 @@ BOOL ov104_0222F44C(UnkStruct_ov104_0223BA10 *param0)
 void ov104_0222F480(int param0, int param1, void *param2, void *param3)
 {
     int v0, v1;
-    UnkStruct_ov104_0223BA10 *v2 = param3;
+    BattleCastle *v2 = param3;
     const u16 *v3 = param2;
 
     v1 = 0;
@@ -820,7 +820,7 @@ void ov104_0222F480(int param0, int param1, void *param2, void *param3)
     return;
 }
 
-BOOL ov104_0222F4B8(UnkStruct_ov104_0223BA10 *param0)
+BOOL ov104_0222F4B8(BattleCastle *param0)
 {
     int v0, v1, v2, v3;
     TrainerInfo *v4;
@@ -863,7 +863,7 @@ void ov104_0222F530(int param0, int param1, void *param2, void *param3)
 {
     Pokemon *v0;
     int v1, v2;
-    UnkStruct_ov104_0223BA10 *v3 = param3;
+    BattleCastle *v3 = param3;
     const u16 *v4 = param2;
 
     v2 = 0;
@@ -909,7 +909,7 @@ void ov104_0222F530(int param0, int param1, void *param2, void *param3)
     return;
 }
 
-BOOL ov104_0222F5D4(UnkStruct_ov104_0223BA10 *param0)
+BOOL ov104_0222F5D4(BattleCastle *param0)
 {
     int v0, v1, v2, v3;
 
@@ -947,7 +947,7 @@ BOOL ov104_0222F5D4(UnkStruct_ov104_0223BA10 *param0)
 void ov104_0222F650(int param0, int param1, void *param2, void *param3)
 {
     int v0, v1;
-    UnkStruct_ov104_0223BA10 *v2 = param3;
+    BattleCastle *v2 = param3;
     const u16 *v3 = param2;
 
     v1 = 0;
@@ -983,7 +983,7 @@ void ov104_0222F650(int param0, int param1, void *param2, void *param3)
     return;
 }
 
-BOOL ov104_0222F6C8(UnkStruct_ov104_0223BA10 *param0, u16 param1)
+BOOL ov104_0222F6C8(BattleCastle *param0, u16 param1)
 {
     int v0, v1 = 40;
     param0->unk_3C0[0] = param1;
@@ -1000,7 +1000,7 @@ BOOL ov104_0222F6C8(UnkStruct_ov104_0223BA10 *param0, u16 param1)
 void ov104_0222F6E8(int param0, int param1, void *param2, void *param3)
 {
     int v0;
-    UnkStruct_ov104_0223BA10 *v1 = param3;
+    BattleCastle *v1 = param3;
     const u16 *v2 = param2;
 
     v0 = 0;
@@ -1014,7 +1014,7 @@ void ov104_0222F6E8(int param0, int param1, void *param2, void *param3)
     return;
 }
 
-BOOL ov104_0222F710(UnkStruct_ov104_0223BA10 *param0, u16 param1)
+BOOL ov104_0222F710(BattleCastle *param0, u16 param1)
 {
     int v0, v1 = 40;
     param0->unk_3C0[0] = param1;
@@ -1031,7 +1031,7 @@ BOOL ov104_0222F710(UnkStruct_ov104_0223BA10 *param0, u16 param1)
 void ov104_0222F730(int param0, int param1, void *param2, void *param3)
 {
     int v0;
-    UnkStruct_ov104_0223BA10 *v1 = param3;
+    BattleCastle *v1 = param3;
     const u16 *v2 = param2;
 
     v0 = 0;
@@ -1045,7 +1045,7 @@ void ov104_0222F730(int param0, int param1, void *param2, void *param3)
     return;
 }
 
-BOOL ov104_0222F758(UnkStruct_ov104_0223BA10 *param0)
+BOOL ov104_0222F758(BattleCastle *param0)
 {
     int v0, v1, v2, v3, v4;
     u8 v5;
@@ -1053,7 +1053,7 @@ BOOL ov104_0222F758(UnkStruct_ov104_0223BA10 *param0)
 
     v1 = 0;
     v3 = 512;
-    v5 = BattleCastle_GetPartySize(param0->unk_10, 0);
+    v5 = BattleCastle_GetPartySize(param0->challengeType, 0);
     v4 = Pokemon_StructSize();
 
     for (v0 = 0; v0 < v5; v0++) {
@@ -1075,7 +1075,7 @@ void ov104_0222F7BC(int param0, int param1, void *param2, void *param3)
     u8 v0;
     int v1, v2, v3;
     Pokemon *v4;
-    UnkStruct_ov104_0223BA10 *v5 = param3;
+    BattleCastle *v5 = param3;
     const u8 *v6 = param2;
 
     v2 = 0;
@@ -1085,7 +1085,7 @@ void ov104_0222F7BC(int param0, int param1, void *param2, void *param3)
         return;
     }
 
-    v0 = BattleCastle_GetPartySize(v5->unk_10, 0);
+    v0 = BattleCastle_GetPartySize(v5->challengeType, 0);
     v3 = Pokemon_StructSize();
     v4 = Pokemon_New(HEAP_ID_FIELD2);
 
@@ -1106,20 +1106,20 @@ void ov104_0222F7BC(int param0, int param1, void *param2, void *param3)
 
 u8 *ov104_0222F84C(int param0, void *param1, int param2)
 {
-    UnkStruct_ov104_0223BA10 *v0 = param1;
+    BattleCastle *v0 = param1;
 
     GF_ASSERT(param2 <= 512);
     return v0->unk_610[param0];
 }
 
-BOOL ov104_0222F86C(UnkStruct_ov104_0223BFFC *param0)
+BOOL ov104_0222F86C(BattleArcade *param0)
 {
     int v0, v1, v2, v3;
     UnkStruct_020305B8 *v4 = sub_020305B8(param0->saveData);
     v3 = 40;
     v1 = 0;
 
-    param0->unk_424[1] = param0->unk_18;
+    param0->unk_424[1] = param0->currentStreak;
     param0->unk_424[2] = param0->unk_1A;
 
     v1 += 3;
@@ -1136,7 +1136,7 @@ BOOL ov104_0222F86C(UnkStruct_ov104_0223BFFC *param0)
 void ov104_0222F8A0(int param0, int param1, void *param2, void *param3)
 {
     int v0, v1;
-    UnkStruct_ov104_0223BFFC *v2 = param3;
+    BattleArcade *v2 = param3;
     const u16 *v3 = param2;
 
     v1 = 0;
@@ -1154,7 +1154,7 @@ void ov104_0222F8A0(int param0, int param1, void *param2, void *param3)
     return;
 }
 
-BOOL ov104_0222F8D0(UnkStruct_ov104_0223BFFC *param0)
+BOOL ov104_0222F8D0(BattleArcade *param0)
 {
     int v0, v1, v2, v3;
 
@@ -1179,7 +1179,7 @@ BOOL ov104_0222F8D0(UnkStruct_ov104_0223BFFC *param0)
 void ov104_0222F908(int param0, int param1, void *param2, void *param3)
 {
     int v0, v1;
-    UnkStruct_ov104_0223BFFC *v2 = param3;
+    BattleArcade *v2 = param3;
     const u16 *v3 = param2;
 
     v1 = 0;
@@ -1202,7 +1202,7 @@ void ov104_0222F908(int param0, int param1, void *param2, void *param3)
     return;
 }
 
-BOOL ov104_0222F944(UnkStruct_ov104_0223BFFC *param0)
+BOOL ov104_0222F944(BattleArcade *param0)
 {
     int v0, v1, v2, v3;
 
@@ -1240,7 +1240,7 @@ BOOL ov104_0222F944(UnkStruct_ov104_0223BFFC *param0)
 void ov104_0222F9C0(int param0, int param1, void *param2, void *param3)
 {
     int v0, v1;
-    UnkStruct_ov104_0223BFFC *v2 = param3;
+    BattleArcade *v2 = param3;
     const u16 *v3 = param2;
 
     v1 = 0;
@@ -1276,7 +1276,7 @@ void ov104_0222F9C0(int param0, int param1, void *param2, void *param3)
     return;
 }
 
-BOOL ov104_0222FA38(UnkStruct_ov104_0223BFFC *param0, u16 param1)
+BOOL ov104_0222FA38(BattleArcade *param0, u16 param1)
 {
     int v0, v1 = 40;
     param0->unk_424[0] = param1;
@@ -1293,7 +1293,7 @@ BOOL ov104_0222FA38(UnkStruct_ov104_0223BFFC *param0, u16 param1)
 void ov104_0222FA5C(int param0, int param1, void *param2, void *param3)
 {
     int v0;
-    UnkStruct_ov104_0223BFFC *v1 = param3;
+    BattleArcade *v1 = param3;
     const u16 *v2 = param2;
 
     v0 = 0;
@@ -1307,7 +1307,7 @@ void ov104_0222FA5C(int param0, int param1, void *param2, void *param3)
     return;
 }
 
-BOOL ov104_0222FA84(UnkStruct_ov104_0223BFFC *param0, u16 param1)
+BOOL ov104_0222FA84(BattleArcade *param0, u16 param1)
 {
     int v0, v1 = 40;
     param0->unk_424[0] = param1;
@@ -1324,7 +1324,7 @@ BOOL ov104_0222FA84(UnkStruct_ov104_0223BFFC *param0, u16 param1)
 void ov104_0222FAA8(int param0, int param1, void *param2, void *param3)
 {
     int v0;
-    UnkStruct_ov104_0223BFFC *v1 = param3;
+    BattleArcade *v1 = param3;
     const u16 *v2 = param2;
 
     v0 = 0;
@@ -1338,7 +1338,7 @@ void ov104_0222FAA8(int param0, int param1, void *param2, void *param3)
     return;
 }
 
-BOOL ov104_0222FAD0(UnkStruct_ov104_0223BFFC *param0)
+BOOL ov104_0222FAD0(BattleArcade *param0)
 {
     int v0, v1, v2, v3, v4;
     u8 v5;
@@ -1346,7 +1346,7 @@ BOOL ov104_0222FAD0(UnkStruct_ov104_0223BFFC *param0)
 
     v1 = 0;
     v3 = 512;
-    v5 = BattleArcade_GetPartySize(param0->unk_10, 0);
+    v5 = BattleArcade_GetPartySize(param0->challengeType, 0);
     v4 = Pokemon_StructSize();
 
     for (v0 = 0; v0 < v5; v0++) {
@@ -1368,7 +1368,7 @@ void ov104_0222FB34(int param0, int param1, void *param2, void *param3)
     u8 v0;
     int v1, v2, v3;
     Pokemon *v4;
-    UnkStruct_ov104_0223BFFC *v5 = param3;
+    BattleArcade *v5 = param3;
     const u8 *v6 = param2;
 
     v2 = 0;
@@ -1378,7 +1378,7 @@ void ov104_0222FB34(int param0, int param1, void *param2, void *param3)
         return;
     }
 
-    v0 = BattleArcade_GetPartySize(v5->unk_10, 0);
+    v0 = BattleArcade_GetPartySize(v5->challengeType, 0);
     v3 = Pokemon_StructSize();
     v4 = Pokemon_New(HEAP_ID_FIELD2);
 
@@ -1399,7 +1399,7 @@ void ov104_0222FB34(int param0, int param1, void *param2, void *param3)
 
 u8 *ov104_0222FBC4(int param0, void *param1, int param2)
 {
-    UnkStruct_ov104_0223BFFC *v0 = param1;
+    BattleArcade *v0 = param1;
 
     GF_ASSERT(param2 <= 512);
     return v0->unk_674[param0];

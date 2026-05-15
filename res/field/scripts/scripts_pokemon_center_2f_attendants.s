@@ -350,7 +350,7 @@ _0513:
 
 _051E:
     StartLinkBattle
-    ScrCmd_151
+    FieldCommEnterBattleRoom
     End
 
     .balign 4, 0

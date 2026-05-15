@@ -1333,6 +1333,7 @@ static void WirelessManager_FinishInitializeWM(void *wm_callback)
 
         WirelessManager_SetState(WIRELESS_STATE_FATAL_ERROR);
         CommManager_SetCommError(COMM_ERROR_RESET_SAVEPOINT);
+
         return;
     }
 

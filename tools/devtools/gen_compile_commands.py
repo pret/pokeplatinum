@@ -352,6 +352,7 @@ dataproc_c_commands = [
             "-Wpedantic",
             "-Wconversion",
             "-Wno-sign-conversion",
+            "-Wno-language-extension-token",
             "-o",
             file.with_suffix(".o"),
             file.resolve(),

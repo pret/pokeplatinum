@@ -1,0 +1,30 @@
+{
+  "name": "Metronome",
+  "plural": "Metronomes",
+  "article": "a",
+  "description": [
+    "A Pokémon hold item that boosts a move\n",
+    "used consecutively. Its effect is\n",
+    "reset if another move is used."
+  ],
+  "icon": {
+    "sprite": "metronome_NCGR",
+    "palette": "metronome_NCLR"
+  },
+  "gbaID": "GBA_ITEM_NONE",
+  "price": 200,
+  "effectParam": 10,
+  "holdEffect": "HOLD_EFFECT_BOOST_REPEATED",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 30,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseFunc": 0,
+  "itemUseParams": null
+}

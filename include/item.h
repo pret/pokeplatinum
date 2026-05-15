@@ -56,14 +56,14 @@ typedef struct ItemPartyParam {
 typedef struct ItemData {
     u16 price;
     u8 holdEffect;
-    u8 holdEffectParam;
+    u8 effectParam;
     u8 pluckEffect;
     u8 flingEffect;
     u8 flingPower;
     u8 naturalGiftPower;
     u16 naturalGiftType : 5;
     u16 preventToss : 1;
-    u16 isSelectable : 1;
+    u16 canRegister : 1;
     u16 fieldPocket : 4;
     u16 battlePocket : 5;
     u8 fieldUseFunc;
@@ -74,8 +74,7 @@ typedef struct ItemData {
         u8 dummy;
         ItemPartyParam partyUseParam;
     };
-    u8 padding[2];
-} ItemData;
+} ALIGN_4 ItemData;
 
 enum ItemFileType {
     ITEM_FILE_TYPE_DATA,
@@ -87,9 +86,9 @@ enum ItemFileType {
 enum ItemDataParam {
     ITEM_PARAM_PRICE,
     ITEM_PARAM_HOLD_EFFECT,
-    ITEM_PARAM_HOLD_EFFECT_PARAM,
+    ITEM_PARAM_EFFECT_PARAM,
     ITEM_PARAM_PREVENT_TOSS,
-    ITEM_PARAM_IS_SELECTABLE,
+    ITEM_PARAM_CAN_REGISTER,
     ITEM_PARAM_FIELD_POCKET,
     ITEM_PARAM_FIELD_USE_FUNC,
     ITEM_PARAM_BATTLE_USE_FUNC,
@@ -246,7 +245,7 @@ s32 Item_Get(ItemData *itemData, enum ItemDataParam param);
  * @param item      The TM or HM item ID.
  * @return The move stored in the given TM or HM.
  */
-const u16 Item_MoveForTMHM(u16 item);
+u16 Item_MoveForTMHM(u16 item);
 
 /**
  * @brief Check if a given move is an HM move.

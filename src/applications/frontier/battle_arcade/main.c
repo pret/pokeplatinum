@@ -14,7 +14,6 @@
 #include "applications/frontier/battle_arcade/sprites.h"
 #include "applications/frontier/battle_arcade/windows.h"
 #include "overlay104/ov104_0223BCBC.h"
-#include "overlay104/struct_ov104_02238240.h"
 
 #include "battle_frontier_stats.h"
 #include "bg_window.h"
@@ -108,7 +107,7 @@ static const struct {
     [ARCADE_EFFECT_FREEZE_FOE] =       { 0, 0, 0, 0, 1, 1, 1 },
     [ARCADE_EFFECT_FOE_GET_BERRY] =    { 1, 1, 1, 0, 0, 0, 1 },
     [ARCADE_EFFECT_FOE_GET_ITEM] =     { 0, 0, 0, 1, 1, 1, 1 },
-    [ARCADE_EFFECT_FOE_GET_LEVELS] =   { 0, 1, 1, 1, 1, 1, 1 },
+    [ARCADE_EFFECT_FOE_LEVEL_UP] =     { 0, 1, 1, 1, 1, 1, 1 },
     [ARCADE_EFFECT_LOWER_ALLY_HP] =    { 0, 1, 1, 1, 1, 1, 1 },
     [ARCADE_EFFECT_POISON_ALLY] =      { 1, 0, 1, 0, 0, 0, 1 },
     [ARCADE_EFFECT_PARALYZE_ALLY] =    { 1, 0, 1, 0, 0, 0, 1 },
@@ -117,17 +116,17 @@ static const struct {
     [ARCADE_EFFECT_FREEZE_ALLY] =      { 0, 0, 0, 0, 1, 1, 1 },
     [ARCADE_EFFECT_ALLY_GET_BERRY] =   { 1, 1, 1, 0, 0, 0, 1 },
     [ARCADE_EFFECT_ALLY_GET_ITEM] =    { 0, 0, 0, 1, 1, 1, 1 },
-    [ARCADE_EFFECT_ALLY_GET_LEVELS] =  { 0, 1, 1, 1, 1, 1, 1 },
+    [ARCADE_EFFECT_ALLY_LEVEL_UP] =    { 0, 1, 1, 1, 1, 1, 1 },
     [ARCADE_EFFECT_SUNNY_BATTLE] =     { 0, 1, 1, 0, 0, 0, 1 },
     [ARCADE_EFFECT_RAINY_BATTLE] =     { 0, 1, 1, 0, 0, 0, 1 },
     [ARCADE_EFFECT_SANDY_BATTLE] =     { 0, 1, 1, 0, 0, 0, 1 },
     [ARCADE_EFFECT_HAIL_BATTLE] =      { 0, 1, 1, 0, 0, 0, 1 },
     [ARCADE_EFFECT_FOGGY_BATTLE] =     { 0, 0, 0, 1, 0, 1, 1 },
     [ARCADE_EFFECT_TRICK_ROOM] =       { 0, 0, 0, 1, 0, 1, 1 },
-    [ARCADE_EFFECT_SWAP_MONS] =        { 1, 1, 1, 1, 1, 1, 1 },
-    [ARCADE_EFFECT_SPEED_UP] =         { 1, 1, 1, 0, 0, 0, 1 },
-    [ARCADE_EFFECT_SLOW_DOWN] =        { 1, 1, 1, 1, 1, 1, 1 },
-    [ARCADE_EFFECT_RANDOMIZE_CURSOR] = { 0, 0, 0, 0, 1, 1, 1 },
+    [ARCADE_EFFECT_SPEED_UP] =         { 1, 1, 1, 1, 1, 1, 1 },
+    [ARCADE_EFFECT_SLOW_DOWN] =        { 1, 1, 1, 0, 0, 0, 1 },
+    [ARCADE_EFFECT_RANDOMIZE_CURSOR] = { 1, 1, 1, 1, 1, 1, 1 },
+    [ARCADE_EFFECT_SWAP_MONS] =        { 0, 0, 0, 0, 1, 1, 1 },
     [ARCADE_EFFECT_GET_1_BP] =         { 0, 0, 0, 1, 1, 1, 1 },
     [ARCADE_EFFECT_NO_BATTLE] =        { 0, 0, 0, 0, 1, 1, 1 },
     [ARCADE_EFFECT_NO_EVENT] =         { 1, 1, 1, 1, 1, 1, 1 },
@@ -144,10 +143,10 @@ static const struct {
     u8 battle6 : 1;
     u8 battle7 : 1;
 } sEffectAvailabilityByBattle[BATTLES_PER_ROUND_ARCADE] = {
-    { 1, 1, 1, 1, 1, 1, 0 }, // ARCADE_EFFECT_RANDOMIZE_CURSOR
     { 1, 1, 1, 1, 1, 1, 0 }, // ARCADE_EFFECT_SWAP_MONS
     { 1, 1, 1, 1, 1, 1, 0 }, // ARCADE_EFFECT_SPEED_UP
     { 1, 1, 1, 1, 1, 1, 0 }, // ARCADE_EFFECT_SLOW_DOWN
+    { 1, 1, 1, 1, 1, 1, 0 }, // ARCADE_EFFECT_RANDOMIZE_CURSOR
     { 1, 0, 1, 0, 1, 0, 0 }, // ARCADE_EFFECT_GET_1_BP
     { 0, 1, 0, 1, 0, 1, 0 }, // ARCADE_EFFECT_NO_BATTLE
     { 0, 1, 0, 1, 0, 1, 0 }, // ARCADE_EFFECT_GET_3_BP
@@ -294,28 +293,28 @@ BOOL BattleArcadeApp_Init(ApplicationManager *appMan, int *state)
     app->bgConfig = BgConfig_New(HEAP_ID_BATTLE_ARCADE_APP);
     app->appMan = appMan;
 
-    UnkStruct_ov104_02238240 *v2 = ApplicationManager_Args(appMan);
+    BattleArcadeAppArgs *args = ApplicationManager_Args(appMan);
 
-    app->saveData = v2->saveData;
+    app->saveData = args->saveData;
     app->unk_E0 = sub_020304A0(app->saveData);
     app->unk_E4 = sub_020305B8(app->saveData);
-    app->challengeType = v2->unk_04;
-    app->round = v2->unk_1E;
-    app->battleStreak = v2->unk_1C;
-    app->partnerBattleStreak = v2->unk_18;
-    app->unk_12 = v2->unk_07;
-    app->cursorPosPtr = &v2->unk_38;
+    app->challengeType = args->challengeType;
+    app->round = args->round;
+    app->battleStreak = args->currentStreak;
+    app->partnerBattleStreak = args->partnersStreak;
+    app->unk_12 = args->unk_07;
+    app->cursorPosPtr = &args->cursorPos;
     app->options = SaveData_GetOptions(app->saveData);
-    app->party = v2->unk_30;
-    app->opponentsParty = v2->unk_34;
+    app->party = args->party;
+    app->opponentsParty = args->opponentsParty;
     app->cursorPosID = 0xff;
     app->frontier = SaveData_GetBattleFrontier(app->saveData);
-    app->unused6 = v2->unk_08;
-    app->rouletteSpeed = v2->unk_0C;
-    app->selectedEffect = v2->unk_10;
-    app->unk_24 = v2->unk_14;
+    app->unused6 = args->unk_08;
+    app->rouletteSpeed = args->rouletteSpeed;
+    app->selectedEffect = args->selectedEffect;
+    app->unk_24 = args->unk_14;
     app->rouletteTimer = 30 * 30; // 30 Seconds at 30FPS
-    app->randomizeCursorMovement = v2->unk_40;
+    app->randomizeCursorMovement = args->randomizeCursorMovement;
 
     for (int i = 0; i < NUM_ARCADE_EFFECTS; i++) {
         app->availableEffects[i] = NUM_ARCADE_EFFECTS;
@@ -1252,16 +1251,16 @@ static void GetAvailableEffects(BattleArcadeApp *app)
             u8 effectIndex = 0xff;
 
             switch (effect) {
-            case ARCADE_EFFECT_RANDOMIZE_CURSOR:
+            case ARCADE_EFFECT_SWAP_MONS:
                 effectIndex = 0;
                 break;
-            case ARCADE_EFFECT_SWAP_MONS:
+            case ARCADE_EFFECT_SPEED_UP:
                 effectIndex = 1;
                 break;
-            case ARCADE_EFFECT_SPEED_UP:
+            case ARCADE_EFFECT_SLOW_DOWN:
                 effectIndex = 2;
                 break;
-            case ARCADE_EFFECT_SLOW_DOWN:
+            case ARCADE_EFFECT_RANDOMIZE_CURSOR:
                 effectIndex = 3;
                 break;
             case ARCADE_EFFECT_GET_1_BP:

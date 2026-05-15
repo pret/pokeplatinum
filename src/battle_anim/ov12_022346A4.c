@@ -14,387 +14,368 @@
 #include "sys_task_manager.h"
 
 typedef struct {
-    BattleAnimSystem *unk_00;
-    int unk_04;
+    BattleAnimSystem *battleAnimSys;
+    int state;
     int unk_08;
-    SpriteManager *unk_0C;
+    SpriteManager *spriteMan;
     int unk_10;
-    ManagedSprite *unk_14[2];
-    XYTransformContext unk_1C[2];
-    XYTransformContext unk_64[2];
+    ManagedSprite *managedSprite[2];
+    XYTransformContext posCtx[2];
+    XYTransformContext scaleCtx[2];
 } UnkStruct_ov12_022346A4;
 
 typedef struct {
-    BattleAnimSystem *unk_00;
-    int unk_04;
-    int unk_08;
-    SpriteManager *unk_0C;
-    ManagedSprite *unk_10;
-    AlphaFadeContext unk_14;
+    BattleAnimSystem *battleAnimSys;
+    int state;
+    int explicitOffset;
+    SpriteManager *spriteMan;
+    ManagedSprite *managedSprite;
+    AlphaFadeContext alphaFadeCtx;
 } UnkStruct_ov12_022348C8;
 
 typedef struct {
-    BattleAnimSystem *unk_00;
-    int unk_04;
-    SpriteManager *unk_08;
-    ManagedSprite *unk_0C[6];
+    BattleAnimSystem *battleAnimSys;
+    int state;
+    SpriteManager *spriteMan;
+    ManagedSprite *managedSprite[6];
     int unk_24[6];
     int unk_3C[6];
 } UnkStruct_ov12_02234A10;
 
 typedef struct {
-    BattleAnimSystem *unk_00;
-    SpriteSystem *unk_04;
-    SpriteManager *unk_08;
-    int unk_0C;
+    BattleAnimSystem *battleAnimSys;
+    SpriteSystem *spriteSys;
+    SpriteManager *spriteMan;
+    int state;
     int unk_10;
     int unk_14;
-    ManagedSprite *unk_18[6];
-    XYTransformContext unk_30[6];
-    AlphaFadeContext unk_108;
-    s16 unk_130;
-    s16 unk_132;
+    ManagedSprite *managedSprite[6];
+    XYTransformContext transformCtx[6];
+    AlphaFadeContext alphaFadeCtx;
+    s16 posX;
+    s16 posY;
 } UnkStruct_ov12_02234BD8;
 
-static void ov12_02234750(SysTask *param0, void *param1);
-static void ov12_0223483C(ManagedSprite *param0, XYTransformContext *param1, XYTransformContext *param2, int param3);
-static BOOL ov12_0223489C(ManagedSprite *param0, XYTransformContext *param1, XYTransformContext *param2);
-static void ov12_02234918(SysTask *param0, void *param1);
-static void ov12_02234B64(SysTask *param0, void *param1);
-static BOOL ov12_02234B34(ManagedSprite *param0, int *param1, int *param2);
-static void ov12_02234AE0(ManagedSprite *param0, int *param1, int *param2, int param3, int param4);
-static void ov12_02234CA8(SysTask *param0, void *param1);
+static void ov12_02234750(SysTask *task, void *param1);
+static void ov12_0223483C(ManagedSprite *managedSprite, XYTransformContext *posCtx, XYTransformContext *scaleCtx, int param3);
+static BOOL ov12_0223489C(ManagedSprite *managedSprite, XYTransformContext *posCtx, XYTransformContext *scaleCtx);
+static void ov12_02234918(SysTask *task, void *param1);
+static void ov12_02234B64(SysTask *task, void *param1);
+static BOOL ov12_02234B34(ManagedSprite *managedSprite, int *param1, int *param2);
+static void ov12_02234AE0(ManagedSprite *managedSprite, int *param1, int *param2, int param3, int param4);
+static void ov12_02234CA8(SysTask *task, void *param1);
 
-void ov12_022346A4(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
+void ov12_022346A4(BattleAnimSystem *battleAnimSys, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *managedSprite)
 {
-    SpriteTemplate v0;
-    UnkStruct_ov12_022346A4 *v1;
-    int v2;
-    int v3;
+    SpriteTemplate spriteTemplate;
 
-    v1 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_022346A4));
+    UnkStruct_ov12_022346A4 *v1 = BattleAnimUtil_Alloc(battleAnimSys, sizeof(UnkStruct_ov12_022346A4));
 
-    v1->unk_00 = param0;
-    v1->unk_0C = param2;
+    v1->battleAnimSys = battleAnimSys;
+    v1->spriteMan = spriteMan;
 
-    v3 = BattleAnimSystem_GetAttacker(param0);
-    v1->unk_10 = BattleAnimUtil_GetTransformDirectionX(param0, v3);
+    int attacker = BattleAnimSystem_GetAttacker(battleAnimSys);
+    v1->unk_10 = BattleAnimUtil_GetTransformDirectionX(battleAnimSys, attacker);
 
-    v0 = BattleAnimSystem_GetLastSpriteTemplate(v1->unk_00);
-    v0.x = BattleAnimUtil_GetBattlerPos(param0, v3, 0);
-    v0.y = BattleAnimUtil_GetBattlerPos(param0, v3, 1);
+    spriteTemplate = BattleAnimSystem_GetLastSpriteTemplate(v1->battleAnimSys);
+    spriteTemplate.x = BattleAnimUtil_GetBattlerPos(battleAnimSys, attacker, BATTLE_ANIM_POSITION_MON_X);
+    spriteTemplate.y = BattleAnimUtil_GetBattlerPos(battleAnimSys, attacker, BATTLE_ANIM_POSITION_MON_Y);
 
-    for (v2 = 0; v2 < 2; v2++) {
-        if (v2 == 0) {
-            v1->unk_14[v2] = param3;
-            ManagedSprite_SetPositionXY(v1->unk_14[v2], v0.x, v0.y);
+    for (int i = 0; i < (int)NELEMS(v1->managedSprite); i++) {
+        if (i == 0) {
+            v1->managedSprite[i] = managedSprite;
+            ManagedSprite_SetPositionXY(v1->managedSprite[i], spriteTemplate.x, spriteTemplate.y);
         } else {
-            v1->unk_14[v2] = SpriteSystem_NewSprite(param1, param2, &v0);
+            v1->managedSprite[i] = SpriteSystem_NewSprite(spriteSys, spriteMan, &spriteTemplate);
         }
 
-        ManagedSprite_SetDrawFlag(v1->unk_14[v2], 0);
-        ManagedSprite_SetPriority(v1->unk_14[v2], 100);
-        ManagedSprite_SetExplicitPriority(v1->unk_14[v2], 1);
+        ManagedSprite_SetDrawFlag(v1->managedSprite[i], FALSE);
+        ManagedSprite_SetPriority(v1->managedSprite[i], 100);
+        ManagedSprite_SetExplicitPriority(v1->managedSprite[i], 1);
     }
 
-    BattleAnimSystem_StartAnimTask(v1->unk_00, ov12_02234750, v1);
+    BattleAnimSystem_StartAnimTask(v1->battleAnimSys, ov12_02234750, v1);
 }
 
-static void ov12_02234750(SysTask *param0, void *param1)
+static void ov12_02234750(SysTask *task, void *param1)
 {
     UnkStruct_ov12_022346A4 *v0 = param1;
-    int v1;
 
-    switch (v0->unk_04) {
+    switch (v0->state) {
     case 0:
-        ov12_0223483C(v0->unk_14[0], &v0->unk_1C[0], &v0->unk_64[0], v0->unk_10);
-        ov12_0223489C(v0->unk_14[0], &v0->unk_1C[0], &v0->unk_64[0]);
-        v0->unk_04++;
+        ov12_0223483C(v0->managedSprite[0], &v0->posCtx[0], &v0->scaleCtx[0], v0->unk_10);
+        ov12_0223489C(v0->managedSprite[0], &v0->posCtx[0], &v0->scaleCtx[0]);
+        v0->state++;
         v0->unk_08 = 8;
         break;
     case 1:
         v0->unk_08--;
-        ov12_0223489C(v0->unk_14[0], &v0->unk_1C[0], &v0->unk_64[0]);
+        ov12_0223489C(v0->managedSprite[0], &v0->posCtx[0], &v0->scaleCtx[0]);
 
         if (v0->unk_08 < 0) {
-            v0->unk_04++;
+            v0->state++;
         }
         break;
     case 2:
-        ov12_0223483C(v0->unk_14[1], &v0->unk_1C[1], &v0->unk_64[1], v0->unk_10);
-        ov12_0223489C(v0->unk_14[1], &v0->unk_1C[1], &v0->unk_64[1]);
-        ov12_0223489C(v0->unk_14[0], &v0->unk_1C[0], &v0->unk_64[0]);
-        v0->unk_04++;
+        ov12_0223483C(v0->managedSprite[1], &v0->posCtx[1], &v0->scaleCtx[1], v0->unk_10);
+        ov12_0223489C(v0->managedSprite[1], &v0->posCtx[1], &v0->scaleCtx[1]);
+        ov12_0223489C(v0->managedSprite[0], &v0->posCtx[0], &v0->scaleCtx[0]);
+        v0->state++;
         break;
     case 3:
-        ov12_0223489C(v0->unk_14[0], &v0->unk_1C[0], &v0->unk_64[0]);
+        ov12_0223489C(v0->managedSprite[0], &v0->posCtx[0], &v0->scaleCtx[0]);
 
-        if (ov12_0223489C(v0->unk_14[1], &v0->unk_1C[1], &v0->unk_64[1])) {
-            v0->unk_04++;
+        if (ov12_0223489C(v0->managedSprite[1], &v0->posCtx[1], &v0->scaleCtx[1])) {
+            v0->state++;
         }
         break;
     case 4:
-        for (v1 = 0; v1 < 2; v1++) {
-            Sprite_DeleteAndFreeResources(v0->unk_14[v1]);
+        for (int i = 0; i < (int)NELEMS(v0->managedSprite); i++) {
+            Sprite_DeleteAndFreeResources(v0->managedSprite[i]);
         }
 
-        BattleAnimSystem_EndAnimTask(v0->unk_00, param0);
+        BattleAnimSystem_EndAnimTask(v0->battleAnimSys, task);
         Heap_Free(v0);
         return;
     }
 
-    SpriteSystem_DrawSprites(v0->unk_0C);
+    SpriteSystem_DrawSprites(v0->spriteMan);
 }
 
-static void ov12_0223483C(ManagedSprite *param0, XYTransformContext *param1, XYTransformContext *param2, int param3)
+static void ov12_0223483C(ManagedSprite *managedSprite, XYTransformContext *posCtx, XYTransformContext *scaleCtx, int param3)
 {
-    s16 v0, v1;
+    s16 outX, outY;
 
-    ManagedSprite_SetAffineOverwriteMode(param0, AFFINE_OVERWRITE_MODE_DOUBLE);
-    ManagedSprite_SetDrawFlag(param0, TRUE);
-    ManagedSprite_GetPositionXY(param0, &v0, &v1);
+    ManagedSprite_SetAffineOverwriteMode(managedSprite, AFFINE_OVERWRITE_MODE_DOUBLE);
+    ManagedSprite_SetDrawFlag(managedSprite, TRUE);
+    ManagedSprite_GetPositionXY(managedSprite, &outX, &outY);
 
-    PosLerpContext_Init(param1, v0, v0 + (16 * param3), v1, v1 + -32, 32);
-    ScaleLerpContext_Init(param2, 2, 10, 10, 32);
+    PosLerpContext_Init(posCtx, outX, outX + 16 * param3, outY, outY + -32, 32);
+    ScaleLerpContext_Init(scaleCtx, 2, 10, 10, 32);
 }
 
-static BOOL ov12_0223489C(ManagedSprite *param0, XYTransformContext *param1, XYTransformContext *param2)
+static BOOL ov12_0223489C(ManagedSprite *managedSprite, XYTransformContext *posCtx, XYTransformContext *scaleCtx)
 {
-    BOOL v0;
+    PosLerpContext_UpdateAndApplyToSprite(posCtx, managedSprite);
+    BOOL isUpdated = ScaleLerpContext_UpdateAndApplyToSprite(scaleCtx, managedSprite);
 
-    PosLerpContext_UpdateAndApplyToSprite(param1, param0);
-    v0 = ScaleLerpContext_UpdateAndApplyToSprite(param2, param0);
-
-    if (v0) {
+    if (isUpdated) {
         return 0;
     }
 
-    ManagedSprite_SetDrawFlag(param0, 0);
+    ManagedSprite_SetDrawFlag(managedSprite, FALSE);
     return 1;
 }
 
-void ov12_022348C8(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
+void ov12_022348C8(BattleAnimSystem *battleAnimSys, SpriteSystem *unused, SpriteManager *spriteMan, ManagedSprite *managedSprite)
 {
-    UnkStruct_ov12_022348C8 *v0;
-    int v1;
+    UnkStruct_ov12_022348C8 *battleAnimUtil = BattleAnimUtil_Alloc(battleAnimSys, sizeof(UnkStruct_ov12_022348C8));
 
-    v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_022348C8));
+    battleAnimUtil->battleAnimSys = battleAnimSys;
+    battleAnimUtil->spriteMan = spriteMan;
+    battleAnimUtil->managedSprite = managedSprite;
 
-    v0->unk_00 = param0;
-    v0->unk_0C = param2;
-    v0->unk_10 = param3;
+    ManagedSprite_SetDrawFlag(battleAnimUtil->managedSprite, FALSE);
+    ManagedSprite_SetExplicitOamMode(battleAnimUtil->managedSprite, GX_OAM_MODE_XLU);
+    ManagedSprite_SetPriority(battleAnimUtil->managedSprite, 100);
+    ManagedSprite_SetExplicitPriority(battleAnimUtil->managedSprite, 1);
 
-    ManagedSprite_SetDrawFlag(v0->unk_10, 0);
-    ManagedSprite_SetExplicitOamMode(v0->unk_10, GX_OAM_MODE_XLU);
-    ManagedSprite_SetPriority(v0->unk_10, 100);
-    ManagedSprite_SetExplicitPriority(v0->unk_10, 1);
+    battleAnimUtil->explicitOffset = ManagedSprite_GetExplicitPaletteOffset(battleAnimUtil->managedSprite);
 
-    v0->unk_08 = ManagedSprite_GetExplicitPaletteOffset(v0->unk_10);
-
-    BattleAnimSystem_StartAnimTask(v0->unk_00, ov12_02234918, v0);
+    BattleAnimSystem_StartAnimTask(battleAnimUtil->battleAnimSys, ov12_02234918, battleAnimUtil);
 }
 
-static void ov12_02234918(SysTask *param0, void *param1)
+static void ov12_02234918(SysTask *task, void *param1)
 {
     UnkStruct_ov12_022348C8 *v0 = param1;
     int v1;
 
-    switch (v0->unk_04) {
+    switch (v0->state) {
     case 0:
-        AlphaFadeContext_Init(&v0->unk_14, 0, 16, 20 - 0, 20 - 16, 10);
-        ManagedSprite_SetDrawFlag(v0->unk_10, 1);
-        BattleAnimUtil_SetSpriteBgBlending(v0->unk_00, 0, 20 - 0);
-        v0->unk_04++;
+        AlphaFadeContext_Init(&v0->alphaFadeCtx, 0, 16, 20 - 0, 20 - 16, 10);
+        ManagedSprite_SetDrawFlag(v0->managedSprite, TRUE);
+        BattleAnimUtil_SetSpriteBgBlending(v0->battleAnimSys, 0, 20 - 0);
+        v0->state++;
         break;
     case 1:
-        if (AlphaFadeContext_IsDone(&v0->unk_14)) {
-            v0->unk_04++;
+        if (AlphaFadeContext_IsDone(&v0->alphaFadeCtx)) {
+            v0->state++;
 
-            ManagedSprite_SetAnimateFlag(v0->unk_10, 1);
-            ManagedSprite_SetAnimationSpeed(v0->unk_10, FX32_ONE);
+            ManagedSprite_SetAnimateFlag(v0->managedSprite, TRUE);
+            ManagedSprite_SetAnimationSpeed(v0->managedSprite, FX32_ONE);
         }
         break;
     case 2:
-        v1 = ManagedSprite_GetAnimationFrame(v0->unk_10);
+        v1 = ManagedSprite_GetAnimationFrame(v0->managedSprite);
         v1 %= 3;
 
-        ManagedSprite_SetExplicitPaletteOffset(v0->unk_10, v0->unk_08 + v1);
+        ManagedSprite_SetExplicitPaletteOffset(v0->managedSprite, v0->explicitOffset + v1);
 
-        if (ManagedSprite_IsAnimated(v0->unk_10) == 0) {
-            v0->unk_04++;
-            AlphaFadeContext_Init(&v0->unk_14, 16, 0, 20 - 16, 20 - 0, 8);
+        if (!ManagedSprite_IsAnimated(v0->managedSprite)) {
+            v0->state++;
+            AlphaFadeContext_Init(&v0->alphaFadeCtx, 16, 0, 20 - 16, 20 - 0, 8);
         }
         break;
     case 3:
-        if (AlphaFadeContext_IsDone(&v0->unk_14)) {
-            v0->unk_04++;
-            ManagedSprite_SetDrawFlag(v0->unk_10, 0);
+        if (AlphaFadeContext_IsDone(&v0->alphaFadeCtx)) {
+            v0->state++;
+            ManagedSprite_SetDrawFlag(v0->managedSprite, FALSE);
         }
         break;
     case 4:
-        Sprite_DeleteAndFreeResources(v0->unk_10);
-        BattleAnimSystem_EndAnimTask(v0->unk_00, param0);
+        Sprite_DeleteAndFreeResources(v0->managedSprite);
+        BattleAnimSystem_EndAnimTask(v0->battleAnimSys, task);
         Heap_Free(v0);
         return;
     }
 
-    SpriteSystem_DrawSprites(v0->unk_0C);
+    SpriteSystem_DrawSprites(v0->spriteMan);
 }
 
-void ov12_02234A10(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
+void ov12_02234A10(BattleAnimSystem *battleAnimSys, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *managedSprite)
 {
-    SpriteTemplate v0;
-    UnkStruct_ov12_02234A10 *v1;
-    int v2;
-    int v3;
-    int v4;
+    SpriteTemplate spriteTemplate;
+    UnkStruct_ov12_02234A10 *battleAnimUtil = BattleAnimUtil_Alloc(battleAnimSys, sizeof(UnkStruct_ov12_02234A10));
 
-    v1 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_02234A10));
+    battleAnimUtil->battleAnimSys = battleAnimSys;
+    battleAnimUtil->spriteMan = spriteMan;
 
-    v1->unk_00 = param0;
-    v1->unk_08 = param2;
+    int attacker = BattleAnimSystem_GetAttacker(battleAnimUtil->battleAnimSys);
+    int direction = BattleAnimUtil_GetTransformDirectionX(battleAnimSys, attacker);
+    spriteTemplate = BattleAnimSystem_GetLastSpriteTemplate(battleAnimUtil->battleAnimSys);
 
-    v2 = BattleAnimSystem_GetAttacker(v1->unk_00);
-    v4 = BattleAnimUtil_GetTransformDirectionX(param0, v2);
-    v0 = BattleAnimSystem_GetLastSpriteTemplate(v1->unk_00);
+    spriteTemplate.x = BattleAnimUtil_GetBattlerPos(battleAnimSys, attacker, 0);
+    spriteTemplate.y = BattleAnimUtil_GetBattlerPos(battleAnimSys, attacker, 1);
 
-    v0.x = BattleAnimUtil_GetBattlerPos(param0, v2, 0);
-    v0.y = BattleAnimUtil_GetBattlerPos(param0, v2, 1);
-
-    for (v3 = 6 - 1; v3 >= 0; v3--) {
-        if (v3 == 6 - 1) {
-            v1->unk_0C[v3] = param3;
-            ManagedSprite_SetPositionXY(param3, v0.x, v0.y);
+    for (int i = NELEMS(battleAnimUtil->managedSprite) - 1; i >= 0; i--) {
+        if (i == NELEMS(battleAnimUtil->managedSprite) - 1) {
+            battleAnimUtil->managedSprite[i] = managedSprite;
+            ManagedSprite_SetPositionXY(managedSprite, spriteTemplate.x, spriteTemplate.y);
         } else {
-            v1->unk_0C[v3] = SpriteSystem_NewSprite(param1, param2, &v0);
+            battleAnimUtil->managedSprite[i] = SpriteSystem_NewSprite(spriteSys, spriteMan, &spriteTemplate);
         }
 
-        ManagedSprite_SetPriority(v1->unk_0C[v3], 100);
-        ManagedSprite_SetExplicitPriority(v1->unk_0C[v3], 1);
-        ManagedSprite_SetDrawFlag(v1->unk_0C[v3], 0);
+        ManagedSprite_SetPriority(battleAnimUtil->managedSprite[i], 100);
+        ManagedSprite_SetExplicitPriority(battleAnimUtil->managedSprite[i], 1);
+        ManagedSprite_SetDrawFlag(battleAnimUtil->managedSprite[i], FALSE);
 
-        ov12_02234AE0(v1->unk_0C[v3], &v1->unk_24[v3], &v1->unk_3C[v3], v3, v4);
+        ov12_02234AE0(battleAnimUtil->managedSprite[i], &battleAnimUtil->unk_24[i], &battleAnimUtil->unk_3C[i], i, direction);
     }
 
-    BattleAnimSystem_StartAnimTask(v1->unk_00, ov12_02234B64, v1);
+    BattleAnimSystem_StartAnimTask(battleAnimUtil->battleAnimSys, ov12_02234B64, battleAnimUtil);
 }
 
-static void ov12_02234AE0(ManagedSprite *param0, int *param1, int *param2, int param3, int param4)
+static void ov12_02234AE0(ManagedSprite *managedSprite, int *param1, int *param2, int param3, int param4)
 {
-    s16 v0, v1;
+    s16 outX, outY;
 
-    ManagedSprite_SetAnim(param0, param3 / 2);
+    ManagedSprite_SetAnim(managedSprite, param3 / 2);
 
     *param2 = param3 * 2;
     *param1 = 16;
 
-    ManagedSprite_GetPositionXY(param0, &v0, &v1);
+    ManagedSprite_GetPositionXY(managedSprite, &outX, &outY);
 
-    v0 += (40 + (-12 * param3)) * param4;
-    v1 += 40;
+    outX += (40 + -12 * param3) * param4;
+    outY += 40;
 
-    ManagedSprite_SetPositionXY(param0, v0, v1);
+    ManagedSprite_SetPositionXY(managedSprite, outX, outY);
 }
 
-static BOOL ov12_02234B34(ManagedSprite *param0, int *param1, int *param2)
+static BOOL ov12_02234B34(ManagedSprite *managedSprite, int *param1, int *param2)
 {
     if (*param2 > 0) {
         (*param2)--;
 
         if (*param2 == 0) {
-            ManagedSprite_SetDrawFlag(param0, 1);
+            ManagedSprite_SetDrawFlag(managedSprite, TRUE);
         }
     } else {
         if (*param1 > 0) {
             (*param1)--;
         } else {
-            ManagedSprite_SetDrawFlag(param0, 0);
-            return 1;
+            ManagedSprite_SetDrawFlag(managedSprite, FALSE);
+            return TRUE;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
-static void ov12_02234B64(SysTask *param0, void *param1)
+static void ov12_02234B64(SysTask *task, void *param1)
 {
     UnkStruct_ov12_02234A10 *v0 = param1;
-    int v1;
-    BOOL v2;
+    int i;
 
-    switch (v0->unk_04) {
+    switch (v0->state) {
     case 0:
-        for (v1 = 0; v1 < 6; v1++) {
-            v2 = ov12_02234B34(v0->unk_0C[v1], &v0->unk_24[v1], &v0->unk_3C[v1]);
+        BOOL isUpdated;
+
+        for (i = 0; i < (int)NELEMS(v0->managedSprite); i++) {
+            isUpdated = ov12_02234B34(v0->managedSprite[i], &v0->unk_24[i], &v0->unk_3C[i]);
         }
 
-        if (v2) {
-            v0->unk_04++;
+        if (isUpdated) {
+            v0->state++;
         }
         break;
     case 1:
-        for (v1 = 0; v1 < 6; v1++) {
-            Sprite_DeleteAndFreeResources(v0->unk_0C[v1]);
+        for (i = 0; i < (int)NELEMS(v0->managedSprite); i++) {
+            Sprite_DeleteAndFreeResources(v0->managedSprite[i]);
         }
 
-        BattleAnimSystem_EndAnimTask(v0->unk_00, param0);
+        BattleAnimSystem_EndAnimTask(v0->battleAnimSys, task);
         Heap_Free(v0);
         return;
     }
 
-    SpriteSystem_DrawSprites(v0->unk_08);
+    SpriteSystem_DrawSprites(v0->spriteMan);
 }
 
 static void ov12_02234BD8(UnkStruct_ov12_02234BD8 *param0, int param1)
 {
-    int v0;
-    int v1 = ((360 * 0xffff) / 360) / 6;
+    int v1 = 360 * 0xffff / 360 / 6;
 
-    for (v0 = 0; v0 < 6; v0++) {
-        RevolutionContext_Init(&param0->unk_30[v0], (0 * 0xffff) / 360, (180 * 0xffff) / 360, 0, 0, FX32_ONE * 50, 0, 48);
-        param0->unk_30[v0].data[1] += (v1 * v0);
-        param0->unk_30[v0].data[5] *= param1;
+    for (int i = 0; i < (int)NELEMS(param0->managedSprite); i++) {
+        RevolutionContext_Init(&param0->transformCtx[i], DEG_TO_IDX(0), DEG_TO_IDX(180), 0, 0, FX32_ONE * 50, 0, 48);
+        param0->transformCtx[i].data[1] += v1 * i;
+        param0->transformCtx[i].data[5] *= param1;
     }
 }
 
 static void ov12_02234C30(UnkStruct_ov12_02234BD8 *param0)
 {
-    int v0;
-    u16 v1;
+    for (int i = 0; i < (int)NELEMS(param0->managedSprite); i++) {
+        RevolutionContext_Update(&param0->transformCtx[i]);
 
-    for (v0 = 0; v0 < 6; v0++) {
-        RevolutionContext_Update(&param0->unk_30[v0]);
+        ManagedSprite_SetPositionXY(param0->managedSprite[i], param0->posX + param0->transformCtx[i].x, param0->posY);
 
-        ManagedSprite_SetPositionXY(param0->unk_18[v0], param0->unk_130 + param0->unk_30[v0].x, param0->unk_132);
-
-        if ((param0->unk_30[v0].data[1] >= ((90 * 0xffff) / 360)) && (param0->unk_30[v0].data[1] <= ((269 * 0xffff) / 360))) {
-            ManagedSprite_SetExplicitPriority(param0->unk_18[v0], 1);
+        if (param0->transformCtx[i].data[1] >= DEG_TO_IDX(90) && param0->transformCtx[i].data[1] <= DEG_TO_IDX(269)) {
+            ManagedSprite_SetExplicitPriority(param0->managedSprite[i], 1);
         } else {
-            ManagedSprite_SetExplicitPriority(param0->unk_18[v0], BattleAnimSystem_GetPokemonSpritePriority(param0->unk_00) + 1);
+            ManagedSprite_SetExplicitPriority(param0->managedSprite[i], BattleAnimSystem_GetPokemonSpritePriority(param0->battleAnimSys) + 1);
         }
     }
 }
 
-static void ov12_02234CA8(SysTask *param0, void *param1)
+static void ov12_02234CA8(SysTask *task, void *param1)
 {
     UnkStruct_ov12_02234BD8 *v0 = param1;
-    int v1;
 
-    switch (v0->unk_0C) {
+    switch (v0->state) {
     case 0:
-
-        BattleAnimUtil_SetSpriteBgBlending(v0->unk_00, 1, 16 - 1);
-        AlphaFadeContext_Init(&v0->unk_108, 1, 16, 16 - 1, 16 - 16, 10);
+        BattleAnimUtil_SetSpriteBgBlending(v0->battleAnimSys, 1, 16 - 1);
+        AlphaFadeContext_Init(&v0->alphaFadeCtx, 1, 16, 16 - 1, 16 - 16, 10);
         ov12_02234BD8(v0, v0->unk_14);
         ov12_02234C30(v0);
-        v0->unk_0C++;
+        v0->state++;
         break;
     case 1:
         ov12_02234C30(v0);
 
-        if (AlphaFadeContext_IsDone(&v0->unk_108)) {
-            v0->unk_0C++;
-            v0->unk_10 = (48 - (10 * 2));
+        if (AlphaFadeContext_IsDone(&v0->alphaFadeCtx)) {
+            v0->state++;
+            v0->unk_10 = 48 - 10 * 2;
         }
         break;
     case 2:
@@ -402,62 +383,59 @@ static void ov12_02234CA8(SysTask *param0, void *param1)
         v0->unk_10--;
 
         if (v0->unk_10 < 0) {
-            v0->unk_0C++;
-            AlphaFadeContext_Init(&v0->unk_108, 16, 1, 16 - 16, 16 - 1, 10);
+            v0->state++;
+            AlphaFadeContext_Init(&v0->alphaFadeCtx, 16, 1, 16 - 16, 16 - 1, 10);
         }
         break;
     case 3:
         ov12_02234C30(v0);
 
-        if (AlphaFadeContext_IsDone(&v0->unk_108)) {
-            v0->unk_0C++;
+        if (AlphaFadeContext_IsDone(&v0->alphaFadeCtx)) {
+            v0->state++;
         }
         break;
     case 4:
-        for (v1 = 0; v1 < 6; v1++) {
-            Sprite_DeleteAndFreeResources(v0->unk_18[v1]);
+        for (int i = 0; i < (int)NELEMS(v0->managedSprite); i++) {
+            Sprite_DeleteAndFreeResources(v0->managedSprite[i]);
         }
 
         Heap_Free(v0);
-        BattleAnimSystem_EndAnimTask(v0->unk_00, param0);
+        BattleAnimSystem_EndAnimTask(v0->battleAnimSys, task);
         return;
     }
 
-    SpriteSystem_DrawSprites(v0->unk_08);
+    SpriteSystem_DrawSprites(v0->spriteMan);
 }
 
-void ov12_02234D98(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
+void ov12_02234D98(BattleAnimSystem *battleAnimSystem, SpriteSystem *spriteSystem, SpriteManager *spriteMan, ManagedSprite *managedSprite)
 {
-    UnkStruct_ov12_02234BD8 *v0;
-    int v1;
-    PokemonSprite *v2;
-    SpriteTemplate v3;
+    SpriteTemplate spriteTemplate;
 
-    v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_02234BD8));
+    UnkStruct_ov12_02234BD8 *battleAnimUtil = BattleAnimUtil_Alloc(battleAnimSystem, sizeof(UnkStruct_ov12_02234BD8));
 
-    v0->unk_00 = param0;
-    v0->unk_04 = param1;
-    v0->unk_08 = param2;
+    battleAnimUtil->battleAnimSys = battleAnimSystem;
+    battleAnimUtil->spriteSys = spriteSystem;
+    battleAnimUtil->spriteMan = spriteMan;
 
-    v2 = BattleAnimSystem_GetBattlerSprite(v0->unk_00, BattleAnimSystem_GetAttacker(param0));
+    PokemonSprite *monSprite = BattleAnimSystem_GetBattlerSprite(battleAnimUtil->battleAnimSys, BattleAnimSystem_GetAttacker(battleAnimSystem));
 
-    v0->unk_130 = PokemonSprite_GetAttribute(v2, MON_SPRITE_X_CENTER);
-    v0->unk_132 = PokemonSprite_GetAttribute(v2, MON_SPRITE_Y_CENTER);
+    battleAnimUtil->posX = PokemonSprite_GetAttribute(monSprite, MON_SPRITE_X_CENTER);
+    battleAnimUtil->posY = PokemonSprite_GetAttribute(monSprite, MON_SPRITE_Y_CENTER);
 
-    v3 = BattleAnimSystem_GetLastSpriteTemplate(param0);
+    spriteTemplate = BattleAnimSystem_GetLastSpriteTemplate(battleAnimSystem);
 
-    for (v1 = 0; v1 < 6; v1++) {
-        if (v1 == 0) {
-            v0->unk_18[v1] = param3;
+    for (int i = 0; i < (int)NELEMS(battleAnimUtil->managedSprite); i++) {
+        if (i == 0) {
+            battleAnimUtil->managedSprite[i] = managedSprite;
         } else {
-            v0->unk_18[v1] = SpriteSystem_NewSprite(v0->unk_04, v0->unk_08, &v3);
+            battleAnimUtil->managedSprite[i] = SpriteSystem_NewSprite(battleAnimUtil->spriteSys, battleAnimUtil->spriteMan, &spriteTemplate);
         }
 
-        ManagedSprite_SetPriority(v0->unk_18[v1], 100);
-        ManagedSprite_SetExplicitOamMode(v0->unk_18[v1], GX_OAM_MODE_XLU);
-        ManagedSprite_SetAnimateFlag(v0->unk_18[v1], 1);
+        ManagedSprite_SetPriority(battleAnimUtil->managedSprite[i], 100);
+        ManagedSprite_SetExplicitOamMode(battleAnimUtil->managedSprite[i], GX_OAM_MODE_XLU);
+        ManagedSprite_SetAnimateFlag(battleAnimUtil->managedSprite[i], TRUE);
     }
 
-    v0->unk_14 = BattleAnimUtil_GetTransformDirectionX(v0->unk_00, BattleAnimSystem_GetAttacker(v0->unk_00));
-    BattleAnimSystem_StartAnimTask(v0->unk_00, ov12_02234CA8, v0);
+    battleAnimUtil->unk_14 = BattleAnimUtil_GetTransformDirectionX(battleAnimUtil->battleAnimSys, BattleAnimSystem_GetAttacker(battleAnimUtil->battleAnimSys));
+    BattleAnimSystem_StartAnimTask(battleAnimUtil->battleAnimSys, ov12_02234CA8, battleAnimUtil);
 }

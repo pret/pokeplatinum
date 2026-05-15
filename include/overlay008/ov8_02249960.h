@@ -9,6 +9,8 @@
 #include "message.h"
 #include "string_gf.h"
 
+#define CANALAVE_GYM_NUM_PLATFORMS 24
+
 enum EternaClockState {
     ETERNA_CLOCK_INITIAL = 0,
     ETERNA_CLOCK_DEFEATED_FIRST_TRAINER,
@@ -50,12 +52,16 @@ typedef struct HearthomeGymPersistedFeatures {
     s16 clueZ;
 } HearthomeGymPersistedFeatures;
 
+typedef struct CanalaveGymPersistedFeature {
+    int platformStates;
+} CanalaveGymPersistedFeature;
+
 void PastoriaGym_PressButton(FieldSystem *fieldSystem);
 BOOL PastoriaGym_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileZ, const fx32 height, BOOL *isColliding);
 void PastoriaGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem);
 void HearthomeGym_MoveLift(FieldSystem *fieldSystem);
 void CanalaveGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem);
-BOOL ov8_0224AAA8(FieldSystem *fieldSystem);
+BOOL CanalaveGym_CheckIfPlayerOnPlatform(FieldSystem *fieldSystem);
 void CanalaveGym_DynamicMapFeaturesFree(FieldSystem *fieldSystem);
 BOOL CanalaveGym_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileZ, const fx32 height, BOOL *isColliding);
 void SunyshoreGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem);

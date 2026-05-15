@@ -343,7 +343,7 @@ _048E:
     FacePlayer
     ScrCmd_323 VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _04BC
-    GetCurrentMapID 0x405C
+    GetCurrentMapID VAR_WIFI_PLAZA_RETURN_WARP_ID
     SetVar VAR_UNK_0x405D, VAR_LAST_TALKED
     Message 17
     GoTo _04C7

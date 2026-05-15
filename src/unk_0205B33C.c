@@ -1241,7 +1241,7 @@ static void sub_0205BFF0(UnkStruct_0205B4F8 *param0)
 
 void sub_0205C010(UnkStruct_0205B43C *param0, Sentence *param1)
 {
-    Sentence_Set(&param0->unk_178, param1);
+    Sentence_Copy(&param0->unk_178, param1);
     param0->unk_180 = 1;
 }
 

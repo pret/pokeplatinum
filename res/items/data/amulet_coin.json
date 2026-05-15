@@ -1,0 +1,30 @@
+{
+  "name": "Amulet Coin",
+  "plural": "Amulet Coins",
+  "article": "an",
+  "description": [
+    "An item to be held by a Pokémon.\n",
+    "It doubles a battle’s prize money if\n",
+    "the holding Pokémon joins in."
+  ],
+  "icon": {
+    "sprite": "amulet_coin_NCGR",
+    "palette": "amulet_coin_NCLR"
+  },
+  "gbaID": "GBA_ITEM_AMULET_COIN",
+  "price": 100,
+  "effectParam": 10,
+  "holdEffect": "HOLD_EFFECT_MONEY_UP",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 30,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseFunc": 0,
+  "itemUseParams": null
+}

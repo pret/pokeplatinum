@@ -26,6 +26,7 @@
 
 #include "applications/bag/application.h"
 #include "applications/diploma.h"
+#include "applications/easy_chat/main.h"
 #include "applications/frontier/records/main.h"
 #include "applications/journal_display/journal_controller.h"
 #include "applications/mail.h"
@@ -53,7 +54,6 @@
 #include "overlay005/daycare.h"
 #include "overlay006/struct_npc_trade_animation_template.h"
 #include "overlay007/accessory_shop.h"
-#include "overlay020/ov20_021D0D80.h"
 #include "overlay022/ov22_02255D44.h"
 #include "overlay022/ov22_0225B660.h"
 #include "overlay058/ov58_021D0D80.h"
@@ -78,6 +78,7 @@
 #include "coins.h"
 #include "comm_manager.h"
 #include "dexmode_checker.h"
+#include "easy_chat_args.h"
 #include "egg_hatch.h"
 #include "evolution.h"
 #include "field_battle_data_transfer.h"
@@ -124,7 +125,6 @@
 #include "unk_02038FFC.h"
 #include "unk_020559DC.h"
 #include "unk_0205B33C.h"
-#include "unk_0209747C.h"
 #include "vars_flags.h"
 #include "wifi_history_save_data.h"
 
@@ -133,10 +133,11 @@
 #include "constdata/const_020F2FCC.h"
 #include "constdata/const_020F410C.h"
 #include "constdata/const_020F6890.h"
+#include "res/text/bank/easy_chat.h"
 
 FS_EXTERN_OVERLAY(battle);
 FS_EXTERN_OVERLAY(pc_boxes);
-FS_EXTERN_OVERLAY(overlay20);
+FS_EXTERN_OVERLAY(easy_chat);
 FS_EXTERN_OVERLAY(pokedex);
 FS_EXTERN_OVERLAY(overlay22);
 FS_EXTERN_OVERLAY(overlay58);
@@ -178,7 +179,7 @@ typedef struct {
     u16 *unk_00;
     u16 *unk_04;
     u16 *unk_08;
-    UnkStruct_0209747C *unk_0C;
+    EasyChatArgs *unk_0C;
 } UnkStruct_0203D764;
 
 typedef struct {
@@ -633,7 +634,7 @@ static BOOL sub_0203D764(FieldTask *taskMan)
 
     switch (*taskState) {
     case 0:
-        sub_0203D874(fieldSystem, taskEnv->unk_0C);
+        FieldSystem_OpenEasyChat(fieldSystem, taskEnv->unk_0C);
         (*taskState)++;
         break;
     case 1:
@@ -642,23 +643,23 @@ static BOOL sub_0203D764(FieldTask *taskMan)
         }
         break;
     case 2:
-        if (sub_02097528(taskEnv->unk_0C) || !sub_0209752C(taskEnv->unk_0C)) {
+        if (EasyChatArgs_IsUnmodified(taskEnv->unk_0C) || !EasyChatArgs_WasUpdated(taskEnv->unk_0C)) {
             *taskEnv->unk_00 = 0;
         } else {
             *taskEnv->unk_00 = 1;
 
             if (taskEnv->unk_08 == NULL) {
-                *taskEnv->unk_04 = sub_02097530(taskEnv->unk_0C);
+                *taskEnv->unk_04 = EasyChatArgs_GetOneWord(taskEnv->unk_0C);
             } else {
                 u16 v3[2];
 
-                sub_02097534(taskEnv->unk_0C, v3);
+                EasyChatArgs_CopyTwoWordsTo(taskEnv->unk_0C, v3);
                 *taskEnv->unk_04 = v3[0];
                 *taskEnv->unk_08 = v3[1];
             }
         }
 
-        sub_020974EC(taskEnv->unk_0C);
+        EasyChatArgs_Free(taskEnv->unk_0C);
         Heap_Free(taskEnv);
         return 1;
     }
@@ -676,28 +677,28 @@ void sub_0203D80C(FieldTask *taskMan, u16 *param1, u16 *param2, u16 *param3)
     v0->unk_08 = param3;
 
     if (param3 == NULL) {
-        v0->unk_0C = sub_0209747C(0, 0, fieldSystem->saveData, HEAP_ID_FIELD3);
-        sub_020974F4(v0->unk_0C, *param2);
+        v0->unk_0C = EasyChatArgs_New(EASY_CHAT_TYPE_ONE_WORD, EasyChat_Text_ChooseWordOrPhrase, fieldSystem->saveData, HEAP_ID_FIELD3);
+        EasyChatArgs_SetOneWord(v0->unk_0C, *param2);
     } else {
-        v0->unk_0C = sub_0209747C(1, 0, fieldSystem->saveData, HEAP_ID_FIELD3);
-        sub_020974F8(v0->unk_0C, *param2, *param3);
+        v0->unk_0C = EasyChatArgs_New(EASY_CHAT_TYPE_TWO_WORDS, EasyChat_Text_ChooseWordOrPhrase, fieldSystem->saveData, HEAP_ID_FIELD3);
+        EasyChatArgs_SetTwoWords(v0->unk_0C, *param2, *param3);
     }
 
     FieldTask_InitCall(taskMan, sub_0203D764, v0);
 }
 
-void sub_0203D874(FieldSystem *fieldSystem, UnkStruct_0209747C *param1)
+void FieldSystem_OpenEasyChat(FieldSystem *fieldSystem, EasyChatArgs *args)
 {
-    FS_EXTERN_OVERLAY(overlay20);
+    FS_EXTERN_OVERLAY(easy_chat);
 
     static const ApplicationManagerTemplate appTemplate = {
-        ov20_021D0D80,
-        ov20_021D0DF8,
-        ov20_021D0EA8,
-        FS_OVERLAY_ID(overlay20)
+        EasyChat_Init,
+        EasyChat_Main,
+        EasyChat_Exit,
+        FS_OVERLAY_ID(easy_chat)
     };
 
-    FieldSystem_StartChildProcess(fieldSystem, &appTemplate, param1);
+    FieldSystem_StartChildProcess(fieldSystem, &appTemplate, args);
 }
 
 void FieldSystem_OpenTownMap(FieldSystem *fieldSystem, TownMapContext *townMapCtx)

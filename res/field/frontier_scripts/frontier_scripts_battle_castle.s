@@ -1,6 +1,7 @@
 # include "macros/frscrcmd.inc"
 # include "res/graphics/frontier/particles/frontier_particles.naix"
 # include "res/text/bank/battle_castle_scene.h"
+# include "constants/battle_castle_functions.h"
 # include "constants/battle_frontier.h"
 # include "constants/battle_frontier_emitters.h"
 
@@ -594,7 +595,7 @@ _043C:
     FadeScreenIn
     InitNewBattleRecording
     FrontierScrCmd_97 VAR_0x8003, VAR_0x8001, VAR_0x8004, VAR_0x8005, VAR_0x8006, VAR_0x8008
-    FrontierScrCmd_A0 35, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _0480
     GoTo _04F0
     End
@@ -631,7 +632,7 @@ _04CD:
 
 _04F0:
     FrontierScrCmd_98 VAR_0x8003
-    FrontierScrCmd_A0 35, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _0510
     GoTo _058A
     End
@@ -671,7 +672,7 @@ _0555:
 
 _058A:
     SetVar VAR_0x8003, 0
-    FrontierScrCmd_A0 35, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _05C6
     ApplyMovement 0, _01F0
     ApplyMovement 4, _01F0
@@ -690,14 +691,14 @@ _05C6:
     End
 
 _05F0:
-    FrontierScrCmd_A0 23, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_UNK_23, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 0, _0612
     SetVar VAR_0x8003, 1
     GoTo _1349
     End
 
 _0612:
-    FrontierScrCmd_A0 35, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     CallIfEq VAR_0x8008, 1, _0630
     FrontierScrCmd_9E
     GoTo _0679
@@ -719,12 +720,12 @@ _0640:
     ClearReceivedTempDataAllPlayers
     SyncConnectedPlayers 214
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_A0 41, 0, 0, VAR_0x8008
-    FrontierScrCmd_A0 42, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_UNK_41, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_UNK_42, 0, 0, VAR_0x8008
     Return
 
 _0679:
-    FrontierScrCmd_A0 39, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_UNK_39, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 0, _0695
     GoTo _06A1
     End
@@ -741,10 +742,10 @@ _06A1:
     End
 
 _06B0:
-    FrontierScrCmd_A0 19, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_UNK_19, 0, 0, VAR_0x8008
     CallIfEq VAR_0x8008, 3, _06E4
     Message BattleCastleScene_Text_Choose
-    FrontierScrCmd_A0 35, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _06EA
     GoTo _0706
     End
@@ -772,14 +773,14 @@ _0706:
     End
 
 _0714:
-    FrontierScrCmd_A0 19, 0, 0, VAR_0x8006
+    CallBattleCastleFunction BC_FUNC_UNK_19, 0, 0, VAR_0x8006
     CallIfLt VAR_0x8006, 3, _07A2
     CallIfGe VAR_0x8006, 3, _07AC
     SetMenuXOriginSide 1
     AddListMenuEntry BattleCastleScene_Text_SelfOption, BattleCastleScene_Text_HealOrRentItem, 1
     AddListMenuEntry BattleCastleScene_Text_OpponentOption, BattleCastleScene_Text_CheckOpponentsMons, 2
     AddListMenuEntry BattleCastleScene_Text_BattleOption, BattleCastleScene_Text_BattleTrainer, 4
-    FrontierScrCmd_A0 19, 0, 0, VAR_0x8006
+    CallBattleCastleFunction BC_FUNC_UNK_19, 0, 0, VAR_0x8006
     CallIfGe VAR_0x8006, 3, _07D7
     ShowListMenu
     GoToIfEq VAR_0x8008, 1, _0804
@@ -794,14 +795,14 @@ _07A2:
     Return
 
 _07AC:
-    FrontierScrCmd_A0 40, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_UNK_40, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _07A2
     GoToIfEq VAR_0x8008, 2, _07A2
     InitLocalTextListMenu 31, 9, 0, 0, VAR_0x8008
     Return
 
 _07D7:
-    FrontierScrCmd_A0 40, 0, 0, VAR_0x800D
+    CallBattleCastleFunction BC_FUNC_UNK_40, 0, 0, VAR_0x800D
     GoToIfEq VAR_0x800D, 1, _0802
     GoToIfEq VAR_0x800D, 2, _0802
     AddListMenuEntry BattleCastleScene_Text_PassOption, BattleCastleScene_Text_PassOnBattle, 5
@@ -811,8 +812,8 @@ _0802:
     Return
 
 _0804:
-    FrontierScrCmd_A0 32, 1, 0, VAR_0x8008
-    FrontierScrCmd_A0 35, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_UNK_32, 1, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _0827
     GoTo _0833
     End
@@ -823,17 +824,17 @@ _0827:
     End
 
 _0833:
-    FrontierScrCmd_A0 34, 0, 0, VAR_0x8008
-    FrontierScrCmd_A0 31, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_UNK_34, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_UNK_31, 0, 0, VAR_0x8008
     FadeScreenOut
     CloseMessage
     FrontierScrCmd_51
-    FrontierScrCmd_A0 35, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     CallIfEq VAR_0x8008, 1, _08AC
-    FrontierScrCmd_9A
-    FrontierScrCmd_A0 35, 0, 0, VAR_0x8008
+    OpenBattleCastleSelfApp
+    CallBattleCastleFunction BC_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     CallIfEq VAR_0x8008, 1, _09C5
-    FrontierScrCmd_A0 35, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     CallIfEq VAR_0x8008, 1, _04C5
     FadeScreenIn
     GoTo _0706
@@ -851,8 +852,8 @@ _08AC:
     Return
 
 _08B6:
-    FrontierScrCmd_A0 32, 2, 0, VAR_0x8008
-    FrontierScrCmd_A0 35, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_UNK_32, 2, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _08D9
     GoTo _08E5
     End
@@ -863,17 +864,17 @@ _08D9:
     End
 
 _08E5:
-    FrontierScrCmd_A0 34, 0, 0, VAR_0x8008
-    FrontierScrCmd_A0 31, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_UNK_34, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_UNK_31, 0, 0, VAR_0x8008
     FadeScreenOut
     CloseMessage
     FrontierScrCmd_51
-    FrontierScrCmd_A0 35, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     CallIfEq VAR_0x8008, 1, _095A
-    FrontierScrCmd_9D
-    FrontierScrCmd_A0 35, 0, 0, VAR_0x8008
+    OpenBattleCastleOpponentApp
+    CallBattleCastleFunction BC_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     CallIfEq VAR_0x8008, 1, _09E2
-    FrontierScrCmd_A0 35, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     CallIfEq VAR_0x8008, 1, _04C5
     FadeScreenIn
     GoTo _0706
@@ -890,15 +891,15 @@ _095A:
     Return
 
 _0964:
-    FrontierScrCmd_A0 32, 4, 0, VAR_0x8008
-    FrontierScrCmd_A0 35, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_UNK_32, 4, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _099C
     GoTo _0987
     End
 
 _0987:
     SetVar VAR_0x8005, 0
-    FrontierScrCmd_A0 31, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_UNK_31, 0, 0, VAR_0x8008
     GoTo _0C47
     End
 
@@ -909,7 +910,7 @@ _099C:
 
 _09A8:
     WaitTime 1, VAR_0x8008
-    FrontierScrCmd_A0 29, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_UNK_29, 0, 0, VAR_0x8008
     WaitTime 1, VAR_0x8008
     ClearReceivedTempDataAllPlayers
     SyncConnectedPlayers 190
@@ -918,7 +919,7 @@ _09A8:
 
 _09C5:
     WaitTime 1, VAR_0x8008
-    FrontierScrCmd_A0 29, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_UNK_29, 0, 0, VAR_0x8008
     WaitTime 1, VAR_0x8008
     ClearReceivedTempDataAllPlayers
     SyncConnectedPlayers 191
@@ -927,7 +928,7 @@ _09C5:
 
 _09E2:
     WaitTime 1, VAR_0x8008
-    FrontierScrCmd_A0 29, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_UNK_29, 0, 0, VAR_0x8008
     WaitTime 1, VAR_0x8008
     ClearReceivedTempDataAllPlayers
     SyncConnectedPlayers 192
@@ -936,7 +937,7 @@ _09E2:
 
 _09FF:
     WaitTime 1, VAR_0x8008
-    FrontierScrCmd_A0 29, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_UNK_29, 0, 0, VAR_0x8008
     WaitTime 1, VAR_0x8008
     ClearReceivedTempDataAllPlayers
     SyncConnectedPlayers 193
@@ -950,8 +951,8 @@ _0A1C:
     GoToIfEq VAR_0x8008, 1, _0714
     FrontierScrCmd_A6 VAR_0x8001, VAR_0x8008
     GoToIfLt VAR_0x8008, 50, _0A6D
-    FrontierScrCmd_A0 32, 5, 0, VAR_0x8008
-    FrontierScrCmd_A0 35, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_UNK_32, 5, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _1974
     GoTo _0A79
     End
@@ -963,20 +964,20 @@ _0A6D:
 
 _0A79:
     SetVar VAR_0x8005, 1
-    FrontierScrCmd_A0 35, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _0A9B
     GoTo _0AB8
     End
 
 _0A9B:
-    FrontierScrCmd_A0 34, 0, 0, VAR_0x8008
-    FrontierScrCmd_A0 33, 0, 0, VAR_0x8008
-    FrontierScrCmd_A0 31, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_UNK_34, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_UNK_33, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_UNK_31, 0, 0, VAR_0x8008
     GoTo _0C47
     End
 
 _0AB8:
-    FrontierScrCmd_A0 17, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_GET_CHALLENGE_TYPE, 0, 0, VAR_0x8008
     FrontierScrCmd_A7 VAR_0x8008, 50
     GoTo _0C47
     End
@@ -984,7 +985,7 @@ _0AB8:
 _0ACD:
     CloseMessage
     FrontierScrCmd_51
-    FrontierScrCmd_A0 35, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _0B0C
     ApplyMovement 0, _0248
     ApplyMovement 3, _0274
@@ -1010,7 +1011,7 @@ _0B36:
     PlaySoundEffect SEQ_SE_DP_KAIDAN2
     WaitSoundEffect SEQ_SE_DP_KAIDAN2
     FadeScreenOut
-    FrontierScrCmd_A0 35, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _0BBA
     FrontierScrCmd_25 0
     FrontierScrCmd_25 3
@@ -1052,15 +1053,15 @@ _0BBA:
 
 _0C1E:
     Call _10CA
-    FrontierScrCmd_A0 28, 0, 0, VAR_0x8008
-    FrontierScrCmd_A0 23, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_UNK_28, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_UNK_23, 0, 0, VAR_0x8008
     GoToIfNe VAR_0x8008, 7, _1349
     GoTo _12D3
     End
 
 _0C47:
     FrontierScrCmd_51
-    FrontierScrCmd_A0 35, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _0C7F
     Message BattleCastleScene_Text_Proceed
     WaitABPress
@@ -1087,7 +1088,7 @@ _0CAD:
     WaitSoundEffect SEQ_SE_DP_KAIDAN2
     FadeScreenOut
     CallIfEq FR_VAR_0x800E, 0, _0E64
-    FrontierScrCmd_A0 35, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _0DA3
     FrontierScrCmd_25 0
     FrontierScrCmd_25 3
@@ -1103,7 +1104,7 @@ _0CAD:
     WaitMovement
     CreateParticleSystemEmitter 0, CASTLE_EMITTER_TWINKLE
     GoToIfEq VAR_0x8005, 1, _0E89
-    FrontierScrCmd_A0 40, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_UNK_40, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _1A9B
     GoToIfEq VAR_0x8008, 2, _1ABA
     Call _1B75
@@ -1114,7 +1115,7 @@ _0CAD:
     WaitTime 15, VAR_0x8008
     ApplyMovement 98, _0284
     WaitMovement
-    FrontierScrCmd_A0 37, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_UNK_37, 0, 0, VAR_0x8008
     FrontierScrCmd_A9 0
     WaitABPress
     CloseMessage
@@ -1148,13 +1149,13 @@ _0DA3:
     WaitTime 15, VAR_0x8008
     ApplyMovement 98, _0284
     WaitMovement
-    FrontierScrCmd_A0 37, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_UNK_37, 0, 0, VAR_0x8008
     FrontierScrCmd_A9 0
     WaitTime 30, VAR_0x8008
     CloseMessage
     ApplyMovement 99, _0284
     WaitMovement
-    FrontierScrCmd_A0 37, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_UNK_37, 0, 0, VAR_0x8008
     FrontierScrCmd_A9 1
     WaitTime 30, VAR_0x8008
     CloseMessage
@@ -1170,12 +1171,12 @@ _0E64:
 
 _0E74:
     InitParticleSystem 0, battle_castle_spa
-    FrontierScrCmd_A0 36, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_UNK_36, 0, 0, VAR_0x8008
     GetPlayerObjEventGfx VAR_0x8007
     Return
 
 _0E89:
-    FrontierScrCmd_A0 35, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _0EAD
     Message BattleCastleScene_Text_UsingPass
     WaitABPress
@@ -1194,17 +1195,17 @@ _0EAD:
     End
 
 _0ED1:
-    FrontierScrCmd_A0 20, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_UNK_20, 0, 0, VAR_0x8008
     SetVar VAR_0x800B, VAR_0x8008
     FrontierScrCmd_22 _0154
     FrontierScrCmd_24 _0164
     Return
 
 _0EEC:
-    FrontierScrCmd_A0 20, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_UNK_20, 0, 0, VAR_0x8008
     SetVar VAR_0x800B, VAR_0x8008
     FrontierScrCmd_22 _0154
-    FrontierScrCmd_A0 20, 1, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_UNK_20, 1, 0, VAR_0x8008
     SetVar VAR_0x800C, VAR_0x8008
     FrontierScrCmd_22 _015C
     FrontierScrCmd_24 _0174
@@ -1218,9 +1219,9 @@ _0F1A:
 
 _0F2E:
     FreeParticleSystem 0
-    FrontierScrCmd_A0 35, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _0F83
-    FrontierScrCmd_A0 40, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_UNK_40, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _0F73
     GoToIfEq VAR_0x8008, 2, _0F73
     FrontierScrCmd_3F 4
@@ -1245,18 +1246,18 @@ _0F83:
 _0F99:
     Call _1B75
     BufferNumber 0, VAR_0x8008
-    FrontierScrCmd_9C
-    FrontierScrCmd_9B
+    BattleCastle_StartBattle
+    BattleCastle_CleanupBattle
     InitParticleSystem 0, battle_castle_spa
     CreateParticleSystemEmitter 0, CASTLE_EMITTER_TWINKLE
-    FrontierScrCmd_A0 36, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_UNK_36, 0, 0, VAR_0x8008
     FadeScreenIn
-    FrontierScrCmd_A1 VAR_0x8008
+    BattleCastle_CheckWonBattle VAR_0x8008
     GoToIfEq VAR_0x8008, 0, _180E
     IncrementRecordValue RECORD_BATTLE_CASTLE_VICTORIES
-    FrontierScrCmd_A0 35, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _1040
-    FrontierScrCmd_A0 40, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_UNK_40, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _1AF8
     GoToIfEq VAR_0x8008, 2, _1B2F
     Call _1B75
@@ -1311,24 +1312,24 @@ _10C2:
     End
 
 _10CA:
-    FrontierScrCmd_A0 14, 1, 0, VAR_0x8008
-    FrontierScrCmd_A0 5, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_UNK_14, 1, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_INCREMENT_CURRENT_STREAK, 0, 0, VAR_0x8008
     Return
 
 _10DA:
     BufferPlayerName 1
-    FrontierScrCmd_A0 27, 0, 0, VAR_0x800D
+    CallBattleCastleFunction BC_FUNC_UNK_27, 0, 0, VAR_0x800D
     BufferNumber 0, VAR_0x800D
     ApplyMovement 5, _03BC
     WaitMovement
-    FrontierScrCmd_A0 35, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _1BA1
     GoTo _1B93
     End
 
 _110F:
     CloseMessage
-    FrontierScrCmd_A0 28, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_UNK_28, 0, 0, VAR_0x8008
     FrontierScrCmd_22 _00F8
     FrontierScrCmd_24 _018C
     ApplyMovement 6, _03A4
@@ -1341,31 +1342,31 @@ _110F:
     End
 
 _1160:
-    FrontierScrCmd_A0 35, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _1BBF
     GoTo _1BB3
     End
 
 _117C:
-    FrontierScrCmd_A0 35, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _1BDD
     GoTo _1BD1
     End
 
 _1198:
-    FrontierScrCmd_A0 35, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _1BFB
     GoTo _1BEF
     End
 
 _11B4:
-    FrontierScrCmd_A0 35, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _1C19
     GoTo _1C0D
     End
 
 _11D0:
-    FrontierScrCmd_A0 35, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _1C37
     GoTo _1C2B
     End
@@ -1378,7 +1379,7 @@ _11EC:
     WaitMovement
     FrontierScrCmd_25 6
     FrontierScrCmd_23 217
-    FrontierScrCmd_A0 35, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _121C
     Return
 
@@ -1389,13 +1390,13 @@ _121C:
     Return
 
 _122A:
-    FrontierScrCmd_A0 28, 0, 0, VAR_0x8008
-    FrontierScrCmd_A0 35, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_UNK_28, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     CallIfEq VAR_0x8008, 1, _04C5
     Return
 
 _1247:
-    FrontierScrCmd_A0 23, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_UNK_23, 0, 0, VAR_0x8008
     GoToIfNe VAR_0x8008, 7, _1314
     GoTo _1263
     End
@@ -1423,12 +1424,12 @@ _12C5:
     End
 
 _12D3:
-    FrontierScrCmd_A0 22, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_UNK_22, 0, 0, VAR_0x8008
     FrontierScrCmd_3D VAR_BATTLE_CASTLE_LOBBY_LOAD_ACTION, 1
     BufferPlayerName 0
     Message BattleCastleScene_Text_BPEarned
     BufferPlayerName 0
-    FrontierScrCmd_A0 38, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_UNK_38, 0, 0, VAR_0x8008
     BufferNumber 1, VAR_0x8008
     GiveBattlePoints VAR_0x8008
     Message BattleCastleScene_Text_ReceiveBP
@@ -1443,7 +1444,7 @@ _130C:
 
 _1314:
     GoToIfEq VAR_0x8005, 1, _1349
-    FrontierScrCmd_A0 25, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_UNK_25, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 0, _1349
     Message BattleCastleScene_Text_RevivePokemon
     PlaySoundEffect SEQ_SE_DP_UG_020
@@ -1452,7 +1453,7 @@ _1314:
     End
 
 _1349:
-    FrontierScrCmd_A0 40, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_UNK_40, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _1A60
     GoToIfEq VAR_0x8008, 2, _1A60
     GoTo _1372
@@ -1461,9 +1462,9 @@ _1349:
 _1372:
     Call _1B75
     BufferNumber 0, VAR_0x8008
-    FrontierScrCmd_A0 35, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _13AF
-    FrontierScrCmd_A0 23, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_UNK_23, 0, 0, VAR_0x8008
     AddVar VAR_0x8008, 1
     BufferNumber 0, VAR_0x8008
     Message BattleCastleScene_Text_AreYouReady
@@ -1477,7 +1478,7 @@ _13AF:
     ClearReceivedTempDataAllPlayers
     Call _1B75
     BufferNumber 0, VAR_0x8008
-    FrontierScrCmd_A0 23, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_UNK_23, 0, 0, VAR_0x8008
     AddVar VAR_0x8008, 1
     BufferNumber 0, VAR_0x8008
     MessageInstant BattleCastleScene_Text_AreYouReady
@@ -1489,7 +1490,7 @@ _13E4:
     End
 
 _13EC:
-    FrontierScrCmd_A0 35, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _1422
     GoToIfEq VAR_0x8005, 1, _1471
     GoToIfEq VAR_0x8003, 0, _147F
@@ -1578,7 +1579,7 @@ _1561:
     End
 
 _159D:
-    FrontierScrCmd_A0 35, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _15B9
     GoTo _1622
     End
@@ -1595,7 +1596,7 @@ _15C8:
     GoToIfEq VAR_0x8008, 0, _15C8
     FrontierScrCmd_A3 VAR_0x8002
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_A0 24, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_UNK_24, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _160D
     ClearReceivedTempDataAllPlayers
     SyncConnectedPlayers 122
@@ -1613,7 +1614,7 @@ _160D:
 _1622:
     SetVar VAR_0x8003, 0
     FrontierScrCmd_9F
-    FrontierScrCmd_A0 35, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     CallIfEq VAR_0x8008, 1, _0630
     GoTo _0706
     End
@@ -1648,7 +1649,7 @@ _16A2:
     End
 
 _16B6:
-    FrontierScrCmd_A0 4, 0, 0, VAR_0x8009
+    CallBattleCastleFunction BC_FUNC_GET_CURRENT_STREAK, 0, 0, VAR_0x8009
     Return
 
 _16BF:
@@ -1657,13 +1658,13 @@ _16BF:
 
 _16C7:
     SetVar VAR_0x8003, 1
-    FrontierScrCmd_A0 44, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_UNK_44, 0, 0, VAR_0x8008
     MessageInstant BattleCastleScene_Text_Saving
-    FrontierScrCmd_A0 17, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_GET_CHALLENGE_TYPE, 0, 0, VAR_0x8008
     ShowSavingIcon
     FrontierScrCmd_6D 4, VAR_0x8008, VAR_0x8009, VAR_0x8009
     HideSavingIcon
-    FrontierScrCmd_A0 44, 1, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_UNK_44, 1, 0, VAR_0x8008
     GoToIfEq VAR_0x8009, 1, _1707
     Message BattleCastleScene_Text_VideoSaveFailed
     Return
@@ -1691,13 +1692,13 @@ _1720:
 
 _173E:
     FrontierScrCmd_3D VAR_BATTLE_CASTLE_LOBBY_LOAD_ACTION, 2
-    FrontierScrCmd_A0 10, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_UNK_10, 0, 0, VAR_0x8008
     FreeBattleRecording
     FrontierScrCmd_99
     Call _195E
     FadeScreenOut
     CloseMessage
-    FrontierScrCmd_A0 7, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_RESET_SYSTEM, 0, 0, VAR_0x8008
     End
 
 _176C:
@@ -1708,7 +1709,7 @@ _1774:
     Message BattleCastleScene_Text_RetireQuestion
     ShowYesNoMenu VAR_0x8008, MENU_NO
     GoToIfEq VAR_0x8008, 1, _1806
-    FrontierScrCmd_A0 35, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _17AA
     Message BattleCastleScene_Text_ReturnItems
     GoTo _17F1
@@ -1736,7 +1737,7 @@ _17D9:
     End
 
 _17F1:
-    FrontierScrCmd_A0 21, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_UNK_21, 0, 0, VAR_0x8008
     FrontierScrCmd_3D VAR_BATTLE_CASTLE_LOBBY_LOAD_ACTION, 3
     GoTo _18E4
     End
@@ -1777,14 +1778,14 @@ _1893:
     End
 
 _189B:
-    FrontierScrCmd_A0 21, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_UNK_21, 0, 0, VAR_0x8008
     FrontierScrCmd_3D VAR_BATTLE_CASTLE_LOBBY_LOAD_ACTION, 3
     GoTo _18B0
     End
 
 _18B0:
     Message BattleCastleScene_Text_ReturnItems
-    FrontierScrCmd_A0 35, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _18D0
     GoTo _18E4
     End
@@ -1804,12 +1805,12 @@ _18E4:
     End
 
 _18F4:
-    FrontierScrCmd_A0 35, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     CallIfEq VAR_0x8008, 1, _1948
     FadeScreenOut
-    FrontierScrCmd_A0 17, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_GET_CHALLENGE_TYPE, 0, 0, VAR_0x8008
     CallIfEq VAR_0x8008, 2, _1942
-    FrontierScrCmd_A0 17, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_GET_CHALLENGE_TYPE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 3, _1952
     FreeBattleRecording
     FrontierScrCmd_99
@@ -1853,7 +1854,7 @@ _199D:
     ClearReceivedTempDataAllPlayers
     SyncConnectedPlayers 126
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_A0 30, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_UNK_30, 0, 0, VAR_0x8008
     SetVar FR_VAR_0x8010, VAR_0x8008
     GoToIfEq FR_VAR_0x8010, 1, _0833
     GoToIfEq FR_VAR_0x8010, 2, _08E5
@@ -1863,7 +1864,7 @@ _199D:
 
 _19E8:
     FreeParticleSystem 0
-    FrontierScrCmd_A0 35, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _1A30
     FrontierScrCmd_25 0
     FrontierScrCmd_25 4
@@ -1888,7 +1889,7 @@ _1A30:
 
 _1A60:
     GoToIfEq VAR_0x8003, 1, _1372
-    FrontierScrCmd_A0 43, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_UNK_43, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _1372
     Call _1B75
     BufferNumber 0, VAR_0x8008
@@ -1960,7 +1961,7 @@ _1B63:
     End
 
 _1B75:
-    FrontierScrCmd_A0 4, 0, 0, VAR_0x8008
+    CallBattleCastleFunction BC_FUNC_GET_CURRENT_STREAK, 0, 0, VAR_0x8008
     GoToIfGe VAR_0x8008, 9999, _1B91
     AddVar VAR_0x8008, 1
     Return

@@ -1,0 +1,30 @@
+{
+  "name": "Macho Brace",
+  "plural": "Macho Braces",
+  "article": "a",
+  "description": [
+    "An item to be held by a Pokémon. It is\n",
+    "a stiff and heavy brace that promotes\n",
+    "strong growth but lowers Speed."
+  ],
+  "icon": {
+    "sprite": "macho_brace_NCGR",
+    "palette": "macho_brace_NCLR"
+  },
+  "gbaID": "GBA_ITEM_MACHO_BRACE",
+  "price": 3000,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_EVS_UP_SPEED_DOWN",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 60,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseFunc": 0,
+  "itemUseParams": null
+}

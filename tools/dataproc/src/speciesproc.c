@@ -995,10 +995,6 @@ cleanup:
     free(capped);
 }
 
-#define sfmt(fmt, ...) (snprintf(buf, BUFSIZE, fmt, __VA_ARGS__), buf)
-
-#define BUFSIZE 256
-
 static inline void emit_weight(size_t bank_id, const char *species, const char *weight, char *buf) {
     assert(bank_id == T_WEIGHTS_WITH_GIRA_ALTERED || bank_id == T_WEIGHTS_WITH_GIRA_ORIGIN);
 
@@ -1007,8 +1003,8 @@ static inline void emit_weight(size_t bank_id, const char *species, const char *
         : "species_weight_%s";
 
     datanode_t entry = dp_arr_appobject(&textbanks[bank_id].root);
-    dp_obj_putstring(&entry, "id", sfmt(id_fmt, species));
-    dp_obj_putstring(&entry, "en_US", sfmt("%s lbs.", weight));
+    dp_obj_putstring(&entry, "id", strfmt(id_fmt, species));
+    dp_obj_putstring(&entry, "en_US", strfmt("%s lbs.", weight));
 }
 
 static inline void stringify_weight(char *buf, double weight) {
@@ -1056,7 +1052,7 @@ static inline void emit_height(size_t bank_id, const char *species, const char *
         : "species_height_%s";
 
     datanode_t entry = dp_arr_appobject(&textbanks[bank_id].root);
-    dp_obj_putstring(&entry, "id", sfmt(id_fmt, species));
+    dp_obj_putstring(&entry, "id", strfmt(id_fmt, species));
     dp_obj_putstring(&entry, "en_US", height);
 }
 
@@ -1112,11 +1108,11 @@ static void emit_textbanks(datafile_t *df, size_t i, const char *species, Specie
     const char *name    = dp_string(dp_objmemb(dp_objmemb(dexdata, "en"), "name"));
 
     datanode_t entry = dp_arr_appobject(&textbanks[T_NAMES].root);
-    dp_obj_putstring(&entry, "id", sfmt("species_name_%s", species));
+    dp_obj_putstring(&entry, "id", strfmt("species_name_%s", species));
     dp_obj_putstring(&entry, "en_US", i != SPECIES_NONE ? name : "-----");
 
     entry = dp_arr_appobject(&textbanks[T_NAMES_WITH_ARTICLES].root);
-    dp_obj_putstring(&entry, "id", sfmt("species_name_with_articles_%s", species));
+    dp_obj_putstring(&entry, "id", strfmt("species_name_with_articles_%s", species));
 
     if (i == SPECIES_NONE) dp_obj_putint(&entry, "garbage", 0);
     else {
@@ -1130,7 +1126,7 @@ static void emit_textbanks(datafile_t *df, size_t i, const char *species, Specie
             article = "an";
             break;
         }
-        dp_obj_putstring(&entry, "en_US", sfmt("%s {COLOR 255}%s{COLOR 0}", article, name));
+        dp_obj_putstring(&entry, "en_US", strfmt("%s {COLOR 255}%s{COLOR 0}", article, name));
     }
 
     if (i >= SPECIES_EGG) return;
@@ -1138,7 +1134,7 @@ static void emit_textbanks(datafile_t *df, size_t i, const char *species, Specie
 #define emit_dexentry(bank_id, lang)                                                        \
     do {                                                                                    \
         entry = dp_arr_appobject(&textbanks[bank_id].root);                                 \
-        dp_obj_putstring(&entry, "id", sfmt("species_pokedex_entry_" lang "_%s", species)); \
+        dp_obj_putstring(&entry, "id", strfmt("species_pokedex_entry_" lang "_%s", species)); \
         if (i == SPECIES_NONE) dp_obj_putint(&entry, "garbage", 0);                         \
         else {                                                                              \
             datanode_t lines  = dp_objmemb(dp_objmemb(dexdata, lang), "entry_text");        \
@@ -1167,11 +1163,11 @@ static void emit_textbanks(datafile_t *df, size_t i, const char *species, Specie
             numbuf[8] += (unsigned char)(i % 10);                                                     \
         }                                                                                             \
         const char *locname = dp_string(dp_objmemb(dp_objmemb(dexdata, lang), "name"));               \
-        dp_obj_putstring(&entry, "id", sfmt("species_name_with_natdex_number_" lang "_%s", species)); \
+        dp_obj_putstring(&entry, "id", strfmt("species_name_with_natdex_number_" lang "_%s", species)); \
         dp_obj_putstring(&entry, "en_US",                                                             \
                          i == SPECIES_NONE ? locname                                                  \
-                         : wide == true ? sfmt("%s  %s", numbuf, locname)                             \
-                         : sfmt("%03zu  %s", i, locname));                                            \
+                         : wide == true ? strfmt("%s  %s", numbuf, locname)                             \
+                         : strfmt("%03zu  %s", i, locname));                                            \
     } while (0)
 
 #define emit_dexcategory(bank_id, lang) \
@@ -1179,7 +1175,7 @@ static void emit_textbanks(datafile_t *df, size_t i, const char *species, Specie
         entry = dp_arr_appobject(&textbanks[bank_id].root);                                \
                                                                                            \
         const char *loccat = dp_string(dp_objmemb(dp_objmemb(dexdata, lang), "category")); \
-        dp_obj_putstring(&entry, "id", sfmt("species_category_" lang "_%s", species));     \
+        dp_obj_putstring(&entry, "id", strfmt("species_category_" lang "_%s", species));     \
         dp_obj_putstring(&entry, "en_US", loccat);                                         \
     } while (0)
 
@@ -1201,7 +1197,7 @@ static void emit_textbanks(datafile_t *df, size_t i, const char *species, Specie
 
     entry = dp_arr_appobject(&textbanks[T_CATEGORY].root);
     const char *category = dp_string(dp_objmemb(dp_objmemb(dexdata, "en"), "category"));
-    dp_obj_putstring(&entry, "id", sfmt("species_category_%s", species));
+    dp_obj_putstring(&entry, "id", strfmt("species_category_%s", species));
     dp_obj_putstring(&entry, "en_US", category);
 
     emit_weights(index, (enum Species)i, species, buf);

@@ -1,0 +1,43 @@
+{
+  "name": "Magost Berry",
+  "plural": "Magost Berries",
+  "article": "a",
+  "description": [
+    "A Poffin ingredient.\n",
+    "Bury it in soft soil to grow a\n",
+    "Magost Plant."
+  ],
+  "icon": {
+    "sprite": "magost_berry_NCGR",
+    "palette": "magost_berry_NCLR"
+  },
+  "gbaID": "GBA_ITEM_MAGOST_BERRY",
+  "price": 20,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 10,
+  "naturalGiftPower": 70,
+  "naturalGiftType": "TYPE_ROCK",
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_BERRIES",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_BERRY",
+  "battleUseFunc": 0,
+  "itemUseParams": {},
+  "berryData": {
+    "size": 140,
+    "firmness": "FIRMNESS_HARD",
+    "baseYield": 2,
+    "stageDuration": 6,
+    "moistureDrainRate": 10,
+    "spiciness": 0,
+    "dryness": 0,
+    "sweetness": 20,
+    "bitterness": 10,
+    "sourness": 0,
+    "smoothness": 30
+  }
+}

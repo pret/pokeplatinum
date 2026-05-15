@@ -7,12 +7,12 @@
 #include "struct_decls/struct_02014EC4_decl.h"
 #include "struct_decls/struct_020998EC_decl.h"
 
+#include "easy_chat_args.h"
 #include "heap.h"
 #include "inlines.h"
 #include "pokedex.h"
 #include "string_gf.h"
 #include "unk_02014D38.h"
-#include "unk_0209747C.h"
 
 static const u16 Unk_020F8420[] = {
     0x1CC,
@@ -3134,7 +3134,7 @@ static const u16 *const Unk_020F74D8[] = {
 };
 
 struct UnkStruct_020998EC_t {
-    const UnkStruct_0209747C *unk_00;
+    const EasyChatArgs *unk_00;
     UnkStruct_02014D38 *unk_04;
     u32 unk_08[12];
     u32 unk_38[12];
@@ -3158,7 +3158,7 @@ static u32 sub_02099B28(UnkStruct_020998EC *param0, const u16 *param1, u32 param
 static void sub_02099BAC(UnkStruct_020998EC *param0);
 static u32 sub_02099BF4(UnkStruct_020998EC *param0, const u16 *param1, u16 *param2, u32 param3);
 
-UnkStruct_020998EC *sub_020998EC(u32 heapID, const UnkStruct_0209747C *param1)
+UnkStruct_020998EC *sub_020998EC(u32 heapID, const EasyChatArgs *param1)
 {
     UnkStruct_020998EC *v0;
     int v1;
@@ -3229,7 +3229,7 @@ static u32 sub_02099980(UnkStruct_020998EC *param0, const u16 *param1, u32 param
 {
     const Pokedex *pokedex;
     u32 v1, v2 = 0;
-    pokedex = sub_0209755C(param0->unk_00);
+    pokedex = EasyChatArgs_GetPokedex(param0->unk_00);
 
     for (v1 = 0; v1 < param2; v1++) {
         if (Pokedex_HasSeenSpecies(pokedex, param1[v1])) {
@@ -3246,7 +3246,7 @@ static u32 sub_020999E0(UnkStruct_020998EC *param0, const u16 *param1, u32 param
 {
     u32 v0;
 
-    if (sub_02097564(param0->unk_00)) {
+    if (EasyChatArgs_IsGameCompleted(param0->unk_00)) {
         for (v0 = 0; v0 < param2; v0++) {
             inline_02099980(param0, *param1);
             *param3++ = *param1++;

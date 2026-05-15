@@ -55,7 +55,7 @@
     ScriptEntry AmitySquare_Warp25
     ScriptEntry AmitySquare_Warp26
     ScriptEntry AmitySquare_Warp27
-    ScriptEntry _174A
+    ScriptEntry AmitySquare_UnusedEntry45
     ScriptEntryEnd
 
 AmitySquare_OnTransition:
@@ -1325,9 +1325,9 @@ AmitySquare_SetPositionsWarp27:
     SetPosition LOCALID_FOLLOWER_MON, 33, 5, 7, DIR_SOUTH
     Return
 
-_174A:
+AmitySquare_UnusedEntry45:
     LockAll
-    SetVar VAR_UNK_0x40AC, 0
+    SetVar VAR_AMITY_SQUARE_STATE, 0
     ReleaseAll
     End
 

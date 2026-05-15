@@ -1,0 +1,30 @@
+{
+  "name": "Azure Flute",
+  "plural": "Azure Flutes",
+  "article": "an",
+  "description": [
+    "A flute that puts out echoing sounds\n",
+    "that do not seem to be of this world.\n",
+    "It is unknown who made it."
+  ],
+  "icon": {
+    "sprite": "azure_flute_NCGR",
+    "palette": "azure_flute_NCLR"
+  },
+  "gbaID": "GBA_ITEM_NONE",
+  "price": 0,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 0,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": true,
+  "canRegister": true,
+  "fieldPocket": "POCKET_KEY_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_AZURE_FLUTE",
+  "battleUseFunc": 0,
+  "itemUseParams": null
+}

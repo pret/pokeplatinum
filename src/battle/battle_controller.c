@@ -128,7 +128,7 @@ static BOOL BattleController_RecvLocalMessage(BattleSystem *battleSys, void *mes
         int val = src[0];
         int id = src[1];
 
-        if (ov16_0223ED60(battleSys)) {
+        if (BattleSystem_IsInitialized(battleSys)) {
             BattleIO_DequeueVal(battleSys->battleCtx, id, battler, val);
         }
 
@@ -280,7 +280,7 @@ void BattleController_EmitShowEncounter(BattleSystem *battleSys, int battler)
     message.capturedBall = battleSys->battleCtx->battleMons[battler].capturedBall;
     message.partnerPartySlot = battleSys->battleCtx->selectedPartySlot[BattleSystem_GetPartner(battleSys, battler)];
 
-    ov16_0223EF2C(battleSys, battler, message.selectedPartySlot);
+    BattleSystem_GetBattleParticipantMask(battleSys, battler, message.selectedPartySlot);
 
     for (i = 0; i < LEARNED_MOVES_MAX; i++) {
         message.moves[i] = BattleMon_Get(battleSys->battleCtx, battler, BATTLEMON_MOVE_1 + i, NULL);
@@ -330,7 +330,7 @@ void BattleController_EmitShowPokemon(BattleSystem *battleSys, int battler, int 
     message.unk_14 = param3;
     message.isSubstitute = (battleSys->battleCtx->battleMons[battler].statusVolatile & VOLATILE_CONDITION_SUBSTITUTE) != 0;
 
-    ov16_0223EF2C(battleSys, battler, message.selectedPartySlot);
+    BattleSystem_GetBattleParticipantMask(battleSys, battler, message.selectedPartySlot);
 
     for (i = 0; i < LEARNED_MOVES_MAX; i++) {
         message.moves[i] = BattleMon_Get(battleSys->battleCtx, battler, BATTLEMON_MOVE_1 + i, NULL);
@@ -1741,7 +1741,7 @@ void BattleController_EmitPrintLinkWaitMessage(BattleSystem *battleSys, int batt
     message.unk_02 = 0;
 
     if ((battleType & BATTLE_TYPE_LINK) && BattleRecording_Exists() == TRUE && (battleSys->battleStatusMask & SYSCTL_HIT_DURING_DIVE) == FALSE) {
-        message.unk_02 = ov16_0223F58C(battleSys, &message.unk_04[0]);
+        message.unk_02 = BattleSystem_CollectNewRecordedInputs(battleSys, &message.unk_04[0]);
         GF_ASSERT(message.unk_02 < 28);
         SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &message, sizeof(LinkWaitMsgMessage));
     }
@@ -1836,7 +1836,7 @@ void BattleController_EmitEscapeMessage(BattleSystem *battleSys, BattleContext *
     }
 
     if ((battleType & BATTLE_TYPE_LINK) && BattleRecording_Exists() == TRUE && (battleSys->battleStatusMask & SYSCTL_HIT_DURING_DIVE) == FALSE) {
-        message.unk_02 = ov16_0223F58C(battleSys, &message.unk_04[0]);
+        message.unk_02 = BattleSystem_CollectNewRecordedInputs(battleSys, &message.unk_04[0]);
         GF_ASSERT(message.unk_02 < 28);
     }
 
@@ -1857,7 +1857,7 @@ void BattleController_EmitForfeitMessage(BattleSystem *battleSys)
     message.unk_02 = 0;
 
     if ((battleType & BATTLE_TYPE_LINK) && BattleRecording_Exists() == TRUE && (battleSys->battleStatusMask & SYSCTL_HIT_DURING_DIVE) == FALSE) {
-        message.unk_02 = ov16_0223F58C(battleSys, &message.unk_04[0]);
+        message.unk_02 = BattleSystem_CollectNewRecordedInputs(battleSys, &message.unk_04[0]);
         GF_ASSERT(message.unk_02 < 28);
     }
 
@@ -1951,7 +1951,7 @@ void BattleController_EmitSubmitResult(BattleSystem *battleSys)
     message.unk_02 = 0;
 
     if ((battleType & BATTLE_TYPE_LINK) && BattleRecording_Exists() == TRUE && (battleSys->battleStatusMask & SYSCTL_HIT_DURING_DIVE) == FALSE) {
-        message.unk_02 = ov16_0223F58C(battleSys, &message.unk_08[0]);
+        message.unk_02 = BattleSystem_CollectNewRecordedInputs(battleSys, &message.unk_08[0]);
         GF_ASSERT(message.unk_02 <= 28);
     }
 
@@ -2027,7 +2027,7 @@ BOOL BattleController_RecvCommMessage(BattleSystem *battleSys, void *data)
         int val = src[0];
         int id = src[1];
 
-        if (ov16_0223ED60(battleSys)) {
+        if (BattleSystem_IsInitialized(battleSys)) {
             BattleIO_DequeueVal(battleSys->battleCtx, id, battler, val);
         }
     }

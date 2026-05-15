@@ -1,71 +1,72 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/wifi_plaza_entrance.h"
+#include "res/field/events/events_wifi_plaza_entrance.h"
 #include "constants/map_object.h"
 
 
-    ScriptEntry _0006
+    ScriptEntry WifiPlazaEntrance_OnFrame
     ScriptEntryEnd
 
-_0006:
+WifiPlazaEntrance_OnFrame:
     LockAll
     GetRandom VAR_0x8000, 5
     SetVar VAR_0x8008, VAR_0x8000
-    GoToIfEq VAR_0x8008, 0, _0057
-    GoToIfEq VAR_0x8008, 1, _0071
-    GoToIfEq VAR_0x8008, 2, _008B
-    GoToIfEq VAR_0x8008, 3, _00A5
-    GoToIfEq VAR_0x8008, 4, _00BF
+    GoToIfEq VAR_0x8008, 0, WifiPlazaEntrance_WalkToWarpPanel5
+    GoToIfEq VAR_0x8008, 1, WifiPlazaEntrance_WalkToWarpPanel4
+    GoToIfEq VAR_0x8008, 2, WifiPlazaEntrance_WalkToWarpPanel3
+    GoToIfEq VAR_0x8008, 3, WifiPlazaEntrance_WalkToWarpPanel2
+    GoToIfEq VAR_0x8008, 4, WifiPlazaEntrance_WalkToWarpPanel1
     End
 
-_0057:
-    ApplyMovement LOCALID_PLAYER, _0148
-    ApplyMovement 0, _01F0
+WifiPlazaEntrance_WalkToWarpPanel5:
+    ApplyMovement LOCALID_PLAYER, WifiPlazaEntrance_Movement_PlayerWalkToWarpPanel5
+    ApplyMovement LOCALID_ATTENDANT_F, WifiPlazaEntrance_Movement_AttendantFWalkToWarpPanel5
     WaitMovement
-    GoTo _00D9
+    GoTo WifiPlazaEntrance_TakeWarpPanel
     End
 
-_0071:
-    ApplyMovement LOCALID_PLAYER, _0154
-    ApplyMovement 0, _0200
+WifiPlazaEntrance_WalkToWarpPanel4:
+    ApplyMovement LOCALID_PLAYER, WifiPlazaEntrance_Movement_PlayerWalkToWarpPanel4
+    ApplyMovement LOCALID_ATTENDANT_F, WifiPlazaEntrance_Movement_AttendantFWalkToWarpPanel4
     WaitMovement
-    GoTo _00D9
+    GoTo WifiPlazaEntrance_TakeWarpPanel
     End
 
-_008B:
-    ApplyMovement LOCALID_PLAYER, _0160
-    ApplyMovement 0, _0210
+WifiPlazaEntrance_WalkToWarpPanel3:
+    ApplyMovement LOCALID_PLAYER, WifiPlazaEntrance_Movement_PlayerWalkToWarpPanel3
+    ApplyMovement LOCALID_ATTENDANT_F, WifiPlazaEntrance_Movement_AttendantFWalkToWarpPanel3
     WaitMovement
-    GoTo _00D9
+    GoTo WifiPlazaEntrance_TakeWarpPanel
     End
 
-_00A5:
-    ApplyMovement LOCALID_PLAYER, _016C
-    ApplyMovement 0, _0220
+WifiPlazaEntrance_WalkToWarpPanel2:
+    ApplyMovement LOCALID_PLAYER, WifiPlazaEntrance_Movement_PlayerWalkToWarpPanel2
+    ApplyMovement LOCALID_ATTENDANT_F, WifiPlazaEntrance_Movement_AttendantFWalkToWarpPanel2
     WaitMovement
-    GoTo _00D9
+    GoTo WifiPlazaEntrance_TakeWarpPanel
     End
 
-_00BF:
-    ApplyMovement LOCALID_PLAYER, _0178
-    ApplyMovement 0, _0230
+WifiPlazaEntrance_WalkToWarpPanel1:
+    ApplyMovement LOCALID_PLAYER, WifiPlazaEntrance_Movement_PlayerWalkToWarpPanel1
+    ApplyMovement LOCALID_ATTENDANT_F, WifiPlazaEntrance_Movement_AttendantFWalkToWarpPanel1
     WaitMovement
-    GoTo _00D9
+    GoTo WifiPlazaEntrance_TakeWarpPanel
     End
 
-_00D9:
-    Message 0
+WifiPlazaEntrance_TakeWarpPanel:
+    Message WifiPlazaEntrance_Text_HaveAGoodTime
     WaitABPress
     CloseMessage
-    ApplyMovement LOCALID_PLAYER, _0184
-    ApplyMovement 0, _0240
+    ApplyMovement LOCALID_PLAYER, WifiPlazaEntrance_Movement_PlayerEnterWarpPanelAndSpin
+    ApplyMovement LOCALID_ATTENDANT_F, WifiPlazaEntrance_Movement_AttendantFWalkOnSpotNorth
     WaitMovement
     PlaySE SEQ_SE_DP_TELE2
-    ApplyMovement LOCALID_PLAYER, _01E8
+    ApplyMovement LOCALID_PLAYER, WifiPlazaEntrance_Movement_PlayerWarpOut
     WaitMovement
     FadeScreenOut
     WaitFadeScreen
     SetVar VAR_MAP_LOCAL_3, 1
-    Warp 0x405C, 0, 5, 2, DIR_SOUTH
+    Warp VAR_WIFI_PLAZA_RETURN_WARP_ID, 0, 5, 2, DIR_SOUTH
     WaitForTransition
     ScrCmd_0B3 VAR_RESULT
     SetVar VAR_0x8004, VAR_RESULT
@@ -78,37 +79,37 @@ _00D9:
     End
 
     .balign 4, 0
-_0148:
+WifiPlazaEntrance_Movement_PlayerWalkToWarpPanel5:
     WalkNormalNorth 7
     WalkNormalWest 11
     EndMovement
 
     .balign 4, 0
-_0154:
+WifiPlazaEntrance_Movement_PlayerWalkToWarpPanel4:
     WalkNormalNorth 7
     WalkNormalWest 9
     EndMovement
 
     .balign 4, 0
-_0160:
+WifiPlazaEntrance_Movement_PlayerWalkToWarpPanel3:
     WalkNormalNorth 7
     WalkNormalWest 7
     EndMovement
 
     .balign 4, 0
-_016C:
+WifiPlazaEntrance_Movement_PlayerWalkToWarpPanel2:
     WalkNormalNorth 7
     WalkNormalWest 5
     EndMovement
 
     .balign 4, 0
-_0178:
+WifiPlazaEntrance_Movement_PlayerWalkToWarpPanel1:
     WalkNormalNorth 7
     WalkNormalWest 3
     EndMovement
 
     .balign 4, 0
-_0184:
+WifiPlazaEntrance_Movement_PlayerEnterWarpPanelAndSpin:
     WalkNormalNorth
     FaceWest
     Delay2
@@ -136,46 +137,46 @@ _0184:
     EndMovement
 
     .balign 4, 0
-_01E8:
+WifiPlazaEntrance_Movement_PlayerWarpOut:
     WarpOut
     EndMovement
 
     .balign 4, 0
-_01F0:
+WifiPlazaEntrance_Movement_AttendantFWalkToWarpPanel5:
     WalkNormalNorth 6
     WalkNormalWest 12
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_0200:
+WifiPlazaEntrance_Movement_AttendantFWalkToWarpPanel4:
     WalkNormalNorth 6
     WalkNormalWest 10
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_0210:
+WifiPlazaEntrance_Movement_AttendantFWalkToWarpPanel3:
     WalkNormalNorth 6
     WalkNormalWest 8
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_0220:
+WifiPlazaEntrance_Movement_AttendantFWalkToWarpPanel2:
     WalkNormalNorth 6
     WalkNormalWest 6
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_0230:
+WifiPlazaEntrance_Movement_AttendantFWalkToWarpPanel1:
     WalkNormalNorth 6
     WalkNormalWest 4
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_0240:
+WifiPlazaEntrance_Movement_AttendantFWalkOnSpotNorth:
     WalkOnSpotNormalNorth
     EndMovement

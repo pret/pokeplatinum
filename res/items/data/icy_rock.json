@@ -1,0 +1,30 @@
+{
+  "name": "Icy Rock",
+  "plural": "Icy Rocks",
+  "article": "an",
+  "description": [
+    "A Pokémon hold item that extends the\n",
+    "duration of the move Hail used by the\n",
+    "holder."
+  ],
+  "icon": {
+    "sprite": "icy_rock_NCGR",
+    "palette": "icy_rock_NCLR"
+  },
+  "gbaID": "GBA_ITEM_NONE",
+  "price": 200,
+  "effectParam": 3,
+  "holdEffect": "HOLD_EFFECT_EXTEND_HAIL",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 40,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseFunc": 0,
+  "itemUseParams": null
+}

@@ -659,6 +659,8 @@ datanode_t dp_get(datafile_t *df, const char *path) {
     } while (0)
 
 bool dp_bool(datanode_t dn) {
+    if (dn.type == DATAPROC_T_MAPPED) return dn.mapped != 0;
+
     asserttype(DATAPROC_T_BOOLEAN, false);
     return get_bool_func(dn.node);
 }

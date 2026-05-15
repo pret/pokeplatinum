@@ -1,0 +1,30 @@
+{
+  "name": "Hard Stone",
+  "plural": "Hard Stones",
+  "article": "a",
+  "description": [
+    "An item to be held by a Pokémon.\n",
+    "It is an unbreakable stone that ups\n",
+    "the power of Rock-type moves."
+  ],
+  "icon": {
+    "sprite": "hard_stone_NCGR",
+    "palette": "hard_stone_NCLR"
+  },
+  "gbaID": "GBA_ITEM_HARD_STONE",
+  "price": 100,
+  "effectParam": 20,
+  "holdEffect": "HOLD_EFFECT_STRENGTHEN_ROCK",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 100,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseFunc": 0,
+  "itemUseParams": null
+}

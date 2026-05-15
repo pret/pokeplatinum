@@ -8,8 +8,8 @@
     ScriptEntry LakeVerityLowWater_OnFrameCyrus
     ScriptEntry LakeVerityLowWater_ProfRowan
     ScriptEntry LakeVerityLowWater_Counterpart
-    ScriptEntry _048A
-    ScriptEntry _048C
+    ScriptEntry LakeVerityLowWater_UnusedEntry6
+    ScriptEntry LakeVerityLowWater_UnusedEntry7
     ScriptEntryEnd
 
 LakeVerityLowWater_OnTransition:
@@ -421,10 +421,10 @@ LakeVerityLowWater_CloseMessage:
     ReleaseAll
     End
 
-_048A:
+LakeVerityLowWater_UnusedEntry6:
     End
 
-_048C:
+LakeVerityLowWater_UnusedEntry7:
     End
 
     .balign 4, 0

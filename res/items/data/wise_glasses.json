@@ -1,0 +1,30 @@
+{
+  "name": "Wise Glasses",
+  "plural": "Wise Glasses",
+  "article": "the",
+  "description": [
+    "An item to be held by a Pokémon. It is\n",
+    "a thick pair of glasses that slightly\n",
+    "boosts the power of special moves."
+  ],
+  "icon": {
+    "sprite": "wise_glasses_NCGR",
+    "palette": "wise_glasses_NCLR"
+  },
+  "gbaID": "GBA_ITEM_NONE",
+  "price": 200,
+  "effectParam": 10,
+  "holdEffect": "HOLD_EFFECT_POWER_UP_SPEC",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 10,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseFunc": 0,
+  "itemUseParams": null
+}

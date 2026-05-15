@@ -1,6 +1,5 @@
 #include "generated/badges.h"
 #include "generated/battle_tower_modes.h"
-#include "generated/battle_tower_functions.h"
 #include "generated/berry_growth_stages.h"
 #include "generated/catching_show_points_category.h"
 #include "generated/comm_club_ret_codes.h"
@@ -37,6 +36,7 @@
 #include "constants/animation_tags.h"
 #include "constants/battle.h"
 #include "constants/battle_tower.h"
+#include "constants/battle_tower_functions.h"
 #include "constants/battle/battle_script.h"
 #include "constants/boat_cutscene.h"
 #include "constants/colors.h"
@@ -1985,8 +1985,8 @@
     .short SCRCMD_ENDCOMMUNICATION
     .endm
 
-    .macro ScrCmd_151
-    .short SCRCMD_151
+    .macro FieldCommEnterBattleRoom
+    .short SCRCMD_FIELDCOMMENTERBATTLEROOM
     .endm
 
     .macro SetCommPlayerDir dir

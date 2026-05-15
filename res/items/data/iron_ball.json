@@ -1,0 +1,30 @@
+{
+  "name": "Iron Ball",
+  "plural": "Iron Balls",
+  "article": "an",
+  "description": [
+    "A Pokémon hold item that cuts Speed.\n",
+    "It makes Flying-type and levitating\n",
+    "holders susceptible to Ground moves."
+  ],
+  "icon": {
+    "sprite": "iron_ball_NCGR",
+    "palette": "iron_ball_NCLR"
+  },
+  "gbaID": "GBA_ITEM_NONE",
+  "price": 200,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_SPEED_DOWN_GROUNDED",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 130,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseFunc": 0,
+  "itemUseParams": null
+}
