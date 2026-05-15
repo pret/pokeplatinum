@@ -13,6 +13,7 @@
 #include "overlay022/ov22_0225AF8C.h"
 
 #include "bg_window.h"
+#include "comm_manager.h"
 #include "contest.h"
 #include "font.h"
 #include "game_options.h"
@@ -39,7 +40,6 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "touch_pad.h"
-#include "comm_manager.h"
 #include "unk_02094EDC.h"
 #include "vram_transfer.h"
 

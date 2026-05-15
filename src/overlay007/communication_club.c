@@ -9,6 +9,7 @@
 #include "field/field_system.h"
 
 #include "bg_window.h"
+#include "comm_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "field_comm_manager.h"
@@ -32,7 +33,6 @@
 #include "trainer_info.h"
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
-#include "comm_manager.h"
 
 #include "res/text/bank/unk_0353.h"
 

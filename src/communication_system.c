@@ -12,6 +12,7 @@
 
 #include "nintendo_wfc/main.h"
 
+#include "comm_manager.h"
 #include "comm_ring.h"
 #include "communication_information.h"
 #include "heap.h"
@@ -24,7 +25,6 @@
 #include "unk_02032798.h"
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
-#include "comm_manager.h"
 #include "wireless_manager.h"
 
 enum TransmissionType {

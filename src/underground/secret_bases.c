@@ -27,6 +27,7 @@
 #include "underground/traps.h"
 
 #include "bg_window.h"
+#include "comm_manager.h"
 #include "comm_player_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
@@ -59,7 +60,6 @@
 #include "trainer_info.h"
 #include "underground.h"
 #include "unk_02033200.h"
-#include "comm_manager.h"
 #include "unk_0205F180.h"
 #include "unk_020655F4.h"
 #include "vars_flags.h"

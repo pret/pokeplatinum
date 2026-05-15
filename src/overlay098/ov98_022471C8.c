@@ -18,6 +18,7 @@
 
 #include "bg_window.h"
 #include "colored_arrow.h"
+#include "comm_manager.h"
 #include "font.h"
 #include "game_options.h"
 #include "graphics.h"
@@ -45,7 +46,6 @@
 #include "text.h"
 #include "touch_pad.h"
 #include "unk_02030CE8.h"
-#include "comm_manager.h"
 #include "unk_02038FFC.h"
 #include "vram_transfer.h"
 #include "wifi_list.h"

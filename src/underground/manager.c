@@ -24,6 +24,7 @@
 #include "underground/traps.h"
 #include "underground/vendors.h"
 
+#include "comm_manager.h"
 #include "comm_player_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
@@ -45,7 +46,6 @@
 #include "terrain_collision_manager.h"
 #include "trainer_info.h"
 #include "underground.h"
-#include "comm_manager.h"
 #include "vars_flags.h"
 #include "wireless_manager.h"
 

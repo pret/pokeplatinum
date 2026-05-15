@@ -10,6 +10,7 @@
 #include "struct_defs/struct_02034168.h"
 
 #include "battle_regulation.h"
+#include "comm_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "heap.h"
@@ -17,7 +18,6 @@
 #include "trainer_info.h"
 #include "unk_02014A84.h"
 #include "unk_0203266C.h"
-#include "comm_manager.h"
 #include "wireless_manager.h"
 
 typedef struct {

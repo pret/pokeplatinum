@@ -9,11 +9,11 @@
 #include "functypes/funcptr_0203290C.h"
 #include "functypes/funcptr_020F8E60.h"
 
+#include "comm_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "heap.h"
 #include "unk_020363E8.h"
-#include "comm_manager.h"
 
 typedef struct {
     const CommCmdTable *cmdTable;

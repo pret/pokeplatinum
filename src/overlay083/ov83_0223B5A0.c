@@ -21,6 +21,7 @@
 #include "savedata/save_table.h"
 
 #include "bag.h"
+#include "comm_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "game_options.h"
@@ -38,7 +39,6 @@
 #include "system.h"
 #include "tv_segment.h"
 #include "unk_020363E8.h"
-#include "comm_manager.h"
 #include "unk_0203909C.h"
 #include "vram_transfer.h"
 #include "wifi_list.h"

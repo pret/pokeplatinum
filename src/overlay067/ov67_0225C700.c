@@ -15,6 +15,7 @@
 #include "overlay066/struct_ov66_02231300.h"
 
 #include "bg_window.h"
+#include "comm_manager.h"
 #include "font.h"
 #include "game_options.h"
 #include "game_records.h"
@@ -37,7 +38,6 @@
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "comm_manager.h"
 
 typedef struct {
     StringTemplate *unk_00;

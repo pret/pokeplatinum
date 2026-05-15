@@ -8,6 +8,7 @@
 #include "field/field_system.h"
 
 #include "bg_window.h"
+#include "comm_manager.h"
 #include "communication_system.h"
 #include "heap.h"
 #include "map_header.h"
@@ -15,7 +16,6 @@
 #include "sys_task_manager.h"
 #include "touch_screen.h"
 #include "unk_02033200.h"
-#include "comm_manager.h"
 
 #define COMM_STATE_IDLE      0
 #define COMM_STATE_SEARCHING 1

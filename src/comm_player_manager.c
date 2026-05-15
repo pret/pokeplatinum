@@ -24,6 +24,7 @@
 #include "underground/secret_bases.h"
 #include "underground/traps.h"
 
+#include "comm_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "field_system.h"
@@ -41,7 +42,6 @@
 #include "trainer_info.h"
 #include "tv_segment.h"
 #include "underground.h"
-#include "comm_manager.h"
 #include "unk_0205F180.h"
 #include "unk_020655F4.h"
 

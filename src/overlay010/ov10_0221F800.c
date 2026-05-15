@@ -14,6 +14,7 @@
 #include "bag.h"
 #include "bg_window.h"
 #include "camera.h"
+#include "comm_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "font.h"
@@ -53,7 +54,6 @@
 #include "unk_0202419C.h"
 #include "unk_0202F1D4.h"
 #include "unk_020363E8.h"
-#include "comm_manager.h"
 #include "unk_0208C098.h"
 #include "vram_transfer.h"
 

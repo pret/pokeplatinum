@@ -21,6 +21,7 @@
 #include "overlay017/struct_ov17_02246F24.h"
 
 #include "bg_window.h"
+#include "comm_manager.h"
 #include "contest.h"
 #include "font.h"
 #include "game_overlay.h"
@@ -47,7 +48,6 @@
 #include "system.h"
 #include "touch_pad.h"
 #include "unk_02012744.h"
-#include "comm_manager.h"
 #include "unk_02094EDC.h"
 #include "vram_transfer.h"
 

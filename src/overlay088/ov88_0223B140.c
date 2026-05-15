@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/communication/comm_error.h"
 #include "generated/game_records.h"
 #include "generated/species.h"
 
@@ -16,7 +17,6 @@
 #include "overlay088/struct_ov88_0223C370.h"
 #include "overlay088/struct_ov88_0223C8AC.h"
 
-#include "constants/communication/comm_error.h"
 #include "bag.h"
 #include "battle_frontier_stats.h"
 #include "bg_window.h"
@@ -25,6 +25,7 @@
 #include "character_sprite.h"
 #include "charcode_util.h"
 #include "chatot_cry.h"
+#include "comm_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "font.h"
@@ -72,7 +73,6 @@
 #include "unk_0202D778.h"
 #include "unk_0202F180.h"
 #include "unk_020363E8.h"
-#include "comm_manager.h"
 #include "unk_02038ED4.h"
 #include "unk_02038F8C.h"
 #include "unk_0203909C.h"

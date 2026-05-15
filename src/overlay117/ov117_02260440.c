@@ -11,12 +11,12 @@
 #include "overlay117/struct_ov117_02260440.h"
 #include "overlay117/struct_ov117_022605C0.h"
 
+#include "comm_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "heap.h"
 #include "overlay_manager.h"
 #include "unk_020363E8.h"
-#include "comm_manager.h"
 
 static const ApplicationManagerTemplate Unk_ov117_022668F8 = {
     ov117_02260668,

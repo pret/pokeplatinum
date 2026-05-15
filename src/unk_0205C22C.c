@@ -20,6 +20,7 @@
 #include "overlay005/ov5_021F134C.h"
 #include "overlay005/ov5_021F600C.h"
 
+#include "comm_manager.h"
 #include "field_task.h"
 #include "heap.h"
 #include "map_object.h"
@@ -33,7 +34,6 @@
 #include "sys_task_manager.h"
 #include "trainer_info.h"
 #include "unk_02014A84.h"
-#include "comm_manager.h"
 #include "unk_0205B33C.h"
 #include "unk_020655F4.h"
 

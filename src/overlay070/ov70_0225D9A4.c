@@ -34,6 +34,7 @@
 #include "bg_window.h"
 #include "cell_transfer.h"
 #include "char_transfer.h"
+#include "comm_manager.h"
 #include "enums.h"
 #include "error_handling.h"
 #include "font.h"
@@ -72,7 +73,6 @@
 #include "trainer_info.h"
 #include "type_icon.h"
 #include "unk_0202419C.h"
-#include "comm_manager.h"
 #include "vram_transfer.h"
 
 typedef struct {

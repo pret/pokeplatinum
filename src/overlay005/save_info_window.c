@@ -12,6 +12,7 @@
 #include "overlay005/save_info_window.h"
 
 #include "bg_window.h"
+#include "comm_manager.h"
 #include "field_overworld_state.h"
 #include "font.h"
 #include "location.h"
@@ -25,7 +26,6 @@
 #include "string_gf.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "comm_manager.h"
 
 static void FieldSystem_SaveObjectsAndLocation(FieldSystem *fieldSystem);
 

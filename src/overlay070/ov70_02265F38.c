@@ -17,6 +17,7 @@
 #include "overlay070/struct_ov70_02263344_decl.h"
 #include "overlay070/struct_ov70_02265F38.h"
 
+#include "comm_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "enums.h"
@@ -25,7 +26,6 @@
 #include "string_gf.h"
 #include "system.h"
 #include "unk_020363E8.h"
-#include "comm_manager.h"
 
 typedef struct {
     u8 unk_00;

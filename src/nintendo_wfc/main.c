@@ -6,20 +6,19 @@
 #include <string.h>
 #include <vct.h>
 
+#include "constants/communication/comm_error.h"
 #include "constants/net.h"
 
 #include "global/assert.h"
 #include "nintendo_wfc/voice_chat.h"
 
-#include "constants/communication/comm_error.h"
-
 #include "battle_frontier_stats.h"
+#include "comm_manager.h"
 #include "communication_system.h"
 #include "dwc_error.h"
 #include "heap.h"
 #include "savedata.h"
 #include "unk_0203266C.h"
-#include "comm_manager.h"
 #include "wifi_list.h"
 
 #define RECEIVE_BUFFER_SIZE 4096

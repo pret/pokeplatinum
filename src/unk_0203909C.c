@@ -6,12 +6,12 @@
 
 #include "struct_decls/wi_fi_list.h"
 
+#include "comm_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "savedata.h"
 #include "string_gf.h"
 #include "trainer_info.h"
-#include "comm_manager.h"
 #include "wifi_list.h"
 
 int sub_0203909C(SaveData *saveData, DWCFriendData *param1, int *param2)

@@ -15,6 +15,7 @@
 #include "global/pm_version.h"
 
 #include "appearance.h"
+#include "comm_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "field_system.h"
@@ -34,7 +35,6 @@
 #include "unk_02014A84.h"
 #include "unk_02014D38.h"
 #include "unk_02033200.h"
-#include "comm_manager.h"
 #include "unk_02095E98.h"
 #include "unk_02099500.h"
 

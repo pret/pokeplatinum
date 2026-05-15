@@ -13,6 +13,7 @@
 
 #include "bg_window.h"
 #include "char_transfer.h"
+#include "comm_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "font.h"
@@ -45,7 +46,6 @@
 #include "trainer_info.h"
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
-#include "comm_manager.h"
 #include "unk_0205B33C.h"
 #include "unk_0205C22C.h"
 #include "unk_02095E98.h"

@@ -18,6 +18,7 @@
 #include "overlay096/struct_ov96_0223BF40_t.h"
 
 #include "bg_window.h"
+#include "comm_manager.h"
 #include "font.h"
 #include "game_options.h"
 #include "graphics.h"
@@ -39,7 +40,6 @@
 #include "text.h"
 #include "unk_0202D05C.h"
 #include "unk_02030CE8.h"
-#include "comm_manager.h"
 #include "unk_02073700.h"
 
 static void ov96_0223BE38(BgConfig *param0);

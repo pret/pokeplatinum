@@ -12,6 +12,7 @@
 #include "overlay094/networking.h"
 
 #include "bg_window.h"
+#include "comm_manager.h"
 #include "font.h"
 #include "game_options.h"
 #include "graphics.h"
@@ -29,7 +30,6 @@
 #include "system_data.h"
 #include "text.h"
 #include "unk_02030CE8.h"
-#include "comm_manager.h"
 #include "wifi_list.h"
 
 #include "res/text/bank/gts.h"

@@ -7,6 +7,7 @@
 
 #include "bg_window.h"
 #include "brightness_controller.h"
+#include "comm_manager.h"
 #include "communication_system.h"
 #include "font.h"
 #include "graphics.h"
@@ -19,7 +20,6 @@
 #include "string_gf.h"
 #include "system.h"
 #include "text.h"
-#include "comm_manager.h"
 
 static const GXBanks sErrorMessageBanksConfig = {
     GX_VRAM_BG_256_AB,

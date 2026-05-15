@@ -1,10 +1,10 @@
 #ifndef POKEPLATINUM_CONSTANTS_COMM_PACKETS_H
 #define POKEPLATINUM_CONSTANTS_COMM_PACKETS_H
 
-#define COMM_ERROR_NONE 0
+#define COMM_ERROR_NONE            0
 #define COMM_ERROR_RESET_SAVEPOINT 1
-#define COMM_ERROR_RESET_TITLE 2
-#define COMM_ERROR_3 3
-#define COMM_ERROR_4 4
+#define COMM_ERROR_RESET_TITLE     2
+#define COMM_ERROR_3               3
+#define COMM_ERROR_4               4
 
 #endif

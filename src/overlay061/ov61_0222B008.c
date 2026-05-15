@@ -24,6 +24,7 @@
 #include "overlay062/struct_ov62_0223D518_sub1_sub1.h"
 #include "overlay062/struct_ov62_02241130.h"
 
+#include "comm_manager.h"
 #include "gds.h"
 #include "heap.h"
 #include "message.h"
@@ -34,7 +35,6 @@
 #include "string_template.h"
 #include "system.h"
 #include "unk_0202F1D4.h"
-#include "comm_manager.h"
 
 typedef int (*UnkFuncPtr_ov61_0222E48C)(UnkStruct_ov62_022349A8 *, UnkStruct_ov61_0222B138 *);
 

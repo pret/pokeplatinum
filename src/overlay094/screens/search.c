@@ -16,6 +16,7 @@
 #include "overlay094/struct_ov94_0223BA24.h"
 
 #include "bg_window.h"
+#include "comm_manager.h"
 #include "font.h"
 #include "game_options.h"
 #include "global_trade.h"
@@ -36,7 +37,6 @@
 #include "string_list.h"
 #include "system.h"
 #include "text.h"
-#include "comm_manager.h"
 
 #include "res/text/bank/gts.h"
 

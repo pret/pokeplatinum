@@ -12,6 +12,7 @@
 #include "overlay109/ov109_021D0D80.h"
 #include "overlay109/ov109_021D3D50.h"
 
+#include "comm_manager.h"
 #include "field_system.h"
 #include "field_task.h"
 #include "game_options.h"
@@ -19,7 +20,6 @@
 #include "heap.h"
 #include "journal.h"
 #include "save_player.h"
-#include "comm_manager.h"
 #include "unk_0203D1B8.h"
 #include "unk_0209BDF8.h"
 

@@ -5,12 +5,12 @@
 #include <nitro/wm.h>
 #include <string.h>
 
-#include "struct_defs/struct_0203330C.h"
-
 #include "constants/communication/comm_error.h"
 
-#include "unk_0203266C.h"
+#include "struct_defs/struct_0203330C.h"
+
 #include "comm_manager.h"
+#include "unk_0203266C.h"
 
 /**
  * @struct WirelessManager

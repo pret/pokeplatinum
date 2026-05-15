@@ -7,9 +7,9 @@
 
 #include "nintendo_wfc/main.h"
 
+#include "comm_manager.h"
 #include "heap.h"
 #include "unk_0203266C.h"
-#include "comm_manager.h"
 
 #define VOICE_CHAT_BUFFER_SIZE    ((8000 * VCT_AUDIO_FRAME_LENGTH * 2 * 2) / 1000)
 #define FRAME_LENGTH_MICROSECONDS (1000000 / 60)

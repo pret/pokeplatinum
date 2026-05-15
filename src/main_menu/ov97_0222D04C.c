@@ -6,6 +6,7 @@
 #include "main_menu/mystery_gift_app.h"
 #include "main_menu/ov97_0222D2F8.h"
 
+#include "comm_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "heap.h"
@@ -18,7 +19,6 @@
 #include "trainer_info.h"
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
-#include "comm_manager.h"
 
 typedef void (*UnkFuncPtr_ov97_0222D0A4)(void);
 

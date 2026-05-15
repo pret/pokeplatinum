@@ -20,6 +20,7 @@
 
 #include "bg_window.h"
 #include "camera.h"
+#include "comm_manager.h"
 #include "communication_system.h"
 #include "easy3d_object.h"
 #include "enums.h"
@@ -51,7 +52,6 @@
 #include "unk_02012744.h"
 #include "unk_0202419C.h"
 #include "unk_020363E8.h"
-#include "comm_manager.h"
 #include "vram_transfer.h"
 
 static void ov117_02260DA0(void *param0);

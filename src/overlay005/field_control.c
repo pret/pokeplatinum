@@ -29,6 +29,7 @@
 #include "underground/manager.h"
 
 #include "catching_show.h"
+#include "comm_manager.h"
 #include "comm_player_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
@@ -60,7 +61,6 @@
 #include "terrain_collision_manager.h"
 #include "trainer_info.h"
 #include "trainer_see.h"
-#include "comm_manager.h"
 #include "unk_0203C954.h"
 #include "unk_02054884.h"
 #include "unk_02056B30.h"

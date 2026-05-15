@@ -14,6 +14,7 @@
 #include "overlay061/struct_ov61_0222C3B0.h"
 
 #include "bg_window.h"
+#include "comm_manager.h"
 #include "font.h"
 #include "game_options.h"
 #include "graphics.h"
@@ -38,7 +39,6 @@
 #include "system_data.h"
 #include "text.h"
 #include "touch_pad.h"
-#include "comm_manager.h"
 #include "unk_02038FFC.h"
 #include "vram_transfer.h"
 #include "wifi_list.h"

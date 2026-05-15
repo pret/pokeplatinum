@@ -17,6 +17,7 @@
 
 #include "bg_window.h"
 #include "boot.h"
+#include "comm_manager.h"
 #include "font.h"
 #include "game_start.h"
 #include "graphics.h"
@@ -44,7 +45,6 @@
 #include "system_data.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "comm_manager.h"
 #include "unk_0209A74C.h"
 #include "vram_transfer.h"
 

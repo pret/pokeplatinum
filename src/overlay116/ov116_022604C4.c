@@ -22,6 +22,7 @@
 
 #include "bg_window.h"
 #include "camera.h"
+#include "comm_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "easy3d_object.h"
@@ -40,7 +41,6 @@
 #include "system.h"
 #include "touch_pad.h"
 #include "unk_020363E8.h"
-#include "comm_manager.h"
 #include "vram_transfer.h"
 
 static void ov116_022612CC(UnkStruct_ov116_0226139C *param0);

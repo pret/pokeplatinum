@@ -21,6 +21,7 @@
 #include "overlay115/struct_ov115_02265AD0.h"
 #include "overlay115/struct_ov115_02265AD4.h"
 
+#include "comm_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "graphics.h"
@@ -31,7 +32,6 @@
 #include "screen_fade.h"
 #include "system.h"
 #include "unk_020363E8.h"
-#include "comm_manager.h"
 #include "vram_transfer.h"
 
 typedef struct UnkStruct_ov115_0226095C_t {

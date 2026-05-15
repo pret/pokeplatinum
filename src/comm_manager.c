@@ -4,8 +4,9 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/communication/comm_type.h"
 #include "constants/communication/comm_error.h"
+#include "constants/communication/comm_type.h"
+
 #include "nintendo_wfc/main.h"
 #include "overlay065/struct_ov65_0222F6EC.h"
 #include "overlay066/ov66_022324F0.h"
@@ -55,7 +56,7 @@ typedef struct {
     u8 resetType;
     u8 pauseUnion;
     u8 unk_54;
-    u8 initializeAsServer; //always FALSE
+    u8 initializeAsServer; // always FALSE
     u8 unk_56;
     u8 doNotConnectUnderground;
     u8 disconnectedWifi;
@@ -494,7 +495,7 @@ void CommManager_ConnectUnion(int connectionID)
 int CommManager_IsConnectedUnionClientSuccess(void)
 {
     u32 task;
-    
+
     if (sCommMan == NULL) {
         return -1;
     }
@@ -515,12 +516,12 @@ int CommManager_IsConnectedUnionClientSuccess(void)
 /**
  * @brief Checks if the current CommManager task is the union server connect task
  *
- * @return TRUE if the task is CommTask_ConnectUnionServer, FALSE otherwise or if sCommMan isn't initialized or the current task 
+ * @return TRUE if the task is CommTask_ConnectUnionServer, FALSE otherwise or if sCommMan isn't initialized or the current task
  */
 BOOL CommManager_IsConnectUnionServer(void)
 {
     u32 task;
-    
+
     if (sCommMan == NULL) {
         return FALSE;
     }
@@ -1162,7 +1163,7 @@ static void CommTask_WaitBattleClient(void)
 
 /**
  * @brief Attempts to retry the connection for the battle client
- */ 
+ */
 static void CommTask_RetryBattleClient(void)
 {
     sub_020336D4();
@@ -1346,7 +1347,7 @@ static void CommTask_InitializeServerUnion(void)
 static void CommTask_WaitUnionServer(void)
 {
     if (sub_02034148()) {
-        
+
     } else {
         if (CommSys_IsClientConnecting()) {
             sCommMan->unk_4E = 1;
@@ -1604,7 +1605,7 @@ void CommManager_SetState_MixRecords(void)
 }
 
 /**
- * @brief Initializes the Communication Manager to Mix Records as a client 
+ * @brief Initializes the Communication Manager to Mix Records as a client
  *
  * @param connectionID
  */
@@ -1627,7 +1628,7 @@ void CommManager_SetState_SpinTrade(void)
 }
 
 /**
- * @brief Initializes the Communication Manager for Spin Trade as a client 
+ * @brief Initializes the Communication Manager for Spin Trade as a client
  *
  * @param connectionID
  */
@@ -1774,7 +1775,7 @@ void CommManager_ValidateConfirmationMessage(int netID, int unused_1, void *msg,
 }
 
 /**
- * @brief Validates a confirmation response message that should be "[netID]GAME" or "[netID]FULL" to ensure communication has been established. 
+ * @brief Validates a confirmation response message that should be "[netID]GAME" or "[netID]FULL" to ensure communication has been established.
  *
  * @param unused_0
  * @param unused_1
@@ -2096,7 +2097,7 @@ static void CommTask_WifiBattleError(void)
 }
 
 /**
- * @brief Task that indicates there was an timeout during a wifi battle. 
+ * @brief Task that indicates there was an timeout during a wifi battle.
  */
 static void CommTask_WifiBattleTimeout(void)
 {
@@ -2104,11 +2105,11 @@ static void CommTask_WifiBattleTimeout(void)
 
     if (ret < 0) {
         CommManager_SetTask(CommTask_WifiBattleError, 0);
-    } 
+    }
 }
 
 /**
- * @brief Task that indicates there was a disconnect during a wifi battle. 
+ * @brief Task that indicates there was a disconnect during a wifi battle.
  */
 static void CommTask_DisconnectWifiBattle(void)
 {
@@ -2116,7 +2117,7 @@ static void CommTask_DisconnectWifiBattle(void)
 }
 
 /**
- * @brief Task that indicates there was a failure during a wifi battle. 
+ * @brief Task that indicates there was a failure during a wifi battle.
  */
 static void CommTask_WifiBattleFailed(void)
 {
@@ -2361,7 +2362,7 @@ static void CommTask_EndMatchmakingWifi(void)
 /**
  * @brief Ends wifi matchmaking and sets the disconnected from wifi flag. Params unused
  */
-void CommManager_DisconnectWifi(int param0, int param1, void *param2, void *param3)
+void CommManager_DisconnectWifi(int unused_0, int unused_1, void *unused_2, void *unused_3)
 {
     if (CommSys_CurNetId() == 0) {
         sCommMan->unk_4C = 0;
@@ -2475,7 +2476,7 @@ void CommManager_LogoutWifi(void)
 }
 
 /**
- * @brief Ends wifi matchmaking 
+ * @brief Ends wifi matchmaking
  */
 void CommManager_EndWifiMatch(void)
 {
@@ -2716,9 +2717,9 @@ static void CommTask_StartWifiBattleServer(void)
     if (!WirelessDriver_IsReady()) {
         return;
     }
-    
+
     Heap_CreateAtEnd(HEAP_ID_APPLICATION, HEAP_ID_NINTENDO_WFC, (0x2A000 + 0xA000 + 0x1400));
-    
+
     if (CommSys_InitServer(1, 1, 512, 1)) {
         NintendoWFC_Init(sCommMan->saveData, HEAP_ID_NINTENDO_WFC, (0x2B000 + 0x1400), CommLocal_MaxMachines(sCommMan->commType) + 1);
         NintendoWFC_SetFatalErrorCallback(NetworkError_DisplayFatalError);
@@ -2738,7 +2739,7 @@ static void CommTask_StartWifiBattleServer(void)
 void *CommManager_LoginWifiBattleServer(SaveData *saveData, int size)
 {
     SaveData_GetTrainerInfo(saveData);
-    
+
     if (CommSys_IsInitialized()) {
         return NULL;
     }
@@ -2758,7 +2759,7 @@ void *CommManager_LoginWifiBattleServer(SaveData *saveData, int size)
 }
 
 /**
- * @brief Initializes the Communication Manager for the Wifi Lobby 
+ * @brief Initializes the Communication Manager for the Wifi Lobby
  *
  * @param saveData
  * @param param1
@@ -3110,7 +3111,7 @@ BOOL CommManager_CheckResetFinished(void)
  *
  * @param error
  *
- * @return TRUE if sCommMan is initialized 
+ * @return TRUE if sCommMan is initialized
  */
 BOOL CommManager_SetCommError(int error)
 {
@@ -3189,7 +3190,7 @@ static void CommTask_StartWifiLobby(void)
     }
 }
 
-/** 
+/**
  * @brief Task while logging in to the wifi lobby, errors if timed out
  */
 static void CommTask_LogInWifiLobby(void)
@@ -3278,16 +3279,16 @@ static BOOL CommManager_UpdateWifiLobby(void)
     UnkEnum_ov66_0223287C ret;
     BOOL noError = TRUE;
 
-    ret = ov66_022325D8(); //Wifi lobby update function
+    ret = ov66_022325D8(); // Wifi lobby update function
 
     switch (ret) {
-    case UnkEnum_ov66_0223287C_00: //none
-    case UnkEnum_ov66_0223287C_01: //login wait
-    case UnkEnum_ov66_0223287C_02: //connect
-    case UnkEnum_ov66_0223287C_03: //logout wait
+    case UnkEnum_ov66_0223287C_00: // none
+    case UnkEnum_ov66_0223287C_01: // login wait
+    case UnkEnum_ov66_0223287C_02: // connect
+    case UnkEnum_ov66_0223287C_03: // logout wait
         break;
 
-    case UnkEnum_ov66_0223287C_04: //error
+    case UnkEnum_ov66_0223287C_04: // error
         CommManager_SetTask(CommTask_WifiLobbyError, 0);
         noError = FALSE;
         break;

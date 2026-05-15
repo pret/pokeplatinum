@@ -12,6 +12,7 @@
 #include "underground/manager.h"
 
 #include "appearance.h"
+#include "comm_manager.h"
 #include "comm_player_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
@@ -29,7 +30,6 @@
 #include "underground.h"
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
-#include "comm_manager.h"
 #include "unk_0205A0D8.h"
 #include "unk_02099500.h"
 

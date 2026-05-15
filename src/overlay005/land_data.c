@@ -18,6 +18,7 @@
 #include "overlay005/map_prop_animation.h"
 #include "overlay005/model_attributes.h"
 
+#include "comm_manager.h"
 #include "easy3d.h"
 #include "heap.h"
 #include "map_matrix.h"
@@ -25,7 +26,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
-#include "comm_manager.h"
 
 #define MAP_LAZY_LOADER_SLOT_COUNT            2
 #define MAP_LAZY_LOADER_MANAGER_COUNT         2

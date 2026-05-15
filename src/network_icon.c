@@ -4,13 +4,13 @@
 
 #include "constants/graphics.h"
 
+#include "comm_manager.h"
 #include "communication_system.h"
 #include "heap.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
 #include "unk_02033200.h"
-#include "comm_manager.h"
 
 #define UPPER_SCREEN 1
 #define LOWER_SCREEN 2

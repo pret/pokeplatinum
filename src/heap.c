@@ -3,8 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "error_message_reset.h"
 #include "comm_manager.h"
+#include "error_message_reset.h"
 
 typedef struct HeapInfo {
     NNSFndHeapHandle *heapHandles;
