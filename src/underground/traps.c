@@ -55,7 +55,7 @@
 #include "trainer_info.h"
 #include "tv_segment.h"
 #include "underground.h"
-#include "unk_020366A0.h"
+#include "comm_manager.h"
 #include "vars_flags.h"
 
 #include "res/graphics/trap_effects/trap_effects.naix"

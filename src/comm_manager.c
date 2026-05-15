@@ -1,4 +1,4 @@
-#include "unk_020366A0.h"
+#include "comm_manager.h"
 
 #include <dwc.h>
 #include <nitro.h>
@@ -66,7 +66,7 @@ typedef struct {
     u8 unk_61[3];
 } CommunicationManager;
 
-static void CommManager_SetTask(CommTaskFunc param0, int param1);
+static void CommManager_SetTask(CommTaskFunc task, int timer);
 static void CommTask_StartUnderground(void);
 static void CommTask_ReinitUndergroundClient(void);
 static void CommTask_ReinitUnderground(void);

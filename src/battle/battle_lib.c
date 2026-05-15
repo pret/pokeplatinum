@@ -42,7 +42,7 @@
 #include "string_gf.h"
 #include "trainer_data.h"
 #include "trainer_info.h"
-#include "unk_020366A0.h"
+#include "comm_manager.h"
 #include "unk_0208C098.h"
 
 #include "res/battle/scripts/sub_seq.naix"

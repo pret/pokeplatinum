@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "error_message_reset.h"
-#include "unk_020366A0.h"
+#include "comm_manager.h"
 
 void ErrorHandling_AssertFail(void);
 

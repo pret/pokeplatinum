@@ -45,7 +45,7 @@
 #include "text.h"
 #include "touch_pad.h"
 #include "unk_02030CE8.h"
-#include "unk_020366A0.h"
+#include "comm_manager.h"
 #include "unk_02038FFC.h"
 #include "vram_transfer.h"
 #include "wifi_list.h"

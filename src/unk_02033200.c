@@ -17,7 +17,7 @@
 #include "trainer_info.h"
 #include "unk_02014A84.h"
 #include "unk_0203266C.h"
-#include "unk_020366A0.h"
+#include "comm_manager.h"
 #include "wireless_manager.h"
 
 typedef struct {

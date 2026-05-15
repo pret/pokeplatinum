@@ -15,7 +15,7 @@
 #include "sys_task_manager.h"
 #include "touch_screen.h"
 #include "unk_02033200.h"
-#include "unk_020366A0.h"
+#include "comm_manager.h"
 
 #define COMM_STATE_IDLE      0
 #define COMM_STATE_SEARCHING 1

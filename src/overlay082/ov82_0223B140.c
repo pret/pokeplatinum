@@ -14,7 +14,7 @@
 #include "heap.h"
 #include "overlay_manager.h"
 #include "unk_020363E8.h"
-#include "unk_020366A0.h"
+#include "comm_manager.h"
 
 BOOL ov82_0223B140(ApplicationManager **appManPtr)
 {

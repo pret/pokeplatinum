@@ -190,7 +190,7 @@
 #include "unk_0202C9F4.h"
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
-#include "unk_020366A0.h"
+#include "comm_manager.h"
 #include "unk_02038FFC.h"
 #include "unk_0203D1B8.h"
 #include "unk_02048614.h"

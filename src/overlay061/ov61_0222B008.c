@@ -34,7 +34,7 @@
 #include "string_template.h"
 #include "system.h"
 #include "unk_0202F1D4.h"
-#include "unk_020366A0.h"
+#include "comm_manager.h"
 
 typedef int (*UnkFuncPtr_ov61_0222E48C)(UnkStruct_ov62_022349A8 *, UnkStruct_ov61_0222B138 *);
 

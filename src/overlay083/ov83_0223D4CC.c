@@ -12,7 +12,7 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_02032798.h"
-#include "unk_020366A0.h"
+#include "comm_manager.h"
 
 typedef struct {
     BOOL unk_00;

@@ -32,7 +32,7 @@
 #include "trainer_info.h"
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
-#include "unk_020366A0.h"
+#include "comm_manager.h"
 
 #include "res/text/bank/unk_0353.h"
 

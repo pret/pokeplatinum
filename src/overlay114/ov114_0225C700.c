@@ -49,7 +49,7 @@
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_020363E8.h"
-#include "unk_020366A0.h"
+#include "comm_manager.h"
 #include "unk_0203909C.h"
 #include "unk_02094EDC.h"
 #include "vram_transfer.h"

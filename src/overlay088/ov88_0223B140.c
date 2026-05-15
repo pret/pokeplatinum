@@ -72,7 +72,7 @@
 #include "unk_0202D778.h"
 #include "unk_0202F180.h"
 #include "unk_020363E8.h"
-#include "unk_020366A0.h"
+#include "comm_manager.h"
 #include "unk_02038ED4.h"
 #include "unk_02038F8C.h"
 #include "unk_0203909C.h"

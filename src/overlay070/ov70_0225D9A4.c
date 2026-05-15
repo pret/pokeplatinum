@@ -72,7 +72,7 @@
 #include "trainer_info.h"
 #include "type_icon.h"
 #include "unk_0202419C.h"
-#include "unk_020366A0.h"
+#include "comm_manager.h"
 #include "vram_transfer.h"
 
 typedef struct {

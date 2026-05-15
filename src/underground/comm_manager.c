@@ -24,7 +24,7 @@
 #include "sys_task_manager.h"
 #include "system_flags.h"
 #include "unk_02033200.h"
-#include "unk_020366A0.h"
+#include "comm_manager.h"
 #include "vars_flags.h"
 
 static void CommManUnderground_SetFieldCommManTask(FieldCommTask task, int timer);

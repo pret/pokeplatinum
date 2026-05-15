@@ -5,7 +5,7 @@
 
 #include "struct_defs/struct_0207DFAC.h"
 
-#include "unk_020366A0.h"
+#include "comm_manager.h"
 
 BOOL sub_0207DFAC(int param0)
 {

@@ -52,7 +52,7 @@
 #include "trainer_info.h"
 #include "tv_segment.h"
 #include "unk_0203266C.h"
-#include "unk_020366A0.h"
+#include "comm_manager.h"
 #include "unk_020559DC.h"
 #include "vars_flags.h"
 

@@ -85,7 +85,7 @@
 #include "unk_0202F1D4.h"
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
-#include "unk_020366A0.h"
+#include "comm_manager.h"
 #include "unk_0205DFC4.h"
 #include "unk_0209B6F8.h"
 #include "vars_flags.h"

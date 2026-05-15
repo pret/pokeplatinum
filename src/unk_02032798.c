@@ -13,7 +13,7 @@
 #include "communication_system.h"
 #include "heap.h"
 #include "unk_020363E8.h"
-#include "unk_020366A0.h"
+#include "comm_manager.h"
 
 typedef struct {
     const CommCmdTable *cmdTable;

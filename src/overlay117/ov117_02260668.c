@@ -51,7 +51,7 @@
 #include "unk_02012744.h"
 #include "unk_0202419C.h"
 #include "unk_020363E8.h"
-#include "unk_020366A0.h"
+#include "comm_manager.h"
 #include "vram_transfer.h"
 
 static void ov117_02260DA0(void *param0);

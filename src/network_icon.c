@@ -10,7 +10,7 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "unk_02033200.h"
-#include "unk_020366A0.h"
+#include "comm_manager.h"
 
 #define UPPER_SCREEN 1
 #define LOWER_SCREEN 2

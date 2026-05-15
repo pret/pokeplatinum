@@ -37,7 +37,7 @@
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_020366A0.h"
+#include "comm_manager.h"
 
 typedef struct {
     StringTemplate *unk_00;

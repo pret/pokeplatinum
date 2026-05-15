@@ -25,7 +25,7 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
-#include "unk_020366A0.h"
+#include "comm_manager.h"
 
 #define MAP_LAZY_LOADER_SLOT_COUNT            2
 #define MAP_LAZY_LOADER_MANAGER_COUNT         2

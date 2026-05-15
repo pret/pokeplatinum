@@ -45,7 +45,7 @@
 #include "trainer_info.h"
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
-#include "unk_020366A0.h"
+#include "comm_manager.h"
 #include "unk_0205B33C.h"
 #include "unk_0205C22C.h"
 #include "unk_02095E98.h"

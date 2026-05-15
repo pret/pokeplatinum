@@ -120,7 +120,7 @@
 #include "unk_020298BC.h"
 #include "unk_0202D05C.h"
 #include "unk_0202D778.h"
-#include "unk_020366A0.h"
+#include "comm_manager.h"
 #include "unk_02038FFC.h"
 #include "unk_020559DC.h"
 #include "unk_0205B33C.h"

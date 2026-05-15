@@ -80,7 +80,7 @@
 #include "unk_02030CE8.h"
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
-#include "unk_020366A0.h"
+#include "comm_manager.h"
 #include "unk_0203909C.h"
 #include "unk_0207DFAC.h"
 #include "unk_0209C390.h"

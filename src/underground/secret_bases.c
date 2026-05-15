@@ -59,7 +59,7 @@
 #include "trainer_info.h"
 #include "underground.h"
 #include "unk_02033200.h"
-#include "unk_020366A0.h"
+#include "comm_manager.h"
 #include "unk_0205F180.h"
 #include "unk_020655F4.h"
 #include "vars_flags.h"

@@ -36,7 +36,7 @@
 #include "string_list.h"
 #include "system.h"
 #include "text.h"
-#include "unk_020366A0.h"
+#include "comm_manager.h"
 
 #include "res/text/bank/gts.h"
 

@@ -44,7 +44,7 @@
 #include "system_data.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_020366A0.h"
+#include "comm_manager.h"
 #include "unk_0209A74C.h"
 #include "vram_transfer.h"
 

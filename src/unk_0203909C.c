@@ -11,7 +11,7 @@
 #include "savedata.h"
 #include "string_gf.h"
 #include "trainer_info.h"
-#include "unk_020366A0.h"
+#include "comm_manager.h"
 #include "wifi_list.h"
 
 int sub_0203909C(SaveData *saveData, DWCFriendData *param1, int *param2)

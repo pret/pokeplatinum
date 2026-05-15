@@ -34,7 +34,7 @@
 #include "unk_02014A84.h"
 #include "unk_02014D38.h"
 #include "unk_02033200.h"
-#include "unk_020366A0.h"
+#include "comm_manager.h"
 #include "unk_02095E98.h"
 #include "unk_02099500.h"
 

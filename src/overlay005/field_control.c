@@ -60,7 +60,7 @@
 #include "terrain_collision_manager.h"
 #include "trainer_info.h"
 #include "trainer_see.h"
-#include "unk_020366A0.h"
+#include "comm_manager.h"
 #include "unk_0203C954.h"
 #include "unk_02054884.h"
 #include "unk_02056B30.h"

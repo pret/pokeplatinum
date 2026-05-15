@@ -18,7 +18,7 @@
 #include "trainer_info.h"
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
-#include "unk_020366A0.h"
+#include "comm_manager.h"
 
 typedef void (*UnkFuncPtr_ov97_0222D0A4)(void);
 

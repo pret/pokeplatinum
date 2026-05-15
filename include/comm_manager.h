@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_020366A0_H
-#define POKEPLATINUM_UNK_020366A0_H
+#ifndef POKEPLATINUM_COMM_MANAGER_H
+#define POKEPLATINUM_COMM_MANAGER_H
 
 #include "overlay065/struct_ov65_0222F6EC.h"
 
@@ -108,4 +108,4 @@ void CommManager_SetState_SingleBattleWifi(void);
 void CommManager_SetState_FrontierWifi(void);
 BOOL CommManager_IsInitializedNotPoketch(void);
 
-#endif // POKEPLATINUM_UNK_020366A0_H
+#endif // POKEPLATINUM_COMM_MANAGER_H

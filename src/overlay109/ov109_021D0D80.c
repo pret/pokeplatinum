@@ -50,7 +50,7 @@
 #include "trainer_info.h"
 #include "unk_0202419C.h"
 #include "unk_020363E8.h"
-#include "unk_020366A0.h"
+#include "comm_manager.h"
 #include "unk_02038ED4.h"
 #include "unk_02092494.h"
 #include "unk_0209BDF8.h"
