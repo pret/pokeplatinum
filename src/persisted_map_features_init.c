@@ -95,7 +95,7 @@ void PersistedMapFeatures_InitForSunyshoreGym(FieldSystem *fieldSystem, const u8
         entranceZ = 25;
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 
     if (fieldSystem->location->z == entranceZ) {

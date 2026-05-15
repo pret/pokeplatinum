@@ -125,9 +125,9 @@
 #define SUNYSHORE_ROOM_2_NUM_GEARS 6
 #define SUNYSHORE_ROOM_3_NUM_GEARS 13
 
-#define SUNYSHORE_90_DEGREES_ROTATION  0x4000
-#define SUNYSHORE_180_DEGREES_ROTATION 0x8000
-#define SUNYSHORE_ROTATION_STEP        0x400
+#define SUNYSHORE_90_DEGREES_ROTATION  F32_DEG_TO_IDX(90)
+#define SUNYSHORE_180_DEGREES_ROTATION F32_DEG_TO_IDX(180)
+#define SUNYSHORE_ROTATION_STEP        F32_DEG_TO_IDX(5.625)
 
 typedef struct CanalavePlatformPosition {
     u8 x;
@@ -1959,8 +1959,8 @@ static struct {
     const u8 *regionsList[SUNYSHORE_NUM_ROTATION_STATES];
 } sSunyshoreCollisionLists[SUNYSHORE_GYM_NUM_ROOMS] = {
     {
-        6,
-        {
+        .numRegions = 6,
+        .regionsList = {
             sSunyshoreRoom1State0Collisions,
             sSunyshoreRoom1State1Collisions,
             sSunyshoreRoom1State2Collisions,
@@ -1968,8 +1968,8 @@ static struct {
         },
     },
     {
-        11,
-        {
+        .numRegions = 11,
+        .regionsList = {
             sSunyshoreRoom2State0Collisions,
             sSunyshoreRoom2State1Collisions,
             sSunyshoreRoom2State2Collisions,
@@ -1977,8 +1977,8 @@ static struct {
         },
     },
     {
-        14,
-        {
+        .numRegions = 14,
+        .regionsList = {
             sSunyshoreRoom3State0Collisions,
             sSunyshoreRoom3State1Collisions,
             sSunyshoreRoom3State2Collisions,
@@ -2026,7 +2026,7 @@ static void SunyshoreGym_SetGearRotation(const SunyshoreGymGearSetup *gearSetup,
     GF_ASSERT(gearSetup->initialRotation <= SUNYSHORE_NUM_ROTATION_STATES - 1);
 
     newAngle += SUNYSHORE_90_DEGREES_ROTATION * gearSetup->initialRotation;
-    GF_ASSERT(rotationState <= 3);
+    GF_ASSERT(rotationState <= SUNYSHORE_NUM_ROTATION_STATES - 1);
 
     fx16 angleChange = SUNYSHORE_90_DEGREES_ROTATION * rotationState;
 
