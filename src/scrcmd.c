@@ -511,7 +511,7 @@ static BOOL ScrCmd_MoveHearthomeGymDPLift(ScriptContext *ctx);
 static BOOL ScrCmd_InitPersistedMapFeaturesForCanalaveGym(ScriptContext *ctx);
 static BOOL ScrCmd_InitPersistedMapFeaturesForVeilstoneGym(ScriptContext *ctx);
 static BOOL ScrCmd_InitPersistedMapFeaturesForSunyshoreGym(ScriptContext *ctx);
-static BOOL ScrCmd_SunyshoreGymButton(ScriptContext *ctx);
+static BOOL ScrCmd_PressSunyshoreGymButton(ScriptContext *ctx);
 static BOOL ScrCmd_InitPersistedMapFeaturesForEternaGym(ScriptContext *ctx);
 static BOOL ScrCmd_InitPersistedMapFeaturesForVilla(ScriptContext *ctx);
 static BOOL ScrCmd_InitPersistedMapFeaturesForDistortionWorld(ScriptContext *ctx);
@@ -4752,18 +4752,18 @@ static BOOL ScrCmd_InitPersistedMapFeaturesForVeilstoneGym(ScriptContext *ctx)
 static BOOL ScrCmd_InitPersistedMapFeaturesForSunyshoreGym(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    u8 floorID = ScriptContext_ReadByte(ctx);
+    u8 roomID = ScriptContext_ReadByte(ctx);
 
-    PersistedMapFeatures_InitForSunyshoreGym(fieldSystem, floorID);
+    PersistedMapFeatures_InitForSunyshoreGym(fieldSystem, roomID);
     return FALSE;
 }
 
-static BOOL ScrCmd_SunyshoreGymButton(ScriptContext *ctx)
+static BOOL ScrCmd_PressSunyshoreGymButton(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    u8 v1 = ScriptContext_ReadByte(ctx);
+    u8 buttonType = ScriptContext_ReadByte(ctx);
 
-    ov8_0224AD34(fieldSystem, v1);
+    SunyshoreGym_PressButton(fieldSystem, buttonType);
     return TRUE;
 }
 
