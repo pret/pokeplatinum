@@ -7,7 +7,7 @@
 
 void PersistedMapFeatures_InitForPastoriaGym(FieldSystem *fieldSystem);
 void PersistedMapFeatures_InitForCanalaveGym(FieldSystem *fieldSystem);
-void PersistedMapFeatures_InitForSunyshoreGym(FieldSystem *fieldSystem, const u8 floorID);
+void PersistedMapFeatures_InitForSunyshoreGym(FieldSystem *fieldSystem, const u8 roomID);
 void PersistedMapFeatures_InitForEternaGym(FieldSystem *fieldSystem);
 void PersistedMapFeatures_InitForVeilstoneGym(FieldSystem *fieldSystem);
 void PersistedMapFeatures_InitForHearthomeGym(FieldSystem *fieldSystem);

@@ -7,13 +7,13 @@
 #include "constants/field/map.h"
 #include "constants/graphics.h"
 #include "constants/scrcmd.h"
+#include "constants/sunyshore_gym_buttons.h"
 #include "generated/movement_actions.h"
 #include "generated/movement_types.h"
 #include "generated/object_events_gfx.h"
 
 #include "struct_decls/map_object.h"
 #include "struct_decls/map_object_manager.h"
-#include "struct_defs/struct_02071B6C.h"
 #include "struct_defs/struct_02071BF8.h"
 
 #include "field/field_system.h"
@@ -117,9 +117,17 @@
 #define CANALAVE_PLATFORM_MOVE_EAST  4
 #define CANALAVE_PLATFORM_MOVE_WEST  5
 
-typedef struct {
-    int unk_00;
-} UnkStruct_ov8_0224997C;
+#define SUNYSHORE_PROP_OFFSET FX32_CONST(8)
+
+#define SUNYSHORE_NUM_ROTATION_STATES 4
+
+#define SUNYSHORE_ROOM_1_NUM_GEARS 3
+#define SUNYSHORE_ROOM_2_NUM_GEARS 6
+#define SUNYSHORE_ROOM_3_NUM_GEARS 13
+
+#define SUNYSHORE_90_DEGREES_ROTATION  F32_DEG_TO_IDX(90)
+#define SUNYSHORE_180_DEGREES_ROTATION F32_DEG_TO_IDX(180)
+#define SUNYSHORE_ROTATION_STEP        F32_DEG_TO_IDX(5.625)
 
 typedef struct CanalavePlatformPosition {
     u8 x;
@@ -141,39 +149,33 @@ typedef struct CanalaveGymSystem {
     int movementDir;
 } CanalaveGymSystem;
 
-typedef struct {
+typedef struct SunyshoreGymSystem {
     FieldSystem *fieldSystem;
-    u8 unk_04[13];
-    u8 unk_11;
-    u8 unk_12;
-    u8 unk_13;
-    u16 unk_14;
-    u16 unk_16;
-    u16 unk_18;
-} UnkStruct_ov8_0224ABD4;
+    u8 propIndices[SUNYSHORE_ROOM_3_NUM_GEARS];
+    u8 roomID;
+    u8 numGears;
+    u8 rotationState;
+    u16 buttonType;
+    u16 rotationProgress;
+    u16 rotationGoal;
+} SunyshoreGymSystem;
 
-typedef struct {
-    int unk_00;
-    u8 unk_04;
-    u8 unk_05;
-    u8 unk_06;
-    u8 unk_07_0 : 2;
-    u8 unk_07_2 : 1;
-    u8 unk_07_3 : 1;
-    u8 unk_07_4 : 4;
-} UnkStruct_ov8_0224C788;
+typedef struct SunyshoreGymGearSetup {
+    int modelID;
+    u8 x;
+    u8 y;
+    u8 z;
+    u8 initialRotation : 2;
+    u8 turnsClockwise : 1;
+    u8 isVertical : 1;
+} SunyshoreGymGearSetup;
 
-typedef struct {
-    u8 unk_00;
-    u8 unk_01;
-    u8 unk_02;
-    u8 unk_03;
-} UnkStruct_ov8_0224C8A4;
-
-typedef struct {
-    int unk_00;
-    const u8 *unk_04[4];
-} UnkStruct_ov8_0224E740;
+typedef struct SunyshoreGymCollisionRegion {
+    u8 x;
+    u8 z;
+    u8 sizeX;
+    u8 sizeZ;
+} SunyshoreGymCollisionRegion;
 
 typedef struct {
     s16 hour;
@@ -350,7 +352,7 @@ static BOOL HearthomeGymDP_LowerLift(FieldTask *taskMan);
 static BOOL FieldTask_CanalaveGym_MovePlatformUpDown(FieldTask *taskMan);
 static BOOL FieldTask_CanalaveGym_MovePlatformEastWest(FieldTask *taskMan);
 static BOOL FieldTask_CanalaveGym_MovePlatformNorthSouth(FieldTask *taskMan);
-static BOOL ov8_0224ADE8(FieldTask *param0);
+static BOOL FieldTask_SunyshoreGym_RotateGears(FieldTask *task);
 static void ov8_0224B8D0(UnkStruct_ov8_0224B8D0 *param0);
 static void ov8_0224B958(UnkStruct_ov8_0224B8D0 *param0);
 static void ov8_0224BFCC(FieldSystem *fieldSystem, UnkStruct_ov8_0224C098 *param1, UnkStruct_ov8_0224B80C *param2, int param3);
@@ -1606,579 +1608,604 @@ BOOL CanalaveGym_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, cons
     return TRUE;
 }
 
-static const UnkStruct_ov8_0224C788 Unk_ov8_0224C788[3] = {
-    { 0x1CB, 0x3, 0x0, 0x8, 0x1, 0x0, 0x0 },
-    { 0x1CC, 0x8, 0x0, 0x8, 0x2, 0x1, 0x0 },
-    { 0x1CB, 0xD, 0x0, 0x8, 0x0, 0x0, 0x0 }
-};
-
-static const UnkStruct_ov8_0224C788 Unk_ov8_0224C874[6] = {
-    { 0x1CB, 0x6, 0x0, 0x8, 0x1, 0x0, 0x0 },
-    { 0x1CA, 0xB, 0x0, 0x8, 0x3, 0x1, 0x0 },
-    { 0x1CF, 0xF, 0x3, 0x8, 0x1, 0x1, 0x1 },
-    { 0x1CF, 0x2, 0x3, 0xD, 0x1, 0x0, 0x1 },
-    { 0x1CA, 0x6, 0x0, 0xD, 0x2, 0x1, 0x0 },
-    { 0x1CD, 0xB, 0x0, 0xD, 0x2, 0x0, 0x0 }
-};
-
-static const UnkStruct_ov8_0224C788 Unk_ov8_0224C9F4[13] = {
-    { 0x1CD, 0x6, 0x6, 0x8, 0x1, 0x0, 0x0 },
-    { 0x1CC, 0xB, 0x6, 0x8, 0x0, 0x1, 0x0 },
-    { 0x1CE, 0x10, 0x6, 0x8, 0x0, 0x0, 0x0 },
-    { 0x1CF, 0x2, 0x3, 0xD, 0x0, 0x1, 0x1 },
-    { 0x1CC, 0x6, 0x6, 0xD, 0x1, 0x1, 0x0 },
-    { 0x1CD, 0xB, 0x6, 0xD, 0x3, 0x0, 0x0 },
-    { 0x1CE, 0x10, 0x6, 0xD, 0x3, 0x1, 0x0 },
-    { 0x1CF, 0x14, 0x3, 0xD, 0x1, 0x0, 0x1 },
-    { 0x1D0, 0x2, 0x3, 0x12, 0x0, 0x0, 0x1 },
-    { 0x1CB, 0x6, 0x0, 0x12, 0x1, 0x1, 0x0 },
-    { 0x1CE, 0xB, 0x0, 0x12, 0x3, 0x0, 0x0 },
-    { 0x1CD, 0x10, 0x0, 0x12, 0x0, 0x1, 0x0 },
-    { 0x1D0, 0x14, 0x3, 0x12, 0x1, 0x1, 0x1 }
-};
-
-static const UnkStruct_ov8_0224C788 *const Unk_ov8_0224C740[3] = {
-    Unk_ov8_0224C788,
-    Unk_ov8_0224C874,
-    Unk_ov8_0224C9F4
-};
-
-static const UnkStruct_ov8_0224C8A4 Unk_ov8_0224C8A4[12] = {
-    { 0x1, 0x8, 0x2, 0x1 },
-    { 0x3, 0x6, 0x1, 0x2 },
-    { 0x4, 0x8, 0x2, 0x1 },
-    { 0x3, 0x9, 0x1, 0x2 },
-    { 0x6, 0x8, 0x2, 0x1 },
-    { 0x8, 0x6, 0x1, 0x2 },
-    { 0x9, 0x8, 0x2, 0x1 },
-    { 0x8, 0x9, 0x1, 0x2 },
-    { 0xB, 0x8, 0x2, 0x1 },
-    { 0xD, 0x6, 0x1, 0x2 },
-    { 0xE, 0x8, 0x2, 0x1 },
-    { 0xD, 0x9, 0x1, 0x2 }
-};
-
-static const UnkStruct_ov8_0224C8A4 Unk_ov8_0224C954[18] = {
-    { 0x4, 0x8, 0x2, 0x1 },
-    { 0x6, 0x6, 0x1, 0x2 },
-    { 0x7, 0x8, 0x2, 0x1 },
-    { 0x6, 0x9, 0x1, 0x2 },
-    { 0x9, 0x8, 0x2, 0x1 },
-    { 0xB, 0x6, 0x1, 0x2 },
-    { 0xC, 0x8, 0x2, 0x1 },
-    { 0xB, 0x9, 0x1, 0x2 },
-    { 0xF, 0x6, 0x1, 0x5 },
-    { 0x2, 0xB, 0x1, 0x5 },
-    { 0x4, 0xD, 0x2, 0x1 },
-    { 0x6, 0xB, 0x1, 0x2 },
-    { 0x7, 0xD, 0x2, 0x1 },
-    { 0x6, 0xE, 0x1, 0x2 },
-    { 0x9, 0xD, 0x2, 0x1 },
-    { 0xB, 0xB, 0x1, 0x2 },
-    { 0xC, 0xD, 0x2, 0x1 },
-    { 0xB, 0xE, 0x1, 0x2 }
-};
-
-static const UnkStruct_ov8_0224C8A4 Unk_ov8_0224CAC5[40] = {
-    { 0x4, 0x8, 0x2, 0x1 },
-    { 0x6, 0x6, 0x1, 0x2 },
-    { 0x7, 0x8, 0x2, 0x1 },
-    { 0x6, 0x9, 0x1, 0x2 },
-    { 0x9, 0x8, 0x2, 0x1 },
-    { 0xB, 0x6, 0x1, 0x2 },
-    { 0xC, 0x8, 0x2, 0x1 },
-    { 0xB, 0x9, 0x1, 0x2 },
-    { 0xE, 0x8, 0x2, 0x1 },
-    { 0x10, 0x6, 0x1, 0x2 },
-    { 0x11, 0x8, 0x2, 0x1 },
-    { 0x10, 0x9, 0x1, 0x2 },
-    { 0x2, 0xB, 0x1, 0x5 },
-    { 0x4, 0xD, 0x2, 0x1 },
-    { 0x6, 0xB, 0x1, 0x2 },
-    { 0x7, 0xD, 0x2, 0x1 },
-    { 0x6, 0xE, 0x1, 0x2 },
-    { 0x9, 0xD, 0x2, 0x1 },
-    { 0xB, 0xB, 0x1, 0x2 },
-    { 0xC, 0xD, 0x2, 0x1 },
-    { 0xB, 0xE, 0x1, 0x2 },
-    { 0xE, 0xD, 0x2, 0x1 },
-    { 0x10, 0xB, 0x1, 0x2 },
-    { 0x11, 0xD, 0x2, 0x1 },
-    { 0x10, 0xE, 0x1, 0x2 },
-    { 0x14, 0xB, 0x1, 0x5 },
-    { 0x2, 0x10, 0x1, 0x5 },
-    { 0x4, 0x12, 0x2, 0x1 },
-    { 0x6, 0x10, 0x1, 0x2 },
-    { 0x7, 0x12, 0x2, 0x1 },
-    { 0x6, 0x13, 0x1, 0x2 },
-    { 0x9, 0x12, 0x2, 0x1 },
-    { 0xB, 0x10, 0x1, 0x2 },
-    { 0xC, 0x12, 0x2, 0x1 },
-    { 0xB, 0x13, 0x1, 0x2 },
-    { 0xE, 0x12, 0x2, 0x1 },
-    { 0x10, 0x10, 0x1, 0x2 },
-    { 0x11, 0x12, 0x2, 0x1 },
-    { 0x10, 0x13, 0x1, 0x2 },
-    { 0x14, 0x10, 0x1, 0x5 }
-};
-
-static const UnkStruct_ov8_0224C8A4 *const Unk_ov8_0224C74C[3] = {
-    Unk_ov8_0224C8A4,
-    Unk_ov8_0224C954,
-    Unk_ov8_0224CAC5
-};
-
-static const u8 Unk_ov8_0224C6E0[] = {
-    0x1,
-    0x2,
-    0x4,
-    0x5,
-    0xA,
-    0xB
-};
-
-static const u8 Unk_ov8_0224C6F0[] = {
-    0x0,
-    0x1,
-    0x5,
-    0x6,
-    0x9,
-    0xA
-};
-
-static const u8 Unk_ov8_0224C6E8[] = {
-    0x0,
-    0x3,
-    0x6,
-    0x7,
-    0x8,
-    0x9
-};
-
-static const u8 Unk_ov8_0224C6D8[] = {
-    0x2,
-    0x3,
-    0x4,
-    0x7,
-    0x8,
-    0xB
-};
-
-static const u8 Unk_ov8_0224E050[] = {
-    0x1,
-    0x2,
-    0x4,
-    0x5,
-    0x7,
-    0x8,
-    0x9,
-    0xA,
-    0xB,
-    0xC,
-    0xF
-};
-
-static const u8 Unk_ov8_0224E038[] = {
-    0x0,
-    0x1,
-    0x4,
-    0x5,
-    0x6,
-    0xB,
-    0xC,
-    0xD,
-    0xE,
-    0x0,
-    0x0
-};
-
-static const u8 Unk_ov8_0224E044[] = {
-    0x0,
-    0x3,
-    0x5,
-    0x6,
-    0x7,
-    0x8,
-    0x9,
-    0xA,
-    0xC,
-    0xD,
-    0x11
-};
-
-static const u8 Unk_ov8_0224E05C[] = {
-    0x2,
-    0x3,
-    0x4,
-    0x6,
-    0x7,
-    0xA,
-    0xB,
-    0xD,
-    0x10,
-    0x2,
-    0x2
-};
-
-static const u8 Unk_ov8_0224E068[] = {
-    0x2,
-    0x6,
-    0x7,
-    0xB,
-    0xE,
-    0xF,
-    0x11,
-    0x15,
-    0x19,
-    0x1C,
-    0x1D,
-    0x1F,
-    0x26,
-    0x27
-};
-
-static const u8 Unk_ov8_0224E078[] = {
-    0x1,
-    0x4,
-    0x7,
-    0xA,
-    0xC,
-    0xF,
-    0x10,
-    0x14,
-    0x16,
-    0x1A,
-    0x1D,
-    0x1E,
-    0x22,
-    0x23
-};
-
-static const u8 Unk_ov8_0224E088[] = {
-    0x0,
-    0x4,
-    0x5,
-    0x9,
-    0xD,
-    0x10,
-    0x13,
-    0x17,
-    0x19,
-    0x1B,
-    0x1E,
-    0x21,
-    0x24,
-    0x27
-};
-
-static const u8 Unk_ov8_0224E098[] = {
-    0x3,
-    0x5,
-    0x6,
-    0x8,
-    0xC,
-    0xD,
-    0xE,
-    0x12,
-    0x18,
-    0x1A,
-    0x1B,
-    0x1C,
-    0x20,
-    0x25
-};
-
-UnkStruct_ov8_0224E740 Unk_ov8_0224E740[3] = {
+static const SunyshoreGymGearSetup sSunyshoreRoom1Gears[SUNYSHORE_ROOM_1_NUM_GEARS] = {
     {
-        0x6,
-        {
-            Unk_ov8_0224C6E0,
-            Unk_ov8_0224C6F0,
-            Unk_ov8_0224C6E8,
-            Unk_ov8_0224C6D8,
+        .modelID = sunyshore_gear_L_nsbmd,
+        .x = 3,
+        .y = 0,
+        .z = 8,
+        .initialRotation = 1,
+        .turnsClockwise = FALSE,
+        .isVertical = FALSE,
+    },
+    {
+        .modelID = sunyshore_gear_L_alt_nsbmd,
+        .x = 8,
+        .y = 0,
+        .z = 8,
+        .initialRotation = 2,
+        .turnsClockwise = TRUE,
+        .isVertical = FALSE,
+    },
+    {
+        .modelID = sunyshore_gear_L_nsbmd,
+        .x = 13,
+        .y = 0,
+        .z = 8,
+        .initialRotation = 0,
+        .turnsClockwise = FALSE,
+        .isVertical = FALSE,
+    }
+};
+
+static const SunyshoreGymGearSetup sSunyshoreRoom2Gears[SUNYSHORE_ROOM_2_NUM_GEARS] = {
+    {
+        .modelID = sunyshore_gear_L_nsbmd,
+        .x = 6,
+        .y = 0,
+        .z = 8,
+        .initialRotation = 1,
+        .turnsClockwise = FALSE,
+        .isVertical = FALSE,
+    },
+    {
+        .modelID = sunyshore_gear_dead_end_nsbmd,
+        .x = 11,
+        .y = 0,
+        .z = 8,
+        .initialRotation = 3,
+        .turnsClockwise = TRUE,
+        .isVertical = FALSE,
+    },
+    {
+        .modelID = sunyshore_gear_vertical_nsbmd,
+        .x = 15,
+        .y = 3,
+        .z = 8,
+        .initialRotation = 1,
+        .turnsClockwise = TRUE,
+        .isVertical = TRUE,
+    },
+    {
+        .modelID = sunyshore_gear_vertical_nsbmd,
+        .x = 2,
+        .y = 3,
+        .z = 13,
+        .initialRotation = 1,
+        .turnsClockwise = FALSE,
+        .isVertical = TRUE,
+    },
+    {
+        .modelID = sunyshore_gear_dead_end_nsbmd,
+        .x = 6,
+        .y = 0,
+        .z = 13,
+        .initialRotation = 2,
+        .turnsClockwise = TRUE,
+        .isVertical = FALSE,
+    },
+    {
+        .modelID = sunyshore_gear_T_nsbmd,
+        .x = 11,
+        .y = 0,
+        .z = 13,
+        .initialRotation = 2,
+        .turnsClockwise = FALSE,
+        .isVertical = FALSE,
+    }
+};
+
+static const SunyshoreGymGearSetup sSunyshoreRoom3Gears[SUNYSHORE_ROOM_3_NUM_GEARS] = {
+    {
+        .modelID = sunyshore_gear_T_nsbmd,
+        .x = 6,
+        .y = 6,
+        .z = 8,
+        .initialRotation = 1,
+        .turnsClockwise = FALSE,
+        .isVertical = FALSE,
+    },
+    {
+        .modelID = sunyshore_gear_L_alt_nsbmd,
+        .x = 11,
+        .y = 6,
+        .z = 8,
+        .initialRotation = 0,
+        .turnsClockwise = TRUE,
+        .isVertical = FALSE,
+    },
+    {
+        .modelID = sunyshore_gear_T_alt_nsbmd,
+        .x = 16,
+        .y = 6,
+        .z = 8,
+        .initialRotation = 0,
+        .turnsClockwise = FALSE,
+        .isVertical = FALSE,
+    },
+    {
+        .modelID = sunyshore_gear_vertical_nsbmd,
+        .x = 2,
+        .y = 3,
+        .z = 13,
+        .initialRotation = 0,
+        .turnsClockwise = TRUE,
+        .isVertical = TRUE,
+    },
+    {
+        .modelID = sunyshore_gear_L_alt_nsbmd,
+        .x = 6,
+        .y = 6,
+        .z = 13,
+        .initialRotation = 1,
+        .turnsClockwise = TRUE,
+        .isVertical = FALSE,
+    },
+    {
+        .modelID = sunyshore_gear_T_nsbmd,
+        .x = 11,
+        .y = 6,
+        .z = 13,
+        .initialRotation = 3,
+        .turnsClockwise = FALSE,
+        .isVertical = FALSE,
+    },
+    {
+        .modelID = sunyshore_gear_T_alt_nsbmd,
+        .x = 16,
+        .y = 6,
+        .z = 13,
+        .initialRotation = 3,
+        .turnsClockwise = TRUE,
+        .isVertical = FALSE,
+    },
+    {
+        .modelID = sunyshore_gear_vertical_nsbmd,
+        .x = 20,
+        .y = 3,
+        .z = 13,
+        .initialRotation = 1,
+        .turnsClockwise = FALSE,
+        .isVertical = TRUE,
+    },
+    {
+        .modelID = sunyshore_gear_vertical_alt_nsbmd,
+        .x = 2,
+        .y = 3,
+        .z = 18,
+        .initialRotation = 0,
+        .turnsClockwise = FALSE,
+        .isVertical = TRUE,
+    },
+    {
+        .modelID = sunyshore_gear_L_nsbmd,
+        .x = 6,
+        .y = 0,
+        .z = 18,
+        .initialRotation = 1,
+        .turnsClockwise = TRUE,
+        .isVertical = FALSE,
+    },
+    {
+        .modelID = sunyshore_gear_T_alt_nsbmd,
+        .x = 11,
+        .y = 0,
+        .z = 18,
+        .initialRotation = 3,
+        .turnsClockwise = FALSE,
+        .isVertical = FALSE,
+    },
+    {
+        .modelID = sunyshore_gear_T_nsbmd,
+        .x = 16,
+        .y = 0,
+        .z = 18,
+        .initialRotation = 0,
+        .turnsClockwise = TRUE,
+        .isVertical = FALSE,
+    },
+    {
+        .modelID = sunyshore_gear_vertical_alt_nsbmd,
+        .x = 20,
+        .y = 3,
+        .z = 18,
+        .initialRotation = 1,
+        .turnsClockwise = TRUE,
+        .isVertical = TRUE,
+    }
+};
+
+static const SunyshoreGymGearSetup *const sSunyshoreRoomGears[SUNYSHORE_GYM_NUM_ROOMS] = {
+    sSunyshoreRoom1Gears,
+    sSunyshoreRoom2Gears,
+    sSunyshoreRoom3Gears
+};
+
+static const SunyshoreGymCollisionRegion sSunyshoreRoom1CollisionRegions[12] = {
+    { .x = 1, .z = 8, .sizeX = 2, .sizeZ = 1 },
+    { .x = 3, .z = 6, .sizeX = 1, .sizeZ = 2 },
+    { .x = 4, .z = 8, .sizeX = 2, .sizeZ = 1 },
+    { .x = 3, .z = 9, .sizeX = 1, .sizeZ = 2 },
+    { .x = 6, .z = 8, .sizeX = 2, .sizeZ = 1 },
+    { .x = 8, .z = 6, .sizeX = 1, .sizeZ = 2 },
+    { .x = 9, .z = 8, .sizeX = 2, .sizeZ = 1 },
+    { .x = 8, .z = 9, .sizeX = 1, .sizeZ = 2 },
+    { .x = 11, .z = 8, .sizeX = 2, .sizeZ = 1 },
+    { .x = 13, .z = 6, .sizeX = 1, .sizeZ = 2 },
+    { .x = 14, .z = 8, .sizeX = 2, .sizeZ = 1 },
+    { .x = 13, .z = 9, .sizeX = 1, .sizeZ = 2 }
+};
+
+static const SunyshoreGymCollisionRegion sSunyshoreRoom2CollisionRegions[18] = {
+    { .x = 4, .z = 8, .sizeX = 2, .sizeZ = 1 },
+    { .x = 6, .z = 6, .sizeX = 1, .sizeZ = 2 },
+    { .x = 7, .z = 8, .sizeX = 2, .sizeZ = 1 },
+    { .x = 6, .z = 9, .sizeX = 1, .sizeZ = 2 },
+    { .x = 9, .z = 8, .sizeX = 2, .sizeZ = 1 },
+    { .x = 11, .z = 6, .sizeX = 1, .sizeZ = 2 },
+    { .x = 12, .z = 8, .sizeX = 2, .sizeZ = 1 },
+    { .x = 11, .z = 9, .sizeX = 1, .sizeZ = 2 },
+    { .x = 15, .z = 6, .sizeX = 1, .sizeZ = 5 },
+    { .x = 2, .z = 11, .sizeX = 1, .sizeZ = 5 },
+    { .x = 4, .z = 13, .sizeX = 2, .sizeZ = 1 },
+    { .x = 6, .z = 11, .sizeX = 1, .sizeZ = 2 },
+    { .x = 7, .z = 13, .sizeX = 2, .sizeZ = 1 },
+    { .x = 6, .z = 14, .sizeX = 1, .sizeZ = 2 },
+    { .x = 9, .z = 13, .sizeX = 2, .sizeZ = 1 },
+    { .x = 11, .z = 11, .sizeX = 1, .sizeZ = 2 },
+    { .x = 12, .z = 13, .sizeX = 2, .sizeZ = 1 },
+    { .x = 11, .z = 14, .sizeX = 1, .sizeZ = 2 }
+};
+
+static const SunyshoreGymCollisionRegion sSunyshoreRoom3CollisionRegions[40] = {
+    { .x = 4, .z = 8, .sizeX = 2, .sizeZ = 1 },
+    { .x = 6, .z = 6, .sizeX = 1, .sizeZ = 2 },
+    { .x = 7, .z = 8, .sizeX = 2, .sizeZ = 1 },
+    { .x = 6, .z = 9, .sizeX = 1, .sizeZ = 2 },
+    { .x = 9, .z = 8, .sizeX = 2, .sizeZ = 1 },
+    { .x = 11, .z = 6, .sizeX = 1, .sizeZ = 2 },
+    { .x = 12, .z = 8, .sizeX = 2, .sizeZ = 1 },
+    { .x = 11, .z = 9, .sizeX = 1, .sizeZ = 2 },
+    { .x = 14, .z = 8, .sizeX = 2, .sizeZ = 1 },
+    { .x = 16, .z = 6, .sizeX = 1, .sizeZ = 2 },
+    { .x = 17, .z = 8, .sizeX = 2, .sizeZ = 1 },
+    { .x = 16, .z = 9, .sizeX = 1, .sizeZ = 2 },
+    { .x = 2, .z = 11, .sizeX = 1, .sizeZ = 5 },
+    { .x = 4, .z = 13, .sizeX = 2, .sizeZ = 1 },
+    { .x = 6, .z = 11, .sizeX = 1, .sizeZ = 2 },
+    { .x = 7, .z = 13, .sizeX = 2, .sizeZ = 1 },
+    { .x = 6, .z = 14, .sizeX = 1, .sizeZ = 2 },
+    { .x = 9, .z = 13, .sizeX = 2, .sizeZ = 1 },
+    { .x = 11, .z = 11, .sizeX = 1, .sizeZ = 2 },
+    { .x = 12, .z = 13, .sizeX = 2, .sizeZ = 1 },
+    { .x = 11, .z = 14, .sizeX = 1, .sizeZ = 2 },
+    { .x = 14, .z = 13, .sizeX = 2, .sizeZ = 1 },
+    { .x = 16, .z = 11, .sizeX = 1, .sizeZ = 2 },
+    { .x = 17, .z = 13, .sizeX = 2, .sizeZ = 1 },
+    { .x = 16, .z = 14, .sizeX = 1, .sizeZ = 2 },
+    { .x = 20, .z = 11, .sizeX = 1, .sizeZ = 5 },
+    { .x = 2, .z = 16, .sizeX = 1, .sizeZ = 5 },
+    { .x = 4, .z = 18, .sizeX = 2, .sizeZ = 1 },
+    { .x = 6, .z = 16, .sizeX = 1, .sizeZ = 2 },
+    { .x = 7, .z = 18, .sizeX = 2, .sizeZ = 1 },
+    { .x = 6, .z = 19, .sizeX = 1, .sizeZ = 2 },
+    { .x = 9, .z = 18, .sizeX = 2, .sizeZ = 1 },
+    { .x = 11, .z = 16, .sizeX = 1, .sizeZ = 2 },
+    { .x = 12, .z = 18, .sizeX = 2, .sizeZ = 1 },
+    { .x = 11, .z = 19, .sizeX = 1, .sizeZ = 2 },
+    { .x = 14, .z = 18, .sizeX = 2, .sizeZ = 1 },
+    { .x = 16, .z = 16, .sizeX = 1, .sizeZ = 2 },
+    { .x = 17, .z = 18, .sizeX = 2, .sizeZ = 1 },
+    { .x = 16, .z = 19, .sizeX = 1, .sizeZ = 2 },
+    { .x = 20, .z = 16, .sizeX = 1, .sizeZ = 5 }
+};
+
+static const SunyshoreGymCollisionRegion *const sSunyshoreCollisionRegions[SUNYSHORE_GYM_NUM_ROOMS] = {
+    sSunyshoreRoom1CollisionRegions,
+    sSunyshoreRoom2CollisionRegions,
+    sSunyshoreRoom3CollisionRegions
+};
+
+static const u8 sSunyshoreRoom1State0Collisions[] = {
+    1, 2, 4, 5, 10, 11
+};
+
+static const u8 sSunyshoreRoom1State1Collisions[] = {
+    0, 1, 5, 6, 9, 10
+};
+
+static const u8 sSunyshoreRoom1State2Collisions[] = {
+    0, 3, 6, 7, 8, 9
+};
+
+static const u8 sSunyshoreRoom1State3Collisions[] = {
+    2, 3, 4, 7, 8, 11
+};
+
+static const u8 sSunyshoreRoom2State0Collisions[] = {
+    1, 2, 4, 5, 7, 8, 9, 10, 11, 12, 15
+};
+
+static const u8 sSunyshoreRoom2State1Collisions[] = {
+    0, 1, 4, 5, 6, 11, 12, 13, 14, 0, 0
+};
+
+static const u8 sSunyshoreRoom2State2Collisions[] = {
+    0, 3, 5, 6, 7, 8, 9, 10, 12, 13, 17
+};
+
+static const u8 sSunyshoreRoom2State3Collisions[] = {
+    2, 3, 4, 6, 7, 10, 11, 13, 16, 2, 2
+};
+
+static const u8 sSunyshoreRoom3State0Collisions[] = {
+    2, 6, 7, 11, 14, 15, 17, 21, 25, 28, 29, 31, 38, 39
+};
+
+static const u8 sSunyshoreRoom3State1Collisions[] = {
+    1, 4, 7, 10, 12, 15, 16, 20, 22, 26, 29, 30, 34, 35
+};
+
+static const u8 sSunyshoreRoom3State2Collisions[] = {
+    0, 4, 5, 9, 13, 16, 19, 23, 25, 27, 30, 33, 36, 39
+};
+
+static const u8 sSunyshoreRoom3State3Collisions[] = {
+    3, 5, 6, 8, 12, 13, 14, 18, 24, 26, 27, 28, 32, 37
+};
+
+static struct {
+    int numRegions;
+    const u8 *regionsList[SUNYSHORE_NUM_ROTATION_STATES];
+} sSunyshoreCollisionLists[SUNYSHORE_GYM_NUM_ROOMS] = {
+    {
+        .numRegions = 6,
+        .regionsList = {
+            sSunyshoreRoom1State0Collisions,
+            sSunyshoreRoom1State1Collisions,
+            sSunyshoreRoom1State2Collisions,
+            sSunyshoreRoom1State3Collisions,
         },
     },
     {
-        0xB,
-        {
-            Unk_ov8_0224E050,
-            Unk_ov8_0224E038,
-            Unk_ov8_0224E044,
-            Unk_ov8_0224E05C,
+        .numRegions = 11,
+        .regionsList = {
+            sSunyshoreRoom2State0Collisions,
+            sSunyshoreRoom2State1Collisions,
+            sSunyshoreRoom2State2Collisions,
+            sSunyshoreRoom2State3Collisions,
         },
     },
     {
-        0xE,
-        {
-            Unk_ov8_0224E068,
-            Unk_ov8_0224E078,
-            Unk_ov8_0224E088,
-            Unk_ov8_0224E098,
+        .numRegions = 14,
+        .regionsList = {
+            sSunyshoreRoom3State0Collisions,
+            sSunyshoreRoom3State1Collisions,
+            sSunyshoreRoom3State2Collisions,
+            sSunyshoreRoom3State3Collisions,
         },
     },
 };
 
-static u8 ov8_0224AB40(const u8 param0)
+static u8 SunyshoreGym_GetNumberOfGearsInRoom(const u8 roomID)
 {
-    u8 v0;
-
-    switch (param0) {
+    u8 numGears;
+    switch (roomID) {
     case 0:
-        v0 = 3;
+        numGears = SUNYSHORE_ROOM_1_NUM_GEARS;
         break;
     case 1:
-        v0 = (4 + 2);
+        numGears = SUNYSHORE_ROOM_2_NUM_GEARS;
         break;
     case 2:
-        v0 = (9 + 4);
+        numGears = SUNYSHORE_ROOM_3_NUM_GEARS;
         break;
     default:
-        GF_ASSERT(0);
-        v0 = 0;
+        GF_ASSERT(FALSE);
+        numGears = 0;
     }
 
-    return v0;
+    return numGears;
 }
 
-static void ov8_0224AB64(const UnkStruct_ov8_0224C788 *param0, const u8 param1, VecFx32 *param2)
+static void SunyshoreGym_SetGearRotation(const SunyshoreGymGearSetup *gearSetup, const u8 rotationState, VecFx32 *rotation)
 {
-    fx32 *v0 = NULL;
-    fx16 v1, v2;
-
-    switch (param0->unk_07_3) {
-    case 0:
-        v0 = &(param2->y);
+    fx32 *currentAngle = NULL;
+    switch (gearSetup->isVertical) {
+    case FALSE:
+        currentAngle = &rotation->y;
         break;
-    case 1:
-        v0 = &(param2->x);
+    case TRUE:
+        currentAngle = &rotation->x;
         break;
     default:
         GF_ASSERT(FALSE);
     }
 
-    v1 = 0;
-    GF_ASSERT(param0->unk_07_0 <= 3);
+    fx16 newAngle = 0;
+    GF_ASSERT(gearSetup->initialRotation <= SUNYSHORE_NUM_ROTATION_STATES - 1);
 
-    v1 += (0x4000 * param0->unk_07_0);
-    GF_ASSERT(param1 <= 3);
+    newAngle += SUNYSHORE_90_DEGREES_ROTATION * gearSetup->initialRotation;
+    GF_ASSERT(rotationState <= SUNYSHORE_NUM_ROTATION_STATES - 1);
 
-    v2 = 0x4000 * param1;
+    fx16 angleChange = SUNYSHORE_90_DEGREES_ROTATION * rotationState;
 
-    if (param0->unk_07_2 == 0) {
-        v1 += v2;
-    } else if (param0->unk_07_2 == 1) {
-        v1 -= v2;
+    if (gearSetup->turnsClockwise == FALSE) {
+        newAngle += angleChange;
+    } else if (gearSetup->turnsClockwise == TRUE) {
+        newAngle -= angleChange;
     } else {
         GF_ASSERT(FALSE);
     }
 
-    (*v0) = v1;
+    *currentAngle = newAngle;
 }
 
 void SunyshoreGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
 {
-    UnkStruct_ov8_0224ABD4 *v0;
-    PersistedMapFeatures *v1 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
-    UnkStruct_02071B6C *v2 = (UnkStruct_02071B6C *)PersistedMapFeatures_GetBuffer(v1, DYNAMIC_MAP_FEATURES_SUNYSHORE_GYM);
+    SunyshoreGymSystem *gymSystem;
+    PersistedMapFeatures *mapFeatures = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+    SunyshoreGymPersistedFeatures *features = PersistedMapFeatures_GetBuffer(mapFeatures, DYNAMIC_MAP_FEATURES_SUNYSHORE_GYM);
 
-    fieldSystem->unk_04->dynamicMapFeaturesData = Heap_Alloc(HEAP_ID_FIELD1, sizeof(UnkStruct_ov8_0224ABD4));
+    fieldSystem->unk_04->dynamicMapFeaturesData = Heap_Alloc(HEAP_ID_FIELD1, sizeof(SunyshoreGymSystem));
+    gymSystem = fieldSystem->unk_04->dynamicMapFeaturesData;
 
-    v0 = fieldSystem->unk_04->dynamicMapFeaturesData;
+    gymSystem->roomID = features->roomID;
+    gymSystem->rotationState = features->rotationState;
 
-    v0->unk_11 = v2->unk_04;
-    v0->unk_13 = v2->unk_00;
+    u8 numGears = SunyshoreGym_GetNumberOfGearsInRoom(features->roomID);
+    for (int i = 0; i < numGears; i++) {
+        const SunyshoreGymGearSetup *gearSetups = sSunyshoreRoomGears[features->roomID];
 
-    {
-        VecFx32 v3;
-        VecFx32 v4;
-        int v5;
-        u8 v6;
+        VecFx32 gearPosition;
+        gearPosition.x = gearSetups[i].x * MAP_OBJECT_TILE_SIZE;
+        gearPosition.y = gearSetups[i].y * MAP_OBJECT_TILE_SIZE;
+        gearPosition.z = gearSetups[i].z * MAP_OBJECT_TILE_SIZE;
 
-        v6 = ov8_0224AB40(v2->unk_04);
+        gearPosition.x += SUNYSHORE_PROP_OFFSET;
+        gearPosition.z += SUNYSHORE_PROP_OFFSET;
 
-        for (v5 = 0; v5 < v6; v5++) {
-            const UnkStruct_ov8_0224C788 *v7;
-
-            v7 = Unk_ov8_0224C740[v2->unk_04];
-
-            v3.x = v7[v5].unk_04 * (FX32_ONE * 16);
-            v3.y = v7[v5].unk_05 * (FX32_ONE * 16);
-            v3.z = v7[v5].unk_06 * (FX32_ONE * 16);
-
-            v3.x += (FX32_ONE * 8);
-            v3.z += (FX32_ONE * 8);
-
-            if (v7[v5].unk_07_3 == 1) {
-                v3.y += (FX32_ONE * 8);
-            }
-
-            {
-                v4.x = 0;
-                v4.y = 0;
-                v4.z = 0;
-
-                ov8_0224AB64(&(v7[v5]), v2->unk_00, &v4);
-            }
-
-            v0->unk_04[v5] = MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->areaDataManager, v7[v5].unk_00, &v3, &v4, fieldSystem->mapPropAnimMan);
+        if (gearSetups[i].isVertical == TRUE) {
+            gearPosition.y += SUNYSHORE_PROP_OFFSET;
         }
+
+        VecFx32 gearRotation;
+        gearRotation.x = 0;
+        gearRotation.y = 0;
+        gearRotation.z = 0;
+        SunyshoreGym_SetGearRotation(&gearSetups[i], features->rotationState, &gearRotation);
+
+        gymSystem->propIndices[i] = MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->areaDataManager, gearSetups[i].modelID, &gearPosition, &gearRotation, fieldSystem->mapPropAnimMan);
     }
 }
 
 void SunyshoreGym_DynamicMapFeaturesFree(FieldSystem *fieldSystem)
 {
-    UnkStruct_ov8_0224ABD4 *v0 = (UnkStruct_ov8_0224ABD4 *)fieldSystem->unk_04->dynamicMapFeaturesData;
-    Heap_Free(v0);
+    SunyshoreGymSystem *gymSystem = fieldSystem->unk_04->dynamicMapFeaturesData;
+    Heap_Free(gymSystem);
     fieldSystem->unk_04->dynamicMapFeaturesData = NULL;
 }
 
 BOOL SunyshoreGym_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileZ, const fx32 height, BOOL *isColliding)
 {
-    int v0, v1, v2;
-    u8 const *v3;
-    u8 v4;
-    UnkStruct_ov8_0224C8A4 const *v5;
-    UnkStruct_ov8_0224ABD4 *v6 = (UnkStruct_ov8_0224ABD4 *)fieldSystem->unk_04->dynamicMapFeaturesData;
-    v1 = Unk_ov8_0224E740[v6->unk_11].unk_00;
-    v2 = v6->unk_13;
-    v3 = Unk_ov8_0224E740[v6->unk_11].unk_04[v2];
-    v5 = Unk_ov8_0224C74C[v6->unk_11];
+    SunyshoreGymSystem *gymSystem = fieldSystem->unk_04->dynamicMapFeaturesData;
+    int numRegions = sSunyshoreCollisionLists[gymSystem->roomID].numRegions;
+    int rotationState = gymSystem->rotationState;
+    u8 const *collisionList = sSunyshoreCollisionLists[gymSystem->roomID].regionsList[rotationState];
+    SunyshoreGymCollisionRegion const *collisionRegions = sSunyshoreCollisionRegions[gymSystem->roomID];
 
-    for (v0 = 0; v0 < v1; v0++) {
-        v4 = v3[v0];
+    for (int i = 0; i < numRegions; i++) {
+        u8 region = collisionList[i];
 
-        if ((v5[v4].unk_00 <= tileX) && (tileX < v5[v4].unk_00 + v5[v4].unk_02) && (v5[v4].unk_01 <= tileZ) && (tileZ < v5[v4].unk_01 + v5[v4].unk_03)) {
-            (*isColliding) = 1;
-            return 1;
+        if (collisionRegions[region].x <= tileX && tileX < collisionRegions[region].x + collisionRegions[region].sizeX && collisionRegions[region].z <= tileZ && tileZ < collisionRegions[region].z + collisionRegions[region].sizeZ) {
+            *isColliding = TRUE;
+            return TRUE;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
-void ov8_0224AD34(FieldSystem *fieldSystem, const u8 param1)
+void SunyshoreGym_PressButton(FieldSystem *fieldSystem, const u8 buttonType)
 {
-    UnkStruct_ov8_0224997C *v0;
-    UnkStruct_ov8_0224ABD4 *v1;
-    PersistedMapFeatures *v2 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
-    UnkStruct_02071B6C *v3 = (UnkStruct_02071B6C *)PersistedMapFeatures_GetBuffer(v2, DYNAMIC_MAP_FEATURES_SUNYSHORE_GYM);
-    v1 = (UnkStruct_ov8_0224ABD4 *)fieldSystem->unk_04->dynamicMapFeaturesData;
-    v0 = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(UnkStruct_ov8_0224997C));
+    PersistedMapFeatures *mapFeatures = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+    SunyshoreGymPersistedFeatures *feature = PersistedMapFeatures_GetBuffer(mapFeatures, DYNAMIC_MAP_FEATURES_SUNYSHORE_GYM);
+    SunyshoreGymSystem *gymSystem = fieldSystem->unk_04->dynamicMapFeaturesData;
+    int *state = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(int));
+    *state = 0;
 
-    v0->unk_00 = 0;
+    gymSystem->buttonType = buttonType;
+    gymSystem->rotationProgress = 0;
+    gymSystem->numGears = SunyshoreGym_GetNumberOfGearsInRoom(feature->roomID);
+    s8 rotationState = feature->rotationState;
 
-    {
-        s8 v4;
+    if (buttonType == SUNYSHORE_GYM_BUTTON_NORMAL) {
+        gymSystem->rotationGoal = SUNYSHORE_90_DEGREES_ROTATION;
+        rotationState = (rotationState + 1) % SUNYSHORE_NUM_ROTATION_STATES;
+    } else if (buttonType == SUNYSHORE_GYM_BUTTON_REVERSE) {
+        gymSystem->rotationGoal = SUNYSHORE_90_DEGREES_ROTATION;
+        rotationState--;
 
-        v1->unk_14 = param1;
-        v1->unk_16 = 0;
-        v1->unk_12 = ov8_0224AB40(v3->unk_04);
-        v4 = v3->unk_00;
-
-        if (param1 == 0) {
-            v1->unk_18 = 0x4000;
-            v4 = (v4 + 1) % 4;
-        } else if (param1 == 1) {
-            v1->unk_18 = 0x4000;
-            v4--;
-
-            if (v4 < 0) {
-                v4 = 3;
-            }
-        } else if (param1 == 2) {
-            v1->unk_18 = 0x8000;
-            v4 = (v4 + 2) % 4;
-        } else {
-            GF_ASSERT(FALSE);
-            return;
+        if (rotationState < 0) {
+            rotationState = SUNYSHORE_NUM_ROTATION_STATES - 1;
         }
-
-        v3->unk_00 = v4;
-        v1->unk_13 = v4;
-
-        Sound_PlayEffect(SEQ_SE_DP_GAGAGA);
-        FieldTask_InitCall(fieldSystem->task, ov8_0224ADE8, v0);
+    } else if (buttonType == SUNYSHORE_GYM_BUTTON_DOUBLE) {
+        gymSystem->rotationGoal = SUNYSHORE_180_DEGREES_ROTATION;
+        rotationState = (rotationState + 2) % SUNYSHORE_NUM_ROTATION_STATES;
+    } else {
+        GF_ASSERT(FALSE);
+        return;
     }
+
+    feature->rotationState = rotationState;
+    gymSystem->rotationState = rotationState;
+
+    Sound_PlayEffect(SEQ_SE_DP_GAGAGA);
+    FieldTask_InitCall(fieldSystem->task, FieldTask_SunyshoreGym_RotateGears, state);
 }
 
-static BOOL ov8_0224ADE8(FieldTask *param0)
+static BOOL FieldTask_SunyshoreGym_RotateGears(FieldTask *task)
 {
-    MapProp *v0;
-    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
-    UnkStruct_ov8_0224997C *v2 = FieldTask_GetEnv(param0);
-    UnkStruct_ov8_0224ABD4 *v3 = (UnkStruct_ov8_0224ABD4 *)fieldSystem->unk_04->dynamicMapFeaturesData;
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
+    int *state = FieldTask_GetEnv(task);
+    SunyshoreGymSystem *gymSystem = fieldSystem->unk_04->dynamicMapFeaturesData;
 
-    switch (v2->unk_00) {
+    switch (*state) {
     case 0: {
-        u8 v4;
-        u16 v5;
-        u16 v6;
-
-        if (v3->unk_16 + 0x400 <= v3->unk_18) {
-            v6 = 0x400;
+        u16 rotationStep;
+        if (gymSystem->rotationProgress + SUNYSHORE_ROTATION_STEP <= gymSystem->rotationGoal) {
+            rotationStep = SUNYSHORE_ROTATION_STEP;
         } else {
-            v6 = v3->unk_16 + 0x400 - v3->unk_18;
+            rotationStep = gymSystem->rotationProgress + SUNYSHORE_ROTATION_STEP - gymSystem->rotationGoal;
         }
 
-        v3->unk_16 += v6;
-        v5 = v6;
+        gymSystem->rotationProgress += rotationStep;
 
-        if (v3->unk_14 == 1) {
-            v5 = -v5;
+        if (gymSystem->buttonType == SUNYSHORE_GYM_BUTTON_REVERSE) {
+            rotationStep = -rotationStep;
         }
 
-        for (v4 = 0; v4 < v3->unk_12; v4++) {
-            int v7;
+        for (u8 i = 0; i < gymSystem->numGears; i++) {
+            int propIndex = gymSystem->propIndices[i];
+            MapProp *gearProp = MapPropManager_GetLoadedProp(fieldSystem->mapPropManager, propIndex);
+            VecFx32 *currentOrientation = MapProp_GetRotation(gearProp);
 
-            v7 = v3->unk_04[v4];
-            v0 = MapPropManager_GetLoadedProp(fieldSystem->mapPropManager, v7);
+            const SunyshoreGymGearSetup *gearSetups = sSunyshoreRoomGears[gymSystem->roomID];
 
-            {
-                VecFx32 *v8;
-
-                v8 = MapProp_GetRotation(v0);
-
-                {
-                    const UnkStruct_ov8_0224C788 *v9;
-                    fx32 *v10;
-                    u16 v11, v12;
-
-                    v9 = Unk_ov8_0224C740[v3->unk_11];
-
-                    if (v9[v4].unk_07_2 == 1) {
-                        v12 = -v5;
-                    } else {
-                        v12 = v5;
-                    }
-
-                    switch (v9[v4].unk_07_3) {
-                    case 0:
-                        v10 = &(v8->y);
-                        break;
-                    case 1:
-                        v10 = &(v8->x);
-                        break;
-                    default:
-                        GF_ASSERT(FALSE);
-                    }
-
-                    v11 = (*v10);
-                    v11 += v12;
-                    (*v10) = v11;
-                }
+            u16 angleChange;
+            if (gearSetups[i].turnsClockwise == TRUE) {
+                angleChange = -rotationStep;
+            } else {
+                angleChange = rotationStep;
             }
+
+            fx32 *currentAngle;
+            switch (gearSetups[i].isVertical) {
+            case 0:
+                currentAngle = &currentOrientation->y;
+                break;
+            case 1:
+                currentAngle = &currentOrientation->x;
+                break;
+            default:
+                GF_ASSERT(FALSE);
+            }
+
+            u16 newAngle = *currentAngle;
+            newAngle += angleChange;
+            *currentAngle = newAngle;
         }
 
-        if (v3->unk_16 >= v3->unk_18) {
-            (v2->unk_00)++;
+        if (gymSystem->rotationProgress >= gymSystem->rotationGoal) {
+            (*state)++;
         }
     } break;
     case 1:
-        Heap_Free(v2);
-        return 1;
+        Heap_Free(state);
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 static const u32 sEternaGymClockModelIds[2] = {

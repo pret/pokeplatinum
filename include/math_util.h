@@ -9,7 +9,9 @@
 #define LCRNG_INCREMENT  24691
 #define LCRNG_DIVISOR    65536L
 
-// Does almost the same as FX_DEG_TO_IDX but takes integers as input instead of fx32
+#define F32_DEG_TO_IDX(degrees) FX_DEG_TO_IDX(FX32_CONST(degrees))
+
+// Does almost the same as F32_DEG_TO_IDX but takes integers as input instead of float
 // Use if FX_DEG_TO_IDX(FX32_CONST(degrees)) doesn't match
 #define DEG_TO_IDX(degrees) (((degrees) * 0xFFFF) / 360)
 

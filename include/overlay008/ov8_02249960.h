@@ -11,6 +11,8 @@
 
 #define CANALAVE_GYM_NUM_PLATFORMS 24
 
+#define SUNYSHORE_GYM_NUM_ROOMS 3
+
 enum EternaClockState {
     ETERNA_CLOCK_INITIAL = 0,
     ETERNA_CLOCK_DEFEATED_FIRST_TRAINER,
@@ -56,6 +58,11 @@ typedef struct CanalaveGymPersistedFeature {
     int platformStates;
 } CanalaveGymPersistedFeature;
 
+typedef struct SunyshoreGymPersistedFeatures {
+    int rotationState;
+    int roomID;
+} SunyshoreGymPersistedFeatures;
+
 void PastoriaGym_PressButton(FieldSystem *fieldSystem);
 BOOL PastoriaGym_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileZ, const fx32 height, BOOL *isColliding);
 void PastoriaGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem);
@@ -67,7 +74,7 @@ BOOL CanalaveGym_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, cons
 void SunyshoreGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem);
 void SunyshoreGym_DynamicMapFeaturesFree(FieldSystem *fieldSystem);
 BOOL SunyshoreGym_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileZ, const fx32 height, BOOL *isColliding);
-void ov8_0224AD34(FieldSystem *fieldSystem, const u8 param1);
+void SunyshoreGym_PressButton(FieldSystem *fieldSystem, const u8 buttonType);
 void EternaGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem);
 void EternaGym_DynamicMapFeaturesFree(FieldSystem *fieldSystem);
 BOOL EternaGym_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileZ, const fx32 height, BOOL *outIsColliding);
