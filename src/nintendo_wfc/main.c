@@ -90,8 +90,8 @@ typedef struct NintendoWFCManager {
     int dataSent;
     int maxPlayers;
     u32 voiceConnectedIDs;
-    int primaryHeapID;
-    int secondaryHeapID;
+    enum HeapID primaryHeapID;
+    enum HeapID secondaryHeapID;
     int heapSize;
     BOOL voiceChatActive;
     int hostFriendIdx;
