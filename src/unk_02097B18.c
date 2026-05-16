@@ -272,7 +272,7 @@ Pokemon *sub_02097F00(UnkStruct_02097F18 *param0, int param1)
     int v0 = param1;
 
     if (param0->unk_00 < v0) {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         v0 = 0;
     }
 
@@ -339,7 +339,7 @@ static BOOL sub_02097F38(FieldTask *param0)
 
         switch (v5) {
         default:
-            GF_ASSERT(0);
+            GF_ASSERT(FALSE);
         case 0:
             v0->unk_14 = 5;
             break;

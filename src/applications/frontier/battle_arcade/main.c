@@ -1306,7 +1306,7 @@ static void GetAvailableEffects(BattleArcadeApp *app)
                     isAvailable = sEffectAvailabilityByBattle[effectIndex].battle7;
                     break;
                 default:
-                    GF_ASSERT(0);
+                    GF_ASSERT(FALSE);
                     isAvailable = TRUE;
                     break;
                 }
@@ -1375,7 +1375,7 @@ static void AssignEffectsToGrid(BattleArcadeApp *app)
         int loopCounter = 0;
         while (TRUE) {
             if (loopCounter >= 50) {
-                GF_ASSERT(0);
+                GF_ASSERT(FALSE);
                 app->rouletteEffects[i] = ARCADE_EFFECT_LOWER_FOE_HP;
                 loopCounter = 0;
                 break;
@@ -1420,7 +1420,7 @@ static u8 GetRandomCategory(BattleArcadeApp *app, u8 weightsIndex)
     }
 
     if (category >= NUM_ARCADE_EFFECT_CATEGORIES) {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         category = ARCADE_EFFECT_CATEGORY_FOE;
     }
 

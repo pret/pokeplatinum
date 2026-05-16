@@ -2745,7 +2745,7 @@ static u16 GetItemPrice(u16 itemID)
         }
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
     return 0;
 }
 
@@ -3218,7 +3218,7 @@ static void HealPokemon(BattleCastleSelfApp *app, u8 slot, u8 menuOption)
         break;
 
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 
     Sound_PlayEffect(SEQ_SE_DP_KAIFUKU);

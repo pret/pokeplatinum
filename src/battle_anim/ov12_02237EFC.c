@@ -42,7 +42,7 @@ UnkStruct_ov12_02237F98 *ov12_02237EFC(enum HeapID heapID, UnkStruct_ov12_02237E
     v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov12_02237F98));
 
     if (v0 == NULL) {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         return NULL;
     }
 
@@ -85,7 +85,7 @@ UnkStruct_ov12_02238004 *ov12_02237F38(UnkStruct_ov12_02237F98 *param0, UnkStruc
     }
 
     if (v1 == NULL) {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 
     return v1;
@@ -138,7 +138,7 @@ UnkStruct_ov12_02238004 *ov12_02237FC8(enum HeapID heapID, UnkStruct_ov12_02237F
     v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov12_02238004));
 
     if (v0 == NULL) {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         return NULL;
     }
 
@@ -224,7 +224,7 @@ static int ov12_02238088(int param0)
     int v1 = param0 - 5;
 
     if (v1 >= NELEMS(v0)) {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         return 0;
     }
 

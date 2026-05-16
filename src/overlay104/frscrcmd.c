@@ -335,7 +335,7 @@ u16 *FrontierScriptContext_GetVarPointer(FrontierScriptContext *ctx, u16 varID)
         return NULL;
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
     return NULL;
 }
 
@@ -903,7 +903,7 @@ static BOOL FrontierScrCmd_ApplyMovement(FrontierScriptContext *ctx)
     UnkStruct_ov104_0223C634 *object = ov104_0223D5A8(scriptMan->unk_00, localID);
 
     if (object == NULL) {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 
     FrontierAnimCmd *animCmd = (FrontierAnimCmd *)(ctx->scriptPtr + offset);
@@ -1248,7 +1248,7 @@ static int ov104_02230A2C(u16 param0, u16 param1)
             v0 = (UnkEnum_0202F510_15);
             break;
         default:
-            GF_ASSERT(0);
+            GF_ASSERT(FALSE);
             break;
         }
         break;
@@ -1265,7 +1265,7 @@ static int ov104_02230A2C(u16 param0, u16 param1)
             v0 = (UnkEnum_0202F510_20);
             break;
         default:
-            GF_ASSERT(0);
+            GF_ASSERT(FALSE);
             break;
         }
         break;
@@ -1282,7 +1282,7 @@ static int ov104_02230A2C(u16 param0, u16 param1)
             v0 = (UnkEnum_0202F510_23);
             break;
         default:
-            GF_ASSERT(0);
+            GF_ASSERT(FALSE);
             break;
         }
         break;
@@ -1299,7 +1299,7 @@ static int ov104_02230A2C(u16 param0, u16 param1)
             v0 = (UnkEnum_0202F510_29);
             break;
         default:
-            GF_ASSERT(0);
+            GF_ASSERT(FALSE);
             break;
         }
         break;
@@ -1316,7 +1316,7 @@ static int ov104_02230A2C(u16 param0, u16 param1)
             v0 = (UnkEnum_0202F510_26);
             break;
         default:
-            GF_ASSERT(0);
+            GF_ASSERT(FALSE);
             break;
         }
         break;
@@ -1333,7 +1333,7 @@ static int ov104_02230A2C(u16 param0, u16 param1)
             v0 = (UnkEnum_0202F510_32);
             break;
         default:
-            GF_ASSERT(0);
+            GF_ASSERT(FALSE);
             break;
         }
         break;
@@ -2260,7 +2260,7 @@ static BOOL FrontierScrCmd_4C(FrontierScriptContext *ctx)
     UnkStruct_ov104_0223319C *v6 = &v1->unk_A4;
 
     if (v6->unk_00 != NULL) {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         SysTask_Done(v6->unk_00);
     }
 
@@ -2306,7 +2306,7 @@ static BOOL FrontierScrCmd_4E(FrontierScriptContext *ctx)
     UnkStruct_ov104_022331E8 *v6 = &v1->unk_B0;
 
     if (v6->unk_00 != NULL) {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         SysTask_Done(v6->unk_00);
     }
 

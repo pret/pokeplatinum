@@ -516,7 +516,7 @@ static BOOL PastoriaGym_PressGreenButton(FieldTask *taskMan)
             } else if (waterPropPosition.y == PASTORIA_WATER_HEIGHT_HIGH) {
                 *state = 3;
             } else {
-                GF_ASSERT(0);
+                GF_ASSERT(FALSE);
             }
         }
     } break;
@@ -699,7 +699,7 @@ static void PastoriaGym_UpdateButtonAnimations(const u8 pressedButton, MapPropAn
         unpressedGroup1 = PASTORIA_BLUE_BUTTON_GROUP;
         unpressedGroup2 = PASTORIA_GREEN_BUTTON_GROUP;
     } else {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 
     MapPropAnimation *mapPropAnimation;

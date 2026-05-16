@@ -553,7 +553,7 @@ int sub_0205B804(UnkStruct_0205B43C *param0, int param1, u16 param2)
         break;
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
 
     return 0;
 }

@@ -256,7 +256,7 @@ static void sub_0205C51C(UnkStruct_0205C22C *param0, MapObjectManager *param1)
         v0 = MapObjMan_LocalMapObjByIndex(param1, v1 + 1);
 
         if (v0 == NULL) {
-            GF_ASSERT(0);
+            GF_ASSERT(FALSE);
         }
 
         switch (param0->unk_0C[v1].unk_01) {
@@ -423,7 +423,7 @@ static void sub_0205C7E4(MapObjectManager *mapObjMan, int param1, int param2)
         v1 = MapObjMan_LocalMapObjByIndex(mapObjMan, v0);
 
         if (v1 == NULL) {
-            GF_ASSERT(0);
+            GF_ASSERT(FALSE);
         }
 
         MapObject_SetHidden(v1, 1);
@@ -440,7 +440,7 @@ void sub_0205C820(MapObjectManager *mapObjMan, UnkStruct_0205C22C *param1)
     mapObj = MapObjMan_LocalMapObjByIndex(mapObjMan, 0);
 
     if (mapObj == NULL) {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 
     if (LocalMapObj_IsAnimationSet(mapObj) == 1) {
@@ -457,7 +457,7 @@ void sub_0205C820(MapObjectManager *mapObjMan, UnkStruct_0205C22C *param1)
                 mapObj = MapObjMan_LocalMapObjByIndex(mapObjMan, v2 + 1);
 
                 if (mapObj == NULL) {
-                    GF_ASSERT(0);
+                    GF_ASSERT(FALSE);
                 }
 
                 sub_02061AD4(mapObj, v1->unk_08);

@@ -1040,7 +1040,7 @@ u32 CalcMonDataRibbon(enum PokemonContestRank contestRank, enum PokemonContestTy
         monDataRibbon = MON_DATA_SUPER_TOUGH_RIBBON + contestRank;
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         return MON_DATA_SUPER_COOL_RIBBON;
     }
 

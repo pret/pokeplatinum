@@ -983,7 +983,7 @@ s32 ov66_02233454(UnkEnum_ov66_02233454 param0)
         v0 = Unk_ov66_0225B6C0->unk_6A8.lobbyQuestionnaire.lastMultiResult[param0 - UnkEnum_ov66_02233454_08];
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         v0 = 0;
         break;
     }
@@ -1016,7 +1016,7 @@ u16 *ov66_02233538(UnkEnum_ov66_02233538 param0)
         v0 = Unk_ov66_0225B6C0->unk_6A8.lobbyQuestionnaire.lastQuestionnaireRecord.answer[param0 - UnkEnum_ov66_02233538_05];
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         v0 = NULL;
         break;
     }
@@ -1076,14 +1076,14 @@ static BOOL ov66_0223365C(PPW_LOBBY_RESULT param0)
         break;
     case PPW_LOBBY_RESULT_ERROR_PARAM:
     case PPW_LOBBY_RESULT_ERROR_NODATA:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         v0 = 0;
         break;
     case PPW_LOBBY_RESULT_ERROR_CONDITION:
         v0 = 0;
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         v0 = 0;
         break;
     }
@@ -1135,7 +1135,7 @@ static BOOL ov66_022336C4(UnkStruct_ov66_022336C4 *param0)
     }
 
     if (v2 >= 20) {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         return 0;
     }
 
@@ -1391,7 +1391,7 @@ static void ov66_02233B54(BOOL param0, PPW_LOBBY_CHANNEL_KIND lobbyChannelKind)
                 Unk_ov66_0225B6C0->unk_12F = UnkEnum_ov66_02232A84_02;
             }
         } else {
-            GF_ASSERT(0);
+            GF_ASSERT(FALSE);
             ov66_02232AA4();
         }
     }

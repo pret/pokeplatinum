@@ -795,7 +795,7 @@ static u32 ov64_0222E09C(UnkStruct_ov64_0222E060 *param0, String *param1, String
         }
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
 
     return 0;
 }

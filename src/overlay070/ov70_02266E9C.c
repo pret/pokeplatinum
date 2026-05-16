@@ -1984,7 +1984,7 @@ static u32 ov70_02268A3C(const UnkStruct_ov66_0222E71C *param0)
         return 2;
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
     return 1;
 }
 

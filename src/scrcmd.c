@@ -6362,7 +6362,7 @@ static BOOL ScrCmd_29E(ScriptContext *ctx)
         ov6_0224899C(fieldSystem, v1, 2, HEAP_ID_FIELD3);
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 

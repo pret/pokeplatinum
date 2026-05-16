@@ -344,7 +344,7 @@ int ov116_02261EA4(UnkStruct_ov116_02262A8C *param0, int param1)
         }
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
 
     return 0;
 }
@@ -501,7 +501,7 @@ void ov116_022620AC(UnkStruct_ov116_0226139C *param0, UnkStruct_ov116_02262A8C *
         Graphics_LoadTilemapToBgLayerFromOpenNARC(param1->unk_14->unk_00, 81, param1->unk_14->unk_10, 7, 0, 0, 0, HEAP_ID_106);
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 
     for (v0 = 0; v0 < param1->unk_04; v0++) {

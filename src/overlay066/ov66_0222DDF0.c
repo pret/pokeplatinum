@@ -2388,7 +2388,7 @@ static BOOL ov66_0222FA04(const UnkStruct_ov66_0222F6C4 *param0, const SaveData 
     u32 v0 = SaveData_CalculateChecksum(saveData, &param0->unk_20, sizeof(UnkStruct_ov66_0222E71C));
 
     if (v0 != param0->unk_B4) {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         return 0;
     }
 
@@ -3384,7 +3384,7 @@ static u32 ov66_02230828(const UnkStruct_ov66_022307D4 *param0)
         v2 += param0->unk_00[v0];
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
     return 0;
 }
 
@@ -3674,7 +3674,7 @@ static void ov66_02230BE0(UnkStruct_ov66_02230A6C *param0)
     u32 v0 = SaveData_CalculateChecksum(param0->saveData, param0, (sizeof(UnkStruct_ov66_02230A6C) - 8));
 
     if (v0 != param0->unk_48) {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         param0->unk_4A = 1;
     }
 }

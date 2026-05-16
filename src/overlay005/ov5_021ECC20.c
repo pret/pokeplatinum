@@ -96,7 +96,7 @@ static const UnkStruct_ov5_021ECD10 *ov5_021ECD10(int param0)
         v0++;
     } while (v0->unk_00 != 0xffff);
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
     return NULL;
 }
 

@@ -538,7 +538,7 @@ enum BattleFrontierStatsIndex BattleFrontierStats_GetHallRecordStreakIndex(u8 ch
         break;
     case FRONTIER_CHALLENGE_MULTI_WFC:
         index = 2;
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 
@@ -776,7 +776,7 @@ enum BattleFrontierStatsIndex BattleFrontierStats_GetTowerLatestStreakIndex(u8 c
         index = STAT_TOWER_LATEST_STREAK_MODE_6;
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 
@@ -807,7 +807,7 @@ enum BattleFrontierStatsIndex BattleFrontierStats_GetTowerRecordStreakIndex(u8 c
         index = STAT_TOWER_RECORD_STREAK_MODE_6;
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 

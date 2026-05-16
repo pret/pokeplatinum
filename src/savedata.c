@@ -1300,7 +1300,7 @@ static BOOL SaveData_CardSave_Main(s32 lockID, BOOL lockFlag, BOOL *result)
             *result = TRUE;
             break;
         default:
-            GF_ASSERT(0);
+            GF_ASSERT(FALSE);
         case CARD_RESULT_TIMEOUT:
             *result = FALSE;
             SaveData_CardSave_Error(lockID, SAVE_ERROR_DISABLE_WRITE);
@@ -1341,7 +1341,7 @@ BOOL SaveData_Checksum(int saveTableID)
     }
 
     u32 address = (u32)&halfTable[halfSize];
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
 
     return FALSE;
 }

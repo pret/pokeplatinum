@@ -151,7 +151,7 @@ BOOL ov5_021D433C(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1)
         } else if (param1->unk_1E == 4) {
             v11 = 0;
         } else {
-            GF_ASSERT(0);
+            GF_ASSERT(FALSE);
             v11 = 0;
         }
 
@@ -199,7 +199,7 @@ BOOL ov5_021D433C(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1)
                 } else if (param1->unk_1E == 4) {
                     v15 = 1;
                 } else {
-                    GF_ASSERT(0);
+                    GF_ASSERT(FALSE);
                     v15 = 1;
                 }
 
@@ -319,7 +319,7 @@ BOOL ov5_021D453C(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1)
             } else if (param1->unk_1E == 4) {
                 v11 = 2;
             } else {
-                GF_ASSERT(0);
+                GF_ASSERT(FALSE);
                 v11 = 0;
             }
 
@@ -370,7 +370,7 @@ BOOL ov5_021D453C(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1)
                 } else if (param1->unk_1E == 4) {
                     v15 = 3;
                 } else {
-                    GF_ASSERT(0);
+                    GF_ASSERT(FALSE);
                     v15 = 1;
                 }
 
@@ -1042,7 +1042,7 @@ BOOL ov5_021D5020(FieldTask *param0)
             v4 = 39;
             break;
         default:
-            GF_ASSERT(0);
+            GF_ASSERT(FALSE);
         }
 
         sub_02056B30(param0, 0, v4, 1, 0x0, 6, 1, HEAP_ID_FIELD2);

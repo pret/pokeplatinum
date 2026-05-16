@@ -361,7 +361,7 @@ int ov67_0225C820(ApplicationManager *appMan, int *param1)
         }
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 

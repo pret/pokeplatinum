@@ -304,7 +304,7 @@ void *FieldSystem_CreateBagContext(FieldSystem *fieldSystem, int pocketType)
         pocketList = berriesPockets;
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 
     void *bagContext = BagContext_CreateWithPockets(bag, pocketList, HEAP_ID_FIELD3);
@@ -320,7 +320,7 @@ u16 BagContext_GetSelectedItem(void *bagContext)
     u16 selectedItem = BagContext_GetItem(bagContext);
 
     if (selectedItem != 0 && BagContext_GetExitCode(bagContext) == 5) {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 
     return selectedItem;

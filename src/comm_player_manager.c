@@ -841,7 +841,7 @@ void CommPlayer_RecvLocation(int netId, int unused0, void *src, void *unused1)
     sCommPlayerManager->movementChanged[netId] = 1;
 
     if (TerrainCollisionManager_CheckCollision(sCommPlayerManager->fieldSystem, playerLocation->x, playerLocation->z)) {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 }
 

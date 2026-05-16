@@ -108,7 +108,7 @@ BOOL FrontierScrCmd_CallBattleTowerFunction(FrontierScriptContext *ctx)
         }
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 
@@ -218,7 +218,7 @@ BOOL FrontierScrCmd_89(FrontierScriptContext *param0)
         ov104_0223A734(battleTower, v3);
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 
@@ -274,7 +274,7 @@ static BOOL ov104_02239464(FrontierScriptContext *param0, BattleTower *battleTow
         *v0 = ov104_0223A750(battleTower, v1);
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 

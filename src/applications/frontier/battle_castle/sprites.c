@@ -31,7 +31,7 @@ BattleCastleAppSprite *BattleCastleAppSprite_New(BattleCastleAppSpriteManager *s
 void *BattleCastleAppSprite_Free(BattleCastleAppSprite *sprite)
 {
     if (sprite == NULL) {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         return NULL;
     }
 

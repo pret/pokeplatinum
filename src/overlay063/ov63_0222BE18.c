@@ -206,7 +206,7 @@ s32 ov63_0222BF90(const UnkStruct_ov63_0222BEC0 *param0, int param1)
         v0 = param0->unk_16;
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 
@@ -254,7 +254,7 @@ void ov63_0222C000(UnkStruct_ov63_0222BEC0 *param0, int param1, s32 param2)
         param0->unk_16 = param2;
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 }
@@ -296,7 +296,7 @@ static UnkStruct_ov63_0222BEC0 *ov63_0222C0B8(UnkStruct_ov63_0222BE18 *param0)
         }
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
     return NULL;
 }
 

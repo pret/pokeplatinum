@@ -237,7 +237,7 @@ static u8 ov63_0222D688(u8 param0, u8 param1)
         }
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
     return 0;
 }
 
@@ -302,10 +302,10 @@ static const void *ov63_0222D6BC(const u8 *param0, u8 param1, u8 param2, u8 para
         }
         return &param0[v1];
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
     return NULL;
 }

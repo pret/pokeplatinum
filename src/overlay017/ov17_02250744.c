@@ -655,7 +655,7 @@ void ov17_022513F4(UnkStruct_ov17_0224FCA0 *param0, int param1, int param2, int 
         v1 = param0->unk_10.unk_2C8[param1];
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         return;
     }
 
@@ -962,7 +962,7 @@ void ov17_02251930(Contest *param0, int param1, s16 param2[])
             v0[v4] = param0->unk_00.unk_118[v4].unk_06;
             break;
         default:
-            GF_ASSERT(0);
+            GF_ASSERT(FALSE);
             return;
         }
     }

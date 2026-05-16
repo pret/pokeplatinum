@@ -85,7 +85,7 @@ static BOOL ov62_02235308(UnkStruct_0208C06C *param0)
 {
     BOOL v0 = 0;
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
 
     param0->unk_14.unk_30 = 1;
     ov62_0222FB60(param0, 0);
