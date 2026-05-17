@@ -38,6 +38,8 @@
 #include "unk_020996D0.h"
 #include "wifi_history_save_data.h"
 
+#include "res/text/bank/country_names.h"
+
 typedef struct UnkStruct_ov92_021D1530_t {
     u16 unk_00;
     s16 unk_02;
@@ -68,14 +70,14 @@ typedef struct {
     WiFiHistory *wiFiHistory;
     Options *options;
     UnkStruct_ov92_021D1B24_sub1 unk_0C;
-    BgConfig *unk_B810;
+    BgConfig *bgConfig;
     Window unk_B814;
     Window unk_B824;
     Window unk_B834;
     Window unk_B844;
-    ListMenu *unk_B854;
+    ListMenu *listMenu;
     StringList *unk_B858;
-    Menu *unk_B85C;
+    Menu *menu;
     MessageLoader *unk_B860;
     int unk_B864;
     int unk_B868;
@@ -92,7 +94,7 @@ typedef struct {
     VecFx32 unk_BAB4;
     VecFx32 unk_BAC0;
     Camera *camera;
-    CameraAngle unk_BAD0;
+    CameraAngle cameraAngle;
     u16 unk_BAD8;
     VecFx32 unk_BADC;
     int unk_BAE8;
@@ -107,11 +109,11 @@ typedef struct {
     int unk_BB08;
     int unk_BB0C;
     int unk_BB10;
-    int unk_BB14;
-    int unk_BB18;
-    int unk_BB1C;
-    int unk_BB20;
-    BOOL unk_BB24;
+    int country1;
+    int region1;
+    int country2;
+    int region2;
+    BOOL hasInteractedOutsideJapan;
     int unk_BB28;
 } UnkStruct_ov92_021D1B24;
 
@@ -121,9 +123,9 @@ typedef struct {
 } UnkStruct_ov92_021D2958;
 
 BOOL ov92_021D2854(int param0);
-int ov92_021D0D80(ApplicationManager *appMan, int *param1);
+int ov92_021D0D80(ApplicationManager *appMan, int *unused);
 int ov92_021D0EB8(ApplicationManager *appMan, int *param1);
-int ov92_021D1478(ApplicationManager *appMan, int *param1);
+int ov92_021D1478(ApplicationManager *appMan, int *unused);
 static void ov92_021D14F0(void);
 static void ov92_021D1510(void);
 static void ov92_021D1888(UnkStruct_ov92_021D1B24 *param0, NARC *param1);
@@ -294,9 +296,8 @@ static const ListMenuTemplate Unk_ov92_021D29C8 = {
     0x0
 };
 
-int ov92_021D0D80(ApplicationManager *appMan, int *param1)
+int ov92_021D0D80(ApplicationManager *appMan, int *unused)
 {
-    UnkStruct_ov92_021D1B24 *v0;
     enum HeapID heapID = HEAP_ID_50;
 
     SetVBlankCallback(NULL, NULL);
@@ -309,29 +310,25 @@ int ov92_021D0D80(ApplicationManager *appMan, int *param1)
 
     Heap_Create(HEAP_ID_APPLICATION, heapID, 0x80000);
 
-    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov92_021D1B24), heapID);
+    UnkStruct_ov92_021D1B24 *v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov92_021D1B24), heapID);
     memset(v0, 0, sizeof(UnkStruct_ov92_021D1B24));
     v0->heapID = heapID;
 
-    if (gGameLanguage == JAPANESE) {
-        v0->unk_BAF0 = TRUE;
-    } else {
-        v0->unk_BAF0 = FALSE;
-    }
+    v0->unk_BAF0 = gGameLanguage == JAPANESE;
 
     SaveData *saveData = ApplicationManager_Args(appMan);
 
     v0->wiFiHistory = SaveData_WiFiHistory(saveData);
-    v0->unk_BB14 = WiFiHistory_GetCountry(v0->wiFiHistory);
-    v0->unk_BB18 = WiFiHistory_GetRegion(v0->wiFiHistory);
-    v0->unk_BB24 = WiFiHistory_HasInteractedOutsideJapan(v0->wiFiHistory);
+    v0->country1 = WiFiHistory_GetCountry(v0->wiFiHistory);
+    v0->region1 = WiFiHistory_GetRegion(v0->wiFiHistory);
+    v0->hasInteractedOutsideJapan = WiFiHistory_HasInteractedOutsideJapan(v0->wiFiHistory);
     v0->options = SaveData_GetOptions(saveData);
 
     ov92_021D14F0();
     ov92_021D1510();
     Easy3D_Init(v0->heapID);
 
-    v0->unk_B810 = BgConfig_New(v0->heapID);
+    v0->bgConfig = BgConfig_New(v0->heapID);
 
     GXLayers_TurnBothDispOn();
     Text_ResetAllPrinters();
@@ -383,8 +380,8 @@ int ov92_021D0EB8(ApplicationManager *appMan, int *param1)
         }
         break;
     case 2:
-        if (ov92_021D1B70(v0, 0, 1) == 1) {
-            if (v0->unk_BB14 == 0) {
+        if (ov92_021D1B70(v0, 0, 1) == TRUE) {
+            if (v0->country1 == Country_Text_None) {
                 *param1 = 3;
             } else {
                 *param1 = 14;
@@ -392,13 +389,13 @@ int ov92_021D0EB8(ApplicationManager *appMan, int *param1)
         }
         break;
     case 3:
-        if (ov92_021D1B70(v0, 1, 1) == 1) {
+        if (ov92_021D1B70(v0, 1, 1) == TRUE) {
             ov92_021D1C4C(v0, &v0->unk_B824, &Unk_ov92_021D290C, &Unk_ov92_021D29A8, Unk_ov92_021D2958);
             *param1 = 4;
         }
         break;
     case 4: {
-        int v3 = ListMenu_ProcessInput(v0->unk_B854);
+        int v3 = ListMenu_ProcessInput(v0->listMenu);
 
         if (v3 == 0xffffffff) {
             break;
@@ -423,17 +420,17 @@ int ov92_021D0EB8(ApplicationManager *appMan, int *param1)
     } break;
     case 5:
         if (ov92_021D1B70(v0, 2, 1) == 1) {
-            v0->unk_B85C = Menu_MakeYesNoChoice(v0->unk_B810, &Unk_ov92_021D292C, (512 - (18 + 12)) - 9, 7, v0->heapID);
+            v0->menu = Menu_MakeYesNoChoice(v0->bgConfig, &Unk_ov92_021D292C, (512 - (18 + 12)) - 9, 7, v0->heapID);
             *param1 = 6;
         }
         break;
     case 6: {
-        u32 v4 = Menu_ProcessInputAndHandleExit(v0->unk_B85C, v0->heapID);
+        u32 v4 = Menu_ProcessInputAndHandleExit(v0->menu, v0->heapID);
 
         switch (v4) {
         case 0:
-            if (v0->unk_BAF0 == 1) {
-                v0->unk_BB1C = 103;
+            if (v0->unk_BAF0 == TRUE) {
+                v0->country2 = Country_Text_Japan;
                 *param1 = 9;
             } else {
                 *param1 = 7;
@@ -446,14 +443,14 @@ int ov92_021D0EB8(ApplicationManager *appMan, int *param1)
     } break;
     case 7:
         if (ov92_021D1B70(v0, 3, 1) == 1) {
-            v0->unk_BB1C = 0;
+            v0->country2 = 0;
 
             ov92_021D1CF4(v0, &v0->unk_B824, &Unk_ov92_021D2914, &Unk_ov92_021D29C8, 694, sub_02099780(0), sub_0209979C(0));
             *param1 = 8;
         }
         break;
     case 8: {
-        int v5 = ListMenu_ProcessInput(v0->unk_B854);
+        int v5 = ListMenu_ProcessInput(v0->listMenu);
 
         if (v5 == 0xffffffff) {
             break;
@@ -468,12 +465,12 @@ int ov92_021D0EB8(ApplicationManager *appMan, int *param1)
 
         switch (v5) {
         default: {
-            v0->unk_BB1C = v5;
+            v0->country2 = v5;
 
-            if (ov92_021D2854(v0->unk_BB1C) == 1) {
+            if (ov92_021D2854(v0->country2) == TRUE) {
                 *param1 = 9;
             } else {
-                v0->unk_BB20 = 0;
+                v0->region2 = 0;
                 *param1 = 11;
             }
         } break;
@@ -484,18 +481,18 @@ int ov92_021D0EB8(ApplicationManager *appMan, int *param1)
         }
     } break;
     case 9:
-        if (ov92_021D1B70(v0, 4, 1) == 1) {
-            v0->unk_BB20 = 0;
+        if (ov92_021D1B70(v0, 4, 1) == TRUE) {
+            v0->region2 = 0;
 
             {
-                u32 v6 = sub_020996D4(v0->unk_BB1C);
+                u32 v6 = sub_020996D4(v0->country2);
                 ov92_021D1CF4(v0, &v0->unk_B824, &Unk_ov92_021D2914, &Unk_ov92_021D29C8, sub_0209972C(v6), sub_02099780(v6), sub_0209979C(v6));
             }
             *param1 = 10;
         }
         break;
     case 10: {
-        int v7 = ListMenu_ProcessInput(v0->unk_B854);
+        int v7 = ListMenu_ProcessInput(v0->listMenu);
 
         if (v7 == 0xffffffff) {
             break;
@@ -505,17 +502,17 @@ int ov92_021D0EB8(ApplicationManager *appMan, int *param1)
         Sound_PlayEffect(SEQ_SE_CONFIRM);
 
         if (v7 != 0xfffffffe) {
-            u32 v8 = sub_020996D4(v0->unk_BB1C);
+            u32 v8 = sub_020996D4(v0->country2);
             v7 = sub_02099780(v8)[v7];
         }
 
         switch (v7) {
         default:
-            v0->unk_BB20 = v7;
+            v0->region2 = v7;
             *param1 = 11;
             break;
         case 0xfffffffe:
-            if (v0->unk_BAF0 == 1) {
+            if (v0->unk_BAF0 == TRUE) {
                 *param1 = 3;
             } else {
                 *param1 = 7;
@@ -523,25 +520,25 @@ int ov92_021D0EB8(ApplicationManager *appMan, int *param1)
         }
     } break;
     case 11:
-        ov92_021D1EBC(v0, v0->unk_BB1C, v0->unk_BB20);
+        ov92_021D1EBC(v0, v0->country2, v0->region2);
         *param1 = 12;
         break;
     case 12:
         if (ov92_021D1B70(v0, 5, 1) == 1) {
-            v0->unk_B85C = Menu_MakeYesNoChoice(v0->unk_B810, &Unk_ov92_021D292C, (512 - (18 + 12)) - 9, 7, v0->heapID);
+            v0->menu = Menu_MakeYesNoChoice(v0->bgConfig, &Unk_ov92_021D292C, (512 - (18 + 12)) - 9, 7, v0->heapID);
             *param1 = 13;
         }
         break;
     case 13: {
-        u32 v9 = Menu_ProcessInputAndHandleExit(v0->unk_B85C, v0->heapID);
+        u32 v9 = Menu_ProcessInputAndHandleExit(v0->menu, v0->heapID);
 
         switch (v9) {
         case 0:
             ov92_021D1F74(v0);
-            WiFiHistory_SetCountryAndRegion(v0->wiFiHistory, v0->unk_BB1C, v0->unk_BB20);
+            WiFiHistory_SetCountryAndRegion(v0->wiFiHistory, v0->country2, v0->region2);
 
-            v0->unk_BB14 = v0->unk_BB1C;
-            v0->unk_BB18 = v0->unk_BB20;
+            v0->country1 = v0->country2;
+            v0->region1 = v0->region2;
             *param1 = 14;
             break;
         case 0xfffffffe:
@@ -551,10 +548,10 @@ int ov92_021D0EB8(ApplicationManager *appMan, int *param1)
         }
     } break;
     case 14:
-        if ((v0->unk_BAF0 == 1) && (v0->unk_BB24 == 0)) {
-            v0->unk_BAF4 = 0;
+        if (v0->unk_BAF0 == TRUE && !v0->hasInteractedOutsideJapan) {
+            v0->unk_BAF4 = FALSE;
         } else {
-            v0->unk_BAF4 = 1;
+            v0->unk_BAF4 = TRUE;
         }
 
         ov92_021D2254(v0);
@@ -565,7 +562,7 @@ int ov92_021D0EB8(ApplicationManager *appMan, int *param1)
         Window_FillRectWithColor(&v0->unk_B814, 15, 0, 0, 27 * 8, 4 * 8);
         Window_DrawStandardFrame(&v0->unk_B834, 0, (512 - (18 + 12)) - 9, 7);
 
-        if (v0->unk_BB14 != 0) {
+        if (v0->country1 != Country_Text_None) {
             ov92_021D1DEC(v0);
         }
 
@@ -584,7 +581,7 @@ int ov92_021D0EB8(ApplicationManager *appMan, int *param1)
             Sound_PlayEffect(SEQ_SE_DP_DECIDE);
             Window_FillRectWithColor(&v0->unk_B814, 15, 0, 0, 27 * 8, 4 * 8);
 
-            if (v0->unk_BB14 == 0) {
+            if (v0->country1 == Country_Text_None) {
                 v0->unk_BAE8 = 2;
                 *param1 = 3;
             } else {
@@ -613,7 +610,7 @@ int ov92_021D0EB8(ApplicationManager *appMan, int *param1)
 
                 v11 = ov92_021D2460(v0, gSystem.pressedKeys, gSystem.heldKeys);
 
-                if ((v11 == 1) && (v0->unk_BB28 == 1)) {
+                if (v11 == TRUE && v0->unk_BB28 == TRUE) {
                     v0->unk_BB28 = 0;
                     ov92_021D1F90(v0);
                 }
@@ -649,7 +646,7 @@ int ov92_021D0EB8(ApplicationManager *appMan, int *param1)
             ov92_021D1B24(v0);
             ov92_021D2210(v0);
             MessageLoader_Free(v0->unk_B860);
-            (*param1) = 0;
+            *param1 = 0;
             v1 = 1;
         }
         break;
@@ -660,7 +657,7 @@ int ov92_021D0EB8(ApplicationManager *appMan, int *param1)
     return v1;
 }
 
-int ov92_021D1478(ApplicationManager *appMan, int *param1)
+int ov92_021D1478(ApplicationManager *appMan, int *unused)
 {
     UnkStruct_ov92_021D1B24 *v0 = ApplicationManager_Data(appMan);
     enum HeapID heapID = v0->heapID;
@@ -672,7 +669,7 @@ int ov92_021D1478(ApplicationManager *appMan, int *param1)
     Camera_Delete(v0->camera);
     StringTemplate_Free(v0->unk_B870);
     Easy3D_Shutdown();
-    Heap_Free(v0->unk_B810);
+    Heap_Free(v0->bgConfig);
     SetVBlankCallback(NULL, NULL);
     ApplicationManager_FreeData(appMan);
     Heap_Destroy(heapID);
@@ -719,20 +716,18 @@ static void ov92_021D1530(UnkStruct_ov92_021D1B24 *param0)
     param0->unk_0C.unk_00 = 0;
 
     {
-        void *v1;
         UnkStruct_ov92_021D1530 *v2;
         u32 v3;
-        int v4, v5;
 
-        v1 = LoadMemberFromOpenNARC_OutFileSize(v0, 18, 0, param0->heapID, 0, &v3);
+        void *v1 = LoadMemberFromOpenNARC_OutFileSize(v0, 18, 0, param0->heapID, 0, &v3);
         v2 = (UnkStruct_ov92_021D1530 *)v1;
-        v5 = v3 / 6;
+        int v5 = v3 / 6;
 
         v2++;
 
-        for (v4 = 1; v4 < v5; v4++) {
+        for (int i = 1; i < v5; i++) {
             if (v2->unk_00 != 2) {
-                ov92_021D1634(param0, param0->unk_0C.unk_00, v2->unk_02, v2->unk_04, v4, 0);
+                ov92_021D1634(param0, param0->unk_0C.unk_00, v2->unk_02, v2->unk_04, i, 0);
                 param0->unk_0C.unk_00++;
             }
 
@@ -745,9 +740,9 @@ static void ov92_021D1530(UnkStruct_ov92_021D1B24 *param0)
         void *v6;
         UnkStruct_ov69_0225C980 *v7;
         u32 v8, v9;
-        int v10, v11, v12, v13;
+        int v11, v13;
 
-        v12 = 1;
+        int v12 = 1;
         v11 = sub_020996D0();
 
         while (v12 < v11) {
@@ -758,8 +753,8 @@ static void ov92_021D1530(UnkStruct_ov92_021D1B24 *param0)
 
             v7++;
 
-            for (v10 = 1; v10 < v13; v10++) {
-                ov92_021D1634(param0, param0->unk_0C.unk_00, v7->unk_00, v7->unk_02, sub_02099748(v12), v10);
+            for (int i = 1; i < v13; i++) {
+                ov92_021D1634(param0, param0->unk_0C.unk_00, v7->unk_00, v7->unk_02, sub_02099748(v12), i);
                 param0->unk_0C.unk_00++;
                 v7++;
             }
@@ -794,13 +789,11 @@ static void ov92_021D1634(UnkStruct_ov92_021D1B24 *param0, u32 param1, s16 param
 
 static void ov92_021D16A8(UnkStruct_ov92_021D1B24 *param0)
 {
-    int v0;
-
-    for (v0 = 0; v0 < param0->unk_0C.unk_00; v0++) {
-        if ((param0->unk_0C.unk_04[v0].unk_2A == param0->unk_BB14) && (param0->unk_0C.unk_04[v0].unk_2C == param0->unk_BB18)) {
-            param0->unk_0C.unk_04[v0].unk_28 = 3;
-            param0->unk_BAB4.x = param0->unk_0C.unk_04[v0].unk_00;
-            param0->unk_BAB4.y = param0->unk_0C.unk_04[v0].unk_02;
+    for (int i = 0; i < param0->unk_0C.unk_00; i++) {
+        if (param0->unk_0C.unk_04[i].unk_2A == param0->country1 && param0->unk_0C.unk_04[i].unk_2C == param0->region1) {
+            param0->unk_0C.unk_04[i].unk_28 = 3;
+            param0->unk_BAB4.x = param0->unk_0C.unk_04[i].unk_00;
+            param0->unk_BAB4.y = param0->unk_0C.unk_04[i].unk_02;
         }
     }
 }
@@ -820,16 +813,16 @@ static void ov92_021D1700(UnkStruct_ov92_021D1B24 *param0)
         if ((gSystem.touchX >= (25 * 8)) && (gSystem.touchX <= ((25 + 6) * 8)) && (gSystem.touchY >= (21 * 8)) && (gSystem.touchY <= ((21 + 2) * 8))) {
             param0->unk_BAF8 = PAD_BUTTON_B;
             return;
-        } else {
-            param0->unk_BAFC = 0;
-            param0->unk_BB08 = 0;
-            param0->unk_BB0C = 0;
-            param0->unk_BB10 = 0;
-            param0->unk_BAF8 = 0;
-            param0->unk_BB00 = gSystem.touchX;
-            param0->unk_BB04 = gSystem.touchY;
-            param0->unk_BB10 = 4;
         }
+
+        param0->unk_BAFC = 0;
+        param0->unk_BB08 = 0;
+        param0->unk_BB0C = 0;
+        param0->unk_BB10 = 0;
+        param0->unk_BAF8 = 0;
+        param0->unk_BB00 = gSystem.touchX;
+        param0->unk_BB04 = gSystem.touchY;
+        param0->unk_BB10 = 4;
     }
 
     if (gSystem.touchHeld) {
@@ -905,30 +898,30 @@ static void ov92_021D1818(int param0, int param1, int *param2, int *param3, int 
 
 static void ov92_021D1888(UnkStruct_ov92_021D1B24 *param0, NARC *param1)
 {
-    Bg_InitFromTemplate(param0->unk_B810, BG_LAYER_SUB_2, &Unk_ov92_021D2970, 0);
-    Bg_ClearTilemap(param0->unk_B810, BG_LAYER_SUB_2);
-    Bg_InitFromTemplate(param0->unk_B810, BG_LAYER_SUB_3, &Unk_ov92_021D298C, 0);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 5, param0->unk_B810, 7, 0, 0, 0, param0->heapID);
+    Bg_InitFromTemplate(param0->bgConfig, BG_LAYER_SUB_2, &Unk_ov92_021D2970, 0);
+    Bg_ClearTilemap(param0->bgConfig, BG_LAYER_SUB_2);
+    Bg_InitFromTemplate(param0->bgConfig, BG_LAYER_SUB_3, &Unk_ov92_021D298C, 0);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 5, param0->bgConfig, 7, 0, 0, 0, param0->heapID);
     Graphics_LoadPaletteFromOpenNARC(param1, 6, 4, 0 * (2 * 16), (2 * 16) * 4, param0->heapID);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 7, param0->unk_B810, 7, 0, 0, 0, param0->heapID);
-    LoadMessageBoxGraphics(param0->unk_B810, BG_LAYER_SUB_2, 512 - (18 + 12), 6, Options_Frame(param0->options), param0->heapID);
-    LoadStandardWindowGraphics(param0->unk_B810, BG_LAYER_SUB_2, (512 - (18 + 12)) - 9, 7, 0, param0->heapID);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 7, param0->bgConfig, 7, 0, 0, 0, param0->heapID);
+    LoadMessageBoxGraphics(param0->bgConfig, BG_LAYER_SUB_2, 512 - (18 + 12), 6, Options_Frame(param0->options), param0->heapID);
+    LoadStandardWindowGraphics(param0->bgConfig, BG_LAYER_SUB_2, (512 - (18 + 12)) - 9, 7, 0, param0->heapID);
     Font_LoadTextPalette(4, 4 * (2 * 16), param0->heapID);
     Bg_ClearTilesRange(6, 32, 0, param0->heapID);
     Bg_MaskPalette(BG_LAYER_SUB_2, 0x4753);
-    Window_AddFromTemplate(param0->unk_B810, &param0->unk_B814, &Unk_ov92_021D2934);
+    Window_AddFromTemplate(param0->bgConfig, &param0->unk_B814, &Unk_ov92_021D2934);
     Window_FillRectWithColor(&param0->unk_B814, 15, 0, 0, 27 * 8, 4 * 8);
     Window_DrawMessageBoxWithScrollCursor(&param0->unk_B814, 0, 512 - (18 + 12), 6);
 
     param0->unk_B864 = 0;
 
-    Bg_InitFromTemplate(param0->unk_B810, BG_LAYER_MAIN_2, &Unk_ov92_021D2970, 0);
-    Bg_ClearTilemap(param0->unk_B810, BG_LAYER_MAIN_2);
-    Bg_InitFromTemplate(param0->unk_B810, BG_LAYER_MAIN_3, &Unk_ov92_021D298C, 0);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 5, param0->unk_B810, 3, 0, 0, 0, param0->heapID);
+    Bg_InitFromTemplate(param0->bgConfig, BG_LAYER_MAIN_2, &Unk_ov92_021D2970, 0);
+    Bg_ClearTilemap(param0->bgConfig, BG_LAYER_MAIN_2);
+    Bg_InitFromTemplate(param0->bgConfig, BG_LAYER_MAIN_3, &Unk_ov92_021D298C, 0);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 5, param0->bgConfig, 3, 0, 0, 0, param0->heapID);
     Graphics_LoadPaletteFromOpenNARC(param1, 6, 0, 0 * (2 * 16), (2 * 16) * 4, param0->heapID);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 7, param0->unk_B810, 3, 0, 0, 0, param0->heapID);
-    LoadStandardWindowGraphics(param0->unk_B810, BG_LAYER_MAIN_2, (512 - (18 + 12)) - 9, 7, 0, param0->heapID);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 7, param0->bgConfig, 3, 0, 0, 0, param0->heapID);
+    LoadStandardWindowGraphics(param0->bgConfig, BG_LAYER_MAIN_2, (512 - (18 + 12)) - 9, 7, 0, param0->heapID);
     Font_LoadTextPalette(0, 4 * (2 * 16), param0->heapID);
     Bg_ClearTilesRange(BG_LAYER_MAIN_2, 32, 0, param0->heapID);
     Bg_MaskPalette(BG_LAYER_MAIN_2, 0x0);
@@ -949,7 +942,7 @@ static void ov92_021D1888(UnkStruct_ov92_021D1B24 *param0, NARC *param1)
             Bg_LoadPalette(2, &v4, 2, 4 * (2 * 16) + 15 * 2);
         }
 
-        Window_AddFromTemplate(param0->unk_B810, &param0->unk_B834, &Unk_ov92_021D2924);
+        Window_AddFromTemplate(param0->bgConfig, &param0->unk_B834, &Unk_ov92_021D2924);
         Window_FillRectWithColor(&param0->unk_B834, 15, 0, 0, 27 * 8, 4 * 8);
         MessageLoader_GetString(param0->unk_B860, 12, v0);
 
@@ -969,10 +962,10 @@ static void ov92_021D1B24(UnkStruct_ov92_021D1B24 *param0)
 {
     Window_Remove(&param0->unk_B834);
     Window_Remove(&param0->unk_B814);
-    Bg_FreeTilemapBuffer(param0->unk_B810, BG_LAYER_MAIN_2);
-    Bg_FreeTilemapBuffer(param0->unk_B810, BG_LAYER_SUB_2);
-    Bg_FreeTilemapBuffer(param0->unk_B810, BG_LAYER_MAIN_3);
-    Bg_FreeTilemapBuffer(param0->unk_B810, BG_LAYER_SUB_3);
+    Bg_FreeTilemapBuffer(param0->bgConfig, BG_LAYER_MAIN_2);
+    Bg_FreeTilemapBuffer(param0->bgConfig, BG_LAYER_SUB_2);
+    Bg_FreeTilemapBuffer(param0->bgConfig, BG_LAYER_MAIN_3);
+    Bg_FreeTilemapBuffer(param0->bgConfig, BG_LAYER_SUB_3);
 }
 
 static BOOL ov92_021D1B70(UnkStruct_ov92_021D1B24 *param0, u32 param1, int param2)
@@ -1003,7 +996,7 @@ static BOOL ov92_021D1B70(UnkStruct_ov92_021D1B24 *param0, u32 param1, int param
     return v0;
 }
 
-static void ov92_021D1C38(ListMenu *param0, u32 param1, u8 param2)
+static void ov92_021D1C38(ListMenu *listMenu, u32 unused, u8 param2)
 {
     if (param2 == 0) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);
@@ -1015,7 +1008,7 @@ static void ov92_021D1C4C(UnkStruct_ov92_021D1B24 *param0, Window *param1, const
     ListMenuTemplate v0;
     int v1;
 
-    Window_AddFromTemplate(param0->unk_B810, param1, param2);
+    Window_AddFromTemplate(param0->bgConfig, param1, param2);
     param0->unk_B858 = StringList_New(param3->count, param0->heapID);
 
     for (v1 = 0; v1 < param3->count; v1++) {
@@ -1026,7 +1019,7 @@ static void ov92_021D1C4C(UnkStruct_ov92_021D1B24 *param0, Window *param1, const
     v0.choices = param0->unk_B858;
     v0.window = param1;
     v0.cursorCallback = ov92_021D1C38;
-    param0->unk_B854 = ListMenu_New(&v0, 0, 0, param0->heapID);
+    param0->listMenu = ListMenu_New(&v0, 0, 0, param0->heapID);
 
     Window_DrawStandardFrame(v0.window, 1, (512 - (18 + 12)) - 9, 7);
     Window_CopyToVRAM(param1);
@@ -1038,7 +1031,7 @@ static void ov92_021D1CF4(UnkStruct_ov92_021D1B24 *param0, Window *param1, const
     MessageLoader *v1;
     int v2;
 
-    Window_AddFromTemplate(param0->unk_B810, param1, param2);
+    Window_AddFromTemplate(param0->bgConfig, param1, param2);
     v1 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, param4, param0->heapID);
     param0->unk_B858 = StringList_New(param6, param0->heapID);
 
@@ -1054,7 +1047,7 @@ static void ov92_021D1CF4(UnkStruct_ov92_021D1B24 *param0, Window *param1, const
     v0.window = param1;
     v0.cursorCallback = ov92_021D1C38;
 
-    param0->unk_B854 = ListMenu_New(&v0, 0, 0, param0->heapID);
+    param0->listMenu = ListMenu_New(&v0, 0, 0, param0->heapID);
 
     Window_DrawStandardFrame(v0.window, 1, (512 - (18 + 12)) - 9, 7);
     Window_CopyToVRAM(param1);
@@ -1064,7 +1057,7 @@ static void ov92_021D1DB4(UnkStruct_ov92_021D1B24 *param0)
 {
     Window_EraseStandardFrame(&param0->unk_B824, 0);
     Window_Remove(&param0->unk_B824);
-    ListMenu_Free(param0->unk_B854, NULL, NULL);
+    ListMenu_Free(param0->listMenu, NULL, NULL);
     StringList_Free(param0->unk_B858);
 }
 
@@ -1073,12 +1066,12 @@ static void ov92_021D1DEC(UnkStruct_ov92_021D1B24 *param0)
     String *v0 = String_Init(0x400, param0->heapID);
     String *v1 = String_Init(0x400, param0->heapID);
 
-    Window_AddFromTemplate(param0->unk_B810, &param0->unk_B844, &Unk_ov92_021D291C);
+    Window_AddFromTemplate(param0->bgConfig, &param0->unk_B844, &Unk_ov92_021D291C);
     Window_FillRectWithColor(&param0->unk_B844, 15, 0, 0, 27 * 8, 6 * 8);
     Window_DrawStandardFrame(&param0->unk_B844, 0, (512 - (18 + 12)) - 9, 7);
 
-    StringTemplate_SetCountryName(param0->unk_B870, 0, param0->unk_BB14);
-    StringTemplate_SetCityName(param0->unk_B870, 1, param0->unk_BB14, param0->unk_BB18);
+    StringTemplate_SetCountryName(param0->unk_B870, 0, param0->country1);
+    StringTemplate_SetCityName(param0->unk_B870, 1, param0->country1, param0->region1);
 
     MessageLoader_GetString(param0->unk_B860, 13, v1);
     StringTemplate_Format(param0->unk_B870, v0, v1);
@@ -1096,7 +1089,7 @@ static void ov92_021D1EBC(UnkStruct_ov92_021D1B24 *param0, int param1, int param
     String *v0 = String_Init(64, param0->heapID);
     String *v1 = String_Init(64, param0->heapID);
 
-    Window_AddFromTemplate(param0->unk_B810, &param0->unk_B844, &Unk_ov92_021D291C);
+    Window_AddFromTemplate(param0->bgConfig, &param0->unk_B844, &Unk_ov92_021D291C);
     Window_FillRectWithColor(&param0->unk_B844, 15, 0, 0, 27 * 8, 6 * 8);
     Window_DrawStandardFrame(&param0->unk_B844, 0, (512 - (18 + 12)) - 9, 7);
 
@@ -1399,33 +1392,33 @@ static BOOL ov92_021D2460(UnkStruct_ov92_021D1B24 *param0, int param1, int param
 
 static BOOL ov92_021D2644(UnkStruct_ov92_021D1B24 *param0)
 {
-    fx32 v0 = Camera_GetDistance(param0->camera);
+    fx32 distance = Camera_GetDistance(param0->camera);
     BOOL v1 = 0;
 
     switch (param0->unk_BAD8) {
     case 1:
-        if (v0 > (0x50000 + 0x8000)) {
-            v0 -= 0x8000;
+        if (distance > (0x50000 + 0x8000)) {
+            distance -= 0x8000;
             param0->unk_BAC0.x -= 0x80;
             param0->unk_BAC0.y = param0->unk_BAC0.x;
         } else {
-            v0 = 0x50000;
+            distance = 0x50000;
             v1 = 1;
         }
         break;
     case 0:
-        if (v0 < (0x128000 - 0x8000)) {
-            v0 += 0x8000;
+        if (distance < (0x128000 - 0x8000)) {
+            distance += 0x8000;
             param0->unk_BAC0.x += 0x80;
             param0->unk_BAC0.y = param0->unk_BAC0.x;
         } else {
-            v0 = 0x128000;
+            distance = 0x128000;
             v1 = 1;
         }
         break;
     }
 
-    Camera_SetDistance(v0, param0->camera);
+    Camera_SetDistance(distance, param0->camera);
 
     return v1;
 }
@@ -1505,9 +1498,9 @@ BOOL ov92_021D2854(int param0)
 {
     if (ov92_021D16F8(param0)) {
         return 1;
-    } else {
-        return 0;
     }
+
+    return 0;
 }
 
 static void ov92_021D2868(UnkStruct_ov92_021D28C0 *param0)
