@@ -100,13 +100,14 @@ typedef struct bignum_st {
     int flags;
 } BIGNUM;
 
+typedef int (*UnusedFunc)(void *, u8, int);
 /* Used for temp variables */
 #define BN_CTX_NUM 12
 typedef struct bignum_ctx {
     int tos;
     BIGNUM bn[BN_CTX_NUM + 1];
     int flags;
-    char padding[4];
+    UnusedFunc *unusedFunc;
 } BN_CTX;
 
 typedef struct bn_blinding_st {
@@ -139,9 +140,6 @@ typedef struct bn_recp_ctx_st {
     int shift;
     int flags;
 } BN_RECP_CTX;
-
-#define BN_to_montgomery(r, a, mont, ctx) BN_mod_mul_montgomery( \
-    r, a, &((mont)->RR), (mont), ctx)
 
 #define BN_num_bytes(a)   ((BN_num_bits(a) + 7) / 8)
 #define BN_is_word(a, w)  (((a)->top == 1) && ((a)->d[0] == (u32)(w)))
@@ -213,8 +211,8 @@ BOOL BN_mod_mul_reciprocal(BIGNUM *r, BIGNUM *x, BIGNUM *y, BN_RECP_CTX *recp, B
 BOOL BN_mod_exp_recp(BIGNUM *r, const BIGNUM *a, const BIGNUM *p, const BIGNUM *m, BN_CTX *ctx);
 BOOL BN_div_recp(BIGNUM *dv, BIGNUM *rem, BIGNUM *m, BN_RECP_CTX *recp, BN_CTX *ctx);
 
-int BN_gen_exp_bits(BIGNUM *param0, u8 **param1, int unused, BN_CTX *param3);
-int BN_gen_exp_string(u8 *param0, BIGNUM *param1, int param2);
+int BN_gen_exp_bits(const BIGNUM *param0, u8 **param1, int unused, BN_CTX *param3);
+int BN_gen_exp_string(u8 *param0, const BIGNUM *param1, int param2);
 
 #define LBITS(a)   ((a) & BN_MASK2l)
 #define HBITS(a)   (((a) >> BN_BITS4) & BN_MASK2l)
