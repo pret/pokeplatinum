@@ -528,7 +528,7 @@ static void MessageQueue_Init(MessageQueue *queue)
     queue->currentIndex = 0;
     queue->tempString = String_Init(50 * 2, HEAP_ID_FIELD1);
 
-    for (int i = 0; i < (int)NELEMS(queue->tempStringLines); i++) {
+    for (int i = 0; i < SNELEMS(queue->tempStringLines); i++) {
         queue->tempStringLines[i] = String_Init(TEMP_STRING_SIZE, HEAP_ID_FIELD1);
     }
 }
@@ -541,7 +541,7 @@ static void MessageQueue_Free(MessageQueue *queue)
 
     String_Free(queue->tempString);
 
-    for (int i = 0; i < (int)NELEMS(queue->tempStringLines); i++) {
+    for (int i = 0; i < SNELEMS(queue->tempStringLines); i++) {
         String_Free(queue->tempStringLines[i]);
     }
 }
@@ -563,7 +563,7 @@ static int MessageQueue_SplitMessage(MessageQueue *queue, String *message)
         i++;
     }
 
-    GF_ASSERT(newlineCount < (int)NELEMS(queue->tempStringLines));
+    GF_ASSERT(newlineCount < SNELEMS(queue->tempStringLines));
 
     if (newlineCount == 0) {
         String_Copy(queue->tempStringLines[0], message);

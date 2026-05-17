@@ -81,7 +81,7 @@ void ov12_022346A4(BattleAnimSystem *battleAnimSys, SpriteSystem *spriteSys, Spr
     spriteTemplate.x = BattleAnimUtil_GetBattlerPos(battleAnimSys, attacker, BATTLE_ANIM_POSITION_MON_X);
     spriteTemplate.y = BattleAnimUtil_GetBattlerPos(battleAnimSys, attacker, BATTLE_ANIM_POSITION_MON_Y);
 
-    for (int i = 0; i < (int)NELEMS(v1->managedSprite); i++) {
+    for (int i = 0; i < SNELEMS(v1->managedSprite); i++) {
         if (i == 0) {
             v1->managedSprite[i] = managedSprite;
             ManagedSprite_SetPositionXY(v1->managedSprite[i], spriteTemplate.x, spriteTemplate.y);
@@ -130,7 +130,7 @@ static void ov12_02234750(SysTask *task, void *param1)
         }
         break;
     case 4:
-        for (int i = 0; i < (int)NELEMS(v0->managedSprite); i++) {
+        for (int i = 0; i < SNELEMS(v0->managedSprite); i++) {
             Sprite_DeleteAndFreeResources(v0->managedSprite[i]);
         }
 
@@ -311,7 +311,7 @@ static void ov12_02234B64(SysTask *task, void *param1)
     case 0:
         BOOL isUpdated;
 
-        for (i = 0; i < (int)NELEMS(v0->managedSprite); i++) {
+        for (i = 0; i < SNELEMS(v0->managedSprite); i++) {
             isUpdated = ov12_02234B34(v0->managedSprite[i], &v0->unk_24[i], &v0->unk_3C[i]);
         }
 
@@ -320,7 +320,7 @@ static void ov12_02234B64(SysTask *task, void *param1)
         }
         break;
     case 1:
-        for (i = 0; i < (int)NELEMS(v0->managedSprite); i++) {
+        for (i = 0; i < SNELEMS(v0->managedSprite); i++) {
             Sprite_DeleteAndFreeResources(v0->managedSprite[i]);
         }
 
@@ -336,7 +336,7 @@ static void ov12_02234BD8(UnkStruct_ov12_02234BD8 *param0, int param1)
 {
     int v1 = 360 * 0xffff / 360 / 6;
 
-    for (int i = 0; i < (int)NELEMS(param0->managedSprite); i++) {
+    for (int i = 0; i < SNELEMS(param0->managedSprite); i++) {
         RevolutionContext_Init(&param0->transformCtx[i], DEG_TO_IDX(0), DEG_TO_IDX(180), 0, 0, FX32_ONE * 50, 0, 48);
         param0->transformCtx[i].data[1] += v1 * i;
         param0->transformCtx[i].data[5] *= param1;
@@ -345,7 +345,7 @@ static void ov12_02234BD8(UnkStruct_ov12_02234BD8 *param0, int param1)
 
 static void ov12_02234C30(UnkStruct_ov12_02234BD8 *param0)
 {
-    for (int i = 0; i < (int)NELEMS(param0->managedSprite); i++) {
+    for (int i = 0; i < SNELEMS(param0->managedSprite); i++) {
         RevolutionContext_Update(&param0->transformCtx[i]);
 
         ManagedSprite_SetPositionXY(param0->managedSprite[i], param0->posX + param0->transformCtx[i].x, param0->posY);
@@ -395,7 +395,7 @@ static void ov12_02234CA8(SysTask *task, void *param1)
         }
         break;
     case 4:
-        for (int i = 0; i < (int)NELEMS(v0->managedSprite); i++) {
+        for (int i = 0; i < SNELEMS(v0->managedSprite); i++) {
             Sprite_DeleteAndFreeResources(v0->managedSprite[i]);
         }
 
@@ -424,7 +424,7 @@ void ov12_02234D98(BattleAnimSystem *battleAnimSystem, SpriteSystem *spriteSyste
 
     spriteTemplate = BattleAnimSystem_GetLastSpriteTemplate(battleAnimSystem);
 
-    for (int i = 0; i < (int)NELEMS(battleAnimUtil->managedSprite); i++) {
+    for (int i = 0; i < SNELEMS(battleAnimUtil->managedSprite); i++) {
         if (i == 0) {
             battleAnimUtil->managedSprite[i] = managedSprite;
         } else {
