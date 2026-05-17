@@ -67,16 +67,16 @@ static void CommManUnderground_DebugPrintDummy(char *string)
 
 void CommManUnderground_InitUnderground(FieldSystem *fieldSystem)
 {
-    FieldCommunicationManager *fieldCommMan = FieldCommMan_Get();
+    FieldCommunicationManager *fieldCommMan = FieldCommManager_Get();
 
     if (fieldCommMan != NULL) {
         return;
     }
 
     CommManager_StartUnderground(FieldSystem_GetSaveData(fieldSystem));
-    FieldCommMan_Init(fieldSystem);
+    FieldCommManager_Init(fieldSystem);
 
-    fieldCommMan = FieldCommMan_Get();
+    fieldCommMan = FieldCommManager_Get();
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_UNDERGROUND, HEAP_SIZE_UNDERGROUND);
 
     if (!SystemFlag_CheckHasSeenUndergroundRoarkIntro(SaveData_GetVarsFlags(fieldCommMan->fieldSystem->saveData))) {
@@ -86,7 +86,7 @@ void CommManUnderground_InitUnderground(FieldSystem *fieldSystem)
 
 void CommManUnderground_EnterUnderground(void)
 {
-    FieldCommunicationManager *fieldCommMan = FieldCommMan_Get();
+    FieldCommunicationManager *fieldCommMan = FieldCommManager_Get();
 
     fieldCommMan->isUnderground = TRUE;
     GameRecords_IncrementTrainerScore(SaveData_GetGameRecords(fieldCommMan->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNDERGROUND_ENTERED);
@@ -97,7 +97,7 @@ void CommManUnderground_EnterUnderground(void)
 
 void CommManUnderground_ExitUnderground(void)
 {
-    FieldCommunicationManager *fieldCommMan = FieldCommMan_Get();
+    FieldCommunicationManager *fieldCommMan = FieldCommManager_Get();
 
     if (fieldCommMan == NULL) {
         return;
@@ -128,7 +128,7 @@ void CommManUnderground_ReopenSecretBase(void)
 
 BOOL CommManUnderground_TryEnterBaseTransitionState(void)
 {
-    FieldCommunicationManager *fieldCommMan = FieldCommMan_Get();
+    FieldCommunicationManager *fieldCommMan = FieldCommManager_Get();
 
     u32 currentTask = (u32)fieldCommMan->task;
     u32 mainTaskServer = (u32)CommManUnderground_MainTaskServer;
@@ -167,7 +167,7 @@ BOOL CommManUnderground_TryEnterBaseTransitionState(void)
 
 BOOL CommManUnderground_TryExitBaseTransitionState(void)
 {
-    FieldCommunicationManager *fieldCommMan = FieldCommMan_Get();
+    FieldCommunicationManager *fieldCommMan = FieldCommManager_Get();
     u32 currentTask = (u32)fieldCommMan->task;
     u32 moveTaskServer = (u32)CommManUnderground_BaseTransitionTaskServer;
     u32 moveTaskClient = (u32)CommManUnderground_BaseTransitionTaskClient;
@@ -193,7 +193,7 @@ BOOL CommManUnderground_TryExitBaseTransitionState(void)
 
 BOOL CommManUnderground_IsInputAllowed(void)
 {
-    FieldCommunicationManager *fieldCommMan = FieldCommMan_Get();
+    FieldCommunicationManager *fieldCommMan = FieldCommManager_Get();
 
     u32 inputAllowedTasks[] = {
         (u32)CommManUnderground_MainTaskClient,
@@ -227,7 +227,7 @@ BOOL CommManUnderground_IsInputAllowed(void)
 
 static void CommManUnderground_SetFieldCommManTask(FieldCommTask task, int timer)
 {
-    FieldCommunicationManager *fieldCommMan = FieldCommMan_Get();
+    FieldCommunicationManager *fieldCommMan = FieldCommManager_Get();
 
     fieldCommMan->task = task;
     fieldCommMan->timer = timer;
@@ -235,7 +235,7 @@ static void CommManUnderground_SetFieldCommManTask(FieldCommTask task, int timer
 
 static void CommManUnderground_SendInitialDataTask(void)
 {
-    FieldCommunicationManager *fieldCommMan = FieldCommMan_Get();
+    FieldCommunicationManager *fieldCommMan = FieldCommManager_Get();
 
     if (fieldCommMan->timer != 0) {
         fieldCommMan->timer--;
@@ -264,7 +264,7 @@ static void CommManUnderground_SendInitialDataTask(void)
 
 static void CommManUnderground_WaitForRoarkSceneTask(void)
 {
-    FieldCommunicationManager *fieldCommMan = FieldCommMan_Get();
+    FieldCommunicationManager *fieldCommMan = FieldCommManager_Get();
 
     if (!SystemFlag_CheckHasSeenUndergroundRoarkIntro(SaveData_GetVarsFlags(fieldCommMan->fieldSystem->saveData))) {
         return;
@@ -278,7 +278,7 @@ static void CommManUnderground_WaitForRoarkSceneTask(void)
 
 static void CommManUnderground_DelayTask(void)
 {
-    FieldCommunicationManager *fieldCommMan = FieldCommMan_Get();
+    FieldCommunicationManager *fieldCommMan = FieldCommManager_Get();
 
     if (fieldCommMan->timer != 0) {
         fieldCommMan->timer--;
@@ -305,7 +305,7 @@ static void CommManUnderground_CheckForConnectionsTask(void)
 
 static void CommManUnderground_ConnectTaskClient(void)
 {
-    FieldCommunicationManager *fieldCommMan = FieldCommMan_Get();
+    FieldCommunicationManager *fieldCommMan = FieldCommManager_Get();
 
     if (fieldCommMan->timer != 0) {
         fieldCommMan->timer--;
@@ -340,7 +340,7 @@ static void CommManUnderground_ConnectTaskClient(void)
 
 static void CommManUnderground_ConnectTaskServer(void)
 {
-    FieldCommunicationManager *fieldCommMan = FieldCommMan_Get();
+    FieldCommunicationManager *fieldCommMan = FieldCommManager_Get();
 
     UndergroundMan_Process();
 
@@ -368,7 +368,7 @@ static void CommManUnderground_ConnectTaskServer(void)
 
 static void CommManUnderground_MainTaskServer(void)
 {
-    FieldCommunicationManager *fieldCommMan = FieldCommMan_Get();
+    FieldCommunicationManager *fieldCommMan = FieldCommManager_Get();
 
     UndergroundMan_Process();
 
@@ -405,7 +405,7 @@ static void CommManUnderground_BaseTransitionTaskServer(void)
 
 static void CommManUnderground_BaseTransitionEndTaskServer(void)
 {
-    FieldCommunicationManager *fieldCommMan = FieldCommMan_Get();
+    FieldCommunicationManager *fieldCommMan = FieldCommManager_Get();
 
     SecretBases_RequestClearTransitioningStatus();
     CommPlayerMan_Restart();
@@ -414,7 +414,7 @@ static void CommManUnderground_BaseTransitionEndTaskServer(void)
 
 static void CommManUnderground_WaitForDataReadTaskClient(void)
 {
-    FieldCommunicationManager *fieldCommMan = FieldCommMan_Get();
+    FieldCommunicationManager *fieldCommMan = FieldCommManager_Get();
 
     if (fieldCommMan->timer == 9) {
         CommInfo_SendPlayerInfo();
@@ -442,7 +442,7 @@ static void CommManUnderground_WaitForDataReadTaskClient(void)
 
 static void CommManUnderground_WaitForFlagDataReceiptTaskClient(void)
 {
-    FieldCommunicationManager *fieldCommMan = FieldCommMan_Get();
+    FieldCommunicationManager *fieldCommMan = FieldCommManager_Get();
 
     if (UndergroundPlayer_HaveLinksReceivedHeldFlagData()) {
         Traps_SendPlacedTraps();
@@ -497,7 +497,7 @@ static void CommManUnderground_WaitUntilAloneTaskServer(void)
 
 static void CommManUnderground_RestartTaskServer(void)
 {
-    FieldCommunicationManager *fieldCommMan = FieldCommMan_Get();
+    FieldCommunicationManager *fieldCommMan = FieldCommManager_Get();
 
     if (fieldCommMan->timer != 0) {
         fieldCommMan->timer--;
@@ -511,7 +511,7 @@ static void CommManUnderground_RestartTaskServer(void)
 
 static void CommManUnderground_RestartTaskClient(void)
 {
-    FieldCommunicationManager *fieldCommMan = FieldCommMan_Get();
+    FieldCommunicationManager *fieldCommMan = FieldCommManager_Get();
 
     if (fieldCommMan->timer != 0) {
         fieldCommMan->timer--;
@@ -530,7 +530,7 @@ static void CommManUnderground_ClosedBaseTask(void)
 
 static void CommManUnderground_CloseSecretBaseTask(void)
 {
-    FieldCommunicationManager *fieldCommMan = FieldCommMan_Get();
+    FieldCommunicationManager *fieldCommMan = FieldCommManager_Get();
 
     if (CommSys_CurNetId() == 0) {
         UndergroundMan_ResetResources(fieldCommMan->fieldSystem);
@@ -556,7 +556,7 @@ static void CommManUnderground_RestartClient(void)
 
 static void CommManUnderground_MainTaskClient(void)
 {
-    FieldCommunicationManager *fieldCommMan = FieldCommMan_Get();
+    FieldCommunicationManager *fieldCommMan = FieldCommManager_Get();
 
     UndergroundMan_Process();
     sub_02059524();
@@ -583,7 +583,7 @@ static void CommManUnderground_BaseTransitionTaskClient(void)
 
 static void CommManUnderground_BaseTransitionEndTaskClient(void)
 {
-    FieldCommunicationManager *fieldCommMan = FieldCommMan_Get();
+    FieldCommunicationManager *fieldCommMan = FieldCommManager_Get();
 
     SecretBases_RequestClearTransitioningStatus();
     CommPlayerMan_Restart();
@@ -613,7 +613,7 @@ static void CommManUnderground_BaseTransitionTaskAlone(void)
 
 static void CommManUnderground_BaseTransitionEndTaskAlone(void)
 {
-    FieldCommunicationManager *fieldCommMan = FieldCommMan_Get();
+    FieldCommunicationManager *fieldCommMan = FieldCommManager_Get();
 
     SecretBases_RequestClearTransitioningStatus();
     CommPlayerMan_Restart();
@@ -633,7 +633,7 @@ static void CommManUnderground_ClosedBaseTransitionTask(void)
 
 static void CommManUnderground_ClosedBaseTransitionEndTask(void)
 {
-    FieldCommunicationManager *fieldCommMan = FieldCommMan_Get();
+    FieldCommunicationManager *fieldCommMan = FieldCommManager_Get();
 
     SecretBases_RequestClearTransitioningStatus();
     CommPlayerMan_Restart();
@@ -642,7 +642,7 @@ static void CommManUnderground_ClosedBaseTransitionEndTask(void)
 
 static void CommManUnderground_ExitUndergroundTask(void)
 {
-    FieldCommunicationManager *fieldCommMan = FieldCommMan_Get();
+    FieldCommunicationManager *fieldCommMan = FieldCommManager_Get();
 
     if (fieldCommMan->timer != 0) {
         fieldCommMan->timer--;
@@ -656,5 +656,5 @@ static void CommManUnderground_ExitUndergroundTask(void)
 
     fieldCommMan->isUnderground = FALSE;
 
-    FieldCommMan_Delete();
+    FieldCommManager_Delete();
 }

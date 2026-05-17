@@ -4521,7 +4521,7 @@ static BOOL ScrCmd_Dummy14F(ScriptContext *ctx)
 
 static BOOL ScrCmd_EndCommunication(ScriptContext *ctx)
 {
-    FieldCommMan_EndBattle();
+    FieldCommManager_EndBattleNoSync();
     ScriptContext_Pause(ctx, ScriptContext_WaitForCommManIsDeleted);
     return TRUE;
 }
@@ -4539,14 +4539,14 @@ static BOOL ScriptContext_WaitForCommManIsDeleted(ScriptContext *ctx)
 
 static BOOL ScrCmd_2BB(ScriptContext *ctx)
 {
-    sub_020598A0();
+    FieldCommManager_EndBattleSync();
     ScriptContext_Pause(ctx, ScriptContext_WaitForCommManIsDeleted);
     return TRUE;
 }
 
 static BOOL ScrCmd_FieldCommEnterBattleRoom(ScriptContext *ctx)
 {
-    FieldCommMan_EnterBattleRoom(ctx->fieldSystem);
+    FieldCommManager_EnterBattleRoom(ctx->fieldSystem);
     return FALSE;
 }
 

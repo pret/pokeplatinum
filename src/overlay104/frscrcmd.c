@@ -1623,7 +1623,7 @@ static BOOL FrontierScrCmd_ClearReceivedTempDataAllPlayers(FrontierScriptContext
 
 static BOOL FrontierScrCmd_EndCommunication(FrontierScriptContext *ctx)
 {
-    FieldCommMan_EndBattle();
+    FieldCommManager_EndBattleNoSync();
     FrontierScriptContext_Pause(ctx, WaitForCommManIsDeleted);
 
     return TRUE;
