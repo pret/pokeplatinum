@@ -2,50 +2,50 @@
 #include "res/text/bank/bg_events.h"
 
 
-    ScriptEntry _0026
-    ScriptEntry _0037
-    ScriptEntry _0048
-    ScriptEntry _0059
-    ScriptEntry _006A
-    ScriptEntry _007B
-    ScriptEntry _008C
-    ScriptEntry _009D
-    ScriptEntry _00AE
+    ScriptEntry BgEvents_SmallBookshelf1
+    ScriptEntry BgEvents_SmallBookshelf2
+    ScriptEntry BgEvents_Bookshelf1
+    ScriptEntry BgEvents_Bookshelf2
+    ScriptEntry BgEvents_TrashCan
+    ScriptEntry BgEvents_MartShelf1
+    ScriptEntry BgEvents_MartShelf2
+    ScriptEntry BgEvents_MartShelf3
+    ScriptEntry BgEvents_TownMap
     ScriptEntryEnd
 
-_0026:
-    EventMessage 0
+BgEvents_SmallBookshelf1:
+    EventMessage BgEvents_Text_SmallBookshelf1
     End
 
-_0037:
-    EventMessage 1
+BgEvents_SmallBookshelf2:
+    EventMessage BgEvents_Text_SmallBookshelf2
     End
 
-_0048:
-    EventMessage 2
+BgEvents_Bookshelf1:
+    EventMessage BgEvents_Text_Bookshelf1
     End
 
-_0059:
-    EventMessage 3
+BgEvents_Bookshelf2:
+    EventMessage BgEvents_Text_Bookshelf2
     End
 
-_006A:
-    EventMessage 4
+BgEvents_TrashCan:
+    EventMessage BgEvents_Text_TrashCan
     End
 
-_007B:
-    EventMessage 5
+BgEvents_MartShelf1:
+    EventMessage BgEvents_Text_MartShelf1
     End
 
-_008C:
-    EventMessage 6
+BgEvents_MartShelf2:
+    EventMessage BgEvents_Text_MartShelf2
     End
 
-_009D:
-    EventMessage 7
+BgEvents_MartShelf3:
+    EventMessage BgEvents_Text_MartShelf3
     End
 
-_00AE:
+BgEvents_TownMap:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FadeScreenOut
