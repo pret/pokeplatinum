@@ -1325,7 +1325,7 @@ static BOOL State_SyncPurchase(BattleCastleSelfApp *app)
     case 4:
         if (CommTiming_IsSyncState(130) == TRUE) {
             CommTool_ClearReceivedTempDataAllPlayers();
-            CommTool_Init(100);
+            CommTool_Init(HEAP_ID_BATTLE_CASTLE_APP);
 
             app->slotID = 0xff;
 
