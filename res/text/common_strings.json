@@ -89,7 +89,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000213_00011",
+      "id": "CommonStrings_Text_OutOfPokemonVisionDimmed",
       "en_US": [
         "{STRVAR_1 3, 0, 0} is out of battle-ready\n",
         "Pokémon!\r",
@@ -97,15 +97,15 @@
       ]
     },
     {
-      "id": "pl_msg_00000213_00012",
+      "id": "CommonStrings_Text_Dummy12",
       "garbage": 13
     },
     {
-      "id": "pl_msg_00000213_00013",
+      "id": "CommonStrings_Text_WouldYouLikeToSave",
       "en_US": "Would you like to save the game?"
     },
     {
-      "id": "pl_msg_00000213_00014",
+      "id": "CommonStrings_Text_OKToOverwriteSavedFile",
       "en_US": [
         "There is already a saved file.\n",
         "Is it OK to overwrite it?"
@@ -123,7 +123,7 @@
       "en_US": "{STRVAR_1 3, 0, 0} saved the game."
     },
     {
-      "id": "pl_msg_00000213_00017",
+      "id": "CommonStrings_Text_00017",
       "en_US": [
         "Warning!\n",
         "There is already a saved game file.\r",
@@ -139,14 +139,14 @@
       "en_US": "Save error."
     },
     {
-      "id": "pl_msg_00000213_00019",
+      "id": "CommonStrings_Text_00019",
       "en_US": [
         "Saving...\n",
         "Don’t turn off the power."
       ]
     },
     {
-      "id": "pl_msg_00000213_00020",
+      "id": "CommonStrings_Text_ImpossibleToSave",
       "en_US": [
         "There is already a saved game file.\n",
         "It is impossible to save.\r",
@@ -158,21 +158,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000213_00021",
+      "id": "CommonStrings_Text_SavingALotOfData",
       "en_US": [
         "Saving a lot of data...\n",
         "Don’t turn off the power."
       ]
     },
     {
-      "id": "pl_msg_00000213_00022",
+      "id": "CommonStrings_Text_00022",
       "en_US": [
         "Want to give a nickname to the\n",
         "{STRVAR_1 0, 0, 0}?"
       ]
     },
     {
-      "id": "pl_msg_00000213_00023",
+      "id": "CommonStrings_Text_Dummy23",
       "garbage": 19
     },
     {
@@ -208,7 +208,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000213_00029",
+      "id": "CommonStrings_Text_00029",
       "en_US": [
         "{STRVAR_1 3, 0, 0} obtained\n",
         "the {COLOR 1}{STRVAR_1 8, 1, 0}{COLOR 0}!"
@@ -229,22 +229,22 @@
       ]
     },
     {
-      "id": "pl_msg_00000213_00032",
+      "id": "CommonStrings_Text_BootedUpThePC",
       "en_US": "{STRVAR_1 3, 0, 0} booted up the PC.\r"
     },
     {
-      "id": "pl_msg_00000213_00033",
+      "id": "CommonStrings_Text_AccessWhichPC",
       "en_US": "Which PC should be accessed?"
     },
     {
-      "id": "pl_msg_00000213_00034",
+      "id": "CommonStrings_Text_AccessedPokemonStorage",
       "en_US": [
         "The Pokémon Storage System\n",
         "was accessed.\r"
       ]
     },
     {
-      "id": "pl_msg_00000213_00035",
+      "id": "CommonStrings_Text_AccessedPlayersPC",
       "en_US": "Accessed {STRVAR_1 3, 0, 0}’s PC.\r"
     },
     {
@@ -263,7 +263,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000213_00038",
+      "id": "CommonStrings_Text_Dummy38",
       "garbage": 21
     },
     {
@@ -287,7 +287,7 @@
       ]
     },
     {
-      "id": "CommonStrings_Text_YourPokemonAreLookingGreat_BeforePokedex",
+      "id": "CommonStrings_Text_PokemonLookingGreatBeforePokedex",
       "en_US": [
         "Mom: Oh, good! You and your\n",
         "Pokémon are looking great.\r",
@@ -306,7 +306,7 @@
       ]
     },
     {
-      "id": "CommonStrings_Text_YourPokemonAreLookingGreat_AfterPokedex",
+      "id": "CommonStrings_Text_PokemonLookingGreatAfterPokedex",
       "en_US": [
         "Mom: Oh, good! You and your\n",
         "Pokémon are looking great.\r",
@@ -346,35 +346,35 @@
       ]
     },
     {
-      "id": "pl_msg_00000213_00046",
+      "id": "CommonStrings_Text_HoneyTreeSweetScentNoHoney",
       "en_US": "There is a sweet scent in the air..."
     },
     {
-      "id": "pl_msg_00000213_00047",
+      "id": "CommonStrings_Text_HoneyTreeSweetScent",
       "en_US": "There is a sweet scent in the air...\r"
     },
     {
-      "id": "pl_msg_00000213_00048",
+      "id": "CommonStrings_Text_HoneyTreeSlatheredNoHoney",
       "en_US": "The bark is slathered with Honey..."
     },
     {
-      "id": "pl_msg_00000213_00049",
+      "id": "CommonStrings_Text_HoneyTreeSlathered",
       "en_US": "The bark is slathered with Honey...\r"
     },
     {
-      "id": "pl_msg_00000213_00050",
+      "id": "CommonStrings_Text_SlatherBarkWithHoney",
       "en_US": "Slather the bark with Honey?"
     },
     {
-      "id": "pl_msg_00000213_00051",
+      "id": "CommonStrings_Text_BarkWasSlathered",
       "en_US": "The bark was slathered with Honey."
     },
     {
-      "id": "pl_msg_00000213_00052",
+      "id": "CommonStrings_Text_NoMailInMailbox",
       "en_US": "There’s no Mail in the Mailbox.\r"
     },
     {
-      "id": "pl_msg_00000213_00053",
+      "id": "CommonStrings_Text_00053",
       "en_US": [
         "The Mail’s content will be lost.\n",
         "Take it back anyway?"
@@ -397,84 +397,84 @@
       "en_US": "Landed a Pokémon!"
     },
     {
-      "id": "pl_msg_00000213_00058",
+      "id": "CommonStrings_Text_Dummy58",
       "garbage": 39
     },
     {
-      "id": "pl_msg_00000213_00059",
+      "id": "CommonStrings_Text_Dummy59",
       "garbage": 18
     },
     {
-      "id": "pl_msg_00000213_00060",
+      "id": "CommonStrings_Text_Dummy60",
       "garbage": 17
     },
     {
-      "id": "pl_msg_00000213_00061",
+      "id": "CommonStrings_Text_Dummy61",
       "garbage": 11
     },
     {
-      "id": "pl_msg_00000213_00062",
+      "id": "CommonStrings_Text_Dummy62",
       "garbage": 76
     },
     {
-      "id": "pl_msg_00000213_00063",
+      "id": "CommonStrings_Text_Dummy63",
       "garbage": 76
     },
     {
-      "id": "pl_msg_00000213_00064",
+      "id": "CommonStrings_Text_Dummy64",
       "garbage": 92
     },
     {
-      "id": "pl_msg_00000213_00065",
+      "id": "CommonStrings_Text_Dummy65",
       "garbage": 85
     },
     {
-      "id": "pl_msg_00000213_00066",
+      "id": "CommonStrings_Text_PokemonSurvivedThePoisoning",
       "en_US": [
         "{STRVAR_1 1, 0, 0} survived the poisoning.\n",
         "The poison faded away!\r"
       ]
     },
     {
-      "id": "CommonStrings_Text_ItsAnAirVentThatExchangesTheUndergroundTunnelsAir",
+      "id": "CommonStrings_Text_VentThatExchangesAir",
       "en_US": [
         "It’s an air vent that exchanges\n",
         "the underground tunnels’ air."
       ]
     },
     {
-      "id": "pl_msg_00000213_00068",
+      "id": "CommonStrings_Text_GenderSymbolMale",
       "en_US": "♂"
     },
     {
-      "id": "pl_msg_00000213_00069",
+      "id": "CommonStrings_Text_GenderSymbolFemale",
       "en_US": "♀"
     },
     {
-      "id": "pl_msg_00000213_00070",
+      "id": "CommonStrings_Text_SweetScentNothingHere",
       "en_US": "There appears to be nothing here..."
     },
     {
-      "id": "pl_msg_00000213_00071",
+      "id": "CommonStrings_Text_SweetScentFaded",
       "en_US": [
         "The sweet scent faded for some\n",
         "reason..."
       ]
     },
     {
-      "id": "pl_msg_00000213_00072",
+      "id": "CommonStrings_Text_Dummy72",
       "garbage": 34
     },
     {
-      "id": "pl_msg_00000213_00073",
+      "id": "CommonStrings_Text_RideYourBike",
       "en_US": "Ride your Bike?"
     },
     {
-      "id": "pl_msg_00000213_00074",
+      "id": "CommonStrings_Text_GetOffYourBike",
       "en_US": "Get off your Bike?"
     },
     {
-      "id": "pl_msg_00000213_00075",
+      "id": "CommonStrings_Text_Dummy75",
       "garbage": 20
     },
     {
@@ -482,30 +482,30 @@
       "en_US": "Oh?"
     },
     {
-      "id": "pl_msg_00000213_00077",
+      "id": "CommonStrings_Text_00077",
       "en_US": "{STRVAR_1 0, 0, 0} hatched from the Egg!"
     },
     {
-      "id": "pl_msg_00000213_00078",
+      "id": "CommonStrings_Text_00078",
       "en_US": [
         "Would you like to nickname the newly\n",
         "hatched {STRVAR_1 0, 0, 0}?"
       ]
     },
     {
-      "id": "pl_msg_00000213_00079",
+      "id": "CommonStrings_Text_RepelsEffectWoreOff",
       "en_US": "Repel’s effect wore off..."
     },
     {
-      "id": "pl_msg_00000213_00080",
+      "id": "CommonStrings_Text_ObtainedTheUndergroundTrap",
       "en_US": "Obtained the {STRVAR_1 8, 0, 0}!"
     },
     {
-      "id": "pl_msg_00000213_00081",
+      "id": "CommonStrings_Text_ObtainedTheUndergroundSphere",
       "en_US": "Obtained the {STRVAR_1 8, 0, 0} {STRVAR_1 51, 1, 0}!"
     },
     {
-      "id": "pl_msg_00000213_00082",
+      "id": "CommonStrings_Text_UndergroundOffLimits",
       "en_US": [
         "I’m very sorry.\r",
         "We are working underground right now.\n",
@@ -514,70 +514,70 @@
       ]
     },
     {
-      "id": "pl_msg_00000213_00083",
+      "id": "CommonStrings_Text_ObtainedPoketchDigitalWatch",
       "en_US": [
         "The {COLOR 2}Digital Watch{COLOR 0} app displays\n",
         "the current time.\r"
       ]
     },
     {
-      "id": "pl_msg_00000213_00084",
+      "id": "CommonStrings_Text_ObtainedPoketchCalculator",
       "en_US": [
         "The {COLOR 2}Calculator{COLOR 0} app can handle\n",
         "calculations up to ten digits.\r"
       ]
     },
     {
-      "id": "pl_msg_00000213_00085",
+      "id": "CommonStrings_Text_ObtainedPoketchMemoPad",
       "en_US": [
         "The {COLOR 2}Memo Pad{COLOR 0} app can be used for\n",
         "jotting down quick notes.\r"
       ]
     },
     {
-      "id": "pl_msg_00000213_00086",
+      "id": "CommonStrings_Text_ObtainedPoketchPedometer",
       "en_US": [
         "The {COLOR 2}Pedometer{COLOR 0} app counts the number\n",
         "of steps you’ve walked.\r"
       ]
     },
     {
-      "id": "pl_msg_00000213_00087",
+      "id": "CommonStrings_Text_ObtainedPoketchPokemonList",
       "en_US": [
         "The {COLOR 2}Pokémon List{COLOR 0} app lets you\n",
         "check on the status of your team.\r"
       ]
     },
     {
-      "id": "pl_msg_00000213_00088",
+      "id": "CommonStrings_Text_ObtainedPoketchFriendshipChecker",
       "en_US": [
         "The {COLOR 2}Friendship Checker{COLOR 0} app identifies\n",
         "the Pokémon that like you."
       ]
     },
     {
-      "id": "pl_msg_00000213_00089",
+      "id": "CommonStrings_Text_ObtainedPoketchDowsingMachine",
       "en_US": [
         "The {COLOR 2}Dowsing Machine{COLOR 0} app locates\n",
         "unseeable items.\r"
       ]
     },
     {
-      "id": "pl_msg_00000213_00090",
+      "id": "CommonStrings_Text_ObtainedPoketchBerrySearcher",
       "en_US": [
         "The {COLOR 2}Berry Searcher{COLOR 0} app indicates\n",
         "the locations of ripe Berries."
       ]
     },
     {
-      "id": "pl_msg_00000213_00091",
+      "id": "CommonStrings_Text_ObtainedPoketchDayCareChecker",
       "en_US": [
         "The {COLOR 2}Day-Care Checker{COLOR 0} app shows\n",
         "the Pokémon left with the Day Care."
       ]
     },
     {
-      "id": "pl_msg_00000213_00092",
+      "id": "CommonStrings_Text_ObtainedPoketchPokemonHistory",
       "en_US": [
         "The {COLOR 2}Pokémon History{COLOR 0} app shows\n",
         "the most recently obtained Pokémon."
@@ -591,116 +591,116 @@
       ]
     },
     {
-      "id": "pl_msg_00000213_00094",
+      "id": "CommonStrings_Text_ObtainedPoketchAnalogWatch",
       "en_US": [
         "The {COLOR 2}Analog Watch{COLOR 0} app displays\n",
         "the current time."
       ]
     },
     {
-      "id": "pl_msg_00000213_00095",
+      "id": "CommonStrings_Text_ObtainedPoketchMarkingMap",
       "en_US": [
         "The {COLOR 2}Marking Map{COLOR 0} app allows the\n",
         "placement of markers.\r"
       ]
     },
     {
-      "id": "pl_msg_00000213_00096",
+      "id": "CommonStrings_Text_ObtainedPoketchLinkSearcher",
       "en_US": [
         "The {COLOR 2}Link Searcher{COLOR 0} app determines\n",
         "the availability of wireless hot spots.\r"
       ]
     },
     {
-      "id": "pl_msg_00000213_00097",
+      "id": "CommonStrings_Text_ObtainedPoketchCoinToss",
       "en_US": [
         "The {COLOR 2}Coin Toss{COLOR 0} app can be used\n",
         "to make fair decisions."
       ]
     },
     {
-      "id": "pl_msg_00000213_00098",
+      "id": "CommonStrings_Text_ObtainedPoketchMoveTester",
       "en_US": [
         "The {COLOR 2}Move Tester{COLOR 0} app is used to check\n",
         "how moves match up.\r"
       ]
     },
     {
-      "id": "pl_msg_00000213_00099",
+      "id": "CommonStrings_Text_ObtainedPoketchCalendar",
       "en_US": [
         "The {COLOR 2}Calendar{COLOR 0} app is a monthly\n",
         "calendar with date reminders."
       ]
     },
     {
-      "id": "pl_msg_00000213_00100",
+      "id": "CommonStrings_Text_ObtainedPoketchDotArtist",
       "en_US": [
         "The {COLOR 2}Dot Artist{COLOR 0} app gives players\n",
         "free reign to their creativity."
       ]
     },
     {
-      "id": "pl_msg_00000213_00101",
+      "id": "CommonStrings_Text_ObtainedPoketchRoulette",
       "en_US": [
         "The {COLOR 2}Roulette{COLOR 0} app can be customized\n",
         "to make an original roulette."
       ]
     },
     {
-      "id": "pl_msg_00000213_00102",
+      "id": "CommonStrings_Text_ObtainedPoketchTrainerCounter",
       "en_US": [
         "The {COLOR 2}Trainer Counter{COLOR 0} app tracks\n",
         "the Pokémon Radar’s rankings.\r"
       ]
     },
     {
-      "id": "pl_msg_00000213_00103",
+      "id": "CommonStrings_Text_ObtainedPoketchKitchenTimer",
       "en_US": [
         "The {COLOR 2}Kitchen Timer{COLOR 0} app is a 99-minute\n",
         "timer."
       ]
     },
     {
-      "id": "pl_msg_00000213_00104",
+      "id": "CommonStrings_Text_ObtainedPoketchColorChanger",
       "en_US": [
         "The {COLOR 2}Color Changer{COLOR 0} app can change\n",
         "the Pokétch display color."
       ]
     },
     {
-      "id": "pl_msg_00000213_00105",
+      "id": "CommonStrings_Text_ObtainedPoketchMatchupChecker",
       "en_US": [
         "The {COLOR 2}Matchup Checker{COLOR 0} app shows the\n",
         "affinity of Pokémon to each other.\r"
       ]
     },
     {
-      "id": "pl_msg_00000213_00106",
+      "id": "CommonStrings_Text_ObtainedPoketchStopwatch",
       "en_US": [
         "The {COLOR 2}Stopwatch{COLOR 0} app keeps precise\n",
         "time.\r"
       ]
     },
     {
-      "id": "pl_msg_00000213_00107",
+      "id": "CommonStrings_Text_ObtainedPoketchAlarmClock",
       "en_US": [
         "The {COLOR 2}Alarm Clock{COLOR 0} app operates\n",
         "on a 24-hour system.\r"
       ]
     },
     {
-      "id": "pl_msg_00000213_00108",
+      "id": "CommonStrings_Text_ObtainedUndergroundItem",
       "en_US": "Obtained {STRVAR_1 25, 0, 0}."
     },
     {
-      "id": "pl_msg_00000213_00109",
+      "id": "CommonStrings_Text_ItemWasSentToUndergroundPC",
       "en_US": [
         "The {STRVAR_1 25, 0, 0} was sent to\n",
         "the underground PC."
       ]
     },
     {
-      "id": "pl_msg_00000213_00110",
+      "id": "CommonStrings_Text_Engraving1PlateObtained",
       "en_US": [
         "There is text engraved in the back\n",
         "of the obtained Plate...\r",
@@ -709,7 +709,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000213_00111",
+      "id": "CommonStrings_Text_Engraving2PlatesObtained",
       "en_US": [
         "There is text engraved in the back\n",
         "of the obtained Plate...\r",
@@ -718,7 +718,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000213_00112",
+      "id": "CommonStrings_Text_Engraving3PlatesObtained",
       "en_US": [
         "There is text engraved in the back\n",
         "of the obtained Plate...\r",
@@ -727,7 +727,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000213_00113",
+      "id": "CommonStrings_Text_Engraving4PlatesObtained",
       "en_US": [
         "There is text engraved in the back\n",
         "of the obtained Plate...\r",
@@ -736,7 +736,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000213_00114",
+      "id": "CommonStrings_Text_Engraving5PlatesObtained",
       "en_US": [
         "There is text engraved in the back\n",
         "of the obtained Plate...\r",
@@ -745,7 +745,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000213_00115",
+      "id": "CommonStrings_Text_Engraving6PlatesObtained",
       "en_US": [
         "There is text engraved in the back\n",
         "of the obtained Plate...\r",
@@ -754,7 +754,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000213_00116",
+      "id": "CommonStrings_Text_Engraving7PlatesObtained",
       "en_US": [
         "There is text engraved in the back\n",
         "of the obtained Plate...\r",
@@ -763,7 +763,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000213_00117",
+      "id": "CommonStrings_Text_Engraving8PlatesObtained",
       "en_US": [
         "There is text engraved in the back\n",
         "of the obtained Plate...\r",
@@ -772,14 +772,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000213_00118",
+      "id": "CommonStrings_Text_NoSeals",
       "en_US": [
         "Ball Capsules can’t be used because\n",
         "you don’t have any Seals.\r"
       ]
     },
     {
-      "id": "pl_msg_00000213_00119",
+      "id": "CommonStrings_Text_00119",
       "en_US": [
         "Saving the game again...\n",
         "Don’t turn off the power."
@@ -806,7 +806,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000213_00122",
+      "id": "CommonStrings_Text_AskBlowIntoAzureFlute",
       "en_US": [
         "{STRVAR_1 3, 0, 0}’s Azure Flute is making\n",
         "a sound!\r",
@@ -815,15 +815,15 @@
       ]
     },
     {
-      "id": "pl_msg_00000213_00123",
+      "id": "CommonStrings_Text_PlayerBlewAzureFlute",
       "en_US": "{STRVAR_1 3, 0, 0} blew the Azure Flute.\r"
     },
     {
-      "id": "pl_msg_00000213_00124",
+      "id": "CommonStrings_Text_GlowingStairwayAppeared",
       "en_US": "A glowing stairway appeared!"
     },
     {
-      "id": "pl_msg_00000213_00125",
+      "id": "CommonStrings_Text_MeaninglessUsingAzureFlute",
       "en_US": [
         "The Azure Flute echoed hollowly...\r",
         "It appears to be meaningless using\n",
@@ -845,14 +845,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000213_00128",
+      "id": "CommonStrings_Text_ItemWasSentToUndergroundPC_ArrowPrompt",
       "en_US": [
         "The {STRVAR_1 25, 0, 0} was sent to\n",
         "the underground PC.\r"
       ]
     },
     {
-      "id": "pl_msg_00000213_00129",
+      "id": "CommonStrings_Text_CheckShardsNeededForMove",
       "en_US": [
         "Check the move you want taught to\n",
         "see what Shards are needed."
@@ -867,7 +867,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000213_00131",
+      "id": "CommonStrings_Text_HallOfFameDataCorrupted",
       "en_US": [
         "Your Hall of Fame data is corrupted.\r",
         "It will be fixed if you enter the\n",

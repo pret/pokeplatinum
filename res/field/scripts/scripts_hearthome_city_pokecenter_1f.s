@@ -10,7 +10,7 @@
     ScriptEntryEnd
 
 HearthomeCityPokecenter1F_Nurse:
-    Common_CallPokecenterNurse LOCALID_POKECENTER_NURSE
+    Common_CallPokecenterNurse LOCALID_HEARTHOME_NURSE
     End
 
 HearthomeCityPokecenter1F_Youngster:

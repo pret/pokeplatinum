@@ -9,7 +9,7 @@
     ScriptEntryEnd
 
 ResortAreaPokecenter1F_Nurse:
-    Common_CallPokecenterNurse LOCALID_POKECENTER_NURSE
+    Common_CallPokecenterNurse LOCALID_RESORT_AREA_NURSE
     End
 
 ResortAreaPokecenter1F_RichBoy:

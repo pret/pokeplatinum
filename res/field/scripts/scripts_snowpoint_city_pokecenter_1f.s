@@ -11,7 +11,7 @@
     ScriptEntryEnd
 
 SnowpointCityPokecenter1F_Nurse:
-    Common_CallPokecenterNurse LOCALID_POKECENTER_NURSE
+    Common_CallPokecenterNurse LOCALID_SNOWPOINT_NURSE
     End
 
 SnowpointCityPokecenter1F_Lass:
@@ -44,17 +44,17 @@ SnowpointCityPokecenter1F_Maylene:
     End
 
 SnowpointCityPokecenter1F_MayleneWalkOnSpotSouth:
-    ApplyMovement LOCALID_MAYLENE, SnowpointCityPokecenter1F_Movement_MayleneWalkOnSpotSouth
+    ApplyMovement LOCALID_SNOWPOINT_MAYLENE, SnowpointCityPokecenter1F_Movement_MayleneWalkOnSpotSouth
     WaitMovement
     Return
 
 SnowpointCityPokecenter1F_MayleneWalkOnSpotEast:
-    ApplyMovement LOCALID_MAYLENE, SnowpointCityPokecenter1F_Movement_MayleneWalkOnSpotEast
+    ApplyMovement LOCALID_SNOWPOINT_MAYLENE, SnowpointCityPokecenter1F_Movement_MayleneWalkOnSpotEast
     WaitMovement
     Return
 
 SnowpointCityPokecenter1F_MayleneWalkOnSpotWest:
-    ApplyMovement LOCALID_MAYLENE, SnowpointCityPokecenter1F_Movement_MayleneWalkOnSpotWest
+    ApplyMovement LOCALID_SNOWPOINT_MAYLENE, SnowpointCityPokecenter1F_Movement_MayleneWalkOnSpotWest
     WaitMovement
     Return
 

@@ -234,127 +234,127 @@
       "garbage": 1
     },
     {
-      "id": "pl_msg_00000361_00058",
+      "id": "MenuEntries_Text_PC_SomeonesPC",
       "en_US": "SOMEONE’S PC"
     },
     {
-      "id": "pl_msg_00000361_00059",
+      "id": "MenuEntries_Text_PC_BebesPC",
       "en_US": "BEBE’S PC"
     },
     {
-      "id": "pl_msg_00000361_00060",
+      "id": "MenuEntries_Text_PC_PlayersPC",
       "en_US": "{STRVAR_1 3, 0, 0}’s PC"
     },
     {
-      "id": "pl_msg_00000361_00061",
+      "id": "MenuEntries_Text_PC_HallOfFame",
       "en_US": "HALL OF FAME"
     },
     {
-      "id": "pl_msg_00000361_00062",
+      "id": "MenuEntries_Text_PC_OaksPC",
       "en_US": "OAK’S PC"
     },
     {
-      "id": "pl_msg_00000361_00063",
+      "id": "MenuEntries_Text_PC_RowansPC",
       "en_US": "ROWAN’S PC"
     },
     {
-      "id": "pl_msg_00000361_00064",
+      "id": "MenuEntries_Text_PC_SwitchOff",
       "en_US": "SWITCH OFF"
     },
     {
-      "id": "MenuEntries_Text_PokemonStorageDepositPokemon",
+      "id": "MenuEntries_Text_PC_DepositPokemon",
       "en_US": "DEPOSIT POKéMON"
     },
     {
-      "id": "MenuEntries_Text_PokemonStorageWithdrawPokemon",
+      "id": "MenuEntries_Text_PC_WithdrawPokemon",
       "en_US": "WITHDRAW POKéMON"
     },
     {
-      "id": "MenuEntries_Text_PokemonStorageMovePokemon",
+      "id": "MenuEntries_Text_PC_MovePokemon",
       "en_US": "MOVE POKéMON"
     },
     {
-      "id": "MenuEntries_Text_PokemonStorageMoveItems",
+      "id": "MenuEntries_Text_PC_MoveItems",
       "en_US": "MOVE ITEMS"
     },
     {
-      "id": "MenuEntries_Text_PokemonStorageComparePokemon",
+      "id": "MenuEntries_Text_PC_ComparePokemon",
       "en_US": "COMPARE POKéMON"
     },
     {
-      "id": "MenuEntries_Text_PokemonStorageSeeYa",
+      "id": "MenuEntries_Text_PC_SeeYa",
       "en_US": "SEE YA!"
     },
     {
-      "id": "pl_msg_00000361_00071",
+      "id": "MenuEntries_Text_PC_Mailbox",
       "en_US": "MAILBOX"
     },
     {
-      "id": "pl_msg_00000361_00072",
+      "id": "MenuEntries_Text_PC_BallCapsules",
       "en_US": "BALL CAPSULES"
     },
     {
-      "id": "pl_msg_00000361_00073",
+      "id": "MenuEntries_Text_PC_LogOut",
       "en_US": "LOG OUT"
     },
     {
-      "id": "MenuEntries_Text_PokemonStorageDepositPokemonDescription",
+      "id": "MenuEntries_Text_PC_DescriptionDepositPokemon",
       "en_US": [
         "Pokémon in your party may be stored\n",
         "in the storage system’s Boxes."
       ]
     },
     {
-      "id": "MenuEntries_Text_PokemonStorageWithdrawPokemonDescription",
+      "id": "MenuEntries_Text_PC_DescriptionWithdrawPokemon",
       "en_US": [
         "Pokémon stored in Boxes may be added\n",
         "to your party."
       ]
     },
     {
-      "id": "MenuEntries_Text_PokemonStorageMovePokemonDescription",
+      "id": "MenuEntries_Text_PC_DescriptionMovePokemon",
       "en_US": [
         "You may sort the Pokémon in Boxes\n",
         "and in your party."
       ]
     },
     {
-      "id": "MenuEntries_Text_PokemonStorageMoveItemsDescription",
+      "id": "MenuEntries_Text_PC_DescriptionMoveItems",
       "en_US": [
         "You may sort the items held by your\n",
         "Pokémon in Boxes and in your party."
       ]
     },
     {
-      "id": "MenuEntries_Text_PokemonStorageComparePokemonDescription",
+      "id": "MenuEntries_Text_PC_DescriptionComparePokemon",
       "en_US": [
         "You may compare two Pokémon in Boxes\n",
         "or your party side by side."
       ]
     },
     {
-      "id": "MenuEntries_Text_PokemonStorageSeeYaDescription",
+      "id": "MenuEntries_Text_PC_DescriptionSeeYa",
       "en_US": [
         "Log out of the Pokémon Storage\n",
         "System."
       ]
     },
     {
-      "id": "pl_msg_00000361_00080",
+      "id": "MenuEntries_Text_PC_DescriptionMailBox",
       "en_US": [
         "Up to 20 pieces of Mail can be\n",
         "stored."
       ]
     },
     {
-      "id": "pl_msg_00000361_00081",
+      "id": "MenuEntries_Text_PC_DescriptionBallCapsules",
       "en_US": [
         "You may set or edit capsules for\n",
         "decorating Poké Balls."
       ]
     },
     {
-      "id": "pl_msg_00000361_00082",
+      "id": "MenuEntries_Text_PC_DescriptionLogOut",
       "en_US": "Log out of your PC."
     },
     {

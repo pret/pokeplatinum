@@ -6,7 +6,7 @@
 BOOL ScrCmd_CallTVBroadcast(ScriptContext *param0);
 BOOL ScrCmd_236(ScriptContext *param0);
 BOOL ScrCmd_2B8(ScriptContext *param0);
-BOOL ScrCmd_30B(ScriptContext *param0);
+BOOL ScrCmd_SaveTVSegmentPokemonStorageBulletin(ScriptContext *ctx);
 BOOL ScrCmd_SaveTVSegmentHomeAndManorNoFurniture(ScriptContext *ctx);
 BOOL ScrCmd_SaveTVSegmentHomeAndManor(ScriptContext *ctx);
 BOOL ScrCmd_CallTVInterview(ScriptContext *ctx);

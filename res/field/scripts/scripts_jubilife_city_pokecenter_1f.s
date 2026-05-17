@@ -10,7 +10,7 @@
     ScriptEntryEnd
 
 JubilifeCityPokecenter1F_Nurse:
-    Common_CallPokecenterNurse LOCALID_POKECENTER_NURSE
+    Common_CallPokecenterNurse LOCALID_JUBILIFE_NURSE
     End
 
 JubilifeCityPokecenter1F_Twin:

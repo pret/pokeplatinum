@@ -10,7 +10,7 @@
     ScriptEntryEnd
 
 FightAreaPokecenter1F_Nurse:
-    Common_CallPokecenterNurse LOCALID_POKECENTER_NURSE
+    Common_CallPokecenterNurse LOCALID_FIGHT_AREA_NURSE
     End
 
 FightAreaPokecenter1F_Guitarist:

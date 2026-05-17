@@ -3,14 +3,14 @@
 #include "res/field/events/events_sandgem_town_pokecenter_1f.h"
 
 
-    ScriptEntry SandgemTownPokecenter1F_PokecenterNurse
+    ScriptEntry SandgemTownPokecenter1F_Nurse
     ScriptEntry SandgemTownPokecenter1F_BreederM
     ScriptEntry SandgemTownPokecenter1F_ExpertM
     ScriptEntry SandgemTownPokecenter1F_Lass
     ScriptEntryEnd
 
-SandgemTownPokecenter1F_PokecenterNurse:
-    Common_CallPokecenterNurse LOCALID_POKECENTER_NURSE
+SandgemTownPokecenter1F_Nurse:
+    Common_CallPokecenterNurse LOCALID_SANDGEM_NURSE
     End
 
 SandgemTownPokecenter1F_BreederM:

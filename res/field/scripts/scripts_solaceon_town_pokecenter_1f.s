@@ -10,7 +10,7 @@
     ScriptEntryEnd
 
 SolaceonTownPokecenter1F_Nurse:
-    Common_CallPokecenterNurse LOCALID_POKECENTER_NURSE
+    Common_CallPokecenterNurse LOCALID_SOLACEON_NURSE
     End
 
 SolaceonTownPokecenter1F_OldMan:

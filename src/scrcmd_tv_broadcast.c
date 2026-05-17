@@ -120,7 +120,7 @@ BOOL ScrCmd_2B8(ScriptContext *param0)
     return FALSE;
 }
 
-BOOL ScrCmd_30B(ScriptContext *param0)
+BOOL ScrCmd_SaveTVSegmentPokemonStorageBulletin(ScriptContext *param0)
 {
     FieldSystem_SaveTVSegment_PokemonStorageSpecialNewsBulletin(param0->fieldSystem);
     return FALSE;

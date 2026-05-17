@@ -22,9 +22,9 @@ TwinleafTownPlayerHouse1F_OnTransition:
     End
 
 TwinleafTownPlayerHouse1F_SetMomPositionForCutsceneAfterRivalBattle:
-    SetObjectEventPos LOCALID_MOM, 2, 4
-    SetObjectEventDir LOCALID_MOM, DIR_NORTH
-    SetObjectEventMovementType LOCALID_MOM, MOVEMENT_TYPE_LOOK_NORTH
+    SetObjectEventPos LOCALID_PLAYER_HOUSE_MOM, 2, 4
+    SetObjectEventDir LOCALID_PLAYER_HOUSE_MOM, DIR_NORTH
+    SetObjectEventMovementType LOCALID_PLAYER_HOUSE_MOM, MOVEMENT_TYPE_LOOK_NORTH
     Return
 
 TwinleafTownPlayerHouse1F_HideRivalsMom:
@@ -34,7 +34,7 @@ TwinleafTownPlayerHouse1F_HideRivalsMom:
 TwinleafTownPlayerHouse1F_OnFrame_RivalAlreadyLeft:
     LockAll
     ApplyMovement LOCALID_PLAYER, TwinleafTownPlayerHouse1F_Movement_PlayerFaceMom
-    ApplyMovement LOCALID_MOM, TwinleafTownPlayerHouse1F_Movement_MomWalkFromCouchToPlayer
+    ApplyMovement LOCALID_PLAYER_HOUSE_MOM, TwinleafTownPlayerHouse1F_Movement_MomWalkFromCouchToPlayer
     WaitMovement
     SetFlag FLAG_TALKED_TO_MOM
     BufferPlayerName 0
@@ -42,7 +42,7 @@ TwinleafTownPlayerHouse1F_OnFrame_RivalAlreadyLeft:
     Message TwinleafTownPlayerHouse1F_Text_RivalAlreadyLeft
     CloseMessage
     WaitTime 15, VAR_RESULT
-    ApplyMovement LOCALID_MOM, TwinleafTownPlayerHouse1F_Movement_MomWalkFromPlayerToCouch
+    ApplyMovement LOCALID_PLAYER_HOUSE_MOM, TwinleafTownPlayerHouse1F_Movement_MomWalkFromPlayerToCouch
     WaitMovement
     SetVar VAR_PLAYER_HOUSE_STATE, 1
     ReleaseAll
@@ -81,7 +81,7 @@ TwinleafTownPlayerHouse1F_OnFrame_Postgame:
     GoToIfEq VAR_RESULT, FALSE, TwinleafTownPlayerHouse1F_PostgameRelease
 TwinleafTownPlayerHouse1F_DoMomPostgameSequence:
     ApplyMovement LOCALID_PLAYER, TwinleafTownPlayerHouse1F_Movement_PlayerFaceMomPostgame
-    ApplyMovement LOCALID_MOM, TwinleafTownPlayerHouse1F_Movement_MomNoticePlayer
+    ApplyMovement LOCALID_PLAYER_HOUSE_MOM, TwinleafTownPlayerHouse1F_Movement_MomNoticePlayer
     WaitMovement
     BufferPlayerName 0
     BufferRivalName 1
@@ -119,7 +119,7 @@ TwinleafTownPlayerHouse1F_Movement_MomNoticePlayer:
 TwinleafTownPlayerHouse1F_OnFrame_CutsceneAfterRivalBattle:
     LockAll
     WaitTime 30, VAR_RESULT
-    ApplyMovement LOCALID_MOM, TwinleafTownPlayerHouse1F_Movement_MomWalkFromKitchenToCouch
+    ApplyMovement LOCALID_PLAYER_HOUSE_MOM, TwinleafTownPlayerHouse1F_Movement_MomWalkFromKitchenToCouch
     ApplyMovement LOCALID_PLAYER, TwinleafTownPlayerHouse1F_Movement_PlayerFollowMomToCouch
     WaitMovement
     WaitTime 30, VAR_RESULT
@@ -269,13 +269,13 @@ TwinleafTownPlayerHouse1F_MomGiveJournal:
     End
 
 TwinleafTownPlayerHouse1F_MotherTurnAwaySouth:
-    ApplyMovement LOCALID_MOM, TwinleafTownPlayerHouse1F_Movement_MotherTurnAwaySouth
+    ApplyMovement LOCALID_PLAYER_HOUSE_MOM, TwinleafTownPlayerHouse1F_Movement_MotherTurnAwaySouth
     WaitMovement
     GoTo TwinleafTownPlayerHouse1F_RivalsMomEnters
     End
 
 TwinleafTownPlayerHouse1F_MotherTurnAwayNorth:
-    ApplyMovement LOCALID_MOM, TwinleafTownPlayerHouse1F_Movement_MotherTurnAwayNorth
+    ApplyMovement LOCALID_PLAYER_HOUSE_MOM, TwinleafTownPlayerHouse1F_Movement_MotherTurnAwayNorth
     WaitMovement
     GoTo TwinleafTownPlayerHouse1F_RivalsMomEnters
     End
@@ -290,7 +290,7 @@ TwinleafTownPlayerHouse1F_RivalsMomEnters:
     ClearFlag FLAG_HIDE_TWINLEAF_TOWN_PLAYER_HOUSE_1F_RIVAL_MOM
     AddObject LOCALID_RIVAL_MOM
     WaitSE SEQ_SE_DP_DOOR_OPEN
-    ApplyMovement LOCALID_MOM, TwinleafTownPlayerHouse1F_Movement_MomNoticeRivalsMom
+    ApplyMovement LOCALID_PLAYER_HOUSE_MOM, TwinleafTownPlayerHouse1F_Movement_MomNoticeRivalsMom
     ApplyMovement LOCALID_PLAYER, TwinleafTownPlayerHouse1F_Movement_PlayerFaceRivalsMom
     WaitMovement
     ApplyMovement LOCALID_RIVAL_MOM, TwinleafTownPlayerHouse1F_Movement_RivalsMomEnter
@@ -298,7 +298,7 @@ TwinleafTownPlayerHouse1F_RivalsMomEnters:
     CallIfEq VAR_0x8007, DIR_NORTH, TwinleafTownPlayerHouse1F_PlayerTurnWestToRivalsMom
     BufferRivalName 1
     Message TwinleafTownPlayerHouse1F_Text_AskIsRivalHere
-    ApplyMovement LOCALID_MOM, TwinleafTownPlayerHouse1F_Movement_MomWalkOnSpotSouth
+    ApplyMovement LOCALID_PLAYER_HOUSE_MOM, TwinleafTownPlayerHouse1F_Movement_MomWalkOnSpotSouth
     WaitMovement
     Message TwinleafTownPlayerHouse1F_Text_NoHesNot
     BufferRivalName 1
@@ -317,28 +317,28 @@ TwinleafTownPlayerHouse1F_PlayerTurnWestToRivalsMom:
     Return
 
 TwinleafTownPlayerHouse1F_PlayerAndMomFaceEachOtherNorth:
-    ApplyMovement LOCALID_MOM, TwinleafTownPlayerHouse1F_Movement_MomTurnSouthToPlayer
+    ApplyMovement LOCALID_PLAYER_HOUSE_MOM, TwinleafTownPlayerHouse1F_Movement_MomTurnSouthToPlayer
     ApplyMovement LOCALID_PLAYER, TwinleafTownPlayerHouse1F_Movement_PlayerTurnNorthToMom
     WaitMovement
     GoTo TwinleafTownPlayerHouse1F_WontYouPlayer
     End
 
 TwinleafTownPlayerHouse1F_PlayerAndMomFaceEachOtherSouth:
-    ApplyMovement LOCALID_MOM, TwinleafTownPlayerHouse1F_Movement_MomTurnNorthToPlayer
+    ApplyMovement LOCALID_PLAYER_HOUSE_MOM, TwinleafTownPlayerHouse1F_Movement_MomTurnNorthToPlayer
     ApplyMovement LOCALID_PLAYER, TwinleafTownPlayerHouse1F_Movement_PlayerTurnSouthToMom
     WaitMovement
     GoTo TwinleafTownPlayerHouse1F_WontYouPlayer
     End
 
 TwinleafTownPlayerHouse1F_PlayerAndMomFaceEachOtherWest:
-    ApplyMovement LOCALID_MOM, TwinleafTownPlayerHouse1F_Movement_MomTurnEastToPlayer
+    ApplyMovement LOCALID_PLAYER_HOUSE_MOM, TwinleafTownPlayerHouse1F_Movement_MomTurnEastToPlayer
     ApplyMovement LOCALID_PLAYER, TwinleafTownPlayerHouse1F_Movement_PlayerTurnWestToMom
     WaitMovement
     GoTo TwinleafTownPlayerHouse1F_WontYouPlayer
     End
 
 TwinleafTownPlayerHouse1F_PlayerAndMomFaceEachOtherEast:
-    ApplyMovement LOCALID_MOM, TwinleafTownPlayerHouse1F_Movement_MomTurnWestToPlayer
+    ApplyMovement LOCALID_PLAYER_HOUSE_MOM, TwinleafTownPlayerHouse1F_Movement_MomTurnWestToPlayer
     ApplyMovement LOCALID_PLAYER, TwinleafTownPlayerHouse1F_Movement_PlayerTurnEastToMom
     WaitMovement
     GoTo TwinleafTownPlayerHouse1F_WontYouPlayer
@@ -424,14 +424,14 @@ TwinleafTownPlayerHouse1F_RivalsMomLeaveNorth:
 TwinleafTownPlayerHouse1F_RivalsMomLeaveSouth:
     ApplyMovement LOCALID_RIVAL_MOM, TwinleafTownPlayerHouse1F_Movement_RivalsMomLeaveSouth
     ApplyMovement LOCALID_PLAYER, TwinleafTownPlayerHouse1F_Movement_PlayerWatchRivalsMomLeaveSouth
-    ApplyMovement LOCALID_MOM, TwinleafTownPlayerHouse1F_Movement_MomWatchRivalsMomLeaveSouth
+    ApplyMovement LOCALID_PLAYER_HOUSE_MOM, TwinleafTownPlayerHouse1F_Movement_MomWatchRivalsMomLeaveSouth
     WaitMovement
     GoTo TwinleafTownPlayerHouse1F_RemoveRivalsMom
     End
 
 TwinleafTownPlayerHouse1F_RivalsMomLeaveWest:
     ApplyMovement LOCALID_RIVAL_MOM, TwinleafTownPlayerHouse1F_Movement_RivalsMomLeaveWest
-    ApplyMovement LOCALID_MOM, TwinleafTownPlayerHouse1F_Movement_MomWatchRivalsMomLeaveWest
+    ApplyMovement LOCALID_PLAYER_HOUSE_MOM, TwinleafTownPlayerHouse1F_Movement_MomWatchRivalsMomLeaveWest
     WaitMovement
     GoTo TwinleafTownPlayerHouse1F_RemoveRivalsMom
     End
@@ -740,7 +740,7 @@ TwinleafTownPlayerHouse1F_DontGoIntoTheTallGrassTrigger:
 
 TwinleafTownPlayerHouse1F_PlayerAndMomFaceEachOther:
     ApplyMovement LOCALID_PLAYER, TwinleafTownPlayerHouse1F_Movement_PlayerAtDoorFaceMom
-    ApplyMovement LOCALID_MOM, TwinleafTownPlayerHouse1F_Movement_MomFacePlayerAtDoor
+    ApplyMovement LOCALID_PLAYER_HOUSE_MOM, TwinleafTownPlayerHouse1F_Movement_MomFacePlayerAtDoor
     WaitMovement
     GoTo TwinleafTownPlayerHouse1F_DontGoIntoTheTallGrass
     End

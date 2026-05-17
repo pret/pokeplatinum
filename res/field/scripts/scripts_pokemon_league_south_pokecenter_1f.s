@@ -1,5 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/pokemon_league_south_pokecenter_1f.h"
+#include "res/field/events/events_pokemon_league_south_pokecenter_1f.h"
 
 
     ScriptEntry PokemonLeagueSouthPokecenter1F_Nurse
@@ -15,7 +16,7 @@ PokemonLeagueSouthPokecenter1F_OnTransition:
     End
 
 PokemonLeagueSouthPokecenter1F_Nurse:
-    Common_CallPokecenterNurse 0
+    Common_CallPokecenterNurse LOCALID_LEAGUE_SOUTH_NURSE
     End
 
 PokemonLeagueSouthPokecenter1F_UnusedVendor2:

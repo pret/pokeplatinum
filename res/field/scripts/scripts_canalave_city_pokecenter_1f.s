@@ -11,7 +11,7 @@
     ScriptEntryEnd
 
 CanalaveCityPokecenter1F_Nurse:
-    Common_CallPokecenterNurse LOCALID_POKECENTER_NURSE
+    Common_CallPokecenterNurse LOCALID_CANALAVE_NURSE
     End
 
 CanalaveCityPokecenter1F_PokemonBreederF:
