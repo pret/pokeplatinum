@@ -1015,7 +1015,7 @@ int Direction_GetOpposite(int dir)
     return sOppositeDirections[dir];
 }
 
-int Direction_GetBetweenCoords(int xSrc, int zSrc, int xDst, int zDst)
+int GetDirectionBetweenPoints(int xSrc, int zSrc, int xDst, int zDst)
 {
     if (xSrc > xDst) {
         return DIR_WEST;

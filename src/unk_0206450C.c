@@ -1325,7 +1325,7 @@ static int sub_0206537C(MapObject *mapObj)
 
             if ((v15 <= v9) && (v16 >= v9)) {
                 if ((v13 <= v8) && (v14 >= v8)) {
-                    return Direction_GetBetweenCoords(v11, v12, v8, v9);
+                    return GetDirectionBetweenPoints(v11, v12, v8, v9);
                 }
             }
         }

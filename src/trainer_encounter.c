@@ -34,13 +34,13 @@ typedef struct ApproachingTrainerTemplate {
     int direction;
     int script;
     int trainerID;
-    int isDoubleBattle;
+    BOOL isDoubleBattle;
     MapObject *trainerMapObj;
 } ApproachingTrainerTemplate;
 
 typedef struct ApproachingTrainerData {
     int state;
-    int done;
+    BOOL done;
     int direction;
     int sightRange;
     int unused;
@@ -443,9 +443,8 @@ static void SysTask_ApproachingTrainer(SysTask *task, void *inData)
 {
     ApproachingTrainerData *data = inData;
 
-    while (sApproachingTrainerTask[data->state](data) == 1) {
-        (void)0;
-    }
+    while (sApproachingTrainerTask[data->state](data) == 1)
+        ; // wait
 }
 
 enum ApproachingTrainerTaskState {
@@ -646,7 +645,7 @@ static int ApproachingTrainerTask_DelayNextToPlayer(ApproachingTrainerData *data
 static int ApproachingTrainerTask_TryPlayerFaceTrainer(ApproachingTrainerData *data)
 {
     MapObject *mapObj = Player_MapObject(data->playerAvatar);
-    int movementAction, dir = Direction_GetBetweenCoords(MapObject_GetX(mapObj), MapObject_GetZ(mapObj), MapObject_GetX(data->mapObj), MapObject_GetZ(data->mapObj));
+    int movementAction, dir = GetDirectionBetweenPoints(MapObject_GetX(mapObj), MapObject_GetZ(mapObj), MapObject_GetX(data->mapObj), MapObject_GetZ(data->mapObj));
 
     if (PlayerAvatar_GetDir(data->playerAvatar) != dir && (data->approachNum == 0 || data->approachType == APPROACH_TYPE_VS2)) {
         if (LocalMapObj_IsAnimationSet(mapObj) == TRUE) {
