@@ -1015,17 +1015,17 @@ int Direction_GetOpposite(int dir)
     return sOppositeDirections[dir];
 }
 
-int sub_02064488(int param0, int param1, int param2, int param3)
+int GetDirectionBetweenPoints(int xSrc, int zSrc, int xDst, int zDst)
 {
-    if (param0 > param2) {
+    if (xSrc > xDst) {
         return DIR_WEST;
     }
 
-    if (param0 < param2) {
+    if (xSrc < xDst) {
         return DIR_EAST;
     }
 
-    if (param1 > param3) {
+    if (zSrc > zDst) {
         return DIR_NORTH;
     }
 

@@ -5,6 +5,7 @@
 
 #include "constants/battle_frontier.h"
 #include "constants/graphics.h"
+#include "constants/heap.h"
 
 #include "struct_decls/struct_020304A0_decl.h"
 #include "struct_decls/struct_020305B8_decl.h"
@@ -653,7 +654,7 @@ static BOOL State_SyncResult(BattleArcadeApp *app)
     case 4:
         if (CommTiming_IsSyncState(151) == TRUE) {
             CommTool_ClearReceivedTempDataAllPlayers();
-            CommTool_Init(103);
+            CommTool_Init(HEAP_ID_BATTLE_ARCADE_APP);
             app->cursorPosID = 0xff;
             return TRUE;
         }
