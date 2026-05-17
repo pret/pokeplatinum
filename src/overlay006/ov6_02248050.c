@@ -91,7 +91,7 @@ static void ov6_02248050(MapObjectManager *param0, u32 param1, Easy3DObject *par
         v1++;
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 
@@ -124,7 +124,7 @@ static void ov6_022480BC(PlayerAvatar *const playerAvatar, Easy3DObject *param1)
         v1++;
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 
@@ -580,7 +580,7 @@ static void ov6_02248798(UnkStruct_ov6_022487F8 *param0)
         }
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
 }
 
 static void ov6_022487E0(UnkStruct_ov6_022487F8 *param0)

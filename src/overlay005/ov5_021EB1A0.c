@@ -1553,7 +1553,7 @@ static void ov5_021EC700(u32 param0, VecFx32 *param1)
         v0++;
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
 }
 
 void ov5_021EC734(MapObject *mapObj)

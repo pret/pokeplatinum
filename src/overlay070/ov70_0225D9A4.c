@@ -2223,7 +2223,7 @@ static void ov70_0225F418(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225DE
             v14 = ov66_0222EBA4(v0, ov66_0222E338(v0));
 
             if (v14 == 0xffffffff) {
-                GF_ASSERT(0);
+                GF_ASSERT(FALSE);
 
                 v14 = 0;
             }

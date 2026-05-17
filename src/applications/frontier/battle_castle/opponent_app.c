@@ -2818,7 +2818,7 @@ static void IncreaseRank(BattleCastleOpponentApp *app, u8 slot, u8 menuOption)
     if (menuOption == MENU_ENTRY_RANK_UP_SUMMARY) {
         rankType = BATTLE_CASTLE_RANK_OPPONENT_SUMMARY;
     } else {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 
     u8 exitSlot = app->exitSlot;

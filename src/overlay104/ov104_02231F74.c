@@ -695,7 +695,7 @@ void FrontierObject_DoAnimation(SysTask *task, void *data)
                     ov63_0222D008(animData->frontierObj->sprite, FALSE);
                     break;
                 default:
-                    GF_ASSERT(0);
+                    GF_ASSERT(FALSE);
                     break;
                 }
 

@@ -513,7 +513,7 @@ static void ov70_0226315C(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DE
         v0++;
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
     return;
 }
 
@@ -1597,7 +1597,7 @@ static BOOL ov70_02264324(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DE
                 v4->unk_08 = UnkEnum_ov66_022324D0_06;
                 break;
             default:
-                GF_ASSERT(0);
+                GF_ASSERT(FALSE);
                 v4->unk_08 = UnkEnum_ov66_022324D0_05;
                 break;
             }
@@ -1707,7 +1707,7 @@ static BOOL ov70_02264324(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DE
             v18 = 4;
             break;
         default:
-            GF_ASSERT(0);
+            GF_ASSERT(FALSE);
             break;
         }
 
@@ -1754,7 +1754,7 @@ static BOOL ov70_02264324(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DE
             v22 = 7;
             break;
         default:
-            GF_ASSERT(0);
+            GF_ASSERT(FALSE);
             break;
         }
 
@@ -1869,7 +1869,7 @@ static BOOL ov70_022646C8(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DE
                 v0->unk_00.unk_03 = 4;
                 break;
             default:
-                GF_ASSERT(0);
+                GF_ASSERT(FALSE);
                 break;
             }
 
@@ -2142,7 +2142,7 @@ static BOOL ov70_02264974(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DE
         }
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 
@@ -2187,7 +2187,7 @@ static u32 ov70_02264B64(u32 param0)
         v0 = UnkEnum_ov66_022336B8_01;
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         v0 = 0;
         break;
     }
@@ -2233,7 +2233,7 @@ static u32 ov70_02264BCC(u32 param0)
         v0 = 7;
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         v0 = 0;
         break;
     }
@@ -2279,7 +2279,7 @@ static u32 ov70_02264C34(u32 param0)
         v0 = 6;
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         v0 = 0;
         break;
     }
@@ -2367,7 +2367,7 @@ static BOOL ov70_02264D38(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DE
             v0->unk_06 = 0;
             break;
         default:
-            GF_ASSERT(0);
+            GF_ASSERT(FALSE);
             break;
         }
     }

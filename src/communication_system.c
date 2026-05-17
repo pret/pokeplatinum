@@ -1009,7 +1009,7 @@ static void sub_02035394(BOOL param0)
     if (param0) {
         Unk_02100A1D++;
     } else {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 }
 
@@ -1018,7 +1018,7 @@ static void sub_020353B0(BOOL param0)
     if (param0) {
         Unk_02100A1C++;
     } else {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 }
 

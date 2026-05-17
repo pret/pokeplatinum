@@ -2910,7 +2910,7 @@ void BattleFactoryApp_HandleSelectionUpdateCmd(int netID, int unused, void *data
 
 void BattleFactoryApp_DummyCommCommand2(int netID, int unused, void *data, void *context)
 {
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
 }
 
 static void UpdatePartnersMonsListing(BattleFactoryApp *app)
@@ -3045,7 +3045,7 @@ static BattleFactoryAppPanelSprite *CreateGreenPanelSprite(BattleFactoryApp *app
         y = 40;
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         x = 0;
         y = 0;
         break;

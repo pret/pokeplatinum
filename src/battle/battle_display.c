@@ -3382,7 +3382,7 @@ static void Task_PlayerSetCommandSelection(SysTask *task, void *data)
                 NARC_dtor(objNarc);
             } break;
             default:
-                GF_ASSERT(0);
+                GF_ASSERT(FALSE);
                 break;
             }
 
@@ -4697,7 +4697,7 @@ static void Task_PlayerShowYesNoMenu(SysTask *task, void *data)
                 ov16_02268C04(bgNarc, objNarc, v2, 17, 0, &v11);
                 break;
             default:
-                GF_ASSERT(0);
+                GF_ASSERT(FALSE);
                 break;
             }
 

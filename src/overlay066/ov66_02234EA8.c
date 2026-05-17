@@ -86,7 +86,7 @@ static void ov66_02234F2C(NARC *param0, u32 param1, u16 param2, u8 param3, fx32 
         if (param3 < v10) {
             *param4 = v6[param3].unk_02;
         } else {
-            GF_ASSERT(0);
+            GF_ASSERT(FALSE);
             *param4 = v6[0].unk_02;
         }
 

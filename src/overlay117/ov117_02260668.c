@@ -931,7 +931,7 @@ void ov117_02261600(UnkStruct_ov117_02261280 *param0, int param1)
         ParticleSystem_CreateEmitterWithCallback(param0->unk_A4, 2, NULL, param0);
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         return;
     }
 }
@@ -1334,7 +1334,7 @@ static BOOL ov117_0226217C(UnkStruct_ov117_02261280 *param0, const UnkStruct_ov1
         } else if (param1->unk_00 == param0->unk_2EDC.unk_00) {
             return 1;
         } else {
-            GF_ASSERT(0);
+            GF_ASSERT(FALSE);
             return 0;
         }
         break;
@@ -1478,7 +1478,7 @@ int ov117_0226235C(UnkStruct_ov117_02261280 *param0, int param1)
         }
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
     return 0;
 }
 

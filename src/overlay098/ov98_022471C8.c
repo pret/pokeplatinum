@@ -1703,7 +1703,7 @@ static int ov98_02248F7C(UnkStruct_ov98_02247704 *param0)
                     param0->unk_08 = 32;
                     break;
                 default:
-                    GF_ASSERT(0);
+                    GF_ASSERT(FALSE);
                     NetworkError_DisplayGTSCriticalError();
                     break;
                 }

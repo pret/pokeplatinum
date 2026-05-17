@@ -122,7 +122,7 @@ static void ov104_02239D1C(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param
     } else if (param1->unk_A0 == 6) {
         param1->partyMenu->mode = PARTY_MENU_MODE_BATTLE_CASTLE;
     } else {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 
     param1->partyMenu->fieldSystem = fieldSystem;
@@ -149,7 +149,7 @@ static void ov104_02239D1C(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param
         param1->partyMenu->maxSelectionSlots = 2;
         param1->partyMenu->reqLevel = 100;
     } else {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 
     sub_0209B988(param0, &gPokemonPartyAppTemplate, param1->partyMenu, 0, NULL);

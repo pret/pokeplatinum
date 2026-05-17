@@ -1584,7 +1584,7 @@ static BOOL ov113_0225E318(UnkStruct_ov113_0225DBCC *param0, int param1)
     }
 
     if (param0->unk_19D8 < param0->unk_19D4) {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         param0->unk_19D8 = param0->unk_19D4;
     }
 

@@ -124,7 +124,7 @@ int CommCmd_PacketSizeOf(int cmd)
         }
 
         if (cmd > (sCommCmdManager->unk_04 + 22)) {
-            GF_ASSERT(0);
+            GF_ASSERT(FALSE);
             sub_020363BC();
             return v0;
         }

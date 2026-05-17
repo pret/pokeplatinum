@@ -992,7 +992,7 @@ static int ov109_021D4B94(UnkStruct_ov109_021D5140 *param0, int param1)
                 param0->unk_4AB6 = ov109_021D548C();
                 sub_0205BEA8(12);
             } else {
-                GF_ASSERT(0);
+                GF_ASSERT(FALSE);
             }
         }
 

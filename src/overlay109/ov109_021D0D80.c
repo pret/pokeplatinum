@@ -486,7 +486,7 @@ int ov109_021D0EB4(ApplicationManager *appMan, int *param1)
     UnkStruct_ov109_021D0F70 *v0 = ApplicationManager_Data(appMan);
 
     if (DisableTouchPad() != 1) {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 
     ov109_021D31E0(v0);
@@ -2747,7 +2747,7 @@ static void ov109_021D31F0(UnkStruct_ov109_021D0F70 *param0, UnkStruct_ov109_021
         }
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
 }
 
 static void ov109_021D3218(UnkStruct_ov109_021D0F70 *param0)
@@ -2853,7 +2853,7 @@ static void ov109_021D3328(UnkStruct_ov109_021D0F70 *param0, UnkStruct_ov109_021
         }
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
 }
 
 static void ov109_021D3370(UnkStruct_ov109_021D3370 *param0)
@@ -2936,7 +2936,7 @@ static void ov109_021D3460(UnkStruct_ov109_021D0F70 *param0, UnkStruct_ov109_021
         }
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
 }
 
 static void ov109_021D34A8(UnkStruct_ov109_021D0F70 *param0, UnkStruct_ov109_021D34A8 *param1)

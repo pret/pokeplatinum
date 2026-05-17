@@ -423,7 +423,7 @@ static int ov90_021D1080(UnkStruct_ov90_021D0ECC *param0)
             ov90_021D1A48(param0);
             break;
         default:
-            GF_ASSERT(0);
+            GF_ASSERT(FALSE);
             break;
         }
     } else {

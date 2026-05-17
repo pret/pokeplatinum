@@ -1671,7 +1671,7 @@ static int ov101_021D2D88(UnkStruct_ov101_021D2D88 *param0, UnkStruct_ov101_021D
         return ov101_021D2E58(param0, param1);
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
     return 0;
 }
 

@@ -205,7 +205,7 @@ static void FieldSystem_SaveObjectsAndLocation(FieldSystem *fieldSystem)
 void FieldSystem_SaveStateIfCommunicationOff(FieldSystem *fieldSystem)
 {
     if (fieldSystem == NULL) {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         return;
     }
 

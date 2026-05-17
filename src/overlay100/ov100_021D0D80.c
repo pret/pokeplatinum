@@ -123,7 +123,7 @@ int ov100_021D0EA8(ApplicationManager *appMan, int *param1)
         return 1;
     } break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 

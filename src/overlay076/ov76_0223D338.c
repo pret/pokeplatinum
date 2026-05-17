@@ -454,7 +454,7 @@ void ov76_0223D94C(ManagedSprite *param0, int param1)
         ManagedSprite_SetAnimationFrame(param0, 0);
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 }
@@ -636,7 +636,7 @@ void ov76_0223DA34(u32 param0, enum TouchScreenButtonState param1, void *param2)
         }
     } break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 }

@@ -546,7 +546,7 @@ static UnkStruct_ov113_0225E6B8 *ov113_0225E6B8(UnkStruct_ov113_0225DBCC *param0
     v0->unk_00 = *param2;
 
     if (v0->unk_00.unk_02 > NATIONAL_DEX_COUNT) {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         v0->unk_00.unk_02 = 132;
     }
 
@@ -958,7 +958,7 @@ static void ov113_0225EDCC(UnkStruct_ov113_0225EB20 *param0, UnkStruct_ov113_022
         v1++;
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
 }
 
 static int ov113_0225EE0C(UnkStruct_ov113_0225EB20 *param0, int param1, int param2)
@@ -991,7 +991,7 @@ static void ov113_0225EE78(UnkStruct_ov113_0225EB20 *param0, int param1)
     v0--;
 
     if (v0 < 0) {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         v0 = 0;
     }
 

@@ -1116,7 +1116,7 @@ int NintendoWFC_GetErrorCode(int errorCode, int errorType)
     case DWC_ETYPE_DISCONNECT:
         return 10;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     case DWC_ETYPE_FATAL:
         return 15;

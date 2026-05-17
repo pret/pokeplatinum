@@ -76,7 +76,7 @@ void sub_02030308(UnkStruct_020302DC *param0, u8 param1, u8 param2, u8 param3, c
         param0->unk_54[param2] = v1[0];
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 
@@ -105,7 +105,7 @@ u32 sub_02030398(UnkStruct_020302DC *param0, u8 param1, u8 param2, u8 param3, vo
     case 8:
         return param0->unk_54[param2];
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 
@@ -145,7 +145,7 @@ void sub_02030430(UnkStruct_0203041C *param0, u8 param1, u8 param2, u8 param3, c
         param0->unk_01 = 1;
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 
@@ -160,7 +160,7 @@ u32 sub_02030470(UnkStruct_0203041C *param0, u8 param1, u8 param2, u8 param3, vo
     case 10:
         return (u32)param0->unk_01;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 

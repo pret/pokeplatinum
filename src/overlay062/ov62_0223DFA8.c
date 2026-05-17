@@ -1069,7 +1069,7 @@ static BOOL ov62_0223F348(UnkStruct_0208C06C *param0)
                 }
             }
         } else {
-            GF_ASSERT(0);
+            GF_ASSERT(FALSE);
         }
 
         break;

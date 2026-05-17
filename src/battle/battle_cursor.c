@@ -1085,7 +1085,7 @@ void *ov16_022687C8(NARC *unused1, NARC *unused2, BattleSystem *battleSys, int p
 
     if (v2 >= NELEMS(Unk_ov16_022704E4)) {
         v2 = 0;
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 
     v0->unk_4C8 = sub_02012744(13, HEAP_ID_BATTLE);
@@ -1562,7 +1562,7 @@ int ov16_02269368(int param0, int param1)
     case 0x400:
         return 11;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         return 0;
     }
 }
@@ -2305,7 +2305,7 @@ static ManagedSprite *ov16_0226A7A4(UnkStruct_ov16_02268A14 *param0, Pokemon *mo
         v2 = 20038;
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         return NULL;
     }
 
@@ -4164,7 +4164,7 @@ void ov16_0226CEB0(UnkStruct_ov16_02268A14 *param0, int param1)
 
     for (int i = 0; i < 2; i++) {
         if (param0->unk_4CC[1 + i].unk_00) {
-            GF_ASSERT(0);
+            GF_ASSERT(FALSE);
             return;
         }
 

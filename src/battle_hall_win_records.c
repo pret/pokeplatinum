@@ -51,7 +51,7 @@ u16 BattleHallWinRecords_GetRecordForSpecies(SaveData *saveData, BattleHallWinRe
         return records->multiStreaks[species];
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
     return 0;
 }
 
@@ -72,7 +72,7 @@ static u16 WriteWinRecord(BattleHallWinRecords *records, int challengeType, int 
         records->multiStreaks[species] = streak;
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         return 0;
     }
 

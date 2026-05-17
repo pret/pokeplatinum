@@ -146,7 +146,7 @@ static BOOL ov63_0222CBD0(const UnkStruct_ov63_0222BEC0 *param0, const UnkStruct
 
 static BOOL ov63_0222CBF8(const UnkStruct_ov63_0222BEC0 *param0, const UnkStruct_ov63_0222BCE8 *param1, const UnkStruct_ov63_0222BE18 *param2, const UnkStruct_ov63_0222D894 *param3, UnkStruct_ov63_0222CCB8 *param4)
 {
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
     return 0;
 }
 

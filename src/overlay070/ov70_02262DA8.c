@@ -210,7 +210,7 @@ static void ov70_02262F94(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_022630
         v1 = param0->unk_04.unk_00->unk_04;
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 

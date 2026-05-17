@@ -303,7 +303,7 @@ void BattleCastle_StoreAppResults(BattleCastle *battleCastle, BattleCastleAppArg
 static u16 GetBattleCastleAppSelectedSlot(BattleCastleAppArgs *args, u8 i)
 {
     if (i >= 6) {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         return 0;
     }
 
