@@ -30,7 +30,7 @@
     ScriptEntry CommonScript_CheckBagPocketForItem @ 0x7D1
     ScriptEntry CommonScript_PokecenterNurse @ 0x7D2
     ScriptEntry CommonScript_FieldEffectPoisonFainted @ 0x7D3
-    ScriptEntry _043B @ 0x7D4
+    ScriptEntry CommonScript_2004 @ 0x7D4
     ScriptEntry CommonScript_SaveAndStoreResult @ 0x7D5
     ScriptEntry CommonScript_SaveGame  @ 0x7D6
     ScriptEntry CommonScript_EmptyScript2007 @ 0x7D7
@@ -49,10 +49,10 @@
     ScriptEntry CommonScript_PlayerHouseBlackOutRecover @ 0x7E4
     ScriptEntry CommonScript_PokecenterBlackOutRecover @ 0x7E5
     ScriptEntry CommonScript_EmptyScript2022 @ 0x7E6
-    ScriptEntry _0FA7 @ 0x7E7
+    ScriptEntry CommonScript_2023 @ 0x7E7
     ScriptEntry CommonScript_EmptyScript2024 @ 0x7E8
     ScriptEntry CommonScript_Geonet @ 0x7E9
-    ScriptEntry _12A8 @ 0x7EA
+    ScriptEntry CommonScript_2026 @ 0x7EA
     ScriptEntry CommonScript_Vent @ 0x7EB
     ScriptEntry CommonScript_SweetScentNothingHere @ 0x7EC
     ScriptEntry CommonScript_SweetScentFaded @ 0x7ED
@@ -326,7 +326,7 @@ CommonScript_FaintedFromPoison:
     ReleaseAll
     End
 
-_043B:
+CommonScript_2004:
     FadeScreenIn
     WaitFadeScreen
     WaitABPress
@@ -534,7 +534,7 @@ CommonScript_HoneyTreeEncounter:
     StartHoneyTreeBattle
     CheckWonBattle VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, CommonScript_LostHoneyTreeBattle
-    HoneyTreeStopShaking
+    StopHoneyTreeShaking
     GoTo CommonScript_HoneyTreePostBattle
 
 CommonScript_LostHoneyTreeBattle:
@@ -1112,7 +1112,7 @@ CommonScript_BallCapsulesEnd:
 CommonScript_PCHallOfFame:
     PlaySE SEQ_SE_DP_PC_LOGIN
     CloseMessage
-    IsHallOfFameCorrupted VAR_RESULT
+    CheckIsHallOfFameCorrupted VAR_RESULT
     GoToIfEq VAR_RESULT, TRUE, CommonScript_HallOfFameDataCorrupted
     Call CommonScript_PCFadeOut
     OpenPCHallOfFameScreen
@@ -1151,7 +1151,7 @@ CommonScript_PCFadeOut:
 CommonScript_EmptyScript2022:
     End
 
-_0FA7:
+CommonScript_2023:
     FadeScreenOut
     WaitFadeScreen
     OpenSealCapsuleEditor
@@ -1372,7 +1372,7 @@ CommonScript_Geonet:
     ReleaseAll
     End
 
-_12A8:
+CommonScript_2026:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer

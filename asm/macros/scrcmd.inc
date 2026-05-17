@@ -1797,8 +1797,8 @@
     .short SCRCMD_STARTHONEYTREEBATTLE
     .endm
 
-    .macro HoneyTreeStopShaking
-    .short SCRCMD_HONEYTREESTOPSHAKING
+    .macro StopHoneyTreeShaking
+    .short SCRCMD_STOPHONEYTREESHAKING
     .endm
 
     .macro StartSignatureApp
@@ -4876,8 +4876,8 @@
     .long \value
     .endm
 
-    .macro IsHallOfFameCorrupted destVar
-    .short SCRCMD_ISHALLOFFAMECORRUPTED
+    .macro CheckIsHallOfFameCorrupted destVar
+    .short SCRCMD_CHECKISHALLOFFAMECORRUPTED
     .short \destVar
     .endm
 

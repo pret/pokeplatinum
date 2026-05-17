@@ -390,7 +390,7 @@ static BOOL ScrCmd_0AE(ScriptContext *ctx);
 static BOOL ScrCmd_0AF(ScriptContext *ctx);
 static BOOL ScrCmd_ClearGame(ScriptContext *ctx);
 static BOOL ScrCmd_OpenPCHallOfFameScreen(ScriptContext *ctx);
-static BOOL ScrCmd_IsHallOfFameCorrupted(ScriptContext *ctx);
+static BOOL ScrCmd_CheckIsHallOfFameCorrupted(ScriptContext *ctx);
 static BOOL ScrCmd_TryStartGTSApp(ScriptContext *ctx);
 static BOOL ScrCmd_0B3(ScriptContext *ctx);
 static BOOL ScrCmd_StartChooseStarterScene(ScriptContext *ctx);
@@ -445,7 +445,7 @@ static BOOL ScrCmd_StartCatchingTutorial(ScriptContext *ctx);
 static BOOL ScrCmd_SlatherHoneyTree(ScriptContext *ctx);
 static BOOL ScrCmd_GetHoneyTreeStatus(ScriptContext *ctx);
 static BOOL ScrCmd_StartHoneyTreeBattle(ScriptContext *ctx);
-static BOOL ScrCmd_HoneyTreeStopShaking(ScriptContext *ctx);
+static BOOL ScrCmd_StopHoneyTreeShaking(ScriptContext *ctx);
 static BOOL ScrCmd_StartSignatureApp(ScriptContext *ctx);
 static BOOL ScrCmd_CheckSaveType(ScriptContext *ctx);
 static BOOL ScrCmd_TrySaveGame(ScriptContext *ctx);
@@ -3350,7 +3350,7 @@ static BOOL ScrCmd_OpenPCHallOfFameScreen(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_IsHallOfFameCorrupted(ScriptContext *ctx)
+static BOOL ScrCmd_CheckIsHallOfFameCorrupted(ScriptContext *ctx)
 {
     int resultCode;
     HallOfFame *hallOfFame = SaveData_HallOfFame(ctx->fieldSystem->saveData, HEAP_ID_FIELD1, &resultCode);
@@ -4078,7 +4078,7 @@ static BOOL ScrCmd_StartHoneyTreeBattle(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_HoneyTreeStopShaking(ScriptContext *ctx)
+static BOOL ScrCmd_StopHoneyTreeShaking(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
