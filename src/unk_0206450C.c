@@ -13,7 +13,7 @@
 #include "map_object_move.h"
 #include "math_util.h"
 #include "player_avatar.h"
-#include "trainer_see.h"
+#include "trainer_encounter.h"
 #include "unk_0205F180.h"
 #include "unk_020655F4.h"
 
@@ -1325,7 +1325,7 @@ static int sub_0206537C(MapObject *mapObj)
 
             if ((v15 <= v9) && (v16 >= v9)) {
                 if ((v13 <= v8) && (v14 >= v8)) {
-                    return sub_02064488(v11, v12, v8, v9);
+                    return GetDirectionBetweenPoints(v11, v12, v8, v9);
                 }
             }
         }

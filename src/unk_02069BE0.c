@@ -18,7 +18,7 @@
 #include "overworld_anim_manager.h"
 #include "player_avatar.h"
 #include "terrain_collision_manager.h"
-#include "trainer_see.h"
+#include "trainer_encounter.h"
 #include "unk_020655F4.h"
 
 typedef struct {
@@ -229,7 +229,7 @@ static int sub_02069D8C(MapObject *mapObj)
 
     if ((v2 != v4) || (v3 != v5)) {
         u32 v6 = sub_02069D50(mapObj);
-        int v7 = sub_02064488(v2, v3, v4, v5);
+        int v7 = GetDirectionBetweenPoints(v2, v3, v4, v5);
 
         v6 = MovementAction_TurnActionTowardsDir(v7, v6);
         sub_02065668(mapObj, v6);
@@ -400,7 +400,7 @@ static int sub_0206A034(MapObject *mapObj, UnkStruct_02069F48 *param1)
         return 0;
     }
 
-    v6 = sub_02064488(v0, v1, v4, v5);
+    v6 = GetDirectionBetweenPoints(v0, v1, v4, v5);
     v0 += MapObject_GetDxFromDir(v6);
     v1 += MapObject_GetDzFromDir(v6);
 

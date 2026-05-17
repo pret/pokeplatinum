@@ -165,6 +165,7 @@
 #include "scrcmd_sound.h"
 #include "scrcmd_strings.h"
 #include "scrcmd_system_flags.h"
+#include "scrcmd_trainer.h"
 #include "scrcmd_tv_broadcast.h"
 #include "scrcmd_underground_inventory.h"
 #include "screen_fade.h"
@@ -193,7 +194,6 @@
 #include "unk_020366A0.h"
 #include "unk_02038FFC.h"
 #include "unk_0203D1B8.h"
-#include "unk_02048614.h"
 #include "unk_02048BD0.h"
 #include "unk_020494DC.h"
 #include "unk_0204AEE8.h"
@@ -369,7 +369,7 @@ static BOOL ScrCmd_DrawPokemonPreview(ScriptContext *ctx);
 static void FieldSystem_WriteSpeciesSeen(FieldSystem *fieldSystem, u16 param1);
 static BOOL ScrCmd_RemovePokemonPreview(ScriptContext *ctx);
 static BOOL ScrCmd_20A(ScriptContext *ctx);
-static BOOL ScrCmd_20B(ScriptContext *ctx);
+static BOOL ScrCmd_SetMoveCodeForFacingDirection(ScriptContext *ctx);
 static BOOL ScrCmd_0A5(ScriptContext *ctx);
 static BOOL ScrCmd_30E(ScriptContext *ctx);
 static BOOL ScrCmd_0A6(ScriptContext *ctx);
@@ -3078,13 +3078,13 @@ static BOOL ScrCmd_20A(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_20B(ScriptContext *ctx)
+static BOOL ScrCmd_SetMoveCodeForFacingDirection(ScriptContext *ctx)
 {
-    MapObject **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_TARGET_OBJECT);
+    MapObject **mapObj = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_TARGET_OBJECT);
 
-    if (*v0 != NULL) {
-        if (!PersistedMapFeatures_IsCurrentDynamicMap(ctx->fieldSystem, DYNAMIC_MAP_FEATURES_HEARTHOME_GYM) || (HearthomeGym_SetTrainerPostBattleMovement(ctx->fieldSystem, *v0) == 0)) {
-            VsSeeker_SetMoveCodeForFacingDirection(ctx->fieldSystem, *v0);
+    if (*mapObj != NULL) {
+        if (!PersistedMapFeatures_IsCurrentDynamicMap(ctx->fieldSystem, DYNAMIC_MAP_FEATURES_HEARTHOME_GYM) || HearthomeGym_SetTrainerPostBattleMovement(ctx->fieldSystem, *mapObj) == FALSE) {
+            VsSeeker_SetMoveCodeForFacingDirection(ctx->fieldSystem, *mapObj);
         }
     }
 
