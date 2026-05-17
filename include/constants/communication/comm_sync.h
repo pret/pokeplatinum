@@ -13,7 +13,7 @@ enum CommSync {
 
     SYNC_94 = 94,
     SYNC_SEND_TRAINER_CASE,
-    
+
     SYNC_SWITCH_TRANSITION = 97,
     SYNC_CHANGE_TO_BATTLE_ROOM,
 };
