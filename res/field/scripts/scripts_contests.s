@@ -1,7 +1,7 @@
 #include "macros/scrcmd.inc"
 #include "res/field/events/events_contest_hall_stage_ongoing_contest.h"
 #include "res/field/events/events_contest_hall_lobby.h"
-#include "res/text/bank/contest_registration.h"
+#include "res/text/bank/contest_common.h"
 #include "res/text/bank/menu_entries.h"
 
 #include "constants/communication/comm_type.h"
@@ -12,126 +12,126 @@
 #include "generated/pokemon_contest_types.h"
 
 
-    ScriptEntry _0036 @ 0x2648
-    ScriptEntry ContestRegistration_Dummy @ 0x2649
-    ScriptEntry OngoingContest_OnTransition @ 0x264A
-    ScriptEntry ContestHallLobby_OnTransition @ 0x264B
-    ScriptEntry _01D4 @ 0x264C
-    ScriptEntry _01E9 @ 0x264D
-    ScriptEntry ContestRegistration_ReceptionistOfficialContest @ 0x264E
-    ScriptEntry ContestRegistration_ReceptionistLinkContest @ 0x264F
-    ScriptEntry ContestRegistration_ReceptionistPracticeContest @ 0x2650
-    ScriptEntry ContestRegistration_ReceptionistPracticeContest @ 0x2651
-    ScriptEntry ContestRegistration_ReceptionistPracticeContest @ 0x2652
-    ScriptEntry ContestRegistration_ReceptionistPracticeContest @ 0x2653
-    ScriptEntry ContestRegistration_LinkContestRecordsDisplay @ 0x2654
+    ScriptEntry Contests_LobbyOnFrameExitContestHall @ 0x2648
+    ScriptEntry Contests_EmptyScript9801 @ 0x2649
+    ScriptEntry Contests_OngoingContestOnTransition @ 0x264A
+    ScriptEntry Contests_LobbyOnTransition @ 0x264B
+    ScriptEntry Contests_OngoingContestOnResume @ 0x264C
+    ScriptEntry Contests_UnusedEntry9805 @ 0x264D
+    ScriptEntry Contests_ReceptionistOfficialContest @ 0x264E
+    ScriptEntry Contests_ReceptionistLinkContest @ 0x264F
+    ScriptEntry Contests_ReceptionistPracticeContest @ 0x2650
+    ScriptEntry Contests_ReceptionistPracticeContest @ 0x2651
+    ScriptEntry Contests_ReceptionistPracticeContest @ 0x2652
+    ScriptEntry Contests_ReceptionistPracticeContest @ 0x2653
+    ScriptEntry Contests_LinkContestRecordsDisplay @ 0x2654
     ScriptEntryEnd
 
-_0036:
+Contests_LobbyOnFrameExitContestHall:
     LockAll
     SetVar VAR_RESULT, 7
-    Call ContestRegistration_Movement_ExitContestHall
+    Call Contests_ExitContestHall
     ClearFlag FLAG_COMMUNICATION_CLUB_ACCESSIBLE
     SetVar VAR_UNK_0x40D5, 0
     ReleaseAll
     End
 
-ContestRegistration_Movement_ExitContestHall:
-    ApplyMovement LOCALID_PLAYER, ContestRegistration_Movement_WalkSouth
+Contests_ExitContestHall:
+    ApplyMovement LOCALID_PLAYER, Contests_Movement_ExitContestHall
     WaitMovement
     LoadDoorAnimation 0, 0, VAR_RESULT, 5, ANIMATION_TAG_DOOR_1
-    Call ContestRegistration_OpenDoor
-    ApplyMovement LOCALID_PLAYER, ContestRegistration_Movement_WalkSouth2
+    Call Contests_DoorOpenAnimation
+    ApplyMovement LOCALID_PLAYER, Contests_Movement_ExitThroughGate
     WaitMovement
-    Call ContestRegistration_CloseDoor
+    Call Contests_DoorCloseAnimation
     Return
 
-ContestRegistration_Movement_ReturnToReceptionist:
-    ApplyMovement LOCALID_PLAYER, ContestRegistration_Movement_WalkWest2FaceNorth
+Contests_ReturnToReceptionist:
+    ApplyMovement LOCALID_PLAYER, Contests_Movement_PlayerWalkToOfficialReceptionist
     WaitMovement
     Return
 
-ContestRegistration_AssessPracticeResults:
-    ApplyMovement LOCALID_PLAYER, ContestRegistration_Movement_ToPracticeReceptionist
+Contests_AssessPracticeResults:
+    ApplyMovement LOCALID_PLAYER, Contests_Movement_PlayerWalkToPracticeReceptionist
     WaitMovement
-    CallIfEq VAR_0x8007, CONTEST_COMPETITION_PRACTICE_VISUAL, ContestRegistration_CompletedVisualPractice
-    CallIfEq VAR_0x8007, CONTEST_COMPETITION_PRACTICE_DANCE, ContestRegistration_CompletedDancePractice
-    CallIfEq VAR_0x8007, CONTEST_COMPETITION_PRACTICE_ACTING, ContestRegistration_CompletedActingPractice
+    CallIfEq VAR_0x8007, CONTEST_COMPETITION_PRACTICE_VISUAL, Contests_CompletedVisualPractice
+    CallIfEq VAR_0x8007, CONTEST_COMPETITION_PRACTICE_DANCE, Contests_CompletedDancePractice
+    CallIfEq VAR_0x8007, CONTEST_COMPETITION_PRACTICE_ACTING, Contests_CompletedActingPractice
     SetVar VAR_0x8004, 0
     ShowYesNoMenu VAR_RESULT
     Return
 
-ContestRegistration_CompletedVisualPractice:
-    GoToIfGt VAR_0x8004, 1, ContestRegistration_FailedVisualPractice
-    Message ContestRegistration_Text_CompletedVisualPractice
+Contests_CompletedVisualPractice:
+    GoToIfGt VAR_0x8004, 1, Contests_FailedVisualPractice
+    Message ContestCommon_Text_CompletedVisualPractice
     Return
 
-ContestRegistration_FailedVisualPractice:
-    Message ContestRegistration_Text_FailedVisualPractice
+Contests_FailedVisualPractice:
+    Message ContestCommon_Text_FailedVisualPractice
     Return
 
-ContestRegistration_CompletedDancePractice:
-    GoToIfGt VAR_0x8004, 1, ContestRegistration_FailedDancePractice
-    Message ContestRegistration_Text_CompletedDancePractice
+Contests_CompletedDancePractice:
+    GoToIfGt VAR_0x8004, 1, Contests_FailedDancePractice
+    Message ContestCommon_Text_CompletedDancePractice
     Return
 
-ContestRegistration_FailedDancePractice:
-    Message ContestRegistration_Text_FailedDancePractice
+Contests_FailedDancePractice:
+    Message ContestCommon_Text_FailedDancePractice
     Return
 
-ContestRegistration_CompletedActingPractice:
-    GoToIfGt VAR_0x8004, 1, ContestRegistration_FailedActingPractice
-    Message ContestRegistration_Text_CompletedActingPractice
+Contests_CompletedActingPractice:
+    GoToIfGt VAR_0x8004, 1, Contests_FailedActingPractice
+    Message ContestCommon_Text_CompletedActingPractice
     Return
 
-ContestRegistration_FailedActingPractice:
-    Message ContestRegistration_Text_FailedActingPractice
+Contests_FailedActingPractice:
+    Message ContestCommon_Text_FailedActingPractice
     Return
 
-ContestRegistration_OpenDoor:
+Contests_DoorOpenAnimation:
     PlayDoorOpenAnimation ANIMATION_TAG_DOOR_1
     WaitForAnimation ANIMATION_TAG_DOOR_1
     Return
 
-ContestRegistration_CloseDoor:
+Contests_DoorCloseAnimation:
     PlayDoorCloseAnimation ANIMATION_TAG_DOOR_1
     WaitForAnimation ANIMATION_TAG_DOOR_1
     UnloadAnimation ANIMATION_TAG_DOOR_1
     Return
 
     .balign 4, 0
-ContestRegistration_Movement_WalkSouth:
+Contests_Movement_ExitContestHall:
     WalkNormalSouth
     EndMovement
 
     .balign 4, 0
-ContestRegistration_Movement_WalkSouth2:
+Contests_Movement_ExitThroughGate:
     WalkNormalSouth 2
     EndMovement
 
     .balign 4, 0
-ContestRegistration_Movement_ToPracticeReceptionist:
+Contests_Movement_PlayerWalkToPracticeReceptionist:
     WalkNormalWest
     WalkOnSpotFastNorth
     EndMovement
 
     .balign 4, 0
-ContestRegistration_Movement_WalkWest2FaceNorth:
+Contests_Movement_PlayerWalkToOfficialReceptionist:
     WalkNormalWest 2
     WalkOnSpotFastNorth
     EndMovement
 
-ContestRegistration_Dummy:
+Contests_EmptyScript9801:
     End
 
-OngoingContest_OnTransition:
-    CallIfEq VAR_ONGOING_CONTEST, FALSE, OngoingContest_HideContestObjects
-    GoToIfEq VAR_ONGOING_CONTEST, FALSE, OngoingContest_End
+Contests_OngoingContestOnTransition:
+    CallIfEq VAR_ONGOING_CONTEST, FALSE, Contests_HideOngoingContestContestants
+    GoToIfEq VAR_ONGOING_CONTEST, FALSE, Contests_OngoingContestOnTransitionEnd
     HidePoketch
-OngoingContest_End:
+Contests_OngoingContestOnTransitionEnd:
     End
 
-OngoingContest_HideContestObjects:
+Contests_HideOngoingContestContestants:
     SetVar VAR_ONGOING_CONTEST, FALSE
     SetFlag FLAG_HIDE_CONTEST_HALL_STAGE_CONTESTANT1
     SetFlag FLAG_HIDE_CONTEST_HALL_STAGE_CONTESTANT2
@@ -140,10 +140,10 @@ OngoingContest_HideContestObjects:
     SetFlag FLAG_HIDE_CONTEST_HALL_STAGE_CONTESTANT_WINNER
     Return
 
-ContestHallLobby_OnTransition:
+Contests_LobbyOnTransition:
     ShowPoketch
-    Call _01B1
-    Call OngoingContest_HideContestObjects
+    Call Contests_TryMoveRichBoyAwayFromReceptionist
+    Call Contests_HideOngoingContestContestants
     CheckTVInterviewEligible TV_PROGRAM_SEGMENT_CONTEST_HALL, VAR_MAP_LOCAL_0
     GoToIfEq VAR_MAP_LOCAL_0, FALSE, ContestHallLobby_HideReporter
     ClearFlag FLAG_HIDE_CONTEST_HALL_LOBBY_REPORTER
@@ -153,498 +153,498 @@ ContestHallLobby_HideReporter:
     SetFlag FLAG_HIDE_CONTEST_HALL_LOBBY_REPORTER
     End
 
-_01B1:
-    GoToIfSet FLAG_TALKED_TO_CONTEST_HALL_LOBBY_RICH_BOY, _01BE
+Contests_TryMoveRichBoyAwayFromReceptionist:
+    GoToIfSet FLAG_TALKED_TO_CONTEST_HALL_LOBBY_RICH_BOY, Contests_MoveRichBoyAwayFromReceptionist
     Return
 
-_01BE:
-    SetObjectEventPos CONTEST_HALL_LOBBY_RICH_BOY, 24, 6
-    SetObjectEventMovementType CONTEST_HALL_LOBBY_RICH_BOY, MOVEMENT_TYPE_LOOK_SOUTH
-    SetObjectEventDir CONTEST_HALL_LOBBY_RICH_BOY, DIR_SOUTH
+Contests_MoveRichBoyAwayFromReceptionist:
+    SetObjectEventPos LOCALID_CONTEST_LOBBY_RICH_BOY, 24, 6
+    SetObjectEventMovementType LOCALID_CONTEST_LOBBY_RICH_BOY, MOVEMENT_TYPE_LOOK_SOUTH
+    SetObjectEventDir LOCALID_CONTEST_LOBBY_RICH_BOY, DIR_SOUTH
     Return
 
-_01D4:
-    CallIfEq VAR_ONGOING_CONTEST, TRUE, _01E3
+Contests_OngoingContestOnResume:
+    CallIfEq VAR_ONGOING_CONTEST, TRUE, Contests_HidePlayer
     End
 
-_01E3:
+Contests_HidePlayer:
     HideObject LOCALID_PLAYER
     Return
 
-_01E9:
-    NPCMessage 0
+Contests_UnusedEntry9805:
+    NPCMessage ContestCommon_Text_Dummy0
     End
 
-ContestRegistration_ReceptionistOfficialContest:
+Contests_ReceptionistOfficialContest:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     SetVar VAR_MAP_LOCAL_3, CONTEST_MODE_OFFICIAL
     SetVar VAR_0x8007, CONTEST_COMPETITION_LINK_OR_OFFICIAL
-    Message ContestRegistration_Text_Welcome
-    GoTo ContestRegistration_Receptionists_WouldYouLikeToEnterContest
+    Message ContestCommon_Text_Welcome
+    GoTo Contests_AskEnterContest
     End
 
-ContestRegistration_ReceptionistLinkContest:
+Contests_ReceptionistLinkContest:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     SetVar VAR_MAP_LOCAL_3, CONTEST_MODE_LINK
     SetVar VAR_0x8007, CONTEST_COMPETITION_LINK_OR_OFFICIAL
-    Message ContestRegistration_Text_WelcomeLinkContest
-    GoTo ContestRegistration_Receptionists_WouldYouLikeToEnterContest
+    Message ContestCommon_Text_WelcomeLinkContest
+    GoTo Contests_AskEnterContest
     End
 
-ContestRegistration_Receptionists_WouldYouLikeToEnterContest:
-    GoToIfEq VAR_MAP_LOCAL_3, CONTEST_MODE_LINK, ContestRegistration_ReceptionistLinkContest_WouldYouLikeToEnterContest
-    Message ContestRegistration_Text_WouldYouLikeToEnterAContest
-    GoTo ContestRegistration_Receptionists_ContestMenu
+Contests_AskEnterContest:
+    GoToIfEq VAR_MAP_LOCAL_3, CONTEST_MODE_LINK, Contests_AskEnterLinkContest
+    Message ContestCommon_Text_EnterPokemonInAContest
+    GoTo Contests_ContestMenu
 
 
-#define Receptionists_ContestMenuItem_Enter 0
-#define Receptionists_ContestMenuItem_Info 1
-#define Receptionists_ContestMenuItem_Exit 2
+#define MENU_ENTRY_ENTER 0
+#define MENU_ENTRY_INFO 1
+#define MENU_ENTRY_EXIT 2
 
-ContestRegistration_ReceptionistLinkContest_WouldYouLikeToEnterContest:
-    Message ContestRegistration_Text_WouldYouLikeToEnterLinkContest
-ContestRegistration_Receptionists_ContestMenu:
+Contests_AskEnterLinkContest:
+    Message ContestCommon_Text_EnterLinkContest
+Contests_ContestMenu:
     InitLocalTextMenu 1, 1, 0, VAR_RESULT
-    AddMenuEntryImm ContestRegistration_Text_Enter, Receptionists_ContestMenuItem_Enter
-    AddMenuEntryImm ContestRegistration_Text_Info1, Receptionists_ContestMenuItem_Info
-    AddMenuEntryImm ContestRegistration_Text_Exit1, Receptionists_ContestMenuItem_Exit
+    AddMenuEntryImm ContestCommon_Text_ContestEnter, MENU_ENTRY_ENTER
+    AddMenuEntryImm ContestCommon_Text_ContestInfo, MENU_ENTRY_INFO
+    AddMenuEntryImm ContestCommon_Text_ContestExit, MENU_ENTRY_EXIT
     ShowMenu
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, Receptionists_ContestMenuItem_Enter, ContestRegistration_Receptionists_ContestMenuItem_EnterSelected
-    GoToIfEq VAR_0x8008, Receptionists_ContestMenuItem_Info, ContestRegistration_Receptionists_ContestMenuItem_InfoSelected
-    GoTo ContestRegistration_Receptionists_ContestMenuExit
+    GoToIfEq VAR_0x8008, MENU_ENTRY_ENTER, Contests_EnterContest
+    GoToIfEq VAR_0x8008, MENU_ENTRY_INFO, Contests_ContestInfo
+    GoTo Contests_ContestMenuExit
     End
 
-ContestRegistration_Receptionists_ContestMenuExit:
+Contests_ContestMenuExit:
     EndCommunication
     SetVar VAR_UNK_0x40D5, 0
     ClearFlag FLAG_COMMUNICATION_CLUB_ACCESSIBLE
-    Message ContestRegistration_Text_LookForwardToYourParticipationAnotherTime
+    Message ContestCommon_Text_LookForwardToParticipation
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-ContestRegistration_Receptionists_ContestMenuItem_EnterSelected:
-    GoToIfEq VAR_MAP_LOCAL_3, CONTEST_MODE_LINK, ContestRegistration_ReceptionistLinkContest_EnterLinkContest
-    GoTo ContestRegistration_ReceptionistOfficialContest_ContestRankMenu
+Contests_EnterContest:
+    GoToIfEq VAR_MAP_LOCAL_3, CONTEST_MODE_LINK, Contests_EnterLinkContest
+    GoTo Contests_ContestRankMenu
     End
 
-ContestRegistration_ReceptionistLinkContest_EnterLinkContest:
+Contests_EnterLinkContest:
     HealParty
     ClearFlag FLAG_COMMUNICATION_CLUB_ACCESSIBLE
     Common_SaveGame
     SetVar VAR_RESULT, VAR_MAP_LOCAL_0  @ VAR_MAP_LOCAL_0 is set in CommonScript_SaveGame
-    GoToIfEq VAR_RESULT, TRUE, ContestRegistration_ReceptionistLinkContest_SavedGame
-    GoTo ContestRegistration_Receptionists_ContestMenuExit
+    GoToIfEq VAR_RESULT, TRUE, Contests_SetLinkContestSavedGame
+    GoTo Contests_ContestMenuExit
     End
 
-ContestRegistration_ReceptionistLinkContest_SavedGame:
+Contests_SetLinkContestSavedGame:
     SetVar VAR_0x8004, 2
-    GoTo ContestRegistration_ReceptionistOfficialContest_ContestTypeMenu
+    GoTo Contests_OfficialContestTypeMenu
     End
 
-ContestRegistration_Receptionists_ContestMenuItem_InfoSelected:
-    GoToIfEq VAR_MAP_LOCAL_3, CONTEST_MODE_LINK, ContestRegistration_ReceptionistLinkContest_LinkContestInfo
-    GoTo ContestRegistration_ReceptionistOfficialContest_InfoMenuEntry
+Contests_ContestInfo:
+    GoToIfEq VAR_MAP_LOCAL_3, CONTEST_MODE_LINK, Contests_LinkContestInfo
+    GoTo Contests_OfficialContestInfo
     End
 
-ContestRegistration_ReceptionistLinkContest_LinkContestInfo:
-    Message ContestRegistration_Text_ExplainLinkContest
-    GoTo ContestRegistration_Receptionists_WouldYouLikeToEnterContest
+Contests_LinkContestInfo:
+    Message ContestCommon_Text_ExplainLinkContest
+    GoTo Contests_AskEnterContest
 
 
-#define ReceptionistOfficialContest_InfoMenuItem_ContestBasics 0
-#define ReceptionistOfficialContest_InfoMenuItem_TypesOfContests 1
-#define ReceptionistOfficialContest_InfoMenuItem_ContestRanks 2
-#define ReceptionistOfficialContest_InfoMenuItem_Cancel 3
+#define MENU_ENTRY_CONTEST_BASICS 0
+#define MENU_ENTRY_TYPES_OF_CONTESTS 1
+#define MENU_ENTRY_CONTESTS_RANKS 2
+#define MENU_ENTRY_OFFICIAL_INFO_CANCEL 3
 
-ContestRegistration_ReceptionistOfficialContest_InfoMenuEntry:
-    Message ContestRegistration_Text_WhatWouldYouLikeToKnow1
-ContestRegistration_ReceptionistOfficialContest_InfoMenu:
+Contests_OfficialContestInfo:
+    Message ContestCommon_Text_WhatWouldYouLikeToKnow1
+Contests_OfficialContestInfoMenu:
     InitGlobalTextMenu 1, 1, 0, VAR_RESULT
-    AddMenuEntryImm MenuEntries_Text_ContestRegistration_ContestBasics, ReceptionistOfficialContest_InfoMenuItem_ContestBasics
-    AddMenuEntryImm MenuEntries_Text_ContestRegistration_TypesOfContests, ReceptionistOfficialContest_InfoMenuItem_TypesOfContests
-    AddMenuEntryImm MenuEntries_Text_ContestRegistration_ContestRanks, ReceptionistOfficialContest_InfoMenuItem_ContestRanks
-    AddMenuEntryImm MenuEntries_Text_ContestRegistration_Cancel, ReceptionistOfficialContest_InfoMenuItem_Cancel
+    AddMenuEntryImm MenuEntries_Text_ContestRegistration_ContestBasics, MENU_ENTRY_CONTEST_BASICS
+    AddMenuEntryImm MenuEntries_Text_ContestRegistration_TypesOfContests, MENU_ENTRY_TYPES_OF_CONTESTS
+    AddMenuEntryImm MenuEntries_Text_ContestRegistration_ContestRanks, MENU_ENTRY_CONTESTS_RANKS
+    AddMenuEntryImm MenuEntries_Text_ContestRegistration_Cancel, MENU_ENTRY_OFFICIAL_INFO_CANCEL
     ShowMenu
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, ReceptionistOfficialContest_InfoMenuItem_ContestBasics, GoTo_ContestRegistration_ReceptionistOfficialContest_InfoContestBasics
-    GoToIfEq VAR_0x8008, ReceptionistOfficialContest_InfoMenuItem_TypesOfContests, ContestRegistration_ReceptionistOfficialContest_InfoTypesOfContests
-    GoToIfEq VAR_0x8008, ReceptionistOfficialContest_InfoMenuItem_ContestRanks, ContestRegistration_ReceptionistOfficialContest_InfoContestRanks
-    GoTo ContestRegistration_Receptionists_WouldYouLikeToEnterContest
+    GoToIfEq VAR_0x8008, MENU_ENTRY_CONTEST_BASICS, Contests_OfficialContestInfoBasics
+    GoToIfEq VAR_0x8008, MENU_ENTRY_TYPES_OF_CONTESTS, Contests_OfficialContestInfoTypes
+    GoToIfEq VAR_0x8008, MENU_ENTRY_CONTESTS_RANKS, Contests_OfficialContestInfoRanks
+    GoTo Contests_AskEnterContest
     End
 
-GoTo_ContestRegistration_ReceptionistOfficialContest_InfoContestBasics:
-    GoTo ContestRegistration_ReceptionistOfficialContest_InfoContestBasics
+Contests_OfficialContestInfoBasics:
+    GoTo Contests_OfficialContestInfoBasicsMenu
     End
 
-ContestRegistration_ReceptionistOfficialContest_InfoTypesOfContests:
-    Message ContestRegistration_Text_ExplainContestTypes
-    GoTo ContestRegistration_ReceptionistOfficialContest_InfoMenuEntry
+Contests_OfficialContestInfoTypes:
+    Message ContestCommon_Text_ExplainContestTypes
+    GoTo Contests_OfficialContestInfo
     End
 
-ContestRegistration_ReceptionistOfficialContest_InfoContestRanks:
-    Message ContestRegistration_Text_ExplainContestRanks
-    GoTo ContestRegistration_ReceptionistOfficialContest_InfoMenuEntry
+Contests_OfficialContestInfoRanks:
+    Message ContestCommon_Text_ExplainContestRanks
+    GoTo Contests_OfficialContestInfo
     End
 
-#define ReceptionistOfficialContest_InfoContestBasicsMenuItem_WhatsAContest 0
-#define ReceptionistOfficialContest_InfoContestBasicsMenuItem_VisualCompetition 1
-#define ReceptionistOfficialContest_InfoContestBasicsMenuItem_DanceCompetition 2
-#define ReceptionistOfficialContest_InfoContestBasicsMenuItem_ActingCompetition 3
-#define ReceptionistOfficialContest_InfoContestBasicsMenuItem_CancelCompetition 4
+#define MENU_ENTRY_WHATS_A_CONTEST 0
+#define MENU_ENTRY_VISUAL_COMPETITION 1
+#define MENU_ENTRY_DANCING_COMPETITION 2
+#define MENU_ENTRY_ACTING_COMPETITION 3
+#define MENU_ENTRY_BASICS_CANCEL 4
 
-ContestRegistration_ReceptionistOfficialContest_InfoContestBasicsReentry:
-    Message ContestRegistration_Text_WhatWouldYouLikeToKnow2
-ContestRegistration_ReceptionistOfficialContest_InfoContestBasics:
+Contests_OfficialContestInfoBasicsMenuReentry:
+    Message ContestCommon_Text_WhatWouldYouLikeToKnow2
+Contests_OfficialContestInfoBasicsMenu:
     InitLocalTextMenu 1, 1, 0, VAR_RESULT
-    AddMenuEntryImm ContestRegistration_Text_WhatsAContest, ReceptionistOfficialContest_InfoContestBasicsMenuItem_WhatsAContest
-    AddMenuEntryImm ContestRegistration_Text_VisualCompetition, ReceptionistOfficialContest_InfoContestBasicsMenuItem_VisualCompetition
-    AddMenuEntryImm ContestRegistration_Text_DanceCompetition, ReceptionistOfficialContest_InfoContestBasicsMenuItem_DanceCompetition
-    AddMenuEntryImm ContestRegistration_Text_ActingCompetition, ReceptionistOfficialContest_InfoContestBasicsMenuItem_ActingCompetition
-    AddMenuEntryImm ContestRegistration_Text_CancelCompetition, ReceptionistOfficialContest_InfoContestBasicsMenuItem_CancelCompetition
+    AddMenuEntryImm ContestCommon_Text_WhatsAContest, MENU_ENTRY_WHATS_A_CONTEST
+    AddMenuEntryImm ContestCommon_Text_VisualCompetition, MENU_ENTRY_VISUAL_COMPETITION
+    AddMenuEntryImm ContestCommon_Text_DanceCompetition, MENU_ENTRY_DANCING_COMPETITION
+    AddMenuEntryImm ContestCommon_Text_ActingCompetition, MENU_ENTRY_ACTING_COMPETITION
+    AddMenuEntryImm ContestCommon_Text_CancelCompetition, MENU_ENTRY_BASICS_CANCEL
     ShowMenu
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, ReceptionistOfficialContest_InfoContestBasicsMenuItem_WhatsAContest, ContestRegistration_ReceptionistOfficialContest_WhatsAContest
-    GoToIfEq VAR_0x8008, ReceptionistOfficialContest_InfoContestBasicsMenuItem_VisualCompetition, ContestRegistration_ReceptionistOfficialContest_VisualCompetition
-    GoToIfEq VAR_0x8008, ReceptionistOfficialContest_InfoContestBasicsMenuItem_DanceCompetition, ContestRegistration_ReceptionistOfficialContest_DanceCompetition
-    GoToIfEq VAR_0x8008, ReceptionistOfficialContest_InfoContestBasicsMenuItem_ActingCompetition, ContestRegistration_ReceptionistOfficialContest_ActingCompetition
-    GoTo ContestRegistration_ReceptionistOfficialContest_InfoMenu
+    GoToIfEq VAR_0x8008, MENU_ENTRY_WHATS_A_CONTEST, Contests_OfficialContestInfoWhatsAContest
+    GoToIfEq VAR_0x8008, MENU_ENTRY_VISUAL_COMPETITION, Contests_OfficialContestInfoVisualCompetition
+    GoToIfEq VAR_0x8008, MENU_ENTRY_DANCING_COMPETITION, Contests_OfficialContestInfoDanceCompetition
+    GoToIfEq VAR_0x8008, MENU_ENTRY_ACTING_COMPETITION, Contests_OfficialContestInfoActingCompetition
+    GoTo Contests_OfficialContestInfoMenu
     End
 
-ContestRegistration_ReceptionistOfficialContest_WhatsAContest:
-    Message ContestRegistration_Text_ExplainOfficialContest
-    GoTo ContestRegistration_ReceptionistOfficialContest_InfoContestBasicsReentry
+Contests_OfficialContestInfoWhatsAContest:
+    Message ContestCommon_Text_ExplainOfficialContest
+    GoTo Contests_OfficialContestInfoBasicsMenuReentry
     End
 
-ContestRegistration_ReceptionistOfficialContest_VisualCompetition:
-    Message ContestRegistration_Text_ExplainVisualContest
-    GoTo ContestRegistration_ReceptionistOfficialContest_InfoContestBasicsReentry
+Contests_OfficialContestInfoVisualCompetition:
+    Message ContestCommon_Text_ExplainVisualContest
+    GoTo Contests_OfficialContestInfoBasicsMenuReentry
     End
 
-ContestRegistration_ReceptionistOfficialContest_DanceCompetition:
-    Message ContestRegistration_Text_ExplainDanceContest
-    GoTo ContestRegistration_ReceptionistOfficialContest_InfoContestBasicsReentry
+Contests_OfficialContestInfoDanceCompetition:
+    Message ContestCommon_Text_ExplainDanceContest
+    GoTo Contests_OfficialContestInfoBasicsMenuReentry
     End
 
-ContestRegistration_ReceptionistOfficialContest_ActingCompetition:
-    Message ContestRegistration_Text_ExplainActingContest
-    GoTo ContestRegistration_ReceptionistOfficialContest_InfoContestBasicsReentry
+Contests_OfficialContestInfoActingCompetition:
+    Message ContestCommon_Text_ExplainActingContest
+    GoTo Contests_OfficialContestInfoBasicsMenuReentry
     End
 
 
-#define ReceptionistOfficialContest_ContestRankMenuItem_NormalRank 0
-#define ReceptionistOfficialContest_ContestRankMenuItem_GreatRank 1
-#define ReceptionistOfficialContest_ContestRankMenuItem_UltraRank 2
-#define ReceptionistOfficialContest_ContestRankMenuItem_MasterRank 3
-#define ReceptionistOfficialContest_ContestRankMenuItem_Exit 4
+#define MENU_ENTRY_NORMAL_RANK 0
+#define MENU_ENTRY_GREAT_RANK 1
+#define MENU_ENTRY_ULTRA_RANK 2
+#define MENU_ENTRY_MASTER_RANK 3
+#define MENU_ENTRY_RANK_EXIT 4
 
-ContestRegistration_ReceptionistOfficialContest_ContestRankMenu:
-    Message ContestRegistration_Text_SelectRank
+Contests_ContestRankMenu:
+    Message ContestCommon_Text_SelectRank
     InitGlobalTextMenu 1, 1, 0, VAR_RESULT
-    AddMenuEntryImm MenuEntries_Text_ContestRegistration_NormalRank, ReceptionistOfficialContest_ContestRankMenuItem_NormalRank
-    AddMenuEntryImm MenuEntries_Text_ContestRegistration_GreatRank, ReceptionistOfficialContest_ContestRankMenuItem_GreatRank
-    AddMenuEntryImm MenuEntries_Text_ContestRegistration_UltraRank, ReceptionistOfficialContest_ContestRankMenuItem_UltraRank
-    AddMenuEntryImm MenuEntries_Text_ContestRegistration_MasterRank, ReceptionistOfficialContest_ContestRankMenuItem_MasterRank
-    AddMenuEntryImm MenuEntries_Text_ContestRegistration_ContestRankExit, ReceptionistOfficialContest_ContestRankMenuItem_Exit
+    AddMenuEntryImm MenuEntries_Text_ContestRegistration_NormalRank, MENU_ENTRY_NORMAL_RANK
+    AddMenuEntryImm MenuEntries_Text_ContestRegistration_GreatRank, MENU_ENTRY_GREAT_RANK
+    AddMenuEntryImm MenuEntries_Text_ContestRegistration_UltraRank, MENU_ENTRY_ULTRA_RANK
+    AddMenuEntryImm MenuEntries_Text_ContestRegistration_MasterRank, MENU_ENTRY_MASTER_RANK
+    AddMenuEntryImm MenuEntries_Text_ContestRegistration_ContestRankExit, MENU_ENTRY_RANK_EXIT
     ShowMenu
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, ReceptionistOfficialContest_ContestRankMenuItem_NormalRank, ContestRegistration_ReceptionistOfficialContest_NormalRank
-    GoToIfEq VAR_0x8008, ReceptionistOfficialContest_ContestRankMenuItem_GreatRank, ContestRegistration_ReceptionistOfficialContest_GreatRank
-    GoToIfEq VAR_0x8008, ReceptionistOfficialContest_ContestRankMenuItem_UltraRank, ContestRegistration_ReceptionistOfficialContest_UltraRank
-    GoToIfEq VAR_0x8008, ReceptionistOfficialContest_ContestRankMenuItem_MasterRank, ContestRegistration_ReceptionistOfficialContest_MasterRank
-    GoTo ContestRegistration_Receptionists_ContestMenuExit
+    GoToIfEq VAR_0x8008, MENU_ENTRY_NORMAL_RANK, Contests_OfficialContestNormalRank
+    GoToIfEq VAR_0x8008, MENU_ENTRY_GREAT_RANK, Contests_OfficialContestGreatRank
+    GoToIfEq VAR_0x8008, MENU_ENTRY_ULTRA_RANK, Contests_OfficialContestUltraRank
+    GoToIfEq VAR_0x8008, MENU_ENTRY_MASTER_RANK, Contests_OfficialContestMasterRank
+    GoTo Contests_ContestMenuExit
     End
 
-ContestRegistration_ReceptionistOfficialContest_NormalRank:
+Contests_OfficialContestNormalRank:
     SetVar VAR_0x8004, CONTEST_RANK_NORMAL
-    GoTo ContestRegistration_ReceptionistOfficialContest_ContestTypeMenu
+    GoTo Contests_OfficialContestTypeMenu
     End
 
-ContestRegistration_ReceptionistOfficialContest_GreatRank:
+Contests_OfficialContestGreatRank:
     SetVar VAR_0x8004, CONTEST_RANK_GREAT
-    GoTo ContestRegistration_ReceptionistOfficialContest_ContestTypeMenu
+    GoTo Contests_OfficialContestTypeMenu
     End
 
-ContestRegistration_ReceptionistOfficialContest_UltraRank:
+Contests_OfficialContestUltraRank:
     SetVar VAR_0x8004, CONTEST_RANK_ULTRA
-    GoTo ContestRegistration_ReceptionistOfficialContest_ContestTypeMenu
+    GoTo Contests_OfficialContestTypeMenu
     End
 
-ContestRegistration_ReceptionistOfficialContest_MasterRank:
+Contests_OfficialContestMasterRank:
     SetVar VAR_0x8004, CONTEST_RANK_MASTER
-    GoTo ContestRegistration_ReceptionistOfficialContest_ContestTypeMenu
+    GoTo Contests_OfficialContestTypeMenu
     End
 
 
-#define ReceptionistOfficialContest_ContestTypeMenuItem_Cool 0
-#define ReceptionistOfficialContest_ContestTypeMenuItem_Beauty 1
-#define ReceptionistOfficialContest_ContestTypeMenuItem_Cute 2
-#define ReceptionistOfficialContest_ContestTypeMenuItem_Smart 3
-#define ReceptionistOfficialContest_ContestTypeMenuItem_Tough 4
-#define ReceptionistOfficialContest_ContestTypeMenuItem_Exit 5
+#define MENU_ENTRY_COOL 0
+#define MENU_ENTRY_BEAUTY 1
+#define MENU_ENTRY_CUTE 2
+#define MENU_ENTRY_SMART 3
+#define MENU_ENTRY_TOUGH 4
+#define MENU_ENTRY_TYPE_EXIT 5
 
-ContestRegistration_ReceptionistOfficialContest_ContestTypeMenu:
-    Message ContestRegistration_Text_SelectContestType
+Contests_OfficialContestTypeMenu:
+    Message ContestCommon_Text_SelectContestType
     InitGlobalTextMenu 1, 1, 0, VAR_RESULT
-    AddMenuEntryImm MenuEntries_Text_ContestRegistration_CoolContest, ReceptionistOfficialContest_ContestTypeMenuItem_Cool
-    AddMenuEntryImm MenuEntries_Text_ContestRegistration_BeautyContest, ReceptionistOfficialContest_ContestTypeMenuItem_Beauty
-    AddMenuEntryImm MenuEntries_Text_ContestRegistration_CuteContest, ReceptionistOfficialContest_ContestTypeMenuItem_Cute
-    AddMenuEntryImm MenuEntries_Text_ContestRegistration_SmartContest, ReceptionistOfficialContest_ContestTypeMenuItem_Smart
-    AddMenuEntryImm MenuEntries_Text_ContestRegistration_ToughContest, ReceptionistOfficialContest_ContestTypeMenuItem_Tough
-    AddMenuEntryImm MenuEntries_Text_ContestRegistration_ContestTypeExit, ReceptionistOfficialContest_ContestTypeMenuItem_Exit
+    AddMenuEntryImm MenuEntries_Text_ContestRegistration_CoolContest, MENU_ENTRY_COOL
+    AddMenuEntryImm MenuEntries_Text_ContestRegistration_BeautyContest, MENU_ENTRY_BEAUTY
+    AddMenuEntryImm MenuEntries_Text_ContestRegistration_CuteContest, MENU_ENTRY_CUTE
+    AddMenuEntryImm MenuEntries_Text_ContestRegistration_SmartContest, MENU_ENTRY_SMART
+    AddMenuEntryImm MenuEntries_Text_ContestRegistration_ToughContest, MENU_ENTRY_TOUGH
+    AddMenuEntryImm MenuEntries_Text_ContestRegistration_ContestTypeExit, MENU_ENTRY_TYPE_EXIT
     ShowMenu
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, ReceptionistOfficialContest_ContestTypeMenuItem_Cool, ContestRegistration_ReceptionistOfficialContest_SelectContestTypeCool
-    GoToIfEq VAR_0x8008, ReceptionistOfficialContest_ContestTypeMenuItem_Beauty, ContestRegistration_ReceptionistOfficialContest_SelectContestTypeBeauty
-    GoToIfEq VAR_0x8008, ReceptionistOfficialContest_ContestTypeMenuItem_Cute, ContestRegistration_ReceptionistOfficialContest_SelectContestTypeCute
-    GoToIfEq VAR_0x8008, ReceptionistOfficialContest_ContestTypeMenuItem_Smart, ContestRegistration_ReceptionistOfficialContest_SelectContestTypeSmart
-    GoToIfEq VAR_0x8008, ReceptionistOfficialContest_ContestTypeMenuItem_Tough, ContestRegistration_ReceptionistOfficialContest_SelectContestTypeTough
-    GoTo ContestRegistration_Receptionists_ContestMenuExit
+    GoToIfEq VAR_0x8008, MENU_ENTRY_COOL, Contests_OfficialContestCool
+    GoToIfEq VAR_0x8008, MENU_ENTRY_BEAUTY, Contests_OfficialContestBeauty
+    GoToIfEq VAR_0x8008, MENU_ENTRY_CUTE, Contests_OfficialContestCute
+    GoToIfEq VAR_0x8008, MENU_ENTRY_SMART, Contests_OfficialContestSmart
+    GoToIfEq VAR_0x8008, MENU_ENTRY_TOUGH, Contests_OfficialContestTough
+    GoTo Contests_ContestMenuExit
     End
 
-ContestRegistration_ReceptionistOfficialContest_SelectContestTypeCool:
+Contests_OfficialContestCool:
     SetVar VAR_0x8005, CONTEST_TYPE_COOL
-    GoTo ContestRegistration_Receptionists_RegisterMon
+    GoTo Contests_OfficialContestRegisterMon
     End
 
-ContestRegistration_ReceptionistOfficialContest_SelectContestTypeBeauty:
+Contests_OfficialContestBeauty:
     SetVar VAR_0x8005, CONTEST_TYPE_BEAUTY
-    GoTo ContestRegistration_Receptionists_RegisterMon
+    GoTo Contests_OfficialContestRegisterMon
     End
 
-ContestRegistration_ReceptionistOfficialContest_SelectContestTypeCute:
+Contests_OfficialContestCute:
     SetVar VAR_0x8005, CONTEST_TYPE_CUTE
-    GoTo ContestRegistration_Receptionists_RegisterMon
+    GoTo Contests_OfficialContestRegisterMon
     End
 
-ContestRegistration_ReceptionistOfficialContest_SelectContestTypeSmart:
+Contests_OfficialContestSmart:
     SetVar VAR_0x8005, CONTEST_TYPE_SMART
-    GoTo ContestRegistration_Receptionists_RegisterMon
+    GoTo Contests_OfficialContestRegisterMon
     End
 
-ContestRegistration_ReceptionistOfficialContest_SelectContestTypeTough:
+Contests_OfficialContestTough:
     SetVar VAR_0x8005, CONTEST_TYPE_TOUGH
-    GoTo ContestRegistration_Receptionists_RegisterMon
+    GoTo Contests_OfficialContestRegisterMon
     End
 
-ContestRegistration_Receptionists_RegisterMon:
-    Message ContestRegistration_Text_EnterWhichPokemon1
-    Message ContestRegistration_Text_PleaseChoosePokemon1
+Contests_OfficialContestRegisterMon:
+    Message ContestCommon_Text_EnterWhichPokemonOfficial
+    Message ContestCommon_Text_PleaseChoosePokemonOfficial
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
-    CallIfEq VAR_MAP_LOCAL_3, CONTEST_MODE_OFFICIAL, ContestRegistration_ReceptionistOfficialContest_UseSelectedContestRank
-    CallIfEq VAR_MAP_LOCAL_3, CONTEST_MODE_LINK, ContestRegistration_ReceptionistLinkContest_UseDefaultContestRank
+    CallIfEq VAR_MAP_LOCAL_3, CONTEST_MODE_OFFICIAL, Contests_UseSelectedContestRank
+    CallIfEq VAR_MAP_LOCAL_3, CONTEST_MODE_LINK, Contests_UseDefaultContestRank
     SetVar VAR_RESULT, 0
-ContestRegistration_Receptionists_TryRegisterMon:
+Contests_OfficialContestTryRegisterMon:
     OpenPartyMenuForContest VAR_RESULT, VAR_0x8004, VAR_0x8005, VAR_MAP_LOCAL_4
-    TryEnterContestMon VAR_MAP_LOCAL_2, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, ContestRegistration_Receptionists_RegisterMonDone
+    GetContestPartyMenuResult VAR_MAP_LOCAL_2, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, Contests_OfficialContestRegisterMonDone
     SetMonSummary VAR_MAP_LOCAL_2
     GetMonPartySlot VAR_RESULT
-    GoTo ContestRegistration_Receptionists_TryRegisterMon
+    GoTo Contests_OfficialContestTryRegisterMon
 
-ContestRegistration_Receptionists_RegisterMonDone:
+Contests_OfficialContestRegisterMonDone:
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
-    GoToIfEq VAR_MAP_LOCAL_2, PARTY_SLOT_NONE, ContestRegistration_Receptionists_ConfirmCancelEntry
-    GoTo ContestRegistration_Receptionists_PreContestControl
+    GoToIfEq VAR_MAP_LOCAL_2, PARTY_SLOT_NONE, Contests_OfficialContestAskCancel
+    GoTo Contests_OfficialContestStart
     End
 
-ContestRegistration_Receptionists_ConfirmCancelEntry:
-    Message ContestRegistration_Text_CancelEntry
+Contests_OfficialContestAskCancel:
+    Message ContestCommon_Text_CancelEntry
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, ContestRegistration_Receptionists_ContestMenuExit
-    GoTo ContestRegistration_Receptionists_RegisterMon
+    GoToIfEq VAR_RESULT, MENU_YES, Contests_ContestMenuExit
+    GoTo Contests_OfficialContestRegisterMon
     End
 
-ContestRegistration_ReceptionistOfficialContest_UseSelectedContestRank:
+Contests_UseSelectedContestRank:
     SetVar VAR_MAP_LOCAL_4, FALSE
     Return
 
-ContestRegistration_ReceptionistLinkContest_UseDefaultContestRank:
+Contests_UseDefaultContestRank:
     SetVar VAR_MAP_LOCAL_4, TRUE
     Return
 
-ContestRegistration_Receptionists_PreContestControl:
-    GoToIfEq VAR_MAP_LOCAL_3, CONTEST_MODE_LINK, ContestRegistration_ReceptionistLinkContest_EstablishGroup
-    GoTo ContestRegistration_StartContest
+Contests_OfficialContestStart:
+    GoToIfEq VAR_MAP_LOCAL_3, CONTEST_MODE_LINK, Contests_LinkContestEstablishGroup
+    GoTo Contests_StartContest
     End
 
 
-#define ReceptionistLinkContest_EstablishGroupMenuItem_JoinGroup 0
-#define ReceptionistLinkContest_EstablishGroupMenuItem_BecomeLeader 1
-#define ReceptionistLinkContest_EstablishGroupMenuItem_Exit 2
+#define MENU_ENTRY_JOIN_GROUP 0
+#define MENU_ENTRY_BECOME_LEADER 1
+#define MENU_ENTRY_ESTABLISH_GROUP_EXIT 2
 
-ContestRegistration_ReceptionistLinkContest_EstablishGroup:
-    Message ContestRegistration_Text_OnePersonMustBeLeader
+Contests_LinkContestEstablishGroup:
+    Message ContestCommon_Text_OnePersonMustBeLeader
     InitGlobalTextMenu 30, 1, 0, VAR_RESULT
     SetMenuXOriginToRight
-    AddMenuEntryImm MenuEntries_Text_JoinGroup, ReceptionistLinkContest_EstablishGroupMenuItem_JoinGroup
-    AddMenuEntryImm MenuEntries_Text_BecomeLeader, ReceptionistLinkContest_EstablishGroupMenuItem_BecomeLeader
-    AddMenuEntryImm MenuEntries_Text_Exit, ReceptionistLinkContest_EstablishGroupMenuItem_Exit
+    AddMenuEntryImm MenuEntries_Text_JoinGroup, MENU_ENTRY_JOIN_GROUP
+    AddMenuEntryImm MenuEntries_Text_BecomeLeader, MENU_ENTRY_BECOME_LEADER
+    AddMenuEntryImm MenuEntries_Text_Exit, MENU_ENTRY_ESTABLISH_GROUP_EXIT
     ShowMenu
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, ReceptionistLinkContest_EstablishGroupMenuItem_JoinGroup, ContestRegistration_ReceptionistLinkContest_JoinGroup
-    GoToIfEq VAR_0x8008, ReceptionistLinkContest_EstablishGroupMenuItem_BecomeLeader, ContestRegistration_ReceptionistLinkContest_BecomeLeader
-    GoTo ContestRegistration_Receptionists_ContestMenuExit
+    GoToIfEq VAR_0x8008, MENU_ENTRY_JOIN_GROUP, Contests_LinkContestJoinGroup
+    GoToIfEq VAR_0x8008, MENU_ENTRY_BECOME_LEADER, Contests_LinkContestBecomeLeader
+    GoTo Contests_ContestMenuExit
     End
 
-ContestRegistration_ReceptionistLinkContest_JoinGroup:
-    Message ContestRegistration_Text_CommunicatingWillBeLaunched
+Contests_LinkContestJoinGroup:
+    Message ContestCommon_Text_CommunicationsWillBeLaunched
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, ContestRegistration_ReceptionistLinkContest_EstablishGroup
+    GoToIfEq VAR_RESULT, MENU_NO, Contests_LinkContestEstablishGroup
     CloseMessage
     StartBattleClient COMM_TYPE_CONTEST, VAR_0x8005, VAR_0x8004, VAR_RESULT
-    GoToIfEq VAR_RESULT, COMM_CLUB_RET_CANCEL, GoTo_ContestRegistration_ReceptionistLinkContest_EstablishGroup1
-    GoToIfEq VAR_RESULT, COMM_CLUB_RET_ERROR, GoTo_ContestRegistration_ReceptionistLinkContest_EstablishGroup2
-    GoTo ContestRegistration_StartContest
+    GoToIfEq VAR_RESULT, COMM_CLUB_RET_CANCEL, Contests_LinkContestJoinGroupCancel
+    GoToIfEq VAR_RESULT, COMM_CLUB_RET_ERROR, Contests_LinkContestJoinGroupError
+    GoTo Contests_StartContest
     End
 
-GoTo_ContestRegistration_ReceptionistLinkContest_EstablishGroup1:
-    GoTo ContestRegistration_ReceptionistLinkContest_EstablishGroup
+Contests_LinkContestJoinGroupCancel:
+    GoTo Contests_LinkContestEstablishGroup
     End
 
-GoTo_ContestRegistration_ReceptionistLinkContest_EstablishGroup2:
-    GoTo ContestRegistration_ReceptionistLinkContest_EstablishGroup
+Contests_LinkContestJoinGroupError:
+    GoTo Contests_LinkContestEstablishGroup
     End
 
-ContestRegistration_ReceptionistLinkContest_BecomeLeader:
-    Message ContestRegistration_Text_CommunicatingWillBeLaunched
+Contests_LinkContestBecomeLeader:
+    Message ContestCommon_Text_CommunicationsWillBeLaunched
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, ContestRegistration_ReceptionistLinkContest_EstablishGroup
+    GoToIfEq VAR_RESULT, MENU_NO, Contests_LinkContestEstablishGroup
     CloseMessage
     StartBattleServer COMM_TYPE_CONTEST, VAR_0x8005, VAR_0x8004, VAR_RESULT
-    GoToIfEq VAR_RESULT, COMM_CLUB_RET_CANCEL, GoTo_ContestRegistration_ReceptionistLinkContest_EstablishGroup3
-    GoToIfEq VAR_RESULT, COMM_CLUB_RET_ERROR, ContestRegistration_ReceptionistLinkContest_End
-    GoTo ContestRegistration_StartContest
+    GoToIfEq VAR_RESULT, COMM_CLUB_RET_CANCEL, Contests_LinkContestBecomeLeaderCancel
+    GoToIfEq VAR_RESULT, COMM_CLUB_RET_ERROR, Contests_LinkContestBecomeLeaderError
+    GoTo Contests_StartContest
     End
 
-GoTo_ContestRegistration_ReceptionistLinkContest_EstablishGroup3:
-    GoTo ContestRegistration_ReceptionistLinkContest_EstablishGroup
+Contests_LinkContestBecomeLeaderCancel:
+    GoTo Contests_LinkContestEstablishGroup
     End
 
-ContestRegistration_ReceptionistLinkContest_End:
+Contests_LinkContestBecomeLeaderError:
     EndCommunication
     CloseMessage
     ReleaseAll
     End
 
-ContestRegistration_StartContest:
+Contests_StartContest:
     NewContest VAR_0x8004, VAR_0x8005, VAR_0x8007, VAR_MAP_LOCAL_2
-    CallIfEq VAR_MAP_LOCAL_3, CONTEST_MODE_LINK, ContestRegistration_SetupLinkContest
-    GoToIfEq VAR_MAP_LOCAL_3, CONTEST_MODE_PRACTICE, ContestRegistration_RegisteredForPractice
+    CallIfEq VAR_MAP_LOCAL_3, CONTEST_MODE_LINK, Contests_SetupLinkContest
+    GoToIfEq VAR_MAP_LOCAL_3, CONTEST_MODE_PRACTICE, Contests_RegisteredForPractice
     GetContestRegistrationEntryNum VAR_RESULT
     AddVar VAR_RESULT, 1
     BufferContestRegistrationEntryNumber VAR_RESULT, 0
-    MessageSynchronized ContestRegistration_Text_YourPokemonHasBeenAccepted
+    MessageSynchronized ContestCommon_Text_YourPokemonHasBeenAccepted
     GetContestRegistrationEntryNum VAR_RESULT
     BufferContestantTrainerName VAR_RESULT, 0
     BufferContestantMonName VAR_RESULT, 1
-    MessageSynchronized ContestRegistration_Text_TheContestWillStartRightAway
+    MessageSynchronized ContestCommon_Text_ContestWillStart
     StartContestCommSync 25
     WaitForCommSyncState 25
     CloseMessage
-ContestRegistration_SelectContestDoor:
-    GoToIfEq VAR_MAP_LOCAL_3, CONTEST_MODE_OFFICIAL, ContestRegistration_OfficialContestDoor
-    GoToIfEq VAR_MAP_LOCAL_3, CONTEST_MODE_LINK, ContestRegistration_LinkContestDoor
-    GoToIfEq VAR_MAP_LOCAL_3, CONTEST_MODE_PRACTICE, ContestRegistration_PracticeContestDoor
+Contests_SelectContestDoor:
+    GoToIfEq VAR_MAP_LOCAL_3, CONTEST_MODE_OFFICIAL, Contests_OfficialContestDoor
+    GoToIfEq VAR_MAP_LOCAL_3, CONTEST_MODE_LINK, Contests_LinkContestDoor
+    GoToIfEq VAR_MAP_LOCAL_3, CONTEST_MODE_PRACTICE, Contests_PracticeContestDoor
     End
 
-ContestRegistration_RegisteredForPractice:
+Contests_RegisteredForPractice:
     GetContestRegistrationEntryNum VAR_RESULT
     AddVar VAR_RESULT, 1
     BufferContestRegistrationEntryNumber VAR_RESULT, 0
-    Message ContestRegistration_Text_YourPokemonRegisteredForPractice
+    Message ContestCommon_Text_RegisteredForPractice
     GetContestRegistrationEntryNum VAR_RESULT
     BufferContestantTrainerName VAR_RESULT, 0
     BufferContestantMonName VAR_RESULT, 1
     CloseMessage
-    GoTo ContestRegistration_SelectContestDoor
+    GoTo Contests_SelectContestDoor
 
-ContestRegistration_SetupLinkContest:
-    Message ContestRegistration_Text_CommunicatingStandBy
+Contests_SetupLinkContest:
+    Message ContestCommon_Text_CommunicatingStandBy
     WaitForLinkContestSetup
     Return
 
-ContestRegistration_OfficialContestDoor:
+Contests_OfficialContestDoor:
     LoadDoorAnimation 0, 0, 19, 5, ANIMATION_TAG_DOOR_1
-    Call ContestRegistration_OpenDoor
+    Call Contests_DoorOpenAnimation
     WaitMovement
-    ApplyMovement LOCALID_PLAYER, ContestRegistration_Movement_PlayerToOfficialContestDoor
-    ApplyMovement CONTEST_HALL_LOBBY_RECEPTIONIST_OFFICIAL_CONTEST, ContestRegistration_Movement_OfficialContestReceptionistToPlayer
+    ApplyMovement LOCALID_PLAYER, Contests_Movement_PlayerWalkToOfficialContestDoor
+    ApplyMovement LOCALID_CONTEST_LOBBY_RECEPTIONIST_OFFICIAL_CONTEST, Contests_Movement_OfficialReceptionistWalkToPlayer
     WaitMovement
-    Call ContestRegistration_CloseDoor
+    Call Contests_DoorCloseAnimation
     WaitMovement
-    GoTo ContestRegistration_ChangeIntoContestAttire
+    GoTo Contests_ChangeIntoContestAttire
     End
 
-ContestRegistration_LinkContestDoor:
+Contests_LinkContestDoor:
     SetFlag FLAG_COMMUNICATION_CLUB_ACCESSIBLE
     SetVar VAR_UNK_0x40D5, 5
     LoadDoorAnimation 0, 0, 7, 5, ANIMATION_TAG_DOOR_1
-    Call ContestRegistration_OpenDoor
+    Call Contests_DoorOpenAnimation
     WaitMovement
-    ApplyMovement LOCALID_PLAYER, ContestRegistration_Movement_PlayerToLinkContestDoor
-    ApplyMovement CONTEST_HALL_LOBBY_RECEPTIONIST_LINK_CONTEST, ContestRegistration_Movement_LinkContestReceptionistToPlayer
+    ApplyMovement LOCALID_PLAYER, Contests_Movement_PlayerWalkToLinkContestDoor
+    ApplyMovement LOCALID_CONTEST_LOBBY_RECEPTIONIST_LINK_CONTEST, Contests_Movement_LinkReceptionistWalkToPlayer
     WaitMovement
-    Call ContestRegistration_CloseDoor
+    Call Contests_DoorCloseAnimation
     WaitMovement
-    GoTo ContestRegistration_ChangeIntoContestAttire
+    GoTo Contests_ChangeIntoContestAttire
     End
 
-ContestRegistration_PracticeContestDoor:
+Contests_PracticeContestDoor:
     LoadDoorAnimation 0, 0, 28, 5, ANIMATION_TAG_DOOR_1
-    Call ContestRegistration_OpenDoor
+    Call Contests_DoorOpenAnimation
     WaitMovement
-    ApplyMovement LOCALID_PLAYER, ContestRegistration_Movement_ApproachPracticeContestDoor
-    ApplyMovement CONTEST_HALL_LOBBY_RECEPTIONIST_PRACTICE_CONTEST, ContestRegistration_Movement_PracticeReceptionistToPlayer
+    ApplyMovement LOCALID_PLAYER, Contests_Movement_PlayerWalkToPracticeContestDoor
+    ApplyMovement LOCALID_CONTEST_LOBBY_RECEPTIONIST_PRACTICE_CONTEST, Contests_Movement_PracticeReceptionistWalkToPlayer
     WaitMovement
-    Call ContestRegistration_CloseDoor
+    Call Contests_DoorCloseAnimation
     WaitMovement
-    MessageSynchronized ContestRegistration_Text_RightThisWayPlease2
+    MessageSynchronized ContestCommon_Text_RightThisWayPlease2
     CloseMessage
-    GoTo ContestRegistration_ChangeIntoContestAttire
+    GoTo Contests_ChangeIntoContestAttire
     End
 
-ContestRegistration_ChangeIntoContestAttire:
-    GoToIfEq VAR_MAP_LOCAL_3, CONTEST_MODE_PRACTICE, ContestRegistration_StartPracticeContest
+Contests_ChangeIntoContestAttire:
+    GoToIfEq VAR_MAP_LOCAL_3, CONTEST_MODE_PRACTICE, Contests_StartPracticeContest
     ChangeIntoContestAttire
     GetPlayerGender VAR_RESULT
-    GoToIfEq VAR_RESULT, GENDER_MALE, ContestRegistration_PlayerChangedIntoTuxedo
-    GoTo ContestRegistration_PlayerChangedIntoDress
+    GoToIfEq VAR_RESULT, GENDER_MALE, Contests_PlayerChangedIntoTuxedo
+    GoTo Contests_PlayerChangedIntoDress
     End
 
-ContestRegistration_PlayerChangedIntoTuxedo:
+Contests_PlayerChangedIntoTuxedo:
     BufferPlayerName 0
-    MessageSynchronized ContestRegistration_Text_PlayerChangedIntoTuxedo
-    GoTo ContestRegistration_ThisWayToContestHall
+    MessageSynchronized ContestCommon_Text_PlayerChangedIntoTuxedo
+    GoTo Contests_ThisWayToContestHall
     End
 
-ContestRegistration_PlayerChangedIntoDress:
+Contests_PlayerChangedIntoDress:
     BufferPlayerName 0
-    MessageSynchronized ContestRegistration_Text_PlayerChangedIntoDress
-    GoTo ContestRegistration_ThisWayToContestHall
+    MessageSynchronized ContestCommon_Text_PlayerChangedIntoDress
+    GoTo Contests_ThisWayToContestHall
     End
 
-ContestRegistration_ThisWayToContestHall:
-    ApplyMovement LOCALID_PLAYER, ContestRegistration_Movement_FaceContestHall
+Contests_ThisWayToContestHall:
+    ApplyMovement LOCALID_PLAYER, Contests_Movement_PlayerFaceContestHall
     WaitMovement
-    MessageSynchronized ContestRegistration_Text_RightThisWayPlease1
+    MessageSynchronized ContestCommon_Text_RightThisWayPlease1
     StartContestCommSync 26
     WaitForCommSyncState 26
     CloseMessage
     GoTo Contest_DoContest
     End
 
-ContestRegistration_StartPracticeContest:
+Contests_StartPracticeContest:
     FadeScreenOut
     WaitFadeScreen
     RunContestApplication
@@ -660,10 +660,10 @@ ContestRegistration_StartPracticeContest:
     LockTextSpeed
     EndContest VAR_MAP_LOCAL_2
     SetVar VAR_RESULT, 28
-    Call ContestRegistration_Movement_ExitContestHall
-    Call ContestRegistration_AssessPracticeResults
-    GoToIfEq VAR_RESULT, MENU_YES, ContestRegistration_StartContest
-    Message ContestRegistration_Text_WeLookForwardToYourNextVisit1
+    Call Contests_ExitContestHall
+    Call Contests_AssessPracticeResults
+    GoToIfEq VAR_RESULT, MENU_YES, Contests_StartContest
+    Message ContestCommon_Text_LookForwardToNextVisit1
     WaitButton
     CloseMessage
     ReleaseAll
@@ -672,7 +672,7 @@ ContestRegistration_StartPracticeContest:
 Contest_DoContest:
     ClearFlag FLAG_HIDE_HEARTHOME_HIKER_3
     SetVar VAR_ONGOING_CONTEST, TRUE
-    Call OngoingContest_GetContestantGFX
+    Call Contests_GetContestantsGFX
     PlaySE SEQ_SE_DP_KAIDAN2
     ClearFlag FLAG_HIDE_CONTEST_HALL_STAGE_CONTESTANT1
     ClearFlag FLAG_HIDE_CONTEST_HALL_STAGE_CONTESTANT2
@@ -690,55 +690,55 @@ Contest_DoContest:
     StartContestCommSync 3
     WaitForCommSyncState 3
     PlaySE SEQ_SE_DP_CON_F007
-    ApplyMovement CONTEST_HALL_STAGE_ONGOING_CONTEST_MCDEXTER, OngoingContest_Movement_LookAround
+    ApplyMovement LOCALID_ONGOING_CONTEST_MCDEXTER, Contests_Movement_DexterLookAround
     WaitMovement
     BufferContestRank 0
     BufferContestType 1
-    MessageSynchronized ContestRegistration_Text_WeAreAboutToGetUnderWay
+    MessageSynchronized ContestCommon_Text_AboutToGetUnderWay
     StartContestCommSync 19
     WaitForCommSyncState 19
-    ApplyMovement CONTEST_HALL_STAGE_ONGOING_CONTEST_MCDEXTER, OngoingContest_Movement_LookWest
+    ApplyMovement LOCALID_ONGOING_CONTEST_MCDEXTER, Contests_Movement_DexterLookWest
     WaitMovement
     BufferContestantTrainerName 0, 0
-    MessageSynchronized ContestRegistration_Text_IntroduceFirstContestant
+    MessageSynchronized ContestCommon_Text_IntroduceFirstContestant
     GetContestantMonContestFame 0, VAR_RESULT
     StartContestCameraFlashTask 0
-    Call OngoingContest_PlayApplause
+    Call Contests_PlayApplause
     WaitForContestCameraFlashTask
     StartContestCommSync 20
     WaitForCommSyncState 20
-    ApplyMovement CONTEST_HALL_STAGE_ONGOING_CONTEST_MCDEXTER, OngoingContest_Movement_DexterLookNorth
+    ApplyMovement LOCALID_ONGOING_CONTEST_MCDEXTER, Contests_Movement_DexterLookNorth
     WaitMovement
     BufferContestantTrainerName 1, 0
-    MessageSynchronized ContestRegistration_Text_IntroduceSecondContestant
+    MessageSynchronized ContestCommon_Text_IntroduceSecondContestant
     GetContestantMonContestFame 1, VAR_RESULT
     StartContestCameraFlashTask 1
-    Call OngoingContest_PlayApplause
+    Call Contests_PlayApplause
     WaitForContestCameraFlashTask
     StartContestCommSync 21
     WaitForCommSyncState 21
     WaitTime 8, VAR_RESULT
     BufferContestantTrainerName 2, 0
-    MessageSynchronized ContestRegistration_Text_IntroduceThirdContestant
+    MessageSynchronized ContestCommon_Text_IntroduceThirdContestant
     GetContestantMonContestFame 2, VAR_RESULT
     StartContestCameraFlashTask 2
-    Call OngoingContest_PlayApplause
+    Call Contests_PlayApplause
     WaitForContestCameraFlashTask
     StartContestCommSync 22
     WaitForCommSyncState 22
-    ApplyMovement CONTEST_HALL_STAGE_ONGOING_CONTEST_MCDEXTER, OngoingContest_Movement_DexterLookEast
+    ApplyMovement LOCALID_ONGOING_CONTEST_MCDEXTER, Contests_Movement_DexterLookEast
     WaitMovement
     BufferContestantTrainerName 3, 0
-    MessageSynchronized ContestRegistration_Text_IntroduceFourthContestant
+    MessageSynchronized ContestCommon_Text_IntroduceFourthContestant
     GetContestantMonContestFame 3, VAR_RESULT
     StartContestCameraFlashTask 3
-    Call OngoingContest_PlayApplause
+    Call Contests_PlayApplause
     WaitForContestCameraFlashTask
     StartContestCommSync 23
     WaitForCommSyncState 23
-    ApplyMovement CONTEST_HALL_STAGE_ONGOING_CONTEST_MCDEXTER, OngoingContest_Movement_LookSouth
+    ApplyMovement LOCALID_ONGOING_CONTEST_MCDEXTER, Contests_Movement_DexterLookSouth
     WaitMovement
-    MessageSynchronized ContestRegistration_Text_DressUpYourPokemon
+    MessageSynchronized ContestCommon_Text_DressUpYourPokemon
     CloseMessage
     StartContestCommSync 4
     WaitForCommSyncState 4
@@ -753,46 +753,46 @@ Contest_DoContest:
     LockAutoScrollForLinkContests
     GetContestInfo VAR_0x8004, VAR_0x8005, VAR_0x8007, VAR_MAP_LOCAL_2
     GetContestMode VAR_MAP_LOCAL_3
-    Call OngoingContest_PresentWinner
+    Call Contests_PresentWinner
     ScrCmd_2B0
     FadeScreenIn FADE_SCREEN_SPEED_FAST, COLOR_WHITE
     WaitFadeScreen
     GetWinningContestantEntryNum VAR_RESULT
     StartContestCameraFlashTask VAR_RESULT
     GetContestantMonContestFame VAR_RESULT, VAR_RESULT
-    Call OngoingContest_PlayApplause
+    Call Contests_PlayApplause
     WaitForContestCameraFlashTask
-    MessageSynchronized ContestRegistration_Text_Congratulations2
+    MessageSynchronized ContestCommon_Text_Congratulations
     GetShouldSkipAwardCeremony VAR_RESULT
-    GoToIfEq VAR_RESULT, TRUE, OngoingContest_EndContest
+    GoToIfEq VAR_RESULT, TRUE, Contests_EndContest
     BufferWinningContestantTrainerName 0
     BufferWinningContestantMonName 1
     SetRibbonName 2
     CheckPlayerMonHasRibbon VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, OngoingContest_AwardCeremony
-    MessageSynchronized ContestRegistration_Text_WeExpectGreatThingsFromWinningTeam
-    GoTo OngoingContest_EndContest
+    GoToIfEq VAR_RESULT, FALSE, Contests_AwardCeremony
+    MessageSynchronized ContestCommon_Text_ExpectGreatThingsFromWinners
+    GoTo Contests_EndContest
 
-OngoingContest_AwardCeremony:
-    MessageSynchronized ContestRegistration_Text_LetsRecognizeOurWinner
+Contests_AwardCeremony:
+    MessageSynchronized ContestCommon_Text_LetsRecognizeOurWinner
     CloseMessage
-    ApplyMovement CONTEST_HALL_STAGE_ONGOING_CONTEST_MCDEXTER, OngoingContest_Movement_DexterLookEast
-    ApplyMovement CONTEST_HALL_STAGE_ONGOING_CONTEST_CONTESTANT_WINNER, OngoingContest_Movement_LookWest
+    ApplyMovement LOCALID_ONGOING_CONTEST_MCDEXTER, Contests_Movement_DexterLookEast
+    ApplyMovement LOCALID_ONGOING_CONTEST_CONTESTANT_WINNER, Contests_Movement_DexterLookWest
     WaitMovement
     WaitTime 15, VAR_RESULT
     PlayFanfare SEQ_FANFA1
     WaitFanfare
-    ApplyMovement CONTEST_HALL_STAGE_ONGOING_CONTEST_MCDEXTER, OngoingContest_Movement_LookSouth
-    ApplyMovement CONTEST_HALL_STAGE_ONGOING_CONTEST_CONTESTANT_WINNER, OngoingContest_Movement_LookSouth
+    ApplyMovement LOCALID_ONGOING_CONTEST_MCDEXTER, Contests_Movement_DexterLookSouth
+    ApplyMovement LOCALID_ONGOING_CONTEST_CONTESTANT_WINNER, Contests_Movement_DexterLookSouth
     WaitMovement
-OngoingContest_EndContest:
-    MessageSynchronized ContestRegistration_Text_WeLookForwardToYourNextContestChallenge
+Contests_EndContest:
+    MessageSynchronized ContestCommon_Text_LookForwardToNextChallenge
     CloseMessage
     PlaySE SEQ_SE_DP_CON_F007
     GetWinningContestantEntryNum VAR_RESULT
     StartContestCameraFlashTask VAR_RESULT
     GetContestantMonContestFame VAR_RESULT, VAR_RESULT
-    Call OngoingContest_PlayApplause
+    Call Contests_PlayApplause
     WaitForContestCameraFlashTask
     WaitTime 30, VAR_RESULT
     StartContestCommSync 24
@@ -809,69 +809,58 @@ OngoingContest_EndContest:
     LockTextSpeed
     EndContest VAR_MAP_LOCAL_2
     SetVar VAR_ONGOING_CONTEST, FALSE
-    GoToIfEq VAR_MAP_LOCAL_3, CONTEST_MODE_OFFICIAL, OngoingContest_OfficialContest_ReturnToContestRegistration
+    GoToIfEq VAR_MAP_LOCAL_3, CONTEST_MODE_OFFICIAL, Contests_OfficialContestReturnToReceptionist
     Warp MAP_HEADER_CONTEST_HALL_LOBBY, 0, 7, 3, DIR_SOUTH
     FadeScreenIn
     WaitFadeScreen
     SetVar VAR_RESULT, 7
-    Call ContestRegistration_Movement_ExitContestHall
+    Call Contests_ExitContestHall
     ClearFlag FLAG_COMMUNICATION_CLUB_ACCESSIBLE
     SetVar VAR_UNK_0x40D5, 0
-    GoTo ContestRegistration_End
+    GoTo Contests_End
 
-OngoingContest_OfficialContest_ReturnToContestRegistration:
+Contests_OfficialContestReturnToReceptionist:
     Warp MAP_HEADER_CONTEST_HALL_LOBBY, 0, 18, 3, DIR_SOUTH
     FadeScreenIn
     WaitFadeScreen
     SetVar VAR_RESULT, 19
-    Call ContestRegistration_Movement_ExitContestHall
-    Call ContestRegistration_Movement_ReturnToReceptionist
-    GoToIfEq VAR_0x8004, -1, ContestRegistration_ThankYouForParticipating
+    Call Contests_ExitContestHall
+    Call Contests_ReturnToReceptionist
+    GoToIfEq VAR_0x8004, -1, Contests_ThankYouForParticipating
     BufferPlayerName 0
     BufferAccessoryName 1, VAR_0x8004
-    Message ContestRegistration_Text_Congratulations1
+    Message ContestCommon_Text_HeresYourPrize
     SetVar VAR_0x8005, 1
     Common_GiveAccessory
-ContestRegistration_ThankYouForParticipating:
-    Message ContestRegistration_Text_ThankYouForParticipating
+Contests_ThankYouForParticipating:
+    Message ContestCommon_Text_ThankYouForParticipating
     WaitButton
     CloseMessage
-ContestRegistration_End:
+Contests_End:
     End
 
-OngoingContest_PlayApplause:
+Contests_PlayApplause:
     PlaySE SEQ_SE_DP_CON_F007
-    CallIfEq VAR_RESULT, 1, OngoingContest_PlayApplauseMinimum
-    CallIfEq VAR_RESULT, 2, OngoingContest_PlayApplauseSmall
-    CallIfEq VAR_RESULT, 3, OngoingContest_PlayApplauseMedium
-    CallIfEq VAR_RESULT, 4, OngoingContest_PlayApplauseLarge
-    CallIfGe VAR_RESULT, 5, OngoingContest_PlayApplauseMaximum
+    CallIfEq VAR_RESULT, 1, Contests_PlayApplauseMinimum
+    CallIfEq VAR_RESULT, 2, Contests_PlayApplauseSmall
+    CallIfEq VAR_RESULT, 3, Contests_PlayApplauseMedium
+    CallIfEq VAR_RESULT, 4, Contests_PlayApplauseLarge
+    CallIfGe VAR_RESULT, 5, Contests_PlayApplauseMaximum
     Return
 
-OngoingContest_PlayApplauseMinimum:
+Contests_PlayApplauseMinimum:
     PlaySE SEQ_SE_DP_CON_015
     WaitSE SEQ_SE_DP_CON_015
     Return
 
-OngoingContest_PlayApplauseSmall:
+Contests_PlayApplauseSmall:
     PlaySE SEQ_SE_DP_CON_015
     WaitTime 5, VAR_RESULT
     PlaySE SEQ_SE_DP_CON_015
     WaitSE SEQ_SE_DP_CON_015
     Return
 
-OngoingContest_PlayApplauseMedium:
-    PlaySE SEQ_SE_DP_CON_015
-    WaitSE SEQ_SE_DP_CON_015
-    PlaySE SEQ_SE_DP_CON_015
-    WaitTime 5, VAR_RESULT
-    PlaySE SEQ_SE_DP_CON_015
-    WaitSE SEQ_SE_DP_CON_015
-    Return
-
-OngoingContest_PlayApplauseLarge:
-    PlaySE SEQ_SE_DP_CON_015
-    WaitTime 5, VAR_RESULT
+Contests_PlayApplauseMedium:
     PlaySE SEQ_SE_DP_CON_015
     WaitSE SEQ_SE_DP_CON_015
     PlaySE SEQ_SE_DP_CON_015
@@ -880,7 +869,18 @@ OngoingContest_PlayApplauseLarge:
     WaitSE SEQ_SE_DP_CON_015
     Return
 
-OngoingContest_PlayApplauseMaximum:
+Contests_PlayApplauseLarge:
+    PlaySE SEQ_SE_DP_CON_015
+    WaitTime 5, VAR_RESULT
+    PlaySE SEQ_SE_DP_CON_015
+    WaitSE SEQ_SE_DP_CON_015
+    PlaySE SEQ_SE_DP_CON_015
+    WaitTime 5, VAR_RESULT
+    PlaySE SEQ_SE_DP_CON_015
+    WaitSE SEQ_SE_DP_CON_015
+    Return
+
+Contests_PlayApplauseMaximum:
     PlaySE SEQ_SE_DP_CON_015
     WaitTime 5, VAR_RESULT
     PlaySE SEQ_SE_DP_CON_015
@@ -893,62 +893,62 @@ OngoingContest_PlayApplauseMaximum:
     WaitSE SEQ_SE_DP_CON_015
     Return
 
-OngoingContest_GetContestantGFX:
+Contests_GetContestantsGFX:
     GetContestantObjEventGFX 0, VAR_OBJ_GFX_ID_0
     GetContestantObjEventGFX 1, VAR_OBJ_GFX_ID_1
     GetContestantObjEventGFX 2, VAR_OBJ_GFX_ID_2
     GetContestantObjEventGFX 3, VAR_OBJ_GFX_ID_3
     Return
 
-OngoingContest_PresentWinner:
+Contests_PresentWinner:
     GetWinningContestantEntryNum VAR_RESULT
     GetContestantObjEventGFX VAR_RESULT, VAR_OBJ_GFX_ID_4
     ClearFlag FLAG_HIDE_CONTEST_HALL_STAGE_CONTESTANT_WINNER
-    AddObject CONTEST_HALL_STAGE_ONGOING_CONTEST_CONTESTANT_WINNER
+    AddObject LOCALID_ONGOING_CONTEST_CONTESTANT_WINNER
     GetWinningContestantEntryNum VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, 0, OngoingContest_HideContestant1
-    GoToIfEq VAR_MAP_LOCAL_0, 1, OngoingContest_HideContestant2
-    GoToIfEq VAR_MAP_LOCAL_0, 2, OngoingContest_HideContestant3
-    GoToIfEq VAR_MAP_LOCAL_0, 3, OngoingContest_HideContestant4
+    GoToIfEq VAR_MAP_LOCAL_0, 0, Contests_HideContestant1
+    GoToIfEq VAR_MAP_LOCAL_0, 1, Contests_HideContestant2
+    GoToIfEq VAR_MAP_LOCAL_0, 2, Contests_HideContestant3
+    GoToIfEq VAR_MAP_LOCAL_0, 3, Contests_HideContestant4
     Return
 
-OngoingContest_HideContestant1:
-    RemoveObject CONTEST_HALL_STAGE_ONGOING_CONTEST_CONTESTANT1
+Contests_HideContestant1:
+    RemoveObject LOCALID_ONGOING_CONTEST_CONTESTANT1
     Return
 
-OngoingContest_HideContestant2:
-    RemoveObject CONTEST_HALL_STAGE_ONGOING_CONTEST_CONTESTANT2
+Contests_HideContestant2:
+    RemoveObject LOCALID_ONGOING_CONTEST_CONTESTANT2
     Return
 
-OngoingContest_HideContestant3:
-    RemoveObject CONTEST_HALL_STAGE_ONGOING_CONTEST_CONTESTANT3
+Contests_HideContestant3:
+    RemoveObject LOCALID_ONGOING_CONTEST_CONTESTANT3
     Return
 
-OngoingContest_HideContestant4:
-    RemoveObject CONTEST_HALL_STAGE_ONGOING_CONTEST_CONTESTANT4
+Contests_HideContestant4:
+    RemoveObject LOCALID_ONGOING_CONTEST_CONTESTANT4
     Return
 
     .balign 4, 0
-ContestRegistration_Movement_PlayerToOfficialContestDoor:
+Contests_Movement_PlayerWalkToOfficialContestDoor:
     WalkNormalEast 2
     WalkNormalNorth 3
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-ContestRegistration_Movement_PlayerToLinkContestDoor:
+Contests_Movement_PlayerWalkToLinkContestDoor:
     WalkNormalEast 2
     WalkNormalNorth 3
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-ContestRegistration_Movement_ApproachPracticeContestDoor:
+Contests_Movement_PlayerWalkToPracticeContestDoor:
     WalkNormalEast
     WalkNormalNorth 3
     EndMovement
 
-ContestRegistration_UnusedMovement:
+Contests_UnusedMovement:
     Delay4
     FaceEast
     Delay4
@@ -964,33 +964,33 @@ ContestRegistration_UnusedMovement:
     EndMovement
 
     .balign 4, 0
-ContestRegistration_Movement_FaceContestHall:
+Contests_Movement_PlayerFaceContestHall:
     WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
-ContestRegistration_Movement_OfficialContestReceptionistToPlayer:
+Contests_Movement_OfficialReceptionistWalkToPlayer:
     Delay8 2
     WalkNormalNorth
     WalkNormalEast
     EndMovement
 
     .balign 4, 0
-ContestRegistration_Movement_LinkContestReceptionistToPlayer:
+Contests_Movement_LinkReceptionistWalkToPlayer:
     Delay8 2
     WalkNormalNorth
     WalkNormalEast
     EndMovement
 
     .balign 4, 0
-ContestRegistration_Movement_PracticeReceptionistToPlayer:
+Contests_Movement_PracticeReceptionistWalkToPlayer:
     Delay8 2
     WalkNormalNorth
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-OngoingContest_Movement_LookAround:
+Contests_Movement_DexterLookAround:
     Delay8 2
     WalkOnSpotNormalWest
     Delay8
@@ -1000,409 +1000,400 @@ OngoingContest_Movement_LookAround:
     EndMovement
 
     .balign 4, 0
-OngoingContest_Movement_LookWest:
+Contests_Movement_DexterLookWest:
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-OngoingContest_Movement_DexterLookNorth:
+Contests_Movement_DexterLookNorth:
     WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
-OngoingContest_Movement_DexterLookEast:
+Contests_Movement_DexterLookEast:
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-OngoingContest_Movement_LookSouth:
+Contests_Movement_DexterLookSouth:
     WalkOnSpotNormalSouth
     EndMovement
 
-ContestRegistration_ReceptionistPracticeContest:
+Contests_ReceptionistPracticeContest:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     SetVar VAR_MAP_LOCAL_3, CONTEST_MODE_PRACTICE
     SetVar VAR_0x8004, CONTEST_RANK_NORMAL
-    Message ContestRegistration_Text_PracticeContest
-    GoTo ContestRegistration_ReceptionistPracticeContest_JoinPracticeMenu
+    Message ContestCommon_Text_IntroductionPracticeContest
+    GoTo Contests_PracticeContestMenu
     End
 
 
-#define ReceptionistPractice_JoinPracticeMenuItem_Practice 0
-#define ReceptionistPractice_JoinPracticeMenuItem_Info 1
-#define ReceptionistPractice_JoinPracticeMenuItem_Exit 2
+#define MENU_ENTRY_PRACTICE_JOIN 0
+#define MENU_ENTRY_PRACTICE_INFO 1
+#define MENU_ENTRY_PRACTICE_EXIT 2
 
-ContestRegistration_ReceptionistPracticeContest_JoinPracticeMenu:
-    Message ContestRegistration_Text_JoinPracticeContest
+Contests_PracticeContestMenu:
+    Message ContestCommon_Text_JoinPracticeContest
     InitLocalTextMenu 1, 1, 0, VAR_RESULT
-    AddMenuEntryImm ContestRegistration_Text_Practice, ReceptionistPractice_JoinPracticeMenuItem_Practice
-    AddMenuEntryImm ContestRegistration_Text_Info2, ReceptionistPractice_JoinPracticeMenuItem_Info
-    AddMenuEntryImm ContestRegistration_Text_Exit2, ReceptionistPractice_JoinPracticeMenuItem_Exit
+    AddMenuEntryImm ContestCommon_Text_Practice, MENU_ENTRY_PRACTICE_JOIN
+    AddMenuEntryImm ContestCommon_Text_Info2, MENU_ENTRY_PRACTICE_INFO
+    AddMenuEntryImm ContestCommon_Text_Exit2, MENU_ENTRY_PRACTICE_EXIT
     ShowMenu
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, ReceptionistPractice_JoinPracticeMenuItem_Practice, ContestRegistration_ReceptionistPracticeContest_PracticeCategoryMenu
-    GoToIfEq VAR_0x8008, ReceptionistPractice_JoinPracticeMenuItem_Info, ContestRegistration_ReceptionistPracticeContest_InfoMenuEntry
-    GoToIfEq VAR_0x8008, ReceptionistPractice_JoinPracticeMenuItem_Exit, ContestRegistration_ReceptionistPracticeContest_Exit
-    GoTo ContestRegistration_ReceptionistPracticeContest_Exit
+    GoToIfEq VAR_0x8008, MENU_ENTRY_PRACTICE_JOIN, Contests_PracticeContestCategoryMenu
+    GoToIfEq VAR_0x8008, MENU_ENTRY_PRACTICE_INFO, Contests_PracticeContestInfo
+    GoToIfEq VAR_0x8008, MENU_ENTRY_PRACTICE_EXIT, Contests_PracticeContestExit
+    GoTo Contests_PracticeContestExit
     End
 
 
-#define ReceptionistPractice_PracticeCategoryMenuItem_Visual 0
-#define ReceptionistPractice_PracticeCategoryMenuItem_Dance 1
-#define ReceptionistPractice_PracticeCategoryMenuItem_Acting 2
-#define ReceptionistPractice_PracticeCategoryMenuItem_Cancel 3
+#define MENU_ENTRY_PRACTICE_VISUAL 0
+#define MENU_ENTRY_PRACTICE_DANCE 1
+#define MENU_ENTRY_PRACTICE_ACTING 2
+#define MENU_ENTRY_PRACTICE_CATEGORY_CANCEL 3
 
-ContestRegistration_ReceptionistPracticeContest_PracticeCategoryMenu:
+Contests_PracticeContestCategoryMenu:
     InitLocalTextMenu 1, 1, 0, VAR_RESULT
-    AddMenuEntryImm ContestRegistration_Text_VisualPractice, ReceptionistPractice_PracticeCategoryMenuItem_Visual
-    AddMenuEntryImm ContestRegistration_Text_DancePractice, ReceptionistPractice_PracticeCategoryMenuItem_Dance
-    AddMenuEntryImm ContestRegistration_Text_ActingPractice, ReceptionistPractice_PracticeCategoryMenuItem_Acting
-    AddMenuEntryImm ContestRegistration_Text_CancelPractice, ReceptionistPractice_PracticeCategoryMenuItem_Cancel
+    AddMenuEntryImm ContestCommon_Text_VisualPractice, MENU_ENTRY_PRACTICE_VISUAL
+    AddMenuEntryImm ContestCommon_Text_DancePractice, MENU_ENTRY_PRACTICE_DANCE
+    AddMenuEntryImm ContestCommon_Text_ActingPractice, MENU_ENTRY_PRACTICE_ACTING
+    AddMenuEntryImm ContestCommon_Text_CancelPractice, MENU_ENTRY_PRACTICE_CATEGORY_CANCEL
     ShowMenu
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, ReceptionistPractice_PracticeCategoryMenuItem_Visual, ContestRegistration_ReceptionistPracticeContest_PracticeCategoryMenu_VisualSelected
-    GoToIfEq VAR_0x8008, ReceptionistPractice_PracticeCategoryMenuItem_Dance, ContestRegistration_ReceptionistPracticeContest_PracticeCategoryMenu_DanceSelected
-    GoToIfEq VAR_0x8008, ReceptionistPractice_PracticeCategoryMenuItem_Acting, ContestRegistration_ReceptionistPracticeContest_PracticeCategoryMenu_ActingSelected
-    GoTo ContestRegistration_ReceptionistPracticeContest_Exit2
+    GoToIfEq VAR_0x8008, MENU_ENTRY_PRACTICE_VISUAL, Contests_PracticeContestVisual
+    GoToIfEq VAR_0x8008, MENU_ENTRY_PRACTICE_DANCE, Contests_PracticeContestDance
+    GoToIfEq VAR_0x8008, MENU_ENTRY_PRACTICE_ACTING, Contests_PracticeContestActing
+    GoTo Contests_PracticeContestCategoryMenuExit
     End
 
-ContestRegistration_ReceptionistPracticeContest_PracticeCategoryMenu_VisualSelected:
+Contests_PracticeContestVisual:
     SetVar VAR_MAP_LOCAL_4, FALSE
     SetVar VAR_0x8007, CONTEST_COMPETITION_PRACTICE_VISUAL
-    GoTo ContestRegistration_ReceptionistPracticeContest_PracticeCategoryMenu_CategorySelected
+    GoTo Contests_PracticeContestCategorySelected
     End
 
-ContestRegistration_ReceptionistPracticeContest_PracticeCategoryMenu_DanceSelected:
+Contests_PracticeContestDance:
     SetVar VAR_MAP_LOCAL_4, TRUE
     SetVar VAR_0x8005, CONTEST_TYPE_COOL
     SetVar VAR_0x8007, CONTEST_COMPETITION_PRACTICE_DANCE
-    GoTo ContestRegistration_ReceptionistPracticeContest_PracticeCategoryMenu_CategorySelected
+    GoTo Contests_PracticeContestCategorySelected
     End
 
-ContestRegistration_ReceptionistPracticeContest_PracticeCategoryMenu_ActingSelected:
+Contests_PracticeContestActing:
     SetVar VAR_MAP_LOCAL_4, FALSE
     SetVar VAR_0x8007, CONTEST_COMPETITION_PRACTICE_ACTING
-    GoTo ContestRegistration_ReceptionistPracticeContest_PracticeCategoryMenu_CategorySelected
+    GoTo Contests_PracticeContestCategorySelected
     End
 
-ContestRegistration_ReceptionistPracticeContest_Exit2:
-    Message ContestRegistration_Text_WeLookForwardToYourNextVisit3
+Contests_PracticeContestCategoryMenuExit:
+    Message ContestCommon_Text_LookForwardToNextVisit3
     WaitButton
-    GoTo ContestRegistration_Receptionists_End
+    GoTo Contests_ReceptionistsEnd
     End
 
-ContestRegistration_Unused:
-    Message ContestRegistration_Text_Unused
+Contests_Unused:
+    Message ContestCommon_Text_Unused
     InitLocalTextMenu 1, 1, 0, VAR_RESULT
-    AddMenuEntryImm 169, 0
-    AddMenuEntryImm 170, 1
-    AddMenuEntryImm 171, 2
-    AddMenuEntryImm 172, 3
-    AddMenuEntryImm 173, 4
+    AddMenuEntryImm ContestCommon_Text_Dummy169, 0
+    AddMenuEntryImm ContestCommon_Text_Dummy170, 1
+    AddMenuEntryImm ContestCommon_Text_Dummy171, 2
+    AddMenuEntryImm ContestCommon_Text_Dummy172, 3
+    AddMenuEntryImm ContestCommon_Text_Dummy173, 4
     ShowMenu
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, 0, ContestRegistration_Unused2
-    GoToIfEq VAR_0x8008, 1, ContestRegistration_Unused3
-    GoToIfEq VAR_0x8008, 2, ContestRegistration_Unused4
-    GoToIfEq VAR_0x8008, 3, ContestRegistration_Unused5
-    GoTo ContestRegistration_Unused6
+    GoToIfEq VAR_0x8008, 0, Contests_Unused2
+    GoToIfEq VAR_0x8008, 1, Contests_Unused3
+    GoToIfEq VAR_0x8008, 2, Contests_Unused4
+    GoToIfEq VAR_0x8008, 3, Contests_Unused5
+    GoTo Contests_Unused6
     End
 
-ContestRegistration_Unused2:
+Contests_Unused2:
     SetVar VAR_0x8004, 0
-    GoTo ContestRegistration_ReceptionistPracticeContest_PracticeCategoryMenu_CategorySelected
+    GoTo Contests_PracticeContestCategorySelected
     End
 
-ContestRegistration_Unused3:
+Contests_Unused3:
     SetVar VAR_0x8004, 1
-    GoTo ContestRegistration_ReceptionistPracticeContest_PracticeCategoryMenu_CategorySelected
+    GoTo Contests_PracticeContestCategorySelected
     End
 
-ContestRegistration_Unused4:
+Contests_Unused4:
     SetVar VAR_0x8004, 2
-    GoTo ContestRegistration_ReceptionistPracticeContest_PracticeCategoryMenu_CategorySelected
+    GoTo Contests_PracticeContestCategorySelected
     End
 
-ContestRegistration_Unused5:
+Contests_Unused5:
     SetVar VAR_0x8004, 3
-    GoTo ContestRegistration_ReceptionistPracticeContest_PracticeCategoryMenu_CategorySelected
+    GoTo Contests_PracticeContestCategorySelected
     End
 
-ContestRegistration_Unused6:
-    Message ContestRegistration_Text_Unused6
+Contests_Unused6:
+    Message ContestCommon_Text_Unused6
     WaitButton
-    GoTo ContestRegistration_Receptionists_End
+    GoTo Contests_ReceptionistsEnd
     End
 
-ContestRegistration_ReceptionistPracticeContest_PracticeCategoryMenu_CategorySelected:
-    GoToIfEq VAR_MAP_LOCAL_4, TRUE, ContestRegistration_ReceptionistPracticeContest_RegisterMon
-    GoTo ContestRegistration_ReceptionistPracticeContest_ContestTypeMenu
+Contests_PracticeContestCategorySelected:
+    GoToIfEq VAR_MAP_LOCAL_4, TRUE, Contests_PracticeContestRegisterMon
+    GoTo Contests_PracticeContestTypeMenu
 
-#define ReceptionistPractice_ContestTypeMenuItem_Cool 0
-#define ReceptionistPractice_ContestTypeMenuItem_Beauty 1
-#define ReceptionistPractice_ContestTypeMenuItem_Cute 2
-#define ReceptionistPractice_ContestTypeMenuItem_Smart 3
-#define ReceptionistPractice_ContestTypeMenuItem_Tough 4
-#define ReceptionistPractice_ContestTypeMenuItem_Exit 5
-
-ContestRegistration_ReceptionistPracticeContest_ContestTypeMenu:
-    Message ContestRegistration_Text_WhichContestWouldYouLikeToChallenge
+Contests_PracticeContestTypeMenu:
+    Message ContestCommon_Text_ChallengeWhichContest
     InitLocalTextMenu 1, 1, 0, VAR_RESULT
-    AddMenuEntryImm ContestRegistration_Text_Cool, ReceptionistPractice_ContestTypeMenuItem_Cool
-    AddMenuEntryImm ContestRegistration_Text_Beauty, ReceptionistPractice_ContestTypeMenuItem_Beauty
-    AddMenuEntryImm ContestRegistration_Text_Cute, ReceptionistPractice_ContestTypeMenuItem_Cute
-    AddMenuEntryImm ContestRegistration_Text_Smart, ReceptionistPractice_ContestTypeMenuItem_Smart
-    AddMenuEntryImm ContestRegistration_Text_Tough, ReceptionistPractice_ContestTypeMenuItem_Tough
-    AddMenuEntryImm ContestRegistration_Text_Exit3, ReceptionistPractice_ContestTypeMenuItem_Exit
+    AddMenuEntryImm ContestCommon_Text_Cool, MENU_ENTRY_COOL
+    AddMenuEntryImm ContestCommon_Text_Beauty, MENU_ENTRY_BEAUTY
+    AddMenuEntryImm ContestCommon_Text_Cute, MENU_ENTRY_CUTE
+    AddMenuEntryImm ContestCommon_Text_Smart, MENU_ENTRY_SMART
+    AddMenuEntryImm ContestCommon_Text_Tough, MENU_ENTRY_TOUGH
+    AddMenuEntryImm ContestCommon_Text_Exit3, MENU_ENTRY_TYPE_EXIT
     ShowMenu
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, ReceptionistPractice_ContestTypeMenuItem_Cool, ContestRegistration_ReceptionistPracticeContest_SelectContestTypeCool
-    GoToIfEq VAR_0x8008, ReceptionistPractice_ContestTypeMenuItem_Beauty, ContestRegistration_ReceptionistPracticeContest_SelectContestTypeBeauty
-    GoToIfEq VAR_0x8008, ReceptionistPractice_ContestTypeMenuItem_Cute, ContestRegistration_ReceptionistPracticeContest_SelectContestTypeCute
-    GoToIfEq VAR_0x8008, ReceptionistPractice_ContestTypeMenuItem_Smart, ContestRegistration_ReceptionistPracticeContest_SelectContestTypeSmart
-    GoToIfEq VAR_0x8008, ReceptionistPractice_ContestTypeMenuItem_Tough, ContestRegistration_ReceptionistPracticeContest_SelectContestTypeTough
-    GoTo ContestRegistration_ReceptionistPracticeContest_Exit3
+    GoToIfEq VAR_0x8008, MENU_ENTRY_COOL, Contests_PracticeContestCool
+    GoToIfEq VAR_0x8008, MENU_ENTRY_BEAUTY, Contests_PracticeContestBeauty
+    GoToIfEq VAR_0x8008, MENU_ENTRY_CUTE, Contests_PracticeContestCute
+    GoToIfEq VAR_0x8008, MENU_ENTRY_SMART, Contests_PracticeContestSmart
+    GoToIfEq VAR_0x8008, MENU_ENTRY_TOUGH, Contests_PracticeContestTough
+    GoTo Contests_PracticeContestTypeOrRegisterExit
     End
 
-ContestRegistration_ReceptionistPracticeContest_SelectContestTypeCool:
+Contests_PracticeContestCool:
     SetVar VAR_0x8005, CONTEST_TYPE_COOL
-    GoTo ContestRegistration_ReceptionistPracticeContest_RegisterMon
+    GoTo Contests_PracticeContestRegisterMon
     End
 
-ContestRegistration_ReceptionistPracticeContest_SelectContestTypeBeauty:
+Contests_PracticeContestBeauty:
     SetVar VAR_0x8005, CONTEST_TYPE_BEAUTY
-    GoTo ContestRegistration_ReceptionistPracticeContest_RegisterMon
+    GoTo Contests_PracticeContestRegisterMon
     End
 
-ContestRegistration_ReceptionistPracticeContest_SelectContestTypeCute:
+Contests_PracticeContestCute:
     SetVar VAR_0x8005, CONTEST_TYPE_CUTE
-    GoTo ContestRegistration_ReceptionistPracticeContest_RegisterMon
+    GoTo Contests_PracticeContestRegisterMon
     End
 
-ContestRegistration_ReceptionistPracticeContest_SelectContestTypeSmart:
+Contests_PracticeContestSmart:
     SetVar VAR_0x8005, CONTEST_TYPE_SMART
-    GoTo ContestRegistration_ReceptionistPracticeContest_RegisterMon
+    GoTo Contests_PracticeContestRegisterMon
     End
 
-ContestRegistration_ReceptionistPracticeContest_SelectContestTypeTough:
+Contests_PracticeContestTough:
     SetVar VAR_0x8005, CONTEST_TYPE_TOUGH
-    GoTo ContestRegistration_ReceptionistPracticeContest_RegisterMon
+    GoTo Contests_PracticeContestRegisterMon
     End
 
-ContestRegistration_ReceptionistPracticeContest_Exit3:
-    Message ContestRegistration_Text_WeLookForwardToYourNextVisit4
+Contests_PracticeContestTypeOrRegisterExit:
+    Message ContestCommon_Text_LookForwardToNextVisit4
     WaitButton
-    GoTo ContestRegistration_Receptionists_End
+    GoTo Contests_ReceptionistsEnd
     End
 
-#define MenuItemEnter 0
-
-ContestRegistration_ReceptionistPracticeContest_RegisterMon:
-    Message ContestRegistration_Text_EnterWhichPokemon2
-    Message ContestRegistration_Text_PleaseChoosePokemon2
+Contests_PracticeContestRegisterMon:
+    Message ContestCommon_Text_EnterWhichPokemonPractice
+    Message ContestCommon_Text_PleaseChoosePokemonPractice
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
     SetVar VAR_RESULT, 0
-ContestRegistration_ReceptionistPracticeContest_TryRegisterMon:
+Contests_PracticeContestTryRegisterMon:
     OpenPartyMenuForContest VAR_RESULT, VAR_0x8004, VAR_0x8005, 0
-    TryEnterContestMon VAR_MAP_LOCAL_2, VAR_RESULT
-    GoToIfEq VAR_RESULT, MenuItemEnter, ContestRegistration_ReceptionistPracticeContest_RegisterMonDone
+    GetContestPartyMenuResult VAR_MAP_LOCAL_2, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, Contests_PracticeContestRegisterMonDone
     SetMonSummary VAR_MAP_LOCAL_2
     GetMonPartySlot VAR_RESULT
-    GoTo ContestRegistration_ReceptionistPracticeContest_TryRegisterMon
+    GoTo Contests_PracticeContestTryRegisterMon
 
-ContestRegistration_ReceptionistPracticeContest_RegisterMonDone:
+Contests_PracticeContestRegisterMonDone:
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
-    GoToIfEq VAR_MAP_LOCAL_2, PARTY_SLOT_NONE, ContestRegistration_ReceptionistPracticeContest_Exit3
-    GoTo ContestRegistration_StartContest
+    GoToIfEq VAR_MAP_LOCAL_2, PARTY_SLOT_NONE, Contests_PracticeContestTypeOrRegisterExit
+    GoTo Contests_StartContest
     End
 
-#define ReceptionistPractice_InfoMenuItem_Practice 0
-#define ReceptionistPractice_InfoMenuItem_Visual 1
-#define ReceptionistPractice_InfoMenuItem_Dance 2
-#define ReceptionistPractice_InfoMenuItem_Acting 3
-#define ReceptionistPractice_InfoMenuItem_Cancel 4
+#define MENU_ENTRY_INFO_PRACTICE 0
+#define MENU_ENTRY_INFO_VISUAL 1
+#define MENU_ENTRY_INFO_DANCE 2
+#define MENU_ENTRY_INFO_ACTING 3
+#define MENU_ENTRY_PRACTICE_INFO_CANCEL 4
 
-ContestRegistration_ReceptionistPracticeContest_InfoMenuEntry:
-    Message ContestRegistration_Text_WhatWouldYouLikeToKnow2
-ContestRegistration_ReceptionistPracticeContest_InfoMenu:
+Contests_PracticeContestInfo:
+    Message ContestCommon_Text_WhatWouldYouLikeToKnow2
+Contests_PracticeContestInfoMenu:
     InitLocalTextMenu 1, 1, 0, VAR_RESULT
-    AddMenuEntryImm ContestRegistration_Text_Practice1, ReceptionistPractice_InfoMenuItem_Practice
-    AddMenuEntryImm ContestRegistration_Text_Visual, ReceptionistPractice_InfoMenuItem_Visual
-    AddMenuEntryImm ContestRegistration_Text_Dance, ReceptionistPractice_InfoMenuItem_Dance
-    AddMenuEntryImm ContestRegistration_Text_Acting, ReceptionistPractice_InfoMenuItem_Acting
-    AddMenuEntryImm ContestRegistration_Text_Cancel, ReceptionistPractice_InfoMenuItem_Cancel
+    AddMenuEntryImm ContestCommon_Text_Practice1, MENU_ENTRY_INFO_PRACTICE
+    AddMenuEntryImm ContestCommon_Text_Visual, MENU_ENTRY_INFO_VISUAL
+    AddMenuEntryImm ContestCommon_Text_Dance, MENU_ENTRY_INFO_DANCE
+    AddMenuEntryImm ContestCommon_Text_Acting, MENU_ENTRY_INFO_ACTING
+    AddMenuEntryImm ContestCommon_Text_Cancel, MENU_ENTRY_PRACTICE_INFO_CANCEL
     ShowMenu
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, ReceptionistPractice_InfoMenuItem_Practice, ContestRegistration_ReceptionistPracticeContest_InfoPractice
-    GoToIfEq VAR_0x8008, ReceptionistPractice_InfoMenuItem_Visual, ContestRegistration_ReceptionistPracticeContest_InfoVisualMenu
-    GoToIfEq VAR_0x8008, ReceptionistPractice_InfoMenuItem_Dance, ContestRegistration_ReceptionistPracticeContest_InfoDanceMenu
-    GoToIfEq VAR_0x8008, ReceptionistPractice_InfoMenuItem_Acting, ContestRegistration_ReceptionistPracticeContest_InfoActingMenu
-    GoTo ContestRegistration_ReceptionistPracticeContest_JoinPracticeMenu
+    GoToIfEq VAR_0x8008, MENU_ENTRY_INFO_PRACTICE, Contests_PracticeContestInfoPractice
+    GoToIfEq VAR_0x8008, MENU_ENTRY_INFO_VISUAL, Contests_PracticeContestInfoVisualMenu
+    GoToIfEq VAR_0x8008, MENU_ENTRY_INFO_DANCE, Contests_PracticeContestInfoDanceMenu
+    GoToIfEq VAR_0x8008, MENU_ENTRY_INFO_ACTING, Contests_PracticeContestInfoActingMenu
+    GoTo Contests_PracticeContestMenu
     End
 
-#define ReceptionistPractice_InfoVisualMenuItem_OverallFlow 0
-#define ReceptionistPractice_InfoVisualMenuItem_ConditionPoints 1
-#define ReceptionistPractice_InfoVisualMenuItem_DressUpPoints 2
-#define ReceptionistPractice_InfoVisualMenuItem_Cancel 3
+#define MENU_ENTRY_VISUAL_INFO_OVERALL_FLOW 0
+#define MENU_ENTRY_VISUAL_INFO_CONDITION_POINTS 1
+#define MENU_ENTRY_VISUAL_INFO_DRESS_UP_POINTS 2
+#define MENU_ENTRY_VISUAL_INFO_CANCEL 3
 
-ContestRegistration_ReceptionistPracticeContest_InfoVisualMenuReentry:
-    Message ContestRegistration_Text_WhatWouldYouLikeToKnow2
-ContestRegistration_ReceptionistPracticeContest_InfoVisualMenu:
+Contests_PracticeContestInfoVisualMenuReentry:
+    Message ContestCommon_Text_WhatWouldYouLikeToKnow2
+Contests_PracticeContestInfoVisualMenu:
     InitLocalTextMenu 1, 1, 0, VAR_RESULT
-    AddMenuEntryImm ContestRegistration_Text_OverallFlow, ReceptionistPractice_InfoVisualMenuItem_OverallFlow
-    AddMenuEntryImm ContestRegistration_Text_ConditionPoints, ReceptionistPractice_InfoVisualMenuItem_ConditionPoints
-    AddMenuEntryImm ContestRegistration_Text_DressUpPoints, ReceptionistPractice_InfoVisualMenuItem_DressUpPoints
-    AddMenuEntryImm ContestRegistration_Text_Cancel1, ReceptionistPractice_InfoVisualMenuItem_Cancel
+    AddMenuEntryImm ContestCommon_Text_OverallFlowVisual, MENU_ENTRY_VISUAL_INFO_OVERALL_FLOW
+    AddMenuEntryImm ContestCommon_Text_ConditionPoints, MENU_ENTRY_VISUAL_INFO_CONDITION_POINTS
+    AddMenuEntryImm ContestCommon_Text_DressUpPoints, MENU_ENTRY_VISUAL_INFO_DRESS_UP_POINTS
+    AddMenuEntryImm ContestCommon_Text_CancelVisual, MENU_ENTRY_VISUAL_INFO_CANCEL
     ShowMenu
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, ReceptionistPractice_InfoVisualMenuItem_OverallFlow, ContestRegistration_ReceptionistPracticeContest_InfoVisualOverallFlow
-    GoToIfEq VAR_0x8008, ReceptionistPractice_InfoVisualMenuItem_ConditionPoints, ContestRegistration_ReceptionistPracticeContest_InfoVisualCondition
-    GoToIfEq VAR_0x8008, ReceptionistPractice_InfoVisualMenuItem_DressUpPoints, ContestRegistration_ReceptionistPracticeContest_InfoVisualDressUp
-    GoTo ContestRegistration_ReceptionistPracticeContest_InfoVisualReturnToInfoMenu
+    GoToIfEq VAR_0x8008, MENU_ENTRY_VISUAL_INFO_OVERALL_FLOW, Contests_PracticeContestInfoVisualOverallFlow
+    GoToIfEq VAR_0x8008, MENU_ENTRY_VISUAL_INFO_CONDITION_POINTS, Contests_PracticeContestInfoVisualConditionPoints
+    GoToIfEq VAR_0x8008, MENU_ENTRY_VISUAL_INFO_DRESS_UP_POINTS, Contests_PracticeContestInfoVisualDressUp
+    GoTo Contests_PracticeContestInfoVisualReturn
     End
 
-ContestRegistration_ReceptionistPracticeContest_InfoVisualOverallFlow:
-    Message ContestRegistration_Text_ExplainVisualOverallFlow
-    GoTo ContestRegistration_ReceptionistPracticeContest_InfoVisualMenuReentry
+Contests_PracticeContestInfoVisualOverallFlow:
+    Message ContestCommon_Text_ExplainVisualOverallFlow
+    GoTo Contests_PracticeContestInfoVisualMenuReentry
     End
 
-ContestRegistration_ReceptionistPracticeContest_InfoVisualCondition:
-    Message ContestRegistration_Text_ExplainCondition
-    GoTo ContestRegistration_ReceptionistPracticeContest_InfoVisualMenuReentry
+Contests_PracticeContestInfoVisualConditionPoints:
+    Message ContestCommon_Text_ExplainConditionPoints
+    GoTo Contests_PracticeContestInfoVisualMenuReentry
     End
 
-ContestRegistration_ReceptionistPracticeContest_InfoVisualDressUp:
-    Message ContestRegistration_Text_ExplainDressUp
-    GoTo ContestRegistration_ReceptionistPracticeContest_InfoVisualMenuReentry
+Contests_PracticeContestInfoVisualDressUp:
+    Message ContestCommon_Text_ExplainDressUp
+    GoTo Contests_PracticeContestInfoVisualMenuReentry
     End
 
-ContestRegistration_ReceptionistPracticeContest_InfoVisualReturnToInfoMenu:
-    GoTo ContestRegistration_ReceptionistPracticeContest_InfoMenu
+Contests_PracticeContestInfoVisualReturn:
+    GoTo Contests_PracticeContestInfoMenu
     End
 
-#define ReceptionistPractice_InfoDanceMenuItem_OverallFlow 0
-#define ReceptionistPractice_InfoDanceMenuItem_BackupDancer 1
-#define ReceptionistPractice_InfoDanceMenuItem_MainDancer 2
-#define ReceptionistPractice_InfoDanceMenuItem_Panel 3
-#define ReceptionistPractice_InfoDanceMenuItem_Cancel 4
+#define MENU_ENTRY_DANCE_INFO_OVERALL_FLOW 0
+#define MENU_ENTRY_DANCE_INFO_BACKUP_DANCER 1
+#define MENU_ENTRY_DANCE_INFO_MAIN_DANCER 2
+#define MENU_ENTRY_DANCE_INFO_PANEL 3
+#define MENU_ENTRY_DANCE_INFO_CANCEL 4
 
-ContestRegistration_ReceptionistPracticeContest_InfoDanceMenuReentry:
-    Message ContestRegistration_Text_WhatWouldYouLikeToKnow2
-ContestRegistration_ReceptionistPracticeContest_InfoDanceMenu:
+Contests_PracticeContestInfoDanceMenuReentry:
+    Message ContestCommon_Text_WhatWouldYouLikeToKnow2
+Contests_PracticeContestInfoDanceMenu:
     InitLocalTextMenu 1, 1, 0, VAR_RESULT
-    AddMenuEntryImm ContestRegistration_Text_OverallFlow1, ReceptionistPractice_InfoDanceMenuItem_OverallFlow
-    AddMenuEntryImm ContestRegistration_Text_BackupDancer, ReceptionistPractice_InfoDanceMenuItem_BackupDancer
-    AddMenuEntryImm ContestRegistration_Text_MainDancer, ReceptionistPractice_InfoDanceMenuItem_MainDancer
-    AddMenuEntryImm ContestRegistration_Text_Panel, ReceptionistPractice_InfoDanceMenuItem_Panel
-    AddMenuEntryImm ContestRegistration_Text_Cancel2, ReceptionistPractice_InfoDanceMenuItem_Cancel
+    AddMenuEntryImm ContestCommon_Text_OverallFlowDance, MENU_ENTRY_DANCE_INFO_OVERALL_FLOW
+    AddMenuEntryImm ContestCommon_Text_BackupDancer, MENU_ENTRY_DANCE_INFO_BACKUP_DANCER
+    AddMenuEntryImm ContestCommon_Text_MainDancer, MENU_ENTRY_DANCE_INFO_MAIN_DANCER
+    AddMenuEntryImm ContestCommon_Text_Panel, MENU_ENTRY_DANCE_INFO_PANEL
+    AddMenuEntryImm ContestCommon_Text_CancelDance, MENU_ENTRY_DANCE_INFO_CANCEL
     ShowMenu
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, ReceptionistPractice_InfoDanceMenuItem_OverallFlow, ContestRegistration_ReceptionistPracticeContest_InfoDanceOverallFlow
-    GoToIfEq VAR_0x8008, ReceptionistPractice_InfoDanceMenuItem_BackupDancer, ContestRegistration_ReceptionistPracticeContest_InfoDanceBackupDancer
-    GoToIfEq VAR_0x8008, ReceptionistPractice_InfoDanceMenuItem_MainDancer, ContestRegistration_ReceptionistPracticeContest_InfoDanceMainDancer
-    GoToIfEq VAR_0x8008, ReceptionistPractice_InfoDanceMenuItem_Panel, ContestRegistration_ReceptionistPracticeContest_InfoDancePanel
-    GoTo ContestRegistration_ReceptionistPracticeContest_InfoDanceReturnToInfoMenu
+    GoToIfEq VAR_0x8008, MENU_ENTRY_DANCE_INFO_OVERALL_FLOW, Contests_PracticeContestInfoDanceOverallFlow
+    GoToIfEq VAR_0x8008, MENU_ENTRY_DANCE_INFO_BACKUP_DANCER, Contests_PracticeContestInfoDanceBackupDancer
+    GoToIfEq VAR_0x8008, MENU_ENTRY_DANCE_INFO_MAIN_DANCER, Contests_PracticeContestInfoDanceMainDancer
+    GoToIfEq VAR_0x8008, MENU_ENTRY_DANCE_INFO_PANEL, Contests_PracticeContestInfoDancePanel
+    GoTo Contests_PracticeContestInfoDanceReturn
     End
 
-ContestRegistration_ReceptionistPracticeContest_InfoDanceOverallFlow:
-    Message ContestRegistration_Text_ExplainDanceOverallFlow
-    GoTo ContestRegistration_ReceptionistPracticeContest_InfoDanceMenuReentry
+Contests_PracticeContestInfoDanceOverallFlow:
+    Message ContestCommon_Text_ExplainDanceOverallFlow
+    GoTo Contests_PracticeContestInfoDanceMenuReentry
     End
 
-ContestRegistration_ReceptionistPracticeContest_InfoDanceBackupDancer:
-    Message ContestRegistration_Text_ExplainBackupDancer
-    GoTo ContestRegistration_ReceptionistPracticeContest_InfoDanceMenuReentry
+Contests_PracticeContestInfoDanceBackupDancer:
+    Message ContestCommon_Text_ExplainBackupDancer
+    GoTo Contests_PracticeContestInfoDanceMenuReentry
     End
 
-ContestRegistration_ReceptionistPracticeContest_InfoDanceMainDancer:
-    Message ContestRegistration_Text_ExplainMainDancer
-    GoTo ContestRegistration_ReceptionistPracticeContest_InfoDanceMenuReentry
+Contests_PracticeContestInfoDanceMainDancer:
+    Message ContestCommon_Text_ExplainMainDancer
+    GoTo Contests_PracticeContestInfoDanceMenuReentry
     End
 
-ContestRegistration_ReceptionistPracticeContest_InfoDancePanel:
-    Message ContestRegistration_Text_ExplainDanceColorPanels
-    GoTo ContestRegistration_ReceptionistPracticeContest_InfoDanceMenuReentry
+Contests_PracticeContestInfoDancePanel:
+    Message ContestCommon_Text_ExplainDanceColorPanels
+    GoTo Contests_PracticeContestInfoDanceMenuReentry
     End
 
-ContestRegistration_ReceptionistPracticeContest_InfoDanceReturnToInfoMenu:
-    GoTo ContestRegistration_ReceptionistPracticeContest_InfoMenu
+Contests_PracticeContestInfoDanceReturn:
+    GoTo Contests_PracticeContestInfoMenu
     End
 
 
-#define ReceptionistPractice_InfoActingMenuItem_OverallFlow 0
-#define ReceptionistPractice_InfoActingMenuItem_ContestMoves 1
-#define ReceptionistPractice_InfoActingMenuItem_Judges 2
-#define ReceptionistPractice_InfoActingMenuItem_Voltage 3
-#define ReceptionistPractice_InfoActingMenuItem_Cancel 4
+#define MENU_ENTRY_ACTING_INFO_OVERALL_FLOW 0
+#define MENU_ENTRY_ACTING_INFO_CONTEST_MOVES 1
+#define MENU_ENTRY_ACTING_INFO_JUDGES 2
+#define MENU_ENTRY_ACTING_INFO_VOLTAGE 3
+#define MENU_ENTRY_ACTING_INFO_CANCEL 4
 
-ContestRegistration_ReceptionistPracticeContest_InfoActingMenuReentry:
-    Message ContestRegistration_Text_WhatWouldYouLikeToKnow2
-ContestRegistration_ReceptionistPracticeContest_InfoActingMenu:
+Contests_PracticeContestInfoActingMenuReentry:
+    Message ContestCommon_Text_WhatWouldYouLikeToKnow2
+Contests_PracticeContestInfoActingMenu:
     InitLocalTextMenu 1, 1, 0, VAR_RESULT
-    AddMenuEntryImm ContestRegistration_Text_OverallFlow2, ReceptionistPractice_InfoActingMenuItem_OverallFlow
-    AddMenuEntryImm ContestRegistration_Text_ContestMoves, ReceptionistPractice_InfoActingMenuItem_ContestMoves
-    AddMenuEntryImm ContestRegistration_Text_Judges, ReceptionistPractice_InfoActingMenuItem_Judges
-    AddMenuEntryImm ContestRegistration_Text_Voltage, ReceptionistPractice_InfoActingMenuItem_Voltage
-    AddMenuEntryImm ContestRegistration_Text_Cancel3, ReceptionistPractice_InfoActingMenuItem_Cancel
+    AddMenuEntryImm ContestCommon_Text_OverallFlowActing, MENU_ENTRY_ACTING_INFO_OVERALL_FLOW
+    AddMenuEntryImm ContestCommon_Text_ContestMoves, MENU_ENTRY_ACTING_INFO_CONTEST_MOVES
+    AddMenuEntryImm ContestCommon_Text_Judges, MENU_ENTRY_ACTING_INFO_JUDGES
+    AddMenuEntryImm ContestCommon_Text_Voltage, MENU_ENTRY_ACTING_INFO_VOLTAGE
+    AddMenuEntryImm ContestCommon_Text_CancelActing, MENU_ENTRY_ACTING_INFO_CANCEL
     ShowMenu
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, ReceptionistPractice_InfoActingMenuItem_OverallFlow, ContestRegistration_ReceptionistPracticeContest_InfoActingOverallFlow
-    GoToIfEq VAR_0x8008, ReceptionistPractice_InfoActingMenuItem_ContestMoves, ContestRegistration_ReceptionistPracticeContest_InfoActingContestMoves
-    GoToIfEq VAR_0x8008, ReceptionistPractice_InfoActingMenuItem_Judges, ContestRegistration_ReceptionistPracticeContest_InfoActingJudges
-    GoToIfEq VAR_0x8008, ReceptionistPractice_InfoActingMenuItem_Voltage, ContestRegistration_ReceptionistPracticeContest_InfoActingVoltage
-    GoTo ContestRegistration_ReceptionistPracticeContest_InfoActingReturnToInfoMenu
+    GoToIfEq VAR_0x8008, MENU_ENTRY_ACTING_INFO_OVERALL_FLOW, Contests_PracticeContestInfoActingOverallFlow
+    GoToIfEq VAR_0x8008, MENU_ENTRY_ACTING_INFO_CONTEST_MOVES, Contests_PracticeContestInfoActingContestMoves
+    GoToIfEq VAR_0x8008, MENU_ENTRY_ACTING_INFO_JUDGES, Contests_PracticeContestInfoActingJudges
+    GoToIfEq VAR_0x8008, MENU_ENTRY_ACTING_INFO_VOLTAGE, Contests_PracticeContestInfoActingVoltage
+    GoTo Contests_PracticeContestInfoActingReturn
     End
 
-ContestRegistration_ReceptionistPracticeContest_InfoActingOverallFlow:
-    Message ContestRegistration_Text_ExplainActingOverallFlow
-    GoTo ContestRegistration_ReceptionistPracticeContest_InfoActingMenuReentry
+Contests_PracticeContestInfoActingOverallFlow:
+    Message ContestCommon_Text_ExplainActingOverallFlow
+    GoTo Contests_PracticeContestInfoActingMenuReentry
     End
 
-ContestRegistration_ReceptionistPracticeContest_InfoActingContestMoves:
-    Message ContestRegistration_Text_ExplainActingScoring
-    GoTo ContestRegistration_ReceptionistPracticeContest_InfoActingMenuReentry
+Contests_PracticeContestInfoActingContestMoves:
+    Message ContestCommon_Text_ExplainActingScoring
+    GoTo Contests_PracticeContestInfoActingMenuReentry
     End
 
-ContestRegistration_ReceptionistPracticeContest_InfoActingJudges:
-    Message ContestRegistration_Text_ExplainActingJudges
-    GoTo ContestRegistration_ReceptionistPracticeContest_InfoActingMenuReentry
+Contests_PracticeContestInfoActingJudges:
+    Message ContestCommon_Text_ExplainActingJudges
+    GoTo Contests_PracticeContestInfoActingMenuReentry
     End
 
-ContestRegistration_ReceptionistPracticeContest_InfoActingVoltage:
-    Message ContestRegistration_Text_ExplainVoltage
-    GoTo ContestRegistration_ReceptionistPracticeContest_InfoActingMenuReentry
+Contests_PracticeContestInfoActingVoltage:
+    Message ContestCommon_Text_ExplainVoltage
+    GoTo Contests_PracticeContestInfoActingMenuReentry
     End
 
-ContestRegistration_ReceptionistPracticeContest_InfoActingReturnToInfoMenu:
-    GoTo ContestRegistration_ReceptionistPracticeContest_InfoMenu
+Contests_PracticeContestInfoActingReturn:
+    GoTo Contests_PracticeContestInfoMenu
     End
 
-ContestRegistration_ReceptionistPracticeContest_InfoPractice:
-    Message ContestRegistration_Text_HereYouMayPracticeEachContestCategory
-    Message ContestRegistration_Text_WhatWouldYouLikeToKnow2
-    GoTo ContestRegistration_ReceptionistPracticeContest_InfoMenu
+Contests_PracticeContestInfoPractice:
+    Message ContestCommon_Text_ExplainPracticeContest
+    Message ContestCommon_Text_WhatWouldYouLikeToKnow2
+    GoTo Contests_PracticeContestInfoMenu
     End
 
-ContestRegistration_Unused7:
-    Message ContestRegistration_Text_WeLookForwardToYourNextVisit2
-    GoTo ContestRegistration_Receptionists_End
+Contests_Unused7:
+    Message ContestCommon_Text_LookForwardToNextVisit2
+    GoTo Contests_ReceptionistsEnd
     End
 
-ContestRegistration_ReceptionistPracticeContest_Exit:
-    Message ContestRegistration_Text_WeLookForwardToYourNextVisit1
+Contests_PracticeContestExit:
+    Message ContestCommon_Text_LookForwardToNextVisit1
     WaitButton
-ContestRegistration_Receptionists_End:
+Contests_ReceptionistsEnd:
     CloseMessage
     ReleaseAll
     End
 
-ContestRegistration_LinkContestRecordsDisplay:
+Contests_LinkContestRecordsDisplay:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     ShowLinkContestRecords
