@@ -6115,7 +6115,7 @@ static u8 ov65_02234FC4(int param0)
 
 static BOOL ov65_02234FCC(UnkStruct_ov65_0222EBE0 *param0, int param1, int param2)
 {
-    CommTool_Init(15);
+    CommTool_Init(HEAP_ID_COMMUNICATION);
     NintendoWFC_SetVoiceChatEnabled(param0->unk_04->unk_00.unk_21);
 
     if (ov65_0222DD64(param2) == 1) {

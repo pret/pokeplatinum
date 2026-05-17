@@ -3275,7 +3275,7 @@ static void Task_PlayerSetCommandSelection(SysTask *task, void *data)
         v11.isWaitingForPartner = BattleSystem_IsSlot2WaitingForPartner(commandSetData->battleSys, commandSetData->battler, commandSetData->switchingOrCanPickCommandMask);
 
         if (battlerData->unk_193) {
-            ov16_0226BCCC(v2, 1);
+            ov16_Dummy3(v2, 1);
 
             if (BattleSystem_GetBattleStatusMask(commandSetData->battleSys) & BATTLE_STATUS_FIRST_BATTLE) {
                 ov16_02268C04(bgNarc, objNarc, v2, 6, 0, &v11);
@@ -3349,7 +3349,7 @@ static void Task_PlayerSetCommandSelection(SysTask *task, void *data)
                 NARC *objNarc = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, HEAP_ID_BATTLE);
 
                 ov16_02268C04(bgNarc, objNarc, v2, 0, 0, NULL);
-                ov16_0226BCCC(v2, 0);
+                ov16_Dummy3(v2, 0);
                 ov16_0226846C(healthbox);
                 Healthbox_Deactivate(commandSetData->healthbox);
                 ov16_022647D8(battlerData);
@@ -3361,7 +3361,7 @@ static void Task_PlayerSetCommandSelection(SysTask *task, void *data)
                 NARC *objNarc = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, HEAP_ID_BATTLE);
 
                 ov16_02268C04(bgNarc, objNarc, v2, 0, 0, NULL);
-                ov16_0226BCCC(v2, 0);
+                ov16_Dummy3(v2, 0);
                 ov16_0226846C(healthbox);
                 Healthbox_Deactivate(commandSetData->healthbox);
                 ov16_022647D8(battlerData);
@@ -3396,7 +3396,7 @@ static void Task_PlayerSetCommandSelection(SysTask *task, void *data)
             NARC *objNarc = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, HEAP_ID_BATTLE);
 
             ov16_02268C04(bgNarc, objNarc, v2, 0, 0, NULL);
-            ov16_0226BCCC(v2, 0);
+            ov16_Dummy3(v2, 0);
             ov16_0226846C(healthbox);
             Healthbox_Deactivate(commandSetData->healthbox);
             ov16_022647D8(battlerData);
@@ -3568,7 +3568,7 @@ static void Task_PlayerShowMoveSelectMenu(SysTask *task, void *data)
     case 2:
         if (moveSelectMenuData->input != 0xFF) {
             if ((BattleSystem_GetBattleType(moveSelectMenuData->battleSys) & BATTLE_TYPE_DOUBLES) == FALSE) {
-                ov16_0226BCCC(v2, 0);
+                ov16_Dummy3(v2, 0);
                 ov16_0226846C(healthbox);
                 Healthbox_Deactivate(moveSelectMenuData->healthbox);
                 ov16_022647D8(battlerData);
@@ -3722,7 +3722,7 @@ static void Task_PlayerShowTargetSelectMenu(SysTask *task, void *data)
             ov16_0226846C(healthbox);
 
             if (targetSelectMenuData->unk_32 == 1) {
-                ov16_0226BCCC(v2, 0);
+                ov16_Dummy3(v2, 0);
             }
         }
 
@@ -4727,7 +4727,7 @@ static void Task_PlayerShowYesNoMenu(SysTask *task, void *data)
             ov16_02268C04(bgNarc, objNarc, v2, 0, 0, NULL);
 
             if (yesNoMenuData->input == 1) {
-                ov16_0226BCCC(v2, 0);
+                ov16_Dummy3(v2, 0);
             }
 
             yesNoMenuData->state = 4;

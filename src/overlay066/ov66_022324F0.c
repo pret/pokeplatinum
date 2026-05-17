@@ -19,6 +19,8 @@
 #include "wifi_history_save_data.h"
 #include "wifi_list.h"
 
+#include "res/text/bank/country_names.h"
+
 typedef struct {
     u16 country;
     u8 region;
@@ -1118,7 +1120,7 @@ static BOOL ov66_022336C4(UnkStruct_ov66_022336C4 *param0)
     u32 country = WiFiHistory_GetCountry(param0->wiFiHistory);
     u32 region = WiFiHistory_GetRegion(param0->wiFiHistory);
 
-    if (country == 0) {
+    if (country == Country_Text_None) {
         return 0;
     }
 
