@@ -7,15 +7,14 @@
 
 typedef struct TrainerIntroData {
     FieldBattleDTO *dto;
-    Party *party[4];
-    String *trainerNames[4];
+    Party *party[MAX_BATTLERS];
+    String *trainerNames[MAX_BATTLERS];
     enum HeapID heapID;
     u8 mode;
     u8 playerSide;
     u8 battleResult;
     u8 isDone;
     u8 recordingType;
-    u8 padding[3]; // to align the struct
 } TrainerIntroData;
 
 #endif // POKEPLATINUM_BATTLE_TRAINER_INTRO_DATA_H
