@@ -2,24 +2,24 @@
 #include "res/text/bank/mystery_gift_deliveryman.h"
 
 
-    ScriptEntry MysteryGiftDeliverman_OnMartTransition
-    ScriptEntry MysteryGiftDeliverman_Deliveryman
+    ScriptEntry MysteryGiftDeliveryman_OnMartTransition
+    ScriptEntry MysteryGiftDeliveryman_Deliveryman
     ScriptEntryEnd
 
-MysteryGiftDeliverman_OnMartTransition:
+MysteryGiftDeliveryman_OnMartTransition:
     LoadMysteryGift
     CheckAvailableMysteryGift VAR_AVAILABLE_MYSTERY_GIFT_EXISTS
-    GoToIfEq VAR_AVAILABLE_MYSTERY_GIFT_EXISTS, FALSE, MysteryGiftDeliverman_HideDeliveryman
+    GoToIfEq VAR_AVAILABLE_MYSTERY_GIFT_EXISTS, FALSE, MysteryGiftDeliveryman_HideDeliveryman
     ClearFlag FLAG_HIDE_MART_MYSTERY_GIFT_DELIVERYMAN
     UnloadMysteryGiftNotReceived
     End
 
-MysteryGiftDeliverman_HideDeliveryman:
+MysteryGiftDeliveryman_HideDeliveryman:
     SetFlag FLAG_HIDE_MART_MYSTERY_GIFT_DELIVERYMAN
     UnloadMysteryGiftNotReceived
     End
 
-MysteryGiftDeliverman_Deliveryman:
+MysteryGiftDeliveryman_Deliveryman:
     LoadMysteryGift
     PlaySE SEQ_SE_CONFIRM
     LockAll
