@@ -62,7 +62,7 @@
             "y": 1
         },
         {
-            "id": "LOCALID_COUNTERPART",
+            "id": "LOCALID_SANDGEM_COUNTERPART",
             "graphics_id": "OBJ_EVENT_GFX_VAR_0",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",

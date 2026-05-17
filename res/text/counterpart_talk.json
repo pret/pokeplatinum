@@ -2,7 +2,7 @@
   "key": 18871,
   "messages": [
     {
-      "id": "pl_msg_00000552_00000",
+      "id": "CounterpartTalk_Text_DawnDialgaOrPalkiaAtSpearPillar",
       "en_US": [
         "Dawn: Hey, {STRVAR_1 3, 0, 0}?\n",
         "The professor told me something.\r",
@@ -11,7 +11,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000552_00001",
+      "id": "CounterpartTalk_Text_DawnElderHasSomethingToTell",
       "en_US": [
         "Dawn: Hi, {STRVAR_1 3, 0, 0}!\r",
         "You’re friends with the elder of\n",
@@ -21,7 +21,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000552_00002",
+      "id": "CounterpartTalk_Text_DawnSeenEverySinnohPokemon",
       "en_US": [
         "Dawn: Hi, {STRVAR_1 3, 0, 0}!\n",
         "May I see your Pokédex?\r",
@@ -33,14 +33,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000552_00003",
+      "id": "CounterpartTalk_Text_DawnHaveYouChattedWithMySister",
       "en_US": [
         "Dawn: Hey, {STRVAR_1 3, 0, 0}, have you\n",
         "ever chatted with my kid sister?"
       ]
     },
     {
-      "id": "pl_msg_00000552_00004",
+      "id": "CounterpartTalk_Text_DawnAreYouAcquaintedWithBebe",
       "en_US": [
         "Dawn: Oh, {STRVAR_1 3, 0, 0}, are you\n",
         "acquainted with Bebe?\r",
@@ -53,7 +53,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000552_00005",
+      "id": "CounterpartTalk_Text_DawnIllShowUsePokeRadar",
       "en_US": [
         "Dawn: Hey! {STRVAR_1 3, 0, 0}, you’ve got\n",
         "a Poké Radar?\r",
@@ -63,7 +63,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000552_00006",
+      "id": "CounterpartTalk_Text_DawnHowsYourPokeRadar",
       "en_US": [
         "Dawn: Hi, {STRVAR_1 3, 0, 0}!\n",
         "How’s your Poké Radar?\r",
@@ -76,7 +76,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000552_00007",
+      "id": "CounterpartTalk_Text_DawnSometimesPatchOfGrassSparkles",
       "en_US": [
         "Dawn: Sometimes a patch of grass\n",
         "sparkles when a Poké Radar is used.\r",
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000552_00008",
+      "id": "CounterpartTalk_Text_DawnHelpingWithNationalPokedex",
       "en_US": [
         "Dawn: So, {STRVAR_1 3, 0, 0}.\r",
         "I’m also helping the professor put\n",
@@ -97,7 +97,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000552_00009",
+      "id": "CounterpartTalk_Text_DawnCompletedNationalDex",
       "en_US": [
         "Dawn: {STRVAR_1 3, 0, 0}!\r",
         "{STRVAR_1 3, 0, 0}, {STRVAR_1 3, 0, 0},\n",
@@ -107,14 +107,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000552_00010",
+      "id": "CounterpartTalk_Text_DawnIsTodayYourBirthday",
       "en_US": [
         "Dawn: Is today maybe...\n",
         "Your birthday, {STRVAR_1 3, 0, 0}?"
       ]
     },
     {
-      "id": "pl_msg_00000552_00011",
+      "id": "CounterpartTalk_Text_DawnCongratulations",
       "en_US": [
         "Dawn: Giggle...\n",
         "Congratulations, {STRVAR_1 3, 0, 0}!\f",
@@ -122,7 +122,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000552_00012",
+      "id": "CounterpartTalk_Text_DawnWhatMadeMeThinkBirthday",
       "en_US": [
         "Dawn: Oh, it isn’t?\r",
         "I wonder what made me think that\n",
@@ -130,7 +130,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000552_00013",
+      "id": "CounterpartTalk_Text_DawnCongratulationsChamp",
       "en_US": [
         "Dawn: {STRVAR_1 3, 0, 0}!\n",
         "I heard from the professor!\r",
@@ -138,7 +138,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000552_00014",
+      "id": "CounterpartTalk_Text_LucasDialgaOrPalkiaAtSpearPillar",
       "en_US": [
         "Lucas: Hey, {STRVAR_1 3, 0, 0}!\n",
         "The prof told me something cool.\r",
@@ -147,7 +147,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000552_00015",
+      "id": "CounterpartTalk_Text_LucasElderHasSomethingToTell",
       "en_US": [
         "Lucas: Hi, {STRVAR_1 3, 0, 0}!\r",
         "You know the elder of Celestic Town,\n",
@@ -157,7 +157,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000552_00016",
+      "id": "CounterpartTalk_Text_LucasSeenEverySinnohPokemon",
       "en_US": [
         "Lucas: Hey, {STRVAR_1 3, 0, 0}!\n",
         "Let me take a look at your Pokédex.\r",
@@ -169,14 +169,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000552_00017",
+      "id": "CounterpartTalk_Text_LucasHaveYouSeenMySister",
       "en_US": [
         "Lucas: Hey, {STRVAR_1 3, 0, 0}, have you\n",
         "ever seen my kid sister?"
       ]
     },
     {
-      "id": "pl_msg_00000552_00018",
+      "id": "CounterpartTalk_Text_LucasHaveYouMetBebe",
       "en_US": [
         "Lucas: Hey, {STRVAR_1 3, 0, 0}, have you\n",
         "met Bebe?\r",
@@ -188,7 +188,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000552_00019",
+      "id": "CounterpartTalk_Text_LucasIllTeachUsePokeRadar",
       "en_US": [
         "Lucas: Hey! {STRVAR_1 3, 0, 0}, you’ve got\n",
         "yourself a Poké Radar, too?\r",
@@ -198,7 +198,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000552_00020",
+      "id": "CounterpartTalk_Text_LucasHowsYourPokeRadar",
       "en_US": [
         "Lucas: Hi, {STRVAR_1 3, 0, 0}!\n",
         "How’s your Poké Radar working out?\r",
@@ -212,7 +212,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000552_00021",
+      "id": "CounterpartTalk_Text_LucasSometimesPatchOfGrassSparkles",
       "en_US": [
         "Lucas: Sometimes a patch of grass\n",
         "sparkles when a Poké Radar is used.\r",
@@ -222,7 +222,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000552_00022",
+      "id": "CounterpartTalk_Text_LucasHelpingWithNationalPokedex",
       "en_US": [
         "Lucas: So, {STRVAR_1 3, 0, 0}.\r",
         "I’m also helping the professor out\n",
@@ -233,7 +233,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000552_00023",
+      "id": "CounterpartTalk_Text_LucasCompletedNationalDex",
       "en_US": [
         "Lucas: {STRVAR_1 3, 0, 0}!\r",
         "Wow! I don’t know what to say!\n",
@@ -243,14 +243,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000552_00024",
+      "id": "CounterpartTalk_Text_LucasIsItYourBirthdayToday",
       "en_US": [
         "Lucas: Hey, {STRVAR_1 3, 0, 0}?\n",
         "Is it maybe your birthday today?"
       ]
     },
     {
-      "id": "pl_msg_00000552_00025",
+      "id": "CounterpartTalk_Text_LucasCongratulations",
       "en_US": [
         "Lucas: I thought so!\n",
         "Congratulations, {STRVAR_1 3, 0, 0}!\f",
@@ -258,7 +258,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000552_00026",
+      "id": "CounterpartTalk_Text_LucasWhatMadeMeThinkBirthday",
       "en_US": [
         "Lucas: Huh?\n",
         "It isn’t?\r",
@@ -267,7 +267,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000552_00027",
+      "id": "CounterpartTalk_Text_LucasCongratulationsChamp",
       "en_US": [
         "Lucas: {STRVAR_1 3, 0, 0}!\n",
         "The professor told me the news!\r",
@@ -275,7 +275,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000552_00028",
+      "id": "CounterpartTalk_Text_DawnYouMetCreatorsOfSinnoh",
       "en_US": [
         "Dawn: So, I was thinking...\n",
         "Those Pokémon you met, {STRVAR_1 3, 0, 0}...\r",
@@ -284,7 +284,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000552_00029",
+      "id": "CounterpartTalk_Text_LucasYouMetCreatorsOfSinnoh",
       "en_US": [
         "Lucas: So, I was thinking...\n",
         "Those Pokémon you met, {STRVAR_1 3, 0, 0}...\r",

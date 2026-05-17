@@ -1,353 +1,354 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/counterpart_talk.h"
+#include "res/field/events/events_sandgem_town.h"
 
 
-    ScriptEntry _0006
+    ScriptEntry CounterpartTalk_Counterpart
     ScriptEntryEnd
 
-_0006:
+CounterpartTalk_Counterpart:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GetPlayerGender VAR_0x8004
-    GoToIfEq VAR_SANDGEM_TOWN_LAB_STATE, 3, _0027
-    GoTo _006C
+    GoToIfEq VAR_SANDGEM_TOWN_LAB_STATE, 3, CounterpartTalk_CheckVisitedSunyshore
+    GoTo CounterpartTalk_CounterpartMessage
     End
 
-_0027:
-    GoToIfUnset FLAG_FIRST_ARRIVAL_SUNYSHORE_CITY, _003A
-    GoTo _006C
+CounterpartTalk_CheckVisitedSunyshore:
+    GoToIfUnset FLAG_FIRST_ARRIVAL_SUNYSHORE_CITY, CounterpartTalk_YouMetCreatorsOfSinnoh
+    GoTo CounterpartTalk_CounterpartMessage
     End
 
-_003A:
-    CallIfEq VAR_0x8004, GENDER_MALE, _005C
-    CallIfEq VAR_0x8004, GENDER_FEMALE, _0064
+CounterpartTalk_YouMetCreatorsOfSinnoh:
+    CallIfEq VAR_0x8004, GENDER_MALE, CounterpartTalk_DawnYouMetCreatorsOfSinnoh
+    CallIfEq VAR_0x8004, GENDER_FEMALE, CounterpartTalk_LucasYouMetCreatorsOfSinnoh
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_005C:
+CounterpartTalk_DawnYouMetCreatorsOfSinnoh:
     BufferPlayerName 0
-    Message 28
+    Message CounterpartTalk_Text_DawnYouMetCreatorsOfSinnoh
     Return
 
-_0064:
+CounterpartTalk_LucasYouMetCreatorsOfSinnoh:
     BufferPlayerName 0
-    Message 29
+    Message CounterpartTalk_Text_LucasYouMetCreatorsOfSinnoh
     Return
 
-_006C:
+CounterpartTalk_CounterpartMessage:
     CheckIsTodayPlayerBirthday VAR_RESULT
-    GoToIfEq VAR_RESULT, TRUE, _0133
+    GoToIfEq VAR_RESULT, TRUE, CounterpartTalk_PlayerBirthday
     CheckLocalDexCompleted VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _00B2
-    GoToIfUnset FLAG_UNLOCKED_DIALGA_PALKIA_SPEAR_PILLAR, _0332
-    Call _04A4
-    GoToIfEq VAR_RESULT, 0, _037C
-    GoTo _0357
+    GoToIfEq VAR_RESULT, TRUE, CounterpartTalk_CompletedLocalDex
+    GoToIfUnset FLAG_UNLOCKED_DIALGA_PALKIA_SPEAR_PILLAR, CounterpartTalk_ElderHasSomethingToTell
+    Call CounterpartTalk_CheckDialgaOrPalkiaAtSpearPillar
+    GoToIfEq VAR_RESULT, FALSE, CounterpartTalk_CongratulationsChamp
+    GoTo CounterpartTalk_DialgaOrPalkiaAtSpearPillar
 
-_00B2:
+CounterpartTalk_CompletedLocalDex:
     GetNationalDexEnabled VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _030D
-    GoToIfUnset FLAG_TALKED_TO_COUNTERPART_SISTER_WITH_NATIONAL_DEX, _02E8
-    GoToIfUnset FLAG_RECEIVED_HEARTHOME_CITY_NORTHWEST_HOUSE_EEVEE, _02C3
+    GoToIfEq VAR_RESULT, FALSE, CounterpartTalk_SeenEverySinnohPokemon
+    GoToIfUnset FLAG_TALKED_TO_COUNTERPART_SISTER_WITH_NATIONAL_DEX, CounterpartTalk_HaveYouTalkedToMySister
+    GoToIfUnset FLAG_RECEIVED_HEARTHOME_CITY_NORTHWEST_HOUSE_EEVEE, CounterpartTalk_HaveYouMetBebe
     CheckNationalDexCompleted VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _0158
-    GoTo _00F3
+    GoToIfEq VAR_RESULT, TRUE, CounterpartTalk_CompletedNationalDex
+    GoTo CounterpartTalk_PlayerHasPokeRadar
     End
 
-_00F3:
-    GoToIfUnset FLAG_UNK_0x0146, _01F4
+CounterpartTalk_PlayerHasPokeRadar:
+    GoToIfUnset FLAG_STARTED_COUNTERPART_POKE_RADAR_TUTORIAL, CounterpartTalk_StartPokeRadarTutorial
     GetRandom VAR_RESULT, 3
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, 0, _01CB
-    GoToIfEq VAR_0x8008, 1, _01A2
-    GoToIfEq VAR_0x8008, 2, _017D
+    GoToIfEq VAR_0x8008, 0, CounterpartTalk_HowsYourPokeRadar
+    GoToIfEq VAR_0x8008, 1, CounterpartTalk_SometimesPatchOfGrassSparkles
+    GoToIfEq VAR_0x8008, 2, CounterpartTalk_HelpingWithNationalPokedex
     End
 
-_0133:
+CounterpartTalk_PlayerBirthday:
     BufferPlayerName 0
-    CallIfEq VAR_0x8004, 0, _03A9
-    CallIfEq VAR_0x8004, 1, _03D6
-    GoTo _03A1
+    CallIfEq VAR_0x8004, GENDER_MALE, CounterpartTalk_DawnIsTodayYourBirthday
+    CallIfEq VAR_0x8004, GENDER_FEMALE, CounterpartTalk_LucasIsItYourBirthdayToday
+    GoTo CounterpartTalk_CounterpartEnd
     End
 
-_0158:
+CounterpartTalk_CompletedNationalDex:
     BufferPlayerName 0
-    CallIfEq VAR_0x8004, 0, _0467
-    CallIfEq VAR_0x8004, 1, _046C
-    GoTo _03A1
+    CallIfEq VAR_0x8004, GENDER_MALE, CounterpartTalk_DawnCompletedNationalDex
+    CallIfEq VAR_0x8004, GENDER_FEMALE, CounterpartTalk_LucasCompletedNationalDex
+    GoTo CounterpartTalk_CounterpartEnd
     End
 
-_017D:
+CounterpartTalk_HelpingWithNationalPokedex:
     BufferPlayerName 0
-    CallIfEq VAR_0x8004, 0, _045D
-    CallIfEq VAR_0x8004, 1, _0462
-    GoTo _03A1
+    CallIfEq VAR_0x8004, GENDER_MALE, CounterpartTalk_DawnHelpingWithNationalPokedex
+    CallIfEq VAR_0x8004, GENDER_FEMALE, CounterpartTalk_LucasHelpingWithNationalPokedex
+    GoTo CounterpartTalk_CounterpartEnd
     End
 
-_01A2:
-    SetFlag FLAG_UNK_0x0148
+CounterpartTalk_SometimesPatchOfGrassSparkles:
+    SetFlag FLAG_DUMMY_0x0148
     BufferPlayerName 0
-    CallIfEq VAR_0x8004, 0, _0453
-    CallIfEq VAR_0x8004, 1, _0458
-    GoTo _03A1
+    CallIfEq VAR_0x8004, GENDER_MALE, CounterpartTalk_DawnSometimesPatchOfGrassSparkles
+    CallIfEq VAR_0x8004, GENDER_FEMALE, CounterpartTalk_LucasSometimesPatchOfGrassSparkles
+    GoTo CounterpartTalk_CounterpartEnd
     End
 
-_01CB:
-    SetFlag FLAG_UNK_0x0147
+CounterpartTalk_HowsYourPokeRadar:
+    SetFlag FLAG_DUMMY_0x0147
     BufferPlayerName 0
-    CallIfEq VAR_0x8004, 0, _0449
-    CallIfEq VAR_0x8004, 1, _044E
-    GoTo _03A1
+    CallIfEq VAR_0x8004, GENDER_MALE, CounterpartTalk_DawnHowsYourPokeRadar
+    CallIfEq VAR_0x8004, GENDER_FEMALE, CounterpartTalk_LucasHowsYourPokeRadar
+    GoTo CounterpartTalk_CounterpartEnd
     End
 
-_01F4:
-    SetFlag FLAG_UNK_0x0146
+CounterpartTalk_StartPokeRadarTutorial:
+    SetFlag FLAG_STARTED_COUNTERPART_POKE_RADAR_TUTORIAL
     BufferPlayerName 0
-    CallIfEq VAR_0x8004, 0, _043F
-    CallIfEq VAR_0x8004, 1, _0444
+    CallIfEq VAR_0x8004, GENDER_MALE, CounterpartTalk_DawnIllShowUsePokeRadar
+    CallIfEq VAR_0x8004, GENDER_FEMALE, CounterpartTalk_LucasIllTeachUsePokeRadar
     CloseMessage
     GetPlayerDir VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _0251
-    GoToIfEq VAR_RESULT, 1, _026B
-    GoToIfEq VAR_RESULT, 2, _0285
-    GoToIfEq VAR_RESULT, 3, _029F
+    GoToIfEq VAR_RESULT, DIR_NORTH, CounterpartTalk_CounterpartLeaveNorth
+    GoToIfEq VAR_RESULT, DIR_SOUTH, CounterpartTalk_CounterpartLeaveSouth
+    GoToIfEq VAR_RESULT, DIR_WEST, CounterpartTalk_CounterpartLeaveWest
+    GoToIfEq VAR_RESULT, DIR_EAST, CounterpartTalk_CounterpartLeaveEast
     End
 
-_0251:
-    ApplyMovement 4, _0474
-    ApplyMovement LOCALID_PLAYER, _0488
+CounterpartTalk_CounterpartLeaveNorth:
+    ApplyMovement LOCALID_SANDGEM_COUNTERPART, CounterpartTalk_Movement_CounterpartLeaveNorthSouthEast
+    ApplyMovement LOCALID_PLAYER, CounterpartTalk_Movement_PlayerWatchCounterpartLeaveNorthSouth
     WaitMovement
-    GoTo _02B1
+    GoTo CounterpartTalk_RemoveCounterpart
     End
 
-_026B:
-    ApplyMovement 4, _0474
-    ApplyMovement LOCALID_PLAYER, _0488
+CounterpartTalk_CounterpartLeaveSouth:
+    ApplyMovement LOCALID_SANDGEM_COUNTERPART, CounterpartTalk_Movement_CounterpartLeaveNorthSouthEast
+    ApplyMovement LOCALID_PLAYER, CounterpartTalk_Movement_PlayerWatchCounterpartLeaveNorthSouth
     WaitMovement
-    GoTo _02B1
+    GoTo CounterpartTalk_RemoveCounterpart
     End
 
-_0285:
-    ApplyMovement 4, _047C
-    ApplyMovement LOCALID_PLAYER, _0494
+CounterpartTalk_CounterpartLeaveWest:
+    ApplyMovement LOCALID_SANDGEM_COUNTERPART, CounterpartTalk_Movement_CounterpartLeaveWest
+    ApplyMovement LOCALID_PLAYER, CounterpartTalk_Movement_PlayerWatchCounterpartLeaveWest
     WaitMovement
-    GoTo _02B1
+    GoTo CounterpartTalk_RemoveCounterpart
     End
 
-_029F:
-    ApplyMovement 4, _0474
+CounterpartTalk_CounterpartLeaveEast:
+    ApplyMovement LOCALID_SANDGEM_COUNTERPART, CounterpartTalk_Movement_CounterpartLeaveNorthSouthEast
     WaitMovement
-    GoTo _02B1
+    GoTo CounterpartTalk_RemoveCounterpart
     End
 
-_02B1:
-    RemoveObject 4
+CounterpartTalk_RemoveCounterpart:
+    RemoveObject LOCALID_SANDGEM_COUNTERPART
     ClearFlag FLAG_HIDE_ROUTE_202_COUNTERPART
     SetVar VAR_ROUTE_202_STATE, 2
     ReleaseAll
     End
 
-_02C3:
+CounterpartTalk_HaveYouMetBebe:
     BufferPlayerName 0
-    CallIfEq VAR_0x8004, 0, _0435
-    CallIfEq VAR_0x8004, 1, _043A
-    GoTo _03A1
+    CallIfEq VAR_0x8004, GENDER_MALE, CounterpartTalk_DawnAreYouAcquaintedWithBebe
+    CallIfEq VAR_0x8004, GENDER_FEMALE, CounterpartTalk_LucasHaveYouMetBebe
+    GoTo CounterpartTalk_CounterpartEnd
     End
 
-_02E8:
+CounterpartTalk_HaveYouTalkedToMySister:
     BufferPlayerName 0
-    CallIfEq VAR_0x8004, 0, _042B
-    CallIfEq VAR_0x8004, 1, _0430
-    GoTo _03A1
+    CallIfEq VAR_0x8004, GENDER_MALE, CounterpartTalk_DawnHaveYouChattedWithMySister
+    CallIfEq VAR_0x8004, GENDER_FEMALE, CounterpartTalk_LucasHaveYouSeenMySister
+    GoTo CounterpartTalk_CounterpartEnd
     End
 
-_030D:
+CounterpartTalk_SeenEverySinnohPokemon:
     BufferPlayerName 0
-    CallIfEq VAR_0x8004, 0, _0421
-    CallIfEq VAR_0x8004, 1, _0426
-    GoTo _03A1
+    CallIfEq VAR_0x8004, GENDER_MALE, CounterpartTalk_DawnSeenEverySinnohPokemon
+    CallIfEq VAR_0x8004, GENDER_FEMALE, CounterpartTalk_LucasSeenEverySinnohPokemon
+    GoTo CounterpartTalk_CounterpartEnd
     End
 
-_0332:
+CounterpartTalk_ElderHasSomethingToTell:
     BufferPlayerName 0
-    CallIfEq VAR_0x8004, 0, _0417
-    CallIfEq VAR_0x8004, 1, _041C
-    GoTo _03A1
+    CallIfEq VAR_0x8004, GENDER_MALE, CounterpartTalk_DawnElderHasSomethingToTell
+    CallIfEq VAR_0x8004, GENDER_FEMALE, CounterpartTalk_LucasElderHasSomethingToTell
+    GoTo CounterpartTalk_CounterpartEnd
     End
 
-_0357:
+CounterpartTalk_DialgaOrPalkiaAtSpearPillar:
     BufferPlayerName 0
-    CallIfEq VAR_0x8004, 0, _040D
-    CallIfEq VAR_0x8004, 1, _0412
-    GoTo _03A1
+    CallIfEq VAR_0x8004, GENDER_MALE, CounterpartTalk_DawnDialgaOrPalkiaAtSpearPillar
+    CallIfEq VAR_0x8004, GENDER_FEMALE, CounterpartTalk_LucasDialgaOrPalkiaAtSpearPillar
+    GoTo CounterpartTalk_CounterpartEnd
     End
 
-_037C:
+CounterpartTalk_CongratulationsChamp:
     BufferPlayerName 0
-    CallIfEq VAR_0x8004, 0, _0403
-    CallIfEq VAR_0x8004, 1, _0408
-    GoTo _03A1
+    CallIfEq VAR_0x8004, GENDER_MALE, CounterpartTalk_DawnCongratulationsChamp
+    CallIfEq VAR_0x8004, GENDER_FEMALE, CounterpartTalk_LucasCongratulationsChamp
+    GoTo CounterpartTalk_CounterpartEnd
     End
 
-_03A1:
+CounterpartTalk_CounterpartEnd:
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_03A9:
-    Message 10
+CounterpartTalk_DawnIsTodayYourBirthday:
+    Message CounterpartTalk_Text_DawnIsTodayYourBirthday
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _03CC
-    GoToIfEq VAR_RESULT, MENU_NO, _03D1
+    GoToIfEq VAR_RESULT, MENU_YES, CounterpartTalk_DawnCongratulations
+    GoToIfEq VAR_RESULT, MENU_NO, CounterpartTalk_DawnWhatMadeMeThinkBirthday
     End
 
-_03CC:
-    Message 11
+CounterpartTalk_DawnCongratulations:
+    Message CounterpartTalk_Text_DawnCongratulations
     Return
 
-_03D1:
-    Message 12
+CounterpartTalk_DawnWhatMadeMeThinkBirthday:
+    Message CounterpartTalk_Text_DawnWhatMadeMeThinkBirthday
     Return
 
-_03D6:
-    Message 24
+CounterpartTalk_LucasIsItYourBirthdayToday:
+    Message CounterpartTalk_Text_LucasIsItYourBirthdayToday
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _03F9
-    GoToIfEq VAR_RESULT, MENU_NO, _03FE
+    GoToIfEq VAR_RESULT, MENU_YES, CounterpartTalk_LucasCongratulations
+    GoToIfEq VAR_RESULT, MENU_NO, CounterpartTalk_LucasWhatMadeMeThinkBirthday
     End
 
-_03F9:
-    Message 25
+CounterpartTalk_LucasCongratulations:
+    Message CounterpartTalk_Text_LucasCongratulations
     Return
 
-_03FE:
-    Message 26
+CounterpartTalk_LucasWhatMadeMeThinkBirthday:
+    Message CounterpartTalk_Text_LucasWhatMadeMeThinkBirthday
     Return
 
-_0403:
-    Message 13
+CounterpartTalk_DawnCongratulationsChamp:
+    Message CounterpartTalk_Text_DawnCongratulationsChamp
     Return
 
-_0408:
-    Message 27
+CounterpartTalk_LucasCongratulationsChamp:
+    Message CounterpartTalk_Text_LucasCongratulationsChamp
     Return
 
-_040D:
-    Message 0
+CounterpartTalk_DawnDialgaOrPalkiaAtSpearPillar:
+    Message CounterpartTalk_Text_DawnDialgaOrPalkiaAtSpearPillar
     Return
 
-_0412:
-    Message 14
+CounterpartTalk_LucasDialgaOrPalkiaAtSpearPillar:
+    Message CounterpartTalk_Text_LucasDialgaOrPalkiaAtSpearPillar
     Return
 
-_0417:
-    Message 1
+CounterpartTalk_DawnElderHasSomethingToTell:
+    Message CounterpartTalk_Text_DawnElderHasSomethingToTell
     Return
 
-_041C:
-    Message 15
+CounterpartTalk_LucasElderHasSomethingToTell:
+    Message CounterpartTalk_Text_LucasElderHasSomethingToTell
     Return
 
-_0421:
-    Message 2
+CounterpartTalk_DawnSeenEverySinnohPokemon:
+    Message CounterpartTalk_Text_DawnSeenEverySinnohPokemon
     Return
 
-_0426:
-    Message 16
+CounterpartTalk_LucasSeenEverySinnohPokemon:
+    Message CounterpartTalk_Text_LucasSeenEverySinnohPokemon
     Return
 
-_042B:
-    Message 3
+CounterpartTalk_DawnHaveYouChattedWithMySister:
+    Message CounterpartTalk_Text_DawnHaveYouChattedWithMySister
     Return
 
-_0430:
-    Message 17
+CounterpartTalk_LucasHaveYouSeenMySister:
+    Message CounterpartTalk_Text_LucasHaveYouSeenMySister
     Return
 
-_0435:
-    Message 4
+CounterpartTalk_DawnAreYouAcquaintedWithBebe:
+    Message CounterpartTalk_Text_DawnAreYouAcquaintedWithBebe
     Return
 
-_043A:
-    Message 18
+CounterpartTalk_LucasHaveYouMetBebe:
+    Message CounterpartTalk_Text_LucasHaveYouMetBebe
     Return
 
-_043F:
-    Message 5
+CounterpartTalk_DawnIllShowUsePokeRadar:
+    Message CounterpartTalk_Text_DawnIllShowUsePokeRadar
     Return
 
-_0444:
-    Message 19
+CounterpartTalk_LucasIllTeachUsePokeRadar:
+    Message CounterpartTalk_Text_LucasIllTeachUsePokeRadar
     Return
 
-_0449:
-    Message 6
+CounterpartTalk_DawnHowsYourPokeRadar:
+    Message CounterpartTalk_Text_DawnHowsYourPokeRadar
     Return
 
-_044E:
-    Message 20
+CounterpartTalk_LucasHowsYourPokeRadar:
+    Message CounterpartTalk_Text_LucasHowsYourPokeRadar
     Return
 
-_0453:
-    Message 7
+CounterpartTalk_DawnSometimesPatchOfGrassSparkles:
+    Message CounterpartTalk_Text_DawnSometimesPatchOfGrassSparkles
     Return
 
-_0458:
-    Message 21
+CounterpartTalk_LucasSometimesPatchOfGrassSparkles:
+    Message CounterpartTalk_Text_LucasSometimesPatchOfGrassSparkles
     Return
 
-_045D:
-    Message 8
+CounterpartTalk_DawnHelpingWithNationalPokedex:
+    Message CounterpartTalk_Text_DawnHelpingWithNationalPokedex
     Return
 
-_0462:
-    Message 22
+CounterpartTalk_LucasHelpingWithNationalPokedex:
+    Message CounterpartTalk_Text_LucasHelpingWithNationalPokedex
     Return
 
-_0467:
-    Message 9
+CounterpartTalk_DawnCompletedNationalDex:
+    Message CounterpartTalk_Text_DawnCompletedNationalDex
     Return
 
-_046C:
-    Message 23
+CounterpartTalk_LucasCompletedNationalDex:
+    Message CounterpartTalk_Text_LucasCompletedNationalDex
     Return
 
     .balign 4, 0
-_0474:
+CounterpartTalk_Movement_CounterpartLeaveNorthSouthEast:
     WalkNormalEast 10
     EndMovement
 
     .balign 4, 0
-_047C:
+CounterpartTalk_Movement_CounterpartLeaveWest:
     WalkNormalNorth
     WalkNormalEast 10
     EndMovement
 
     .balign 4, 0
-_0488:
+CounterpartTalk_Movement_PlayerWatchCounterpartLeaveNorthSouth:
     Delay8
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_0494:
+CounterpartTalk_Movement_PlayerWatchCounterpartLeaveWest:
     Delay8
     WalkOnSpotNormalNorth
     WalkOnSpotNormalEast
     EndMovement
 
-_04A4:
-    GoToIfEq VAR_SPEAR_PILLAR_DIALGA_STATE, 1, _04C6
-    GoToIfEq VAR_SPEAR_PILLAR_PALKIA_STATE, 1, _04C6
-    SetVar VAR_RESULT, 1
+CounterpartTalk_CheckDialgaOrPalkiaAtSpearPillar:
+    GoToIfEq VAR_SPEAR_PILLAR_DIALGA_STATE, 1, CounterpartTalk_DialgaOrPalkiaNotAtSpearPillar
+    GoToIfEq VAR_SPEAR_PILLAR_PALKIA_STATE, 1, CounterpartTalk_DialgaOrPalkiaNotAtSpearPillar
+    SetVar VAR_RESULT, TRUE
     Return
 
-_04C6:
-    SetVar VAR_RESULT, 0
+CounterpartTalk_DialgaOrPalkiaNotAtSpearPillar:
+    SetVar VAR_RESULT, FALSE
     Return
 
     .balign 4, 0

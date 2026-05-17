@@ -25,9 +25,9 @@ SandgemTown_OnTransition:
     End
 
 SandgemTown_SetCounterpartPositionExitLab:
-    SetObjectEventPos LOCALID_COUNTERPART, 168, 845
-    SetObjectEventDir LOCALID_COUNTERPART, DIR_NORTH
-    SetObjectEventMovementType LOCALID_COUNTERPART, MOVEMENT_TYPE_LOOK_NORTH
+    SetObjectEventPos LOCALID_SANDGEM_COUNTERPART, 168, 845
+    SetObjectEventDir LOCALID_SANDGEM_COUNTERPART, DIR_NORTH
+    SetObjectEventMovementType LOCALID_SANDGEM_COUNTERPART, MOVEMENT_TYPE_LOOK_NORTH
     Return
 
 SandgemTown_SetCounterpartGraphicsDawn:
@@ -40,7 +40,7 @@ SandgemTown_SetCounterpartGraphicsLucas:
 
 SandgemTown_TriggerCounterpartLeadToLab:
     LockAll
-    ApplyMovement LOCALID_COUNTERPART, SandgemTown_Movement_CounterpartNoticePlayer
+    ApplyMovement LOCALID_SANDGEM_COUNTERPART, SandgemTown_Movement_CounterpartNoticePlayer
     WaitMovement
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     GoToIfEq VAR_0x8005, 843, SandgemTown_CounterpartWalkToPlayerZ843
@@ -52,35 +52,35 @@ SandgemTown_TriggerCounterpartLeadToLab:
     End
 
 SandgemTown_CounterpartWalkToPlayerZ843:
-    ApplyMovement LOCALID_COUNTERPART, SandgemTown_Movement_CounterpartWalkToPlayerZ843
+    ApplyMovement LOCALID_SANDGEM_COUNTERPART, SandgemTown_Movement_CounterpartWalkToPlayerZ843
     ApplyMovement LOCALID_PLAYER, SandgemTown_Movement_PlayerFaceCounterpartZ843
     WaitMovement
     GoTo SandgemTown_TheProfessorIsWaiting
 
 SandgemTown_CounterpartWalkToPlayerZ844:
-    ApplyMovement LOCALID_COUNTERPART, SandgemTown_Movement_CounterpartWalkToPlayerZ844
+    ApplyMovement LOCALID_SANDGEM_COUNTERPART, SandgemTown_Movement_CounterpartWalkToPlayerZ844
     WaitMovement
     GoTo SandgemTown_TheProfessorIsWaiting
 
 SandgemTown_CounterpartWalkToPlayerZ845:
-    ApplyMovement LOCALID_COUNTERPART, SandgemTown_Movement_CounterpartWalkToPlayerZ845
+    ApplyMovement LOCALID_SANDGEM_COUNTERPART, SandgemTown_Movement_CounterpartWalkToPlayerZ845
     WaitMovement
     GoTo SandgemTown_TheProfessorIsWaiting
 
 SandgemTown_CounterpartWalkToPlayerZ846:
-    ApplyMovement LOCALID_COUNTERPART, SandgemTown_Movement_CounterpartWalkToPlayerZ846
+    ApplyMovement LOCALID_SANDGEM_COUNTERPART, SandgemTown_Movement_CounterpartWalkToPlayerZ846
     ApplyMovement LOCALID_PLAYER, SandgemTown_Movement_PlayerFaceCounterpartZ846
     WaitMovement
     GoTo SandgemTown_TheProfessorIsWaiting
 
 SandgemTown_CounterpartWalkToPlayerZ847:
-    ApplyMovement LOCALID_COUNTERPART, SandgemTown_Movement_CounterpartWalkToPlayerZ847
+    ApplyMovement LOCALID_SANDGEM_COUNTERPART, SandgemTown_Movement_CounterpartWalkToPlayerZ847
     ApplyMovement LOCALID_PLAYER, SandgemTown_Movement_PlayerFaceCounterpartZ847
     WaitMovement
     GoTo SandgemTown_TheProfessorIsWaiting
 
 SandgemTown_CounterpartWalkToPlayerZ848:
-    ApplyMovement LOCALID_COUNTERPART, SandgemTown_Movement_CounterpartWalkToPlayerZ848
+    ApplyMovement LOCALID_SANDGEM_COUNTERPART, SandgemTown_Movement_CounterpartWalkToPlayerZ848
     ApplyMovement LOCALID_PLAYER, SandgemTown_Movement_PlayerFaceCounterpartZ848
     WaitMovement
     GoTo SandgemTown_TheProfessorIsWaiting
@@ -113,37 +113,37 @@ SandgemTown_WalkToPokemonResearchLab:
     End
 
 SandgemTown_WalkToPokemonResearchLabZ843:
-    ApplyMovement LOCALID_COUNTERPART, SandgemTown_Movement_CounterpartWalkToPokemonResearchLabZ843
+    ApplyMovement LOCALID_SANDGEM_COUNTERPART, SandgemTown_Movement_CounterpartWalkToPokemonResearchLabZ843
     ApplyMovement LOCALID_PLAYER, SandgemTown_Movement_PlayerWalkToPokemonResearchLabZ843
     WaitMovement
     GoTo SandgemTown_ThisIsOurPokemonResearchLab
 
 SandgemTown_WalkToPokemonResearchLabZ844:
-    ApplyMovement LOCALID_COUNTERPART, SandgemTown_Movement_CounterpartWalkToPokemonResearchLabZ844
+    ApplyMovement LOCALID_SANDGEM_COUNTERPART, SandgemTown_Movement_CounterpartWalkToPokemonResearchLabZ844
     ApplyMovement LOCALID_PLAYER, SandgemTown_Movement_PlayerWalkToPokemonResearchLabZ844
     WaitMovement
     GoTo SandgemTown_ThisIsOurPokemonResearchLab
 
 SandgemTown_WalkToPokemonResearchLabZ845:
-    ApplyMovement LOCALID_COUNTERPART, SandgemTown_Movement_CounterpartWalkToPokemonResearchLabZ845
+    ApplyMovement LOCALID_SANDGEM_COUNTERPART, SandgemTown_Movement_CounterpartWalkToPokemonResearchLabZ845
     ApplyMovement LOCALID_PLAYER, SandgemTown_Movement_PlayerWalkToPokemonResearchLabZ845
     WaitMovement
     GoTo SandgemTown_ThisIsOurPokemonResearchLab
 
 SandgemTown_WalkToPokemonResearchLabZ846:
-    ApplyMovement LOCALID_COUNTERPART, SandgemTown_Movement_CounterpartWalkToPokemonResearchLabZ846
+    ApplyMovement LOCALID_SANDGEM_COUNTERPART, SandgemTown_Movement_CounterpartWalkToPokemonResearchLabZ846
     ApplyMovement LOCALID_PLAYER, SandgemTown_Movement_PlayerWalkToPokemonResearchLabZ846
     WaitMovement
     GoTo SandgemTown_ThisIsOurPokemonResearchLab
 
 SandgemTown_WalkToPokemonResearchLabZ847:
-    ApplyMovement LOCALID_COUNTERPART, SandgemTown_Movement_CounterpartWalkToPokemonResearchLabZ847
+    ApplyMovement LOCALID_SANDGEM_COUNTERPART, SandgemTown_Movement_CounterpartWalkToPokemonResearchLabZ847
     ApplyMovement LOCALID_PLAYER, SandgemTown_Movement_PlayerWalkToPokemonResearchLabZ847
     WaitMovement
     GoTo SandgemTown_ThisIsOurPokemonResearchLab
 
 SandgemTown_WalkToPokemonResearchLabZ848:
-    ApplyMovement LOCALID_COUNTERPART, SandgemTown_Movement_CounterpartWalkToPokemonResearchLabZ848
+    ApplyMovement LOCALID_SANDGEM_COUNTERPART, SandgemTown_Movement_CounterpartWalkToPokemonResearchLabZ848
     ApplyMovement LOCALID_PLAYER, SandgemTown_Movement_PlayerWalkToPokemonResearchLabZ848
     WaitMovement
     GoTo SandgemTown_ThisIsOurPokemonResearchLab
@@ -182,7 +182,7 @@ SandgemTown_RivalExitLab:
     Message SandgemTown_Text_OhItsYouPlayer
     CloseMessage
     ApplyMovement LOCALID_PLAYER, SandgemTown_Movement_PlayerWatchRivalLeave
-    ApplyMovement LOCALID_COUNTERPART, SandgemTown_Movement_CounterpartWatchRivalLeave
+    ApplyMovement LOCALID_SANDGEM_COUNTERPART, SandgemTown_Movement_CounterpartWatchRivalLeave
     ApplyMovement LOCALID_RIVAL, SandgemTown_Movement_RivalLeave
     WaitMovement
     RemoveObject LOCALID_RIVAL
@@ -205,13 +205,13 @@ SandgemTown_LucasLetsGoIn:
 
 SandgemTown_EnterPokemonResearchLab:
     CloseMessage
-    ApplyMovement LOCALID_COUNTERPART, SandgemTown_Movement_CounterpartEnterLab
+    ApplyMovement LOCALID_SANDGEM_COUNTERPART, SandgemTown_Movement_CounterpartEnterLab
     ApplyMovement LOCALID_PLAYER, SandgemTown_Movement_PlayerEnterLab
     WaitMovement
     PlayDoorCloseAnimation ANIMATION_TAG_DOOR_1
     WaitForAnimation ANIMATION_TAG_DOOR_1
     UnloadAnimation ANIMATION_TAG_DOOR_1
-    RemoveObject LOCALID_COUNTERPART
+    RemoveObject LOCALID_SANDGEM_COUNTERPART
     SetVar VAR_SANDGEM_TOWN_STATE, 1
     FadeScreenOut
     WaitFadeScreen
@@ -446,7 +446,7 @@ SandgemTown_OnFrameExitLab:
     Message SandgemTown_Text_BigPlayer
     CloseMessage
     ApplyMovement LOCALID_PLAYER, SandgemTown_Movement_PlayerNoticeProfRowan
-    ApplyMovement LOCALID_COUNTERPART, SandgemTown_Movement_CounterpartNoticeProfRowan
+    ApplyMovement LOCALID_SANDGEM_COUNTERPART, SandgemTown_Movement_CounterpartNoticeProfRowan
     WaitMovement
     Message SandgemTown_Text_YouShouldTakeThisAsWell
     SetVar VAR_0x8004, ITEM_TM27
@@ -480,7 +480,7 @@ SandgemTown_LucasWellIllBeTheProfessorHadTMs:
 
 SandgemTown_CounterpartWillShowYouAround:
     ApplyMovement LOCALID_PLAYER, SandgemTown_Movement_PlayerFaceCounterpartSouth
-    ApplyMovement LOCALID_COUNTERPART, SandgemTown_Movement_CounterpartWalkNorthToPlayer
+    ApplyMovement LOCALID_SANDGEM_COUNTERPART, SandgemTown_Movement_CounterpartWalkNorthToPlayer
     WaitMovement
     GetPlayerGender VAR_RESULT
     GoToIfEq VAR_RESULT, GENDER_MALE, SandgemTown_DawnIllActAsYourMentor
@@ -502,7 +502,7 @@ SandgemTown_LucasIWantToShowYouAFewThings:
 SandgemTown_WalkToPokemonCenter:
     CloseMessage
     Common_SetFollowMeBGM
-    ApplyMovement LOCALID_COUNTERPART, SandgemTown_Movement_CounterpartWalkToPokemonCenter
+    ApplyMovement LOCALID_SANDGEM_COUNTERPART, SandgemTown_Movement_CounterpartWalkToPokemonCenter
     ApplyMovement LOCALID_PLAYER, SandgemTown_Movement_PlayerWalkToPokemonCenter
     WaitMovement
     GetPlayerGender VAR_RESULT
@@ -524,7 +524,7 @@ SandgemTown_LucasThisIsThePokemonCenter:
 
 SandgemTown_WalkToPokeMart:
     CloseMessage
-    ApplyMovement LOCALID_COUNTERPART, SandgemTown_Movement_CounterpartWalkToPokeMart
+    ApplyMovement LOCALID_SANDGEM_COUNTERPART, SandgemTown_Movement_CounterpartWalkToPokeMart
     ApplyMovement LOCALID_PLAYER, SandgemTown_Movement_PlayerWalkToPokeMart
     WaitMovement
     GetPlayerGender VAR_RESULT
@@ -544,10 +544,10 @@ SandgemTown_LucasThisIsThePokeMart:
 
 SandgemTown_LetYourFamilyKnowYoureHelpingProfRowan:
     CloseMessage
-    ApplyMovement LOCALID_COUNTERPART, SandgemTown_CounterpartFacePlayerWest
+    ApplyMovement LOCALID_SANDGEM_COUNTERPART, SandgemTown_CounterpartFacePlayerWest
     ApplyMovement LOCALID_PLAYER, SandgemTown_PlayerFaceCounterpartEast
     WaitMovement
-    ApplyMovement LOCALID_COUNTERPART, SandgemTown_CounterpartExclamationMark
+    ApplyMovement LOCALID_SANDGEM_COUNTERPART, SandgemTown_CounterpartExclamationMark
     WaitMovement
     GetPlayerGender VAR_RESULT
     GoToIfEq VAR_RESULT, GENDER_MALE, SandgemTown_DawnLetYourFamilyKnowYoureHelpingProfRowan
@@ -566,11 +566,11 @@ SandgemTown_LucasLetYourFamilyKnowYoureHelpingProfRowan:
 
 SandgemTown_CounterpartLeave:
     CloseMessage
-    ApplyMovement LOCALID_COUNTERPART, SandgemTown_Movement_CounterpartLeave
+    ApplyMovement LOCALID_SANDGEM_COUNTERPART, SandgemTown_Movement_CounterpartLeave
     ApplyMovement LOCALID_PLAYER, SandgemTown_Movement_PlayerWatchCounterpartLeave
     WaitMovement
     Common_FadeToDefaultMusic3
-    RemoveObject LOCALID_COUNTERPART
+    RemoveObject LOCALID_SANDGEM_COUNTERPART
     SetVar VAR_SANDGEM_TOWN_STATE, 2
     ReleaseAll
     End
