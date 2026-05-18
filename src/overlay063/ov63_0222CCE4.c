@@ -268,7 +268,7 @@ static UnkStruct_ov63_0222CE44 *ov63_0222D08C(UnkStruct_ov63_0222CD2C *param0)
         }
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
     return NULL;
 }
 

@@ -99,7 +99,7 @@ static void sub_0209BED0(int param0, int param1, void *param2, void *param3)
     UnkStruct_0209BE84 *v0 = param2;
 
     if (v0->unk_00 >= 18) {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         return;
     }
 

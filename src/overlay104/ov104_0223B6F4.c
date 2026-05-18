@@ -128,7 +128,7 @@ u8 BattleCastle_GetPartySize(u8 challengeType, BOOL includePartnersMons)
         }
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
     return 3;
 }
 
@@ -147,7 +147,7 @@ u8 ov104_0223B7DC(u8 param0, BOOL param1)
         }
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
     return 3;
 }
 

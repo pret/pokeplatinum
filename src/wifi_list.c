@@ -97,13 +97,13 @@ void sub_0202AE2C(WiFiList *wiFiList, int param1, int param2, u32 param3)
         wiFiList->unk_1C0[param1].unk_20 = param3;
         break;
     case 1:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     case 2:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     case 3:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     case 4:
         wiFiList->unk_1C0[param1].year = param3;
@@ -121,7 +121,7 @@ void sub_0202AE2C(WiFiList *wiFiList, int param1, int param2, u32 param3)
         wiFiList->unk_1C0[param1].unk_2F = param3;
         break;
     case 9:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 }

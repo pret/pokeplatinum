@@ -107,7 +107,7 @@ static BOOL ov104_0223D8F0(UnkStruct_0209B75C *param0, UnkStruct_ov104_0223C634 
             }
             break;
         default:
-            GF_ASSERT(0);
+            GF_ASSERT(FALSE);
             return 1;
         }
 

@@ -165,7 +165,7 @@ const UnkStruct_ov104_0224028C *ov104_0223A8A8(int param0, int param1)
     }
 
     if (v0 >= v2) {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         v0 = v2 - 1;
     }
 

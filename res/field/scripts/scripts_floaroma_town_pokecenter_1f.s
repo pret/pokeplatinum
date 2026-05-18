@@ -10,7 +10,7 @@
     ScriptEntryEnd
 
 FloaromaTownPokecenter1F_Nurse:
-    Common_CallPokecenterNurse LOCALID_POKECENTER_NURSE
+    Common_CallPokecenterNurse LOCALID_FLOAROMA_NURSE
     End
 
 FloaromaTownPokecenter1F_PokefanM:

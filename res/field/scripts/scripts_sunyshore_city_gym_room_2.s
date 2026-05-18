@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "constants/sunyshore_gym_buttons.h"
 
 
     ScriptEntry SunyshoreGymRoom2_Init
@@ -13,11 +14,11 @@ SunyshoreGymRoom2_Init:
     End
 
 SunyshoreGymRoom2_BottomButton:
-    SunyshoreGymButton 0
+    PressSunyshoreGymButton SUNYSHORE_GYM_BUTTON_NORMAL
     End
 
 SunyshoreGymRoom2_TopButtons:
-    SunyshoreGymButton 1
+    PressSunyshoreGymButton SUNYSHORE_GYM_BUTTON_REVERSE
     End
 
 SunyshoreGymRoom2_Empty:

@@ -1096,7 +1096,7 @@ static BOOL ov69_0225CE64(UnkStruct_ov69_0225CE64 *param0)
         }
     } break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 

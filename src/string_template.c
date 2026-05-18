@@ -407,11 +407,11 @@ void StringTemplate_SetGenderMarker(StringTemplate *template, u32 idx, enum Gend
 
     switch (gender) {
     case GENDER_MALE:
-        MessageLoader_GetString(loader, pl_msg_00000213_00068, template->templateBuf);
+        MessageLoader_GetString(loader, CommonStrings_Text_GenderSymbolMale, template->templateBuf);
         break;
 
     case GENDER_FEMALE:
-        MessageLoader_GetString(loader, pl_msg_00000213_00069, template->templateBuf);
+        MessageLoader_GetString(loader, CommonStrings_Text_GenderSymbolFemale, template->templateBuf);
         break;
 
     default:

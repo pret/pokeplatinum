@@ -789,7 +789,7 @@ BOOL ov70_022669FC(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DEE8 *par
             v4 = UnkEnum_ov66_022324D0_02;
             break;
         default:
-            GF_ASSERT(0);
+            GF_ASSERT(FALSE);
             return 1;
         }
 
@@ -991,7 +991,7 @@ static void ov70_02266D08(UnkStruct_ov70_02266C68 *param0, UnkStruct_ov70_0225DE
         v1 = UnkEnum_ov66_02232F38_02;
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         v1 = UnkEnum_ov66_02232F38_02;
         break;
     }

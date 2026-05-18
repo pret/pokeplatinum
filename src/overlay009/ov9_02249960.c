@@ -2795,7 +2795,7 @@ static void ov9_0224A8C0(DistWorldSystem *param0)
         v5 = 0x2;
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 
     PlayerAvatar_SetPlayerState(playerAvatar, v5);
@@ -3077,7 +3077,7 @@ static BOOL TickJumpOnFloatingPlatformMovementAnimation(DistWorldFloatingPlatfor
         v4 = &v5->z;
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 
@@ -4558,7 +4558,7 @@ static u16 GetCurrentFloatingPlatformTileAttributes(DistWorldSystem *system, int
         tileRelativeHorizontalPos = tileZ - currentFloatingPlatform->bounds.startTileZ;
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 
@@ -5697,7 +5697,7 @@ static const DistWorldMapConnections *GetConnectionsForMap(int mapHeaderID)
         iter++;
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
     return NULL;
 }
 
@@ -5796,7 +5796,7 @@ static DistWorldPropRenderer *DistWorldPropRenderer_Init(DistWorldSystem *system
         }
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
     return NULL;
 }
 
@@ -7684,7 +7684,7 @@ static BOOL ov9_0224F3BC(UnkStruct_ov9_0224F6EC *param0)
                 v5 = 5;
                 break;
             default:
-                GF_ASSERT(0);
+                GF_ASSERT(FALSE);
             }
 
             ClearPersistedBoulderPuzzleFlag(param0->unk_00, v5);
@@ -7759,7 +7759,7 @@ static BOOL ov9_0224F3BC(UnkStruct_ov9_0224F6EC *param0)
                 v14 = 6;
                 break;
             default:
-                GF_ASSERT(0);
+                GF_ASSERT(FALSE);
             }
 
             ClearPersistedBoulderPuzzleFlag(param0->unk_00, v15);
@@ -7863,7 +7863,7 @@ static BOOL ov9_0224F5D8(UnkStruct_ov9_0224F6EC *param0)
                 v7 = 5;
                 break;
             default:
-                GF_ASSERT(0);
+                GF_ASSERT(FALSE);
             }
 
             SetPersistedBoulderPuzzleFlag(param0->unk_00, v6);
@@ -9618,7 +9618,7 @@ void ov9_02251000(FieldSystem *fieldSystem, int param1, int param2, int param3)
         return;
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
 }
 
 BOOL DistWorld_GetTileBehaviorOnCurrentFloatingPlatform(FieldSystem *fieldSystem, int tileX, int tileY, int tileZ, u32 *tileBehavior)
@@ -9626,7 +9626,7 @@ BOOL DistWorld_GetTileBehaviorOnCurrentFloatingPlatform(FieldSystem *fieldSystem
     PersistedMapFeatures *persistedMapFeatures = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
 
     if (PersistedMapFeatures_GetID(persistedMapFeatures) != DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         return FALSE;
     }
 

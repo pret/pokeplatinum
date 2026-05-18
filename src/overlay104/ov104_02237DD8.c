@@ -343,7 +343,7 @@ void BattleArcade_StoreAppResults(BattleArcade *battleArcade, BattleArcadeAppArg
 static u16 ov104_02238264(BattleArcadeAppArgs *args, u8 i)
 {
     if (i >= 6) {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         return 0;
     }
 
@@ -1307,7 +1307,7 @@ static void ov104_02238F54(BattleArcade *param0, Party *param1, u8 param2)
         v2 += 3;
 
         if (v2 > 100) {
-            GF_ASSERT(0);
+            GF_ASSERT(FALSE);
             v2 = 100;
         }
 

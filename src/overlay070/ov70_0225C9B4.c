@@ -514,7 +514,7 @@ const UnkStruct_ov70_0225CC54 *ov70_0225CE7C(const UnkStruct_ov70_0225CA20 *para
         }
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
     return NULL;
 }
 
@@ -763,7 +763,7 @@ static UnkStruct_ov70_0225CC54 *ov70_0225D2C0(UnkStruct_ov70_0225CA20 *param0)
         }
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
     return &param0->unk_08[v0];
 }
 

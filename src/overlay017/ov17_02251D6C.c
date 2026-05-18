@@ -714,7 +714,7 @@ static void ov17_022527AC(UnkStruct_ov17_0224F30C *param0, void *param1, const U
         }
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 

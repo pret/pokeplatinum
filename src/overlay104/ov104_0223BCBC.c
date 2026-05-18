@@ -132,7 +132,7 @@ u8 BattleArcade_GetPartySize(u8 challengeType, BOOL includePartnerMons)
         }
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
     return ARCADE_PARTY_SIZE_SOLO;
 }
 
@@ -151,7 +151,7 @@ u8 BattleArcade_GetOpponentPartySize(u8 challengeType, BOOL includeBothOpponents
         }
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
     return ARCADE_PARTY_SIZE_SOLO;
 }
 

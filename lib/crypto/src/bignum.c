@@ -1358,7 +1358,7 @@ u32 BN_mod_inverse_word(u32 word)
     return ret;
 }
 
-int BN_gen_exp_bits(BIGNUM *param0, u8 **param1, int unused, BN_CTX *param3)
+int BN_gen_exp_bits(const BIGNUM *param0, u8 **param1, int unused, BN_CTX *param3)
 {
     static const u8 Unk_ov97_0223DED0[] = { 0x0, 0x8, 0x1, 0x1, 0x1, 0x1, 0x1, 0x0, 0x0, 0x0, 0x0, 0x0 };
     static const u8 Unk_ov97_0223DEDC[] = { 0x0, 0x8, 0x1, 0x1, 0x1, 0x4, 0x1, 0x0, 0x0, 0x0, 0x0, 0x0 };
@@ -1419,7 +1419,7 @@ int BN_gen_exp_bits(BIGNUM *param0, u8 **param1, int unused, BN_CTX *param3)
     return v6 + 2;
 }
 
-int BN_gen_exp_string(u8 *param0, BIGNUM *param1, int param2)
+int BN_gen_exp_string(u8 *param0, const BIGNUM *param1, int param2)
 {
     // clang-format off
     static const u8 Unk_ov97_0223DEF8[] = {
@@ -2012,562 +2012,193 @@ err:
     return ret;
 }
 
-// clang-format off
-extern void _s32_div_f(void);
-// TODO: decompile this
-asm BOOL BN_mod_exp_mont(BIGNUM *rr, BIGNUM *a, const BIGNUM *p, const BIGNUM *m, BN_CTX *ctx, BN_MONT_CTX *in_mont) {
-    stmdb sp!, {r4, r5, r6, r7, r8, sb, r10, r11, lr}
-	sub sp, sp, #0x7c
-	mov r4, #0
-	mov r5, r3
-	mov r3, r4
-	str r3, [sp, #0x34]
-	ldr r3, [r5, #0]
-	str r0, [sp, #4]
-	mov r0, r4
-	ldr r3, [r3, #0]
-	str r0, [sp, #0x1c]
-	str r0, [sp, #0x20]
-	ands r0, r3, #1
-	ldr r0, [sp, #0xa0]
-	str r4, [sp, #8]
-	str r0, [sp, #0xa0]
-	mov r7, r1
-	mov r6, r2
-	addeq sp, sp, #0x7c
-	moveq r0, r4
-	ldmeqia sp!, {r4, r5, r6, r7, r8, sb, r10, r11, lr}
-	bxeq lr
-	ldr r1, [r7, #4]
-	ldr r0, [r0, #0]
-	cmp r1, #0
-	str r0, [sp, #0xc]
-	beq _02239AF8
-	cmp r1, #1
-	bne _02239B14
-	ldr r0, [r7, #0]
-	ldr r0, [r0, #0]
-	cmp r0, #0
-	bne _02239B14
-_02239AF8:
-	ldr r0, [sp, #4]
-	mov r1, #0
-	bl BN_set_word
-	add sp, sp, #0x7c
-	mov r0, #1
-	ldmia sp!, {r4, r5, r6, r7, r8, sb, r10, r11, lr}
-	bx lr
-_02239B14:
-	ldr r1, [r6, #4]
-	cmp r1, #0
-	beq _02239B38
-	cmp r1, #1
-	bne _02239B54
-	ldr r0, [r6, #0]
-	ldr r0, [r0, #0]
-	cmp r0, #0
-	bne _02239B54
-_02239B38:
-	ldr r0, [sp, #4]
-	mov r1, #1
-	bl BN_set_word
-	add sp, sp, #0x7c
-	mov r0, #1
-	ldmia sp!, {r4, r5, r6, r7, r8, sb, r10, r11, lr}
-	bx lr
-_02239B54:
-	cmp r1, #1
-	bne _02239B88
-	ldr r0, [r6, #0]
-	ldr r0, [r0, #0]
-	cmp r0, #1
-	bne _02239B88
-	ldr r0, [sp, #4]
-	mov r1, r7
-	bl BN_copy
-	add sp, sp, #0x7c
-	mov r0, #1
-	ldmia sp!, {r4, r5, r6, r7, r8, sb, r10, r11, lr}
-	bx lr
-_02239B88:
-	ldr r0, [sp, #0xa4]
-	str r0, [sp, #0x18]
-	cmp r0, #0
-	bne _02239BBC
-	bl BN_MONT_CTX_new
-	str r0, [sp, #0x18]
-	cmp r0, #0
-	beq _0223A218
-	ldr r2, [sp, #0xa0]
-	mov r1, r5
-	bl BN_MONT_CTX_set_word
-	cmp r0, #0
-	beq _0223A218
-_02239BBC:
-	ldr r3, [sp, #0xa0]
-	add r1, sp, #0x34
-	mov r4, r3
-	ldr r4, [r4, #0x10c]
-	mov r0, r6
-	mov r2, #0
-	str r4, [sp, #0x1c]
-	bl BN_gen_exp_bits
-	cmp r0, #0
-	beq _0223A218
-	ldr r0, [sp, #0xa0]
-	ldr r0, [r0, #0]
-	add r1, r0, #1
-	ldr r0, [sp, #0xa0]
-	str r1, [r0, #0]
-	ldr r0, [sp, #0x34]
-	ldrb r1, [r0, #2]
-	ldrb r0, [r0, #3]
-	str r0, [sp, #0x10]
-	add r0, r1, #0x3f
-	bl _s32_div_f
-	ldr r1, [sp, #0x34]
-	mov r4, r0
-	add r0, r1, #4
-	str r0, [sp, #0x34]
-	ldr r0, [sp, #0x18]
-	ldr r3, [r7, #4]
-	ldr r10, [r0, #0x24]
-	cmp r3, r10
-	bne _02239C54
-	ldr r1, [r7, #0]
-	sub r2, r10, #1
-	ldr r0, [r5, #0]
-	ldr r1, [r1, r2, lsl #2]
-	ldr r0, [r0, r2, lsl #2]
-	cmp r1, r0
-	strlo r7, [sp, #0x14]
-	blo _02239D0C
-_02239C54:
-	cmp r3, r10
-	bge _02239CC8
-	ldr r0, [sp, #0xa0]
-	ldr r3, [r0, #0]
-	add r1, r0, #4
-	add r2, r3, #1
-	str r2, [r0, #0]
-	mov r0, #0x14
-	mla r0, r3, r0, r1
-	ldr r2, [r7, #4]
-	mov r1, r0
-	str r2, [r1, #4]
-	mov r1, r10
-	str r0, [sp, #0x14]
-	bl bn_zexpand
-	ldr r0, [r7, #4]
-	mov r2, #0
-	cmp r0, #0
-	ble _02239D0C
-_02239CA0:
-	ldr r1, [r7, #0]
-	ldr r0, [sp, #0x14]
-	ldr r1, [r1, r2, lsl #2]
-	ldr r0, [r0, #0]
-	str r1, [r0, r2, lsl #2]
-	ldr r0, [r7, #4]
-	add r2, r2, #1
-	cmp r2, r0
-	blt _02239CA0
-	b _02239D0C
-_02239CC8:
-	ldr r0, [sp, #0xa0]
-	mov r2, r5
-	ldr r3, [r0, #0]
-	mov r1, r7
-	add r5, r3, #1
-	str r5, [r0, #0]
-	add r5, r0, #4
-	mov r0, #0x14
-	mla r0, r3, r0, r5
-	ldr r3, [sp, #0xa0]
-	str r0, [sp, #0x14]
-	bl BN_mod
-	cmp r0, #0
-	beq _0223A218
-	ldr r0, [sp, #0x14]
-	mov r1, r10
-	bl bn_zexpand
-_02239D0C:
-	ldr r0, [sp, #0xa0]
-	ldr r3, [r0, #0]
-	ldr r0, [r6, #4]
-	add r1, r3, #1
-	mul r2, r0, r4
-	ldr r0, [sp, #0xa0]
-	mov r4, r2, lsl #1
-	str r1, [r0, #0]
-	ldr r1, [r0, #0]
-	add r4, r4, #7
-	add r2, r1, #1
-	str r2, [r0, #0]
-	ldr r2, [sp, #0x10]
-	ldr r0, [r0, #0]
-	mul r5, r2, r10
-	mov r2, r4, asr #1
-	add r2, r4, r2, lsr #30
-	add r5, r5, r2, asr #2
-	ldr r2, [sp, #0xa0]
-	mov r6, #0x14
-	add r2, r2, #4
-	mla r8, r1, r6, r2
-	mla r4, r3, r6, r2
-	ldr r1, [sp, #0xa0]
-	add r3, r0, #1
-	mla r7, r0, r6, r2
-	str r3, [r1, #0]
-	mov r0, r1
-	ldr r0, [r0, #0]
-	mla r6, r0, r6, r2
-	add r1, r0, #1
-	ldr r0, [sp, #0xa0]
-	str r1, [r0, #0]
-	ldr r0, [sp, #4]
-	ldr r0, [r0, #8]
-	cmp r10, r0
-	ldrle r0, [sp, #4]
-	ble _02239DB0
-	ldr r0, [sp, #4]
-	mov r1, r10
-	bl bn_expand2
-_02239DB0:
-	cmp r0, #0
-	beq _0223A218
-	ldr r0, [r8, #8]
-	mov r1, r10, lsl #2
-	cmp r1, r0
-	movle r0, r8
-	ble _02239DD4
-	mov r0, r8
-	bl bn_expand2
-_02239DD4:
-	cmp r0, #0
-	beq _0223A218
-	ldr r1, [r7, #8]
-	mov r0, r10, lsl #1
-	str r0, [sp, #0x24]
-	cmp r0, r1
-	movle r0, r7
-	ble _02239E00
-	ldr r1, [sp, #0x24]
-	mov r0, r7
-	bl bn_expand2
-_02239E00:
-	cmp r0, #0
-	beq _0223A218
-	ldr r0, [r4, #8]
-	cmp r5, r0
-	movle r0, r4
-	ble _02239E24
-	mov r1, r5
-	mov r0, r4
-	bl bn_expand2
-_02239E24:
-	cmp r0, #0
-	beq _0223A218
-	ldr r1, [r6, #8]
-	ldr r0, [sp, #0x24]
-	cmp r0, r1
-	movle r0, r6
-	ble _02239E4C
-	ldr r1, [sp, #0x24]
-	mov r0, r6
-	bl bn_expand2
-_02239E4C:
-	cmp r0, #0
-	beq _0223A218
-	ldr r0, [sp, #0x18]
-	ldr r11, [r8]
-	ldr r8, [r7]
-	ldr r6, [r6, #0]
-	ldr r1, [r4, #0]
-	ldr r7, [r0, #0x48]
-	ldr r5, [r0, #0x20]
-	ldr r3, [sp, #0x18]
-	str r1, [sp, #0x38]
-	str r10, [sp]
-	ldr r1, [sp, #0x14]
-	ldr r3, [r3, #0xc]
-	ldr r1, [r1, #0]
-	mov r0, r6
-	mov r2, r10
-	bl bn_mul_normal
-	str r7, [sp]
-	ldr r0, [sp, #0x38]
-	mov r1, r6
-	mov r2, r5
-	mov r3, r10
-	bl bn_from_montgomery_words
-	ldr r0, [sp, #0x10]
-	cmp r0, #1
-	ble _02239F54
-	ldr r1, [sp, #0x38]
-	mov r0, r6
-	mov r2, r10
-	mov r3, r11
-	bl bn_sqr_normal
-	mov r0, r11
-	mov r1, r6
-	mov r2, r5
-	mov r3, r10
-	str r7, [sp]
-	bl bn_from_montgomery_words
-	ldr r0, [sp, #0x10]
-	mov r4, #1
-	cmp r0, #1
-	ble _02239F54
-	mov r0, r10, lsl #2
-	str r0, [sp, #0x28]
-	add sb, sp, #0x38
-_02239F00:
-	sub r3, r4, #1
-	ldr r2, [sb, r3, lsl #2]
-	ldr r1, [sp, #0x28]
-	mov r0, r6
-	add r1, r2, r1
-	str r1, [sb, r4, lsl #2]
-	str r10, [sp]
-	ldr r1, [sb, r3, lsl #2]
-	mov r2, r10
-	mov r3, r11
-	bl bn_mul_normal
-	str r7, [sp]
-	ldr r0, [sb, r4, lsl #2]
-	mov r1, r6
-	mov r2, r5
-	mov r3, r10
-	bl bn_from_montgomery_words
-	ldr r0, [sp, #0x10]
-	add r4, r4, #1
-	cmp r4, r0
-	blt _02239F00
-_02239F54:
-	ldr r3, [sp, #0x34]
-	add r0, r3, #1
-	str r0, [sp, #0x34]
-	add r2, r0, #1
-	ldrb r1, [r3]
-	str r2, [sp, #0x34]
-	ldrb sb, [r3, #1]
-	cmp sb, #0xFF
-	bne _02239FD4
-	cmp r1, #0
-	bne _02239FD4
-	add r0, r2, #1
-	str r0, [sp, #0x34]
-	ldrb r1, [r2]
-	b _02239FA4
-_02239F90:
-	add sb, sb, #0x100
-	ldr r1, [sp, #0x34]
-	add r1, r1, #2
-	str r1, [sp, #0x34]
-	ldrb r1, [r0, #1]
-_02239FA4:
-	ldr r0, [sp, #0x34]
-	ldrb r2, [r0]
-	cmp r2, #0xFF
-	bne _02239FBC
-	cmp r1, #0
-	beq _02239F90
-_02239FBC:
-	ldr r2, [sp, #0x34]
-	add r2, r2, #1
-	str r2, [sp, #0x34]
-	ldrb r0, [r0]
-	add r0, r0, #1
-	add sb, sb, r0
-_02239FD4:
-	mov r2, r1, asr #1
-	add r0, sp, #0x38
-	ldr r0, [r0, r2, lsl #2]
-	mov r1, r8
-	mov r2, r10, lsl #2
-	bl MI_CpuCopy8
-	cmp sb, #0
-	beq _0223A1AC
-	mov r0, #0xFF
-	str r0, [sp, #0x2c]
-	mov r0, #0
-	str r0, [sp, #0x30]
-_0223A004:
-	ldr r0, [sp, #0x1c]
-	cmp r0, #0
-	beq _0223A038
-	mov r3, r0
-	ldr r1, [sp, #0x2c]
-	ldr r2, [sp, #0x20]
-	ldr r3, [r3, #0]
-	blx r3
-	cmp r0, #0
-	ldr r0, [sp, #0x20]
-	add r0, r0, #1
-	str r0, [sp, #0x20]
-	bne _0223A218
-_0223A038:
-	ldr r0, [sp, #0xa0]
-	ldr r0, [r0, #0x108]
-	ands r0, r0, #0x4000
-	bne _0223A218
-	cmp sb, #0
-	ldr r4, [sp, #0x30]
-	ble _0223A08C
-_0223A054:
-	mov r0, r6
-	mov r1, r8
-	mov r2, r10
-	mov r3, r11
-	bl bn_sqr_normal
-	str r7, [sp]
-	mov r0, r8
-	mov r1, r6
-	mov r2, r5
-	mov r3, r10
-	bl bn_from_montgomery_words
-	add r4, r4, #1
-	cmp r4, sb
-	blt _0223A054
-_0223A08C:
-	ldr r2, [sp, #0x34]
-	add r0, r2, #1
-	str r0, [sp, #0x34]
-	add r1, r0, #1
-	ldrb r0, [r2]
-	str r1, [sp, #0x34]
-	ldrb sb, [r2, #1]
-	cmp sb, #0xFF
-	bne _0223A10C
-	cmp r0, #0
-	bne _0223A10C
-	add r0, r1, #1
-	str r0, [sp, #0x34]
-	ldrb r0, [r1]
-	b _0223A0DC
-_0223A0C8:
-	add sb, sb, #0x100
-	ldr r0, [sp, #0x34]
-	add r0, r0, #2
-	str r0, [sp, #0x34]
-	ldrb r0, [r1, #1]
-_0223A0DC:
-	ldr r1, [sp, #0x34]
-	ldrb r2, [r1]
-	cmp r2, #0xFF
-	bne _0223A0F4
-	cmp r0, #0
-	beq _0223A0C8
-_0223A0F4:
-	ldr r2, [sp, #0x34]
-	add r2, r2, #1
-	str r2, [sp, #0x34]
-	ldrb r1, [r1]
-	add r1, r1, #1
-	add sb, sb, r1
-_0223A10C:
-	cmp r0, #0
-	bne _0223A11C
-	cmp sb, #0
-	beq _0223A1AC
-_0223A11C:
-	cmp sb, #0
-	bne _0223A12C
-	cmp r0, #1
-	beq _0223A168
-_0223A12C:
-	mov r1, r0, asr #1
-	str r10, [sp]
-	add r0, sp, #0x38
-	ldr r3, [r0, r1, lsl #2]
-	mov r0, r6
-	mov r1, r8
-	mov r2, r10
-	bl bn_mul_normal
-	mov r0, r8
-	mov r1, r6
-	mov r2, r5
-	mov r3, r10
-	str r7, [sp]
-	bl bn_from_montgomery_words
-	b _0223A1A4
-_0223A168:
-	ldr r0, [sp, #0x14]
-	str r10, [sp]
-	ldr r3, [r0, #0]
-	mov r0, r6
-	mov r1, r8
-	mov r2, r10
-	bl bn_mul_normal
-	ldr r0, [sp, #4]
-	str r7, [sp]
-	ldr r0, [r0, #0]
-	mov r1, r6
-	mov r2, r5
-	mov r3, r10
-	bl bn_from_montgomery_words
-	b _0223A1F0
-_0223A1A4:
-	cmp sb, #0
-	bne _0223A004
-_0223A1AC:
-	ldr r0, [sp, #0x24]
-	mov r2, r10
-	cmp r10, r0
-	bge _0223A1D4
-	mov r1, #0
-_0223A1C0:
-	ldr r0, [sp, #0x24]
-	str r1, [r8, r2, lsl #2]
-	add r2, r2, #1
-	cmp r2, r0
-	blt _0223A1C0
-_0223A1D4:
-	ldr r0, [sp, #4]
-	str r7, [sp]
-	ldr r0, [r0, #0]
-	mov r1, r8
-	mov r2, r5
-	mov r3, r10
-	bl bn_from_montgomery_words
-_0223A1F0:
-	ldr r0, [sp, #0xa0]
-	ldr r0, [r0, #0x108]
-	ands r0, r0, #0x4000
-	bne _0223A218
-	ldr r0, [sp, #4]
-	mov r1, r0
-	str r10, [r1, #4]
-	bl bn_fix_top
-	mov r0, #1
-	str r0, [sp, #8]
-_0223A218:
-	ldr r0, [sp, #0x1c]
-	cmp r0, #0
-	beq _0223A240
-	ldr r3, [r0, #0]
-	mov r1, #0xFF
-	mvn r2, #0
-	blx r3
-	cmp r0, #0
-	movne r0, #0
-	strne r0, [sp, #8]
-_0223A240:
-	ldr r0, [sp, #0xa4]
-	cmp r0, #0
-	bne _0223A25C
-	ldr r0, [sp, #0x18]
-	cmp r0, #0
-	beq _0223A25C
-	bl BN_MONT_CTX_free
-_0223A25C:
-	ldr r2, [sp, #0xc]
-	ldr r1, [sp, #0xa0]
-	ldr r0, [sp, #8]
-	str r2, [r1, #0]
-	add sp, sp, #0x7c
-	ldmia sp!, {r4, r5, r6, r7, r8, sb, r10, r11, lr}
-	bx lr
+BOOL BN_mod_exp_mont(BIGNUM *rr, BIGNUM *a, const BIGNUM *p, const BIGNUM *m, BN_CTX *ctx, BN_MONT_CTX *in_mont)
+{
+    int ret = FALSE;
+    int tosBackup;
+    int v0;
+    BIGNUM *v1;
+    BN_MONT_CTX *mont = NULL;
+    u8 *expBits = NULL;
+    UnusedFunc *unusedFunc = NULL;
+    int v2 = 0;
+
+    if (!(m->d[0] & 1)) {
+        return FALSE;
+    }
+
+    tosBackup = ctx->tos;
+    if (BN_is_zero(a)) {
+        BN_zero(rr);
+        return TRUE;
+    }
+
+    if (BN_is_zero(p)) {
+        BN_one(rr);
+        return TRUE;
+    }
+
+    if (BN_is_one(p)) {
+        BN_copy(rr, a);
+        return TRUE;
+    }
+
+    if (in_mont != NULL) {
+        mont = in_mont;
+    } else {
+        if ((mont = BN_MONT_CTX_new()) == NULL) {
+            goto err;
+        }
+        if (!BN_MONT_CTX_set_word(mont, m, ctx)) {
+            goto err;
+        }
+    }
+
+    unusedFunc = ctx->unusedFunc;
+    if (!BN_gen_exp_bits(p, &expBits, 0, ctx)) {
+        goto err;
+    }
+
+    ctx->tos++;
+    v0 = expBits[3];
+    int v3 = (expBits[2] + 63) / expBits[2];
+    expBits += 4;
+
+    int nTop = mont->N.top;
+    if (a->top == nTop && a->d[nTop - 1] < m->d[nTop - 1]) {
+        v1 = a;
+    } else if (a->top < nTop) {
+        v1 = &ctx->bn[ctx->tos++];
+        v1->top = a->top;
+        bn_zexpand(v1, nTop);
+        for (int i = 0; i < a->top; i++) {
+            v1->d[i] = a->d[i];
+        }
+    } else {
+        v1 = &ctx->bn[ctx->tos++];
+        if (BN_mod(v1, a, m, ctx) == 0) {
+            goto err;
+        }
+        bn_zexpand(v1, nTop);
+    }
+
+    BIGNUM *v4;
+    BIGNUM *v5;
+    BIGNUM *v6;
+    int v7 = v0 * nTop + (p->top * v3 * 2 + 7) / 4;
+    BIGNUM *v8 = &ctx->bn[ctx->tos++];
+    v4 = &ctx->bn[ctx->tos++];
+    v5 = &ctx->bn[ctx->tos++];
+    v6 = &ctx->bn[ctx->tos++];
+    if (bn_wexpand(rr, nTop) == NULL) {
+        goto err;
+    }
+    if (bn_wexpand(v4, nTop * 4) == NULL) {
+        goto err;
+    }
+    if (bn_wexpand(v5, nTop * 2) == NULL) {
+        goto err;
+    }
+    if (bn_wexpand(v8, v7) == NULL) {
+        goto err;
+    }
+    if (bn_wexpand(v6, nTop * 2) == NULL) {
+        goto err;
+    }
+
+    int v9;
+    u32 *v10 = v4->d;
+    u32 *v11 = v5->d;
+    u32 v12 = mont->n0;
+    u32 *v13 = v6->d;
+    u32 *v14 = mont->N.d;
+    u32 *v15[0x10];
+    v15[0] = v8->d;
+    bn_mul_normal(v13, v1->d, nTop, mont->RR.d, nTop);
+    bn_from_montgomery_words(v15[0], v13, v14, nTop, v12);
+
+    if (v0 > 1) {
+        bn_sqr_normal(v13, v15[0], nTop, v10);
+        bn_from_montgomery_words(v10, v13, v14, nTop, v12);
+        for (int i = 1; i < v0; i++) {
+            v15[i] = &v15[i - 1][nTop];
+            bn_mul_normal(v13, v15[i - 1], nTop, v10, nTop);
+            bn_from_montgomery_words(v15[i], v13, v14, nTop, v12);
+        }
+    }
+
+    int v16 = *expBits++;
+    v9 = *expBits++;
+    if (v9 == 0xFF && v16 == 0) {
+        v16 = *expBits++;
+        while (expBits[0] == 0xFF && v16 == 0) {
+            v9 += 0x100;
+            expBits++;
+            v16 = *expBits++;
+        }
+        v9 += *expBits++ + 1;
+    }
+
+    MI_CpuCopy8(v15[v16 >> 1], v11, nTop * sizeof(u32));
+
+    while (v9 != 0) {
+        if (!((unusedFunc == NULL || (*unusedFunc)(unusedFunc, -1, v2++) == 0) && !(ctx->flags & 0x4000))) {
+            goto err;
+        }
+
+        for (int i = 0; i < v9; i++) {
+            bn_sqr_normal(v13, v11, nTop, v10);
+            bn_from_montgomery_words(v11, v13, v14, nTop, v12);
+        }
+
+        v16 = *expBits++;
+        v9 = *expBits++;
+        if (v9 == 0xFF && v16 == 0) {
+            v16 = *expBits++;
+            while (expBits[0] == 0xFF && v16 == 0) {
+                v9 += 0x100;
+                expBits++;
+                v16 = *expBits++;
+            }
+            v9 += *expBits++ + 1;
+        }
+
+        if (v16 != 0 || v9 != 0) {
+            if (v9 != 0 || v16 != 1) {
+                bn_mul_normal(v13, v11, nTop, v15[v16 >> 1], nTop);
+                bn_from_montgomery_words(v11, v13, v14, nTop, v12);
+            } else {
+                bn_mul_normal(v13, v11, nTop, v1->d, nTop);
+                bn_from_montgomery_words(rr->d, v13, v14, nTop, v12);
+                goto here;
+            }
+        } else {
+            break;
+        }
+    }
+
+    for (int i = nTop; i < nTop * 2; i++) {
+        v11[i] = 0;
+    }
+    bn_from_montgomery_words(rr->d, v11, v14, nTop, v12);
+
+here:
+    if (!(ctx->flags & 0x4000)) {
+        rr->top = nTop;
+        bn_fix_top(rr);
+        ret = TRUE;
+    }
+err:
+    if (unusedFunc) {
+        if ((*unusedFunc)(unusedFunc, -1, -1) != 0) {
+            ret = FALSE;
+        }
+    }
+
+    if (in_mont == NULL && mont != NULL) {
+        BN_MONT_CTX_free(mont);
+    }
+
+    ctx->tos = tosBackup;
+    return ret;
 }
-// clang-format on

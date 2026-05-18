@@ -243,7 +243,7 @@ pokeplatinum_c = files(
     'unk_020655F4.c',
     'unk_020673B8.c',
     'berry_patch_graphics.c',
-    'trainer_see.c',
+    'trainer_encounter.c',
     'dynamic_map_features.c',
     'item_use_functions.c',
     'pokeradar.c',

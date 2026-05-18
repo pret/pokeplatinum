@@ -173,7 +173,7 @@ static OverworldAnimManager **ov5_021F439C(FieldSystem *fieldSystem, int param1,
         }
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
     return NULL;
 }
 

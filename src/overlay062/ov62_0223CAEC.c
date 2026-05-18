@@ -429,7 +429,7 @@ static u32 ov62_0223D124(UnkStruct_0208C06C *param0, int param1)
 
     if (v1 >= 87) {
         v1 = 0;
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 
     GF_ASSERT(Unk_ov62_022497E8[v1] != 0xFFFF);
@@ -957,7 +957,7 @@ static BOOL ov62_0223DD44(UnkStruct_0208C06C *param0)
 
 static BOOL ov62_0223DE60(UnkStruct_0208C06C *param0)
 {
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
     return 0;
 }
 

@@ -33,7 +33,7 @@ BOOL ScrCmd_SetClearInCatchingShowFlag(ScriptContext *ctx)
         SystemFlag_ClearInPalPark(varsFlags);
         CatchingShow_End(ctx->fieldSystem);
     } else {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 
     return FALSE;

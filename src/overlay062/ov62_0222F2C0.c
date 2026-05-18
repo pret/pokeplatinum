@@ -846,7 +846,7 @@ void ov62_02230060(UnkStruct_0208C06C *param0)
     } else {
         if (param0->unk_534.unk_1A4 != 0) {
             param0->unk_534.unk_1A4 = 0;
-            GF_ASSERT(0);
+            GF_ASSERT(FALSE);
         }
     }
 

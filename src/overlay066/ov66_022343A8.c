@@ -467,7 +467,7 @@ static const UnkStruct_ov66_02258B38 *ov66_022348B0(u32 param0)
         }
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
     return NULL;
 }
 
@@ -539,7 +539,7 @@ static UnkStruct_ov66_02234798 *ov66_02234980(UnkStruct_ov66_02234548 *param0)
         }
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
     return NULL;
 }
 

@@ -16,6 +16,7 @@ typedef unsigned short wchar_t;
 #include "global/pm_version.h"
 
 #define NELEMS(a)                     (sizeof(a) / sizeof(*(a)))
+#define SNELEMS(a)                    ((int)(sizeof(a) / sizeof(*(a))))
 #define XtOffset(pointer_type, field) ((unsigned int)&(((pointer_type)NULL)->field))
 #define HI_HALF(i)                    (((i) >> 16) & 0xFFFF)
 #define LO_HALF(i)                    ((i) & 0xFFFF)

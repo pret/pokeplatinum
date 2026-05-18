@@ -498,7 +498,7 @@ u32 ov83_0223DD30(UnkStruct_ov83_0223DB30 *param0)
         case 3:
             break;
         default:
-            GF_ASSERT(0);
+            GF_ASSERT(FALSE);
             break;
         }
     }
@@ -914,7 +914,7 @@ void ov83_0223E51C(UnkStruct_ov83_0223E340 *param0, int param1)
         }
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 }

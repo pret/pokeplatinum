@@ -930,7 +930,7 @@ void ov104_0223D258(FrontierGraphics *param0, u16 param1, UnkStruct_ov63_0222BEC
         }
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
 }
 
 void ov104_0223D29C(FrontierGraphics *param0, u16 param1)
@@ -944,7 +944,7 @@ void ov104_0223D29C(FrontierGraphics *param0, u16 param1)
         }
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
 }
 
 void ov104_0223D2CC(FrontierGraphics *param0, u16 param1)
@@ -1098,6 +1098,6 @@ UnkStruct_ov104_0223C634 *ov104_0223D5A8(UnkStruct_0209B75C *param0, int param1)
         v1++;
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
     return NULL;
 }

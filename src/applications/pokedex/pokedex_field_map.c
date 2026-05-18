@@ -271,7 +271,7 @@ static int GetNeighborType(int neighbors)
         fieldType = 47;
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 

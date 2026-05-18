@@ -106,7 +106,7 @@ int ov115_0226048C(ApplicationManager *appMan, int *param1)
         case 2:
             ov115_02260B44(v0, v1);
             return 1;
-            GF_ASSERT(0);
+            GF_ASSERT(FALSE);
             return 1;
         }
 
@@ -182,7 +182,7 @@ int ov115_0226048C(ApplicationManager *appMan, int *param1)
                 v4.unk_01 = 0;
                 break;
             default:
-                GF_ASSERT(0);
+                GF_ASSERT(FALSE);
                 break;
             }
 

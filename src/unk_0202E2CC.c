@@ -228,7 +228,7 @@ static TVSegmentInstance *sub_0202E4DC(TVBroadcast *broadcast, int param1)
         break;
     case 4:
     case 5:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 
     return v0;
@@ -250,7 +250,7 @@ static TVWifiEpisode *sub_0202E518(TVBroadcast *broadcast, int param1)
         break;
     case 4:
     case 5:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 
     return v0;

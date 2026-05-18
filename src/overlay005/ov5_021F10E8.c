@@ -161,7 +161,7 @@ void ov5_021F11C0(FieldEffectManager *param0, u32 param1, u32 param2)
     v0 = ov5_021F1174(v1, 0xffff);
 
     if (v0 == NULL) {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         return;
     }
 

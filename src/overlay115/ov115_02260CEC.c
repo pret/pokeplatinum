@@ -1894,7 +1894,7 @@ static void ov115_022621DC(UnkStruct_ov115_02260D78 *param0, const UnkStruct_ov1
             }
         }
 
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 }
 
@@ -3661,7 +3661,7 @@ static void ov115_0226464C(UnkStruct_ov115_02261ADC *param0, const UnkStruct_ov1
         }
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
 }
 
 static void ov115_02264684(UnkStruct_ov115_02261ADC *param0, u32 param1)
@@ -3816,7 +3816,7 @@ static UnkStruct_ov115_022647A0 *ov115_02264948(UnkStruct_ov115_02261ADC *param0
         }
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
     return NULL;
 }
 
@@ -4191,7 +4191,7 @@ static void ov115_02264FA0(UnkStruct_ov115_02264FA0 *param0)
             }
             break;
         default:
-            GF_ASSERT(0);
+            GF_ASSERT(FALSE);
             break;
         }
 

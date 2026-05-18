@@ -1833,7 +1833,7 @@ static void Pokemon_IncreaseDataInternal(Pokemon *mon, enum PokemonDataParam par
     case MON_DATA_SP_ATK:
     case MON_DATA_SP_DEF:
     case MON_DATA_MAIL:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     default:
         BoxPokemon_IncreaseDataInternal(&mon->box, param, value);
@@ -2130,7 +2130,7 @@ static void BoxPokemon_IncreaseDataInternal(BoxPokemon *boxMon, enum PokemonData
     case MON_DATA_TYPE_2:
     case MON_DATA_SPECIES_NAME:
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 }

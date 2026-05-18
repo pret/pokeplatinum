@@ -143,7 +143,7 @@ static int ov82_0223B3DC(UnkStruct_ov83_0223C344 *param0)
     case 5:
         return 5;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         param0->unk_08 = 149;
         break;
     }

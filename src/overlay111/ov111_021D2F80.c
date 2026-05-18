@@ -201,7 +201,7 @@ void ov111_021D33B0(UnkStruct_ov111_021D2F80 *param0, int param1)
     SpriteResource *v0;
 
     if (param1 >= 8) {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 
     v0 = SpriteResourceCollection_Find(param0->unk_190[1], 3);

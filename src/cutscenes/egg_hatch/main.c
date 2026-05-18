@@ -273,7 +273,7 @@ static BOOL EggHatchCutscene_Manaphy(EggHatchCutscene *eggHatch)
     case 5:
     case 6:
     case 7:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     case 8:
         if (Sound_IsPokemonCryPlaying()) {

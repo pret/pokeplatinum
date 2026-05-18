@@ -6,7 +6,6 @@
 #include "constants/field/dynamic_map_features.h"
 #include "constants/great_marsh_tram.h"
 
-#include "struct_defs/struct_02071B6C.h"
 #include "struct_defs/struct_02071BF8.h"
 
 #include "field/field_system.h"
@@ -70,37 +69,37 @@ void PersistedMapFeatures_InitForCanalaveGym(FieldSystem *fieldSystem)
     }
 }
 
-void PersistedMapFeatures_InitForSunyshoreGym(FieldSystem *fieldSystem, const u8 floorID)
+void PersistedMapFeatures_InitForSunyshoreGym(FieldSystem *fieldSystem, const u8 roomID)
 {
-    GF_ASSERT(floorID < 3);
+    GF_ASSERT(roomID < SUNYSHORE_GYM_NUM_ROOMS);
 
     PersistedMapFeatures *persistedMapFeatures = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
     PersistedMapFeatures_InitWithID(persistedMapFeatures, DYNAMIC_MAP_FEATURES_SUNYSHORE_GYM);
 
-    UnkStruct_02071B6C *data = PersistedMapFeatures_GetBuffer(persistedMapFeatures, DYNAMIC_MAP_FEATURES_SUNYSHORE_GYM);
-    data->unk_04 = floorID;
+    SunyshoreGymPersistedFeatures *data = PersistedMapFeatures_GetBuffer(persistedMapFeatures, DYNAMIC_MAP_FEATURES_SUNYSHORE_GYM);
+    data->roomID = roomID;
 
-    u16 v2;
+    u16 entranceZ;
 
-    switch (data->unk_04) {
+    switch (data->roomID) {
     case 0:
-        data->unk_00 = 2;
-        v2 = 14;
+        data->rotationState = 2;
+        entranceZ = 14;
         break;
     case 1:
-        data->unk_00 = 1;
-        v2 = 21;
+        data->rotationState = 1;
+        entranceZ = 21;
         break;
     case 2:
-        data->unk_00 = 0;
-        v2 = 25;
+        data->rotationState = 0;
+        entranceZ = 25;
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 
-    if (fieldSystem->location->z == v2) {
-        data->unk_00 = 0;
+    if (fieldSystem->location->z == entranceZ) {
+        data->rotationState = 0;
     }
 }
 

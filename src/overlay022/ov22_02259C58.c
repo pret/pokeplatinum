@@ -291,7 +291,7 @@ static void ov22_0225A02C(u32 param0, enum TouchScreenButtonState param1, void *
         }
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 }

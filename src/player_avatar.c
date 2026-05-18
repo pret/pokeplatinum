@@ -669,7 +669,7 @@ u32 Player_ConvertStateToTransition(int param0)
         return PLAYER_TRANSITION_HEALING;
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
     return PLAYER_TRANSITION_WALKING;
 }
 
@@ -843,7 +843,7 @@ void PlayerAvatar_SetDistortionState(PlayerAvatar *playerAvatar, enum AvatarDist
         return;
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
 }
 
 enum AvatarDistortionState PlayerAvatar_MapDistortionState(PlayerAvatar *const playerAvatar)

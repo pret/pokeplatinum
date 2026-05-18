@@ -461,7 +461,7 @@ static u32 ov65_0222DD94(int param0)
         break;
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
     return 0;
 }
 
@@ -1161,7 +1161,7 @@ static void ov65_0222E87C(UnkStruct_ov65_0222EBE0 *param0, UnkStruct_ov65_022354
         }
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
 }
 
 static void ov65_0222E8A8(UnkStruct_ov65_0222EBE0 *param0, UnkStruct_ov65_022354D8 *param1)
@@ -1175,7 +1175,7 @@ static void ov65_0222E8A8(UnkStruct_ov65_0222EBE0 *param0, UnkStruct_ov65_022354
         }
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
 }
 
 static UnkStruct_ov65_022354D8 *ov65_0222E8D4(UnkStruct_ov65_0222EBE0 *param0, u32 param1)
@@ -2644,7 +2644,7 @@ static int ov65_022302C4(UnkStruct_ov65_0222EBE0 *param0, int param1)
         return param1;
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 
@@ -6115,7 +6115,7 @@ static u8 ov65_02234FC4(int param0)
 
 static BOOL ov65_02234FCC(UnkStruct_ov65_0222EBE0 *param0, int param1, int param2)
 {
-    CommTool_Init(15);
+    CommTool_Init(HEAP_ID_COMMUNICATION);
     NintendoWFC_SetVoiceChatEnabled(param0->unk_04->unk_00.unk_21);
 
     if (ov65_0222DD64(param2) == 1) {
