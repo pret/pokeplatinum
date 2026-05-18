@@ -1736,7 +1736,7 @@ static void SetSubplaneWindowText(Window *window, enum HeapID heapID, int bankID
     GF_ASSERT(msgLoader);
     String *string = MessageLoader_GetNewString(msgLoader, entryID);
 
-    Window_FillTilemap(window, ((textColor) >> 0) & 0xff);
+    Window_FillTilemap(window, GET_TEXT_BG_COLOR(textColor));
     Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 1, 0, TEXT_SPEED_NO_TRANSFER, textColor, NULL);
     String_Free(string);
     MessageLoader_Free(msgLoader);
