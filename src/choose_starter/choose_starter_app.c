@@ -910,7 +910,7 @@ static void Make3DGraphics(ChooseStarterApp *app, enum HeapID heapID)
 
     Set3DGraphicsPosition(&app->starter3DGraphics[5], 0, -28 * FX32_ONE, 40 * FX32_ONE);
     Set3DGraphicsScale(&app->starter3DGraphics[5], FX32_CONST(3.50f), FX32_ONE, FX32_CONST(3.50f));
-    Set3DGraphicsRotation(&app->starter3DGraphics[5], (0 * 0xffff) / 360, (180 * 0xffff) / 360, (0 * 0xffff) / 360);
+    Set3DGraphicsRotation(&app->starter3DGraphics[5], 0, (180 * 0xffff) / 360, 0);
 }
 
 static void Delete3DGraphics(ChooseStarterApp *app)
@@ -1051,8 +1051,8 @@ static void SetupCamera(Camera *camera, VecFx32 *target)
     target->z = 0;
 
     angle.x = ((-30 * 0xffff) / 360);
-    angle.y = ((0 * 0xffff) / 360);
-    angle.z = ((0 * 0xffff) / 360);
+    angle.y = 0;
+    angle.z = 0;
 
     Camera_InitWithTarget(target, 300 << FX32_SHIFT, &angle, (22 * 0xffff) / 360, 0, 1, camera);
 
@@ -1377,8 +1377,8 @@ static void AdvanceCameraMovement(SysTask *task, void *cameraMovementParam)
 
     // changing to designated initializers breaks the checksum.
     angle.x = cameraMovement->xRotation.frameCount;
-    angle.y = ((0 * 0xffff) / 360);
-    angle.z = ((0 * 0xffff) / 360);
+    angle.y = 0;
+    angle.z = 0;
 
     Camera_SetAngleAroundTarget(&angle, cameraMovement->camera);
     Camera_SetDistance(cameraMovement->distance.frameCount, cameraMovement->camera);
