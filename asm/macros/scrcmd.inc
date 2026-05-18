@@ -2346,8 +2346,8 @@
     .short \useDefaultContestRank
     .endm
 
-    .macro TryEnterContestMon partySlot, menuItemSelection
-    .short SCRCMD_TRYENTERCONTESTMON
+    .macro GetContestPartyMenuResult partySlot, menuItemSelection
+    .short SCRCMD_GETCONTESTPARTYMENURESULT
     .short \partySlot
     .short \menuItemSelection
     .endm

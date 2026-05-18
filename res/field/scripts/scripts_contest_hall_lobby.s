@@ -339,12 +339,12 @@ ContestHallLobby_GiveMildPoffin:
 ContestHallLobby_RichBoyWalkAwayFromCounter:
     GetPlayerDir VAR_RESULT
     GoToIfEq VAR_RESULT, DIR_WEST, ContestHallLobby_RichBoyWalkAwayFromCounterWest
-    ApplyMovement CONTEST_HALL_LOBBY_RICH_BOY, ContestHallLobby_Movement_RichBoyWalkAwayFromCounterNorthSouthEast
+    ApplyMovement LOCALID_CONTEST_LOBBY_RICH_BOY, ContestHallLobby_Movement_RichBoyWalkAwayFromCounterNorthSouthEast
     WaitMovement
     Return
 
 ContestHallLobby_RichBoyWalkAwayFromCounterWest:
-    ApplyMovement CONTEST_HALL_LOBBY_RICH_BOY, ContestHallLobby_Movement_RichBoyWalkAwayFromCounterWest
+    ApplyMovement LOCALID_CONTEST_LOBBY_RICH_BOY, ContestHallLobby_Movement_RichBoyWalkAwayFromCounterWest
     WaitMovement
     Return
 

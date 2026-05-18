@@ -410,7 +410,7 @@ ScriptCommand(SCRCMD_SELECTMOVETUTORPOKEMON,                               ScrCm
 ScriptCommand(SCRCMD_OPENPARTYMENUFORUNIONROOMBATTLE,                      ScrCmd_OpenPartyMenuForUnionRoomBattle)
 ScriptCommand(SCRCMD_GETSELECTEDPARTYSLOT,                                 ScrCmd_GetSelectedPartySlot)
 ScriptCommand(SCRCMD_OPENPARTYMENUFORCONTEST,                              ScrCmd_OpenPartyMenuForContest)
-ScriptCommand(SCRCMD_TRYENTERCONTESTMON,                                   ScrCmd_TryEnterContestMon)
+ScriptCommand(SCRCMD_GETCONTESTPARTYMENURESULT,                            ScrCmd_GetContestPartyMenuResult)
 ScriptCommand(SCRCMD_SETMONSUMMARY,                                        ScrCmd_SetMonSummary)
 ScriptCommand(SCRCMD_GETMONPARTYSLOT,                                      ScrCmd_GetMonPartySlot)
 ScriptCommand(SCRCMD_GETPARTYMONSPECIES,                                   ScrCmd_GetPartyMonSpecies)
