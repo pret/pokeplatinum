@@ -1245,12 +1245,12 @@ static void AdvancePokeballConfirmGraphics(ChooseStarterApp *app, enum HeapID he
         u32 menuResult = Menu_ProcessInputAndHandleExit(app->confirmationMenu, heapID);
 
         switch (menuResult) {
-        case 0xffffffff:
+        case MENU_NOTHING_CHOSEN:
             break;
         case MENU_YES:
             AdvanceChoiceStep(app, 1);
             break;
-        case 0xfffffffe:
+        case MENU_CANCEL:
             app->chooseStarterStep++;
             StartOtherPreviewWindowAndGraphicsMovements(app);
             break;
