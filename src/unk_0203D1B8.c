@@ -510,7 +510,7 @@ PartyMenu *FieldSystem_OpenPartyMenu_SelectForContest(int unused, FieldSystem *f
     return partyMenu;
 }
 
-void *FieldSystem_GetContestMonSummary(int unused, FieldSystem *fieldSystem, int partySlot)
+void *FieldSystem_GetPartyMenuMonSummary(int unused, FieldSystem *fieldSystem, int partySlot)
 {
     PokemonSummary *monSummary = Heap_Alloc(HEAP_ID_FIELD2, sizeof(PokemonSummary));
 

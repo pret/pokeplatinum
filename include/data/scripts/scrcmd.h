@@ -662,7 +662,7 @@ ScriptCommand(SCRCMD_28D,                                                  ScrCm
 ScriptCommand(SCRCMD_28E,                                                  ScrCmd_28E)
 ScriptCommand(SCRCMD_GETLEAGUEVICTORIES,                                   ScrCmd_GetLeagueVictories)
 ScriptCommand(SCRCMD_OPENPARTYMENUFORDAYCARE,                              ScrCmd_OpenPartyMenuForDaycare)
-ScriptCommand(SCRCMD_291,                                                  ScrCmd_291)
+ScriptCommand(SCRCMD_GETDAYCAREPARTYMENURESULT,                            ScrCmd_GetDayCarePartyMenuResult)
 ScriptCommand(SCRCMD_CHECKSHOULDSHOWGHOST,                                 ScrCmd_CheckShouldShowGhost)
 ScriptCommand(SCRCMD_GETUNDERGROUNDTALKCOUNTER,                            ScrCmd_GetUndergroundTalkCounter)
 ScriptCommand(SCRCMD_SHOWBATTLEPOINTS,                                     ScrCmd_ShowBattlePoints)

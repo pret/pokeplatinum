@@ -3932,10 +3932,10 @@
     .short \partySlot
     .endm
 
-    .macro ScrCmd_291 arg0, arg1
-    .short SCRCMD_291
-    .short \arg0
-    .short \arg1
+    .macro GetDayCarePartyMenuResult selectedSlot, showSummary
+    .short SCRCMD_GETDAYCAREPARTYMENURESULT
+    .short \selectedSlot
+    .short \showSummary
     .endm
 
     .macro CheckShouldShowGhost percentChance, destVar

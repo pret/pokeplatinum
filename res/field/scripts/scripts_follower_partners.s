@@ -3,7 +3,7 @@
 
 
     ScriptEntry FollowerPartners_Rival
-    ScriptEntry _00F9
+    ScriptEntry FollowerPartners_UnusedEntry9701
     ScriptEntry FollowerPartners_Cheryl
     ScriptEntry FollowerPartners_Buck
     ScriptEntry FollowerPartners_Mira
@@ -16,18 +16,18 @@ FollowerPartners_Rival:
     FacePlayer
     GoToIfGe VAR_FOLLOWER_RIVAL_STATE, 3, FollowerPartners_Rival_PostStarterMessage
     BufferPlayerName 1
-    Message FollowerPartners_Text_Rival_HeyPlayerYouCanChooseFirst
+    Message FollowerPartners_Text_Rival_YouCanChooseFirst
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
 FollowerPartners_Rival_PostStarterMessage:
-    GoToIfGe VAR_FOLLOWER_RIVAL_TIMES_TALKED, 5, FollowerPartners_Rival_HeyThatsEnoughTalkingAlready
-    GoToIfEq VAR_FOLLOWER_RIVAL_TIMES_TALKED, 4, FollowerPartners_Rival_HeyDoYouKnowAboutTheChampion
-    GoToIfEq VAR_FOLLOWER_RIVAL_TIMES_TALKED, 3, FollowerPartners_Rival_ThatLakeHasAMiragePokemonLivingInIt
+    GoToIfGe VAR_FOLLOWER_RIVAL_TIMES_TALKED, 5, FollowerPartners_Rival_EnoughTalkingAlready
+    GoToIfEq VAR_FOLLOWER_RIVAL_TIMES_TALKED, 4, FollowerPartners_Rival_DoYouKnowAboutChampion
+    GoToIfEq VAR_FOLLOWER_RIVAL_TIMES_TALKED, 3, FollowerPartners_Rival_LakeHasMiragePokemon
     GoToIfEq VAR_FOLLOWER_RIVAL_TIMES_TALKED, 2, FollowerPartners_Rival_DoYouBelieveIt
-    GoToIfEq VAR_FOLLOWER_RIVAL_TIMES_TALKED, 1, FollowerPartners_Rival_PokemonAllHaveDifferentMovesHuh
+    GoToIfEq VAR_FOLLOWER_RIVAL_TIMES_TALKED, 1, FollowerPartners_Rival_PokemonHaveDifferentMoves
     BufferRivalName 0
     Message FollowerPartners_Text_Rival_ThatPokemonBattle
     WaitButton
@@ -42,24 +42,24 @@ FollowerPartners_Rival_Unused:
     ReleaseAll
     End
 
-FollowerPartners_Rival_HeyThatsEnoughTalkingAlready:
+FollowerPartners_Rival_EnoughTalkingAlready:
     BufferRivalName 0
-    Message FollowerPartners_Text_Rival_HeyThatsEnoughTalkingAlready
+    Message FollowerPartners_Text_Rival_EnoughTalkingAlready
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-FollowerPartners_Rival_HeyDoYouKnowAboutTheChampion:
+FollowerPartners_Rival_DoYouKnowAboutChampion:
     BufferRivalName 0
-    Message FollowerPartners_Text_Rival_HeyDoYouKnowAboutTheChampion
+    Message FollowerPartners_Text_Rival_DoYouKnowAboutChampion
     WaitButton
     GoTo FollowerPartners_Rival_IncreaseTimesTalked
     End
 
-FollowerPartners_Rival_ThatLakeHasAMiragePokemonLivingInIt:
+FollowerPartners_Rival_LakeHasMiragePokemon:
     BufferRivalName 0
-    Message FollowerPartners_Text_Rival_ThatLakeHasAMiragePokemonLivingInIt
+    Message FollowerPartners_Text_Rival_LakeHasMiragePokemon
     WaitButton
     GoTo FollowerPartners_Rival_IncreaseTimesTalked
     End
@@ -72,9 +72,9 @@ FollowerPartners_Rival_DoYouBelieveIt:
     GoTo FollowerPartners_Rival_IncreaseTimesTalked
     End
 
-FollowerPartners_Rival_PokemonAllHaveDifferentMovesHuh:
+FollowerPartners_Rival_PokemonHaveDifferentMoves:
     BufferRivalName 0
-    Message FollowerPartners_Text_Rival_PokemonAllHaveDifferentMovesHuh
+    Message FollowerPartners_Text_Rival_PokemonHaveDifferentMoves
     WaitButton
     GoTo FollowerPartners_Rival_IncreaseTimesTalked
     End
@@ -85,32 +85,32 @@ FollowerPartners_Rival_IncreaseTimesTalked:
     ReleaseAll
     End
 
-_00F9:
+FollowerPartners_UnusedEntry9701:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfGe VAR_UNK_0x40CB, 2, _0126
-    GoToIfEq VAR_UNK_0x40CB, 1, _0131
+    GoToIfGe VAR_FOLLOWER_UNUSED_TIMES_TALKED, 2, FollowerPartners_UnusedFollowerTalkedGe2Times
+    GoToIfEq VAR_FOLLOWER_UNUSED_TIMES_TALKED, 1, FollowerPartners_UnusedFollowerTalked1Time
     BufferRivalName 0
-    GoTo _013C
+    GoTo FollowerPartners_UnusedFollowerTalked0Times
     End
 
-_0126:
+FollowerPartners_UnusedFollowerTalkedGe2Times:
     BufferRivalName 0
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0131:
+FollowerPartners_UnusedFollowerTalked1Time:
     BufferRivalName 0
-    GoTo _013C
+    GoTo FollowerPartners_UnusedFollowerTalked0Times
     End
 
-_013C:
+FollowerPartners_UnusedFollowerTalked0Times:
     WaitButton
     CloseMessage
-    AddVar VAR_UNK_0x40CB, 1
+    AddVar VAR_FOLLOWER_UNUSED_TIMES_TALKED, 1
     ReleaseAll
     End
 
@@ -118,21 +118,21 @@ FollowerPartners_Cheryl:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfGe VAR_FOLLOWER_CHERYL_TIMES_TALKED, 2, FollowerPartners_Cheryl_PlayerBattlingWithYouMakesMeFeelElated
-    GoToIfEq VAR_FOLLOWER_CHERYL_TIMES_TALKED, 1, FollowerPartners_Cheryl_MyPokemonIsAnExcellentHealer
+    GoToIfGe VAR_FOLLOWER_CHERYL_TIMES_TALKED, 2, FollowerPartners_Cheryl_BattlingWithYouMakesMeElated
+    GoToIfEq VAR_FOLLOWER_CHERYL_TIMES_TALKED, 1, FollowerPartners_Cheryl_MyPokemonIsExcellentHealer
     BufferPlayerName 0
-    Message FollowerPartners_Text_Cheryl_ItsStartlingToSeeTwoWildPokemon
+    Message FollowerPartners_Text_Cheryl_StartlingToSeeTwoPokemon
     GoTo FollowerPartners_Cheryl_IncreaseTimesTalked
     End
 
-FollowerPartners_Cheryl_MyPokemonIsAnExcellentHealer:
-    Message FollowerPartners_Text_Cheryl_MyPokemonIsAnExcellentHealer
+FollowerPartners_Cheryl_MyPokemonIsExcellentHealer:
+    Message FollowerPartners_Text_Cheryl_MyPokemonIsExcellentHealer
     GoTo FollowerPartners_Cheryl_IncreaseTimesTalked
     End
 
-FollowerPartners_Cheryl_PlayerBattlingWithYouMakesMeFeelElated:
+FollowerPartners_Cheryl_BattlingWithYouMakesMeElated:
     BufferPlayerName 0
-    Message FollowerPartners_Text_Cheryl_PlayerBattlingWithYouMakesMeFeelElated
+    Message FollowerPartners_Text_Cheryl_BattlingWithYouMakesMeElated
     WaitButton
     CloseMessage
     ReleaseAll
@@ -149,26 +149,26 @@ FollowerPartners_Buck:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfGe VAR_FOLLOWER_BUCK_TIMES_TALKED, 3, FollowerPartners_Buck_ItMightBeCoolBeingAGymLeaderOrEliteFour
-    GoToIfEq VAR_FOLLOWER_BUCK_TIMES_TALKED, 2, FollowerPartners_Buck_MyBigBrothersOneOfTheEliteFour
-    GoToIfEq VAR_FOLLOWER_BUCK_TIMES_TALKED, 1, FollowerPartners_Buck_TheresNoLawThatSaysIHaveToBeTough
+    GoToIfGe VAR_FOLLOWER_BUCK_TIMES_TALKED, 3, FollowerPartners_Buck_ItMightBeCool
+    GoToIfEq VAR_FOLLOWER_BUCK_TIMES_TALKED, 2, FollowerPartners_Buck_MyBigBrothersEliteFour
+    GoToIfEq VAR_FOLLOWER_BUCK_TIMES_TALKED, 1, FollowerPartners_Buck_NoLawIHaveToBeTough
     BufferPlayerName 0
     Message FollowerPartners_Text_Buck_ThisIsWhereIRaisedMyPokemon
     GoTo FollowerPartners_Buck_IncreaseTimesTalked
     End
 
-FollowerPartners_Buck_TheresNoLawThatSaysIHaveToBeTough:
-    Message FollowerPartners_Text_Buck_TheresNoLawThatSaysIHaveToBeTough
+FollowerPartners_Buck_NoLawIHaveToBeTough:
+    Message FollowerPartners_Text_Buck_NoLawIHaveToBeTough
     GoTo FollowerPartners_Buck_IncreaseTimesTalked
     End
 
-FollowerPartners_Buck_MyBigBrothersOneOfTheEliteFour:
-    Message FollowerPartners_Text_Buck_MyBigBrothersOneOfTheEliteFour
+FollowerPartners_Buck_MyBigBrothersEliteFour:
+    Message FollowerPartners_Text_Buck_MyBigBrothersEliteFour
     GoTo FollowerPartners_Buck_IncreaseTimesTalked
     End
 
-FollowerPartners_Buck_ItMightBeCoolBeingAGymLeaderOrEliteFour:
-    Message FollowerPartners_Text_Buck_ItMightBeCoolBeingAGymLeaderOrEliteFour
+FollowerPartners_Buck_ItMightBeCool:
+    Message FollowerPartners_Text_Buck_ItMightBeCool
     WaitButton
     CloseMessage
     ReleaseAll
@@ -185,21 +185,21 @@ FollowerPartners_Mira:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfGe VAR_FOLLOWER_MIRA_TIMES_TALKED, 2, FollowerPartners_Mira_PlayerDidYouGetToBeSoGood
-    GoToIfEq VAR_FOLLOWER_MIRA_TIMES_TALKED, 1, FollowerPartners_Mira_ThisCaveItsSoEasyToGetConfusedHere
+    GoToIfGe VAR_FOLLOWER_MIRA_TIMES_TALKED, 2, FollowerPartners_Mira_IWillTryLikeYou
+    GoToIfEq VAR_FOLLOWER_MIRA_TIMES_TALKED, 1, FollowerPartners_Mira_EasyToGetConfused
     BufferPlayerName 0
-    Message FollowerPartners_Text_Mira_ILikeHelpfulPokemonMovesLikeGrowlAndMinimize
+    Message FollowerPartners_Text_Mira_ILikeHelpfulMoves
     GoTo FollowerPartners_Mira_IncreaseTimesTalked
     End
 
-FollowerPartners_Mira_ThisCaveItsSoEasyToGetConfusedHere:
-    Message FollowerPartners_Text_Mira_ThisCaveItsSoEasyToGetConfusedHere
+FollowerPartners_Mira_EasyToGetConfused:
+    Message FollowerPartners_Text_Mira_EasyToGetConfused
     GoTo FollowerPartners_Mira_IncreaseTimesTalked
     End
 
-FollowerPartners_Mira_PlayerDidYouGetToBeSoGood:
+FollowerPartners_Mira_IWillTryLikeYou:
     BufferPlayerName 0
-    Message FollowerPartners_Text_Mira_PlayerDidYouGetToBeSoGood
+    Message FollowerPartners_Text_Mira_IWillTryLikeYou
     WaitButton
     CloseMessage
     ReleaseAll
