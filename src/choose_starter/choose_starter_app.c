@@ -245,7 +245,7 @@ static void DeleteDrawing(void);
 static void SetupVRAMBank(void);
 static void SetupOAM(enum HeapID heapID);
 static void Setup3D(ChooseStarterApp *app);
-static void ResetFrm(void);
+static void ResetFrameVRAMStates(void);
 static void SetupBGs(BgConfig *bgConfig, enum HeapID heapID);
 static void DeleteBGs(BgConfig *bgConfig);
 static void MakeMessageWindow(ChooseStarterApp *app, enum HeapID heapID);
@@ -513,7 +513,7 @@ static void DeleteDrawing(void)
     CharTransfer_Free();
     PlttTransfer_Free();
 
-    ResetFrm();
+    ResetFrameVRAMStates();
 }
 
 static void SetupVRAMBank(void)
@@ -579,7 +579,7 @@ static void Setup3D(ChooseStarterApp *app)
     NNS_GfdInitFrmPlttVramManager(0x4000, TRUE);
 }
 
-static void ResetFrm(void)
+static void ResetFrameVRAMStates(void)
 {
     NNS_GfdResetFrmTexVramState();
     NNS_GfdResetFrmPlttVramState();
