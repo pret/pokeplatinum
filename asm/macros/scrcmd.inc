@@ -43,6 +43,7 @@
 #include "constants/elevator_dirs.h"
 #include "constants/fade_screen.h"
 #include "constants/forms.h"
+#include "constants/group_connection.h"
 #include "constants/honey_tree.h"
 #include "constants/init_script_types.h"
 #include "constants/items.h"
@@ -50,6 +51,7 @@
 #include "constants/moves.h"
 #include "constants/overworld_weather.h"
 #include "constants/pokemon.h"
+#include "constants/records_mixed_rng.h"
 #include "constants/regi_ruins.h"
 #include "constants/roamer_states.h"
 #include "constants/savedata/vars_flags.h"
@@ -3116,14 +3118,14 @@
     .byte \slot
     .endm
 
-    .macro ScrCmd_21D arg0, arg1=0, arg2=0
-    .short SCRCMD_21D
-    .short \arg0
-    .if \arg0 == 0 || \arg0 == 1 || \arg0 == 2 || \arg0 == 3
+    .macro DoGroupConnectionAction action, arg1=0, arg2=0
+    .short SCRCMD_DOGROUPCONNECTIONACTION
+    .short \action
+    .if \action == 0 || \action == 1 || \action == 2 || \action == 3
         .short \arg1
         .short \arg2
     .else
-        .if \arg0 == 4 || \arg0 == 5
+        .if \action == 4 || \action == 5
             .short \arg1
         .endif
     .endif

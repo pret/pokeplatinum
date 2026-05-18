@@ -546,7 +546,7 @@ ScriptCommand(SCRCMD_SETNEWSPRESSDEADLINE,                                 ScrCm
 ScriptCommand(SCRCMD_GETNEWSPRESSDEADLINE,                                 ScrCmd_GetNewsPressDeadline)
 ScriptCommand(SCRCMD_ENABLESWARMS,                                         ScrCmd_EnableSwarms)
 ScriptCommand(SCRCMD_ACTIVATEROAMINGPOKEMON,                               ScrCmd_ActivateRoamingPokemon)
-ScriptCommand(SCRCMD_21D,                                                  ScrCmd_21D)
+ScriptCommand(SCRCMD_DOGROUPCONNECTIONACTION,                              ScrCmd_DoGroupConnectionAction)
 ScriptCommand(SCRCMD_DUMMY21E,                                             ScrCmd_Dummy21E)
 ScriptCommand(SCRCMD_CHECKHASLEARNABLEREMINDERMOVES,                       ScrCmd_CheckHasLearnableReminderMoves)
 ScriptCommand(SCRCMD_220,                                                  ScrCmd_220)
