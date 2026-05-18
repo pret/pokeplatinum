@@ -867,7 +867,7 @@ static BOOL Advance3DGraphicsAnimationIfNotLastFrame(ChooseStarter3DGraphics *st
     fx32 lastFrame = NNS_G3dAnmObjGetNumFrame(starter3DGraphics->animationObj);
     BOOL isLastFrame;
 
-    if ((starter3DGraphics->animationFrame + FX32_ONE) < lastFrame) {
+    if (starter3DGraphics->animationFrame + FX32_ONE < lastFrame) {
         starter3DGraphics->animationFrame += FX32_ONE;
         isLastFrame = FALSE;
     } else {
@@ -1604,7 +1604,7 @@ static void AdvancePreviewMovement(SysTask *task, void *previewWindowParam)
     SoftwareSprite_SetPosition(previewWindow->sprite, x >> FX32_SHIFT, y >> FX32_SHIFT);
     SoftwareSprite_SetScalingFactors(previewWindow->sprite, previewWindow->previewAnimation.scale.frameCount, previewWindow->previewAnimation.scale.frameCount);
 
-    if ((hasFrameCountReachedMax == TRUE) || (previewWindow->previewAnimation.frameCount < 0)) {
+    if (hasFrameCountReachedMax == TRUE || previewWindow->previewAnimation.frameCount < 0) {
         SysTask_Done(task);
         previewWindow->movementTask = NULL;
     }
@@ -1684,7 +1684,7 @@ static void AdvancePreviewGraphicsMovement(SysTask *task, void *previewGraphicsP
     PokemonSprite_SetAttribute(previewGraphics->sprite, MON_SPRITE_SCALE_X, scale);
     PokemonSprite_SetAttribute(previewGraphics->sprite, MON_SPRITE_SCALE_Y, scale);
 
-    if ((hasFrameCountReachedMax == TRUE) || (previewGraphics->previewAnimation.frameCount < 0)) {
+    if (hasFrameCountReachedMax == TRUE || previewGraphics->previewAnimation.frameCount < 0) {
         SysTask_Done(task);
         previewGraphics->movementTask = NULL;
     }
