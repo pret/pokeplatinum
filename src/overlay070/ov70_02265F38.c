@@ -438,7 +438,7 @@ BOOL ov70_02265F38(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DEE8 *par
         ov70_02266CF0(&v0->unk_3C, param1, 0);
         ov66_0222E3E4(ov70_0225DEE8(param1), v1->unk_03);
 
-        CommManager_SetState_WifiLobby();
+        CommManager_SetState_WifiPlaza();
         CommInfo_Init(ov66_0222E0C4(ov70_0225DEE8(param1)), NULL);
         CommInfo_SetPersonalTrainerInfo(ov66_0222E918(v2));
         sub_0203632C(0);

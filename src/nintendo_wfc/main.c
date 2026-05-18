@@ -7,6 +7,7 @@
 #include <vct.h>
 
 #include "constants/communication/comm_error.h"
+#include "constants/communication/comm_type.h"
 #include "constants/net.h"
 
 #include "global/assert.h"
@@ -802,7 +803,7 @@ int NintendoWFC_HandleError(void)
                 case WFC_STATE_INIT:
                 case WFC_STATE_WAIT_CONNECTION:
                 case WFC_STATE_INIT_LOGIN:
-                    if (CommManager_GetCommType() != 33) {
+                    if (CommManager_GetCommType() != COMM_TYPE_WIFI_PLAZA) {
                         DWC_CleanupInet();
                     }
                 default:

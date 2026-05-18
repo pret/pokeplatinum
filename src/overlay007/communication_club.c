@@ -1129,7 +1129,7 @@ static void ov7_0224AC48(SysTask *task, void *param1)
 
     ov7_0224A64C(commClubMan);
 
-    WirelessManager_SetEntry2(0);
+    CommManager_SetWirelessEntry(0);
     ListMenu_ProcessInput(commClubMan->unk_5C);
 
     if (FieldMessage_FinishedPrinting(sCommClubMan->printMsgIndex)) {
@@ -1169,7 +1169,7 @@ static void ov7_0224ACA4(SysTask *task, void *param1)
         CommTiming_StartSync(10);
         CommClubMan_SetTask(ov7_0224AF2C);
     } else if (v1 != 0xffffffff) {
-        WirelessManager_SetEntry2(1);
+        CommManager_SetWirelessEntry(1);
         CommClubMan_Disconnect();
         CommClubMan_DestroyList(task, commClubMan);
         sCommClubMan->retCode = COMM_CLUB_RET_CANCEL;
@@ -1565,7 +1565,7 @@ static void ov7_0224B370(SysTask *task, void *param1)
 
 static void ov7_0224B3A8(CommClubManager *commClubMan)
 {
-    WirelessManager_SetEntry2(0);
+    CommManager_SetWirelessEntry(0);
     sCommClubMan->retCode = COMM_CLUB_RET_2;
     CommManager_SetErrorHandling(1, 1);
     CommInfo_SendPlayerInfo();

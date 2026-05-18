@@ -4,6 +4,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/communication/comm_avaliable_connections.h"
 #include "constants/communication/comm_error.h"
 #include "constants/communication/comm_type.h"
 
@@ -46,7 +47,7 @@ typedef struct {
     u8 unionConnectState;
     u8 connectionID;
     u8 commType;
-    u8 contestRegulation;
+    u8 contestRegulation; // double check when documenting unk_02033200.c (replace.sh should hit this when renaming the file)
     u8 unk_4C;
     s8 wifiTarget;
     u8 unk_4E;
@@ -55,7 +56,7 @@ typedef struct {
     u8 globalWifi;
     u8 resetType;
     u8 pauseUnion;
-    u8 unk_54;
+    u8 availableConnections;
     u8 initializeAsServer; // always FALSE
     u8 unk_56;
     u8 doNotConnectUnderground;
@@ -63,7 +64,7 @@ typedef struct {
     u8 commError;
     u8 pauseUnderground;
     const void *unk_5C;
-    u8 lobbyLoginSuccess;
+    u8 plazaLoginSuccess;
     u8 unk_61[3];
 } CommunicationManager;
 
@@ -108,7 +109,7 @@ static void CommTask_StartForceConnectUnion1(void);
 static void CommTask_StartForceConnectUnion2(void);
 static void CommTask_ForceConnectUnion(void);
 static void CommTask_ConnectingUnionClient(void);
-static void CommTask_SuccededConnectUnionClient(void);
+static void CommTask_SucceededConnectUnionClient(void);
 static void CommTask_FailedConnectUnionClient(void);
 static void CommTask_ResetUnionClient(void);
 static void CommTask_ConnectUnionServer(void);
@@ -122,20 +123,20 @@ static void CommTask_EndConnectionUnionClient(void);
 static void CommTask_EndConnection(void);
 static void CommTask_WifiBattleLogin(void);
 static void CommTask_LogoutWifi(void);
-static void CommTask_StartWifiLobby(void);
-static void CommTask_LogInWifiLobby(void);
-static void CommTask_ConnectWifiLobby(void);
-static void CommTask_LogoutWifiLobby(void);
-static void CommTask_WaitLogoutWifiLobby(void);
-static void CommTask_WifiLobbyError(void);
-static void CommTask_ConnectWifiLobbyP2P(void);
-static void CommTask_WaitWifiLobbyMatchServerP2P(void);
-static void CommTask_DisconnectWifiLobbyP2P(void);
-static void CommTask_WifiLobbyTimeout(void);
-static BOOL CommManager_ProcessWifiLobbyDWCError(int param0);
-static BOOL CommManager_UpdateWifiLobby(void);
-static BOOL CommManager_UpdateWifiLobbyCommon(void);
-static BOOL CommManager_UpdateWifiLobbyMatchmaking(u32 *param0);
+static void CommTask_StartWifiPlaza(void);
+static void CommTask_LogInWifiPlaza(void);
+static void CommTask_ConnectWifiPlaza(void);
+static void CommTask_LogoutWifiPlaza(void);
+static void CommTask_WaitLogoutWifiPlaza(void);
+static void CommTask_WifiPlazaError(void);
+static void CommTask_ConnectWifiPlazaP2P(void);
+static void CommTask_WaitWifiPlazaMatchServerP2P(void);
+static void CommTask_DisconnectWifiPlazaP2P(void);
+static void CommTask_WifiPlazaTimeout(void);
+static BOOL CommManager_ProcessWifiPlazaDWCError(int param0);
+static BOOL CommManager_UpdateWifiPlaza(void);
+static BOOL CommManager_UpdateWifiPlazaCommon(void);
+static BOOL CommManager_UpdateWifiPlazaMatchmaking(u32 *param0);
 static void CommTask_StartDrawClient(void);
 static void CommTask_InitDrawClient(void);
 static void CommTask_ConnectDraw(void);
@@ -416,7 +417,7 @@ void CommManager_EndBattle(void)
  *
  * @param entry
  */
-void WirelessManager_SetEntry2(BOOL entry)
+void CommManager_SetWirelessEntry(BOOL entry)
 {
     WirelessManager_SetEntry(entry);
 }
@@ -490,7 +491,7 @@ void CommManager_ConnectUnion(int connectionID)
 /**
  * @brief Checks if the current CommManager task is the union client connection success task
  *
- * @return TRUE if the task is CommTask_SuccededConnectUnionClient, -1 if sCommMan isn't initialized or the current task is CommTask_FailedConnectUnionClient, FALSE otherwise
+ * @return TRUE if the task is CommTask_SucceededConnectUnionClient, -1 if sCommMan isn't initialized or the current task is CommTask_FailedConnectUnionClient, FALSE otherwise
  */
 int CommManager_IsConnectedUnionClientSuccess(void)
 {
@@ -502,7 +503,7 @@ int CommManager_IsConnectedUnionClientSuccess(void)
 
     task = (u32)sCommMan->task;
 
-    if (task == (u32)CommTask_SuccededConnectUnionClient) {
+    if (task == (u32)CommTask_SucceededConnectUnionClient) {
         return TRUE;
     }
 
@@ -720,7 +721,7 @@ static void CommTask_StartUnderground(void)
 
     CommServerClient_Init(sCommMan->trainerInfo, 1);
     CommInfo_Init(sCommMan->saveData, NULL);
-    CommSys_SetAlone(1);
+    CommSys_SetAlone(TRUE);
     CommSys_EnableSendMovementData();
 
     if (sCommMan->initializeAsServer) {
@@ -752,7 +753,7 @@ static void CommTask_ReinitUnderground(void)
         return;
     }
 
-    CommSys_SetAlone(1);
+    CommSys_SetAlone(TRUE);
     CommSys_EnableSendMovementData();
 
     if (sCommMan->initializeAsServer) {
@@ -859,7 +860,7 @@ static void CommTask_ConnectingUndergroundClient(void)
 {
     if (CommSys_IsPlayerConnected(CommSys_CurNetId())) {
         CommSys_Reset();
-        CommSys_SetAlone(0);
+        CommSys_SetAlone(FALSE);
         CommSys_EnableSendMovementData();
         CommManager_SetTask(CommTask_ConnectUndergroundClient, 0);
         return;
@@ -911,7 +912,7 @@ static void CommTask_InitUndergroundServer(void)
         return;
     }
 
-    CommSys_SetAlone(1);
+    CommSys_SetAlone(TRUE);
 
     if (CommSys_InitServer(0, sCommMan->unk_4E, 500, 1)) {
         u32 rand = MATH_Rand32(&sCommMan->rand, 40 / 2);
@@ -951,7 +952,7 @@ static void CommTask_WaitUndergroundServer(void)
  */
 static void CommTask_InitConnectUndergroundServer(void)
 {
-    CommSys_SetAlone(0);
+    CommSys_SetAlone(FALSE);
     sub_02033EA8(1);
     CommSys_EnableSendMovementData();
     CommManager_SetTask(CommTask_ConnectUndergroundServer, 0);
@@ -983,7 +984,7 @@ static void CommTask_StartSecretBase(void)
             return;
         }
 
-        CommSys_SetAlone(1);
+        CommSys_SetAlone(TRUE);
         CommSys_EnableSendMovementData();
         CommServerClient_SetSecretBaseClosedState(TRUE);
     }
@@ -1474,7 +1475,7 @@ static void CommTask_ConnectUnionClient(void)
 
     if (sCommMan->unionConnectState == 1) {
         CommInfo_SendPlayerInfo();
-        CommManager_SetTask(CommTask_SuccededConnectUnionClient, 0);
+        CommManager_SetTask(CommTask_SucceededConnectUnionClient, 0);
         return;
     }
 
@@ -1493,7 +1494,7 @@ static void CommTask_ConnectUnionClient(void)
 /**
  * @brief Task that indicates a client has sucessfully connected to the union. Monitors for errors and resets on error.
  */
-static void CommTask_SuccededConnectUnionClient(void)
+static void CommTask_SucceededConnectUnionClient(void)
 {
     if (CommSys_CheckError()) {
         CommManager_SetTask(CommTask_ResetUnionClient, 0);
@@ -1717,7 +1718,7 @@ static void CommTask_ConnectingDraw(void)
     }
 
     if (CommSys_IsPlayerConnected(CommSys_CurNetId())) {
-        CommManager_SetTask(CommTask_SuccededConnectUnionClient, 0);
+        CommManager_SetTask(CommTask_SucceededConnectUnionClient, 0);
         return;
     }
 
@@ -1747,17 +1748,17 @@ void CommManager_ValidateConfirmationMessage(int netID, int unused_1, void *msg,
 {
     int i;
     u8 *confirmation = msg;
-    BOOL success = 1;
+    BOOL success = TRUE;
 
     if (CommSys_CurNetId() != 0) {
         return;
     }
 
-    success = 1;
+    success = TRUE;
 
     for (i = 0; i < sizeof(sFreakConfirmationMessage); i++) {
         if (confirmation[i] != sFreakConfirmationMessage[i]) {
-            success = 0;
+            success = FALSE;
             break;
         }
     }
@@ -1933,7 +1934,7 @@ BOOL CommManager_IsPoketchSearching(void)
 }
 
 /**
- * @brief Callback used by WirelessManager_SetGGIDScanCallback
+ * @brief Callback used by WirelessManager_SetGGIDScanCallback. Sets the avaliable connections.
  *
  * @param ggid
  * @param commType
@@ -1943,17 +1944,17 @@ static void CommManager_GGIDScanCallback(u32 ggid, int commType)
     switch (ggid) {
     case 0x333:
         if (commType == COMM_TYPE_MYSTERY_GIFT) {
-            sCommMan->unk_54 |= 0x1;
+            sCommMan->availableConnections |= AV_CONNECT_MYSTERY_GIFT;
         }
         break;
     case 0x400318:
-        sCommMan->unk_54 |= 0x1;
+        sCommMan->availableConnections |= AV_CONNECT_MYSTERY_GIFT;
         break;
     case 0x400131:
-        sCommMan->unk_54 |= 0x2;
+        sCommMan->availableConnections |= AV_CONNECT_RANGER_LINK;
         break;
     case 0x400286:
-        sCommMan->unk_54 |= 0x4;
+        sCommMan->availableConnections |= AV_CONNECT_WII;
         break;
     }
 }
@@ -2014,13 +2015,13 @@ void CommManager_EndSearchParty(void)
 }
 
 /**
- * @brief Gets the Communication Manager's unk_54
+ * @brief Gets the Communication Manager's avaliable connections
  *
- * @return sCommMan->unk_54
+ * @return sCommMan->availableConnections
  */
-u8 CommManager_GetUnk54(void)
+u8 CommManager_GetAvailableConnections(void)
 {
-    return sCommMan->unk_54;
+    return sCommMan->availableConnections;
 }
 
 /**
@@ -2040,8 +2041,8 @@ BOOL CommManager_ExitOrReset(void)
         NintendoWFC_Stop();
         return TRUE;
     } else if (CommManager_IsConnectedToWifi()) {
-        if (sCommMan->commType == COMM_TYPE_LOBBY_WIFI) {
-            CommManager_SetTask(CommTask_LogoutWifiLobby, 0);
+        if (sCommMan->commType == COMM_TYPE_WIFI_PLAZA) {
+            CommManager_SetTask(CommTask_LogoutWifiPlaza, 0);
         } else {
             CommManager_SetTask(CommTask_LogoutWifi, 0);
         }
@@ -2131,7 +2132,7 @@ static void CommTask_ConnectWifiBattle(void)
 {
     int ret;
 
-    CommSys_SetWifiConnected(1);
+    CommSys_SetWifiConnected(TRUE);
 
     ret = NintendoWFC_Process(0);
 
@@ -2282,15 +2283,15 @@ int CommManager_GetMatchmakingState(void)
         return 5;
     }
 
-    if (sCommMan->task == CommTask_WaitWifiLobbyMatchServerP2P) {
+    if (sCommMan->task == CommTask_WaitWifiPlazaMatchServerP2P) {
         return 0;
     }
 
-    if (sCommMan->task == CommTask_ConnectWifiLobbyP2P) {
+    if (sCommMan->task == CommTask_ConnectWifiPlazaP2P) {
         return 1;
     }
 
-    if (sCommMan->task == CommTask_WifiLobbyTimeout) {
+    if (sCommMan->task == CommTask_WifiPlazaTimeout) {
         return 3;
     }
 
@@ -2341,7 +2342,7 @@ static void CommTask_EndMatchmakingWifi(void)
 {
     int ret;
 
-    CommSys_SetWifiConnected(0);
+    CommSys_SetWifiConnected(FALSE);
 
     if (NintendoWFC_EndConnection(sCommMan->unk_4C)) {
         if (NintendoWFC_ReturnToReadyState()) {
@@ -2388,7 +2389,7 @@ BOOL CommManager_GetDisconnectedWifi(void)
 /**
  * @brief Checks if the current task is loging in to the wifi battle
  *
- * @return TRUE if task is CommTask_WifiBattleLogin, or CommTask_ConnectWifiLobby
+ * @return TRUE if task is CommTask_WifiBattleLogin, or CommTask_ConnectWifiPlaza
  */
 BOOL CommManager_IsLoginBattleWifi(void)
 {
@@ -2398,7 +2399,7 @@ BOOL CommManager_IsLoginBattleWifi(void)
         return 1;
     }
 
-    if (task == (u32)CommTask_ConnectWifiLobby) {
+    if (task == (u32)CommTask_ConnectWifiPlaza) {
         return 1;
     }
 
@@ -2408,7 +2409,7 @@ BOOL CommManager_IsLoginBattleWifi(void)
 /**
  * @brief Checks if the current task is loging in to the wifi battle matchmaking
  *
- * @return TRUE if task is CommTask_WifiBattleMatchmaking, CommTask_WifiBattleLogin, or CommTask_ConnectWifiLobby
+ * @return TRUE if task is CommTask_WifiBattleMatchmaking, CommTask_WifiBattleLogin, or CommTask_ConnectWifiPlaza
  */
 BOOL CommManager_IsLoginBattleMatchWifi(void)
 {
@@ -2422,7 +2423,7 @@ BOOL CommManager_IsLoginBattleMatchWifi(void)
         return 1;
     }
 
-    if (task == (u32)CommTask_ConnectWifiLobby) {
+    if (task == (u32)CommTask_ConnectWifiPlaza) {
         return 1;
     }
 
@@ -2447,7 +2448,7 @@ static void CommTask_LogoutWifi(void)
 {
     int ret;
 
-    CommSys_SetWifiConnected(0);
+    CommSys_SetWifiConnected(FALSE);
 
     if (NintendoWFC_EndConnection(0)) {
         NintendoWFC_ReturnToReadyState();
@@ -2521,7 +2522,7 @@ void CommManager_EndBattleWifiMatch(void)
 /**
  * @brief Checks if the Communication Manager is in a wifi error task
  *
- * @return TRUE if task is CommTask_WifiBattleError, CommTask_WifiBattleTimeout, or CommTask_WifiLobbyTimeout
+ * @return TRUE if task is CommTask_WifiBattleError, CommTask_WifiBattleTimeout, or CommTask_WifiPlazaTimeout
  */
 BOOL CommManager_CheckWifiError(void)
 {
@@ -2536,7 +2537,7 @@ BOOL CommManager_CheckWifiError(void)
             return TRUE;
         }
 
-        if ((task == (u32)CommTask_WifiLobbyTimeout) && sCommMan->errorDisconnect) {
+        if ((task == (u32)CommTask_WifiPlazaTimeout) && sCommMan->errorDisconnect) {
             return TRUE;
         }
     }
@@ -2683,17 +2684,17 @@ static void CommTask_ConnectingWifiBattle(void)
     sCommMan->timer--;
 
     if (ret == NINTENDO_WFC_RESULT_CONNECTED_TO_SERVER) {
-        if (sCommMan->commType == COMM_TYPE_LOBBY_WIFI) {
+        if (sCommMan->commType == COMM_TYPE_WIFI_PLAZA) {
             BOOL v1;
 
             v1 = ov66_02232714(sCommMan->unk_5C);
 
             if (v1 == TRUE) {
-                sCommMan->lobbyLoginSuccess = TRUE;
-                CommManager_SetTask(CommTask_LogInWifiLobby, sCommMan->timer);
+                sCommMan->plazaLoginSuccess = TRUE;
+                CommManager_SetTask(CommTask_LogInWifiPlaza, sCommMan->timer);
                 return;
             } else {
-                CommManager_SetTask(CommTask_WifiLobbyError, 0);
+                CommManager_SetTask(CommTask_WifiPlazaError, 0);
                 return;
             }
         } else {
@@ -2759,12 +2760,12 @@ void *CommManager_LoginWifiBattleServer(SaveData *saveData, int size)
 }
 
 /**
- * @brief Initializes the Communication Manager for the Wifi Lobby
+ * @brief Initializes the Communication Manager for the Wifi Plaza
  *
  * @param saveData
  * @param param1
  */
-void CommManager_LoginWifiLobby(SaveData *saveData, const void *param1)
+void CommManager_LoginWifiPlaza(SaveData *saveData, const void *param1)
 {
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(saveData);
 
@@ -2774,54 +2775,54 @@ void CommManager_LoginWifiLobby(SaveData *saveData, const void *param1)
 
     ResetLock(RESET_LOCK_0x1);
     Heap_CreateAtEnd(HEAP_ID_APPLICATION, HEAP_ID_COMMUNICATION, 0x7080);
-    CommManager_Initialize(saveData, COMM_TYPE_LOBBY_WIFI);
+    CommManager_Initialize(saveData, COMM_TYPE_WIFI_PLAZA);
 
     sCommMan->unk_00 = NULL;
     sCommMan->unk_5C = param1;
-    sCommMan->lobbyLoginSuccess = FALSE;
+    sCommMan->plazaLoginSuccess = FALSE;
     sCommMan->contestRegulation = 0;
     sCommMan->saveData = saveData;
 
-    CommManager_SetTask(CommTask_StartWifiLobby, 0);
+    CommManager_SetTask(CommTask_StartWifiPlaza, 0);
 }
 
 /**
- * @brief Begins the Communication Manager's log out of wifi lobby task
+ * @brief Begins the Communication Manager's log out of wifi Plaza task
  */
-void CommManager_LogoutWifiLobby(void)
+void CommManager_LogoutWifiPlaza(void)
 {
     if (sCommMan == NULL) {
         return;
     }
 
-    CommManager_SetTask(CommTask_LogoutWifiLobby, 0);
+    CommManager_SetTask(CommTask_LogoutWifiPlaza, 0);
 }
 
 /**
  * @brief Gets the flag for whether the login task has been reached successfully
  *
- * @return sCommMan->lobbyLoginSuccess
+ * @return sCommMan->plazaLoginSuccess
  */
-BOOL CommManager_GetWifiLobbyLoginSuccess(void)
+BOOL CommManager_GetWifiPlazaLoginSuccess(void)
 {
     if (sCommMan == NULL) {
         return 0;
     }
 
-    return sCommMan->lobbyLoginSuccess;
+    return sCommMan->plazaLoginSuccess;
 }
 
 /**
- * @brief Checks if the current Communication Manager is in a Wifi Lobby Error state
+ * @brief Checks if the current Communication Manager is in a Wifi Plaza Error state
  *
- * @return TRUE if the current task is CommTask_WifiLobbyError
+ * @return TRUE if the current task is CommTask_WifiPlazaError
  */
-BOOL CommManager_IsWifiLobbyError(void)
+BOOL CommManager_IsWifiPlazaError(void)
 {
     if (sCommMan) {
         u32 task = (u32)sCommMan->task;
 
-        if (task == (u32)CommTask_WifiLobbyError) {
+        if (task == (u32)CommTask_WifiPlazaError) {
             return TRUE;
         }
     }
@@ -2839,10 +2840,10 @@ void CommManager_StartWifiP2P(UnkEnum_ov66_02232F38 param0)
 
     if (ov66_02233184(param0) == 0) {
         ov66_02232F38(param0, 4);
-        CommManager_SetTask(CommTask_WaitWifiLobbyMatchServerP2P, 0);
+        CommManager_SetTask(CommTask_WaitWifiPlazaMatchServerP2P, 0);
     } else {
         ov66_02233260(param0);
-        CommManager_SetTask(CommTask_WaitWifiLobbyMatchServerP2P, 0);
+        CommManager_SetTask(CommTask_WaitWifiPlazaMatchServerP2P, 0);
     }
 }
 
@@ -2856,7 +2857,7 @@ void CommManager_EndWifiP2P(void)
     }
 
     ov66_0223361C();
-    CommManager_SetTask(CommTask_DisconnectWifiLobbyP2P, 0);
+    CommManager_SetTask(CommTask_DisconnectWifiPlazaP2P, 0);
 }
 
 /**
@@ -2869,11 +2870,11 @@ u32 CommManager_GetWifiP2PConnectState(void)
     if (sCommMan) {
         u32 task = (u32)sCommMan->task;
 
-        if (task == (u32)CommTask_ConnectWifiLobbyP2P) {
+        if (task == (u32)CommTask_ConnectWifiPlazaP2P) {
             return 2;
-        } else if (task == (u32)CommTask_WaitWifiLobbyMatchServerP2P) {
+        } else if (task == (u32)CommTask_WaitWifiPlazaMatchServerP2P) {
             return 1;
-        } else if (task == (u32)CommTask_DisconnectWifiLobbyP2P) {
+        } else if (task == (u32)CommTask_DisconnectWifiPlazaP2P) {
             return 3;
         }
     }
@@ -3068,7 +3069,7 @@ void CommManager_DisplayError(int unused)
 {
     if (CommManager_CheckError()) {
         if (CommSys_CheckError() || CommManager_CheckWifiError() || CommManager_GetDWCError()
-            || (sCommMan->commError != COMM_ERROR_NONE) || CommManager_IsWifiLobbyError()) {
+            || (sCommMan->commError != COMM_ERROR_NONE) || CommManager_IsWifiPlazaError()) {
             if (!HeapCanaryOK()) {
                 if (!CommManager_GetResetType()) {
                     Sound_StopWaveOutAndSequences();
@@ -3143,11 +3144,11 @@ void CommManager_SetState_WifiClub(void)
 }
 
 /**
- * @brief Sets sCommMan->commType to COMM_TYPE_LOBBY_WIFI and updates the data transfer callbacks
+ * @brief Sets sCommMan->commType to COMM_TYPE_WIFI_PLAZA and updates the data transfer callbacks
  */
-void CommManager_SetState_WifiLobby(void)
+void CommManager_SetState_WifiPlaza(void)
 {
-    sCommMan->commType = COMM_TYPE_LOBBY_WIFI;
+    sCommMan->commType = COMM_TYPE_WIFI_PLAZA;
     NintendoDWC_SetDataTransferCallbacks(sub_020352C0, sub_020352C0);
 }
 
@@ -3170,9 +3171,9 @@ void CommManager_SetState_SingleBattleWifi(void)
 }
 
 /**
- * @brief Task to initialize the Communication Manager for the Wifi Lobby and battle
+ * @brief Task to initialize the Communication Manager for the Wifi Plaza and battle
  */
-static void CommTask_StartWifiLobby(void)
+static void CommTask_StartWifiPlaza(void)
 {
     if (!WirelessDriver_IsReady()) {
         return;
@@ -3191,9 +3192,9 @@ static void CommTask_StartWifiLobby(void)
 }
 
 /**
- * @brief Task while logging in to the wifi lobby, errors if timed out
+ * @brief Task while logging in to the wifi Plaza, errors if timed out
  */
-static void CommTask_LogInWifiLobby(void)
+static void CommTask_LogInWifiPlaza(void)
 {
     BOOL result;
 
@@ -3204,9 +3205,9 @@ static void CommTask_LogInWifiLobby(void)
         return;
     }
 
-    CommSys_SetWifiConnected(1);
+    CommSys_SetWifiConnected(TRUE);
 
-    result = CommManager_UpdateWifiLobbyCommon();
+    result = CommManager_UpdateWifiPlazaCommon();
 
     if (result == 0) {
         return;
@@ -3215,16 +3216,16 @@ static void CommTask_LogInWifiLobby(void)
     result = ov66_02232804();
 
     if (result) {
-        CommManager_SetTask(CommTask_ConnectWifiLobby, 0);
+        CommManager_SetTask(CommTask_ConnectWifiPlaza, 0);
     }
 }
 
 /**
- * @brief Task while connecting to the wifi lobby. Internal process handled entirely by CommManager_UpdateWifiLobbyCommon
+ * @brief Task while connecting to the wifi Plaza. Internal process handled entirely by CommManager_UpdateWifiPlazaCommon
  */
-static void CommTask_ConnectWifiLobby(void)
+static void CommTask_ConnectWifiPlaza(void)
 {
-    BOOL ret = CommManager_UpdateWifiLobbyCommon();
+    BOOL ret = CommManager_UpdateWifiPlazaCommon();
 
     if (ret == 0) {
         return;
@@ -3232,11 +3233,11 @@ static void CommTask_ConnectWifiLobby(void)
 }
 
 /**
- * @brief Processes any DWC Error when handling the wifi connection for the wifi lobby
+ * @brief Processes any DWC Error when handling the wifi connection for the wifi Plaza
  *
  * @return TRUE if no error occured
  */
-static BOOL CommManager_ProcessWifiLobbyDWCError(int dwcError)
+static BOOL CommManager_ProcessWifiPlazaDWCError(int dwcError)
 {
     BOOL ret = TRUE;
 
@@ -3247,7 +3248,7 @@ static BOOL CommManager_ProcessWifiLobbyDWCError(int dwcError)
         CommManager_SetTask(CommTask_WifiBattleError, 0);
         ret = FALSE;
     } else if (dwcError == ((DWC_ERROR_NUM) + 3)) {
-        CommManager_SetTask(CommTask_WifiLobbyTimeout, 0);
+        CommManager_SetTask(CommTask_WifiPlazaTimeout, 0);
         ret = FALSE;
     } else if (dwcError == ((DWC_ERROR_NUM) + 4)) {
         ret = FALSE;
@@ -3270,16 +3271,16 @@ static BOOL CommManager_ProcessWifiLobbyDWCError(int dwcError)
 }
 
 /**
- * @brief Calls the updates wifi lobby function
+ * @brief Calls the updates wifi Plaza function
  *
- * @return TRUE if no error occured processing the lobby
+ * @return TRUE if no error occured processing the Plaza
  */
-static BOOL CommManager_UpdateWifiLobby(void)
+static BOOL CommManager_UpdateWifiPlaza(void)
 {
     UnkEnum_ov66_0223287C ret;
     BOOL noError = TRUE;
 
-    ret = ov66_022325D8(); // Wifi lobby update function
+    ret = ov66_022325D8(); // Wifi Plaza update function
 
     switch (ret) {
     case UnkEnum_ov66_0223287C_00: // none
@@ -3289,7 +3290,7 @@ static BOOL CommManager_UpdateWifiLobby(void)
         break;
 
     case UnkEnum_ov66_0223287C_04: // error
-        CommManager_SetTask(CommTask_WifiLobbyError, 0);
+        CommManager_SetTask(CommTask_WifiPlazaError, 0);
         noError = FALSE;
         break;
     }
@@ -3298,35 +3299,35 @@ static BOOL CommManager_UpdateWifiLobby(void)
 }
 
 /**
- * @brief Calls the update wifi lobby function and wifi connection process function
+ * @brief Calls the update wifi Plaza function and wifi connection process function
  *
- * @return TRUE if no error occured processing the lobby or handling the connection
+ * @return TRUE if no error occured processing the Plaza or handling the connection
  */
-static BOOL CommManager_UpdateWifiLobbyCommon(void)
+static BOOL CommManager_UpdateWifiPlazaCommon(void)
 {
     int errorCode;
     BOOL ret;
 
     errorCode = NintendoWFC_Process(0);
 
-    ret = CommManager_ProcessWifiLobbyDWCError(errorCode);
+    ret = CommManager_ProcessWifiPlazaDWCError(errorCode);
 
     if (ret == 0) {
         return ret;
     }
 
-    ret = CommManager_UpdateWifiLobby();
+    ret = CommManager_UpdateWifiPlaza();
     return ret;
 }
 
 /**
- * @brief Updates the wifi lobby matchmaking
+ * @brief Updates the wifi Plaza matchmaking
  *
  * @param matchmakingRet
  *
- * @return TRUE if no errors occurred while updating the lobby or while processing matchmaking
+ * @return TRUE if no errors occurred while updating the Plaza or while processing matchmaking
  */
-static BOOL CommManager_UpdateWifiLobbyMatchmaking(u32 *matchmakingRet)
+static BOOL CommManager_UpdateWifiPlazaMatchmaking(u32 *matchmakingRet)
 {
     int wfcResult;
     BOOL ret;
@@ -3338,35 +3339,35 @@ static BOOL CommManager_UpdateWifiLobbyMatchmaking(u32 *matchmakingRet)
     } else {
         *matchmakingRet = 0;
 
-        ret = CommManager_ProcessWifiLobbyDWCError(wfcResult);
+        ret = CommManager_ProcessWifiPlazaDWCError(wfcResult);
 
         if (ret == 0) {
             return ret;
         }
     }
 
-    ret = CommManager_UpdateWifiLobby();
+    ret = CommManager_UpdateWifiPlaza();
     return ret;
 }
 
 /**
- * @brief Calls the Wifi Lobby logout function and waits
+ * @brief Calls the Wifi Plaza logout function and waits
  */
-static void CommTask_LogoutWifiLobby(void)
+static void CommTask_LogoutWifiPlaza(void)
 {
     ov66_0223282C();
-    CommManager_SetTask(CommTask_WaitLogoutWifiLobby, 0);
+    CommManager_SetTask(CommTask_WaitLogoutWifiPlaza, 0);
 }
 
 /**
  * @brief Waits until the Wifi logout function is complete, then ends communication
  */
-static void CommTask_WaitLogoutWifiLobby(void)
+static void CommTask_WaitLogoutWifiPlaza(void)
 {
     BOOL result;
 
     NintendoWFC_Process(0);
-    CommManager_UpdateWifiLobby();
+    CommManager_UpdateWifiPlaza();
 
     result = ov66_02232854();
 
@@ -3374,38 +3375,38 @@ static void CommTask_WaitLogoutWifiLobby(void)
         ResetUnlock(RESET_LOCK_0x1);
         CommInfo_Delete();
         CommManager_SetTask(CommTask_EndConnection, 5);
-        CommSys_SetWifiConnected(0);
+        CommSys_SetWifiConnected(FALSE);
     }
 }
 
 /**
- * @brief Task the Comm Manager uses to indicate that an error has occured in the wifi lobby. Does nothing when called.
+ * @brief Task the Comm Manager uses to indicate that an error has occured in the wifi Plaza. Does nothing when called.
  */
-static void CommTask_WifiLobbyError(void)
+static void CommTask_WifiPlazaError(void)
 {
     return;
 }
 
 /**
- * @brief Connects to the Wifi Lobby using a p2p connection
+ * @brief Connects to the Wifi Plaza using a p2p connection
  */
-static void CommTask_ConnectWifiLobbyP2P(void)
+static void CommTask_ConnectWifiPlazaP2P(void)
 {
     BOOL ret;
-    CommManager_UpdateWifiLobbyCommon();
+    CommManager_UpdateWifiPlazaCommon();
 
     ret = ov66_02233164();
 
     if (ret == 1) {
         ov66_0223361C();
-        CommManager_SetTask(CommTask_DisconnectWifiLobbyP2P, 0);
+        CommManager_SetTask(CommTask_DisconnectWifiPlazaP2P, 0);
     }
 }
 
 /**
- * @brief Task that indicates the server is waiting for a p2p connection for wifi lobby matchmaking. Disconnects if there's an error.
+ * @brief Task that indicates the server is waiting for a p2p connection for wifi Plaza matchmaking. Disconnects if there's an error.
  */
-static void CommTask_WaitWifiLobbyMatchServerP2P(void)
+static void CommTask_WaitWifiPlazaMatchServerP2P(void)
 {
     BOOL ret;
     u32 v1;
@@ -3414,29 +3415,29 @@ static void CommTask_WaitWifiLobbyMatchServerP2P(void)
 
     if (ret == 1) {
         ov66_0223361C();
-        CommManager_SetTask(CommTask_DisconnectWifiLobbyP2P, 0);
+        CommManager_SetTask(CommTask_DisconnectWifiPlazaP2P, 0);
         return;
     }
 
-    CommManager_UpdateWifiLobbyMatchmaking(&v1);
+    CommManager_UpdateWifiPlazaMatchmaking(&v1);
 
     switch (v1) {
     case 0:
         break;
     case (DWC_ERROR_NUM):
-        CommManager_SetTask(CommTask_ConnectWifiLobbyP2P, 0);
+        CommManager_SetTask(CommTask_ConnectWifiPlazaP2P, 0);
         break;
     default:
         ov66_0223361C();
-        CommManager_SetTask(CommTask_ConnectWifiLobby, 0);
+        CommManager_SetTask(CommTask_ConnectWifiPlaza, 0);
         break;
     }
 }
 
 /**
- * @brief Handles a wifi lobby p2p disconnect and updates the wifi lobby
+ * @brief Handles a wifi Plaza p2p disconnect and updates the wifi Plaza
  */
-static void CommTask_DisconnectWifiLobbyP2P(void)
+static void CommTask_DisconnectWifiPlazaP2P(void)
 {
     BOOL updateResult;
     int ret = NintendoWFC_Process(1);
@@ -3446,7 +3447,7 @@ static void CommTask_DisconnectWifiLobbyP2P(void)
         return;
     }
 
-    updateResult = CommManager_UpdateWifiLobby();
+    updateResult = CommManager_UpdateWifiPlaza();
 
     if (updateResult == 0) {
         return;
@@ -3458,15 +3459,15 @@ static void CommTask_DisconnectWifiLobbyP2P(void)
         if (ret) {
             CommSys_Reset();
             sub_0203632C(0);
-            CommManager_SetTask(CommTask_ConnectWifiLobby, 0);
+            CommManager_SetTask(CommTask_ConnectWifiPlaza, 0);
         }
     }
 }
 
 /**
- * @brief Handles a wifi lobby timeout and updates the wifi lobby
+ * @brief Handles a wifi Plaza timeout and updates the wifi Plaza
  */
-static void CommTask_WifiLobbyTimeout(void)
+static void CommTask_WifiPlazaTimeout(void)
 {
     int ret = NintendoWFC_Process(0);
 
@@ -3474,7 +3475,7 @@ static void CommTask_WifiLobbyTimeout(void)
         CommManager_SetTask(CommTask_WifiBattleError, 0);
     }
 
-    CommManager_UpdateWifiLobby();
+    CommManager_UpdateWifiPlaza();
 }
 
 /**
