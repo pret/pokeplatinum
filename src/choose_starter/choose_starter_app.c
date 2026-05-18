@@ -1545,8 +1545,8 @@ static void MakePreviewWindow(StarterPreviewWindow *previewWindow, ChooseStarter
 
     previewWindow->sprite = SoftwareSprite_Load(&spriteTemplate);
 
-    SoftwareSprite_SetVisible(previewWindow->sprite, 0);
-    SoftwareSprite_SetCenter(previewWindow->sprite, 128 / 2, 128 / 2);
+    SoftwareSprite_SetVisible(previewWindow->sprite, FALSE);
+    SoftwareSprite_SetCenter(previewWindow->sprite, 64, 64);
 }
 
 static void DeletePreviewWindow(StarterPreviewWindow *previewWindow)
@@ -1598,8 +1598,8 @@ static void AdvancePreviewMovement(SysTask *task, void *previewWindowParam)
     AdvanceStarterMovement(&previewWindow->previewAnimation.y, previewWindow->previewAnimation.frameCount);
     AdvanceStarterMovement(&previewWindow->previewAnimation.scale, previewWindow->previewAnimation.frameCount);
 
-    fx32 x = previewWindow->previewAnimation.x.frameCount - ((128 / 2) * FX32_ONE);
-    fx32 y = previewWindow->previewAnimation.y.frameCount - ((128 / 2) * FX32_ONE);
+    fx32 x = previewWindow->previewAnimation.x.frameCount - (64 * FX32_ONE);
+    fx32 y = previewWindow->previewAnimation.y.frameCount - (64 * FX32_ONE);
 
     SoftwareSprite_SetPosition(previewWindow->sprite, x >> FX32_SHIFT, y >> FX32_SHIFT);
     SoftwareSprite_SetScalingFactors(previewWindow->sprite, previewWindow->previewAnimation.scale.frameCount, previewWindow->previewAnimation.scale.frameCount);
