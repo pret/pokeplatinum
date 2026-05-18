@@ -1325,7 +1325,7 @@ static BOOL State_SyncPurchase(BattleCastleSelfApp *app)
     case 4:
         if (CommTiming_IsSyncState(130) == TRUE) {
             CommTool_ClearReceivedTempDataAllPlayers();
-            CommTool_Init(100);
+            CommTool_Init(HEAP_ID_BATTLE_CASTLE_APP);
 
             app->slotID = 0xff;
 
@@ -2745,7 +2745,7 @@ static u16 GetItemPrice(u16 itemID)
         }
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
     return 0;
 }
 
@@ -3218,7 +3218,7 @@ static void HealPokemon(BattleCastleSelfApp *app, u8 slot, u8 menuOption)
         break;
 
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 
     Sound_PlayEffect(SEQ_SE_DP_KAIFUKU);

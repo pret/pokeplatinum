@@ -1069,7 +1069,7 @@ static u8 ov10_022208B0(UnkStruct_ov10_0221FB28 *param0)
         }
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 
@@ -1796,7 +1796,7 @@ static u32 ov10_0222194C(u32 param0, BOOL param1)
     ParticleSystem_RegisterPaletteKey(v0);
 
     if (v0 == NNS_GFD_ALLOC_ERROR_PLTTKEY) {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 
     v1 = NNS_GfdGetPlttKeyAddr(v0);

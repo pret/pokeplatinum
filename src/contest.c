@@ -261,7 +261,7 @@ static BOOL FieldTask_RunContest(FieldTask *fieldTask)
         taskEnv->state++;
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     case CONTEST_MANAGER_STATE_END:
         Heap_Free(taskEnv);
         return TRUE;
@@ -378,7 +378,7 @@ static BOOL FieldTask_RunPracticeCompetition(FieldTask *fieldTask)
         taskEnv->state++;
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     case 9:
         Heap_Free(taskEnv);
         return 1;

@@ -4227,7 +4227,7 @@ static void Traps_LoadDamagedBoulderTiles(RockTrapContext *ctx)
 
     NARC *narc = NARC_ctor(NARC_INDEX_DATA__UG_TRAP, HEAP_ID_FIELD1);
 
-    if (index < (int)NELEMS(narcMemberIndices)) {
+    if (index < SNELEMS(narcMemberIndices)) {
         ctx->boulderSpriteResources[index + 1] = SpriteResourceCollection_AddTilesFrom(trapsEnv->spriteResourceCollection[TRAP_RESOURCES][SPRITE_RESOURCE_CHAR], narc, narcMemberIndices[index], FALSE, index + 1, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_FIELD1);
     }
 

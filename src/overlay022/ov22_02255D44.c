@@ -1466,7 +1466,7 @@ static int ov22_02257580(enum PokemonContestRank contestRank)
         v0 = 20;
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 

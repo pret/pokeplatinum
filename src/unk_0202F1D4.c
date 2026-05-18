@@ -700,7 +700,7 @@ u64 sub_0202FE98(UnkStruct_0202F41C *param0, int param1, int param2)
         return param0->unk_27;
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
     return 0;
 }
 

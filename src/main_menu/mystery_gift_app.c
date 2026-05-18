@@ -2484,7 +2484,7 @@ static void ov97_02230224(MysteryGiftAppData *param0)
         param0->unk_62C = 30;
         break;
     case 30:
-        v0 = CommManager_GetUnk54();
+        v0 = CommManager_GetAvailableConnections();
 
         if (v0 & 0x1) {
             param0->unk_634 = 1;

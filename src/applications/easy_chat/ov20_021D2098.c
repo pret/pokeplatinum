@@ -223,7 +223,7 @@ void ov20_021D21A0(UnkStruct_ov20_021D2128 *param0, int param1)
             }
         }
     } else {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 }
 

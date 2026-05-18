@@ -122,7 +122,7 @@ int ov82_0223B24C(ApplicationManager *appMan, int *param1)
         }
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 

@@ -78,7 +78,7 @@ void ov113_02260620(MessageLoader *param0, StringTemplate *param1, Window param2
     }
 
     if (v7 >= 8) {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         return;
     }
 
@@ -113,7 +113,7 @@ void ov113_02260620(MessageLoader *param0, StringTemplate *param1, Window param2
 void ov113_02260714(Window param0[], u32 param1)
 {
     if (param1 >= 8) {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         return;
     }
 

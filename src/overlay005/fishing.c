@@ -561,7 +561,7 @@ static u16 ConvertRodTypeToRodItem(enum EncounterFishingRodType rodType)
 {
     switch (rodType) {
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     case FISHING_TYPE_OLD_ROD:
         return ITEM_OLD_ROD;
     case FISHING_TYPE_GOOD_ROD:

@@ -313,7 +313,7 @@ void BattleFactory_GetMonSelectionAppResult(BattleFactory *battleFactory, Battle
 static u16 ov104_02234130(BattleFactoryAppArgs *args, u8 i)
 {
     if (i >= 6) {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         return 0;
     }
 

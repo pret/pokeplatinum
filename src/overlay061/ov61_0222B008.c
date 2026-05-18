@@ -535,7 +535,7 @@ static int ov61_0222B6D8(UnkStruct_ov62_022349A8 *param0)
         }
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 

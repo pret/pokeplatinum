@@ -1130,8 +1130,8 @@
     .short SCRCMD_CLEARGAME
     .endm
 
-    .macro ScrCmd_0B1
-    .short SCRCMD_0B1
+    .macro OpenPCHallOfFameScreen
+    .short SCRCMD_OPENPCHALLOFFAMESCREEN
     .endm
 
     .macro TryStartGTSApp connectToWiFi, destVar
@@ -1153,8 +1153,8 @@
     .short SCRCMD_SAVECHOSENSTARTER
     .endm
 
-    .macro ScrCmd_0B6 approachNum
-    .short SCRCMD_0B6
+    .macro StartApproachingTrainerTask approachNum
+    .short SCRCMD_STARTAPPROACHINGTRAINERTASK
     .short \approachNum
     .endm
 
@@ -1164,8 +1164,8 @@
     .short \destVar
     .endm
 
-    .macro ScrCmd_0B8 destVar
-    .short SCRCMD_0B8
+    .macro GetApproachingTrainerType destVar
+    .short SCRCMD_GETAPPROACHINGTRAINERTYPE
     .short \destVar
     .endm
 
@@ -1797,8 +1797,8 @@
     .short SCRCMD_STARTHONEYTREEBATTLE
     .endm
 
-    .macro ScrCmd_12A
-    .short SCRCMD_12A
+    .macro StopHoneyTreeShaking
+    .short SCRCMD_STOPHONEYTREESHAKING
     .endm
 
     .macro StartSignatureApp
@@ -2158,14 +2158,14 @@
     .short SCRCMD_INITPERSISTEDMAPFEATURESFORVEILSTONEGYM
     .endm
 
-    .macro InitPersistedMapFeaturesForSunyshoreGym floorID
+    .macro InitPersistedMapFeaturesForSunyshoreGym roomID
     .short SCRCMD_INITPERSISTEDMAPFEATURESFORSUNYSHOREGYM
-    .byte \floorID
+    .byte \roomID
     .endm
 
-    .macro SunyshoreGymButton arg0
-    .short SCRCMD_SUNYSHOREGYMBUTTON
-    .byte \arg0
+    .macro PressSunyshoreGymButton buttonType
+    .short SCRCMD_PRESSSUNYSHOREGYMBUTTON
+    .byte \buttonType
     .endm
 
     .macro GetPartyCount destVarID
@@ -3025,8 +3025,8 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_20B
-    .short SCRCMD_20B
+    .macro SetMoveCodeForFacingDirection
+    .short SCRCMD_SETMOVECODEFORFACINGDIRECTION
     .endm
 
     .macro MessageFromTrainerType
@@ -3451,12 +3451,12 @@
     MysteryGiftGive MYSTERY_GIFT_CANT_RECEIVE, \destTextBank, \destStringID
     .endm
 
-    .macro UnloadMysteryGift
-    MysteryGiftGive MYSTERY_GIFT_UNLOAD_RECEIVED
+    .macro UnloadMysteryGiftNotReceived
+    MysteryGiftGive MYSTERY_GIFT_UNLOAD_NOT_RECEIVED
     .endm
 
-    .macro UnloadMysteryGift2
-    MysteryGiftGive MYSTERY_GIFT_UNLOAD_NOT_RECEIVED
+    .macro UnloadMysteryGiftReceived
+    MysteryGiftGive MYSTERY_GIFT_UNLOAD_RECEIVED
     .endm
 
     .macro Dummy23F
@@ -4103,9 +4103,9 @@
     .short \customMessageWord4
     .endm
 
-    .macro ScrCmd_2AB arg0
-    .short SCRCMD_2AB
-    .short \arg0
+    .macro CountUniqueSealsInSealCase destVar
+    .short SCRCMD_COUNTUNIQUESEALSINSEALCASE
+    .short \destVar
     .endm
 
     .macro UnlockMysteryGift
@@ -4643,8 +4643,8 @@
     .short \scoreID
     .endm
 
-    .macro ScrCmd_30B
-    .short SCRCMD_30B
+    .macro SaveTVSegmentPokemonStorageBulletin
+    .short SCRCMD_SAVETVSEGMENTPOKEMONSTORAGEBULLETIN
     .endm
 
     .macro SaveTVSegmentHomeAndManorNoFurniture
@@ -4876,9 +4876,9 @@
     .long \value
     .endm
 
-    .macro ScrCmd_336 arg0
-    .short SCRCMD_336
-    .short \arg0
+    .macro CheckIsHallOfFameCorrupted destVar
+    .short SCRCMD_CHECKISHALLOFFAMECORRUPTED
+    .short \destVar
     .endm
 
     .macro CheckHasSeenSpecies species, ret

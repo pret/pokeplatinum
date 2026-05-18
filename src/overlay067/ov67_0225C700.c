@@ -228,7 +228,7 @@ int ov67_0225C820(ApplicationManager *appMan, int *param1)
         UnkStruct_ov66_0222E71C *v3;
 
         v3 = ov66_0222E3BC(v1->unk_04);
-        CommManager_LoginWifiLobby(v0->saveData, v3);
+        CommManager_LoginWifiPlaza(v0->saveData, v3);
     }
 
         ov67_0225D210(&v0->unk_70, 23);
@@ -236,18 +236,18 @@ int ov67_0225C820(ApplicationManager *appMan, int *param1)
         (*param1)++;
         break;
     case 5:
-        if (CommManager_CheckWifiError() || CommManager_IsWifiLobbyError()) {
+        if (CommManager_CheckWifiError() || CommManager_IsWifiPlazaError()) {
             ov67_0225D310(&v0->unk_70);
             (*param1) = 9;
         }
 
-        if (CommManager_GetWifiLobbyLoginSuccess() == 1) {
+        if (CommManager_GetWifiPlazaLoginSuccess() == 1) {
             ov66_0222F16C(v1->unk_04);
             (*param1)++;
         }
         break;
     case 6:
-        if (CommManager_CheckWifiError() || CommManager_IsWifiLobbyError()) {
+        if (CommManager_CheckWifiError() || CommManager_IsWifiPlazaError()) {
             ov67_0225D310(&v0->unk_70);
             (*param1) = 9;
         }
@@ -324,7 +324,7 @@ int ov67_0225C820(ApplicationManager *appMan, int *param1)
 
         switch (v11) {
         case 0:
-            CommManager_LogoutWifiLobby();
+            CommManager_LogoutWifiPlaza();
             (*param1) = 13;
             break;
         case 0xfffffffe:
@@ -341,7 +341,7 @@ int ov67_0225C820(ApplicationManager *appMan, int *param1)
         ov67_0225D294(&v0->unk_40);
         ov67_0225D294(&v0->unk_70);
         ov67_0225D294(&v0->unk_A0);
-        CommManager_LogoutWifiLobby();
+        CommManager_LogoutWifiPlaza();
         (*param1)++;
         break;
     case 15:
@@ -361,7 +361,7 @@ int ov67_0225C820(ApplicationManager *appMan, int *param1)
         }
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 
@@ -437,7 +437,7 @@ int ov67_0225CC6C(ApplicationManager *appMan, int *param1)
     case 2:
         ov67_0225D210(&v0->unk_40, 26);
 
-        if (CommManager_CheckWifiError() || CommManager_IsWifiLobbyError()) {
+        if (CommManager_CheckWifiError() || CommManager_IsWifiPlazaError()) {
             (*param1) = 5;
             ov67_0225D2EC(&v0->unk_40);
         } else {
@@ -461,7 +461,7 @@ int ov67_0225CC6C(ApplicationManager *appMan, int *param1)
         }
         break;
     case 5:
-        CommManager_LogoutWifiLobby();
+        CommManager_LogoutWifiPlaza();
         (*param1) = 6;
         break;
     case 6:

@@ -14,7 +14,7 @@
     ScriptEntryEnd
 
 OreburghCityPokecenter1F_Nurse:
-    Common_CallPokecenterNurse LOCALID_POKECENTER_NURSE
+    Common_CallPokecenterNurse LOCALID_OREBURGH_NURSE
     End
 
 OreburghCityPokecenter1F_NinjaBoy:

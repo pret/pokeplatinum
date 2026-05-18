@@ -333,7 +333,7 @@ UnkStruct_ov12_02235FE0 *ov12_02235FE0(enum HeapID heapID)
     v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov12_02235FE0));
 
     if (v0 == NULL) {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         return NULL;
     }
 

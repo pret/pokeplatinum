@@ -79,7 +79,7 @@ BOOL PartyMenuFormChange_ChangeForm(PartyMenuApplication *app)
             break;
         case SPECIES_ROTOM:
         default:
-            GF_ASSERT(0);
+            GF_ASSERT(FALSE);
             break;
         }
 

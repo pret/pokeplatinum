@@ -975,7 +975,7 @@ static int ov59_021D1C64(UnkStruct_020961E8 *param0, int param1)
                 param0->unk_3A8 = 24;
                 param0->unk_4ABA = ov59_021D2528();
             } else {
-                GF_ASSERT(0);
+                GF_ASSERT(FALSE);
             }
         }
 

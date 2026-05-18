@@ -1,982 +1,983 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/common_strings.h"
 #include "generated/trainer_message_types.h"
+#include "constants/approach_type.h"
 
 
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _0E86
-    ScriptEntry _1054
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_Trainer
+    ScriptEntry Battles_ApproachingTrainer
     ScriptEntryEnd
 
-_0E86:
+Battles_Trainer:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GetTrainerID VAR_0x8004
     GetMovementType VAR_0x8001, VAR_LAST_TALKED
-    CallIfEq VAR_0x8001, MOVEMENT_TYPE_DISGUISE_SNOW, _0FE7
-    CallIfEq VAR_0x8001, MOVEMENT_TYPE_DISGUISE_SAND, _0FE7
-    CallIfEq VAR_0x8001, MOVEMENT_TYPE_DISGUISE_ROCK, _0FE7
-    CallIfEq VAR_0x8001, MOVEMENT_TYPE_DISGUISE_GRASS, _0FE7
-    GoToIfDefeated VAR_0x8004, _0F40
+    CallIfEq VAR_0x8001, MOVEMENT_TYPE_DISGUISE_SNOW, Battles_RevealTrainer
+    CallIfEq VAR_0x8001, MOVEMENT_TYPE_DISGUISE_SAND, Battles_RevealTrainer
+    CallIfEq VAR_0x8001, MOVEMENT_TYPE_DISGUISE_ROCK, Battles_RevealTrainer
+    CallIfEq VAR_0x8001, MOVEMENT_TYPE_DISGUISE_GRASS, Battles_RevealTrainer
+    GoToIfDefeated VAR_0x8004, Battles_TryRematch
     CheckIsTrainerDoubleBattle VAR_RESULT
-    GoToIfNe VAR_RESULT, 1, _0F01
+    GoToIfNe VAR_RESULT, TRUE, Battles_StartTrainerEncounter
     CheckHasTwoAliveMons VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _0FCB
-    GoTo _0F01
+    GoToIfEq VAR_RESULT, FALSE, Battles_NotEnoughPokemonMessage
+    GoTo Battles_StartTrainerEncounter
     End
 
-_0F01:
+Battles_StartTrainerEncounter:
     PlayTrainerEncounterBGM VAR_0x8004
     OpenMessage
     GetTrainerMessageTypes VAR_0x8000, VAR_0x8001, VAR_0x8002
     PrintTrainerDialogue VAR_0x8004, VAR_0x8000
-    GoTo _0F1D
+    GoTo Battles_DoTrainerBattle
     End
 
-_0F1D:
+Battles_DoTrainerBattle:
     CloseMessage
-    ScrCmd_20B
+    SetMoveCodeForFacingDirection
     StartTrainerBattle VAR_0x8004
     CheckWonBattle VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, _0FC5
+    GoToIfEq VAR_RESULT, FALSE, Battles_LostBattle
     SetTrainerFlag VAR_0x8004
     ReleaseAll
     End
 
-_0F40:
+Battles_TryRematch:
     GetRematchTrainerID VAR_0x8004, VAR_RESULT
-    GoToIfNe VAR_RESULT, TRAINER_NONE, _0F73
-    GoTo _0F5B
+    GoToIfNe VAR_RESULT, TRAINER_NONE, Battles_Rematch
+    GoTo Battles_PostBattleMessage
     End
 
-_0F5B:
+Battles_PostBattleMessage:
     OpenMessage
     GetTrainerMessageTypes VAR_0x8000, VAR_0x8001, VAR_0x8002
     PrintTrainerDialogue VAR_0x8004, VAR_0x8001
@@ -985,30 +986,30 @@ _0F5B:
     ReleaseAll
     End
 
-_0F73:
+Battles_Rematch:
     SetVar VAR_0x8007, VAR_RESULT
     CheckIsTrainerDoubleBattle VAR_RESULT
-    GoToIfNe VAR_RESULT, 1, _0FA3
+    GoToIfNe VAR_RESULT, TRUE, Battles_StartRematchEncounter
     CheckHasTwoAliveMons VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _0FCB
-    GoTo _0FA3
+    GoToIfEq VAR_RESULT, FALSE, Battles_NotEnoughPokemonMessage
+    GoTo Battles_StartRematchEncounter
     End
 
-_0FA3:
+Battles_StartRematchEncounter:
     PlayTrainerEncounterBGM VAR_0x8004
     OpenMessage
     GetTrainerRematchMessageTypes VAR_0x8000, VAR_0x8001, VAR_0x8002
     PrintTrainerDialogue VAR_0x8004, VAR_0x8000
     SetVar VAR_0x8004, VAR_0x8007
-    GoTo _0F1D
+    GoTo Battles_DoTrainerBattle
     End
 
-_0FC5:
+Battles_LostBattle:
     BlackOutFromBattle
     ReleaseAll
     End
 
-_0FCB:
+Battles_NotEnoughPokemonMessage:
     GetTrainerID VAR_0x8004
     OpenMessage
     GetTrainerMessageTypes VAR_0x8000, VAR_0x8001, VAR_0x8002
@@ -1018,51 +1019,51 @@ _0FCB:
     ReleaseAll
     End
 
-_0FE7:
-    ApplyMovement VAR_LAST_TALKED, _104C
+Battles_RevealTrainer:
+    ApplyMovement VAR_LAST_TALKED, Battles_Movement_RevealTrainer
     WaitMovement
     GetPlayerDir VAR_0x8000
-    CallIfEq VAR_0x8000, DIR_NORTH, _102B
-    CallIfEq VAR_0x8000, DIR_SOUTH, _1033
-    CallIfEq VAR_0x8000, DIR_WEST, _103B
-    CallIfEq VAR_0x8000, DIR_EAST, _1043
+    CallIfEq VAR_0x8000, DIR_NORTH, Battles_SetTrainerLookSouth
+    CallIfEq VAR_0x8000, DIR_SOUTH, Battles_SetTrainerLookNorth
+    CallIfEq VAR_0x8000, DIR_WEST, Battles_SetTrainerLookEast
+    CallIfEq VAR_0x8000, DIR_EAST, Battles_SetTrainerLookWest
     Return
 
-_102B:
-    SetMovementType VAR_LAST_TALKED, 15
+Battles_SetTrainerLookSouth:
+    SetMovementType VAR_LAST_TALKED, MOVEMENT_TYPE_LOOK_SOUTH
     Return
 
-_1033:
-    SetMovementType VAR_LAST_TALKED, 14
+Battles_SetTrainerLookNorth:
+    SetMovementType VAR_LAST_TALKED, MOVEMENT_TYPE_LOOK_NORTH
     Return
 
-_103B:
-    SetMovementType VAR_LAST_TALKED, 17
+Battles_SetTrainerLookEast:
+    SetMovementType VAR_LAST_TALKED, MOVEMENT_TYPE_LOOK_EAST
     Return
 
-_1043:
-    SetMovementType VAR_LAST_TALKED, 16
+Battles_SetTrainerLookWest:
+    SetMovementType VAR_LAST_TALKED, MOVEMENT_TYPE_LOOK_WEST
     Return
 
     .balign 4, 0
-_104C:
+Battles_Movement_RevealTrainer:
     RevealTrainer
     EndMovement
 
-_1054:
+Battles_ApproachingTrainer:
     LockAll
-    ScrCmd_0B8 VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _1083
-    GoToIfEq VAR_RESULT, 1, _10F3
-    GoToIfEq VAR_RESULT, 2, _11A0
+    GetApproachingTrainerType VAR_RESULT
+    GoToIfEq VAR_RESULT, APPROACH_TYPE_SINGLES, Battles_ApproachingTrainerSingles
+    GoToIfEq VAR_RESULT, APPROACH_TYPE_DOUBLES, Battles_ApproachingTrainerDoubles
+    GoToIfEq VAR_RESULT, APPROACH_TYPE_VS2, Battles_ApproachingTrainerVS2
     End
 
-_1083:
+Battles_ApproachingTrainerSingles:
     GetApproachingTrainerID 0, VAR_RESULT
     SetVar VAR_0x8004, VAR_RESULT
     PlayTrainerEncounterBGM VAR_0x8004
-    ScrCmd_0B6 0
-    Call _10DE
+    StartApproachingTrainerTask 0
+    Call Battles_WaitTrainerSinglesTaskDone
     GetApproachingTrainerID 0, VAR_RESULT
     SetVar VAR_0x8004, VAR_RESULT
     OpenMessage
@@ -1070,25 +1071,25 @@ _1083:
     CloseMessage
     StartTrainerBattle VAR_0x8004
     CheckWonBattle VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, _0FC5
+    GoToIfEq VAR_RESULT, FALSE, Battles_LostBattle
     GetApproachingTrainerID 0, VAR_RESULT
     SetVar VAR_0x8004, VAR_RESULT
     SetTrainerFlag VAR_0x8004
     ReleaseAll
     End
 
-_10DE:
+Battles_WaitTrainerSinglesTaskDone:
     CheckIsApproachingTrainerTaskDone 0, VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, _10DE
+    GoToIfEq VAR_RESULT, FALSE, Battles_WaitTrainerSinglesTaskDone
     Return
 
-_10F3:
+Battles_ApproachingTrainerDoubles:
     GetApproachingTrainerID 0, VAR_RESULT
     SetVar VAR_0x8004, VAR_RESULT
     PlayTrainerEncounterBGM VAR_0x8004
-    ScrCmd_0B6 0
-    ScrCmd_0B6 1
-    Call _1178
+    StartApproachingTrainerTask 0
+    StartApproachingTrainerTask 1
+    Call Battles_WaitTrainersDoublesTasksDone
     GetApproachingTrainerID 0, VAR_RESULT
     SetVar VAR_0x8004, VAR_RESULT
     OpenMessage
@@ -1101,7 +1102,7 @@ _10F3:
     CloseMessage
     StartTrainerBattle VAR_0x8004, VAR_0x8005
     CheckWonBattle VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, _0FC5
+    GoToIfEq VAR_RESULT, FALSE, Battles_LostBattle
     GetApproachingTrainerID 0, VAR_RESULT
     SetVar VAR_0x8004, VAR_RESULT
     SetTrainerFlag VAR_0x8004
@@ -1111,19 +1112,19 @@ _10F3:
     ReleaseAll
     End
 
-_1178:
+Battles_WaitTrainersDoublesTasksDone:
     CheckIsApproachingTrainerTaskDone 0, VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, _1178
+    GoToIfEq VAR_RESULT, FALSE, Battles_WaitTrainersDoublesTasksDone
     CheckIsApproachingTrainerTaskDone 1, VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, _1178
+    GoToIfEq VAR_RESULT, FALSE, Battles_WaitTrainersDoublesTasksDone
     Return
 
-_11A0:
+Battles_ApproachingTrainerVS2:
     GetApproachingTrainerID 0, VAR_RESULT
     SetVar VAR_0x8004, VAR_RESULT
     PlayTrainerEncounterBGM VAR_0x8004
-    ScrCmd_0B6 0
-    Call _123B
+    StartApproachingTrainerTask 0
+    Call Battles_WaitTrainer0VS2TaskDone
     GetApproachingTrainerID 0, VAR_RESULT
     SetVar VAR_0x8004, VAR_RESULT
     OpenMessage
@@ -1132,8 +1133,8 @@ _11A0:
     GetApproachingTrainerID 1, VAR_RESULT
     SetVar VAR_0x8005, VAR_RESULT
     PlayTrainerEncounterBGM VAR_0x8005
-    ScrCmd_0B6 1
-    Call _1250
+    StartApproachingTrainerTask 1
+    Call Battles_WaitTrainer1VS2TaskDone
     GetApproachingTrainerID 1, VAR_RESULT
     SetVar VAR_0x8005, VAR_RESULT
     OpenMessage
@@ -1141,7 +1142,7 @@ _11A0:
     CloseMessage
     StartTrainerBattle VAR_0x8004, VAR_0x8005
     CheckWonBattle VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, _0FC5
+    GoToIfEq VAR_RESULT, FALSE, Battles_LostBattle
     GetApproachingTrainerID 0, VAR_RESULT
     SetVar VAR_0x8004, VAR_RESULT
     SetTrainerFlag VAR_0x8004
@@ -1151,14 +1152,14 @@ _11A0:
     ReleaseAll
     End
 
-_123B:
+Battles_WaitTrainer0VS2TaskDone:
     CheckIsApproachingTrainerTaskDone 0, VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, _123B
+    GoToIfEq VAR_RESULT, FALSE, Battles_WaitTrainer0VS2TaskDone
     Return
 
-_1250:
+Battles_WaitTrainer1VS2TaskDone:
     CheckIsApproachingTrainerTaskDone 1, VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, _1250
+    GoToIfEq VAR_RESULT, FALSE, Battles_WaitTrainer1VS2TaskDone
     Return
 
     .balign 4, 0

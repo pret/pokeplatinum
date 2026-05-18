@@ -277,7 +277,7 @@ void RoamingPokemon_ActivateSlot(SaveData *saveData, const u8 slot)
         level = 60;
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         return;
     }
 

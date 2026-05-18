@@ -438,7 +438,7 @@ BOOL ov70_02265F38(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DEE8 *par
         ov70_02266CF0(&v0->unk_3C, param1, 0);
         ov66_0222E3E4(ov70_0225DEE8(param1), v1->unk_03);
 
-        CommManager_SetState_WifiLobby();
+        CommManager_SetState_WifiPlaza();
         CommInfo_Init(ov66_0222E0C4(ov70_0225DEE8(param1)), NULL);
         CommInfo_SetPersonalTrainerInfo(ov66_0222E918(v2));
         sub_0203632C(0);
@@ -789,7 +789,7 @@ BOOL ov70_022669FC(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DEE8 *par
             v4 = UnkEnum_ov66_022324D0_02;
             break;
         default:
-            GF_ASSERT(0);
+            GF_ASSERT(FALSE);
             return 1;
         }
 
@@ -991,7 +991,7 @@ static void ov70_02266D08(UnkStruct_ov70_02266C68 *param0, UnkStruct_ov70_0225DE
         v1 = UnkEnum_ov66_02232F38_02;
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         v1 = UnkEnum_ov66_02232F38_02;
         break;
     }

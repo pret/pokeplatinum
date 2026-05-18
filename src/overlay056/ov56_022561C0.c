@@ -259,7 +259,7 @@ void ov56_02256468(UnkStruct_ov56_02256468 *param0)
         Heap_Free(param0->unk_20);
         SysTask_FinishAndFreeParam(param0->unk_2F8);
     } else {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 }
 

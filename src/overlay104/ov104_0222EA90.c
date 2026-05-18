@@ -396,7 +396,7 @@ int GetFrontierSceneValue(int scene, enum FrontierSceneParam sceneParam)
         return sFrontierScenes[scene].unk_23;
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
     return 0;
 }
 

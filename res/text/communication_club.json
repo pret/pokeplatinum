@@ -2,21 +2,21 @@
   "key": 14338,
   "messages": [
     {
-      "id": "pl_msg_00000011_00000",
+      "id": "CommunicationClub_Text_TakePositionStartBattle",
       "en_US": [
         "Please take your designated position\n",
         "and start the battle."
       ]
     },
     {
-      "id": "pl_msg_00000011_00001",
+      "id": "CommunicationClub_Text_PleaseWaitPressBToCancel",
       "en_US": [
         "Please wait a moment...\n",
         "Press the B Button to cancel."
       ]
     },
     {
-      "id": "pl_msg_00000011_00002",
+      "id": "CommunicationClub_Text_TrainerCaseNormalCard",
       "en_US": [
         "Let’s check out {STRVAR_1 3, 0, 0}’s\n",
         "Trainer Case...\r",
@@ -24,7 +24,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000011_00003",
+      "id": "CommunicationClub_Text_TrainerCaseBronzeCard",
       "en_US": [
         "Let’s check out {STRVAR_1 3, 0, 0}’s\n",
         "Trainer Case...\r",
@@ -32,7 +32,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000011_00004",
+      "id": "CommunicationClub_Text_TrainerCaseCopperCard",
       "en_US": [
         "Let’s check out {STRVAR_1 3, 0, 0}’s\n",
         "Trainer Case...\r",
@@ -40,7 +40,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000011_00005",
+      "id": "CommunicationClub_Text_TrainerCaseSilverCard",
       "en_US": [
         "Let’s check out {STRVAR_1 3, 0, 0}’s\n",
         "Trainer Case...\r",
@@ -48,7 +48,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000011_00006",
+      "id": "CommunicationClub_Text_TrainerCaseGoldCard",
       "en_US": [
         "Let’s check out {STRVAR_1 3, 0, 0}’s\n",
         "Trainer Case...\r",
@@ -56,7 +56,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000011_00007",
+      "id": "CommunicationClub_Text_TrainerCaseBlackCard",
       "en_US": [
         "Let’s check out {STRVAR_1 3, 0, 0}’s\n",
         "Trainer Case...\r",
@@ -64,70 +64,70 @@
       ]
     },
     {
-      "id": "pl_msg_00000011_00008",
+      "id": "CommunicationClub_Text_Dummy8",
       "garbage": 14
     },
     {
-      "id": "pl_msg_00000011_00009",
+      "id": "CommunicationClub_Text_OKToEndCommuncation",
       "en_US": [
         "Communication will be ended.\n",
         "Is that OK?"
       ]
     },
     {
-      "id": "pl_msg_00000011_00010",
+      "id": "CommunicationClub_Text_Yes",
       "en_US": "YES"
     },
     {
-      "id": "pl_msg_00000011_00011",
+      "id": "CommunicationClub_Text_No",
       "en_US": "NO"
     },
     {
-      "id": "pl_msg_00000011_00012",
+      "id": "CommunicationClub_Text_EndingCommunication",
       "en_US": [
         "Ending communication.\n",
         "Please wait."
       ]
     },
     {
-      "id": "pl_msg_00000011_00013",
+      "id": "CommunicationClub_Text_ChoosePokemonToEnter",
       "en_US": [
         "Please choose the Pokémon to be\n",
         "entered.\r"
       ]
     },
     {
-      "id": "pl_msg_00000011_00014",
+      "id": "CommunicationClub_Text_WaitingForPlayerToChoose",
       "en_US": "Waiting for {STRVAR_1 3, 0, 0} to choose."
     },
     {
-      "id": "pl_msg_00000011_00015",
+      "id": "CommunicationClub_Text_BattleHasBeenCanceled",
       "en_US": "The battle has been canceled."
     },
     {
-      "id": "pl_msg_00000011_00016",
+      "id": "CommunicationClub_Text_PleaseComeAgain",
       "en_US": "Please come again."
     },
     {
-      "id": "pl_msg_00000011_00017",
+      "id": "CommunicationClub_Text_SelectOpponentsPokemon",
       "en_US": [
         "Please select one of your opponent’s\n",
         "Pokémon."
       ]
     },
     {
-      "id": "pl_msg_00000011_00018",
+      "id": "CommunicationClub_Text_IsPokemonYourChoice",
       "en_US": "Is {STRVAR_1 0, 1, 0} your choice?"
     },
     {
-      "id": "pl_msg_00000011_00019",
+      "id": "CommunicationClub_Text_SelectThreePokemonToParticipate",
       "en_US": [
         "Please select the three Pokémon\n",
         "that will participate.\r"
       ]
     },
     {
-      "id": "pl_msg_00000011_00020",
+      "id": "CommunicationClub_Text_ExplainMixBattle",
       "en_US": [
         "In a Mix Battle, you and your\n",
         "opponent first choose one of each\f",
@@ -137,19 +137,19 @@
       ]
     },
     {
-      "id": "pl_msg_00000011_00021",
+      "id": "CommunicationClub_Text_Cancel",
       "en_US": "CANCEL"
     },
     {
-      "id": "pl_msg_00000011_00022",
+      "id": "CommunicationClub_Text_Summary",
       "en_US": "SUMMARY"
     },
     {
-      "id": "pl_msg_00000011_00023",
+      "id": "CommunicationClub_Text_OK",
       "en_US": "OK"
     },
     {
-      "id": "pl_msg_00000011_00024",
+      "id": "CommunicationClub_Text_Cancel2",
       "en_US": "CANCEL"
     }
   ]

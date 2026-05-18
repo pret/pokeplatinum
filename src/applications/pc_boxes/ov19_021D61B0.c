@@ -334,14 +334,14 @@ void BoxGraphics_TaskHandler(UnkStruct_ov19_021D61B0 *param0, enum BoxGraphicsFu
 
                     param0->unk_08[i] = SysTask_Start(sBoxGraphicsTaskHandlers[function].sysTaskFunc, taskParams, 1);
                 } else {
-                    GF_ASSERT(0);
+                    GF_ASSERT(FALSE);
                 }
 
                 break;
             }
         }
     } else {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 }
 

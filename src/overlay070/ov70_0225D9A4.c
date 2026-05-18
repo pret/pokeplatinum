@@ -696,7 +696,7 @@ int ov70_0225DB90(ApplicationManager *appMan, int *param1)
 
         if (CommManager_CheckWifiError()) {
             ov70_0225F184(&v0->unk_3F4, &v0->unk_340);
-        } else if (CommManager_IsWifiLobbyError()) {
+        } else if (CommManager_IsWifiPlazaError()) {
             ov70_0225F1C0(&v0->unk_3F4, &v0->unk_340, ov66_022326DC());
         } else {
             ov70_0225F1F0(&v0->unk_3F4, &v0->unk_340, ov66_0222DFF8(v0->unk_34));
@@ -2223,7 +2223,7 @@ static void ov70_0225F418(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225DE
             v14 = ov66_0222EBA4(v0, ov66_0222E338(v0));
 
             if (v14 == 0xffffffff) {
-                GF_ASSERT(0);
+                GF_ASSERT(FALSE);
 
                 v14 = 0;
             }

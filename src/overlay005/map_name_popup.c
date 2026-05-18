@@ -246,7 +246,7 @@ void MapNamePopUp_Show(MapNamePopUp *mapPopUp, s32 mapLabelTextID, s32 mapLabelW
             break;
         case MAP_NAME_POPUP_STATE_END:
         default:
-            GF_ASSERT(0);
+            GF_ASSERT(FALSE);
             break;
         }
     }

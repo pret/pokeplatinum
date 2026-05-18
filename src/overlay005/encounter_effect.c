@@ -1295,7 +1295,7 @@ u32 CutInEffects_ForBattle(const FieldBattleDTO *param0)
         || (param0->battleType == BATTLE_TYPE_SINGLES)) {
         v2 = 0;
     } else {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         v2 = 0;
     }
 

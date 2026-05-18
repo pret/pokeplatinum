@@ -553,7 +553,7 @@ BOOL ov5_021F0488(FieldTask *param0)
 
         return 1;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 

@@ -11,7 +11,7 @@
     ScriptEntryEnd
 
 EternaCityPokecenter1F_Nurse:
-    Common_CallPokecenterNurse LOCALID_POKECENTER_NURSE
+    Common_CallPokecenterNurse LOCALID_ETERNA_NURSE
     End
 
 EternaCityPokecenter1F_BattleGirl:

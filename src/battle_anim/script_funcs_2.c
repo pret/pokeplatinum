@@ -924,7 +924,7 @@ static void BattleAnimTask_QuickAttack(SysTask *task, void *param)
 
     SpriteSystem_DrawSprites(ctx->pokemonSpriteManager);
 
-    for (int i = 0; i < (int)NELEMS(transformsActive); i++) {
+    for (int i = 0; i < SNELEMS(transformsActive); i++) {
         if (transformsActive[i] == TRUE) {
             return;
         }
@@ -2508,7 +2508,7 @@ static void ov12_02231760(UnkStruct_ov12_02231760 *param0)
         PosLerpContext_Init(&param0->unk_18, 0, -80 / 2, 0, -80 / 2, 8);
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 }
@@ -2606,7 +2606,7 @@ static void ov12_022319AC(UnkStruct_ov12_022319AC *param0)
         PosLerpContext_Init(&param0->unk_28, 0, 80 / 2, 0, -80 / 2, 4);
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 }

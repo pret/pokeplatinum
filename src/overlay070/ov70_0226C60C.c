@@ -178,7 +178,7 @@ static u32 ov70_0226C81C(PPW_LOBBY_TIME_EVENT param0)
     case PPW_LOBBY_TIME_EVENT_NEON_A5:
         return param0 - PPW_LOBBY_TIME_EVENT_NEON_A0;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 
@@ -194,7 +194,7 @@ static u32 ov70_0226C848(PPW_LOBBY_TIME_EVENT param0)
     case PPW_LOBBY_TIME_EVENT_NEON_B3:
         return param0 - PPW_LOBBY_TIME_EVENT_NEON_B0;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 
@@ -210,7 +210,7 @@ static u32 ov70_0226C87C(PPW_LOBBY_TIME_EVENT param0)
     case PPW_LOBBY_TIME_EVENT_NEON_C3:
         return param0 - PPW_LOBBY_TIME_EVENT_NEON_C0;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 

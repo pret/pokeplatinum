@@ -126,7 +126,7 @@ static void fieldmap(void *param0);
 static void ov5_021D13B4(FieldSystem *fieldSystem);
 static enum FieldExtensionOverlay FieldMap_GetExtOverlayForActiveDynMapFeatures(FieldSystem *fieldSystem);
 static BOOL FieldMap_InDistortionWorld(FieldSystem *fieldSystem);
-static UnkStruct_ov5_021D1A68 *ov5_021D1A14(int param0, int param1);
+static UnkStruct_ov5_021D1A68 *ov5_021D1A14(enum HeapID heapID, int param1);
 static const int *ov5_021D1A68(const UnkStruct_ov5_021D1A68 *param0);
 static const int ov5_021D1A6C(const UnkStruct_ov5_021D1A68 *param0);
 static void ov5_021D1A70(UnkStruct_ov5_021D1A68 *param0);
@@ -782,7 +782,7 @@ static void ov5_021D1790(FieldSystem *fieldSystem)
         v1 = sub_0203A04C(fieldSystem->location->mapId);
         GF_ASSERT(fieldSystem->unk_34 == NULL);
 
-        fieldSystem->unk_34 = ov5_021D1A14(4, v1);
+        fieldSystem->unk_34 = ov5_021D1A14(HEAP_ID_FIELD1, v1);
     }
 }
 
@@ -903,12 +903,12 @@ static void ov5_021D1968(FieldSystem *fieldSystem)
     SetVBlankCallback(fieldmap, fieldSystem);
 }
 
-static UnkStruct_ov5_021D1A68 *ov5_021D1A14(int fieldSystem, int param1)
+static UnkStruct_ov5_021D1A68 *ov5_021D1A14(enum HeapID heapID, int param1)
 {
     int v0;
     u16 *v1;
-    UnkStruct_ov5_021D1A68 *v2 = Heap_Alloc(fieldSystem, sizeof(UnkStruct_ov5_021D1A68));
-    v1 = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_FIELDDATA__MM_LIST__MOVE_MODEL_LIST, param1, fieldSystem);
+    UnkStruct_ov5_021D1A68 *v2 = Heap_Alloc(heapID, sizeof(UnkStruct_ov5_021D1A68));
+    v1 = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_FIELDDATA__MM_LIST__MOVE_MODEL_LIST, param1, heapID);
 
     for (v0 = 0; v0 < 24; v0++) {
         v2->unk_02[v0] = 0xffff;

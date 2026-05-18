@@ -1290,6 +1290,6 @@ int ov17_0223F0BC(int param0, int param1)
         return Unk_ov17_02252FC4[param0].unk_00;
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
     return 0;
 }

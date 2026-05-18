@@ -853,7 +853,7 @@ static void ov70_02262BEC(UnkStruct_ov70_022629FC *param0, UnkStruct_ov70_02260B
         }
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 }
@@ -893,7 +893,7 @@ static void ov70_02262C94(UnkStruct_ov70_022629FC *param0, UnkStruct_ov70_02260B
         }
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 }

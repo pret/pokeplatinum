@@ -1878,7 +1878,7 @@ static int ov114_0225DA2C(const u8 *param0, u32 param1)
         }
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
     return param1 - 1;
 }
 
@@ -2397,7 +2397,7 @@ static void ov114_0225E4B0(UnkStruct_ov114_0225E1A4 *param0, UnkStruct_ov114_022
         Bg_SetOffset(param1->unk_00, BG_LAYER_MAIN_1, 3, param2);
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 }
@@ -2415,7 +2415,7 @@ static void ov114_0225E500(UnkStruct_ov114_0225E1A4 *param0, UnkStruct_ov114_022
         Bg_ScheduleScroll(param1->unk_00, 1, 3, param2);
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 }
@@ -2501,7 +2501,7 @@ static UnkStruct_ov114_0225E854 *ov114_0225E5A8(const UnkStruct_ov114_0225C76C *
         v0->unk_6A8 = SysTask_Start(ov114_0225ED40, v0, 0);
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         v0->unk_6A8 = SysTask_Start(ov114_0225E874, v0, 0);
         break;
     }
@@ -2667,7 +2667,7 @@ static void ov114_0225E874(SysTask *param0, void *param1)
             v0->unk_6B6 = 32;
             break;
         default:
-            GF_ASSERT(0);
+            GF_ASSERT(FALSE);
             break;
         }
 
@@ -3561,7 +3561,7 @@ static u32 ov114_0225F8FC(const UnkStruct_ov114_0225E854 *param0)
         v0 = 0;
         break;
     case UnkEnum_ov66_022324D0_02:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         v0 = 0;
         break;
     }

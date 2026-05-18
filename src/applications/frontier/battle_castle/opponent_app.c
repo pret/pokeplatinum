@@ -1008,7 +1008,7 @@ static BOOL State_SyncPurchase(BattleCastleOpponentApp *app)
 
         if (UpdateAfterSyncPurchase(app, slot, app->selectedMenuEntry) == TRUE) {
             CommTool_ClearReceivedTempDataAllPlayers();
-            CommTool_Init(100);
+            CommTool_Init(HEAP_ID_BATTLE_CASTLE_APP);
             app->slotID = 0xff;
             app->partnerIsExiting = FALSE;
             return TRUE;
@@ -2818,7 +2818,7 @@ static void IncreaseRank(BattleCastleOpponentApp *app, u8 slot, u8 menuOption)
     if (menuOption == MENU_ENTRY_RANK_UP_SUMMARY) {
         rankType = BATTLE_CASTLE_RANK_OPPONENT_SUMMARY;
     } else {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 
     u8 exitSlot = app->exitSlot;

@@ -7,6 +7,7 @@
 #include <vct.h>
 
 #include "constants/communication/comm_error.h"
+#include "constants/communication/comm_type.h"
 #include "constants/net.h"
 
 #include "global/assert.h"
@@ -91,8 +92,8 @@ typedef struct NintendoWFCManager {
     int dataSent;
     int maxPlayers;
     u32 voiceConnectedIDs;
-    int primaryHeapID;
-    int secondaryHeapID;
+    enum HeapID primaryHeapID;
+    enum HeapID secondaryHeapID;
     int heapSize;
     BOOL voiceChatActive;
     int hostFriendIdx;
@@ -802,7 +803,7 @@ int NintendoWFC_HandleError(void)
                 case WFC_STATE_INIT:
                 case WFC_STATE_WAIT_CONNECTION:
                 case WFC_STATE_INIT_LOGIN:
-                    if (CommManager_GetCommType() != 33) {
+                    if (CommManager_GetCommType() != COMM_TYPE_WIFI_PLAZA) {
                         DWC_CleanupInet();
                     }
                 default:
@@ -1117,7 +1118,7 @@ int NintendoWFC_GetErrorCode(int errorCode, int errorType)
     case DWC_ETYPE_DISCONNECT:
         return 10;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     case DWC_ETYPE_FATAL:
         return 15;

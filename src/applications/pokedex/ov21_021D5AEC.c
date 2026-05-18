@@ -379,7 +379,7 @@ static int ov21_021D5D48(void *graphics, PokedexGraphicsManager *graphicsMan, co
         G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG0, GX_BLEND_PLANEMASK_BG3, 0, 16);
         return 1;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 
@@ -458,7 +458,7 @@ static int ov21_021D5EA8(void *graphics, PokedexGraphicsManager *graphicsMan, co
     case 3:
         return 1;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 

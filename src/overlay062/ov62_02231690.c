@@ -152,7 +152,7 @@ int ov62_02231710(UnkStruct_0208C06C *param0, int param1)
         return v3[v4];
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
 
     return v0[0];
 }
@@ -666,7 +666,7 @@ int ov62_02232234(int param0, int param1)
     int v0 = param0;
 
     if ((param0 > 16) || (param0 < 0)) {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         v0 = 0;
     }
 
@@ -1374,7 +1374,7 @@ void ov62_022331C8(UnkStruct_ov62_02233310 *param0, s16 param1)
     }
 
     if (v0 < 0) {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 
     if (v1 != 0xFF) {
@@ -2485,7 +2485,7 @@ static void ov62_02234440(UnkStruct_0208C06C *param0)
     } else {
         param0->unk_41D8.unk_00 = 0;
         sub_0208B9E0(param0->unk_41D8.unk_08, 0);
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 }
 
@@ -2582,7 +2582,7 @@ int ov62_022345B8(UnkStruct_0208C06C *param0, int param1, int param2, int param3
                 v0 = 258;
                 break;
             default:
-                GF_ASSERT(0);
+                GF_ASSERT(FALSE);
                 break;
             }
             break;
@@ -2619,7 +2619,7 @@ int ov62_022345B8(UnkStruct_0208C06C *param0, int param1, int param2, int param3
                 v0 = 268;
                 break;
             default:
-                GF_ASSERT(0);
+                GF_ASSERT(FALSE);
                 break;
             }
             break;
@@ -2646,7 +2646,7 @@ int ov62_022345B8(UnkStruct_0208C06C *param0, int param1, int param2, int param3
                     v0 = 199;
                     break;
                 default:
-                    GF_ASSERT(0);
+                    GF_ASSERT(FALSE);
                     break;
                 }
                 break;
@@ -2665,7 +2665,7 @@ int ov62_022345B8(UnkStruct_0208C06C *param0, int param1, int param2, int param3
                     v0 = 203;
                     break;
                 default:
-                    GF_ASSERT(0);
+                    GF_ASSERT(FALSE);
                     break;
                 }
                 break;
@@ -2693,7 +2693,7 @@ int ov62_022345B8(UnkStruct_0208C06C *param0, int param1, int param2, int param3
                     v0 = 210;
                     break;
                 default:
-                    GF_ASSERT(0);
+                    GF_ASSERT(FALSE);
                     break;
                 }
                 break;
@@ -2712,7 +2712,7 @@ int ov62_022345B8(UnkStruct_0208C06C *param0, int param1, int param2, int param3
                     v0 = 214;
                     break;
                 default:
-                    GF_ASSERT(0);
+                    GF_ASSERT(FALSE);
                     break;
                 }
                 break;
@@ -2728,7 +2728,7 @@ int ov62_022345B8(UnkStruct_0208C06C *param0, int param1, int param2, int param3
                     v0 = 217;
                     break;
                 default:
-                    GF_ASSERT(0);
+                    GF_ASSERT(FALSE);
                     break;
                 }
                 break;
@@ -2753,7 +2753,7 @@ int ov62_022345B8(UnkStruct_0208C06C *param0, int param1, int param2, int param3
                     v0 = 223;
                     break;
                 default:
-                    GF_ASSERT(0);
+                    GF_ASSERT(FALSE);
                     break;
                 }
                 break;
@@ -2784,7 +2784,7 @@ int ov62_022345B8(UnkStruct_0208C06C *param0, int param1, int param2, int param3
                     v0 = 231;
                     break;
                 default:
-                    GF_ASSERT(0);
+                    GF_ASSERT(FALSE);
                     break;
                 }
                 break;
@@ -2803,7 +2803,7 @@ int ov62_022345B8(UnkStruct_0208C06C *param0, int param1, int param2, int param3
                     v0 = 235;
                     break;
                 default:
-                    GF_ASSERT(0);
+                    GF_ASSERT(FALSE);
                     break;
                 }
                 break;
@@ -2822,12 +2822,12 @@ int ov62_022345B8(UnkStruct_0208C06C *param0, int param1, int param2, int param3
                     v0 = 239;
                     break;
                 default:
-                    GF_ASSERT(0);
+                    GF_ASSERT(FALSE);
                     break;
                 }
                 break;
             default:
-                GF_ASSERT(0);
+                GF_ASSERT(FALSE);
                 break;
             }
         } break;
