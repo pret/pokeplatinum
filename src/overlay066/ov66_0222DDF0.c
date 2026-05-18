@@ -5,6 +5,7 @@
 #include <ppwlobby/ppw_lobby.h>
 #include <string.h>
 
+#include "constants/versions.h"
 #include "generated/game_records.h"
 #include "generated/journal_online_events.h"
 #include "generated/species.h"
@@ -13,7 +14,6 @@
 #include "struct_decls/struct_0207E060_decl.h"
 #include "struct_defs/wi_fi_history.h"
 
-#include "global/pm_version.h"
 #include "overlay066/ov66_02231428.h"
 #include "overlay066/ov66_0223177C.h"
 #include "overlay066/ov66_022324F0.h"
@@ -44,7 +44,6 @@
 #include "font.h"
 #include "game_records.h"
 #include "heap.h"
-#include "inlines.h"
 #include "journal.h"
 #include "math_util.h"
 #include "message.h"
@@ -1144,7 +1143,7 @@ u32 ov66_0222E80C(const UnkStruct_ov66_0222E71C *param0)
     if (ov66_0222E824(param0) == TRUE) {
         language = param0->language;
     } else {
-        language = ENGLISH;
+        language = LANGUAGE_ENGLISH;
     }
 
     return language;
@@ -1154,12 +1153,12 @@ u32 ov66_0222E80C(const UnkStruct_ov66_0222E71C *param0)
 BOOL ov66_0222E824(const UnkStruct_ov66_0222E71C *param0)
 {
     switch (param0->language) {
-    case JAPANESE:
-    case ENGLISH:
-    case FRENCH:
-    case ITALIAN:
-    case GERMAN:
-    case SPANISH:
+    case LANGUAGE_JAPANESE:
+    case LANGUAGE_ENGLISH:
+    case LANGUAGE_FRENCH:
+    case LANGUAGE_ITALIAN:
+    case LANGUAGE_GERMAN:
+    case LANGUAGE_SPANISH:
         return TRUE;
     default:
         break;

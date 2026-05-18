@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "constants/graphics.h"
+#include "constants/versions.h"
 
 #include "struct_defs/wi_fi_history.h"
 
@@ -314,7 +315,7 @@ int ov92_021D0D80(ApplicationManager *appMan, int *unused)
     memset(v0, 0, sizeof(UnkStruct_ov92_021D1B24));
     v0->heapID = heapID;
 
-    v0->unk_BAF0 = gGameLanguage == JAPANESE;
+    v0->unk_BAF0 = gGameLanguage == LANGUAGE_JAPANESE;
 
     SaveData *saveData = ApplicationManager_Args(appMan);
 

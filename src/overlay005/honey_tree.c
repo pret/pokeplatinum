@@ -1,9 +1,9 @@
 #include "overlay005/honey_tree.h"
 
 #include <nitro.h>
-#include <string.h>
 
 #include "constants/map_object.h"
+#include "constants/versions.h"
 #include "generated/map_headers.h"
 
 #include "field/field_system.h"

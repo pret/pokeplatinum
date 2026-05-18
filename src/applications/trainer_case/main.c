@@ -3,8 +3,10 @@
 #include <nitro.h>
 
 #include "constants/trainer_card_levels.h"
+#include "constants/versions.h"
 #include "generated/genders.h"
 
+#include "applications/trainer_case/badge_chimes.h"
 #include "applications/trainer_case/card_text.h"
 #include "applications/trainer_case/defs.h"
 #include "applications/trainer_case/sprites.h"
@@ -124,7 +126,7 @@ static void TrainerCase_ResetBadgePolishingDirection(BadgePolishingState *badgeP
 static void TrainerCase_ResetBadgePolishingState(BadgePolishingState *badgePolishingState);
 static void TrainerCase_PlayPolishingSoundEffects(BadgePolishingState *badgePolishingState);
 static void TrainerCase_ConvertSignature1BppTo8Bpp(const u8 *signature1Bpp, u8 *signature8BppOut);
-static void TrainerCase_DisplaySignature(BgConfig *bgConfig, enum BgLayer bgLayer, const u8 *signature);
+static void TrainerCase_DisplaySignature(BgConfig *bgConfig, enum BgLayer bgLayer, u8 *signature);
 static void TrainerCase_PlayOpenCloseBadgeCaseSoundEffect(int unused);
 static void TrainerCase_UpdatePlayTime(TrainerCaseApp *trainerCaseApp, u8 liveTimeDisplay);
 static int TrainerCase_CheckBadgeOrButtonTouched(BgConfig *bgConfig, const TouchScreenRect rects[]);
@@ -312,7 +314,7 @@ BOOL TrainerCaseApp_Main(ApplicationManager *appMan, int *state)
 
         break;
 
-    case TRAINER_CASE_STATE_MAIN:
+    case TRAINER_CASE_STATE_MAIN: {
         int input = TrainerCase_GetPlayerInput(trainerCaseApp);
 
         if (input == INPUT_TOUCH_SCREEN_TAP) {
@@ -367,6 +369,7 @@ BOOL TrainerCaseApp_Main(ApplicationManager *appMan, int *state)
 
         TrainerCase_UpdatePlayTime(trainerCaseApp, trainerCaseApp->trainerCase->liveTimeDisplay);
         break;
+    }
     case TRAINER_CASE_STATE_EXIT:
         if (IsScreenFadeDone()) {
             return TRUE;
@@ -1240,7 +1243,7 @@ static void TrainerCase_ConvertSignature1BppTo8Bpp(const u8 *signature1Bpp, u8 *
     }
 }
 
-static void TrainerCase_DisplaySignature(BgConfig *bgConfig, enum BgLayer bgLayer, const u8 *signature)
+static void TrainerCase_DisplaySignature(BgConfig *bgConfig, enum BgLayer bgLayer, u8 *signature)
 {
     Bg_LoadTiles(bgConfig, bgLayer, signature, SIGNATURE_WIDTH * SIGNATURE_HEIGHT * TILE_SIZE_8BPP, 1);
 

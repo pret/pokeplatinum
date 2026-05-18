@@ -1,17 +1,16 @@
 #include "pokedex_language.h"
 
 #include <nitro.h>
-#include <string.h>
 
-#include "global/pm_version.h"
+#include "constants/versions.h"
 
 static const u8 languageArray[NUM_LANGUAGES] = {
-    JAPANESE,
-    ENGLISH,
-    FRENCH,
-    GERMAN,
-    ITALIAN,
-    SPANISH
+    LANGUAGE_JAPANESE,
+    LANGUAGE_ENGLISH,
+    LANGUAGE_FRENCH,
+    LANGUAGE_GERMAN,
+    LANGUAGE_ITALIAN,
+    LANGUAGE_SPANISH
 };
 
 int PokedexLanguage_LanguageToIndex(int language)

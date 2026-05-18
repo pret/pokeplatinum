@@ -1,7 +1,6 @@
 #include "overlay104/ov104_0222DCE0.h"
 
 #include <nitro.h>
-#include <string.h>
 
 #include "constants/heap.h"
 #include "constants/narc.h"
@@ -34,7 +33,6 @@
 #include "unk_02038F8C.h"
 #include "unk_0208C098.h"
 #include "unk_02092494.h"
-#include "versions.h"
 #include "wifi_history_save_data.h"
 
 static const u16 sTrainerClassToObjectID[][2] = {
