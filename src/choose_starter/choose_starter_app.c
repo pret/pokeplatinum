@@ -129,7 +129,7 @@ typedef struct ChooseStarter3DGraphics {
     void *animation;
     NNSG3dAnmObj *animationObj;
     fx32 animationFrame;
-    BOOL show;
+    BOOL isVisible;
     VecFx32 position;
     VecFx32 scale;
     u16 xRotation;
@@ -285,7 +285,7 @@ static void AdvancePokeballConfirmGraphics(ChooseStarterApp *app, enum HeapID he
 static void MakePokemonSprite(PokemonSprite **sprite, ChooseStarterApp *app, int species);
 static void Delete3DGraphic(ChooseStarter3DGraphics *starter3DGraphics, NNSFndAllocator *allocator);
 static void Draw3DGraphics(ChooseStarter3DGraphics *starter3DGraphics);
-static void Show3DGraphics(ChooseStarter3DGraphics *starter3DGraphics, BOOL show);
+static void Set3DGraphicsIsVisible(ChooseStarter3DGraphics *starter3DGraphics, BOOL isVisible);
 static void Set3DGraphicsPosition(ChooseStarter3DGraphics *starter3DGraphics, fx32 x, fx32 y, fx32 z);
 static void Set3DGraphicsScale(ChooseStarter3DGraphics *starter3DGraphics, fx32 x, fx32 y, fx32 z);
 static void Set3DGraphicsRotation(ChooseStarter3DGraphics *starter3DGraphics, u16 x, u16 y, u16 z);
@@ -831,14 +831,14 @@ static void Draw3DGraphics(ChooseStarter3DGraphics *starter3DGraphics)
     MTX_RotZ33(&temp, FX_SinIdx(starter3DGraphics->zRotation), FX_CosIdx(starter3DGraphics->zRotation));
     MTX_Concat33(&temp, &rotation, &rotation);
 
-    if (starter3DGraphics->show) {
+    if (starter3DGraphics->isVisible) {
         Easy3D_DrawRenderObj(&starter3DGraphics->renderObj, &starter3DGraphics->position, &rotation, &starter3DGraphics->scale);
     }
 }
 
-static void Show3DGraphics(ChooseStarter3DGraphics *starter3DGraphics, BOOL show)
+static void Set3DGraphicsIsVisible(ChooseStarter3DGraphics *starter3DGraphics, BOOL isVisible)
 {
-    starter3DGraphics->show = show;
+    starter3DGraphics->isVisible = isVisible;
 }
 
 static void Set3DGraphicsPosition(ChooseStarter3DGraphics *starter3DGraphics, fx32 x, fx32 y, fx32 z)
@@ -895,18 +895,18 @@ static void Set3DGraphicsAnimationFrame(ChooseStarter3DGraphics *starter3DGraphi
 static void Make3DGraphics(ChooseStarterApp *app, enum HeapID heapID)
 {
     Load3DGraphics(&app->starter3DGraphics[0], 1, 0, heapID, &app->allocator);
-    Show3DGraphics(&app->starter3DGraphics[0], TRUE);
+    Set3DGraphicsIsVisible(&app->starter3DGraphics[0], TRUE);
 
     Load3DGraphicsWithoutAnimation(&app->starter3DGraphics[1], 8, heapID);
-    Show3DGraphics(&app->starter3DGraphics[1], FALSE);
+    Set3DGraphicsIsVisible(&app->starter3DGraphics[1], FALSE);
 
     for (int i = 2; i <= 4; i++) {
         Load3DGraphics(&app->starter3DGraphics[i], 3 + (i - 2) * 2, 2 + (i - 2) * 2, heapID, &app->allocator);
-        Show3DGraphics(&app->starter3DGraphics[i], FALSE);
+        Set3DGraphicsIsVisible(&app->starter3DGraphics[i], FALSE);
     }
 
     Load3DGraphicsWithoutAnimation(&app->starter3DGraphics[5], 9, heapID);
-    Show3DGraphics(&app->starter3DGraphics[5], TRUE);
+    Set3DGraphicsIsVisible(&app->starter3DGraphics[5], TRUE);
 
     Set3DGraphicsPosition(&app->starter3DGraphics[5], 0, -28 * FX32_ONE, 40 * FX32_ONE);
     Set3DGraphicsScale(&app->starter3DGraphics[5], FX32_CONST(3.50f), FX32_ONE, FX32_CONST(3.50f));
@@ -985,11 +985,11 @@ static void UpdateGraphics(ChooseStarterApp *app, enum HeapID heapID)
         break;
     case CHOICE_STEP_SHOW_3D_GRAPHICS:
         if (Advance3DGraphicsAnimationIfNotLastFrame(&app->starter3DGraphics[0])) {
-            Show3DGraphics(&app->starter3DGraphics[0], FALSE);
-            Show3DGraphics(&app->starter3DGraphics[1], TRUE);
-            Show3DGraphics(&app->starter3DGraphics[2], TRUE);
-            Show3DGraphics(&app->starter3DGraphics[3], TRUE);
-            Show3DGraphics(&app->starter3DGraphics[4], TRUE);
+            Set3DGraphicsIsVisible(&app->starter3DGraphics[0], FALSE);
+            Set3DGraphicsIsVisible(&app->starter3DGraphics[1], TRUE);
+            Set3DGraphicsIsVisible(&app->starter3DGraphics[2], TRUE);
+            Set3DGraphicsIsVisible(&app->starter3DGraphics[3], TRUE);
+            Set3DGraphicsIsVisible(&app->starter3DGraphics[4], TRUE);
             AdvanceChoiceStep(app, 1);
         }
         break;
