@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "constants/npc_trades.h"
 #include "res/text/bank/oreburgh_city_north_house_1f.h"
 
 

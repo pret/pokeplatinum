@@ -1,6 +1,9 @@
 #ifndef POKEPLATINUM_MAIN_MENU_MAIN_MENU_UTIL_H
 #define POKEPLATINUM_MAIN_MENU_MAIN_MENU_UTIL_H
 
+#include "constants/versions.h"
+#include "generated/fade_types.h"
+
 #include "main_menu/mystery_gift_app.h"
 
 #include "bg_window.h"
@@ -9,7 +12,6 @@
 #include "overlay_manager.h"
 #include "palette.h"
 #include "savedata.h"
-#include "screen_fade.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_util.h"

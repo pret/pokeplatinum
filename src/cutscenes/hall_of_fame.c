@@ -1,7 +1,8 @@
 #include "cutscenes/hall_of_fame.h"
 
 #include <nitro.h>
-#include <string.h>
+
+#include "constants/versions.h"
 
 #include "struct_defs/hall_of_fame_display_data.h"
 #include "struct_defs/sprite_animation_frame.h"
@@ -14,7 +15,6 @@
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
-#include "inlines.h"
 #include "math_util.h"
 #include "message.h"
 #include "narc.h"
@@ -352,7 +352,7 @@ BOOL HallOfFameManager_Init(ApplicationManager *appMan, int *state)
 BOOL HallOfFameManager_Exit(ApplicationManager *appMan, int *state)
 {
     switch (*state) {
-    case 0:
+    case 0: {
         HallOfFameMan *hallOfFameMan = ApplicationManager_Data(appMan);
 
         SysTask_Done(hallOfFameMan->task_1C28);
@@ -372,6 +372,7 @@ BOOL HallOfFameManager_Exit(ApplicationManager *appMan, int *state)
         Heap_Destroy(HEAP_ID_HALL_OF_FAME);
         (*state)++;
         break;
+    }
     case 1:
         if (ov86_0223CD80()) {
             return TRUE;

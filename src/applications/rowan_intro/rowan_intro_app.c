@@ -3,6 +3,7 @@
 
 #include "constants/heap.h"
 #include "constants/string.h"
+#include "constants/versions.h"
 #include "generated/genders.h"
 
 #include "applications/naming_screen.h"

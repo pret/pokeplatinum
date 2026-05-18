@@ -88,9 +88,14 @@ enum_seq_t _common_initenum(initenum_params_t params) {
     char  *data = fload(params.basefile, &size);
     char  *endp = NULL;
 
-    enum_seq_t result = libenum_find(data, size, "Item", &endp);
+    enum_seq_t result = libenum_find(data, size, params.enumname, &endp);
     if (result.errc != LIBENUM_E_OK) { // handles the empty-case
         fprintf(stderr, "libenum error: %s\n", libenum_errs(result.errc));
+        exit(EXIT_FAILURE);
+    }
+
+    if (result.members == NULL) {
+        fprintf(stderr, "could not find enum named '%s' in %s", params.enumname, params.basefile);
         exit(EXIT_FAILURE);
     }
 
