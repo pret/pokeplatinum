@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "constants/npc_trades.h"
 #include "res/text/bank/eterna_city_condominiums_1f.h"
 
 

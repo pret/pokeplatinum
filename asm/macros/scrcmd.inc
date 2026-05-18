@@ -18,7 +18,6 @@
 #include "generated/movement_types.h"
 #include "generated/moves.h"
 #include "generated/mystery_gift_delivery_stages.h"
-#include "generated/npc_trades.h"
 #include "generated/object_events_gfx.h"
 #include "generated/player_transitions.h"
 #include "generated/poketch_apps.h"
