@@ -1,4 +1,6 @@
 {
+    "name": "Gaspar",
+    "otName": "Mindy",
     "species": "SPECIES_HAUNTER",
     "hpIV": 20,
     "atkIV": 25,
@@ -17,6 +19,6 @@
     "heldItem": "ITEM_EVERSTONE",
     "otGender": "GENDER_FEMALE",
     "unused2": 0,
-    "language": 2,
+    "language": "LANGUAGE_ENGLISH",
     "requestedSpecies": "SPECIES_MEDICHAM"
 }

@@ -1,12 +1,15 @@
 #ifndef POKEPLATINUM_NPC_TRADE_H
 #define POKEPLATINUM_NPC_TRADE_H
 
+#include "constants/heap.h"
 #include "constants/npc_trades.h"
 
 #include "struct_defs/pokemon.h"
 
 #include "field/field_system_decl.h"
 #include "overlay006/struct_npc_trade_animation_template.h"
+
+#include "trainer_info.h"
 
 typedef struct NPCTradeMon {
     u32 species;

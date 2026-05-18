@@ -1,8 +1,9 @@
 #ifndef POKEPLATINUM_STRUCT_NPC_TRADE_ANIMATION_TEMPLATE_H
 #define POKEPLATINUM_STRUCT_NPC_TRADE_ANIMATION_TEMPLATE_H
 
+#include "struct_defs/pokemon.h"
+
 #include "game_options.h"
-#include "pokemon.h"
 #include "trainer_info.h"
 
 enum TradeType {
