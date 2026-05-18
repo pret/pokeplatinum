@@ -251,7 +251,7 @@ static void DeleteBGs(BgConfig *bgConfig);
 static void MakeMessageWindow(ChooseStarterApp *app, enum HeapID heapID);
 static void DeleteMessageWindow(ChooseStarterApp *app);
 static u8 SetMessageWindowText(Window *window, enum HeapID heapID, int bankID, int entryID, TextColor textColor, u32 renderDelay);
-static u8 SetMessageWindowTextAndSaveToString(Window *window, enum HeapID heapID, int bankID, int entryID, TextColor textColor, u32 renderDelay, String **string);
+static u8 PrintMessageToWindow(Window *window, enum HeapID heapID, int bankID, int entryID, TextColor textColor, u32 renderDelay, String **string);
 static void DeleteStringBuffer(ChooseStarterApp *app);
 static void MakeSubplaneWindows(ChooseStarterApp *app, enum HeapID heapID);
 static void DeleteSubplaneWindows(ChooseStarterApp *app);
@@ -1167,7 +1167,7 @@ static void AdvancePokeballChoiceGraphics(ChooseStarterApp *app, enum HeapID hea
         }
         break;
     case CHOOSE_STARTER_STEP_PRINT_THESE_ARE_POKE_BALLS_TEXT:
-        app->messagePrinterID = SetMessageWindowTextAndSaveToString(app->messageWindow, heapID, 360, 0, TEXT_COLOR(1, 2, 15), app->textFrameDelay, &app->string);
+        app->messagePrinterID = PrintMessageToWindow(app->messageWindow, heapID, 360, 0, TEXT_COLOR(1, 2, 15), app->textFrameDelay, &app->string);
         app->chooseStarterStep++;
         break;
     case CHOOSE_STARTER_STEP_DELETE_THESE_ARE_POKE_BALLS_TEXT:
@@ -1177,7 +1177,7 @@ static void AdvancePokeballChoiceGraphics(ChooseStarterApp *app, enum HeapID hea
         }
         break;
     case CHOOSE_STARTER_STEP_PRINT_NOW_CHOOSE_TEXT:
-        app->messagePrinterID = SetMessageWindowTextAndSaveToString(app->messageWindow, heapID, 360, 7, TEXT_COLOR(1, 2, 15), app->textFrameDelay, &app->string);
+        app->messagePrinterID = PrintMessageToWindow(app->messageWindow, heapID, 360, 7, TEXT_COLOR(1, 2, 15), app->textFrameDelay, &app->string);
         app->chooseStarterStep++;
         break;
     case CHOOSE_STARTER_STEP_DELETE_NOW_CHOOSE_TEXT:
@@ -1286,7 +1286,7 @@ static u8 SetMessageWindowText(Window *window, enum HeapID heapID, int bankID, i
     return printerID;
 }
 
-static u8 SetMessageWindowTextAndSaveToString(Window *window, enum HeapID heapID, int bankID, int entryID, TextColor textColor, u32 renderDelay, String **string)
+static u8 PrintMessageToWindow(Window *window, enum HeapID heapID, int bankID, int entryID, TextColor textColor, u32 renderDelay, String **string)
 {
     GF_ASSERT((*string) == NULL);
 
