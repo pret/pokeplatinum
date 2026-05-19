@@ -55,6 +55,13 @@ enum StandardWindowType {
     STANDARD_WINDOW_UNDERGROUND,
 };
 
+enum PokemonPreviewState {
+    PREVIEW_STATE_WAIT = 0,
+    PREVIEW_STATE_REMOVE,
+    PREVIEW_STATE_SET_ANIM,
+    PREVIEW_STATE_WAIT_ANIM,
+};
+
 void LoadStandardWindowTiles(BgConfig *bgConfig, u8 bgLayer, u16 offset, u8 standardWindowType, u32 heapID);
 u32 GetStandardWindowPaletteNARCMember(void);
 void LoadStandardWindowGraphics(BgConfig *bgConfig, u8 bgLayer, u16 tileOffset, u8 palOffset, u8 standardWindowType, u32 heapID);
