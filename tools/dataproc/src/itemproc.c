@@ -16,6 +16,7 @@
 #define ALIGN_4
 
 #include "constants/items.h"
+#include "data/field/hidden_items.h"
 #include "berry_data.h"
 #include "item.h"
 
@@ -43,13 +44,15 @@ enum {
     H_TM_MOVE_MAP,
     H_BERRY_LIST,
     H_MAIL_LIST,
+    H_HIDDEN_ITEM_SCRIPTS,
 };
 
 static header_template_t headers[] = {
-    [H_ITEM_ID_MAP] = { .out_filename = "item_id_map.h"      },
-    [H_TM_MOVE_MAP] = { .out_filename = "item_tm_move_map.h" },
-    [H_BERRY_LIST]  = { .out_filename = "item_berry_list.h"  },
-    [H_MAIL_LIST]   = { .out_filename = "item_mail_list.h"   },
+    [H_ITEM_ID_MAP]         = { .out_filename = "item_id_map.h"         },
+    [H_TM_MOVE_MAP]         = { .out_filename = "item_tm_move_map.h"    },
+    [H_BERRY_LIST]          = { .out_filename = "item_berry_list.h"     },
+    [H_MAIL_LIST]           = { .out_filename = "item_mail_list.h"      },
+    [H_HIDDEN_ITEM_SCRIPTS] = { .out_filename = "hidden_item_scripts.h" },
     { 0 },
 };
 
@@ -75,6 +78,7 @@ static void proc_item(datafile_t *df, const char *member);
 static void proc_text(const char *stem, const char *name, const char *plural, datanode_t *article, datanode_t *desc);
 static void add_idmap(datafile_t *df, size_t i, size_t data_id);
 static int  pack_berries(void);
+static void emit_hidden_scripts(void);
 
 static char *filename     = NULL;
 static char *base_dir     = NULL;
@@ -131,6 +135,8 @@ int main(int argc, char **argv) {
             add_idmap(NULL, i, 0);
         }
     }
+
+    emit_hidden_scripts();
 
     return common_done(errc, pack_berries);
 }
@@ -374,6 +380,21 @@ static void add_idmap(datafile_t *df, size_t i, size_t data_id) {
             "        .gen3ID = %s,\n"
             "    },\n",
             i, data_id, icon, palette, gba_id);
+}
+
+static void emit_hidden_scripts(void) {
+    size_t maxScriptID = 0; 
+
+    for (size_t i = 0; i < countof(gHiddenItems); i++) {
+        if (gHiddenItems[i].script > maxScriptID) {
+            maxScriptID = gHiddenItems[i].script;
+        }
+    }
+
+    for (size_t i = 0; i <= maxScriptID; i++) {
+        fputs("    ScriptEntry HiddenItems_Item\n", headers[H_HIDDEN_ITEM_SCRIPTS].out_file);
+    }
+    fputs("    ScriptEntryEnd\n", headers[H_HIDDEN_ITEM_SCRIPTS].out_file);
 }
 
 static void usage(const char *fmt, ...);
