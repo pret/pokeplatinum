@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "constants/field/dynamic_map_features.h"
+#include "constants/field/field_effect_renderer.h"
 #include "constants/field/map.h"
 #include "constants/graphics.h"
 #include "constants/scrcmd.h"
@@ -14,7 +15,6 @@
 
 #include "struct_decls/map_object.h"
 #include "struct_decls/map_object_manager.h"
-#include "struct_defs/struct_02071BF8.h"
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
@@ -32,6 +32,7 @@
 #include "badges.h"
 #include "bg_window.h"
 #include "camera.h"
+#include "coordinates.h"
 #include "field_message.h"
 #include "field_system.h"
 #include "field_task.h"
@@ -85,6 +86,32 @@
 // o'clock, which use 0x4000, 0x8000, 0xC000, and 0 respectively.
 #define ETERNA_GYM_ONE_HOUR_ROTATION 0x1559
 #define ETERNA_GYM_MAX_ROTATION      0x10000
+
+#define VEILSTONE_GYM_OBJECT_LOCALID 0xFD
+#define VEILSTONE_NUM_TIRE_STACKS    11
+#define VEILSTONE_NUM_PUNCHING_BAGS  9
+
+#define VEILSTONE_OBJ_IS_TIRE_STACK(obj) (MapObject_GetDataAt(obj, 0) == FALSE)
+
+#define VEILSTONE_TILE_FLAG_BAG_CANT_MOVE_THAT_WAY (1 << 0)
+#define VEILSTONE_TILE_FLAG_TIRE_STACK_PRESENT     (1 << 1)
+#define VEILSTONE_TILE_FLAG_BAG_PAUSE_POINT        (1 << 2)
+
+#define VEILSTONE_ANIM_STATE_INIT                  0
+#define VEILSTONE_ANIM_STATE_KICK_BAG              1
+#define VEILSTONE_ANIM_STATE_START_MOVEMENT        2
+#define VEILSTONE_ANIM_STATE_MOVE_BAG              3
+#define VEILSTONE_ANIM_STATE_TOPPLE_STACK          4
+#define VEILSTONE_ANIM_STATE_REMOVE_STACK          5
+#define VEILSTONE_ANIM_STATE_PREP_CAMERA_TO_PLAYER 6
+#define VEILSTONE_ANIM_STATE_CAMERA_TO_PLAYER      7
+#define VEILSTONE_ANIM_STATE_FINISH_BAG_ANIMATION  8
+#define VEILSTONE_ANIM_STATE_WAIT_FINISH           9
+#define VEILSTONE_ANIM_STATE_FREE                  10
+
+#define VEILSTONE_STATE_RESULT_ADVANCE_FRAME 0
+#define VEILSTONE_STATE_RESULT_CONTINUE      1
+#define VEILSTONE_STATE_RESULT_FINISH        2
 
 #define PASTORIA_WATER_HEIGHT_LOW    0
 #define PASTORIA_WATER_HEIGHT_MIDDLE (MAP_OBJECT_TILE_SIZE * 2)
@@ -238,70 +265,67 @@ typedef struct EternaGymClockUpdateManager {
     String *msgBuf;
 } EternaGymClockUpdateManager;
 
-typedef struct {
-    int unk_00;
-    int unk_04;
-} UnkStruct_ov8_0224C90C;
+typedef struct VeilstoneGymMapObjectManager {
+    int x;
+    int z;
+    MapObject *mapObj;
+    OverworldAnimManager *animManager;
+} VeilstoneGymMapObjectManager;
 
-typedef struct {
-    int unk_00;
-    int unk_04;
-    MapObject *unk_08;
-    OverworldAnimManager *unk_0C;
-} UnkStruct_ov8_0224B80C;
+typedef struct VeilstoneGymPunchingBag {
+    int exists;
+    int unused;
+    VeilstoneGymMapObjectManager obj;
+} VeilstoneGymPunchingBag;
 
-typedef struct {
-    int unk_00;
-    int unk_04;
-    UnkStruct_ov8_0224B80C unk_08;
-} UnkStruct_ov8_0224BCA8;
+typedef struct VeilstoneGymTireStack {
+    int exists;
+    int unused;
+    VeilstoneGymMapObjectManager obj;
+} VeilstoneGymTireStack;
 
-typedef struct {
-    int unk_00;
-    int unk_04;
-    UnkStruct_ov8_0224B80C unk_08;
-} UnkStruct_ov8_0224B8A0;
-
-typedef struct {
+typedef struct VeilstoneGymSystem {
     FieldSystem *fieldSystem;
-    UnkStruct_ov8_0224B8A0 unk_04[11];
-    UnkStruct_ov8_0224BCA8 unk_10C[9];
-} UnkStruct_ov8_0224B8D0;
+    VeilstoneGymTireStack tireStacks[VEILSTONE_NUM_TIRE_STACKS];
+    VeilstoneGymPunchingBag punchingBags[VEILSTONE_NUM_PUNCHING_BAGS];
+} VeilstoneGymSystem;
 
-typedef struct {
-    int unk_00;
-    int unk_04;
-    int unk_08;
-    int unk_0C;
-    int unk_10;
-    int unk_14;
-    int unk_18;
-    int unk_1C;
-    int unk_20;
-    int unk_24;
-    int unk_28;
-    int unk_2C;
-    MapObject *unk_30;
+typedef struct VeilstoneGymCameraManager {
+    int movementState;
+    int unused;
+    int bagX;
+    int bagZ;
+    int playerX;
+    int playerZ;
+    int destX;
+    int destZ;
+    int movementDirection;
+    int distanceToTravel;
+    int traveledDistance;
+    BOOL movementFinished;
+    MapObject *cameraObj;
     FieldSystem *fieldSystem;
-} UnkStruct_ov8_0224C0C4;
+} VeilstoneGymCameraManager;
 
-typedef struct {
-    int unk_00;
-    int unk_04;
-    int unk_08;
-    int unk_0C;
-    int unk_10;
-    int unk_14;
-    int unk_18;
-    int unk_1C;
-    VecFx32 unk_20;
-    fx32 unk_2C;
-    fx32 unk_30;
-    UnkStruct_ov8_0224BCA8 *unk_34;
-    UnkStruct_ov8_0224B8A0 *unk_38;
-    UnkStruct_ov8_0224B8D0 *unk_3C;
-    UnkStruct_ov8_0224C0C4 unk_40;
-} UnkStruct_ov8_0224C098;
+typedef struct VeilstoneGym_BagAnimation {
+    int state;
+    int elapsedFrames;
+    int direction;
+    int bagX;
+    int bagZ;
+    int traveledCoordinates;
+    int moveCamera;
+    int distanceToTravel;
+    VecFx32 bagPosition;
+    fx32 movingSpeed;
+    fx32 traveledDistance;
+    VeilstoneGymPunchingBag *punchingBag;
+    VeilstoneGymTireStack *tireStack;
+    VeilstoneGymSystem *gymSystem;
+    VeilstoneGymCameraManager cameraMan;
+} VeilstoneGym_BagAnimation;
+
+typedef int (*VeilstoneGymAnimationStateFunc)(VeilstoneGym_BagAnimation *);
 
 typedef struct HearthomeGymTrainerRoomLayout {
     int mapID;
@@ -349,32 +373,34 @@ struct HearthomeGymSystem {
     SysTask *emptyTask;
 };
 
-static u8 CanalaveGym_CheckIfPlatformInPositionB(const u8 index, const int platformStates);
-static void CanalaveGym_TogglePlatformState(const u8 index, int *platformStates);
+static void VeilstoneGym_InitMapObjects(VeilstoneGymSystem *gymSystem);
+static void VeilstoneGym_ReinitMapObjects(VeilstoneGymSystem *gymSystem);
+static void VeilstoneGym_InitCameraManager(FieldSystem *fieldSystem, VeilstoneGym_BagAnimation *bagAnim, VeilstoneGymMapObjectManager *bagObj, int direction);
+static void VeilStoneGym_ReturnCameraFocusToPlayer(VeilstoneGym_BagAnimation *bagAnim);
+static BOOL VeilstoneGym_CheckIfCameraMovementFinished(VeilstoneGym_BagAnimation *bagAnim);
+static BOOL VeilstoneGym_CheckIfCameraNeedsToMove(VeilstoneGym_BagAnimation *bagAnim, VeilstoneGymMapObjectManager *obj, int direction);
+static void VeilstoneGym_PrepareForCameraMovement(VeilstoneGym_BagAnimation *bagAnim, BOOL reverseDirection);
+static void VeilstoneGym_MoveCamera(VeilstoneGym_BagAnimation *bagAnim, enum MovementAction movementAction);
+static void VeilstoneGym_UpdateCamera(VeilstoneGym_BagAnimation *bagAnim, fx32 speed);
+
 static BOOL PastoriaGym_PressOrangeButton(FieldTask *taskMan);
 static BOOL PastoriaGym_PressGreenButton(FieldTask *taskMan);
 static BOOL PastoriaGym_PressBlueButton(FieldTask *taskMan);
 static void PastoriaGym_UpdateButtonAnimations(const u8 pressedButton, MapPropAnimationManager *mapPropAnimMan);
 static BOOL HearthomeGymDP_RaiseLift(FieldTask *taskMan);
 static BOOL HearthomeGymDP_LowerLift(FieldTask *taskMan);
-static BOOL FieldTask_CanalaveGym_MovePlatformUpDown(FieldTask *taskMan);
-static BOOL FieldTask_CanalaveGym_MovePlatformEastWest(FieldTask *taskMan);
-static BOOL FieldTask_CanalaveGym_MovePlatformNorthSouth(FieldTask *taskMan);
-static BOOL FieldTask_SunyshoreGym_RotateGears(FieldTask *task);
-static void ov8_0224B8D0(UnkStruct_ov8_0224B8D0 *param0);
-static void ov8_0224B958(UnkStruct_ov8_0224B8D0 *param0);
-static void ov8_0224BFCC(FieldSystem *fieldSystem, UnkStruct_ov8_0224C098 *param1, UnkStruct_ov8_0224B80C *param2, int param3);
-static void ov8_0224C098(UnkStruct_ov8_0224C098 *param0);
-static BOOL ov8_0224C0C4(UnkStruct_ov8_0224C098 *param0);
-static BOOL ov8_0224C0C8(UnkStruct_ov8_0224C098 *param0, UnkStruct_ov8_0224B80C *param1, int param2);
-static void ov8_0224C0FC(UnkStruct_ov8_0224C098 *param0, int param1);
-static void ov8_0224C11C(UnkStruct_ov8_0224C098 *param0, int param1);
-static void ov8_0224C170(UnkStruct_ov8_0224C098 *param0, fx32 param1);
+
 static void HearthomeGym_EmptyTask(SysTask *task, void *data);
 static void HearthomeGym_InitFog(HearthomeGymSystem *gymSystem);
 static void HearthomeGym_InitTrainers(HearthomeGymSystem *gymSystem);
 static void HearthomeGym_FreeTrainers(HearthomeGymSystem *gymSystem);
 static void HearthomeGym_EmptyTrainerTask(SysTask *task, void *data);
+
+static BOOL FieldTask_CanalaveGym_MovePlatformUpDown(FieldTask *taskMan);
+static BOOL FieldTask_CanalaveGym_MovePlatformEastWest(FieldTask *taskMan);
+static BOOL FieldTask_CanalaveGym_MovePlatformNorthSouth(FieldTask *taskMan);
+
+static BOOL FieldTask_SunyshoreGym_RotateGears(FieldTask *task);
 
 static u8 CanalaveGym_CheckIfPlatformInPositionB(const u8 index, const int platformStates)
 {
@@ -2915,73 +2941,112 @@ BOOL EternaGym_IsHourHandJumpTile(FieldSystem *fieldSystem, int tileX, int tileZ
     return FALSE;
 }
 
-static const UnkStruct_ov8_0224C90C Unk_ov8_0224C90C[9] = {
-    { 0x3, 0xC },
-    { 0x4, 0x18 },
-    { 0x8, 0x9 },
-    { 0x8, 0x16 },
-    { 0xF, 0x1C },
-    { 0x10, 0xC },
-    { 0x14, 0x13 },
-    { 0x15, 0x1A },
-    { 0x17, 0xD }
+static const CoordinatesInt sPunchingBagPositions[VEILSTONE_NUM_PUNCHING_BAGS] = {
+    { .x = 3, .z = 12 },
+    { .x = 4, .z = 24 },
+    { .x = 8, .z = 9 },
+    { .x = 8, .z = 22 },
+    { .x = 15, .z = 28 },
+    { .x = 16, .z = 12 },
+    { .x = 20, .z = 19 },
+    { .x = 21, .z = 26 },
+    { .x = 23, .z = 13 }
 };
 
-static const UnkStruct_ov8_0224C90C Unk_ov8_0224C99C[11] = {
-    { 0x3, 0x17 },
-    { 0x8, 0xC },
-    { 0x8, 0xE },
-    { 0x8, 0x10 },
-    { 0xC, 0x9 },
-    { 0xC, 0xC },
-    { 0x13, 0xC },
-    { 0x14, 0xD },
-    { 0x14, 0x1C },
-    { 0x16, 0x9 },
-    { 0x17, 0x1E }
+static const CoordinatesInt sTireStackPositions[VEILSTONE_NUM_TIRE_STACKS] = {
+    { .x = 3, .z = 23 },
+    { .x = 8, .z = 12 },
+    { .x = 8, .z = 14 },
+    { .x = 8, .z = 16 },
+    { .x = 12, .z = 9 },
+    { .x = 12, .z = 12 },
+    { .x = 19, .z = 12 },
+    { .x = 20, .z = 13 },
+    { .x = 20, .z = 28 },
+    { .x = 22, .z = 9 },
+    { .x = 23, .z = 30 }
 };
 
-static __attribute__((aligned(4))) const u8 Unk_ov8_0224E33C[1024] = {
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 4, 0, 0, 4, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 5, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+// clang-format off
+// These values determine how punching bags behave at each coordinate on the map
+// 0 = Bag can be here, 1 = Bag can not be here
+// 2 = Bag can not go north or south from here (unused)
+// 3 = Bag can not go west or east from here
+// 4 = Bag stops when passing through this position
+// 5 = Bag can not go west from here
+static const u8 sVeilstoneTileBehaviors[MAP_TILES_COUNT_X * MAP_TILES_COUNT_Z] = {
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+    1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+    1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 4, 0, 0, 4, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+    1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1,
+    1, 1, 1, 3, 5, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1,
+    1, 1, 1, 3, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1,
+    1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1,
+    1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1,
+    1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1,
+    1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1,
+    1, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1,
+    1, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1,
+    1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1,
+    1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1,
+    1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1,
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1,
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1,
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1,
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1,
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1,
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+};
+// clang-format on
+
+static const int sVeilstoneTravelDistanceRequiringCameraMovement[MAX_DIR] = {
+    [DIR_NORTH] = 3,
+    [DIR_SOUTH] = 4,
+    [DIR_WEST] = 4,
+    [DIR_EAST] = 4
 };
 
-static const int Unk_ov8_0224C764[4] = {
-    0x3,
-    0x4,
-    0x4,
-    0x4
-};
-
-static int (*const Unk_ov8_0224C818[11])(UnkStruct_ov8_0224C098 *);
+static const VeilstoneGymAnimationStateFunc sVeilstoneGymBagAnimationStates[11];
 
 void VeilstoneGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
 {
-    PersistedMapFeatures *v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
-    UnkStruct_02071BF8 *v1 = PersistedMapFeatures_GetBuffer(v0, DYNAMIC_MAP_FEATURES_VEILSTONE_GYM);
-    UnkStruct_ov8_0224B8D0 *v2 = Heap_Alloc(HEAP_ID_FIELD1, sizeof(UnkStruct_ov8_0224B8D0));
+    PersistedMapFeatures *mapFeatures = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+    VeilstoneGymPersistedFeature *feature = PersistedMapFeatures_GetBuffer(mapFeatures, DYNAMIC_MAP_FEATURES_VEILSTONE_GYM);
+    VeilstoneGymSystem *gymSystem = Heap_Alloc(HEAP_ID_FIELD1, sizeof(VeilstoneGymSystem));
 
-    memset(v2, 0, sizeof(UnkStruct_ov8_0224B8D0));
+    memset(gymSystem, 0, sizeof(VeilstoneGymSystem));
 
-    fieldSystem->unk_04->dynamicMapFeaturesData = v2;
-    v2->fieldSystem = fieldSystem;
+    fieldSystem->unk_04->dynamicMapFeaturesData = gymSystem;
+    gymSystem->fieldSystem = fieldSystem;
 
-    FieldEffectManager_InitRenderer(fieldSystem->fieldEffMan, 31);
-    ov5_021F42D8(fieldSystem->fieldEffMan, 11, 9);
+    FieldEffectManager_InitRenderer(fieldSystem->fieldEffMan, FIELD_EFFECT_RENDERER_VEILSTONE_GYM_OBJECTS);
+    VeilstoneGymObjectRenderer_InitContext(fieldSystem->fieldEffMan, VEILSTONE_NUM_TIRE_STACKS, VEILSTONE_NUM_PUNCHING_BAGS);
 
-    if (v1->unk_00 == 1) {
-        ov8_0224B958(v2);
+    if (feature->initialized == TRUE) {
+        VeilstoneGym_ReinitMapObjects(gymSystem);
     } else {
-        ov8_0224B8D0(v2);
+        VeilstoneGym_InitMapObjects(gymSystem);
     }
 
-    v1->unk_00 = 1;
+    feature->initialized = TRUE;
 }
 
 void VeilstoneGym_DynamicMapFeaturesFree(FieldSystem *fieldSystem)
 {
-    UnkStruct_ov8_0224B8D0 *v0 = fieldSystem->unk_04->dynamicMapFeaturesData;
+    VeilstoneGymSystem *gymSystem = fieldSystem->unk_04->dynamicMapFeaturesData;
 
-    Heap_Free(v0);
+    Heap_Free(gymSystem);
     fieldSystem->unk_04->dynamicMapFeaturesData = NULL;
 }
 
@@ -2990,662 +3055,629 @@ BOOL VeilstoneGym_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, con
     return FALSE;
 }
 
-static MapObject *ov8_0224B7D8(FieldSystem *fieldSystem, int param1, int param2, int param3)
+static MapObject *VeilstoneGym_CreateObject(FieldSystem *fieldSystem, int x, int z, BOOL isPunchingBag)
 {
-    MapObject *v0 = MapObjectMan_AddMapObject(fieldSystem->mapObjMan, param1, param2, 0, 0x2000, 0x0, fieldSystem->location->mapId);
+    MapObject *mapObj = MapObjectMan_AddMapObject(fieldSystem->mapObjMan, x, z, 0, OBJ_EVENT_GFX_INVISIBLE, MOVEMENT_TYPE_NONE, fieldSystem->location->mapId);
 
-    MapObject_SetLocalID(v0, 0xfd);
-    MapObject_SetDataAt(v0, param3, 0);
+    MapObject_SetLocalID(mapObj, VEILSTONE_GYM_OBJECT_LOCALID);
+    MapObject_SetDataAt(mapObj, isPunchingBag, 0);
 
-    return v0;
+    return mapObj;
 }
 
-static void ov8_0224B80C(UnkStruct_ov8_0224B80C *param0, MapObject *param1, FieldSystem *fieldSystem)
+static void VeilstoneGym_InitAnimManagerForObject(VeilstoneGymMapObjectManager *objMan, MapObject *mapObj, FieldSystem *fieldSystem)
 {
-    param0->unk_08 = param1;
-    param0->unk_00 = MapObject_GetX(param1);
-    param0->unk_04 = MapObject_GetZ(param1);
+    objMan->mapObj = mapObj;
+    objMan->x = MapObject_GetX(mapObj);
+    objMan->z = MapObject_GetZ(mapObj);
 
-    if (MapObject_GetDataAt(param1, 0) == 0) {
-        param0->unk_0C = ov5_021F4474(fieldSystem, param0->unk_00, param0->unk_04, 0);
+    if (VEILSTONE_OBJ_IS_TIRE_STACK(mapObj)) {
+        objMan->animManager = VeilstoneGymObjectRenderer_InitTireStackRenderer(fieldSystem, objMan->x, objMan->z, 0);
     } else {
-        param0->unk_0C = ov5_021F4668(fieldSystem, param0->unk_00, param0->unk_04, 0);
+        objMan->animManager = VeilstoneGymObjectRenderer_InitPunchingBagRenderer(fieldSystem, objMan->x, objMan->z, 0);
     }
 }
 
-static UnkStruct_ov8_0224BCA8 *ov8_0224B854(UnkStruct_ov8_0224B8D0 *param0, int param1, int param2)
+static VeilstoneGymPunchingBag *VeilstoneGym_GetPunchingBagAtPosition(VeilstoneGymSystem *gymSystem, int x, int z)
 {
-    int v0 = 0;
-    UnkStruct_ov8_0224BCA8 *v1 = param0->unk_10C;
+    int i = 0;
+    VeilstoneGymPunchingBag *punchingBag = gymSystem->punchingBags;
 
     do {
-        if ((v1->unk_08.unk_00 == param1) && (v1->unk_08.unk_04 == param2)) {
-            return v1;
+        if (punchingBag->obj.x == x && punchingBag->obj.z == z) {
+            return punchingBag;
         }
 
-        v1++;
-        v0++;
-    } while (v0 < 9);
+        punchingBag++;
+        i++;
+    } while (i < VEILSTONE_NUM_PUNCHING_BAGS);
 
     return NULL;
 }
 
-static UnkStruct_ov8_0224B8A0 *ov8_0224B878(UnkStruct_ov8_0224B8D0 *param0, int param1, int param2)
+static VeilstoneGymTireStack *VeilstoneGym_GetTireStackAtPosition(VeilstoneGymSystem *gymSystem, int x, int z)
 {
-    int v0 = 0;
-    UnkStruct_ov8_0224B8A0 *v1 = param0->unk_04;
+    int i = 0;
+    VeilstoneGymTireStack *tireStack = gymSystem->tireStacks;
 
     do {
-        if (v1->unk_00) {
-            if ((v1->unk_08.unk_00 == param1) && (v1->unk_08.unk_04 == param2)) {
-                return v1;
+        if (tireStack->exists) {
+            if (tireStack->obj.x == x && tireStack->obj.z == z) {
+                return tireStack;
             }
         }
 
-        v1++;
-        v0++;
-    } while (v0 < 11);
+        tireStack++;
+        i++;
+    } while (i < VEILSTONE_NUM_TIRE_STACKS);
 
     return NULL;
 }
 
-static void ov8_0224B8A0(UnkStruct_ov8_0224B8A0 *param0)
+static void VeilstoneGym_RemoveTireStack(VeilstoneGymTireStack *tireStack)
 {
-    GF_ASSERT(param0);
-    GF_ASSERT(param0->unk_08.unk_0C);
-    GF_ASSERT(param0->unk_08.unk_08);
+    GF_ASSERT(tireStack);
+    GF_ASSERT(tireStack->obj.animManager);
+    GF_ASSERT(tireStack->obj.mapObj);
 
-    OverworldAnimManager_Finish(param0->unk_08.unk_0C);
-    MapObject_Delete(param0->unk_08.unk_08);
+    OverworldAnimManager_Finish(tireStack->obj.animManager);
+    MapObject_Delete(tireStack->obj.mapObj);
 
-    param0->unk_00 = 0;
+    tireStack->exists = FALSE;
 }
 
-static void ov8_0224B8D0(UnkStruct_ov8_0224B8D0 *param0)
+static void VeilstoneGym_InitMapObjects(VeilstoneGymSystem *gymSystem)
 {
-    int v0;
-    MapObject *v1;
-    const UnkStruct_ov8_0224C90C *v2;
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    UnkStruct_ov8_0224B8A0 *v4 = param0->unk_04;
-    UnkStruct_ov8_0224BCA8 *v5 = param0->unk_10C;
+    FieldSystem *fieldSystem = gymSystem->fieldSystem;
+    VeilstoneGymTireStack *tireStack = gymSystem->tireStacks;
+    VeilstoneGymPunchingBag *punchingBag = gymSystem->punchingBags;
 
-    memset((u8 *)v4, 0, sizeof(UnkStruct_ov8_0224B8A0) * 11);
-    memset((u8 *)v5, 0, sizeof(UnkStruct_ov8_0224BCA8) * 9);
+    memset(tireStack, 0, sizeof(VeilstoneGymTireStack) * VEILSTONE_NUM_TIRE_STACKS);
+    memset(punchingBag, 0, sizeof(VeilstoneGymPunchingBag) * VEILSTONE_NUM_PUNCHING_BAGS);
 
-    for (v0 = 0, v2 = Unk_ov8_0224C99C; v0 < 11; v0++, v2++, v4++) {
-        v1 = ov8_0224B7D8(fieldSystem, v2->unk_00 + 0, v2->unk_04 + -2, 0);
-        ov8_0224B80C(&v4->unk_08, v1, fieldSystem);
-        v4->unk_00 = 1;
+    int i;
+    const CoordinatesInt *pos;
+    for (i = 0, pos = sTireStackPositions; i < SNELEMS(sTireStackPositions); i++, pos++, tireStack++) {
+        MapObject *stackObj = VeilstoneGym_CreateObject(fieldSystem, pos->x, pos->z - 2, FALSE);
+        VeilstoneGym_InitAnimManagerForObject(&tireStack->obj, stackObj, fieldSystem);
+        tireStack->exists = TRUE;
     }
 
-    for (v0 = 0, v2 = Unk_ov8_0224C90C; v0 < 9; v0++, v2++, v5++) {
-        v1 = ov8_0224B7D8(fieldSystem, v2->unk_00 + 0, v2->unk_04 + -2, 1);
-        ov8_0224B80C(&v5->unk_08, v1, fieldSystem);
-        v5->unk_00 = 1;
+    for (i = 0, pos = sPunchingBagPositions; i < SNELEMS(sPunchingBagPositions); i++, pos++, punchingBag++) {
+        MapObject *bagObj = VeilstoneGym_CreateObject(fieldSystem, pos->x, pos->z - 2, TRUE);
+        VeilstoneGym_InitAnimManagerForObject(&punchingBag->obj, bagObj, fieldSystem);
+        punchingBag->exists = TRUE;
     }
 }
 
-static void ov8_0224B958(UnkStruct_ov8_0224B8D0 *param0)
+static void VeilstoneGym_ReinitMapObjects(VeilstoneGymSystem *gymSystem)
 {
-    int v0 = 0, v1 = 0;
-    MapObject *v2;
-    FieldSystem *fieldSystem = param0->fieldSystem;
+    int objIndex = 0, numObjInited = 0;
+    MapObject *mapObj;
+    FieldSystem *fieldSystem = gymSystem->fieldSystem;
     MapObjectManager *mapObjMan = fieldSystem->mapObjMan;
-    UnkStruct_ov8_0224B8A0 *v5 = param0->unk_04;
-    UnkStruct_ov8_0224BCA8 *v6 = param0->unk_10C;
+    VeilstoneGymTireStack *tireStack = gymSystem->tireStacks;
+    VeilstoneGymPunchingBag *punchingBag = gymSystem->punchingBags;
 
-    while (MapObjectMan_FindObjectWithStatus(mapObjMan, &v2, &v0, 1 << 0) == 1) {
-        if (MapObject_GetLocalID(v2) == 0xfd) {
-            if (MapObject_GetDataAt(v2, 0) == 0) {
-                ov8_0224B80C(&v5->unk_08, v2, fieldSystem);
-                v5->unk_00 = 1;
-                v5++;
+    while (MapObjectMan_FindObjectWithStatus(mapObjMan, &mapObj, &objIndex, MAP_OBJ_STATUS_0) == TRUE) {
+        if (MapObject_GetLocalID(mapObj) == VEILSTONE_GYM_OBJECT_LOCALID) {
+            if (VEILSTONE_OBJ_IS_TIRE_STACK(mapObj)) {
+                VeilstoneGym_InitAnimManagerForObject(&tireStack->obj, mapObj, fieldSystem);
+                tireStack->exists = TRUE;
+                tireStack++;
             } else {
-                ov8_0224B80C(&v6->unk_08, v2, fieldSystem);
-                v6->unk_00 = 1;
-                v6++;
+                VeilstoneGym_InitAnimManagerForObject(&punchingBag->obj, mapObj, fieldSystem);
+                punchingBag->exists = TRUE;
+                punchingBag++;
             }
 
-            v1++;
-            GF_ASSERT(v1 <= (11 + 9));
+            numObjInited++;
+            GF_ASSERT(numObjInited <= VEILSTONE_NUM_TIRE_STACKS + VEILSTONE_NUM_PUNCHING_BAGS);
         }
     }
 }
 
-static int ov8_0224B9D8(int param0, int param1)
+static int VeilstoneGym_GetTileBehavior(int x, int z)
 {
-    GF_ASSERT(param0 >= 0);
-    GF_ASSERT(param0 < 32);
-    GF_ASSERT(param1 >= 0);
-    GF_ASSERT(param1 < 32);
+    GF_ASSERT(x >= 0);
+    GF_ASSERT(x < MAP_TILES_COUNT_X);
+    GF_ASSERT(z >= 0);
+    GF_ASSERT(z < MAP_TILES_COUNT_Z);
 
-    {
-        int v0 = Unk_ov8_0224E33C[param0 + (param1 * 32)];
-        return v0;
-    }
+    return sVeilstoneTileBehaviors[x + (z * MAP_TILES_COUNT_X)];
 }
 
-static u32 ov8_0224BA0C(UnkStruct_ov8_0224B8D0 *param0, int param1, int param2, int param3)
+static u32 VeilstoneGym_GetTileFlags(VeilstoneGymSystem *gymSystem, int x, int z, int direction)
 {
-    u32 v0 = 0;
-    int v1, v2;
+    u32 flags = 0;
 
-    v1 = ov8_0224B9D8(param1, param2);
-
-    switch (v1) {
+    switch (VeilstoneGym_GetTileBehavior(x, z)) {
     case 4:
-        v0 |= (1 << 2);
+        flags |= VEILSTONE_TILE_FLAG_BAG_PAUSE_POINT;
         break;
     case 2:
-        if ((param3 == 0) || (param3 == 1)) {
-            v0 |= (1 << 0);
+        if (direction == DIR_NORTH || direction == DIR_SOUTH) {
+            flags |= VEILSTONE_TILE_FLAG_BAG_CANT_MOVE_THAT_WAY;
         }
         break;
     case 3:
-        if ((param3 == 2) || (param3 == 3)) {
-            v0 |= (1 << 0);
+        if (direction == DIR_WEST || direction == DIR_EAST) {
+            flags |= VEILSTONE_TILE_FLAG_BAG_CANT_MOVE_THAT_WAY;
         }
         break;
     case 5:
-        if (param3 == 2) {
-            v0 |= (1 << 0);
+        if (direction == DIR_WEST) {
+            flags |= VEILSTONE_TILE_FLAG_BAG_CANT_MOVE_THAT_WAY;
         }
         break;
     }
 
-    param1 += MapObject_GetDxFromDir(param3);
-    param2 += MapObject_GetDzFromDir(param3);
+    x += MapObject_GetDxFromDir(direction);
+    z += MapObject_GetDzFromDir(direction);
 
-    v2 = ov8_0224B9D8(param1, param2);
-
-    if (v2 == 1) {
-        v0 |= (1 << 0);
+    if (VeilstoneGym_GetTileBehavior(x, z) == 1) {
+        flags |= VEILSTONE_TILE_FLAG_BAG_CANT_MOVE_THAT_WAY;
     }
 
-    if (ov8_0224B878(param0, param1, param2) != NULL) {
-        v0 |= (1 << 1);
+    if (VeilstoneGym_GetTireStackAtPosition(gymSystem, x, z) != NULL) {
+        flags |= VEILSTONE_TILE_FLAG_TIRE_STACK_PRESENT;
     }
 
-    return v0;
+    return flags;
 }
 
-static u32 ov8_0224BAA0(UnkStruct_ov8_0224B8D0 *param0, int param1, int param2, int param3, int *param4)
+static u32 VeilstoneGym_CalculateDistanceBagWillTravel(VeilstoneGymSystem *gymSystem, int x, int z, int direction, int *bagTravelDistance)
 {
-    u32 v0;
+    *bagTravelDistance = 0;
+    u32 flags = VeilstoneGym_GetTileFlags(gymSystem, x, z, direction);
 
-    *param4 = 0;
-    v0 = ov8_0224BA0C(param0, param1, param2, param3);
-
-    if ((v0 != 0) && (v0 != (1 << 2))) {
-        return v0;
+    if (flags != 0 && flags != VEILSTONE_TILE_FLAG_BAG_PAUSE_POINT) {
+        return flags;
     }
 
     do {
-        param1 += MapObject_GetDxFromDir(param3);
-        param2 += MapObject_GetDzFromDir(param3);
-        (*param4)++;
-        v0 = ov8_0224BA0C(param0, param1, param2, param3);
-    } while (v0 == 0);
+        x += MapObject_GetDxFromDir(direction);
+        z += MapObject_GetDzFromDir(direction);
+        (*bagTravelDistance)++;
+        flags = VeilstoneGym_GetTileFlags(gymSystem, x, z, direction);
+    } while (flags == 0);
 
-    return v0;
+    return flags;
 }
 
-static BOOL ov8_0224BAF4(FieldTask *taskMan)
+static BOOL FieldTask_VeilstoneGym_HitPunchingBagNoMovement(FieldTask *taskMan)
 {
-    MapObject *v0;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
-    UnkStruct_ov8_0224C098 *v2 = FieldTask_GetEnv(taskMan);
-    UnkStruct_ov8_0224B8D0 *v3 = v2->unk_3C;
+    VeilstoneGym_BagAnimation *bagAnim = FieldTask_GetEnv(taskMan);
 
-    v0 = Player_MapObject(fieldSystem->playerAvatar);
+    MapObject *playerObj = Player_MapObject(fieldSystem->playerAvatar);
 
-    switch (v2->unk_00) {
+    switch (bagAnim->state) {
     case 0:
-        if (LocalMapObj_IsAnimationSet(v0) == 1) {
-            LocalMapObj_SetAnimationCode(v0, MovementAction_TurnActionTowardsDir(v2->unk_08, MOVEMENT_ACTION_WALK_ON_SPOT_FASTER_NORTH));
-            ov5_021F4698(v2->unk_34->unk_08.unk_0C, v2->unk_08, 0);
+        if (LocalMapObj_IsAnimationSet(playerObj) == TRUE) {
+            LocalMapObj_SetAnimationCode(playerObj, MovementAction_TurnActionTowardsDir(bagAnim->direction, MOVEMENT_ACTION_WALK_ON_SPOT_FASTER_NORTH));
+            VeilstoneGymObjectRenderer_StartPunchingBagAnimation(bagAnim->punchingBag->obj.animManager, bagAnim->direction, FALSE);
             Sound_PlayEffect(SEQ_SE_PL_SUTYA2);
-            v2->unk_00++;
+            bagAnim->state++;
         }
         break;
     case 1:
-        if ((LocalMapObj_CheckAnimationFinished(v0) == 1) && (ov5_021F4720(v2->unk_34->unk_08.unk_0C) == 1)) {
-            sub_020656AC(v0);
-            Heap_Free(v2);
-            return 1;
+        if (LocalMapObj_CheckAnimationFinished(playerObj) == TRUE && VeilstoneGymObjectRenderer_IsPunchingBagAnimFinished(bagAnim->punchingBag->obj.animManager) == TRUE) {
+            sub_020656AC(playerObj);
+            Heap_Free(bagAnim);
+            return TRUE;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov8_0224BB78(FieldTask *taskMan)
+static BOOL FieldTask_VeilstoneGym_HitPunchingBag(FieldTask *taskMan)
 {
-    int v0;
-    UnkStruct_ov8_0224C098 *v1 = FieldTask_GetEnv(taskMan);
+    int stateResult = 0;
+    VeilstoneGym_BagAnimation *bagAnim = FieldTask_GetEnv(taskMan);
 
     do {
-        v0 = Unk_ov8_0224C818[v1->unk_00](v1);
-    } while (v0 == 1);
+        stateResult = sVeilstoneGymBagAnimationStates[bagAnim->state](bagAnim);
+    } while (stateResult == VEILSTONE_STATE_RESULT_CONTINUE);
 
-    if (v0 == 2) {
-        return 1;
+    if (stateResult == VEILSTONE_STATE_RESULT_FINISH) {
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static int ov8_0224BBA0(UnkStruct_ov8_0224C098 *param0)
+static int VeilstoneGym_AnimationState_Init(VeilstoneGym_BagAnimation *bagAnim)
 {
-    u32 v0;
-    UnkStruct_ov8_0224B80C *v1 = &param0->unk_34->unk_08;
-    int v2 = v1->unk_00;
-    int v3 = v1->unk_04;
+    VeilstoneGymMapObjectManager *obj = &bagAnim->punchingBag->obj;
+    int x = obj->x;
+    int z = obj->z;
 
-    ov8_0224BAA0(param0->unk_3C, v2, v3, param0->unk_08, &param0->unk_1C);
-    OverworldAnimManager_GetPosition(v1->unk_0C, &param0->unk_20);
+    VeilstoneGym_CalculateDistanceBagWillTravel(bagAnim->gymSystem, x, z, bagAnim->direction, &bagAnim->distanceToTravel);
+    OverworldAnimManager_GetPosition(obj->animManager, &bagAnim->bagPosition);
 
-    param0->unk_2C = ((FX32_ONE / 2) / 30);
-    param0->unk_00 = 1;
+    bagAnim->movingSpeed = FX32_ONE / 60;
+    bagAnim->state = VEILSTONE_ANIM_STATE_KICK_BAG;
 
-    return 0;
+    return VEILSTONE_STATE_RESULT_ADVANCE_FRAME;
 }
 
-static int ov8_0224BBD0(UnkStruct_ov8_0224C098 *param0)
+static int VeilstoneGym_AnimationState_KickBag(VeilstoneGym_BagAnimation *bagAnim)
 {
-    MapObject *v0 = Player_MapObject(param0->unk_3C->fieldSystem->playerAvatar);
+    MapObject *playerObj = Player_MapObject(bagAnim->gymSystem->fieldSystem->playerAvatar);
 
-    if (LocalMapObj_IsAnimationSet(v0) == 0) {
-        return 0;
+    if (!LocalMapObj_IsAnimationSet(playerObj)) {
+        return VEILSTONE_STATE_RESULT_ADVANCE_FRAME;
     }
 
-    LocalMapObj_SetAnimationCode(v0, MovementAction_TurnActionTowardsDir(param0->unk_08, MOVEMENT_ACTION_WALK_ON_SPOT_SLOW_NORTH));
+    LocalMapObj_SetAnimationCode(playerObj, MovementAction_TurnActionTowardsDir(bagAnim->direction, MOVEMENT_ACTION_WALK_ON_SPOT_SLOW_NORTH));
 
-    {
-        UnkStruct_ov8_0224BCA8 *v1 = param0->unk_34;
-        OverworldAnimManager *v2 = v1->unk_08.unk_0C;
+    VeilstoneGymPunchingBag *punchingBag = bagAnim->punchingBag;
+    OverworldAnimManager *animManager = punchingBag->obj.animManager;
 
-        ov5_021F4698(v2, param0->unk_08, 1);
+    VeilstoneGymObjectRenderer_StartPunchingBagAnimation(animManager, bagAnim->direction, TRUE);
 
-        if (ov8_0224C0C8(param0, &v1->unk_08, param0->unk_08) == 1) {
-            param0->unk_18 = 1;
-            ov8_0224BFCC(param0->unk_3C->fieldSystem, param0, &v1->unk_08, param0->unk_08);
-            ov8_0224C0FC(param0, 0);
-        }
+    if (VeilstoneGym_CheckIfCameraNeedsToMove(bagAnim, &punchingBag->obj, bagAnim->direction) == TRUE) {
+        bagAnim->moveCamera = TRUE;
+        VeilstoneGym_InitCameraManager(bagAnim->gymSystem->fieldSystem, bagAnim, &punchingBag->obj, bagAnim->direction);
+        VeilstoneGym_PrepareForCameraMovement(bagAnim, FALSE);
     }
 
     Sound_PlayEffect(SEQ_SE_PL_SUTYA2);
 
-    param0->unk_00 = 2;
-    return 1;
+    bagAnim->state = VEILSTONE_ANIM_STATE_START_MOVEMENT;
+    return VEILSTONE_STATE_RESULT_CONTINUE;
 }
 
-static int ov8_0224BC48(UnkStruct_ov8_0224C098 *param0)
+static int VeilstoneGym_AnimationState_StartMovement(VeilstoneGym_BagAnimation *bagAnim)
 {
-    VecFx32_StepDirection(param0->unk_08, &param0->unk_20, param0->unk_2C);
-    OverworldAnimManager_SetPosition(param0->unk_34->unk_08.unk_0C, &param0->unk_20);
+    VecFx32_StepDirection(bagAnim->direction, &bagAnim->bagPosition, bagAnim->movingSpeed);
+    OverworldAnimManager_SetPosition(bagAnim->punchingBag->obj.animManager, &bagAnim->bagPosition);
 
-    param0->unk_2C += ((FX32_ONE / 2) / 30);
-    param0->unk_30 += param0->unk_2C;
-    param0->unk_04++;
+    bagAnim->movingSpeed += FX32_ONE / 60;
+    bagAnim->traveledDistance += bagAnim->movingSpeed;
+    bagAnim->elapsedFrames++;
 
-    if (param0->unk_04 >= 30) {
-        fx32 v0 = (FX32_ONE * (43 - 30));
+    if (bagAnim->elapsedFrames >= 30) {
+        fx32 frameDelta = FX32_CONST(13);
 
-        v0 /= param0->unk_1C * 16 / 2;
-        ov5_021F4714(param0->unk_34->unk_08.unk_0C, v0);
-        param0->unk_00 = 3;
+        frameDelta /= bagAnim->distanceToTravel * 16 / 2;
+        VeilstoneGymObjectRenderer_UpdateBagFrameDelta(bagAnim->punchingBag->obj.animManager, frameDelta);
+        bagAnim->state = VEILSTONE_ANIM_STATE_MOVE_BAG;
         Sound_PlayEffect(SEQ_SE_PL_GYM01);
     }
 
-    return 0;
+    return VEILSTONE_STATE_RESULT_ADVANCE_FRAME;
 }
 
-static int ov8_0224BCA8(UnkStruct_ov8_0224C098 *param0)
+static int VeilstoneGym_AnimationState_MovePunchingBag(VeilstoneGym_BagAnimation *bagAnim)
 {
-    UnkStruct_ov8_0224BCA8 *v0 = param0->unk_34;
+    VeilstoneGymPunchingBag *punchingBag = bagAnim->punchingBag;
 
-    VecFx32_StepDirection(param0->unk_08, &param0->unk_20, param0->unk_2C);
-    OverworldAnimManager_SetPosition(v0->unk_08.unk_0C, &param0->unk_20);
+    VecFx32_StepDirection(bagAnim->direction, &bagAnim->bagPosition, bagAnim->movingSpeed);
+    OverworldAnimManager_SetPosition(punchingBag->obj.animManager, &bagAnim->bagPosition);
 
-    param0->unk_30 += param0->unk_2C;
-    param0->unk_04++;
+    bagAnim->traveledDistance += bagAnim->movingSpeed;
+    bagAnim->elapsedFrames++;
 
-    if (param0->unk_04 < 36) {
-        if (param0->unk_2C < FX32_ONE) {
-            param0->unk_2C += param0->unk_2C;
+    if (bagAnim->elapsedFrames < 36) {
+        if (bagAnim->movingSpeed < FX32_ONE) {
+            bagAnim->movingSpeed += bagAnim->movingSpeed;
         }
-    } else if (param0->unk_04 == 36) {
-        if (param0->unk_2C <= (FX32_ONE * 2)) {
-            param0->unk_2C = FX32_ONE * 2;
+    } else if (bagAnim->elapsedFrames == 36) {
+        if (bagAnim->movingSpeed <= FX32_CONST(2)) {
+            bagAnim->movingSpeed = FX32_CONST(2);
         }
     }
 
-    ov8_0224C170(param0, param0->unk_2C);
+    VeilstoneGym_UpdateCamera(bagAnim, bagAnim->movingSpeed);
 
-    if ((((param0->unk_30) >> 4) / FX32_ONE) > param0->unk_14) {
-        u32 v1;
+    if ((bagAnim->traveledDistance >> 4) / FX32_ONE > bagAnim->traveledCoordinates) {
+        bagAnim->traveledCoordinates = (bagAnim->traveledDistance >> 4) / FX32_ONE;
 
-        param0->unk_14 = (((param0->unk_30) >> 4) / FX32_ONE);
+        punchingBag->obj.x += MapObject_GetDxFromDir(bagAnim->direction);
+        punchingBag->obj.z += MapObject_GetDzFromDir(bagAnim->direction);
 
-        v0->unk_08.unk_00 += MapObject_GetDxFromDir(param0->unk_08);
-        v0->unk_08.unk_04 += MapObject_GetDzFromDir(param0->unk_08);
+        u32 tileFlags = VeilstoneGym_GetTileFlags(bagAnim->gymSystem, punchingBag->obj.x, punchingBag->obj.z, bagAnim->direction);
 
-        v1 = ov8_0224BA0C(param0->unk_3C, v0->unk_08.unk_00, v0->unk_08.unk_04, param0->unk_08);
-
-        if (v1 == 0) {
-            (void)0;
-        } else {
-            VecFx32_SetPosFromMapCoords(v0->unk_08.unk_00, v0->unk_08.unk_04, &param0->unk_20);
-            MapObject_SetX(v0->unk_08.unk_08, v0->unk_08.unk_00);
-            MapObject_SetZ(v0->unk_08.unk_08, v0->unk_08.unk_04);
-            MapObject_UpdateCoords(v0->unk_08.unk_08);
-            ov5_021F4714(v0->unk_08.unk_0C, FX32_ONE);
-            Sound_StopEffect(1356, 0);
+        if (tileFlags != 0) {
+            VecFx32_SetPosFromMapCoords(punchingBag->obj.x, punchingBag->obj.z, &bagAnim->bagPosition);
+            MapObject_SetX(punchingBag->obj.mapObj, punchingBag->obj.x);
+            MapObject_SetZ(punchingBag->obj.mapObj, punchingBag->obj.z);
+            MapObject_UpdateCoords(punchingBag->obj.mapObj);
+            VeilstoneGymObjectRenderer_UpdateBagFrameDelta(punchingBag->obj.animManager, FX32_ONE);
+            Sound_StopEffect(SEQ_SE_PL_GYM01, 0);
             Sound_PlayEffect(SEQ_SE_PL_SUTYA2);
             Sound_PlayEffect(SEQ_SE_PL_GYM02);
 
-            if ((v1 & (1 << 1)) == 0) {
-                if (param0->unk_18 == 1) {
-                    param0->unk_00 = 6;
+            if (!(tileFlags & VEILSTONE_TILE_FLAG_TIRE_STACK_PRESENT)) {
+                if (bagAnim->moveCamera == TRUE) {
+                    bagAnim->state = VEILSTONE_ANIM_STATE_PREP_CAMERA_TO_PLAYER;
                 } else {
-                    param0->unk_00 = 8;
+                    bagAnim->state = VEILSTONE_ANIM_STATE_FINISH_BAG_ANIMATION;
                 }
             } else {
-                param0->unk_38 = ov8_0224B878(param0->unk_3C, v0->unk_08.unk_00 + MapObject_GetDxFromDir(param0->unk_08), v0->unk_08.unk_04 + MapObject_GetDzFromDir(param0->unk_08));
-                GF_ASSERT(param0->unk_38 != NULL);
-                param0->unk_04 = 0;
-                param0->unk_00 = 4;
+                bagAnim->tireStack = VeilstoneGym_GetTireStackAtPosition(bagAnim->gymSystem, punchingBag->obj.x + MapObject_GetDxFromDir(bagAnim->direction), punchingBag->obj.z + MapObject_GetDzFromDir(bagAnim->direction));
+                GF_ASSERT(bagAnim->tireStack != NULL);
+                bagAnim->elapsedFrames = 0;
+                bagAnim->state = VEILSTONE_ANIM_STATE_TOPPLE_STACK;
             }
         }
     }
 
-    return 0;
+    return VEILSTONE_STATE_RESULT_ADVANCE_FRAME;
 }
 
-static int ov8_0224BDD0(UnkStruct_ov8_0224C098 *param0)
+static int VeilstoneGym_AnimationState_ToppleTireStack(VeilstoneGym_BagAnimation *bagAnim)
 {
-    ov8_0224C170(param0, param0->unk_2C);
-    param0->unk_04++;
+    VeilstoneGym_UpdateCamera(bagAnim, bagAnim->movingSpeed);
+    bagAnim->elapsedFrames++;
 
-    if (param0->unk_04 >= 4) {
-        param0->unk_04 = 0;
-        param0->unk_00 = 5;
-        ov5_021F44A4(param0->unk_38->unk_08.unk_0C);
+    if (bagAnim->elapsedFrames >= 4) {
+        bagAnim->elapsedFrames = 0;
+        bagAnim->state = VEILSTONE_ANIM_STATE_REMOVE_STACK;
+        VeilstoneGymObjectRenderer_PlayToppleTireStackAnim(bagAnim->tireStack->obj.animManager);
         Sound_PlayEffect(SEQ_SE_DP_UG_026);
     }
 
-    return 0;
+    return VEILSTONE_STATE_RESULT_ADVANCE_FRAME;
 }
 
-static int ov8_0224BE04(UnkStruct_ov8_0224C098 *param0)
+static int VeilstoneGym_AnimationState_RemoveTireStack(VeilstoneGym_BagAnimation *bagAnim)
 {
-    ov8_0224C170(param0, param0->unk_2C);
+    VeilstoneGym_UpdateCamera(bagAnim, bagAnim->movingSpeed);
 
-    if (ov5_021F453C(param0->unk_38->unk_08.unk_0C)) {
-        ov8_0224B8A0(param0->unk_38);
-        param0->unk_04 = 0;
+    if (VeilstoneGymObjectRenderer_IsTireStackAnimationFinished(bagAnim->tireStack->obj.animManager)) {
+        VeilstoneGym_RemoveTireStack(bagAnim->tireStack);
+        bagAnim->elapsedFrames = 0;
 
-        if (param0->unk_18 == 1) {
-            param0->unk_00 = 6;
+        if (bagAnim->moveCamera == TRUE) {
+            bagAnim->state = VEILSTONE_ANIM_STATE_PREP_CAMERA_TO_PLAYER;
         } else {
-            param0->unk_00 = 8;
+            bagAnim->state = VEILSTONE_ANIM_STATE_FINISH_BAG_ANIMATION;
         }
     }
 
-    return 0;
+    return VEILSTONE_STATE_RESULT_ADVANCE_FRAME;
 }
 
-static int ov8_0224BE38(UnkStruct_ov8_0224C098 *param0)
+static int VeilstoneGym_AnimationState_PrepCameraReturnToPlayer(VeilstoneGym_BagAnimation *bagAnim)
 {
-    ov8_0224C170(param0, param0->unk_2C);
+    VeilstoneGym_UpdateCamera(bagAnim, bagAnim->movingSpeed);
 
-    if ((ov8_0224C0C4(param0) == 1) && (ov5_021F4720(param0->unk_34->unk_08.unk_0C) == 1)) {
-        ov8_0224C0FC(param0, 1);
-        param0->unk_00 = 7;
+    if (VeilstoneGym_CheckIfCameraMovementFinished(bagAnim) == TRUE && VeilstoneGymObjectRenderer_IsPunchingBagAnimFinished(bagAnim->punchingBag->obj.animManager) == TRUE) {
+        VeilstoneGym_PrepareForCameraMovement(bagAnim, TRUE);
+        bagAnim->state = VEILSTONE_ANIM_STATE_CAMERA_TO_PLAYER;
     }
 
-    return 0;
+    return VEILSTONE_STATE_RESULT_ADVANCE_FRAME;
 }
 
-static int ov8_0224BE68(UnkStruct_ov8_0224C098 *param0)
+static int VeilstoneGym_AnimationState_MoveCameraToPlayer(VeilstoneGym_BagAnimation *bagAnim)
 {
-    ov8_0224C11C(param0, 0x10);
+    VeilstoneGym_MoveCamera(bagAnim, MOVEMENT_ACTION_WALK_FAST_NORTH);
 
-    if (ov8_0224C0C4(param0) == 1) {
-        ov8_0224C098(param0);
-        param0->unk_00 = 9;
+    if (VeilstoneGym_CheckIfCameraMovementFinished(bagAnim) == TRUE) {
+        VeilStoneGym_ReturnCameraFocusToPlayer(bagAnim);
+        bagAnim->state = VEILSTONE_ANIM_STATE_WAIT_FINISH;
     }
 
-    return 0;
+    return VEILSTONE_STATE_RESULT_ADVANCE_FRAME;
 }
 
-static int ov8_0224BE8C(UnkStruct_ov8_0224C098 *param0)
+static int VeilstoneGym_AnimationState_FinishBagAnimation(VeilstoneGym_BagAnimation *bagAnim)
 {
-    if (ov5_021F4720(param0->unk_34->unk_08.unk_0C) == 1) {
-        param0->unk_00 = 9;
+    if (VeilstoneGymObjectRenderer_IsPunchingBagAnimFinished(bagAnim->punchingBag->obj.animManager) == TRUE) {
+        bagAnim->state = VEILSTONE_ANIM_STATE_WAIT_FINISH;
     }
 
-    return 0;
+    return VEILSTONE_STATE_RESULT_ADVANCE_FRAME;
 }
 
-static int ov8_0224BEA4(UnkStruct_ov8_0224C098 *param0)
+static int VeilstoneGym_AnimationState_WaitForAnimationFinished(VeilstoneGym_BagAnimation *bagAnim)
 {
-    MapObject *v0 = Player_MapObject(param0->unk_3C->fieldSystem->playerAvatar);
+    MapObject *playerObj = Player_MapObject(bagAnim->gymSystem->fieldSystem->playerAvatar);
 
-    if (LocalMapObj_CheckAnimationFinished(v0) == 1) {
-        sub_020656AC(v0);
-        param0->unk_00 = 10;
+    if (LocalMapObj_CheckAnimationFinished(playerObj) == TRUE) {
+        sub_020656AC(playerObj);
+        bagAnim->state = VEILSTONE_ANIM_STATE_FREE;
     }
 
-    return 0;
+    return VEILSTONE_STATE_RESULT_ADVANCE_FRAME;
 }
 
-static int ov8_0224BECC(UnkStruct_ov8_0224C098 *param0)
+static int VeilstoneGym_AnimationState_Free(VeilstoneGym_BagAnimation *bagAnim)
 {
-    Heap_Free(param0);
-    return 2;
+    Heap_Free(bagAnim);
+    return VEILSTONE_STATE_RESULT_FINISH;
 }
 
-static int (*const Unk_ov8_0224C818[11])(UnkStruct_ov8_0224C098 *) = {
-    ov8_0224BBA0,
-    ov8_0224BBD0,
-    ov8_0224BC48,
-    ov8_0224BCA8,
-    ov8_0224BDD0,
-    ov8_0224BE04,
-    ov8_0224BE38,
-    ov8_0224BE68,
-    ov8_0224BE8C,
-    ov8_0224BEA4,
-    ov8_0224BECC
+static const VeilstoneGymAnimationStateFunc sVeilstoneGymBagAnimationStates[11] = {
+    [VEILSTONE_ANIM_STATE_INIT] = VeilstoneGym_AnimationState_Init,
+    [VEILSTONE_ANIM_STATE_KICK_BAG] = VeilstoneGym_AnimationState_KickBag,
+    [VEILSTONE_ANIM_STATE_START_MOVEMENT] = VeilstoneGym_AnimationState_StartMovement,
+    [VEILSTONE_ANIM_STATE_MOVE_BAG] = VeilstoneGym_AnimationState_MovePunchingBag,
+    [VEILSTONE_ANIM_STATE_TOPPLE_STACK] = VeilstoneGym_AnimationState_ToppleTireStack,
+    [VEILSTONE_ANIM_STATE_REMOVE_STACK] = VeilstoneGym_AnimationState_RemoveTireStack,
+    [VEILSTONE_ANIM_STATE_PREP_CAMERA_TO_PLAYER] = VeilstoneGym_AnimationState_PrepCameraReturnToPlayer,
+    [VEILSTONE_ANIM_STATE_CAMERA_TO_PLAYER] = VeilstoneGym_AnimationState_MoveCameraToPlayer,
+    [VEILSTONE_ANIM_STATE_FINISH_BAG_ANIMATION] = VeilstoneGym_AnimationState_FinishBagAnimation,
+    [VEILSTONE_ANIM_STATE_WAIT_FINISH] = VeilstoneGym_AnimationState_WaitForAnimationFinished,
+    [VEILSTONE_ANIM_STATE_FREE] = VeilstoneGym_AnimationState_Free
 };
 
-static UnkStruct_ov8_0224C098 *ov8_0224BED8(UnkStruct_ov8_0224B8D0 *param0, UnkStruct_ov8_0224BCA8 *param1, int param2)
+static VeilstoneGym_BagAnimation *VeilstoneGym_InitBagAnimation(VeilstoneGymSystem *gymSystem, VeilstoneGymPunchingBag *punchingBag, int direction)
 {
-    UnkStruct_ov8_0224C098 *v0 = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(UnkStruct_ov8_0224C098));
-    GF_ASSERT(v0 != NULL);
+    VeilstoneGym_BagAnimation *bagAnim = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(VeilstoneGym_BagAnimation));
+    GF_ASSERT(bagAnim != NULL);
 
-    memset(v0, 0, sizeof(UnkStruct_ov8_0224C098));
+    memset(bagAnim, 0, sizeof(VeilstoneGym_BagAnimation));
 
-    v0->unk_08 = param2;
-    v0->unk_0C = param1->unk_08.unk_00;
-    v0->unk_10 = param1->unk_08.unk_04;
-    v0->unk_34 = param1;
-    v0->unk_3C = param0;
+    bagAnim->direction = direction;
+    bagAnim->bagX = punchingBag->obj.x;
+    bagAnim->bagZ = punchingBag->obj.z;
+    bagAnim->punchingBag = punchingBag;
+    bagAnim->gymSystem = gymSystem;
 
-    return v0;
+    return bagAnim;
 }
 
-static void ov8_0224BF0C(FieldSystem *fieldSystem, UnkStruct_ov8_0224B8D0 *param1, UnkStruct_ov8_0224BCA8 *param2, int param3)
+static void VeilstoneGym_PlayBagNoMoveAnimation(FieldSystem *fieldSystem, VeilstoneGymSystem *gymSystem, VeilstoneGymPunchingBag *punchingBag, int direction)
 {
-    UnkStruct_ov8_0224C098 *v0 = ov8_0224BED8(param1, param2, param3);
-    FieldSystem_CreateTask(fieldSystem, ov8_0224BAF4, v0);
+    VeilstoneGym_BagAnimation *bagAnim = VeilstoneGym_InitBagAnimation(gymSystem, punchingBag, direction);
+    FieldSystem_CreateTask(fieldSystem, FieldTask_VeilstoneGym_HitPunchingBagNoMovement, bagAnim);
 }
 
-static void ov8_0224BF2C(FieldSystem *fieldSystem, UnkStruct_ov8_0224B8D0 *param1, UnkStruct_ov8_0224BCA8 *param2, int param3)
+static void VeilstoneGym_PlayBagMoveAnimation(FieldSystem *fieldSystem, VeilstoneGymSystem *gymSystem, VeilstoneGymPunchingBag *punchingBag, int direction)
 {
-    UnkStruct_ov8_0224C098 *v0 = ov8_0224BED8(param1, param2, param3);
-    FieldSystem_CreateTask(fieldSystem, ov8_0224BB78, v0);
+    VeilstoneGym_BagAnimation *bagAnim = VeilstoneGym_InitBagAnimation(gymSystem, punchingBag, direction);
+    FieldSystem_CreateTask(fieldSystem, FieldTask_VeilstoneGym_HitPunchingBag, bagAnim);
 }
 
-BOOL ov8_0224BF4C(FieldSystem *fieldSystem)
+BOOL VeilstoneGym_HitPunchingBag(FieldSystem *fieldSystem)
 {
-    PersistedMapFeatures *v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+    PersistedMapFeatures *mapFeatures = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
 
-    if (PersistedMapFeatures_GetID(v0) != DYNAMIC_MAP_FEATURES_VEILSTONE_GYM) {
-        return 0;
+    if (PersistedMapFeatures_GetID(mapFeatures) != DYNAMIC_MAP_FEATURES_VEILSTONE_GYM) {
+        return FALSE;
     }
 
-    {
-        int v1, v2, v3;
-        UnkStruct_ov8_0224BCA8 *v4;
-        int v5 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
-        UnkStruct_ov8_0224B8D0 *v6 = fieldSystem->unk_04->dynamicMapFeaturesData;
+    int x, z, bagTravelDistance;
+    int playerDir = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
+    VeilstoneGymSystem *gymSystem = fieldSystem->unk_04->dynamicMapFeaturesData;
 
-        PlayerAvatar_MoveCoordsInDirection(fieldSystem->playerAvatar, v5, &v1, &v2);
-        v4 = ov8_0224B854(v6, v1, v2);
+    PlayerAvatar_MoveCoordsInDirection(fieldSystem->playerAvatar, playerDir, &x, &z);
 
-        if (v4 == NULL) {
-            return 0;
-        }
-
-        ov8_0224BAA0(v6, v1, v2, v5, &v3);
-
-        if (v3 == 0) {
-            ov8_0224BF0C(fieldSystem, v6, v4, v5);
-        } else {
-            ov8_0224BF2C(fieldSystem, v6, v4, v5);
-        }
+    VeilstoneGymPunchingBag *punchingBag = VeilstoneGym_GetPunchingBagAtPosition(gymSystem, x, z);
+    if (punchingBag == NULL) {
+        return FALSE;
     }
 
-    return 1;
-}
+    VeilstoneGym_CalculateDistanceBagWillTravel(gymSystem, x, z, playerDir, &bagTravelDistance);
 
-static void ov8_0224BFCC(FieldSystem *fieldSystem, UnkStruct_ov8_0224C098 *param1, UnkStruct_ov8_0224B80C *param2, int param3)
-{
-    int v0, v1;
-    const VecFx32 *v2;
-    UnkStruct_ov8_0224C0C4 *v3 = &param1->unk_40;
-    memset(v3, 0, sizeof(UnkStruct_ov8_0224C0C4));
-    v3->fieldSystem = fieldSystem;
-
-    v0 = param2->unk_00;
-    v1 = param2->unk_04;
-
-    v3->unk_08 = v0;
-    v3->unk_0C = v1;
-    v3->unk_20 = param3;
-
-    ov8_0224BAA0(param1->unk_3C, v0, v1, param3, &v3->unk_24);
-    GF_ASSERT(v3->unk_24);
-
-    v3->unk_18 = v0 + (MapObject_GetDxFromDir(param3) * v3->unk_24);
-    v3->unk_1C = v1 + (MapObject_GetDzFromDir(param3) * v3->unk_24);
-
-    v0 = Player_GetXPos(fieldSystem->playerAvatar);
-    v1 = Player_GetZPos(fieldSystem->playerAvatar);
-
-    v3->unk_10 = v0;
-    v3->unk_14 = v1;
-    v3->unk_30 = MapObjectMan_AddMapObject(fieldSystem->mapObjMan, v0, v1, 0, 0x2000, 0x0, fieldSystem->location->mapId);
-
-    MapObject_RecalculateObjectHeight(v3->unk_30);
-    MapObject_SetHidden(v3->unk_30, 1);
-    sub_02062D80(v3->unk_30, 0);
-    MapObject_SetHeightCalculationDisabled(v3->unk_30, TRUE);
-
-    v2 = MapObject_GetPos(v3->unk_30);
-
-    LandDataManager_TrackTarget(v2, fieldSystem->landDataMan);
-    Camera_TrackTarget(v2, fieldSystem->camera);
-}
-
-static void ov8_0224C098(UnkStruct_ov8_0224C098 *param0)
-{
-    UnkStruct_ov8_0224C0C4 *v0 = &param0->unk_40;
-    const VecFx32 *v1 = PlayerAvatar_PosVector(v0->fieldSystem->playerAvatar);
-
-    LandDataManager_TrackTarget(v1, v0->fieldSystem->landDataMan);
-    Camera_TrackTarget(v1, v0->fieldSystem->camera);
-    MapObject_Delete(v0->unk_30);
-}
-
-static BOOL ov8_0224C0C4(UnkStruct_ov8_0224C098 *param0)
-{
-    UnkStruct_ov8_0224C0C4 *v0 = &param0->unk_40;
-    return v0->unk_2C;
-}
-
-static BOOL ov8_0224C0C8(UnkStruct_ov8_0224C098 *param0, UnkStruct_ov8_0224B80C *param1, int param2)
-{
-    int v0;
-    int v1 = param1->unk_00;
-    int v2 = param1->unk_04;
-
-    ov8_0224BAA0(param0->unk_3C, v1, v2, param2, &v0);
-
-    if (v0 > Unk_ov8_0224C764[param2]) {
-        return 1;
+    if (bagTravelDistance == 0) {
+        VeilstoneGym_PlayBagNoMoveAnimation(fieldSystem, gymSystem, punchingBag, playerDir);
+    } else {
+        VeilstoneGym_PlayBagMoveAnimation(fieldSystem, gymSystem, punchingBag, playerDir);
     }
 
-    return 0;
+    return TRUE;
 }
 
-static void ov8_0224C0FC(UnkStruct_ov8_0224C098 *param0, int param1)
+static void VeilstoneGym_InitCameraManager(FieldSystem *fieldSystem, VeilstoneGym_BagAnimation *bagAnim, VeilstoneGymMapObjectManager *bagObj, int direction)
 {
-    UnkStruct_ov8_0224C0C4 *v0 = &param0->unk_40;
+    VeilstoneGymCameraManager *cameraMan = &bagAnim->cameraMan;
+    memset(cameraMan, 0, sizeof(VeilstoneGymCameraManager));
+    cameraMan->fieldSystem = fieldSystem;
 
-    v0->unk_28 = 0;
-    v0->unk_00 = 1;
-    v0->unk_2C = 0;
+    int x = bagObj->x;
+    int z = bagObj->z;
 
-    if (param1 == 1) {
-        v0->unk_20 = Direction_GetOpposite(v0->unk_20);
+    cameraMan->bagX = x;
+    cameraMan->bagZ = z;
+    cameraMan->movementDirection = direction;
+
+    VeilstoneGym_CalculateDistanceBagWillTravel(bagAnim->gymSystem, x, z, direction, &cameraMan->distanceToTravel);
+    GF_ASSERT(cameraMan->distanceToTravel);
+
+    cameraMan->destX = x + MapObject_GetDxFromDir(direction) * cameraMan->distanceToTravel;
+    cameraMan->destZ = z + MapObject_GetDzFromDir(direction) * cameraMan->distanceToTravel;
+
+    x = Player_GetXPos(fieldSystem->playerAvatar);
+    z = Player_GetZPos(fieldSystem->playerAvatar);
+
+    cameraMan->playerX = x;
+    cameraMan->playerZ = z;
+    cameraMan->cameraObj = MapObjectMan_AddMapObject(fieldSystem->mapObjMan, x, z, 0, OBJ_EVENT_GFX_INVISIBLE, MOVEMENT_TYPE_NONE, fieldSystem->location->mapId);
+
+    MapObject_RecalculateObjectHeight(cameraMan->cameraObj);
+    MapObject_SetHidden(cameraMan->cameraObj, TRUE);
+    sub_02062D80(cameraMan->cameraObj, FALSE);
+    MapObject_SetHeightCalculationDisabled(cameraMan->cameraObj, TRUE);
+
+    const VecFx32 *cameraPos = MapObject_GetPos(cameraMan->cameraObj);
+
+    LandDataManager_TrackTarget(cameraPos, fieldSystem->landDataMan);
+    Camera_TrackTarget(cameraPos, fieldSystem->camera);
+}
+
+static void VeilStoneGym_ReturnCameraFocusToPlayer(VeilstoneGym_BagAnimation *bagAnim)
+{
+    VeilstoneGymCameraManager *cameraMan = &bagAnim->cameraMan;
+    const VecFx32 *playerPos = PlayerAvatar_PosVector(cameraMan->fieldSystem->playerAvatar);
+
+    LandDataManager_TrackTarget(playerPos, cameraMan->fieldSystem->landDataMan);
+    Camera_TrackTarget(playerPos, cameraMan->fieldSystem->camera);
+    MapObject_Delete(cameraMan->cameraObj);
+}
+
+static BOOL VeilstoneGym_CheckIfCameraMovementFinished(VeilstoneGym_BagAnimation *bagAnim)
+{
+    return bagAnim->cameraMan.movementFinished;
+}
+
+static BOOL VeilstoneGym_CheckIfCameraNeedsToMove(VeilstoneGym_BagAnimation *bagAnim, VeilstoneGymMapObjectManager *obj, int direction)
+{
+    int bagTravelDistance;
+    VeilstoneGym_CalculateDistanceBagWillTravel(bagAnim->gymSystem, obj->x, obj->z, direction, &bagTravelDistance);
+
+    return bagTravelDistance > sVeilstoneTravelDistanceRequiringCameraMovement[direction];
+}
+
+static void VeilstoneGym_PrepareForCameraMovement(VeilstoneGym_BagAnimation *bagAnim, BOOL reverseDirection)
+{
+    VeilstoneGymCameraManager *cameraMan = &bagAnim->cameraMan;
+
+    cameraMan->traveledDistance = 0;
+    cameraMan->movementState = 1;
+    cameraMan->movementFinished = FALSE;
+
+    if (reverseDirection == TRUE) {
+        cameraMan->movementDirection = Direction_GetOpposite(cameraMan->movementDirection);
     }
 }
 
-static void ov8_0224C11C(UnkStruct_ov8_0224C098 *param0, int param1)
+static void VeilstoneGym_MoveCamera(VeilstoneGym_BagAnimation *bagAnim, enum MovementAction movementAction)
 {
-    UnkStruct_ov8_0224C0C4 *v0 = &param0->unk_40;
+    VeilstoneGymCameraManager *cameraMan = &bagAnim->cameraMan;
 
-    switch (v0->unk_00) {
+    switch (cameraMan->movementState) {
     case 0:
         break;
     case 1:
-        if (LocalMapObj_IsAnimationSet(v0->unk_30) == 1) {
-            if (v0->unk_28 >= v0->unk_24) {
-                v0->unk_00++;
+        if (LocalMapObj_IsAnimationSet(cameraMan->cameraObj) == TRUE) {
+            if (cameraMan->traveledDistance >= cameraMan->distanceToTravel) {
+                cameraMan->movementState++;
             } else {
-                param1 = MovementAction_TurnActionTowardsDir(v0->unk_20, param1);
-                LocalMapObj_SetAnimationCode(v0->unk_30, param1);
-                v0->unk_28++;
+                movementAction = MovementAction_TurnActionTowardsDir(cameraMan->movementDirection, movementAction);
+                LocalMapObj_SetAnimationCode(cameraMan->cameraObj, movementAction);
+                cameraMan->traveledDistance++;
             }
         }
         break;
     case 2:
-        v0->unk_2C = 1;
-        v0->unk_00 = 0;
+        cameraMan->movementFinished = TRUE;
+        cameraMan->movementState = 0;
         break;
     }
 }
 
-static void ov8_0224C170(UnkStruct_ov8_0224C098 *param0, fx32 param1)
+static void VeilstoneGym_UpdateCamera(VeilstoneGym_BagAnimation *bagAnim, fx32 speed)
 {
-    if (param0->unk_18 == 1) {
-        int v0 = ((param1) / FX32_ONE);
+    if (bagAnim->moveCamera == TRUE) {
+        int coordinateSpeed = speed / FX32_ONE;
 
-        if (v0) {
-            int v1 = 0x8;
+        if (coordinateSpeed) {
+            int movementAction = MOVEMENT_ACTION_WALK_SLOW_NORTH;
 
-            if (v0 <= 2) {
-                v1 = 0xc;
-            } else if (v0 > 2) {
-                v1 = 0x10;
+            if (coordinateSpeed <= 2) {
+                movementAction = MOVEMENT_ACTION_WALK_NORMAL_NORTH;
+            } else if (coordinateSpeed > 2) {
+                movementAction = MOVEMENT_ACTION_WALK_FAST_NORTH;
             }
 
-            ov8_0224C11C(param0, v1);
+            VeilstoneGym_MoveCamera(bagAnim, movementAction);
         }
     }
 }

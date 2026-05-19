@@ -1,7 +1,8 @@
 #include "overlay005/ov5_021F428C.h"
 
 #include <nitro.h>
-#include <string.h>
+
+#include "constants/field/field_effect_renderer.h"
 
 #include "field/field_system.h"
 #include "overlay005/field_effect_manager.h"
@@ -11,165 +12,161 @@
 #include "overworld_anim_manager.h"
 #include "simple3d.h"
 
-typedef struct {
-    int unk_00;
-    int unk_04;
-    FieldEffectManager *unk_08;
-    Simple3DModel unk_0C[3];
-    Simple3DAnimation unk_48[12];
-    OverworldAnimManager **unk_1F8;
-    OverworldAnimManager **unk_1FC;
-} UnkStruct_ov5_021F431C;
+#define NUM_MODELS     3
+#define NUM_ANIMATIONS 12
+
+#define NUM_TIRE_STACK_ANIMATIONS 4
+#define ALL_ANIMATIONS_FINISHED   ((1 << NUM_TIRE_STACK_ANIMATIONS) - 1)
+
+#define MODEL_IDX_TOPPLED_TIRE_STACK 0
+#define MODEL_IDX_INTACT_TIRE_STACK  1
+#define MODEL_IDX_PUNCHING_BAG       2
+
+typedef struct VeilstoneGymObjectRendererResources {
+    int numTireStacks;
+    int numPunchingBags;
+    FieldEffectManager *fieldEffMan;
+    Simple3DModel models[NUM_MODELS];
+    Simple3DAnimation animations[NUM_ANIMATIONS];
+    OverworldAnimManager **tireStacks;
+    OverworldAnimManager **punchingBags;
+} VeilstoneGymObjectRendererResources;
 
 typedef struct {
-    u8 unk_00;
-    s8 unk_01;
-    s16 unk_02;
-    s16 unk_04;
-    fx32 unk_08;
-    UnkStruct_ov5_021F431C *unk_0C;
+    u8 unused;
+    s8 unused2;
+    s16 x;
+    s16 z;
+    fx32 yOffset;
+    VeilstoneGymObjectRendererResources *resources;
     FieldSystem *fieldSystem;
-} UnkStruct_ov5_021F440C;
+} VeilstoneGymObjectRendererContext;
 
-typedef struct {
-    u8 unk_00_0 : 6;
-    u8 unk_00_6 : 1;
-    u8 unk_00_7 : 1;
-    s8 unk_01;
-    s16 unk_02;
-    s16 unk_04;
-    fx32 unk_08;
-    Simple3DAnimation unk_0C;
-    Simple3DRenderObj unk_30;
-    UnkStruct_ov5_021F440C unk_84;
-} UnkStruct_ov5_021F4698;
+typedef struct VeilstoneGymPunchingBagRenderer {
+    u8 updateAnimation : 6;
+    u8 loaded : 1;
+    u8 animationFinished : 1;
+    s8 unused;
+    s16 x;
+    s16 z;
+    fx32 frameDelta;
+    Simple3DAnimation animation;
+    Simple3DRenderObj renderObj;
+    VeilstoneGymObjectRendererContext context;
+} VeilstoneGymPunchingBagRenderer;
 
-typedef struct {
-    u32 unk_00;
-    Simple3DAnimation unk_04[4];
-} UnkStruct_ov5_021F45F8;
+typedef struct VeilstoneGymTireStackAnimations {
+    u32 finishedFlags;
+    Simple3DAnimation animation[NUM_TIRE_STACK_ANIMATIONS];
+} VeilstoneGymTireStackAnimations;
 
-typedef struct {
-    int unk_00;
-    s16 unk_04;
-    s16 unk_06;
-    s16 unk_08;
-    Simple3DRenderObj unk_0C;
-    UnkStruct_ov5_021F440C unk_60;
-    UnkStruct_ov5_021F45F8 *unk_74;
-} UnkStruct_ov5_021F44A4;
+typedef struct VeilstoneGymTireStackRenderer {
+    BOOL updateAnimations;
+    s16 x;
+    s16 z;
+    s16 unused;
+    Simple3DRenderObj renderObj;
+    VeilstoneGymObjectRendererContext context;
+    VeilstoneGymTireStackAnimations *animations;
+} VeilstoneGymTireStackRenderer;
 
-static void ov5_021F431C(UnkStruct_ov5_021F431C *param0);
-static void ov5_021F4370(UnkStruct_ov5_021F431C *param0);
-static OverworldAnimManager **ov5_021F439C(FieldSystem *fieldSystem, int param1, int param2, fx32 param3, int param4, UnkStruct_ov5_021F440C *param5);
-static void ov5_021F440C(OverworldAnimManager *param0, UnkStruct_ov5_021F4698 *param1);
+static void LoadModelsAndAnimations(VeilstoneGymObjectRendererResources *resources);
+static void FreeModelsAndAnimations(VeilstoneGymObjectRendererResources *resources);
 
-static const OverworldAnimManagerFuncs Unk_ov5_0220070C;
-static const OverworldAnimManagerFuncs Unk_ov5_022006F8;
-static const u32 Unk_ov5_022006DC[3];
-static const u32 Unk_ov5_02200720[12];
-static const u32 Unk_ov5_022006E8[4];
+static const OverworldAnimManagerFuncs sTireStackAnimFuncs;
+static const OverworldAnimManagerFuncs sPunchingBagAnimFuncs;
+static const u32 sVeilstoneGymObjectModelIDs[NUM_MODELS];
+static const u32 sVeilstoneGymObjectAnimationsIDs[NUM_ANIMATIONS];
+static const u32 sTireStackAnimIndices[NUM_TIRE_STACK_ANIMATIONS];
 
-void *ov5_021F428C(FieldEffectManager *param0)
+void *VeilstoneGymObjectRenderer_New(FieldEffectManager *fieldEffMan)
 {
-    UnkStruct_ov5_021F431C *v0 = FieldEffectManager_HeapAllocInit(param0, (sizeof(UnkStruct_ov5_021F431C)), 0, 0);
-    v0->unk_08 = param0;
+    VeilstoneGymObjectRendererResources *resources = FieldEffectManager_HeapAllocInit(fieldEffMan, sizeof(VeilstoneGymObjectRendererResources), FALSE, 0);
+    resources->fieldEffMan = fieldEffMan;
 
-    ov5_021F431C(v0);
-    return v0;
+    LoadModelsAndAnimations(resources);
+    return resources;
 }
 
-void ov5_021F42A8(void *param0)
+void VeilstoneGymObjectRenderer_Free(void *context)
 {
-    UnkStruct_ov5_021F431C *v0 = param0;
+    VeilstoneGymObjectRendererResources *resources = context;
 
-    if (v0->unk_1F8 != NULL) {
-        Heap_Free(v0->unk_1F8);
+    if (resources->tireStacks != NULL) {
+        Heap_Free(resources->tireStacks);
     }
 
-    if (v0->unk_1FC != NULL) {
-        Heap_Free(v0->unk_1FC);
+    if (resources->punchingBags != NULL) {
+        Heap_Free(resources->punchingBags);
     }
 
-    ov5_021F4370(v0);
-    FieldEffectManager_HeapFree(v0);
+    FreeModelsAndAnimations(resources);
+    FieldEffectManager_HeapFree(resources);
 }
 
-void ov5_021F42D8(FieldEffectManager *param0, int param1, int param2)
+void VeilstoneGymObjectRenderer_InitContext(FieldEffectManager *fieldEffMan, int numTireStacks, int numPunchingBags)
 {
-    int v0;
-    OverworldAnimManager *v1;
-    UnkStruct_ov5_021F431C *v2 = FieldEffectManager_GetRendererContext(param0, 31);
+    VeilstoneGymObjectRendererResources *resources = FieldEffectManager_GetRendererContext(fieldEffMan, FIELD_EFFECT_RENDERER_VEILSTONE_GYM_OBJECTS);
+    resources->numPunchingBags = numPunchingBags;
+    resources->numTireStacks = numTireStacks;
 
-    v2->unk_04 = param2;
-    v2->unk_00 = param1;
-
-    if (param1) {
-        v0 = sizeof(v1) * param1;
-        v2->unk_1F8 = FieldEffectManager_HeapAllocInit(param0, v0, 0, 0);
+    if (numTireStacks) {
+        resources->tireStacks = FieldEffectManager_HeapAllocInit(fieldEffMan, sizeof(OverworldAnimManager *) * numTireStacks, FALSE, 0);
     }
 
-    if (param2) {
-        v0 = sizeof(v1) * param2;
-        v2->unk_1FC = FieldEffectManager_HeapAllocInit(param0, v0, 0, 0);
+    if (numPunchingBags) {
+        resources->punchingBags = FieldEffectManager_HeapAllocInit(fieldEffMan, sizeof(OverworldAnimManager *) * numPunchingBags, FALSE, 0);
     }
 }
 
-static void ov5_021F431C(UnkStruct_ov5_021F431C *param0)
+static void LoadModelsAndAnimations(VeilstoneGymObjectRendererResources *resources)
 {
-    int v0;
-
-    for (v0 = 0; v0 < 3; v0++) {
-        FieldEffectManager_LoadModel(param0->unk_08, &param0->unk_0C[v0], 0, Unk_ov5_022006DC[v0], 0);
+    for (int i = 0; i < NUM_MODELS; i++) {
+        FieldEffectManager_LoadModel(resources->fieldEffMan, &resources->models[i], 0, sVeilstoneGymObjectModelIDs[i], FALSE);
     }
 
-    for (v0 = 0; v0 < 12; v0++) {
-        FieldEffectManager_LoadAnimation(param0->unk_08, &param0->unk_48[v0], 0, Unk_ov5_02200720[v0], 0);
+    for (int i = 0; i < NUM_ANIMATIONS; i++) {
+        FieldEffectManager_LoadAnimation(resources->fieldEffMan, &resources->animations[i], 0, sVeilstoneGymObjectAnimationsIDs[i], FALSE);
     }
 }
 
-static void ov5_021F4370(UnkStruct_ov5_021F431C *param0)
+static void FreeModelsAndAnimations(VeilstoneGymObjectRendererResources *resources)
 {
-    int v0;
-
-    for (v0 = 0; v0 < 3; v0++) {
-        Simple3D_FreeModel(&param0->unk_0C[v0]);
+    for (int i = 0; i < NUM_MODELS; i++) {
+        Simple3D_FreeModel(&resources->models[i]);
     }
 
-    for (v0 = 0; v0 < 12; v0++) {
-        Simple3D_FreeAnimation(&param0->unk_48[v0]);
+    for (int i = 0; i < NUM_ANIMATIONS; i++) {
+        Simple3D_FreeAnimation(&resources->animations[i]);
     }
 }
 
-static OverworldAnimManager **ov5_021F439C(FieldSystem *fieldSystem, int param1, int param2, fx32 param3, int param4, UnkStruct_ov5_021F440C *param5)
+static OverworldAnimManager **SetupRendererContext(FieldSystem *fieldSystem, int x, int z, fx32 yOffset, BOOL isPunchingBag, VeilstoneGymObjectRendererContext *context)
 {
-    int v0, v1;
-    FieldEffectManager *v2;
-    UnkStruct_ov5_021F431C *v3;
-    OverworldAnimManager **v4;
+    FieldEffectManager *fieldEffMan = fieldSystem->fieldEffMan;
+    VeilstoneGymObjectRendererResources *resources = FieldEffectManager_GetRendererContext(fieldEffMan, FIELD_EFFECT_RENDERER_VEILSTONE_GYM_OBJECTS);
 
-    v2 = fieldSystem->fieldEffMan;
-    v3 = FieldEffectManager_GetRendererContext(v2, 31);
-
-    if (param4 == 0) {
-        v1 = v3->unk_00;
-        v4 = v3->unk_1F8;
+    int count;
+    OverworldAnimManager **animManagers;
+    if (!isPunchingBag) {
+        count = resources->numTireStacks;
+        animManagers = resources->tireStacks;
     } else {
-        v1 = v3->unk_04;
-        v4 = v3->unk_1FC;
+        count = resources->numPunchingBags;
+        animManagers = resources->punchingBags;
     }
 
-    GF_ASSERT(v1);
+    GF_ASSERT(count);
 
-    param5->unk_02 = param1;
-    param5->unk_04 = param2;
-    param5->unk_08 = param3;
-    param5->fieldSystem = fieldSystem;
-    param5->unk_0C = v3;
+    context->x = x;
+    context->z = z;
+    context->yOffset = yOffset;
+    context->fieldSystem = fieldSystem;
+    context->resources = resources;
 
-    for (v0 = 0; v0 < v1; v0++) {
-        if (v4[v0] == NULL) {
-            return &v4[v0];
+    for (int i = 0; i < count; i++) {
+        if (animManagers[i] == NULL) {
+            return &animManagers[i];
         }
     }
 
@@ -177,279 +174,257 @@ static OverworldAnimManager **ov5_021F439C(FieldSystem *fieldSystem, int param1,
     return NULL;
 }
 
-static void ov5_021F440C(OverworldAnimManager *param0, UnkStruct_ov5_021F4698 *param1)
+static void InitPunchingBagRenderer(OverworldAnimManager *animManager, VeilstoneGymPunchingBagRenderer *renderer)
 {
-    VecFx32 v0;
-    const UnkStruct_ov5_021F440C *v1 = OverworldAnimManager_GetUserData(param0);
+    VecFx32 pos;
+    const VeilstoneGymObjectRendererContext *context = OverworldAnimManager_GetUserData(animManager);
 
-    param1->unk_84 = *v1;
-    param1->unk_02 = v1->unk_02;
-    param1->unk_04 = v1->unk_04;
-    param1->unk_01 = v1->unk_01;
-    param1->unk_08 = FX32_ONE;
+    renderer->context = *context;
+    renderer->x = context->x;
+    renderer->z = context->z;
+    renderer->unused = context->unused2;
+    renderer->frameDelta = FX32_ONE;
 
-    VecFx32_SetPosFromMapCoords(param1->unk_02, param1->unk_04, &v0);
-    MapObject_RecalculatePositionHeight(param1->unk_84.fieldSystem, &v0);
+    VecFx32_SetPosFromMapCoords(renderer->x, renderer->z, &pos);
+    MapObject_RecalculatePositionHeight(renderer->context.fieldSystem, &pos);
 
-    v0.y += (FX32_ONE * 6) + param1->unk_84.unk_08;
+    pos.y += FX32_CONST(6) + renderer->context.yOffset;
 
-    OverworldAnimManager_SetPosition(param0, &v0);
+    OverworldAnimManager_SetPosition(animManager, &pos);
 }
 
-OverworldAnimManager *ov5_021F4474(FieldSystem *fieldSystem, int param1, int param2, fx32 param3)
+OverworldAnimManager *VeilstoneGymObjectRenderer_InitTireStackRenderer(FieldSystem *fieldSystem, int x, int z, fx32 yOffset)
 {
-    FieldEffectManager *v0;
-    OverworldAnimManager **v1;
-    UnkStruct_ov5_021F440C v2;
+    VeilstoneGymObjectRendererContext context;
 
-    v0 = fieldSystem->fieldEffMan;
-    v1 = ov5_021F439C(fieldSystem, param1, param2, param3, 0, &v2);
-    *v1 = FieldEffectManager_InitAnimManager(v0, &Unk_ov5_0220070C, NULL, 0, &v2, 0);
+    FieldEffectManager *fieldEffMan = fieldSystem->fieldEffMan;
+    OverworldAnimManager **animManager = SetupRendererContext(fieldSystem, x, z, yOffset, FALSE, &context);
+    *animManager = FieldEffectManager_InitAnimManager(fieldEffMan, &sTireStackAnimFuncs, NULL, 0, &context, 0);
 
-    return *v1;
+    return *animManager;
 }
 
-void ov5_021F44A4(OverworldAnimManager *param0)
+void VeilstoneGymObjectRenderer_PlayToppleTireStackAnim(OverworldAnimManager *animManager)
 {
-    int v0;
-    UnkStruct_ov5_021F44A4 *v2 = OverworldAnimManager_GetFuncsContext(param0);
-    UnkStruct_ov5_021F431C *v1 = v2->unk_60.unk_0C;
+    int i;
+    VeilstoneGymTireStackRenderer *renderer = OverworldAnimManager_GetFuncsContext(animManager);
+    VeilstoneGymObjectRendererResources *resources = renderer->context.resources;
 
-    GF_ASSERT(v2->unk_74 == NULL);
+    GF_ASSERT(renderer->animations == NULL);
 
-    v2->unk_00 = 1;
-    v2->unk_74 = FieldEffectManager_HeapAllocInit(v1->unk_08, sizeof(UnkStruct_ov5_021F45F8), 1, 0);
+    renderer->updateAnimations = TRUE;
+    renderer->animations = FieldEffectManager_HeapAllocInit(resources->fieldEffMan, sizeof(VeilstoneGymTireStackAnimations), TRUE, 0);
 
-    Simple3D_CreateRenderObject(&v2->unk_0C, &v2->unk_60.unk_0C->unk_0C[0]);
+    Simple3D_CreateRenderObject(&renderer->renderObj, &renderer->context.resources->models[MODEL_IDX_TOPPLED_TIRE_STACK]);
 
-    for (v0 = 0; v0 < 4; v0++) {
-        FieldEffectManager_ApplyAnimCopyToModel(v1->unk_08, &v2->unk_74->unk_04[v0], &v1->unk_0C[0], &v1->unk_48[Unk_ov5_022006E8[v0]], 0);
-        Simple3D_BindAnimToRenderObj(&v2->unk_0C, &v2->unk_74->unk_04[v0]);
+    for (i = 0; i < NUM_TIRE_STACK_ANIMATIONS; i++) {
+        FieldEffectManager_ApplyAnimCopyToModel(resources->fieldEffMan, &renderer->animations->animation[i], &resources->models[MODEL_IDX_TOPPLED_TIRE_STACK], &resources->animations[sTireStackAnimIndices[i]], 0);
+        Simple3D_BindAnimToRenderObj(&renderer->renderObj, &renderer->animations->animation[i]);
     }
 }
 
-BOOL ov5_021F453C(OverworldAnimManager *param0)
+BOOL VeilstoneGymObjectRenderer_IsTireStackAnimationFinished(OverworldAnimManager *animManager)
 {
-    UnkStruct_ov5_021F44A4 *v0 = OverworldAnimManager_GetFuncsContext(param0);
-    GF_ASSERT(v0->unk_74 != NULL);
+    VeilstoneGymTireStackRenderer *renderer = OverworldAnimManager_GetFuncsContext(animManager);
+    GF_ASSERT(renderer->animations != NULL);
 
-    if (v0->unk_74->unk_00 == ((1 << 0) | (1 << 1) | (1 << 2) | (1 << 3))) {
-        return 1;
-    }
-
-    return 0;
+    return renderer->animations->finishedFlags == ALL_ANIMATIONS_FINISHED;
 }
 
-static int ov5_021F4560(OverworldAnimManager *param0, void *param1)
+static BOOL TireStackAnim_Init(OverworldAnimManager *animManager, void *context)
 {
-    VecFx32 v0;
-    UnkStruct_ov5_021F44A4 *v1 = param1;
-    const UnkStruct_ov5_021F440C *v2 = OverworldAnimManager_GetUserData(param0);
+    VecFx32 pos;
+    VeilstoneGymTireStackRenderer *renderer = context;
+    const VeilstoneGymObjectRendererContext *renderContext = OverworldAnimManager_GetUserData(animManager);
 
-    v1->unk_60 = *v2;
-    v1->unk_04 = v2->unk_02;
-    v1->unk_06 = v2->unk_04;
-    v1->unk_08 = v2->unk_01;
+    renderer->context = *renderContext;
+    renderer->x = renderContext->x;
+    renderer->z = renderContext->z;
+    renderer->unused = renderContext->unused2;
 
-    VecFx32_SetPosFromMapCoords(v1->unk_04, v1->unk_06, &v0);
-    MapObject_RecalculatePositionHeight(v1->unk_60.fieldSystem, &v0);
+    VecFx32_SetPosFromMapCoords(renderer->x, renderer->z, &pos);
+    MapObject_RecalculatePositionHeight(renderer->context.fieldSystem, &pos);
 
-    v0.y += (FX32_ONE * 6) + v1->unk_60.unk_08;
+    pos.y += FX32_CONST(6) + renderer->context.yOffset;
 
-    OverworldAnimManager_SetPosition(param0, &v0);
-    Simple3D_CreateRenderObject(&v1->unk_0C, &v1->unk_60.unk_0C->unk_0C[1]);
+    OverworldAnimManager_SetPosition(animManager, &pos);
+    Simple3D_CreateRenderObject(&renderer->renderObj, &renderer->context.resources->models[MODEL_IDX_INTACT_TIRE_STACK]);
 
-    return 1;
+    return TRUE;
 }
 
-static void ov5_021F45D0(OverworldAnimManager *param0, void *param1)
+static void TireStackAnim_Free(OverworldAnimManager *animManager, void *context)
 {
-    UnkStruct_ov5_021F44A4 *v0 = param1;
+    VeilstoneGymTireStackRenderer *renderer = context;
 
-    if (v0->unk_74 != NULL) {
-        int v1;
-
-        for (v1 = 0; v1 < 4; v1++) {
-            Simple3D_FreeAnimation(&v0->unk_74->unk_04[v1]);
+    if (renderer->animations != NULL) {
+        for (int i = 0; i < NUM_TIRE_STACK_ANIMATIONS; i++) {
+            Simple3D_FreeAnimation(&renderer->animations->animation[i]);
         }
 
-        Heap_Free(v0->unk_74);
+        Heap_Free(renderer->animations);
     }
 }
 
-static void ov5_021F45F8(OverworldAnimManager *param0, void *param1)
+static void TireStackAnim_Update(OverworldAnimManager *animManager, void *context)
 {
-    UnkStruct_ov5_021F44A4 *v0 = param1;
+    VeilstoneGymTireStackRenderer *renderer = context;
 
-    switch (v0->unk_00) {
-    case 0:
+    switch (renderer->updateAnimations) {
+    case FALSE:
         break;
-    case 1: {
-        int v1;
-        UnkStruct_ov5_021F45F8 *v2;
+    case TRUE:
+        GF_ASSERT(renderer->animations != NULL);
+        VeilstoneGymTireStackAnimations *animations = renderer->animations;
 
-        GF_ASSERT(v0->unk_74 != NULL);
-        v2 = v0->unk_74;
-
-        for (v1 = 0; v1 < 4; v1++) {
-            if (Simple3D_UpdateAnim(&v2->unk_04[v1], FX32_ONE, 0)) {
-                v2->unk_00 |= 1 << v1;
+        for (int i = 0; i < NUM_TIRE_STACK_ANIMATIONS; i++) {
+            if (Simple3D_UpdateAnim(&animations->animation[i], FX32_ONE, FALSE)) {
+                animations->finishedFlags |= 1 << i;
             }
         }
 
-        if (v2->unk_00 == ((1 << 0) | (1 << 1) | (1 << 2) | (1 << 3))) {
-            v0->unk_00 = 0;
-        }
-    } break;
-    }
-}
-
-static void ov5_021F464C(OverworldAnimManager *param0, void *param1)
-{
-    VecFx32 v0;
-    UnkStruct_ov5_021F44A4 *v1 = param1;
-
-    OverworldAnimManager_GetPosition(param0, &v0);
-    Simple3D_DrawRenderObjWithPos(&v1->unk_0C, &v0);
-}
-
-static const OverworldAnimManagerFuncs Unk_ov5_0220070C = {
-    sizeof(UnkStruct_ov5_021F44A4),
-    ov5_021F4560,
-    ov5_021F45D0,
-    ov5_021F45F8,
-    ov5_021F464C
-};
-
-OverworldAnimManager *ov5_021F4668(FieldSystem *fieldSystem, int param1, int param2, fx32 param3)
-{
-    FieldEffectManager *v0;
-    OverworldAnimManager **v1;
-    UnkStruct_ov5_021F440C v2;
-
-    v0 = fieldSystem->fieldEffMan;
-    v1 = ov5_021F439C(fieldSystem, param1, param2, param3, 1, &v2);
-    *v1 = FieldEffectManager_InitAnimManager(v0, &Unk_ov5_022006F8, NULL, 0, &v2, 0);
-
-    return *v1;
-}
-
-void ov5_021F4698(OverworldAnimManager *param0, int param1, BOOL param2)
-{
-    Simple3DAnimation *v0;
-    UnkStruct_ov5_021F4698 *v2 = OverworldAnimManager_GetFuncsContext(param0);
-    UnkStruct_ov5_021F431C *v1 = v2->unk_84.unk_0C;
-
-    if (v2->unk_00_6 == 1) {
-        Simple3D_FreeAnimObject(&v2->unk_0C);
-    }
-
-    v2->unk_00_6 = 1;
-    v2->unk_00_7 = 0;
-    v2->unk_00_0 = 1;
-
-    param1 = Direction_GetOpposite(param1);
-
-    if (param2 == 1) {
-        param1 += 4;
-    } else {
-        param1 += 0;
-    }
-
-    FieldEffectManager_ApplyAnimCopyToModel(v1->unk_08, &v2->unk_0C, &v1->unk_0C[2], &v1->unk_48[param1], 0);
-    Simple3D_CreateRenderObjectWithAnim(&v2->unk_30, &v1->unk_0C[2], &v2->unk_0C);
-}
-
-void ov5_021F4714(OverworldAnimManager *param0, fx32 param1)
-{
-    Simple3DAnimation *v0;
-    UnkStruct_ov5_021F431C *v1;
-    UnkStruct_ov5_021F4698 *v2 = OverworldAnimManager_GetFuncsContext(param0);
-    v2->unk_08 = param1;
-}
-
-BOOL ov5_021F4720(OverworldAnimManager *param0)
-{
-    UnkStruct_ov5_021F4698 *v0 = OverworldAnimManager_GetFuncsContext(param0);
-    return v0->unk_00_7;
-}
-
-static int ov5_021F4730(OverworldAnimManager *param0, void *param1)
-{
-    UnkStruct_ov5_021F4698 *v0 = param1;
-
-    ov5_021F440C(param0, v0);
-    Simple3D_CreateRenderObject(&v0->unk_30, &v0->unk_84.unk_0C->unk_0C[2]);
-
-    return 1;
-}
-
-static void ov5_021F474C(OverworldAnimManager *param0, void *param1)
-{
-    UnkStruct_ov5_021F4698 *v0 = param1;
-
-    if (v0->unk_00_6) {
-        Simple3D_FreeAnimation(&v0->unk_0C);
-    }
-}
-
-static void ov5_021F4760(OverworldAnimManager *param0, void *param1)
-{
-    UnkStruct_ov5_021F4698 *v0 = param1;
-
-    switch (v0->unk_00_0) {
-    case 0:
-        break;
-    case 1:
-        if (Simple3D_UpdateAnim(&v0->unk_0C, v0->unk_08, 0)) {
-            v0->unk_00_0 = 0;
-            v0->unk_00_7 = 1;
+        if (animations->finishedFlags == ALL_ANIMATIONS_FINISHED) {
+            renderer->updateAnimations = FALSE;
         }
         break;
     }
 }
 
-static void ov5_021F4794(OverworldAnimManager *param0, void *param1)
+static void TireStackAnim_Render(OverworldAnimManager *animManager, void *context)
 {
-    VecFx32 v0;
-    UnkStruct_ov5_021F4698 *v1 = param1;
+    VecFx32 pos;
+    VeilstoneGymTireStackRenderer *renderer = context;
 
-    OverworldAnimManager_GetPosition(param0, &v0);
-    Simple3D_DrawRenderObjWithPos(&v1->unk_30, &v0);
+    OverworldAnimManager_GetPosition(animManager, &pos);
+    Simple3D_DrawRenderObjWithPos(&renderer->renderObj, &pos);
 }
 
-static const OverworldAnimManagerFuncs Unk_ov5_022006F8 = {
-    sizeof(UnkStruct_ov5_021F4698),
-    ov5_021F4730,
-    ov5_021F474C,
-    ov5_021F4760,
-    ov5_021F4794
+static const OverworldAnimManagerFuncs sTireStackAnimFuncs = {
+    sizeof(VeilstoneGymTireStackRenderer),
+    TireStackAnim_Init,
+    TireStackAnim_Free,
+    TireStackAnim_Update,
+    TireStackAnim_Render
 };
 
-static const u32 Unk_ov5_022006DC[3] = {
-    0x70,
-    0x72,
-    0x71
+OverworldAnimManager *VeilstoneGymObjectRenderer_InitPunchingBagRenderer(FieldSystem *fieldSystem, int x, int z, fx32 yOffset)
+{
+    VeilstoneGymObjectRendererContext context;
+
+    FieldEffectManager *fieldEffMan = fieldSystem->fieldEffMan;
+    OverworldAnimManager **animManager = SetupRendererContext(fieldSystem, x, z, yOffset, TRUE, &context);
+    *animManager = FieldEffectManager_InitAnimManager(fieldEffMan, &sPunchingBagAnimFuncs, NULL, 0, &context, 0);
+
+    return *animManager;
+}
+
+void VeilstoneGymObjectRenderer_StartPunchingBagAnimation(OverworldAnimManager *animManager, int animId, BOOL isMoving)
+{
+    VeilstoneGymPunchingBagRenderer *renderer = OverworldAnimManager_GetFuncsContext(animManager);
+    VeilstoneGymObjectRendererResources *resources = renderer->context.resources;
+
+    if (renderer->loaded == TRUE) {
+        Simple3D_FreeAnimObject(&renderer->animation);
+    }
+
+    renderer->loaded = TRUE;
+    renderer->animationFinished = FALSE;
+    renderer->updateAnimation = TRUE;
+
+    animId = Direction_GetOpposite(animId);
+
+    if (isMoving == TRUE) {
+        animId += 4;
+    }
+
+    FieldEffectManager_ApplyAnimCopyToModel(resources->fieldEffMan, &renderer->animation, &resources->models[MODEL_IDX_PUNCHING_BAG], &resources->animations[animId], 0);
+    Simple3D_CreateRenderObjectWithAnim(&renderer->renderObj, &resources->models[MODEL_IDX_PUNCHING_BAG], &renderer->animation);
+}
+
+void VeilstoneGymObjectRenderer_UpdateBagFrameDelta(OverworldAnimManager *animManager, fx32 frameDelta)
+{
+    VeilstoneGymPunchingBagRenderer *renderer = OverworldAnimManager_GetFuncsContext(animManager);
+    renderer->frameDelta = frameDelta;
+}
+
+BOOL VeilstoneGymObjectRenderer_IsPunchingBagAnimFinished(OverworldAnimManager *animManager)
+{
+    VeilstoneGymPunchingBagRenderer *renderer = OverworldAnimManager_GetFuncsContext(animManager);
+    return renderer->animationFinished;
+}
+
+static BOOL PunchingBagAnim_Init(OverworldAnimManager *animManager, void *context)
+{
+    VeilstoneGymPunchingBagRenderer *renderer = context;
+
+    InitPunchingBagRenderer(animManager, renderer);
+    Simple3D_CreateRenderObject(&renderer->renderObj, &renderer->context.resources->models[MODEL_IDX_PUNCHING_BAG]);
+
+    return TRUE;
+}
+
+static void PunchingBagAnim_Free(OverworldAnimManager *animManager, void *context)
+{
+    VeilstoneGymPunchingBagRenderer *renderer = context;
+
+    if (renderer->loaded) {
+        Simple3D_FreeAnimation(&renderer->animation);
+    }
+}
+
+static void PunchingBagAnim_Update(OverworldAnimManager *animManager, void *context)
+{
+    VeilstoneGymPunchingBagRenderer *renderer = context;
+
+    switch (renderer->updateAnimation) {
+    case FALSE:
+        break;
+    case TRUE:
+        if (Simple3D_UpdateAnim(&renderer->animation, renderer->frameDelta, FALSE)) {
+            renderer->updateAnimation = FALSE;
+            renderer->animationFinished = TRUE;
+        }
+        break;
+    }
+}
+
+static void PunchingBagAnim_Render(OverworldAnimManager *animManager, void *context)
+{
+    VecFx32 pos;
+    VeilstoneGymPunchingBagRenderer *renderer = context;
+
+    OverworldAnimManager_GetPosition(animManager, &pos);
+    Simple3D_DrawRenderObjWithPos(&renderer->renderObj, &pos);
+}
+
+static const OverworldAnimManagerFuncs sPunchingBagAnimFuncs = {
+    sizeof(VeilstoneGymPunchingBagRenderer),
+    PunchingBagAnim_Init,
+    PunchingBagAnim_Free,
+    PunchingBagAnim_Update,
+    PunchingBagAnim_Render
 };
 
-static const u32 Unk_ov5_02200720[12] = {
-    0xB6,
-    0xB7,
-    0xB8,
-    0xB9,
-    0xBA,
-    0xBB,
-    0xBC,
-    0xBD,
-    0xBE,
-    0xC3,
-    0xC4,
-    0xA8
+// TODO Replace values with naix constants when fldeff.narc is unpacked
+static const u32 sVeilstoneGymObjectModelIDs[NUM_MODELS] = {
+    112,
+    114,
+    113
 };
 
-static const u32 Unk_ov5_022006E8[4] = {
-    0x8,
-    0x9,
-    0xA,
-    0xB
+static const u32 sVeilstoneGymObjectAnimationsIDs[NUM_ANIMATIONS] = {
+    182,
+    183,
+    184,
+    185,
+    186,
+    187,
+    188,
+    189,
+    190,
+    195,
+    196,
+    168
 };
+
+static const u32 sTireStackAnimIndices[NUM_TIRE_STACK_ANIMATIONS] = { 8, 9, 10, 11 };

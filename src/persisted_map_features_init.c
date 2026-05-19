@@ -6,8 +6,6 @@
 #include "constants/field/dynamic_map_features.h"
 #include "constants/great_marsh_tram.h"
 
-#include "struct_defs/struct_02071BF8.h"
-
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
 #include "overlay005/villa_furniture.h"
@@ -117,8 +115,8 @@ void PersistedMapFeatures_InitForVeilstoneGym(FieldSystem *fieldSystem)
     PersistedMapFeatures *persistedMapFeatures = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
     PersistedMapFeatures_InitWithID(persistedMapFeatures, DYNAMIC_MAP_FEATURES_VEILSTONE_GYM);
 
-    UnkStruct_02071BF8 *data = PersistedMapFeatures_GetBuffer(persistedMapFeatures, DYNAMIC_MAP_FEATURES_VEILSTONE_GYM);
-    data->unk_00 = 0;
+    VeilstoneGymPersistedFeature *data = PersistedMapFeatures_GetBuffer(persistedMapFeatures, DYNAMIC_MAP_FEATURES_VEILSTONE_GYM);
+    data->initialized = FALSE;
 }
 
 void PersistedMapFeatures_InitForHearthomeGym(FieldSystem *fieldSystem)

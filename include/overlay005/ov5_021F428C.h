@@ -6,15 +6,17 @@
 
 #include "overworld_anim_manager.h"
 
-void *ov5_021F428C(FieldEffectManager *param0);
-void ov5_021F42A8(void *param0);
-void ov5_021F42D8(FieldEffectManager *param0, int param1, int param2);
-OverworldAnimManager *ov5_021F4474(FieldSystem *fieldSystem, int param1, int param2, fx32 param3);
-void ov5_021F44A4(OverworldAnimManager *param0);
-BOOL ov5_021F453C(OverworldAnimManager *param0);
-OverworldAnimManager *ov5_021F4668(FieldSystem *fieldSystem, int param1, int param2, fx32 param3);
-void ov5_021F4698(OverworldAnimManager *param0, int param1, BOOL param2);
-void ov5_021F4714(OverworldAnimManager *param0, fx32 param1);
-BOOL ov5_021F4720(OverworldAnimManager *param0);
+void *VeilstoneGymObjectRenderer_New(FieldEffectManager *fieldEffMan);
+void VeilstoneGymObjectRenderer_Free(void *context);
+void VeilstoneGymObjectRenderer_InitContext(FieldEffectManager *fieldEffMan, int numTireStacks, int numPunchingBags);
+
+OverworldAnimManager *VeilstoneGymObjectRenderer_InitTireStackRenderer(FieldSystem *fieldSystem, int x, int z, fx32 yOffset);
+void VeilstoneGymObjectRenderer_PlayToppleTireStackAnim(OverworldAnimManager *animManager);
+BOOL VeilstoneGymObjectRenderer_IsTireStackAnimationFinished(OverworldAnimManager *animManager);
+
+OverworldAnimManager *VeilstoneGymObjectRenderer_InitPunchingBagRenderer(FieldSystem *fieldSystem, int x, int z, fx32 yOffset);
+void VeilstoneGymObjectRenderer_StartPunchingBagAnimation(OverworldAnimManager *animManager, int animId, BOOL isMoving);
+void VeilstoneGymObjectRenderer_UpdateBagFrameDelta(OverworldAnimManager *animManager, fx32 frameDelta);
+BOOL VeilstoneGymObjectRenderer_IsPunchingBagAnimFinished(OverworldAnimManager *animManager);
 
 #endif // POKEPLATINUM_OV5_021F428C_H
