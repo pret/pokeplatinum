@@ -1,168 +1,170 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/day_care_common.h"
+#include "res/text/bank/menu_entries.h"
+#include "res/field/events/events_pokemon_day_care.h"
 #include "constants/daycare.h"
 
 
-    ScriptEntry _000A
-    ScriptEntry _0124
+    ScriptEntry DayCareCommon_Man
+    ScriptEntry DayCareCommon_Lady
     ScriptEntryEnd
 
-_000A:
+DayCareCommon_Man:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     BufferDaycareMonNicknames
     GetDaycareState VAR_RESULT
-    GoToIfEq VAR_RESULT, DAYCARE_EGG_WAITING, _004A
-    GoToIfEq VAR_RESULT, DAYCARE_ONE_MON, _00BE
-    GoToIfEq VAR_RESULT, DAYCARE_TWO_MONS, _00CB
-    Message 0
+    GoToIfEq VAR_RESULT, DAYCARE_EGG_WAITING, DayCareCommon_ManEggWaiting
+    GoToIfEq VAR_RESULT, DAYCARE_ONE_MON, DayCareCommon_ManOneMon
+    GoToIfEq VAR_RESULT, DAYCARE_TWO_MONS, DayCareCommon_ManTwoMons
+    Message DayCareCommon_Text_ImTheDayCareMan
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_004A:
-    Message 1
+DayCareCommon_ManEggWaiting:
+    Message DayCareCommon_Text_PokemonHoldingEggYouWantIt
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _0083
-    Message 10
+    GoToIfEq VAR_RESULT, MENU_YES, DayCareCommon_TryGiveEgg
+    Message DayCareCommon_Text_YouDoWantThisYes
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _0083
-    Message 3
+    GoToIfEq VAR_RESULT, MENU_YES, DayCareCommon_TryGiveEgg
+    Message DayCareCommon_Text_IllHangOnToIt
     WaitButton
     CloseMessage
-    ClearFlag FLAG_UNK_0x0073
+    ClearFlag FLAG_DUMMY_0x0073
     ResetDaycarePersonalityAndStepCounter
     ReleaseAll
     End
 
-_0083:
+DayCareCommon_TryGiveEgg:
     GetPartyCount VAR_RESULT
-    GoToIfNe VAR_RESULT, 6, _009F
-    Message 4
+    GoToIfNe VAR_RESULT, MAX_PARTY_SIZE, DayCareCommon_GiveEgg
+    Message DayCareCommon_Text_YouHaveNoRoom
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_009F:
+DayCareCommon_GiveEgg:
     BufferPlayerName 0
-    Message 5
+    Message DayCareCommon_Text_PlayerReceivedEgg
     PlayFanfare SEQ_FANFA4
     WaitFanfare
     WaitABPress
-    Message 6
+    Message DayCareCommon_Text_TakeGoodCareOfIt
     WaitButton
     CloseMessage
     GiveEggFromDaycare
-    ClearFlag FLAG_UNK_0x0073
+    ClearFlag FLAG_DUMMY_0x0073
     ReleaseAll
     End
 
-_00BE:
+DayCareCommon_ManOneMon:
     BufferDaycareMonNicknames
-    Message 2
+    Message DayCareCommon_Text_PokemonIsDoingJustFine
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_00CB:
+DayCareCommon_ManTwoMons:
     BufferDaycareMonNicknames
-    Message 9
+    Message DayCareCommon_Text_PokemonAreDoingJustFine
     GetDaycareCompatibilityLevel VAR_RESULT
-    CallIfEq VAR_RESULT, 0, _0110
-    CallIfEq VAR_RESULT, 1, _0115
-    CallIfEq VAR_RESULT, 2, _011A
-    CallIfEq VAR_RESULT, 3, _011F
+    CallIfEq VAR_RESULT, 0, DayCareCommon_MaxCompatibility
+    CallIfEq VAR_RESULT, 1, DayCareCommon_MedCompatibility
+    CallIfEq VAR_RESULT, 2, DayCareCommon_LowCompatibility
+    CallIfEq VAR_RESULT, 3, DayCareCommon_Incompatible
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0110:
-    Message 11
+DayCareCommon_MaxCompatibility:
+    Message DayCareCommon_Text_TheTwoGetAlongVeryWell
     Return
 
-_0115:
-    Message 12
+DayCareCommon_MedCompatibility:
+    Message DayCareCommon_Text_TheTwoGetAlong
     Return
 
-_011A:
-    Message 13
+DayCareCommon_LowCompatibility:
+    Message DayCareCommon_Text_TheTwoDontLikeEachOther
     Return
 
-_011F:
-    Message 14
+DayCareCommon_Incompatible:
+    Message DayCareCommon_Text_TheTwoPlayWithOtherPokemon
     Return
 
-_0124:
+DayCareCommon_Lady:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ShowMoney 20, 2
     GetDaycareState VAR_RESULT
-    GoToIfEq VAR_RESULT, DAYCARE_EGG_WAITING, _02E2
-    GoToIfEq VAR_RESULT, DAYCARE_ONE_MON, _0309
-    GoToIfEq VAR_RESULT, DAYCARE_TWO_MONS, _04A0
-    Message 15
+    GoToIfEq VAR_RESULT, DAYCARE_EGG_WAITING, DayCareCommon_LadyEggWaiting
+    GoToIfEq VAR_RESULT, DAYCARE_ONE_MON, DayCareCommon_LadyOneMon
+    GoToIfEq VAR_RESULT, DAYCARE_TWO_MONS, DayCareCommon_LadyTwoMons
+    Message DayCareCommon_Text_ImTheDayCareLadyRaisePokemon
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _017E
-    Message 20
+    GoToIfEq VAR_RESULT, MENU_YES, DayCareCommon_TryRaisePokemon
+    Message DayCareCommon_Text_OhFineThen
     WaitButton
     CloseMessage
     HideMoney
     ReleaseAll
     End
 
-_017E:
+DayCareCommon_TryRaisePokemon:
     CountPartyNonEggs VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _02BB
+    GoToIfEq VAR_RESULT, 1, DayCareCommon_OnlyOnePokemonWithYou
     CountAliveMonsAndBoxMons VAR_RESULT
-    GoToIfEq VAR_RESULT, 2, _02D5
-    Message 16
+    GoToIfEq VAR_RESULT, 2, DayCareCommon_YoullBeLeftWithJustOne
+    Message DayCareCommon_Text_RaiseWhichPokemon
     CloseMessage
     HideMoney
     FadeScreenOut
     WaitFadeScreen
     SetVar VAR_RESULT, 0
-_01B9:
+DayCareCommon_ChoosePokemon:
     OpenPartyMenuForDaycare VAR_RESULT
-    ScrCmd_291 VAR_0x8000, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _01DE
+    GetDayCarePartyMenuResult VAR_0x8000, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, DayCareCommon_TryRaiseSelectedSlot
     SetMonSummary VAR_0x8000
     GetMonPartySlot VAR_RESULT
-    GoTo _01B9
+    GoTo DayCareCommon_ChoosePokemon
 
-_01DE:
+DayCareCommon_TryRaiseSelectedSlot:
     ReturnToField
     ShowMoney 20, 2
     FadeScreenIn
     WaitFadeScreen
-    GoToIfEq VAR_0x8000, 0xFF, _0292
+    GoToIfEq VAR_0x8000, PARTY_SLOT_NONE, DayCareCommon_VeryGoodComeAgain
     TryRevertPokemonForm VAR_0x8000, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0xFF, _04EF
+    GoToIfEq VAR_RESULT, 0xFF, DayCareCommon_GriseousOrbCouldNotBeRemoved
     GetPartyMonSpecies VAR_0x8000, VAR_RESULT
-    GoToIfEq VAR_RESULT, SPECIES_NONE, _0285
+    GoToIfEq VAR_RESULT, SPECIES_NONE, DayCareCommon_CantRaiseEgg
     CountAliveMonsExcept VAR_RESULT, VAR_0x8000
-    GoToIfEq VAR_RESULT, 0, _02C8
+    GoToIfEq VAR_RESULT, 0, DayCareCommon_SelectedOnlyAlivePokemon
     BufferPartyMonNicknameReturnSpecies 0, VAR_0x8000, VAR_0x8001
     StorePartyMonIntoDaycare VAR_0x8000
-    SetFlag FLAG_UNK_0x00FE
+    SetFlag FLAG_STORED_POKEMON_AT_DAY_CARE
     GetDaycareState VAR_RESULT
-    GoToIfEq VAR_RESULT, DAYCARE_ONE_MON, _025F
-    GoTo _0270
+    GoToIfEq VAR_RESULT, DAYCARE_ONE_MON, DayCareCommon_RaiseFirstPokemon
+    GoTo DayCareCommon_RaiseSecondPokemon
 
-_025F:
+DayCareCommon_RaiseFirstPokemon:
     PlayCry VAR_0x8001
-    Message 17
+    Message DayCareCommon_Text_WellRaiseYourPokemon_ArrowPrompt
     WaitCry
-    GoTo _029F
+    GoTo DayCareCommon_AskRaiseAnotherPokemon
 
-_0270:
+DayCareCommon_RaiseSecondPokemon:
     PlayCry VAR_0x8001
-    Message 36
+    Message DayCareCommon_Text_WellRaiseYourPokemon
     WaitButton
     CloseMessage
     WaitCry
@@ -170,142 +172,142 @@ _0270:
     ReleaseAll
     End
 
-_0285:
-    Message 35
+DayCareCommon_CantRaiseEgg:
+    Message DayCareCommon_Text_ThatIsMerelyAnEgg
     WaitButton
     CloseMessage
     HideMoney
     ReleaseAll
     End
 
-_0292:
-    Message 23
+DayCareCommon_VeryGoodComeAgain:
+    Message DayCareCommon_Text_VeryGoodComeAgain
     WaitButton
     CloseMessage
     HideMoney
     ReleaseAll
     End
 
-_029F:
-    Message 18
+DayCareCommon_AskRaiseAnotherPokemon:
+    Message DayCareCommon_Text_RaiseAnotherPokemon
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _017E
-    GoTo _0292
+    GoToIfEq VAR_RESULT, MENU_YES, DayCareCommon_TryRaisePokemon
+    GoTo DayCareCommon_VeryGoodComeAgain
     End
 
-_02BB:
-    Message 31
+DayCareCommon_OnlyOnePokemonWithYou:
+    Message DayCareCommon_Text_OnlyOnePokemonWithYou
     WaitButton
     CloseMessage
     HideMoney
     ReleaseAll
     End
 
-_02C8:
-    Message 33
+DayCareCommon_SelectedOnlyAlivePokemon:
+    Message DayCareCommon_Text_WhatWillYouBattleWith
     WaitButton
     CloseMessage
     HideMoney
     ReleaseAll
     End
 
-_02D5:
-    Message 34
+DayCareCommon_YoullBeLeftWithJustOne:
+    Message DayCareCommon_Text_YoullBeLeftWithJustOne
     WaitButton
     CloseMessage
     HideMoney
     ReleaseAll
     End
 
-_02E2:
-    Message 19
+DayCareCommon_LadyEggWaiting:
+    Message DayCareCommon_Text_HusbandWasLookingForYou
     WaitButton
     CloseMessage
     HideMoney
     ReleaseAll
     End
 
-_02EF:
-    Message 25
+DayCareCommon_PokemonHasGrownXLevels:
+    Message DayCareCommon_Text_PokemonHasGrownXLevels
     Return
 
-_02F4:
+DayCareCommon_TryPokemonHasGrownMessage:
     BufferDaycareGainedLevelsBySlot VAR_RESULT, VAR_0x8000
-    CallIfNe VAR_RESULT, 0, _02EF
+    CallIfNe VAR_RESULT, 0, DayCareCommon_PokemonHasGrownXLevels
     Return
 
-_0309:
-    Message 24
+DayCareCommon_LadyOneMon:
+    Message DayCareCommon_Text_AboutYourPokemon
     SetVar VAR_0x8000, 0
-    Call _02F4
-    Message 18
+    Call DayCareCommon_TryPokemonHasGrownMessage
+    Message DayCareCommon_Text_RaiseAnotherPokemon
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _017E
-    Message 32
+    GoToIfEq VAR_RESULT, MENU_YES, DayCareCommon_TryRaisePokemon
+    Message DayCareCommon_Text_DoYouWantPokemonBack
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _0346
-    GoTo _0292
+    GoToIfEq VAR_RESULT, MENU_YES, DayCareCommon_TryTakePokemonBack
+    GoTo DayCareCommon_VeryGoodComeAgain
 
-_0346:
+DayCareCommon_TryTakePokemonBack:
     GetPartyCount VAR_RESULT
-    GoToIfEq VAR_RESULT, 6, _045E
+    GoToIfEq VAR_RESULT, MAX_PARTY_SIZE, DayCareCommon_TeamIsFull
     GetDaycareState VAR_RESULT
     SetVar VAR_0x8001, 0
-    GoToIfEq VAR_RESULT, DAYCARE_ONE_MON, _03BE
+    GoToIfEq VAR_RESULT, DAYCARE_ONE_MON, DayCareCommon_PokemonBackCostsX
     InitGlobalTextMenu 1, 1, 0, VAR_0x8001
     BufferDaycareNicknameLevelGender 0, 1, 2, 0
-    AddMenuEntryImm 134, 0
+    AddMenuEntryImm MenuEntries_Text_DayCare_Pokemon1, 0
     BufferDaycareNicknameLevelGender 0, 1, 2, 1
-    AddMenuEntryImm 135, 1
-    AddMenuEntryImm 136, 2
+    AddMenuEntryImm MenuEntries_Text_DayCare_Pokemon2, 1
+    AddMenuEntryImm MenuEntries_Text_DayCare_Cancel, 2
     ShowMenu
     SetVar VAR_0x8008, VAR_0x8001
-    GoToIfEq VAR_0x8008, 0, _03BE
-    GoToIfEq VAR_0x8008, 1, _03BE
-    GoTo _0292
+    GoToIfEq VAR_0x8008, 0, DayCareCommon_PokemonBackCostsX
+    GoToIfEq VAR_0x8008, 1, DayCareCommon_PokemonBackCostsX
+    GoTo DayCareCommon_VeryGoodComeAgain
 
-_03BE:
+DayCareCommon_PokemonBackCostsX:
     BufferDaycarePriceBySlot VAR_0x8004, VAR_0x8001
-    Message 28
+    Message DayCareCommon_Text_PokemonBackCostsX
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _03DE
-    GoTo _0292
+    GoToIfEq VAR_RESULT, MENU_YES, DayCareCommon_GetPokemonBackCheckMoney
+    GoTo DayCareCommon_VeryGoodComeAgain
 
-_03DE:
+DayCareCommon_GetPokemonBackCheckMoney:
     CheckMoney2 VAR_RESULT, VAR_0x8004
-    GoToIfEq VAR_RESULT, 1, _03FE
-    Message 21
+    GoToIfEq VAR_RESULT, TRUE, DayCareCommon_GetPokemonBack
+    Message DayCareCommon_Text_NotEnoughMoney
     WaitButton
     CloseMessage
     HideMoney
     ReleaseAll
     End
 
-_03FE:
-    ApplyMovement 0, _046C
+DayCareCommon_GetPokemonBack:
+    ApplyMovement LOCALID_DAY_CARE_LADY, DayCareCommon_Movement_LadyGetPokemon
     WaitMovement
     MoveMonToPartyFromDaycareSlot VAR_0x8002, VAR_0x8001
     RemoveMoney2 VAR_0x8004
     UpdateMoneyDisplay
     PlaySE SEQ_SE_DP_REGI
     WaitSE SEQ_SE_DP_REGI
-    Message 29
+    Message DayCareCommon_Text_HeresYourPokemon
     PlayCry VAR_0x8002
     BufferPlayerName 1
-    Message 30
+    Message DayCareCommon_Text_PlayerTookPokemonBack
     WaitCry
     GetDaycareState VAR_RESULT
-    GoToIfEq VAR_RESULT, DAYCARE_ONE_MON, _0444
-    GoTo _0292
+    GoToIfEq VAR_RESULT, DAYCARE_ONE_MON, DayCareCommon_AskTakeOtherBackToo
+    GoTo DayCareCommon_VeryGoodComeAgain
 
-_0444:
-    Message 22
+DayCareCommon_AskTakeOtherBackToo:
+    Message DayCareCommon_Text_DoYouWantOtherBackToo
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _0346
-    GoTo _0292
+    GoToIfEq VAR_RESULT, MENU_YES, DayCareCommon_TryTakePokemonBack
+    GoTo DayCareCommon_VeryGoodComeAgain
 
-_045E:
-    Message 26
+DayCareCommon_TeamIsFull:
+    Message DayCareCommon_Text_TeamIsFull
     WaitButton
     CloseMessage
     HideMoney
@@ -313,7 +315,7 @@ _045E:
     End
 
     .balign 4, 0
-_046C:
+DayCareCommon_Movement_LadyGetPokemon:
     Delay4 3
     FaceWest
     Delay4 3
@@ -328,33 +330,33 @@ _046C:
     WalkNormalSouth 2
     EndMovement
 
-_04A0:
-    Message 24
+DayCareCommon_LadyTwoMons:
+    Message DayCareCommon_Text_AboutYourPokemon
     SetVar VAR_0x8000, 0
-    Call _02F4
+    Call DayCareCommon_TryPokemonHasGrownMessage
     SetVar VAR_0x8000, 1
-    Call _02F4
-    Message 32
+    Call DayCareCommon_TryPokemonHasGrownMessage
+    Message DayCareCommon_Text_DoYouWantPokemonBack
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _0346
-    Message 23
+    GoToIfEq VAR_RESULT, MENU_YES, DayCareCommon_TryTakePokemonBack
+    Message DayCareCommon_Text_VeryGoodComeAgain
     WaitButton
     CloseMessage
     HideMoney
     ReleaseAll
     End
 
-Unk501_Unused:
+DayCareCommon_Unused:
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    Message 37
+    Message DayCareCommon_Text_Huh
     HatchEgg
     CloseMessage
     HideMoney
     ReleaseAll
     End
 
-_04EF:
+DayCareCommon_GriseousOrbCouldNotBeRemoved:
     HideMoney
     Common_GriseousOrbCouldNotBeRemoved
     End

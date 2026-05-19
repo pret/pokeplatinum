@@ -565,7 +565,7 @@ static BOOL ScrCmd_AddContestBackdrop(ScriptContext *ctx);
 static BOOL ScrCmd_CheckBackdrop(ScriptContext *ctx);
 static BOOL ScrCmd_OpenPartyMenuForUnionRoomBattle(ScriptContext *ctx);
 static BOOL ScrCmd_OpenPartyMenuForContest(ScriptContext *ctx);
-static BOOL ScrCmd_TryEnterContestMon(ScriptContext *ctx);
+static BOOL ScrCmd_GetContestPartyMenuResult(ScriptContext *ctx);
 static BOOL ScrCmd_CheckLocalDexCompleted(ScriptContext *ctx);
 static BOOL ScrCmd_CheckNationalDexCompleted(ScriptContext *ctx);
 static BOOL ScrCmd_ShowDiplomaSinnoh(ScriptContext *ctx);
@@ -673,7 +673,7 @@ static BOOL sub_02041FF8(ScriptContext *ctx);
 static BOOL ScrCmd_GetLeagueVictories(ScriptContext *ctx);
 static BOOL ScrCmd_CheckShouldShowGhost(ScriptContext *ctx);
 static BOOL ScrCmd_OpenPartyMenuForDaycare(ScriptContext *ctx);
-static BOOL ScrCmd_291(ScriptContext *ctx);
+static BOOL ScrCmd_GetDayCarePartyMenuResult(ScriptContext *ctx);
 static BOOL ScrCmd_29E(ScriptContext *ctx);
 static BOOL ScrCmd_GetUndergroundTalkCounter(ScriptContext *ctx);
 static BOOL ScrCmd_29F(ScriptContext *ctx);
@@ -2736,10 +2736,10 @@ static BOOL ScrCmd_OpenPartyMenuForContest(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_TryEnterContestMon(ScriptContext *ctx)
+static BOOL ScrCmd_GetContestPartyMenuResult(ScriptContext *ctx)
 {
     u16 *selectedSlot = ScriptContext_GetVarPointer(ctx);
-    u16 *menuSelection = ScriptContext_GetVarPointer(ctx);
+    u16 *showSummary = ScriptContext_GetVarPointer(ctx);
     void **partyMenu = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
 
     GF_ASSERT(*partyMenu != 0);
@@ -2750,12 +2750,12 @@ static BOOL ScrCmd_TryEnterContestMon(ScriptContext *ctx)
         *selectedSlot = PARTY_SLOT_NONE;
     }
 
-    *menuSelection = PartyMenu_GetMenuSelectionResult(*partyMenu);
+    *showSummary = PartyMenu_GetMenuSelectionResult(*partyMenu);
 
-    if (*menuSelection == 1) {
-        *menuSelection = 1;
+    if (*showSummary == PARTY_MENU_EXIT_CODE_SUMMARY) {
+        *showSummary = TRUE;
     } else {
-        *menuSelection = 0;
+        *showSummary = FALSE;
     }
 
     Heap_Free(*partyMenu);
@@ -2769,7 +2769,7 @@ static BOOL ScrCmd_SetMonSummary(ScriptContext *ctx)
     void **monSummary = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
     u16 partySlot = ScriptContext_GetVar(ctx);
 
-    *monSummary = FieldSystem_GetContestMonSummary(32, ctx->fieldSystem, partySlot);
+    *monSummary = FieldSystem_GetPartyMenuMonSummary(32, ctx->fieldSystem, partySlot);
     ScriptContext_Pause(ctx, ScriptContext_WaitForApplicationExit);
 
     return TRUE;
@@ -6297,30 +6297,30 @@ static BOOL ScrCmd_OpenPartyMenuForDaycare(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_291(ScriptContext *ctx)
+static BOOL ScrCmd_GetDayCarePartyMenuResult(ScriptContext *ctx)
 {
-    u16 *v1 = ScriptContext_GetVarPointer(ctx);
-    u16 *v2 = ScriptContext_GetVarPointer(ctx);
-    void **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
+    u16 *selectedSlot = ScriptContext_GetVarPointer(ctx);
+    u16 *showSummary = ScriptContext_GetVarPointer(ctx);
+    void **partyMenu = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
 
-    GF_ASSERT(*v0 != 0);
+    GF_ASSERT(*partyMenu != 0);
 
-    *v1 = PartyMenu_GetSelectedSlot(*v0);
+    *selectedSlot = PartyMenu_GetSelectedSlot(*partyMenu);
 
-    if (*v1 == MAX_PARTY_SIZE + 1) {
-        *v1 = PARTY_SLOT_NONE;
+    if (*selectedSlot == MAX_PARTY_SIZE + 1) {
+        *selectedSlot = PARTY_SLOT_NONE;
     }
 
-    *v2 = PartyMenu_GetMenuSelectionResult(*v0);
+    *showSummary = PartyMenu_GetMenuSelectionResult(*partyMenu);
 
-    if (*v2 == 1) {
-        *v2 = 1;
+    if (*showSummary == PARTY_MENU_EXIT_CODE_SUMMARY) {
+        *showSummary = TRUE;
     } else {
-        *v2 = 0;
+        *showSummary = FALSE;
     }
 
-    Heap_Free(*v0);
-    *v0 = NULL;
+    Heap_Free(*partyMenu);
+    *partyMenu = NULL;
 
     return FALSE;
 }

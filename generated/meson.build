@@ -76,7 +76,6 @@ metang_generators = {
     'movement_types': { 'type': 'enum', 'tag': 'MovementType' },
     'moves': { 'type': 'enum', 'tag': 'Move' },
     'natures': { 'type': 'enum', 'tag': 'Nature' },
-    'npc_trades': { 'type': 'enum', 'tag': 'NPCTradeID' },
     'object_events_gfx': { 'type': 'enum', 'tag': 'ObjectEventGfx' },
     'pal_park_land_area': { 'type': 'enum', 'tag': 'PalParkLandArea' },
     'pal_park_water_area': { 'type': 'enum', 'tag': 'PalParkWaterArea' },
@@ -115,7 +114,6 @@ metang_generators = {
     'traps': { 'type': 'enum', 'tag': 'Trap' },
     'tutor_locations': {'type': 'enum', 'tag': 'TutorLocation'},
     'vars_flags': {'type': 'enum', 'tag': 'VarFlag'},
-    'versions': {'type': 'enum', 'tag': 'Version'},
     'villa_furniture_type': {'type': 'enum', 'tag': 'VillaFurnitureType'},
     'mart_specialties_id': {'type': 'enum', 'tag': 'MartSpecialtiesID'},
     'mart_decor_id': {'type': 'enum', 'tag': 'MartDecorID'},
@@ -162,7 +160,6 @@ foreach gen_key : metang_generators.keys()
 endforeach
 
 moves_txt = files('moves.txt')
-npc_trades_txt = files('npc_trades.txt')
 species_txt = files('species.txt')
 text_banks_txt = files('text_banks.txt')
 trainer_classes_txt = files('trainer_classes.txt')

@@ -2,7 +2,7 @@
 #include "generated/distribution_events.h"
 #include "res/text/bank/spear_pillar.h"
 #include "res/field/events/events_spear_pillar.h"
-#include "generated/versions.h"
+#include "constants/versions.h"
 
 
     ScriptEntry SpearPillar_OnTransition

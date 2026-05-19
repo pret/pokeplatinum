@@ -562,15 +562,15 @@
       "en_US": "UNDERSTOOD!"
     },
     {
-      "id": "pl_msg_00000361_00134",
+      "id": "MenuEntries_Text_DayCare_Pokemon1",
       "en_US": "{STRVAR_1 0, 0, 0}{STRVAR_1 2, 2, 0}{CURSOR_X 90}Lv. {STRVAR_1 52, 1, 0}"
     },
     {
-      "id": "pl_msg_00000361_00135",
+      "id": "MenuEntries_Text_DayCare_Pokemon2",
       "en_US": "{STRVAR_1 0, 0, 0}{STRVAR_1 2, 2, 0}{CURSOR_X 90}Lv. {STRVAR_1 52, 1, 0}"
     },
     {
-      "id": "pl_msg_00000361_00136",
+      "id": "MenuEntries_Text_DayCare_Cancel",
       "en_US": "CANCEL"
     },
     {

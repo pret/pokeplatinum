@@ -3,11 +3,12 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/versions.h"
+
 #include "graphics.h"
 #include "heap.h"
 #include "math_util.h"
 #include "message.h"
-#include "narc.h"
 #include "savedata.h"
 #include "string_gf.h"
 
@@ -237,12 +238,12 @@ void SentenceSaveData_Init(void *param0)
         u8 language;
         u8 unk_01;
     } v0[] = {
-        { JAPANESE, 0x0 },
-        { ENGLISH, 0x1 },
-        { FRENCH, 0x2 },
-        { ITALIAN, 0x3 },
-        { GERMAN, 0x4 },
-        { SPANISH, 0x5 }
+        { LANGUAGE_JAPANESE, 0x0 },
+        { LANGUAGE_ENGLISH, 0x1 },
+        { LANGUAGE_FRENCH, 0x2 },
+        { LANGUAGE_ITALIAN, 0x3 },
+        { LANGUAGE_GERMAN, 0x4 },
+        { LANGUAGE_SPANISH, 0x5 }
     };
     UnkStruct_02014EC4 *v1 = param0;
     int i;

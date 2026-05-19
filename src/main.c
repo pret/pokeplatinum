@@ -4,6 +4,7 @@
 
 #include "constants/graphics.h"
 #include "constants/heap.h"
+#include "constants/versions.h"
 
 #include "assert.h"
 #include "brightness_controller.h"

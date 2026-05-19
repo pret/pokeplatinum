@@ -1,11 +1,10 @@
 #include "unk_02092494.h"
 
 #include <nitro.h>
-#include <string.h>
+
+#include "constants/versions.h"
 
 #include "struct_defs/struct_02090800.h"
-
-#include "global/pm_version.h"
 
 #include "heap.h"
 #include "message.h"

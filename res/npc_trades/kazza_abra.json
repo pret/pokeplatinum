@@ -1,4 +1,6 @@
 {
+    "name": "Kazza",
+    "otName": "Hilary",
     "species": "SPECIES_ABRA",
     "hpIV": 15,
     "atkIV": 15,
@@ -17,6 +19,6 @@
     "heldItem": "ITEM_ORAN_BERRY",
     "otGender": "GENDER_FEMALE",
     "unused2": 0,
-    "language": 2,
+    "language": "LANGUAGE_ENGLISH",
     "requestedSpecies": "SPECIES_MACHOP"
 }
