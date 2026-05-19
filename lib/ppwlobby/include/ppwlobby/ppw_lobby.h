@@ -11,41 +11,41 @@ extern "C" {
 #pragma pack(push, 4)
 #endif
 
-#define PPW_LOBBY_MAX_STRING_SIZE 400
-#define PPW_LOBBY_MAX_BINARY_SIZE 300
-#define PPW_LOBBY_MAX_MATCHMAKING_BUF_SIZE 32
+#define PPW_LOBBY_MAX_STRING_SIZE               400
+#define PPW_LOBBY_MAX_BINARY_SIZE               300
+#define PPW_LOBBY_MAX_MATCHMAKING_BUF_SIZE      32
 #define PPW_LOBBY_MAX_MATCHMAKING_STRING_LENGTH 20
-#define PPW_LOBBY_MAX_QUESTION_SENTENCE_LENGTH 110
-#define PPW_LOBBY_MAX_ANSWER_LENGTH 18
-#define PPW_LOBBY_QUESTIONNAIRE_ANSWER_NUM 3
-#define PPW_LOBBY_FREE_QUESTION_START_NO 1000
-#define PPW_LOBBY_FREE_QUESTION_NUM 10
-#define PPW_LOBBY_INVALID_QUESTION_NO 0xffffffff
-#define PPW_LOBBY_ERROR_CODE_BASE 10620
-#define PPW_LOBBY_CHANNEL_KEY_SYSTEM "b_lib_u_system"
-#define PPW_LOBBY_CHANNEL_KEY_USER "b_lib_u_user"
-#define PPW_LOBBY_CHANNEL_KEY_CHANNEL_TIME "b_lib_c_time"
-#define PPW_LOBBY_CHANNEL_KEY_CHANNEL_LOBBY "b_lib_c_lobby"
-#define PPW_LOBBY_MATCHMAKING_KEY "ppw_lobby"
-#define PPW_LOBBY_ENC_REQUEST_VERSION 1
-#define PPW_LOBBY_MAX_PLAYER_NUM_MAIN 20
-#define PPW_LOBBY_MAX_PLAYER_NUM_FOOT 8
-#define PPW_LOBBY_MAX_PLAYER_NUM_CLOCK 4
-#define PPW_LOBBY_MAX_PLAYER_NUM_NEWS 4
-#define PPW_LOBBY_INVALID_USER_ID DWC_LOBBY_INVALID_USER_ID
-#define PPW_LOBBY_INVALID_TIME DWC_LOBBY_INVALID_TIME
-#define PPW_LOBBY_CHANNEL_PREFIX_RELEASE DWC_LOBBY_CHANNEL_PREFIX_RELEASE
-#define PPW_LOBBY_CHANNEL_PREFIX_DEBUG DWC_LOBBY_CHANNEL_PREFIX_DEBUG
-#define PPW_LOBBY_CHANNEL_PREFIX_DEBUG1 DWC_LOBBY_CHANNEL_PREFIX_DEBUG1
-#define PPW_LOBBY_CHANNEL_PREFIX_DEBUG2 DWC_LOBBY_CHANNEL_PREFIX_DEBUG2
-#define PPW_LOBBY_CHANNEL_PREFIX_DEBUG3 DWC_LOBBY_CHANNEL_PREFIX_DEBUG3
-#define PPW_LOBBY_CHANNEL_PREFIX_DEBUG4 DWC_LOBBY_CHANNEL_PREFIX_DEBUG4
-#define PPW_LOBBY_CHANNEL_PREFIX_DEBUG5 DWC_LOBBY_CHANNEL_PREFIX_DEBUG5
-#define PPW_LOBBY_CHANNEL_PREFIX_DEBUG6 DWC_LOBBY_CHANNEL_PREFIX_DEBUG6
-#define PPW_LOBBY_CHANNEL_PREFIX_DEBUG7 DWC_LOBBY_CHANNEL_PREFIX_DEBUG7
-#define PPW_LOBBY_CHANNEL_PREFIX_DEBUG8 DWC_LOBBY_CHANNEL_PREFIX_DEBUG8
-#define PPW_LOBBY_CHANNEL_PREFIX_DEBUG9 DWC_LOBBY_CHANNEL_PREFIX_DEBUG9
-#define PPW_LOBBY_CHANNEL_PREFIX_TEST DWC_LOBBY_CHANNEL_PREFIX_TEST
+#define PPW_LOBBY_MAX_QUESTION_SENTENCE_LENGTH  110
+#define PPW_LOBBY_MAX_ANSWER_LENGTH             18
+#define PPW_LOBBY_QUESTIONNAIRE_ANSWER_NUM      3
+#define PPW_LOBBY_FREE_QUESTION_START_NO        1000
+#define PPW_LOBBY_FREE_QUESTION_NUM             10
+#define PPW_LOBBY_INVALID_QUESTION_NO           0xffffffff
+#define PPW_LOBBY_ERROR_CODE_BASE               10620
+#define PPW_LOBBY_CHANNEL_KEY_SYSTEM            "b_lib_u_system"
+#define PPW_LOBBY_CHANNEL_KEY_USER              "b_lib_u_user"
+#define PPW_LOBBY_CHANNEL_KEY_CHANNEL_TIME      "b_lib_c_time"
+#define PPW_LOBBY_CHANNEL_KEY_CHANNEL_LOBBY     "b_lib_c_lobby"
+#define PPW_LOBBY_MATCHMAKING_KEY               "ppw_lobby"
+#define PPW_LOBBY_ENC_REQUEST_VERSION           1
+#define PPW_LOBBY_MAX_PLAYER_NUM_MAIN           20
+#define PPW_LOBBY_MAX_PLAYER_NUM_FOOT           8
+#define PPW_LOBBY_MAX_PLAYER_NUM_CLOCK          4
+#define PPW_LOBBY_MAX_PLAYER_NUM_NEWS           4
+#define PPW_LOBBY_INVALID_USER_ID               DWC_LOBBY_INVALID_USER_ID
+#define PPW_LOBBY_INVALID_TIME                  DWC_LOBBY_INVALID_TIME
+#define PPW_LOBBY_CHANNEL_PREFIX_RELEASE        DWC_LOBBY_CHANNEL_PREFIX_RELEASE
+#define PPW_LOBBY_CHANNEL_PREFIX_DEBUG          DWC_LOBBY_CHANNEL_PREFIX_DEBUG
+#define PPW_LOBBY_CHANNEL_PREFIX_DEBUG1         DWC_LOBBY_CHANNEL_PREFIX_DEBUG1
+#define PPW_LOBBY_CHANNEL_PREFIX_DEBUG2         DWC_LOBBY_CHANNEL_PREFIX_DEBUG2
+#define PPW_LOBBY_CHANNEL_PREFIX_DEBUG3         DWC_LOBBY_CHANNEL_PREFIX_DEBUG3
+#define PPW_LOBBY_CHANNEL_PREFIX_DEBUG4         DWC_LOBBY_CHANNEL_PREFIX_DEBUG4
+#define PPW_LOBBY_CHANNEL_PREFIX_DEBUG5         DWC_LOBBY_CHANNEL_PREFIX_DEBUG5
+#define PPW_LOBBY_CHANNEL_PREFIX_DEBUG6         DWC_LOBBY_CHANNEL_PREFIX_DEBUG6
+#define PPW_LOBBY_CHANNEL_PREFIX_DEBUG7         DWC_LOBBY_CHANNEL_PREFIX_DEBUG7
+#define PPW_LOBBY_CHANNEL_PREFIX_DEBUG8         DWC_LOBBY_CHANNEL_PREFIX_DEBUG8
+#define PPW_LOBBY_CHANNEL_PREFIX_DEBUG9         DWC_LOBBY_CHANNEL_PREFIX_DEBUG9
+#define PPW_LOBBY_CHANNEL_PREFIX_TEST           DWC_LOBBY_CHANNEL_PREFIX_TEST
 
 typedef DWC_LOBBY_CHANNEL_PREFIX PPW_LOBBY_CHANNEL_PREFIX;
 
@@ -192,23 +192,23 @@ typedef struct PPW_LobbyQuestionnaire {
     s32 lastMultiResult[PPW_LOBBY_QUESTIONNAIRE_ANSWER_NUM];
 } PPW_LobbyQuestionnaire;
 
-typedef void (* PPW_LobbyJoinChannelCallback)(BOOL success, PPW_LOBBY_CHANNEL_KIND channelKind);
-typedef void (* PPW_LobbyPlayerConnectedCallback)(s32 userId, const PPW_LobbySystemProfile * systemProfile, const u8 * userProfile, u32 userProfileSize);
-typedef void (* PPW_LobbyPlayerDisconnectedCallback)(s32 userId);
-typedef void (* PPW_LobbyStringMassageReceivedCallback)(s32 userId, PPW_LOBBY_CHANNEL_KIND channelKind, s32 type, const char * message);
-typedef void (* PPW_LobbyBinaryMassageReceivedCallback)(s32 userId, PPW_LOBBY_CHANNEL_KIND channelKind, s32 type, const u8 * data, u32 dataSize);
-typedef void (* PPW_LobbyGetChannelDataCallback)(BOOL success, BOOL broadcast, PPW_LOBBY_CHANNEL_KIND channelKind, s32 userId, const char * key, const u8 * data, u32 dataSize, void * param);
-typedef void (* PPW_LobbySystemProfileUpdatedCallback)(s32 userId, const PPW_LobbySystemProfile * systemProfile);
-typedef void (* PPW_LobbyUserProfileUpdatedCallback)(s32 userId, const u8 * userProfile, u32 userProfileSize);
-typedef void (* PPW_LobbyRecruitCallback)(s32 userId, const PPW_LobbyRecruitInfo * recruitInfo);
-typedef void (* PPW_LobbyRecruitStoppedCallback)(s32 userId, const PPW_LobbyRecruitInfo * recruitInfo);
-typedef void (* PPW_LobbyScheduleProgressCallback)(PPW_LOBBY_TIME_EVENT event);
-typedef void (* PPW_LobbyCheckProfileCallback)(PPW_LOBBY_STATS_RESULT result, const u8 * userProfile, u32 userProfileSize);
-typedef BOOL (* PPW_LobbyNotifyScheduleCallback)(PPW_LOBBY_STATS_RESULT result, const PPW_LobbySchedule * schedule);
-typedef void (* PPW_LobbyGetVipCallback)(PPW_LOBBY_STATS_RESULT result, const PPW_LobbyVipRecord * vipRecords, u32 num);
-typedef void (* PPW_LobbyGetQuestionnaireCallback)(PPW_LOBBY_STATS_RESULT result, const PPW_LobbyQuestionnaire * questionnaire);
-typedef void (* PPW_LobbySubmitQuestionnaireCallback)(PPW_LOBBY_STATS_RESULT result);
-typedef void (* PPW_LobbyExcessFloodCallback)(u32 floodWeight);
+typedef void (*PPW_LobbyJoinChannelCallback)(BOOL success, PPW_LOBBY_CHANNEL_KIND channelKind);
+typedef void (*PPW_LobbyPlayerConnectedCallback)(s32 userId, const PPW_LobbySystemProfile *systemProfile, const u8 *userProfile, u32 userProfileSize);
+typedef void (*PPW_LobbyPlayerDisconnectedCallback)(s32 userId);
+typedef void (*PPW_LobbyStringMassageReceivedCallback)(s32 userId, PPW_LOBBY_CHANNEL_KIND channelKind, s32 type, const char *message);
+typedef void (*PPW_LobbyBinaryMassageReceivedCallback)(s32 userId, PPW_LOBBY_CHANNEL_KIND channelKind, s32 type, const u8 *data, u32 dataSize);
+typedef void (*PPW_LobbyGetChannelDataCallback)(BOOL success, BOOL broadcast, PPW_LOBBY_CHANNEL_KIND channelKind, s32 userId, const char *key, const u8 *data, u32 dataSize, void *param);
+typedef void (*PPW_LobbySystemProfileUpdatedCallback)(s32 userId, const PPW_LobbySystemProfile *systemProfile);
+typedef void (*PPW_LobbyUserProfileUpdatedCallback)(s32 userId, const u8 *userProfile, u32 userProfileSize);
+typedef void (*PPW_LobbyRecruitCallback)(s32 userId, const PPW_LobbyRecruitInfo *recruitInfo);
+typedef void (*PPW_LobbyRecruitStoppedCallback)(s32 userId, const PPW_LobbyRecruitInfo *recruitInfo);
+typedef void (*PPW_LobbyScheduleProgressCallback)(PPW_LOBBY_TIME_EVENT event);
+typedef void (*PPW_LobbyCheckProfileCallback)(PPW_LOBBY_STATS_RESULT result, const u8 *userProfile, u32 userProfileSize);
+typedef BOOL (*PPW_LobbyNotifyScheduleCallback)(PPW_LOBBY_STATS_RESULT result, const PPW_LobbySchedule *schedule);
+typedef void (*PPW_LobbyGetVipCallback)(PPW_LOBBY_STATS_RESULT result, const PPW_LobbyVipRecord *vipRecords, u32 num);
+typedef void (*PPW_LobbyGetQuestionnaireCallback)(PPW_LOBBY_STATS_RESULT result, const PPW_LobbyQuestionnaire *questionnaire);
+typedef void (*PPW_LobbySubmitQuestionnaireCallback)(PPW_LOBBY_STATS_RESULT result);
+typedef void (*PPW_LobbyExcessFloodCallback)(u32 floodWeight);
 
 typedef struct PPW_LobbyCallbacks {
     PPW_LobbyJoinChannelCallback lobbyJoinChannelCallback;
@@ -230,35 +230,35 @@ typedef struct PPW_LobbyCallbacks {
     PPW_LobbyExcessFloodCallback lobbyExcessFloodCallback;
 } PPW_LobbyCallbacks;
 
-PPW_LOBBY_RESULT PPW_LobbyInitializeAsync(const char * gameName, const char * secretKey, DWC_LOBBY_CHANNEL_PREFIX prefix, const PPW_LobbyCallbacks * lobbyCallbacks, const DWCUserData * dwcUserdata, const u8 * userProfile, u32 userProfileSize);
-PPW_LOBBY_RESULT PPW_LobbyInitializePidAsync(const char * gameName, const char * secretKey, DWC_LOBBY_CHANNEL_PREFIX prefix, const PPW_LobbyCallbacks * lobbyCallbacks, s32 pid, const u8 * userProfile, u32 userProfileSize);
+PPW_LOBBY_RESULT PPW_LobbyInitializeAsync(const char *gameName, const char *secretKey, DWC_LOBBY_CHANNEL_PREFIX prefix, const PPW_LobbyCallbacks *lobbyCallbacks, const DWCUserData *dwcUserdata, const u8 *userProfile, u32 userProfileSize);
+PPW_LOBBY_RESULT PPW_LobbyInitializePidAsync(const char *gameName, const char *secretKey, DWC_LOBBY_CHANNEL_PREFIX prefix, const PPW_LobbyCallbacks *lobbyCallbacks, s32 pid, const u8 *userProfile, u32 userProfileSize);
 PPW_LOBBY_RESULT PPW_LobbyShutdownAsync();
 PPW_LOBBY_STATE PPW_LobbyProcess();
 PPW_LOBBY_ERROR PPW_LobbyGetLastError();
 s32 PPW_LobbyToErrorCode(PPW_LOBBY_ERROR err);
 PPW_LOBBY_RESULT PPW_LobbyJoinSubChannelAsync(PPW_LOBBY_CHANNEL_KIND channelKind);
 PPW_LOBBY_RESULT PPW_LobbyLeaveSubChannel();
-PPW_LOBBY_RESULT PPW_LobbyGetTimeInfo(PPW_LobbyTimeInfo * timeInfo);
-PPW_LOBBY_RESULT PPW_LobbySetSchedule(const PPW_LobbySchedule * schedule, u32 scheduleSize);
-PPW_LOBBY_RESULT PPW_LobbyGetSchedule(PPW_LobbySchedule * schedule, u32 * scheduleSize);
-PPW_LOBBY_RESULT PPW_LobbyGetVip(PPW_LobbyVipRecord * records, u32 * recordNum);
+PPW_LOBBY_RESULT PPW_LobbyGetTimeInfo(PPW_LobbyTimeInfo *timeInfo);
+PPW_LOBBY_RESULT PPW_LobbySetSchedule(const PPW_LobbySchedule *schedule, u32 scheduleSize);
+PPW_LOBBY_RESULT PPW_LobbyGetSchedule(PPW_LobbySchedule *schedule, u32 *scheduleSize);
+PPW_LOBBY_RESULT PPW_LobbyGetVip(PPW_LobbyVipRecord *records, u32 *recordNum);
 PPW_LOBBY_CHANNEL_STATE PPW_LobbyGetSubChannelState();
-PPW_LOBBY_RESULT PPW_LobbySetChannelData(s32 userId, PPW_LOBBY_CHANNEL_KIND channelKind, const char * key, const u8 * data, u32 dataSize);
-PPW_LOBBY_RESULT PPW_LobbyGetChannelDataAsync(s32 userId, PPW_LOBBY_CHANNEL_KIND channelKind, const char * key, void * param);
-PPW_LOBBY_RESULT PPW_LobbySendChannelStringMessage(PPW_LOBBY_CHANNEL_KIND channelKind, s32 type, const char * message);
-PPW_LOBBY_RESULT PPW_LobbySendPlayerStringMessage(s32 userId, s32 type, const char * message);
-PPW_LOBBY_RESULT PPW_LobbySendChannelBinaryMessage(PPW_LOBBY_CHANNEL_KIND channelKind, s32 type, const u8 * data, u32 dataSize);
-PPW_LOBBY_RESULT PPW_LobbySendPlayerBinaryMessage(s32 userId, s32 type, const u8 * data, u32 dataSize);
+PPW_LOBBY_RESULT PPW_LobbySetChannelData(s32 userId, PPW_LOBBY_CHANNEL_KIND channelKind, const char *key, const u8 *data, u32 dataSize);
+PPW_LOBBY_RESULT PPW_LobbyGetChannelDataAsync(s32 userId, PPW_LOBBY_CHANNEL_KIND channelKind, const char *key, void *param);
+PPW_LOBBY_RESULT PPW_LobbySendChannelStringMessage(PPW_LOBBY_CHANNEL_KIND channelKind, s32 type, const char *message);
+PPW_LOBBY_RESULT PPW_LobbySendPlayerStringMessage(s32 userId, s32 type, const char *message);
+PPW_LOBBY_RESULT PPW_LobbySendChannelBinaryMessage(PPW_LOBBY_CHANNEL_KIND channelKind, s32 type, const u8 *data, u32 dataSize);
+PPW_LOBBY_RESULT PPW_LobbySendPlayerBinaryMessage(s32 userId, s32 type, const u8 *data, u32 dataSize);
 s32 PPW_LobbyGetMyUserId();
-PPW_LOBBY_RESULT PPW_LobbyEnumUserId(s32 * userIds, u32 * num);
-PPW_LOBBY_RESULT PPW_LobbyGetProfile(s32 userId, u8 * userProfile, u32 * userProfileSize);
-PPW_LOBBY_RESULT PPW_LobbyUpdateMyProfile(const u8 * userProfile, u32 userProfileSize, BOOL force);
-PPW_LOBBY_RESULT PPW_LobbyStartRecruit(PPW_LobbyRecruitInfo * recruitInfo);
-PPW_LOBBY_RESULT PPW_LobbyUpdateRecruitInfo(const PPW_LobbyRecruitInfo * recruitInfo);
+PPW_LOBBY_RESULT PPW_LobbyEnumUserId(s32 *userIds, u32 *num);
+PPW_LOBBY_RESULT PPW_LobbyGetProfile(s32 userId, u8 *userProfile, u32 *userProfileSize);
+PPW_LOBBY_RESULT PPW_LobbyUpdateMyProfile(const u8 *userProfile, u32 userProfileSize, BOOL force);
+PPW_LOBBY_RESULT PPW_LobbyStartRecruit(PPW_LobbyRecruitInfo *recruitInfo);
+PPW_LOBBY_RESULT PPW_LobbyUpdateRecruitInfo(const PPW_LobbyRecruitInfo *recruitInfo);
 PPW_LOBBY_RESULT PPW_LobbyStopRecruit();
 PPW_LOBBY_RESULT PPW_LobbySubmitQuestionnaire(s32 answerNo);
-BOOL PPW_IsConnectedUserId(const DWCFriendsMatchControl * dwcFriendMatchCtrl, s32 userId);
-void PPW_LobbySetEncInitData(const char * initData);
+BOOL PPW_IsConnectedUserId(const DWCFriendsMatchControl *dwcFriendMatchCtrl, s32 userId);
+void PPW_LobbySetEncInitData(const char *initData);
 extern PPW_LOBBY_ERROR ov66_02237134();
 
 #ifdef WIN32

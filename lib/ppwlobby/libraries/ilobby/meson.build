@@ -8,7 +8,7 @@ libdwcilobby_srcs = files(
 libdwcilobby = static_library('dwcilobby',
     sources: libdwcilobby_srcs,
     nasm_args: asm_args,
-    include_directories: public_includes,
+    include_directories: ppw_public_includes,
     pic: false
 )
 
