@@ -1,22 +1,12 @@
 #ifndef POKEPLATINUM_RECORD_MIXED_RNG_H
 #define POKEPLATINUM_RECORD_MIXED_RNG_H
 
+#include "constants/records_mixed_rng.h"
 #include "constants/string.h"
 
 #include "charcode.h"
 #include "savedata.h"
 #include "string_gf.h"
-
-enum RecordMixedRNGEntry {
-    RECORD_MIXED_RNG_PLAYER_ORIGINAL,
-    RECORD_MIXED_RNG_PLAYER_OVERRIDE,
-    RECORD_MIXED_RNG_QUEUE_0,
-    RECORD_MIXED_RNG_QUEUE_1,
-    RECORD_MIXED_RNG_QUEUE_2,
-    RECORD_MIXED_RNG_QUEUE_3,
-
-    RECORD_MIXED_RNG_MAX,
-};
 
 enum RecordMixedRNGName {
     RECORD_MIXED_RNG_GROUP_NAME,

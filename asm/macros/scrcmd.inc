@@ -49,6 +49,7 @@
 #include "constants/moves.h"
 #include "constants/overworld_weather.h"
 #include "constants/pokemon.h"
+#include "constants/records_mixed_rng.h"
 #include "constants/regi_ruins.h"
 #include "constants/roamer_states.h"
 #include "constants/savedata/vars_flags.h"
@@ -3115,14 +3116,14 @@
     .byte \slot
     .endm
 
-    .macro ScrCmd_21D arg0, arg1=0, arg2=0
-    .short SCRCMD_21D
-    .short \arg0
-    .if \arg0 == 0 || \arg0 == 1 || \arg0 == 2 || \arg0 == 3
+    .macro DoGroupConnectionAction action, arg1=0, arg2=0
+    .short SCRCMD_DOGROUPCONNECTIONACTION
+    .short \action
+    .if \action == GC_ACTION_CHECK_IS_ENTRY_VALID || \action == GC_ACTION_CHECK_IS_ENTRY_OVERRIDE || \action == GC_ACTION_BUFFER_GROUP_NAME || \action == GC_ACTION_BUFFER_LEADER_NAME
         .short \arg1
         .short \arg2
     .else
-        .if \arg0 == 4 || \arg0 == 5
+        .if \action == GC_ACTION_OPEN_GROUP_NAMING_SCREEN || \action == GC_ACTION_JOIN_GROUP
             .short \arg1
         .endif
     .endif
