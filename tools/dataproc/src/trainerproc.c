@@ -41,6 +41,11 @@ static archive_template_t archives[] = {
     { .out_filename = NULL },
 };
 
+static header_template_t headers[] = {
+    { .out_filename = "trainer_scripts.h" },
+    { .out_filename = NULL                },
+};
+
 enum {
     T_TRAINER_MESSAGES,
     T_TRAINER_NAMES,
@@ -77,6 +82,7 @@ static void emit_name(datafile_t *df, enum TrainerID trainer, const TrainerHeade
 static void proc_messages(datafile_t *df, enum TrainerID trainer);
 static void pack(Container *trainer);
 static int  postproc_messages(void);
+static void emit_trainer_scripts(size_t trainer_count);
 
 int main(int argc, char *argv[]) {
     parse_args(&argc, &argv);
@@ -85,7 +91,7 @@ int main(int argc, char *argv[]) {
     archives[A_TRAINER_HEADERS].num_files = (u16)len_registry;
     archives[A_TRAINER_PARTIES].num_files = (u16)len_registry;
 
-    common_init(DATAPROC_F_JSON, NULL, archives, NULL, textbanks, __FILE__, depfile_fpath, output_dir, pre_init, NULL);
+    common_init(DATAPROC_F_JSON, NULL, archives, headers, textbanks, __FILE__, depfile_fpath, output_dir, pre_init, NULL);
 
     char       buf[256];
     datafile_t df   = { 0 };
@@ -112,6 +118,8 @@ int main(int argc, char *argv[]) {
         free(path);
         dp_free(&df);
     }
+
+    emit_trainer_scripts(len_registry);
 
     return common_done(errc, postproc_messages);
 }
@@ -433,6 +441,15 @@ static void pre_init(void) {
     dp_regmetang(TrainerMessageType);
 
     trainer_messages = calloc(len_registry, sizeof(*trainer_messages));
+}
+
+static void emit_trainer_scripts(size_t trainer_count) {
+    for (size_t i = 0; i < trainer_count; i++) {
+        fputs("    ScriptEntry Battles_Trainer\n", headers[0].out_file);
+    }
+
+    fputs("    ScriptEntry Battles_ApproachingTrainer\n", headers[0].out_file);
+    fputs("    ScriptEntryEnd\n", headers[0].out_file);
 }
 
 static void usage(const char *fmt, ...);
