@@ -2,413 +2,413 @@
 #include "res/text/bank/hidden_items.h"
 
 
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
-    ScriptEntry _0472
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
+    ScriptEntry HiddenItems_Item
     ScriptEntryEnd
 
-_0472:
+HiddenItems_Item:
     WaitSE SEQ_SE_CONFIRM
     SetVar VAR_0x8004, VAR_0x8000
     SetVar VAR_0x8005, VAR_0x8001
     SetVar VAR_0x8006, VAR_0x8002
     CanFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _04B0
-    GoToIfEq VAR_RESULT, 0, _064F
+    GoToIfEq VAR_RESULT, TRUE, HiddenItems_AddItem
+    GoToIfEq VAR_RESULT, FALSE, HiddenItems_BagIsFull
     End
 
-_04AC:
+HiddenItems_End:
     CloseMessage
     End
 
-_04B0:
+HiddenItems_AddItem:
     Common_CheckBagPocketForItem
-    ScrCmd_236 VAR_0x8004
+    SaveTVSegmentHiddenItem VAR_0x8004
     AddItem VAR_0x8004, VAR_0x8005, VAR_RESULT
     IsItemTMHM VAR_0x8004, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _0624
-    GoToIfEq VAR_RESULT, 0, _063C
+    GoToIfEq VAR_RESULT, TRUE, HiddenItems_PlayerFoundTMHM
+    GoToIfEq VAR_RESULT, FALSE, HiddenItems_PlayerFoundItem
     End
 
-_04E2:
+HiddenItems_CheckPlateAndPocket:
     WaitFanfare
     CheckItemIsPlate VAR_0x8004, VAR_RESULT
-    CallIfEq VAR_RESULT, 1, _0667
+    CallIfEq VAR_RESULT, TRUE, HiddenItems_PrintPlateObtainedMessage
     BufferPlayerName 0
     BufferItemName 1, VAR_0x8004
     GetItemPocket VAR_0x8004, VAR_RESULT
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, POCKET_KEY_ITEMS, _0588
-    GoToIfEq VAR_0x8008, POCKET_ITEMS, _0575
-    GoToIfEq VAR_0x8008, POCKET_BERRIES, _05D4
-    GoToIfEq VAR_0x8008, POCKET_MEDICINE, _05C1
-    GoToIfEq VAR_0x8008, POCKET_BALLS, _05E7
-    GoToIfEq VAR_0x8008, POCKET_BATTLE_ITEMS, _05FA
-    GoToIfEq VAR_0x8008, POCKET_MAIL, _05AE
-    GoToIfEq VAR_0x8008, POCKET_TMHMS, _059B
+    GoToIfEq VAR_0x8008, POCKET_KEY_ITEMS, HiddenItems_PutItemInKeyItemsPocket
+    GoToIfEq VAR_0x8008, POCKET_ITEMS, HiddenItems_PutItemInItemsPocket
+    GoToIfEq VAR_0x8008, POCKET_BERRIES, HiddenItems_PutItemInBerriesPocket
+    GoToIfEq VAR_0x8008, POCKET_MEDICINE, HiddenItems_PutItemInMedicinePocket
+    GoToIfEq VAR_0x8008, POCKET_BALLS, HiddenItems_PutItemInBallsPocket
+    GoToIfEq VAR_0x8008, POCKET_BATTLE_ITEMS, HiddenItems_PutItemInBattleItemsPocket
+    GoToIfEq VAR_0x8008, POCKET_MAIL, HiddenItems_PutItemInBattleMailPocket
+    GoToIfEq VAR_0x8008, POCKET_TMHMS, HiddenItems_PutItemInBattleTMHMsPocket
     End
 
-_0575:
+HiddenItems_PutItemInItemsPocket:
     GetItemPocket VAR_0x8004, VAR_RESULT
     BufferPocketName 2, VAR_RESULT
-    GoTo _060D
+    GoTo HiddenItems_PlayerPutItemInPocket
     End
 
-_0588:
+HiddenItems_PutItemInKeyItemsPocket:
     GetItemPocket VAR_0x8004, VAR_RESULT
     BufferPocketName 2, VAR_RESULT
-    GoTo _060D
+    GoTo HiddenItems_PlayerPutItemInPocket
     End
 
-_059B:
+HiddenItems_PutItemInBattleTMHMsPocket:
     GetItemPocket VAR_0x8004, VAR_RESULT
     BufferPocketName 2, VAR_RESULT
-    GoTo _060D
+    GoTo HiddenItems_PlayerPutItemInPocket
     End
 
-_05AE:
+HiddenItems_PutItemInBattleMailPocket:
     GetItemPocket VAR_0x8004, VAR_RESULT
     BufferPocketName 2, VAR_RESULT
-    GoTo _060D
+    GoTo HiddenItems_PlayerPutItemInPocket
     End
 
-_05C1:
+HiddenItems_PutItemInMedicinePocket:
     GetItemPocket VAR_0x8004, VAR_RESULT
     BufferPocketName 2, VAR_RESULT
-    GoTo _060D
+    GoTo HiddenItems_PlayerPutItemInPocket
     End
 
-_05D4:
+HiddenItems_PutItemInBerriesPocket:
     GetItemPocket VAR_0x8004, VAR_RESULT
     BufferPocketName 2, VAR_RESULT
-    GoTo _060D
+    GoTo HiddenItems_PlayerPutItemInPocket
     End
 
-_05E7:
+HiddenItems_PutItemInBallsPocket:
     GetItemPocket VAR_0x8004, VAR_RESULT
     BufferPocketName 2, VAR_RESULT
-    GoTo _060D
+    GoTo HiddenItems_PlayerPutItemInPocket
     End
 
-_05FA:
+HiddenItems_PutItemInBattleItemsPocket:
     GetItemPocket VAR_0x8004, VAR_RESULT
     BufferPocketName 2, VAR_RESULT
-    GoTo _060D
+    GoTo HiddenItems_PlayerPutItemInPocket
     End
 
-_060D:
+HiddenItems_PlayerPutItemInPocket:
     SetFlagFromVar VAR_0x8006
-    Message 9
+    Message HiddenItems_Text_PlayerPutItemInPocket
     WaitButton
     SetVar VAR_RESULT, 1
-    GoTo _04AC
+    GoTo HiddenItems_End
     End
 
-_0624:
+HiddenItems_PlayerFoundTMHM:
     BufferPlayerName 0
     BufferItemNameWithArticle 1, VAR_0x8004
     BufferTMHMMoveName 2, VAR_0x8004
-    Message 6
-    GoTo _04E2
+    Message HiddenItems_Text_PlayerFoundTMHMMove
+    GoTo HiddenItems_CheckPlateAndPocket
     End
 
-_063C:
+HiddenItems_PlayerFoundItem:
     BufferPlayerName 0
     BufferItemNameWithArticle 1, VAR_0x8004
-    Message 3
-    GoTo _04E2
+    Message HiddenItems_Text_PlayerFoundItem
+    GoTo HiddenItems_CheckPlateAndPocket
     End
 
-_064F:
+HiddenItems_BagIsFull:
     BufferItemName 0, VAR_0x8004
-    Message 4
+    Message HiddenItems_Text_ObtainedItemBagIsFull
     WaitButton
     SetVar VAR_RESULT, 0
-    GoTo _04AC
+    GoTo HiddenItems_End
     End
 
-_0667:
+HiddenItems_PrintPlateObtainedMessage:
     Common_PrintPlateObtainedMessage
     Return
 

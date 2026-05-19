@@ -2734,9 +2734,9 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_1D8 arg0
-    .short SCRCMD_1D8
-    .short \arg0
+    .macro CheckCanCookPoffin destVar
+    .short SCRCMD_CHECKCANCOOKPOFFIN
+    .short \destVar
     .endm
 
     .macro ScrCmd_1D9 arg0, arg1
@@ -3323,9 +3323,9 @@
     .endif
     .endm
 
-    .macro ScrCmd_236 arg0
-    .short SCRCMD_236
-    .short \arg0
+    .macro SaveTVSegmentHiddenItem item
+    .short SCRCMD_SAVETVSEGMENTHIDDENITEM
+    .short \item
     .endm
 
     .macro CallTVInterview callID, interviewSegmentID, arg2, arg3
@@ -3912,13 +3912,13 @@
     .short \partySlot
     .endm
 
-    .macro ScrCmd_28D
-    .short SCRCMD_28D
+    .macro SetPokemonPreviewAnim
+    .short SCRCMD_SETPOKEMONPREVIEWANIM
     .endm
 
-    .macro ScrCmd_28E arg0
-    .short SCRCMD_28E
-    .short \arg0
+    .macro WaitPokemonPreviewAnim unused
+    .short SCRCMD_WAITPOKEMONPREVIEWANIM
+    .short \unused
     .endm
 
     .macro GetLeagueVictories arg0

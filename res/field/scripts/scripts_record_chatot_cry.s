@@ -2,61 +2,61 @@
 #include "res/text/bank/record_chatot_cry.h"
 
 
-    ScriptEntry _0006
+    ScriptEntry RecordChatotCry_Chatter
     ScriptEntryEnd
 
-_0006:
+RecordChatotCry_Chatter:
     LockAll
     WaitTime 1, VAR_RESULT
     SetVar VAR_0x8005, VAR_0x8000
     DrawPokemonPreviewFromPartySlot VAR_0x8000
     CheckRecordedChatotCryIsPlayable VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _0031
-    GoTo _0054
+    GoToIfEq VAR_RESULT, TRUE, RecordChatotCry_AskOverwriteCurrentCry
+    GoTo RecordChatotCry_TryRecordCry
     End
 
-_0031:
-    Message 0
+RecordChatotCry_AskOverwriteCurrentCry:
+    Message RecordChatotCry_Text_OKToForgetCurrentSaying
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _0054
-    GoToIfEq VAR_RESULT, MENU_NO, _00B2
+    GoToIfEq VAR_RESULT, MENU_YES, RecordChatotCry_TryRecordCry
+    GoToIfEq VAR_RESULT, MENU_NO, RecordChatotCry_End
     End
 
-_0054:
+RecordChatotCry_TryRecordCry:
     FadeOutBGM 42, 10
-    Message 1
+    Message RecordChatotCry_Text_PressAOrBThenSpeak
     TryRecordChatotCry VAR_RESULT
     SetVar VAR_0x8004, VAR_RESULT
     WaitTime 30, VAR_RESULT
     FadeInBGM 10
     WaitTime 10, VAR_RESULT
-    GoToIfEq VAR_0x8004, 0, _00BA
+    GoToIfEq VAR_0x8004, FALSE, RecordChatotCry_FailedToLearnSaying
     StopRecordingChatotCry
     WaitTime 1, VAR_RESULT
     StoreRecordedChatotCry
     WaitTime 1, VAR_RESULT
-    ScrCmd_28D
+    SetPokemonPreviewAnim
     BufferPartyMonNickname 0, VAR_0x8005
-    Message 2
-    ScrCmd_28E VAR_RESULT
+    Message RecordChatotCry_Text_ChatotLearnedSaying
+    WaitPokemonPreviewAnim VAR_RESULT
     PlayCry SPECIES_CHATOT
     WaitCry
-    GoTo _00B2
+    GoTo RecordChatotCry_End
     End
 
-_00B2:
+RecordChatotCry_End:
     RemovePokemonPreview
     CloseMessage
     ReleaseAll
     End
 
-_00BA:
+RecordChatotCry_FailedToLearnSaying:
     BufferPartyMonNickname 0, VAR_0x8005
-    Message 3
-    Message 4
+    Message RecordChatotCry_Text_ChatotFailedToLearnSaying
+    Message RecordChatotCry_Text_WantToTryAgain
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _0054
-    GoToIfEq VAR_RESULT, MENU_NO, _00B2
+    GoToIfEq VAR_RESULT, MENU_YES, RecordChatotCry_TryRecordCry
+    GoToIfEq VAR_RESULT, MENU_NO, RecordChatotCry_End
     End
 
     .balign 4, 0
