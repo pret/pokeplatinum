@@ -43,7 +43,6 @@
 #include "constants/elevator_dirs.h"
 #include "constants/fade_screen.h"
 #include "constants/forms.h"
-#include "constants/group_connection.h"
 #include "constants/honey_tree.h"
 #include "constants/init_script_types.h"
 #include "constants/items.h"
@@ -3121,11 +3120,11 @@
     .macro DoGroupConnectionAction action, arg1=0, arg2=0
     .short SCRCMD_DOGROUPCONNECTIONACTION
     .short \action
-    .if \action == 0 || \action == 1 || \action == 2 || \action == 3
+    .if \action == GC_ACTION_CHECK_IS_ENTRY_VALID || \action == GC_ACTION_CHECK_IS_ENTRY_OVERRIDE || \action == GC_ACTION_BUFFER_GROUP_NAME || \action == GC_ACTION_BUFFER_LEADER_NAME
         .short \arg1
         .short \arg2
     .else
-        .if \action == 4 || \action == 5
+        .if \action == GC_ACTION_OPEN_GROUP_NAMING_SCREEN || \action == GC_ACTION_JOIN_GROUP
             .short \arg1
         .endif
     .endif

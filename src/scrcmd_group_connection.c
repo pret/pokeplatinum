@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/group_connection.h"
-
 #include "applications/naming_screen.h"
 
 #include "field_script_context.h"
@@ -33,31 +31,35 @@ BOOL ScrCmd_DoGroupConnectionAction(ScriptContext *ctx)
         *valid = RecordMixedRNG_IsEntryValid(rngCollection, entry);
 
         return FALSE;
-    } break;
+        break;
+    }
     case GC_ACTION_CHECK_IS_ENTRY_OVERRIDE: {
         u16 entry = ScriptContext_GetVar(ctx);
         u16 *equalToOverride = ScriptContext_GetVarPointer(ctx);
         *equalToOverride = RecordMixedRNG_IsEntryEqualToOverride(rngCollection, entry);
 
         return FALSE;
-    } break;
+        break;
+    }
     case GC_ACTION_BUFFER_GROUP_NAME: {
         u16 groupID = ScriptContext_GetVar(ctx);
         u16 templateArg = ScriptContext_GetVar(ctx);
 
         StringTemplate_SetUnionGroupName(*strTemplate, saveData, groupID, templateArg, RECORD_MIXED_RNG_GROUP_NAME);
-    } break;
+        break;
+    }
     case GC_ACTION_BUFFER_LEADER_NAME: {
         u16 groupID = ScriptContext_GetVar(ctx);
         u16 templateArg = ScriptContext_GetVar(ctx);
 
         StringTemplate_SetUnionGroupName(*strTemplate, saveData, groupID, templateArg, RECORD_MIXED_RNG_PLAYER_NAME);
-    } break;
+        break;
+    }
     case GC_ACTION_OPEN_GROUP_NAMING_SCREEN: {
         const u16 *entryName = RecordMixedRNG_GetEntryName(rngCollection, RECORD_MIXED_RNG_PLAYER_ORIGINAL, RECORD_MIXED_RNG_GROUP_NAME);
         sub_0203DFE8(ctx->task, NAMING_SCREEN_TYPE_GROUP, 0, TRAINER_NAME_LEN, 0, entryName, ScriptContext_GetVarPointer(ctx));
-    }
         return TRUE;
+    }
     case GC_ACTION_JOIN_GROUP: {
         u16 entry = ScriptContext_GetVar(ctx);
         BOOL valid = RecordMixedRNG_IsEntryValid(rngCollection, RECORD_MIXED_RNG_PLAYER_OVERRIDE);
@@ -67,8 +69,8 @@ BOOL ScrCmd_DoGroupConnectionAction(ScriptContext *ctx)
         if (valid) {
             FieldSystem_SaveTVSegment_LoveThatGroupCorner_SwitchGroup(ctx->fieldSystem);
         }
-    }
         return FALSE;
+    }
     case GC_ACTION_MAKE_NEW_GROUP: {
         String *string = String_Init(64, HEAP_ID_FIELD3);
         TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(ctx->fieldSystem->saveData);
@@ -81,7 +83,8 @@ BOOL ScrCmd_DoGroupConnectionAction(ScriptContext *ctx)
         String_Free(string);
         RecordMixedRNG_CopyEntry(rngCollection, RECORD_MIXED_RNG_PLAYER_ORIGINAL, RECORD_MIXED_RNG_PLAYER_OVERRIDE);
         FieldSystem_SaveTVSegment_LoveThatGroupCorner_NewGroup(ctx->fieldSystem);
-    } break;
+        break;
+    }
     }
 
     return FALSE;
