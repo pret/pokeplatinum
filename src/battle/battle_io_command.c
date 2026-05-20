@@ -611,12 +611,12 @@ static void BtlIOCmd_UpdatePartyMon(BattleSystem *battleSys, BattlerData *battle
 static void ov16_0225C558(BattleSystem *battleSys, BattlerData *battlerData)
 {
     u32 battleType = BattleSystem_GetBattleType(battleSys);
-    UnkStruct_ov16_02268A14 *v1 = ov16_0223E02C(battleSys);
+    BattleSubscreen *v1 = ov16_0223E02C(battleSys);
 
     if (battlerData->bootState == BATTLER_BOOT_STATE_NORMAL) {
         if ((battleType & BATTLE_TYPE_2vs2)
             || ((battleType & BATTLE_TYPE_2vs2) == FALSE && battlerData->battlerType != BATTLER_TYPE_PLAYER_SIDE_SLOT_2)) {
-            ov16_0226947C(v1, -0xd00, 0);
+            BattleSubscreen_StartPanelSlide(v1, -0xd00, 0);
         }
     }
 
@@ -719,14 +719,14 @@ static void BtlIOCmd_UpdateBg(BattleSystem *battleSys, BattlerData *battlerData)
 static void BtlIOCmd_ClearTouchScreen(BattleSystem *battleSys, BattlerData *battlerData)
 {
     if (battlerData->bootState == BATTLER_BOOT_STATE_NORMAL) {
-        UnkStruct_ov16_02268A14 *v0;
+        BattleSubscreen *v0;
         int partner;
         HealthBox *healthbox;
         NARC *v3 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, HEAP_ID_BATTLE);
         NARC *v4 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, HEAP_ID_BATTLE);
         v0 = ov16_0223E02C(battleSys);
 
-        ov16_02268C04(v3, v4, v0, 0, 0, NULL);
+        BattleSubscreen_SetupBackground(v3, v4, v0, 0, 0, NULL);
         ov16_Dummy3(v0, 0);
 
         NARC_dtor(v3);
@@ -740,7 +740,7 @@ static void BtlIOCmd_ClearTouchScreen(BattleSystem *battleSys, BattlerData *batt
         }
 
         Healthbox_Deactivate(&battlerData->healthbox);
-        ov16_02269218(v0);
+        BattleSubscreen_HideBallSprites(v0);
         ov16_022647D8(battlerData);
     }
 

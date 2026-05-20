@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_STRUCT_OV16_02269668_H
-#define POKEPLATINUM_STRUCT_OV16_02269668_H
+#ifndef POKEPLATINUM_STRUCT_ACTION_SELECT_DATA_H
+#define POKEPLATINUM_STRUCT_ACTION_SELECT_DATA_H
 
 typedef struct {
     u8 unk_00;
@@ -10,6 +10,6 @@ typedef struct {
     u16 unk_06;
     u8 isWaitingForPartner;
     u8 unk_09[3];
-} UnkStruct_ov16_02269668;
+} ActionSelectData;
 
-#endif // POKEPLATINUM_STRUCT_OV16_02269668_H
+#endif // POKEPLATINUM_STRUCT_ACTION_SELECT_DATA_H

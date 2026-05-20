@@ -187,7 +187,7 @@ Terrain *BattlerSystem_GetTerrain(BattleSystem *battleSys, int index)
     return &battleSys->terrains[index];
 }
 
-UnkStruct_ov16_02268A14 *ov16_0223E02C(BattleSystem *battleSys)
+BattleSubscreen *ov16_0223E02C(BattleSystem *battleSys)
 {
     return battleSys->unk_198;
 }
@@ -1433,7 +1433,7 @@ void BattleSystem_SetStopRecording(BattleSystem *battleSys, int flag)
         return;
     }
 
-    ov16_0226CEB0(battleSys->unk_198, flag);
+    BattleSubscreen_ShowStopRecordingMessage(battleSys->unk_198, flag);
 
     StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 16, 2, HEAP_ID_BATTLE);
     Sound_StopWaveOutAndSequences();

@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_OV16_02268A14_DECL_H
 #define POKEPLATINUM_STRUCT_OV16_02268A14_DECL_H
 
-typedef struct UnkStruct_ov16_02268A14_t UnkStruct_ov16_02268A14;
+typedef struct BattleSubscreen_t BattleSubscreen;
 
 #endif // POKEPLATINUM_STRUCT_OV16_02268A14_DECL_H
