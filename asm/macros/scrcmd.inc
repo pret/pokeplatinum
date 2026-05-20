@@ -58,6 +58,7 @@
 #include "constants/tv_broadcast.h"
 #include "constants/union_room_message_types.h"
 #include "constants/villa_visitors.h"
+#include "constants/vs_seeker.h"
 
 #include "data/scripts/scrcmd.h"
 #include "macros/movement.inc"
@@ -3020,9 +3021,9 @@
     .short SCRCMD_REMOVEPOKEMONPREVIEW
     .endm
 
-    .macro ScrCmd_20A arg0
-    .short SCRCMD_20A
-    .short \arg0
+    .macro StartVsSeeker destVar
+    .short SCRCMD_STARTVSSEEKER
+    .short \destVar
     .endm
 
     .macro SetMoveCodeForFacingDirection

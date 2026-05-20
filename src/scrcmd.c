@@ -368,7 +368,7 @@ static BOOL ScrCmd_GetCurNetID(ScriptContext *ctx);
 static BOOL ScrCmd_DrawPokemonPreview(ScriptContext *ctx);
 static void FieldSystem_WriteSpeciesSeen(FieldSystem *fieldSystem, u16 param1);
 static BOOL ScrCmd_RemovePokemonPreview(ScriptContext *ctx);
-static BOOL ScrCmd_20A(ScriptContext *ctx);
+static BOOL ScrCmd_StartVsSeeker(ScriptContext *ctx);
 static BOOL ScrCmd_SetMoveCodeForFacingDirection(ScriptContext *ctx);
 static BOOL ScrCmd_0A5(ScriptContext *ctx);
 static BOOL ScrCmd_30E(ScriptContext *ctx);
@@ -3069,12 +3069,12 @@ static BOOL ScriptContext_WaitForPreviewAnimFinished(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_20A(ScriptContext *ctx)
+static BOOL ScrCmd_StartVsSeeker(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_ReadHalfWord(ctx);
-    StringTemplate **v1 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
+    u16 destVar = ScriptContext_ReadHalfWord(ctx);
+    StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
 
-    VsSeeker_Start(ctx->task, *v1, FieldSystem_GetVarPointer(ctx->fieldSystem, v0));
+    VsSeeker_Start(ctx->task, *strTemplate, FieldSystem_GetVarPointer(ctx->fieldSystem, destVar));
     return TRUE;
 }
 

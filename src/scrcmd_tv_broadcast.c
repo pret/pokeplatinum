@@ -40,6 +40,8 @@
 #include "unk_0202E2CC.h"
 #include "unk_02054884.h"
 
+#include "res/text/bank/tv_reporter_interviews.h"
+
 typedef void (*TVInterview_SaveResponseFunction)(FieldSystem *, u16);
 typedef void (*TVInterview_LoadMessageFunction)(FieldSystem *, StringTemplate *);
 typedef BOOL (*TVInterview_IsEligibleFunction)(FieldSystem *);
@@ -144,34 +146,28 @@ static const TVInterview sInterviews[TV_PROGRAM_TYPE_INTERVIEWS_NUM_SEGMENTS];
 
 BOOL ScrCmd_CallTVInterview(ScriptContext *ctx)
 {
-    StringTemplate **template;
-
-    template = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
+    StringTemplate **template = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
 
     switch (ScriptContext_ReadHalfWord(ctx)) {
     case TV_INTERVIEW_CALL_LOAD_MESSAGE: {
-        int segmentID;
-        u16 *bankIDVar;
-        u16 *messageIDVar;
-
-        segmentID = ScriptContext_GetVar(ctx);
-        bankIDVar = ScriptContext_GetVarPointer(ctx);
-        messageIDVar = ScriptContext_GetVarPointer(ctx);
+        int segmentID = ScriptContext_GetVar(ctx);
+        u16 *bankIDVar = ScriptContext_GetVarPointer(ctx);
+        u16 *messageIDVar = ScriptContext_GetVarPointer(ctx);
         *bankIDVar = TEXT_BANK_TV_REPORTER_INTERVIEWS;
         *messageIDVar = TVInterview_LoadMessage(segmentID, ctx->fieldSystem, *template);
-    } break;
+        break;
+    }
     case TV_INTERVIEW_CALL_SAVE_RESPONSE: {
-        u16 segmentID;
-        u16 customMessageWord, unused;
         GameRecords *records = SaveData_GetGameRecords(ctx->fieldSystem->saveData);
 
-        segmentID = ScriptContext_GetVar(ctx);
-        customMessageWord = ScriptContext_GetVar(ctx);
-        unused = ScriptContext_GetVar(ctx);
+        u16 segmentID = ScriptContext_GetVar(ctx);
+        u16 customMessageWord = ScriptContext_GetVar(ctx);
+        u16 unused = ScriptContext_GetVar(ctx);
 
         TVInterview_SaveResponse(ctx->fieldSystem, segmentID, customMessageWord, unused);
         GameRecords_IncrementTrainerScore(records, TRAINER_SCORE_EVENT_TV_INTERVIEW_GIVEN);
-    } break;
+        break;
+    }
     }
 
     return FALSE;
@@ -213,9 +209,7 @@ BOOL ScrCmd_27C(ScriptContext *param0)
 
 static void TVInterview_SaveResponse(FieldSystem *fieldSystem, int segmentID, u16 customMessageWord, u16 unused)
 {
-    TVInterview_SaveResponseFunction saveResponseFn;
-
-    saveResponseFn = sInterviews[segmentID - 1].saveResponseFn;
+    TVInterview_SaveResponseFunction saveResponseFn = sInterviews[segmentID - 1].saveResponseFn;
 
     if (saveResponseFn != NULL) {
         saveResponseFn(fieldSystem, customMessageWord);
@@ -224,9 +218,7 @@ static void TVInterview_SaveResponse(FieldSystem *fieldSystem, int segmentID, u1
 
 static int TVInterview_LoadMessage(int segmentID, FieldSystem *fieldSystem, StringTemplate *template)
 {
-    TVInterview_LoadMessageFunction loadMessageFn;
-
-    loadMessageFn = sInterviews[segmentID - 1].loadMessageFn;
+    TVInterview_LoadMessageFunction loadMessageFn = sInterviews[segmentID - 1].loadMessageFn;
 
     if (loadMessageFn != NULL) {
         loadMessageFn(fieldSystem, template);
@@ -358,25 +350,120 @@ static BOOL sub_020493B8(FieldSystem *fieldSystem)
 }
 
 static const TVInterview sInterviews[TV_PROGRAM_TYPE_INTERVIEWS_NUM_SEGMENTS] = {
-    { NULL, NULL, NULL, 0x3 },
-    { FieldSystem_SaveTVSegment_BattleTowerCorner, NULL, sub_02049348, 0x4 },
-    { NULL, NULL, NULL, 0x5 },
-    { FieldSystem_SaveTVSegment_YourPokemonCorner, sub_02049268, NULL, 0x6 },
-    { NULL, NULL, NULL, 0x7 },
-    { FieldSystem_SaveTVSegment_ThePoketchWatch, sub_02049288, sub_02049358, 0x8 },
-    { FieldSystem_SaveTVSegment_ContestHall, NULL, sub_02049368, 0x9 },
-    { NULL, NULL, NULL, 0xA },
-    { FieldSystem_SaveTVSegment_RightOnPhotoCorner, NULL, sub_02049378, 0xB },
-    { FieldSystem_SaveTVSegment_StreetCornerPersonalityCheckup, NULL, NULL, 0xC },
-    { FieldSystem_SaveTVSegment_ThreeCheersForPoffinCorner, NULL, sub_02049388, 0xD },
-    { NULL, NULL, NULL, 0xE },
-    { FieldSystem_SaveTVSegment_AmitySquareWatch, sub_020492A0, sub_02049398, 0xF },
-    { FieldSystem_SaveTVSegment_BattleFrontierFrontlineNews_Single, sub_020492D4, sub_020493A8, 0x10 },
-    { FieldSystem_SaveTVSegment_InYourFaceInterview_Question1, NULL, NULL, 0x11 },
-    { FieldSystem_SaveTVSegment_InYourFaceInterview_Question2, NULL, NULL, 0x12 },
-    { FieldSystem_SaveTVSegment_InYourFaceInterview_Question3, NULL, NULL, 0x13 },
-    { FieldSystem_SaveTVSegment_InYourFaceInterview_Question4, NULL, NULL, 0x14 },
-    { FieldSystem_SaveTVSegment_BattleFrontierFrontlineNews_Multi, sub_02049308, sub_020493B8, 0x15 }
+    [TV_PROGRAM_SEGMENT_INTERVIEW_UNUSED_01 - 1] = {
+        .saveResponseFn = NULL,
+        .loadMessageFn = NULL,
+        .isEligibleFn = NULL,
+        .messageID = TVReporterInterviews_Text_Dummy3,
+    },
+    [TV_PROGRAM_SEGMENT_BATTLE_TOWER_CORNER - 1] = {
+        .saveResponseFn = FieldSystem_SaveTVSegment_BattleTowerCorner,
+        .loadMessageFn = NULL,
+        .isEligibleFn = sub_02049348,
+        .messageID = TVReporterInterviews_Text_BattleTowerCorner,
+    },
+    [TV_PROGRAM_SEGMENT_INTERVIEW_UNUSED_03 - 1] = {
+        .saveResponseFn = NULL,
+        .loadMessageFn = NULL,
+        .isEligibleFn = NULL,
+        .messageID = TVReporterInterviews_Text_Dummy5,
+    },
+    [TV_PROGRAM_SEGMENT_YOUR_POKEMON_CORNER - 1] = {
+        .saveResponseFn = FieldSystem_SaveTVSegment_YourPokemonCorner,
+        .loadMessageFn = sub_02049268,
+        .isEligibleFn = NULL,
+        .messageID = TVReporterInterviews_Text_YourPokemonCorner,
+    },
+    [TV_PROGRAM_SEGMENT_INTERVIEW_UNUSED_05 - 1] = {
+        .saveResponseFn = NULL,
+        .loadMessageFn = NULL,
+        .isEligibleFn = NULL,
+        .messageID = TVReporterInterviews_Text_Dummy7,
+    },
+    [TV_PROGRAM_SEGMENT_THE_POKETCH_WATCH - 1] = {
+        .saveResponseFn = FieldSystem_SaveTVSegment_ThePoketchWatch,
+        .loadMessageFn = sub_02049288,
+        .isEligibleFn = sub_02049358,
+        .messageID = TVReporterInterviews_Text_ThePoketchWatch,
+    },
+    [TV_PROGRAM_SEGMENT_CONTEST_HALL - 1] = {
+        .saveResponseFn = FieldSystem_SaveTVSegment_ContestHall,
+        .loadMessageFn = NULL,
+        .isEligibleFn = sub_02049368,
+        .messageID = TVReporterInterviews_Text_ContestHall,
+    },
+    [TV_PROGRAM_SEGMENT_INTERVIEW_UNUSED_08 - 1] = {
+        .saveResponseFn = NULL,
+        .loadMessageFn = NULL,
+        .isEligibleFn = NULL,
+        .messageID = TVReporterInterviews_Text_Dummy10,
+    },
+    [TV_PROGRAM_SEGMENT_RIGHT_ON_PHOTO_CORNER - 1] = {
+        .saveResponseFn = FieldSystem_SaveTVSegment_RightOnPhotoCorner,
+        .loadMessageFn = NULL,
+        .isEligibleFn = sub_02049378,
+        .messageID = TVReporterInterviews_Text_RightOnPhotoCorner,
+    },
+    [TV_PROGRAM_SEGMENT_STREET_CORNER_PERSONALITY_CHECKUP - 1] = {
+        .saveResponseFn = FieldSystem_SaveTVSegment_StreetCornerPersonalityCheckup,
+        .loadMessageFn = NULL,
+        .isEligibleFn = NULL,
+        .messageID = TVReporterInterviews_Text_StreetCornerPersonalityCheckup,
+    },
+    [TV_PROGRAM_SEGMENT_THREE_CHEERS_FOR_POFFIN_CORNER - 1] = {
+        .saveResponseFn = FieldSystem_SaveTVSegment_ThreeCheersForPoffinCorner,
+        .loadMessageFn = NULL,
+        .isEligibleFn = sub_02049388,
+        .messageID = TVReporterInterviews_Text_ThreeCheersForPoffinCorner,
+    },
+    [TV_PROGRAM_SEGMENT_INTERVIEW_UNUSED_12 - 1] = {
+        .saveResponseFn = NULL,
+        .loadMessageFn = NULL,
+        .isEligibleFn = NULL,
+        .messageID = TVReporterInterviews_Text_Dummy14,
+    },
+    [TV_PROGRAM_SEGMENT_AMITY_SQUARE_WATCH - 1] = {
+        .saveResponseFn = FieldSystem_SaveTVSegment_AmitySquareWatch,
+        .loadMessageFn = sub_020492A0,
+        .isEligibleFn = sub_02049398,
+        .messageID = TVReporterInterviews_Text_AmitySquareWatch,
+    },
+    [TV_PROGRAM_SEGMENT_BATTLE_FRONTIER_FRONTLINE_NEWS_SINGLE - 1] = {
+        .saveResponseFn = FieldSystem_SaveTVSegment_BattleFrontierFrontlineNews_Single,
+        .loadMessageFn = sub_020492D4,
+        .isEligibleFn = sub_020493A8,
+        .messageID = TVReporterInterviews_Text_BattleFrontierFrontlineNews_Single,
+    },
+    [TV_PROGRAM_SEGMENT_IN_YOUR_FACE_INTERVIEW_QUESTION_1 - 1] = {
+        .saveResponseFn = FieldSystem_SaveTVSegment_InYourFaceInterview_Question1,
+        .loadMessageFn = NULL,
+        .isEligibleFn = NULL,
+        .messageID = TVReporterInterviews_Text_InYourFaceInterview_Question1,
+    },
+    [TV_PROGRAM_SEGMENT_IN_YOUR_FACE_INTERVIEW_QUESTION_2 - 1] = {
+        .saveResponseFn = FieldSystem_SaveTVSegment_InYourFaceInterview_Question2,
+        .loadMessageFn = NULL,
+        .isEligibleFn = NULL,
+        .messageID = TVReporterInterviews_Text_InYourFaceInterview_Question2,
+    },
+    [TV_PROGRAM_SEGMENT_IN_YOUR_FACE_INTERVIEW_QUESTION_3 - 1] = {
+        .saveResponseFn = FieldSystem_SaveTVSegment_InYourFaceInterview_Question3,
+        .loadMessageFn = NULL,
+        .isEligibleFn = NULL,
+        .messageID = TVReporterInterviews_Text_InYourFaceInterview_Question3,
+    },
+    [TV_PROGRAM_SEGMENT_IN_YOUR_FACE_INTERVIEW_QUESTION_4 - 1] = {
+        .saveResponseFn = FieldSystem_SaveTVSegment_InYourFaceInterview_Question4,
+        .loadMessageFn = NULL,
+        .isEligibleFn = NULL,
+        .messageID = TVReporterInterviews_Text_InYourFaceInterview_Question4,
+    },
+    [TV_PROGRAM_SEGMENT_BATTLE_FRONTIER_FRONTLINE_NEWS_MULTI - 1] = {
+        .saveResponseFn = FieldSystem_SaveTVSegment_BattleFrontierFrontlineNews_Multi,
+        .loadMessageFn = sub_02049308,
+        .isEligibleFn = sub_020493B8,
+        .messageID = TVReporterInterviews_Text_BattleFrontierFrontlineNews_Multi,
+    },
 };
 
 BOOL ScrCmd_GetCurrentSafariGameCaughtNum(ScriptContext *ctx)
