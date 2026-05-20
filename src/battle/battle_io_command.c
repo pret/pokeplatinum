@@ -11,9 +11,9 @@
 #include "struct_defs/move_animation.h"
 
 #include "battle/battle_controller.h"
-#include "battle/battle_cursor.h"
 #include "battle/battle_display.h"
 #include "battle/battle_message.h"
+#include "battle/battle_subscreen.h"
 #include "battle/battle_system.h"
 #include "battle/common.h"
 #include "battle/healthbox.h"

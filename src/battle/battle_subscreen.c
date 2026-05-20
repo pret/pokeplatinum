@@ -1,4 +1,4 @@
-#include "battle/battle_cursor.h"
+#include "battle/battle_subscreen.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -213,7 +213,7 @@ typedef struct BattleSubscreen_t {
     PartyBallAnimState partyBallAnimState[6];
     SysTask *unk_664; // CLEANUP: never assigned
     u8 unk_668; // CLEANUP: never accessed
-    u8 unk_669; // CLEANUP: never accessed 
+    u8 unk_669; // CLEANUP: never accessed
     u8 battlerType;
     s8 activeMenuConfigIndex;
     u8 targetingLayout;

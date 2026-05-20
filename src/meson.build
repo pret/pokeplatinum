@@ -532,7 +532,7 @@ pokeplatinum_c = files(
     'battle/battle_controller.c',
     'battle/healthbox.c',
     'battle/ov16_02268520.c',
-    'battle/battle_cursor.c',
+    'battle/battle_subscreen.c',
     'battle/party_gauge.c',
     'battle/ov16_0226DB7C.c',
     'battle/ov16_0226DE44.c',

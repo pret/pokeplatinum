@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_OV16_0226871C_H
-#define POKEPLATINUM_OV16_0226871C_H
+#ifndef POKEPLATINUM_BATTLE_SUBSCREEN_H
+#define POKEPLATINUM_BATTLE_SUBSCREEN_H
 
 #include "struct_decls/battle_system.h"
 
@@ -16,22 +16,22 @@ void BattleSubscreen_Free(BattleSubscreen *btlSubscreen);
 void BattleSubscreen_LoadGraphics(BattleSubscreen *btlSubscreen);
 void BattleSubscreen_FreeGraphics(BattleSubscreen *btlSubscreen);
 void BattleSubscreen_SetupBackground(NARC *unused, NARC *spriteNarc, BattleSubscreen *btlSubscreen, int menuConfigIndex, int forceRedraw, void *battleDisplayData);
-void BattleSubscreen_LoadSprites(NARC *param0, BattleSubscreen *btlSubscreen);
-void BattleSubscreen_SetExpPercents(BattleSubscreen *btlSubscreen, const u8 *param1);
-void BattleSubscreen_SetBallStatus(BattleSubscreen *btlSubscreen, u8 param1[], u8 param2[]);
+void BattleSubscreen_LoadSprites(NARC *spriteNarc, BattleSubscreen *btlSubscreen);
+void BattleSubscreen_SetExpPercents(BattleSubscreen *btlSubscreen, const u8 *expPercents);
+void BattleSubscreen_SetBallStatus(BattleSubscreen *btlSubscreen, u8 playerBallStatuses[], u8 opponentBallStatuses[]);
 void BattleSubscreen_ShowBallSprites(BattleSubscreen *btlSubscreen);
 void BattleSubscreen_HideBallSprites(BattleSubscreen *btlSubscreen);
 int BattleSystem_MenuInput(BattleSubscreen *btlSubscreen);
 BOOL BattleSubscreen_IsReady(BattleSubscreen *btlSubscreen);
-int GetTargetSelectLayout(int param0, int param1);
+int GetTargetSelectLayout(int range, int battlerType);
 void BattleSubscreen_UpdateSlideWindow(BattleSubscreen *btlSubscreen);
-void BattleSubscreen_StartPanelSlide(BattleSubscreen *btlSubscreen, int param1, int param2);
-void BattleSubscreen_UpdateMoveDisplay(BattleSubscreen *btlSubscreen, int param1, const MoveDisplayInfo *moveDisplayInfo);
+void BattleSubscreen_StartPanelSlide(BattleSubscreen *btlSubscreen, int slideSpeed, int targetOffset);
+void BattleSubscreen_UpdateMoveDisplay(BattleSubscreen *btlSubscreen, int battlerSlot, const MoveDisplayInfo *moveDisplayInfo);
 void ov16_Dummy3(BattleSubscreen *btlSubscreen, int param1);
 BOOL ov16_0226BCD0(BattleSubscreen *btlSubscreen);
 int BattleSubscreen_GetSuppressActivationSFX(BattleSubscreen *btlSubscreen);
-void BattleSubscreen_SetSuppressActivationSFX(BattleSubscreen *btlSubscreen, int param1);
-void BattleSubscreen_ShowStopRecordingMessage(BattleSubscreen *btlSubscreen, int param1);
+void BattleSubscreen_SetSuppressActivationSFX(BattleSubscreen *btlSubscreen, int isCursorEnabled);
+void BattleSubscreen_ShowStopRecordingMessage(BattleSubscreen *btlSubscreen, int flag);
 u8 BattleSubscreen_IsWaitingForPartner(BattleSubscreen *btlSubscreen);
 
-#endif // POKEPLATINUM_OV16_0226871C_H
+#endif // POKEPLATINUM_BATTLE_SUBSCREEN_H

@@ -22,10 +22,10 @@
 #include "struct_defs/trainer.h"
 
 #include "battle/battle_context.h"
-#include "battle/battle_cursor.h"
 #include "battle/battle_display.h"
 #include "battle/battle_lib.h"
 #include "battle/battle_message.h"
+#include "battle/battle_subscreen.h"
 #include "battle/common.h"
 #include "battle/healthbox.h"
 #include "battle/ov16_02268520.h"
