@@ -1874,7 +1874,7 @@ static int ov88_0223D5B8(UnkStruct_02095E80 *param0)
 static int ov88_0223D69C(UnkStruct_02095E80 *param0)
 {
     ListMenuTemplate v0;
-    int v1 = sub_0202AF94(param0->unk_36EC);
+    int v1 = WiFiList_GetValidFriendsCount(param0->unk_36EC);
     int v2 = 5;
 
     param0->unk_36D4 = StringList_New(v1 + 1, HEAP_ID_26);
@@ -1885,7 +1885,7 @@ static int ov88_0223D69C(UnkStruct_02095E80 *param0)
         int v5 = 0;
 
         for (v5 = 0; v5 < 32; v5++) {
-            if (sub_0202AF78(param0->unk_36EC, v5)) {
+            if (WiFiList_IsValidFriendData(param0->unk_36EC, v5)) {
                 String_CopyChars(v4, sub_0202AEF0(param0->unk_36EC, v5));
                 StringList_AddFromString(param0->unk_36D4, v4, v5);
             }
@@ -1932,7 +1932,7 @@ static int ov88_0223D7AC(UnkStruct_02095E80 *param0)
         param0->unk_226C = ov88_0223D854;
 
         for (v0 = 0; v0 < 32; v0++) {
-            if (!sub_0202AF78(param0->unk_36EC, v0)) {
+            if (!WiFiList_IsValidFriendData(param0->unk_36EC, v0)) {
                 sub_02039298(param0->saveData, param0->unk_36C4, v0, HEAP_ID_26, 0);
                 break;
             }
@@ -2000,7 +2000,7 @@ static int ov88_0223D854(UnkStruct_02095E80 *param0)
         WiFiList *v2 = SaveData_GetWiFiList(param0->saveData);
 
         for (v0 = 0; v0 < 32; v0++) {
-            if (!sub_0202AF78(v2, v0)) {
+            if (!WiFiList_IsValidFriendData(v2, v0)) {
                 sub_02039298(param0->saveData, param0->unk_36C4, v0, HEAP_ID_26, 0);
                 break;
             }

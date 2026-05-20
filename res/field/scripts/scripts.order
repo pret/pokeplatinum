@@ -211,7 +211,7 @@ scripts_fight_area_south_house
 scripts_unk_0210
 scripts_common
 scripts_contests
-scripts_pokemon_center_2f_attendants
+scripts_pokemon_center_2f_common
 scripts_oreburgh_mine_b1f
 scripts_oreburgh_mine_b2f
 scripts_valley_windworks_outside
@@ -421,7 +421,7 @@ scripts_grand_lake_valor_lakefront_west_house
 scripts_acuity_lakefront
 scripts_unk_0421
 scripts_follower_partners
-scripts_pokemon_center_b1f_attendants
+scripts_pokemon_center_b1f_common
 scripts_record_chatot_cry
 scripts_poke_radar
 scripts_poffin_common

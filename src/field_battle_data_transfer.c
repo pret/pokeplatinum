@@ -340,7 +340,7 @@ void FieldBattleDTO_InitWithPartyOrder(FieldBattleDTO *dto, const FieldSystem *f
     Pokedex *pokedex = SaveData_GetPokedex(fieldSystem->saveData);
     ChatotCry *chatotCry = SaveData_GetChatotCry(fieldSystem->saveData);
     Options *options = SaveData_GetOptions(fieldSystem->saveData);
-    const BattleRegulation *regulation = fieldSystem->unk_B0;
+    const BattleRegulation *regulation = fieldSystem->regulation;
     int i;
     Pokemon *mon;
 

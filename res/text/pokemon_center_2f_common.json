@@ -2,7 +2,7 @@
   "key": 24069,
   "messages": [
     {
-      "id": "pl_msg_00000221_00000",
+      "id": "PokemonCenter2FCommon_Text_WelcomeToColosseum",
       "en_US": [
         "Welcome to the Pokémon Communication\n",
         "Club Colosseum.\r",
@@ -11,14 +11,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000221_00001",
+      "id": "PokemonCenter2FCommon_Text_WhichBattleMode",
       "en_US": [
         "Which Battle Mode would you like\n",
         "to play?"
       ]
     },
     {
-      "id": "pl_msg_00000221_00002",
+      "id": "PokemonCenter2FCommon_Text_BattleModesInfo",
       "en_US": [
         "There are four Battle Modes.\r",
         "Single Battle is for two Trainers\n",
@@ -42,62 +42,62 @@
       ]
     },
     {
-      "id": "pl_msg_00000221_00003",
+      "id": "PokemonCenter2FCommon_Text_Dummy3",
       "garbage": 266
     },
     {
-      "id": "pl_msg_00000221_00004",
+      "id": "PokemonCenter2FCommon_Text_Dummy4",
       "garbage": 41
     },
     {
-      "id": "pl_msg_00000221_00005",
+      "id": "PokemonCenter2FCommon_Text_Dummy5",
       "garbage": 32
     },
     {
-      "id": "pl_msg_00000221_00006",
+      "id": "PokemonCenter2FCommon_Text_NeedTwoPokemonDoubleBattle",
       "en_US": [
         "For a Double Battle, you must\n",
         "have at least two Pokémon."
       ]
     },
     {
-      "id": "pl_msg_00000221_00007",
+      "id": "PokemonCenter2FCommon_Text_Dummy7",
       "garbage": 27
     },
     {
-      "id": "pl_msg_00000221_00008",
+      "id": "PokemonCenter2FCommon_Text_Dummy8",
       "garbage": 35
     },
     {
-      "id": "pl_msg_00000221_00009",
+      "id": "PokemonCenter2FCommon_Text_00009",
       "en_US": "Would you like to save the game?"
     },
     {
-      "id": "pl_msg_00000221_00010",
+      "id": "PokemonCenter2FCommon_Text_Dummy10",
       "garbage": 31
     },
     {
-      "id": "pl_msg_00000221_00011",
+      "id": "PokemonCenter2FCommon_Text_Dummy11",
       "garbage": 35
     },
     {
-      "id": "pl_msg_00000221_00012",
+      "id": "PokemonCenter2FCommon_Text_Dummy12",
       "garbage": 26
     },
     {
-      "id": "pl_msg_00000221_00013",
+      "id": "PokemonCenter2FCommon_Text_Dummy13",
       "garbage": 16
     },
     {
-      "id": "pl_msg_00000221_00014",
+      "id": "PokemonCenter2FCommon_Text_Dummy14",
       "garbage": 26
     },
     {
-      "id": "pl_msg_00000221_00015",
+      "id": "PokemonCenter2FCommon_Text_PleaseVisitAgain",
       "en_US": "Please do visit again."
     },
     {
-      "id": "pl_msg_00000221_00016",
+      "id": "PokemonCenter2FCommon_Text_RepeatProcessFromBeginning",
       "en_US": [
         "Communication error.\r",
         "Please repeat the registration\n",
@@ -105,27 +105,27 @@
       ]
     },
     {
-      "id": "pl_msg_00000221_00017",
+      "id": "PokemonCenter2FCommon_Text_Dummy17",
       "garbage": 12
     },
     {
-      "id": "pl_msg_00000221_00018",
+      "id": "PokemonCenter2FCommon_Text_Dummy18",
       "garbage": 17
     },
     {
-      "id": "pl_msg_00000221_00019",
+      "id": "PokemonCenter2FCommon_Text_Dummy19",
       "garbage": 25
     },
     {
-      "id": "pl_msg_00000221_00020",
+      "id": "PokemonCenter2FCommon_Text_Dummy20",
       "garbage": 12
     },
     {
-      "id": "pl_msg_00000221_00021",
+      "id": "PokemonCenter2FCommon_Text_Dummy21",
       "garbage": 11
     },
     {
-      "id": "pl_msg_00000221_00022",
+      "id": "PokemonCenter2FCommon_Text_DecideWhichOfTwoBecomesLeader",
       "en_US": [
         "Please decide which of you two\n",
         "will become the leader.\r",
@@ -134,87 +134,87 @@
       ]
     },
     {
-      "id": "pl_msg_00000221_00023",
+      "id": "PokemonCenter2FCommon_Text_Dummy23",
       "garbage": 24
     },
     {
-      "id": "pl_msg_00000221_00024",
+      "id": "PokemonCenter2FCommon_Text_Dummy24",
       "garbage": 20
     },
     {
-      "id": "pl_msg_00000221_00025",
+      "id": "PokemonCenter2FCommon_Text_Dummy25",
       "garbage": 27
     },
     {
-      "id": "pl_msg_00000221_00026",
+      "id": "PokemonCenter2FCommon_Text_Dummy26",
       "garbage": 23
     },
     {
-      "id": "pl_msg_00000221_00027",
+      "id": "PokemonCenter2FCommon_Text_Dummy27",
       "garbage": 29
     },
     {
-      "id": "pl_msg_00000221_00028",
+      "id": "PokemonCenter2FCommon_Text_Dummy28",
       "garbage": 35
     },
     {
-      "id": "pl_msg_00000221_00029",
+      "id": "PokemonCenter2FCommon_Text_Dummy29",
       "garbage": 22
     },
     {
-      "id": "pl_msg_00000221_00030",
+      "id": "PokemonCenter2FCommon_Text_Dummy30",
       "garbage": 13
     },
     {
-      "id": "pl_msg_00000221_00031",
+      "id": "PokemonCenter2FCommon_Text_Dummy31",
       "garbage": 25
     },
     {
-      "id": "pl_msg_00000221_00032",
+      "id": "PokemonCenter2FCommon_Text_Dummy32",
       "garbage": 25
     },
     {
-      "id": "pl_msg_00000221_00033",
+      "id": "PokemonCenter2FCommon_Text_Dummy33",
       "garbage": 26
     },
     {
-      "id": "pl_msg_00000221_00034",
+      "id": "PokemonCenter2FCommon_Text_Dummy34",
       "garbage": 29
     },
     {
-      "id": "pl_msg_00000221_00035",
+      "id": "PokemonCenter2FCommon_Text_Dummy35",
       "garbage": 28
     },
     {
-      "id": "pl_msg_00000221_00036",
+      "id": "PokemonCenter2FCommon_Text_Dummy36",
       "garbage": 29
     },
     {
-      "id": "pl_msg_00000221_00037",
+      "id": "PokemonCenter2FCommon_Text_Dummy37",
       "garbage": 30
     },
     {
-      "id": "pl_msg_00000221_00038",
+      "id": "PokemonCenter2FCommon_Text_Dummy38",
       "garbage": 29
     },
     {
-      "id": "pl_msg_00000221_00039",
+      "id": "PokemonCenter2FCommon_Text_Dummy39",
       "garbage": 30
     },
     {
-      "id": "pl_msg_00000221_00040",
+      "id": "PokemonCenter2FCommon_Text_Dummy40",
       "garbage": 32
     },
     {
-      "id": "pl_msg_00000221_00041",
+      "id": "PokemonCenter2FCommon_Text_Dummy41",
       "garbage": 14
     },
     {
-      "id": "pl_msg_00000221_00042",
+      "id": "PokemonCenter2FCommon_Text_Dummy42",
       "garbage": 17
     },
     {
-      "id": "pl_msg_00000221_00043",
+      "id": "PokemonCenter2FCommon_Text_DecideWhichOfFourBecomesLeader",
       "en_US": [
         "Please decide which of you four\n",
         "will become the group leader.\r",
@@ -223,80 +223,80 @@
       ]
     },
     {
-      "id": "pl_msg_00000221_00044",
+      "id": "PokemonCenter2FCommon_Text_00044",
       "en_US": [
         "Please choose the leader\n",
         "for a Multi Battle."
       ]
     },
     {
-      "id": "pl_msg_00000221_00045",
+      "id": "PokemonCenter2FCommon_Text_00045",
       "en_US": [
         "{STRVAR_1 3, 0, 0} was asked to register\n",
         "you as a member. Please wait."
       ]
     },
     {
-      "id": "pl_msg_00000221_00046",
+      "id": "PokemonCenter2FCommon_Text_00046",
       "en_US": "{STRVAR_1 3, 0, 0} replied, “No...”"
     },
     {
-      "id": "pl_msg_00000221_00047",
+      "id": "PokemonCenter2FCommon_Text_00047",
       "en_US": [
         "{STRVAR_1 3, 0, 0} OK’d your registration\n",
         "as a member."
       ]
     },
     {
-      "id": "pl_msg_00000221_00048",
+      "id": "PokemonCenter2FCommon_Text_00048",
       "en_US": [
         "Multi Battle!\n",
         "Awaiting other members!"
       ]
     },
     {
-      "id": "pl_msg_00000221_00049",
+      "id": "PokemonCenter2FCommon_Text_00049",
       "en_US": [
         "Multi Battle! Awaiting\n",
         "communication from another player."
       ]
     },
     {
-      "id": "pl_msg_00000221_00050",
+      "id": "PokemonCenter2FCommon_Text_00050",
       "en_US": [
         "Cancel the Multi Battle Mode\n",
         "with these members?"
       ]
     },
     {
-      "id": "pl_msg_00000221_00051",
+      "id": "PokemonCenter2FCommon_Text_00051",
       "en_US": "{STRVAR_1 3, 0, 0} contacted you."
     },
     {
-      "id": "pl_msg_00000221_00052",
+      "id": "PokemonCenter2FCommon_Text_MembersGatheredEnterRoom",
       "en_US": [
         "The members have gathered.\n",
         "Please enter the room."
       ]
     },
     {
-      "id": "pl_msg_00000221_00053",
+      "id": "PokemonCenter2FCommon_Text_Dummy53",
       "garbage": 46
     },
     {
-      "id": "pl_msg_00000221_00054",
+      "id": "PokemonCenter2FCommon_Text_Dummy54",
       "garbage": 23
     },
     {
-      "id": "pl_msg_00000221_00055",
+      "id": "PokemonCenter2FCommon_Text_Dummy55",
       "garbage": 17
     },
     {
-      "id": "pl_msg_00000221_00056",
+      "id": "PokemonCenter2FCommon_Text_Dummy56",
       "garbage": 13
     },
     {
-      "id": "pl_msg_00000221_00057",
+      "id": "PokemonCenter2FCommon_Text_WelcomeEnterUnionRoom",
       "en_US": [
         "Welcome to the Pokémon Wireless\n",
         "Club Union Room.\r",
@@ -306,7 +306,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000221_00058",
+      "id": "PokemonCenter2FCommon_Text_UnionRoomInfo",
       "en_US": [
         "The Trainers in the Union Room\n",
         "will be those players around you\f",
@@ -325,206 +325,206 @@
       ]
     },
     {
-      "id": "pl_msg_00000221_00059",
+      "id": "PokemonCenter2FCommon_Text_00059",
       "en_US": "Would you like to save the game?"
     },
     {
-      "id": "pl_msg_00000221_00060",
+      "id": "PokemonCenter2FCommon_Text_00060",
       "en_US": [
         "There is already a saved file.\n",
         "Is it OK to overwrite it?"
       ]
     },
     {
-      "id": "pl_msg_00000221_00061",
+      "id": "PokemonCenter2FCommon_Text_00061",
       "en_US": [
         "Saving...\n",
         "Don’t turn off the power."
       ]
     },
     {
-      "id": "pl_msg_00000221_00062",
+      "id": "PokemonCenter2FCommon_Text_00062",
       "en_US": "{STRVAR_1 3, 0, 0} saved the game."
     },
     {
-      "id": "pl_msg_00000221_00063",
+      "id": "PokemonCenter2FCommon_Text_EnjoyUnionRoom",
       "en_US": [
         "I hope you enjoy your time in\n",
         "the Union Room.\r"
       ]
     },
     {
-      "id": "pl_msg_00000221_00064",
+      "id": "PokemonCenter2FCommon_Text_Dummy64",
       "garbage": 92
     },
     {
-      "id": "pl_msg_00000221_00065",
+      "id": "PokemonCenter2FCommon_Text_Dummy65",
       "garbage": 115
     },
     {
-      "id": "pl_msg_00000221_00066",
+      "id": "PokemonCenter2FCommon_Text_Dummy66",
       "garbage": 30
     },
     {
-      "id": "pl_msg_00000221_00067",
+      "id": "PokemonCenter2FCommon_Text_Dummy67",
       "garbage": 31
     },
     {
-      "id": "pl_msg_00000221_00068",
+      "id": "PokemonCenter2FCommon_Text_Dummy68",
       "garbage": 35
     },
     {
-      "id": "pl_msg_00000221_00069",
+      "id": "PokemonCenter2FCommon_Text_Dummy69",
       "garbage": 26
     },
     {
-      "id": "pl_msg_00000221_00070",
+      "id": "PokemonCenter2FCommon_Text_Dummy70",
       "garbage": 63
     },
     {
-      "id": "pl_msg_00000221_00071",
+      "id": "PokemonCenter2FCommon_Text_Dummy71",
       "garbage": 25
     },
     {
-      "id": "pl_msg_00000221_00072",
+      "id": "PokemonCenter2FCommon_Text_Dummy72",
       "garbage": 34
     },
     {
-      "id": "pl_msg_00000221_00073",
+      "id": "PokemonCenter2FCommon_Text_Dummy73",
       "garbage": 28
     },
     {
-      "id": "pl_msg_00000221_00074",
+      "id": "PokemonCenter2FCommon_Text_Dummy74",
       "garbage": 30
     },
     {
-      "id": "pl_msg_00000221_00075",
+      "id": "PokemonCenter2FCommon_Text_Dummy75",
       "garbage": 24
     },
     {
-      "id": "pl_msg_00000221_00076",
+      "id": "PokemonCenter2FCommon_Text_Dummy76",
       "garbage": 16
     },
     {
-      "id": "pl_msg_00000221_00077",
+      "id": "PokemonCenter2FCommon_Text_Dummy77",
       "garbage": 26
     },
     {
-      "id": "pl_msg_00000221_00078",
+      "id": "PokemonCenter2FCommon_Text_Dummy78",
       "garbage": 27
     },
     {
-      "id": "pl_msg_00000221_00079",
+      "id": "PokemonCenter2FCommon_Text_Dummy79",
       "garbage": 96
     },
     {
-      "id": "pl_msg_00000221_00080",
+      "id": "PokemonCenter2FCommon_Text_Dummy80",
       "garbage": 158
     },
     {
-      "id": "pl_msg_00000221_00081",
+      "id": "PokemonCenter2FCommon_Text_Dummy81",
       "garbage": 87
     },
     {
-      "id": "pl_msg_00000221_00082",
+      "id": "PokemonCenter2FCommon_Text_Dummy82",
       "garbage": 90
     },
     {
-      "id": "pl_msg_00000221_00083",
+      "id": "PokemonCenter2FCommon_Text_Dummy83",
       "garbage": 61
     },
     {
-      "id": "pl_msg_00000221_00084",
+      "id": "PokemonCenter2FCommon_Text_Dummy84",
       "garbage": 85
     },
     {
-      "id": "pl_msg_00000221_00085",
+      "id": "PokemonCenter2FCommon_Text_Dummy85",
       "garbage": 105
     },
     {
-      "id": "pl_msg_00000221_00086",
+      "id": "PokemonCenter2FCommon_Text_Dummy86",
       "garbage": 65
     },
     {
-      "id": "pl_msg_00000221_00087",
+      "id": "PokemonCenter2FCommon_Text_Dummy87",
       "garbage": 63
     },
     {
-      "id": "pl_msg_00000221_00088",
+      "id": "PokemonCenter2FCommon_Text_Dummy88",
       "garbage": 25
     },
     {
-      "id": "pl_msg_00000221_00089",
+      "id": "PokemonCenter2FCommon_Text_Dummy89",
       "garbage": 75
     },
     {
-      "id": "pl_msg_00000221_00090",
+      "id": "PokemonCenter2FCommon_Text_Dummy90",
       "garbage": 26
     },
     {
-      "id": "pl_msg_00000221_00091",
+      "id": "PokemonCenter2FCommon_Text_Dummy91",
       "garbage": 73
     },
     {
-      "id": "pl_msg_00000221_00092",
+      "id": "PokemonCenter2FCommon_Text_Dummy92",
       "garbage": 5
     },
     {
-      "id": "pl_msg_00000221_00093",
+      "id": "PokemonCenter2FCommon_Text_Dummy93",
       "garbage": 5
     },
     {
-      "id": "pl_msg_00000221_00094",
+      "id": "PokemonCenter2FCommon_Text_Dummy94",
       "garbage": 4
     },
     {
-      "id": "pl_msg_00000221_00095",
+      "id": "PokemonCenter2FCommon_Text_Dummy95",
       "garbage": 5
     },
     {
-      "id": "pl_msg_00000221_00096",
+      "id": "PokemonCenter2FCommon_Text_Dummy96",
       "garbage": 4
     },
     {
-      "id": "pl_msg_00000221_00097",
+      "id": "PokemonCenter2FCommon_Text_Dummy97",
       "garbage": 22
     },
     {
-      "id": "pl_msg_00000221_00098",
+      "id": "PokemonCenter2FCommon_Text_Dummy98",
       "garbage": 4
     },
     {
-      "id": "pl_msg_00000221_00099",
+      "id": "PokemonCenter2FCommon_Text_Dummy99",
       "garbage": 4
     },
     {
-      "id": "pl_msg_00000221_00100",
+      "id": "PokemonCenter2FCommon_Text_Dummy100",
       "garbage": 3
     },
     {
-      "id": "pl_msg_00000221_00101",
+      "id": "PokemonCenter2FCommon_Text_Dummy101",
       "garbage": 4
     },
     {
-      "id": "pl_msg_00000221_00102",
+      "id": "PokemonCenter2FCommon_Text_YouMaySignTrainerCard",
       "en_US": [
         "You may sign the back of your\n",
         "Trainer Card here.\r"
       ]
     },
     {
-      "id": "pl_msg_00000221_00103",
+      "id": "PokemonCenter2FCommon_Text_WouldYouSignTrainerCard",
       "en_US": [
         "Would you like to sign your\n",
         "Trainer Card?"
       ]
     },
     {
-      "id": "pl_msg_00000221_00104",
+      "id": "PokemonCenter2FCommon_Text_PleaseVisitAgain2",
       "en_US": "Please do visit again."
     },
     {
-      "id": "pl_msg_00000221_00105",
+      "id": "PokemonCenter2FCommon_Text_SignTrainerCardInfo",
       "en_US": [
         "You may sign the back of your\n",
         "Trainer Card here.\r",
@@ -536,14 +536,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000221_00106",
+      "id": "PokemonCenter2FCommon_Text_WhichSetOfRules",
       "en_US": [
         "Which set of rules would you like\n",
         "to use?"
       ]
     },
     {
-      "id": "pl_msg_00000221_00107",
+      "id": "PokemonCenter2FCommon_Text_NeedXPokemonForCup",
       "en_US": [
         "You need at least {STRVAR_1 50, 1, 0} Pokémon that\n",
         "qualify under {STRVAR_1 26, 0, 0} Cup\f",
@@ -551,59 +551,59 @@
       ]
     },
     {
-      "id": "pl_msg_00000221_00108",
+      "id": "PokemonCenter2FCommon_Text_Dummy108",
       "garbage": 8
     },
     {
-      "id": "pl_msg_00000221_00109",
+      "id": "PokemonCenter2FCommon_Text_Dummy109",
       "garbage": 7
     },
     {
-      "id": "pl_msg_00000221_00110",
+      "id": "PokemonCenter2FCommon_Text_Dummy110",
       "garbage": 6
     },
     {
-      "id": "pl_msg_00000221_00111",
+      "id": "PokemonCenter2FCommon_Text_Dummy111",
       "garbage": 6
     },
     {
-      "id": "pl_msg_00000221_00112",
+      "id": "PokemonCenter2FCommon_Text_Dummy112",
       "garbage": 6
     },
     {
-      "id": "pl_msg_00000221_00113",
+      "id": "PokemonCenter2FCommon_Text_Cup",
       "en_US": "{STRVAR_1 26, 0, 0} Cup"
     },
     {
-      "id": "pl_msg_00000221_00114",
+      "id": "PokemonCenter2FCommon_Text_Cancel",
       "en_US": "CANCEL"
     },
     {
-      "id": "pl_msg_00000221_00115",
+      "id": "PokemonCenter2FCommon_Text_Confirm",
       "en_US": "CONFIRM"
     },
     {
-      "id": "pl_msg_00000221_00116",
+      "id": "PokemonCenter2FCommon_Text_Rules",
       "en_US": "RULES"
     },
     {
-      "id": "pl_msg_00000221_00117",
+      "id": "PokemonCenter2FCommon_Text_Dummy117",
       "garbage": 28
     },
     {
-      "id": "pl_msg_00000221_00118",
+      "id": "PokemonCenter2FCommon_Text_Dummy118",
       "garbage": 26
     },
     {
-      "id": "pl_msg_00000221_00119",
+      "id": "PokemonCenter2FCommon_Text_Dummy119",
       "garbage": 28
     },
     {
-      "id": "pl_msg_00000221_00120",
+      "id": "PokemonCenter2FCommon_Text_Dummy120",
       "garbage": 17
     },
     {
-      "id": "pl_msg_00000221_00121",
+      "id": "PokemonCenter2FCommon_Text_CantFormTeamWithLevelLimit",
       "en_US": [
         "It’s impossible to form a team of\n",
         "Pokémon that qualify under the\r",
@@ -612,36 +612,36 @@
       ]
     },
     {
-      "id": "pl_msg_00000221_00122",
+      "id": "PokemonCenter2FCommon_Text_Dummy122",
       "garbage": 18
     },
     {
-      "id": "pl_msg_00000221_00123",
+      "id": "PokemonCenter2FCommon_Text_NoRestrictions",
       "en_US": "NO RESTRICTIONS"
     },
     {
-      "id": "PokeCenter2FAttendants_Text_CommsWillBeLaunched",
+      "id": "PokemonCenter2FCommon_Text_CommsWillBeLaunched",
       "en_US": [
         "DS Wireless Communications will be\n",
         "launched."
       ]
     },
     {
-      "id": "pl_msg_00000221_00125",
+      "id": "PokemonCenter2FCommon_Text_NeedThreePokemonMultiBattle",
       "en_US": [
         "For a Multi Battle, you must have\n",
         "at least three Pokémon."
       ]
     },
     {
-      "id": "pl_msg_00000221_00126",
+      "id": "PokemonCenter2FCommon_Text_NeedThreePokemonMixBattle",
       "en_US": [
         "For a Mix Battle, you must have\n",
         "at least three Pokémon."
       ]
     },
     {
-      "id": "pl_msg_00000221_00127",
+      "id": "PokemonCenter2FCommon_Text_AtLeastOnePokemonCantBeTaken",
       "en_US": [
         "You have at least one Pokémon\n",
         "that can’t be taken."

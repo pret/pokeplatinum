@@ -1593,7 +1593,7 @@ void CommClub_StartBattleClient(FieldSystem *fieldSystem, int commType, int para
     sCommClubMan->commType = commType;
 
     if (commType == COMM_TYPE_MIX_BATTLE || commType == COMM_TYPE_MULTI_BATTLE_1) {
-        fieldSystem->unk_B0 = NULL;
+        fieldSystem->regulation = NULL;
     }
 
     sCommClubMan->unk_92 = param2;
@@ -1624,7 +1624,7 @@ void CommClub_StartBattleServer(FieldSystem *fieldSystem, int commType, int para
     sCommClubMan->commType = commType;
 
     if (commType == COMM_TYPE_MIX_BATTLE || commType == COMM_TYPE_MULTI_BATTLE_1) {
-        fieldSystem->unk_B0 = NULL;
+        fieldSystem->regulation = NULL;
     }
 
     sCommClubMan->unk_92 = param2;

@@ -28,7 +28,7 @@ BOOL BattleRegulation_ValidatePokemon(const BattleRegulation *regulation, Pokemo
         return FALSE;
     }
 
-    ruleValue = BattleRegulation_GetRuleValue(regulation, BATTLE_REGULATION_RULE_SPECIES_RESTRICT);
+    ruleValue = BattleRegulation_GetRuleValue(regulation, BATTLE_REGULATION_RULE_EVOLUTION_RESTRICT);
 
     if (ruleValue == 0) {
         if (species != Pokemon_GetBaseSpeciesForBattle(species)) {
@@ -68,7 +68,7 @@ BOOL BattleRegulation_ValidatePokemon(const BattleRegulation *regulation, Pokemo
         }
     }
 
-    ruleValue = BattleRegulation_GetRuleValue(regulation, BATTLE_REGULATION_RULE_ITEM_RESTRICT);
+    ruleValue = BattleRegulation_GetRuleValue(regulation, BATTLE_REGULATION_RULE_SPECIAL_SPECIES_RESTRICT);
 
     if (ruleValue == 0) {
         if (Pokemon_IsBannedFromBattleFrontier(mon)) {

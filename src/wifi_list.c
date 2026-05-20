@@ -156,23 +156,23 @@ void sub_0202AF50(WiFiList *wiFiList, int param1, String *param2)
     String_ToChars(param2, wiFiList->unk_1C0[param1].unk_00, sizeof(wiFiList->unk_1C0[param1].unk_00));
 }
 
-BOOL sub_0202AF78(WiFiList *wiFiList, int param1)
+BOOL WiFiList_IsValidFriendData(WiFiList *wiFiList, int param1)
 {
     GF_ASSERT(param1 < 32);
     return DWC_IsValidFriendData(&wiFiList->friendData[param1]);
 }
 
-int sub_0202AF94(WiFiList *wiFiList)
+int WiFiList_GetValidFriendsCount(WiFiList *wiFiList)
 {
-    int v0, v1 = 0;
+    int i, validFriendsCount = 0;
 
-    for (v0 = 0; v0 < 32; v0++) {
-        if (sub_0202AF78(wiFiList, v0)) {
-            v1++;
+    for (i = 0; i < 32; i++) {
+        if (WiFiList_IsValidFriendData(wiFiList, i)) {
+            validFriendsCount++;
         }
     }
 
-    return v1;
+    return validFriendsCount;
 }
 
 int sub_0202AFB4(WiFiList *wiFiList)
@@ -180,7 +180,7 @@ int sub_0202AFB4(WiFiList *wiFiList)
     int v0, v1 = 0;
 
     for (v0 = 0; v0 < 32; v0++) {
-        if (sub_0202AF78(wiFiList, v0)) {
+        if (WiFiList_IsValidFriendData(wiFiList, v0)) {
             v1 = v0 + 1;
         }
     }
@@ -226,7 +226,7 @@ void sub_0202B0F8(WiFiList *wiFiList)
     int i, v1 = -1;
 
     for (i = 0; i < 32; i++) {
-        if (sub_0202AF78(wiFiList, i)) {
+        if (WiFiList_IsValidFriendData(wiFiList, i)) {
             if (v1 != -1) {
                 sub_0202B088(wiFiList, v1, i);
 

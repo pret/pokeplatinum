@@ -51,9 +51,5 @@ BOOL WiFiList_HasValidLogin(SaveData *saveData)
     WiFiList *wiFiList = SaveData_GetWiFiList(saveData);
     DWCUserData *userData = WiFiList_GetUserData(wiFiList);
 
-    if (DWC_CheckHasProfile(userData) && DWC_CheckValidConsole(userData)) {
-        return TRUE;
-    }
-
-    return FALSE;
+    return DWC_CheckHasProfile(userData) && DWC_CheckValidConsole(userData);
 }

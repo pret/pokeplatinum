@@ -2984,13 +2984,13 @@
     StartEndSafariGame SAFARI_GAME_INACTIVE
     .endm
 
-    .macro ScrCmd_203 arg0, arg1, arg2, arg3, arg4
-    .short SCRCMD_203
-    .short \arg0
-    .short \arg1
-    .short \arg2
-    .short \arg3
-    .short \arg4
+    .macro WarpToColosseum mapID, warpID, x, z, dir
+    .short SCRCMD_WARPTOCOLOSSEUM
+    .short \mapID
+    .short \warpID
+    .short \x
+    .short \z
+    .short \dir
     .endm
 
     .macro ScrCmd_204
@@ -3351,9 +3351,9 @@
     .short \destVar
     .endm
 
-    .macro ScrCmd_239 arg0
-    .short SCRCMD_239
-    .short \arg0
+    .macro OpenBattleRegulationMenu destVar
+    .short SCRCMD_OPENBATTLEREGULATIONMENU
+    .short \destVar
     .endm
 
     .macro GetPartyMonFootprintType hasPrintVar, printTypeVar, partySlot
@@ -4034,14 +4034,14 @@
     .short \item
     .endm
 
-    .macro ScrCmd_2A3 arg0
-    .short SCRCMD_2A3
-    .short \arg0
+    .macro CheckHasWiFiListValidLogin destVar
+    .short SCRCMD_CHECKHASWIFILISTVALIDLOGIN
+    .short \destVar
     .endm
 
-    .macro ScrCmd_2A4 arg0
-    .short SCRCMD_2A4
-    .short \arg0
+    .macro GetWiFListValidFriendsCount destVar
+    .short SCRCMD_GETWIFLISTVALIDFRIENDSCOUNT
+    .short \destVar
     .endm
 
     .macro OpenPartyMenuForTrade
@@ -4743,9 +4743,9 @@
     .short \species
     .endm
 
-    .macro ScrCmd_31D arg0
-    .short SCRCMD_31D
-    .short \arg0
+    .macro TryRevertPartyPokemonForms destVar
+    .short SCRCMD_TRYREVERTPARTYPOKEMONFORMS
+    .short \destVar
     .endm
 
     .macro TryRevertPokemonForm partySlot, destVar
@@ -4771,9 +4771,9 @@
     .short SCRCMD_FINISHDISTORTIONWORLDGIRATINASHADOWEVENT
     .endm
 
-    .macro ScrCmd_323 arg0
-    .short SCRCMD_323
-    .short \arg0
+    .macro CheckNoWiFiPlazaCooldown destVar
+    .short SCRCMD_CHECKNOWIFIPLAZACOOLDOWN
+    .short \destVar
     .endm
 
     .macro GetBattleHallRecordKeeperStats curStreakIdx, passedMilestoneIdx, nextMilestoneIdx, earnedBPIdx, nextMilestone, response
