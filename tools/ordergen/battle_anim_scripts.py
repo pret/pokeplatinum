@@ -26,9 +26,6 @@ with (
         move = move.strip()
         if not move or not move.startswith("MOVE_"):
             continue
-        if move == "MOVE_NONE":
-            add("0000")
-            continue
         move_name = move.replace("MOVE_", "").lower()
         add(move_name)
     

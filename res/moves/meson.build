@@ -1,14 +1,12 @@
-fs = import('fs')
-
 pl_waza_tbl_subdirs = [
-    '0000',
+    'none',
     '0468',
     '0469',
     '0470',
 ]
 
 anim_script_subdirs = [
-    '0000',
+    'none',
     '0468',
     '0469',
     '0470',
@@ -41,8 +39,7 @@ anim_script_subdirs = [
     '0497',
     '0498',
     '0499',
-    '0500',
-]
+    '0500', ]
 
 move_consts = fs.read(moves_txt).splitlines()
 foreach move : move_consts
@@ -77,36 +74,56 @@ foreach subdir : anim_script_subdirs
     anim_script_srcs += subdir / 'anim.s'
 endforeach
 
+# This generator is shared by both move-specific animations (in this directory)
+# and common animations (in the `battle/scripts/common_anims` directory).
+battle_anim_script_bin_gen = generator(make_script_bin_sh,
+    arguments: [
+        '-i', relative_source_root / 'include',
+        '-i', relative_source_root / 'asm',
+        '-i', '.',
+        '--depfile', '@DEPFILE@',
+        '--enumproc', enumproc_exe.full_path(),
+        '--assembler', arm_none_eabi_gcc_exe.full_path(),
+        '--objcopy', arm_none_eabi_objcopy_exe.full_path(),
+        '@EXTRA_ARGS@',
+        '@INPUT@',
+    ],
+    depends: [
+        enumproc_exe,
+        c_consts_generators,
+        h_headers,
+        battle_particles_narc[1],
+        anim_ncer_narc_files[1],
+        anim_nanr_narc_files[1],
+        anim_ncgr_narc_files[1],
+        anim_nclr_narc_files[1],
+    ],
+    output: '@BASENAME@',
+    depfile: '@BASENAME@.d',
+)
+
 relative_build_dir = fs.relative_to(meson.current_build_dir(), meson.project_build_root())
 
-anim_scripts_root = meson.current_source_dir()
-
-anim_scripts_basename = 'anim_scripts'
-anim_scripts_narc_name = anim_scripts_basename + '.narc'
-anim_scripts_order_name = anim_scripts_basename + '.order'
-
-anim_scripts_private_dir = relative_build_dir / anim_scripts_narc_name + '.p'
-
-anim_scripts_order = custom_target(anim_scripts_order_name,
-    output: anim_scripts_order_name,
+anim_scripts_order = custom_target('anim_scripts.order',
+    output: 'anim_scripts.order',
     input: [ moves_txt ],
     command: [ ordergen_battle_anim_scripts_py, '@INPUT@', meson.current_source_dir(), '@OUTPUT@' ],
 )
 
-anim_scripts_narc = custom_target(anim_scripts_narc_name,
-    output: [
-        anim_scripts_narc_name,
-    ],
+anim_scripts_narc = custom_target('anim_scripts.narc',
+    output: 'anim_scripts.narc',
     input: battle_anim_script_bin_gen.process(
         anim_script_srcs,
-        extra_args: ['--out-dir', anim_scripts_private_dir, '--parent-dir'],
-        preserve_path_from: anim_scripts_root,
+        extra_args: [
+            '--out-dir', relative_build_dir / 'anim_scripts.narc.p',
+            '--parent-dir',
+        ],
+        preserve_path_from: meson.current_source_dir(),
     ),
     command: [
         nitroarc_exe,
         '--create',
         '--files-from', anim_scripts_order,
-        '--exclude', '*.d',
         '--file', '@OUTPUT0@',
         '@PRIVATE_DIR@',
     ],

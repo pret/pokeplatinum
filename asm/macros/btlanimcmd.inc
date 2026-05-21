@@ -1,10 +1,10 @@
 #include "generated/sdat.h"
 #include "constants/battle/battle_anim.h"
-#include "res/battle/particles/battle_particles.naix"
 #include "res/graphics/battle/moves/anim_ncer.naix"
 #include "res/graphics/battle/moves/anim_nanr.naix"
 #include "res/graphics/battle/moves/anim_ncgr.naix"
 #include "res/graphics/battle/moves/anim_nclr.naix"
+#include "res/graphics/battle/particles/battle_particles.naix"
 
 #include "macros/btlanimfunc.inc"
 #include "data/scripts/btlanimcmd.h"
