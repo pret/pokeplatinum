@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 import pathlib
 
-from generated.battle_move_effects import BattleMoveEffect
-from generated.contest_effects import ContestEffects
+from generated.move_battle_effects import MoveBattleEffect
+from generated.move_contest_effects import MoveContestEffect
 from generated.move_classes import MoveClass
 from generated.move_flags import MoveFlag
 from generated.move_ranges import MoveRange
@@ -15,7 +15,7 @@ import jsoncnv as j2b
 
 SCHEMA = j2b.Parser() \
     .register_name(lambda s: s) \
-    .register('effect.type', 2, j2b.parse_const, BattleMoveEffect) \
+    .register('effect.type', 2, j2b.parse_const, MoveBattleEffect) \
     .register('class', 1, j2b.parse_const, MoveClass) \
     .register('power', 1, j2b.parse_int) \
     .register('type', 1, j2b.parse_const, PokemonType) \
@@ -25,7 +25,7 @@ SCHEMA = j2b.Parser() \
     .register('range', 2, j2b.parse_const, MoveRange) \
     .register('priority', 1, j2b.parse_sint) \
     .register('flags', 1, j2b.pack_flags, MoveFlag) \
-    .register('contest.effect', 1, j2b.parse_const, ContestEffects) \
+    .register('contest.effect', 1, j2b.parse_const, MoveContestEffect) \
     .register('contest.type', 1, j2b.parse_const, PokemonContestType) \
     .pad(2)
 
