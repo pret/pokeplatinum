@@ -9,6 +9,7 @@ move_data = custom_target('move_data',
     output: [
         'move_data.narc',
         'anim_scripts.order',
+        'move_scripts.order',
         move_text_bank_names,
     ],
 
@@ -24,19 +25,24 @@ move_data = custom_target('move_data',
 )
 
 move_anim_scripts_order = move_data[1]
+move_scripts_order = move_data[2]
 move_data_outputs = move_data.to_list()
-move_text_banks = move_data_outputs.slice(2, move_data_outputs.length())
+move_text_banks = move_data_outputs.slice(3, move_data_outputs.length())
 
-anim_script_srcs = [
+anim_script_srcs = files(
     '.shared/anim_0468_0474.s',
     '.shared/anim_0475_0500.s',
-]
+)
+
+move_script_srcs = files('.shared/script_0468_0500.s')
+move_script_srcdir = meson.current_source_dir()
 
 move_consts = fs.read(moves_txt).splitlines()
 foreach move : move_consts
     if move.startswith('MOVE_')
         move_stem = move.replace('MOVE_', '').to_lower()
-        anim_script_srcs += move_stem / 'anim.s'
+        anim_script_srcs += files(move_stem / 'anim.s')
+        move_script_srcs += files(move_stem / 'script.s')
     endif
 endforeach
 

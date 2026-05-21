@@ -190,20 +190,23 @@ static void proc_text(datafile_t *df, size_t i, const char *basename) {
 }
 
 static FILE *f_anim_scripts = NULL;
+static FILE *f_move_scripts = NULL;
 
 static void init_orderfiles(void) {
-    char *filepath = pathjoin(output_dir, NULL, "anim_scripts.order");
-    f_anim_scripts = fopen(filepath, "wb");
+    char buf[BUFSIZE] = { 0 };
 
-    free(filepath);
+    f_anim_scripts = fopen(strfmt("%s/%s", output_dir, "anim_scripts.order"), "wb");
+    f_move_scripts = fopen(strfmt("%s/%s", output_dir, "move_scripts.order"), "wb");
 }
 
 static void prep_scripts(const char *basename) {
-    order_subfile(basename, "anim", f_anim_scripts);
+    order_subfile(basename, "anim",   f_anim_scripts);
+    order_subfile(basename, "script", f_move_scripts);
 }
 
 static int close_orderfiles(void) {
     fclose(f_anim_scripts);
+    fclose(f_move_scripts);
     return EXIT_SUCCESS;
 }
 
@@ -264,13 +267,18 @@ static void pack_extra_moves(void) {
 static void prep_extra_scripts(void) {
     // MATCH DETAIL: The retail game contains additional entries in the animation scripts archive that
     // must be present to produce a binary match.
-
     for (size_t i = 468; i <= 474; i++) {
         order_subfile(".shared", "anim_0468_0474", f_anim_scripts);
     }
 
     for (size_t i = 475; i <= 500; i++) {
         order_subfile(".shared", "anim_0475_0500", f_anim_scripts);
+    }
+
+    // MATCH DETAIL: The retail game contains additional entries in the move scripts archive that
+    // must be present to produce a binary match.
+    for (size_t i = 468; i <= 500; i++) {
+        order_subfile(".shared", "script_0468_0500", f_move_scripts);
     }
 }
 
