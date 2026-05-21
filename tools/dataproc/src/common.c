@@ -3,12 +3,14 @@
 #include <assert.h>
 #include <errno.h>
 #include <stdarg.h>
+#include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <sys/stat.h>
 
 #include "dataproc.h"
 #include "libenum.h"
@@ -676,3 +678,9 @@ void bank_pushlines(datanode_t *root, const char *id, ...) {
 
     va_end(content);
 }
+
+bool order_subfile(const char *basename, const char *subfile, FILE *f_order) {
+    fprintf(f_order, "%s/%s\n", basename, subfile);
+    return true;
+}
+

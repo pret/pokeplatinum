@@ -199,4 +199,6 @@ void bank_pushlines(datanode_t *root, const char *id, ...);
 
 #define bank_pushm(bank, id, ...) bank_pushlines(&textbanks[bank].root, id, __VA_ARGS__, NULL)
 
+bool order_subfile(const char *basename, const char *subfile, FILE *f_order);
+
 #endif // DATAPROC_COMMON_H

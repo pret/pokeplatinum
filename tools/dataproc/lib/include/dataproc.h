@@ -92,6 +92,7 @@ enum diaglevel dp_report(datafile_t *df);
 void dp_error(datanode_t *dn, const char *fmt, ...) __attribute__((format(printf, 2, 3)));
 void dp_warn(datanode_t *dn, const char *fmt, ...) __attribute__((format(printf, 2, 3)));
 void dp_note(datanode_t *dn, const char *fmt, ...) __attribute__((format(printf, 2, 3)));
+void dp_gerror(datafile_t *df, size_t beg, size_t end, const char *errfmt, ...) __attribute__((format(printf, 4, 5)));
 
 datanode_t  dp_try(datafile_t *df, const char *path);
 datanode_t  dp_get(datafile_t *df, const char *path);

@@ -1,48 +1,3 @@
-anim_script_subdirs = [
-    'none',
-    '0468',
-    '0469',
-    '0470',
-    '0471',
-    '0472',
-    '0473',
-    '0474',
-    '0475',
-    '0476',
-    '0477',
-    '0478',
-    '0479',
-    '0480',
-    '0481',
-    '0482',
-    '0483',
-    '0484',
-    '0485',
-    '0486',
-    '0487',
-    '0488',
-    '0489',
-    '0490',
-    '0491',
-    '0492',
-    '0493',
-    '0494',
-    '0495',
-    '0496',
-    '0497',
-    '0498',
-    '0499',
-    '0500', ]
-
-move_consts = fs.read(moves_txt).splitlines()
-foreach move : move_consts
-    if move.startswith('MOVE_') and move != 'MOVE_NONE'
-        move_name = move.replace('MOVE_', '').to_lower()
-        # pl_waza_tbl_subdirs += move_name
-        anim_script_subdirs += move_name
-    endif
-endforeach
-
 move_text_bank_names = [
     'move_names.json',
     'move_names_uppercase.json',
@@ -53,6 +8,7 @@ move_text_bank_names = [
 move_data = custom_target('move_data',
     output: [
         'move_data.narc',
+        'anim_scripts.order',
         move_text_bank_names,
     ],
 
@@ -67,12 +23,21 @@ move_data = custom_target('move_data',
     depfile: 'move_data.d',
 )
 
+move_anim_scripts_order = move_data[1]
 move_data_outputs = move_data.to_list()
-move_text_banks = move_data_outputs.slice(1, move_data_outputs.length())
+move_text_banks = move_data_outputs.slice(2, move_data_outputs.length())
 
-anim_script_srcs = []
-foreach subdir : anim_script_subdirs
-    anim_script_srcs += subdir / 'anim.s'
+anim_script_srcs = [
+    '.shared/anim_0468_0474.s',
+    '.shared/anim_0475_0500.s',
+]
+
+move_consts = fs.read(moves_txt).splitlines()
+foreach move : move_consts
+    if move.startswith('MOVE_')
+        move_stem = move.replace('MOVE_', '').to_lower()
+        anim_script_srcs += move_stem / 'anim.s'
+    endif
 endforeach
 
 # This generator is shared by both move-specific animations (in this directory)
@@ -105,12 +70,6 @@ battle_anim_script_bin_gen = generator(make_script_bin_sh,
 
 relative_build_dir = fs.relative_to(meson.current_build_dir(), meson.project_build_root())
 
-anim_scripts_order = custom_target('anim_scripts.order',
-    output: 'anim_scripts.order',
-    input: [ moves_txt ],
-    command: [ ordergen_battle_anim_scripts_py, '@INPUT@', meson.current_source_dir(), '@OUTPUT@' ],
-)
-
 anim_scripts_narc = custom_target('anim_scripts.narc',
     output: 'anim_scripts.narc',
     input: battle_anim_script_bin_gen.process(
@@ -124,7 +83,7 @@ anim_scripts_narc = custom_target('anim_scripts.narc',
     command: [
         nitroarc_exe,
         '--create',
-        '--files-from', anim_scripts_order,
+        '--files-from', move_anim_scripts_order,
         '--file', '@OUTPUT0@',
         '@PRIVATE_DIR@',
     ],

@@ -1,10 +1,12 @@
 #include <assert.h>
 #include <getopt.h>
 #include <stdarg.h>
+#include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/stat.h>
 
 #include "common.h"
 #include "dataproc.h"
@@ -55,7 +57,11 @@ static textbank_template_t textbanks[] = {
 static void parse_args(int *pargc, char ***pargv);
 static void proc_move(datafile_t *df);
 static void proc_text(datafile_t *df, size_t i, const char *basename);
+static void prep_scripts(const char *basename);
 static void pack_extra_moves(void);
+static void prep_extra_scripts(void);
+static void init_orderfiles(void);
+static int  close_orderfiles(void);
 
 static char *filename     = NULL;
 static char *base_dir     = NULL;
@@ -77,6 +83,7 @@ int main(int argc, char **argv) {
         .archives    = archives,
         .textbanks   = textbanks,
         .extra_files = 3,
+        .hook_before = init_orderfiles,
     );
 
     for (size_t i = 0; i < moves.size; i++) {
@@ -89,6 +96,7 @@ int main(int argc, char **argv) {
         if (dp_load(&df, filepath) == 0) {
             proc_move(&df);
             proc_text(&df, i, basename);
+            prep_scripts(basename);
         }
 
         if (dp_report(&df) == DIAG_ERROR) errc = EXIT_FAILURE;
@@ -99,7 +107,8 @@ int main(int argc, char **argv) {
     }
 
     pack_extra_moves();
-    return common_done(errc, NULL);
+    prep_extra_scripts();
+    return common_done(errc, close_orderfiles);
 }
 
 static void proc_move(datafile_t *df) {
@@ -180,7 +189,28 @@ static void proc_text(datafile_t *df, size_t i, const char *basename) {
 #undef strfmt2
 }
 
+static FILE *f_anim_scripts = NULL;
+
+static void init_orderfiles(void) {
+    char *filepath = pathjoin(output_dir, NULL, "anim_scripts.order");
+    f_anim_scripts = fopen(filepath, "wb");
+
+    free(filepath);
+}
+
+static void prep_scripts(const char *basename) {
+    order_subfile(basename, "anim", f_anim_scripts);
+}
+
+static int close_orderfiles(void) {
+    fclose(f_anim_scripts);
+    return EXIT_SUCCESS;
+}
+
 static void pack_extra_moves(void) {
+    // MATCH DETAIL: The retail game contains these 3 additional entries at the tail of the move data
+    // archive. They are inaccessible, but must be present to produce a binary match.
+
     MoveTable m468 = {
         .class          = CLASS_SPECIAL,
         .type           = TYPE_NORMAL,
@@ -229,6 +259,19 @@ static void pack_extra_moves(void) {
     nitroarc_ppack(&archives[0].packer, &m468, sizeof(m468), NULL);
     nitroarc_ppack(&archives[0].packer, &m469, sizeof(m469), NULL);
     nitroarc_ppack(&archives[0].packer, &m470, sizeof(m470), NULL);
+}
+
+static void prep_extra_scripts(void) {
+    // MATCH DETAIL: The retail game contains additional entries in the animation scripts archive that
+    // must be present to produce a binary match.
+
+    for (size_t i = 468; i <= 474; i++) {
+        order_subfile(".shared", "anim_0468_0474", f_anim_scripts);
+    }
+
+    for (size_t i = 475; i <= 500; i++) {
+        order_subfile(".shared", "anim_0475_0500", f_anim_scripts);
+    }
 }
 
 static char *program_name  = NULL;
