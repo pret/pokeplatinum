@@ -1,5 +1,12 @@
 {
     "name": "Power Swap",
+    "description": [
+        "The user employs its\n",
+        "psychic power to\n",
+        "switch changes to\n",
+        "its Attack and\n",
+        "Sp. Atk with the foe."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_PSYCHIC",
     "power": 0,

@@ -1,5 +1,12 @@
 {
     "name": "Brick Break",
+    "description": [
+        "The user attacks with\n",
+        "tough fists, etc. It\n",
+        "can also break any\n",
+        "barrier such as Light\n",
+        "Screen and Reflect."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_FIGHTING",
     "power": 75,

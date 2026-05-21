@@ -1,5 +1,12 @@
 {
     "name": "ExtremeSpeed",
+    "description": [
+        "The user charges the\n",
+        "foe at blinding speed.\n",
+        "This attack always\n",
+        "goes before any\n",
+        "other move."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_NORMAL",
     "power": 80,

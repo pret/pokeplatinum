@@ -1,5 +1,12 @@
 {
     "name": "Bide",
+    "description": [
+        "The user endures\n",
+        "attacks for two\n",
+        "turns, then strikes\n",
+        "back to cause double\n",
+        "the damage taken."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_NORMAL",
     "power": 1,

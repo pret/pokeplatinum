@@ -1,5 +1,12 @@
 {
     "name": "Head Smash",
+    "description": [
+        "The user delivers a\n",
+        "life-endangering head\n",
+        "butt at full power.\n",
+        "The user also takes\n",
+        "terrible damage."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_ROCK",
     "power": 150,

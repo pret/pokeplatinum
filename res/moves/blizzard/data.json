@@ -1,5 +1,12 @@
 {
     "name": "Blizzard",
+    "description": [
+        "A howling blizzard is\n",
+        "summoned to strike\n",
+        "the foe.\n",
+        "It may also freeze\n",
+        "the target solid."
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_ICE",
     "power": 120,

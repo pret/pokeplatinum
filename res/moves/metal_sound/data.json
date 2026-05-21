@@ -1,5 +1,12 @@
 {
     "name": "Metal Sound",
+    "description": [
+        "A horrible sound like\n",
+        "scraping metal is\n",
+        "emitted to sharply\n",
+        "reduce the foe’s\n",
+        "Sp. Def stat."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_STEEL",
     "power": 0,

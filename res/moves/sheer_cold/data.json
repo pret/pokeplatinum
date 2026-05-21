@@ -1,5 +1,12 @@
 {
     "name": "Sheer Cold",
+    "description": [
+        "The foe is attacked\n",
+        "with a blast of\n",
+        "absolute-zero cold.\n",
+        "The foe instantly\n",
+        "faints if it hits."
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_ICE",
     "power": 1,

@@ -1,5 +1,12 @@
 {
     "name": "Belly Drum",
+    "description": [
+        "The user maximizes\n",
+        "its Attack stat in\n",
+        "exchange for HP\n",
+        "equal to half its max\n",
+        "HP."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_NORMAL",
     "power": 0,

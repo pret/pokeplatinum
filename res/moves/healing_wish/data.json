@@ -1,5 +1,12 @@
 {
     "name": "Healing Wish",
+    "description": [
+        "The user faints. In\n",
+        "return, the Pokémon\n",
+        "taking its place will\n",
+        "have its HP restored\n",
+        "and status cured."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_PSYCHIC",
     "power": 0,

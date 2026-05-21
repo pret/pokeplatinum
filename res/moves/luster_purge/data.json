@@ -1,5 +1,12 @@
 {
     "name": "Luster Purge",
+    "description": [
+        "The user looses a\n",
+        "damaging burst of\n",
+        "light. It may also\n",
+        "reduce the target’s\n",
+        "Sp. Def stat."
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_PSYCHIC",
     "power": 70,

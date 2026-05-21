@@ -1,5 +1,12 @@
 {
     "name": "Roar of Time",
+    "description": [
+        "The user blasts the\n",
+        "foe with power that\n",
+        "distorts even time.\n",
+        "The user must rest\n",
+        "on the next turn."
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_DRAGON",
     "power": 150,

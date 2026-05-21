@@ -1,5 +1,11 @@
 {
     "name": "Heart Swap",
+    "description": [
+        "The user employs its\n",
+        "psychic power to\n",
+        "switch stat changes\n",
+        "with the foe.\n"
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_PSYCHIC",
     "power": 0,

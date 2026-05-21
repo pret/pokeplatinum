@@ -1,5 +1,12 @@
 {
     "name": "Hydro Cannon",
+    "description": [
+        "The foe is hit with\n",
+        "a watery blast.\n",
+        "The user must rest\n",
+        "on the next turn,\n",
+        "however."
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_WATER",
     "power": 150,

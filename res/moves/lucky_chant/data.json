@@ -1,5 +1,12 @@
 {
     "name": "Lucky Chant",
+    "description": [
+        "The user chants an\n",
+        "incantation toward\n",
+        "the sky, preventing\n",
+        "the foe from landing\n",
+        "critical hits."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_NORMAL",
     "power": 0,

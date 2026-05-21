@@ -1,5 +1,11 @@
 {
     "name": "Comet Punch",
+    "description": [
+        "The foe is hit with\n",
+        "a flurry of punches\n",
+        "that strike two to\n",
+        "five times in a row.\n"
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_NORMAL",
     "power": 18,

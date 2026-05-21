@@ -1,5 +1,11 @@
 {
     "name": "Slam",
+    "description": [
+        "The foe is slammed\n",
+        "with a long tail,\n",
+        "vines, etc., to inflict\n",
+        "damage.\n"
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_NORMAL",
     "power": 80,

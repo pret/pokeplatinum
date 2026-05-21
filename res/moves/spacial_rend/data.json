@@ -1,5 +1,12 @@
 {
     "name": "Spacial Rend",
+    "description": [
+        "The user tears the\n",
+        "foe along with the\n",
+        "space around it.\n",
+        "This move has a high\n",
+        "critical-hit ratio."
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_DRAGON",
     "power": 100,

@@ -1,5 +1,11 @@
 {
     "name": "Harden",
+    "description": [
+        "The user stiffens all\n",
+        "the muscles in its\n",
+        "body to raise its\n",
+        "Defense stat.\n"
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_NORMAL",
     "power": 0,

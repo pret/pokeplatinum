@@ -1,5 +1,11 @@
 {
     "name": "Sweet Kiss",
+    "description": [
+        "The user kisses the\n",
+        "foe with a sweet,\n",
+        "angelic cuteness that\n",
+        "causes confusion.\n"
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_NORMAL",
     "power": 0,

@@ -1,5 +1,12 @@
 {
     "name": "String Shot",
+    "description": [
+        "The foe is bound with\n",
+        "silk blown from the\n",
+        "user’s mouth.\n",
+        "It reduces the\n",
+        "target’s Speed stat."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_BUG",
     "power": 0,

@@ -1,5 +1,12 @@
 {
     "name": "Cut",
+    "description": [
+        "The foe is cut with a\n",
+        "scythe or a claw.\n",
+        "It can also be used\n",
+        "to cut down thin\n",
+        "trees."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_NORMAL",
     "power": 50,

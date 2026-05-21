@@ -1,5 +1,12 @@
 {
     "name": "Metronome",
+    "description": [
+        "The user waggles a\n",
+        "finger and stimulates\n",
+        "the brain into\n",
+        "randomly using nearly\n",
+        "any move."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_NORMAL",
     "power": 0,

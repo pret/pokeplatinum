@@ -1,5 +1,11 @@
 {
     "name": "-",
+    "description": [
+        "\n",
+        "\n",
+        "\n",
+        "\n"
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_NORMAL",
     "power": 0,

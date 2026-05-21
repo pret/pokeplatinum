@@ -1,5 +1,12 @@
 {
     "name": "Rock Wrecker",
+    "description": [
+        "The user launches a\n",
+        "huge boulder at the\n",
+        "foe to attack.\n",
+        "It must rest on the\n",
+        "next turn, however."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_ROCK",
     "power": 150,

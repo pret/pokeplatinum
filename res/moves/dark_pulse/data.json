@@ -1,5 +1,12 @@
 {
     "name": "Dark Pulse",
+    "description": [
+        "The user releases a\n",
+        "horrible aura imbued\n",
+        "with dark thoughts.\n",
+        "It may also make the\n",
+        "target flinch."
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_DARK",
     "power": 80,

@@ -1,5 +1,12 @@
 {
     "name": "Focus Energy",
+    "description": [
+        "The user takes a\n",
+        "deep breath and\n",
+        "focuses to raise the\n",
+        "critical-hit ratio of\n",
+        "its attacks."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_NORMAL",
     "power": 0,

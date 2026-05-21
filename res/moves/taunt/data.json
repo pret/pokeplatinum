@@ -1,5 +1,12 @@
 {
     "name": "Taunt",
+    "description": [
+        "The foe is taunted\n",
+        "into a rage that\n",
+        "allows it to use only\n",
+        "attack moves for two\n",
+        "to four turns."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_DARK",
     "power": 0,

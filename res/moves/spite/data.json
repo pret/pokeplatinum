@@ -1,5 +1,12 @@
 {
     "name": "Spite",
+    "description": [
+        "The user looses its\n",
+        "grudge on the move\n",
+        "last used by the foe\n",
+        "by cutting 4 PP from\n",
+        "it."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_GHOST",
     "power": 0,

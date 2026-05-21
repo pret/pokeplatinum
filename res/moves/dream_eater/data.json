@@ -1,5 +1,12 @@
 {
     "name": "Dream Eater",
+    "description": [
+        "An attack that works\n",
+        "only on a sleeping\n",
+        "foe. It absorbs half\n",
+        "the damage caused to\n",
+        "heal the user’s HP."
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_PSYCHIC",
     "power": 100,

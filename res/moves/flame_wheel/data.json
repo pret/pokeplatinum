@@ -1,5 +1,12 @@
 {
     "name": "Flame Wheel",
+    "description": [
+        "The user cloaks\n",
+        "itself in fire and\n",
+        "charges at the foe.\n",
+        "It may also leave the\n",
+        "target with a burn."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_FIRE",
     "power": 60,

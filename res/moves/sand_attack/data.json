@@ -1,5 +1,11 @@
 {
     "name": "Sand-Attack",
+    "description": [
+        "Sand is hurled in the\n",
+        "foe’s face, reducing\n",
+        "its accuracy.\n",
+        "\n"
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_GROUND",
     "power": 0,

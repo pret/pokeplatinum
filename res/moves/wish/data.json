@@ -1,5 +1,12 @@
 {
     "name": "Wish",
+    "description": [
+        "A self-healing move.\n",
+        "The user restores its\n",
+        "own HP by up to half\n",
+        "of its maximum HP\n",
+        "in the next turn."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_NORMAL",
     "power": 0,

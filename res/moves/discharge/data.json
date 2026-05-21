@@ -1,5 +1,12 @@
 {
     "name": "Discharge",
+    "description": [
+        "A flare of electricity\n",
+        "is loosed to strike\n",
+        "all Pokémon in battle.\n",
+        "It may also cause\n",
+        "paralysis."
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_ELECTRIC",
     "power": 80,

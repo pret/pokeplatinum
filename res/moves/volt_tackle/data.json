@@ -1,5 +1,12 @@
 {
     "name": "Volt Tackle",
+    "description": [
+        "The user electrifies\n",
+        "itself, then charges\n",
+        "at the foe. It causes\n",
+        "considerable damage\n",
+        "to the user as well."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_ELECTRIC",
     "power": 120,

@@ -186,4 +186,17 @@ int fdump_blobnarc(const void *data, u32 size, const char *dest);
 
 nitroarc_packer_t init_narc(u16 num_files, bool named, bool stripped);
 
+void bank_pushnode(datanode_t *root, const char *id, datanode_t content);
+void bank_pushraw(datanode_t *root, const char *id, const char *content);
+void bank_pushlines(datanode_t *root, const char *id, ...);
+
+#define bank_push(bank, id, content)      \
+    _Generic((content),                   \
+        char *:       bank_pushraw,       \
+        const char *: bank_pushraw,       \
+        datanode_t:   bank_pushnode       \
+    )(&textbanks[bank].root, id, content)
+
+#define bank_pushm(bank, id, ...) bank_pushlines(&textbanks[bank].root, id, __VA_ARGS__, NULL)
+
 #endif // DATAPROC_COMMON_H

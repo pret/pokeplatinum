@@ -1,5 +1,12 @@
 {
     "name": "Iron Head",
+    "description": [
+        "The foe slams the\n",
+        "target with its\n",
+        "steel-hard head.\n",
+        "It may also make the\n",
+        "target flinch."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_STEEL",
     "power": 80,

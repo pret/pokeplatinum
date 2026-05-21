@@ -1,5 +1,12 @@
 {
     "name": "Roar",
+    "description": [
+        "The foe is scared off,\n",
+        "to be replaced by\n",
+        "another Pokémon in\n",
+        "its party. In the\n",
+        "wild, the battle ends."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_NORMAL",
     "power": 0,

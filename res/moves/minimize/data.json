@@ -1,5 +1,12 @@
 {
     "name": "Minimize",
+    "description": [
+        "The user compresses\n",
+        "its body to make\n",
+        "itself look smaller.\n",
+        "The user’s evasion\n",
+        "stat is boosted."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_NORMAL",
     "power": 0,

@@ -1,5 +1,12 @@
 {
     "name": "Megahorn",
+    "description": [
+        "Utilizing its tough\n",
+        "and impressive\n",
+        "horn, the user\n",
+        "rams into the foe \n",
+        "with no letup.\n"
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_BUG",
     "power": 120,

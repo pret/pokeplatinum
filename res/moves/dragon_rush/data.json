@@ -1,5 +1,12 @@
 {
     "name": "Dragon Rush",
+    "description": [
+        "The user tackles the\n",
+        "foe while exhibiting\n",
+        "overwhelming menace.\n",
+        "It may also make the\n",
+        "target flinch."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_DRAGON",
     "power": 100,

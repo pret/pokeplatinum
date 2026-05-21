@@ -1,5 +1,12 @@
 {
     "name": "Feint",
+    "description": [
+        "An attack that hits a\n",
+        "foe using Protect or\n",
+        "Detect. It also lifts\n",
+        "the effects of those\n",
+        "moves."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_NORMAL",
     "power": 50,

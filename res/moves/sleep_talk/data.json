@@ -1,5 +1,11 @@
 {
     "name": "Sleep Talk",
+    "description": [
+        "While it is asleep, the\n",
+        "user randomly uses\n",
+        "one of the moves it\n",
+        "knows.\n"
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_NORMAL",
     "power": 0,

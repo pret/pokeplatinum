@@ -1,5 +1,12 @@
 {
     "name": "Double-Edge",
+    "description": [
+        "A reckless, life-\n",
+        "risking tackle.\n",
+        "It also damages the\n",
+        "user by a fairly large\n",
+        "amount, however."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_NORMAL",
     "power": 120,

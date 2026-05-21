@@ -1,5 +1,11 @@
 {
     "name": "Egg Bomb",
+    "description": [
+        "A large egg is hurled\n",
+        "with maximum force at\n",
+        "the foe to inflict\n",
+        "damage.\n"
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_NORMAL",
     "power": 100,

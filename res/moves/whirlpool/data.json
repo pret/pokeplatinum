@@ -1,5 +1,12 @@
 {
     "name": "Whirlpool",
+    "description": [
+        "The user traps the\n",
+        "foe inside a fast,\n",
+        "vicious whirlpool that\n",
+        "lasts for two to five\n",
+        "turns."
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_WATER",
     "power": 15,

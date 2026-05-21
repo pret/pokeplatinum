@@ -1,5 +1,12 @@
 {
     "name": "Defend Order",
+    "description": [
+        "The user calls out\n",
+        "its underlings to\n",
+        "shield its body,\n",
+        "raising its Defense\n",
+        "and Sp. Def stats."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_BUG",
     "power": 0,

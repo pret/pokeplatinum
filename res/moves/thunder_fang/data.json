@@ -1,5 +1,12 @@
 {
     "name": "Thunder Fang",
+    "description": [
+        "The user bites with\n",
+        "electrified fangs.\n",
+        "It may also make the\n",
+        "foe flinch or become\n",
+        "paralyzed."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_ELECTRIC",
     "power": 65,

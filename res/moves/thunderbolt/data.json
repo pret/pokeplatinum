@@ -1,5 +1,12 @@
 {
     "name": "Thunderbolt",
+    "description": [
+        "A strong electric\n",
+        "blast is loosed at\n",
+        "the foe.\n",
+        "It may also leave the\n",
+        "foe paralyzed."
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_ELECTRIC",
     "power": 95,

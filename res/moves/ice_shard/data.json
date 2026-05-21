@@ -1,5 +1,12 @@
 {
     "name": "Ice Shard",
+    "description": [
+        "The user flash\n",
+        "freezes chunks of\n",
+        "ice and hurls them.\n",
+        "This move always goes\n",
+        "first."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_ICE",
     "power": 40,

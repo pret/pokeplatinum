@@ -1,5 +1,12 @@
 {
     "name": "Milk Drink",
+    "description": [
+        "The user restores its\n",
+        "own HP by up to half\n",
+        "of its maximum HP.\n",
+        "It may also be used\n",
+        "to heal an ally’s HP."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_NORMAL",
     "power": 0,

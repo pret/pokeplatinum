@@ -1,5 +1,12 @@
 {
     "name": "Shadow Punch",
+    "description": [
+        "The user throws a\n",
+        "punch at the foe from\n",
+        "the shadows.\n",
+        "The punch lands\n",
+        "without fail."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_GHOST",
     "power": 60,

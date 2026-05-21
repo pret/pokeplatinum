@@ -1,5 +1,12 @@
 {
     "name": "U-turn",
+    "description": [
+        "After making its\n",
+        "attack, the user\n",
+        "rushes back to switch\n",
+        "places with a party\n",
+        "Pokémon in waiting."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_BUG",
     "power": 70,

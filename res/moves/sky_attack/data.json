@@ -1,5 +1,12 @@
 {
     "name": "Sky Attack",
+    "description": [
+        "A second-turn attack\n",
+        "move with a high\n",
+        "critical-hit ratio.\n",
+        "It may also make the\n",
+        "target flinch."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_FLYING",
     "power": 140,

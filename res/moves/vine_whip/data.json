@@ -1,5 +1,11 @@
 {
     "name": "Vine Whip",
+    "description": [
+        "The foe is struck\n",
+        "with slender, whiplike\n",
+        "vines to inflict\n",
+        "damage.\n"
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_GRASS",
     "power": 35,

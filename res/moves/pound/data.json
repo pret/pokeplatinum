@@ -1,5 +1,11 @@
 {
     "name": "Pound",
+    "description": [
+        "The foe is physically\n",
+        "pounded with a long\n",
+        "tail or a foreleg,\n",
+        "etc.\n"
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_NORMAL",
     "power": 40,

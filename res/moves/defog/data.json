@@ -1,5 +1,12 @@
 {
     "name": "Defog",
+    "description": [
+        "Obstacles are moved,\n",
+        "reducing the foe’s\n",
+        "evasion stat. It can\n",
+        "also be used to\n",
+        "clear deep fog, etc."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_FLYING",
     "power": 0,

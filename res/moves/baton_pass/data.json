@@ -1,5 +1,12 @@
 {
     "name": "Baton Pass",
+    "description": [
+        "The user switches\n",
+        "places with a party\n",
+        "Pokémon in waiting,\n",
+        "passing along any\n",
+        "stat changes."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_NORMAL",
     "power": 0,

@@ -1,5 +1,12 @@
 {
     "name": "Crunch",
+    "description": [
+        "The user crunches up\n",
+        "the foe with sharp\n",
+        "fangs. It may also\n",
+        "lower the target’s\n",
+        "Defense stat."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_DARK",
     "power": 80,

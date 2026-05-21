@@ -1,5 +1,12 @@
 {
     "name": "Poison Sting",
+    "description": [
+        "The foe is stabbed\n",
+        "with a poisonous\n",
+        "barb of some sort.\n",
+        "It may also poison\n",
+        "the target."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_POISON",
     "power": 15,

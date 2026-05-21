@@ -1,5 +1,11 @@
 {
     "name": "Scratch",
+    "description": [
+        "Hard, pointed, and\n",
+        "sharp claws rake the\n",
+        "foe to inflict damage.\n",
+        "\n"
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_NORMAL",
     "power": 40,

@@ -1,5 +1,12 @@
 {
     "name": "Psycho Shift",
+    "description": [
+        "Using its psychic\n",
+        "power of suggestion,\n",
+        "the user transfers\n",
+        "its status problems\n",
+        "to the target."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_PSYCHIC",
     "power": 0,

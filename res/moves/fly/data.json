@@ -1,5 +1,12 @@
 {
     "name": "Fly",
+    "description": [
+        "The user soars, then\n",
+        "strikes on the second\n",
+        "turn. It can also be\n",
+        "used for flying to\n",
+        "any familiar town."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_FLYING",
     "power": 90,

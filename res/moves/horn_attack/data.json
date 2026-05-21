@@ -1,5 +1,11 @@
 {
     "name": "Horn Attack",
+    "description": [
+        "The foe is jabbed\n",
+        "with a sharply\n",
+        "pointed horn to\n",
+        "inflict damage.\n"
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_NORMAL",
     "power": 65,

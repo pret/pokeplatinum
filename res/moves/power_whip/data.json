@@ -1,5 +1,11 @@
 {
     "name": "Power Whip",
+    "description": [
+        "The user violently\n",
+        "whirls its vines or\n",
+        "tentacles to harshly\n",
+        "lash the foe.\n"
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_GRASS",
     "power": 120,

@@ -1,5 +1,12 @@
 {
     "name": "Fire Spin",
+    "description": [
+        "The foe becomes\n",
+        "trapped within a\n",
+        "fierce vortex of fire\n",
+        "that rages for two\n",
+        "to five turns."
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_FIRE",
     "power": 15,

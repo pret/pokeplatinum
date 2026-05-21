@@ -1,5 +1,11 @@
 {
     "name": "Magnet Rise",
+    "description": [
+        "The user levitates\n",
+        "using electrically\n",
+        "generated magnetism\n",
+        "for five turns.\n"
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_ELECTRIC",
     "power": 0,

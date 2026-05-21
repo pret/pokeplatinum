@@ -1,5 +1,12 @@
 {
     "name": "Swallow",
+    "description": [
+        "The power stored\n",
+        "using the move\n",
+        "Stockpile is absorbed\n",
+        "by the user to heal\n",
+        "its HP."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_NORMAL",
     "power": 0,

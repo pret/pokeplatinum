@@ -1,5 +1,12 @@
 {
     "name": "Judgment",
+    "description": [
+        "The user releases\n",
+        "countless shots of\n",
+        "light. Its type varies\n",
+        "with the kind of Plate\n",
+        "the user is holding."
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_NORMAL",
     "power": 100,

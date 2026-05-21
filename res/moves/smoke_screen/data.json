@@ -1,5 +1,12 @@
 {
     "name": "SmokeScreen",
+    "description": [
+        "The user releases an\n",
+        "obscuring cloud of\n",
+        "smoke or ink.\n",
+        "It reduces the foe’s\n",
+        "accuracy."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_NORMAL",
     "power": 0,

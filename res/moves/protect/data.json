@@ -1,5 +1,12 @@
 {
     "name": "Protect",
+    "description": [
+        "It enables the user\n",
+        "to evade all attacks.\n",
+        "Its chance of failing\n",
+        "rises if it is used in\n",
+        "succession."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_NORMAL",
     "power": 0,

@@ -1,5 +1,12 @@
 {
     "name": "Superpower",
+    "description": [
+        "The user attacks the\n",
+        "foe with great power.\n",
+        "However, it also\n",
+        "lowers the user’s\n",
+        "Attack and Defense."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_FIGHTING",
     "power": 120,

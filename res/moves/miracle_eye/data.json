@@ -1,5 +1,12 @@
 {
     "name": "Miracle Eye",
+    "description": [
+        "Enables the user to\n",
+        "hit a Dark type with\n",
+        "any type of move. It\n",
+        "also enables the user\n",
+        "to hit an evasive foe."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_PSYCHIC",
     "power": 0,

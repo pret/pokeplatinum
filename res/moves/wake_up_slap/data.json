@@ -1,5 +1,12 @@
 {
     "name": "Wake-Up Slap",
+    "description": [
+        "This attack inflicts\n",
+        "high damage on a\n",
+        "sleeping foe. It\n",
+        "also wakes the foe\n",
+        "up, however."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_FIGHTING",
     "power": 60,

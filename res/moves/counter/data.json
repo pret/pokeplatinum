@@ -1,5 +1,12 @@
 {
     "name": "Counter",
+    "description": [
+        "A retaliation move\n",
+        "that counters any\n",
+        "physical attack,\n",
+        "inflicting double the\n",
+        "damage taken."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_FIGHTING",
     "power": 1,

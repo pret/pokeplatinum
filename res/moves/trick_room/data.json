@@ -1,5 +1,12 @@
 {
     "name": "Trick Room",
+    "description": [
+        "The user creates a\n",
+        "bizarre area in which\n",
+        "slower Pokémon get\n",
+        "to move first for five\n",
+        "turns."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_PSYCHIC",
     "power": 0,

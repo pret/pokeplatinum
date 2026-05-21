@@ -1,5 +1,12 @@
 {
     "name": "Ominous Wind",
+    "description": [
+        "The user creates a\n",
+        "gust of repulsive\n",
+        "wind. It may also\n",
+        "raise all the user’s\n",
+        "stats at once."
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_GHOST",
     "power": 60,

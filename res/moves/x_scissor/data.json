@@ -1,5 +1,12 @@
 {
     "name": "X-Scissor",
+    "description": [
+        "The user slashes at\n",
+        "the foe by crossing\n",
+        "its scythes or claws\n",
+        "as if they were a pair\n",
+        "of scissors."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_BUG",
     "power": 80,

@@ -1,5 +1,12 @@
 {
     "name": "Destiny Bond",
+    "description": [
+        "When this move is\n",
+        "used, if the user\n",
+        "faints, the foe that\n",
+        "landed the knockout\n",
+        "hit also faints."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_GHOST",
     "power": 0,

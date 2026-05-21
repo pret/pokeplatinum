@@ -1,5 +1,11 @@
 {
     "name": "Ice Punch",
+    "description": [
+        "The foe is punched\n",
+        "with an icy fist.\n",
+        "It may leave the\n",
+        "target frozen.\n"
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_ICE",
     "power": 75,

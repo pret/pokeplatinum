@@ -1,5 +1,12 @@
 {
     "name": "Substitute",
+    "description": [
+        "The user makes a\n",
+        "copy of itself using\n",
+        "some of its HP.\n",
+        "The copy serves as\n",
+        "the user’s decoy."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_NORMAL",
     "power": 0,

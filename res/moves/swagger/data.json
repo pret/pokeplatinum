@@ -1,5 +1,12 @@
 {
     "name": "Swagger",
+    "description": [
+        "The user enrages the\n",
+        "foe into confusion.\n",
+        "However, it also\n",
+        "sharply raises the\n",
+        "foe’s Attack stat."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_NORMAL",
     "power": 0,

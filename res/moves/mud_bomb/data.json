@@ -1,5 +1,12 @@
 {
     "name": "Mud Bomb",
+    "description": [
+        "The user launches a\n",
+        "hard-packed mud ball\n",
+        "to attack.\n",
+        "It may also lower the\n",
+        "target’s accuracy."
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_GROUND",
     "power": 65,

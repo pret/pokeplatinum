@@ -1,5 +1,11 @@
 {
     "name": "Howl",
+    "description": [
+        "The user howls loudly\n",
+        "to raise its spirit,\n",
+        "boosting its Attack\n",
+        "stat.\n"
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_NORMAL",
     "power": 0,

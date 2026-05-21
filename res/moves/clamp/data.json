@@ -1,5 +1,12 @@
 {
     "name": "Clamp",
+    "description": [
+        "The foe is clamped\n",
+        "and squeezed by\n",
+        "the user’s very thick\n",
+        "and sturdy shell for\n",
+        "two to five turns."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_WATER",
     "power": 35,

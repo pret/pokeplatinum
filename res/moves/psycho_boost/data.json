@@ -1,5 +1,12 @@
 {
     "name": "Psycho Boost",
+    "description": [
+        "The user attacks the\n",
+        "foe at full power.\n",
+        "The attack’s recoil\n",
+        "sharply reduces the\n",
+        "user’s Sp. Atk stat."
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_PSYCHIC",
     "power": 140,

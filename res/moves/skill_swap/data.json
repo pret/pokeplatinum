@@ -1,5 +1,11 @@
 {
     "name": "Skill Swap",
+    "description": [
+        "The user employs its\n",
+        "psychic power to\n",
+        "exchange abilities\n",
+        "with the foe.\n"
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_PSYCHIC",
     "power": 0,

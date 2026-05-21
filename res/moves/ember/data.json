@@ -1,5 +1,11 @@
 {
     "name": "Ember",
+    "description": [
+        "The foe is attacked\n",
+        "with small flames.\n",
+        "The target may also\n",
+        "be left with a burn.\n"
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_FIRE",
     "power": 40,

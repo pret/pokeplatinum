@@ -1,5 +1,11 @@
 {
     "name": "Peck",
+    "description": [
+        "The foe is jabbed\n",
+        "with a sharply\n",
+        "pointed beak or\n",
+        "horn.\n"
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_FLYING",
     "power": 35,

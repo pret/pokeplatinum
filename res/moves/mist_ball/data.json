@@ -1,5 +1,12 @@
 {
     "name": "Mist Ball",
+    "description": [
+        "A mistlike flurry of\n",
+        "down envelops and\n",
+        "damages the foe. It\n",
+        "may also lower the\n",
+        "target’s Sp. Atk."
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_PSYCHIC",
     "power": 70,

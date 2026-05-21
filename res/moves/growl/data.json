@@ -1,5 +1,12 @@
 {
     "name": "Growl",
+    "description": [
+        "The user growls in an\n",
+        "endearing way, making\n",
+        "the foe less wary.\n",
+        "The target’s Attack\n",
+        "stat is lowered."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_NORMAL",
     "power": 0,

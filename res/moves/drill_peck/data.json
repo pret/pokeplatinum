@@ -1,5 +1,11 @@
 {
     "name": "Drill Peck",
+    "description": [
+        "A corkscrewing\n",
+        "attack with the\n",
+        "sharp beak acting\n",
+        "as a drill.\n"
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_FLYING",
     "power": 80,

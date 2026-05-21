@@ -1,5 +1,12 @@
 {
     "name": "Flare Blitz",
+    "description": [
+        "The user cloaks\n",
+        "itself in fire and\n",
+        "charges at the foe.\n",
+        "The user sustains\n",
+        "serious damage, too."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_FIRE",
     "power": 120,

@@ -1,5 +1,12 @@
 {
     "name": "Transform",
+    "description": [
+        "The user transforms\n",
+        "into a copy of the\n",
+        "foe right down to\n",
+        "having the same move\n",
+        "set."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_NORMAL",
     "power": 0,

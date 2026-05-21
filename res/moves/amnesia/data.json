@@ -1,5 +1,12 @@
 {
     "name": "Amnesia",
+    "description": [
+        "The user temporarily\n",
+        "empties its mind to\n",
+        "forget its concerns.\n",
+        "It sharply raises the\n",
+        "user’s Sp. Def stat."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_PSYCHIC",
     "power": 0,

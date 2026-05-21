@@ -1,5 +1,11 @@
 {
     "name": "ViceGrip",
+    "description": [
+        "Huge, impressive\n",
+        "pincers grip and\n",
+        "squeeze the foe.\n",
+        "\n"
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_NORMAL",
     "power": 55,

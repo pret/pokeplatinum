@@ -1,5 +1,11 @@
 {
     "name": "Reversal",
+    "description": [
+        "An all-out attack\n",
+        "that becomes more\n",
+        "powerful the less\n",
+        "HP the user has.\n"
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_FIGHTING",
     "power": 1,

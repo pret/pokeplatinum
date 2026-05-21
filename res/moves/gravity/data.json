@@ -1,5 +1,12 @@
 {
     "name": "Gravity",
+    "description": [
+        "Gravity is intensified\n",
+        "for five turns, making\n",
+        "moves involving flying\n",
+        "unusable and\n",
+        "negating Levitation."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_PSYCHIC",
     "power": 0,

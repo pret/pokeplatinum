@@ -1,5 +1,12 @@
 {
     "name": "Power Trick",
+    "description": [
+        "The user employs its\n",
+        "psychic power to\n",
+        "switch its Attack\n",
+        "with its Defense\n",
+        "stat."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_PSYCHIC",
     "power": 0,

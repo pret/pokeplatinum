@@ -1,5 +1,12 @@
 {
     "name": "Acupressure",
+    "description": [
+        "The user applies\n",
+        "pressure to stress\n",
+        "points, sharply\n",
+        "boosting one of its\n",
+        "stats."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_NORMAL",
     "power": 0,

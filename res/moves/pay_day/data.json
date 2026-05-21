@@ -1,5 +1,12 @@
 {
     "name": "Pay Day",
+    "description": [
+        "Numerous coins are\n",
+        "hurled at the foe to\n",
+        "inflict damage.\n",
+        "Money is earned\n",
+        "after battle."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_NORMAL",
     "power": 40,

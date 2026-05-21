@@ -1,5 +1,11 @@
 {
     "name": "Nightmare",
+    "description": [
+        "A sleeping foe is\n",
+        "shown a nightmare\n",
+        "that inflicts some\n",
+        "damage every turn.\n"
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_GHOST",
     "power": 0,

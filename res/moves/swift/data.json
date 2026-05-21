@@ -1,5 +1,11 @@
 {
     "name": "Swift",
+    "description": [
+        "Star-shaped rays are\n",
+        "shot at the foe.\n",
+        "This attack never\n",
+        "misses.\n"
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_NORMAL",
     "power": 60,

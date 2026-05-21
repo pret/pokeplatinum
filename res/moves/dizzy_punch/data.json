@@ -1,5 +1,11 @@
 {
     "name": "Dizzy Punch",
+    "description": [
+        "The foe is hit with\n",
+        "rhythmically launched\n",
+        "punches that may also\n",
+        "leave it confused.\n"
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_NORMAL",
     "power": 70,

@@ -1,5 +1,12 @@
 {
     "name": "Rock Tomb",
+    "description": [
+        "Boulders are hurled\n",
+        "at the foe. It also\n",
+        "lowers the foe’s\n",
+        "Speed by preventing\n",
+        "its movement."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_ROCK",
     "power": 50,

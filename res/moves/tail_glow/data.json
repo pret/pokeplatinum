@@ -1,5 +1,12 @@
 {
     "name": "Tail Glow",
+    "description": [
+        "The user stares at\n",
+        "flashing lights to\n",
+        "focus its mind,\n",
+        "sharply raising its\n",
+        "Sp. Atk stat."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_BUG",
     "power": 0,

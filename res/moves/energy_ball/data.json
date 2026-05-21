@@ -1,5 +1,12 @@
 {
     "name": "Energy Ball",
+    "description": [
+        "The user draws power\n",
+        "from nature and\n",
+        "fires it at the foe.\n",
+        "It may also lower the\n",
+        "target’s Sp. Def."
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_GRASS",
     "power": 80,

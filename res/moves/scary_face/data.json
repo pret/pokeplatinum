@@ -1,5 +1,12 @@
 {
     "name": "Scary Face",
+    "description": [
+        "The user frightens\n",
+        "the foe with a scary\n",
+        "face to sharply\n",
+        "reduce its Speed\n",
+        "stat."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_NORMAL",
     "power": 0,

@@ -1,5 +1,12 @@
 {
     "name": "Spike Cannon",
+    "description": [
+        "Sharp spikes are\n",
+        "fired at the foe to\n",
+        "strike two to five\n",
+        "times in rapid\n",
+        "succession."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_NORMAL",
     "power": 20,

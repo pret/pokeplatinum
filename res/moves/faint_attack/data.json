@@ -1,5 +1,12 @@
 {
     "name": "Faint Attack",
+    "description": [
+        "The user draws up to\n",
+        "the foe disarmingly,\n",
+        "then throws a sucker\n",
+        "punch.\n",
+        "It hits without fail."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_DARK",
     "power": 60,

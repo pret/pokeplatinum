@@ -1,5 +1,12 @@
 {
     "name": "Stealth Rock",
+    "description": [
+        "The user lays a trap\n",
+        "of levitating stones\n",
+        "around the foe. The\n",
+        "trap hurts foes that\n",
+        "switch into battle."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_ROCK",
     "power": 0,

@@ -1,5 +1,12 @@
 {
     "name": "Safeguard",
+    "description": [
+        "The user creates a\n",
+        "protective field that\n",
+        "prevents status\n",
+        "problems for five\n",
+        "turns."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_NORMAL",
     "power": 0,

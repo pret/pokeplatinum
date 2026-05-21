@@ -1,5 +1,11 @@
 {
     "name": "Tickle",
+    "description": [
+        "The user tickles the\n",
+        "foe into laughing,\n",
+        "reducing its Attack\n",
+        "and Defense stats.\n"
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_NORMAL",
     "power": 0,

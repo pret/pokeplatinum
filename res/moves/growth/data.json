@@ -1,5 +1,11 @@
 {
     "name": "Growth",
+    "description": [
+        "The user’s body is\n",
+        "forced to grow all at\n",
+        "once. It raises the\n",
+        "Sp. Atk stat.\n"
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_NORMAL",
     "power": 0,

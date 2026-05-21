@@ -1,5 +1,11 @@
 {
     "name": "Rolling Kick",
+    "description": [
+        "The user cuts a\n",
+        "quick spin and lashes\n",
+        "out with a sharp\n",
+        "kick.\n"
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_FIGHTING",
     "power": 60,

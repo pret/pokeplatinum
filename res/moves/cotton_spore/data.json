@@ -1,5 +1,12 @@
 {
     "name": "Cotton Spore",
+    "description": [
+        "The user releases\n",
+        "cottonlike spores\n",
+        "that cling to the\n",
+        "foe, sharply reducing\n",
+        "its Speed stat."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_GRASS",
     "power": 0,

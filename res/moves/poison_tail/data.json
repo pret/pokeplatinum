@@ -1,5 +1,12 @@
 {
     "name": "Poison Tail",
+    "description": [
+        "An attack with a\n",
+        "high critical-hit\n",
+        "ratio. This tail \n",
+        "attack may also \n",
+        "poison the foe."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_POISON",
     "power": 50,

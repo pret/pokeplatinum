@@ -1,5 +1,11 @@
 {
     "name": "Poison Fang",
+    "description": [
+        "The user bites the\n",
+        "foe with toxic fangs.\n",
+        "It may also leave the\n",
+        "foe badly poisoned.\n"
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_POISON",
     "power": 50,

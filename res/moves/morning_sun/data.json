@@ -1,5 +1,12 @@
 {
     "name": "Morning Sun",
+    "description": [
+        "The user restores its\n",
+        "own HP.\n",
+        "The amount of HP\n",
+        "regained varies with\n",
+        "the weather."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_NORMAL",
     "power": 0,

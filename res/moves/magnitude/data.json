@@ -1,5 +1,12 @@
 {
     "name": "Magnitude",
+    "description": [
+        "The user looses a\n",
+        "ground-shaking quake\n",
+        "affecting everyone in\n",
+        "battle. Its power\n",
+        "varies."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_GROUND",
     "power": 1,

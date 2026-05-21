@@ -1,5 +1,12 @@
 {
     "name": "Quick Attack",
+    "description": [
+        "The user lunges at\n",
+        "the foe at a speed\n",
+        "that makes it almost\n",
+        "invisible. It is sure\n",
+        "to strike first."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_NORMAL",
     "power": 40,

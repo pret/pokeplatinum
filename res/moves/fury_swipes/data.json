@@ -1,5 +1,12 @@
 {
     "name": "Fury Swipes",
+    "description": [
+        "The foe is raked with\n",
+        "sharp claws or\n",
+        "scythes for two to\n",
+        "five times in quick\n",
+        "succession."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_NORMAL",
     "power": 18,

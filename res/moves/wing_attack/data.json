@@ -1,5 +1,11 @@
 {
     "name": "Wing Attack",
+    "description": [
+        "The foe is struck\n",
+        "with large, imposing\n",
+        "wings spread wide\n",
+        "to inflict damage.\n"
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_FLYING",
     "power": 60,

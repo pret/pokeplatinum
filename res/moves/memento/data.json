@@ -1,5 +1,12 @@
 {
     "name": "Memento",
+    "description": [
+        "The user faints upon\n",
+        "using this move.\n",
+        "In return, it sharply\n",
+        "lowers the target’s\n",
+        "Attack and Sp. Atk."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_DARK",
     "power": 0,

@@ -1,5 +1,12 @@
 {
     "name": "Lick",
+    "description": [
+        "The foe is licked with\n",
+        "a long tongue, causing\n",
+        "damage.\n",
+        "It may also paralyze\n",
+        "the target."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_GHOST",
     "power": 20,

@@ -1,5 +1,12 @@
 {
     "name": "Charge",
+    "description": [
+        "The user boosts the\n",
+        "power of the Electric\n",
+        "move it uses next.\n",
+        "It also raises the\n",
+        "user’s Sp. Def stat."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_ELECTRIC",
     "power": 0,

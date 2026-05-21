@@ -1,5 +1,12 @@
 {
     "name": "Mud Shot",
+    "description": [
+        "The user attacks by\n",
+        "hurling a blob of mud\n",
+        "at the foe.\n",
+        "It also reduces the\n",
+        "target’s Speed."
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_GROUND",
     "power": 55,

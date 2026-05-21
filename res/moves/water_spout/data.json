@@ -1,5 +1,12 @@
 {
     "name": "Water Spout",
+    "description": [
+        "The user spouts\n",
+        "water to damage the\n",
+        "foe. The lower the\n",
+        "user’s HP, the less\n",
+        "powerful it becomes."
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_WATER",
     "power": 150,

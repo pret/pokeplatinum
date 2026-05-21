@@ -1,5 +1,12 @@
 {
     "name": "Charge Beam",
+    "description": [
+        "The user fires a\n",
+        "concentrated bundle\n",
+        "of electricity. It may\n",
+        "also raise the user’s\n",
+        "Sp. Atk stat."
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_ELECTRIC",
     "power": 50,

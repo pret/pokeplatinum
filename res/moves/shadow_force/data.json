@@ -1,5 +1,12 @@
 {
     "name": "Shadow Force",
+    "description": [
+        "The user disappears,\n",
+        "then strikes the foe\n",
+        "on the second turn.\n",
+        "It hits even if the\n",
+        "foe used Protect."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_GHOST",
     "power": 120,

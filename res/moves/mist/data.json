@@ -1,5 +1,12 @@
 {
     "name": "Mist",
+    "description": [
+        "The user cloaks its\n",
+        "body with a white mist\n",
+        "that prevents any of\n",
+        "its stats from being\n",
+        "cut for five turns."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_ICE",
     "power": 0,

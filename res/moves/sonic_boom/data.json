@@ -1,5 +1,11 @@
 {
     "name": "SonicBoom",
+    "description": [
+        "The foe is hit with a\n",
+        "destructive shock\n",
+        "wave that always\n",
+        "inflicts 20 HP damage.\n"
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_NORMAL",
     "power": 1,

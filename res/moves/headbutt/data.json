@@ -1,5 +1,12 @@
 {
     "name": "Headbutt",
+    "description": [
+        "The user sticks its\n",
+        "head out and rams\n",
+        "straight forward.\n",
+        "It may make the\n",
+        "foe flinch."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_NORMAL",
     "power": 70,

@@ -1,5 +1,12 @@
 {
     "name": "Assurance",
+    "description": [
+        "If the foe has\n",
+        "already taken some\n",
+        "damage in the same\n",
+        "turn, this attack’s\n",
+        "power is doubled."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_DARK",
     "power": 50,

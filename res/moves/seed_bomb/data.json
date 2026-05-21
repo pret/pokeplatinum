@@ -1,5 +1,12 @@
 {
     "name": "Seed Bomb",
+    "description": [
+        "The user slams a\n",
+        "barrage of hard-\n",
+        "shelled seeds\n",
+        "down on the foe\n",
+        "from above."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_GRASS",
     "power": 80,

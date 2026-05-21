@@ -1,5 +1,11 @@
 {
     "name": "Barrage",
+    "description": [
+        "Round objects are\n",
+        "hurled at the foe to\n",
+        "strike two to five\n",
+        "times in a row.\n"
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_NORMAL",
     "power": 15,

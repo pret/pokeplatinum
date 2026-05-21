@@ -1,5 +1,11 @@
 {
     "name": "Glare",
+    "description": [
+        "The user intimidates\n",
+        "the foe with the\n",
+        "pattern on its belly\n",
+        "to cause paralysis.\n"
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_NORMAL",
     "power": 0,

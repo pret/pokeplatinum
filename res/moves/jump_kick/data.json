@@ -1,5 +1,12 @@
 {
     "name": "Jump Kick",
+    "description": [
+        "The user jumps up\n",
+        "high, then strikes\n",
+        "with a kick. If the\n",
+        "kick misses, the\n",
+        "user hurts itself."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_FIGHTING",
     "power": 85,

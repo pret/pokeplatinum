@@ -1,5 +1,12 @@
 {
     "name": "Bullet Punch",
+    "description": [
+        "The user strikes\n",
+        "with a tough punch as\n",
+        "fast as a bullet.\n",
+        "This move always goes\n",
+        "first."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_STEEL",
     "power": 40,

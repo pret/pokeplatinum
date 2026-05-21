@@ -1,5 +1,12 @@
 {
     "name": "Spark",
+    "description": [
+        "The user throws an\n",
+        "electrically charged\n",
+        "tackle at the foe.\n",
+        "It may also leave the\n",
+        "target paralyzed."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_ELECTRIC",
     "power": 65,

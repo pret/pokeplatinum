@@ -1,5 +1,12 @@
 {
     "name": "Bug Bite",
+    "description": [
+        "The user bites the\n",
+        "foe. If the foe is\n",
+        "holding a Berry, the\n",
+        "user eats it and\n",
+        "gains its effect."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_BUG",
     "power": 60,

@@ -1,5 +1,12 @@
 {
     "name": "Confusion",
+    "description": [
+        "The foe is hit by a\n",
+        "weak telekinetic\n",
+        "force. It may also\n",
+        "leave the foe\n",
+        "confused."
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_PSYCHIC",
     "power": 50,

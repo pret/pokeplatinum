@@ -1,5 +1,12 @@
 {
     "name": "Shadow Ball",
+    "description": [
+        "The user hurls a\n",
+        "shadowy blob at the\n",
+        "foe. It may also\n",
+        "lower the foe’s\n",
+        "Sp. Def stat."
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_GHOST",
     "power": 80,

@@ -1,5 +1,11 @@
 {
     "name": "Rock Polish",
+    "description": [
+        "The user polishes its\n",
+        "body to reduce drag.\n",
+        "It can sharply raise\n",
+        "the Speed stat.\n"
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_ROCK",
     "power": 0,

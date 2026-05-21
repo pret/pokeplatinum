@@ -1,5 +1,12 @@
 {
     "name": "Hammer Arm",
+    "description": [
+        "The user swings and\n",
+        "hits with its strong\n",
+        "and heavy fist.\n",
+        "It lowers the user’s\n",
+        "Speed, however."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_FIGHTING",
     "power": 100,

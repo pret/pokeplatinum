@@ -1,5 +1,12 @@
 {
     "name": "Draco Meteor",
+    "description": [
+        "Comets are summoned\n",
+        "down from the sky.\n",
+        "The attack’s recoil\n",
+        "sharply reduces the\n",
+        "user’s Sp. Atk stat."
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_DRAGON",
     "power": 140,

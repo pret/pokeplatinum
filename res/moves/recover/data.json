@@ -1,5 +1,11 @@
 {
     "name": "Recover",
+    "description": [
+        "A self-healing move.\n",
+        "The user restores its\n",
+        "own HP by up to half\n",
+        "of its max HP.\n"
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_NORMAL",
     "power": 0,

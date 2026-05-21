@@ -1,5 +1,11 @@
 {
     "name": "Defense Curl",
+    "description": [
+        "The user curls up to\n",
+        "conceal weak spots\n",
+        "and raise its Defense\n",
+        "stat.\n"
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_NORMAL",
     "power": 0,

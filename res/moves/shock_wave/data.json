@@ -1,5 +1,12 @@
 {
     "name": "Shock Wave",
+    "description": [
+        "The user strikes the\n",
+        "foe with a quick jolt\n",
+        "of electricity.\n",
+        "This attack cannot be\n",
+        "evaded."
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_ELECTRIC",
     "power": 60,

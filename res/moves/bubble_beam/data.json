@@ -1,5 +1,12 @@
 {
     "name": "BubbleBeam",
+    "description": [
+        "A spray of bubbles is\n",
+        "forcefully ejected\n",
+        "at the foe.\n",
+        "It may also lower the\n",
+        "target’s Speed stat."
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_WATER",
     "power": 65,

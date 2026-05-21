@@ -1,5 +1,12 @@
 {
     "name": "Thrash",
+    "description": [
+        "The user rampages\n",
+        "and attacks for two\n",
+        "to three turns.\n",
+        "It then becomes\n",
+        "confused, however."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_NORMAL",
     "power": 90,

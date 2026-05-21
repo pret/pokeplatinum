@@ -1,5 +1,12 @@
 {
     "name": "Pain Split",
+    "description": [
+        "The user adds its HP\n",
+        "to the foe’s HP, then\n",
+        "equally shares the\n",
+        "combined HP with the\n",
+        "foe."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_NORMAL",
     "power": 0,

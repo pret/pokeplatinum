@@ -1,5 +1,12 @@
 {
     "name": "Rock Climb",
+    "description": [
+        "A charging attack\n",
+        "that may also leave\n",
+        "the foe confused.\n",
+        "It can also be used\n",
+        "to scale rocky walls."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_NORMAL",
     "power": 90,

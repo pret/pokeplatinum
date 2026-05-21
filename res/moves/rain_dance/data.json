@@ -1,5 +1,12 @@
 {
     "name": "Rain Dance",
+    "description": [
+        "The user summons a\n",
+        "heavy rain that falls\n",
+        "for five turns,\n",
+        "powering up Water-\n",
+        "type moves."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_WATER",
     "power": 0,

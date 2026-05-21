@@ -1,5 +1,12 @@
 {
     "name": "FeatherDance",
+    "description": [
+        "The user covers the\n",
+        "foe with a mass of\n",
+        "down that sharply\n",
+        "lowers the Attack\n",
+        "stat."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_FLYING",
     "power": 0,

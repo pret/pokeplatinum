@@ -17,6 +17,7 @@
 #include "generated/move_contest_effects.h"
 #include "generated/move_flags.h"
 #include "generated/move_ranges.h"
+#include "generated/moves.h"
 #include "generated/pokemon_contest_types.h"
 #include "generated/pokemon_types.h"
 
@@ -36,8 +37,24 @@ static archive_template_t archives[] = {
     { .out_filename = NULL },
 };
 
+enum {
+    T_MOVE_NAMES,
+    T_MOVE_NAMES_UPPERCASE,
+    T_MOVE_DESCRIPTIONS,
+    T_MOVES_USED_IN_BATTLE,
+};
+
+static textbank_template_t textbanks[] = {
+    [T_MOVE_NAMES]           = { .key = 63689, .out_filename = "move_names.json"           },
+    [T_MOVE_NAMES_UPPERCASE] = { .key = 22192, .out_filename = "move_names_uppercase.json" },
+    [T_MOVE_DESCRIPTIONS]    = { .key = 27800, .out_filename = "move_descriptions.json"    },
+    [T_MOVES_USED_IN_BATTLE] = { .key = 22758, .out_filename = "moves_used_in_battle.json" },
+    { .out_filename = NULL },
+};
+
 static void parse_args(int *pargc, char ***pargv);
 static void proc_move(datafile_t *df);
+static void proc_text(datafile_t *df, size_t i, const char *basename);
 static void pack_extra_moves(void);
 
 static char *filename     = NULL;
@@ -58,6 +75,7 @@ int main(int argc, char **argv) {
         .format      = DATAPROC_F_JSON,
         .enums       = enums,
         .archives    = archives,
+        .textbanks   = textbanks,
         .extra_files = 3,
     );
 
@@ -70,6 +88,7 @@ int main(int argc, char **argv) {
 
         if (dp_load(&df, filepath) == 0) {
             proc_move(&df);
+            proc_text(&df, i, basename);
         }
 
         if (dp_report(&df) == DIAG_ERROR) errc = EXIT_FAILURE;
@@ -118,6 +137,47 @@ static void proc_move(datafile_t *df) {
     }
 
     nitroarc_ppack(&archives[0].packer, &data, sizeof(data), NULL);
+}
+
+static void proc_text(datafile_t *df, size_t i, const char *basename) {
+#define strfmt2(fmt, ...) (snprintf(buf2, BUFSIZE, fmt, __VA_ARGS__), buf2)
+
+    char buf[BUFSIZE]  = { 0 };
+    char buf2[BUFSIZE] = { 0 };
+
+    const char *name        = string(".name");
+    char       *name_upper  = strupper(name);
+    datanode_t  description = dp_get(df, ".description");
+
+    bank_push(T_MOVE_NAMES,           strfmt("MoveNames_Text_%s", basename),          name);
+    bank_push(T_MOVE_NAMES_UPPERCASE, strfmt("MoveNamesUppercase_Text_%s", basename), name_upper);
+    bank_push(T_MOVE_DESCRIPTIONS,    strfmt("MoveDescriptions_Text_%s", basename),   description);
+
+    if (i == MOVE_NONE) {
+        bank_push(T_MOVES_USED_IN_BATTLE, strfmt("MovesUsedInBattle_Text_%s_Ally", basename), "!");
+        bank_push(T_MOVES_USED_IN_BATTLE, strfmt("MovesUsedInBattle_Text_%s_Wild", basename), "!");
+        bank_push(T_MOVES_USED_IN_BATTLE, strfmt("MovesUsedInBattle_Text_%s_Foe",  basename), "!");
+    }
+    else {
+        char *nameline = strfmt2("%s!", name);
+        if (i == MOVE_U_TURN) { // MATCH DETAIL: The retail game uses "U-Turn" in battle instead of "U-turn"
+            nameline[2] = 'T';
+        }
+
+        bank_pushm(T_MOVES_USED_IN_BATTLE, strfmt("MovesUsedInBattle_Text_%s_Ally", basename),
+                   "{STRVAR_1 1, 0, 0} used\n",
+                   nameline);
+        bank_pushm(T_MOVES_USED_IN_BATTLE, strfmt("MovesUsedInBattle_Text_%s_Wild", basename),
+                   "The wild {STRVAR_1 1, 0, 0} used\n",
+                   nameline);
+        bank_pushm(T_MOVES_USED_IN_BATTLE, strfmt("MovesUsedInBattle_Text_%s_Foe",  basename),
+                   "The foe’s {STRVAR_1 1, 0, 0} used\n",
+                   nameline);
+    }
+
+    free(name_upper);
+
+#undef strfmt2
 }
 
 static void pack_extra_moves(void) {

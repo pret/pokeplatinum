@@ -1,5 +1,12 @@
 {
     "name": "Heal Order",
+    "description": [
+        "The user calls out\n",
+        "its underlings to heal\n",
+        "it. The user regains\n",
+        "up to half of its\n",
+        "max HP."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_BUG",
     "power": 0,

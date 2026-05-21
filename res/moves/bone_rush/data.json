@@ -1,5 +1,11 @@
 {
     "name": "Bone Rush",
+    "description": [
+        "The user strikes at\n",
+        "the foe with a hard\n",
+        "bone two to five\n",
+        "times in a row.\n"
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_GROUND",
     "power": 25,

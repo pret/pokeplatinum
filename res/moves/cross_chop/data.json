@@ -1,5 +1,12 @@
 {
     "name": "Cross Chop",
+    "description": [
+        "The user delivers a\n",
+        "double chop with its\n",
+        "forearms crossed.\n",
+        "It has a high\n",
+        "critical-hit ratio."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_FIGHTING",
     "power": 100,

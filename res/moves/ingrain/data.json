@@ -1,5 +1,12 @@
 {
     "name": "Ingrain",
+    "description": [
+        "The user lays roots\n",
+        "that restore HP on\n",
+        "every turn.\n",
+        "Because it is rooted,\n",
+        "it can’t switch out."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_GRASS",
     "power": 0,

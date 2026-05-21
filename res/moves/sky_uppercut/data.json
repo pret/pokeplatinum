@@ -1,5 +1,11 @@
 {
     "name": "Sky Uppercut",
+    "description": [
+        "The user attacks the\n",
+        "foe with an uppercut\n",
+        "thrown skyward\n",
+        "with force.\n"
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_FIGHTING",
     "power": 85,

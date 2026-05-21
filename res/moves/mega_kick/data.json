@@ -1,5 +1,11 @@
 {
     "name": "Mega Kick",
+    "description": [
+        "The foe is attacked\n",
+        "by a kick launched\n",
+        "with muscle-packed\n",
+        "power.\n"
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_NORMAL",
     "power": 120,

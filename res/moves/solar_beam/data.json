@@ -1,5 +1,12 @@
 {
     "name": "SolarBeam",
+    "description": [
+        "A two-turn attack.\n",
+        "The user gathers\n",
+        "light, then blasts a\n",
+        "bundled beam on the\n",
+        "second turn."
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_GRASS",
     "power": 120,

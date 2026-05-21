@@ -1,5 +1,12 @@
 {
     "name": "Bug Buzz",
+    "description": [
+        "The user vibrates its\n",
+        "wings to generate a\n",
+        "damaging sound wave.\n",
+        "It may also lower the\n",
+        "foe’s Sp. Def stat."
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_BUG",
     "power": 90,

@@ -1,5 +1,12 @@
 {
     "name": "Psywave",
+    "description": [
+        "The foe is attacked\n",
+        "with an odd, hot\n",
+        "energy wave.\n",
+        "The attack varies in\n",
+        "intensity."
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_PSYCHIC",
     "power": 1,

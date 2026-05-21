@@ -1,5 +1,11 @@
 {
     "name": "Water Gun",
+    "description": [
+        "The foe is blasted\n",
+        "with a forceful shot\n",
+        "of water.\n",
+        "\n"
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_WATER",
     "power": 40,

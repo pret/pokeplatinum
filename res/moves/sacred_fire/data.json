@@ -1,5 +1,12 @@
 {
     "name": "Sacred Fire",
+    "description": [
+        "The foe is razed with\n",
+        "a mystical fire of\n",
+        "great intensity.\n",
+        "It may also leave the\n",
+        "target with a burn."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_FIRE",
     "power": 100,

@@ -1,5 +1,12 @@
 {
     "name": "Acid Armor",
+    "description": [
+        "The user alters its\n",
+        "cellular structure to\n",
+        "liquefy itself,\n",
+        "sharply raising its\n",
+        "Defense stat."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_POISON",
     "power": 0,

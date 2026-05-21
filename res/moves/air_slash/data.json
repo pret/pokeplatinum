@@ -1,5 +1,12 @@
 {
     "name": "Air Slash",
+    "description": [
+        "The user attacks with\n",
+        "a blade of air that\n",
+        "slices even the sky.\n",
+        "It may also make the\n",
+        "target flinch."
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_FLYING",
     "power": 75,

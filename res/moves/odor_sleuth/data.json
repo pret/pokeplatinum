@@ -1,5 +1,12 @@
 {
     "name": "Odor Sleuth",
+    "description": [
+        "Enables the user to\n",
+        "hit a Ghost type with\n",
+        "any type of move. It\n",
+        "also enables the user\n",
+        "to hit an evasive foe."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_NORMAL",
     "power": 0,

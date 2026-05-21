@@ -1,5 +1,11 @@
 {
     "name": "Fury Attack",
+    "description": [
+        "The foe is jabbed\n",
+        "repeatedly with a\n",
+        "horn or beak two to\n",
+        "five times in a row.\n"
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_NORMAL",
     "power": 15,

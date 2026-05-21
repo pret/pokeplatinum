@@ -1,5 +1,12 @@
 {
     "name": "False Swipe",
+    "description": [
+        "A restrained attack\n",
+        "that prevents the\n",
+        "foe from fainting.\n",
+        "The target is left\n",
+        "with at least 1 HP."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_NORMAL",
     "power": 40,

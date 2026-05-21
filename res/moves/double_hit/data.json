@@ -1,5 +1,11 @@
 {
     "name": "Double Hit",
+    "description": [
+        "The user slams the\n",
+        "foe with a tail, etc.\n",
+        "The target is hit\n",
+        "twice in a row.\n"
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_NORMAL",
     "power": 35,

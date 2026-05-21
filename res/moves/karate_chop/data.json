@@ -1,5 +1,11 @@
 {
     "name": "Karate Chop",
+    "description": [
+        "The foe is attacked\n",
+        "with a sharp chop.\n",
+        "It has a high\n",
+        "critical-hit ratio.\n"
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_FIGHTING",
     "power": 50,

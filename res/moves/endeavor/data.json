@@ -1,5 +1,11 @@
 {
     "name": "Endeavor",
+    "description": [
+        "An attack move that\n",
+        "cuts down the foe’s\n",
+        "HP to equal the\n",
+        "user’s HP.\n"
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_NORMAL",
     "power": 1,

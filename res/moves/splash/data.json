@@ -1,5 +1,11 @@
 {
     "name": "Splash",
+    "description": [
+        "The user just flops\n",
+        "and splashes around\n",
+        "to no effect at all...\n",
+        "\n"
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_NORMAL",
     "power": 0,

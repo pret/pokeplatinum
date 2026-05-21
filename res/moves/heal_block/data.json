@@ -1,5 +1,11 @@
 {
     "name": "Heal Block",
+    "description": [
+        "The user prevents\n",
+        "the foe from using\n",
+        "any HP-recovery\n",
+        "moves for five turns.\n"
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_PSYCHIC",
     "power": 0,

@@ -1,5 +1,12 @@
 {
     "name": "Bind",
+    "description": [
+        "A long body or\n",
+        "tentacles are used\n",
+        "to bind and squeeze\n",
+        "the foe for two to\n",
+        "five turns."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_NORMAL",
     "power": 15,

@@ -1,5 +1,12 @@
 {
     "name": "Smog",
+    "description": [
+        "The foe is attacked\n",
+        "with a discharge of\n",
+        "filthy gases.\n",
+        "It may also poison\n",
+        "the target."
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_POISON",
     "power": 20,

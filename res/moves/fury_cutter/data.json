@@ -1,5 +1,12 @@
 {
     "name": "Fury Cutter",
+    "description": [
+        "The foe is slashed\n",
+        "with scythes or\n",
+        "claws. Its power\n",
+        "increases if it hits\n",
+        "in succession."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_BUG",
     "power": 10,

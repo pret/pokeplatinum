@@ -1,5 +1,12 @@
 {
     "name": "Dragon Rage",
+    "description": [
+        "The foe is stricken\n",
+        "by a shock wave.\n",
+        "This attack always\n",
+        "inflicts 40 HP\n",
+        "damage."
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_DRAGON",
     "power": 1,

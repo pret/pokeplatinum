@@ -1,5 +1,11 @@
 {
     "name": "Sunny Day",
+    "description": [
+        "The user intensifies\n",
+        "the sun for five\n",
+        "turns, powering up\n",
+        "Fire-type moves.\n"
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_FIRE",
     "power": 0,

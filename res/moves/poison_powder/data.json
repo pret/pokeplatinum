@@ -1,5 +1,12 @@
 {
     "name": "PoisonPowder",
+    "description": [
+        "A cloud of poisonous\n",
+        "dust is scattered on\n",
+        "the foe.\n",
+        "It may poison the\n",
+        "target."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_POISON",
     "power": 0,

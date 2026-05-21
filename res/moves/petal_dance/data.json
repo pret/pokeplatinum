@@ -1,5 +1,12 @@
 {
     "name": "Petal Dance",
+    "description": [
+        "The user attacks by\n",
+        "scattering petals for\n",
+        "two to three turns.\n",
+        "The user then\n",
+        "becomes confused."
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_GRASS",
     "power": 90,

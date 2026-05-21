@@ -1,5 +1,11 @@
 {
     "name": "Conversion",
+    "description": [
+        "The user changes its\n",
+        "type to become the\n",
+        "same type as one of\n",
+        "its moves.\n"
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_NORMAL",
     "power": 0,

@@ -1,5 +1,12 @@
 {
     "name": "Rest",
+    "description": [
+        "The user goes to\n",
+        "sleep for two turns.\n",
+        "It fully restores the\n",
+        "user’s HP and heals\n",
+        "any status problem."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_PSYCHIC",
     "power": 0,

@@ -1,5 +1,12 @@
 {
     "name": "Conversion 2",
+    "description": [
+        "The user changes its\n",
+        "type to make itself\n",
+        "resistant to the type\n",
+        "of the attack it\n",
+        "last took."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_NORMAL",
     "power": 0,

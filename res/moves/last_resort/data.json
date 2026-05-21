@@ -1,5 +1,12 @@
 {
     "name": "Last Resort",
+    "description": [
+        "This move can be used\n",
+        "only after the user\n",
+        "has used all the\n",
+        "other moves it knows\n",
+        "in the battle."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_NORMAL",
     "power": 130,

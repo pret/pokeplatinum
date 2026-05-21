@@ -1,5 +1,12 @@
 {
     "name": "Leech Seed",
+    "description": [
+        "A seed is planted on\n",
+        "the foe. It steals\n",
+        "some HP from the foe\n",
+        "to heal the user on\n",
+        "every turn."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_GRASS",
     "power": 0,

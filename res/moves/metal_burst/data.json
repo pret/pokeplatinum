@@ -1,5 +1,12 @@
 {
     "name": "Metal Burst",
+    "description": [
+        "The user retaliates\n",
+        "against the foe that\n",
+        "last inflicted damage\n",
+        "on it with much\n",
+        "greater power."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_STEEL",
     "power": 1,

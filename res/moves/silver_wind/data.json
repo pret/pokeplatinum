@@ -1,5 +1,12 @@
 {
     "name": "Silver Wind",
+    "description": [
+        "The foe is attacked\n",
+        "with powdery scales\n",
+        "blown by wind.\n",
+        "It may also raise all\n",
+        "the user’s stats."
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_BUG",
     "power": 60,

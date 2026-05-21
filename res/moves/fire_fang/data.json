@@ -1,5 +1,12 @@
 {
     "name": "Fire Fang",
+    "description": [
+        "The user bites with\n",
+        "flame-cloaked fangs.\n",
+        "It may also make the\n",
+        "foe flinch or sustain\n",
+        "a burn."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_FIRE",
     "power": 65,

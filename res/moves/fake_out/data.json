@@ -1,5 +1,12 @@
 {
     "name": "Fake Out",
+    "description": [
+        "An attack that hits\n",
+        "first and makes the\n",
+        "target flinch.\n",
+        "This move works only\n",
+        "on the first turn."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_NORMAL",
     "power": 40,

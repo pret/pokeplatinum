@@ -1,5 +1,12 @@
 {
     "name": "Cosmic Power",
+    "description": [
+        "The user absorbs a\n",
+        "mystical power from\n",
+        "space to raise its\n",
+        "Defense and Sp. Def\n",
+        "stats."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_PSYCHIC",
     "power": 0,

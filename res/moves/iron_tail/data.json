@@ -1,5 +1,12 @@
 {
     "name": "Iron Tail",
+    "description": [
+        "The foe is slammed\n",
+        "with a steel-hard\n",
+        "tail. It may also\n",
+        "lower the target’s\n",
+        "Defense stat."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_STEEL",
     "power": 100,

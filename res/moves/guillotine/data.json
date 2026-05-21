@@ -1,5 +1,12 @@
 {
     "name": "Guillotine",
+    "description": [
+        "A vicious, tearing\n",
+        "attack with pincers.\n",
+        "The foe will faint\n",
+        "instantly if this\n",
+        "attack hits."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_NORMAL",
     "power": 1,

@@ -1,5 +1,11 @@
 {
     "name": "Dragon Claw",
+    "description": [
+        "The user slashes the\n",
+        "foe with huge, sharp\n",
+        "claws.\n",
+        "\n"
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_DRAGON",
     "power": 80,

@@ -1,5 +1,12 @@
 {
     "name": "Mean Look",
+    "description": [
+        "The user affixes the\n",
+        "foe with a dark,\n",
+        "arresting look.\n",
+        "The target becomes\n",
+        "unable to flee."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_NORMAL",
     "power": 0,

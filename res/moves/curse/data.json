@@ -1,5 +1,11 @@
 {
     "name": "Curse",
+    "description": [
+        "A move that works\n",
+        "differently for the\n",
+        "Ghost type than for\n",
+        "all the other types.\n"
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_MYSTERY",
     "power": 0,

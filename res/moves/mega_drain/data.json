@@ -1,5 +1,12 @@
 {
     "name": "Mega Drain",
+    "description": [
+        "A nutrient-draining\n",
+        "attack. The user’s\n",
+        "HP is restored by\n",
+        "half the damage taken\n",
+        "by the target."
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_GRASS",
     "power": 40,

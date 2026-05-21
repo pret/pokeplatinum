@@ -1,5 +1,12 @@
 {
     "name": "Blaze Kick",
+    "description": [
+        "The user launches a\n",
+        "kick with a high\n",
+        "critical-hit ratio.\n",
+        "It may also leave the\n",
+        "target with a burn."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_FIRE",
     "power": 85,

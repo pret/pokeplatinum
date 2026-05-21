@@ -1,5 +1,12 @@
 {
     "name": "Copycat",
+    "description": [
+        "The user mimics the\n",
+        "move used immediately\n",
+        "before it. The move\n",
+        "fails if no other move\n",
+        "has been used yet."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_NORMAL",
     "power": 0,

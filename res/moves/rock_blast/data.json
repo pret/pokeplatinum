@@ -1,5 +1,12 @@
 {
     "name": "Rock Blast",
+    "description": [
+        "The user hurls hard\n",
+        "rocks at the foe.\n",
+        "Two to five rocks are\n",
+        "launched in quick\n",
+        "succession."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_ROCK",
     "power": 25,

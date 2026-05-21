@@ -1,5 +1,12 @@
 {
     "name": "Submission",
+    "description": [
+        "The user grabs the\n",
+        "foe and recklessly\n",
+        "dives for the ground.\n",
+        "It also hurts the\n",
+        "user slightly."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_FIGHTING",
     "power": 80,

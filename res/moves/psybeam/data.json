@@ -1,5 +1,11 @@
 {
     "name": "Psybeam",
+    "description": [
+        "The foe is attacked\n",
+        "with a peculiar ray.\n",
+        "It may also leave the\n",
+        "target confused.\n"
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_PSYCHIC",
     "power": 65,

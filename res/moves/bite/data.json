@@ -1,5 +1,11 @@
 {
     "name": "Bite",
+    "description": [
+        "The foe is bitten with\n",
+        "viciously sharp fangs.\n",
+        "It may make the\n",
+        "target flinch.\n"
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_DARK",
     "power": 60,

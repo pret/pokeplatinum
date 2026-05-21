@@ -1,5 +1,12 @@
 {
     "name": "Slash",
+    "description": [
+        "The foe is attacked\n",
+        "with a slash of\n",
+        "claws, etc.\n",
+        "It has a high\n",
+        "critical-hit ratio."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_NORMAL",
     "power": 70,

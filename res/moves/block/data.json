@@ -1,5 +1,11 @@
 {
     "name": "Block",
+    "description": [
+        "The user blocks the\n",
+        "foe’s way with arms\n",
+        "spread wide to\n",
+        "prevent escape.\n"
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_NORMAL",
     "power": 0,

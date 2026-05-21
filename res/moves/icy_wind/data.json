@@ -1,5 +1,11 @@
 {
     "name": "Icy Wind",
+    "description": [
+        "The user attacks with\n",
+        "a gust of chilled air.\n",
+        "It also lowers the\n",
+        "target’s Speed stat.\n"
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_ICE",
     "power": 55,

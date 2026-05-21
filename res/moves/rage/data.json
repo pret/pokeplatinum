@@ -1,5 +1,11 @@
 {
     "name": "Rage",
+    "description": [
+        "While this move is in\n",
+        "use, it gains attack\n",
+        "power each time the\n",
+        "user is hit in battle.\n"
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_NORMAL",
     "power": 20,

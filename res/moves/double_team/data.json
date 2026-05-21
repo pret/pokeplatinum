@@ -1,5 +1,11 @@
 {
     "name": "Double Team",
+    "description": [
+        "By moving rapidly, the\n",
+        "user makes illusory\n",
+        "copies of itself to\n",
+        "raise its evasiveness.\n"
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_NORMAL",
     "power": 0,

@@ -1,5 +1,12 @@
 {
     "name": "Low Kick",
+    "description": [
+        "A powerful low kick\n",
+        "that makes the foe\n",
+        "fall over. It inflicts\n",
+        "greater damage on\n",
+        "heavier foes."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_FIGHTING",
     "power": 1,

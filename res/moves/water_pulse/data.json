@@ -1,5 +1,12 @@
 {
     "name": "Water Pulse",
+    "description": [
+        "The user attacks the\n",
+        "foe with a pulsing\n",
+        "blast of water.\n",
+        "It may also confuse\n",
+        "the foe."
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_WATER",
     "power": 60,

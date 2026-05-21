@@ -1,5 +1,12 @@
 {
     "name": "Aqua Ring",
+    "description": [
+        "The user envelops\n",
+        "itself in a veil made\n",
+        "of water. It regains\n",
+        "some HP on every\n",
+        "turn."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_WATER",
     "power": 0,

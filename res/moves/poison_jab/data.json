@@ -1,5 +1,12 @@
 {
     "name": "Poison Jab",
+    "description": [
+        "The foe is stabbed\n",
+        "with a tentacle or\n",
+        "arm steeped in\n",
+        "poison. It may also\n",
+        "poison the foe."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_POISON",
     "power": 80,

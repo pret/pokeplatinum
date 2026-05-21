@@ -1,5 +1,12 @@
 {
     "name": "Blast Burn",
+    "description": [
+        "The foe is razed by\n",
+        "a fiery explosion.\n",
+        "The user must rest\n",
+        "on the next turn,\n",
+        "however."
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_FIRE",
     "power": 150,

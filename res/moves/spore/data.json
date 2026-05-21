@@ -1,5 +1,11 @@
 {
     "name": "Spore",
+    "description": [
+        "The user scatters\n",
+        "bursts of spores\n",
+        "that induce sleep.\n",
+        "\n"
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_GRASS",
     "power": 0,

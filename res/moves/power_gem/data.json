@@ -1,5 +1,11 @@
 {
     "name": "Power Gem",
+    "description": [
+        "The user attacks with\n",
+        "a ray of light that\n",
+        "sparkles as if it were\n",
+        "made of gemstones.\n"
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_ROCK",
     "power": 70,

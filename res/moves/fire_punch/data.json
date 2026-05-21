@@ -1,5 +1,11 @@
 {
     "name": "Fire Punch",
+    "description": [
+        "The foe is punched\n",
+        "with a fiery fist.\n",
+        "It may leave the\n",
+        "target with a burn.\n"
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_FIRE",
     "power": 75,

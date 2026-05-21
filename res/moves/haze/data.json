@@ -1,5 +1,12 @@
 {
     "name": "Haze",
+    "description": [
+        "The user creates a\n",
+        "haze that eliminates\n",
+        "every stat change\n",
+        "among all the Pokémon\n",
+        "engaged in battle."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_ICE",
     "power": 0,

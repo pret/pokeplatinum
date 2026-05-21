@@ -1,5 +1,11 @@
 {
     "name": "Slack Off",
+    "description": [
+        "The user slacks off,\n",
+        "restoring its own HP\n",
+        "by up to half of its\n",
+        "maximum HP.\n"
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_NORMAL",
     "power": 0,

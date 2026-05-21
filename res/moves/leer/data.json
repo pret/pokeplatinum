@@ -1,5 +1,12 @@
 {
     "name": "Leer",
+    "description": [
+        "The foe is given an\n",
+        "intimidating leer with\n",
+        "sharp eyes.\n",
+        "The target’s Defense\n",
+        "stat is reduced."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_NORMAL",
     "power": 0,

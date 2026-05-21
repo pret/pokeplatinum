@@ -1,5 +1,12 @@
 {
     "name": "Bulk Up",
+    "description": [
+        "The user tenses its\n",
+        "muscles to bulk up\n",
+        "its body, boosting\n",
+        "both its Attack and\n",
+        "Defense stats."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_FIGHTING",
     "power": 0,

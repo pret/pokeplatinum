@@ -1,5 +1,12 @@
 {
     "name": "Return",
+    "description": [
+        "A full-power attack\n",
+        "that grows more\n",
+        "powerful the more\n",
+        "the user likes its\n",
+        "Trainer."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_NORMAL",
     "power": 1,

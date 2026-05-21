@@ -1,5 +1,12 @@
 {
     "name": "Bounce",
+    "description": [
+        "The user bounces up\n",
+        "high, then drops on\n",
+        "the foe on the second\n",
+        "turn. It may also\n",
+        "paralyze the foe."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_FLYING",
     "power": 85,

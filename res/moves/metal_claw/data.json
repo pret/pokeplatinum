@@ -1,5 +1,11 @@
 {
     "name": "Metal Claw",
+    "description": [
+        "The foe is raked\n",
+        "with steel claws.\n",
+        "It may also raise the\n",
+        "user’s Attack stat.\n"
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_STEEL",
     "power": 50,

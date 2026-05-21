@@ -1,5 +1,12 @@
 {
     "name": "SmellingSalt",
+    "description": [
+        "This attack inflicts\n",
+        "double damage on a\n",
+        "paralyzed foe. It\n",
+        "also cures the foe’s\n",
+        "paralysis, however."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_NORMAL",
     "power": 60,

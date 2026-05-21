@@ -1,5 +1,12 @@
 {
     "name": "Seismic Toss",
+    "description": [
+        "The foe is thrown\n",
+        "using the power of\n",
+        "gravity. It inflicts\n",
+        "damage equal to\n",
+        "the user’s level."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_FIGHTING",
     "power": 1,

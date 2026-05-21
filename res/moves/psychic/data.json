@@ -1,5 +1,12 @@
 {
     "name": "Psychic",
+    "description": [
+        "The foe is hit by a\n",
+        "strong telekinetic\n",
+        "force. It may also\n",
+        "reduce the foe’s\n",
+        "Sp. Def stat."
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_PSYCHIC",
     "power": 90,

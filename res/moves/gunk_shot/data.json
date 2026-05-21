@@ -1,5 +1,12 @@
 {
     "name": "Gunk Shot",
+    "description": [
+        "The user shoots\n",
+        "filthy garbage at the\n",
+        "foe to attack.\n",
+        "It may also poison\n",
+        "the target."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_POISON",
     "power": 120,

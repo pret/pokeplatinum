@@ -1,5 +1,12 @@
 {
     "name": "Ice Ball",
+    "description": [
+        "The user continually\n",
+        "rolls into the foe\n",
+        "over five turns. It\n",
+        "becomes stronger\n",
+        "each time it hits."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_ICE",
     "power": 30,

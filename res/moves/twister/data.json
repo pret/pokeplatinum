@@ -1,5 +1,12 @@
 {
     "name": "Twister",
+    "description": [
+        "The user whips up a\n",
+        "vicious twister to\n",
+        "tear at the foe.\n",
+        "It may also make the\n",
+        "foe flinch."
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_DRAGON",
     "power": 40,

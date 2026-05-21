@@ -1,5 +1,11 @@
 {
     "name": "Mega Punch",
+    "description": [
+        "The foe is slugged\n",
+        "by a punch thrown\n",
+        "with muscle-packed\n",
+        "power.\n"
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_NORMAL",
     "power": 80,

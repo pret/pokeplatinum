@@ -1,5 +1,11 @@
 {
     "name": "GrassWhistle",
+    "description": [
+        "The user plays a\n",
+        "pleasant melody that\n",
+        "lulls the foe into a\n",
+        "deep sleep.\n"
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_GRASS",
     "power": 0,

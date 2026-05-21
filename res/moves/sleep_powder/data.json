@@ -1,5 +1,11 @@
 {
     "name": "Sleep Powder",
+    "description": [
+        "The user scatters a\n",
+        "big cloud of sleep-\n",
+        "inducing dust around\n",
+        "the foe.\n"
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_GRASS",
     "power": 0,

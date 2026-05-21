@@ -1,5 +1,12 @@
 {
     "name": "ThunderPunch",
+    "description": [
+        "The foe is punched\n",
+        "with an electrified\n",
+        "fist. It may leave\n",
+        "the target with\n",
+        "paralysis."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_ELECTRIC",
     "power": 75,

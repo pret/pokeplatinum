@@ -1,5 +1,12 @@
 {
     "name": "Future Sight",
+    "description": [
+        "Two turns after this\n",
+        "move is used, the foe\n",
+        "is attacked with a\n",
+        "hunk of psychic\n",
+        "energy."
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_PSYCHIC",
     "power": 80,

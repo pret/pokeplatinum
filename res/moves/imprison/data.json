@@ -1,5 +1,12 @@
 {
     "name": "Imprison",
+    "description": [
+        "If the foe knows any\n",
+        "move also known by\n",
+        "the user, the foe\n",
+        "is prevented\n",
+        "from using it."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_PSYCHIC",
     "power": 0,

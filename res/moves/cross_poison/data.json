@@ -1,5 +1,12 @@
 {
     "name": "Cross Poison",
+    "description": [
+        "A slashing attack\n",
+        "that may also leave\n",
+        "the target poisoned.\n",
+        "It has a high\n",
+        "critical-hit ratio."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_POISON",
     "power": 70,

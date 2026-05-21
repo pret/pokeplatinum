@@ -1,5 +1,12 @@
 {
     "name": "Powder Snow",
+    "description": [
+        "The user attacks with\n",
+        "a chilling gust of\n",
+        "powdery snow.\n",
+        "It may also freeze\n",
+        "the target."
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_ICE",
     "power": 40,

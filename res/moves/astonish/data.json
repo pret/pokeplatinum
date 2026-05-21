@@ -1,5 +1,12 @@
 {
     "name": "Astonish",
+    "description": [
+        "The user attacks the\n",
+        "foe while shouting in\n",
+        "a startling fashion.\n",
+        "It may also make the\n",
+        "target flinch."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_GHOST",
     "power": 30,

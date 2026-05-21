@@ -1,5 +1,12 @@
 {
     "name": "Aurora Beam",
+    "description": [
+        "The foe is hit with a\n",
+        "rainbow-colored beam.\n",
+        "It may also lower the\n",
+        "target’s Attack\n",
+        "stat."
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_ICE",
     "power": 65,

@@ -1,5 +1,12 @@
 {
     "name": "ThunderShock",
+    "description": [
+        "A jolt of electricity\n",
+        "is hurled at the foe\n",
+        "to inflict damage.\n",
+        "It may also leave the\n",
+        "foe paralyzed."
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_ELECTRIC",
     "power": 40,

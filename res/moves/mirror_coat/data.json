@@ -1,5 +1,12 @@
 {
     "name": "Mirror Coat",
+    "description": [
+        "A retaliation move\n",
+        "that counters any\n",
+        "special attack,\n",
+        "inflicting double the\n",
+        "damage taken."
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_PSYCHIC",
     "power": 1,

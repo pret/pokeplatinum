@@ -1,5 +1,12 @@
 {
     "name": "Extrasensory",
+    "description": [
+        "The user attacks with\n",
+        "an odd, unseeable\n",
+        "power.\n",
+        "It may also make the\n",
+        "foe flinch."
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_PSYCHIC",
     "power": 80,

@@ -1,5 +1,12 @@
 {
     "name": "Captivate",
+    "description": [
+        "If it is the opposite\n",
+        "gender of the user,\n",
+        "the foe is charmed\n",
+        "into sharply lowering\n",
+        "its Sp. Atk stat."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_NORMAL",
     "power": 0,

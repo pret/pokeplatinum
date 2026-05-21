@@ -1,5 +1,12 @@
 {
     "name": "Outrage",
+    "description": [
+        "The user rampages\n",
+        "and attacks for two\n",
+        "to three turns.\n",
+        "However, it then\n",
+        "becomes confused."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_DRAGON",
     "power": 120,

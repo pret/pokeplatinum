@@ -2,6 +2,7 @@
 
 #include <assert.h>
 #include <errno.h>
+#include <stdarg.h>
 #include <stddef.h>
 #include <stdint.h>
 #include <stdio.h>
@@ -632,4 +633,46 @@ static enum_t dp_include(
 
     free(found_file);
     return result;
+}
+
+void bank_pushnode(datanode_t *root, const char *id, datanode_t content) {
+    datanode_t entry = dp_arr_appobject(root);
+    dp_obj_putstring(&entry, "id", id);
+
+    if (content.type == DATAPROC_T_STRING) {
+        dp_obj_putstring(&entry, "en_US", dp_string(content));
+    }
+    else if (content.type == DATAPROC_T_ARRAY) {
+        size_t     count = dp_arrlen(content);
+        datanode_t lines = dp_obj_putarray(&entry, "en_US");
+        for (size_t i = 0; i < count; i++) {
+            dp_arr_appstring(&lines, dp_string(dp_arrelem(content, i)));
+        }
+    }
+    else {
+        dp_error(&content, "expected message content to be a string or an array");
+    }
+}
+
+void bank_pushraw(datanode_t *root, const char *id, const char *content) {
+    datanode_t entry = dp_arr_appobject(root);
+    dp_obj_putstring(&entry, "id", id);
+    dp_obj_putstring(&entry, "en_US", content);
+}
+
+void bank_pushlines(datanode_t *root, const char *id, ...) {
+    va_list content;
+    va_start(content, id);
+
+    datanode_t entry = dp_arr_appobject(root);
+    dp_obj_putstring(&entry, "id", id);
+
+    datanode_t lines = dp_obj_putarray(&entry, "en_US");
+    for (;;) {
+        const char *line = va_arg(content, const char *);
+        if (!line) break;
+        dp_arr_appstring(&lines, line);
+    }
+
+    va_end(content);
 }

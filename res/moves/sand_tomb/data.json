@@ -1,5 +1,11 @@
 {
     "name": "Sand Tomb",
+    "description": [
+        "The user traps the\n",
+        "foe inside a harshly\n",
+        "raging sandstorm for\n",
+        "two to five turns.\n"
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_GROUND",
     "power": 15,

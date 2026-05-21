@@ -1,5 +1,11 @@
 {
     "name": "Bone Club",
+    "description": [
+        "The user clubs the\n",
+        "foe with a bone.\n",
+        "It may also make the\n",
+        "target flinch.\n"
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_GROUND",
     "power": 65,

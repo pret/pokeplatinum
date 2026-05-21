@@ -1,5 +1,12 @@
 {
     "name": "Frustration",
+    "description": [
+        "A full-power attack\n",
+        "that grows more\n",
+        "powerful the less\n",
+        "the user likes its\n",
+        "Trainer."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_NORMAL",
     "power": 1,

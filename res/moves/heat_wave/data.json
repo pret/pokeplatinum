@@ -1,5 +1,12 @@
 {
     "name": "Heat Wave",
+    "description": [
+        "The user exhales a\n",
+        "heated breath on the\n",
+        "foe to attack. It may\n",
+        "also leave the target\n",
+        "with a burn."
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_FIRE",
     "power": 100,

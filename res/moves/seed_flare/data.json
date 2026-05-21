@@ -1,5 +1,12 @@
 {
     "name": "Seed Flare",
+    "description": [
+        "The user generates\n",
+        "a shock wave from\n",
+        "within its body.\n",
+        "It may also lower the\n",
+        "target’s Sp. Def."
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_GRASS",
     "power": 120,

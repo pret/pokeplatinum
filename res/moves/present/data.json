@@ -1,5 +1,12 @@
 {
     "name": "Present",
+    "description": [
+        "The user attacks by\n",
+        "giving the foe a\n",
+        "booby-trapped gift.\n",
+        "It restores HP\n",
+        "sometimes, however."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_NORMAL",
     "power": 1,

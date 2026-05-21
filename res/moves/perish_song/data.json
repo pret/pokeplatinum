@@ -1,5 +1,12 @@
 {
     "name": "Perish Song",
+    "description": [
+        "Any Pokémon that\n",
+        "hears this song\n",
+        "faints in three turns\n",
+        "unless it switches\n",
+        "out of battle."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_NORMAL",
     "power": 0,

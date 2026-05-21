@@ -1,5 +1,12 @@
 {
     "name": "Air Cutter",
+    "description": [
+        "The user launches\n",
+        "razorlike wind to\n",
+        "slash the foe.\n",
+        "It has a high\n",
+        "critical-hit ratio."
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_FLYING",
     "power": 55,

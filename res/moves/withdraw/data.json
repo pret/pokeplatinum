@@ -1,5 +1,11 @@
 {
     "name": "Withdraw",
+    "description": [
+        "The user withdraws\n",
+        "its body into its hard\n",
+        "shell, raising its\n",
+        "Defense stat.\n"
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_WATER",
     "power": 0,

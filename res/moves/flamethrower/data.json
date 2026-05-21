@@ -1,5 +1,12 @@
 {
     "name": "Flamethrower",
+    "description": [
+        "The foe is scorched\n",
+        "with an intense blast\n",
+        "of fire. The target\n",
+        "may also be left with\n",
+        "a burn."
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_FIRE",
     "power": 95,

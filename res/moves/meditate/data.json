@@ -1,5 +1,12 @@
 {
     "name": "Meditate",
+    "description": [
+        "The user meditates\n",
+        "to awaken the power\n",
+        "deep within its body\n",
+        "and raise its Attack\n",
+        "stat."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_PSYCHIC",
     "power": 0,

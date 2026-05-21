@@ -1,5 +1,12 @@
 {
     "name": "Fling",
+    "description": [
+        "The user flings its\n",
+        "held item at the foe\n",
+        "to attack. Its power\n",
+        "and effects depend\n",
+        "on the item."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_DARK",
     "power": 1,

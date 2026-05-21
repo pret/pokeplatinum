@@ -1,5 +1,12 @@
 {
     "name": "Sweet Scent",
+    "description": [
+        "A sweet scent that\n",
+        "lowers the foe’s\n",
+        "evasiveness. It also\n",
+        "lures wild Pokémon\n",
+        "if used in grass, etc."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_NORMAL",
     "power": 0,

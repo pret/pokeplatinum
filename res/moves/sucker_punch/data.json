@@ -1,5 +1,12 @@
 {
     "name": "Sucker Punch",
+    "description": [
+        "This move enables the\n",
+        "user to attack first.\n",
+        "It fails if the foe is\n",
+        "not readying an\n",
+        "attack, however."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_DARK",
     "power": 80,

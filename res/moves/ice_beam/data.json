@@ -1,5 +1,12 @@
 {
     "name": "Ice Beam",
+    "description": [
+        "The foe is struck\n",
+        "with an icy-cold\n",
+        "beam of energy.\n",
+        "It may also freeze\n",
+        "the target solid."
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_ICE",
     "power": 95,

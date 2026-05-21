@@ -1,5 +1,12 @@
 {
     "name": "AncientPower",
+    "description": [
+        "The user attacks with\n",
+        "a prehistoric power.\n",
+        "It may also raise all\n",
+        "the user’s stats at\n",
+        "once."
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_ROCK",
     "power": 60,

@@ -1,5 +1,11 @@
 {
     "name": "Mud-Slap",
+    "description": [
+        "The user hurls mud in\n",
+        "the foe’s face to\n",
+        "inflict damage and\n",
+        "lower its accuracy.\n"
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_GROUND",
     "power": 20,

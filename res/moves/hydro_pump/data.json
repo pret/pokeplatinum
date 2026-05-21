@@ -1,5 +1,11 @@
 {
     "name": "Hydro Pump",
+    "description": [
+        "The foe is blasted by\n",
+        "a huge volume of\n",
+        "water launched under\n",
+        "great pressure.\n"
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_WATER",
     "power": 120,

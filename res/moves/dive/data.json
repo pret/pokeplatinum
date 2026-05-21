@@ -1,5 +1,12 @@
 {
     "name": "Dive",
+    "description": [
+        "A two-turn attack.\n",
+        "The user dives\n",
+        "underwater on the\n",
+        "first turn, then hits\n",
+        "on the next turn."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_WATER",
     "power": 80,

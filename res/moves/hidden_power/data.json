@@ -1,5 +1,12 @@
 {
     "name": "Hidden Power",
+    "description": [
+        "A unique attack that\n",
+        "varies in type and\n",
+        "intensity depending\n",
+        "on the Pokémon using\n",
+        "it."
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_NORMAL",
     "power": 1,

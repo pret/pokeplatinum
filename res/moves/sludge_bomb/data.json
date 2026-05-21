@@ -1,5 +1,12 @@
 {
     "name": "Sludge Bomb",
+    "description": [
+        "The user attacks by\n",
+        "hurling filthy sludge\n",
+        "at the foe.\n",
+        "It may also poison\n",
+        "the target."
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_POISON",
     "power": 90,

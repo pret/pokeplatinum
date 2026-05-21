@@ -1,5 +1,11 @@
 {
     "name": "Trick",
+    "description": [
+        "The user catches the\n",
+        "foe off guard and\n",
+        "swaps the foe’s held\n",
+        "item with its own.\n"
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_PSYCHIC",
     "power": 0,

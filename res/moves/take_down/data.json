@@ -1,5 +1,12 @@
 {
     "name": "Take Down",
+    "description": [
+        "A reckless, full-body\n",
+        "charge attack for\n",
+        "slamming into the foe.\n",
+        "It also damages the\n",
+        "user a little."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_NORMAL",
     "power": 90,

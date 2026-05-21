@@ -1,5 +1,12 @@
 {
     "name": "Frenzy Plant",
+    "description": [
+        "The foe is slammed\n",
+        "with an enormous\n",
+        "tree.\n",
+        "The user can’t move\n",
+        "on the next turn."
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_GRASS",
     "power": 150,

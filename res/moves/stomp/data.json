@@ -1,5 +1,11 @@
 {
     "name": "Stomp",
+    "description": [
+        "The foe is stomped\n",
+        "with a big foot.\n",
+        "It may also make the\n",
+        "target flinch.\n"
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_NORMAL",
     "power": 65,

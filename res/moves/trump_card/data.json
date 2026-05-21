@@ -1,5 +1,11 @@
 {
     "name": "Trump Card",
+    "description": [
+        "The fewer PP this\n",
+        "move has, the more\n",
+        "power it has for\n",
+        "attack.\n"
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_NORMAL",
     "power": 1,

@@ -1,5 +1,12 @@
 {
     "name": "Giga Impact",
+    "description": [
+        "The user charges at\n",
+        "the foe using every\n",
+        "bit of its power.\n",
+        "The user must rest\n",
+        "on the next turn."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_NORMAL",
     "power": 150,

@@ -1,5 +1,12 @@
 {
     "name": "Pluck",
+    "description": [
+        "The user pecks the\n",
+        "foe. If the foe is\n",
+        "holding a Berry, the\n",
+        "user plucks it and\n",
+        "gains its effect."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_FLYING",
     "power": 60,

@@ -1,5 +1,11 @@
 {
     "name": "Signal Beam",
+    "description": [
+        "The user attacks with\n",
+        "a sinister beam of\n",
+        "light. It may also\n",
+        "confuse the target.\n"
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_BUG",
     "power": 75,

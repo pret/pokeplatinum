@@ -1,5 +1,12 @@
 {
     "name": "Tackle",
+    "description": [
+        "A physical attack\n",
+        "in which the user\n",
+        "charges and slams\n",
+        "into the foe with\n",
+        "its whole body."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_NORMAL",
     "power": 35,

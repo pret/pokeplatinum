@@ -1,5 +1,11 @@
 {
     "name": "Helping Hand",
+    "description": [
+        "A move that boosts\n",
+        "the power of the\n",
+        "ally’s attack in a\n",
+        "Double Battle.\n"
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_NORMAL",
     "power": 0,

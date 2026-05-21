@@ -1,5 +1,12 @@
 {
     "name": "Bubble",
+    "description": [
+        "A spray of countless\n",
+        "bubbles is jetted at\n",
+        "the foe.\n",
+        "It may also lower the\n",
+        "target’s Speed stat."
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_WATER",
     "power": 20,

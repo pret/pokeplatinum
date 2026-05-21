@@ -1,5 +1,12 @@
 {
     "name": "Yawn",
+    "description": [
+        "The user lets loose a\n",
+        "huge yawn that lulls\n",
+        "the foe into falling\n",
+        "asleep on the next\n",
+        "turn."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_NORMAL",
     "power": 0,

@@ -1,5 +1,12 @@
 {
     "name": "Agility",
+    "description": [
+        "The user relaxes and\n",
+        "lightens its body to\n",
+        "move faster.\n",
+        "It sharply boosts\n",
+        "the Speed stat."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_PSYCHIC",
     "power": 0,

@@ -1,5 +1,11 @@
 {
     "name": "Refresh",
+    "description": [
+        "The user rests\n",
+        "to cure itself of a\n",
+        "poisoning, burn, or\n",
+        "paralysis.\n"
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_NORMAL",
     "power": 0,

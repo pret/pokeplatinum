@@ -1,5 +1,12 @@
 {
     "name": "Secret Power",
+    "description": [
+        "The user attacks with\n",
+        "a secret power. Its\n",
+        "added effects vary\n",
+        "depending on the\n",
+        "user’s environment."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_NORMAL",
     "power": 70,

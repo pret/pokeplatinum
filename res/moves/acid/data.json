@@ -1,5 +1,12 @@
 {
     "name": "Acid",
+    "description": [
+        "The foe is attacked\n",
+        "with a spray of harsh\n",
+        "acid. It may also\n",
+        "lower the target’s\n",
+        "Sp. Def stat."
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_POISON",
     "power": 40,

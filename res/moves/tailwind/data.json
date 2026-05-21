@@ -1,5 +1,12 @@
 {
     "name": "Tailwind",
+    "description": [
+        "The user whips up a\n",
+        "turbulent whirlwind\n",
+        "that ups the Speed\n",
+        "of all party Pokémon\n",
+        "for three turns."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_FLYING",
     "power": 0,

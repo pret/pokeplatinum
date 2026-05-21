@@ -1,5 +1,12 @@
 {
     "name": "Crush Grip",
+    "description": [
+        "The foe is crushed\n",
+        "with great force.\n",
+        "The attack is more\n",
+        "powerful the more HP\n",
+        "the foe has left."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_NORMAL",
     "power": 1,

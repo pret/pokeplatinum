@@ -1,5 +1,12 @@
 {
     "name": "Aura Sphere",
+    "description": [
+        "The user looses a\n",
+        "blast of aura power\n",
+        "from deep within its\n",
+        "body. This move is\n",
+        "certain to hit."
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_FIGHTING",
     "power": 90,

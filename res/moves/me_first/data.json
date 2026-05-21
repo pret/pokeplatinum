@@ -1,5 +1,12 @@
 {
     "name": "Me First",
+    "description": [
+        "The user tries to cut\n",
+        "ahead of the foe to\n",
+        "steal and use the\n",
+        "foe’s intended move\n",
+        "with greater power."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_NORMAL",
     "power": 0,

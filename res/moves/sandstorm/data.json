@@ -1,5 +1,12 @@
 {
     "name": "Sandstorm",
+    "description": [
+        "A five-turn sand-\n",
+        "storm is summoned\n",
+        "to hurt all combatant\n",
+        "types except Rock, \n",
+        "Ground, and Steel."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_ROCK",
     "power": 0,

@@ -1,5 +1,12 @@
 {
     "name": "Horn Drill",
+    "description": [
+        "The foe is stabbed\n",
+        "with a horn rotating\n",
+        "like a drill.\n",
+        "The foe instantly\n",
+        "faints if it hits."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_NORMAL",
     "power": 1,

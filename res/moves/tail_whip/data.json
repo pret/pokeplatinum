@@ -1,5 +1,12 @@
 {
     "name": "Tail Whip",
+    "description": [
+        "The user wags its tail\n",
+        "cutely, making the\n",
+        "foe less wary.\n",
+        "The target’s Defense\n",
+        "stat is lowered."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_NORMAL",
     "power": 0,

@@ -1,5 +1,12 @@
 {
     "name": "Shadow Sneak",
+    "description": [
+        "The user extends its\n",
+        "shadow and attacks\n",
+        "the foe from behind.\n",
+        "This move always goes\n",
+        "first."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_GHOST",
     "power": 40,

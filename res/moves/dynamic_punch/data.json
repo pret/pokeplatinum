@@ -1,5 +1,12 @@
 {
     "name": "DynamicPunch",
+    "description": [
+        "The foe is punched\n",
+        "with the user’s full,\n",
+        "concentrated power.\n",
+        "It confuses the foe\n",
+        "if it hits."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_FIGHTING",
     "power": 100,

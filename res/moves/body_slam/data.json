@@ -1,5 +1,12 @@
 {
     "name": "Body Slam",
+    "description": [
+        "The user drops onto\n",
+        "the foe with its full\n",
+        "body weight.\n",
+        "It may leave the foe\n",
+        "paralyzed."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_NORMAL",
     "power": 85,

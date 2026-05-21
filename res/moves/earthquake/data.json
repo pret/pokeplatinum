@@ -1,5 +1,11 @@
 {
     "name": "Earthquake",
+    "description": [
+        "The user sets off an\n",
+        "earthquake that hits\n",
+        "all the Pokémon in\n",
+        "the battle.\n"
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_GROUND",
     "power": 100,

@@ -1,5 +1,12 @@
 {
     "name": "Rock Slide",
+    "description": [
+        "Large boulders are\n",
+        "hurled at the foe to\n",
+        "inflict damage.\n",
+        "It may also make the\n",
+        "target flinch."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_ROCK",
     "power": 75,

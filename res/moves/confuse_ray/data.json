@@ -1,5 +1,11 @@
 {
     "name": "Confuse Ray",
+    "description": [
+        "The foe is exposed\n",
+        "to a sinister ray\n",
+        "that triggers\n",
+        "confusion.\n"
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_GHOST",
     "power": 0,

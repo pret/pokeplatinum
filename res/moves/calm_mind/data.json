@@ -1,5 +1,12 @@
 {
     "name": "Calm Mind",
+    "description": [
+        "The user quietly\n",
+        "focuses its mind and\n",
+        "calms its spirit to\n",
+        "raise its Sp. Atk and\n",
+        "Sp. Def stats."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_PSYCHIC",
     "power": 0,

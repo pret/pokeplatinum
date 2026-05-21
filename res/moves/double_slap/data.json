@@ -1,5 +1,11 @@
 {
     "name": "DoubleSlap",
+    "description": [
+        "The foe is slapped\n",
+        "repeatedly, back\n",
+        "and forth, two to\n",
+        "five times in a row.\n"
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_NORMAL",
     "power": 15,

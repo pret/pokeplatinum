@@ -1,5 +1,11 @@
 {
     "name": "Follow Me",
+    "description": [
+        "The user draws\n",
+        "attention to itself,\n",
+        "making all foes take\n",
+        "aim only at the user.\n"
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_NORMAL",
     "power": 0,

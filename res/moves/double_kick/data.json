@@ -1,5 +1,11 @@
 {
     "name": "Double Kick",
+    "description": [
+        "The foe is quickly\n",
+        "kicked twice in\n",
+        "succession using both\n",
+        "feet.\n"
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_FIGHTING",
     "power": 30,

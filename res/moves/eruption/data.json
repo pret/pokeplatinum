@@ -1,5 +1,12 @@
 {
     "name": "Eruption",
+    "description": [
+        "The user attacks in\n",
+        "an explosive fury.\n",
+        "The lower the user’s\n",
+        "HP, the less powerful\n",
+        "this attack becomes."
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_FIRE",
     "power": 150,

@@ -1,5 +1,12 @@
 {
     "name": "Endure",
+    "description": [
+        "The user endures any\n",
+        "attack, leaving 1 HP.\n",
+        "Its chance of failing\n",
+        "rises if it is used in\n",
+        "succession."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_NORMAL",
     "power": 0,

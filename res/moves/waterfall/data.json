@@ -1,5 +1,12 @@
 {
     "name": "Waterfall",
+    "description": [
+        "The user charges the\n",
+        "foe at an awesome\n",
+        "speed.\n",
+        "It can also be used\n",
+        "to climb a waterfall."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_WATER",
     "power": 80,

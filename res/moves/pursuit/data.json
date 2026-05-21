@@ -1,5 +1,12 @@
 {
     "name": "Pursuit",
+    "description": [
+        "An attack move that\n",
+        "inflicts double damage\n",
+        "if used on a foe that\n",
+        "is switching out of\n",
+        "battle."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_DARK",
     "power": 40,

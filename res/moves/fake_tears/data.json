@@ -1,5 +1,12 @@
 {
     "name": "Fake Tears",
+    "description": [
+        "The user feigns\n",
+        "crying to make the\n",
+        "foe feel flustered,\n",
+        "sharply lowering its\n",
+        "Sp. Def stat."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_DARK",
     "power": 0,

@@ -1,5 +1,12 @@
 {
     "name": "Disable",
+    "description": [
+        "For several turns,\n",
+        "this move prevents\n",
+        "the foe from using\n",
+        "the move it last\n",
+        "used."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_NORMAL",
     "power": 0,

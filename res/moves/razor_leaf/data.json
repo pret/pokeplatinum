@@ -1,5 +1,12 @@
 {
     "name": "Razor Leaf",
+    "description": [
+        "Sharp-edged leaves\n",
+        "are launched to slash\n",
+        "at the foe. It has a\n",
+        "high critical-hit\n",
+        "ratio."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_GRASS",
     "power": 55,

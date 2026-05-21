@@ -1,5 +1,12 @@
 {
     "name": "Hyper Beam",
+    "description": [
+        "The foe is attacked\n",
+        "with a powerful beam.\n",
+        "The user must rest\n",
+        "on the next turn to\n",
+        "regain its energy."
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_NORMAL",
     "power": 150,

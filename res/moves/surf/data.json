@@ -1,5 +1,12 @@
 {
     "name": "Surf",
+    "description": [
+        "It swamps the entire\n",
+        "battlefield with a\n",
+        "giant wave.\n",
+        "It can also be used\n",
+        "for crossing water."
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_WATER",
     "power": 95,

@@ -1,5 +1,12 @@
 {
     "name": "Lunar Dance",
+    "description": [
+        "The user faints. In\n",
+        "return, the Pokémon\n",
+        "taking its place will\n",
+        "have its status and\n",
+        "HP fully restored."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_PSYCHIC",
     "power": 0,

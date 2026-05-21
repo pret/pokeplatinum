@@ -1,5 +1,12 @@
 {
     "name": "Crush Claw",
+    "description": [
+        "The user slashes the\n",
+        "foe with hard and\n",
+        "sharp claws.\n",
+        "It may also lower the\n",
+        "target’s Defense."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_NORMAL",
     "power": 75,

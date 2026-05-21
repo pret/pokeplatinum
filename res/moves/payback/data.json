@@ -1,5 +1,11 @@
 {
     "name": "Payback",
+    "description": [
+        "If the user can use\n",
+        "this attack after the\n",
+        "foe attacks, its\n",
+        "power is doubled.\n"
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_DARK",
     "power": 50,

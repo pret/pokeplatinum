@@ -1,5 +1,11 @@
 {
     "name": "Teeter Dance",
+    "description": [
+        "The user performs a\n",
+        "wobbly dance that\n",
+        "confuses all the\n",
+        "Pokémon in battle.\n"
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_NORMAL",
     "power": 0,

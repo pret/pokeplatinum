@@ -1,5 +1,12 @@
 {
     "name": "Mind Reader",
+    "description": [
+        "The user senses the\n",
+        "foe’s movements\n",
+        "with its mind to\n",
+        "ensure its next\n",
+        "attack does not miss."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_NORMAL",
     "power": 0,

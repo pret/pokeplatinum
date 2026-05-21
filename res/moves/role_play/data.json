@@ -1,5 +1,11 @@
 {
     "name": "Role Play",
+    "description": [
+        "The user mimics the\n",
+        "foe completely,\n",
+        "copying the foe’s\n",
+        "natural ability.\n"
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_PSYCHIC",
     "power": 0,

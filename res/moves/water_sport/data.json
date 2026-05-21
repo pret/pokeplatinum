@@ -1,5 +1,12 @@
 {
     "name": "Water Sport",
+    "description": [
+        "The user soaks itself\n",
+        "with water. The move\n",
+        "weakens Fire-type\n",
+        "moves while the user\n",
+        "is in the battle."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_WATER",
     "power": 0,

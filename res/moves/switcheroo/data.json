@@ -1,5 +1,11 @@
 {
     "name": "Switcheroo",
+    "description": [
+        "The user trades held\n",
+        "items with the foe\n",
+        "faster than the eye\n",
+        "can follow.\n"
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_DARK",
     "power": 0,

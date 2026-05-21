@@ -1,5 +1,12 @@
 {
     "name": "Tri Attack",
+    "description": [
+        "The user strikes with\n",
+        "a simultaneous three-\n",
+        "beam attack. May also\n",
+        "paralyze, burn, or\n",
+        "freeze the target."
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_NORMAL",
     "power": 80,

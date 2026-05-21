@@ -1,5 +1,12 @@
 {
     "name": "Sharpen",
+    "description": [
+        "The user reduces its\n",
+        "polygon count to\n",
+        "make itself more\n",
+        "jagged, raising the\n",
+        "Attack stat."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_NORMAL",
     "power": 0,

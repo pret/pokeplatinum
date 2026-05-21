@@ -1,5 +1,11 @@
 {
     "name": "Psych Up",
+    "description": [
+        "The user hypnotizes\n",
+        "itself into copying\n",
+        "any stat change\n",
+        "made by the foe.\n"
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_NORMAL",
     "power": 0,

@@ -1,5 +1,12 @@
 {
     "name": "Constrict",
+    "description": [
+        "The foe is attacked\n",
+        "with long, creeping\n",
+        "tentacles or vines.\n",
+        "It may also lower the\n",
+        "target’s Speed."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_NORMAL",
     "power": 10,

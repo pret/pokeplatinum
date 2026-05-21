@@ -1,5 +1,12 @@
 {
     "name": "Twineedle",
+    "description": [
+        "The foe is stabbed\n",
+        "twice by a pair of\n",
+        "stingers.\n",
+        "It may also poison\n",
+        "the target."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_BUG",
     "power": 25,

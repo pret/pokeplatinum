@@ -1,5 +1,12 @@
 {
     "name": "Lovely Kiss",
+    "description": [
+        "With a scary face,\n",
+        "the user forces a\n",
+        "kiss on the foe.\n",
+        "It may make the\n",
+        "target fall asleep."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_NORMAL",
     "power": 0,

@@ -1,5 +1,12 @@
 {
     "name": "Thief",
+    "description": [
+        "The user attacks and\n",
+        "steals the foe’s held\n",
+        "item simultaneously.\n",
+        "It can’t steal if the\n",
+        "user holds an item."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_DARK",
     "power": 40,

@@ -1,5 +1,11 @@
 {
     "name": "Spit Up",
+    "description": [
+        "The power stored\n",
+        "using the move\n",
+        "Stockpile is released\n",
+        "at once in an attack.\n"
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_NORMAL",
     "power": 1,

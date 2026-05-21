@@ -1,5 +1,12 @@
 {
     "name": "Pin Missile",
+    "description": [
+        "Sharp pins are shot\n",
+        "at the foe in rapid\n",
+        "succession.\n",
+        "They hit two to five\n",
+        "times in a row."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_BUG",
     "power": 14,

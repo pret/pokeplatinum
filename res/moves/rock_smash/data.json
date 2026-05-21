@@ -1,5 +1,12 @@
 {
     "name": "Rock Smash",
+    "description": [
+        "The user slugs the\n",
+        "foe with a shattering\n",
+        "punch.\n",
+        "It can also smash\n",
+        "cracked boulders."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_FIGHTING",
     "power": 40,

@@ -1,5 +1,11 @@
 {
     "name": "Rock Throw",
+    "description": [
+        "The user picks up\n",
+        "and throws a small\n",
+        "rock at the foe to\n",
+        "attack.\n"
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_ROCK",
     "power": 50,

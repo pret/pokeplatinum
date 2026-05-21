@@ -1,5 +1,12 @@
 {
     "name": "Wring Out",
+    "description": [
+        "The user powerfully\n",
+        "wrings the foe.\n",
+        "The more HP the foe\n",
+        "has, the greater this\n",
+        "attack’s power."
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_NORMAL",
     "power": 1,

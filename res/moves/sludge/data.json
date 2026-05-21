@@ -1,5 +1,11 @@
 {
     "name": "Sludge",
+    "description": [
+        "Unsanitary sludge is\n",
+        "hurled at the foe.\n",
+        "It may also poison\n",
+        "the target.\n"
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_POISON",
     "power": 65,

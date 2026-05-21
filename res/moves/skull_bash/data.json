@@ -1,5 +1,12 @@
 {
     "name": "Skull Bash",
+    "description": [
+        "The user tucks in its\n",
+        "head to raise its\n",
+        "Defense in the first\n",
+        "turn, then rams the\n",
+        "foe on the next turn."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_NORMAL",
     "power": 100,

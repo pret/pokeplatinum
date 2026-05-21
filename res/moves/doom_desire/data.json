@@ -1,5 +1,12 @@
 {
     "name": "Doom Desire",
+    "description": [
+        "Two turns after this\n",
+        "move is used, the\n",
+        "user blasts the foe\n",
+        "with a concentrated\n",
+        "bundle of light."
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_STEEL",
     "power": 120,

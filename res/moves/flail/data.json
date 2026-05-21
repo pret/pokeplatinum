@@ -1,5 +1,12 @@
 {
     "name": "Flail",
+    "description": [
+        "The user flails about\n",
+        "aimlessly to attack.\n",
+        "It becomes more\n",
+        "powerful the less HP\n",
+        "the user has."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_NORMAL",
     "power": 1,

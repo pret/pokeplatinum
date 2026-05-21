@@ -1,5 +1,11 @@
 {
     "name": "Barrier",
+    "description": [
+        "The user throws up a\n",
+        "sturdy wall that\n",
+        "sharply raises its\n",
+        "Defense stat.\n"
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_PSYCHIC",
     "power": 0,

@@ -43,8 +43,18 @@ foreach move : move_consts
     endif
 endforeach
 
-move_data_out = custom_target('move_data',
-    output: ['move_data.narc'],
+move_text_bank_names = [
+    'move_names.json',
+    'move_names_uppercase.json',
+    'move_descriptions.json',
+    'moves_used_in_battle.json',
+]
+
+move_data = custom_target('move_data',
+    output: [
+        'move_data.narc',
+        move_text_bank_names,
+    ],
 
     command: [
         moveproc_exe,
@@ -56,6 +66,9 @@ move_data_out = custom_target('move_data',
 
     depfile: 'move_data.d',
 )
+
+move_data_outputs = move_data.to_list()
+move_text_banks = move_data_outputs.slice(1, move_data_outputs.length())
 
 anim_script_srcs = []
 foreach subdir : anim_script_subdirs
@@ -117,5 +130,5 @@ anim_scripts_narc = custom_target('anim_scripts.narc',
     ],
 )
 
-nitrofs_files += move_data_out
+nitrofs_files += move_data
 nitrofs_files += anim_scripts_narc

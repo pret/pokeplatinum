@@ -1,5 +1,11 @@
 {
     "name": "Covet",
+    "description": [
+        "The user endearingly\n",
+        "approaches the foe,\n",
+        "then steals the item\n",
+        "the foe is holding.\n"
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_NORMAL",
     "power": 40,

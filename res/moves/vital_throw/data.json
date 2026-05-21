@@ -1,5 +1,12 @@
 {
     "name": "Vital Throw",
+    "description": [
+        "The user allows the\n",
+        "foe to attack first.\n",
+        "In return, this throw\n",
+        "move is guaranteed\n",
+        "not to miss."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_FIGHTING",
     "power": 70,

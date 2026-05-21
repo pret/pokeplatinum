@@ -1,5 +1,12 @@
 {
     "name": "Hyper Voice",
+    "description": [
+        "The user lets loose\n",
+        "a horribly echoing\n",
+        "shout with the\n",
+        "power to inflict\n",
+        "damage."
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_NORMAL",
     "power": 90,

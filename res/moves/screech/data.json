@@ -1,5 +1,11 @@
 {
     "name": "Screech",
+    "description": [
+        "An earsplitting\n",
+        "screech is emitted to\n",
+        "sharply reduce the\n",
+        "foe’s Defense stat.\n"
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_NORMAL",
     "power": 0,

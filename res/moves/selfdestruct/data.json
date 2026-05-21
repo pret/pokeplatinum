@@ -1,5 +1,12 @@
 {
     "name": "Selfdestruct",
+    "description": [
+        "The user blows up to\n",
+        "inflict damage on all\n",
+        "Pokémon in battle.\n",
+        "The user faints upon\n",
+        "using this move."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_NORMAL",
     "power": 200,

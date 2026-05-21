@@ -1,5 +1,12 @@
 {
     "name": "Attract",
+    "description": [
+        "If it is the opposite\n",
+        "gender of the user,\n",
+        "the foe becomes\n",
+        "infatuated and less\n",
+        "likely to attack."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_NORMAL",
     "power": 0,

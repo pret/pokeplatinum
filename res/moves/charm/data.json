@@ -1,5 +1,12 @@
 {
     "name": "Charm",
+    "description": [
+        "The user charmingly\n",
+        "stares at the foe,\n",
+        "making it less wary.\n",
+        "The target’s Attack\n",
+        "is sharply lowered."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_NORMAL",
     "power": 0,

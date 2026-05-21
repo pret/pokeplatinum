@@ -1,5 +1,12 @@
 {
     "name": "Chatter",
+    "description": [
+        "The user attacks\n",
+        "using a sound wave\n",
+        "based on words it has\n",
+        "learned. It may also\n",
+        "confuse the foe."
+    ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_FLYING",
     "power": 60,

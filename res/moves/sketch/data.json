@@ -1,5 +1,12 @@
 {
     "name": "Sketch",
+    "description": [
+        "It enables the user\n",
+        "to learn a move used\n",
+        "by the foe.\n",
+        "Once used, the move\n",
+        "Sketch disappears."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_NORMAL",
     "power": 0,

@@ -1,5 +1,12 @@
 {
     "name": "Beat Up",
+    "description": [
+        "The user gets all the\n",
+        "party Pokémon to\n",
+        "attack the foe. The\n",
+        "more party Pokémon,\n",
+        "the more damage."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_DARK",
     "power": 10,

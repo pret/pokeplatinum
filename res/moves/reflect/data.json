@@ -1,5 +1,12 @@
 {
     "name": "Reflect",
+    "description": [
+        "A wondrous wall of\n",
+        "light is put up to\n",
+        "suppress damage from\n",
+        "physical attacks for\n",
+        "five turns."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_PSYCHIC",
     "power": 0,

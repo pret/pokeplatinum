@@ -1,5 +1,12 @@
 {
     "name": "Close Combat",
+    "description": [
+        "The user fights the\n",
+        "foe in close without\n",
+        "guarding itself. It\n",
+        "also cuts the user’s\n",
+        "Defense and Sp. Def."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_FIGHTING",
     "power": 120,

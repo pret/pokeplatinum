@@ -1,5 +1,12 @@
 {
     "name": "Heal Bell",
+    "description": [
+        "The user makes a\n",
+        "soothing bell chime\n",
+        "to heal the status\n",
+        "problems of all the\n",
+        "party Pokémon."
+    ],
     "class": "CLASS_STATUS",
     "type": "TYPE_NORMAL",
     "power": 0,

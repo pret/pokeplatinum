@@ -1,5 +1,12 @@
 {
     "name": "Aerial Ace",
+    "description": [
+        "The user confounds\n",
+        "the foe with speed,\n",
+        "then slashes.\n",
+        "The attack lands\n",
+        "without fail."
+    ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_FLYING",
     "power": 60,
