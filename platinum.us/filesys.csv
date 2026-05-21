@@ -184,7 +184,7 @@ res/graphics/battle/moves/anim_ncer.narc,/wazaeffect/effectclact/wecell.narc
 res/graphics/battle/moves/anim_nanr.narc,/wazaeffect/effectclact/wecellanm.narc
 res/graphics/battle/moves/anim_ncgr.narc,/wazaeffect/effectclact/wechar.narc
 res/graphics/battle/moves/anim_nclr.narc,/wazaeffect/effectclact/wepltt.narc
-res/moves/pl_waza_tbl.narc,/poketool/waza/pl_waza_tbl.narc
+res/moves/move_data.narc,/poketool/waza/pl_waza_tbl.narc
 res/prebuilt/poketool/waza/waza_tbl.narc,/poketool/waza/waza_tbl.narc
 res/field/scripts/scr_seq.narc,/fielddata/script/scr_seq.narc
 res/prebuilt/graphic/bag_gra.narc,/graphic/bag_gra.narc

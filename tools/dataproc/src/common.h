@@ -135,6 +135,8 @@ struct initenum_params {
     const char *outdir;     // Path of the output directory.
     enum format format;     // The dataproc format to use for parsing.
 
+    u16 extra_files; // A count of extra files to expect that do not correspond to the base enum.
+
     void (*hook_before)(void); // Hook to execute after initializing `dataproc` and before any requests are fulfilled.
     void (*hook_after)(void);  // Hook to execute after all requests have been fulfilled.
 

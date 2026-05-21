@@ -1,10 +1,3 @@
-pl_waza_tbl_subdirs = [
-    'none',
-    '0468',
-    '0469',
-    '0470',
-]
-
 anim_script_subdirs = [
     'none',
     '0468',
@@ -45,28 +38,23 @@ move_consts = fs.read(moves_txt).splitlines()
 foreach move : move_consts
     if move.startswith('MOVE_') and move != 'MOVE_NONE'
         move_name = move.replace('MOVE_', '').to_lower()
-        pl_waza_tbl_subdirs += move_name
+        # pl_waza_tbl_subdirs += move_name
         anim_script_subdirs += move_name
     endif
 endforeach
 
-pl_waza_tbl_data_srcs = []
-foreach subdir : pl_waza_tbl_subdirs
-    pl_waza_tbl_data_srcs += subdir / 'data.json'
-endforeach
+move_data_out = custom_target('move_data',
+    output: ['move_data.narc'],
 
-pl_waza_tbl_narc = custom_target('pl_waza_tbl.narc',
-    output: 'pl_waza_tbl.narc',
-    input: pl_waza_tbl_data_srcs,
-    env: jsoncnv_env,
-    depends: [ py_consts_generators ],
     command: [
-        movedata_py,
-        '--narc', nitroarc_exe,
-        '--source-dir', '@CURRENT_SOURCE_DIR@',
-        '--private-dir', '@PRIVATE_DIR@',
-        '--output-dir', '@OUTDIR@',
-    ]
+        moveproc_exe,
+        '-M', '@DEPFILE@',
+        '-o', meson.current_build_dir(),
+        meson.global_build_root() / 'generated' / 'moves.h',
+        meson.current_source_dir(),
+    ],
+
+    depfile: 'move_data.d',
 )
 
 anim_script_srcs = []
@@ -129,5 +117,5 @@ anim_scripts_narc = custom_target('anim_scripts.narc',
     ],
 )
 
-nitrofs_files += pl_waza_tbl_narc
+nitrofs_files += move_data_out
 nitrofs_files += anim_scripts_narc

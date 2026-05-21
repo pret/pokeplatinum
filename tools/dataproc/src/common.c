@@ -118,7 +118,7 @@ enum_seq_t _common_initenum(initenum_params_t params) {
     else count = (u16)result.size;
 
     for (archive_template_t *t = params.archives; t && t->out_filename; t++) {
-        t->num_files = count;
+        t->num_files = count + params.extra_files;
     }
 
     common_init(
