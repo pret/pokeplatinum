@@ -133,6 +133,14 @@ static void proc_move(datafile_t *df) {
         data.flags |= flag;
     }
 
+    if (data.power != 0 && data.class == CLASS_STATUS) {
+        datanode_t power = dp_get(df, ".power");
+        datanode_t class = dp_get(df, ".class");
+        dp_warn(&power, "this Status move has a base power other than 0 and will be fixed");
+        dp_note(&class, "inferred as a Status move here");
+        data.power = 0;
+    }
+
     if (data.accuracy > 100) {
         datanode_t accuracy = dp_get(df, ".accuracy");
         dp_warn(&accuracy, "value is greater than 100 and will be clamped");
