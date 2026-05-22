@@ -10,7 +10,7 @@
 #include "overlay114/ov114_0225C700.h"
 #include "overlay117/ov117_022626B0.h"
 #include "overlay117/ov117_02263AF0.h"
-#include "overlay117/ov117_022665FC.h"
+#include "overlay117/comm_command_wobbuffet_pop.h"
 #include "overlay117/ov117_022666C0.h"
 #include "overlay117/struct_ov117_02261280.h"
 #include "overlay117/struct_ov117_02261C2C.h"

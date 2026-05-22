@@ -102,13 +102,13 @@ enum CommCommand_Battle {
     COMM_CMD_MAX_BATTLE,
 };
 
-// Communication Commands used for Overlay 117
-enum CommCommand_Ov117 {
-    COMM_CMD_OV117_NONE = COMM_CMD_MAX_COMMON,
-    COMM_CMD_OV117_23,
-    COMM_CMD_OV117_24,
-    COMM_CMD_OV117_25,
-    COMM_CMD_MAX_OV117,
+// Communication Commands used for Wobbuffet Pop minigame
+enum CommCommand_WobbuffetPop {
+    COMM_CMD_WOB_POP_NONE = COMM_CMD_MAX_COMMON,
+    COMM_CMD_WOB_POP_23,
+    COMM_CMD_WOB_POP_24,
+    COMM_CMD_WOB_POP_25,
+    COMM_CMD_MAX_WOB_POP,
 };
 
 #endif

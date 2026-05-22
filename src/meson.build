@@ -1005,7 +1005,7 @@ pokeplatinum_c = files(
     'overlay117/ov117_022626B0.c',
     'overlay117/ov117_02263AF0.c',
     'overlay117/ov117_02266498.c',
-    'overlay117/ov117_022665FC.c',
+    'overlay117/comm_command_wobbuffet_pop.c',
     'overlay117/ov117_022666C0.c',
     'applications/party_menu/form_change.c',
     'cutscenes/egg_hatch/graphics.c',

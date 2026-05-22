@@ -78,6 +78,7 @@ static void sub_0207AD40(SysTask *param0, void *param1);
 static void CommCmd_Battle_33(int param0, int param1, void *param2, void *param3);
 static void PalPad_CreateNetworkObject(TrainerInfo *param0, PalPad *param1, PalPad *param2);
 
+// clang-format off
 static const CommCmdTable Unk_020F099C[] = {
     [COMM_CMD_BATTLE_22 - COMM_CMD_MAX_COMMON] = { CommCmd_Battle_22, CommPacketSizeOf_Variable, NULL },
     [COMM_CMD_BATTLE_23 - COMM_CMD_MAX_COMMON] = { CommCmd_Battle_23, CommPacketSizeOf_Variable, NULL },
@@ -92,6 +93,7 @@ static const CommCmdTable Unk_020F099C[] = {
     [COMM_CMD_BATTLE_32 - COMM_CMD_MAX_COMMON] = { CommCmd_Battle_31_32, sub_0207A764, sub_0207A80C },
     [COMM_CMD_BATTLE_33 - COMM_CMD_MAX_COMMON] = { CommCmd_Battle_33, sub_0207AE64, sub_0207A814 }
 };
+// clang-format on
 
 void sub_0207A6DC(void *param0)
 {
