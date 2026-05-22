@@ -133,7 +133,7 @@ int CommTool_GetSyncNo(int netId)
     return sCommTool->syncNo[netId];
 }
 
-void sub_02036574(int netId, int param1, void *param2, void *param3)
+void CommCmd_19(int netId, int param1, void *param2, void *param3)
 {
     UnkStruct_02036574 *v0 = param2;
 
@@ -205,7 +205,7 @@ const void *sub_0203664C(int netId)
     return NULL;
 }
 
-void sub_02036670(int netId, int param1, void *param2, void *param3)
+void CommCmd_20(int netId, int param1, void *param2, void *param3)
 {
     sCommTool->hasRecievedTempData[netId] = TRUE;
     MI_CpuCopy8(param2, sCommTool->unk_18[netId], COMM_TOOL_TEMP_DATA_SIZE);

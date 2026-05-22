@@ -31,7 +31,7 @@
 #include "unk_0204AEE8.h"
 #include "unk_0205DFC4.h"
 #include "unk_0206B9D8.h"
-#include "unk_0209BA80.h"
+#include "comm_command_frontier.h"
 
 static u16 BattleTower_GetPartnerParam(BattleTower *battleTower, u8 param1);
 

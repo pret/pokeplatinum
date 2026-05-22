@@ -36,7 +36,7 @@
 #include "trainer_info.h"
 #include "unk_02030494.h"
 #include "unk_0209B6F8.h"
-#include "unk_0209BA80.h"
+#include "comm_command_frontier.h"
 
 #include "constdata/const_020EA358.h"
 

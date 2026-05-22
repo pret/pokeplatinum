@@ -28,7 +28,7 @@
 #include "unk_0204FA34.h"
 #include "unk_0205DFC4.h"
 #include "unk_0209B6F8.h"
-#include "unk_0209BA80.h"
+#include "comm_command_frontier.h"
 
 static BOOL ov104_02239680(FrontierScriptContext *param0);
 static BOOL ov104_02239C20(FrontierScriptContext *param0);

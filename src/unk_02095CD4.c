@@ -14,7 +14,7 @@
 #include "pal_pad.h"
 #include "party.h"
 #include "unk_0202D778.h"
-#include "unk_02032798.h"
+#include "comm_command.h"
 
 void sub_02095DFC(int param0, int param1, void *param2, void *param3);
 void sub_02095E28(int param0, int param1, void *param2, void *param3);

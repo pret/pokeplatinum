@@ -8,7 +8,7 @@
 #include "overlay114/struct_ov114_0225D678_decl.h"
 #include "overlay114/struct_ov114_0225E854_decl.h"
 
-#include "unk_02032798.h"
+#include "comm_command.h"
 
 void ov114_02260044(UnkStruct_ov114_0225E854 *param0)
 {

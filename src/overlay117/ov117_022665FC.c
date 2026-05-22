@@ -10,7 +10,7 @@
 #include "overlay117/struct_ov117_022621D4.h"
 
 #include "communication_system.h"
-#include "unk_02032798.h"
+#include "comm_command.h"
 
 static void ov117_02266618(int param0, int param1, void *param2, void *param3);
 static void ov117_0226663C(int param0, int param1, void *param2, void *param3);

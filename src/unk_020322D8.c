@@ -11,7 +11,7 @@
 #include "comm_ring.h"
 #include "communication_system.h"
 #include "heap.h"
-#include "unk_02032798.h"
+#include "comm_command.h"
 
 static UnkStruct_020322D8 *sub_020322D8(CommQueueMan *param0)
 {

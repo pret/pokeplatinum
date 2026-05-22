@@ -26,7 +26,7 @@
 #include "unk_020302D0.h"
 #include "unk_0205DFC4.h"
 #include "unk_0209B6F8.h"
-#include "unk_0209BA80.h"
+#include "comm_command_frontier.h"
 
 #include "constdata/const_020EA358.h"
 

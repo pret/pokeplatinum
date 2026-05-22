@@ -56,7 +56,7 @@
 #include "unk_020302D0.h"
 #include "unk_020363E8.h"
 #include "unk_0205DFC4.h"
-#include "unk_0209BA80.h"
+#include "comm_command_frontier.h"
 #include "vram_transfer.h"
 
 #include "res/text/bank/battle_castle_opponent_app.h"
@@ -2343,7 +2343,7 @@ static void CreatePlayerInfoPayload(BattleCastleOpponentApp *app, u16 cmd)
     i += 3;
 }
 
-void BattleCastleOpponentApp_HandlePlayerInfoCmd(int netID, int unused, void *data, void *context)
+void CommCmd_BattleCastleOpponentHandlePlayerInfo(int netID, int unused, void *data, void *context)
 {
     BattleCastleOpponentApp *app = context;
     const u16 *payload = data;
@@ -2380,7 +2380,7 @@ static void CreatePurchaseInfoPayload(BattleCastleOpponentApp *app, u16 cmd, u16
     app->commPayload[5] = app->selectedMenuEntry;
 }
 
-void BattleCastleOpponentApp_HandlePurchaseInfoCmd(int netID, int unused, void *data, void *context)
+void CommCmd_BattleCastleOpponentHandlePurchaseInfo(int netID, int unused, void *data, void *context)
 {
     BattleCastleOpponentApp *app = context;
     const u16 *payload = data;
@@ -2414,7 +2414,7 @@ static void CreateUpdateCursorPayload(BattleCastleOpponentApp *app, u16 cmd)
     app->commPayload[1] = app->selectedMonSlot;
 }
 
-void BattleCastleOpponentApp_HandleUpdateCursorCmd(int netID, int unused, void *data, void *context)
+void CommCmd_BattleCastleOpponentUpdateCursorCmd(int netID, int unused, void *data, void *context)
 {
     BattleCastleOpponentApp *app = context;
     const u16 *payload = data;
@@ -2432,7 +2432,7 @@ static void CreateExitAppPayload(BattleCastleOpponentApp *app)
     app->commPayload[0] = TRUE;
 }
 
-void BattleCastleOpponentApp_HandleExitAppCmd(int netID, int unused, void *data, void *context)
+void CommCmd_BattleCastleOpponentHandleExitApp(int netID, int unused, void *data, void *context)
 {
     BattleCastleOpponentApp *app = context;
     const u16 *payload = data;

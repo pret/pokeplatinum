@@ -26,7 +26,7 @@
 #include "sys_task_manager.h"
 #include "unk_0202FF4C.h"
 #include "unk_0209B6F8.h"
-#include "unk_0209BA80.h"
+#include "comm_command_frontier.h"
 
 #include "constdata/const_020EA358.h"
 

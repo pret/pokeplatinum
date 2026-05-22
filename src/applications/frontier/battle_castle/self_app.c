@@ -57,7 +57,7 @@
 #include "unk_020363E8.h"
 #include "unk_0205DFC4.h"
 #include "unk_0208C098.h"
-#include "unk_0209BA80.h"
+#include "comm_command_frontier.h"
 #include "vram_transfer.h"
 
 #include "res/text/bank/battle_castle_self_app.h"
@@ -416,12 +416,12 @@ static BOOL IsMonMissingPP(Pokemon *mon);
 static void CloseMessageBox(Window *window);
 BOOL SendCommMessage(BattleCastleSelfApp *app, u16 cmd, u16 slot);
 void CreatePlayerInfoPayload(BattleCastleSelfApp *app, u16 cmd);
-void BattleCastleSelfApp_HandlePlayerInfoCmd(int netID, int unused, void *data, void *context);
+void CommCmd_BattleCastleHandlePlayerInfo(int netID, int unused, void *data, void *context);
 void CreatePurchaseInfoPayload(BattleCastleSelfApp *app, u16 cmd, u16 slot);
 void CreateUpdateCursorPayload(BattleCastleSelfApp *app, u16 cmd);
-void BattleCastleSelfApp_HandleUpdateCursorCmd(int netID, int unused, void *data, void *context);
+void CommCmd_BattleCastleHandleUpdateCursor(int netID, int unused, void *data, void *context);
 void CreateExitAppPayload(BattleCastleSelfApp *app);
-void BattleCastleSelfApp_HandleExitAppCmd(int netID, int unused, void *data, void *context);
+void CommCmd_BattleCastleHandleExitApp(int netID, int unused, void *data, void *context);
 static void ApplyItemEffect(Pokemon *mon, u16 itemID);
 static void PrintPlayersAndPartnersNames(BattleCastleSelfApp *app, Window *window);
 static void HealPokemon(BattleCastleSelfApp *app, u8 slot, u8 menuOption);
@@ -3056,7 +3056,7 @@ void CreatePlayerInfoPayload(BattleCastleSelfApp *app, u16 cmd)
     i += 3;
 }
 
-void BattleCastleSelfApp_HandlePlayerInfoCmd(int netID, int unused, void *data, void *context)
+void CommCmd_BattleCastleHandlePlayerInfo(int netID, int unused, void *data, void *context)
 {
     BattleCastleSelfApp *app = context;
     const u16 *payload = data;
@@ -3093,7 +3093,7 @@ void CreatePurchaseInfoPayload(BattleCastleSelfApp *app, u16 cmd, u16 slot)
     app->commPayload[5] = app->selectedMenuEntry;
 }
 
-void BattleCastleSelfApp_HandlePurchaseInfoCmd(int netID, int unused, void *data, void *context)
+void CommCmd_BattleCastlePurchaseInfo(int netID, int unused, void *data, void *context)
 {
     BattleCastleSelfApp *app = context;
     const u16 *payload = data;
@@ -3127,7 +3127,7 @@ void CreateUpdateCursorPayload(BattleCastleSelfApp *app, u16 cmd)
     app->commPayload[1] = app->selectedMonSlot;
 }
 
-void BattleCastleSelfApp_HandleUpdateCursorCmd(int netID, int unused, void *data, void *context)
+void CommCmd_BattleCastleHandleUpdateCursor(int netID, int unused, void *data, void *context)
 {
     BattleCastleSelfApp *app = context;
     const u16 *payload = data;
@@ -3145,7 +3145,7 @@ void CreateExitAppPayload(BattleCastleSelfApp *app)
     app->commPayload[0] = TRUE;
 }
 
-void BattleCastleSelfApp_HandleExitAppCmd(int netID, int unused, void *data, void *context)
+void CommCmd_BattleCastleHandleExitApp(int netID, int unused, void *data, void *context)
 {
     BattleCastleSelfApp *app = context;
     const u16 *payload = data;

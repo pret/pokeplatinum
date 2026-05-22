@@ -26,61 +26,61 @@
 #include "unk_0205DFC4.h"
 
 BOOL ov104_0222EEF8(BattleFactory *param0);
-void ov104_0222EF30(int param0, int param1, void *param2, void *param3);
+void CommCmd_Frontier_22(int param0, int param1, void *param2, void *param3);
 BOOL ov104_0222EF64(BattleFactory *param0);
-void ov104_0222EF94(int param0, int param1, void *param2, void *param3);
+void CommCmd_Frontier_23(int param0, int param1, void *param2, void *param3);
 BOOL ov104_0222EFCC(BattleFactory *param0);
-void ov104_0222F03C(int param0, int param1, void *param2, void *param3);
+void CommCmd_Frontier_24(int param0, int param1, void *param2, void *param3);
 BOOL ov104_0222F0B4(BattleFactory *param0);
-void ov104_0222F124(int param0, int param1, void *param2, void *param3);
+void CommCmd_Frontier_25(int param0, int param1, void *param2, void *param3);
 BOOL ov104_0222F1A0(BattleFactory *param0, u8 param1);
-void ov104_0222F1C4(int param0, int param1, void *param2, void *param3);
+void CommCmd_Frontier_26(int param0, int param1, void *param2, void *param3);
 BOOL ov104_0222F1EC(BattleFactory *param0, u8 param1);
-void ov104_0222F210(int param0, int param1, void *param2, void *param3);
+void CommCmd_Frontier_27(int param0, int param1, void *param2, void *param3);
 BOOL ov104_0222F238(BattleFactory *param0);
-void ov104_0222F31C(int param0, int param1, void *param2, void *param3);
-void ov104_0222ECE8(int param0, int param1, void *param2, void *param3);
+void CommCmd_Frontier_28(int param0, int param1, void *param2, void *param3);
+void CommCmd_Frontier_33(int param0, int param1, void *param2, void *param3);
 BOOL ov104_0222ED00(BattleHall *param0);
-void ov104_0222ED2C(int param0, int param1, void *param2, void *param3);
+void CommCmd_Frontier_34(int param0, int param1, void *param2, void *param3);
 BOOL ov104_0222ED44(BattleHall *param0);
-void ov104_0222ED74(int param0, int param1, void *param2, void *param3);
+void CommCmd_Frontier_35(int param0, int param1, void *param2, void *param3);
 BOOL ov104_0222EDA8(BattleHall *param0);
-void ov104_0222EDDC(int param0, int param1, void *param2, void *param3);
+void CommCmd_Frontier_36(int param0, int param1, void *param2, void *param3);
 BOOL ov104_0222EE14(BattleHall *param0, u8 param1);
-void ov104_0222EE38(int param0, int param1, void *param2, void *param3);
+void CommCmd_Frontier_37(int param0, int param1, void *param2, void *param3);
 BOOL ov104_0222EE60(BattleHall *param0);
-void ov104_0222EEA8(int param0, int param1, void *param2, void *param3);
+void CommCmd_Frontier_38(int param0, int param1, void *param2, void *param3);
 u8 *ov104_0222EED8(int param0, void *param1, int param2);
 BOOL ov104_0222F3B8(BattleCastle *param0);
-void ov104_0222F418(int param0, int param1, void *param2, void *param3);
+void CommCmd_Frontier_42(int param0, int param1, void *param2, void *param3);
 BOOL ov104_0222F44C(BattleCastle *param0);
-void ov104_0222F480(int param0, int param1, void *param2, void *param3);
+void CommCmd_Frontier_43(int param0, int param1, void *param2, void *param3);
 BOOL ov104_0222F4B8(BattleCastle *param0);
-void ov104_0222F530(int param0, int param1, void *param2, void *param3);
+void CommCmd_Frontier_44(int param0, int param1, void *param2, void *param3);
 BOOL ov104_0222F5D4(BattleCastle *param0);
-void ov104_0222F650(int param0, int param1, void *param2, void *param3);
+void CommCmd_Frontier_45(int param0, int param1, void *param2, void *param3);
 BOOL ov104_0222F6C8(BattleCastle *param0, u16 param1);
-void ov104_0222F6E8(int param0, int param1, void *param2, void *param3);
+void CommCmd_Frontier_46(int param0, int param1, void *param2, void *param3);
 BOOL ov104_0222F710(BattleCastle *param0, u16 param1);
-void ov104_0222F730(int param0, int param1, void *param2, void *param3);
+void CommCmd_Frontier_47(int param0, int param1, void *param2, void *param3);
 BOOL ov104_0222F758(BattleCastle *param0);
-void ov104_0222F7BC(int param0, int param1, void *param2, void *param3);
+void CommCmd_Frontier_48(int param0, int param1, void *param2, void *param3);
 u8 *ov104_0222F84C(int param0, void *param1, int param2);
 BOOL ov104_0222F86C(BattleArcade *param0);
-void ov104_0222F8A0(int param0, int param1, void *param2, void *param3);
+void CommCmd_Frontier_65(int param0, int param1, void *param2, void *param3);
 BOOL ov104_0222F8D0(BattleArcade *param0);
-void ov104_0222F908(int param0, int param1, void *param2, void *param3);
+void CommCmd_Frontier_66(int param0, int param1, void *param2, void *param3);
 BOOL ov104_0222F944(BattleArcade *param0);
-void ov104_0222F9C0(int param0, int param1, void *param2, void *param3);
+void CommCmd_Frontier_67(int param0, int param1, void *param2, void *param3);
 BOOL ov104_0222FA38(BattleArcade *param0, u16 param1);
-void ov104_0222FA5C(int param0, int param1, void *param2, void *param3);
+void CommCmd_Frontier_68(int param0, int param1, void *param2, void *param3);
 BOOL ov104_0222FA84(BattleArcade *param0, u16 param1);
-void ov104_0222FAA8(int param0, int param1, void *param2, void *param3);
+void CommCmd_Frontier_69(int param0, int param1, void *param2, void *param3);
 BOOL ov104_0222FAD0(BattleArcade *param0);
-void ov104_0222FB34(int param0, int param1, void *param2, void *param3);
+void CommCmd_Frontier_70(int param0, int param1, void *param2, void *param3);
 u8 *ov104_0222FBC4(int param0, void *param1, int param2);
 
-void ov104_0222ECE8(int param0, int param1, void *param2, void *param3)
+void CommCmd_Frontier_33(int param0, int param1, void *param2, void *param3)
 {
     BattleHall *v0 = param3;
     const u16 *v1 = param2;
@@ -116,7 +116,7 @@ BOOL ov104_0222ED00(BattleHall *param0)
     return v4;
 }
 
-void ov104_0222ED2C(int param0, int param1, void *param2, void *param3)
+void CommCmd_Frontier_34(int param0, int param1, void *param2, void *param3)
 {
     int v0, v1;
     BattleHall *v2 = param3;
@@ -160,7 +160,7 @@ BOOL ov104_0222ED44(BattleHall *param0)
     return v5;
 }
 
-void ov104_0222ED74(int param0, int param1, void *param2, void *param3)
+void CommCmd_Frontier_35(int param0, int param1, void *param2, void *param3)
 {
     int v0, v1;
     BattleHall *v2 = param3;
@@ -209,7 +209,7 @@ BOOL ov104_0222EDA8(BattleHall *param0)
     return v3;
 }
 
-void ov104_0222EDDC(int param0, int param1, void *param2, void *param3)
+void CommCmd_Frontier_36(int param0, int param1, void *param2, void *param3)
 {
     int v0, v1;
     BattleHall *v2 = param3;
@@ -252,7 +252,7 @@ BOOL ov104_0222EE14(BattleHall *param0, u8 param1)
     return v1;
 }
 
-void ov104_0222EE38(int param0, int param1, void *param2, void *param3)
+void CommCmd_Frontier_37(int param0, int param1, void *param2, void *param3)
 {
     BattleHall *v0 = param3;
     const u16 *v1 = param2;
@@ -291,7 +291,7 @@ BOOL ov104_0222EE60(BattleHall *param0)
     return v2;
 }
 
-void ov104_0222EEA8(int param0, int param1, void *param2, void *param3)
+void CommCmd_Frontier_38(int param0, int param1, void *param2, void *param3)
 {
     int v0, v1, v2;
     BattleHall *v3 = param3;
@@ -344,7 +344,7 @@ BOOL ov104_0222EEF8(BattleFactory *param0)
     return v4;
 }
 
-void ov104_0222EF30(int param0, int param1, void *param2, void *param3)
+void CommCmd_Frontier_22(int param0, int param1, void *param2, void *param3)
 {
     int v0, v1;
     BattleFactory *v2 = param3;
@@ -390,7 +390,7 @@ BOOL ov104_0222EF64(BattleFactory *param0)
     return v3;
 }
 
-void ov104_0222EF94(int param0, int param1, void *param2, void *param3)
+void CommCmd_Frontier_23(int param0, int param1, void *param2, void *param3)
 {
     int v0, v1;
     BattleFactory *v2 = param3;
@@ -452,7 +452,7 @@ BOOL ov104_0222EFCC(BattleFactory *param0)
     return v3;
 }
 
-void ov104_0222F03C(int param0, int param1, void *param2, void *param3)
+void CommCmd_Frontier_24(int param0, int param1, void *param2, void *param3)
 {
     int v0, v1;
     Pokemon *v2;
@@ -528,7 +528,7 @@ BOOL ov104_0222F0B4(BattleFactory *param0)
     return v3;
 }
 
-void ov104_0222F124(int param0, int param1, void *param2, void *param3)
+void CommCmd_Frontier_25(int param0, int param1, void *param2, void *param3)
 {
     int v0, v1;
     BattleFactory *v2 = param3;
@@ -584,7 +584,7 @@ BOOL ov104_0222F1A0(BattleFactory *param0, u8 param1)
     return v1;
 }
 
-void ov104_0222F1C4(int param0, int param1, void *param2, void *param3)
+void CommCmd_Frontier_26(int param0, int param1, void *param2, void *param3)
 {
     BattleFactory *v0 = param3;
     const u16 *v1 = param2;
@@ -617,7 +617,7 @@ BOOL ov104_0222F1EC(BattleFactory *param0, u8 param1)
     return v1;
 }
 
-void ov104_0222F210(int param0, int param1, void *param2, void *param3)
+void CommCmd_Frontier_27(int param0, int param1, void *param2, void *param3)
 {
     BattleFactory *v0 = param3;
     const u16 *v1 = param2;
@@ -681,7 +681,7 @@ BOOL ov104_0222F238(BattleFactory *param0)
     return v4;
 }
 
-void ov104_0222F31C(int param0, int param1, void *param2, void *param3)
+void CommCmd_Frontier_28(int param0, int param1, void *param2, void *param3)
 {
     int v0, v1;
     u8 v2;
@@ -747,7 +747,7 @@ BOOL ov104_0222F3B8(BattleCastle *param0)
     return v2;
 }
 
-void ov104_0222F418(int param0, int param1, void *param2, void *param3)
+void CommCmd_Frontier_42(int param0, int param1, void *param2, void *param3)
 {
     int v0, v1;
     BattleCastle *v2 = param3;
@@ -794,7 +794,7 @@ BOOL ov104_0222F44C(BattleCastle *param0)
     return v2;
 }
 
-void ov104_0222F480(int param0, int param1, void *param2, void *param3)
+void CommCmd_Frontier_43(int param0, int param1, void *param2, void *param3)
 {
     int v0, v1;
     BattleCastle *v2 = param3;
@@ -859,7 +859,7 @@ BOOL ov104_0222F4B8(BattleCastle *param0)
     return v2;
 }
 
-void ov104_0222F530(int param0, int param1, void *param2, void *param3)
+void CommCmd_Frontier_44(int param0, int param1, void *param2, void *param3)
 {
     Pokemon *v0;
     int v1, v2;
@@ -944,7 +944,7 @@ BOOL ov104_0222F5D4(BattleCastle *param0)
     return v2;
 }
 
-void ov104_0222F650(int param0, int param1, void *param2, void *param3)
+void CommCmd_Frontier_45(int param0, int param1, void *param2, void *param3)
 {
     int v0, v1;
     BattleCastle *v2 = param3;
@@ -997,7 +997,7 @@ BOOL ov104_0222F6C8(BattleCastle *param0, u16 param1)
     return v0;
 }
 
-void ov104_0222F6E8(int param0, int param1, void *param2, void *param3)
+void CommCmd_Frontier_46(int param0, int param1, void *param2, void *param3)
 {
     int v0;
     BattleCastle *v1 = param3;
@@ -1028,7 +1028,7 @@ BOOL ov104_0222F710(BattleCastle *param0, u16 param1)
     return v0;
 }
 
-void ov104_0222F730(int param0, int param1, void *param2, void *param3)
+void CommCmd_Frontier_47(int param0, int param1, void *param2, void *param3)
 {
     int v0;
     BattleCastle *v1 = param3;
@@ -1070,7 +1070,7 @@ BOOL ov104_0222F758(BattleCastle *param0)
     return v2;
 }
 
-void ov104_0222F7BC(int param0, int param1, void *param2, void *param3)
+void CommCmd_Frontier_48(int param0, int param1, void *param2, void *param3)
 {
     u8 v0;
     int v1, v2, v3;
@@ -1133,7 +1133,7 @@ BOOL ov104_0222F86C(BattleArcade *param0)
     return v2;
 }
 
-void ov104_0222F8A0(int param0, int param1, void *param2, void *param3)
+void CommCmd_Frontier_65(int param0, int param1, void *param2, void *param3)
 {
     int v0, v1;
     BattleArcade *v2 = param3;
@@ -1176,7 +1176,7 @@ BOOL ov104_0222F8D0(BattleArcade *param0)
     return v2;
 }
 
-void ov104_0222F908(int param0, int param1, void *param2, void *param3)
+void CommCmd_Frontier_66(int param0, int param1, void *param2, void *param3)
 {
     int v0, v1;
     BattleArcade *v2 = param3;
@@ -1237,7 +1237,7 @@ BOOL ov104_0222F944(BattleArcade *param0)
     return v2;
 }
 
-void ov104_0222F9C0(int param0, int param1, void *param2, void *param3)
+void CommCmd_Frontier_67(int param0, int param1, void *param2, void *param3)
 {
     int v0, v1;
     BattleArcade *v2 = param3;
@@ -1290,7 +1290,7 @@ BOOL ov104_0222FA38(BattleArcade *param0, u16 param1)
     return v0;
 }
 
-void ov104_0222FA5C(int param0, int param1, void *param2, void *param3)
+void CommCmd_Frontier_68(int param0, int param1, void *param2, void *param3)
 {
     int v0;
     BattleArcade *v1 = param3;
@@ -1321,7 +1321,7 @@ BOOL ov104_0222FA84(BattleArcade *param0, u16 param1)
     return v0;
 }
 
-void ov104_0222FAA8(int param0, int param1, void *param2, void *param3)
+void CommCmd_Frontier_69(int param0, int param1, void *param2, void *param3)
 {
     int v0;
     BattleArcade *v1 = param3;
@@ -1363,7 +1363,7 @@ BOOL ov104_0222FAD0(BattleArcade *param0)
     return v2;
 }
 
-void ov104_0222FB34(int param0, int param1, void *param2, void *param3)
+void CommCmd_Frontier_70(int param0, int param1, void *param2, void *param3)
 {
     u8 v0;
     int v1, v2, v3;

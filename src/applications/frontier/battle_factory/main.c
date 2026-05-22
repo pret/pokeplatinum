@@ -53,7 +53,7 @@
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_020363E8.h"
-#include "unk_0209BA80.h"
+#include "comm_command_frontier.h"
 #include "vram_transfer.h"
 
 #include "constdata/const_020F410C.h"
@@ -2848,7 +2848,7 @@ void DummyCreatePayload(BattleFactoryApp *app, u16 cmd)
     app->commPayload[0] = cmd;
 }
 
-void BattleFactoryApp_DummyCommCommand(int netID, int unused, void *data, void *context)
+void CommCmd_BattleFactoryDummy(int netID, int unused, void *data, void *context)
 {
     if (CommSys_CurNetId() == netID) {
         return;
@@ -2880,7 +2880,7 @@ void CreateUpdateSelectionPayload(BattleFactoryApp *app, u16 cmd, u16 unused)
     }
 }
 
-void BattleFactoryApp_HandleSelectionUpdateCmd(int netID, int unused, void *data, void *context)
+void CommCmd_BattleFactoryHandleSelectionUpdate(int netID, int unused, void *data, void *context)
 {
     int i;
     BattleFactoryApp *app = context;
@@ -2908,7 +2908,7 @@ void BattleFactoryApp_HandleSelectionUpdateCmd(int netID, int unused, void *data
     app->partnerListingUpdateNeeded = TRUE;
 }
 
-void BattleFactoryApp_DummyCommCommand2(int netID, int unused, void *data, void *context)
+void CommCmd_BattleFactoryDummy2(int netID, int unused, void *data, void *context)
 {
     GF_ASSERT(FALSE);
 }
@@ -2949,7 +2949,7 @@ void CreateTradeResultPayload(BattleFactoryApp *app, u16 cmd, u16 tradedMon)
     app->commPayload[3] = app->selectedIndices[1];
 }
 
-void BattleFactoryApp_HandleTradeResultCmd(int netID, int unused, void *data, void *context)
+void CommCmd_BattleFactoryHandleTradeResult(int netID, int unused, void *data, void *context)
 {
     BattleFactoryApp *app = context;
     const u16 *payload = data;

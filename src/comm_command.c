@@ -1,4 +1,4 @@
-#include "unk_02032798.h"
+#include "comm_command.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -36,7 +36,7 @@ static int CommPacketSizeOf_Two(void);
 static const CommCmdTable sCommCmdTable_Common[] = {
     [COMM_CMD_NONE] = { NULL, CommPacketSizeOf_Nothing, NULL },
     [COMM_CMD_1] = { NULL, CommPacketSizeOf_Nothing, NULL },
-    [COMM_CMD_2] = { sub_0203619C, CommPacketSizeOf_Nothing, NULL },
+    [COMM_CMD_2] = { CommCmd_2, CommPacketSizeOf_Nothing, NULL },
     [COMM_CMD_RECV_PLAYER_INFO] = { CommCmd_RecvPlayerInfo, CommPlayerInfo_Size, NULL },
     [COMM_CMD_RECV_PLAYER_INFO_ARRAY] = { CommCmd_RecvPlayerInfoArray, CommPlayerInfo_Size, NULL },
     [COMM_CMD_RECV_PLAYER_INFO_FINISH] = { CommCmd_FinishRecvPlayerInfo, CommPacketSizeOf_Nothing, NULL },
@@ -44,17 +44,17 @@ static const CommCmdTable sCommCmdTable_Common[] = {
     [COMM_CMD_VALIDATE_CONFIRMATION_RESPONSE] = { CommCmd_ValidateConfirmationResponseMessage, CommManager_ConfirmationMessage_sizeof, NULL },
     [COMM_CMD_8] = { NULL, NULL, NULL },
     [COMM_CMD_9] = { NULL, NULL, NULL },
-    [COMM_CMD_10] = { sub_02036008, CommPacketSizeOf_NetId, NULL },
-    [COMM_CMD_11] = { sub_02036030, CommPacketSizeOf_NetId, NULL },
-    [COMM_CMD_12] = { sub_02036058, CommPacketSizeOf_NetId, NULL },
+    [COMM_CMD_10] = { CommCmd_10, CommPacketSizeOf_NetId, NULL },
+    [COMM_CMD_11] = { CommCmd_11, CommPacketSizeOf_NetId, NULL },
+    [COMM_CMD_12] = { CommCmd_12, CommPacketSizeOf_NetId, NULL },
     [COMM_CMD_SWAP_CMD_TABLE] = { CommCmd_SwapCommandTable, CommPacketSizeOf_Nothing, NULL },
     [COMM_CMD_DEINIT_MANAGER] = { CommCmd_DeinitCommCmdManager, CommPacketSizeOf_Nothing, NULL },
     [COMM_CMD_FINISH_SWAP_CMD_TABLE] = { CommCmd_FinishSwapCmdTable, CommPacketSizeOf_Nothing, NULL },
     [COMM_CMD_16] = { CommCmd_16, CommPacketSizeOf_NetId, NULL },
     [COMM_CMD_17] = { CommCmd_17, CommPacketSizeOf_NetId, NULL },
     [COMM_CMD_18] = { CommCmd_18, CommPacketSizeOf_Two, NULL },
-    [COMM_CMD_19] = { sub_02036574, sub_02036590, NULL },
-    [COMM_CMD_20] = { sub_02036670, CommTool_TempDataSize, NULL },
+    [COMM_CMD_19] = { CommCmd_19, sub_02036590, NULL },
+    [COMM_CMD_20] = { CommCmd_20, CommTool_TempDataSize, NULL },
     [COMM_CMD_DISCONNECT_WIFI] = { CommCmd_DisconnectWifi, CommPacketSizeOf_Nothing, NULL }
 };
 

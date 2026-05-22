@@ -19,7 +19,7 @@
 #include "communication_information.h"
 #include "communication_system.h"
 #include "heap.h"
-#include "unk_02032798.h"
+#include "comm_command.h"
 #include "unk_0205B33C.h"
 #include "unk_0205C22C.h"
 #include "unk_02099500.h"

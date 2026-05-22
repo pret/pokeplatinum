@@ -13,7 +13,7 @@
 #include "overlay116/struct_ov116_0226139C.h"
 
 #include "math_util.h"
-#include "unk_02032798.h"
+#include "comm_command.h"
 
 static void ov116_02260440(int param0, int param1, void *param2, void *param3);
 static void ov116_02260458(int param0, int param1, void *param2, void *param3);

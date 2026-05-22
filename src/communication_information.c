@@ -4,6 +4,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/communication/comm_command.h"
 #include "constants/heap.h"
 
 #include "struct_decls/wi_fi_list.h"
@@ -145,7 +146,7 @@ void CommInfo_SendPlayerInfo(void)
         BattleRegulation_Copy(sCommInfo->regulation, (BattleRegulation *)sCommInfo->playerInfo[netId].regulationBuffer);
     }
 
-    CommSys_SendData(3, &sCommInfo->playerInfo[netId], sizeof(CommPlayerInfo));
+    CommSys_SendData(COMM_CMD_RECV_PLAYER_INFO, &sCommInfo->playerInfo[netId], sizeof(CommPlayerInfo));
 }
 
 int CommPlayerInfo_Size(void)

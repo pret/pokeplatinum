@@ -7,7 +7,7 @@
 
 #include "main_menu/ov97_0222D04C.h"
 
-#include "unk_02032798.h"
+#include "comm_command.h"
 
 static const CommCmdTable Unk_ov97_0223D704[] = {
     { ov97_0222D284, ov97_0222D2B0, ov97_0222D2B8 },

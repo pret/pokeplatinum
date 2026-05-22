@@ -48,7 +48,7 @@
 #include "trainer_info.h"
 #include "unk_02030494.h"
 #include "unk_020363E8.h"
-#include "unk_0209BA80.h"
+#include "comm_command_frontier.h"
 #include "vram_transfer.h"
 
 FS_EXTERN_OVERLAY(overlay104);
@@ -1115,7 +1115,7 @@ static void CreateInitialLayoutPayload(BattleArcadeApp *app, u16 cmd)
     i += 1;
 }
 
-void BattleArcadeApp_HandleInitialLayoutCmd(int netID, int unused, void *data, void *context)
+void CommCmd_BattleArcadeHandleInitialLayout(int netID, int unused, void *data, void *context)
 {
     BattleArcadeApp *app = context;
     const u16 *payload = data;
@@ -1159,7 +1159,7 @@ static u16 GetRandomNumber(BattleArcadeApp *app)
     return LCRNG_Next();
 }
 
-void BattleArcadeApp_HandleResultCmd(int netID, int unused, void *data, void *context)
+void CommCmd_BattleArcadeHandleResult(int netID, int unused, void *data, void *context)
 {
     BattleArcadeApp *app = context;
     const u16 *payload = data;
@@ -1190,7 +1190,7 @@ static void UnusedCommCommandPayload(BattleArcadeApp *app, u16 cmd)
     app->commPayload[1] = app->cursorPos;
 }
 
-void BattleArcadeApp_HandleUnusedCmd(int netID, int unused, void *data, void *context)
+void CommCmd_BattleArcadeUnused(int netID, int unused, void *data, void *context)
 {
     BattleArcadeApp *app = context;
     const u16 *payload = data;

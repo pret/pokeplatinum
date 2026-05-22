@@ -5,6 +5,7 @@
 #include <string.h>
 
 #include "constants/communication/comm_avaliable_connections.h"
+#include "constants/communication/comm_command.h"
 #include "constants/communication/comm_error.h"
 #include "constants/communication/comm_type.h"
 
@@ -24,7 +25,7 @@
 #include "system.h"
 #include "trainer_info.h"
 #include "unk_0203266C.h"
-#include "unk_02032798.h"
+#include "comm_command.h"
 #include "unk_02033200.h"
 #include "unk_02039814.h"
 #include "wireless_manager.h"
@@ -1480,7 +1481,7 @@ static void CommTask_ConnectUnionClient(void)
     }
 
     if (sCommMan->timer > (120 - 10)) {
-        CommSys_SendDataFixedSize(6, sFreakConfirmationMessage);
+        CommSys_SendDataFixedSize(COMM_CMD_VALIDATE_CONFIRMATION, sFreakConfirmationMessage);
     }
 
     if (sCommMan->timer != 0) {
@@ -1578,10 +1579,10 @@ void CommManager_StartDrawServer(void)
 
     if (CommSys_CurNetId() == 0) {
         u8 data = 0;
-        CommSys_SendDataFixedSize(10, &data);
+        CommSys_SendDataFixedSize(COMM_CMD_10, &data);
     } else {
         u8 data = 0;
-        CommSys_SendDataFixedSize(10, &data);
+        CommSys_SendDataFixedSize(COMM_CMD_10, &data);
     }
 }
 
@@ -1766,13 +1767,13 @@ void CommCmd_ValidateConfirmationMessage(int netID, int unused_1, void *msg, voi
     if (success && (!sCommMan->pauseUnion)) {
         sGameConfirmationMessage[0] = netID;
         // "[netID]GAME" indicates a success
-        CommSys_SendDataFixedSizeServer(7, sGameConfirmationMessage);
+        CommSys_SendDataFixedSizeServer(COMM_CMD_VALIDATE_CONFIRMATION_RESPONSE, sGameConfirmationMessage);
         return;
     }
 
     // "[netID]FULL" indicates a failure
     sFullConfirmationMessage[0] = netID;
-    CommSys_SendDataFixedSizeServer(7, sFullConfirmationMessage);
+    CommSys_SendDataFixedSizeServer(COMM_CMD_VALIDATE_CONFIRMATION_RESPONSE, sFullConfirmationMessage);
 }
 
 /**
@@ -2516,7 +2517,7 @@ void CommManager_EndBattleWifiMatch(void)
 {
     u8 netID = CommSys_CurNetId();
 
-    CommSys_SendDataFixedSize(21, &netID);
+    CommSys_SendDataFixedSize(COMM_CMD_DISCONNECT_WIFI, &netID);
 }
 
 /**

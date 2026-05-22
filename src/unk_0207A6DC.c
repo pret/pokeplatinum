@@ -27,7 +27,7 @@
 #include "sys_task_manager.h"
 #include "trainer_info.h"
 #include "unk_0202F1D4.h"
-#include "unk_02032798.h"
+#include "comm_command.h"
 #include "unk_020363E8.h"
 
 void sub_0207A81C(BattleSystem *battleSys, int param1, int param2, void *param3, u8 param4);
