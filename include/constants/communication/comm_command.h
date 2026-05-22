@@ -102,6 +102,21 @@ enum CommCommand_Battle {
     COMM_CMD_MAX_BATTLE,
 };
 
+// Communication Commands used for Poffin Cooking minigame
+enum CommCommand_PoffinCooking {
+    COMM_CMD_POFFIN_22 = COMM_CMD_MAX_COMMON,
+    COMM_CMD_POFFIN_23,
+    COMM_CMD_POFFIN_24,
+    COMM_CMD_POFFIN_25,
+    COMM_CMD_POFFIN_26,
+    COMM_CMD_POFFIN_27,
+    COMM_CMD_POFFIN_28,
+    COMM_CMD_POFFIN_29,
+    COMM_CMD_POFFIN_30,
+    COMM_CMD_POFFIN_31,
+    COMM_CMD_POFFIN_32,
+};
+
 // Communication Commands used for Mime Jr. Top minigame
 enum CommCommand_MimeJrTop {
     COMM_CMD_MIME_TOP_22 = COMM_CMD_MAX_COMMON,

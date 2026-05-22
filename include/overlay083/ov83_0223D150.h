@@ -7,7 +7,7 @@
 
 void ov83_0223D150(UnkStruct_ov83_0223B784 *param0, TrainerInfo *param1);
 void ov83_0223D1EC(UnkStruct_ov83_0223B784 *param0);
-void ov83_0223D204(int param0, int param1, void *param2, void *param3);
+void CommCmd_Poffin_22(int param0, int param1, void *param2, void *param3);
 void ov83_0223D210(int param0, int param1, void *param2, void *param3);
 void ov83_0223D21C(int param0, int param1, void *param2, void *param3);
 void ov83_0223D258(int param0, int param1, void *param2, void *param3);

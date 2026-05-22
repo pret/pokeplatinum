@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "overlay083/ov83_0223B5A0.h"
-#include "overlay083/ov83_0223D144.h"
+#include "overlay083/comm_command_poffin_cooking.h"
 #include "overlay083/ov83_0223D4CC.h"
 #include "overlay083/ov83_0223F7F4.h"
 #include "overlay083/struct_ov83_0223B784.h"
@@ -56,7 +56,7 @@ void ov83_0223D1EC(UnkStruct_ov83_0223B784 *param0)
     param0->unk_148C = NULL;
 }
 
-void ov83_0223D204(int param0, int param1, void *param2, void *param3)
+void CommCmd_Poffin_22(int param0, int param1, void *param2, void *param3)
 {
     UnkStruct_ov83_0223B784 *v0 = param3;
     ov83_0223B774(v0, 3);
