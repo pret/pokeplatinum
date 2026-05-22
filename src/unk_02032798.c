@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/communication/comm_command.h"
+
 #include "struct_defs/comm_cmd_table.h"
 
 #include "functypes/funcptr_02032868.h"
@@ -17,64 +19,77 @@
 
 typedef struct {
     const CommCmdTable *cmdTable;
-    int unk_04;
-    void *unk_08;
-    u8 unk_0C[8];
-    u8 unk_14;
+    int cmdTableSize;
+    void *data;
+    u8 swapCommandTableFlag[8];
+    u8 commandTableSwapped; // never accessed
 } CommCmdManager;
 
-static void sub_02032958(int param0, int param1, void *param2, void *param3);
-static void sub_0203299C(int param0, int param1, void *param2, void *param3);
-static void sub_020329C4(int param0, int param1, void *param2, void *param3);
-static int sub_02032954(void);
+static void CommCmd_SwapCommandTable(int param0, int param1, void *param2, void *param3);
+static void CommCmd_DeinitCommCmdManager(int param0, int param1, void *param2, void *param3);
+static void CommCmd_FinishSwapCmdTable(int param0, int param1, void *param2, void *param3);
+static int CommPacketSizeOf_Two(void);
 
-static const CommCmdTable Unk_020E5D64[] = {
-    { NULL, CommPacketSizeOf_Nothing, NULL },
-    { NULL, CommPacketSizeOf_Nothing, NULL },
-    { sub_0203619C, CommPacketSizeOf_Nothing, NULL },
-    { CommInfo_RecvPlayerData, CommPlayerInfo_Size, NULL },
-    { CommInfo_RecvPlayerDataArray, CommPlayerInfo_Size, NULL },
-    { CommunicatitonInformaion_FinishReading, CommPacketSizeOf_Nothing, NULL },
-    { CommManager_ValidateConfirmationMessage, CommManager_ConfirmationMessage_sizeof, NULL },
-    { CommManager_ValidateConfirmationResponseMessage, CommManager_ConfirmationMessage_sizeof, NULL },
-    { NULL, NULL, NULL },
-    { NULL, NULL, NULL },
-    { sub_02036008, CommPacketSizeOf_NetId, NULL },
-    { sub_02036030, CommPacketSizeOf_NetId, NULL },
-    { sub_02036058, CommPacketSizeOf_NetId, NULL },
-    { sub_02032958, CommPacketSizeOf_Nothing, NULL },
-    { sub_0203299C, CommPacketSizeOf_Nothing, NULL },
-    { sub_020329C4, CommPacketSizeOf_Nothing, NULL },
-    { CommCmd_16, CommPacketSizeOf_NetId, NULL },
-    { CommCmd_17, CommPacketSizeOf_NetId, NULL },
-    { CommCmd_18, sub_02032954, NULL },
-    { sub_02036574, sub_02036590, NULL },
-    { sub_02036670, CommTool_TempDataSize, NULL },
-    { CommManager_DisconnectWifi, CommPacketSizeOf_Nothing, NULL }
+/**
+ * CommCmdTable used by all communication methods
+ */
+static const CommCmdTable sCommCmdTable_Common[] = {
+    [COMM_CMD_NONE] = { NULL, CommPacketSizeOf_Nothing, NULL },
+    [COMM_CMD_1] = { NULL, CommPacketSizeOf_Nothing, NULL },
+    [COMM_CMD_2] = { sub_0203619C, CommPacketSizeOf_Nothing, NULL },
+    [COMM_CMD_RECV_PLAYER_INFO] = { CommCmd_RecvPlayerInfo, CommPlayerInfo_Size, NULL },
+    [COMM_CMD_RECV_PLAYER_INFO_ARRAY] = { CommCmd_RecvPlayerInfoArray, CommPlayerInfo_Size, NULL },
+    [COMM_CMD_RECV_PLAYER_INFO_FINISH] = { CommCmd_FinishRecvPlayerInfo, CommPacketSizeOf_Nothing, NULL },
+    [COMM_CMD_VALIDATE_CONFIRMATION] = { CommCmd_ValidateConfirmationMessage, CommManager_ConfirmationMessage_sizeof, NULL },
+    [COMM_CMD_VALIDATE_CONFIRMATION_RESPONSE] = { CommCmd_ValidateConfirmationResponseMessage, CommManager_ConfirmationMessage_sizeof, NULL },
+    [COMM_CMD_8] = { NULL, NULL, NULL },
+    [COMM_CMD_9] = { NULL, NULL, NULL },
+    [COMM_CMD_10] = { sub_02036008, CommPacketSizeOf_NetId, NULL },
+    [COMM_CMD_11] = { sub_02036030, CommPacketSizeOf_NetId, NULL },
+    [COMM_CMD_12] = { sub_02036058, CommPacketSizeOf_NetId, NULL },
+    [COMM_CMD_SWAP_CMD_TABLE] = { CommCmd_SwapCommandTable, CommPacketSizeOf_Nothing, NULL },
+    [COMM_CMD_DEINIT_MANAGER] = { CommCmd_DeinitCommCmdManager, CommPacketSizeOf_Nothing, NULL },
+    [COMM_CMD_FINISH_SWAP_CMD_TABLE] = { CommCmd_FinishSwapCmdTable, CommPacketSizeOf_Nothing, NULL },
+    [COMM_CMD_16] = { CommCmd_16, CommPacketSizeOf_NetId, NULL },
+    [COMM_CMD_17] = { CommCmd_17, CommPacketSizeOf_NetId, NULL },
+    [COMM_CMD_18] = { CommCmd_18, CommPacketSizeOf_Two, NULL },
+    [COMM_CMD_19] = { sub_02036574, sub_02036590, NULL },
+    [COMM_CMD_20] = { sub_02036670, CommTool_TempDataSize, NULL },
+    [COMM_CMD_DISCONNECT_WIFI] = { CommCmd_DisconnectWifi, CommPacketSizeOf_Nothing, NULL }
 };
 
 static CommCmdManager *sCommCmdManager = NULL;
 
-void CommCmd_Init(const CommCmdTable *cmdTable, int param1, void *param2)
+/**
+ * @brief Initializes the Communication Command Manager
+ *
+ * @param extraCmdTable
+ * @param cmdTableSize
+ * @param data
+ */
+void CommCmdManager_Init(const CommCmdTable *cmdTable, int cmdTableSize, void *data)
 {
-    int v0;
+    int i;
 
     if (!sCommCmdManager) {
         sCommCmdManager = Heap_Alloc(HEAP_ID_COMMUNICATION, sizeof(CommCmdManager));
     }
 
     sCommCmdManager->cmdTable = cmdTable;
-    sCommCmdManager->unk_04 = param1;
-    sCommCmdManager->unk_08 = param2;
+    sCommCmdManager->cmdTableSize = cmdTableSize;
+    sCommCmdManager->data = data;
 
-    for (v0 = 0; v0 < (7 + 1); v0++) {
-        sCommCmdManager->unk_0C[v0] = 0;
+    for (i = 0; i < (7 + 1); i++) {
+        sCommCmdManager->swapCommandTableFlag[i] = 0;
     }
 
-    sCommCmdManager->unk_14 = 0;
+    sCommCmdManager->commandTableSwapped = FALSE;
 }
 
-void sub_020327E0(void)
+/**
+ * @brief Frees the Communication Command Manager
+ */
+void CommCmdManager_Free(void)
 {
     if (sCommCmdManager) {
         Heap_Free(sCommCmdManager);
@@ -82,152 +97,220 @@ void sub_020327E0(void)
     }
 }
 
-void CommCmd_Callback(int param0, int cmd, int param2, void *param3)
+/**
+ * @brief Calls the communication command specified by cmd
+ *
+ * @param netID
+ * @param cmd
+ * @param size
+ * @param data
+ */
+void CommCommCmdManager_Callback(int netID, int cmd, int size, void *data)
 {
-    UnkFuncPtr_020F8E60 v0;
+    CommCmdRecvFunc recvFunc;
 
-    if (cmd < 22) {
-        v0 = Unk_020E5D64[cmd].unk_00;
+    if (cmd < COMM_CMD_MAX_COMMON) {
+        recvFunc = sCommCmdTable_Common[cmd].recvFunc;
     } else {
         GF_ASSERT(sCommCmdManager);
 
-        if (cmd > (sCommCmdManager->unk_04 + 22)) {
+        if (cmd > (sCommCmdManager->cmdTableSize + COMM_CMD_MAX_COMMON)) {
             sub_020363BC();
             return;
         }
 
-        v0 = sCommCmdManager->cmdTable[cmd - 22].unk_00;
+        recvFunc = sCommCmdManager->cmdTable[cmd - COMM_CMD_MAX_COMMON].recvFunc;
     }
 
-    if (v0 != NULL) {
+    if (recvFunc != NULL) {
         if (sCommCmdManager) {
-            v0(param0, param2, param3, sCommCmdManager->unk_08);
+            recvFunc(netID, size, data, sCommCmdManager->data);
         } else {
-            v0(param0, param2, param3, NULL);
+            recvFunc(netID, size, data, NULL);
         }
     }
 }
 
-int CommCmd_PacketSizeOf(int cmd)
+/**
+ * @brief Gets the sizeof the packet sent by the comm command
+ *
+ * @param cmd
+ *
+ * @return Output of _sizeof() function associated with cmd return. Default 0
+ */
+int CommCmdManager_PacketSizeOf(int cmd)
 {
-    int v0 = 0;
-    UnkFuncPtr_02032868 v1;
+    int size = 0;
+    CommCmdSizeFunc sizeFunc;
 
-    if (cmd < 22) {
-        v1 = Unk_020E5D64[cmd].unk_04;
+    if (cmd < COMM_CMD_MAX_COMMON) {
+        sizeFunc = sCommCmdTable_Common[cmd].sizeFunc;
     } else {
         GF_ASSERT(sCommCmdManager);
 
         if (sCommCmdManager == NULL) {
             sub_020363BC();
-            return v0;
+            return size;
         }
 
-        if (cmd > (sCommCmdManager->unk_04 + 22)) {
+        if (cmd > (sCommCmdManager->cmdTableSize + COMM_CMD_MAX_COMMON)) {
             GF_ASSERT(FALSE);
             sub_020363BC();
-            return v0;
+            return size;
         }
 
-        v1 = sCommCmdManager->cmdTable[cmd - 22].unk_04;
+        sizeFunc = sCommCmdManager->cmdTable[cmd - COMM_CMD_MAX_COMMON].sizeFunc;
     }
 
-    if (v1 != NULL) {
-        v0 = v1();
+    if (sizeFunc != NULL) {
+        size = sizeFunc();
     }
 
-    return v0;
+    return size;
 }
 
-BOOL sub_020328D0(int cmd)
+/**
+ * @brief Checks if the specified command has a receive buffer function
+ *
+ * @param cmd
+ *
+ * @return TRUE if the associated buffer function is not NULL
+ */
+BOOL CommCmdManager_CheckCmdHasBuffer(int cmd)
 {
-    if (cmd < 22) {
-        return Unk_020E5D64[cmd].unk_08 != NULL;
+    if (cmd < COMM_CMD_MAX_COMMON) {
+        return sCommCmdTable_Common[cmd].buffFunc != NULL;
     }
 
-    return sCommCmdManager->cmdTable[cmd - 22].unk_08 != NULL;
+    return sCommCmdManager->cmdTable[cmd - COMM_CMD_MAX_COMMON].buffFunc != NULL;
 }
 
-void *sub_0203290C(int cmd, int netId, int param2)
+/**
+ * @brief Creates a buffer specified by the cmd's corresponding receive buffer function
+ *
+ * @param cmd
+ * @param netID
+ * @param size
+ *
+ * @return Pointer to the buffer if created, NULL otherwise
+ */
+void *CommCmdManager_TryCreateRecvBuffer(int cmd, int netId, int size)
 {
-    UnkFuncPtr_0203290C v0;
+    CommCmdBuffFunc buffFunc;
 
-    if (cmd < 22) {
-        v0 = Unk_020E5D64[cmd].unk_08;
-        return v0(netId, NULL, param2);
+    if (cmd < COMM_CMD_MAX_COMMON) {
+        buffFunc = sCommCmdTable_Common[cmd].buffFunc;
+        return buffFunc(netId, NULL, size);
     } else {
-        v0 = sCommCmdManager->cmdTable[cmd - 22].unk_08;
-        return v0(netId, sCommCmdManager->unk_08, param2);
+        buffFunc = sCommCmdManager->cmdTable[cmd - COMM_CMD_MAX_COMMON].buffFunc;
+        return buffFunc(netId, sCommCmdManager->data, size);
     }
 
     return NULL;
 }
 
+/**
+ * @brief Gets the constant that indicates the message has a variable size instead of a fixed one.
+ *
+ * @return PACKET_SIZE_VARIABLE
+ */
 int CommPacketSizeOf_Variable(void)
 {
     return PACKET_SIZE_VARIABLE;
 }
 
+/**
+ * @brief Used for when the function doesn't receive any data
+ *
+ * @return 0
+ */
 int CommPacketSizeOf_Nothing(void)
 {
     return 0;
 }
 
+/**
+ * @brief Used for when the function only sends a NetID
+ *
+ * @return 1
+ */
 int CommPacketSizeOf_NetId(void)
 {
     return 1;
 }
 
-static int sub_02032954(void)
+/**
+ * @brief Returns 2
+ *
+ * @return 2
+ */
+static int CommPacketSizeOf_Two(void)
 {
     return 2;
 }
 
-static void sub_02032958(int param0, int param1, void *param2, void *param3)
+/**
+ * @brief Waits for a response from all connected players before swapping the secondary command table.
+ *
+ * @param netID
+ * @param size
+ * @param unused2
+ * @param unused3
+ */
+static void CommCmd_SwapCommandTable(int netID, int size, void *unused2, void *unused3)
 {
-    u8 *v0 = param2;
-    int v1;
+    int i;
 
     if (CommSys_CurNetId() != 0) {
         return;
     }
 
-    sCommCmdManager->unk_0C[param0] = 1;
+    sCommCmdManager->swapCommandTableFlag[netID] = 1;
 
-    for (v1 = 0; v1 < (7 + 1); v1++) {
-        if (!CommSys_IsPlayerConnected(v1)) {
+    for (i = 0; i < (7 + 1); i++) {
+        if (!CommSys_IsPlayerConnected(i)) {
             continue;
         }
 
-        if (!sCommCmdManager->unk_0C[v1]) {
+        if (!sCommCmdManager->swapCommandTableFlag[i]) {
             return;
         }
     }
 
-    CommSys_SendDataServer(14, NULL, 0);
+    CommSys_SendDataServer(COMM_CMD_DEINIT_MANAGER, NULL, 0);
 }
 
-static void sub_0203299C(int param0, int param1, void *param2, void *param3)
+/**
+ * @brief Deinitializes the Communication Command Manager without freeing it. Usually used to swap the secondary command table.
+ *
+ * @param netID
+ * @param size
+ * @param unused2
+ * @param unused3
+ */
+static void CommCmd_DeinitCommCmdManager(int netID, int size, void *param2, void *param3)
 {
-    u8 *v0 = param2;
-    int v1;
-
     sCommCmdManager->cmdTable = NULL;
-    sCommCmdManager->unk_04 = 0;
-    sCommCmdManager->unk_08 = NULL;
-    sCommCmdManager->unk_14 = 1;
+    sCommCmdManager->cmdTableSize = 0;
+    sCommCmdManager->data = NULL;
+    sCommCmdManager->commandTableSwapped = TRUE;
 
-    CommSys_SendDataFixedSize(15, param2);
+    CommSys_SendDataFixedSize(COMM_CMD_FINISH_SWAP_CMD_TABLE, param2);
 }
 
-static void sub_020329C4(int param0, int param1, void *param2, void *param3)
+/**
+ * @brief Waits for a response after finishing swapping the command table, reseting the swap flags.
+ *
+ * @param netID
+ * @param size
+ * @param unused2
+ * @param unused3
+ */
+static void CommCmd_FinishSwapCmdTable(int netID, int size, void *param2, void *param3)
 {
-    u8 *v0 = param2;
-    int v1;
-
     if (CommSys_CurNetId() != 0) {
         return;
     }
 
-    sCommCmdManager->unk_0C[param0] = 0;
+    sCommCmdManager->swapCommandTableFlag[netID] = 0;
 }

@@ -107,7 +107,7 @@ void sub_0207A6DC(void *param0)
     v2 = (UnkStruct_0207ACB4 *)Heap_Alloc(HEAP_ID_BATTLE, sizeof(UnkStruct_0207ACB4));
     v3 = (UnkStruct_0207AD40 *)Heap_Alloc(HEAP_ID_BATTLE, sizeof(UnkStruct_0207AD40));
 
-    CommCmd_Init(Unk_020F099C, v0, param0);
+    CommCmdManager_Init(Unk_020F099C, v0, param0);
 
     v2->battleSys = battleSys;
     v2->unk_04 = 0;
@@ -124,7 +124,7 @@ void sub_0207A6DC(void *param0)
 void sub_0207A744(void *param0)
 {
     int v0 = sizeof(Unk_020F099C) / sizeof(CommCmdTable);
-    CommCmd_Init(Unk_020F099C, v0, param0);
+    CommCmdManager_Init(Unk_020F099C, v0, param0);
 }
 
 static int sub_0207A758(void)

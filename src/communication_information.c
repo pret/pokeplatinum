@@ -153,7 +153,7 @@ int CommPlayerInfo_Size(void)
     return sizeof(CommPlayerInfo);
 }
 
-void CommunicatitonInformaion_FinishReading(int unused0, int unused1, void *unused2, void *unused3)
+void CommCmd_FinishRecvPlayerInfo(int unused0, int unused1, void *unused2, void *unused3)
 {
     if (sCommInfo) {
         sCommInfo->dataFinishedReading = TRUE;
@@ -167,7 +167,7 @@ BOOL CommInfo_IsDataFinishedReading(void)
     return sCommInfo->dataFinishedReading;
 }
 
-void CommInfo_RecvPlayerDataArray(int netId, int param1, void *src, void *unused)
+void CommCmd_RecvPlayerInfoArray(int netId, int param1, void *src, void *unused)
 {
     CommPlayerInfo *playerInfo = (CommPlayerInfo *)src;
 
@@ -195,7 +195,7 @@ void CommInfo_RecvPlayerDataArray(int netId, int param1, void *src, void *unused
     }
 }
 
-void CommInfo_RecvPlayerData(int netId, int param1, void *src, void *param3)
+void CommCmd_RecvPlayerInfo(int netId, int param1, void *src, void *param3)
 {
     if (!sCommInfo) {
         return;

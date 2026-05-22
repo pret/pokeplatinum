@@ -1404,7 +1404,7 @@ int CommSys_SendRingRemainingSize(void)
 
 static void CommSys_EndCallback(int netId, int command, int param2, void *param3, CommRecvPackage *param4)
 {
-    CommCmd_Callback(netId, command, param2, param3);
+    CommCommCmdManager_Callback(netId, command, param2, param3);
     param4->unk_0A = 0xee;
     param4->unk_08 = 0xffff;
     param4->unk_04 = NULL;
@@ -1437,7 +1437,7 @@ static void CommSys_RecvDataSingle(CommRing *ring, int netId, u8 *buffer, CommRe
         if (param3->unk_08 != 0xffff) {
             size = param3->unk_08;
         } else {
-            size = CommCmd_PacketSizeOf(cmd);
+            size = CommCmdManager_PacketSizeOf(cmd);
 
             if (sCommunicationSystem->unk_6B1) {
                 return;
@@ -1457,9 +1457,9 @@ static void CommSys_RecvDataSingle(CommRing *ring, int netId, u8 *buffer, CommRe
             param3->unk_08 = size;
         }
 
-        if (sub_020328D0(cmd)) {
+        if (CommCmdManager_CheckCmdHasBuffer(cmd)) {
             if (param3->unk_04 == NULL) {
-                param3->unk_04 = sub_0203290C(cmd, netId, param3->unk_08);
+                param3->unk_04 = CommCmdManager_TryCreateRecvBuffer(cmd, netId, param3->unk_08);
             }
 
             v3 = CommRing_Read(ring, buffer, size - param3->unk_00);

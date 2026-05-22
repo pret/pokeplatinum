@@ -142,7 +142,7 @@ static const CommCmdTable Unk_020F5A40[] = {
 void sub_02095E98(void *param0)
 {
     int v0 = sizeof(Unk_020F5A40) / sizeof(CommCmdTable);
-    CommCmd_Init(Unk_020F5A40, v0, param0);
+    CommCmdManager_Init(Unk_020F5A40, v0, param0);
 }
 
 void sub_02095EAC(int param0, int param1, void *param2, void *param3)

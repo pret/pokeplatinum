@@ -175,7 +175,7 @@ static void CommManager_Initialize(SaveData *saveData, int commType)
     sCommMan->commType = commType;
 
     CommSys_Seed(&sCommMan->rand);
-    CommCmd_Init(NULL, 0, NULL);
+    CommCmdManager_Init(NULL, 0, NULL);
 
     if ((commType != COMM_TYPE_UNION) && (commType != COMM_TYPE_PARTY) && (commType != COMM_TYPE_MYSTERY_GIFT)) {
         NetworkIcon_Init();
@@ -191,7 +191,7 @@ static void CommMan_Free(void)
         return;
     }
 
-    sub_020327E0();
+    CommCmdManager_Free();
 
     if (sCommMan->unk_00) {
         Heap_Free(sCommMan->unk_00);
@@ -1744,7 +1744,7 @@ static void CommTask_ConnectingDraw(void)
  * @param confirmationMessage
  * @param unused_3
  */
-void CommManager_ValidateConfirmationMessage(int netID, int unused_1, void *msg, void *unused_3)
+void CommCmd_ValidateConfirmationMessage(int netID, int unused_1, void *msg, void *unused_3)
 {
     int i;
     u8 *confirmation = msg;
@@ -1783,7 +1783,7 @@ void CommManager_ValidateConfirmationMessage(int netID, int unused_1, void *msg,
  * @param confirmationMessage
  * @param unused_3
  */
-void CommManager_ValidateConfirmationResponseMessage(int unused_0, int unused_1, void *msg, void *unused_3)
+void CommCmd_ValidateConfirmationResponseMessage(int unused_0, int unused_1, void *msg, void *unused_3)
 {
     u8 netID;
     int i;
@@ -2363,7 +2363,7 @@ static void CommTask_EndMatchmakingWifi(void)
 /**
  * @brief Ends wifi matchmaking and sets the disconnected from wifi flag. Params unused
  */
-void CommManager_DisconnectWifi(int unused_0, int unused_1, void *unused_2, void *unused_3)
+void CommCmd_DisconnectWifi(int unused_0, int unused_1, void *unused_2, void *unused_3)
 {
     if (CommSys_CurNetId() == 0) {
         sCommMan->unk_4C = 0;

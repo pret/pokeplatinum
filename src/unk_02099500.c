@@ -169,7 +169,7 @@ void sub_02099510(int param0, int param1, void *param2, void *param3)
 void CommFieldCmd_Init(void *param0)
 {
     int v0 = sizeof(Unk_020F68A4) / sizeof(CommCmdTable);
-    CommCmd_Init(Unk_020F68A4, v0, param0);
+    CommCmdManager_Init(Unk_020F68A4, v0, param0);
 }
 
 static int CommPacketSizeOf_TrainerCase(void)

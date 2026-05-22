@@ -14,7 +14,7 @@
 
 void ov115_02265A24(UnkStruct_ov115_0226095C *param0)
 {
-    CommCmd_Init(ov115_02265A18(), ov115_02265A20(), param0);
+    CommCmdManager_Init(ov115_02265A18(), ov115_02265A20(), param0);
 }
 
 int ov115_02265A40(void)

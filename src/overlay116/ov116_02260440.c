@@ -106,5 +106,5 @@ int ov116_022604A4(void)
 
 void ov116_022604A8(UnkStruct_ov116_0226139C *param0)
 {
-    CommCmd_Init(ov116_0226049C(), ov116_022604A4(), param0);
+    CommCmdManager_Init(ov116_0226049C(), ov116_022604A4(), param0);
 }

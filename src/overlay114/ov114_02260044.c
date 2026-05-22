@@ -12,12 +12,12 @@
 
 void ov114_02260044(UnkStruct_ov114_0225E854 *param0)
 {
-    CommCmd_Init(ov114_02260038(), ov114_02260040(), param0);
+    CommCmdManager_Init(ov114_02260038(), ov114_02260040(), param0);
 }
 
 void ov114_02260060(UnkStruct_ov114_0225D678 *param0)
 {
-    CommCmd_Init(ov114_02260038(), ov114_02260040(), param0);
+    CommCmdManager_Init(ov114_02260038(), ov114_02260040(), param0);
 }
 
 int ov114_0226007C(void)

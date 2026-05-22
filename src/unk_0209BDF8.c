@@ -33,7 +33,7 @@ typedef struct {
 static BOOL sub_0209BE84(UnkStruct_0209BDF8 *param0, u32 param1, const void *param2, u32 param3);
 
 static const CommCmdTable Unk_020F8EA8[135];
-static const UnkFuncPtr_020F8E60 Unk_020F8E60[18];
+static const CommCmdRecvFunc Unk_020F8E60[18];
 
 UnkStruct_0209BDF8 *sub_0209BDF8(UnkStruct_0209C194 *param0, enum HeapID heapID)
 {
@@ -57,7 +57,7 @@ void sub_0209BE38(UnkStruct_0209BDF8 *param0)
 
 void sub_0209BE50(UnkStruct_0209BDF8 *param0)
 {
-    CommCmd_Init(Unk_020F8EA8, 135, param0);
+    CommCmdManager_Init(Unk_020F8EA8, 135, param0);
 }
 
 void sub_0209BE64(UnkStruct_0209BDF8 *param0)
@@ -470,7 +470,7 @@ static const CommCmdTable Unk_020F8EA8[135] = {
     { sub_0209BEF0, sub_0209C158, sub_0209C160 }
 };
 
-static const UnkFuncPtr_020F8E60 Unk_020F8E60[18] = {
+static const CommCmdRecvFunc Unk_020F8E60[18] = {
     sub_0209C040,
     sub_0209BF54,
     sub_0209BF64,
