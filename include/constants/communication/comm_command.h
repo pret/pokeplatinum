@@ -1,10 +1,7 @@
 #ifndef POKEPLATINUM_CONSTANTS_COMM_COMMAND_H
 #define POKEPLATINUM_CONSTANTS_COMM_COMMAND_H
 
-/*
- * Base Communication Commands used globally.
- */
-
+// Base Communication Commands used globally.
 enum CommCommand_Common {
     COMM_CMD_NONE = 0,
     COMM_CMD_1,
@@ -31,6 +28,7 @@ enum CommCommand_Common {
     COMM_CMD_MAX_COMMON,
 };
 
+// Communication Commands used for the Frontier
 enum CommCommand_Frontier {
     COMM_CMD_F_22 = COMM_CMD_MAX_COMMON,
     COMM_CMD_F_23,
@@ -85,6 +83,16 @@ enum CommCommand_Frontier {
     COMM_CMD_ARCADE_RESULT,
     COMM_CMD_ARCADE_UNUSED,
     COMM_CMD_MAX_FRONTIER,
+};
+
+// Communication Commands used for Overlay 117
+
+enum CommCommand_Ov117 {
+    COMM_CMD_OV117_NONE = COMM_CMD_MAX_COMMON,
+    COMM_CMD_OV117_23,
+    COMM_CMD_OV117_24,
+    COMM_CMD_OV117_25,
+    COMM_CMD_MAX_OV117,
 };
 
 #endif

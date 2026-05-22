@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/communication/comm_command.h"
+
 #include "struct_decls/struct_0203041C_decl.h"
 #include "struct_decls/struct_020305B8_decl.h"
 
@@ -107,7 +109,7 @@ BOOL ov104_0222ED00(BattleHall *param0)
     v1 += 1;
     v1 += (7 + 1);
 
-    if (CommSys_SendData(34, v3, v5) == 1) {
+    if (CommSys_SendData(COMM_CMD_F_34, v3, v5) == 1) {
         v4 = 1;
     } else {
         v4 = 0;
@@ -151,7 +153,7 @@ BOOL ov104_0222ED44(BattleHall *param0)
 
     v3 += (10 * 2);
 
-    if (CommSys_SendData(35, v4, v6) == 1) {
+    if (CommSys_SendData(COMM_CMD_F_35, v4, v6) == 1) {
         v5 = 1;
     } else {
         v5 = 0;
@@ -200,7 +202,7 @@ BOOL ov104_0222EDA8(BattleHall *param0)
 
     v1 += (10 * 2);
 
-    if (CommSys_SendData(36, v2, v4) == 1) {
+    if (CommSys_SendData(COMM_CMD_F_36, v2, v4) == 1) {
         v3 = 1;
     } else {
         v3 = 0;
@@ -243,7 +245,7 @@ BOOL ov104_0222EE14(BattleHall *param0, u8 param1)
 
     v0[0] = param1;
 
-    if (CommSys_SendData(37, v0, v2) == 1) {
+    if (CommSys_SendData(COMM_CMD_F_37, v0, v2) == 1) {
         v1 = 1;
     } else {
         v1 = 0;
@@ -282,7 +284,7 @@ BOOL ov104_0222EE60(BattleHall *param0)
 
     MI_CpuCopy8(v5, &param0->unk_784[0], v4);
 
-    if (CommSys_SendDataHuge(38, param0->unk_784, v3) == 1) {
+    if (CommSys_SendDataHuge(COMM_CMD_F_38, param0->unk_784, v3) == 1) {
         v2 = 1;
     } else {
         v2 = 0;
@@ -335,7 +337,7 @@ BOOL ov104_0222EEF8(BattleFactory *param0)
     v1 += 4;
     v1 += (7 + 1);
 
-    if (CommSys_SendData(22, v3, v5) == 1) {
+    if (CommSys_SendData(COMM_CMD_F_22, v3, v5) == 1) {
         v4 = 1;
     } else {
         v4 = 0;
@@ -381,7 +383,7 @@ BOOL ov104_0222EF64(BattleFactory *param0)
 
     v1 += (7 * 2);
 
-    if (CommSys_SendData(23, v2, v4) == 1) {
+    if (CommSys_SendData(COMM_CMD_F_23, v2, v4) == 1) {
         v3 = 1;
     } else {
         v3 = 0;
@@ -443,7 +445,7 @@ BOOL ov104_0222EFCC(BattleFactory *param0)
 
     v1 += (6 * 2);
 
-    if (CommSys_SendData(24, v2, v4) == 1) {
+    if (CommSys_SendData(COMM_CMD_F_24, v2, v4) == 1) {
         v3 = 1;
     } else {
         v3 = 0;
@@ -519,7 +521,7 @@ BOOL ov104_0222F0B4(BattleFactory *param0)
 
     v1 += (4 * 2);
 
-    if (CommSys_SendData(25, v2, v4) == 1) {
+    if (CommSys_SendData(COMM_CMD_F_25, v2, v4) == 1) {
         v3 = 1;
     } else {
         v3 = 0;
@@ -575,7 +577,7 @@ BOOL ov104_0222F1A0(BattleFactory *param0, u8 param1)
 
     v0[0] = param1;
 
-    if (CommSys_SendData(26, v0, v2) == 1) {
+    if (CommSys_SendData(COMM_CMD_F_26, v0, v2) == 1) {
         v1 = 1;
     } else {
         v1 = 0;
@@ -608,7 +610,7 @@ BOOL ov104_0222F1EC(BattleFactory *param0, u8 param1)
 
     v0[0] = param1;
 
-    if (CommSys_SendData(27, v0, v2) == 1) {
+    if (CommSys_SendData(COMM_CMD_F_27, v0, v2) == 1) {
         v1 = 1;
     } else {
         v1 = 0;
@@ -672,7 +674,7 @@ BOOL ov104_0222F238(BattleFactory *param0)
 
     v2 += (v0 * 2);
 
-    if (CommSys_SendData(28, v3, v5) == 1) {
+    if (CommSys_SendData(COMM_CMD_F_28, v3, v5) == 1) {
         v4 = 1;
     } else {
         v4 = 0;
@@ -738,7 +740,7 @@ BOOL ov104_0222F3B8(BattleCastle *param0)
     param0->unk_3C0[v1] = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(param0->saveData), BattleFrontierStats_GetCastleLatestCPIndex(param0->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleLatestCPIndex(param0->challengeType)));
     v1 += 1;
 
-    if (CommSys_SendData(42, param0->unk_3C0, v3) == 1) {
+    if (CommSys_SendData(COMM_CMD_F_42, param0->unk_3C0, v3) == 1) {
         v2 = 1;
     } else {
         v2 = 0;
@@ -785,7 +787,7 @@ BOOL ov104_0222F44C(BattleCastle *param0)
 
     v1 += (7 * 2);
 
-    if (CommSys_SendData(43, param0->unk_3C0, v3) == 1) {
+    if (CommSys_SendData(COMM_CMD_F_43, param0->unk_3C0, v3) == 1) {
         v2 = 1;
     } else {
         v2 = 0;
@@ -850,7 +852,7 @@ BOOL ov104_0222F4B8(BattleCastle *param0)
 
     param0->unk_3C0[1] = param0->unk_A1B;
 
-    if (CommSys_SendData(44, param0->unk_3C0, v3) == 1) {
+    if (CommSys_SendData(COMM_CMD_F_44, param0->unk_3C0, v3) == 1) {
         v2 = 1;
     } else {
         v2 = 0;
@@ -935,7 +937,7 @@ BOOL ov104_0222F5D4(BattleCastle *param0)
 
     v1 += (4 * 2);
 
-    if (CommSys_SendData(45, param0->unk_3C0, v3) == 1) {
+    if (CommSys_SendData(COMM_CMD_F_45, param0->unk_3C0, v3) == 1) {
         v2 = 1;
     } else {
         v2 = 0;
@@ -988,7 +990,7 @@ BOOL ov104_0222F6C8(BattleCastle *param0, u16 param1)
     int v0, v1 = 40;
     param0->unk_3C0[0] = param1;
 
-    if (CommSys_SendData(46, param0->unk_3C0, v1) == 1) {
+    if (CommSys_SendData(COMM_CMD_F_46, param0->unk_3C0, v1) == 1) {
         v0 = 1;
     } else {
         v0 = 0;
@@ -1019,7 +1021,7 @@ BOOL ov104_0222F710(BattleCastle *param0, u16 param1)
     int v0, v1 = 40;
     param0->unk_3C0[0] = param1;
 
-    if (CommSys_SendData(47, param0->unk_3C0, v1) == 1) {
+    if (CommSys_SendData(COMM_CMD_F_47, param0->unk_3C0, v1) == 1) {
         v0 = 1;
     } else {
         v0 = 0;
@@ -1061,7 +1063,7 @@ BOOL ov104_0222F758(BattleCastle *param0)
         MI_CpuCopy8(v6, &param0->unk_410[v0 * v4], v4);
     }
 
-    if (CommSys_SendDataHuge(48, param0->unk_410, v3) == 1) {
+    if (CommSys_SendDataHuge(COMM_CMD_F_48, param0->unk_410, v3) == 1) {
         v2 = 1;
     } else {
         v2 = 0;
@@ -1124,7 +1126,7 @@ BOOL ov104_0222F86C(BattleArcade *param0)
 
     v1 += 3;
 
-    if (CommSys_SendData(65, param0->unk_424, v3) == 1) {
+    if (CommSys_SendData(COMM_CMD_F_65, param0->unk_424, v3) == 1) {
         v2 = 1;
     } else {
         v2 = 0;
@@ -1167,7 +1169,7 @@ BOOL ov104_0222F8D0(BattleArcade *param0)
 
     v1 += (7 * 2);
 
-    if (CommSys_SendData(66, param0->unk_424, v3) == 1) {
+    if (CommSys_SendData(COMM_CMD_F_66, param0->unk_424, v3) == 1) {
         v2 = 1;
     } else {
         v2 = 0;
@@ -1228,7 +1230,7 @@ BOOL ov104_0222F944(BattleArcade *param0)
 
     v1 += (4 * 2);
 
-    if (CommSys_SendData(67, param0->unk_424, v3) == 1) {
+    if (CommSys_SendData(COMM_CMD_F_67, param0->unk_424, v3) == 1) {
         v2 = 1;
     } else {
         v2 = 0;
@@ -1281,7 +1283,7 @@ BOOL ov104_0222FA38(BattleArcade *param0, u16 param1)
     int v0, v1 = 40;
     param0->unk_424[0] = param1;
 
-    if (CommSys_SendData(68, param0->unk_424, v1) == 1) {
+    if (CommSys_SendData(COMM_CMD_F_68, param0->unk_424, v1) == 1) {
         v0 = 1;
     } else {
         v0 = 0;
@@ -1312,7 +1314,7 @@ BOOL ov104_0222FA84(BattleArcade *param0, u16 param1)
     int v0, v1 = 40;
     param0->unk_424[0] = param1;
 
-    if (CommSys_SendData(69, param0->unk_424, v1) == 1) {
+    if (CommSys_SendData(COMM_CMD_F_69, param0->unk_424, v1) == 1) {
         v0 = 1;
     } else {
         v0 = 0;
@@ -1354,7 +1356,7 @@ BOOL ov104_0222FAD0(BattleArcade *param0)
         MI_CpuCopy8(v6, &param0->unk_474[v0 * v4], v4);
     }
 
-    if (CommSys_SendDataHuge(70, param0->unk_474, v3) == 1) {
+    if (CommSys_SendDataHuge(COMM_CMD_F_70, param0->unk_474, v3) == 1) {
         v2 = 1;
     } else {
         v2 = 0;

@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_02032798_H
-#define POKEPLATINUM_UNK_02032798_H
+#ifndef POKEPLATINUM_COMM_COMMAND_H
+#define POKEPLATINUM_COMM_COMMAND_H
 
 #include "struct_defs/comm_cmd_table.h"
 
@@ -13,4 +13,4 @@ int CommPacketSizeOf_Variable(void);
 int CommPacketSizeOf_Nothing(void);
 int CommPacketSizeOf_NetId(void);
 
-#endif // POKEPLATINUM_UNK_02032798_H
+#endif // POKEPLATINUM_COMM_COMMAND_H

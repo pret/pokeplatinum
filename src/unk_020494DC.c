@@ -5,6 +5,7 @@
 
 #include "constants/battle_tower.h"
 #include "constants/battle_tower_functions.h"
+#include "constants/communication/comm_command.h"
 #include "generated/battle_tower_modes.h"
 #include "generated/game_records.h"
 #include "generated/items.h"
@@ -253,15 +254,15 @@ BOOL ScrCmd_1E1(ScriptContext *ctx)
 
     switch (v3) {
     case 0:
-        cmd = 62;
+        cmd = COMM_CMD_F_62;
         sub_0204B060(ctx->fieldSystem->battleTower, ctx->fieldSystem->saveData);
         break;
     case 1:
-        cmd = 63;
+        cmd = COMM_CMD_F_63;
         sub_0204B0BC(ctx->fieldSystem->battleTower);
         break;
     case 2:
-        cmd = 64;
+        cmd = COMM_CMD_F_64;
         sub_0204B0D4(ctx->fieldSystem->battleTower, v4);
         break;
     }

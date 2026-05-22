@@ -19,10 +19,10 @@
 #include "overlay104/ov104_0223C164.h"
 
 #include "battle_frontier_stats.h"
+#include "comm_command.h"
 #include "communication_system.h"
 #include "party.h"
 #include "pokemon.h"
-#include "unk_02032798.h"
 #include "unk_0205DFC4.h"
 
 static void CommCmd_Frontier_62(int param0, int param1, void *param2, void *param3);
@@ -144,7 +144,7 @@ BOOL sub_0209BB08(BattleTower *battleTower)
 
     MI_CpuCopy8(battleTower->trainerIDs, battleTower->unk_83E, v1);
 
-    if (CommSys_SendData(63, battleTower->unk_83E, v1) == 1) {
+    if (CommSys_SendData(COMM_CMD_F_63, battleTower->unk_83E, v1) == 1) {
         v0 = 1;
     } else {
         v0 = 0;
@@ -206,7 +206,7 @@ BOOL sub_0209BBA4(UnkStruct_0209BBA4 *param0)
     v2 = ov104_0223C264(param0->unk_A0);
     param0->unk_08[1] = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(param0->saveData), v2, BattleFrontierStats_GetHostFriendIdx(v2));
 
-    if (CommSys_SendData(57, param0->unk_08, v1) == 1) {
+    if (CommSys_SendData(COMM_CMD_F_57, param0->unk_08, v1) == 1) {
         v0 = 1;
     } else {
         v0 = 0;
@@ -238,7 +238,7 @@ BOOL sub_0209BC1C(UnkStruct_0209BBA4 *param0, u16 param1)
     int v0, v1 = 40;
     param0->unk_08[0] = param1;
 
-    if (CommSys_SendData(58, param0->unk_08, v1) == 1) {
+    if (CommSys_SendData(COMM_CMD_F_58, param0->unk_08, v1) == 1) {
         v0 = 1;
     } else {
         v0 = 0;
@@ -298,7 +298,7 @@ BOOL sub_0209BC64(UnkStruct_0209BBA4 *param0, u16 param1, u16 param2)
     param0->unk_08[2] = param0->unk_76[1];
     param0->unk_08[3] = param0->unk_7E[1];
 
-    if (CommSys_SendData(59, param0->unk_08, v1) == 1) {
+    if (CommSys_SendData(COMM_CMD_F_59, param0->unk_08, v1) == 1) {
         v0 = 1;
     } else {
         v0 = 0;
@@ -332,7 +332,7 @@ BOOL sub_0209BD68(UnkStruct_0209BBA4 *param0, u16 param1)
 
     param0->unk_08[0] = param1;
 
-    if (CommSys_SendData(60, param0->unk_08, v1) == 1) {
+    if (CommSys_SendData(COMM_CMD_F_60, param0->unk_08, v1) == 1) {
         v0 = 1;
     } else {
         v0 = 0;
@@ -363,7 +363,7 @@ BOOL sub_0209BDB0(UnkStruct_0209BBA4 *param0, u16 param1)
     int v0, v1 = 40;
     param0->unk_08[0] = param1;
 
-    if (CommSys_SendData(61, param0->unk_08, v1) == 1) {
+    if (CommSys_SendData(COMM_CMD_F_61, param0->unk_08, v1) == 1) {
         v0 = 1;
     } else {
         v0 = 0;
