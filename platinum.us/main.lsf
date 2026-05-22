@@ -1669,7 +1669,7 @@ Overlay overlay115
 Overlay overlay116
 {
 	After overlay114
-	Object main.nef.p/src_overlay116_ov116_02260440.c.o
+	Object main.nef.p/src_overlay116_comm_command_mime_jr_top.c.o
 	Object main.nef.p/src_overlay116_ov116_022604C4.c.o
 	Object main.nef.p/src_overlay116_ov116_02261870.c.o
 	Object main.nef.p/src_overlay116_ov116_02262A44.c.o

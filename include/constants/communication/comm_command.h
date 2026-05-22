@@ -102,6 +102,16 @@ enum CommCommand_Battle {
     COMM_CMD_MAX_BATTLE,
 };
 
+// Communication Commands used for Mime Jr. Top minigame
+enum CommCommand_MimeJrTop {
+    COMM_CMD_MIME_TOP_22 = COMM_CMD_MAX_COMMON,
+    COMM_CMD_MIME_TOP_23,
+    COMM_CMD_MIME_TOP_24,
+    COMM_CMD_MIME_TOP_25,
+    COMM_CMD_MIME_TOP_26,
+    COMM_CMD_MAX_MIME_TOP,
+};
+
 // Communication Commands used for Wobbuffet Pop minigame
 enum CommCommand_WobbuffetPop {
     COMM_CMD_WOB_POP_NONE = COMM_CMD_MAX_COMMON,

@@ -993,7 +993,7 @@ pokeplatinum_c = files(
     'overlay115/ov115_02260CEC.c',
     'overlay115/ov115_02265A18.c',
     'overlay115/ov115_02265A24.c',
-    'overlay116/ov116_02260440.c',
+    'overlay116/comm_command_mime_jr_top.c',
     'overlay116/ov116_022604C4.c',
     'overlay116/ov116_02261870.c',
     'overlay116/ov116_02262A44.c',

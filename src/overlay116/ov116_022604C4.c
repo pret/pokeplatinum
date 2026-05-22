@@ -7,7 +7,7 @@
 
 #include "nintendo_wfc/main.h"
 #include "overlay114/ov114_0225C700.h"
-#include "overlay116/ov116_02260440.h"
+#include "overlay116/comm_command_mime_jr_top.h"
 #include "overlay116/ov116_02261870.h"
 #include "overlay116/ov116_02262A44.h"
 #include "overlay116/ov116_02262A8C.h"

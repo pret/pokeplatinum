@@ -1,7 +1,9 @@
-#include "overlay116/ov116_02260440.h"
+#include "overlay116/comm_command_mime_jr_top.h"
 
 #include <nitro.h>
 #include <string.h>
+
+#include "constants/communication/comm_command.h"
 
 #include "struct_defs/comm_cmd_table.h"
 
@@ -15,26 +17,28 @@
 #include "comm_command.h"
 #include "math_util.h"
 
-static void ov116_02260440(int param0, int param1, void *param2, void *param3);
-static void ov116_02260458(int param0, int param1, void *param2, void *param3);
-static void ov116_02260464(int param0, int param1, void *param2, void *param3);
-static void ov116_02260478(int param0, int param1, void *param2, void *param3);
-static void ov116_02260484(int param0, int param1, void *param2, void *param3);
+static void CommCmd_MimeJrTop_22(int param0, int param1, void *param2, void *param3);
+static void CommCmd_MimeJrTop_23(int param0, int param1, void *param2, void *param3);
+static void CommCmd_MimeJrTop_24(int param0, int param1, void *param2, void *param3);
+static void CommCmd_MimeJrTop_25(int param0, int param1, void *param2, void *param3);
+static void CommCmd_MimeJrTop_26(int param0, int param1, void *param2, void *param3);
 static int ov116_02260488(void);
 static int ov116_0226048C(void);
 static int ov116_02260490(void);
 static int ov116_02260494(void);
 static int ov116_02260498(void);
 
+// clang-format off
 static const CommCmdTable Unk_ov116_02267740[] = {
-    { ov116_02260440, ov116_0226048C, NULL },
-    { ov116_02260458, ov116_02260488, NULL },
-    { ov116_02260464, ov116_02260490, NULL },
-    { ov116_02260478, ov116_02260494, NULL },
-    { ov116_02260484, ov116_02260498, NULL }
+    [COMM_CMD_MIME_TOP_22 - COMM_CMD_MAX_COMMON] = { CommCmd_MimeJrTop_22, ov116_0226048C, NULL },
+    [COMM_CMD_MIME_TOP_23 - COMM_CMD_MAX_COMMON] = { CommCmd_MimeJrTop_23, ov116_02260488, NULL },
+    [COMM_CMD_MIME_TOP_24 - COMM_CMD_MAX_COMMON] = { CommCmd_MimeJrTop_24, ov116_02260490, NULL },
+    [COMM_CMD_MIME_TOP_25 - COMM_CMD_MAX_COMMON] = { CommCmd_MimeJrTop_25, ov116_02260494, NULL },
+    [COMM_CMD_MIME_TOP_26 - COMM_CMD_MAX_COMMON] = { CommCmd_MimeJrTop_26, ov116_02260498, NULL }
 };
+// clang-format on
 
-static void ov116_02260440(int param0, int param1, void *param2, void *param3)
+static void CommCmd_MimeJrTop_22(int param0, int param1, void *param2, void *param3)
 {
     UnkStruct_ov116_0226139C *v0 = param3;
 
@@ -44,27 +48,27 @@ static void ov116_02260440(int param0, int param1, void *param2, void *param3)
     ov116_022617D4(v0);
 }
 
-static void ov116_02260458(int param0, int param1, void *param2, void *param3)
+static void CommCmd_MimeJrTop_23(int param0, int param1, void *param2, void *param3)
 {
     UnkStruct_ov116_0226139C *v0 = param3;
     ov116_022617DC(v0);
 }
 
-static void ov116_02260464(int param0, int param1, void *param2, void *param3)
+static void CommCmd_MimeJrTop_24(int param0, int param1, void *param2, void *param3)
 {
     UnkStruct_ov116_0226139C *v0 = param3;
     UnkStruct_ov116_02260490 *v1 = ((UnkStruct_ov116_02260490 *)param2);
     v0->unk_04->unk_2858[param0].unk_00 = v1->unk_00;
 }
 
-static void ov116_02260478(int param0, int param1, void *param2, void *param3)
+static void CommCmd_MimeJrTop_25(int param0, int param1, void *param2, void *param3)
 {
     UnkStruct_ov116_0226139C *v0 = param3;
     UnkStruct_ov116_02260494 *v1 = ((UnkStruct_ov116_02260494 *)param2);
     v0->unk_24.unk_00[param0].unk_00 = v1->unk_00;
 }
 
-static void ov116_02260484(int param0, int param1, void *param2, void *param3)
+static void CommCmd_MimeJrTop_26(int param0, int param1, void *param2, void *param3)
 {
     UnkStruct_ov116_0226139C *v0 = param3;
 }
