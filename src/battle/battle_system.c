@@ -189,7 +189,7 @@ Terrain *BattlerSystem_GetTerrain(BattleSystem *battleSys, int index)
 
 BattleSubscreen *ov16_0223E02C(BattleSystem *battleSys)
 {
-    return battleSys->unk_198;
+    return battleSys->btlSubscreen;
 }
 
 PartyGauge *BattleSystem_GetPartyGauge(BattleSystem *battleSys, enum PartyGaugeSide partyGaugeSide)
@@ -1433,7 +1433,7 @@ void BattleSystem_SetStopRecording(BattleSystem *battleSys, int flag)
         return;
     }
 
-    BattleSubscreen_ShowStopRecordingMessage(battleSys->unk_198, flag);
+    BattleSubscreen_ShowStopRecordingMessage(battleSys->btlSubscreen, flag);
 
     StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 16, 2, HEAP_ID_BATTLE);
     Sound_StopWaveOutAndSequences();

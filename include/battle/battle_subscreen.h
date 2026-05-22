@@ -28,7 +28,7 @@ void BattleSubscreen_UpdateSlideWindow(BattleSubscreen *btlSubscreen);
 void BattleSubscreen_StartPanelSlide(BattleSubscreen *btlSubscreen, int slideSpeed, int targetOffset);
 void BattleSubscreen_UpdateMoveDisplay(BattleSubscreen *btlSubscreen, int battlerSlot, const MoveDisplayInfo *moveDisplayInfo);
 void ov16_Dummy3(BattleSubscreen *btlSubscreen, int param1);
-BOOL ov16_0226BCD0(BattleSubscreen *btlSubscreen);
+BOOL useless_0226BCD0(BattleSubscreen *btlSubscreen);
 int BattleSubscreen_GetSuppressActivationSFX(BattleSubscreen *btlSubscreen);
 void BattleSubscreen_SetSuppressActivationSFX(BattleSubscreen *btlSubscreen, int isCursorEnabled);
 void BattleSubscreen_ShowStopRecordingMessage(BattleSubscreen *btlSubscreen, int flag);

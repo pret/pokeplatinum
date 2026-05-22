@@ -14,18 +14,18 @@
 #include "struct_decls/struct_02012B20_decl.h"
 #include "struct_defs/struct_020127E8.h"
 
+#include "battle/action_select_data.h"
 #include "battle/battle_display.h"
 #include "battle/battle_system.h"
+#include "battle/give_up_move_data.h"
 #include "battle/move_display_info.h"
+#include "battle/move_select_data.h"
 #include "battle/ov16_0226DB7C.h"
 #include "battle/ov16_0226DE44.h"
-#include "battle/struct_ov16_02260C00.h"
-#include "battle/struct_ov16_02260F14.h"
-#include "battle/struct_ov16_022623F0.h"
-#include "battle/struct_ov16_02269668.h"
 #include "battle/struct_ov16_0226C378.h"
 #include "battle/struct_ov16_0226DC24_decl.h"
 #include "battle/struct_ov16_0226DEEC_decl.h"
+#include "battle/target_select_data.h"
 #include "overlay011/move_palettes.h"
 
 #include "assert.h"
@@ -86,22 +86,22 @@ typedef struct SubscreenTilemapRect {
     u8 right;
 } SubscreenTilemapRect;
 
-typedef struct { // CLEANUP: unused
+typedef struct {
     u16 unk_00;
     u16 unk_02;
     u16 unk_04;
     u16 unk_06;
     u16 unk_08;
-} UnkStruct_ov16_0226A3F4;
+} UnusedStruct_ov16_0226A3F4;
 
-typedef struct { // CLEANUP: unused
+typedef struct {
     SysTask *unk_00;
     u8 *unk_04;
     void *unk_08;
     u8 *unk_0C;
-    UnkStruct_ov16_0226A3F4 unk_10;
+    UnusedStruct_ov16_0226A3F4 unk_10;
     u16 unk_1C;
-} UnkStruct_ov16_02268A14_sub3_sub1;
+} UnusedStruct_ov16_02268A14_sub3_sub1;
 
 typedef struct MenuButtonPressAnimState {
     s16 phase;
@@ -114,33 +114,33 @@ typedef struct MenuButtonPressAnimState {
             u8 srcBufIndex;
             u8 fontOAMIdx;
             u8 spriteIndex;
-            u8 unk_0F; // CLEANUP: written to but never read
+            u8 unread;
             u8 freeSprites;
             ScreenPos screenPos;
         } ButtonPressAnimationState;
         struct {
-            UnkStruct_ov16_02268A14_sub3_sub1 *unk_00[4]; // CLEANUP: unused
-            UnkStruct_ov16_02268A14_sub3_sub1 *unk_10; // CLEANUP: unused
-            NNSG2dCharacterData *unk_14; // CLEANUP: unused
-            void *unk_18; // CLEANUP: unused
+            UnusedStruct_ov16_02268A14_sub3_sub1 *unused_00[4];
+            UnusedStruct_ov16_02268A14_sub3_sub1 *unused_10;
+            NNSG2dCharacterData *unused_14;
+            void *unused_18;
             int selectedTarget;
         } TargetSelectAnimationState;
     };
 } MenuButtonPressAnimState;
 
-typedef struct { // CLEANUP: never accessed
+typedef struct {
     int unk_00;
     s16 unk_04;
     s16 unk_06;
     u8 unk_08;
     u8 unk_09;
-} UnkStruct_ov16_02268A14_sub4;
+} UnusedStruct_ov16_02268A14_sub4;
 
-typedef struct { // CLEANUP: never accessed
+typedef struct {
     const SubscreenTilemapRect *unk_00;
     u8 unk_04;
     s8 unk_05;
-} UnkStruct_ov16_02268A14_sub1;
+} UnusedStruct_ov16_02268A14_sub1;
 
 typedef struct FontOAMEntry {
     FontOAM *fontOAM;
@@ -152,7 +152,7 @@ typedef struct PartyBallAnimState {
     s16 xOffset;
     u8 expPercent;
     u8 phase;
-    u8 unk_04; // CLEANUP: set but never read
+    u8 unused_04;
     u8 delay;
     u8 frameCount;
     u8 duration;
@@ -163,7 +163,7 @@ typedef struct MenuCursor {
     u8 isActive;
     s8 y;
     s8 x;
-    u8 unk_03; // CLEANUP: unused
+    u8 unused_03;
 } MenuCursor;
 
 typedef union {
@@ -192,8 +192,8 @@ typedef struct BattleSubscreen_t {
     u8 *suppressActivationSfxPtr;
     SysTask *animatePartyBallsTask;
     SysTask *menuTransitionTask;
-    SysTask *unk_10; // CLEANUP: never assigned
-    UnkStruct_ov16_02268A14_sub1 unk_14; // CLEANUP: never accessed
+    SysTask *unused_10;
+    UnusedStruct_ov16_02268A14_sub1 unused_14;
     ActiveMenuData activeMenuData;
     u16 *tilemapBuffers[7];
     u16 *subscreenPaletteBuf;
@@ -203,7 +203,7 @@ typedef struct BattleSubscreen_t {
     MoveDisplayData moveDisplayData[4];
     UnkStruct_02012744 *fontOAMManager;
     FontOAMEntry fontOAMEntry[13];
-    UnkStruct_02012B20 *unk_5B8; // CLEANUP: never accessed
+    UnkStruct_02012B20 *unused_5B8;
     ManagedSprite *playerPartyBallSprites[6];
     ManagedSprite *opponentPartyBallSprites[6];
     ManagedSprite *moveSelectSprites[4];
@@ -211,22 +211,22 @@ typedef struct BattleSubscreen_t {
     ManagedSprite *targetSelectPokeIconSprites[4];
     SysTask *pokeIconAnimTasks[4];
     PartyBallAnimState partyBallAnimState[6];
-    SysTask *unk_664; // CLEANUP: never assigned
-    u8 unk_668; // CLEANUP: never accessed
-    u8 unk_669; // CLEANUP: never accessed
+    SysTask *unused_664;
+    u8 unused_668;
+    u8 unused_669;
     u8 battlerType;
     s8 activeMenuConfigIndex;
     u8 targetingLayout;
     u8 trainerGender;
     u8 isPanelSliding;
     u8 hasCancelButton;
-    u8 unk_670; // CLEANUP: never accessed
-    s16 unk_672; // CLEANUP: never accessed
+    u8 unused_670;
+    s16 unused_672;
     u8 pulseCursorDirection;
     s16 pulseCursorBlendValue;
     SysTask *pulseCursorTask;
     MenuButtonPressAnimState menuButtonPressAnimState;
-    UnkStruct_ov16_02268A14_sub4 unk_6A0; // CLEANUP: never accessed
+    UnusedStruct_ov16_02268A14_sub4 unused_6A0;
     s32 panelScrollPos;
     s32 slideSpeed;
     s32 targetOffset;
@@ -243,8 +243,8 @@ typedef struct BattleSubscreen_t {
 } BattleSubscreen_t;
 
 typedef struct BattleMenuConfig {
-    u16 unk_00; // CLEANUP: never accessed
-    u16 unk_02; // CLEANUP: never accessed
+    u16 unused_00;
+    u16 unused_02;
     u16 bgTilemapBufIndices[4];
     u16 bgPriorities[4];
     const TouchScreenRect *touchScreenRects;
@@ -257,11 +257,11 @@ typedef struct BattleMenuConfig {
 } BattleMenuConfig;
 
 static void *BattleSubscreen_Alloc(void);
-static void BattleSubscreen_OpenActionMenu(BattleSubscreen *btlSubscreen, int param1, int param2);
+static void BattleSubscreen_OpenActionMenu(BattleSubscreen *btlSubscreen, int unused1, int unused2);
 static void BattleSubscreen_DrawActionMenu(BattleSubscreen *btlSubscreen, int unused1, int unused2);
-static void BattleSubscreen_OpenFirstBattleMenu(BattleSubscreen *btlSubscreen, int param1, int param2);
+static void BattleSubscreen_OpenFirstBattleMenu(BattleSubscreen *btlSubscreen, int unused1, int unused2);
 static void BattleSubscreen_DrawFirstBattleMenu(BattleSubscreen *btlSubscreen, int unused1, int unused2);
-static void BattleSubscreen_OpenPalParkMenu(BattleSubscreen *btlSubscreen, int param1, int param2);
+static void BattleSubscreen_OpenPalParkMenu(BattleSubscreen *btlSubscreen, int unused1, int unused2);
 static void BattleSubscreen_DrawPalParkMenu(BattleSubscreen *btlSubscreen, int unused1, int unused2);
 static void BattleSubscreen_DrawStopMenu(BattleSubscreen *btlSubscreen, int unused1, int unused2);
 static int BattleSubscreen_ProcessActionInput(BattleSubscreen *btlSubscreen, int selectedAction, int unused);
@@ -315,7 +315,7 @@ static void SysTask_ApplySlideInBgOffsets(SysTask *unused, void *panelState);
 static void HBlankCallback_SlideInPanel(void *panelState);
 static TextColor GetPPTextColor(int currPP, int maxPP);
 void ov16_Dummy3(BattleSubscreen *unused1, int unused2);
-BOOL ov16_0226BCD0(BattleSubscreen *btlSubscreen);
+BOOL useless_0226BCD0(BattleSubscreen *btlSubscreen);
 static void SysTask_PulseCursorHighlight(SysTask *unused, void *subscreen);
 static void SysTask_AnimatePartyBalls(SysTask *unused, void *subscreen);
 static int BattleSystem_MenuKeys(BattleSubscreen *btlSubscreen);
@@ -460,7 +460,7 @@ static const int sActionMenuButtonResults[NELEMS(sActionMenuTouchRects) - 1] = {
     0x4
 };
 
-__attribute__((aligned(4))) static const u8 Unk_ov16_02270A08[NELEMS(sActionMenuTouchRects) - 1] = { // CLEANUP: unused
+__attribute__((aligned(4))) static const u8 Unused_ov16_02270A08[NELEMS(sActionMenuTouchRects) - 1] = {
     0x1,
     0x2,
     0x3,
@@ -616,7 +616,7 @@ static const BattleMenuConfig sBattleMenuConfigs[] = {
         { 0x2, 0x3, 0x3, 0x0 },
         sActionMenuTouchRects,
         sActionMenuButtonResults,
-        Unk_ov16_02270A08,
+        Unused_ov16_02270A08,
         BattleSystem_Cursor_Menu,
         SaveActionMenuCursorPos,
         BattleSubscreen_OpenActionMenu,
@@ -629,7 +629,7 @@ static const BattleMenuConfig sBattleMenuConfigs[] = {
         { 0x2, 0x3, 0x3, 0x0 },
         sActionMenuTouchRects,
         sActionMenuButtonResults,
-        Unk_ov16_02270A08,
+        Unused_ov16_02270A08,
         BattleSystem_Cursor_Menu,
         SaveActionMenuCursorPos,
         BattleSubscreen_OpenActionMenu,
@@ -642,7 +642,7 @@ static const BattleMenuConfig sBattleMenuConfigs[] = {
         { 0x2, 0x3, 0x3, 0x0 },
         sActionMenuTouchRects,
         sActionMenuButtonResults,
-        Unk_ov16_02270A08,
+        Unused_ov16_02270A08,
         BattleSystem_Cursor_Menu,
         SaveActionMenuCursorPos,
         BattleSubscreen_DrawActionMenu,
@@ -655,7 +655,7 @@ static const BattleMenuConfig sBattleMenuConfigs[] = {
         { 0x2, 0x3, 0x3, 0x0 },
         sActionMenuTouchRects,
         sActionMenuButtonResults,
-        Unk_ov16_02270A08,
+        Unused_ov16_02270A08,
         BattleSystem_Cursor_Menu,
         SaveActionMenuCursorPos,
         BattleSubscreen_DrawActionMenu,
@@ -668,7 +668,7 @@ static const BattleMenuConfig sBattleMenuConfigs[] = {
         { 0x2, 0x3, 0x3, 0x0 },
         sFirstBattleMenuTouchRects,
         sActionMenuButtonResults,
-        Unk_ov16_02270A08,
+        Unused_ov16_02270A08,
         BattleSystem_Cursor_Menu,
         SaveActionMenuCursorPos,
         BattleSubscreen_OpenFirstBattleMenu,
@@ -681,7 +681,7 @@ static const BattleMenuConfig sBattleMenuConfigs[] = {
         { 0x2, 0x3, 0x3, 0x0 },
         sFirstBattleMenuTouchRects,
         sActionMenuButtonResults,
-        Unk_ov16_02270A08,
+        Unused_ov16_02270A08,
         BattleSystem_Cursor_Menu,
         SaveActionMenuCursorPos,
         BattleSubscreen_DrawFirstBattleMenu,
@@ -694,7 +694,7 @@ static const BattleMenuConfig sBattleMenuConfigs[] = {
         { 0x2, 0x1, 0x3, 0x0 },
         sActionMenuTouchRects,
         sActionMenuButtonResults,
-        Unk_ov16_02270A08,
+        Unused_ov16_02270A08,
         BattleSystem_Cursor_Menu,
         SaveActionMenuCursorPos,
         BattleSubscreen_OpenActionMenu,
@@ -707,7 +707,7 @@ static const BattleMenuConfig sBattleMenuConfigs[] = {
         { 0x2, 0x1, 0x3, 0x0 },
         sActionMenuTouchRects,
         sActionMenuButtonResults,
-        Unk_ov16_02270A08,
+        Unused_ov16_02270A08,
         BattleSystem_Cursor_Menu,
         SaveActionMenuCursorPos,
         BattleSubscreen_DrawActionMenu,
@@ -1109,10 +1109,10 @@ void *BattleSubscreen_New(NARC *unused1, NARC *unused2, BattleSystem *battleSys,
         Heap_Free(scrnAlloc);
     }
 
-    int battleType = BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_FRONTIER ? 340 : 242;
+    int narcMemberIdx = BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_FRONTIER ? 340 : 242;
     btlSubscreen->subscreenPaletteBuf = Heap_Alloc(HEAP_ID_BATTLE, 0x200);
 
-    PaletteData_LoadBufferFromFileStart(pltData, 7, battleType, 5, 1, 0, 0);
+    PaletteData_LoadBufferFromFileStart(pltData, 7, narcMemberIdx, 5, 1, 0, 0);
 
     if (sSubscreenBgPlttIndices[bg].bgPlttIndex != 0xffff) {
         PaletteData_LoadBufferFromFileStart(pltData, 7, sSubscreenBgPlttIndices[bg].bgPlttIndex, 5, 1, 0x20, 0);
@@ -1219,7 +1219,7 @@ void BattleSubscreen_LoadGraphics(BattleSubscreen *btlSubscreen)
 void BattleSubscreen_FreeGraphics(BattleSubscreen *btlSubscreen)
 {
     int i;
-    SpriteSystem *spriteSys = BattleSystem_GetSpriteSystem(btlSubscreen->battleSys); // CLEANUP: unused
+    SpriteSystem *unused = BattleSystem_GetSpriteSystem(btlSubscreen->battleSys);
     SpriteManager *spriteMan = BattleSystem_GetSpriteManager(btlSubscreen->battleSys);
 
     for (i = 0; i < 4; i++) {
@@ -1319,7 +1319,7 @@ static void BattleSubscreen_FreeSprites(BattleSubscreen *btlSubscreen)
 {
     GF_ASSERT(btlSubscreen->playerPartyBallSprites[0] && btlSubscreen->opponentPartyBallSprites[0]);
 
-    SpriteSystem *spriteSys = BattleSystem_GetSpriteSystem(btlSubscreen->battleSys); // CLEANUP: unused
+    SpriteSystem *unused = BattleSystem_GetSpriteSystem(btlSubscreen->battleSys);
     SpriteManager *spriteMan = BattleSystem_GetSpriteManager(btlSubscreen->battleSys);
 
     SpriteManager_UnloadCharObjById(spriteMan, 20023);
@@ -1360,7 +1360,7 @@ static void SysTask_AnimatePartyBalls(SysTask *unused, void *subscreen)
             }
 
             if (ballAnimState->expPercent >= 87) {
-                ballAnimState->unk_04 = 0;
+                ballAnimState->unused_04 = 0;
                 ballAnimState->delay = 10;
             } else {
                 break;
@@ -1496,7 +1496,7 @@ int BattleSystem_MenuInput(BattleSubscreen *btlSubscreen)
     } else {
         buttonIndex = TouchScreen_CheckRectanglePressed(battleMenuConfig->touchScreenRects);
 
-        if (buttonIndex == TOUCHSCREEN_INPUT_NONE) { // Nothing was selected with touch
+        if (buttonIndex == TOUCHSCREEN_INPUT_NONE) {
             buttonIndex = BattleSystem_MenuKeys(btlSubscreen);
             isKeyInput++;
         }
@@ -1534,32 +1534,32 @@ int BattleSystem_MenuInput(BattleSubscreen *btlSubscreen)
 
 BOOL BattleSubscreen_IsReady(BattleSubscreen *btlSubscreen)
 {
-    return !btlSubscreen->menuTransitionTask && !btlSubscreen->unk_10 && ov16_0226BCD0(btlSubscreen) == TRUE;
+    return !btlSubscreen->menuTransitionTask && !btlSubscreen->unused_10 && useless_0226BCD0(btlSubscreen) == TRUE;
 }
 
 int GetTargetSelectLayout(int range, int battlerType)
 {
     switch (range) {
-    case 0x0:
-        return battlerType == 4 ? 9 : 8;
-    case 0x1:
-    case 0x2:
-    case 0x10:
-        return battlerType == 4 ? 6 : 4;
-    case 0x4:
-    case 0x80:
+    case RANGE_SINGLE_TARGET:
+        return battlerType == BATTLER_TYPE_PLAYER_SIDE_SLOT_2 ? 9 : 8;
+    case RANGE_SINGLE_TARGET_SPECIAL:
+    case RANGE_RANDOM_OPPONENT:
+    case RANGE_USER:
+        return battlerType == BATTLER_TYPE_PLAYER_SIDE_SLOT_2 ? 6 : 4;
+    case RANGE_ADJACENT_OPPONENTS:
+    case RANGE_OPPONENT_SIDE:
         return 1;
-    case 0x8:
-        return battlerType == 4 ? 7 : 2;
-    case 0x100:
-        return battlerType == 4 ? 4 : 6;
-    case 0x40:
+    case RANGE_ALL_ADJACENT:
+        return battlerType == BATTLER_TYPE_PLAYER_SIDE_SLOT_2 ? 7 : 2;
+    case RANGE_ALLY:
+        return battlerType == BATTLER_TYPE_PLAYER_SIDE_SLOT_2 ? 4 : 6;
+    case RANGE_FIELD:
         return 3;
-    case 0x200:
+    case RANGE_USER_OR_ALLY:
         return 10;
-    case 0x20:
+    case RANGE_USER_SIDE:
         return 5;
-    case 0x400:
+    case RANGE_SINGLE_TARGET_ME_FIRST:
         return 11;
     default:
         GF_ASSERT(FALSE);
@@ -1649,60 +1649,60 @@ static void BattleSubscreen_SlideInPanel(BattleSubscreen *btlSubscreen, int dire
     slideInPanelState->task = SysTask_ExecuteOnVBlank(SysTask_ApplySlideInBgOffsets, slideInPanelState, 10);
 }
 
-static void BattleSubscreen_OpenActionMenu(BattleSubscreen *btlSubscreen, int param1, int param2) // CLEANUP: param1 and param2 are basically unused
+static void BattleSubscreen_OpenActionMenu(BattleSubscreen *btlSubscreen, int unused1, int unused2)
 {
-    int direction = btlSubscreen->activeMenuData.actionData.unk_00;
+    int direction = btlSubscreen->activeMenuData.actionData.battlerType;
 
-    BattleSubscreen_DrawActionMenu(btlSubscreen, param1, param2);
+    BattleSubscreen_DrawActionMenu(btlSubscreen, unused1, unused2);
     BattleSubscreen_SlideInPanel(btlSubscreen, direction);
 }
 
-static void BattleSubscreen_DrawActionMenu(BattleSubscreen *btlSubscreen, int unused1, int unused2) // CLEANUP: unused parameters
+static void BattleSubscreen_DrawActionMenu(BattleSubscreen *btlSubscreen, int unused1, int unused2)
 {
-    String *textMsg1, *textMsg2, *textMsg3, *textMsg4;
+    String *fightOrBallText, *bagOrBaitText, *pokemonOrMudText, *runOrCancelText;
     ActionSelectData *actionData = &btlSubscreen->activeMenuData.actionData;
-    int battlerType = actionData->unk_00;
+    int battlerType = actionData->battlerType;
 
     btlSubscreen->isWaitingForPartner = actionData->isWaitingForPartner;
     MessageLoader *msgLoader = BattleSystem_GetMessageLoader(btlSubscreen->battleSys);
     btlSubscreen->battlerType = battlerType;
 
     if (BattleSystem_GetBattleType(btlSubscreen->battleSys) & BATTLE_TYPE_SAFARI) {
-        textMsg1 = MessageLoader_GetNewString(msgLoader, BattleStrings_Text_Ball);
-        textMsg2 = MessageLoader_GetNewString(msgLoader, BattleStrings_Text_Bait);
-        textMsg3 = MessageLoader_GetNewString(msgLoader, BattleStrings_Text_Mud);
+        fightOrBallText = MessageLoader_GetNewString(msgLoader, BattleStrings_Text_Ball);
+        bagOrBaitText = MessageLoader_GetNewString(msgLoader, BattleStrings_Text_Bait);
+        pokemonOrMudText = MessageLoader_GetNewString(msgLoader, BattleStrings_Text_Mud);
     } else if (BattleSystem_GetBattleType(btlSubscreen->battleSys) & BATTLE_TYPE_PAL_PARK) {
-        textMsg1 = MessageLoader_GetNewString(msgLoader, BattleStrings_Text_BallPalPark);
-        textMsg2 = MessageLoader_GetNewString(msgLoader, BattleStrings_Text_Bait);
-        textMsg3 = MessageLoader_GetNewString(msgLoader, BattleStrings_Text_Mud);
+        fightOrBallText = MessageLoader_GetNewString(msgLoader, BattleStrings_Text_BallPalPark);
+        bagOrBaitText = MessageLoader_GetNewString(msgLoader, BattleStrings_Text_Bait);
+        pokemonOrMudText = MessageLoader_GetNewString(msgLoader, BattleStrings_Text_Mud);
     } else {
-        textMsg1 = MessageLoader_GetNewString(msgLoader, BattleStrings_Text_Fight);
-        textMsg2 = MessageLoader_GetNewString(msgLoader, BattleStrings_Text_Bag);
-        textMsg3 = MessageLoader_GetNewString(msgLoader, BattleStrings_Text_Pokemon);
+        fightOrBallText = MessageLoader_GetNewString(msgLoader, BattleStrings_Text_Fight);
+        bagOrBaitText = MessageLoader_GetNewString(msgLoader, BattleStrings_Text_Bag);
+        pokemonOrMudText = MessageLoader_GetNewString(msgLoader, BattleStrings_Text_Pokemon);
     }
 
     if (btlSubscreen->isWaitingForPartner == TRUE) {
-        textMsg4 = MessageLoader_GetNewString(msgLoader, BattleStrings_Text_Cancel);
+        runOrCancelText = MessageLoader_GetNewString(msgLoader, BattleStrings_Text_Cancel);
         btlSubscreen->hasCancelButton = TRUE;
     } else {
-        textMsg4 = MessageLoader_GetNewString(msgLoader, BattleStrings_Text_Run);
+        runOrCancelText = MessageLoader_GetNewString(msgLoader, BattleStrings_Text_Run);
         btlSubscreen->hasCancelButton = FALSE;
     }
 
-    BattleSubscreen_NewFontOAM(btlSubscreen, &btlSubscreen->fontOAMEntry[0], textMsg1, FONT_SUBSCREEN, TEXT_COLOR(1, 2, 3), 2, 20023, 128, 84, 1, NULL);
-    BattleSubscreen_NewFontOAM(btlSubscreen, &btlSubscreen->fontOAMEntry[1], textMsg2, FONT_SUBSCREEN, TEXT_COLOR(4, 5, 6), 2, 20023, 40, 170, 1, NULL);
-    BattleSubscreen_NewFontOAM(btlSubscreen, &btlSubscreen->fontOAMEntry[2], textMsg3, FONT_SUBSCREEN, TEXT_COLOR(7, 8, 9), 2, 20023, 216, 170, 1, NULL);
-    BattleSubscreen_NewFontOAM(btlSubscreen, &btlSubscreen->fontOAMEntry[3], textMsg4, FONT_SUBSCREEN, TEXT_COLOR(10, 11, 12), 2, 20023, 128, 178, 1, NULL);
+    BattleSubscreen_NewFontOAM(btlSubscreen, &btlSubscreen->fontOAMEntry[0], fightOrBallText, FONT_SUBSCREEN, TEXT_COLOR(1, 2, 3), 2, 20023, 128, 84, 1, NULL);
+    BattleSubscreen_NewFontOAM(btlSubscreen, &btlSubscreen->fontOAMEntry[1], bagOrBaitText, FONT_SUBSCREEN, TEXT_COLOR(4, 5, 6), 2, 20023, 40, 170, 1, NULL);
+    BattleSubscreen_NewFontOAM(btlSubscreen, &btlSubscreen->fontOAMEntry[2], pokemonOrMudText, FONT_SUBSCREEN, TEXT_COLOR(7, 8, 9), 2, 20023, 216, 170, 1, NULL);
+    BattleSubscreen_NewFontOAM(btlSubscreen, &btlSubscreen->fontOAMEntry[3], runOrCancelText, FONT_SUBSCREEN, TEXT_COLOR(10, 11, 12), 2, 20023, 128, 178, 1, NULL);
 
-    String_Free(textMsg1);
-    String_Free(textMsg2);
-    String_Free(textMsg3);
-    String_Free(textMsg4);
+    String_Free(fightOrBallText);
+    String_Free(bagOrBaitText);
+    String_Free(pokemonOrMudText);
+    String_Free(runOrCancelText);
 
     if (!(BattleSystem_GetBattleType(btlSubscreen->battleSys) & (BATTLE_TYPE_SAFARI | BATTLE_TYPE_PAL_PARK))) {
-        Pokemon *partyMon = BattleSystem_GetPartyPokemon(btlSubscreen->battleSys, actionData->unk_01, actionData->unk_02);
+        Pokemon *partyMon = BattleSystem_GetPartyPokemon(btlSubscreen->battleSys, actionData->battler, actionData->partySlot);
         BattleSubscreen_LoadPokeIconResources(btlSubscreen);
-        ManagedSprite *manSprite = BattleSubscreen_NewPokeIconSprite(btlSubscreen, partyMon, battlerType, actionData->unk_04, actionData->unk_06, actionData->unk_03);
+        ManagedSprite *manSprite = BattleSubscreen_NewPokeIconSprite(btlSubscreen, partyMon, battlerType, actionData->curHp, actionData->maxHp, actionData->ballStatusBattler);
 
         int x, y;
 
@@ -1718,15 +1718,15 @@ static void BattleSubscreen_DrawActionMenu(BattleSubscreen *btlSubscreen, int un
     }
 }
 
-static void BattleSubscreen_OpenFirstBattleMenu(BattleSubscreen *btlSubscreen, int param1, int param2) // CLEANUP: param1 and param2 are basically unused
+static void BattleSubscreen_OpenFirstBattleMenu(BattleSubscreen *btlSubscreen, int unsed1, int unused2)
 {
-    int direction = btlSubscreen->activeMenuData.actionData.unk_00;
+    int direction = btlSubscreen->activeMenuData.actionData.battlerType;
 
-    BattleSubscreen_DrawFirstBattleMenu(btlSubscreen, param1, param2);
+    BattleSubscreen_DrawFirstBattleMenu(btlSubscreen, unsed1, unused2);
     BattleSubscreen_SlideInPanel(btlSubscreen, direction);
 }
 
-static void BattleSubscreen_DrawFirstBattleMenu(BattleSubscreen *btlSubscreen, int unused1, int unused2) // CLEANUP: unused1 and unused2 are basically unused
+static void BattleSubscreen_DrawFirstBattleMenu(BattleSubscreen *btlSubscreen, int unused1, int unused2)
 {
     BattleSubscreen_DrawActionMenu(btlSubscreen, unused1, unused2);
 
@@ -1740,15 +1740,15 @@ static void BattleSubscreen_DrawFirstBattleMenu(BattleSubscreen *btlSubscreen, i
     sub_020129D0(btlSubscreen->fontOAMEntry[3].fontOAM, 0);
 }
 
-static void BattleSubscreen_OpenPalParkMenu(BattleSubscreen *btlSubscreen, int param1, int param2) // CLEANUP: param1 and param2 are basically unused
+static void BattleSubscreen_OpenPalParkMenu(BattleSubscreen *btlSubscreen, int unused1, int unused2)
 {
-    int direction = btlSubscreen->activeMenuData.actionData.unk_00;
+    int direction = btlSubscreen->activeMenuData.actionData.battlerType;
 
-    BattleSubscreen_DrawPalParkMenu(btlSubscreen, param1, param2);
+    BattleSubscreen_DrawPalParkMenu(btlSubscreen, unused1, unused2);
     BattleSubscreen_SlideInPanel(btlSubscreen, direction);
 }
 
-static void BattleSubscreen_DrawPalParkMenu(BattleSubscreen *btlSubscreen, int unused1, int unused2) // CLEANUP: unused1 and unused2 are basically unused
+static void BattleSubscreen_DrawPalParkMenu(BattleSubscreen *btlSubscreen, int unused1, int unused2)
 {
     BattleSubscreen_DrawActionMenu(btlSubscreen, unused1, unused2);
 
@@ -1762,7 +1762,7 @@ static void BattleSubscreen_DrawPalParkMenu(BattleSubscreen *btlSubscreen, int u
     sub_020129D0(btlSubscreen->fontOAMEntry[2].fontOAM, 0);
 }
 
-static void BattleSubscreen_DrawMoveSelectMenu(BattleSubscreen *btlSubscreen, int unused1, int unused2) // CLEANUP: unused parameters
+static void BattleSubscreen_DrawMoveSelectMenu(BattleSubscreen *btlSubscreen, int unused1, int unused2)
 {
     int i;
     TextColor textColor;
@@ -1770,10 +1770,10 @@ static void BattleSubscreen_DrawMoveSelectMenu(BattleSubscreen *btlSubscreen, in
     MoveSelectData *moveData = &btlSubscreen->activeMenuData.moveData;
     GF_ASSERT(moveData);
 
-    btlSubscreen->battlerType = moveData->unk_10;
+    btlSubscreen->battlerType = moveData->battlerType;
 
     MessageLoader *msgLoader = BattleSystem_GetMessageLoader(btlSubscreen->battleSys);
-    MoveDisplayData *moveDisplayData = GetMoveDisplayData(btlSubscreen, moveData->unk_10);
+    MoveDisplayData *moveDisplayData = GetMoveDisplayData(btlSubscreen, moveData->battlerType);
 
     DrawMoveTypeIcons(btlSubscreen);
 
@@ -1783,7 +1783,7 @@ static void BattleSubscreen_DrawMoveSelectMenu(BattleSubscreen *btlSubscreen, in
     BattleSubscreen_NewFontOAM(btlSubscreen, &btlSubscreen->fontOAMEntry[3], NULL, FONT_SUBSCREEN, TEXT_COLOR(7, 8, 9), 3, 20023, 192, 110, 1, &moveDisplayData->moveNameWindows[3]);
 
     for (i = 0; i < LEARNED_MOVES_MAX; i++) {
-        textColor = GetPPTextColor(moveData->unk_08[i], moveData->unk_0C[i]);
+        textColor = GetPPTextColor(moveData->currPP[i], moveData->maxPP[i]);
         BattleSubscreen_NewFontOAM(btlSubscreen, &btlSubscreen->fontOAMEntry[9 + i], NULL, FONT_SYSTEM, textColor, 4, 20023, sMoveSlotPPCountPositions[i][0], sMoveSlotPPCountPositions[i][1], 0, &moveDisplayData->ppCountWindows[i]);
         BattleSubscreen_NewFontOAM(btlSubscreen, &btlSubscreen->fontOAMEntry[5 + i], NULL, FONT_SYSTEM, textColor, 4, 20023, sMoveSlotPPLabelPositions[i][0], sMoveSlotPPLabelPositions[i][1], 0, &moveDisplayData->ppLabelWindows[i]);
     }
@@ -1829,7 +1829,7 @@ static void BattleSubscreen_DrawMoveSelectMenu(BattleSubscreen *btlSubscreen, in
     }
 }
 
-static void BattleSubscreen_DrawYesNoMenu(BattleSubscreen *btlSubscreen, int unused1, int unused2) // CLEANUP: unused parameters
+static void BattleSubscreen_DrawYesNoMenu(BattleSubscreen *btlSubscreen, int unused1, int unused2)
 {
     MessageLoader *msgLoader = BattleSystem_GetMessageLoader(btlSubscreen->battleSys);
     String *yesMsg = MessageLoader_GetNewString(msgLoader, BattleStrings_Text_Yes);
@@ -1842,7 +1842,7 @@ static void BattleSubscreen_DrawYesNoMenu(BattleSubscreen *btlSubscreen, int unu
     String_Free(noMsg);
 }
 
-static void BattleSubscreen_DrawForgetMoveMenu(BattleSubscreen *btlSubscreen, int unused1, int unused2) // CLEANUP: unused parameters
+static void BattleSubscreen_DrawForgetMoveMenu(BattleSubscreen *btlSubscreen, int unused1, int unused2)
 {
     MessageLoader *msgLoader = BattleSystem_GetMessageLoader(btlSubscreen->battleSys);
     String *forgetMoveMsg = MessageLoader_GetNewString(msgLoader, BattleStrings_Text_ForgetAMove);
@@ -1855,30 +1855,30 @@ static void BattleSubscreen_DrawForgetMoveMenu(BattleSubscreen *btlSubscreen, in
     String_Free(keepMovesMsg);
 }
 
-static void BattleSubscreen_DrawGiveUpMoveMenu(BattleSubscreen *btlSubscreen, int unused1, int unused2) // CLEANUP: unused parameters
+static void BattleSubscreen_DrawGiveUpMoveMenu(BattleSubscreen *btlSubscreen, int unused1, int unused2)
 {
     MessageLoader *msgLoader = BattleSystem_GetMessageLoader(btlSubscreen->battleSys);
     StringTemplate *template = BattleSystem_GetStringTemplate(btlSubscreen->battleSys);
     GiveUpMoveData *giveUpMoveData = &btlSubscreen->activeMenuData.giveUpMoveData;
-    String *formatMsg1 = MessageLoader_GetNewString(msgLoader, BattleStrings_Text_GiveUpOnMove);
-    String *formatMsg2 = MessageLoader_GetNewString(msgLoader, BattleStrings_Text_DontGiveUpOnMove);
+    String *giveUpOnMoveFormatMsg = MessageLoader_GetNewString(msgLoader, BattleStrings_Text_GiveUpOnMove);
+    String *dontGiveUpOnMoveFormatMsg = MessageLoader_GetNewString(msgLoader, BattleStrings_Text_DontGiveUpOnMove);
     String *giveUpMoveMsg = String_Init(100, HEAP_ID_BATTLE);
     String *dontGiveUpMoveMsg = String_Init(100, HEAP_ID_BATTLE);
 
-    StringTemplate_SetMoveName(template, 0, giveUpMoveData->unk_00);
-    StringTemplate_Format(template, giveUpMoveMsg, formatMsg1);
-    StringTemplate_Format(template, dontGiveUpMoveMsg, formatMsg2);
+    StringTemplate_SetMoveName(template, 0, giveUpMoveData->move);
+    StringTemplate_Format(template, giveUpMoveMsg, giveUpOnMoveFormatMsg);
+    StringTemplate_Format(template, dontGiveUpMoveMsg, dontGiveUpOnMoveFormatMsg);
 
     BattleSubscreen_NewFontOAM(btlSubscreen, &btlSubscreen->fontOAMEntry[0], giveUpMoveMsg, FONT_SUBSCREEN, TEXT_COLOR(1, 2, 3), 2, 20023, 128, 68, 1, NULL);
     BattleSubscreen_NewFontOAM(btlSubscreen, &btlSubscreen->fontOAMEntry[1], dontGiveUpMoveMsg, FONT_SUBSCREEN, TEXT_COLOR(10, 11, 12), 2, 20023, 128, 140, 1, NULL);
 
-    String_Free(formatMsg1);
-    String_Free(formatMsg2);
+    String_Free(giveUpOnMoveFormatMsg);
+    String_Free(dontGiveUpOnMoveFormatMsg);
     String_Free(giveUpMoveMsg);
     String_Free(dontGiveUpMoveMsg);
 }
 
-static void BattleSubscreen_DrawStopMenu(BattleSubscreen *btlSubscreen, int unused1, int unused2) // CLEANUP: unused parameters
+static void BattleSubscreen_DrawStopMenu(BattleSubscreen *btlSubscreen, int unused1, int unused2)
 {
     G2S_SetBlendAlpha(GX_BLEND_PLANEMASK_BG1, GX_BLEND_BGALL, 31, 0);
 
@@ -1905,9 +1905,9 @@ static void BattleSubscreen_DrawStopMenu(BattleSubscreen *btlSubscreen, int unus
     String_Free(stopMsg);
 }
 
-static void BattleSubscreen_DrawUseNextMonMenu(BattleSubscreen *btlSubscreen, int unused1, int unused2) // CLEANUP: unused parameters
+static void BattleSubscreen_DrawUseNextMonMenu(BattleSubscreen *btlSubscreen, int unused1, int unused2)
 {
-    GiveUpMoveData *v6 = &btlSubscreen->activeMenuData.giveUpMoveData;
+    GiveUpMoveData *giveUpMoveData = &btlSubscreen->activeMenuData.giveUpMoveData;
     MessageLoader *msgLoader = BattleSystem_GetMessageLoader(btlSubscreen->battleSys);
     StringTemplate *template = BattleSystem_GetStringTemplate(btlSubscreen->battleSys);
     String *formatMsg1 = MessageLoader_GetNewString(msgLoader, BattleStrings_Text_UseNextPokemon);
@@ -1915,7 +1915,7 @@ static void BattleSubscreen_DrawUseNextMonMenu(BattleSubscreen *btlSubscreen, in
     String *useNextMonMsg = String_Init(100, HEAP_ID_BATTLE);
     String *fleeMsg = String_Init(100, HEAP_ID_BATTLE);
 
-    StringTemplate_SetMoveName(template, 0, v6->unk_00);
+    StringTemplate_SetMoveName(template, 0, giveUpMoveData->move);
     StringTemplate_Format(template, useNextMonMsg, formatMsg1);
     StringTemplate_Format(template, fleeMsg, formatMsg2);
 
@@ -1928,9 +1928,9 @@ static void BattleSubscreen_DrawUseNextMonMenu(BattleSubscreen *btlSubscreen, in
     String_Free(fleeMsg);
 }
 
-static void BattleSubscreen_DrawSwitchMonMenu(BattleSubscreen *btlSubscreen, int unused1, int unused2) // CLEANUP: unused parameters
+static void BattleSubscreen_DrawSwitchMonMenu(BattleSubscreen *btlSubscreen, int unused1, int unused2)
 {
-    GiveUpMoveData *v6 = &btlSubscreen->activeMenuData.giveUpMoveData;
+    GiveUpMoveData *giveUpMoveData = &btlSubscreen->activeMenuData.giveUpMoveData;
     MessageLoader *msgLoader = BattleSystem_GetMessageLoader(btlSubscreen->battleSys);
     StringTemplate *template = BattleSystem_GetStringTemplate(btlSubscreen->battleSys);
     String *formatMsg1 = MessageLoader_GetNewString(msgLoader, BattleStrings_Text_SwitchPokemon);
@@ -1938,7 +1938,7 @@ static void BattleSubscreen_DrawSwitchMonMenu(BattleSubscreen *btlSubscreen, int
     String *switchMonMsg = String_Init(100, HEAP_ID_BATTLE);
     String *keepBattlingMsg = String_Init(100, HEAP_ID_BATTLE);
 
-    StringTemplate_SetMoveName(template, 0, v6->unk_00);
+    StringTemplate_SetMoveName(template, 0, giveUpMoveData->move);
     StringTemplate_Format(template, switchMonMsg, formatMsg1);
     StringTemplate_Format(template, keepBattlingMsg, formatMsg2);
 
@@ -1951,7 +1951,7 @@ static void BattleSubscreen_DrawSwitchMonMenu(BattleSubscreen *btlSubscreen, int
     String_Free(keepBattlingMsg);
 }
 
-static void BattleSubscreen_DrawTargetSelectMenu(BattleSubscreen *btlSubscreen, int unused1, int unused2) // CLEANUP: unused parameters
+static void BattleSubscreen_DrawTargetSelectMenu(BattleSubscreen *btlSubscreen, int unused1, int unused2)
 {
     TargetSelectData *targetSelectData = &btlSubscreen->activeMenuData.targetSelectData;
 
@@ -1966,13 +1966,13 @@ static void BattleSubscreen_DrawTargetSelectMenu(BattleSubscreen *btlSubscreen, 
     BoxPokemon *boxMon;
     StringTemplate *template = BattleSystem_GetStringTemplate(btlSubscreen->battleSys);
     TextColor textColor;
-    u8 battlerTypes[6]; // CLEANUP: written to but never read
+    u8 unreadBattlerTypes[6];
     u8 battlersByType[6];
 
     GetTargetSlotFlags(btlSubscreen, targetSlotFlags, 0);
     BattleSubscreen_LoadPokeIconResources(btlSubscreen);
     BattleSubscreen_DrawTargetSelectBg(btlSubscreen);
-    BattleSystem_SetBattlerTypes(btlSubscreen->battleSys, battlerTypes);
+    BattleSystem_SetBattlerTypes(btlSubscreen->battleSys, unreadBattlerTypes);
     BattleSystem_SetBattlersByType(btlSubscreen->battleSys, battlersByType);
 
     message = String_Init(12 + 2 + 5 * 2, HEAP_ID_BATTLE);
@@ -2024,7 +2024,7 @@ static void BattleSubscreen_DrawTargetSelectMenu(BattleSubscreen *btlSubscreen, 
 
 static int BattleSubscreen_ProcessActionInput(BattleSubscreen *btlSubscreen, int selectedAction, int unused)
 {
-    int buttonIndex, v1; // CLEANUP: v1 is written to but the field it assigns to is never read
+    int buttonIndex, unread;
     int battlerShift = 0xff;
 
     switch (selectedAction) {
@@ -2033,7 +2033,7 @@ static int BattleSubscreen_ProcessActionInput(BattleSubscreen *btlSubscreen, int
         return selectedAction;
     case 1:
         buttonIndex = 0;
-        v1 = 0;
+        unread = 0;
 
         switch (btlSubscreen->battlerType) {
         case 0:
@@ -2047,15 +2047,15 @@ static int BattleSubscreen_ProcessActionInput(BattleSubscreen *btlSubscreen, int
         break;
     case 2:
         buttonIndex = 1;
-        v1 = 1;
+        unread = 1;
         break;
     case 3:
         buttonIndex = 2;
-        v1 = 1;
+        unread = 1;
         break;
     case 4:
         buttonIndex = 3;
-        v1 = 1;
+        unread = 1;
         break;
     }
 
@@ -2068,30 +2068,30 @@ static int BattleSubscreen_ProcessActionInput(BattleSubscreen *btlSubscreen, int
     btlSubscreen->menuButtonPressAnimState.ButtonPressAnimationState.selectedButton = selectedAction;
     btlSubscreen->menuButtonPressAnimState.ButtonPressAnimationState.fontOAMIdx = buttonIndex;
     btlSubscreen->menuButtonPressAnimState.ButtonPressAnimationState.spriteIndex = battlerShift;
-    btlSubscreen->menuButtonPressAnimState.ButtonPressAnimationState.unk_0F = v1;
+    btlSubscreen->menuButtonPressAnimState.ButtonPressAnimationState.unread = unread;
     btlSubscreen->menuButtonPressAnimState.ButtonPressAnimationState.screenPos = screenPos[selectedAction - 1];
     btlSubscreen->menuButtonPressAnimState.ButtonPressAnimationState.freeSprites = 1;
 
     return selectedAction;
 }
 
-static int BattleSubscreen_ProcessMoveInput(BattleSubscreen *btlSubscreen, int selectedMove, int unused) // CLEANUP: unused parameter
+static int BattleSubscreen_ProcessMoveInput(BattleSubscreen *btlSubscreen, int selectedMove, int unused)
 {
     if (selectedMove == 0xffffffff) {
         return selectedMove;
     }
 
-    MoveSelectData *moveDisplayData = &btlSubscreen->activeMenuData.moveData;
+    MoveSelectData *moveData = &btlSubscreen->activeMenuData.moveData;
     const s16 *keyFrames;
     const SubscreenTilemapRect *tilemapRect;
 
     if (selectedMove >= 1 && selectedMove <= 4) {
-        if (moveDisplayData->moveIDs[selectedMove - 1] == 0) {
+        if (moveData->moveIDs[selectedMove - 1] == 0) {
             return 0xffffffff;
         }
     }
 
-    u32 unusedVar = selectedMove - 1; // CLEANUP: remove
+    u32 unusedVar = selectedMove - 1;
 
     switch (selectedMove) {
     case 0xffffffff:
@@ -2122,7 +2122,7 @@ static int BattleSubscreen_ProcessMoveInput(BattleSubscreen *btlSubscreen, int s
     return selectedMove;
 }
 
-static int BattleSubscreen_ProcessYesNoInput(BattleSubscreen *btlSubscreen, int selectedButton, int unused) // CLEANUP: unused parameter
+static int BattleSubscreen_ProcessYesNoInput(BattleSubscreen *btlSubscreen, int selectedButton, int unused)
 {
     int buttonIndex;
 
@@ -2138,7 +2138,7 @@ static int BattleSubscreen_ProcessYesNoInput(BattleSubscreen *btlSubscreen, int 
         break;
     }
 
-    ov16_Dummy2(btlSubscreen, unused); // CLEANUP: remove
+    ov16_Dummy2(btlSubscreen, unused);
     StartMenuTransitionTask(SysTask_AnimateMenuButtonPress, btlSubscreen);
 
     if (selectedButton == TRUE) {
@@ -2152,13 +2152,13 @@ static int BattleSubscreen_ProcessYesNoInput(BattleSubscreen *btlSubscreen, int 
     btlSubscreen->menuButtonPressAnimState.ButtonPressAnimationState.srcBufIndex = 6;
     btlSubscreen->menuButtonPressAnimState.ButtonPressAnimationState.selectedButton = selectedButton;
     btlSubscreen->menuButtonPressAnimState.ButtonPressAnimationState.fontOAMIdx = buttonIndex;
-    btlSubscreen->menuButtonPressAnimState.ButtonPressAnimationState.unk_0F = 3;
+    btlSubscreen->menuButtonPressAnimState.ButtonPressAnimationState.unread = 3;
     btlSubscreen->menuButtonPressAnimState.ButtonPressAnimationState.freeSprites = 1;
 
     return selectedButton;
 }
 
-static int BattleSubscreen_ProcessTargetInput(BattleSubscreen *btlSubscreen, int selectedTarget, int unused) // CLEANUP: unused parameter
+static int BattleSubscreen_ProcessTargetInput(BattleSubscreen *btlSubscreen, int selectedTarget, int unused)
 {
     u8 targetSlotFlags[4];
 
@@ -2197,7 +2197,7 @@ static int BattleSubscreen_ProcessTargetInput(BattleSubscreen *btlSubscreen, int
         btlSubscreen->menuButtonPressAnimState.ButtonPressAnimationState.srcBufIndex = 4;
         btlSubscreen->menuButtonPressAnimState.ButtonPressAnimationState.selectedButton = selectedTarget;
         btlSubscreen->menuButtonPressAnimState.ButtonPressAnimationState.fontOAMIdx = 4;
-        btlSubscreen->menuButtonPressAnimState.ButtonPressAnimationState.unk_0F = 3;
+        btlSubscreen->menuButtonPressAnimState.ButtonPressAnimationState.unread = 3;
         btlSubscreen->menuButtonPressAnimState.ButtonPressAnimationState.freeSprites = 1;
 
         return selectedTarget;
@@ -2215,7 +2215,7 @@ static int BattleSubscreen_ProcessTargetInput(BattleSubscreen *btlSubscreen, int
     return selectedTarget;
 }
 
-static int BattleSubscreen_ProcessStopInput(BattleSubscreen *btlSubscreen, int selectedButton, int unused) // CLEANUP: unused parameter
+static int BattleSubscreen_ProcessStopInput(BattleSubscreen *btlSubscreen, int selectedButton, int unused)
 {
     switch (selectedButton) {
     case 0xffffffff:
@@ -2225,7 +2225,7 @@ static int BattleSubscreen_ProcessStopInput(BattleSubscreen *btlSubscreen, int s
         break;
     }
 
-    ov16_Dummy2(btlSubscreen, unused); // CLEANUP: remove
+    ov16_Dummy2(btlSubscreen, unused);
     StartMenuTransitionTask(SysTask_AnimateMenuButtonPress, btlSubscreen);
 
     btlSubscreen->menuButtonPressAnimState.ButtonPressAnimationState.keyframes = sStopButtonPressKeyframes;
@@ -2233,7 +2233,7 @@ static int BattleSubscreen_ProcessStopInput(BattleSubscreen *btlSubscreen, int s
     btlSubscreen->menuButtonPressAnimState.ButtonPressAnimationState.srcBufIndex = 6;
     btlSubscreen->menuButtonPressAnimState.ButtonPressAnimationState.selectedButton = selectedButton;
     btlSubscreen->menuButtonPressAnimState.ButtonPressAnimationState.fontOAMIdx = 0;
-    btlSubscreen->menuButtonPressAnimState.ButtonPressAnimationState.unk_0F = 3;
+    btlSubscreen->menuButtonPressAnimState.ButtonPressAnimationState.unread = 3;
     btlSubscreen->menuButtonPressAnimState.ButtonPressAnimationState.freeSprites = 0;
 
     return selectedButton;
@@ -2856,7 +2856,7 @@ static void ApplyMoveSlotTilemap(BattleSubscreen *btlSubscreen, const s16 *tileO
 static void SysTask_AnimateMenuButtonPress(SysTask *unused, void *subscreen)
 {
     BattleSubscreen *btlSubscreen = subscreen;
-    BgConfig *v1 = BattleSystem_GetBgConfig(btlSubscreen->battleSys); // CLEANUP: unused
+    BgConfig *unusedBgConfig = BattleSystem_GetBgConfig(btlSubscreen->battleSys);
     int x, y;
 
     switch (btlSubscreen->menuButtonPressAnimState.phase) {
@@ -2905,7 +2905,7 @@ static void SysTask_AnimateMenuButtonPress(SysTask *unused, void *subscreen)
 static void SysTask_AnimateMoveButtonPress(SysTask *unused, void *subscreen)
 {
     BattleSubscreen *btlSubscreen = subscreen;
-    BgConfig *v1 = BattleSystem_GetBgConfig(btlSubscreen->battleSys); // CLEANUP: unused
+    BgConfig *unusedBgConfig = BattleSystem_GetBgConfig(btlSubscreen->battleSys);
     int x, y, moveNameFontOAMIdx, ppCountFontOAMIdx, ppLabelFontOAMIdx, moveSlotIndex, moveID;
 
     MoveSelectData *moveData = &btlSubscreen->activeMenuData.moveData;
@@ -3023,7 +3023,7 @@ static void SysTask_AnimateMoveButtonPress(SysTask *unused, void *subscreen)
 static void SysTask_AnimateTargetButtonPress(SysTask *unused, void *subscreen)
 {
     BattleSubscreen *btlSubscreen = subscreen;
-    BgConfig *v1 = BattleSystem_GetBgConfig(btlSubscreen->battleSys); // CLEANUP: unused
+    BgConfig *unusedBgConig = BattleSystem_GetBgConfig(btlSubscreen->battleSys);
     int i, x, y;
     u8 battlerTargetFlags[4];
 
@@ -3154,7 +3154,7 @@ static void SysTask_SlideInPanel(SysTask *task, void *panelState)
         slideInPanelState->phase++;
         break;
     default:
-        if (ov16_0226BCD0(slideInPanelState->btlSubscreen) == 0) {
+        if (useless_0226BCD0(slideInPanelState->btlSubscreen) == 0) {
             break;
         }
 
@@ -3231,36 +3231,24 @@ static void SysTask_ApplySlideInBgOffsets(SysTask *unused, void *panelState)
 static void HBlankCallback_SlideInPanel(void *panelState)
 {
     SlideInPanelState *slideInPanelState = panelState;
-    s32 vCount, v2; // CLEANUP: v2 is written to but never actually used.
+    s32 vCount;
 
     vCount = GX_GetVCount();
 
     if (vCount == 18 * 8) {
-        BgConfig *bgConfig = BattleSystem_GetBgConfig(slideInPanelState->btlSubscreen->battleSys); // CLEANUP: samecode. Move out of statement.
+        BgConfig *bgConfig = BattleSystem_GetBgConfig(slideInPanelState->btlSubscreen->battleSys);
 
         Bg_SetOffset(bgConfig, BG_LAYER_SUB_0, 0, 0);
         Bg_SetOffset(bgConfig, BG_LAYER_SUB_0, 3, slideInPanelState->prevBgYOffset);
         Bg_SetOffset(bgConfig, BG_LAYER_SUB_1, 0, 0);
         Bg_SetOffset(bgConfig, BG_LAYER_SUB_1, 3, slideInPanelState->prevBgYOffset);
     } else if (vCount > 192) {
-        BgConfig *bgConfig = BattleSystem_GetBgConfig(slideInPanelState->btlSubscreen->battleSys); // CLEANUP: samecode. Move out of statement.
+        BgConfig *bgConfig = BattleSystem_GetBgConfig(slideInPanelState->btlSubscreen->battleSys);
 
         if (slideInPanelState->direction == 4) {
-            v2 = 255 - slideInPanelState->bgXOffset;
-
-            if (v2 > 0) {
-                v2 = 0;
-            }
-
             Bg_SetOffset(bgConfig, BG_LAYER_SUB_0, 0, 255 - slideInPanelState->bgXOffset);
             Bg_SetOffset(bgConfig, BG_LAYER_SUB_1, 0, 255 - slideInPanelState->bgXOffset);
         } else {
-            v2 = slideInPanelState->bgXOffset;
-
-            if (v2 < 0) {
-                v2 = 0;
-            }
-
             Bg_SetOffset(bgConfig, BG_LAYER_SUB_0, 0, slideInPanelState->bgXOffset);
             Bg_SetOffset(bgConfig, BG_LAYER_SUB_1, 0, slideInPanelState->bgXOffset);
         }
@@ -3297,13 +3285,13 @@ static void SysTask_ResetSubscreenBg(SysTask *task, void *unused)
     SysTask_Done(task);
 }
 
-void ov16_Dummy3(BattleSubscreen *unused1, int unused2) // CLEANUP
+void ov16_Dummy3(BattleSubscreen *unused1, int unused2)
 {
 }
 
-BOOL ov16_0226BCD0(BattleSubscreen *btlSubscreen) // CLEANUP: unk_664 is never assigned
+BOOL useless_0226BCD0(BattleSubscreen *btlSubscreen)
 {
-    return !btlSubscreen->unk_664;
+    return !btlSubscreen->unused_664;
 }
 
 static void SysTask_PulseCursorHighlight(SysTask *unused, void *subscreen)

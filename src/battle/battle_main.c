@@ -303,7 +303,7 @@ BOOL Battle_Main(ApplicationManager *appMan, int *state)
 
 void BattleSystem_EnterSubMenu(BattleSystem *battleSys)
 {
-    BattleSubscreen_Free(battleSys->unk_198);
+    BattleSubscreen_Free(battleSys->btlSubscreen);
     BattleSubscreenBg_Free(battleSys->bgConfig);
 
     battleSys->pendingSubMenuVRAMSetup = 1;
@@ -323,7 +323,7 @@ void BattleSystem_EnterSubMenu(BattleSystem *battleSys)
 void BattleSystem_FreeGraphics(BattleSystem *battleSys)
 {
     SetVBlankCallback(NULL, NULL);
-    BattleSubscreen_Free(battleSys->unk_198);
+    BattleSubscreen_Free(battleSys->btlSubscreen);
     Window_Remove(&battleSys->windows[0]);
 
     BattleMain_FreeBgLayers(battleSys->bgConfig);
@@ -350,7 +350,7 @@ void BattleSystem_ExitSubMenu(BattleSystem *battleSys)
 
     NARC *bgNarc = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, HEAP_ID_BATTLE);
     NARC *objNarc = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, HEAP_ID_BATTLE);
-    battleSys->unk_198 = BattleSubscreen_New(bgNarc, objNarc, battleSys, BattleSystem_GetTrainerGender(battleSys, BattleSystem_GetNetworkID(battleSys)), battleSys->subscreenCursorOn);
+    battleSys->btlSubscreen = BattleSubscreen_New(bgNarc, objNarc, battleSys, BattleSystem_GetTrainerGender(battleSys, BattleSystem_GetNetworkID(battleSys)), battleSys->subscreenCursorOn);
 
     Font_InitManager(FONT_SUBSCREEN, HEAP_ID_BATTLE);
 
@@ -359,9 +359,9 @@ void BattleSystem_ExitSubMenu(BattleSystem *battleSys)
     BattleSubscreenBg_Init(battleSys->bgConfig);
 
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, TRUE);
-    BattleSubscreen_LoadGraphics(battleSys->unk_198);
-    BattleSubscreen_SetupBackground(bgNarc, objNarc, battleSys->unk_198, 0, 1, NULL);
-    BattleSubscreen_LoadSprites(objNarc, battleSys->unk_198);
+    BattleSubscreen_LoadGraphics(battleSys->btlSubscreen);
+    BattleSubscreen_SetupBackground(bgNarc, objNarc, battleSys->btlSubscreen, 0, 1, NULL);
+    BattleSubscreen_LoadSprites(objNarc, battleSys->btlSubscreen);
     NARC_dtor(bgNarc);
     NARC_dtor(objNarc);
     TextPrinter_SetScrollArrowBaseTile(1);
@@ -548,7 +548,7 @@ static void BattleMain_InitGraphics(ApplicationManager *appMan)
     NARC *bgNarc = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, HEAP_ID_BATTLE);
     NARC *objNarc = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, HEAP_ID_BATTLE);
 
-    battleSys->unk_198 = BattleSubscreen_New(bgNarc, objNarc, battleSys, BattleSystem_GetTrainerGender(battleSys, BattleSystem_GetNetworkID(battleSys)), battleSys->subscreenCursorOn);
+    battleSys->btlSubscreen = BattleSubscreen_New(bgNarc, objNarc, battleSys, BattleSystem_GetTrainerGender(battleSys, BattleSystem_GetNetworkID(battleSys)), battleSys->subscreenCursorOn);
 
     NARC_dtor(bgNarc);
     NARC_dtor(objNarc);
@@ -571,13 +571,13 @@ static void BattleMain_InitGraphics(ApplicationManager *appMan)
     SpriteSystem_InitManagerWithCapacities(battleSys->spriteSys, battleSys->spriteMan, &sCapacities);
     SetSubScreenViewRect(SpriteSystem_GetRenderer(battleSys->spriteSys), 0, (192 + 80) << FX32_SHIFT);
 
-    BattleSubscreen_LoadGraphics(battleSys->unk_198);
+    BattleSubscreen_LoadGraphics(battleSys->btlSubscreen);
 
     NARC *bgNarc2 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, HEAP_ID_BATTLE);
     NARC *objNarc2 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, HEAP_ID_BATTLE);
 
-    BattleSubscreen_SetupBackground(bgNarc2, objNarc2, battleSys->unk_198, 0, 1, NULL);
-    BattleSubscreen_LoadSprites(objNarc2, battleSys->unk_198);
+    BattleSubscreen_SetupBackground(bgNarc2, objNarc2, battleSys->btlSubscreen, 0, 1, NULL);
+    BattleSubscreen_LoadSprites(objNarc2, battleSys->btlSubscreen);
 
     NARC_dtor(bgNarc2);
     NARC_dtor(objNarc2);

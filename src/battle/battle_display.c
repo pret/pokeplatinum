@@ -21,6 +21,7 @@
 #include "struct_defs/sprite_animation_frame.h"
 #include "struct_defs/trainer.h"
 
+#include "battle/action_select_data.h"
 #include "battle/battle_anim_battler_context.h"
 #include "battle/battle_context.h"
 #include "battle/battle_controller.h"
@@ -30,21 +31,20 @@
 #include "battle/battle_subscreen.h"
 #include "battle/battle_system.h"
 #include "battle/common.h"
+#include "battle/give_up_move_data.h"
 #include "battle/healthbox.h"
 #include "battle/message_defs.h"
 #include "battle/move_display_info.h"
+#include "battle/move_select_data.h"
 #include "battle/ov16_02264798.h"
 #include "battle/party_gauge.h"
 #include "battle/struct_ov16_0224DDA8.h"
 #include "battle/struct_ov16_0225CBB8.h"
-#include "battle/struct_ov16_02260C00.h"
-#include "battle/struct_ov16_02260F14.h"
-#include "battle/struct_ov16_022623F0.h"
 #include "battle/struct_ov16_02264650.h"
 #include "battle/struct_ov16_02268A14_decl.h"
-#include "battle/struct_ov16_02269668.h"
 #include "battle/struct_ov16_0226C378.h"
 #include "battle/struct_ov16_0226D160_decl.h"
+#include "battle/target_select_data.h"
 #include "battle/trainer_ai.h"
 #include "battle_anim/battle_anim_system.h"
 #include "battle_anim/const_ov12_0223B0A0.h"
@@ -3266,12 +3266,12 @@ static void Task_PlayerSetCommandSelection(SysTask *task, void *data)
         NARC *bgNarc = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, HEAP_ID_BATTLE);
         NARC *objNarc = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, HEAP_ID_BATTLE);
 
-        actionData.unk_01 = commandSetData->battler;
-        actionData.unk_00 = commandSetData->battlerType;
-        actionData.unk_02 = commandSetData->partySlot;
-        actionData.unk_04 = commandSetData->curHP;
-        actionData.unk_06 = commandSetData->maxHP;
-        actionData.unk_03 = commandSetData->ballStatusBattler;
+        actionData.battler = commandSetData->battler;
+        actionData.battlerType = commandSetData->battlerType;
+        actionData.partySlot = commandSetData->partySlot;
+        actionData.curHp = commandSetData->curHP;
+        actionData.maxHp = commandSetData->maxHP;
+        actionData.ballStatusBattler = commandSetData->ballStatusBattler;
         actionData.isWaitingForPartner = BattleSystem_IsSlot2WaitingForPartner(commandSetData->battleSys, commandSetData->battler, commandSetData->switchingOrCanPickCommandMask);
 
         if (battlerData->unk_193) {
@@ -3283,7 +3283,7 @@ static void Task_PlayerSetCommandSelection(SysTask *task, void *data)
                 BattleSubscreen_SetupBackground(bgNarc, objNarc, btlSubscreen, 10, 0, &actionData);
             } else if (BattleSystem_GetBattleType(commandSetData->battleSys) & BATTLE_TYPE_SAFARI) {
                 BattleSubscreen_SetupBackground(bgNarc, objNarc, btlSubscreen, 8, 0, &actionData);
-            } else if (actionData.unk_00 == 4 && (BattleSystem_GetBattleType(commandSetData->battleSys) & BATTLE_TYPE_2vs2) == FALSE) {
+            } else if (actionData.battlerType == 4 && (BattleSystem_GetBattleType(commandSetData->battleSys) & BATTLE_TYPE_2vs2) == FALSE) {
                 BattleSubscreen_SetupBackground(bgNarc, objNarc, btlSubscreen, 4, 0, &actionData);
             } else {
                 BattleSubscreen_SetupBackground(bgNarc, objNarc, btlSubscreen, 3, 0, &actionData);
@@ -3297,7 +3297,7 @@ static void Task_PlayerSetCommandSelection(SysTask *task, void *data)
                 BattleSubscreen_SetupBackground(bgNarc, objNarc, btlSubscreen, 9, 0, &actionData);
             } else if (BattleSystem_GetBattleType(commandSetData->battleSys) & BATTLE_TYPE_SAFARI) {
                 BattleSubscreen_SetupBackground(bgNarc, objNarc, btlSubscreen, 7, 0, &actionData);
-            } else if (actionData.unk_00 != 4) {
+            } else if (actionData.battlerType != 4) {
                 BattleSubscreen_SetupBackground(bgNarc, objNarc, btlSubscreen, 1, 0, &actionData);
             } else {
                 BattleSubscreen_SetupBackground(bgNarc, objNarc, btlSubscreen, 2, 0, &actionData);
@@ -3409,7 +3409,7 @@ static void Task_PlayerSetCommandSelection(SysTask *task, void *data)
         }
         break;
     case 8:
-        if (ov16_0226BCD0(btlSubscreen) == 1) {
+        if (useless_0226BCD0(btlSubscreen) == 1) {
             ov16_022656D4(commandSetData->battleSys, commandSetData->battler, commandSetData->input);
             BattleController_EmitClearCommand(commandSetData->battleSys, commandSetData->battler, commandSetData->command);
             Heap_Free(data);
@@ -3540,19 +3540,19 @@ static void Task_PlayerShowMoveSelectMenu(SysTask *task, void *data)
 
         BattleSubscreen_HideBallSprites(v2);
 
-        MoveSelectData v8;
+        MoveSelectData moveSelectData;
         NARC *bgNarc = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, HEAP_ID_BATTLE);
         NARC *objNarc = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, HEAP_ID_BATTLE);
 
         for (int i = 0; i < LEARNED_MOVES_MAX; i++) {
-            v8.moveIDs[i] = moveSelectMenuData->moves[i];
-            v8.unk_08[i] = moveSelectMenuData->ppCur[i];
-            v8.unk_0C[i] = moveSelectMenuData->ppMax[i];
+            moveSelectData.moveIDs[i] = moveSelectMenuData->moves[i];
+            moveSelectData.currPP[i] = moveSelectMenuData->ppCur[i];
+            moveSelectData.maxPP[i] = moveSelectMenuData->ppMax[i];
         }
 
-        v8.unk_10 = moveSelectMenuData->battlerType;
+        moveSelectData.battlerType = moveSelectMenuData->battlerType;
 
-        BattleSubscreen_SetupBackground(bgNarc, objNarc, v2, 11, 0, &v8);
+        BattleSubscreen_SetupBackground(bgNarc, objNarc, v2, 11, 0, &moveSelectData);
         NARC_dtor(bgNarc);
         NARC_dtor(objNarc);
         moveSelectMenuData->state++;
@@ -3581,7 +3581,7 @@ static void Task_PlayerShowMoveSelectMenu(SysTask *task, void *data)
     case 3:
         moveSelectMenuData->state++;
     default:
-        if (ov16_0226BCD0(v2) == 1) {
+        if (useless_0226BCD0(v2) == 1) {
             BattleSystem_SetCatchingTutorialLowHP(moveSelectMenuData->battleSys, TRUE);
             BattleController_EmitClearCommand(moveSelectMenuData->battleSys, moveSelectMenuData->battler, moveSelectMenuData->command);
             Heap_Free(data);
@@ -3731,7 +3731,7 @@ static void Task_PlayerShowTargetSelectMenu(SysTask *task, void *data)
     case 3:
         targetSelectMenuData->state++;
     default:
-        if (ov16_0226BCD0(v2) == 1) {
+        if (useless_0226BCD0(v2) == 1) {
             u8 v10[6];
             int input = targetSelectMenuData->input;
             u32 battleType = BattleSystem_GetBattleType(targetSelectMenuData->battleSys);
@@ -4673,28 +4673,28 @@ static void Task_PlayerShowYesNoMenu(SysTask *task, void *data)
         if (Text_IsPrinterActive(yesNoMenuData->msgIdx) == FALSE || yesNoMenuData->promptMsg == NULL) {
             NARC *bgNarc = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, HEAP_ID_BATTLE);
             NARC *objNarc = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, HEAP_ID_BATTLE);
-            GiveUpMoveData v11;
+            GiveUpMoveData giveUpMoveData;
 
             BattleSubscreen_HideBallSprites(v2);
 
-            v11.unk_00 = yesNoMenuData->move;
+            giveUpMoveData.move = yesNoMenuData->move;
 
             switch (yesNoMenuData->yesNoType) {
             case 0:
             case 5:
-                BattleSubscreen_SetupBackground(bgNarc, objNarc, v2, 13, 0, &v11);
+                BattleSubscreen_SetupBackground(bgNarc, objNarc, v2, 13, 0, &giveUpMoveData);
                 break;
             case 1:
-                BattleSubscreen_SetupBackground(bgNarc, objNarc, v2, 14, 0, &v11);
+                BattleSubscreen_SetupBackground(bgNarc, objNarc, v2, 14, 0, &giveUpMoveData);
                 break;
             case 2:
-                BattleSubscreen_SetupBackground(bgNarc, objNarc, v2, 15, 0, &v11);
+                BattleSubscreen_SetupBackground(bgNarc, objNarc, v2, 15, 0, &giveUpMoveData);
                 break;
             case 3:
-                BattleSubscreen_SetupBackground(bgNarc, objNarc, v2, 16, 0, &v11);
+                BattleSubscreen_SetupBackground(bgNarc, objNarc, v2, 16, 0, &giveUpMoveData);
                 break;
             case 4:
-                BattleSubscreen_SetupBackground(bgNarc, objNarc, v2, 17, 0, &v11);
+                BattleSubscreen_SetupBackground(bgNarc, objNarc, v2, 17, 0, &giveUpMoveData);
                 break;
             default:
                 GF_ASSERT(FALSE);
@@ -4737,7 +4737,7 @@ static void Task_PlayerShowYesNoMenu(SysTask *task, void *data)
         }
         break;
     case 4:
-        if (ov16_0226BCD0(v2) == 1) {
+        if (useless_0226BCD0(v2) == 1) {
             ov16_022656D4(yesNoMenuData->battleSys, yesNoMenuData->battler, yesNoMenuData->input);
             BattleController_EmitClearCommand(yesNoMenuData->battleSys, yesNoMenuData->battler, yesNoMenuData->command);
             Heap_Free(data);
