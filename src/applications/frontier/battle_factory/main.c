@@ -17,6 +17,7 @@
 #include "overlay104/ov104_0223A7F4.h"
 
 #include "bg_window.h"
+#include "comm_command_frontier.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "coordinates.h"
@@ -53,7 +54,6 @@
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_020363E8.h"
-#include "comm_command_frontier.h"
 #include "vram_transfer.h"
 
 #include "constdata/const_020F410C.h"

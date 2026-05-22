@@ -8,10 +8,10 @@
 #include "struct_defs/struct_02032318.h"
 #include "struct_defs/struct_0203233C.h"
 
+#include "comm_command.h"
 #include "comm_ring.h"
 #include "communication_system.h"
 #include "heap.h"
-#include "comm_command.h"
 
 static UnkStruct_020322D8 *sub_020322D8(CommQueueMan *param0)
 {

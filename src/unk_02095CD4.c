@@ -10,11 +10,11 @@
 #include "field/field_system.h"
 #include "overlay088/ov88_0223B140.h"
 
+#include "comm_command.h"
 #include "communication_system.h"
 #include "pal_pad.h"
 #include "party.h"
 #include "unk_0202D778.h"
-#include "comm_command.h"
 
 void sub_02095DFC(int param0, int param1, void *param2, void *param3);
 void sub_02095E28(int param0, int param1, void *param2, void *param3);

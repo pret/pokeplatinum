@@ -15,6 +15,7 @@
 
 #include "battle_regulation.h"
 #include "bg_window.h"
+#include "comm_command.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "heap.h"
@@ -25,7 +26,6 @@
 #include "system.h"
 #include "trainer_info.h"
 #include "unk_0203266C.h"
-#include "comm_command.h"
 #include "unk_02033200.h"
 #include "unk_02039814.h"
 #include "wireless_manager.h"

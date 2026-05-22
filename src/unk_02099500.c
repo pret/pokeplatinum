@@ -15,11 +15,11 @@
 #include "underground/spheres.h"
 #include "underground/traps.h"
 
+#include "comm_command.h"
 #include "comm_player_manager.h"
 #include "field_comm_manager.h"
 #include "trainer_case.h"
 #include "trainer_info.h"
-#include "comm_command.h"
 #include "unk_0204FA34.h"
 #include "unk_0205001C.h"
 #include "unk_02050548.h"

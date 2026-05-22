@@ -17,6 +17,7 @@
 #include "overlay005/field_menu.h"
 
 #include "bg_window.h"
+#include "comm_command_frontier.h"
 #include "communication_system.h"
 #include "field_script_context.h"
 #include "field_system.h"
@@ -31,7 +32,6 @@
 #include "unk_0204AEE8.h"
 #include "unk_0205DFC4.h"
 #include "unk_0206B9D8.h"
-#include "comm_command_frontier.h"
 
 static u16 BattleTower_GetPartnerParam(BattleTower *battleTower, u8 param1);
 

@@ -18,6 +18,7 @@
 #include "overlay104/struct_ov104_02230BE4.h"
 
 #include "battle_frontier_stats.h"
+#include "comm_command_frontier.h"
 #include "communication_system.h"
 #include "field_battle_data_transfer.h"
 #include "heap.h"
@@ -26,7 +27,6 @@
 #include "unk_020302D0.h"
 #include "unk_0205DFC4.h"
 #include "unk_0209B6F8.h"
-#include "comm_command_frontier.h"
 
 #include "constdata/const_020EA358.h"
 

@@ -17,6 +17,7 @@
 
 #include "battle_frontier_stats.h"
 #include "bg_window.h"
+#include "comm_command_frontier.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "font.h"
@@ -57,7 +58,6 @@
 #include "unk_020363E8.h"
 #include "unk_0205DFC4.h"
 #include "unk_0208C098.h"
-#include "comm_command_frontier.h"
 #include "vram_transfer.h"
 
 #include "res/text/bank/battle_castle_self_app.h"

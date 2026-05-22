@@ -10,11 +10,11 @@
 #include "overlay059/ov59_021D0D80.h"
 #include "overlay059/struct_ov59_021D30E0.h"
 
+#include "comm_command.h"
 #include "comm_manager.h"
 #include "communication_system.h"
 #include "math_util.h"
 #include "sound_playback.h"
-#include "comm_command.h"
 #include "unk_02099500.h"
 #include "wireless_manager.h"
 

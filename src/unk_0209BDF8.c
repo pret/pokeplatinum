@@ -15,11 +15,11 @@
 #include "overlay109/struct_ov109_021D1048.h"
 #include "overlay109/struct_ov109_021D17EC.h"
 
+#include "comm_command.h"
 #include "comm_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "heap.h"
-#include "comm_command.h"
 #include "unk_0205B33C.h"
 #include "unk_0205C22C.h"
 #include "unk_02099500.h"

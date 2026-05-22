@@ -9,8 +9,8 @@
 #include "overlay115/struct_ov115_02265AD0.h"
 #include "overlay115/struct_ov115_02265AD4.h"
 
-#include "communication_system.h"
 #include "comm_command.h"
+#include "communication_system.h"
 
 void ov115_02265A24(UnkStruct_ov115_0226095C *param0)
 {

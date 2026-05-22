@@ -18,6 +18,7 @@
 
 #include "battle_frontier_stats.h"
 #include "bg_window.h"
+#include "comm_command_frontier.h"
 #include "communication_system.h"
 #include "font.h"
 #include "game_options.h"
@@ -48,7 +49,6 @@
 #include "trainer_info.h"
 #include "unk_02030494.h"
 #include "unk_020363E8.h"
-#include "comm_command_frontier.h"
 #include "vram_transfer.h"
 
 FS_EXTERN_OVERLAY(overlay104);

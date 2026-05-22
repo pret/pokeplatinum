@@ -7,12 +7,12 @@
 
 #include "nintendo_wfc/main.h"
 
+#include "comm_command.h"
 #include "comm_manager.h"
 #include "communication_system.h"
 #include "heap.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "comm_command.h"
 
 typedef struct {
     BOOL unk_00;

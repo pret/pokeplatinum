@@ -12,9 +12,9 @@
 #include "overlay058/struct_ov58_021D2820.h"
 
 #include "bg_window.h"
+#include "comm_command.h"
 #include "comm_manager.h"
 #include "communication_system.h"
-#include "comm_command.h"
 #include "unk_02099500.h"
 #include "wireless_manager.h"
 

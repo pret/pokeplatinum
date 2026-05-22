@@ -18,6 +18,7 @@
 #include "overlay104/struct_ov104_02230BE4.h"
 
 #include "battle_frontier_stats.h"
+#include "comm_command_frontier.h"
 #include "communication_system.h"
 #include "heap.h"
 #include "item_use_pokemon.h"
@@ -28,7 +29,6 @@
 #include "unk_0204FA34.h"
 #include "unk_0205DFC4.h"
 #include "unk_0209B6F8.h"
-#include "comm_command_frontier.h"
 
 static BOOL ov104_02239680(FrontierScriptContext *param0);
 static BOOL ov104_02239C20(FrontierScriptContext *param0);

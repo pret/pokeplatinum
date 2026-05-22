@@ -12,6 +12,7 @@
 #include "overlay104/ov104_0223AF58.h"
 
 #include "bg_window.h"
+#include "comm_command_frontier.h"
 #include "communication_system.h"
 #include "dexmode_checker.h"
 #include "font.h"
@@ -46,7 +47,6 @@
 #include "trainer_info.h"
 #include "unk_02030108.h"
 #include "unk_020363E8.h"
-#include "comm_command_frontier.h"
 #include "vram_transfer.h"
 
 #include "constdata/const_020F410C.h"

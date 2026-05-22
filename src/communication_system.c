@@ -13,6 +13,7 @@
 
 #include "nintendo_wfc/main.h"
 
+#include "comm_command.h"
 #include "comm_manager.h"
 #include "comm_ring.h"
 #include "communication_information.h"
@@ -23,7 +24,6 @@
 #include "system.h"
 #include "unk_020322D8.h"
 #include "unk_0203266C.h"
-#include "comm_command.h"
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
 #include "wireless_manager.h"
