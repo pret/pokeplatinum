@@ -1,9 +1,11 @@
-#include "unk_0207A6DC.h"
+#include "comm_command_battle.h"
 
 #include <nitro.h>
 #include <string.h>
 
 #include "constants/battle.h"
+#include "constants/communication/comm_command.h"
+#include "constants/communication/comm_sync.h"
 
 #include "struct_decls/battle_system.h"
 #include "struct_defs/chatot_cry.h"
@@ -62,33 +64,33 @@ static u8 *sub_0207A7FC(int param0, void *param1, int param2);
 static u8 *sub_0207A804(int param0, void *param1, int param2);
 static u8 *sub_0207A80C(int param0, void *param1, int param2);
 static u8 *sub_0207A814(int param0, void *param1, int param2);
-static void sub_0207A8A8(int param0, int param1, void *param2, void *param3);
-static void sub_0207A934(int param0, int param1, void *param2, void *param3);
-static void sub_0207A9BC(int param0, int param1, void *param2, void *param3);
-static void sub_0207AA28(int param0, int param1, void *param2, void *param3);
-static void sub_0207AA90(int param0, int param1, void *param2, void *param3);
-static void sub_0207AB8C(int param0, int param1, void *param2, void *param3);
-static void sub_0207AC18(int param0, int param1, void *param2, void *param3);
-static void sub_0207ACA4(int param0, int param1, void *param2, void *param3);
-static void sub_0207ADB4(int param0, int param1, void *param2, void *param3);
+static void CommCmd_Battle_23(int param0, int param1, void *param2, void *param3);
+static void CommCmd_Battle_24(int param0, int param1, void *param2, void *param3);
+static void CommCmd_Battle_25(int param0, int param1, void *param2, void *param3);
+static void CommCmd_Battle_26(int param0, int param1, void *param2, void *param3);
+static void CommCmd_Battle_27(int param0, int param1, void *param2, void *param3);
+static void CommCmd_Battle_28(int param0, int param1, void *param2, void *param3);
+static void CommCmd_Battle_29_30(int param0, int param1, void *param2, void *param3);
+static void CommCmd_Battle_31_32(int param0, int param1, void *param2, void *param3);
+static void CommCmd_Battle_22(int param0, int param1, void *param2, void *param3);
 static void sub_0207ACB4(SysTask *param0, void *param1);
 static void sub_0207AD40(SysTask *param0, void *param1);
-static void sub_0207AE34(int param0, int param1, void *param2, void *param3);
+static void CommCmd_Battle_33(int param0, int param1, void *param2, void *param3);
 static void PalPad_CreateNetworkObject(TrainerInfo *param0, PalPad *param1, PalPad *param2);
 
 static const CommCmdTable Unk_020F099C[] = {
-    { sub_0207ADB4, CommPacketSizeOf_Variable, NULL },
-    { sub_0207A8A8, CommPacketSizeOf_Variable, NULL },
-    { sub_0207A934, sub_0207A758, NULL },
-    { sub_0207A9BC, sub_0207A75C, sub_0207A778 },
-    { sub_0207AA28, sub_0207A774, sub_0207A798 },
-    { sub_0207AA90, sub_0207A764, sub_0207A7B8 },
-    { sub_0207AB8C, sub_0207A76C, sub_0207A7D4 },
-    { sub_0207AC18, sub_0207A774, sub_0207A7F4 },
-    { sub_0207AC18, sub_0207A774, sub_0207A7FC },
-    { sub_0207ACA4, sub_0207A764, sub_0207A804 },
-    { sub_0207ACA4, sub_0207A764, sub_0207A80C },
-    { sub_0207AE34, sub_0207AE64, sub_0207A814 }
+    [COMM_CMD_BATTLE_22 - COMM_CMD_MAX_COMMON] = { CommCmd_Battle_22, CommPacketSizeOf_Variable, NULL },
+    [COMM_CMD_BATTLE_23 - COMM_CMD_MAX_COMMON] = { CommCmd_Battle_23, CommPacketSizeOf_Variable, NULL },
+    [COMM_CMD_BATTLE_24 - COMM_CMD_MAX_COMMON] = { CommCmd_Battle_24, sub_0207A758, NULL },
+    [COMM_CMD_BATTLE_25 - COMM_CMD_MAX_COMMON] = { CommCmd_Battle_25, sub_0207A75C, sub_0207A778 },
+    [COMM_CMD_BATTLE_26 - COMM_CMD_MAX_COMMON] = { CommCmd_Battle_26, sub_0207A774, sub_0207A798 },
+    [COMM_CMD_BATTLE_27 - COMM_CMD_MAX_COMMON] = { CommCmd_Battle_27, sub_0207A764, sub_0207A7B8 },
+    [COMM_CMD_BATTLE_28 - COMM_CMD_MAX_COMMON] = { CommCmd_Battle_28, sub_0207A76C, sub_0207A7D4 },
+    [COMM_CMD_BATTLE_29 - COMM_CMD_MAX_COMMON] = { CommCmd_Battle_29_30, sub_0207A774, sub_0207A7F4 },
+    [COMM_CMD_BATTLE_30 - COMM_CMD_MAX_COMMON] = { CommCmd_Battle_29_30, sub_0207A774, sub_0207A7FC },
+    [COMM_CMD_BATTLE_31 - COMM_CMD_MAX_COMMON] = { CommCmd_Battle_31_32, sub_0207A764, sub_0207A804 },
+    [COMM_CMD_BATTLE_32 - COMM_CMD_MAX_COMMON] = { CommCmd_Battle_31_32, sub_0207A764, sub_0207A80C },
+    [COMM_CMD_BATTLE_33 - COMM_CMD_MAX_COMMON] = { CommCmd_Battle_33, sub_0207AE64, sub_0207A814 }
 };
 
 void sub_0207A6DC(void *param0)
@@ -266,7 +268,7 @@ void sub_0207A81C(BattleSystem *battleSys, int param1, int param2, void *param3,
     Heap_Free(info);
 }
 
-static void sub_0207A8A8(int param0, int param1, void *param2, void *param3)
+static void CommCmd_Battle_23(int param0, int param1, void *param2, void *param3)
 {
     BattleSystem *battleSys = (BattleSystem *)param3;
     int v1;
@@ -294,14 +296,14 @@ BOOL sub_0207A8F4(UnkStruct_0207A778 *param0, u32 param1)
         return 0;
     }
 
-    if (CommTiming_IsSyncState(51) == 0) {
+    if (CommTiming_IsSyncState(SYNC_51) == 0) {
         return 0;
     }
 
-    return CommSys_SendData(24, (void *)&param1, 4);
+    return CommSys_SendData(COMM_CMD_BATTLE_24, (void *)&param1, 4);
 }
 
-static void sub_0207A934(int param0, int param1, void *param2, void *param3)
+static void CommCmd_Battle_24(int param0, int param1, void *param2, void *param3)
 {
     UnkStruct_0207A778 *v0 = (UnkStruct_0207A778 *)param3;
 
@@ -330,14 +332,14 @@ BOOL sub_0207A988(UnkStruct_0207A778 *param0)
         return 0;
     }
 
-    if (CommTiming_IsSyncState(52) == 0) {
+    if (CommTiming_IsSyncState(SYNC_52) == 0) {
         return 0;
     }
 
-    return CommSys_SendDataHuge(25, (void *)&param0->unk_20[0], TrainerInfo_Size());
+    return CommSys_SendDataHuge(COMM_CMD_BATTLE_25, (void *)&param0->unk_20[0], TrainerInfo_Size());
 }
 
-static void sub_0207A9BC(int param0, int param1, void *param2, void *param3)
+static void CommCmd_Battle_25(int param0, int param1, void *param2, void *param3)
 {
     UnkStruct_0207A778 *v0 = (UnkStruct_0207A778 *)param3;
     v0->unk_1020++;
@@ -363,14 +365,14 @@ BOOL sub_0207A9F8(UnkStruct_0207A778 *param0)
         return 0;
     }
 
-    if (CommTiming_IsSyncState(53) == 0) {
+    if (CommTiming_IsSyncState(SYNC_53) == 0) {
         return 0;
     }
 
-    return CommSys_SendDataHuge(26, (void *)&param0->unk_20[0], sizeof(Trainer));
+    return CommSys_SendDataHuge(COMM_CMD_BATTLE_26, (void *)&param0->unk_20[0], sizeof(Trainer));
 }
 
-static void sub_0207AA28(int param0, int param1, void *param2, void *param3)
+static void CommCmd_Battle_26(int param0, int param1, void *param2, void *param3)
 {
     UnkStruct_0207A778 *v0 = (UnkStruct_0207A778 *)param3;
     v0->unk_1020++;
@@ -396,14 +398,14 @@ BOOL sub_0207AA5C(UnkStruct_0207A778 *param0)
         return 0;
     }
 
-    if (CommTiming_IsSyncState(54) == 0) {
+    if (CommTiming_IsSyncState(SYNC_54) == 0) {
         return 0;
     }
 
-    return CommSys_SendDataHuge(27, (void *)&param0->unk_20[0], Party_SaveSize());
+    return CommSys_SendDataHuge(COMM_CMD_BATTLE_27, (void *)&param0->unk_20[0], Party_SaveSize());
 }
 
-static void sub_0207AA90(int param0, int param1, void *param2, void *param3)
+static void CommCmd_Battle_27(int param0, int param1, void *param2, void *param3)
 {
     UnkStruct_0207A778 *v0 = (UnkStruct_0207A778 *)param3;
 
@@ -430,11 +432,11 @@ BOOL sub_0207AAC8(UnkStruct_0207A778 *param0)
         return 0;
     }
 
-    if (CommTiming_IsSyncState(55) == 0) {
+    if (CommTiming_IsSyncState(SYNC_55) == 0) {
         return 0;
     }
 
-    return CommSys_SendDataHuge(28, (void *)&param0->unk_20[0], 1000);
+    return CommSys_SendDataHuge(COMM_CMD_BATTLE_28, (void *)&param0->unk_20[0], 1000);
 }
 
 BOOL sub_0207AAFC(UnkStruct_0207A778 *param0)
@@ -473,14 +475,14 @@ BOOL sub_0207AB58(UnkStruct_0207A778 *param0) // SEND pal pad data?!
         return 0;
     }
 
-    if (CommTiming_IsSyncState(56) == 0) {
+    if (CommTiming_IsSyncState(SYNC_56) == 0) {
         return 0;
     }
 
-    return CommSys_SendDataHuge(33, (void *)param0->unk_20, 1000);
+    return CommSys_SendDataHuge(COMM_CMD_BATTLE_33, (void *)param0->unk_20, 1000);
 }
 
-static void sub_0207AB8C(int param0, int param1, void *param2, void *param3)
+static void CommCmd_Battle_28(int param0, int param1, void *param2, void *param3)
 {
     UnkStruct_0207A778 *v0 = (UnkStruct_0207A778 *)param3;
     v0->unk_1020++;
@@ -511,13 +513,13 @@ BOOL sub_0207ABD0(UnkStruct_0207A778 *param0, int param1, int param2)
     }
 
     if (param1 == 1) {
-        return CommSys_SendDataHuge(29, (void *)&param0->unk_20[0], sizeof(Trainer));
+        return CommSys_SendDataHuge(COMM_CMD_BATTLE_29, (void *)&param0->unk_20[0], sizeof(Trainer));
     } else {
-        return CommSys_SendDataHuge(30, (void *)&param0->unk_20[0], sizeof(Trainer));
+        return CommSys_SendDataHuge(COMM_CMD_BATTLE_30, (void *)&param0->unk_20[0], sizeof(Trainer));
     }
 }
 
-static void sub_0207AC18(int param0, int param1, void *param2, void *param3)
+static void CommCmd_Battle_29_30(int param0, int param1, void *param2, void *param3)
 {
     UnkStruct_0207A778 *v0 = (UnkStruct_0207A778 *)param3;
     v0->unk_1020++;
@@ -548,13 +550,13 @@ BOOL sub_0207AC54(UnkStruct_0207A778 *param0, int param1, int param2)
     }
 
     if (param1 == 1) {
-        return CommSys_SendDataHuge(31, (void *)&param0->unk_20[0], Party_SaveSize());
+        return CommSys_SendDataHuge(COMM_CMD_BATTLE_31, (void *)&param0->unk_20[0], Party_SaveSize());
     } else {
-        return CommSys_SendDataHuge(32, (void *)&param0->unk_20[0], Party_SaveSize());
+        return CommSys_SendDataHuge(COMM_CMD_BATTLE_32, (void *)&param0->unk_20[0], Party_SaveSize());
     }
 }
 
-static void sub_0207ACA4(int param0, int param1, void *param2, void *param3)
+static void CommCmd_Battle_31_32(int param0, int param1, void *param2, void *param3)
 {
     UnkStruct_0207A778 *v0 = (UnkStruct_0207A778 *)param3;
     v0->unk_1020++;
@@ -591,7 +593,7 @@ void sub_0207ACB4(SysTask *param0, void *param1)
 
         v5 = sizeof(BattleMessageInfo) + (v1[v2[0] + 2] | (v1[v2[0] + 3] << 8));
 
-        if (CommSys_SendData(23, (void *)&v1[v2[0]], v5) == 1) {
+        if (CommSys_SendData(COMM_CMD_BATTLE_23, (void *)&v1[v2[0]], v5) == 1) {
             v2[0] += v5;
         }
         break;
@@ -641,7 +643,7 @@ void sub_0207AD40(SysTask *param0, void *param1)
     }
 }
 
-static void sub_0207ADB4(int param0, int param1, void *param2, void *param3)
+static void CommCmd_Battle_22(int param0, int param1, void *param2, void *param3)
 {
     BattleSystem *battleSys = (BattleSystem *)param3;
 
@@ -667,7 +669,7 @@ static void PalPad_CreateNetworkObject(TrainerInfo *trainerInfo, PalPad *source,
     }
 }
 
-void sub_0207AE34(int param0, int param1, void *param2, void *param3)
+void CommCmd_Battle_33(int param0, int param1, void *param2, void *param3)
 {
     UnkStruct_0207A778 *v0 = (UnkStruct_0207A778 *)param3;
 

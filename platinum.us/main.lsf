@@ -294,7 +294,7 @@ Static main
 	Object main.nef.p/src_dexmode_checker.c.o
 	Object main.nef.p/src_height_weight_data.c.o
 	Object main.nef.p/src_battle_regulation_validation.c.o
-	Object main.nef.p/src_unk_0207A6DC.c.o
+	Object main.nef.p/src_comm_command_battle.c.o
 	Object main.nef.p/src_evolution.c.o
 	Object main.nef.p/src_unk_0207C63C.c.o
 	Object main.nef.p/src_type_icon.c.o

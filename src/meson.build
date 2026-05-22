@@ -278,7 +278,7 @@ pokeplatinum_c = files(
     'dexmode_checker.c',
     'height_weight_data.c',
     'battle_regulation_validation.c',
-    'unk_0207A6DC.c',
+    'comm_command_battle.c',
     'evolution.c',
     'unk_0207C63C.c',
     'type_icon.c',

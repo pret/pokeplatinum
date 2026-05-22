@@ -84,7 +84,7 @@
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
 #include "unk_02038F8C.h"
-#include "unk_0207A6DC.h"
+#include "comm_command_battle.h"
 #include "unk_0208C098.h"
 #include "vram_transfer.h"
 

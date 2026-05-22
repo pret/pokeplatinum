@@ -85,8 +85,24 @@ enum CommCommand_Frontier {
     COMM_CMD_MAX_FRONTIER,
 };
 
-// Communication Commands used for Overlay 117
+// Communication Commands used for Battle
+enum CommCommand_Battle {
+    COMM_CMD_BATTLE_22 = COMM_CMD_MAX_COMMON,
+    COMM_CMD_BATTLE_23,
+    COMM_CMD_BATTLE_24,
+    COMM_CMD_BATTLE_25,
+    COMM_CMD_BATTLE_26,
+    COMM_CMD_BATTLE_27,
+    COMM_CMD_BATTLE_28,
+    COMM_CMD_BATTLE_29,
+    COMM_CMD_BATTLE_30,
+    COMM_CMD_BATTLE_31,
+    COMM_CMD_BATTLE_32,
+    COMM_CMD_BATTLE_33,
+    COMM_CMD_MAX_BATTLE,
+};
 
+// Communication Commands used for Overlay 117
 enum CommCommand_Ov117 {
     COMM_CMD_OV117_NONE = COMM_CMD_MAX_COMMON,
     COMM_CMD_OV117_23,

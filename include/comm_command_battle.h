@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_0207A6DC_H
-#define POKEPLATINUM_UNK_0207A6DC_H
+#ifndef POKEPLATINUM_COMM_COMMAND_BATTLE_H
+#define POKEPLATINUM_COMM_COMMAND_BATTLE_H
 
 #include "struct_decls/battle_system.h"
 #include "struct_defs/struct_0207A778.h"
@@ -23,4 +23,4 @@ BOOL sub_0207ABD0(UnkStruct_0207A778 *param0, int param1, int param2);
 BOOL sub_0207AC28(UnkStruct_0207A778 *param0, int param1);
 BOOL sub_0207AC54(UnkStruct_0207A778 *param0, int param1, int param2);
 
-#endif // POKEPLATINUM_UNK_0207A6DC_H
+#endif // POKEPLATINUM_COMM_COMMAND_BATTLE_H
