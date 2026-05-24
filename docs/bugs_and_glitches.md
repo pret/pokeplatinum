@@ -83,7 +83,7 @@ or Uproar is in effect.
   trigger.
 </details>
 
-**Fix:** Edit [`res/battle/res/scripts/subscript_pursuit.s`](https://github.com/pret/pokeplatinum/blob/main/res/battle/scripts/subscripts/subscript_pursuit.s)
+**Fix:** Edit [`res/battle/scripts/subscripts/subscript_pursuit.s`](https://github.com/pret/pokeplatinum/blob/main/res/battle/scripts/subscripts/subscript_pursuit.s)
 
 ```diff
      UpdateVar OPCODE_ADD, BTLVAR_FAINTED_MON, BATTLER_ENEMY_1
@@ -167,7 +167,7 @@ as having a score equivalent to 65 rather than 320.
 Due to the delays between scale commands being too short, they overlap with
 each other, resulting in the sprite permanently moving upward.
 
-**Fix:** Increase the `Delay` values in [`res/battle/moves/facade/anim.s`](https://github.com/pret/pokeplatinum/blob/main/res/battle/moves/facade/anim.s)
+**Fix:** Increase the `Delay` values in [`res/moves/facade/anim.s`](https://github.com/pret/pokeplatinum/blob/main/res/moves/facade/anim.s)
 
 ```diff
 -    Delay 8
@@ -186,7 +186,7 @@ Also update the sound effect timings to sync with the new delays:
 Due to the delays between shake commands being too short, they overlap with
 each other, resulting in the sprite permanently moving left.
 
-**Fix:** Increase the `Delay` value in [`res/battle/moves/dynamic_punch/anim.s`](https://github.com/pret/pokeplatinum/blob/e7c9da4c9ff9e9c70c82fd03714cf9a9674d71cc/res/battle/moves/dynamic_punch/anim.s#L18)
+**Fix:** Increase the `Delay` value in [`res/moves/dynamic_punch/anim.s`](https://github.com/pret/pokeplatinum/blob/main/res/moves/dynamic_punch/anim.s#L18)
 
 ```diff
 -    Delay 3
@@ -198,7 +198,7 @@ each other, resulting in the sprite permanently moving left.
 Due to the delays between shake commands being too short, they overlap with
 each other, resulting in the sprite permanently moving left.
 
-**Fix:** Move the `Delay 1` command into the loop in [`res/battle/moves/helping_hand/anim.s`](https://github.com/pret/pokeplatinum/blob/e7c9da4c9ff9e9c70c82fd03714cf9a9674d71cc/res/battle/moves/helping_hand/anim.s#L19)
+**Fix:** Move the `Delay 1` command into the loop in [`res/moves/helping_hand/anim.s`](https://github.com/pret/pokeplatinum/blob/main/res/moves/helping_hand/anim.s#L19)
 
 
 ```diff

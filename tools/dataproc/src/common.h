@@ -135,6 +135,8 @@ struct initenum_params {
     const char *outdir;     // Path of the output directory.
     enum format format;     // The dataproc format to use for parsing.
 
+    u16 extra_files; // A count of extra files to expect that do not correspond to the base enum.
+
     void (*hook_before)(void); // Hook to execute after initializing `dataproc` and before any requests are fulfilled.
     void (*hook_after)(void);  // Hook to execute after all requests have been fulfilled.
 
@@ -183,5 +185,20 @@ int fdump_narc(nitroarc_packer_t *p, const char *dest, bool ok);
 int fdump_blobnarc(const void *data, u32 size, const char *dest);
 
 nitroarc_packer_t init_narc(u16 num_files, bool named, bool stripped);
+
+void bank_pushnode(datanode_t *root, const char *id, datanode_t content);
+void bank_pushraw(datanode_t *root, const char *id, const char *content);
+void bank_pushlines(datanode_t *root, const char *id, ...);
+
+#define bank_push(bank, id, content)      \
+    _Generic((content),                   \
+        char *:       bank_pushraw,       \
+        const char *: bank_pushraw,       \
+        datanode_t:   bank_pushnode       \
+    )(&textbanks[bank].root, id, content)
+
+#define bank_pushm(bank, id, ...) bank_pushlines(&textbanks[bank].root, id, __VA_ARGS__, NULL)
+
+bool order_subfile(const char *basename, const char *subfile, FILE *f_order);
 
 #endif // DATAPROC_COMMON_H

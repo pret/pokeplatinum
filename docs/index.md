@@ -12,6 +12,11 @@ For more detailed information about the project as a whole, please refer to its
 
 - [Fixes for Various Bugs and Glitches](bugs_and_glitches.md)
 
+## Working with Files for Various Data Types
+
+- [Overview of the Processing Tools](datafiles/overview.md)
+- [Moves](datafiles/moves.md)
+
 ## Subsystems
 
 - [2D Graphics](2d_rendering.md)
