@@ -7,28 +7,26 @@
 
 #include "common.h"
 #include "dataproc.h"
+#include "libenum.h"
 #include "nitroarc.h"
 
-// We want to ignore these messages in the generated constants (really just the AI flags)
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wpedantic"
-#pragma GCC diagnostic ignored "-Wshift-count-overflow"
-
-// IWYU pragma: begin_keep
 #include "constants/battle.h"
 #include "constants/moves.h"
 #include "constants/pokemon.h"
-#include "generated/ai_flags.h"
-#include "generated/items.h"
-#include "generated/species.h"
 #include "generated/trainers.h"
 #include "generated/trainer_classes.h"
-#include "generated/trainer_message_types.h"
-// IWYU pragma: end_keep
-
-#pragma GCC diagnostic pop
 
 #include "struct_defs/trainer_data.h"
+
+static enum_template_t enums[] = {
+    include_enum("generated/ai_flags.h",              "enum AIFlag"),
+    include_enum("generated/items.h",                 "enum Item"),
+    include_enum("generated/moves.h",                 "enum Move"),
+    include_enum("generated/species.h",               "enum Species"),
+    include_enum("generated/trainer_classes.h",       "enum TrainerClass"),
+    include_enum("generated/trainer_message_types.h", "enum TrainerMessageType"),
+    { .from_file = NULL },
+};
 
 enum {
     A_TRAINER_HEADERS,
@@ -57,12 +55,11 @@ static textbank_template_t textbanks[] = {
     { .out_filename = NULL },
 };
 
-static char  *program_name  = NULL;
-static char  *base_dir      = NULL;
-static char  *depfile_fpath = "trainer_data.d";
-static char  *output_dir    = ".";
-static char **registry      = NULL;
-static size_t len_registry  = 0;
+static char *program_name  = NULL;
+static char *filename     = NULL;
+static char *base_dir      = NULL;
+static char *depfile_path = "trainer_data.d";
+static char *output_dir    = ".";
 
 typedef struct TrainerParty {
     TrainerMonWithMovesAndItem party[MAX_PARTY_SIZE];
@@ -75,53 +72,62 @@ typedef struct Container {
 } Container;
 
 static void parse_args(int *pargc, char ***pargv);
-static void pre_init(void);
 
 static Container proc_trainer(datafile_t *df, enum TrainerID trainer);
 static void emit_name(datafile_t *df, enum TrainerID trainer, const TrainerHeader *trainer_header, const char *stem);
 static void proc_messages(datafile_t *df, enum TrainerID trainer);
 static void pack(Container *trainer);
-static int  postproc_messages(void);
 static void emit_trainer_scripts(size_t trainer_count);
+static int  emit_trainer_messages(enum_seq_t *trainers);
+static void prep_trainer_messages(size_t trainer_count);
 
 int main(int argc, char *argv[]) {
-    parse_args(&argc, &argv);
-
-    splitenv("TRAINERS", &registry, &len_registry, NULL, 0);
-    archives[A_TRAINER_HEADERS].num_files = (u16)len_registry;
-    archives[A_TRAINER_PARTIES].num_files = (u16)len_registry;
-
-    common_init(DATAPROC_F_JSON, NULL, archives, headers, textbanks, __FILE__, depfile_fpath, output_dir, pre_init, NULL);
-
-    char       buf[256];
+    char       buf[BUFSIZE];
     datafile_t df   = { 0 };
     unsigned   errc = EXIT_SUCCESS;
 
+    parse_args(&argc, &argv);
+    enum_seq_t trainers = common_initenum(
+        filename, "TrainerID",
+        .sourcefile  = __FILE__,
+        .depfile     = depfile_path,
+        .outdir      = output_dir,
+        .format      = DATAPROC_F_JSON,
+        .enums       = enums,
+        .archives    = archives,
+        .headers     = headers,
+        .textbanks   = textbanks,
+    );
+
     // The primary processing loop here handles all trainer headers and parties, and also
     // emits the name of each trainer to a text-bank. It does not actually emit any of the
-    // message data, which is handled by postproc_messages.
-    for (size_t i = 0; i < len_registry; i++) {
-        snprintf(buf, 256, "%s.json", registry[i]);
-        char *path = pathjoin(base_dir, NULL, buf);
+    // message data, which is handled by emit_trainer_messages.
+    prep_trainer_messages(trainers.size);
+    for (size_t i = 0; i < trainers.size; i++) {
+        const char *stem = trainers.members[i].name + lengthof("TRAINER_");
 
-        if (dp_load(&df, path) == 0) {
+        char *basename = strlower(stem);
+        char *filepath = pathjoin(base_dir, NULL, strfmt("%s.json", basename));
+        declare_dep(filepath);
+
+        if (dp_load(&df, filepath) == 0) {
             enum TrainerID id      = (enum TrainerID)i;
             Container      trainer = proc_trainer(&df, id);
 
-            emit_name(&df, id, &trainer.header, registry[i]);
+            emit_name(&df, id, &trainer.header, basename);
             proc_messages(&df, id); // For post-processing
             pack(&trainer);
         }
 
         if (dp_report(&df) == DIAG_ERROR) errc = EXIT_FAILURE;
 
-        free(path);
+        free(filepath);
         dp_free(&df);
     }
 
-    emit_trainer_scripts(len_registry);
-
-    return common_done(errc, postproc_messages);
+    emit_trainer_scripts(trainers.size);
+    if (emit_trainer_messages(&trainers)) errc = EXIT_FAILURE;
+    return common_done(errc, NULL);
 }
 
 Container proc_trainer(datafile_t *df, enum TrainerID trainer) {
@@ -135,7 +141,7 @@ Container proc_trainer(datafile_t *df, enum TrainerID trainer) {
 
     TrainerHeader header = {
         .monDataType = 0, // initiailized below
-        .trainerType = enum_u8(".class", TrainerClass),
+        .trainerType = enum_u8(".class", enum TrainerClass),
         .sprite      = 0,
         .partySize   = (u8)party_size,
         .items       = { 0 }, // initialized below
@@ -146,7 +152,7 @@ Container proc_trainer(datafile_t *df, enum TrainerID trainer) {
     datanode_t ai_flags      = dp_get(df, ".ai_flags");
     size_t     ai_flags_size = dp_arrlen(ai_flags);
     for (size_t i = 0; i < ai_flags_size; i++) {
-        header.aiMask = header.aiMask | dp_u32(dp_lookup(dp_arrelem(ai_flags, i), "AIFlag"));
+        header.aiMask = header.aiMask | dp_u32(dp_lookup(dp_arrelem(ai_flags, i), "enum AIFlag"));
     }
 
     datanode_t items      = dp_get(df, ".items");
@@ -156,7 +162,7 @@ Container proc_trainer(datafile_t *df, enum TrainerID trainer) {
         items_size = MAX_TRAINER_ITEMS;
     }
     for (size_t i = 0; i < items_size; i++) {
-        header.items[i] = dp_u16(dp_lookup(dp_arrelem(items, i), "Item"));
+        header.items[i] = dp_u16(dp_lookup(dp_arrelem(items, i), "enum Item"));
     }
 
     TrainerParty trparty = { .size = (unsigned)party_size };
@@ -175,7 +181,7 @@ Container proc_trainer(datafile_t *df, enum TrainerID trainer) {
         party_member = dp_arrelem(party, i);
 
         // We always store the maximum possible data, then trim it when packing
-        u16 species = dp_u16(dp_lookup(dp_objmemb(party_member, "species"), "Species"));
+        u16 species = dp_u16(dp_lookup(dp_objmemb(party_member, "species"), "enum Species"));
         u16 form    = dp_u8(dp_objmemb(party_member, "form"));
         trparty.party[i] = (TrainerMonWithMovesAndItem){
             .ivScale = dp_u16(dp_objmemb(party_member, "iv_scale")),
@@ -184,7 +190,7 @@ Container proc_trainer(datafile_t *df, enum TrainerID trainer) {
             .cbSeal  = dp_u16(dp_objmemb(party_member, "ball_seal")),
         };
 
-        if (party_has_items) trparty.party[i].item = dp_u16(dp_lookup(dp_objmemb(party_member, "item"), "Item"));
+        if (party_has_items) trparty.party[i].item = dp_u16(dp_lookup(dp_objmemb(party_member, "item"), "enum Item"));
         if (party_has_moves) {
             datanode_t moves      = dp_objmemb(party_member, "moves");
             size_t     moves_size = dp_arrlen(moves);
@@ -194,7 +200,7 @@ Container proc_trainer(datafile_t *df, enum TrainerID trainer) {
             }
 
             for (size_t j = 0; j < moves_size; j++) {
-                trparty.party[i].moves[j] = dp_u16(dp_lookup(dp_arrelem(moves, j), "Move"));
+                trparty.party[i].moves[j] = dp_u16(dp_lookup(dp_arrelem(moves, j), "enum Move"));
             }
             for (size_t j = moves_size; j < LEARNED_MOVES_MAX; j++) {
                 trparty.party[i].moves[j] = MOVE_NONE;
@@ -207,6 +213,7 @@ early_exit:
 }
 
 static void emit_name(datafile_t *df, enum TrainerID trainer, const TrainerHeader *trainer_header, const char *stem) {
+#define strfmt2(fmt, ...) (snprintf(buf2, BUFSIZE, fmt, __VA_ARGS__), buf2)
     static const enum TrainerClass uncompressed_classes[] = {
         TRAINER_CLASS_RIVAL,
         TRAINER_CLASS_TOWER_TYCOON,
@@ -224,7 +231,8 @@ static void emit_name(datafile_t *df, enum TrainerID trainer, const TrainerHeade
         TRAINER_CHERYL_BATTLEGROUND,
     };
 
-    char buf[256] = { 0 };
+    char buf[BUFSIZE]  = { 0 };
+    char buf2[BUFSIZE] = { 0 };
 
     const char       *name  = string(".name");
     enum TrainerClass class = trainer_header->trainerType;
@@ -237,9 +245,9 @@ static void emit_name(datafile_t *df, enum TrainerID trainer, const TrainerHeade
         if (uncompressed_trainers[i] == trainer) compressed = false;
     }
 
-    datanode_t entry = dp_arr_appobject(&textbanks[T_TRAINER_NAMES].root);
-    dp_obj_putstring(&entry, "id", strfmt("NPCTrainerNames_Text_%s", stem));
-    dp_obj_putstring(&entry, "en_US", strfmt(compressed ? "{TRNAME}%s" : "%s", name));
+    bank_push(T_TRAINER_NAMES, strfmt("NPCTrainerNames_Text_%s", stem),
+              strfmt2(compressed ? "{TRNAME}%s" : "%s", name));
+#undef strfmt2
 }
 
 typedef struct TrainerMessagesEntry {
@@ -284,7 +292,7 @@ static void proc_messages(datafile_t *df, enum TrainerID trainer) {
 
     for (size_t i = 0; i < p_messages->count; i++) {
         datanode_t entry     = dp_arrelem(messages, i);
-        p_messages->types[i] = dp_u16(dp_lookup(dp_objmemb(entry, "type"), "TrainerMessageType"));
+        p_messages->types[i] = dp_u16(dp_lookup(dp_objmemb(entry, "type"), "enum TrainerMessageType"));
 
         for (size_t j = 0; j < i; j++) {
             if (p_messages->types[j] == p_messages->types[i]) {
@@ -344,15 +352,15 @@ static TrainerMessage *trtbl    = NULL;
 static u16            *trtblofs = NULL;
 static TrainerMessage *p_trtbl  = NULL;
 
-static int postproc_messages(void) {
-    qsort(trainer_messages, len_registry, sizeof(*trainer_messages), sort_byindex);
+static int emit_trainer_messages(enum_seq_t *trainers) {
+    qsort(trainer_messages, trainers->size, sizeof(*trainer_messages), sort_byindex);
 
-    trtbl    = calloc(count_trtbl,  sizeof(*trtbl));
-    trtblofs = calloc(len_registry, sizeof(*trtblofs));
+    trtbl    = calloc(count_trtbl,    sizeof(*trtbl));
+    trtblofs = calloc(trainers->size, sizeof(*trtblofs));
     p_trtbl  = trtbl;
 
     char buf[BUFSIZE] = { 0 };
-    for (size_t i = 0; i < len_registry; i++) {
+    for (size_t i = 0; i < trainers->size; i++) {
         TrainerMessagesEntry *entry = &trainer_messages[i];
         if (entry->count == 0) continue;
 
@@ -362,8 +370,10 @@ static int postproc_messages(void) {
             p_trtbl->messageType = entry->types[message_id];
             p_trtbl++;
 
+            // Insert the messages here more mechanically due to the structure.
             datanode_t bank_entry = dp_arr_appobject(&textbanks[T_TRAINER_MESSAGES].root);
-            dp_obj_putstring(&bank_entry, "id", strfmt("NPCTrainerMessages_Text_%s_%zu", registry[i], message_id));
+            dp_obj_putstring(&bank_entry, "id",
+                             strfmt("NPCTrainerMessages_Text_%s_%zu", trainers->members[i].name, message_id));
             if (entry->garbage[message_id]) {
                 dp_obj_putint(&bank_entry, "garbage", entry->garbage[message_id]);
             }
@@ -379,8 +389,8 @@ static int postproc_messages(void) {
         }
     }
 
-    return fdump_blobnarc(trtbl,    (u32)(count_trtbl  * sizeof(*trtbl)),    "trtbl.narc")
-        || fdump_blobnarc(trtblofs, (u32)(len_registry * sizeof(*trtblofs)), "trtblofs.narc")
+    return fdump_blobnarc(trtbl,    (u32)(count_trtbl  * sizeof(*trtbl)),      "trtbl.narc")
+        || fdump_blobnarc(trtblofs, (u32)(trainers->size * sizeof(*trtblofs)), "trtblofs.narc")
         || EXIT_SUCCESS;
 }
 
@@ -432,15 +442,8 @@ static void pack(Container *trainer) {
         NULL);
 }
 
-static void pre_init(void) {
-    dp_regmetang(AIFlag);
-    dp_regmetang(Item);
-    dp_regmetang(Move);
-    dp_regmetang(Species);
-    dp_regmetang(TrainerClass);
-    dp_regmetang(TrainerMessageType);
-
-    trainer_messages = calloc(len_registry, sizeof(*trainer_messages));
+static void prep_trainer_messages(size_t count) {
+    trainer_messages = calloc(count, sizeof(*trainer_messages));
 }
 
 static void emit_trainer_scripts(size_t trainer_count) {
@@ -461,8 +464,8 @@ static void parse_args(int *pargc, char ***pargv) {
     int c = 0;
     while ((c = getopt(*pargc, *pargv, ":o:t:s:M:h")) != -1) {
         switch (c) {
-        case 'o': output_dir       = optarg; break;
-        case 'M': depfile_fpath    = optarg; break;
+        case 'o': output_dir   = optarg; break;
+        case 'M': depfile_path = optarg; break;
 
         case 'h': usage(NULL);                                 break;
         case ':': usage("missing argument for '-%c'", optopt); break;
@@ -472,9 +475,11 @@ static void parse_args(int *pargc, char ***pargv) {
 
     *pargc -= optind;
     *pargv += optind;
-    if (*pargc < 1) usage("missing required argument BASEDIR");
+    if (*pargc < 1) usage("missing required argument ENUMFILE");
+    if (*pargc < 2) usage("missing required argument BASEDIR");
 
-    base_dir = (*pargv)[0];
+    filename = (*pargv)[0];
+    base_dir = (*pargv)[1];
 }
 
 static void usage(const char *fmt, ...) {
