@@ -20,6 +20,7 @@ this is some code
   - [Fire Fang Always Bypasses Wonder Guard](#fire-fang-always-bypasses-wonder-guard)
   - [Post-KO Switch-In AI Scoring Overflow](#post-ko-switch-in-ai-scoring-overflow)
   - [Using a non-Rage Move After Rage Clears Every Volatile Status Except Rage](#using-a-non-rage-move-after-rage-clears-every-volatile-status-except-rage)
+  - [Trainers Do Not Use The Correct Stats of Pokémon Forms](#trainers-do-not-use-the-correct-stats-of-pokémon-forms)
 - [Battle Animations](#battle-animations)
   - [Using Facade Moves the Attacker's Sprite One Pixel Up](#using-facade-moves-the-attackers-sprite-one-pixel-up)
   - [Using DynamicPunch Moves the Target's Sprite One Pixel Left](#using-dynamicpunch-moves-the-targets-sprite-one-pixel-left)
@@ -159,6 +160,22 @@ as having a score equivalent to 65 rather than 320.
 -    battleCtx->battleMons[battler].statusVolatile &= VOLATILE_CONDITION_RAGE;
 +    battleCtx->battleMons[battler].statusVolatile &= ~VOLATILE_CONDITION_RAGE;
 ```
+
+### Trainers Do Not Use The Correct Stats of Pokémon Forms
+
+Some Pokémon forms, such as those of Wormadam and Rotom, have different stats. 
+However, Trainers do not use those different stats and instead use the stats
+of the base form (e.g., Sandy Cloak Wormadam would use Plant Cloak's stats).
+
+**Fix:** Edit the routine ``TrainerData_BuildParty`` in [`src/trainer_data.c`](https://github.com/pret/pokeplatinum/blob/cee98713fc2059bc15aab2bbd99e892ffd0a8ca5/src/trainer_data.c#L218):
+
+```diff
+      Pokemon_SetValue(mon, MON_DATA_FORM, &form);
++     Pokemon_CalcStats(mon);
+```
+
+There are multiple Trainer Pokémon data types, so there are multiple instances of the form being set.
+Repeat this process for every instance of ``Pokemon_SetValue(mon, MON_DATA_FORM, &form);``.
 
 ## Battle Animations
 
