@@ -69,7 +69,7 @@
       "garbage": 35
     },
     {
-      "id": "PokemonCenter2FCommon_Text_00009",
+      "id": "PokemonCenter2FCommon_Text_SaveTheGame",
       "en_US": "Would you like to save the game?"
     },
     {
@@ -223,53 +223,53 @@
       ]
     },
     {
-      "id": "PokemonCenter2FCommon_Text_00044",
+      "id": "PokemonCenter2FCommon_Text_ChooseLeaderMultiBattle",
       "en_US": [
         "Please choose the leader\n",
         "for a Multi Battle."
       ]
     },
     {
-      "id": "PokemonCenter2FCommon_Text_00045",
+      "id": "PokemonCenter2FCommon_Text_PlayerAskedToRegisterAsMember",
       "en_US": [
         "{STRVAR_1 3, 0, 0} was asked to register\n",
         "you as a member. Please wait."
       ]
     },
     {
-      "id": "PokemonCenter2FCommon_Text_00046",
+      "id": "PokemonCenter2FCommon_Text_PlayerRepliedNo",
       "en_US": "{STRVAR_1 3, 0, 0} replied, “No...”"
     },
     {
-      "id": "PokemonCenter2FCommon_Text_00047",
+      "id": "PokemonCenter2FCommon_Text_PlayerOKdRegistration",
       "en_US": [
         "{STRVAR_1 3, 0, 0} OK’d your registration\n",
         "as a member."
       ]
     },
     {
-      "id": "PokemonCenter2FCommon_Text_00048",
+      "id": "PokemonCenter2FCommon_Text_MultiBattleAwaitingMembers",
       "en_US": [
         "Multi Battle!\n",
         "Awaiting other members!"
       ]
     },
     {
-      "id": "PokemonCenter2FCommon_Text_00049",
+      "id": "PokemonCenter2FCommon_Text_MultiBattleAwaitingCommunication",
       "en_US": [
         "Multi Battle! Awaiting\n",
         "communication from another player."
       ]
     },
     {
-      "id": "PokemonCenter2FCommon_Text_00050",
+      "id": "PokemonCenter2FCommon_Text_CancelMultiBattle",
       "en_US": [
         "Cancel the Multi Battle Mode\n",
         "with these members?"
       ]
     },
     {
-      "id": "PokemonCenter2FCommon_Text_00051",
+      "id": "PokemonCenter2FCommon_Text_PlayerContactedYou",
       "en_US": "{STRVAR_1 3, 0, 0} contacted you."
     },
     {
@@ -325,25 +325,25 @@
       ]
     },
     {
-      "id": "PokemonCenter2FCommon_Text_00059",
+      "id": "PokemonCenter2FCommon_Text_SaveTheGame2",
       "en_US": "Would you like to save the game?"
     },
     {
-      "id": "PokemonCenter2FCommon_Text_00060",
+      "id": "PokemonCenter2FCommon_Text_OverwriteSavedFile",
       "en_US": [
         "There is already a saved file.\n",
         "Is it OK to overwrite it?"
       ]
     },
     {
-      "id": "PokemonCenter2FCommon_Text_00061",
+      "id": "PokemonCenter2FCommon_Text_SavingDontTurnOffPower",
       "en_US": [
         "Saving...\n",
         "Don’t turn off the power."
       ]
     },
     {
-      "id": "PokemonCenter2FCommon_Text_00062",
+      "id": "PokemonCenter2FCommon_Text_SavedTheGame",
       "en_US": "{STRVAR_1 3, 0, 0} saved the game."
     },
     {

@@ -257,7 +257,7 @@ GlobalTerminal1F_Movement_PlayerFaceSouth:
     EndMovement
 
 GlobalTerminal1F_HasBadEgg:
-    CallCommonScript 0x2338 @ CommonScript_HasBadEgg
+    CallCommonScript 0x2338 @ PokemonCenter2FCommon_HasBadEggReturnCommon
     WaitButton
     CloseMessage
     ReleaseAll

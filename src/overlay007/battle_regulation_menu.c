@@ -205,9 +205,9 @@ static int ProcessListMenuInputRegulations(BattleRegulationMenu *menu)
 }
 
 static ConfirmMenuEntry sConfirmMenuEntries[] = {
-    { PokemonCenter2FCommon_Text_Confirm, (u32)1 },
-    { PokemonCenter2FCommon_Text_Rules, (u32)2 },
-    { PokemonCenter2FCommon_Text_Cancel, (u32)MENU_CANCEL }
+    { PokemonCenter2FCommon_Text_Confirm, 1 },
+    { PokemonCenter2FCommon_Text_Rules, 2 },
+    { PokemonCenter2FCommon_Text_Cancel, MENU_CANCEL }
 };
 
 static void ShowListMenuConfirm(BattleRegulationMenu *menu)
@@ -315,8 +315,8 @@ static void ShowBattleRegulationRules(BattleRegulationMenu *menu)
     const int xRightSide = (24 * 8) - 1;
 
     MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0353, HEAP_ID_FIELD1);
-    String *fmtString = String_Init((90 * 2), HEAP_ID_FIELD1);
-    String *dstString = String_Init((90 * 2), HEAP_ID_FIELD1);
+    String *fmtString = String_Init(180, HEAP_ID_FIELD1);
+    String *dstString = String_Init(180, HEAP_ID_FIELD1);
     Window *window = &menu->windowRules;
 
     Window_Add(menu->fieldSystem->bgConfig, window, BG_LAYER_MAIN_3, 4, 2, 24, 19, 13, 1);
@@ -407,16 +407,16 @@ static void RemoveRulesWindow(BattleRegulationMenu *menu)
     Window_Remove(&menu->windowRules);
 }
 
-static BOOL HandleBattleRegulationValidationError(BattleRegulationMenu *menu)
+static BOOL HandleBattleRegulationValidationResult(BattleRegulationMenu *menu)
 {
     Party *party = SaveData_GetParty(menu->fieldSystem->saveData);
-    enum BattleRegulationValidationError error = BattleRegulation_SelectValidPokemon(menu->fieldSystem->regulation, party, menu->heighWeightData);
+    enum BattleRegulationValidationResult result = BattleRegulation_SelectValidPokemon(menu->fieldSystem->regulation, party, menu->heighWeightData);
     int ruleValue;
 
-    switch (error) {
-    case BATTLE_REGULATION_VALIDATION_SUCCESS:
+    switch (result) {
+    case BATTLE_REGULATION_VALIDATION_RESULT_SUCCESS:
         return TRUE;
-    case BATTLE_REGULATION_VALIDATION_ERROR_INVALID_TEAM_SIZE:
+    case BATTLE_REGULATION_VALIDATION_RESULT_INVALID_TEAM_SIZE:
         Sound_PlayEffect(SEQ_SE_DP_BOX03);
         GetBattleRegulationName(menu, menu->cursorPosRegulations - 1);
         ruleValue = BattleRegulation_GetRuleValue(menu->fieldSystem->regulation, BATTLE_REGULATION_RULE_TEAM_SIZE);
@@ -424,7 +424,7 @@ static BOOL HandleBattleRegulationValidationError(BattleRegulationMenu *menu)
         PrintMessage(menu, PokemonCenter2FCommon_Text_NeedXPokemonForCup);
         break;
     default:
-    case BATTLE_REGULATION_VALIDATION_ERROR_TOTAL_LEVEL_EXCEEDED:
+    case BATTLE_REGULATION_VALIDATION_RESULT_TOTAL_LEVEL_EXCEEDED:
         Sound_PlayEffect(SEQ_SE_DP_BOX03);
         GetBattleRegulationName(menu, menu->cursorPosRegulations - 1);
         ruleValue = BattleRegulation_GetRuleValue(menu->fieldSystem->regulation, BATTLE_REGULATION_RULE_MAX_TOTAL_LEVEL);
@@ -497,7 +497,7 @@ static BOOL FieldTask_BattleRegulationMenu(FieldTask *task)
         }
         break;
     case STATE_CHECK_VALID_TEAM:
-        if (HandleBattleRegulationValidationError(menu)) {
+        if (HandleBattleRegulationValidationResult(menu)) {
             *menu->result = 1;
             menu->state = STATE_EXIT;
         } else {
@@ -561,10 +561,10 @@ static BattleRegulationMenu *NewBattleRegulationMenu(FieldSystem *fieldSystem)
     menu->fieldSystem->regulation = NULL;
     menu->strTemplate = StringTemplate_Default(HEAP_ID_FIELD1);
     menu->msgLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEMON_CENTER_2F_COMMON, HEAP_ID_FIELD1);
-    menu->fmtString = String_Init((90 * 2), HEAP_ID_FIELD1);
-    menu->dstString = String_Init((90 * 2), HEAP_ID_FIELD1);
-    menu->regulationName = String_Init((90 * 2), HEAP_ID_FIELD1);
-    menu->cupString = String_Init((90 * 2), HEAP_ID_FIELD1);
+    menu->fmtString = String_Init(180, HEAP_ID_FIELD1);
+    menu->dstString = String_Init(180, HEAP_ID_FIELD1);
+    menu->regulationName = String_Init(180, HEAP_ID_FIELD1);
+    menu->cupString = String_Init(180, HEAP_ID_FIELD1);
     menu->heighWeightData = HeightWeightData_Load(HEAP_ID_FIELD2);
 
     return menu;

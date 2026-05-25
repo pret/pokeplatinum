@@ -20,7 +20,7 @@
     ScriptEntry PokemonCenter2FCommon_OnFrameExitUnionRoom
     ScriptEntry PokemonCenter2FCommon_OnFrameExitColosseum
     ScriptEntry PokemonCenter2FCommon_OnFrameExitColosseum
-    ScriptEntry CommonScript_HasBadEgg @ 0x2338
+    ScriptEntry PokemonCenter2FCommon_HasBadEggReturnCommon @ 0x2338
     ScriptEntryEnd
 
 PokemonCenter2FCommon_OnResume:
@@ -85,7 +85,7 @@ PokemonCenter2FCommon_AttendantColosseum:
     LockAll
     FacePlayer
     CheckPartyHasBadEgg VAR_RESULT
-    GoToIfEq VAR_RESULT, TRUE, PokemonCenter2FCommon_HasBadEgg
+    GoToIfEq VAR_RESULT, TRUE, PokemonCenter2FCommon_HasBadEggEnd
     Message PokemonCenter2FCommon_Text_WelcomeToColosseum
     GoTo PokemonCenter2FCommon_BattleModeMenu
     End
@@ -375,7 +375,7 @@ PokemonCenter2FCommon_AttendantUnionRoom:
     LockAll
     FacePlayer
     CheckPartyHasBadEgg VAR_RESULT
-    GoToIfEq VAR_RESULT, TRUE, PokemonCenter2FCommon_HasBadEgg
+    GoToIfEq VAR_RESULT, TRUE, PokemonCenter2FCommon_HasBadEggEnd
     GoTo PokemonCenter2FCommon_UnionRoomMenu
     End
 
@@ -514,14 +514,14 @@ PokemonCenter2FCommon_SignTrainerCardEnd:
     ReleaseAll
     End
 
-PokemonCenter2FCommon_HasBadEgg:
+PokemonCenter2FCommon_HasBadEggEnd:
     Call PokemonCenter2FCommon_AtLeastOnePokemonCantBeTaken
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-CommonScript_HasBadEgg:
+PokemonCenter2FCommon_HasBadEggReturnCommon:
     Call PokemonCenter2FCommon_AtLeastOnePokemonCantBeTaken
     ReturnCommonScript
     End
