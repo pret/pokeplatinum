@@ -1339,17 +1339,17 @@ void UndergroundTalkResponse_Start(int unused, int linkNetID, FieldSystem *field
     menu->sysTask = SysTask_Start(UndergroundTalkResponse_Main, menu, 10000);
 }
 
-void UndergroundTalk_RequestLinkTalkStateUpdateServer(int unused0, int unused1, void *data, void *unused3)
+void CommCmd_RequestUndergroundTalkStateAndUpdateServer(int unused0, int unused1, void *data, void *unused3)
 {
     CommSys_SendDataFixedSizeServer(75, data);
 }
 
-void UndergroundTalkResponse_RequestLinkTalkStateUpdateServer(int unused0, int unused1, void *data, void *unused3)
+void CommCmd_RequestUndergroundTalkResponseStateAndUpdateServer(int unused0, int unused1, void *data, void *unused3)
 {
     CommSys_SendDataFixedSizeServer(76, data);
 }
 
-void UndergroundTalkResponse_HandleLinkTalkStateUpdateServer(int unused0, int size, void *data, void *unused3)
+void CommCmd_UndergroundTalkResponseStateUpdateServer(int unused0, int size, void *data, void *unused3)
 {
     TalkStateChangeRequest *req = data;
 
@@ -1359,7 +1359,7 @@ void UndergroundTalkResponse_HandleLinkTalkStateUpdateServer(int unused0, int si
     }
 }
 
-void UndergroundTalk_HandleLinkTalkStateUpdateServer(int unused0, int size, void *data, void *unused3)
+void CommCmd_UndergroundTalkStateUpdateServer(int unused0, int size, void *data, void *unused3)
 {
     TalkStateChangeRequest *req = data;
 
@@ -1376,12 +1376,12 @@ int CommPacketSizeOf_TalkStateChangeRequest(void)
     return sizeof(TalkStateChangeRequest);
 }
 
-void UndergroundTalk_SendGiftServer(int unused0, int unused1, void *data, void *unused3)
+void CommCmd_UndergroundSendGiftServer(int unused0, int unused1, void *data, void *unused3)
 {
     CommSys_SendDataFixedSizeServer(78, data);
 }
 
-void UndergroundTalkResponse_ReceiveGiftOffer(int unused0, int unused1, void *data, void *unused3)
+void CommCmd_UndergroundRecvGiftOffer(int unused0, int unused1, void *data, void *unused3)
 {
     ResponseMenu *menu = sCurrentResponseMenu;
     Gift *gift = data;
@@ -1412,12 +1412,12 @@ int CommPacketSizeOf_Gift(void)
     return sizeof(Gift);
 }
 
-void UndergroundTalk_SendTalkMessageServer(int unused0, int unused1, void *data, void *unused3)
+void CommCmd_SendUndergroundTalkMessageServer(int unused0, int unused1, void *data, void *unused3)
 {
     CommSys_SendDataFixedSizeServer(80, data);
 }
 
-void UndergroundTalk_ReceiveTalkMessage(int unused0, int unused1, void *data, void *unused3)
+void CommCmd_RecvUndergroundTalkMessage(int unused0, int unused1, void *data, void *unused3)
 {
     ResponseMenu *responseMenu = sCurrentResponseMenu;
     TalkMenu *talkMenu = sCurrentTalkMenu;

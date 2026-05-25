@@ -963,7 +963,7 @@ static void sub_0205B0B4(UnkStruct_0205A0D8 *param0)
     Window_EraseStandardFrame(param0->unk_7C, 1);
 }
 
-void sub_0205B0C0(int param0, int param1, void *param2, void *param3)
+void CommCmd_Field_106(int param0, int param1, void *param2, void *param3)
 {
     UnkStruct_0205A0D8 *v0 = sub_0205AC74(param3);
 
@@ -988,7 +988,7 @@ u8 *sub_0205B0F4(int param0, void *param1, int param2)
     }
 }
 
-void sub_0205B110(int param0, int param1, void *param2, void *param3)
+void CommCmd_Field_107(int param0, int param1, void *param2, void *param3)
 {
     UnkStruct_0205A0D8 *v0 = sub_0205AC74(param3);
 

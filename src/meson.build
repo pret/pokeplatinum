@@ -327,7 +327,7 @@ pokeplatinum_c = files(
     'pokedex_data_index.c',
     'applications/poffin_case/main.c',
     'poffin_sprite.c',
-    'unk_02099500.c',
+    'comm_command_field.c',
     'wifi_overlays.c',
     'unk_02099604.c',
     'unk_020996D0.c',

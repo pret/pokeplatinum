@@ -1104,7 +1104,7 @@ static void Mining_ForceEndConfirmStartMiningTask(SysTask *sysTask, void *data)
     SysTask_Done(sysTask);
 }
 
-void Mining_ProcessMiningSpotInteract(int unused0, int unused1, void *data, void *unused3)
+void CommCmd_InteractMiningSpot(int unused0, int unused1, void *data, void *unused3)
 {
     u8 *netID = data;
 
@@ -1148,7 +1148,7 @@ static void Mining_ConfirmStartMiningTask(SysTask *sysTask, void *unused)
     }
 }
 
-void Mining_ProcessConfirmStartMiningResult(int netID, int unused1, void *data, void *unused3)
+void CommCmd_ConfirmStartMiningResult(int netID, int unused1, void *data, void *unused3)
 {
     Underground *underground = SaveData_GetUnderground(sMiningEnv->fieldSystem->saveData);
     MiningSpot *miningSpot = sMiningEnv->currentUsedMiningSpots[netID];
@@ -1174,7 +1174,7 @@ void Mining_ProcessConfirmStartMiningResult(int netID, int unused1, void *data, 
     }
 }
 
-void Mining_ProcessStartMiningConfirm(int unused0, int unused1, void *data, void *unused3)
+void CommCmd_ConfirmStartMining(int unused0, int unused1, void *data, void *unused3)
 {
     u8 *netID = data;
 
@@ -1186,13 +1186,13 @@ void Mining_ProcessStartMiningConfirm(int unused0, int unused1, void *data, void
     sMiningEnv->miningMessagesQueued[*netID] = TRUE;
 }
 
-void Mining_ProcessMiningGameEnd(int netID, int unused1, void *unused2, void *unused3)
+void CommCmd_EndMiningGame(int netID, int unused1, void *unused2, void *unused3)
 {
     sMiningEnv->isPlayerMining[netID] = FALSE;
     sMiningEnv->normalRadarTimer[netID] = 0;
 }
 
-void Mining_ProcessLinkInput(int netID, int unused1, void *data, void *unused3)
+void CommCmd_MiningLinkInput(int netID, int unused1, void *data, void *unused3)
 {
     MiningLinkInput *linkInput = data;
     MiningLinkInputWithNetID linkInputWithNetID;
@@ -1209,7 +1209,7 @@ int CommPacketSizeOf_MiningLinkInput(void)
     return sizeof(MiningLinkInput);
 }
 
-void Mining_ProcessLinkInputServer(int unused0, int unused1, void *data, void *unused3)
+void CommCmd_MiningLinkInputServer(int unused0, int unused1, void *data, void *unused3)
 {
     MiningLinkInputWithNetID *linkInput = data;
 
@@ -2998,7 +2998,7 @@ void TreasureRadar_Exit(void)
     }
 }
 
-void Mining_ProcessTreasureRadarStart(int netID, int unused1, void *unused2, void *unused3)
+void CommCmd_StartTreasureRadar(int netID, int unused1, void *unused2, void *unused3)
 {
     sMiningEnv->treasureRadarIndex[netID] = 1;
 }
@@ -3035,7 +3035,7 @@ static void Mining_SendTreasureRadarResults(void)
     }
 }
 
-void Mining_ProcessMiningSpotRadarResult(int unused0, int unused1, void *data, void *unused3)
+void CommCmd_MiningSpotRadarResult(int unused0, int unused1, void *data, void *unused3)
 {
     MiningSpotRadarResult *radarResult = data;
 

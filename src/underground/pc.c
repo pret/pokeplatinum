@@ -200,7 +200,7 @@ BOOL UndergroundPC_TryUsePC(int netID, CoordinatesU16 *coordinates)
         } else {
             if (UndergroundPlayer_IsHoldingFlag(netID)) {
                 u8 flagEventType = FLAG_EVENT_REGISTER;
-                UndergroundPlayer_ProcessFlagEventType(netID, 1, &flagEventType, NULL);
+                CommCmd_UndergroundFlagEventType(netID, 1, &flagEventType, NULL);
                 return TRUE;
             }
         }
@@ -217,7 +217,7 @@ static void UndergroundPC_ResumeFieldSystem(int unused)
     CommPlayerMan_ResumeFieldSystemWithContextBit(PAUSE_BIT_LINK_PC);
 }
 
-void UndergroundPC_ProcessPCInteraction(int unused0, int unused1, void *data, void *data2)
+void CommCmd_IntreactUndergroundPC(int unused0, int unused1, void *data, void *data2)
 {
     PCInteraction *pcInteraction = data;
     FieldSystem *fieldSystem = data2;
@@ -925,7 +925,7 @@ static void UndergroundPC_StartTakeFlagPromptTask(FieldSystem *fieldSystem, PCIn
     UndergroundMan_SetCurrentSysTask(ctx, ctx->sysTask, UndergroundPC_EndFlagPromptTask);
 }
 
-void UndergroundPC_ProcessTakeFlagAttempt(int unused0, int unused1, void *data, void *unused3)
+void CommCmd_AttemptUndergroundTakeFlag(int unused0, int unused1, void *data, void *unused3)
 {
     PCInteraction *pcInteraction = data;
 
@@ -934,7 +934,7 @@ void UndergroundPC_ProcessTakeFlagAttempt(int unused0, int unused1, void *data, 
     }
 }
 
-void UndergroundPC_ProcessTakenFlag(int unused0, int unused1, void *data, void *unused3)
+void CommCmd_UndergroundTakenFlag(int unused0, int unused1, void *data, void *unused3)
 {
     PCInteraction *pcInteraction = data;
 

@@ -264,12 +264,12 @@ void UndergroundRecords_RetrieveTrainerScore(void)
     UndergroundRecord_SetTrainerScore(recordsEnv->record, trainerScore);
 }
 
-void UndergroundRecords_SendRecordServer(int unused0, int size, void *data, void *unused3)
+void CommCmd_SendUndergroundRecordServer(int unused0, int size, void *data, void *unused3)
 {
     CommSys_SendDataServer(82, data, size);
 }
 
-void UndergroundRecords_ProcessLinkRecord(int unused0, int size, void *data, void *unused3)
+void CommCmd_UndergroundRecord(int unused0, int size, void *data, void *unused3)
 {
     RecordBuffer *buffer = data;
 

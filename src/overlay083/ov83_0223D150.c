@@ -62,13 +62,13 @@ void CommCmd_Poffin_22(int param0, int param1, void *param2, void *param3)
     ov83_0223B774(v0, 3);
 }
 
-void ov83_0223D210(int param0, int param1, void *param2, void *param3)
+void CommCmd_Poffin_23(int param0, int param1, void *param2, void *param3)
 {
     UnkStruct_ov83_0223B784 *v0 = param3;
     ov83_0223B77C(v0, 8);
 }
 
-void ov83_0223D21C(int param0, int param1, void *param2, void *param3)
+void CommCmd_Poffin_24(int param0, int param1, void *param2, void *param3)
 {
     UnkStruct_ov83_0223B784 *v0 = param3;
 
@@ -77,7 +77,7 @@ void ov83_0223D21C(int param0, int param1, void *param2, void *param3)
     ov83_0223B774(v0, 5);
 }
 
-void ov83_0223D258(int param0, int param1, void *param2, void *param3)
+void CommCmd_Poffin_25(int param0, int param1, void *param2, void *param3)
 {
     UnkStruct_ov83_0223B784 *v0 = param3;
     int v1;
@@ -102,7 +102,7 @@ void ov83_0223D258(int param0, int param1, void *param2, void *param3)
     }
 }
 
-void ov83_0223D2E8(int param0, int param1, void *param2, void *param3)
+void CommCmd_Poffin_26(int param0, int param1, void *param2, void *param3)
 {
     UnkStruct_ov83_0223B784 *v0 = param3;
     UnkStruct_ov83_0223D2E8 *v1;
@@ -130,7 +130,7 @@ void ov83_0223D2E8(int param0, int param1, void *param2, void *param3)
     v0->unk_1666++;
 }
 
-void ov83_0223D354(int param0, int param1, void *param2, void *param3)
+void CommCmd_Poffin_31(int param0, int param1, void *param2, void *param3)
 {
     UnkStruct_ov83_0223B784 *v0 = param3;
     UnkStruct_ov83_0223FCE8 *v1;
@@ -154,7 +154,7 @@ void ov83_0223D354(int param0, int param1, void *param2, void *param3)
     }
 }
 
-void ov83_0223D3A8(int param0, int param1, void *param2, void *param3)
+void CommCmd_Poffin_32(int param0, int param1, void *param2, void *param3)
 {
     UnkStruct_ov83_0223B784 *v0 = param3;
 
@@ -162,7 +162,7 @@ void ov83_0223D3A8(int param0, int param1, void *param2, void *param3)
     v0->unk_165C[param0]++;
 }
 
-void ov83_0223D3D8(int param0, int param1, void *param2, void *param3)
+void CommCmd_Poffin_27(int param0, int param1, void *param2, void *param3)
 {
     UnkStruct_ov83_0223B784 *v0 = param3;
 
@@ -170,13 +170,13 @@ void ov83_0223D3D8(int param0, int param1, void *param2, void *param3)
     ov83_0223B774(v0, 10);
 }
 
-void ov83_0223D3F8(int param0, int param1, void *param2, void *param3)
+void CommCmd_Poffin_28(int param0, int param1, void *param2, void *param3)
 {
     UnkStruct_ov83_0223B784 *v0 = param3;
     memcpy(v0->unk_1494.unk_100, param2, param1);
 }
 
-void ov83_0223D410(int param0, int param1, void *param2, void *param3)
+void CommCmd_Poffin_29(int param0, int param1, void *param2, void *param3)
 {
     UnkStruct_ov83_0223B784 *v0 = param3;
 
@@ -184,7 +184,7 @@ void ov83_0223D410(int param0, int param1, void *param2, void *param3)
     ov83_0223B774(v0, 12);
 }
 
-void ov83_0223D430(int param0, int param1, void *param2, void *param3)
+void CommCmd_Poffin_30(int param0, int param1, void *param2, void *param3)
 {
     UnkStruct_ov83_0223B784 *v0 = param3;
     int v1;

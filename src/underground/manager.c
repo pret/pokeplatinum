@@ -423,7 +423,7 @@ static void UndergroundMan_StartTouchRadar(int netID, CoordinatesU16 *touchedTil
     CommSys_SendDataServer(50, buffer, size);
 }
 
-void UndergroundMan_ProcessTouchInput(int netID, int unused1, void *data, void *unused3)
+void CommCmd_UndergroundTouchInput(int netID, int unused1, void *data, void *unused3)
 {
     CoordinatesU16 *touchedTileCoords = data;
 
@@ -439,7 +439,7 @@ void UndergroundMan_ProcessTouchInput(int netID, int unused1, void *data, void *
     UndergroundMan_StartTouchRadar(netID, touchedTileCoords);
 }
 
-void UndergroundMan_ProcessTouchRadarTrapResults(int unused0, int size, void *data, void *unused3)
+void CommCmd_UndergroundTouchRadarTrapResults(int unused0, int size, void *data, void *unused3)
 {
     u8 *buffer = data;
 
@@ -451,7 +451,7 @@ void UndergroundMan_ProcessTouchRadarTrapResults(int unused0, int size, void *da
     sUndergroundMan->touchRadarTrapResultCount = size - 1;
 }
 
-void UndergroundMan_ProcessTouchRadarMiningSpotResults(int unused0, int size, void *data, void *unused3)
+void CommCmd_UndergroundTouchRadarMiningSpotResults(int unused0, int size, void *data, void *unused3)
 {
     u8 *buffer = data;
     u8 sphereResults[MAX_TOUCH_RADAR_RESULTS_OF_TYPE + 1];
@@ -592,7 +592,7 @@ int CommPacketSizeOf_InteractEvent(void)
     return sizeof(InteractEvent);
 }
 
-void UndergroundMan_ProcessInteractEvent(int netID, int unused1, void *data, void *unused3)
+void CommCmd_UndergroundInteractEvent(int netID, int unused1, void *data, void *unused3)
 {
     TalkEvent talkEvent;
     InteractEvent *event = data;
@@ -1101,7 +1101,7 @@ u16 UndergroundMan_GetStoredCursorPos(u16 menuKey)
     return 0;
 }
 
-void UndergroundMan_ProcessVendorTalkRequest(int unused0, int unused1, void *data, void *unused3)
+void CommCmd_VendorTalkRequest(int unused0, int unused1, void *data, void *unused3)
 {
     u8 *buffer = data;
     int netID = *buffer;
@@ -1201,7 +1201,7 @@ void UndergroundMan_SendPlayerState(void)
     CommSys_SendDataFixedSize(70, &playerState);
 }
 
-void UndergroundMan_ProcessPlayerState(int netID, int unused1, void *data, void *unused3)
+void CommCmd_UndergroundPlayerState(int netID, int unused1, void *data, void *unused3)
 {
     UndergroundPlayerState *playerState = data;
 
@@ -1216,7 +1216,7 @@ int CommPacketSizeOf_UndergroundPlayerState(void)
     return sizeof(UndergroundPlayerState);
 }
 
-void UndergroundMan_ProcessAllDataSentMessage(int netID, int unused1, void *unused2, void *unused3)
+void CommCmd_UndergroundProcessAllDataSentMessage(int netID, int unused1, void *unused2, void *unused3)
 {
     sUndergroundMan->initialized[netID] = TRUE;
 }

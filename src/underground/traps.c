@@ -1172,7 +1172,7 @@ void Traps_SendPlacedTraps(void)
     CommSys_WriteToQueue(35, &trapsEnv->playerPlacedTraps[0], sizeof(BuriedTrap) * MAX_PLACED_TRAPS);
 }
 
-void Traps_TryPlaceTrap(int netID, int unused1, void *data, void *unused3)
+void CommCmd_TryPlaceTrap(int netID, int unused1, void *data, void *unused3)
 {
     u8 *trapID = (u8 *)data;
 
@@ -1377,7 +1377,7 @@ static void Traps_RemovePlacedTrapCurrentPlayer(BuriedTrap *trap)
     trapsEnv->trapTextureManager[MAX_PLACED_TRAPS - 1] = NULL;
 }
 
-void Traps_ProcessPlaceTrapResult(int unused0, int unused1, void *data, void *unused3)
+void CommCmd_PlaceTrapResult(int unused0, int unused1, void *data, void *unused3)
 {
     PlaceTrapResult *placeResult = (PlaceTrapResult *)data;
 
@@ -1404,7 +1404,7 @@ void Traps_ProcessPlaceTrapResult(int unused0, int unused1, void *data, void *un
     }
 }
 
-void Traps_RemoveBuriedTrapAtIndex_Unused(int unused0, int unused1, void *data, void *unused3)
+void CommCmd_RemoveBuriedTrapAtIndex(int unused0, int unused1, void *data, void *unused3)
 {
     u16 *buffer = data;
     int index = buffer[0];
@@ -1417,7 +1417,7 @@ int CommPacketSizeOf_2Bytes_Unused(void)
     return 2;
 }
 
-void Traps_LoadLinkPlacedTraps(int netID, int size, void *data, void *unused3)
+void CommCmd_LoadPlacedTraps(int netID, int size, void *data, void *unused3)
 {
     BuriedTrap *trapPtr = &trapsEnv->buriedTraps[netID * MAX_PLACED_TRAPS];
 
@@ -1450,7 +1450,7 @@ void Traps_LoadLinkPlacedTraps(int netID, int size, void *data, void *unused3)
     Traps_SendTriggeredTrapBits();
 }
 
-void Traps_ReceiveLoadTrapsResult(int unused0, int unused1, void *data, void *unused3)
+void CommCmd_RecvLoadTraps(int unused0, int unused1, void *data, void *unused3)
 {
     LoadTrapsResult *result = data;
 
@@ -1525,7 +1525,7 @@ int CommPacketSizeOf_TriggeredTrap(void)
     return sizeof(TriggeredTrap);
 }
 
-void Traps_ProcessDisengagedTrap(int unused0, int unused1, void *data, void *unused3)
+void CommCmd_DisengagedTrap(int unused0, int unused1, void *data, void *unused3)
 {
     TriggeredTrap *retrievedTrap = (TriggeredTrap *)data;
 
@@ -1695,7 +1695,7 @@ BOOL Traps_HasPlayerTriggeredTool(int netID)
     return trapsEnv->triggeredTraps[netID].isTool;
 }
 
-void Traps_HandleTriggeredTrap(int unused0, int unused1, void *data, void *unused3)
+void CommCmd_TriggeredTraps(int unused0, int unused1, void *data, void *unused3)
 {
     TriggeredTrap *trap = (TriggeredTrap *)data;
 
@@ -1751,7 +1751,7 @@ void Traps_HandleTriggeredTrap(int unused0, int unused1, void *data, void *unuse
     }
 }
 
-void Traps_CallSecondTrapEffectServerFunc(int netID, int unused1, void *data, void *unused3)
+void CommCmd_CallSecondTrapEffectServerFunc(int netID, int unused1, void *data, void *unused3)
 {
     u8 *trapID = data;
     TrapServerFunc trapEffectFunc = sTrapEffectServerSecondFuncs[*trapID];
@@ -1766,7 +1766,7 @@ void Traps_CallSecondTrapEffectServerFunc(int netID, int unused1, void *data, vo
     }
 }
 
-void Traps_StartLinkSlideAnimation_Unused(int unused0, int unused1, void *data, void *unused3)
+void CommCmd_StartSlideAnimation(int unused0, int unused1, void *data, void *unused3)
 {
     u8 *buffer = data;
 
@@ -1790,7 +1790,7 @@ void Traps_SendTriggeredTrapBits(void)
     }
 }
 
-void Traps_ProcessTriggeredTrapBits(int unused0, int unused1, void *data, void *unused3)
+void CommCmd_TriggeredTrapBits(int unused0, int unused1, void *data, void *unused3)
 {
     u8 bits = *(u8 *)data;
 
@@ -2564,7 +2564,7 @@ int CommPacketSizeOf_EscapedTrap(void)
     return sizeof(EscapedTrap);
 }
 
-void Traps_EscapeTrapServer(int netID, int unused1, void *unused2, void *unused3)
+void CommCmd_EscapeTrapServer(int netID, int unused1, void *unused2, void *unused3)
 {
     if (UndergroundPlayer_IsAffectedByTrap(netID)) {
         UndergroundPlayer_RevertStatusToNormal(netID);
@@ -2582,7 +2582,7 @@ void Traps_EscapeTrapServer(int netID, int unused1, void *unused2, void *unused3
     trapsEnv->triggeredTrapIDs[netID] = TRAP_NONE;
 }
 
-void Traps_EndCurrentTrapEffectServer(int netID, int unused1, void *unused2, void *unused3)
+void CommCmd_EndCurrentTrapEffectServer(int netID, int unused1, void *unused2, void *unused3)
 {
     UndergroundPlayer_RevertStatusToNormal(netID);
 
@@ -2596,7 +2596,7 @@ void Traps_EndCurrentTrapEffectServer(int netID, int unused1, void *unused2, voi
     SecretBases_ClearToolEffectFlag(netID);
 }
 
-void Traps_ProcessEscapedTrap(int unused0, int unused1, void *data, void *unused3)
+void CommCmd_EscapedTrap(int unused0, int unused1, void *data, void *unused3)
 {
     EscapedTrap *escapedTrap = data;
     enum Trap trapID = escapedTrap->trapID;
@@ -2636,7 +2636,7 @@ void Traps_ProcessEscapedTrap(int unused0, int unused1, void *data, void *unused
     }
 }
 
-void Traps_EscapeHole(int unused0, int unused1, void *data, void *unused3)
+void CommCmd_EscapeHole(int unused0, int unused1, void *data, void *unused3)
 {
     u8 *netID = data;
     enum Trap trapID = trapsEnv->triggeredTrapIDClient;
@@ -2661,7 +2661,7 @@ void Traps_HelpLink(int netID, int linkNetID)
     CommPlayerMan_SetMovementEnabled(netID, FALSE);
 }
 
-void Traps_ProcessTrapHelp(int unused0, int unused1, void *data, void *unused3)
+void CommCmd_TrapHelp(int unused0, int unused1, void *data, void *unused3)
 {
     TrapHelpData *helpdata = data;
     UndergroundRecord *undergroundRecord = SaveData_GetUndergroundRecord(FieldSystem_GetSaveData(trapsEnv->fieldSystem));
@@ -2773,7 +2773,7 @@ void TrapRadar_Exit(void)
     }
 }
 
-void Traps_QueueSendTrapRadarResults(int netID, int unused1, void *unused2, void *unused3)
+void CommCmd_SendTrapRadarResults(int netID, int unused1, void *unused2, void *unused3)
 {
     trapsEnv->trapRadarIndex[netID] = 1;
 }
@@ -2817,7 +2817,7 @@ static void SendTrapRadarResults(void)
     }
 }
 
-void Traps_ReceiveTrapRadarResults(int unused0, int unused1, void *data, void *unused3)
+void CommCmd_RecvTrapRadarResults(int unused0, int unused1, void *data, void *unused3)
 {
     TrapRadarResult *radarResult = data;
 

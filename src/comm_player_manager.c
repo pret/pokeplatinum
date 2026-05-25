@@ -527,7 +527,7 @@ static void sub_02057EF8(void *unused)
             }
 
             u8 netId_u8 = netId;
-            CommPlayer_RecvDelete(0, 1, &netId_u8, sCommPlayerManager->fieldSystem);
+            CommCmd_DeletePlayer(0, 1, &netId_u8, sCommPlayerManager->fieldSystem);
         }
     }
 }
@@ -562,7 +562,7 @@ static void sub_02057FF0(BOOL param0)
     }
 }
 
-void sub_02058018(int netId, int param1, void *param2, void *unused)
+void CommCmd_Field_62(int netId, int param1, void *param2, void *unused)
 {
     u8 *buffer = (u8 *)param2;
 
@@ -796,7 +796,7 @@ static void CommPlayer_Move(SysTask *unused0, void *unused1)
 
                         if (sCommPlayerManager->alteredMovementStepsLeft[netId] == 0) {
                             u8 v10 = 1;
-                            Traps_EscapeTrapServer(netId, 1, &v10, NULL);
+                            CommCmd_EscapeTrapServer(netId, 1, &v10, NULL);
                         }
                     }
                 }
@@ -805,7 +805,7 @@ static void CommPlayer_Move(SysTask *unused0, void *unused1)
     }
 }
 
-void CommPlayer_RecvLocation(int netId, int unused0, void *src, void *unused1)
+void CommCmd_RecvPlayerLocation(int netId, int unused0, void *src, void *unused1)
 {
     u8 *buffer = (u8 *)src;
     CommPlayerLocation *playerLocation;
@@ -845,7 +845,7 @@ void CommPlayer_RecvLocation(int netId, int unused0, void *src, void *unused1)
     }
 }
 
-void CommPlayer_RecvDelete(int unused0, int unused1, void *src, void *unused2)
+void CommCmd_DeletePlayer(int unused0, int unused1, void *src, void *unused2)
 {
     u8 *buffer = (u8 *)src;
     u8 netId = buffer[0];
@@ -875,7 +875,7 @@ int CommPacketSizeOf_RecvLocation(void)
     return COMM_PACKET_SIZE_LOCATION;
 }
 
-void CommPlayer_RecvLocationAndInit(int netId, int size, void *src, void *unused)
+void CommCmd_RecvPlayerLocationAndInit(int netId, int size, void *src, void *unused)
 {
     u8 *buffer = (u8 *)src;
     CommPlayerLocation *playerLocation;
@@ -1135,7 +1135,7 @@ static BOOL CommPlayer_MoveSlide(int netId, int speed)
     } else if (sCommPlayerManager->slideTilesLeft[netId] == 0) {
         u8 data = 1;
 
-        Traps_EscapeTrapServer(netId, 1, &data, NULL);
+        CommCmd_EscapeTrapServer(netId, 1, &data, NULL);
         return TRUE;
     }
 
@@ -1495,7 +1495,7 @@ BOOL sub_020590C4(void)
     return v8;
 }
 
-void sub_02059180(int netId, int unused0, void *src, void *unused3)
+void CommCmd_Field_93(int netId, int unused0, void *src, void *unused3)
 {
     u8 *buffer = src;
 

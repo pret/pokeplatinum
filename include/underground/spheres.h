@@ -21,7 +21,7 @@ void Spheres_DisableBuriedSphereSparkles(void);
 void Spheres_EnableBuriedSphereSparkles(void);
 void SpheresEnv_Free(void);
 void Spheres_AdvanceBuriedSphereSparkleTimer(void);
-void Spheres_ProcessRetrieveBuriedSphereRequest(int unused, int unused2, void *src, void *unused3);
+void CommCmd_RetrieveBuriedSpheresRequest(int unused, int unused2, void *src, void *unused3);
 void TouchRadarSearch_Init(TouchRadarSearchContext *ctx, int radius);
 BOOL TouchRadarSearch_GetNextCoords(TouchRadarSearchContext *ctx, CoordinatesS16 *out);
 void Spheres_TryBurySphere(enum SphereType sphereType, int sphereSize, int x, int z);

@@ -7,9 +7,9 @@
 
 #include "communication_system.h"
 
-void sub_02050548(int param0, int param1, void *param2, void *param3);
+void CommCmd_Field_134(int param0, int param1, void *param2, void *param3);
 
-void sub_02050548(int param0, int param1, void *param2, void *param3)
+void CommCmd_Field_134(int param0, int param1, void *param2, void *param3)
 {
     int v0, v1;
     UnkStruct_02050224 *v2 = param3;

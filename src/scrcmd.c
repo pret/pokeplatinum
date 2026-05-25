@@ -213,7 +213,7 @@
 #include "unk_0207DA28.h"
 #include "unk_02097B18.h"
 #include "unk_020985E4.h"
-#include "unk_02099500.h"
+#include "comm_command_field.h"
 #include "unk_02099604.h"
 #include "unk_0209ACF4.h"
 #include "unk_0209B344.h"

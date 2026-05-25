@@ -36,7 +36,7 @@
 #include "unk_02014D38.h"
 #include "unk_02033200.h"
 #include "unk_02095E98.h"
-#include "unk_02099500.h"
+#include "comm_command_field.h"
 
 #include "constdata/const_020ED570.h"
 #include "res/text/bank/country_names.h"
@@ -623,17 +623,17 @@ void sub_0205B930(UnkStruct_0205B43C *param0, int param1, u32 param2)
     }
 }
 
-void sub_0205B988(int param0, int param1, void *param2, void *param3)
+void CommCmd_Field_98(int param0, int param1, void *param2, void *param3)
 {
     return;
 }
 
-void sub_0205B98C(int param0, int param1, void *param2, void *param3)
+void CommCmd_Field_100(int param0, int param1, void *param2, void *param3)
 {
     return;
 }
 
-void sub_0205B990(int param0, int param1, void *param2, void *param3)
+void CommCmd_Field_102(int param0, int param1, void *param2, void *param3)
 {
     FieldSystem *fieldSystem = (FieldSystem *)param3;
 
@@ -643,7 +643,7 @@ void sub_0205B990(int param0, int param1, void *param2, void *param3)
 
 static int Unk_021C0858;
 
-void sub_0205B9AC(int param0, int param1, void *param2, void *param3)
+void CommCmd_Field_99(int param0, int param1, void *param2, void *param3)
 {
     FieldSystem *fieldSystem = (FieldSystem *)param3;
     u8 *v1 = (u8 *)param2;
@@ -654,7 +654,7 @@ void sub_0205B9AC(int param0, int param1, void *param2, void *param3)
     }
 }
 
-void sub_0205B9C4(int param0, int param1, void *param2, void *param3)
+void CommCmd_Field_103(int param0, int param1, void *param2, void *param3)
 {
     FieldSystem *fieldSystem = (FieldSystem *)param3;
     u8 *v1 = (u8 *)param2;
@@ -667,7 +667,7 @@ void sub_0205B9C4(int param0, int param1, void *param2, void *param3)
     }
 }
 
-void sub_0205B9E0(int param0, int param1, void *param2, void *param3)
+void CommCmd_Field_104(int param0, int param1, void *param2, void *param3)
 {
     FieldSystem *fieldSystem = (FieldSystem *)param3;
 
@@ -689,7 +689,7 @@ int sub_0205B9EC(UnkStruct_0205B43C *param0, int param1)
     return 0;
 }
 
-void sub_0205BA08(int param0, int param1, void *param2, void *param3)
+void CommCmd_Field_105(int param0, int param1, void *param2, void *param3)
 {
     FieldSystem *fieldSystem = (FieldSystem *)param3;
     TrainerCase *trainerCase = (TrainerCase *)param2;
@@ -719,7 +719,7 @@ u8 *sub_0205BA5C(int param0, void *param1, int param2)
     return (u8 *)v1->unk_188[param0];
 }
 
-void sub_0205BA6C(int param0, int param1, void *param2, void *param3)
+void CommCmd_Field_101(int param0, int param1, void *param2, void *param3)
 {
     FieldSystem *fieldSystem = (FieldSystem *)param3;
     UnkStruct_0205B43C *v1 = fieldSystem->unk_7C;

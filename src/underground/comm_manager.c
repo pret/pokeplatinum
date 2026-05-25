@@ -326,7 +326,7 @@ static void CommManUnderground_ConnectTaskClient(void)
         UndergroundMan_ForceEndCurrentSysTask();
         CommPlayer_CopyPersonal(0);
 
-        Traps_EndCurrentTrapEffectServer(0, 0, NULL, NULL);
+        CommCmd_EndCurrentTrapEffectServer(0, 0, NULL, NULL);
         Traps_ForceEndCurrentTrapEffectClient(0, TRUE);
 
         CommInfo_InitPlayer(0);

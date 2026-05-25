@@ -32,7 +32,7 @@
 #include "unk_02030494.h"
 #include "unk_02049D08.h"
 #include "unk_0205DFC4.h"
-#include "unk_02099500.h"
+#include "comm_command_field.h"
 
 #include "constdata/const_020F410C.h"
 

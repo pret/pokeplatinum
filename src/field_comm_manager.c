@@ -33,7 +33,7 @@
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
 #include "unk_0205A0D8.h"
-#include "unk_02099500.h"
+#include "comm_command_field.h"
 
 static void FieldCommManager_RunTask(SysTask *task, void *unused);
 static void FieldCommManager_SetTask(FieldCommTask task, int time);
@@ -609,7 +609,7 @@ static void FieldCommTask_BattleRoomMovement(void)
  * @param message
  * @param unused3
  */
-void FieldCommManager_UpdateBattleRoomMovement(int unused0, int unused1, void *message, void *unused3)
+void CommCmd_UpdateBattleRoomMovement(int unused0, int unused1, void *message, void *unused3)
 {
     u8 *data = message;
 
@@ -760,7 +760,7 @@ static void FieldCommTask_ReinitBattleClient(void)
  * @param unused2
  * @param unused3
  */
-void FieldCommManager_SetTrainerCaseCopiedFlag(int netId, int unused1, void *unused2, void *unused3)
+void CommCmd_SetTrainerCaseCopiedFlag(int netId, int unused1, void *unused2, void *unused3)
 {
     sFieldCommMan->trainerCaseCopied[netId] = 1;
 }

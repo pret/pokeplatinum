@@ -161,7 +161,7 @@ static void UndergroundPlayer_CloseMenuCallback(int unused)
     }
 }
 
-void UndergroundPlayer_ProcessOpenMenuRequest(int netID, int unused1, void *unused2, void *unused3)
+void CommCmd_UndergroundOpenMenuRequest(int netID, int unused1, void *unused2, void *unused3)
 {
     CommPlayerManager *commPlayerMan = CommPlayerMan_Get();
 
@@ -184,7 +184,7 @@ void UndergroundPlayer_ProcessOpenMenuRequest(int netID, int unused1, void *unus
     }
 }
 
-void UndergroundPlayer_ProcessOpenMenuEvent(int unused0, int unused1, void *data, void *unused3)
+void CommCmd_UndergroundOpenMenuEvent(int unused0, int unused1, void *data, void *unused3)
 {
     CommPlayerManager *commPlayerMan = CommPlayerMan_Get();
     OpenMenuEvent *event = data;
@@ -207,7 +207,7 @@ void UndergroundPlayer_ProcessOpenMenuEvent(int unused0, int unused1, void *data
     }
 }
 
-void UndergroundPlayer_ProcessTalkEvent(int unused0, int unused1, void *data, void *unused3)
+void CommCmd_UndergroundTalkEvent(int unused0, int unused1, void *data, void *unused3)
 {
     CommPlayerManager *commPlayerMan = CommPlayerMan_Get();
     TalkEvent *event = data;
@@ -260,7 +260,7 @@ int CommPacketSizeOf_FlagEvent(void)
     return sizeof(FlagEvent);
 }
 
-void UndergroundPlayer_ProcessFlagEventType(int netID, int unused1, void *data, void *unused3)
+void CommCmd_UndergroundFlagEventType(int netID, int unused1, void *data, void *unused3)
 {
     u8 *flagEventType = data;
     FlagEvent event;
@@ -395,7 +395,7 @@ static void UndergroundPlayer_HandleCurrentPlayerLosingFlag(FlagEvent *event, BO
     Sound_PlayEffect(SEQ_SE_DP_CARD10);
 }
 
-void UndergroundPlayer_ProcessFlagEvent(int unused0, int unused1, void *data, void *unused3)
+void CommCmd_UndergroundFlagEvent(int unused0, int unused1, void *data, void *unused3)
 {
     CommPlayerManager *commPlayerMan = CommPlayerMan_Get();
     FlagEvent *event = data;
@@ -552,7 +552,7 @@ int CommPacketSizeOf_TrainerInfo(void)
     return sizeof(TrainerInfo);
 }
 
-void UndergroundPlayer_ProcessHeldFlagOwnerInfo(int flagOwnerNetID, int unused1, void *data, void *unused3)
+void CommCmd_UndergroundHeldFlagOwnerInfo(int flagOwnerNetID, int unused1, void *data, void *unused3)
 {
     CommPlayerManager *commPlayerMan = CommPlayerMan_Get();
     const TrainerInfo *flagOwnerInfo = data;
@@ -583,7 +583,7 @@ void UndergroundPlayer_ProcessHeldFlagOwnerInfo(int flagOwnerNetID, int unused1,
     }
 }
 
-void UndergroundPlayer_ProcessHeldFlagOwnerInfoServer(int unused0, int unused1, void *data, void *unused3)
+void CommCmd_UndergroundHeldFlagOwnerInfoServer(int unused0, int unused1, void *data, void *unused3)
 {
     CommPlayerManager *commPlayerMan = CommPlayerMan_Get();
     HeldFlagInfo *heldFlagInfo = data;
@@ -606,7 +606,7 @@ int CommPacketSizeOf_HeldFlagInfo(void)
     return sizeof(HeldFlagInfo);
 }
 
-void UndergroundPlayer_ProcessHeldFlagOwnerInfoAck(int unused0, int unused1, void *data, void *unused3)
+void CommCmd_UndergroundHeldFlagOwnerInfoAck(int unused0, int unused1, void *data, void *unused3)
 {
     u8 *netID = data;
     CommPlayerManager *commPlayerMan = CommPlayerMan_Get();
@@ -663,13 +663,13 @@ BOOL UndergroundPlayer_IsAffectedByTrap(int netID)
     return FALSE;
 }
 
-void UndergroundPlayer_ProcessVendorTalk(int netID, int unused1, void *unused2, void *unused3)
+void CommCmd_UndergroundVendorTalk(int netID, int unused1, void *unused2, void *unused3)
 {
     u8 data = netID;
     CommSys_SendDataFixedSizeServer(26, &data);
 }
 
-void UndergroundPlayer_ProcessVendorTalkServer(int unused0, int unused1, void *data, void *unused3)
+void CommCmd_UndergroundVendorTalkServer(int unused0, int unused1, void *data, void *unused3)
 {
     u8 *netID = data;
     UndergroundMan_QueueTalkedToVendorMessage(*netID);

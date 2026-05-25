@@ -12,7 +12,7 @@
 #include "unk_02030108.h"
 #include "unk_0205DFC4.h"
 
-void BattleHall_ProcessSelectedSpeciesMsg(int netID, int unused, void *data, void *context)
+void CommCmd_BattleHallSelectedSpeciesMsg(int netID, int unused, void *data, void *context)
 {
     BattleHallSameSpeciesCheck *myData = context;
     const BattleHallSameSpeciesCheck *partnersData = data;
