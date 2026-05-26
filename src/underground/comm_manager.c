@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/communication/comm_command.h"
 #include "generated/trainer_score_events.h"
 
 #include "field/field_system.h"
@@ -382,7 +383,7 @@ static void CommManUnderground_MainTaskServer(void)
         UndergroundPlayer_ClearHeldFlagInfo();
         SecretBases_AbortBaseEnter();
 
-        CommSys_SendMessage(43);
+        CommSys_SendMessage(COMM_CMD_END_TRAP_EFFECT);
 
         Traps_ForceEndCurrentTrapEffectClient(CommSys_CurNetId(), TRUE);
         UndergroundMan_ForceEndCurrentSysTask();
@@ -477,7 +478,7 @@ static void CommManUnderground_WaitForBaseDataReceiptTaskClient(void)
         CommManUnderground_DebugPrintDummy("\u0094\u00E9\u0096\u00A7\u008A\u00EE\u0092\u006E\u0082\u00CC\u0088\u00CA\u0092\u0075\u0082\u00AA\u0082\u00AB\u0082\u00BD"); // 秘密基地の位置がきた
         SecretBases_ClearLinksReceivedBaseData();
         CommPlayer_SendPos(TRUE);
-        CommSys_SendMessage(31);
+        CommSys_SendMessage(COMM_CMD_PROCESS_ALL_DATA_SENT_MSG);
         CommManUnderground_SetFieldCommManTask(CommManUnderground_MainTaskClient, 0);
         return;
     }

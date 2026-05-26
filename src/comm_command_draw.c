@@ -15,9 +15,9 @@
 
 #include "bg_window.h"
 #include "comm_command.h"
+#include "comm_command_field.h"
 #include "comm_manager.h"
 #include "communication_system.h"
-#include "comm_command_field.h"
 #include "wireless_manager.h"
 
 typedef struct UnkStruct_02095EAC_t UnkStruct_02095EAC;
@@ -28,6 +28,7 @@ static int sub_020961E4(void);
 static void sub_0209617C(UnkStruct_02095EAC *param0, int param1);
 static void CommCmd_Field_Draw_129(int param0, int param1, void *param2, void *param3);
 
+// clang-format off
 static const CommCmdTable Unk_020F5A40[] = {
     { CommCmd_Field_Dummy, CommPacketSizeOf_NetId, NULL },
     { CommCmd_Field_Dummy, CommPacketSizeOf_NetId, NULL },
@@ -140,6 +141,7 @@ static const CommCmdTable Unk_020F5A40[] = {
     { CommCmd_Field_Dummy, CommPacketSizeOf_NetId, NULL },
     { CommCmd_Field_Dummy, CommPacketSizeOf_NetId, NULL }
 };
+// clang-format on
 
 void sub_02095E98(void *param0)
 {
@@ -169,7 +171,7 @@ void CommCmd_Field_Draw_118(int param0, int param1, void *param2, void *param3)
             v0->unk_4430++;
             sub_0209617C(v0, v0->unk_4430);
         } else {
-            CommSys_SendDataServer(124, NULL, 0);
+            CommSys_SendDataServer(COMM_CMD_FIELD_DRAWING_124, NULL, 0);
         }
     }
 }
@@ -246,7 +248,7 @@ void CommCmd_Field_Draw_126(int param0, int param1, void *param2, void *param3)
                 break;
             }
 
-            CommSys_SendDataServer(126, &v1, sizeof(UnkStruct_02095FE4));
+            CommSys_SendDataServer(COMM_CMD_FIELD_DRAWING_126, &v1, sizeof(UnkStruct_02095FE4));
         }
     } else {
         switch (v2->unk_02) {
@@ -314,7 +316,7 @@ void CommCmd_Field_Draw_128(int param0, int param1, void *param2, void *param3)
     if (CommSys_CurNetId() == 0) {
         if (v0->unk_9460 != 0) {
             v1 = param0;
-            CommSys_SendDataServer(123, &v1, 1);
+            CommSys_SendDataServer(COMM_CMD_FIELD_DRAWING_123, &v1, 1);
         } else {
             v0->unk_9460 = 1;
         }
@@ -350,7 +352,7 @@ static void sub_0209617C(UnkStruct_02095EAC *param0, int param1)
 
     param0->unk_7C74.unk_3EC = param1;
 
-    CommSys_SendDataHugeServer(118, &param0->unk_7C74, sizeof(UnkStruct_02095EAC_sub1));
+    CommSys_SendDataHugeServer(COMM_CMD_FIELD_DRAWING_118, &param0->unk_7C74, sizeof(UnkStruct_02095EAC_sub1));
 }
 
 static u8 *sub_020961D0(int param0, void *param1, int param2)

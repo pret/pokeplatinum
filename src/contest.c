@@ -32,6 +32,7 @@
 #include "assert.h"
 #include "brightness_controller.h"
 #include "chatot_cry.h"
+#include "comm_command_contest.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "field_task.h"
@@ -58,7 +59,6 @@
 #include "unk_020298BC.h"
 #include "unk_020363E8.h"
 #include "unk_02094EDC.h"
-#include "comm_command_contest.h"
 #include "vars_flags.h"
 
 FS_EXTERN_OVERLAY(overlay17);

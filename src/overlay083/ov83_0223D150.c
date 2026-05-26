@@ -3,8 +3,10 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay083/ov83_0223B5A0.h"
+#include "constants/communication/comm_command.h"
+
 #include "overlay083/comm_command_poffin_cooking.h"
+#include "overlay083/ov83_0223B5A0.h"
 #include "overlay083/ov83_0223D4CC.h"
 #include "overlay083/ov83_0223F7F4.h"
 #include "overlay083/struct_ov83_0223B784.h"
@@ -97,7 +99,7 @@ void CommCmd_Poffin_25(int param0, int param1, void *param2, void *param3)
 
         if (v2 >= v0->unk_1488) {
             ov83_0223FF44(&v0->unk_34C, &v0->unk_1494.unk_34.unk_10, v0->unk_1488);
-            ov83_0223D508(24, &v0->unk_1494.unk_34, ov83_0223D4B4(), v0->unk_148C);
+            ov83_0223D508(COMM_CMD_POFFIN_24, &v0->unk_1494.unk_34, ov83_0223D4B4(), v0->unk_148C);
         }
     }
 }
@@ -206,7 +208,7 @@ void CommCmd_Poffin_30(int param0, int param1, void *param2, void *param3)
         }
 
         if (v2 >= v0->unk_1488) {
-            ov83_0223D508(29, &v3, ov83_0223D4B0(), v0->unk_148C);
+            ov83_0223D508(COMM_CMD_POFFIN_29, &v3, ov83_0223D4B0(), v0->unk_148C);
         }
     }
 }

@@ -29,6 +29,7 @@ static u8 *sub_02095E80(int param0, void *param1, int param2);
 static int sub_02095E68(void);
 static int sub_02095E70(void);
 
+// clang-format off
 static const CommCmdTable Unk_020F59BC[] = {
     [COMM_CMD_TRADE_22 - COMM_CMD_MAX_COMMON] = { CommCmd_Trade_22, sub_02095E78, sub_02095E80 },
     [COMM_CMD_TRADE_23 - COMM_CMD_MAX_COMMON] = { CommCmd_Trade_23, CommPacketSizeOf_NetId },
@@ -42,6 +43,7 @@ static const CommCmdTable Unk_020F59BC[] = {
     [COMM_CMD_TRADE_31 - COMM_CMD_MAX_COMMON] = { CommCmd_Trade_31, CommPacketSizeOf_NetId },
     [COMM_CMD_TRADE_32 - COMM_CMD_MAX_COMMON] = { CommCmd_Trade_32, sub_02095E70 }
 };
+// clang-format on
 
 void sub_02095CD4(void *param0)
 {
@@ -73,7 +75,7 @@ void CommCmd_Trade_22(int param0, int param1, void *param2, void *param3)
 
         if ((v1->unk_58) * (236 * 6 + 4 * 2) >= Party_SaveSize()) {
             if (CommSys_CurNetId() == 1) {
-                ov88_0223D058(v1, 27, 0);
+                ov88_0223D058(v1, COMM_CMD_TRADE_27, 0);
             } else {
                 ov88_0223D098(CommSys_CurNetId(), v1->unk_2270, v1->unk_50);
             }

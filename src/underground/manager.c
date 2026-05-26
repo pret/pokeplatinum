@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/communication/comm_command.h"
 #include "constants/field/map.h"
 #include "constants/field/map_matrix.h"
 #include "constants/field_base_tiles.h"
@@ -369,7 +370,7 @@ BOOL UndergroundMan_CheckForTouchInput(void)
                 sUndergroundMan->touchedTileCoords.x = x;
                 sUndergroundMan->touchedTileCoords.z = z;
 
-                CommSys_SendData(48, &touchedTileCoords, sizeof(CoordinatesU16));
+                CommSys_SendData(COMM_CMD_UNDERGROUND_TOUCH_INPUT, &touchedTileCoords, sizeof(CoordinatesU16));
 
                 return TRUE;
             }
@@ -417,10 +418,10 @@ static void UndergroundMan_StartTouchRadar(int netID, CoordinatesU16 *touchedTil
     buffer[0] = netID;
 
     size = UndergroundMan_TouchRadarSearch(buffer, Traps_IsTrapAtCoordinates, touchedTileCoords);
-    CommSys_SendDataServer(49, buffer, size);
+    CommSys_SendDataServer(COMM_CMD_UNDERGROUND_RADAR_TRAP_RESULTS, buffer, size);
 
     size = UndergroundMan_TouchRadarSearch(buffer, Mining_IsMiningSpotAtCoordinates, touchedTileCoords);
-    CommSys_SendDataServer(50, buffer, size);
+    CommSys_SendDataServer(COMM_CMD_UNDERGROUND_RADAR_MINING_RESULTS, buffer, size);
 }
 
 void CommCmd_UndergroundTouchInput(int netID, int unused1, void *data, void *unused3)
@@ -541,7 +542,7 @@ void UndergroundMan_InitCoordsOrderingState(int orderedArrayLength, GetCoordinat
 void UndergroundMan_OpenMenu(void)
 {
     if (CommPlayer_GetMovementTimer(CommSys_CurNetId()) == 0) {
-        CommSys_SendMessage(27);
+        CommSys_SendMessage(COMM_CMD_OPEN_MENU_REQUEST);
         CommSys_Dummy();
     }
 }
@@ -581,7 +582,7 @@ void UndergroundMan_ProcessInteract(u8 flags)
         .pos = COORDS_TO_EVENT_POS(x, z)
     };
 
-    CommSys_SendDataFixedSize(28, &event);
+    CommSys_SendDataFixedSize(COMM_CMD_INTERACT_EVENT, &event);
     CommSys_Dummy();
 
     sUndergroundMan->interactCooldown = 8;
@@ -623,7 +624,7 @@ void CommCmd_UndergroundInteractEvent(int netID, int unused1, void *data, void *
             talkEvent.talkTargetNetID = linkNetID;
             talkEvent.netID = netID;
 
-            CommSys_SendDataServer(30, &talkEvent, sizeof(talkEvent));
+            CommSys_SendDataServer(COMM_CMD_TALK_EVENT, &talkEvent, sizeof(talkEvent));
             CommPlayerMan_SetMovementEnabled(netID, FALSE);
         } else if (UndergroundPlayer_TalkHeldFlagCheck(netID, linkNetID, FALSE)) {
             return;
@@ -635,7 +636,7 @@ void CommCmd_UndergroundInteractEvent(int netID, int unused1, void *data, void *
                 talkEvent.talkTargetNetID = linkNetID;
                 talkEvent.netID = netID;
 
-                CommSys_SendDataServer(30, &talkEvent, sizeof(talkEvent));
+                CommSys_SendDataServer(COMM_CMD_TALK_EVENT, &talkEvent, sizeof(talkEvent));
                 CommPlayerMan_SetMovementEnabled(netID, FALSE);
             }
         } else if (!CommPlayerMan_IsMovementEnabled(netID)) {
@@ -645,7 +646,7 @@ void CommCmd_UndergroundInteractEvent(int netID, int unused1, void *data, void *
             talkEvent.talkTargetNetID = linkNetID;
             talkEvent.netID = netID;
 
-            CommSys_SendDataServer(30, &talkEvent, sizeof(talkEvent));
+            CommSys_SendDataServer(COMM_CMD_TALK_EVENT, &talkEvent, sizeof(talkEvent));
             CommPlayerMan_SetMovementEnabled(netID, FALSE);
         } else {
             talkEvent.result = TALK_RESULT_SUCCESS;
@@ -653,7 +654,7 @@ void CommCmd_UndergroundInteractEvent(int netID, int unused1, void *data, void *
             talkEvent.netID = netID;
 
             if (CommPlayerMan_IsMovementEnabled(linkNetID)) {
-                if (CommSys_SendDataServer(30, &talkEvent, sizeof(talkEvent))) {
+                if (CommSys_SendDataServer(COMM_CMD_TALK_EVENT, &talkEvent, sizeof(talkEvent))) {
                     CommPlayerMan_SetMovementEnabled(netID, FALSE);
                     CommPlayerMan_SetMovementEnabled(linkNetID, FALSE);
                     CommPlayer_LookTowardsServer(netID, linkNetID);
@@ -689,7 +690,7 @@ void CommCmd_UndergroundInteractEvent(int netID, int unused1, void *data, void *
             return;
         }
 
-        CommSys_SendDataFixedSizeServer(24, &netIDBuffer);
+        CommSys_SendDataFixedSizeServer(COMM_CMD_VENDOR_TALK_REQUEST, &netIDBuffer);
         CommPlayerMan_SetMovementEnabled(netID, FALSE);
 
         return;
@@ -701,7 +702,7 @@ void CommCmd_UndergroundInteractEvent(int netID, int unused1, void *data, void *
         }
 
         if (event->pos == COORDS_TO_EVENT_POS(coordinates.x, coordinates.z)) {
-            CommSys_SendDataFixedSizeServer(63, &netIDBuffer);
+            CommSys_SendDataFixedSizeServer(COMM_CMD_RETRIEVE_BURIED_SPHERES, &netIDBuffer);
             CommPlayerMan_SetMovementEnabled(netID, FALSE);
         }
     }
@@ -1108,7 +1109,7 @@ void CommCmd_VendorTalkRequest(int unused0, int unused1, void *data, void *unuse
 
     if (netID == CommSys_CurNetId()) {
         UndergroundVendors_StartShopMenuTask(sUndergroundMan->fieldSystem);
-        CommSys_SendMessage(25);
+        CommSys_SendMessage(COMM_CMD_VENDOR_TALK);
         CommPlayerMan_PauseFieldSystem();
     }
 }
@@ -1198,7 +1199,7 @@ void UndergroundMan_SendPlayerState(void)
         .isMining = Mining_IsMiningGameTaskActive()
     };
 
-    CommSys_SendDataFixedSize(70, &playerState);
+    CommSys_SendDataFixedSize(COMM_CMD_PLAYER_STATE_UNDERGROUND, &playerState);
 }
 
 void CommCmd_UndergroundPlayerState(int netID, int unused1, void *data, void *unused3)

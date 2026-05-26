@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/communication/comm_command.h"
 #include "generated/trainer_score_events.h"
 
 #include "struct_decls/struct_020961E8_decl.h"
@@ -16,6 +17,7 @@
 #include "appearance.h"
 #include "bg_window.h"
 #include "char_transfer.h"
+#include "comm_command_record_corner.h"
 #include "comm_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
@@ -54,7 +56,6 @@
 #include "unk_02038ED4.h"
 #include "unk_0205B33C.h"
 #include "unk_0205C22C.h"
-#include "comm_command_record_corner.h"
 #include "vram_transfer.h"
 #include "wireless_manager.h"
 
@@ -245,7 +246,7 @@ int ov59_021D0F00(ApplicationManager *appMan, int *param1)
 
             if (CommSys_CurNetId() != 0) {
                 if (ov59_021D2528() > 2) {
-                    CommSys_SendData(114, NULL, 0);
+                    CommSys_SendData(COMM_CMD_FIELD_RECORD_114, NULL, 0);
                 }
             }
         }
@@ -725,7 +726,7 @@ static void ov59_021D1864(UnkStruct_020961E8 *param0)
                 ov59_021D2628(param0, 3, 0);
                 ov59_021D19B0(param0, 22);
 
-                CommSys_SendData(117, &v0, 1);
+                CommSys_SendData(COMM_CMD_FIELD_RECORD_117, &v0, 1);
 
                 ov59_021D28D8(param0, 0);
             } else {
@@ -746,7 +747,7 @@ static void ov59_021D1864(UnkStruct_020961E8 *param0)
 
                 ov59_021D2628(param0, 4, 0);
                 ov59_021D19B0(param0, 4);
-                CommSys_SendData(117, &v1, 1);
+                CommSys_SendData(COMM_CMD_FIELD_RECORD_117, &v1, 1);
                 ov59_021D28D8(param0, 0);
             } else {
                 Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
@@ -757,7 +758,7 @@ static void ov59_021D1864(UnkStruct_020961E8 *param0)
             if ((CommSys_CurNetId() == 0) && (CommSys_ConnectedCount() == param0->unk_4AAC)) {
                 u8 v2 = 0;
 
-                CommSys_SendData(117, &v2, 1);
+                CommSys_SendData(COMM_CMD_FIELD_RECORD_117, &v2, 1);
             }
         }
     }
@@ -797,7 +798,7 @@ static int ov59_021D19E4(UnkStruct_020961E8 *param0, int param1)
     if (CommSys_CurNetId() == 0) {
         int v0 = 0;
 
-        CommSys_SendData(117, &v0, 1);
+        CommSys_SendData(COMM_CMD_FIELD_RECORD_117, &v0, 1);
     }
 
     param0->unk_3A8 = 3;
@@ -860,7 +861,7 @@ static int ov59_021D1A44(UnkStruct_020961E8 *param0, int param1)
             if (CommSys_CurNetId() == 0) {
                 int v2 = 0;
 
-                CommSys_SendData(117, &v2, 1);
+                CommSys_SendData(COMM_CMD_FIELD_RECORD_117, &v2, 1);
                 ov59_021D28D8(param0, 1);
             }
 
@@ -881,7 +882,7 @@ static int ov59_021D1A44(UnkStruct_020961E8 *param0, int param1)
                 param0->unk_4AC2 = 0;
                 param0->unk_3A8 = 6;
 
-                CommSys_SendData(112, &v3, sizeof(UnkStruct_02096274));
+                CommSys_SendData(COMM_CMD_FIELD_RECORD_112, &v3, sizeof(UnkStruct_02096274));
             }
         }
 
@@ -920,7 +921,7 @@ static int ov59_021D1B8C(UnkStruct_020961E8 *param0, int param1)
         v0.unk_02 = 1;
         v0.unk_00 = CommSys_CurNetId();
 
-        CommSys_SendData(112, &v0, sizeof(UnkStruct_02096274));
+        CommSys_SendData(COMM_CMD_FIELD_RECORD_112, &v0, sizeof(UnkStruct_02096274));
 
         param0->unk_4AC2 = 0;
         param0->unk_3A8 = 9;
@@ -967,7 +968,7 @@ static int ov59_021D1C64(UnkStruct_020961E8 *param0, int param1)
         if (v1 == 0xfffffffe) {
             int v2 = 0;
 
-            CommSys_SendData(117, &v2, 1);
+            CommSys_SendData(COMM_CMD_FIELD_RECORD_117, &v2, 1);
             ov59_021D28D8(param0, 1);
             ov59_021D19B0(param0, 0);
         } else {
@@ -990,7 +991,7 @@ static int ov59_021D1C64(UnkStruct_020961E8 *param0, int param1)
 static int ov59_021D1D14(UnkStruct_020961E8 *param0, int param1)
 {
     if (param0->unk_4ABB == 0) {
-        if (CommSys_SendData(115, NULL, 0) == 1) {
+        if (CommSys_SendData(COMM_CMD_FIELD_RECORD_115, NULL, 0) == 1) {
             param0->unk_4ABB = 1;
         }
     }
@@ -1126,11 +1127,11 @@ static int ov59_021D1F24(UnkStruct_020961E8 *param0, int param1)
 
             param0->unk_3A8 = 0;
 
-            CommSys_SendData(117, &v1, 1);
+            CommSys_SendData(COMM_CMD_FIELD_RECORD_117, &v1, 1);
             ov59_021D28D8(param0, 1);
         } else {
             param0->unk_3A8 = 13;
-            CommSys_SendData(113, NULL, 0);
+            CommSys_SendData(COMM_CMD_FIELD_RECORD_113, NULL, 0);
             StringTemplate_SetPlayerName(param0->unk_24, 0, CommInfo_TrainerInfo(0));
         }
 
@@ -1343,7 +1344,7 @@ void ov59_021D22EC(UnkStruct_020961E8 *param0, int param1, u8 param2)
 
             if (CommSys_CurNetId() == 0) {
                 int v0 = 1;
-                CommSys_SendData(117, &v0, 1);
+                CommSys_SendData(COMM_CMD_FIELD_RECORD_117, &v0, 1);
             }
             break;
         case 19:
@@ -1660,7 +1661,7 @@ static int ov59_021D292C(UnkStruct_020961E8 *param0, int param1)
     if (v0 > param0->unk_4AAC) {
         u8 v1 = 1;
 
-        CommSys_SendData(117, &v1, 1);
+        CommSys_SendData(COMM_CMD_FIELD_RECORD_117, &v1, 1);
         param0->unk_4AB0 = 1;
     } else {
         param0->unk_4AB0 = 0;

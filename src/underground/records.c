@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/communication/comm_command.h"
 #include "constants/field_base_tiles.h"
 #include "constants/heap.h"
 
@@ -249,7 +250,7 @@ void UndergroundRecords_SendRecord(int targetNetID)
 
     MI_CpuCopy8(recordsEnv->record, &buffer->undergroundRecord, size);
 
-    CommSys_SendData(81, buffer, size + 1);
+    CommSys_SendData(COMM_CMD_SEND_UNDERGROUND_RECORD_SERVER, buffer, size + 1);
     Heap_Free(buffer);
 }
 
@@ -266,7 +267,7 @@ void UndergroundRecords_RetrieveTrainerScore(void)
 
 void CommCmd_SendUndergroundRecordServer(int unused0, int size, void *data, void *unused3)
 {
-    CommSys_SendDataServer(82, data, size);
+    CommSys_SendDataServer(COMM_CMD_UNDERGROUND_RECORD, data, size);
 }
 
 void CommCmd_UndergroundRecord(int unused0, int size, void *data, void *unused3)

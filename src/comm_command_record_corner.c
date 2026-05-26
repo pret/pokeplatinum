@@ -13,11 +13,11 @@
 #include "overlay059/struct_ov59_021D30E0.h"
 
 #include "comm_command.h"
+#include "comm_command_field.h"
 #include "comm_manager.h"
 #include "communication_system.h"
 #include "math_util.h"
 #include "sound_playback.h"
-#include "comm_command_field.h"
 #include "wireless_manager.h"
 
 typedef struct UnkStruct_020961E8_t UnkStruct_020961E8;
@@ -30,6 +30,7 @@ static void sub_020963C0(UnkStruct_020961E8 *param0, int param1);
 void CommCmd_Field_RecordCorner_116(int param0, int param1, void *param2, void *param3);
 void CommCmd_Field_RecordCorner_117(int param0, int param1, void *param2, void *param3);
 
+// clang-format off
 static const CommCmdTable Unk_020F5F68[] = {
     { CommCmd_Field_Dummy, sub_02096400, NULL },
     { CommCmd_Field_Dummy, sub_02096400, NULL },
@@ -142,6 +143,7 @@ static const CommCmdTable Unk_020F5F68[] = {
     { CommCmd_Field_Dummy, sub_02096400, NULL },
     { CommCmd_Field_Dummy, sub_02096400, NULL }
 };
+// clang-format on
 
 void sub_020961E8(void *param0)
 {
@@ -225,7 +227,7 @@ void CommCmd_Field_RecordCorner_112(int param0, int param1, void *param2, void *
                 break;
             }
 
-            CommSys_SendData(112, &v1, sizeof(UnkStruct_02096274));
+            CommSys_SendData(COMM_CMD_FIELD_RECORD_112, &v1, sizeof(UnkStruct_02096274));
         }
     } else {
         switch (v2->unk_02) {
@@ -283,7 +285,7 @@ void CommCmd_Field_RecordCorner_114(int param0, int param1, void *param2, void *
 
     if (CommSys_CurNetId() == 0) {
         v0 = param0;
-        CommSys_SendData(110, &v0, 1);
+        CommSys_SendData(COMM_CMD_FIELD_RECORD_110, &v0, 1);
     }
 }
 
@@ -303,7 +305,7 @@ static void sub_020963C0(UnkStruct_020961E8 *param0, int param1)
     }
 
     param0->unk_418.unk_BBC = LCRNG_Next();
-    CommSys_SendDataHuge(116, &param0->unk_418, sizeof(UnkStruct_ov59_021D30E0));
+    CommSys_SendDataHuge(COMM_CMD_FIELD_RECORD_116, &param0->unk_418, sizeof(UnkStruct_ov59_021D30E0));
 }
 
 static int sub_02096400(void)

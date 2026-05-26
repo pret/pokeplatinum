@@ -3,8 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay114/ov114_0225C700.h"
 #include "overlay114/comm_command_minigame.h"
+#include "overlay114/ov114_0225C700.h"
 #include "overlay114/struct_ov114_0225D678_decl.h"
 #include "overlay114/struct_ov114_0225E854_decl.h"
 

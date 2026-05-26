@@ -29,6 +29,7 @@ static void CommCmd_Contest_35(int param0, int param1, void *param2, void *param
 static int sub_02095B24(void);
 static int sub_02095B28(void);
 
+// clang-format off
 static const CommCmdTable Unk_020F58FC[] = {
     [COMM_CMD_CONTEST_DUMMY - COMM_CMD_MAX_COMMON] = { NULL, CommPacketSizeOf_Nothing, NULL },
     [COMM_CMD_CONTEST_23 - COMM_CMD_MAX_COMMON] = { CommCmd_Contest_23, CommPacketSizeOf_Nothing, NULL },
@@ -47,6 +48,7 @@ static const CommCmdTable Unk_020F58FC[] = {
     [COMM_CMD_CONTEST_36 - COMM_CMD_MAX_COMMON] = { CommCmd_Contest_36, CommPacketSizeOf_Variable, sub_02095B04 },
     [COMM_CMD_CONTEST_37 - COMM_CMD_MAX_COMMON] = { CommCmd_Contest_37, CommPacketSizeOf_Variable, NULL }
 };
+// clang-format on
 
 void sub_02095AF0(void *param0)
 {
@@ -104,7 +106,7 @@ BOOL sub_02095B5C(Contest *param0, int param1, const UnkStruct_02029C88 *param2)
     MI_CpuCopy8(param2, v0, v1);
     v0[v1] = param1;
 
-    if (CommSys_SendData(32, v0, v1 + 1) == 1) {
+    if (CommSys_SendData(COMM_CMD_CONTEST_32, v0, v1 + 1) == 1) {
         v2 = 1;
     } else {
         v2 = 0;
@@ -152,7 +154,7 @@ BOOL sub_02095BEC(Contest *param0, UnkStruct_02029C88 **param1)
         MI_CpuCopy8(param1[v4], &v0[v1 * v4], v1);
     }
 
-    if (CommSys_SendDataHuge(33, v0, v2) == 1) {
+    if (CommSys_SendDataHuge(COMM_CMD_CONTEST_33, v0, v2) == 1) {
         v3 = 1;
     } else {
         v3 = 0;
@@ -180,7 +182,7 @@ BOOL sub_02095C60(UnkStruct_02095C60 *param0, u32 param1)
 
     param0->unk_08.unk_00 = param1;
 
-    if (CommSys_SendData(34, &param0->unk_08, sizeof(UnkStruct_02095B28)) == 1) {
+    if (CommSys_SendData(COMM_CMD_CONTEST_34, &param0->unk_08, sizeof(UnkStruct_02095B28)) == 1) {
         return 1;
     }
 
@@ -203,7 +205,7 @@ BOOL sub_02095CA8(UnkStruct_02095C60 *param0, int param1)
 
     param0->unk_08.unk_04 = param1;
 
-    if (CommSys_SendData(35, &param0->unk_08, sizeof(UnkStruct_02095B28)) == 1) {
+    if (CommSys_SendData(COMM_CMD_CONTEST_35, &param0->unk_08, sizeof(UnkStruct_02095B28)) == 1) {
         return 1;
     }
 

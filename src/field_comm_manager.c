@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/communication/comm_command.h"
 #include "constants/communication/comm_sync.h"
 #include "constants/communication/comm_type.h"
 #include "constants/graphics.h"
@@ -14,6 +15,7 @@
 #include "underground/manager.h"
 
 #include "appearance.h"
+#include "comm_command_field.h"
 #include "comm_manager.h"
 #include "comm_player_manager.h"
 #include "communication_information.h"
@@ -33,7 +35,6 @@
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
 #include "unk_0205A0D8.h"
-#include "comm_command_field.h"
 
 static void FieldCommManager_RunTask(SysTask *task, void *unused);
 static void FieldCommManager_SetTask(FieldCommTask task, int time);
@@ -483,7 +484,7 @@ static void FieldCommTask_EnterBattleRoom_SendPos(void)
         CommPlayer_SendPos(FALSE);
 
         u8 data = 1;
-        CommSys_SendDataFixedSize(94, &data);
+        CommSys_SendDataFixedSize(COMM_CMD_FIELD_94, &data);
 
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, HEAP_ID_FIELD1);
         ResetVisibleHardwareWindows(DS_SCREEN_MAIN);
@@ -528,7 +529,7 @@ static void FieldCommTask_WaitBattleRoomMovement(void)
         sFieldCommMan->battleRoomMovement = FALSE;
 
         u8 data = 1;
-        CommSys_SendDataFixedSize(94, &data);
+        CommSys_SendDataFixedSize(COMM_CMD_FIELD_94, &data);
 
         FieldCommManager_SetTask(FieldCommTask_BattleRoomMovement, 0);
     }
@@ -553,7 +554,7 @@ static void FieldCommManager_UnknownCallback(BOOL param0, const Party *party)
         FieldCommManager_SetTask(FieldCommTask_InitializeVsBattle, 3);
     } else {
         u8 data = 3;
-        CommSys_SendDataFixedSize(94, &data);
+        CommSys_SendDataFixedSize(COMM_CMD_FIELD_94, &data);
 
         FieldCommManager_SetTask(FieldCommTask_WaitBattleRoomMovement, 0);
     }
@@ -595,7 +596,7 @@ static void FieldCommTask_BattleRoomMovement(void)
         FieldCommManager_SetTask(FieldCommTask_02059C8C, 5);
 
         u8 data = 0;
-        CommSys_SendDataFixedSize(94, &data);
+        CommSys_SendDataFixedSize(COMM_CMD_FIELD_94, &data);
     }
 
     FieldCommManager_CheckExitRoom();
@@ -788,7 +789,7 @@ static void FieldCommTask_StartCopyTrainerCase(void)
     int netId = CommSys_CurNetId();
 
     if (CommTiming_IsSyncState(SYNC_SEND_TRAINER_CASE)) {
-        CommSys_SendDataHuge(88, sFieldCommMan->trainerCase[netId], sizeof(TrainerCase));
+        CommSys_SendDataHuge(COMM_CMD_TRAINER_CASE_COPIED, sFieldCommMan->trainerCase[netId], sizeof(TrainerCase));
         FieldCommManager_SetTask(FieldCommTask_CopyTrainerCase, 0);
     }
 }

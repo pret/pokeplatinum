@@ -3,8 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay115/ov115_02260440.h"
 #include "overlay115/comm_command_swalot_plop.h"
+#include "overlay115/ov115_02260440.h"
 #include "overlay115/struct_ov115_0226095C_decl.h"
 #include "overlay115/struct_ov115_02265AD0.h"
 #include "overlay115/struct_ov115_02265AD4.h"

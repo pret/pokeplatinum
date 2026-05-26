@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/communication/comm_command.h"
+
 #include "struct_defs/struct_020954F0.h"
 
 #include "overlay006/struct_ov6_02248BE8.h"
@@ -54,7 +56,7 @@ BOOL ov6_02248A64(Contest *param0)
     v0.unk_01 = param0->unk_00.playerContestantID;
     v0.unk_02 = param0->unk_00.unk_112;
 
-    if (CommSys_SendData(26, &v0, sizeof(UnkStruct_ov6_02248A94)) == 1) {
+    if (CommSys_SendData(COMM_CMD_CONTEST_26, &v0, sizeof(UnkStruct_ov6_02248A94)) == 1) {
         return 1;
     }
 
@@ -102,7 +104,7 @@ BOOL ov6_02248AF0(Contest *param0, int param1, const Pokemon *param2)
     MI_CpuCopy8(param2, v0, v1);
     v0[v1] = param1;
 
-    if (CommSys_SendData(27, v0, v1 + 1) == 1) {
+    if (CommSys_SendData(COMM_CMD_CONTEST_27, v0, v1 + 1) == 1) {
         v2 = 1;
     } else {
         v2 = 0;
@@ -145,7 +147,7 @@ BOOL ov6_02248B70(Contest *param0, Pokemon **param1)
         MI_CpuCopy8(param1[v4], &v0[v1 * v4], v1);
     }
 
-    if (CommSys_SendDataHuge(28, v0, v2) == 1) {
+    if (CommSys_SendDataHuge(COMM_CMD_CONTEST_28, v0, v2) == 1) {
         v3 = 1;
     } else {
         v3 = 0;
@@ -181,7 +183,7 @@ BOOL ov6_02248BE8(Contest *param0, int param1, const UnkStruct_ov6_02248BE8 *par
     MI_CpuCopy8(param2, v0, v1);
     v0[v1] = param1;
 
-    if (CommSys_SendData(29, v0, v1 + 1) == 1) {
+    if (CommSys_SendData(COMM_CMD_CONTEST_29, v0, v1 + 1) == 1) {
         v2 = 1;
     } else {
         v2 = 0;
@@ -226,7 +228,7 @@ BOOL ov6_02248C68(Contest *param0, int param1, const UnkStruct_020954F0 *param2)
 
     v0[v1 - 1] = param0->unk_00.unk_10E;
 
-    if (CommSys_SendData(30, v0, v1) == 1) {
+    if (CommSys_SendData(COMM_CMD_CONTEST_30, v0, v1) == 1) {
         v2 = 1;
     } else {
         v2 = 0;
@@ -274,7 +276,7 @@ BOOL ov6_02248CE8(Contest *contest, int param1, const String *trainerNames)
     v2[2] = 0;
     v2[3] = 0;
 
-    if (CommSys_SendData(31, v2, v0 + v1) == 1) {
+    if (CommSys_SendData(COMM_CMD_CONTEST_31, v2, v0 + v1) == 1) {
         v3 = 1;
     } else {
         v3 = 0;
@@ -315,7 +317,7 @@ BOOL ov6_02248D64(Contest *param0, int param1, void *param2)
 
     v0[v1] = param1;
 
-    if (CommSys_SendDataHuge(36, v0, v1 + 1) == 1) {
+    if (CommSys_SendDataHuge(COMM_CMD_CONTEST_36, v0, v1 + 1) == 1) {
         v2 = 1;
     } else {
         v2 = 0;
@@ -355,7 +357,7 @@ BOOL ov6_02248DD8(Contest *param0, int param1, const UnkStruct_ov6_02248DD8 *par
     MI_CpuCopy8(param2, v0, v1);
     v0[v1] = param1;
 
-    if (CommSys_SendData(37, v0, v1 + 1) == 1) {
+    if (CommSys_SendData(COMM_CMD_CONTEST_37, v0, v1 + 1) == 1) {
         v2 = 1;
     } else {
         v2 = 0;

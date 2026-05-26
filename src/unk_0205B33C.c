@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/communication/comm_command.h"
 #include "constants/union_room_message_types.h"
 
 #include "struct_decls/struct_02014EC4_decl.h"
@@ -15,6 +16,8 @@
 #include "global/pm_version.h"
 
 #include "appearance.h"
+#include "comm_command_draw.h"
+#include "comm_command_field.h"
 #include "comm_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
@@ -35,8 +38,6 @@
 #include "unk_02014A84.h"
 #include "unk_02014D38.h"
 #include "unk_02033200.h"
-#include "comm_command_draw.h"
-#include "comm_command_field.h"
 
 #include "constdata/const_020ED570.h"
 #include "res/text/bank/country_names.h"
@@ -604,19 +605,19 @@ void sub_0205B930(UnkStruct_0205B43C *param0, int param1, u32 param2)
     case 0:
         if (param0->unk_44 == 0) {
             param0->unk_34 = v0;
-            CommSys_SendData(99, &v0, 1);
+            CommSys_SendData(COMM_CMD_FIELD_99, &v0, 1);
         }
         break;
     case 1:
         if (param2 == 0) {
             u8 v1 = param0->unk_30;
 
-            CommSys_SendDataServer(103, &v1, 1);
+            CommSys_SendDataServer(COMM_CMD_FIELD_103, &v1, 1);
             param0->unk_3C = param2;
         } else {
             u8 v2 = 7;
 
-            CommSys_SendDataServer(103, &v2, 1);
+            CommSys_SendDataServer(COMM_CMD_FIELD_103, &v2, 1);
             param0->unk_3C = param2;
         }
         break;
@@ -682,7 +683,7 @@ int sub_0205B9E8(UnkStruct_0205B43C *param0)
 int sub_0205B9EC(UnkStruct_0205B43C *param0, int param1)
 {
     if (param0->unk_30 == 0) {
-        CommSys_SendData(104, NULL, 0);
+        CommSys_SendData(COMM_CMD_FIELD_104, NULL, 0);
         return param1;
     }
 
@@ -746,7 +747,7 @@ u16 sub_0205BA7C(UnkStruct_0205B43C *param0)
 void sub_0205BAAC(int param0)
 {
     u8 v0 = param0;
-    CommSys_SendData(101, &v0, 1);
+    CommSys_SendData(COMM_CMD_FIELD_101, &v0, 1);
 }
 
 static const int sMessagesShowingTrainerCase[][2] = {
@@ -1378,5 +1379,5 @@ void sub_0205C1F0(UnkStruct_0205B43C *param0)
 
 void UnionRoom_SendTrainerCase(UnkStruct_0205B43C *param0)
 {
-    CommSys_SendDataHuge(105, param0->unk_184, sizeof(TrainerCase));
+    CommSys_SendDataHuge(COMM_CMD_FIELD_105, param0->unk_184, sizeof(TrainerCase));
 }

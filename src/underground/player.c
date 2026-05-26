@@ -4,6 +4,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/communication/comm_command.h"
 #include "generated/trainer_score_events.h"
 
 #include "struct_defs/comm_player_location.h"
@@ -177,7 +178,7 @@ void CommCmd_UndergroundOpenMenuRequest(int netID, int unused1, void *unused2, v
         }
     }
 
-    if (CommSys_SendDataServer(29, &event, sizeof(OpenMenuEvent))) {
+    if (CommSys_SendDataServer(COMM_CMD_OPEN_MENU_EVENT, &event, sizeof(OpenMenuEvent))) {
         if (event.result != MENU_RESULT_FAIL) {
             CommPlayerMan_SetMovementEnabled(netID, FALSE);
         }
@@ -270,11 +271,11 @@ void CommCmd_UndergroundFlagEventType(int netID, int unused1, void *data, void *
     switch (*flagEventType) {
     case FLAG_EVENT_DISCARD:
         event.type = FLAG_EVENT_DISCARD;
-        CommSys_SendDataFixedSizeServer(85, &event);
+        CommSys_SendDataFixedSizeServer(COMM_CMD_UNDERGROUND_FLAG_EVENT, &event);
         break;
     case FLAG_EVENT_REGISTER:
         event.type = FLAG_EVENT_REGISTER;
-        CommSys_SendDataFixedSizeServer(85, &event);
+        CommSys_SendDataFixedSizeServer(COMM_CMD_UNDERGROUND_FLAG_EVENT, &event);
         CommPlayerMan_SetMovementEnabled(netID, FALSE);
         break;
     }
@@ -350,7 +351,7 @@ BOOL UndergroundPlayer_TalkHeldFlagCheck(int netID, int targetNetID, BOOL blockI
     event.targetNetID = targetNetID;
 
     CommPlayerMan_SetMovementEnabled(netID, FALSE);
-    CommSys_SendDataFixedSizeServer(85, &event);
+    CommSys_SendDataFixedSizeServer(COMM_CMD_UNDERGROUND_FLAG_EVENT, &event);
 
     return TRUE;
 }
@@ -366,7 +367,7 @@ BOOL UndergroundPlayer_BuriedObjectHeldFlagCheck(int netID)
     }
 
     event.netID = netID;
-    CommSys_SendDataFixedSizeServer(85, &event);
+    CommSys_SendDataFixedSizeServer(COMM_CMD_UNDERGROUND_FLAG_EVENT, &event);
 
     return TRUE;
 }
@@ -493,7 +494,7 @@ void CommCmd_UndergroundFlagEvent(int unused0, int unused1, void *data, void *un
             if (prevFlagRank == UndergroundRecord_GetFlagRank(undergroundRecord)) {
                 UndergroundTextPrinter_PrintText(UndergroundMan_GetCaptureFlagTextPrinter(), UndergroundCaptureFlag_Text_ObtainedFlagWasRegistered, TRUE, UndergroundPlayer_ResumeFieldSystemCallback);
             } else {
-                CommSys_SendDataFixedSize(96, &prevFlagRank);
+                CommSys_SendDataFixedSize(COMM_CMD_UNDERGROUND_FLAG_RANK_UP, &prevFlagRank);
             }
 
             Sound_FadeOutAndPlayBGM(4, SEQ_TANKOU, 60, 0, 0xFF, NULL);
@@ -532,7 +533,7 @@ void UndergroundPlayer_SendHeldFlagOwnerInfo(void)
     commPlayerMan->linksReceivedHeldFlagData = FALSE;
 
     if (commPlayerMan->heldFlagOwnerInfo[CommSys_CurNetId()]) {
-        CommSys_SendDataFixedSize(91, commPlayerMan->heldFlagOwnerInfo[CommSys_CurNetId()]);
+        CommSys_SendDataFixedSize(COMM_CMD_UNDERGROUND_FLAG_OWNER_INFO, commPlayerMan->heldFlagOwnerInfo[CommSys_CurNetId()]);
     } else {
         TrainerInfo *trainerInfo = TrainerInfo_New(HEAP_ID_COMMUNICATION);
         String *name = String_Init(20, HEAP_ID_COMMUNICATION);
@@ -541,7 +542,7 @@ void UndergroundPlayer_SendHeldFlagOwnerInfo(void)
         GF_ASSERT(name);
 
         TrainerInfo_SetNameFromString(trainerInfo, name);
-        CommSys_SendDataFixedSize(91, trainerInfo);
+        CommSys_SendDataFixedSize(COMM_CMD_UNDERGROUND_FLAG_OWNER_INFO, trainerInfo);
         String_Free(name);
         Heap_Free(trainerInfo);
     }
@@ -570,11 +571,11 @@ void CommCmd_UndergroundHeldFlagOwnerInfo(int flagOwnerNetID, int unused1, void 
         for (int netID = 0; netID < MAX_CONNECTED_PLAYERS; netID++) {
             if (commPlayerMan->heldFlagInfo[netID].netID != NETID_NONE) {
                 commPlayerMan->heldFlagInfo[netID].netID = netID;
-                CommSys_SendDataHugeServer(92, &commPlayerMan->heldFlagInfo[netID], sizeof(HeldFlagInfo));
+                CommSys_SendDataHugeServer(COMM_CMD_UNDERGROUND_FLAG_OWNER_INFO_SERVER, &commPlayerMan->heldFlagInfo[netID], sizeof(HeldFlagInfo));
             }
         }
 
-        CommSys_SendDataServer(93, &buffer, sizeof(u8));
+        CommSys_SendDataServer(COMM_CMD_UNDERGROUND_FLAG_OWNER_INFO_ACK, &buffer, sizeof(u8));
         String_Free(name);
 
         commPlayerMan->updatingHeldFlags = TRUE;
@@ -666,7 +667,7 @@ BOOL UndergroundPlayer_IsAffectedByTrap(int netID)
 void CommCmd_UndergroundVendorTalk(int netID, int unused1, void *unused2, void *unused3)
 {
     u8 data = netID;
-    CommSys_SendDataFixedSizeServer(26, &data);
+    CommSys_SendDataFixedSizeServer(COMM_CMD_VENDOR_TALK_SERVER, &data);
 }
 
 void CommCmd_UndergroundVendorTalkServer(int unused0, int unused1, void *data, void *unused3)

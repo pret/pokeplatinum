@@ -21,13 +21,13 @@
 #include "battle/message_defs.h"
 #include "battle/struct_ov16_0224DDA8.h"
 
+#include "comm_command_battle.h"
 #include "communication_system.h"
 #include "flags.h"
 #include "move_table.h"
 #include "party.h"
 #include "pokemon.h"
 #include "unk_0202F1D4.h"
-#include "comm_command_battle.h"
 
 static void BattleController_SendLocalMessage(BattleSystem *battleSys, int recipient, int battler, void *message, u8 size);
 static void SendMessage(BattleSystem *battleSys, int recipient, int battler, void *message, u8 size);

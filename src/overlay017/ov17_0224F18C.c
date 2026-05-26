@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/communication/comm_command.h"
+
 #include "overlay017/struct_ov17_02243C28.h"
 #include "overlay017/struct_ov17_02243C80.h"
 #include "overlay017/struct_ov17_0224F30C.h"
@@ -143,7 +145,7 @@ BOOL ov17_0224F35C(UnkStruct_ov17_0224F30C *param0)
 
         v0 = (void *)param0->unk_10;
 
-        if (CommSys_SendDataHuge(24, param0->unk_10, v0->unk_00) == 1) {
+        if (CommSys_SendDataHuge(COMM_CMD_CONTEST_24, param0->unk_10, v0->unk_00) == 1) {
             param0->unk_A10 = 0;
             return 1;
         }

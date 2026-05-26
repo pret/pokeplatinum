@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/communication/comm_command.h"
+
 #include "applications/party_menu/defs.h"
 #include "applications/party_menu/main.h"
 #include "applications/pokemon_summary_screen/main.h"
@@ -771,9 +773,9 @@ static BOOL sub_0205ACC8(UnkStruct_0205A0D8 *param0)
         v2 = sub_0205B0E4();
 
         if (param0->unk_86 == 0) {
-            v0 = CommSys_SendDataHugeServer(106, v1, v2);
+            v0 = CommSys_SendDataHugeServer(COMM_CMD_FIELD_106, v1, v2);
         } else {
-            v0 = CommSys_SendDataHuge(106, v1, v2);
+            v0 = CommSys_SendDataHuge(COMM_CMD_FIELD_106, v1, v2);
         }
 
         if (v0) {
@@ -804,9 +806,9 @@ static BOOL sub_0205AD34(UnkStruct_0205A0D8 *param0)
     BOOL v0;
 
     if (param0->unk_86 == 0) {
-        v0 = CommSys_SendDataServer(107, &(param0->unk_84), 1);
+        v0 = CommSys_SendDataServer(COMM_CMD_FIELD_107, &(param0->unk_84), 1);
     } else {
-        v0 = CommSys_SendData(107, &(param0->unk_84), 1);
+        v0 = CommSys_SendData(COMM_CMD_FIELD_107, &(param0->unk_84), 1);
     }
 
     if (v0) {

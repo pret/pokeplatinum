@@ -138,7 +138,7 @@ int CommPlayerMan_GetLinkNetIDAtLocation(int xPos, int zPos);
 void CommPlayerMan_SetMovementEnabled(int netId, BOOL movementEnabled);
 BOOL CommPlayerMan_IsMovementEnabled(int netId);
 BOOL sub_020590C4(void);
-void CommCmd_Field_93(int netId, int unused0, void *src, void *unused3);
+void CommCmd_Field_94(int netId, int unused0, void *src, void *unused3);
 void CommPlayer_SetBattleDir(void);
 BOOL sub_0205928C(void);
 int CommPlayer_GetOppositeDir(int dir);

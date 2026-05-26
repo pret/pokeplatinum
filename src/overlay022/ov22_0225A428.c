@@ -16,6 +16,7 @@
 #include "overlay022/struct_ov22_0225AE9C.h"
 
 #include "bg_window.h"
+#include "comm_command_contest.h"
 #include "font.h"
 #include "game_options.h"
 #include "message.h"
@@ -29,7 +30,6 @@
 #include "string_gf.h"
 #include "sys_task.h"
 #include "text.h"
-#include "comm_command_contest.h"
 
 static void ov22_0225A6E0(UnkStruct_ov22_022597BC *param0, BgConfig *param1);
 static void ov22_0225A718(BgConfig *param0, const Options *options);

@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/communication/comm_command.h"
 #include "constants/graphics.h"
 
 #include "nintendo_wfc/main.h"
@@ -484,7 +485,7 @@ int ov116_02260CF4(ApplicationManager *appMan, int *param1)
         if (v1) {
             if (ov116_022617C4(v0) == 1) {
                 v0->unk_14.unk_04 = v0->unk_78;
-                CommSys_SendData(22, &v0->unk_14, sizeof(UnkStruct_ov116_0226048C));
+                CommSys_SendData(COMM_CMD_MIME_TOP_22, &v0->unk_14, sizeof(UnkStruct_ov116_0226048C));
             }
         }
 
@@ -523,7 +524,7 @@ int ov116_02260CF4(ApplicationManager *appMan, int *param1)
             if (ov116_022617C4(v0) == 1) {
                 if (ov116_02262A74(v0->unk_00) == 0) {
                     Sound_StopEffect(1393, 0);
-                    CommSys_SendData(23, NULL, 0);
+                    CommSys_SendData(COMM_CMD_MIME_TOP_23, NULL, 0);
                 }
             }
             ov116_02263B30(v0->unk_04);
@@ -553,7 +554,7 @@ int ov116_02260CF4(ApplicationManager *appMan, int *param1)
             v0->unk_1C.unk_00 = 1;
         }
 
-        CommSys_SendData(25, &v0->unk_1C, sizeof(UnkStruct_ov116_02260494));
+        CommSys_SendData(COMM_CMD_MIME_TOP_25, &v0->unk_1C, sizeof(UnkStruct_ov116_02260494));
         ov116_0226178C(v0, v1, 14, param1);
         break;
     case 14:

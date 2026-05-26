@@ -18,13 +18,13 @@
 #include "overlay109/struct_ov109_021D17EC.h"
 
 #include "comm_command.h"
+#include "comm_command_field.h"
 #include "comm_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "heap.h"
 #include "unk_0205B33C.h"
 #include "unk_0205C22C.h"
-#include "comm_command_field.h"
 #include "wireless_manager.h"
 
 typedef struct {
@@ -81,7 +81,7 @@ static BOOL sub_0209BE84(UnkStruct_0209BDF8 *param0, u32 param1, const void *par
 
         v1->unk_00 = param1;
         memcpy(v1->unk_04, param2, param3);
-        v0 = CommSys_SendData(130, v1, 24);
+        v0 = CommSys_SendData(COMM_CMD_FIELD_SPIN_TRADE_130, v1, 24);
 
         return v0;
     }
@@ -359,6 +359,7 @@ void *sub_0209C188(UnkStruct_0209BDF8 *param0, int param1)
     return (void *)v0;
 }
 
+// clang-format off
 static const CommCmdTable Unk_020F8EA8[135] = {
     { CommCmd_Field_Dummy, CommPacketSizeOf_Nothing, NULL },
     { CommCmd_Field_Dummy, CommPacketSizeOf_Nothing, NULL },
@@ -471,6 +472,7 @@ static const CommCmdTable Unk_020F8EA8[135] = {
     [COMM_CMD_FIELD_SPIN_TRADE_130 - COMM_CMD_MAX_COMMON] = { CommCmd_Field_SpinTrade_130, sub_0209C154, NULL },
     [COMM_CMD_FIELD_SPIN_TRADE_131 - COMM_CMD_MAX_COMMON] = { CommCmd_Field_SpinTrade_131, sub_0209C158, sub_0209C160 }
 };
+// clang-format on
 
 static const CommCmdRecvFunc Unk_020F8E60[18] = {
     sub_0209C040,

@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/communication/comm_command.h"
 #include "constants/field/map.h"
 #include "constants/field/map_matrix.h"
 #include "constants/field_base_tiles.h"
@@ -814,7 +815,7 @@ BOOL Mining_CheckForMiningSpotInteract(int netID, CoordinatesU16 *coordinates)
             return TRUE;
         }
 
-        CommSys_SendDataServer(64, &buffer, 1);
+        CommSys_SendDataServer(COMM_CMD_INTERACT_MINING_SPOT, &buffer, 1);
         CommPlayerMan_SetMovementEnabled(netID, 0);
 
         sMiningEnv->currentUsedMiningSpots[netID] = miningSpot;
@@ -1137,7 +1138,7 @@ static void Mining_ConfirmStartMiningTask(SysTask *sysTask, void *unused)
             CommPlayerMan_ResumeFieldSystem();
         }
 
-        CommSys_SendDataFixedSize(65, &confirmResult);
+        CommSys_SendDataFixedSize(COMM_CMD_CONFIRM_START_MINING_RESULT, &confirmResult);
         sMiningEnv->confirmStartMiningMenu = NULL;
 
         UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetCommonTextPrinter());
@@ -1157,7 +1158,7 @@ void CommCmd_ConfirmStartMiningResult(int netID, int unused1, void *data, void *
 
     if (*confirmResult && miningSpot) {
         if (miningSpot->alwaysFF == 0xFF) {
-            CommSys_SendDataServer(66, &buffer, 1);
+            CommSys_SendDataServer(COMM_CMD_CONFIRM_START_MINING, &buffer, 1);
 
             miningSpot->alwaysFF = 0xFF;
             miningSpot->x = 0xffff;
@@ -1201,7 +1202,7 @@ void CommCmd_MiningLinkInput(int netID, int unused1, void *data, void *unused3)
     linkInputWithNetID.touchX = linkInput->touchX;
     linkInputWithNetID.touchY = linkInput->touchY;
 
-    CommSys_SendDataFixedSizeServer(69, &linkInputWithNetID);
+    CommSys_SendDataFixedSizeServer(COMM_CMD_MINING_LINK_INPUT_SERVER, &linkInputWithNetID);
 }
 
 int CommPacketSizeOf_MiningLinkInput(void)
@@ -1656,7 +1657,7 @@ static void Mining_GameTask(SysTask *sysTask, void *data)
             SecretBases_EnableBaseEntranceGraphics();
             Spheres_EnableBuriedSphereSparkles();
 
-            CommSys_SendDataFixedSize(67, &ctx->dugUpAllItems);
+            CommSys_SendDataFixedSize(COMM_CMD_END_MINING, &ctx->dugUpAllItems);
             CommPlayerMan_ResumeFieldSystem();
 
             sMiningEnv->miningGameTask = NULL;
@@ -2731,7 +2732,7 @@ static BOOL Mining_MainGameLoop(MiningGameContext *ctx)
                 damageToWall = 8;
             }
 
-            CommSys_SendDataFixedSize(68, &input);
+            CommSys_SendDataFixedSize(COMM_CMD_MINING_LINK_INPUT, &input);
 
             if (sMiningEnv->wallIntegrity > damageToWall) {
                 sMiningEnv->wallIntegrity -= damageToWall;
@@ -2980,7 +2981,7 @@ void TreasureRadar_Start(void)
     TreasureRadarContext *ctx = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(TreasureRadarContext));
 
     MI_CpuFill8(ctx, 0, sizeof(TreasureRadarContext));
-    CommSys_SendMessage(71);
+    CommSys_SendMessage(COMM_CMD_START_TREASURE_RADAR);
 
     ctx->timer = MAX_MINING_SPOTS / 3 - 10;
 
@@ -3018,7 +3019,7 @@ static void Mining_SendTreasureRadarResults(void)
                     result.x = miningSpot->x;
                     result.z = miningSpot->z;
                     result.netID = netID;
-                    CommSys_SendDataFixedSizeServer(72, &result);
+                    CommSys_SendDataFixedSizeServer(COMM_CMD_MINING_SPOT_RADAR, &result);
                     // bug: can potentially lead to out of bounds array access
                     sMiningEnv->treasureRadarIndex[netID] = index + 3;
                     break;
@@ -3104,7 +3105,7 @@ static void Mining_SendNormalRadarResults(void)
                 result.x = miningSpot->x;
                 result.z = miningSpot->z;
 
-                CommSys_SendDataFixedSizeServer(72, &result);
+                CommSys_SendDataFixedSizeServer(COMM_CMD_MINING_SPOT_RADAR, &result);
             }
         } else {
             MiningSpotRadarResult result;
@@ -3113,7 +3114,7 @@ static void Mining_SendNormalRadarResults(void)
             result.x = 0;
             result.z = 0;
 
-            CommSys_SendDataFixedSizeServer(72, &result);
+            CommSys_SendDataFixedSizeServer(COMM_CMD_MINING_SPOT_RADAR, &result);
         }
     }
 }

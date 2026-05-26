@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/communication/comm_command.h"
 #include "constants/heap.h"
 #include "constants/start_menu.h"
 #include "generated/traps.h"
@@ -1488,7 +1489,7 @@ static void UndergroundMenu_MainHoldingFlag(SysTask *sysTask, void *data)
         UndergroundMan_ClearCurrentSysTaskInfo();
         UndergroundMenu_Free(sysTask, data, TRUE);
         u8 flagEventType = FLAG_EVENT_DISCARD;
-        CommSys_SendDataFixedSize(84, &flagEventType);
+        CommSys_SendDataFixedSize(COMM_CMD_UNDERGROUND_FLAG_EVENT_TYPE, &flagEventType);
         return;
     case UNDERGROUND_MENU_STATE_UNUSED:
         if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetCaptureFlagTextPrinter())) {

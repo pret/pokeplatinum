@@ -9,6 +9,7 @@
 
 #include "overlay115/ov115_02265A24.h"
 
+// clang-format off
 static const CommCmdTable Unk_ov115_0226664C[] = {
     [COMM_COMMAND_SWALOT_PLOP_22 - COMM_CMD_MAX_COMMON] = { CommCmd_SwalotPlop_22, ov115_02265A40, NULL },
     [COMM_COMMAND_SWALOT_PLOP_23 - COMM_CMD_MAX_COMMON] = { CommCmd_SwalotPlot_23, ov115_02265A40, NULL },
@@ -19,6 +20,7 @@ static const CommCmdTable Unk_ov115_0226664C[] = {
     [COMM_COMMAND_SWALOT_PLOP_28 - COMM_CMD_MAX_COMMON] = { CommCmd_SwalotPlop_28, ov115_02265AD8, NULL },
     [COMM_COMMAND_SWALOT_PLOP_29 - COMM_CMD_MAX_COMMON] = { CommCmd_SwalotPlop_29, ov115_02265A40, NULL },
 };
+// clang-format on
 
 const CommCmdTable *ov115_02265A18(void)
 {

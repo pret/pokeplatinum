@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/communication/comm_command.h"
 #include "constants/communication/comm_error.h"
 #include "generated/game_records.h"
 #include "generated/species.h"
@@ -25,6 +26,7 @@
 #include "character_sprite.h"
 #include "charcode_util.h"
 #include "chatot_cry.h"
+#include "comm_command_trade.h"
 #include "comm_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
@@ -77,7 +79,6 @@
 #include "unk_02038F8C.h"
 #include "unk_0203909C.h"
 #include "unk_02092494.h"
-#include "comm_command_trade.h"
 #include "vars_flags.h"
 #include "vram_transfer.h"
 #include "wifi_list.h"
@@ -585,7 +586,7 @@ static int ov88_0223B914(UnkStruct_02095E80 *param0)
             }
 
             if (CommSys_CurNetId() == 0) {
-                ov88_0223D044(CommSys_CurNetId(), 31, LCRNG_RandMod(60) + 3);
+                ov88_0223D044(CommSys_CurNetId(), COMM_CMD_TRADE_31, LCRNG_RandMod(60) + 3);
             }
 
             ov88_0223D0C0(param0->saveData);
@@ -819,7 +820,7 @@ static int ov88_0223BED8(UnkStruct_02095E80 *param0)
 
     ov88_0223CFF4(&param0->unk_14C[1], &param0->unk_88[1], param0->unk_39C[1], param0->unk_6F4, 1);
     ov88_0223CEF0(&param0->unk_90);
-    ov88_0223D058(param0, 23, param0->unk_88[0]);
+    ov88_0223D058(param0, COMM_CMD_TRADE_23, param0->unk_88[0]);
 
     return 1;
 }
@@ -1624,7 +1625,7 @@ static void *ov88_0223D08C(Party *param0, int param1)
 void ov88_0223D098(int param0, Party *param1, int param2)
 {
     if (CommSys_IsPlayerConnected(param0)) {
-        CommSys_SendDataHuge(22, ov88_0223D08C(param1, param2), 236 * 6 + 4 * 2);
+        CommSys_SendDataHuge(COMM_CMD_TRADE_22, ov88_0223D08C(param1, param2), 236 * 6 + 4 * 2);
     }
 }
 
@@ -1632,7 +1633,7 @@ static void ov88_0223D0C0(SaveData *saveData)
 {
     u8 *v0 = SaveData_GetRibbons(saveData);
 
-    CommSys_SendData(32, v0, 14);
+    CommSys_SendData(COMM_CMD_TRADE_32, v0, 14);
 }
 
 static void ov88_0223D0D4(TrainerInfo *param0, PalPad *param1, PalPad *param2)
@@ -1654,12 +1655,12 @@ static void ov88_0223D0D4(TrainerInfo *param0, PalPad *param1, PalPad *param2)
         param2->associatedTrainerGenders[v0] = param1[v0].gender;
     }
 
-    CommSys_SendDataHuge(28, param2, sizeof(PalPad));
+    CommSys_SendDataHuge(COMM_CMD_TRADE_28, param2, sizeof(PalPad));
 }
 
 static void ov88_0223D140(ChatotCry *param0)
 {
-    CommSys_SendDataHuge(29, param0, 1000);
+    CommSys_SendDataHuge(COMM_CMD_TRADE_29, param0, 1000);
 }
 
 static int ov88_0223D150(UnkStruct_02095E80 *param0)
@@ -1746,7 +1747,7 @@ static int ov88_0223D318(UnkStruct_02095E80 *param0)
     case 0:
         Bg_FillTilemapRect(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
         ov88_0223ECBC(&param0->unk_49C[23], 28, FONT_MESSAGE, param0->unk_184, param0->unk_178);
-        ov88_0223D058(param0, 24, 1);
+        ov88_0223D058(param0, COMM_CMD_TRADE_24, 1);
         param0->unk_226C = ov88_0223DA00;
         param0->unk_5C = 0;
         break;
@@ -2113,7 +2114,7 @@ static int ov88_0223DC84(UnkStruct_02095E80 *param0)
 {
     Bg_FillTilemapRect(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
     ov88_0223ECBC(&param0->unk_49C[23], 20, FONT_MESSAGE, param0->unk_184, param0->unk_178);
-    ov88_0223D058(param0, 24, 2);
+    ov88_0223D058(param0, COMM_CMD_TRADE_24, 2);
 
     param0->unk_226C = ov88_0223DCE0;
 
@@ -2279,7 +2280,7 @@ static int ov88_0223E110(UnkStruct_02095E80 *param0)
 
 static void ov88_0223E1AC(UnkStruct_02095E80 *param0)
 {
-    ov88_0223D058(param0, 24, 3);
+    ov88_0223D058(param0, COMM_CMD_TRADE_24, 3);
     param0->unk_5C = 1;
 }
 
@@ -2308,17 +2309,17 @@ static int ov88_0223E20C(UnkStruct_02095E80 *param0)
             case 1:
                 ov88_0223E1C0(param0, 23, 37);
                 param0->unk_226C = ov88_0223E41C;
-                ov88_0223D058(param0, 24, 4);
+                ov88_0223D058(param0, COMM_CMD_TRADE_24, 4);
                 break;
             case 2:
                 ov88_0223E1C0(param0, 23, 38);
                 param0->unk_226C = ov88_0223E41C;
-                ov88_0223D058(param0, 24, 4);
+                ov88_0223D058(param0, COMM_CMD_TRADE_24, 4);
                 break;
             }
         } else {
             param0->unk_226C = ov88_0223E41C;
-            ov88_0223D058(param0, 24, 4);
+            ov88_0223D058(param0, COMM_CMD_TRADE_24, 4);
         }
 
         break;
@@ -2326,7 +2327,7 @@ static int ov88_0223E20C(UnkStruct_02095E80 *param0)
         Bg_FillTilemapRect(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
         ov88_0223ECBC(&param0->unk_49C[23], 20, FONT_MESSAGE, param0->unk_184, param0->unk_178);
         param0->unk_226C = ov88_0223E41C;
-        ov88_0223D058(param0, 24, 4);
+        ov88_0223D058(param0, COMM_CMD_TRADE_24, 4);
         break;
     default:
         break;
@@ -2355,7 +2356,7 @@ static int ov88_0223E384(UnkStruct_02095E80 *param0)
         Bg_FillTilemapRect(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
         ov88_0223ECBC(&param0->unk_49C[23], 20, FONT_MESSAGE, param0->unk_184, param0->unk_178);
         param0->unk_226C = ov88_0223E41C;
-        ov88_0223D058(param0, 24, 4);
+        ov88_0223D058(param0, COMM_CMD_TRADE_24, 4);
         break;
     default:
         break;
