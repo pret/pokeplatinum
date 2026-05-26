@@ -13,7 +13,7 @@
 
 #include "contest.h"
 
-void ov17_02252CEC(int param0, int param1, void *param2, void *param3)
+void CommCmd_Contest_24(int param0, int param1, void *param2, void *param3)
 {
     Contest *v0 = param3;
     UnkStruct_ov17_0224F30C *v1;
@@ -46,7 +46,7 @@ void ov17_02252CEC(int param0, int param1, void *param2, void *param3)
     v1->unk_A11[param0] = 1;
 }
 
-void ov17_02252D7C(int param0, int param1, void *param2, void *param3)
+void CommCmd_Contest_25(int param0, int param1, void *param2, void *param3)
 {
     Contest *v0 = param3;
     UnkStruct_ov17_0224DF54 *v1 = v0->unk_150;

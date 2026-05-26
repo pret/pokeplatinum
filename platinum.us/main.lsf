@@ -327,7 +327,7 @@ Static main
 	Object main.nef.p/src_unk_02092494.c.o
 	Object main.nef.p/src_contest.c.o
 	Object main.nef.p/src_unk_02094EDC.c.o
-	Object main.nef.p/src_unk_02095AF0.c.o
+	Object main.nef.p/src_comm_command_contest.c.o
 	Object main.nef.p/src_comm_command_trade.c.o
 	Object main.nef.p/src_comm_command_draw.c.o
 	Object main.nef.p/src_comm_command_record_corner.c.o

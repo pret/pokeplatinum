@@ -24,7 +24,7 @@ typedef struct {
 
 static int ov6_02248A94(UnkStruct_ov6_02248A94 *param0[4], int connectionCount, u8 *param2);
 
-void ov6_022489E4(int param0, int param1, void *param2, void *param3)
+void CommCmd_Contest_26(int param0, int param1, void *param2, void *param3)
 {
     Contest *v0 = param3;
 
@@ -75,7 +75,7 @@ static int ov6_02248A94(UnkStruct_ov6_02248A94 *param0[4], int connectionCount, 
     return v1;
 }
 
-void ov6_02248AC8(int param0, int param1, void *param2, void *param3)
+void CommCmd_Contest_27(int param0, int param1, void *param2, void *param3)
 {
     Contest *v0 = param3;
     int v1;
@@ -112,7 +112,7 @@ BOOL ov6_02248AF0(Contest *param0, int param1, const Pokemon *param2)
     return v2;
 }
 
-void ov6_02248B30(int param0, int param1, void *param2, void *param3)
+void CommCmd_Contest_28(int param0, int param1, void *param2, void *param3)
 {
     Contest *v0 = param3;
     int v1, v2;
@@ -154,7 +154,7 @@ BOOL ov6_02248B70(Contest *param0, Pokemon **param1)
     return v3;
 }
 
-void ov6_02248BC0(int param0, int param1, void *param2, void *param3)
+void CommCmd_Contest_29(int param0, int param1, void *param2, void *param3)
 {
     Contest *v0 = param3;
     int v1;
@@ -191,7 +191,7 @@ BOOL ov6_02248BE8(Contest *param0, int param1, const UnkStruct_ov6_02248BE8 *par
     return v2;
 }
 
-void ov6_02248C28(int param0, int param1, void *param2, void *param3)
+void CommCmd_Contest_30(int param0, int param1, void *param2, void *param3)
 {
     Contest *v0 = param3;
     int v1;
@@ -236,7 +236,7 @@ BOOL ov6_02248C68(Contest *param0, int param1, const UnkStruct_020954F0 *param2)
     return v2;
 }
 
-void ov6_02248CBC(int param0, int param1, void *param2, void *param3)
+void CommCmd_Contest_31(int param0, int param1, void *param2, void *param3)
 {
     Contest *v0 = param3;
     int contestantID, v2, v3;
@@ -284,7 +284,7 @@ BOOL ov6_02248CE8(Contest *contest, int param1, const String *trainerNames)
     return v3;
 }
 
-void ov6_02248D38(int param0, int param1, void *param2, void *param3)
+void CommCmd_Contest_36(int param0, int param1, void *param2, void *param3)
 {
     Contest *v0 = param3;
     int v1;
@@ -324,7 +324,7 @@ BOOL ov6_02248D64(Contest *param0, int param1, void *param2)
     return v2;
 }
 
-void ov6_02248DA0(int param0, int param1, void *param2, void *param3)
+void CommCmd_Contest_37(int param0, int param1, void *param2, void *param3)
 {
     Contest *contest = param3;
     int v1;

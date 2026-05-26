@@ -74,7 +74,7 @@
 #include "unk_020298BC.h"
 #include "unk_020363E8.h"
 #include "unk_02094EDC.h"
-#include "unk_02095AF0.h"
+#include "comm_command_contest.h"
 #include "yes_no_touch_menu.h"
 
 typedef struct {

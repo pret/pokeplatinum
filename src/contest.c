@@ -58,7 +58,7 @@
 #include "unk_020298BC.h"
 #include "unk_020363E8.h"
 #include "unk_02094EDC.h"
-#include "unk_02095AF0.h"
+#include "comm_command_contest.h"
 #include "vars_flags.h"
 
 FS_EXTERN_OVERLAY(overlay17);

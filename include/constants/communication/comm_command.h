@@ -258,6 +258,26 @@ enum CommCommand_PoffinCooking {
     COMM_CMD_MAX_POFFIN,
 };
 
+// Communication Commands used for Contests
+enum CommCommand_Contest {
+    COMM_CMD_CONTEST_DUMMY = COMM_CMD_MAX_COMMON,
+    COMM_CMD_CONTEST_23,
+    COMM_CMD_CONTEST_24,
+    COMM_CMD_CONTEST_25,
+    COMM_CMD_CONTEST_26,
+    COMM_CMD_CONTEST_27,
+    COMM_CMD_CONTEST_28,
+    COMM_CMD_CONTEST_29,
+    COMM_CMD_CONTEST_30,
+    COMM_CMD_CONTEST_31,
+    COMM_CMD_CONTEST_32,
+    COMM_CMD_CONTEST_33,
+    COMM_CMD_CONTEST_34,
+    COMM_CMD_CONTEST_35,
+    COMM_CMD_CONTEST_36,
+    COMM_CMD_CONTEST_37,
+};
+
 // Communication Commands used for Wifi Plaze Minigames
 enum CommCommand_Minigame {
     COMM_CMD_MINIGAME_22 = COMM_CMD_MAX_COMMON,

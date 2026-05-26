@@ -29,7 +29,7 @@
 #include "string_gf.h"
 #include "sys_task.h"
 #include "text.h"
-#include "unk_02095AF0.h"
+#include "comm_command_contest.h"
 
 static void ov22_0225A6E0(UnkStruct_ov22_022597BC *param0, BgConfig *param1);
 static void ov22_0225A718(BgConfig *param0, const Options *options);

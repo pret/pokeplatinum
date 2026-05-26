@@ -310,7 +310,7 @@ pokeplatinum_c = files(
     'unk_02092494.c',
     'contest.c',
     'unk_02094EDC.c',
-    'unk_02095AF0.c',
+    'comm_command_contest.c',
     'comm_command_trade.c',
     'comm_command_draw.c',
     'comm_command_record_corner.c',

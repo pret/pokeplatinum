@@ -1,7 +1,9 @@
-#include "unk_02095AF0.h"
+#include "comm_command_contest.h"
 
 #include <nitro.h>
 #include <string.h>
+
+#include "constants/communication/comm_command.h"
 
 #include "struct_defs/comm_cmd_table.h"
 #include "struct_defs/struct_02029C88.h"
@@ -18,32 +20,32 @@
 #include "heap.h"
 #include "unk_020298BC.h"
 
-static void sub_02095B2C(int param0, int param1, void *param2, void *param3);
+static void CommCmd_Contest_23(int param0, int param1, void *param2, void *param3);
 static u8 *sub_02095B04(int param0, void *param1, int param2);
-static void sub_02095B30(int param0, int param1, void *param2, void *param3);
-static void sub_02095B9C(int param0, int param1, void *param2, void *param3);
-static void sub_02095C48(int param0, int param1, void *param2, void *param3);
-static void sub_02095C98(int param0, int param1, void *param2, void *param3);
+static void CommCmd_Contest_32(int param0, int param1, void *param2, void *param3);
+static void CommCmd_Contest_33(int param0, int param1, void *param2, void *param3);
+static void CommCmd_Contest_34(int param0, int param1, void *param2, void *param3);
+static void CommCmd_Contest_35(int param0, int param1, void *param2, void *param3);
 static int sub_02095B24(void);
 static int sub_02095B28(void);
 
 static const CommCmdTable Unk_020F58FC[] = {
-    { NULL, CommPacketSizeOf_Nothing, NULL },
-    { sub_02095B2C, CommPacketSizeOf_Nothing, NULL },
-    { ov17_02252CEC, CommPacketSizeOf_Variable, sub_02095B04 },
-    { ov17_02252D7C, sub_02095B24, NULL },
-    { ov6_022489E4, CommPacketSizeOf_Variable, NULL },
-    { ov6_02248AC8, CommPacketSizeOf_Variable, NULL },
-    { ov6_02248B30, CommPacketSizeOf_Variable, sub_02095B04 },
-    { ov6_02248BC0, CommPacketSizeOf_Variable, NULL },
-    { ov6_02248C28, CommPacketSizeOf_Variable, NULL },
-    { ov6_02248CBC, CommPacketSizeOf_Variable, NULL },
-    { sub_02095B30, CommPacketSizeOf_Variable, NULL },
-    { sub_02095B9C, CommPacketSizeOf_Variable, sub_02095B04 },
-    { sub_02095C48, sub_02095B28, NULL },
-    { sub_02095C98, sub_02095B28, NULL },
-    { ov6_02248D38, CommPacketSizeOf_Variable, sub_02095B04 },
-    { ov6_02248DA0, CommPacketSizeOf_Variable, NULL }
+    [COMM_CMD_CONTEST_DUMMY - COMM_CMD_MAX_COMMON] = { NULL, CommPacketSizeOf_Nothing, NULL },
+    [COMM_CMD_CONTEST_23 - COMM_CMD_MAX_COMMON] = { CommCmd_Contest_23, CommPacketSizeOf_Nothing, NULL },
+    [COMM_CMD_CONTEST_24 - COMM_CMD_MAX_COMMON] = { CommCmd_Contest_24, CommPacketSizeOf_Variable, sub_02095B04 },
+    [COMM_CMD_CONTEST_25 - COMM_CMD_MAX_COMMON] = { CommCmd_Contest_25, sub_02095B24, NULL },
+    [COMM_CMD_CONTEST_26 - COMM_CMD_MAX_COMMON] = { CommCmd_Contest_26, CommPacketSizeOf_Variable, NULL },
+    [COMM_CMD_CONTEST_27 - COMM_CMD_MAX_COMMON] = { CommCmd_Contest_27, CommPacketSizeOf_Variable, NULL },
+    [COMM_CMD_CONTEST_28 - COMM_CMD_MAX_COMMON] = { CommCmd_Contest_28, CommPacketSizeOf_Variable, sub_02095B04 },
+    [COMM_CMD_CONTEST_29 - COMM_CMD_MAX_COMMON] = { CommCmd_Contest_29, CommPacketSizeOf_Variable, NULL },
+    [COMM_CMD_CONTEST_30 - COMM_CMD_MAX_COMMON] = { CommCmd_Contest_30, CommPacketSizeOf_Variable, NULL },
+    [COMM_CMD_CONTEST_31 - COMM_CMD_MAX_COMMON] = { CommCmd_Contest_31, CommPacketSizeOf_Variable, NULL },
+    [COMM_CMD_CONTEST_32 - COMM_CMD_MAX_COMMON] = { CommCmd_Contest_32, CommPacketSizeOf_Variable, NULL },
+    [COMM_CMD_CONTEST_33 - COMM_CMD_MAX_COMMON] = { CommCmd_Contest_33, CommPacketSizeOf_Variable, sub_02095B04 },
+    [COMM_CMD_CONTEST_34 - COMM_CMD_MAX_COMMON] = { CommCmd_Contest_34, sub_02095B28, NULL },
+    [COMM_CMD_CONTEST_35 - COMM_CMD_MAX_COMMON] = { CommCmd_Contest_35, sub_02095B28, NULL },
+    [COMM_CMD_CONTEST_36 - COMM_CMD_MAX_COMMON] = { CommCmd_Contest_36, CommPacketSizeOf_Variable, sub_02095B04 },
+    [COMM_CMD_CONTEST_37 - COMM_CMD_MAX_COMMON] = { CommCmd_Contest_37, CommPacketSizeOf_Variable, NULL }
 };
 
 void sub_02095AF0(void *param0)
@@ -70,12 +72,12 @@ static int sub_02095B28(void)
     return sizeof(UnkStruct_02095B28);
 }
 
-static void sub_02095B2C(int param0, int param1, void *param2, void *param3)
+static void CommCmd_Contest_23(int param0, int param1, void *param2, void *param3)
 {
     return;
 }
 
-static void sub_02095B30(int param0, int param1, void *param2, void *param3)
+static void CommCmd_Contest_32(int param0, int param1, void *param2, void *param3)
 {
     Contest *v0 = param3;
     int v1;
@@ -112,7 +114,7 @@ BOOL sub_02095B5C(Contest *param0, int param1, const UnkStruct_02029C88 *param2)
     return v2;
 }
 
-static void sub_02095B9C(int param0, int param1, void *param2, void *param3)
+static void CommCmd_Contest_33(int param0, int param1, void *param2, void *param3)
 {
     Contest *v0 = param3;
     int v1, v2;
@@ -159,7 +161,7 @@ BOOL sub_02095BEC(Contest *param0, UnkStruct_02029C88 **param1)
     return v3;
 }
 
-static void sub_02095C48(int param0, int param1, void *param2, void *param3)
+static void CommCmd_Contest_34(int param0, int param1, void *param2, void *param3)
 {
     Contest *v0 = param3;
     MI_CpuCopy8(param2, &v0->unk_1984.unk_00, param1);
@@ -185,7 +187,7 @@ BOOL sub_02095C60(UnkStruct_02095C60 *param0, u32 param1)
     return 0;
 }
 
-static void sub_02095C98(int param0, int param1, void *param2, void *param3)
+static void CommCmd_Contest_35(int param0, int param1, void *param2, void *param3)
 {
     Contest *v0 = param3;
     UnkStruct_02095B28 *v1 = param2;
