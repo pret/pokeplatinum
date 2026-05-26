@@ -1652,7 +1652,7 @@ Overlay overlay114
 {
 	After overlay66
 	Object main.nef.p/src_overlay114_ov114_0225C700.c.o
-	Object main.nef.p/src_overlay114_ov114_02260038.c.o
+	Object main.nef.p/src_overlay114_comm_command_minigame.c.o
 	Object main.nef.p/src_overlay114_ov114_02260044.c.o
 }
 

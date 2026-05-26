@@ -220,6 +220,15 @@ enum CommCommand_Battle {
     COMM_CMD_MAX_BATTLE,
 };
 
+// Communication Commands used for Wifi Plaze Minigames
+enum CommCommand_Minigame {
+    COMM_CMD_MINIGAME_22 = COMM_CMD_MAX_BATTLE,
+    COMM_CMD_MINIGAME_23,
+    COMM_CMD_MINIGAME_24,
+    COMM_CMD_MINIGAME_25,
+    COMM_CMD_MINIGAME_26,
+};
+
 // Communication Commands used for Poffin Cooking minigame
 enum CommCommand_PoffinCooking {
     COMM_CMD_POFFIN_22 = COMM_CMD_MAX_COMMON,

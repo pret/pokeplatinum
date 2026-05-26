@@ -1,0 +1,9 @@
+#ifndef POKEPLATINUM_COMM_COMMAND_MINIGAME_H
+#define POKEPLATINUM_COMM_COMMAND_MINIGAME_H
+
+#include "struct_defs/comm_cmd_table.h"
+
+const CommCmdTable *COMM_COMMAND_MINIGAME(void);
+int ov114_02260040(void);
+
+#endif // POKEPLATINUM_COMM_COMMAND_MINIGAME_H
