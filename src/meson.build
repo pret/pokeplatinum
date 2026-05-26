@@ -991,7 +991,7 @@ pokeplatinum_c = files(
     'overlay115/ov115_02260440.c',
     'overlay115/ov115_02260BBC.c',
     'overlay115/ov115_02260CEC.c',
-    'overlay115/ov115_02265A18.c',
+    'overlay115/comm_command_swalot_plop.c',
     'overlay115/ov115_02265A24.c',
     'overlay116/comm_command_mime_jr_top.c',
     'overlay116/ov116_022604C4.c',

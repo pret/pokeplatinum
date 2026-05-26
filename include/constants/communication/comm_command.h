@@ -220,15 +220,6 @@ enum CommCommand_Battle {
     COMM_CMD_MAX_BATTLE,
 };
 
-// Communication Commands used for Wifi Plaze Minigames
-enum CommCommand_Minigame {
-    COMM_CMD_MINIGAME_22 = COMM_CMD_MAX_BATTLE,
-    COMM_CMD_MINIGAME_23,
-    COMM_CMD_MINIGAME_24,
-    COMM_CMD_MINIGAME_25,
-    COMM_CMD_MINIGAME_26,
-};
-
 // Communication Commands used for Poffin Cooking minigame
 enum CommCommand_PoffinCooking {
     COMM_CMD_POFFIN_22 = COMM_CMD_MAX_COMMON,
@@ -243,6 +234,27 @@ enum CommCommand_PoffinCooking {
     COMM_CMD_POFFIN_31,
     COMM_CMD_POFFIN_32,
     COMM_CMD_MAX_POFFIN,
+};
+
+// Communication Commands used for Wifi Plaze Minigames
+enum CommCommand_Minigame {
+    COMM_CMD_MINIGAME_22 = COMM_CMD_MAX_COMMON,
+    COMM_CMD_MINIGAME_23,
+    COMM_CMD_MINIGAME_24,
+    COMM_CMD_MINIGAME_25,
+    COMM_CMD_MINIGAME_26,
+};
+
+// Communication Commands used for Swalot Plop minigame
+enum CommCommand_SwalotPlop {
+    COMM_COMMAND_SWALOT_PLOP_22 = COMM_CMD_MAX_COMMON,
+    COMM_COMMAND_SWALOT_PLOP_23,
+    COMM_COMMAND_SWALOT_PLOP_24,
+    COMM_COMMAND_SWALOT_PLOP_25,
+    COMM_COMMAND_SWALOT_PLOP_26,
+    COMM_COMMAND_SWALOT_PLOP_27,
+    COMM_COMMAND_SWALOT_PLOP_28,
+    COMM_COMMAND_SWALOT_PLOP_29,
 };
 
 // Communication Commands used for Mime Jr. Top minigame
