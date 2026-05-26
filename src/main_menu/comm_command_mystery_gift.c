@@ -1,7 +1,9 @@
-#include "main_menu/ov97_0222D2F8.h"
+#include "main_menu/comm_command_mystery_gift.h"
 
 #include <nitro.h>
 #include <string.h>
+
+#include "constants/communication/comm_command.h"
 
 #include "struct_defs/comm_cmd_table.h"
 
@@ -10,8 +12,8 @@
 #include "comm_command.h"
 
 static const CommCmdTable Unk_ov97_0223D704[] = {
-    { ov97_0222D284, ov97_0222D2B0, ov97_0222D2B8 },
-    { ov97_0222D2C4, CommPacketSizeOf_Nothing, NULL }
+    [COMM_CMD_MYSTERY_GIFT_22 - COMM_CMD_MAX_COMMON] = { CommCmd_MysteryGift_22, ov97_0222D2B0, ov97_0222D2B8 },
+    [COMM_CMD_MYSTERY_GIFT_23 - COMM_CMD_MAX_COMMON] = { CommCmd_MysteryGift_23, CommPacketSizeOf_Nothing, NULL }
 };
 
 void ov97_0222D2F8(void *param0)

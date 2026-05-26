@@ -318,4 +318,10 @@ enum CommCommand_WobbuffetPop {
     COMM_CMD_MAX_WOB_POP,
 };
 
+// Communication Commands used for Mystery Gift
+enum CommCommand_MysteryGift {
+    COMM_CMD_MYSTERY_GIFT_22 = COMM_CMD_MAX_COMMON,
+    COMM_CMD_MYSTERY_GIFT_23
+};
+
 #endif

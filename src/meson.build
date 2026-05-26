@@ -873,7 +873,7 @@ pokeplatinum_c = files(
     'main_menu/main_menu.c',
     'main_menu/ranger_link.c',
     'main_menu/ov97_0222D04C.c',
-    'main_menu/ov97_0222D2F8.c',
+    'main_menu/comm_command_mystery_gift.c',
     'main_menu/mystery_gift_app.c',
     'main_menu/wonder_cards_app.c',
     'main_menu/ov97_02232054.c',
