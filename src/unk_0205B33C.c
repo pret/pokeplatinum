@@ -35,7 +35,7 @@
 #include "unk_02014A84.h"
 #include "unk_02014D38.h"
 #include "unk_02033200.h"
-#include "unk_02095E98.h"
+#include "comm_command_draw.h"
 #include "comm_command_field.h"
 
 #include "constdata/const_020ED570.h"

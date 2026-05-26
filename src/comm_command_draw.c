@@ -1,7 +1,9 @@
-#include "unk_02095E98.h"
+#include "comm_command_draw.h"
 
 #include <nitro.h>
 #include <string.h>
+
+#include "constants/communication/comm_command.h"
 
 #include "struct_defs/comm_cmd_table.h"
 #include "struct_defs/struct_02095EAC_sub1.h"
@@ -24,7 +26,7 @@ static u8 *sub_020961D0(int param0, void *param1, int param2);
 static int sub_020961E0(void);
 static int sub_020961E4(void);
 static void sub_0209617C(UnkStruct_02095EAC *param0, int param1);
-static void sub_02096170(int param0, int param1, void *param2, void *param3);
+static void CommCmd_Field_Draw_129(int param0, int param1, void *param2, void *param3);
 
 static const CommCmdTable Unk_020F5A40[] = {
     { CommCmd_Field_Dummy, CommPacketSizeOf_NetId, NULL },
@@ -123,18 +125,18 @@ static const CommCmdTable Unk_020F5A40[] = {
     { CommCmd_Field_Dummy, CommPacketSizeOf_NetId, NULL },
     { CommCmd_Field_Dummy, CommPacketSizeOf_NetId, NULL },
     { CommCmd_Field_Dummy, CommPacketSizeOf_NetId, NULL },
-    { sub_02095EAC, sub_02099538, sub_020961D0 },
-    { sub_02095F40, sub_02099540 },
-    { sub_02095F68, sub_02099544 },
-    { sub_0209610C, CommPacketSizeOf_NetId },
-    { sub_02096110, CommPacketSizeOf_NetId },
-    { sub_020960D8, CommPacketSizeOf_NetId },
-    { sub_02095F9C, CommPacketSizeOf_Nothing },
-    { sub_020960D4, CommPacketSizeOf_Nothing },
-    { sub_02095FE4, sub_020961E4 },
-    { sub_02096114, CommPacketSizeOf_Nothing },
-    { sub_0209612C, CommPacketSizeOf_Nothing },
-    { sub_02096170, CommPacketSizeOf_Nothing },
+    [COMM_CMD_FIELD_DRAWING_118 - COMM_CMD_MAX_COMMON] = { CommCmd_Field_Draw_118, sub_02099538, sub_020961D0 },
+    [COMM_CMD_FIELD_DRAWING_119 - COMM_CMD_MAX_COMMON] = { CommCmd_Field_Draw_119, sub_02099540 },
+    [COMM_CMD_FIELD_DRAWING_120 - COMM_CMD_MAX_COMMON] = { CommCmd_Field_Draw_120, sub_02099544 },
+    [COMM_CMD_FIELD_DRAWING_121 - COMM_CMD_MAX_COMMON] = { CommCmd_Field_Draw_121, CommPacketSizeOf_NetId },
+    [COMM_CMD_FIELD_DRAWING_122 - COMM_CMD_MAX_COMMON] = { CommCmd_Field_Draw_122, CommPacketSizeOf_NetId },
+    [COMM_CMD_FIELD_DRAWING_123 - COMM_CMD_MAX_COMMON] = { CommCmd_Field_Draw_123, CommPacketSizeOf_NetId },
+    [COMM_CMD_FIELD_DRAWING_124 - COMM_CMD_MAX_COMMON] = { CommCmd_Field_Draw_124, CommPacketSizeOf_Nothing },
+    [COMM_CMD_FIELD_DRAWING_125 - COMM_CMD_MAX_COMMON] = { CommCmd_Field_Draw_125, CommPacketSizeOf_Nothing },
+    [COMM_CMD_FIELD_DRAWING_126 - COMM_CMD_MAX_COMMON] = { CommCmd_Field_Draw_126, sub_020961E4 },
+    [COMM_CMD_FIELD_DRAWING_127 - COMM_CMD_MAX_COMMON] = { CommCmd_Field_Draw_127, CommPacketSizeOf_Nothing },
+    [COMM_CMD_FIELD_DRAWING_128 - COMM_CMD_MAX_COMMON] = { CommCmd_Field_Draw_128, CommPacketSizeOf_Nothing },
+    [COMM_CMD_FIELD_DRAWING_129 - COMM_CMD_MAX_COMMON] = { CommCmd_Field_Draw_129, CommPacketSizeOf_Nothing },
     { CommCmd_Field_Dummy, CommPacketSizeOf_NetId, NULL },
     { CommCmd_Field_Dummy, CommPacketSizeOf_NetId, NULL }
 };
@@ -145,7 +147,7 @@ void sub_02095E98(void *param0)
     CommCmdManager_Init(Unk_020F5A40, v0, param0);
 }
 
-void sub_02095EAC(int param0, int param1, void *param2, void *param3)
+void CommCmd_Field_Draw_118(int param0, int param1, void *param2, void *param3)
 {
     UnkStruct_02095EAC *v0 = (UnkStruct_02095EAC *)param3;
 
@@ -172,7 +174,7 @@ void sub_02095EAC(int param0, int param1, void *param2, void *param3)
     }
 }
 
-void sub_02095F40(int param0, int param1, void *param2, void *param3)
+void CommCmd_Field_Draw_119(int param0, int param1, void *param2, void *param3)
 {
     UnkStruct_02095EAC *v0 = (UnkStruct_02095EAC *)param3;
     UnkStruct_ov58_021D2820 *v1 = (UnkStruct_ov58_021D2820 *)param2;
@@ -182,7 +184,7 @@ void sub_02095F40(int param0, int param1, void *param2, void *param3)
     }
 }
 
-void sub_02095F68(int param0, int param1, void *param2, void *param3)
+void CommCmd_Field_Draw_120(int param0, int param1, void *param2, void *param3)
 {
     UnkStruct_02095EAC *v0 = (UnkStruct_02095EAC *)param3;
     UnkStruct_ov58_021D2820 *v1 = (UnkStruct_ov58_021D2820 *)param2;
@@ -204,7 +206,7 @@ void sub_02095F68(int param0, int param1, void *param2, void *param3)
     }
 }
 
-void sub_02095F9C(int param0, int param1, void *param2, void *param3)
+void CommCmd_Field_Draw_124(int param0, int param1, void *param2, void *param3)
 {
     UnkStruct_02095EAC *v0 = (UnkStruct_02095EAC *)param3;
 
@@ -218,7 +220,7 @@ void sub_02095F9C(int param0, int param1, void *param2, void *param3)
     }
 }
 
-void sub_02095FE4(int param0, int param1, void *param2, void *param3)
+void CommCmd_Field_Draw_126(int param0, int param1, void *param2, void *param3)
 {
     UnkStruct_02095EAC *v0 = (UnkStruct_02095EAC *)param3;
     UnkStruct_02095FE4 v1;
@@ -265,12 +267,12 @@ void sub_02095FE4(int param0, int param1, void *param2, void *param3)
     }
 }
 
-void sub_020960D4(int param0, int param1, void *param2, void *param3)
+void CommCmd_Field_Draw_125(int param0, int param1, void *param2, void *param3)
 {
     return;
 }
 
-void sub_020960D8(int param0, int param1, void *param2, void *param3)
+void CommCmd_Field_Draw_123(int param0, int param1, void *param2, void *param3)
 {
     UnkStruct_02095EAC *v0 = (UnkStruct_02095EAC *)param3;
     u8 v1 = *(u8 *)param2;
@@ -283,17 +285,17 @@ void sub_020960D8(int param0, int param1, void *param2, void *param3)
     }
 }
 
-void sub_0209610C(int param0, int param1, void *param2, void *param3)
+void CommCmd_Field_Draw_121(int param0, int param1, void *param2, void *param3)
 {
     return;
 }
 
-void sub_02096110(int param0, int param1, void *param2, void *param3)
+void CommCmd_Field_Draw_122(int param0, int param1, void *param2, void *param3)
 {
     return;
 }
 
-void sub_02096114(int param0, int param1, void *param2, void *param3)
+void CommCmd_Field_Draw_127(int param0, int param1, void *param2, void *param3)
 {
     UnkStruct_02095EAC *v0 = (UnkStruct_02095EAC *)param3;
 
@@ -302,7 +304,7 @@ void sub_02096114(int param0, int param1, void *param2, void *param3)
     }
 }
 
-void sub_0209612C(int param0, int param1, void *param2, void *param3)
+void CommCmd_Field_Draw_128(int param0, int param1, void *param2, void *param3)
 {
     UnkStruct_02095EAC *v0 = (UnkStruct_02095EAC *)param3;
     u8 v1;
@@ -321,7 +323,7 @@ void sub_0209612C(int param0, int param1, void *param2, void *param3)
     CommManager_SetErrorHandling(0, 1);
 }
 
-static void sub_02096170(int param0, int param1, void *param2, void *param3)
+static void CommCmd_Field_Draw_129(int param0, int param1, void *param2, void *param3)
 {
     UnkStruct_02095EAC *v0 = (UnkStruct_02095EAC *)param3;
     v0->unk_9458 = 1;
