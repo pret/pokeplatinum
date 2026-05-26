@@ -311,7 +311,7 @@ pokeplatinum_c = files(
     'contest.c',
     'unk_02094EDC.c',
     'unk_02095AF0.c',
-    'unk_02095CD4.c',
+    'comm_command_trade.c',
     'comm_command_draw.c',
     'comm_command_record_corner.c',
     'item_use_pokemon.c',

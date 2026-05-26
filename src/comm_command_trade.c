@@ -1,7 +1,9 @@
-#include "unk_02095CD4.h"
+#include "comm_command_trade.h"
 
 #include <nitro.h>
 #include <string.h>
+
+#include "constants/communication/comm_command.h"
 
 #include "struct_decls/struct_02095E80_decl.h"
 #include "struct_defs/comm_cmd_table.h"
@@ -16,10 +18,10 @@
 #include "party.h"
 #include "unk_0202D778.h"
 
-void sub_02095DFC(int param0, int param1, void *param2, void *param3);
-void sub_02095E28(int param0, int param1, void *param2, void *param3);
-void sub_02095DBC(int param0, int param1, void *param2, void *param3);
-void sub_02095DCC(int param0, int param1, void *param2, void *param3);
+void CommCmd_Trade_28(int param0, int param1, void *param2, void *param3);
+void CommCmd_Trade_29(int param0, int param1, void *param2, void *param3);
+void CommCmd_Trade_31(int param0, int param1, void *param2, void *param3);
+void CommCmd_Trade_32(int param0, int param1, void *param2, void *param3);
 static int sub_02095CE8(u8 param0);
 static int sub_02095E78(void);
 static int sub_02095E74(void);
@@ -28,17 +30,17 @@ static int sub_02095E68(void);
 static int sub_02095E70(void);
 
 static const CommCmdTable Unk_020F59BC[] = {
-    { sub_02095CFC, sub_02095E78, sub_02095E80 },
-    { sub_02095D74, CommPacketSizeOf_NetId },
-    { sub_02095D94, CommPacketSizeOf_NetId },
-    { sub_02095DA4, CommPacketSizeOf_NetId },
-    { sub_02095DA8, CommPacketSizeOf_NetId },
-    { sub_02095DAC, CommPacketSizeOf_NetId },
-    { sub_02095DFC, sub_02095E74, sub_02095E80 },
-    { sub_02095E28, sub_02095E68, sub_02095E80 },
-    { sub_02095DB8, CommPacketSizeOf_Nothing },
-    { sub_02095DBC, CommPacketSizeOf_NetId },
-    { sub_02095DCC, sub_02095E70 }
+    [COMM_CMD_TRADE_22 - COMM_CMD_MAX_COMMON] = { CommCmd_Trade_22, sub_02095E78, sub_02095E80 },
+    [COMM_CMD_TRADE_23 - COMM_CMD_MAX_COMMON] = { CommCmd_Trade_23, CommPacketSizeOf_NetId },
+    [COMM_CMD_TRADE_24 - COMM_CMD_MAX_COMMON] = { CommCmd_Trade_24, CommPacketSizeOf_NetId },
+    [COMM_CMD_TRADE_25 - COMM_CMD_MAX_COMMON] = { CommCmd_Trade_25, CommPacketSizeOf_NetId },
+    [COMM_CMD_TRADE_26 - COMM_CMD_MAX_COMMON] = { CommCmd_Trade_26, CommPacketSizeOf_NetId },
+    [COMM_CMD_TRADE_27 - COMM_CMD_MAX_COMMON] = { CommCmd_Trade_27, CommPacketSizeOf_NetId },
+    [COMM_CMD_TRADE_28 - COMM_CMD_MAX_COMMON] = { CommCmd_Trade_28, sub_02095E74, sub_02095E80 },
+    [COMM_CMD_TRADE_29 - COMM_CMD_MAX_COMMON] = { CommCmd_Trade_29, sub_02095E68, sub_02095E80 },
+    [COMM_CMD_TRADE_30 - COMM_CMD_MAX_COMMON] = { CommCmd_Trade_30, CommPacketSizeOf_Nothing },
+    [COMM_CMD_TRADE_31 - COMM_CMD_MAX_COMMON] = { CommCmd_Trade_31, CommPacketSizeOf_NetId },
+    [COMM_CMD_TRADE_32 - COMM_CMD_MAX_COMMON] = { CommCmd_Trade_32, sub_02095E70 }
 };
 
 void sub_02095CD4(void *param0)
@@ -60,7 +62,7 @@ static int sub_02095CE8(u8 param0)
     return param0 - 6;
 }
 
-void sub_02095CFC(int param0, int param1, void *param2, void *param3)
+void CommCmd_Trade_22(int param0, int param1, void *param2, void *param3)
 {
     FieldSystem *fieldSystem = (FieldSystem *)param3;
     UnkStruct_02095E80 *v1 = fieldSystem->unk_88;
@@ -83,7 +85,7 @@ void sub_02095CFC(int param0, int param1, void *param2, void *param3)
     }
 }
 
-void sub_02095D74(int param0, int param1, void *param2, void *param3)
+void CommCmd_Trade_23(int param0, int param1, void *param2, void *param3)
 {
     UnkStruct_02095E80 *v0 = ((FieldSystem *)param3)->unk_88;
     u8 *v1 = (u8 *)param2;
@@ -93,7 +95,7 @@ void sub_02095D74(int param0, int param1, void *param2, void *param3)
     }
 }
 
-void sub_02095D94(int param0, int param1, void *param2, void *param3)
+void CommCmd_Trade_24(int param0, int param1, void *param2, void *param3)
 {
     UnkStruct_02095E80 *v0 = ((FieldSystem *)param3)->unk_88;
     u8 *v1 = (u8 *)param2;
@@ -101,28 +103,28 @@ void sub_02095D94(int param0, int param1, void *param2, void *param3)
     v0->unk_60[param0] = *v1;
 }
 
-void sub_02095DA4(int param0, int param1, void *param2, void *param3)
+void CommCmd_Trade_25(int param0, int param1, void *param2, void *param3)
 {
     return;
 }
 
-void sub_02095DA8(int param0, int param1, void *param2, void *param3)
+void CommCmd_Trade_26(int param0, int param1, void *param2, void *param3)
 {
     return;
 }
 
-void sub_02095DAC(int param0, int param1, void *param2, void *param3)
+void CommCmd_Trade_27(int param0, int param1, void *param2, void *param3)
 {
     UnkStruct_02095E80 *v0 = ((FieldSystem *)param3)->unk_88;
     v0->unk_54 = 2;
 }
 
-void sub_02095DB8(int param0, int param1, void *param2, void *param3)
+void CommCmd_Trade_30(int param0, int param1, void *param2, void *param3)
 {
     return;
 }
 
-void sub_02095DBC(int param0, int param1, void *param2, void *param3)
+void CommCmd_Trade_31(int param0, int param1, void *param2, void *param3)
 {
     UnkStruct_02095E80 *v0 = ((FieldSystem *)param3)->unk_88;
     u8 *v1 = (u8 *)param2;
@@ -130,7 +132,7 @@ void sub_02095DBC(int param0, int param1, void *param2, void *param3)
     v0->unk_2318 = *v1;
 }
 
-void sub_02095DCC(int param0, int param1, void *param2, void *param3)
+void CommCmd_Trade_32(int param0, int param1, void *param2, void *param3)
 {
     FieldSystem *fieldSystem = (FieldSystem *)param3;
     int v1;
@@ -150,7 +152,7 @@ void sub_02095DCC(int param0, int param1, void *param2, void *param3)
     }
 }
 
-void sub_02095DFC(int param0, int param1, void *param2, void *param3)
+void CommCmd_Trade_28(int param0, int param1, void *param2, void *param3)
 {
     UnkStruct_02095E80 *v0 = ((FieldSystem *)param3)->unk_88;
 
@@ -160,7 +162,7 @@ void sub_02095DFC(int param0, int param1, void *param2, void *param3)
     }
 }
 
-void sub_02095E28(int param0, int param1, void *param2, void *param3)
+void CommCmd_Trade_29(int param0, int param1, void *param2, void *param3)
 {
     UnkStruct_02095E80 *v0 = ((FieldSystem *)param3)->unk_88;
 

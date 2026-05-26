@@ -220,6 +220,21 @@ enum CommCommand_Battle {
     COMM_CMD_MAX_BATTLE,
 };
 
+// Communication Commands used for trades in the Union Room
+enum CommCommand_Trade {
+    COMM_CMD_TRADE_22 = COMM_CMD_MAX_COMMON,
+    COMM_CMD_TRADE_23,
+    COMM_CMD_TRADE_24,
+    COMM_CMD_TRADE_25,
+    COMM_CMD_TRADE_26,
+    COMM_CMD_TRADE_27,
+    COMM_CMD_TRADE_28,
+    COMM_CMD_TRADE_29,
+    COMM_CMD_TRADE_30,
+    COMM_CMD_TRADE_31,
+    COMM_CMD_TRADE_32,
+};
+
 // Communication Commands used for P2P waiting rooms
 enum CommCommand_WaitingRoom {
     COMM_CMD_WAITING_ROOM_22 = COMM_CMD_MAX_COMMON,
