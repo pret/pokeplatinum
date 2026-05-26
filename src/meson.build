@@ -156,7 +156,7 @@ pokeplatinum_c = files(
     'unk_0203909C.c',
     'network_icon.c',
     'unk_02039814.c',
-    'unk_02039A58.c',
+    'comm_command_waiting_room.c',
     'unk_02039A64.c',
     'map_matrix.c',
     'map_header_data.c',

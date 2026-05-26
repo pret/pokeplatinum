@@ -220,6 +220,13 @@ enum CommCommand_Battle {
     COMM_CMD_MAX_BATTLE,
 };
 
+// Communication Commands used for P2P waiting rooms
+enum CommCommand_WaitingRoom {
+    COMM_CMD_WAITING_ROOM_22 = COMM_CMD_MAX_COMMON,
+    COMM_CMD_WAITING_ROOM_23,
+    COMM_CMD_WAITING_ROOM_24,
+};
+
 // Communication Commands used for Poffin Cooking minigame
 enum CommCommand_PoffinCooking {
     COMM_CMD_POFFIN_22 = COMM_CMD_MAX_COMMON,
