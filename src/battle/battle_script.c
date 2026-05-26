@@ -10554,7 +10554,7 @@ static void BattleScript_CatchMonTask(SysTask *task, void *inData)
 
             ov12_0223783C(data->ballRotation);
             PokemonSpriteManager_DeleteAll(monSpriteMan);
-            ov16_0223B53C(data->battleSys);
+            BattleSystem_HideBattleScreen(data->battleSys);
             ov16_022686BC(BattlerSystem_GetTerrain(data->battleSys, 0), 0);
             ov16_022686BC(BattlerSystem_GetTerrain(data->battleSys, 1), 0);
             ov16_02263B20(BattleSystem_GetBattlerData(data->battleSys, 0), FALSE);
@@ -10597,7 +10597,7 @@ static void BattleScript_CatchMonTask(SysTask *task, void *inData)
     case SEQ_CATCH_MON_UNK_15:
         ov21_021E8DD0(data->tmpPtr[0]);
         CharTransfer_PushTaskManager(data->tmpPtr[1]);
-        ov16_0223B578(data->battleSys);
+        BattleSystem_SetupBattleScreen(data->battleSys);
         PaletteData_StartFade(paletteData, PLTTBUF_MAIN_BG_F | PLTTBUF_MAIN_OBJ_F, 0xFFFF, 1, 16, 0, 0);
         data->seqNum = SEQ_CATCH_MON_WAIT_FADE_FOR_ASK_NICKNAME;
         break;
@@ -10610,8 +10610,8 @@ static void BattleScript_CatchMonTask(SysTask *task, void *inData)
             ov12_0223783C(data->ballRotation);
             PokemonSpriteManager_DeleteAll(monSpriteMan);
             ov16_02263B20(BattleSystem_GetBattlerData(data->battleSys, 0), FALSE);
-            ov16_0223B53C(data->battleSys);
-            ov16_0223B578(data->battleSys);
+            BattleSystem_HideBattleScreen(data->battleSys);
+            BattleSystem_SetupBattleScreen(data->battleSys);
             Pokemon_BuildSpriteTemplate(&monSpriteTemplate, mon, 2);
             PokemonSpriteManager_CreateSprite(monSpriteMan, &monSpriteTemplate, 128, 72, 0, 0, NULL, NULL);
             PaletteData_StartFade(paletteData, PLTTBUF_MAIN_BG_F | PLTTBUF_MAIN_OBJ_F, 0xFFFF, 1, 16, 0, 0);
@@ -10686,7 +10686,7 @@ static void BattleScript_CatchMonTask(SysTask *task, void *inData)
                 }
             }
 
-            ov16_0223B3E4(data->battleSys);
+            BattleSystem_FreeGraphics(data->battleSys);
             BattleSystem_SetRenderMode(data->battleSys, 1);
         }
         break;

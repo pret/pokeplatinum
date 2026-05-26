@@ -71,6 +71,26 @@ copy_gen = generator(copy_exe,
     output: '@PLAINNAME@'
 )
 
+npctrade_data = custom_target('npctrade_data',
+    output: [
+        'npc_trades.narc',
+        'npc_trade_names.json',
+    ],
+
+    command: [
+        npctradeproc_exe,
+        '-M', '@DEPFILE@',
+        '-o', meson.current_build_dir(),
+        meson.global_source_root() / 'include' / 'constants' / 'npc_trades.h',
+        meson.current_source_dir() / 'npc_trades',
+    ],
+
+    depfile: 'npctrade_data.d'
+)
+
+nitrofs_files += npctrade_data
+npctrade_text_banks = npctrade_data[1]
+
 ### DECOMPILED DATA DIRECTORIES ###
 # These subpaths are listed because the result of some build-rule inside them
 # is a dependency of some later build-rule.

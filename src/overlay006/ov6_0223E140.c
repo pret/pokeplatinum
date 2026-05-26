@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "constants/species.h"
+#include "constants/versions.h"
 #include "generated/movement_actions.h"
 
 #include "struct_decls/map_object.h"

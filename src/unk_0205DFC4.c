@@ -4,6 +4,7 @@
 
 #include "constants/battle_frontier.h"
 #include "constants/battle_frontier_stats.h"
+#include "constants/versions.h"
 
 #include "struct_decls/map_object.h"
 

@@ -1,4 +1,6 @@
 {
+    "name": "Charap",
+    "otName": "Norton",
     "species": "SPECIES_CHATOT",
     "hpIV": 15,
     "atkIV": 20,
@@ -17,6 +19,6 @@
     "heldItem": "ITEM_LEPPA_BERRY",
     "otGender": "GENDER_MALE",
     "unused2": 50,
-    "language": 2,
+    "language": "LANGUAGE_ENGLISH",
     "requestedSpecies": "SPECIES_BUIZEL"
 }

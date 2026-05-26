@@ -2,11 +2,11 @@
   "key": 39221,
   "messages": [
     {
-      "id": "FollowerPartners_Text_00000",
+      "id": "FollowerPartners_Text_Dummy0",
       "garbage": 35
     },
     {
-      "id": "FollowerPartners_Text_Rival_HeyPlayerYouCanChooseFirst",
+      "id": "FollowerPartners_Text_Rival_YouCanChooseFirst",
       "en_US": [
         "Hey, {STRVAR_1 3, 1, 0}.\n",
         "You can choose first. Go ahead.\r",
@@ -26,7 +26,7 @@
       ]
     },
     {
-      "id": "FollowerPartners_Text_Rival_PokemonAllHaveDifferentMovesHuh",
+      "id": "FollowerPartners_Text_Rival_PokemonHaveDifferentMoves",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: Pokémon all have\n",
         "different moves, huh?\r",
@@ -51,7 +51,7 @@
       ]
     },
     {
-      "id": "FollowerPartners_Text_Rival_ThatLakeHasAMiragePokemonLivingInIt",
+      "id": "FollowerPartners_Text_Rival_LakeHasMiragePokemon",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: That lake has a mirage\n",
         "Pokémon living in it.\r",
@@ -60,7 +60,7 @@
       ]
     },
     {
-      "id": "FollowerPartners_Text_Rival_HeyDoYouKnowAboutTheChampion",
+      "id": "FollowerPartners_Text_Rival_DoYouKnowAboutChampion",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: Hey, do you know about\n",
         "the Champion?\r",
@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "FollowerPartners_Text_Rival_HeyThatsEnoughTalkingAlready",
+      "id": "FollowerPartners_Text_Rival_EnoughTalkingAlready",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: Hey, that’s enough\n",
         "talking already.\r",
@@ -89,26 +89,26 @@
       ]
     },
     {
-      "id": "FollowerPartners_Text_00009",
+      "id": "FollowerPartners_Text_Dummy9",
       "garbage": 58
     },
     {
-      "id": "FollowerPartners_Text_00010",
+      "id": "FollowerPartners_Text_Dummy10",
       "garbage": 56
     },
     {
-      "id": "FollowerPartners_Text_00011",
+      "id": "FollowerPartners_Text_Dummy11",
       "garbage": 48
     },
     {
-      "id": "FollowerPartners_Text_Cheryl_ItsStartlingToSeeTwoWildPokemon",
+      "id": "FollowerPartners_Text_Cheryl_StartlingToSeeTwoPokemon",
       "en_US": [
         "Cheryl: It’s startling to see two wild\n",
         "Pokémon appearing at the same time."
       ]
     },
     {
-      "id": "FollowerPartners_Text_Cheryl_MyPokemonIsAnExcellentHealer",
+      "id": "FollowerPartners_Text_Cheryl_MyPokemonIsExcellentHealer",
       "en_US": [
         "Cheryl: My Pokémon is an excellent\n",
         "healer.\r",
@@ -116,7 +116,7 @@
       ]
     },
     {
-      "id": "FollowerPartners_Text_Cheryl_PlayerBattlingWithYouMakesMeFeelElated",
+      "id": "FollowerPartners_Text_Cheryl_BattlingWithYouMakesMeElated",
       "en_US": [
         "Cheryl: {STRVAR_1 3, 0, 0}, battling with\n",
         "you makes me feel elated.\r",
@@ -150,7 +150,7 @@
       ]
     },
     {
-      "id": "FollowerPartners_Text_Mira_ILikeHelpfulPokemonMovesLikeGrowlAndMinimize",
+      "id": "FollowerPartners_Text_Mira_ILikeHelpfulMoves",
       "en_US": [
         "Mira: I like helpful Pokémon moves\n",
         "like Growl and Minimize.\r",
@@ -159,7 +159,7 @@
       ]
     },
     {
-      "id": "FollowerPartners_Text_Mira_ThisCaveItsSoEasyToGetConfusedHere",
+      "id": "FollowerPartners_Text_Mira_EasyToGetConfused",
       "en_US": [
         "Mira: This cave...\n",
         "It’s so easy to get confused here.\f",
@@ -167,7 +167,7 @@
       ]
     },
     {
-      "id": "FollowerPartners_Text_Mira_PlayerDidYouGetToBeSoGood",
+      "id": "FollowerPartners_Text_Mira_IWillTryLikeYou",
       "en_US": [
         "Mira: {STRVAR_1 3, 0, 0}, did you get to be\n",
         "so good because you’re always with\f",
@@ -199,7 +199,7 @@
       ]
     },
     {
-      "id": "FollowerPartners_Text_Riley_ThisUsedToBeAFairlyThrivingOreMine",
+      "id": "FollowerPartners_Text_Riley_UsedToBeThrivingOreMine",
       "en_US": [
         "Riley: This used to be a fairly\n",
         "thriving ore mine once upon a time.\r",
@@ -218,7 +218,7 @@
       ]
     },
     {
-      "id": "FollowerPartners_Text_Riley_ImagineWhatItWouldBeLike",
+      "id": "FollowerPartners_Text_Riley_ImagineSteelBattleSteel",
       "en_US": [
         "Riley: Imagine what it would be like\n",
         "for a Steel-type Pokémon user to\f",
@@ -239,7 +239,7 @@
       ]
     },
     {
-      "id": "FollowerPartners_Text_Riley_ThanksYouReallyHelpedMeOut",
+      "id": "FollowerPartners_Text_Riley_YouReallyHelpedMeOut",
       "en_US": [
         "Riley: Thanks.\n",
         "You really helped me out.\r",
@@ -249,7 +249,7 @@
       ]
     },
     {
-      "id": "FollowerPartners_Text_Riley_ThanksIWantYouToShowLucaAllSortsOfWorlds",
+      "id": "FollowerPartners_Text_Riley_ShowLucaAllSortsOfWorlds",
       "en_US": [
         "Riley: Thanks!\r",
         "I want you to show Luca all sorts\n",
@@ -257,7 +257,7 @@
       ]
     },
     {
-      "id": "FollowerPartners_Text_Riley_ThankYouButYouDontHaveRoom",
+      "id": "FollowerPartners_Text_Riley_YouDontHaveRoom",
       "en_US": [
         "Riley: Thank you...\r",
         "But you don’t have room to take\n",
@@ -267,14 +267,14 @@
       ]
     },
     {
-      "id": "FollowerPartners_Text_Riley_IHopeYoullAcceptItAsATokenOfOurFriendship",
+      "id": "FollowerPartners_Text_Riley_AcceptItAsToken",
       "en_US": [
         "Riley: I hope you’ll accept it as\n",
         "a token of our friendship."
       ]
     },
     {
-      "id": "FollowerPartners_Text_Riley_SpendingTimeWithYouWasVeryEnjoyable",
+      "id": "FollowerPartners_Text_Riley_SpendingTimeWasEnjoyable",
       "en_US": [
         "Riley: Spending time with you was\n",
         "very enjoyable.\r",
@@ -347,7 +347,7 @@
       ]
     },
     {
-      "id": "FollowerPartners_Text_Buck_TheresNoLawThatSaysIHaveToBeTough",
+      "id": "FollowerPartners_Text_Buck_NoLawIHaveToBeTough",
       "en_US": [
         "Buck: There’s no law that says\n",
         "I have to be tough or anything,\f",
@@ -358,7 +358,7 @@
       ]
     },
     {
-      "id": "FollowerPartners_Text_Buck_MyBigBrothersOneOfTheEliteFour",
+      "id": "FollowerPartners_Text_Buck_MyBigBrothersEliteFour",
       "en_US": [
         "Buck: My big brother’s one of the\n",
         "Elite Four.\r",
@@ -371,7 +371,7 @@
       ]
     },
     {
-      "id": "FollowerPartners_Text_Buck_ItMightBeCoolBeingAGymLeaderOrEliteFour",
+      "id": "FollowerPartners_Text_Buck_ItMightBeCool",
       "en_US": [
         "Buck: It might be cool being a Gym\n",
         "Leader or one of the Elite Four...\r",

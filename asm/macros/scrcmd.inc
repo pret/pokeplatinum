@@ -18,7 +18,6 @@
 #include "generated/movement_types.h"
 #include "generated/moves.h"
 #include "generated/mystery_gift_delivery_stages.h"
-#include "generated/npc_trades.h"
 #include "generated/object_events_gfx.h"
 #include "generated/player_transitions.h"
 #include "generated/poketch_apps.h"
@@ -2346,8 +2345,8 @@
     .short \useDefaultContestRank
     .endm
 
-    .macro TryEnterContestMon partySlot, menuItemSelection
-    .short SCRCMD_TRYENTERCONTESTMON
+    .macro GetContestPartyMenuResult partySlot, menuItemSelection
+    .short SCRCMD_GETCONTESTPARTYMENURESULT
     .short \partySlot
     .short \menuItemSelection
     .endm
@@ -3932,10 +3931,10 @@
     .short \partySlot
     .endm
 
-    .macro ScrCmd_291 arg0, arg1
-    .short SCRCMD_291
-    .short \arg0
-    .short \arg1
+    .macro GetDayCarePartyMenuResult selectedSlot, showSummary
+    .short SCRCMD_GETDAYCAREPARTYMENURESULT
+    .short \selectedSlot
+    .short \showSummary
     .endm
 
     .macro CheckShouldShowGhost percentChance, destVar

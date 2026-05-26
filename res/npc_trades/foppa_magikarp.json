@@ -1,4 +1,6 @@
 {
+    "name": "Foppa",
+    "otName": "Meister",
     "species": "SPECIES_MAGIKARP",
     "hpIV": 15,
     "atkIV": 25,
@@ -17,6 +19,6 @@
     "heldItem": "ITEM_LUM_BERRY",
     "otGender": "GENDER_MALE",
     "unused2": 0,
-    "language": 5,
+    "language": "LANGUAGE_GERMAN",
     "requestedSpecies": "SPECIES_FINNEON"
 }
