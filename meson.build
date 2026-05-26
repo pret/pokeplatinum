@@ -64,7 +64,7 @@ add_global_arguments(c_args,
 pokeplatinum_args = [
     '-DPM_KEEP_ASSERTS',
     '-DGAME_VERSION=VERSION_PLATINUM',
-    '-DGAME_LANGUAGE=ENGLISH'
+    '-DGAME_LANGUAGE=LANGUAGE_ENGLISH'
 ]
 
 if get_option('gdb_debugging')

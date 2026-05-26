@@ -10,7 +10,7 @@
 #include "struct_decls/battle_system.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/comm_cmd_table.h"
-#include "struct_defs/struct_0207A778.h"
+#include "struct_defs/link_battle_comm_state.h"
 #include "struct_defs/struct_0207ACB4.h"
 #include "struct_defs/struct_0207AD40.h"
 #include "struct_defs/trainer.h"
@@ -33,22 +33,22 @@
 #include "unk_020363E8.h"
 
 void sub_0207A81C(BattleSystem *battleSys, int param1, int param2, void *param3, u8 param4);
-BOOL sub_0207A8F4(UnkStruct_0207A778 *param0, u32 param1);
-BOOL sub_0207A960(UnkStruct_0207A778 *param0);
-BOOL sub_0207A988(UnkStruct_0207A778 *param0);
-BOOL sub_0207A9CC(UnkStruct_0207A778 *param0);
-BOOL sub_0207A9F8(UnkStruct_0207A778 *param0);
-BOOL sub_0207AA38(UnkStruct_0207A778 *param0);
-BOOL sub_0207AA5C(UnkStruct_0207A778 *param0);
-BOOL sub_0207AAA0(UnkStruct_0207A778 *param0);
-BOOL sub_0207AAC8(UnkStruct_0207A778 *param0);
-BOOL sub_0207AB9C(UnkStruct_0207A778 *param0, int param1);
-BOOL sub_0207ABD0(UnkStruct_0207A778 *param0, int param1, int param2);
-BOOL sub_0207AC28(UnkStruct_0207A778 *param0, int param1);
-BOOL sub_0207AC54(UnkStruct_0207A778 *param0, int param1, int param2);
+BOOL sub_0207A8F4(LinkBattleCommState *linkBattleCommState, u32 param1);
+BOOL sub_0207A960(LinkBattleCommState *linkBattleCommState);
+BOOL sub_0207A988(LinkBattleCommState *linkBattleCommState);
+BOOL sub_0207A9CC(LinkBattleCommState *linkBattleCommState);
+BOOL sub_0207A9F8(LinkBattleCommState *linkBattleCommState);
+BOOL sub_0207AA38(LinkBattleCommState *linkBattleCommState);
+BOOL sub_0207AA5C(LinkBattleCommState *linkBattleCommState);
+BOOL sub_0207AAA0(LinkBattleCommState *linkBattleCommState);
+BOOL sub_0207AAC8(LinkBattleCommState *linkBattleCommState);
+BOOL sub_0207AB9C(LinkBattleCommState *linkBattleCommState, int param1);
+BOOL sub_0207ABD0(LinkBattleCommState *linkBattleCommState, int param1, int param2);
+BOOL sub_0207AC28(LinkBattleCommState *linkBattleCommState, int param1);
+BOOL sub_0207AC54(LinkBattleCommState *linkBattleCommState, int param1, int param2);
 void sub_0207A744(void *param0);
-BOOL sub_0207AB58(UnkStruct_0207A778 *param0);
-BOOL sub_0207AAFC(UnkStruct_0207A778 *param0);
+BOOL sub_0207AB58(LinkBattleCommState *linkBattleCommState);
+BOOL sub_0207AAFC(LinkBattleCommState *linkBattleCommState);
 static int sub_0207A758(void);
 static int sub_0207A75C(void);
 static int sub_0207A764(void);
@@ -156,78 +156,78 @@ static int sub_0207A774(void)
     return sizeof(Trainer);
 }
 
-static u8 *sub_0207A778(int param0, void *param1, int param2)
+static u8 *sub_0207A778(int param0, void *commState, int param2)
 {
-    UnkStruct_0207A778 *v0 = param1;
+    LinkBattleCommState *linkBattleCommState = commState;
 
-    if (v0->unk_00->battleType & BATTLE_TYPE_FRONTIER) {
-        return (u8 *)v0->unk_00->trainerInfo[param0 * 2];
+    if (linkBattleCommState->dto->battleType & BATTLE_TYPE_FRONTIER) {
+        return (u8 *)linkBattleCommState->dto->trainerInfo[param0 * 2];
     } else {
-        return (u8 *)v0->unk_00->trainerInfo[param0];
+        return (u8 *)linkBattleCommState->dto->trainerInfo[param0];
     }
 }
 
-static u8 *sub_0207A798(int param0, void *param1, int param2)
+static u8 *sub_0207A798(int param0, void *commState, int param2)
 {
-    UnkStruct_0207A778 *v0 = param1;
+    LinkBattleCommState *linkBattleCommState = commState;
 
-    if (v0->unk_00->battleType & BATTLE_TYPE_FRONTIER) {
-        return (u8 *)&v0->unk_00->trainer[param0 * 2];
+    if (linkBattleCommState->dto->battleType & BATTLE_TYPE_FRONTIER) {
+        return (u8 *)&linkBattleCommState->dto->trainer[param0 * 2];
     } else {
-        return (u8 *)&v0->unk_00->trainer[param0];
+        return (u8 *)&linkBattleCommState->dto->trainer[param0];
     }
 }
 
-static u8 *sub_0207A7B8(int param0, void *param1, int param2)
+static u8 *sub_0207A7B8(int param0, void *commState, int param2)
 {
-    UnkStruct_0207A778 *v0 = param1;
+    LinkBattleCommState *linkBattleCommState = commState;
 
-    if (v0->unk_00->battleType & BATTLE_TYPE_FRONTIER) {
-        return (u8 *)v0->unk_00->parties[param0 * 2];
+    if (linkBattleCommState->dto->battleType & BATTLE_TYPE_FRONTIER) {
+        return (u8 *)linkBattleCommState->dto->parties[param0 * 2];
     } else {
-        return (u8 *)v0->unk_00->parties[param0];
+        return (u8 *)linkBattleCommState->dto->parties[param0];
     }
 }
 
-static u8 *sub_0207A7D4(int param0, void *param1, int param2)
+static u8 *sub_0207A7D4(int param0, void *commState, int param2)
 {
-    UnkStruct_0207A778 *v0 = param1;
+    LinkBattleCommState *linkBattleCommState = commState;
 
-    if (v0->unk_00->battleType & BATTLE_TYPE_FRONTIER) {
-        return (u8 *)v0->unk_00->chatotCries[param0 * 2];
+    if (linkBattleCommState->dto->battleType & BATTLE_TYPE_FRONTIER) {
+        return (u8 *)linkBattleCommState->dto->chatotCries[param0 * 2];
     } else {
-        return (u8 *)v0->unk_00->chatotCries[param0];
+        return (u8 *)linkBattleCommState->dto->chatotCries[param0];
     }
 }
 
-static u8 *sub_0207A7F4(int param0, void *param1, int param2)
+static u8 *sub_0207A7F4(int param0, void *commState, int param2)
 {
-    UnkStruct_0207A778 *v0 = param1;
-    return (u8 *)&v0->unk_00->trainer[1];
+    LinkBattleCommState *linkBattleCommState = commState;
+    return (u8 *)&linkBattleCommState->dto->trainer[1];
 }
 
-static u8 *sub_0207A7FC(int param0, void *param1, int param2)
+static u8 *sub_0207A7FC(int param0, void *commState, int param2)
 {
-    UnkStruct_0207A778 *v0 = param1;
-    return (u8 *)&v0->unk_00->trainer[3];
+    LinkBattleCommState *linkBattleCommState = commState;
+    return (u8 *)&linkBattleCommState->dto->trainer[3];
 }
 
-static u8 *sub_0207A804(int param0, void *param1, int param2)
+static u8 *sub_0207A804(int param0, void *commState, int param2)
 {
-    UnkStruct_0207A778 *v0 = param1;
-    return (u8 *)v0->unk_00->parties[1];
+    LinkBattleCommState *linkBattleCommState = commState;
+    return (u8 *)linkBattleCommState->dto->parties[1];
 }
 
-static u8 *sub_0207A80C(int param0, void *param1, int param2)
+static u8 *sub_0207A80C(int param0, void *commState, int param2)
 {
-    UnkStruct_0207A778 *v0 = param1;
-    return (u8 *)v0->unk_00->parties[3];
+    LinkBattleCommState *linkBattleCommState = commState;
+    return (u8 *)linkBattleCommState->dto->parties[3];
 }
 
-static u8 *sub_0207A814(int param0, void *param1, int param2)
+static u8 *sub_0207A814(int param0, void *commState, int param2)
 {
-    UnkStruct_0207A778 *v0 = param1;
-    return (u8 *)v0->unk_10[param0];
+    LinkBattleCommState *linkBattleCommState = commState;
+    return (u8 *)linkBattleCommState->palPad[param0];
 }
 
 void sub_0207A81C(BattleSystem *battleSys, int param1, int param2, void *param3, u8 param4)
@@ -290,7 +290,7 @@ static void CommCmd_Battle_23(int param0, int param1, void *param2, void *param3
     }
 }
 
-BOOL sub_0207A8F4(UnkStruct_0207A778 *param0, u32 param1)
+BOOL sub_0207A8F4(LinkBattleCommState *linkBattleCommState, u32 param1)
 {
     Party *v0;
 
@@ -307,14 +307,14 @@ BOOL sub_0207A8F4(UnkStruct_0207A778 *param0, u32 param1)
 
 static void CommCmd_Battle_24(int param0, int param1, void *param2, void *param3)
 {
-    UnkStruct_0207A778 *v0 = (UnkStruct_0207A778 *)param3;
+    LinkBattleCommState *linkBattleCommState = (LinkBattleCommState *)param3;
 
-    v0->unk_00->systemVersion[param0] = *((u32 *)param2);
-    sub_0202FAA8(param0, v0->unk_00->systemVersion[param0]);
-    v0->unk_1020++;
+    linkBattleCommState->dto->systemVersion[param0] = *((u32 *)param2);
+    sub_0202FAA8(param0, linkBattleCommState->dto->systemVersion[param0]);
+    linkBattleCommState->recvCount++;
 }
 
-BOOL sub_0207A960(UnkStruct_0207A778 *param0)
+BOOL sub_0207A960(LinkBattleCommState *linkBattleCommState)
 {
     TrainerInfo *v0;
 
@@ -322,13 +322,13 @@ BOOL sub_0207A960(UnkStruct_0207A778 *param0)
         return 0;
     }
 
-    v0 = (TrainerInfo *)&param0->unk_20[0];
-    TrainerInfo_Copy(param0->unk_00->trainerInfo[0], v0);
+    v0 = (TrainerInfo *)&linkBattleCommState->sendBuffer[0];
+    TrainerInfo_Copy(linkBattleCommState->dto->trainerInfo[0], v0);
 
     return 1;
 }
 
-BOOL sub_0207A988(UnkStruct_0207A778 *param0)
+BOOL sub_0207A988(LinkBattleCommState *linkBattleCommState)
 {
     if (CommSys_SendRingRemainingSize() != 264) {
         return 0;
@@ -338,16 +338,16 @@ BOOL sub_0207A988(UnkStruct_0207A778 *param0)
         return 0;
     }
 
-    return CommSys_SendDataHuge(COMM_CMD_BATTLE_25, (void *)&param0->unk_20[0], TrainerInfo_Size());
+    return CommSys_SendDataHuge(COMM_CMD_BATTLE_25, (void *)&linkBattleCommState->sendBuffer[0], TrainerInfo_Size());
 }
 
-static void CommCmd_Battle_25(int param0, int param1, void *param2, void *param3)
+static void CommCmd_Battle_25(int param0, int param1, void *param2, void *commState)
 {
-    UnkStruct_0207A778 *v0 = (UnkStruct_0207A778 *)param3;
-    v0->unk_1020++;
+    LinkBattleCommState *linkBattleCommState = (LinkBattleCommState *)commState;
+    linkBattleCommState->recvCount++;
 }
 
-BOOL sub_0207A9CC(UnkStruct_0207A778 *param0)
+BOOL sub_0207A9CC(LinkBattleCommState *linkBattleCommState)
 {
     Trainer *v0;
 
@@ -355,13 +355,13 @@ BOOL sub_0207A9CC(UnkStruct_0207A778 *param0)
         return 0;
     }
 
-    v0 = (Trainer *)&param0->unk_20[0];
-    *v0 = param0->unk_00->trainer[0];
+    v0 = (Trainer *)&linkBattleCommState->sendBuffer[0];
+    *v0 = linkBattleCommState->dto->trainer[0];
 
     return 1;
 }
 
-BOOL sub_0207A9F8(UnkStruct_0207A778 *param0)
+BOOL sub_0207A9F8(LinkBattleCommState *linkBattleCommState)
 {
     if (CommSys_SendRingRemainingSize() != 264) {
         return 0;
@@ -371,16 +371,16 @@ BOOL sub_0207A9F8(UnkStruct_0207A778 *param0)
         return 0;
     }
 
-    return CommSys_SendDataHuge(COMM_CMD_BATTLE_26, (void *)&param0->unk_20[0], sizeof(Trainer));
+    return CommSys_SendDataHuge(COMM_CMD_BATTLE_26, (void *)&linkBattleCommState->sendBuffer[0], sizeof(Trainer));
 }
 
-static void CommCmd_Battle_26(int param0, int param1, void *param2, void *param3)
+static void CommCmd_Battle_26(int param0, int param1, void *param2, void *commState)
 {
-    UnkStruct_0207A778 *v0 = (UnkStruct_0207A778 *)param3;
-    v0->unk_1020++;
+    LinkBattleCommState *linkBattleCommState = (LinkBattleCommState *)commState;
+    linkBattleCommState->recvCount++;
 }
 
-BOOL sub_0207AA38(UnkStruct_0207A778 *param0)
+BOOL sub_0207AA38(LinkBattleCommState *linkBattleCommState)
 {
     Party *v0;
 
@@ -388,13 +388,13 @@ BOOL sub_0207AA38(UnkStruct_0207A778 *param0)
         return 0;
     }
 
-    v0 = (Party *)&param0->unk_20[0];
-    Party_Copy(param0->unk_00->parties[0], v0);
+    v0 = (Party *)&linkBattleCommState->sendBuffer[0];
+    Party_Copy(linkBattleCommState->dto->parties[0], v0);
 
     return 1;
 }
 
-BOOL sub_0207AA5C(UnkStruct_0207A778 *param0)
+BOOL sub_0207AA5C(LinkBattleCommState *linkBattleCommState)
 {
     if (CommSys_SendRingRemainingSize() != 264) {
         return 0;
@@ -404,17 +404,17 @@ BOOL sub_0207AA5C(UnkStruct_0207A778 *param0)
         return 0;
     }
 
-    return CommSys_SendDataHuge(COMM_CMD_BATTLE_27, (void *)&param0->unk_20[0], Party_SaveSize());
+    return CommSys_SendDataHuge(COMM_CMD_BATTLE_27, (void *)&linkBattleCommState->sendBuffer[0], Party_SaveSize());
 }
 
-static void CommCmd_Battle_27(int param0, int param1, void *param2, void *param3)
+static void CommCmd_Battle_27(int param0, int param1, void *param2, void *commState)
 {
-    UnkStruct_0207A778 *v0 = (UnkStruct_0207A778 *)param3;
+    LinkBattleCommState *linkBattleCommState = (LinkBattleCommState *)commState;
 
-    v0->unk_1020++;
+    linkBattleCommState->recvCount++;
 }
 
-BOOL sub_0207AAA0(UnkStruct_0207A778 *param0)
+BOOL sub_0207AAA0(LinkBattleCommState *linkBattleCommState)
 {
     ChatotCry *v0;
 
@@ -422,13 +422,13 @@ BOOL sub_0207AAA0(UnkStruct_0207A778 *param0)
         return 0;
     }
 
-    v0 = (ChatotCry *)&param0->unk_20[0];
-    ChatotCry_Copy(v0, param0->unk_00->chatotCries[0]);
+    v0 = (ChatotCry *)&linkBattleCommState->sendBuffer[0];
+    ChatotCry_Copy(v0, linkBattleCommState->dto->chatotCries[0]);
 
     return 1;
 }
 
-BOOL sub_0207AAC8(UnkStruct_0207A778 *param0)
+BOOL sub_0207AAC8(LinkBattleCommState *linkBattleCommState)
 {
     if (CommSys_SendRingRemainingSize() != 264) {
         return 0;
@@ -438,10 +438,10 @@ BOOL sub_0207AAC8(UnkStruct_0207A778 *param0)
         return 0;
     }
 
-    return CommSys_SendDataHuge(COMM_CMD_BATTLE_28, (void *)&param0->unk_20[0], 1000);
+    return CommSys_SendDataHuge(COMM_CMD_BATTLE_28, (void *)&linkBattleCommState->sendBuffer[0], 1000);
 }
 
-BOOL sub_0207AAFC(UnkStruct_0207A778 *param0)
+BOOL sub_0207AAFC(LinkBattleCommState *linkBattleCommState)
 {
     PalPad *v0;
     TrainerInfo *v1;
@@ -450,28 +450,28 @@ BOOL sub_0207AAFC(UnkStruct_0207A778 *param0)
         return 0;
     }
 
-    v0 = (PalPad *)&param0->unk_20[0];
+    v0 = (PalPad *)&linkBattleCommState->sendBuffer[0];
 
-    if (param0->unk_00->battleType & BATTLE_TYPE_FRONTIER) {
-        v1 = param0->unk_00->trainerInfo[CommSys_CurNetId() * 2];
+    if (linkBattleCommState->dto->battleType & BATTLE_TYPE_FRONTIER) {
+        v1 = linkBattleCommState->dto->trainerInfo[CommSys_CurNetId() * 2];
     } else {
-        v1 = param0->unk_00->trainerInfo[CommSys_CurNetId()];
+        v1 = linkBattleCommState->dto->trainerInfo[CommSys_CurNetId()];
     }
 
-    PalPad_CreateNetworkObject(v1, param0->unk_00->palPad, (PalPad *)param0->unk_20);
+    PalPad_CreateNetworkObject(v1, linkBattleCommState->dto->palPad, (PalPad *)linkBattleCommState->sendBuffer);
 
     {
         int v2;
 
         for (v2 = 0; v2 < 4; v2++) { // 4 pal pads
-            param0->unk_10[v2] = Heap_Alloc(HEAP_ID_BATTLE, 136);
+            linkBattleCommState->palPad[v2] = Heap_Alloc(HEAP_ID_BATTLE, 136);
         }
     }
 
     return 1;
 }
 
-BOOL sub_0207AB58(UnkStruct_0207A778 *param0) // SEND pal pad data?!
+BOOL sub_0207AB58(LinkBattleCommState *linkBattleCommState) // SEND pal pad data?!
 {
     if (CommSys_SendRingRemainingSize() != 264) {
         return 0;
@@ -481,16 +481,16 @@ BOOL sub_0207AB58(UnkStruct_0207A778 *param0) // SEND pal pad data?!
         return 0;
     }
 
-    return CommSys_SendDataHuge(COMM_CMD_BATTLE_33, (void *)param0->unk_20, 1000);
+    return CommSys_SendDataHuge(COMM_CMD_BATTLE_33, (void *)linkBattleCommState->sendBuffer, 1000);
 }
 
-static void CommCmd_Battle_28(int param0, int param1, void *param2, void *param3)
+static void CommCmd_Battle_28(int param0, int param1, void *param2, void *commState)
 {
-    UnkStruct_0207A778 *v0 = (UnkStruct_0207A778 *)param3;
-    v0->unk_1020++;
+    LinkBattleCommState *linkBattleCommState = (LinkBattleCommState *)commState;
+    linkBattleCommState->recvCount++;
 }
 
-BOOL sub_0207AB9C(UnkStruct_0207A778 *param0, int param1)
+BOOL sub_0207AB9C(LinkBattleCommState *linkBattleCommState, int param1)
 {
     Trainer *v0;
 
@@ -498,13 +498,13 @@ BOOL sub_0207AB9C(UnkStruct_0207A778 *param0, int param1)
         return 0;
     }
 
-    v0 = (Trainer *)&param0->unk_20[0];
-    *v0 = param0->unk_00->trainer[param1];
+    v0 = (Trainer *)&linkBattleCommState->sendBuffer[0];
+    *v0 = linkBattleCommState->dto->trainer[param1];
 
     return 1;
 }
 
-BOOL sub_0207ABD0(UnkStruct_0207A778 *param0, int param1, int param2)
+BOOL sub_0207ABD0(LinkBattleCommState *linkBattleCommState, int param1, int param2)
 {
     if (CommSys_SendRingRemainingSize() != 264) {
         return 0;
@@ -515,19 +515,20 @@ BOOL sub_0207ABD0(UnkStruct_0207A778 *param0, int param1, int param2)
     }
 
     if (param1 == 1) {
-        return CommSys_SendDataHuge(COMM_CMD_BATTLE_29, (void *)&param0->unk_20[0], sizeof(Trainer));
+
+        return CommSys_SendDataHuge(COMM_CMD_BATTLE_29, (void *)&linkBattleCommState->sendBuffer[0], sizeof(Trainer));
     } else {
-        return CommSys_SendDataHuge(COMM_CMD_BATTLE_30, (void *)&param0->unk_20[0], sizeof(Trainer));
+        return CommSys_SendDataHuge(COMM_CMD_BATTLE_30, (void *)&linkBattleCommState->sendBuffer[0], sizeof(Trainer));
     }
 }
 
-static void CommCmd_Battle_29_30(int param0, int param1, void *param2, void *param3)
+static void CommCmd_Battle_29_30(int param0, int param1, void *param2, void *commState)
 {
-    UnkStruct_0207A778 *v0 = (UnkStruct_0207A778 *)param3;
-    v0->unk_1020++;
+    LinkBattleCommState *linkBattleCommState = (LinkBattleCommState *)commState;
+    linkBattleCommState->recvCount++;
 }
 
-BOOL sub_0207AC28(UnkStruct_0207A778 *param0, int param1)
+BOOL sub_0207AC28(LinkBattleCommState *linkBattleCommState, int param1)
 {
     Party *v0;
 
@@ -535,13 +536,13 @@ BOOL sub_0207AC28(UnkStruct_0207A778 *param0, int param1)
         return 0;
     }
 
-    v0 = (Party *)&param0->unk_20[0];
-    Party_Copy(param0->unk_00->parties[param1], v0);
+    v0 = (Party *)&linkBattleCommState->sendBuffer[0];
+    Party_Copy(linkBattleCommState->dto->parties[param1], v0);
 
     return 1;
 }
 
-BOOL sub_0207AC54(UnkStruct_0207A778 *param0, int param1, int param2)
+BOOL sub_0207AC54(LinkBattleCommState *linkBattleCommState, int param1, int param2)
 {
     if (CommSys_SendRingRemainingSize() != 264) {
         return 0;
@@ -552,16 +553,16 @@ BOOL sub_0207AC54(UnkStruct_0207A778 *param0, int param1, int param2)
     }
 
     if (param1 == 1) {
-        return CommSys_SendDataHuge(COMM_CMD_BATTLE_31, (void *)&param0->unk_20[0], Party_SaveSize());
+        return CommSys_SendDataHuge(COMM_CMD_BATTLE_31, (void *)&linkBattleCommState->sendBuffer[0], Party_SaveSize());
     } else {
-        return CommSys_SendDataHuge(COMM_CMD_BATTLE_32, (void *)&param0->unk_20[0], Party_SaveSize());
+        return CommSys_SendDataHuge(COMM_CMD_BATTLE_32, (void *)&linkBattleCommState->sendBuffer[0], Party_SaveSize());
     }
 }
 
-static void CommCmd_Battle_31_32(int param0, int param1, void *param2, void *param3)
+static void CommCmd_Battle_31_32(int param0, int param1, void *param2, void *commState)
 {
-    UnkStruct_0207A778 *v0 = (UnkStruct_0207A778 *)param3;
-    v0->unk_1020++;
+    LinkBattleCommState *linkBattleCommState = (LinkBattleCommState *)commState;
+    linkBattleCommState->recvCount++;
 }
 
 void sub_0207ACB4(SysTask *param0, void *param1)
@@ -671,15 +672,15 @@ static void PalPad_CreateNetworkObject(TrainerInfo *trainerInfo, PalPad *source,
     }
 }
 
-void CommCmd_Battle_33(int param0, int param1, void *param2, void *param3)
+void CommCmd_Battle_33(int param0, int param1, void *param2, void *commState)
 {
-    UnkStruct_0207A778 *v0 = (UnkStruct_0207A778 *)param3;
+    LinkBattleCommState *linkBattleCommState = (LinkBattleCommState *)commState;
 
     if (CommSys_CurNetId() != param0) {
-        PalPad_PushEntries(v0->unk_00->palPad, (PalPad *)param2, 1, HEAP_ID_BATTLE);
+        PalPad_PushEntries(linkBattleCommState->dto->palPad, (PalPad *)param2, 1, HEAP_ID_BATTLE);
     }
 
-    v0->unk_1020++;
+    linkBattleCommState->recvCount++;
 }
 
 static int sub_0207AE64(void)

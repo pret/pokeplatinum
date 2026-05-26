@@ -1,10 +1,10 @@
 #include "main_menu/ranger_link.h"
 
 #include <nitro.h>
-#include <string.h>
 
 #include "constants/charcode.h"
 #include "constants/graphics.h"
+#include "constants/versions.h"
 
 #include "game_opening/const_ov77_021D742C.h"
 #include "main_menu/main_menu_util.h"
@@ -17,7 +17,6 @@
 #include "savedata/save_table.h"
 
 #include "bg_window.h"
-#include "enums.h"
 #include "font.h"
 #include "game_options.h"
 #include "graphics.h"
@@ -44,7 +43,6 @@
 #include "text_banks.h"
 #include "trainer_info.h"
 #include "unk_02033200.h"
-#include "versions.h"
 
 #include "res/graphics/main_menu/main_menu_graphics.naix"
 #include "res/text/bank/main_menu_alerts.h"

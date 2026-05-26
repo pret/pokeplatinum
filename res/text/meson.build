@@ -55,17 +55,14 @@ item_text_bank_names = [
     'item_descriptions.json',
 ]
 
-town_map_text_bank_name = [
-    'town_map.json'
-]
-
 # This list will be what's used hereafter when referring to any-and-all generated banks.
 generated_text_banks = [
     species_text_bank_names,
     trainer_text_bank_names,
     frontier_text_bank_names,
     item_text_bank_names,
-    town_map_text_bank_name,
+    'town_map.json',
+    'npc_trade_names.json',
 ]
 
 # 2. All other files must be static. Pull these from `generated/text_banks.txt`. This allows us
@@ -113,9 +110,10 @@ text_bank_files += species_text_banks
 text_bank_files += trainer_text_banks
 text_bank_files += frontier_text_banks
 text_bank_files += item_text_banks
+text_bank_files += npctrade_text_banks
 
 town_map_text_bank = custom_target('town_map_text_bank',
-    output: town_map_text_bank_name,
+    output: 'town_map.json',
     command: [
         'cp',
         '@OUTDIR@/../town_map/town_map.json',

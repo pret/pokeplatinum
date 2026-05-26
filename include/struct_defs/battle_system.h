@@ -14,8 +14,8 @@
 #include "battle/struct_ov16_02268520.h"
 #include "battle/struct_ov16_02268A14_decl.h"
 #include "battle/struct_ov16_0226D160_decl.h"
+#include "battle/trainer_intro_data.h"
 #include "battle_anim/battle_anim_system.h"
-#include "overlay010/struct_ov10_0221F800.h"
 
 #include "bag.h"
 #include "bg_window.h"
@@ -81,7 +81,7 @@ struct BattleSystem {
     PalPad *palPad;
     WaitDial *waitDial;
     u8 *subscreenCursorOn;
-    UnkStruct_ov10_0221F800 *unk_1C0;
+    TrainerIntroData *trainerIntroData;
     PokemonAnimManager *monAnimMan;
     NNSG2dCellTransferState *cellTransferState;
     PokemonSpriteData pokemonSpriteDataArray[4];

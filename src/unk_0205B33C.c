@@ -1,10 +1,10 @@
 #include "unk_0205B33C.h"
 
 #include <nitro.h>
-#include <string.h>
 
 #include "constants/communication/comm_command.h"
 #include "constants/union_room_message_types.h"
+#include "constants/versions.h"
 
 #include "struct_decls/struct_02014EC4_decl.h"
 #include "struct_decls/struct_0205B43C_decl.h"
@@ -13,7 +13,6 @@
 #include "struct_defs/struct_0205B4F8.h"
 
 #include "field/field_system.h"
-#include "global/pm_version.h"
 
 #include "appearance.h"
 #include "comm_command_draw.h"
@@ -1281,7 +1280,7 @@ void UnionRoom_DoGreeting(StringTemplate *strTemplate, int param1, int param2, T
 
     int language = TrainerInfo_Language(commTrainerInfo);
 
-    if (language >= JAPANESE && language <= SPANISH) {
+    if (language >= LANGUAGE_JAPANESE && language <= LANGUAGE_SPANISH) {
         static const int v5[] = {
             0,
             1,
@@ -1299,22 +1298,22 @@ void UnionRoom_DoGreeting(StringTemplate *strTemplate, int param1, int param2, T
     }
 
     switch (language) {
-    case JAPANESE:
+    case LANGUAGE_JAPANESE:
         entryID = UnionRoom_Text_GreetingJapanese;
         break;
-    case ENGLISH:
+    case LANGUAGE_ENGLISH:
         entryID = UnionRoom_Text_GreetingEnglish;
         break;
-    case FRENCH:
+    case LANGUAGE_FRENCH:
         entryID = UnionRoom_Text_GreetingFrench;
         break;
-    case ITALIAN:
+    case LANGUAGE_ITALIAN:
         entryID = UnionRoom_Text_GreetingItalian;
         break;
-    case GERMAN:
+    case LANGUAGE_GERMAN:
         entryID = UnionRoom_Text_GreetingGerman;
         break;
-    case SPANISH:
+    case LANGUAGE_SPANISH:
         entryID = UnionRoom_Text_GreetingSpanish;
         break;
     default:

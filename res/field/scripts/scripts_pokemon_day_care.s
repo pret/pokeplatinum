@@ -8,7 +8,7 @@
     ScriptEntryEnd
 
 PokemonDayCare_OnTransition:
-    CallIfSet FLAG_UNK_0x00FE, PokemonDayCare_ShowGymGuide
+    CallIfSet FLAG_STORED_POKEMON_AT_DAY_CARE, PokemonDayCare_ShowGymGuide
     End
 
 PokemonDayCare_ShowGymGuide:

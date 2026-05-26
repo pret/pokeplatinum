@@ -53,7 +53,7 @@ PartyMenu *FieldSystem_OpenPartyMenu_SelectForItemUsage(FieldSystem *fieldSystem
 int PartyMenu_GetSelectedSlot(PartyMenu *partyMenu);
 int PartyMenu_GetMenuSelectionResult(PartyMenu *partyMenu);
 int PokemonSummary_GetPartySlot(PokemonSummary *monSummary);
-void *FieldSystem_GetContestMonSummary(int unused, FieldSystem *fieldSystem, int partySlot);
+void *FieldSystem_GetPartyMenuMonSummary(int unused, FieldSystem *fieldSystem, int partySlot);
 PokemonSummary *sub_0203D670(FieldSystem *fieldSystem, enum HeapID heapID, int mode);
 void *FieldSystem_OpenSummaryScreenSelectMove(enum HeapID heapID, FieldSystem *fieldSystem, u8 partyIndex);
 int PokemonSummary_GetSelectedMoveSlot(void *summary);
