@@ -1,7 +1,9 @@
-#include "unk_020961E8.h"
+#include "comm_command_record_corner.h"
 
 #include <nitro.h>
 #include <string.h>
+
+#include "constants/communication/comm_command.h"
 
 #include "struct_defs/comm_cmd_table.h"
 #include "struct_defs/struct_020961E8_t.h"
@@ -25,8 +27,8 @@ static int sub_02096404(void);
 static u8 *sub_0209640C(int param0, void *param1, int param2);
 static int sub_02096408(void);
 static void sub_020963C0(UnkStruct_020961E8 *param0, int param1);
-void sub_020961FC(int param0, int param1, void *param2, void *param3);
-void sub_0209620C(int param0, int param1, void *param2, void *param3);
+void CommCmd_Field_RecordCorner_116(int param0, int param1, void *param2, void *param3);
+void CommCmd_Field_RecordCorner_117(int param0, int param1, void *param2, void *param3);
 
 static const CommCmdTable Unk_020F5F68[] = {
     { CommCmd_Field_Dummy, sub_02096400, NULL },
@@ -115,16 +117,16 @@ static const CommCmdTable Unk_020F5F68[] = {
     { CommCmd_Field_Dummy, sub_02096400, NULL },
     { CommCmd_Field_Dummy, sub_02096400, NULL },
     { CommCmd_Field_Dummy, sub_02096400, NULL },
-    { sub_02096380, sub_02096404 },
-    { sub_02096384, sub_02096404 },
-    { sub_02096360, sub_02096404 },
-    { sub_02096264, sub_02096400 },
-    { sub_02096274, sub_02096408 },
-    { sub_02096388, sub_02096400 },
-    { sub_020963A0, sub_02096400 },
-    { sub_0209621C, sub_02096400 },
-    { sub_020961FC, sub_02099530, sub_0209640C },
-    { sub_0209620C, sub_02096404 },
+    [COMM_CMD_FIELD_RECORD_108 - COMM_CMD_MAX_COMMON] = { CommCmd_Field_RecordCorner_108, sub_02096404 },
+    [COMM_CMD_FIELD_RECORD_109 - COMM_CMD_MAX_COMMON] = { CommCmd_Field_RecordCorner_109, sub_02096404 },
+    [COMM_CMD_FIELD_RECORD_110 - COMM_CMD_MAX_COMMON] = { CommCmd_Field_RecordCorner_110, sub_02096404 },
+    [COMM_CMD_FIELD_RECORD_111 - COMM_CMD_MAX_COMMON] = { CommCmd_Field_RecordCorner_111, sub_02096400 },
+    [COMM_CMD_FIELD_RECORD_112 - COMM_CMD_MAX_COMMON] = { CommCmd_Field_RecordCorner_112, sub_02096408 },
+    [COMM_CMD_FIELD_RECORD_113 - COMM_CMD_MAX_COMMON] = { CommCmd_Field_RecordCorner_113, sub_02096400 },
+    [COMM_CMD_FIELD_RECORD_114 - COMM_CMD_MAX_COMMON] = { CommCmd_Field_RecordCorner_114, sub_02096400 },
+    [COMM_CMD_FIELD_RECORD_115 - COMM_CMD_MAX_COMMON] = { CommCmd_Field_RecordCorner_115, sub_02096400 },
+    [COMM_CMD_FIELD_RECORD_116 - COMM_CMD_MAX_COMMON] = { CommCmd_Field_RecordCorner_116, sub_02099530, sub_0209640C },
+    [COMM_CMD_FIELD_RECORD_117 - COMM_CMD_MAX_COMMON] = { CommCmd_Field_RecordCorner_117, sub_02096404 },
     { CommCmd_Field_Dummy, sub_02096400, NULL },
     { CommCmd_Field_Dummy, sub_02096400, NULL },
     { CommCmd_Field_Dummy, sub_02096400, NULL },
@@ -154,13 +156,13 @@ void sub_020961E8(void *param0)
     }
 }
 
-void sub_020961FC(int param0, int param1, void *param2, void *param3)
+void CommCmd_Field_RecordCorner_116(int param0, int param1, void *param2, void *param3)
 {
     UnkStruct_020961E8 *v0 = (UnkStruct_020961E8 *)param3;
     v0->unk_4A98++;
 }
 
-void sub_0209620C(int param0, int param1, void *param2, void *param3)
+void CommCmd_Field_RecordCorner_117(int param0, int param1, void *param2, void *param3)
 {
     UnkStruct_020961E8 *v0 = (UnkStruct_020961E8 *)param3;
     u8 *v1 = (u8 *)param2;
@@ -174,7 +176,7 @@ void sub_0209620C(int param0, int param1, void *param2, void *param3)
     }
 }
 
-void sub_0209621C(int param0, int param1, void *param2, void *param3)
+void CommCmd_Field_RecordCorner_115(int param0, int param1, void *param2, void *param3)
 {
     UnkStruct_020961E8 *v0 = (UnkStruct_020961E8 *)param3;
 
@@ -190,13 +192,13 @@ void sub_0209621C(int param0, int param1, void *param2, void *param3)
     Sound_PlayEffect(SEQ_SE_DP_F209);
 }
 
-void sub_02096264(int param0, int param1, void *param2, void *param3)
+void CommCmd_Field_RecordCorner_111(int param0, int param1, void *param2, void *param3)
 {
     UnkStruct_020961E8 *v0 = (UnkStruct_020961E8 *)param3;
     ov59_021D2204(v0, 2, 0);
 }
 
-void sub_02096274(int param0, int param1, void *param2, void *param3)
+void CommCmd_Field_RecordCorner_112(int param0, int param1, void *param2, void *param3)
 {
     UnkStruct_020961E8 *v0 = (UnkStruct_020961E8 *)param3;
     UnkStruct_02096274 v1;
@@ -244,7 +246,7 @@ void sub_02096274(int param0, int param1, void *param2, void *param3)
     }
 }
 
-void sub_02096360(int param0, int param1, void *param2, void *param3)
+void CommCmd_Field_RecordCorner_110(int param0, int param1, void *param2, void *param3)
 {
     UnkStruct_020961E8 *v0 = (UnkStruct_020961E8 *)param3;
     u8 v1 = *(u8 *)param2;
@@ -256,17 +258,17 @@ void sub_02096360(int param0, int param1, void *param2, void *param3)
     }
 }
 
-void sub_02096380(int param0, int param1, void *param2, void *param3)
+void CommCmd_Field_RecordCorner_108(int param0, int param1, void *param2, void *param3)
 {
     return;
 }
 
-void sub_02096384(int param0, int param1, void *param2, void *param3)
+void CommCmd_Field_RecordCorner_109(int param0, int param1, void *param2, void *param3)
 {
     return;
 }
 
-void sub_02096388(int param0, int param1, void *param2, void *param3)
+void CommCmd_Field_RecordCorner_113(int param0, int param1, void *param2, void *param3)
 {
     UnkStruct_020961E8 *v0 = (UnkStruct_020961E8 *)param3;
 
@@ -275,7 +277,7 @@ void sub_02096388(int param0, int param1, void *param2, void *param3)
     }
 }
 
-void sub_020963A0(int param0, int param1, void *param2, void *param3)
+void CommCmd_Field_RecordCorner_114(int param0, int param1, void *param2, void *param3)
 {
     u8 v0;
 

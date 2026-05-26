@@ -54,7 +54,7 @@
 #include "unk_02038ED4.h"
 #include "unk_0205B33C.h"
 #include "unk_0205C22C.h"
-#include "unk_020961E8.h"
+#include "comm_command_record_corner.h"
 #include "vram_transfer.h"
 #include "wireless_manager.h"
 

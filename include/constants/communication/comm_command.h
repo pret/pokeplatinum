@@ -173,7 +173,9 @@ enum CommCommand_Field {
     COMM_CMD_FIELD_105,
     COMM_CMD_FIELD_106,
     COMM_CMD_FIELD_107,
-    COMM_CMD_FIELD_108,
+    
+    // The field Communication Command table has a dummy section that gets used by different subprocesses. 
+    COMM_CMD_FIELD_DUMMY_START, 
     COMM_CMD_FIELD_109,
     COMM_CMD_FIELD_110,
     COMM_CMD_FIELD_111,
@@ -196,10 +198,25 @@ enum CommCommand_Field {
     COMM_CMD_FIELD_128,
     COMM_CMD_FIELD_129,
     COMM_CMD_FIELD_130,
-    COMM_CMD_FIELD_131,
-    COMM_CMD_BATTLE_HALL_SELECT_SPECIES_MESSAGE,
+    COMM_CMD_FIELD_DUMMY_END, //Dummy end
+    
+    // Field Record Corner Commands
+    COMM_CMD_FIELD_RECORD_108 = COMM_CMD_FIELD_DUMMY_START,
+    COMM_CMD_FIELD_RECORD_109,
+    COMM_CMD_FIELD_RECORD_110,
+    COMM_CMD_FIELD_RECORD_111,
+    COMM_CMD_FIELD_RECORD_112,
+    COMM_CMD_FIELD_RECORD_113,
+    COMM_CMD_FIELD_RECORD_114,
+    COMM_CMD_FIELD_RECORD_115,
+    COMM_CMD_FIELD_RECORD_116,
+    COMM_CMD_FIELD_RECORD_117,
+    
+    // Remaining Field Commands
+    COMM_CMD_BATTLE_HALL_SELECT_SPECIES_MESSAGE = COMM_CMD_FIELD_DUMMY_END + 1,
     COMM_CMD_FIELD_133,
     COMM_CMD_FIELD_134,
+    COMM_CMD_MAX_FIELD
 };
 
 // Communication Commands used for Battle
