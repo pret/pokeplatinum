@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_0209BDF8_H
-#define POKEPLATINUM_UNK_0209BDF8_H
+#ifndef POKEPLATINUM_COMM_COMMAND_SPIN_TRADE_H
+#define POKEPLATINUM_COMM_COMMAND_SPIN_TRADE_H
 
 #include "constants/heap.h"
 
@@ -14,4 +14,4 @@ BOOL sub_0209BEBC(UnkStruct_0209BDF8 *param0, u32 param1, const void *param2, u3
 int sub_0209C16C(void);
 void *sub_0209C188(UnkStruct_0209BDF8 *param0, int param1);
 
-#endif // POKEPLATINUM_UNK_0209BDF8_H
+#endif // POKEPLATINUM_COMM_COMMAND_SPIN_TRADE_H

@@ -345,7 +345,7 @@ pokeplatinum_c = files(
     'unk_0209B6F8.c',
     'unk_0209BA18.c',
     'comm_command_frontier.c',
-    'unk_0209BDF8.c',
+    'comm_command_spin_trade.c',
     'unk_0209C194.c',
     'unk_0209C370.c',
     'unk_0209C390.c',

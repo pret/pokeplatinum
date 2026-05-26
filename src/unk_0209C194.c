@@ -21,7 +21,7 @@
 #include "journal.h"
 #include "save_player.h"
 #include "unk_0203D1B8.h"
-#include "unk_0209BDF8.h"
+#include "comm_command_spin_trade.h"
 
 FS_EXTERN_OVERLAY(overlay109);
 

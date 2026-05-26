@@ -364,7 +364,7 @@ Static main
 	Object main.nef.p/src_unk_0209B6F8.c.o
 	Object main.nef.p/src_unk_0209BA18.c.o
 	Object main.nef.p/src_comm_command_frontier.c.o
-	Object main.nef.p/src_unk_0209BDF8.c.o
+	Object main.nef.p/src_comm_command_spin_trade.c.o
 	Object main.nef.p/src_unk_0209C194.c.o
 	Object main.nef.p/src_unk_0209C370.c.o
 	Object main.nef.p/src_unk_0209C390.c.o

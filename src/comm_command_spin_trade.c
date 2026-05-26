@@ -1,7 +1,9 @@
-#include "unk_0209BDF8.h"
+#include "comm_command_spin_trade.h"
 
 #include <nitro.h>
 #include <string.h>
+
+#include "constants/communication/comm_command.h"
 
 #include "struct_defs/comm_cmd_table.h"
 #include "struct_defs/struct_0209BDF8.h"
@@ -94,7 +96,7 @@ BOOL sub_0209BEBC(UnkStruct_0209BDF8 *param0, u32 param1, const void *param2, u3
     return sub_0209BE84(param0, param1, param2, param3);
 }
 
-static void sub_0209BED0(int param0, int param1, void *param2, void *param3)
+static void CommCmd_Field_SpinTrade_130(int param0, int param1, void *param2, void *param3)
 {
     UnkStruct_0209BE84 *v0 = param2;
 
@@ -106,7 +108,7 @@ static void sub_0209BED0(int param0, int param1, void *param2, void *param3)
     Unk_020F8E60[v0->unk_00](param0, param1, v0->unk_04, param3);
 }
 
-static void sub_0209BEF0(int param0, int param1, void *param2, void *param3)
+static void CommCmd_Field_SpinTrade_131(int param0, int param1, void *param2, void *param3)
 {
     void *v0;
     UnkStruct_0209BDF8 *v1 = param3;
@@ -466,8 +468,8 @@ static const CommCmdTable Unk_020F8EA8[135] = {
     { CommCmd_Field_Dummy, CommPacketSizeOf_Nothing, NULL },
     { CommCmd_Field_Dummy, CommPacketSizeOf_Nothing, NULL },
     { CommCmd_Field_Dummy, CommPacketSizeOf_Nothing, NULL },
-    { sub_0209BED0, sub_0209C154, NULL },
-    { sub_0209BEF0, sub_0209C158, sub_0209C160 }
+    [COMM_CMD_FIELD_SPIN_TRADE_130 - COMM_CMD_MAX_COMMON] = { CommCmd_Field_SpinTrade_130, sub_0209C154, NULL },
+    [COMM_CMD_FIELD_SPIN_TRADE_131 - COMM_CMD_MAX_COMMON] = { CommCmd_Field_SpinTrade_131, sub_0209C158, sub_0209C160 }
 };
 
 static const CommCmdRecvFunc Unk_020F8E60[18] = {

@@ -53,7 +53,7 @@
 #include "unk_020363E8.h"
 #include "unk_02038ED4.h"
 #include "unk_02092494.h"
-#include "unk_0209BDF8.h"
+#include "comm_command_spin_trade.h"
 #include "vram_transfer.h"
 
 typedef struct {
