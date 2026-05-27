@@ -223,10 +223,10 @@ enum BattleRegulationValidationResult BattleRegulation_SelectValidPokemon(const 
 
     ruleValue = BattleRegulation_GetRuleValue(regulation, BATTLE_REGULATION_RULE_SPECIES_UNIQUE);
 
-    // Remove duplicate species by keeping the higher-level Pokémon
+    // Remove duplicate species by keeping the lower-level Pokémon
     if (ruleValue == 0 && partyCount > 1) {
         // Compare all pairs of Pokémon to find duplicates
-        for (i = 0; i < (partyCount - 1); i++) {
+        for (i = 0; i < partyCount - 1; i++) {
             for (j = i + 1; j < partyCount; j++) {
                 if (species[i] == species[j] && species[i] != 0) {
                     if (levels[i] > levels[j]) {
