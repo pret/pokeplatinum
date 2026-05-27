@@ -2649,7 +2649,7 @@ BOOL ov9_0224A71C(FieldSystem *fieldSystem)
 
     {
         int v1, v2, v3;
-        int v4 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
+        int v4 = PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar);
         DistWorldSystem *v5 = fieldSystem->unk_04->dynamicMapFeaturesData;
 
         GetPlayerPos(v5, &v1, &v2, &v3);
@@ -2759,7 +2759,7 @@ static void InitPlayer(DistWorldSystem *system)
 
     PlayerAvatar_SetDistortionState(playerAvatar, floatingPlatformKind);
 
-    playerState = PLAYER_STATE_WALKING;
+    playerState = PLAYER_AVATAR_WALKING;
     u32 playerGraphicsID = MapObject_GetGraphicsID(playerMapObj);
 
     switch (playerGraphicsID) {
@@ -2776,13 +2776,13 @@ static void InitPlayer(DistWorldSystem *system)
     case OBJ_EVENT_GFX_PLAYER_M_SURF:
     case OBJ_EVENT_GFX_DIST_WORLD_PLAYER_M_SURF:
         playerGraphicsID = OBJ_EVENT_GFX_DIST_WORLD_PLAYER_M_SURF;
-        playerState = PLAYER_STATE_SURFING;
+        playerState = PLAYER_AVATAR_SURFING;
         break;
 
     case OBJ_EVENT_GFX_PLAYER_F_SURF:
     case OBJ_EVENT_GFX_DIST_WORLD_PLAYER_F_SURF:
         playerGraphicsID = OBJ_EVENT_GFX_DIST_WORLD_PLAYER_F_SURF;
-        playerState = PLAYER_STATE_SURFING;
+        playerState = PLAYER_AVATAR_SURFING;
         break;
 
     default:
@@ -2796,9 +2796,9 @@ static void InitPlayer(DistWorldSystem *system)
         GF_ASSERT(MapObject_IsHeightCalculationDisabled(playerMapObj) == TRUE);
     }
 
-    if (playerState == PLAYER_STATE_SURFING) {
+    if (playerState == PLAYER_AVATAR_SURFING) {
         OverworldAnimManager *animMan;
-        enum FaceDirection playerDir = PlayerAvatar_GetDir(playerAvatar);
+        enum FaceDirection playerDir = PlayerAvatar_GetFacingDir(playerAvatar);
 
         animMan = DistWorldSurfMountRenderer_HandleSurfBegin(playerAvatar, playerX, playerY, playerZ, playerDir, TRUE, floatingPlatformKind);
         PlayerAvatar_SetSurfMountAnimManager(playerAvatar, animMan);
@@ -4751,7 +4751,7 @@ static void InitialLoadInactiveFloor(DistWorldSystem *system)
 
     NARC *landDataNARC = LandDataManager_GetLandDataNARC(fieldSystem->landDataMan);
     inactiveFloor->landDataMan = LandDataManager_DistortionWorldNew(inactiveFloor->mapMatrix, inactiveFloor->areaDataMan, landDataNARC);
-    LandDataManager_TrackTarget(PlayerAvatar_PosVector(fieldSystem->playerAvatar), inactiveFloor->landDataMan);
+    LandDataManager_TrackTarget(PlayerAvatar_GetPos(fieldSystem->playerAvatar), inactiveFloor->landDataMan);
     LandDataManager_SetInDistortionWorld(inactiveFloor->landDataMan, TRUE);
     LandDataManager_SetSkipMapProps(inactiveFloor->landDataMan, TRUE);
 
@@ -4762,8 +4762,8 @@ static void InitialLoadInactiveFloor(DistWorldSystem *system)
     FindMapOffsets(system, nextMapHeaderID, &offsetTileX, &offsetAltitude, &offsetTileZ);
     LandDataManager_DistortionWorldSetOffsets(inactiveFloor->landDataMan, offsetTileX, offsetAltitude, offsetTileZ);
 
-    int playerPosX = Player_GetXPos(fieldSystem->playerAvatar);
-    int playerPosZ = Player_GetZPos(fieldSystem->playerAvatar);
+    int playerPosX = PlayerAvatar_GetXPos(fieldSystem->playerAvatar);
+    int playerPosZ = PlayerAvatar_GetZPos(fieldSystem->playerAvatar);
 
     LandDataManager_DistortionWorldInitialLoad(inactiveFloor->landDataMan, playerPosX, playerPosZ);
     inactiveFloor->ready = TRUE;
@@ -5019,8 +5019,8 @@ static int FloorLoadNext_MoveInactiveToActive(DistWorldSystem *system, DistWorld
     PrepareLoadingInactiveFloor(system, mapConnections->nextID);
     LandDataManager_DistortionWorldEndWithoutFreeing(fieldSystem->landDataMan);
 
-    floorLoader->playerPosX = Player_GetXPos(fieldSystem->playerAvatar);
-    floorLoader->playerPosZ = Player_GetZPos(fieldSystem->playerAvatar);
+    floorLoader->playerPosX = PlayerAvatar_GetXPos(fieldSystem->playerAvatar);
+    floorLoader->playerPosZ = PlayerAvatar_GetZPos(fieldSystem->playerAvatar);
 
     LandDataManager_DistortionWorldPrepareNextFloor(inactiveFloor->mapMatrix, inactiveFloor->areaDataMan, inactiveFloor->landDataMan, fieldSystem->landDataMan, floorLoader->playerPosX, floorLoader->playerPosZ);
     inactiveFloor->ready = FALSE;
@@ -7914,7 +7914,7 @@ static void RecalculateSkyBackgroundDarkness(DistWorldSystem *system)
 {
     DistWorldSkyBackground *skyBg = &system->skyBg;
     PlayerAvatar *playerAvatar = system->fieldSystem->playerAvatar;
-    const VecFx32 *playerPos = PlayerAvatar_PosVector(playerAvatar);
+    const VecFx32 *playerPos = PlayerAvatar_GetPos(playerAvatar);
 
     if (skyBg->darknessCalculationDisabled == FALSE) {
         skyBg->darknessLevel = (playerPos->y - MAP_OBJECT_COORD_EDGE_TO_FX32(DISTORTION_WORLD_MIN_Y)) / (MAP_OBJECT_COORD_EDGE_TO_FX32(DISTORTION_WORLD_MAX_Y - DISTORTION_WORLD_MIN_Y) / SKY_BACKGROUND_MAX_DARKNESS);

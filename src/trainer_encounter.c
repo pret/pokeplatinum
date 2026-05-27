@@ -185,8 +185,8 @@ static int GetTrainerDistToPlayer(const MapObject *trainerMapObj, PlayerAvatar *
     int trainerType = GetTrainerType(trainerMapObj);
 
     if (trainerType == TRAINER_TYPE_NORMAL) {
-        playerX = Player_GetXPos(playerAvatar);
-        playerZ = Player_GetZPos(playerAvatar);
+        playerX = PlayerAvatar_GetXPos(playerAvatar);
+        playerZ = PlayerAvatar_GetZPos(playerAvatar);
         trainerFaceDir = MapObject_GetFacingDir(trainerMapObj);
         trainerSightRange = MapObject_GetDataAt(trainerMapObj, 0);
         distance = GetDistanceToPlayerFromDir(trainerMapObj, trainerFaceDir, trainerSightRange, playerX, playerZ, 0);
@@ -202,8 +202,8 @@ static int GetTrainerDistToPlayer(const MapObject *trainerMapObj, PlayerAvatar *
     }
 
     if (trainerType == TRAINER_TYPE_VIEW_ALL_DIRECTIONS) {
-        playerX = Player_GetXPos(playerAvatar);
-        playerZ = Player_GetZPos(playerAvatar);
+        playerX = PlayerAvatar_GetXPos(playerAvatar);
+        playerZ = PlayerAvatar_GetZPos(playerAvatar);
         trainerSightRange = MapObject_GetDataAt(trainerMapObj, 0);
         trainerFaceDir = 0;
 
@@ -228,8 +228,8 @@ static int GetTrainerDistToPlayer(const MapObject *trainerMapObj, PlayerAvatar *
 
 int MapObject_GetDistanceToPlayer(const MapObject *mapObj, PlayerAvatar *playerAvatar, int direction, int range)
 {
-    int playerX = Player_GetXPos(playerAvatar);
-    int playerZ = Player_GetZPos(playerAvatar);
+    int playerX = PlayerAvatar_GetXPos(playerAvatar);
+    int playerZ = PlayerAvatar_GetZPos(playerAvatar);
     int distance = GetDistanceToPlayerFromDir(mapObj, direction, range, playerX, playerZ, 0);
 
     if (distance != DISTANCE_INVALID) {
@@ -647,7 +647,7 @@ static int ApproachingTrainerTask_TryPlayerFaceTrainer(ApproachingTrainerData *d
     MapObject *mapObj = Player_MapObject(data->playerAvatar);
     int movementAction, dir = GetDirectionBetweenPoints(MapObject_GetX(mapObj), MapObject_GetZ(mapObj), MapObject_GetX(data->mapObj), MapObject_GetZ(data->mapObj));
 
-    if (PlayerAvatar_GetDir(data->playerAvatar) != dir && (data->approachNum == 0 || data->approachType == APPROACH_TYPE_VS2)) {
+    if (PlayerAvatar_GetFacingDir(data->playerAvatar) != dir && (data->approachNum == 0 || data->approachType == APPROACH_TYPE_VS2)) {
         if (LocalMapObj_IsAnimationSet(mapObj) == TRUE) {
             MapObject_SetStatusFlagOff(mapObj, MAP_OBJ_STATUS_LOCK_DIR);
             movementAction = MovementAction_TurnActionTowardsDir(dir, MOVEMENT_ACTION_FACE_NORTH);

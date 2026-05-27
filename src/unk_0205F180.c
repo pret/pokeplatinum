@@ -159,7 +159,7 @@ void PlayerAvatar_MoveControl(PlayerAvatar *playerAvatar, const LandDataManager 
         return;
     }
 
-    if (PlayerAvatar_GetPlayerState(playerAvatar) == PLAYER_STATE_WALKING) {
+    if (PlayerAvatar_GetPlayerState(playerAvatar) == PLAYER_AVATAR_WALKING) {
         int v0 = sub_0205FC48(playerAvatar, dir);
 
         if (v0 != 0) {
@@ -248,7 +248,7 @@ static void PlayerAvatar_StartMoveInit(PlayerAvatar *playerAvatar, int param1, u
 
 static void sub_0205F378(PlayerAvatar *playerAvatar)
 {
-    if (sub_0205F060(playerAvatar) == 1 && PlayerAvatar_MoveState(playerAvatar) == AVATAR_MOVE_STATE_MOVING) {
+    if (sub_0205F060(playerAvatar) == 1 && PlayerAvatar_GetState(playerAvatar) == AVATAR_MOVE_STATE_MOVING) {
         sub_0205EF6C(playerAvatar, 0);
 
         if (PlayerAvatar_CheckEscapedFromDeepMud(playerAvatar) == TRUE) {
@@ -260,7 +260,7 @@ static void sub_0205F378(PlayerAvatar *playerAvatar)
 
 static void PlayerAvatar_PlayWalkSE(PlayerAvatar *playerAvatar)
 {
-    if (PlayerAvatar_MoveState(playerAvatar) == 1) {
+    if (PlayerAvatar_GetState(playerAvatar) == 1) {
         MapObject *mapObj = Player_MapObject(playerAvatar);
         u8 v1, v2 = MapObject_GetCurrTileBehavior(mapObj);
 
@@ -309,24 +309,24 @@ void sub_0205F490(PlayerAvatar *playerAvatar)
     int v0, v1, v2;
     const MapObject *mapObj;
 
-    v0 = PlayerAvatar_MoveState(playerAvatar);
-    v1 = Player_MoveState(playerAvatar);
+    v0 = PlayerAvatar_GetState(playerAvatar);
+    v1 = PlayerAvatar_GetMoveState(playerAvatar);
     mapObj = Player_MapObject(playerAvatar);
 
-    sub_0205EB10(playerAvatar, 0);
+    PlayerAvatar_SetMoveState(playerAvatar, 0);
 
     u32 v4 = sub_0205F644(playerAvatar, -1);
 
     if ((v4 != 0) && (v4 != 5)) {
-        sub_0205EB10(playerAvatar, 2);
+        PlayerAvatar_SetMoveState(playerAvatar, 2);
         return;
     }
 
     if (LocalMapObj_IsAnimationSet(mapObj) == 0) {
         switch (v0) {
-        case PLAYER_STATE_WALKING:
+        case PLAYER_AVATAR_WALKING:
             break;
-        case PLAYER_STATE_CYCLING:
+        case PLAYER_AVATAR_CYCLING:
             v2 = MapObject_GetMovementAction(mapObj);
 
             if (IsMovementWalkOnSpotSlow(v2) == 1) {
@@ -334,13 +334,13 @@ void sub_0205F490(PlayerAvatar *playerAvatar)
             }
 
             if ((v1 == 0) || (v1 == 3)) {
-                sub_0205EB10(playerAvatar, 1);
+                PlayerAvatar_SetMoveState(playerAvatar, 1);
             } else {
-                sub_0205EB10(playerAvatar, 2);
+                PlayerAvatar_SetMoveState(playerAvatar, 2);
             }
             break;
-        case PLAYER_STATE_SURFING:
-            sub_0205EB10(playerAvatar, 2);
+        case PLAYER_AVATAR_SURFING:
+            PlayerAvatar_SetMoveState(playerAvatar, 2);
             break;
         }
 
@@ -356,10 +356,10 @@ void sub_0205F490(PlayerAvatar *playerAvatar)
             case 0:
                 break;
             case 3:
-                sub_0205EB10(playerAvatar, 0);
+                PlayerAvatar_SetMoveState(playerAvatar, 0);
                 break;
             default:
-                sub_0205EB10(playerAvatar, 3);
+                PlayerAvatar_SetMoveState(playerAvatar, 3);
             }
             break;
         case 2:
@@ -367,10 +367,10 @@ void sub_0205F490(PlayerAvatar *playerAvatar)
             case 0:
                 break;
             case 3:
-                sub_0205EB10(playerAvatar, 0);
+                PlayerAvatar_SetMoveState(playerAvatar, 0);
                 break;
             default:
-                sub_0205EB10(playerAvatar, 3);
+                PlayerAvatar_SetMoveState(playerAvatar, 3);
             }
             break;
         }
@@ -381,8 +381,8 @@ void sub_0205F490(PlayerAvatar *playerAvatar)
 
 void sub_0205F56C(PlayerAvatar *playerAvatar)
 {
-    sub_0205EB08(playerAvatar, 0);
-    sub_0205EB10(playerAvatar, 0);
+    PlayerAvatar_SetState(playerAvatar, 0);
+    PlayerAvatar_SetMoveState(playerAvatar, 0);
     PlayerAvatar_ClearSpeed(playerAvatar);
 }
 
@@ -391,8 +391,8 @@ int sub_0205F588(PlayerAvatar *playerAvatar)
     int v0, v1, v2;
     const MapObject *mapObj;
 
-    v0 = PlayerAvatar_MoveState(playerAvatar);
-    v1 = Player_MoveState(playerAvatar);
+    v0 = PlayerAvatar_GetState(playerAvatar);
+    v1 = PlayerAvatar_GetMoveState(playerAvatar);
 
     if (v0 == 0) {
         return 1;
@@ -427,8 +427,8 @@ void sub_0205F5E4(PlayerAvatar *playerAvatar, int dir)
 {
     MapObject *mapObj;
 
-    sub_0205EB08(playerAvatar, 0);
-    sub_0205EB10(playerAvatar, 0);
+    PlayerAvatar_SetState(playerAvatar, 0);
+    PlayerAvatar_SetMoveState(playerAvatar, 0);
 
     mapObj = Player_MapObject(playerAvatar);
 
@@ -508,7 +508,7 @@ static int sub_0205F6D0(PlayerAvatar *playerAvatar, int param1)
 
         if (v2 != 1) {
             sub_0205EF6C(playerAvatar, 1);
-            sub_0205EB08(playerAvatar, 0);
+            PlayerAvatar_SetState(playerAvatar, 0);
             return 0;
         }
 
@@ -524,7 +524,7 @@ static int sub_0205F6D0(PlayerAvatar *playerAvatar, int param1)
         sub_0205EF6C(playerAvatar, 1);
         sub_0205EF40(playerAvatar, TRUE);
         PlayerAvatar_SetFaceDirection(playerAvatar, -1, -1);
-        sub_0205EB08(playerAvatar, 1);
+        PlayerAvatar_SetState(playerAvatar, 1);
 
         return 1;
     }
@@ -549,7 +549,7 @@ static int sub_0205F6D0(PlayerAvatar *playerAvatar, int param1)
         sub_0205FB40(playerAvatar, v1);
     }
 
-    sub_0205EB08(playerAvatar, 1);
+    PlayerAvatar_SetState(playerAvatar, 1);
     return 1;
 }
 
@@ -562,10 +562,10 @@ static int sub_0205F808(PlayerAvatar *playerAvatar, int param1)
     Sound_PlayEffect(SEQ_SE_DP_SUNA);
 
     if (v2 == 0) {
-        if (PlayerAvatar_GetPlayerState(playerAvatar) == PLAYER_STATE_CYCLING && PlayerAvatar_Speed(playerAvatar) >= 3) {
+        if (PlayerAvatar_GetPlayerState(playerAvatar) == PLAYER_AVATAR_CYCLING && PlayerAvatar_Speed(playerAvatar) >= 3) {
             if (param1 == 0) {
                 sub_02060B64(playerAvatar, mapObj, MovementAction_TurnActionTowardsDir(v2, MOVEMENT_ACTION_WALK_FASTER_SOUTH), 6);
-                sub_0205EB08(playerAvatar, 1);
+                PlayerAvatar_SetState(playerAvatar, 1);
                 return 1;
             }
         }
@@ -581,14 +581,14 @@ static int sub_0205F808(PlayerAvatar *playerAvatar, int param1)
         sub_02060B64(playerAvatar, mapObj, MovementAction_TurnActionTowardsDir(v2, MOVEMENT_ACTION_WALK_SLOW_NORTH), 3);
         PlayerAvatar_ClearSpeed(playerAvatar);
         sub_0205EF40(playerAvatar, TRUE);
-        sub_0205EB08(playerAvatar, 1);
+        PlayerAvatar_SetState(playerAvatar, 1);
         sub_0205F01C(playerAvatar, 1);
         PlayerAvatar_SetFaceDirection(playerAvatar, -1, -1);
         return 1;
     } else if (v2 == 1) {
         if (sub_0205F034(playerAvatar) == 0) {
             sub_02060B64(playerAvatar, mapObj, MovementAction_TurnActionTowardsDir(v2, MOVEMENT_ACTION_WALK_FASTER_SOUTH), 6);
-            sub_0205EB08(playerAvatar, 1);
+            PlayerAvatar_SetState(playerAvatar, 1);
 
             if (PlayerAvatar_CyclingGear(playerAvatar) == 1) {
                 PlayerAvatar_SetSpeed(playerAvatar, 3);
@@ -600,7 +600,7 @@ static int sub_0205F808(PlayerAvatar *playerAvatar, int param1)
             MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_LOCK_DIR | MAP_OBJ_STATUS_PAUSE_ANIMATION);
             sub_02060B64(playerAvatar, mapObj, MovementAction_TurnActionTowardsDir(v2, MOVEMENT_ACTION_WALK_SLOW_NORTH), 3);
             sub_0205EF40(playerAvatar, TRUE);
-            sub_0205EB08(playerAvatar, 1);
+            PlayerAvatar_SetState(playerAvatar, 1);
             sub_0205F01C(playerAvatar, 1);
             PlayerAvatar_SetFaceDirection(playerAvatar, -1, -1);
             return 1;
@@ -654,14 +654,14 @@ static int sub_0205F9FC(PlayerAvatar *playerAvatar, int param1)
 
     if (v2 == 0) {
         sub_02060B64(playerAvatar, mapObj, MovementAction_TurnActionTowardsDir(v0, MOVEMENT_ACTION_WALK_FASTER_NORTH), 6);
-        sub_0205EB08(playerAvatar, 1);
+        PlayerAvatar_SetState(playerAvatar, 1);
         PlayerAvatar_SetSpeed(playerAvatar, 3);
 
         return 1;
     } else {
         sub_02060B64(playerAvatar, mapObj, MovementAction_TurnActionTowardsDir(v0, MOVEMENT_ACTION_FACE_SOUTH), 1);
         PlayerAvatar_ClearSpeed(playerAvatar);
-        sub_0205EB08(playerAvatar, 0);
+        PlayerAvatar_SetState(playerAvatar, 0);
         sub_0205EF98(playerAvatar, 0);
     }
 
@@ -772,11 +772,11 @@ static void inline_0205F180(PlayerAvatar *playerAvatar, const LandDataManager *p
     MapObject *mapObj = Player_MapObject(playerAvatar);
 
     switch (v0) {
-    case PLAYER_STATE_WALKING:
-    case PLAYER_STATE_SURFING:
+    case PLAYER_AVATAR_WALKING:
+    case PLAYER_AVATAR_SURFING:
         inline_0205F180_sub(playerAvatar, mapObj, param1, param2, param3, param4);
         break;
-    case PLAYER_STATE_CYCLING:
+    case PLAYER_AVATAR_CYCLING:
         sub_020602DC(playerAvatar, mapObj, param1, param2, param3, param4);
         break;
     default:
@@ -807,7 +807,7 @@ static int sub_0205FC48(PlayerAvatar *playerAvatar, int param1)
     int v0 = sub_0205FCC0(playerAvatar, param1);
     int v1 = sub_0205FC64(v0);
 
-    sub_0205EB08(playerAvatar, v1);
+    PlayerAvatar_SetState(playerAvatar, v1);
     return v0;
 }
 
@@ -853,26 +853,26 @@ static int sub_0205FCC0(PlayerAvatar *playerAvatar, int param1)
     int v0;
 
     if (param1 == -1) {
-        sub_0205EB08(playerAvatar, 0);
+        PlayerAvatar_SetState(playerAvatar, 0);
         return 0;
     }
 
-    v0 = PlayerAvatar_GetDir(playerAvatar);
+    v0 = PlayerAvatar_GetFacingDir(playerAvatar);
 
     enum AvatarDistortionState distortionState = PlayerAvatar_MapDistortionState(playerAvatar);
 
     if (distortionState != AVATAR_DISTORTION_STATE_NONE
         && distortionState != AVATAR_DISTORTION_STATE_ACTIVE
         && distortionState != AVATAR_DISTORTION_STATE_FLOOR) {
-        v0 = PlayerAvatar_GetMoveDir(playerAvatar);
+        v0 = PlayerAvatar_GetMovingDir(playerAvatar);
     }
 
-    if ((v0 != param1) && (PlayerAvatar_MoveState(playerAvatar) != 1)) {
-        sub_0205EB08(playerAvatar, 2);
+    if ((v0 != param1) && (PlayerAvatar_GetState(playerAvatar) != 1)) {
+        PlayerAvatar_SetState(playerAvatar, 2);
         return 2;
     }
 
-    sub_0205EB08(playerAvatar, 1);
+    PlayerAvatar_SetState(playerAvatar, 1);
     return 1;
 }
 
@@ -912,7 +912,7 @@ static void sub_0205FDC8(PlayerAvatar *playerAvatar, MapObject *param1, int para
 
     v0 = sub_02060B7C(playerAvatar, param1, param2);
 
-    if (PlayerAvatar_GetPlayerState(playerAvatar) != PLAYER_STATE_SURFING) {
+    if (PlayerAvatar_GetPlayerState(playerAvatar) != PLAYER_AVATAR_SURFING) {
         if (v0 & (1 << 2)) {
             v1 = 0x38;
             v2 = 3;
@@ -997,7 +997,7 @@ static void sub_0205FECC(PlayerAvatar *playerAvatar, MapObject *param1, int para
         }
     }
 
-    if (PlayerAvatar_GetPlayerState(playerAvatar) != PLAYER_STATE_SURFING) {
+    if (PlayerAvatar_GetPlayerState(playerAvatar) != PLAYER_AVATAR_SURFING) {
         if (v0 & (1 << 7)) {
             v1 = 0x75;
             v2 = 2;
@@ -1049,7 +1049,7 @@ static void sub_0206000C(PlayerAvatar *playerAvatar, MapObject *mapObj, int para
 
     v0 = sub_020611FC(playerAvatar, mapObj, param2);
 
-    if (PlayerAvatar_GetPlayerState(playerAvatar) != PLAYER_STATE_SURFING) {
+    if (PlayerAvatar_GetPlayerState(playerAvatar) != PLAYER_AVATAR_SURFING) {
         if (v0 != 0) {
             v1 = param8[param2];
             v2 = 1;
@@ -1162,7 +1162,7 @@ static void sub_020602DC(PlayerAvatar *playerAvatar, MapObject *mapObj, const La
 
 static void PlayerAvatar_TryCyclingGearChange(PlayerAvatar *playerAvatar, u16 pad)
 {
-    if (PlayerAvatar_GetPlayerState(playerAvatar) != PLAYER_STATE_CYCLING) {
+    if (PlayerAvatar_GetPlayerState(playerAvatar) != PLAYER_AVATAR_CYCLING) {
         return;
     }
 
@@ -1276,7 +1276,7 @@ static int sub_02060494(PlayerAvatar *playerAvatar, int param1)
     int v0 = sub_020604E4(playerAvatar, param1);
     int v1 = sub_020604B0(v0);
 
-    sub_0205EB08(playerAvatar, v1);
+    PlayerAvatar_SetState(playerAvatar, v1);
     return v0;
 }
 
@@ -1303,23 +1303,23 @@ static int sub_020604E4(PlayerAvatar *playerAvatar, int param1)
 
     if (param1 == -1) {
         if (sub_0205EFB0(playerAvatar) == 1) {
-            sub_0205EB08(playerAvatar, 1);
+            PlayerAvatar_SetState(playerAvatar, 1);
             return 3;
         }
 
-        sub_0205EB08(playerAvatar, 0);
+        PlayerAvatar_SetState(playerAvatar, 0);
         return 0;
     }
 
-    dir = PlayerAvatar_GetDir(playerAvatar);
+    dir = PlayerAvatar_GetFacingDir(playerAvatar);
     sub_0205EF98(playerAvatar, 0);
 
-    if ((dir != param1) && (PlayerAvatar_MoveState(playerAvatar) != 1)) {
-        sub_0205EB08(playerAvatar, 2);
+    if ((dir != param1) && (PlayerAvatar_GetState(playerAvatar) != 1)) {
+        PlayerAvatar_SetState(playerAvatar, 2);
         return 2;
     }
 
-    sub_0205EB08(playerAvatar, 1);
+    PlayerAvatar_SetState(playerAvatar, 1);
     return 1;
 }
 
@@ -1412,7 +1412,7 @@ static void sub_020606C8(PlayerAvatar *playerAvatar, MapObject *mapObj, int dir,
     int v1;
     int v2, v3 = sub_020603EC(playerAvatar);
 
-    dir = PlayerAvatar_GetMoveDir(playerAvatar);
+    dir = PlayerAvatar_GetMovingDir(playerAvatar);
     v0 = sub_02060B7C(playerAvatar, mapObj, dir);
 
     if (v0 & (1 << 2)) {
@@ -1473,7 +1473,7 @@ static int sub_02060800(PlayerAvatar *playerAvatar, int param1)
     int v0 = sub_02060850(playerAvatar, param1);
     int v1 = sub_0206081C(v0);
 
-    sub_0205EB08(playerAvatar, v1);
+    PlayerAvatar_SetState(playerAvatar, v1);
     return v0;
 }
 
@@ -1502,27 +1502,27 @@ static int sub_02060850(PlayerAvatar *playerAvatar, int param1)
 
     if (param1 == -1) {
         if (v1 < 2) {
-            sub_0205EB08(playerAvatar, 0);
+            PlayerAvatar_SetState(playerAvatar, 0);
             return 0;
         }
 
-        sub_0205EB08(playerAvatar, 1);
+        PlayerAvatar_SetState(playerAvatar, 1);
         return 3;
     }
 
-    v0 = PlayerAvatar_GetDir(playerAvatar);
+    v0 = PlayerAvatar_GetFacingDir(playerAvatar);
 
-    if ((v0 != param1) && (PlayerAvatar_MoveState(playerAvatar) != 1)) {
+    if ((v0 != param1) && (PlayerAvatar_GetState(playerAvatar) != 1)) {
         if (v1 < 2) {
-            sub_0205EB08(playerAvatar, 2);
+            PlayerAvatar_SetState(playerAvatar, 2);
             return 2;
         }
 
-        sub_0205EB08(playerAvatar, 1);
+        PlayerAvatar_SetState(playerAvatar, 1);
         return 3;
     }
 
-    sub_0205EB08(playerAvatar, 1);
+    PlayerAvatar_SetState(playerAvatar, 1);
     return 1;
 }
 
@@ -1629,7 +1629,7 @@ static void sub_02060AA0(PlayerAvatar *playerAvatar, MapObject *mapObj, int para
     int v1;
     int v2, v3 = sub_020603EC(playerAvatar);
 
-    param2 = PlayerAvatar_GetMoveDir(playerAvatar);
+    param2 = PlayerAvatar_GetMovingDir(playerAvatar);
     v0 = sub_02060B7C(playerAvatar, mapObj, param2);
 
     if (v0 & (1 << 2)) {
@@ -1921,7 +1921,7 @@ static int sub_02060FA8(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
         int v2 = MapObject_GetZ(mapObj) + MapObject_GetDzFromDir(param2);
         u8 v3 = TerrainCollisionManager_GetTileBehavior(fieldSystem, v1, v2);
 
-        if (PlayerAvatar_GetPlayerState(playerAvatar) == PLAYER_STATE_CYCLING) {
+        if (PlayerAvatar_GetPlayerState(playerAvatar) == PLAYER_AVATAR_CYCLING) {
             if (MapObject_IsOnBikeBridgeNorthSouth(mapObj, v3) == 1) {
                 if ((param2 == 0) || (param2 == 1)) {
                     return 0;
@@ -1949,7 +1949,7 @@ static int sub_02060FA8(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
 
 static int sub_02061058(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2)
 {
-    if ((param2 != -1) && PlayerAvatar_GetPlayerState(playerAvatar) == PLAYER_STATE_CYCLING) {
+    if ((param2 != -1) && PlayerAvatar_GetPlayerState(playerAvatar) == PLAYER_AVATAR_CYCLING) {
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
         int v1 = MapObject_GetX(mapObj) + MapObject_GetDxFromDir(param2);
         int v2 = MapObject_GetZ(mapObj) + MapObject_GetDzFromDir(param2);
@@ -2136,7 +2136,7 @@ static enum FaceDirection PlayerAvatar_CalcFaceDirectionInternal(PlayerAvatar *p
     }
 
     {
-        int dir = PlayerAvatar_GetMoveDir(playerAvatar);
+        int dir = PlayerAvatar_GetMovingDir(playerAvatar);
         enum FaceDirection avatarFaceLeftOrRight = PlayerAvatar_GetFaceLeftOrRight(playerAvatar);
         enum FaceDirection avatarFaceUpOrDown = PlayerAvatar_GetFaceUpOrDown(playerAvatar);
 
@@ -2217,12 +2217,12 @@ int sub_02061434(PlayerAvatar *playerAvatar, int param1)
     int v0, v1, state = PlayerAvatar_GetPlayerState(playerAvatar);
 
     switch (state) {
-    case PLAYER_STATE_WALKING:
-    case PLAYER_STATE_SURFING:
+    case PLAYER_AVATAR_WALKING:
+    case PLAYER_AVATAR_SURFING:
         v0 = sub_0205FCC0(playerAvatar, param1);
         v1 = sub_0205FC64(v0);
         break;
-    case PLAYER_STATE_CYCLING:
+    case PLAYER_AVATAR_CYCLING:
         if (PlayerAvatar_CyclingGear(playerAvatar) == 1) {
             v0 = sub_02060850(playerAvatar, param1);
             v1 = sub_0206081C(v0);
@@ -2246,10 +2246,10 @@ u32 sub_0206147C(PlayerAvatar *playerAvatar, u16 param1, u16 param2, int param3,
     int v1 = PlayerAvatar_CalcFaceDirectionInternal(playerAvatar, param1, param2);
     int v2 = sub_02061434(playerAvatar, v1);
 
-    sub_0205EB08(playerAvatar, v2);
+    PlayerAvatar_SetState(playerAvatar, v2);
 
     if (v2 == 0) {
-        v1 = PlayerAvatar_GetDir(playerAvatar);
+        v1 = PlayerAvatar_GetFacingDir(playerAvatar);
         v0 = MovementAction_TurnActionTowardsDir(v1, MOVEMENT_ACTION_FACE_NORTH);
         return v0;
     }
@@ -2329,13 +2329,13 @@ u32 sub_0206156C(PlayerAvatar *playerAvatar, int param1)
 
 void PlayerAvatar_MoveCoordsInDirection(PlayerAvatar *playerAvatar, int facingDirection, int *x, int *z)
 {
-    *x = Player_GetXPos(playerAvatar) + MapObject_GetDxFromDir(facingDirection);
-    *z = Player_GetZPos(playerAvatar) + MapObject_GetDzFromDir(facingDirection);
+    *x = PlayerAvatar_GetXPos(playerAvatar) + MapObject_GetDxFromDir(facingDirection);
+    *z = PlayerAvatar_GetZPos(playerAvatar) + MapObject_GetDzFromDir(facingDirection);
 }
 
 void PlayerAvatar_GetFacingTileCoords(PlayerAvatar *playerAvatar, int *x, int *z)
 {
-    int facingDirection = PlayerAvatar_GetDir(playerAvatar);
+    int facingDirection = PlayerAvatar_GetFacingDir(playerAvatar);
     PlayerAvatar_MoveCoordsInDirection(playerAvatar, facingDirection, x, z);
 }
 
@@ -2379,7 +2379,7 @@ static int sub_02061630(PlayerAvatar *playerAvatar, u32 tileBehavior, int param2
         return FALSE;
     }
 
-    if (PlayerAvatar_GetPlayerState(playerAvatar) != PLAYER_STATE_CYCLING) {
+    if (PlayerAvatar_GetPlayerState(playerAvatar) != PLAYER_AVATAR_CYCLING) {
         return FALSE;
     }
 

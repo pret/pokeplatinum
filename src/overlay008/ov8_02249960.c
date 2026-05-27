@@ -398,8 +398,8 @@ void PastoriaGym_PressButton(FieldSystem *fieldSystem)
         pastoria_gym_orange_button_nsbmd
     };
 
-    int playerX = Player_GetXPos(fieldSystem->playerAvatar);
-    int playerY = Player_GetZPos(fieldSystem->playerAvatar);
+    int playerX = PlayerAvatar_GetXPos(fieldSystem->playerAvatar);
+    int playerY = PlayerAvatar_GetZPos(fieldSystem->playerAvatar);
 
     TerrainCollisionHitbox_Init(playerX, playerY, 0, 0, 1, 1, &terrainCollision);
 
@@ -749,7 +749,7 @@ void HearthomeGym_MoveLift(FieldSystem *fieldSystem)
     HearthomeGymPersistedFeatureDP *features = PersistedMapFeatures_GetBuffer(mapFeatures, DYNAMIC_MAP_FEATURES_HEARTHOME_GYM);
 
     VecFx32 currentPosition;
-    PlayerAvatar_PosVectorOut(fieldSystem->playerAvatar, &currentPosition);
+    PlayerAvatar_GetPosPtr(fieldSystem->playerAvatar, &currentPosition);
 
     if (currentPosition.y == HEARTHOME_DP_LIFT_HEIGHT_DOWN) {
         FieldTask_InitCall(fieldSystem->task, HearthomeGymDP_RaiseLift, movementState);
@@ -1199,7 +1199,7 @@ static void CanalaveGym_UpdatePlatformsVisibility(const CanalaveGymSystem *gymSy
 static u8 CanalaveGym_GetPlaformPlayerIsOn(CanalaveGymSystem *gymSystem)
 {
     VecFx32 playerPos;
-    PlayerAvatar_PosVectorOut(gymSystem->fieldSystem->playerAvatar, &playerPos);
+    PlayerAvatar_GetPosPtr(gymSystem->fieldSystem->playerAvatar, &playerPos);
 
     u8 playerY = playerPos.y / MAP_OBJECT_TILE_SIZE;
     u8 playerX = playerPos.x / MAP_OBJECT_TILE_SIZE;
@@ -1381,7 +1381,7 @@ static BOOL FieldTask_CanalaveGym_MovePlatformEastWest(FieldTask *taskMan)
 
         VecFx32 platformPos, playerPos;
         platformPos = MapProp_GetPosition(platformProp);
-        PlayerAvatar_PosVectorOut(fieldSystem->playerAvatar, &playerPos);
+        PlayerAvatar_GetPosPtr(fieldSystem->playerAvatar, &playerPos);
         platformPos.x = playerPos.x;
 
         if (gymSystem->movementDir == CANALAVE_PLATFORM_MOVE_EAST) {
@@ -1454,7 +1454,7 @@ static BOOL FieldTask_CanalaveGym_MovePlatformNorthSouth(FieldTask *taskMan)
 
         VecFx32 platformPos, playerPos;
         platformPos = MapProp_GetPosition(platformProp);
-        PlayerAvatar_PosVectorOut(fieldSystem->playerAvatar, &playerPos);
+        PlayerAvatar_GetPosPtr(fieldSystem->playerAvatar, &playerPos);
         platformPos.z = playerPos.z;
 
         if (gymSystem->movementDir == CANALAVE_PLATFORM_MOVE_SOUTH) {
@@ -1556,7 +1556,7 @@ void CanalaveGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
     }
 
     VecFx32 playerPos;
-    PlayerAvatar_PosVectorOut(fieldSystem->playerAvatar, &playerPos);
+    PlayerAvatar_GetPosPtr(fieldSystem->playerAvatar, &playerPos);
     CanalaveGym_UpdateVisibleProps(gymSystem, playerPos.y);
 
     Camera_SetClipping(FX32_CONST(100), FX32_CONST(1700), fieldSystem->camera);
@@ -2527,8 +2527,8 @@ BOOL EternaGym_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const 
 
 static void EternaGym_SetupCameraMoveAwayFromPlayer(FieldSystem *fieldSystem, EternaGymCameraManager *cameraMan, int destX, int destZ)
 {
-    int playerX = Player_GetXPos(fieldSystem->playerAvatar);
-    int playerZ = Player_GetZPos(fieldSystem->playerAvatar);
+    int playerX = PlayerAvatar_GetXPos(fieldSystem->playerAvatar);
+    int playerZ = PlayerAvatar_GetZPos(fieldSystem->playerAvatar);
 
     cameraMan->startX = playerX;
     cameraMan->startZ = playerZ;
@@ -2631,7 +2631,7 @@ static void EternaGym_SetupCameraMoveToNewPosition(EternaGymCameraManager *camer
 
 static void EternaGym_FreeCameraObject(FieldSystem *fieldSystem, EternaGymCameraManager *cameraMan)
 {
-    const VecFx32 *playerPos = PlayerAvatar_PosVector(fieldSystem->playerAvatar);
+    const VecFx32 *playerPos = PlayerAvatar_GetPos(fieldSystem->playerAvatar);
 
     LandDataManager_TrackTarget(playerPos, fieldSystem->landDataMan);
     Camera_TrackTarget(playerPos, fieldSystem->camera);
@@ -2852,8 +2852,8 @@ static BOOL FieldTask_EternaGym_AdvanceClockState(FieldTask *task)
         clockMan->state++;
     case 12:
         if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
-            int playerX = Player_GetXPos(fieldSystem->playerAvatar);
-            int playerY = Player_GetZPos(fieldSystem->playerAvatar);
+            int playerX = PlayerAvatar_GetXPos(fieldSystem->playerAvatar);
+            int playerY = PlayerAvatar_GetZPos(fieldSystem->playerAvatar);
 
             EternaGym_SetupCameraMoveFromLastPosition(&clockMan->cameraMan, playerX, playerY);
             Window_EraseMessageBox(clockMan->window, FALSE);
@@ -3501,7 +3501,7 @@ BOOL ov8_0224BF4C(FieldSystem *fieldSystem)
     {
         int v1, v2, v3;
         UnkStruct_ov8_0224BCA8 *v4;
-        int v5 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
+        int v5 = PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar);
         UnkStruct_ov8_0224B8D0 *v6 = fieldSystem->unk_04->dynamicMapFeaturesData;
 
         PlayerAvatar_MoveCoordsInDirection(fieldSystem->playerAvatar, v5, &v1, &v2);
@@ -3544,8 +3544,8 @@ static void ov8_0224BFCC(FieldSystem *fieldSystem, UnkStruct_ov8_0224C098 *param
     v3->unk_18 = v0 + (MapObject_GetDxFromDir(param3) * v3->unk_24);
     v3->unk_1C = v1 + (MapObject_GetDzFromDir(param3) * v3->unk_24);
 
-    v0 = Player_GetXPos(fieldSystem->playerAvatar);
-    v1 = Player_GetZPos(fieldSystem->playerAvatar);
+    v0 = PlayerAvatar_GetXPos(fieldSystem->playerAvatar);
+    v1 = PlayerAvatar_GetZPos(fieldSystem->playerAvatar);
 
     v3->unk_10 = v0;
     v3->unk_14 = v1;
@@ -3565,7 +3565,7 @@ static void ov8_0224BFCC(FieldSystem *fieldSystem, UnkStruct_ov8_0224C098 *param
 static void ov8_0224C098(UnkStruct_ov8_0224C098 *param0)
 {
     UnkStruct_ov8_0224C0C4 *v0 = &param0->unk_40;
-    const VecFx32 *v1 = PlayerAvatar_PosVector(v0->fieldSystem->playerAvatar);
+    const VecFx32 *v1 = PlayerAvatar_GetPos(v0->fieldSystem->playerAvatar);
 
     LandDataManager_TrackTarget(v1, v0->fieldSystem->landDataMan);
     Camera_TrackTarget(v1, v0->fieldSystem->camera);

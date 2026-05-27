@@ -1313,8 +1313,8 @@ static int sub_0206537C(MapObject *mapObj)
         }
 
         {
-            int v8 = Player_GetXPos(playerAvatar);
-            int v9 = Player_GetZPos(playerAvatar);
+            int v8 = PlayerAvatar_GetXPos(playerAvatar);
+            int v9 = PlayerAvatar_GetZPos(playerAvatar);
             int v10 = MapObject_GetDataAt(mapObj, 0);
             int v11 = MapObject_GetX(mapObj);
             int v12 = MapObject_GetZ(mapObj);
@@ -1369,8 +1369,8 @@ static int sub_02065448(MapObject *mapObj, int param1, int param2)
                 int v7 = MapObject_GetZ(mapObj);
                 FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
                 PlayerAvatar *playerAvatar = FieldSystem_GetPlayerAvatar(fieldSystem);
-                int v10 = Player_GetXPos(playerAvatar);
-                int v11 = Player_GetZPos(playerAvatar);
+                int v10 = PlayerAvatar_GetXPos(playerAvatar);
+                int v11 = PlayerAvatar_GetZPos(playerAvatar);
 
                 if (v6 > v10) {
                     v4 = 2;

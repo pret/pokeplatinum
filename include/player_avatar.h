@@ -14,12 +14,6 @@
 #include "location.h"
 #include "overworld_anim_manager.h"
 
-enum PlayerAvatarForm {
-    PLAYER_AVATAR_WALKING = 0,
-    PLAYER_AVATAR_BIKING,
-    PLAYER_AVATAR_SURFING,
-};
-
 enum PlayerAvatarFlagUnk00 {
     UNK_00_0 = (1 << 0),
     UNK_00_1 = (1 << 1),
@@ -42,8 +36,8 @@ typedef struct PlayerAvatar {
     u32 unk_08;
     int unk_0C;
     u32 unk_10;
-    int unk_14;
-    int unk_18;
+    int state;
+    int moveState;
     int unk_1C;
     int gender;
     int speed;
@@ -55,26 +49,26 @@ typedef struct PlayerAvatar {
     const PlayerData *playerConst;
 } PlayerAvatar;
 
-PlayerAvatar *PlayerAvatar_Init(const MapObjectManager *param0, int param1, int param2, int param3, int param4, int param5, int param6, PlayerData *param7);
+PlayerAvatar *PlayerAvatar_New(const MapObjectManager *param0, int param1, int param2, int param3, int param4, int param5, int param6, PlayerData *param7);
 PlayerAvatar *sub_0205E820(const MapObjectManager *param0, PlayerData *param1, int gender);
-void PlayerAvatar_InitDraw(PlayerAvatar *playerAvatar, int dynamicMapFeaturesID);
-void Player_Delete(PlayerAvatar *playerAvatar);
-void Player_DeleteAll(PlayerAvatar *playerAvatar);
-MapObject *sub_0205EA24(const MapObjectManager *param0);
-int PlayerAvatar_GetDir(PlayerAvatar *const playerAvatar);
-void Player_SetDir(PlayerAvatar *playerAvatar, int param1);
-int PlayerAvatar_GetMoveDir(PlayerAvatar *const playerAvatar);
+void PlayerAvatar_InitMapFeatures(PlayerAvatar *playerAvatar, int dynamicMapFeaturesID);
+void PlayerAvatar_Free(PlayerAvatar *playerAvatar);
+void PlayerAvatar_Delete(PlayerAvatar *playerAvatar);
+MapObject *MapObjectMan_GetPlayerMapObject(const MapObjectManager *param0);
+int PlayerAvatar_GetFacingDir(PlayerAvatar *const playerAvatar);
+void PlayerAvatar_TryFace(PlayerAvatar *playerAvatar, int param1);
+int PlayerAvatar_GetMovingDir(PlayerAvatar *const playerAvatar);
 int PlayerAvatar_GetDistortionDir(PlayerAvatar *const playerAvatar);
-int Player_GetXPos(PlayerAvatar *const playerAvatar);
-int Player_GetZPos(PlayerAvatar *const playerAvatar);
+int PlayerAvatar_GetXPos(PlayerAvatar *const playerAvatar);
+int PlayerAvatar_GetZPos(PlayerAvatar *const playerAvatar);
 int PlayerAvatar_XPosPrev(PlayerAvatar *const playerAvatar);
 int PlayerAvatar_ZPosPrev(PlayerAvatar *const playerAvatar);
-void PlayerAvatar_PosVectorOut(PlayerAvatar *const playerAvatar, VecFx32 *param1);
-const VecFx32 *PlayerAvatar_PosVector(PlayerAvatar *const playerAvatar);
-void sub_0205EB08(PlayerAvatar *playerAvatar, int param1);
-int PlayerAvatar_MoveState(const PlayerAvatar *playerAvatar);
-void sub_0205EB10(PlayerAvatar *playerAvatar, int param1);
-int Player_MoveState(const PlayerAvatar *playerAvatar);
+void PlayerAvatar_GetPosPtr(PlayerAvatar *const playerAvatar, VecFx32 *param1);
+const VecFx32 *PlayerAvatar_GetPos(PlayerAvatar *const playerAvatar);
+void PlayerAvatar_SetState(PlayerAvatar *playerAvatar, int param1);
+int PlayerAvatar_GetState(const PlayerAvatar *playerAvatar);
+void PlayerAvatar_SetMoveState(PlayerAvatar *playerAvatar, int param1);
+int PlayerAvatar_GetMoveState(const PlayerAvatar *playerAvatar);
 void PlayerAvatar_SetVisible(PlayerAvatar *playerAvatar, BOOL visible);
 void PlayerAvatar_SetMapObject(PlayerAvatar *playerAvatar, MapObject *param1);
 MapObject *Player_MapObject(PlayerAvatar *playerAvatar);
@@ -115,7 +109,7 @@ void sub_0205ECE0(PlayerAvatar *playerAvatar, int x, int z, int dir);
 void Player_SetYPos(PlayerAvatar *playerAvatar, fx32 y);
 void PlayerAvatar_SetHeightCalculationEnabled(PlayerAvatar *playerAvatar, BOOL heightCalculationEnabled);
 void PlayerAvatar_SetHeightCalculationEnabledAndUpdate(PlayerAvatar *playerAvatar, BOOL heightCalculationEnabled);
-int Player_MoveStateFromGender(int param0, int param1);
+int Player_GetSpriteFromStateAndGender(int param0, int param1);
 u32 Player_ConvertStateToTransition(int param0);
 PlayerAvatar *FieldSystem_GetPlayerAvatar(FieldSystem *fieldSystem);
 void sub_0205EF40(PlayerAvatar *playerAvatar, int param1);

@@ -188,12 +188,12 @@ void ItemUseContext_Init(FieldSystem *fieldSystem, ItemUseContext *ctxOut)
     ctxOut->hasPartner = SystemFlag_CheckHasPartner(SaveData_GetVarsFlags(fieldSystem->saveData));
     ctxOut->playerState = PlayerAvatar_GetPlayerState(fieldSystem->playerAvatar);
 
-    int x = Player_GetXPos(fieldSystem->playerAvatar);
-    int z = Player_GetZPos(fieldSystem->playerAvatar);
+    int x = PlayerAvatar_GetXPos(fieldSystem->playerAvatar);
+    int z = PlayerAvatar_GetZPos(fieldSystem->playerAvatar);
 
     ctxOut->currTileBehavior = TerrainCollisionManager_GetTileBehavior(fieldSystem, x, z);
 
-    int playerDirection = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
+    int playerDirection = PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar);
 
     switch (playerDirection) {
     case DIR_NORTH:
@@ -380,7 +380,7 @@ static enum ItemUseCheckResult CanUseExplorerKit(const ItemUseContext *usageCont
         return ITEM_USE_CANNOT_USE_GENERIC;
     }
 
-    if (PlayerAvatar_GetPlayerState(usageContext->playerAvatar) == PLAYER_STATE_SURFING) {
+    if (PlayerAvatar_GetPlayerState(usageContext->playerAvatar) == PLAYER_AVATAR_SURFING) {
         return ITEM_USE_CANNOT_USE_GENERIC;
     }
 
@@ -392,8 +392,8 @@ static enum ItemUseCheckResult CanUseExplorerKit(const ItemUseContext *usageCont
         return ITEM_USE_CANNOT_USE_GENERIC;
     }
 
-    u16 x = Player_GetXPos(usageContext->fieldSystem->playerAvatar);
-    u16 z = Player_GetZPos(usageContext->fieldSystem->playerAvatar);
+    u16 x = PlayerAvatar_GetXPos(usageContext->fieldSystem->playerAvatar);
+    u16 z = PlayerAvatar_GetZPos(usageContext->fieldSystem->playerAvatar);
 
     // doesn't match as !MapHeaderData_IsPosFreeOfObjectEvents
     if (MapHeaderData_IsPosFreeOfObjectEvents(usageContext->fieldSystem, x, z) == FALSE) {
@@ -494,7 +494,7 @@ static enum ItemUseCheckResult CanUseBicycle(const ItemUseContext *usageContext)
         return ITEM_USE_CANNOT_USE_GENERIC;
     }
 
-    if (usageContext->playerState == PLAYER_STATE_SURFING) {
+    if (usageContext->playerState == PLAYER_AVATAR_SURFING) {
         return ITEM_USE_CANNOT_USE_GENERIC;
     }
 

@@ -346,7 +346,7 @@ static void FieldMapChange_CreateObjects(FieldSystem *fieldSystem)
     FieldOverworldState *fieldState = SaveData_GetFieldOverworldState(fieldSystem->saveData);
     PlayerData *playerData = FieldOverworldState_GetPlayerData(fieldState);
 
-    fieldSystem->playerAvatar = PlayerAvatar_Init(fieldSystem->mapObjMan, fieldSystem->location->x, fieldSystem->location->z, fieldSystem->location->faceDirection, playerData->form, gender, 0, playerData);
+    fieldSystem->playerAvatar = PlayerAvatar_New(fieldSystem->mapObjMan, fieldSystem->location->x, fieldSystem->location->z, fieldSystem->location->faceDirection, playerData->playerState, gender, 0, playerData);
 
     sub_0203A418(fieldSystem);
     MapObjectMan_StopAllMovement(fieldSystem->mapObjMan);
@@ -354,7 +354,7 @@ static void FieldMapChange_CreateObjects(FieldSystem *fieldSystem)
 
 static void FieldMapChange_DeleteObjects(FieldSystem *fieldSystem)
 {
-    Player_Delete(fieldSystem->playerAvatar);
+    PlayerAvatar_Free(fieldSystem->playerAvatar);
     MapObjectMan_DeleteAll(fieldSystem->mapObjMan);
     MapObjectMan_Delete(fieldSystem->mapObjMan);
 }
@@ -434,7 +434,7 @@ static void sub_020534BC(FieldSystem *fieldSystem)
 
 static void Location_SetToPlayerLocation(Location *location, const FieldSystem *fieldSystem)
 {
-    Location_Set(location, fieldSystem->location->mapId, WARP_ID_NONE, Player_GetXPos(fieldSystem->playerAvatar), Player_GetZPos(fieldSystem->playerAvatar), DIR_SOUTH);
+    Location_Set(location, fieldSystem->location->mapId, WARP_ID_NONE, PlayerAvatar_GetXPos(fieldSystem->playerAvatar), PlayerAvatar_GetZPos(fieldSystem->playerAvatar), DIR_SOUTH);
 }
 
 static BOOL FieldSystem_IsSaveInUnionRoom(const FieldSystem *fieldSystem)
@@ -1075,7 +1075,7 @@ void FieldSystem_StartMapChangeWarpTask(FieldSystem *fieldSystem, int param1, in
 
     MI_CpuClear8(mapChangeWarpData, sizeof(MapChangeWarpData));
 
-    Location_Set(&nextLocation, param1, param2, 0, 0, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
+    Location_Set(&nextLocation, param1, param2, 0, 0, PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar));
     mapChangeWarpData->nextLocation = nextLocation;
     FieldSystem_CreateTask(fieldSystem, FieldTask_MapChangeWarp, mapChangeWarpData);
 }

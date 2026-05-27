@@ -279,9 +279,9 @@ static BOOL FieldMap_Exit(ApplicationManager *appMan, int *param1)
         DynamicMapFeatures_Free(fieldSystem);
         LandDataManager_ForgetTrackedTarget(fieldSystem->landDataMan);
 
-        fieldSystem->location->x = Player_GetXPos(fieldSystem->playerAvatar);
-        fieldSystem->location->z = Player_GetZPos(fieldSystem->playerAvatar);
-        fieldSystem->location->faceDirection = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
+        fieldSystem->location->x = PlayerAvatar_GetXPos(fieldSystem->playerAvatar);
+        fieldSystem->location->z = PlayerAvatar_GetZPos(fieldSystem->playerAvatar);
+        fieldSystem->location->faceDirection = PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar);
 
         DynamicTerrainHeightManager_Free(fieldSystem->dynamicTerrainHeightMan);
 
@@ -388,8 +388,8 @@ static enum FieldExtensionOverlay FieldMap_GetExtOverlayForActiveDynMapFeatures(
 
 static BOOL FieldSystem_UpdateLocationToPlayerPosition(FieldSystem *fieldSystem)
 {
-    int x = Player_GetXPos(fieldSystem->playerAvatar);
-    int z = Player_GetZPos(fieldSystem->playerAvatar);
+    int x = PlayerAvatar_GetXPos(fieldSystem->playerAvatar);
+    int z = PlayerAvatar_GetZPos(fieldSystem->playerAvatar);
 
     if ((x != fieldSystem->location->x) || (z != fieldSystem->location->z)) {
         fieldSystem->location->x = x;
@@ -406,8 +406,8 @@ static BOOL FieldMap_ChangeZone(FieldSystem *fieldSystem)
         return FALSE;
     }
 
-    int x = (Player_GetXPos(fieldSystem->playerAvatar) - LandDataManager_GetOffsetTileX(fieldSystem->landDataMan)) / MAP_TILES_COUNT_X;
-    int y = (Player_GetZPos(fieldSystem->playerAvatar) - LandDataManager_GetOffsetTileZ(fieldSystem->landDataMan)) / MAP_TILES_COUNT_Z;
+    int x = (PlayerAvatar_GetXPos(fieldSystem->playerAvatar) - LandDataManager_GetOffsetTileX(fieldSystem->landDataMan)) / MAP_TILES_COUNT_X;
+    int y = (PlayerAvatar_GetZPos(fieldSystem->playerAvatar) - LandDataManager_GetOffsetTileZ(fieldSystem->landDataMan)) / MAP_TILES_COUNT_Z;
 
     u32 newMapID = MapMatrix_GetMapHeaderIDAtCoords(fieldSystem->mapMatrix, x, y);
     u32 oldMapID = fieldSystem->location->mapId;
@@ -511,9 +511,9 @@ static void ov5_021D13B4(FieldSystem *fieldSystem)
     }
 
     OverworldMapHistory *mapHistory = FieldOverworldState_GetMapHistory(SaveData_GetFieldOverworldState(fieldSystem->saveData));
-    int mapX = (Player_GetXPos(fieldSystem->playerAvatar) - LandDataManager_GetOffsetTileX(fieldSystem->landDataMan)) / MAP_TILES_COUNT_X;
-    int mapZ = (Player_GetZPos(fieldSystem->playerAvatar) - LandDataManager_GetOffsetTileZ(fieldSystem->landDataMan)) / MAP_TILES_COUNT_Z;
-    int faceDirection = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
+    int mapX = (PlayerAvatar_GetXPos(fieldSystem->playerAvatar) - LandDataManager_GetOffsetTileX(fieldSystem->landDataMan)) / MAP_TILES_COUNT_X;
+    int mapZ = (PlayerAvatar_GetZPos(fieldSystem->playerAvatar) - LandDataManager_GetOffsetTileZ(fieldSystem->landDataMan)) / MAP_TILES_COUNT_Z;
+    int faceDirection = PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar);
 
     OverworldMapHistory_Push(mapHistory, mapX, mapZ, faceDirection);
 }
@@ -861,13 +861,13 @@ static void ov5_021D1878(FieldSystem *fieldSystem)
         PersistedMapFeatures *v3 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
         int v4 = PersistedMapFeatures_GetID(v3);
 
-        PlayerAvatar_InitDraw(fieldSystem->playerAvatar, v4);
+        PlayerAvatar_InitMapFeatures(fieldSystem->playerAvatar, v4);
     }
 
     sub_02061C48(fieldSystem->mapObjMan);
     CommPlayerMan_ForcePos();
     sub_02062C3C(fieldSystem->mapObjMan);
-    LandDataManager_TrackTarget(PlayerAvatar_PosVector(fieldSystem->playerAvatar), fieldSystem->landDataMan);
+    LandDataManager_TrackTarget(PlayerAvatar_GetPos(fieldSystem->playerAvatar), fieldSystem->landDataMan);
 
     fieldSystem->unk_04->berryPatchManager = BerryPatchManager_New(fieldSystem, HEAP_ID_FIELD1);
 }
@@ -882,7 +882,7 @@ static void ov5_021D1968(FieldSystem *fieldSystem)
 
     {
         int v0 = FieldOverworldState_GetCameraType(SaveData_GetFieldOverworldState(fieldSystem->saveData));
-        FieldCamera_Create(PlayerAvatar_PosVector(fieldSystem->playerAvatar), fieldSystem, v0, 1);
+        FieldCamera_Create(PlayerAvatar_GetPos(fieldSystem->playerAvatar), fieldSystem, v0, 1);
     }
 
     fieldSystem->areaLightMan = AreaLightManager_New(fieldSystem->areaModelAttrs, AreaDataManager_GetAreaLightArchiveID(fieldSystem->areaDataManager));

@@ -882,7 +882,7 @@ BOOL ov5_021D4E10(FieldTask *param0)
     case 0:
         v0 = Player_MapObject(fieldSystem->playerAvatar);
 
-        if (PlayerAvatar_GetDir(fieldSystem->playerAvatar) == 1) {
+        if (PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar) == 1) {
             MapObject_SetHidden(v0, 1);
             (v2->unk_00) = 1;
         } else {
@@ -1010,7 +1010,7 @@ BOOL ov5_021D5020(FieldTask *param0)
         u8 v4;
 
         v0 = Player_MapObject(fieldSystem->playerAvatar);
-        v3 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
+        v3 = PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar);
 
         if (v3 == 1) {
             MapObject_SetHidden(v0, 1);
@@ -1089,7 +1089,7 @@ BOOL ov5_021D5150(FieldTask *param0)
         u8 v4;
 
         v0 = Player_MapObject(fieldSystem->playerAvatar);
-        v3 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
+        v3 = PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar);
 
         if (v3 == 1) {
             MapObject_SetHidden(v0, 1);

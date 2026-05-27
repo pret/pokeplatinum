@@ -279,7 +279,7 @@ BagContext *FieldSystem_OpenBag(FieldSystem *fieldSystem, ItemUseContext *itemUs
     BagContext_Init(bagCtx, fieldSystem->saveData, 0, fieldSystem->bagCursor);
     BagContext_SetMapLoadType(bagCtx, fieldSystem->mapLoadType);
 
-    if (PlayerAvatar_GetPlayerState(fieldSystem->playerAvatar) == PLAYER_STATE_CYCLING) {
+    if (PlayerAvatar_GetPlayerState(fieldSystem->playerAvatar) == PLAYER_AVATAR_CYCLING) {
         BagContext_SetIsCycling(bagCtx);
     }
 

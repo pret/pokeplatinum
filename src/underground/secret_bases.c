@@ -1514,8 +1514,8 @@ static void SecretBases_DrawBaseEntrancesTask(SysTask *unused, void *unused1)
         return;
     }
 
-    int playerX = Player_GetXPos(secretBasesEnv->fieldSystem->playerAvatar);
-    int playerZ = Player_GetZPos(secretBasesEnv->fieldSystem->playerAvatar);
+    int playerX = PlayerAvatar_GetXPos(secretBasesEnv->fieldSystem->playerAvatar);
+    int playerZ = PlayerAvatar_GetZPos(secretBasesEnv->fieldSystem->playerAvatar);
 
     if (UndergroundMan_AreCoordinatesInSecretBase(playerX, playerZ)) {
         return;
@@ -1820,7 +1820,7 @@ static void SecretBases_DiggerDrillTask(SysTask *sysTask, void *data)
     case DRILL_STATE_CREATE_ENTRANCE: {
         int x = CommPlayer_GetXInFrontOfPlayer(CommSys_CurNetId());
         int z = CommPlayer_GetZInFrontOfPlayer(CommSys_CurNetId());
-        int dir = CommPlayer_GetOppositeDir(PlayerAvatar_GetDir(fieldSystem->playerAvatar));
+        int dir = CommPlayer_GetOppositeDir(PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar));
 
         UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_DiscoveredCavern, FALSE, NULL);
         SecretBases_SetBaseEntrancePropLocation(x, z, dir, NETID_CURRENT_PLAYER_BASE);

@@ -136,7 +136,7 @@ static void ov5_021F62A0(OverworldAnimManager *param0, void *param1)
     v1->unk_04 = ov5_021F6414(v1->unk_08);
     v1->unk_00 = 0;
 
-    if ((v1->unk_04 == -1) || (v1->unk_04 != PlayerAvatar_GetDir(playerAvatar))) {
+    if ((v1->unk_04 == -1) || (v1->unk_04 != PlayerAvatar_GetFacingDir(playerAvatar))) {
         v1->unk_1C = 0;
         v1->unk_20 = 0;
         v1->unk_00 = 1;

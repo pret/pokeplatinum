@@ -6,6 +6,9 @@
 #include "constants/field/dynamic_map_features.h"
 #include "constants/scrcmd.h"
 
+#include "generated/object_events_gfx.h"
+#include "generated/movement_types.h"
+
 #include "struct_decls/map_object.h"
 #include "struct_decls/map_object_manager.h"
 #include "struct_defs/player_data.h"
@@ -20,52 +23,64 @@
 #include "overworld_anim_manager.h"
 
 static PlayerAvatar *PlayerAvatar_Alloc(void);
-static void sub_0205E91C(PlayerAvatar *playerAvatar, int param1, int param2, PlayerData *param3);
+static void PlayerAvatar_Init(PlayerAvatar *playerAvatar, int param1, int param2, PlayerData *param3);
 static void PlayerAvatar_AddMapObject(PlayerAvatar *playerAvatar, const MapObjectManager *param1, int param2, int param3, int param4, int param5);
-static MapObject *sub_0205EA64(const MapObjectManager *mapObjMan);
+static MapObject *MapObjectMan_GetPlayerMapObjectCheckNull(const MapObjectManager *mapObjMan);
 static void PlayerAvatar_SetFlagUnk_00(PlayerAvatar *playerAvatar, u32 param1);
 static void PlayerAvatar_ClearFlagUnk_00(PlayerAvatar *playerAvatar, u32 param1);
 static u32 PlayerAvatar_GetFlagUnk_00(PlayerAvatar *playerAvatar, u32 param1);
 static void PlayerAvatar_SetPlayerData(PlayerAvatar *playerAvatar, PlayerData *param1);
-static u32 GetPlayerForm(PlayerData *player);
-static void SetPlayerForm(PlayerData *player, u32 form);
-static void SetAvatarForm(PlayerAvatar *playerAvatar, u32 form);
+static u32 Player_GetState(PlayerData *player);
+static void Player_SetState(PlayerData *player, u32 state);
+static void PlayerAvatar_Player_SetState(PlayerAvatar *playerAvatar, u32 state);
 
-PlayerAvatar *PlayerAvatar_Init(const MapObjectManager *mapObjMan, int x, int z, int dir, int param4, int param5, int param6, PlayerData *param7)
+/**
+ * @brief Creates and initializes a new Player Avatar map object 
+ *
+ * @param mapObjMan
+ * @param x
+ * @param z
+ * @param dir
+ * @param playerState
+ * @param gender
+ * @param dpSprite
+ * @param playerData
+ */
+PlayerAvatar *PlayerAvatar_New(const MapObjectManager *mapObjMan, int x, int z, int dir, int playerState, int gender, int dpSprite, PlayerData *playerData)
 {
     PlayerAvatar *playerAvatar = PlayerAvatar_Alloc();
-    sub_0205E91C(playerAvatar, param4, param5, param7);
+    PlayerAvatar_Init(playerAvatar, playerState, gender, playerData);
 
-    int v1;
+    int sprite;
 
-    if (param6 == 0) {
-        v1 = Player_MoveStateFromGender(param4, param5);
+    if (dpSprite == 0) {
+        sprite = Player_GetSpriteFromStateAndGender(playerState, gender);
     } else {
-        if (param5 == 0) {
-            v1 = 0xfc;
+        if (gender == 0) {
+            sprite = OBJ_EVENT_GFX_DP_PLAYER_M;
         } else {
-            v1 = 0xfd;
+            sprite = OBJ_EVENT_GFX_DP_PLAYER_F;
         }
     }
 
-    PlayerAvatar_AddMapObject(playerAvatar, mapObjMan, v1, dir, x, z);
+    PlayerAvatar_AddMapObject(playerAvatar, mapObjMan, sprite, dir, x, z);
 
     return playerAvatar;
 }
 
-PlayerAvatar *sub_0205E820(const MapObjectManager *mapObjMan, PlayerData *param1, int gender)
+PlayerAvatar *sub_0205E820(const MapObjectManager *mapObjMan, PlayerData *playerData, int gender)
 {
-    int v0;
+    int playerState;
     PlayerAvatar *playerAvatar;
     MapObject *mapObj;
 
     playerAvatar = PlayerAvatar_Alloc();
-    v0 = GetPlayerForm(param1);
+    playerState = Player_GetState(playerData);
 
-    sub_0205E91C(playerAvatar, v0, gender, param1);
-    mapObj = sub_0205EA64(mapObjMan);
+    PlayerAvatar_Init(playerAvatar, playerState, gender, playerData);
+    mapObj = MapObjectMan_GetPlayerMapObjectCheckNull(mapObjMan);
 
-    MapObject_SetGraphicsID(mapObj, Player_MoveStateFromGender(v0, gender));
+    MapObject_SetGraphicsID(mapObj, Player_GetSpriteFromStateAndGender(playerState, gender));
     MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_PERSISTENT | MAP_OBJ_STATUS_13);
     MapObject_SetStatusFlagOff(mapObj, MAP_OBJ_STATUS_LOCK_DIR | MAP_OBJ_STATUS_PAUSE_ANIMATION);
     MapObject_SetDynamicHeightCalculationEnabled(mapObj, TRUE);
@@ -74,7 +89,13 @@ PlayerAvatar *sub_0205E820(const MapObjectManager *mapObjMan, PlayerData *param1
     return playerAvatar;
 }
 
-void PlayerAvatar_InitDraw(PlayerAvatar *playerAvatar, int dynamicMapFeaturesID)
+/**
+ * @brief Initializes a PlayerAvatar with dynamic map features, like starting on a surf mount
+ *
+ * @param playerAvatar
+ * @param dynamicMapFeaturesID
+ */
+void PlayerAvatar_InitMapFeatures(PlayerAvatar *playerAvatar, int dynamicMapFeaturesID)
 {
     MapObject *mapObj = Player_MapObject(playerAvatar);
     GF_ASSERT(mapObj != NULL);
@@ -82,31 +103,46 @@ void PlayerAvatar_InitDraw(PlayerAvatar *playerAvatar, int dynamicMapFeaturesID)
 
     ov5_021F6218(playerAvatar);
 
-    if (PlayerAvatar_GetPlayerState(playerAvatar) == PLAYER_STATE_SURFING) {
+    if (PlayerAvatar_GetPlayerState(playerAvatar) == PLAYER_AVATAR_SURFING) {
         if (dynamicMapFeaturesID != DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) {
-            int x = Player_GetXPos(playerAvatar);
-            int z = Player_GetZPos(playerAvatar);
-            int dir = PlayerAvatar_GetDir(playerAvatar);
-            OverworldAnimManager *v7 = SurfMountRenderer_HandleSurfBegin(mapObj, x, z, dir, TRUE);
+            int x = PlayerAvatar_GetXPos(playerAvatar);
+            int z = PlayerAvatar_GetZPos(playerAvatar);
+            int dir = PlayerAvatar_GetFacingDir(playerAvatar);
+            OverworldAnimManager *animManager = SurfMountRenderer_HandleSurfBegin(mapObj, x, z, dir, TRUE);
 
-            PlayerAvatar_SetSurfMountAnimManager(playerAvatar, v7);
+            PlayerAvatar_SetSurfMountAnimManager(playerAvatar, animManager);
         }
     }
 }
 
-void Player_Delete(PlayerAvatar *playerAvatar)
+/**
+ * @brief Frees the player avatar
+ *
+ * @param playerAvatar
+ */
+void PlayerAvatar_Free(PlayerAvatar *playerAvatar)
 {
     Heap_Free(playerAvatar);
 }
 
-void Player_DeleteAll(PlayerAvatar *playerAvatar)
+/**
+ * @brief Deletes the player avatar and its associated map object
+ *
+ * @param playerAvatar
+ */
+void PlayerAvatar_Delete(PlayerAvatar *playerAvatar)
 {
     MapObject *mapObject = Player_MapObject(playerAvatar);
 
     MapObject_Delete(mapObject);
-    Player_Delete(playerAvatar);
+    PlayerAvatar_Free(playerAvatar);
 }
 
+/**
+ * @brief Allocates memory for a player avatar and zero initializes it
+ *
+ * @return playerAvatar
+ */
 static PlayerAvatar *PlayerAvatar_Alloc(void)
 {
     PlayerAvatar *playerAvatar = Heap_Alloc(HEAP_ID_FIELD2, sizeof(PlayerAvatar));
@@ -116,13 +152,21 @@ static PlayerAvatar *PlayerAvatar_Alloc(void)
     return playerAvatar;
 }
 
-static void sub_0205E91C(PlayerAvatar *playerAvatar, int param1, int gender, PlayerData *player)
+/**
+ * @brief Initializes an existing player avatar
+ *
+ * @param playerAvatar
+ * @param playerState
+ * @param gender
+ * @param playerData
+ */
+static void PlayerAvatar_Init(PlayerAvatar *playerAvatar, int playerState, int gender, PlayerData *player)
 {
     PlayerAvatar_SetPlayerData(playerAvatar, player);
 
-    sub_0205EB08(playerAvatar, 0);
-    sub_0205EB10(playerAvatar, 0);
-    PlayerAvatar_SetPlayerState(playerAvatar, param1);
+    PlayerAvatar_SetState(playerAvatar, 0);
+    PlayerAvatar_SetMoveState(playerAvatar, 0);
+    PlayerAvatar_SetPlayerState(playerAvatar, playerState);
     PlayerAvatar_SetGender(playerAvatar, gender);
     PlayerAvatar_SetRequestStateFlag(playerAvatar, 0);
     PlayerAvatar_ClearSpeed(playerAvatar);
@@ -134,9 +178,19 @@ static void sub_0205E91C(PlayerAvatar *playerAvatar, int param1, int gender, Pla
     PlayerAvatar_SetEscapedFromDeepMud(playerAvatar, TRUE);
 }
 
-static void PlayerAvatar_AddMapObject(PlayerAvatar *playerAvatar, const MapObjectManager *mapObjMan, int param2, int dir, int x, int z)
+/**
+ * @brief Creates and adds a map object for the Player Avatar
+ *
+ * @param playerAvatar
+ * @param mapObjMan
+ * @param sprite
+ * @param dir
+ * @param x
+ * @param z
+ */
+static void PlayerAvatar_AddMapObject(PlayerAvatar *playerAvatar, const MapObjectManager *mapObjMan, int sprite, int dir, int x, int z)
 {
-    MapObject *mapObj = MapObjectMan_AddMapObject(mapObjMan, x, z, dir, param2, 0x1, 1);
+    MapObject *mapObj = MapObjectMan_AddMapObject(mapObjMan, x, z, dir, sprite, 0x1, 1);
     GF_ASSERT(mapObj != NULL);
 
     MapObject_SetLocalID(mapObj, LOCALID_PLAYER);
@@ -155,13 +209,20 @@ static void PlayerAvatar_AddMapObject(PlayerAvatar *playerAvatar, const MapObjec
     PlayerAvatar_SetMapObject(playerAvatar, mapObj);
 }
 
-MapObject *sub_0205EA24(const MapObjectManager *mapObjMan)
+/**
+ * @brief Gets the first map object with MOVEMENT_TYPE_PLAYER, which is the map object associated with the Player Avatar
+ *
+ * @param mapObjMan
+ *
+ * @return The MapObject * associated with the PlayerAvatar
+ */
+MapObject *MapObjectMan_GetPlayerMapObject(const MapObjectManager *mapObjMan)
 {
-    int v0 = 0;
+    int index = 0;
     MapObject *mapObj = NULL;
 
-    while (MapObjectMan_FindObjectWithStatus(mapObjMan, &mapObj, &v0, 1 << 0)) {
-        if (MapObject_GetMovementType(mapObj) == 0x1) {
+    while (MapObjectMan_FindObjectWithStatus(mapObjMan, &mapObj, &index, MAP_OBJ_STATUS_0)) {
+        if (MapObject_GetMovementType(mapObj) == MOVEMENT_TYPE_PLAYER) {
             break;
         }
     }
@@ -169,86 +230,174 @@ MapObject *sub_0205EA24(const MapObjectManager *mapObjMan)
     return mapObj;
 }
 
-static MapObject *sub_0205EA64(const MapObjectManager *mapObjMan)
+/**
+ * @brief Gets the map object associated with the PlayerAvatar, throws an error when NULL
+ *
+ * @param mapObjMan
+ *
+ * @return The MapObject * associated with the PlayerAvatar
+ */
+static MapObject *MapObjectMan_GetPlayerMapObjectCheckNull(const MapObjectManager *mapObjMan)
 {
-    MapObject *mapObj = sub_0205EA24(mapObjMan);
+    MapObject *mapObj = MapObjectMan_GetPlayerMapObject(mapObjMan);
 
     GF_ASSERT(mapObj != NULL);
     return mapObj;
 }
 
-int PlayerAvatar_GetDir(PlayerAvatar *const playerAvatar)
+/**
+ * @brief Gets the facing direction of the player avatar's map object
+ *
+ * @param playerAvatar
+ *
+ * @return facing direction
+ */
+int PlayerAvatar_GetFacingDir(PlayerAvatar *const playerAvatar)
 {
     return MapObject_GetFacingDir(Player_MapObject(playerAvatar));
 }
 
-void Player_SetDir(PlayerAvatar *playerAvatar, int dir)
+/**
+ * @brief Sets the facing direction of the player avatar's map object if the change direction lock is off
+ *
+ * @param playerAvatar
+ * @param dir
+ */
+void PlayerAvatar_TryFace(PlayerAvatar *playerAvatar, int dir)
 {
     MapObject_TryFace(Player_MapObject(playerAvatar), dir);
 }
 
-int PlayerAvatar_GetMoveDir(PlayerAvatar *const playerAvatar)
+/**
+ * @brief Gets the moving direction of the player avatar's map object
+ *
+ * @param playerAvatar
+ *
+ * @return moving direction
+ */
+int PlayerAvatar_GetMovingDir(PlayerAvatar *const playerAvatar)
 {
     return MapObject_GetMovingDir(Player_MapObject(playerAvatar));
 }
 
+/**
+ * @brief Gets the distortion world direction of the player avatar's map object
+ *
+ * @param playerAvatar
+ *
+ * @return facing direction when on the floor, moving direction otherwise
+ */
 int PlayerAvatar_GetDistortionDir(PlayerAvatar *const playerAvatar)
 {
     if (PlayerAvatar_DistortionStateOnFloor(playerAvatar) == TRUE) {
-        return PlayerAvatar_GetDir(playerAvatar);
+        return PlayerAvatar_GetFacingDir(playerAvatar);
     }
 
-    return PlayerAvatar_GetMoveDir(playerAvatar);
+    return PlayerAvatar_GetMovingDir(playerAvatar);
 }
 
-int Player_GetXPos(PlayerAvatar *const playerAvatar)
+/**
+ * @brief Gets the X position of the player avatar's map object
+ *
+ * @param playerAvatar
+ *
+ * @return xPos
+ */
+int PlayerAvatar_GetXPos(PlayerAvatar *const playerAvatar)
 {
     return MapObject_GetX(Player_MapObject(playerAvatar));
 }
 
-int Player_GetZPos(PlayerAvatar *const playerAvatar)
+/**
+ * @brief Gets the Z position of the player avatar's map object
+ *
+ * @param playerAvatar
+ *
+ * @return zPos
+ */
+int PlayerAvatar_GetZPos(PlayerAvatar *const playerAvatar)
 {
     return MapObject_GetZ(Player_MapObject(playerAvatar));
 }
 
+/**
+ * @brief Gets the previous X position of the player avatar's map object 
+ *
+ * @param playerAvatar
+ *
+ * @return xPosPrev
+ */
 int PlayerAvatar_XPosPrev(PlayerAvatar *const playerAvatar)
 {
     return MapObject_GetXPrev(Player_MapObject(playerAvatar));
 }
 
+/**
+ * @brief Gets the previous Z position of the player avatar's map object 
+ *
+ * @param playerAvatar
+ *
+ * @return zPosPrev
+ */
 int PlayerAvatar_ZPosPrev(PlayerAvatar *const playerAvatar)
 {
     return MapObject_GetZPrev(Player_MapObject(playerAvatar));
 }
 
-void PlayerAvatar_PosVectorOut(PlayerAvatar *const playerAvatar, VecFx32 *pos)
+/**
+ * @brief Gets the position vector of the player avatar's map object and stores it in pos
+ *
+ * @param playerAvatar
+ * @param pos
+ */
+void PlayerAvatar_GetPosPtr(PlayerAvatar *const playerAvatar, VecFx32 *pos)
 {
     MapObject_GetPosPtr(Player_MapObject(playerAvatar), pos);
 }
 
-const VecFx32 *PlayerAvatar_PosVector(PlayerAvatar *const playerAvatar)
+/**
+ * @brief Gets the position vector of the player avatar's map object
+ *
+ * @param playerAvatar
+ *
+ * @return VecFx32 *pos
+ */
+const VecFx32 *PlayerAvatar_GetPos(PlayerAvatar *const playerAvatar)
 {
     return MapObject_GetPos(PlayerAvatar_ConstMapObject(playerAvatar));
 }
 
-void sub_0205EB08(PlayerAvatar *playerAvatar, int param1)
+/**
+ * @brief Sets the Player Avatar's state, specified by enum PlayerAvatarState
+ *
+ * @param playerAvatar
+ * @param state
+ */
+void PlayerAvatar_SetState(PlayerAvatar *playerAvatar, int state)
 {
-    playerAvatar->unk_14 = param1;
+    playerAvatar->state = state;
 }
 
-int PlayerAvatar_MoveState(const PlayerAvatar *playerAvatar)
+/**
+ * @brief Gets the Player Avatar's state, specified by enum PlayerAvatarState
+ *
+ * @param playerAvatar
+ *
+ * @return playerAvatar->state
+ */
+int PlayerAvatar_GetState(const PlayerAvatar *playerAvatar)
 {
-    return playerAvatar->unk_14;
+    return playerAvatar->state;
 }
 
-void sub_0205EB10(PlayerAvatar *playerAvatar, int param1)
+void PlayerAvatar_SetMoveState(PlayerAvatar *playerAvatar, int moveState)
 {
-    playerAvatar->unk_18 = param1;
+    playerAvatar->moveState = moveState;
 }
 
-int Player_MoveState(const PlayerAvatar *playerAvatar)
+int PlayerAvatar_GetMoveState(const PlayerAvatar *playerAvatar)
 {
-    return playerAvatar->unk_18;
+    return playerAvatar->moveState;
 }
 
 void PlayerAvatar_SetVisible(PlayerAvatar *playerAvatar, BOOL visible)
@@ -280,12 +429,12 @@ const MapObject *PlayerAvatar_ConstMapObject(const PlayerAvatar *playerAvatar)
     return playerAvatar->mapObject;
 }
 
-void PlayerAvatar_SetPlayerState(PlayerAvatar *playerAvatar, int form)
+void PlayerAvatar_SetPlayerState(PlayerAvatar *playerAvatar, int playerState)
 {
-    GF_ASSERT(form < 0x6);
-    playerAvatar->unk_1C = form;
+    GF_ASSERT(playerState < 0x6);
+    playerAvatar->unk_1C = playerState;
 
-    SetAvatarForm(playerAvatar, form);
+    PlayerAvatar_Player_SetState(playerAvatar, playerState);
 }
 
 int PlayerAvatar_GetPlayerState(PlayerAvatar *playerAvatar)
@@ -437,7 +586,7 @@ void PlayerData_Init(PlayerData *playerData)
 {
     playerData->cyclingGear = 0;
     playerData->runningShoes = FALSE;
-    playerData->form = 0x0;
+    playerData->playerState = 0x0;
 }
 
 int PlayerData_HasRunningShoes(PlayerData *playerData)
@@ -488,26 +637,26 @@ int PlayerAvatar_CyclingGear(PlayerAvatar *playerAvatar)
     return PlayerData_CyclingGear(player);
 }
 
-u32 GetPlayerForm(PlayerData *player)
+u32 Player_GetState(PlayerData *player)
 {
     if (player != NULL) {
-        return player->form;
+        return player->playerState;
     }
 
-    return 0x0;
+    return PLAYER_AVATAR_WALKING;
 }
 
-void SetPlayerForm(PlayerData *player, u32 form)
+void Player_SetState(PlayerData *player, u32 playerState)
 {
     if (player != NULL) {
-        player->form = form;
+        player->playerState = playerState;
     }
 }
 
-void SetAvatarForm(PlayerAvatar *playerAvatar, u32 form)
+void PlayerAvatar_Player_SetState(PlayerAvatar *playerAvatar, u32 playerState)
 {
     PlayerData *player = PlayerAvatar_PlayerData(playerAvatar);
-    SetPlayerForm(player, form);
+    Player_SetState(player, playerState);
 }
 
 void sub_0205ECB8(PlayerAvatar *playerAvatar, const VecFx32 *param1, int param2)
@@ -515,8 +664,8 @@ void sub_0205ECB8(PlayerAvatar *playerAvatar, const VecFx32 *param1, int param2)
     MapObject *mapObj = Player_MapObject(playerAvatar);
 
     MapObject_SetPosDirFromVec(mapObj, param1, param2);
-    sub_0205EB08(playerAvatar, 0);
-    sub_0205EB10(playerAvatar, 0);
+    PlayerAvatar_SetState(playerAvatar, 0);
+    PlayerAvatar_SetMoveState(playerAvatar, 0);
 }
 
 void sub_0205ECE0(PlayerAvatar *playerAvatar, int x, int z, int dir)
@@ -524,8 +673,8 @@ void sub_0205ECE0(PlayerAvatar *playerAvatar, int x, int z, int dir)
     MapObject *mapObj = Player_MapObject(playerAvatar);
 
     MapObject_SetPosDirFromCoords(mapObj, x, 0, z, dir);
-    sub_0205EB08(playerAvatar, 0);
-    sub_0205EB10(playerAvatar, 0);
+    PlayerAvatar_SetState(playerAvatar, 0);
+    PlayerAvatar_SetMoveState(playerAvatar, 0);
 }
 
 void Player_SetYPos(PlayerAvatar *playerAvatar, fx32 y)
@@ -562,110 +711,119 @@ void PlayerAvatar_SetHeightCalculationEnabledAndUpdate(PlayerAvatar *playerAvata
     }
 }
 
-int Player_MoveStateFromGender(int param0, int gender)
+/**
+ * @brief Gets the OBJ_EVENT_GFX_ constant associated with the given player state and gender
+ *
+ * @param playerState
+ * @param gender
+ *
+ * @return OBJ_EVENT_GFX_ constant (default OBJ_EVENT_GFX_PLAYER_M)
+ */
+int Player_GetSpriteFromStateAndGender(int playerState, int gender)
 {
+    // TODO: Some OBJ_EVENT_GFX_ constants are being worked on by a different contributor, will need to add the missing constants once those get expanded
     if (gender == 0) {
-        switch (param0) {
-        case 0x0:
-            return 0x0;
-        case 0x1:
-            return 0x15;
-        case 0x2:
-            return 0xb2;
-        case 0x10:
-            return 0xb0;
-        case 0x11:
-            return 0xb4;
-        case 0x12:
-            return 0xba;
-        case 0x13:
-            return 0xbc;
-        case 0x14:
-            return 0xc4;
-        case 0x15:
-            return 0xc6;
-        case 0x16:
-            return 0xc8;
-        case 0x17:
-            return 0x100;
-        case 0x18:
-            return 0xd4;
-        case 0x19:
-            return 0x102;
-        case 0x1a:
+        switch (playerState) {
+        case PLAYER_AVATAR_WALKING:
+            return OBJ_EVENT_GFX_PLAYER_M;
+        case PLAYER_AVATAR_CYCLING:
+            return OBJ_EVENT_GFX_PLAYER_M_BIKE;
+        case PLAYER_AVATAR_SURFING:
+            return OBJ_EVENT_GFX_PLAYER_M_SURF;
+        case PLAYER_AVATAR_USE_FIELD_MOVE:
+            return OBJ_EVENT_GFX_PLAYER_M_HOLDING_POKE_BALL;
+        case PLAYER_AVATAR_SPRAYDUCK:
+            return OBJ_EVENT_GFX_PLAYER_M_SPRAYDUCK;
+        case PLAYER_AVATAR_CONTEST:
+            return OBJ_EVENT_GFX_PLAYER_M_CONTEST;
+        case PLAYER_AVATAR_FISHING:
+            return OBJ_EVENT_GFX_PLAYER_M_FISHING;
+        case PLAYER_AVATAR_POKETCH:
+            return OBJ_EVENT_GFX_PLAYER_M_POKETCH;
+        case PLAYER_AVATAR_SAVE:
+            return OBJ_EVENT_GFX_PLAYER_M_SAVE;
+        case PLAYER_AVATAR_HEAL:
+            return OBJ_EVENT_GFX_UNK_200;
+        case PLAYER_AVATAR_VS_SEEKER:
+            return OBJ_EVENT_GFX_PLAYER_M_VS_SEEKER;
+        case PLAYER_AVATAR_DISTORTION_WORLD:
+            return OBJ_EVENT_GFX_DIST_WORLD_PLAYER_M;
+        case PLAYER_AVATAR_DISTORTION_WORLD_SURF:
+            return OBJ_EVENT_GFX_DIST_WORLD_PLAYER_M_SURF;
+        case PLAYER_AVATAR_26:
             return 0x10c;
-        case 0x1b:
+        case PLAYER_AVATAR_27:
             return 0x10e;
-        case 0x1c:
-            return 0xd2;
-        case 0x1d:
+        case PLAYER_AVATAR_HEARTHOME_GYM:
+            return OBJ_EVENT_GFX_PLAYER_M_HEARTHOME_GYM;
+        case PLAYER_AVATAR_29:
             return 0x110;
-        case 0x1e:
+        case PLAYER_AVATAR_30:
             return 0x112;
         }
     } else {
-        switch (param0) {
-        case 0x0:
-            return 0x61;
-        case 0x1:
-            return 0x62;
-        case 0x2:
-            return 0xb3;
-        case 0x10:
-            return 0xb1;
-        case 0x11:
-            return 0xb5;
-        case 0x12:
-            return 0xbb;
-        case 0x13:
-            return 0xbd;
-        case 0x14:
-            return 0xc5;
-        case 0x15:
-            return 0xc7;
-        case 0x16:
-            return 0xc9;
-        case 0x17:
-            return 0x101;
-        case 0x18:
-            return 0x107;
-        case 0x19:
-            return 0x103;
-        case 0x1a:
+        switch (playerState) {
+        case PLAYER_AVATAR_WALKING:
+            return OBJ_EVENT_GFX_PLAYER_F;
+        case PLAYER_AVATAR_CYCLING:
+            return OBJ_EVENT_GFX_PLAYER_F_BIKE;
+        case PLAYER_AVATAR_SURFING:
+            return OBJ_EVENT_GFX_PLAYER_F_SURF;
+        case PLAYER_AVATAR_USE_FIELD_MOVE:
+            return OBJ_EVENT_GFX_PLAYER_F_HOLDING_POKE_BALL;
+        case PLAYER_AVATAR_SPRAYDUCK:
+            return OBJ_EVENT_GFX_PLAYER_F_SPRAYDUCK;
+        case PLAYER_AVATAR_CONTEST:
+            return OBJ_EVENT_GFX_PLAYER_F_CONTEST;
+        case PLAYER_AVATAR_FISHING:
+            return OBJ_EVENT_GFX_PLAYER_F_FISHING;
+        case PLAYER_AVATAR_POKETCH:
+            return OBJ_EVENT_GFX_PLAYER_F_POKETCH;
+        case PLAYER_AVATAR_SAVE:
+            return OBJ_EVENT_GFX_PLAYER_F_SAVE;
+        case PLAYER_AVATAR_HEAL:
+            return OBJ_EVENT_GFX_UNK_201;
+        case PLAYER_AVATAR_VS_SEEKER:
+            return OBJ_EVENT_GFX_PLAYER_F_VS_SEEKER;
+        case PLAYER_AVATAR_DISTORTION_WORLD:
+            return OBJ_EVENT_GFX_DIST_WORLD_PLAYER_F;
+        case PLAYER_AVATAR_DISTORTION_WORLD_SURF:
+            return OBJ_EVENT_GFX_DIST_WORLD_PLAYER_F_SURF;
+        case PLAYER_AVATAR_26:
             return 0x10d;
-        case 0x1b:
+        case PLAYER_AVATAR_27:
             return 0x10f;
-        case 0x1c:
-            return 0xd3;
-        case 0x1d:
+        case PLAYER_AVATAR_HEARTHOME_GYM:
+            return OBJ_EVENT_GFX_PLAYER_F_HEARTHOME_GYM;
+        case PLAYER_AVATAR_29:
             return 0x111;
-        case 0x1e:
+        case PLAYER_AVATAR_30:
             return 0x113;
         }
     }
 
     GF_ASSERT(FALSE);
-    return 0x0;
+    return OBJ_EVENT_GFX_PLAYER_M;
 }
 
-u32 Player_ConvertStateToTransition(int param0)
+u32 Player_ConvertStateToTransition(int playerState)
 {
-    switch (param0) {
-    case PLAYER_STATE_WALKING:
+    switch (playerState) {
+    case PLAYER_AVATAR_WALKING:
         return PLAYER_TRANSITION_WALKING;
-    case PLAYER_STATE_CYCLING:
+    case PLAYER_AVATAR_CYCLING:
         return PLAYER_TRANSITION_CYCLING;
-    case PLAYER_STATE_SURFING:
+    case PLAYER_AVATAR_SURFING:
         return PLAYER_TRANSITION_SURFING;
-    case 0x11:
+    case PLAYER_AVATAR_SPRAYDUCK:
         return PLAYER_TRANSITION_WATER_BERRIES;
-    case 0x13:
+    case PLAYER_AVATAR_FISHING:
         return PLAYER_TRANSITION_FISHING;
-    case 0x14:
+    case PLAYER_AVATAR_POKETCH:
         return PLAYER_TRANSITION_POKETCH;
-    case 0x15:
+    case PLAYER_AVATAR_SAVE:
         return PLAYER_TRANSITION_SAVE;
-    case 0x16:
+    case PLAYER_AVATAR_HEAL:
         return PLAYER_TRANSITION_HEALING;
     }
 
