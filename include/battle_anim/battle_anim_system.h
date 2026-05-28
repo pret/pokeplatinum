@@ -254,7 +254,7 @@ SpriteManager *BattleAnimSystem_GetPrimarySpriteManager(BattleAnimSystem *system
 SpriteSystem *BattleAnimSystem_GetSpriteSystem(BattleAnimSystem *system);
 void BattleAnimSystem_SetDefaultAlphaBlending(void);
 int BattleAnimSystem_GetMoveInfo(BattleAnimSystem *system, enum BattleAnimMoveInfoType type);
-void ov12_02220590(BattleAnimSystem *system, UnkStruct_ov12_022380DC *param1, int param2);
+void ov12_02220590(BattleAnimSystem *system, BattlerSpriteContext *battlerSpriteCtx, int param2);
 void BattleAnimSystem_CancelTrackingTask(BattleAnimSystem *system, enum BattleAnimTrackingTask task);
 void BattleAnimSystem_CancelBgAnim(BattleAnimSystem *system);
 int BattleAnimSystem_GetBaseBgPalettes(BattleAnimSystem *system);
@@ -286,10 +286,10 @@ void BattleAnimSystem_LoadBattleBgTiles(BattleAnimSystem *system, enum BgLayer l
 void BattleAnimSystem_LoadBattleBgPaletteBuffer(BattleAnimSystem *system);
 BOOL BattleAnimSystem_ShouldBattlerSpriteBeFlipped(BattleAnimSystem *system, int battlerRole);
 int BattleAnimSystem_GetBgNarcMemberIndex(int bgID, enum BgNarcMemberType type);
-UnkStruct_ov12_02223764 *ov12_022234F8(BattleSystem *battleSys, enum HeapID heapID, int param2);
-UnkStruct_ov12_02223764 *ov12_02223764(BattleSystem *battleSys, enum HeapID heapID);
-void ov12_02223770(UnkStruct_ov12_02223764 *param0);
-void ov12_022237A4(UnkStruct_ov12_02223764 *param0, int param1);
-int ov12_022237D8(UnkStruct_ov12_02223764 *param0);
+BattleMonOBJData *ov12_022234F8(BattleSystem *battleSys, enum HeapID heapID, int param2);
+BattleMonOBJData *ov12_02223764(BattleSystem *battleSys, enum HeapID heapID);
+void ov12_02223770(BattleMonOBJData *btlMonObjData);
+void ov12_022237A4(BattleMonOBJData *btlMonObjData, int param1);
+int ov12_022237D8(BattleMonOBJData *btlMonObjData);
 
 #endif // POKEPLATINUM_BATTLE_ANIM_SYSTEM_H

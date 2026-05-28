@@ -1,9 +1,9 @@
 #ifndef POKEPLATINUM_STRUCT_OV16_02264650_H
 #define POKEPLATINUM_STRUCT_OV16_02264650_H
 
-typedef struct {
+typedef struct BallThrowFlashData {
     int state;
-    int unk_04;
-} UnkStruct_ov16_02264650;
+    int unread_04;
+} BallThrowFlashData;
 
 #endif // POKEPLATINUM_STRUCT_OV16_02264650_H

@@ -172,8 +172,8 @@ static void LoadEscapeMessage(BattleSystem *battleSys, BattlerData *battlerData,
 static void LoadForfeitMessage(BattleSystem *battleSys, BattlerData *battlerData, BattleMessage *battleMsg);
 static ManagedSprite *BattleDisplay_NewManagedSpriteTrainer(BattleSystem *battleSys, int side, int trainerClass, int battlerType, s16 x, s16 y);
 static void BattleDisplay_PlayMoveAnimation(BattleSystem *battleSys, BattlerData *battlerData, BattleAnimSystem *battleAnimSystem, MoveAnimation *animation);
-static void BattleDisplay_PopulateBattlerContext(BattleSystem *battleSys, MoveAnimation *animation, UnkStruct_ov12_022380DC *param2, int param3);
-static void BattleDisplay_GetAnimHideFlags(u8 *param0, u8 *param1, int param2, int param3, u16 param4);
+static void BattleDisplay_PopulateBattlerContext(BattleSystem *battleSys, MoveAnimation *animation, BattlerSpriteContext *battlerSpriteCtx, int battler);
+static void BattleDisplay_GetAnimHideFlags(u8 *hideHealthboxes, u8 *hideShadows, int animMode, int secondaryAnimID, u16 move);
 static BOOL BattleDisplay_AdvanceTrainerThrowAnim(TrainerEncounterData *trainerEncounterData, ManagedSprite *unused);
 static void SysTask_ScreenFlashForThrow(SysTask *task, void *data);
 static void BattleDisplay_StopPlayback(BattleSystem *battleSys);
@@ -289,15 +289,15 @@ void BattleDisplay_InitTaskSetEncounter(BattleSystem *battleSys, BattlerData *ba
 
     if (monEncounterData->face == FACE_FRONT && (BattleSystem_GetBattleStatusMask(battleSys) & BATTLE_STATUS_GIRATINA)) {
         int v10 = ((24 * 8) - -80) / 2;
-        int v11 = PokemonSprite_GetAttribute(monEncounterData->sprite, MON_SPRITE_Y_CENTER);
+        int spriteYCenter = PokemonSprite_GetAttribute(monEncounterData->sprite, MON_SPRITE_Y_CENTER);
 
         PokemonSprite_SetAttribute(monEncounterData->sprite, MON_SPRITE_SHADOW_SIZE, 0);
         PokemonSprite_SetAttribute(monEncounterData->sprite, MON_SPRITE_X_CENTER, 256 - 64);
-        PokemonSprite_SetAttribute(monEncounterData->sprite, MON_SPRITE_Y_CENTER, v11 - v10);
+        PokemonSprite_SetAttribute(monEncounterData->sprite, MON_SPRITE_Y_CENTER, spriteYCenter - v10);
 
-        monEncounterData->targetPos = v11;
+        monEncounterData->targetPos = spriteYCenter;
     } else {
-        monEncounterData->targetPos = Unk_ov12_0223B0A0[battlerData->battlerType][0];
+        monEncounterData->targetPos = gBattlerEncounterX[battlerData->battlerType][0];
     }
 
     monEncounterData->battleSys = battleSys;
@@ -323,9 +323,9 @@ void BattleDisplay_InitTaskSetEncounter(BattleSystem *battleSys, BattlerData *ba
 typedef struct MonShowData {
     BattleSystem *battleSys;
     BattlerData *battlerData;
-    UnkStruct_ov12_02235FE0 *unk_08;
+    BallCapsuleSealEffect *ballCapsuleSealEffect;
     BallRotation *ballRotation;
-    UnkStruct_ov12_02223764 *unk_10;
+    BattleMonOBJData *btlMonObjData;
     PokemonSpriteTemplate spriteTemplate;
     BattleAnimSystem *battleAnimSys;
     MoveAnimation moveAnim;
@@ -431,7 +431,7 @@ void BattleDisplay_InitTaskShowPokemon(BattleSystem *battleSys, BattlerData *bat
     monShowData->nature = Pokemon_GetNatureOf(message->personality);
     monShowData->capturedBall = message->capturedBall;
     monShowData->isShiny = message->isShiny;
-    monShowData->isQuickSendOut = message->unk_14;
+    monShowData->isQuickSendOut = message->isQuickSendOut;
     monShowData->delay = 0;
     monShowData->isSubstitute = message->isSubstitute;
 
@@ -548,7 +548,7 @@ void BattleDisplay_InitTaskSetTrainerEncounter(BattleSystem *battleSys, BattlerD
         battlerData->battlerType,
         gEncounterCoords[side][0],
         gEncounterCoords[side][1]);
-    trainerEncounterData->targetX = Unk_ov12_0223B0A0[side][0];
+    trainerEncounterData->targetX = gBattlerEncounterX[side][0];
     trainerEncounterData->battleSys = battleSys;
     trainerEncounterData->command = message->command;
     trainerEncounterData->battler = battlerData->battler;
@@ -657,7 +657,7 @@ void BattleDisplay_InitTaskSlideTrainerIn(BattleSystem *battleSys, BattlerData *
         battlerData->battlerType,
         gSlideTrainerInCoords[battlerData->battlerType & BATTLER_THEM][0],
         gSlideTrainerInCoords[battlerData->battlerType & BATTLER_THEM][1]);
-    slideTrainerInData->x = Unk_ov12_0223B0A0[battlerData->battlerType & BATTLER_THEM][message->posIn];
+    slideTrainerInData->x = gBattlerEncounterX[battlerData->battlerType & BATTLER_THEM][message->posIn];
     slideTrainerInData->battleSys = battleSys;
     slideTrainerInData->command = message->command;
     slideTrainerInData->battler = battlerData->battler;
@@ -841,7 +841,7 @@ void BattleDisplay_InitTaskShowTargetSelectMenu(BattleSystem *battleSys, Battler
     targetSelectMenuData->battlerType = battlerData->battlerType;
     targetSelectMenuData->range = message->range;
     targetSelectMenuData->healthbox = &battlerData->healthbox;
-    targetSelectMenuData->shouldHidePanel = message->unk_01;
+    targetSelectMenuData->shouldHidePanel = message->shouldHidePanel;
 
     BattleSystem_SetBattlerTypes(battleSys, &battlerTypes[0]);
 
@@ -1584,10 +1584,10 @@ void BattleDisplay_PrintLinkWaitMessage(BattleSystem *battleSys, BattlerData *ba
 
 void BattleDisplay_RestoreSprite(BattleSystem *battleSys, BattlerData *battlerData, MoveAnimation *animation)
 {
-    UnkStruct_ov12_022380DC v0;
+    BattlerSpriteContext battlerSpriteCtx;
 
-    BattleDisplay_PopulateBattlerContext(battleSys, animation, &v0, battlerData->battler);
-    ov12_022382BC(&v0, HEAP_ID_BATTLE);
+    BattleDisplay_PopulateBattlerContext(battleSys, animation, &battlerSpriteCtx, battlerData->battler);
+    ov12_022382BC(&battlerSpriteCtx, HEAP_ID_BATTLE);
     BattleController_EmitClearCommand(battleSys, battlerData->battler, animation->command);
 }
 
@@ -1698,10 +1698,10 @@ void BattleDisplay_PrintForfeitMessage(BattleSystem *battleSys, BattlerData *bat
 
 void BattleDisplay_RefreshSprite(BattleSystem *battleSys, BattlerData *battlerData, MoveAnimation *animation)
 {
-    UnkStruct_ov12_022380DC v0;
+    BattlerSpriteContext battlerSpriteCtx;
 
-    BattleDisplay_PopulateBattlerContext(battleSys, animation, &v0, battlerData->battler);
-    ov12_02238390(&v0, HEAP_ID_BATTLE);
+    BattleDisplay_PopulateBattlerContext(battleSys, animation, &battlerSpriteCtx, battlerData->battler);
+    ov12_02238390(&battlerSpriteCtx, HEAP_ID_BATTLE);
     BattleController_EmitClearCommand(battleSys, battlerData->battler, animation->command);
 }
 
@@ -1993,31 +1993,31 @@ static void Task_ShowEncounter(SysTask *task, void *data)
     switch (monShowData->state) {
     case 0:
         monShowData->delay = 0;
-        monShowData->unk_10 = NULL;
+        monShowData->btlMonObjData = NULL;
 
         if (BattleSystem_GetBattleType(monShowData->battleSys) & BATTLE_TYPE_2vs2) {
             if ((BattleSystem_GetBattleStatusMask(monShowData->battleSys) & BATTLE_STATUS_RECORDED) == FALSE
                 && monShowData->battlerType == BATTLER_TYPE_PLAYER_SIDE_SLOT_1) {
-                monShowData->unk_10 = ov12_02223764(monShowData->battleSys, HEAP_ID_BATTLE);
+                monShowData->btlMonObjData = ov12_02223764(monShowData->battleSys, HEAP_ID_BATTLE);
             }
         } else if ((BattleSystem_GetBattleStatusMask(monShowData->battleSys) & BATTLE_STATUS_RECORDED) == FALSE) {
             if (BattleSystem_IsInitialized(monShowData->battleSys) == TRUE && monShowData->battlerType == BATTLER_TYPE_PLAYER_SIDE_SLOT_1) {
-                monShowData->unk_10 = ov12_02223764(monShowData->battleSys, HEAP_ID_BATTLE);
+                monShowData->btlMonObjData = ov12_02223764(monShowData->battleSys, HEAP_ID_BATTLE);
             } else if (monShowData->battlerType == BATTLER_TYPE_SOLO_PLAYER) {
-                monShowData->unk_10 = ov12_02223764(monShowData->battleSys, HEAP_ID_BATTLE);
+                monShowData->btlMonObjData = ov12_02223764(monShowData->battleSys, HEAP_ID_BATTLE);
             }
         }
 
         monShowData->state++;
         break;
     case 1:
-        UnkStruct_ov12_02236030 v1 = { 0 };
+        BallCapsuleConfig ballCapCfg = { 0 };
 
-        v1.unk_00 = monShowData->battlerType;
-        v1.unk_08 = BattleSystem_GetPartyPokemon(monShowData->battleSys, monShowData->battler, monShowData->selectedPartySlot);
-        monShowData->unk_08 = ov12_02236004(HEAP_ID_BATTLE, &v1);
+        ballCapCfg.battlerType = monShowData->battlerType;
+        ballCapCfg.mon = BattleSystem_GetPartyPokemon(monShowData->battleSys, monShowData->battler, monShowData->selectedPartySlot);
+        monShowData->ballCapsuleSealEffect = ov12_02236004(HEAP_ID_BATTLE, &ballCapCfg);
 
-        ov12_02236320(monShowData->unk_08);
+        ov12_02236320(monShowData->ballCapsuleSealEffect);
         monShowData->state++;
         break;
     case 2:
@@ -2025,7 +2025,7 @@ static void Task_ShowEncounter(SysTask *task, void *data)
             break;
         }
 
-        if (ov12_02236374(monShowData->unk_08) != 1) {
+        if (ov12_02236374(monShowData->ballCapsuleSealEffect) != 1) {
             break;
         }
 
@@ -2047,7 +2047,7 @@ static void Task_ShowEncounter(SysTask *task, void *data)
             monShowData->battlerData->monSprite = BattleDisplay_NewPokemonSprite(monShowData->battleSys,
                 monSpriteMan,
                 &monShowData->spriteTemplate,
-                Unk_ov12_0223B0A0[monShowData->battlerType][0],
+                gBattlerEncounterX[monShowData->battlerType][0],
                 gEncounterCoords[monShowData->battlerType][1],
                 gEncounterCoords[monShowData->battlerType][2],
                 monShowData->yOffset,
@@ -2066,7 +2066,7 @@ static void Task_ShowEncounter(SysTask *task, void *data)
             PokemonSprite_StartFade(monShowData->battlerData->monSprite, 16, 16, 0, sFadeColors[monShowData->capturedBall]);
             PokemonSprite_SetAttribute(monShowData->battlerData->monSprite, MON_SPRITE_HIDE, FALSE);
 
-            ov12_022363B4(monShowData->unk_08);
+            ov12_022363B4(monShowData->ballCapsuleSealEffect);
 
             if (monShowData->face == FACE_FRONT) {
                 Sound_PlayPannedEffect(SEQ_SE_DP_BOWA2, BATTLE_SOUND_PAN_RIGHT);
@@ -2074,9 +2074,9 @@ static void Task_ShowEncounter(SysTask *task, void *data)
                 Sound_PlayPannedEffect(SEQ_SE_DP_BOWA2, BATTLE_SOUND_PAN_LEFT);
             }
 
-            if (monShowData->unk_10) {
-                ov12_02223770(monShowData->unk_10);
-                monShowData->unk_10 = NULL;
+            if (monShowData->btlMonObjData) {
+                ov12_02223770(monShowData->btlMonObjData);
+                monShowData->btlMonObjData = NULL;
             }
 
             monShowData->state++;
@@ -2087,7 +2087,7 @@ static void Task_ShowEncounter(SysTask *task, void *data)
             monShowData->state++;
         }
     case 4:
-        if (PokemonSprite_GetAttribute(monShowData->battlerData->monSprite, MON_SPRITE_SCALE_X) == 0x100 && ov12_022363C4(monShowData->unk_08) == 0) {
+        if (PokemonSprite_GetAttribute(monShowData->battlerData->monSprite, MON_SPRITE_SCALE_X) == 0x100 && ov12_022363C4(monShowData->ballCapsuleSealEffect) == 0) {
             if (monShowData->face == FACE_FRONT) {
                 PokemonSprite_InitAnim(monShowData->battlerData->monSprite, 1);
                 PokemonSprite_SetAttribute(monShowData->battlerData->monSprite, MON_SPRITE_SHADOW_IS_AFFINE, FALSE);
@@ -2185,7 +2185,7 @@ static void Task_ShowEncounter(SysTask *task, void *data)
         }
         break;
     case 5:
-        if (ov12_022363C4(monShowData->unk_08) == 0) {
+        if (ov12_022363C4(monShowData->ballCapsuleSealEffect) == 0) {
             monShowData->state = 6;
         }
         break;
@@ -2194,7 +2194,7 @@ static void Task_ShowEncounter(SysTask *task, void *data)
             && PokemonSprite_IsAnimActive(monShowData->battlerData->monSprite) == FALSE) {
             ov12_0223783C(monShowData->battlerData->ballRotation);
             monShowData->battlerData->ballRotation = NULL;
-            ov12_02236428(monShowData->unk_08);
+            ov12_02236428(monShowData->ballCapsuleSealEffect);
 
             if (monShowData->isShiny) {
                 MoveAnimation moveAnim;
@@ -2254,9 +2254,9 @@ static void Task_ShowPokemon(SysTask *task, void *data)
         ballThrow.surface = 0;
 
         if (monShowData->isQuickSendOut == 1) {
-            ballThrow.mode = 1;
+            ballThrow.mode = BALL_THROW_MODE_SEND_OUT_QUICK;
         } else {
-            ballThrow.mode = 0;
+            ballThrow.mode = BALL_THROW_MODE_SEND_OUT;
         }
 
         monShowData->ballRotation = ov12_02237728(&ballThrow);
@@ -2267,7 +2267,7 @@ static void Task_ShowPokemon(SysTask *task, void *data)
         monShowData->battlerData->monSprite = BattleDisplay_NewPokemonSprite(monShowData->battleSys,
             monSpriteMan,
             &monShowData->spriteTemplate,
-            Unk_ov12_0223B0A0[monShowData->battlerType][0],
+            gBattlerEncounterX[monShowData->battlerType][0],
             gEncounterCoords[monShowData->battlerType][1],
             gEncounterCoords[monShowData->battlerType][2],
             monShowData->yOffset,
@@ -2282,19 +2282,19 @@ static void Task_ShowPokemon(SysTask *task, void *data)
         PokemonSprite_SetAttribute(monShowData->battlerData->monSprite, MON_SPRITE_SCALE_Y, 0);
         PokemonSprite_SetAttribute(monShowData->battlerData->monSprite, MON_SPRITE_SHADOW_SHOULD_FOLLOW_Y, FALSE);
         PokemonSprite_SetAttribute(monShowData->battlerData->monSprite, MON_SPRITE_HIDE, TRUE);
-        monShowData->unk_10 = NULL;
-        monShowData->unk_10 = ov12_02223764(monShowData->battleSys, HEAP_ID_BATTLE);
+        monShowData->btlMonObjData = NULL;
+        monShowData->btlMonObjData = ov12_02223764(monShowData->battleSys, HEAP_ID_BATTLE);
         monShowData->state++;
         break;
     case 1:
-        UnkStruct_ov12_02236030 v5 = { 0 };
+        BallCapsuleConfig ballCapCfg = { 0 };
 
-        v5.unk_00 = monShowData->battlerType;
-        v5.unk_08 = BattleSystem_GetPartyPokemon(monShowData->battleSys, monShowData->battler, monShowData->selectedPartySlot);
-        v5.unk_04 = monShowData->capturedBall;
+        ballCapCfg.battlerType = monShowData->battlerType;
+        ballCapCfg.mon = BattleSystem_GetPartyPokemon(monShowData->battleSys, monShowData->battler, monShowData->selectedPartySlot);
+        ballCapCfg.ballTypeOverride = monShowData->capturedBall;
 
-        monShowData->unk_08 = ov12_02236004(HEAP_ID_BATTLE, &v5);
-        ov12_02236320(monShowData->unk_08);
+        monShowData->ballCapsuleSealEffect = ov12_02236004(HEAP_ID_BATTLE, &ballCapCfg);
+        ov12_02236320(monShowData->ballCapsuleSealEffect);
         monShowData->state++;
         break;
     case 2:
@@ -2302,19 +2302,19 @@ static void Task_ShowPokemon(SysTask *task, void *data)
             break;
         }
 
-        if (ov12_02236374(monShowData->unk_08) != 1) {
+        if (ov12_02236374(monShowData->ballCapsuleSealEffect) != 1) {
             break;
         }
 
         if (ov12_02237810(monShowData->ballRotation) == 1) {
-            if (monShowData->unk_10) {
-                ov12_02223770(monShowData->unk_10);
+            if (monShowData->btlMonObjData) {
+                ov12_02223770(monShowData->btlMonObjData);
             }
 
             PokemonSprite_StartFade(monShowData->battlerData->monSprite, 16, 16, 0, sFadeColors[monShowData->capturedBall]);
             PokemonSprite_SetAttribute(monShowData->battlerData->monSprite, MON_SPRITE_HIDE, FALSE);
 
-            ov12_022363B4(monShowData->unk_08);
+            ov12_022363B4(monShowData->ballCapsuleSealEffect);
 
             if (monShowData->face == FACE_FRONT) {
                 Sound_PlayPannedEffect(SEQ_SE_DP_BOWA2, BATTLE_SOUND_PAN_RIGHT);
@@ -2330,7 +2330,7 @@ static void Task_ShowPokemon(SysTask *task, void *data)
             monShowData->state++;
         }
     case 4:
-        if (PokemonSprite_GetAttribute(monShowData->battlerData->monSprite, MON_SPRITE_SCALE_X) == 0x100 && ov12_022363C4(monShowData->unk_08) == 0) {
+        if (PokemonSprite_GetAttribute(monShowData->battlerData->monSprite, MON_SPRITE_SCALE_X) == 0x100 && ov12_022363C4(monShowData->ballCapsuleSealEffect) == 0) {
             if (monShowData->face == FACE_FRONT) {
                 PokemonSprite_InitAnim(monShowData->battlerData->monSprite, 1);
                 PokemonSprite_SetAttribute(monShowData->battlerData->monSprite, MON_SPRITE_SHADOW_IS_AFFINE, FALSE);
@@ -2426,7 +2426,7 @@ static void Task_ShowPokemon(SysTask *task, void *data)
         }
         break;
     case 5:
-        if (ov12_022363C4(monShowData->unk_08) == 0) {
+        if (ov12_022363C4(monShowData->ballCapsuleSealEffect) == 0) {
             monShowData->state = 6;
         }
         break;
@@ -2434,7 +2434,7 @@ static void Task_ShowPokemon(SysTask *task, void *data)
         if (PokemonAnimManager_HasAnimCompleted(BattleSystem_GetPokemonAnimManager(monShowData->battleSys), monShowData->battler) == TRUE
             && PokemonSprite_IsAnimActive(monShowData->battlerData->monSprite) == FALSE) {
             ov12_0223783C(monShowData->ballRotation);
-            ov12_02236428(monShowData->unk_08);
+            ov12_02236428(monShowData->ballCapsuleSealEffect);
 
             if (monShowData->isShiny) {
                 MoveAnimation moveAnim;
@@ -2469,11 +2469,11 @@ static void Task_ShowPokemon(SysTask *task, void *data)
         }
         break;
     case 10:
-        UnkStruct_ov12_022380DC v12;
+        BattlerSpriteContext battlerSpriteCtx;
         MoveAnimation moveAnim;
 
-        BattleDisplay_PopulateBattlerContext(monShowData->battleSys, &monShowData->moveAnim, &v12, monShowData->battler);
-        ov12_02238390(&v12, HEAP_ID_BATTLE);
+        BattleDisplay_PopulateBattlerContext(monShowData->battleSys, &monShowData->moveAnim, &battlerSpriteCtx, monShowData->battler);
+        ov12_02238390(&battlerSpriteCtx, HEAP_ID_BATTLE);
         BattleController_SetMoveAnimation(monShowData->battleSys, NULL, &moveAnim, 1, 16, monShowData->battler, monShowData->battler, NULL);
         BattleDisplay_PlayMoveAnimation(monShowData->battleSys, monShowData->battlerData, battleAnimSys, &moveAnim);
 
@@ -2506,11 +2506,11 @@ static void Task_ReturnPokemon(SysTask *task, void *data)
         }
         break;
     case 2:
-        UnkStruct_ov12_022380DC v3;
+        BattlerSpriteContext battlerSpriteCtx;
         MoveAnimation moveAnim;
 
-        BattleDisplay_PopulateBattlerContext(monReturnData->battleSys, &monReturnData->moveAnim, &v3, monReturnData->battler);
-        ov12_022382BC(&v3, HEAP_ID_BATTLE);
+        BattleDisplay_PopulateBattlerContext(monReturnData->battleSys, &monReturnData->moveAnim, &battlerSpriteCtx, monReturnData->battler);
+        ov12_022382BC(&battlerSpriteCtx, HEAP_ID_BATTLE);
         BattleController_SetMoveAnimation(monReturnData->battleSys, NULL, &moveAnim, 1, 16, monReturnData->battler, monReturnData->battler, NULL);
         BattleDisplay_PlayMoveAnimation(monReturnData->battleSys, monReturnData->battlerData, battleAnimSys, &moveAnim);
         monReturnData->battlerData->isAlternateSprite = 0;
@@ -2531,7 +2531,7 @@ static void Task_ReturnPokemon(SysTask *task, void *data)
 
             ballThrow.type = sBallThrowTypes[monReturnData->battlerType];
             ballThrow.heapID = HEAP_ID_BATTLE;
-            ballThrow.mode = 5;
+            ballThrow.mode = BALL_THROW_MODE_RECALL;
             ballThrow.target = monReturnData->battler;
             ballThrow.ballID = monReturnData->capturedBall;
             ballThrow.cellActorSys = BattleSystem_GetSpriteSystem(monReturnData->battleSys);
@@ -2545,7 +2545,7 @@ static void Task_ReturnPokemon(SysTask *task, void *data)
 
             ballThrow.type = ballThrowTypes[monReturnData->battlerType];
             ballThrow.heapID = HEAP_ID_BATTLE;
-            ballThrow.mode = 5;
+            ballThrow.mode = BALL_THROW_MODE_RECALL;
             ballThrow.target = monReturnData->battler;
             ballThrow.ballID = monReturnData->capturedBall;
             ballThrow.cellActorSys = BattleSystem_GetSpriteSystem(monReturnData->battleSys);
@@ -2886,7 +2886,7 @@ static void Task_ThrowTrainerBall(SysTask *task, void *data)
             }
 
             ballThrow.heapID = HEAP_ID_BATTLE;
-            ballThrow.mode = 4;
+            ballThrow.mode = BALL_THROW_MODE_TRAINER_SEND_OUT;
             ballThrow.target = trainerThrowBallData->battler;
             ballThrow.cellActorSys = BattleSystem_GetSpriteSystem(trainerThrowBallData->battleSys);
             ballThrow.paletteSys = BattleSystem_GetPaletteData(trainerThrowBallData->battleSys);
@@ -3836,7 +3836,7 @@ static void Task_PlayerShowBagMenu(SysTask *task, void *data)
     switch (bagMenuData->state) {
     case 0:
         bagMenuData->isCursorEnabled = BattleSubscreen_GetSuppressActivationSFX(BattleSystem_GetBattleSubscreen(bagMenuData->battleSys));
-        sub_02015738(ov16_0223E220(bagMenuData->battleSys), 1);
+        sub_02015738(BattleSystem_GetPaletteAnimator(bagMenuData->battleSys), 1);
         PaletteData_StartFade(paletteData, PLTTBUF_MAIN_BG_F | PLTTBUF_MAIN_OBJ_F, 0xC00, -8, 0, 7, 0);
         PaletteData_StartFade(paletteData, PLTTBUF_SUB_BG_F | PLTTBUF_SUB_OBJ_F, 0xFFFF, -8, 0, 16, 0);
         bagMenuData->state++;
@@ -3952,7 +3952,7 @@ static void Task_PlayerShowBagMenu(SysTask *task, void *data)
         break;
     case 7:
         if (PaletteData_GetSelectedBuffersMask(paletteData) == 0) {
-            sub_02015738(ov16_0223E220(bagMenuData->battleSys), 0);
+            sub_02015738(BattleSystem_GetPaletteAnimator(bagMenuData->battleSys), 0);
 
             if (bagMenuData->battleBagCtx->selectedBattleBagItem) {
                 bagMenuData->state = 9;
@@ -4405,7 +4405,7 @@ static void Task_PlayerShowPartyMenu(SysTask *task, void *data)
         Window_LoadTiles(window);
 
         partyMenuData->isCursorEnabled = BattleSubscreen_GetSuppressActivationSFX(BattleSystem_GetBattleSubscreen(partyMenuData->battleSys));
-        sub_02015738(ov16_0223E220(partyMenuData->battleSys), 1);
+        sub_02015738(BattleSystem_GetPaletteAnimator(partyMenuData->battleSys), 1);
         PaletteData_StartFade(paletteData, PLTTBUF_MAIN_BG_F | PLTTBUF_MAIN_OBJ_F, 0xC00, -8, 0, 7, 0);
         PaletteData_StartFade(paletteData, PLTTBUF_SUB_BG_F | PLTTBUF_SUB_OBJ_F, 0xFFFF, -8, 0, 16, 0);
         partyMenuData->state++;
@@ -4521,7 +4521,7 @@ static void Task_PlayerShowPartyMenu(SysTask *task, void *data)
         break;
     case 3:
         if (PaletteData_GetSelectedBuffersMask(paletteData) == 0) {
-            sub_02015738(ov16_0223E220(partyMenuData->battleSys), 0);
+            sub_02015738(BattleSystem_GetPaletteAnimator(partyMenuData->battleSys), 0);
 
             if (partyMenuData->battlePartyCtx->selectedPartyIndex == 6) {
                 BattleController_EmitPartyMenuResult(partyMenuData->battleSys, partyMenuData->battler, 0xFF);
@@ -4804,11 +4804,11 @@ static void Task_SetMoveAnimation(SysTask *task, void *data)
         }
         break;
     case 2:
-        UnkStruct_ov12_022380DC v2;
+        BattlerSpriteContext battlerSpriteCtx;
         MoveAnimation moveAnim;
 
-        BattleDisplay_PopulateBattlerContext(setMoveAnimationData->battleSys, &setMoveAnimationData->moveAnim, &v2, setMoveAnimationData->battler);
-        ov12_022382BC(&v2, HEAP_ID_BATTLE);
+        BattleDisplay_PopulateBattlerContext(setMoveAnimationData->battleSys, &setMoveAnimationData->moveAnim, &battlerSpriteCtx, setMoveAnimationData->battler);
+        ov12_022382BC(&battlerSpriteCtx, HEAP_ID_BATTLE);
 
         BattleController_SetMoveAnimation(setMoveAnimationData->battleSys, NULL, &moveAnim, 1, 16, setMoveAnimationData->battler, setMoveAnimationData->battler, NULL);
         BattleDisplay_PlayMoveAnimation(setMoveAnimationData->battleSys, setMoveAnimationData->battlerData, setMoveAnimationData->battleAnimSys, &moveAnim);
@@ -4851,11 +4851,11 @@ static void Task_SetMoveAnimation(SysTask *task, void *data)
         }
         break;
     case 8: {
-        UnkStruct_ov12_022380DC v5;
+        BattlerSpriteContext battlerSpriteCtx;
         MoveAnimation moveAnim;
 
-        BattleDisplay_PopulateBattlerContext(setMoveAnimationData->battleSys, &setMoveAnimationData->moveAnim, &v5, setMoveAnimationData->battler);
-        ov12_02238390(&v5, HEAP_ID_BATTLE);
+        BattleDisplay_PopulateBattlerContext(setMoveAnimationData->battleSys, &setMoveAnimationData->moveAnim, &battlerSpriteCtx, setMoveAnimationData->battler);
+        ov12_02238390(&battlerSpriteCtx, HEAP_ID_BATTLE);
 
         BattleController_SetMoveAnimation(setMoveAnimationData->battleSys, NULL, &moveAnim, 1, 16, setMoveAnimationData->battler, setMoveAnimationData->battler, NULL);
         BattleDisplay_PlayMoveAnimation(setMoveAnimationData->battleSys, setMoveAnimationData->battlerData, setMoveAnimationData->battleAnimSys, &moveAnim);
@@ -4938,19 +4938,19 @@ static void Task_UpdateExpGauge(SysTask *task, void *data)
 
     switch (healthbox->state) {
     case 0:
-        healthbox->unk_4E = 0;
+        healthbox->expSoundTimer = 0;
         Sound_PlayEffect(SEQ_SE_DP_EXP);
         HealthBox_CalcExp(healthbox, healthbox->expReward);
         healthbox->state++;
     case 1:
-        if (healthbox->unk_4E < 8) {
-            healthbox->unk_4E++;
+        if (healthbox->expSoundTimer < 8) {
+            healthbox->expSoundTimer++;
         }
 
         result = Healthbox_DrawExpBar(healthbox);
 
         if (result == -1) {
-            if (healthbox->unk_4E >= 8) {
+            if (healthbox->expSoundTimer >= 8) {
                 Sound_StopEffect(SEQ_SE_DP_EXP, 0);
                 healthbox->state = 100;
             } else {
@@ -4959,9 +4959,9 @@ static void Task_UpdateExpGauge(SysTask *task, void *data)
         }
         break;
     case 2:
-        healthbox->unk_4E++;
+        healthbox->expSoundTimer++;
 
-        if (healthbox->unk_4E >= 8) {
+        if (healthbox->expSoundTimer >= 8) {
             Sound_StopEffect(SEQ_SE_DP_EXP, 0);
             healthbox->state = 100;
         }
@@ -4994,11 +4994,11 @@ static void Task_PlayFaintingSequence(SysTask *task, void *data)
         }
         break;
     case 2:
-        UnkStruct_ov12_022380DC v5;
+        BattlerSpriteContext battlerSpriteCtx;
         MoveAnimation moveAnim;
 
-        BattleDisplay_PopulateBattlerContext(faintingSequenceData->battleSys, &faintingSequenceData->moveAnim, &v5, faintingSequenceData->battler);
-        ov12_022382BC(&v5, HEAP_ID_BATTLE);
+        BattleDisplay_PopulateBattlerContext(faintingSequenceData->battleSys, &faintingSequenceData->moveAnim, &battlerSpriteCtx, faintingSequenceData->battler);
+        ov12_022382BC(&battlerSpriteCtx, HEAP_ID_BATTLE);
 
         BattleController_SetMoveAnimation(faintingSequenceData->battleSys, NULL, &moveAnim, 1, 16, faintingSequenceData->battler, faintingSequenceData->battler, NULL);
         BattleDisplay_PlayMoveAnimation(faintingSequenceData->battleSys, faintingSequenceData->battlerData, battleAnimSys, &moveAnim);
@@ -5107,7 +5107,7 @@ static void Task_FadeOut(SysTask *task, void *data)
 
     switch (fadeOutData->state) {
     case 0:
-        sub_02015738(ov16_0223E220(fadeOutData->battleSys), 1);
+        sub_02015738(BattleSystem_GetPaletteAnimator(fadeOutData->battleSys), 1);
         PaletteData_StartFade(paletteData, PLTTBUF_MAIN_BG_F | PLTTBUF_SUB_BG_F | PLTTBUF_MAIN_OBJ_F | PLTTBUF_SUB_OBJ_F, 0xFFFF, 1, 0, 16, 0);
         PokemonSpriteManager_StartFadeAll(monSpriteMan, 0, 16, 0, 0);
         Sound_FadeOutBGM(0, 16);
@@ -5156,11 +5156,11 @@ static void Task_ToggleVanish(SysTask *task, void *data)
         }
         break;
     case 3:
-        UnkStruct_ov12_022380DC v3;
+        BattlerSpriteContext battlerSpriteCtx;
         MoveAnimation moveAnim;
 
-        BattleDisplay_PopulateBattlerContext(toggleVanishData->battleSys, &toggleVanishData->moveAnim, &v3, toggleVanishData->battler);
-        ov12_02238390(&v3, HEAP_ID_BATTLE);
+        BattleDisplay_PopulateBattlerContext(toggleVanishData->battleSys, &toggleVanishData->moveAnim, &battlerSpriteCtx, toggleVanishData->battler);
+        ov12_02238390(&battlerSpriteCtx, HEAP_ID_BATTLE);
 
         BattleController_SetMoveAnimation(toggleVanishData->battleSys, NULL, &moveAnim, 1, 16, toggleVanishData->battler, toggleVanishData->battler, NULL);
         BattleDisplay_PlayMoveAnimation(toggleVanishData->battleSys, toggleVanishData->battlerData, battleAnimSys, &moveAnim);
@@ -5387,7 +5387,7 @@ static void SysTask_SetupUI(SysTask *task, void *data)
         }
         break;
     case 3:
-        sub_02015738(ov16_0223E220(uiSetupTaskData->battleSys), 0);
+        sub_02015738(BattleSystem_GetPaletteAnimator(uiSetupTaskData->battleSys), 0);
         Heap_Free(data);
         SysTask_Done(task);
         break;
@@ -5608,8 +5608,8 @@ static void Task_SpriteToOAM(SysTask *task, void *data)
 
     switch (spriteToOAMData->state) {
     case 0:
-        GF_ASSERT(spriteToOAMData->battlerData->unk_88 == NULL);
-        spriteToOAMData->battlerData->unk_88 = ov12_022234F8(spriteToOAMData->battleSys, HEAP_ID_BATTLE, spriteToOAMData->battler);
+        GF_ASSERT(spriteToOAMData->battlerData->btlMonObjData == NULL);
+        spriteToOAMData->battlerData->btlMonObjData = ov12_022234F8(spriteToOAMData->battleSys, HEAP_ID_BATTLE, spriteToOAMData->battler);
         spriteToOAMData->state++;
         break;
     default:
@@ -5624,17 +5624,17 @@ static void Task_OAMToSprite(SysTask *task, void *data)
 {
     OAMToSpriteData *oamToSpriteData = data;
 
-    GF_ASSERT(oamToSpriteData->battlerData->unk_88 != NULL);
+    GF_ASSERT(oamToSpriteData->battlerData->btlMonObjData != NULL);
 
-    if (ov12_022237D8(oamToSpriteData->battlerData->unk_88) == 3) {
+    if (ov12_022237D8(oamToSpriteData->battlerData->btlMonObjData) == 3) {
         if (oamToSpriteData->delay < 5) {
             oamToSpriteData->delay++;
             return;
         }
     }
 
-    ov12_022237A4(oamToSpriteData->battlerData->unk_88, oamToSpriteData->battler);
-    oamToSpriteData->battlerData->unk_88 = NULL;
+    ov12_022237A4(oamToSpriteData->battlerData->btlMonObjData, oamToSpriteData->battler);
+    oamToSpriteData->battlerData->btlMonObjData = NULL;
     BattleController_EmitClearCommand(oamToSpriteData->battleSys, oamToSpriteData->battler, oamToSpriteData->command);
 
     Heap_Free(data);
@@ -6113,7 +6113,7 @@ static void LoadLeadMonMessage(BattleSystem *battleSys, BattlerData *battlerData
             u8 networkID = BattleSystem_GetNetworkID(battleSys);
 
             if (battleType & BATTLE_TYPE_2vs2) {
-                switch (ov16_0223F6F0(battleSys, networkID)) {
+                switch (BattleSystem_GetLinkPlayerPositionForBattler(battleSys, networkID)) {
                 case 0:
                 case 3:
                     battler1 = BattleSystem_GetBattlerOfType(battleSys, BATTLER_TYPE_PLAYER_SIDE_SLOT_2);
@@ -6286,7 +6286,7 @@ static void LoadForfeitMessage(BattleSystem *battleSys, BattlerData *battlerData
     battleMsg->tags = TAG_TRNAME;
 
     if (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_LINK) {
-        if (ov16_0223F6F0(battleSys, BattleSystem_GetNetworkID(battleSys))) {
+        if (BattleSystem_GetLinkPlayerPositionForBattler(battleSys, BattleSystem_GetNetworkID(battleSys))) {
             battleMsg->params[0] = BattleSystem_GetBattlerOfType(battleSys, BATTLER_TYPE_PLAYER_SIDE_SLOT_2);
         } else {
             battleMsg->params[0] = BattleSystem_GetBattlerOfType(battleSys, BATTLER_TYPE_PLAYER_SIDE_SLOT_1);
@@ -6360,40 +6360,40 @@ static void BattleDisplay_PlayMoveAnimation(BattleSystem *battleSys, BattlerData
     BattleAnimSystem_StartMove(battleAnimSystem, animation, move, &battlerContext);
 }
 
-static void BattleDisplay_PopulateBattlerContext(BattleSystem *battleSys, MoveAnimation *animation, UnkStruct_ov12_022380DC *battlerContext, int param3)
+static void BattleDisplay_PopulateBattlerContext(BattleSystem *battleSys, MoveAnimation *animation, BattlerSpriteContext *battlerSpriteCtx, int battler)
 {
-    battlerContext->unk_00 = param3;
-    battlerContext->unk_04 = param3;
+    battlerSpriteCtx->targetBattler = battler;
+    battlerSpriteCtx->sourceBattler = battler;
 
     for (int i = 0; i < MAX_BATTLERS; i++) {
-        battlerContext->pokemonSpriteData[i] = BattleSystem_GetPokemonSpriteDataByIndex(battleSys, i);
-        battlerContext->species[i] = animation->species[i];
-        battlerContext->genders[i] = animation->genders[i];
-        battlerContext->shinyFlags[i] = animation->isShiny[i];
-        battlerContext->forms[i] = animation->formNums[i];
-        battlerContext->personalities[i] = animation->personalities[i];
+        battlerSpriteCtx->pokemonSpriteData[i] = BattleSystem_GetPokemonSpriteDataByIndex(battleSys, i);
+        battlerSpriteCtx->species[i] = animation->species[i];
+        battlerSpriteCtx->genders[i] = animation->genders[i];
+        battlerSpriteCtx->shinyFlags[i] = animation->isShiny[i];
+        battlerSpriteCtx->forms[i] = animation->formNums[i];
+        battlerSpriteCtx->personalities[i] = animation->personalities[i];
     }
 
-    BattleSystem_SetBattlerTypes(battleSys, &(battlerContext->types[0]));
-    BattleSystem_PopulateMonSprites(battleSys, &(battlerContext->sprites[0]));
+    BattleSystem_SetBattlerTypes(battleSys, &(battlerSpriteCtx->types[0]));
+    BattleSystem_PopulateMonSprites(battleSys, &(battlerSpriteCtx->sprites[0]));
 }
 
-static void BattleDisplay_GetAnimHideFlags(u8 *param0, u8 *param1, int param2, int param3, u16 param4)
+static void BattleDisplay_GetAnimHideFlags(u8 *hideHealthboxes, u8 *hideShadows, int animMode, int secondaryAnimID, u16 move)
 {
-    if (param2 == 0) {
-        if ((MoveTable_LoadParam(param4, MOVEATTRIBUTE_FLAGS) & 0x40) == 0) {
-            param0[0] = 1;
+    if (animMode == 0) {
+        if ((MoveTable_LoadParam(move, MOVEATTRIBUTE_FLAGS) & 0x40) == 0) {
+            hideHealthboxes[0] = 1;
         } else {
-            param0[0] = 0;
+            hideHealthboxes[0] = 0;
         }
 
-        if (MoveTable_LoadParam(param4, MOVEATTRIBUTE_FLAGS) & 0x80) {
-            param1[0] = 1;
+        if (MoveTable_LoadParam(move, MOVEATTRIBUTE_FLAGS) & 0x80) {
+            hideShadows[0] = 1;
         } else {
-            param1[0] = 0;
+            hideShadows[0] = 0;
         }
     } else {
-        switch (param3) {
+        switch (secondaryAnimID) {
         case 18:
         case 19:
         case 20:
@@ -6405,17 +6405,17 @@ static void BattleDisplay_GetAnimHideFlags(u8 *param0, u8 *param1, int param2, i
         case 35:
         case 37:
         case 39:
-            param0[0] = 1;
-            param1[0] = 0;
+            hideHealthboxes[0] = 1;
+            hideShadows[0] = 0;
             break;
         case 36:
         case 38:
-            param0[0] = 1;
-            param1[0] = 1;
+            hideHealthboxes[0] = 1;
+            hideShadows[0] = 1;
             break;
         default:
-            param0[0] = 0;
-            param1[0] = 0;
+            hideHealthboxes[0] = 0;
+            hideShadows[0] = 0;
             break;
         }
     }
@@ -6423,7 +6423,7 @@ static void BattleDisplay_GetAnimHideFlags(u8 *param0, u8 *param1, int param2, i
 
 static BOOL BattleDisplay_AdvanceTrainerThrowAnim(TrainerEncounterData *trainerEncounterData, ManagedSprite *unused)
 {
-    UnkStruct_ov16_02264650 *v0;
+    BallThrowFlashData *ballThrowFlashData;
     BOOL val = FALSE;
     int userAttr = ManagedSprite_GetUserAttrForCurrentAnimFrame(trainerEncounterData->managedSprite);
 
@@ -6431,11 +6431,11 @@ static BOOL BattleDisplay_AdvanceTrainerThrowAnim(TrainerEncounterData *trainerE
     case 1:
         if (trainerEncounterData->ballFlashStarted == 0) {
             trainerEncounterData->ballFlashStarted = 1;
-            v0 = (UnkStruct_ov16_02264650 *)Heap_Alloc(HEAP_ID_BATTLE, sizeof(UnkStruct_ov16_02264650));
-            v0->state = 0;
-            v0->unk_04 = 0;
+            ballThrowFlashData = (BallThrowFlashData *)Heap_Alloc(HEAP_ID_BATTLE, sizeof(BallThrowFlashData));
+            ballThrowFlashData->state = 0;
+            ballThrowFlashData->unread_04 = 0;
 
-            SysTask_Start(SysTask_ScreenFlashForThrow, v0, 0);
+            SysTask_Start(SysTask_ScreenFlashForThrow, ballThrowFlashData, 0);
         }
 
         break;
@@ -6457,17 +6457,17 @@ static BOOL BattleDisplay_AdvanceTrainerThrowAnim(TrainerEncounterData *trainerE
 
 static void SysTask_ScreenFlashForThrow(SysTask *task, void *data)
 {
-    UnkStruct_ov16_02264650 *v0 = (UnkStruct_ov16_02264650 *)data;
+    BallThrowFlashData *ballThrowFlashData = (BallThrowFlashData *)data;
 
-    switch (v0->state) {
+    switch (ballThrowFlashData->state) {
     case 0:
         BrightnessController_StartTransition(4, 16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD) & (GX_BLEND_PLANEMASK_BG1 ^ 0xFFFF), BRIGHTNESS_MAIN_SCREEN);
-        v0->state++;
+        ballThrowFlashData->state++;
         break;
     case 1:
         if (BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == TRUE) {
             BrightnessController_StartTransition(4, 0, 16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD) & (GX_BLEND_PLANEMASK_BG1 ^ 0xFFFF), BRIGHTNESS_MAIN_SCREEN);
-            v0->state++;
+            ballThrowFlashData->state++;
         }
         break;
     case 2:

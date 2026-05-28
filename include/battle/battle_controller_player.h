@@ -5,6 +5,8 @@
 
 #include "battle/battle_context.h"
 
+#define SAFARI_STAGE_MAX  12
+
 enum BattleControlSequence {
     BATTLE_CONTROL_GET_BATTLE_MON = 0,
     BATTLE_CONTROL_START_ENCOUNTER,
@@ -89,6 +91,12 @@ enum BattleControllerPlayerInput {
     PLAYER_INPUT_TARGET_BATTLER_4,
 
     PLAYER_INPUT_CANCEL = 0xFF,
+};
+
+enum RecordCommandFlags {
+    RECORDED_CMD_FLAG_ACTION = 1,
+    RECORDED_CMD_FLAG_TARGET = 2,
+    RECORDED_CMD_FLAG_MOVE_SLOT = 4,
 };
 
 /**

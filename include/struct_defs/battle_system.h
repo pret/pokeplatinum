@@ -69,14 +69,14 @@ struct BattleSystem {
     Poketch *poketch;
     CaptureAttempt *captureAttempt;
     u16 trainerIDs[MAX_BATTLERS];
-    u8 unk_A8[4];
+    u8 unwritten[4];
     Trainer trainers[MAX_BATTLERS];
     Terrain terrains[2];
     BattleSubscreen *btlSubscreen;
     PartyGauge *partyGauges[2];
     FontSpecialCharsContext *specialCharsHP;
     FontSpecialCharsContext *specialCharsLevel;
-    UnkStruct_020157E4 *unk_1AC;
+    PaletteAnimator *paletteAnimator;
     Options *options;
     PalPad *palPad;
     WaitDial *waitDial;
@@ -99,8 +99,8 @@ struct BattleSystem {
     u16 clientReadIndex;
     u16 clientWriteIndex;
     u16 clientEndIndex;
-    u8 *unk_23F0;
-    u8 *unk_23F4;
+    u8 *linkServerSenderState;
+    u8 *linkClientReceiverState;
     u8 battleInitialized;
     u8 renderMode;
     u8 commandIsEndWait;
@@ -136,7 +136,7 @@ struct BattleSystem {
     u16 recordingCollectedPos[MAX_BATTLERS];
     u16 recordingWritePos[MAX_BATTLERS];
     u16 recordingAckPos[MAX_BATTLERS];
-    int unk_2464[MAX_BATTLERS];
+    int linkPlayerPositions[MAX_BATTLERS];
     u32 recordingStopped : 1;
     u32 padding_2474_1 : 31;
     SysTask *playbackStopButton;

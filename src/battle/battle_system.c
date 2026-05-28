@@ -365,9 +365,9 @@ u8 BattleSystem_GetBattlerSide(BattleSystem *battleSys, int battler)
     return BattlerData_GetBattlerType(battleSys->battlers[battler]) & 1;
 }
 
-UnkStruct_020157E4 *ov16_0223E220(BattleSystem *battleSys)
+PaletteAnimator *BattleSystem_GetPaletteAnimator(BattleSystem *battleSys)
 {
-    return battleSys->unk_1AC;
+    return battleSys->paletteAnimator;
 }
 
 PCBoxes *BattleSystem_GetPCBoxes(BattleSystem *battleSys)
@@ -1191,24 +1191,24 @@ void BattleSystem_SetRenderMode(BattleSystem *battleSys, int renderMode)
     battleSys->renderMode = renderMode;
 }
 
-void ov16_0223F320(BattleSystem *battleSys, u8 *param1)
+void BattleSystem_SetLinkServerSenderStates(BattleSystem *battleSys, u8 *lssState)
 {
-    battleSys->unk_23F0 = param1;
+    battleSys->linkServerSenderState = lssState;
 }
 
-void ov16_0223F32C(BattleSystem *battleSys, u8 *param1)
+void BattleSystem_SetLinkClientReceiverStates(BattleSystem *battleSys, u8 *lcrState)
 {
-    battleSys->unk_23F4 = param1;
+    battleSys->linkClientReceiverState = lcrState;
 }
 
-void ov16_0223F338(BattleSystem *battleSys, u8 param1)
+void BattleSystem_SetLinkServerSenderState(BattleSystem *battleSys, u8 lssState)
 {
-    battleSys->unk_23F0[0] = param1;
+    battleSys->linkServerSenderState[0] = lssState;
 }
 
-void ov16_0223F344(BattleSystem *battleSys, u8 param1)
+void BattleSystem_SetLinkClientReceiverState(BattleSystem *battleSys, u8 lcrState)
 {
-    battleSys->unk_23F4[0] = param1;
+    battleSys->linkClientReceiverState[0] = lcrState;
 }
 
 void BattleSystem_SetCommandIsEndWait(BattleSystem *battleSys, u8 value)
@@ -1409,9 +1409,9 @@ u16 BattleSystem_GetNetworkID(BattleSystem *battleSys)
     return battleSys->networkID;
 }
 
-int ov16_0223F6F0(BattleSystem *battleSys, u16 battler)
+int BattleSystem_GetLinkPlayerPositionForBattler(BattleSystem *battleSys, u16 battler)
 {
-    return battleSys->unk_2464[battler];
+    return battleSys->linkPlayerPositions[battler];
 }
 
 u16 BattleSystem_GetTrainerItem(BattleSystem *battleSys, int battler, int itemIdx)

@@ -35,8 +35,8 @@ void BattleController_EmitPartyMenuResult(BattleSystem *battleSys, int battler, 
 void BattleController_EmitShowYesNoMenu(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int promptMsg, int yesNoType, int move, int nickname);
 void BattleController_EmitPrintAttackMessage(BattleSystem *battleSys, BattleContext *battleCtx);
 void BattleController_EmitPrintMessage(BattleSystem *battleSys, BattleContext *battleCtx, BattleMessage *battleMsg);
-void BattleController_EmitPlayMoveAnimation(BattleSystem *battleSys, BattleContext *battleCtx, u16 param2);
-void BattleController_EmitPlayMoveAnimationA2D(BattleSystem *battleSys, BattleContext *battleCtx, u16 param2, int attacker, int defender);
+void BattleController_EmitPlayMoveAnimation(BattleSystem *battleSys, BattleContext *battleCtx, u16 move);
+void BattleController_EmitPlayMoveAnimationA2D(BattleSystem *battleSys, BattleContext *battleCtx, u16 move, int attacker, int defender);
 void BattleController_EmitFlickerBattlerSprite(BattleSystem *battleSys, int battler, u32 unused);
 void BattleController_EmitUpdateHPGauge(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
 void BattleController_EmitUpdateExpGauge(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int curExp);
@@ -46,8 +46,8 @@ void BattleController_EmitFadeOut(BattleSystem *battleSys, BattleContext *battle
 void BattleController_EmitToggleVanish(BattleSystem *battleSys, int battler, int toggle);
 void BattleController_EmitSetStatusIcon(BattleSystem *battleSys, int battler, int status);
 void BattleController_EmitTrainerMessage(BattleSystem *battleSys, int battler, int msg);
-void BattleController_EmitPlayStatusEffect(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int param3);
-void BattleController_EmitPlayStatusEffectAToD(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, int defender, int param4);
+void BattleController_EmitPlayStatusEffect(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int secondaryAnimID);
+void BattleController_EmitPlayStatusEffectAToD(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, int defender, int secondaryAnimID);
 void BattleController_EmitRecallMessage(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int partySlot);
 void BattleController_EmitSendOutMessage(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int partySlot);
 void BattleController_EmitBattleStartMessage(BattleSystem *battleSys, BattleContext *battleCtx, int battler);

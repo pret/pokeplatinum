@@ -77,17 +77,17 @@ typedef struct FieldBattleDTO {
     u32 battleStatusMask;
     int countSafariBalls;
     u32 rulesetMask;
-    void *unk_170;
+    void *postBattleData;
     u32 seed;
-    int unk_178[MAX_BATTLERS];
+    int linkPlayerPositions[MAX_BATTLERS];
     u16 networkID;
-    u8 unk_18A;
+    u8 recordingType;
     u8 dummy18B;
     int totalTurnsElapsed;
     u8 *subscreenCursorOn;
-    u8 unk_194[MAX_BATTLERS];
+    u8 recordedChatter[MAX_BATTLERS];
     SaveData *saveData;
-    u32 unk_19C;
+    u32 recordingStopped;
 } FieldBattleDTO;
 
 FieldBattleDTO *FieldBattleDTO_New(enum HeapID heapID, u32 battleType);

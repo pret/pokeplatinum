@@ -894,35 +894,35 @@ int BattleAnimSystem_GetMoveInfo(BattleAnimSystem *system, enum BattleAnimMoveIn
     }
 }
 
-void ov12_02220590(BattleAnimSystem *system, UnkStruct_ov12_022380DC *ctx, int param2)
+void ov12_02220590(BattleAnimSystem *system, BattlerSpriteContext *battlerSpriteCtx, int param2)
 {
     for (int battler = BATTLER_PLAYER_1; battler < MAX_BATTLERS; battler++) {
-        ctx->pokemonSpriteData[battler] = system->context->pokemonSpriteData[battler];
-        ctx->sprites[battler] = system->context->battlerSprites[battler];
-        ctx->species[battler] = system->context->battlerSpecies[battler];
-        ctx->genders[battler] = system->context->battlerGenders[battler];
-        ctx->shinyFlags[battler] = system->context->battlerShinyFlags[battler];
-        ctx->forms[battler] = system->context->battlerForms[battler];
-        ctx->personalities[battler] = system->context->battlerPersonalities[battler];
-        ctx->types[battler] = system->context->battlerTypes[battler];
+        battlerSpriteCtx->pokemonSpriteData[battler] = system->context->pokemonSpriteData[battler];
+        battlerSpriteCtx->sprites[battler] = system->context->battlerSprites[battler];
+        battlerSpriteCtx->species[battler] = system->context->battlerSpecies[battler];
+        battlerSpriteCtx->genders[battler] = system->context->battlerGenders[battler];
+        battlerSpriteCtx->shinyFlags[battler] = system->context->battlerShinyFlags[battler];
+        battlerSpriteCtx->forms[battler] = system->context->battlerForms[battler];
+        battlerSpriteCtx->personalities[battler] = system->context->battlerPersonalities[battler];
+        battlerSpriteCtx->types[battler] = system->context->battlerTypes[battler];
     }
 
     switch (param2) {
     case 0:
-        ctx->unk_00 = system->context->attacker;
-        ctx->unk_04 = system->context->defender;
+        battlerSpriteCtx->targetBattler = system->context->attacker;
+        battlerSpriteCtx->sourceBattler = system->context->defender;
         break;
     case 1:
-        ctx->unk_00 = system->context->attacker;
-        ctx->unk_04 = system->context->attacker;
+        battlerSpriteCtx->targetBattler = system->context->attacker;
+        battlerSpriteCtx->sourceBattler = system->context->attacker;
         break;
     case 2:
-        ctx->unk_00 = system->context->attacker;
-        ctx->unk_04 = system->context->attacker;
+        battlerSpriteCtx->targetBattler = system->context->attacker;
+        battlerSpriteCtx->sourceBattler = system->context->attacker;
         break;
     case 3:
-        ctx->unk_00 = system->context->attacker;
-        ctx->unk_04 = system->context->attacker;
+        battlerSpriteCtx->targetBattler = system->context->attacker;
+        battlerSpriteCtx->sourceBattler = system->context->attacker;
         break;
     default:
         GF_ASSERT(FALSE);
@@ -933,34 +933,34 @@ void ov12_02220590(BattleAnimSystem *system, UnkStruct_ov12_022380DC *ctx, int p
 static void BattleAnimScriptCmd_068(BattleAnimSystem *param0)
 {
     int v0;
-    UnkStruct_ov12_022380DC v1;
+    BattlerSpriteContext battlerSpriteCtx;
 
     param0->scriptPtr += 1;
     v0 = (u32)BattleAnimScript_ReadWord(param0->scriptPtr);
     param0->scriptPtr += 1;
 
-    ov12_02220590(param0, &v1, v0);
+    ov12_02220590(param0, &battlerSpriteCtx, v0);
 
     if (v0 == 2) {
-        ov12_02238390(&v1, param0->heapID);
+        ov12_02238390(&battlerSpriteCtx, param0->heapID);
     } else if (v0 == 3) {
-        ov12_022380CC(&v1, param0->heapID);
+        ov12_022380CC(&battlerSpriteCtx, param0->heapID);
     } else {
-        ov12_022380BC(&v1, param0->heapID);
+        ov12_022380BC(&battlerSpriteCtx, param0->heapID);
     }
 }
 
 static void BattleAnimScriptCmd_069(BattleAnimSystem *param0)
 {
     int v0;
-    UnkStruct_ov12_022380DC v1;
+    BattlerSpriteContext battlerSpriteCtx;
 
     param0->scriptPtr += 1;
     v0 = (u32)BattleAnimScript_ReadWord(param0->scriptPtr);
     param0->scriptPtr += 1;
 
-    ov12_02220590(param0, &v1, v0);
-    ov12_022382BC(&v1, param0->heapID);
+    ov12_02220590(param0, &battlerSpriteCtx, v0);
+    ov12_022382BC(&battlerSpriteCtx, param0->heapID);
 }
 
 static void BattleAnimScriptCmd_BeginLoop(BattleAnimSystem *system)
@@ -3843,26 +3843,26 @@ int BattleAnimSystem_GetBgNarcMemberIndex(int bgID, enum BgNarcMemberType type)
     return sBgNarcIndices[bgID][type];
 }
 
-UnkStruct_ov12_02223764 *ov12_022234F8(BattleSystem *battleSys, enum HeapID heapID, int param2)
+BattleMonOBJData *ov12_022234F8(BattleSystem *battleSys, enum HeapID heapID, int param2)
 {
     int v0;
     int v1[] = { 0, 0, 20, 10, 10, 20 };
-    UnkStruct_ov12_02223764 *v2 = Heap_Alloc(heapID, sizeof(UnkStruct_ov12_02223764));
+    BattleMonOBJData *btlMonObjData = Heap_Alloc(heapID, sizeof(BattleMonOBJData));
 
-    v2->heapID = heapID;
-    v2->unk_04 = param2;
-    v2->unk_08.unk_00 = BattleSystem_GetSpriteSystem(battleSys);
-    v2->unk_08.unk_04 = BattleSystem_GetSpriteManager(battleSys);
-    v2->unk_08.unk_08 = BattleSystem_GetPaletteData(battleSys);
+    btlMonObjData->heapID = heapID;
+    btlMonObjData->battlerIdx = param2;
+    btlMonObjData->spriteContext.spriteSys = BattleSystem_GetSpriteSystem(battleSys);
+    btlMonObjData->spriteContext.spriteMan = BattleSystem_GetSpriteManager(battleSys);
+    btlMonObjData->spriteContext.plttData = BattleSystem_GetPaletteData(battleSys);
 
     {
         for (v0 = 0; v0 < 4; v0++) {
-            v2->unk_24[v0] = NULL;
-            v2->pokemonSpriteDataArray[v0] = BattleSystem_GetPokemonSpriteDataByIndex(battleSys, v0);
+            btlMonObjData->managedSprites[v0] = NULL;
+            btlMonObjData->pokemonSpriteDataArray[v0] = BattleSystem_GetPokemonSpriteDataByIndex(battleSys, v0);
         }
 
-        BattleSystem_SetBattlerTypes(battleSys, &(v2->unk_44[0]));
-        BattleSystem_PopulateMonSprites(battleSys, &(v2->unk_48[0]));
+        BattleSystem_SetBattlerTypes(battleSys, &(btlMonObjData->battlerTypes[0]));
+        BattleSystem_PopulateMonSprites(battleSys, &(btlMonObjData->pokemonSprites[0]));
     }
 
     {
@@ -3872,25 +3872,25 @@ UnkStruct_ov12_02223764 *ov12_022234F8(BattleSystem *battleSys, enum HeapID heap
         v4 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, heapID);
 
         for (v0 = 0; v0 < 4; v0++) {
-            if ((v0 != v2->unk_04) && (v2->unk_04 != 0xFF)) {
+            if ((v0 != btlMonObjData->battlerIdx) && (btlMonObjData->battlerIdx != 0xFF)) {
                 continue;
             }
 
-            if (v2->unk_48[v0] == NULL) {
+            if (btlMonObjData->pokemonSprites[v0] == NULL) {
                 continue;
             }
 
-            v3[0] = 55555 + v0 + ((v2->unk_04) * 5000);
-            v3[1] = 55555 + v0 + ((v2->unk_04) * 5000);
-            v3[2] = 55555 + v0 + ((v2->unk_04) * 5000);
-            v3[3] = 55555 + v0 + ((v2->unk_04) * 5000);
+            v3[0] = 55555 + v0 + ((btlMonObjData->battlerIdx) * 5000);
+            v3[1] = 55555 + v0 + ((btlMonObjData->battlerIdx) * 5000);
+            v3[2] = 55555 + v0 + ((btlMonObjData->battlerIdx) * 5000);
+            v3[3] = 55555 + v0 + ((btlMonObjData->battlerIdx) * 5000);
             v3[4] = 0;
             v3[5] = 0;
 
-            SpriteSystem_LoadCharResObjFromOpenNarc(v2->unk_08.unk_00, v2->unk_08.unk_04, v4, 76, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, v3[SPRITE_RESOURCE_CHAR]);
-            SpriteSystem_LoadPaletteBufferFromOpenNarc(v2->unk_08.unk_08, 2, v2->unk_08.unk_00, v2->unk_08.unk_04, v4, 75, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 1, v3[SPRITE_RESOURCE_PLTT]);
-            SpriteSystem_LoadCellResObjFromOpenNarc(v2->unk_08.unk_00, v2->unk_08.unk_04, v4, 77, FALSE, v3[SPRITE_RESOURCE_CELL]);
-            SpriteSystem_LoadAnimResObjFromOpenNarc(v2->unk_08.unk_00, v2->unk_08.unk_04, v4, 78, FALSE, v3[SPRITE_RESOURCE_ANIM]);
+            SpriteSystem_LoadCharResObjFromOpenNarc(btlMonObjData->spriteContext.spriteSys, btlMonObjData->spriteContext.spriteMan, v4, 76, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, v3[SPRITE_RESOURCE_CHAR]);
+            SpriteSystem_LoadPaletteBufferFromOpenNarc(btlMonObjData->spriteContext.plttData, 2, btlMonObjData->spriteContext.spriteSys, btlMonObjData->spriteContext.spriteMan, v4, 75, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 1, v3[SPRITE_RESOURCE_PLTT]);
+            SpriteSystem_LoadCellResObjFromOpenNarc(btlMonObjData->spriteContext.spriteSys, btlMonObjData->spriteContext.spriteMan, v4, 77, FALSE, v3[SPRITE_RESOURCE_CELL]);
+            SpriteSystem_LoadAnimResObjFromOpenNarc(btlMonObjData->spriteContext.spriteSys, btlMonObjData->spriteContext.spriteMan, v4, 78, FALSE, v3[SPRITE_RESOURCE_ANIM]);
         }
 
         NARC_dtor(v4);
@@ -3905,22 +3905,22 @@ UnkStruct_ov12_02223764 *ov12_022234F8(BattleSystem *battleSys, enum HeapID heap
         ManagedSprite *v10;
 
         for (v5 = 0; v5 < 4; v5++) {
-            if ((v5 != v2->unk_04) && (v2->unk_04 != 0xFF)) {
+            if ((v5 != btlMonObjData->battlerIdx) && (btlMonObjData->battlerIdx != 0xFF)) {
                 continue;
             }
 
-            v2->unk_14[v5] = 55555 + v5 + ((v2->unk_04) * 5000);
+            btlMonObjData->resourceIDs[v5] = 55555 + v5 + ((btlMonObjData->battlerIdx) * 5000);
 
-            v9[0] = 55555 + v5 + ((v2->unk_04) * 5000);
-            v9[1] = 55555 + v5 + ((v2->unk_04) * 5000);
-            v9[2] = 55555 + v5 + ((v2->unk_04) * 5000);
-            v9[3] = 55555 + v5 + ((v2->unk_04) * 5000);
+            v9[0] = 55555 + v5 + ((btlMonObjData->battlerIdx) * 5000);
+            v9[1] = 55555 + v5 + ((btlMonObjData->battlerIdx) * 5000);
+            v9[2] = 55555 + v5 + ((btlMonObjData->battlerIdx) * 5000);
+            v9[3] = 55555 + v5 + ((btlMonObjData->battlerIdx) * 5000);
             v9[4] = 0;
             v9[5] = 0;
 
-            v6 = v2->pokemonSpriteDataArray[v5]->narcID;
-            v7 = v2->pokemonSpriteDataArray[v5]->palette;
-            v8 = v2->pokemonSpriteDataArray[v5]->tiles;
+            v6 = btlMonObjData->pokemonSpriteDataArray[v5]->narcID;
+            v7 = btlMonObjData->pokemonSpriteDataArray[v5]->palette;
+            v8 = btlMonObjData->pokemonSpriteDataArray[v5]->tiles;
 
             {
                 int v11;
@@ -3928,7 +3928,7 @@ UnkStruct_ov12_02223764 *ov12_022234F8(BattleSystem *battleSys, enum HeapID heap
                 PokemonSprite *v13;
                 s16 v14, v15;
 
-                v13 = v2->unk_48[v5];
+                v13 = btlMonObjData->pokemonSprites[v5];
 
                 if (v13 != NULL) {
                     v14 = PokemonSprite_GetAttribute(v13, MON_SPRITE_X_CENTER);
@@ -3942,7 +3942,7 @@ UnkStruct_ov12_02223764 *ov12_022234F8(BattleSystem *battleSys, enum HeapID heap
                 v12.y = v15;
                 v12.z = 0;
                 v12.animIdx = 0;
-                v12.priority = v1[v2->unk_44[v5]];
+                v12.priority = v1[btlMonObjData->battlerTypes[v5]];
                 v12.plttIdx = 0;
                 v12.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
                 v12.bgPriority = 1;
@@ -3952,9 +3952,9 @@ UnkStruct_ov12_02223764 *ov12_022234F8(BattleSystem *battleSys, enum HeapID heap
                     v12.resources[v11] = v9[v11];
                 }
 
-                v10 = SpriteSystem_NewSprite(v2->unk_08.unk_00, v2->unk_08.unk_04, &v12);
+                v10 = SpriteSystem_NewSprite(btlMonObjData->spriteContext.spriteSys, btlMonObjData->spriteContext.spriteMan, &v12);
                 ManagedSprite_TickFrame(v10);
-                v2->unk_24[v5] = v10;
+                btlMonObjData->managedSprites[v5] = v10;
 
                 if (v13 == NULL) {
                     ManagedSprite_SetDrawFlag(v10, 0);
@@ -3982,56 +3982,56 @@ UnkStruct_ov12_02223764 *ov12_022234F8(BattleSystem *battleSys, enum HeapID heap
                     v18 = Sprite_GetPaletteProxy(v10->sprite);
                     v19 = PlttTransfer_GetPlttOffset(v18, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-                    PaletteData_LoadBufferFromFileStart(v2->unk_08.unk_08, v6, v7, v2->heapID, 2, 0x20, v19 * 16);
+                    PaletteData_LoadBufferFromFileStart(btlMonObjData->spriteContext.plttData, v6, v7, btlMonObjData->heapID, 2, 0x20, v19 * 16);
                 }
             }
         }
     }
 
-    return v2;
+    return btlMonObjData;
 }
 
-UnkStruct_ov12_02223764 *ov12_02223764(BattleSystem *battleSys, enum HeapID heapID)
+BattleMonOBJData *ov12_02223764(BattleSystem *battleSys, enum HeapID heapID)
 {
     return ov12_022234F8(battleSys, heapID, 0xFF);
 }
 
-void ov12_02223770(UnkStruct_ov12_02223764 *param0)
+void ov12_02223770(BattleMonOBJData *btlMonObjData)
 {
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        if (param0->unk_24[v0] == NULL) {
+        if (btlMonObjData->managedSprites[v0] == NULL) {
             continue;
         }
 
-        SpriteManager_UnloadCharObjById(param0->unk_08.unk_04, param0->unk_14[v0]);
-        SpriteManager_UnloadPlttObjById(param0->unk_08.unk_04, param0->unk_14[v0]);
-        Sprite_DeleteAndFreeResources(param0->unk_24[v0]);
+        SpriteManager_UnloadCharObjById(btlMonObjData->spriteContext.spriteMan, btlMonObjData->resourceIDs[v0]);
+        SpriteManager_UnloadPlttObjById(btlMonObjData->spriteContext.spriteMan, btlMonObjData->resourceIDs[v0]);
+        Sprite_DeleteAndFreeResources(btlMonObjData->managedSprites[v0]);
     }
 
-    Heap_Free(param0);
+    Heap_Free(btlMonObjData);
 }
 
-void ov12_022237A4(UnkStruct_ov12_02223764 *param0, int param1)
+void ov12_022237A4(BattleMonOBJData *btlMonObjData, int param1)
 {
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        if (param0->unk_24[v0] == NULL) {
+        if (btlMonObjData->managedSprites[v0] == NULL) {
             continue;
         }
 
-        SpriteManager_UnloadCharObjById(param0->unk_08.unk_04, param0->unk_14[v0]);
-        SpriteManager_UnloadPlttObjById(param0->unk_08.unk_04, param0->unk_14[v0]);
-        Sprite_DeleteAndFreeResources(param0->unk_24[v0]);
+        SpriteManager_UnloadCharObjById(btlMonObjData->spriteContext.spriteMan, btlMonObjData->resourceIDs[v0]);
+        SpriteManager_UnloadPlttObjById(btlMonObjData->spriteContext.spriteMan, btlMonObjData->resourceIDs[v0]);
+        Sprite_DeleteAndFreeResources(btlMonObjData->managedSprites[v0]);
     }
 
-    Heap_Free(param0);
+    Heap_Free(btlMonObjData);
 }
 
-int ov12_022237D8(UnkStruct_ov12_02223764 *param0)
+int ov12_022237D8(BattleMonOBJData *btlMonObjData)
 {
-    GF_ASSERT(param0 != NULL);
-    return param0->unk_44[param0->unk_04];
+    GF_ASSERT(btlMonObjData != NULL);
+    return btlMonObjData->battlerTypes[btlMonObjData->battlerIdx];
 }

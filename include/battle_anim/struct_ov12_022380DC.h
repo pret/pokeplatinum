@@ -7,9 +7,9 @@
 
 #include "pokemon_sprite.h"
 
-typedef struct {
-    int unk_00;
-    int unk_04;
+typedef struct BattlerSpriteContext {
+    int targetBattler;
+    int sourceBattler;
     PokemonSpriteData *pokemonSpriteData[MAX_BATTLERS];
     PokemonSprite *sprites[MAX_BATTLERS];
     u16 species[MAX_BATTLERS];
@@ -18,6 +18,6 @@ typedef struct {
     u8 forms[MAX_BATTLERS];
     u32 personalities[MAX_BATTLERS];
     u8 types[MAX_BATTLERS];
-} UnkStruct_ov12_022380DC;
+} BattlerSpriteContext;
 
 #endif // POKEPLATINUM_STRUCT_OV12_022380DC_H

@@ -2002,10 +2002,10 @@ static void BattleSubscreen_DrawTargetSelectMenu(BattleSubscreen *btlSubscreen, 
 
             switch (i) {
             case 1:
-                BattleSubscreen_NewPokeIconSprite(btlSubscreen, partyMon, 3, targetSelectData->targetMonData[battlerIndex].curHP, targetSelectData->targetMonData[battlerIndex].maxHP, targetSelectData->targetMonData[battlerIndex].unk_02);
+                BattleSubscreen_NewPokeIconSprite(btlSubscreen, partyMon, 3, targetSelectData->targetMonData[battlerIndex].curHP, targetSelectData->targetMonData[battlerIndex].maxHP, targetSelectData->targetMonData[battlerIndex].stockStatus);
                 break;
             case 3:
-                BattleSubscreen_NewPokeIconSprite(btlSubscreen, partyMon, 5, targetSelectData->targetMonData[battlerIndex].curHP, targetSelectData->targetMonData[battlerIndex].maxHP, targetSelectData->targetMonData[battlerIndex].unk_02);
+                BattleSubscreen_NewPokeIconSprite(btlSubscreen, partyMon, 5, targetSelectData->targetMonData[battlerIndex].curHP, targetSelectData->targetMonData[battlerIndex].maxHP, targetSelectData->targetMonData[battlerIndex].stockStatus);
                 break;
             }
         } else {

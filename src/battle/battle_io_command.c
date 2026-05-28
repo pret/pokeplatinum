@@ -141,7 +141,7 @@ void BattlerData_InitSendOutBallThrow(BattleSystem *battleSys, BattlerData *batt
 
     ballThrow.type = sBallThrowTypes[battlerData->battlerType];
     ballThrow.heapID = HEAP_ID_BATTLE;
-    ballThrow.mode = 4;
+    ballThrow.mode = BALL_THROW_MODE_TRAINER_SEND_OUT;
     ballThrow.target = battlerData->battler;
     ballThrow.ballID = ballID;
     ballThrow.cellActorSys = BattleSystem_GetSpriteSystem(battleSys);

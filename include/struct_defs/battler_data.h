@@ -32,7 +32,7 @@ typedef struct BattlerData {
     HealthBox healthbox;
     SavedCursorPosition savedCursorPos;
     BallRotation *ballRotation;
-    UnkStruct_ov12_02223764 *unk_88;
+    BattleMonOBJData *btlMonObjData;
     void *unused_8C;
     u8 data[DATA_BUF_SIZE];
     u8 battler;

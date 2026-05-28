@@ -816,7 +816,7 @@ void Encounter_NewVsWiFi(FieldTask *task, int param1, int normalizedLevel, int w
 
     FieldBattleDTO_InitWithNormalizedMonLevels(dto, fieldSystem, normalizedLevel);
     BattleRecording_New(fieldSystem->saveData, HEAP_ID_FIELD2, &recordingResultCode);
-    dto->unk_18A = v5;
+    dto->recordingType = v5;
 
     encounter = NewEncounter(dto, EncEffects_CutInEffect(dto), EncEffects_BGM(dto), NULL);
     encounter->unk_0C = param1;
@@ -855,7 +855,7 @@ void Encounter_NewVsLinkWithRecording(FieldSystem *fieldSystem, const u8 *partyO
 
     int recordingResultCode;
     BattleRecording_New(fieldSystem->saveData, HEAP_ID_FIELD2, &recordingResultCode);
-    dto->unk_18A = sub_020516C8(fieldSystem->unk_B0, battleType);
+    dto->recordingType = sub_020516C8(fieldSystem->unk_B0, battleType);
 
     Encounter *encounter = NewEncounter(dto, EncEffects_CutInEffect(dto), EncEffects_BGM(dto), NULL);
     FieldSystem_CreateTask(fieldSystem, FieldTask_LinkEncounterWithRecording, encounter);
@@ -868,7 +868,7 @@ void Encounter_NewVsLinkWithRecordingAndParty(FieldSystem *fieldSystem, const Pa
 
     int recordingResultCode;
     BattleRecording_New(fieldSystem->saveData, HEAP_ID_FIELD2, &recordingResultCode);
-    dto->unk_18A = sub_020516C8(fieldSystem->unk_B0, battleType);
+    dto->recordingType = sub_020516C8(fieldSystem->unk_B0, battleType);
 
     Encounter *encounter = NewEncounter(dto, EncEffects_CutInEffect(dto), EncEffects_BGM(dto), NULL);
     FieldSystem_CreateTask(fieldSystem, FieldTask_LinkEncounterWithRecording, encounter);

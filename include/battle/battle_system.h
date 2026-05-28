@@ -143,7 +143,7 @@ u32 BattleSystem_GetTrainerGender(BattleSystem *battleSys, int battler);
 int BattleSystem_GetBattlerOfType(BattleSystem *battleSys, int battlerType);
 u8 BattleSystem_GetBattlerType(BattleSystem *battleSys, int battler);
 u8 BattleSystem_GetBattlerSide(BattleSystem *battleSys, int battler);
-UnkStruct_020157E4 *ov16_0223E220(BattleSystem *battleSys);
+PaletteAnimator *BattleSystem_GetPaletteAnimator(BattleSystem *battleSys);
 PCBoxes *BattleSystem_GetPCBoxes(BattleSystem *battleSys);
 
 /**
@@ -238,10 +238,10 @@ void PokemonSpriteData_SetNarcID(PokemonSpriteData *pokemonSpriteData, int idx, 
 void PokemonSpriteData_SetPalette(PokemonSpriteData *pokemonSpriteData, int idx, int value);
 void PokemonSpriteData_SetYOffset(PokemonSpriteData *pokemonSpriteData, int idx, int value);
 void BattleSystem_SetRenderMode(BattleSystem *battleSys, int renderMode);
-void ov16_0223F320(BattleSystem *battleSys, u8 *param1);
-void ov16_0223F32C(BattleSystem *battleSys, u8 *param1);
-void ov16_0223F338(BattleSystem *battleSys, u8 param1);
-void ov16_0223F344(BattleSystem *battleSys, u8 param1);
+void BattleSystem_SetLinkServerSenderStates(BattleSystem *battleSys, u8 *lssState);
+void BattleSystem_SetLinkClientReceiverStates(BattleSystem *battleSys, u8 *lcrState);
+void BattleSystem_SetLinkServerSenderState(BattleSystem *battleSys, u8 lssState);
+void BattleSystem_SetLinkClientReceiverState(BattleSystem *battleSys, u8 lcrState);
 void BattleSystem_SetCommandIsEndWait(BattleSystem *battleSys, u8 value);
 void *BattleSystem_GetHealthBox(BattleSystem *battleSys, int battler);
 void BattleSystem_CreateHealthboxes(BattleSystem *battleSys);
@@ -263,7 +263,7 @@ BOOL BattleSystem_ReadNextRecordedInput(BattleSystem *battleSys, int param1, u8 
 u8 BattleSystem_CollectNewRecordedInputs(BattleSystem *battleSys, u8 *param1);
 void BattleSystem_ReceiveRecordedInputs(BattleSystem *battleSys, u16 param1, u8 *param2);
 u16 BattleSystem_GetNetworkID(BattleSystem *battleSys);
-int ov16_0223F6F0(BattleSystem *battleSys, u16 battler);
+int BattleSystem_GetLinkPlayerPositionForBattler(BattleSystem *battleSys, u16 battler);
 u16 BattleSystem_GetTrainerItem(BattleSystem *battleSys, int battler, int param2);
 u32 BattleSystem_GetRecordingStopped(BattleSystem *battleSys);
 void BattleSystem_SetStopRecording(BattleSystem *battleSys, int flag);

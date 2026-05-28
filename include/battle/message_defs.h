@@ -72,7 +72,7 @@ typedef struct MonShowMessage {
     enum PokemonCryMod cryModulation;
     int selectedPartySlot;
     int capturedBall;
-    int unk_14;
+    int isQuickSendOut;
     u16 moves[LEARNED_MOVES_MAX];
     u16 curPP[LEARNED_MOVES_MAX];
     u16 maxPP[LEARNED_MOVES_MAX];
@@ -107,7 +107,7 @@ typedef struct OpenCaptureBallMessage {
 
 typedef struct TrainerEncounterMessage {
     u8 command;
-    u8 unk_01;
+    u8 unread;
     u16 trainerType;
 } TrainerEncounterMessage;
 
@@ -119,7 +119,7 @@ typedef struct TrainerThrowBallMessage {
 
 typedef struct TrainerSlideInMessage {
     u8 command;
-    u8 unk_01;
+    u8 unread;
     u16 trainerType;
     int posIn;
 } TrainerSlideInMessage;
@@ -150,7 +150,7 @@ typedef struct MoveSelectMenuMessage {
 
 typedef struct TargetSelectMenuMessage {
     u8 command;
-    u8 unk_01;
+    u8 shouldHidePanel;
     u16 range;
     TargetMonData targetMon[MAX_BATTLERS];
 } TargetSelectMenuMessage;

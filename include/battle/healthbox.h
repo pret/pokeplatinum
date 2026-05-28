@@ -78,7 +78,7 @@ typedef struct HealthBox {
     u8 caughtSpecies;
     u8 command;
     u8 delay;
-    u8 unk_4E;
+    u8 expSoundTimer;
     u8 scrollDirection : 1;
     u8 doneScrolling : 1;
     u8 unused_4F_2 : 1;

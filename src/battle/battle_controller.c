@@ -14,6 +14,7 @@
 
 #include "battle/battle_context.h"
 #include "battle/battle_controller.h"
+#include "battle/battle_controller_player.h"
 #include "battle/battle_lib.h"
 #include "battle/battle_message.h"
 #include "battle/battle_system.h"
@@ -300,7 +301,7 @@ void BattleController_EmitShowEncounter(BattleSystem *battleSys, int battler)
  * @param capturedBall
  * @param param3
  */
-void BattleController_EmitShowPokemon(BattleSystem *battleSys, int battler, int capturedBall, int param3)
+void BattleController_EmitShowPokemon(BattleSystem *battleSys, int battler, int capturedBall, int quickSendOut)
 {
     MonShowMessage message;
     int i;
@@ -327,7 +328,7 @@ void BattleController_EmitShowPokemon(BattleSystem *battleSys, int battler, int 
         message.capturedBall = battleSys->battleCtx->battleMons[battler].capturedBall;
     }
 
-    message.unk_14 = param3;
+    message.isQuickSendOut = quickSendOut;
     message.isSubstitute = (battleSys->battleCtx->battleMons[battler].statusVolatile & VOLATILE_CONDITION_SUBSTITUTE) != 0;
 
     BattleSystem_GetBattleParticipantMask(battleSys, battler, message.selectedPartySlot);
@@ -462,7 +463,7 @@ void BattleController_EmitSetTrainerEncounter(BattleSystem *battleSys, int battl
 
     message.command = BATTLE_COMMAND_SET_TRAINER_ENCOUNTER;
     message.trainerType = battleSys->trainers[battler].header.trainerType;
-    message.unk_01 = battleSys->unk_A8[battler];
+    message.unread = battleSys->unwritten[battler];
 
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &message, sizeof(TrainerEncounterMessage));
 }
@@ -511,7 +512,7 @@ void BattleController_EmitSlideTrainerIn(BattleSystem *battleSys, int battler, i
 
     message.command = BATTLE_COMMAND_SLIDE_TRAINER_IN;
     message.trainerType = battleSys->trainers[battler].header.trainerType;
-    message.unk_01 = battleSys->unk_A8[battler];
+    message.unread = battleSys->unwritten[battler];
     message.posIn = posIn;
 
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &message, sizeof(TrainerSlideInMessage));
@@ -803,9 +804,9 @@ void BattleCommand_EmitShowTargetSelectMenu(BattleSystem *battleSys, BattleConte
     message.range = range;
 
     if ((battleType & BATTLE_TYPE_DOUBLES) == FALSE || (battleType & BATTLE_TYPE_2vs2) || ((battleType & BATTLE_TYPE_DOUBLES) && battler >= 2)) {
-        message.unk_01 = 1;
+        message.shouldHidePanel = 1;
     } else {
-        message.unk_01 = 0;
+        message.shouldHidePanel = 0;
     }
 
     for (i = 0; i < MAX_BATTLERS; i++) {
@@ -824,13 +825,13 @@ void BattleCommand_EmitShowTargetSelectMenu(BattleSystem *battleSys, BattleConte
             message.targetMon[i].partySlot = battleCtx->selectedPartySlot[i];
 
             if (battleCtx->battleMons[i].status) {
-                message.targetMon[i].unk_02 = 3;
+                message.targetMon[i].stockStatus = STOCK_STATUS_HAS_STATUS_CONDITION;
             } else {
-                message.targetMon[i].unk_02 = 1;
+                message.targetMon[i].stockStatus = STOCK_STATUS_MON_ALIVE;
             }
         } else {
             message.targetMon[i].isPresent = 0;
-            message.targetMon[i].unk_02 = 2;
+            message.targetMon[i].stockStatus = STOCK_STATUS_MON_FAINTED;
         }
     }
 
@@ -1030,11 +1031,11 @@ void BattleController_EmitPrintMessage(BattleSystem *battleSys, BattleContext *b
  * @param battleCtx
  * @param param2
  */
-void BattleController_EmitPlayMoveAnimation(BattleSystem *battleSys, BattleContext *battleCtx, u16 param2)
+void BattleController_EmitPlayMoveAnimation(BattleSystem *battleSys, BattleContext *battleCtx, u16 move)
 {
     MoveAnimation animation;
 
-    BattleController_SetMoveAnimation(battleSys, battleCtx, &animation, 0, NULL, battleCtx->attacker, battleCtx->defender, param2);
+    BattleController_SetMoveAnimation(battleSys, battleCtx, &animation, 0, NULL, battleCtx->attacker, battleCtx->defender, move);
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battleCtx->attacker, &animation, sizeof(MoveAnimation));
 }
 
@@ -1047,11 +1048,11 @@ void BattleController_EmitPlayMoveAnimation(BattleSystem *battleSys, BattleConte
  * @param attacker
  * @param defender
  */
-void BattleController_EmitPlayMoveAnimationA2D(BattleSystem *battleSys, BattleContext *battleCtx, u16 param2, int attacker, int defender)
+void BattleController_EmitPlayMoveAnimationA2D(BattleSystem *battleSys, BattleContext *battleCtx, u16 move, int attacker, int defender)
 {
     MoveAnimation animation;
 
-    BattleController_SetMoveAnimation(battleSys, battleCtx, &animation, 0, NULL, attacker, defender, param2);
+    BattleController_SetMoveAnimation(battleSys, battleCtx, &animation, 0, NULL, attacker, defender, move);
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, attacker, &animation, sizeof(MoveAnimation));
 }
 
@@ -1271,13 +1272,13 @@ void BattleController_EmitTrainerMessage(BattleSystem *battleSys, int battler, i
  * @param battleSys
  * @param battleCtx
  * @param battler
- * @param param3
+ * @param secondaryAnimID
  */
-void BattleController_EmitPlayStatusEffect(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int param3)
+void BattleController_EmitPlayStatusEffect(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int secondaryAnimID)
 {
     MoveAnimation animation;
 
-    BattleController_SetMoveAnimation(battleSys, battleCtx, &animation, 1, param3, battler, battler, NULL);
+    BattleController_SetMoveAnimation(battleSys, battleCtx, &animation, 1, secondaryAnimID, battler, battler, NULL);
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &animation, sizeof(MoveAnimation));
 }
 
@@ -1288,13 +1289,13 @@ void BattleController_EmitPlayStatusEffect(BattleSystem *battleSys, BattleContex
  * @param battleCtx
  * @param attacker
  * @param defender
- * @param param4
+ * @param secondaryAnimID
  */
-void BattleController_EmitPlayStatusEffectAToD(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, int defender, int param4)
+void BattleController_EmitPlayStatusEffectAToD(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, int defender, int secondaryAnimID)
 {
     MoveAnimation animation;
 
-    BattleController_SetMoveAnimation(battleSys, battleCtx, &animation, 1, param4, attacker, defender, NULL);
+    BattleController_SetMoveAnimation(battleSys, battleCtx, &animation, 1, secondaryAnimID, attacker, defender, NULL);
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, attacker, &animation, sizeof(MoveAnimation));
 }
 
@@ -1440,7 +1441,7 @@ void BattleController_EmitRefreshHPGauge(BattleSystem *battleSys, BattleContext 
 
     if ((battleCtx->battleMons[battler].species == SPECIES_NIDORAN_F || battleCtx->battleMons[battler].species == SPECIES_NIDORAN_M)
         && battleCtx->battleMons[battler].hasNickname == FALSE) {
-        message.gender = 2;
+        message.gender = GENDER_NONE;
     } else {
         message.gender = battleCtx->battleMons[battler].gender;
     }
@@ -1830,7 +1831,7 @@ void BattleController_EmitEscapeMessage(BattleSystem *battleSys, BattleContext *
     message.recordedInputCount = 0;
 
     for (i = 0; i < BattleSystem_GetMaxBattlers(battleSys); i++) {
-        if (battleCtx->battlerActions[i][0] == 16) {
+        if (battleCtx->battlerActions[i][0] == BATTLE_CONTROL_RUN) {
             message.escaperBitmask |= FlagIndex(i);
         }
     }
