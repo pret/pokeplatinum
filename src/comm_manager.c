@@ -4,7 +4,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/communication/comm_avaliable_connections.h"
+#include "constants/communication/comm_available_connections.h"
 #include "constants/communication/comm_command.h"
 #include "constants/communication/comm_error.h"
 #include "constants/communication/comm_type.h"
@@ -186,7 +186,7 @@ static void CommManager_Initialize(SaveData *saveData, int commType)
 /**
  * @brief Frees sCommMan, if it exists
  */
-static void CommMan_Free(void)
+static void CommManager_Free(void)
 {
     if (sCommMan == NULL) {
         return;
@@ -215,7 +215,7 @@ static void CommMan_Free(void)
  *
  * @return TRUE if sCommMan is not NULL
  */
-BOOL CommMan_IsInitialized(void)
+BOOL CommManager_IsInitialized(void)
 {
     if (sCommMan) {
         return TRUE;
@@ -327,7 +327,7 @@ void CommManager_SetDoNotConnectUndergroundFlag(void)
 /**
  * @brief Reopens the underground secret base to Wireless/Online play
  */
-void CommMan_ReopenSecretBase(void)
+void CommManager_ReopenSecretBase(void)
 {
     WirelessDriver_Init();
     CommManager_SetTask(CommTask_StartUndergroundWifiClient, 0);
@@ -342,7 +342,7 @@ void CommMan_ReopenSecretBase(void)
  * @param battleRegulation
  * @param unusedBool
  */
-void CommMan_StartBattleServer(SaveData *saveData, int commType, int contestRegulation, const BattleRegulation *battleRegulation, BOOL unusedBool)
+void CommManager_StartBattleServer(SaveData *saveData, int commType, int contestRegulation, const BattleRegulation *battleRegulation, BOOL unusedBool)
 {
     if (CommSys_IsInitialized()) {
         return;
@@ -366,7 +366,7 @@ void CommMan_StartBattleServer(SaveData *saveData, int commType, int contestRegu
  * @param battleRegulation
  * @param unusedBool
  */
-void CommMan_StartBattleClient(SaveData *saveData, int commType, int contestRegulation, const BattleRegulation *battleRegulation, BOOL unusedBool)
+void CommManager_StartBattleClient(SaveData *saveData, int commType, int contestRegulation, const BattleRegulation *battleRegulation, BOOL unusedBool)
 {
     if (CommSys_IsInitialized()) {
         return;
@@ -1209,7 +1209,7 @@ static void CommTask_End(void)
         return;
     }
 
-    CommMan_Free();
+    CommManager_Free();
 }
 
 /**
@@ -3051,12 +3051,12 @@ void NetworkError_DisplayGTSCriticalError(void)
 }
 
 /**
- * @brief Deadstripped function. Does nothing when called
+ * @brief Former debug function. Does nothing when called
  *
  * @param unused_int
  * @param unused_BgConfig
  */
-void CommManager_deadstripped_02038A1C(int unused_int, BgConfig *bgConfig)
+void CommManager_Dummy_02038A1C(int unused_int, BgConfig *bgConfig)
 {
     return;
 }
@@ -3097,7 +3097,7 @@ void CommManager_DisplayError(int unused)
  */
 BOOL CommManager_CheckResetFinished(void)
 {
-    if (CommServerClient_IsInClosedSecretBase() || !CommMan_IsInitialized()) {
+    if (CommServerClient_IsInClosedSecretBase() || !CommManager_IsInitialized()) {
         return TRUE;
     }
 

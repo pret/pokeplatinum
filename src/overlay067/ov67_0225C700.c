@@ -333,7 +333,7 @@ int ov67_0225C820(ApplicationManager *appMan, int *param1)
         }
     } break;
     case 13:
-        if (CommMan_IsInitialized() == 0) {
+        if (CommManager_IsInitialized() == 0) {
             (*param1) = 4;
         }
         break;
@@ -345,7 +345,7 @@ int ov67_0225C820(ApplicationManager *appMan, int *param1)
         (*param1)++;
         break;
     case 15:
-        if (CommMan_IsInitialized() == 0) {
+        if (CommManager_IsInitialized() == 0) {
             ov67_0225D294(&v0->unk_40);
             ov67_0225D294(&v0->unk_70);
             (*param1) = 7;
@@ -465,7 +465,7 @@ int ov67_0225CC6C(ApplicationManager *appMan, int *param1)
         (*param1) = 6;
         break;
     case 6:
-        if (CommMan_IsInitialized() == 0) {
+        if (CommManager_IsInitialized() == 0) {
             ov67_0225D310(&v0->unk_70);
             ov66_0222F198(v1->unk_04);
             (*param1) = 7;

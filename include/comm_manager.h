@@ -8,7 +8,7 @@
 #include "enums.h"
 #include "savedata.h"
 
-BOOL CommMan_IsInitialized(void);
+BOOL CommManager_IsInitialized(void);
 void CommManager_StartUnderground(SaveData *saveData);
 void CommManager_EndUnderground(void);
 void CommManager_ResetUnderground(void);
@@ -17,9 +17,9 @@ void CommManager_ResetUndergroundServer(void);
 BOOL CommManager_IsConnectingUnderground(void);
 void CommManager_CloseSecretBase(void);
 void CommManager_SetDoNotConnectUndergroundFlag(void);
-void CommMan_ReopenSecretBase(void);
-void CommMan_StartBattleServer(SaveData *saveData, int commType, int contestRegulation, const BattleRegulation *battleRegulation, BOOL unusedBool);
-void CommMan_StartBattleClient(SaveData *saveData, int commType, int contestRegulation, const BattleRegulation *battleRegulation, BOOL unusedBool);
+void CommManager_ReopenSecretBase(void);
+void CommManager_StartBattleServer(SaveData *saveData, int commType, int contestRegulation, const BattleRegulation *battleRegulation, BOOL unusedBool);
+void CommManager_StartBattleClient(SaveData *saveData, int commType, int contestRegulation, const BattleRegulation *battleRegulation, BOOL unusedBool);
 void CommManager_ConnectBattleClient(int connectionID);
 void CommManager_ResetBattleClient(void);
 void CommManager_EndBattle(void);
@@ -96,7 +96,7 @@ void CommManager_SetResetType(u8 resetType);
 u8 CommManager_GetResetType(void);
 void NetworkError_DisplayFatalError(int param0);
 void NetworkError_DisplayGTSCriticalError(void);
-void CommManager_deadstripped_02038A1C(int unused_0, BgConfig *bgConfig);
+void CommManager_Dummy_02038A1C(int unused_0, BgConfig *bgConfig);
 void CommManager_DisplayError(int unused);
 BOOL CommManager_CheckResetFinished(void);
 BOOL CommManager_SetCommError(int error);

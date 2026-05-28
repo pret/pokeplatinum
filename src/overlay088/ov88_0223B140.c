@@ -315,7 +315,7 @@ int ov88_0223B140(ApplicationManager *appMan, int *param1)
     sub_02095CD4(v0->fieldSystem);
     Bg_ToggleLayer(BG_LAYER_MAIN_0, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
-    CommManager_deadstripped_02038A1C(26, v0->unk_174);
+    CommManager_Dummy_02038A1C(26, v0->unk_174);
     NetworkIcon_Init();
 
     if (IsNight() == FALSE) {
@@ -486,7 +486,7 @@ int ov88_0223B57C(ApplicationManager *appMan, int *param1)
         SpriteList_Update(v0->unk_194);
     }
 
-    CommManager_deadstripped_02038A1C(26, v0->unk_174);
+    CommManager_Dummy_02038A1C(26, v0->unk_174);
 
     return v1;
 }
