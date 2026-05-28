@@ -4417,7 +4417,7 @@ static int ov65_02232698(UnkStruct_ov65_0222EBE0 *param0, int param1)
         CommManager_LogoutWifi();
     }
 
-    if (!CommMan_IsInitialized()) {
+    if (!CommManager_IsInitialized()) {
         sub_0202B0F8(param0->unk_00);
         ov65_02232B58(param0, 27, 1);
 
@@ -4638,7 +4638,7 @@ static int ov65_0223294C(UnkStruct_ov65_0222EBE0 *param0, int param1)
 
 static int ov65_02232B28(UnkStruct_ov65_0222EBE0 *param0, int param1)
 {
-    if (!CommMan_IsInitialized()) {
+    if (!CommManager_IsInitialized()) {
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_54);
         param1 = 2;
     }

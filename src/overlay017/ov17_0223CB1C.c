@@ -397,7 +397,7 @@ static void ov17_0223D164(SysTask *param0, void *param1)
         G3_SwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
     }
 
-    CommManager_deadstripped_02038A1C(22, v0->unk_0C.unk_24);
+    CommManager_Dummy_02038A1C(22, v0->unk_0C.unk_24);
 }
 
 static void ov17_0223D1B8(BgConfig *param0)

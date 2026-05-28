@@ -122,7 +122,7 @@ static void CommManUnderground_ReopenSecretBaseTask(void)
 
 void CommManUnderground_ReopenSecretBase(void)
 {
-    CommMan_ReopenSecretBase();
+    CommManager_ReopenSecretBase();
     CommManUnderground_SetFieldCommManTask(CommManUnderground_ReopenSecretBaseTask, 0);
 }
 
