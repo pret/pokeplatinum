@@ -1578,7 +1578,7 @@ static int WonderCardsApp_Main(ApplicationManager *appMan, enum WonderCardsAppSt
         DoScreenTransitionToState(appData, FADE_TYPE_BRIGHTNESS_IN, WC_APP_STATE_SHOW_WONDERCARD_ACTIONS, state);
         break;
     case WC_APP_STATE_WAIT_FOR_COMM_MAN_EXIT:
-        if (CommMan_IsInitialized() == FALSE) {
+        if (CommManager_IsInitialized() == FALSE) {
             *state = appData->queuedState;
         }
         break;

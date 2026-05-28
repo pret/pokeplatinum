@@ -1631,7 +1631,7 @@ static BOOL FrontierScrCmd_EndCommunication(FrontierScriptContext *ctx)
 
 static BOOL WaitForCommManIsDeleted(FrontierScriptContext *ctx)
 {
-    return CommMan_IsInitialized() != TRUE && CommServerClient_IsInitialized() != TRUE;
+    return CommManager_IsInitialized() != TRUE && CommServerClient_IsInitialized() != TRUE;
 }
 
 static BOOL FrontierScrCmd_GetRandom(FrontierScriptContext *ctx)

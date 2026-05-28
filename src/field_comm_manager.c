@@ -148,7 +148,7 @@ void FieldCommManager_StartBattleServer(FieldSystem *fieldSystem, int commType, 
         return;
     }
 
-    CommMan_StartBattleServer(FieldSystem_GetSaveData(fieldSystem), commType, regulation, fieldSystem->battleRegulation, FALSE);
+    CommManager_StartBattleServer(FieldSystem_GetSaveData(fieldSystem), commType, regulation, fieldSystem->battleRegulation, FALSE);
     FieldCommManager_Init(fieldSystem);
     FieldCommManager_SetTask(FieldCommTask_StartBattleServer, 0);
 }
@@ -166,7 +166,7 @@ void FieldCommManager_StartBattleClient(FieldSystem *fieldSystem, int commType, 
         return;
     }
 
-    CommMan_StartBattleClient(FieldSystem_GetSaveData(fieldSystem), commType, regulation, fieldSystem->battleRegulation, 0);
+    CommManager_StartBattleClient(FieldSystem_GetSaveData(fieldSystem), commType, regulation, fieldSystem->battleRegulation, 0);
     FieldCommManager_Init(fieldSystem);
     FieldCommManager_SetTask(FieldCommTask_StartBattleClient, 0);
 }
@@ -199,7 +199,7 @@ void FieldCommManager_EnterBattleRoom(FieldSystem *fieldSystem)
     SetupScreenFadeRegisters(DS_SCREEN_SUB, COLOR_BLACK);
     CommManager_SetErrorHandling(1, 1);
 
-    if (!CommMan_IsInitialized()) {
+    if (!CommManager_IsInitialized()) {
         return;
     }
 
@@ -516,7 +516,7 @@ static void FieldCommManager_CheckExitRoom(void)
         }
     }
 
-    CommManager_deadstripped_02038A1C(4, sFieldCommMan->fieldSystem->bgConfig);
+    CommManager_Dummy_02038A1C(4, sFieldCommMan->fieldSystem->bgConfig);
 }
 
 /**

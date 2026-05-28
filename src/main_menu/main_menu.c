@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/communication/comm_avaliable_connections.h"
+#include "constants/communication/comm_available_connections.h"
 #include "constants/graphics.h"
 #include "constants/narc.h"
 #include "generated/genders.h"

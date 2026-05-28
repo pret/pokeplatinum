@@ -4528,7 +4528,7 @@ static BOOL ScrCmd_EndCommunication(ScriptContext *ctx)
 
 static BOOL ScriptContext_WaitForCommManIsDeleted(ScriptContext *ctx)
 {
-    if (CommMan_IsInitialized() != TRUE) {
+    if (CommManager_IsInitialized() != TRUE) {
         if (CommServerClient_IsInitialized() != TRUE) {
             return TRUE;
         }

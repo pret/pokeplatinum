@@ -1508,7 +1508,7 @@ static void SysTask_DrawSprites(SysTask *task, void *inBattleSys)
 {
     BattleSystem *battleSys = inBattleSys;
 
-    CommManager_deadstripped_02038A1C(HEAP_ID_BATTLE, battleSys->bgConfig);
+    CommManager_Dummy_02038A1C(HEAP_ID_BATTLE, battleSys->bgConfig);
 
     if (battleSys->renderMode == 0 || battleSys->renderMode == 3) {
         if (battleSys->renderMode == 0) {
@@ -1704,7 +1704,7 @@ static BOOL BattleMain_HandleLinkCommHandshake(ApplicationManager *appMan)
 {
     LinkBattleCommState *linkBattleCommState = ApplicationManager_Data(appMan);
 
-    CommManager_deadstripped_02038A1C(HEAP_ID_BATTLE, linkBattleCommState->bgConfig);
+    CommManager_Dummy_02038A1C(HEAP_ID_BATTLE, linkBattleCommState->bgConfig);
 
     BOOL result = 0;
 

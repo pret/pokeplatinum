@@ -195,7 +195,7 @@ int ov83_0223B65C(ApplicationManager *appMan, int *param1)
     }
 
     ov83_0223CBA4(v3);
-    CommManager_deadstripped_02038A1C(v3->heapID, v3->unk_20);
+    CommManager_Dummy_02038A1C(v3->heapID, v3->unk_20);
 
     if (v3->unk_04) {
         return 1;
