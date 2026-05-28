@@ -128,7 +128,7 @@ struct BattleSystem {
     int yOffset;
     int caughtBattlerIdx;
     int commandSelectionFlags;
-    u8 unk_2440; // CLEANUP: written to but never read
+    u8 unread_2440;
     u8 overlayFlags;
     u16 networkID;
     u32 seedRandNext;

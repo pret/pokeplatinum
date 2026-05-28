@@ -746,7 +746,7 @@ static void BattleMain_CopyBattleSysToDTOAndFree(ApplicationManager *appMan)
     BattleContext_Free(battleSys->battleCtx);
 
     for (battlerId = 0; battlerId < battleSys->maxBattlers; battlerId++) {
-        ov16_0225C104(battleSys, battleSys->battlers[battlerId], battleSys->renderMode);
+        BattlerData_Delete(battleSys, battleSys->battlers[battlerId], battleSys->renderMode);
     }
 
     PokemonSpriteManager_Free(battleSys->monSpriteMan);
@@ -783,7 +783,7 @@ static void BattleMain_CopyBattleSysToDTOAndFree(ApplicationManager *appMan)
     }
 
     if (battleSys->playbackStopButton) {
-        ov16_0226E174(battleSys->playbackStopButton);
+        BattleSystem_EndStopRecordingTask(battleSys->playbackStopButton);
     }
 
     Heap_Free(battleSys);
@@ -915,15 +915,15 @@ static void BattleMain_InitTerrains(BattleSystem *battleSys)
     int selectedPartySlot;
     Pokemon *mon;
 
-    ov16_022686CC(&battleSys->terrains[0], battleSys, 0, terrain);
-    ov16_022686CC(&battleSys->terrains[1], battleSys, 1, terrain);
+    Terrain_Init(&battleSys->terrains[0], battleSys, 0, terrain);
+    Terrain_Init(&battleSys->terrains[1], battleSys, 1, terrain);
 
     BattleContext *battleCtx = BattleSystem_GetBattleContext(battleSys);
 
     for (int battler = 0; battler < battleSys->maxBattlers; battler++) {
         selectedPartySlot = BattleContext_Get(battleSys, battleCtx, BATTLECTX_SELECTED_PARTY_SLOT, battler);
         mon = BattleSystem_GetPartyPokemon(battleSys, battler, selectedPartySlot);
-        ov16_0225C038(battleSys, battleSys->battlers[battler], Pokemon_GetValue(mon, MON_DATA_POKEBALL, NULL), selectedPartySlot);
+        BattlerData_InitSendOutBallThrow(battleSys, battleSys->battlers[battler], Pokemon_GetValue(mon, MON_DATA_POKEBALL, NULL), selectedPartySlot);
     }
 
     BattleMain_SetNetworkIconStrength();

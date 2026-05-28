@@ -9,10 +9,10 @@
 typedef struct Terrain {
     ManagedSprite *managedSprite;
     BattleSystem *battleSys;
-    u8 unk_08;
-    u8 unk_09;
-    s16 unk_0A;
-    s16 unk_0C;
+    u8 side;
+    u8 terrainType;
+    s16 unused_0A;
+    s16 unused_0C;
 } Terrain;
 
 #endif // POKEPLATINUM_STRUCT_OV16_02268520_H

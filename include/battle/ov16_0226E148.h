@@ -5,7 +5,7 @@
 
 #include "sys_task_manager.h"
 
-SysTask *ov16_0226E148(BattleSystem *battleSys);
-void ov16_0226E174(SysTask *param0);
+SysTask *BattleSystem_StartStopRecordingTask(BattleSystem *battleSys);
+void BattleSystem_EndStopRecordingTask(SysTask *sysTask);
 
 #endif // POKEPLATINUM_OV16_0226E148_H

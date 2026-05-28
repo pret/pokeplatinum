@@ -805,18 +805,18 @@ static void DrawContestStatSprites(BattleParty *battleParty)
 static void InitializeCursor(BattleParty *battleParty)
 {
     SpriteSystem *spriteSystem = BattleSystem_GetSpriteSystem(battleParty->context->battleSys);
-    UnkStruct_ov16_0226DC24 *cursorSprites;
+    CursorRenderer *cursorSprites;
 
-    ov16_0226DB7C(spriteSystem, battleParty->spriteManager, battleParty->palette, battleParty->context->heapID, CURSOR_CHAR_RESOURCE_ID, CURSOR_PLTT_RESOURCE_ID, CURSOR_CELL_RESOURCE_ID, CURSOR_ANIM_RESOURCE_ID);
-    cursorSprites = ov16_0226DC24(spriteSystem, battleParty->spriteManager, battleParty->context->heapID, CURSOR_CHAR_RESOURCE_ID, CURSOR_PLTT_RESOURCE_ID, CURSOR_CELL_RESOURCE_ID, CURSOR_ANIM_RESOURCE_ID, 0, 1);
+    CursorRenderer_LoadResources(spriteSystem, battleParty->spriteManager, battleParty->palette, battleParty->context->heapID, CURSOR_CHAR_RESOURCE_ID, CURSOR_PLTT_RESOURCE_ID, CURSOR_CELL_RESOURCE_ID, CURSOR_ANIM_RESOURCE_ID);
+    cursorSprites = CursorRenderer_New(spriteSystem, battleParty->spriteManager, battleParty->context->heapID, CURSOR_CHAR_RESOURCE_ID, CURSOR_PLTT_RESOURCE_ID, CURSOR_CELL_RESOURCE_ID, CURSOR_ANIM_RESOURCE_ID, 0, 1);
 
     SetBattleSubMenuCursorSprites(battleParty->cursor, cursorSprites);
 }
 
 static void CleanupCursor(BattleParty *battleParty)
 {
-    ov16_0226DCA8(GetBattleSubMenuCursorSprites(battleParty->cursor));
-    ov16_0226DBFC(battleParty->spriteManager, CURSOR_CHAR_RESOURCE_ID, CURSOR_PLTT_RESOURCE_ID, CURSOR_CELL_RESOURCE_ID, CURSOR_ANIM_RESOURCE_ID);
+    CursorRenderer_Delete(GetBattleSubMenuCursorSprites(battleParty->cursor));
+    CursorRenderer_UnloadResources(battleParty->spriteManager, CURSOR_CHAR_RESOURCE_ID, CURSOR_PLTT_RESOURCE_ID, CURSOR_CELL_RESOURCE_ID, CURSOR_ANIM_RESOURCE_ID);
 }
 
 static const GridMenuCursorPosition sPokemonPartyScreenCursorPositions[] = {
@@ -1342,5 +1342,5 @@ void BattlePartySprites_DisableCursor(BattleParty *battleParty)
 {
     SetBattleSubMenuCursorVisibility(battleParty->cursor, FALSE);
     ResetBattleSubMenuCursorCurrentPosition(battleParty->cursor);
-    ov16_0226DDE8(GetBattleSubMenuCursorSprites(battleParty->cursor));
+    CursorRenderer_HideAllSprites(GetBattleSubMenuCursorSprites(battleParty->cursor));
 }

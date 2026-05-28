@@ -17,74 +17,74 @@
 
 typedef struct {
     BattleSystem *battleSys;
-    s16 unk_04;
-    s16 unk_06;
-} UnkStruct_ov16_0226E148;
+    s16 step;
+    s16 delay;
+} StopRecordingTaskData;
 
-static void ov16_0226E188(SysTask *param0, void *param1);
+static void SysTask_StopRecording(SysTask *sysTask, void *srtDataPtr);
 
-SysTask *ov16_0226E148(BattleSystem *battleSys)
+SysTask *BattleSystem_StartStopRecordingTask(BattleSystem *battleSys)
 {
-    UnkStruct_ov16_0226E148 *v0;
-    SysTask *v1;
+    StopRecordingTaskData *srtData;
+    SysTask *sysTask;
 
-    v0 = Heap_Alloc(HEAP_ID_BATTLE, sizeof(UnkStruct_ov16_0226E148));
-    MI_CpuClear8(v0, sizeof(UnkStruct_ov16_0226E148));
+    srtData = Heap_Alloc(HEAP_ID_BATTLE, sizeof(StopRecordingTaskData));
+    MI_CpuClear8(srtData, sizeof(StopRecordingTaskData));
 
-    v0->battleSys = battleSys;
-    v1 = SysTask_Start(ov16_0226E188, v0, 1000);
+    srtData->battleSys = battleSys;
+    sysTask = SysTask_Start(SysTask_StopRecording, srtData, 1000);
 
-    return v1;
+    return sysTask;
 }
 
-void ov16_0226E174(SysTask *param0)
+void BattleSystem_EndStopRecordingTask(SysTask *sysTask)
 {
-    UnkStruct_ov16_0226E148 *v0 = SysTask_GetParam(param0);
+    StopRecordingTaskData *srtData = SysTask_GetParam(sysTask);
 
-    Heap_Free(v0);
-    SysTask_Done(param0);
+    Heap_Free(srtData);
+    SysTask_Done(sysTask);
 }
 
-static void ov16_0226E188(SysTask *param0, void *param1)
+static void SysTask_StopRecording(SysTask *sysTask, void *srtDataPtr)
 {
-    UnkStruct_ov16_0226E148 *v0 = param1;
-    BattleSubscreen *v1 = ov16_0223E02C(v0->battleSys);
+    StopRecordingTaskData *srtData = srtDataPtr;
+    BattleSubscreen *btlSubscreen = BattleSystem_GetBattleSubscreen(srtData->battleSys);
 
-    switch (v0->unk_04) {
+    switch (srtData->step) {
     case 0:
-        GF_ASSERT(v1 != NULL);
+        GF_ASSERT(btlSubscreen != NULL);
 
         {
-            NARC *v2, *v3;
+            NARC *bgNarc, *objNarc;
 
-            v2 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, HEAP_ID_BATTLE);
-            v3 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, HEAP_ID_BATTLE);
+            bgNarc = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, HEAP_ID_BATTLE);
+            objNarc = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, HEAP_ID_BATTLE);
 
-            BattleSubscreen_SetupBackground(v2, v3, v1, 18, 0, NULL);
-            NARC_dtor(v2);
-            NARC_dtor(v3);
+            BattleSubscreen_SetupBackground(bgNarc, objNarc, btlSubscreen, 18, 0, NULL);
+            NARC_dtor(bgNarc);
+            NARC_dtor(objNarc);
         }
-        v0->unk_04++;
+        srtData->step++;
         break;
     case 1:
-        if (BattleSubscreen_IsReady(v1) == 1) {
-            v0->unk_04++;
+        if (BattleSubscreen_IsReady(btlSubscreen) == 1) {
+            srtData->step++;
         }
         break;
     case 2:
-        if (BattleSystem_IsPlaybackActive(v0->battleSys) == 1) {
-            if (BattleSystem_MenuInput(v1) == 1) {
+        if (BattleSystem_IsPlaybackActive(srtData->battleSys) == 1) {
+            if (BattleSystem_MenuInput(btlSubscreen) == 1) {
                 Sound_PlayEffect(SEQ_SE_DP_DECIDE);
-                v0->unk_04++;
+                srtData->step++;
             }
         }
         break;
     case 3:
-        v0->unk_06++;
+        srtData->delay++;
 
-        if (v0->unk_06 > 8) {
-            BattleSystem_SetStopRecording(v0->battleSys, 0);
-            v0->unk_04++;
+        if (srtData->delay > 8) {
+            BattleSystem_SetStopRecording(srtData->battleSys, 0);
+            srtData->step++;
         }
         break;
     case 4:

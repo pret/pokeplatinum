@@ -745,7 +745,7 @@ void BattleController_EmitSetCommandSelection(BattleSystem *battleSys, BattleCon
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &message, sizeof(CommandSetMessage));
 }
 
-void ov16_022656D4(BattleSystem *battleSys, int battler, int command)
+void BattleController_EmitSelectedCommand(BattleSystem *battleSys, int battler, int command)
 {
     SendMessage(battleSys, COMM_RECIPIENT_SERVER, battler, &command, sizeof(int));
 }
@@ -776,7 +776,7 @@ void BattleController_EmitShowMoveSelectMenu(BattleSystem *battleSys, BattleCont
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &message, sizeof(MoveSelectMenuMessage));
 }
 
-void ov16_02265790(BattleSystem *battleSys, int battler, int command)
+void BattleController_EmitSelectedMove(BattleSystem *battleSys, int battler, int command)
 {
     SendMessage(battleSys, COMM_RECIPIENT_SERVER, battler, &command, sizeof(int));
 }
@@ -812,7 +812,7 @@ void BattleCommand_EmitShowTargetSelectMenu(BattleSystem *battleSys, BattleConte
         if (battleCtx->battleMons[i].curHP) {
             message.targetMon[i].curHP = battleCtx->battleMons[i].curHP;
             message.targetMon[i].maxHP = battleCtx->battleMons[i].maxHP;
-            message.targetMon[i].unk_01_2 = 1;
+            message.targetMon[i].isPresent = 1;
 
             if ((battleCtx->battleMons[i].species == SPECIES_NIDORAN_F || battleCtx->battleMons[i].species == SPECIES_NIDORAN_M)
                 && battleCtx->battleMons[i].hasNickname == FALSE) {
@@ -829,7 +829,7 @@ void BattleCommand_EmitShowTargetSelectMenu(BattleSystem *battleSys, BattleConte
                 message.targetMon[i].unk_02 = 1;
             }
         } else {
-            message.targetMon[i].unk_01_2 = 0;
+            message.targetMon[i].isPresent = 0;
             message.targetMon[i].unk_02 = 2;
         }
     }
@@ -837,7 +837,7 @@ void BattleCommand_EmitShowTargetSelectMenu(BattleSystem *battleSys, BattleConte
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &message, sizeof(TargetSelectMenuMessage));
 }
 
-void ov16_022658CC(BattleSystem *battleSys, int battler, int command)
+void BattleController_EmitSelectedTarget(BattleSystem *battleSys, int battler, int command)
 {
     SendMessage(battleSys, COMM_RECIPIENT_SERVER, battler, &command, sizeof(int));
 }
@@ -922,7 +922,7 @@ void BattleController_EmitShowBagMenu(BattleSystem *battleSys, BattleContext *ba
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &message, sizeof(BagMenuMessage));
 }
 
-void ov16_02265A70(BattleSystem *battleSys, int battler, BattleItemUse message)
+void BattleController_EmitSelectedBagItem(BattleSystem *battleSys, int battler, BattleItemUse message)
 {
     SendMessage(battleSys, COMM_RECIPIENT_SERVER, battler, &message, sizeof(BattleItemUse));
 }
@@ -962,7 +962,7 @@ void BattleController_EmitShowPartyMenu(BattleSystem *battleSys, BattleContext *
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &message, sizeof(PartyMenuMessage));
 }
 
-void ov16_02265B10(BattleSystem *battleSys, int battler, int command)
+void BattleController_EmitPartyMenuResult(BattleSystem *battleSys, int battler, int command)
 {
     SendMessage(battleSys, COMM_RECIPIENT_SERVER, battler, &command, sizeof(int));
 }
@@ -1407,7 +1407,7 @@ void BattleController_EmitSetAlertMessage(BattleSystem *battleSys, int battler, 
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &message, sizeof(AlertMsgMessage));
 }
 
-void ov16_022661B0(BattleSystem *battleSys, int battler)
+void BattleController_EmitAlertMessageAck(BattleSystem *battleSys, int battler)
 {
     int command = BATTLE_COMMAND_SETUP_UI;
     SendMessage(battleSys, COMM_RECIPIENT_SERVER, battler, &command, sizeof(int));
@@ -1505,9 +1505,9 @@ void BattleController_EmitUpdatePartyMon(BattleSystem *battleSys, BattleContext 
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &message, sizeof(UpdatePartyMonMessage));
 }
 
-void ov16_02266460(BattleSystem *battleSys, int battler)
+void BattleController_EmitSlideInPanel(BattleSystem *battleSys, int battler)
 {
-    int command = BATTLE_COMMAND_40;
+    int command = BATTLE_COMMAND_SLIDE_IN_PANEL;
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &command, sizeof(int));
 }
 
@@ -1738,11 +1738,11 @@ void BattleController_EmitPrintLinkWaitMessage(BattleSystem *battleSys, int batt
     u32 battleType = BattleSystem_GetBattleType(battleSys);
 
     message.command = BATTLE_COMMAND_PRINT_LINK_WAIT_MESSAGE;
-    message.unk_02 = 0;
+    message.recordedInputCount = 0;
 
     if ((battleType & BATTLE_TYPE_LINK) && BattleRecording_Exists() == TRUE && (battleSys->battleStatusMask & SYSCTL_HIT_DURING_DIVE) == FALSE) {
-        message.unk_02 = BattleSystem_CollectNewRecordedInputs(battleSys, &message.unk_04[0]);
-        GF_ASSERT(message.unk_02 < 28);
+        message.recordedInputCount = BattleSystem_CollectNewRecordedInputs(battleSys, &message.recordedInputs[0]);
+        GF_ASSERT(message.recordedInputCount < 28);
         SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &message, sizeof(LinkWaitMsgMessage));
     }
 }
@@ -1826,18 +1826,18 @@ void BattleController_EmitEscapeMessage(BattleSystem *battleSys, BattleContext *
     u32 battleType = BattleSystem_GetBattleType(battleSys);
 
     message.command = BATTLE_COMMAND_PRINT_ESCAPE_MESSAGE;
-    message.unk_01 = 0;
-    message.unk_02 = 0;
+    message.escaperBitmask = 0;
+    message.recordedInputCount = 0;
 
     for (i = 0; i < BattleSystem_GetMaxBattlers(battleSys); i++) {
         if (battleCtx->battlerActions[i][0] == 16) {
-            message.unk_01 |= FlagIndex(i);
+            message.escaperBitmask |= FlagIndex(i);
         }
     }
 
     if ((battleType & BATTLE_TYPE_LINK) && BattleRecording_Exists() == TRUE && (battleSys->battleStatusMask & SYSCTL_HIT_DURING_DIVE) == FALSE) {
-        message.unk_02 = BattleSystem_CollectNewRecordedInputs(battleSys, &message.unk_04[0]);
-        GF_ASSERT(message.unk_02 < 28);
+        message.recordedInputCount = BattleSystem_CollectNewRecordedInputs(battleSys, &message.recordedInputs[0]);
+        GF_ASSERT(message.recordedInputCount < 28);
     }
 
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, 0, &message, sizeof(EscapeMsgMessage));
@@ -1854,11 +1854,11 @@ void BattleController_EmitForfeitMessage(BattleSystem *battleSys)
     u32 battleType = BattleSystem_GetBattleType(battleSys);
 
     message.command = BATTLE_COMMAND_PRINT_FORFEIT_MESSAGE;
-    message.unk_02 = 0;
+    message.recordedInputCount = 0;
 
     if ((battleType & BATTLE_TYPE_LINK) && BattleRecording_Exists() == TRUE && (battleSys->battleStatusMask & SYSCTL_HIT_DURING_DIVE) == FALSE) {
-        message.unk_02 = BattleSystem_CollectNewRecordedInputs(battleSys, &message.unk_04[0]);
-        GF_ASSERT(message.unk_02 < 28);
+        message.recordedInputCount = BattleSystem_CollectNewRecordedInputs(battleSys, &message.recordedInputs[0]);
+        GF_ASSERT(message.recordedInputCount < 28);
     }
 
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, 0, &message, sizeof(ForfeitMsgMessage));
@@ -1948,11 +1948,11 @@ void BattleController_EmitSubmitResult(BattleSystem *battleSys)
 
     message.command = BATTLE_COMMAND_SUBMIT_RESULT;
     message.resultMask = BattleSystem_GetResultMask(battleSys);
-    message.unk_02 = 0;
+    message.recordedInputCount = 0;
 
     if ((battleType & BATTLE_TYPE_LINK) && BattleRecording_Exists() == TRUE && (battleSys->battleStatusMask & SYSCTL_HIT_DURING_DIVE) == FALSE) {
-        message.unk_02 = BattleSystem_CollectNewRecordedInputs(battleSys, &message.unk_08[0]);
-        GF_ASSERT(message.unk_02 <= 28);
+        message.recordedInputCount = BattleSystem_CollectNewRecordedInputs(battleSys, &message.recordedInputs[0]);
+        GF_ASSERT(message.recordedInputCount <= 28);
     }
 
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, 0, &message, sizeof(ResultSubmitMessage));
@@ -2014,8 +2014,8 @@ BOOL BattleController_RecvCommMessage(BattleSystem *battleSys, void *data)
             battleSys->battleCtx->ioBuffer[battler][i] = src[i];
         }
     } else if (recipient == COMM_RECIPIENT_CLIENT) {
-        if (battleSys->battlers[battler]->unk_1A4 == 0) {
-            battleSys->battlers[battler]->unk_1A4 = 1;
+        if (battleSys->battlers[battler]->msgPending == 0) {
+            battleSys->battlers[battler]->msgPending = 1;
 
             for (i = 0; i < size; i++) {
                 battleSys->battlers[battler]->data[i] = src[i];
@@ -2047,7 +2047,7 @@ BOOL BattleController_RecvCommMessage(BattleSystem *battleSys, void *data)
  * @param defender
  * @param move
  */
-void BattleController_SetMoveAnimation(BattleSystem *battleSys, BattleContext *battleCtx, MoveAnimation *animation, int param3, int param4, int attacker, int defender, u16 move)
+void BattleController_SetMoveAnimation(BattleSystem *battleSys, BattleContext *battleCtx, MoveAnimation *animation, int animMode, int secondaryAnimID, int attacker, int defender, u16 move)
 {
     int i;
 
@@ -2055,8 +2055,8 @@ void BattleController_SetMoveAnimation(BattleSystem *battleSys, BattleContext *b
     animation->move = move;
     animation->attacker = attacker;
     animation->defender = defender;
-    animation->unk_4C = param3;
-    animation->unk_50 = param4;
+    animation->animMode = animMode;
+    animation->secondaryAnimID = secondaryAnimID;
     animation->terrain = BattleSystem_GetTerrain(battleSys);
 
     if (battleCtx != NULL) {

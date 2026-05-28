@@ -5,12 +5,12 @@
 
 #include "battle/struct_ov16_02268520.h"
 
-void ov16_02268520(Terrain *terrain);
-void ov16_0226862C(Terrain *terrain);
-void ov16_02268660(Terrain *terrain);
-void ov16_02268674(Terrain *terrain);
-void ov16_022686BC(Terrain *terrain, int param1);
-void ov16_022686CC(Terrain *terrain, BattleSystem *battleSys, u16 param2, int param3);
-void ov16_02268700(Terrain *terrain);
+void Terrain_LoadResources(Terrain *terrain);
+void Terrain_CreateSprite(Terrain *terrain);
+void Terrain_DeleteSprite(Terrain *terrain);
+void Terrain_UnloadResources(Terrain *terrain);
+void Terrain_SetVisibility(Terrain *terrain, int draw);
+void Terrain_Init(Terrain *terrain, BattleSystem *battleSys, u16 side, int terrainType);
+void Terrain_Destroy(Terrain *terrain);
 
 #endif // POKEPLATINUM_OV16_02268520_H

@@ -10,18 +10,18 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 
-typedef struct UnkStruct_ov16_0226DC24_t {
-    ManagedSprite *unk_00[5];
-    SysTask *unk_14;
-} UnkStruct_ov16_0226DC24;
+typedef struct CursorRenderer_t {
+    ManagedSprite *sprites[5];
+    SysTask *animTask;
+} CursorRenderer;
 
-static void ov16_0226DE10(SysTask *param0, void *param1);
-void ov16_0226DBFC(SpriteManager *param0, u32 param1, u32 param2, u32 param3, u32 param4);
-void ov16_0226DCA8(UnkStruct_ov16_0226DC24 *param0);
-void ov16_0226DD7C(UnkStruct_ov16_0226DC24 *param0, int param1, int param2, int param3, int param4);
-void ov16_0226DDE8(UnkStruct_ov16_0226DC24 *param0);
+static void SysTask_AnimateCursorSprites(SysTask *param0, void *param1);
+void CursorRenderer_UnloadResources(SpriteManager *param0, u32 param1, u32 param2, u32 param3, u32 param4);
+void CursorRenderer_Delete(CursorRenderer *cursorRenderer);
+void CursorRenderer_DrawOnSubscreen(CursorRenderer *cursorRenderer, int param1, int param2, int param3, int param4);
+void CursorRenderer_HideAllSprites(CursorRenderer *cursorRenderer);
 
-static const SpriteTemplate Unk_ov16_02270AA4 = {
+static const SpriteTemplate sCursorRendererSpriteTemplate = {
     0x0,
     0x0,
     0x0,
@@ -34,132 +34,132 @@ static const SpriteTemplate Unk_ov16_02270AA4 = {
     0x0
 };
 
-void ov16_0226DB7C(SpriteSystem *param0, SpriteManager *param1, PaletteData *param2, enum HeapID heapID, u32 param4, u32 param5, u32 param6, u32 param7)
+void CursorRenderer_LoadResources(SpriteSystem *spriteSys, SpriteManager *spriteMan, PaletteData *plttData, enum HeapID heapID, u32 charResID, u32 plttResID, u32 cellResID, u32 animResID)
 {
-    NARC *v0 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, heapID);
+    NARC *narc = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, heapID);
 
-    SpriteSystem_LoadPaletteBufferFromOpenNarc(param2, PLTTBUF_SUB_OBJ, param0, param1, v0, 80, FALSE, 1, NNS_G2D_VRAM_TYPE_2DSUB, param5);
-    SpriteSystem_LoadCharResObjFromOpenNarc(param0, param1, v0, 250, TRUE, NNS_G2D_VRAM_TYPE_2DSUB, param4);
-    SpriteSystem_LoadCellResObjFromOpenNarc(param0, param1, v0, 251, TRUE, param6);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(param0, param1, v0, 252, TRUE, param7);
-    NARC_dtor(v0);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(plttData, PLTTBUF_SUB_OBJ, spriteSys, spriteMan, narc, 80, FALSE, 1, NNS_G2D_VRAM_TYPE_2DSUB, plttResID);
+    SpriteSystem_LoadCharResObjFromOpenNarc(spriteSys, spriteMan, narc, 250, TRUE, NNS_G2D_VRAM_TYPE_2DSUB, charResID);
+    SpriteSystem_LoadCellResObjFromOpenNarc(spriteSys, spriteMan, narc, 251, TRUE, cellResID);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(spriteSys, spriteMan, narc, 252, TRUE, animResID);
+    NARC_dtor(narc);
 }
 
-void ov16_0226DBFC(SpriteManager *param0, u32 param1, u32 param2, u32 param3, u32 param4)
+void CursorRenderer_UnloadResources(SpriteManager *spriteMan, u32 charResID, u32 plttResID, u32 cellResID, u32 animResID)
 {
-    SpriteManager_UnloadCharObjById(param0, param1);
-    SpriteManager_UnloadPlttObjById(param0, param2);
-    SpriteManager_UnloadCellObjById(param0, param3);
-    SpriteManager_UnloadAnimObjById(param0, param4);
+    SpriteManager_UnloadCharObjById(spriteMan, charResID);
+    SpriteManager_UnloadPlttObjById(spriteMan, plttResID);
+    SpriteManager_UnloadCellObjById(spriteMan, cellResID);
+    SpriteManager_UnloadAnimObjById(spriteMan, animResID);
 }
 
-UnkStruct_ov16_0226DC24 *ov16_0226DC24(SpriteSystem *param0, SpriteManager *param1, enum HeapID heapID, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8)
+CursorRenderer *CursorRenderer_New(SpriteSystem *spriteSys, SpriteManager *spriteMan, enum HeapID heapID, u32 charResID, u32 plttResID, u32 cellResID, u32 animResID, u32 priority, u32 bgPriority)
 {
-    UnkStruct_ov16_0226DC24 *v0;
-    SpriteTemplate v1;
-    int v2;
+    CursorRenderer *cursorRenderer;
+    SpriteTemplate spriteTemplate;
+    int i;
 
-    v1 = Unk_ov16_02270AA4;
-    v1.resources[0] = param3;
-    v1.resources[1] = param4;
-    v1.resources[2] = param5;
-    v1.resources[3] = param6;
-    v1.priority = param7;
-    v1.bgPriority = param8;
+    spriteTemplate = sCursorRendererSpriteTemplate;
+    spriteTemplate.resources[0] = charResID;
+    spriteTemplate.resources[1] = plttResID;
+    spriteTemplate.resources[2] = cellResID;
+    spriteTemplate.resources[3] = animResID;
+    spriteTemplate.priority = priority;
+    spriteTemplate.bgPriority = bgPriority;
 
-    v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov16_0226DC24));
-    MI_CpuClear8(v0, sizeof(UnkStruct_ov16_0226DC24));
+    cursorRenderer = Heap_Alloc(heapID, sizeof(CursorRenderer));
+    MI_CpuClear8(cursorRenderer, sizeof(CursorRenderer));
 
-    for (v2 = 0; v2 < 5; v2++) {
-        v0->unk_00[v2] = SpriteSystem_NewSprite(param0, param1, &v1);
-        ManagedSprite_SetDrawFlag(v0->unk_00[v2], 0);
+    for (i = 0; i < 5; i++) {
+        cursorRenderer->sprites[i] = SpriteSystem_NewSprite(spriteSys, spriteMan, &spriteTemplate);
+        ManagedSprite_SetDrawFlag(cursorRenderer->sprites[i], 0);
     }
 
-    v0->unk_14 = SysTask_Start(ov16_0226DE10, v0, 40000);
-    return v0;
+    cursorRenderer->animTask = SysTask_Start(SysTask_AnimateCursorSprites, cursorRenderer, 40000);
+    return cursorRenderer;
 }
 
-void ov16_0226DCA8(UnkStruct_ov16_0226DC24 *param0)
+void CursorRenderer_Delete(CursorRenderer *cursorRenderer)
 {
-    int v0;
+    int i;
 
-    for (v0 = 0; v0 < 5; v0++) {
-        Sprite_DeleteAndFreeResources(param0->unk_00[v0]);
+    for (i = 0; i < 5; i++) {
+        Sprite_DeleteAndFreeResources(cursorRenderer->sprites[i]);
     }
 
-    SysTask_Done(param0->unk_14);
-    Heap_Free(param0);
+    SysTask_Done(cursorRenderer->animTask);
+    Heap_Free(cursorRenderer);
 }
 
-void BattleSystem_DrawCursorSprites(UnkStruct_ov16_0226DC24 *param0, int param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8, fx32 param9)
+void BattleSystem_DrawCursorSprites(CursorRenderer *cursorRenderer, int param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8, fx32 param9)
 {
-    int v0;
+    int i;
 
-    ManagedSprite_SetPositionXYWithSubscreenOffset(param0->unk_00[0], param1, param2, param9);
-    ManagedSprite_SetPositionXYWithSubscreenOffset(param0->unk_00[1], param3, param4, param9);
-    ManagedSprite_SetPositionXYWithSubscreenOffset(param0->unk_00[2], param5, param6, param9);
-    ManagedSprite_SetPositionXYWithSubscreenOffset(param0->unk_00[3], param7, param8, param9);
+    ManagedSprite_SetPositionXYWithSubscreenOffset(cursorRenderer->sprites[0], param1, param2, param9);
+    ManagedSprite_SetPositionXYWithSubscreenOffset(cursorRenderer->sprites[1], param3, param4, param9);
+    ManagedSprite_SetPositionXYWithSubscreenOffset(cursorRenderer->sprites[2], param5, param6, param9);
+    ManagedSprite_SetPositionXYWithSubscreenOffset(cursorRenderer->sprites[3], param7, param8, param9);
 
-    ManagedSprite_SetAnim(param0->unk_00[0], 0);
-    ManagedSprite_SetAnim(param0->unk_00[1], 1);
-    ManagedSprite_SetAnim(param0->unk_00[2], 2);
-    ManagedSprite_SetAnim(param0->unk_00[3], 3);
+    ManagedSprite_SetAnim(cursorRenderer->sprites[0], 0);
+    ManagedSprite_SetAnim(cursorRenderer->sprites[1], 1);
+    ManagedSprite_SetAnim(cursorRenderer->sprites[2], 2);
+    ManagedSprite_SetAnim(cursorRenderer->sprites[3], 3);
 
-    for (v0 = 0; v0 < 4; v0++) {
-        ManagedSprite_SetDrawFlag(param0->unk_00[v0], 1);
-    }
-}
-
-void ov16_0226DD54(UnkStruct_ov16_0226DC24 *param0, int param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8)
-{
-    BattleSystem_DrawCursorSprites(param0, param1, param2, param3, param4, param5, param6, param7, param8, (192 << FX32_SHIFT));
-}
-
-void ov16_0226DD7C(UnkStruct_ov16_0226DC24 *param0, int param1, int param2, int param3, int param4)
-{
-    ov16_0226DD54(param0, param1, param3, param2, param3, param1, param4, param2, param4);
-}
-
-void BattleSystem_DrawCursor(UnkStruct_ov16_0226DC24 *param0, int param1, int param2, int param3, int param4, fx32 param5)
-{
-    BattleSystem_DrawCursorSprites(param0, param1, param3, param2, param3, param1, param4, param2, param4, param5);
-}
-
-void ov16_0226DDC0(UnkStruct_ov16_0226DC24 *param0, int param1, int param2, int param3, fx32 param4)
-{
-    ManagedSprite_SetPositionXYWithSubscreenOffset(param0->unk_00[4], param1, param2, param4);
-    ManagedSprite_SetAnim(param0->unk_00[4], param3);
-    ManagedSprite_SetDrawFlag(param0->unk_00[4], 1);
-}
-
-void ov16_0226DDE8(UnkStruct_ov16_0226DC24 *param0)
-{
-    int v0;
-
-    for (v0 = 0; v0 < 5; v0++) {
-        ManagedSprite_SetDrawFlag(param0->unk_00[v0], 0);
+    for (i = 0; i < 4; i++) {
+        ManagedSprite_SetDrawFlag(cursorRenderer->sprites[i], 1);
     }
 }
 
-void ov16_0226DE04(UnkStruct_ov16_0226DC24 *param0)
+void CursorRenderer_DrawSpritesOnSubscreen(CursorRenderer *cursorRenderer, int x0, int y0, int x1, int y1, int x2, int y2, int x3, int y3)
 {
-    ManagedSprite_SetDrawFlag(param0->unk_00[4], 0);
+    BattleSystem_DrawCursorSprites(cursorRenderer, x0, y0, x1, y1, x2, y2, x3, y3, (192 << FX32_SHIFT));
 }
 
-static void ov16_0226DE10(SysTask *param0, void *param1)
+void CursorRenderer_DrawOnSubscreen(CursorRenderer *cursorRenderer, int x1, int x2, int y1, int y2)
 {
-    UnkStruct_ov16_0226DC24 *v0 = param1;
-    int v1;
+    CursorRenderer_DrawSpritesOnSubscreen(cursorRenderer, x1, y1, x2, y1, x1, y2, x2, y2);
+}
 
-    if (ManagedSprite_GetDrawFlag(v0->unk_00[0]) == 0) {
+void BattleSystem_DrawCursor(CursorRenderer *cursorRenderer, int x1, int x2, int y1, int y2, fx32 subscreenOffset)
+{
+    BattleSystem_DrawCursorSprites(cursorRenderer, x1, y1, x2, y1, x1, y2, x2, y2, subscreenOffset);
+}
+
+void CursorRenderer_DrawSplitAnchor(CursorRenderer *cursorRenderer, int x, int y, int animID, fx32 subscreenOffset)
+{
+    ManagedSprite_SetPositionXYWithSubscreenOffset(cursorRenderer->sprites[4], x, y, subscreenOffset);
+    ManagedSprite_SetAnim(cursorRenderer->sprites[4], animID);
+    ManagedSprite_SetDrawFlag(cursorRenderer->sprites[4], 1);
+}
+
+void CursorRenderer_HideAllSprites(CursorRenderer *cursorRenderer)
+{
+    int i;
+
+    for (i = 0; i < 5; i++) {
+        ManagedSprite_SetDrawFlag(cursorRenderer->sprites[i], 0);
+    }
+}
+
+void CursorRenderer_HideSplitAnchor(CursorRenderer *cursorRenderer)
+{
+    ManagedSprite_SetDrawFlag(cursorRenderer->sprites[4], 0);
+}
+
+static void SysTask_AnimateCursorSprites(SysTask *task, void *cursorRendererPtr)
+{
+    CursorRenderer *cursorRenderer = cursorRendererPtr;
+    int i;
+
+    if (ManagedSprite_GetDrawFlag(cursorRenderer->sprites[0]) == 0) {
         return;
     }
 
-    for (v1 = 0; v1 < 4; v1++) {
-        ManagedSprite_TickFrame(v0->unk_00[v1]);
+    for (i = 0; i < 4; i++) {
+        ManagedSprite_TickFrame(cursorRenderer->sprites[i]);
     }
 
-    if (ManagedSprite_GetDrawFlag(v0->unk_00[4]) == 1) {
-        ManagedSprite_TickFrame(v0->unk_00[4]);
+    if (ManagedSprite_GetDrawFlag(cursorRenderer->sprites[4]) == 1) {
+        ManagedSprite_TickFrame(cursorRenderer->sprites[4]);
     }
 }

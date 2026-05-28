@@ -173,8 +173,8 @@ void HealthBox_Scroll(HealthBox *healthbox, enum HealthBoxScrollDirection direct
  */
 u8 HealthBox_Type(int battlerType, u32 battleType);
 void Healthbox_StartLevelUpFlash(HealthBox *healthbox, u8 *param1);
-void ov16_02268468(HealthBox *healthbox);
-void ov16_0226846C(HealthBox *healthbox);
+void dummy_02268468(HealthBox *healthbox);
+void dummy_0226846C(HealthBox *healthbox);
 void Healthbox_StartBobAnimation(HealthBox *healthbox);
 void Healthbox_StopBobAnimation(HealthBox *healthbox);
 

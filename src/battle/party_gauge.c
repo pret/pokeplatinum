@@ -135,7 +135,7 @@ static const SpriteTemplate sPokeballTemplate = {
 #define SCREEN_EDGE_RIGHT 256
 #define SCREEN_EDGE_LEFT  0
 
-#define ARROW_X_START_OURS   (SCREEN_EDGE_RIGHT + 96) // 96 pixels off-screem
+#define ARROW_X_START_OURS   (SCREEN_EDGE_RIGHT + 96) // 96 pixels off-screen
 #define ARROW_X_START_THEIRS (SCREEN_EDGE_LEFT - 96) // 96 pixels off-screen
 #define ARROW_X_END_OURS     (SCREEN_EDGE_RIGHT - 32)
 #define ARROW_X_END_THEIRS   (SCREEN_EDGE_LEFT + 32)

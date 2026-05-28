@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_OV16_02264650_H
 
 typedef struct {
-    int unk_00;
+    int state;
     int unk_04;
 } UnkStruct_ov16_02264650;
 

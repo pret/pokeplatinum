@@ -30,7 +30,7 @@ typedef struct BattlerData {
     PokemonSprite *monSprite;
     Window *unused_24;
     HealthBox healthbox;
-    UnkStruct_ov16_0226C378 unk_7B;
+    SavedCursorPosition savedCursorPos;
     BallRotation *ballRotation;
     UnkStruct_ov12_02223764 *unk_88;
     void *unused_8C;
@@ -38,12 +38,12 @@ typedef struct BattlerData {
     u8 battler;
     u8 battlerType;
     u8 bootState;
-    u8 unk_193;
+    u8 commandUIReady;
     SysTask *sysTask;
     u16 degrees;
-    int unk_19C;
+    int isAlternateSprite;
     NARC *narc;
-    u8 unk_1A4;
+    u8 msgPending;
     u8 unused_1A5[3];
 } BattlerData;
 

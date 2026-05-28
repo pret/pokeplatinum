@@ -152,7 +152,7 @@ typedef struct TargetSelectMenuMessage {
     u8 command;
     u8 unk_01;
     u16 range;
-    UnkStruct_ov16_0225C29C_sub1 targetMon[MAX_BATTLERS];
+    TargetMonData targetMon[MAX_BATTLERS];
 } TargetSelectMenuMessage;
 
 typedef struct BagMenuMessage {
@@ -352,22 +352,22 @@ typedef struct RecordIncrementMessage {
 typedef struct LinkWaitMsgMessage {
     u8 command;
     u8 padding_01;
-    u16 unk_02;
-    u8 unk_04[28];
+    u16 recordedInputCount;
+    u8 recordedInputs[28];
 } LinkWaitMsgMessage;
 
 typedef struct EscapeMsgMessage {
     u8 command;
-    u8 unk_01;
-    u16 unk_02;
-    u8 unk_04[28];
+    u8 escaperBitmask;
+    u16 recordedInputCount;
+    u8 recordedInputs[28];
 } EscapeMsgMessage;
 
 typedef struct ForfeitMsgMessage {
     u8 command;
     u8 padding_01;
-    u16 unk_02;
-    u8 unk_04[28];
+    u16 recordedInputCount;
+    u8 recordedInputs[28];
 } ForfeitMsgMessage;
 
 typedef struct MoveHitSoundMessage {
@@ -385,9 +385,9 @@ typedef struct MusicPlayMessage {
 typedef struct ResultSubmitMessage {
     u8 command;
     u8 padding_01;
-    u16 unk_02;
+    u16 recordedInputCount;
     u32 resultMask;
-    u8 unk_08[28];
+    u8 recordedInputs[28];
 } ResultSubmitMessage;
 
 typedef struct CommandClearMsg {

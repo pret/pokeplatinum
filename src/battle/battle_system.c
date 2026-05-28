@@ -182,12 +182,12 @@ SpriteManager *BattleSystem_GetSpriteManager(BattleSystem *battleSys)
     return battleSys->spriteMan;
 }
 
-Terrain *BattlerSystem_GetTerrain(BattleSystem *battleSys, int index)
+Terrain *BattleSystem_GetTerrainForSide(BattleSystem *battleSys, int side)
 {
-    return &battleSys->terrains[index];
+    return &battleSys->terrains[side];
 }
 
-BattleSubscreen *ov16_0223E02C(BattleSystem *battleSys)
+BattleSubscreen *BattleSystem_GetBattleSubscreen(BattleSystem *battleSys)
 {
     return battleSys->btlSubscreen;
 }
@@ -1070,8 +1070,8 @@ void BattleSystem_BakeSpritesToBackground(BattleSystem *battleSys)
 
     Bg_LoadTiles(battleSys->bgConfig, 3, battleSys->bgTileSnapshot, 0x10000, 0);
 
-    ov16_02268700(&battleSys->terrains[0]);
-    ov16_02268700(&battleSys->terrains[1]);
+    Terrain_Destroy(&battleSys->terrains[0]);
+    Terrain_Destroy(&battleSys->terrains[1]);
 }
 
 u8 *BattleSystem_GetBgTileSnapshot(BattleSystem *battleSys)
@@ -1142,9 +1142,9 @@ void BattleSystem_SetCommandSelectionFlags(BattleSystem *battleSys, int flags)
     battleSys->commandSelectionFlags = flags;
 }
 
-void ov16_0223F290(BattleSystem *battleSys, int param1)
+void BattleSystem_SetUnread_2440(BattleSystem *battleSys, int param1)
 {
-    battleSys->unk_2440 = param1;
+    battleSys->unread_2440 = param1;
 }
 
 WaitDial *BattleSystem_GetWaitDial(BattleSystem *battleSys)
@@ -1463,7 +1463,7 @@ void BattleSystem_ShowStopPlaybackButton(BattleSystem *battleSys)
         return;
     }
 
-    battleSys->playbackStopButton = ov16_0226E148(battleSys);
+    battleSys->playbackStopButton = BattleSystem_StartStopRecordingTask(battleSys);
 }
 
 u8 BattleSystem_GetRecordedChatter(BattleSystem *battleSys, int battler)

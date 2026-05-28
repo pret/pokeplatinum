@@ -11,30 +11,31 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 
-typedef struct UnkStruct_ov16_0226DEEC_t {
-    ManagedSprite *unk_00;
-    SysTask *unk_04;
-    int unk_08;
-    int unk_0C;
-    int unk_10;
-    fx32 unk_14;
-    s16 unk_18;
-    u8 unk_1A;
-    u8 unk_1B;
-    u8 unk_1C;
-    u8 unk_1D;
-    u8 unk_1E;
-} UnkStruct_ov16_0226DEEC;
+// This is the bouncing arrow sprite used in the catch tutorial
+typedef struct Indicator_t {
+    ManagedSprite *sprite;
+    SysTask *animTask;
+    int x;
+    int y;
+    int bounceAngle;
+    fx32 subscreenOffset;
+    s16 exitTimer;
+    u8 exitPending;
+    u8 hasDropped;
+    u8 isExiting;
+    u8 exitStep;
+    u8 exitFrameCount;
+} Indicator;
 
-void ov16_0226DE44(SpriteSystem *param0, SpriteManager *param1, u32 param2, PaletteData *param3, u32 param4, u32 param5, u32 param6, u32 param7);
-void ov16_0226DEC4(SpriteManager *param0, u32 param1, u32 param2, u32 param3, u32 param4);
-void ov16_0226DF68(UnkStruct_ov16_0226DEEC *param0);
-void ov16_0226DFB0(UnkStruct_ov16_0226DEEC *param0, int param1, int param2);
-void ov16_0226DFBC(UnkStruct_ov16_0226DEEC *param0);
-static void ov16_0226DFD8(SysTask *param0, void *param1);
-static void ov16_0226E13C(UnkStruct_ov16_0226DEEC *param0);
+void Indicator_LoadResources(SpriteSystem *spriteSys, SpriteManager *spriteMan, u32 heapID, PaletteData *plttData, u32 charResID, u32 plttResID, u32 cellResID, u32 animResID);
+void Indicator_UnloadResources(SpriteManager *spriteMan, u32 charResID, u32 plttResID, u32 cellResID, u32 animResID);
+void Indicator_Delete(Indicator *indicator);
+void Indicator_Show(Indicator *indicator, int x, int y, fx32 subscreenOffset);
+void Indicator_Hide(Indicator *indicator);
+static void SysTask_AnimateIndicator(SysTask *task, void *indicatorPtr);
+static void Indicator_ResetAnimation(Indicator *indicator);
 
-static const SpriteTemplate Unk_ov16_02270AD8 = {
+static const SpriteTemplate sIndicatorSpriteTemplate = {
     0x0,
     0x0,
     0x0,
@@ -47,162 +48,162 @@ static const SpriteTemplate Unk_ov16_02270AD8 = {
     0x0
 };
 
-void ov16_0226DE44(SpriteSystem *param0, SpriteManager *param1, u32 heapID, PaletteData *param3, u32 param4, u32 param5, u32 param6, u32 param7)
+void Indicator_LoadResources(SpriteSystem *spriteSys, SpriteManager *spriteMan, u32 heapID, PaletteData *plttData, u32 charResID, u32 plttResID, u32 cellResID, u32 animResID)
 {
-    NARC *v0 = NARC_ctor(NARC_INDEX_GRAPHIC__EV_POKESELECT, heapID);
+    NARC *narc = NARC_ctor(NARC_INDEX_GRAPHIC__EV_POKESELECT, heapID);
 
-    SpriteSystem_LoadPaletteBufferFromOpenNarc(param3, PLTTBUF_SUB_OBJ, param0, param1, v0, 11, FALSE, 1, NNS_G2D_VRAM_TYPE_2DSUB, param5);
-    SpriteSystem_LoadCharResObjFromOpenNarc(param0, param1, v0, 10, FALSE, NNS_G2D_VRAM_TYPE_2DSUB, param4);
-    SpriteSystem_LoadCellResObjFromOpenNarc(param0, param1, v0, 12, FALSE, param6);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(param0, param1, v0, 13, FALSE, param7);
-    NARC_dtor(v0);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(plttData, PLTTBUF_SUB_OBJ, spriteSys, spriteMan, narc, 11, FALSE, 1, NNS_G2D_VRAM_TYPE_2DSUB, plttResID);
+    SpriteSystem_LoadCharResObjFromOpenNarc(spriteSys, spriteMan, narc, 10, FALSE, NNS_G2D_VRAM_TYPE_2DSUB, charResID);
+    SpriteSystem_LoadCellResObjFromOpenNarc(spriteSys, spriteMan, narc, 12, FALSE, cellResID);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(spriteSys, spriteMan, narc, 13, FALSE, animResID);
+    NARC_dtor(narc);
 }
 
-void ov16_0226DEC4(SpriteManager *param0, u32 param1, u32 param2, u32 param3, u32 param4)
+void Indicator_UnloadResources(SpriteManager *spriteMan, u32 charResID, u32 plttResID, u32 cellResID, u32 animResID)
 {
-    SpriteManager_UnloadCharObjById(param0, param1);
-    SpriteManager_UnloadPlttObjById(param0, param2);
-    SpriteManager_UnloadCellObjById(param0, param3);
-    SpriteManager_UnloadAnimObjById(param0, param4);
+    SpriteManager_UnloadCharObjById(spriteMan, charResID);
+    SpriteManager_UnloadPlttObjById(spriteMan, plttResID);
+    SpriteManager_UnloadCellObjById(spriteMan, cellResID);
+    SpriteManager_UnloadAnimObjById(spriteMan, animResID);
 }
 
-UnkStruct_ov16_0226DEEC *ov16_0226DEEC(SpriteSystem *param0, SpriteManager *param1, enum HeapID heapID, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8)
+Indicator *Indicator_New(SpriteSystem *spriteSys, SpriteManager *spriteMan, enum HeapID heapID, u32 charResID, u32 plttResID, u32 cellResID, u32 animResID, u32 priority, u32 bgPriority)
 {
-    UnkStruct_ov16_0226DEEC *v0;
-    SpriteTemplate v1;
+    Indicator *indicator;
+    SpriteTemplate spriteTemplate;
 
-    v1 = Unk_ov16_02270AD8;
+    spriteTemplate = sIndicatorSpriteTemplate;
 
-    v1.resources[0] = param3;
-    v1.resources[1] = param4;
-    v1.resources[2] = param5;
-    v1.resources[3] = param6;
-    v1.priority = param7;
-    v1.bgPriority = param8;
+    spriteTemplate.resources[0] = charResID;
+    spriteTemplate.resources[1] = plttResID;
+    spriteTemplate.resources[2] = cellResID;
+    spriteTemplate.resources[3] = animResID;
+    spriteTemplate.priority = priority;
+    spriteTemplate.bgPriority = bgPriority;
 
-    v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov16_0226DEEC));
-    MI_CpuClear8(v0, sizeof(UnkStruct_ov16_0226DEEC));
+    indicator = Heap_Alloc(heapID, sizeof(Indicator));
+    MI_CpuClear8(indicator, sizeof(Indicator));
 
-    v0->unk_00 = SpriteSystem_NewSprite(param0, param1, &v1);
-    ManagedSprite_SetDrawFlag(v0->unk_00, 0);
+    indicator->sprite = SpriteSystem_NewSprite(spriteSys, spriteMan, &spriteTemplate);
+    ManagedSprite_SetDrawFlag(indicator->sprite, 0);
 
-    v0->unk_14 = (192 << FX32_SHIFT);
-    v0->unk_04 = SysTask_Start(ov16_0226DFD8, v0, 999);
+    indicator->subscreenOffset = (192 << FX32_SHIFT);
+    indicator->animTask = SysTask_Start(SysTask_AnimateIndicator, indicator, 999);
 
-    return v0;
+    return indicator;
 }
 
-void ov16_0226DF68(UnkStruct_ov16_0226DEEC *param0)
+void Indicator_Delete(Indicator *indicator)
 {
-    Sprite_DeleteAndFreeResources(param0->unk_00);
-    SysTask_Done(param0->unk_04);
-    Heap_Free(param0);
+    Sprite_DeleteAndFreeResources(indicator->sprite);
+    SysTask_Done(indicator->animTask);
+    Heap_Free(indicator);
 }
 
-void ov16_0226DF80(UnkStruct_ov16_0226DEEC *param0, int param1, int param2, fx32 param3)
+void Indicator_Show(Indicator *indicator, int x, int y, fx32 subscreenOffset)
 {
-    ov16_0226E13C(param0);
+    Indicator_ResetAnimation(indicator);
 
-    param0->unk_08 = param1;
-    param0->unk_0C = param2;
-    param0->unk_14 = param3;
+    indicator->x = x;
+    indicator->y = y;
+    indicator->subscreenOffset = subscreenOffset;
 
-    ManagedSprite_SetPositionXYWithSubscreenOffset(param0->unk_00, param1, param2, param3);
-    ManagedSprite_SetDrawFlag(param0->unk_00, TRUE);
+    ManagedSprite_SetPositionXYWithSubscreenOffset(indicator->sprite, x, y, subscreenOffset);
+    ManagedSprite_SetDrawFlag(indicator->sprite, TRUE);
 }
 
-void ov16_0226DFB0(UnkStruct_ov16_0226DEEC *param0, int param1, int param2)
+void Indicator_ShowOnSubscreen(Indicator *indicator, int x, int y)
 {
-    ov16_0226DF80(param0, param1, param2, (192 << FX32_SHIFT));
+    Indicator_Show(indicator, x, y, (192 << FX32_SHIFT));
 }
 
-void ov16_0226DFBC(UnkStruct_ov16_0226DEEC *param0)
+void Indicator_Hide(Indicator *indicator)
 {
-    ManagedSprite_SetDrawFlag(param0->unk_00, FALSE);
-    ov16_0226E13C(param0);
+    ManagedSprite_SetDrawFlag(indicator->sprite, FALSE);
+    Indicator_ResetAnimation(indicator);
 }
 
-void ov16_0226DFD0(UnkStruct_ov16_0226DEEC *param0, int param1)
+void Indicator_SetExitTimer(Indicator *indicator, int timer)
 {
-    param0->unk_18 = param1;
+    indicator->exitTimer = timer;
 }
 
-BOOL ov16_0226DFD4(UnkStruct_ov16_0226DEEC *param0)
+BOOL Indicator_GetHasDropped(Indicator *indicator)
 {
-    return param0->unk_1B;
+    return indicator->hasDropped;
 }
 
-static void ov16_0226DFD8(SysTask *param0, void *param1)
+static void SysTask_AnimateIndicator(SysTask *task, void *indicatorPtr)
 {
-    UnkStruct_ov16_0226DEEC *v0 = param1;
+    Indicator *indicator = indicatorPtr;
 
-    if (v0->unk_1B == 1) {
-        v0->unk_1B = 0;
+    if (indicator->hasDropped == 1) {
+        indicator->hasDropped = 0;
     }
 
-    if (v0->unk_18 > 0) {
-        v0->unk_18--;
+    if (indicator->exitTimer > 0) {
+        indicator->exitTimer--;
 
-        if (v0->unk_18 == 0) {
-            v0->unk_1A = 1;
+        if (indicator->exitTimer == 0) {
+            indicator->exitPending = 1;
         }
     }
 
-    if (ManagedSprite_GetDrawFlag(v0->unk_00) == 0) {
+    if (ManagedSprite_GetDrawFlag(indicator->sprite) == 0) {
         return;
     }
 
-    if (v0->unk_1C == 0) {
+    if (indicator->isExiting == 0) {
         int v1;
 
-        v0->unk_10 += (10 * 100);
+        indicator->bounceAngle += (10 * 100);
 
-        if (v0->unk_10 >= 180 * 100) {
-            v0->unk_10 -= 180 * 100;
+        if (indicator->bounceAngle >= 180 * 100) {
+            indicator->bounceAngle -= 180 * 100;
 
-            if (v0->unk_1A == 1) {
-                v0->unk_1C = 1;
-                v0->unk_1A = 0;
+            if (indicator->exitPending == 1) {
+                indicator->isExiting = 1;
+                indicator->exitPending = 0;
             }
         }
 
-        if (v0->unk_1C == 0) {
-            v1 = FX_Mul(CalcSineDegrees(v0->unk_10 / 100), 14 << FX32_SHIFT) / FX32_ONE;
-            ManagedSprite_SetPositionXYWithSubscreenOffset(v0->unk_00, v0->unk_08, v0->unk_0C - v1, v0->unk_14);
+        if (indicator->isExiting == 0) {
+            v1 = FX_Mul(CalcSineDegrees(indicator->bounceAngle / 100), 14 << FX32_SHIFT) / FX32_ONE;
+            ManagedSprite_SetPositionXYWithSubscreenOffset(indicator->sprite, indicator->x, indicator->y - v1, indicator->subscreenOffset);
         }
     }
 
-    if (v0->unk_1C == 1) {
-        switch (v0->unk_1D) {
+    if (indicator->isExiting == 1) {
+        switch (indicator->exitStep) {
         case 0:
-            v0->unk_1E++;
+            indicator->exitFrameCount++;
 
-            if (v0->unk_1E > 3) {
-                v0->unk_1E = 0;
-                v0->unk_1D++;
+            if (indicator->exitFrameCount > 3) {
+                indicator->exitFrameCount = 0;
+                indicator->exitStep++;
             }
             break;
         case 1:
-            ManagedSprite_SetPositionXYWithSubscreenOffset(v0->unk_00, v0->unk_08, v0->unk_0C + 8, v0->unk_14);
-            v0->unk_1B = 1;
-            v0->unk_1D++;
+            ManagedSprite_SetPositionXYWithSubscreenOffset(indicator->sprite, indicator->x, indicator->y + 8, indicator->subscreenOffset);
+            indicator->hasDropped = 1;
+            indicator->exitStep++;
             break;
         case 2:
-            v0->unk_1E++;
+            indicator->exitFrameCount++;
 
-            if (v0->unk_1E > 2) {
-                ManagedSprite_SetPositionXYWithSubscreenOffset(v0->unk_00, v0->unk_08, v0->unk_0C + 2, v0->unk_14);
-                v0->unk_1E = 0;
-                v0->unk_1D++;
+            if (indicator->exitFrameCount > 2) {
+                ManagedSprite_SetPositionXYWithSubscreenOffset(indicator->sprite, indicator->x, indicator->y + 2, indicator->subscreenOffset);
+                indicator->exitFrameCount = 0;
+                indicator->exitStep++;
             }
             break;
         case 3:
-            v0->unk_1E++;
+            indicator->exitFrameCount++;
 
-            if (v0->unk_1E > 2) {
-                ov16_0226DFBC(v0);
-                v0->unk_1E = 0;
-                v0->unk_1D++;
+            if (indicator->exitFrameCount > 2) {
+                Indicator_Hide(indicator);
+                indicator->exitFrameCount = 0;
+                indicator->exitStep++;
             }
             break;
         default:
@@ -210,13 +211,13 @@ static void ov16_0226DFD8(SysTask *param0, void *param1)
         }
     }
 
-    ManagedSprite_TickFrame(v0->unk_00);
+    ManagedSprite_TickFrame(indicator->sprite);
 }
 
-static void ov16_0226E13C(UnkStruct_ov16_0226DEEC *param0)
+static void Indicator_ResetAnimation(Indicator *indicator)
 {
-    param0->unk_10 = 0;
-    param0->unk_1C = 0;
-    param0->unk_1D = 0;
-    param0->unk_1E = 0;
+    indicator->bounceAngle = 0;
+    indicator->isExiting = 0;
+    indicator->exitStep = 0;
+    indicator->exitFrameCount = 0;
 }

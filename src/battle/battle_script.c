@@ -1102,7 +1102,7 @@ static BOOL BtlCmd_BackgroundSlideIn(BattleSystem *battleSys, BattleContext *bat
     BattleScript_Iter(battleCtx, 1);
 
     for (i = 0; i < maxBattlers; i++) {
-        ov16_02266460(battleSys, i);
+        BattleController_EmitSlideInPanel(battleSys, i);
     }
 
     return FALSE;
@@ -10555,9 +10555,9 @@ static void BattleScript_CatchMonTask(SysTask *task, void *inData)
             ov12_0223783C(data->ballRotation);
             PokemonSpriteManager_DeleteAll(monSpriteMan);
             BattleSystem_HideBattleScreen(data->battleSys);
-            ov16_022686BC(BattlerSystem_GetTerrain(data->battleSys, 0), 0);
-            ov16_022686BC(BattlerSystem_GetTerrain(data->battleSys, 1), 0);
-            ov16_02263B20(BattleSystem_GetBattlerData(data->battleSys, 0), FALSE);
+            Terrain_SetVisibility(BattleSystem_GetTerrainForSide(data->battleSys, 0), 0);
+            Terrain_SetVisibility(BattleSystem_GetTerrainForSide(data->battleSys, 1), 0);
+            BattlerData_SetTrainerVisibility(BattleSystem_GetBattlerData(data->battleSys, 0), FALSE);
 
             v12.unk_00 = BattleSystem_GetBgConfig(data->battleSys);
             v12.unk_04 = BattleSystem_GetPaletteData(data->battleSys);
@@ -10609,7 +10609,7 @@ static void BattleScript_CatchMonTask(SysTask *task, void *inData)
 
             ov12_0223783C(data->ballRotation);
             PokemonSpriteManager_DeleteAll(monSpriteMan);
-            ov16_02263B20(BattleSystem_GetBattlerData(data->battleSys, 0), FALSE);
+            BattlerData_SetTrainerVisibility(BattleSystem_GetBattlerData(data->battleSys, 0), FALSE);
             BattleSystem_HideBattleScreen(data->battleSys);
             BattleSystem_SetupBattleScreen(data->battleSys);
             Pokemon_BuildSpriteTemplate(&monSpriteTemplate, mon, 2);
@@ -11924,7 +11924,7 @@ static int BattleMessage_TrainerNameTag(BattleSystem *battleSys, BattleContext *
     return BattleScript_Battler(battleSys, battleCtx, battlerIn);
 }
 
-static const SpriteTemplate sSpriteTemplate_Unk_ov16_0226E6C4 = {
+static const SpriteTemplate sSpriteTemplate_LevelUpStar = {
     .x = 128,
     .y = 0,
     .z = 0,
@@ -11937,7 +11937,7 @@ static const SpriteTemplate sSpriteTemplate_Unk_ov16_0226E6C4 = {
     .vramTransfer = 0
 };
 
-static const SpriteTemplate sSpriteTemplate_Unk_ov16_0226E6F8 = {
+static const SpriteTemplate sSpriteTemplate_LevelUpPokeIcon = {
     .x = 152,
     .y = 24,
     .z = 0,
@@ -11977,7 +11977,7 @@ static void BattleScript_LoadPartyLevelUpIcon(BattleSystem *battleSys, BattleScr
     SpriteSystem_LoadCellResObj(spriteSys, spriteMan, NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 257, TRUE, 20013);
     SpriteSystem_LoadAnimResObj(spriteSys, spriteMan, NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 258, TRUE, 20013);
 
-    data->sprites[0] = SpriteSystem_NewSprite(spriteSys, spriteMan, &sSpriteTemplate_Unk_ov16_0226E6C4);
+    data->sprites[0] = SpriteSystem_NewSprite(spriteSys, spriteMan, &sSpriteTemplate_LevelUpStar);
 
     ManagedSprite_TickFrame(data->sprites[0]);
     SpriteSystem_LoadCharResObjAtEndWithHardwareMappingType(spriteSys, spriteMan, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, Pokemon_IconSpriteIndex(mon), FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 20022);
@@ -11985,7 +11985,7 @@ static void BattleScript_LoadPartyLevelUpIcon(BattleSystem *battleSys, BattleScr
     SpriteSystem_LoadCellResObj(spriteSys, spriteMan, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIcon64KCellsFileIndex(), FALSE, 20014);
     SpriteSystem_LoadAnimResObj(spriteSys, spriteMan, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIcon64KAnimationFileIndex(), FALSE, 20014);
 
-    data->sprites[1] = SpriteSystem_NewSprite(spriteSys, spriteMan, &sSpriteTemplate_Unk_ov16_0226E6F8);
+    data->sprites[1] = SpriteSystem_NewSprite(spriteSys, spriteMan, &sSpriteTemplate_LevelUpPokeIcon);
 
     Sprite_SetExplicitPaletteOffsetAutoAdjust(data->sprites[1]->sprite, Pokemon_IconPaletteIndex(mon));
     ManagedSprite_TickFrame(data->sprites[1]);

@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_OV16_0226DEEC_DECL_H
 #define POKEPLATINUM_STRUCT_OV16_0226DEEC_DECL_H
 
-typedef struct UnkStruct_ov16_0226DEEC_t UnkStruct_ov16_0226DEEC;
+typedef struct Indicator_t Indicator;
 
 #endif // POKEPLATINUM_STRUCT_OV16_0226DEEC_DECL_H

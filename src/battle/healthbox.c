@@ -1790,12 +1790,12 @@ static void Healthbox_Task_LevelUpFlashAnimation(SysTask *task, void *param1)
     }
 }
 
-void ov16_02268468(HealthBox *healthbox) // CLEANUP: does nothing. Remove.
+void dummy_02268468(HealthBox *healthbox)
 {
     return;
 }
 
-void ov16_0226846C(HealthBox *healthbox) // CLEANUP: does nothing. Remove.
+void dummy_0226846C(HealthBox *healthbox)
 {
     return;
 }

@@ -12,7 +12,7 @@
 
 #include "pokemon_sprite.h"
 
-void ov16_0225CBB8(BattleSystem *battleSys, BattlerData *battlerData);
+void BattleDisplay_InitTaskSetupUI(BattleSystem *battleSys, BattlerData *battlerData);
 void BattleDisplay_InitTaskSetEncounter(BattleSystem *battleSys, BattlerData *battlerData, MonEncounterMessage *message);
 void BattleDisplay_InitTaskShowEncounter(BattleSystem *battleSys, BattlerData *battlerData, MonShowMessage *message);
 void BattleDisplay_InitTaskShowPokemon(BattleSystem *battleSys, BattlerData *battlerData, MonShowMessage *message);
@@ -125,8 +125,8 @@ u8 BattlerData_GetBattlerType(BattlerData *battlerData);
 u8 BattlerData_GetBootState(BattlerData *battlerData);
 PokemonSprite *BattlerData_GetPokemonSprite(BattlerData *battlerData);
 HealthBox *BattlerData_GetHealthBox(BattlerData *battlerData);
-UnkStruct_ov16_0226C378 *ov16_02263B0C(BattlerData *battlerData);
-void ov16_02263B10(BattlerData *battlerData);
-void ov16_02263B20(BattlerData *battlerData, BOOL draw);
+SavedCursorPosition *BattlerData_GetSavedCursorPosition(BattlerData *battlerData);
+void BattlerData_ClearSavedCursorPosition(BattlerData *battlerData);
+void BattlerData_SetTrainerVisibility(BattlerData *battlerData, BOOL drawFlag);
 
 #endif // POKEPLATINUM_BATTLE_BATTLE_DISPLAY_H

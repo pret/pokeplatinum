@@ -6,16 +6,16 @@
 #include "palette.h"
 #include "sprite_system.h"
 
-void ov16_0226DB7C(SpriteSystem *param0, SpriteManager *param1, PaletteData *param2, enum HeapID heapID, u32 param4, u32 param5, u32 param6, u32 param7);
-void ov16_0226DBFC(SpriteManager *param0, u32 param1, u32 param2, u32 param3, u32 param4);
-UnkStruct_ov16_0226DC24 *ov16_0226DC24(SpriteSystem *param0, SpriteManager *param1, enum HeapID heapID, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8);
-void ov16_0226DCA8(UnkStruct_ov16_0226DC24 *param0);
-void BattleSystem_DrawCursorSprites(UnkStruct_ov16_0226DC24 *param0, int param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8, fx32 param9);
-void ov16_0226DD54(UnkStruct_ov16_0226DC24 *param0, int param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8);
-void ov16_0226DD7C(UnkStruct_ov16_0226DC24 *param0, int param1, int param2, int param3, int param4);
-void BattleSystem_DrawCursor(UnkStruct_ov16_0226DC24 *param0, int param1, int param2, int param3, int param4, fx32 param5);
-void ov16_0226DDC0(UnkStruct_ov16_0226DC24 *param0, int param1, int param2, int param3, fx32 param4);
-void ov16_0226DDE8(UnkStruct_ov16_0226DC24 *param0);
-void ov16_0226DE04(UnkStruct_ov16_0226DC24 *param0);
+void CursorRenderer_LoadResources(SpriteSystem *spriteSys, SpriteManager *spriteMan, PaletteData *plttData, enum HeapID heapID, u32 charResID, u32 plttResID, u32 cellResID, u32 animResID);
+void CursorRenderer_UnloadResources(SpriteManager *spriteMan, u32 charResID, u32 plttResID, u32 cellResID, u32 animResID);
+CursorRenderer *CursorRenderer_New(SpriteSystem *spriteSys, SpriteManager *spriteMan, enum HeapID heapID, u32 charResID, u32 plttResID, u32 cellResID, u32 animResID, u32 priority, u32 bgPriority);
+void CursorRenderer_Delete(CursorRenderer *cursorRenderer);
+void BattleSystem_DrawCursorSprites(CursorRenderer *param0, int param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8, fx32 param9);
+void CursorRenderer_DrawSpritesOnSubscreen(CursorRenderer *param0, int param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8);
+void CursorRenderer_DrawOnSubscreen(CursorRenderer *param0, int param1, int param2, int param3, int param4);
+void BattleSystem_DrawCursor(CursorRenderer *param0, int param1, int param2, int param3, int param4, fx32 param5);
+void CursorRenderer_DrawSplitAnchor(CursorRenderer *cursorRenderer, int x, int y, int animID, fx32 subscreenOffset);
+void CursorRenderer_HideAllSprites(CursorRenderer *param0);
+void CursorRenderer_HideSplitAnchor(CursorRenderer *param0);
 
 #endif // POKEPLATINUM_OV16_0226DB7C_H

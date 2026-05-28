@@ -233,18 +233,18 @@ static void DrawSelectedItem(BattleBag *battleBag)
 static void InitializeCursor(BattleBag *battleBag)
 {
     SpriteSystem *spriteSystem = BattleSystem_GetSpriteSystem(battleBag->context->battleSys);
-    UnkStruct_ov16_0226DC24 *cursorSprites;
+    CursorRenderer *cursorSprites;
 
-    ov16_0226DB7C(spriteSystem, battleBag->spriteManager, battleBag->palette, battleBag->context->heapID, CURSOR_CHAR_RESOURCE_ID, CURSOR_PLTT_RESOURCE_ID, CURSOR_CELL_RESOURCE_ID, CURSOR_ANIM_RESOURCE_ID);
-    cursorSprites = ov16_0226DC24(spriteSystem, battleBag->spriteManager, battleBag->context->heapID, CURSOR_CHAR_RESOURCE_ID, CURSOR_PLTT_RESOURCE_ID, CURSOR_CELL_RESOURCE_ID, CURSOR_ANIM_RESOURCE_ID, 0, 1);
+    CursorRenderer_LoadResources(spriteSystem, battleBag->spriteManager, battleBag->palette, battleBag->context->heapID, CURSOR_CHAR_RESOURCE_ID, CURSOR_PLTT_RESOURCE_ID, CURSOR_CELL_RESOURCE_ID, CURSOR_ANIM_RESOURCE_ID);
+    cursorSprites = CursorRenderer_New(spriteSystem, battleBag->spriteManager, battleBag->context->heapID, CURSOR_CHAR_RESOURCE_ID, CURSOR_PLTT_RESOURCE_ID, CURSOR_CELL_RESOURCE_ID, CURSOR_ANIM_RESOURCE_ID, 0, 1);
 
     SetBattleSubMenuCursorSprites(battleBag->cursor, cursorSprites);
 }
 
 static void CleanupCursor(BattleBag *battleBag)
 {
-    ov16_0226DCA8(GetBattleSubMenuCursorSprites(battleBag->cursor));
-    ov16_0226DBFC(battleBag->spriteManager, CURSOR_CHAR_RESOURCE_ID, CURSOR_PLTT_RESOURCE_ID, CURSOR_CELL_RESOURCE_ID, CURSOR_ANIM_RESOURCE_ID);
+    CursorRenderer_Delete(GetBattleSubMenuCursorSprites(battleBag->cursor));
+    CursorRenderer_UnloadResources(battleBag->spriteManager, CURSOR_CHAR_RESOURCE_ID, CURSOR_PLTT_RESOURCE_ID, CURSOR_CELL_RESOURCE_ID, CURSOR_ANIM_RESOURCE_ID);
 }
 
 static const GridMenuCursorPosition menuScreenCursorPositions[] = {
@@ -452,21 +452,21 @@ void BattleBagSprites_DisableCursor(BattleBag *battleBag)
 {
     SetBattleSubMenuCursorVisibility(battleBag->cursor, FALSE);
     ResetBattleSubMenuCursorCurrentPosition(battleBag->cursor);
-    ov16_0226DDE8(GetBattleSubMenuCursorSprites(battleBag->cursor));
+    CursorRenderer_HideAllSprites(GetBattleSubMenuCursorSprites(battleBag->cursor));
 }
 
 static void InitializeCatchTutorialCursor(BattleBag *battleBag)
 {
     SpriteSystem *spriteSystem = BattleSystem_GetSpriteSystem(battleBag->context->battleSys);
 
-    ov16_0226DE44(spriteSystem, battleBag->spriteManager, battleBag->context->heapID, battleBag->palette, CATCH_TUTORIAL_CURSOR_CHAR_RESOURCE_ID, CATCH_TUTORIAL_CURSOR_PLTT_RESOURCE_ID, CATCH_TUTORIAL_CURSOR_CELL_RESOURCE_ID, CATCH_TUTORIAL_CURSOR_ANIM_RESOURCE_ID);
-    battleBag->catchTutorialCursor = ov16_0226DEEC(spriteSystem, battleBag->spriteManager, battleBag->context->heapID, CATCH_TUTORIAL_CURSOR_CHAR_RESOURCE_ID, CATCH_TUTORIAL_CURSOR_PLTT_RESOURCE_ID, CATCH_TUTORIAL_CURSOR_CELL_RESOURCE_ID, CATCH_TUTORIAL_CURSOR_ANIM_RESOURCE_ID, 0, 0);
+    Indicator_LoadResources(spriteSystem, battleBag->spriteManager, battleBag->context->heapID, battleBag->palette, CATCH_TUTORIAL_CURSOR_CHAR_RESOURCE_ID, CATCH_TUTORIAL_CURSOR_PLTT_RESOURCE_ID, CATCH_TUTORIAL_CURSOR_CELL_RESOURCE_ID, CATCH_TUTORIAL_CURSOR_ANIM_RESOURCE_ID);
+    battleBag->catchTutorialCursor = Indicator_New(spriteSystem, battleBag->spriteManager, battleBag->context->heapID, CATCH_TUTORIAL_CURSOR_CHAR_RESOURCE_ID, CATCH_TUTORIAL_CURSOR_PLTT_RESOURCE_ID, CATCH_TUTORIAL_CURSOR_CELL_RESOURCE_ID, CATCH_TUTORIAL_CURSOR_ANIM_RESOURCE_ID, 0, 0);
 }
 
 static void CleanupCatchTutorialCursor(BattleBag *battleBag)
 {
-    ov16_0226DF68(battleBag->catchTutorialCursor);
-    ov16_0226DEC4(battleBag->spriteManager, CATCH_TUTORIAL_CURSOR_CHAR_RESOURCE_ID, CATCH_TUTORIAL_CURSOR_PLTT_RESOURCE_ID, CATCH_TUTORIAL_CURSOR_CELL_RESOURCE_ID, CATCH_TUTORIAL_CURSOR_ANIM_RESOURCE_ID);
+    Indicator_Delete(battleBag->catchTutorialCursor);
+    Indicator_UnloadResources(battleBag->spriteManager, CATCH_TUTORIAL_CURSOR_CHAR_RESOURCE_ID, CATCH_TUTORIAL_CURSOR_PLTT_RESOURCE_ID, CATCH_TUTORIAL_CURSOR_CELL_RESOURCE_ID, CATCH_TUTORIAL_CURSOR_ANIM_RESOURCE_ID);
 }
 
 static const SpritePosition catchTutorialCursorPositions[3] = {
@@ -478,9 +478,9 @@ static const SpritePosition catchTutorialCursorPositions[3] = {
 void BattleBagSprites_SetupCatchTutorialCursor(BattleBag *battleBag, enum BattleBagScreen screen)
 {
     if (battleBag->context->isInCatchTutorial == TRUE) {
-        ov16_0226DFB0(battleBag->catchTutorialCursor, catchTutorialCursorPositions[screen].x, catchTutorialCursorPositions[screen].y);
-        ov16_0226DFD0(battleBag->catchTutorialCursor, 60);
+        Indicator_ShowOnSubscreen(battleBag->catchTutorialCursor, catchTutorialCursorPositions[screen].x, catchTutorialCursorPositions[screen].y);
+        Indicator_SetExitTimer(battleBag->catchTutorialCursor, 60);
     } else {
-        ov16_0226DFBC(battleBag->catchTutorialCursor);
+        Indicator_Hide(battleBag->catchTutorialCursor);
     }
 }

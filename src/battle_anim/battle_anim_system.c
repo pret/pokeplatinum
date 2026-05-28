@@ -401,7 +401,7 @@ BOOL BattleAnimSystem_Delete(BattleAnimSystem *system)
     return TRUE;
 }
 
-BOOL BattleAnimSystem_StartMove(BattleAnimSystem *system, MoveAnimation *param1, u16 move, BattleAnimBattlerContext *battlerContext)
+BOOL BattleAnimSystem_StartMove(BattleAnimSystem *system, MoveAnimation *moveAnim, u16 move, BattleAnimBattlerContext *battlerContext)
 {
     int i;
 
@@ -427,18 +427,18 @@ BOOL BattleAnimSystem_StartMove(BattleAnimSystem *system, MoveAnimation *param1,
         system->loopStack[i].maxIterations = 0;
     }
 
-    system->context->unk_00 = param1->command;
-    system->context->unk_01 = param1->unk_01;
-    system->context->move = param1->move;
-    system->context->damage = param1->damage;
-    system->context->power = param1->power;
-    system->context->friendship = param1->friendship;
-    system->context->fieldConditions = param1->fieldConditions;
-    system->context->unk_10 = param1->effectChance;
-    system->context->terrain = param1->terrain;
-    system->context->attacker = param1->attacker;
-    system->context->defender = param1->defender;
-    system->context->isTransformed = param1->isTransformed;
+    system->context->unk_00 = moveAnim->command;
+    system->context->unk_01 = moveAnim->unk_01;
+    system->context->move = moveAnim->move;
+    system->context->damage = moveAnim->damage;
+    system->context->power = moveAnim->power;
+    system->context->friendship = moveAnim->friendship;
+    system->context->fieldConditions = moveAnim->fieldConditions;
+    system->context->unk_10 = moveAnim->effectChance;
+    system->context->terrain = moveAnim->terrain;
+    system->context->attacker = moveAnim->attacker;
+    system->context->defender = moveAnim->defender;
+    system->context->isTransformed = moveAnim->isTransformed;
     system->context->spriteSystem = battlerContext->spriteSystem;
 
     GF_ASSERT(battlerContext->spriteSystem != NULL);

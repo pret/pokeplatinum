@@ -137,58 +137,56 @@ ALIGN_4 static const u16 sTerrainPaletteSource[TERRAIN_MAX][3] = {
 };
 // clang-format on
 
-void ov16_02268520(Terrain *terrain)
+void Terrain_LoadResources(Terrain *terrain)
 {
-    SpriteSystem *v0;
-    SpriteManager *v1;
-    const SpriteTemplate *v2;
-    int v3, v4, v5, v6, v7, v8;
-    int v9;
-    NARC *v10 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, HEAP_ID_BATTLE);
-    v0 = BattleSystem_GetSpriteSystem(terrain->battleSys);
-    v1 = BattleSystem_GetSpriteManager(terrain->battleSys);
-    v9 = BattleSystem_GetBackgroundTimeOffset(terrain->battleSys);
-    v2 = &sTerrainSpriteTemplates[terrain->unk_08];
+    SpriteSystem *spriteSys;
+    SpriteManager *spriteMan;
+    int charNarcIdx, charResID, cellNarcIdx, cellResID, animNarcIdx, animResID;
+    int bgTimeOffset;
+    NARC *objNarc = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, HEAP_ID_BATTLE);
+    spriteSys = BattleSystem_GetSpriteSystem(terrain->battleSys);
+    spriteMan = BattleSystem_GetSpriteManager(terrain->battleSys);
+    bgTimeOffset = BattleSystem_GetBackgroundTimeOffset(terrain->battleSys);
 
-    if (terrain->unk_08 == 0) {
-        v3 = sTerrainSpriteSource_PlayerSide[terrain->unk_09];
-        v4 = 20013;
-        v5 = terrain_player_cell_NCER_lz;
-        v6 = 20005;
-        v7 = terrain_player_anim_NANR_lz;
-        v8 = 20005;
+    if (terrain->side == 0) {
+        charNarcIdx = sTerrainSpriteSource_PlayerSide[terrain->terrainType];
+        charResID = 20013;
+        cellNarcIdx = terrain_player_cell_NCER_lz;
+        cellResID = 20005;
+        animNarcIdx = terrain_player_anim_NANR_lz;
+        animResID = 20005;
     } else {
-        v3 = sTerrainSpriteSource_EnemySide[terrain->unk_09];
-        v4 = 20014;
-        v5 = terrain_enemy_cell_NCER_lz;
-        v6 = 20006;
-        v7 = terrain_enemy_anim_NANR_lz;
-        v8 = 20006;
+        charNarcIdx = sTerrainSpriteSource_EnemySide[terrain->terrainType];
+        charResID = 20014;
+        cellNarcIdx = terrain_enemy_cell_NCER_lz;
+        cellResID = 20006;
+        animNarcIdx = terrain_enemy_anim_NANR_lz;
+        animResID = 20006;
     }
 
-    SpriteSystem_LoadCharResObjFromOpenNarc(v0, v1, v10, v3, TRUE, NNS_G2D_VRAM_TYPE_2DMAIN, v4);
-    SpriteSystem_LoadPaletteBufferFromOpenNarc(BattleSystem_GetPaletteData(terrain->battleSys), PLTTBUF_MAIN_OBJ, v0, v1, v10, sTerrainPaletteSource[terrain->unk_09][v9], FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 20009);
-    PaletteData_LoadBufferFromFileStart(BattleSystem_GetPaletteData(terrain->battleSys), NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, sTerrainPaletteSource[terrain->unk_09][v9], 5, PLTTBUF_MAIN_BG, 0x20, 0x7 * 0x10);
-    SpriteSystem_LoadCellResObjFromOpenNarc(v0, v1, v10, v5, TRUE, v6);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(v0, v1, v10, v7, TRUE, v8);
-    NARC_dtor(v10);
+    SpriteSystem_LoadCharResObjFromOpenNarc(spriteSys, spriteMan, objNarc, charNarcIdx, TRUE, NNS_G2D_VRAM_TYPE_2DMAIN, charResID);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(BattleSystem_GetPaletteData(terrain->battleSys), PLTTBUF_MAIN_OBJ, spriteSys, spriteMan, objNarc, sTerrainPaletteSource[terrain->terrainType][bgTimeOffset], FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 20009);
+    PaletteData_LoadBufferFromFileStart(BattleSystem_GetPaletteData(terrain->battleSys), NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, sTerrainPaletteSource[terrain->terrainType][bgTimeOffset], 5, PLTTBUF_MAIN_BG, 0x20, 0x7 * 0x10);
+    SpriteSystem_LoadCellResObjFromOpenNarc(spriteSys, spriteMan, objNarc, cellNarcIdx, TRUE, cellResID);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(spriteSys, spriteMan, objNarc, animNarcIdx, TRUE, animResID);
+    NARC_dtor(objNarc);
 }
 
-void ov16_0226862C(Terrain *terrain)
+void Terrain_CreateSprite(Terrain *terrain)
 {
-    SpriteSystem *v0;
-    SpriteManager *v1;
-    const SpriteTemplate *v2;
+    SpriteSystem *spriteSys;
+    SpriteManager *spriteMan;
+    const SpriteTemplate *spriteTemplate;
 
-    v0 = BattleSystem_GetSpriteSystem(terrain->battleSys);
-    v1 = BattleSystem_GetSpriteManager(terrain->battleSys);
-    v2 = &sTerrainSpriteTemplates[terrain->unk_08];
+    spriteSys = BattleSystem_GetSpriteSystem(terrain->battleSys);
+    spriteMan = BattleSystem_GetSpriteManager(terrain->battleSys);
+    spriteTemplate = &sTerrainSpriteTemplates[terrain->side];
 
-    terrain->managedSprite = SpriteSystem_NewSprite(v0, v1, v2);
+    terrain->managedSprite = SpriteSystem_NewSprite(spriteSys, spriteMan, spriteTemplate);
     Sprite_TickFrame(terrain->managedSprite->sprite);
 }
 
-void ov16_02268660(Terrain *terrain)
+void Terrain_DeleteSprite(Terrain *terrain)
 {
     if (terrain->managedSprite == NULL) {
         return;
@@ -198,58 +196,58 @@ void ov16_02268660(Terrain *terrain)
     terrain->managedSprite = NULL;
 }
 
-void ov16_02268674(Terrain *terrain)
+void Terrain_UnloadResources(Terrain *terrain)
 {
-    SpriteManager *v0;
-    int v1, v2, v3;
+    SpriteManager *spriteMan;
+    int charResourceID, cellResourceID, animResourceID;
 
-    v0 = BattleSystem_GetSpriteManager(terrain->battleSys);
+    spriteMan = BattleSystem_GetSpriteManager(terrain->battleSys);
 
-    if (terrain->unk_08 == 0) {
-        v1 = 20013;
-        v2 = 20005;
-        v3 = 20005;
+    if (terrain->side == 0) {
+        charResourceID = 20013;
+        cellResourceID = 20005;
+        animResourceID = 20005;
     } else {
-        v1 = 20014;
-        v2 = 20006;
-        v3 = 20006;
+        charResourceID = 20014;
+        cellResourceID = 20006;
+        animResourceID = 20006;
     }
 
-    SpriteManager_UnloadCharObjById(v0, v1);
-    SpriteManager_UnloadPlttObjById(v0, 20009);
-    SpriteManager_UnloadCellObjById(v0, v2);
-    SpriteManager_UnloadAnimObjById(v0, v3);
+    SpriteManager_UnloadCharObjById(spriteMan, charResourceID);
+    SpriteManager_UnloadPlttObjById(spriteMan, 20009);
+    SpriteManager_UnloadCellObjById(spriteMan, cellResourceID);
+    SpriteManager_UnloadAnimObjById(spriteMan, animResourceID);
 }
 
-void ov16_022686BC(Terrain *terrain, int param1)
+void Terrain_SetVisibility(Terrain *terrain, int draw)
 {
     if (terrain->managedSprite == NULL) {
         return;
     }
 
-    ManagedSprite_SetDrawFlag(terrain->managedSprite, param1);
+    ManagedSprite_SetDrawFlag(terrain->managedSprite, draw);
 }
 
-void ov16_022686CC(Terrain *terrain, BattleSystem *battleSys, u16 param2, int param3)
+void Terrain_Init(Terrain *terrain, BattleSystem *battleSys, u16 side, int terrainType)
 {
     MI_CpuClearFast(terrain, sizeof(Terrain));
 
     terrain->battleSys = battleSys;
-    terrain->unk_08 = param2;
-    terrain->unk_09 = param3;
+    terrain->side = side;
+    terrain->terrainType = terrainType;
 
-    if (param3 >= TERRAIN_MAX) {
+    if (terrainType >= TERRAIN_MAX) {
         GF_ASSERT(FALSE);
-        terrain->unk_09 = 0;
+        terrain->terrainType = 0;
     }
 
-    ov16_02268520(terrain);
-    ov16_0226862C(terrain);
+    Terrain_LoadResources(terrain);
+    Terrain_CreateSprite(terrain);
 }
 
-void ov16_02268700(Terrain *terrain)
+void Terrain_Destroy(Terrain *terrain)
 {
-    ov16_02268660(terrain);
-    ov16_02268674(terrain);
+    Terrain_DeleteSprite(terrain);
+    Terrain_UnloadResources(terrain);
     MI_CpuClearFast(terrain, sizeof(Terrain));
 }

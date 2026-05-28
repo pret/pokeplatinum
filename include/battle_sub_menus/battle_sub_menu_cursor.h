@@ -12,7 +12,7 @@
 #define BATTLE_SUB_MENU_CURSOR_GO_TO_PREVIOUS_POSITION_INDEX_MASK 0x80
 
 typedef struct BattleSubMenuCursor {
-    UnkStruct_ov16_0226DC24 *sprites;
+    CursorRenderer *sprites;
     const GridMenuCursorPosition *positions;
     u8 isVisible;
     u8 currentPositionIndex;
@@ -22,10 +22,10 @@ typedef struct BattleSubMenuCursor {
 
 BattleSubMenuCursor *MakeBattleSubMenuCursor(enum HeapID heapID);
 void DeleteBattleSubMenuCursor(BattleSubMenuCursor *cursor);
-UnkStruct_ov16_0226DC24 *GetBattleSubMenuCursorSprites(BattleSubMenuCursor *cursor);
+CursorRenderer *GetBattleSubMenuCursorSprites(BattleSubMenuCursor *cursor);
 BOOL IsBattleSubMenuCursorVisible(BattleSubMenuCursor *cursor);
 void SetBattleSubMenuCursorVisibility(BattleSubMenuCursor *cursor, BOOL isVisible);
-void SetBattleSubMenuCursorSprites(BattleSubMenuCursor *cursor, UnkStruct_ov16_0226DC24 *sprites);
+void SetBattleSubMenuCursorSprites(BattleSubMenuCursor *cursor, CursorRenderer *sprites);
 void SetBattleSubMenuCursorCurrentPosition(BattleSubMenuCursor *cursor, u8 positionIndex);
 void ResetBattleSubMenuCursorCurrentPosition(BattleSubMenuCursor *cursor);
 void SetBattleSubMenuCursorPositions(BattleSubMenuCursor *cursor, const GridMenuCursorPosition *positions);
