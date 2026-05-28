@@ -549,7 +549,7 @@ static void BattleControllerPlayer_CommandSelectionInput(BattleSystem *battleSys
                 battleCtx->battlerActions[i][1] = battleCtx->ioBuffer[i][0] - 1;
                 battleCtx->curCommandState[i] = COMMAND_SELECTION_WAIT;
 
-                battleCtx->recordedCommandFlags[i] |= RECORDED_CMD_FLAG_MOVE_SLOT ;
+                battleCtx->recordedCommandFlags[i] |= RECORDED_CMD_FLAG_MOVE_SLOT;
             }
             break;
 
@@ -4825,19 +4825,19 @@ static void BattleSystem_RecordCommand(BattleSystem *battleSys, BattleContext *b
 
     for (battler = 0; battler < maxBattlers; battler++) {
         if (battleCtx->battlerActions[battler][0] != BATTLE_CONTROL_MOVE_END) {
-            if (battleCtx->recordedCommandFlags[battler] & RECORDED_CMD_FLAG_ACTION ) {
+            if (battleCtx->recordedCommandFlags[battler] & RECORDED_CMD_FLAG_ACTION) {
                 recordedAction = (battleCtx->battlerActions[battler][0] - BATTLE_CONTROL_FIGHT) + 1;
                 BattleSystem_Record(battleSys, battler, recordedAction);
             }
 
             switch (battleCtx->battlerActions[battler][0]) {
             case BATTLE_CONTROL_FIGHT:
-                if (battleCtx->recordedCommandFlags[battler] & RECORDED_CMD_FLAG_TARGET ) {
+                if (battleCtx->recordedCommandFlags[battler] & RECORDED_CMD_FLAG_TARGET) {
                     recordedAction = battleCtx->battlerActions[battler][2];
                     BattleSystem_Record(battleSys, battler, recordedAction);
                 }
 
-                if (battleCtx->recordedCommandFlags[battler] & RECORDED_CMD_FLAG_MOVE_SLOT ) {
+                if (battleCtx->recordedCommandFlags[battler] & RECORDED_CMD_FLAG_MOVE_SLOT) {
                     recordedAction = battleCtx->battlerActions[battler][1] + 1;
                     BattleSystem_Record(battleSys, battler, recordedAction);
                 }

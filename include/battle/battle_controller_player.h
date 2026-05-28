@@ -5,7 +5,7 @@
 
 #include "battle/battle_context.h"
 
-#define SAFARI_STAGE_MAX  12
+#define SAFARI_STAGE_MAX 12
 
 enum BattleControlSequence {
     BATTLE_CONTROL_GET_BATTLE_MON = 0,
