@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_OV5_021F428C_H
-#define POKEPLATINUM_OV5_021F428C_H
+#ifndef POKEPLATINUM_VEILSTONE_GYM_OBJECT_RENDERER_H
+#define POKEPLATINUM_VEILSTONE_GYM_OBJECT_RENDERER_H
 
 #include "field/field_system_decl.h"
 #include "overlay005/field_effect_manager.h"
@@ -19,4 +19,4 @@ void VeilstoneGymObjectRenderer_StartPunchingBagAnimation(OverworldAnimManager *
 void VeilstoneGymObjectRenderer_UpdateBagFrameDelta(OverworldAnimManager *animManager, fx32 frameDelta);
 BOOL VeilstoneGymObjectRenderer_IsPunchingBagAnimFinished(OverworldAnimManager *animManager);
 
-#endif // POKEPLATINUM_OV5_021F428C_H
+#endif // POKEPLATINUM_VEILSTONE_GYM_OBJECT_RENDERER_H

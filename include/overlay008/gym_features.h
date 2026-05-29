@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_OV8_02249960_H
-#define POKEPLATINUM_OV8_02249960_H
+#ifndef POKEPLATINUM_GYM_FEATURES_H
+#define POKEPLATINUM_GYM_FEATURES_H
 
 #include "struct_decls/map_object.h"
 
@@ -99,4 +99,4 @@ void SunyshoreGym_DynamicMapFeaturesFree(FieldSystem *fieldSystem);
 BOOL SunyshoreGym_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileZ, const fx32 height, BOOL *isColliding);
 void SunyshoreGym_PressButton(FieldSystem *fieldSystem, const u8 buttonType);
 
-#endif // POKEPLATINUM_OV8_02249960_H
+#endif // POKEPLATINUM_GYM_FEATURES_H

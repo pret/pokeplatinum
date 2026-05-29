@@ -23,7 +23,6 @@
 #include "overlay005/ov5_021F3D00.h"
 #include "overlay005/ov5_021F3E74.h"
 #include "overlay005/ov5_021F4018.h"
-#include "overlay005/ov5_021F428C.h"
 #include "overlay005/ov5_021F47B0.h"
 #include "overlay005/ov5_021F4DAC.h"
 #include "overlay005/ov5_021F4E08.h"
@@ -38,6 +37,7 @@
 #include "overlay005/ov5_021F600C.h"
 #include "overlay005/ov5_021F61BC.h"
 #include "overlay005/surf_mount_renderer.h"
+#include "overlay005/veilstone_gym_object_renderer.h"
 
 const FieldEffectRendererFuncs sFieldEffectRendererHandlers[FIELD_EFFECT_RENDERER_COUNT + 1] = {
     { FIELD_EFFECT_RENDERER_00, ov5_021F134C, ov5_021F1370 },

@@ -1,4 +1,4 @@
-#include "overlay008/ov8_02249960.h"
+#include "overlay008/gym_features.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -25,9 +25,9 @@
 #include "overlay005/map_prop.h"
 #include "overlay005/map_prop_animation.h"
 #include "overlay005/ov5_021F4018.h"
-#include "overlay005/ov5_021F428C.h"
 #include "overlay005/ov5_021F47B0.h"
 #include "overlay005/ov5_021F5A10.h"
+#include "overlay005/veilstone_gym_object_renderer.h"
 
 #include "badges.h"
 #include "bg_window.h"

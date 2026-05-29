@@ -83,7 +83,7 @@
 #include "overlay007/communication_club.h"
 #include "overlay007/ov7_0224B4E8.h"
 #include "overlay007/shop_menu.h"
-#include "overlay008/ov8_02249960.h"
+#include "overlay008/gym_features.h"
 #include "overlay009/ov9_02249960.h"
 #include "overlay090/struct_ov90_021D0D80.h"
 #include "overlay098/struct_ov98_02247168.h"

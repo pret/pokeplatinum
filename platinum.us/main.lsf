@@ -536,7 +536,7 @@ Overlay overlay5
 	Object main.nef.p/src_overlay005_ov5_021F3D00.c.o
 	Object main.nef.p/src_overlay005_ov5_021F3E74.c.o
 	Object main.nef.p/src_overlay005_ov5_021F4018.c.o
-	Object main.nef.p/src_overlay005_ov5_021F428C.c.o
+	Object main.nef.p/src_overlay005_veilstone_gym_object_renderer.c.o
 	Object main.nef.p/src_overlay005_ov5_021F47B0.c.o
 	Object main.nef.p/src_overlay005_ov5_021F4DAC.c.o
 	Object main.nef.p/src_overlay005_ov5_021F4E08.c.o
@@ -601,10 +601,10 @@ Overlay overlay7
 	Object main.nef.p/src_overlay007_shop_menu.c.o
 }
 
-Overlay overlay8
+Overlay gym_features
 {
 	After overlay6
-	Object main.nef.p/src_overlay008_ov8_02249960.c.o
+	Object main.nef.p/src_overlay008_gym_features.c.o
 }
 
 Overlay overlay9

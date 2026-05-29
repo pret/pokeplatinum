@@ -1,4 +1,4 @@
-#include "overlay005/ov5_021F428C.h"
+#include "overlay005/veilstone_gym_object_renderer.h"
 
 #include <nitro.h>
 
@@ -32,7 +32,7 @@ typedef struct VeilstoneGymObjectRendererResources {
     OverworldAnimManager **punchingBags;
 } VeilstoneGymObjectRendererResources;
 
-typedef struct {
+typedef struct VeilstoneGymObjectRendererContext {
     u8 unused;
     s8 unused2;
     s16 x;

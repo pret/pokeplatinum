@@ -88,7 +88,7 @@
 
 FS_EXTERN_OVERLAY(overlay6);
 FS_EXTERN_OVERLAY(overlay7);
-FS_EXTERN_OVERLAY(overlay8);
+FS_EXTERN_OVERLAY(gym_features);
 FS_EXTERN_OVERLAY(overlay9);
 
 struct UnkStruct_ov5_021D1A68_t {
@@ -175,7 +175,7 @@ static BOOL FieldMap_Init(ApplicationManager *appMan, int *state)
 
             switch (FieldMap_GetExtOverlayForActiveDynMapFeatures(fieldSystem)) {
             case FIELD_EXTENSION_OVERLAY_GYM:
-                Overlay_LoadByID(FS_OVERLAY_ID(overlay8), OVERLAY_LOAD_ASYNC);
+                Overlay_LoadByID(FS_OVERLAY_ID(gym_features), OVERLAY_LOAD_ASYNC);
                 break;
 
             case FIELD_EXTENSION_OVERLAY_GENERIC:
@@ -352,7 +352,7 @@ static BOOL FieldMap_Exit(ApplicationManager *appMan, int *param1)
 
             if (fieldSystem->mapLoadMode->loadExtOverlay) {
                 Overlay_UnloadByID(FS_OVERLAY_ID(overlay6));
-                Overlay_UnloadByID(FS_OVERLAY_ID(overlay8));
+                Overlay_UnloadByID(FS_OVERLAY_ID(gym_features));
                 Overlay_UnloadByID(FS_OVERLAY_ID(overlay7));
                 Overlay_UnloadByID(FS_OVERLAY_ID(overlay9));
             }
