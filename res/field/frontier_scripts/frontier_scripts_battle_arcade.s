@@ -884,11 +884,11 @@ _065C:
     EndMovement
 
 _0662:
-    FrontierScrCmd_3E VAR_BATTLE_ARCADE_CHALLENGE_TYPE, VAR_0x8001
-    FrontierScrCmd_3E VAR_MAP_LOCAL_3, VAR_0x8003
-    FrontierScrCmd_3E VAR_MAP_LOCAL_2, VAR_0x8004
-    FrontierScrCmd_3E VAR_MAP_LOCAL_5, VAR_0x8005
-    FrontierScrCmd_3E VAR_MAP_LOCAL_6, VAR_0x8006
+    GetSystemVar VAR_BATTLE_ARCADE_CHALLENGE_TYPE, VAR_0x8001
+    GetSystemVar VAR_MAP_LOCAL_3, VAR_0x8003
+    GetSystemVar VAR_MAP_LOCAL_2, VAR_0x8004
+    GetSystemVar VAR_MAP_LOCAL_5, VAR_0x8005
+    GetSystemVar VAR_MAP_LOCAL_6, VAR_0x8006
     InitNewBattleRecording
     FrontierScrCmd_B8 VAR_0x8003, VAR_0x8001, VAR_0x8004, VAR_0x8005, VAR_0x8006, VAR_0x8008
     GetPlayerObjEventGfx VAR_0x8007
@@ -2694,7 +2694,7 @@ _278C:
 
 _279A:
     CallBattleArcadeFunction BA_FUNC_UNK_22, 0, 0, VAR_0x8008
-    FrontierScrCmd_3D VAR_BATTLE_ARCADE_LOBBY_LOAD_ACTION, 1
+    SetSystemVar VAR_BATTLE_ARCADE_LOBBY_LOAD_ACTION, 1
     Message BattleArcadeScene_Text_BPEarned
     BufferPlayerName 0
     CallBattleArcadeFunction BA_FUNC_UNK_45, 0, 0, VAR_0x8008
@@ -2986,7 +2986,7 @@ _2C5A:
     End
 
 _2C78:
-    FrontierScrCmd_3D VAR_BATTLE_ARCADE_LOBBY_LOAD_ACTION, 2
+    SetSystemVar VAR_BATTLE_ARCADE_LOBBY_LOAD_ACTION, 2
     CallBattleArcadeFunction BA_FUNC_UNK_10, 0, 0, VAR_0x8008
     FreeBattleRecording
     FrontierScrCmd_BA
@@ -3033,7 +3033,7 @@ _2D19:
 
 _2D31:
     CallBattleArcadeFunction BA_FUNC_UNK_21, 0, 0, VAR_0x8008
-    FrontierScrCmd_3D VAR_BATTLE_ARCADE_LOBBY_LOAD_ACTION, 3
+    SetSystemVar VAR_BATTLE_ARCADE_LOBBY_LOAD_ACTION, 3
     GoTo _2E0A
     End
 
@@ -3071,7 +3071,7 @@ _2DB5:
 
 _2DBD:
     CallBattleArcadeFunction BA_FUNC_UNK_21, 0, 0, VAR_0x8008
-    FrontierScrCmd_3D VAR_BATTLE_ARCADE_LOBBY_LOAD_ACTION, 3
+    SetSystemVar VAR_BATTLE_ARCADE_LOBBY_LOAD_ACTION, 3
     GoTo _2DD4
     End
 
@@ -3291,7 +3291,7 @@ _3198:
 _31DE:
     Call _32A0
     BufferNumber 0, VAR_0x8008
-    FrontierScrCmd_3E VAR_BATTLE_ARCADE_PRINT_STATE, VAR_0x8008
+    GetSystemVar VAR_BATTLE_ARCADE_PRINT_STATE, VAR_0x8008
     CallIfEq VAR_0x8008, 0, _320A
     Message BattleArcadeScene_Text_BeatDahlia
     CloseMessage
@@ -3299,13 +3299,13 @@ _31DE:
     End
 
 _320A:
-    FrontierScrCmd_3D VAR_BATTLE_ARCADE_PRINT_STATE, 1
+    SetSystemVar VAR_BATTLE_ARCADE_PRINT_STATE, 1
     Return
 
 _3212:
     Call _32A0
     BufferNumber 0, VAR_0x8008
-    FrontierScrCmd_3E VAR_BATTLE_ARCADE_PRINT_STATE, VAR_0x8008
+    GetSystemVar VAR_BATTLE_ARCADE_PRINT_STATE, VAR_0x8008
     CallIfEq VAR_0x8008, 2, _323E
     Message BattleArcadeScene_Text_BeatDahliaGold
     CloseMessage
@@ -3313,7 +3313,7 @@ _3212:
     End
 
 _323E:
-    FrontierScrCmd_3D VAR_BATTLE_ARCADE_PRINT_STATE, 3
+    SetSystemVar VAR_BATTLE_ARCADE_PRINT_STATE, 3
     Return
 
 _3246:
