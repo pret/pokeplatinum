@@ -12,9 +12,9 @@
 #include "overlay058/struct_ov58_021D2820.h"
 
 #include "bg_window.h"
+#include "comm_manager.h"
 #include "communication_system.h"
 #include "unk_02032798.h"
-#include "unk_020366A0.h"
 #include "unk_02099500.h"
 #include "wireless_manager.h"
 
@@ -237,7 +237,7 @@ void sub_02095FE4(int param0, int param1, void *param2, void *param3)
                 } else {
                     v0->unk_9418 |= 1 << param0;
                     v1.unk_03 = 1;
-                    sub_02037B58(CommSys_ConnectedCount());
+                    CommManager_SetMaxNumConnections(CommSys_ConnectedCount());
                 }
                 break;
             case 1:
@@ -318,7 +318,7 @@ void sub_0209612C(int param0, int param1, void *param2, void *param3)
         }
     }
 
-    CommMan_SetErrorHandling(0, 1);
+    CommManager_SetErrorHandling(0, 1);
 }
 
 static void sub_02096170(int param0, int param1, void *param2, void *param3)

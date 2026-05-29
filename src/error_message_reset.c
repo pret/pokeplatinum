@@ -7,6 +7,7 @@
 
 #include "bg_window.h"
 #include "brightness_controller.h"
+#include "comm_manager.h"
 #include "communication_system.h"
 #include "font.h"
 #include "graphics.h"
@@ -19,7 +20,6 @@
 #include "string_gf.h"
 #include "system.h"
 #include "text.h"
-#include "unk_020366A0.h"
 
 static const GXBanks sErrorMessageBanksConfig = {
     GX_VRAM_BG_256_AB,
@@ -151,13 +151,13 @@ void ErrorMessageReset_PrintErrorAndReset(void)
     ResetScreenMasterBrightness(DS_SCREEN_MAIN);
     ResetScreenMasterBrightness(DS_SCREEN_SUB);
     BrightnessController_SetScreenBrightness(0, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, BRIGHTNESS_BOTH_SCREENS);
-    sub_02037DB0();
+    CommManager_ExitOrReset();
 
     while (TRUE) {
         HandleConsoleFold();
         CommSys_Update();
 
-        if (sub_02038AB8()) {
+        if (CommManager_CheckResetFinished()) {
             break;
         }
 

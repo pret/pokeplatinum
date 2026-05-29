@@ -6,18 +6,20 @@
 #include <string.h>
 #include <vct.h>
 
+#include "constants/communication/comm_error.h"
+#include "constants/communication/comm_type.h"
 #include "constants/net.h"
 
 #include "global/assert.h"
 #include "nintendo_wfc/voice_chat.h"
 
 #include "battle_frontier_stats.h"
+#include "comm_manager.h"
 #include "communication_system.h"
 #include "dwc_error.h"
 #include "heap.h"
 #include "savedata.h"
 #include "unk_0203266C.h"
-#include "unk_020366A0.h"
 #include "wifi_list.h"
 
 #define RECEIVE_BUFFER_SIZE 4096
@@ -384,7 +386,7 @@ int NintendoWFC_Process(BOOL cancelConnection)
         }
         break;
     case WFC_STATE_MATCHMAKING_SUCCESS:
-        if (!sub_0203272C(sub_0203895C())) {
+        if (!sub_0203272C(CommManager_GetCommType())) {
             NintendoWFC_StartVoiceChat(sNintendoWFCManager->primaryHeapID);
         }
 
@@ -526,7 +528,7 @@ static void LoginCompleteCallback(DWCError error, int profileID, void *userParam
         BOOL success = DWC_UpdateServersAsync(NULL, UpdateServersCallback, sNintendoWFCManager->userData, DummyFriendStatusCallback, userParam, DeleteDuplicateFriendCallback, userParam);
 
         if (success == FALSE) {
-            Link_SetErrorState(TRUE);
+            CommManager_SetCommError(COMM_ERROR_RESET_SAVEPOINT);
             return;
         }
 
@@ -642,7 +644,7 @@ static void SendCallback(int unused, u8 id)
 
 static void SetOtherPlayersEnabledVC(u32 header)
 {
-    if (!sub_0203272C(sub_0203895C())) {
+    if (!sub_0203272C(CommManager_GetCommType())) {
         if (header & 0x100) {
             sNintendoWFCManager->otherPlayersEnabledVoiceChat = TRUE;
         } else {
@@ -722,7 +724,7 @@ static void *NintendoWFCAlloc(DWCAllocType allocType, u32 size, int alignment)
     }
 
     if (ptr == NULL) {
-        Link_SetErrorState(1);
+        CommManager_SetCommError(COMM_ERROR_RESET_SAVEPOINT);
         OS_RestoreInterrupts(intrMode);
 
         return NULL;
@@ -744,7 +746,7 @@ static void NintendoWFCFree(DWCAllocType allocType, void *ptr, u32 size)
 
     if (blockGroupID == 16) {
         if (sNintendoWFCManager->heap2AllocPtr == NULL) {
-            Link_SetErrorState(1);
+            CommManager_SetCommError(COMM_ERROR_RESET_SAVEPOINT);
             return;
         }
 
@@ -801,7 +803,7 @@ int NintendoWFC_HandleError(void)
                 case WFC_STATE_INIT:
                 case WFC_STATE_WAIT_CONNECTION:
                 case WFC_STATE_INIT_LOGIN:
-                    if (sub_0203895C() != 33) {
+                    if (CommManager_GetCommType() != COMM_TYPE_WIFI_PLAZA) {
                         DWC_CleanupInet();
                     }
                 default:
@@ -832,7 +834,7 @@ int NintendoWFC_HandleError(void)
     }
 
     if (error != 0) {
-        sub_02037F94(errorCode, errorType, error);
+        CommManager_SetUnk34(errorCode, errorType, error);
     }
 
     return ret;
@@ -949,7 +951,7 @@ static void DisableVoiceChat(void)
 void NintendoWFC_StartVoiceChat(enum HeapID heapID)
 {
     int otherPlayersCount = 1;
-    BOOL v2 = sub_0203272C(sub_0203895C());
+    BOOL v2 = sub_0203272C(CommManager_GetCommType());
 
     if (v2) {
         otherPlayersCount = CommSys_ConnectedCount() - 1;
@@ -1301,7 +1303,7 @@ static void MatchmakingHostMatchedCallback(DWCError error, BOOL cancelled, BOOL 
 
     if (error == DWC_ERROR_NONE) {
         if (!cancelled) {
-            if (sub_02032740(sub_0203895C()) && (hostFriendIdx == WFC_NOT_A_FRIEND)) {
+            if (sub_02032740(CommManager_GetCommType()) && (hostFriendIdx == WFC_NOT_A_FRIEND)) {
                 refuseNewConnections = TRUE;
             }
 
@@ -1460,7 +1462,7 @@ void NintendoWFC_ManageSecondaryHeap(BOOL create, enum HeapID heapID)
 
         if (sNintendoWFCManager->heap2AllocPtr != NULL) {
             if (NNS_FndGetTotalFreeSizeForExpHeap(sNintendoWFCManager->heap2) != sNintendoWFCManager->heap2Size) {
-                Link_SetErrorState(1);
+                CommManager_SetCommError(COMM_ERROR_RESET_SAVEPOINT);
                 return;
             }
 

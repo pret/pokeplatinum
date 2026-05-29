@@ -16,6 +16,7 @@
 #include "appearance.h"
 #include "bg_window.h"
 #include "char_transfer.h"
+#include "comm_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "font.h"
@@ -51,7 +52,6 @@
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_020363E8.h"
-#include "unk_020366A0.h"
 #include "unk_02038ED4.h"
 #include "unk_0205B33C.h"
 #include "unk_0209BDF8.h"
@@ -205,8 +205,8 @@ int ov109_021D3D50(ApplicationManager *appMan, int *param1)
         ov109_021D45F4(v0);
         Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_52, SEQ_NONE, 0);
         sub_0209BE50(v2->unk_34);
-        sub_020378B8();
-        sub_02037B58(3);
+        CommManager_SetState_SpinTrade();
+        CommManager_SetMaxNumConnections(3);
 
         if (CommSys_CurNetId() == 0) {
             sub_0205BEA8(13);
@@ -699,7 +699,7 @@ static void ov109_021D471C(UnkStruct_ov109_021D5140 *param0)
 
 static int ov109_021D474C(UnkStruct_ov109_021D5140 *param0, int param1)
 {
-    CommMan_SetErrorHandling(0, 1);
+    CommManager_SetErrorHandling(0, 1);
 
     if (CommSys_CurNetId() == 0) {
         if (CommSys_ConnectedCount() >= 2) {
@@ -1194,7 +1194,7 @@ static int ov109_021D4F4C(UnkStruct_ov109_021D5140 *param0, int param1)
 static int ov109_021D4F6C(UnkStruct_ov109_021D5140 *param0, int param1)
 {
     if (CommTiming_IsSyncState(202)) {
-        CommMan_SetErrorHandling(0, 0);
+        CommManager_SetErrorHandling(0, 0);
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_CIRCLE_OUT, FADE_TYPE_CIRCLE_OUT, COLOR_BLACK, 16, 1, HEAP_ID_95);
         param1 = 3;
     }
@@ -1682,7 +1682,7 @@ static void ov109_021D5858(UnkStruct_ov109_021D5140 *param0, int param1)
 {
     if (CommSys_CurNetId() == 0) {
         if (param1 == -1) {
-            sub_02037B58(1);
+            CommManager_SetMaxNumConnections(1);
         } else {
             int v0 = CommSys_ConnectedCount() + param1;
 
@@ -1690,7 +1690,7 @@ static void ov109_021D5858(UnkStruct_ov109_021D5140 *param0, int param1)
                 v0 = 5;
             }
 
-            sub_02037B58(v0);
+            CommManager_SetMaxNumConnections(v0);
         }
 
         if (param1 == -1) {

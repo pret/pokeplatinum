@@ -51,6 +51,7 @@
 
 #include "bg_window.h"
 #include "brightness_controller.h"
+#include "comm_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "enums.h"
@@ -85,7 +86,6 @@
 #include "unk_0202F1D4.h"
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
-#include "unk_020366A0.h"
 #include "unk_0205DFC4.h"
 #include "unk_0209B6F8.h"
 #include "vars_flags.h"
@@ -1631,7 +1631,7 @@ static BOOL FrontierScrCmd_EndCommunication(FrontierScriptContext *ctx)
 
 static BOOL WaitForCommManIsDeleted(FrontierScriptContext *ctx)
 {
-    return CommMan_IsInitialized() != TRUE && CommServerClient_IsInitialized() != TRUE;
+    return CommManager_IsInitialized() != TRUE && CommServerClient_IsInitialized() != TRUE;
 }
 
 static BOOL FrontierScrCmd_GetRandom(FrontierScriptContext *ctx)

@@ -21,6 +21,7 @@
 #include "savedata/save_table.h"
 
 #include "bag.h"
+#include "comm_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "game_options.h"
@@ -38,7 +39,6 @@
 #include "system.h"
 #include "tv_segment.h"
 #include "unk_020363E8.h"
-#include "unk_020366A0.h"
 #include "unk_0203909C.h"
 #include "vram_transfer.h"
 #include "wifi_list.h"
@@ -195,7 +195,7 @@ int ov83_0223B65C(ApplicationManager *appMan, int *param1)
     }
 
     ov83_0223CBA4(v3);
-    sub_02038A1C(v3->heapID, v3->unk_20);
+    CommManager_Dummy_02038A1C(v3->heapID, v3->unk_20);
 
     if (v3->unk_04) {
         return 1;

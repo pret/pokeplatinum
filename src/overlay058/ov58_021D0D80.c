@@ -13,6 +13,7 @@
 
 #include "bg_window.h"
 #include "char_transfer.h"
+#include "comm_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "font.h"
@@ -45,7 +46,6 @@
 #include "trainer_info.h"
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
-#include "unk_020366A0.h"
 #include "unk_0205B33C.h"
 #include "unk_0205C22C.h"
 #include "unk_02095E98.h"
@@ -205,10 +205,10 @@ int ov58_021D0D80(ApplicationManager *appMan, int *param1)
         GX_SetDispSelect(GX_DISP_SELECT_SUB_MAIN);
 
         sub_02095E98(v0);
-        CommMan_SetErrorHandling(0, 1);
+        CommManager_SetErrorHandling(0, 1);
 
         if (CommSys_CurNetId() == 0) {
-            sub_02037B58(3);
+            CommManager_SetMaxNumConnections(3);
         }
 
         NetworkIcon_Init();
@@ -327,8 +327,8 @@ int ov58_021D1018(ApplicationManager *appMan, int *param1)
         (*param1)++;
         break;
     case 1:
-        sub_02037B58(1);
-        sub_02036AC4();
+        CommManager_SetMaxNumConnections(1);
+        CommManager_UnionRestartSearch();
         sub_0205C2C8(v1->unk_00);
 
         GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
@@ -347,7 +347,7 @@ int ov58_021D1018(ApplicationManager *appMan, int *param1)
         }
         break;
     case 3:
-        sub_02037B58(2);
+        CommManager_SetMaxNumConnections(2);
 
         ov58_021D13B4(v0);
 
@@ -355,7 +355,7 @@ int ov58_021D1018(ApplicationManager *appMan, int *param1)
         ApplicationManager_FreeData(appMan);
         SetVBlankCallback(NULL, NULL);
         Heap_Destroy(HEAP_ID_DRAWING);
-        sub_02037B58(2);
+        CommManager_SetMaxNumConnections(2);
 
         return 1;
     }
@@ -822,7 +822,7 @@ static void ov58_021D1A80(UnkStruct_02095EAC *param0)
                         break;
                     }
 
-                    sub_02037B58(CommSys_ConnectedCount());
+                    CommManager_SetMaxNumConnections(CommSys_ConnectedCount());
                     param0->unk_9458 = 2;
                     ov58_021D2A98(param0, 1, TEXT_SPEED_FAST);
                     ov58_021D2CB0(param0, 5);
@@ -1051,7 +1051,7 @@ static int ov58_021D1E4C(UnkStruct_02095EAC *param0, int param1)
         Window_CopyToVRAM(&param0->unk_32C);
 
         if (CommSys_CurNetId() == 0) {
-            sub_02037B58(CommSys_ConnectedCount() + 1);
+            CommManager_SetMaxNumConnections(CommSys_ConnectedCount() + 1);
             param0->unk_9458 = 1;
         }
         break;
@@ -1198,7 +1198,7 @@ static int ov58_021D2180(UnkStruct_02095EAC *param0, int param1)
         ov58_021D2D10(param0);
 
         if (CommSys_CurNetId() == 0) {
-            sub_02037B58(CommSys_ConnectedCount() + 1);
+            CommManager_SetMaxNumConnections(CommSys_ConnectedCount() + 1);
             param0->unk_9458 = 1;
         }
         break;
@@ -1747,7 +1747,7 @@ static void ov58_021D2B3C(UnkStruct_02095EAC *param0, int param1)
             v0 = 5;
         }
 
-        sub_02037B58(v0);
+        CommManager_SetMaxNumConnections(v0);
     }
 }
 
@@ -1763,7 +1763,7 @@ static int ov58_021D2B5C(UnkStruct_02095EAC *param0)
             }
 
             param0->unk_36C = 19;
-            sub_02037B58(1);
+            CommManager_SetMaxNumConnections(1);
 
             if (param0->unk_945C) {
                 ov58_021D2D10(param0);

@@ -11,12 +11,12 @@
 #include "overlay117/struct_ov117_02260440.h"
 #include "overlay117/struct_ov117_022605C0.h"
 
+#include "comm_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "heap.h"
 #include "overlay_manager.h"
 #include "unk_020363E8.h"
-#include "unk_020366A0.h"
 
 static const ApplicationManagerTemplate Unk_ov117_022668F8 = {
     ov117_02260668,
@@ -105,7 +105,7 @@ int ov117_02260474(ApplicationManager *appMan, int *param1)
         }
         break;
     case 6:
-        CommMan_SetErrorHandling(0, 1);
+        CommManager_SetErrorHandling(0, 1);
         CommTiming_StartSync(222);
         (*param1)++;
         break;

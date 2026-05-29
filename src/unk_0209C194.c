@@ -12,6 +12,7 @@
 #include "overlay109/ov109_021D0D80.h"
 #include "overlay109/ov109_021D3D50.h"
 
+#include "comm_manager.h"
 #include "field_system.h"
 #include "field_task.h"
 #include "game_options.h"
@@ -19,7 +20,6 @@
 #include "heap.h"
 #include "journal.h"
 #include "save_player.h"
-#include "unk_020366A0.h"
 #include "unk_0203D1B8.h"
 #include "unk_0209BDF8.h"
 
@@ -104,7 +104,7 @@ static BOOL sub_0209C280(UnkStruct_0209C1EC *param0)
         if (sub_0209C1E8(param0->unk_28) == 0) {
             param0->unk_00 = 5;
         } else {
-            CommMan_SetErrorHandling(1, 1);
+            CommManager_SetErrorHandling(1, 1);
 
             param0->partyMenu = FieldSystem_OpenPartyMenu_SelectForSpinTrade(param0->fieldSystem, param0->unk_04);
             param0->unk_28->unk_00 = 1;
