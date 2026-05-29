@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_OV16_0226DB7C_H
-#define POKEPLATINUM_OV16_0226DB7C_H
+#ifndef POKEPLATINUM_CURSOR_RENDERER_H
+#define POKEPLATINUM_CURSOR_RENDERER_H
 
 #include "battle/struct_ov16_0226DC24_decl.h"
 
@@ -18,4 +18,4 @@ void CursorRenderer_DrawSplitAnchor(CursorRenderer *cursorRenderer, int x, int y
 void CursorRenderer_HideAllSprites(CursorRenderer *param0);
 void CursorRenderer_HideSplitAnchor(CursorRenderer *param0);
 
-#endif // POKEPLATINUM_OV16_0226DB7C_H
+#endif // POKEPLATINUM_CURSOR_RENDERER_H

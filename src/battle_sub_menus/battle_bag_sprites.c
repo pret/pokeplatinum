@@ -1,8 +1,8 @@
 #include "battle_sub_menus/battle_bag_sprites.h"
 
 #include "battle/battle_system.h"
-#include "battle/ov16_0226DB7C.h"
-#include "battle/ov16_0226DE44.h"
+#include "battle/cursor_renderer.h"
+#include "battle/indicator.h"
 #include "battle/struct_ov16_0226DC24_decl.h"
 #include "battle_sub_menus/battle_bag.h"
 #include "battle_sub_menus/battle_bag_utils.h"

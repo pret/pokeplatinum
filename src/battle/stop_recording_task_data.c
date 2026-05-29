@@ -1,4 +1,4 @@
-#include "battle/ov16_0226E148.h"
+#include "battle/stop_recording_task_data.h"
 
 #include <nitro.h>
 #include <string.h>

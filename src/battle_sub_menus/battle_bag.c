@@ -6,7 +6,7 @@
 
 #include "battle/battle_lib.h"
 #include "battle/battle_system.h"
-#include "battle/ov16_0226DE44.h"
+#include "battle/indicator.h"
 #include "battle_sub_menus/battle_bag_buttons.h"
 #include "battle_sub_menus/battle_bag_sprites.h"
 #include "battle_sub_menus/battle_bag_text.h"

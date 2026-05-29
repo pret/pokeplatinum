@@ -1,4 +1,4 @@
-#include "battle/ov16_02264798.h"
+#include "battle/idle_bounce_anim.h"
 
 #include <nitro.h>
 #include <string.h>

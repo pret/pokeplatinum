@@ -1,6 +1,6 @@
 #include "battle_sub_menus/battle_sub_menu_cursor.h"
 
-#include "battle/ov16_0226DB7C.h"
+#include "battle/cursor_renderer.h"
 #include "battle/struct_ov16_0226DC24_decl.h"
 
 #include "heap.h"

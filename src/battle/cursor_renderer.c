@@ -1,4 +1,4 @@
-#include "battle/ov16_0226DB7C.h"
+#include "battle/cursor_renderer.h"
 
 #include <nitro.h>
 #include <string.h>

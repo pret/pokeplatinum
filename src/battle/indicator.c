@@ -1,4 +1,4 @@
-#include "battle/ov16_0226DE44.h"
+#include "battle/indicator.h"
 
 #include <nitro.h>
 #include <string.h>

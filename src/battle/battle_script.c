@@ -37,7 +37,7 @@
 #include "battle/battle_system.h"
 #include "battle/btlcmd.h"
 #include "battle/common.h"
-#include "battle/ov16_02268520.h"
+#include "battle/terrain.h"
 #include "battle_anim/ov12_02235E94.h"
 #include "battle_anim/struct_ov12_02237728.h"
 

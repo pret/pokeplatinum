@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_OV16_0226DE44_H
-#define POKEPLATINUM_OV16_0226DE44_H
+#ifndef POKEPLATINUM_INDICATOR_H
+#define POKEPLATINUM_INDICATOR_H
 
 #include "battle/struct_ov16_0226DEEC_decl.h"
 
@@ -16,4 +16,4 @@ void Indicator_Hide(Indicator *indicator);
 void Indicator_SetExitTimer(Indicator *indicator, int timer);
 BOOL Indicator_GetHasDropped(Indicator *indicator);
 
-#endif // POKEPLATINUM_OV16_0226DE44_H
+#endif // POKEPLATINUM_INDICATOR_H
