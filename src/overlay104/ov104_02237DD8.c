@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "constants/battle/condition.h"
+#include "constants/battle_frontier.h"
 #include "generated/items.h"
 
 #include "struct_decls/struct_020304A0_decl.h"
@@ -31,6 +32,8 @@
 #include "system_vars.h"
 #include "unk_02030494.h"
 #include "vars_flags.h"
+
+#include "res/graphics/frontier/backgrounds/frontier_backgrounds.naix"
 
 typedef struct {
     s16 unk_00;
@@ -93,39 +96,171 @@ static void ov104_02239010(BattleArcade *param0, Party *param1, u8 param2);
 u16 ov104_02239014(BattleArcade *param0);
 void ov104_02239054(Party *param0, Party *param1, int param2, int param3);
 
-static const u16 Unk_ov104_0223FBBA[32][3] = {
-    { 0x59, 0x3A, 0x90 },
-    { 0x5A, 0x3C, 0x91 },
-    { 0x5B, 0x3E, 0x92 },
-    { 0x5C, 0x40, 0x93 },
-    { 0x5D, 0x42, 0x94 },
-    { 0x5E, 0x44, 0x95 },
-    { 0x5F, 0x46, 0x96 },
-    { 0x60, 0x48, 0x97 },
-    { 0x61, 0x4A, 0x98 },
-    { 0x59, 0x39, 0x90 },
-    { 0x5A, 0x3B, 0x91 },
-    { 0x5B, 0x3D, 0x92 },
-    { 0x5C, 0x3F, 0x93 },
-    { 0x5D, 0x41, 0x94 },
-    { 0x5E, 0x43, 0x95 },
-    { 0x5F, 0x45, 0x96 },
-    { 0x60, 0x47, 0x97 },
-    { 0x61, 0x49, 0x98 },
-    { 0x62, 0x4B, 0x99 },
-    { 0x63, 0x4C, 0x9A },
-    { 0x64, 0x4D, 0x9B },
-    { 0x65, 0x4E, 0x9C },
-    { 0x66, 0x4F, 0x9D },
-    { 0x67, 0x50, 0x9E },
-    { 0x69, 0x52, 0xA0 },
-    { 0x6A, 0x53, 0xA1 },
-    { 0x6B, 0x54, 0xA2 },
-    { 0x68, 0x51, 0x9F },
-    { 0x6D, 0x56, 0xA4 },
-    { 0x6C, 0x55, 0xA3 },
-    { 0x6E, 0x57, 0xA5 },
-    { 0x6F, 0x58, 0xA6 }
+static const struct {
+    u16 tiles;
+    u16 tilemap;
+    u16 palette;
+} Unk_ov104_0223FBBA[32] = {
+    [ARCADE_EFFECT_LOWER_FOE_HP] = {
+        battle_arcade_screen_lower_hp_NCGR_lz,
+        battle_arcade_screen_lower_foe_hp_NSCR_lz,
+        battle_arcade_screen_lower_hp_NCLR,
+    },
+    [ARCADE_EFFECT_POISON_FOE] = {
+        battle_arcade_screen_poison_NCGR_lz,
+        battle_arcade_screen_poison_foe_NSCR_lz,
+        battle_arcade_screen_poison_NCLR,
+    },
+    [ARCADE_EFFECT_PARALYZE_FOE] = {
+        battle_arcade_screen_paralyze_NCGR_lz,
+        battle_arcade_screen_paralyze_foe_NSCR_lz,
+        battle_arcade_screen_paralyze_NCLR,
+    },
+    [ARCADE_EFFECT_BURN_FOE] = {
+        battle_arcade_screen_burn_NCGR_lz,
+        battle_arcade_screen_burn_foe_NSCR_lz,
+        battle_arcade_screen_burn_NCLR,
+    },
+    [ARCADE_EFFECT_SLEEP_FOE] = {
+        battle_arcade_screen_sleep_NCGR_lz,
+        battle_arcade_screen_sleep_foe_NSCR_lz,
+        battle_arcade_screen_sleep_NCLR,
+    },
+    [ARCADE_EFFECT_FREEZE_FOE] = {
+        battle_arcade_screen_freeze_NCGR_lz,
+        battle_arcade_screen_freeze_foe_NSCR_lz,
+        battle_arcade_screen_freeze_NCLR,
+    },
+    [ARCADE_EFFECT_FOE_GET_BERRY] = {
+        battle_arcade_screen_get_berry_NCGR_lz,
+        battle_arcade_screen_foe_get_berry_NSCR_lz,
+        battle_arcade_screen_get_berry_NCLR,
+    },
+    [ARCADE_EFFECT_FOE_GET_ITEM] = {
+        battle_arcade_screen_get_item_NCGR_lz,
+        battle_arcade_screen_foe_get_item_NSCR_lz,
+        battle_arcade_screen_get_item_NCLR,
+    },
+    [ARCADE_EFFECT_FOE_LEVEL_UP] = {
+        battle_arcade_screen_level_up_NCGR_lz,
+        battle_arcade_screen_foe_level_up_NSCR_lz,
+        battle_arcade_screen_level_up_NCLR,
+    },
+    [ARCADE_EFFECT_LOWER_ALLY_HP] = {
+        battle_arcade_screen_lower_hp_NCGR_lz,
+        battle_arcade_screen_lower_ally_hp_NSCR_lz,
+        battle_arcade_screen_lower_hp_NCLR,
+    },
+    [ARCADE_EFFECT_POISON_ALLY] = {
+        battle_arcade_screen_poison_NCGR_lz,
+        battle_arcade_screen_poison_ally_NSCR_lz,
+        battle_arcade_screen_poison_NCLR,
+    },
+    [ARCADE_EFFECT_PARALYZE_ALLY] = {
+        battle_arcade_screen_paralyze_NCGR_lz,
+        battle_arcade_screen_paralyze_ally_NSCR_lz,
+        battle_arcade_screen_paralyze_NCLR,
+    },
+    [ARCADE_EFFECT_BURN_ALLY] = {
+        battle_arcade_screen_burn_NCGR_lz,
+        battle_arcade_screen_burn_ally_NSCR_lz,
+        battle_arcade_screen_burn_NCLR,
+    },
+    [ARCADE_EFFECT_SLEEP_ALLY] = {
+        battle_arcade_screen_sleep_NCGR_lz,
+        battle_arcade_screen_sleep_ally_NSCR_lz,
+        battle_arcade_screen_sleep_NCLR,
+    },
+    [ARCADE_EFFECT_FREEZE_ALLY] = {
+        battle_arcade_screen_freeze_NCGR_lz,
+        battle_arcade_screen_freeze_ally_NSCR_lz,
+        battle_arcade_screen_freeze_NCLR,
+    },
+    [ARCADE_EFFECT_ALLY_GET_BERRY] = {
+        battle_arcade_screen_get_berry_NCGR_lz,
+        battle_arcade_screen_ally_get_berry_NSCR_lz,
+        battle_arcade_screen_get_berry_NCLR,
+    },
+    [ARCADE_EFFECT_ALLY_GET_ITEM] = {
+        battle_arcade_screen_get_item_NCGR_lz,
+        battle_arcade_screen_ally_get_item_NSCR_lz,
+        battle_arcade_screen_get_item_NCLR,
+    },
+    [ARCADE_EFFECT_ALLY_LEVEL_UP] = {
+        battle_arcade_screen_level_up_NCGR_lz,
+        battle_arcade_screen_ally_level_up_NSCR_lz,
+        battle_arcade_screen_level_up_NCLR,
+    },
+    [ARCADE_EFFECT_SUNNY_BATTLE] = {
+        battle_arcade_screen_sunny_battle_NCGR_lz,
+        battle_arcade_screen_sunny_battle_NSCR_lz,
+        battle_arcade_screen_sunny_battle_NCLR,
+    },
+    [ARCADE_EFFECT_RAINY_BATTLE] = {
+        battle_arcade_screen_rainy_battle_NCGR_lz,
+        battle_arcade_screen_rainy_battle_NSCR_lz,
+        battle_arcade_screen_rainy_battle_NCLR,
+    },
+    [ARCADE_EFFECT_SANDY_BATTLE] = {
+        battle_arcade_screen_sandy_battle_NCGR_lz,
+        battle_arcade_screen_sandy_battle_NSCR_lz,
+        battle_arcade_screen_sandy_battle_NCLR,
+    },
+    [ARCADE_EFFECT_HAIL_BATTLE] = {
+        battle_arcade_screen_hail_battle_NCGR_lz,
+        battle_arcade_screen_hail_battle_NSCR_lz,
+        battle_arcade_screen_hail_battle_NCLR,
+    },
+    [ARCADE_EFFECT_FOGGY_BATTLE] = {
+        battle_arcade_screen_foggy_battle_NCGR_lz,
+        battle_arcade_screen_foggy_battle_NSCR_lz,
+        battle_arcade_screen_foggy_battle_NCLR,
+    },
+    [ARCADE_EFFECT_TRICK_ROOM] = {
+        battle_arcade_screen_trick_room_NCGR_lz,
+        battle_arcade_screen_trick_room_NSCR_lz,
+        battle_arcade_screen_trick_room_NCLR,
+    },
+    [ARCADE_EFFECT_SPEED_UP] = {
+        battle_arcade_screen_speed_up_NCGR_lz,
+        battle_arcade_screen_speed_up_NSCR_lz,
+        battle_arcade_screen_speed_up_NCLR,
+    },
+    [ARCADE_EFFECT_SLOW_DOWN] = {
+        battle_arcade_screen_slow_down_NCGR_lz,
+        battle_arcade_screen_slow_down_NSCR_lz,
+        battle_arcade_screen_slow_down_NCLR,
+    },
+    [ARCADE_EFFECT_RANDOMIZE_CURSOR] = {
+        battle_arcade_screen_randomize_cursor_NCGR_lz,
+        battle_arcade_screen_randomize_cursor_NSCR_lz,
+        battle_arcade_screen_randomize_cursor_NCLR,
+    },
+    [ARCADE_EFFECT_SWAP_MONS] = {
+        battle_arcade_screen_swap_mons_NCGR_lz,
+        battle_arcade_screen_swap_mons_NSCR_lz,
+        battle_arcade_screen_swap_mons_NCLR,
+    },
+    [ARCADE_EFFECT_GET_1_BP] = {
+        battle_arcade_screen_get_1_bp_NCGR_lz,
+        battle_arcade_screen_get_1_bp_NSCR_lz,
+        battle_arcade_screen_get_1_bp_NCLR,
+    },
+    [ARCADE_EFFECT_NO_BATTLE] = {
+        battle_arcade_screen_no_battle_NCGR_lz,
+        battle_arcade_screen_no_battle_NSCR_lz,
+        battle_arcade_screen_no_battle_NCLR,
+    },
+    [ARCADE_EFFECT_NO_EVENT] = {
+        battle_arcade_screen_no_event_NCGR_lz,
+        battle_arcade_screen_no_event_NSCR_lz,
+        battle_arcade_screen_no_event_NCLR,
+    },
+    [ARCADE_EFFECT_GET_3_BP] = {
+        battle_arcade_screen_get_3_bp_NCGR_lz,
+        battle_arcade_screen_get_3_bp_NSCR_lz,
+        battle_arcade_screen_get_3_bp_NCLR,
+    }
 };
 
 static const u8 Unk_ov104_0223FAF8[][2] = {
@@ -592,16 +727,16 @@ void ov104_02238658(void *param0, FrontierGraphics *param1)
     BattleArcade *v1 = (BattleArcade *)param0;
 
     if (v1->activeEffect != 32) {
-        v0 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, HEAP_ID_94);
+        v0 = NARC_ctor(NARC_INDEX_FRONTIER_BACKGROUNDS, HEAP_ID_94);
 
-        Graphics_LoadTilesToBgLayerFromOpenNARC(v0, Unk_ov104_0223FBBA[v1->activeEffect][0], param1->bgConfig, 2, 0, 0, 1, HEAP_ID_94);
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, Unk_ov104_0223FBBA[v1->activeEffect][1], param1->bgConfig, 2, 0, 0, 1, HEAP_ID_94);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(v0, Unk_ov104_0223FBBA[v1->activeEffect].tiles, param1->bgConfig, 2, 0, 0, 1, HEAP_ID_94);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, Unk_ov104_0223FBBA[v1->activeEffect].tilemap, param1->bgConfig, 2, 0, 0, 1, HEAP_ID_94);
 
         {
             NNSG2dPaletteData *v2;
             void *v3;
 
-            v3 = Graphics_GetPlttDataFromOpenNARC(v0, Unk_ov104_0223FBBA[v1->activeEffect][2], &v2, HEAP_ID_94);
+            v3 = Graphics_GetPlttDataFromOpenNARC(v0, Unk_ov104_0223FBBA[v1->activeEffect].palette, &v2, HEAP_ID_94);
             DC_FlushRange(v2->pRawData, v2->szByte);
 
             GX_BeginLoadBGExtPltt();
@@ -624,7 +759,7 @@ void ov104_02238658(void *param0, FrontierGraphics *param1)
 void ov104_02238728(void *param0, FrontierGraphics *param1)
 {
     BattleArcade *v1 = (BattleArcade *)param0;
-    NARC *v0 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, HEAP_ID_94);
+    NARC *v0 = NARC_ctor(NARC_INDEX_FRONTIER_BACKGROUNDS, HEAP_ID_94);
 
     Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 53, param1->bgConfig, 3, 0, 0, 1, HEAP_ID_94);
     Bg_ScheduleTilemapTransfer(param1->bgConfig, 3);
@@ -850,7 +985,7 @@ void ov104_02238AB4(u8 param0, u8 param1)
     v5 = Heap_Alloc(HEAP_ID_94, 0x1000 * 2);
     memset(v5, 0, 0x1000 * 2);
 
-    v4 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, HEAP_ID_94);
+    v4 = NARC_ctor(NARC_INDEX_FRONTIER_BACKGROUNDS, HEAP_ID_94);
     v3 = Graphics_GetPlttDataFromOpenNARC(v4, v0, &v2, HEAP_ID_94);
 
     BlendPalette(v2->pRawData, v5, 0x1000, param0, 0x0);

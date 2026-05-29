@@ -23,7 +23,6 @@
 #include "heap.h"
 #include "message.h"
 #include "narc.h"
-#include "narc_frontier_bg.h"
 #include "overlay_manager.h"
 #include "palette.h"
 #include "save_player.h"
@@ -38,6 +37,7 @@
 #include "unk_02030494.h"
 #include "wifi_battle_tower_save.h"
 
+#include "res/graphics/frontier/backgrounds/frontier_backgrounds.naix"
 #include "res/graphics/poketch/poketch.naix"
 #include "res/text/bank/battle_frontier_records.h"
 
@@ -402,17 +402,17 @@ static u8 GetWindowGroup(u8 facility)
 
 static void LoadMainBackground(FrontierRecordsApp *app, enum BgLayer bgLayer)
 {
-    NARC *narc = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, HEAP_ID_FRONTIER_RECORD_APP);
+    NARC *narc = NARC_ctor(NARC_INDEX_FRONTIER_BACKGROUNDS, HEAP_ID_FRONTIER_RECORD_APP);
 
-    Graphics_LoadTilesToBgLayerFromOpenNARC(narc, BATTLE_FRONTIER_RECORDS_APP_TILES, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_FRONTIER_RECORD_APP);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, BATTLE_FRONTIER_RECORDS_APP_TILEMAP, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_FRONTIER_RECORD_APP);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(narc, frontier_records_app_NCGR_lz, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_FRONTIER_RECORD_APP);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, battle_frontier_records_app_NSCR_lz, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_FRONTIER_RECORD_APP);
     NARC_dtor(narc);
 }
 
 static void LoadMainBackgroundPalette(void)
 {
     NNSG2dPaletteData *plttData;
-    void *pltt = Graphics_GetPlttData(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, BATTLE_FRONTIER_RECORDS_APP_PLTT, &plttData, HEAP_ID_FRONTIER_RECORD_APP);
+    void *pltt = Graphics_GetPlttData(NARC_INDEX_FRONTIER_BACKGROUNDS, frontier_records_app_NCLR, &plttData, HEAP_ID_FRONTIER_RECORD_APP);
 
     DC_FlushRange(plttData->pRawData, PALETTE_SIZE_BYTES * 2);
     GX_LoadBGPltt(plttData->pRawData, 0, PALETTE_SIZE_BYTES * 2);

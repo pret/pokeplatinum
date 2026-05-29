@@ -28,7 +28,6 @@
 #include "math_util.h"
 #include "message.h"
 #include "narc.h"
-#include "narc_frontier_bg.h"
 #include "network_icon.h"
 #include "overlay_manager.h"
 #include "palette.h"
@@ -50,6 +49,8 @@
 #include "unk_020363E8.h"
 #include "unk_0209BA80.h"
 #include "vram_transfer.h"
+
+#include "res/graphics/frontier/backgrounds/frontier_backgrounds.naix"
 
 FS_EXTERN_OVERLAY(overlay104);
 
@@ -794,7 +795,7 @@ static void LoadAssets(BattleArcadeApp *app)
 {
     int i;
 
-    app->narc = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, HEAP_ID_BATTLE_ARCADE_APP);
+    app->narc = NARC_ctor(NARC_INDEX_FRONTIER_BACKGROUNDS, HEAP_ID_BATTLE_ARCADE_APP);
 
     LoadBackgrounds(app);
     InitSpriteManager(app);
@@ -991,22 +992,22 @@ static void InitBackgrounds(BgConfig *bgConfig)
 
 static void LoadInitialBackround(BattleArcadeApp *app, enum BgLayer bgLayer)
 {
-    Graphics_LoadTilesToBgLayerFromOpenNARC(app->narc, BATTLE_ARCADE_APP_MAIN_TILES, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_ARCADE_APP);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(app->narc, battle_arcade_app_NCGR_lz, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_ARCADE_APP);
 
-    u32 idx = !BattleArcade_IsMultiPlayerChallenge(app->challengeType) ? BATTLE_ARCADE_APP_MAIN_INITIAL_TILEMAP : BATTLE_ARCADE_APP_MAIN_MULTI_INITIAL_TILEMAP;
+    u32 idx = !BattleArcade_IsMultiPlayerChallenge(app->challengeType) ? battle_arcade_app_main_initial_NSCR_lz : battle_arcade_app_main_multi_initial_NSCR_lz;
     Graphics_LoadTilemapToBgLayerFromOpenNARC(app->narc, idx, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_ARCADE_APP);
 }
 
 static void LoadRouletteBackground(BattleArcadeApp *app, enum BgLayer bgLayer)
 {
-    u32 idx = !BattleArcade_IsMultiPlayerChallenge(app->challengeType) ? BATTLE_ARCADE_APP_MAIN_ROULETTE_TILEMAP : BATTLE_ARCADE_APP_MAIN_MULTI_ROULETTE_TILEMAP;
+    u32 idx = !BattleArcade_IsMultiPlayerChallenge(app->challengeType) ? battle_arcade_app_main_roulette_NSCR_lz : battle_arcade_app_main_multi_roulette_NSCR_lz;
     Graphics_LoadTilemapToBgLayerFromOpenNARC(app->narc, idx, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_ARCADE_APP);
 }
 
 static void LoadPalette(void)
 {
     NNSG2dPaletteData *plttData;
-    void *pltt = Graphics_GetPlttData(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, 167, &plttData, HEAP_ID_BATTLE_ARCADE_APP);
+    void *pltt = Graphics_GetPlttData(NARC_INDEX_FRONTIER_BACKGROUNDS, battle_arcade_app_NCLR, &plttData, HEAP_ID_BATTLE_ARCADE_APP);
 
     DC_FlushRange(plttData->pRawData, PALETTE_SIZE_BYTES * 7);
     GX_LoadBGPltt(plttData->pRawData, 0, PALETTE_SIZE_BYTES * 7);
@@ -1015,9 +1016,9 @@ static void LoadPalette(void)
 
 static void LoadSubScreenBackground(BattleArcadeApp *app, enum BgLayer bgLayer)
 {
-    Graphics_LoadTilesToBgLayerFromOpenNARC(app->narc, BATTLE_ARCADE_APP_SUB_TILES, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_ARCADE_APP);
-    Graphics_LoadPaletteFromOpenNARC(app->narc, Battle_ARCADE_APP_SUB_PLTT, PAL_LOAD_SUB_BG, 0, PLTT_OFFSET(2), HEAP_ID_BATTLE_ARCADE_APP);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(app->narc, BATTLE_ARCADE_APP_SUB_TILEMAP, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_ARCADE_APP);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(app->narc, battle_arcade_app_sub_NCGR_lz, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_ARCADE_APP);
+    Graphics_LoadPaletteFromOpenNARC(app->narc, battle_arcade_app_sub_NCLR, PAL_LOAD_SUB_BG, 0, PLTT_OFFSET(2), HEAP_ID_BATTLE_ARCADE_APP);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(app->narc, battle_arcade_app_sub_NSCR_lz, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_ARCADE_APP);
 }
 
 static void ChangeState(BattleArcadeApp *app, int *state, enum BattleArcadeAppState newState)
