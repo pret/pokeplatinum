@@ -278,7 +278,7 @@ BOOL ov104_0222EE60(BattleHall *param0)
     v3 = 512;
     v4 = Pokemon_StructSize();
     v6 = SaveData_GetParty(param0->saveData);
-    v5 = Party_GetPokemonBySlotIndex(v6, param0->unk_260[0]);
+    v5 = Party_GetPokemonBySlotIndex(v6, param0->partySlots[0]);
 
     MI_CpuCopy8(v5, &param0->unk_784[0], v4);
 
@@ -305,7 +305,7 @@ void ov104_0222EEA8(int param0, int param1, void *param2, void *param3)
     }
 
     v2 = Pokemon_StructSize();
-    MI_CpuCopy8(&v4[0], v3->unk_D8C, v2);
+    MI_CpuCopy8(&v4[0], v3->partnersMon, v2);
 
     return;
 }

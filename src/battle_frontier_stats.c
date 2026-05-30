@@ -4,10 +4,10 @@
 
 #include "struct_defs/battle_frontier.h"
 
+#include "battle_hall_save.h"
 #include "savedata.h"
 #include "unk_0202D05C.h"
 #include "unk_0202FF4C.h"
-#include "unk_02030108.h"
 #include "unk_020302D0.h"
 #include "unk_02030494.h"
 #include "wifi_list.h"
@@ -25,7 +25,7 @@ void BattleFrontier_Init(BattleFrontier *frontier)
     sub_0202D080(&frontier->unk_950.unk_168);
     sub_0202D0AC(&frontier->unk_950.unk_188);
     sub_020300A4(&frontier->unk_1614.unk_00);
-    sub_02030260(&frontier->unk_1618.unk_00);
+    BattleHallStreakFlags_Init(&frontier->hall.streakFlags);
     sub_02030410(&frontier->unk_161C.unk_00);
     sub_020305AC(&frontier->unk_1620.unk_00);
 }

@@ -471,7 +471,7 @@ _0326:
     GetPlayerObjEventGfx VAR_0x800A
     SetVar FR_VAR_0x800E, 0
     InitNewBattleRecording
-    FrontierScrCmd_8B VAR_0x8003, VAR_0x8001, VAR_0x8002, VAR_0x8000
+    InitBattleHall VAR_0x8003, VAR_0x8001, VAR_0x8002, VAR_0x8000
     CallBattleHallFunction BH_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _0382
     SetVar FR_VAR_0x800F, 231
@@ -787,7 +787,7 @@ _08F1:
 _0907:
     BattleHall_StartBattle
     BattleHall_CleanupBattle
-    CallBattleHallFunction BH_FUNC_UPDATE_HELD_ITEMS, 0, 0, VAR_0x8008
+    CallBattleHallFunction BH_FUNC_RESTORE_HELD_ITEMS, 0, 0, VAR_0x8008
     CallBattleHallFunction BH_FUNC_TOGGLE_ENGINE_LAYER, 0, 0, VAR_0x8008
     FadeScreenIn
     BattleHall_CheckWonBattle VAR_0x8008
@@ -1124,10 +1124,10 @@ _0E7B:
 
 _0E99:
     SetSystemVar VAR_BATTLE_HALL_LOBBY_LOAD_ACTION, 2
-    CallBattleHallFunction BH_FUNC_UNK_10, 0, 0, VAR_0x8008
+    CallBattleHallFunction BH_FUNC_QUICKSAVE, 0, 0, VAR_0x8008
     Call _1087
     FreeBattleRecording
-    FrontierScrCmd_8D
+    FreeBattleHall
     FadeScreenOut
     CloseMessage
     CallBattleHallFunction BH_FUNC_RESET_SYSTEM, 0, 0, VAR_0x8008
@@ -1235,7 +1235,7 @@ _101D:
     CallBattleHallFunction BH_FUNC_GET_CHALLENGE_TYPE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 3, _107B
     FreeBattleRecording
-    FrontierScrCmd_8D
+    FreeBattleHall
     FrontierScrCmd_02
 
 _106B:
@@ -1250,7 +1250,7 @@ _1071:
 
 _107B:
     FreeBattleRecording
-    FrontierScrCmd_8D
+    FreeBattleHall
     FrontierScrCmd_04 14, 1
     End
 
