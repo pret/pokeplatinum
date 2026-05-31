@@ -5,9 +5,8 @@
 
 #include "constants/field/dynamic_map_features.h"
 #include "constants/scrcmd.h"
-
-#include "generated/object_events_gfx.h"
 #include "generated/movement_types.h"
+#include "generated/object_events_gfx.h"
 
 #include "struct_decls/map_object.h"
 #include "struct_decls/map_object_manager.h"
@@ -26,16 +25,16 @@ static PlayerAvatar *PlayerAvatar_Alloc(void);
 static void PlayerAvatar_Init(PlayerAvatar *playerAvatar, int param1, int param2, PlayerData *param3);
 static void PlayerAvatar_AddMapObject(PlayerAvatar *playerAvatar, const MapObjectManager *param1, int param2, int param3, int param4, int param5);
 static MapObject *MapObjectMan_GetPlayerMapObjectCheckNull(const MapObjectManager *mapObjMan);
-static void PlayerAvatar_SetFlagUnk_00(PlayerAvatar *playerAvatar, u32 param1);
-static void PlayerAvatar_ClearFlagUnk_00(PlayerAvatar *playerAvatar, u32 param1);
-static u32 PlayerAvatar_GetFlagUnk_00(PlayerAvatar *playerAvatar, u32 param1);
+static void PlayerAvatar_TurnOnMovementFlagBits(PlayerAvatar *playerAvatar, u32 param1);
+static void PlayerAvatar_ClearMovementFlag(PlayerAvatar *playerAvatar, u32 param1);
+static u32 PlayerAvatar_GetMovementFlag(PlayerAvatar *playerAvatar, u32 param1);
 static void PlayerAvatar_SetPlayerData(PlayerAvatar *playerAvatar, PlayerData *param1);
-static u32 Player_GetState(PlayerData *player);
-static void Player_SetState(PlayerData *player, u32 state);
-static void PlayerAvatar_Player_SetState(PlayerAvatar *playerAvatar, u32 state);
+static u32 PlayerData_GetAvatarState(PlayerData *player);
+static void PlayerData_SetAvatarState(PlayerData *player, u32 state);
+static void PlayerAvatar_PlayerData_SetAvatarState(PlayerAvatar *playerAvatar, u32 state);
 
 /**
- * @brief Creates and initializes a new Player Avatar map object 
+ * @brief Creates and initializes a new Player Avatar map object
  *
  * @param mapObjMan
  * @param x
@@ -68,14 +67,23 @@ PlayerAvatar *PlayerAvatar_New(const MapObjectManager *mapObjMan, int x, int z, 
     return playerAvatar;
 }
 
-PlayerAvatar *sub_0205E820(const MapObjectManager *mapObjMan, PlayerData *playerData, int gender)
+/**
+ * @brief Creates a new Player Avatar and loads its corresponding map object from an already existing map object
+ *
+ * @param mapObjMan
+ * @param playerData
+ * @param gender
+ *
+ * @return playerAvatar
+ */
+PlayerAvatar *PlayerAvatar_NewLoad(const MapObjectManager *mapObjMan, PlayerData *playerData, int gender)
 {
     int playerState;
     PlayerAvatar *playerAvatar;
     MapObject *mapObj;
 
     playerAvatar = PlayerAvatar_Alloc();
-    playerState = Player_GetState(playerData);
+    playerState = PlayerData_GetAvatarState(playerData);
 
     PlayerAvatar_Init(playerAvatar, playerState, gender, playerData);
     mapObj = MapObjectMan_GetPlayerMapObjectCheckNull(mapObjMan);
@@ -97,7 +105,7 @@ PlayerAvatar *sub_0205E820(const MapObjectManager *mapObjMan, PlayerData *player
  */
 void PlayerAvatar_InitMapFeatures(PlayerAvatar *playerAvatar, int dynamicMapFeaturesID)
 {
-    MapObject *mapObj = Player_MapObject(playerAvatar);
+    MapObject *mapObj = PlayerAvatar_GetMapObject(playerAvatar);
     GF_ASSERT(mapObj != NULL);
     MapObject_MapObjectManager(mapObj);
 
@@ -132,7 +140,7 @@ void PlayerAvatar_Free(PlayerAvatar *playerAvatar)
  */
 void PlayerAvatar_Delete(PlayerAvatar *playerAvatar)
 {
-    MapObject *mapObject = Player_MapObject(playerAvatar);
+    MapObject *mapObject = PlayerAvatar_GetMapObject(playerAvatar);
 
     MapObject_Delete(mapObject);
     PlayerAvatar_Free(playerAvatar);
@@ -164,17 +172,17 @@ static void PlayerAvatar_Init(PlayerAvatar *playerAvatar, int playerState, int g
 {
     PlayerAvatar_SetPlayerData(playerAvatar, player);
 
-    PlayerAvatar_SetState(playerAvatar, 0);
     PlayerAvatar_SetMoveState(playerAvatar, 0);
+    PlayerAvatar_SetPlayerMoveState(playerAvatar, 0);
     PlayerAvatar_SetPlayerState(playerAvatar, playerState);
     PlayerAvatar_SetGender(playerAvatar, gender);
     PlayerAvatar_SetRequestStateFlag(playerAvatar, 0);
     PlayerAvatar_ClearSpeed(playerAvatar);
     PlayerAvatar_SetFaceLeftOrRight(playerAvatar, -1);
     PlayerAvatar_SetFaceUpOrDown(playerAvatar, -1);
-    sub_0205EC20(playerAvatar, 0xff, 0);
+    PlayerAvatar_SetMovementActionAndSpeed(playerAvatar, 0xff, 0);
 
-    sub_0205EF6C(playerAvatar, 1);
+    PlayerAvatar_SetIgnoreTileBehavior(playerAvatar, 1);
     PlayerAvatar_SetEscapedFromDeepMud(playerAvatar, TRUE);
 }
 
@@ -254,7 +262,7 @@ static MapObject *MapObjectMan_GetPlayerMapObjectCheckNull(const MapObjectManage
  */
 int PlayerAvatar_GetFacingDir(PlayerAvatar *const playerAvatar)
 {
-    return MapObject_GetFacingDir(Player_MapObject(playerAvatar));
+    return MapObject_GetFacingDir(PlayerAvatar_GetMapObject(playerAvatar));
 }
 
 /**
@@ -265,7 +273,7 @@ int PlayerAvatar_GetFacingDir(PlayerAvatar *const playerAvatar)
  */
 void PlayerAvatar_TryFace(PlayerAvatar *playerAvatar, int dir)
 {
-    MapObject_TryFace(Player_MapObject(playerAvatar), dir);
+    MapObject_TryFace(PlayerAvatar_GetMapObject(playerAvatar), dir);
 }
 
 /**
@@ -277,7 +285,7 @@ void PlayerAvatar_TryFace(PlayerAvatar *playerAvatar, int dir)
  */
 int PlayerAvatar_GetMovingDir(PlayerAvatar *const playerAvatar)
 {
-    return MapObject_GetMovingDir(Player_MapObject(playerAvatar));
+    return MapObject_GetMovingDir(PlayerAvatar_GetMapObject(playerAvatar));
 }
 
 /**
@@ -305,7 +313,7 @@ int PlayerAvatar_GetDistortionDir(PlayerAvatar *const playerAvatar)
  */
 int PlayerAvatar_GetXPos(PlayerAvatar *const playerAvatar)
 {
-    return MapObject_GetX(Player_MapObject(playerAvatar));
+    return MapObject_GetX(PlayerAvatar_GetMapObject(playerAvatar));
 }
 
 /**
@@ -317,11 +325,11 @@ int PlayerAvatar_GetXPos(PlayerAvatar *const playerAvatar)
  */
 int PlayerAvatar_GetZPos(PlayerAvatar *const playerAvatar)
 {
-    return MapObject_GetZ(Player_MapObject(playerAvatar));
+    return MapObject_GetZ(PlayerAvatar_GetMapObject(playerAvatar));
 }
 
 /**
- * @brief Gets the previous X position of the player avatar's map object 
+ * @brief Gets the previous X position of the player avatar's map object
  *
  * @param playerAvatar
  *
@@ -329,11 +337,11 @@ int PlayerAvatar_GetZPos(PlayerAvatar *const playerAvatar)
  */
 int PlayerAvatar_XPosPrev(PlayerAvatar *const playerAvatar)
 {
-    return MapObject_GetXPrev(Player_MapObject(playerAvatar));
+    return MapObject_GetXPrev(PlayerAvatar_GetMapObject(playerAvatar));
 }
 
 /**
- * @brief Gets the previous Z position of the player avatar's map object 
+ * @brief Gets the previous Z position of the player avatar's map object
  *
  * @param playerAvatar
  *
@@ -341,7 +349,7 @@ int PlayerAvatar_XPosPrev(PlayerAvatar *const playerAvatar)
  */
 int PlayerAvatar_ZPosPrev(PlayerAvatar *const playerAvatar)
 {
-    return MapObject_GetZPrev(Player_MapObject(playerAvatar));
+    return MapObject_GetZPrev(PlayerAvatar_GetMapObject(playerAvatar));
 }
 
 /**
@@ -352,7 +360,7 @@ int PlayerAvatar_ZPosPrev(PlayerAvatar *const playerAvatar)
  */
 void PlayerAvatar_GetPosPtr(PlayerAvatar *const playerAvatar, VecFx32 *pos)
 {
-    MapObject_GetPosPtr(Player_MapObject(playerAvatar), pos);
+    MapObject_GetPosPtr(PlayerAvatar_GetMapObject(playerAvatar), pos);
 }
 
 /**
@@ -364,45 +372,64 @@ void PlayerAvatar_GetPosPtr(PlayerAvatar *const playerAvatar, VecFx32 *pos)
  */
 const VecFx32 *PlayerAvatar_GetPos(PlayerAvatar *const playerAvatar)
 {
-    return MapObject_GetPos(PlayerAvatar_ConstMapObject(playerAvatar));
+    return MapObject_GetPos(PlayerAvatar_GetConstMapObject(playerAvatar));
 }
 
 /**
- * @brief Sets the Player Avatar's state, specified by enum PlayerAvatarState
+ * @brief Sets the Player Avatar's move state, specified by enum AvatarMoveState
  *
  * @param playerAvatar
  * @param state
  */
-void PlayerAvatar_SetState(PlayerAvatar *playerAvatar, int state)
+void PlayerAvatar_SetMoveState(PlayerAvatar *playerAvatar, int state)
 {
-    playerAvatar->state = state;
+    playerAvatar->moveState = state;
 }
 
 /**
- * @brief Gets the Player Avatar's state, specified by enum PlayerAvatarState
+ * @brief Gets the Player Avatar's move state, specified by enum AvatarMoveState
  *
  * @param playerAvatar
  *
  * @return playerAvatar->state
  */
-int PlayerAvatar_GetState(const PlayerAvatar *playerAvatar)
-{
-    return playerAvatar->state;
-}
-
-void PlayerAvatar_SetMoveState(PlayerAvatar *playerAvatar, int moveState)
-{
-    playerAvatar->moveState = moveState;
-}
-
 int PlayerAvatar_GetMoveState(const PlayerAvatar *playerAvatar)
 {
     return playerAvatar->moveState;
 }
 
+/**
+ * @brief Sets the player avatar's player move state, specified by PlayerMoveState
+ *
+ * @param playerAvatar
+ * @param moveState
+ */
+void PlayerAvatar_SetPlayerMoveState(PlayerAvatar *playerAvatar, int moveState)
+{
+    playerAvatar->playerMoveState = moveState;
+}
+
+/**
+ * @brief Gets the player avatar's move state, specified by PlayerMoveState
+ *
+ * @param playerAvatar
+ *
+ * @return playerAvatar->playerMoveState
+ */
+int PlayerAvatar_GetPlayerMoveState(const PlayerAvatar *playerAvatar)
+{
+    return playerAvatar->playerMoveState;
+}
+
+/**
+ * @brief Shows or hides the Player Avatar based on the specification of visible
+ *
+ * @param playerAvatar
+ * @param visible
+ */
 void PlayerAvatar_SetVisible(PlayerAvatar *playerAvatar, BOOL visible)
 {
-    MapObject *mapObj = Player_MapObject(playerAvatar);
+    MapObject *mapObj = PlayerAvatar_GetMapObject(playerAvatar);
 
     if (visible == TRUE) {
         MapObject_SetStatusFlagOff(mapObj, MAP_OBJ_STATUS_HIDE);
@@ -411,12 +438,25 @@ void PlayerAvatar_SetVisible(PlayerAvatar *playerAvatar, BOOL visible)
     }
 }
 
+/**
+ * @brief Directly sets the Player Avatar's mapObject
+ *
+ * @param playerAvatar
+ * @param mapObject
+ */
 void PlayerAvatar_SetMapObject(PlayerAvatar *playerAvatar, MapObject *mapObject)
 {
     playerAvatar->mapObject = mapObject;
 }
 
-MapObject *Player_MapObject(PlayerAvatar *playerAvatar)
+/**
+ * @brief Gets the Player Avatar's map object
+ *
+ * @param playerAvatar
+ *
+ * @return playerAvatar->mapObject
+ */
+MapObject *PlayerAvatar_GetMapObject(PlayerAvatar *playerAvatar)
 {
     GF_ASSERT(playerAvatar != NULL);
     GF_ASSERT(playerAvatar->mapObject != NULL);
@@ -424,81 +464,180 @@ MapObject *Player_MapObject(PlayerAvatar *playerAvatar)
     return playerAvatar->mapObject;
 }
 
-const MapObject *PlayerAvatar_ConstMapObject(const PlayerAvatar *playerAvatar)
+/**
+ * @brief Gets a constant Player Avatar's map object
+ *
+ * @param const playerAvatar
+ *
+ * @return playerAvatar->mapObject
+ */
+const MapObject *PlayerAvatar_GetConstMapObject(const PlayerAvatar *playerAvatar)
 {
     return playerAvatar->mapObject;
 }
 
+/**
+ * @brief Sets the player avatar's state, specified by enum PlayerAvatarState
+ *
+ * @param playerAvatar
+ * @param playerState
+ */
 void PlayerAvatar_SetPlayerState(PlayerAvatar *playerAvatar, int playerState)
 {
     GF_ASSERT(playerState < 0x6);
-    playerAvatar->unk_1C = playerState;
+    playerAvatar->playerAvatarState = playerState;
 
-    PlayerAvatar_Player_SetState(playerAvatar, playerState);
+    PlayerAvatar_PlayerData_SetAvatarState(playerAvatar, playerState);
 }
 
+/**
+ * @brief Gets the player's avatar state, specified by enum PlayerAvatarState
+ *
+ * @param playerAvatar
+ *
+ * @return playerAvatar->playerAvatarState
+ */
 int PlayerAvatar_GetPlayerState(PlayerAvatar *playerAvatar)
 {
     GF_ASSERT(playerAvatar != NULL);
-    return playerAvatar->unk_1C;
+    return playerAvatar->playerAvatarState;
 }
 
-void PlayerAvatar_TurnOnRequestStateBit(PlayerAvatar *playerAvatar, u32 param1)
+/**
+ * @brief Sets the request state flag's bits without overwriting the existing requests
+ *
+ * @param playerAvatar
+ * @param requestState
+ */
+void PlayerAvatar_TurnOnRequestStateBit(PlayerAvatar *playerAvatar, u32 requestState)
 {
-    playerAvatar->unk_04 |= param1;
+    playerAvatar->requestStateFlag |= requestState;
 }
 
-void PlayerAvatar_SetRequestStateFlag(PlayerAvatar *playerAvatar, u32 param1)
+/**
+ * @brief Sets the request state flag while overwriting the existing requests
+ *
+ * @param playerAvatar
+ * @param requestState
+ */
+void PlayerAvatar_SetRequestStateFlag(PlayerAvatar *playerAvatar, u32 requestState)
 {
-    playerAvatar->unk_04 = param1;
+    playerAvatar->requestStateFlag = requestState;
 }
 
-u32 PlayerAvatar_RequestStateFlag(PlayerAvatar *playerAvatar)
+/**
+ * @brief Gets the request state flag
+ *
+ * @param playerAvatar
+ *
+ * @return playerAvatar->requestStateFlag
+ */
+u32 PlayerAvatar_GetRequestStateFlag(PlayerAvatar *playerAvatar)
 {
-    return playerAvatar->unk_04;
+    return playerAvatar->requestStateFlag;
 }
 
+/**
+ * @brief Sets the player avatar's gender
+ *
+ * @param playerAvatar
+ * @param gender
+ */
 void PlayerAvatar_SetGender(PlayerAvatar *playerAvatar, int gender)
 {
     playerAvatar->gender = gender;
 }
 
-int PlayerAvatar_Gender(PlayerAvatar *playerAvatar)
+/**
+ * @brief Gets the player avatar's gender
+ *
+ * @param playerAvatar
+ *
+ * @return gender
+ */
+int PlayerAvatar_GetGender(PlayerAvatar *playerAvatar)
 {
     return playerAvatar->gender;
 }
 
-static void PlayerAvatar_SetFlagUnk_00(PlayerAvatar *playerAvatar, u32 flag)
+/**
+ * @brief Sets the player avatar's movement flag without overwriting the existing flag
+ *
+ * @param playerAvatar
+ * @param flag
+ */
+static void PlayerAvatar_TurnOnMovementFlagBits(PlayerAvatar *playerAvatar, u32 flag)
 {
-    playerAvatar->unk_00 |= flag;
+    playerAvatar->movementFlag |= flag;
 }
 
-static void PlayerAvatar_ClearFlagUnk_00(PlayerAvatar *playerAvatar, u32 flag)
+/**
+ * @brief Clears the given bits of the movement flag
+ *
+ * @param playerAvatar
+ * @param flag
+ */
+static void PlayerAvatar_ClearMovementFlag(PlayerAvatar *playerAvatar, u32 flag)
 {
-    playerAvatar->unk_00 &= ~flag;
+    playerAvatar->movementFlag &= ~flag;
 }
 
-static u32 PlayerAvatar_GetFlagUnk_00(PlayerAvatar *playerAvatar, u32 flag)
+/**
+ * @brief Gets the bitmap of the player avatar's movement flag and the given flag
+ *
+ * @param playerAvatar
+ * @param flag
+ *
+ * @return playerAvatar->movementFlag & flag
+ */
+static u32 PlayerAvatar_GetMovementFlag(PlayerAvatar *playerAvatar, u32 flag)
 {
-    return playerAvatar->unk_00 & flag;
+    return playerAvatar->movementFlag & flag;
 }
 
-int PlayerAvatar_Speed(PlayerAvatar *playerAvatar)
+/**
+ * @brief Gets the movement speed of the player avatar
+ *
+ * @param playerAvatar
+ *
+ * @return playerAvatar->speed
+ */
+int PlayerAvatar_GetSpeed(PlayerAvatar *playerAvatar)
 {
     return playerAvatar->speed;
 }
 
+/**
+ * @brief Sets the movement speed of the player avatar
+ *
+ * @param playerAvatar
+ * @param speed
+ */
 void PlayerAvatar_SetSpeed(PlayerAvatar *playerAvatar, int speed)
 {
     playerAvatar->speed = speed;
 }
 
+/**
+ * @brief Sets the movement speed of the player avatar to 0
+ *
+ * @param playerAvatar
+ */
 void PlayerAvatar_ClearSpeed(PlayerAvatar *playerAvatar)
 {
     playerAvatar->speed = 0;
-    sub_0205EF98(playerAvatar, 0);
+    PlayerAvatar_SetBikeBreak(playerAvatar, 0);
 }
 
+/**
+ * @brief Adds dSpeed to the movement speed of the player avatar, capped out at maxSpeed
+ *
+ * @param playerAvatar
+ * @param dSpeed
+ * @param maxSpeed
+ *
+ * @return playerAvatar->speed
+ */
 int PlayerAvatar_AddMoveSpeed(PlayerAvatar *playerAvatar, int dSpeed, int maxSpeed)
 {
     playerAvatar->speed += dSpeed;
@@ -510,78 +649,175 @@ int PlayerAvatar_AddMoveSpeed(PlayerAvatar *playerAvatar, int dSpeed, int maxSpe
     return playerAvatar->speed;
 }
 
+/**
+ * @brief Sets the horizontal facing direction of the player avatar
+ *
+ * @param playerAvatar
+ * @param leftOrRight
+ */
 void PlayerAvatar_SetFaceLeftOrRight(PlayerAvatar *playerAvatar, enum FaceDirection leftOrRight)
 {
     playerAvatar->faceLeftOrRight = leftOrRight;
 }
 
+/**
+ * @brief Gets the horizontal facing direction of the player avatar
+ *
+ * @param playerAvatar
+ *
+ * @return playerAvatar->faceLeftOrRight
+ */
 enum FaceDirection PlayerAvatar_GetFaceLeftOrRight(PlayerAvatar *playerAvatar)
 {
     return playerAvatar->faceLeftOrRight;
 }
 
+/**
+ * @brief Sets the vertical facing direction of the player avatar
+ *
+ * @param playerAvatar
+ * @param faceUpOrDown
+ */
 void PlayerAvatar_SetFaceUpOrDown(PlayerAvatar *playerAvatar, enum FaceDirection faceUpOrDown)
 {
     playerAvatar->faceUpOrDown = faceUpOrDown;
 }
 
+/**
+ * @brief Gets the vertical facing direction of the player avatar
+ *
+ * @param playerAvatar
+ *
+ * @return playerAvatar->faceUpOrDown
+ */
 enum FaceDirection PlayerAvatar_GetFaceUpOrDown(PlayerAvatar *playerAvatar)
 {
     return playerAvatar->faceUpOrDown;
 }
 
+/**
+ * @brief Sets the horizontal and vertical facing directions of the player avatar
+ *
+ * @param playerAvatar
+ * @param faceLeftOrRight
+ * @param faceUpOrDown
+ */
 void PlayerAvatar_SetFaceDirection(PlayerAvatar *playerAvatar, enum FaceDirection faceLeftOrRight, enum FaceDirection faceUpOrDown)
 {
     PlayerAvatar_SetFaceLeftOrRight(playerAvatar, faceLeftOrRight);
     PlayerAvatar_SetFaceUpOrDown(playerAvatar, faceUpOrDown);
 }
 
+/**
+ * @brief Sets the surf mount animation manager for the player avatar
+ *
+ * @param playerAvatar
+ * @param surfMountAnimMan
+ */
 void PlayerAvatar_SetSurfMountAnimManager(PlayerAvatar *playerAvatar, OverworldAnimManager *surfMountAnimMan)
 {
     playerAvatar->surfMountAnimMan = surfMountAnimMan;
 }
 
+/**
+ * @brief Gets the surf mount animation manager for the player avatar
+ *
+ * @param playerAvatar
+ *
+ * @return playerAvatar->surfMountAnimMan
+ */
 OverworldAnimManager *PlayerAvatar_GetSurfMountAnimManager(PlayerAvatar *playerAvatar)
 {
     return playerAvatar->surfMountAnimMan;
 }
 
+/**
+ * @brief Sets the player data for the player avatar
+ *
+ * @param playerAvatar
+ * @param playerData
+ */
 static void PlayerAvatar_SetPlayerData(PlayerAvatar *playerAvatar, PlayerData *player)
 {
     playerAvatar->player = player;
 }
 
+/**
+ * @brief Gets the player data for the player avatar
+ *
+ * @param playerAvatar
+ *
+ * @return playerAvatar->player
+ */
 PlayerData *PlayerAvatar_PlayerData(PlayerAvatar *playerAvatar)
 {
     return playerAvatar->player;
 }
 
-void sub_0205EC10(PlayerAvatar *playerAvatar, u32 param1)
+/**
+ * @brief Sets the movement action for the player avatar, specified by enum MovementAction
+ *
+ * @param playerAvatar
+ * @param movementAction
+ */
+void PlayerAvatar_SetMovementAction(PlayerAvatar *playerAvatar, u32 movementAction)
 {
-    playerAvatar->unk_08 = param1;
+    playerAvatar->movementAction = movementAction;
 }
 
-u32 sub_0205EC14(PlayerAvatar *playerAvatar)
+/**
+ * @brief Gets the movement action for the player avatar, specified by enum MovementAction
+ *
+ * @param playerAvatar
+ *
+ * @return playerAvatar->movementAction
+ */
+u32 PlayerAvatar_GetMovementAction(PlayerAvatar *playerAvatar)
 {
-    return playerAvatar->unk_08;
+    return playerAvatar->movementAction;
 }
 
-void sub_0205EC18(PlayerAvatar *playerAvatar, int param1)
+/**
+ * @brief Sets player avatar's movement action speed as specified by enum PlayerMovementActionSpeed
+ *
+ * @param playerAvatar
+ * @param movementActionSpeed
+ */
+void PlayerAvatar_SetMovementActionSpeed(PlayerAvatar *playerAvatar, int movementActionSpeed)
 {
-    playerAvatar->unk_0C = param1;
+    playerAvatar->movementActionSpeed = movementActionSpeed;
 }
 
-int sub_0205EC1C(PlayerAvatar *playerAvatar)
+/**
+ * @brief Sets player avatar's movement action speed as specified by enum PlayerMovementActionSpeed
+ *
+ * @param playerAvatar
+ *
+ * @return playerAvatar->movementActionSpeed
+ */
+int PlayerAvatar_GetMovementActionSpeed(PlayerAvatar *playerAvatar)
 {
-    return playerAvatar->unk_0C;
+    return playerAvatar->movementActionSpeed;
 }
 
-void sub_0205EC20(PlayerAvatar *playerAvatar, u32 param1, int param2)
+/**
+ * @brief Sets the player avatar's movement action, specified by enum MovementAction, and movement action speed, specified by enum PlayerMovementActionSpeed
+ *
+ * @param playerAvatar
+ * @param movementAction
+ * @param movementActionSpeed
+ */
+void PlayerAvatar_SetMovementActionAndSpeed(PlayerAvatar *playerAvatar, u32 movementAction, int movementActionSpeed)
 {
-    sub_0205EC10(playerAvatar, param1);
-    sub_0205EC18(playerAvatar, param2);
+    PlayerAvatar_SetMovementAction(playerAvatar, movementAction);
+    PlayerAvatar_SetMovementActionSpeed(playerAvatar, movementActionSpeed);
 }
 
+/**
+ * @brief Zero-initializes playerData
+ *
+ * @param playerData
+ */
 void PlayerData_Init(PlayerData *playerData)
 {
     playerData->cyclingGear = 0;
@@ -589,6 +825,13 @@ void PlayerData_Init(PlayerData *playerData)
     playerData->playerState = 0x0;
 }
 
+/**
+ * @brief Checks if the player has the running shoes flag
+ *
+ * @param playerData
+ *
+ * @return playerData->runningShoes == TRUE
+ */
 int PlayerData_HasRunningShoes(PlayerData *playerData)
 {
     if (playerData != NULL) {
@@ -600,6 +843,12 @@ int PlayerData_HasRunningShoes(PlayerData *playerData)
     return FALSE;
 }
 
+/**
+ * @brief Sets the player's running shoes flag
+ *
+ * @param playerData
+ * @param flag
+ */
 void PlayerData_SetRunningShoes(PlayerData *playerData, BOOL flag)
 {
     if (flag == TRUE) {
@@ -609,7 +858,14 @@ void PlayerData_SetRunningShoes(PlayerData *playerData, BOOL flag)
     }
 }
 
-int PlayerData_CyclingGear(PlayerData *playerData)
+/**
+ * @brief Gets the gear that the bike is currently in
+ *
+ * @param playerData
+ *
+ * @return playerData->cyclingGear
+ */
+int PlayerData_GetCyclingGear(PlayerData *playerData)
 {
     if (playerData == NULL) {
         return 0;
@@ -618,6 +874,12 @@ int PlayerData_CyclingGear(PlayerData *playerData)
     return playerData->cyclingGear;
 }
 
+/**
+ * @brief Sets the gear the bike is currently in
+ *
+ * @param playerData
+ * @param gear
+ */
 void PlayerData_SetCyclingGear(PlayerData *playerData, int gear)
 {
     if (playerData != NULL) {
@@ -625,19 +887,39 @@ void PlayerData_SetCyclingGear(PlayerData *playerData, int gear)
     }
 }
 
+/**
+ * @brief Sets the gear the bike is currently in
+ *
+ * @param playerAvatar
+ * @param gear
+ */
 void PlayerAvatar_SetCyclingGear(PlayerAvatar *playerAvatar, int gear)
 {
     PlayerData *player = PlayerAvatar_PlayerData(playerAvatar);
     PlayerData_SetCyclingGear(player, gear);
 }
 
-int PlayerAvatar_CyclingGear(PlayerAvatar *playerAvatar)
+/**
+ * @brief Gets the gear that the bike is currently in
+ *
+ * @param playerAvatar
+ *
+ * @return playerAvatar->playerData->cyclingGear
+ */
+int PlayerAvatar_GetCyclingGear(PlayerAvatar *playerAvatar)
 {
     PlayerData *player = PlayerAvatar_PlayerData(playerAvatar);
-    return PlayerData_CyclingGear(player);
+    return PlayerData_GetCyclingGear(player);
 }
 
-u32 Player_GetState(PlayerData *player)
+/**
+ * @brief Gets the player's current state, as specified by enum PlayerAvatarState
+ *
+ * @param playerData
+ *
+ * @return playerData->playerState
+ */
+u32 PlayerData_GetAvatarState(PlayerData *player)
 {
     if (player != NULL) {
         return player->playerState;
@@ -646,40 +928,73 @@ u32 Player_GetState(PlayerData *player)
     return PLAYER_AVATAR_WALKING;
 }
 
-void Player_SetState(PlayerData *player, u32 playerState)
+/**
+ * @brief Sets the player's avatar state, as specified by enum PlayerAvatarState
+ *
+ * @param playerData
+ * @param playerState
+ */
+void PlayerData_SetAvatarState(PlayerData *player, u32 playerState)
 {
     if (player != NULL) {
         player->playerState = playerState;
     }
 }
 
-void PlayerAvatar_Player_SetState(PlayerAvatar *playerAvatar, u32 playerState)
+/**
+ * @brief Sets the avatar state, as specified by enum PlayerAvatarState, of the internal playerData
+ *
+ * @param playerAvatar
+ * @param playerState
+ */
+void PlayerAvatar_PlayerData_SetAvatarState(PlayerAvatar *playerAvatar, u32 playerState)
 {
     PlayerData *player = PlayerAvatar_PlayerData(playerAvatar);
-    Player_SetState(player, playerState);
+    PlayerData_SetAvatarState(player, playerState);
 }
 
-void sub_0205ECB8(PlayerAvatar *playerAvatar, const VecFx32 *param1, int param2)
+/**
+ * @brief Sets the player avatar's map object's position and direction
+ *
+ * @param playerAvatar
+ * @param pos
+ * @param dir
+ */
+void PlayerAvatar_SetPosDirFromVec(PlayerAvatar *playerAvatar, const VecFx32 *pos, int dir)
 {
-    MapObject *mapObj = Player_MapObject(playerAvatar);
+    MapObject *mapObj = PlayerAvatar_GetMapObject(playerAvatar);
 
-    MapObject_SetPosDirFromVec(mapObj, param1, param2);
-    PlayerAvatar_SetState(playerAvatar, 0);
-    PlayerAvatar_SetMoveState(playerAvatar, 0);
+    MapObject_SetPosDirFromVec(mapObj, pos, dir);
+    PlayerAvatar_SetMoveState(playerAvatar, PLAYER_AVATAR_WALKING);
+    PlayerAvatar_SetPlayerMoveState(playerAvatar, PLAYER_MOVE_STATE_NONE);
 }
 
-void sub_0205ECE0(PlayerAvatar *playerAvatar, int x, int z, int dir)
+/**
+ * @brief Sets the player avatar's map object's position and direction
+ *
+ * @param playerAvatar
+ * @param x
+ * @param z
+ * @param dir
+ */
+void PlayerAvatar_SetPosDirFromCoords(PlayerAvatar *playerAvatar, int x, int z, int dir)
 {
-    MapObject *mapObj = Player_MapObject(playerAvatar);
+    MapObject *mapObj = PlayerAvatar_GetMapObject(playerAvatar);
 
     MapObject_SetPosDirFromCoords(mapObj, x, 0, z, dir);
-    PlayerAvatar_SetState(playerAvatar, 0);
-    PlayerAvatar_SetMoveState(playerAvatar, 0);
+    PlayerAvatar_SetMoveState(playerAvatar, PLAYER_AVATAR_WALKING);
+    PlayerAvatar_SetPlayerMoveState(playerAvatar, PLAYER_MOVE_STATE_NONE);
 }
 
+/**
+ * @brief Sets the player avatar's map object's height (y position)
+ *
+ * @param playerAvatar
+ * @param y
+ */
 void Player_SetYPos(PlayerAvatar *playerAvatar, fx32 y)
 {
-    MapObject *mapObj = Player_MapObject(playerAvatar);
+    MapObject *mapObj = PlayerAvatar_GetMapObject(playerAvatar);
 
     VecFx32 pos;
     MapObject_GetPosPtr(mapObj, &pos);
@@ -688,9 +1003,15 @@ void Player_SetYPos(PlayerAvatar *playerAvatar, fx32 y)
     MapObject_SetPos(mapObj, &pos);
 }
 
+/**
+ * @brief Enables or disables the height calculation of the player avatar's map object
+ *
+ * @param playerAvatar
+ * @param heightCalculationEnabled
+ */
 void PlayerAvatar_SetHeightCalculationEnabled(PlayerAvatar *playerAvatar, BOOL heightCalculationEnabled)
 {
-    MapObject *mapObj = Player_MapObject(playerAvatar);
+    MapObject *mapObj = PlayerAvatar_GetMapObject(playerAvatar);
 
     if (heightCalculationEnabled == TRUE) {
         MapObject_SetHeightCalculationDisabled(mapObj, FALSE);
@@ -699,9 +1020,15 @@ void PlayerAvatar_SetHeightCalculationEnabled(PlayerAvatar *playerAvatar, BOOL h
     }
 }
 
+/**
+ * @brief Enables or disables the height calculation of the player avatar's map object. Recalculates the height if enabled.
+ *
+ * @param playerAvatar
+ * @param heightCalculationEnabled
+ */
 void PlayerAvatar_SetHeightCalculationEnabledAndUpdate(PlayerAvatar *playerAvatar, BOOL heightCalculationEnabled)
 {
-    MapObject *mapObj = Player_MapObject(playerAvatar);
+    MapObject *mapObj = PlayerAvatar_GetMapObject(playerAvatar);
 
     if (heightCalculationEnabled == TRUE) {
         MapObject_SetHeightCalculationDisabled(mapObj, FALSE);
@@ -806,6 +1133,13 @@ int Player_GetSpriteFromStateAndGender(int playerState, int gender)
     return OBJ_EVENT_GFX_PLAYER_M;
 }
 
+/**
+ * @brief Gets an enum PlayerTransitions associated with the enum PlayerAvatarState
+ *
+ * @param playerState
+ *
+ * @return enum PlayerTransitions
+ */
 u32 Player_ConvertStateToTransition(int playerState)
 {
     switch (playerState) {
@@ -831,198 +1165,324 @@ u32 Player_ConvertStateToTransition(int playerState)
     return PLAYER_TRANSITION_WALKING;
 }
 
+/**
+ * @brief Gets the field system's playerAvatar, which is always the main player
+ *
+ * @param fieldSystem
+ *
+ * @return fieldSystem->playerAvatar
+ */
 PlayerAvatar *FieldSystem_GetPlayerAvatar(FieldSystem *fieldSystem)
 {
     return fieldSystem->playerAvatar;
 }
 
-void sub_0205EF40(PlayerAvatar *playerAvatar, int param1)
+/**
+ * @brief Sets the movement flag that forces a player's movement, taking away control
+ *
+ * @param playerAvatar
+ * @param flag
+ */
+void PlayerAvatar_SetForceMovement(PlayerAvatar *playerAvatar, int flag)
 {
-    if (param1 == TRUE) {
-        PlayerAvatar_SetFlagUnk_00(playerAvatar, UNK_00_0);
+    if (flag == TRUE) {
+        PlayerAvatar_TurnOnMovementFlagBits(playerAvatar, AVATAR_MOVE_FORCED);
     } else {
-        PlayerAvatar_ClearFlagUnk_00(playerAvatar, UNK_00_0);
+        PlayerAvatar_ClearMovementFlag(playerAvatar, AVATAR_MOVE_FORCED);
     }
 }
 
-BOOL sub_0205EF58(PlayerAvatar *playerAvatar)
+/**
+ * @brief Checks if the player avatar is currently being forced to move without player input
+ *
+ * @param playerAvatar
+ *
+ * @return TRUE if the AVATAR_MOVE_FORCED flag is on
+ */
+BOOL PlayerAvatar_CheckForcedMovement(PlayerAvatar *playerAvatar)
 {
-    if (PlayerAvatar_GetFlagUnk_00(playerAvatar, UNK_00_0)) {
+    if (PlayerAvatar_GetMovementFlag(playerAvatar, AVATAR_MOVE_FORCED)) {
         return TRUE;
     }
 
     return FALSE;
 }
 
-void sub_0205EF6C(PlayerAvatar *playerAvatar, int param1)
+/**
+ * @brief Sets the movement flag that causes a player to ignore tile behavior (such as slipping on ice), usually while their movement is forced
+ *
+ * @param playerAvatar
+ * @param flag
+ */
+void PlayerAvatar_SetIgnoreTileBehavior(PlayerAvatar *playerAvatar, int flag)
 {
-    if (param1 == 1) {
-        PlayerAvatar_SetFlagUnk_00(playerAvatar, UNK_00_1);
+    if (flag == 1) {
+        PlayerAvatar_TurnOnMovementFlagBits(playerAvatar, AVATAR_MOVE_IGNORE_TILE_BEHAVIOR);
     } else {
-        PlayerAvatar_ClearFlagUnk_00(playerAvatar, UNK_00_1);
+        PlayerAvatar_ClearMovementFlag(playerAvatar, AVATAR_MOVE_IGNORE_TILE_BEHAVIOR);
     }
 }
 
-BOOL sub_0205EF84(PlayerAvatar *playerAvatar)
+/**
+ * @brief Checks the movement flag that causes a player to ignore tile behavior (such as slipping on ice), usually while their movement is forced
+ *
+ * @param playerAvatar
+ *
+ * @return TRUE if the AVATAR_MOVE_IGNORE_TILE_BEHAVIOR flag is on
+ */
+BOOL PlayerAvatar_CheckIgnoreTileBehavior(PlayerAvatar *playerAvatar)
 {
-    if (PlayerAvatar_GetFlagUnk_00(playerAvatar, UNK_00_1)) {
+    if (PlayerAvatar_GetMovementFlag(playerAvatar, AVATAR_MOVE_IGNORE_TILE_BEHAVIOR)) {
         return TRUE;
     }
 
     return FALSE;
 }
 
-void sub_0205EF98(PlayerAvatar *playerAvatar, int param1)
+/**
+ * @brief Sets the movement flag that causes a player to start their bike breaks, slowing their movement to a stop
+ *
+ * @param playerAvatar
+ * @param flag
+ */
+void PlayerAvatar_SetBikeBreak(PlayerAvatar *playerAvatar, int flag)
 {
-    if (param1 == 1) {
-        PlayerAvatar_SetFlagUnk_00(playerAvatar, UNK_00_2);
+    if (flag == 1) {
+        PlayerAvatar_TurnOnMovementFlagBits(playerAvatar, AVATAR_MOVE_BIKE_BREAK);
     } else {
-        PlayerAvatar_ClearFlagUnk_00(playerAvatar, UNK_00_2);
+        PlayerAvatar_ClearMovementFlag(playerAvatar, AVATAR_MOVE_BIKE_BREAK);
     }
 }
 
-BOOL sub_0205EFB0(PlayerAvatar *playerAvatar)
+/**
+ * @brief Checks if the player is currently breaking on their bike
+ *
+ * @param playerAvatar
+ *
+ * @return TRUE if the AVATAR_MOVE_BIKE_BREAK flag is on
+ */
+BOOL PlayerAvatar_CheckBikeBreak(PlayerAvatar *playerAvatar)
 {
-    if (PlayerAvatar_GetFlagUnk_00(playerAvatar, UNK_00_2)) {
+    if (PlayerAvatar_GetMovementFlag(playerAvatar, AVATAR_MOVE_BIKE_BREAK)) {
         return TRUE;
     }
 
     return FALSE;
 }
 
+/**
+ * @brief Sets the movement flag that forces a player downward while on cycling road
+ *
+ * @param playerAvatar
+ * @param flag
+ */
 void PlayerAvatar_SetOnCyclingRoad(PlayerAvatar *playerAvatar, BOOL flag)
 {
     if (flag == TRUE) {
-        PlayerAvatar_SetFlagUnk_00(playerAvatar, UNK_00_ON_CYCLING_ROAD);
+        PlayerAvatar_TurnOnMovementFlagBits(playerAvatar, AVATAR_MOVE_ON_CYCLING_ROAD);
     } else {
-        PlayerAvatar_ClearFlagUnk_00(playerAvatar, UNK_00_ON_CYCLING_ROAD);
+        PlayerAvatar_ClearMovementFlag(playerAvatar, AVATAR_MOVE_ON_CYCLING_ROAD);
     }
 }
 
+/**
+ * @brief Checks the movement flag that forces a player downward while on cycling road
+ *
+ * @param playerAvatar
+ *
+ * @return TRUE if the AVATAR_MOVE_ON_CYCLING_ROAD flag is on
+ */
 BOOL PlayerAvatar_IsOnCyclingRoad(PlayerAvatar *playerAvatar)
 {
-    if (PlayerAvatar_GetFlagUnk_00(playerAvatar, UNK_00_ON_CYCLING_ROAD)) {
+    if (PlayerAvatar_GetMovementFlag(playerAvatar, AVATAR_MOVE_ON_CYCLING_ROAD)) {
         return TRUE;
     }
 
     return FALSE;
 }
 
+/**
+ * @brief Sets the movement flag that causes a player to escape out of deep mud
+ *
+ * @param playerAvatar
+ * @param flag
+ */
 void PlayerAvatar_SetEscapedFromDeepMud(PlayerAvatar *playerAvatar, BOOL flag)
 {
     if (flag == TRUE) {
-        PlayerAvatar_SetFlagUnk_00(playerAvatar, UNK_00_ESCAPED_FROM_DEEP_MUD);
+        PlayerAvatar_TurnOnMovementFlagBits(playerAvatar, AVATAR_MOVE_ESCAPED_FROM_DEEP_MUD);
     } else {
-        PlayerAvatar_ClearFlagUnk_00(playerAvatar, UNK_00_ESCAPED_FROM_DEEP_MUD);
+        PlayerAvatar_ClearMovementFlag(playerAvatar, AVATAR_MOVE_ESCAPED_FROM_DEEP_MUD);
     }
 }
 
+/**
+ * @brief Checks if the player has escaped from deep mud
+ *
+ * @param playerAvatar
+ *
+ * @return TRUE if the AVATAR_MOVE_ESCAPED_FROM_DEEP_MUD flag is on
+ */
 BOOL PlayerAvatar_CheckEscapedFromDeepMud(PlayerAvatar *playerAvatar)
 {
-    if (PlayerAvatar_GetFlagUnk_00(playerAvatar, UNK_00_ESCAPED_FROM_DEEP_MUD)) {
+    if (PlayerAvatar_GetMovementFlag(playerAvatar, AVATAR_MOVE_ESCAPED_FROM_DEEP_MUD)) {
         return TRUE;
     }
 
     return FALSE;
 }
 
-void sub_0205F01C(PlayerAvatar *playerAvatar, BOOL flag)
+/**
+ * @brief Sets the movement flag that indicates a player is moving through mud
+ *
+ * @param playerAvatar
+ * @param flag
+ */
+void PlayerAvatar_SetMoveThroughMudFlag(PlayerAvatar *playerAvatar, BOOL flag)
 {
     if (flag == TRUE) {
-        PlayerAvatar_SetFlagUnk_00(playerAvatar, UNK_00_5);
+        PlayerAvatar_TurnOnMovementFlagBits(playerAvatar, AVATAR_MOVE_MOVE_THROUGH_MUD);
     } else {
-        PlayerAvatar_ClearFlagUnk_00(playerAvatar, UNK_00_5);
+        PlayerAvatar_ClearMovementFlag(playerAvatar, AVATAR_MOVE_MOVE_THROUGH_MUD);
     }
 }
 
-BOOL sub_0205F034(PlayerAvatar *playerAvatar)
+/**
+ * @brief Checks the movement flag that indicates a player is moving through mud
+ *
+ * @param playerAvatar
+ *
+ * @return TRUE if the AVATAR_MOVE_MOVE_THROUGH_MUD flag is on
+ */
+BOOL PlayerAvatar_CheckMoveThroughMudFlag(PlayerAvatar *playerAvatar)
 {
-    if (PlayerAvatar_GetFlagUnk_00(playerAvatar, UNK_00_5)) {
+    if (PlayerAvatar_GetMovementFlag(playerAvatar, AVATAR_MOVE_MOVE_THROUGH_MUD)) {
         return TRUE;
     }
 
     return FALSE;
 }
 
-void sub_0205F048(PlayerAvatar *playerAvatar)
+/**
+ * @brief Sets the movement flag that indicates the player is currently taking a single step
+ *
+ * @param playerAvatar
+ */
+void PlayerAvatar_StartStep(PlayerAvatar *playerAvatar)
 {
-    PlayerAvatar_SetFlagUnk_00(playerAvatar, UNK_00_6);
+    PlayerAvatar_TurnOnMovementFlagBits(playerAvatar, AVATAR_MOVE_STEP);
 }
 
-void sub_0205F054(PlayerAvatar *playerAvatar)
+/**
+ * @brief Sets the movement flag that indicates the player has finished taking a single step
+ *
+ * @param playerAvatar
+ */
+void PlayerAvatar_EndStep(PlayerAvatar *playerAvatar)
 {
-    PlayerAvatar_ClearFlagUnk_00(playerAvatar, UNK_00_6);
+    PlayerAvatar_ClearMovementFlag(playerAvatar, AVATAR_MOVE_STEP);
 }
 
-BOOL sub_0205F060(PlayerAvatar *playerAvatar)
+/**
+ * @brief Checks if the player is currently taking a step
+ *
+ * @param playerAvatar
+ *
+ * @return TRUE if the AVATAR_MOVE_STEP is on
+ */
+BOOL PlayerAvatar_CheckStep(PlayerAvatar *playerAvatar)
 {
-    if (PlayerAvatar_GetFlagUnk_00(playerAvatar, UNK_00_6)) {
+    if (PlayerAvatar_GetMovementFlag(playerAvatar, AVATAR_MOVE_STEP)) {
         return TRUE;
     }
 
     return FALSE;
 }
 
-void sub_0205F074(PlayerAvatar *playerAvatar, BOOL flag)
+/**
+ * @brief Sets the movement flag that forces a player's movement while retaining their current speed, taking away control
+ *
+ * @param playerAvatar
+ * @param flag
+ */
+void PlayerAvatar_SetForceMovementRetainSpeed(PlayerAvatar *playerAvatar, BOOL flag)
 {
     if (flag == TRUE) {
-        PlayerAvatar_SetFlagUnk_00(playerAvatar, UNK_00_7);
+        PlayerAvatar_TurnOnMovementFlagBits(playerAvatar, AVATAR_MOVE_FORCED_RETAIN_SPEED);
     } else {
-        PlayerAvatar_ClearFlagUnk_00(playerAvatar, UNK_00_7);
+        PlayerAvatar_ClearMovementFlag(playerAvatar, AVATAR_MOVE_FORCED_RETAIN_SPEED);
     }
 }
 
-int sub_0205F08C(PlayerAvatar *playerAvatar)
+/**
+ * @brief Checks if the player avatar is currently being forced to move while retaining their initial speed without player input
+ *
+ * @param playerAvatar
+ *
+ * @return TRUE if the AVATAR_MOVE_FORCED flag is on
+ */
+int PlayerAvatar_CheckForcedMovementRetainSpeed(PlayerAvatar *playerAvatar)
 {
-    return PlayerAvatar_GetFlagUnk_00(playerAvatar, UNK_00_7);
+    return PlayerAvatar_GetMovementFlag(playerAvatar, AVATAR_MOVE_FORCED_RETAIN_SPEED);
 }
 
+/**
+ * @brief Sets the player avatar's distortion movement flags based on the given enum AvatarDistortionState
+ *
+ * @param playerAvatar
+ * @param distortionState
+ */
 void PlayerAvatar_SetDistortionState(PlayerAvatar *playerAvatar, enum AvatarDistortionState state)
 {
-    PlayerAvatar_ClearFlagUnk_00(playerAvatar, UNK_00_8 | UNK_00_9 | UNK_00_10 | UNK_00_11 | UNK_00_12);
+    PlayerAvatar_ClearMovementFlag(playerAvatar, AVATAR_MOVE_DISTORTION_ACTIVE | AVATAR_MOVE_DISTORTION_FLOOR | AVATAR_MOVE_DISTORTION_WEST_WALL | AVATAR_MOVE_DISTORTION_EAST_WALL | AVATAR_MOVE_DISTORTION_CEILING);
 
     switch (state) {
     case AVATAR_DISTORTION_STATE_NONE:
         return;
     case AVATAR_DISTORTION_STATE_ACTIVE:
-        PlayerAvatar_SetFlagUnk_00(playerAvatar, UNK_00_8);
+        PlayerAvatar_TurnOnMovementFlagBits(playerAvatar, AVATAR_MOVE_DISTORTION_ACTIVE);
         return;
     case AVATAR_DISTORTION_STATE_FLOOR:
-        PlayerAvatar_SetFlagUnk_00(playerAvatar, UNK_00_9);
+        PlayerAvatar_TurnOnMovementFlagBits(playerAvatar, AVATAR_MOVE_DISTORTION_FLOOR);
         return;
     case AVATAR_DISTORTION_STATE_WEST_WALL:
-        PlayerAvatar_SetFlagUnk_00(playerAvatar, UNK_00_10);
+        PlayerAvatar_TurnOnMovementFlagBits(playerAvatar, AVATAR_MOVE_DISTORTION_WEST_WALL);
         return;
     case AVATAR_DISTORTION_STATE_EAST_WALL:
-        PlayerAvatar_SetFlagUnk_00(playerAvatar, UNK_00_11);
+        PlayerAvatar_TurnOnMovementFlagBits(playerAvatar, AVATAR_MOVE_DISTORTION_EAST_WALL);
         return;
     case AVATAR_DISTORTION_STATE_CEILING:
-        PlayerAvatar_SetFlagUnk_00(playerAvatar, UNK_00_12);
+        PlayerAvatar_TurnOnMovementFlagBits(playerAvatar, AVATAR_MOVE_DISTORTION_CEILING);
         return;
     }
 
     GF_ASSERT(FALSE);
 }
 
+/**
+ * @brief Gets the player avatar's enum AvatarDistortionState based on the set distortion state movement flags
+ *
+ * @param playerAvatar
+ */
 enum AvatarDistortionState PlayerAvatar_MapDistortionState(PlayerAvatar *const playerAvatar)
 {
     enum AvatarDistortionState state = AVATAR_DISTORTION_STATE_NONE;
-    u32 v1 = PlayerAvatar_GetFlagUnk_00(playerAvatar, UNK_00_8 | UNK_00_9 | UNK_00_10 | UNK_00_11 | UNK_00_12);
+    u32 movementFlag = PlayerAvatar_GetMovementFlag(playerAvatar, AVATAR_MOVE_DISTORTION_ACTIVE | AVATAR_MOVE_DISTORTION_FLOOR | AVATAR_MOVE_DISTORTION_WEST_WALL | AVATAR_MOVE_DISTORTION_EAST_WALL | AVATAR_MOVE_DISTORTION_CEILING);
 
-    switch (v1) {
-    case UNK_00_8:
+    switch (movementFlag) {
+    case AVATAR_MOVE_DISTORTION_ACTIVE:
         state = AVATAR_DISTORTION_STATE_ACTIVE;
         break;
-    case UNK_00_9:
+    case AVATAR_MOVE_DISTORTION_FLOOR:
         state = AVATAR_DISTORTION_STATE_FLOOR;
         break;
-    case UNK_00_10:
+    case AVATAR_MOVE_DISTORTION_WEST_WALL:
         state = AVATAR_DISTORTION_STATE_WEST_WALL;
         break;
-    case UNK_00_11:
+    case AVATAR_MOVE_DISTORTION_EAST_WALL:
         state = AVATAR_DISTORTION_STATE_EAST_WALL;
         break;
-    case UNK_00_12:
+    case AVATAR_MOVE_DISTORTION_CEILING:
         state = AVATAR_DISTORTION_STATE_CEILING;
         break;
     }
@@ -1030,7 +1490,13 @@ enum AvatarDistortionState PlayerAvatar_MapDistortionState(PlayerAvatar *const p
     return state;
 }
 
-// this function can be simplified, but preserving matching reduces clarity
+/**
+ * @brief Checks if the current gravity in the distortion world has changed to require a differnt movement script than normal field movement functions would allow for
+ *
+ * @param playerAvatar
+ *
+ * @return TRUE if the current distortion state is anything except AVATAR_DISTORTION_STATE_NONE or AVATAR_DISTORTION_STATE_ACTIVE
+ */
 BOOL PlayerAvatar_DistortionGravityChanged(PlayerAvatar *const playerAvatar)
 {
     enum AvatarDistortionState state = PlayerAvatar_MapDistortionState(playerAvatar);
@@ -1042,6 +1508,13 @@ BOOL PlayerAvatar_DistortionGravityChanged(PlayerAvatar *const playerAvatar)
     return TRUE;
 }
 
+/**
+ * @brief Checks if the current gravity in the distortion world is on the floor
+ *
+ * @param playerAvatar
+ *
+ * @return TRUE if the current distortion state is AVATAR_DISTORTION_STATE_NONE, AVATAR_DISTORTION_STATE_ACTIVE, or AVATAR_DISTORTION_STATE_FLOOR
+ */
 BOOL PlayerAvatar_DistortionStateOnFloor(PlayerAvatar *const playerAvatar)
 {
     enum AvatarDistortionState state = PlayerAvatar_MapDistortionState(playerAvatar);

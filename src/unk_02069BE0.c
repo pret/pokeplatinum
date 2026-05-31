@@ -198,7 +198,7 @@ static u32 sub_02069D50(MapObject *mapObj)
     FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
     PlayerAvatar *playerAvatar = FieldSystem_GetPlayerAvatar(fieldSystem);
 
-    v0 = sub_0205EC14(playerAvatar);
+    v0 = PlayerAvatar_GetMovementAction(playerAvatar);
 
     switch (v0) {
     case 0x58:
@@ -676,28 +676,28 @@ static int sub_0206A3BC(MapObject *mapObj, UnkStruct_0206A23C *param1)
     int v0;
     FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
     int v2 = PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar);
-    u32 v3 = sub_0205EC1C(fieldSystem->playerAvatar);
+    u32 v3 = PlayerAvatar_GetMovementActionSpeed(fieldSystem->playerAvatar);
 
     switch (v3) {
-    case 0:
-    case 1:
+    case PLAYER_ACTION_SPEED_NONE:
+    case PLAYER_ACTION_SPEED_NOT_MOVING:
         v0 = MovementAction_TurnActionTowardsDir(v2, MOVEMENT_ACTION_FACE_NORTH);
         sub_02065668(mapObj, v0);
         break;
-    case 2:
-        sub_0206A37C(mapObj, v2, 0x4, param1->unk_02);
+    case PLAYER_ACTION_SPEED_SLOWER:
+        sub_0206A37C(mapObj, v2, MOVEMENT_ACTION_WALK_SLOWER_NORTH, param1->unk_02);
         break;
-    case 3:
-        sub_0206A37C(mapObj, v2, 0x8, param1->unk_02);
+    case PLAYER_ACTION_SPEED_SLOW:
+        sub_0206A37C(mapObj, v2, MOVEMENT_ACTION_WALK_SLOW_NORTH, param1->unk_02);
         break;
-    case 4:
-        sub_0206A37C(mapObj, v2, 0xc, param1->unk_02);
+    case PLAYER_ACTION_SPEED_NORMAL:
+        sub_0206A37C(mapObj, v2, MOVEMENT_ACTION_WALK_NORMAL_NORTH, param1->unk_02);
         break;
-    case 5:
-        sub_0206A37C(mapObj, v2, 0x10, param1->unk_02);
+    case PLAYER_ACTION_SPEED_FAST:
+        sub_0206A37C(mapObj, v2, MOVEMENT_ACTION_WALK_FAST_NORTH, param1->unk_02);
         break;
-    case 6:
-        sub_0206A37C(mapObj, v2, 0x14, param1->unk_02);
+    case PLAYER_ACTION_SPEED_FASTER:
+        sub_0206A37C(mapObj, v2, MOVEMENT_ACTION_WALK_FASTER_NORTH, param1->unk_02);
         break;
     }
 

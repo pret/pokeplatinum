@@ -1802,7 +1802,7 @@ static void SecretBases_DiggerDrillTask(SysTask *sysTask, void *data)
         UndergroundTextPrinter_SetUndergroundTrapName(UndergroundMan_GetCommonTextPrinter(), TRAP_DIGGER_DRILL);
         Sound_PlayEffect(SEQ_SE_DP_DORIRU);
 
-        ov5_021F58FC(Player_MapObject(fieldSystem->playerAvatar), 0, 0, 0);
+        ov5_021F58FC(PlayerAvatar_GetMapObject(fieldSystem->playerAvatar), 0, 0, 0);
         UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_ItemWasUsed, FALSE, NULL);
 
         ctx->state = DRILL_STATE_WAIT;

@@ -2223,7 +2223,7 @@ static BOOL sub_02041004(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     MapObject **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_TARGET_OBJECT);
-    MapObject *v2 = Player_MapObject(fieldSystem->playerAvatar);
+    MapObject *v2 = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
 
     if (inline_020410F4_1(1 << 0) && (LocalMapObj_CheckAnimationFinished(v2) == 1)) {
         MapObject_SetPauseMovementOn(v2);
@@ -2277,7 +2277,7 @@ static BOOL ScrCmd_LockLastTalked(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     MapObject **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_TARGET_OBJECT);
-    MapObject *player = Player_MapObject(fieldSystem->playerAvatar);
+    MapObject *player = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
     MapObject *v3 = MapObjMan_GetLocalMapObjByMovementType(fieldSystem->mapObjMan, MOVEMENT_TYPE_FOLLOW_PLAYER);
     MapObject *v4 = sub_02069EB8(*v1);
     MapObjectManager *mapObjMan = fieldSystem->mapObjMan;
@@ -2493,7 +2493,7 @@ static BOOL ScrCmd_MoveCamera(ScriptContext *ctx)
     pos.y = FX32_CONST(y);
     pos.z = FX32_CONST(z);
 
-    MapObject_SetSpritePosOffset(Player_MapObject(ctx->fieldSystem->playerAvatar), &pos);
+    MapObject_SetSpritePosOffset(PlayerAvatar_GetMapObject(ctx->fieldSystem->playerAvatar), &pos);
     Camera_Move(&pos, ctx->fieldSystem->camera);
 
     return FALSE;
@@ -3682,7 +3682,7 @@ static BOOL ScrCmd_0C5(ScriptContext *ctx)
     u16 v2 = ScriptContext_GetVar(ctx);
 
     Pokemon *v0 = Party_GetPokemonBySlotIndex(SaveData_GetParty(ctx->fieldSystem->saveData), v2);
-    *v1 = HMCutIn_StartTask(ctx->fieldSystem, 0, v0, PlayerAvatar_Gender(ctx->fieldSystem->playerAvatar));
+    *v1 = HMCutIn_StartTask(ctx->fieldSystem, 0, v0, PlayerAvatar_GetGender(ctx->fieldSystem->playerAvatar));
 
     ScriptContext_Pause(ctx, sub_02042C80);
     return TRUE;
@@ -4793,7 +4793,7 @@ static BOOL ScrCmd_GetPlayer3DPos(ScriptContext *ctx)
     u16 *destVarY = ScriptContext_GetVarPointer(ctx);
     u16 *destVarZ = ScriptContext_GetVarPointer(ctx);
 
-    MapObject *player = Player_MapObject(fieldSystem->playerAvatar);
+    MapObject *player = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
 
     *destVarX = MapObject_GetX(player);
     *destVarY = MapObject_GetY(player) / 2;

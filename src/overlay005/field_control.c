@@ -117,8 +117,8 @@ void FieldInput_Update(FieldInput *input, FieldSystem *fieldSystem, u16 pressedK
 {
     FieldInput_Clear(input);
 
-    int moveState = PlayerAvatar_GetMoveState(fieldSystem->playerAvatar);
-    int avatarState = PlayerAvatar_GetState(fieldSystem->playerAvatar);
+    int moveState = PlayerAvatar_GetPlayerMoveState(fieldSystem->playerAvatar);
+    int avatarState = PlayerAvatar_GetMoveState(fieldSystem->playerAvatar);
     int playerDir = PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar);
 
     input->pressedKeys = pressedKeys;
@@ -726,7 +726,7 @@ static BOOL Field_ProcessStep(FieldSystem *fieldSystem)
         return TRUE;
     }
 
-    if (sub_0205EF58(fieldSystem->playerAvatar)) {
+    if (PlayerAvatar_CheckForcedMovement(fieldSystem->playerAvatar)) {
         return FALSE;
     }
 

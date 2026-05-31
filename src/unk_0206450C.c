@@ -1303,7 +1303,7 @@ static int sub_0206537C(MapObject *mapObj)
         }
 
         {
-            const MapObject *v5 = Player_MapObject(playerAvatar);
+            const MapObject *v5 = PlayerAvatar_GetMapObject(playerAvatar);
             int v6 = sub_020630DC(v5);
             int v7 = sub_020630DC(mapObj);
 

@@ -321,7 +321,7 @@ static void sub_0205C51C(UnkStruct_0205C22C *param0, MapObjectManager *param1)
         }
     }
 
-    sub_0205C7BC(&param0->unk_0C[50], Player_MapObject(param0->playerAvatar));
+    sub_0205C7BC(&param0->unk_0C[50], PlayerAvatar_GetMapObject(param0->playerAvatar));
     sub_0205C6BC(&param0->unk_0C[50]);
 }
 

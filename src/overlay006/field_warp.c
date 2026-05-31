@@ -138,7 +138,7 @@ FieldWarp *FieldWarp_InitEscapeRope(FieldSystem *fieldSystem, enum HeapID heapID
 
     fieldWarp->warpType = FIELD_WARP_TYPE_ESCAPE_ROPE;
     fieldWarp->fieldSystem = fieldSystem;
-    fieldWarp->player = Player_MapObject(fieldSystem->playerAvatar);
+    fieldWarp->player = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
 
     return fieldWarp;
 }
@@ -250,7 +250,7 @@ FieldWarp *FieldWarp_InitFadeIn(FieldSystem *fieldSystem, enum HeapID heapID, en
 
     fieldWarp->warpType = warpType;
     fieldWarp->fieldSystem = fieldSystem;
-    fieldWarp->player = Player_MapObject(fieldSystem->playerAvatar);
+    fieldWarp->player = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
 
     return fieldWarp;
 }
@@ -359,7 +359,7 @@ FieldWarp *FieldWarp_InitDig(FieldSystem *fieldSystem, Pokemon *mon, enum HeapID
 
     fieldWarp->warpType = FIELD_WARP_TYPE_DIG;
     fieldWarp->fieldSystem = fieldSystem;
-    fieldWarp->player = Player_MapObject(fieldSystem->playerAvatar);
+    fieldWarp->player = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
     fieldWarp->mon = mon;
 
     return fieldWarp;
@@ -384,7 +384,7 @@ BOOL FieldWarp_DigFadeOut(FieldTask *task)
 
 static enum FieldWarpStateResult StartFieldMoveCutIn(FieldTask *task, FieldSystem *fieldSystem, FieldWarp *fieldWarp)
 {
-    int gender = PlayerAvatar_Gender(fieldSystem->playerAvatar);
+    int gender = PlayerAvatar_GetGender(fieldSystem->playerAvatar);
 
     fieldWarp->cutInTask = HMCutIn_StartTask(fieldSystem, 0, fieldWarp->mon, gender);
     fieldWarp->state++;
@@ -409,7 +409,7 @@ FieldWarp *FieldWarp_InitTeleport(FieldSystem *fieldSystem, Pokemon *mon, enum H
 
     fieldWarp->warpType = FIELD_WARP_TYPE_TELEPORT;
     fieldWarp->fieldSystem = fieldSystem;
-    fieldWarp->player = Player_MapObject(fieldSystem->playerAvatar);
+    fieldWarp->player = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
     fieldWarp->mon = mon;
 
     return fieldWarp;

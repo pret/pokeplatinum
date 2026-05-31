@@ -125,7 +125,7 @@ static BOOL Task_UseVistaLighthouseBinoculars(FieldTask *taskMan)
 
 static void VistaLighthouseBinoculars_SetPlayerHidden(PlayerAvatar *playerAvatar, BOOL hidden)
 {
-    MapObject *mapObj = Player_MapObject(playerAvatar);
+    MapObject *mapObj = PlayerAvatar_GetMapObject(playerAvatar);
     MapObject_SetHidden(mapObj, hidden);
 }
 

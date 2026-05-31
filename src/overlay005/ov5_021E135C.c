@@ -48,7 +48,7 @@ static void ov5_021E135C(UnkStruct_ov5_021E135C *param0)
 static void ov5_021E139C(SysTask *param0, void *param1)
 {
     UnkStruct_ov5_021E135C *v0 = param1;
-    MapObject *v1 = Player_MapObject(v0->fieldSystem->playerAvatar);
+    MapObject *v1 = PlayerAvatar_GetMapObject(v0->fieldSystem->playerAvatar);
     VecFx32 v2;
 
     switch (v0->unk_08) {
@@ -81,7 +81,7 @@ static void ov5_021E139C(SysTask *param0, void *param1)
 static void ov5_021E1470(SysTask *param0, void *param1)
 {
     UnkStruct_ov5_021E135C *v0 = param1;
-    MapObject *v1 = Player_MapObject(v0->fieldSystem->playerAvatar);
+    MapObject *v1 = PlayerAvatar_GetMapObject(v0->fieldSystem->playerAvatar);
     VecFx32 v2;
     int v3;
 

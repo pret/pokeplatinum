@@ -278,7 +278,7 @@ static BOOL CallTramToPlayer(FieldSystem *fieldSystem, GreatMarshTramMovementTas
 static BOOL RideTramToArea(FieldSystem *fieldSystem, GreatMarshTramMovementTask *task, const fx32 *destZ, VecFx32 *tramPosition)
 {
     VecFx32 playerPos;
-    MapObject *playerObj = Player_MapObject(fieldSystem->playerAvatar);
+    MapObject *playerObj = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
     PlayerAvatar_GetPosPtr(fieldSystem->playerAvatar, &playerPos);
 
     tramPosition->z = playerPos.z + FX32_CONST(8);

@@ -746,7 +746,7 @@ void UndergroundPlayer_MoveToFromSecretBaseClient(int netID, int x, int z, int d
     playerLocation->dir = dir;
 
     if (commPlayerMan->playerAvatar[netID]) {
-        sub_0205ECE0(commPlayerMan->playerAvatar[netID], x, z, dir);
+        PlayerAvatar_SetPosDirFromCoords(commPlayerMan->playerAvatar[netID], x, z, dir);
     }
 
     if (!commPlayerMan->isDisabled) {
@@ -834,19 +834,19 @@ void UndergroundPlayer_HandleEmoteDisplay(int netID)
             switch (commPlayerMan->emote[netID]) {
             case EMOTE_OK:
                 if (commPlayerMan->animManager[netID] == NULL) {
-                    commPlayerMan->animManager[netID] = ov5_021F5488(Player_MapObject(commPlayerMan->playerAvatar[netID]));
+                    commPlayerMan->animManager[netID] = ov5_021F5488(PlayerAvatar_GetMapObject(commPlayerMan->playerAvatar[netID]));
                 }
 
                 commPlayerMan->emote[netID] = EMOTE_NONE;
                 break;
             case EMOTE_EXCLAMATION:
                 if (commPlayerMan->animManager[netID] == NULL) {
-                    commPlayerMan->animManager[netID] = ov5_021F52E4(Player_MapObject(commPlayerMan->playerAvatar[netID]));
+                    commPlayerMan->animManager[netID] = ov5_021F52E4(PlayerAvatar_GetMapObject(commPlayerMan->playerAvatar[netID]));
                 }
                 break;
             case EMOTE_FLAG:
                 if (commPlayerMan->animManager[netID] == NULL) {
-                    commPlayerMan->animManager[netID] = ov5_021F511C(Player_MapObject(commPlayerMan->playerAvatar[netID]));
+                    commPlayerMan->animManager[netID] = ov5_021F511C(PlayerAvatar_GetMapObject(commPlayerMan->playerAvatar[netID]));
                 }
                 break;
             case EMOTE_NONE:

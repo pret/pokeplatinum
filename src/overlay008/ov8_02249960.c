@@ -1364,7 +1364,7 @@ static BOOL FieldTask_CanalaveGym_MovePlatformEastWest(FieldTask *taskMan)
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     int *state = FieldTask_GetEnv(taskMan);
     CanalaveGymSystem *gymSystem = fieldSystem->unk_04->dynamicMapFeaturesData;
-    MapObject *playerObj = Player_MapObject(fieldSystem->playerAvatar);
+    MapObject *playerObj = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
 
     switch (*state) {
     case 0:
@@ -1437,7 +1437,7 @@ static BOOL FieldTask_CanalaveGym_MovePlatformNorthSouth(FieldTask *taskMan)
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     int *state = FieldTask_GetEnv(taskMan);
     CanalaveGymSystem *gymSystem = fieldSystem->unk_04->dynamicMapFeaturesData;
-    MapObject *playerObj = Player_MapObject(fieldSystem->playerAvatar);
+    MapObject *playerObj = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
 
     switch (*state) {
     case 0:
@@ -1492,7 +1492,7 @@ static BOOL FieldTask_CanalaveGym_MovePlatformNorthSouth(FieldTask *taskMan)
         }
         break;
     case 3: {
-        MapObject *playerObj = Player_MapObject(fieldSystem->playerAvatar);
+        MapObject *playerObj = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
 
         if (LocalMapObj_CheckAnimationFinished(playerObj) == TRUE) {
             sub_020656AC(playerObj);
@@ -3198,7 +3198,7 @@ static BOOL ov8_0224BAF4(FieldTask *taskMan)
     UnkStruct_ov8_0224C098 *v2 = FieldTask_GetEnv(taskMan);
     UnkStruct_ov8_0224B8D0 *v3 = v2->unk_3C;
 
-    v0 = Player_MapObject(fieldSystem->playerAvatar);
+    v0 = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
 
     switch (v2->unk_00) {
     case 0:
@@ -3254,7 +3254,7 @@ static int ov8_0224BBA0(UnkStruct_ov8_0224C098 *param0)
 
 static int ov8_0224BBD0(UnkStruct_ov8_0224C098 *param0)
 {
-    MapObject *v0 = Player_MapObject(param0->unk_3C->fieldSystem->playerAvatar);
+    MapObject *v0 = PlayerAvatar_GetMapObject(param0->unk_3C->fieldSystem->playerAvatar);
 
     if (LocalMapObj_IsAnimationSet(v0) == 0) {
         return 0;
@@ -3432,7 +3432,7 @@ static int ov8_0224BE8C(UnkStruct_ov8_0224C098 *param0)
 
 static int ov8_0224BEA4(UnkStruct_ov8_0224C098 *param0)
 {
-    MapObject *v0 = Player_MapObject(param0->unk_3C->fieldSystem->playerAvatar);
+    MapObject *v0 = PlayerAvatar_GetMapObject(param0->unk_3C->fieldSystem->playerAvatar);
 
     if (LocalMapObj_CheckAnimationFinished(v0) == 1) {
         sub_020656AC(v0);
@@ -3751,9 +3751,9 @@ void HearthomeGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
 
     int graphicsID = OBJ_EVENT_GFX_PLAYER_M_HEARTHOME_GYM;
     PlayerAvatar *playerAvatar = fieldSystem->playerAvatar;
-    MapObject *playerObj = Player_MapObject(playerAvatar);
+    MapObject *playerObj = PlayerAvatar_GetMapObject(playerAvatar);
 
-    if (PlayerAvatar_Gender(fieldSystem->playerAvatar) == GENDER_FEMALE) {
+    if (PlayerAvatar_GetGender(fieldSystem->playerAvatar) == GENDER_FEMALE) {
         graphicsID = OBJ_EVENT_GFX_PLAYER_F_HEARTHOME_GYM;
     }
 
@@ -3928,7 +3928,7 @@ BOOL HearthomeGym_CheckIfPlayerSeesTrainer(FieldSystem *fieldSystem)
     MapObject *trainerObj = NULL;
     MapObjectManager *mapObjMan = fieldSystem->mapObjMan;
     PlayerAvatar *playerAvatar = fieldSystem->playerAvatar;
-    MapObject *playerObj = Player_MapObject(playerAvatar);
+    MapObject *playerObj = PlayerAvatar_GetMapObject(playerAvatar);
     playerDirOpposite = Direction_GetOpposite(MapObject_GetFacingDir(playerObj));
 
     while (MapObjectMan_FindObjectWithStatus(mapObjMan, &trainerObj, &objIndex, MAP_OBJ_STATUS_0)) {

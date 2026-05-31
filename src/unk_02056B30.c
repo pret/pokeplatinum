@@ -344,7 +344,7 @@ static BOOL sub_02056F1C(FieldTask *taskMan)
     case 0: {
         int v3 = PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar);
 
-        v2 = Player_MapObject(fieldSystem->playerAvatar);
+        v2 = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
 
         if (v3 == 2) {
             LocalMapObj_SetAnimationCode(v2, MOVEMENT_ACTION_WALK_SLOW_WEST);
@@ -357,7 +357,7 @@ static BOOL sub_02056F1C(FieldTask *taskMan)
         (v1->unk_04)++;
         break;
     case 1:
-        v2 = Player_MapObject(fieldSystem->playerAvatar);
+        v2 = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
 
         if (LocalMapObj_CheckAnimationFinished(v2) == 1) {
             sub_020656AC(v2);
@@ -383,7 +383,7 @@ static BOOL sub_02056FC0(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     UnkStruct_02056BDC *v1 = FieldTask_GetEnv(taskMan);
-    MapObject *v2 = Player_MapObject(fieldSystem->playerAvatar);
+    MapObject *v2 = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
 
     switch (v1->unk_04) {
     case 0: {
@@ -404,7 +404,7 @@ static BOOL sub_02057008(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     UnkStruct_02056BDC *v1 = FieldTask_GetEnv(taskMan);
-    MapObject *v2 = Player_MapObject(fieldSystem->playerAvatar);
+    MapObject *v2 = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
 
     switch (v1->unk_04) {
     case 0: {
@@ -431,7 +431,7 @@ static BOOL sub_02057050(FieldTask *taskMan)
     switch (v2->unk_04) {
     case 0: {
         u8 v4;
-        MapObject *v5 = Player_MapObject(fieldSystem->playerAvatar);
+        MapObject *v5 = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
 
         v4 = TerrainCollisionManager_GetTileBehavior(fieldSystem, PlayerAvatar_GetXPos(fieldSystem->playerAvatar), PlayerAvatar_GetZPos(fieldSystem->playerAvatar));
 
@@ -458,7 +458,7 @@ static BOOL sub_02057050(FieldTask *taskMan)
         if (ov5_021D453C(fieldSystem, v3)) {
             ov5_021D432C(v3);
             {
-                MapObject *v7 = Player_MapObject(fieldSystem->playerAvatar);
+                MapObject *v7 = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
 
                 MapObject_SetHidden(v7, 0);
             }
@@ -482,7 +482,7 @@ static BOOL sub_0205711C(FieldTask *taskMan)
     switch (v2->unk_04) {
     case 0: {
         u8 v4;
-        MapObject *v5 = Player_MapObject(fieldSystem->playerAvatar);
+        MapObject *v5 = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
 
         v4 = TerrainCollisionManager_GetTileBehavior(fieldSystem, PlayerAvatar_GetXPos(fieldSystem->playerAvatar), PlayerAvatar_GetZPos(fieldSystem->playerAvatar));
 
@@ -543,7 +543,7 @@ static BOOL sub_02057218(FieldTask *taskMan)
     case 0:
 
         FieldMap_FadeScreen(FADE_TYPE_BRIGHTNESS_IN);
-        v2 = Player_MapObject(fieldSystem->playerAvatar);
+        v2 = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
 
         if (1) {
             int v3;
@@ -564,7 +564,7 @@ static BOOL sub_02057218(FieldTask *taskMan)
         (v1->unk_04)++;
         break;
     case 1:
-        v2 = Player_MapObject(fieldSystem->playerAvatar);
+        v2 = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
 
         if (LocalMapObj_CheckAnimationFinished(v2) == 1) {
             sub_020656AC(v2);
@@ -587,7 +587,7 @@ static BOOL sub_020572B8(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     UnkStruct_02056BDC *v1 = FieldTask_GetEnv(taskMan);
-    MapObject *v2 = Player_MapObject(fieldSystem->playerAvatar);
+    MapObject *v2 = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
 
     switch (v1->unk_04) {
     case 0: {
@@ -620,7 +620,7 @@ static void sub_02057300(FieldSystem *fieldSystem)
 
     v1.y = TerrainCollisionManager_GetHeight(fieldSystem, v1.y, v1.x, v1.z, NULL);
 
-    sub_0205ECB8(fieldSystem->playerAvatar, &v1, v0);
+    PlayerAvatar_SetPosDirFromVec(fieldSystem->playerAvatar, &v1, v0);
     Camera_SetTargetAndUpdatePosition(PlayerAvatar_GetPos(fieldSystem->playerAvatar), fieldSystem->camera);
     Camera_TrackTarget(PlayerAvatar_GetPos(fieldSystem->playerAvatar), fieldSystem->camera);
 }
@@ -650,7 +650,7 @@ static void sub_02057368(FieldSystem *fieldSystem)
 
     v3.y = TerrainCollisionManager_GetHeight(fieldSystem, v3.y, v3.x, v3.z, NULL);
 
-    sub_0205ECB8(fieldSystem->playerAvatar, &v3, v2);
+    PlayerAvatar_SetPosDirFromVec(fieldSystem->playerAvatar, &v3, v2);
     Camera_SetTargetAndUpdatePosition(PlayerAvatar_GetPos(fieldSystem->playerAvatar), fieldSystem->camera);
     Camera_TrackTarget(PlayerAvatar_GetPos(fieldSystem->playerAvatar), fieldSystem->camera);
 }

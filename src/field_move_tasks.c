@@ -195,7 +195,7 @@ BOOL FieldMoves_FlyTask(FieldTask *task)
 
     switch (ctx->state) {
     case FLY_STATE_START_CUT_IN:
-        ctx->cutInTask = HMCutIn_StartTask(ctx->fieldSystem, TRUE, ctx->mon, PlayerAvatar_Gender(ctx->fieldSystem->playerAvatar));
+        ctx->cutInTask = HMCutIn_StartTask(ctx->fieldSystem, TRUE, ctx->mon, PlayerAvatar_GetGender(ctx->fieldSystem->playerAvatar));
         ctx->state++;
         break;
     case FLY_STATE_MAIN:

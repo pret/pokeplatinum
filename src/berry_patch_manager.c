@@ -334,7 +334,7 @@ static void BerryPatches_WaterPatch(FieldSystem *fieldSystem, BerryWateringTask 
 
 static void BerryPatches_StartAnimation(FieldSystem *fieldSystem, BerryWateringTask *task, const MapObjectAnimCmd *animationCmd)
 {
-    MapObject *playerObject = Player_MapObject(fieldSystem->playerAvatar);
+    MapObject *playerObject = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
     task->animationTask = MapObject_StartAnimation(playerObject, animationCmd);
 }
 
@@ -347,7 +347,7 @@ static BOOL BerryPatches_TaskMain(FieldTask *taskManager)
     case BERRY_WATERING_STATE_INIT:
         PlayerAvatar_SetTransitionState(fieldSystem->playerAvatar, PLAYER_TRANSITION_WATER_BERRIES);
         PlayerAvatar_RequestChangeState(fieldSystem->playerAvatar);
-        MapObject_SetPauseMovementOff(Player_MapObject(fieldSystem->playerAvatar));
+        MapObject_SetPauseMovementOff(PlayerAvatar_GetMapObject(fieldSystem->playerAvatar));
         task->state = BERRY_WATERING_STATE_WATERING;
         break;
     case BERRY_WATERING_STATE_WATERING:
@@ -410,7 +410,7 @@ static BOOL BerryPatches_TaskMain(FieldTask *taskManager)
         break;
     case BERRY_WATERING_STATE_CLEANUP:
         PlayerAvatar_TryFace(fieldSystem->playerAvatar, task->direction);
-        MapObject_SetPauseMovementOn(Player_MapObject(fieldSystem->playerAvatar));
+        MapObject_SetPauseMovementOn(PlayerAvatar_GetMapObject(fieldSystem->playerAvatar));
         Heap_Free(task);
         return TRUE;
     }

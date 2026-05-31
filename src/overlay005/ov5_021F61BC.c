@@ -84,7 +84,7 @@ void ov5_021F6218(PlayerAvatar *playerAvatar)
     MapObject *v4;
     VecFx32 v5 = { 0, 0, 0 };
 
-    v4 = Player_MapObject(playerAvatar);
+    v4 = PlayerAvatar_GetMapObject(playerAvatar);
     v3 = MapObject_GetFieldEffectManager(v4);
 
     v2.unk_00 = v3;
@@ -104,7 +104,7 @@ static int ov5_021F6264(OverworldAnimManager *param0, void *param1)
     v0 = param1;
     v2 = OverworldAnimManager_GetUserData(param0);
     v0->unk_24 = *v2;
-    v1 = Player_MapObject(v2->playerAvatar);
+    v1 = PlayerAvatar_GetMapObject(v2->playerAvatar);
 
     v0->unk_04 = -1;
     v0->unk_14 = MapObject_GetLocalID(v1);
@@ -123,7 +123,7 @@ static void ov5_021F62A0(OverworldAnimManager *param0, void *param1)
     int v0;
     UnkStruct_021F6264 *v1 = param1;
     PlayerAvatar *playerAvatar = v1->unk_24.playerAvatar;
-    MapObject *v3 = Player_MapObject(playerAvatar);
+    MapObject *v3 = PlayerAvatar_GetMapObject(playerAvatar);
 
     if (sub_02062764(v3, v1->unk_14, v1->unk_18) == 0) {
         FieldEffectManager_FinishAnimManager(param0);

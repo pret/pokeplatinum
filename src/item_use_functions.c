@@ -432,7 +432,7 @@ static BOOL MountOrUnmountBicycle(FieldTask *task)
         break;
     case 1:
         if (PlayerAvatar_GetPlayerState(fieldSystem->playerAvatar) == 0x1) {
-            MapObject_SetPauseMovementOff(Player_MapObject(fieldSystem->playerAvatar));
+            MapObject_SetPauseMovementOff(PlayerAvatar_GetMapObject(fieldSystem->playerAvatar));
             PlayerAvatar_SetTransitionState(fieldSystem->playerAvatar, PLAYER_TRANSITION_WALKING);
             PlayerAvatar_RequestChangeState(fieldSystem->playerAvatar);
 
@@ -441,7 +441,7 @@ static BOOL MountOrUnmountBicycle(FieldTask *task)
         } else {
             FieldBGM_SetOverride(fieldSystem, SEQ_BICYCLE);
             FieldBGM_TryFadeOut(fieldSystem, SEQ_BICYCLE, 1);
-            MapObject_SetPauseMovementOff(Player_MapObject(fieldSystem->playerAvatar));
+            MapObject_SetPauseMovementOff(PlayerAvatar_GetMapObject(fieldSystem->playerAvatar));
 
             PlayerAvatar_SetTransitionState(fieldSystem->playerAvatar, PLAYER_TRANSITION_CYCLING);
             PlayerAvatar_RequestChangeState(fieldSystem->playerAvatar);
@@ -479,7 +479,7 @@ static enum ItemUseCheckResult CanUseBicycle(const ItemUseContext *usageContext)
     }
 
     {
-        MapObject *v1 = Player_MapObject(usageContext->playerAvatar);
+        MapObject *v1 = PlayerAvatar_GetMapObject(usageContext->playerAvatar);
 
         if (MapObject_IsOnBikeBridgeNorthSouth(v1, usageContext->currTileBehavior) == TRUE || MapObject_IsOnBikeBridgeEastWest(v1, usageContext->currTileBehavior) == TRUE) {
             return ITEM_USE_CANNOT_DISMOUNT;
@@ -837,7 +837,7 @@ static enum ItemUseCheckResult CanUseFishingRod(const ItemUseContext *usageConte
 
     if (TileBehavior_IsSurfable(usageContext->facingTileBehavior) == TRUE) {
         if ((TileBehavior_IsBridge(usageContext->currTileBehavior) == TRUE) || (TileBehavior_IsBridgeStart(usageContext->currTileBehavior) == TRUE)) {
-            MapObject *playerObj = Player_MapObject(usageContext->playerAvatar);
+            MapObject *playerObj = PlayerAvatar_GetMapObject(usageContext->playerAvatar);
 
             if (MapObject_IsStatusOnElevatedBridge(playerObj) == TRUE) {
                 return ITEM_USE_CANNOT_USE_GENERIC;

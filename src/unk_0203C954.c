@@ -47,7 +47,7 @@ static int BgEvent_GetPlayerFacingPosition(FieldSystem *fieldSystem, int *x, int
 
 static u8 sub_0203C9B0(PlayerAvatar *playerAvatar, MapObject *param1)
 {
-    MapObject *v0 = Player_MapObject(playerAvatar);
+    MapObject *v0 = PlayerAvatar_GetMapObject(playerAvatar);
 
     if (sub_020630DC(v0) == sub_020630DC(param1)) {
         return 1;

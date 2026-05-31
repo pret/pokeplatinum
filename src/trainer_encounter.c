@@ -497,7 +497,7 @@ static int ApproachingTrainerTask_TryFaceDirection(ApproachingTrainerData *data)
 
 static int ApproachingTrainerTask_CheckRevealOrFaceDirection(ApproachingTrainerData *data)
 {
-    MapObject *mapObj = Player_MapObject(data->playerAvatar);
+    MapObject *mapObj = PlayerAvatar_GetMapObject(data->playerAvatar);
 
     if (LocalMapObj_CheckAnimationFinished(mapObj) == FALSE) {
         return 0;
@@ -644,7 +644,7 @@ static int ApproachingTrainerTask_DelayNextToPlayer(ApproachingTrainerData *data
 
 static int ApproachingTrainerTask_TryPlayerFaceTrainer(ApproachingTrainerData *data)
 {
-    MapObject *mapObj = Player_MapObject(data->playerAvatar);
+    MapObject *mapObj = PlayerAvatar_GetMapObject(data->playerAvatar);
     int movementAction, dir = GetDirectionBetweenPoints(MapObject_GetX(mapObj), MapObject_GetZ(mapObj), MapObject_GetX(data->mapObj), MapObject_GetZ(data->mapObj));
 
     if (PlayerAvatar_GetFacingDir(data->playerAvatar) != dir && (data->approachNum == 0 || data->approachType == APPROACH_TYPE_VS2)) {
@@ -663,7 +663,7 @@ static int ApproachingTrainerTask_TryPlayerFaceTrainer(ApproachingTrainerData *d
 
 static int ApproachingTrainerTask_WaitPlayerFaceTrainer(ApproachingTrainerData *data)
 {
-    MapObject *mapObj = Player_MapObject(data->playerAvatar);
+    MapObject *mapObj = PlayerAvatar_GetMapObject(data->playerAvatar);
 
     if (LocalMapObj_CheckAnimationFinished(mapObj) == FALSE) {
         return 0;

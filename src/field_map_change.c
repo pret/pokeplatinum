@@ -368,7 +368,7 @@ static void FieldMapChange_LoadObjects(FieldSystem *fieldSystem)
     PlayerData *playerData = FieldOverworldState_GetPlayerData(fieldState);
     int gender = TrainerInfo_Gender(SaveData_GetTrainerInfo(fieldSystem->saveData));
 
-    fieldSystem->playerAvatar = sub_0205E820(fieldSystem->mapObjMan, playerData, gender);
+    fieldSystem->playerAvatar = PlayerAvatar_NewLoad(fieldSystem->mapObjMan, playerData, gender);
 
     MapObjectMan_StopAllMovement(fieldSystem->mapObjMan);
 }
@@ -884,7 +884,7 @@ static void FieldTask_FadeInFly(FieldTask *task)
         return;
     }
 
-    mapChangeData->task = FieldTask_FlyLanding_InitTask(fieldSystem, PlayerAvatar_Gender(fieldSystem->playerAvatar));
+    mapChangeData->task = FieldTask_FlyLanding_InitTask(fieldSystem, PlayerAvatar_GetGender(fieldSystem->playerAvatar));
     FieldTask_InitCall(task, FieldTask_WaitFadeInFly, mapChangeData);
 }
 
