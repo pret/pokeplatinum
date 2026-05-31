@@ -90,7 +90,7 @@ BattleAnimSystem *BattleSystem_GetBattleAnimSystem(BattleSystem *battleSys);
 SpriteSystem *BattleSystem_GetSpriteSystem(BattleSystem *battleSys);
 SpriteManager *BattleSystem_GetSpriteManager(BattleSystem *battleSys);
 Terrain *BattlerSystem_GetTerrain(BattleSystem *battleSys, int index);
-UnkStruct_ov16_02268A14 *ov16_0223E02C(BattleSystem *battleSys);
+BattleSubscreen *ov16_0223E02C(BattleSystem *battleSys);
 PartyGauge *BattleSystem_GetPartyGauge(BattleSystem *battleSys, enum PartyGaugeSide partyGaugeSide);
 void BattleSystem_SetPartyGauge(BattleSystem *battleSys, enum PartyGaugeSide partyGaugeSide, PartyGauge *partyGauge);
 FontSpecialCharsContext *BattleSystem_GetSpecialCharsHP(BattleSystem *battleSys);

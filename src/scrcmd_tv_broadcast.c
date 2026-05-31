@@ -105,9 +105,9 @@ BOOL ScrCmd_CallTVBroadcast(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_236(ScriptContext *param0)
+BOOL ScrCmd_SaveTVSegmentHiddenItem(ScriptContext *ctx)
 {
-    FieldSystem_SaveTVSegment_HiddenItemBreakingNews(param0->fieldSystem, ScriptContext_GetVar(param0));
+    FieldSystem_SaveTVSegment_HiddenItemBreakingNews(ctx->fieldSystem, ScriptContext_GetVar(ctx));
     return FALSE;
 }
 

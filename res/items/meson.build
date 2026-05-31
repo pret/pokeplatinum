@@ -34,6 +34,7 @@ item_data = custom_target('item_data',
         'item_tm_move_map.h',
         'item_berry_list.h',
         'item_mail_list.h',
+        'hidden_item_scripts.h',
         'item_names.json',
         'item_names_plural.json',
         'item_names_with_articles.json',
@@ -53,6 +54,6 @@ item_data = custom_target('item_data',
 )
 
 item_data_outputs = item_data.to_list()
-h_headers += item_data_outputs.slice(2, 6)
-item_text_banks = item_data_outputs.slice(6, item_data_outputs.length())
+h_headers += item_data_outputs.slice(2, 7)
+item_text_banks = item_data_outputs.slice(7, item_data_outputs.length())
 nitrofs_files += item_data

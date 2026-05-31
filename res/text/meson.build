@@ -61,6 +61,7 @@ generated_text_banks = [
     trainer_text_bank_names,
     frontier_text_bank_names,
     item_text_bank_names,
+    move_text_bank_names,
     'town_map.json',
     'npc_trade_names.json',
 ]
@@ -111,6 +112,7 @@ text_bank_files += trainer_text_banks
 text_bank_files += frontier_text_banks
 text_bank_files += item_text_banks
 text_bank_files += npctrade_text_banks
+text_bank_files += move_text_banks
 
 town_map_text_bank = custom_target('town_map_text_bank',
     output: 'town_map.json',

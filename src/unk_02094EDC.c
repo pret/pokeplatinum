@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "constants/contests.h"
-#include "generated/contest_effects.h"
+#include "generated/move_contest_effects.h"
 #include "generated/pokemon_contest_ranks.h"
 #include "generated/pokemon_contest_types.h"
 
@@ -763,7 +763,7 @@ void sub_020954F0(Contest *contest, enum HeapID heapID, int param2, enum Pokemon
     Heap_Free(v6);
 }
 
-s8 sub_02095734(enum ContestEffects contestEffect)
+s8 sub_02095734(enum MoveContestEffect contestEffect)
 {
     GF_ASSERT(contestEffect < (NELEMS(Unk_020F568C)));
     return Unk_020F568C[contestEffect].unk_04;

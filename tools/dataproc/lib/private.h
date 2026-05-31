@@ -20,7 +20,4 @@ struct diagnostic {
     diagnostic_t  *next;
 };
 
-__attribute__((format(printf, 4, 5)))
-void dp_gerror(datafile_t *df, size_t beg, size_t end, const char *errfmt, ...);
-
 #endif // DATAPROC_PRIVATE_H

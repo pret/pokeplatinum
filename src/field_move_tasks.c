@@ -827,7 +827,7 @@ static void FieldMoves_SetSweetScentTask(FieldMovePokemon *fieldMoveMon, const F
 
 static enum FieldMoveError FieldMoves_CheckChatter(const FieldMoveContext *fieldMoveContext)
 {
-    if ((PlayerOutsideLinkRoom(fieldMoveContext) == FALSE) || (PersistedMapFeatures_IsCurrentDynamicMap(fieldMoveContext->fieldSystem, 9) == TRUE)) {
+    if (PlayerOutsideLinkRoom(fieldMoveContext) == FALSE || PersistedMapFeatures_IsCurrentDynamicMap(fieldMoveContext->fieldSystem, DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) == TRUE) {
         return FIELD_MOVE_ERROR_LOCATION;
     }
 
@@ -856,5 +856,5 @@ static BOOL FieldMoves_ChatterTask(FieldTask *taskMan)
     FieldSystem_SetScriptParameters(fieldSystem, taskData->fieldMoveMon.fieldMonId, 0, 0, 0);
     FieldMoves_FreeTaskData(taskData);
 
-    return 0;
+    return FALSE;
 }

@@ -78,7 +78,7 @@ void SunyshoreGym_PressButton(FieldSystem *fieldSystem, const u8 buttonType);
 void EternaGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem);
 void EternaGym_DynamicMapFeaturesFree(FieldSystem *fieldSystem);
 BOOL EternaGym_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileZ, const fx32 height, BOOL *outIsColliding);
-BOOL EternaGym_AdvanceClockState(FieldSystem *fieldSystem, Window *param1, MessageLoader *param2, String *param3);
+BOOL EternaGym_AdvanceClockState(FieldSystem *fieldSystem, Window *window, MessageLoader *msgLoader, String *msgBuf);
 BOOL EternaGym_IsHourHandJumpTile(FieldSystem *fieldSystem, int tileX, int tileZ, int direction);
 void VeilstoneGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem);
 void VeilstoneGym_DynamicMapFeaturesFree(FieldSystem *fieldSystem);
