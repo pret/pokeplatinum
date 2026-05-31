@@ -12,6 +12,7 @@
 #include "overlay005/save_info_window.h"
 
 #include "bg_window.h"
+#include "comm_manager.h"
 #include "field_overworld_state.h"
 #include "font.h"
 #include "location.h"
@@ -25,7 +26,6 @@
 #include "string_gf.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_020366A0.h"
 
 static void FieldSystem_SaveObjectsAndLocation(FieldSystem *fieldSystem);
 
@@ -216,7 +216,7 @@ void FieldSystem_SaveStateIfCommunicationOff(FieldSystem *fieldSystem)
         return;
     }
 
-    if (sub_02038EB4() == TRUE) {
+    if (CommManager_IsInitializedNotPoketch() == TRUE) {
         return;
     }
 

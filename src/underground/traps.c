@@ -24,6 +24,7 @@
 #include "brightness_controller.h"
 #include "camera.h"
 #include "char_transfer.h"
+#include "comm_manager.h"
 #include "comm_player_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
@@ -55,7 +56,6 @@
 #include "trainer_info.h"
 #include "tv_segment.h"
 #include "underground.h"
-#include "unk_020366A0.h"
 #include "vars_flags.h"
 
 #include "res/graphics/trap_effects/trap_effects.naix"
@@ -1757,7 +1757,7 @@ void Traps_CallSecondTrapEffectServerFunc(int netID, int unused1, void *data, vo
     TrapServerFunc trapEffectFunc = sTrapEffectServerSecondFuncs[*trapID];
 
     if (*trapID != trapsEnv->triggeredTrapIDs[netID]) {
-        sub_020389C4(1);
+        CommManager_SetResetType(1);
         return;
     }
 

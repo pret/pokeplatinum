@@ -4,13 +4,13 @@
 
 #include "constants/graphics.h"
 
+#include "comm_manager.h"
 #include "communication_system.h"
 #include "heap.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
 #include "unk_02033200.h"
-#include "unk_020366A0.h"
 
 #define UPPER_SCREEN 1
 #define LOWER_SCREEN 2
@@ -254,7 +254,7 @@ void NetworkIcon_Update()
 void NetworkIcon_Init()
 {
     BOOL isWifi = FALSE;
-    if (CommMan_IsConnectedToWifi()) {
+    if (CommManager_IsConnectedToWifi()) {
         isWifi = TRUE;
     }
     InitGlobalNetworkIcon(240, 0, isWifi, NNS_G2D_VRAM_TYPE_2DMAIN);
@@ -298,10 +298,10 @@ void NetworkIcon_CreateOnSubScreen(BOOL isUpperScreen, u32 heapID)
 void NetworkIcon_InitIfConnected()
 {
     if (CommSys_IsInitialized()) {
-        if (CommSys_ConnectedCount() > 1 || CommMan_IsConnectedToWifi()) {
+        if (CommSys_ConnectedCount() > 1 || CommManager_IsConnectedToWifi()) {
             NetworkIcon_Init();
         }
-    } else if (CommMan_IsConnectedToWifi()) {
+    } else if (CommManager_IsConnectedToWifi()) {
         NetworkIcon_Init();
     }
 }

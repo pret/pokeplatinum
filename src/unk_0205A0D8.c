@@ -14,6 +14,7 @@
 #include "battle_regulation.h"
 #include "bg_window.h"
 #include "colored_arrow.h"
+#include "comm_manager.h"
 #include "comm_player_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
@@ -41,7 +42,6 @@
 #include "trainer_info.h"
 #include "unk_0202D778.h"
 #include "unk_020363E8.h"
-#include "unk_020366A0.h"
 #include "unk_0203D1B8.h"
 #include "unk_020655F4.h"
 
@@ -392,7 +392,7 @@ static BOOL sub_0205A324(FieldTask *param0)
         }
         break;
     case 21:
-        sub_0203898C(v0->unk_3D);
+        CommManager_SetParty(v0->unk_3D);
 
         if (sub_0205A2DC(v0)) {
             v0->unk_43 = 5;
@@ -673,7 +673,7 @@ void sub_0205AB10(FieldSystem *fieldSystem, UnkFuncPtr_0205AB10 *param1)
     Window_Init(&v0->unk_64);
 
     v0->unk_78 = ColoredArrow_New(HEAP_ID_FIELD2);
-    v0->unk_88 = sub_0203895C();
+    v0->unk_88 = CommManager_GetCommType();
     v0->unk_4C = NULL;
     v0->unk_48 = NULL;
     v0->unk_50 = NULL;

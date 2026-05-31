@@ -24,6 +24,7 @@
 
 #include "bg_window.h"
 #include "chatot_cry.h"
+#include "comm_manager.h"
 #include "font.h"
 #include "game_options.h"
 #include "game_records.h"
@@ -46,7 +47,6 @@
 #include "text.h"
 #include "tv_segment.h"
 #include "unk_0202F180.h"
-#include "unk_020366A0.h"
 #include "unk_02038F8C.h"
 #include "unk_02039814.h"
 #include "vars_flags.h"
@@ -486,7 +486,7 @@ static int ov94_02242F98(GTSApplicationState *param0)
         case -2:
         case -14:
         case -15:
-            Link_SetErrorState(4);
+            CommManager_SetCommError(4);
             break;
         case -13:
             NetworkError_DisplayGTSCriticalError();
@@ -586,13 +586,13 @@ static int ov94_02243120(GTSApplicationState *param0)
         case -3:
         case -4:
         case -5:
-            Link_SetErrorState(3);
+            CommManager_SetCommError(3);
             break;
         case -12:
         case -15:
         case -2:
         case -14:
-            Link_SetErrorState(4);
+            CommManager_SetCommError(4);
             break;
         case -13:
             NetworkError_DisplayGTSCriticalError();
@@ -703,13 +703,13 @@ static int ov94_022432F4(GTSApplicationState *param0)
             param0->currentScreenInstruction = 33;
             break;
         case -5:
-            Link_SetErrorState(3);
+            CommManager_SetCommError(3);
             break;
         case -12:
         case -2:
         case -14:
         case -15:
-            Link_SetErrorState(4);
+            CommManager_SetCommError(4);
             break;
         case -13:
             NetworkError_DisplayGTSCriticalError();
@@ -943,7 +943,7 @@ static int GTSApplication_NetworkHandler_DeleteReceivedPokemonResponse(GTSApplic
             appState->currentScreenInstruction = 33;
             break;
         case -3: // first byte = 5
-            Link_SetErrorState(3);
+            CommManager_SetCommError(3);
             break;
         case -4: // first byte = 3
         case -12:
@@ -951,7 +951,7 @@ static int GTSApplication_NetworkHandler_DeleteReceivedPokemonResponse(GTSApplic
         case -15:
         case -2: // first byte = 14
         case -14:
-            Link_SetErrorState(4);
+            CommManager_SetCommError(4);
             break;
         case -13: // catch-all
             NetworkError_DisplayGTSCriticalError();
@@ -1033,13 +1033,13 @@ static int GTSApplication_NetworkHandler_DeleteDesyncedPokemonResponse(GTSApplic
         case -4: // first byte = 3
             GTSApplication_NetworkHandler_ReturnToPreviousScreen(appState);
         case -5: // first byte = 2 (unsuccessful delete)
-            Link_SetErrorState(3);
+            CommManager_SetCommError(3);
             break;
         case -12:
         case -15:
         case -2: // first byte = 14
         case -14:
-            Link_SetErrorState(4);
+            CommManager_SetCommError(4);
             break;
         case -13:
             NetworkError_DisplayGTSCriticalError();

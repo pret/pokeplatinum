@@ -25,6 +25,7 @@
 #include "battle_regulation.h"
 #include "charcode_util.h"
 #include "chatot_cry.h"
+#include "comm_manager.h"
 #include "communication_system.h"
 #include "field_overworld_state.h"
 #include "game_options.h"
@@ -52,7 +53,6 @@
 #include "trainer_info.h"
 #include "tv_segment.h"
 #include "unk_0203266C.h"
-#include "unk_020366A0.h"
 #include "unk_020559DC.h"
 #include "vars_flags.h"
 
@@ -395,7 +395,7 @@ void FieldBattleDTO_InitWithPartyOrder(FieldBattleDTO *dto, const FieldSystem *f
     dto->palPad = SaveData_GetPalPad(fieldSystem->saveData);
     dto->saveData = fieldSystem->saveData;
 
-    if (sub_020326C4(sub_0203895C())) {
+    if (sub_020326C4(CommManager_GetCommType())) {
         int unionAppearance = TrainerInfo_Appearance(trainerInfo);
         int unionGender = TrainerInfo_Gender(trainerInfo);
 

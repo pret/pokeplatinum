@@ -9,6 +9,7 @@
 #include "field/field_system.h"
 
 #include "bg_window.h"
+#include "comm_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "field_comm_manager.h"
@@ -32,7 +33,6 @@
 #include "trainer_info.h"
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
-#include "unk_020366A0.h"
 
 #include "res/text/bank/unk_0353.h"
 
@@ -1129,7 +1129,7 @@ static void ov7_0224AC48(SysTask *task, void *param1)
 
     ov7_0224A64C(commClubMan);
 
-    sub_02036994(0);
+    CommManager_SetWirelessEntry(0);
     ListMenu_ProcessInput(commClubMan->unk_5C);
 
     if (FieldMessage_FinishedPrinting(sCommClubMan->printMsgIndex)) {
@@ -1169,7 +1169,7 @@ static void ov7_0224ACA4(SysTask *task, void *param1)
         CommTiming_StartSync(10);
         CommClubMan_SetTask(ov7_0224AF2C);
     } else if (v1 != 0xffffffff) {
-        sub_02036994(1);
+        CommManager_SetWirelessEntry(1);
         CommClubMan_Disconnect();
         CommClubMan_DestroyList(task, commClubMan);
         sCommClubMan->retCode = COMM_CLUB_RET_CANCEL;
@@ -1565,9 +1565,9 @@ static void ov7_0224B370(SysTask *task, void *param1)
 
 static void ov7_0224B3A8(CommClubManager *commClubMan)
 {
-    sub_02036994(0);
+    CommManager_SetWirelessEntry(0);
     sCommClubMan->retCode = COMM_CLUB_RET_2;
-    CommMan_SetErrorHandling(1, 1);
+    CommManager_SetErrorHandling(1, 1);
     CommInfo_SendPlayerInfo();
     sub_02033EA8(1);
 }

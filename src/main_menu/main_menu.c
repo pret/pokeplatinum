@@ -1,6 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/communication/comm_available_connections.h"
 #include "constants/graphics.h"
 #include "constants/narc.h"
 #include "generated/genders.h"
@@ -17,6 +18,7 @@
 
 #include "bg_window.h"
 #include "boot.h"
+#include "comm_manager.h"
 #include "font.h"
 #include "game_start.h"
 #include "graphics.h"
@@ -44,7 +46,6 @@
 #include "system_data.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_020366A0.h"
 #include "unk_0209A74C.h"
 #include "vram_transfer.h"
 
@@ -86,10 +87,7 @@ FS_EXTERN_OVERLAY(overlay98);
 #define DIRECTION_UP   (-1)
 #define DIRECTION_DOWN 1
 
-#define MYSTERY_GIFT   0b00000001
-#define RANGER_LINK    0b00000010
-#define WII_CONNECTION 0b00000100
-#define NEW_GAME_WARN  0b10000000
+#define NEW_GAME_WARN 0b10000000
 
 enum MainMenuNextApp {
     NEXT_APP_TITLE_SCREEN = 0,
@@ -414,15 +412,15 @@ static void DetectWirelessConnections(MainMenuAppData *appData)
         appData->wirelessCheckState = MAIN_MENU_WIRELESS_CHECK_INIT_WIRELESS;
         break;
     case MAIN_MENU_WIRELESS_CHECK_INIT_WIRELESS:
-        sub_02037D48(appData->saveData);
+        CommManager_InitializeSearchParty(appData->saveData);
 
         appData->wirelessCheckTimeout = 120;
         appData->wirelessCheckState = MAIN_MENU_WIRELESS_CHECK_CHECK_RESULT;
         appData->pendingAlerts = 0;
 
         if (MysteryGift_GetMysteryGiftUnlockedFlag(appData->mysteryGift) == TRUE) {
-            appData->pendingAlerts |= MYSTERY_GIFT;
-            appData->shownAlerts |= MYSTERY_GIFT;
+            appData->pendingAlerts |= AV_CONNECT_MYSTERY_GIFT;
+            appData->shownAlerts |= AV_CONNECT_MYSTERY_GIFT;
         }
         break;
     case MAIN_MENU_WIRELESS_CHECK_CHECK_RESULT:
@@ -430,25 +428,25 @@ static void DetectWirelessConnections(MainMenuAppData *appData)
             break;
         }
 
-        int availableConnections = sub_02037DA0();
+        int availableConnections = CommManager_GetAvailableConnections();
         availableConnections = ~appData->pendingAlerts & availableConnections;
 
         if (availableConnections && (appData->alertsState == MAIN_MENU_ALERTS_STATE_WAIT) && (appData->alertsPending == FALSE) && (appData->pendingAlerts != availableConnections)) {
             appData->shouldUpdateOptions = TRUE;
 
-            if (availableConnections & MYSTERY_GIFT) {
-                appData->mysteryGiftUnlocked = TRUE, availableConnections = MYSTERY_GIFT;
+            if (availableConnections & AV_CONNECT_MYSTERY_GIFT) {
+                appData->mysteryGiftUnlocked = TRUE, availableConnections = AV_CONNECT_MYSTERY_GIFT;
             }
 
-            if (availableConnections & RANGER_LINK) {
-                appData->rangerLinkAvailable = TRUE, availableConnections = RANGER_LINK;
+            if (availableConnections & AV_CONNECT_RANGER_LINK) {
+                appData->rangerLinkAvailable = TRUE, availableConnections = AV_CONNECT_RANGER_LINK;
             }
 
-            if (availableConnections & WII_CONNECTION) {
-                appData->wiiConnectionAvailable = TRUE, availableConnections = WII_CONNECTION;
+            if (availableConnections & AV_CONNECT_WII) {
+                appData->wiiConnectionAvailable = TRUE, availableConnections = AV_CONNECT_WII;
             }
 
-            if (availableConnections & (MYSTERY_GIFT | RANGER_LINK)) {
+            if (availableConnections & (AV_CONNECT_MYSTERY_GIFT | AV_CONNECT_RANGER_LINK)) {
                 appData->newAlerts = TRUE;
             }
 
@@ -456,12 +454,12 @@ static void DetectWirelessConnections(MainMenuAppData *appData)
         }
 
         if (--appData->wirelessCheckTimeout == 0) {
-            sub_02037D84();
+            CommManager_EndSearchParty();
             appData->wirelessCheckState = MAIN_MENU_WIRELESS_CHECK_IDLE;
         }
         break;
     case MAIN_MENU_WIRELESS_CHECK_STOP:
-        sub_02037D84();
+        CommManager_EndSearchParty();
         appData->wirelessCheckState = MAIN_MENU_WIRELESS_CHECK_IDLE;
         break;
     }
@@ -494,14 +492,14 @@ static BOOL ShowAlerts(MainMenuAppData *appData)
 
         MainMenuAlertTemplate *alertTemplate;
 
-        if (pendingAlerts & MYSTERY_GIFT) {
-            if (appData->extraUnlockedOptions & MYSTERY_GIFT) {
+        if (pendingAlerts & AV_CONNECT_MYSTERY_GIFT) {
+            if (appData->extraUnlockedOptions & AV_CONNECT_MYSTERY_GIFT) {
                 alertTemplate = &sMainMenuAlerts[MAIN_MENU_ALERT_MYSTERY_GIFT_OK];
             } else {
                 alertTemplate = &sMainMenuAlerts[MAIN_MENU_ALERT_MYSTERY_GIFT_NO_DEX];
             }
-        } else if (pendingAlerts & RANGER_LINK) {
-            if (appData->extraUnlockedOptions & RANGER_LINK) {
+        } else if (pendingAlerts & AV_CONNECT_RANGER_LINK) {
+            if (appData->extraUnlockedOptions & AV_CONNECT_RANGER_LINK) {
                 alertTemplate = &sMainMenuAlerts[MAIN_MENU_ALERT_RANGER_MSG_OK];
             } else {
                 alertTemplate = &sMainMenuAlerts[MAIN_MENU_ALERT_RANGER_MSG_NO_DEX];
@@ -829,7 +827,7 @@ static BOOL RenderMysteryGiftOption(MainMenuAppData *appData, enum MainMenuOptio
         ClearWirelessIcon(appData, OPTION_WINDOW_WIDTH, yPos);
 
         appData->optionApps[option] = sOptions[option].appToLoad;
-        appData->extraUnlockedOptions |= MYSTERY_GIFT;
+        appData->extraUnlockedOptions |= AV_CONNECT_MYSTERY_GIFT;
 
         MysteryGift_SetMysteryGiftUnlockedFlag(appData->mysteryGift);
         return TRUE;
@@ -846,7 +844,7 @@ static BOOL RenderRangerLinkOption(MainMenuAppData *appData, enum MainMenuOption
 
         appData->optionWirelessIconTypes[option] = WIRELESS_ICON_LOCAL;
         appData->optionApps[option] = sOptions[option].appToLoad;
-        appData->extraUnlockedOptions |= RANGER_LINK;
+        appData->extraUnlockedOptions |= AV_CONNECT_RANGER_LINK;
 
         return TRUE;
     }
@@ -1211,7 +1209,7 @@ static BOOL MainMenu_Main(ApplicationManager *appMan, int *state)
                 if (appData->nextApplication == NEXT_APP_GBA_MIGRATION) {
                     if (CTRDG_IsPulledOut() == TRUE) {
                         if (appData->wirelessCheckState != MAIN_MENU_WIRELESS_CHECK_IDLE) {
-                            sub_02037D84();
+                            CommManager_EndSearchParty();
                         }
 
                         sub_0209A8E0(HEAP_ID_MAIN_MENU);

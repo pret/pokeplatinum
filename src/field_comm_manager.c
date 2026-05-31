@@ -12,6 +12,7 @@
 #include "underground/manager.h"
 
 #include "appearance.h"
+#include "comm_manager.h"
 #include "comm_player_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
@@ -29,7 +30,6 @@
 #include "underground.h"
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
-#include "unk_020366A0.h"
 #include "unk_0205A0D8.h"
 #include "unk_02099500.h"
 
@@ -123,7 +123,7 @@ void FieldCommMan_StartBattleServer(FieldSystem *fieldSystem, int param1, int pa
         return;
     }
 
-    CommMan_StartBattleServer(FieldSystem_GetSaveData(fieldSystem), param1, param2, fieldSystem->unk_B0, 0);
+    CommManager_StartBattleServer(FieldSystem_GetSaveData(fieldSystem), param1, param2, fieldSystem->unk_B0, 0);
     FieldCommMan_Init(fieldSystem);
     FieldCommMan_SetTask(Task_StartBattleServer, 0);
 }
@@ -134,7 +134,7 @@ void FieldCommMan_StartBattleClient(FieldSystem *fieldSystem, int param1, int pa
         return;
     }
 
-    CommMan_StartBattleClient(FieldSystem_GetSaveData(fieldSystem), param1, param2, fieldSystem->unk_B0, 0);
+    CommManager_StartBattleClient(FieldSystem_GetSaveData(fieldSystem), param1, param2, fieldSystem->unk_B0, 0);
     FieldCommMan_Init(fieldSystem);
     FieldCommMan_SetTask(Task_StartBattleClient, 0);
 }
@@ -154,9 +154,9 @@ void FieldCommMan_EnterBattleRoom(FieldSystem *fieldSystem)
 {
     SetupScreenFadeRegisters(DS_SCREEN_MAIN, COLOR_BLACK);
     SetupScreenFadeRegisters(DS_SCREEN_SUB, COLOR_BLACK);
-    CommMan_SetErrorHandling(1, 1);
+    CommManager_SetErrorHandling(1, 1);
 
-    if (!CommMan_IsInitialized()) {
+    if (!CommManager_IsInitialized()) {
         return;
     }
 
@@ -192,7 +192,7 @@ void FieldCommMan_EndBattle(void)
         return;
     }
 
-    CommMan_SetErrorHandling(0, 0);
+    CommManager_SetErrorHandling(0, 0);
     FieldCommMan_SetTask(Task_EndBattle, 5);
 }
 
@@ -261,13 +261,13 @@ static void Task_ClientWait(void)
 
 static void Task_ConnectBattleClient(void)
 {
-    sub_02036948(sFieldCommMan->unk_3E);
+    CommManager_ConnectBattleClient(sFieldCommMan->unk_3E);
     FieldCommMan_SetTask(sub_02059964, 0);
 }
 
 static void sub_02059964(void)
 {
-    if (!sub_0203699C()) {
+    if (!CommManager_IsWaitingBattle()) {
         return;
     }
 
@@ -413,7 +413,7 @@ static void sub_02059B74(void)
         }
     }
 
-    sub_02038A1C(4, sFieldCommMan->fieldSystem->bgConfig);
+    CommManager_Dummy_02038A1C(4, sFieldCommMan->fieldSystem->bgConfig);
 }
 
 static void sub_02059BF4(void)
@@ -513,7 +513,7 @@ static void sub_02059D58(void)
 
     v1 = (0x4 | 0x1);
 
-    switch (sub_0203895C()) {
+    switch (CommManager_GetCommType()) {
     case 4:
     case 5:
         v1 = (((0x4 | 0x1) | 0x2) | 0x8);
@@ -523,7 +523,7 @@ static void sub_02059D58(void)
         break;
     }
 
-    sub_020389A0(v2);
+    CommManager_GetParty(v2);
 
     if (sFieldCommMan->party == NULL) {
         Encounter_NewVsLinkWithRecording(sFieldCommMan->fieldSystem, v2, v1);
@@ -589,7 +589,7 @@ static void sub_02059E50(void)
 
 static void sub_02059E80(void)
 {
-    sub_02036964();
+    CommManager_ResetBattleClient();
     FieldCommMan_SetTask(sub_02059E94, 2);
 }
 
@@ -691,7 +691,7 @@ static void sub_02059FD4(void)
 static void sub_0205A018(void)
 {
     if (CommTiming_IsSyncState(91)) {
-        CommMan_SetErrorHandling(0, 0);
+        CommManager_SetErrorHandling(0, 0);
         CommPlayerMan_Delete(1);
         FieldCommMan_SetTask(sub_0205A058, 5);
     }
@@ -710,7 +710,7 @@ static void sub_0205A058(void)
         return;
     }
 
-    sub_02036978();
+    CommManager_EndBattle();
     FieldCommMan_SetTask(FieldCommMan_Delete, 0);
 }
 
