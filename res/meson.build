@@ -91,6 +91,8 @@ npctrade_data = custom_target('npctrade_data',
 nitrofs_files += npctrade_data
 npctrade_text_banks = npctrade_data[1]
 
+relative_source_root = fs.relative_to(meson.project_source_root(), meson.project_build_root())
+
 ### DECOMPILED DATA DIRECTORIES ###
 # These subpaths are listed because the result of some build-rule inside them
 # is a dependency of some later build-rule.
@@ -98,12 +100,11 @@ subdir('pokemon')
 subdir('trainers')
 subdir('items')
 subdir('graphics')
+subdir('moves')
 subdir('town_map')
 subdir('text')
 
 # Common generator for "scripting" files, i.e. field and battle scripts
-relative_source_root = fs.relative_to(meson.project_source_root(), meson.project_build_root())
-
 # NOTE: The members of the `depends` clause below will always be modified by the
 # postconf script to be order-only dependencies. This means that this generator
 # will only *wait* to run until after these files have been generated, and it

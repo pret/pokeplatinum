@@ -37,7 +37,6 @@
 #include "overlay005/ov5_021F348C.h"
 #include "overlay005/struct_ov5_021ED0A4.h"
 #include "overlay009/camera_configuration.h"
-#include "overlay009/struct_ov9_0224F6EC_decl.h"
 
 #include "bg_window.h"
 #include "billboard.h"
@@ -267,6 +266,9 @@
 #define FOG_COLOR   COLOR_BLACK
 #define FOG_ALPHA   16
 #define FOG_DENSITY 88
+
+#define EDGE_COLOR                 COLOR_DARK_GRAY
+#define EDGE_GIRATINA_SHADOW_COLOR GX_RGB(4, 3, 7)
 
 enum FloatingPlatformKind {
     FLOATING_PLATFORM_KIND_FLOOR = 0,
@@ -635,7 +637,11 @@ enum FloorLoadPreviousState {
     FLOOR_LOAD_PREVIOUS_STATE_COUNT,
 };
 
-typedef struct DistWorldSystem DistWorldSystem;
+enum FallingBoulderDestination {
+    FALLING_BOULDER_DEST_B6F = 0,
+    FALLING_BOULDER_DEST_CORRECT_PIT,
+    FALLING_BOULDER_DEST_WRONG_PIT,
+};
 
 typedef struct DistWorldBounds {
     s16 startTileX;
@@ -1004,9 +1010,9 @@ typedef struct DistWorldMovingPlatformPropManager {
     DistWorldMovingPlatformPropAnimator animators[MOVING_PLATFORM_MANAGER_ANIMATOR_COUNT];
 } DistWorldMovingPlatformPropManager;
 
-typedef struct {
-    SysTask *unk_00;
-} UnkStruct_ov9_02249E94;
+typedef struct DistWorldCalculationTask {
+    SysTask *task;
+} DistWorldCalculationTask;
 
 typedef struct DistWorldMapConnections {
     u32 currID;
@@ -1156,7 +1162,7 @@ struct DistWorldSystem {
     DistWorldCameraManager cameraMan;
     DistWorldFieldTaskContext fieldTaskCtx;
     DistWorldLoadedEvent loadedEvent;
-    UnkStruct_ov9_02249E94 unk_184;
+    DistWorldCalculationTask calculationTask;
     DistWorldMapObjectRotatorManager mapObjRotatorMan;
     DistWorldSkyClouds skyClouds;
     DistWorldPropRenderBuffers propRenderBuffs;
@@ -1171,7 +1177,7 @@ struct DistWorldSystem {
     DistWorldSkyBackground skyBg;
     DistWorldInactiveFloor inactiveFloor;
     DistWorldGiratinaShadowPropRenderer giratinaShadowPropRenderer;
-    GXRgb unk_1EB0[8];
+    GXRgb edgeColorTable[G3X_EDGE_COLOR_TABLE_SIZE];
     u16 playingGiratinaArrival;
     u16 skyKind;
     SysTask *skyPalettesTask;
@@ -1277,25 +1283,12 @@ typedef struct DistWorldSimpleProp {
     DistWorldPropRenderer *renderer;
 } DistWorldSimpleProp;
 
-typedef struct {
-    u32 unk_00;
-    s16 unk_04;
-    s16 unk_06;
-    u32 unk_08;
-} UnkStruct_ov9_0225311C;
-
-struct UnkStruct_ov9_0224F6EC_t {
-    DistWorldSystem *unk_00;
-    FieldSystem *fieldSystem;
-    FieldTask *unk_08;
-    MapObject *unk_0C;
-    u16 unk_10;
-    u16 unk_12;
-    u32 unk_14;
-    int unk_18;
-    fx32 unk_1C;
-    fx32 unk_20;
-};
+typedef struct DistWorldBoulderFallLocation {
+    u32 mapHeaderID;
+    s16 tileX;
+    s16 tileZ;
+    u32 flagIndex;
+} DistWorldBoulderFallLocation;
 
 typedef struct CmdParamsCascadeBase {
     u32 movementAxis;
@@ -1429,7 +1422,7 @@ static void LoadNextFloorElements(DistWorldSystem *system);
 static void LoadPreviousFloorElements(DistWorldSystem *system);
 static void OpenArchives(DistWorldSystem *system);
 static void CloseArchives(DistWorldSystem *system);
-static void ov9_02249CC4(DistWorldSystem *param0);
+static void InitPersistedData(DistWorldSystem *system);
 static void SetPersistedCameraAngles(DistWorldSystem *system, u16 angleX, u16 angleY, u16 angleZ);
 static void GetPersistedCameraAngles(DistWorldSystem *system, u16 *angleX, u16 *angleY, u16 *angleZ);
 static BOOL IsPersistedDataValid(DistWorldSystem *system);
@@ -1444,16 +1437,16 @@ static void ClearPersistedBoulderPuzzleFlag(DistWorldSystem *system, u32 index);
 static BOOL CheckPersistedBoulderPuzzleFlag(DistWorldSystem *system, u32 index);
 static void SetPersistedCurrentFloatingPlatformIndex(DistWorldSystem *system, u32 floatingPlatformIndex);
 static u32 GetPersistedCurrentFloatingPlatformIndex(DistWorldSystem *system);
-static void ov9_02249E94(DistWorldSystem *param0);
-static void ov9_02249EC8(DistWorldSystem *param0);
-static void ov9_02249EDC(SysTask *param0, void *param1);
+static void StartCalculateTask(DistWorldSystem *system);
+static void FinishCalculateTask(DistWorldSystem *system);
+static void Task_Calculate(SysTask *sysTask, void *sysTaskParam);
 static void StartSkyPalettesUpdateTask(DistWorldSystem *system);
 static void FinishSkyPalettesUpdateTask(DistWorldSystem *system);
 static void Task_SkyPalettesUpdate(SysTask *sysTask, void *sysTaskParam);
-static void ov9_02249F50(DistWorldSystem *param0);
-static void ov9_02249F84(DistWorldSystem *param0);
-static void ov9_02249F88(DistWorldSystem *param0);
-static void ov9_02249F98(DistWorldSystem *param0);
+static void InitEdgeColors(DistWorldSystem *system);
+static void Dummy02249F84(DistWorldSystem *system);
+static void InitMapObjectFlags(DistWorldSystem *system);
+static void Dummy02249F98(DistWorldSystem *system);
 static void CameraInit(DistWorldSystem *system);
 static void CameraFree(DistWorldSystem *system);
 static void CameraTransitionTask(SysTask *sysTask, void *sysTaskParam);
@@ -1474,8 +1467,8 @@ static void FieldTaskContextNoOp2(DistWorldSystem *system);
 static void *InitFieldTaskContext(DistWorldSystem *system, int ctxSize);
 static void *GetFieldTaskContext(DistWorldSystem *system);
 static BOOL ApplyCameraAngleForPlayerPosition(DistWorldSystem *system, int playerX, int playerY, int playerZ, enum FaceDirection playerDir);
-static void ov9_0224A8C0(DistWorldSystem *param0);
-static void ov9_0224A9E8(DistWorldSystem *param0);
+static void InitPlayer(DistWorldSystem *system);
+static void ResetPlayer(DistWorldSystem *system);
 static BOOL HandleFloatingPlatformJumpPointAt(DistWorldSystem *system, int playerX, int playerY, int playerZ, enum FaceDirection playerDir);
 static void CreateJumpOnFloatingPlatformTask(DistWorldSystem *system, const DistWorldFloatingPlatformJumpPointTemplate *template);
 static BOOL JumpOnFloatingPlatform(FieldTask *task);
@@ -1513,8 +1506,8 @@ static void ResetInactiveGhostPropManager(DistWorldSystem *system);
 static void MoveActiveGhostPropManagerToInactive(DistWorldSystem *system);
 static void MoveInactiveGhostPropManagerToActive(DistWorldSystem *system);
 static u16 GetAnimManagerGhostPropKind(OverworldAnimManager *system);
-static void ov9_0224BE14(DistWorldSystem *param0);
-static void ov9_0224BE8C(DistWorldSystem *param0);
+static void InitMapElements(DistWorldSystem *system);
+static void FreeMapElements(DistWorldSystem *system);
 static void PrepareLoadingActiveFloor(DistWorldSystem *system, u32 mapHeaderID);
 static void PrepareLoadingInactiveFloor(DistWorldSystem *system, u32 mapHeaderID);
 static void DistWorldMapInfoFile_Load(NARC *param0, DistWorldMapInfoFile *param1);
@@ -1527,15 +1520,15 @@ static u32 FindMapFileIndex(DistWorldSystem *system, enum MapHeader mapHeaderID)
 static void DistWorldMapInfoFile_FindMapOffsets(const DistWorldMapInfoFile *param0, int param1, int *param2, int *param3, int *param4);
 static void FindMapOffsets(DistWorldSystem *param0, int param1, int *param2, int *param3, int *param4);
 static void DistWorldMapFile_Load(DistWorldSystem *system, DistWorldMapFile *file, enum MapHeader mapHeaderID);
-static void ov9_0224C0F8(DistWorldSystem *param0, enum MapHeader mapHeaderID, int param2);
-static void ov9_0224C10C(DistWorldSystem *param0, enum MapHeader mapHeaderID);
-static void ov9_0224C120(DistWorldSystem *param0, enum MapHeader mapHeaderID);
+static void LoadMapFiles(DistWorldSystem *system, enum MapHeader mapHeaderID, int nextMapHeaderID);
+static void LoadActiveMapFile(DistWorldSystem *system, enum MapHeader mapHeaderID);
+static void LoadInactiveMapFile(DistWorldSystem *system, enum MapHeader mapHeaderID);
 static void DistWorldMapFile_Free(DistWorldMapFile *file);
-static void ov9_0224C164(DistWorldSystem *param0);
-static void ov9_0224C174(DistWorldSystem *param0);
-static void ov9_0224C184(DistWorldSystem *param0);
-static void ov9_0224C194(DistWorldSystem *param0);
-static void ov9_0224C1E4(DistWorldSystem *param0);
+static void FreeMapFiles(DistWorldSystem *system);
+static void FreeActiveMapFile(DistWorldSystem *system);
+static void FreeInactiveMapFile(DistWorldSystem *system);
+static void MoveActiveMapFileToInactive(DistWorldSystem *system);
+static void MoveInactiveMapFileToActive(DistWorldSystem *system);
 static int DistWorldMapFile_GetFloatingPlatformSectionSize(DistWorldMapFile *file);
 static int DistWorldMapFile_GetFloatingPlatformCount(DistWorldMapFile *file);
 static DistWorldFloatingPlatformTemplate *DistWorldMapFile_GetFloatingPlatformSectionTemplates(DistWorldMapFile *file);
@@ -1743,12 +1736,12 @@ void DistWorld_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
     OpenArchives(dwSystem);
 
     if (!data->valid) {
-        ov9_02249CC4(dwSystem);
+        InitPersistedData(dwSystem);
     }
 
-    ov9_0224BE14(dwSystem);
-    ov9_02249F50(dwSystem);
-    ov9_02249F88(dwSystem);
+    InitMapElements(dwSystem);
+    InitEdgeColors(dwSystem);
+    InitMapObjectFlags(dwSystem);
     InitMapObjectRotatorManager(dwSystem, 6);
     InitPropRenderBuffers(dwSystem);
     InitSkyBackground(dwSystem);
@@ -1757,13 +1750,13 @@ void DistWorld_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
     InitSkyBackgroundDarkness(dwSystem);
     CameraInit(dwSystem);
     FieldTaskContextNoOp1(dwSystem);
-    ov9_0224A8C0(dwSystem);
+    InitPlayer(dwSystem);
     AddMapObjectsForCurrentAndNextMap(dwSystem);
     InitSimplePropsForCurrentAndNextMaps(dwSystem);
     InitAllGhostPropManagers(dwSystem);
     ResetMovingPlatformManager(dwSystem);
     UnloadEvent(dwSystem);
-    ov9_02249E94(dwSystem);
+    StartCalculateTask(dwSystem);
     InitialLoadInactiveFloor(dwSystem);
     StartLoadFloorTask(dwSystem);
     InitMovingPlatformPropsForCurrentAndNextMaps(dwSystem);
@@ -1783,13 +1776,13 @@ void DistWorld_DynamicMapFeaturesFree(FieldSystem *fieldSystem)
     FinishGiratinaShadowPropRenderer(dwSystem);
     FinishLoadFloorTask(dwSystem);
     FreeInactiveFloor(dwSystem);
-    ov9_02249EC8(dwSystem);
+    FinishCalculateTask(dwSystem);
     Dummy0224E34C(dwSystem);
     FinishAllMovingPlatformPropAnimators(dwSystem);
     FinishAllGhostPropManagers(dwSystem);
     FinishAllSimplePropAnimators(dwSystem);
     Dummy0224EE6C(dwSystem);
-    ov9_0224A9E8(dwSystem);
+    ResetPlayer(dwSystem);
     FieldTaskContextNoOp2(dwSystem);
     CameraFree(dwSystem);
     Dummy0224F760(dwSystem);
@@ -1798,9 +1791,9 @@ void DistWorld_DynamicMapFeaturesFree(FieldSystem *fieldSystem)
     FinishSkyBackground(dwSystem);
     FreePropRenderBuffers(dwSystem);
     FreeMapObjectRotatorManager(dwSystem);
-    ov9_02249F98(dwSystem);
-    ov9_02249F84(dwSystem);
-    ov9_0224BE8C(dwSystem);
+    Dummy02249F98(dwSystem);
+    Dummy02249F84(dwSystem);
+    FreeMapElements(dwSystem);
     CloseArchives(dwSystem);
 
     Heap_Free(dwSystem);
@@ -1894,37 +1887,35 @@ static void CloseArchives(DistWorldSystem *system)
     NARC_dtor(system->etcNARC);
 }
 
-static void ov9_02249CC4(DistWorldSystem *param0)
+static void InitPersistedData(DistWorldSystem *system)
 {
-    DistWorldPersistedData *v0 = param0->persistedData;
-    VarsFlags *v1 = SaveData_GetVarsFlags(param0->fieldSystem->saveData);
+    DistWorldPersistedData *persistedData = system->persistedData;
+    VarsFlags *varsFlags = SaveData_GetVarsFlags(system->fieldSystem->saveData);
 
-    v0->boulderPuzzleFlags = 0;
+    persistedData->boulderPuzzleFlags = 0;
 
-    {
-        u32 v2 = 1 << DIST_WORLD_PLATFORM_FLAG_B4F_1
-            | 1 << DIST_WORLD_PLATFORM_FLAG_B5F_1;
+    u32 movingPlatformFlags = 1 << DIST_WORLD_PLATFORM_FLAG_B4F_1
+        | 1 << DIST_WORLD_PLATFORM_FLAG_B5F_1;
 
-        if (DistWorldSystem_GetMapHeaderID(param0) == 581) {
-            v2 = 1 << DIST_WORLD_PLATFORM_FLAG_B1F_1
-                | 1 << DIST_WORLD_PLATFORM_FLAG_B2F_1
-                | 1 << DIST_WORLD_PLATFORM_FLAG_B3F_1
-                | 1 << DIST_WORLD_PLATFORM_FLAG_B4F_1
-                | 1 << DIST_WORLD_PLATFORM_FLAG_B4F_2
-                | 1 << DIST_WORLD_PLATFORM_FLAG_B5F_1
-                | 1 << DIST_WORLD_PLATFORM_FLAG_B6F_1
-                | 1 << DIST_WORLD_PLATFORM_FLAG_B7F_1;
-        }
-
-        SetPersistedMovingPlatformFlags(param0, v2);
+    if (DistWorldSystem_GetMapHeaderID(system) == MAP_HEADER_DISTORTION_WORLD_B7F) {
+        movingPlatformFlags = 1 << DIST_WORLD_PLATFORM_FLAG_B1F_1
+            | 1 << DIST_WORLD_PLATFORM_FLAG_B2F_1
+            | 1 << DIST_WORLD_PLATFORM_FLAG_B3F_1
+            | 1 << DIST_WORLD_PLATFORM_FLAG_B4F_1
+            | 1 << DIST_WORLD_PLATFORM_FLAG_B4F_2
+            | 1 << DIST_WORLD_PLATFORM_FLAG_B5F_1
+            | 1 << DIST_WORLD_PLATFORM_FLAG_B6F_1
+            | 1 << DIST_WORLD_PLATFORM_FLAG_B7F_1;
     }
 
-    if (!SystemFlag_HandleDistortionWorldPuzzleFinished(v1, HANDLE_FLAG_CHECK)) {
-        v0->boulderPuzzleFlags |= 1 << DIST_WORLD_PUZZLE_FLAG_MESPRIT_BOULDER_IN_B5F
+    SetPersistedMovingPlatformFlags(system, movingPlatformFlags);
+
+    if (!SystemFlag_HandleDistortionWorldPuzzleFinished(varsFlags, HANDLE_FLAG_CHECK)) {
+        persistedData->boulderPuzzleFlags |= 1 << DIST_WORLD_PUZZLE_FLAG_MESPRIT_BOULDER_IN_B5F
             | 1 << DIST_WORLD_PUZZLE_FLAG_AZELF_BOULDER_IN_B5F
             | 1 << DIST_WORLD_PUZZLE_FLAG_UXIE_BOULDER_IN_B5F;
     } else {
-        v0->boulderPuzzleFlags |= 1 << DIST_WORLD_PUZZLE_FLAG_UXIE_TUTO_SEEN
+        persistedData->boulderPuzzleFlags |= 1 << DIST_WORLD_PUZZLE_FLAG_UXIE_TUTO_SEEN
             | 1 << DIST_WORLD_PUZZLE_FLAG_AZELF_TUTO_SEEN
             | 1 << DIST_WORLD_PUZZLE_FLAG_MESPRIT_TUTO_SEEN
             | 1 << DIST_WORLD_PUZZLE_FLAG_MESPRIT_BOULDER_IN_B6F_PIT
@@ -2054,40 +2045,30 @@ BOOL DistWorld_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const 
     return FALSE;
 }
 
-static void ov9_02249E94(DistWorldSystem *param0)
+static void StartCalculateTask(DistWorldSystem *system)
 {
-    int v0;
-    UnkStruct_ov9_02249E94 *v1 = &param0->unk_184;
+    DistWorldCalculationTask *calculationTask = &system->calculationTask;
+    memset(calculationTask, 0, sizeof(DistWorldCalculationTask));
 
-    memset(v1, 0, sizeof(UnkStruct_ov9_02249E94));
-
-    v0 = MapObjectMan_GetTaskBasePriority(param0->fieldSystem->mapObjMan);
-    v0 += 2;
-
-    v1->unk_00 = SysTask_Start(ov9_02249EDC, param0, v0);
+    int priority = MapObjectMan_GetTaskBasePriority(system->fieldSystem->mapObjMan) + 2;
+    calculationTask->task = SysTask_Start(Task_Calculate, system, priority);
 }
 
-static void ov9_02249EC8(DistWorldSystem *param0)
+static void FinishCalculateTask(DistWorldSystem *system)
 {
-    UnkStruct_ov9_02249E94 *v0 = &param0->unk_184;
+    DistWorldCalculationTask *calculationTask = &system->calculationTask;
 
-    if (v0->unk_00 != NULL) {
-        SysTask_Done(v0->unk_00);
+    if (calculationTask->task != NULL) {
+        SysTask_Done(calculationTask->task);
     }
 }
 
-static void ov9_02249EDC(SysTask *param0, void *param1)
+static void Task_Calculate(SysTask *sysTask, void *sysTaskParam)
 {
-    DistWorldSystem *v0 = param1;
-    UnkStruct_ov9_02249E94 *v1 = &v0->unk_184;
+    DistWorldSystem *system = sysTaskParam;
 
-    {
-        TickAllMapObjectRotators(v0);
-    }
-
-    {
-        RecalculateSkyBackgroundDarkness(v0);
-    }
+    TickAllMapObjectRotators(system);
+    RecalculateSkyBackgroundDarkness(system);
 }
 
 static void StartSkyPalettesUpdateTask(DistWorldSystem *system)
@@ -2111,33 +2092,27 @@ static void Task_SkyPalettesUpdate(SysTask *sysTask, void *sysTaskParam)
     UpdateSkyPalettes(system);
 }
 
-static void ov9_02249F50(DistWorldSystem *param0)
+static void InitEdgeColors(DistWorldSystem *system)
 {
-    {
-        int v0;
-
-        for (v0 = 0; v0 < 8; v0++) {
-            param0->unk_1EB0[v0] = GX_RGB(4, 4, 4);
-        }
-
-        param0->unk_1EB0[1] = GX_RGB(4, 3, 7);
-        G3X_SetEdgeColorTable(param0->unk_1EB0);
+    for (int i = 0; i < G3X_EDGE_COLOR_TABLE_SIZE; i++) {
+        system->edgeColorTable[i] = EDGE_COLOR;
     }
+
+    system->edgeColorTable[1] = EDGE_GIRATINA_SHADOW_COLOR;
+    G3X_SetEdgeColorTable(system->edgeColorTable);
 }
 
-static void ov9_02249F84(DistWorldSystem *param0)
+static void Dummy02249F84(DistWorldSystem *system)
 {
-    return;
 }
 
-static void ov9_02249F88(DistWorldSystem *param0)
+static void InitMapObjectFlags(DistWorldSystem *system)
 {
-    MapObjectMan_SetEndMovement(param0->fieldSystem->mapObjMan, 0);
+    MapObjectMan_SetEndMovement(system->fieldSystem->mapObjMan, FALSE);
 }
 
-static void ov9_02249F98(DistWorldSystem *param0)
+static void Dummy02249F98(DistWorldSystem *system)
 {
-    return;
 }
 
 void DistWorld_UpdateCameraAngle(FieldSystem *fieldSystem)
@@ -2751,77 +2726,83 @@ static BOOL ApplyCameraAngleForPlayerPosition(DistWorldSystem *system, int playe
     return TRUE;
 }
 
-static void ov9_0224A8C0(DistWorldSystem *param0)
+static void InitPlayer(DistWorldSystem *system)
 {
-    u32 v0, v1;
-    int v2, v3, v4, v5;
-    int v6[6] = { 0, 0, 0, 90, 270, 180 };
-    PlayerAvatar *playerAvatar = param0->fieldSystem->playerAvatar;
-    MapObject *v8 = Player_MapObject(playerAvatar);
+    int playerX;
+    int playerY;
+    int playerZ;
+    int playerState;
+    int rotAngles[6] = { 0, 0, 0, 90, 270, 180 };
+    PlayerAvatar *playerAvatar = system->fieldSystem->playerAvatar;
+    MapObject *playerMapObj = Player_MapObject(playerAvatar);
 
-    GetPlayerPos(param0, &v2, &v3, &v4);
+    GetPlayerPos(system, &playerX, &playerY, &playerZ);
 
-    v0 = GetCurrentFloatingPlatformKind(param0);
-    v0 = GetAvatarDistortionStateForFloatingPlatformKind(v0);
+    u32 floatingPlatformKind = GetCurrentFloatingPlatformKind(system);
+    floatingPlatformKind = GetAvatarDistortionStateForFloatingPlatformKind(floatingPlatformKind);
 
-    if (v0 == 1) {
-        MapObject_SetHeightCalculationDisabled(v8, FALSE);
+    if (floatingPlatformKind == FLOATING_PLATFORM_KIND_WEST_WALL) {
+        MapObject_SetHeightCalculationDisabled(playerMapObj, FALSE);
     } else {
-        MapObject_SetHeightCalculationDisabled(v8, TRUE);
+        MapObject_SetHeightCalculationDisabled(playerMapObj, TRUE);
     }
 
-    PlayerAvatar_SetDistortionState(playerAvatar, v0);
+    PlayerAvatar_SetDistortionState(playerAvatar, floatingPlatformKind);
 
-    v5 = 0x0;
-    v1 = MapObject_GetGraphicsID(v8);
+    playerState = PLAYER_STATE_WALKING;
+    u32 playerGraphicsID = MapObject_GetGraphicsID(playerMapObj);
 
-    switch (v1) {
-    case 0x0:
-    case 0xd4:
-        v1 = 0xd4;
+    switch (playerGraphicsID) {
+    case OBJ_EVENT_GFX_PLAYER_M:
+    case OBJ_EVENT_GFX_DIST_WORLD_PLAYER_M:
+        playerGraphicsID = OBJ_EVENT_GFX_DIST_WORLD_PLAYER_M;
         break;
-    case 0x61:
-    case 0x107:
-        v1 = 0x107;
+
+    case OBJ_EVENT_GFX_PLAYER_F:
+    case OBJ_EVENT_GFX_DIST_WORLD_PLAYER_F:
+        playerGraphicsID = OBJ_EVENT_GFX_DIST_WORLD_PLAYER_F;
         break;
-    case 0xb2:
-    case 0x102:
-        v1 = 0x102;
-        v5 = 0x2;
+
+    case OBJ_EVENT_GFX_PLAYER_M_SURF:
+    case OBJ_EVENT_GFX_DIST_WORLD_PLAYER_M_SURF:
+        playerGraphicsID = OBJ_EVENT_GFX_DIST_WORLD_PLAYER_M_SURF;
+        playerState = PLAYER_STATE_SURFING;
         break;
-    case 0xb3:
-    case 0x103:
-        v1 = 0x103;
-        v5 = 0x2;
+
+    case OBJ_EVENT_GFX_PLAYER_F_SURF:
+    case OBJ_EVENT_GFX_DIST_WORLD_PLAYER_F_SURF:
+        playerGraphicsID = OBJ_EVENT_GFX_DIST_WORLD_PLAYER_F_SURF;
+        playerState = PLAYER_STATE_SURFING;
         break;
+
     default:
         GF_ASSERT(FALSE);
     }
 
-    PlayerAvatar_SetPlayerState(playerAvatar, v5);
-    sub_02061AD4(v8, v1);
+    PlayerAvatar_SetPlayerState(playerAvatar, playerState);
+    sub_02061AD4(playerMapObj, playerGraphicsID);
 
-    if (v0 != 1) {
-        GF_ASSERT(MapObject_IsHeightCalculationDisabled(v8) == TRUE);
+    if (floatingPlatformKind != FLOATING_PLATFORM_KIND_WEST_WALL) {
+        GF_ASSERT(MapObject_IsHeightCalculationDisabled(playerMapObj) == TRUE);
     }
 
-    if (v5 == 0x2) {
-        OverworldAnimManager *v9;
-        int v10 = PlayerAvatar_GetDir(playerAvatar);
+    if (playerState == PLAYER_STATE_SURFING) {
+        OverworldAnimManager *animMan;
+        enum FaceDirection playerDir = PlayerAvatar_GetDir(playerAvatar);
 
-        v9 = DistWorldSurfMountRenderer_HandleSurfBegin(playerAvatar, v2, v3, v4, v10, 1, v0);
-        PlayerAvatar_SetSurfMountAnimManager(playerAvatar, v9);
+        animMan = DistWorldSurfMountRenderer_HandleSurfBegin(playerAvatar, playerX, playerY, playerZ, playerDir, TRUE, floatingPlatformKind);
+        PlayerAvatar_SetSurfMountAnimManager(playerAvatar, animMan);
     }
 
-    BindMapObjectRotator(param0, v8, v6[v0]);
+    BindMapObjectRotator(system, playerMapObj, rotAngles[floatingPlatformKind]);
 }
 
-static void ov9_0224A9E8(DistWorldSystem *param0)
+static void ResetPlayer(DistWorldSystem *system)
 {
-    PlayerAvatar *v0 = param0->fieldSystem->playerAvatar;
+    PlayerAvatar *playerAvatar = system->fieldSystem->playerAvatar;
 
-    PlayerAvatar_SetDistortionState(v0, AVATAR_DISTORTION_STATE_NONE);
-    PlayerAvatar_ClearSpeed(v0);
+    PlayerAvatar_SetDistortionState(playerAvatar, AVATAR_DISTORTION_STATE_NONE);
+    PlayerAvatar_ClearSpeed(playerAvatar);
 }
 
 static BOOL HandleFloatingPlatformJumpPointAt(DistWorldSystem *system, int playerX, int playerY, int playerZ, enum FaceDirection playerDir)
@@ -3991,55 +3972,54 @@ static void DistWorldObstacleProp_AnimRender(OverworldAnimManager *animMan, void
     }
 }
 
-static void ov9_0224BE14(DistWorldSystem *param0)
+static void InitMapElements(DistWorldSystem *system)
 {
-    enum MapHeader mapHeaderID;
-    const DistWorldMapConnections *v1;
+    enum MapHeader mapHeaderID = DistWorldSystem_GetMapHeaderID(system);
+    const DistWorldMapConnections *mapConnections = GetConnectionsForMap(mapHeaderID);
 
-    mapHeaderID = DistWorldSystem_GetMapHeaderID(param0);
-    v1 = GetConnectionsForMap(mapHeaderID);
+    DistWorldMapInfoFile_LoadSafe(system);
+    LoadMapFiles(system, mapHeaderID, mapConnections->nextID);
 
-    DistWorldMapInfoFile_LoadSafe(param0);
-    ov9_0224C0F8(param0, mapHeaderID, v1->nextID);
+    InitFloatingPlatformManager(system);
+    InitFloatingPlatformJumpPoint(system);
+    InitCameraAngleTemplates(system);
+    InitAllGhostPropData(system);
 
-    InitFloatingPlatformManager(param0);
-    InitFloatingPlatformJumpPoint(param0);
-    InitCameraAngleTemplates(param0);
-    InitAllGhostPropData(param0);
+    if (!IsPersistedDataValid(system)) {
+        int playerX;
+        int playerY;
+        int playerZ;
 
-    if (IsPersistedDataValid(param0) == 0) {
-        int v2, v3, v4;
-
-        GetPlayerPos(param0, &v2, &v3, &v4);
-        FindAndPrepareNewCurrentFloatingPlatform(param0, v2, v3, v4, 4);
+        GetPlayerPos(system, &playerX, &playerY, &playerZ);
+        FindAndPrepareNewCurrentFloatingPlatform(system, playerX, playerY, playerZ, FLOATING_PLATFORM_KIND_INVALID);
     } else {
-        u32 v5 = GetPersistedCurrentFloatingPlatformIndex(param0);
-        PrepareNewCurrentFloatingPlatform(param0, v5);
+        u32 floatingPlatformIndex = GetPersistedCurrentFloatingPlatformIndex(system);
+        PrepareNewCurrentFloatingPlatform(system, floatingPlatformIndex);
     }
 }
 
-static void ov9_0224BE8C(DistWorldSystem *param0)
+static void FreeMapElements(DistWorldSystem *system)
 {
-    ResetCameraAngleTemplates(param0);
-    ResetFloatingPlatformJumpPoint(param0);
-    ResetFloatingPlatformManager(param0);
-    ResetAllGhostPropData(param0);
-    ov9_0224C164(param0);
-    FreeMapInfoFile(param0);
+    ResetCameraAngleTemplates(system);
+    ResetFloatingPlatformJumpPoint(system);
+    ResetFloatingPlatformManager(system);
+    ResetAllGhostPropData(system);
+    FreeMapFiles(system);
+    FreeMapInfoFile(system);
 }
 
 static void PrepareLoadingActiveFloor(DistWorldSystem *system, u32 mapHeaderID)
 {
     ResetInactiveGhostPropData(system);
-    ov9_0224C184(system);
+    FreeInactiveMapFile(system);
     ResetCameraAngleTemplates(system);
     ResetFloatingPlatformJumpPoint(system);
     ResetFloatingPlatformManager(system);
-    ov9_0224C194(system);
+    MoveActiveMapFileToInactive(system);
     MoveActiveGhostPropDataToInactive(system);
     MoveActiveGhostPropManagerToInactive(system);
     ResetActiveGhostPropManager(system);
-    ov9_0224C10C(system, mapHeaderID);
+    LoadActiveMapFile(system, mapHeaderID);
     InitFloatingPlatformManager(system);
     FreeFloatingPlatformManagerTerrainAttrs(system);
     InitFloatingPlatformJumpPoint(system);
@@ -4053,8 +4033,8 @@ static void PrepareLoadingInactiveFloor(DistWorldSystem *system, u32 mapHeaderID
     ResetFloatingPlatformJumpPoint(system);
     ResetFloatingPlatformManager(system);
     ResetActiveGhostPropData(system);
-    ov9_0224C174(system);
-    ov9_0224C1E4(system);
+    FreeActiveMapFile(system);
+    MoveInactiveMapFileToActive(system);
     MoveInactiveGhostPropDataToActive(system);
     MoveInactiveGhostPropManagerToActive(system);
     PersistActiveHiddenGhostPropGroups(system);
@@ -4065,7 +4045,7 @@ static void PrepareLoadingInactiveFloor(DistWorldSystem *system, u32 mapHeaderID
     InitCameraAngleTemplates(system);
 
     if (mapHeaderID != MAP_HEADER_INVALID) {
-        ov9_0224C120(system, mapHeaderID);
+        LoadInactiveMapFile(system, mapHeaderID);
         InitInactiveGhostPropData(system);
     }
 }
@@ -4174,20 +4154,20 @@ static void DistWorldMapFile_Load(DistWorldSystem *system, DistWorldMapFile *fil
     }
 }
 
-static void ov9_0224C0F8(DistWorldSystem *param0, enum MapHeader mapHeaderID, int param2)
+static void LoadMapFiles(DistWorldSystem *system, enum MapHeader mapHeaderID, int nextMapHeaderID)
 {
-    ov9_0224C10C(param0, mapHeaderID);
-    ov9_0224C120(param0, param2);
+    LoadActiveMapFile(system, mapHeaderID);
+    LoadInactiveMapFile(system, nextMapHeaderID);
 }
 
-static void ov9_0224C10C(DistWorldSystem *param0, enum MapHeader mapHeaderID)
+static void LoadActiveMapFile(DistWorldSystem *system, enum MapHeader mapHeaderID)
 {
-    DistWorldMapFile_Load(param0, &param0->mainArchive.mapFile, mapHeaderID);
+    DistWorldMapFile_Load(system, &system->mainArchive.mapFile, mapHeaderID);
 }
 
-static void ov9_0224C120(DistWorldSystem *param0, enum MapHeader mapHeaderID)
+static void LoadInactiveMapFile(DistWorldSystem *system, enum MapHeader mapHeaderID)
 {
-    DistWorldMapFile_Load(param0, &param0->mainArchive.inactiveMapFile, mapHeaderID);
+    DistWorldMapFile_Load(system, &system->mainArchive.inactiveMapFile, mapHeaderID);
 }
 
 static void DistWorldMapFile_Invalidate(DistWorldMapFile *file)
@@ -4205,39 +4185,38 @@ static void DistWorldMapFile_Free(DistWorldMapFile *file)
     DistWorldMapFile_Invalidate(file);
 }
 
-static void ov9_0224C164(DistWorldSystem *param0)
+static void FreeMapFiles(DistWorldSystem *system)
 {
-    ov9_0224C174(param0);
-    ov9_0224C184(param0);
+    FreeActiveMapFile(system);
+    FreeInactiveMapFile(system);
 }
 
-static void ov9_0224C174(DistWorldSystem *param0)
+static void FreeActiveMapFile(DistWorldSystem *system)
 {
-    DistWorldMapFile_Free(&param0->mainArchive.mapFile);
+    DistWorldMapFile_Free(&system->mainArchive.mapFile);
 }
 
-static void ov9_0224C184(DistWorldSystem *param0)
+static void FreeInactiveMapFile(DistWorldSystem *system)
 {
-    DistWorldMapFile_Free(&param0->mainArchive.inactiveMapFile);
+    DistWorldMapFile_Free(&system->mainArchive.inactiveMapFile);
 }
 
-static void ov9_0224C194(DistWorldSystem *param0)
+static void MoveActiveMapFileToInactive(DistWorldSystem *system)
 {
-    GF_ASSERT(param0->mainArchive.inactiveMapFile.mapHeaderID == MAP_HEADER_COUNT);
-    GF_ASSERT(param0->mainArchive.inactiveMapFile.buffer == NULL);
+    GF_ASSERT(system->mainArchive.inactiveMapFile.mapHeaderID == MAP_HEADER_COUNT);
+    GF_ASSERT(system->mainArchive.inactiveMapFile.buffer == NULL);
 
-    param0->mainArchive.inactiveMapFile = param0->mainArchive.mapFile;
-
-    DistWorldMapFile_Invalidate(&param0->mainArchive.mapFile);
+    system->mainArchive.inactiveMapFile = system->mainArchive.mapFile;
+    DistWorldMapFile_Invalidate(&system->mainArchive.mapFile);
 }
 
-static void ov9_0224C1E4(DistWorldSystem *param0)
+static void MoveInactiveMapFileToActive(DistWorldSystem *system)
 {
-    GF_ASSERT(param0->mainArchive.mapFile.mapHeaderID == MAP_HEADER_COUNT);
-    GF_ASSERT(param0->mainArchive.mapFile.buffer == NULL);
+    GF_ASSERT(system->mainArchive.mapFile.mapHeaderID == MAP_HEADER_COUNT);
+    GF_ASSERT(system->mainArchive.mapFile.buffer == NULL);
 
-    param0->mainArchive.mapFile = param0->mainArchive.inactiveMapFile;
-    DistWorldMapFile_Invalidate(&param0->mainArchive.inactiveMapFile);
+    system->mainArchive.mapFile = system->mainArchive.inactiveMapFile;
+    DistWorldMapFile_Invalidate(&system->mainArchive.inactiveMapFile);
 }
 
 static int DistWorldMapFile_GetFloatingPlatformSectionSize(DistWorldMapFile *file)
@@ -7483,421 +7462,503 @@ static BOOL IsMapObjectManaged(DistWorldSystem *system, MapObject *mapObj)
     return FALSE;
 }
 
-static const UnkStruct_ov9_0225311C Unk_ov9_0225311C[] = {
-    { 0x243, 0x4C, 0x44, 0x11 },
-    { 0x243, 0x61, 0x43, 0x11 },
-    { 0x243, 0x56, 0x39, 0x11 },
-    { 0x244, 0x44, 0x43, 0x6 },
-    { 0x244, 0x4B, 0x43, -1 },
-    { 0x244, 0x4F, 0x43, -1 },
-    { 0x244, 0x60, 0x44, 0x7 },
-    { 0x244, 0x64, 0x44, -1 },
-    { 0x244, 0x69, 0x44, -1 },
-    { 0x244, 0x55, 0x3C, 0x8 },
-    { 0x244, 0x55, 0x38, -1 },
-    { 0x244, 0x55, 0x39, -1 },
-    { 0x244, 0x55, 0x34, -1 },
-    { 0x244, 0x55, 0x35, -1 },
-    { 0x251, 0x0, 0x0, 0x0 }
+static const DistWorldBoulderFallLocation sBoulderFallLocations[] = {
+    {
+        .mapHeaderID = MAP_HEADER_DISTORTION_WORLD_B5F,
+        .tileX = 0x4C,
+        .tileZ = 0x44,
+        .flagIndex = DIST_WORLD_PUZZLE_FLAG_INVALID,
+    },
+    {
+        .mapHeaderID = MAP_HEADER_DISTORTION_WORLD_B5F,
+        .tileX = 0x61,
+        .tileZ = 0x43,
+        .flagIndex = DIST_WORLD_PUZZLE_FLAG_INVALID,
+    },
+    {
+        .mapHeaderID = MAP_HEADER_DISTORTION_WORLD_B5F,
+        .tileX = 0x56,
+        .tileZ = 0x39,
+        .flagIndex = DIST_WORLD_PUZZLE_FLAG_INVALID,
+    },
+    {
+        .mapHeaderID = MAP_HEADER_DISTORTION_WORLD_B6F,
+        .tileX = 0x44,
+        .tileZ = 0x43,
+        .flagIndex = DIST_WORLD_PUZZLE_FLAG_MESPRIT_BOULDER_IN_B6F_PIT,
+    },
+    {
+        .mapHeaderID = MAP_HEADER_DISTORTION_WORLD_B6F,
+        .tileX = 0x4B,
+        .tileZ = 0x43,
+        .flagIndex = -1,
+    },
+    {
+        .mapHeaderID = MAP_HEADER_DISTORTION_WORLD_B6F,
+        .tileX = 0x4F,
+        .tileZ = 0x43,
+        .flagIndex = -1,
+    },
+    {
+        .mapHeaderID = MAP_HEADER_DISTORTION_WORLD_B6F,
+        .tileX = 0x60,
+        .tileZ = 0x44,
+        .flagIndex = DIST_WORLD_PUZZLE_FLAG_AZELF_BOULDER_IN_B6F_PIT,
+    },
+    {
+        .mapHeaderID = MAP_HEADER_DISTORTION_WORLD_B6F,
+        .tileX = 0x64,
+        .tileZ = 0x44,
+        .flagIndex = -1,
+    },
+    {
+        .mapHeaderID = MAP_HEADER_DISTORTION_WORLD_B6F,
+        .tileX = 0x69,
+        .tileZ = 0x44,
+        .flagIndex = -1,
+    },
+    {
+        .mapHeaderID = MAP_HEADER_DISTORTION_WORLD_B6F,
+        .tileX = 0x55,
+        .tileZ = 0x3C,
+        .flagIndex = DIST_WORLD_PUZZLE_FLAG_UXIE_BOULDER_IN_B6F_PIT,
+    },
+    {
+        .mapHeaderID = MAP_HEADER_DISTORTION_WORLD_B6F,
+        .tileX = 0x55,
+        .tileZ = 0x38,
+        .flagIndex = -1,
+    },
+    {
+        .mapHeaderID = MAP_HEADER_DISTORTION_WORLD_B6F,
+        .tileX = 0x55,
+        .tileZ = 0x39,
+        .flagIndex = -1,
+    },
+    {
+        .mapHeaderID = MAP_HEADER_DISTORTION_WORLD_B6F,
+        .tileX = 0x55,
+        .tileZ = 0x34,
+        .flagIndex = -1,
+    },
+    {
+        .mapHeaderID = MAP_HEADER_DISTORTION_WORLD_B6F,
+        .tileX = 0x55,
+        .tileZ = 0x35,
+        .flagIndex = -1,
+    },
+    {
+        .mapHeaderID = MAP_HEADER_INVALID,
+        .tileX = 0x0,
+        .tileZ = 0x0,
+        .flagIndex = 0x0,
+    }
 };
 
-static BOOL ov9_0224F1F8(u32 param0, int param1, int param2, u32 *param3)
+static BOOL FindBoulderFallLocationFlag(u32 mapHeaderID, int boulderTileX, int boulderTileZ, u32 *flagIndex)
 {
-    const UnkStruct_ov9_0225311C *v0 = Unk_ov9_0225311C;
+    const DistWorldBoulderFallLocation *iter = sBoulderFallLocations;
 
-    while (v0->unk_00 != 593) {
-        if ((v0->unk_00 == param0) && (v0->unk_04 == param1) && (v0->unk_06 == param2)) {
-            *param3 = v0->unk_08;
-            return 1;
+    while (iter->mapHeaderID != MAP_HEADER_INVALID) {
+        if (iter->mapHeaderID == mapHeaderID && iter->tileX == boulderTileX && iter->tileZ == boulderTileZ) {
+            *flagIndex = iter->flagIndex;
+            return TRUE;
         }
 
-        v0++;
+        iter++;
     }
 
-    return 0;
+    return FALSE;
 }
 
-BOOL ov9_0224F240(const MapObject *param0, int param1)
+BOOL DistWorld_WillBoulderBeAtFallLocation(const MapObject *boulderMapObj, enum FaceDirection boulderDir)
 {
-    int v0, v1;
-    u32 v2, v3;
-    FieldSystem *fieldSystem = MapObject_FieldSystem(param0);
-    v3 = fieldSystem->location->mapId;
-    v0 = MapObject_GetX(param0);
-    v1 = MapObject_GetZ(param0);
-    v0 += MapObject_GetDxFromDir(param1);
-    v1 += MapObject_GetDzFromDir(param1);
+    FieldSystem *fieldSystem = MapObject_FieldSystem(boulderMapObj);
+    u32 mapHeaderID = fieldSystem->location->mapId;
 
-    return ov9_0224F1F8(v3, v0, v1, &v2);
+    int boulderTileX = MapObject_GetX(boulderMapObj);
+    int boulderTileZ = MapObject_GetZ(boulderMapObj);
+    boulderTileX += MapObject_GetDxFromDir(boulderDir);
+    boulderTileZ += MapObject_GetDzFromDir(boulderDir);
+
+    u32 flagIndex;
+    return FindBoulderFallLocationFlag(mapHeaderID, boulderTileX, boulderTileZ, &flagIndex);
 }
 
-static BOOL ov9_0224F284(const MapObject *param0, u32 *param1)
+static BOOL FindMapObjectBoulderFallLocationFlag(const MapObject *boulderMapObj, u32 *flagIndex)
 {
-    int v0, v1;
-    u32 v2;
-    FieldSystem *fieldSystem = MapObject_FieldSystem(param0);
-    v2 = fieldSystem->location->mapId;
-    v0 = MapObject_GetX(param0);
-    v1 = MapObject_GetZ(param0);
+    FieldSystem *fieldSystem = MapObject_FieldSystem(boulderMapObj);
+    u32 mapHeaderID = fieldSystem->location->mapId;
 
-    return ov9_0224F1F8(v2, v0, v1, param1);
+    int boulderTileX = MapObject_GetX(boulderMapObj);
+    int boulderTileZ = MapObject_GetZ(boulderMapObj);
+
+    return FindBoulderFallLocationFlag(mapHeaderID, boulderTileX, boulderTileZ, flagIndex);
 }
 
-BOOL ov9_0224F2B0(const MapObject *param0)
+BOOL DistWorld_IsBoulderAtFallLocation(const MapObject *boulderMapObj)
 {
-    u32 v0;
-    return ov9_0224F284(param0, &v0);
+    u32 flagIndex;
+    return FindMapObjectBoulderFallLocationFlag(boulderMapObj, &flagIndex);
 }
 
-UnkStruct_ov9_0224F6EC *ov9_0224F2BC(FieldSystem *fieldSystem, FieldTask *param1, MapObject *param2)
+DistWorldFallingBoulder *DistWorldFallingBoulder_New(FieldSystem *fieldSystem, FieldTask *boulderFieldTask, MapObject *boulderMapObj)
 {
-    UnkStruct_ov9_0224F6EC *v0 = Heap_AllocAtEnd(HEAP_ID_FIELD1, sizeof(UnkStruct_ov9_0224F6EC));
-    memset(v0, 0, sizeof(UnkStruct_ov9_0224F6EC));
+    DistWorldFallingBoulder *boulder = Heap_AllocAtEnd(HEAP_ID_FIELD1, sizeof(DistWorldFallingBoulder));
+    memset(boulder, 0, sizeof(DistWorldFallingBoulder));
 
-    v0->unk_00 = fieldSystem->unk_04->dynamicMapFeaturesData;
-    v0->fieldSystem = fieldSystem;
-    v0->unk_08 = param1;
-    v0->unk_0C = param2;
+    boulder->system = fieldSystem->unk_04->dynamicMapFeaturesData;
+    boulder->fieldSystem = fieldSystem;
+    boulder->fieldTask = boulderFieldTask;
+    boulder->mapObj = boulderMapObj;
 
-    ov9_0224F284(param2, &v0->unk_14);
+    FindMapObjectBoulderFallLocationFlag(boulderMapObj, &boulder->flagIndex);
 
-    switch (v0->unk_14) {
-    case 17:
-        v0->unk_12 = 0;
+    switch (boulder->flagIndex) {
+    case DIST_WORLD_PUZZLE_FLAG_INVALID:
+        boulder->destination = FALLING_BOULDER_DEST_B6F;
         break;
-    case 6:
-    case 7:
-    case 8:
-        if (CheckPersistedBoulderPuzzleFlag(v0->unk_00, v0->unk_14) == 0) {
-            v0->unk_12 = 1;
+
+    case DIST_WORLD_PUZZLE_FLAG_MESPRIT_BOULDER_IN_B6F_PIT:
+    case DIST_WORLD_PUZZLE_FLAG_AZELF_BOULDER_IN_B6F_PIT:
+    case DIST_WORLD_PUZZLE_FLAG_UXIE_BOULDER_IN_B6F_PIT:
+        if (!CheckPersistedBoulderPuzzleFlag(boulder->system, boulder->flagIndex)) {
+            boulder->destination = FALLING_BOULDER_DEST_CORRECT_PIT;
             break;
         }
 
     default:
-        v0->unk_12 = 2;
+        boulder->destination = FALLING_BOULDER_DEST_WRONG_PIT;
         break;
     }
 
-    return v0;
+    return boulder;
 }
 
-static BOOL ov9_0224F324(UnkStruct_ov9_0224F6EC *param0)
+static BOOL DistWorldFallingBoulder_TickToB6F(DistWorldFallingBoulder *boulder)
 {
-    int v0;
-    VecFx32 v1;
-    MapObject *v2 = param0->unk_0C;
+    MapObject *boulderMapObj = boulder->mapObj;
 
-    MapObject_GetPosPtr(v2, &v1);
-    v1.y -= FX32_ONE * 8;
-    MapObject_SetPos(v2, &v1);
+    VecFx32 boulderPos;
+    MapObject_GetPosPtr(boulderMapObj, &boulderPos);
+    boulderPos.y -= FX32_ONE * 8;
+    MapObject_SetPos(boulderMapObj, &boulderPos);
 
-    if (v1.y > ((115 << 4) * FX32_ONE)) {
-        return 0;
+    if (boulderPos.y > MAP_OBJECT_COORD_EDGE_TO_FX32(115)) {
+        return FALSE;
     }
 
     Sound_PlayEffect(SEQ_SE_DP_UG_008);
-    v1.y = ((115 << 4) * FX32_ONE);
-    MapObject_SetPosDirFromVec(v2, &v1, MapObject_GetFacingDir(v2));
-    MapObject_SetMapID(v2, 580);
+    boulderPos.y = MAP_OBJECT_COORD_EDGE_TO_FX32(115);
+    MapObject_SetPosDirFromVec(boulderMapObj, &boulderPos, MapObject_GetFacingDir(boulderMapObj));
+    MapObject_SetMapID(boulderMapObj, MAP_HEADER_DISTORTION_WORLD_B6F);
 
-    {
-        u32 v3, v4;
+    u32 flagIndexToSet;
+    u32 flagIndexToClear;
 
-        switch (MapObject_GetLocalID(v2)) {
+    switch (MapObject_GetLocalID(boulderMapObj)) {
+    case MAP_OBJECT_B6F_MESPRIT_BOULDER_OUTSIDE:
+        flagIndexToSet = DIST_WORLD_PUZZLE_FLAG_MESPRIT_BOULDER_IN_B6F_OUTSIDE;
+        flagIndexToClear = DIST_WORLD_PUZZLE_FLAG_MESPRIT_BOULDER_IN_B5F;
+        break;
+
+    case MAP_OBJECT_B6F_AZELF_BOULDER_OUTSIDE:
+        flagIndexToSet = DIST_WORLD_PUZZLE_FLAG_AZELF_BOULDER_IN_B6F_OUTSIDE;
+        flagIndexToClear = DIST_WORLD_PUZZLE_FLAG_AZELF_BOULDER_IN_B5F;
+        break;
+
+    case MAP_OBJECT_B6F_UXIE_BOULDER_OUTSIDE:
+        flagIndexToSet = DIST_WORLD_PUZZLE_FLAG_UXIE_BOULDER_IN_B6F_OUTSIDE;
+        flagIndexToClear = DIST_WORLD_PUZZLE_FLAG_UXIE_BOULDER_IN_B5F;
+        break;
+    }
+
+    SetPersistedBoulderPuzzleFlag(boulder->system, flagIndexToSet);
+    ClearPersistedBoulderPuzzleFlag(boulder->system, flagIndexToClear);
+
+    return TRUE;
+}
+
+static BOOL DistWorldFallingBoulder_TickToCorrectPit(DistWorldFallingBoulder *boulder)
+{
+    switch (boulder->state) {
+    case 0: {
+        MapObject *boulderMapObj = boulder->mapObj;
+
+        VecFx32 boulderPos;
+        MapObject_GetPosPtr(boulderMapObj, &boulderPos);
+        boulderPos.y -= FX32_ONE * 2;
+        MapObject_SetPos(boulderMapObj, &boulderPos);
+        MapObject_MovePosInDir(boulderMapObj, MapObject_GetMovingDir(boulderMapObj), FX32_ONE * 2);
+
+        boulder->animStep++;
+
+        if (boulder->animStep < 8) {
+            return FALSE;
+        }
+
+        boulder->animStep = 0;
+        boulder->state++;
+
+        break;
+    }
+
+    case 1: {
+        MapObject *boulderMapObj = boulder->mapObj;
+
+        VecFx32 boulderPos;
+        MapObject_GetPosPtr(boulderMapObj, &boulderPos);
+        boulderPos.y -= FX32_ONE * 4;
+        MapObject_SetPos(boulderMapObj, &boulderPos);
+
+        boulder->animStep++;
+
+        if (boulder->animStep < 4) {
+            return 0;
+        }
+
+        boulder->animStep = 0;
+
+        u32 boulderNewLocalID = 0;
+        u32 flagIndexToClear = 0;
+        boulderMapObj = boulder->mapObj;
+
+        SetPersistedBoulderPuzzleFlag(boulder->system, boulder->flagIndex);
+
+        switch (MapObject_GetLocalID(boulderMapObj)) {
         case MAP_OBJECT_B6F_MESPRIT_BOULDER_OUTSIDE:
-            v3 = 3;
-            v4 = 0;
+            boulderNewLocalID = MAP_OBJECT_B6F_MESPRIT_BOULDER_IN_PIT;
+            flagIndexToClear = DIST_WORLD_PUZZLE_FLAG_MESPRIT_BOULDER_IN_B6F_OUTSIDE;
             break;
+
         case MAP_OBJECT_B6F_AZELF_BOULDER_OUTSIDE:
-            v3 = 4;
-            v4 = 1;
+            boulderNewLocalID = MAP_OBJECT_B6F_AZELF_BOULDER_IN_PIT;
+            flagIndexToClear = DIST_WORLD_PUZZLE_FLAG_AZELF_BOULDER_IN_B6F_OUTSIDE;
             break;
+
         case MAP_OBJECT_B6F_UXIE_BOULDER_OUTSIDE:
-            v3 = 5;
-            v4 = 2;
+            boulderNewLocalID = MAP_OBJECT_B6F_UXIE_BOULDER_IN_PIT;
+            flagIndexToClear = DIST_WORLD_PUZZLE_FLAG_UXIE_BOULDER_IN_B6F_OUTSIDE;
             break;
+
+        default:
+            GF_ASSERT(FALSE);
         }
 
-        SetPersistedBoulderPuzzleFlag(param0->unk_00, v3);
-        ClearPersistedBoulderPuzzleFlag(param0->unk_00, v4);
-    }
+        ClearPersistedBoulderPuzzleFlag(boulder->system, flagIndexToClear);
+        MapObject_SetLocalID(boulderMapObj, boulderNewLocalID);
 
-    return 1;
-}
+        int boulderMovingDir = MapObject_GetMovingDir(boulderMapObj);
+        int boulderTileX = MapObject_GetX(boulderMapObj);
+        int boulderTileY = MapObject_GetY(boulderMapObj);
+        int boulderTileZ = MapObject_GetZ(boulderMapObj);
 
-static BOOL ov9_0224F3BC(UnkStruct_ov9_0224F6EC *param0)
-{
-    switch (param0->unk_10) {
-    case 0: {
-        VecFx32 v0;
-        MapObject *v1 = param0->unk_0C;
+        boulderTileX += MapObject_GetDxFromDir(boulderMovingDir);
+        boulderTileY -= 4;
+        boulderTileZ += MapObject_GetDzFromDir(boulderMovingDir);
 
-        MapObject_GetPosPtr(v1, &v0);
-        v0.y -= FX32_ONE * 2;
-        MapObject_SetPos(v1, &v0);
-        MapObject_MovePosInDir(v1, MapObject_GetMovingDir(v1), (FX32_ONE * 2));
-    }
+        MapObject_SetX(boulderMapObj, boulderTileX);
+        MapObject_SetY(boulderMapObj, boulderTileY);
+        MapObject_SetZ(boulderMapObj, boulderTileZ);
+        MapObject_UpdateCoords(boulderMapObj);
 
-        param0->unk_18++;
+        VecFx32 spritePosOffset;
+        MapObject_GetSpritePosOffset(boulder->mapObj, &spritePosOffset);
 
-        if (param0->unk_18 < 8) {
-            return 0;
-        }
+        boulder->finalPosY = spritePosOffset.y;
+        boulder->vibrationYDelta = FX32_ONE;
 
-        param0->unk_18 = 0;
-        param0->unk_10++;
+        Sound_PlayEffect(SEQ_SE_DP_UG_008);
+        boulder->state++;
+
         break;
-    case 1: {
-        VecFx32 v2;
-        MapObject *v3 = param0->unk_0C;
-
-        MapObject_GetPosPtr(v3, &v2);
-        v2.y -= FX32_ONE * 4;
-        MapObject_SetPos(v3, &v2);
     }
 
-        param0->unk_18++;
-
-        if (param0->unk_18 < 4) {
-            return 0;
-        }
-
-        param0->unk_18 = 0;
-
-        {
-            u32 v4 = 0, v5 = 0;
-            MapObject *v6 = param0->unk_0C;
-
-            SetPersistedBoulderPuzzleFlag(param0->unk_00, param0->unk_14);
-
-            switch (MapObject_GetLocalID(v6)) {
-            case MAP_OBJECT_B6F_MESPRIT_BOULDER_OUTSIDE:
-                v4 = MAP_OBJECT_B6F_MESPRIT_BOULDER_IN_PIT;
-                v5 = 3;
-                break;
-            case MAP_OBJECT_B6F_AZELF_BOULDER_OUTSIDE:
-                v4 = MAP_OBJECT_B6F_AZELF_BOULDER_IN_PIT;
-                v5 = 4;
-                break;
-            case MAP_OBJECT_B6F_UXIE_BOULDER_OUTSIDE:
-                v4 = MAP_OBJECT_B6F_UXIE_BOULDER_IN_PIT;
-                v5 = 5;
-                break;
-            default:
-                GF_ASSERT(FALSE);
-            }
-
-            ClearPersistedBoulderPuzzleFlag(param0->unk_00, v5);
-            MapObject_SetLocalID(v6, v4);
-
-            {
-                int v7 = MapObject_GetMovingDir(v6);
-                int v8 = MapObject_GetX(v6);
-                int v9 = MapObject_GetY(v6);
-                int v10 = MapObject_GetZ(v6);
-
-                v8 += MapObject_GetDxFromDir(v7);
-                v9 -= (2 * 2);
-                v10 += MapObject_GetDzFromDir(v7);
-
-                MapObject_SetX(v6, v8);
-                MapObject_SetY(v6, v9);
-                MapObject_SetZ(v6, v10);
-                MapObject_UpdateCoords(v6);
-            }
-        }
-
-        {
-            VecFx32 v11;
-
-            MapObject_GetSpritePosOffset(param0->unk_0C, &v11);
-
-            param0->unk_1C = v11.y;
-            param0->unk_20 = (FX32_ONE * 1);
-
-            Sound_PlayEffect(SEQ_SE_DP_UG_008);
-        }
-
-        param0->unk_10++;
-        break;
     case 2: {
-        VecFx32 v12;
-        MapObject *v13 = param0->unk_0C;
+        MapObject *boulderMapObj = boulder->mapObj;
 
-        MapObject_GetSpritePosOffset(v13, &v12);
-        v12.y = param0->unk_1C + param0->unk_20;
+        VecFx32 boulderPos;
+        MapObject_GetSpritePosOffset(boulderMapObj, &boulderPos);
+        boulderPos.y = boulder->finalPosY + boulder->vibrationYDelta;
 
-        MapObject_SetSpritePosOffset(v13, &v12);
-        param0->unk_20 = -param0->unk_20;
+        MapObject_SetSpritePosOffset(boulderMapObj, &boulderPos);
+        boulder->vibrationYDelta = -boulder->vibrationYDelta;
+
+        boulder->animStep++;
+
+        if (boulder->animStep == 7) {
+            boulder->vibrationYDelta = 0;
+        }
+
+        if (boulder->animStep < 32) {
+            return FALSE;
+        }
+
+        u32 scriptID = 0;
+        u32 flagIndexToClear = 0;
+
+        switch (boulder->flagIndex) {
+        case DIST_WORLD_PUZZLE_FLAG_MESPRIT_BOULDER_IN_B6F_PIT:
+            flagIndexToClear = DIST_WORLD_PUZZLE_FLAG_MESPRIT_IN_B6F;
+            scriptID = 5;
+            break;
+
+        case DIST_WORLD_PUZZLE_FLAG_AZELF_BOULDER_IN_B6F_PIT:
+            flagIndexToClear = DIST_WORLD_PUZZLE_FLAG_AZELF_IN_B6F;
+            scriptID = 7;
+            break;
+
+        case DIST_WORLD_PUZZLE_FLAG_UXIE_BOULDER_IN_B6F_PIT:
+            flagIndexToClear = DIST_WORLD_PUZZLE_FLAG_UXIE_IN_B6F;
+            scriptID = 6;
+            break;
+
+        default:
+            GF_ASSERT(FALSE);
+        }
+
+        ClearPersistedBoulderPuzzleFlag(boulder->system, flagIndexToClear);
+        ScriptManager_Start(boulder->fieldTask, scriptID, NULL, NULL);
+        boulder->state++;
+
+        break;
     }
 
-        param0->unk_18++;
-
-        if (param0->unk_18 == 7) {
-            param0->unk_20 = 0;
-        }
-
-        if (param0->unk_18 < 32) {
-            return 0;
-        }
-
-        {
-            u32 v14 = 0, v15 = 0;
-            MapObject *v16 = param0->unk_0C;
-
-            switch (param0->unk_14) {
-            case 6:
-                v15 = 15;
-                v14 = 5;
-                break;
-            case 7:
-                v15 = 14;
-                v14 = 7;
-                break;
-            case 8:
-                v15 = 13;
-                v14 = 6;
-                break;
-            default:
-                GF_ASSERT(FALSE);
-            }
-
-            ClearPersistedBoulderPuzzleFlag(param0->unk_00, v15);
-            ScriptManager_Start(param0->unk_08, v14, NULL, NULL);
-            param0->unk_10++;
-            break;
-        }
     case 3: {
-        int v17 = 0;
+        int boulderFlagsSet = 0;
 
-        v17 += CheckPersistedBoulderPuzzleFlag(
-            param0->unk_00, DIST_WORLD_PUZZLE_FLAG_MESPRIT_BOULDER_IN_B6F_PIT);
-        v17 += CheckPersistedBoulderPuzzleFlag(
-            param0->unk_00, DIST_WORLD_PUZZLE_FLAG_AZELF_BOULDER_IN_B6F_PIT);
-        v17 += CheckPersistedBoulderPuzzleFlag(
-            param0->unk_00, DIST_WORLD_PUZZLE_FLAG_UXIE_BOULDER_IN_B6F_PIT);
+        boulderFlagsSet += CheckPersistedBoulderPuzzleFlag(boulder->system, DIST_WORLD_PUZZLE_FLAG_MESPRIT_BOULDER_IN_B6F_PIT);
+        boulderFlagsSet += CheckPersistedBoulderPuzzleFlag(boulder->system, DIST_WORLD_PUZZLE_FLAG_AZELF_BOULDER_IN_B6F_PIT);
+        boulderFlagsSet += CheckPersistedBoulderPuzzleFlag(boulder->system, DIST_WORLD_PUZZLE_FLAG_UXIE_BOULDER_IN_B6F_PIT);
 
-        if (v17 >= 3) {
-            VarsFlags *v18 = SaveData_GetVarsFlags(param0->fieldSystem->saveData);
-
-            SystemFlag_HandleDistortionWorldPuzzleFinished(v18, HANDLE_FLAG_SET);
+        if (boulderFlagsSet >= 3) {
+            VarsFlags *varsFlags = SaveData_GetVarsFlags(boulder->fieldSystem->saveData);
+            SystemFlag_HandleDistortionWorldPuzzleFinished(varsFlags, HANDLE_FLAG_SET);
         }
+
+        return TRUE;
+    }
     }
 
-        return 1;
-    }
-
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov9_0224F5D8(UnkStruct_ov9_0224F6EC *param0)
+static BOOL DistWorldFallingBoulder_TickToWrongPit(DistWorldFallingBoulder *boulder)
 {
-    switch (param0->unk_10) {
+    switch (boulder->state) {
     case 0: {
-        VecFx32 v0;
-        MapObject *v1 = param0->unk_0C;
+        MapObject *boulderMapObj = boulder->mapObj;
 
-        MapObject_GetPosPtr(v1, &v0);
-        v0.y -= FX32_ONE * 2;
-        MapObject_SetPos(v1, &v0);
-        MapObject_MovePosInDir(v1, MapObject_GetMovingDir(v1), (FX32_ONE * 2));
-    }
+        VecFx32 boulderPos;
+        MapObject_GetPosPtr(boulderMapObj, &boulderPos);
+        boulderPos.y -= FX32_ONE * 2;
+        MapObject_SetPos(boulderMapObj, &boulderPos);
+        MapObject_MovePosInDir(boulderMapObj, MapObject_GetMovingDir(boulderMapObj), FX32_ONE * 2);
 
-        param0->unk_18++;
+        boulder->animStep++;
 
-        if (param0->unk_18 < 8) {
-            return 0;
+        if (boulder->animStep < 8) {
+            return FALSE;
         }
 
-        param0->unk_18 = 0;
-        param0->unk_10++;
+        boulder->animStep = 0;
+        boulder->state++;
+
         break;
+    }
+
     case 1: {
-        VecFx32 v2;
-        MapObject *v3 = param0->unk_0C;
+        MapObject *boulderMapObj = boulder->mapObj;
 
-        MapObject_GetPosPtr(v3, &v2);
-        v2.y -= FX32_ONE * 4;
-        MapObject_SetPos(v3, &v2);
-    }
+        VecFx32 boulderPos;
+        MapObject_GetPosPtr(boulderMapObj, &boulderPos);
+        boulderPos.y -= FX32_ONE * 4;
+        MapObject_SetPos(boulderMapObj, &boulderPos);
 
-        param0->unk_18++;
+        boulder->animStep++;
 
-        if (param0->unk_18 < 4) {
-            return 0;
+        if (boulder->animStep < 4) {
+            return FALSE;
         }
 
-        param0->unk_18 = 0;
-        param0->unk_10++;
+        boulder->animStep = 0;
+        boulder->state++;
+
         break;
+    }
+
     case 2: {
-        VecFx32 v4;
-        MapObject *v5 = param0->unk_0C;
+        MapObject *boulderMapObj = boulder->mapObj;
 
-        MapObject_GetPosPtr(v5, &v4);
-        v4.y -= FX32_ONE * 8;
-        MapObject_SetPos(v5, &v4);
-    }
+        VecFx32 boulderPos;
+        MapObject_GetPosPtr(boulderMapObj, &boulderPos);
+        boulderPos.y -= FX32_ONE * 8;
+        MapObject_SetPos(boulderMapObj, &boulderPos);
 
-        param0->unk_18++;
+        boulder->animStep++;
 
-        if (param0->unk_18 < 40) {
-            return 0;
+        if (boulder->animStep < 40) {
+            return FALSE;
         }
 
-        {
-            u32 v6 = 0, v7 = 0, v8 = 0, v9 = 0;
-            MapObject *v10 = param0->unk_0C;
+        u32 flagIndexToSet = 0;
+        u32 flagIndexToClear = 0;
+        boulderMapObj = boulder->mapObj;
 
-            switch (MapObject_GetLocalID(v10)) {
-            case MAP_OBJECT_B6F_MESPRIT_BOULDER_OUTSIDE:
-                v6 = 0;
-                v7 = 3;
-                break;
-            case MAP_OBJECT_B6F_AZELF_BOULDER_OUTSIDE:
-                v6 = 1;
-                v7 = 4;
-                break;
-            case MAP_OBJECT_B6F_UXIE_BOULDER_OUTSIDE:
-                v6 = 2;
-                v7 = 5;
-                break;
-            default:
-                GF_ASSERT(FALSE);
-            }
+        switch (MapObject_GetLocalID(boulderMapObj)) {
+        case MAP_OBJECT_B6F_MESPRIT_BOULDER_OUTSIDE:
+            flagIndexToSet = DIST_WORLD_PUZZLE_FLAG_MESPRIT_BOULDER_IN_B5F;
+            flagIndexToClear = DIST_WORLD_PUZZLE_FLAG_MESPRIT_BOULDER_IN_B6F_OUTSIDE;
+            break;
 
-            SetPersistedBoulderPuzzleFlag(param0->unk_00, v6);
-            ClearPersistedBoulderPuzzleFlag(param0->unk_00, v7);
-            DeleteMapObject(param0->unk_00, param0->unk_0C);
+        case MAP_OBJECT_B6F_AZELF_BOULDER_OUTSIDE:
+            flagIndexToSet = DIST_WORLD_PUZZLE_FLAG_AZELF_BOULDER_IN_B5F;
+            flagIndexToClear = DIST_WORLD_PUZZLE_FLAG_AZELF_BOULDER_IN_B6F_OUTSIDE;
+            break;
 
-            return 1;
+        case MAP_OBJECT_B6F_UXIE_BOULDER_OUTSIDE:
+            flagIndexToSet = DIST_WORLD_PUZZLE_FLAG_UXIE_BOULDER_IN_B5F;
+            flagIndexToClear = DIST_WORLD_PUZZLE_FLAG_UXIE_BOULDER_IN_B6F_OUTSIDE;
+            break;
+
+        default:
+            GF_ASSERT(FALSE);
         }
+
+        SetPersistedBoulderPuzzleFlag(boulder->system, flagIndexToSet);
+        ClearPersistedBoulderPuzzleFlag(boulder->system, flagIndexToClear);
+        DeleteMapObject(boulder->system, boulder->mapObj);
+
+        return TRUE;
+    }
     }
 
-    return 0;
+    return FALSE;
 }
 
-BOOL ov9_0224F6EC(UnkStruct_ov9_0224F6EC *param0)
+BOOL DistWorldFallingBoulder_Tick(DistWorldFallingBoulder *boulder)
 {
-    BOOL v0;
+    BOOL destroyBoulder;
 
-    switch (param0->unk_12) {
-    case 0:
-        v0 = ov9_0224F324(param0);
+    switch (boulder->destination) {
+    case FALLING_BOULDER_DEST_B6F:
+        destroyBoulder = DistWorldFallingBoulder_TickToB6F(boulder);
         break;
-    case 1:
-        v0 = ov9_0224F3BC(param0);
+
+    case FALLING_BOULDER_DEST_CORRECT_PIT:
+        destroyBoulder = DistWorldFallingBoulder_TickToCorrectPit(boulder);
         break;
-    case 2:
-        v0 = ov9_0224F5D8(param0);
+
+    case FALLING_BOULDER_DEST_WRONG_PIT:
+        destroyBoulder = DistWorldFallingBoulder_TickToWrongPit(boulder);
         break;
     }
 
-    if (v0 == 1) {
-        Heap_Free(param0);
+    if (destroyBoulder == TRUE) {
+        Heap_Free(boulder);
     }
 
-    return v0;
+    return destroyBoulder;
 }
 
 static void InitSkyBackgroundDarkness(DistWorldSystem *system)

@@ -2,32 +2,32 @@
   "key": 20312,
   "messages": [
     {
-      "id": "pl_msg_00000380_00000",
+      "id": "HiddenItems_Text_00000",
       "en_US": [
         "{STRVAR_1 3, 0, 0} obtained\n",
         "the {STRVAR_1 8, 1, 0}!"
       ]
     },
     {
-      "id": "pl_msg_00000380_00001",
+      "id": "HiddenItems_Text_00001",
       "en_US": "The Bag is full..."
     },
     {
-      "id": "pl_msg_00000380_00002",
+      "id": "HiddenItems_Text_00002",
       "en_US": [
         "{STRVAR_1 3, 0, 0} put the {STRVAR_1 8, 1, 0}\n",
         "in the {STRVAR_1 8, 2, 0} Pocket."
       ]
     },
     {
-      "id": "pl_msg_00000380_00003",
+      "id": "HiddenItems_Text_PlayerFoundItem",
       "en_US": [
         "{STRVAR_1 3, 0, 0} found\n",
         "{STRVAR_1 8, 1, 0}!"
       ]
     },
     {
-      "id": "pl_msg_00000380_00004",
+      "id": "HiddenItems_Text_ObtainedItemBagIsFull",
       "en_US": [
         "Obtained the {STRVAR_1 8, 0, 0}!\r",
         "Too bad!\n",
@@ -35,35 +35,35 @@
       ]
     },
     {
-      "id": "pl_msg_00000380_00005",
+      "id": "HiddenItems_Text_00005",
       "en_US": [
         "{STRVAR_1 3, 0, 0} put the {STRVAR_1 8, 1, 0}\n",
         "in the Bag."
       ]
     },
     {
-      "id": "pl_msg_00000380_00006",
+      "id": "HiddenItems_Text_PlayerFoundTMHMMove",
       "en_US": [
         "{STRVAR_1 3, 0, 0} found\n",
         "{STRVAR_1 8, 1, 0} {STRVAR_1 6, 2, 0}!"
       ]
     },
     {
-      "id": "pl_msg_00000380_00007",
+      "id": "HiddenItems_Text_00007",
       "en_US": [
         "{STRVAR_1 3, 0, 0} obtained\n",
         "the {COLOR 2}{STRVAR_1 8, 1, 0}{COLOR 0}!"
       ]
     },
     {
-      "id": "pl_msg_00000380_00008",
+      "id": "HiddenItems_Text_00008",
       "en_US": [
         "{STRVAR_1 3, 0, 0} obtained\n",
         "the {COLOR 1}{STRVAR_1 8, 1, 0}{COLOR 0}!"
       ]
     },
     {
-      "id": "pl_msg_00000380_00009",
+      "id": "HiddenItems_Text_PlayerPutItemInPocket",
       "en_US": [
         "{STRVAR_1 3, 0, 0} put the {STRVAR_1 8, 1, 0}\n",
         "in the {COLOR 2}{STRVAR_1 31, 2, 0}{COLOR 0} Pocket."

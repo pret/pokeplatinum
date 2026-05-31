@@ -148,7 +148,7 @@ void FieldCommManager_StartBattleServer(FieldSystem *fieldSystem, int commType, 
         return;
     }
 
-    CommManager_StartBattleServer(FieldSystem_GetSaveData(fieldSystem), commType, regulation, fieldSystem->battleRegulation, FALSE);
+    CommManager_StartBattleServer(FieldSystem_GetSaveData(fieldSystem), commType, regulation, fieldSystem->battleRegulation, 0);
     FieldCommManager_Init(fieldSystem);
     FieldCommManager_SetTask(FieldCommTask_StartBattleServer, 0);
 }

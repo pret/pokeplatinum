@@ -129,7 +129,6 @@ nitrodwc_dep = dependency('NitroDWC',
 
 libvct_dep = dependency('libvct')
 libsyscall_dep = dependency('libsyscall')
-ppwlobby_dep = dependency('ppwlobby')
 
 ############################################################
 ###                       CONSTS                         ###
@@ -201,6 +200,7 @@ main = executable('main',
         libcrypto_public_includes,
         libgds_public_includes,
         libspl_public_includes,
+        ppw_public_includes,
     ],
     dependencies: [
         nitrosdk_dep,
@@ -208,13 +208,14 @@ main = executable('main',
         nitrowifi_dep,
         nitrodwc_dep,
         libvct_dep,
-        libcrypto_dep,
         libsyscall_dep,
-	    ppwlobby_dep
     ],
     link_with: [
+        libcrypto_ov97,
+        libcrypto_static,
         libgds,
-        libspl
+        libspl,
+        ppwlobby_libs
     ],
     link_args: [
         link_args,

@@ -3,7 +3,7 @@
 #include "constants/contests.h"
 #include "constants/moves.h"
 #include "constants/pokemon.h"
-#include "generated/contest_effects.h"
+#include "generated/move_contest_effects.h"
 
 #include "struct_decls/battle_system.h"
 
@@ -1542,7 +1542,7 @@ static void DrawEmptyAppealPts(BattleParty *battleParty)
 
 static void DrawMoveContestStats(BattleParty *battleParty, enum BattlePartyScreen screen)
 {
-    enum ContestEffects contestEffect;
+    enum MoveContestEffect contestEffect;
     u16 selectedMove;
     s8 appealPts;
 

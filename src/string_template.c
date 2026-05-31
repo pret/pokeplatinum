@@ -522,15 +522,13 @@ void StringTemplate_SetContestBackdropName(StringTemplate *template, u32 idx, u3
     SetArgFromArchive(template, idx, backdrop, TEXT_BANK_CONTEST_BACKDROP_NAMES);
 }
 
-void StringTemplate_SetUnionGroupName(StringTemplate *template, SaveData *saveData, int groupID, int idx, int nameType)
+void StringTemplate_SetUnionGroupName(StringTemplate *template, SaveData *saveData, int groupID, int idx, enum RecordMixedRNGName nameType)
 {
-    int gender, language;
-    String *groupName;
     RecordMixedRNG *group = SaveData_GetRecordMixedRNG(saveData);
 
-    gender = RecordMixedRNG_GetEntryGender(group, groupID);
-    language = RecordMixedRNG_GetEntryLanguage(group, groupID);
-    groupName = String_Init(64, HEAP_ID_FIELD1);
+    int gender = RecordMixedRNG_GetEntryGender(group, groupID);
+    int language = RecordMixedRNG_GetEntryLanguage(group, groupID);
+    String *groupName = String_Init(64, HEAP_ID_FIELD1);
 
     String_CopyChars(groupName, RecordMixedRNG_GetEntryName(group, groupID, nameType));
     StringTemplate_SetString(template, idx, groupName, gender, 1, language);

@@ -189,7 +189,7 @@ Static main
 	Object main.nef.p/src_scrcmd_jubilife_lottery.c.o
 	Object main.nef.p/src_scrcmd_sound.c.o
 	Object main.nef.p/src_scrcmd_trainer.c.o
-	Object main.nef.p/src_unk_02048BD0.c.o
+	Object main.nef.p/src_scrcmd_group_connection.c.o
 	Object main.nef.p/src_scrcmd_tv_broadcast.c.o
 	Object main.nef.p/src_unk_020494DC.c.o
 	Object main.nef.p/src_unk_02049D08.c.o
@@ -695,7 +695,7 @@ Overlay battle
 	Object main.nef.p/src_battle_battle_controller.c.o
 	Object main.nef.p/src_battle_healthbox.c.o
 	Object main.nef.p/src_battle_ov16_02268520.c.o
-	Object main.nef.p/src_battle_battle_cursor.c.o
+	Object main.nef.p/src_battle_battle_subscreen.c.o
 	Object main.nef.p/src_battle_party_gauge.c.o
 	Object main.nef.p/src_battle_ov16_0226DB7C.c.o
 	Object main.nef.p/src_battle_ov16_0226DE44.c.o

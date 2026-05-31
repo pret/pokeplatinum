@@ -24,7 +24,6 @@
 #include "overlay006/ov6_02248050.h"
 #include "overlay006/wild_encounters.h"
 #include "overlay009/ov9_02249960.h"
-#include "overlay009/struct_ov9_0224F6EC_decl.h"
 
 #include "billboard.h"
 #include "encounter.h"
@@ -101,7 +100,7 @@ typedef struct {
     FieldSystem *fieldSystem;
     PlayerAvatar *playerAvatar;
     MapObject *unk_10;
-    UnkStruct_ov9_0224F6EC *unk_14;
+    DistWorldFallingBoulder *unk_14;
 } UnkStruct_ov5_021DFF88;
 
 typedef struct {
@@ -524,7 +523,7 @@ static int ov5_021DFF1C(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, in
 
             if (v2 != 0) {
                 if (PersistedMapFeatures_IsCurrentDynamicMap(fieldSystem, DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) == 1) {
-                    if (ov9_0224F240(mapObj, param2) == 0) {
+                    if (DistWorld_WillBoulderBeAtFallLocation(mapObj, param2) == 0) {
                         return 0;
                     }
                 } else {
@@ -589,8 +588,8 @@ static BOOL ov5_021DFFBC(FieldTask *param0)
         }
 
         if (PersistedMapFeatures_IsCurrentDynamicMap(v0->fieldSystem, DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) == 1) {
-            if (ov9_0224F2B0(v2) == 1) {
-                v0->unk_14 = ov9_0224F2BC(v0->fieldSystem, param0, v2);
+            if (DistWorld_IsBoulderAtFallLocation(v2) == 1) {
+                v0->unk_14 = DistWorldFallingBoulder_New(v0->fieldSystem, param0, v2);
                 v0->unk_00 = 3;
                 break;
             }
@@ -603,7 +602,7 @@ static BOOL ov5_021DFFBC(FieldTask *param0)
         MonRideTaskEnv_Free(v0);
         return 1;
     case 3:
-        if (ov9_0224F6EC(v0->unk_14) == 1) {
+        if (DistWorldFallingBoulder_Tick(v0->unk_14) == 1) {
             sub_020656AC(v2);
             sub_020656AC(v1);
             v0->unk_00 = 2;

@@ -1,9 +1,6 @@
 jsoncnv_env = environment()
 jsoncnv_env.set('PYTHONPATH', meson.project_build_root()) # access to constants geneated by constgen
 
-# Old combined parser + packer scripts
-movedata_py = find_program('movedata.py', native: true)
-
 # New single-file-parser scripts
 area_data_py = find_program('area_data.py', native: true)
 encounter_py = find_program('encounter.py', native: true)

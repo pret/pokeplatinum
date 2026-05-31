@@ -72,7 +72,7 @@ struct BattleSystem {
     u8 unk_A8[4];
     Trainer trainers[MAX_BATTLERS];
     Terrain terrains[2];
-    UnkStruct_ov16_02268A14 *unk_198;
+    BattleSubscreen *btlSubscreen;
     PartyGauge *partyGauges[2];
     FontSpecialCharsContext *specialCharsHP;
     FontSpecialCharsContext *specialCharsLevel;

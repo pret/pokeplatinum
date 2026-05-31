@@ -1,0 +1,28 @@
+{
+    "name": "Recycle",
+    "description": [
+        "The user recycles a\n",
+        "single-use item that\n",
+        "has been used in\n",
+        "battle so it can be\n",
+        "used again."
+    ],
+    "class": "CLASS_STATUS",
+    "type": "TYPE_NORMAL",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 10,
+    "effect": {
+        "type": "BATTLE_EFFECT_RECYCLE",
+        "chance": 0
+    },
+    "range": "RANGE_USER",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_HIDES_HP_GAUGES"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_STEAL_VOLTAGE",
+        "type": "CONTEST_TYPE_SMART"
+    }
+}

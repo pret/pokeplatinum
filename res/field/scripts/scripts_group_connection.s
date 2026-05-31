@@ -2,185 +2,185 @@
 #include "res/text/bank/group_connection.h"
 
 
-    ScriptEntry _0006
+    ScriptEntry GroupConnections_AceTrainerM
     ScriptEntryEnd
 
-_0006:
+GroupConnections_AceTrainerM:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_21D 0, 1, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _0070
-    Call _0102
-    GoToIfEq VAR_RESULT, 1, _003C
-    GoTo _0055
+    DoGroupConnectionAction GC_ACTION_CHECK_IS_ENTRY_VALID, RECORD_MIXED_RNG_PLAYER_OVERRIDE, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, GroupConnection_AskJoinAGroup
+    Call GroupConnection_CheckCanJoinGroup
+    GoToIfEq VAR_RESULT, TRUE, GroupConnection_AskLeaveGroupAndJoinOther
+    GoTo GroupConnection_AskLeaveGroupAndMakeNewOne
 
-_003C:
-    ScrCmd_21D 3, 1, 0
-    ScrCmd_21D 2, 1, 1
-    Message 0
-    GoTo _00A8
+GroupConnection_AskLeaveGroupAndJoinOther:
+    DoGroupConnectionAction GC_ACTION_BUFFER_LEADER_NAME, 1, 0
+    DoGroupConnectionAction GC_ACTION_BUFFER_GROUP_NAME, 1, 1
+    Message GroupConnection_Text_LeaveGroupAndJoinOther
+    GoTo GroupConnection_MenuMakeOrJoinGroup
 
-_0055:
-    ScrCmd_21D 3, 1, 0
-    ScrCmd_21D 2, 1, 1
-    Message 1
-    GoTo _008C
+GroupConnection_AskLeaveGroupAndMakeNewOne:
+    DoGroupConnectionAction GC_ACTION_BUFFER_LEADER_NAME, 1, 0
+    DoGroupConnectionAction GC_ACTION_BUFFER_GROUP_NAME, 1, 1
+    Message GroupConnection_Text_LeaveGroupAndMakeNewOne
+    GoTo GroupConnection_MenuMakeGroup
     End
 
-_0070:
-    Message 2
-_0073:
-    Call _0102
-    GoToIfEq VAR_RESULT, 1, _00A8
-    GoTo _008C
+GroupConnection_AskJoinAGroup:
+    Message GroupConnection_Text_WantToJoinAGroup
+GroupConnection_CheckWhichMenu:
+    Call GroupConnection_CheckCanJoinGroup
+    GoToIfEq VAR_RESULT, TRUE, GroupConnection_MenuMakeOrJoinGroup
+    GoTo GroupConnection_MenuMakeGroup
 
-_008C:
+GroupConnection_MenuMakeGroup:
     InitLocalTextMenu 1, 1, 0, VAR_0x8004
-    AddMenuEntryImm 11, 1
-    AddMenuEntryImm 13, 3
-    AddMenuEntryImm 14, 4
+    AddMenuEntryImm GroupConnection_Text_MakeGroup, 1
+    AddMenuEntryImm GroupConnection_Text_Info, 3
+    AddMenuEntryImm GroupConnection_Text_Exit, 4
     ShowMenu
-    GoTo _00C2
+    GoTo GroupConnection_HandleMenuInput
 
-_00A8:
+GroupConnection_MenuMakeOrJoinGroup:
     InitLocalTextMenu 1, 1, 0, VAR_0x8004
-    AddMenuEntryImm 11, 1
-    AddMenuEntryImm 12, 2
-    AddMenuEntryImm 13, 3
-    AddMenuEntryImm 14, 4
+    AddMenuEntryImm GroupConnection_Text_MakeGroup, 1
+    AddMenuEntryImm GroupConnection_Text_JoinGroup, 2
+    AddMenuEntryImm GroupConnection_Text_Info, 3
+    AddMenuEntryImm GroupConnection_Text_Exit, 4
     ShowMenu
-_00C2:
+GroupConnection_HandleMenuInput:
     SetVar VAR_0x8008, VAR_0x8004
-    GoToIfEq VAR_0x8008, 1, _01CF
-    GoToIfEq VAR_0x8008, 2, _0261
-    GoToIfEq VAR_0x8008, 3, _03DA
-    GoToIfEq VAR_0x8008, 4, _03E5
-    GoTo _03E5
+    GoToIfEq VAR_0x8008, 1, GroupConnection_TryMakeGroup
+    GoToIfEq VAR_0x8008, 2, GroupConnection_JoinWhichGroup
+    GoToIfEq VAR_0x8008, 3, GroupConnection_Info
+    GoToIfEq VAR_0x8008, 4, GroupConnection_ThatsTooBad
+    GoTo GroupConnection_ThatsTooBad
 
-_0102:
-    ScrCmd_21D 0, 0, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _012C
-    ScrCmd_21D 1, 0, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _01BF
-_012C:
-    ScrCmd_21D 0, 2, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _0156
-    ScrCmd_21D 1, 2, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _01BF
-_0156:
-    ScrCmd_21D 0, 3, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _0180
-    ScrCmd_21D 1, 3, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _01BF
-_0180:
-    ScrCmd_21D 0, 4, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _01AA
-    ScrCmd_21D 1, 4, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _01BF
-_01AA:
-    ScrCmd_21D 0, 5, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _01C7
-_01BF:
-    SetVar VAR_RESULT, 1
+GroupConnection_CheckCanJoinGroup:
+    DoGroupConnectionAction GC_ACTION_CHECK_IS_ENTRY_VALID, RECORD_MIXED_RNG_PLAYER_ORIGINAL, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, GroupConnection_CheckCanJoinGroupQueue0
+    DoGroupConnectionAction GC_ACTION_CHECK_IS_ENTRY_OVERRIDE, RECORD_MIXED_RNG_PLAYER_ORIGINAL, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, GroupConnection_CanJoinGroup
+GroupConnection_CheckCanJoinGroupQueue0:
+    DoGroupConnectionAction GC_ACTION_CHECK_IS_ENTRY_VALID, RECORD_MIXED_RNG_QUEUE_0, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, GroupConnection_CheckCanJoinGroupQueue1
+    DoGroupConnectionAction GC_ACTION_CHECK_IS_ENTRY_OVERRIDE, RECORD_MIXED_RNG_QUEUE_0, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, GroupConnection_CanJoinGroup
+GroupConnection_CheckCanJoinGroupQueue1:
+    DoGroupConnectionAction GC_ACTION_CHECK_IS_ENTRY_VALID, RECORD_MIXED_RNG_QUEUE_1, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, GroupConnection_CheckCanJoinGroupQueue2
+    DoGroupConnectionAction GC_ACTION_CHECK_IS_ENTRY_OVERRIDE, RECORD_MIXED_RNG_QUEUE_1, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, GroupConnection_CanJoinGroup
+GroupConnection_CheckCanJoinGroupQueue2:
+    DoGroupConnectionAction GC_ACTION_CHECK_IS_ENTRY_VALID, RECORD_MIXED_RNG_QUEUE_2, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, GroupConnection_CheckCanJoinGroupQueue3
+    DoGroupConnectionAction GC_ACTION_CHECK_IS_ENTRY_OVERRIDE, RECORD_MIXED_RNG_QUEUE_2, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, GroupConnection_CanJoinGroup
+GroupConnection_CheckCanJoinGroupQueue3:
+    DoGroupConnectionAction GC_ACTION_CHECK_IS_ENTRY_VALID, RECORD_MIXED_RNG_QUEUE_3, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, GroupConnection_NoGroupToJoin
+GroupConnection_CanJoinGroup:
+    SetVar VAR_RESULT, TRUE
     Return
 
-_01C7:
-    SetVar VAR_RESULT, 0
+GroupConnection_NoGroupToJoin:
+    SetVar VAR_RESULT, FALSE
     Return
 
-_01CF:
-    ScrCmd_21D 0, 0, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _01F8
-    Message 5
+GroupConnection_TryMakeGroup:
+    DoGroupConnectionAction GC_ACTION_CHECK_IS_ENTRY_VALID, RECORD_MIXED_RNG_PLAYER_ORIGINAL, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, GroupConnection_NameGroup
+    Message GroupConnection_Text_GroupWillBeDisbanded
     ShowYesNoMenu VAR_RESULT
-    GoToIfNe VAR_RESULT, MENU_YES, _03E5
-_01F8:
-    Message 6
+    GoToIfNe VAR_RESULT, MENU_YES, GroupConnection_ThatsTooBad
+GroupConnection_NameGroup:
+    Message GroupConnection_Text_NameYourGroup
     WaitABPress
     FadeScreenOut
     WaitFadeScreen
     CloseMessage
-    ScrCmd_21D 4, VAR_RESULT
+    DoGroupConnectionAction GC_ACTION_OPEN_GROUP_NAMING_SCREEN, VAR_RESULT
     FadeScreenIn
     WaitFadeScreen
-    GoToIfEq VAR_RESULT, 1, _03E5
-    GoToIfEq VAR_RESULT, 2, _0256
-    ScrCmd_21D 6
-    ScrCmd_21D 2, 0, 0
-    ScrCmd_21D 3, 0, 1
-    Message 7
+    GoToIfEq VAR_RESULT, 1, GroupConnection_ThatsTooBad
+    GoToIfEq VAR_RESULT, 2, GroupConnection_AlreadyGroupWithThatName
+    DoGroupConnectionAction GC_ACTION_MAKE_NEW_GROUP
+    DoGroupConnectionAction GC_ACTION_BUFFER_GROUP_NAME, 0, 0
+    DoGroupConnectionAction GC_ACTION_BUFFER_LEADER_NAME, 0, 1
+    Message GroupConnection_Text_ThatsAGreatName
     WaitButton
-    GoTo _03EA
+    GoTo GroupConnection_End
 
-_0256:
-    Message 22
+GroupConnection_AlreadyGroupWithThatName:
+    Message GroupConnection_Text_AlreadyGroupWithThatName
     WaitButton
-    GoTo _03EA
+    GoTo GroupConnection_End
 
-_0261:
-    Message 3
+GroupConnection_JoinWhichGroup:
+    Message GroupConnection_Text_JoinWhichGroup
     InitLocalTextMenu 1, 1, 0, VAR_0x8004
-    ScrCmd_21D 0, 0, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _02A2
-    ScrCmd_21D 1, 0, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _02A2
-    ScrCmd_21D 2, 0, 0
-    AddMenuEntryImm 15, 0
-_02A2:
-    ScrCmd_21D 0, 2, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _02D8
-    ScrCmd_21D 1, 2, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _02D8
-    ScrCmd_21D 2, 2, 1
-    AddMenuEntryImm 16, 2
-_02D8:
-    ScrCmd_21D 0, 3, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _030E
-    ScrCmd_21D 1, 3, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _030E
-    ScrCmd_21D 2, 3, 2
-    AddMenuEntryImm 17, 3
-_030E:
-    ScrCmd_21D 0, 4, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _0344
-    ScrCmd_21D 1, 4, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _0344
-    ScrCmd_21D 2, 4, 3
-    AddMenuEntryImm 18, 4
-_0344:
-    ScrCmd_21D 0, 5, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _037A
-    ScrCmd_21D 1, 5, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _037A
-    ScrCmd_21D 2, 5, 4
-    AddMenuEntryImm 19, 5
-_037A:
-    AddMenuEntryImm 20, 6
+    DoGroupConnectionAction GC_ACTION_CHECK_IS_ENTRY_VALID, RECORD_MIXED_RNG_PLAYER_ORIGINAL, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, GroupConnection_TryAddMenuEntryGroupQueue0
+    DoGroupConnectionAction GC_ACTION_CHECK_IS_ENTRY_OVERRIDE, RECORD_MIXED_RNG_PLAYER_ORIGINAL, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, GroupConnection_TryAddMenuEntryGroupQueue0
+    DoGroupConnectionAction GC_ACTION_BUFFER_GROUP_NAME, 0, 0
+    AddMenuEntryImm GroupConnection_Text_GroupPlayerOriginal, 0
+GroupConnection_TryAddMenuEntryGroupQueue0:
+    DoGroupConnectionAction GC_ACTION_CHECK_IS_ENTRY_VALID, RECORD_MIXED_RNG_QUEUE_0, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, GroupConnection_TryAddMenuEntryGroupQueue1
+    DoGroupConnectionAction GC_ACTION_CHECK_IS_ENTRY_OVERRIDE, RECORD_MIXED_RNG_QUEUE_0, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, GroupConnection_TryAddMenuEntryGroupQueue1
+    DoGroupConnectionAction GC_ACTION_BUFFER_GROUP_NAME, 2, 1
+    AddMenuEntryImm GroupConnection_Text_GroupQueue0, 2
+GroupConnection_TryAddMenuEntryGroupQueue1:
+    DoGroupConnectionAction GC_ACTION_CHECK_IS_ENTRY_VALID, RECORD_MIXED_RNG_QUEUE_1, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, GroupConnection_TryAddMenuEntryGroupQueue2
+    DoGroupConnectionAction GC_ACTION_CHECK_IS_ENTRY_OVERRIDE, RECORD_MIXED_RNG_QUEUE_1, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, GroupConnection_TryAddMenuEntryGroupQueue2
+    DoGroupConnectionAction GC_ACTION_BUFFER_GROUP_NAME, 3, 2
+    AddMenuEntryImm GroupConnection_Text_GroupQueue1, 3
+GroupConnection_TryAddMenuEntryGroupQueue2:
+    DoGroupConnectionAction GC_ACTION_CHECK_IS_ENTRY_VALID, RECORD_MIXED_RNG_QUEUE_2, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, GroupConnection_TryAddMenuEntryGroupQueue3
+    DoGroupConnectionAction GC_ACTION_CHECK_IS_ENTRY_OVERRIDE, RECORD_MIXED_RNG_QUEUE_2, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, GroupConnection_TryAddMenuEntryGroupQueue3
+    DoGroupConnectionAction GC_ACTION_BUFFER_GROUP_NAME, 4, 3
+    AddMenuEntryImm GroupConnection_Text_GroupQueue2, 4
+GroupConnection_TryAddMenuEntryGroupQueue3:
+    DoGroupConnectionAction GC_ACTION_CHECK_IS_ENTRY_VALID, RECORD_MIXED_RNG_QUEUE_3, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, GroupConnection_HandleJoinGroupMenuInput
+    DoGroupConnectionAction GC_ACTION_CHECK_IS_ENTRY_OVERRIDE, RECORD_MIXED_RNG_QUEUE_3, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, GroupConnection_HandleJoinGroupMenuInput
+    DoGroupConnectionAction GC_ACTION_BUFFER_GROUP_NAME, 5, 4
+    AddMenuEntryImm GroupConnection_Text_GroupQueue3, 5
+GroupConnection_HandleJoinGroupMenuInput:
+    AddMenuEntryImm GroupConnection_Text_GroupSelectionExit, 6
     ShowMenu
-    GoToIfEq VAR_0x8004, 6, _03E5
-    GoToIfEq VAR_0x8004, -2, _03E5
-    ScrCmd_21D 2, VAR_0x8004, 0
-    ScrCmd_21D 3, VAR_0x8004, 1
-    Message 8
+    GoToIfEq VAR_0x8004, 6, GroupConnection_ThatsTooBad
+    GoToIfEq VAR_0x8004, -2, GroupConnection_ThatsTooBad
+    DoGroupConnectionAction GC_ACTION_BUFFER_GROUP_NAME, VAR_0x8004, 0
+    DoGroupConnectionAction GC_ACTION_BUFFER_LEADER_NAME, VAR_0x8004, 1
+    Message GroupConnection_Text_JoinThisGroup
     ShowYesNoMenu VAR_RESULT
-    GoToIfNe VAR_RESULT, MENU_YES, _0261
-    ScrCmd_21D 5, VAR_0x8004
+    GoToIfNe VAR_RESULT, MENU_YES, GroupConnection_JoinWhichGroup
+    DoGroupConnectionAction GC_ACTION_JOIN_GROUP, VAR_0x8004
     BufferPlayerName 0
-    ScrCmd_21D 2, VAR_0x8004, 1
-    Message 9
+    DoGroupConnectionAction GC_ACTION_BUFFER_GROUP_NAME, VAR_0x8004, 1
+    Message GroupConnection_Text_NowAMemberOfGroup
     WaitButton
-    GoTo _03EA
+    GoTo GroupConnection_End
 
-_03DA:
-    Message 10
+GroupConnection_Info:
+    Message GroupConnection_Text_GroupInfo
     WaitABPress
-    GoTo _0073
+    GoTo GroupConnection_CheckWhichMenu
 
-_03E5:
-    Message 4
+GroupConnection_ThatsTooBad:
+    Message GroupConnection_Text_ThatsTooBad
     WaitButton
-_03EA:
+GroupConnection_End:
     CloseMessage
     ReleaseAll
     End

@@ -1,0 +1,26 @@
+{
+    "name": "Grudge",
+    "description": [
+        "If the user faints,\n",
+        "the user’s grudge\n",
+        "fully depletes the PP\n",
+        "of the foe’s move\n",
+        "that knocked it out."
+    ],
+    "class": "CLASS_STATUS",
+    "type": "TYPE_GHOST",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 5,
+    "effect": {
+        "type": "BATTLE_EFFECT_REMOVE_ALL_PP_ON_DEFEAT",
+        "chance": 0
+    },
+    "range": "RANGE_USER",
+    "priority": 0,
+    "flags": [],
+    "contest": {
+        "effect": "CONTEST_EFFECT_LOWERS_VOLTAGE",
+        "type": "CONTEST_TYPE_TOUGH"
+    }
+}

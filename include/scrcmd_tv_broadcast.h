@@ -4,7 +4,7 @@
 #include "field_script_context.h"
 
 BOOL ScrCmd_CallTVBroadcast(ScriptContext *param0);
-BOOL ScrCmd_236(ScriptContext *param0);
+BOOL ScrCmd_SaveTVSegmentHiddenItem(ScriptContext *ctx);
 BOOL ScrCmd_2B8(ScriptContext *param0);
 BOOL ScrCmd_SaveTVSegmentPokemonStorageBulletin(ScriptContext *ctx);
 BOOL ScrCmd_SaveTVSegmentHomeAndManorNoFurniture(ScriptContext *ctx);

@@ -32,6 +32,7 @@ trainer_data = custom_target('trainer_data',
         'trpoke.narc',
         'trtbl.narc',
         'trtblofs.narc',
+        'trainer_scripts.h',
         'npc_trainer_messages.json',
         'npc_trainer_names.json',
     ],
@@ -52,7 +53,8 @@ trainer_data = custom_target('trainer_data',
 
 nitrofs_files += trainer_data
 trainer_data_outputs = trainer_data.to_list()
-trainer_text_banks = trainer_data_outputs.slice(4, trainer_data_outputs.length())
+h_headers += trainer_data_outputs.slice(4, 5)
+trainer_text_banks = trainer_data_outputs.slice(5, trainer_data_outputs.length())
 
 
 subdir('classes')

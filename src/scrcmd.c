@@ -156,6 +156,7 @@
 #include "scrcmd_dummy_23F_242.h"
 #include "scrcmd_fossil.h"
 #include "scrcmd_game_corner_prize.h"
+#include "scrcmd_group_connection.h"
 #include "scrcmd_item.h"
 #include "scrcmd_jubilife_lottery.h"
 #include "scrcmd_money.h"
@@ -194,7 +195,6 @@
 #include "unk_020363E8.h"
 #include "unk_02038FFC.h"
 #include "unk_0203D1B8.h"
-#include "unk_02048BD0.h"
 #include "unk_020494DC.h"
 #include "unk_0204AEE8.h"
 #include "unk_0204F04C.h"
@@ -381,7 +381,7 @@ static BOOL ScrCmd_SetDressUpPhotoTitle(ScriptContext *ctx);
 static BOOL ScrCmd_OpenSealCapsuleEditor(ScriptContext *ctx);
 static BOOL ScrCmd_OpenRegionMap(ScriptContext *ctx);
 static BOOL ScrCmd_1D7(ScriptContext *ctx);
-static BOOL ScrCmd_1D8(ScriptContext *ctx);
+static BOOL ScrCmd_CheckCanCookPoffin(ScriptContext *ctx);
 static BOOL ScrCmd_1D9(ScriptContext *ctx);
 static BOOL ScrCmd_OpenPokemonStorage(ScriptContext *ctx);
 static BOOL ScrCmd_0AC(ScriptContext *ctx);
@@ -667,9 +667,9 @@ static BOOL ScrCmd_CheckHasEmptyPoffinCaseSlot(ScriptContext *ctx);
 static BOOL ScrCmd_GetEmptyPoffinCaseSlotCount(ScriptContext *ctx);
 static BOOL ScrCmd_CheckDistributionEvent(ScriptContext *ctx);
 static BOOL ScrCmd_DrawPokemonPreviewFromPartySlot(ScriptContext *ctx);
-static BOOL ScrCmd_28D(ScriptContext *ctx);
-static BOOL ScrCmd_28E(ScriptContext *ctx);
-static BOOL sub_02041FF8(ScriptContext *ctx);
+static BOOL ScrCmd_SetPokemonPreviewAnim(ScriptContext *ctx);
+static BOOL ScrCmd_WaitPokemonPreviewAnim(ScriptContext *ctx);
+static BOOL ScriptContext_WaitForPreviewAnimFinished(ScriptContext *ctx);
 static BOOL ScrCmd_GetLeagueVictories(ScriptContext *ctx);
 static BOOL ScrCmd_CheckShouldShowGhost(ScriptContext *ctx);
 static BOOL ScrCmd_OpenPartyMenuForDaycare(ScriptContext *ctx);
@@ -3029,40 +3029,40 @@ static BOOL ScrCmd_RemovePokemonPreview(ScriptContext *ctx)
     void **dataPtr = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
 
     u8 *previewState = *dataPtr;
-    *previewState = 1;
+    *previewState = PREVIEW_STATE_REMOVE;
 
     return TRUE;
 }
 
-static BOOL ScrCmd_28D(ScriptContext *ctx)
+static BOOL ScrCmd_SetPokemonPreviewAnim(ScriptContext *ctx)
 {
-    void **v1 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
+    void **dataPtr = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
 
-    u8 *v0 = *v1;
-    *v0 = 2;
+    u8 *previewState = *dataPtr;
+    *previewState = PREVIEW_STATE_SET_ANIM;
 
     return TRUE;
 }
 
-static BOOL ScrCmd_28E(ScriptContext *ctx)
+static BOOL ScrCmd_WaitPokemonPreviewAnim(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    u16 v1 = ScriptContext_ReadHalfWord(ctx);
+    u16 unused = ScriptContext_ReadHalfWord(ctx);
 
-    ctx->data[0] = v1;
-    ScriptContext_Pause(ctx, sub_02041FF8);
+    ctx->data[0] = unused;
+    ScriptContext_Pause(ctx, ScriptContext_WaitForPreviewAnimFinished);
 
     return TRUE;
 }
 
-static BOOL sub_02041FF8(ScriptContext *ctx)
+static BOOL ScriptContext_WaitForPreviewAnimFinished(ScriptContext *ctx)
 {
-    void **v1 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
-    u16 *v2 = FieldSystem_GetVarPointer(ctx->fieldSystem, ctx->data[0]);
+    void **dataPtr = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
+    u16 *unused = FieldSystem_GetVarPointer(ctx->fieldSystem, ctx->data[0]);
 
-    u8 *v0 = *v1;
+    u8 *previewState = *dataPtr;
 
-    if (*v0 == 3) {
+    if (*previewState == PREVIEW_STATE_WAIT_ANIM) {
         return FALSE;
     }
 
@@ -3248,21 +3248,21 @@ static BOOL ScrCmd_1D7(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_1D8(ScriptContext *ctx)
+static BOOL ScrCmd_CheckCanCookPoffin(ScriptContext *ctx)
 {
-    u16 *v0 = FieldSystem_GetVarPointer(ctx->fieldSystem, ScriptContext_ReadHalfWord(ctx));
+    u16 *destVar = FieldSystem_GetVarPointer(ctx->fieldSystem, ScriptContext_ReadHalfWord(ctx));
 
     if (!Bag_HasItemsInPocket(SaveData_GetBag(ctx->fieldSystem->saveData), POCKET_BERRIES)) {
-        *v0 = 1;
+        *destVar = 1;
         return FALSE;
     }
 
     if (PoffinCase_CountFilledSlots(SaveData_GetPoffinCase(ctx->fieldSystem->saveData)) >= MAX_POFFINS) {
-        *v0 = 2;
+        *destVar = 2;
         return FALSE;
     }
 
-    *v0 = 0;
+    *destVar = 0;
     return FALSE;
 }
 

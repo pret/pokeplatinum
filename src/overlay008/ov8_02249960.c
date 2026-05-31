@@ -66,17 +66,25 @@
 #include "res/field/props/models/prop_models.naix"
 #include "res/text/bank/eterna_city_gym.h"
 
-#define ETERNA_CLOCK_DIAMETER     13
-#define ETERNA_CLOCK_LEFT_BOUND   5
-#define ETERNA_CLOCK_TOP_BOUND    7
-#define ETERNA_CLOCK_RIGHT_BOUND  (ETERNA_CLOCK_LEFT_BOUND + ETERNA_CLOCK_DIAMETER - 1)
-#define ETERNA_CLOCK_BOTTOM_BOUND (ETERNA_CLOCK_TOP_BOUND + ETERNA_CLOCK_DIAMETER - 1)
-#define ETERNA_CLOCK_CENTER_X     11
-#define ETERNA_CLOCK_CENTER_Z     13
-#define ETERNA_GYM_FOUNTAIN_Z     19
-#define ETERNA_GYM_WIDTH          21
+#define ETERNA_CLOCK_DIAMETER       13
+#define ETERNA_CLOCK_LEFT_BOUND     5
+#define ETERNA_CLOCK_TOP_BOUND      7
+#define ETERNA_CLOCK_RIGHT_BOUND    (ETERNA_CLOCK_LEFT_BOUND + ETERNA_CLOCK_DIAMETER - 1)
+#define ETERNA_CLOCK_BOTTOM_BOUND   (ETERNA_CLOCK_TOP_BOUND + ETERNA_CLOCK_DIAMETER - 1)
+#define ETERNA_CLOCK_CENTER_X       11
+#define ETERNA_CLOCK_CENTER_Z       13
+#define ETERNA_GYM_LEFT_FOUNTAIN_X  2
+#define ETERNA_GYM_RIGHT_FOUNTAIN_X 20
+#define ETERNA_GYM_FOUNTAIN_Z       19
+#define ETERNA_GYM_WIDTH            21
 
 #define ETERNA_CLOCK_NO_HOUR_HAND_JUMP { -1, -1, 2 }
+
+// 0x1559 is close to, but not the closest integer to 1/12 of 0x10000. It is
+// used for the hour-positions of the clock hand expect for 3, 6, 9 and 12
+// o'clock, which use 0x4000, 0x8000, 0xC000, and 0 respectively.
+#define ETERNA_GYM_ONE_HOUR_ROTATION 0x1559
+#define ETERNA_GYM_MAX_ROTATION      0x10000
 
 #define PASTORIA_WATER_HEIGHT_LOW    0
 #define PASTORIA_WATER_HEIGHT_MIDDLE (MAP_OBJECT_TILE_SIZE * 2)
@@ -177,58 +185,58 @@ typedef struct SunyshoreGymCollisionRegion {
     u8 sizeZ;
 } SunyshoreGymCollisionRegion;
 
-typedef struct {
+typedef struct EternaGymClockTime {
     s16 hour;
     s16 minute;
 } EternaGymClockTime;
 
-typedef struct {
+typedef struct EternaClockHourHandJumpTile {
     s16 x;
     s16 z;
     int isJumpAxisNorthSouth;
 } EternaClockHourHandJumpTile;
 
-typedef struct {
-    VecFx32 unk_00;
+typedef struct EternaGymClockHand {
+    VecFx32 rotation;
     u32 dummyModelID;
-    u16 unk_10;
-    MapProp *unk_14;
-} UnkStruct_ov8_0224AF58;
+    u16 propIndex;
+    MapProp *prop;
+} EternaGymClockHand;
 
-typedef struct {
+typedef struct EternaGymSystem {
     fx32 fxHour;
     fx32 fxMinute;
-    int unk_08;
-    UnkStruct_ov8_0224AF58 unk_0C[2];
+    int rotateHourHand;
+    EternaGymClockHand clockHands[2];
     FieldSystem *fieldSystem;
-} UnkStruct_ov8_0224AF00;
+} EternaGymSystem;
 
-typedef struct {
-    int unk_00;
-    int unk_04;
-    int unk_08;
-    int unk_0C;
-    int unk_10;
-    int unk_14;
-    int unk_18;
-    int unk_1C;
-    MapObject *unk_20;
-} UnkStruct_ov8_0224B28C;
+typedef struct EternaGymCameraManager {
+    int unused;
+    int moveXFirst;
+    int destX;
+    int destZ;
+    int startX;
+    int startZ;
+    int movementDirX;
+    int movementDirZ;
+    MapObject *cameraObj;
+} EternaGymCameraManager;
 
-typedef struct {
-    int unk_00;
-    int unk_04;
-    fx32 unk_08;
-    fx32 unk_0C;
+typedef struct EternaGymClockUpdateManager {
+    int state;
+    int stateDelay;
+    fx32 hourDest;
+    fx32 minuteDest;
     FieldSystem *fieldSystem;
     EternaGymClockPersistedFeature *eternaClockPersisted;
-    UnkStruct_ov8_0224AF00 *unk_18;
-    UnkStruct_ov8_0224B28C unk_1C;
-    u32 unk_40;
-    Window *unk_44;
-    MessageLoader *unk_48;
-    String *unk_4C;
-} UnkStruct_ov8_0224B67C;
+    EternaGymSystem *gymSystem;
+    EternaGymCameraManager cameraMan;
+    u32 printerID;
+    Window *window;
+    MessageLoader *msgLoader;
+    String *msgBuf;
+} EternaGymClockUpdateManager;
 
 typedef struct {
     int unk_00;
@@ -2226,19 +2234,19 @@ static const VecFx32 sEternaGymClockHandsCenter[2] = {
     }
 };
 
-static const u16 Unk_ov8_0224C7B8[12] = {
-    0x0,
-    0x1559,
-    0x2AB2,
-    0x4000,
-    0x5564,
-    0x6ABD,
-    0x8000,
-    0x956F,
-    0xAAC8,
-    0xC000,
-    0xD57A,
-    0xEAD3
+static const u16 sEternaGymRotationForHour[12] = {
+    0,
+    ETERNA_GYM_ONE_HOUR_ROTATION,
+    ETERNA_GYM_ONE_HOUR_ROTATION * 2,
+    ETERNA_GYM_MAX_ROTATION / 4,
+    ETERNA_GYM_ONE_HOUR_ROTATION * 4,
+    ETERNA_GYM_ONE_HOUR_ROTATION * 5,
+    ETERNA_GYM_MAX_ROTATION / 2,
+    ETERNA_GYM_ONE_HOUR_ROTATION * 7,
+    ETERNA_GYM_ONE_HOUR_ROTATION * 8,
+    ETERNA_GYM_MAX_ROTATION * 3 / 4,
+    ETERNA_GYM_ONE_HOUR_ROTATION * 10,
+    ETERNA_GYM_ONE_HOUR_ROTATION * 11,
 };
 
 static const EternaGymClockTime sEternaGymClockTimes[ETERNA_CLOCK_MAX] = {
@@ -2368,7 +2376,7 @@ static ALIGN_4 const u8 sEternaGymClockCollision[ETERNA_CLOCK_MAX][ETERNA_CLOCK_
 };
 // clang-format on
 
-static ALIGN_4 const u8 sEternaGymFountainCollision[ETERNA_CLOCK_MAX][21] = {
+static const u8 sEternaGymFountainCollision[ETERNA_CLOCK_MAX][ETERNA_GYM_WIDTH] = {
     [ETERNA_CLOCK_INITIAL] = { 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1 },
     [ETERNA_CLOCK_DEFEATED_FIRST_TRAINER] = { 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1 },
     [ETERNA_CLOCK_DEFEATED_SECOND_TRAINER] = { 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
@@ -2386,86 +2394,85 @@ static u32 GetEternaGymFlowerClockState(FieldSystem *fieldSystem)
     return SystemVars_GetEternaGymFlowerClockState(SaveData_GetVarsFlags(fieldSystem->saveData));
 }
 
-static void ov8_0224AF00(UnkStruct_ov8_0224AF00 *param0, fx32 param1)
+static void EternaGym_IncrementClockTime(EternaGymSystem *gymSystem, fx32 step)
 {
-    param0->fxMinute += param1;
+    gymSystem->fxMinute += step;
 
-    while (param0->fxMinute >= (FX32_ONE * 60)) {
-        param0->fxMinute -= (FX32_ONE * 60);
-        param0->fxHour += (FX32_ONE * 1);
+    while (gymSystem->fxMinute >= FX32_CONST(60)) {
+        gymSystem->fxMinute -= FX32_CONST(60);
+        gymSystem->fxHour += FX32_ONE;
     }
 
-    while (param0->fxMinute < 0) {
-        param0->fxMinute += (FX32_ONE * 60);
-        param0->fxHour += (FX32_ONE * 1);
+    while (gymSystem->fxMinute < 0) {
+        gymSystem->fxMinute += FX32_CONST(60);
+        gymSystem->fxHour += FX32_ONE;
     }
 
-    param0->fxHour %= (FX32_ONE * 12);
+    gymSystem->fxHour %= FX32_CONST(12);
 }
 
-static void ov8_0224AF58(UnkStruct_ov8_0224AF58 *param0)
+static void EternaGym_UpdateHandPropRotation(EternaGymClockHand *clockHand)
 {
-    VecFx32 v0 = param0->unk_00;
-    VecFx32 *v1 = MapProp_GetRotation(param0->unk_14);
+    VecFx32 *prop = MapProp_GetRotation(clockHand->prop);
 
-    v1->x = param0->unk_00.x;
-    v1->y = (0x10000 - param0->unk_00.y) % 0x10000;
-    v1->z = param0->unk_00.z;
+    prop->x = clockHand->rotation.x;
+    prop->y = (ETERNA_GYM_MAX_ROTATION - clockHand->rotation.y) % ETERNA_GYM_MAX_ROTATION;
+    prop->z = clockHand->rotation.z;
 }
 
-static void ov8_0224AF84(UnkStruct_ov8_0224AF00 *param0)
+static void EternaGym_UpdateClockHandPositions(EternaGymSystem *gymSystem)
 {
     int hour, minute;
-    UnkStruct_ov8_0224AF58 *v2 = &param0->unk_0C[1];
-    minute = ((param0->fxMinute) / FX32_ONE);
+    EternaGymClockHand *minuteHand = &gymSystem->clockHands[1];
+    minute = gymSystem->fxMinute / FX32_ONE;
 
-    if ((minute % 15) == 0) {
-        v2->unk_00.y = Unk_ov8_0224C7B8[minute / 5];
+    if (minute % 15 == 0) {
+        minuteHand->rotation.y = sEternaGymRotationForHour[minute / 5];
     } else {
-        v2->unk_00.y = ((minute) * ((((360 / 60) * 0xffff) / 360) + 1));
+        minuteHand->rotation.y = minute * (DEG_TO_IDX(6) + 1);
     }
 
-    v2->unk_00.y += (-0x4000 * 1);
-    v2->unk_00.y %= 0x10000;
+    minuteHand->rotation.y += -F32_DEG_TO_IDX(90);
+    minuteHand->rotation.y %= ETERNA_GYM_MAX_ROTATION;
 
-    ov8_0224AF58(v2);
+    EternaGym_UpdateHandPropRotation(minuteHand);
 
-    hour = ((param0->fxHour) / FX32_ONE);
-    v2 = &param0->unk_0C[0];
-    v2->unk_00.y = Unk_ov8_0224C7B8[hour];
+    hour = gymSystem->fxHour / FX32_ONE;
 
-    if (param0->unk_08 == 1) {
-        v2->unk_00.y += (((5 * ((((360 / 60) * 0xffff) / 360) + 1)) / 60) * (minute));
+    EternaGymClockHand *hourHand = &gymSystem->clockHands[0];
+    hourHand->rotation.y = sEternaGymRotationForHour[hour];
+
+    if (gymSystem->rotateHourHand == TRUE) {
+        hourHand->rotation.y += ((5 * (DEG_TO_IDX(6) + 1)) / 60) * minute;
     }
 
-    v2->unk_00.y += (0x4000 * 2);
-    v2->unk_00.y %= 0x10000;
+    hourHand->rotation.y += F32_DEG_TO_IDX(180);
+    hourHand->rotation.y %= ETERNA_GYM_MAX_ROTATION;
 
-    ov8_0224AF58(v2);
+    EternaGym_UpdateHandPropRotation(hourHand);
 }
 
 void EternaGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
 {
     PersistedMapFeatures *persistedFeatures = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
     EternaGymClockPersistedFeature *eternaClockPersisted = PersistedMapFeatures_GetBuffer(persistedFeatures, DYNAMIC_MAP_FEATURES_ETERNA_GYM);
-    UnkStruct_ov8_0224AF00 *v2 = Heap_Alloc(HEAP_ID_FIELD1, sizeof(UnkStruct_ov8_0224AF00));
+    EternaGymSystem *gymSystem = Heap_Alloc(HEAP_ID_FIELD1, sizeof(EternaGymSystem));
 
-    memset(v2, 0, sizeof(UnkStruct_ov8_0224AF00));
-    fieldSystem->unk_04->dynamicMapFeaturesData = v2;
+    memset(gymSystem, 0, sizeof(EternaGymSystem));
+    fieldSystem->unk_04->dynamicMapFeaturesData = gymSystem;
 
-    v2->fieldSystem = fieldSystem;
+    gymSystem->fieldSystem = fieldSystem;
 
-    UnkStruct_ov8_0224AF58 *v4 = v2->unk_0C;
+    EternaGymClockHand *clockHands = gymSystem->clockHands;
     const u32 *modelId = sEternaGymClockModelIds;
     const VecFx32 *position = sEternaGymClockHandsCenter;
     const VecFx32 rotation = { 0, 0, 0 };
 
-    for (int i = 0; i < 2; i++, v4++, modelId++, position++) {
-        v4->dummyModelID = *modelId;
+    for (int i = 0; i < 2; i++, clockHands++, modelId++, position++) {
+        clockHands->dummyModelID = *modelId;
 
-        v4->unk_10 = MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->areaDataManager, *modelId, position, &rotation, fieldSystem->mapPropAnimMan);
-
-        v4->unk_14 = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, *modelId);
+        clockHands->propIndex = MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->areaDataManager, *modelId, position, &rotation, fieldSystem->mapPropAnimMan);
+        clockHands->prop = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, *modelId);
     }
 
     int v8[3] = { 2, 2, 0 };
@@ -2474,10 +2481,10 @@ void EternaGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
 
     const EternaGymClockTime *clockTime = &sEternaGymClockTimes[eternaClockPersisted->state];
 
-    v2->fxHour = FX32_ONE * clockTime->hour;
-    v2->fxMinute = FX32_ONE * clockTime->minute;
+    gymSystem->fxHour = FX32_ONE * clockTime->hour;
+    gymSystem->fxMinute = FX32_ONE * clockTime->minute;
 
-    ov8_0224AF84(v2);
+    EternaGym_UpdateClockHandPositions(gymSystem);
 
     if (eternaClockPersisted->state < ETERNA_CLOCK_DEFEATED_THIRD_TRAINER) {
         ov5_021F4098(fieldSystem, v8[eternaClockPersisted->state]);
@@ -2486,9 +2493,8 @@ void EternaGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
 
 void EternaGym_DynamicMapFeaturesFree(FieldSystem *fieldSystem)
 {
-    UnkStruct_ov8_0224AF00 *v0 = fieldSystem->unk_04->dynamicMapFeaturesData;
-
-    Heap_Free(v0);
+    EternaGymSystem *gymSystem = fieldSystem->unk_04->dynamicMapFeaturesData;
+    Heap_Free(gymSystem);
     fieldSystem->unk_04->dynamicMapFeaturesData = NULL;
 }
 
@@ -2519,309 +2525,298 @@ BOOL EternaGym_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const 
     return isColliding;
 }
 
-static void ov8_0224B18C(FieldSystem *fieldSystem, UnkStruct_ov8_0224B28C *param1, int param2, int param3)
+static void EternaGym_SetupCameraMoveAwayFromPlayer(FieldSystem *fieldSystem, EternaGymCameraManager *cameraMan, int destX, int destZ)
 {
-    int v0, v1, v2, v3;
-    const VecFx32 *v4;
+    int playerX = Player_GetXPos(fieldSystem->playerAvatar);
+    int playerZ = Player_GetZPos(fieldSystem->playerAvatar);
 
-    v0 = Player_GetXPos(fieldSystem->playerAvatar);
-    v1 = Player_GetZPos(fieldSystem->playerAvatar);
+    cameraMan->startX = playerX;
+    cameraMan->startZ = playerZ;
+    cameraMan->destX = destX;
+    cameraMan->destZ = destZ;
 
-    param1->unk_10 = v0;
-    param1->unk_14 = v1;
-    param1->unk_08 = param2;
-    param1->unk_0C = param3;
-
-    if ((param1->unk_08 - param1->unk_10) < 0) {
-        param1->unk_18 = 2;
+    if (cameraMan->destX - cameraMan->startX < 0) {
+        cameraMan->movementDirX = DIR_WEST;
     } else {
-        param1->unk_18 = 3;
+        cameraMan->movementDirX = DIR_EAST;
     }
 
-    if ((param1->unk_0C - param1->unk_14) < 0) {
-        param1->unk_1C = 0;
+    if (cameraMan->destZ - cameraMan->startZ < 0) {
+        cameraMan->movementDirZ = DIR_NORTH;
     } else {
-        param1->unk_1C = 1;
+        cameraMan->movementDirZ = DIR_SOUTH;
     }
 
-    v2 = param1->unk_08 - param1->unk_10;
+    int distX = cameraMan->destX - cameraMan->startX;
 
-    if (v2 < 0) {
-        v2 = -v2;
+    if (distX < 0) {
+        distX = -distX;
     }
 
-    v3 = param1->unk_0C - param1->unk_14;
+    int distZ = cameraMan->destZ - cameraMan->startZ;
 
-    if (v3 < 0) {
-        v3 = -v3;
+    if (distZ < 0) {
+        distZ = -distZ;
     }
 
-    if (v2 < v3) {
-        param1->unk_04 = 1;
+    if (distX < distZ) {
+        cameraMan->moveXFirst = TRUE;
     }
 
-    param1->unk_20 = MapObjectMan_AddMapObject(fieldSystem->mapObjMan, v0, v1, 0, 0x2000, 0x0, fieldSystem->location->mapId);
+    cameraMan->cameraObj = MapObjectMan_AddMapObject(fieldSystem->mapObjMan, playerX, playerZ, 0, OBJ_EVENT_GFX_INVISIBLE, 0x0, fieldSystem->location->mapId);
 
-    MapObject_RecalculateObjectHeight(param1->unk_20);
-    MapObject_SetHidden(param1->unk_20, 1);
-    sub_02062D80(param1->unk_20, 0);
-    MapObject_SetHeightCalculationDisabled(param1->unk_20, TRUE);
+    MapObject_RecalculateObjectHeight(cameraMan->cameraObj);
+    MapObject_SetHidden(cameraMan->cameraObj, TRUE);
+    sub_02062D80(cameraMan->cameraObj, FALSE);
+    MapObject_SetHeightCalculationDisabled(cameraMan->cameraObj, TRUE);
 
-    v4 = MapObject_GetPos(param1->unk_20);
-
-    LandDataManager_TrackTarget(v4, fieldSystem->landDataMan);
-    Camera_TrackTarget(v4, fieldSystem->camera);
+    const VecFx32 *cameraPos = MapObject_GetPos(cameraMan->cameraObj);
+    LandDataManager_TrackTarget(cameraPos, fieldSystem->landDataMan);
+    Camera_TrackTarget(cameraPos, fieldSystem->camera);
 }
 
-static void ov8_0224B240(UnkStruct_ov8_0224B28C *param0, int param1, int param2)
+static void EternaGym_SetupCameraMoveFromLastPosition(EternaGymCameraManager *cameraMan, int destX, int destZ)
 {
-    int v0, v1, v2, v3;
-    const VecFx32 *v4;
+    cameraMan->startX = cameraMan->destX;
+    cameraMan->startZ = cameraMan->destZ;
+    cameraMan->destX = destX;
+    cameraMan->destZ = destZ;
 
-    param0->unk_10 = param0->unk_08;
-    param0->unk_14 = param0->unk_0C;
-    param0->unk_08 = param1;
-    param0->unk_0C = param2;
-
-    if ((param0->unk_08 - param0->unk_10) < 0) {
-        param0->unk_18 = 2;
+    if (cameraMan->destX - cameraMan->startX < 0) {
+        cameraMan->movementDirX = DIR_WEST;
     } else {
-        param0->unk_18 = 3;
+        cameraMan->movementDirX = DIR_EAST;
     }
 
-    if ((param0->unk_0C - param0->unk_14) < 0) {
-        param0->unk_1C = 0;
+    if (cameraMan->destZ - cameraMan->startZ < 0) {
+        cameraMan->movementDirZ = DIR_NORTH;
     } else {
-        param0->unk_1C = 1;
+        cameraMan->movementDirZ = DIR_SOUTH;
     }
 
-    v2 = param0->unk_08 - param0->unk_10;
+    int distX = cameraMan->destX - cameraMan->startX;
 
-    if (v2 < 0) {
-        v2 = -v2;
+    if (distX < 0) {
+        distX = -distX;
     }
 
-    v3 = param0->unk_0C - param0->unk_14;
+    int distZ = cameraMan->destZ - cameraMan->startZ;
 
-    if (v3 < 0) {
-        v3 = -v3;
+    if (distZ < 0) {
+        distZ = -distZ;
     }
 
-    if (v2 < v3) {
-        param0->unk_04 = 1;
+    if (distX < distZ) {
+        cameraMan->moveXFirst = TRUE;
     }
 }
 
-static void ov8_0224B28C(UnkStruct_ov8_0224B28C *param0)
+static void EternaGym_SetupCameraMoveReverseOfLast(EternaGymCameraManager *cameraMan)
 {
-    param0->unk_04 ^= 1;
-    param0->unk_08 = param0->unk_10;
-    param0->unk_0C = param0->unk_14;
-    param0->unk_18 = Direction_GetOpposite(param0->unk_18);
-    param0->unk_1C = Direction_GetOpposite(param0->unk_1C);
+    cameraMan->moveXFirst ^= 1;
+    cameraMan->destX = cameraMan->startX;
+    cameraMan->destZ = cameraMan->startZ;
+    cameraMan->movementDirX = Direction_GetOpposite(cameraMan->movementDirX);
+    cameraMan->movementDirZ = Direction_GetOpposite(cameraMan->movementDirZ);
 }
 
-static void ov8_0224B2B4(UnkStruct_ov8_0224B28C *param0, int param1, int param2, int param3, int param4, int param5)
+static void EternaGym_SetupCameraMoveToNewPosition(EternaGymCameraManager *cameraMan, int moveXFirst, int destX, int destZ, int movementDirX, int movementDirZ)
 {
-    param0->unk_04 = param1;
-    param0->unk_08 = param2;
-    param0->unk_0C = param3;
-    param0->unk_18 = param4;
-    param0->unk_1C = param5;
+    cameraMan->moveXFirst = moveXFirst;
+    cameraMan->destX = destX;
+    cameraMan->destZ = destZ;
+    cameraMan->movementDirX = movementDirX;
+    cameraMan->movementDirZ = movementDirZ;
 }
 
-static void ov8_0224B2C4(FieldSystem *fieldSystem, UnkStruct_ov8_0224B28C *param1)
+static void EternaGym_FreeCameraObject(FieldSystem *fieldSystem, EternaGymCameraManager *cameraMan)
 {
-    const VecFx32 *v0 = PlayerAvatar_PosVector(fieldSystem->playerAvatar);
+    const VecFx32 *playerPos = PlayerAvatar_PosVector(fieldSystem->playerAvatar);
 
-    LandDataManager_TrackTarget(v0, fieldSystem->landDataMan);
-    Camera_TrackTarget(v0, fieldSystem->camera);
-    MapObject_Delete(param1->unk_20);
+    LandDataManager_TrackTarget(playerPos, fieldSystem->landDataMan);
+    Camera_TrackTarget(playerPos, fieldSystem->camera);
+    MapObject_Delete(cameraMan->cameraObj);
 }
 
-static BOOL ov8_0224B2E8(UnkStruct_ov8_0224B28C *param0)
+static BOOL EternaGym_MoveCamera(EternaGymCameraManager *cameraMan)
 {
-    MapObject *v0 = param0->unk_20;
+    MapObject *cameraObj = cameraMan->cameraObj;
 
-    if (LocalMapObj_IsAnimationSet(param0->unk_20) == 1) {
-        int v1 = 0x9a;
-        int v2 = MapObject_GetX(v0);
-        int v3 = MapObject_GetZ(v0);
+    if (LocalMapObj_IsAnimationSet(cameraMan->cameraObj) == TRUE) {
+        int movement = MAX_MOVEMENT_ACTION;
+        int cameraX = MapObject_GetX(cameraObj);
+        int cameraZ = MapObject_GetZ(cameraObj);
 
-        if ((v2 == param0->unk_08) && (v3 == param0->unk_0C)) {
-            return 1;
+        if (cameraX == cameraMan->destX && cameraZ == cameraMan->destZ) {
+            return TRUE;
         }
 
-        if (param0->unk_04) {
-            if (v2 != param0->unk_08) {
-                v1 = MovementAction_TurnActionTowardsDir(param0->unk_18, MOVEMENT_ACTION_WALK_NORMAL_NORTH);
-            } else if (v3 != param0->unk_0C) {
-                v1 = MovementAction_TurnActionTowardsDir(param0->unk_1C, MOVEMENT_ACTION_WALK_NORMAL_NORTH);
+        if (cameraMan->moveXFirst) {
+            if (cameraX != cameraMan->destX) {
+                movement = MovementAction_TurnActionTowardsDir(cameraMan->movementDirX, MOVEMENT_ACTION_WALK_NORMAL_NORTH);
+            } else if (cameraZ != cameraMan->destZ) {
+                movement = MovementAction_TurnActionTowardsDir(cameraMan->movementDirZ, MOVEMENT_ACTION_WALK_NORMAL_NORTH);
             }
         } else {
-            if (v3 != param0->unk_0C) {
-                v1 = MovementAction_TurnActionTowardsDir(param0->unk_1C, MOVEMENT_ACTION_WALK_NORMAL_NORTH);
-            } else if (v2 != param0->unk_08) {
-                v1 = MovementAction_TurnActionTowardsDir(param0->unk_18, MOVEMENT_ACTION_WALK_NORMAL_NORTH);
+            if (cameraZ != cameraMan->destZ) {
+                movement = MovementAction_TurnActionTowardsDir(cameraMan->movementDirZ, MOVEMENT_ACTION_WALK_NORMAL_NORTH);
+            } else if (cameraX != cameraMan->destX) {
+                movement = MovementAction_TurnActionTowardsDir(cameraMan->movementDirX, MOVEMENT_ACTION_WALK_NORMAL_NORTH);
             }
         }
 
-        if (v1 != 0x9a) {
-            LocalMapObj_SetAnimationCode(v0, v1);
+        if (movement != MAX_MOVEMENT_ACTION) {
+            LocalMapObj_SetAnimationCode(cameraObj, movement);
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov8_0224B370(UnkStruct_ov8_0224AF00 *param0, const fx32 param1, const fx32 param2)
+static BOOL EternaGym_UpdateClockHandTimes(EternaGymSystem *gymSystem, const fx32 destHourPos, const fx32 destMinutePos)
 {
-    BOOL v0 = 1;
-    fx32 v1 = param0->fxHour;
-    fx32 v2 = param0->fxMinute;
+    BOOL isMovementFinished = TRUE;
+    fx32 oldHourPos = gymSystem->fxHour;
+    fx32 oldMinutePos = gymSystem->fxMinute;
 
-    if ((v1 != param1) || (v2 != param2)) {
-        fx32 v3, v4;
+    if (oldHourPos != destHourPos || oldMinutePos != destMinutePos) {
+        EternaGym_IncrementClockTime(gymSystem, FX32_CONST(2));
 
-        ov8_0224AF00(param0, FX32_ONE * 2);
+        fx32 newHourPos = gymSystem->fxHour;
+        fx32 newMinutePos = gymSystem->fxMinute;
 
-        v3 = param0->fxHour;
-        v4 = param0->fxMinute;
+        if (newHourPos == destHourPos) {
+            if (oldMinutePos > newMinutePos) {
+                fx32 adjustedNewMinutePos = newMinutePos + FX32_CONST(60);
+                fx32 adjustedDestMinutePos = destMinutePos + FX32_CONST(60);
 
-        if (v3 == param1) {
-            if (v2 > v4) {
-                fx32 v5 = v4 + (FX32_ONE * 60);
-                fx32 v6 = param2 + (FX32_ONE * 60);
-
-                if ((v2 < v6) && (v5 > v6)) {
-                    v4 = param2;
+                if (oldMinutePos < adjustedDestMinutePos && adjustedNewMinutePos > adjustedDestMinutePos) {
+                    newMinutePos = destMinutePos;
                 }
-            } else if ((v2 < param2) && (v4 > param2)) {
-                v4 = param2;
+            } else if (oldMinutePos < destMinutePos && newMinutePos > destMinutePos) {
+                newMinutePos = destMinutePos;
             }
         }
 
-        param0->fxHour = v3;
-        param0->fxMinute = v4;
+        gymSystem->fxHour = newHourPos;
+        gymSystem->fxMinute = newMinutePos;
     }
 
-    if ((param0->fxHour != param1) || (param0->fxMinute != param2)) {
-        v0 = 0;
+    if (gymSystem->fxHour != destHourPos || gymSystem->fxMinute != destMinutePos) {
+        isMovementFinished = FALSE;
     }
 
-    return v0;
+    return isMovementFinished;
 }
 
-static BOOL ov8_0224B3D4(FieldTask *param0)
+static BOOL FieldTask_EternaGym_AdvanceClockState(FieldTask *task)
 {
-    BOOL v0;
-    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
-    UnkStruct_ov8_0224B67C *v2 = FieldTask_GetEnv(param0);
-    EternaGymClockPersistedFeature *eternaClockPersisted = v2->eternaClockPersisted;
-    UnkStruct_ov8_0224AF00 *v4 = v2->unk_18;
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
+    EternaGymClockUpdateManager *clockMan = FieldTask_GetEnv(task);
+    EternaGymClockPersistedFeature *eternaClockPersisted = clockMan->eternaClockPersisted;
+    EternaGymSystem *gymSystem = clockMan->gymSystem;
 
-    switch (v2->unk_00) {
+    switch (clockMan->state) {
     case 0:
-        ov8_0224B18C(
-            fieldSystem, &v2->unk_1C, 11, 13);
-        v2->unk_00++;
+        EternaGym_SetupCameraMoveAwayFromPlayer(fieldSystem, &clockMan->cameraMan, ETERNA_CLOCK_CENTER_X, ETERNA_CLOCK_CENTER_Z);
+        clockMan->state++;
     case 1:
-        if (ov8_0224B2E8(&v2->unk_1C) == 1) {
-            v2->unk_00++;
+        if (EternaGym_MoveCamera(&clockMan->cameraMan) == TRUE) {
+            clockMan->state++;
         }
         break;
     case 2:
-        v2->unk_04++;
+        clockMan->stateDelay++;
 
-        if (v2->unk_04 < 8) {
+        if (clockMan->stateDelay < 8) {
             break;
         }
 
-        v2->unk_04 = 0;
+        clockMan->stateDelay = 0;
         Sound_PlayEffect(SEQ_SE_PL_TOKEI21);
-        v2->unk_00++;
+        clockMan->state++;
     case 3:
         if (eternaClockPersisted->state == ETERNA_CLOCK_DEFEATED_GYM_LEADER) {
-            if ((v4->fxHour == v2->unk_08) && (v4->fxMinute > v2->unk_0C)) {
-                v4->fxHour = (FX32_ONE * 11);
+            if (gymSystem->fxHour == clockMan->hourDest && gymSystem->fxMinute > clockMan->minuteDest) {
+                gymSystem->fxHour = FX32_CONST(11);
             }
         }
 
-        v0 = ov8_0224B370(v4, v2->unk_08, v2->unk_0C);
+        BOOL isMovementFinished = EternaGym_UpdateClockHandTimes(gymSystem, clockMan->hourDest, clockMan->minuteDest);
 
         if (eternaClockPersisted->state == ETERNA_CLOCK_DEFEATED_GYM_LEADER) {
             const EternaGymClockTime *clockTime = &sEternaGymClockTimes[eternaClockPersisted->state];
 
-            v4->fxHour = (FX32_ONE * (clockTime->hour));
+            gymSystem->fxHour = FX32_ONE * clockTime->hour;
         }
 
-        if (v4->fxHour == v2->unk_08) {
-            if ((v4->fxMinute <= v2->unk_0C) || (eternaClockPersisted->state == ETERNA_CLOCK_DEFEATED_GYM_LEADER)) {
-                v4->unk_08 = 0;
+        if (gymSystem->fxHour == clockMan->hourDest) {
+            if (gymSystem->fxMinute <= clockMan->minuteDest || eternaClockPersisted->state == ETERNA_CLOCK_DEFEATED_GYM_LEADER) {
+                gymSystem->rotateHourHand = FALSE;
             }
         } else {
-            v4->unk_08 = 1;
+            gymSystem->rotateHourHand = TRUE;
         }
 
-        ov8_0224AF84(v4);
+        EternaGym_UpdateClockHandPositions(gymSystem);
 
-        if (v0 == 1) {
+        if (isMovementFinished == TRUE) {
             Sound_StopEffect(SEQ_SE_PL_TOKEI21, 0);
             Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2);
-            v2->unk_00++;
+            clockMan->state++;
         }
         break;
     case 4:
-        v2->unk_04++;
+        clockMan->stateDelay++;
 
-        if (v2->unk_04 < 8) {
+        if (clockMan->stateDelay < 8) {
             break;
         }
 
-        v2->unk_04 = 0;
+        clockMan->stateDelay = 0;
 
-        if ((eternaClockPersisted->state == ETERNA_CLOCK_DEFEATED_SECOND_TRAINER) || (eternaClockPersisted->state == ETERNA_CLOCK_DEFEATED_THIRD_TRAINER)) {
-            ov8_0224B2B4(&v2->unk_1C, 0, 11, 19, 2, 1);
-            v2->unk_00 = 7;
+        if (eternaClockPersisted->state == ETERNA_CLOCK_DEFEATED_SECOND_TRAINER || eternaClockPersisted->state == ETERNA_CLOCK_DEFEATED_THIRD_TRAINER) {
+            EternaGym_SetupCameraMoveToNewPosition(&clockMan->cameraMan, FALSE, ETERNA_CLOCK_CENTER_X, ETERNA_GYM_FOUNTAIN_Z, DIR_WEST, DIR_SOUTH);
+            clockMan->state = 7;
         } else {
-            ov8_0224B28C(&v2->unk_1C);
-            v2->unk_00++;
+            EternaGym_SetupCameraMoveReverseOfLast(&clockMan->cameraMan);
+            clockMan->state++;
         }
         break;
     case 5:
-        if (ov8_0224B2E8(&v2->unk_1C) == 1) {
-            v2->unk_00++;
+        if (EternaGym_MoveCamera(&clockMan->cameraMan) == TRUE) {
+            clockMan->state++;
         }
         break;
     case 6:
-        ov8_0224B2C4(fieldSystem, &v2->unk_1C);
-        Heap_Free(v2);
-        return 1;
+        EternaGym_FreeCameraObject(fieldSystem, &clockMan->cameraMan);
+        Heap_Free(clockMan);
+        return TRUE;
     case 7:
-        if (ov8_0224B2E8(&v2->unk_1C) == 1) {
-            int v6 = 20, v7 = 19, v8 = 3;
+        if (EternaGym_MoveCamera(&clockMan->cameraMan) == TRUE) {
+            int destX = ETERNA_GYM_RIGHT_FOUNTAIN_X, destZ = ETERNA_GYM_FOUNTAIN_Z, movementDirX = DIR_EAST;
 
             if (eternaClockPersisted->state == ETERNA_CLOCK_DEFEATED_THIRD_TRAINER) {
-                v6 = 2;
-                v8 = 2;
+                destX = ETERNA_GYM_LEFT_FOUNTAIN_X;
+                movementDirX = DIR_WEST;
             }
 
-            ov8_0224B2B4(&v2->unk_1C, 1, v6, v7, v8, 1);
-            v2->unk_00++;
+            EternaGym_SetupCameraMoveToNewPosition(&clockMan->cameraMan, TRUE, destX, destZ, movementDirX, DIR_SOUTH);
+            clockMan->state++;
         } else {
             break;
         }
 
     case 8:
-        if (ov8_0224B2E8(&v2->unk_1C) == 1) {
-            v2->unk_00++;
+        if (EternaGym_MoveCamera(&clockMan->cameraMan) == TRUE) {
+            clockMan->state++;
         }
         break;
     case 9:
-        v2->unk_04++;
+        clockMan->stateDelay++;
 
-        if (v2->unk_04 >= 4) {
-            v2->unk_04 = 0;
+        if (clockMan->stateDelay >= 4) {
+            clockMan->stateDelay = 0;
 
             if (eternaClockPersisted->state == ETERNA_CLOCK_DEFEATED_SECOND_TRAINER) {
                 ov5_021F416C(fieldSystem, 1);
@@ -2830,49 +2825,49 @@ static BOOL ov8_0224B3D4(FieldTask *param0)
             }
 
             Sound_PlayEffect(SEQ_SE_DP_T_AME);
-            v2->unk_00++;
+            clockMan->state++;
         }
         break;
     case 10:
-        v2->unk_04++;
+        clockMan->stateDelay++;
 
-        if (v2->unk_04 >= 60) {
-            v2->unk_04 = 0;
-            v2->unk_00++;
+        if (clockMan->stateDelay >= 60) {
+            clockMan->stateDelay = 0;
+            clockMan->state++;
 
-            Sound_StopEffect(1593, 0);
-            MessageLoader_GetString(v2->unk_48, EternaGym_Text_FountainWaterLevelDropped, v2->unk_4C);
-            FieldMessage_AddWindow(fieldSystem->bgConfig, v2->unk_44, 3);
-            Window_EraseMessageBox(v2->unk_44, 0);
-            FieldMessage_DrawWindow(v2->unk_44, SaveData_GetOptions(fieldSystem->saveData));
+            Sound_StopEffect(SEQ_SE_DP_T_AME, 0);
+            MessageLoader_GetString(clockMan->msgLoader, EternaGym_Text_FountainWaterLevelDropped, clockMan->msgBuf);
+            FieldMessage_AddWindow(fieldSystem->bgConfig, clockMan->window, BG_LAYER_MAIN_3);
+            Window_EraseMessageBox(clockMan->window, FALSE);
+            FieldMessage_DrawWindow(clockMan->window, SaveData_GetOptions(fieldSystem->saveData));
 
-            v2->unk_40 = FieldMessage_Print(v2->unk_44, v2->unk_4C, SaveData_GetOptions(fieldSystem->saveData), 1);
+            clockMan->printerID = FieldMessage_Print(clockMan->window, clockMan->msgBuf, SaveData_GetOptions(fieldSystem->saveData), TRUE);
         }
         break;
     case 11:
-        if (FieldMessage_FinishedPrinting(v2->unk_40) != 1) {
+        if (FieldMessage_FinishedPrinting(clockMan->printerID) != TRUE) {
             break;
         }
 
-        v2->unk_00++;
+        clockMan->state++;
     case 12:
-        if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-            int v9 = Player_GetXPos(fieldSystem->playerAvatar);
-            int v10 = Player_GetZPos(fieldSystem->playerAvatar);
+        if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
+            int playerX = Player_GetXPos(fieldSystem->playerAvatar);
+            int playerY = Player_GetZPos(fieldSystem->playerAvatar);
 
-            ov8_0224B240(&v2->unk_1C, v9, v10);
-            Window_EraseMessageBox(v2->unk_44, 0);
-            Window_Remove(v2->unk_44);
-            v2->unk_04 = 0;
-            v2->unk_00 = 5;
+            EternaGym_SetupCameraMoveFromLastPosition(&clockMan->cameraMan, playerX, playerY);
+            Window_EraseMessageBox(clockMan->window, FALSE);
+            Window_Remove(clockMan->window);
+            clockMan->stateDelay = 0;
+            clockMan->state = 5;
             break;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
-BOOL EternaGym_AdvanceClockState(FieldSystem *fieldSystem, Window *param1, MessageLoader *param2, String *param3)
+BOOL EternaGym_AdvanceClockState(FieldSystem *fieldSystem, Window *window, MessageLoader *msgLoader, String *msgBuf)
 {
     PersistedMapFeatures *persistedFeatures = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
     EternaGymClockPersistedFeature *eternaClockPersisted = PersistedMapFeatures_GetBuffer(persistedFeatures, DYNAMIC_MAP_FEATURES_ETERNA_GYM);
@@ -2884,23 +2879,22 @@ BOOL EternaGym_AdvanceClockState(FieldSystem *fieldSystem, Window *param1, Messa
     eternaClockPersisted->state++;
     SetEternaGymFlowerClockState(fieldSystem, eternaClockPersisted->state);
 
-    UnkStruct_ov8_0224B67C *v2;
-    UnkStruct_ov8_0224AF00 *v3 = fieldSystem->unk_04->dynamicMapFeaturesData;
-    const EternaGymClockTime *clockTime = &sEternaGymClockTimes[eternaClockPersisted->state];
+    EternaGymSystem *gymSystem = fieldSystem->unk_04->dynamicMapFeaturesData;
+    const EternaGymClockTime *newClockTime = &sEternaGymClockTimes[eternaClockPersisted->state];
 
-    v2 = Heap_Alloc(HEAP_ID_FIELD2, sizeof(UnkStruct_ov8_0224B67C));
-    memset(v2, 0, sizeof(UnkStruct_ov8_0224B67C));
+    EternaGymClockUpdateManager *clockMan = Heap_Alloc(HEAP_ID_FIELD2, sizeof(EternaGymClockUpdateManager));
+    memset(clockMan, 0, sizeof(EternaGymClockUpdateManager));
 
-    v2->unk_44 = param1;
-    v2->unk_48 = param2;
-    v2->unk_4C = param3;
-    v2->unk_08 = FX32_ONE * clockTime->hour;
-    v2->unk_0C = FX32_ONE * clockTime->minute;
-    v2->fieldSystem = fieldSystem;
-    v2->eternaClockPersisted = eternaClockPersisted;
-    v2->unk_18 = v3;
+    clockMan->window = window;
+    clockMan->msgLoader = msgLoader;
+    clockMan->msgBuf = msgBuf;
+    clockMan->hourDest = FX32_ONE * newClockTime->hour;
+    clockMan->minuteDest = FX32_ONE * newClockTime->minute;
+    clockMan->fieldSystem = fieldSystem;
+    clockMan->eternaClockPersisted = eternaClockPersisted;
+    clockMan->gymSystem = gymSystem;
 
-    FieldTask_InitCall(fieldSystem->task, ov8_0224B3D4, v2);
+    FieldTask_InitCall(fieldSystem->task, FieldTask_EternaGym_AdvanceClockState, clockMan);
 
     return TRUE;
 }
