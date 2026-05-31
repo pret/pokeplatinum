@@ -78,7 +78,7 @@ FieldCommunicationManager *FieldCommManager_Get(void)
 /**
  * @brief Deadstripped function. Does nothing when called.
  */
-static void FieldCommManager_deadstripped_02059658(void)
+static void FieldCommManager_Dummy(void)
 {
     return;
 }
@@ -104,7 +104,7 @@ void FieldCommManager_Init(FieldSystem *fieldSystem)
     sFieldCommMan->fieldSystem = fieldSystem;
     sFieldCommMan->party = NULL;
 
-    FieldCommManager_deadstripped_02059658();
+    FieldCommManager_Dummy();
     CommSys_Seed(&sFieldCommMan->rand);
 }
 
@@ -304,7 +304,7 @@ static void FieldCommTask_StartBattleServer(void)
 }
 
 /**
- * @brief Inidicator task that the Field Communication Manager initialized as a server is waiting for battles. Does nothing when called.
+ * @brief Indicator task that the Field Communication Manager initialized as a server is waiting for battles. Does nothing when called.
  */
 static void FieldCommTask_WaitBattleServer(void)
 {
@@ -325,7 +325,7 @@ static void FieldCommTask_StartBattleClient(void)
 }
 
 /**
- * @brief Inidicator task that the Field Communication Manager initialized as a client is scanning for battles. Does nothing when called.
+ * @brief Indicator task that the Field Communication Manager initialized as a client is scanning for battles. Does nothing when called.
  */
 static void FieldCommTask_ScanBattleClient(void)
 {
@@ -355,7 +355,7 @@ static void FieldCommTask_SendPlayerInfoClient(void)
 }
 
 /**
- * @brief Inidicator task that the Field Communication Manager initialized as a client is waiting for battles. Does nothing when called.
+ * @brief Indicator task that the Field Communication Manager initialized as a client is waiting for battles. Does nothing when called.
  */
 static void FieldCommTask_WaitBattleClient(void)
 {
@@ -367,10 +367,8 @@ static void FieldCommTask_WaitBattleClient(void)
  */
 static void FieldCommTask_ReturnToBattleRoom(void)
 {
-    void *commPlayerData;
-
     if (CommTiming_IsSyncState(SYNC_CHANGE_TO_BATTLE_ROOM)) {
-        commPlayerData = Heap_Alloc(HEAP_ID_COMMUNICATION, CommPlayer_Size());
+        void *commPlayerData = Heap_Alloc(HEAP_ID_COMMUNICATION, CommPlayer_Size());
         CommPlayerMan_Init(commPlayerData, sFieldCommMan->fieldSystem, 0);
         sub_02059524();
         CommSys_DisableSendMovementData();
@@ -450,10 +448,8 @@ static void FieldCommTask_ReturnToBattleRoom_WaitForScreenFade(void)
  */
 static void FieldCommTask_EnterBattleRoom(void)
 {
-    void *commPlayerData;
-
     if (CommTiming_IsSyncState(SYNC_CHANGE_TO_BATTLE_ROOM)) {
-        commPlayerData = Heap_Alloc(HEAP_ID_COMMUNICATION, CommPlayer_Size());
+        void *commPlayerData = Heap_Alloc(HEAP_ID_COMMUNICATION, CommPlayer_Size());
         CommPlayerMan_Init(commPlayerData, sFieldCommMan->fieldSystem, 0);
         sub_02059524();
         CommTiming_StartSync(SYNC_PAUSE_BATTLE);
@@ -640,7 +636,7 @@ BOOL FieldCommManager_IsInMovementState(void)
 static void FieldCommTask_StartVsLinkBattle(void)
 {
     int battleType;
-    u8 party[6];
+    u8 partyOrder[MAX_PARTY_SIZE];
 
     if (sFieldCommMan->timer != 0) {
         sFieldCommMan->timer--;
@@ -659,10 +655,10 @@ static void FieldCommTask_StartVsLinkBattle(void)
         break;
     }
 
-    CommManager_GetParty(party);
+    CommManager_GetParty(partyOrder);
 
     if (sFieldCommMan->party == NULL) {
-        Encounter_NewVsLinkWithRecording(sFieldCommMan->fieldSystem, party, battleType);
+        Encounter_NewVsLinkWithRecording(sFieldCommMan->fieldSystem, partyOrder, battleType);
     } else {
         Encounter_NewVsLinkWithRecordingAndParty(sFieldCommMan->fieldSystem, sFieldCommMan->party, battleType);
         Heap_Free(sFieldCommMan->party);
@@ -753,7 +749,7 @@ static void FieldCommTask_ReinitBattleClient(void)
 }
 
 /**
- * @brief Sets the flag that indicates the player indicated by the netId had their trainer case successfuly copied
+ * @brief Sets the flag that indicates the player indicated by the netId had their trainer case successfully copied
  *
  * @param netId
  * @param unused1
@@ -913,7 +909,7 @@ static void FieldCommTask_EndConnection(void)
  *
  * @param saveData
  *
- * @return The current SecretBase* if underground, NULL if not underground
+ * @return The current occupied SecretBase* if underground, NULL if not underground and in a secret base
  */
 SecretBase *FieldCommManager_GetCurrentOccupiedSecretBase(SaveData *saveData)
 {
