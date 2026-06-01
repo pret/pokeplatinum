@@ -1254,14 +1254,14 @@ static BOOL ScrCmd_PrintBattleTowerIntroMessage(ScriptContext *ctx)
         return FALSE;
     }
 
-    u16 *v0 = battleTower->opponentsDataDTO[opponentID].trDataDTO.unk_18;
+    u16 *introMsg = battleTower->opponentsDataDTO[opponentID].trDataDTO.introMsg;
 
-    if (v0[0] == 0xFFFF) {
+    if (introMsg[0] == 0xFFFF) {
         MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0613, HEAP_ID_FIELD3);
-        ScriptMessage_Show(ctx, msgLoader, v0[1], TRUE, NULL);
+        ScriptMessage_Show(ctx, msgLoader, introMsg[1], TRUE, NULL);
         MessageLoader_Free(msgLoader);
     } else {
-        ScriptMessage_ShowSentence(ctx, v0[0], v0[1], v0[2], v0[3], 1);
+        ScriptMessage_ShowSentence(ctx, introMsg[0], introMsg[1], introMsg[2], introMsg[3], 1);
     }
 
     ScriptContext_Pause(ctx, ScriptContext_WaitForFinishedPrinting);
@@ -6589,10 +6589,10 @@ static BOOL ScrCmd_2C4(ScriptContext *ctx)
     v2->options = SaveData_GetOptions(ctx->fieldSystem->saveData);
     v2->sceneID = v1;
     v2->saveData = ctx->fieldSystem->saveData;
-    v2->unk_1C = ctx->fieldSystem->location->mapId;
+    v2->mapHeaderID = ctx->fieldSystem->location->mapId;
     v2->journalEntry = ctx->fieldSystem->journalEntry;
     v2->bagCursor = ctx->fieldSystem->bagCursor;
-    v2->unk_20 = ctx->fieldSystem->battleSubscreenCursorOn;
+    v2->subscreenCursorOn = ctx->fieldSystem->battleSubscreenCursorOn;
 
     FieldTask_RunApplication(ctx->task, &Unk_020F8BE0, v2);
     ScriptContext_Pause(ctx, sub_02041CC8);

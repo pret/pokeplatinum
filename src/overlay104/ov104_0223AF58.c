@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "constants/battle_frontier.h"
+#include "generated/frontier_trainers.h"
 
 #include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/struct_battle_hall.h"
@@ -34,18 +35,18 @@ void FieldBattleDTO_CopyPlayerInfoToTrainerData(FieldBattleDTO *param0);
 void ov104_0223AF58(u8 param0, u8 param1, u8 param2, u8 param3, u16 param4[]);
 void ov104_0223AFB4(u8 param0, u8 param1, int param2, u8 param3, u8 param4, u16 param5[]);
 void ov104_0223B0C8(u8 param0, u8 param1, u8 param2, u8 param3, u16 param4, u16 param5[], u8 param6);
-u8 BattleHall_GetPartySize(u8 param0);
-u8 ov104_0223B50C(u8 param0);
-FieldBattleDTO *ov104_0223B250(BattleHall *param0, UnkStruct_ov104_02230BE4 *param1);
-static u32 ov104_0223B4D4(u8 param0);
+u8 BattleHall_GetPlayerPartySize(u8 challengeType);
+u8 BattleHall_GetOpponentPartySize(u8 challengeType);
+FieldBattleDTO *FieldBattleDTO_NewBattleHall(BattleHall *battleHall, UnkStruct_ov104_02230BE4 *param1);
+static u32 BattleHall_GetBattleType(u8 challengeType);
 static void ov104_0223B518(FrontierPokemonDataDTO *param0, u8 param1, u16 param2, u16 param3[], int param4, int param5, int param6);
-static u32 ov104_0223B57C(BattleHall *param0, u8 param1);
-u8 ov104_0223B5C0(BattleHall *param0);
+static u32 BattleHall_GetOpponentLevel(BattleHall *battleHall, u8 param1);
+u8 ov104_0223B5C0(BattleHall *battleHall);
 static u8 ov104_0223B5F0(u8 param0);
-static u16 ov104_0223B604(BattleHall *param0, u8 param1, u8 param2);
+static u16 BattleHall_GetAIMask(BattleHall *battleHall, u8 param1, u8 rank);
 static u16 ov104_0223B644(u8 param0);
-u16 BattleHall_GetHighestLevelInParty(BattleHall *param0);
-static BOOL ov104_0223B4A4(BattleHall *param0, u8 param1);
+u16 BattleHall_GetHighestLevelInParty(BattleHall *battleHall);
+static BOOL ov104_0223B4A4(BattleHall *battleHall, u8 param1);
 
 static const u16 Unk_ov104_0224041C[10][8] = {
     { 0x2, 0x3, 0x14, 0x15, 0x25, 0x24, 0x16, 0x1C },
@@ -1396,10 +1397,10 @@ void ov104_0223AFB4(u8 param0, u8 param1, int param2, u8 param3, u8 param4, u16 
         v2 = (param2 * 10) + (param4 + 1);
 
         if (v2 == 50) {
-            param5[v7] = 307;
+            param5[v7] = FRONTIER_TRAINER_HALL_MATRON_ARGENTA_SILVER;
             return;
         } else if (v2 == 170) {
-            param5[v7] = 308;
+            param5[v7] = FRONTIER_TRAINER_HALL_MATRON_ARGENTA_GOLD;
             return;
         }
     }
@@ -1561,131 +1562,131 @@ void ov104_0223B0C8(u8 param0, u8 param1, u8 param2, u8 param3, u16 param4, u16 
     return;
 }
 
-FieldBattleDTO *ov104_0223B250(BattleHall *param0, UnkStruct_ov104_02230BE4 *param1)
+FieldBattleDTO *FieldBattleDTO_NewBattleHall(BattleHall *battleHall, UnkStruct_ov104_02230BE4 *param1)
 {
-    int v1;
-    u8 v7;
-    Pokemon *v9;
-    FrontierTrainerDataDTO v10;
+    int i;
+    u8 rank;
+    Pokemon *mon;
+    FrontierTrainerDataDTO trDataDTO;
 
-    u8 v6 = (param0->unk_05 * 2);
-    u8 v4 = BattleHall_GetPartySize(param0->challengeType);
-    u8 v5 = ov104_0223B50C(param0->challengeType);
-    Party *v13 = SaveData_GetParty(param0->saveData);
+    u8 v6 = battleHall->unk_05 * 2;
+    u8 playerPartySize = BattleHall_GetPlayerPartySize(battleHall->challengeType);
+    u8 opponentPartySize = BattleHall_GetOpponentPartySize(battleHall->challengeType);
+    Party *party = SaveData_GetParty(battleHall->saveData);
 
-    Party_HealAllMembers(v13);
+    Party_HealAllMembers(party);
 
-    FieldBattleDTO *v8 = FieldBattleDTO_New(HEAP_ID_FIELD2, ov104_0223B4D4(param0->challengeType));
-    FieldBattleDTO_InitFromGameState(v8, NULL, param1->saveData, param1->unk_1C, param1->journalEntry, param1->bagCursor, param1->unk_20);
+    FieldBattleDTO *battleDTO = FieldBattleDTO_New(HEAP_ID_FIELD2, BattleHall_GetBattleType(battleHall->challengeType));
+    FieldBattleDTO_InitFromGameState(battleDTO, NULL, param1->saveData, param1->mapHeaderID, param1->journalEntry, param1->bagCursor, param1->subscreenCursorOn);
 
-    v8->background = BACKGROUND_BATTLE_HALL;
-    v8->terrain = TERRAIN_BATTLE_HALL;
-    Party_InitWithCapacity(v8->parties[0], v4);
+    battleDTO->background = BACKGROUND_BATTLE_HALL;
+    battleDTO->terrain = TERRAIN_BATTLE_HALL;
+    Party_InitWithCapacity(battleDTO->parties[BATTLER_PLAYER_1], playerPartySize);
 
-    v9 = Pokemon_New(HEAP_ID_FIELD2);
+    mon = Pokemon_New(HEAP_ID_FIELD2);
 
-    for (v1 = 0; v1 < v4; v1++) {
-        Pokemon_Copy(Party_GetPokemonBySlotIndex(v13, param0->unk_260[v1]), v9);
-        FieldBattleDTO_AddPokemonToBattler(v8, v9, 0);
+    for (i = 0; i < playerPartySize; i++) {
+        Pokemon_Copy(Party_GetPokemonBySlotIndex(party, battleHall->unk_260[i]), mon);
+        FieldBattleDTO_AddPokemonToBattler(battleDTO, mon, BATTLER_PLAYER_1);
     }
 
-    Heap_Free(v9);
-    FieldBattleDTO_CopyPlayerInfoToTrainerData(v8);
+    Heap_Free(mon);
+    FieldBattleDTO_CopyPlayerInfoToTrainerData(battleDTO);
 
-    Heap_Free(BattleTower_GetTrainerData(&v10, param0->unk_18[v6], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
-    ov104_0222E284(v8, &v10, v5, 1, 11);
-    Party_InitWithCapacity(v8->parties[1], v5);
+    Heap_Free(BattleFrontier_GetTrainerData(&trDataDTO, battleHall->trainerIDs[v6], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
+    FieldBattleDTO_InitFrontierTrainer(battleDTO, &trDataDTO, opponentPartySize, BATTLER_ENEMY_1, HEAP_ID_FIELD2);
+    Party_InitWithCapacity(battleDTO->parties[BATTLER_ENEMY_1], opponentPartySize);
 
-    v7 = BattleHall_GetRankOfType(param0->selectedTypeIdx, &param0->unk_704[param0->challengeType][0]);
+    rank = BattleHall_GetRankOfType(battleHall->selectedTypeIdx, &battleHall->unk_704[battleHall->challengeType][0]);
 
-    if (param0->challengeType == 2) {
-        v7 = (10 - 1);
+    if (battleHall->challengeType == FRONTIER_CHALLENGE_MULTI) {
+        rank = 9;
     }
 
-    u16 v2 = ov104_0223B604(param0, v6, v7);
+    u16 aiMask = BattleHall_GetAIMask(battleHall, v6, rank);
 
-    for (v1 = 0; v1 < 4; v1++) {
-        v8->trainer[v1].header.aiMask = v2;
+    for (i = 0; i < MAX_BATTLERS; i++) {
+        battleDTO->trainer[i].header.aiMask = aiMask;
     }
 
-    ov104_0223B518(&param0->unk_290[v6], v7, param0->unk_18[v6], &param0->unk_268[v6], v5, HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_STAGE__PL_BSDPM);
+    ov104_0223B518(&battleHall->unk_290[v6], rank, battleHall->trainerIDs[v6], &battleHall->unk_268[v6], opponentPartySize, HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_STAGE__PL_BSDPM);
 
-    v9 = Pokemon_New(HEAP_ID_FIELD2);
+    mon = Pokemon_New(HEAP_ID_FIELD2);
 
-    for (v1 = 0; v1 < v5; v1++) {
+    for (i = 0; i < opponentPartySize; i++) {
         while (TRUE) {
-            if (ov104_0223B4A4(param0, v6) == 0) {
+            if (ov104_0223B4A4(battleHall, v6) == 0) {
                 break;
             }
         }
 
-        ov104_0222DF40(&param0->unk_290[v6], v9, ov104_0223B57C(param0, v7));
+        FrontierPokemonDataDTO_InitPokemon(&battleHall->unk_290[v6], mon, BattleHall_GetOpponentLevel(battleHall, rank));
 
-        Pokemon_CalcAbility(v9);
-        FieldBattleDTO_AddPokemonToBattler(v8, v9, 1);
+        Pokemon_CalcAbility(mon);
+        FieldBattleDTO_AddPokemonToBattler(battleDTO, mon, BATTLER_ENEMY_1);
     }
 
-    Heap_Free(v9);
+    Heap_Free(mon);
 
-    switch (param0->challengeType) {
-    case 2:
-    case 3:
-        FieldBattleDTO_CopyPlayerInfoToTrainerData(v8);
+    switch (battleHall->challengeType) {
+    case FRONTIER_CHALLENGE_MULTI:
+    case FRONTIER_CHALLENGE_MULTI_WFC:
+        FieldBattleDTO_CopyPlayerInfoToTrainerData(battleDTO);
 
-        TrainerInfo_Copy(CommInfo_TrainerInfo(1 - CommSys_CurNetId()), v8->trainerInfo[2]);
+        TrainerInfo_Copy(CommInfo_TrainerInfo(1 - CommSys_CurNetId()), battleDTO->trainerInfo[BATTLER_PLAYER_2]);
 
-        Heap_Free(BattleTower_GetTrainerData(&v10, param0->unk_18[v6 + 1], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
+        Heap_Free(BattleFrontier_GetTrainerData(&trDataDTO, battleHall->trainerIDs[v6 + 1], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
 
-        ov104_0222E284(v8, &v10, v5, 3, 11);
-        Party_InitWithCapacity(v8->parties[3], v5);
+        FieldBattleDTO_InitFrontierTrainer(battleDTO, &trDataDTO, opponentPartySize, BATTLER_ENEMY_2, HEAP_ID_FIELD2);
+        Party_InitWithCapacity(battleDTO->parties[BATTLER_ENEMY_2], opponentPartySize);
 
-        v9 = Pokemon_New(HEAP_ID_FIELD2);
+        mon = Pokemon_New(HEAP_ID_FIELD2);
 
         while (TRUE) {
-            if (ov104_0223B4A4(param0, v6) == 0) {
+            if (ov104_0223B4A4(battleHall, v6) == 0) {
                 break;
             }
         }
 
-        ov104_0222DF40(&param0->unk_290[v6], v9, ov104_0223B57C(param0, v7));
+        FrontierPokemonDataDTO_InitPokemon(&battleHall->unk_290[v6], mon, BattleHall_GetOpponentLevel(battleHall, rank));
 
-        Pokemon_CalcAbility(v9);
-        FieldBattleDTO_AddPokemonToBattler(v8, v9, 3);
-        Heap_Free(v9);
+        Pokemon_CalcAbility(mon);
+        FieldBattleDTO_AddPokemonToBattler(battleDTO, mon, BATTLER_ENEMY_2);
+        Heap_Free(mon);
         break;
     }
 
-    return v8;
+    return battleDTO;
 }
 
-static BOOL ov104_0223B4A4(BattleHall *param0, u8 param1)
+static BOOL ov104_0223B4A4(BattleHall *battleHall, u8 param1)
 {
-    if (param0->unk_290[param1].personality > ((24 + 1) * 10001)) {
-        param0->unk_290[param1].personality -= ((24 + 1) * 10001);
+    if (battleHall->unk_290[param1].personality > ((24 + 1) * 10001)) {
+        battleHall->unk_290[param1].personality -= ((24 + 1) * 10001);
     } else {
-        param0->unk_290[param1].personality += ((24 + 1) * 10001);
+        battleHall->unk_290[param1].personality += ((24 + 1) * 10001);
     }
 
-    return Pokemon_IsPersonalityShiny(param0->unk_290[param1].otID, param0->unk_290[param1].personality);
+    return Pokemon_IsPersonalityShiny(battleHall->unk_290[param1].otID, battleHall->unk_290[param1].personality);
 }
 
-static u32 ov104_0223B4D4(u8 param0)
+static u32 BattleHall_GetBattleType(u8 challengeType)
 {
-    switch (param0) {
-    case 0:
-        return (0x0 | 0x1) | 0x80;
-    case 1:
-        return (0x2 | 0x1) | 0x80;
-    case 2:
-        return (((0x4 | 0x1) | 0x2) | 0x8) | 0x80;
-    case 3:
-        return (((0x4 | 0x1) | 0x2) | 0x8) | 0x80;
+    switch (challengeType) {
+    case FRONTIER_CHALLENGE_SINGLE:
+        return (BATTLE_TYPE_SINGLES | BATTLE_TYPE_TRAINER) | BATTLE_TYPE_FRONTIER;
+    case FRONTIER_CHALLENGE_DOUBLE:
+        return (BATTLE_TYPE_DOUBLES | BATTLE_TYPE_TRAINER) | BATTLE_TYPE_FRONTIER;
+    case FRONTIER_CHALLENGE_MULTI:
+        return (((BATTLE_TYPE_LINK | BATTLE_TYPE_TRAINER) | BATTLE_TYPE_DOUBLES) | BATTLE_TYPE_2vs2) | BATTLE_TYPE_FRONTIER;
+    case FRONTIER_CHALLENGE_MULTI_WFC:
+        return (((BATTLE_TYPE_LINK | BATTLE_TYPE_TRAINER) | BATTLE_TYPE_DOUBLES) | BATTLE_TYPE_2vs2) | BATTLE_TYPE_FRONTIER;
     }
 
-    return (0x0 | 0x1) | 0x80;
+    return (BATTLE_TYPE_SINGLES | BATTLE_TYPE_TRAINER) | BATTLE_TYPE_FRONTIER;
 }
 
-u8 BattleHall_GetPartySize(u8 challengeType)
+u8 BattleHall_GetPlayerPartySize(u8 challengeType)
 {
     switch (challengeType) {
     case FRONTIER_CHALLENGE_DOUBLE:
@@ -1695,10 +1696,10 @@ u8 BattleHall_GetPartySize(u8 challengeType)
     return 1;
 }
 
-u8 ov104_0223B50C(u8 param0)
+u8 BattleHall_GetOpponentPartySize(u8 challengeType)
 {
-    switch (param0) {
-    case 1:
+    switch (challengeType) {
+    case FRONTIER_CHALLENGE_DOUBLE:
         return 2;
     }
 
@@ -1712,9 +1713,9 @@ static void ov104_0223B518(FrontierPokemonDataDTO *param0, u8 param1, u16 param2
     u8 v2;
     u32 v3;
 
-    if (param2 == 307) {
+    if (param2 == FRONTIER_TRAINER_HALL_MATRON_ARGENTA_SILVER) {
         v3 = 31;
-    } else if (param2 == 308) {
+    } else if (param2 == FRONTIER_TRAINER_HALL_MATRON_ARGENTA_GOLD) {
         v3 = 31;
     } else {
         v3 = ov104_0223B5F0(param1);
@@ -1727,20 +1728,21 @@ static void ov104_0223B518(FrontierPokemonDataDTO *param0, u8 param1, u16 param2
     return;
 }
 
-static u32 ov104_0223B57C(BattleHall *param0, u8 param1)
+static u32 BattleHall_GetOpponentLevel(BattleHall *battleHall, u8 param1)
 {
     u8 v0;
-    u32 v1;
+    u32 level;
 
-    v0 = (param0->unk_05 * 2);
+    v0 = (battleHall->unk_05 * 2);
 
-    if ((param0->unk_18[v0] == 307) || (param0->unk_18[v0] == 308)) {
-        v1 = BattleHall_GetHighestLevelInParty(param0);
+    if (battleHall->trainerIDs[v0] == FRONTIER_TRAINER_HALL_MATRON_ARGENTA_SILVER
+        || battleHall->trainerIDs[v0] == FRONTIER_TRAINER_HALL_MATRON_ARGENTA_GOLD) {
+        level = BattleHall_GetHighestLevelInParty(battleHall);
     } else {
-        v1 = param0->unk_07;
+        level = battleHall->unk_07;
     }
 
-    return v1;
+    return level;
 }
 
 static const u8 sBattleHallAppGridOrder[20] = {
@@ -1776,12 +1778,12 @@ BOOL BattleHall_IsMultiPlayerChallenge(u8 challengeType)
     return challengeType == FRONTIER_CHALLENGE_MULTI || challengeType == FRONTIER_CHALLENGE_MULTI_WFC;
 }
 
-u8 ov104_0223B5C0(BattleHall *param0)
+u8 ov104_0223B5C0(BattleHall *battleHall)
 {
     u32 v0;
     int v1;
-    Party *v2 = SaveData_GetParty(param0->saveData);
-    Pokemon *v3 = Party_GetPokemonBySlotIndex(v2, param0->unk_260[0]);
+    Party *v2 = SaveData_GetParty(battleHall->saveData);
+    Pokemon *v3 = Party_GetPokemonBySlotIndex(v2, battleHall->unk_260[0]);
     v1 = Pokemon_GetValue(v3, MON_DATA_LEVEL, NULL);
 
     return v1 / 10;
@@ -1792,7 +1794,7 @@ static u8 ov104_0223B5F0(u8 param0)
     return Unk_ov104_0224033C[ov104_0223B644(param0)].unk_01;
 }
 
-static u16 ov104_0223B604(BattleHall *param0, u8 param1, u8 param2)
+static u16 BattleHall_GetAIMask(BattleHall *battleHall, u8 param1, u8 param2)
 {
     u8 v0;
     u16 v1;
@@ -1805,16 +1807,17 @@ static u16 ov104_0223B604(BattleHall *param0, u8 param1, u8 param2)
         v1 = 0;
     }
 
-    if (param0->challengeType == 0) {
+    if (battleHall->challengeType == FRONTIER_CHALLENGE_SINGLE) {
         v0 = (param1 * 2);
 
-        if ((param0->unk_18[v0] == 307) || (param0->unk_18[v0] == 308)) {
-            v1 = (0x1 | 0x2 | 0x4);
+        if (battleHall->trainerIDs[v0] == FRONTIER_TRAINER_HALL_MATRON_ARGENTA_SILVER
+            || battleHall->trainerIDs[v0] == FRONTIER_TRAINER_HALL_MATRON_ARGENTA_GOLD) {
+            v1 = 0x1 | 0x2 | 0x4;
         }
     }
 
-    if (param0->challengeType == 2) {
-        v1 = (0x1 | 0x2 | 0x4);
+    if (battleHall->challengeType == FRONTIER_CHALLENGE_MULTI) {
+        v1 = 0x1 | 0x2 | 0x4;
     }
 
     return v1;
@@ -1831,15 +1834,14 @@ static u16 ov104_0223B644(u8 param0)
     return v0;
 }
 
-u16 BattleHall_GetHighestLevelInParty(BattleHall *param0)
+u16 BattleHall_GetHighestLevelInParty(BattleHall *battleHall)
 {
-
-    Party *party = SaveData_GetParty(param0->saveData);
-    Pokemon *mon = Party_GetPokemonBySlotIndex(party, param0->unk_260[0]);
+    Party *party = SaveData_GetParty(battleHall->saveData);
+    Pokemon *mon = Party_GetPokemonBySlotIndex(party, battleHall->unk_260[0]);
     u16 firstMonsLevel = Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL);
 
-    if (BattleHall_GetPartySize(param0->challengeType) == 2) {
-        mon = Party_GetPokemonBySlotIndex(party, param0->unk_260[1]);
+    if (BattleHall_GetPlayerPartySize(battleHall->challengeType) == 2) {
+        mon = Party_GetPokemonBySlotIndex(party, battleHall->unk_260[1]);
         u16 secondMonsLevel = Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL);
 
         if (firstMonsLevel > secondMonsLevel) {
@@ -1848,11 +1850,11 @@ u16 BattleHall_GetHighestLevelInParty(BattleHall *param0)
             return secondMonsLevel;
         }
     } else {
-        if (BattleHall_IsMultiPlayerChallenge(param0->challengeType) == TRUE) {
-            if (firstMonsLevel > param0->unk_D84[0]) {
+        if (BattleHall_IsMultiPlayerChallenge(battleHall->challengeType) == TRUE) {
+            if (firstMonsLevel > battleHall->unk_D84[0]) {
                 return firstMonsLevel;
             } else {
-                return param0->unk_D84[0];
+                return battleHall->unk_D84[0];
             }
         }
     }

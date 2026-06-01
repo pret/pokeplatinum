@@ -626,23 +626,23 @@ static const UnkStruct_ov104_0223FCB4 Unk_ov104_0223FCB4[] = {
 
 void FieldBattleDTO_CopyPlayerInfoToTrainerData(FieldBattleDTO *dto);
 void ov104_0223A30C(SaveData *saveData, FrontierDataDTO *dto, const u8 param2);
-FieldBattleDTO *ov104_0223A580(BattleTower *battleTower, UnkStruct_ov104_02230BE4 *param1);
+FieldBattleDTO *FieldBattleDTO_NewBattleTower(BattleTower *battleTower, UnkStruct_ov104_02230BE4 *param1);
 void ov104_0223A734(BattleTower *battleTower, u16 param1);
 u16 ov104_0223A750(BattleTower *battleTower, const u16 *param1);
 int BattleTower_GetPokemonDataNarcID(u8 challengeMode);
-int BattleTower_GetTrainerDataNarcID(u8 challengeMode);
+int BattleFrontier_GetTrainerDataNarcID(u8 challengeMode);
 int BattleTower_GetTrainerMessagesBankID(u8 challengeMode);
 static BOOL BattleTower_CreateRandomTrainerParty(BattleTower *battleTower, BattleFrontierTrainerData *trData, u16 battleTowerTrainerID, FrontierPokemonDataDTO *monDataDTO, u8 partySize, u16 *species, u16 *items, UnkStruct_0204B404 *param7, enum HeapID heapID);
 static void ov104_0223A348(FrontierDataDTO *param0, const u8 param1);
 static u32 BattleTower_CopySetToPokemonDataDTO(BattleTower *battleTower, FrontierPokemonDataDTO *monDataDTO, u16 setID, u32 otID, u32 givenPersonality, u8 ivs, u8 partyIndex, BOOL giveReservedItem, enum HeapID heapID);
 static u32 BattleTower_GetBattleTypeFromChallengeMode(u8 challengeMode);
-static void ov104_0223A6AC(FieldBattleDTO *param0, FrontierDataDTO *param1, int param2, int battlerId, enum HeapID heapID);
+static void FieldBattleDTO_InitBattleTowerTrainer(FieldBattleDTO *battleDTO, FrontierDataDTO *frontierDTO, int partySize, int battlerId, enum HeapID heapID);
 static int BattleTower_AreAllConnectedGamesPlatinum(u8 challengeMode);
 
 BOOL BattleTower_CreateTrainerParty(BattleTower *battleTower, FrontierDataDTO *opponentDataDTO, u16 battleTowerTrainerID, int partySize, u16 *species, u16 *items, UnkStruct_0204B404 *param6, enum HeapID heapID)
 {
     BOOL v0 = 0;
-    BattleFrontierTrainerData *trData = BattleTower_GetTrainerData(&opponentDataDTO->trDataDTO, battleTowerTrainerID, heapID, BattleTower_GetTrainerDataNarcID(battleTower->challengeMode));
+    BattleFrontierTrainerData *trData = BattleFrontier_GetTrainerData(&opponentDataDTO->trDataDTO, battleTowerTrainerID, heapID, BattleFrontier_GetTrainerDataNarcID(battleTower->challengeMode));
     v0 = BattleTower_CreateRandomTrainerParty(battleTower, trData, battleTowerTrainerID, &opponentDataDTO->monDataDTO[0], partySize, species, items, param6, heapID);
 
     Heap_Free(trData);
@@ -885,69 +885,69 @@ static u32 BattleTower_CopySetToPokemonDataDTO(BattleTower *battleTower, Frontie
     return randomPersonality;
 }
 
-FieldBattleDTO *ov104_0223A580(BattleTower *battleTower, UnkStruct_ov104_02230BE4 *param1)
+FieldBattleDTO *FieldBattleDTO_NewBattleTower(BattleTower *battleTower, UnkStruct_ov104_02230BE4 *param1)
 {
-    int v0;
+    int i;
 
-    FieldBattleDTO *v3 = FieldBattleDTO_New(battleTower->heapID, BattleTower_GetBattleTypeFromChallengeMode(battleTower->challengeMode));
+    FieldBattleDTO *dto = FieldBattleDTO_New(battleTower->heapID, BattleTower_GetBattleTypeFromChallengeMode(battleTower->challengeMode));
     SaveData *saveData = param1->saveData;
     Party *party = SaveData_GetParty(saveData);
 
-    FieldBattleDTO_InitFromGameState(v3, NULL, param1->saveData, param1->unk_1C, param1->journalEntry, param1->bagCursor, param1->unk_20);
+    FieldBattleDTO_InitFromGameState(dto, NULL, param1->saveData, param1->mapHeaderID, param1->journalEntry, param1->bagCursor, param1->subscreenCursorOn);
 
-    v3->background = BACKGROUND_BATTLE_TOWER;
-    v3->terrain = TERRAIN_BATTLE_TOWER;
+    dto->background = BACKGROUND_BATTLE_TOWER;
+    dto->terrain = TERRAIN_BATTLE_TOWER;
 
     Pokemon *mon = Pokemon_New(battleTower->heapID);
     u8 level = 50;
 
-    Party_InitWithCapacity(v3->parties[BATTLER_PLAYER_1], battleTower->partySize);
+    Party_InitWithCapacity(dto->parties[BATTLER_PLAYER_1], battleTower->partySize);
 
-    for (v0 = 0; v0 < battleTower->partySize; v0++) {
-        Pokemon_Copy(Party_GetPokemonBySlotIndex(party, battleTower->unk_2A[v0]), mon);
+    for (i = 0; i < battleTower->partySize; i++) {
+        Pokemon_Copy(Party_GetPokemonBySlotIndex(party, battleTower->unk_2A[i]), mon);
 
         if (Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL) > level) {
-            u32 v2 = Pokemon_GetSpeciesBaseExpAt(Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL), level);
+            u32 exp = Pokemon_GetSpeciesBaseExpAt(Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL), level);
 
-            Pokemon_SetValue(mon, MON_DATA_EXPERIENCE, &v2);
+            Pokemon_SetValue(mon, MON_DATA_EXPERIENCE, &exp);
             Pokemon_CalcLevelAndStats(mon);
         }
 
-        FieldBattleDTO_AddPokemonToBattler(v3, mon, BATTLER_PLAYER_1);
+        FieldBattleDTO_AddPokemonToBattler(dto, mon, BATTLER_PLAYER_1);
     }
 
     Heap_Free(mon);
-    FieldBattleDTO_CopyPlayerInfoToTrainerData(v3);
+    FieldBattleDTO_CopyPlayerInfoToTrainerData(dto);
 
-    ov104_0223A6AC(v3, &(battleTower->opponentsDataDTO[0]), battleTower->partySize, BATTLER_ENEMY_1, battleTower->heapID);
+    FieldBattleDTO_InitBattleTowerTrainer(dto, &(battleTower->opponentsDataDTO[0]), battleTower->partySize, BATTLER_ENEMY_1, battleTower->heapID);
 
-    for (v0 = 0; v0 < MAX_BATTLERS; v0++) {
-        v3->trainer[v0].header.aiMask = (0x1 | 0x2 | 0x4);
+    for (i = 0; i < MAX_BATTLERS; i++) {
+        dto->trainer[i].header.aiMask = 0x1 | 0x2 | 0x4;
     }
 
     switch (battleTower->challengeMode) {
     case BATTLE_TOWER_MODE_MULTI:
-        ov104_0223A6AC(v3, &(battleTower->partnersDataDTO[battleTower->partnerID]), battleTower->partySize, BATTLER_PLAYER_2, battleTower->heapID);
+        FieldBattleDTO_InitBattleTowerTrainer(dto, &(battleTower->partnersDataDTO[battleTower->partnerID]), battleTower->partySize, BATTLER_PLAYER_2, battleTower->heapID);
         // fall through
     case BATTLE_TOWER_MODE_LINK_MULTI:
     case BATTLE_TOWER_MODE_6:
-        ov104_0223A6AC(v3, &(battleTower->opponentsDataDTO[1]), battleTower->partySize, BATTLER_ENEMY_2, battleTower->heapID);
+        FieldBattleDTO_InitBattleTowerTrainer(dto, &(battleTower->opponentsDataDTO[1]), battleTower->partySize, BATTLER_ENEMY_2, battleTower->heapID);
         break;
     default:
         break;
     }
 
-    return v3;
+    return dto;
 }
 
-static void ov104_0223A6AC(FieldBattleDTO *param0, FrontierDataDTO *param1, int param2, int battlerId, enum HeapID heapID)
+static void FieldBattleDTO_InitBattleTowerTrainer(FieldBattleDTO *battleDTO, FrontierDataDTO *frontierDTO, int partySize, int battlerId, enum HeapID heapID)
 {
-    ov104_0222E284(param0, &param1->trDataDTO, param2, battlerId, heapID);
+    FieldBattleDTO_InitFrontierTrainer(battleDTO, &frontierDTO->trDataDTO, partySize, battlerId, heapID);
     Pokemon *mon = Pokemon_New(heapID);
 
-    for (int v0 = 0; v0 < param2; v0++) {
-        ov104_0222DF40(&param1->monDataDTO[v0], mon, 120);
-        Party_AddPokemon(param0->parties[battlerId], mon);
+    for (int i = 0; i < partySize; i++) {
+        FrontierPokemonDataDTO_InitPokemon(&frontierDTO->monDataDTO[i], mon, 120);
+        Party_AddPokemon(battleDTO->parties[battlerId], mon);
     }
 
     Heap_Free(mon);
@@ -997,7 +997,7 @@ int BattleTower_GetPokemonDataNarcID(u8 challengeMode)
     return NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDPM;
 }
 
-int BattleTower_GetTrainerDataNarcID(u8 challengeMode)
+int BattleFrontier_GetTrainerDataNarcID(u8 challengeMode)
 {
     if (BattleTower_AreAllConnectedGamesPlatinum(challengeMode) == FALSE) {
         return NARC_INDEX_BATTLE__B_TOWER__BTDTR;

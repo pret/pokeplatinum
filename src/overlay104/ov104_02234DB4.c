@@ -66,7 +66,7 @@ BattleHall *ov104_02234DB4(SaveData *saveData, u16 param1, u8 param2, u8 param3,
 
     if (param1 == 0) {
         v10->challengeType = param2;
-        v4 = BattleHall_GetPartySize(v10->challengeType);
+        v4 = BattleHall_GetPlayerPartySize(v10->challengeType);
         v10->unk_05 = 0;
 
         sub_02030108(v0);
@@ -91,7 +91,7 @@ BattleHall *ov104_02234DB4(SaveData *saveData, u16 param1, u8 param2, u8 param3,
         v10->unk_260[1] = param4;
     } else {
         v10->challengeType = (u8)sub_02030198(v0, 0, 0, 0, NULL);
-        v4 = BattleHall_GetPartySize(v10->challengeType);
+        v4 = BattleHall_GetPlayerPartySize(v10->challengeType);
         v10->unk_05 = (u8)sub_02030198(v0, 1, 0, 0, NULL);
         v10->currentStreak = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(v10->saveData), BattleFrontierStats_GetHallLatestStreakIndex(v10->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetHallLatestStreakIndex(v10->challengeType)));
 
@@ -100,7 +100,7 @@ BattleHall *ov104_02234DB4(SaveData *saveData, u16 param1, u8 param2, u8 param3,
         }
 
         for (v5 = 0; v5 < (10 * 2); v5++) {
-            v10->unk_18[v5] = (u16)sub_02030198(v0, 2, v5, 0, NULL);
+            v10->trainerIDs[v5] = (u16)sub_02030198(v0, 2, v5, 0, NULL);
         }
 
         for (v5 = 0; v5 < (10 * 2); v5++) {
@@ -162,21 +162,21 @@ static void ov104_022350B8(BattleHall *param0)
     v0 = BattleHall_GetRankOfType(param0->selectedTypeIdx, &param0->unk_704[param0->challengeType][0]);
     param0->unk_07 = ov104_02235704(param0);
 
-    ov104_0223AF58(param0->selectedTypeIdx, v1, v0, param0->unk_05, param0->unk_18);
-    ov104_0223AFB4(param0->challengeType, v1, param0->unk_0A, v0, param0->unk_05, param0->unk_18);
+    ov104_0223AF58(param0->selectedTypeIdx, v1, v0, param0->unk_05, param0->trainerIDs);
+    ov104_0223AFB4(param0->challengeType, v1, param0->unk_0A, v0, param0->unk_05, param0->trainerIDs);
 
     v2 = (param0->unk_05 * 2);
 
-    if ((param0->unk_18[v2] == 307) || (param0->unk_18[v2] == 308)) {
+    if ((param0->trainerIDs[v2] == 307) || (param0->trainerIDs[v2] == 308)) {
         v5 = ov104_0223B5C0(param0);
         v0 = v5;
     }
 
-    if (param0->unk_18[v2] == 307) {
+    if (param0->trainerIDs[v2] == 307) {
         v3 = 1;
     }
 
-    if (param0->unk_18[v2] == 308) {
+    if (param0->trainerIDs[v2] == 308) {
         v3 = 2;
     }
 
@@ -281,7 +281,7 @@ void ov104_0223526C(BattleHall *param0, u8 param1)
     }
 
     for (v0 = 0; v0 < (10 * 2); v0++) {
-        v2[0] = param0->unk_18[v0];
+        v2[0] = param0->trainerIDs[v0];
         sub_02030140(param0->unk_6F8, 2, v0, 0, v2);
     }
 
@@ -320,7 +320,7 @@ u16 ov104_022354C0(BattleHall *param0, u8 param1)
     FrontierTrainerDataDTO v0;
     u8 v2 = (param0->unk_05 * 2) + param1;
 
-    Heap_Free(BattleTower_GetTrainerData(&v0, param0->unk_18[v2], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
+    Heap_Free(BattleFrontier_GetTrainerData(&v0, param0->trainerIDs[v2], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
 
     return BattleTower_GetObjectIDFromTrainerClass(v0.trainerType);
 }
