@@ -52,7 +52,7 @@ endif
 # Set up the compiler toolchain dependency
 SKREW_GET := tools/devtools/get_metroskrew.sh
 SKREW_VER := 0.1.3
-SKREW_DIR := $(SUBPROJ_DIR)/metroskrew
+SKREW_DIR := tools/metroskrew
 
 ifneq (,$(findstring Linux,$(UNAME_S)))
   ifeq (0,$(WSL_ACCESSING_WINDOWS))

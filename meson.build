@@ -37,6 +37,25 @@ c_args = [
     '-D_MSL_RESTRICT=',
 ]
 
+cpp_args = [
+    '-proc', 'arm946e',
+    '-enum', 'int',
+    '-Cpp_exceptions', 'off',
+    '-gccext,on',
+    '-msgstyle', 'gcc',
+    '-ipa', 'file',
+    '-interworking',
+    '-inline', 'on,noauto',
+    '-char', 'signed',
+    '-nosyspath',
+    '-stdinc',
+    '-sym', 'on',
+    '-DPOKEPLATINUM_GENERATED_ENUM',
+    '-D_MSL_RESTRICT=',
+    '-O4,p',
+    '-RTTI', 'off',
+]
+
 if get_option('revision') == '0'
     c_args += [
         '-DPOKEPLATINUM_REVISION=0'
@@ -58,6 +77,11 @@ endif
 
 add_global_arguments(c_args,
     language: 'c',
+    native: false
+)
+
+add_global_arguments(cpp_args,
+    language: 'cpp',
     native: false
 )
 
@@ -181,6 +205,9 @@ trainer_ai_o = custom_target(
     depfile: '@BASENAME@.d',
 )
 
+libmslc = fs.copyfile('tools/metroskrew/lib/metroskrew/sdk/ds/2.0/sp2/msl/MSL_C/MSL_ARM/Lib/MSL_C_NITRO_Ai_LE.a')
+libmslcpp = fs.copyfile('tools/metroskrew/lib/metroskrew/sdk/ds/2.0/sp2/msl/MSL_C++/MSL_ARM/Lib/MSL_CPP_NITRO_Ai_LE.a')
+
 main = executable('main',
     sources: [
         pokeplatinum_c,
@@ -200,7 +227,7 @@ main = executable('main',
         libcrypto_public_includes,
         libgds_public_includes,
         libspl_public_includes,
-        ppw_public_includes,
+        ppwlobby_public_includes,
     ],
     dependencies: [
         nitrosdk_dep,
@@ -215,7 +242,11 @@ main = executable('main',
         libcrypto_static,
         libgds,
         libspl,
-        ppwlobby_libs
+        libmslc,
+        libmslcpp,
+        libdwcenc,
+        libdwcppwlobby,
+        libdwcilobby
     ],
     link_args: [
         link_args,

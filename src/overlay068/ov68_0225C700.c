@@ -11,7 +11,7 @@
 #include "overlay066/ov66_02231428.h"
 #include "overlay066/ov66_022324F0.h"
 #include "overlay066/struct_ov66_0222DFF8_decl.h"
-#include "overlay066/struct_ov66_0222E71C_decl.h"
+#include "overlay066/struct_ov66_0222E71C.h"
 #include "overlay066/struct_ov66_0222E908.h"
 #include "overlay066/struct_ov66_02231374.h"
 #include "overlay068/struct_ov68_0225DC74.h"
