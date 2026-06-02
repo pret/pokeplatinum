@@ -14,38 +14,38 @@
 
 typedef struct FieldCommunicationManager {
     TrainerCase *trainerCase[4];
-    u8 unk_10[4];
+    u8 trainerCaseCopied[4];
     u8 padding_14[4];
     FieldSystem *fieldSystem;
-    MATHRandContext32 unk_1C;
+    MATHRandContext32 rand;
     FieldCommTask task;
     SysTask *sysTask;
     u16 timer;
-    u8 unk_3E;
+    u8 connectID;
     u8 padding_3F;
-    u8 unk_40;
+    u8 pauseTask;
     u8 isUnderground;
     u8 isReturningFromBattle;
-    u8 unk_43;
+    u8 battleRoomMovement;
     Party *party;
 } FieldCommunicationManager;
 
-FieldCommunicationManager *FieldCommMan_Get(void);
-void FieldCommMan_Init(FieldSystem *fieldSystem);
-void FieldCommMan_Delete(void);
-void FieldCommMan_StartBattleServer(FieldSystem *fieldSystem, int param1, int param2);
-void FieldCommMan_StartBattleClient(FieldSystem *fieldSystem, int param1, int param2);
-void FieldCommMan_ConnectBattleClient(int param0);
-void FieldCommMan_ReconnectBattleClient(void);
-void FieldCommMan_EnterBattleRoom(FieldSystem *fieldSystem);
-void FieldCommMan_EndBattle(void);
-void sub_020598A0(void);
-void sub_02059D0C(int unused0, int unused1, void *param2, void *unused3);
-BOOL sub_02059D2C(void);
-void sub_02059EAC(int param0, int unused1, void *unused2, void *unused3);
-u8 *sub_02059EBC(int param0, void *unused1, int unused2);
-SecretBase *FieldCommMan_GetCurrentOccupiedSecretBase(SaveData *saveData);
-void sub_0205A0A0(void);
-void sub_0205A0BC(void);
+FieldCommunicationManager *FieldCommManager_Get(void);
+void FieldCommManager_Init(FieldSystem *fieldSystem);
+void FieldCommManager_Delete(void);
+void FieldCommManager_StartBattleServer(FieldSystem *fieldSystem, int commType, int regulation);
+void FieldCommManager_StartBattleClient(FieldSystem *fieldSystem, int commType, int regulation);
+void FieldCommManager_ConnectBattleClient(int connectID);
+void FieldCommManager_ReconnectBattleClient(void);
+void FieldCommManager_EnterBattleRoom(FieldSystem *fieldSystem);
+void FieldCommManager_EndBattleNoSync(void);
+void FieldCommManager_EndBattleSync(void);
+void FieldCommManager_UpdateBattleRoomMovement(int unused0, int unused1, void *message, void *unused3);
+BOOL FieldCommManager_IsInMovementState(void);
+void FieldCommManager_SetTrainerCaseCopiedFlag(int netId, int unused1, void *unused2, void *unused3);
+u8 *FieldCommManager_GetTrainerCase(int netId, void *unused1, int unused2);
+SecretBase *FieldCommManager_GetCurrentOccupiedSecretBase(SaveData *saveData);
+void FieldCommManager_PauseUndergroundResources(void);
+void FieldCommManager_UnpauseUndergroundResources(void);
 
 #endif // POKEPLATINUM_UNK_0205964C_H
