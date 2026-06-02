@@ -3,8 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "comm_manager.h"
 #include "error_message_reset.h"
-#include "unk_020366A0.h"
 
 typedef struct HeapInfo {
     NNSFndHeapHandle *heapHandles;
@@ -202,7 +202,7 @@ static void *AllocFromHeapInternal(NNSFndHeapHandle heap, u32 size, s32 alignmen
 
 static void AllocFail(void)
 {
-    if (CommMan_IsInitialized()) {
+    if (CommManager_IsInitialized()) {
         ErrorMessageReset_PrintErrorAndReset();
     }
 }

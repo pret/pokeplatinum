@@ -14,6 +14,7 @@
 #include "battle_regulation.h"
 #include "bg_window.h"
 #include "colored_arrow.h"
+#include "comm_manager.h"
 #include "comm_player_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
@@ -41,7 +42,6 @@
 #include "trainer_info.h"
 #include "unk_0202D778.h"
 #include "unk_020363E8.h"
-#include "unk_020366A0.h"
 #include "unk_0203D1B8.h"
 #include "unk_020655F4.h"
 
@@ -158,14 +158,14 @@ static void sub_0205A164(UnkStruct_0205A0D8 *param0, enum HeapID heapID)
     MI_CpuClear8(partyMenu, sizeof(PartyMenu));
 
     partyMenu->options = SaveData_GetOptions(param0->fieldSystem->saveData);
-    partyMenu->battleRegulation = (void *)param0->fieldSystem->unk_B0;
+    partyMenu->battleRegulation = (void *)param0->fieldSystem->battleRegulation;
     partyMenu->party = SaveData_GetParty(param0->fieldSystem->saveData);
     partyMenu->bag = SaveData_GetBag(param0->fieldSystem->saveData);
     partyMenu->type = PARTY_MENU_TYPE_BASIC;
     partyMenu->mode = PARTY_MENU_MODE_SELECT_CONFIRM;
 
-    if (param0->fieldSystem->unk_B0) {
-        partyMenu->minSelectionSlots = BattleRegulation_GetRuleValue(param0->fieldSystem->unk_B0, BATTLE_REGULATION_RULE_TEAM_SIZE);
+    if (param0->fieldSystem->battleRegulation) {
+        partyMenu->minSelectionSlots = BattleRegulation_GetRuleValue(param0->fieldSystem->battleRegulation, BATTLE_REGULATION_RULE_TEAM_SIZE);
         partyMenu->maxSelectionSlots = partyMenu->minSelectionSlots;
     } else {
         partyMenu->minSelectionSlots = 3;
@@ -392,7 +392,7 @@ static BOOL sub_0205A324(FieldTask *param0)
         }
         break;
     case 21:
-        sub_0203898C(v0->unk_3D);
+        CommManager_SetParty(v0->unk_3D);
 
         if (sub_0205A2DC(v0)) {
             v0->unk_43 = 5;
@@ -673,7 +673,7 @@ void sub_0205AB10(FieldSystem *fieldSystem, UnkFuncPtr_0205AB10 *param1)
     Window_Init(&v0->unk_64);
 
     v0->unk_78 = ColoredArrow_New(HEAP_ID_FIELD2);
-    v0->unk_88 = sub_0203895C();
+    v0->unk_88 = CommManager_GetCommType();
     v0->unk_4C = NULL;
     v0->unk_48 = NULL;
     v0->unk_50 = NULL;
@@ -698,7 +698,7 @@ void sub_0205AB10(FieldSystem *fieldSystem, UnkFuncPtr_0205AB10 *param1)
         v0->unk_34 = 9;
         break;
     default:
-        if (v0->fieldSystem->unk_B0) {
+        if (v0->fieldSystem->battleRegulation) {
             v0->unk_34 = 9;
         } else {
             v0->unk_34 = 0;
@@ -1002,7 +1002,7 @@ static BOOL sub_0205B140(FieldTask *param0)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
     UnkStruct_0205B2D4 *v1 = FieldTask_GetEnv(param0);
-    TrainerCase *v2 = (TrainerCase *)sub_02059EBC(v1->unk_24, NULL, 0);
+    TrainerCase *v2 = (TrainerCase *)FieldCommManager_GetTrainerCase(v1->unk_24, NULL, 0);
 
     switch (v1->unk_28) {
     case 0:

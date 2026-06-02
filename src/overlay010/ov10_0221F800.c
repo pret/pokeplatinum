@@ -14,6 +14,7 @@
 #include "bag.h"
 #include "bg_window.h"
 #include "camera.h"
+#include "comm_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "font.h"
@@ -53,7 +54,6 @@
 #include "unk_0202419C.h"
 #include "unk_0202F1D4.h"
 #include "unk_020363E8.h"
-#include "unk_020366A0.h"
 #include "unk_0208C098.h"
 #include "vram_transfer.h"
 
@@ -2372,7 +2372,7 @@ static void ov10_022227A4(TrainerIntroData *trainerIntroData)
         journalEntryOnlineEvent = JournalEntry_CreateEventUnionBattle(opponentName1, opponentGender1, battleResult, trainerIntroData->heapID);
         Heap_Free(opponentName1);
     } else {
-        switch (sub_0203895C()) {
+        switch (CommManager_GetCommType()) {
         case 1:
             opponentGender1 = TrainerClass_Gender(trainerIntroData->dto->trainer[v6 ^ 1].header.trainerType);
             opponentName1 = Heap_Alloc(trainerIntroData->heapID, sizeof(u16) * (TRAINER_NAME_LEN + 1));

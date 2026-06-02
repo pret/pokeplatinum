@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/communication/comm_error.h"
 #include "generated/game_records.h"
 #include "generated/species.h"
 
@@ -24,6 +25,7 @@
 #include "character_sprite.h"
 #include "charcode_util.h"
 #include "chatot_cry.h"
+#include "comm_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "font.h"
@@ -71,7 +73,6 @@
 #include "unk_0202D778.h"
 #include "unk_0202F180.h"
 #include "unk_020363E8.h"
-#include "unk_020366A0.h"
 #include "unk_02038ED4.h"
 #include "unk_02038F8C.h"
 #include "unk_0203909C.h"
@@ -313,7 +314,7 @@ int ov88_0223B140(ApplicationManager *appMan, int *param1)
     sub_02095CD4(v0->fieldSystem);
     Bg_ToggleLayer(BG_LAYER_MAIN_0, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
-    sub_02038A1C(26, v0->unk_174);
+    CommManager_Dummy_02038A1C(26, v0->unk_174);
     NetworkIcon_Init();
 
     if (IsNight() == FALSE) {
@@ -484,7 +485,7 @@ int ov88_0223B57C(ApplicationManager *appMan, int *param1)
         SpriteList_Update(v0->unk_194);
     }
 
-    sub_02038A1C(26, v0->unk_174);
+    CommManager_Dummy_02038A1C(26, v0->unk_174);
 
     return v1;
 }
@@ -2593,7 +2594,7 @@ static void ov88_0223E998(UnkStruct_02095E80 *param0)
         param0->unk_3708++;
 
         if (param0->unk_3708 > (30 * 60)) {
-            Link_SetErrorState(4);
+            CommManager_SetCommError(COMM_ERROR_4);
         }
     }
 }

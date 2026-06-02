@@ -6,12 +6,12 @@
 
 #include "struct_decls/wi_fi_list.h"
 
+#include "comm_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "savedata.h"
 #include "string_gf.h"
 #include "trainer_info.h"
-#include "unk_020366A0.h"
 #include "wifi_list.h"
 
 int sub_0203909C(SaveData *saveData, DWCFriendData *param1, int *param2)
@@ -97,7 +97,7 @@ BOOL sub_020391DC(SaveData *saveData, int *param1, enum HeapID heapID)
             sub_02039298(saveData, v0, v2, heapID, 2);
             CommInfo_SavePlayerRecord(saveData);
         } else if (param1[v0] == 1) {
-            if (!CommMan_IsConnectedToWifi()) {
+            if (!CommManager_IsConnectedToWifi()) {
                 sub_02039298(saveData, v0, v2, heapID, 1);
                 MI_CpuCopy8(v4, &v3[v2], sizeof(DWCFriendData));
 

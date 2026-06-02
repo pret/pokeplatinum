@@ -10,11 +10,11 @@
 #include "overlay059/ov59_021D0D80.h"
 #include "overlay059/struct_ov59_021D30E0.h"
 
+#include "comm_manager.h"
 #include "communication_system.h"
 #include "math_util.h"
 #include "sound_playback.h"
 #include "unk_02032798.h"
-#include "unk_020366A0.h"
 #include "unk_02099500.h"
 #include "wireless_manager.h"
 
@@ -186,7 +186,7 @@ void sub_0209621C(int param0, int param1, void *param2, void *param3)
     ov59_021D1D40(v0);
     ov59_021D2204(v0, 25, param0);
 
-    CommMan_SetErrorHandling(1, 1);
+    CommManager_SetErrorHandling(1, 1);
     Sound_PlayEffect(SEQ_SE_DP_F209);
 }
 
@@ -216,7 +216,7 @@ void sub_02096274(int param0, int param1, void *param2, void *param3)
                     v0->unk_4AB4 |= 1 << param0;
                     v1.unk_03 = 1;
 
-                    sub_02037B58(CommSys_ConnectedCount());
+                    CommManager_SetMaxNumConnections(CommSys_ConnectedCount());
                 }
                 break;
             case 1:

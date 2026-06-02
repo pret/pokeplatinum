@@ -20,6 +20,7 @@
 
 #include "bg_window.h"
 #include "camera.h"
+#include "comm_manager.h"
 #include "contest.h"
 #include "font.h"
 #include "game_options.h"
@@ -48,7 +49,6 @@
 #include "system.h"
 #include "touch_pad.h"
 #include "unk_02012744.h"
-#include "unk_020366A0.h"
 #include "unk_02094EDC.h"
 #include "vram_transfer.h"
 
@@ -557,7 +557,7 @@ static void ov17_0223E1FC(SysTask *param0, void *param1)
         G3_SwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
     }
 
-    sub_02038A1C(23, v0->unk_14.unk_60);
+    CommManager_Dummy_02038A1C(23, v0->unk_14.unk_60);
 }
 
 static void ov17_0223E250(BgConfig *param0)

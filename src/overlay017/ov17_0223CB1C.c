@@ -13,6 +13,7 @@
 #include "overlay022/ov22_0225AF8C.h"
 
 #include "bg_window.h"
+#include "comm_manager.h"
 #include "contest.h"
 #include "font.h"
 #include "game_options.h"
@@ -39,7 +40,6 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "touch_pad.h"
-#include "unk_020366A0.h"
 #include "unk_02094EDC.h"
 #include "vram_transfer.h"
 
@@ -397,7 +397,7 @@ static void ov17_0223D164(SysTask *param0, void *param1)
         G3_SwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
     }
 
-    sub_02038A1C(22, v0->unk_0C.unk_24);
+    CommManager_Dummy_02038A1C(22, v0->unk_0C.unk_24);
 }
 
 static void ov17_0223D1B8(BgConfig *param0)

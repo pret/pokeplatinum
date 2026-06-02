@@ -27,6 +27,7 @@
 #include "underground/traps.h"
 
 #include "bg_window.h"
+#include "comm_manager.h"
 #include "comm_player_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
@@ -59,7 +60,6 @@
 #include "trainer_info.h"
 #include "underground.h"
 #include "unk_02033200.h"
-#include "unk_020366A0.h"
 #include "unk_0205F180.h"
 #include "unk_020655F4.h"
 #include "vars_flags.h"
@@ -2761,7 +2761,7 @@ static void ov23_0224DC08(void)
 {
     WirelessManager_SetPauseClientConnection(TRUE);
     WirelessManager_SetPauseConnection(TRUE);
-    sub_02036814(TRUE);
+    CommManager_SetPauseUnderground(TRUE);
     sub_020340FC();
 }
 
@@ -2769,6 +2769,6 @@ static void ov23_0224DC24(void)
 {
     WirelessManager_SetPauseClientConnection(FALSE);
     WirelessManager_SetPauseConnection(FALSE);
-    sub_02036814(FALSE);
+    CommManager_SetPauseUnderground(FALSE);
     sub_020340FC();
 }

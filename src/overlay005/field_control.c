@@ -29,6 +29,7 @@
 #include "underground/manager.h"
 
 #include "catching_show.h"
+#include "comm_manager.h"
 #include "comm_player_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
@@ -60,7 +61,6 @@
 #include "terrain_collision_manager.h"
 #include "trainer_encounter.h"
 #include "trainer_info.h"
-#include "unk_020366A0.h"
 #include "unk_0203C954.h"
 #include "unk_02054884.h"
 #include "unk_02056B30.h"
@@ -395,7 +395,7 @@ BOOL FieldInput_Process_Colosseum(FieldInput *input, FieldSystem *fieldSystem)
         return TRUE;
     }
 
-    if (sub_020363A0() || CommPlayer_GetMovementTimer(CommSys_CurNetId()) != 0 || !sub_02059D2C()) {
+    if (sub_020363A0() || CommPlayer_GetMovementTimer(CommSys_CurNetId()) != 0 || !FieldCommManager_IsInMovementState()) {
         return FALSE;
     }
 
@@ -462,7 +462,7 @@ BOOL FieldInput_Process_UnionRoom(const FieldInput *input, FieldSystem *fieldSys
                 sub_0205F5E4(fieldSystem->playerAvatar, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
             }
 
-            sub_02036B84();
+            CommManager_PauseUnionClient();
             ScriptManager_Set(fieldSystem, MapObject_GetScript(object), object);
 
             return TRUE;
@@ -478,7 +478,7 @@ BOOL FieldInput_Process_UnionRoom(const FieldInput *input, FieldSystem *fieldSys
         Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN);
         StartMenu_OpenUnionRoom(fieldSystem);
         sub_0205BEA8(4);
-        sub_02036BA0();
+        CommManager_PauseUnionServer();
         return TRUE;
     }
 

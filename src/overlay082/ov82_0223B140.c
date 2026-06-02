@@ -9,12 +9,12 @@
 #include "overlay083/struct_ov83_0223C344.h"
 
 #include "bag.h"
+#include "comm_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "heap.h"
 #include "overlay_manager.h"
 #include "unk_020363E8.h"
-#include "unk_020366A0.h"
 
 BOOL ov82_0223B140(ApplicationManager **appManPtr)
 {
@@ -112,7 +112,7 @@ int ov82_0223B24C(ApplicationManager *appMan, int *param1)
             return 1;
         }
 
-        CommMan_SetErrorHandling(0, 1);
+        CommManager_SetErrorHandling(0, 1);
         CommTiming_StartSync(4);
         (*param1)++;
         break;

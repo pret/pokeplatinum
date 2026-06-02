@@ -15,6 +15,7 @@
 
 #include "bg_window.h"
 #include "buffer_manager.h"
+#include "comm_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "font.h"
@@ -49,7 +50,6 @@
 #include "trainer_info.h"
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
-#include "unk_020366A0.h"
 
 #include "res/graphics/main_menu/main_menu_graphics.naix"
 #include "res/text/bank/mystery_gift_menu.h"
@@ -1578,7 +1578,7 @@ static int WonderCardsApp_Main(ApplicationManager *appMan, enum WonderCardsAppSt
         DoScreenTransitionToState(appData, FADE_TYPE_BRIGHTNESS_IN, WC_APP_STATE_SHOW_WONDERCARD_ACTIONS, state);
         break;
     case WC_APP_STATE_WAIT_FOR_COMM_MAN_EXIT:
-        if (CommMan_IsInitialized() == FALSE) {
+        if (CommManager_IsInitialized() == FALSE) {
             *state = appData->queuedState;
         }
         break;

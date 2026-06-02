@@ -34,6 +34,7 @@
 #include "bg_window.h"
 #include "cell_transfer.h"
 #include "char_transfer.h"
+#include "comm_manager.h"
 #include "enums.h"
 #include "error_handling.h"
 #include "font.h"
@@ -72,7 +73,6 @@
 #include "trainer_info.h"
 #include "type_icon.h"
 #include "unk_0202419C.h"
-#include "unk_020366A0.h"
 #include "vram_transfer.h"
 
 typedef struct {
@@ -694,9 +694,9 @@ int ov70_0225DB90(ApplicationManager *appMan, int *param1)
         ov70_0225F024(&v0->unk_428);
         ov70_0225F100(&v0->unk_404);
 
-        if (sub_020383E8()) {
+        if (CommManager_CheckWifiError()) {
             ov70_0225F184(&v0->unk_3F4, &v0->unk_340);
-        } else if (sub_0203881C()) {
+        } else if (CommManager_IsWifiPlazaError()) {
             ov70_0225F1C0(&v0->unk_3F4, &v0->unk_340, ov66_022326DC());
         } else {
             ov70_0225F1F0(&v0->unk_3F4, &v0->unk_340, ov66_0222DFF8(v0->unk_34));
@@ -1904,7 +1904,7 @@ static void ov70_0225F184(UnkStruct_ov70_0225F114 *param0, UnkStruct_ov70_0225F2
 {
     u32 v0;
     String *v1;
-    UnkStruct_ov65_0222F6EC *v2 = sub_020382F8();
+    UnkStruct_ov65_0222F6EC *v2 = CommManager_GetUnk34();
     v0 = ov66_022316F4(v2->unk_00, v2->unk_04);
 
     ov70_0225F2A8(param1, v2->unk_00, 5, 0, 2);
