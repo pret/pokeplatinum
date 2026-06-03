@@ -23,6 +23,7 @@
 #include "savedata/save_table.h"
 
 #include "bg_window.h"
+#include "catchrecords_save.h"
 #include "chatot_cry.h"
 #include "comm_manager.h"
 #include "font.h"
@@ -46,7 +47,6 @@
 #include "system_vars.h"
 #include "text.h"
 #include "tv_segment.h"
-#include "unk_0202F180.h"
 #include "unk_02038F8C.h"
 #include "unk_02039814.h"
 #include "vars_flags.h"

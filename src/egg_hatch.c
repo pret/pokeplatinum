@@ -13,6 +13,7 @@
 #include "overlay005/daycare.h"
 
 #include "bg_window.h"
+#include "catchrecords_save.h"
 #include "field_system.h"
 #include "field_task.h"
 #include "field_transition.h"
@@ -33,7 +34,6 @@
 #include "sound_playback.h"
 #include "system.h"
 #include "trainer_info.h"
-#include "unk_0202F180.h"
 #include "unk_02092494.h"
 #include "vram_transfer.h"
 

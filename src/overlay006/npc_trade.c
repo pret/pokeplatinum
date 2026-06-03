@@ -8,6 +8,7 @@
 #include "field/field_system.h"
 #include "overlay006/struct_npc_trade_animation_template.h"
 
+#include "catchrecords_save.h"
 #include "graphics.h"
 #include "heap.h"
 #include "map_header.h"
@@ -17,7 +18,6 @@
 #include "save_player.h"
 #include "string_gf.h"
 #include "trainer_info.h"
-#include "unk_0202F180.h"
 #include "unk_020559DC.h"
 #include "unk_02092494.h"
 

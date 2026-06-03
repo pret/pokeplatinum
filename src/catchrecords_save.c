@@ -1,7 +1,6 @@
-#include "unk_0202F180.h"
+#include "catchrecords_save.h"
 
 #include <nitro.h>
-#include <string.h>
 
 #include "game_records.h"
 #include "pokedex.h"
