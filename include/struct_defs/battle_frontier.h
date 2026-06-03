@@ -22,7 +22,7 @@ typedef struct BattleFrontierStats {
     u16 wfcStats[MAX_FRIENDS][STATS_NUM_WFC_STATS];
 } BattleFrontierStats;
 
-typedef struct BattleFrontier {
+typedef struct BattleFrontierSave {
     BattleFrontierStats stats;
     union {
         UnkStruct_0202D060 unk_8E0_val1;
@@ -48,6 +48,6 @@ typedef struct BattleFrontier {
     struct {
         UnkStruct_020305B8 unk_00;
     } unk_1620;
-} BattleFrontier;
+} BattleFrontierSave;
 
 #endif // POKEPLATINUM_STRUCT_BATTLE_FRONTIER_H

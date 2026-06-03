@@ -49,6 +49,7 @@
 #include "overlay104/struct_ov104_0223F1B4.h"
 #include "savedata/save_table.h"
 
+#include "battle_frontier_stats.h"
 #include "bg_window.h"
 #include "brightness_controller.h"
 #include "comm_manager.h"
@@ -86,7 +87,6 @@
 #include "unk_0202F1D4.h"
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
-#include "unk_0205DFC4.h"
 #include "unk_0209B6F8.h"
 #include "vars_flags.h"
 #include "wifi_list.h"

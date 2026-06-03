@@ -19,6 +19,7 @@
 #include "field/field_system.h"
 #include "savedata/save_table.h"
 
+#include "battle_frontier_save.h"
 #include "battle_frontier_stats.h"
 #include "field_overworld_state.h"
 #include "field_task.h"
@@ -41,7 +42,6 @@
 #include "underground.h"
 #include "unk_0202D05C.h"
 #include "unk_0204AEE8.h"
-#include "unk_0205DFC4.h"
 #include "unk_0206B9D8.h"
 #include "vars_flags.h"
 
@@ -249,11 +249,11 @@ u16 sub_02049FF8(SaveData *saveData, u16 param1)
     }
 
     if (param1 == 6) {
-        v0 = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(saveData), STAT_TOWER_LATEST_STREAK_MODE_6, BattleFrontierStats_GetHostFriendIdx(STAT_TOWER_LATEST_STREAK_MODE_6));
+        v0 = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(saveData), STAT_TOWER_LATEST_STREAK_MODE_6);
         return v0;
     }
 
-    v0 = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(saveData), 1 + param1 * 2, 0xff);
+    v0 = BattleFrontierSave_GetStat(SaveData_GetBattleFrontier(saveData), 1 + param1 * 2, 0xff);
 
     return v0;
 }
@@ -288,13 +288,13 @@ u16 sub_0204A064(SaveData *saveData)
     }
 
     if (v0 == 6) {
-        BattleFrontierStats_SetStat(SaveData_GetBattleFrontier(saveData), STAT_TOWER_WFC_STREAK_ACTIVE, BattleFrontierStats_GetHostFriendIdx(STAT_TOWER_WFC_STREAK_ACTIVE), 0);
+        BattleFrontierSave_SetStatAutoHostIdx(SaveData_GetBattleFrontier(saveData), STAT_TOWER_WFC_STREAK_ACTIVE, 0);
     } else {
         sub_0202D414(v3, 8 + v0, 2);
     }
 
     sub_0202D3B4(v3, v0, 2);
-    BattleFrontierStats_SetStat(SaveData_GetBattleFrontier(saveData), BattleFrontierStats_GetTowerLatestStreakIndex(v0), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetTowerLatestStreakIndex(v0)), 0);
+    BattleFrontierSave_SetStatAutoHostIdx(SaveData_GetBattleFrontier(saveData), BattleFrontierStats_GetTowerLatestStreakIndex(v0), 0);
 
     if ((v0 != 4) && (v0 != 6)) {
         sub_0206C02C(saveData);
@@ -320,7 +320,7 @@ BattleTower *BattleTower_Init(SaveData *saveData, u16 param1, u16 challengeMode)
     u8 v0;
     u16 v1, v2;
     BattleTower *battleTower;
-    BattleFrontier *frontier;
+    BattleFrontierSave *frontier;
     GameRecords *v5;
 
     battleTower = Heap_Alloc(HEAP_ID_FIELD2, sizeof(BattleTower));
@@ -383,10 +383,9 @@ BattleTower *BattleTower_Init(SaveData *saveData, u16 param1, u16 challengeMode)
 
         if (v2) {
             if (battleTower->challengeMode == BATTLE_TOWER_MODE_6) {
-                battleTower->unk_1A = BattleFrontierStats_GetStat(
-                    frontier, 113, BattleFrontierStats_GetHostFriendIdx(113));
+                battleTower->unk_1A = BattleFrontierSave_GetStatAutoHostIdx(frontier, 113);
             } else {
-                battleTower->unk_1A = BattleFrontierStats_GetStat(
+                battleTower->unk_1A = BattleFrontierSave_GetStat(
                     frontier, 1 + battleTower->challengeMode * 2, 0xff);
             }
 
@@ -591,7 +590,7 @@ void BattleTower_UpdateGameRecords(BattleTower *battleTower, SaveData *saveData)
     int v1;
     u16 v2, v3, v4;
     GameRecords *v5 = SaveData_GetGameRecords(saveData);
-    BattleFrontier *frontier = SaveData_GetBattleFrontier(saveData);
+    BattleFrontierSave *frontier = SaveData_GetBattleFrontier(saveData);
 
     if (battleTower->challengeMode == BATTLE_TOWER_MODE_5) {
         return;
@@ -603,8 +602,8 @@ void BattleTower_UpdateGameRecords(BattleTower *battleTower, SaveData *saveData)
         v1 = battleTower->challengeMode * 2;
     }
 
-    v2 = BattleFrontierStats_GetStat(frontier, v1, BattleFrontierStats_GetHostFriendIdx(v1));
-    v3 = BattleFrontierStats_SetIfBetter(frontier, v1, BattleFrontierStats_GetHostFriendIdx(v1), battleTower->unk_1A + battleTower->unk_0D);
+    v2 = BattleFrontierSave_GetStatAutoHostIdx(frontier, v1);
+    v3 = BattleFrontierSave_SetIfBetterAutoHostIdx(frontier, v1, battleTower->unk_1A + battleTower->unk_0D);
 
     if (v3 > 1) {
         if (v2 < v3 || (v2 == v3 && v3 % 7 == 0)) {
@@ -613,15 +612,15 @@ void BattleTower_UpdateGameRecords(BattleTower *battleTower, SaveData *saveData)
     }
 
     if (battleTower->challengeMode == BATTLE_TOWER_MODE_6) {
-        v4 = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(saveData), STAT_TOWER_WFC_STREAK_ACTIVE, BattleFrontierStats_GetHostFriendIdx(STAT_TOWER_WFC_STREAK_ACTIVE));
+        v4 = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(saveData), STAT_TOWER_WFC_STREAK_ACTIVE);
     } else {
         v4 = sub_0202D414(battleTower->unk_74, 8 + battleTower->challengeMode, 0);
     }
 
-    v0 = BattleFrontierStats_SetStat(frontier, v1 + 1, BattleFrontierStats_GetHostFriendIdx(v1 + 1), battleTower->unk_1A + battleTower->unk_0D);
+    v0 = BattleFrontierSave_SetStatAutoHostIdx(frontier, v1 + 1, battleTower->unk_1A + battleTower->unk_0D);
 
     if (battleTower->challengeMode == BATTLE_TOWER_MODE_6) {
-        BattleFrontierStats_SetStat(SaveData_GetBattleFrontier(saveData), STAT_TOWER_WFC_STREAK_ACTIVE, BattleFrontierStats_GetHostFriendIdx(STAT_TOWER_WFC_STREAK_ACTIVE), 0);
+        BattleFrontierSave_SetStatAutoHostIdx(SaveData_GetBattleFrontier(saveData), STAT_TOWER_WFC_STREAK_ACTIVE, 0);
     } else {
         sub_0202D414(battleTower->unk_74, 8 + battleTower->challengeMode, 2);
     }
@@ -651,7 +650,7 @@ void BattleTower_UpdateGameRecordsAndJournal(BattleTower *battleTower, SaveData 
     void *journalEntryOnlineEvent;
     u16 v3, v4, v5;
     GameRecords *v6;
-    BattleFrontier *frontier;
+    BattleFrontierSave *frontier;
 
     if (battleTower->challengeMode == BATTLE_TOWER_MODE_5) {
         return;
@@ -667,21 +666,21 @@ void BattleTower_UpdateGameRecordsAndJournal(BattleTower *battleTower, SaveData 
     }
 
     if (battleTower->challengeMode == BATTLE_TOWER_MODE_6) {
-        v5 = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(saveData), STAT_TOWER_WFC_STREAK_ACTIVE, BattleFrontierStats_GetHostFriendIdx(STAT_TOWER_WFC_STREAK_ACTIVE));
+        v5 = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(saveData), STAT_TOWER_WFC_STREAK_ACTIVE);
     } else {
         v5 = sub_0202D414(battleTower->unk_74, 8 + battleTower->challengeMode, 0);
     }
 
-    v0 = BattleFrontierStats_SetStat(frontier, v1 + 1, BattleFrontierStats_GetHostFriendIdx(v1 + 1), battleTower->unk_1A + battleTower->unk_0D);
+    v0 = BattleFrontierSave_SetStatAutoHostIdx(frontier, v1 + 1, battleTower->unk_1A + battleTower->unk_0D);
 
     if (battleTower->challengeMode == BATTLE_TOWER_MODE_6) {
-        BattleFrontierStats_SetStat(SaveData_GetBattleFrontier(saveData), STAT_TOWER_WFC_STREAK_ACTIVE, BattleFrontierStats_GetHostFriendIdx(STAT_TOWER_WFC_STREAK_ACTIVE), 1);
+        BattleFrontierSave_SetStatAutoHostIdx(SaveData_GetBattleFrontier(saveData), STAT_TOWER_WFC_STREAK_ACTIVE, 1);
     } else {
         sub_0202D414(battleTower->unk_74, 8 + battleTower->challengeMode, 1);
     }
 
-    v3 = BattleFrontierStats_GetStat(frontier, v1, BattleFrontierStats_GetHostFriendIdx(v1));
-    v4 = BattleFrontierStats_SetIfBetter(frontier, v1, BattleFrontierStats_GetHostFriendIdx(v1), v0);
+    v3 = BattleFrontierSave_GetStatAutoHostIdx(frontier, v1);
+    v4 = BattleFrontierSave_SetIfBetterAutoHostIdx(frontier, v1, v0);
 
     GameRecords_AddToRecordValue(v6, RECORD_BATTLE_TOWER_VICTORIES, 7);
     sub_0202D3B4(battleTower->unk_74, battleTower->challengeMode, 3);
@@ -927,7 +926,7 @@ u16 sub_0204ABF4(BattleTower *battleTower, SaveData *saveData)
     u8 v0;
 
     if (battleTower->challengeMode == BATTLE_TOWER_MODE_6) {
-        v0 = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(saveData), STAT_TOWER_WFC_STREAK_ACTIVE, BattleFrontierStats_GetHostFriendIdx(STAT_TOWER_WFC_STREAK_ACTIVE));
+        v0 = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(saveData), STAT_TOWER_WFC_STREAK_ACTIVE);
     } else {
         v0 = sub_0202D414(battleTower->unk_74, 8 + battleTower->challengeMode, 0);
     }

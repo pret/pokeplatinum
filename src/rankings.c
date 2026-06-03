@@ -7,7 +7,7 @@
 
 #include "struct_defs/battle_frontier.h"
 
-#include "battle_frontier_stats.h"
+#include "battle_frontier_save.h"
 #include "charcode_util.h"
 #include "game_records.h"
 #include "heap.h"
@@ -134,7 +134,7 @@ static u32 *GetRecordValues(SaveData *saveData, enum HeapID heapID)
     };
 
     GameRecords *gameRecords = SaveData_GetGameRecords(saveData);
-    BattleFrontier *frontier = SaveData_GetBattleFrontier(saveData);
+    BattleFrontierSave *frontier = SaveData_GetBattleFrontier(saveData);
     u32 *recordValues = Heap_AllocAtEnd(heapID, sizeof(u32) * RECORDS_WITH_RANKINGS_COUNT);
 
     for (i = 0; i < RECORDS_WITH_RANKINGS_COUNT; i++) {
@@ -165,7 +165,7 @@ static u32 *GetRecordValues(SaveData *saveData, enum HeapID heapID)
             break;
         default:
             if (i >= 0 && i <= 4) {
-                recordValues[i] = BattleFrontierStats_GetStat(frontier, recordIDs[i], 0xFF);
+                recordValues[i] = BattleFrontierSave_GetStat(frontier, recordIDs[i], 0xFF);
             } else {
                 recordValues[i] = GameRecords_GetRecordValue(gameRecords, recordIDs[i]);
             }

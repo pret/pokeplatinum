@@ -8,7 +8,7 @@
 
 #include "savedata/save_table.h"
 
-#include "battle_frontier_stats.h"
+#include "battle_frontier_save.h"
 #include "heap.h"
 #include "savedata.h"
 
@@ -117,9 +117,9 @@ BOOL BattleHallWinRecords_UpdateRecord(SaveData *saveData, enum BattleFrontierSt
         return updated;
     }
 
-    BattleFrontier *frontier = SaveData_GetBattleFrontier(saveData);
-    newRecord = BattleFrontierStats_GetStat(frontier, recordIndex, hostFriendID);
-    species = BattleFrontierStats_GetStat(frontier, speciesIndex, hostFriendID);
+    BattleFrontierSave *frontier = SaveData_GetBattleFrontier(saveData);
+    newRecord = BattleFrontierSave_GetStat(frontier, recordIndex, hostFriendID);
+    species = BattleFrontierSave_GetStat(frontier, speciesIndex, hostFriendID);
     BattleHallWinRecords *records = BattleHallWinRecords_Get(saveData, heapID, resultCode);
 
     if (*resultCode != LOAD_RESULT_OK) {
