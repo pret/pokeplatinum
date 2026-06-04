@@ -14,10 +14,10 @@
 #include "message.h"
 #include "party.h"
 #include "pokemon.h"
+#include "save_catchrecords.h"
 #include "save_player.h"
 #include "string_gf.h"
 #include "trainer_info.h"
-#include "unk_0202F180.h"
 #include "unk_020559DC.h"
 #include "unk_02092494.h"
 
