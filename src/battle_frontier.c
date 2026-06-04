@@ -239,14 +239,14 @@ FrontierGraphics *BattleFrontier_GetGraphics(BattleFrontier *frontier)
     return frontier->graphics;
 }
 
-void *sub_0209B978(BattleFrontier *frontier)
+void *BattleFrontier_GetFacilityStruct(BattleFrontier *frontier)
 {
-    return frontier->fieldData->unk_00;
+    return frontier->fieldData->facilityData;
 }
 
-void sub_0209B980(BattleFrontier *frontier, void *param1)
+void BattleFrontier_SetFacilityStruct(BattleFrontier *frontier, void *facilityData)
 {
-    frontier->fieldData->unk_00 = param1;
+    frontier->fieldData->facilityData = facilityData;
 }
 
 void sub_0209B988(BattleFrontier *frontier, const ApplicationManagerTemplate *param1, void *param2, int param3, UnkFuncPtr_0209B988 param4)
@@ -305,7 +305,7 @@ FieldFrontierDTO *sub_0209BA18(FieldSystem *fieldSystem, void *param1)
 
     MI_CpuClear8(fieldData, sizeof(FieldFrontierDTO));
 
-    fieldData->unk_00 = param1;
+    fieldData->facilityData = param1;
     fieldData->options = SaveData_GetOptions(fieldSystem->saveData);
     fieldData->saveData = fieldSystem->saveData;
     fieldData->journalEntry = fieldSystem->journalEntry;

@@ -9,7 +9,7 @@
 #include "savedata.h"
 
 typedef struct FieldFrontierDTO {
-    void *unk_00;
+    void *facilityData;
     const Options *options;
     SaveData *saveData;
     JournalEntry *journalEntry;

@@ -16,6 +16,7 @@
 #include "battle_frontier_stats.h"
 #include "battle_hall_save.h"
 #include "battle_hall_win_records.h"
+#include "frontier_trainers.h"
 #include "heap.h"
 #include "party.h"
 #include "pokemon.h"
@@ -23,11 +24,11 @@
 #include "system_vars.h"
 #include "vars_flags.h"
 
-static void ov104_022350B8(BattleHall *param0);
+static void SetupNextOpponent(BattleHall *battleHall);
 static u16 GetBattleHallAppSelectedCell(BattleHallAppArgs *args, u8 unused);
 static u16 BattleHall_LoadTypeRanks(SaveData *saveData, u8 challengeType, u8 type, u16 *type1Rank, u16 *type2Rank);
 static void BattleHall_SaveTypeRank(SaveData *saveData, u8 challengeType, u8 type, u8 value);
-static u16 ov104_02235704(BattleHall *param0);
+static u16 BattleHall_CalcOpponentsLevel(BattleHall *battleHall);
 
 BattleHall *BattleHall_Init(SaveData *saveData, u16 resumingFromSave, u8 challengeType, u8 partySlot1, u8 partySlot2)
 {
@@ -51,7 +52,7 @@ BattleHall *BattleHall_Init(SaveData *saveData, u16 resumingFromSave, u8 challen
     if (!resumingFromSave) {
         battleHall->challengeType = challengeType;
         partySize = BattleHall_GetPlayerPartySize(battleHall->challengeType);
-        battleHall->unk_05 = 0;
+        battleHall->currentBattle = 0;
 
         BattleHallSave_Init(currentChallenge);
 
@@ -76,19 +77,19 @@ BattleHall *BattleHall_Init(SaveData *saveData, u16 resumingFromSave, u8 challen
     } else {
         battleHall->challengeType = BattleHallSave_GetMember(currentChallenge, HALL_SAVE_CHALLENGE_TYPE, 0, 0, NULL);
         partySize = BattleHall_GetPlayerPartySize(battleHall->challengeType);
-        battleHall->unk_05 = BattleHallSave_GetMember(currentChallenge, HALL_SAVE_UNK_1, 0, 0, NULL);
+        battleHall->currentBattle = BattleHallSave_GetMember(currentChallenge, HALL_SAVE_CURRENT_BATTLE, 0, 0, NULL);
         battleHall->currentStreak = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(battleHall->saveData), BattleFrontierStats_GetHallLatestStreakIndex(battleHall->challengeType));
 
         for (i = 0; i < partySize; i++) {
             battleHall->partySlots[i] = BattleHallSave_GetMember(currentChallenge, HALL_SAVE_PARTY_SLOTS, i, 0, NULL);
         }
 
-        for (i = 0; i < BATTLES_PER_ROUND_HALL * 2; i++) {
+        for (i = 0; i < HALL_BATTLES_PER_ROUND * 2; i++) {
             battleHall->trainerIDs[i] = BattleHallSave_GetMember(currentChallenge, HALL_SAVE_TRAINER_IDS, i, 0, NULL);
         }
 
-        for (i = 0; i < (10 * 2); i++) {
-            battleHall->unk_268[i] = (u8)BattleHallSave_GetMember(currentChallenge, HALL_SAVE_UNK_4, i, 0, NULL);
+        for (i = 0; i < HALL_BATTLES_PER_ROUND * 2; i++) {
+            battleHall->monIndices[i] = (u8)BattleHallSave_GetMember(currentChallenge, HALL_SAVE_POKEMON_INDICES, i, 0, NULL);
         }
     }
 
@@ -98,11 +99,11 @@ BattleHall *BattleHall_Init(SaveData *saveData, u16 resumingFromSave, u8 challen
     }
 
     battleHall->unk_10 = 0;
-    battleHall->currentRound = battleHall->currentStreak / 10;
+    battleHall->currentRound = battleHall->currentStreak / HALL_BATTLES_PER_ROUND;
 
     if (battleHall->challengeType == FRONTIER_CHALLENGE_MULTI) {
         for (i = 0; i < NUM_POKEMON_TYPES; i++) {
-            BattleHall_SetRankOfType(i, &battleHall->typeRanks[2][0], 10 - 1);
+            BattleHall_SetRankOfType(i, &battleHall->typeRanks[2][0], HALL_MAX_TYPE_RANK - 1);
         }
     } else {
         for (i = 0; i < NUM_POKEMON_TYPES; i++) {
@@ -120,55 +121,42 @@ BattleHall *BattleHall_Init(SaveData *saveData, u16 resumingFromSave, u8 challen
     return battleHall;
 }
 
-void ov104_022350B0(BattleHall *param0, u16 param1)
+void BattleHall_SetupNextOpponent(BattleHall *battleHall, u16 unused)
 {
-    if (param1 == 0) {
-        ov104_022350B8(param0);
-    } else {
-        ov104_022350B8(param0);
-    }
-
-    return;
+    SetupNextOpponent(battleHall);
 }
 
-static void ov104_022350B8(BattleHall *param0)
+static void SetupNextOpponent(BattleHall *battleHall)
 {
-    u8 v0, v1, v2, v3;
-    int v4, v5;
-    Pokemon *v6;
+    u8 battleType = HALL_NEXT_BATTLE_NORMAL;
 
-    v3 = 0;
-    v1 = 1;
-
-    if (param0->challengeType != 0) {
-        v1 = 2;
+    u8 numOppTrainers = 1;
+    if (battleHall->challengeType != FRONTIER_CHALLENGE_SINGLE) {
+        numOppTrainers = 2;
     }
 
-    v0 = BattleHall_GetRankOfType(param0->selectedTypeIdx, &param0->typeRanks[param0->challengeType][0]);
-    param0->unk_07 = ov104_02235704(param0);
+    u8 typeRank = BattleHall_GetRankOfType(battleHall->selectedTypeIdx, &battleHall->typeRanks[battleHall->challengeType][0]);
+    battleHall->opponentsLevel = BattleHall_CalcOpponentsLevel(battleHall);
 
-    ov104_0223AF58(param0->selectedTypeIdx, v1, v0, param0->unk_05, param0->trainerIDs);
-    ov104_0223AFB4(param0->challengeType, v1, param0->currentRound, v0, param0->unk_05, param0->trainerIDs);
+    BattleHall_PickOpponentTrainerClasses(battleHall->selectedTypeIdx, numOppTrainers, typeRank, battleHall->currentBattle, battleHall->trainerIDs);
+    BattleHall_PickOpponentTrainers(battleHall->challengeType, numOppTrainers, battleHall->currentRound, typeRank, battleHall->currentBattle, battleHall->trainerIDs);
 
-    v2 = (param0->unk_05 * 2);
+    u8 offset = battleHall->currentBattle * 2;
 
-    if ((param0->trainerIDs[v2] == 307) || (param0->trainerIDs[v2] == 308)) {
-        v5 = ov104_0223B5C0(param0);
-        v0 = v5;
+    if (battleHall->trainerIDs[offset] == FRONTIER_TRAINER_HALL_MATRON_ARGENTA_SILVER || battleHall->trainerIDs[offset] == FRONTIER_TRAINER_HALL_MATRON_ARGENTA_GOLD) {
+        typeRank = (int)BattleHall_GetHallMatronTypeRank(battleHall);
     }
 
-    if (param0->trainerIDs[v2] == 307) {
-        v3 = 1;
+    if (battleHall->trainerIDs[offset] == FRONTIER_TRAINER_HALL_MATRON_ARGENTA_SILVER) {
+        battleType = HALL_NEXT_BATTLE_SILVER;
     }
 
-    if (param0->trainerIDs[v2] == 308) {
-        v3 = 2;
+    if (battleHall->trainerIDs[offset] == FRONTIER_TRAINER_HALL_MATRON_ARGENTA_GOLD) {
+        battleType = HALL_NEXT_BATTLE_GOLD;
     }
 
-    v6 = Party_GetPokemonBySlotIndex(param0->party, 0);
-    ov104_0223B0C8(1, param0->selectedType, v0, param0->unk_05, Pokemon_GetValue(v6, MON_DATA_SPECIES, NULL), param0->unk_268, v3);
-
-    return;
+    Pokemon *playersMon = Party_GetPokemonBySlotIndex(battleHall->party, 0);
+    BattleHall_PickNextOpponentPokemon(1, battleHall->selectedType, typeRank, battleHall->currentBattle, Pokemon_GetValue(playersMon, MON_DATA_SPECIES, NULL), battleHall->monIndices, battleType);
 }
 
 void BattleHall_Free(BattleHall *battleHall)
@@ -238,8 +226,8 @@ void BattleHall_Save(BattleHall *battleHall, u8 saveType)
     u16 currentSpecies = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
     u16 speciesOnRecord = BattleFrontierSave_GetStatAutoHostIdx(frontier, BattleFrontierStats_GetHallLatestSpeciesIndex(battleHall->challengeType));
 
-    *u8Ptr = battleHall->unk_05;
-    BattleHallSave_SetMember(battleHall->hallSave, HALL_SAVE_UNK_1, 0, 0, u8Ptr);
+    *u8Ptr = battleHall->currentBattle;
+    BattleHallSave_SetMember(battleHall->hallSave, HALL_SAVE_CURRENT_BATTLE, 0, 0, u8Ptr);
     BattleFrontierSave_SetStatAutoHostIdx(frontier, BattleFrontierStats_GetHallLatestStreakIndex(battleHall->challengeType), battleHall->currentStreak);
 
     if (saveType != 2) {
@@ -253,15 +241,15 @@ void BattleHall_Save(BattleHall *battleHall, u8 saveType)
             }
         }
 
-        *u8Ptr = battleHall->streakActive;
+        *u8Ptr = battleHall->saveStreak;
         BattleHallStreakFlags_SetFlag(streakFlags, HALL_SAVE_STREAK_FLAGS, battleHall->challengeType, 0, u8Ptr);
 
         if (battleHall->challengeType == FRONTIER_CHALLENGE_MULTI_WFC) {
-            BattleFrontierSave_SetStatAutoHostIdx(frontier, STAT_HALL_WFC_STREAK_ACTIVE, battleHall->streakActive);
+            BattleFrontierSave_SetStatAutoHostIdx(frontier, STAT_HALL_WFC_STREAK_ACTIVE, battleHall->saveStreak);
         }
     }
 
-    for (i = 0; i < (10 * 2); i++) {
+    for (i = 0; i < HALL_BATTLES_PER_ROUND * 2; i++) {
         *u16Ptr = battleHall->trainerIDs[i];
         BattleHallSave_SetMember(battleHall->hallSave, HALL_SAVE_TRAINER_IDS, i, 0, u16Ptr);
     }
@@ -276,115 +264,107 @@ void BattleHall_Save(BattleHall *battleHall, u8 saveType)
         BattleHall_SaveTypeRank(battleHall->saveData, battleHall->challengeType, i, *u8Ptr);
     }
 
-    for (i = 0; i < (10 * 2); i++) {
-        *u16Ptr = battleHall->unk_268[i];
-        BattleHallSave_SetMember(battleHall->hallSave, HALL_SAVE_UNK_4, i, 0, u16Ptr);
+    for (i = 0; i < HALL_BATTLES_PER_ROUND * 2; i++) {
+        *u16Ptr = battleHall->monIndices[i];
+        BattleHallSave_SetMember(battleHall->hallSave, HALL_SAVE_POKEMON_INDICES, i, 0, u16Ptr);
     }
 
     BattleFrontierSave_SetStatAutoHostIdx(frontier, BattleFrontierStats_GetHallLatestSpeciesIndex(battleHall->challengeType), Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL));
 }
 
-u16 ov104_022354B0(BattleHall *param0)
+u16 BattleHall_IncrementCurrentBattle(BattleHall *battleHall)
 {
-    param0->unk_05++;
-    return param0->unk_05;
+    battleHall->currentBattle++;
+    return battleHall->currentBattle;
 }
 
-u16 ov104_022354BC(BattleHall *param0)
+u16 BattleHall_GetCurrentBattle(BattleHall *battleHall)
 {
-    return param0->unk_05;
+    return battleHall->currentBattle;
 }
 
-u16 ov104_022354C0(BattleHall *param0, u8 param1)
+u16 BattleHall_GetNextOpponentObjectID(BattleHall *battleHall, u8 trainerSlot)
 {
-    FrontierTrainerDataDTO v0;
-    u8 v2 = (param0->unk_05 * 2) + param1;
+    FrontierTrainerDataDTO trainer;
+    u8 offset = (battleHall->currentBattle * 2) + trainerSlot;
 
-    Heap_Free(BattleFrontier_GetTrainerData(&v0, param0->trainerIDs[v2], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
+    Heap_Free(BattleFrontier_GetTrainerData(&trainer, battleHall->trainerIDs[offset], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
 
-    return BattleTower_GetObjectIDFromTrainerClass(v0.trainerType);
+    return BattleTower_GetObjectIDFromTrainerClass(trainer.trainerType);
 }
 
-void ov104_022354F4(BattleHall *param0)
+void BattleHall_SaveOnLoss(BattleHall *battleHall)
 {
-    int v0;
-
-    BattleHall_ResetRankOfAllTypes(&param0->typeRanks[param0->challengeType][0]);
-    BattleHall_Save(param0, 1);
-
-    return;
+    BattleHall_ResetRankOfAllTypes(&battleHall->typeRanks[battleHall->challengeType][0]);
+    BattleHall_Save(battleHall, 1);
 }
 
-void ov104_02235518(BattleHall *param0)
+void BattleHall_SaveOnCompletingRound(BattleHall *battleHall)
 {
-    Pokemon *v0;
+    battleHall->saveStreak = TRUE;
 
-    param0->streakActive = 1;
-
-    if (param0->currentRound < 18) {
-        param0->currentRound++;
+    if (battleHall->currentRound < 18) {
+        battleHall->currentRound++;
     }
 
-    param0->unk_05 = 0;
-    BattleHall_Save(param0, 0);
-
-    return;
+    battleHall->currentBattle = 0;
+    BattleHall_Save(battleHall, 0);
 }
 
-BOOL ov104_02235534(BattleHall *param0, u16 param1, u16 param2)
+BOOL BattleHall_SendCommMessage(BattleHall *battleHall, u16 command, u16 arg)
 {
-    int v0;
+    int success;
 
-    switch (param1) {
+    switch (command) {
     case 0:
-        v0 = ov104_0222ED00(param0);
+        success = ov104_0222ED00(battleHall);
         break;
     case 1:
-        v0 = ov104_0222ED44(param0);
+        success = ov104_0222ED44(battleHall);
         break;
     case 2:
-        v0 = ov104_0222EDA8(param0);
+        success = ov104_0222EDA8(battleHall);
         break;
     case 3:
-        v0 = ov104_0222EE14(param0, param2);
+        success = ov104_0222EE14(battleHall, arg);
         break;
     case 7:
-        v0 = ov104_0222EE60(param0);
+        success = ov104_0222EE60(battleHall);
         break;
     }
 
-    return v0;
+    return success;
 }
 
-u16 ov104_02235578(BattleHall *param0)
+u16 BattleHall_GetEarnedBP(BattleHall *battleHall)
 {
-    u8 v0;
-    static const u8 v1[18 + 1] = { 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 6, 6, 8, 8, 10, 10, 12 };
-    static const u8 v2[18 + 1] = { 0, 6, 6, 6, 8, 8, 8, 10, 10, 10, 12, 12, 14, 15, 17, 17, 20, 20, 23 };
+    u8 bp;
+    static const u8 sBPPerRoundSolo[18 + 1] = { 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 6, 6, 8, 8, 10, 10, 12 };
+    static const u8 sBPPerRoundWiFi[18 + 1] = { 0, 6, 6, 6, 8, 8, 8, 10, 10, 10, 12, 12, 14, 15, 17, 17, 20, 20, 23 };
 
-    if ((param0->challengeType == 0) || (param0->challengeType == 1)) {
-        if (param0->currentRound >= 18) {
-            v0 = v1[18];
+    if (battleHall->challengeType == FRONTIER_CHALLENGE_SINGLE || battleHall->challengeType == FRONTIER_CHALLENGE_DOUBLE) {
+        if (battleHall->currentRound >= 18) {
+            bp = sBPPerRoundSolo[18];
         } else {
-            v0 = v1[param0->currentRound];
+            bp = sBPPerRoundSolo[battleHall->currentRound];
         }
     } else {
-        if (param0->currentRound >= 18) {
-            v0 = v2[18];
+        if (battleHall->currentRound >= 18) {
+            bp = sBPPerRoundWiFi[18];
         } else {
-            v0 = v2[param0->currentRound];
+            bp = sBPPerRoundWiFi[battleHall->currentRound];
         }
     }
 
-    if (param0->challengeType == 0) {
-        if ((param0->currentStreak == 50) || (param0->currentStreak == 170)) {
-            v0 = 20;
+    if (battleHall->challengeType == FRONTIER_CHALLENGE_SINGLE) {
+        if (battleHall->currentStreak == HALL_STREAK_SILVER_BATTLE || battleHall->currentStreak == HALL_STREAK_GOLD_BATTLE) {
+            bp = 20;
         }
-    } else if (param0->challengeType == 2) {
-        v0 = 12;
+    } else if (battleHall->challengeType == FRONTIER_CHALLENGE_MULTI) {
+        bp = 12;
     }
 
-    return v0;
+    return bp;
 }
 
 static u16 BattleHall_LoadTypeRanks(SaveData *saveData, u8 challengeType, u8 type, u16 *type1Rank, u16 *type2Rank)
@@ -422,28 +402,25 @@ static void BattleHall_SaveTypeRank(SaveData *saveData, u8 challengeType, u8 typ
     BattleFrontierSave_SetStatAutoHostIdx(SaveData_GetBattleFrontier(saveData), BattleFrontierStats_GetHallCurrentTypeRanksIndex(challengeType, type), currentRanks);
 }
 
-void ov104_022356A0(BattleHall *param0)
+void BattleHall_CapTypeRanks(BattleHall *battleHall)
 {
-    u8 v0;
-    int v1;
+    int type;
 
-    if (param0->challengeType != 2) {
-        for (v1 = 0; v1 < (18 - 1); v1++) {
-            v0 = BattleHall_GetRankOfType(v1, &param0->typeRanks[param0->challengeType][0]);
+    if (battleHall->challengeType != FRONTIER_CHALLENGE_MULTI) {
+        for (type = 0; type < NUM_POKEMON_TYPES - 1; type++) {
+            u8 rank = BattleHall_GetRankOfType(type, &battleHall->typeRanks[battleHall->challengeType][0]);
 
-            if (v0 < 10) {
+            if (rank < HALL_MAX_TYPE_RANK) {
                 break;
             }
         }
 
-        if (v1 == (18 - 1)) {
-            for (v1 = 0; v1 < (18 - 1); v1++) {
-                BattleHall_SetRankOfType(v1, &param0->typeRanks[param0->challengeType][0], 10 - 1);
+        if (type == NUM_POKEMON_TYPES - 1) {
+            for (type = 0; type < NUM_POKEMON_TYPES - 1; type++) {
+                BattleHall_SetRankOfType(type, &battleHall->typeRanks[battleHall->challengeType][0], HALL_MAX_TYPE_RANK - 1);
             }
         }
     }
-
-    return;
 }
 
 void BattleHall_CalcPlayerLevelSqrt(BattleHall *battleHall)
@@ -452,64 +429,61 @@ void BattleHall_CalcPlayerLevelSqrt(BattleHall *battleHall)
     battleHall->playerLevelSqrt = BattleHall_GetLevelSquareRoot(level);
 }
 
-static u16 ov104_02235704(BattleHall *param0)
+static u16 BattleHall_CalcOpponentsLevel(BattleHall *battleHall)
 {
-    fx32 v0, v1;
-    int v2, v3;
-    int v4;
-    u8 v5;
-    float v6, v7;
+    fx32 baseLevel;
+    int type;
 
-    v5 = BattleHall_GetRankOfType(param0->selectedTypeIdx, &param0->typeRanks[param0->challengeType][0]);
-    v2 = BattleHall_GetHighestLevelInParty(param0);
+    u8 typeRank = BattleHall_GetRankOfType(battleHall->selectedTypeIdx, &battleHall->typeRanks[battleHall->challengeType][0]);
+    int playersLevel = BattleHall_GetHighestLevelInParty(battleHall);
 
-    if (param0->challengeType == 2) {
-        return v2;
+    if (battleHall->challengeType == FRONTIER_CHALLENGE_MULTI) {
+        return playersLevel;
     }
 
-    v0 = (FX32_CONST(v2) - (param0->playerLevelSqrt * 3));
-    v6 = (FX_FX32_TO_F32(param0->playerLevelSqrt) * 5.0);
+    baseLevel = FX32_CONST(playersLevel) - battleHall->playerLevelSqrt * 3;
+    float rankFactor = FX_FX32_TO_F32(battleHall->playerLevelSqrt) * 5.0;
 
-    if ((v2 / v6) < 1.0) {
-        v6 = 1.0;
-        v6 = (float)(v5 + 1 - 1);
+    if (playersLevel / rankFactor < 1.0) {
+        rankFactor = 1.0;
+        rankFactor = typeRank + 1 - 1;
     } else {
-        v1 = FX32_CONST((v5 + 1 - 1) * v2);
-        v6 = (FX_FX32_TO_F32(v1) / v6);
+        fx32 v1 = FX32_CONST(typeRank * playersLevel);
+        rankFactor = (FX_FX32_TO_F32(v1) / rankFactor);
     }
 
-    v7 = 0.0;
+    float numBattledTypesFactor = 0.0;
 
-    for (v3 = 0; v3 < 18; v3++) {
-        if (v3 == param0->selectedTypeIdx) {
-            v7 += 1.0;
+    for (type = 0; type < NUM_POKEMON_TYPES; type++) {
+        if (type == battleHall->selectedTypeIdx) {
+            numBattledTypesFactor += 1.0;
         } else {
-            if (BattleHall_GetRankOfType(v3, &param0->typeRanks[param0->challengeType][0]) > 0) {
-                v7 += 1.0;
+            if (BattleHall_GetRankOfType(type, &battleHall->typeRanks[battleHall->challengeType][0]) > 0) {
+                numBattledTypesFactor += 1.0;
             }
         }
     }
 
-    if (v7 != 0.0) {
-        v7 -= 1.0;
+    if (numBattledTypesFactor != 0.0) {
+        numBattledTypesFactor -= 1.0;
     }
 
-    v7 *= 0.5;
+    numBattledTypesFactor *= 0.5;
 
-    v6 = (FX_FX32_TO_F32(v0) + v6 + v7);
-    v4 = (int)(v6);
+    float opponentsLevelFloat = FX_FX32_TO_F32(baseLevel) + rankFactor + numBattledTypesFactor;
 
-    if (v6 != (int)v6) {
-        v4++;
+    int opponentsLevel = (int)(opponentsLevelFloat);
+    if (opponentsLevelFloat != (int)opponentsLevelFloat) {
+        opponentsLevel++;
     }
 
-    if (v4 > v2) {
-        v4 = v2;
+    if (opponentsLevel > playersLevel) {
+        opponentsLevel = playersLevel;
     }
 
-    if (v4 > 100) {
-        v4 = 100;
+    if (opponentsLevel > MAX_POKEMON_LEVEL) {
+        opponentsLevel = MAX_POKEMON_LEVEL;
     }
 
-    return v4;
+    return opponentsLevel;
 }

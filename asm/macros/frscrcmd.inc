@@ -766,9 +766,9 @@
     .short \partySlot2
     .endm
 
-    .macro FrontierScrCmd_8C arg0
-    .short FRSCRCMD_8C
-    .short \arg0
+    .macro BattleHall_SetupNextOpponent unused
+    .short FRSCRCMD_BATTLEHALL_SETUP_NEXT_OPPONENT
+    .short \unused
     .endm
 
     .macro FreeBattleHall
@@ -800,11 +800,11 @@
     .short \destVar
     .endm
 
-    .macro FrontierScrCmd_93 arg0, arg1, arg2
-    .short FRSCRCMD_93
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .macro BattleHall_SendCommMessage command, arg, returnVar
+    .short FRSCRCMD_BATTLEHALL_SENDCOMMMESSAGE
+    .short \command
+    .short \arg
+    .short \returnVar
     .endm
 
     .macro FrontierScrCmd_94 arg0
@@ -812,9 +812,9 @@
     .short \arg0
     .endm
 
-    .macro FrontierScrCmd_95 arg0
-    .short FRSCRCMD_95
-    .byte \arg0
+    .macro BattleHall_PrintTrainerIntro index
+    .short FRSCRCMD_BATTLEHALL_PRINTTRAINERINTRO
+    .byte \index
     .endm
 
     .macro FrontierScrCmd_Dummy96 arg0

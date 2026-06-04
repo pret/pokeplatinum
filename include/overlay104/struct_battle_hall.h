@@ -15,20 +15,20 @@
 typedef struct BattleHall {
     int unused;
     u8 challengeType;
-    u8 unk_05;
-    u8 streakActive;
-    u8 unk_07;
+    u8 currentBattle;
+    u8 saveStreak;
+    u8 opponentsLevel;
     u16 currentStreak;
     u16 currentRound;
     fx32 playerLevelSqrt;
     u32 unk_10;
     int wonBattle;
-    u16 trainerIDs[BATTLES_PER_ROUND_HALL * 2];
-    FrontierDataDTO unk_40[2];
+    u16 trainerIDs[HALL_BATTLES_PER_ROUND * 2];
+    FrontierDataDTO opponents[2];
     u8 partySlots[2];
     Party *party;
-    u16 unk_268[20];
-    FrontierPokemonDataDTO unk_290[20];
+    u16 monIndices[20];
+    FrontierPokemonDataDTO opponentMons[20];
     u16 unk_6F0;
     u16 selectedTypeIdx2;
     u8 selectedType;

@@ -195,7 +195,7 @@ BOOL ov104_0222EDA8(BattleHall *param0)
     v1 = 0;
 
     for (v0 = 0; v0 < (10 * 2); v0++) {
-        v2[v0] = param0->unk_268[v0];
+        v2[v0] = param0->monIndices[v0];
     }
 
     v1 += (10 * 2);
@@ -227,7 +227,7 @@ void ov104_0222EDDC(int param0, int param1, void *param2, void *param3)
     }
 
     for (v0 = 0; v0 < (10 * 2); v0++) {
-        v2->unk_268[v0] = v3[v0];
+        v2->monIndices[v0] = v3[v0];
     }
 
     v1 += (10 * 2);

@@ -579,7 +579,7 @@ _0532:
     FreeParticleSystem 0
     FadeScreenIn COLOR_WHITE
     FrontierScrCmd_46 0xC350
-    CallBattleHallFunction BH_FUNC_UNK_23, 0, 0, VAR_0x8008
+    CallBattleHallFunction BH_FUNC_GET_CURRENT_BATTLE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 0, _0595
     SetVar VAR_0x8003, 1
     GoTo _0B48
@@ -587,7 +587,7 @@ _0532:
 
 _0595:
     Message BattleHallScene_Text_ChooseType
-    CallBattleHallFunction BH_FUNC_UNK_35, 0, 0, VAR_0x8008
+    CallBattleHallFunction BH_FUNC_CAP_TYPE_RANKS, 0, 0, VAR_0x8008
     CallBattleHallFunction BH_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _05BC
     GoTo _0611
@@ -604,7 +604,7 @@ _05BC:
 
 _05D4:
     SetVar VAR_0x8006, 7
-    FrontierScrCmd_93 VAR_0x8006, 0, VAR_0x8008
+    BattleHall_SendCommMessage VAR_0x8006, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 0, _05D4
     FrontierScrCmd_94 VAR_0x8006
     ClearReceivedTempDataAllPlayers
@@ -627,7 +627,7 @@ _0611:
     CallBattleHallFunction BH_FUNC_TOGGLE_ENGINE_LAYER, 0, 0, VAR_0x8008
     CallBattleHallFunction BH_FUNC_SET_BASE_LEVEL, 0, 0, VAR_0x8008
     FadeScreenIn
-    FrontierScrCmd_8C VAR_0x8003
+    BattleHall_SetupNextOpponent VAR_0x8003
     GoTo _0665
     End
 
@@ -642,9 +642,9 @@ _0665:
     GoToIfEq VAR_0x8008, 1, _0708
     CallIfNe FR_VAR_0x800E, 0, _080D
     SetVar FR_VAR_0x800E, 1
-    CallBattleHallFunction BH_FUNC_UNK_37, 0, 0, VAR_0x8008
-    GoToIfEq VAR_0x8008, 1, _1199
-    GoToIfEq VAR_0x8008, 2, _11BE
+    CallBattleHallFunction BH_FUNC_GET_NEXT_BATTLE_TYPE, 0, 0, VAR_0x8008
+    GoToIfEq VAR_0x8008, HALL_NEXT_BATTLE_SILVER, _1199
+    GoToIfEq VAR_0x8008, HALL_NEXT_BATTLE_GOLD, _11BE
     Call _13C3
     BufferNumber 0, VAR_0x8008
     Call _083D
@@ -653,8 +653,8 @@ _0665:
     WaitTime 15, VAR_0x8008
     ApplyMovement 98, _01A4
     WaitMovement
-    CallBattleHallFunction BH_FUNC_UNK_32, 0, 0, VAR_0x8008
-    FrontierScrCmd_95 0
+    CallBattleHallFunction BH_FUNC_LOAD_TRAINERS, 0, 0, VAR_0x8008
+    BattleHall_PrintTrainerIntro 0
     WaitABPress
     CloseMessage
     ApplyMovement 10, _0214
@@ -679,7 +679,7 @@ _0708:
 
 _0731:
     SetVar VAR_0x8006, 1
-    FrontierScrCmd_93 VAR_0x8006, 0, VAR_0x8008
+    BattleHall_SendCommMessage VAR_0x8006, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 0, _0731
     FrontierScrCmd_94 VAR_0x8006
     ClearReceivedTempDataAllPlayers
@@ -691,7 +691,7 @@ _0731:
 
 _0762:
     SetVar VAR_0x8006, 2
-    FrontierScrCmd_93 VAR_0x8006, 0, VAR_0x8008
+    BattleHall_SendCommMessage VAR_0x8006, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 0, _0762
     FrontierScrCmd_94 VAR_0x8006
     ClearReceivedTempDataAllPlayers
@@ -704,14 +704,14 @@ _0762:
     WaitTime 15, VAR_0x8008
     ApplyMovement 98, _01A4
     WaitMovement
-    CallBattleHallFunction BH_FUNC_UNK_32, 0, 0, VAR_0x8008
-    FrontierScrCmd_95 0
+    CallBattleHallFunction BH_FUNC_LOAD_TRAINERS, 0, 0, VAR_0x8008
+    BattleHall_PrintTrainerIntro 0
     WaitTime 30, VAR_0x8008
     CloseMessage
     ApplyMovement 99, _01A4
     WaitMovement
-    CallBattleHallFunction BH_FUNC_UNK_32, 0, 0, VAR_0x8008
-    FrontierScrCmd_95 1
+    CallBattleHallFunction BH_FUNC_LOAD_TRAINERS, 0, 0, VAR_0x8008
+    BattleHall_PrintTrainerIntro 1
     WaitTime 30, VAR_0x8008
     CloseMessage
     ApplyMovement 1, _0214
@@ -737,18 +737,18 @@ _0821:
     Return
 
 _083D:
-    CallBattleHallFunction BH_FUNC_UNK_20, 0, 0, VAR_0x8008
+    CallBattleHallFunction BH_FUNC_GET_OPPONENT_OBJECT_ID, 0, 0, VAR_0x8008
     SetVar VAR_0x800B, VAR_0x8008
     FrontierScrCmd_22 _0114
     FrontierScrCmd_24 _0124
     Return
 
 _0858:
-    CallBattleHallFunction BH_FUNC_UNK_20, 0, 0, VAR_0x8008
+    CallBattleHallFunction BH_FUNC_GET_OPPONENT_OBJECT_ID, 0, 0, VAR_0x8008
     SetVar VAR_0x800B, VAR_0x8008
     FrontierScrCmd_22 _0114
     FrontierScrCmd_24 _0124
-    CallBattleHallFunction BH_FUNC_UNK_20, 1, 0, VAR_0x8008
+    CallBattleHallFunction BH_FUNC_GET_OPPONENT_OBJECT_ID, 1, 0, VAR_0x8008
     SetVar VAR_0x800C, VAR_0x8008
     FrontierScrCmd_22 _011C
     FrontierScrCmd_24 _0134
@@ -763,9 +763,9 @@ _088C:
 _08A0:
     CallBattleHallFunction BH_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _08F1
-    CallBattleHallFunction BH_FUNC_UNK_37, 0, 0, VAR_0x8008
-    GoToIfEq VAR_0x8008, 1, _08E1
-    GoToIfEq VAR_0x8008, 2, _08E1
+    CallBattleHallFunction BH_FUNC_GET_NEXT_BATTLE_TYPE, 0, 0, VAR_0x8008
+    GoToIfEq VAR_0x8008, HALL_NEXT_BATTLE_SILVER, _08E1
+    GoToIfEq VAR_0x8008, HALL_NEXT_BATTLE_GOLD, _08E1
     FrontierScrCmd_3F 1
     GoTo _0907
     End
@@ -794,14 +794,14 @@ _0907:
     BattleHall_CheckWonBattle VAR_0x8008
     GoToIfEq VAR_0x8008, 0, _0F5D
     IncrementRecordValue RECORD_BATTLE_HALL_VICTORIES
-    CallBattleHallFunction BH_FUNC_UNK_28, 0, 0, VAR_0x8008
-    CallBattleHallFunction BH_FUNC_UNK_33, 0, 0, VAR_0x8008
+    CallBattleHallFunction BH_FUNC_INCREMENT_RANK_OF_BEATEN_TYPE, 0, 0, VAR_0x8008
+    CallBattleHallFunction BH_FUNC_GET_RANK_OF_BEATEN_TYPE, 0, 0, VAR_0x8008
     CallIfEq VAR_0x8008, 10, _09B1
     CallBattleHallFunction BH_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _09E3
-    CallBattleHallFunction BH_FUNC_UNK_37, 0, 0, VAR_0x8008
-    GoToIfEq VAR_0x8008, 1, _1333
-    GoToIfEq VAR_0x8008, 2, _137B
+    CallBattleHallFunction BH_FUNC_GET_NEXT_BATTLE_TYPE, 0, 0, VAR_0x8008
+    GoToIfEq VAR_0x8008, HALL_NEXT_BATTLE_SILVER, _1333
+    GoToIfEq VAR_0x8008, HALL_NEXT_BATTLE_GOLD, _137B
     Call _13C3
     BufferNumber 0, VAR_0x8008
     InitParticleSystem 0, battle_hall_spa
@@ -851,9 +851,9 @@ _0A41:
     End
 
 _0A49:
-    CallBattleHallFunction BH_FUNC_UNK_14, 1, 0, VAR_0x8008
+    CallBattleHallFunction BH_FUNC_INCREMENT_CURRENT_BATTLE, 1, 0, VAR_0x8008
     CallBattleHallFunction BH_FUNC_INCREMENT_CURRENT_STREAK, 0, 0, VAR_0x8008
-    CallBattleHallFunction BH_FUNC_UNK_23, 0, 0, VAR_0x8008
+    CallBattleHallFunction BH_FUNC_GET_CURRENT_BATTLE, 0, 0, VAR_0x8008
     GoToIfNe VAR_0x8008, 10, _0B25
     GoTo _0A73
     End
@@ -880,13 +880,13 @@ _0AC8:
     End
 
 _0AD6:
-    CallBattleHallFunction BH_FUNC_UNK_22, 0, 0, VAR_0x8008
+    CallBattleHallFunction BH_FUNC_SAVE_ON_COMPLETING_ROUND, 0, 0, VAR_0x8008
     SetSystemVar VAR_BATTLE_HALL_LOBBY_LOAD_ACTION, 1
-    CallBattleHallFunction BH_FUNC_UNK_15, 0, 0, VAR_0x8008
+    CallBattleHallFunction BH_FUNC_GET_PLAYERS_MONS_SPECIES, 0, 0, VAR_0x8008
     BufferSpeciesName 0, VAR_0x8008
     Message BattleHallScene_Text_BPEarned
     BufferPlayerName 0
-    CallBattleHallFunction BH_FUNC_UNK_34, 0, 0, VAR_0x8008
+    CallBattleHallFunction BH_FUNC_GET_EARNED_BP, 0, 0, VAR_0x8008
     BufferNumber 1, VAR_0x8008
     GiveBattlePoints VAR_0x8008
     Message BattleHallScene_Text_ReceiveBP
@@ -901,7 +901,7 @@ _0B1D:
     End
 
 _0B25:
-    CallBattleHallFunction BH_FUNC_UNK_15, 0, 0, VAR_0x8008
+    CallBattleHallFunction BH_FUNC_GET_PLAYERS_MONS_SPECIES, 0, 0, VAR_0x8008
     BufferSpeciesName 0, VAR_0x8008
     Message BattleHallScene_Text_FullRestore
     PlayFanfare SEQ_ASA
@@ -917,7 +917,7 @@ _0B48:
     End
 
 _0B5B:
-    CallBattleHallFunction BH_FUNC_UNK_23, 0, 0, VAR_0x8008
+    CallBattleHallFunction BH_FUNC_GET_CURRENT_BATTLE, 0, 0, VAR_0x8008
     AddVar VAR_0x8008, 1
     BufferNumber 0, VAR_0x8008
     Message BattleHallScene_Text_AreYouReady
@@ -1025,7 +1025,7 @@ _0D2C:
 
 _0D3B:
     SetVar VAR_0x8006, 3
-    FrontierScrCmd_93 VAR_0x8006, 0, VAR_0x8008
+    BattleHall_SendCommMessage VAR_0x8006, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 0, _0D3B
     FrontierScrCmd_94 VAR_0x8006
     ClearReceivedTempDataAllPlayers
@@ -1154,7 +1154,7 @@ _0F01:
 
 _0F0D:
     SetVar VAR_0x8006, 3
-    FrontierScrCmd_93 VAR_0x8006, 1, VAR_0x8008
+    BattleHall_SendCommMessage VAR_0x8006, 1, VAR_0x8008
     GoToIfEq VAR_0x8008, 0, _0F0D
     GoTo _0F30
     End
@@ -1167,7 +1167,7 @@ _0F30:
     End
 
 _0F40:
-    CallBattleHallFunction BH_FUNC_UNK_21, 0, 0, VAR_0x8008
+    CallBattleHallFunction BH_FUNC_SAVE_ON_LOSS, 0, 0, VAR_0x8008
     SetSystemVar VAR_BATTLE_HALL_LOBBY_LOAD_ACTION, 3
     GoTo _100D
     End
@@ -1202,7 +1202,7 @@ _0FC0:
     End
 
 _0FC8:
-    CallBattleHallFunction BH_FUNC_UNK_21, 0, 0, VAR_0x8008
+    CallBattleHallFunction BH_FUNC_SAVE_ON_LOSS, 0, 0, VAR_0x8008
     SetSystemVar VAR_BATTLE_HALL_LOBBY_LOAD_ACTION, 3
     GoTo _0FDD
     End
@@ -1280,7 +1280,7 @@ _10C2:
 
 _10C8:
     PlaySoundEffect SEQ_SE_DP_DENDOU
-    CallBattleHallFunction BH_FUNC_UNK_19, 0, 0, VAR_0x8008
+    CallBattleHallFunction BH_FUNC_GET_CURRENT_ROUND, 0, 0, VAR_0x8008
     GoToIfLt VAR_0x8008, 2, _10F5
     GoToIfLt VAR_0x8008, 5, _1109
     GoTo _1117
@@ -1303,7 +1303,7 @@ _1117:
     Return
 
 _1125:
-    CallBattleHallFunction BH_FUNC_UNK_23, 0, 0, VAR_0x8008
+    CallBattleHallFunction BH_FUNC_GET_CURRENT_BATTLE, 0, 0, VAR_0x8008
     AddVar VAR_0x8008, 1
     GoToIfEq VAR_0x8008, 10, _1159
     PlaySoundEffect SEQ_SE_DP_UG_022

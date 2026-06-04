@@ -2155,12 +2155,12 @@ static BOOL FrontierScrCmd_3F(FrontierScriptContext *ctx)
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_BATTLE, SEQ_BATTLE_TRAINER, 1);
 
     v1 = Heap_Alloc(HEAP_ID_FIELD2, sizeof(UnkStruct_ov104_02231148));
-    v1->unk_14 = sub_0209B978(ctx->scriptMan->frontier);
+    v1->unk_14 = BattleFrontier_GetFacilityStruct(ctx->scriptMan->frontier);
     v1->unk_04 = 0;
     v1->unk_08 = ctx->data[0];
     v1->unk_00 = FrontierScriptManager_GetGraphics(ctx->scriptMan);
 
-    sub_0209B980(ctx->scriptMan->frontier, v1);
+    BattleFrontier_SetFacilityStruct(ctx->scriptMan->frontier, v1);
     FrontierScriptContext_Pause(ctx, ov104_02231AA8);
     PaletteData_FillBufferRange(v1->unk_00->plttData, 0, 2, 0x0, 0, 1);
 
@@ -2170,14 +2170,14 @@ static BOOL FrontierScrCmd_3F(FrontierScriptContext *ctx)
 static BOOL ov104_02231AA8(FrontierScriptContext *ctx)
 {
     BOOL v0;
-    UnkStruct_ov104_02231148 *v1 = sub_0209B978(ctx->scriptMan->frontier);
+    UnkStruct_ov104_02231148 *v1 = BattleFrontier_GetFacilityStruct(ctx->scriptMan->frontier);
 
     v0 = Unk_ov104_0223F65C[v1->unk_08](v1);
 
     if (v0 == 0) {
         SetScreenColorBrightness(DS_SCREEN_MAIN, COLOR_BLACK);
         SetScreenColorBrightness(DS_SCREEN_SUB, COLOR_BLACK);
-        sub_0209B980(ctx->scriptMan->frontier, v1->unk_14);
+        BattleFrontier_SetFacilityStruct(ctx->scriptMan->frontier, v1->unk_14);
         Heap_Free(v1);
     }
 

@@ -16,8 +16,8 @@ extern const ApplicationManagerTemplate gBattleFrontierAppTemplate;
 
 FieldFrontierDTO *BattleFrontier_GetFieldData(BattleFrontier *frontier);
 FrontierGraphics *BattleFrontier_GetGraphics(BattleFrontier *frontier);
-void *sub_0209B978(BattleFrontier *frontier);
-void sub_0209B980(BattleFrontier *frontier, void *param1);
+void *BattleFrontier_GetFacilityStruct(BattleFrontier *frontier);
+void BattleFrontier_SetFacilityStruct(BattleFrontier *frontier, void *param1);
 void sub_0209B988(BattleFrontier *frontier, const ApplicationManagerTemplate *param1, void *param2, int param3, UnkFuncPtr_0209B988 param4);
 void sub_0209B9B4(BattleFrontier *frontier);
 void sub_0209B9BC(BattleFrontier *frontier, u16 sceneID, u16 param2);

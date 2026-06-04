@@ -46,7 +46,7 @@ BOOL FrontierScrCmd_CallBattleTowerFunction(FrontierScriptContext *ctx)
     functionIndex = FrontierScriptContext_ReadHalfWord(ctx);
     functionArgument = FrontierScriptContext_GetVar(ctx);
     destVar = FrontierScriptContext_TryGetVarPointer(ctx);
-    BattleTower *battleTower = sub_0209B978(ctx->scriptMan->frontier);
+    BattleTower *battleTower = BattleFrontier_GetFacilityStruct(ctx->scriptMan->frontier);
 
     switch (functionIndex) {
     case BT_FUNC_RESET_SYSTEM:
@@ -156,7 +156,7 @@ BOOL FrontierScrCmd_85(FrontierScriptContext *param0)
     FieldFrontierDTO *fieldData = BattleFrontier_GetFieldData(param0->scriptMan->frontier);
     u16 v4 = FrontierScriptContext_ReadByte(param0);
 
-    battleTower = sub_0209B978(param0->scriptMan->frontier);
+    battleTower = BattleFrontier_GetFacilityStruct(param0->scriptMan->frontier);
 
     if (battleTower == NULL) {
         return 0;
@@ -164,13 +164,13 @@ BOOL FrontierScrCmd_85(FrontierScriptContext *param0)
 
     v1 = battleTower->opponentsDataDTO[v4].trDataDTO.introMsg;
 
-    ov104_0223310C(param0, v1, BattleTower_GetTrainerMessagesBankID(battleTower->challengeMode));
+    BattleFrontier_PrintTrainerMessage(param0, v1, BattleTower_GetTrainerMessagesBankID(battleTower->challengeMode));
     return 1;
 }
 
 BOOL FrontierScrCmd_FreeTowerStruct(FrontierScriptContext *ctx)
 {
-    BattleTower *battleTower = sub_0209B978(ctx->scriptMan->frontier);
+    BattleTower *battleTower = BattleFrontier_GetFacilityStruct(ctx->scriptMan->frontier);
     BattleTower_Free(battleTower);
 
     return FALSE;
@@ -179,7 +179,7 @@ BOOL FrontierScrCmd_FreeTowerStruct(FrontierScriptContext *ctx)
 BOOL FrontierScrCmd_BattleTower_StartBattle(FrontierScriptContext *ctx)
 {
     FieldFrontierDTO *fieldData = BattleFrontier_GetFieldData(ctx->scriptMan->frontier);
-    BattleTower *battleTower = sub_0209B978(ctx->scriptMan->frontier);
+    BattleTower *battleTower = BattleFrontier_GetFacilityStruct(ctx->scriptMan->frontier);
 
     FieldBattleDTO *dto = FieldBattleDTO_NewBattleTower(battleTower, fieldData);
     battleTower->dto = dto;
@@ -192,7 +192,7 @@ BOOL FrontierScrCmd_BattleTower_StartBattle(FrontierScriptContext *ctx)
 
 BOOL FrontierScrCmd_BattleTower_CheckWonBattle(FrontierScriptContext *ctx)
 {
-    BattleTower *battleTower = sub_0209B978(ctx->scriptMan->frontier);
+    BattleTower *battleTower = BattleFrontier_GetFacilityStruct(ctx->scriptMan->frontier);
     u16 *destVar = FrontierScriptContext_TryGetVarPointer(ctx);
     FieldBattleDTO *dto = battleTower->dto;
 
@@ -211,7 +211,7 @@ BOOL FrontierScrCmd_89(FrontierScriptContext *param0)
     u16 v3 = FrontierScriptContext_GetVar(param0);
     u16 *v4 = FrontierScriptContext_TryGetVarPointer(param0);
 
-    battleTower = sub_0209B978(param0->scriptMan->frontier);
+    battleTower = BattleFrontier_GetFacilityStruct(param0->scriptMan->frontier);
 
     switch (v2) {
     case 2:
@@ -249,7 +249,7 @@ static BOOL ov104_0223942C(FrontierScriptContext *param0)
     BattleTower *battleTower;
     FieldFrontierDTO *fieldData = BattleFrontier_GetFieldData(param0->scriptMan->frontier);
 
-    battleTower = sub_0209B978(param0->scriptMan->frontier);
+    battleTower = BattleFrontier_GetFacilityStruct(param0->scriptMan->frontier);
 
     if (ov104_02239464(param0, battleTower, fieldData->saveData, param0->data[0], param0->data[1]) == 1) {
         return 1;

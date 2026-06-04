@@ -944,12 +944,12 @@ void ov104_022330F0(FrontierGraphics *param0, ManagedSprite *param1)
     Sprite_DeleteAndFreeResources(param1);
 }
 
-void ov104_022330FC(FrontierScriptContext *ctx, u16 *args)
+void BattleFrontier_PrintNormalTrainerMessage(FrontierScriptContext *ctx, u16 *args)
 {
-    ov104_0223310C(ctx, args, TEXT_BANK_FRONTIER_TRAINER_MESSAGES);
+    BattleFrontier_PrintTrainerMessage(ctx, args, TEXT_BANK_FRONTIER_TRAINER_MESSAGES);
 }
 
-void ov104_0223310C(FrontierScriptContext *ctx, u16 *args, u32 bankID)
+void BattleFrontier_PrintTrainerMessage(FrontierScriptContext *ctx, u16 *args, u32 bankID)
 {
     MessageLoader *msgLoader;
     FieldFrontierDTO *fieldData = BattleFrontier_GetFieldData(ctx->scriptMan->frontier);

@@ -1,11 +1,11 @@
 #include "overlay104/ov104_0223AF58.h"
 
 #include <nitro.h>
-#include <string.h>
 
 #include "constants/battle_frontier.h"
 #include "generated/ai_flags.h"
 #include "generated/frontier_trainers.h"
+#include "generated/trainer_classes.h"
 
 #include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/struct_battle_hall.h"
@@ -21,1555 +21,1338 @@
 #include "party.h"
 #include "pokemon.h"
 
-typedef struct {
-    u8 unk_00;
-    u8 unk_01;
-    u16 unk_02;
-} UnkStruct_ov104_0224033C;
+#define GROUP_1_START 1
+#define GROUP_2_START 155
+#define GROUP_3_START 271
+#define GROUP_4_START 376
 
 typedef struct {
-    u16 unk_00;
-    u16 unk_02;
-} UnkStruct_ov104_02240364;
+    u16 min;
+    u16 max;
+} BattleHallGroupRange;
 
-void FieldBattleDTO_CopyPlayerInfoToTrainerData(FieldBattleDTO *param0);
-void ov104_0223AF58(u8 param0, u8 param1, u8 param2, u8 param3, u16 param4[]);
-void ov104_0223AFB4(u8 param0, u8 param1, int param2, u8 param3, u8 param4, u16 param5[]);
-void ov104_0223B0C8(u8 param0, u8 param1, u8 param2, u8 param3, u16 param4, u16 param5[], u8 param6);
-u8 BattleHall_GetPlayerPartySize(u8 challengeType);
-u8 BattleHall_GetOpponentPartySize(u8 challengeType);
 static u32 BattleHall_GetBattleType(u8 challengeType);
-static void ov104_0223B518(FrontierPokemonDataDTO *param0, u8 param1, u16 param2, u16 param3[], int param4, int param5, int param6);
-static u32 BattleHall_GetOpponentLevel(BattleHall *battleHall, u8 param1);
-u8 ov104_0223B5C0(BattleHall *battleHall);
-static u8 ov104_0223B5F0(u8 param0);
-static u16 BattleHall_GetAIMask(BattleHall *battleHall, u8 param1, u8 rank);
-static u16 ov104_0223B644(u8 param0);
-u16 BattleHall_GetHighestLevelInParty(BattleHall *battleHall);
-static BOOL ov104_0223B4A4(BattleHall *battleHall, u8 param1);
+static void BattleHall_LoadOpponentMonData(FrontierPokemonDataDTO *monDto, u8 typeRank, u16 trainerID, u16 opponentIndices[], int partySize, int heapID, int narcID);
+static u32 BattleHall_GetOpponentLevel(BattleHall *battleHall, u8 unused);
+static u8 BattleHall_GetIVsOfOpponentAtRank(u8 typeRank);
+static u16 BattleHall_GetAIMask(BattleHall *battleHall, u8 battleNum, u8 rank);
+static u16 BattleHall_CheckTypeRank(u8 typeRank);
+static BOOL BattleHall_SetMonsPersonality(BattleHall *battleHall, u8 index);
 
-static const u16 Unk_ov104_0224041C[10][8] = {
-    { 0x2, 0x3, 0x14, 0x15, 0x25, 0x24, 0x16, 0x1C },
-    { 0x2, 0x3, 0x51, 0x1A, 0x13, 0x50, 0x16, 0x1C },
-    { 0x20, 0x21, 0x14, 0x15, 0x25, 0x24, 0x3A, 0x55 },
-    { 0x20, 0x21, 0x51, 0x1A, 0x13, 0x50, 0x3A, 0x55 },
-    { 0x4, 0x5, 0x47, 0x12, 0x22, 0x23, 0x25, 0x24 },
-    { 0x4, 0x5, 0x10, 0x11, 0x22, 0x23, 0x39, 0x34 },
-    { 0x3C, 0x3D, 0x47, 0x12, 0x14, 0x15, 0x13, 0x50 },
-    { 0x3C, 0x3D, 0x10, 0x11, 0x14, 0x15, 0x39, 0x34 },
-    { 0x18, 0x19, 0x47, 0x12, 0x27, 0x28, 0x33, 0x1B },
-    { 0x18, 0x19, 0x10, 0x11, 0x27, 0x28, 0x33, 0x1B }
+static const u16 sHallTrainerClassesByRank[HALL_MAX_TYPE_RANK][8] = {
+    {
+        TRAINER_CLASS_YOUNGSTER,
+        TRAINER_CLASS_LASS,
+        TRAINER_CLASS_POKEFAN_MALE,
+        TRAINER_CLASS_POKEFAN_FEMALE,
+        TRAINER_CLASS_COLLECTOR,
+        TRAINER_CLASS_BEAUTY,
+        TRAINER_CLASS_POKE_KID,
+        TRAINER_CLASS_NINJA_BOY,
+    },
+    {
+        TRAINER_CLASS_YOUNGSTER,
+        TRAINER_CLASS_LASS,
+        TRAINER_CLASS_WAITER,
+        TRAINER_CLASS_WAITRESS,
+        TRAINER_CLASS_JOGGER,
+        TRAINER_CLASS_PARASOL_LADY,
+        TRAINER_CLASS_POKE_KID,
+        TRAINER_CLASS_NINJA_BOY,
+    },
+    {
+        TRAINER_CLASS_RICH_BOY,
+        TRAINER_CLASS_LADY,
+        TRAINER_CLASS_POKEFAN_MALE,
+        TRAINER_CLASS_POKEFAN_FEMALE,
+        TRAINER_CLASS_COLLECTOR,
+        TRAINER_CLASS_BEAUTY,
+        TRAINER_CLASS_CLOWN,
+        TRAINER_CLASS_IDOL,
+    },
+    {
+        TRAINER_CLASS_RICH_BOY,
+        TRAINER_CLASS_LADY,
+        TRAINER_CLASS_WAITER,
+        TRAINER_CLASS_WAITRESS,
+        TRAINER_CLASS_JOGGER,
+        TRAINER_CLASS_PARASOL_LADY,
+        TRAINER_CLASS_CLOWN,
+        TRAINER_CLASS_IDOL,
+    },
+    {
+        TRAINER_CLASS_CAMPER,
+        TRAINER_CLASS_PICNICKER,
+        TRAINER_CLASS_RANCHER,
+        TRAINER_CLASS_COWGIRL,
+        TRAINER_CLASS_GENTLEMAN,
+        TRAINER_CLASS_SOCIALITE,
+        TRAINER_CLASS_COLLECTOR,
+        TRAINER_CLASS_BEAUTY,
+    },
+    {
+        TRAINER_CLASS_CAMPER,
+        TRAINER_CLASS_PICNICKER,
+        TRAINER_CLASS_BREEDER_MALE,
+        TRAINER_CLASS_BREEDER_FEMALE,
+        TRAINER_CLASS_GENTLEMAN,
+        TRAINER_CLASS_SOCIALITE,
+        TRAINER_CLASS_ROUGHNECK,
+        TRAINER_CLASS_GUITARIST,
+    },
+    {
+        TRAINER_CLASS_SCHOOL_KID_MALE,
+        TRAINER_CLASS_SCHOOL_KID_FEMALE,
+        TRAINER_CLASS_RANCHER,
+        TRAINER_CLASS_COWGIRL,
+        TRAINER_CLASS_POKEFAN_MALE,
+        TRAINER_CLASS_POKEFAN_FEMALE,
+        TRAINER_CLASS_JOGGER,
+        TRAINER_CLASS_PARASOL_LADY,
+    },
+    {
+        TRAINER_CLASS_SCHOOL_KID_MALE,
+        TRAINER_CLASS_SCHOOL_KID_FEMALE,
+        TRAINER_CLASS_BREEDER_MALE,
+        TRAINER_CLASS_BREEDER_FEMALE,
+        TRAINER_CLASS_POKEFAN_MALE,
+        TRAINER_CLASS_POKEFAN_FEMALE,
+        TRAINER_CLASS_ROUGHNECK,
+        TRAINER_CLASS_GUITARIST,
+    },
+    {
+        TRAINER_CLASS_ACE_TRAINER_MALE,
+        TRAINER_CLASS_ACE_TRAINER_FEMALE,
+        TRAINER_CLASS_RANCHER,
+        TRAINER_CLASS_COWGIRL,
+        TRAINER_CLASS_RANGER_MALE,
+        TRAINER_CLASS_RANGER_FEMALE,
+        TRAINER_CLASS_PI,
+        TRAINER_CLASS_VETERAN,
+    },
+    {
+        TRAINER_CLASS_ACE_TRAINER_MALE,
+        TRAINER_CLASS_ACE_TRAINER_FEMALE,
+        TRAINER_CLASS_BREEDER_MALE,
+        TRAINER_CLASS_BREEDER_FEMALE,
+        TRAINER_CLASS_RANGER_MALE,
+        TRAINER_CLASS_RANGER_FEMALE,
+        TRAINER_CLASS_PI,
+        TRAINER_CLASS_VETERAN,
+    }
 };
 
-static const u16 Unk_ov104_0224038C[18][4] = {
-    { 0x14, 0x15, 0x2, 0x3 },
-    { 0x1B, 0x1B, 0x26, 0x26 },
-    { 0x2C, 0x2D, 0x2E, 0xB },
-    { 0x16, 0x16, 0x3B, 0x3B },
-    { 0x7, 0x7, 0x4, 0x5 },
-    { 0x35, 0x35, 0x36, 0x36 },
-    { 0xE, 0xE, 0xA, 0xA },
-    { 0x1C, 0x1C, 0x29, 0x29 },
-    { 0x9, 0x9, 0x30, 0x30 },
-    { 0x1E, 0x1E, 0x1E, 0x1E },
-    { 0x31, 0x31, 0x32, 0x32 },
-    { 0x6, 0x6, 0x6, 0x6 },
-    { 0x9, 0x9, 0x30, 0x30 },
-    { 0x31, 0x31, 0x32, 0x32 },
-    { 0x1D, 0x1D, 0x1D, 0x1D },
-    { 0x39, 0x39, 0x34, 0x34 },
-    { 0x54, 0x53, 0xC, 0xD },
-    { 0x55, 0x3A, 0x51, 0x1A }
+static const u16 sHallTrainerClassesBySelectedType[NUM_POKEMON_TYPES][4] = {
+    { TRAINER_CLASS_POKEFAN_MALE, TRAINER_CLASS_POKEFAN_FEMALE, TRAINER_CLASS_YOUNGSTER, TRAINER_CLASS_LASS },
+    { TRAINER_CLASS_VETERAN, TRAINER_CLASS_VETERAN, TRAINER_CLASS_POLICEMAN, TRAINER_CLASS_POLICEMAN },
+    { TRAINER_CLASS_TUBER_MALE, TRAINER_CLASS_TUBER_FEMALE, TRAINER_CLASS_SAILOR, TRAINER_CLASS_FISHERMAN },
+    { TRAINER_CLASS_POKE_KID, TRAINER_CLASS_POKE_KID, TRAINER_CLASS_WORKER, TRAINER_CLASS_WORKER },
+    { TRAINER_CLASS_AROMA_LADY, TRAINER_CLASS_AROMA_LADY, TRAINER_CLASS_CAMPER, TRAINER_CLASS_PICNICKER },
+    { TRAINER_CLASS_ACE_TRAINER_SNOW_MALE, TRAINER_CLASS_ACE_TRAINER_SNOW_MALE, TRAINER_CLASS_ACE_TRAINER_SNOW_FEMALE, TRAINER_CLASS_ACE_TRAINER_SNOW_FEMALE },
+    { TRAINER_CLASS_BLACK_BELT, TRAINER_CLASS_BLACK_BELT, TRAINER_CLASS_BATTLE_GIRL, TRAINER_CLASS_BATTLE_GIRL },
+    { TRAINER_CLASS_NINJA_BOY, TRAINER_CLASS_NINJA_BOY, TRAINER_CLASS_SCIENTIST, TRAINER_CLASS_SCIENTIST },
+    { TRAINER_CLASS_HIKER, TRAINER_CLASS_HIKER, TRAINER_CLASS_RUIN_MANIAC, TRAINER_CLASS_RUIN_MANIAC },
+    { TRAINER_CLASS_BIRD_KEEPER, TRAINER_CLASS_BIRD_KEEPER, TRAINER_CLASS_BIRD_KEEPER, TRAINER_CLASS_BIRD_KEEPER },
+    { TRAINER_CLASS_PSYCHIC_MALE, TRAINER_CLASS_PSYCHIC_MALE, TRAINER_CLASS_PSYCHIC_FEMALE, TRAINER_CLASS_PSYCHIC_FEMALE },
+    { TRAINER_CLASS_BUG_CATCHER, TRAINER_CLASS_BUG_CATCHER, TRAINER_CLASS_BUG_CATCHER, TRAINER_CLASS_BUG_CATCHER },
+    { TRAINER_CLASS_HIKER, TRAINER_CLASS_HIKER, TRAINER_CLASS_RUIN_MANIAC, TRAINER_CLASS_RUIN_MANIAC },
+    { TRAINER_CLASS_PSYCHIC_MALE, TRAINER_CLASS_PSYCHIC_MALE, TRAINER_CLASS_PSYCHIC_FEMALE, TRAINER_CLASS_PSYCHIC_FEMALE },
+    { TRAINER_CLASS_DRAGON_TAMER, TRAINER_CLASS_DRAGON_TAMER, TRAINER_CLASS_DRAGON_TAMER, TRAINER_CLASS_DRAGON_TAMER },
+    { TRAINER_CLASS_ROUGHNECK, TRAINER_CLASS_ROUGHNECK, TRAINER_CLASS_GUITARIST, TRAINER_CLASS_GUITARIST },
+    { TRAINER_CLASS_REPORTER, TRAINER_CLASS_CAMERAMAN, TRAINER_CLASS_CYCLIST_MALE, TRAINER_CLASS_CYCLIST_FEMALE },
+    { TRAINER_CLASS_IDOL, TRAINER_CLASS_CLOWN, TRAINER_CLASS_WAITER, TRAINER_CLASS_WAITRESS }
 };
 
-static const u16 Unk_ov104_022404BC[] = {
-    0x2,
-    0x2,
-    0x2,
-    0x3,
-    0x3,
-    0x3,
-    0x3C,
-    0x3C,
-    0x3C,
-    0x3D,
-    0x3D,
-    0x3D,
-    0x20,
-    0x20,
-    0x20,
-    0x21,
-    0x21,
-    0x21,
-    0x4,
-    0x4,
-    0x4,
-    0x5,
-    0x5,
-    0x5,
-    0x2C,
-    0x2C,
-    0x2C,
-    0x2D,
-    0x2D,
-    0x2D,
-    0x34,
-    0x34,
-    0x34,
-    0x55,
-    0x55,
-    0x55,
-    0x14,
-    0x14,
-    0x14,
-    0x15,
-    0x15,
-    0x15,
-    0x51,
-    0x51,
-    0x51,
-    0x1A,
-    0x1A,
-    0x1A,
-    0x6,
-    0x6,
-    0x6,
-    0x1C,
-    0x1C,
-    0x1C,
-    0x16,
-    0x16,
-    0x16,
-    0xB,
-    0xB,
-    0x30,
-    0x30,
-    0x25,
-    0x25,
-    0x50,
-    0x50,
-    0x50,
-    0x24,
-    0x24,
-    0x24,
-    0x7,
-    0x7,
-    0x7,
-    0x34,
-    0x34,
-    0x1E,
-    0x1E,
-    0x1E,
-    0x2E,
-    0x2E,
-    0x9,
-    0x9,
-    0x55,
-    0x55,
-    0x55,
-    0x13,
-    0x13,
-    0x3B,
-    0x3B,
-    0x47,
-    0x47,
-    0x47,
-    0x12,
-    0x12,
-    0x12,
-    0x53,
-    0x53,
-    0x53,
-    0x54,
-    0x54,
-    0x54,
-    0xC,
-    0xC,
-    0xD,
-    0xD,
-    0xE,
-    0xE,
-    0xA,
-    0xA,
-    0xE,
-    0xE,
-    0xE,
-    0xA,
-    0xA,
-    0xA,
-    0x1B,
-    0x1B,
-    0x1B,
-    0x23,
-    0x23,
-    0x23,
-    0x31,
-    0x31,
-    0x31,
-    0x32,
-    0x32,
-    0x32,
-    0x10,
-    0x10,
-    0x10,
-    0x11,
-    0x11,
-    0x11,
-    0x22,
-    0x22,
-    0x39,
-    0x39,
-    0x29,
-    0x29,
-    0x3A,
-    0x3A,
-    0x18,
-    0x18,
-    0x18,
-    0x19,
-    0x19,
-    0x19,
-    0x27,
-    0x27,
-    0x27,
-    0x28,
-    0x28,
-    0x28,
-    0x1D,
-    0x1D,
-    0x1D,
-    0x1D,
-    0x35,
-    0x35,
-    0x36,
-    0x36,
-    0x2,
-    0x2,
-    0x3,
-    0x3,
-    0x3C,
-    0x3C,
-    0x3D,
-    0x3D,
-    0x20,
-    0x20,
-    0x21,
-    0x21,
-    0x6,
-    0x6,
-    0x1C,
-    0x1C,
-    0x16,
-    0x16,
-    0x55,
-    0x55,
-    0x13,
-    0x13,
-    0xB,
-    0xB,
-    0x30,
-    0x30,
-    0x25,
-    0x25,
-    0x34,
-    0x34,
-    0x1E,
-    0x1E,
-    0x2E,
-    0x2E,
-    0x9,
-    0x9,
-    0x26,
-    0x26,
-    0x33,
-    0x33,
-    0x4,
-    0x4,
-    0x5,
-    0x5,
-    0x34,
-    0x34,
-    0x55,
-    0x55,
-    0x14,
-    0x14,
-    0x15,
-    0x15,
-    0x47,
-    0x47,
-    0x12,
-    0x12,
-    0x10,
-    0x10,
-    0x11,
-    0x11,
-    0x18,
-    0x18,
-    0x19,
-    0x19,
-    0x35,
-    0x35,
-    0x36,
-    0x36,
-    0x27,
-    0x27,
-    0x28,
-    0x28,
-    0x1D,
-    0x1D,
-    0xE,
-    0xE,
-    0xA,
-    0xA,
-    0x1B,
-    0x1B,
-    0x23,
-    0x23,
-    0x31,
-    0x31,
-    0x32,
-    0x32,
-    0x51,
-    0x51,
-    0x1A,
-    0x1A,
-    0x53,
-    0x53,
-    0x54,
-    0x54,
-    0xC,
-    0xC,
-    0xD,
-    0xD,
-    0x33,
-    0x33,
-    0x55,
-    0x55,
-    0x13,
-    0x13,
-    0xB,
-    0xB,
-    0x2E,
-    0x2E,
-    0x9,
-    0x9,
-    0x30,
-    0x30,
-    0x34,
-    0x34,
-    0x25,
-    0x25,
-    0x39,
-    0x39,
-    0x29,
-    0x29,
-    0x22,
-    0x22,
-    0x3B,
-    0x3B,
-    0x3A,
-    0x3A,
-    0x26,
-    0x26,
-    0x33,
-    0x33,
-    0x1E,
-    0x1E,
-    0x50,
-    0x50,
-    0x24,
-    0x24,
-    0x7,
-    0x7,
-    0x55,
-    0x55
+#include "res/trainers/frontier/frontier_trainer_classes.h"
+
+static const u16 sBattleHallPotentialOpponentTypes[][2] = {
+    { TYPE_GRASS, TYPE_POISON },
+    { TYPE_FIRE, TYPE_FIRE },
+    { TYPE_WATER, TYPE_WATER },
+    { TYPE_BUG, TYPE_BUG },
+    { TYPE_BUG, TYPE_BUG },
+    { TYPE_BUG, TYPE_POISON },
+    { TYPE_BUG, TYPE_POISON },
+    { TYPE_NORMAL, TYPE_FLYING },
+    { TYPE_NORMAL, TYPE_NORMAL },
+    { TYPE_NORMAL, TYPE_FLYING },
+    { TYPE_POISON, TYPE_POISON },
+    { TYPE_ELECTRIC, TYPE_ELECTRIC },
+    { TYPE_GROUND, TYPE_GROUND },
+    { TYPE_POISON, TYPE_POISON },
+    { TYPE_POISON, TYPE_POISON },
+    { TYPE_NORMAL, TYPE_NORMAL },
+    { TYPE_FIRE, TYPE_FIRE },
+    { TYPE_NORMAL, TYPE_NORMAL },
+    { TYPE_POISON, TYPE_FLYING },
+    { TYPE_GRASS, TYPE_POISON },
+    { TYPE_BUG, TYPE_GRASS },
+    { TYPE_BUG, TYPE_POISON },
+    { TYPE_GROUND, TYPE_GROUND },
+    { TYPE_NORMAL, TYPE_NORMAL },
+    { TYPE_WATER, TYPE_WATER },
+    { TYPE_FIGHTING, TYPE_FIGHTING },
+    { TYPE_WATER, TYPE_WATER },
+    { TYPE_PSYCHIC, TYPE_PSYCHIC },
+    { TYPE_FIGHTING, TYPE_FIGHTING },
+    { TYPE_GRASS, TYPE_POISON },
+    { TYPE_WATER, TYPE_POISON },
+    { TYPE_ROCK, TYPE_GROUND },
+    { TYPE_WATER, TYPE_PSYCHIC },
+    { TYPE_ELECTRIC, TYPE_STEEL },
+    { TYPE_NORMAL, TYPE_FLYING },
+    { TYPE_WATER, TYPE_WATER },
+    { TYPE_POISON, TYPE_POISON },
+    { TYPE_WATER, TYPE_WATER },
+    { TYPE_GHOST, TYPE_POISON },
+    { TYPE_PSYCHIC, TYPE_PSYCHIC },
+    { TYPE_WATER, TYPE_WATER },
+    { TYPE_ELECTRIC, TYPE_ELECTRIC },
+    { TYPE_GRASS, TYPE_PSYCHIC },
+    { TYPE_GROUND, TYPE_GROUND },
+    { TYPE_WATER, TYPE_WATER },
+    { TYPE_WATER, TYPE_WATER },
+    { TYPE_WATER, TYPE_WATER },
+    { TYPE_NORMAL, TYPE_NORMAL },
+    { TYPE_NORMAL, TYPE_NORMAL },
+    { TYPE_DRAGON, TYPE_DRAGON },
+    { TYPE_GRASS, TYPE_GRASS },
+    { TYPE_FIRE, TYPE_FIRE },
+    { TYPE_WATER, TYPE_WATER },
+    { TYPE_NORMAL, TYPE_NORMAL },
+    { TYPE_NORMAL, TYPE_FLYING },
+    { TYPE_BUG, TYPE_FLYING },
+    { TYPE_BUG, TYPE_POISON },
+    { TYPE_WATER, TYPE_ELECTRIC },
+    { TYPE_ELECTRIC, TYPE_ELECTRIC },
+    { TYPE_NORMAL, TYPE_NORMAL },
+    { TYPE_NORMAL, TYPE_NORMAL },
+    { TYPE_NORMAL, TYPE_NORMAL },
+    { TYPE_PSYCHIC, TYPE_FLYING },
+    { TYPE_ELECTRIC, TYPE_ELECTRIC },
+    { TYPE_WATER, TYPE_WATER },
+    { TYPE_GRASS, TYPE_FLYING },
+    { TYPE_GRASS, TYPE_GRASS },
+    { TYPE_WATER, TYPE_GROUND },
+    { TYPE_PSYCHIC, TYPE_PSYCHIC },
+    { TYPE_BUG, TYPE_BUG },
+    { TYPE_NORMAL, TYPE_NORMAL },
+    { TYPE_NORMAL, TYPE_NORMAL },
+    { TYPE_FIRE, TYPE_FIRE },
+    { TYPE_ICE, TYPE_GROUND },
+    { TYPE_WATER, TYPE_WATER },
+    { TYPE_ICE, TYPE_FLYING },
+    { TYPE_DARK, TYPE_FIRE },
+    { TYPE_GROUND, TYPE_GROUND },
+    { TYPE_NORMAL, TYPE_NORMAL },
+    { TYPE_FIGHTING, TYPE_FIGHTING },
+    { TYPE_ICE, TYPE_PSYCHIC },
+    { TYPE_ROCK, TYPE_GROUND },
+    { TYPE_GRASS, TYPE_GRASS },
+    { TYPE_FIRE, TYPE_FIRE },
+    { TYPE_WATER, TYPE_WATER },
+    { TYPE_DARK, TYPE_DARK },
+    { TYPE_NORMAL, TYPE_NORMAL },
+    { TYPE_BUG, TYPE_BUG },
+    { TYPE_BUG, TYPE_BUG },
+    { TYPE_BUG, TYPE_BUG },
+    { TYPE_WATER, TYPE_GRASS },
+    { TYPE_GRASS, TYPE_GRASS },
+    { TYPE_NORMAL, TYPE_FLYING },
+    { TYPE_WATER, TYPE_FLYING },
+    { TYPE_PSYCHIC, TYPE_PSYCHIC },
+    { TYPE_PSYCHIC, TYPE_PSYCHIC },
+    { TYPE_BUG, TYPE_WATER },
+    { TYPE_GRASS, TYPE_GRASS },
+    { TYPE_NORMAL, TYPE_NORMAL },
+    { TYPE_BUG, TYPE_GROUND },
+    { TYPE_BUG, TYPE_GHOST },
+    { TYPE_NORMAL, TYPE_NORMAL },
+    { TYPE_FIGHTING, TYPE_FIGHTING },
+    { TYPE_NORMAL, TYPE_NORMAL },
+    { TYPE_NORMAL, TYPE_NORMAL },
+    { TYPE_STEEL, TYPE_ROCK },
+    { TYPE_FIGHTING, TYPE_PSYCHIC },
+    { TYPE_ELECTRIC, TYPE_ELECTRIC },
+    { TYPE_POISON, TYPE_POISON },
+    { TYPE_WATER, TYPE_DARK },
+    { TYPE_FIRE, TYPE_GROUND },
+    { TYPE_PSYCHIC, TYPE_PSYCHIC },
+    { TYPE_GROUND, TYPE_GROUND },
+    { TYPE_GRASS, TYPE_GRASS },
+    { TYPE_NORMAL, TYPE_FLYING },
+    { TYPE_WATER, TYPE_GROUND },
+    { TYPE_WATER, TYPE_WATER },
+    { TYPE_GROUND, TYPE_PSYCHIC },
+    { TYPE_WATER, TYPE_WATER },
+    { TYPE_GHOST, TYPE_GHOST },
+    { TYPE_GHOST, TYPE_GHOST },
+    { TYPE_PSYCHIC, TYPE_PSYCHIC },
+    { TYPE_ICE, TYPE_ICE },
+    { TYPE_ICE, TYPE_WATER },
+    { TYPE_WATER, TYPE_WATER },
+    { TYPE_DRAGON, TYPE_DRAGON },
+    { TYPE_STEEL, TYPE_PSYCHIC },
+    { TYPE_GRASS, TYPE_GRASS },
+    { TYPE_FIRE, TYPE_FIRE },
+    { TYPE_WATER, TYPE_WATER },
+    { TYPE_NORMAL, TYPE_FLYING },
+    { TYPE_NORMAL, TYPE_NORMAL },
+    { TYPE_BUG, TYPE_BUG },
+    { TYPE_ELECTRIC, TYPE_ELECTRIC },
+    { TYPE_GRASS, TYPE_POISON },
+    { TYPE_BUG, TYPE_BUG },
+    { TYPE_BUG, TYPE_FLYING },
+    { TYPE_WATER, TYPE_WATER },
+    { TYPE_GRASS, TYPE_GRASS },
+    { TYPE_WATER, TYPE_WATER },
+    { TYPE_NORMAL, TYPE_NORMAL },
+    { TYPE_PSYCHIC, TYPE_PSYCHIC },
+    { TYPE_POISON, TYPE_DARK },
+    { TYPE_STEEL, TYPE_PSYCHIC },
+    { TYPE_ROCK, TYPE_ROCK },
+    { TYPE_PSYCHIC, TYPE_PSYCHIC },
+    { TYPE_NORMAL, TYPE_NORMAL },
+    { TYPE_DRAGON, TYPE_GROUND },
+    { TYPE_FIGHTING, TYPE_FIGHTING },
+    { TYPE_GROUND, TYPE_GROUND },
+    { TYPE_POISON, TYPE_BUG },
+    { TYPE_POISON, TYPE_FIGHTING },
+    { TYPE_WATER, TYPE_WATER },
+    { TYPE_GRASS, TYPE_ICE },
+    { TYPE_GRASS, TYPE_POISON },
+    { TYPE_FIRE, TYPE_FIRE },
+    { TYPE_WATER, TYPE_WATER },
+    { TYPE_BUG, TYPE_FLYING },
+    { TYPE_BUG, TYPE_POISON },
+    { TYPE_NORMAL, TYPE_FLYING },
+    { TYPE_NORMAL, TYPE_NORMAL },
+    { TYPE_POISON, TYPE_POISON },
+    { TYPE_POISON, TYPE_POISON },
+    { TYPE_POISON, TYPE_POISON },
+    { TYPE_NORMAL, TYPE_NORMAL },
+    { TYPE_GRASS, TYPE_POISON },
+    { TYPE_BUG, TYPE_GRASS },
+    { TYPE_GROUND, TYPE_GROUND },
+    { TYPE_FIRE, TYPE_FIRE },
+    { TYPE_WATER, TYPE_WATER },
+    { TYPE_PSYCHIC, TYPE_PSYCHIC },
+    { TYPE_FIGHTING, TYPE_FIGHTING },
+    { TYPE_GRASS, TYPE_POISON },
+    { TYPE_ROCK, TYPE_GROUND },
+    { TYPE_FIRE, TYPE_FIRE },
+    { TYPE_NORMAL, TYPE_FLYING },
+    { TYPE_GHOST, TYPE_POISON },
+    { TYPE_ROCK, TYPE_GROUND },
+    { TYPE_GROUND, TYPE_GROUND },
+    { TYPE_NORMAL, TYPE_NORMAL },
+    { TYPE_POISON, TYPE_POISON },
+    { TYPE_GROUND, TYPE_ROCK },
+    { TYPE_GRASS, TYPE_GRASS },
+    { TYPE_WATER, TYPE_WATER },
+    { TYPE_NORMAL, TYPE_NORMAL },
+    { TYPE_ROCK, TYPE_WATER },
+    { TYPE_ROCK, TYPE_WATER },
+    { TYPE_DRAGON, TYPE_DRAGON },
+    { TYPE_GRASS, TYPE_GRASS },
+    { TYPE_FIRE, TYPE_FIRE },
+    { TYPE_WATER, TYPE_WATER },
+    { TYPE_NORMAL, TYPE_NORMAL },
+    { TYPE_BUG, TYPE_FLYING },
+    { TYPE_BUG, TYPE_POISON },
+    { TYPE_NORMAL, TYPE_FLYING },
+    { TYPE_ELECTRIC, TYPE_ELECTRIC },
+    { TYPE_WATER, TYPE_WATER },
+    { TYPE_ROCK, TYPE_ROCK },
+    { TYPE_GRASS, TYPE_FLYING },
+    { TYPE_NORMAL, TYPE_NORMAL },
+    { TYPE_GRASS, TYPE_GRASS },
+    { TYPE_BUG, TYPE_FLYING },
+    { TYPE_WATER, TYPE_GROUND },
+    { TYPE_DARK, TYPE_FLYING },
+    { TYPE_GHOST, TYPE_GHOST },
+    { TYPE_PSYCHIC, TYPE_PSYCHIC },
+    { TYPE_NORMAL, TYPE_NORMAL },
+    { TYPE_GROUND, TYPE_FLYING },
+    { TYPE_WATER, TYPE_POISON },
+    { TYPE_DARK, TYPE_ICE },
+    { TYPE_FIRE, TYPE_ROCK },
+    { TYPE_WATER, TYPE_ROCK },
+    { TYPE_ELECTRIC, TYPE_ELECTRIC },
+    { TYPE_FIRE, TYPE_FIRE },
+    { TYPE_ROCK, TYPE_GROUND },
+    { TYPE_GRASS, TYPE_GRASS },
+    { TYPE_FIRE, TYPE_FIGHTING },
+    { TYPE_WATER, TYPE_GROUND },
+    { TYPE_DARK, TYPE_DARK },
+    { TYPE_NORMAL, TYPE_NORMAL },
+    { TYPE_BUG, TYPE_FLYING },
+    { TYPE_BUG, TYPE_POISON },
+    { TYPE_WATER, TYPE_GRASS },
+    { TYPE_GRASS, TYPE_DARK },
+    { TYPE_NORMAL, TYPE_FLYING },
+    { TYPE_WATER, TYPE_FLYING },
+    { TYPE_BUG, TYPE_FLYING },
+    { TYPE_NORMAL, TYPE_NORMAL },
+    { TYPE_ROCK, TYPE_ROCK },
+    { TYPE_NORMAL, TYPE_NORMAL },
+    { TYPE_DARK, TYPE_GHOST },
+    { TYPE_STEEL, TYPE_STEEL },
+    { TYPE_STEEL, TYPE_ROCK },
+    { TYPE_FIGHTING, TYPE_PSYCHIC },
+    { TYPE_ELECTRIC, TYPE_ELECTRIC },
+    { TYPE_ELECTRIC, TYPE_ELECTRIC },
+    { TYPE_BUG, TYPE_BUG },
+    { TYPE_BUG, TYPE_BUG },
+    { TYPE_GRASS, TYPE_POISON },
+    { TYPE_WATER, TYPE_WATER },
+    { TYPE_NORMAL, TYPE_NORMAL },
+    { TYPE_GROUND, TYPE_DRAGON },
+    { TYPE_ROCK, TYPE_GRASS },
+    { TYPE_ROCK, TYPE_BUG },
+    { TYPE_NORMAL, TYPE_NORMAL },
+    { TYPE_PSYCHIC, TYPE_PSYCHIC },
+    { TYPE_ICE, TYPE_WATER },
+    { TYPE_WATER, TYPE_WATER },
+    { TYPE_DRAGON, TYPE_DRAGON },
+    { TYPE_STEEL, TYPE_PSYCHIC },
+    { TYPE_GRASS, TYPE_GRASS },
+    { TYPE_FIRE, TYPE_FIGHTING },
+    { TYPE_WATER, TYPE_WATER },
+    { TYPE_NORMAL, TYPE_FLYING },
+    { TYPE_NORMAL, TYPE_WATER },
+    { TYPE_BUG, TYPE_BUG },
+    { TYPE_ELECTRIC, TYPE_ELECTRIC },
+    { TYPE_ROCK, TYPE_ROCK },
+    { TYPE_ROCK, TYPE_STEEL },
+    { TYPE_BUG, TYPE_GRASS },
+    { TYPE_BUG, TYPE_FLYING },
+    { TYPE_ELECTRIC, TYPE_ELECTRIC },
+    { TYPE_GHOST, TYPE_FLYING },
+    { TYPE_NORMAL, TYPE_NORMAL },
+    { TYPE_NORMAL, TYPE_FLYING },
+    { TYPE_DRAGON, TYPE_GROUND },
+    { TYPE_NORMAL, TYPE_NORMAL },
+    { TYPE_WATER, TYPE_FLYING },
+    { TYPE_BUG, TYPE_GROUND },
+    { TYPE_BUG, TYPE_STEEL },
+    { TYPE_ELECTRIC, TYPE_ELECTRIC },
+    { TYPE_GROUND, TYPE_GROUND },
+    { TYPE_POISON, TYPE_GROUND },
+    { TYPE_POISON, TYPE_GROUND },
+    { TYPE_NORMAL, TYPE_NORMAL },
+    { TYPE_POISON, TYPE_FLYING },
+    { TYPE_GRASS, TYPE_POISON },
+    { TYPE_BUG, TYPE_POISON },
+    { TYPE_NORMAL, TYPE_NORMAL },
+    { TYPE_FIGHTING, TYPE_FIGHTING },
+    { TYPE_PSYCHIC, TYPE_PSYCHIC },
+    { TYPE_GRASS, TYPE_POISON },
+    { TYPE_ROCK, TYPE_GROUND },
+    { TYPE_WATER, TYPE_PSYCHIC },
+    { TYPE_ELECTRIC, TYPE_STEEL },
+    { TYPE_NORMAL, TYPE_FLYING },
+    { TYPE_WATER, TYPE_ICE },
+    { TYPE_PSYCHIC, TYPE_PSYCHIC },
+    { TYPE_WATER, TYPE_WATER },
+    { TYPE_ELECTRIC, TYPE_ELECTRIC },
+    { TYPE_FIGHTING, TYPE_FIGHTING },
+    { TYPE_FIGHTING, TYPE_FIGHTING },
+    { TYPE_POISON, TYPE_POISON },
+    { TYPE_GROUND, TYPE_ROCK },
+    { TYPE_NORMAL, TYPE_NORMAL },
+    { TYPE_NORMAL, TYPE_NORMAL },
+    { TYPE_WATER, TYPE_WATER },
+    { TYPE_WATER, TYPE_WATER },
+    { TYPE_PSYCHIC, TYPE_PSYCHIC },
+    { TYPE_ICE, TYPE_PSYCHIC },
+    { TYPE_ELECTRIC, TYPE_ELECTRIC },
+    { TYPE_FIRE, TYPE_FIRE },
+    { TYPE_NORMAL, TYPE_NORMAL },
+    { TYPE_ROCK, TYPE_WATER },
+    { TYPE_ROCK, TYPE_WATER },
+    { TYPE_NORMAL, TYPE_FLYING },
+    { TYPE_WATER, TYPE_ELECTRIC },
+    { TYPE_PSYCHIC, TYPE_FLYING },
+    { TYPE_GRASS, TYPE_GRASS },
+    { TYPE_GRASS, TYPE_FLYING },
+    { TYPE_WATER, TYPE_PSYCHIC },
+    { TYPE_NORMAL, TYPE_PSYCHIC },
+    { TYPE_BUG, TYPE_STEEL },
+    { TYPE_NORMAL, TYPE_NORMAL },
+    { TYPE_ICE, TYPE_GROUND },
+    { TYPE_WATER, TYPE_WATER },
+    { TYPE_WATER, TYPE_FLYING },
+    { TYPE_STEEL, TYPE_FLYING },
+    { TYPE_NORMAL, TYPE_NORMAL },
+    { TYPE_FIGHTING, TYPE_FIGHTING },
+    { TYPE_NORMAL, TYPE_NORMAL },
+    { TYPE_WATER, TYPE_GRASS },
+    { TYPE_GRASS, TYPE_DARK },
+    { TYPE_GRASS, TYPE_FIGHTING },
+    { TYPE_NORMAL, TYPE_NORMAL },
+    { TYPE_BUG, TYPE_FLYING },
+    { TYPE_NORMAL, TYPE_NORMAL },
+    { TYPE_FIGHTING, TYPE_FIGHTING },
+    { TYPE_ELECTRIC, TYPE_ELECTRIC },
+    { TYPE_POISON, TYPE_POISON },
+    { TYPE_WATER, TYPE_DARK },
+    { TYPE_FIRE, TYPE_GROUND },
+    { TYPE_FIRE, TYPE_FIRE },
+    { TYPE_PSYCHIC, TYPE_PSYCHIC },
+    { TYPE_GRASS, TYPE_DARK },
+    { TYPE_DRAGON, TYPE_FLYING },
+    { TYPE_NORMAL, TYPE_NORMAL },
+    { TYPE_POISON, TYPE_POISON },
+    { TYPE_ROCK, TYPE_PSYCHIC },
+    { TYPE_ROCK, TYPE_PSYCHIC },
+    { TYPE_WATER, TYPE_GROUND },
+    { TYPE_WATER, TYPE_DARK },
+    { TYPE_ROCK, TYPE_GRASS },
+    { TYPE_ROCK, TYPE_BUG },
+    { TYPE_NORMAL, TYPE_NORMAL },
+    { TYPE_GHOST, TYPE_GHOST },
+    { TYPE_GHOST, TYPE_GHOST },
+    { TYPE_GRASS, TYPE_FLYING },
+    { TYPE_DARK, TYPE_DARK },
+    { TYPE_ICE, TYPE_ICE },
+    { TYPE_WATER, TYPE_WATER },
+    { TYPE_WATER, TYPE_WATER },
+    { TYPE_WATER, TYPE_ROCK },
+    { TYPE_NORMAL, TYPE_FLYING },
+    { TYPE_ROCK, TYPE_ROCK },
+    { TYPE_ROCK, TYPE_STEEL },
+    { TYPE_BUG, TYPE_FLYING },
+    { TYPE_WATER, TYPE_WATER },
+    { TYPE_GRASS, TYPE_GRASS },
+    { TYPE_WATER, TYPE_GROUND },
+    { TYPE_NORMAL, TYPE_NORMAL },
+    { TYPE_GHOST, TYPE_FLYING },
+    { TYPE_NORMAL, TYPE_NORMAL },
+    { TYPE_GHOST, TYPE_GHOST },
+    { TYPE_NORMAL, TYPE_NORMAL },
+    { TYPE_POISON, TYPE_DARK },
+    { TYPE_GHOST, TYPE_DARK },
+    { TYPE_POISON, TYPE_FIGHTING },
+    { TYPE_GRASS, TYPE_GRASS },
+    { TYPE_WATER, TYPE_WATER },
+    { TYPE_GRASS, TYPE_ICE },
+    { TYPE_ICE, TYPE_GHOST },
+    { TYPE_ELECTRIC, TYPE_GHOST },
+    { TYPE_NORMAL, TYPE_FLYING },
+    { TYPE_NORMAL, TYPE_FLYING },
+    { TYPE_WATER, TYPE_WATER },
+    { TYPE_FIRE, TYPE_FIRE },
+    { TYPE_WATER, TYPE_WATER },
+    { TYPE_FIRE, TYPE_FIRE },
+    { TYPE_WATER, TYPE_FIGHTING },
+    { TYPE_FIGHTING, TYPE_FIGHTING },
+    { TYPE_WATER, TYPE_POISON },
+    { TYPE_FIRE, TYPE_FIRE },
+    { TYPE_POISON, TYPE_POISON },
+    { TYPE_WATER, TYPE_ICE },
+    { TYPE_GHOST, TYPE_POISON },
+    { TYPE_GRASS, TYPE_PSYCHIC },
+    { TYPE_WATER, TYPE_PSYCHIC },
+    { TYPE_BUG, TYPE_FLYING },
+    { TYPE_BUG, TYPE_BUG },
+    { TYPE_WATER, TYPE_FLYING },
+    { TYPE_WATER, TYPE_ICE },
+    { TYPE_WATER, TYPE_WATER },
+    { TYPE_ELECTRIC, TYPE_ELECTRIC },
+    { TYPE_FIRE, TYPE_FIRE },
+    { TYPE_ROCK, TYPE_FLYING },
+    { TYPE_NORMAL, TYPE_NORMAL },
+    { TYPE_ICE, TYPE_FLYING },
+    { TYPE_ELECTRIC, TYPE_FLYING },
+    { TYPE_FIRE, TYPE_FLYING },
+    { TYPE_DRAGON, TYPE_FLYING },
+    { TYPE_GRASS, TYPE_GRASS },
+    { TYPE_FIRE, TYPE_FIRE },
+    { TYPE_WATER, TYPE_WATER },
+    { TYPE_POISON, TYPE_FLYING },
+    { TYPE_ELECTRIC, TYPE_ELECTRIC },
+    { TYPE_WATER, TYPE_WATER },
+    { TYPE_PSYCHIC, TYPE_PSYCHIC },
+    { TYPE_DARK, TYPE_DARK },
+    { TYPE_STEEL, TYPE_GROUND },
+    { TYPE_BUG, TYPE_STEEL },
+    { TYPE_BUG, TYPE_ROCK },
+    { TYPE_BUG, TYPE_FIGHTING },
+    { TYPE_NORMAL, TYPE_NORMAL },
+    { TYPE_DARK, TYPE_FIRE },
+    { TYPE_WATER, TYPE_DRAGON },
+    { TYPE_GROUND, TYPE_GROUND },
+    { TYPE_NORMAL, TYPE_NORMAL },
+    { TYPE_NORMAL, TYPE_NORMAL },
+    { TYPE_ELECTRIC, TYPE_ELECTRIC },
+    { TYPE_FIRE, TYPE_FIRE },
+    { TYPE_WATER, TYPE_WATER },
+    { TYPE_ROCK, TYPE_DARK },
+    { TYPE_GRASS, TYPE_GRASS },
+    { TYPE_FIRE, TYPE_FIGHTING },
+    { TYPE_WATER, TYPE_GROUND },
+    { TYPE_PSYCHIC, TYPE_PSYCHIC },
+    { TYPE_NORMAL, TYPE_NORMAL },
+    { TYPE_STEEL, TYPE_ROCK },
+    { TYPE_WATER, TYPE_WATER },
+    { TYPE_GROUND, TYPE_DRAGON },
+    { TYPE_GROUND, TYPE_PSYCHIC },
+    { TYPE_WATER, TYPE_WATER },
+    { TYPE_ICE, TYPE_WATER },
+    { TYPE_PSYCHIC, TYPE_PSYCHIC },
+    { TYPE_DRAGON, TYPE_FLYING },
+    { TYPE_STEEL, TYPE_PSYCHIC },
+    { TYPE_ROCK, TYPE_ROCK },
+    { TYPE_ICE, TYPE_ICE },
+    { TYPE_STEEL, TYPE_STEEL },
+    { TYPE_DRAGON, TYPE_PSYCHIC },
+    { TYPE_DRAGON, TYPE_PSYCHIC },
+    { TYPE_GRASS, TYPE_GROUND },
+    { TYPE_FIRE, TYPE_FIGHTING },
+    { TYPE_WATER, TYPE_STEEL },
+    { TYPE_ELECTRIC, TYPE_ELECTRIC },
+    { TYPE_GRASS, TYPE_POISON },
+    { TYPE_DARK, TYPE_FLYING },
+    { TYPE_STEEL, TYPE_PSYCHIC },
+    { TYPE_DRAGON, TYPE_GROUND },
+    { TYPE_FIGHTING, TYPE_STEEL },
+    { TYPE_GROUND, TYPE_GROUND },
+    { TYPE_POISON, TYPE_DARK },
+    { TYPE_DARK, TYPE_ICE },
+    { TYPE_ELECTRIC, TYPE_STEEL },
+    { TYPE_NORMAL, TYPE_NORMAL },
+    { TYPE_GROUND, TYPE_ROCK },
+    { TYPE_GRASS, TYPE_GRASS },
+    { TYPE_ELECTRIC, TYPE_ELECTRIC },
+    { TYPE_FIRE, TYPE_FIRE },
+    { TYPE_NORMAL, TYPE_FLYING },
+    { TYPE_BUG, TYPE_FLYING },
+    { TYPE_GRASS, TYPE_GRASS },
+    { TYPE_ICE, TYPE_ICE },
+    { TYPE_GROUND, TYPE_FLYING },
+    { TYPE_ICE, TYPE_GROUND },
+    { TYPE_NORMAL, TYPE_NORMAL },
+    { TYPE_PSYCHIC, TYPE_FIGHTING },
+    { TYPE_ROCK, TYPE_STEEL },
+    { TYPE_GHOST, TYPE_GHOST },
+    { TYPE_PSYCHIC, TYPE_PSYCHIC },
+    { TYPE_PSYCHIC, TYPE_PSYCHIC },
+    { TYPE_PSYCHIC, TYPE_PSYCHIC },
+    { TYPE_FIRE, TYPE_STEEL },
+    { TYPE_GRASS, TYPE_POISON },
+    { TYPE_FIRE, TYPE_FLYING },
+    { TYPE_NORMAL, TYPE_NORMAL }
 };
 
-static const u16 Unk_ov104_02240ACE[][2] = {
-    { 0xC, 0x3 },
-    { 0xA, 0xA },
-    { 0xB, 0xB },
-    { 0x6, 0x6 },
-    { 0x6, 0x6 },
-    { 0x6, 0x3 },
-    { 0x6, 0x3 },
-    { 0x0, 0x2 },
-    { 0x0, 0x0 },
-    { 0x0, 0x2 },
-    { 0x3, 0x3 },
-    { 0xD, 0xD },
-    { 0x4, 0x4 },
-    { 0x3, 0x3 },
-    { 0x3, 0x3 },
-    { 0x0, 0x0 },
-    { 0xA, 0xA },
-    { 0x0, 0x0 },
-    { 0x3, 0x2 },
-    { 0xC, 0x3 },
-    { 0x6, 0xC },
-    { 0x6, 0x3 },
-    { 0x4, 0x4 },
-    { 0x0, 0x0 },
-    { 0xB, 0xB },
-    { 0x1, 0x1 },
-    { 0xB, 0xB },
-    { 0xE, 0xE },
-    { 0x1, 0x1 },
-    { 0xC, 0x3 },
-    { 0xB, 0x3 },
-    { 0x5, 0x4 },
-    { 0xB, 0xE },
-    { 0xD, 0x8 },
-    { 0x0, 0x2 },
-    { 0xB, 0xB },
-    { 0x3, 0x3 },
-    { 0xB, 0xB },
-    { 0x7, 0x3 },
-    { 0xE, 0xE },
-    { 0xB, 0xB },
-    { 0xD, 0xD },
-    { 0xC, 0xE },
-    { 0x4, 0x4 },
-    { 0xB, 0xB },
-    { 0xB, 0xB },
-    { 0xB, 0xB },
-    { 0x0, 0x0 },
-    { 0x0, 0x0 },
-    { 0x10, 0x10 },
-    { 0xC, 0xC },
-    { 0xA, 0xA },
-    { 0xB, 0xB },
-    { 0x0, 0x0 },
-    { 0x0, 0x2 },
-    { 0x6, 0x2 },
-    { 0x6, 0x3 },
-    { 0xB, 0xD },
-    { 0xD, 0xD },
-    { 0x0, 0x0 },
-    { 0x0, 0x0 },
-    { 0x0, 0x0 },
-    { 0xE, 0x2 },
-    { 0xD, 0xD },
-    { 0xB, 0xB },
-    { 0xC, 0x2 },
-    { 0xC, 0xC },
-    { 0xB, 0x4 },
-    { 0xE, 0xE },
-    { 0x6, 0x6 },
-    { 0x0, 0x0 },
-    { 0x0, 0x0 },
-    { 0xA, 0xA },
-    { 0xF, 0x4 },
-    { 0xB, 0xB },
-    { 0xF, 0x2 },
-    { 0x11, 0xA },
-    { 0x4, 0x4 },
-    { 0x0, 0x0 },
-    { 0x1, 0x1 },
-    { 0xF, 0xE },
-    { 0x5, 0x4 },
-    { 0xC, 0xC },
-    { 0xA, 0xA },
-    { 0xB, 0xB },
-    { 0x11, 0x11 },
-    { 0x0, 0x0 },
-    { 0x6, 0x6 },
-    { 0x6, 0x6 },
-    { 0x6, 0x6 },
-    { 0xB, 0xC },
-    { 0xC, 0xC },
-    { 0x0, 0x2 },
-    { 0xB, 0x2 },
-    { 0xE, 0xE },
-    { 0xE, 0xE },
-    { 0x6, 0xB },
-    { 0xC, 0xC },
-    { 0x0, 0x0 },
-    { 0x6, 0x4 },
-    { 0x6, 0x7 },
-    { 0x0, 0x0 },
-    { 0x1, 0x1 },
-    { 0x0, 0x0 },
-    { 0x0, 0x0 },
-    { 0x8, 0x5 },
-    { 0x1, 0xE },
-    { 0xD, 0xD },
-    { 0x3, 0x3 },
-    { 0xB, 0x11 },
-    { 0xA, 0x4 },
-    { 0xE, 0xE },
-    { 0x4, 0x4 },
-    { 0xC, 0xC },
-    { 0x0, 0x2 },
-    { 0xB, 0x4 },
-    { 0xB, 0xB },
-    { 0x4, 0xE },
-    { 0xB, 0xB },
-    { 0x7, 0x7 },
-    { 0x7, 0x7 },
-    { 0xE, 0xE },
-    { 0xF, 0xF },
-    { 0xF, 0xB },
-    { 0xB, 0xB },
-    { 0x10, 0x10 },
-    { 0x8, 0xE },
-    { 0xC, 0xC },
-    { 0xA, 0xA },
-    { 0xB, 0xB },
-    { 0x0, 0x2 },
-    { 0x0, 0x0 },
-    { 0x6, 0x6 },
-    { 0xD, 0xD },
-    { 0xC, 0x3 },
-    { 0x6, 0x6 },
-    { 0x6, 0x2 },
-    { 0xB, 0xB },
-    { 0xC, 0xC },
-    { 0xB, 0xB },
-    { 0x0, 0x0 },
-    { 0xE, 0xE },
-    { 0x3, 0x11 },
-    { 0x8, 0xE },
-    { 0x5, 0x5 },
-    { 0xE, 0xE },
-    { 0x0, 0x0 },
-    { 0x10, 0x4 },
-    { 0x1, 0x1 },
-    { 0x4, 0x4 },
-    { 0x3, 0x6 },
-    { 0x3, 0x1 },
-    { 0xB, 0xB },
-    { 0xC, 0xF },
-    { 0xC, 0x3 },
-    { 0xA, 0xA },
-    { 0xB, 0xB },
-    { 0x6, 0x2 },
-    { 0x6, 0x3 },
-    { 0x0, 0x2 },
-    { 0x0, 0x0 },
-    { 0x3, 0x3 },
-    { 0x3, 0x3 },
-    { 0x3, 0x3 },
-    { 0x0, 0x0 },
-    { 0xC, 0x3 },
-    { 0x6, 0xC },
-    { 0x4, 0x4 },
-    { 0xA, 0xA },
-    { 0xB, 0xB },
-    { 0xE, 0xE },
-    { 0x1, 0x1 },
-    { 0xC, 0x3 },
-    { 0x5, 0x4 },
-    { 0xA, 0xA },
-    { 0x0, 0x2 },
-    { 0x7, 0x3 },
-    { 0x5, 0x4 },
-    { 0x4, 0x4 },
-    { 0x0, 0x0 },
-    { 0x3, 0x3 },
-    { 0x4, 0x5 },
-    { 0xC, 0xC },
-    { 0xB, 0xB },
-    { 0x0, 0x0 },
-    { 0x5, 0xB },
-    { 0x5, 0xB },
-    { 0x10, 0x10 },
-    { 0xC, 0xC },
-    { 0xA, 0xA },
-    { 0xB, 0xB },
-    { 0x0, 0x0 },
-    { 0x6, 0x2 },
-    { 0x6, 0x3 },
-    { 0x0, 0x2 },
-    { 0xD, 0xD },
-    { 0xB, 0xB },
-    { 0x5, 0x5 },
-    { 0xC, 0x2 },
-    { 0x0, 0x0 },
-    { 0xC, 0xC },
-    { 0x6, 0x2 },
-    { 0xB, 0x4 },
-    { 0x11, 0x2 },
-    { 0x7, 0x7 },
-    { 0xE, 0xE },
-    { 0x0, 0x0 },
-    { 0x4, 0x2 },
-    { 0xB, 0x3 },
-    { 0x11, 0xF },
-    { 0xA, 0x5 },
-    { 0xB, 0x5 },
-    { 0xD, 0xD },
-    { 0xA, 0xA },
-    { 0x5, 0x4 },
-    { 0xC, 0xC },
-    { 0xA, 0x1 },
-    { 0xB, 0x4 },
-    { 0x11, 0x11 },
-    { 0x0, 0x0 },
-    { 0x6, 0x2 },
-    { 0x6, 0x3 },
-    { 0xB, 0xC },
-    { 0xC, 0x11 },
-    { 0x0, 0x2 },
-    { 0xB, 0x2 },
-    { 0x6, 0x2 },
-    { 0x0, 0x0 },
-    { 0x5, 0x5 },
-    { 0x0, 0x0 },
-    { 0x11, 0x7 },
-    { 0x8, 0x8 },
-    { 0x8, 0x5 },
-    { 0x1, 0xE },
-    { 0xD, 0xD },
-    { 0xD, 0xD },
-    { 0x6, 0x6 },
-    { 0x6, 0x6 },
-    { 0xC, 0x3 },
-    { 0xB, 0xB },
-    { 0x0, 0x0 },
-    { 0x4, 0x10 },
-    { 0x5, 0xC },
-    { 0x5, 0x6 },
-    { 0x0, 0x0 },
-    { 0xE, 0xE },
-    { 0xF, 0xB },
-    { 0xB, 0xB },
-    { 0x10, 0x10 },
-    { 0x8, 0xE },
-    { 0xC, 0xC },
-    { 0xA, 0x1 },
-    { 0xB, 0xB },
-    { 0x0, 0x2 },
-    { 0x0, 0xB },
-    { 0x6, 0x6 },
-    { 0xD, 0xD },
-    { 0x5, 0x5 },
-    { 0x5, 0x8 },
-    { 0x6, 0xC },
-    { 0x6, 0x2 },
-    { 0xD, 0xD },
-    { 0x7, 0x2 },
-    { 0x0, 0x0 },
-    { 0x0, 0x2 },
-    { 0x10, 0x4 },
-    { 0x0, 0x0 },
-    { 0xB, 0x2 },
-    { 0x6, 0x4 },
-    { 0x6, 0x8 },
-    { 0xD, 0xD },
-    { 0x4, 0x4 },
-    { 0x3, 0x4 },
-    { 0x3, 0x4 },
-    { 0x0, 0x0 },
-    { 0x3, 0x2 },
-    { 0xC, 0x3 },
-    { 0x6, 0x3 },
-    { 0x0, 0x0 },
-    { 0x1, 0x1 },
-    { 0xE, 0xE },
-    { 0xC, 0x3 },
-    { 0x5, 0x4 },
-    { 0xB, 0xE },
-    { 0xD, 0x8 },
-    { 0x0, 0x2 },
-    { 0xB, 0xF },
-    { 0xE, 0xE },
-    { 0xB, 0xB },
-    { 0xD, 0xD },
-    { 0x1, 0x1 },
-    { 0x1, 0x1 },
-    { 0x3, 0x3 },
-    { 0x4, 0x5 },
-    { 0x0, 0x0 },
-    { 0x0, 0x0 },
-    { 0xB, 0xB },
-    { 0xB, 0xB },
-    { 0xE, 0xE },
-    { 0xF, 0xE },
-    { 0xD, 0xD },
-    { 0xA, 0xA },
-    { 0x0, 0x0 },
-    { 0x5, 0xB },
-    { 0x5, 0xB },
-    { 0x0, 0x2 },
-    { 0xB, 0xD },
-    { 0xE, 0x2 },
-    { 0xC, 0xC },
-    { 0xC, 0x2 },
-    { 0xB, 0xE },
-    { 0x0, 0xE },
-    { 0x6, 0x8 },
-    { 0x0, 0x0 },
-    { 0xF, 0x4 },
-    { 0xB, 0xB },
-    { 0xB, 0x2 },
-    { 0x8, 0x2 },
-    { 0x0, 0x0 },
-    { 0x1, 0x1 },
-    { 0x0, 0x0 },
-    { 0xB, 0xC },
-    { 0xC, 0x11 },
-    { 0xC, 0x1 },
-    { 0x0, 0x0 },
-    { 0x6, 0x2 },
-    { 0x0, 0x0 },
-    { 0x1, 0x1 },
-    { 0xD, 0xD },
-    { 0x3, 0x3 },
-    { 0xB, 0x11 },
-    { 0xA, 0x4 },
-    { 0xA, 0xA },
-    { 0xE, 0xE },
-    { 0xC, 0x11 },
-    { 0x10, 0x2 },
-    { 0x0, 0x0 },
-    { 0x3, 0x3 },
-    { 0x5, 0xE },
-    { 0x5, 0xE },
-    { 0xB, 0x4 },
-    { 0xB, 0x11 },
-    { 0x5, 0xC },
-    { 0x5, 0x6 },
-    { 0x0, 0x0 },
-    { 0x7, 0x7 },
-    { 0x7, 0x7 },
-    { 0xC, 0x2 },
-    { 0x11, 0x11 },
-    { 0xF, 0xF },
-    { 0xB, 0xB },
-    { 0xB, 0xB },
-    { 0xB, 0x5 },
-    { 0x0, 0x2 },
-    { 0x5, 0x5 },
-    { 0x5, 0x8 },
-    { 0x6, 0x2 },
-    { 0xB, 0xB },
-    { 0xC, 0xC },
-    { 0xB, 0x4 },
-    { 0x0, 0x0 },
-    { 0x7, 0x2 },
-    { 0x0, 0x0 },
-    { 0x7, 0x7 },
-    { 0x0, 0x0 },
-    { 0x3, 0x11 },
-    { 0x7, 0x11 },
-    { 0x3, 0x1 },
-    { 0xC, 0xC },
-    { 0xB, 0xB },
-    { 0xC, 0xF },
-    { 0xF, 0x7 },
-    { 0xD, 0x7 },
-    { 0x0, 0x2 },
-    { 0x0, 0x2 },
-    { 0xB, 0xB },
-    { 0xA, 0xA },
-    { 0xB, 0xB },
-    { 0xA, 0xA },
-    { 0xB, 0x1 },
-    { 0x1, 0x1 },
-    { 0xB, 0x3 },
-    { 0xA, 0xA },
-    { 0x3, 0x3 },
-    { 0xB, 0xF },
-    { 0x7, 0x3 },
-    { 0xC, 0xE },
-    { 0xB, 0xE },
-    { 0x6, 0x2 },
-    { 0x6, 0x6 },
-    { 0xB, 0x2 },
-    { 0xB, 0xF },
-    { 0xB, 0xB },
-    { 0xD, 0xD },
-    { 0xA, 0xA },
-    { 0x5, 0x2 },
-    { 0x0, 0x0 },
-    { 0xF, 0x2 },
-    { 0xD, 0x2 },
-    { 0xA, 0x2 },
-    { 0x10, 0x2 },
-    { 0xC, 0xC },
-    { 0xA, 0xA },
-    { 0xB, 0xB },
-    { 0x3, 0x2 },
-    { 0xD, 0xD },
-    { 0xB, 0xB },
-    { 0xE, 0xE },
-    { 0x11, 0x11 },
-    { 0x8, 0x4 },
-    { 0x6, 0x8 },
-    { 0x6, 0x5 },
-    { 0x6, 0x1 },
-    { 0x0, 0x0 },
-    { 0x11, 0xA },
-    { 0xB, 0x10 },
-    { 0x4, 0x4 },
-    { 0x0, 0x0 },
-    { 0x0, 0x0 },
-    { 0xD, 0xD },
-    { 0xA, 0xA },
-    { 0xB, 0xB },
-    { 0x5, 0x11 },
-    { 0xC, 0xC },
-    { 0xA, 0x1 },
-    { 0xB, 0x4 },
-    { 0xE, 0xE },
-    { 0x0, 0x0 },
-    { 0x8, 0x5 },
-    { 0xB, 0xB },
-    { 0x4, 0x10 },
-    { 0x4, 0xE },
-    { 0xB, 0xB },
-    { 0xF, 0xB },
-    { 0xE, 0xE },
-    { 0x10, 0x2 },
-    { 0x8, 0xE },
-    { 0x5, 0x5 },
-    { 0xF, 0xF },
-    { 0x8, 0x8 },
-    { 0x10, 0xE },
-    { 0x10, 0xE },
-    { 0xC, 0x4 },
-    { 0xA, 0x1 },
-    { 0xB, 0x8 },
-    { 0xD, 0xD },
-    { 0xC, 0x3 },
-    { 0x11, 0x2 },
-    { 0x8, 0xE },
-    { 0x10, 0x4 },
-    { 0x1, 0x8 },
-    { 0x4, 0x4 },
-    { 0x3, 0x11 },
-    { 0x11, 0xF },
-    { 0xD, 0x8 },
-    { 0x0, 0x0 },
-    { 0x4, 0x5 },
-    { 0xC, 0xC },
-    { 0xD, 0xD },
-    { 0xA, 0xA },
-    { 0x0, 0x2 },
-    { 0x6, 0x2 },
-    { 0xC, 0xC },
-    { 0xF, 0xF },
-    { 0x4, 0x2 },
-    { 0xF, 0x4 },
-    { 0x0, 0x0 },
-    { 0xE, 0x1 },
-    { 0x5, 0x8 },
-    { 0x7, 0x7 },
-    { 0xE, 0xE },
-    { 0xE, 0xE },
-    { 0xE, 0xE },
-    { 0xA, 0x8 },
-    { 0xC, 0x3 },
-    { 0xA, 0x2 },
-    { 0x0, 0x0 }
+// TODO unpack pl_bsdpm.narc and generate this list from it
+static const u16 sBattleHallPotentialOpponents[] = {
+    SPECIES_BULBASAUR,
+    SPECIES_CHARMANDER,
+    SPECIES_SQUIRTLE,
+    SPECIES_CATERPIE,
+    SPECIES_METAPOD,
+    SPECIES_WEEDLE,
+    SPECIES_KAKUNA,
+    SPECIES_PIDGEY,
+    SPECIES_RATTATA,
+    SPECIES_SPEAROW,
+    SPECIES_EKANS,
+    SPECIES_PIKACHU,
+    SPECIES_SANDSHREW,
+    SPECIES_NIDORAN_F,
+    SPECIES_NIDORAN_M,
+    SPECIES_CLEFAIRY,
+    SPECIES_VULPIX,
+    SPECIES_JIGGLYPUFF,
+    SPECIES_ZUBAT,
+    SPECIES_ODDISH,
+    SPECIES_PARAS,
+    SPECIES_VENONAT,
+    SPECIES_DIGLETT,
+    SPECIES_MEOWTH,
+    SPECIES_PSYDUCK,
+    SPECIES_MANKEY,
+    SPECIES_POLIWAG,
+    SPECIES_ABRA,
+    SPECIES_MACHOP,
+    SPECIES_BELLSPROUT,
+    SPECIES_TENTACOOL,
+    SPECIES_GEODUDE,
+    SPECIES_SLOWPOKE,
+    SPECIES_MAGNEMITE,
+    SPECIES_DODUO,
+    SPECIES_SEEL,
+    SPECIES_GRIMER,
+    SPECIES_SHELLDER,
+    SPECIES_GASTLY,
+    SPECIES_DROWZEE,
+    SPECIES_KRABBY,
+    SPECIES_VOLTORB,
+    SPECIES_EXEGGCUTE,
+    SPECIES_CUBONE,
+    SPECIES_HORSEA,
+    SPECIES_GOLDEEN,
+    SPECIES_MAGIKARP,
+    SPECIES_DITTO,
+    SPECIES_EEVEE,
+    SPECIES_DRATINI,
+    SPECIES_CHIKORITA,
+    SPECIES_CYNDAQUIL,
+    SPECIES_TOTODILE,
+    SPECIES_SENTRET,
+    SPECIES_HOOTHOOT,
+    SPECIES_LEDYBA,
+    SPECIES_SPINARAK,
+    SPECIES_CHINCHOU,
+    SPECIES_PICHU,
+    SPECIES_CLEFFA,
+    SPECIES_IGGLYBUFF,
+    SPECIES_TOGEPI,
+    SPECIES_NATU,
+    SPECIES_MAREEP,
+    SPECIES_MARILL,
+    SPECIES_HOPPIP,
+    SPECIES_SUNKERN,
+    SPECIES_WOOPER,
+    SPECIES_UNOWN,
+    SPECIES_PINECO,
+    SPECIES_SNUBBULL,
+    SPECIES_TEDDIURSA,
+    SPECIES_SLUGMA,
+    SPECIES_SWINUB,
+    SPECIES_REMORAID,
+    SPECIES_DELIBIRD,
+    SPECIES_HOUNDOUR,
+    SPECIES_PHANPY,
+    SPECIES_SMEARGLE,
+    SPECIES_TYROGUE,
+    SPECIES_SMOOCHUM,
+    SPECIES_LARVITAR,
+    SPECIES_TREECKO,
+    SPECIES_TORCHIC,
+    SPECIES_MUDKIP,
+    SPECIES_POOCHYENA,
+    SPECIES_ZIGZAGOON,
+    SPECIES_WURMPLE,
+    SPECIES_SILCOON,
+    SPECIES_CASCOON,
+    SPECIES_LOTAD,
+    SPECIES_SEEDOT,
+    SPECIES_TAILLOW,
+    SPECIES_WINGULL,
+    SPECIES_RALTS,
+    SPECIES_KIRLIA,
+    SPECIES_SURSKIT,
+    SPECIES_SHROOMISH,
+    SPECIES_SLAKOTH,
+    SPECIES_NINCADA,
+    SPECIES_SHEDINJA,
+    SPECIES_WHISMUR,
+    SPECIES_MAKUHITA,
+    SPECIES_AZURILL,
+    SPECIES_SKITTY,
+    SPECIES_ARON,
+    SPECIES_MEDITITE,
+    SPECIES_ELECTRIKE,
+    SPECIES_GULPIN,
+    SPECIES_CARVANHA,
+    SPECIES_NUMEL,
+    SPECIES_SPOINK,
+    SPECIES_TRAPINCH,
+    SPECIES_CACNEA,
+    SPECIES_SWABLU,
+    SPECIES_BARBOACH,
+    SPECIES_CORPHISH,
+    SPECIES_BALTOY,
+    SPECIES_FEEBAS,
+    SPECIES_SHUPPET,
+    SPECIES_DUSKULL,
+    SPECIES_WYNAUT,
+    SPECIES_SNORUNT,
+    SPECIES_SPHEAL,
+    SPECIES_LUVDISC,
+    SPECIES_BAGON,
+    SPECIES_BELDUM,
+    SPECIES_TURTWIG,
+    SPECIES_CHIMCHAR,
+    SPECIES_PIPLUP,
+    SPECIES_STARLY,
+    SPECIES_BIDOOF,
+    SPECIES_KRICKETOT,
+    SPECIES_SHINX,
+    SPECIES_BUDEW,
+    SPECIES_BURMY,
+    SPECIES_COMBEE,
+    SPECIES_BUIZEL,
+    SPECIES_CHERUBI,
+    SPECIES_SHELLOS,
+    SPECIES_GLAMEOW,
+    SPECIES_CHINGLING,
+    SPECIES_STUNKY,
+    SPECIES_BRONZOR,
+    SPECIES_BONSLY,
+    SPECIES_MIME_JR,
+    SPECIES_HAPPINY,
+    SPECIES_GIBLE,
+    SPECIES_RIOLU,
+    SPECIES_HIPPOPOTAS,
+    SPECIES_SKORUPI,
+    SPECIES_CROAGUNK,
+    SPECIES_FINNEON,
+    SPECIES_SNOVER,
+    SPECIES_IVYSAUR,
+    SPECIES_CHARMELEON,
+    SPECIES_WARTORTLE,
+    SPECIES_BUTTERFREE,
+    SPECIES_BEEDRILL,
+    SPECIES_PIDGEOTTO,
+    SPECIES_RATICATE,
+    SPECIES_ARBOK,
+    SPECIES_NIDORINA,
+    SPECIES_NIDORINO,
+    SPECIES_WIGGLYTUFF,
+    SPECIES_GLOOM,
+    SPECIES_PARASECT,
+    SPECIES_DUGTRIO,
+    SPECIES_GROWLITHE,
+    SPECIES_POLIWHIRL,
+    SPECIES_KADABRA,
+    SPECIES_MACHOKE,
+    SPECIES_WEEPINBELL,
+    SPECIES_GRAVELER,
+    SPECIES_PONYTA,
+    SPECIES_FARFETCHD,
+    SPECIES_HAUNTER,
+    SPECIES_ONIX,
+    SPECIES_MAROWAK,
+    SPECIES_LICKITUNG,
+    SPECIES_KOFFING,
+    SPECIES_RHYHORN,
+    SPECIES_TANGELA,
+    SPECIES_STARYU,
+    SPECIES_PORYGON,
+    SPECIES_OMANYTE,
+    SPECIES_KABUTO,
+    SPECIES_DRAGONAIR,
+    SPECIES_BAYLEEF,
+    SPECIES_QUILAVA,
+    SPECIES_CROCONAW,
+    SPECIES_FURRET,
+    SPECIES_LEDIAN,
+    SPECIES_ARIADOS,
+    SPECIES_TOGETIC,
+    SPECIES_FLAAFFY,
+    SPECIES_AZUMARILL,
+    SPECIES_SUDOWOODO,
+    SPECIES_SKIPLOOM,
+    SPECIES_AIPOM,
+    SPECIES_SUNFLORA,
+    SPECIES_YANMA,
+    SPECIES_QUAGSIRE,
+    SPECIES_MURKROW,
+    SPECIES_MISDREAVUS,
+    SPECIES_WOBBUFFET,
+    SPECIES_DUNSPARCE,
+    SPECIES_GLIGAR,
+    SPECIES_QWILFISH,
+    SPECIES_SNEASEL,
+    SPECIES_MAGCARGO,
+    SPECIES_CORSOLA,
+    SPECIES_ELEKID,
+    SPECIES_MAGBY,
+    SPECIES_PUPITAR,
+    SPECIES_GROVYLE,
+    SPECIES_COMBUSKEN,
+    SPECIES_MARSHTOMP,
+    SPECIES_MIGHTYENA,
+    SPECIES_LINOONE,
+    SPECIES_BEAUTIFLY,
+    SPECIES_DUSTOX,
+    SPECIES_LOMBRE,
+    SPECIES_NUZLEAF,
+    SPECIES_SWELLOW,
+    SPECIES_PELIPPER,
+    SPECIES_MASQUERAIN,
+    SPECIES_LOUDRED,
+    SPECIES_NOSEPASS,
+    SPECIES_DELCATTY,
+    SPECIES_SABLEYE,
+    SPECIES_MAWILE,
+    SPECIES_LAIRON,
+    SPECIES_MEDICHAM,
+    SPECIES_PLUSLE,
+    SPECIES_MINUN,
+    SPECIES_VOLBEAT,
+    SPECIES_ILLUMISE,
+    SPECIES_ROSELIA,
+    SPECIES_WAILMER,
+    SPECIES_SPINDA,
+    SPECIES_VIBRAVA,
+    SPECIES_LILEEP,
+    SPECIES_ANORITH,
+    SPECIES_CASTFORM,
+    SPECIES_CHIMECHO,
+    SPECIES_SEALEO,
+    SPECIES_CLAMPERL,
+    SPECIES_SHELGON,
+    SPECIES_METANG,
+    SPECIES_GROTLE,
+    SPECIES_MONFERNO,
+    SPECIES_PRINPLUP,
+    SPECIES_STARAVIA,
+    SPECIES_BIBAREL,
+    SPECIES_KRICKETUNE,
+    SPECIES_LUXIO,
+    SPECIES_CRANIDOS,
+    SPECIES_SHIELDON,
+    SPECIES_WORMADAM,
+    SPECIES_MOTHIM,
+    SPECIES_PACHIRISU,
+    SPECIES_DRIFLOON,
+    SPECIES_BUNEARY,
+    SPECIES_CHATOT,
+    SPECIES_GABITE,
+    SPECIES_MUNCHLAX,
+    SPECIES_MANTYKE,
+    SPECIES_WORMADAM,
+    SPECIES_WORMADAM,
+    SPECIES_RAICHU,
+    SPECIES_SANDSLASH,
+    SPECIES_NIDOQUEEN,
+    SPECIES_NIDOKING,
+    SPECIES_CLEFABLE,
+    SPECIES_GOLBAT,
+    SPECIES_VILEPLUME,
+    SPECIES_VENOMOTH,
+    SPECIES_PERSIAN,
+    SPECIES_PRIMEAPE,
+    SPECIES_ALAKAZAM,
+    SPECIES_VICTREEBEL,
+    SPECIES_GOLEM,
+    SPECIES_SLOWBRO,
+    SPECIES_MAGNETON,
+    SPECIES_DODRIO,
+    SPECIES_DEWGONG,
+    SPECIES_HYPNO,
+    SPECIES_KINGLER,
+    SPECIES_ELECTRODE,
+    SPECIES_HITMONLEE,
+    SPECIES_HITMONCHAN,
+    SPECIES_WEEZING,
+    SPECIES_RHYDON,
+    SPECIES_CHANSEY,
+    SPECIES_KANGASKHAN,
+    SPECIES_SEADRA,
+    SPECIES_SEAKING,
+    SPECIES_MR_MIME,
+    SPECIES_JYNX,
+    SPECIES_ELECTABUZZ,
+    SPECIES_MAGMAR,
+    SPECIES_TAUROS,
+    SPECIES_OMASTAR,
+    SPECIES_KABUTOPS,
+    SPECIES_NOCTOWL,
+    SPECIES_LANTURN,
+    SPECIES_XATU,
+    SPECIES_BELLOSSOM,
+    SPECIES_JUMPLUFF,
+    SPECIES_SLOWKING,
+    SPECIES_GIRAFARIG,
+    SPECIES_FORRETRESS,
+    SPECIES_GRANBULL,
+    SPECIES_PILOSWINE,
+    SPECIES_OCTILLERY,
+    SPECIES_MANTINE,
+    SPECIES_SKARMORY,
+    SPECIES_STANTLER,
+    SPECIES_HITMONTOP,
+    SPECIES_MILTANK,
+    SPECIES_LUDICOLO,
+    SPECIES_SHIFTRY,
+    SPECIES_BRELOOM,
+    SPECIES_VIGOROTH,
+    SPECIES_NINJASK,
+    SPECIES_EXPLOUD,
+    SPECIES_HARIYAMA,
+    SPECIES_MANECTRIC,
+    SPECIES_SWALOT,
+    SPECIES_SHARPEDO,
+    SPECIES_CAMERUPT,
+    SPECIES_TORKOAL,
+    SPECIES_GRUMPIG,
+    SPECIES_CACTURNE,
+    SPECIES_ALTARIA,
+    SPECIES_ZANGOOSE,
+    SPECIES_SEVIPER,
+    SPECIES_LUNATONE,
+    SPECIES_SOLROCK,
+    SPECIES_WHISCASH,
+    SPECIES_CRAWDAUNT,
+    SPECIES_CRADILY,
+    SPECIES_ARMALDO,
+    SPECIES_KECLEON,
+    SPECIES_BANETTE,
+    SPECIES_DUSCLOPS,
+    SPECIES_TROPIUS,
+    SPECIES_ABSOL,
+    SPECIES_GLALIE,
+    SPECIES_HUNTAIL,
+    SPECIES_GOREBYSS,
+    SPECIES_RELICANTH,
+    SPECIES_STARAPTOR,
+    SPECIES_RAMPARDOS,
+    SPECIES_BASTIODON,
+    SPECIES_VESPIQUEN,
+    SPECIES_FLOATZEL,
+    SPECIES_CHERRIM,
+    SPECIES_GASTRODON,
+    SPECIES_AMBIPOM,
+    SPECIES_DRIFBLIM,
+    SPECIES_LOPUNNY,
+    SPECIES_MISMAGIUS,
+    SPECIES_PURUGLY,
+    SPECIES_SKUNTANK,
+    SPECIES_SPIRITOMB,
+    SPECIES_TOXICROAK,
+    SPECIES_CARNIVINE,
+    SPECIES_LUMINEON,
+    SPECIES_ABOMASNOW,
+    SPECIES_FROSLASS,
+    SPECIES_ROTOM,
+    SPECIES_PIDGEOT,
+    SPECIES_FEAROW,
+    SPECIES_BLASTOISE,
+    SPECIES_NINETALES,
+    SPECIES_GOLDUCK,
+    SPECIES_ARCANINE,
+    SPECIES_POLIWRATH,
+    SPECIES_MACHAMP,
+    SPECIES_TENTACRUEL,
+    SPECIES_RAPIDASH,
+    SPECIES_MUK,
+    SPECIES_CLOYSTER,
+    SPECIES_GENGAR,
+    SPECIES_EXEGGUTOR,
+    SPECIES_STARMIE,
+    SPECIES_SCYTHER,
+    SPECIES_PINSIR,
+    SPECIES_GYARADOS,
+    SPECIES_LAPRAS,
+    SPECIES_VAPOREON,
+    SPECIES_JOLTEON,
+    SPECIES_FLAREON,
+    SPECIES_AERODACTYL,
+    SPECIES_SNORLAX,
+    SPECIES_ARTICUNO,
+    SPECIES_ZAPDOS,
+    SPECIES_MOLTRES,
+    SPECIES_DRAGONITE,
+    SPECIES_MEGANIUM,
+    SPECIES_TYPHLOSION,
+    SPECIES_FERALIGATR,
+    SPECIES_CROBAT,
+    SPECIES_AMPHAROS,
+    SPECIES_POLITOED,
+    SPECIES_ESPEON,
+    SPECIES_UMBREON,
+    SPECIES_STEELIX,
+    SPECIES_SCIZOR,
+    SPECIES_SHUCKLE,
+    SPECIES_HERACROSS,
+    SPECIES_URSARING,
+    SPECIES_HOUNDOOM,
+    SPECIES_KINGDRA,
+    SPECIES_DONPHAN,
+    SPECIES_PORYGON2,
+    SPECIES_BLISSEY,
+    SPECIES_RAIKOU,
+    SPECIES_ENTEI,
+    SPECIES_SUICUNE,
+    SPECIES_TYRANITAR,
+    SPECIES_SCEPTILE,
+    SPECIES_BLAZIKEN,
+    SPECIES_SWAMPERT,
+    SPECIES_GARDEVOIR,
+    SPECIES_SLAKING,
+    SPECIES_AGGRON,
+    SPECIES_WAILORD,
+    SPECIES_FLYGON,
+    SPECIES_CLAYDOL,
+    SPECIES_MILOTIC,
+    SPECIES_WALREIN,
+    SPECIES_CRESSELIA,
+    SPECIES_SALAMENCE,
+    SPECIES_METAGROSS,
+    SPECIES_REGIROCK,
+    SPECIES_REGICE,
+    SPECIES_REGISTEEL,
+    SPECIES_LATIAS,
+    SPECIES_LATIOS,
+    SPECIES_TORTERRA,
+    SPECIES_INFERNAPE,
+    SPECIES_EMPOLEON,
+    SPECIES_LUXRAY,
+    SPECIES_ROSERADE,
+    SPECIES_HONCHKROW,
+    SPECIES_BRONZONG,
+    SPECIES_GARCHOMP,
+    SPECIES_LUCARIO,
+    SPECIES_HIPPOWDON,
+    SPECIES_DRAPION,
+    SPECIES_WEAVILE,
+    SPECIES_MAGNEZONE,
+    SPECIES_LICKILICKY,
+    SPECIES_RHYPERIOR,
+    SPECIES_TANGROWTH,
+    SPECIES_ELECTIVIRE,
+    SPECIES_MAGMORTAR,
+    SPECIES_TOGEKISS,
+    SPECIES_YANMEGA,
+    SPECIES_LEAFEON,
+    SPECIES_GLACEON,
+    SPECIES_GLISCOR,
+    SPECIES_MAMOSWINE,
+    SPECIES_PORYGON_Z,
+    SPECIES_GALLADE,
+    SPECIES_PROBOPASS,
+    SPECIES_DUSKNOIR,
+    SPECIES_UXIE,
+    SPECIES_MESPRIT,
+    SPECIES_AZELF,
+    SPECIES_HEATRAN,
+    SPECIES_VENUSAUR,
+    SPECIES_CHARIZARD,
+    SPECIES_REGIGIGAS,
 };
 
-static const u16 Unk_ov104_02240714[] = {
-    0x1,
-    0x4,
-    0x7,
-    0xA,
-    0xB,
-    0xD,
-    0xE,
-    0x10,
-    0x13,
-    0x15,
-    0x17,
-    0x19,
-    0x1B,
-    0x1D,
-    0x20,
-    0x23,
-    0x25,
-    0x27,
-    0x29,
-    0x2B,
-    0x2E,
-    0x30,
-    0x32,
-    0x34,
-    0x36,
-    0x38,
-    0x3C,
-    0x3F,
-    0x42,
-    0x45,
-    0x48,
-    0x4A,
-    0x4F,
-    0x51,
-    0x54,
-    0x56,
-    0x58,
-    0x5A,
-    0x5C,
-    0x60,
-    0x62,
-    0x64,
-    0x66,
-    0x68,
-    0x74,
-    0x76,
-    0x81,
-    0x84,
-    0x85,
-    0x93,
-    0x98,
-    0x9B,
-    0x9E,
-    0xA1,
-    0xA3,
-    0xA5,
-    0xA7,
-    0xAA,
-    0xAC,
-    0xAD,
-    0xAE,
-    0xAF,
-    0xB1,
-    0xB3,
-    0xB7,
-    0xBB,
-    0xBF,
-    0xC2,
-    0xC9,
-    0xCC,
-    0xD1,
-    0xD8,
-    0xDA,
-    0xDC,
-    0xDF,
-    0xE1,
-    0xE4,
-    0xE7,
-    0xEB,
-    0xEC,
-    0xEE,
-    0xF6,
-    0xFC,
-    0xFF,
-    0x102,
-    0x105,
-    0x107,
-    0x109,
-    0x10A,
-    0x10C,
-    0x10E,
-    0x111,
-    0x114,
-    0x116,
-    0x118,
-    0x119,
-    0x11B,
-    0x11D,
-    0x11F,
-    0x122,
-    0x124,
-    0x125,
-    0x128,
-    0x12A,
-    0x12C,
-    0x130,
-    0x133,
-    0x135,
-    0x13C,
-    0x13E,
-    0x142,
-    0x145,
-    0x148,
-    0x14B,
-    0x14D,
-    0x153,
-    0x155,
-    0x157,
-    0x15D,
-    0x161,
-    0x163,
-    0x168,
-    0x169,
-    0x16B,
-    0x172,
-    0x173,
-    0x176,
-    0x183,
-    0x186,
-    0x189,
-    0x18C,
-    0x18F,
-    0x191,
-    0x193,
-    0x196,
-    0x19C,
-    0x19F,
-    0x1A2,
-    0x1A4,
-    0x1A6,
-    0x1AF,
-    0x1B1,
-    0x1B2,
-    0x1B4,
-    0x1B6,
-    0x1B7,
-    0x1B8,
-    0x1BB,
-    0x1BF,
-    0x1C1,
-    0x1C3,
-    0x1C5,
-    0x1C8,
-    0x1CB,
-    0x2,
-    0x5,
-    0x8,
-    0xC,
-    0xF,
-    0x11,
-    0x14,
-    0x18,
-    0x1E,
-    0x21,
-    0x28,
-    0x2C,
-    0x2F,
-    0x33,
-    0x3A,
-    0x3D,
-    0x40,
-    0x43,
-    0x46,
-    0x4B,
-    0x4D,
-    0x53,
-    0x5D,
-    0x5F,
-    0x69,
-    0x6C,
-    0x6D,
-    0x6F,
-    0x72,
-    0x78,
-    0x89,
-    0x8A,
-    0x8C,
-    0x94,
-    0x99,
-    0x9C,
-    0x9F,
-    0xA2,
-    0xA6,
-    0xA8,
-    0xB0,
-    0xB4,
-    0xB8,
-    0xB9,
-    0xBC,
-    0xBE,
-    0xC0,
-    0xC1,
-    0xC3,
-    0xC6,
-    0xC8,
-    0xCA,
-    0xCE,
-    0xCF,
-    0xD3,
-    0xD7,
-    0xDB,
-    0xDE,
-    0xEF,
-    0xF0,
-    0xF7,
-    0xFD,
-    0x100,
-    0x103,
-    0x106,
-    0x108,
-    0x10B,
-    0x10D,
-    0x10F,
-    0x112,
-    0x115,
-    0x117,
-    0x11C,
-    0x126,
-    0x12B,
-    0x12D,
-    0x12E,
-    0x12F,
-    0x131,
-    0x134,
-    0x137,
-    0x138,
-    0x139,
-    0x13A,
-    0x13B,
-    0x140,
-    0x147,
-    0x149,
-    0x159,
-    0x15B,
-    0x15F,
-    0x166,
-    0x16C,
-    0x16E,
-    0x174,
-    0x177,
-    0x184,
-    0x187,
-    0x18A,
-    0x18D,
-    0x190,
-    0x192,
-    0x194,
-    0x198,
-    0x19A,
-    0x19D,
-    0x19E,
-    0x1A1,
-    0x1A9,
-    0x1AB,
-    0x1B9,
-    0x1BC,
-    0x1BE,
-    0x1CA,
-    0x19D,
-    0x19D,
-    0x1A,
-    0x1C,
-    0x1F,
-    0x22,
-    0x24,
-    0x2A,
-    0x2D,
-    0x31,
-    0x35,
-    0x39,
-    0x41,
-    0x47,
-    0x4C,
-    0x50,
-    0x52,
-    0x55,
-    0x57,
-    0x61,
-    0x63,
-    0x65,
-    0x6A,
-    0x6B,
-    0x6E,
-    0x70,
-    0x71,
-    0x73,
-    0x75,
-    0x77,
-    0x7A,
-    0x7C,
-    0x7D,
-    0x7E,
-    0x80,
-    0x8B,
-    0x8D,
-    0xA4,
-    0xAB,
-    0xB2,
-    0xB6,
-    0xBD,
-    0xC7,
-    0xCB,
-    0xCD,
-    0xD2,
-    0xDD,
-    0xE0,
-    0xE2,
-    0xE3,
-    0xEA,
-    0xED,
-    0xF1,
-    0x110,
-    0x113,
-    0x11E,
-    0x120,
-    0x123,
-    0x127,
-    0x129,
-    0x136,
-    0x13D,
-    0x13F,
-    0x143,
-    0x144,
-    0x146,
-    0x14C,
-    0x14E,
-    0x14F,
-    0x150,
-    0x151,
-    0x152,
-    0x154,
-    0x156,
-    0x15A,
-    0x15C,
-    0x160,
-    0x162,
-    0x164,
-    0x165,
-    0x167,
-    0x16A,
-    0x16F,
-    0x170,
-    0x171,
-    0x18E,
-    0x199,
-    0x19B,
-    0x1A0,
-    0x1A3,
-    0x1A5,
-    0x1A7,
-    0x1A8,
-    0x1AA,
-    0x1AC,
-    0x1AD,
-    0x1B0,
-    0x1B3,
-    0x1BA,
-    0x1C6,
-    0x1C7,
-    0x1C9,
-    0x1CC,
-    0x1DE,
-    0x1DF,
-    0x12,
-    0x16,
-    0x9,
-    0x26,
-    0x37,
-    0x3B,
-    0x3E,
-    0x44,
-    0x49,
-    0x4E,
-    0x59,
-    0x5B,
-    0x5E,
-    0x67,
-    0x79,
-    0x7B,
-    0x7F,
-    0x82,
-    0x83,
-    0x86,
-    0x87,
-    0x88,
-    0x8E,
-    0x8F,
-    0x90,
-    0x91,
-    0x92,
-    0x95,
-    0x9A,
-    0x9D,
-    0xA0,
-    0xA9,
-    0xB5,
-    0xBA,
-    0xC4,
-    0xC5,
-    0xD0,
-    0xD4,
-    0xD5,
-    0xD6,
-    0xD9,
-    0xE5,
-    0xE6,
-    0xE8,
-    0xE9,
-    0xF2,
-    0xF3,
-    0xF4,
-    0xF5,
-    0xF8,
-    0xFE,
-    0x101,
-    0x104,
-    0x11A,
-    0x121,
-    0x132,
-    0x141,
-    0x14A,
-    0x158,
-    0x15E,
-    0x16D,
-    0x1E8,
-    0x175,
-    0x178,
-    0x179,
-    0x17A,
-    0x17B,
-    0x17C,
-    0x17D,
-    0x185,
-    0x188,
-    0x18B,
-    0x195,
-    0x197,
-    0x1AE,
-    0x1B5,
-    0x1BD,
-    0x1C0,
-    0x1C2,
-    0x1C4,
-    0x1CD,
-    0x1CE,
-    0x1CF,
-    0x1D0,
-    0x1D1,
-    0x1D2,
-    0x1D3,
-    0x1D4,
-    0x1D5,
-    0x1D6,
-    0x1D7,
-    0x1D8,
-    0x1D9,
-    0x1DA,
-    0x1DB,
-    0x1DC,
-    0x1DD,
-    0x1E0,
-    0x1E1,
-    0x1E2,
-    0x1E5,
-    0x3,
-    0x6,
-    0x1E6
+static const struct {
+    u8 unused;
+    u8 ivs;
+    u16 unused2;
+} sIVsPerTypeRank[HALL_MAX_TYPE_RANK] = {
+    { 0, 8, 0 },
+    { 0, 10, 0 },
+    { 0, 12, 0 },
+    { 0, 14, 0 },
+    { 0, 16, 0 },
+    { 0, 18, 0 },
+    { 0, 20, 0 },
+    { 0, 22, 0 },
+    { 0, 24, 0 },
+    { 0, 26, 0 }
 };
 
-static const UnkStruct_ov104_0224033C Unk_ov104_0224033C[10] = {
-    { 0x0, 0x8, 0x0 },
-    { 0x0, 0xA, 0x0 },
-    { 0x0, 0xC, 0x0 },
-    { 0x0, 0xE, 0x0 },
-    { 0x0, 0x10, 0x0 },
-    { 0x0, 0x12, 0x0 },
-    { 0x0, 0x14, 0x0 },
-    { 0x0, 0x16, 0x0 },
-    { 0x0, 0x18, 0x0 },
-    { 0x0, 0x1A, 0x0 }
-};
-
-void ov104_0223AF58(u8 param0, u8 param1, u8 param2, u8 param3, u16 param4[])
+void BattleHall_PickOpponentTrainerClasses(u8 selectedTypeIdx, u8 numTrainers, u8 typeRank, u8 currentBattle, u16 trainerIDs[])
 {
-    int v0;
-    u16 v1;
-    u8 v2, v3;
-    int v4 = 0;
+    int i = 0;
 
-    v2 = (param3 * 2);
-    v3 = ov104_0223B644(param2);
+    u8 offset = currentBattle * 2;
+    typeRank = BattleHall_CheckTypeRank(typeRank);
 
     do {
-        v1 = (LCRNG_Next() % (8 + 4));
+        u16 rand = LCRNG_Next() % (8 + 4);
 
-        if (v1 < 8) {
-            param4[v2 + v4] = Unk_ov104_0224041C[v3][v1];
+        if (rand < 8) {
+            trainerIDs[offset + i] = sHallTrainerClassesByRank[typeRank][rand];
         } else {
-            param4[v2 + v4] = Unk_ov104_0224038C[param0][v1 - 8];
+            trainerIDs[offset + i] = sHallTrainerClassesBySelectedType[selectedTypeIdx][rand - 8];
         }
 
-        v4++;
-    } while (v4 < param1);
-
-    return;
+        i++;
+    } while (i < numTrainers);
 }
 
-void ov104_0223AFB4(u8 param0, u8 param1, int param2, u8 param3, u8 param4, u16 param5[])
+void BattleHall_PickOpponentTrainers(u8 challengeType, u8 numTrainers, int currentRound, u8 rank, u8 currentBattle, u16 trainerIDs[])
 {
-    int v0, v1, v2, v3, v4;
-    u16 v5, v6;
-    u8 v7, v8;
+    int startingIndex;
+    int selectedTrainers = 0;
+    u8 offset = currentBattle * 2;
+    u8 typeRank = BattleHall_CheckTypeRank(rank);
 
-    v3 = 0;
-    v7 = (param4 * 2);
-    v8 = ov104_0223B644(param3);
+    if (challengeType == FRONTIER_CHALLENGE_SINGLE) {
+        int currentStreak = (currentRound * HALL_BATTLES_PER_ROUND) + (currentBattle + 1);
 
-    if (param0 == 0) {
-        v2 = (param2 * 10) + (param4 + 1);
-
-        if (v2 == 50) {
-            param5[v7] = FRONTIER_TRAINER_HALL_MATRON_ARGENTA_SILVER;
+        if (currentStreak == HALL_STREAK_SILVER_BATTLE) {
+            trainerIDs[offset] = FRONTIER_TRAINER_HALL_MATRON_ARGENTA_SILVER;
             return;
-        } else if (v2 == 170) {
-            param5[v7] = FRONTIER_TRAINER_HALL_MATRON_ARGENTA_GOLD;
+        } else if (currentStreak == HALL_STREAK_GOLD_BATTLE) {
+            trainerIDs[offset] = FRONTIER_TRAINER_HALL_MATRON_ARGENTA_GOLD;
             return;
         }
     }
 
     do {
-        v5 = (LCRNG_Next() % (NELEMS(Unk_ov104_022404BC)));
-        v1 = v5;
+        u16 trainerID = LCRNG_Next() % NELEMS(sFrontierTrainerClasses);
+        startingIndex = trainerID;
 
         while (TRUE) {
-            v4 = param5[v7 + v3];
+            int trainerClass = trainerIDs[offset + selectedTrainers];
 
-            if (v4 == Unk_ov104_022404BC[v5]) {
-                for (v0 = 0; v0 < (v7 + v3); v0++) {
-                    if (param5[v0] == v5) {
+            if (trainerClass == sFrontierTrainerClasses[trainerID]) {
+                int pastTrainersIdx;
+                for (pastTrainersIdx = 0; pastTrainersIdx < (offset + selectedTrainers); pastTrainersIdx++) {
+                    if (trainerIDs[pastTrainersIdx] == trainerID) {
                         break;
                     }
                 }
 
-                if (v0 == (v7 + v3)) {
-                    param5[v7 + v3] = v5;
-                    v3++;
+                if (pastTrainersIdx == (offset + selectedTrainers)) {
+                    trainerIDs[offset + selectedTrainers] = trainerID;
+                    selectedTrainers++;
                     break;
                 }
             }
 
-            v5++;
+            trainerID++;
 
-            if (v5 >= (NELEMS(Unk_ov104_022404BC))) {
-                v5 = 0;
+            if (trainerID >= NELEMS(sFrontierTrainerClasses)) {
+                trainerID = 0;
             }
 
-            if (v5 == v1) {
+            if (trainerID == startingIndex) {
                 while (TRUE) {
-                    v6 = (LCRNG_Next() % 8);
+                    u16 newIdx = LCRNG_Next() % 8;
 
-                    if (v4 != Unk_ov104_0224041C[v8][v6]) {
-                        param5[v7 + v3] = Unk_ov104_0224041C[v8][v6];
+                    if (trainerClass != sHallTrainerClassesByRank[typeRank][newIdx]) {
+                        trainerIDs[offset + selectedTrainers] = sHallTrainerClassesByRank[typeRank][newIdx];
                         break;
                     }
                 }
             }
         }
-    } while (v3 < param1);
-
-    return;
+    } while (selectedTrainers < numTrainers);
 }
 
-static const UnkStruct_ov104_02240364 Unk_ov104_02240364[] = {
-    { 0x1, 0x9A },
-    { 0x1, 0x9A },
-    { 0x1, 0x10E },
-    { 0x1, 0x10E },
-    { 0x1, 0x10E },
-    { 0x9B, 0x177 },
-    { 0x9B, 0x177 },
-    { 0x9B, 0x177 },
-    { 0x10F, 0x1DD },
-    { 0x10F, 0x1DD }
+static const BattleHallGroupRange sPotentialMatchupRangesByRank[HALL_MAX_TYPE_RANK] = {
+    { GROUP_1_START, GROUP_2_START - 1 },
+    { GROUP_1_START, GROUP_2_START - 1 },
+    { GROUP_1_START, GROUP_3_START - 1 },
+    { GROUP_1_START, GROUP_3_START - 1 },
+    { GROUP_1_START, GROUP_3_START - 1 },
+    { GROUP_2_START, GROUP_4_START - 1 },
+    { GROUP_2_START, GROUP_4_START - 1 },
+    { GROUP_2_START, GROUP_4_START - 1 },
+    { GROUP_3_START, NELEMS(sBattleHallPotentialOpponents) },
+    { GROUP_3_START, NELEMS(sBattleHallPotentialOpponents) }
 };
 
-static const UnkStruct_ov104_02240364 Unk_ov104_0224032C[] = {
-    { 0x1, 0x9A },
-    { 0x9B, 0x10E },
-    { 0x10F, 0x177 },
-    { 0x178, 0x1DD }
+static const BattleHallGroupRange sMatchupGroupRanges[] = {
+    { GROUP_1_START, GROUP_2_START - 1 },
+    { GROUP_2_START, GROUP_3_START - 1 },
+    { GROUP_3_START, GROUP_4_START - 1 },
+    { GROUP_4_START, NELEMS(sBattleHallPotentialOpponents) }
 };
 
-void ov104_0223B0C8(u8 param0, u8 param1, u8 param2, u8 param3, u16 param4, u16 param5[], u8 param6)
+void BattleHall_PickNextOpponentPokemon(u8 numOpponentsToPick, u8 selectedType, u8 typeRank, u8 currentBattle, u16 playersSpecies, u16 opponentIndices[], u8 battleType)
 {
-    const UnkStruct_ov104_02240364 *v0;
-    u8 v1, v2, v3;
-    u16 v4, v5, v6, v7, v8, v9;
-    int v10 = 0;
-    u16 v11 = 0;
+    const BattleHallGroupRange *matchupRange;
+    int opponentsFound = 0;
 
-    v3 = 0;
-    v1 = (param3 * 2);
-    v2 = ov104_0223B644(param2);
+    u8 loopedThrough = FALSE;
+    u8 currentBattleIndex = currentBattle * 2;
+    typeRank = BattleHall_CheckTypeRank(typeRank);
 
-    if (param6 != 0) {
-        for (v7 = 0; v7 < (NELEMS(Unk_ov104_02240714)); v7++) {
-            if (param4 == Unk_ov104_02240714[v7]) {
-                v9 = v7;
+    // For normal battles, the group of potential opponents is determined by
+    // the rank of the next battle
+    // For the Silver print battle, the opponent is selected from the group in
+    // which the player's species is
+    // For the Gold print battle, the opponent is from Group 4
+    if (battleType != HALL_NEXT_BATTLE_NORMAL) {
+        u16 i, playersMonIndex;
+        for (i = 0; i < NELEMS(sBattleHallPotentialOpponents); i++) {
+            if (playersSpecies == sBattleHallPotentialOpponents[i]) {
+                playersMonIndex = i;
                 break;
             }
         }
 
-        if (v7 == (NELEMS(Unk_ov104_02240714))) {
-            v9 = Unk_ov104_0224032C[NELEMS(Unk_ov104_0224032C) - 1].unk_00;
+        if (i == NELEMS(sBattleHallPotentialOpponents)) {
+            playersMonIndex = sMatchupGroupRanges[NELEMS(sMatchupGroupRanges) - 1].min;
         }
 
-        for (v7 = 0; v7 < (NELEMS(Unk_ov104_0224032C)); v7++) {
-            if (v9 < Unk_ov104_0224032C[v7].unk_02) {
+        u16 playersMonsGroup;
+        for (playersMonsGroup = 0; playersMonsGroup < NELEMS(sMatchupGroupRanges); playersMonsGroup++) {
+            if (playersMonIndex < sMatchupGroupRanges[playersMonsGroup].max) {
                 break;
             }
         }
 
-        if (v7 == (NELEMS(Unk_ov104_0224032C))) {
-            v7 = (NELEMS(Unk_ov104_0224032C) - 1);
+        if (playersMonsGroup == NELEMS(sMatchupGroupRanges)) {
+            playersMonsGroup = NELEMS(sMatchupGroupRanges) - 1;
         }
 
-        if (param6 == 2) {
-            v0 = &Unk_ov104_0224032C[(NELEMS(Unk_ov104_0224032C) - 1)];
+        if (battleType == HALL_NEXT_BATTLE_GOLD) {
+            matchupRange = &sMatchupGroupRanges[NELEMS(sMatchupGroupRanges) - 1];
         } else {
-            v0 = &Unk_ov104_0224032C[v7];
+            matchupRange = &sMatchupGroupRanges[playersMonsGroup];
         }
     } else {
-        v0 = &Unk_ov104_02240364[v2];
+        matchupRange = &sPotentialMatchupRangesByRank[typeRank];
     }
 
-    v5 = (v0->unk_02 - v0->unk_00) + 1;
-    v4 = v0->unk_00 + (LCRNG_Next() % v5);
-    v4 -= 1;
-    v6 = v4;
+    u16 groupSize = matchupRange->max - matchupRange->min + 1;
+    u16 opponentIndex = matchupRange->min + LCRNG_Next() % groupSize;
+    opponentIndex -= 1;
+    u16 startingIndex = opponentIndex;
 
-    while (v10 < param0) {
-        if (v3 == 0) {
-            for (v8 = 0; v8 < v1; v8++) {
-                if (param5[v8] == (v4 + 1)) {
+    while (opponentsFound < numOpponentsToPick) {
+        // First try to select a pokemon that has not been fought yet this
+        // round. If no such pokemon is found after a full search through the
+        // group, then just make sure the next opponent is not the same as the
+        // previous one.
+        u16 pastOpponentsIndex;
+        if (!loopedThrough) {
+            for (pastOpponentsIndex = 0; pastOpponentsIndex < currentBattleIndex; pastOpponentsIndex++) {
+                if (opponentIndices[pastOpponentsIndex] == (opponentIndex + 1)) {
                     break;
                 }
             }
         } else {
-            if (param5[v1 - 2] == (v4 + 1)) {
-                v8 = 0;
+            if (opponentIndices[currentBattleIndex - 2] == (opponentIndex + 1)) {
+                pastOpponentsIndex = 0;
             } else {
-                v8 = v1;
+                pastOpponentsIndex = currentBattleIndex;
             }
         }
 
-        if (v8 == v1) {
-            if (param6 != 0) {
-                if (param4 != Unk_ov104_02240714[v4]) {
-                    param5[v1 + v10] = (v4 + 1);
-                    v10++;
+        if (pastOpponentsIndex == currentBattleIndex) {
+            if (battleType != 0) {
+                if (playersSpecies != sBattleHallPotentialOpponents[opponentIndex]) {
+                    opponentIndices[currentBattleIndex + opponentsFound] = opponentIndex + 1;
+                    opponentsFound++;
                 }
             } else {
-                if ((param1 == Unk_ov104_02240ACE[v4][0]) || (param1 == Unk_ov104_02240ACE[v4][1])) {
-                    if (param4 != Unk_ov104_02240714[v4]) {
-                        param5[v1 + v10] = (v4 + 1);
+                if (selectedType == sBattleHallPotentialOpponentTypes[opponentIndex][0] || selectedType == sBattleHallPotentialOpponentTypes[opponentIndex][1]) {
+                    if (playersSpecies != sBattleHallPotentialOpponents[opponentIndex]) {
+                        opponentIndices[currentBattleIndex + opponentsFound] = opponentIndex + 1;
 
-                        v10++;
+                        opponentsFound++;
                     }
                 }
             }
         }
 
-        v4++;
+        opponentIndex++;
 
-        if ((v4 + 1) >= v0->unk_02) {
-            v4 = (v0->unk_00 - 1);
+        if (opponentIndex + 1 >= matchupRange->max) {
+            opponentIndex = matchupRange->min - 1;
         }
 
-        if (v4 == v6) {
-            v3 = 1;
+        if (opponentIndex == startingIndex) {
+            loopedThrough = TRUE;
         }
     }
-
-    return;
 }
 
-FieldBattleDTO *FieldBattleDTO_NewBattleHall(BattleHall *battleHall, FieldFrontierDTO *fieldData)
+FieldBattleDTO *BattleHall_SetupBattle(BattleHall *battleHall, FieldFrontierDTO *fieldData)
 {
     int i;
     u8 rank;
     Pokemon *mon;
     FrontierTrainerDataDTO trDataDTO;
 
-    u8 v6 = battleHall->unk_05 * 2;
+    u8 offset = battleHall->currentBattle * 2;
     u8 playerPartySize = BattleHall_GetPlayerPartySize(battleHall->challengeType);
     u8 opponentPartySize = BattleHall_GetOpponentPartySize(battleHall->challengeType);
     Party *party = SaveData_GetParty(battleHall->saveData);
@@ -1593,34 +1376,30 @@ FieldBattleDTO *FieldBattleDTO_NewBattleHall(BattleHall *battleHall, FieldFronti
     Heap_Free(mon);
     FieldBattleDTO_CopyPlayerInfoToTrainerData(battleDTO);
 
-    Heap_Free(BattleFrontier_GetTrainerData(&trDataDTO, battleHall->trainerIDs[v6], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
+    Heap_Free(BattleFrontier_GetTrainerData(&trDataDTO, battleHall->trainerIDs[offset], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
     FieldBattleDTO_InitFrontierTrainer(battleDTO, &trDataDTO, opponentPartySize, BATTLER_ENEMY_1, HEAP_ID_FIELD2);
     Party_InitWithCapacity(battleDTO->parties[BATTLER_ENEMY_1], opponentPartySize);
 
     rank = BattleHall_GetRankOfType(battleHall->selectedTypeIdx, &battleHall->typeRanks[battleHall->challengeType][0]);
 
     if (battleHall->challengeType == FRONTIER_CHALLENGE_MULTI) {
-        rank = 9;
+        rank = HALL_MAX_TYPE_RANK - 1;
     }
 
-    u16 aiMask = BattleHall_GetAIMask(battleHall, v6, rank);
+    u16 aiMask = BattleHall_GetAIMask(battleHall, offset, rank);
 
     for (i = 0; i < MAX_BATTLERS; i++) {
         battleDTO->trainer[i].header.aiMask = aiMask;
     }
 
-    ov104_0223B518(&battleHall->unk_290[v6], rank, battleHall->trainerIDs[v6], &battleHall->unk_268[v6], opponentPartySize, HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_STAGE__PL_BSDPM);
+    BattleHall_LoadOpponentMonData(&battleHall->opponentMons[offset], rank, battleHall->trainerIDs[offset], &battleHall->monIndices[offset], opponentPartySize, HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_STAGE__PL_BSDPM);
 
     mon = Pokemon_New(HEAP_ID_FIELD2);
 
     for (i = 0; i < opponentPartySize; i++) {
-        while (TRUE) {
-            if (ov104_0223B4A4(battleHall, v6) == 0) {
-                break;
-            }
-        }
+        while (BattleHall_SetMonsPersonality(battleHall, offset) != 0) {}
 
-        FrontierPokemonDataDTO_InitPokemon(&battleHall->unk_290[v6], mon, BattleHall_GetOpponentLevel(battleHall, rank));
+        FrontierPokemonDataDTO_InitPokemon(&battleHall->opponentMons[offset], mon, BattleHall_GetOpponentLevel(battleHall, rank));
 
         Pokemon_CalcAbility(mon);
         FieldBattleDTO_AddPokemonToBattler(battleDTO, mon, BATTLER_ENEMY_1);
@@ -1635,20 +1414,16 @@ FieldBattleDTO *FieldBattleDTO_NewBattleHall(BattleHall *battleHall, FieldFronti
 
         TrainerInfo_Copy(CommInfo_TrainerInfo(1 - CommSys_CurNetId()), battleDTO->trainerInfo[BATTLER_PLAYER_2]);
 
-        Heap_Free(BattleFrontier_GetTrainerData(&trDataDTO, battleHall->trainerIDs[v6 + 1], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
+        Heap_Free(BattleFrontier_GetTrainerData(&trDataDTO, battleHall->trainerIDs[offset + 1], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
 
         FieldBattleDTO_InitFrontierTrainer(battleDTO, &trDataDTO, opponentPartySize, BATTLER_ENEMY_2, HEAP_ID_FIELD2);
         Party_InitWithCapacity(battleDTO->parties[BATTLER_ENEMY_2], opponentPartySize);
 
         mon = Pokemon_New(HEAP_ID_FIELD2);
 
-        while (TRUE) {
-            if (ov104_0223B4A4(battleHall, v6) == 0) {
-                break;
-            }
-        }
+        while (BattleHall_SetMonsPersonality(battleHall, offset) != 0) {}
 
-        FrontierPokemonDataDTO_InitPokemon(&battleHall->unk_290[v6], mon, BattleHall_GetOpponentLevel(battleHall, rank));
+        FrontierPokemonDataDTO_InitPokemon(&battleHall->opponentMons[offset], mon, BattleHall_GetOpponentLevel(battleHall, rank));
 
         Pokemon_CalcAbility(mon);
         FieldBattleDTO_AddPokemonToBattler(battleDTO, mon, BATTLER_ENEMY_2);
@@ -1659,15 +1434,15 @@ FieldBattleDTO *FieldBattleDTO_NewBattleHall(BattleHall *battleHall, FieldFronti
     return battleDTO;
 }
 
-static BOOL ov104_0223B4A4(BattleHall *battleHall, u8 param1)
+static BOOL BattleHall_SetMonsPersonality(BattleHall *battleHall, u8 index)
 {
-    if (battleHall->unk_290[param1].personality > ((24 + 1) * 10001)) {
-        battleHall->unk_290[param1].personality -= ((24 + 1) * 10001);
+    if (battleHall->opponentMons[index].personality > ((24 + 1) * 10001)) {
+        battleHall->opponentMons[index].personality -= ((24 + 1) * 10001);
     } else {
-        battleHall->unk_290[param1].personality += ((24 + 1) * 10001);
+        battleHall->opponentMons[index].personality += ((24 + 1) * 10001);
     }
 
-    return Pokemon_IsPersonalityShiny(battleHall->unk_290[param1].otID, battleHall->unk_290[param1].personality);
+    return Pokemon_IsPersonalityShiny(battleHall->opponentMons[index].otID, battleHall->opponentMons[index].personality);
 }
 
 static u32 BattleHall_GetBattleType(u8 challengeType)
@@ -1706,40 +1481,33 @@ u8 BattleHall_GetOpponentPartySize(u8 challengeType)
     return 1;
 }
 
-static void ov104_0223B518(FrontierPokemonDataDTO *param0, u8 param1, u16 param2, u16 param3[], int param4, int param5, int param6)
+static void BattleHall_LoadOpponentMonData(FrontierPokemonDataDTO *frontierMon, u8 typeRank, u16 trainerID, u16 opponentIndices[], int partySize, int heapID, int narcID)
 {
-    int v0;
-    u32 v1;
-    u8 v2;
-    u32 v3;
-
-    if (param2 == FRONTIER_TRAINER_HALL_MATRON_ARGENTA_SILVER) {
-        v3 = 31;
-    } else if (param2 == FRONTIER_TRAINER_HALL_MATRON_ARGENTA_GOLD) {
-        v3 = 31;
+    u32 ivs;
+    if (trainerID == FRONTIER_TRAINER_HALL_MATRON_ARGENTA_SILVER) {
+        ivs = MAX_IVS_SINGLE_STAT;
+    } else if (trainerID == FRONTIER_TRAINER_HALL_MATRON_ARGENTA_GOLD) {
+        ivs = MAX_IVS_SINGLE_STAT;
     } else {
-        v3 = ov104_0223B5F0(param1);
+        ivs = BattleHall_GetIVsOfOpponentAtRank(typeRank);
     }
 
-    for (v0 = 0; v0 < param4; v0++) {
-        ov104_0222E2F0(&param0[v0], param3[v0], v0, v3, 0, param5, param6);
+    for (int i = 0; i < partySize; i++) {
+        BattleFrontier_LoadOpponentMonData(&frontierMon[i], opponentIndices[i], i, ivs, 0, heapID, narcID);
     }
-
-    return;
 }
 
-static u32 BattleHall_GetOpponentLevel(BattleHall *battleHall, u8 param1)
+static u32 BattleHall_GetOpponentLevel(BattleHall *battleHall, u8 unused)
 {
-    u8 v0;
     u32 level;
 
-    v0 = (battleHall->unk_05 * 2);
+    u8 offset = battleHall->currentBattle * 2;
 
-    if (battleHall->trainerIDs[v0] == FRONTIER_TRAINER_HALL_MATRON_ARGENTA_SILVER
-        || battleHall->trainerIDs[v0] == FRONTIER_TRAINER_HALL_MATRON_ARGENTA_GOLD) {
+    if (battleHall->trainerIDs[offset] == FRONTIER_TRAINER_HALL_MATRON_ARGENTA_SILVER
+        || battleHall->trainerIDs[offset] == FRONTIER_TRAINER_HALL_MATRON_ARGENTA_GOLD) {
         level = BattleHall_GetHighestLevelInParty(battleHall);
     } else {
-        level = battleHall->unk_07;
+        level = battleHall->opponentsLevel;
     }
 
     return level;
@@ -1778,25 +1546,22 @@ BOOL BattleHall_IsMultiPlayerChallenge(u8 challengeType)
     return challengeType == FRONTIER_CHALLENGE_MULTI || challengeType == FRONTIER_CHALLENGE_MULTI_WFC;
 }
 
-u8 ov104_0223B5C0(BattleHall *battleHall)
+u8 BattleHall_GetHallMatronTypeRank(BattleHall *battleHall)
 {
-    u32 v0;
-    int v1;
-    Party *v2 = SaveData_GetParty(battleHall->saveData);
-    Pokemon *v3 = Party_GetPokemonBySlotIndex(v2, battleHall->partySlots[0]);
-    v1 = Pokemon_GetValue(v3, MON_DATA_LEVEL, NULL);
+    Party *party = SaveData_GetParty(battleHall->saveData);
+    Pokemon *mon = Party_GetPokemonBySlotIndex(party, battleHall->partySlots[0]);
+    int level = Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL);
 
-    return v1 / 10;
+    return level / 10;
 }
 
-static u8 ov104_0223B5F0(u8 param0)
+static u8 BattleHall_GetIVsOfOpponentAtRank(u8 typeRank)
 {
-    return Unk_ov104_0224033C[ov104_0223B644(param0)].unk_01;
+    return sIVsPerTypeRank[BattleHall_CheckTypeRank(typeRank)].ivs;
 }
 
-static u16 BattleHall_GetAIMask(BattleHall *battleHall, u8 param1, u8 rank)
+static u16 BattleHall_GetAIMask(BattleHall *battleHall, u8 battleNum, u8 rank)
 {
-    u8 v0;
     u16 aiMask;
 
     if (rank + 1 >= 8) {
@@ -1808,10 +1573,10 @@ static u16 BattleHall_GetAIMask(BattleHall *battleHall, u8 param1, u8 rank)
     }
 
     if (battleHall->challengeType == FRONTIER_CHALLENGE_SINGLE) {
-        v0 = param1 * 2;
+        u8 offset = battleNum * 2;
 
-        if (battleHall->trainerIDs[v0] == FRONTIER_TRAINER_HALL_MATRON_ARGENTA_SILVER
-            || battleHall->trainerIDs[v0] == FRONTIER_TRAINER_HALL_MATRON_ARGENTA_GOLD) {
+        if (battleHall->trainerIDs[offset] == FRONTIER_TRAINER_HALL_MATRON_ARGENTA_SILVER
+            || battleHall->trainerIDs[offset] == FRONTIER_TRAINER_HALL_MATRON_ARGENTA_GOLD) {
             aiMask = AI_FLAG_BASIC | AI_FLAG_EVAL_ATTACK | AI_FLAG_EXPERT;
         }
     }
@@ -1823,15 +1588,13 @@ static u16 BattleHall_GetAIMask(BattleHall *battleHall, u8 param1, u8 rank)
     return aiMask;
 }
 
-static u16 ov104_0223B644(u8 param0)
+static u16 BattleHall_CheckTypeRank(u8 typeRank)
 {
-    u8 v0 = param0;
-
-    if (v0 >= 10) {
-        v0 = (10 - 1);
+    if (typeRank >= HALL_MAX_TYPE_RANK) {
+        typeRank = HALL_MAX_TYPE_RANK - 1;
     }
 
-    return v0;
+    return typeRank;
 }
 
 u16 BattleHall_GetHighestLevelInParty(BattleHall *battleHall)

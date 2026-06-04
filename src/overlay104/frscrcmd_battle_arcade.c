@@ -64,7 +64,7 @@ BOOL FrontierScrCmd_B8(FrontierScriptContext *param0)
     fieldData = BattleFrontier_GetFieldData(param0->scriptMan->frontier);
     v0 = ov104_02237DD8(fieldData->saveData, v2, v3, v4, v5, v6, v7);
 
-    sub_0209B980(param0->scriptMan->frontier, v0);
+    BattleFrontier_SetFacilityStruct(param0->scriptMan->frontier, v0);
     return 0;
 }
 
@@ -73,7 +73,7 @@ BOOL FrontierScrCmd_B9(FrontierScriptContext *param0)
     BattleArcade *v0;
     u16 v1 = FrontierScriptContext_GetVar(param0);
 
-    v0 = sub_0209B978(param0->scriptMan->frontier);
+    v0 = BattleFrontier_GetFacilityStruct(param0->scriptMan->frontier);
     ov104_0223806C(v0, v1);
 
     return 0;
@@ -81,7 +81,7 @@ BOOL FrontierScrCmd_B9(FrontierScriptContext *param0)
 
 BOOL FrontierScrCmd_BA(FrontierScriptContext *param0)
 {
-    BattleArcade *v0 = sub_0209B978(param0->scriptMan->frontier);
+    BattleArcade *v0 = BattleFrontier_GetFacilityStruct(param0->scriptMan->frontier);
     ov104_02238210(v0);
 
     return 0;
@@ -100,7 +100,7 @@ BOOL FrontierScrCmd_OpenBattleArcadeApp(FrontierScriptContext *ctx)
         FS_OVERLAY_ID(battle_arcade_app)
     };
 
-    BattleArcade *battleArcade = sub_0209B978(ctx->scriptMan->frontier);
+    BattleArcade *battleArcade = BattleFrontier_GetFacilityStruct(ctx->scriptMan->frontier);
     BattleArcadeAppArgs *args = Heap_Alloc(HEAP_ID_FIELD2, sizeof(BattleArcadeAppArgs));
 
     MI_CpuClear8(args, sizeof(BattleArcadeAppArgs));
@@ -116,7 +116,7 @@ BOOL FrontierScrCmd_BattleArcade_CleanupBattle(FrontierScriptContext *ctx)
 {
     int i, partyIdx1, partyIdx2, numMons, stat;
 
-    BattleArcade *battleArcade = sub_0209B978(ctx->scriptMan->frontier);
+    BattleArcade *battleArcade = BattleFrontier_GetFacilityStruct(ctx->scriptMan->frontier);
     FieldBattleDTO *dto = battleArcade->dto;
 
     battleArcade->unk_1D = ov104_02238538(battleArcade, dto->parties[0], dto->parties[2], dto->totalTurnsElapsed);
@@ -185,7 +185,7 @@ BOOL FrontierScrCmd_BattleArcade_CleanupBattle(FrontierScriptContext *ctx)
 BOOL FrontierScrCmd_BattleArcade_StartBattle(FrontierScriptContext *ctx)
 {
     FieldFrontierDTO *fieldData = BattleFrontier_GetFieldData(ctx->scriptMan->frontier);
-    BattleArcade *battleArcade = sub_0209B978(ctx->scriptMan->frontier);
+    BattleArcade *battleArcade = BattleFrontier_GetFacilityStruct(ctx->scriptMan->frontier);
 
     FieldBattleDTO *dto = FieldBattleDTO_NewBattleArcade(battleArcade, fieldData);
     battleArcade->dto = dto;
@@ -236,7 +236,7 @@ static void StoreBattleArcadeAppResults(void *data)
 
 BOOL FrontierScrCmd_BD(FrontierScriptContext *param0)
 {
-    BattleArcade *v0 = sub_0209B978(param0->scriptMan->frontier);
+    BattleArcade *v0 = BattleFrontier_GetFacilityStruct(param0->scriptMan->frontier);
     ov104_022384D4(v0);
 
     return 0;
@@ -244,7 +244,7 @@ BOOL FrontierScrCmd_BD(FrontierScriptContext *param0)
 
 BOOL FrontierScrCmd_BE(FrontierScriptContext *param0)
 {
-    BattleArcade *v0 = sub_0209B978(param0->scriptMan->frontier);
+    BattleArcade *v0 = BattleFrontier_GetFacilityStruct(param0->scriptMan->frontier);
     ov104_022384DC(v0);
 
     return 0;
@@ -259,7 +259,7 @@ BOOL FrontierScrCmd_CallBattleArcadeFunction(FrontierScriptContext *ctx)
     u8 arg2 = FrontierScriptContext_GetVar(ctx);
     u16 *destVar = FrontierScriptContext_TryGetVarPointer(ctx);
 
-    BattleArcade *battleArcade = sub_0209B978(ctx->scriptMan->frontier);
+    BattleArcade *battleArcade = BattleFrontier_GetFacilityStruct(ctx->scriptMan->frontier);
     FieldFrontierDTO *fieldData = BattleFrontier_GetFieldData(ctx->scriptMan->frontier);
     FrontierGraphics *graphics = FrontierScriptManager_GetGraphics(ctx->scriptMan);
 
@@ -439,8 +439,8 @@ BOOL FrontierScrCmd_CallBattleArcadeFunction(FrontierScriptContext *ctx)
         ov104_02237C0C(ctx, battleArcade, arg1);
         break;
     case BA_FUNC_UNK_40:
-        ov104_0222E278(&(battleArcade->unk_F4[0]), battleArcade->trainerIDs[battleArcade->unk_11], HEAP_ID_FIELD2, 178);
-        ov104_0222E278(&(battleArcade->unk_F4[1]), battleArcade->trainerIDs[battleArcade->unk_11 + 7], HEAP_ID_FIELD2, 178);
+        BattleFrontier_LoadTrainer(&(battleArcade->unk_F4[0]), battleArcade->trainerIDs[battleArcade->unk_11], HEAP_ID_FIELD2, 178);
+        BattleFrontier_LoadTrainer(&(battleArcade->unk_F4[1]), battleArcade->trainerIDs[battleArcade->unk_11 + 7], HEAP_ID_FIELD2, 178);
         break;
     case BA_FUNC_UNK_41:
         ov104_0223886C(battleArcade, graphics, arg1, arg2);
@@ -537,7 +537,7 @@ BOOL FrontierScrCmd_BattleArcade_CheckWonBattle(FrontierScriptContext *ctx)
 {
     u16 *destVar = FrontierScriptContext_TryGetVarPointer(ctx);
 
-    BattleArcade *battleArcade = sub_0209B978(ctx->scriptMan->frontier);
+    BattleArcade *battleArcade = BattleFrontier_GetFacilityStruct(ctx->scriptMan->frontier);
     *destVar = battleArcade->wonBattle;
 
     return FALSE;
@@ -550,7 +550,7 @@ BOOL FrontierScrCmd_C1(FrontierScriptContext *param0)
     u16 v2 = FrontierScriptContext_GetVar(param0);
     u16 *v3 = FrontierScriptContext_TryGetVarPointer(param0);
 
-    v0 = sub_0209B978(param0->scriptMan->frontier);
+    v0 = BattleFrontier_GetFacilityStruct(param0->scriptMan->frontier);
     *v3 = ov104_02238B40(v0, v1, v2);
 
     return 1;
@@ -571,7 +571,7 @@ static BOOL ov104_02237D18(FrontierScriptContext *param0)
     BattleArcade *v0;
     u16 v1 = FrontierScriptContext_TryGetVar(param0, param0->data[0]);
 
-    v0 = sub_0209B978(param0->scriptMan->frontier);
+    v0 = BattleFrontier_GetFacilityStruct(param0->scriptMan->frontier);
 
     if (v0->unk_A7C >= 2) {
         v0->unk_A7C = 0;
@@ -588,21 +588,21 @@ BOOL FrontierScrCmd_C4(FrontierScriptContext *param0)
     FieldFrontierDTO *fieldData = BattleFrontier_GetFieldData(param0->scriptMan->frontier);
     u16 v3 = FrontierScriptContext_ReadByte(param0);
 
-    v1 = sub_0209B978(param0->scriptMan->frontier);
+    v1 = BattleFrontier_GetFacilityStruct(param0->scriptMan->frontier);
 
     if (v1 == NULL) {
         return 0;
     }
 
     v0 = v1->unk_F4[v3].trDataDTO.introMsg;
-    ov104_022330FC(param0, v0);
+    BattleFrontier_PrintNormalTrainerMessage(param0, v0);
 
     return 1;
 }
 
 BOOL FrontierScrCmd_C5(FrontierScriptContext *param0)
 {
-    BattleArcade *v0 = sub_0209B978(param0->scriptMan->frontier);
+    BattleArcade *v0 = BattleFrontier_GetFacilityStruct(param0->scriptMan->frontier);
     ov104_02238B88(v0, v0->activeEffect);
 
     return 1;
@@ -616,7 +616,7 @@ BOOL FrontierScrCmd_C6(FrontierScriptContext *param0)
     u16 v3 = FrontierScriptContext_GetVar(param0);
     u16 v4 = FrontierScriptContext_GetVar(param0);
 
-    v0 = sub_0209B978(param0->scriptMan->frontier);
+    v0 = BattleFrontier_GetFacilityStruct(param0->scriptMan->frontier);
     ov104_022389F4(v0, v1, v2, v3, v4);
 
     return 0;

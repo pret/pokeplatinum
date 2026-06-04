@@ -8,15 +8,15 @@
 
 #define BATTLE_HALL_MON_SUMMARY 0xfe
 
-void ov104_0223AF58(u8 param0, u8 param1, u8 param2, u8 param3, u16 param4[]);
-void ov104_0223AFB4(u8 param0, u8 param1, int param2, u8 param3, u8 param4, u16 param5[]);
-void ov104_0223B0C8(u8 param0, u8 param1, u8 param2, u8 param3, u16 param4, u16 param5[], u8 param6);
-FieldBattleDTO *FieldBattleDTO_NewBattleHall(BattleHall *battleHall, FieldFrontierDTO *fieldData);
+void BattleHall_PickOpponentTrainerClasses(u8 selectedTypeIdx, u8 numTrainers, u8 typeRank, u8 currentBattle, u16 trainerIDs[]);
+void BattleHall_PickOpponentTrainers(u8 challengeType, u8 numTrainers, int currentRound, u8 rank, u8 currentBattle, u16 trainerIDs[]);
+void BattleHall_PickNextOpponentPokemon(u8 numOpponentsToPick, u8 selectedType, u8 typeRank, u8 currentBattle, u16 playersSpecies, u16 opponentIndices[], u8 battleType);
+FieldBattleDTO *BattleHall_SetupBattle(BattleHall *battleHall, FieldFrontierDTO *fieldData);
 u8 BattleHall_GetPlayerPartySize(u8 challengeType);
 u8 BattleHall_GetOpponentPartySize(u8 challengeType);
 u8 BattleHall_CursorPosToType(u8 cursorPos);
 BOOL BattleHall_IsMultiPlayerChallenge(u8 challengeType);
-u8 ov104_0223B5C0(BattleHall *battleHall);
+u8 BattleHall_GetHallMatronTypeRank(BattleHall *battleHall);
 u16 BattleHall_GetHighestLevelInParty(BattleHall *battleHall);
 fx32 BattleHall_GetLevelSquareRoot(u32 level);
 
