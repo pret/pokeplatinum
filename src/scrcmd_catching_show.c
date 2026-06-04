@@ -7,7 +7,6 @@
 #include "savedata/save_table.h"
 
 #include "catching_show.h"
-#include "catchrecords_save.h"
 #include "field_script_context.h"
 #include "heap.h"
 #include "inlines.h"
@@ -15,6 +14,7 @@
 #include "pc_boxes.h"
 #include "pokedex.h"
 #include "pokemon.h"
+#include "save_catchrecords.h"
 #include "save_player.h"
 #include "system_flags.h"
 #include "trainer_info.h"

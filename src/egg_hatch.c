@@ -13,7 +13,6 @@
 #include "overlay005/daycare.h"
 
 #include "bg_window.h"
-#include "catchrecords_save.h"
 #include "field_system.h"
 #include "field_task.h"
 #include "field_transition.h"
@@ -29,6 +28,7 @@
 #include "pokemon.h"
 #include "pokemon_anim.h"
 #include "pokemon_sprite.h"
+#include "save_catchrecords.h"
 #include "save_player.h"
 #include "screen_fade.h"
 #include "sound_playback.h"

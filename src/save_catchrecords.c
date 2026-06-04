@@ -1,6 +1,4 @@
-#include "catchrecords_save.h"
-
-#include <nitro.h>
+#include "save_catchrecords.h"
 
 #include "game_records.h"
 #include "pokedex.h"

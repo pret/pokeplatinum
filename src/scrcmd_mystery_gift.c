@@ -13,7 +13,6 @@
 
 #include "bag.h"
 #include "battle_regulation.h"
-#include "catchrecords_save.h"
 #include "field_script_context.h"
 #include "heap.h"
 #include "inlines.h"
@@ -23,6 +22,7 @@
 #include "pokemon.h"
 #include "poketch.h"
 #include "ribbon.h"
+#include "save_catchrecords.h"
 #include "save_player.h"
 #include "script_manager.h"
 #include "string_gf.h"

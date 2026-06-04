@@ -140,7 +140,7 @@ Static main
 	Object main.nef.p/src_rankings.c.o
 	Object main.nef.p/src_pal_park_transfers.c.o
 	Object main.nef.p/src_link_contest_records.c.o
-	Object main.nef.p/src_catchrecords_save.c.o
+	Object main.nef.p/src_save_catchrecords.c.o
 	Object main.nef.p/src_unk_0202F1D4.c.o
 	Object main.nef.p/src_unk_0202FF4C.c.o
 	Object main.nef.p/src_unk_02030108.c.o

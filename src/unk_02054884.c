@@ -10,10 +10,10 @@
 
 #include "overlay005/daycare.h"
 
-#include "catchrecords_save.h"
 #include "heap.h"
 #include "party.h"
 #include "pokemon.h"
+#include "save_catchrecords.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "trainer_info.h"

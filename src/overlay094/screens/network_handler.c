@@ -23,7 +23,6 @@
 #include "savedata/save_table.h"
 
 #include "bg_window.h"
-#include "catchrecords_save.h"
 #include "chatot_cry.h"
 #include "comm_manager.h"
 #include "font.h"
@@ -40,6 +39,7 @@
 #include "pc_boxes.h"
 #include "pokemon.h"
 #include "render_window.h"
+#include "save_catchrecords.h"
 #include "savedata.h"
 #include "screen_fade.h"
 #include "string_gf.h"
