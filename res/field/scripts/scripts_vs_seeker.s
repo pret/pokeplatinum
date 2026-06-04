@@ -2,36 +2,36 @@
 #include "res/text/bank/vs_seeker.h"
 
 
-    ScriptEntry _0006
+    ScriptEntry VsSeeker_Use
     ScriptEntryEnd
 
-_0006:
+VsSeeker_Use:
     SetVar VAR_RESULT, 0
-    ScrCmd_20A VAR_RESULT
+    StartVsSeeker VAR_RESULT
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, 0, _0043
-    GoToIfEq VAR_0x8008, 1, _0047
-    GoToIfEq VAR_0x8008, 2, _0050
-    GoTo _0059
+    GoToIfEq VAR_0x8008, VS_SEEKER_USE_RESULT_OK, VsSeeker_OK
+    GoToIfEq VAR_0x8008, VS_SEEKER_USE_RESULT_NO_BATTERY, VsSeeker_NoBattery
+    GoToIfEq VAR_0x8008, VS_SEEKER_USE_RESULT_NO_TRAINERS, VsSeeker_NoTrainers
+    GoTo VsSeeker_NoTrainersReadyToBattle
 
-_0043:
+VsSeeker_OK:
     ReleaseAll
     End
 
-_0047:
-    Message 0
-    GoTo _0068
+VsSeeker_NoBattery:
+    Message VsSeeker_Text_BatteryIsntChargedEnough
+    GoTo VsSeeker_End
 
-_0050:
-    Message 1
-    GoTo _0068
+VsSeeker_NoTrainers:
+    Message VsSeeker_Text_NoTrainersWithinRange
+    GoTo VsSeeker_End
 
-_0059:
+VsSeeker_NoTrainersReadyToBattle:
     WaitTime 30, VAR_RESULT
-    Message 2
-    GoTo _0068
+    Message VsSeeker_Text_NoTrainersReadyToBattle
+    GoTo VsSeeker_End
 
-_0068:
+VsSeeker_End:
     WaitButton
     CloseMessage
     ReleaseAll
