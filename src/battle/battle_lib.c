@@ -1874,7 +1874,7 @@ BOOL BattleSystem_CheckTrainerMessage(BattleSystem *battleSys, BattleContext *ba
 {
     int battleType = BattleSystem_GetBattleType(battleSys);
 
-    if (battleType & BATTLE_TYPE_NO_TRAINER_MESSAGES) {
+    if (battleType & BATTLE_TYPE_FRONTIER_LINK) {
         return FALSE;
     }
 

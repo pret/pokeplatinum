@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "constants/battle_frontier.h"
+#include "generated/ai_flags.h"
 #include "generated/frontier_trainers.h"
 
 #include "struct_defs/battle_frontier_trainer_data.h"
@@ -251,16 +252,16 @@ static u32 BattleArcade_GetBattleType(u8 challengeType)
 {
     switch (challengeType) {
     case FRONTIER_CHALLENGE_SINGLE:
-        return (BATTLE_TYPE_SINGLES | BATTLE_TYPE_TRAINER) | BATTLE_TYPE_FRONTIER;
+        return BATTLE_TYPE_FRONTIER_SINGLES;
     case FRONTIER_CHALLENGE_DOUBLE:
-        return (BATTLE_TYPE_DOUBLES | BATTLE_TYPE_TRAINER) | BATTLE_TYPE_FRONTIER;
+        return BATTLE_TYPE_FRONTIER_DOUBLES;
     case FRONTIER_CHALLENGE_MULTI:
-        return (((BATTLE_TYPE_LINK | BATTLE_TYPE_TRAINER) | BATTLE_TYPE_DOUBLES) | BATTLE_TYPE_2vs2) | BATTLE_TYPE_FRONTIER;
+        return BATTLE_TYPE_FRONTIER_LINK | BATTLE_TYPE_TRAINER_DOUBLES | BATTLE_TYPE_2vs2;
     case FRONTIER_CHALLENGE_MULTI_WFC:
-        return (((BATTLE_TYPE_LINK | BATTLE_TYPE_TRAINER) | BATTLE_TYPE_DOUBLES) | BATTLE_TYPE_2vs2) | BATTLE_TYPE_FRONTIER;
+        return BATTLE_TYPE_FRONTIER_LINK | BATTLE_TYPE_TRAINER_DOUBLES | BATTLE_TYPE_2vs2;
     }
 
-    return (BATTLE_TYPE_SINGLES | BATTLE_TYPE_TRAINER) | BATTLE_TYPE_FRONTIER;
+    return BATTLE_TYPE_FRONTIER_SINGLES;
 }
 
 u8 BattleArcade_GetPokemonLevel(BattleArcade *battleArcade)
@@ -342,30 +343,30 @@ u16 ov104_0223C0BC(BattleArcade *battleArcade, u8 param1)
 
 static u16 BattleArcade_GetAIMask(BattleArcade *battleArcade)
 {
-    u16 v0, v1;
+    u16 aiMask, v1;
 
     if (battleArcade->challengeType == FRONTIER_CHALLENGE_SINGLE) {
         if (battleArcade->trainerIDs[battleArcade->unk_11] == FRONTIER_TRAINER_ARCADE_STAR_DAHLIA_SILVER
             || battleArcade->trainerIDs[battleArcade->unk_11] == FRONTIER_TRAINER_ARCADE_STAR_DAHLIA_GOLD) {
-            return 0x1 | 0x2 | 0x4;
+            return AI_FLAG_BASIC | AI_FLAG_EVAL_ATTACK | AI_FLAG_EXPERT;
         }
     }
 
     v1 = ov104_0223C124(battleArcade);
-    v0 = 0x1 | 0x2 | 0x4;
+    aiMask = AI_FLAG_BASIC | AI_FLAG_EVAL_ATTACK | AI_FLAG_EXPERT;
 
     switch (v1 + 1) {
     case 1:
     case 2:
-        v0 = 0;
+        aiMask = AI_FLAG_NONE;
         break;
     case 3:
     case 4:
-        v0 = 0x1;
+        aiMask = AI_FLAG_BASIC;
         break;
     }
 
-    return v0;
+    return aiMask;
 }
 
 u16 ov104_0223C124(BattleArcade *battleArcade)

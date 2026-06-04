@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "constants/battle_frontier.h"
+#include "generated/ai_flags.h"
 #include "generated/frontier_trainers.h"
 
 #include "overlay104/ov104_0222DCE0.h"
@@ -1674,16 +1675,16 @@ static u32 BattleHall_GetBattleType(u8 challengeType)
 {
     switch (challengeType) {
     case FRONTIER_CHALLENGE_SINGLE:
-        return (BATTLE_TYPE_SINGLES | BATTLE_TYPE_TRAINER) | BATTLE_TYPE_FRONTIER;
+        return BATTLE_TYPE_FRONTIER_SINGLES;
     case FRONTIER_CHALLENGE_DOUBLE:
-        return (BATTLE_TYPE_DOUBLES | BATTLE_TYPE_TRAINER) | BATTLE_TYPE_FRONTIER;
+        return BATTLE_TYPE_FRONTIER_DOUBLES;
     case FRONTIER_CHALLENGE_MULTI:
-        return (((BATTLE_TYPE_LINK | BATTLE_TYPE_TRAINER) | BATTLE_TYPE_DOUBLES) | BATTLE_TYPE_2vs2) | BATTLE_TYPE_FRONTIER;
+        return BATTLE_TYPE_FRONTIER_LINK | BATTLE_TYPE_TRAINER_DOUBLES | BATTLE_TYPE_2vs2;
     case FRONTIER_CHALLENGE_MULTI_WFC:
-        return (((BATTLE_TYPE_LINK | BATTLE_TYPE_TRAINER) | BATTLE_TYPE_DOUBLES) | BATTLE_TYPE_2vs2) | BATTLE_TYPE_FRONTIER;
+        return BATTLE_TYPE_FRONTIER_LINK | BATTLE_TYPE_TRAINER_DOUBLES | BATTLE_TYPE_2vs2;
     }
 
-    return (BATTLE_TYPE_SINGLES | BATTLE_TYPE_TRAINER) | BATTLE_TYPE_FRONTIER;
+    return BATTLE_TYPE_FRONTIER_SINGLES;
 }
 
 u8 BattleHall_GetPlayerPartySize(u8 challengeType)
@@ -1794,33 +1795,33 @@ static u8 ov104_0223B5F0(u8 param0)
     return Unk_ov104_0224033C[ov104_0223B644(param0)].unk_01;
 }
 
-static u16 BattleHall_GetAIMask(BattleHall *battleHall, u8 param1, u8 param2)
+static u16 BattleHall_GetAIMask(BattleHall *battleHall, u8 param1, u8 rank)
 {
     u8 v0;
-    u16 v1;
+    u16 aiMask;
 
-    if ((param2 + 1) >= 8) {
-        v1 = (0x1 | 0x2 | 0x4);
-    } else if ((param2 + 1) >= 4) {
-        v1 = 0x1;
+    if (rank + 1 >= 8) {
+        aiMask = AI_FLAG_BASIC | AI_FLAG_EVAL_ATTACK | AI_FLAG_EXPERT;
+    } else if (rank + 1 >= 4) {
+        aiMask = AI_FLAG_BASIC;
     } else {
-        v1 = 0;
+        aiMask = 0;
     }
 
     if (battleHall->challengeType == FRONTIER_CHALLENGE_SINGLE) {
-        v0 = (param1 * 2);
+        v0 = param1 * 2;
 
         if (battleHall->trainerIDs[v0] == FRONTIER_TRAINER_HALL_MATRON_ARGENTA_SILVER
             || battleHall->trainerIDs[v0] == FRONTIER_TRAINER_HALL_MATRON_ARGENTA_GOLD) {
-            v1 = 0x1 | 0x2 | 0x4;
+            aiMask = AI_FLAG_BASIC | AI_FLAG_EVAL_ATTACK | AI_FLAG_EXPERT;
         }
     }
 
     if (battleHall->challengeType == FRONTIER_CHALLENGE_MULTI) {
-        v1 = 0x1 | 0x2 | 0x4;
+        aiMask = AI_FLAG_BASIC | AI_FLAG_EVAL_ATTACK | AI_FLAG_EXPERT;
     }
 
-    return v1;
+    return aiMask;
 }
 
 static u16 ov104_0223B644(u8 param0)

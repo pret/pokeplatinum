@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "constants/battle_tower.h"
+#include "generated/ai_flags.h"
 #include "generated/battle_tower_modes.h"
 #include "generated/species_data_params.h"
 
@@ -922,7 +923,7 @@ FieldBattleDTO *FieldBattleDTO_NewBattleTower(BattleTower *battleTower, UnkStruc
     FieldBattleDTO_InitBattleTowerTrainer(dto, &(battleTower->opponentsDataDTO[0]), battleTower->partySize, BATTLER_ENEMY_1, battleTower->heapID);
 
     for (i = 0; i < MAX_BATTLERS; i++) {
-        dto->trainer[i].header.aiMask = 0x1 | 0x2 | 0x4;
+        dto->trainer[i].header.aiMask = AI_FLAG_BASIC | AI_FLAG_EVAL_ATTACK | AI_FLAG_EXPERT;
     }
 
     switch (battleTower->challengeMode) {
@@ -958,17 +959,17 @@ static u32 BattleTower_GetBattleTypeFromChallengeMode(u8 challengeMode)
     switch (challengeMode) {
     case BATTLE_TOWER_MODE_SINGLE:
     case BATTLE_TOWER_MODE_WIFI:
-        return (BATTLE_TYPE_SINGLES | BATTLE_TYPE_TRAINER) | BATTLE_TYPE_FRONTIER;
+        return BATTLE_TYPE_FRONTIER_SINGLES;
     case BATTLE_TOWER_MODE_DOUBLE:
         return BATTLE_TYPE_FRONTIER_DOUBLES;
     case BATTLE_TOWER_MODE_MULTI:
         return BATTLE_TYPE_FRONTIER_WITH_AI_PARTNER;
     case BATTLE_TOWER_MODE_LINK_MULTI:
     case BATTLE_TOWER_MODE_6:
-        return (BATTLE_TYPE_LINK_DOUBLES | BATTLE_TYPE_2vs2) | BATTLE_TYPE_FRONTIER;
+        return BATTLE_TYPE_FRONTIER_LINK | BATTLE_TYPE_TRAINER_DOUBLES | BATTLE_TYPE_2vs2;
     }
 
-    return (BATTLE_TYPE_SINGLES | BATTLE_TYPE_TRAINER) | BATTLE_TYPE_FRONTIER;
+    return BATTLE_TYPE_FRONTIER_SINGLES;
 }
 
 void ov104_0223A734(BattleTower *battleTower, u16 param1)
