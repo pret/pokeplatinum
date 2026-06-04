@@ -300,11 +300,11 @@ static void TireStackAnim_Render(OverworldAnimManager *animManager, void *contex
 }
 
 static const OverworldAnimManagerFuncs sTireStackAnimFuncs = {
-    sizeof(VeilstoneGymTireStackRenderer),
-    TireStackAnim_Init,
-    TireStackAnim_Free,
-    TireStackAnim_Update,
-    TireStackAnim_Render
+    .ctxSize = sizeof(VeilstoneGymTireStackRenderer),
+    .initFunc = TireStackAnim_Init,
+    .exitFunc = TireStackAnim_Free,
+    .tickFunc = TireStackAnim_Update,
+    .renderFunc = TireStackAnim_Render
 };
 
 OverworldAnimManager *VeilstoneGymObjectRenderer_InitPunchingBagRenderer(FieldSystem *fieldSystem, int x, int z, fx32 yOffset)

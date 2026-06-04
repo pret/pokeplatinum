@@ -97,17 +97,20 @@
 #define VEILSTONE_TILE_FLAG_TIRE_STACK_PRESENT     (1 << 1)
 #define VEILSTONE_TILE_FLAG_BAG_PAUSE_POINT        (1 << 2)
 
-#define VEILSTONE_ANIM_STATE_INIT                  0
-#define VEILSTONE_ANIM_STATE_KICK_BAG              1
-#define VEILSTONE_ANIM_STATE_START_MOVEMENT        2
-#define VEILSTONE_ANIM_STATE_MOVE_BAG              3
-#define VEILSTONE_ANIM_STATE_TOPPLE_STACK          4
-#define VEILSTONE_ANIM_STATE_REMOVE_STACK          5
-#define VEILSTONE_ANIM_STATE_PREP_CAMERA_TO_PLAYER 6
-#define VEILSTONE_ANIM_STATE_CAMERA_TO_PLAYER      7
-#define VEILSTONE_ANIM_STATE_FINISH_BAG_ANIMATION  8
-#define VEILSTONE_ANIM_STATE_WAIT_FINISH           9
-#define VEILSTONE_ANIM_STATE_FREE                  10
+enum VeilstoneGymAnimationState {
+    VEILSTONE_ANIM_STATE_INIT = 0,
+    VEILSTONE_ANIM_STATE_KICK_BAG,
+    VEILSTONE_ANIM_STATE_START_MOVEMENT,
+    VEILSTONE_ANIM_STATE_MOVE_BAG,
+    VEILSTONE_ANIM_STATE_TOPPLE_STACK,
+    VEILSTONE_ANIM_STATE_REMOVE_STACK,
+    VEILSTONE_ANIM_STATE_PREP_CAMERA_TO_PLAYER,
+    VEILSTONE_ANIM_STATE_CAMERA_TO_PLAYER,
+    VEILSTONE_ANIM_STATE_FINISH_BAG_ANIMATION,
+    VEILSTONE_ANIM_STATE_WAIT_FINISH,
+    VEILSTONE_ANIM_STATE_FREE,
+    NUM_VEILSTONE_ANIM_STATE,
+};
 
 #define VEILSTONE_STATE_RESULT_ADVANCE_FRAME 0
 #define VEILSTONE_STATE_RESULT_CONTINUE      1
@@ -3017,7 +3020,7 @@ static const int sVeilstoneTravelDistanceRequiringCameraMovement[MAX_DIR] = {
     [DIR_EAST] = 4
 };
 
-static const VeilstoneGymAnimationStateFunc sVeilstoneGymBagAnimationStates[11];
+static const VeilstoneGymAnimationStateFunc sVeilstoneGymBagAnimationStates[NUM_VEILSTONE_ANIM_STATE];
 
 void VeilstoneGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
 {
@@ -3493,7 +3496,7 @@ static int VeilstoneGym_AnimationState_Free(VeilstoneGym_BagAnimation *bagAnim)
     return VEILSTONE_STATE_RESULT_FINISH;
 }
 
-static const VeilstoneGymAnimationStateFunc sVeilstoneGymBagAnimationStates[11] = {
+static const VeilstoneGymAnimationStateFunc sVeilstoneGymBagAnimationStates[NUM_VEILSTONE_ANIM_STATE] = {
     [VEILSTONE_ANIM_STATE_INIT] = VeilstoneGym_AnimationState_Init,
     [VEILSTONE_ANIM_STATE_KICK_BAG] = VeilstoneGym_AnimationState_KickBag,
     [VEILSTONE_ANIM_STATE_START_MOVEMENT] = VeilstoneGym_AnimationState_StartMovement,
