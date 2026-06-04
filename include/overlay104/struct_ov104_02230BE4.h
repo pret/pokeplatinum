@@ -16,8 +16,8 @@ typedef struct {
     BagCursor *bagCursor;
     int unk_14;
     int unk_18;
-    int unk_1C;
-    u8 *unk_20;
+    int mapHeaderID;
+    u8 *subscreenCursorOn;
     u8 sceneID;
     FieldSystem *fieldSystem;
 } UnkStruct_ov104_02230BE4;

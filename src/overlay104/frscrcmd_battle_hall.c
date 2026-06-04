@@ -123,7 +123,7 @@ BOOL FrontierScrCmd_OpenBattleHallApp(FrontierScriptContext *ctx)
 BOOL FrontierScrCmd_BattleHall_CleanupBattle(FrontierScriptContext *ctx)
 {
     BattleHall *battleHall = sub_0209B978(ctx->scriptMan->unk_00);
-    FieldBattleDTO *dto = battleHall->unk_700;
+    FieldBattleDTO *dto = battleHall->dto;
 
     battleHall->wonBattle = CheckPlayerWonBattle(dto->resultMask);
     FieldBattleDTO_Free(dto);
@@ -136,11 +136,11 @@ BOOL FrontierScrCmd_BattleHall_StartBattle(FrontierScriptContext *ctx)
     UnkStruct_ov104_02230BE4 *v2 = sub_0209B970(ctx->scriptMan->unk_00);
     BattleHall *battleHall = sub_0209B978(ctx->scriptMan->unk_00);
 
-    FieldBattleDTO *v0 = ov104_0223B250(battleHall, v2);
-    battleHall->unk_700 = v0;
+    FieldBattleDTO *dto = FieldBattleDTO_NewBattleHall(battleHall, v2);
+    battleHall->dto = dto;
 
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_BATTLE, SEQ_BATTLE_TRAINER, 1);
-    sub_0209B988(ctx->scriptMan->unk_00, &gBattleApplicationTemplate, v0, 0, NULL);
+    sub_0209B988(ctx->scriptMan->unk_00, &gBattleApplicationTemplate, dto, 0, NULL);
 
     return TRUE;
 }
@@ -215,7 +215,7 @@ BOOL FrontierScrCmd_CallBattleHallFunction(FrontierScriptContext *ctx)
         break;
     case BH_FUNC_UPDATE_HELD_ITEMS: {
         Party *party = SaveData_GetParty(v0->saveData);
-        partySize = BattleHall_GetPartySize(battleHall->challengeType);
+        partySize = BattleHall_GetPlayerPartySize(battleHall->challengeType);
 
         for (int i = 0; i < partySize; i++) {
             Pokemon *mon = Party_GetPokemonBySlotIndex(party, battleHall->unk_260[i]);
@@ -246,8 +246,8 @@ BOOL FrontierScrCmd_CallBattleHallFunction(FrontierScriptContext *ctx)
         }
         break;
     case BH_FUNC_UNK_32:
-        ov104_0222E278(&(battleHall->unk_40[0]), battleHall->unk_18[battleHall->unk_05 * 2], HEAP_ID_FIELD2, 178);
-        ov104_0222E278(&(battleHall->unk_40[1]), battleHall->unk_18[battleHall->unk_05 * 2 + 1], HEAP_ID_FIELD2, 178);
+        ov104_0222E278(&(battleHall->unk_40[0]), battleHall->trainerIDs[battleHall->unk_05 * 2], HEAP_ID_FIELD2, 178);
+        ov104_0222E278(&(battleHall->unk_40[1]), battleHall->trainerIDs[battleHall->unk_05 * 2 + 1], HEAP_ID_FIELD2, 178);
         break;
     case BH_FUNC_UNK_33:
         *returnVar = BattleHall_GetRankOfType(battleHall->selectedTypeIdx, &battleHall->unk_704[battleHall->challengeType][0]);
@@ -345,7 +345,7 @@ BOOL FrontierScrCmd_95(FrontierScriptContext *param0)
         return 0;
     }
 
-    v0 = v1->unk_40[v3].trDataDTO.unk_18;
+    v0 = v1->unk_40[v3].trDataDTO.introMsg;
 
     ov104_022330FC(param0, v0);
     return 1;

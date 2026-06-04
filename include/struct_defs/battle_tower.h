@@ -9,6 +9,7 @@
 
 #include "overlay104/frontier_data_transfer.h"
 
+#include "field_battle_data_transfer.h"
 #include "location.h"
 
 typedef struct BattleTower {
@@ -48,7 +49,7 @@ typedef struct BattleTower {
     u16 unk_83E[35];
     u16 unk_884[35];
     int wonBattle;
-    void *unk_8D0;
+    FieldBattleDTO *dto;
     u8 unk_8D4;
     u8 unk_8D5;
     u8 unk_8D6;

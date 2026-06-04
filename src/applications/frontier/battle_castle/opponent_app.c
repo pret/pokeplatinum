@@ -1082,7 +1082,7 @@ static void FreeAssets(BattleCastleOpponentApp *app)
         }
     }
 
-    u8 numMons = ov104_0223B7DC(app->challengeType, 1);
+    u8 numMons = BattleCastle_GetOpponentPartySize(app->challengeType, 1);
 
     for (i = 0; i < numMons; i++) {
         BattleCastleAppSprite_Free(app->ballSprites[i]);
@@ -1161,7 +1161,7 @@ static void LoadAssets(BattleCastleOpponentApp *app)
         ballXOffset = 28;
     }
 
-    u8 numMons = ov104_0223B7DC(app->challengeType, 1);
+    u8 numMons = BattleCastle_GetOpponentPartySize(app->challengeType, 1);
 
     for (i = 0; i < numMons; i++) {
         app->ballSprites[i] = BattleCastleAppSprite_New(&app->spriteMan, 0, 0, 0, ANIM_ID_SHAKING_POKE_BALL, 64 * i + ballXOffset, 62, 2, NULL);
@@ -1579,7 +1579,7 @@ static void PrintAllMonsHP(BattleCastleOpponentApp *app, Window *window)
         baseXOffset = 4;
     }
 
-    u8 numMons = ov104_0223B7DC(app->challengeType, 1);
+    u8 numMons = BattleCastle_GetOpponentPartySize(app->challengeType, 1);
 
     for (int i = 0; i < numMons; i++) {
         if (!app->identityUnlockedForSlot[i]) {
@@ -1610,7 +1610,7 @@ static void PrintAllMonsLevelAndGender(BattleCastleOpponentApp *app, Window *win
         genderXOffset = 48;
     }
 
-    u8 numMons = ov104_0223B7DC(app->challengeType, 1);
+    u8 numMons = BattleCastle_GetOpponentPartySize(app->challengeType, 1);
 
     for (int i = 0; i < numMons; i++) {
         Pokemon *mon = Party_GetPokemonBySlotIndex(app->opponentsParty, i);
@@ -2752,7 +2752,7 @@ static void FreeListMenu(BattleCastleOpponentApp *app)
 
 static void UpdatePokemonGraphics(BattleCastleOpponentApp *app)
 {
-    u8 numMons = BattleCastle_GetPartySize(app->challengeType, TRUE);
+    u8 numMons = BattleCastle_GetPlayerPartySize(app->challengeType, TRUE);
 
     for (int i = 0; i < numMons; i++) {
         Pokemon *mon = Party_GetPokemonBySlotIndex(app->opponentsParty, i);
@@ -2812,7 +2812,7 @@ static const u16 sRankUpMessages[3][3] = {
 
 static void IncreaseRank(BattleCastleOpponentApp *app, u8 slot, u8 menuOption)
 {
-    u8 unused = BattleCastle_GetPartySize(app->challengeType, FALSE);
+    u8 unused = BattleCastle_GetPlayerPartySize(app->challengeType, FALSE);
 
     u8 rankType;
     if (menuOption == MENU_ENTRY_RANK_UP_SUMMARY) {
@@ -2874,7 +2874,7 @@ static void IncreaseRank(BattleCastleOpponentApp *app, u8 slot, u8 menuOption)
 
 static void UpdateAllFlagSprites(BattleCastleOpponentApp *app)
 {
-    u8 numMons = ov104_0223B7DC(app->challengeType, TRUE);
+    u8 numMons = BattleCastle_GetOpponentPartySize(app->challengeType, TRUE);
 
     for (int i = 0; i < numMons; i++) {
         UpdateFlagSprites(app, i);
