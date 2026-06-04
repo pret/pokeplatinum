@@ -21,6 +21,7 @@
 
 #include "bg_window.h"
 #include "brightness_controller.h"
+#include "comm_manager.h"
 #include "communication_system.h"
 #include "font.h"
 #include "game_options.h"
@@ -57,7 +58,6 @@
 #include "text.h"
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
-#include "unk_020366A0.h"
 
 #include "res/graphics/main_menu/main_menu_graphics.naix"
 #include "res/text/bank/mystery_gift_menu.h"
@@ -2171,7 +2171,7 @@ static BOOL MysteryGiftApp_Main(ApplicationManager *appMan, enum MysteryGiftAppS
         if (netID != 0 && CommSys_IsPlayerConnected(netID)) {
             if (CommTiming_IsSyncState(0xAB) == TRUE) {
                 ToggleWaitDial(appData, FALSE);
-                CommMan_SetErrorHandling(TRUE, TRUE);
+                CommManager_SetErrorHandling(TRUE, TRUE);
                 ShowMessageBox(appMan, &appData->messageBox, MysteryGiftMenu_Text_ReceivingGiftDontTurnOff);
                 SetDownloadArrowAnim(appData, 1);
                 ToggleWaitDial(appData, TRUE);
@@ -2213,7 +2213,7 @@ static BOOL MysteryGiftApp_Main(ApplicationManager *appMan, enum MysteryGiftAppS
         break;
     case MG_APP_STATE_SAVE_GIFT_FROM_FRIEND:
         MainMenuUtil_LoadGiftSprite(appData->bgConfig, GetReceivedWonderCard(appMan));
-        CommMan_SetErrorHandling(0, 0);
+        CommManager_SetErrorHandling(0, 0);
         SaveReceivedGift(appMan);
         *state = MG_APP_STATE_CHECK_FRIEND_CONNECTION_STILL_VALID;
         break;
@@ -2479,19 +2479,19 @@ static void ov97_02230224(MysteryGiftAppData *param0)
     case 29:
         break;
     case 28:
-        sub_02037D48(param0->saveData);
+        CommManager_InitializeSearchParty(param0->saveData);
         param0->unk_630 = 120;
         param0->unk_62C = 30;
         break;
     case 30:
-        v0 = sub_02037DA0();
+        v0 = CommManager_GetAvailableConnections();
 
         if (v0 & 0x1) {
             param0->unk_634 = 1;
         }
 
         if (--param0->unk_630 == 0) {
-            sub_02037D84();
+            CommManager_EndSearchParty();
             param0->unk_62C = 29;
         }
         break;

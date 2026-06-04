@@ -15,11 +15,11 @@
 #include "overlay109/struct_ov109_021D1048.h"
 #include "overlay109/struct_ov109_021D17EC.h"
 
+#include "comm_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "heap.h"
 #include "unk_02032798.h"
-#include "unk_020366A0.h"
 #include "unk_0205B33C.h"
 #include "unk_0205C22C.h"
 #include "unk_02099500.h"
@@ -62,8 +62,8 @@ void sub_0209BE50(UnkStruct_0209BDF8 *param0)
 
 void sub_0209BE64(UnkStruct_0209BDF8 *param0)
 {
-    sub_02037B58(2);
-    sub_02036AC4();
+    CommManager_SetMaxNumConnections(2);
+    CommManager_UnionRestartSearch();
     sub_0205C2C8(param0->unk_00->unk_14.unk_0C);
     sub_0205BEA8(0);
 }
@@ -175,7 +175,7 @@ static void sub_0209BF64(int param0, int param1, void *param2, void *param3)
                     v0->unk_30 |= 1 << param0;
                     v1.unk_03 = 1;
 
-                    sub_02037B58(CommSys_ConnectedCount());
+                    CommManager_SetMaxNumConnections(CommSys_ConnectedCount());
                 }
                 break;
             case 1:

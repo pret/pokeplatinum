@@ -22,10 +22,10 @@
 #include "struct_defs/trainer.h"
 
 #include "battle/battle_context.h"
-#include "battle/battle_cursor.h"
 #include "battle/battle_display.h"
 #include "battle/battle_lib.h"
 #include "battle/battle_message.h"
+#include "battle/battle_subscreen.h"
 #include "battle/common.h"
 #include "battle/healthbox.h"
 #include "battle/ov16_02268520.h"
@@ -187,9 +187,9 @@ Terrain *BattlerSystem_GetTerrain(BattleSystem *battleSys, int index)
     return &battleSys->terrains[index];
 }
 
-UnkStruct_ov16_02268A14 *ov16_0223E02C(BattleSystem *battleSys)
+BattleSubscreen *ov16_0223E02C(BattleSystem *battleSys)
 {
-    return battleSys->unk_198;
+    return battleSys->btlSubscreen;
 }
 
 PartyGauge *BattleSystem_GetPartyGauge(BattleSystem *battleSys, enum PartyGaugeSide partyGaugeSide)
@@ -1433,7 +1433,7 @@ void BattleSystem_SetStopRecording(BattleSystem *battleSys, int flag)
         return;
     }
 
-    ov16_0226CEB0(battleSys->unk_198, flag);
+    BattleSubscreen_ShowStopRecordingMessage(battleSys->btlSubscreen, flag);
 
     StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 16, 2, HEAP_ID_BATTLE);
     Sound_StopWaveOutAndSequences();

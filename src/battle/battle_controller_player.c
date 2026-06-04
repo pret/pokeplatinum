@@ -3213,7 +3213,7 @@ static void BattleControllerPlayer_BeforeMove(BattleSystem *battleSys, BattleCon
     } else {
         battleCtx->battleStatusMask2 |= SYSCTL_MOVE_SUCCEEDED;
 
-        BattleSystem_LoadScript(battleCtx, 0, battleCtx->moveCur);
+        BattleSystem_LoadScript(battleCtx, NARC_INDEX_BATTLE__SKILL__WAZA_SEQ, battleCtx->moveCur);
         battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
         battleCtx->commandNext = BATTLE_CONTROL_TRY_MOVE;
 
@@ -3789,7 +3789,7 @@ static void BattleControllerPlayer_LoopMultiHit(BattleSystem *battleSys, BattleC
                 battleCtx->battleStatusMask &= ~SYSCTL_PLAYED_MOVE_ANIMATION; // force the animation to play again
                 battleCtx->multiHitCheckFlags = battleCtx->multiHitAccuracyCheck;
 
-                BattleSystem_LoadScript(battleCtx, 0, battleCtx->moveCur); // reload the move's script
+                BattleSystem_LoadScript(battleCtx, NARC_INDEX_BATTLE__SKILL__WAZA_SEQ, battleCtx->moveCur); // reload the move's script
                 battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
                 battleCtx->commandNext = BATTLE_CONTROL_TRY_MOVE;
             } else {

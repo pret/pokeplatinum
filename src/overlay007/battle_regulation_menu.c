@@ -187,17 +187,17 @@ static int ProcessListMenuInputRegulations(BattleRegulationMenu *menu)
         return 0;
     case 12:
         Sound_PlayEffect(SEQ_SE_CONFIRM);
-        menu->fieldSystem->regulation = NULL;
+        menu->fieldSystem->battleRegulation = NULL;
         RemoveListMenuRegulations(menu);
         return 2;
     case MENU_CANCEL:
         Sound_PlayEffect(SEQ_SE_CONFIRM);
-        menu->fieldSystem->regulation = NULL;
+        menu->fieldSystem->battleRegulation = NULL;
         RemoveListMenuRegulations(menu);
         return -1;
     default:
         Sound_PlayEffect(SEQ_SE_CONFIRM);
-        menu->fieldSystem->regulation = BattleRegulation_GetByIndex(menu->fieldSystem->saveData, input);
+        menu->fieldSystem->battleRegulation = BattleRegulation_GetByIndex(menu->fieldSystem->saveData, input);
         break;
     }
 
@@ -335,7 +335,7 @@ static void ShowBattleRegulationRules(BattleRegulationMenu *menu)
     }
 
     for (i = 0; i < RULES_COUNT; i++) {
-        ruleValue = BattleRegulation_GetRuleValue(menu->fieldSystem->regulation, sBattleRegulationRules[i]);
+        ruleValue = BattleRegulation_GetRuleValue(menu->fieldSystem->battleRegulation, sBattleRegulationRules[i]);
         valueMessage = sBattleRegulationValueMessages[i];
 
         switch (sBattleRegulationRules[i]) {
@@ -410,7 +410,7 @@ static void RemoveRulesWindow(BattleRegulationMenu *menu)
 static BOOL HandleBattleRegulationValidationResult(BattleRegulationMenu *menu)
 {
     Party *party = SaveData_GetParty(menu->fieldSystem->saveData);
-    enum BattleRegulationValidationResult result = BattleRegulation_SelectValidPokemon(menu->fieldSystem->regulation, party, menu->heighWeightData);
+    enum BattleRegulationValidationResult result = BattleRegulation_SelectValidPokemon(menu->fieldSystem->battleRegulation, party, menu->heighWeightData);
     int ruleValue;
 
     switch (result) {
@@ -419,7 +419,7 @@ static BOOL HandleBattleRegulationValidationResult(BattleRegulationMenu *menu)
     case BATTLE_REGULATION_VALIDATION_RESULT_INVALID_TEAM_SIZE:
         Sound_PlayEffect(SEQ_SE_DP_BOX03);
         GetBattleRegulationName(menu, menu->cursorPosRegulations - 1);
-        ruleValue = BattleRegulation_GetRuleValue(menu->fieldSystem->regulation, BATTLE_REGULATION_RULE_TEAM_SIZE);
+        ruleValue = BattleRegulation_GetRuleValue(menu->fieldSystem->battleRegulation, BATTLE_REGULATION_RULE_TEAM_SIZE);
         StringTemplate_SetNumber(menu->strTemplate, 1, ruleValue, 1, PADDING_MODE_SPACES, CHARSET_MODE_EN);
         PrintMessage(menu, PokemonCenter2FCommon_Text_NeedXPokemonForCup);
         break;
@@ -427,7 +427,7 @@ static BOOL HandleBattleRegulationValidationResult(BattleRegulationMenu *menu)
     case BATTLE_REGULATION_VALIDATION_RESULT_TOTAL_LEVEL_EXCEEDED:
         Sound_PlayEffect(SEQ_SE_DP_BOX03);
         GetBattleRegulationName(menu, menu->cursorPosRegulations - 1);
-        ruleValue = BattleRegulation_GetRuleValue(menu->fieldSystem->regulation, BATTLE_REGULATION_RULE_MAX_TOTAL_LEVEL);
+        ruleValue = BattleRegulation_GetRuleValue(menu->fieldSystem->battleRegulation, BATTLE_REGULATION_RULE_MAX_TOTAL_LEVEL);
         StringTemplate_SetNumber(menu->strTemplate, 1, ruleValue, 3, PADDING_MODE_NONE, CHARSET_MODE_EN);
         PrintMessage(menu, PokemonCenter2FCommon_Text_CantFormTeamWithLevelLimit);
         break;
@@ -558,7 +558,7 @@ static BattleRegulationMenu *NewBattleRegulationMenu(FieldSystem *fieldSystem)
 
     menu->state = 0;
     menu->fieldSystem = fieldSystem;
-    menu->fieldSystem->regulation = NULL;
+    menu->fieldSystem->battleRegulation = NULL;
     menu->strTemplate = StringTemplate_Default(HEAP_ID_FIELD1);
     menu->msgLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEMON_CENTER_2F_COMMON, HEAP_ID_FIELD1);
     menu->fmtString = String_Init(180, HEAP_ID_FIELD1);

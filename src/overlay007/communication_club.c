@@ -9,6 +9,7 @@
 #include "field/field_system.h"
 
 #include "bg_window.h"
+#include "comm_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "field_comm_manager.h"
@@ -32,7 +33,6 @@
 #include "trainer_info.h"
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
-#include "unk_020366A0.h"
 
 #include "res/text/bank/unk_0353.h"
 
@@ -269,7 +269,7 @@ static void CommClubMan_Delete(void)
 
 static void CommClubMan_StartBattleClient(CommClubManager *man)
 {
-    FieldCommMan_StartBattleClient(man->fieldSystem, man->commType, CommClubMan_Regulation());
+    FieldCommManager_StartBattleClient(man->fieldSystem, man->commType, CommClubMan_Regulation());
 }
 
 static const ListMenuTemplate Unk_ov7_0224ED34 = {
@@ -473,7 +473,7 @@ static void ov7_02249FFC(SysTask *task, void *param1)
             if (sub_02033808() > commClubMan->connectIndex) {
                 ov7_0224A0C8(commClubMan);
                 commClubMan->connectIndex = sub_0203383C(commClubMan->connectIndex);
-                FieldCommMan_ConnectBattleClient(commClubMan->connectIndex);
+                FieldCommManager_ConnectBattleClient(commClubMan->connectIndex);
                 CommList_Refresh();
                 CommClubMan_SetTask(CommClubTask_SelectServerList);
             }
@@ -661,12 +661,12 @@ static void ov7_0224A438(ListMenu *param0, u32 param1, u8 param2)
 
 static void CommClubMan_StartBattleServer(CommClubManager *commClubMan)
 {
-    FieldCommMan_StartBattleServer(commClubMan->fieldSystem, commClubMan->commType, CommClubMan_Regulation());
+    FieldCommManager_StartBattleServer(commClubMan->fieldSystem, commClubMan->commType, CommClubMan_Regulation());
 }
 
 static void CommClubMan_Disconnect(void)
 {
-    FieldCommMan_EndBattle();
+    FieldCommManager_EndBattleNoSync();
 }
 
 static void CommClubMan_SetTask(CommClubManTaskFunc stateFunc)
@@ -1129,7 +1129,7 @@ static void ov7_0224AC48(SysTask *task, void *param1)
 
     ov7_0224A64C(commClubMan);
 
-    sub_02036994(0);
+    CommManager_SetWirelessEntry(0);
     ListMenu_ProcessInput(commClubMan->unk_5C);
 
     if (FieldMessage_FinishedPrinting(sCommClubMan->printMsgIndex)) {
@@ -1169,7 +1169,7 @@ static void ov7_0224ACA4(SysTask *task, void *param1)
         CommTiming_StartSync(10);
         CommClubMan_SetTask(ov7_0224AF2C);
     } else if (v1 != 0xffffffff) {
-        sub_02036994(1);
+        CommManager_SetWirelessEntry(1);
         CommClubMan_Disconnect();
         CommClubMan_DestroyList(task, commClubMan);
         sCommClubMan->retCode = COMM_CLUB_RET_CANCEL;
@@ -1224,7 +1224,7 @@ static void ov7_0224AD68(SysTask *task, void *param1)
         CommClubMan_PrintMessage(v1[commClubMan->commType], 0);
     }
 
-    FieldCommMan_EndBattle();
+    FieldCommManager_EndBattleNoSync();
     SysTask_Start(ov7_0224ADD8, commClubMan, 0);
 }
 
@@ -1525,7 +1525,7 @@ static void CommClubMan_PlayerRefused(CommClubManager *commClubMan)
 
     CommClubMan_PrintMessage(pl_msg_00000353_00005, 1); //{Player Name} refused...
 
-    FieldCommMan_ReconnectBattleClient();
+    FieldCommManager_ReconnectBattleClient();
     SysTask_Start(ov7_0224B31C, commClubMan, 0);
 }
 
@@ -1534,7 +1534,7 @@ static void ov7_0224B31C(SysTask *task, void *param1)
     CommClubManager *commClubMan = (CommClubManager *)param1;
 
     if (FieldMessage_FinishedPrinting(sCommClubMan->printMsgIndex)) {
-        FieldCommMan_ReconnectBattleClient();
+        FieldCommManager_ReconnectBattleClient();
         CommClubMan_PrintChooseJoinMsg(commClubMan);
         SysTask_Done(task);
     }
@@ -1542,7 +1542,7 @@ static void ov7_0224B31C(SysTask *task, void *param1)
 
 static void ov7_0224B348(CommClubManager *commClubMan)
 {
-    FieldCommMan_ReconnectBattleClient();
+    FieldCommManager_ReconnectBattleClient();
 
     for (int netId = 0; netId < (7 + 1); netId++) {
         CommInfo_InitPlayer(netId);
@@ -1565,9 +1565,9 @@ static void ov7_0224B370(SysTask *task, void *param1)
 
 static void ov7_0224B3A8(CommClubManager *commClubMan)
 {
-    sub_02036994(0);
+    CommManager_SetWirelessEntry(0);
     sCommClubMan->retCode = COMM_CLUB_RET_2;
-    CommMan_SetErrorHandling(1, 1);
+    CommManager_SetErrorHandling(1, 1);
     CommInfo_SendPlayerInfo();
     sub_02033EA8(1);
 }
@@ -1593,7 +1593,7 @@ void CommClub_StartBattleClient(FieldSystem *fieldSystem, int commType, int para
     sCommClubMan->commType = commType;
 
     if (commType == COMM_TYPE_MIX_BATTLE || commType == COMM_TYPE_MULTI_BATTLE_1) {
-        fieldSystem->regulation = NULL;
+        fieldSystem->battleRegulation = NULL;
     }
 
     sCommClubMan->unk_92 = param2;
@@ -1624,7 +1624,7 @@ void CommClub_StartBattleServer(FieldSystem *fieldSystem, int commType, int para
     sCommClubMan->commType = commType;
 
     if (commType == COMM_TYPE_MIX_BATTLE || commType == COMM_TYPE_MULTI_BATTLE_1) {
-        fieldSystem->regulation = NULL;
+        fieldSystem->battleRegulation = NULL;
     }
 
     sCommClubMan->unk_92 = param2;

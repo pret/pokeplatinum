@@ -5,7 +5,7 @@
 
 #include "struct_decls/battle_system.h"
 
-#include "battle/battle_cursor.h"
+#include "battle/battle_subscreen.h"
 #include "battle/battle_system.h"
 #include "battle/struct_ov16_02268A14_decl.h"
 
@@ -48,7 +48,7 @@ void ov16_0226E174(SysTask *param0)
 static void ov16_0226E188(SysTask *param0, void *param1)
 {
     UnkStruct_ov16_0226E148 *v0 = param1;
-    UnkStruct_ov16_02268A14 *v1 = ov16_0223E02C(v0->battleSys);
+    BattleSubscreen *v1 = ov16_0223E02C(v0->battleSys);
 
     switch (v0->unk_04) {
     case 0:
@@ -60,14 +60,14 @@ static void ov16_0226E188(SysTask *param0, void *param1)
             v2 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, HEAP_ID_BATTLE);
             v3 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, HEAP_ID_BATTLE);
 
-            ov16_02268C04(v2, v3, v1, 18, 0, NULL);
+            BattleSubscreen_SetupBackground(v2, v3, v1, 18, 0, NULL);
             NARC_dtor(v2);
             NARC_dtor(v3);
         }
         v0->unk_04++;
         break;
     case 1:
-        if (ov16_02269348(v1) == 1) {
+        if (BattleSubscreen_IsReady(v1) == 1) {
             v0->unk_04++;
         }
         break;

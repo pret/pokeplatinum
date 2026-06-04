@@ -14,12 +14,12 @@
 #include "generated/battle_context_params.h"
 #include "generated/battle_message_tags.h"
 #include "generated/battle_mon_params.h"
-#include "generated/battle_move_effects.h"
 #include "generated/battle_move_subscript_ptrs.h"
 #include "generated/battle_side_effect_types.h"
 #include "generated/battle_stats.h"
 #include "generated/battle_sub_animations.h"
 #include "generated/battle_terrains.h"
+#include "generated/move_battle_effects.h"
 
 #define BATTLE_TYPE_SINGLES        (0 << 0)
 #define BATTLE_TYPE_WILD_MON       (0 << 0)
@@ -137,8 +137,7 @@
 #define STRUGGLING_MOVE_4 (1 << 3)
 #define STRUGGLING_ALL    (STRUGGLING_MOVE_1 | STRUGGLING_MOVE_2 | STRUGGLING_MOVE_3 | STRUGGLING_MOVE_4)
 
-#define LINK_BATTLE_TIMEOUT         (60 * 30)
-#define LINK_BATTLE_RESET_SAVEPOINT 1
+#define LINK_BATTLE_TIMEOUT (60 * 30)
 
 #define PAYDAY_MAX       0xFFFF
 #define NUM_SCREEN_TURNS 5

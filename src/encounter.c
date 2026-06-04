@@ -841,7 +841,7 @@ static BOOL FieldTask_LinkEncounterWithRecording(FieldTask *task)
             BattleRecording_Free();
         }
 
-        FieldCommMan_EnterBattleRoom(fieldSystem);
+        FieldCommManager_EnterBattleRoom(fieldSystem);
         return TRUE;
     }
 
@@ -855,7 +855,7 @@ void Encounter_NewVsLinkWithRecording(FieldSystem *fieldSystem, const u8 *partyO
 
     int recordingResultCode;
     BattleRecording_New(fieldSystem->saveData, HEAP_ID_FIELD2, &recordingResultCode);
-    dto->unk_18A = sub_020516C8(fieldSystem->regulation, battleType);
+    dto->unk_18A = sub_020516C8(fieldSystem->battleRegulation, battleType);
 
     Encounter *encounter = NewEncounter(dto, EncEffects_CutInEffect(dto), EncEffects_BGM(dto), NULL);
     FieldSystem_CreateTask(fieldSystem, FieldTask_LinkEncounterWithRecording, encounter);
@@ -868,7 +868,7 @@ void Encounter_NewVsLinkWithRecordingAndParty(FieldSystem *fieldSystem, const Pa
 
     int recordingResultCode;
     BattleRecording_New(fieldSystem->saveData, HEAP_ID_FIELD2, &recordingResultCode);
-    dto->unk_18A = sub_020516C8(fieldSystem->regulation, battleType);
+    dto->unk_18A = sub_020516C8(fieldSystem->battleRegulation, battleType);
 
     Encounter *encounter = NewEncounter(dto, EncEffects_CutInEffect(dto), EncEffects_BGM(dto), NULL);
     FieldSystem_CreateTask(fieldSystem, FieldTask_LinkEncounterWithRecording, encounter);

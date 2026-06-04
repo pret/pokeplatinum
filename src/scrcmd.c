@@ -97,6 +97,7 @@
 #include "binoculars_vista_lighthouse.h"
 #include "camera.h"
 #include "clear_game.h"
+#include "comm_manager.h"
 #include "comm_player_manager.h"
 #include "communication_system.h"
 #include "daycare_save.h"
@@ -192,7 +193,6 @@
 #include "unk_0202C9F4.h"
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
-#include "unk_020366A0.h"
 #include "unk_02038FFC.h"
 #include "unk_0203D1B8.h"
 #include "unk_020494DC.h"
@@ -368,7 +368,7 @@ static BOOL ScrCmd_GetCurNetID(ScriptContext *ctx);
 static BOOL ScrCmd_DrawPokemonPreview(ScriptContext *ctx);
 static void FieldSystem_WriteSpeciesSeen(FieldSystem *fieldSystem, u16 param1);
 static BOOL ScrCmd_RemovePokemonPreview(ScriptContext *ctx);
-static BOOL ScrCmd_20A(ScriptContext *ctx);
+static BOOL ScrCmd_StartVsSeeker(ScriptContext *ctx);
 static BOOL ScrCmd_SetMoveCodeForFacingDirection(ScriptContext *ctx);
 static BOOL ScrCmd_0A5(ScriptContext *ctx);
 static BOOL ScrCmd_30E(ScriptContext *ctx);
@@ -3069,12 +3069,12 @@ static BOOL ScriptContext_WaitForPreviewAnimFinished(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_20A(ScriptContext *ctx)
+static BOOL ScrCmd_StartVsSeeker(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_ReadHalfWord(ctx);
-    StringTemplate **v1 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
+    u16 destVar = ScriptContext_ReadHalfWord(ctx);
+    StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
 
-    VsSeeker_Start(ctx->task, *v1, FieldSystem_GetVarPointer(ctx->fieldSystem, v0));
+    VsSeeker_Start(ctx->task, *strTemplate, FieldSystem_GetVarPointer(ctx->fieldSystem, destVar));
     return TRUE;
 }
 
@@ -4224,9 +4224,9 @@ static BOOL ScrCmd_139(ScriptContext *ctx)
     u16 v0 = ScriptContext_ReadHalfWord(ctx);
 
     if ((v0 == 5) || (v0 == 7) || (v0 == 9) || (v0 == 6) || (v0 == 12) || (v0 == 10)) {
-        sub_02036BC8();
+        CommManager_SetState_UnionApp();
     } else if (v0 == 11) {
-        sub_02036BD8();
+        CommManager_SetState_Union();
     }
 
     if (CommSys_CurNetId() == 0) {
@@ -4266,7 +4266,7 @@ static BOOL ScrCmd_13E(ScriptContext *ctx)
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
     sub_0205C2B0(fieldSystem->unk_80);
-    sub_02036AC4();
+    CommManager_UnionRestartSearch();
     ScriptContext_Pause(ctx, sub_020437E8);
 
     return TRUE;
@@ -4360,14 +4360,14 @@ static BOOL ScrCmd_142(ScriptContext *ctx)
 static BOOL ScrCmd_13A(ScriptContext *ctx)
 {
     sub_0205BEA8(4);
-    sub_02036BA0();
+    CommManager_PauseUnionServer();
     return FALSE;
 }
 
 static BOOL ScrCmd_13B(ScriptContext *ctx)
 {
-    sub_02036BD8();
-    sub_02036AC4();
+    CommManager_SetState_Union();
+    CommManager_UnionRestartSearch();
     sub_0205BEA8(0);
     return FALSE;
 }
@@ -4521,14 +4521,14 @@ static BOOL ScrCmd_Dummy14F(ScriptContext *ctx)
 
 static BOOL ScrCmd_EndCommunication(ScriptContext *ctx)
 {
-    FieldCommMan_EndBattle();
+    FieldCommManager_EndBattleNoSync();
     ScriptContext_Pause(ctx, ScriptContext_WaitForCommManIsDeleted);
     return TRUE;
 }
 
 static BOOL ScriptContext_WaitForCommManIsDeleted(ScriptContext *ctx)
 {
-    if (CommMan_IsInitialized() != TRUE) {
+    if (CommManager_IsInitialized() != TRUE) {
         if (CommServerClient_IsInitialized() != TRUE) {
             return TRUE;
         }
@@ -4539,14 +4539,14 @@ static BOOL ScriptContext_WaitForCommManIsDeleted(ScriptContext *ctx)
 
 static BOOL ScrCmd_2BB(ScriptContext *ctx)
 {
-    sub_020598A0();
+    FieldCommManager_EndBattleSync();
     ScriptContext_Pause(ctx, ScriptContext_WaitForCommManIsDeleted);
     return TRUE;
 }
 
 static BOOL ScrCmd_FieldCommEnterBattleRoom(ScriptContext *ctx)
 {
-    FieldCommMan_EnterBattleRoom(ctx->fieldSystem);
+    FieldCommManager_EnterBattleRoom(ctx->fieldSystem);
     return FALSE;
 }
 

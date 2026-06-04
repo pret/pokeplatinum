@@ -527,7 +527,7 @@ ScriptCommand(SCRCMD_STARTGREATMARSHLOOKOUT,                               ScrCm
 ScriptCommand(SCRCMD_GETCURNETID,                                          ScrCmd_GetCurNetID)
 ScriptCommand(SCRCMD_DRAWPOKEMONPREVIEW,                                   ScrCmd_DrawPokemonPreview)
 ScriptCommand(SCRCMD_REMOVEPOKEMONPREVIEW,                                 ScrCmd_RemovePokemonPreview)
-ScriptCommand(SCRCMD_20A,                                                  ScrCmd_20A)
+ScriptCommand(SCRCMD_STARTVSSEEKER,                                        ScrCmd_StartVsSeeker)
 ScriptCommand(SCRCMD_SETMOVECODEFORFACINGDIRECTION,                        ScrCmd_SetMoveCodeForFacingDirection)
 ScriptCommand(SCRCMD_MESSAGEFROMTRAINERTYPE,                               ScrCmd_MessageFromTrainerType)
 ScriptCommand(SCRCMD_20D,                                                  ScrCmd_20D)

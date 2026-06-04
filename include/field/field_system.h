@@ -111,7 +111,7 @@ typedef struct FieldSystem_t {
     MapPropManager *mapPropManager;
     HoneyTreeShakeList *unk_A8;
     BattleTower *battleTower;
-    const BattleRegulation *regulation;
+    const BattleRegulation *battleRegulation;
     PokedexMemory *pokedexMemory;
     BOOL unk_B8;
     u8 *battleSubscreenCursorOn;

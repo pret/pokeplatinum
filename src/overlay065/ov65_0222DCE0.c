@@ -29,6 +29,7 @@
 #include "battle_frontier_stats.h"
 #include "bg_window.h"
 #include "char_transfer.h"
+#include "comm_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "enums.h"
@@ -80,7 +81,6 @@
 #include "unk_02030CE8.h"
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
-#include "unk_020366A0.h"
 #include "unk_0203909C.h"
 #include "unk_0207DFAC.h"
 #include "unk_0209C390.h"
@@ -663,17 +663,17 @@ static int ov65_0222DF88(UnkStruct_ov65_0222EBE0 *param0)
 static void ov65_0222DFD4(int param0)
 {
     if ((param0 == 19) || (18 == param0)) {
-        sub_02038B00();
+        CommManager_SetState_WifiPoffin();
     } else if (ov65_0222DD64(param0)) {
-        sub_02038B20();
+        CommManager_SetState_WifiClub();
     } else if (param0 == 16) {
-        sub_02038B60();
+        CommManager_SetState_LoginWifi();
     } else if ((param0 == 21) || (param0 == 20)) {
         sub_0203632C(0);
-        sub_02038EA4();
+        CommManager_SetState_FrontierWifi();
     } else {
         sub_0203632C(1);
-        sub_02038B84();
+        CommManager_SetState_SingleBattleWifi();
     }
 }
 
@@ -723,7 +723,7 @@ int ov65_0222E2A8(ApplicationManager *appMan, int *param1)
     case 0:
         v1 = ApplicationManager_Args(appMan);
 
-        if (CommMan_IsConnectedToWifi()) {
+        if (CommManager_IsConnectedToWifi()) {
             switch (v1->unk_04) {
             case 8:
             case 9:
@@ -773,7 +773,7 @@ int ov65_0222E2A8(ApplicationManager *appMan, int *param1)
 
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, HEAP_ID_54);
 
-        if (CommMan_IsConnectedToWifi()) {
+        if (CommManager_IsConnectedToWifi()) {
             NetworkIcon_Init();
         } else {
             Overlay_LoadWFCOverlay();
@@ -1583,9 +1583,9 @@ static int ov65_0222F010(UnkStruct_ov65_0222EBE0 *param0, int param1)
 {
     u32 v0;
 
-    if (CommMan_IsConnectedToWifi()) {
+    if (CommManager_IsConnectedToWifi()) {
         ov65_02232DC0(param0, NintendoWFC_GetHostFriendIdx());
-        param0->unk_04 = sub_020388E8();
+        param0->unk_04 = CommManager_GetUnk00();
         param0->unk_04->unk_00.unk_21 = param0->unk_04->unk_00.unk_22;
 
         v0 = ov65_0222DD20(param0, &param0->unk_04->unk_00);
@@ -1593,15 +1593,15 @@ static int ov65_0222F010(UnkStruct_ov65_0222EBE0 *param0, int param1)
         if ((v0 == 8) || (v0 == 18) || (v0 == 20) || (v0 == 22) || (v0 == 23) || (v0 == 24) || (v0 == 25) || (v0 == 26) || (v0 == 27) || (v0 == 19)) {
             ov65_02232E58(param0, 16);
             CommInfo_Delete();
-            sub_02038398();
+            CommManager_EndTradeWifiMatch();
 
-            param0->unk_04 = sub_020388E8();
+            param0->unk_04 = CommManager_GetUnk00();
             param0->unk_04->unk_00.unk_21 = param0->unk_04->unk_00.unk_22;
             param0->unk_3BC = 20;
             param0->unk_3A8 = 65;
         } else {
             ov65_02232B58(param0, 77, 0);
-            CommMan_SetErrorHandling(1, 1);
+            CommManager_SetErrorHandling(1, 1);
             CommTiming_StartSync(16);
             param0->unk_3A8 = 61;
         }
@@ -1650,7 +1650,7 @@ static int ov65_0222F1A8(UnkStruct_ov65_0222EBE0 *param0, int param1)
         return param1;
     } else {
         if (v1 == 0) {
-            param0->unk_04 = sub_0203871C(param0->saveData, sizeof(UnkStruct_0207DFAC));
+            param0->unk_04 = CommManager_LoginWifiBattleServer(param0->saveData, sizeof(UnkStruct_0207DFAC));
             ov65_02232B58(param0, 23, 1);
             GF_ASSERT(param0->unk_188 == NULL);
             param0->unk_188 = Window_AddWaitDial(&param0->unk_330, 512 - (18 + 12));
@@ -1722,7 +1722,7 @@ static int ov65_0222F304(UnkStruct_ov65_0222EBE0 *param0, int param1)
             Email_Init(SaveData_SaveTable(param0->saveData, SAVE_TABLE_ENTRY_EMAIL));
             BattleFrontierStats_ClearAllWFCStats(SaveData_GetBattleFrontier(param0->saveData));
             param0->unk_3A8 = 14;
-            param0->unk_04 = sub_0203871C(param0->saveData, sizeof(UnkStruct_0207DFAC));
+            param0->unk_04 = CommManager_LoginWifiBattleServer(param0->saveData, sizeof(UnkStruct_0207DFAC));
             ov65_02232B58(param0, 23, 1);
             GF_ASSERT(param0->unk_188 == NULL);
             param0->unk_188 = Window_AddWaitDial(&param0->unk_330, 512 - (18 + 12));
@@ -1752,7 +1752,7 @@ static int ov65_0222F3DC(UnkStruct_ov65_0222EBE0 *param0, int param1)
 
         if (v1 == 0) {
             param0->unk_3A8 = 14;
-            param0->unk_04 = sub_0203871C(param0->saveData, sizeof(UnkStruct_0207DFAC));
+            param0->unk_04 = CommManager_LoginWifiBattleServer(param0->saveData, sizeof(UnkStruct_0207DFAC));
             ov65_02232B58(param0, 23, 1);
             GF_ASSERT(param0->unk_188 == NULL);
             param0->unk_188 = Window_AddWaitDial(&param0->unk_330, 512 - (18 + 12));
@@ -1885,7 +1885,7 @@ static int ov65_0222F62C(UnkStruct_ov65_0222EBE0 *param0)
 
 static void ov65_0222F6EC(UnkStruct_ov65_0222EBE0 *param0)
 {
-    UnkStruct_ov65_0222F6EC *v0 = sub_020382F8();
+    UnkStruct_ov65_0222F6EC *v0 = CommManager_GetUnk34();
     int v1, v2 = v0->unk_00;
     int v3 = NintendoWFC_GetErrorCode(v0->unk_00, v0->unk_04);
 
@@ -1999,12 +1999,12 @@ static int ov65_0222F8AC(UnkStruct_ov65_0222EBE0 *param0, int param1)
     if (v1 == 0xffffffff) {
         return param1;
     } else if (v1 == 0) {
-        sub_02038350();
+        CommManager_LogoutWifi();
         ov65_02232E58(param0, 16);
         param0->unk_3A8 = 13;
     } else {
         ov65_02232E58(param0, 16);
-        sub_02038350();
+        CommManager_LogoutWifi();
         CommInfo_Delete();
         param0->unk_3AC = 8;
         param0->unk_3A8 = 34;
@@ -2070,7 +2070,7 @@ static int ov65_0222F90C(UnkStruct_ov65_0222EBE0 *param0, int param1)
         MI_CpuClear8(param0->unk_CC, 32 * sizeof(int));
 
         ov65_0222EE98(param0);
-        param0->unk_04 = sub_0203871C(param0->saveData, sizeof(UnkStruct_0207DFAC));
+        param0->unk_04 = CommManager_LoginWifiBattleServer(param0->saveData, sizeof(UnkStruct_0207DFAC));
         ov65_02232B58(param0, 23, 1);
         GF_ASSERT(param0->unk_188 == NULL);
         param0->unk_188 = Window_AddWaitDial(&param0->unk_330, 512 - (18 + 12));
@@ -2093,7 +2093,7 @@ static int ov65_0222FAA0(UnkStruct_ov65_0222EBE0 *param0, int param1)
         param0->unk_188 = Window_AddWaitDial(&param0->unk_330, 512 - (18 + 12));
     }
 
-    if (sub_02038294()) {
+    if (CommManager_IsLoginBattleWifi()) {
         if (param0->unk_3C8) {
             param0->unk_3A8 = 16;
         } else {
@@ -2101,7 +2101,7 @@ static int ov65_0222FAA0(UnkStruct_ov65_0222EBE0 *param0, int param1)
             ov65_0222F5BC(param0);
             param0->unk_3A8 = ov65_0222EBB8();
         }
-    } else if (sub_020383E8() || sub_020380E4() == 3) {
+    } else if (CommManager_CheckWifiError() || CommManager_GetMatchmakingState() == 3) {
         ov65_0222F6EC(param0);
     }
 
@@ -2120,7 +2120,7 @@ static int ov65_0222FB44(UnkStruct_ov65_0222EBE0 *param0, int param1)
         return param1;
     }
 
-    if (sub_02038294()) {
+    if (CommManager_IsLoginBattleWifi()) {
         if (param0->unk_3C8) {
             param0->unk_3A8 = 16;
         } else {
@@ -2128,7 +2128,7 @@ static int ov65_0222FB44(UnkStruct_ov65_0222EBE0 *param0, int param1)
             ov65_0222F5BC(param0);
             param0->unk_3A8 = ov65_0222EBB8();
         }
-    } else if (sub_020383E8() || (sub_020380E4() == 3)) {
+    } else if (CommManager_CheckWifiError() || (CommManager_GetMatchmakingState() == 3)) {
         ov65_0222F6EC(param0);
     }
 
@@ -2147,7 +2147,7 @@ static int ov65_0222FBD0(UnkStruct_ov65_0222EBE0 *param0, int param1)
         }
     }
 
-    if (sub_02038294()) {
+    if (CommManager_IsLoginBattleWifi()) {
         if (param0->unk_3C8) {
             param0->unk_3A8 = 16;
         } else {
@@ -2155,7 +2155,7 @@ static int ov65_0222FBD0(UnkStruct_ov65_0222EBE0 *param0, int param1)
             ov65_0222F5BC(param0);
             param0->unk_3A8 = ov65_0222EBB8();
         }
-    } else if (sub_020383E8() || (sub_020380E4() == 3)) {
+    } else if (CommManager_CheckWifiError() || (CommManager_GetMatchmakingState() == 3)) {
         ov65_0222F6EC(param0);
     }
 
@@ -2171,12 +2171,12 @@ static int ov65_0222FC48(UnkStruct_ov65_0222EBE0 *param0, int param1)
         return param1;
     }
 
-    if (sub_020382C0()) {
+    if (CommManager_IsLoginBattleMatchWifi()) {
         param0->unk_3A8 = ov65_0222EBB8();
-    } else if (sub_020383E8() || (sub_020380E4() == 3)) {
+    } else if (CommManager_CheckWifiError() || (CommManager_GetMatchmakingState() == 3)) {
         ov65_0222F6EC(param0);
-    } else if ((sub_020380E4() >= 4) || sub_02038284() || !CommSys_IsPlayerConnected(0)) {
-        sub_02038378();
+    } else if ((CommManager_GetMatchmakingState() >= 4) || CommManager_GetDisconnectedWifi() || !CommSys_IsPlayerConnected(0)) {
+        CommManager_EndWifiMatch();
         param0->unk_3A8 = ov65_0222EBB8();
     }
 
@@ -2200,7 +2200,7 @@ static int ov65_0222FCDC(UnkStruct_ov65_0222EBE0 *param0, int param1)
         if (param0->unk_3B4 == 1) {
             param0->unk_3AC = 10;
             param0->unk_3A8 = 34;
-            sub_02038350();
+            CommManager_LogoutWifi();
         } else if (0 == WiFiList_GetValidFriendsCount(param0->unk_00)) {
             ov65_02232B58(param0, 26, 1);
             param0->unk_3A8 = 59;
@@ -2318,8 +2318,8 @@ static int ov65_0222FFAC(UnkStruct_ov65_0222EBE0 *param0, int param1)
         return param1;
     }
 
-    if (sub_020383E8() == 0) {
-        if (!sub_020382C0()) {
+    if (CommManager_CheckWifiError() == 0) {
+        if (!CommManager_IsLoginBattleMatchWifi()) {
             return param1;
         }
     }
@@ -2368,20 +2368,20 @@ static int ov65_0222FFAC(UnkStruct_ov65_0222EBE0 *param0, int param1)
     ov65_0222FEEC(param0);
     ov65_02232E58(param0, 16);
 
-    sub_02038B60();
+    CommManager_SetState_LoginWifi();
     param0->unk_3D0 = -1;
 
     NARC_dtor(v3);
     StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, HEAP_ID_54);
     param0->unk_3A8 = 19;
 
-    CommMan_SetErrorHandling(0, 0);
+    CommManager_SetErrorHandling(0, 0);
     return param1;
 }
 
 static int ov65_0223012C(UnkStruct_ov65_0222EBE0 *param0)
 {
-    if (sub_020380E4() == 1) {
+    if (CommManager_GetMatchmakingState() == 1) {
         return 1;
     }
 
@@ -2503,17 +2503,17 @@ static int ov65_022302C4(UnkStruct_ov65_0222EBE0 *param0, int param1)
         return param1;
     }
 
-    if (sub_020383E8()) {
+    if (CommManager_CheckWifiError()) {
         ov65_0222F6EC(param0);
         return param1;
     }
 
-    if (sub_020380E4() == 4) {
+    if (CommManager_GetMatchmakingState() == 4) {
         ov65_02232DC0(param0, NintendoWFC_GetHostFriendIdx());
         ov65_02232B58(param0, 18, 0);
         param0->unk_3A8 = 29;
         ov65_02232E58(param0, 16);
-        sub_02038378();
+        CommManager_EndWifiMatch();
         return param1;
     }
 
@@ -2570,7 +2570,7 @@ static int ov65_022302C4(UnkStruct_ov65_0222EBE0 *param0, int param1)
         NintendoWFC_SetVoiceChatEnabled(0);
         ov65_02232DC0(param0, param0->unk_3D0);
         ov65_02232B58(param0, 18, 0);
-        sub_02038378();
+        CommManager_EndWifiMatch();
         param0->unk_3A8 = 27;
         return param1;
     }
@@ -2621,7 +2621,7 @@ static int ov65_022302C4(UnkStruct_ov65_0222EBE0 *param0, int param1)
             param0->unk_3A8 = 39;
         } else {
             if (v4 == 16) {
-                if (sub_020382C0() == 1) {
+                if (CommManager_IsLoginBattleMatchWifi() == 1) {
                     ov65_022355B0(&param0->unk_3EC);
                     param0->unk_3A8 = 36;
                 }
@@ -2680,19 +2680,19 @@ static int ov65_02230634(UnkStruct_ov65_0222EBE0 *param0, int param1)
 
     if (param0->unk_3A0 < 0) {
         param0->unk_3A8 = 70;
-    } else if (sub_020380E4() == 5) {
+    } else if (CommManager_GetMatchmakingState() == 5) {
         ov65_02232DC0(param0, NintendoWFC_GetHostFriendIdx());
         ov65_02232B58(param0, 15, 0);
         param0->unk_3A8 = 27;
-    } else if (sub_020380E4() == 3) {
+    } else if (CommManager_GetMatchmakingState() == 3) {
         ov65_02232DC0(param0, NintendoWFC_GetHostFriendIdx());
         ov65_02232B58(param0, 18, 0);
         param0->unk_3A8 = 27;
-    } else if ((sub_020380E4() == 4) || (sub_02038284())) {
+    } else if ((CommManager_GetMatchmakingState() == 4) || (CommManager_GetDisconnectedWifi())) {
         ov65_02232DC0(param0, NintendoWFC_GetHostFriendIdx());
         ov65_02232B58(param0, 19, 0);
         param0->unk_3A8 = 27;
-    } else if (sub_020383E8()) {
+    } else if (CommManager_CheckWifiError()) {
         ov65_0222F6EC(param0);
     } else if (v1 == 0) {
         ov65_02232DC0(param0, NintendoWFC_GetHostFriendIdx());
@@ -2702,7 +2702,7 @@ static int ov65_02230634(UnkStruct_ov65_0222EBE0 *param0, int param1)
         ov65_02232DC0(param0, NintendoWFC_GetHostFriendIdx());
         ov65_02232B58(param0, 16, 0);
         param0->unk_3A8 = 27;
-    } else if (sub_020380E4() == 1) {
+    } else if (CommManager_GetMatchmakingState() == 1) {
         ov65_02232DFC(param0);
         ov65_02232E58(param0, 1);
         param0->unk_3A8 = 24;
@@ -2731,7 +2731,7 @@ static int ov65_022307B0(UnkStruct_ov65_0222EBE0 *param0, int param1)
     int v1;
     int v2;
 
-    if (sub_020383E8()) {
+    if (CommManager_CheckWifiError()) {
         ov65_0222F6EC(param0);
         return param1;
     }
@@ -2781,19 +2781,19 @@ static int ov65_02230860(UnkStruct_ov65_0222EBE0 *param0, int param1)
     ov65_022302B0(param0, HEAP_ID_54);
     ov65_022331E0(param0);
 
-    if (sub_020380E4() == 5) {
+    if (CommManager_GetMatchmakingState() == 5) {
         ov65_02232DC0(param0, NintendoWFC_GetHostFriendIdx());
         ov65_02232B58(param0, 15, 0);
         param0->unk_3A8 = 27;
-    } else if (sub_020380E4() == 3) {
+    } else if (CommManager_GetMatchmakingState() == 3) {
         ov65_02232DC0(param0, NintendoWFC_GetHostFriendIdx());
         ov65_02232B58(param0, 18, 0);
         param0->unk_3A8 = 27;
-    } else if ((sub_020380E4() == 4) || (sub_02038284())) {
+    } else if ((CommManager_GetMatchmakingState() == 4) || (CommManager_GetDisconnectedWifi())) {
         ov65_02232DC0(param0, NintendoWFC_GetHostFriendIdx());
         ov65_02232B58(param0, 19, 0);
         param0->unk_3A8 = 27;
-    } else if (sub_020383E8()) {
+    } else if (CommManager_CheckWifiError()) {
         ov65_0222F6EC(param0);
     } else if ((v1 != 16) && (v1 != 1)) {
         ov65_02232DC0(param0, NintendoWFC_GetHostFriendIdx());
@@ -2815,7 +2815,7 @@ static int ov65_02230860(UnkStruct_ov65_0222EBE0 *param0, int param1)
 
 static int ov65_022309D0(UnkStruct_ov65_0222EBE0 *param0, int param1)
 {
-    if (sub_020383E8()) {
+    if (CommManager_CheckWifiError()) {
         ov65_0222F6EC(param0);
         return param1;
     }
@@ -2836,7 +2836,7 @@ static int ov65_02230A30(UnkStruct_ov65_0222EBE0 *param0, int param1)
     int v1 = Menu_ProcessInputAndHandleExit(param0->unk_184, 54);
 
     if (v1 == 0xffffffff) {
-        if ((sub_020380E4() >= 4) || sub_02038284() || !CommSys_IsPlayerConnected(0)) {
+        if ((CommManager_GetMatchmakingState() >= 4) || CommManager_GetDisconnectedWifi() || !CommSys_IsPlayerConnected(0)) {
             ov65_02232DFC(param0);
 
             ov65_02232E58(param0, 16);
@@ -2844,15 +2844,15 @@ static int ov65_02230A30(UnkStruct_ov65_0222EBE0 *param0, int param1)
             param0->unk_3D0 = -1;
             param0->unk_3BC = 20;
             param0->unk_3A8 = 65;
-        } else if (sub_020383E8()) {
+        } else if (CommManager_CheckWifiError()) {
             ov65_0222F6EC(param0);
         }
 
         return param1;
     } else if (v1 == 0) {
-        if (!sub_020383E8()) {
+        if (!CommManager_CheckWifiError()) {
             ov65_02232E58(param0, 16);
-            sub_020383D4();
+            CommManager_EndBattleWifiMatch();
             param0->unk_3D0 = -1;
             param0->unk_3BC = 20;
             param0->unk_3A8 = 65;
@@ -2871,7 +2871,7 @@ static int ov65_02230AF8(UnkStruct_ov65_0222EBE0 *param0, int param1)
 {
     u32 v0;
 
-    if (sub_020383E8()) {
+    if (CommManager_CheckWifiError()) {
         ov65_0222F6EC(param0);
         return param1;
     }
@@ -2891,8 +2891,8 @@ static int ov65_02230AF8(UnkStruct_ov65_0222EBE0 *param0, int param1)
 
     if ((gSystem.pressedKeys & (PAD_BUTTON_B | PAD_BUTTON_A)) || (param0->unk_3BC == 0)) {
         ov65_02232DFC(param0);
-        sub_02038378();
-        sub_02038B60();
+        CommManager_EndWifiMatch();
+        CommManager_SetState_LoginWifi();
 
         if (ov65_02235194(&param0->unk_3EC) == 0) {
             param0->unk_3BC = 20;
@@ -2920,7 +2920,7 @@ static int ov65_02230BB4(UnkStruct_ov65_0222EBE0 *param0, int param1)
     if (gSystem.pressedKeys & (PAD_BUTTON_B | PAD_BUTTON_A)) {
         ov65_02232DFC(param0);
         ov65_02232E58(param0, 16);
-        sub_02038378();
+        CommManager_EndWifiMatch();
         param0->unk_3BC = 20;
         param0->unk_3A8 = 65;
     }
@@ -2930,7 +2930,7 @@ static int ov65_02230BB4(UnkStruct_ov65_0222EBE0 *param0, int param1)
 
 static int ov65_02230C04(UnkStruct_ov65_0222EBE0 *param0, int param1)
 {
-    if (sub_020383E8()) {
+    if (CommManager_CheckWifiError()) {
         ov65_0222F6EC(param0);
         return param1;
     }
@@ -2946,7 +2946,7 @@ static int ov65_02230C04(UnkStruct_ov65_0222EBE0 *param0, int param1)
         ov65_02232DFC(param0);
         ov65_02232E58(param0, 16);
 
-        sub_02038B60();
+        CommManager_SetState_LoginWifi();
 
         if (ov65_02235194(&param0->unk_3EC) == 0) {
             param0->unk_3A8 = ov65_0222EBB8();
@@ -3038,7 +3038,7 @@ static int ov65_02230D6C(UnkStruct_ov65_0222EBE0 *param0, int param1)
         return param1;
     } else if (v1 == 0) {
         ov65_02232E58(param0, 16);
-        sub_02038B60();
+        CommManager_SetState_LoginWifi();
         ov65_0223503C(param0);
     } else {
         ov65_0223503C(param0);
@@ -3331,7 +3331,7 @@ static int ov65_02231200(UnkStruct_ov65_0222EBE0 *param0, int param1)
 {
     u32 v0;
 
-    if (sub_020383E8()) {
+    if (CommManager_CheckWifiError()) {
         ov65_0222F6EC(param0);
         return param1;
     }
@@ -3342,8 +3342,8 @@ static int ov65_02231200(UnkStruct_ov65_0222EBE0 *param0, int param1)
         param0->unk_3A8 = 19;
     }
 
-    if (sub_020382C0()) {
-        CommMan_SetErrorHandling(0, 1);
+    if (CommManager_IsLoginBattleMatchWifi()) {
+        CommManager_SetErrorHandling(0, 1);
 
         sub_0203632C(0);
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_54);
@@ -3468,7 +3468,7 @@ static int ov65_02231440(UnkStruct_ov65_0222EBE0 *param0, int param1)
             v1 = 0;
         } else {
             ov65_02234FCC(param0, -1, v0);
-            sub_02038B84();
+            CommManager_SetState_SingleBattleWifi();
         }
 
         ov65_0223500C(param0, v1);
@@ -3596,7 +3596,7 @@ static int ov65_022316F0(UnkStruct_ov65_0222EBE0 *param0, int param1)
     int v2, v3;
     UnkStruct_0207E060 *v4;
 
-    if (sub_020383E8()) {
+    if (CommManager_CheckWifiError()) {
         ov65_0222F6EC(param0);
         return param1;
     }
@@ -3788,7 +3788,7 @@ static int ov65_02231A98(UnkStruct_ov65_0222EBE0 *param0, int param1)
     v2 = ov65_02235254(&param0->unk_3EC);
     v7 = ov65_0222E8D4(param0, v2);
 
-    if (sub_020383E8()) {
+    if (CommManager_CheckWifiError()) {
         Window_EraseStandardFrame(&param0->unk_380, 0);
         Window_Remove(&param0->unk_380);
         ListMenu_Free(param0->unk_158, NULL, NULL);
@@ -3979,21 +3979,21 @@ static int ov65_02231E64(UnkStruct_ov65_0222EBE0 *param0, int param1)
 
     if (param0->unk_3A0 < 0) {
         param0->unk_3A8 = 70;
-    } else if (sub_020380E4() == 3) {
+    } else if (CommManager_GetMatchmakingState() == 3) {
         ov65_02232DC0(param0, NintendoWFC_GetHostFriendIdx());
         ov65_02232B58(param0, 18, 0);
         param0->unk_3A8 = 27;
-    } else if (sub_020380E4() == 5) {
+    } else if (CommManager_GetMatchmakingState() == 5) {
         ov65_02232DC0(param0, NintendoWFC_GetHostFriendIdx());
         ov65_02232B58(param0, 15, 0);
         param0->unk_3A8 = 27;
-    } else if ((sub_020380E4() == 4) || (sub_02038284())) {
+    } else if ((CommManager_GetMatchmakingState() == 4) || (CommManager_GetDisconnectedWifi())) {
         ov65_02232DC0(param0, NintendoWFC_GetHostFriendIdx());
         ov65_02232B58(param0, 18, 0);
         param0->unk_3A8 = 27;
-    } else if (sub_020383E8()) {
+    } else if (CommManager_CheckWifiError()) {
         ov65_0222F6EC(param0);
-    } else if (sub_020380E4() == 1) {
+    } else if (CommManager_GetMatchmakingState() == 1) {
         v0 = ov65_0222DD20(param0, &param0->unk_04->unk_00);
 
         if (ov65_0222DD64(v0) == 0) {
@@ -4004,7 +4004,7 @@ static int ov65_02231E64(UnkStruct_ov65_0222EBE0 *param0, int param1)
         } else if (CommSys_IsPlayerConnected(0) == 1) {
             ov65_02232DFC(param0);
             CommInfo_Init(param0->saveData, NULL);
-            CommMan_SetErrorHandling(0, 1);
+            CommManager_SetErrorHandling(0, 1);
             ov65_0222DFD4(v0);
 
             param0->unk_3AC = ov65_0222DD94(v0);
@@ -4041,7 +4041,7 @@ static int ov65_02231FE8(UnkStruct_ov65_0222EBE0 *param0, int param1)
     ov65_02232F30(param0);
     ov65_02232E58(param0, 16);
 
-    sub_02038378();
+    CommManager_EndWifiMatch();
 
     param0->unk_3D0 = -1;
     param0->unk_3A8 = 19;
@@ -4106,7 +4106,7 @@ static int ov65_02232028(UnkStruct_ov65_0222EBE0 *param0, int param1)
         ov65_02232B58(param0, 18, 0);
         param0->unk_3A8 = 29;
         ov65_02232E58(param0, 16);
-        sub_02038378();
+        CommManager_EndWifiMatch();
         return param1;
     }
 
@@ -4123,11 +4123,11 @@ static int ov65_02232028(UnkStruct_ov65_0222EBE0 *param0, int param1)
 
 static BOOL ov65_022321A8(UnkStruct_ov65_0222EBE0 *param0)
 {
-    if (sub_020380E4() >= 3) {
+    if (CommManager_GetMatchmakingState() >= 3) {
         ov65_02232DC0(param0, param0->unk_3D0);
         ov65_02232B58(param0, 18, 0);
         param0->unk_3A8 = 27;
-    } else if (sub_020383E8()) {
+    } else if (CommManager_CheckWifiError()) {
         ov65_0222F6EC(param0);
     } else {
         return 0;
@@ -4139,7 +4139,7 @@ static BOOL ov65_022321A8(UnkStruct_ov65_0222EBE0 *param0)
 
 static int ov65_022321F4(UnkStruct_ov65_0222EBE0 *param0, int param1)
 {
-    if ((sub_020380E4() >= 4) || sub_02038284() || !CommSys_IsPlayerConnected(0)) {
+    if ((CommManager_GetMatchmakingState() >= 4) || CommManager_GetDisconnectedWifi() || !CommSys_IsPlayerConnected(0)) {
         if (param0->unk_3E4) {
             ov65_02232B58(param0, 101, 0);
         } else {
@@ -4230,7 +4230,7 @@ static int ov65_02232358(UnkStruct_ov65_0222EBE0 *param0, int param1)
         (void)0;
     } else if (CommTiming_IsSyncState(15)) {
         CommInfo_SendPlayerInfo();
-        CommMan_SetErrorHandling(1, 1);
+        CommManager_SetErrorHandling(1, 1);
         CommTiming_StartSync(18);
 
         param0->unk_3A8 = 53;
@@ -4414,10 +4414,10 @@ static int ov65_02232698(UnkStruct_ov65_0222EBE0 *param0, int param1)
 
     if (param0->unk_3BC == 1) {
         param0->unk_3BC = 0;
-        sub_02038350();
+        CommManager_LogoutWifi();
     }
 
-    if (!CommMan_IsInitialized()) {
+    if (!CommManager_IsInitialized()) {
         sub_0202B0F8(param0->unk_00);
         ov65_02232B58(param0, 27, 1);
 
@@ -4451,7 +4451,7 @@ static int ov65_02232734(UnkStruct_ov65_0222EBE0 *param0, int param1)
         return param1;
     }
 
-    CommMan_SetErrorHandling(0, 1);
+    CommManager_SetErrorHandling(0, 1);
 
     if (Text_IsPrinterActive(param0->unk_180) == 0) {
         param0->unk_184 = Menu_MakeYesNoChoice(param0->unk_15C, &Unk_ov65_0223894C, (512 - (18 + 12)) - 9, 11, 54);
@@ -4470,11 +4470,11 @@ static int ov65_0223278C(UnkStruct_ov65_0222EBE0 *param0, int param1)
         return param1;
     }
 
-    if (sub_02038294() || sub_02038284() || (sub_020380E4() >= 3)) {
+    if (CommManager_IsLoginBattleWifi() || CommManager_GetDisconnectedWifi() || (CommManager_GetMatchmakingState() >= 3)) {
         Menu_DestroyForExit(param0->unk_184, 54);
         ov65_02232B58(param0, 101, 0);
         param0->unk_3A8 = 28;
-    } else if (sub_020383E8()) {
+    } else if (CommManager_CheckWifiError()) {
         Menu_DestroyForExit(param0->unk_184, 54);
         ov65_0222F6EC(param0);
     } else {
@@ -4492,12 +4492,12 @@ static int ov65_0223278C(UnkStruct_ov65_0222EBE0 *param0, int param1)
         } else {
             ov65_02232DFC(param0);
             CommInfo_Delete();
-            sub_020383D4();
+            CommManager_EndBattleWifiMatch();
             param0->unk_3BC = 20;
             param0->unk_3A8 = 65;
         }
 
-        param0->unk_04 = sub_020388E8();
+        param0->unk_04 = CommManager_GetUnk00();
         param0->unk_04->unk_00.unk_21 = param0->unk_04->unk_00.unk_22;
     }
 
@@ -4575,13 +4575,13 @@ static int ov65_0223294C(UnkStruct_ov65_0222EBE0 *param0, int param1)
         }
     }
 
-    if (sub_020380E4() >= 3) {
+    if (CommManager_GetMatchmakingState() >= 3) {
         Menu_DestroyForExit(param0->unk_184, 54);
         ov65_02232B58(param0, 18, 0);
-        sub_02038378();
+        CommManager_EndWifiMatch();
         param0->unk_3A8 = 29;
         return param1;
-    } else if (sub_020383E8()) {
+    } else if (CommManager_CheckWifiError()) {
         Menu_DestroyForExit(param0->unk_184, 54);
         ov65_0222F6EC(param0);
     } else {
@@ -4638,7 +4638,7 @@ static int ov65_0223294C(UnkStruct_ov65_0222EBE0 *param0, int param1)
 
 static int ov65_02232B28(UnkStruct_ov65_0222EBE0 *param0, int param1)
 {
-    if (!CommMan_IsInitialized()) {
+    if (!CommManager_IsInitialized()) {
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_54);
         param1 = 2;
     }
@@ -6126,7 +6126,7 @@ static BOOL ov65_02234FCC(UnkStruct_ov65_0222EBE0 *param0, int param1, int param
 
     sub_0209C3AC();
 
-    return sub_020380A0(param1);
+    return CommManager_StartWifiBattle(param1);
 }
 
 static void ov65_0223500C(UnkStruct_ov65_0222EBE0 *param0, BOOL param1)

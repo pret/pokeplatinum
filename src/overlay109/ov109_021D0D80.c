@@ -18,6 +18,7 @@
 #include "bag.h"
 #include "bg_window.h"
 #include "camera.h"
+#include "comm_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "font.h"
@@ -50,7 +51,6 @@
 #include "trainer_info.h"
 #include "unk_0202419C.h"
 #include "unk_020363E8.h"
-#include "unk_020366A0.h"
 #include "unk_02038ED4.h"
 #include "unk_02092494.h"
 #include "unk_0209BDF8.h"
@@ -425,7 +425,7 @@ int ov109_021D0D80(ApplicationManager *appMan, int *param1)
     UnkStruct_ov109_021D0F70 *v0;
     UnkStruct_0209C194 *v1 = ApplicationManager_Args(appMan);
 
-    CommMan_SetErrorHandling(1, 1);
+    CommManager_SetErrorHandling(1, 1);
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     ResetLock(RESET_LOCK_0x2);
@@ -1410,9 +1410,9 @@ static int ov109_021D1B2C(UnkStruct_ov109_021D0F70 *param0)
 {
     if (param0->unk_18 == 0) {
         if (CommTiming_IsSyncState(202)) {
-            CommMan_SetErrorHandling(0, 0);
-            sub_02037B58(1);
-            sub_02036AC4();
+            CommManager_SetErrorHandling(0, 0);
+            CommManager_SetMaxNumConnections(1);
+            CommManager_UnionRestartSearch();
             param0->unk_00 = 50;
         }
     } else {
@@ -1422,9 +1422,9 @@ static int ov109_021D1B2C(UnkStruct_ov109_021D0F70 *param0)
             param0->unk_0C = 0;
 
             if (param0->unk_D0->unk_3C == 0) {
-                CommMan_SetErrorHandling(0, 0);
-                sub_02037B58(1);
-                sub_02036AC4();
+                CommManager_SetErrorHandling(0, 0);
+                CommManager_SetMaxNumConnections(1);
+                CommManager_UnionRestartSearch();
             }
 
             param0->unk_00 = 50;
