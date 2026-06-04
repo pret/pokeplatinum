@@ -2201,7 +2201,7 @@ static int ov65_0222FCDC(UnkStruct_ov65_0222EBE0 *param0, int param1)
             param0->unk_3AC = 10;
             param0->unk_3A8 = 34;
             CommManager_LogoutWifi();
-        } else if (0 == sub_0202AF94(param0->unk_00)) {
+        } else if (0 == WiFiList_GetValidFriendsCount(param0->unk_00)) {
             ov65_02232B58(param0, 26, 1);
             param0->unk_3A8 = 59;
             param0->unk_3BC = 1;

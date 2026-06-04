@@ -448,74 +448,72 @@ BOOL ScrCmd_JudgeStats(ScriptContext *ctx)
     return 0;
 }
 
-BOOL ScrCmd_31D(ScriptContext *param0)
+BOOL ScrCmd_TryRevertPartyPokemonForms(ScriptContext *ctx)
 {
-    Pokemon *v0;
-    Party *v1;
-    int v2, v3, v4;
-    int v5, v6;
-    u32 v7;
-    int v8[6];
-    int v9 = 0;
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    u16 *v11 = ScriptContext_GetVarPointer(param0);
+    Pokemon *mon;
+    int slot, bagNotFull;
+    int species, form;
+    int items[MAX_PARTY_SIZE];
+    int griseousOrbCount = 0;
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    v1 = SaveData_GetParty(fieldSystem->saveData);
-    v2 = Party_GetCurrentCount(v1);
-    *v11 = 0;
+    Party *party = SaveData_GetParty(fieldSystem->saveData);
+    int partyCount = Party_GetCurrentCount(party);
+    *destVar = 0;
 
-    for (v3 = 0; v3 < v2; v3++) {
-        v0 = Party_GetPokemonBySlotIndex(v1, v3);
-        v8[v3] = Pokemon_GetValue(v0, MON_DATA_HELD_ITEM, NULL);
+    for (slot = 0; slot < partyCount; slot++) {
+        mon = Party_GetPokemonBySlotIndex(party, slot);
+        items[slot] = Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL);
 
-        if (v8[v3] == ITEM_GRISEOUS_ORB) {
-            v9++;
+        if (items[slot] == ITEM_GRISEOUS_ORB) {
+            griseousOrbCount++;
         }
     }
 
-    if (v9 > 0) {
-        v4 = Bag_TryAddItem(SaveData_GetBag(fieldSystem->saveData), ITEM_GRISEOUS_ORB, v9, HEAP_ID_FIELD1);
+    if (griseousOrbCount > 0) {
+        bagNotFull = Bag_TryAddItem(SaveData_GetBag(fieldSystem->saveData), ITEM_GRISEOUS_ORB, griseousOrbCount, HEAP_ID_FIELD1);
 
-        if (v4 == 0) {
-            *v11 = 0xff;
-            return 0;
+        if (bagNotFull == FALSE) {
+            *destVar = 0xFF;
+            return FALSE;
         }
 
-        v7 = 0;
+        u32 emptyHeldItem = ITEM_NONE;
 
-        for (v3 = 0; v3 < v2; v3++) {
-            if (v8[v3] == ITEM_GRISEOUS_ORB) {
-                v0 = Party_GetPokemonBySlotIndex(v1, v3);
-                Pokemon_SetValue(v0, MON_DATA_HELD_ITEM, &v7);
+        for (slot = 0; slot < partyCount; slot++) {
+            if (items[slot] == ITEM_GRISEOUS_ORB) {
+                mon = Party_GetPokemonBySlotIndex(party, slot);
+                Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &emptyHeldItem);
             }
         }
     }
 
-    for (v3 = 0; v3 < v2; v3++) {
-        v0 = Party_GetPokemonBySlotIndex(v1, v3);
-        v6 = Pokemon_GetValue(v0, MON_DATA_FORM, NULL);
+    for (slot = 0; slot < partyCount; slot++) {
+        mon = Party_GetPokemonBySlotIndex(party, slot);
+        form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
 
-        if (v6 > 0) {
-            v5 = Pokemon_GetValue(v0, MON_DATA_SPECIES, NULL);
+        if (form > 0) {
+            species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
 
-            switch (v5) {
+            switch (species) {
             case SPECIES_GIRATINA:
-                Pokemon_SetGiratinaFormByHeldItem(v0);
+                Pokemon_SetGiratinaFormByHeldItem(mon);
                 break;
             case SPECIES_ROTOM:
-                Pokemon_SetRotomForm(v0, ROTOM_FORM_BASE, 0);
+                Pokemon_SetRotomForm(mon, ROTOM_FORM_BASE, 0);
                 break;
             case SPECIES_SHAYMIN:
-                Pokemon_SetShayminForm(v0, SHAYMIN_FORM_LAND);
+                Pokemon_SetShayminForm(mon, SHAYMIN_FORM_LAND);
                 break;
             }
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
-BOOL ScrCmd_TryRevertPokemonForm(ScriptContext *param0)
+BOOL ScrCmd_TryRevertPokemonForm(ScriptContext *ctx)
 {
     Pokemon *mon;
     Party *party;
@@ -523,9 +521,9 @@ BOOL ScrCmd_TryRevertPokemonForm(ScriptContext *param0)
     u32 emptyHeldItem;
     int currentHeldItem;
     int bagNotFull;
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    u16 partySlot = ScriptContext_GetVar(param0);
-    u16 *result = ScriptContext_GetVarPointer(param0);
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    u16 partySlot = ScriptContext_GetVar(ctx);
+    u16 *result = ScriptContext_GetVarPointer(ctx);
 
     party = SaveData_GetParty(fieldSystem->saveData);
     mon = Party_GetPokemonBySlotIndex(party, partySlot);
@@ -533,7 +531,7 @@ BOOL ScrCmd_TryRevertPokemonForm(ScriptContext *param0)
     *result = 0;
 
     if (partySlot == 0xff) {
-        return 0;
+        return FALSE;
     }
 
     currentHeldItem = Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL);
@@ -541,12 +539,12 @@ BOOL ScrCmd_TryRevertPokemonForm(ScriptContext *param0)
     if (currentHeldItem == ITEM_GRISEOUS_ORB) {
         bagNotFull = Bag_TryAddItem(SaveData_GetBag(fieldSystem->saveData), ITEM_GRISEOUS_ORB, 1, HEAP_ID_FIELD1);
 
-        if (bagNotFull == 0) {
-            *result = 0xff;
-            return 0;
+        if (bagNotFull == FALSE) {
+            *result = 0xFF;
+            return FALSE;
         }
 
-        emptyHeldItem = 0;
+        emptyHeldItem = ITEM_NONE;
         Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &emptyHeldItem);
     }
 
@@ -568,7 +566,7 @@ BOOL ScrCmd_TryRevertPokemonForm(ScriptContext *param0)
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
 BOOL ScrCmd_2F1(ScriptContext *param0)

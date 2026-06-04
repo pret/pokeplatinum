@@ -2,14 +2,14 @@
   "key": 1593,
   "messages": [
     {
-      "id": "pl_msg_00000430_00000",
+      "id": "PokemonCenterB1FCommon_Text_HelloRightThisWay",
       "en_US": [
         "Oh, hello!\n",
         "Right this way, please!\r"
       ]
     },
     {
-      "id": "pl_msg_00000430_00001",
+      "id": "PokemonCenterB1FCommon_Text_GuideToWiFiClub",
       "en_US": [
         "Hello.\n",
         "I’m glad to meet you.\r",
@@ -19,7 +19,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000430_00002",
+      "id": "PokemonCenterB1FCommon_Text_ExplainPalPad",
       "en_US": [
         "That’s your Pal Pad. You may register\n",
         "your friends in it.\r",
@@ -30,7 +30,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000430_00003",
+      "id": "PokemonCenterB1FCommon_Text_ExplainRegisterAFriend",
       "en_US": [
         "You may meet people on the second\n",
         "floor of a Pokémon Center for trades\f",
@@ -44,14 +44,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000430_00004",
+      "id": "PokemonCenterB1FCommon_Text_EnjoyNintendoWFC",
       "en_US": [
         "I hope you enjoy using Nintendo\n",
         "WFC!"
       ]
     },
     {
-      "id": "pl_msg_00000430_00005",
+      "id": "PokemonCenterB1FCommon_Text_MayIHelpWithAnything",
       "en_US": [
         "Welcome to the Pokémon Center Wi-Fi\n",
         "Club!\r",
@@ -59,7 +59,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000430_00006",
+      "id": "PokemonCenterB1FCommon_Text_ExplainWiFiClub",
       "en_US": [
         "Let me explain how the Pokémon Wi-Fi\n",
         "Club is set up.\r",
@@ -71,7 +71,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000430_00007",
+      "id": "PokemonCenterB1FCommon_Text_WiFiClubUseNintendoWFC",
       "en_US": [
         "Welcome to the Pokémon Wi-Fi Club!\r",
         "Would you like to use Nintendo Wi-Fi\n",
@@ -79,22 +79,22 @@
       ]
     },
     {
-      "id": "pl_msg_00000430_00008",
+      "id": "PokemonCenterB1FCommon_Text_PleaseComeAgain",
       "en_US": "Please come again."
     },
     {
-      "id": "pl_msg_00000430_00009",
+      "id": "PokemonCenterB1FCommon_Text_LaunchNintendoWFC",
       "en_US": [
         "Would you like to launch\n",
         "Nintendo WFC?"
       ]
     },
     {
-      "id": "pl_msg_00000430_00010",
+      "id": "PokemonCenterB1FCommon_Text_RightThisWay",
       "en_US": "Right this way, please.\r"
     },
     {
-      "id": "pl_msg_00000430_00011",
+      "id": "PokemonCenterB1FCommon_Text_NoFriendsGetAFriendCode",
       "en_US": [
         "...Oh?\r",
         "I’m sorry, but you don’t have any\n",
@@ -106,7 +106,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000430_00012",
+      "id": "PokemonCenterB1FCommon_Text_NoRegisteredFriends",
       "en_US": [
         "...Oh?\r",
         "I’m sorry, but you don’t have any\n",
@@ -118,7 +118,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000430_00013",
+      "id": "PokemonCenterB1FCommon_Text_WiFiClubInfo",
       "en_US": [
         "At any Wi-Fi Club, you may play using\n",
         "Nintendo Wi-Fi Connection.\r",
@@ -136,19 +136,19 @@
       ]
     },
     {
-      "id": "pl_msg_00000430_00014",
+      "id": "PokemonCenterB1FCommon_Text_GoToWiFiClub",
       "en_US": "GO TO WI-FI CLUB"
     },
     {
-      "id": "pl_msg_00000430_00015",
+      "id": "PokemonCenterB1FCommon_Text_InfoWiFiClub",
       "en_US": "INFO"
     },
     {
-      "id": "pl_msg_00000430_00016",
+      "id": "PokemonCenterB1FCommon_Text_ExitWiFiClub",
       "en_US": "EXIT"
     },
     {
-      "id": "pl_msg_00000430_00017",
+      "id": "PokemonCenterB1FCommon_Text_WiFiPlazaUseNintendoWFC",
       "en_US": [
         "Hello, you may enter our Pokémon\n",
         "Center Wi-Fi Plaza from here.\r",
@@ -157,19 +157,19 @@
       ]
     },
     {
-      "id": "pl_msg_00000430_00018",
+      "id": "PokemonCenterB1FCommon_Text_Dummy18",
       "garbage": 21
     },
     {
-      "id": "pl_msg_00000430_00019",
+      "id": "PokemonCenterB1FCommon_Text_PleaseEnterThisWay",
       "en_US": "Please enter this way.\r"
     },
     {
-      "id": "pl_msg_00000430_00020",
+      "id": "PokemonCenterB1FCommon_Text_LookForwardToNextVisit",
       "en_US": "We look forward to your next visit."
     },
     {
-      "id": "pl_msg_00000430_00021",
+      "id": "PokemonCenterB1FCommon_Text_WiFiPlazaInfo",
       "en_US": [
         "The Wi-Fi Plaza is a facility where you\n",
         "may meet Trainers from around the\f",
@@ -187,19 +187,19 @@
       ]
     },
     {
-      "id": "pl_msg_00000430_00022",
+      "id": "PokemonCenterB1FCommon_Text_GoToWiFiPlaza",
       "en_US": "GO TO WI-FI PLAZA"
     },
     {
-      "id": "pl_msg_00000430_00023",
+      "id": "PokemonCenterB1FCommon_Text_InfoWiFiPlaza",
       "en_US": "INFO"
     },
     {
-      "id": "pl_msg_00000430_00024",
+      "id": "PokemonCenterB1FCommon_Text_ExitWiFiPlaza",
       "en_US": "EXIT"
     },
     {
-      "id": "pl_msg_00000430_00025",
+      "id": "PokemonCenterB1FCommon_Text_PleaseComeBackLater",
       "en_US": [
         "Sorry, we’re getting things ready.\n",
         "Please come back later."

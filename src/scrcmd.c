@@ -80,8 +80,8 @@
 #include "overlay006/pc_animation.h"
 #include "overlay006/swarm.h"
 #include "overlay006/trophy_garden_daily_encounters.h"
+#include "overlay007/battle_regulation_menu.h"
 #include "overlay007/communication_club.h"
-#include "overlay007/ov7_0224B4E8.h"
 #include "overlay007/shop_menu.h"
 #include "overlay008/ov8_02249960.h"
 #include "overlay009/ov9_02249960.h"
@@ -582,7 +582,7 @@ static BOOL ScrCmd_Dummy1F9(ScriptContext *ctx);
 static BOOL ScrCmd_GetPreviousMapID(ScriptContext *ctx);
 static BOOL ScrCmd_GetCurrentMapID(ScriptContext *ctx);
 static BOOL ScrCmd_StartEndSafariGame(ScriptContext *ctx);
-static BOOL ScrCmd_203(ScriptContext *ctx);
+static BOOL ScrCmd_WarpToColosseum(ScriptContext *ctx);
 static BOOL ScrCmd_204(ScriptContext *ctx);
 static BOOL ScrCmd_205(ScriptContext *ctx);
 static BOOL ScrCmd_StartLibraryTV(ScriptContext *ctx);
@@ -610,7 +610,7 @@ static BOOL ScrCmd_TurnOnPokedexFormDetection(ScriptContext *ctx);
 static BOOL ScrCmd_GetSetNationalDexEnabled(ScriptContext *ctx);
 static BOOL ScrCmd_GetPartyMonEVTotal(ScriptContext *ctx);
 static BOOL ScrCmd_GetDayOfWeek(ScriptContext *ctx);
-static BOOL ScrCmd_239(ScriptContext *ctx);
+static BOOL ScrCmd_OpenBattleRegulationMenu(ScriptContext *ctx);
 static BOOL ScrCmd_GetPartyMonFootprintType(ScriptContext *ctx);
 static BOOL ScrCmd_PlayPokecenterHealingAnimation(ScriptContext *ctx);
 static BOOL ScrCmd_PlayElevatorAnimation(ScriptContext *ctx);
@@ -679,8 +679,8 @@ static BOOL ScrCmd_GetUndergroundTalkCounter(ScriptContext *ctx);
 static BOOL ScrCmd_29F(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_2A1(ScriptContext *ctx);
 static BOOL ScrCmd_TrySetUnusedCollectedOrbFlag(ScriptContext *ctx);
-static BOOL ScrCmd_2A3(ScriptContext *ctx);
-static BOOL ScrCmd_2A4(ScriptContext *ctx);
+static BOOL ScrCmd_CheckHasWiFiListValidLogin(ScriptContext *ctx);
+static BOOL ScrCmd_GetWiFListValidFriendsCount(ScriptContext *ctx);
 static BOOL ScrCmd_CheckItemIsPlate(ScriptContext *ctx);
 static BOOL ScrCmd_CheckIsMysteryGiftPhrase(ScriptContext *ctx);
 static BOOL ScrCmd_CountUniqueSealsInSealCase(ScriptContext *ctx);
@@ -733,7 +733,7 @@ static BOOL ScrCmd_SetSpeciesSeen(ScriptContext *ctx);
 static BOOL ScrCmd_DoDWWarp(ScriptContext *ctx);
 static BOOL ScrCmd_StartDistortionWorldGiratinaShadowEvent(ScriptContext *ctx);
 static BOOL ScrCmd_FinishDistortionWorldGiratinaShadowEvent(ScriptContext *ctx);
-static BOOL ScrCmd_323(ScriptContext *ctx);
+static BOOL ScrCmd_CheckNoWiFiPlazaCooldown(ScriptContext *ctx);
 static BOOL ScrCmd_SetPartyGiratinaForm(ScriptContext *ctx);
 static BOOL ScrCmd_CheckPartyHasFatefulEncounterRegigigas(ScriptContext *ctx);
 static BOOL ScriptContext_WaitForMovement(ScriptContext *ctx);
@@ -3577,18 +3577,18 @@ static BOOL ScrCmd_Warp(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_203(ScriptContext *ctx)
+static BOOL ScrCmd_WarpToColosseum(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
-    u16 v0 = ScriptContext_ReadHalfWord(ctx);
-    s16 v4 = ScriptContext_ReadHalfWord(ctx);
-    u16 v1 = ScriptContext_GetVar(ctx);
-    u16 v2 = ScriptContext_GetVar(ctx);
-    u16 v3 = ScriptContext_ReadHalfWord(ctx);
-    v4 = -1;
+    u16 mapID = ScriptContext_ReadHalfWord(ctx);
+    s16 warpID = ScriptContext_ReadHalfWord(ctx);
+    u16 x = ScriptContext_GetVar(ctx);
+    u16 z = ScriptContext_GetVar(ctx);
+    u16 dir = ScriptContext_ReadHalfWord(ctx);
+    warpID = -1;
 
-    FieldTask_StartChangeMapColosseum(ctx->fieldSystem->task, v0, v4, v1, v2, v3);
+    FieldTask_StartChangeMapColosseum(ctx->fieldSystem->task, mapID, warpID, x, z, dir);
 
     return TRUE;
 }
@@ -5514,11 +5514,11 @@ static BOOL ScrCmd_GetDayOfWeek(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_239(ScriptContext *ctx)
+static BOOL ScrCmd_OpenBattleRegulationMenu(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_ReadHalfWord(ctx);
+    u16 destVar = ScriptContext_ReadHalfWord(ctx);
 
-    ov7_0224BE7C(ctx->task, FieldSystem_GetVarPointer(ctx->fieldSystem, v0));
+    OpenBattleRegulationMenu(ctx->task, FieldSystem_GetVarPointer(ctx->fieldSystem, destVar));
     return TRUE;
 }
 
@@ -6390,19 +6390,19 @@ static BOOL ScrCmd_29F(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_2A3(ScriptContext *ctx)
+static BOOL ScrCmd_CheckHasWiFiListValidLogin(ScriptContext *ctx)
 {
-    u16 *v0 = ScriptContext_GetVarPointer(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *v0 = WiFiList_HasValidLogin(ctx->fieldSystem->saveData);
+    *destVar = WiFiList_HasValidLogin(ctx->fieldSystem->saveData);
     return FALSE;
 }
 
-static BOOL ScrCmd_2A4(ScriptContext *ctx)
+static BOOL ScrCmd_GetWiFListValidFriendsCount(ScriptContext *ctx)
 {
-    u16 *v0 = ScriptContext_GetVarPointer(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *v0 = sub_0202AF94(SaveData_GetWiFiList(ctx->fieldSystem->saveData));
+    *destVar = WiFiList_GetValidFriendsCount(SaveData_GetWiFiList(ctx->fieldSystem->saveData));
     return FALSE;
 }
 
@@ -7079,18 +7079,18 @@ static BOOL ScrCmd_FinishDistortionWorldGiratinaShadowEvent(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_323(ScriptContext *ctx)
+static BOOL ScrCmd_CheckNoWiFiPlazaCooldown(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    u16 *v1 = ScriptContext_GetVarPointer(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    s64 v2 = GetTimestamp();
-    s64 v3 = v2 - fieldSystem->unk_C4.unk_00;
+    s64 timestamp = GetTimestamp();
+    s64 v3 = timestamp - fieldSystem->unk_C4.unk_00;
 
     if (v3 >= 120) {
-        *v1 = 1;
+        *destVar = TRUE;
     } else {
-        *v1 = 0;
+        *destVar = FALSE;
     }
 
     return FALSE;

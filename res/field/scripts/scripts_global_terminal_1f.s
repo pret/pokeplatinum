@@ -28,7 +28,7 @@
     ScriptEntryEnd
 
 GlobalTerminal1F_OnResume:
-    CallIfEq VAR_UNK_0x40D5, 6, GlobalTerminal1F_HidePlayer
+    CallIfEq VAR_COMMUNICATION_LOAD_ACTION, 6, GlobalTerminal1F_HidePlayer
     End
 
 GlobalTerminal1F_HidePlayer:
@@ -53,7 +53,7 @@ GlobalTerminal1F_ExitGTSRoom:
     ApplyMovement LOCALID_PLAYER, GlobalTerminal1F_Movement_PlayerWalkSouth
     WaitMovement
     Call GlobalTerminal1F_PlayDoorCloseAnimation
-    SetVar VAR_UNK_0x40D5, 0
+    SetVar VAR_COMMUNICATION_LOAD_ACTION, 0
     Return
 
 GlobalTerminal1F_PlayDoorOpenAnimation:
@@ -163,7 +163,7 @@ GlobalTerminal1F_BeginTrade:
     SetVar VAR_RESULT, VAR_MAP_LOCAL_0
     GoToIfEq VAR_RESULT, 0, GlobalTerminal1F_ReceptionistGTSEnd
     HealParty
-    SetVar VAR_UNK_0x40D5, 6
+    SetVar VAR_COMMUNICATION_LOAD_ACTION, 6
     Message GlobalTerminal1F_Text_EnjoyVisitToGTS
     CloseMessage
     ApplyMovement LOCALID_PLAYER, GlobalTerminal1F_Movement_PlayerWalkToGate
@@ -204,7 +204,7 @@ GlobalTerminal1F_ExitAndEnd:
     End
 
 GlobalTerminal1F_ReceptionistGTSEnd:
-    SetVar VAR_UNK_0x40D5, 0
+    SetVar VAR_COMMUNICATION_LOAD_ACTION, 0
     Message GlobalTerminal1F_Text_PleaseVisitAgain
     WaitButton
     CloseMessage
@@ -257,7 +257,7 @@ GlobalTerminal1F_Movement_PlayerFaceSouth:
     EndMovement
 
 GlobalTerminal1F_HasBadEgg:
-    CallCommonScript 0x2338 @ CommonScript_HasBadEgg; outputs pl_msg_00000221_00127
+    CallCommonScript 0x2338 @ PokemonCenter2FCommon_HasBadEggReturnCommon
     WaitButton
     CloseMessage
     ReleaseAll
