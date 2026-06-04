@@ -10,13 +10,18 @@
 #include "nitroarc.h"
 
 #include "constants/moves.h"
-#include "generated/natures.h"
-#include "generated/items.h"
-#include "generated/species.h"
-#include "generated/trainer_classes.h"
-#include "generated/trainer_message_types.h"
 
 #include "struct_defs/battle_frontier_pokemon_data.h"
+
+static enum_template_t enums[] = {
+    include_enum("generated/items.h",                 "enum Item"),
+    include_enum("generated/moves.h",                 "enum Move"),
+    include_enum("generated/natures.h",               "enum Nature"),
+    include_enum("generated/species.h",               "enum Species"),
+    include_enum("generated/trainer_classes.h",       "enum TrainerClass"),
+    include_enum("generated/trainer_message_types.h", "enum TrainerMessageType"),
+    { .from_file = NULL },
+};
 
 enum {
     A_FRONTIER_TRAINERS,
@@ -50,7 +55,6 @@ static char **pk_registry     = NULL;
 static size_t len_pk_registry = 0;
 
 static void parse_args(int *pargc, char ***pargv);
-static void pre_init(void);
 static int  sort_strcmp(const void *lhs, const void *rhs);
 
 static void pack_pokemon_set(datafile_t *df);
@@ -73,7 +77,7 @@ int main(int argc, char *argv[]) {
     archives[A_FRONTIER_TRAINERS].num_files = (u16)len_tr_registry;
     archives[A_FRONTIER_POKEMON].num_files  = (u16)len_pk_registry;
 
-    common_init(DATAPROC_F_JSON, NULL, archives, NULL, textbanks, __FILE__, depfile_fpath, output_dir, pre_init, NULL);
+    common_init(DATAPROC_F_JSON, enums, archives, NULL, textbanks, __FILE__, depfile_fpath, output_dir, NULL, NULL);
 
     char       buf[BUFSIZE];
     datafile_t df   = { 0 };
@@ -126,9 +130,9 @@ static const char *ev_flags[] = {
 
 static void pack_pokemon_set(datafile_t *df) {
     BattleFrontierPokemonData result = {
-        .species = enum_u16(".species", Species),
-        .nature  = enum_u8(".nature", Nature),
-        .item    = enum_u16(".item", Item),
+        .species = enum_u16(".species", enum Species),
+        .nature  = enum_u8(".nature", enum Nature),
+        .item    = enum_u16(".item", enum Item),
         .form    = u16(".form"),
     };
 
@@ -140,7 +144,7 @@ static void pack_pokemon_set(datafile_t *df) {
     }
 
     size_t i = 0;
-    for (; i < num_moves; i++) result.moves[i] = dp_u16(dp_lookup(dp_arrelem(moves, i), "Move"));
+    for (; i < num_moves; i++) result.moves[i] = dp_u16(dp_lookup(dp_arrelem(moves, i), "enum Move"));
     for (; i < LEARNED_MOVES_MAX; i++) result.moves[i] = MOVE_NONE;
 
     for (i = 0; i < countof(ev_flags); i++) {
@@ -160,7 +164,7 @@ static void pack_trainer(datafile_t *df) {
     const size_t size   = 2 + n_sets;
 
     u16 *trainer = calloc(size, sizeof(*trainer));
-    trainer[0]   = dp_u16(dp_lookup(dp_get(df, ".class"), "TrainerClass"));
+    trainer[0]   = dp_u16(dp_lookup(dp_get(df, ".class"), "enum TrainerClass"));
     trainer[1]   = 0;
 
     for (size_t i = 0; i < n_sets; i++) {
@@ -177,10 +181,7 @@ static void pack_trainer(datafile_t *df) {
 static void emit_trainer_name(datafile_t *df, const char *stem) {
     char buf[BUFSIZE] = { 0 };
 
-    const char *name  = dp_string(dp_get(df, ".name"));
-    datanode_t  entry = dp_arr_appobject(&textbanks[T_TRAINER_NAMES].root);
-    dp_obj_putstring(&entry, "id", strfmt("FrontierTrainerNames_Text_%s", stem));
-    dp_obj_putstring(&entry, "en_US", name);
+    bank_push(T_TRAINER_NAMES, strfmt("FrontierTrainerNames_Text_%s", stem), string(".name"));
 }
 
 static void emit_trainer_messages(datafile_t *df, const char *stem) {
@@ -191,33 +192,15 @@ static void emit_trainer_messages(datafile_t *df, const char *stem) {
     for (size_t i = 0; i < n_messages; i++) {
         datanode_t message   = dp_arrelem(messages, i);
         datanode_t type_node = dp_objmemb(message, "type");
-        datanode_t lookup    = dp_lookup(type_node, "TrainerMessageType");
+        datanode_t lookup    = dp_lookup(type_node, "enum TrainerMessageType");
         if (lookup.type != DATAPROC_T_MAPPED) continue;
 
         const char *type  = dp_string(type_node);
-        datanode_t  entry = dp_arr_appobject(&textbanks[T_TRAINER_MESSAGES].root);
-        dp_obj_putstring(&entry, "id", strfmt("FrontierTrainerMessages_Text_%s_%s", stem, type));
-        if (dp_hasmemb(message, "en_US")) {
-            datanode_t content = dp_objmemb(message, "en_US");
-            if (content.type == DATAPROC_T_STRING) {
-                dp_obj_putstring(&entry, "en_US", dp_string(content));
-            }
-            else if (content.type == DATAPROC_T_ARRAY) {
-                datanode_t   lines   = dp_obj_putarray(&entry, "en_US");
-                const size_t n_lines = dp_arrlen(content);
-                for (size_t j = 0; j < n_lines; j++) {
-                    dp_arr_appstring(&lines, dp_string(dp_arrelem(content, j)));
-                }
-            }
-            else {
-                dp_error(&content, "expected message content to be a string or an array");
-            }
-        }
-        else if (dp_hasmemb(message, "garbage")) {
-            dp_obj_putint(&entry, "garbage", dp_u64(dp_objmemb(message, "garbage")));
-        }
+        const char *id    = strfmt("FrontierTrainerMessages_Text_%s_%s", stem, type);
+        if      (dp_hasmemb(message, "en_US"))   bank_push(T_TRAINER_MESSAGES, id, dp_objmemb(message, "en_US"));
+        else if (dp_hasmemb(message, "garbage")) bank_push(T_TRAINER_MESSAGES, id, dp_u64(dp_objmemb(message, "garbage")));
         else {
-            dp_error(&message, "expected exactly one of either 'en_US' or 'garbage'");
+            dp_warn(&message, "expected exactly one of either 'en_US' or 'garbage'; preferring 'en_US'");
         }
     }
 }
@@ -231,15 +214,6 @@ static int sort_strcmp(const void *lhs, const void *rhs) {
     else if (r->def == NULL) return -1;
 
     return strcmp(l->def, r->def);
-}
-
-static void pre_init(void) {
-    dp_regmetang(Item);
-    dp_regmetang(Move);
-    dp_regmetang(Nature);
-    dp_regmetang(Species);
-    dp_regmetang(TrainerClass);
-    dp_regmetang(TrainerMessageType);
 }
 
 static void usage(const char *fmt, ...);
