@@ -130,7 +130,7 @@ _00D4:
 
 _00E2:
     InitNewBattleRecording
-    FrontierScrCmd_3E VAR_BATTLE_TOWER_BATTLE_ROOM_LOAD_ACTION, VAR_0x8001
+    GetSystemVar VAR_BATTLE_TOWER_BATTLE_ROOM_LOAD_ACTION, VAR_0x8001
     Call _0176
     Call _018F
     CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, VAR_0x8008
@@ -174,8 +174,8 @@ _019E:
     Return
 
 _01A0:
-    FrontierScrCmd_3D VAR_BATTLE_TOWER_BATTLE_ROOM_LOAD_ACTION, 3
-    FrontierScrCmd_3E VAR_BATTLE_TOWER_BATTLE_ROOM_LOAD_ACTION, VAR_0x8001
+    SetSystemVar VAR_BATTLE_TOWER_BATTLE_ROOM_LOAD_ACTION, 3
+    GetSystemVar VAR_BATTLE_TOWER_BATTLE_ROOM_LOAD_ACTION, VAR_0x8001
     CallBattleTowerFunction BT_FUNC_CHECK_IS_NULL, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _03EF
     Call _03CF
@@ -292,8 +292,8 @@ _0382:
     Return
 
 _0394:
-    FrontierScrCmd_3D VAR_BATTLE_TOWER_BATTLE_ROOM_LOAD_ACTION, 3
-    FrontierScrCmd_3E VAR_BATTLE_TOWER_BATTLE_ROOM_LOAD_ACTION, VAR_0x8001
+    SetSystemVar VAR_BATTLE_TOWER_BATTLE_ROOM_LOAD_ACTION, 3
+    GetSystemVar VAR_BATTLE_TOWER_BATTLE_ROOM_LOAD_ACTION, VAR_0x8001
     SetVar VAR_0x8003, 1
     CallBattleTowerFunction BT_FUNC_CHECK_IS_NULL, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _03EF
@@ -316,7 +316,7 @@ _03DB:
 _03EF:
     FreeBattleRecording
     WaitTime 30, VAR_0x8008
-    FrontierScrCmd_3D VAR_BATTLE_TOWER_LOBBY_LOAD_ACTION, 1
+    SetSystemVar VAR_BATTLE_TOWER_LOBBY_LOAD_ACTION, 1
     CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, VAR_0x8008
     SetVar FR_VAR_0x8010, VAR_0x8008
     GoToIfEq FR_VAR_0x8010, BATTLE_TOWER_MODE_WIFI, _043F
@@ -335,8 +335,8 @@ _043F:
     FrontierScrCmd_02
 
 _0459:
-    FrontierScrCmd_3D VAR_BATTLE_TOWER_BATTLE_ROOM_LOAD_ACTION, 0
-    FrontierScrCmd_3E VAR_BATTLE_TOWER_BATTLE_ROOM_LOAD_ACTION, VAR_0x8001
+    SetSystemVar VAR_BATTLE_TOWER_BATTLE_ROOM_LOAD_ACTION, 0
+    GetSystemVar VAR_BATTLE_TOWER_BATTLE_ROOM_LOAD_ACTION, VAR_0x8001
     Call _046D
     End
 
@@ -484,7 +484,7 @@ _06B3:
     End
 
 _06D3:
-    FrontierScrCmd_3D VAR_BATTLE_TOWER_LOBBY_LOAD_ACTION, 2
+    SetSystemVar VAR_BATTLE_TOWER_LOBBY_LOAD_ACTION, 2
     CallBattleTowerFunction BT_FUNC_UNK_39, 0, VAR_0x8008
     FreeTowerStruct
     Message BattleTowerBattleRoom_Text_Saving
@@ -579,7 +579,7 @@ _086E:
     GoToIfEq VAR_0x800C, 0, _020F
     CallBattleTowerFunction BT_FUNC_UNK_36, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 48, _08FD
-    FrontierScrCmd_3E VAR_BATTLE_TOWER_PRINT_STATE, VAR_0x8008
+    GetSystemVar VAR_BATTLE_TOWER_PRINT_STATE, VAR_0x8008
     CallIfEq VAR_0x8008, 0, _08D9
     Message BattleTowerBattleRoom_Text_BeatPalmer
     CallBattleTowerFunction BT_FUNC_SET_BEAT_PALMER, 1, VAR_0x8008
@@ -587,7 +587,7 @@ _086E:
     End
 
 _08D9:
-    FrontierScrCmd_3D VAR_BATTLE_TOWER_PRINT_STATE, 1
+    SetSystemVar VAR_BATTLE_TOWER_PRINT_STATE, 1
     Return
 
 _08E1:
@@ -602,7 +602,7 @@ _08F1:
     End
 
 _08FD:
-    FrontierScrCmd_3E VAR_BATTLE_TOWER_PRINT_STATE, VAR_0x8008
+    GetSystemVar VAR_BATTLE_TOWER_PRINT_STATE, VAR_0x8008
     CallIfEq VAR_0x8008, 2, _0924
     Message BattleTowerBattleRoom_Text_BeatPalmerGold
     CallBattleTowerFunction BT_FUNC_SET_BEAT_PALMER, 2, VAR_0x8008
@@ -610,7 +610,7 @@ _08FD:
     End
 
 _0924:
-    FrontierScrCmd_3D VAR_BATTLE_TOWER_PRINT_STATE, 3
+    SetSystemVar VAR_BATTLE_TOWER_PRINT_STATE, 3
     Return
 
 _092C:
