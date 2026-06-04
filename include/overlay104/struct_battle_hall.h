@@ -1,11 +1,13 @@
 #ifndef POKEPLATINUM_STRUCT_BATTLE_HALL_H
 #define POKEPLATINUM_STRUCT_BATTLE_HALL_H
 
-#include "struct_defs/battle_frontier.h"
+#include "constants/battle_frontier.h"
+
 #include "struct_defs/pokemon.h"
 
 #include "overlay104/frontier_data_transfer.h"
 
+#include "battle_hall_save.h"
 #include "field_battle_data_transfer.h"
 #include "party.h"
 #include "savedata.h"
@@ -21,7 +23,7 @@ typedef struct BattleHall {
     fx32 playerLevelSqrt;
     u32 unk_10;
     int wonBattle;
-    u16 trainerIDs[20];
+    u16 trainerIDs[BATTLES_PER_ROUND_HALL * 2];
     FrontierDataDTO unk_40[2];
     u8 partySlots[2];
     Party *party;

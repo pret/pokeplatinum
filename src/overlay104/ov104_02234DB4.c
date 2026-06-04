@@ -83,7 +83,7 @@ BattleHall *BattleHall_Init(SaveData *saveData, u16 resumingFromSave, u8 challen
             battleHall->partySlots[i] = BattleHallSave_GetMember(currentChallenge, 3, i, 0, NULL);
         }
 
-        for (i = 0; i < (10 * 2); i++) {
+        for (i = 0; i < BATTLES_PER_ROUND_HALL * 2; i++) {
             battleHall->trainerIDs[i] = BattleHallSave_GetMember(currentChallenge, 2, i, 0, NULL);
         }
 

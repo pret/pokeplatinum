@@ -39,7 +39,7 @@ void BattleHallSave_SetMember(BattleHallSave *save, u8 field, u8 index, u8 unuse
         save->unk_01 = *(u8 *)value;
         break;
     case 2:
-        save->unk_04[index] = *(u16 *)value;
+        save->trainerIDs[index] = *(u16 *)value;
         break;
     case 3:
         save->partySlots[index] = *(u8 *)value;
@@ -61,7 +61,7 @@ u32 BattleHallSave_GetMember(BattleHallSave *save, u8 field, u8 index, u8 unused
     case 1:
         return save->unk_01;
     case 2:
-        return save->unk_04[index];
+        return save->trainerIDs[index];
     case 3:
         return save->partySlots[index];
     case 4:

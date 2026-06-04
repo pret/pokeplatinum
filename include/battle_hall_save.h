@@ -9,7 +9,7 @@ typedef struct BattleHallSave {
     u8 unk_00_4 : 4;
     u8 unk_01;
     u8 partySlots[2];
-    u16 unk_04[20];
+    u16 trainerIDs[20];
     u16 unk_2C[20];
 } BattleHallSave;
 
