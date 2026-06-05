@@ -24,7 +24,7 @@
 #include "overlay005/vs_seeker.h"
 #include "overlay006/repel_step_update.h"
 #include "overlay006/wild_encounters.h"
-#include "overlay008/ov8_02249960.h"
+#include "overlay008/gym_features.h"
 #include "overlay009/ov9_02249960.h"
 #include "underground/manager.h"
 
@@ -564,7 +564,7 @@ static BOOL Field_CheckMapTransition(FieldSystem *fieldSystem, const FieldInput 
         return FALSE;
     }
 
-    if (PersistedMapFeatures_IsCurrentDynamicMap(fieldSystem, DYNAMIC_MAP_FEATURES_VEILSTONE_GYM) == TRUE && ov8_0224BF4C(fieldSystem) == TRUE) {
+    if (PersistedMapFeatures_IsCurrentDynamicMap(fieldSystem, DYNAMIC_MAP_FEATURES_VEILSTONE_GYM) == TRUE && VeilstoneGym_HitPunchingBag(fieldSystem) == TRUE) {
         return TRUE;
     }
 

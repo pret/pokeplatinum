@@ -1,8 +1,0 @@
-#ifndef POKEPLATINUM_STRUCT_02071BF8_H
-#define POKEPLATINUM_STRUCT_02071BF8_H
-
-typedef struct {
-    int unk_00;
-} UnkStruct_02071BF8;
-
-#endif // POKEPLATINUM_STRUCT_02071BF8_H
