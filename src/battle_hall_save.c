@@ -32,19 +32,19 @@ void BattleHallSave_RecordSave(BattleHallSave *save, BOOL didSave)
 void BattleHallSave_SetMember(BattleHallSave *save, u8 field, u8 index, u8 unused, void *value)
 {
     switch (field) {
-    case 0:
+    case HALL_SAVE_CHALLENGE_TYPE:
         save->challengeType = *(u8 *)value;
         break;
-    case 1:
+    case HALL_SAVE_UNK_1:
         save->unk_01 = *(u8 *)value;
         break;
-    case 2:
+    case HALL_SAVE_TRAINER_IDS:
         save->trainerIDs[index] = *(u16 *)value;
         break;
-    case 3:
+    case HALL_SAVE_PARTY_SLOTS:
         save->partySlots[index] = *(u8 *)value;
         break;
-    case 4:
+    case HALL_SAVE_UNK_4:
         save->unk_2C[index] = *(u16 *)value;
         break;
     default:
@@ -56,15 +56,15 @@ void BattleHallSave_SetMember(BattleHallSave *save, u8 field, u8 index, u8 unuse
 u32 BattleHallSave_GetMember(BattleHallSave *save, u8 field, u8 index, u8 unused, void *unused2)
 {
     switch (field) {
-    case 0:
+    case HALL_SAVE_CHALLENGE_TYPE:
         return save->challengeType;
-    case 1:
+    case HALL_SAVE_UNK_1:
         return save->unk_01;
-    case 2:
+    case HALL_SAVE_TRAINER_IDS:
         return save->trainerIDs[index];
-    case 3:
+    case HALL_SAVE_PARTY_SLOTS:
         return save->partySlots[index];
-    case 4:
+    case HALL_SAVE_UNK_4:
         return save->unk_2C[index];
     default:
         GF_ASSERT(FALSE);
@@ -120,7 +120,7 @@ void BattleHallStreakFlags_SetFlag(BattleHallStreakFlags *flags, u8 field, u8 ch
 {
     u8 *value_dupe = (u8 *)value;
     switch (field) {
-    case 5:
+    case HALL_SAVE_STREAK_FLAGS:
         if (*value_dupe >= 1) {
             flags->streakActiveFlags |= (1 << challengeType);
         } else {
@@ -136,7 +136,7 @@ void BattleHallStreakFlags_SetFlag(BattleHallStreakFlags *flags, u8 field, u8 ch
 u32 BattleHallStreakFlags_GetFlag(BattleHallStreakFlags *flags, u8 field, u8 challengeType, u8 unused, void *unused2)
 {
     switch (field) {
-    case 5:
+    case HALL_SAVE_STREAK_FLAGS:
         return (flags->streakActiveFlags >> challengeType) & 0x1;
     default:
         GF_ASSERT(FALSE);

@@ -3,6 +3,13 @@
 
 #include "savedata.h"
 
+#define HALL_SAVE_CHALLENGE_TYPE 0
+#define HALL_SAVE_UNK_1          1
+#define HALL_SAVE_TRAINER_IDS    2
+#define HALL_SAVE_PARTY_SLOTS    3
+#define HALL_SAVE_UNK_4          4
+#define HALL_SAVE_STREAK_FLAGS   5
+
 typedef struct BattleHallSave {
     u8 challengeType : 3;
     u8 didSave : 1;
