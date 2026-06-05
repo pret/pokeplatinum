@@ -1,8 +1,6 @@
 #ifndef POKEPLATINUM_BATTLE_PARTY_GAUGE_H
 #define POKEPLATINUM_BATTLE_PARTY_GAUGE_H
 
-#include "battle/party_gauge.h"
-
 #include "palette.h"
 #include "sprite_system.h"
 
