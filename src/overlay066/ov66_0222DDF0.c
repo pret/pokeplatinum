@@ -10,7 +10,6 @@
 #include "generated/journal_online_events.h"
 #include "generated/species.h"
 
-#include "struct_decls/struct_02014FB0_decl.h"
 #include "struct_decls/struct_0207E060_decl.h"
 #include "struct_defs/wi_fi_history.h"
 
@@ -57,10 +56,10 @@
 #include "string_gf.h"
 #include "system_data.h"
 #include "trainer_info.h"
-#include "unk_02014D38.h"
 #include "unk_02030EA4.h"
 #include "unk_0207E060.h"
 #include "wifi_history_save_data.h"
+#include "words.h"
 
 typedef struct UnkStruct_ov66_0222E71C_t {
     s32 unk_00;

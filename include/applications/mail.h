@@ -1,12 +1,11 @@
 #ifndef POKEPLATINUM_APPLICATIONS_MAIL_H
 #define POKEPLATINUM_APPLICATIONS_MAIL_H
 
-#include "struct_defs/sentence.h"
-
 #include "game_options.h"
 #include "mail.h"
 #include "pokemon.h"
 #include "savedata.h"
+#include "sentence.h"
 #include "string_gf.h"
 
 typedef struct MailAppArgs {

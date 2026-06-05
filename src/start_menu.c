@@ -12,8 +12,6 @@
 #include "generated/species.h"
 #include "generated/text_banks.h"
 
-#include "struct_defs/sentence.h"
-
 #include "applications/bag/application.h"
 #include "applications/mail.h"
 #include "applications/party_menu/defs.h"
@@ -64,6 +62,7 @@
 #include "savedata.h"
 #include "screen_fade.h"
 #include "script_manager.h"
+#include "sentence.h"
 #include "sound.h"
 #include "sound_playback.h"
 #include "sprite.h"
@@ -76,7 +75,6 @@
 #include "text.h"
 #include "trainer_case.h"
 #include "trainer_info.h"
-#include "unk_02014A84.h"
 #include "unk_0202D778.h"
 #include "unk_02033200.h"
 #include "unk_0203D1B8.h"
@@ -1407,7 +1405,7 @@ static BOOL StartMenu_Chat(FieldTask *fieldTask)
     menu->taskData = EasyChatArgs_New(EASY_CHAT_TYPE_SENTENCE, EasyChat_Text_ChooseWordOrPhrase, fieldSystem->saveData, HEAP_ID_FIELD2);
 
     Sentence sentence;
-    Sentence_InitWithType(&sentence, 4);
+    Sentence_InitWithType(&sentence, SENTENCE_TYPE_UNION_ROOM);
     EasyChatArgs_SetSentence(menu->taskData, &sentence);
     FieldSystem_OpenEasyChat(fieldSystem, (EasyChatArgs *)menu->taskData);
 

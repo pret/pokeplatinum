@@ -3,15 +3,15 @@
 
 #include <nitro/wm.h>
 
-#include "struct_decls/struct_02014EC4_decl.h"
 #include "struct_decls/struct_0205B43C_decl.h"
-#include "struct_defs/sentence.h"
 
 #include "field/field_system_decl.h"
 
+#include "sentence.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
 #include "trainer_info.h"
+#include "words.h"
 
 UnkStruct_0205B43C *FieldSystem_InitCommUnionRoom(FieldSystem *fieldSystem);
 void sub_0205B388(FieldSystem *fieldSystem);
@@ -44,7 +44,7 @@ void sub_0205BEA8(int param0);
 int UnionRoom_GetTealaMessage(UnkStruct_0205B43C *param0, StringTemplate *strTemplate);
 void sub_0205C010(UnkStruct_0205B43C *param0, Sentence *param1);
 Sentence *sub_0205C028(UnkStruct_0205B43C *param0);
-void UnionRoom_DoGreeting(StringTemplate *strTemplate, int param1, int param2, TrainerInfo *playerTrainerInfo, UnkStruct_02014EC4 *param4);
+void UnionRoom_DoGreeting(StringTemplate *strTemplate, int param1, int param2, TrainerInfo *playerTrainerInfo, UnlockedWords *unlockedWords);
 void sub_0205C12C(Sentence *param0);
 void sub_0205C154(UnkStruct_0205B43C *param0);
 void *UnionRoom_GetTrainerCase(UnkStruct_0205B43C *param0);

@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_0205B43C_decl.h"
-#include "struct_defs/sentence.h"
 #include "struct_defs/struct_0203330C.h"
 #include "struct_defs/struct_0205C22C.h"
 #include "struct_defs/struct_0205C924.h"
@@ -24,6 +23,7 @@
 #include "message_util.h"
 #include "pal_pad.h"
 #include "save_player.h"
+#include "sentence.h"
 #include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_resource.h"
@@ -37,7 +37,6 @@
 #include "text.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
-#include "unk_02014A84.h"
 #include "unk_02033200.h"
 #include "unk_0205B33C.h"
 
@@ -801,7 +800,7 @@ static void ov56_02256EE8(UnkStruct_ov56_02256468 *param0, u32 param1, Sentence 
     v0->unk_00[*v2].unk_14 = *param2;
     v0->unk_00[*v2].unk_0C = param1;
     v0->unk_00[*v2].unk_10 = TrainerInfo_Gender(param3);
-    v0->unk_00[*v2].unk_04 = Sentence_AsString(param2, HEAP_ID_89);
+    v0->unk_00[*v2].unk_04 = Sentence_ToString(param2, HEAP_ID_89);
     v0->unk_00[*v2].unk_08 = ov56_02256E5C(v1, param1, param0->unk_18, param0->unk_1C, param0->unk_10);
 
     (*v2)++;
@@ -821,7 +820,7 @@ static int ov56_02256FC8(UnkStruct_ov56_02256468 *param0, Sentence *param1, int 
 
     for (v0 = 0; v0 < param0->unk_2D4->unk_348; v0++) {
         if (param2 == param0->unk_2D4->unk_00[v0].unk_0C) {
-            if (sub_02014C88(param1, &param0->unk_2D4->unk_00[v0].unk_14)) {
+            if (Sentence_Compare(param1, &param0->unk_2D4->unk_00[v0].unk_14)) {
                 break;
             }
         }
@@ -833,7 +832,7 @@ static int ov56_02256FC8(UnkStruct_ov56_02256468 *param0, Sentence *param1, int 
 
     if (param2 == param0->unk_2D4->unk_00[v0].unk_0C) {
         (void)0;
-    } else if (sub_02014C88(param1, &param0->unk_2D4->unk_00[v0].unk_14)) {
+    } else if (Sentence_Compare(param1, &param0->unk_2D4->unk_00[v0].unk_14)) {
         (void)0;
     }
 

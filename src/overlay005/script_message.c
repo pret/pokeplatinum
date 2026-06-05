@@ -1,7 +1,5 @@
 #include "overlay005/script_message.h"
 
-#include "struct_defs/sentence.h"
-
 #include "field/field_system.h"
 
 #include "bg_window.h"
@@ -12,10 +10,10 @@
 #include "message.h"
 #include "save_player.h"
 #include "script_manager.h"
+#include "sentence.h"
 #include "string_gf.h"
 #include "string_template.h"
 #include "text.h"
-#include "unk_02014A84.h"
 
 typedef struct ScriptMessage {
     String *msgBuf;
@@ -150,11 +148,11 @@ static void GetStringFromSentence(ScriptMessage *msgData, u16 sentenceType, u16 
     String *string;
 
     Sentence_Init(&sentence);
-    sub_02014CE0(&sentence, sentenceType, sentenceID);
+    Sentence_SetTypeAndID(&sentence, sentenceType, sentenceID);
     Sentence_SetWord(&sentence, 0, word1);
     Sentence_SetWord(&sentence, 1, word2);
 
-    string = Sentence_AsString(&sentence, HEAP_ID_FIELD3);
+    string = Sentence_ToString(&sentence, HEAP_ID_FIELD3);
 
     String_Copy(msgData->msgBuf, string);
     String_Free(string);

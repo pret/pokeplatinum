@@ -23,6 +23,7 @@
 #include "render_text.h"
 #include "render_window.h"
 #include "screen_fade.h"
+#include "sentence.h"
 #include "sound_playback.h"
 #include "sprite_system.h"
 #include "string_gf.h"
@@ -30,7 +31,6 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "text.h"
-#include "unk_02014A84.h"
 #include "vram_transfer.h"
 
 #include "res/fonts/pl_font.naix"
@@ -819,7 +819,7 @@ static void MailViewer_PrintText(MailViewerApp *mailViewerApp)
             continue;
         }
 
-        String *sentenceStr = Sentence_AsString(&mailViewerApp->args->sentences[i], mailViewerApp->heapID);
+        String *sentenceStr = Sentence_ToString(&mailViewerApp->args->sentences[i], mailViewerApp->heapID);
 
         Text_AddPrinterWithParamsAndColor(&mailViewerApp->windows[i], FONT_MESSAGE, sentenceStr, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
         String_Free(sentenceStr);

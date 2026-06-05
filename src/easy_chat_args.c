@@ -2,9 +2,6 @@
 
 #include <nitro.h>
 
-#include "struct_decls/struct_02014EC4_decl.h"
-#include "struct_defs/sentence.h"
-
 #include "applications/easy_chat/defs.h"
 
 #include "game_options.h"
@@ -12,10 +9,10 @@
 #include "pokedex.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sentence.h"
 #include "system_flags.h"
-#include "unk_02014A84.h"
-#include "unk_02014D38.h"
 #include "vars_flags.h"
+#include "words.h"
 
 EasyChatArgs *EasyChatArgs_New(u32 type, u32 instructionBankEntry, SaveData *saveData, enum HeapID heapID)
 {
@@ -24,7 +21,7 @@ EasyChatArgs *EasyChatArgs_New(u32 type, u32 instructionBankEntry, SaveData *sav
     args->type = type;
     args->instructionBankEntry = instructionBankEntry;
     args->pokedex = SaveData_GetPokedex(saveData);
-    args->unk_10 = sub_02014EC4(saveData);
+    args->unlockedWords = SaveData_GetUnlockedWords(saveData);
     args->isGameCompleted = SystemFlag_CheckGameCompleted(SaveData_GetVarsFlags(saveData));
     args->unk_05 = FALSE;
     args->isUnmodified = TRUE;
@@ -32,10 +29,10 @@ EasyChatArgs *EasyChatArgs_New(u32 type, u32 instructionBankEntry, SaveData *sav
     args->frame = Options_Frame(SaveData_GetOptions(saveData));
 
     if (type == EASY_CHAT_TYPE_SENTENCE) {
-        Sentence_InitWithType(&args->sentence, 3);
+        Sentence_InitWithType(&args->sentence, SENTENCE_TYPE_GENERAL);
     } else {
-        for (int v1 = 0; v1 < MAX_EASY_CHAT_WORDS; v1++) {
-            args->words[v1] = WORD_NONE;
+        for (int i = 0; i < MAX_EASY_CHAT_WORDS; i++) {
+            args->words[i] = WORD_NONE;
         }
     }
 
@@ -120,9 +117,9 @@ const Pokedex *EasyChatArgs_GetPokedex(const EasyChatArgs *args)
     return args->pokedex;
 }
 
-const UnkStruct_02014EC4 *sub_02097560(const EasyChatArgs *args)
+const UnlockedWords *EasyChatArgs_GetUnlockedWords(const EasyChatArgs *args)
 {
-    return args->unk_10;
+    return args->unlockedWords;
 }
 
 BOOL EasyChatArgs_IsGameCompleted(const EasyChatArgs *args)
@@ -160,7 +157,7 @@ BOOL EasyChatArgs_Compare(const EasyChatArgs *args, const u16 *words, const Sent
         return words[0] == args->words[0] && words[1] == args->words[1];
     case EASY_CHAT_TYPE_SENTENCE:
     default:
-        return sub_02014C88(&args->sentence, sentence);
+        return Sentence_Compare(&args->sentence, sentence);
     }
 }
 

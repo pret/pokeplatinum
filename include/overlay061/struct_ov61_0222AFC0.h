@@ -1,9 +1,9 @@
 #ifndef POKEPLATINUM_STRUCT_OV61_0222AFC0_H
 #define POKEPLATINUM_STRUCT_OV61_0222AFC0_H
 
-#include "struct_defs/sentence.h"
-
 #include "overlay062/struct_ov62_02239DA4_sub1.h"
+
+#include "sentence.h"
 
 typedef struct {
     u16 unk_00[8];

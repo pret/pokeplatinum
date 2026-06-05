@@ -26,7 +26,6 @@
 #include "generated/sdat.h"
 #include "generated/signpost_commands.h"
 #include "generated/signpost_types.h"
-#include "generated/string_padding_mode.h"
 #include "generated/time_of_day.h"
 #include "generated/trainer_score_events.h"
 #include "generated/trainers.h"
@@ -55,6 +54,7 @@
 #include "constants/savedata/vars_flags.h"
 #include "constants/scrcmd.h"
 #include "constants/sound_volume.h"
+#include "constants/string_padding_mode.h"
 #include "constants/tv_broadcast.h"
 #include "constants/union_room_message_types.h"
 #include "constants/villa_visitors.h"
@@ -3817,10 +3817,10 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_27D arg0, arg1
-    .short SCRCMD_27D
-    .short \arg0
-    .short \arg1
+    .macro TryBufferAndUnlockRandomToughWord destVar, index
+    .short SCRCMD_TRYBUFFERANDUNLOCKRANDOMTOUGHWORD
+    .short \destVar
+    .short \index
     .endm
 
     /* Returns TRUE in destVarID if the player has bought at least 5 items at the Veilstone Department Store */
@@ -3829,9 +3829,9 @@
     .short \destVarID
     .endm
 
-    .macro ScrCmd_27F arg0
-    .short SCRCMD_27F
-    .short \arg0
+    .macro CheckAllToughWordsUnlocked destVar
+    .short SCRCMD_CHECKALLTOUGHWORDSUNLOCKED
+    .short \destVar
     .endm
 
     .macro BufferVarPaddingDigits templateArg, varID, paddingMode, maxDigits

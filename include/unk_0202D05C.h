@@ -7,7 +7,6 @@
 #include "struct_decls/struct_0202D080_decl.h"
 #include "struct_decls/struct_0202D750_decl.h"
 #include "struct_decls/struct_0202D764_decl.h"
-#include "struct_defs/sentence.h"
 #include "struct_defs/struct_0202D314.h"
 #include "struct_defs/struct_02049A68.h"
 
@@ -17,6 +16,7 @@
 #include "overlay104/frontier_data_transfer.h"
 
 #include "savedata.h"
+#include "sentence.h"
 
 #define BATTLE_POINTS_FUNC_NONE 0
 #define BATTLE_POINTS_FUNC_SET  1

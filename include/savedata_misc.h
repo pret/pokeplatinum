@@ -4,11 +4,10 @@
 #include "constants/savedata/save_table.h"
 #include "constants/string.h"
 
-#include "struct_defs/sentence.h"
-
 #include "berry_patches.h"
 #include "persisted_map_features.h"
 #include "savedata.h"
+#include "sentence.h"
 #include "string_gf.h"
 
 typedef struct ExtraSaveKey {

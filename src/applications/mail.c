@@ -18,8 +18,8 @@
 #include "pokemon.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sentence.h"
 #include "string_gf.h"
-#include "unk_02014A84.h"
 
 #include "res/text/bank/easy_chat.h"
 
@@ -340,7 +340,7 @@ static BOOL MailApp_Main(ApplicationManager *appMan, int *state)
         if (Sentence_IsValid(&mailApp->viewerArgs->sentences[mailApp->viewerArgs->sentenceIndex])) {
             Sentence_Copy(&mailApp->selectedSentence, &mailApp->viewerArgs->sentences[mailApp->viewerArgs->sentenceIndex]);
         } else {
-            Sentence_InitWithType(&mailApp->selectedSentence, 3);
+            Sentence_InitWithType(&mailApp->selectedSentence, SENTENCE_TYPE_GENERAL);
         }
 
         EasyChatArgs_SetSentence(mailApp->easyChatArgs, &mailApp->selectedSentence);

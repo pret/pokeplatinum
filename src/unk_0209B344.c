@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/sentence.h"
-
 #include "field/field_system.h"
 #include "overlay005/fieldmap.h"
 
@@ -13,8 +11,8 @@
 #include "heap.h"
 #include "savedata_misc.h"
 #include "screen_fade.h"
+#include "sentence.h"
 #include "string_template.h"
-#include "unk_02014A84.h"
 #include "unk_0203D1B8.h"
 
 #include "res/text/bank/easy_chat.h"
@@ -44,7 +42,7 @@ void sub_0209B344(FieldTask *param0, u16 *param1)
     v1->unk_14 = SaveData_MiscSaveBlock(fieldSystem->saveData);
     v1->unk_20 = param1;
 
-    Sentence_InitWithType(&v1->unk_08, 4);
+    Sentence_InitWithType(&v1->unk_08, SENTENCE_TYPE_UNION_ROOM);
     MiscSaveBlock_IntroMsg(v1->unk_14, &v1->unk_08);
     sub_02097520(v1->unk_10);
 

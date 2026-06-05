@@ -1,13 +1,12 @@
 #ifndef POKEPLATINUM_APPLICATIONS_EASY_CHAT_MAIN_H
 #define POKEPLATINUM_APPLICATIONS_EASY_CHAT_MAIN_H
 
-#include "struct_defs/sentence.h"
-
 #include "applications/easy_chat/defs.h"
 #include "applications/easy_chat/struct_ov20_021D2128_decl.h"
 
 #include "easy_chat_args.h"
 #include "overlay_manager.h"
+#include "sentence.h"
 #include "string_gf.h"
 #include "touch_screen_actions.h"
 #include "unk_020998EC.h"

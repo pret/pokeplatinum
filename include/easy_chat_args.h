@@ -1,13 +1,12 @@
 #ifndef POKEPLATINUM_EASY_CHAT_ARGS_H
 #define POKEPLATINUM_EASY_CHAT_ARGS_H
 
-#include "struct_decls/struct_02014EC4_decl.h"
-#include "struct_defs/sentence.h"
-
 #include "applications/easy_chat/defs.h"
 
 #include "pokedex.h"
 #include "savedata.h"
+#include "sentence.h"
+#include "words.h"
 
 typedef struct EasyChatArgs {
     u8 type;
@@ -18,7 +17,7 @@ typedef struct EasyChatArgs {
     u8 unk_05;
     int frame;
     const Pokedex *pokedex;
-    const UnkStruct_02014EC4 *unk_10;
+    const UnlockedWords *unlockedWords;
     Sentence sentence;
     u16 words[MAX_EASY_CHAT_WORDS];
     u8 padding[4];
@@ -40,7 +39,7 @@ u32 EasyChatArgs_GetType(const EasyChatArgs *args);
 u32 EasyChatArgs_GetInstructionBankEntry(const EasyChatArgs *args);
 int EasyChatArgs_GetFrame(const EasyChatArgs *args);
 const Pokedex *EasyChatArgs_GetPokedex(const EasyChatArgs *args);
-const UnkStruct_02014EC4 *sub_02097560(const EasyChatArgs *args);
+const UnlockedWords *EasyChatArgs_GetUnlockedWords(const EasyChatArgs *args);
 BOOL EasyChatArgs_IsGameCompleted(const EasyChatArgs *args);
 BOOL sub_02097568(const EasyChatArgs *args);
 void EasyChatArgs_GetContent(const EasyChatArgs *args, u16 *outWords, Sentence *outSentence);

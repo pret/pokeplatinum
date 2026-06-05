@@ -3,7 +3,8 @@
 
 #include "struct_defs/photo_accessory.h"
 #include "struct_defs/photo_pokemon.h"
-#include "struct_defs/sentence.h"
+
+#include "sentence.h"
 
 #define PHOTO_ACCESSORY_COUNT 10
 

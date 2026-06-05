@@ -5,9 +5,7 @@
 #include "constants/union_room_message_types.h"
 #include "constants/versions.h"
 
-#include "struct_decls/struct_02014EC4_decl.h"
 #include "struct_decls/struct_0205B43C_decl.h"
-#include "struct_defs/sentence.h"
 #include "struct_defs/struct_0203330C.h"
 #include "struct_defs/struct_0205B4F8.h"
 
@@ -25,20 +23,21 @@
 #include "message.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sentence.h"
 #include "string_gf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "trainer_case.h"
 #include "trainer_info.h"
-#include "unk_02014A84.h"
-#include "unk_02014D38.h"
 #include "unk_02033200.h"
 #include "unk_02095E98.h"
 #include "unk_02099500.h"
+#include "words.h"
 
 #include "constdata/const_020ED570.h"
 #include "res/text/bank/country_names.h"
+#include "res/text/bank/greetings.h"
 #include "res/text/bank/union_room.h"
 
 typedef void (*UnkFuncPtr_0205B43C)(UnkStruct_0205B43C *);
@@ -177,7 +176,7 @@ static void sub_0205B408(UnkStruct_0205B43C *param0)
     Sentence v0;
 
     if (CommServerClient_IsInitialized()) {
-        sub_02014AB4(&v0);
+        Sentence_InitWithEnteredUnionRoom(&v0);
         sub_0205C12C(&v0);
         sub_0205C010(param0, &v0);
         sub_0205B5B4(param0, sub_0205B43C, 40);
@@ -1255,7 +1254,7 @@ Sentence *sub_0205C028(UnkStruct_0205B43C *param0)
     return &param0->unk_178;
 }
 
-void UnionRoom_DoGreeting(StringTemplate *strTemplate, int param1, int param2, TrainerInfo *playerTrainerInfo, UnkStruct_02014EC4 *param4)
+void UnionRoom_DoGreeting(StringTemplate *strTemplate, int param1, int param2, TrainerInfo *playerTrainerInfo, UnlockedWords *unlockedWords)
 {
     TrainerInfo *commTrainerInfo;
     MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNION_ROOM, HEAP_ID_FIELD1);
@@ -1280,19 +1279,19 @@ void UnionRoom_DoGreeting(StringTemplate *strTemplate, int param1, int param2, T
     int language = TrainerInfo_Language(commTrainerInfo);
 
     if (language >= LANGUAGE_JAPANESE && language <= LANGUAGE_SPANISH) {
-        static const int v5[] = {
-            0,
-            1,
-            2,
-            3,
-            4,
-            -1,
-            5,
+        static const int greetingBankEntries[] = {
+            [LANGUAGE_JAPANESE - 1] = Greetings_Text_Konnichiwa,
+            [LANGUAGE_ENGLISH - 1] = Greetings_Text_Hello,
+            [LANGUAGE_FRENCH - 1] = Greetings_Text_Bonjour,
+            [LANGUAGE_ITALIAN - 1] = Greetings_Text_Ciao,
+            [LANGUAGE_GERMAN - 1] = Greetings_Text_Hallo,
+            [LANGUAGE_UNUSED_6 - 1] = -1,
+            [LANGUAGE_SPANISH - 1] = Greetings_Text_Hola,
         };
-        u16 v6 = language - 1;
+        u16 index = language - 1;
 
-        if (v6 < NELEMS(v5) && v5[v6] >= 0) {
-            sub_02014F98(param4, v5[v6]);
+        if (index < NELEMS(greetingBankEntries) && greetingBankEntries[index] >= 0) {
+            Words_UnlockGreeting(unlockedWords, greetingBankEntries[index]);
         }
     }
 

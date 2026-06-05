@@ -3,9 +3,9 @@
 
 #include <nitro/wm.h>
 
-#include "struct_defs/sentence.h"
 #include "struct_defs/struct_0203330C.h"
 
+#include "sentence.h"
 #include "trainer_info.h"
 
 void CommServerClient_Init(TrainerInfo *param0, BOOL param1);

@@ -27,7 +27,6 @@
 
 #include "struct_decls/map_object.h"
 #include "struct_decls/map_object_manager.h"
-#include "struct_decls/struct_02014EC4_decl.h"
 #include "struct_decls/struct_0205C22C_decl.h"
 #include "struct_decls/tv_broadcast.h"
 #include "struct_defs/battle_tower.h"
@@ -188,7 +187,6 @@
 #include "trainer_info.h"
 #include "tv_segment.h"
 #include "underground.h"
-#include "unk_02014D38.h"
 #include "unk_020298BC.h"
 #include "unk_0202C9F4.h"
 #include "unk_02033200.h"
@@ -220,9 +218,11 @@
 #include "unk_0209C194.h"
 #include "vars_flags.h"
 #include "wifi_list.h"
+#include "words.h"
 
 #include "constdata/const_020F8BE0.h"
 #include "res/text/bank/mystery_gift_phrase.h"
+#include "res/text/bank/tough_words.h"
 
 typedef struct {
     SysTask *unk_00;
@@ -653,9 +653,9 @@ static BOOL ScrCmd_GetDailyRandomLevel(ScriptContext *ctx);
 static BOOL ScrCmd_RemoveAccessory(ScriptContext *ctx);
 static BOOL ScrCmd_UseVistaLighthouseBinoculars(ScriptContext *ctx);
 static BOOL ScrCmd_InitDailyRandomLevel(ScriptContext *ctx);
-static BOOL ScrCmd_27D(ScriptContext *ctx);
+static BOOL ScrCmd_TryBufferAndUnlockRandomToughWord(ScriptContext *ctx);
 static BOOL ScrCmd_CheckIsDepartmentStoreRegular(ScriptContext *ctx);
-static BOOL ScrCmd_27F(ScriptContext *ctx);
+static BOOL ScrCmd_CheckAllToughWordsUnlocked(ScriptContext *ctx);
 static BOOL ScrCmd_CheckIsTodayPlayerBirthday(ScriptContext *ctx);
 static BOOL ScrCmd_GetUnownFormsSeenCount(ScriptContext *ctx);
 static BOOL ScrCmd_InitTurnbackCave(ScriptContext *ctx);
@@ -4242,7 +4242,7 @@ static BOOL ScrCmd_DoUnionRoomGreeting(ScriptContext *ctx)
     StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u16 v2 = ScriptContext_ReadHalfWord(ctx);
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(ctx->fieldSystem));
-    UnkStruct_02014EC4 *v4 = sub_02014EC4(FieldSystem_GetSaveData(ctx->fieldSystem));
+    UnlockedWords *unlockedWords = SaveData_GetUnlockedWords(FieldSystem_GetSaveData(ctx->fieldSystem));
     u16 v5;
 
     if (v2 == 0) {
@@ -4251,7 +4251,7 @@ static BOOL ScrCmd_DoUnionRoomGreeting(ScriptContext *ctx)
         v5 = 0;
     }
 
-    UnionRoom_DoGreeting(*strTemplate, v2, v5, trainerInfo, v4);
+    UnionRoom_DoGreeting(*strTemplate, v2, v5, trainerInfo, unlockedWords);
     return FALSE;
 }
 
@@ -6011,40 +6011,38 @@ static BOOL ScrCmd_InitDailyRandomLevel(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_27D(ScriptContext *ctx)
+static BOOL ScrCmd_TryBufferAndUnlockRandomToughWord(ScriptContext *ctx)
 {
-    u16 *v2 = ScriptContext_GetVarPointer(ctx);
-    u16 v3 = ScriptContext_GetVar(ctx);
-    StringTemplate **v4 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    u16 index = ScriptContext_GetVar(ctx);
+    StringTemplate **template = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
 
-    UnkStruct_02014EC4 *v0 = sub_02014EC4(ctx->fieldSystem->saveData);
-    u32 v1 = sub_02014EE4(v0);
+    UnlockedWords *unlockedWords = SaveData_GetUnlockedWords(ctx->fieldSystem->saveData);
+    u32 bankEntry = Words_TryUnlockRandomToughWord(unlockedWords);
 
-    if (v1 == 32) {
-        *v2 = 0xffff;
+    if (bankEntry == TEXT_BANK_TOUGH_WORDS_ENTRY_COUNT) {
+        *destVar = -1;
         return FALSE;
     } else {
-        *v2 = v1;
+        *destVar = bankEntry;
     }
 
-    {
-        u16 v5 = sub_02014F64(v1);
-        StringTemplate_SetCustomMessageWord(*v4, v3, v5);
-    }
+    u16 word = Words_GetToughWordFromBankEntry(bankEntry);
+    StringTemplate_SetCustomMessageWord(*template, index, word);
 
     return FALSE;
 }
 
-static BOOL ScrCmd_27F(ScriptContext *ctx)
+static BOOL ScrCmd_CheckAllToughWordsUnlocked(ScriptContext *ctx)
 {
-    u16 *v1 = ScriptContext_GetVarPointer(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    UnkStruct_02014EC4 *v0 = sub_02014EC4(ctx->fieldSystem->saveData);
+    UnlockedWords *unlockedWords = SaveData_GetUnlockedWords(ctx->fieldSystem->saveData);
 
-    if (sub_02014F48(v0) == TRUE) {
-        *v1 = 1;
+    if (Words_AreAllToughWordsUnlocked(unlockedWords) == TRUE) {
+        *destVar = TRUE;
     } else {
-        *v1 = 0;
+        *destVar = FALSE;
     }
 
     return FALSE;

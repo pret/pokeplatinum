@@ -7,7 +7,6 @@
 #include "struct_decls/struct_0202D750_decl.h"
 #include "struct_decls/struct_0202D764_decl.h"
 #include "struct_defs/battle_frontier.h"
-#include "struct_defs/sentence.h"
 #include "struct_defs/struct_02049A68.h"
 
 #include "overlay090/struct_ov90_021D0D80.h"
@@ -26,6 +25,7 @@
 #include "render_oam.h"
 #include "save_player.h"
 #include "screen_fade.h"
+#include "sentence.h"
 #include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
@@ -33,7 +33,6 @@
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_02014A84.h"
 #include "unk_0202D05C.h"
 #include "unk_0208C098.h"
 #include "vram_transfer.h"
@@ -824,7 +823,7 @@ static void ov90_021D1A48(UnkStruct_ov90_021D0ECC *param0)
     String *v0;
     UnkStruct_ov90_021D17F8 *v1 = &(param0->unk_BC[param0->unk_0B * 3 + param0->unk_0C]);
 
-    v0 = Sentence_AsString(&v1->unk_08, param0->heapID);
+    v0 = Sentence_ToString(&v1->unk_08, param0->heapID);
 
     Window_FillTilemap(&param0->unk_6C[2], (0 << 4) | 0);
     Text_AddPrinterWithParamsAndColor(&param0->unk_6C[2], FONT_SYSTEM, v0, 0, 4, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);

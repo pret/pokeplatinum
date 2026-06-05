@@ -9,7 +9,6 @@
 #include "generated/pokemon_contest_types.h"
 
 #include "struct_defs/image_clips.h"
-#include "struct_defs/sentence.h"
 #include "struct_defs/struct_020298D8.h"
 
 #include "overlay022/ov22_02259098.h"
@@ -21,9 +20,9 @@
 #include "inlines.h"
 #include "pokemon.h"
 #include "savedata.h"
+#include "sentence.h"
 #include "software_sprite.h"
 #include "string_gf.h"
-#include "unk_02014A84.h"
 
 #define PHOTO_EMPTY_MAGIC (0x1234) // Photo is initialized but without proper data.
 #define PHOTO_FULL_MAGIC  (0x2345) // Photo has data written to it

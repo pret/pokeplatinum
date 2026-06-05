@@ -3,10 +3,9 @@
 
 #include "constants/string.h"
 
-#include "struct_defs/sentence.h"
-
 #include "charcode.h"
 #include "savedata.h"
+#include "sentence.h"
 
 #define MAIL_TYPE_NONE 0xFFFF
 

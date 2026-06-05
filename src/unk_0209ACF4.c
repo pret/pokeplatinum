@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/sentence.h"
-
 #include "field/field_system.h"
 #include "overlay005/fieldmap.h"
 
@@ -18,12 +16,12 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "screen_fade.h"
+#include "sentence.h"
 #include "sound_playback.h"
 #include "string_gf.h"
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_02014A84.h"
 #include "unk_0202D05C.h"
 #include "unk_0203D1B8.h"
 

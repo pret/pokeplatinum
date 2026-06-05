@@ -6,7 +6,6 @@
 #include "constants/battle_tower.h"
 
 #include "struct_defs/battle_frontier.h"
-#include "struct_defs/sentence.h"
 #include "struct_defs/struct_0202D060.h"
 #include "struct_defs/struct_0202D080.h"
 #include "struct_defs/struct_0202D314.h"
@@ -24,7 +23,7 @@
 #include "inlines.h"
 #include "message.h"
 #include "savedata.h"
-#include "unk_02014A84.h"
+#include "sentence.h"
 
 int sub_0202D05C(void)
 {
@@ -44,10 +43,10 @@ void sub_0202D06C(UnkStruct_0202D750 *param0)
 
 void sub_0202D080(UnkStruct_0202D080 *param0)
 {
-    sub_02014AC4(&param0->unk_00[0], 0);
-    sub_02014AC4(&param0->unk_00[1], 1);
-    sub_02014AC4(&param0->unk_00[2], 2);
-    sub_02014AC4(&param0->unk_00[3], 3);
+    Sentence_SetDefaultFrontierFields(&param0->unk_00[0], SENTENCE_TYPE_PRE_BATTLE);
+    Sentence_SetDefaultFrontierFields(&param0->unk_00[1], SENTENCE_TYPE_WIN);
+    Sentence_SetDefaultFrontierFields(&param0->unk_00[2], SENTENCE_TYPE_LOSS);
+    Sentence_SetDefaultFrontierFields(&param0->unk_00[3], FRONTIER_SENTENCE_TYPE_NO_1);
 }
 
 void sub_0202D0AC(UnkStruct_0202D764 *param0)

@@ -3,9 +3,9 @@
 #include "constants/graphics.h"
 #include "constants/heap.h"
 #include "constants/pokemon.h"
+#include "constants/string_padding_mode.h"
 #include "generated/genders.h"
 #include "generated/species.h"
-#include "generated/string_padding_mode.h"
 
 #include "applications/party_menu/defs.h"
 #include "applications/party_menu/main.h"

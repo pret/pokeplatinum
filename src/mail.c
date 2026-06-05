@@ -14,8 +14,8 @@
 #include "pokemon_icon.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sentence.h"
 #include "trainer_info.h"
-#include "unk_02014A84.h"
 
 #include "res/pokemon/pl_poke_icon.naix"
 #include "res/pokemon/species_icon_palettes.h"

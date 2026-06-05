@@ -28,12 +28,12 @@
 #include "pal_pad.h"
 #include "player_avatar.h"
 #include "savedata.h"
+#include "sentence.h"
 #include "sound_playback.h"
 #include "string_gf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "trainer_info.h"
-#include "unk_02014A84.h"
 #include "unk_0205B33C.h"
 #include "unk_020655F4.h"
 
@@ -492,7 +492,7 @@ static void sub_0205C8DC(UnkStruct_0205C924 *param0)
     param0->unk_04 = NULL;
     param0->unk_08 = NULL;
 
-    Sentence_InitWithType(&param0->unk_14, 0);
+    Sentence_InitWithType(&param0->unk_14, SENTENCE_TYPE_PRE_BATTLE);
 
     param0->unk_10 = 0;
     param0->unk_0C = 0;

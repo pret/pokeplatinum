@@ -2,9 +2,9 @@
 #define POKEPLATINUM_UNK_02030A80_H
 
 #include "struct_decls/struct_02030A80_decl.h"
-#include "struct_defs/sentence.h"
 
 #include "savedata.h"
+#include "sentence.h"
 #include "string_gf.h"
 
 UnkStruct_02030A80 *sub_02030A80(enum HeapID heapID);

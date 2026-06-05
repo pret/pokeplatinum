@@ -5,11 +5,10 @@
 
 #include "constants/graphics.h"
 #include "constants/narc.h"
-#include "generated/string_padding_mode.h"
+#include "constants/string_padding_mode.h"
 
 #include "struct_decls/struct_0202F298_decl.h"
 #include "struct_decls/struct_0202F41C_decl.h"
-#include "struct_defs/sentence.h"
 #include "struct_defs/struct_02030A80.h"
 #include "struct_defs/struct_0208B878.h"
 #include "struct_defs/struct_0208C06C.h"
@@ -45,6 +44,7 @@
 #include "pokemon_icon.h"
 #include "pokemon_sprite.h"
 #include "savedata_misc.h"
+#include "sentence.h"
 #include "sound_playback.h"
 #include "sprite_system.h"
 #include "string_gf.h"
@@ -55,7 +55,6 @@
 #include "text.h"
 #include "touch_screen.h"
 #include "unk_02012744.h"
-#include "unk_02014A84.h"
 #include "unk_0202F1D4.h"
 #include "unk_02030A80.h"
 #include "unk_0208B284.h"
@@ -516,7 +515,7 @@ static void ov62_02231C78(UnkStruct_ov62_022323B8 *param0, UnkStruct_0208C06C *p
 
                 v8 = sub_02030C28(v11, &v15, HEAP_ID_102);
                 if (v8 == NULL) {
-                    v8 = Sentence_AsString(&v15, HEAP_ID_102);
+                    v8 = Sentence_ToString(&v15, HEAP_ID_102);
                 }
 
                 Window_FillTilemap(v10, 0x00);

@@ -2,8 +2,8 @@
 
 #include <string.h>
 
+#include "constants/string_padding_mode.h"
 #include "generated/items.h"
-#include "generated/string_padding_mode.h"
 #include "generated/text_banks.h"
 
 #include "struct_defs/image_clips.h"

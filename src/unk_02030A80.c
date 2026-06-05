@@ -3,7 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/sentence.h"
+#include "generated/text_banks.h"
+
 #include "struct_defs/struct_0202F298_sub1.h"
 #include "struct_defs/struct_02030A80.h"
 #include "struct_defs/wi_fi_history.h"
@@ -15,16 +16,18 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "savedata_misc.h"
+#include "sentence.h"
 #include "species.h"
 #include "string_gf.h"
 #include "system_data.h"
 #include "trainer_info.h"
-#include "unk_02014A84.h"
-#include "unk_02014D38.h"
 #include "unk_020996D0.h"
 #include "wifi_history_save_data.h"
+#include "words.h"
 
 #include "res/text/bank/country_names.h"
+#include "res/text/bank/greetings.h"
+#include "res/text/bank/union_room_sentences.h"
 
 UnkStruct_02030A80 *sub_02030A80(enum HeapID heapID)
 {
@@ -157,16 +160,16 @@ String *sub_02030C28(const UnkStruct_02030A80 *param0, Sentence *param1, enum He
         } else {
             u32 v1, v2;
 
-            if (((param1->words[0] != 0xffff) && (sub_02014E4C(param1->words[0], &v1, &v2) == 0)) || ((param1->words[1] != 0xffff) && (sub_02014E4C(param1->words[1], &v1, &v2) == 0))) {
+            if (((param1->words[0] != WORD_NONE) && (Word_GetLoaderIndexAndEntry(param1->words[0], &v1, &v2) == 0)) || ((param1->words[1] != WORD_NONE) && (Word_GetLoaderIndexAndEntry(param1->words[1], &v1, &v2) == 0))) {
                 v0++;
             }
         }
 
         if (v0 > 0) {
-            Sentence_InitWithType(param1, 4);
-            param1->id = 0;
-            param1->words[0] = sub_02014DFC(441, 99);
-            param1->words[1] = 0xffff;
+            Sentence_InitWithType(param1, SENTENCE_TYPE_UNION_ROOM);
+            param1->id = UnionRoomSentences_Text_BlankHello;
+            param1->words[0] = Word_FromBankAndEntry(TEXT_BANK_GREETINGS, Greetings_Text_Regards);
+            param1->words[1] = WORD_NONE;
         }
 
         return NULL;

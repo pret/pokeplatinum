@@ -9,7 +9,6 @@
 #include "generated/species_data_params.h"
 #include "generated/trainer_classes.h"
 
-#include "struct_defs/sentence.h"
 #include "struct_defs/wi_fi_history.h"
 
 #include "charcode_util.h"
@@ -26,6 +25,7 @@
 #include "pokemon_icon.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sentence.h"
 #include "sprite.h"
 #include "string_gf.h"
 #include "string_template.h"

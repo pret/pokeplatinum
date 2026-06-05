@@ -85,6 +85,8 @@ void Json::WriteHeader(const string &_filename) {
         hstrm << "#define " << id_strings[i] << " " << i << "\n";
     }
 
+    hstrm << "#define " << guard.substr(4, guard.size() - 6) << "_ENTRY_COUNT" << " " << id_strings.size() << "\n";
+
     hstrm << "\n";
     hstrm << "#endif // MSGENC_" << guard << "\n";
     hstrm.flush();

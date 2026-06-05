@@ -22,7 +22,7 @@
 #include "string_gf.h"
 #include "string_template.h"
 #include "text.h"
-#include "unk_02014D38.h"
+#include "words.h"
 
 typedef struct {
     s16 unk_00;
@@ -406,7 +406,7 @@ static void ov20_021D351C(UnkStruct_ov20_021D30F8 *param0, Window *param1, const
         u32 v1;
 
         ov20_021D34CC(param2, &v0);
-        sub_02014DB8(param3, param0->unk_4C);
+        Word_ToString(param3, param0->unk_4C);
 
         v1 = (v0.unk_00 + (96 / 2)) - (Font_CalcStringWidth(FONT_MESSAGE, param0->unk_4C, 0) / 2);
 

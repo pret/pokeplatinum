@@ -5,7 +5,6 @@
 #include "constants/heap.h"
 #include "constants/net.h"
 
-#include "struct_defs/sentence.h"
 #include "struct_defs/struct_0203330C.h"
 #include "struct_defs/struct_02034168.h"
 
@@ -14,9 +13,9 @@
 #include "communication_information.h"
 #include "communication_system.h"
 #include "heap.h"
+#include "sentence.h"
 #include "system.h"
 #include "trainer_info.h"
-#include "unk_02014A84.h"
 #include "unk_0203266C.h"
 #include "wireless_manager.h"
 

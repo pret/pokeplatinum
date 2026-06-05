@@ -60,6 +60,7 @@
 #include "render_text.h"
 #include "render_window.h"
 #include "screen_fade.h"
+#include "sentence.h"
 #include "sound.h"
 #include "sound_playback.h"
 #include "sprite.h"
@@ -70,7 +71,6 @@
 #include "trainer_data.h"
 #include "trainer_info.h"
 #include "tv_segment.h"
-#include "unk_02014A84.h"
 #include "unk_0202F1D4.h"
 
 static void BattleMessage_CheckSide(BattleSystem *battleSys, BattleMessage *battleMsg);
@@ -1602,9 +1602,9 @@ u8 BattleMessage_PrintTrainerMessage(BattleSystem *battleSys, int trainerID, int
             String *string;
 
             if (msgType == TRMSG_WIN) {
-                string = Sentence_AsString(&battleSys->trainers[battler].winMsg, HEAP_ID_BATTLE);
+                string = Sentence_ToString(&battleSys->trainers[battler].winMsg, HEAP_ID_BATTLE);
             } else {
-                string = Sentence_AsString(&battleSys->trainers[battler].loseMsg, HEAP_ID_BATTLE);
+                string = Sentence_ToString(&battleSys->trainers[battler].loseMsg, HEAP_ID_BATTLE);
             }
 
             Window_FillTilemap(window, 0xFF);

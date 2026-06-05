@@ -3,7 +3,6 @@
 #include <nitro.h>
 
 #include "struct_decls/struct_020998EC_decl.h"
-#include "struct_defs/sentence.h"
 
 #include "applications/easy_chat/abc_mode.h"
 #include "applications/easy_chat/defs.h"
@@ -13,14 +12,15 @@
 #include "easy_chat_args.h"
 #include "heap.h"
 #include "overlay_manager.h"
+#include "sentence.h"
 #include "sound.h"
 #include "sound_playback.h"
 #include "string_gf.h"
 #include "system.h"
 #include "touch_screen.h"
 #include "touch_screen_actions.h"
-#include "unk_02014A84.h"
 #include "unk_020998EC.h"
+#include "words.h"
 
 enum EasyChatTouchButton {
     TOUCH_BUTTON_GROUP_MODE = 0,
@@ -204,7 +204,7 @@ static EasyChatApp *EasyChatApp_New(ApplicationManager *appMan)
 static void ov20_021D0F64(UnkStruct_ov20_021D0F64 *param0, Sentence *param1)
 {
     param0->unk_00 = Sentence_GetType(param1);
-    param0->unk_03 = sub_02014CD4(param0->unk_00);
+    param0->unk_03 = Sentence_GetBankEntryCountForType(param0->unk_00);
     param0->unk_02 = Sentence_GetID(param1);
 }
 
@@ -220,10 +220,10 @@ static void ov20_021D0F88(UnkStruct_ov20_021D0F64 *param0, Sentence *param1)
             param0->unk_00 = 0;
         }
 
-        param0->unk_03 = sub_02014CD4(param0->unk_00);
+        param0->unk_03 = Sentence_GetBankEntryCountForType(param0->unk_00);
     }
 
-    sub_02014CE0(param1, param0->unk_00, param0->unk_02);
+    Sentence_SetTypeAndID(param1, param0->unk_00, param0->unk_02);
 }
 
 static void ov20_021D0FCC(UnkStruct_ov20_021D0F64 *param0, Sentence *param1)
@@ -237,11 +237,11 @@ static void ov20_021D0FCC(UnkStruct_ov20_021D0F64 *param0, Sentence *param1)
             param0->unk_00 = (5 - 1);
         }
 
-        param0->unk_03 = sub_02014CD4(param0->unk_00);
+        param0->unk_03 = Sentence_GetBankEntryCountForType(param0->unk_00);
         param0->unk_02 = (param0->unk_03 - 1);
     }
 
-    sub_02014CE0(param1, param0->unk_00, param0->unk_02);
+    Sentence_SetTypeAndID(param1, param0->unk_00, param0->unk_02);
 }
 
 static void EasyChat_FreeAppData(EasyChatApp *easyChatApp, ApplicationManager *appMan)

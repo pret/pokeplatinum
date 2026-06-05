@@ -3,14 +3,13 @@
 
 #include "constants/string.h"
 
-#include "struct_defs/sentence.h"
 #include "struct_defs/trainer_data.h"
 
 #include "charcode.h"
+#include "sentence.h"
 
 typedef struct Trainer {
     TrainerHeader header;
-
     charcode_t name[TRAINER_NAME_LEN + 1];
     Sentence winMsg;
     Sentence loseMsg;

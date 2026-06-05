@@ -7,8 +7,6 @@
 #include "constants/field_base_tiles.h"
 #include "constants/narc.h"
 
-#include "struct_defs/sentence.h"
-
 #include "applications/party_menu/main.h"
 #include "overlay063/ov63_0222BE18.h"
 #include "overlay063/ov63_0222CCE4.h"
@@ -40,6 +38,7 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "screen_fade.h"
+#include "sentence.h"
 #include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
@@ -50,7 +49,6 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "text.h"
-#include "unk_02014A84.h"
 #include "unk_0209B6F8.h"
 
 #define LIST_MENU_ENTRY_NO_ALT_TEXT 0xFF
@@ -170,11 +168,11 @@ static void GetStringFromSentence(String *msgBuf, u16 sentenceType, u16 sentence
     String *string;
 
     Sentence_Init(&sentence);
-    sub_02014CE0(&sentence, sentenceType, sentenceID);
+    Sentence_SetTypeAndID(&sentence, sentenceType, sentenceID);
     Sentence_SetWord(&sentence, 0, word1);
     Sentence_SetWord(&sentence, 1, word2);
 
-    string = Sentence_AsString(&sentence, HEAP_ID_FIELD3);
+    string = Sentence_ToString(&sentence, HEAP_ID_FIELD3);
     String_Copy(msgBuf, string);
     String_Free(string);
 }

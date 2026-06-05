@@ -1,8 +1,9 @@
 #ifndef POKEPLATINUM_STRUCT_02030A80_H
 #define POKEPLATINUM_STRUCT_02030A80_H
 
-#include "struct_defs/sentence.h"
 #include "struct_defs/struct_0202F298_sub1.h"
+
+#include "sentence.h"
 
 typedef struct UnkStruct_02030A80_t {
     u16 unk_00[8];

@@ -1,11 +1,11 @@
 #ifndef POKEPLATINUM_STRUCT_OV61_0222AE80_H
 #define POKEPLATINUM_STRUCT_OV61_0222AE80_H
 
-#include "struct_defs/sentence.h"
-
 #include "overlay061/struct_ov61_0222AE80_sub1.h"
 #include "overlay061/struct_ov61_0222AE80_sub2.h"
 #include "overlay062/struct_ov62_02239DA4_sub1.h"
+
+#include "sentence.h"
 
 typedef struct {
     u32 integrity;
