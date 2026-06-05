@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_STRUCT_BATTLE_MESSAGE_DEFS_H
-#define POKEPLATINUM_STRUCT_BATTLE_MESSAGE_DEFS_H
+#ifndef POKEPLATINUM_BATTLE_MESSAGE_DEFS_H
+#define POKEPLATINUM_BATTLE_MESSAGE_DEFS_H
 
 #include "constants/battle.h"
 #include "constants/moves.h"
@@ -8,7 +8,7 @@
 
 #include "battle/battle_message.h"
 #include "battle/party_gauge.h"
-#include "battle/struct_ov16_0225C29C_sub1.h"
+#include "battle/target_mon_data.h"
 
 #include "pokemon.h"
 
@@ -396,4 +396,4 @@ typedef struct CommandClearMsg {
     u16 padding_02;
 } CommandClearMsg;
 
-#endif // POKEPLATINUM_STRUCT_BATTLE_MESSAGE_DEFS_H
+#endif // POKEPLATINUM_BATTLE_MESSAGE_DEFS_H

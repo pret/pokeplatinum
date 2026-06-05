@@ -7,7 +7,6 @@
 
 #include "battle/battle_subscreen.h"
 #include "battle/battle_system.h"
-#include "battle/struct_ov16_02268A14_decl.h"
 
 #include "heap.h"
 #include "narc.h"

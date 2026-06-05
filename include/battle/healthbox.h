@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_HEALTHBOX_H
-#define POKEPLATINUM_HEALTHBOX_H
+#ifndef POKEPLATINUM_BATTLE_HEALTHBOX_H
+#define POKEPLATINUM_BATTLE_HEALTHBOX_H
 
 #include "struct_decls/battle_system.h"
 
@@ -178,4 +178,4 @@ void dummy_0226846C(HealthBox *healthbox);
 void Healthbox_StartBobAnimation(HealthBox *healthbox);
 void Healthbox_StopBobAnimation(HealthBox *healthbox);
 
-#endif // POKEPLATINUM_HEALTHBOX_H
+#endif // POKEPLATINUM_BATTLE_HEALTHBOX_H

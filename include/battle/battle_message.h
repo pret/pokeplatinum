@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_BATTLE_MESSAGE_H
-#define POKEPLATINUM_BATTLE_MESSAGE_H
+#ifndef POKEPLATINUM_BATTLE_BATTLE_MESSAGE_H
+#define POKEPLATINUM_BATTLE_BATTLE_MESSAGE_H
 
 typedef struct BattleMessage {
     u8 commandCode;
@@ -10,4 +10,4 @@ typedef struct BattleMessage {
     int battler;
 } BattleMessage;
 
-#endif // POKEPLATINUM_BATTLE_MESSAGE_H
+#endif // POKEPLATINUM_BATTLE_BATTLE_MESSAGE_H

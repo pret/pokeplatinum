@@ -10555,8 +10555,8 @@ static void BattleScript_CatchMonTask(SysTask *task, void *inData)
             ov12_0223783C(data->ballRotation);
             PokemonSpriteManager_DeleteAll(monSpriteMan);
             BattleSystem_HideBattleScreen(data->battleSys);
-            Terrain_SetVisibility(BattleSystem_GetTerrainForSide(data->battleSys, 0), 0);
-            Terrain_SetVisibility(BattleSystem_GetTerrainForSide(data->battleSys, 1), 0);
+            Terrain_SetVisibility(BattleSystem_GetTerrainForSide(data->battleSys, BATTLE_SIDE_PLAYER), FALSE);
+            Terrain_SetVisibility(BattleSystem_GetTerrainForSide(data->battleSys, BATTLE_SIDE_ENEMY), FALSE);
             BattlerData_SetTrainerVisibility(BattleSystem_GetBattlerData(data->battleSys, 0), FALSE);
 
             dexEntryScreenParams.bgConfig = BattleSystem_GetBgConfig(data->battleSys);

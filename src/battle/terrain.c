@@ -218,7 +218,7 @@ void Terrain_UnloadResources(Terrain *terrain)
     SpriteManager_UnloadAnimObjById(spriteMan, animResourceID);
 }
 
-void Terrain_SetVisibility(Terrain *terrain, int draw)
+void Terrain_SetVisibility(Terrain *terrain, BOOL draw)
 {
     if (terrain->managedSprite == NULL) {
         return;

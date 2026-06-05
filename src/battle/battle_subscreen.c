@@ -22,9 +22,7 @@
 #include "battle/indicator.h"
 #include "battle/move_display_info.h"
 #include "battle/move_select_data.h"
-#include "battle/struct_ov16_0226C378.h"
-#include "battle/struct_ov16_0226DC24_decl.h"
-#include "battle/struct_ov16_0226DEEC_decl.h"
+#include "battle/saved_cursor_position.h"
 #include "battle/target_select_data.h"
 #include "overlay011/move_palettes.h"
 
@@ -187,7 +185,7 @@ typedef struct {
     TextWindowLayout ppLabelWindows[4];
 } MoveDisplayData;
 
-typedef struct BattleSubscreen_t {
+typedef struct BattleSubscreen {
     BattleSystem *battleSys;
     u8 *suppressActivationSfxPtr;
     SysTask *animatePartyBallsTask;
@@ -240,7 +238,7 @@ typedef struct BattleSubscreen_t {
         u8 phase;
         u8 delay;
     } catchTutorialState;
-} BattleSubscreen_t;
+} BattleSubscreen;
 
 typedef struct BattleMenuConfig {
     u16 unused_00;

@@ -8,7 +8,7 @@
 #include "battle/battle_message.h"
 #include "battle/healthbox.h"
 #include "battle/message_defs.h"
-#include "battle/struct_ov16_0226C378.h"
+#include "battle/saved_cursor_position.h"
 
 #include "pokemon_sprite.h"
 

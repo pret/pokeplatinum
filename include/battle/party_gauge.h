@@ -1,10 +1,12 @@
 #ifndef POKEPLATINUM_BATTLE_PARTY_GAUGE_H
 #define POKEPLATINUM_BATTLE_PARTY_GAUGE_H
 
-#include "battle/struct_ov16_0226D160_decl.h"
+#include "battle/party_gauge.h"
 
 #include "palette.h"
 #include "sprite_system.h"
+
+typedef struct PartyGauge PartyGauge;
 
 enum PartyStockStatus {
     STOCK_STATUS_NO_MON = 0,

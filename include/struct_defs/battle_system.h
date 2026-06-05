@@ -10,9 +10,9 @@
 #include "struct_defs/trainer.h"
 
 #include "battle/battle_context.h"
+#include "battle/battle_subscreen.h"
+#include "battle/party_gauge.h"
 #include "battle/pokemon_sprite_data.h"
-#include "battle/struct_ov16_02268A14_decl.h"
-#include "battle/struct_ov16_0226D160_decl.h"
 #include "battle/terrain.h"
 #include "battle/trainer_intro_data.h"
 #include "battle_anim/battle_anim_system.h"

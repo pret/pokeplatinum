@@ -22,9 +22,11 @@
 #include "struct_defs/trainer.h"
 
 #include "battle/action_select_data.h"
+#include "battle/ball_throw_flash_data.h"
 #include "battle/battle_anim_battler_context.h"
 #include "battle/battle_context.h"
 #include "battle/battle_controller.h"
+#include "battle/battle_item_use.h"
 #include "battle/battle_lib.h"
 #include "battle/battle_main.h"
 #include "battle/battle_message.h"
@@ -38,12 +40,9 @@
 #include "battle/move_display_info.h"
 #include "battle/move_select_data.h"
 #include "battle/party_gauge.h"
-#include "battle/struct_ov16_0224DDA8.h"
-#include "battle/struct_ov16_0225CBB8.h"
-#include "battle/struct_ov16_02264650.h"
-#include "battle/struct_ov16_02268A14_decl.h"
-#include "battle/struct_ov16_0226C378.h"
-#include "battle/struct_ov16_0226D160_decl.h"
+#include "battle/saved_cursor_position.h"
+#include "battle/setup_task_data.h"
+#include "battle/target_mon_data.h"
 #include "battle/target_select_data.h"
 #include "battle/trainer_ai.h"
 #include "battle_anim/battle_anim_system.h"
@@ -250,11 +249,11 @@ void BattleDisplay_InitTaskSetEncounter(BattleSystem *battleSys, BattlerData *ba
 
     if (battlerData->battlerType & BATTLER_THEM) {
         monEncounterData->face = FACE_FRONT;
-        monEncounterData->terrain = BattleSystem_GetTerrainForSide(battleSys, 1);
+        monEncounterData->terrain = BattleSystem_GetTerrainForSide(battleSys, BATTLE_SIDE_ENEMY);
         ManagedSprite_SetPositionXY(monEncounterData->terrain->managedSprite, gEncounterCoords[battlerData->battlerType & BATTLER_THEM][0], 8 * 11);
     } else {
         monEncounterData->face = FACE_BACK;
-        monEncounterData->terrain = BattleSystem_GetTerrainForSide(battleSys, 0);
+        monEncounterData->terrain = BattleSystem_GetTerrainForSide(battleSys, BATTLE_SIDE_PLAYER);
         ManagedSprite_SetPositionXY(monEncounterData->terrain->managedSprite, gEncounterCoords[battlerData->battlerType & BATTLER_THEM][0], 128 + 8);
     }
 
@@ -525,11 +524,11 @@ void BattleDisplay_InitTaskSetTrainerEncounter(BattleSystem *battleSys, BattlerD
 
     if (battlerData->battlerType & BATTLER_THEM) {
         trainerEncounterData->face = FACE_FRONT;
-        trainerEncounterData->terrain = BattleSystem_GetTerrainForSide(battleSys, 1);
+        trainerEncounterData->terrain = BattleSystem_GetTerrainForSide(battleSys, BATTLE_SIDE_ENEMY);
         ManagedSprite_SetPositionXY(trainerEncounterData->terrain->managedSprite, gEncounterCoords[battlerData->battlerType & BATTLER_THEM][0], 8 * 11);
     } else {
         trainerEncounterData->face = FACE_BACK;
-        trainerEncounterData->terrain = BattleSystem_GetTerrainForSide(battleSys, 0);
+        trainerEncounterData->terrain = BattleSystem_GetTerrainForSide(battleSys, BATTLE_SIDE_PLAYER);
         ManagedSprite_SetPositionXY(trainerEncounterData->terrain->managedSprite, gEncounterCoords[battlerData->battlerType & BATTLER_THEM][0], 128 + 8);
     }
 
@@ -810,8 +809,6 @@ void BattleDisplay_InitTaskShowMoveSelectMenu(BattleSystem *battleSys, BattlerDa
 
     SysTask_Start(battlerData->taskFuncs.showMoveSelectMenu, moveSelectMenuData, 0);
 }
-
-#include "battle/struct_ov16_0225C29C_sub1.h"
 
 typedef struct TargetSelectMenuData {
     BattleSystem *battleSys;
@@ -6322,10 +6319,10 @@ static void BattleDisplay_PlayMoveAnimation(BattleSystem *battleSys, BattlerData
     int move;
 
     if (animation->animMode == 0) {
-        battlerContext.moveArcID = 8;
+        battlerContext.moveArcID = NARC_INDEX_WAZAEFFECT__WE;
         move = animation->move;
     } else {
-        battlerContext.moveArcID = 63;
+        battlerContext.moveArcID = NARC_INDEX_WAZAEFFECT__WE_SUB;
         move = animation->secondaryAnimID;
     }
 
@@ -6381,35 +6378,35 @@ static void BattleDisplay_PopulateBattlerContext(BattleSystem *battleSys, MoveAn
 static void BattleDisplay_GetAnimHideFlags(u8 *hideHealthboxes, u8 *hideShadows, int animMode, int secondaryAnimID, u16 move)
 {
     if (animMode == 0) {
-        if ((MoveTable_LoadParam(move, MOVEATTRIBUTE_FLAGS) & 0x40) == 0) {
+        if ((MoveTable_LoadParam(move, MOVEATTRIBUTE_FLAGS) & MOVE_FLAG_HIDES_HP_GAUGES) == 0) { // MOVE_FLAG_HIDES_HP_GAUGES when true makes healthboxes visible
             hideHealthboxes[0] = 1;
         } else {
             hideHealthboxes[0] = 0;
         }
 
-        if (MoveTable_LoadParam(move, MOVEATTRIBUTE_FLAGS) & 0x80) {
+        if (MoveTable_LoadParam(move, MOVEATTRIBUTE_FLAGS) & MOVE_FLAG_HIDES_SHADOWS) {
             hideShadows[0] = 1;
         } else {
             hideShadows[0] = 0;
         }
     } else {
         switch (secondaryAnimID) {
-        case 18:
-        case 19:
-        case 20:
-        case 22:
-        case 21:
-        case 31:
-        case 32:
-        case 34:
-        case 35:
-        case 37:
-        case 39:
+        case BATTLE_ANIMATION_WEATHER_FOG:
+        case BATTLE_ANIMATION_WEATHER_RAIN:
+        case BATTLE_ANIMATION_WEATHER_HAIL:
+        case BATTLE_ANIMATION_WEATHER_SAND:
+        case BATTLE_ANIMATION_WEATHER_SUN:
+        case BATTLE_ANIMATION_DAMAGE_NIGHTMARE:
+        case BATTLE_ANIMATION_DAMAGE_LEECH_SEED:
+        case BATTLE_ANIMATION_DAMAGE_WRAP:
+        case BATTLE_ANIMATION_DAMAGE_FIRE_SPIN:
+        case BATTLE_ANIMATION_DAMAGE_CLAMP:
+        case BATTLE_ANIMATION_DAMAGE_SAND_TOMB:
             hideHealthboxes[0] = 1;
             hideShadows[0] = 0;
             break;
-        case 36:
-        case 38:
+        case BATTLE_ANIMATION_DAMAGE_MAGMA_STORM:
+        case BATTLE_ANIMATION_DAMAGE_WHIRLPOOL:
             hideHealthboxes[0] = 1;
             hideShadows[0] = 1;
             break;

@@ -7,7 +7,6 @@
 #include "applications/pokemon_summary_screen/main.h"
 #include "battle/battle_system.h"
 #include "battle/cursor_renderer.h"
-#include "battle/struct_ov16_0226DC24_decl.h"
 #include "battle_sub_menus/battle_party.h"
 #include "battle_sub_menus/battle_sub_menu_cursor.h"
 #include "battle_sub_menus/battle_sub_menu_sprites_defs.h"

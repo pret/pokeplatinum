@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_BATTLE_CONTROLLER_H
-#define POKEPLATINUM_BATTLE_CONTROLLER_H
+#ifndef POKEPLATINUM_BATTLE_BATTLE_CONTROLLER_PLAYER_H
+#define POKEPLATINUM_BATTLE_BATTLE_CONTROLLER_PLAYER_H
 
 #include "struct_decls/battle_system.h"
 
@@ -149,4 +149,4 @@ void BattleContext_Free(BattleContext *battleCtx);
  */
 void BattleControllerPlayer_CheckMoveHit(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, int defender, int move);
 
-#endif // POKEPLATINUM_BATTLE_CONTROLLER_H
+#endif // POKEPLATINUM_BATTLE_BATTLE_CONTROLLER_PLAYER_H

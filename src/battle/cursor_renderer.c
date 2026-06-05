@@ -10,15 +10,15 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 
-typedef struct CursorRenderer_t {
+typedef struct CursorRenderer {
     ManagedSprite *sprites[5];
     SysTask *animTask;
 } CursorRenderer;
 
-static void SysTask_AnimateCursorSprites(SysTask *param0, void *param1);
-void CursorRenderer_UnloadResources(SpriteManager *param0, u32 param1, u32 param2, u32 param3, u32 param4);
+static void SysTask_AnimateCursorSprites(SysTask *task, void *cursorRendererPtr);
+void CursorRenderer_UnloadResources(SpriteManager *spriteMan, u32 charResID, u32 plttResID, u32 cellResID, u32 animResID);
 void CursorRenderer_Delete(CursorRenderer *cursorRenderer);
-void CursorRenderer_DrawOnSubscreen(CursorRenderer *cursorRenderer, int param1, int param2, int param3, int param4);
+void CursorRenderer_DrawOnSubscreen(CursorRenderer *cursorRenderer, int x1, int x2, int y1, int y2);
 void CursorRenderer_HideAllSprites(CursorRenderer *cursorRenderer);
 
 static const SpriteTemplate sCursorRendererSpriteTemplate = {
@@ -91,14 +91,14 @@ void CursorRenderer_Delete(CursorRenderer *cursorRenderer)
     Heap_Free(cursorRenderer);
 }
 
-void BattleSystem_DrawCursorSprites(CursorRenderer *cursorRenderer, int param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8, fx32 param9)
+void BattleSystem_DrawCursorSprites(CursorRenderer *cursorRenderer, int x0, int y0, int x1, int y1, int x2, int y2, int x3, int y3, fx32 subscreenOffset)
 {
     int i;
 
-    ManagedSprite_SetPositionXYWithSubscreenOffset(cursorRenderer->sprites[0], param1, param2, param9);
-    ManagedSprite_SetPositionXYWithSubscreenOffset(cursorRenderer->sprites[1], param3, param4, param9);
-    ManagedSprite_SetPositionXYWithSubscreenOffset(cursorRenderer->sprites[2], param5, param6, param9);
-    ManagedSprite_SetPositionXYWithSubscreenOffset(cursorRenderer->sprites[3], param7, param8, param9);
+    ManagedSprite_SetPositionXYWithSubscreenOffset(cursorRenderer->sprites[0], x0, y0, subscreenOffset);
+    ManagedSprite_SetPositionXYWithSubscreenOffset(cursorRenderer->sprites[1], x1, y1, subscreenOffset);
+    ManagedSprite_SetPositionXYWithSubscreenOffset(cursorRenderer->sprites[2], x2, y2, subscreenOffset);
+    ManagedSprite_SetPositionXYWithSubscreenOffset(cursorRenderer->sprites[3], x3, y3, subscreenOffset);
 
     ManagedSprite_SetAnim(cursorRenderer->sprites[0], 0);
     ManagedSprite_SetAnim(cursorRenderer->sprites[1], 1);

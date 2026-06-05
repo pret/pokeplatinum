@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_TERRAIN_H
-#define POKEPLATINUM_TERRAIN_H
+#ifndef POKEPLATINUM_BATTLE_TERRAIN_H
+#define POKEPLATINUM_BATTLE_TERRAIN_H
 
 #include "struct_decls/battle_system.h"
 
@@ -19,8 +19,8 @@ void Terrain_LoadResources(Terrain *terrain);
 void Terrain_CreateSprite(Terrain *terrain);
 void Terrain_DeleteSprite(Terrain *terrain);
 void Terrain_UnloadResources(Terrain *terrain);
-void Terrain_SetVisibility(Terrain *terrain, int draw);
+void Terrain_SetVisibility(Terrain *terrain, BOOL draw);
 void Terrain_Init(Terrain *terrain, BattleSystem *battleSys, u16 side, int terrainType);
 void Terrain_Destroy(Terrain *terrain);
 
-#endif // POKEPLATINUM_TERRAIN_H
+#endif // POKEPLATINUM_BATTLE_TERRAIN_H

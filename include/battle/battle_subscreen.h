@@ -1,13 +1,14 @@
-#ifndef POKEPLATINUM_BATTLE_SUBSCREEN_H
-#define POKEPLATINUM_BATTLE_SUBSCREEN_H
+#ifndef POKEPLATINUM_BATTLE_BATTLE_SUBSCREEN_H
+#define POKEPLATINUM_BATTLE_BATTLE_SUBSCREEN_H
 
 #include "struct_decls/battle_system.h"
 
 #include "battle/move_display_info.h"
-#include "battle/struct_ov16_02268A14_decl.h"
 
 #include "bg_window.h"
 #include "narc.h"
+
+typedef struct BattleSubscreen BattleSubscreen;
 
 void BattleSubscreenBg_Init(BgConfig *bgConfig);
 void BattleSubscreenBg_Free(BgConfig *bgConfig);
@@ -34,4 +35,4 @@ void BattleSubscreen_SetSuppressActivationSFX(BattleSubscreen *btlSubscreen, int
 void BattleSubscreen_ShowStopRecordingMessage(BattleSubscreen *btlSubscreen, int flag);
 u8 BattleSubscreen_IsWaitingForPartner(BattleSubscreen *btlSubscreen);
 
-#endif // POKEPLATINUM_BATTLE_SUBSCREEN_H
+#endif // POKEPLATINUM_BATTLE_BATTLE_SUBSCREEN_H

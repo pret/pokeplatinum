@@ -4,7 +4,7 @@
 #include "palette.h"
 #include "sprite_system.h"
 
-typedef struct {
+typedef struct SpriteSystemContext {
     SpriteSystem *spriteSys;
     SpriteManager *spriteMan;
     PaletteData *plttData;

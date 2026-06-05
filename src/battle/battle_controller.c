@@ -15,12 +15,12 @@
 #include "battle/battle_context.h"
 #include "battle/battle_controller.h"
 #include "battle/battle_controller_player.h"
+#include "battle/battle_item_use.h"
 #include "battle/battle_lib.h"
 #include "battle/battle_message.h"
 #include "battle/battle_system.h"
 #include "battle/common.h"
 #include "battle/message_defs.h"
-#include "battle/struct_ov16_0224DDA8.h"
 
 #include "communication_system.h"
 #include "flags.h"

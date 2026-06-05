@@ -1,12 +1,14 @@
-#ifndef POKEPLATINUM_STRUCT_TARGET_SELECT_DATA_H
-#define POKEPLATINUM_STRUCT_TARGET_SELECT_DATA_H
+#ifndef POKEPLATINUM_BATTLE_TARGET_SELECT_DATA_H
+#define POKEPLATINUM_BATTLE_TARGET_SELECT_DATA_H
 
-#include "battle/struct_ov16_0225C29C_sub1.h"
+#include "battle/target_mon_data.h"
+
+#include "constants/battle.h"
 
 typedef struct TargetSelectData {
-    TargetMonData targetMonData[4];
+    TargetMonData targetMonData[MAX_BATTLERS];
     u8 battlerType;
     u8 targetingLayout;
 } TargetSelectData;
 
-#endif // POKEPLATINUM_STRUCT_TARGET_SELECT_DATA_H
+#endif // POKEPLATINUM_BATTLE_TARGET_SELECT_DATA_H

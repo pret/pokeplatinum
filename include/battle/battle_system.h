@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_BATTLE_SYSTEM_H
-#define POKEPLATINUM_BATTLE_SYSTEM_H
+#ifndef POKEPLATINUM_BATTLE_BATTLE_SYSTEM_H
+#define POKEPLATINUM_BATTLE_BATTLE_SYSTEM_H
 
 #include "constants/rtc.h"
 #include "generated/trainer_message_types.h"
@@ -11,10 +11,9 @@
 
 #include "battle/battle_context.h"
 #include "battle/battle_message.h"
+#include "battle/battle_subscreen.h"
 #include "battle/party_gauge.h"
 #include "battle/pokemon_sprite_data.h"
-#include "battle/struct_ov16_02268A14_decl.h"
-#include "battle/struct_ov16_0226D160_decl.h"
 #include "battle/terrain.h"
 #include "battle_anim/battle_anim_system.h"
 
@@ -312,4 +311,4 @@ u8 BattleMessage_PrintTrainerMessage(BattleSystem *battleSys, int trainerID, int
 u8 BattleMessage_Print(BattleSystem *battleSys, MessageLoader *msgLoader, BattleMessage *battleMsg, int renderDelay);
 u8 BattleMessage_PrintToWindow(BattleSystem *battleSys, Window *window, MessageLoader *msgLoader, BattleMessage *battleMsg, int xOffset, int yOffset, int param6, int param7, int renderDelay);
 
-#endif // POKEPLATINUM_BATTLE_SYSTEM_H
+#endif // POKEPLATINUM_BATTLE_BATTLE_SYSTEM_H

@@ -3,7 +3,8 @@
 
 #include "struct_decls/battle_system.h"
 
-#include "battle/struct_ov16_0226DEEC_decl.h"
+#include "battle/indicator.h"
+
 #include "battle_sub_menus/battle_sub_menu_buttons_defs.h"
 #include "battle_sub_menus/battle_sub_menu_cursor.h"
 

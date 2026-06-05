@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_BATTLE_CONTEXT_H
-#define POKEPLATINUM_BATTLE_CONTEXT_H
+#ifndef POKEPLATINUM_BATTLE_BATTLE_CONTEXT_H
+#define POKEPLATINUM_BATTLE_BATTLE_CONTEXT_H
 
 #include "constants/battle.h"
 #include "constants/pokemon.h"
@@ -312,4 +312,4 @@ struct BattleContext {
     u32 padding3154_01 : 31;
 };
 
-#endif // POKEPLATINUM_BATTLE_CONTEXT_H
+#endif // POKEPLATINUM_BATTLE_BATTLE_CONTEXT_H

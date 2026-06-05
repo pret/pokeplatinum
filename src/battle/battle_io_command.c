@@ -20,7 +20,6 @@
 #include "battle/idle_bounce_anim.h"
 #include "battle/message_defs.h"
 #include "battle/party_gauge.h"
-#include "battle/struct_ov16_02268A14_decl.h"
 #include "battle_anim/ov12_02235E94.h"
 #include "battle_anim/ov12_022380BC.h"
 #include "battle_anim/struct_ov12_02237728.h"

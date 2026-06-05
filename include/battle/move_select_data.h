@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_STRUCT_MOVE_SELECT_DATA_H
-#define POKEPLATINUM_STRUCT_MOVE_SELECT_DATA_H
+#ifndef POKEPLATINUM_BATTLE_MOVE_SELECT_DATA_H
+#define POKEPLATINUM_BATTLE_MOVE_SELECT_DATA_H
 
 typedef struct MoveSelectData {
     u16 moveIDs[4];
@@ -8,4 +8,4 @@ typedef struct MoveSelectData {
     u8 battlerType;
 } MoveSelectData;
 
-#endif // POKEPLATINUM_STRUCT_MOVE_SELECT_DATA_H
+#endif // POKEPLATINUM_BATTLE_MOVE_SELECT_DATA_H

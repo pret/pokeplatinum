@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_STRUCT_OV16_0225CBB8_H
-#define POKEPLATINUM_STRUCT_OV16_0225CBB8_H
+#ifndef POKEPLATINUM_BATTLE_UI_SETUP_TASK_DATA_H
+#define POKEPLATINUM_BATTLE_UI_SETUP_TASK_DATA_H
 
 #include "struct_decls/battle_system.h"
 
@@ -16,4 +16,4 @@ typedef struct UISetupTaskData {
     u8 unused;
 } UISetupTaskData;
 
-#endif // POKEPLATINUM_STRUCT_OV16_0225CBB8_H
+#endif // POKEPLATINUM_BATTLE_UI_SETUP_TASK_DATA_H

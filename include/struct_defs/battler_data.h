@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_BATTLER_DATA_H
 
 #include "battle/healthbox.h"
-#include "battle/struct_ov16_0226C378.h"
+#include "battle/saved_cursor_position.h"
 #include "battle_anim/struct_ball_rotation_decl.h"
 #include "battle_anim/struct_ov12_02223764.h"
 

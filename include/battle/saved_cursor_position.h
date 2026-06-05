@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_STRUCT_OV16_0226C378_H
-#define POKEPLATINUM_STRUCT_OV16_0226C378_H
+#ifndef POKEPLATINUM_BATTLE_SAVED_CURSOR_POSITION_H
+#define POKEPLATINUM_BATTLE_SAVED_CURSOR_POSITION_H
 
 typedef struct SavedCursorPosition {
     s8 actionMenuX;
@@ -12,4 +12,4 @@ typedef struct SavedCursorPosition {
     u8 padding[1];
 } SavedCursorPosition;
 
-#endif // POKEPLATINUM_STRUCT_OV16_0226C378_H
+#endif // POKEPLATINUM_BATTLE_SAVED_CURSOR_POSITION_H

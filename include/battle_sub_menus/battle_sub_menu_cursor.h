@@ -3,7 +3,7 @@
 
 #include "constants/heap.h"
 
-#include "battle/struct_ov16_0226DC24_decl.h"
+#include "battle/cursor_renderer.h"
 
 #include "grid_menu_cursor_position.h"
 

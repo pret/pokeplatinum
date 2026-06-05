@@ -12,7 +12,7 @@
 #include "sys_task_manager.h"
 
 // This is the bouncing arrow sprite used in the catch tutorial
-typedef struct Indicator_t {
+typedef struct Indicator {
     ManagedSprite *sprite;
     SysTask *animTask;
     int x;

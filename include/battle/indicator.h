@@ -1,10 +1,10 @@
-#ifndef POKEPLATINUM_INDICATOR_H
-#define POKEPLATINUM_INDICATOR_H
-
-#include "battle/struct_ov16_0226DEEC_decl.h"
+#ifndef POKEPLATINUM_BATTLE_INDICATOR_H
+#define POKEPLATINUM_BATTLE_INDICATOR_H
 
 #include "palette.h"
 #include "sprite_system.h"
+
+typedef struct Indicator Indicator;
 
 void Indicator_LoadResources(SpriteSystem *spriteSys, SpriteManager *spriteMan, u32 heapID, PaletteData *plttData, u32 charResID, u32 plttResID, u32 cellResID, u32 animResID);
 void Indicator_UnloadResources(SpriteManager *spriteMan, u32 charResID, u32 plttResID, u32 cellResID, u32 animResID);
@@ -16,4 +16,4 @@ void Indicator_Hide(Indicator *indicator);
 void Indicator_SetExitTimer(Indicator *indicator, int timer);
 BOOL Indicator_GetHasDropped(Indicator *indicator);
 
-#endif // POKEPLATINUM_INDICATOR_H
+#endif // POKEPLATINUM_BATTLE_INDICATOR_H
