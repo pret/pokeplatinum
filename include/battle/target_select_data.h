@@ -1,9 +1,9 @@
 #ifndef POKEPLATINUM_BATTLE_TARGET_SELECT_DATA_H
 #define POKEPLATINUM_BATTLE_TARGET_SELECT_DATA_H
 
-#include "battle/target_mon_data.h"
-
 #include "constants/battle.h"
+
+#include "battle/target_mon_data.h"
 
 typedef struct TargetSelectData {
     TargetMonData targetMonData[MAX_BATTLERS];
