@@ -9,7 +9,7 @@ typedef struct SavedCursorPosition {
     s8 targetSelectX;
     s8 targetSelectY;
     s8 targetingLayout;
-    u8 padding[1];
+    u8 padding;
 } SavedCursorPosition;
 
 #endif // POKEPLATINUM_BATTLE_SAVED_CURSOR_POSITION_H
