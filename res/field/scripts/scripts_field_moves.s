@@ -25,41 +25,41 @@ FieldMoves_CutTree:
     LockAll
     FacePlayer
     FindPartySlotWithMove VAR_RESULT, MOVE_CUT
-    GoToIfEq VAR_RESULT, 6, _008E
+    GoToIfEq VAR_RESULT, MAX_PARTY_SIZE, FieldMoves_CantUseCut
     CheckBadgeAcquired BADGE_ID_FOREST, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _008E
+    GoToIfEq VAR_RESULT, FALSE, FieldMoves_CantUseCut
     Message FieldMoves_Text_WouldYouLikeToUseCut
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _00AE
+    GoToIfEq VAR_RESULT, MENU_YES, FieldMoves_UseCutFromField
     CloseMessage
-    GoTo _066D
+    GoTo FieldMoves_End
     End
 
-_008E:
+FieldMoves_CantUseCut:
     Message FieldMoves_Text_TreeLooksLikeCanBeCut
     GetCurrentMapID VAR_0x8004
-    CallIfEq VAR_0x8004, 203, _014A
+    CallIfEq VAR_0x8004, MAP_HEADER_ETERNA_FOREST, FieldMoves_TryEnableCherylCutscene
     WaitButton
     CloseMessage
-    GoTo _066D
+    GoTo FieldMoves_End
     End
 
-_00AE:
+FieldMoves_UseCutFromField:
     FindPartySlotWithMove VAR_RESULT, MOVE_CUT
     SetVar VAR_0x8004, VAR_RESULT
     BufferPartyMonNickname 0, VAR_RESULT
     Message FieldMoves_Text_PokemonUsedCut
     CloseMessage
-    ScrCmd_0C5 VAR_0x8004
-    ScrCmd_29E 0, VAR_0x8005
+    PlayHMCutIn VAR_0x8004
+    StartDestroyObstacleAnimation 0, VAR_0x8005
     WaitTime 7, VAR_RESULT
     RemoveObject VAR_LAST_TALKED
     GetCurrentMapID VAR_0x8004
     CreateJournalEvent LOCATION_EVENT_USED_CUT, VAR_0x8004, 0, 0, 0
-_00E8:
+FieldMoves_WaitForCutAnimFromField:
     WaitTime 1, VAR_RESULT
-    GoToIfEq VAR_0x8005, 0, _00E8
-    GoTo _066D
+    GoToIfEq VAR_0x8005, 0, FieldMoves_WaitForCutAnimFromField
+    GoTo FieldMoves_End
     End
 
 FieldMoves_UseCutFromMenu:
@@ -67,61 +67,61 @@ FieldMoves_UseCutFromMenu:
     BufferPartyMonNickname 0, VAR_0x8000
     Message FieldMoves_Text_PokemonUsedCut
     CloseMessage
-    ScrCmd_0C5 VAR_0x8000
-    ScrCmd_29E 0, VAR_0x8005
+    PlayHMCutIn VAR_0x8000
+    StartDestroyObstacleAnimation 0, VAR_0x8005
     WaitTime 7, VAR_RESULT
     RemoveObject VAR_LAST_TALKED
     GetCurrentMapID VAR_0x8004
     CreateJournalEvent LOCATION_EVENT_USED_CUT, VAR_0x8004, 0, 0, 0
-_0133:
+FieldMoves_WaitForCutAnimFromMenu:
     WaitTime 1, VAR_RESULT
-    GoToIfEq VAR_0x8005, 0, _0133
+    GoToIfEq VAR_0x8005, 0, FieldMoves_WaitForCutAnimFromMenu
     ReleaseAll
     End
 
-_014A:
-    GoToIfNe VAR_ETERNA_FOREST_CHERYL_OLD_CHATEAU_CUTSCENE_STATE, 0, _0221
-    GoToIfNe VAR_ETERNA_FOREST_FOLLOWER_CHERYL_STATE, 1, _0221
-    Call _017F
-    GoToIfEq VAR_RESULT, 0, _0221
+FieldMoves_TryEnableCherylCutscene:
+    GoToIfNe VAR_ETERNA_FOREST_CHERYL_OLD_CHATEAU_CUTSCENE_STATE, 0, FieldMoves_DontEnableCherylCutscene
+    GoToIfNe VAR_ETERNA_FOREST_FOLLOWER_CHERYL_STATE, 1, FieldMoves_DontEnableCherylCutscene
+    Call FieldMoves_CheckPositionForCherylCutscene
+    GoToIfEq VAR_RESULT, FALSE, FieldMoves_DontEnableCherylCutscene
     SetVar VAR_ETERNA_FOREST_CHERYL_OLD_CHATEAU_CUTSCENE_STATE, 1
     Return
 
-_017F:
-    SetVar VAR_RESULT, 0
+FieldMoves_CheckPositionForCherylCutscene:
+    SetVar VAR_RESULT, FALSE
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    GoToIfEq VAR_0x8004, 73, _01CE
-    GoToIfEq VAR_0x8004, 74, _01DD
-    GoToIfEq VAR_0x8004, 75, _01EC
-    GoToIfEq VAR_0x8004, 76, _01FB
-    GoToIfEq VAR_0x8004, 77, _020A
+    GoToIfEq VAR_0x8004, 73, FieldMoves_CheckPositionX73
+    GoToIfEq VAR_0x8004, 74, FieldMoves_CheckPositionX74
+    GoToIfEq VAR_0x8004, 75, FieldMoves_CheckPositionX75
+    GoToIfEq VAR_0x8004, 76, FieldMoves_CheckPositionX76
+    GoToIfEq VAR_0x8004, 77, FieldMoves_CheckPositionX77
     Return
 
-_01CE:
-    GoToIfEq VAR_0x8005, 33, _0219
+FieldMoves_CheckPositionX73:
+    GoToIfEq VAR_0x8005, 33, FieldMoves_CorrectPositionForCherylCutscene
     Return
 
-_01DD:
-    GoToIfEq VAR_0x8005, 34, _0219
+FieldMoves_CheckPositionX74:
+    GoToIfEq VAR_0x8005, 34, FieldMoves_CorrectPositionForCherylCutscene
     Return
 
-_01EC:
-    GoToIfEq VAR_0x8005, 34, _0219
+FieldMoves_CheckPositionX75:
+    GoToIfEq VAR_0x8005, 34, FieldMoves_CorrectPositionForCherylCutscene
     Return
 
-_01FB:
-    GoToIfEq VAR_0x8005, 33, _0219
+FieldMoves_CheckPositionX76:
+    GoToIfEq VAR_0x8005, 33, FieldMoves_CorrectPositionForCherylCutscene
     Return
 
-_020A:
-    GoToIfEq VAR_0x8005, 34, _0219
+FieldMoves_CheckPositionX77:
+    GoToIfEq VAR_0x8005, 34, FieldMoves_CorrectPositionForCherylCutscene
     Return
 
-_0219:
-    SetVar VAR_RESULT, 1
+FieldMoves_CorrectPositionForCherylCutscene:
+    SetVar VAR_RESULT, TRUE
     Return
 
-_0221:
+FieldMoves_DontEnableCherylCutscene:
     Return
 
 FieldMoves_Rock:
@@ -130,37 +130,37 @@ FieldMoves_Rock:
     FacePlayer
     FindPartySlotWithMove VAR_RESULT, MOVE_ROCK_SMASH
     SetVar VAR_0x8004, VAR_RESULT
-    GoToIfEq VAR_RESULT, 6, _0275
+    GoToIfEq VAR_RESULT, MAX_PARTY_SIZE, FieldMoves_CantUseRockSmash
     CheckBadgeAcquired BADGE_ID_COAL, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _0275
+    GoToIfEq VAR_RESULT, FALSE, FieldMoves_CantUseRockSmash
     Message FieldMoves_Text_WouldYouLikeToUseRockSmash
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _0284
+    GoToIfEq VAR_RESULT, MENU_YES, FieldMoves_UseRockSmashFromField
     CloseMessage
-    GoTo _066D
+    GoTo FieldMoves_End
     End
 
-_0275:
+FieldMoves_CantUseRockSmash:
     Message FieldMoves_Text_PokemonMayBeAbleToSmashRock
     WaitButton
     CloseMessage
-    GoTo _066D
+    GoTo FieldMoves_End
     End
 
-_0284:
+FieldMoves_UseRockSmashFromField:
     BufferPartyMonNickname 0, VAR_0x8004
     Message FieldMoves_Text_PokemonUsedRockSmash
     CloseMessage
-    ScrCmd_0C5 VAR_0x8004
-    ScrCmd_29E 1, VAR_0x8005
+    PlayHMCutIn VAR_0x8004
+    StartDestroyObstacleAnimation 1, VAR_0x8005
     WaitTime 10, VAR_RESULT
     RemoveObject VAR_LAST_TALKED
     GetCurrentMapID VAR_0x8004
     CreateJournalEvent LOCATION_EVENT_USED_ROCK_SMASH, VAR_0x8004, 0, 0, 0
-_02B2:
+FieldMoves_WaitForRockSmashAnimFromField:
     WaitTime 1, VAR_RESULT
-    GoToIfEq VAR_0x8005, 0, _02B2
-    GoTo _066D
+    GoToIfEq VAR_0x8005, 0, FieldMoves_WaitForRockSmashAnimFromField
+    GoTo FieldMoves_End
     End
 
 FieldMoves_UseRockSmashFromMenu:
@@ -168,15 +168,15 @@ FieldMoves_UseRockSmashFromMenu:
     BufferPartyMonNickname 0, VAR_0x8000
     Message FieldMoves_Text_PokemonUsedRockSmash
     CloseMessage
-    ScrCmd_0C5 VAR_0x8000
-    ScrCmd_29E 1, VAR_0x8005
+    PlayHMCutIn VAR_0x8000
+    StartDestroyObstacleAnimation 1, VAR_0x8005
     WaitTime 10, VAR_RESULT
     RemoveObject VAR_LAST_TALKED
     GetCurrentMapID VAR_0x8004
     CreateJournalEvent LOCATION_EVENT_USED_ROCK_SMASH, VAR_0x8004, 0, 0, 0
-_02FD:
+FieldMoves_WaitForRockSmashAnimFromMenu:
     WaitTime 1, VAR_RESULT
-    GoToIfEq VAR_0x8005, 0, _02FD
+    GoToIfEq VAR_0x8005, 0, FieldMoves_WaitForRockSmashAnimFromMenu
     ReleaseAll
     End
 
@@ -184,96 +184,96 @@ FieldMoves_Boulder:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Strength 2, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _03BD
+    DoStrengthFunc FIELD_MOVE_FUNC_CHECK_ACTIVE, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, FieldMoves_StrenghtAlreadyActive
     FindPartySlotWithMove VAR_RESULT, MOVE_STRENGTH
-    GoToIfEq VAR_RESULT, 6, _0372
+    GoToIfEq VAR_RESULT, MAX_PARTY_SIZE, FieldMoves_CantUseStrength
     CheckBadgeAcquired BADGE_ID_MINE, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _0372
+    GoToIfEq VAR_RESULT, FALSE, FieldMoves_CantUseStrength
     Message FieldMoves_Text_WouldYouLikeToUseStrength
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _0381
+    GoToIfEq VAR_RESULT, MENU_YES, FieldMoves_UseStrengthFromField
     CloseMessage
-    GoTo _066D
+    GoTo FieldMoves_End
     End
 
-_0372:
+FieldMoves_CantUseStrength:
     Message FieldMoves_Text_BoulderMayBeAbleToPush
     WaitButton
     CloseMessage
-    GoTo _066D
+    GoTo FieldMoves_End
     End
 
-_0381:
-    Strength 1
+FieldMoves_UseStrengthFromField:
+    DoStrengthFunc FIELD_MOVE_FUNC_SET_ACTIVE
     FindPartySlotWithMove VAR_RESULT, MOVE_STRENGTH
     SetVar VAR_0x8004, VAR_RESULT
     BufferPartyMonNickname 0, VAR_RESULT
     Message FieldMoves_Text_PokemonUsedStrength
-    ScrCmd_0C5 VAR_0x8004
+    PlayHMCutIn VAR_0x8004
     CloseMessage
     Message FieldMoves_Text_PokemonStrengthMadePossibleToMove
     WaitButton
     CloseMessage
     GetCurrentMapID VAR_0x8004
     CreateJournalEvent LOCATION_EVENT_USED_STRENGTH, VAR_0x8004, 0, 0, 0
-    GoTo _066D
+    GoTo FieldMoves_End
     End
 
-_03BD:
+FieldMoves_StrenghtAlreadyActive:
     Message FieldMoves_Text_StrengthMadePossibleToMove
     WaitButton
     CloseMessage
-    GoTo _066D
+    GoTo FieldMoves_End
     End
 
 FieldMoves_UseStrengthFromMenu:
     LockAll
-    Strength 2, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _03BD
-    Strength 1
+    DoStrengthFunc FIELD_MOVE_FUNC_CHECK_ACTIVE, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, FieldMoves_StrenghtAlreadyActive
+    DoStrengthFunc FIELD_MOVE_FUNC_SET_ACTIVE
     BufferPartyMonNickname 0, VAR_0x8000
     Message FieldMoves_Text_PokemonUsedStrength
     CloseMessage
-    ScrCmd_0C5 VAR_0x8000
+    PlayHMCutIn VAR_0x8000
     Message FieldMoves_Text_PokemonStrengthMadePossibleToMove
     WaitButton
     CloseMessage
     GetCurrentMapID VAR_0x8004
     CreateJournalEvent LOCATION_EVENT_USED_STRENGTH, VAR_0x8004, 0, 0, 0
-    GoTo _0675
+    GoTo FieldMoves_End3
 
 FieldMoves_RockyWall:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FindPartySlotWithMove VAR_RESULT, MOVE_ROCK_CLIMB
-    GoToIfEq VAR_RESULT, 6, _0469
+    GoToIfEq VAR_RESULT, MAX_PARTY_SIZE, FieldMoves_CantUseRockClimb
     CheckBadgeAcquired BADGE_ID_ICICLE, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _0469
+    GoToIfEq VAR_RESULT, FALSE, FieldMoves_CantUseRockClimb
     CheckHasPartner VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _0478
+    GoToIfEq VAR_RESULT, TRUE, FieldMoves_NoRockClimbingWithPartner
     Message FieldMoves_Text_WouldYouLikeToUseRockClimb
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _0487
+    GoToIfEq VAR_RESULT, MENU_YES, FieldMoves_UseRockClimbFromField
     CloseMessage
-    GoTo _0671
+    GoTo FieldMoves_End2
     End
 
-_0469:
+FieldMoves_CantUseRockClimb:
     Message FieldMoves_Text_RockyWallWillMoveScale
     WaitButton
     CloseMessage
-    GoTo _0671
+    GoTo FieldMoves_End2
     End
 
-_0478:
+FieldMoves_NoRockClimbingWithPartner:
     Message FieldMoves_Text_NoRockClimbingWithPartner
     WaitButton
     CloseMessage
-    GoTo _0671
+    GoTo FieldMoves_End2
     End
 
-_0487:
+FieldMoves_UseRockClimbFromField:
     FindPartySlotWithMove VAR_RESULT, MOVE_ROCK_CLIMB
     SetVar VAR_0x8004, VAR_RESULT
     BufferPartyMonNickname 0, VAR_RESULT
@@ -282,7 +282,7 @@ _0487:
     UseRockClimb VAR_0x8004
     GetCurrentMapID VAR_0x8004
     CreateJournalEvent LOCATION_EVENT_USED_ROCK_CLIMB, VAR_0x8004, 0, 0, 0
-    GoTo _0671
+    GoTo FieldMoves_End2
     End
 
 FieldMoves_UseRockClimbFromMenu:
@@ -300,21 +300,21 @@ FieldMoves_Water:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     CheckHasPartner VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _0512
+    GoToIfEq VAR_RESULT, TRUE, FieldMoves_CantUseSurf
     Message FieldMoves_Text_WouldYouLikeToUseSurf
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _051F
+    GoToIfEq VAR_RESULT, MENU_YES, FieldMoves_UseSurfFromField
     CloseMessage
-    GoTo _0671
+    GoTo FieldMoves_End2
     End
 
-_0512:
+FieldMoves_CantUseSurf:
     Message FieldMoves_Text_NoSurfingWithPartner
     WaitButton
     CloseMessage
-    GoTo _0671
+    GoTo FieldMoves_End2
 
-_051F:
+FieldMoves_UseSurfFromField:
     FindPartySlotWithMove VAR_RESULT, MOVE_SURF
     SetVar VAR_0x8004, VAR_RESULT
     BufferPartyMonNickname 0, VAR_RESULT
@@ -323,7 +323,7 @@ _051F:
     UseSurf VAR_0x8004
     GetCurrentMapID VAR_0x8004
     CreateJournalEvent LOCATION_EVENT_USED_SURF, VAR_0x8004, 0, 0, 0
-    GoTo _0671
+    GoTo FieldMoves_End2
     End
 
 FieldMoves_UseSurfFromMenu:
@@ -343,36 +343,36 @@ FieldMoves_Fog_Unused:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FindPartySlotWithMove VAR_RESULT, MOVE_DEFOG
-    GoToIfEq VAR_RESULT, 6, _05B4
+    GoToIfEq VAR_RESULT, MAX_PARTY_SIZE, FieldMoves_CantUseDefog_Unused
     Message FieldMoves_Text_WouldYouLikeToUseDefog_Unused
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _05C3
+    GoToIfEq VAR_RESULT, MENU_YES, FieldMoves_UseDefogFromField_Unused
     CloseMessage
-    GoTo _0671
+    GoTo FieldMoves_End2
     End
 
-_05B4:
+FieldMoves_CantUseDefog_Unused:
     Message FieldMoves_Text_DeepFogDrapesArea_Unused
     WaitButton
     CloseMessage
-    GoTo _0671
+    GoTo FieldMoves_End2
     End
 
-_05C3:
+FieldMoves_UseDefogFromField_Unused:
     FindPartySlotWithMove VAR_RESULT, MOVE_DEFOG
     SetVar VAR_0x8004, VAR_RESULT
     BufferPartyMonNickname 0, VAR_RESULT
     Message FieldMoves_Text_PokemonUsedDefog
     CloseMessage
-    ScrCmd_0C5 VAR_0x8004
+    PlayHMCutIn VAR_0x8004
     GetCurrentMapID VAR_0x8004
     CreateJournalEvent LOCATION_EVENT_USED_DEFOG, VAR_0x8004, 0, 0, 0
     GetCurrentMapID VAR_0x8004
-    CallIfEq VAR_0x8004, MAP_HEADER_ROUTE_209_LOST_TOWER_5F, _0606
-    GoTo _0671
+    CallIfEq VAR_0x8004, MAP_HEADER_ROUTE_209_LOST_TOWER_5F, FieldMoves_SetFlagUsedDefog_Unused
+    GoTo FieldMoves_End2
     End
 
-_0606:
+FieldMoves_SetFlagUsedDefog_Unused:
     SetFlag FLAG_USED_DEFOG_IN_ROUTE_209_LOST_TOWER_5F
     Return
 
@@ -381,36 +381,36 @@ FieldMoves_UseDefogFromMenu:
     BufferPartyMonNickname 0, VAR_0x8000
     Message FieldMoves_Text_PokemonUsedDefog
     CloseMessage
-    ScrCmd_0C5 VAR_0x8000
-    Defog 1
+    PlayHMCutIn VAR_0x8000
+    DoDefogFunc FIELD_MOVE_FUNC_SET_ACTIVE
     PlaySE SEQ_SE_DP_FBRADE
     ScrCmd_0C4
     GetCurrentMapID VAR_0x8004
     CreateJournalEvent LOCATION_EVENT_USED_DEFOG, VAR_0x8004, 0, 0, 0
     GetCurrentMapID VAR_0x8004
-    CallIfEq VAR_0x8004, 0x169, _0606
-    GoTo _0675
+    CallIfEq VAR_0x8004, MAP_HEADER_ROUTE_209_LOST_TOWER_5F, FieldMoves_SetFlagUsedDefog_Unused
+    GoTo FieldMoves_End3
 
 FieldMoves_UseFlashFromMenu:
     LockAll
     BufferPartyMonNickname 0, VAR_0x8000
     Message FieldMoves_Text_PokemonUsedFlash
     CloseMessage
-    ScrCmd_0C5 VAR_0x8000
-    Flash 1
+    PlayHMCutIn VAR_0x8000
+    DoFlashFunc FIELD_MOVE_FUNC_SET_ACTIVE
     ScrCmd_0C3
     WaitTime 42, VAR_RESULT
-    GoTo _0675
+    GoTo FieldMoves_End3
 
-_066D:
+FieldMoves_End:
     ReleaseAll
     End
 
-_0671:
+FieldMoves_End2:
     ReleaseAll
     End
 
-_0675:
+FieldMoves_End3:
     ReleaseAll
     End
 
@@ -418,24 +418,24 @@ FieldMoves_Waterfall:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FindPartySlotWithMove VAR_RESULT, MOVE_WATERFALL
-    GoToIfEq VAR_RESULT, 6, _06C3
+    GoToIfEq VAR_RESULT, MAX_PARTY_SIZE, FieldMoves_CantUseWaterfall
     CheckBadgeAcquired BADGE_ID_BEACON, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _06C3
+    GoToIfEq VAR_RESULT, FALSE, FieldMoves_CantUseWaterfall
     Message FieldMoves_Text_WouldYouLikeToUseWaterfall
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _06D2
+    GoToIfEq VAR_RESULT, MENU_YES, FieldMoves_UseWaterfallFromField
     CloseMessage
-    GoTo _0671
+    GoTo FieldMoves_End2
     End
 
-_06C3:
+FieldMoves_CantUseWaterfall:
     Message FieldMoves_Text_WallOfWater
     WaitButton
     CloseMessage
-    GoTo _0671
+    GoTo FieldMoves_End2
     End
 
-_06D2:
+FieldMoves_UseWaterfallFromField:
     FindPartySlotWithMove VAR_RESULT, MOVE_WATERFALL
     SetVar VAR_0x8004, VAR_RESULT
     BufferPartyMonNickname 0, VAR_RESULT
@@ -444,7 +444,7 @@ _06D2:
     UseWaterfall VAR_0x8004
     GetCurrentMapID VAR_0x8004
     CreateJournalEvent LOCATION_EVENT_USED_WATERFALL, VAR_0x8004, 0, 0, 0
-    GoTo _0671
+    GoTo FieldMoves_End2
     End
 
 FieldMoves_UseWaterfallFromMenu:
