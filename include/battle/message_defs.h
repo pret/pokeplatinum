@@ -8,7 +8,7 @@
 
 #include "battle/battle_message.h"
 #include "battle/party_gauge.h"
-#include "battle/target_mon_data.h"
+#include "battle/targeting.h"
 
 #include "pokemon.h"
 

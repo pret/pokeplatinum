@@ -23,7 +23,7 @@
 #include "battle/move_display_info.h"
 #include "battle/move_select_data.h"
 #include "battle/saved_cursor_position.h"
-#include "battle/target_select_data.h"
+#include "battle/targeting.h"
 #include "overlay011/move_palettes.h"
 
 #include "assert.h"
