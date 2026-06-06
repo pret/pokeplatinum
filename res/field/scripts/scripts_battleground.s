@@ -10,7 +10,7 @@
 
     ScriptEntry Battleground_ExpertM
     ScriptEntry Battleground_Buck
-    ScriptEntry Battleground_OnFrameWelcome
+    ScriptEntry Battleground_OnFrame_Welcome
     ScriptEntry Battleground_OnTransition
     ScriptEntry Battleground_Trainer1
     ScriptEntry Battleground_Trainer2
@@ -187,7 +187,7 @@ Battleground_Movement_BuckLeaveZ9:
     WalkNormalSouth 2
     EndMovement
 
-Battleground_OnFrameWelcome:
+Battleground_OnFrame_Welcome:
     LockAll
     SetVar VAR_BATTLEGROUND_STATE, 1
     ApplyMovement LOCALID_EXPERT_M, Battleground_Movement_ExpertFExclamationMark

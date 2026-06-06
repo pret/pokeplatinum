@@ -4,20 +4,20 @@
 
 
     ScriptEntry StarkMountainOutside_OnTransition
-    ScriptEntry StarkMountainOutside_SignStarkMountain
-    ScriptEntry StarkMountainOutside_TriggerGrunts
-    ScriptEntry StarkMountainOutside_OnFrameLookerBuck
+    ScriptEntry StarkMountainOutside_SignboardStarkMountain
+    ScriptEntry StarkMountainOutside_CoordEvent_Grunts
+    ScriptEntry StarkMountainOutside_OnFrame_LookerBuck
     ScriptEntryEnd
 
 StarkMountainOutside_OnTransition:
     SetFlag FLAG_FIRST_ARRIVAL_STARK_MOUNTAIN_EXTERIOR
     End
 
-StarkMountainOutside_SignStarkMountain:
+StarkMountainOutside_SignboardStarkMountain:
     ShowLandmarkSign StarkMountainOutside_Text_SignStarkMountain
     End
 
-StarkMountainOutside_TriggerGrunts:
+StarkMountainOutside_CoordEvent_Grunts:
     LockAll
     ApplyMovement LOCALID_GRUNT_M_1, StarkMountainOutside_Movement_GruntM1Enter
     ApplyMovement LOCALID_GRUNT_M_2, StarkMountainOutside_Movement_GruntM2Enter
@@ -101,7 +101,7 @@ StarkMountainOutside_Movement_GruntM2EnterStarkMountain:
     SetInvisible
     EndMovement
 
-StarkMountainOutside_OnFrameLookerBuck:
+StarkMountainOutside_OnFrame_LookerBuck:
     LockAll
     Message StarkMountainOutside_Text_InhaledVolcanicAsh
     CloseMessage

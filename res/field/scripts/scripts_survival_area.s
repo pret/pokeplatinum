@@ -7,7 +7,7 @@
     ScriptEntry SurvivalArea_BattleGirl
     ScriptEntry SurvivalArea_RuinManiac
     ScriptEntry SurvivalArea_Cameraman
-    ScriptEntry SurvivalArea_MapSign
+    ScriptEntry SurvivalArea_MapSignpost
     ScriptEntry SurvivalArea_Buck
     ScriptEntry SurvivalArea_Door
     ScriptEntry SurvivalArea_OnTransition
@@ -62,7 +62,7 @@ SurvivalArea_AllSetToProduce:
     ReleaseAll
     End
 
-SurvivalArea_MapSign:
+SurvivalArea_MapSignpost:
     ShowMapSign SurvivalArea_Text_MapSign
     End
 

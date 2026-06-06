@@ -5,14 +5,14 @@
 #define LOCALID_CYRUS 128
 
     ScriptEntry DistortionWorldB3F_OnTransition
-    ScriptEntry DistortionWorldB3F_TriggerCyrus
+    ScriptEntry DistortionWorldB3F_CoordEvent_Cyrus
     ScriptEntryEnd
 
 DistortionWorldB3F_OnTransition:
     InitPersistedMapFeaturesForDistortionWorld
     End
 
-DistortionWorldB3F_TriggerCyrus:
+DistortionWorldB3F_CoordEvent_Cyrus:
     LockAll
     AddDistortionWorldMapObject LOCALID_CYRUS
     ApplyMovement LOCALID_CYRUS, DistortionWorldB3F_Movement_CyrusEnter

@@ -7,7 +7,7 @@
     ScriptEntry TwinleafTownPlayerHouse1F_OnFrame_RivalAlreadyLeft
     ScriptEntry TwinleafTownPlayerHouse1F_OnFrame_CutsceneAfterRivalBattle
     ScriptEntry TwinleafTownPlayerHouse1F_Mom
-    ScriptEntry TwinleafTownPlayerHouse1F_DontGoIntoTheTallGrassTrigger
+    ScriptEntry TwinleafTownPlayerHouse1F_CoordEvent_DontGoIntoTheTallGrass
     ScriptEntry TwinleafTownPlayerHouse1F_RivalsMom
     ScriptEntry TwinleafTownPlayerHouse1F_TV
     ScriptEntry TwinleafTownPlayerHouse1F_Fridge
@@ -733,7 +733,7 @@ TwinleafTownPlayerHouse1F_Movement_PlayerWatchRivalsMomLeaveEast:
     WalkOnSpotNormalSouth
     EndMovement
 
-TwinleafTownPlayerHouse1F_DontGoIntoTheTallGrassTrigger:
+TwinleafTownPlayerHouse1F_CoordEvent_DontGoIntoTheTallGrass:
     LockAll
     GoTo TwinleafTownPlayerHouse1F_PlayerAndMomFaceEachOther
     End

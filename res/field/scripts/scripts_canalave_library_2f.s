@@ -6,9 +6,9 @@
     ScriptEntry CanalaveLibrary2F_SchoolKidM
     ScriptEntry CanalaveLibrary2F_Bookshelves
     ScriptEntry CanalaveLibrary2F_Shelves
-    ScriptEntry CanalaveLibrary2F_Sign
+    ScriptEntry CanalaveLibrary2F_BgSign
     ScriptEntry CanalaveLibrary2F_OnTransition
-    ScriptEntry CanalaveLibrary2F_OnFrameHiker
+    ScriptEntry CanalaveLibrary2F_OnFrame_Hiker
     ScriptEntryEnd
 
 CanalaveLibrary2F_OnTransition:
@@ -62,11 +62,11 @@ CanalaveLibrary2F_Shelves:
     EventMessage CanalaveLibrary2F_Text_ShelvesLinedWithBooks
     End
 
-CanalaveLibrary2F_Sign:
+CanalaveLibrary2F_BgSign:
     EventMessage CanalaveLibrary2F_Text_RefrainFromBringingFood
     End
 
-CanalaveLibrary2F_OnFrameHiker:
+CanalaveLibrary2F_OnFrame_Hiker:
     LockAll
     ApplyMovement LOCALID_HIKER, CanalaveLibrary2F_Movement_HikerNoticeWalkToPlayer
     WaitMovement

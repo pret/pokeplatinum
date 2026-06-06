@@ -16,10 +16,10 @@
     ScriptEntry PokemonCenter2FCommon_UnusedScript9009
     ScriptEntry _06A0
     ScriptEntry PokemonCenter2FCommon_AttendantSignTrainerCard
-    ScriptEntry PokemonCenter2FCommon_OnFrameExitColosseum
-    ScriptEntry PokemonCenter2FCommon_OnFrameExitUnionRoom
-    ScriptEntry PokemonCenter2FCommon_OnFrameExitColosseum
-    ScriptEntry PokemonCenter2FCommon_OnFrameExitColosseum
+    ScriptEntry PokemonCenter2FCommon_OnFrame_ExitColosseum
+    ScriptEntry PokemonCenter2FCommon_OnFrame_ExitUnionRoom
+    ScriptEntry PokemonCenter2FCommon_OnFrame_ExitColosseum
+    ScriptEntry PokemonCenter2FCommon_OnFrame_ExitColosseum
     ScriptEntry PokemonCenter2FCommon_HasBadEggReturnCommon @ 0x2338
     ScriptEntryEnd
 
@@ -31,14 +31,14 @@ PokemonCenter2FCommon_HidePlayer:
     HideObject LOCALID_PLAYER
     Return
 
-PokemonCenter2FCommon_OnFrameExitColosseum:
+PokemonCenter2FCommon_OnFrame_ExitColosseum:
     SetVar VAR_MAP_LOCAL_0, 13
     SetVar VAR_MAP_LOCAL_1, 5
     SetVar VAR_MAP_LOCAL_2, 2
     GoTo PokemonCenter2FCommon_PlayerEnter
     End
 
-PokemonCenter2FCommon_OnFrameExitUnionRoom:
+PokemonCenter2FCommon_OnFrame_ExitUnionRoom:
     SetVar VAR_MAP_LOCAL_0, 8
     SetVar VAR_MAP_LOCAL_1, 5
     SetVar VAR_MAP_LOCAL_2, 2

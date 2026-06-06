@@ -3,7 +3,7 @@
 #include "res/field/events/events_contest_hall_lobby.h"
 
 
-    ScriptEntry ContestHallLobby_OnFrameFirstEntry
+    ScriptEntry ContestHallLobby_OnFrame_FirstEntry
     ScriptEntry ContestHallLobby_Frame0
     ScriptEntry ContestHallLobby_Frame1
     ScriptEntry ContestHallLobby_Frame2
@@ -16,7 +16,7 @@
     ScriptEntry ContestHallLobby_Fantina
     ScriptEntryEnd
 
-ContestHallLobby_OnFrameFirstEntry:
+ContestHallLobby_OnFrame_FirstEntry:
     LockAll
     ApplyMovement LOCALID_KEIRA, ContestHallLobby_Movement_KeiraNoticePlayer
     WaitMovement
