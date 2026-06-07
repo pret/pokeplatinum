@@ -370,7 +370,7 @@ Route202_Counterpart:
     CloseMessage
     PlayMusic SEQ_POKERADAR
     AddCameraOverrideObject 189, 818
-    ApplyFreeCameraMovement _06F8
+    ApplyFreeCameraMovement Route202_Movement_CameraMoveEast
     WaitMovement
     RemoveCameraOverrideObject
     ApplyMovement LOCALID_COUNTERPART, Route202_Movement_CounterpartFaceGrassPatchEast
@@ -541,6 +541,6 @@ Route202_UnusedMovement4:
     EndMovement
 
     .balign 4, 0
-_06F8:
+Route202_Movement_CameraMoveEast:
     WalkNormalEast
     EndMovement
