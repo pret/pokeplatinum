@@ -14,6 +14,7 @@
 #include "field/field_system.h"
 
 #include "appearance.h"
+#include "comm_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "field_system.h"
@@ -33,7 +34,6 @@
 #include "unk_02014A84.h"
 #include "unk_02014D38.h"
 #include "unk_02033200.h"
-#include "unk_020366A0.h"
 #include "unk_02095E98.h"
 #include "unk_02099500.h"
 
@@ -128,7 +128,7 @@ UnkStruct_0205B43C *FieldSystem_InitCommUnionRoom(FieldSystem *fieldSystem)
     }
 
     CommFieldCmd_Init((void *)fieldSystem);
-    sub_02037B58(2);
+    CommManager_SetMaxNumConnections(2);
     sub_0205B5B4(v0, sub_0205B408, 40);
 
     return v0;
@@ -154,7 +154,7 @@ static UnkStruct_0205B43C *sub_0205B3A0(FieldSystem *fieldSystem)
     }
 
     saveData = FieldSystem_GetSaveData(fieldSystem);
-    sub_020369EC(saveData);
+    CommManager_StartUnion(saveData);
 
     v2 = (UnkStruct_0205B43C *)Heap_Alloc(HEAP_ID_31, sizeof(UnkStruct_0205B43C));
     MI_CpuClear8(v2, sizeof(UnkStruct_0205B43C));
@@ -188,7 +188,7 @@ static int Unk_021C0850;
 
 static void sub_0205B43C(UnkStruct_0205B43C *param0)
 {
-    if (sub_02036AA0()) {
+    if (CommManager_IsConnectUnionServer()) {
         Unk_021C0850 = 0;
         sub_0205B5B4(param0, sub_0205B4F8, 0);
         return;
@@ -199,15 +199,15 @@ static void sub_0205B43C(UnkStruct_0205B43C *param0)
 
         if (param0->unk_20 == 1) {
             if (param0->unk_30 == 5) {
-                sub_02037888(param0->unk_18);
+                CommManager_StartMixRecordsClient(param0->unk_18);
             } else if (param0->unk_30 == 6) {
-                sub_020378C8(param0->unk_18);
+                CommManager_StartSpinTradeClient(param0->unk_18);
             } else {
-                sub_02036A38(param0->unk_18);
+                CommManager_ConnectUnion(param0->unk_18);
             }
         } else if (param0->unk_20 == 2) {
             sub_02095E98(NULL);
-            sub_02037854(param0->unk_18);
+            CommManager_StartDrawClient(param0->unk_18);
         }
 
         sub_0205B5B4(param0, sub_0205B634, 12);
@@ -217,7 +217,7 @@ static void sub_0205B43C(UnkStruct_0205B43C *param0)
 
 static void sub_0205B4B0(UnkStruct_0205B43C *param0)
 {
-    if (sub_02036B44() == 1) {
+    if (CommManager_UnionRestartSuccess() == 1) {
         CommFieldCmd_Init((void *)param0->fieldSystem);
         sub_0205B5B4(param0, sub_0205B43C, 2);
     }
@@ -255,13 +255,13 @@ static void sub_0205B4F8(UnkStruct_0205B43C *param0)
 
     if (CommSys_IsClientConnecting() && (sub_0205B4D4() == 1) && (v0->unk_1C != 4)) {
         CommInfo_SendPlayerInfo();
-        CommMan_SetErrorHandling(1, 1);
+        CommManager_SetErrorHandling(1, 1);
         sub_0205BEA8(11);
         sub_0205B5B4(param0, sub_0205B578, 0);
     }
 
-    if (sub_02036AA0() == 0) {
-        sub_02036AC4();
+    if (CommManager_IsConnectUnionServer() == 0) {
+        CommManager_UnionRestartSearch();
         sub_0205C160(param0);
         sub_0205BEA8(0);
         sub_0205B5B4(param0, sub_0205B4B0, 2);
@@ -270,12 +270,12 @@ static void sub_0205B4F8(UnkStruct_0205B43C *param0)
 
 static void sub_0205B578(UnkStruct_0205B43C *param0)
 {
-    if (sub_02038938() && (0 == CommSys_IsClientConnecting())) {
+    if (CommManager_CheckError() && (0 == CommSys_IsClientConnecting())) {
         return;
     }
 
     if (0 == CommSys_IsClientConnecting()) {
-        sub_02036AC4();
+        CommManager_UnionRestartSearch();
         sub_0205C160(param0);
         sub_0205BEA8(0);
         sub_0205B5B4(param0, sub_0205B4B0, 2);
@@ -318,7 +318,7 @@ static void sub_0205B5FC(UnkStruct_0205B43C *param0)
         return;
     }
 
-    sub_02036B68();
+    CommManager_ExitUnion();
     sub_0205B5B4(param0, sub_0205B620, 0);
 }
 
@@ -333,7 +333,7 @@ static void sub_0205B620(UnkStruct_0205B43C *param0)
 
 static void sub_0205B634(UnkStruct_0205B43C *param0)
 {
-    if (1 == sub_02036A68()) {
+    if (1 == CommManager_IsConnectedUnionClientSuccess()) {
         CommInfo_SendPlayerInfo();
         sub_0205B5B4(param0, sub_0205B6C4, 3);
         return;
@@ -344,7 +344,7 @@ static void sub_0205B634(UnkStruct_0205B43C *param0)
         sub_0205B5B4(param0, sub_0205B4F8, 0);
     }
 
-    if (0 == sub_02036A68()) {
+    if (0 == CommManager_IsConnectedUnionClientSuccess()) {
         return;
     }
 
@@ -359,7 +359,7 @@ static void sub_0205B634(UnkStruct_0205B43C *param0)
 static void sub_0205B694(UnkStruct_0205B43C *param0)
 {
     if (!FieldSystem_IsRunningTask(param0->fieldSystem)) {
-        sub_02036AC4();
+        CommManager_UnionRestartSearch();
         sub_0205C160(param0);
         sub_0205BEA8(0);
         sub_0205B5B4(param0, sub_0205B4B0, 2);
@@ -368,17 +368,17 @@ static void sub_0205B694(UnkStruct_0205B43C *param0)
 
 static void sub_0205B6C4(UnkStruct_0205B43C *param0)
 {
-    if (1 == sub_02036A68()) {
+    if (1 == CommManager_IsConnectedUnionClientSuccess()) {
         if (CommInfo_TrainerInfo(CommSys_CurNetId()) != NULL) {
             param0->unk_20 = 0;
             param0->unk_1C = 1;
             param0->unk_44 = 0;
 
-            CommMan_SetErrorHandling(1, 1);
+            CommManager_SetErrorHandling(1, 1);
             sub_0205B5B4(param0, sub_0205B72C, 3);
         }
-    } else if (0 == sub_02036A68()) {
-        sub_02036AC4();
+    } else if (0 == CommManager_IsConnectedUnionClientSuccess()) {
+        CommManager_UnionRestartSearch();
         sub_0205C160(param0);
         sub_0205B5B4(param0, sub_0205B4B0, 2);
 
@@ -391,8 +391,8 @@ static void sub_0205B6C4(UnkStruct_0205B43C *param0)
 
 static void sub_0205B72C(UnkStruct_0205B43C *param0)
 {
-    if (0 == sub_02036A68()) {
-        sub_02036AC4();
+    if (0 == CommManager_IsConnectedUnionClientSuccess()) {
+        CommManager_UnionRestartSearch();
         sub_0205C160(param0);
         sub_0205B5B4(param0, sub_0205B4B0, 2);
 
@@ -574,11 +574,11 @@ u32 sub_0205B8DC(UnkStruct_0205B43C *param0)
     }
 
     if (CommSys_CurNetId() == 0) {
-        if (sub_02036AA0() == 1) {
+        if (CommManager_IsConnectUnionServer() == 1) {
             return param0->unk_40;
         }
     } else {
-        if (sub_02036A68() == 1) {
+        if (CommManager_IsConnectedUnionClientSuccess() == 1) {
             return param0->unk_40;
         }
     }
@@ -588,7 +588,7 @@ u32 sub_0205B8DC(UnkStruct_0205B43C *param0)
 
 u32 sub_0205B91C(UnkStruct_0205B43C *param0)
 {
-    if (sub_02036AA0() == 1) {
+    if (CommManager_IsConnectUnionServer() == 1) {
         return param0->unk_30;
     }
 
@@ -662,7 +662,7 @@ void sub_0205B9C4(int param0, int param1, void *param2, void *param3)
     fieldSystem->unk_7C->unk_40 = *v1;
 
     if (*v1 == 4) {
-        sub_0203781C();
+        CommManager_StartDrawServer();
     }
 }
 
@@ -1016,8 +1016,8 @@ int UnionRoom_GetMessage(UnkStruct_0205B43C *param0, int param1, int msgType, St
     TrainerInfo *trainerInfo = sub_02033FB0(param1);
 
     if (trainerInfo == NULL) {
-        CommMan_SetErrorHandling(1, 1);
-        Link_SetErrorState(1);
+        CommManager_SetErrorHandling(1, 1);
+        CommManager_SetCommError(1);
         return 0;
     }
 

@@ -51,6 +51,7 @@
 
 #include "bg_window.h"
 #include "brightness_controller.h"
+#include "comm_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "enums.h"
@@ -85,7 +86,6 @@
 #include "unk_0202F1D4.h"
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
-#include "unk_020366A0.h"
 #include "unk_0205DFC4.h"
 #include "unk_0209B6F8.h"
 #include "vars_flags.h"
@@ -217,8 +217,8 @@ static BOOL CheckABPress(FrontierScriptContext *ctx);
 static BOOL FrontierScrCmd_WaitABPressTime(FrontierScriptContext *ctx);
 static BOOL DecrementABPressTimer(FrontierScriptContext *ctx);
 static BOOL FrontierScrCmd_Dummy3C(FrontierScriptContext *ctx);
-static BOOL FrontierScrCmd_3D(FrontierScriptContext *ctx);
-static BOOL FrontierScrCmd_3E(FrontierScriptContext *ctx);
+static BOOL FrontierScrCmd_SetSystemVar(FrontierScriptContext *ctx);
+static BOOL FrontierScrCmd_GetSystemVar(FrontierScriptContext *ctx);
 static BOOL FrontierScrCmd_2A(FrontierScriptContext *ctx);
 static BOOL FrontierScrCmd_2B(FrontierScriptContext *ctx);
 static BOOL FrontierScrCmd_2C(FrontierScriptContext *ctx);
@@ -1623,7 +1623,7 @@ static BOOL FrontierScrCmd_ClearReceivedTempDataAllPlayers(FrontierScriptContext
 
 static BOOL FrontierScrCmd_EndCommunication(FrontierScriptContext *ctx)
 {
-    FieldCommMan_EndBattle();
+    FieldCommManager_EndBattleNoSync();
     FrontierScriptContext_Pause(ctx, WaitForCommManIsDeleted);
 
     return TRUE;
@@ -1631,7 +1631,7 @@ static BOOL FrontierScrCmd_EndCommunication(FrontierScriptContext *ctx)
 
 static BOOL WaitForCommManIsDeleted(FrontierScriptContext *ctx)
 {
-    return CommMan_IsInitialized() != TRUE && CommServerClient_IsInitialized() != TRUE;
+    return CommManager_IsInitialized() != TRUE && CommServerClient_IsInitialized() != TRUE;
 }
 
 static BOOL FrontierScrCmd_GetRandom(FrontierScriptContext *ctx)
@@ -1686,7 +1686,7 @@ static BOOL FrontierScrCmd_Dummy3C(FrontierScriptContext *ctx)
     return TRUE;
 }
 
-BOOL FrontierScrCmd_3D(FrontierScriptContext *ctx)
+BOOL FrontierScrCmd_SetSystemVar(FrontierScriptContext *ctx)
 {
     u16 destVarID = FrontierScriptContext_ReadHalfWord(ctx);
     u16 value = FrontierScriptContext_GetVar(ctx);
@@ -1698,14 +1698,14 @@ BOOL FrontierScrCmd_3D(FrontierScriptContext *ctx)
     return FALSE;
 }
 
-BOOL FrontierScrCmd_3E(FrontierScriptContext *ctx)
+BOOL FrontierScrCmd_GetSystemVar(FrontierScriptContext *ctx)
 {
     u16 srcVarID = FrontierScriptContext_ReadHalfWord(ctx);
-    u16 *destVar = FrontierScriptContext_TryGetVarPointer(ctx);
+    u16 *dest = FrontierScriptContext_TryGetVarPointer(ctx);
     UnkStruct_ov104_02230BE4 *v3 = sub_0209B970(ctx->scriptMan->unk_00);
 
     u16 *srcVar = VarsFlags_GetVarAddress(SaveData_GetVarsFlags(v3->saveData), srcVarID);
-    *destVar = *srcVar;
+    *dest = *srcVar;
 
     return FALSE;
 }

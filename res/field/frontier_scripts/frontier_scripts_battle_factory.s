@@ -427,9 +427,9 @@ _02A8:
     EndMovement
 
 _02D6:
-    FrontierScrCmd_3E VAR_BATTLE_FACTORY_CHALLENGE_TYPE, VAR_0x8001
-    FrontierScrCmd_3E VAR_BATTLE_FACTORY_CHALLENGE_LEVEL, VAR_0x8002
-    FrontierScrCmd_3E VAR_MAP_LOCAL_3, VAR_0x8003
+    GetSystemVar VAR_BATTLE_FACTORY_CHALLENGE_TYPE, VAR_0x8001
+    GetSystemVar VAR_BATTLE_FACTORY_CHALLENGE_LEVEL, VAR_0x8002
+    GetSystemVar VAR_MAP_LOCAL_3, VAR_0x8003
     GetPlayerObjEventGfx VAR_0x8007
     GoToIfEq VAR_0x8001, FRONTIER_CHALLENGE_MULTI, _0320
     GoToIfEq VAR_0x8001, FRONTIER_CHALLENGE_MULTI_WFC, _0320
@@ -923,7 +923,7 @@ _0BCB:
 
 _0BD9:
     CallBattleFactoryFunction BF_FUNC_UNK_22, 0, 0, VAR_0x8008
-    FrontierScrCmd_3D VAR_BATTLE_FACTORY_LOBBY_LOAD_ACTION, 1
+    SetSystemVar VAR_BATTLE_FACTORY_LOBBY_LOAD_ACTION, 1
     Message BattleFactoryScene_Text_BPEarned
     BufferPlayerName 0
     CallBattleFactoryFunction BF_FUNC_UNK_35, 0, 0, VAR_0x8008
@@ -1230,7 +1230,7 @@ _10B7:
     SetVar VAR_0x8003, 1
     MessageInstant BattleFactoryScene_Text_Saving
     ShowSavingIcon
-    FrontierScrCmd_3E VAR_BATTLE_FACTORY_CHALLENGE_LEVEL, VAR_0x8008
+    GetSystemVar VAR_BATTLE_FACTORY_CHALLENGE_LEVEL, VAR_0x8008
     GoToIfEq VAR_0x8008, 0, _10DE
     GoTo _10F7
     End
@@ -1275,7 +1275,7 @@ _113E:
     End
 
 _115C:
-    FrontierScrCmd_3D VAR_BATTLE_FACTORY_LOBBY_LOAD_ACTION, 2
+    SetSystemVar VAR_BATTLE_FACTORY_LOBBY_LOAD_ACTION, 2
     CallBattleFactoryFunction BF_FUNC_UNK_10, 0, 0, VAR_0x8008
     Call _137B
     CloseMessage
@@ -1323,7 +1323,7 @@ _11FE:
 
 _1216:
     CallBattleFactoryFunction BF_FUNC_UNK_21, 0, 0, VAR_0x8008
-    FrontierScrCmd_3D VAR_BATTLE_FACTORY_LOBBY_LOAD_ACTION, 3
+    SetSystemVar VAR_BATTLE_FACTORY_LOBBY_LOAD_ACTION, 3
     GoTo _12F3
     End
 
@@ -1360,7 +1360,7 @@ _12A2:
 
 _12AA:
     CallBattleFactoryFunction BF_FUNC_UNK_21, 0, 0, VAR_0x8008
-    FrontierScrCmd_3D VAR_BATTLE_FACTORY_LOBBY_LOAD_ACTION, 3
+    SetSystemVar VAR_BATTLE_FACTORY_LOBBY_LOAD_ACTION, 3
     GoTo _12BF
     End
 
@@ -1544,7 +1544,7 @@ _154A:
 _15AA:
     Call _1612
     BufferNumber 0, VAR_0x8008
-    FrontierScrCmd_3E VAR_BATTLE_FACTORY_PRINT_STATE, VAR_0x8008
+    GetSystemVar VAR_BATTLE_FACTORY_PRINT_STATE, VAR_0x8008
     CallIfEq VAR_0x8008, 0, _15D6
     Message BattleFactoryScene_Text_BeatThorton
     CloseMessage
@@ -1552,13 +1552,13 @@ _15AA:
     End
 
 _15D6:
-    FrontierScrCmd_3D VAR_BATTLE_FACTORY_PRINT_STATE, 1
+    SetSystemVar VAR_BATTLE_FACTORY_PRINT_STATE, 1
     Return
 
 _15DE:
     Call _1612
     BufferNumber 0, VAR_0x8008
-    FrontierScrCmd_3E VAR_BATTLE_FACTORY_PRINT_STATE, VAR_0x8008
+    GetSystemVar VAR_BATTLE_FACTORY_PRINT_STATE, VAR_0x8008
     CallIfEq VAR_0x8008, 2, _160A
     Message BattleFactoryScene_Text_BeatThortonGold
     CloseMessage
@@ -1566,7 +1566,7 @@ _15DE:
     End
 
 _160A:
-    FrontierScrCmd_3D VAR_BATTLE_FACTORY_PRINT_STATE, 3
+    SetSystemVar VAR_BATTLE_FACTORY_PRINT_STATE, 3
     Return
 
 _1612:

@@ -5,6 +5,7 @@
 
 #include "overlay104/frontier_data_transfer.h"
 
+#include "field_battle_data_transfer.h"
 #include "party.h"
 #include "savedata.h"
 #include "sys_task_manager.h"
@@ -22,7 +23,7 @@ typedef struct BattleFactory {
     u16 unk_0E;
     u32 unk_10;
     int wonBattle;
-    u16 unk_18[14];
+    u16 trainerIDs[14];
     FrontierDataDTO unk_34[2];
     u16 unk_254[6];
     u8 unk_260[6];
@@ -34,13 +35,13 @@ typedef struct BattleFactory {
     u32 unk_3E0[4];
     FrontierPokemonDataDTO unk_3F0[4];
     u16 unk_4D0;
-    Party *unk_4D4;
-    Party *unk_4D8;
+    Party *playersParty;
+    Party *opponentsParty;
     u16 unk_4DC[6];
     u16 unk_4E8[6];
     UnkStruct_0202FF58 *unk_4F4;
     SaveData *saveData;
-    void *unk_4FC;
+    FieldBattleDTO *dto;
     SysTask *unk_500;
     u16 unk_504[60];
     u8 unk_57C;

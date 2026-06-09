@@ -4,7 +4,6 @@
 #include "struct_decls/map_object.h"
 
 #include "field/field_system_decl.h"
-#include "overlay009/struct_ov9_0224F6EC_decl.h"
 
 #include "billboard.h"
 #include "field_task.h"
@@ -66,6 +65,21 @@ typedef struct DistWorldPersistedData {
     u8 dummy10[16];
 } DistWorldPersistedData;
 
+typedef struct DistWorldSystem DistWorldSystem;
+
+typedef struct DistWorldFallingBoulder {
+    DistWorldSystem *system;
+    FieldSystem *fieldSystem;
+    FieldTask *fieldTask;
+    MapObject *mapObj;
+    u16 state;
+    u16 destination;
+    u32 flagIndex;
+    int animStep;
+    fx32 finalPosY;
+    fx32 vibrationYDelta;
+} DistWorldFallingBoulder;
+
 void DistWorld_DynamicMapFeaturesInit(FieldSystem *fieldSystem);
 void DistWorld_DynamicMapFeaturesFree(FieldSystem *fieldSystem);
 BOOL DistWorld_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileZ, const fx32 height, BOOL *isColliding);
@@ -75,27 +89,27 @@ int DistWorld_GetMapObjectRotatorAnimFrame(FieldSystem *fieldSystem, MapObject *
 void DistWorld_BindMapObjectRotator(FieldSystem *fieldSystem, Billboard *billboard, int initialAngle);
 void DistWorld_UnbindMapObjectRotator(FieldSystem *fieldSystem, const Billboard *billboard);
 BOOL DistWorld_HandlePlayerMoved(FieldSystem *fieldSystem, enum FaceDirection playerDir);
-BOOL ov9_0224A67C(FieldSystem *fieldSystem, int param1);
-BOOL ov9_0224A71C(FieldSystem *fieldSystem);
-BOOL ov9_0224A800(FieldSystem *fieldSystem, int param1);
+BOOL DistWorld_HandlePlayerMovementEnd(FieldSystem *fieldSystem, enum FaceDirection playerDir);
+BOOL DistWorld_HandlePlayerPositionChanged(FieldSystem *fieldSystem);
+BOOL DistWorld_CheckMapTransition(FieldSystem *fieldSystem, enum FaceDirection transitionDir);
 void DistWorld_RenderInactiveFloor(FieldSystem *fieldSystem);
 void DistWorld_TickInactiveFloor(FieldSystem *fieldSystem);
 void DistWorld_StartGiratinaShadowEvent(FieldSystem *fieldSystem, u16 eventIndex);
 void DistWorld_FinishGiratinaShadowEvent(FieldSystem *fieldSystem);
 void DistWorld_AddMapObjectWithLocalID(FieldSystem *fieldSystem, u16 mapObjLocalID);
 void DistWorld_DeleteMapObjectWithLocalID(FieldSystem *fieldSystem, u16 mapObjLocalID);
-BOOL ov9_0224F240(const MapObject *param0, int param1);
-BOOL ov9_0224F2B0(const MapObject *param0);
-UnkStruct_ov9_0224F6EC *ov9_0224F2BC(FieldSystem *fieldSystem, FieldTask *param1, MapObject *param2);
-BOOL ov9_0224F6EC(UnkStruct_ov9_0224F6EC *param0);
+BOOL DistWorld_WillBoulderBeAtFallLocation(const MapObject *boulderMapObj, enum FaceDirection boulderDir);
+BOOL DistWorld_IsBoulderAtFallLocation(const MapObject *boulderMapObj);
+DistWorldFallingBoulder *DistWorldFallingBoulder_New(FieldSystem *fieldSystem, FieldTask *boulderFieldTask, MapObject *boulderMapObj);
+BOOL DistWorldFallingBoulder_Tick(DistWorldFallingBoulder *boulder);
 void DistWorld_ApplyGiratinaSpritePalette(FieldSystem *fieldSystem);
-BOOL ov9_02250F74(FieldSystem *fieldSystem);
+BOOL DistWorld_ArePersistedFeaturesInit(FieldSystem *fieldSystem);
 BOOL DistWorld_CheckCollisionOnCurrentFloatingPlatform(FieldSystem *fieldSystem, int tileX, int tileY, int tileZ);
 BOOL DistWorld_IsValidTileOnCurrentFloatingPlatform(FieldSystem *fieldSystem, int tileX, int tileY, int tileZ);
-BOOL ov9_02250FD8(FieldSystem *fieldSystem, int param1, int param2, int param3);
-void ov9_02251000(FieldSystem *fieldSystem, int param1, int param2, int param3);
+BOOL DistWorld_AreCoordsValidOnCurrentFloatingPlatformKind(FieldSystem *fieldSystem, int tileX, int tileY, int tileZ);
+void DistWorld_FindAndPrepareNewCurrentFloatingPlatform(FieldSystem *fieldSystem, int tileX, int tileY, int tileZ);
 BOOL DistWorld_GetTileBehaviorOnCurrentFloatingPlatform(FieldSystem *fieldSystem, int tileX, int tileY, int tileZ, u32 *tileBehavior);
 void DistWorld_LoadFloorOffsets(int mapHeaderID, int *offsetTileX, int *offsetAltitude, int *offsetTileZ);
-BOOL ov9_022511A0(FieldSystem *fieldSystem, int param1, int param2, int param3);
+BOOL DistWorld_IsBlockedByCynthia(FieldSystem *fieldSystem, int tileX, int tileZ, int tileY);
 
 #endif // POKEPLATINUM_OV9_02249960_H

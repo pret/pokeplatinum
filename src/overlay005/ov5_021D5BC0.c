@@ -85,7 +85,7 @@ static void ov5_021D5C4C(FieldSystem *fieldSystem)
 
 static void ov5_021D5C54(FieldSystem *fieldSystem)
 {
-    sub_0205A0BC();
+    FieldCommManager_UnpauseUndergroundResources();
 }
 
 static void ov5_021D5C5C(FieldSystem *fieldSystem)
@@ -101,7 +101,7 @@ static void ov5_021D5C78(FieldSystem *fieldSystem)
 
 static void ov5_021D5C80(FieldSystem *fieldSystem)
 {
-    sub_0205A0A0();
+    FieldCommManager_PauseUndergroundResources();
 }
 
 static void ov5_021D5C88(FieldSystem *fieldSystem)

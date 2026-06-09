@@ -24,11 +24,12 @@
 #include "overlay005/vs_seeker.h"
 #include "overlay006/repel_step_update.h"
 #include "overlay006/wild_encounters.h"
-#include "overlay008/ov8_02249960.h"
+#include "overlay008/gym_features.h"
 #include "overlay009/ov9_02249960.h"
 #include "underground/manager.h"
 
 #include "catching_show.h"
+#include "comm_manager.h"
 #include "comm_player_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
@@ -60,7 +61,6 @@
 #include "terrain_collision_manager.h"
 #include "trainer_encounter.h"
 #include "trainer_info.h"
-#include "unk_020366A0.h"
 #include "unk_0203C954.h"
 #include "unk_02054884.h"
 #include "unk_02056B30.h"
@@ -215,7 +215,7 @@ BOOL FieldInput_Process(const FieldInput *input, FieldSystem *fieldSystem)
             playerEvent |= PLAYER_EVENT_USED_WATERFALL;
         }
 
-        if (PersistedMapFeatures_IsCurrentDynamicMap(fieldSystem, DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) == TRUE && ov9_02250F74(fieldSystem) == TRUE) {
+        if (PersistedMapFeatures_IsCurrentDynamicMap(fieldSystem, DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) == TRUE && DistWorld_ArePersistedFeaturesInit(fieldSystem) == TRUE) {
             playerEvent |= PLAYER_EVENT_DISTORTION_WORLD;
         }
 
@@ -240,7 +240,7 @@ BOOL FieldInput_Process(const FieldInput *input, FieldSystem *fieldSystem)
                 direction = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
             }
 
-            if (ov9_0224A67C(fieldSystem, direction) == TRUE) {
+            if (DistWorld_HandlePlayerMovementEnd(fieldSystem, direction) == TRUE) {
                 return TRUE;
             }
         }
@@ -317,7 +317,7 @@ BOOL FieldInput_Process(const FieldInput *input, FieldSystem *fieldSystem)
 
     if (input->mapTransition) {
         if (PersistedMapFeatures_IsCurrentDynamicMap(fieldSystem, DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) == TRUE) {
-            ov9_0224A800(fieldSystem, input->transitionDir);
+            DistWorld_CheckMapTransition(fieldSystem, input->transitionDir);
         } else if (Field_CheckMapTransition(fieldSystem, input) == TRUE) {
             Field_TrySetMapConnection(fieldSystem);
             return TRUE;
@@ -395,7 +395,7 @@ BOOL FieldInput_Process_Colosseum(FieldInput *input, FieldSystem *fieldSystem)
         return TRUE;
     }
 
-    if (sub_020363A0() || CommPlayer_GetMovementTimer(CommSys_CurNetId()) != 0 || !sub_02059D2C()) {
+    if (sub_020363A0() || CommPlayer_GetMovementTimer(CommSys_CurNetId()) != 0 || !FieldCommManager_IsInMovementState()) {
         return FALSE;
     }
 
@@ -462,7 +462,7 @@ BOOL FieldInput_Process_UnionRoom(const FieldInput *input, FieldSystem *fieldSys
                 sub_0205F5E4(fieldSystem->playerAvatar, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
             }
 
-            sub_02036B84();
+            CommManager_PauseUnionClient();
             ScriptManager_Set(fieldSystem, MapObject_GetScript(object), object);
 
             return TRUE;
@@ -478,7 +478,7 @@ BOOL FieldInput_Process_UnionRoom(const FieldInput *input, FieldSystem *fieldSys
         Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN);
         StartMenu_OpenUnionRoom(fieldSystem);
         sub_0205BEA8(4);
-        sub_02036BA0();
+        CommManager_PauseUnionServer();
         return TRUE;
     }
 
@@ -564,7 +564,7 @@ static BOOL Field_CheckMapTransition(FieldSystem *fieldSystem, const FieldInput 
         return FALSE;
     }
 
-    if (PersistedMapFeatures_IsCurrentDynamicMap(fieldSystem, DYNAMIC_MAP_FEATURES_VEILSTONE_GYM) == TRUE && ov8_0224BF4C(fieldSystem) == TRUE) {
+    if (PersistedMapFeatures_IsCurrentDynamicMap(fieldSystem, DYNAMIC_MAP_FEATURES_VEILSTONE_GYM) == TRUE && VeilstoneGym_HitPunchingBag(fieldSystem) == TRUE) {
         return TRUE;
     }
 
@@ -703,7 +703,7 @@ static BOOL Field_ProcessStep(FieldSystem *fieldSystem)
         return TRUE;
     }
 
-    if (PersistedMapFeatures_IsCurrentDynamicMap(fieldSystem, DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) == TRUE && ov9_0224A71C(fieldSystem) == TRUE) {
+    if (PersistedMapFeatures_IsCurrentDynamicMap(fieldSystem, DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) == TRUE && DistWorld_HandlePlayerPositionChanged(fieldSystem) == TRUE) {
         return TRUE;
     }
 

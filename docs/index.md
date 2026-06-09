@@ -15,6 +15,10 @@ For more detailed information about the project as a whole, please refer to its
 ## Working with Files for Various Data Types
 
 - [Overview of the Processing Tools](datafiles/overview.md)
+- [Pokémon Species](datafiles/pokemon.md)
+- [In-Game Trainers](datafiles/trainers.md)
+- [In-Game Trades](datafiles/trainers.md)
+- [Items](datafiles/items.md)
 - [Moves](datafiles/moves.md)
 
 ## Subsystems

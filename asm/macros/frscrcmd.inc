@@ -352,14 +352,14 @@
     .short \unused
     .endm
 
-    .macro FrontierScrCmd_3D destVar, value
-    .short FRSCRCMD_3D
+    .macro SetSystemVar destVar, value
+    .short FRSCRCMD_SETSYSTEMVAR
     .short \destVar
     .short \value
     .endm
 
-    .macro FrontierScrCmd_3E srcVar, destVar
-    .short FRSCRCMD_3E
+    .macro GetSystemVar srcVar, destVar
+    .short FRSCRCMD_GETSYSTEMVAR
     .short \srcVar
     .short \destVar
     .endm

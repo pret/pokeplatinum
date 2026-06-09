@@ -32,6 +32,7 @@
 #include "bag_context.h"
 #include "bg_window.h"
 #include "catching_show.h"
+#include "comm_manager.h"
 #include "dexmode_checker.h"
 #include "easy_chat_args.h"
 #include "evolution.h"
@@ -78,7 +79,6 @@
 #include "unk_02014A84.h"
 #include "unk_0202D778.h"
 #include "unk_02033200.h"
-#include "unk_020366A0.h"
 #include "unk_0203D1B8.h"
 #include "unk_020559DC.h"
 #include "unk_0205B33C.h"
@@ -724,7 +724,7 @@ static void sub_0203B2EC(StartMenu *menu, FieldSystem *fieldSystem)
         if (menu->inUnionRoom) {
             sub_0205C2B0(fieldSystem->unk_80);
 
-            sub_02036AC4();
+            CommManager_UnionRestartSearch();
             sub_0205BEA8(0);
         }
     }

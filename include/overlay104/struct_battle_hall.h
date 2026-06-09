@@ -21,7 +21,7 @@ typedef struct BattleHall {
     fx32 playerLevelSqrt;
     u32 unk_10;
     int wonBattle;
-    u16 unk_18[20];
+    u16 trainerIDs[20];
     FrontierDataDTO unk_40[2];
     u8 unk_260[2];
     Party *unk_264;
@@ -33,7 +33,7 @@ typedef struct BattleHall {
     u8 selectedTypeIdx;
     UnkStruct_02030114 *unk_6F8;
     SaveData *saveData;
-    FieldBattleDTO *unk_700;
+    FieldBattleDTO *dto;
     u8 unk_704[4][9];
     u16 unk_728[2];
     u16 unk_72C[44];

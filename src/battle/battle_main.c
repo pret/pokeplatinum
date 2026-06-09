@@ -7,6 +7,7 @@
 
 #include "constants/battle.h"
 #include "constants/battle/battle_controller.h"
+#include "constants/communication/comm_error.h"
 #include "constants/heap.h"
 #include "generated/game_records.h"
 #include "generated/trainer_classes.h"
@@ -19,10 +20,10 @@
 #include "battle/battle_context.h"
 #include "battle/battle_controller.h"
 #include "battle/battle_controller_player.h"
-#include "battle/battle_cursor.h"
 #include "battle/battle_display.h"
 #include "battle/battle_io_command.h"
 #include "battle/battle_lib.h"
+#include "battle/battle_subscreen.h"
 #include "battle/battle_system.h"
 #include "battle/common.h"
 #include "battle/healthbox.h"
@@ -36,6 +37,7 @@
 #include "bag.h"
 #include "bg_window.h"
 #include "cell_transfer.h"
+#include "comm_manager.h"
 #include "communication_system.h"
 #include "evolution.h"
 #include "field_battle_data_transfer.h"
@@ -81,7 +83,6 @@
 #include "unk_0202F1D4.h"
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
-#include "unk_020366A0.h"
 #include "unk_02038F8C.h"
 #include "unk_0207A6DC.h"
 #include "unk_0208C098.h"
@@ -196,7 +197,7 @@ BOOL Battle_Main(ApplicationManager *appMan, int *state)
         BattleMain_InitLinkCommScreen(appMan, dto);
         WiFiHistory_FlagGeonetLinkInfo(dto->wiFiHistory);
 
-        if (!CommMan_IsConnectedToWifi()) {
+        if (!CommManager_IsConnectedToWifi()) {
             GameRecords_IncrementRecordValue(dto->records, RECORD_UNK_020);
         } else {
             GameRecords_IncrementRecordValue(dto->records, RECORD_UNK_025);
@@ -303,8 +304,8 @@ BOOL Battle_Main(ApplicationManager *appMan, int *state)
 
 void BattleSystem_EnterSubMenu(BattleSystem *battleSys)
 {
-    ov16_02268A14(battleSys->unk_198);
-    ov16_022687A0(battleSys->bgConfig);
+    BattleSubscreen_Free(battleSys->btlSubscreen);
+    BattleSubscreenBg_Free(battleSys->bgConfig);
 
     battleSys->pendingSubMenuVRAMSetup = 1;
 
@@ -323,7 +324,7 @@ void BattleSystem_EnterSubMenu(BattleSystem *battleSys)
 void BattleSystem_FreeGraphics(BattleSystem *battleSys)
 {
     SetVBlankCallback(NULL, NULL);
-    ov16_02268A14(battleSys->unk_198);
+    BattleSubscreen_Free(battleSys->btlSubscreen);
     Window_Remove(&battleSys->windows[0]);
 
     BattleMain_FreeBgLayers(battleSys->bgConfig);
@@ -350,18 +351,18 @@ void BattleSystem_ExitSubMenu(BattleSystem *battleSys)
 
     NARC *bgNarc = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, HEAP_ID_BATTLE);
     NARC *objNarc = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, HEAP_ID_BATTLE);
-    battleSys->unk_198 = ov16_022687C8(bgNarc, objNarc, battleSys, BattleSystem_GetTrainerGender(battleSys, BattleSystem_GetNetworkID(battleSys)), battleSys->subscreenCursorOn);
+    battleSys->btlSubscreen = BattleSubscreen_New(bgNarc, objNarc, battleSys, BattleSystem_GetTrainerGender(battleSys, BattleSystem_GetNetworkID(battleSys)), battleSys->subscreenCursorOn);
 
     Font_InitManager(FONT_SUBSCREEN, HEAP_ID_BATTLE);
 
     battleSys->pendingBattleVRAMSetup = 1;
 
-    ov16_02268744(battleSys->bgConfig);
+    BattleSubscreenBg_Init(battleSys->bgConfig);
 
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, TRUE);
-    ov16_02268A88(battleSys->unk_198);
-    ov16_02268C04(bgNarc, objNarc, battleSys->unk_198, 0, 1, NULL);
-    ov16_02268D40(objNarc, battleSys->unk_198);
+    BattleSubscreen_LoadGraphics(battleSys->btlSubscreen);
+    BattleSubscreen_SetupBackground(bgNarc, objNarc, battleSys->btlSubscreen, 0, 1, NULL);
+    BattleSubscreen_LoadSprites(objNarc, battleSys->btlSubscreen);
     NARC_dtor(bgNarc);
     NARC_dtor(objNarc);
     TextPrinter_SetScrollArrowBaseTile(1);
@@ -548,7 +549,7 @@ static void BattleMain_InitGraphics(ApplicationManager *appMan)
     NARC *bgNarc = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, HEAP_ID_BATTLE);
     NARC *objNarc = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, HEAP_ID_BATTLE);
 
-    battleSys->unk_198 = ov16_022687C8(bgNarc, objNarc, battleSys, BattleSystem_GetTrainerGender(battleSys, BattleSystem_GetNetworkID(battleSys)), battleSys->subscreenCursorOn);
+    battleSys->btlSubscreen = BattleSubscreen_New(bgNarc, objNarc, battleSys, BattleSystem_GetTrainerGender(battleSys, BattleSystem_GetNetworkID(battleSys)), battleSys->subscreenCursorOn);
 
     NARC_dtor(bgNarc);
     NARC_dtor(objNarc);
@@ -571,13 +572,13 @@ static void BattleMain_InitGraphics(ApplicationManager *appMan)
     SpriteSystem_InitManagerWithCapacities(battleSys->spriteSys, battleSys->spriteMan, &sCapacities);
     SetSubScreenViewRect(SpriteSystem_GetRenderer(battleSys->spriteSys), 0, (192 + 80) << FX32_SHIFT);
 
-    ov16_02268A88(battleSys->unk_198);
+    BattleSubscreen_LoadGraphics(battleSys->btlSubscreen);
 
     NARC *bgNarc2 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, HEAP_ID_BATTLE);
     NARC *objNarc2 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, HEAP_ID_BATTLE);
 
-    ov16_02268C04(bgNarc2, objNarc2, battleSys->unk_198, 0, 1, NULL);
-    ov16_02268D40(objNarc2, battleSys->unk_198);
+    BattleSubscreen_SetupBackground(bgNarc2, objNarc2, battleSys->btlSubscreen, 0, 1, NULL);
+    BattleSubscreen_LoadSprites(objNarc2, battleSys->btlSubscreen);
 
     NARC_dtor(bgNarc2);
     NARC_dtor(objNarc2);
@@ -790,7 +791,7 @@ static void BattleMain_CopyBattleSysToDTOAndFree(ApplicationManager *appMan)
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay11));
     Overlay_UnloadByID(FS_OVERLAY_ID(battle_anim));
 
-    if (!CommMan_IsConnectedToWifi()) {
+    if (!CommManager_IsConnectedToWifi()) {
         Overlay_UnloadByID(FS_OVERLAY_ID(pokedex));
     }
 }
@@ -887,7 +888,7 @@ static void BattleMain_InitBattleGraphics(BattleSystem *battleSys, BgConfig *bgC
     G2_SetBG0Priority(1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, TRUE);
 
-    ov16_02268744(bgConfig);
+    BattleSubscreenBg_Init(bgConfig);
 
     int frame = BattleSystem_GetOptionsFrame(battleSys);
 
@@ -937,7 +938,7 @@ static void BattleMain_FreeBgLayers(BgConfig *bgConfig)
     Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_MAIN_2);
     Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_MAIN_3);
 
-    ov16_022687A0(bgConfig);
+    BattleSubscreenBg_Free(bgConfig);
 }
 
 static void Dummy_0223C2BC(BattleSystem *battleSys) // CLEANUP: remove
@@ -1507,7 +1508,7 @@ static void SysTask_DrawSprites(SysTask *task, void *inBattleSys)
 {
     BattleSystem *battleSys = inBattleSys;
 
-    sub_02038A1C(HEAP_ID_BATTLE, battleSys->bgConfig);
+    CommManager_Dummy_02038A1C(HEAP_ID_BATTLE, battleSys->bgConfig);
 
     if (battleSys->renderMode == 0 || battleSys->renderMode == 3) {
         if (battleSys->renderMode == 0) {
@@ -1596,7 +1597,7 @@ static void SysTask_FlyInMessageBox(SysTask *task, void *inBattleSys)
 
 static void NitroStaticInit(void)
 {
-    if (!CommMan_IsConnectedToWifi()) {
+    if (!CommManager_IsConnectedToWifi()) {
         Overlay_LoadByID(FS_OVERLAY_ID(pokedex), OVERLAY_LOAD_ASYNC);
     }
 }
@@ -1703,7 +1704,7 @@ static BOOL BattleMain_HandleLinkCommHandshake(ApplicationManager *appMan)
 {
     LinkBattleCommState *linkBattleCommState = ApplicationManager_Data(appMan);
 
-    sub_02038A1C(HEAP_ID_BATTLE, linkBattleCommState->bgConfig);
+    CommManager_Dummy_02038A1C(HEAP_ID_BATTLE, linkBattleCommState->bgConfig);
 
     BOOL result = 0;
 
@@ -1731,7 +1732,7 @@ static BOOL BattleMain_HandleLinkCommHandshake(ApplicationManager *appMan)
             linkBattleCommState->syncTimer++;
 
             if (linkBattleCommState->syncTimer > (60 * 30)) {
-                Link_SetErrorState(1);
+                CommManager_SetCommError(COMM_ERROR_RESET_SAVEPOINT);
             }
         }
         break;
@@ -1909,7 +1910,7 @@ static BOOL BattleMain_HandleLinkCommHandshake(ApplicationManager *appMan)
             linkBattleCommState->syncTimer++;
 
             if (linkBattleCommState->syncTimer > (60 * 30)) {
-                Link_SetErrorState(1);
+                CommManager_SetCommError(COMM_ERROR_RESET_SAVEPOINT);
             }
         }
         break;
@@ -2095,14 +2096,14 @@ static BOOL BattleMain_HandleLinkBattleResult(ApplicationManager *appMan)
 
     switch (dto->resultMask) {
     case BATTLE_RESULT_WIN:
-        if (!CommMan_IsConnectedToWifi()) {
+        if (!CommManager_IsConnectedToWifi()) {
             GameRecords_IncrementRecordValue(dto->records, RECORD_LOCAL_LINK_BATTLE_WINS);
         } else {
             GameRecords_IncrementRecordValue(dto->records, RECORD_WIFI_BATTLE_WINS);
         }
         break;
     case BATTLE_RESULT_LOSE:
-        if (!CommMan_IsConnectedToWifi()) {
+        if (!CommManager_IsConnectedToWifi()) {
             GameRecords_IncrementRecordValue(dto->records, RECORD_LOCAL_LINK_BATTLE_LOSSES);
         } else {
             GameRecords_IncrementRecordValue(dto->records, RECORD_WIFI_BATTLE_LOSSES);
@@ -2110,7 +2111,7 @@ static BOOL BattleMain_HandleLinkBattleResult(ApplicationManager *appMan)
         break;
     case BATTLE_RESULT_DRAW:
     case BATTLE_RESULT_PLAYER_FLED:
-        if (!CommMan_IsConnectedToWifi()) {
+        if (!CommManager_IsConnectedToWifi()) {
             GameRecords_IncrementRecordValue(dto->records, RECORD_UNK_023);
         } else {
             GameRecords_IncrementRecordValue(dto->records, RECORD_UNK_028);
@@ -2253,7 +2254,7 @@ static void BattleMain_SetNetworkIconStrength(void)
 {
     NetworkIcon_Init();
 
-    if (CommMan_IsConnectedToWifi()) {
+    if (CommManager_IsConnectedToWifi()) {
         NetworkIcon_SetStrength(WM_LINK_LEVEL_3 - DWC_GetLinkLevel());
     } else if (CommServerClient_IsInitialized()) {
         NetworkIcon_SetStrength(WM_LINK_LEVEL_3 - WM_GetLinkLevel());

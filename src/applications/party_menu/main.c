@@ -2149,10 +2149,10 @@ static int HandleGameWindowEvent(PartyMenuApplication *application)
 
     if (application->partyMenu->battleRegulation != NULL) {
         switch (BattleRegulation_ValidatePartySelection(application->partyMenu->battleRegulation, application->partyMenu->party, application->heightWeight, application->partyMenu->selectionOrder)) {
-        case BATTLE_REGULATION_VALIDATION_SUCCESS:
+        case BATTLE_REGULATION_VALIDATION_RESULT_SUCCESS:
             break;
 
-        case BATTLE_REGULATION_VALIDATION_ERROR_TOTAL_LEVEL_EXCEEDED: {
+        case BATTLE_REGULATION_VALIDATION_RESULT_TOTAL_LEVEL_EXCEEDED: {
             String *v1;
             int v2;
 
@@ -2167,12 +2167,12 @@ static int HandleGameWindowEvent(PartyMenuApplication *application)
             application->stateAfterMessage = PARTY_MENU_STATE_23;
             Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
             return PARTY_MENU_STATE_SHOW_MESSAGE_THEN_NEXT_STATE;
-        case BATTLE_REGULATION_VALIDATION_ERROR_DUPLICATE_SPECIES:
+        case BATTLE_REGULATION_VALIDATION_RESULT_DUPLICATE_SPECIES:
             PartyMenu_PrintLongMessage(application, PartyMenu_Text_IdenticalMonNotPermitted, TRUE);
             application->stateAfterMessage = PARTY_MENU_STATE_23;
             Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
             return PARTY_MENU_STATE_SHOW_MESSAGE_THEN_NEXT_STATE;
-        case BATTLE_REGULATION_VALIDATION_ERROR_DUPLICATE_ITEMS:
+        case BATTLE_REGULATION_VALIDATION_RESULT_DUPLICATE_ITEMS:
             PartyMenu_PrintLongMessage(application, PartyMenu_Text_SomeMonHoldingIdenticalItems, TRUE);
             application->stateAfterMessage = PARTY_MENU_STATE_23;
             Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);

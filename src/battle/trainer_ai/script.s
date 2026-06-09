@@ -6372,7 +6372,7 @@ EvalAttack_MaybeDeprioritize:
     AddToMoveScore -2
 
 EvalAttack_CheckQuadEffective:
-    // If quad-effective, 31.25% chance of score +2.
+    // If quad-effective, 68.75% chance of score +2.
     IfMoveEffectivenessEquals TYPE_MULTI_QUADRUPLE_DAMAGE, EvalAttack_TryScorePlus2
     PopOrEnd 
 

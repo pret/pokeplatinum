@@ -28,12 +28,12 @@
 #include "pokemon.h"
 #include "pokemon_anim.h"
 #include "pokemon_sprite.h"
+#include "save_catchrecords.h"
 #include "save_player.h"
 #include "screen_fade.h"
 #include "sound_playback.h"
 #include "system.h"
 #include "trainer_info.h"
-#include "unk_0202F180.h"
 #include "unk_02092494.h"
 #include "vram_transfer.h"
 

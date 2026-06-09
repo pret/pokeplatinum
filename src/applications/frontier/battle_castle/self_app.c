@@ -1404,7 +1404,7 @@ static void FreeAssets(BattleCastleSelfApp *app)
     BattleCastleAppSprite_Free(app->partnerCursorSprite);
     BattleCastleAppSprite_Free(app->itemSelectCursorSprite);
 
-    u8 numMons = BattleCastle_GetPartySize(app->challengeType, TRUE);
+    u8 numMons = BattleCastle_GetPlayerPartySize(app->challengeType, TRUE);
 
     for (int i = 0; i < numMons; i++) {
         BattleCastleAppSprite_Free(app->monSprites[i]);
@@ -1493,7 +1493,7 @@ static void LoadAssets(BattleCastleSelfApp *app)
         iconXOffset = 32 + 8;
     }
 
-    u8 numMons = BattleCastle_GetPartySize(app->challengeType, TRUE);
+    u8 numMons = BattleCastle_GetPlayerPartySize(app->challengeType, TRUE);
 
     for (int i = 0; i < numMons; i++) {
         app->itemIconSprites[i] = BattleCastleAppSprite_New(&app->spriteMan, 2, 2, 2, 0, 64 * i + iconXOffset, 62, 2, NULL);
@@ -1917,7 +1917,7 @@ static void PrintAllMonsHP(BattleCastleSelfApp *app, Window *window)
 {
     Window_FillTilemap(window, 0);
 
-    u8 numMons = BattleCastle_GetPartySize(app->challengeType, TRUE);
+    u8 numMons = BattleCastle_GetPlayerPartySize(app->challengeType, TRUE);
 
     for (int i = 0; i < numMons; i++) {
         PrintMonHP(app, window, i, FALSE);
@@ -1960,7 +1960,7 @@ static void PrintMonHP(BattleCastleSelfApp *app, Window *window, u8 slot, u8 isI
 
 static void PrintAllMonsLevelAndGender(BattleCastleSelfApp *app, Window *window)
 {
-    u8 numMons = BattleCastle_GetPartySize(app->challengeType, TRUE);
+    u8 numMons = BattleCastle_GetPlayerPartySize(app->challengeType, TRUE);
 
     for (int i = 0; i < numMons; i++) {
         PrintMonLevelAndGender(app, window, i, FALSE);
@@ -3449,7 +3449,7 @@ static void CloseSummaryScreen(BattleCastleSelfApp *app)
 
 static void UpdatePokemonGraphics(BattleCastleSelfApp *app)
 {
-    u8 numMons = BattleCastle_GetPartySize(app->challengeType, TRUE);
+    u8 numMons = BattleCastle_GetPlayerPartySize(app->challengeType, TRUE);
 
     for (int i = 0; i < numMons; i++) {
         Pokemon *mon = Party_GetPokemonBySlotIndex(app->party, i);
@@ -3469,7 +3469,7 @@ static void UpdatePokemonGraphics(BattleCastleSelfApp *app)
 
 static void IncreaseRank(BattleCastleSelfApp *app, u8 slot, u8 menuOption)
 {
-    u8 unused = BattleCastle_GetPartySize(app->challengeType, FALSE);
+    u8 unused = BattleCastle_GetPlayerPartySize(app->challengeType, FALSE);
 
     u8 rankType;
     if (menuOption == MENU_ENTRY_RANK_UP_HEALING) {

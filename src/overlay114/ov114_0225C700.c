@@ -17,6 +17,7 @@
 #include "bg_window.h"
 #include "buffer_manager.h"
 #include "char_transfer.h"
+#include "comm_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "enums.h"
@@ -49,7 +50,6 @@
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_020363E8.h"
-#include "unk_020366A0.h"
 #include "unk_0203909C.h"
 #include "unk_02094EDC.h"
 #include "vram_transfer.h"
@@ -1040,11 +1040,11 @@ BOOL ov114_0225CA54(UnkStruct_ov114_0225C76C *param0)
             v0 = 1;
         }
 
-        if (sub_02038284() == 1) {
+        if (CommManager_GetDisconnectedWifi() == 1) {
             v0 = 1;
         }
 
-        if (sub_020380E4() >= 2) {
+        if (CommManager_GetMatchmakingState() >= 2) {
             v0 = 1;
         }
 
@@ -1067,9 +1067,9 @@ BOOL ov114_0225CA98(const UnkStruct_ov114_0225C76C *param0)
 
     if (CommInfo_IsInitialized() == 1) {
         CommInfo_Delete();
-        sub_0203888C();
+        CommManager_EndWifiP2P();
     } else {
-        if (sub_020382C0() == 1) {
+        if (CommManager_IsLoginBattleMatchWifi() == 1) {
             return 1;
         }
     }

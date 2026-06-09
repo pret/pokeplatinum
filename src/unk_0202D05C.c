@@ -505,9 +505,9 @@ void sub_0202D63C(UnkStruct_0202D764 *param0, FrontierDataDTO *param1, const u8 
         MI_CpuCopy8(v2->unk_A8, v0->trainerName, 16);
     }
 
-    MI_CpuCopy8(v2->unk_CA, v0->unk_18, 8);
-    MI_CpuCopy8(v2->unk_D2, v0->unk_20, 8);
-    MI_CpuCopy8(v2->unk_DA, v0->unk_28, 8);
+    MI_CpuCopy8(v2->unk_CA, v0->introMsg, 8);
+    MI_CpuCopy8(v2->unk_D2, v0->winMsg, 8);
+    MI_CpuCopy8(v2->unk_DA, v0->loseMsg, 8);
     MI_CpuCopy8(v2->unk_00, v1, sizeof(FrontierPokemonDataDTO) * 3);
 }
 

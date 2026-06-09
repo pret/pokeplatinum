@@ -6,6 +6,7 @@
 #include "main_menu/mystery_gift_app.h"
 #include "main_menu/ov97_0222D2F8.h"
 
+#include "comm_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "heap.h"
@@ -18,7 +19,6 @@
 #include "trainer_info.h"
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
-#include "unk_020366A0.h"
 
 typedef void (*UnkFuncPtr_ov97_0222D0A4)(void);
 
@@ -120,13 +120,13 @@ static void ov97_0222D140(void)
 
 static void ov97_0222D144(void)
 {
-    sub_02036948(Unk_ov97_0223F1A4->unk_27);
+    CommManager_ConnectBattleClient(Unk_ov97_0223F1A4->unk_27);
     ov97_0222D0A4(ov97_0222D164, 0);
 }
 
 static void ov97_0222D164(void)
 {
-    if (!sub_0203699C()) {
+    if (!CommManager_IsWaitingBattle()) {
         return;
     }
 
@@ -164,7 +164,7 @@ void ov97_0222D1C4(MysteryGiftAppData *param0, SaveData *saveData, int param2)
         return;
     }
 
-    sub_02036BE8(saveData, param2);
+    CommManager_StartRandomBattleServer(saveData, param2);
 
     ov97_0222D04C(param0);
     ov97_0222D0A4(ov97_0222D0B4, 0);
@@ -184,7 +184,7 @@ void ov97_0222D200(MysteryGiftAppData *param0, int param1)
     }
 
     saveData = ((ApplicationArgs *)ApplicationManager_Args(MysteryGiftApp_GetApplicationManager()))->saveData;
-    sub_02036C1C(saveData, param1);
+    CommManager_StartRandomBattleClient(saveData, param1);
 
     ov97_0222D04C(param0);
     ov97_0222D0A4(ov97_0222D128, 0);
@@ -248,5 +248,5 @@ void ov97_0222D2DC(void)
 {
     Heap_FreeExplicit(HEAP_ID_COMMUNICATION, Unk_ov97_0223F1A4);
     Unk_ov97_0223F1A4 = NULL;
-    sub_02036978();
+    CommManager_EndBattle();
 }

@@ -15,7 +15,7 @@
 #include "field/field_system.h"
 #include "overlay005/ov5_021ECC20.h"
 #include "overlay005/ov5_021F5A10.h"
-#include "overlay008/ov8_02249960.h"
+#include "overlay008/gym_features.h"
 
 #include "heap.h"
 #include "map_object.h"
@@ -405,10 +405,10 @@ void TrainerEncounter_FreeApproachingTrainerTask(SysTask *task)
 static SysTask *StartApproachingTrainerTask(FieldSystem *fieldSystem, MapObject *mapObj, PlayerAvatar *playerAvatar, int direction, int sightRange, int unused, int approachType, int approachNum)
 {
     SysTask *task;
-    ApproachingTrainerData *data = Heap_AllocAtEnd(HEAP_ID_FIELD1, (sizeof(ApproachingTrainerData)));
+    ApproachingTrainerData *data = Heap_AllocAtEnd(HEAP_ID_FIELD1, sizeof(ApproachingTrainerData));
     GF_ASSERT(data != NULL);
 
-    memset(data, 0, (sizeof(ApproachingTrainerData)));
+    memset(data, 0, sizeof(ApproachingTrainerData));
 
     data->direction = direction;
     data->sightRange = sightRange;

@@ -442,111 +442,111 @@
       "garbage": 1
     },
     {
-      "id": "pl_msg_00000353_00070",
+      "id": "Unk0353_Text_StandardCup",
       "en_US": "STANDARD"
     },
     {
-      "id": "pl_msg_00000353_00071",
+      "id": "Unk0353_Text_FancyCup",
       "en_US": "FANCY"
     },
     {
-      "id": "pl_msg_00000353_00072",
+      "id": "Unk0353_Text_LittleCup",
       "en_US": "LITTLE"
     },
     {
-      "id": "pl_msg_00000353_00073",
+      "id": "Unk0353_Text_LightCup",
       "en_US": "LIGHT"
     },
     {
-      "id": "pl_msg_00000353_00074",
+      "id": "Unk0353_Text_DoubleCup",
       "en_US": "DOUBLE"
     },
     {
-      "id": "pl_msg_00000353_00075",
+      "id": "Unk0353_Text_RuleNoOfPokemon",
       "en_US": "No. of Pokémon:"
     },
     {
-      "id": "pl_msg_00000353_00076",
+      "id": "Unk0353_Text_RulePokemonLevel",
       "en_US": "Pokémon level:"
     },
     {
-      "id": "pl_msg_00000353_00077",
+      "id": "Unk0353_Text_RuleTotalLevels",
       "en_US": "Total levels:"
     },
     {
-      "id": "pl_msg_00000353_00078",
+      "id": "Unk0353_Text_RuleHeight",
       "en_US": "Height:"
     },
     {
-      "id": "pl_msg_00000353_00079",
+      "id": "Unk0353_Text_RuleWeight",
       "en_US": "Weight:"
     },
     {
-      "id": "pl_msg_00000353_00080",
+      "id": "Unk0353_Text_RuleEvolvedPokemon",
       "en_US": "Evolved Pokémon:"
     },
     {
-      "id": "pl_msg_00000353_00081",
+      "id": "Unk0353_Text_RuleSpecialPokemon",
       "en_US": "Special Pokémon:"
     },
     {
-      "id": "pl_msg_00000353_00082",
+      "id": "Unk0353_Text_RuleSamePokemon",
       "en_US": "Same Pokémon:"
     },
     {
-      "id": "pl_msg_00000353_00083",
+      "id": "Unk0353_Text_RuleSameItems",
       "en_US": "Same items:"
     },
     {
-      "id": "pl_msg_00000353_00084",
+      "id": "Unk0353_Text_ValueNoOfPokemon",
       "en_US": "{STRVAR_1 50, 0, 0}"
     },
     {
-      "id": "pl_msg_00000353_00085",
+      "id": "Unk0353_Text_ValueMaxLevel",
       "en_US": "Max. {STRVAR_1 52, 0, 0}"
     },
     {
-      "id": "pl_msg_00000353_00086",
+      "id": "Unk0353_Text_ValueMaxTotalLevels",
       "en_US": "Max. {STRVAR_1 52, 0, 0}"
     },
     {
-      "id": "pl_msg_00000353_00087",
+      "id": "Unk0353_Text_ValueMaxHeight",
       "en_US": "Max. {STRVAR_1 50, 0, 0}’ {STRVAR_1 50, 1, 0}”"
     },
     {
-      "id": "pl_msg_00000353_00088",
+      "id": "Unk0353_Text_ValueMinHeight",
       "en_US": "Min. {STRVAR_1 50, 0, 0}’ {STRVAR_1 50, 1, 0}”"
     },
     {
-      "id": "pl_msg_00000353_00089",
+      "id": "Unk0353_Text_ValueMaxWeight",
       "en_US": "Max. {STRVAR_1 51, 0, 0} lbs."
     },
     {
-      "id": "pl_msg_00000353_00090",
+      "id": "Unk0353_Text_ValueMinWeight",
       "en_US": "Min. {STRVAR_1 51, 0, 0} lbs."
     },
     {
-      "id": "pl_msg_00000353_00091",
+      "id": "Unk0353_Text_ValuePokemonPermitted",
       "en_US": "Permitted"
     },
     {
-      "id": "pl_msg_00000353_00092",
+      "id": "Unk0353_Text_ValuePokemonBanned",
       "en_US": "Banned"
     },
     {
-      "id": "pl_msg_00000353_00093",
+      "id": "Unk0353_Text_ValueItemsPermitted",
       "en_US": "Permitted"
     },
     {
-      "id": "pl_msg_00000353_00094",
+      "id": "Unk0353_Text_ValueItemsBanned",
       "en_US": "Banned"
     },
     {
-      "id": "pl_msg_00000353_00095",
+      "id": "Unk0353_Text_Cup",
       "en_US": "{STRVAR_1 26, 0, 0} Cup"
     },
     {
-      "id": "pl_msg_00000353_00096",
+      "id": "Unk0353_Text_NoRestrictions",
       "en_US": "NO RESTRICTIONS"
     },
     {

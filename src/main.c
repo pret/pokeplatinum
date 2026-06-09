@@ -9,6 +9,7 @@
 #include "assert.h"
 #include "brightness_controller.h"
 #include "chatot_cry.h"
+#include "comm_manager.h"
 #include "communication_system.h"
 #include "font.h"
 #include "game_overlay.h"
@@ -27,7 +28,6 @@
 #include "timer.h"
 #include "touch_pad.h"
 #include "unk_0202419C.h"
-#include "unk_020366A0.h"
 #include "unk_02038FFC.h"
 #include "unk_02039814.h"
 #include "unk_02039A64.h"
@@ -220,7 +220,7 @@ static void WaitFrame(void)
 
 static void TrySystemReset(enum OSResetParameter resetParam)
 {
-    if (sub_02038AB8() && CARD_TryWaitBackupAsync() == TRUE) {
+    if (CommManager_CheckResetFinished() && CARD_TryWaitBackupAsync() == TRUE) {
         OS_ResetSystem(resetParam);
     }
 
@@ -229,7 +229,7 @@ static void TrySystemReset(enum OSResetParameter resetParam)
 
 static void CheckHeapCanary(void)
 {
-    int v0 = sub_020389D8();
+    int v0 = CommManager_GetResetType();
 
     switch (v0) {
     case 1:
@@ -249,7 +249,7 @@ static void SoftReset(enum OSResetParameter resetParam)
     SetScreenColorBrightness(DS_SCREEN_MAIN, COLOR_WHITE);
     SetScreenColorBrightness(DS_SCREEN_SUB, COLOR_WHITE);
 
-    if (sub_02037DB0()) {
+    if (CommManager_ExitOrReset()) {
         SaveData_SaveStateCancel(SaveData_Ptr());
     }
 
@@ -266,20 +266,20 @@ static void HeapCanaryFailed(int resetParam, int param1)
     if (param1 == 3) {
         NetworkError_DisplayNetworkError(HEAP_ID_SYSTEM, 3, 0);
     } else if (resetParam == RESET_CLEAN) {
-        if (CommMan_IsConnectedToWifi() == TRUE) {
+        if (CommManager_IsConnectedToWifi() == TRUE) {
             NetworkError_DisplayNetworkError(HEAP_ID_SYSTEM, 6, 0);
         } else {
             NetworkError_DisplayNetworkError(HEAP_ID_SYSTEM, 2, 0);
         }
     } else {
-        if (CommMan_IsConnectedToWifi() == TRUE) {
+        if (CommManager_IsConnectedToWifi() == TRUE) {
             NetworkError_DisplayNetworkError(HEAP_ID_SYSTEM, 5, 0);
         } else {
             NetworkError_DisplayNetworkError(HEAP_ID_SYSTEM, 0, 0);
         }
     }
 
-    sub_02037DB0();
+    CommManager_ExitOrReset();
     WaitFrame();
     SoundSystem_Tick();
 

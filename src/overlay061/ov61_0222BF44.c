@@ -14,6 +14,7 @@
 #include "overlay061/struct_ov61_0222C3B0.h"
 
 #include "bg_window.h"
+#include "comm_manager.h"
 #include "font.h"
 #include "game_options.h"
 #include "graphics.h"
@@ -38,7 +39,6 @@
 #include "system_data.h"
 #include "text.h"
 #include "touch_pad.h"
-#include "unk_020366A0.h"
 #include "unk_02038FFC.h"
 #include "vram_transfer.h"
 #include "wifi_list.h"
@@ -644,7 +644,7 @@ static int ov61_0222CA20(UnkStruct_ov61_0222C664 *param0)
 {
     switch (param0->unk_90) {
     case 0:
-        sub_02038438(param0->unk_00->unk_00->saveData);
+        CommManager_InitializeGlobalWifi(param0->unk_00->unk_00->saveData);
         NetworkIcon_Init();
         ov61_0222C8B8(param0, param0->unk_28, 1, TEXT_SPEED_FAST, 0xf0f);
         ov61_0222C850(param0);
@@ -832,7 +832,7 @@ static int ov61_0222CC64(UnkStruct_ov61_0222C664 *param0)
 static int ov61_0222CCAC(UnkStruct_ov61_0222C664 *param0)
 {
     if (param0->unk_08 != 9) {
-        sub_0203848C();
+        CommManager_EndGlobalWifi();
     }
 
     NetworkIcon_Destroy();
@@ -882,7 +882,7 @@ static int ov61_0222CD58(UnkStruct_ov61_0222C664 *param0)
         break;
     case 1:
         if (ov61_0222C834(param0->unk_40) == 0) {
-            sub_0203848C();
+            CommManager_EndGlobalWifi();
             DWC_CleanupInet();
             param0->unk_90++;
         }
@@ -931,7 +931,7 @@ static int ov61_0222CE2C(UnkStruct_ov61_0222C664 *param0)
         break;
     case 1:
         DWC_CleanupInet();
-        sub_0203848C();
+        CommManager_EndGlobalWifi();
         param0->unk_90++;
         break;
     case 2:
