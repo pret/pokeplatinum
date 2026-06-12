@@ -3481,7 +3481,7 @@ static int VeilstoneGym_AnimationState_FinishBagAnimation(VeilstoneGym_BagAnimat
 static int VeilstoneGym_AnimationState_WaitForAnimationFinished(VeilstoneGym_BagAnimation *bagAnim)
 {
     MapObject *playerObj = PlayerAvatar_GetMapObject(bagAnim->gymSystem->fieldSystem->playerAvatar);
-    
+
     if (LocalMapObj_CheckAnimationFinished(playerObj) == TRUE) {
         sub_020656AC(playerObj);
         bagAnim->state = VEILSTONE_ANIM_STATE_FREE;
