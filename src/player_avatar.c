@@ -626,7 +626,7 @@ void PlayerAvatar_SetSpeed(PlayerAvatar *playerAvatar, int speed)
 void PlayerAvatar_ClearSpeed(PlayerAvatar *playerAvatar)
 {
     playerAvatar->speed = 0;
-    PlayerAvatar_SetBikeBreak(playerAvatar, 0);
+    PlayerAvatar_SetBikeBrake(playerAvatar, 0);
 }
 
 /**
@@ -1245,12 +1245,12 @@ BOOL PlayerAvatar_CheckIgnoreTileBehavior(PlayerAvatar *playerAvatar)
  * @param playerAvatar
  * @param flag
  */
-void PlayerAvatar_SetBikeBreak(PlayerAvatar *playerAvatar, int flag)
+void PlayerAvatar_SetBikeBrake(PlayerAvatar *playerAvatar, int flag)
 {
     if (flag == 1) {
-        PlayerAvatar_TurnOnMovementFlagBits(playerAvatar, AVATAR_MOVE_BIKE_BREAK);
+        PlayerAvatar_TurnOnMovementFlagBits(playerAvatar, AVATAR_MOVE_BIKE_BRAKE);
     } else {
-        PlayerAvatar_ClearMovementFlag(playerAvatar, AVATAR_MOVE_BIKE_BREAK);
+        PlayerAvatar_ClearMovementFlag(playerAvatar, AVATAR_MOVE_BIKE_BRAKE);
     }
 }
 
@@ -1259,11 +1259,11 @@ void PlayerAvatar_SetBikeBreak(PlayerAvatar *playerAvatar, int flag)
  *
  * @param playerAvatar
  *
- * @return TRUE if the AVATAR_MOVE_BIKE_BREAK flag is on
+ * @return TRUE if the AVATAR_MOVE_BIKE_BRAKE flag is on
  */
-BOOL PlayerAvatar_CheckBikeBreak(PlayerAvatar *playerAvatar)
+BOOL PlayerAvatar_CheckBikeBrake(PlayerAvatar *playerAvatar)
 {
-    if (PlayerAvatar_GetMovementFlag(playerAvatar, AVATAR_MOVE_BIKE_BREAK)) {
+    if (PlayerAvatar_GetMovementFlag(playerAvatar, AVATAR_MOVE_BIKE_BRAKE)) {
         return TRUE;
     }
 

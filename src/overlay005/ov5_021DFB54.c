@@ -244,16 +244,16 @@ void PlayerAvatar_RequestChangeState(PlayerAvatar *playerAvatar)
 static void PlayerAvatar_RequestStateWalking(PlayerAvatar *playerAvatar)
 {
     int v0;
-    int v1 = 0x0;
+    int v1 = PLAYER_AVATAR_WALKING;
 
     if (PlayerAvatar_MapDistortionState(playerAvatar) != AVATAR_DISTORTION_STATE_NONE) {
-        v1 = 0x18;
+        v1 = PLAYER_AVATAR_DISTORTION_WORLD;
     } else {
         MapObject *mapObj = PlayerAvatar_GetMapObject(playerAvatar);
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
 
         if (PersistedMapFeatures_IsCurrentDynamicMap(fieldSystem, DYNAMIC_MAP_FEATURES_HEARTHOME_GYM) == 1) {
-            v1 = 0x1c;
+            v1 = PLAYER_AVATAR_HEARTHOME_GYM;
         }
     }
 
@@ -320,7 +320,7 @@ static void PlayerAvatar_RequestStateSurf(PlayerAvatar *playerAvatar)
         v0 = PLAYER_AVATAR_SURFING;
     } else {
         v5 = DistWorldSurfMountRenderer_HandleSurfBegin(playerAvatar, 0, 0, 0, v1, 1, distortionState);
-        v0 = 0x19;
+        v0 = PLAYER_AVATAR_DISTORTION_WORLD_SURF;
     }
 
     PlayerAvatar_SetSurfMountAnimManager(playerAvatar, v5);
@@ -339,29 +339,29 @@ static void ov5_021DFCE4(PlayerAvatar *playerAvatar)
 
 static void ov5_021DFCF0(PlayerAvatar *playerAvatar)
 {
-    int v0 = Player_GetSpriteFromStateAndGender(0x11, PlayerAvatar_GetGender(playerAvatar));
+    int v0 = Player_GetSpriteFromStateAndGender(PLAYER_AVATAR_SPRAYDUCK, PlayerAvatar_GetGender(playerAvatar));
     PlayerAvatar_Redraw(playerAvatar, v0);
 }
 
 static void ov5_021DFD0C(PlayerAvatar *playerAvatar)
 {
-    int v0 = Player_GetSpriteFromStateAndGender(0x13, PlayerAvatar_GetGender(playerAvatar));
+    int v0 = Player_GetSpriteFromStateAndGender(PLAYER_AVATAR_FISHING, PlayerAvatar_GetGender(playerAvatar));
     PlayerAvatar_Redraw(playerAvatar, v0);
 }
 
 static void PlayerAvatar_RequestStatePoketch(PlayerAvatar *playerAvatar)
 {
     int v0;
-    int v1 = 0x14;
+    int v1 = PLAYER_AVATAR_POKETCH;
 
     if (PlayerAvatar_MapDistortionState(playerAvatar) != AVATAR_DISTORTION_STATE_NONE) {
-        v1 = 0x1b;
+        v1 = PLAYER_AVATAR_27;
     } else {
         MapObject *mapObj = PlayerAvatar_GetMapObject(playerAvatar);
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
 
         if (PersistedMapFeatures_IsCurrentDynamicMap(fieldSystem, DYNAMIC_MAP_FEATURES_HEARTHOME_GYM) == 1) {
-            v1 = 0x1e;
+            v1 = PLAYER_AVATAR_30;
         }
     }
 
@@ -372,16 +372,16 @@ static void PlayerAvatar_RequestStatePoketch(PlayerAvatar *playerAvatar)
 static void PlayerAvatar_RequestStateSave(PlayerAvatar *playerAvatar)
 {
     int v0;
-    int v1 = 0x15;
+    int v1 = PLAYER_AVATAR_SAVE;
 
     if (PlayerAvatar_MapDistortionState(playerAvatar) != AVATAR_DISTORTION_STATE_NONE) {
-        v1 = 0x1a;
+        v1 = PLAYER_AVATAR_26;
     } else {
         MapObject *mapObj = PlayerAvatar_GetMapObject(playerAvatar);
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
 
         if (PersistedMapFeatures_IsCurrentDynamicMap(fieldSystem, DYNAMIC_MAP_FEATURES_HEARTHOME_GYM) == 1) {
-            v1 = 0x1d;
+            v1 = PLAYER_AVATAR_29;
         }
     }
 
@@ -391,13 +391,13 @@ static void PlayerAvatar_RequestStateSave(PlayerAvatar *playerAvatar)
 
 static void PlayerAvatar_RequestStateHeal(PlayerAvatar *playerAvatar)
 {
-    int v0 = Player_GetSpriteFromStateAndGender(0x16, PlayerAvatar_GetGender(playerAvatar));
+    int v0 = Player_GetSpriteFromStateAndGender(PLAYER_AVATAR_HEAL, PlayerAvatar_GetGender(playerAvatar));
     PlayerAvatar_Redraw(playerAvatar, v0);
 }
 
 static void ov5_021DFDC4(PlayerAvatar *playerAvatar)
 {
-    int v0 = Player_GetSpriteFromStateAndGender(0x17, PlayerAvatar_GetGender(playerAvatar));
+    int v0 = Player_GetSpriteFromStateAndGender(PLAYER_AVATAR_VS_SEEKER, PlayerAvatar_GetGender(playerAvatar));
     PlayerAvatar_Redraw(playerAvatar, v0);
 }
 
@@ -728,13 +728,13 @@ static BOOL FieldTask_UseSurf(FieldTask *task)
             int moveState;
 
             SurfMountRenderer_SetSyncPos(taskEnv->unk_28, TRUE);
-            moveState = Player_GetSpriteFromStateAndGender(0x2, PlayerAvatar_GetGender(taskEnv->playerAvatar));
+            moveState = Player_GetSpriteFromStateAndGender(PLAYER_AVATAR_SURFING, PlayerAvatar_GetGender(taskEnv->playerAvatar));
             PlayerAvatar_Redraw(taskEnv->playerAvatar, moveState);
         } else {
             int moveState;
 
             DistWorldSurfMountRenderer_SetFlags(taskEnv->unk_28, DIST_WORLD_SURF_MOUNT_RENDERER_FLAG_MASK_TICK);
-            moveState = Player_GetSpriteFromStateAndGender(0x19, PlayerAvatar_GetGender(taskEnv->playerAvatar));
+            moveState = Player_GetSpriteFromStateAndGender(PLAYER_AVATAR_DISTORTION_WORLD_SURF, PlayerAvatar_GetGender(taskEnv->playerAvatar));
             PlayerAvatar_Redraw(taskEnv->playerAvatar, moveState);
         }
 
@@ -747,7 +747,7 @@ static BOOL FieldTask_UseSurf(FieldTask *task)
 
 static int ov5_021E032C(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, int param2, int param3)
 {
-    if ((param3 != 1) || (PlayerAvatar_GetPlayerState(playerAvatar) != 0x2)) {
+    if ((param3 != 1) || (PlayerAvatar_GetPlayerState(playerAvatar) != PLAYER_AVATAR_SURFING)) {
         return 0;
     }
 
@@ -805,10 +805,10 @@ static BOOL ov5_021E03C8(FieldTask *param0)
 
             if (distortionState == AVATAR_DISTORTION_STATE_NONE) {
                 SurfMountRenderer_SetSyncPos(v0->unk_14, FALSE);
-                v1 = Player_GetSpriteFromStateAndGender(0x0, PlayerAvatar_GetGender(v0->playerAvatar));
+                v1 = Player_GetSpriteFromStateAndGender(PLAYER_AVATAR_WALKING, PlayerAvatar_GetGender(v0->playerAvatar));
             } else {
                 DistWorldSurfMountRenderer_ClearFlags(v0->unk_14, DIST_WORLD_SURF_MOUNT_RENDERER_FLAG_MASK_TICK);
-                v1 = Player_GetSpriteFromStateAndGender(0x18, PlayerAvatar_GetGender(v0->playerAvatar));
+                v1 = Player_GetSpriteFromStateAndGender(PLAYER_AVATAR_DISTORTION_WORLD, PlayerAvatar_GetGender(v0->playerAvatar));
             }
 
             PlayerAvatar_Redraw(v0->playerAvatar, v1);
@@ -841,7 +841,7 @@ static BOOL ov5_021E03C8(FieldTask *param0)
 
 static int ov5_021E04A8(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, int param2, int param3)
 {
-    if ((param2 != 1) || (param3 != 1) || (PlayerAvatar_GetPlayerState(playerAvatar) != 0x2)) {
+    if ((param2 != 1) || (param3 != 1) || (PlayerAvatar_GetPlayerState(playerAvatar) != PLAYER_AVATAR_SURFING)) {
         return 0;
     }
 
@@ -1542,7 +1542,7 @@ static BOOL ov5_021E0E10(FieldTask *param0)
         break;
     case 1:
         if (MapObject_HasAnimationEnded(v0->unk_14) == 1) {
-            int v1 = Player_GetSpriteFromStateAndGender(0x12, v0->playerGender);
+            int v1 = Player_GetSpriteFromStateAndGender(PLAYER_AVATAR_CONTEST, v0->playerGender);
 
             PlayerAvatar_Redraw(v0->playerAvatar, v1);
             MapObject_FinishAnimation(v0->unk_14);
@@ -1574,7 +1574,7 @@ void ov5_021E0E94(PlayerAvatar *playerAvatar)
     {
         int v1 = PlayerAvatar_GetPlayerState(playerAvatar);
 
-        if (v1 != 0x0) {
+        if (v1 != PLAYER_AVATAR_WALKING) {
             return;
         }
     }
@@ -1607,7 +1607,7 @@ void ov5_021E0EEC(PlayerAvatar *playerAvatar)
     {
         int v1 = PlayerAvatar_GetPlayerState(playerAvatar);
 
-        if (v1 != 0x0) {
+        if (v1 != PLAYER_AVATAR_WALKING) {
             return;
         }
     }
@@ -1634,7 +1634,7 @@ static SysTask *ov5_021E0F54(FieldSystem *fieldSystem, u32 param1)
     PlayerAvatar *playerAvatar = fieldSystem->playerAvatar;
     int v1 = PlayerAvatar_GetPlayerState(playerAvatar);
 
-    if (v1 != 0x0) {
+    if (v1 != PLAYER_AVATAR_WALKING) {
         return NULL;
     }
 
@@ -1668,7 +1668,7 @@ static void ov5_021E0FC0(SysTask *param0)
     {
         UnkStruct_ov5_021E0FF0 *v0 = SysTask_GetParam(param0);
         PlayerAvatar *playerAvatar = v0->playerAvatar;
-        int v2 = Player_GetSpriteFromStateAndGender(0x0, PlayerAvatar_GetGender(playerAvatar));
+        int v2 = Player_GetSpriteFromStateAndGender(PLAYER_AVATAR_WALKING, PlayerAvatar_GetGender(playerAvatar));
 
         PlayerAvatar_RequestStateWalking(playerAvatar);
         Heap_Free(v0);

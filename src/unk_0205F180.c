@@ -662,7 +662,7 @@ static int sub_0205F9FC(PlayerAvatar *playerAvatar, int param1)
         sub_02060B64(playerAvatar, mapObj, MovementAction_TurnActionTowardsDir(v0, MOVEMENT_ACTION_FACE_SOUTH), PLAYER_ACTION_SPEED_NOT_MOVING);
         PlayerAvatar_ClearSpeed(playerAvatar);
         PlayerAvatar_SetMoveState(playerAvatar, 0);
-        PlayerAvatar_SetBikeBreak(playerAvatar, 0);
+        PlayerAvatar_SetBikeBrake(playerAvatar, 0);
     }
 
     return 1;
@@ -1215,9 +1215,9 @@ static int sub_020603BC(PlayerAvatar *playerAvatar)
 {
     int v0 = PlayerAvatar_AddMoveSpeed(playerAvatar, 1, 3);
 
-    if (PlayerAvatar_CheckBikeBreak(playerAvatar) == 0) {
+    if (PlayerAvatar_CheckBikeBrake(playerAvatar) == 0) {
         if (v0 >= 2) {
-            PlayerAvatar_SetBikeBreak(playerAvatar, 1);
+            PlayerAvatar_SetBikeBrake(playerAvatar, 1);
         }
     }
 
@@ -1242,9 +1242,9 @@ static int sub_020603EC(PlayerAvatar *playerAvatar)
 
     PlayerAvatar_SetSpeed(playerAvatar, v1);
 
-    if (PlayerAvatar_CheckBikeBreak(playerAvatar) == 1) {
+    if (PlayerAvatar_CheckBikeBrake(playerAvatar) == 1) {
         if (v1 == 0) {
-            PlayerAvatar_SetBikeBreak(playerAvatar, 0);
+            PlayerAvatar_SetBikeBrake(playerAvatar, 0);
         }
     }
 
@@ -1302,7 +1302,7 @@ static int sub_020604E4(PlayerAvatar *playerAvatar, int param1)
     int dir;
 
     if (param1 == -1) {
-        if (PlayerAvatar_CheckBikeBreak(playerAvatar) == 1) {
+        if (PlayerAvatar_CheckBikeBrake(playerAvatar) == 1) {
             PlayerAvatar_SetMoveState(playerAvatar, 1);
             return 3;
         }
@@ -1312,7 +1312,7 @@ static int sub_020604E4(PlayerAvatar *playerAvatar, int param1)
     }
 
     dir = PlayerAvatar_GetFacingDir(playerAvatar);
-    PlayerAvatar_SetBikeBreak(playerAvatar, 0);
+    PlayerAvatar_SetBikeBrake(playerAvatar, 0);
 
     if ((dir != param1) && (PlayerAvatar_GetMoveState(playerAvatar) != 1)) {
         PlayerAvatar_SetMoveState(playerAvatar, 2);
@@ -1442,7 +1442,7 @@ static void sub_020606C8(PlayerAvatar *playerAvatar, MapObject *mapObj, int dir,
     }
 
     if (v3 == 0) {
-        PlayerAvatar_SetBikeBreak(playerAvatar, 0);
+        PlayerAvatar_SetBikeBrake(playerAvatar, 0);
     }
 
     sub_02060B64(playerAvatar, mapObj, v2, v1);
@@ -1659,7 +1659,7 @@ static void sub_02060AA0(PlayerAvatar *playerAvatar, MapObject *mapObj, int para
     }
 
     if (v3 == 0) {
-        PlayerAvatar_SetBikeBreak(playerAvatar, 0);
+        PlayerAvatar_SetBikeBrake(playerAvatar, 0);
     }
 
     sub_02060B64(playerAvatar, mapObj, v2, v1);

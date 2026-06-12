@@ -17,7 +17,7 @@
 enum PlayerAvatarMovementFlag {
     AVATAR_MOVE_FORCED = (1 << 0),
     AVATAR_MOVE_IGNORE_TILE_BEHAVIOR = (1 << 1),
-    AVATAR_MOVE_BIKE_BREAK = (1 << 2),
+    AVATAR_MOVE_BIKE_BRAKE = (1 << 2),
     AVATAR_MOVE_ON_CYCLING_ROAD = (1 << 3),
     AVATAR_MOVE_ESCAPED_FROM_DEEP_MUD = (1 << 4),
     AVATAR_MOVE_MOVE_THROUGH_MUD = (1 << 5),
@@ -68,7 +68,6 @@ const VecFx32 *PlayerAvatar_GetPos(PlayerAvatar *const playerAvatar);
 void PlayerAvatar_SetMoveState(PlayerAvatar *playerAvatar, int param1);
 int PlayerAvatar_GetPlayerMoveState(const PlayerAvatar *playerAvatar);
 void PlayerAvatar_SetPlayerMoveState(PlayerAvatar *playerAvatar, int param1);
-int PlayerAvatar_GetPlayerMoveState(const PlayerAvatar *playerAvatar);
 void PlayerAvatar_SetVisible(PlayerAvatar *playerAvatar, BOOL visible);
 void PlayerAvatar_SetMapObject(PlayerAvatar *playerAvatar, MapObject *param1);
 MapObject *PlayerAvatar_GetMapObject(PlayerAvatar *playerAvatar);
@@ -116,8 +115,8 @@ void PlayerAvatar_SetForceMovement(PlayerAvatar *playerAvatar, int param1);
 BOOL PlayerAvatar_CheckForcedMovement(PlayerAvatar *playerAvatar);
 void PlayerAvatar_SetIgnoreTileBehavior(PlayerAvatar *playerAvatar, int param1);
 BOOL PlayerAvatar_CheckIgnoreTileBehavior(PlayerAvatar *playerAvatar);
-void PlayerAvatar_SetBikeBreak(PlayerAvatar *playerAvatar, int param1);
-BOOL PlayerAvatar_CheckBikeBreak(PlayerAvatar *playerAvatar);
+void PlayerAvatar_SetBikeBrake(PlayerAvatar *playerAvatar, int param1);
+BOOL PlayerAvatar_CheckBikeBrake(PlayerAvatar *playerAvatar);
 void PlayerAvatar_SetOnCyclingRoad(PlayerAvatar *playerAvatar, BOOL flag);
 BOOL PlayerAvatar_IsOnCyclingRoad(PlayerAvatar *playerAvatar);
 void PlayerAvatar_SetEscapedFromDeepMud(PlayerAvatar *playerAvatar, BOOL flag);
