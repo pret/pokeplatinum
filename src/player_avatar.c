@@ -34,16 +34,7 @@ static void PlayerData_SetAvatarState(PlayerData *player, u32 state);
 static void PlayerAvatar_PlayerData_SetAvatarState(PlayerAvatar *playerAvatar, u32 state);
 
 /**
- * @brief Creates and initializes a new Player Avatar map object
- *
- * @param mapObjMan
- * @param x
- * @param z
- * @param dir
- * @param playerState
- * @param gender
- * @param dpSprite
- * @param playerData
+ * Creates and initializes a new Player Avatar map object
  */
 PlayerAvatar *PlayerAvatar_New(const MapObjectManager *mapObjMan, int x, int z, int dir, int playerState, int gender, int dpSprite, PlayerData *playerData)
 {
@@ -68,11 +59,7 @@ PlayerAvatar *PlayerAvatar_New(const MapObjectManager *mapObjMan, int x, int z, 
 }
 
 /**
- * @brief Creates a new Player Avatar and loads its corresponding map object from an already existing map object
- *
- * @param mapObjMan
- * @param playerData
- * @param gender
+ * Creates a new Player Avatar and loads its corresponding map object from an already existing map object
  *
  * @return playerAvatar
  */
@@ -98,10 +85,7 @@ PlayerAvatar *PlayerAvatar_NewLoad(const MapObjectManager *mapObjMan, PlayerData
 }
 
 /**
- * @brief Initializes a PlayerAvatar with dynamic map features, like starting on a surf mount
- *
- * @param playerAvatar
- * @param dynamicMapFeaturesID
+ * Initializes a PlayerAvatar with dynamic map features, like starting on a surf mount
  */
 void PlayerAvatar_InitMapFeatures(PlayerAvatar *playerAvatar, int dynamicMapFeaturesID)
 {
@@ -124,9 +108,7 @@ void PlayerAvatar_InitMapFeatures(PlayerAvatar *playerAvatar, int dynamicMapFeat
 }
 
 /**
- * @brief Frees the player avatar
- *
- * @param playerAvatar
+ * Frees the player avatar
  */
 void PlayerAvatar_Free(PlayerAvatar *playerAvatar)
 {
@@ -134,9 +116,7 @@ void PlayerAvatar_Free(PlayerAvatar *playerAvatar)
 }
 
 /**
- * @brief Deletes the player avatar and its associated map object
- *
- * @param playerAvatar
+ * Deletes the player avatar and its associated map object
  */
 void PlayerAvatar_Delete(PlayerAvatar *playerAvatar)
 {
@@ -147,7 +127,7 @@ void PlayerAvatar_Delete(PlayerAvatar *playerAvatar)
 }
 
 /**
- * @brief Allocates memory for a player avatar and zero initializes it
+ * Allocates memory for a player avatar and zero initializes it
  *
  * @return playerAvatar
  */
@@ -161,12 +141,7 @@ static PlayerAvatar *PlayerAvatar_Alloc(void)
 }
 
 /**
- * @brief Initializes an existing player avatar
- *
- * @param playerAvatar
- * @param playerState
- * @param gender
- * @param playerData
+ * Initializes an existing player avatar
  */
 static void PlayerAvatar_Init(PlayerAvatar *playerAvatar, int playerState, int gender, PlayerData *player)
 {
@@ -187,14 +162,7 @@ static void PlayerAvatar_Init(PlayerAvatar *playerAvatar, int playerState, int g
 }
 
 /**
- * @brief Creates and adds a map object for the Player Avatar
- *
- * @param playerAvatar
- * @param mapObjMan
- * @param sprite
- * @param dir
- * @param x
- * @param z
+ * Creates and adds a map object for the Player Avatar
  */
 static void PlayerAvatar_AddMapObject(PlayerAvatar *playerAvatar, const MapObjectManager *mapObjMan, int sprite, int dir, int x, int z)
 {
@@ -218,9 +186,7 @@ static void PlayerAvatar_AddMapObject(PlayerAvatar *playerAvatar, const MapObjec
 }
 
 /**
- * @brief Gets the first map object with MOVEMENT_TYPE_PLAYER, which is the map object associated with the Player Avatar
- *
- * @param mapObjMan
+ * Gets the first map object with MOVEMENT_TYPE_PLAYER, which is the map object associated with the Player Avatar
  *
  * @return The MapObject * associated with the PlayerAvatar
  */
@@ -239,9 +205,7 @@ MapObject *MapObjectMan_GetPlayerMapObject(const MapObjectManager *mapObjMan)
 }
 
 /**
- * @brief Gets the map object associated with the PlayerAvatar, throws an error when NULL
- *
- * @param mapObjMan
+ * Gets the map object associated with the PlayerAvatar, throws an error when NULL
  *
  * @return The MapObject * associated with the PlayerAvatar
  */
@@ -254,9 +218,7 @@ static MapObject *MapObjectMan_GetPlayerMapObjectCheckNull(const MapObjectManage
 }
 
 /**
- * @brief Gets the facing direction of the player avatar's map object
- *
- * @param playerAvatar
+ * Gets the facing direction of the player avatar's map object
  *
  * @return facing direction
  */
@@ -266,10 +228,7 @@ int PlayerAvatar_GetFacingDir(PlayerAvatar *const playerAvatar)
 }
 
 /**
- * @brief Sets the facing direction of the player avatar's map object if the change direction lock is off
- *
- * @param playerAvatar
- * @param dir
+ * Sets the facing direction of the player avatar's map object if the change direction lock is off
  */
 void PlayerAvatar_TryFace(PlayerAvatar *playerAvatar, int dir)
 {
@@ -277,9 +236,7 @@ void PlayerAvatar_TryFace(PlayerAvatar *playerAvatar, int dir)
 }
 
 /**
- * @brief Gets the moving direction of the player avatar's map object
- *
- * @param playerAvatar
+ * Gets the moving direction of the player avatar's map object
  *
  * @return moving direction
  */
@@ -289,9 +246,7 @@ int PlayerAvatar_GetMovingDir(PlayerAvatar *const playerAvatar)
 }
 
 /**
- * @brief Gets the distortion world direction of the player avatar's map object
- *
- * @param playerAvatar
+ * Gets the distortion world direction of the player avatar's map object
  *
  * @return facing direction when on the floor, moving direction otherwise
  */
@@ -305,9 +260,7 @@ int PlayerAvatar_GetDistortionDir(PlayerAvatar *const playerAvatar)
 }
 
 /**
- * @brief Gets the X position of the player avatar's map object
- *
- * @param playerAvatar
+ * Gets the X position of the player avatar's map object
  *
  * @return xPos
  */
@@ -317,9 +270,7 @@ int PlayerAvatar_GetXPos(PlayerAvatar *const playerAvatar)
 }
 
 /**
- * @brief Gets the Z position of the player avatar's map object
- *
- * @param playerAvatar
+ * Gets the Z position of the player avatar's map object
  *
  * @return zPos
  */
@@ -329,9 +280,7 @@ int PlayerAvatar_GetZPos(PlayerAvatar *const playerAvatar)
 }
 
 /**
- * @brief Gets the previous X position of the player avatar's map object
- *
- * @param playerAvatar
+ * Gets the previous X position of the player avatar's map object
  *
  * @return xPosPrev
  */
@@ -341,9 +290,7 @@ int PlayerAvatar_XPosPrev(PlayerAvatar *const playerAvatar)
 }
 
 /**
- * @brief Gets the previous Z position of the player avatar's map object
- *
- * @param playerAvatar
+ * Gets the previous Z position of the player avatar's map object
  *
  * @return zPosPrev
  */
@@ -353,10 +300,7 @@ int PlayerAvatar_ZPosPrev(PlayerAvatar *const playerAvatar)
 }
 
 /**
- * @brief Gets the position vector of the player avatar's map object and stores it in pos
- *
- * @param playerAvatar
- * @param pos
+ * Gets the position vector of the player avatar's map object and stores it in pos
  */
 void PlayerAvatar_GetPosPtr(PlayerAvatar *const playerAvatar, VecFx32 *pos)
 {
@@ -364,9 +308,7 @@ void PlayerAvatar_GetPosPtr(PlayerAvatar *const playerAvatar, VecFx32 *pos)
 }
 
 /**
- * @brief Gets the position vector of the player avatar's map object
- *
- * @param playerAvatar
+ * Gets the position vector of the player avatar's map object
  *
  * @return VecFx32 *pos
  */
@@ -376,10 +318,7 @@ const VecFx32 *PlayerAvatar_GetPos(PlayerAvatar *const playerAvatar)
 }
 
 /**
- * @brief Sets the Player Avatar's move state, specified by enum AvatarMoveState
- *
- * @param playerAvatar
- * @param state
+ * Sets the Player Avatar's move state, specified by enum AvatarMoveState
  */
 void PlayerAvatar_SetMoveState(PlayerAvatar *playerAvatar, int state)
 {
@@ -387,11 +326,9 @@ void PlayerAvatar_SetMoveState(PlayerAvatar *playerAvatar, int state)
 }
 
 /**
- * @brief Gets the Player Avatar's move state, specified by enum AvatarMoveState
+ * Gets the Player Avatar's move state, specified by enum AvatarMoveState
  *
- * @param playerAvatar
- *
- * @return playerAvatar->state
+ * @return playerAvatar->moveState
  */
 int PlayerAvatar_GetMoveState(const PlayerAvatar *playerAvatar)
 {
@@ -399,10 +336,7 @@ int PlayerAvatar_GetMoveState(const PlayerAvatar *playerAvatar)
 }
 
 /**
- * @brief Sets the player avatar's player move state, specified by PlayerMoveState
- *
- * @param playerAvatar
- * @param moveState
+ * Sets the player avatar's player move state, specified by PlayerMoveState
  */
 void PlayerAvatar_SetPlayerMoveState(PlayerAvatar *playerAvatar, int moveState)
 {
@@ -410,9 +344,7 @@ void PlayerAvatar_SetPlayerMoveState(PlayerAvatar *playerAvatar, int moveState)
 }
 
 /**
- * @brief Gets the player avatar's move state, specified by PlayerMoveState
- *
- * @param playerAvatar
+ * Gets the player avatar's move state, specified by PlayerMoveState
  *
  * @return playerAvatar->playerMoveState
  */
@@ -422,10 +354,7 @@ int PlayerAvatar_GetPlayerMoveState(const PlayerAvatar *playerAvatar)
 }
 
 /**
- * @brief Shows or hides the Player Avatar based on the specification of visible
- *
- * @param playerAvatar
- * @param visible
+ * Shows or hides the Player Avatar based on the specification of visible
  */
 void PlayerAvatar_SetVisible(PlayerAvatar *playerAvatar, BOOL visible)
 {
@@ -439,10 +368,7 @@ void PlayerAvatar_SetVisible(PlayerAvatar *playerAvatar, BOOL visible)
 }
 
 /**
- * @brief Directly sets the Player Avatar's mapObject
- *
- * @param playerAvatar
- * @param mapObject
+ * Directly sets the Player Avatar's mapObject
  */
 void PlayerAvatar_SetMapObject(PlayerAvatar *playerAvatar, MapObject *mapObject)
 {
@@ -450,9 +376,7 @@ void PlayerAvatar_SetMapObject(PlayerAvatar *playerAvatar, MapObject *mapObject)
 }
 
 /**
- * @brief Gets the Player Avatar's map object
- *
- * @param playerAvatar
+ * Gets the Player Avatar's map object
  *
  * @return playerAvatar->mapObject
  */
@@ -465,9 +389,7 @@ MapObject *PlayerAvatar_GetMapObject(PlayerAvatar *playerAvatar)
 }
 
 /**
- * @brief Gets a constant Player Avatar's map object
- *
- * @param const playerAvatar
+ * Gets a constant Player Avatar's map object
  *
  * @return playerAvatar->mapObject
  */
@@ -477,10 +399,7 @@ const MapObject *PlayerAvatar_GetConstMapObject(const PlayerAvatar *playerAvatar
 }
 
 /**
- * @brief Sets the player avatar's state, specified by enum PlayerAvatarState
- *
- * @param playerAvatar
- * @param playerState
+ * Sets the player avatar's state, specified by enum PlayerAvatarState
  */
 void PlayerAvatar_SetPlayerState(PlayerAvatar *playerAvatar, int playerState)
 {
@@ -491,9 +410,7 @@ void PlayerAvatar_SetPlayerState(PlayerAvatar *playerAvatar, int playerState)
 }
 
 /**
- * @brief Gets the player's avatar state, specified by enum PlayerAvatarState
- *
- * @param playerAvatar
+ * Gets the player's avatar state, specified by enum PlayerAvatarState
  *
  * @return playerAvatar->playerAvatarState
  */
@@ -504,10 +421,7 @@ int PlayerAvatar_GetPlayerState(PlayerAvatar *playerAvatar)
 }
 
 /**
- * @brief Sets the request state flag's bits without overwriting the existing requests
- *
- * @param playerAvatar
- * @param requestState
+ * Sets the request state flag's bits without overwriting the existing requests
  */
 void PlayerAvatar_TurnOnRequestStateBit(PlayerAvatar *playerAvatar, u32 requestState)
 {
@@ -515,10 +429,7 @@ void PlayerAvatar_TurnOnRequestStateBit(PlayerAvatar *playerAvatar, u32 requestS
 }
 
 /**
- * @brief Sets the request state flag while overwriting the existing requests
- *
- * @param playerAvatar
- * @param requestState
+ * Sets the request state flag while overwriting the existing requests
  */
 void PlayerAvatar_SetRequestStateFlag(PlayerAvatar *playerAvatar, u32 requestState)
 {
@@ -526,9 +437,7 @@ void PlayerAvatar_SetRequestStateFlag(PlayerAvatar *playerAvatar, u32 requestSta
 }
 
 /**
- * @brief Gets the request state flag
- *
- * @param playerAvatar
+ * Gets the request state flag
  *
  * @return playerAvatar->requestStateFlag
  */
@@ -538,10 +447,7 @@ u32 PlayerAvatar_GetRequestStateFlag(PlayerAvatar *playerAvatar)
 }
 
 /**
- * @brief Sets the player avatar's gender
- *
- * @param playerAvatar
- * @param gender
+ * Sets the player avatar's gender
  */
 void PlayerAvatar_SetGender(PlayerAvatar *playerAvatar, int gender)
 {
@@ -549,9 +455,7 @@ void PlayerAvatar_SetGender(PlayerAvatar *playerAvatar, int gender)
 }
 
 /**
- * @brief Gets the player avatar's gender
- *
- * @param playerAvatar
+ * Gets the player avatar's gender
  *
  * @return gender
  */
@@ -561,10 +465,7 @@ int PlayerAvatar_GetGender(PlayerAvatar *playerAvatar)
 }
 
 /**
- * @brief Sets the player avatar's movement flag without overwriting the existing flag
- *
- * @param playerAvatar
- * @param flag
+ * Sets the player avatar's movement flag without overwriting the existing flag
  */
 static void PlayerAvatar_TurnOnMovementFlagBits(PlayerAvatar *playerAvatar, u32 flag)
 {
@@ -572,10 +473,7 @@ static void PlayerAvatar_TurnOnMovementFlagBits(PlayerAvatar *playerAvatar, u32 
 }
 
 /**
- * @brief Clears the given bits of the movement flag
- *
- * @param playerAvatar
- * @param flag
+ * Clears the given bits of the movement flag
  */
 static void PlayerAvatar_ClearMovementFlag(PlayerAvatar *playerAvatar, u32 flag)
 {
@@ -583,10 +481,7 @@ static void PlayerAvatar_ClearMovementFlag(PlayerAvatar *playerAvatar, u32 flag)
 }
 
 /**
- * @brief Gets the bitmap of the player avatar's movement flag and the given flag
- *
- * @param playerAvatar
- * @param flag
+ * Gets the bitmap of the player avatar's movement flag and the given flag
  *
  * @return playerAvatar->movementFlag & flag
  */
@@ -596,9 +491,7 @@ static u32 PlayerAvatar_GetMovementFlag(PlayerAvatar *playerAvatar, u32 flag)
 }
 
 /**
- * @brief Gets the movement speed of the player avatar
- *
- * @param playerAvatar
+ * Gets the movement speed of the player avatar
  *
  * @return playerAvatar->speed
  */
@@ -608,10 +501,7 @@ int PlayerAvatar_GetSpeed(PlayerAvatar *playerAvatar)
 }
 
 /**
- * @brief Sets the movement speed of the player avatar
- *
- * @param playerAvatar
- * @param speed
+ * Sets the movement speed of the player avatar
  */
 void PlayerAvatar_SetSpeed(PlayerAvatar *playerAvatar, int speed)
 {
@@ -619,9 +509,7 @@ void PlayerAvatar_SetSpeed(PlayerAvatar *playerAvatar, int speed)
 }
 
 /**
- * @brief Sets the movement speed of the player avatar to 0
- *
- * @param playerAvatar
+ * Sets the movement speed of the player avatar to 0
  */
 void PlayerAvatar_ClearSpeed(PlayerAvatar *playerAvatar)
 {
@@ -630,11 +518,7 @@ void PlayerAvatar_ClearSpeed(PlayerAvatar *playerAvatar)
 }
 
 /**
- * @brief Adds dSpeed to the movement speed of the player avatar, capped out at maxSpeed
- *
- * @param playerAvatar
- * @param dSpeed
- * @param maxSpeed
+ * Adds dSpeed to the movement speed of the player avatar, capped out at maxSpeed
  *
  * @return playerAvatar->speed
  */
@@ -650,10 +534,7 @@ int PlayerAvatar_AddMoveSpeed(PlayerAvatar *playerAvatar, int dSpeed, int maxSpe
 }
 
 /**
- * @brief Sets the horizontal facing direction of the player avatar
- *
- * @param playerAvatar
- * @param leftOrRight
+ * Sets the horizontal facing direction of the player avatar
  */
 void PlayerAvatar_SetFaceLeftOrRight(PlayerAvatar *playerAvatar, enum FaceDirection leftOrRight)
 {
@@ -661,9 +542,7 @@ void PlayerAvatar_SetFaceLeftOrRight(PlayerAvatar *playerAvatar, enum FaceDirect
 }
 
 /**
- * @brief Gets the horizontal facing direction of the player avatar
- *
- * @param playerAvatar
+ * Gets the horizontal facing direction of the player avatar
  *
  * @return playerAvatar->faceLeftOrRight
  */
@@ -673,10 +552,8 @@ enum FaceDirection PlayerAvatar_GetFaceLeftOrRight(PlayerAvatar *playerAvatar)
 }
 
 /**
- * @brief Sets the vertical facing direction of the player avatar
+ * Sets the vertical facing direction of the player avatar
  *
- * @param playerAvatar
- * @param faceUpOrDown
  */
 void PlayerAvatar_SetFaceUpOrDown(PlayerAvatar *playerAvatar, enum FaceDirection faceUpOrDown)
 {
@@ -684,9 +561,7 @@ void PlayerAvatar_SetFaceUpOrDown(PlayerAvatar *playerAvatar, enum FaceDirection
 }
 
 /**
- * @brief Gets the vertical facing direction of the player avatar
- *
- * @param playerAvatar
+ * Gets the vertical facing direction of the player avatar
  *
  * @return playerAvatar->faceUpOrDown
  */
@@ -696,11 +571,7 @@ enum FaceDirection PlayerAvatar_GetFaceUpOrDown(PlayerAvatar *playerAvatar)
 }
 
 /**
- * @brief Sets the horizontal and vertical facing directions of the player avatar
- *
- * @param playerAvatar
- * @param faceLeftOrRight
- * @param faceUpOrDown
+ * Sets the horizontal and vertical facing directions of the player avatar
  */
 void PlayerAvatar_SetFaceDirection(PlayerAvatar *playerAvatar, enum FaceDirection faceLeftOrRight, enum FaceDirection faceUpOrDown)
 {
@@ -709,10 +580,7 @@ void PlayerAvatar_SetFaceDirection(PlayerAvatar *playerAvatar, enum FaceDirectio
 }
 
 /**
- * @brief Sets the surf mount animation manager for the player avatar
- *
- * @param playerAvatar
- * @param surfMountAnimMan
+ * Sets the surf mount animation manager for the player avatar
  */
 void PlayerAvatar_SetSurfMountAnimManager(PlayerAvatar *playerAvatar, OverworldAnimManager *surfMountAnimMan)
 {
@@ -720,9 +588,7 @@ void PlayerAvatar_SetSurfMountAnimManager(PlayerAvatar *playerAvatar, OverworldA
 }
 
 /**
- * @brief Gets the surf mount animation manager for the player avatar
- *
- * @param playerAvatar
+ * Gets the surf mount animation manager for the player avatar
  *
  * @return playerAvatar->surfMountAnimMan
  */
@@ -732,10 +598,7 @@ OverworldAnimManager *PlayerAvatar_GetSurfMountAnimManager(PlayerAvatar *playerA
 }
 
 /**
- * @brief Sets the player data for the player avatar
- *
- * @param playerAvatar
- * @param playerData
+ * Sets the player data for the player avatar
  */
 static void PlayerAvatar_SetPlayerData(PlayerAvatar *playerAvatar, PlayerData *player)
 {
@@ -743,9 +606,7 @@ static void PlayerAvatar_SetPlayerData(PlayerAvatar *playerAvatar, PlayerData *p
 }
 
 /**
- * @brief Gets the player data for the player avatar
- *
- * @param playerAvatar
+ * Gets the player data for the player avatar
  *
  * @return playerAvatar->player
  */
@@ -755,10 +616,7 @@ PlayerData *PlayerAvatar_PlayerData(PlayerAvatar *playerAvatar)
 }
 
 /**
- * @brief Sets the movement action for the player avatar, specified by enum MovementAction
- *
- * @param playerAvatar
- * @param movementAction
+ * Sets the movement action for the player avatar, specified by enum MovementAction
  */
 void PlayerAvatar_SetMovementAction(PlayerAvatar *playerAvatar, u32 movementAction)
 {
@@ -766,9 +624,7 @@ void PlayerAvatar_SetMovementAction(PlayerAvatar *playerAvatar, u32 movementActi
 }
 
 /**
- * @brief Gets the movement action for the player avatar, specified by enum MovementAction
- *
- * @param playerAvatar
+ * Gets the movement action for the player avatar, specified by enum MovementAction
  *
  * @return playerAvatar->movementAction
  */
@@ -778,10 +634,7 @@ u32 PlayerAvatar_GetMovementAction(PlayerAvatar *playerAvatar)
 }
 
 /**
- * @brief Sets player avatar's movement action speed as specified by enum PlayerMovementActionSpeed
- *
- * @param playerAvatar
- * @param movementActionSpeed
+ * Sets player avatar's movement action speed as specified by enum PlayerMovementActionSpeed
  */
 void PlayerAvatar_SetMovementActionSpeed(PlayerAvatar *playerAvatar, int movementActionSpeed)
 {
@@ -789,9 +642,7 @@ void PlayerAvatar_SetMovementActionSpeed(PlayerAvatar *playerAvatar, int movemen
 }
 
 /**
- * @brief Sets player avatar's movement action speed as specified by enum PlayerMovementActionSpeed
- *
- * @param playerAvatar
+ * Sets player avatar's movement action speed as specified by enum PlayerMovementActionSpeed
  *
  * @return playerAvatar->movementActionSpeed
  */
@@ -801,11 +652,7 @@ int PlayerAvatar_GetMovementActionSpeed(PlayerAvatar *playerAvatar)
 }
 
 /**
- * @brief Sets the player avatar's movement action, specified by enum MovementAction, and movement action speed, specified by enum PlayerMovementActionSpeed
- *
- * @param playerAvatar
- * @param movementAction
- * @param movementActionSpeed
+ * Sets the player avatar's movement action, specified by enum MovementAction, and movement action speed, specified by enum PlayerMovementActionSpeed
  */
 void PlayerAvatar_SetMovementActionAndSpeed(PlayerAvatar *playerAvatar, u32 movementAction, int movementActionSpeed)
 {
@@ -814,9 +661,7 @@ void PlayerAvatar_SetMovementActionAndSpeed(PlayerAvatar *playerAvatar, u32 move
 }
 
 /**
- * @brief Zero-initializes playerData
- *
- * @param playerData
+ * Zero-initializes playerData
  */
 void PlayerData_Init(PlayerData *playerData)
 {
@@ -826,9 +671,7 @@ void PlayerData_Init(PlayerData *playerData)
 }
 
 /**
- * @brief Checks if the player has the running shoes flag
- *
- * @param playerData
+ * Checks if the player has the running shoes flag
  *
  * @return playerData->runningShoes == TRUE
  */
@@ -844,10 +687,7 @@ int PlayerData_HasRunningShoes(PlayerData *playerData)
 }
 
 /**
- * @brief Sets the player's running shoes flag
- *
- * @param playerData
- * @param flag
+ * Sets the player's running shoes flag
  */
 void PlayerData_SetRunningShoes(PlayerData *playerData, BOOL flag)
 {
@@ -859,9 +699,7 @@ void PlayerData_SetRunningShoes(PlayerData *playerData, BOOL flag)
 }
 
 /**
- * @brief Gets the gear that the bike is currently in
- *
- * @param playerData
+ * Gets the gear that the bike is currently in
  *
  * @return playerData->cyclingGear
  */
@@ -875,10 +713,7 @@ int PlayerData_GetCyclingGear(PlayerData *playerData)
 }
 
 /**
- * @brief Sets the gear the bike is currently in
- *
- * @param playerData
- * @param gear
+ * Sets the gear the bike is currently in
  */
 void PlayerData_SetCyclingGear(PlayerData *playerData, int gear)
 {
@@ -888,10 +723,7 @@ void PlayerData_SetCyclingGear(PlayerData *playerData, int gear)
 }
 
 /**
- * @brief Sets the gear the bike is currently in
- *
- * @param playerAvatar
- * @param gear
+ * Sets the gear the bike is currently in
  */
 void PlayerAvatar_SetCyclingGear(PlayerAvatar *playerAvatar, int gear)
 {
@@ -900,9 +732,7 @@ void PlayerAvatar_SetCyclingGear(PlayerAvatar *playerAvatar, int gear)
 }
 
 /**
- * @brief Gets the gear that the bike is currently in
- *
- * @param playerAvatar
+ * Gets the gear that the bike is currently in
  *
  * @return playerAvatar->playerData->cyclingGear
  */
@@ -913,9 +743,7 @@ int PlayerAvatar_GetCyclingGear(PlayerAvatar *playerAvatar)
 }
 
 /**
- * @brief Gets the player's current state, as specified by enum PlayerAvatarState
- *
- * @param playerData
+ * Gets the player's current state, as specified by enum PlayerAvatarState
  *
  * @return playerData->playerState
  */
@@ -929,10 +757,7 @@ u32 PlayerData_GetAvatarState(PlayerData *player)
 }
 
 /**
- * @brief Sets the player's avatar state, as specified by enum PlayerAvatarState
- *
- * @param playerData
- * @param playerState
+ * Sets the player's avatar state, as specified by enum PlayerAvatarState
  */
 void PlayerData_SetAvatarState(PlayerData *player, u32 playerState)
 {
@@ -942,10 +767,7 @@ void PlayerData_SetAvatarState(PlayerData *player, u32 playerState)
 }
 
 /**
- * @brief Sets the avatar state, as specified by enum PlayerAvatarState, of the internal playerData
- *
- * @param playerAvatar
- * @param playerState
+ * Sets the avatar state, as specified by enum PlayerAvatarState, of the internal playerData
  */
 void PlayerAvatar_PlayerData_SetAvatarState(PlayerAvatar *playerAvatar, u32 playerState)
 {
@@ -954,11 +776,7 @@ void PlayerAvatar_PlayerData_SetAvatarState(PlayerAvatar *playerAvatar, u32 play
 }
 
 /**
- * @brief Sets the player avatar's map object's position and direction
- *
- * @param playerAvatar
- * @param pos
- * @param dir
+ * Sets the player avatar's map object's position and direction
  */
 void PlayerAvatar_SetPosDirFromVec(PlayerAvatar *playerAvatar, const VecFx32 *pos, int dir)
 {
@@ -970,12 +788,7 @@ void PlayerAvatar_SetPosDirFromVec(PlayerAvatar *playerAvatar, const VecFx32 *po
 }
 
 /**
- * @brief Sets the player avatar's map object's position and direction
- *
- * @param playerAvatar
- * @param x
- * @param z
- * @param dir
+ * Sets the player avatar's map object's position and direction
  */
 void PlayerAvatar_SetPosDirFromCoords(PlayerAvatar *playerAvatar, int x, int z, int dir)
 {
@@ -987,10 +800,7 @@ void PlayerAvatar_SetPosDirFromCoords(PlayerAvatar *playerAvatar, int x, int z, 
 }
 
 /**
- * @brief Sets the player avatar's map object's height (y position)
- *
- * @param playerAvatar
- * @param y
+ * Sets the player avatar's map object's height (y position)
  */
 void Player_SetYPos(PlayerAvatar *playerAvatar, fx32 y)
 {
@@ -1004,10 +814,7 @@ void Player_SetYPos(PlayerAvatar *playerAvatar, fx32 y)
 }
 
 /**
- * @brief Enables or disables the height calculation of the player avatar's map object
- *
- * @param playerAvatar
- * @param heightCalculationEnabled
+ * Enables or disables the height calculation of the player avatar's map object
  */
 void PlayerAvatar_SetHeightCalculationEnabled(PlayerAvatar *playerAvatar, BOOL heightCalculationEnabled)
 {
@@ -1021,10 +828,7 @@ void PlayerAvatar_SetHeightCalculationEnabled(PlayerAvatar *playerAvatar, BOOL h
 }
 
 /**
- * @brief Enables or disables the height calculation of the player avatar's map object. Recalculates the height if enabled.
- *
- * @param playerAvatar
- * @param heightCalculationEnabled
+ * Enables or disables the height calculation of the player avatar's map object. Recalculates the height if enabled.
  */
 void PlayerAvatar_SetHeightCalculationEnabledAndUpdate(PlayerAvatar *playerAvatar, BOOL heightCalculationEnabled)
 {
@@ -1039,10 +843,7 @@ void PlayerAvatar_SetHeightCalculationEnabledAndUpdate(PlayerAvatar *playerAvata
 }
 
 /**
- * @brief Gets the OBJ_EVENT_GFX_ constant associated with the given player state and gender
- *
- * @param playerState
- * @param gender
+ * Gets the OBJ_EVENT_GFX_ constant associated with the given player state and gender
  *
  * @return OBJ_EVENT_GFX_ constant (default OBJ_EVENT_GFX_PLAYER_M)
  */
@@ -1134,9 +935,7 @@ int Player_GetSpriteFromStateAndGender(int playerState, int gender)
 }
 
 /**
- * @brief Gets an enum PlayerTransitions associated with the enum PlayerAvatarState
- *
- * @param playerState
+ * Gets an enum PlayerTransitions associated with the enum PlayerAvatarState
  *
  * @return enum PlayerTransitions
  */
@@ -1166,9 +965,7 @@ u32 Player_ConvertStateToTransition(int playerState)
 }
 
 /**
- * @brief Gets the field system's playerAvatar, which is always the main player
- *
- * @param fieldSystem
+ * Gets the field system's playerAvatar, which is always the main player
  *
  * @return fieldSystem->playerAvatar
  */
@@ -1178,10 +975,7 @@ PlayerAvatar *FieldSystem_GetPlayerAvatar(FieldSystem *fieldSystem)
 }
 
 /**
- * @brief Sets the movement flag that forces a player's movement, taking away control
- *
- * @param playerAvatar
- * @param flag
+ * Sets the movement flag that forces a player's movement, taking away control
  */
 void PlayerAvatar_SetForceMovement(PlayerAvatar *playerAvatar, int flag)
 {
@@ -1193,9 +987,7 @@ void PlayerAvatar_SetForceMovement(PlayerAvatar *playerAvatar, int flag)
 }
 
 /**
- * @brief Checks if the player avatar is currently being forced to move without player input
- *
- * @param playerAvatar
+ * Checks if the player avatar is currently being forced to move without player input
  *
  * @return TRUE if the AVATAR_MOVE_FORCED flag is on
  */
@@ -1209,10 +1001,7 @@ BOOL PlayerAvatar_CheckForcedMovement(PlayerAvatar *playerAvatar)
 }
 
 /**
- * @brief Sets the movement flag that causes a player to ignore tile behavior (such as slipping on ice), usually while their movement is forced
- *
- * @param playerAvatar
- * @param flag
+ * Sets the movement flag that causes a player to ignore tile behavior (such as slipping on ice), usually while their movement is forced
  */
 void PlayerAvatar_SetIgnoreTileBehavior(PlayerAvatar *playerAvatar, int flag)
 {
@@ -1224,9 +1013,7 @@ void PlayerAvatar_SetIgnoreTileBehavior(PlayerAvatar *playerAvatar, int flag)
 }
 
 /**
- * @brief Checks the movement flag that causes a player to ignore tile behavior (such as slipping on ice), usually while their movement is forced
- *
- * @param playerAvatar
+ * Checks the movement flag that causes a player to ignore tile behavior (such as slipping on ice), usually while their movement is forced
  *
  * @return TRUE if the AVATAR_MOVE_IGNORE_TILE_BEHAVIOR flag is on
  */
@@ -1240,10 +1027,7 @@ BOOL PlayerAvatar_CheckIgnoreTileBehavior(PlayerAvatar *playerAvatar)
 }
 
 /**
- * @brief Sets the movement flag that causes a player to start their bike breaks, slowing their movement to a stop
- *
- * @param playerAvatar
- * @param flag
+ * Sets the movement flag that causes a player to start their bike breaks, slowing their movement to a stop
  */
 void PlayerAvatar_SetBikeBrake(PlayerAvatar *playerAvatar, int flag)
 {
@@ -1255,9 +1039,7 @@ void PlayerAvatar_SetBikeBrake(PlayerAvatar *playerAvatar, int flag)
 }
 
 /**
- * @brief Checks if the player is currently breaking on their bike
- *
- * @param playerAvatar
+ * Checks if the player is currently breaking on their bike
  *
  * @return TRUE if the AVATAR_MOVE_BIKE_BRAKE flag is on
  */
@@ -1271,10 +1053,7 @@ BOOL PlayerAvatar_CheckBikeBrake(PlayerAvatar *playerAvatar)
 }
 
 /**
- * @brief Sets the movement flag that forces a player downward while on cycling road
- *
- * @param playerAvatar
- * @param flag
+ * Sets the movement flag that forces a player downward while on cycling road
  */
 void PlayerAvatar_SetOnCyclingRoad(PlayerAvatar *playerAvatar, BOOL flag)
 {
@@ -1286,9 +1065,7 @@ void PlayerAvatar_SetOnCyclingRoad(PlayerAvatar *playerAvatar, BOOL flag)
 }
 
 /**
- * @brief Checks the movement flag that forces a player downward while on cycling road
- *
- * @param playerAvatar
+ * Checks the movement flag that forces a player downward while on cycling road
  *
  * @return TRUE if the AVATAR_MOVE_ON_CYCLING_ROAD flag is on
  */
@@ -1302,10 +1079,7 @@ BOOL PlayerAvatar_IsOnCyclingRoad(PlayerAvatar *playerAvatar)
 }
 
 /**
- * @brief Sets the movement flag that causes a player to escape out of deep mud
- *
- * @param playerAvatar
- * @param flag
+ * Sets the movement flag that causes a player to escape out of deep mud
  */
 void PlayerAvatar_SetEscapedFromDeepMud(PlayerAvatar *playerAvatar, BOOL flag)
 {
@@ -1317,9 +1091,7 @@ void PlayerAvatar_SetEscapedFromDeepMud(PlayerAvatar *playerAvatar, BOOL flag)
 }
 
 /**
- * @brief Checks if the player has escaped from deep mud
- *
- * @param playerAvatar
+ * Checks if the player has escaped from deep mud
  *
  * @return TRUE if the AVATAR_MOVE_ESCAPED_FROM_DEEP_MUD flag is on
  */
@@ -1333,10 +1105,7 @@ BOOL PlayerAvatar_CheckEscapedFromDeepMud(PlayerAvatar *playerAvatar)
 }
 
 /**
- * @brief Sets the movement flag that indicates a player is moving through mud
- *
- * @param playerAvatar
- * @param flag
+ * Sets the movement flag that indicates a player is moving through mud
  */
 void PlayerAvatar_SetMoveThroughMudFlag(PlayerAvatar *playerAvatar, BOOL flag)
 {
@@ -1348,9 +1117,7 @@ void PlayerAvatar_SetMoveThroughMudFlag(PlayerAvatar *playerAvatar, BOOL flag)
 }
 
 /**
- * @brief Checks the movement flag that indicates a player is moving through mud
- *
- * @param playerAvatar
+ * Checks the movement flag that indicates a player is moving through mud
  *
  * @return TRUE if the AVATAR_MOVE_MOVE_THROUGH_MUD flag is on
  */
@@ -1364,9 +1131,7 @@ BOOL PlayerAvatar_CheckMoveThroughMudFlag(PlayerAvatar *playerAvatar)
 }
 
 /**
- * @brief Sets the movement flag that indicates the player is currently taking a single step
- *
- * @param playerAvatar
+ * Sets the movement flag that indicates the player is currently taking a single step
  */
 void PlayerAvatar_StartStep(PlayerAvatar *playerAvatar)
 {
@@ -1374,9 +1139,7 @@ void PlayerAvatar_StartStep(PlayerAvatar *playerAvatar)
 }
 
 /**
- * @brief Sets the movement flag that indicates the player has finished taking a single step
- *
- * @param playerAvatar
+ * Sets the movement flag that indicates the player has finished taking a single step
  */
 void PlayerAvatar_EndStep(PlayerAvatar *playerAvatar)
 {
@@ -1384,9 +1147,7 @@ void PlayerAvatar_EndStep(PlayerAvatar *playerAvatar)
 }
 
 /**
- * @brief Checks if the player is currently taking a step
- *
- * @param playerAvatar
+ * Checks if the player is currently taking a step
  *
  * @return TRUE if the AVATAR_MOVE_STEP is on
  */
@@ -1400,10 +1161,7 @@ BOOL PlayerAvatar_CheckStep(PlayerAvatar *playerAvatar)
 }
 
 /**
- * @brief Sets the movement flag that forces a player's movement while retaining their current speed, taking away control
- *
- * @param playerAvatar
- * @param flag
+ * Sets the movement flag that forces a player's movement while retaining their current speed, taking away control
  */
 void PlayerAvatar_SetForceMovementRetainSpeed(PlayerAvatar *playerAvatar, BOOL flag)
 {
@@ -1415,9 +1173,7 @@ void PlayerAvatar_SetForceMovementRetainSpeed(PlayerAvatar *playerAvatar, BOOL f
 }
 
 /**
- * @brief Checks if the player avatar is currently being forced to move while retaining their initial speed without player input
- *
- * @param playerAvatar
+ * Checks if the player avatar is currently being forced to move while retaining their initial speed without player input
  *
  * @return TRUE if the AVATAR_MOVE_FORCED flag is on
  */
@@ -1427,10 +1183,7 @@ int PlayerAvatar_CheckForcedMovementRetainSpeed(PlayerAvatar *playerAvatar)
 }
 
 /**
- * @brief Sets the player avatar's distortion movement flags based on the given enum AvatarDistortionState
- *
- * @param playerAvatar
- * @param distortionState
+ * Sets the player avatar's distortion movement flags based on the given enum AvatarDistortionState
  */
 void PlayerAvatar_SetDistortionState(PlayerAvatar *playerAvatar, enum AvatarDistortionState state)
 {
@@ -1460,9 +1213,7 @@ void PlayerAvatar_SetDistortionState(PlayerAvatar *playerAvatar, enum AvatarDist
 }
 
 /**
- * @brief Gets the player avatar's enum AvatarDistortionState based on the set distortion state movement flags
- *
- * @param playerAvatar
+ * Gets the player avatar's enum AvatarDistortionState based on the set distortion state movement flags
  */
 enum AvatarDistortionState PlayerAvatar_MapDistortionState(PlayerAvatar *const playerAvatar)
 {
@@ -1491,9 +1242,7 @@ enum AvatarDistortionState PlayerAvatar_MapDistortionState(PlayerAvatar *const p
 }
 
 /**
- * @brief Checks if the current gravity in the distortion world has changed to require a differnt movement script than normal field movement functions would allow for
- *
- * @param playerAvatar
+ * Checks if the current gravity in the distortion world has changed to require a differnt movement script than normal field movement functions would allow for
  *
  * @return TRUE if the current distortion state is anything except AVATAR_DISTORTION_STATE_NONE or AVATAR_DISTORTION_STATE_ACTIVE
  */
@@ -1509,9 +1258,7 @@ BOOL PlayerAvatar_DistortionGravityChanged(PlayerAvatar *const playerAvatar)
 }
 
 /**
- * @brief Checks if the current gravity in the distortion world is on the floor
- *
- * @param playerAvatar
+ * Checks if the current gravity in the distortion world is on the floor
  *
  * @return TRUE if the current distortion state is AVATAR_DISTORTION_STATE_NONE, AVATAR_DISTORTION_STATE_ACTIVE, or AVATAR_DISTORTION_STATE_FLOOR
  */
