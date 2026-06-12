@@ -215,10 +215,10 @@ static int PlayerAvatar_CheckStartMoveInternal(PlayerAvatar *playerAvatar, int d
                 sub_02061674(playerAvatar, dir, &xOut, &yOut, &zOut);
 
                 if (DistWorld_IsValidTileOnCurrentFloatingPlatform(fieldSystem, xOut, yOut, zOut) == 0) {
-                    if (ov9_02250FD8(fieldSystem, xOut, yOut, zOut) == 1) {
-                        ov9_02251000(fieldSystem, xOut, yOut, zOut);
+                    if (DistWorld_AreCoordsValidOnCurrentFloatingPlatformKind(fieldSystem, xOut, yOut, zOut) == 1) {
+                        DistWorld_FindAndPrepareNewCurrentFloatingPlatform(fieldSystem, xOut, yOut, zOut);
                         v2 = sub_020611FC(playerAvatar, mapObj, dir);
-                        ov9_02251000(fieldSystem, x, y, z);
+                        DistWorld_FindAndPrepareNewCurrentFloatingPlatform(fieldSystem, x, y, z);
                     }
                 }
             }
@@ -990,8 +990,8 @@ static void sub_0205FECC(PlayerAvatar *playerAvatar, MapObject *param1, int para
         sub_02061674(playerAvatar, param2, &x, &y, &z);
 
         if (DistWorld_IsValidTileOnCurrentFloatingPlatform(fieldSystem, x, y, z) == 0) {
-            if (ov9_02250FD8(fieldSystem, x, y, z) == 1) {
-                ov9_02251000(fieldSystem, x, y, z);
+            if (DistWorld_AreCoordsValidOnCurrentFloatingPlatformKind(fieldSystem, x, y, z) == 1) {
+                DistWorld_FindAndPrepareNewCurrentFloatingPlatform(fieldSystem, x, y, z);
                 v0 = sub_020611FC(playerAvatar, param1, param2);
             }
         }
@@ -1824,7 +1824,7 @@ static int sub_02060D98(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
 
         if (v0 == 1) {
             if (PersistedMapFeatures_IsCurrentDynamicMap(fieldSystem, DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) == 1) {
-                if (ov9_022511A0(fieldSystem, v2, v3, param2) == 1) {
+                if (DistWorld_IsBlockedByCynthia(fieldSystem, v2, v3, param2) == 1) {
                     v0 = 0;
                 }
             }

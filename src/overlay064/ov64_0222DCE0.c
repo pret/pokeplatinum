@@ -765,7 +765,7 @@ static u32 ov64_0222E09C(UnkStruct_ov64_0222E060 *param0, String *param1, String
     v5 = DWC_CreateFriendKey(WiFiList_GetUserData(v1));
 
     for (v0 = 0; v0 < 32; v0++) {
-        v2 = sub_0202AF78(v1, v0);
+        v2 = WiFiList_IsValidFriendData(v1, v0);
 
         if (v2 == 0) {
             v4 = String_AtoI(param1, &v3);
@@ -823,7 +823,7 @@ static void ov64_0222E164(UnkStruct_ov64_0222E060 *param0)
     param0->unk_08.unk_00 = 0;
 
     for (v0 = 0; v0 < (8 * 4); v0++) {
-        if (sub_0202AF78(v1, v0) == 1) {
+        if (WiFiList_IsValidFriendData(v1, v0) == 1) {
             param0->unk_08.unk_04[param0->unk_08.unk_00] = v0;
             param0->unk_08.unk_00++;
         }
@@ -1550,7 +1550,7 @@ static BOOL ov64_0222F068(UnkStruct_ov64_0222F038 *param0, UnkStruct_ov64_0222E0
         v1 = SaveData_GetWiFiList(param1->saveData);
 
         for (v0 = 0; v0 < 32; v0++) {
-            if (!sub_0202AF78(v1, v0)) {
+            if (!WiFiList_IsValidFriendData(v1, v0)) {
                 return 1;
             }
         }

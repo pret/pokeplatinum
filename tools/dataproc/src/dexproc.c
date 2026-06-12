@@ -11,6 +11,11 @@
 
 #include "constants/species.h"
 
+static enum_template_t enums[] = {
+    include_enum("generated/species.h", "enum Species"),
+    { .from_file = NULL },
+};
+
 static header_template_t headers[] = {
     { .out_filename = "regional_pokedex_size.h" },
     { .out_filename = NULL                      },
@@ -33,7 +38,7 @@ static int  addl_done(void);
 
 int main(int argc, char *argv[]) {
     parse_args(&argc, &argv);
-    common_init(DATAPROC_F_JSON, NULL, NULL, headers, NULL, __FILE__, depfile_fpath, output_dir, pre_init, NULL);
+    common_init(DATAPROC_F_JSON, enums, NULL, headers, NULL, __FILE__, depfile_fpath, output_dir, pre_init, NULL);
 
     datafile_t df   = { 0 };
     unsigned   errc = EXIT_SUCCESS;
@@ -47,8 +52,6 @@ int main(int argc, char *argv[]) {
 
 static void pre_init(void) {
     assert(NATIONAL_DEX_COUNT < UINT16_MAX);
-    dp_regmetang(Species);
-
     national_count = NATIONAL_DEX_COUNT + 1; // include SPECIES_NONE
     national       = calloc(national_count, sizeof(*national));
 }
@@ -66,7 +69,7 @@ static void proc_regional(datafile_t *df) {
     regional       = calloc(regional_count, sizeof(*regional));
     for (u16 i = 0; i < regional_count; i++) {
         datanode_t curr   = dp_arrelem(array, i);
-        datanode_t mapped = dp_lookup(curr, "Species");
+        datanode_t mapped = dp_lookup(curr, "enum Species");
         if (mapped.type != DATAPROC_T_MAPPED) continue;
 
         const u16 species = dp_u16(mapped);

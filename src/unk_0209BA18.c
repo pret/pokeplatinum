@@ -25,10 +25,10 @@ UnkStruct_ov104_02230BE4 *sub_0209BA18(FieldSystem *fieldSystem, void *param1)
     v0->saveData = fieldSystem->saveData;
     v0->journalEntry = fieldSystem->journalEntry;
     v0->bagCursor = fieldSystem->bagCursor;
-    v0->unk_20 = fieldSystem->battleSubscreenCursorOn;
+    v0->subscreenCursorOn = fieldSystem->battleSubscreenCursorOn;
     v0->unk_14 = 0;
     v0->unk_18 = 0;
-    v0->unk_1C = fieldSystem->location->mapId;
+    v0->mapHeaderID = fieldSystem->location->mapId;
     v0->sceneID = 14;
     v0->fieldSystem = fieldSystem;
 

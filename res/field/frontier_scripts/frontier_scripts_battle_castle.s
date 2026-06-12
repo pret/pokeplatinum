@@ -566,11 +566,11 @@ _03BC:
     EndMovement
 
 _03C2:
-    FrontierScrCmd_3E VAR_BATTLE_CASTLE_CHALLENGE_TYPE, VAR_0x8001
-    FrontierScrCmd_3E VAR_MAP_LOCAL_3, VAR_0x8003
-    FrontierScrCmd_3E VAR_MAP_LOCAL_2, VAR_0x8004
-    FrontierScrCmd_3E VAR_MAP_LOCAL_5, VAR_0x8005
-    FrontierScrCmd_3E VAR_MAP_LOCAL_6, VAR_0x8006
+    GetSystemVar VAR_BATTLE_CASTLE_CHALLENGE_TYPE, VAR_0x8001
+    GetSystemVar VAR_MAP_LOCAL_3, VAR_0x8003
+    GetSystemVar VAR_MAP_LOCAL_2, VAR_0x8004
+    GetSystemVar VAR_MAP_LOCAL_5, VAR_0x8005
+    GetSystemVar VAR_MAP_LOCAL_6, VAR_0x8006
     GetPlayerObjEventGfx VAR_0x8007
     SetVar FR_VAR_0x800E, 0
     GoToIfEq VAR_0x8001, FRONTIER_CHALLENGE_MULTI, _041E
@@ -1425,7 +1425,7 @@ _12C5:
 
 _12D3:
     CallBattleCastleFunction BC_FUNC_UNK_22, 0, 0, VAR_0x8008
-    FrontierScrCmd_3D VAR_BATTLE_CASTLE_LOBBY_LOAD_ACTION, 1
+    SetSystemVar VAR_BATTLE_CASTLE_LOBBY_LOAD_ACTION, 1
     BufferPlayerName 0
     Message BattleCastleScene_Text_BPEarned
     BufferPlayerName 0
@@ -1691,7 +1691,7 @@ _1720:
     End
 
 _173E:
-    FrontierScrCmd_3D VAR_BATTLE_CASTLE_LOBBY_LOAD_ACTION, 2
+    SetSystemVar VAR_BATTLE_CASTLE_LOBBY_LOAD_ACTION, 2
     CallBattleCastleFunction BC_FUNC_UNK_10, 0, 0, VAR_0x8008
     FreeBattleRecording
     FrontierScrCmd_99
@@ -1738,7 +1738,7 @@ _17D9:
 
 _17F1:
     CallBattleCastleFunction BC_FUNC_UNK_21, 0, 0, VAR_0x8008
-    FrontierScrCmd_3D VAR_BATTLE_CASTLE_LOBBY_LOAD_ACTION, 3
+    SetSystemVar VAR_BATTLE_CASTLE_LOBBY_LOAD_ACTION, 3
     GoTo _18E4
     End
 
@@ -1779,7 +1779,7 @@ _1893:
 
 _189B:
     CallBattleCastleFunction BC_FUNC_UNK_21, 0, 0, VAR_0x8008
-    FrontierScrCmd_3D VAR_BATTLE_CASTLE_LOBBY_LOAD_ACTION, 3
+    SetSystemVar VAR_BATTLE_CASTLE_LOBBY_LOAD_ACTION, 3
     GoTo _18B0
     End
 
@@ -1928,7 +1928,7 @@ _1ADC:
 _1AF8:
     Call _1B75
     BufferNumber 0, VAR_0x8008
-    FrontierScrCmd_3E VAR_BATTLE_CASTLE_PRINT_STATE, VAR_0x8008
+    GetSystemVar VAR_BATTLE_CASTLE_PRINT_STATE, VAR_0x8008
     CallIfEq VAR_0x8008, 0, _1B27
     BufferPlayerName 0
     Message BattleCastleScene_Text_BeatDarach
@@ -1937,13 +1937,13 @@ _1AF8:
     End
 
 _1B27:
-    FrontierScrCmd_3D VAR_BATTLE_CASTLE_PRINT_STATE, 1
+    SetSystemVar VAR_BATTLE_CASTLE_PRINT_STATE, 1
     Return
 
 _1B2F:
     Call _1B75
     BufferNumber 0, VAR_0x8008
-    FrontierScrCmd_3E VAR_BATTLE_CASTLE_PRINT_STATE, VAR_0x8008
+    GetSystemVar VAR_BATTLE_CASTLE_PRINT_STATE, VAR_0x8008
     CallIfEq VAR_0x8008, 2, _1B5B
     Message BattleCastleScene_Text_BeatDarachGold
     CloseMessage
@@ -1951,7 +1951,7 @@ _1B2F:
     End
 
 _1B5B:
-    FrontierScrCmd_3D VAR_BATTLE_CASTLE_PRINT_STATE, 3
+    SetSystemVar VAR_BATTLE_CASTLE_PRINT_STATE, 3
     Return
 
 _1B63:

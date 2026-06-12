@@ -287,8 +287,8 @@ static BattleFrontierTrainerData *sub_0204B184(FrontierDataDTO *param0, u16 para
     BattleFrontierTrainerData *v0 = sub_0204B630(param1, heapID);
 
     param0->trDataDTO.trainerID = param1;
-    param0->trDataDTO.unk_18[0] = 0xFFFF;
-    param0->trDataDTO.unk_18[1] = param1 * 3;
+    param0->trDataDTO.introMsg[0] = 0xFFFF;
+    param0->trDataDTO.introMsg[1] = param1 * 3;
     param0->trDataDTO.trainerType = v0->trainerType;
 
     String *v2 = MessageLoader_GetNewString(v1, param1);

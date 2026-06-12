@@ -6,8 +6,8 @@
     InitScriptEntryEnd
 
 InitScriptFrameTable:
-    InitScriptGoToIfEqual VAR_UNK_0x40D4, 0, 0x23F0
-    InitScriptGoToIfEqual VAR_UNK_0x4080, 1, 0x23F5
+    InitScriptGoToIfEqual VAR_VISITED_POKEMON_CENTER_B1F, 0, 0x23F0
+    InitScriptGoToIfEqual VAR_ENTERED_WIFI_PLAZA, 1, 0x23F5
     InitScriptFrameTableEnd
 
     InitScriptEnd

@@ -32,7 +32,7 @@ Contests_LobbyOnFrameExitContestHall:
     SetVar VAR_RESULT, 7
     Call Contests_ExitContestHall
     ClearFlag FLAG_COMMUNICATION_CLUB_ACCESSIBLE
-    SetVar VAR_UNK_0x40D5, 0
+    SetVar VAR_COMMUNICATION_LOAD_ACTION, 0
     ReleaseAll
     End
 
@@ -221,7 +221,7 @@ Contests_ContestMenu:
 
 Contests_ContestMenuExit:
     EndCommunication
-    SetVar VAR_UNK_0x40D5, 0
+    SetVar VAR_COMMUNICATION_LOAD_ACTION, 0
     ClearFlag FLAG_COMMUNICATION_CLUB_ACCESSIBLE
     Message ContestCommon_Text_LookForwardToParticipation
     WaitButton
@@ -588,7 +588,7 @@ Contests_OfficialContestDoor:
 
 Contests_LinkContestDoor:
     SetFlag FLAG_COMMUNICATION_CLUB_ACCESSIBLE
-    SetVar VAR_UNK_0x40D5, 5
+    SetVar VAR_COMMUNICATION_LOAD_ACTION, 5
     LoadDoorAnimation 0, 0, 7, 5, ANIMATION_TAG_DOOR_1
     Call Contests_DoorOpenAnimation
     WaitMovement
@@ -816,7 +816,7 @@ Contests_EndContest:
     SetVar VAR_RESULT, 7
     Call Contests_ExitContestHall
     ClearFlag FLAG_COMMUNICATION_CLUB_ACCESSIBLE
-    SetVar VAR_UNK_0x40D5, 0
+    SetVar VAR_COMMUNICATION_LOAD_ACTION, 0
     GoTo Contests_End
 
 Contests_OfficialContestReturnToReceptionist:

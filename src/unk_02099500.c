@@ -112,14 +112,14 @@ static const CommCmdTable Unk_020F68A4[] = {
     { UndergroundPlayer_ProcessFlagEvent, CommPacketSizeOf_FlagEvent, NULL },
     { SecretBases_ProcessBaseCreateRequest, CommPacketSizeOf_NetId, NULL },
     { SecretBases_ProcessBaseCreateEvent, CommPacketSizeOf_SecretBaseCreateEvent, NULL },
-    { sub_02059EAC, CommPacketSizeOf_TrainerCase, sub_02059EBC },
+    { FieldCommManager_SetTrainerCaseCopiedFlag, CommPacketSizeOf_TrainerCase, FieldCommManager_GetTrainerCase },
     { UndergroundPC_ProcessTakeFlagAttempt, CommPacketSizeOf_PCInteraction, NULL },
     { UndergroundPC_ProcessTakenFlag, CommPacketSizeOf_PCInteraction, NULL }, // 90
     { UndergroundPlayer_ProcessHeldFlagOwnerInfo, CommPacketSizeOf_TrainerInfo, NULL },
     { UndergroundPlayer_ProcessHeldFlagOwnerInfoServer, CommPacketSizeOf_HeldFlagInfo, UndergroundPlayer_GetHeldFlagInfoBuffer },
     { UndergroundPlayer_ProcessHeldFlagOwnerInfoAck, CommPacketSizeOf_NetId, NULL },
     { sub_02059180, CommPacketSizeOf_NetId, NULL },
-    { sub_02059D0C, CommPacketSizeOf_NetId, NULL }, // 95
+    { FieldCommManager_UpdateBattleRoomMovement, CommPacketSizeOf_NetId, NULL }, // 95
     { SecretBases_ProcessFlagRankUp, CommPacketSizeOf_NetId, NULL },
     { SecretBases_ProcessFlagRankUpEvent, CommPacketSizeOf_FlagRankUpEvent, NULL },
     { sub_0205B988, TrainerInfo_Size, NULL },

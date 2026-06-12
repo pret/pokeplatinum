@@ -5,6 +5,7 @@
 
 #include "overlay104/frontier_data_transfer.h"
 
+#include "field_battle_data_transfer.h"
 #include "party.h"
 #include "savedata.h"
 #include "sprite.h"
@@ -13,12 +14,12 @@ typedef struct BattleArcade {
     int unk_00;
     SaveData *saveData;
     UnkStruct_020304A0 *unk_08;
-    void *dto;
+    FieldBattleDTO *dto;
     u8 challengeType;
     u8 unk_11;
     u8 unk_12;
     u8 activeEffect;
-    int unk_14;
+    int weather;
     u16 currentStreak;
     u16 unk_1A;
     u8 unk_1C;
@@ -35,9 +36,9 @@ typedef struct BattleArcade {
     ManagedSprite *unk_40[4];
     ManagedSprite *unk_50[4];
     ManagedSprite *unk_60[4];
-    Party *unk_70;
-    Party *unk_74;
-    u16 unk_78[14];
+    Party *playersParty;
+    Party *opponentsParty;
+    u16 trainerIDs[14];
     u32 monHP[4];
     u32 monAtk[4];
     u32 monDef[4];

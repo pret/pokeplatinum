@@ -86,13 +86,13 @@ _010E:
     FrontierScrCmd_B2 7, 1, 0, VAR_0x8008
     SetVar VAR_0x8004, 0
     SetVar VAR_0x8009, 1
-    FrontierScrCmd_3D VAR_MAP_LOCAL_3, 0
+    SetSystemVar VAR_MAP_LOCAL_3, 0
     GoTo _0254
     End
 
 _012F:
-    FrontierScrCmd_3D VAR_BATTLE_FACTORY_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI_WFC
-    FrontierScrCmd_3D VAR_MAP_LOCAL_3, 0
+    SetSystemVar VAR_BATTLE_FACTORY_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI_WFC
+    SetSystemVar VAR_MAP_LOCAL_3, 0
     GoTo _0143
     End
 
@@ -113,7 +113,7 @@ _0188:
     FrontierScrCmd_B2 7, 2, 0, VAR_0x8008
     SetVar VAR_0x8004, 0
     SetVar VAR_0x8009, 2
-    FrontierScrCmd_3D VAR_BATTLE_FACTORY_CHALLENGE_LEVEL, 0
+    SetSystemVar VAR_BATTLE_FACTORY_CHALLENGE_LEVEL, 0
     GoTo _0254
     End
 
@@ -121,7 +121,7 @@ _01A9:
     FrontierScrCmd_B2 7, 3, 0, VAR_0x8008
     SetVar VAR_0x8004, 0
     SetVar VAR_0x8009, 3
-    FrontierScrCmd_3D VAR_BATTLE_FACTORY_CHALLENGE_LEVEL, 1
+    SetSystemVar VAR_BATTLE_FACTORY_CHALLENGE_LEVEL, 1
     GoTo _0254
     End
 
@@ -129,8 +129,8 @@ _01CA:
     FrontierScrCmd_B2 7, 4, 0, VAR_0x8008
     SetVar VAR_0x8004, 0
     SetVar VAR_0x8009, 4
-    FrontierScrCmd_3D VAR_BATTLE_CASTLE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI_WFC
-    FrontierScrCmd_3D VAR_MAP_LOCAL_3, 0
+    SetSystemVar VAR_BATTLE_CASTLE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI_WFC
+    SetSystemVar VAR_MAP_LOCAL_3, 0
     GoTo _0254
     End
 
@@ -138,8 +138,8 @@ _01F1:
     FrontierScrCmd_B2 7, 5, 0, VAR_0x8008
     SetVar VAR_0x8004, 0
     SetVar VAR_0x8009, 5
-    FrontierScrCmd_3D VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI_WFC
-    FrontierScrCmd_3D VAR_MAP_LOCAL_3, 0
+    SetSystemVar VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI_WFC
+    SetSystemVar VAR_MAP_LOCAL_3, 0
     GoTo _0254
     End
 
@@ -147,8 +147,8 @@ _0218:
     FrontierScrCmd_B2 7, 6, 0, VAR_0x8008
     SetVar VAR_0x8004, 0
     SetVar VAR_0x8009, 6
-    FrontierScrCmd_3D VAR_BATTLE_ARCADE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI_WFC
-    FrontierScrCmd_3D VAR_MAP_LOCAL_3, 0
+    SetSystemVar VAR_BATTLE_ARCADE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI_WFC
+    SetSystemVar VAR_MAP_LOCAL_3, 0
     GoTo _0254
     End
 
@@ -223,8 +223,8 @@ _037E:
     FrontierScrCmd_AF VAR_0x8009, 1, VAR_0x8008
     GoToIfEq VAR_0x8008, 2, _0366
     FrontierScrCmd_B0 VAR_0x8002, VAR_0x8005
-    FrontierScrCmd_3D VAR_MAP_LOCAL_2, VAR_0x8002
-    FrontierScrCmd_3D VAR_MAP_LOCAL_5, VAR_0x8005
+    SetSystemVar VAR_MAP_LOCAL_2, VAR_0x8002
+    SetSystemVar VAR_MAP_LOCAL_5, VAR_0x8005
     FadeScreenIn
     GoTo _03C1
     End
@@ -414,7 +414,7 @@ _0758:
 
 _0766:
     FrontierScrCmd_B2 12, 0, 0, VAR_0x8008
-    FrontierScrCmd_3D VAR_WIFI_FRONTIER_CLEARED, VAR_0x8008
+    SetSystemVar VAR_WIFI_FRONTIER_CLEARED, VAR_0x8008
     ClearReceivedTempDataAllPlayers
     SyncConnectedPlayers 175
     ClearReceivedTempDataAllPlayers
@@ -458,7 +458,7 @@ _0838:
 
 _0842:
     FrontierScrCmd_B3
-    FrontierScrCmd_3D VAR_BATTLE_TOWER_MULTI_BATTLE_ROOM_LOAD_ACTION, 1
+    SetSystemVar VAR_BATTLE_TOWER_MULTI_BATTLE_ROOM_LOAD_ACTION, 1
     Call _08D3
     GoTo _0858
     End

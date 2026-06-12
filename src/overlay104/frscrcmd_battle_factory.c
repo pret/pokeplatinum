@@ -95,8 +95,8 @@ BOOL FrontierScrCmd_OpenBattleFactoryAppInitial(FrontierScriptContext *ctx)
     args->challengeType = battleFactory->challengeType;
     args->unk_05 = battleFactory->unk_05;
     args->isExchangeMode = FALSE;
-    args->personalParty = battleFactory->unk_4D4;
-    args->receivableParty = battleFactory->unk_4D8;
+    args->personalParty = battleFactory->playersParty;
+    args->receivableParty = battleFactory->opponentsParty;
     args->battleFactory = battleFactory;
 
     sub_0209B988(ctx->scriptMan->unk_00, &sBattleFactoryAppTemplate, args, 0, StoreBattleFactoryAppResult);
@@ -106,7 +106,7 @@ BOOL FrontierScrCmd_OpenBattleFactoryAppInitial(FrontierScriptContext *ctx)
 BOOL FrontierScrCmd_BattleFactory_CleanupBattle(FrontierScriptContext *ctx)
 {
     BattleFactory *battleFactory = sub_0209B978(ctx->scriptMan->unk_00);
-    FieldBattleDTO *dto = battleFactory->unk_4FC;
+    FieldBattleDTO *dto = battleFactory->dto;
 
     battleFactory->wonBattle = CheckPlayerWonBattle(dto->resultMask);
 
@@ -119,8 +119,8 @@ BOOL FrontierScrCmd_BattleFactory_StartBattle(FrontierScriptContext *ctx)
     UnkStruct_ov104_02230BE4 *v2 = sub_0209B970(ctx->scriptMan->unk_00);
     BattleFactory *battleFactory = sub_0209B978(ctx->scriptMan->unk_00);
 
-    FieldBattleDTO *dto = ov104_0223ABA0(battleFactory, v2);
-    battleFactory->unk_4FC = dto;
+    FieldBattleDTO *dto = FieldBattleDTO_NewBattleFactory(battleFactory, v2);
+    battleFactory->dto = dto;
 
     sub_0209B988(ctx->scriptMan->unk_00, &gBattleApplicationTemplate, dto, 0, NULL);
 
@@ -153,8 +153,8 @@ BOOL FrontierScrCmd_OpenBattleFactoryAppForTrade(FrontierScriptContext *ctx)
     args->challengeType = battleFactory->challengeType;
     args->unk_05 = battleFactory->unk_05;
     args->isExchangeMode = TRUE;
-    args->personalParty = battleFactory->unk_4D4;
-    args->receivableParty = battleFactory->unk_4D8;
+    args->personalParty = battleFactory->playersParty;
+    args->receivableParty = battleFactory->opponentsParty;
     args->battleFactory = battleFactory;
 
     sub_0209B988(ctx->scriptMan->unk_00, &sBattleFactoryAppTradeTemplate, args, 0, StoreBattleFactoryAppResult);
@@ -252,13 +252,13 @@ BOOL FrontierScrCmd_CallBattleFactoryFunction(FrontierScriptContext *ctx)
         break;
     case BF_FUNC_UNK_17: {
         Pokemon *v3 = Pokemon_New(HEAP_ID_FIELD2);
-        ov104_0222DF40(&battleFactory->unk_3F0[arg1], v3, ov104_0223ADA0(battleFactory));
+        FrontierPokemonDataDTO_InitPokemon(&battleFactory->unk_3F0[arg1], v3, BattleFactory_GetPokemonLevel(battleFactory));
         *returnVar = Pokemon_GetValue(v3, MON_DATA_TYPE_1, NULL);
         Heap_Free(v3);
     } break;
     case BF_FUNC_UNK_18: {
         int v0[18];
-        u8 v5 = ov104_0223AA74(battleFactory->challengeType, 1);
+        u8 v5 = BattleFactory_GetOpponentPartySize(battleFactory->challengeType, 1);
 
         for (i = 0; i < (17 + 1); i++) {
             v0[i] = 0;
@@ -267,7 +267,7 @@ BOOL FrontierScrCmd_CallBattleFactoryFunction(FrontierScriptContext *ctx)
         Pokemon *v3 = Pokemon_New(HEAP_ID_FIELD2);
 
         for (i = 0; i < v5; i++) {
-            ov104_0222DF40(&battleFactory->unk_3F0[i], v3, ov104_0223ADA0(battleFactory));
+            FrontierPokemonDataDTO_InitPokemon(&battleFactory->unk_3F0[i], v3, BattleFactory_GetPokemonLevel(battleFactory));
 
             u32 v7 = Pokemon_GetValue(v3, MON_DATA_TYPE_1, NULL);
             u32 v8 = Pokemon_GetValue(v3, MON_DATA_TYPE_2, NULL);
@@ -343,14 +343,14 @@ BOOL FrontierScrCmd_CallBattleFactoryFunction(FrontierScriptContext *ctx)
         }
         break;
     case BF_FUNC_UNK_33:
-        ov104_0222E278(&(battleFactory->unk_34[0]), battleFactory->unk_18[battleFactory->unk_06], HEAP_ID_FIELD2, 178);
-        ov104_0222E278(&(battleFactory->unk_34[1]), battleFactory->unk_18[battleFactory->unk_06 + 7], HEAP_ID_FIELD2, 178);
+        ov104_0222E278(&(battleFactory->unk_34[0]), battleFactory->trainerIDs[battleFactory->unk_06], HEAP_ID_FIELD2, 178);
+        ov104_0222E278(&(battleFactory->unk_34[1]), battleFactory->trainerIDs[battleFactory->unk_06 + 7], HEAP_ID_FIELD2, 178);
         break;
     case BF_FUNC_UNK_34: {
-        u8 v6 = BattleFactory_GetPartySize(battleFactory->challengeType);
+        u8 v6 = BattleFactory_GetPlayerPartySize(battleFactory->challengeType);
 
         for (i = 0; i < v6; i++) {
-            Pokemon *v3 = Party_GetPokemonBySlotIndex(battleFactory->unk_4D4, i);
+            Pokemon *v3 = Party_GetPokemonBySlotIndex(battleFactory->playersParty, i);
             StringTemplate_SetSpeciesName(ctx->scriptMan->strTemplate, i, Pokemon_GetBoxPokemon(v3));
         }
     } break;
@@ -466,7 +466,7 @@ BOOL FrontierScrCmd_6B(FrontierScriptContext *param0)
         return 0;
     }
 
-    v0 = v1->unk_34[v3].trDataDTO.unk_18;
+    v0 = v1->unk_34[v3].trDataDTO.introMsg;
 
     ov104_022330FC(param0, v0);
     return 1;

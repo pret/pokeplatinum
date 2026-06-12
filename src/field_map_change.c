@@ -72,7 +72,7 @@
 #include "unk_02070428.h"
 #include "vars_flags.h"
 
-#include "res/text/bank/pokemon_center_2f_attendants.h"
+#include "res/text/bank/pokemon_center_2f_common.h"
 
 FS_EXTERN_OVERLAY(underground);
 
@@ -1135,9 +1135,9 @@ BOOL FieldTask_MapChangeToUnderground(FieldTask *task)
 
     switch (ctx->state) {
     case ENTER_UNDERGROUND_INIT:
-        MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEMON_CENTER_2F_ATTENDANTS, HEAP_ID_FIELD2);
+        MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEMON_CENTER_2F_COMMON, HEAP_ID_FIELD2);
 
-        ctx->string = MessageLoader_GetNewString(msgLoader, PokeCenter2FAttendants_Text_CommsWillBeLaunched);
+        ctx->string = MessageLoader_GetNewString(msgLoader, PokemonCenter2FCommon_Text_CommsWillBeLaunched);
         MessageLoader_Free(msgLoader);
 
         FieldMessage_AddWindow(fieldSystem->bgConfig, &ctx->window, BG_LAYER_MAIN_3);

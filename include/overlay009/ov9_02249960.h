@@ -89,9 +89,9 @@ int DistWorld_GetMapObjectRotatorAnimFrame(FieldSystem *fieldSystem, MapObject *
 void DistWorld_BindMapObjectRotator(FieldSystem *fieldSystem, Billboard *billboard, int initialAngle);
 void DistWorld_UnbindMapObjectRotator(FieldSystem *fieldSystem, const Billboard *billboard);
 BOOL DistWorld_HandlePlayerMoved(FieldSystem *fieldSystem, enum FaceDirection playerDir);
-BOOL ov9_0224A67C(FieldSystem *fieldSystem, int param1);
-BOOL ov9_0224A71C(FieldSystem *fieldSystem);
-BOOL ov9_0224A800(FieldSystem *fieldSystem, int param1);
+BOOL DistWorld_HandlePlayerMovementEnd(FieldSystem *fieldSystem, enum FaceDirection playerDir);
+BOOL DistWorld_HandlePlayerPositionChanged(FieldSystem *fieldSystem);
+BOOL DistWorld_CheckMapTransition(FieldSystem *fieldSystem, enum FaceDirection transitionDir);
 void DistWorld_RenderInactiveFloor(FieldSystem *fieldSystem);
 void DistWorld_TickInactiveFloor(FieldSystem *fieldSystem);
 void DistWorld_StartGiratinaShadowEvent(FieldSystem *fieldSystem, u16 eventIndex);
@@ -103,13 +103,13 @@ BOOL DistWorld_IsBoulderAtFallLocation(const MapObject *boulderMapObj);
 DistWorldFallingBoulder *DistWorldFallingBoulder_New(FieldSystem *fieldSystem, FieldTask *boulderFieldTask, MapObject *boulderMapObj);
 BOOL DistWorldFallingBoulder_Tick(DistWorldFallingBoulder *boulder);
 void DistWorld_ApplyGiratinaSpritePalette(FieldSystem *fieldSystem);
-BOOL ov9_02250F74(FieldSystem *fieldSystem);
+BOOL DistWorld_ArePersistedFeaturesInit(FieldSystem *fieldSystem);
 BOOL DistWorld_CheckCollisionOnCurrentFloatingPlatform(FieldSystem *fieldSystem, int tileX, int tileY, int tileZ);
 BOOL DistWorld_IsValidTileOnCurrentFloatingPlatform(FieldSystem *fieldSystem, int tileX, int tileY, int tileZ);
-BOOL ov9_02250FD8(FieldSystem *fieldSystem, int param1, int param2, int param3);
-void ov9_02251000(FieldSystem *fieldSystem, int param1, int param2, int param3);
+BOOL DistWorld_AreCoordsValidOnCurrentFloatingPlatformKind(FieldSystem *fieldSystem, int tileX, int tileY, int tileZ);
+void DistWorld_FindAndPrepareNewCurrentFloatingPlatform(FieldSystem *fieldSystem, int tileX, int tileY, int tileZ);
 BOOL DistWorld_GetTileBehaviorOnCurrentFloatingPlatform(FieldSystem *fieldSystem, int tileX, int tileY, int tileZ, u32 *tileBehavior);
 void DistWorld_LoadFloorOffsets(int mapHeaderID, int *offsetTileX, int *offsetAltitude, int *offsetTileZ);
-BOOL ov9_022511A0(FieldSystem *fieldSystem, int param1, int param2, int param3);
+BOOL DistWorld_IsBlockedByCynthia(FieldSystem *fieldSystem, int tileX, int tileZ, int tileY);
 
 #endif // POKEPLATINUM_OV9_02249960_H

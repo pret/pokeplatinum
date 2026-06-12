@@ -162,7 +162,7 @@ BOOL FrontierScrCmd_85(FrontierScriptContext *param0)
         return 0;
     }
 
-    v1 = battleTower->opponentsDataDTO[v4].trDataDTO.unk_18;
+    v1 = battleTower->opponentsDataDTO[v4].trDataDTO.introMsg;
 
     ov104_0223310C(param0, v1, BattleTower_GetTrainerMessagesBankID(battleTower->challengeMode));
     return 1;
@@ -181,8 +181,8 @@ BOOL FrontierScrCmd_BattleTower_StartBattle(FrontierScriptContext *ctx)
     UnkStruct_ov104_02230BE4 *v2 = sub_0209B970(ctx->scriptMan->unk_00);
     BattleTower *battleTower = sub_0209B978(ctx->scriptMan->unk_00);
 
-    FieldBattleDTO *dto = ov104_0223A580(battleTower, v2);
-    battleTower->unk_8D0 = dto;
+    FieldBattleDTO *dto = FieldBattleDTO_NewBattleTower(battleTower, v2);
+    battleTower->dto = dto;
 
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_BATTLE, SEQ_BATTLE_TRAINER, 1);
     sub_0209B988(ctx->scriptMan->unk_00, &gBattleApplicationTemplate, dto, 0, NULL);
@@ -194,7 +194,7 @@ BOOL FrontierScrCmd_BattleTower_CheckWonBattle(FrontierScriptContext *ctx)
 {
     BattleTower *battleTower = sub_0209B978(ctx->scriptMan->unk_00);
     u16 *destVar = FrontierScriptContext_TryGetVarPointer(ctx);
-    FieldBattleDTO *dto = battleTower->unk_8D0;
+    FieldBattleDTO *dto = battleTower->dto;
 
     battleTower->wonBattle = CheckPlayerWonBattle(dto->resultMask);
     *destVar = battleTower->wonBattle;

@@ -743,7 +743,7 @@ static BOOL State_SetupAppStrings(BattleFactoryApp *app)
 static void PrintStringsForInitialSelect(BattleFactoryApp *app)
 {
     int i;
-    u8 numMons = BattleFactory_GetPartySize(app->challengeType);
+    u8 numMons = BattleFactory_GetPlayerPartySize(app->challengeType);
 
     SetMenuWasCancelled(app, FALSE);
     app->monCursor = BattleFactoryAppCursor_New(&app->spriteMan, app->numPokeballs, app->numPokeballs, CURSOR_MODE_MON_ONLY, app->startingSlot, sInitialSelectCursorPositions, NULL);
@@ -1062,7 +1062,7 @@ static void RemoveSelectedMonUnderCursor(BattleFactoryApp *app)
 static BOOL State_ConfirmPartySelection(BattleFactoryApp *app)
 {
     int i;
-    u8 numMons = BattleFactory_GetPartySize(app->challengeType);
+    u8 numMons = BattleFactory_GetPlayerPartySize(app->challengeType);
 
     switch (app->subState) {
     case 0:
@@ -1245,7 +1245,7 @@ static BOOL State_ConfirmPartySelection(BattleFactoryApp *app)
 
 static BOOL State_ReturnToInitialPartySelection(BattleFactoryApp *app)
 {
-    u8 numMons = BattleFactory_GetPartySize(app->challengeType);
+    u8 numMons = BattleFactory_GetPlayerPartySize(app->challengeType);
 
     switch (app->subState) {
     case 0:
@@ -1352,7 +1352,7 @@ static BOOL State_ReturnToInitialPartySelection(BattleFactoryApp *app)
 
 static void RedisplayInfoForInitialSelection(BattleFactoryApp *app)
 {
-    BattleFactory_GetPartySize(app->challengeType);
+    BattleFactory_GetPlayerPartySize(app->challengeType);
 
     for (int i = 0; i < app->numMonsSelected; i++) {
         PrintMonNameAndGender(app, &app->windows[WINDOW_SELECTED_MON_NAME_1 + i], app->selectedIndices[i], 0, 0, 15, 2, 0, FONT_SYSTEM, app->personalParty);
@@ -1781,7 +1781,7 @@ static void RecreateReceivableMonSprite(BattleFactoryApp *app)
 static BOOL State_ChangeExchangeToReceiveSelect(BattleFactoryApp *app)
 {
     int i;
-    u8 numMons = BattleFactory_GetPartySize(app->challengeType);
+    u8 numMons = BattleFactory_GetPlayerPartySize(app->challengeType);
 
     switch (app->subState) {
     case 0:
@@ -2887,7 +2887,7 @@ void BattleFactoryApp_HandleSelectionUpdateCmd(int netID, int unused, void *data
     const u16 *payload = data;
 
     int offset = 0;
-    BattleFactory_GetPartySize(app->challengeType);
+    BattleFactory_GetPlayerPartySize(app->challengeType);
 
     if (CommSys_CurNetId() == netID) {
         return;
@@ -2915,7 +2915,7 @@ void BattleFactoryApp_DummyCommCommand2(int netID, int unused, void *data, void 
 
 static void UpdatePartnersMonsListing(BattleFactoryApp *app)
 {
-    u8 numMons = BattleFactory_GetPartySize(app->challengeType);
+    u8 numMons = BattleFactory_GetPlayerPartySize(app->challengeType);
 
     if (app->clearPartnerInfo == TRUE) {
         Window_ClearAndCopyToVRAM(&app->windows[WINDOW_PARTNERS_NAME]);
