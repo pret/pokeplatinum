@@ -319,6 +319,7 @@ static const u8 sPocketSizes[POCKET_MAX] = {
     [POCKET_KEY_ITEMS] = KEY_ITEM_POCKET_SIZE
 };
 
+#ifdef SDK_BUILD_ARM
 static const u32 sItemActionFuncs[] = {
     [ITEM_ACTION_USE] = (u32)ItemActionFunc_Use,
     [ITEM_ACTION_WALK] = (u32)ItemActionFunc_Use,
@@ -333,6 +334,22 @@ static const u32 sItemActionFuncs[] = {
     [ITEM_ACTION_CONFIRM] = (u32)ItemActionFunc_Confirm,
     [ITEM_ACTION_CANCEL] = MENU_CANCEL
 };
+#else
+static const u64 sItemActionFuncs[] = {
+    [ITEM_ACTION_USE] = (u64)ItemActionFunc_Use,
+    [ITEM_ACTION_WALK] = (u64)ItemActionFunc_Use,
+    [ITEM_ACTION_CHECK] = (u64)ItemActionFunc_Use,
+    [ITEM_ACTION_PLANT] = (u64)ItemActionFunc_Use,
+    [ITEM_ACTION_OPEN] = (u64)ItemActionFunc_Use,
+    [ITEM_ACTION_TRASH] = (u64)ItemActionFunc_Trash,
+    [ITEM_ACTION_REGISTER] = (u64)ItemActionFunc_Register,
+    [ITEM_ACTION_DESELECT] = (u64)ItemActionFunc_Deselect,
+    [ITEM_ACTION_GIVE] = (u64)ItemActionFunc_Give,
+    [ITEM_ACTION_CHECK_TAG] = (u64)ItemActionFunc_CheckTag,
+    [ITEM_ACTION_CONFIRM] = (u64)ItemActionFunc_Confirm,
+    [ITEM_ACTION_CANCEL] = MENU_CANCEL
+};
+#endif
 
 // clang-format off
 static const u16 sItemSpriteBoxTiles[] = {

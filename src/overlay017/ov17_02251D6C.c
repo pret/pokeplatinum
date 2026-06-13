@@ -650,7 +650,7 @@ static void ov17_0225266C(SysTask *param0, void *param1)
     case 4: {
         int species = Pokemon_GetValue(v0->unk_00->unk_10.unk_00->contestMons[v0->winningContestantID], MON_DATA_SPECIES, NULL);
         int form = Pokemon_GetValue(v0->unk_00->unk_10.unk_00->contestMons[v0->winningContestantID], MON_DATA_FORM, NULL);
-        PlayCryWithParams(v0->unk_00->unk_00->chatotCry[v0->winningContestantID], POKECRY_NORMAL, species, form, 0, 127, NULL, HEAP_ID_24);
+        PlayCryWithParams(v0->unk_00->unk_00->chatotCry[v0->winningContestantID], POKECRY_NORMAL, species, form, 0, 127, 0, HEAP_ID_24);
     }
         v0->unk_10++;
         break;

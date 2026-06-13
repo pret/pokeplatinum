@@ -1560,8 +1560,8 @@ static void RowanIntro_LoadBunearySprite(RowanIntro *manager)
         GENDER_MALE,
         FACE_FRONT,
         FALSE,
-        NULL,
-        NULL);
+        0,
+        0);
 
     rawData = Heap_Alloc(manager->heapID, (10 * 10) * 2);
 

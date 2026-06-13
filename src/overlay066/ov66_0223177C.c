@@ -191,7 +191,7 @@ void ov66_02231908(UnkStruct_ov66_0223177C *param0, const UnkStruct_ov66_0223190
 {
     UnkStruct_ov66_02231FB0 *v0;
     u32 v1;
-    static const sc_NEWS_DSET_MINIGAME_PRI[UnkEnum_ov66_022324D0_12] = {
+    static const int sc_NEWS_DSET_MINIGAME_PRI[UnkEnum_ov66_022324D0_12] = {
         4,
         3,
         2,

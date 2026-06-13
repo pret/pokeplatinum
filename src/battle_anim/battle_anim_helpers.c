@@ -963,13 +963,13 @@ u32 BattleAnimUtil_GetHOffsetRegisterForBg(int bgID)
 {
     switch (bgID) {
     case BATTLE_BG_INTERNAL_ID_UNUSED:
-        return REG_BG0HOFS_ADDR;
+        return (u32)REG_BG0HOFS_ADDR;
     case BATTLE_BG_INTERNAL_ID_WINDOW:
-        return REG_BG1HOFS_ADDR;
+        return (u32)REG_BG1HOFS_ADDR;
     case BATTLE_BG_INTERNAL_ID_BASE:
-        return REG_BG2HOFS_ADDR;
+        return (u32)REG_BG2HOFS_ADDR;
     case BATTLE_BG_INTERNAL_ID_EFFECT:
-        return REG_BG3HOFS_ADDR;
+        return (u32)REG_BG3HOFS_ADDR;
     }
 }
 

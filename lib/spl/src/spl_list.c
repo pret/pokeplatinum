@@ -1,6 +1,10 @@
 #include "spl_list.h"
 
+#ifdef SDK_BUILD_ARM
 #include <null.h>
+#else
+#define NULL ((void*)(0))
+#endif
 
 void SPLList_PushFront(SPLList *list, SPLNode *node)
 {

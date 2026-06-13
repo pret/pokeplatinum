@@ -247,25 +247,25 @@ static void PoketchGraphics_GeneratePoketchButtonSprite(u16 *dst, u32 param1, in
 
 // clang-format off
 static const PoketchTask poketchTasks[] = {
-    { TASK_SETUP_BACKGROUND,   PoketchGraphics_SetupBackgroundTask,        NULL },
+    { TASK_SETUP_BACKGROUND,   PoketchGraphics_SetupBackgroundTask,        0 },
     { TASK_REVEAL_SCREEN_1,    PoketchGraphics_screenRevealAnimationTask,  sizeof(PoketchGraphics_ExtraTaskData) },
     { TASK_REVEAL_SCREEN_2,    PoketchGraphics_screenRevealAnimationTask,  sizeof(PoketchGraphics_ExtraTaskData) },
     { TASK_UNUSED_1,           PoketchGraphics_UnusedTask_1,               sizeof(PoketchGraphics_ExtraTaskData) },
     { TASK_CONCEAL_SCREEN,     PoketchGraphics_screenConcealAnimationTask, sizeof(PoketchGraphics_ExtraTaskData) },
     { TASK_UNUSED_2,           PoketchGraphics_UnusedTask_2,               sizeof(PoketchGraphics_ExtraTaskData) },
-    { TASK_UP_HALF_PRESSED,    PoketchGraphics_UpBtnHalfPressed_Task,      NULL },
-    { TASK_UP_PRESSED,         PoketchGraphics_UpBtnPressed_Task,          NULL },
-    { TASK_UP_RELEASED,        PoketchGraphics_UpBtnReleased_Task,         NULL },
-    { TASK_DOWN_HALF_PRESSED,  PoketchGraphics_DownBtnHalfPressed_Task,    NULL },
-    { TASK_DOWN_PRESSED,       PoketchGraphics_DownBtnPressed_Task,        NULL },
-    { TASK_DOWN_RELEASED,      PoketchGraphics_DownBtnReleased_Task,       NULL },
-    { TASK_LOAD_APP_COUNTER,   PoketchGraphics_LoadAppCounterTask,         NULL },
-    { TASK_UPDATE_APP_COUNTER, PoketchGraphics_UpdateAppCounterDigitsTask, NULL },
-    { TASK_UNLOAD_APP_COUNTER, PoketchGraphics_UnloadAppCounterAnimTask,   NULL },
-    { TASK_UNUSED_3,           PoketchGraphics_UnusedTask_3,               NULL },
-    { TASK_UNUSED_4,           PoketchGraphics_UnusedTask_4,               NULL },
-    { TASK_FREE_TILEMAP,       PoketchGraphics_FreeTilemapBufferTask,      NULL },
-    { POKETCH_EMPTY_TASK,      NULL,                                       NULL }
+    { TASK_UP_HALF_PRESSED,    PoketchGraphics_UpBtnHalfPressed_Task,      0 },
+    { TASK_UP_PRESSED,         PoketchGraphics_UpBtnPressed_Task,          0 },
+    { TASK_UP_RELEASED,        PoketchGraphics_UpBtnReleased_Task,         0 },
+    { TASK_DOWN_HALF_PRESSED,  PoketchGraphics_DownBtnHalfPressed_Task,    0 },
+    { TASK_DOWN_PRESSED,       PoketchGraphics_DownBtnPressed_Task,        0 },
+    { TASK_DOWN_RELEASED,      PoketchGraphics_DownBtnReleased_Task,       0 },
+    { TASK_LOAD_APP_COUNTER,   PoketchGraphics_LoadAppCounterTask,         0 },
+    { TASK_UPDATE_APP_COUNTER, PoketchGraphics_UpdateAppCounterDigitsTask, 0 },
+    { TASK_UNLOAD_APP_COUNTER, PoketchGraphics_UnloadAppCounterAnimTask,   0 },
+    { TASK_UNUSED_3,           PoketchGraphics_UnusedTask_3,               0 },
+    { TASK_UNUSED_4,           PoketchGraphics_UnusedTask_4,               0 },
+    { TASK_FREE_TILEMAP,       PoketchGraphics_FreeTilemapBufferTask,      0 },
+    { POKETCH_EMPTY_TASK,      NULL,                                       0 }
 };
 // clang-format on
 

@@ -10,7 +10,12 @@ ApplicationManager *ApplicationManager_New(const ApplicationManagerTemplate *tem
 {
     ApplicationManager *appMan = Heap_Alloc(heapID, sizeof(ApplicationManager));
 
+    #ifdef SDK_BUILD_ARM
+    //TODO
     appMan->template = *template;
+    #else
+    memcpy(&appMan->template, template, sizeof(ApplicationManagerTemplate));
+    #endif
     appMan->execState = 0;
     appMan->procState = 0;
     appMan->args = args;

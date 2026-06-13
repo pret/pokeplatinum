@@ -33,7 +33,9 @@ int sub_0208C098(int param0)
 u32 sub_0208C0A4(u32 param0, u32 param1)
 {
     u32 v0 = (param0 * param0) + (param1 * param1);
+    #ifdef SDK_BUILD_ARM
     v0 = SVC_Sqrt(v0 << 4);
+    #endif
 
     return v0 >> 2;
 }

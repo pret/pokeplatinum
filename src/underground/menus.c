@@ -157,8 +157,13 @@ static const WindowTemplate sYesNoWindowTemplate = {
 // clang-format off
 static const struct {
     u32 bankEntry;
+    #ifdef SDK_BUILD_ARM
     u32 callback;
+    #else
+    u64 callback;
+    #endif
 } sUndergroundMenuOptions[] = {
+    #ifdef SDK_BUILD_ARM
     [UNDERGROUND_START_MENU_OPTION_TRAPS]     = { .bankEntry = UndergroundCommon_Text_Traps,          .callback = (u32)UndergroundMenu_OpenTrapsMenu      },
     [UNDERGROUND_START_MENU_OPTION_SPHERES]   = { .bankEntry = UndergroundCommon_Text_Spheres,        .callback = (u32)UndergroundMenu_OpenSpheresMenu    },
     [UNDERGROUND_START_MENU_OPTION_GOODS]     = { .bankEntry = UndergroundCommon_Text_Goods,          .callback = (u32)UndergroundMenu_OpenGoodsMenu      },
@@ -166,6 +171,15 @@ static const struct {
     [UNDERGROUND_START_MENU_OPTION_TRAINER]   = { .bankEntry = UndergroundCommon_Text_PlayerTemplate, .callback = (u32)UndergroundMenu_OpenTrainerRecords },
     [UNDERGROUND_START_MENU_OPTION_GO_UP]     = { .bankEntry = UndergroundCommon_Text_GoUp,           .callback = (u32)UndergroundMenu_GoUpCallback       },
     [UNDERGROUND_START_MENU_OPTION_CLOSE]     = { .bankEntry = UndergroundCommon_Text_Close,          .callback = (u32)UndergroundMenu_CloseCallback      }
+    #else
+    [UNDERGROUND_START_MENU_OPTION_TRAPS]     = { .bankEntry = UndergroundCommon_Text_Traps,          .callback = (u64)UndergroundMenu_OpenTrapsMenu      },
+    [UNDERGROUND_START_MENU_OPTION_SPHERES]   = { .bankEntry = UndergroundCommon_Text_Spheres,        .callback = (u64)UndergroundMenu_OpenSpheresMenu    },
+    [UNDERGROUND_START_MENU_OPTION_GOODS]     = { .bankEntry = UndergroundCommon_Text_Goods,          .callback = (u64)UndergroundMenu_OpenGoodsMenu      },
+    [UNDERGROUND_START_MENU_OPTION_TREASURES] = { .bankEntry = UndergroundCommon_Text_Treasures,      .callback = (u64)UndergroundMenu_OpenTreasuresMenu  },
+    [UNDERGROUND_START_MENU_OPTION_TRAINER]   = { .bankEntry = UndergroundCommon_Text_PlayerTemplate, .callback = (u64)UndergroundMenu_OpenTrainerRecords },
+    [UNDERGROUND_START_MENU_OPTION_GO_UP]     = { .bankEntry = UndergroundCommon_Text_GoUp,           .callback = (u64)UndergroundMenu_GoUpCallback       },
+    [UNDERGROUND_START_MENU_OPTION_CLOSE]     = { .bankEntry = UndergroundCommon_Text_Close,          .callback = (u64)UndergroundMenu_CloseCallback      }
+    #endif
 };
 // clang-format on
 

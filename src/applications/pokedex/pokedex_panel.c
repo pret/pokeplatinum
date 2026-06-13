@@ -3,6 +3,10 @@
 #include <nitro.h>
 #include <string.h>
 
+#ifndef SDK_BUILD_ARM
+#include "heap.h"
+#endif
+
 static int inline CurrentButtonIndex(const PokedexPanelData *pokedexPanelData);
 static int inline CalcButtonIndex(const PokedexPanelData *pokedexPanelData, int col, int row);
 static void inline SetCol(PokedexPanelData *pokedexPanelData, int col);

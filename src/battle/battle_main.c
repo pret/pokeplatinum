@@ -451,8 +451,8 @@ void BattleSystem_SetupBattleScreen(BattleSystem *battleSys)
 
     GX_SetVisibleWnd(GX_WNDMASK_NONE);
     GXS_SetVisibleWnd(GX_WNDMASK_NONE);
-    G2_SetWnd0InsidePlane(GX_WND_PLANEMASK_NONE, NULL);
-    G2_SetWndOutsidePlane(GX_WND_PLANEMASK_NONE, NULL);
+    G2_SetWnd0InsidePlane(GX_WND_PLANEMASK_NONE, 0);
+    G2_SetWndOutsidePlane(GX_WND_PLANEMASK_NONE, 0);
 
     GXLayers_TurnBothDispOn();
 
@@ -720,11 +720,11 @@ static void BattleMain_CopyBattleSysToDTOAndFree(ApplicationManager *appMan)
     dto->countSafariBalls = battleSys->safariBalls;
     dto->resultMask = battleSys->resultMask & (0xC0 ^ 0xFF);
     dto->caughtBattlerIdx = battleSys->caughtBattlerIdx;
-    dto->leveledUpMonsMask = BattleContext_Get(battleSys, battleSys->battleCtx, BATTLECTX_LEVEL_UP_MONS, NULL);
-    dto->battleRecords.totalTurns += BattleContext_Get(battleSys, battleSys->battleCtx, BATTLECTX_TOTAL_TURNS, NULL);
+    dto->leveledUpMonsMask = BattleContext_Get(battleSys, battleSys->battleCtx, BATTLECTX_LEVEL_UP_MONS, 0);
+    dto->battleRecords.totalTurns += BattleContext_Get(battleSys, battleSys->battleCtx, BATTLECTX_TOTAL_TURNS, 0);
     dto->battleRecords.totalFainted += BattleContext_Get(battleSys, battleSys->battleCtx, BATTLECTX_TOTAL_FAINTED_FOR, BATTLER_PLAYER_1) + BattleContext_Get(battleSys, battleSys->battleCtx, BATTLECTX_TOTAL_FAINTED_FOR, BATTLER_PLAYER_2);
     dto->battleRecords.totalDamage += BattleContext_Get(battleSys, battleSys->battleCtx, BATTLECTX_TOTAL_DAMAGE_FOR, BATTLER_PLAYER_1) + BattleContext_Get(battleSys, battleSys->battleCtx, BATTLECTX_TOTAL_DAMAGE_FOR, BATTLER_PLAYER_2);
-    dto->totalTurnsElapsed = BattleContext_Get(battleSys, battleSys->battleCtx, BATTLECTX_TOTAL_TURNS, NULL);
+    dto->totalTurnsElapsed = BattleContext_Get(battleSys, battleSys->battleCtx, BATTLECTX_TOTAL_TURNS, 0);
     dto->unk_19C = battleSys->recordingStopped;
 
     for (battlerId = 0; battlerId < MAX_BATTLERS; battlerId++) {
@@ -901,8 +901,8 @@ static void BattleMain_InitBattleGraphics(BattleSystem *battleSys, BgConfig *bgC
 
     GX_SetVisibleWnd(GX_WNDMASK_NONE);
     GXS_SetVisibleWnd(GX_WNDMASK_NONE);
-    G2_SetWnd0InsidePlane(GX_WND_PLANEMASK_NONE, NULL);
-    G2_SetWndOutsidePlane(GX_WND_PLANEMASK_NONE, NULL);
+    G2_SetWnd0InsidePlane(GX_WND_PLANEMASK_NONE, 0);
+    G2_SetWndOutsidePlane(GX_WND_PLANEMASK_NONE, 0);
 
     GXLayers_TurnBothDispOn();
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, TRUE);
@@ -1687,7 +1687,7 @@ static void BattleMain_InitLinkCommScreen(ApplicationManager *appMan, FieldBattl
     String *string = String_Init(0x100, HEAP_ID_BATTLE);
 
     MessageLoader_GetString(msgLoader, BattleStrings_Text_CommunicatingPleaseStandBy, string);
-    Text_AddPrinterWithParams(linkBattleCommState->window, FONT_MESSAGE, string, 0, 0, NULL, NULL);
+    Text_AddPrinterWithParams(linkBattleCommState->window, FONT_MESSAGE, string, 0, 0, 0, 0);
 
     String_Free(string);
     MessageLoader_Free(msgLoader);

@@ -366,7 +366,10 @@ static int sub_020676D4(MapObject *param0)
     return 0;
 }
 
-static void (*const Unk_020EF630[])(MapObject *) = {
+#ifdef SDK_BUILD_ARM
+static 
+#endif
+void (*const Unk_020EF630[])(MapObject *) = {
     sub_020674A0,
     sub_020674A0,
     sub_020674A0,
@@ -381,7 +384,10 @@ static void (*const Unk_020EF630[])(MapObject *) = {
     sub_020674A0
 };
 
-static int (*const Unk_020EF660[])(MapObject *) = {
+#ifdef SDK_BUILD_ARM
+static 
+#endif
+int (*const Unk_020EF660[])(MapObject *) = {
     sub_020674A4,
     sub_020674A4,
     sub_020674A4,
@@ -396,7 +402,10 @@ static int (*const Unk_020EF660[])(MapObject *) = {
     sub_020674A4
 };
 
-static int (*const Unk_020EF690[])(MapObject *) = {
+#ifdef SDK_BUILD_ARM
+static 
+#endif
+int (*const Unk_020EF690[])(MapObject *) = {
     sub_020674A8,
     sub_020674A8,
     sub_020674A8,

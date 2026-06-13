@@ -3488,7 +3488,7 @@ static u16 sSoundMoves[] = {
 
 int BattleSystem_TriggerImmunityAbility(BattleContext *battleCtx, int attacker, int defender)
 {
-    int subscript = NULL, moveType;
+    int subscript = 0, moveType;
 
     if (Battler_Ability(battleCtx, attacker) == ABILITY_NORMALIZE) {
         moveType = TYPE_NORMAL;
@@ -3655,7 +3655,7 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
     int result;
     int battler;
     int maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
-    subscript = NULL;
+    subscript = 0;
     result = SWITCH_IN_CHECK_RESULT_CONTINUE;
 
     do {
@@ -3879,7 +3879,7 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
 
                                 if (move) {
                                     effectiveness = 0;
-                                    battleCtx->damage = BattleSystem_ApplyTypeChart(battleSys, battleCtx, move, NULL, j, battler, battleCtx->damage, &effectiveness);
+                                    battleCtx->damage = BattleSystem_ApplyTypeChart(battleSys, battleCtx, move, 0, j, battler, battleCtx->damage, &effectiveness);
 
                                     if ((effectiveness & MOVE_STATUS_INEFFECTIVE) == FALSE
                                         && MoveCannotTriggerAnticipation(battleCtx, move) == FALSE
@@ -6708,7 +6708,7 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
         attackStat = attackStat * 2;
     }
     if (attackerParams.ability == ABILITY_SLOW_START
-        && BattleContext_Get(battleSys, battleCtx, BATTLECTX_TOTAL_TURNS, NULL)
+        && BattleContext_Get(battleSys, battleCtx, BATTLECTX_TOTAL_TURNS, 0)
                 - BattleMon_Get(battleCtx, attacker, BATTLEMON_SLOW_START_TURN_NUMBER, NULL)
             < 5) {
         attackStat /= 2;

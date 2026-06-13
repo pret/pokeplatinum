@@ -114,6 +114,9 @@ static u32 EncEffects_BGMForPair(u32 effectPairID, const FieldBattleDTO *dto);
 static u32 EncEffects_TrainerClassEffect(u32 trainerClass);
 static u32 EncEffects_WildPokemonEffect(Party *wildParty, int mapHeaderID);
 
+#ifndef SDK_BUILD_ARM
+static
+#endif
 inline BOOL EncEffects_Galactic(u32 effect)
 {
     return (effect == ENCEFF_GALACTIC_GRUNT)

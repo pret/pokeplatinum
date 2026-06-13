@@ -182,8 +182,14 @@ static const SpriteTemplate *HealthBox_MainSpriteTemplate(u8 type);
 static const SpriteTemplate *HealthBox_ArrowSpriteTemplate(u8 type);
 static void Healthbox_Task_Scroll(SysTask *task, void *data);
 static void Healthbox_Task_LevelUpFlashAnimation(SysTask *task, void *param1);
-static void Healthbox_StartBobAnimation(HealthBox *healthbox);
-static void Healthbox_StopBobAnimation(HealthBox *healthbox);
+#ifdef SDK_BUILD_ARM
+static
+#endif
+void Healthbox_StartBobAnimation(HealthBox *healthbox);
+#ifdef SDK_BUILD_ARM
+static
+#endif
+void Healthbox_StopBobAnimation(HealthBox *healthbox);
 static void Healthbox_Task_Bob(SysTask *task, void *data);
 static void HealthBox_EnableArrow(HealthBox *healthbox, BOOL enable);
 
@@ -1663,7 +1669,7 @@ u8 HealthBox_Type(int battlerType, u32 battleType)
 
     default:
         GF_ASSERT(FALSE);
-        return NULL;
+        return 0;
     }
 }
 

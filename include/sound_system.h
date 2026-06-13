@@ -139,7 +139,11 @@ typedef struct SoundFilterCallbackParam {
 typedef struct SoundSystem {
     NNSSndArc arc; // Only used for storage, NNS manages the arc
     NNSSndHeapHandle heap;
+    #ifdef SDK_BUILD_ARM
     u8 heapBuffer[SOUND_SYSTEM_HEAP_SIZE]; // Main sound heap where sound data is loaded into
+    #else
+    u8 heapBuffer[SOUND_SYSTEM_HEAP_SIZE*2]; 
+    #endif
     NNSSndHandle soundHandles[SOUND_HANDLE_TYPE_COUNT];
     NNSSndWaveOutHandle waveOutHandles[2];
     const NNSSndArcBankInfo *currentBankInfo;

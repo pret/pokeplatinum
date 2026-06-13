@@ -5,6 +5,7 @@ enc_c_args = [
     '-nothumb'
 ]
 
+if (build_target == 'arm')
 libdwcenc = static_library('dwcenc',
     sources: libdwcenc_srcs,
     c_args: enc_c_args,
@@ -14,3 +15,4 @@ libdwcenc = static_library('dwcenc',
 )
 
 ppwlobby_libs += libdwcenc
+endif

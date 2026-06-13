@@ -461,7 +461,10 @@ static BOOL FishingTask_FinishFishing(FishingTask *fishingTask, PlayerAvatar *pl
     return FALSE;
 }
 
-static BOOL (*const sFishingActions[])(FishingTask *, PlayerAvatar *, MapObject *) = {
+#ifdef SDK_BUILD_ARM
+static
+#endif
+BOOL (*const sFishingActions[])(FishingTask *, PlayerAvatar *, MapObject *) = {
     [FUNC_FishingTask_Start] = FishingTask_Start,
     [FUNC_FishingTask_PreparePlayerAvatar] = FishingTask_PreparePlayerAvatar,
     [FUNC_FishingTask_CastRod] = FishingTask_CastRod,
@@ -571,7 +574,10 @@ static u16 ConvertRodTypeToRodItem(enum EncounterFishingRodType rodType)
     }
 }
 
-static const int sRodTypeHookTimingWindow[] = {
+#ifdef SDK_BUILD_ARM
+static
+#endif
+const int sRodTypeHookTimingWindow[] = {
     [FISHING_TYPE_OLD_ROD] = 45,
     [FISHING_TYPE_GOOD_ROD] = 30,
     [FISHING_TYPE_SUPER_ROD] = 15

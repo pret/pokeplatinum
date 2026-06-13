@@ -4,6 +4,10 @@
 
 #include "bignum.h"
 
+#ifndef SDK_BUILD_ARM
+#include <nitro/math/dgt.h>
+#endif
+
 static u32 CRYPTOi_RSA(u8 *param0, int param1, const u8 *param2, int param3, const u8 *param4, int param5, int param6)
 {
     BIGNUM bn1;

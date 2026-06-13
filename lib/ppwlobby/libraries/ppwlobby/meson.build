@@ -7,6 +7,7 @@ libdwcppwlobby_srcs = files(
     'asm/dwci_lobby.s'
 )
 
+if (build_target == 'arm')
 libdwcppwlobby = static_library('dwcppwlobby',
     sources: libdwcppwlobby_srcs,
     nasm_args: asm_args,
@@ -15,3 +16,4 @@ libdwcppwlobby = static_library('dwcppwlobby',
 )
 
 ppwlobby_libs += libdwcppwlobby
+endif

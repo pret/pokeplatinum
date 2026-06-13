@@ -66,6 +66,10 @@
 #include "res/graphics/party_menu/party_menu_graphics.naix"
 #include "res/text/bank/party_menu.h"
 
+#ifndef SDK_BUILD_ARM
+#include "unk_0208C098.h"
+#endif
+
 FS_EXTERN_OVERLAY(party_menu_form_change);
 
 typedef struct MemberPanelTemplate {

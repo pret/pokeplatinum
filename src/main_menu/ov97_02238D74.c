@@ -20,7 +20,7 @@
 static BOOL Unk_ov97_02240400;
 static int Unk_ov97_0224040C;
 static BOOL Unk_ov97_02240404;
-static Unk_ov97_02240408;
+static int Unk_ov97_02240408;
 static DWCNdFileInfo Unk_ov97_02240414[10];
 
 static void ov97_02238E88(void);

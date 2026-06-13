@@ -136,6 +136,9 @@ setup_release: $(BUILD)/build.ninja
 setup_debug: $(BUILD)/build.ninja
 	$(MESON) configure $(BUILD) -Dgdb_debugging=true -Dlogging_enabled=true
 
+setup_linux: $(BUILD)/build.ninja
+	$(MESON) configure $(BUILD) -Dbuild_target=linux
+
 configure: $(BUILD)/build.ninja
 
 $(BUILD)/build.ninja: $(ROOT_INI) | $(BUILD) $(SKREW_EXE) meson

@@ -58,6 +58,10 @@
 
 #include "res/text/bank/location_names.h"
 
+#ifndef SDK_BUILD_ARM
+#include "wifi_history_save_data.h"
+#endif
+
 static int CalcTerrain(const FieldSystem *fieldSystem, enum BattleBackground background);
 static void SetBackgroundAndTerrain(FieldBattleDTO *dto, const FieldSystem *fieldSystem);
 

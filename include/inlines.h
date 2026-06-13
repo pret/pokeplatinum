@@ -153,6 +153,9 @@ static inline u16 ScriptContext_GetVar(ScriptContext *ctx)
 }
 
 // Functionally equivalent to LCRNG_Next() % param
+#ifndef SDK_BUILD_ARM
+static
+#endif
 inline u16 LCRNG_RandMod(const u16 param)
 {
     GF_ASSERT(param != 0);

@@ -71,6 +71,9 @@ typedef struct {
     void *unk_136;
 } UnkStruct_ov61_0222D1FC;
 
+#ifndef SDK_BUILD_ARM
+extern
+#endif
 UnkStruct_ov61_0222E764 Unk_ov61_0222E764;
 
 void ov61_0222CEDC(void);

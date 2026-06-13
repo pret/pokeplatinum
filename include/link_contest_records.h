@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_CONTEST_H
-#define POKEPLATINUM_CONTEST_H
+#ifndef POKEPLATINUM_LINK_CONTEST_RECORDS_H
+#define POKEPLATINUM_LINK_CONTEST_RECORDS_H
 
 #include "constants/contests.h"
 #include "generated/pokemon_contest_types.h"

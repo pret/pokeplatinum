@@ -20,6 +20,7 @@ libgds_link_args = [
     '-main', '""',
 ]
 
+if build_target == 'arm'
 libgds = static_library('gds',
     sources: libgds_srcs,
     c_args: libgds_c_args,
@@ -29,3 +30,12 @@ libgds = static_library('gds',
     dependencies: [nitrosdk_dep, nitrosystem_dep, nitrowifi_dep, nitrodwc_dep],
     pic: false
 )
+else
+libgds = static_library('gds',
+    sources: libgds_srcs,
+    include_directories: [public_includes, libgds_public_includes],
+    dependencies: [nitrosdk_dep, nitrosystem_dep, nitrowifi_dep, nitrodwc_dep],
+    pic: false,
+    native: true
+)
+endif

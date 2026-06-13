@@ -344,7 +344,13 @@ static void ov5_021ED0A4(UnkStruct_ov5_021ED0A4 *param0, int param1)
         v3->unk_00 = 0xffff;
         v3->unk_04 = v2;
         v3++;
+        #ifdef SDK_BUILD_ARM
         (u8 *)v2 += v1;
+        #else
+        u8 * tmp = (u8*)v2;
+        tmp += v1;
+        v2 = (BillboardResources*)tmp;
+        #endif
         param1--;
     } while (param1);
 }

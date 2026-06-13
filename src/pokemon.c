@@ -4599,7 +4599,7 @@ void PlayCryWithParams(ChatotCry *chatotCry, enum PokemonCryMod cryMod, u16 spec
                 Sound_SetUsingDefaultChatotCry(TRUE);
             }
 
-            Sound_PlayChatotCry(chatotCry, NULL, volume, pan);
+            Sound_PlayChatotCry(chatotCry, 0, volume, pan);
         }
 
         return;
@@ -4619,7 +4619,7 @@ void Species_PlayDelayedCry(ChatotCry *chatotCry, enum PokemonCryMod cryMod, u16
                 Sound_SetUsingDefaultChatotCry(TRUE);
             }
 
-            Sound_PlayDelayedChatotCry(chatotCry, NULL, volume, pan, delay);
+            Sound_PlayDelayedChatotCry(chatotCry, 0, volume, pan, delay);
         }
 
         return;

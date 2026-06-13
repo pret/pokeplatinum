@@ -1009,7 +1009,10 @@ static int (*const FlyLandingAnimFuncCollection[])(FlyLandingEnvExtended *) = {
     FlyLandingAnim_DoNothing
 };
 
-static int (*const *const FlyLandingAnimFuncCollections[])(FlyLandingEnvExtended *) = {
+#ifdef SDK_BUILD_ARM
+static
+#endif
+int (*const *const FlyLandingAnimFuncCollections[])(FlyLandingEnvExtended *) = {
     HideBirdSpriteFuncCollection,
     FlyLandingAnimFuncCollection
 };

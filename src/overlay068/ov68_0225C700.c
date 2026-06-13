@@ -534,7 +534,7 @@ static void ov68_0225CB44(UnkStruct_ov68_0225C91C *param0)
 static void ov68_0225CB70(UnkStruct_ov68_0225CB70 *param0, UnkStruct_ov66_0222DFF8 *param1, enum HeapID heapID)
 {
     int v0;
-    static const v1[9] = {
+    static const int v1[9] = {
         673,
         657,
         661,

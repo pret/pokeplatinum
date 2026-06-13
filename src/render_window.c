@@ -115,8 +115,13 @@ static const SpriteTemplate sPokemonPreviewSpriteTemplate = {
         POKEMON_PREVIEW_RESOURCE_ID,
         POKEMON_PREVIEW_RESOURCE_ID,
         POKEMON_PREVIEW_RESOURCE_ID,
+        #ifdef SDK_BUILD_ARM
         NULL,
         NULL,
+        #else
+        0,
+        0
+        #endif
     },
     .bgPriority = 0,
     .vramTransfer = FALSE,
@@ -852,7 +857,11 @@ static void LoadAndDrawPokemonPreviewSprite(SpriteResourceManager *param0, u16 s
     void *buf = PokemonSpriteManager_New(param0->heapID);
 
     PokemonSpriteTemplate sprite;
+    #ifdef SDK_BUILD_ARM
     BuildPokemonSpriteTemplate(&sprite, species, gender, FACE_FRONT, FALSE, NULL, NULL);
+    #else
+    BuildPokemonSpriteTemplate(&sprite, species, gender, FACE_FRONT, FALSE, 0, 0);
+    #endif
     DrawPokemonPreviewSprite(param0, &sprite);
     PokemonSpriteManager_Free(buf);
 }

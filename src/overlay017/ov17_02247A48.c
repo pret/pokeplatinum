@@ -1037,7 +1037,7 @@ static void ov17_02248AA4(SysTask *param0, void *param1)
         if (v0->unk_04 >= FX32_ONE) {
             s32 species = Pokemon_GetValue(v0->unk_00->unk_0C.unk_00->contestMons[v0->contestantID], MON_DATA_SPECIES, NULL);
             s32 form = Pokemon_GetValue(v0->unk_00->unk_0C.unk_00->contestMons[v0->contestantID], MON_DATA_FORM, NULL);
-            PlayCryWithParams(v0->unk_00->unk_00->chatotCry[v0->contestantID], POKECRY_NORMAL, species, form, 0, 127, NULL, HEAP_ID_22);
+            PlayCryWithParams(v0->unk_00->unk_00->chatotCry[v0->contestantID], POKECRY_NORMAL, species, form, 0, 127, 0, HEAP_ID_22);
             v0->unk_0C++;
         }
         break;

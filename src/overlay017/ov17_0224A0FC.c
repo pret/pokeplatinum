@@ -1,6 +1,10 @@
 #include "overlay017/ov17_0224A0FC.h"
 
+#ifdef SDK_BUILD_ARM
 #include <cstdlib>
+#else
+#include <stdlib.h>
+#endif
 #include <nitro.h>
 #include <string.h>
 

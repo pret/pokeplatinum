@@ -4,6 +4,10 @@
 
 #include "crypto_internal.h"
 
+#ifndef SDK_BUILD_ARM
+#include <nitro/mi.h>
+#endif
+
 int BN_num_bits_word(u32 l)
 {
     static const char bits[16] = {

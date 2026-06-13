@@ -1034,7 +1034,7 @@ void BattleController_EmitPlayMoveAnimation(BattleSystem *battleSys, BattleConte
 {
     MoveAnimation animation;
 
-    BattleController_SetMoveAnimation(battleSys, battleCtx, &animation, 0, NULL, battleCtx->attacker, battleCtx->defender, param2);
+    BattleController_SetMoveAnimation(battleSys, battleCtx, &animation, 0, 0, battleCtx->attacker, battleCtx->defender, param2);
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battleCtx->attacker, &animation, sizeof(MoveAnimation));
 }
 
@@ -1051,7 +1051,7 @@ void BattleController_EmitPlayMoveAnimationA2D(BattleSystem *battleSys, BattleCo
 {
     MoveAnimation animation;
 
-    BattleController_SetMoveAnimation(battleSys, battleCtx, &animation, 0, NULL, attacker, defender, param2);
+    BattleController_SetMoveAnimation(battleSys, battleCtx, &animation, 0, 0, attacker, defender, param2);
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, attacker, &animation, sizeof(MoveAnimation));
 }
 
@@ -1277,7 +1277,7 @@ void BattleController_EmitPlayStatusEffect(BattleSystem *battleSys, BattleContex
 {
     MoveAnimation animation;
 
-    BattleController_SetMoveAnimation(battleSys, battleCtx, &animation, 1, param3, battler, battler, NULL);
+    BattleController_SetMoveAnimation(battleSys, battleCtx, &animation, 1, param3, battler, battler, 0);
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &animation, sizeof(MoveAnimation));
 }
 
@@ -1294,7 +1294,7 @@ void BattleController_EmitPlayStatusEffectAToD(BattleSystem *battleSys, BattleCo
 {
     MoveAnimation animation;
 
-    BattleController_SetMoveAnimation(battleSys, battleCtx, &animation, 1, param4, attacker, defender, NULL);
+    BattleController_SetMoveAnimation(battleSys, battleCtx, &animation, 1, param4, attacker, defender, 0);
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, attacker, &animation, sizeof(MoveAnimation));
 }
 
@@ -1693,7 +1693,7 @@ void BattleController_EmitHidePartyGauge(BattleSystem *battleSys, int battler)
 void BattleController_EmitLoadPartyGaugeGraphics(BattleSystem *battleSys)
 {
     int command = BATTLE_COMMAND_LOAD_PARTY_GAUGE_GRAPHICS;
-    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, NULL, &command, sizeof(int));
+    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, 0, &command, sizeof(int));
 }
 
 /**
@@ -1704,7 +1704,7 @@ void BattleController_EmitLoadPartyGaugeGraphics(BattleSystem *battleSys)
 void BattleController_EmitFreePartyGaugeGraphics(BattleSystem *battleSys)
 {
     int command = BATTLE_COMMAND_FREE_PARTY_GAUGE_GRAPHICS;
-    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, NULL, &command, sizeof(int));
+    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, 0, &command, sizeof(int));
 }
 
 /**

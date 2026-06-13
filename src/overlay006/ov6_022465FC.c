@@ -223,7 +223,7 @@ static int TVBroadcast_RandomPendingSegment(FieldSystem *fieldSystem, const u8 *
     }
 
     if (pendingCount == 0) {
-        return NULL;
+        return 0;
     } else if (pendingCount == 1) {
         return squashedPendingSegmentIDs[0];
     }
@@ -281,7 +281,7 @@ static void TVBroadcast_ExcludeIneligibleSegments(FieldSystem *fieldSystem, int 
         TVEpisode *episode = TVEpisode_New(fieldSystem, programType, *pendingSegmentIDs);
 
         if (!TVSegment_IsEligible(programType, fieldSystem, episode)) {
-            *pendingSegmentIDs = NULL;
+            *pendingSegmentIDs = 0;
         }
 
         TVEpisode_Free(episode);
@@ -292,9 +292,9 @@ static void TVBroadcast_ExcludePlayedSegments(FieldSystem *fieldSystem, u8 *pend
 {
     TVBroadcast *broadcast = SaveData_GetTVBroadcast(fieldSystem->saveData);
 
-    while (*pendingSegmentIDs != NULL) {
+    while (*pendingSegmentIDs != 0) {
         if (TVBroadcast_IsPlayedSegment(broadcast, *pendingSegmentIDs)) {
-            *pendingSegmentIDs = NULL;
+            *pendingSegmentIDs = 0;
         }
 
         pendingSegmentIDs++;
@@ -316,8 +316,8 @@ int ov6_022468B0(FieldSystem *fieldSystem, BOOL param1, BOOL param2)
 
     int result = TVBroadcast_GetPendingSegments(programType, fieldSystem, param1, param2, programSegmentIDs, pendingSegmentIDs);
 
-    if (result == NULL) {
-        return NULL;
+    if (result == 0) {
+        return 0;
     }
 
     TVBroadcast_ExcludeIneligibleSegments(fieldSystem, programType, pendingSegmentIDs);

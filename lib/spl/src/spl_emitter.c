@@ -11,6 +11,10 @@
 #include "spl_resource.h"
 #include "spl_texture.h"
 
+#ifndef SDK_BUILD_ARM
+#include <nitro/fx/fx_vec.h>
+#endif
+
 #define ANIM_FUNC_NO_LOOP 0
 #define ANIM_FUNC_LOOP    1
 

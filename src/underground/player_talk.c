@@ -214,12 +214,23 @@ static ResponseMenu *sCurrentResponseMenu = NULL;
 
 static const struct {
     u32 bankEntry;
+    #ifdef SDK_BUILD_ARM
     u32 callback;
+    #else
+    u64 callback;
+    #endif
 } sTalkOptions[] = {
+    #ifdef SDK_BUILD_ARM
     { UndergroundCommon_Text_Greet, (u32)UndergroundTalk_OfferExchangeTrainerCases },
     { UndergroundCommon_Text_Question, (u32)UndergroundTalk_StartAskingQuestions },
     { UndergroundCommon_Text_GiveGoods, (u32)UndergroundTalk_OpenGiveGiftMenu },
     { UndergroundCommon_Text_Exit, (u32)UndergroundTalk_CancelTalk }
+    #else
+    { UndergroundCommon_Text_Greet, (u64)UndergroundTalk_OfferExchangeTrainerCases },
+    { UndergroundCommon_Text_Question, (u64)UndergroundTalk_StartAskingQuestions },
+    { UndergroundCommon_Text_GiveGoods, (u64)UndergroundTalk_OpenGiveGiftMenu },
+    { UndergroundCommon_Text_Exit, (u64)UndergroundTalk_CancelTalk }
+    #endif
 };
 
 static const ListMenuTemplate sListMenuTemplate = {

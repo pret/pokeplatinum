@@ -2,6 +2,13 @@
 
 #include "crypto/rc4.h"
 
+#ifndef SDK_BUILD_ARM
+void CRYPTO_RC4Encrypt(CRYPTORC4Context *, const void *, u32, void *)
+{
+    //TODO
+}
+#endif
+
 void CRYPTO_RC4Init(CRYPTORC4Context *ctx, const void *key, u32 keyLength)
 {
     u8 *s;

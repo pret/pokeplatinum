@@ -12,6 +12,11 @@
 #include "spl_particle.h"
 #include "spl_resource.h"
 
+#ifndef SDK_BUILD_ARM
+#include <nitro/fx/fx_vec.h>
+#include <nitro/fx/fx_mtx33.h>
+#endif
+
 typedef void (*RotFunc)(fx32 sin, fx32 cos, MtxFx43 *rot);
 typedef void (*DrawPlaneFunc)(fx16 s, fx16 t, fx16 offsetX, fx16 offsetY);
 

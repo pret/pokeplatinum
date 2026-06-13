@@ -54,7 +54,11 @@ Menu *Menu_New(const MenuTemplate *template, u8 xOffset, u8 yOffset, u8 cursorSt
 Menu *Menu_NewAndCopyToVRAM(const MenuTemplate *template, u8 xOffset, u8 yOffset, u8 cursorStart, u8 heapID, u32 cancelKeys);
 Menu *Menu_NewSimple(const MenuTemplate *template, u8 cursorStart, u8 heapID);
 void Menu_Free(Menu *menu, u8 *outCursorPos);
+#ifdef SDK_BUILD_ARM
 u32 Menu_ProcessInput(Menu *menu);
+#else
+u64 Menu_ProcessInput(Menu *menu);
+#endif
 u32 Menu_ProcessInputWithSound(Menu *menu, u16 sdatID);
 u32 Menu_ProcessExternalInput(Menu *menu, u8 input);
 u8 Menu_GetCursorPos(Menu *menu);

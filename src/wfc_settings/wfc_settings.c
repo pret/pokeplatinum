@@ -18,7 +18,9 @@ void WFCSettings_StartApplication(enum HeapID heapID)
     DWC_SetAuthServer(DWC_CONNECTINET_AUTH_RELEASE);
     void *dwcUtilityWorkObj = Heap_Alloc(heapID, DWC_UTILITY_WORK_SIZE);
 
+    #ifdef SDK_BUILD_ARM
     DWC_StartUtility(dwcUtilityWorkObj, DWC_LANGUAGE_ENGLISH, DWC_UTILITY_TOP_MENU_COMMON);
+    #endif
 
     Heap_Free(dwcUtilityWorkObj);
 

@@ -3,6 +3,10 @@
 #include "gds.h"
 #include "gds_internal.h"
 
+#ifndef SDK_BUILD_ARM
+UnkStruct_ov61_0222E764 Unk_ov61_0222E764;
+#endif
+
 static void ov61_0222CFD4(void);
 
 void ov61_0222CEDC(void)
@@ -51,7 +55,7 @@ static void ov61_0222CFD4(void)
     Unk_ov61_0222E764.unk_248 = 30;
     Unk_ov61_0222E764.unk_24C = 30;
 
-    Unk_ov61_0222E764.unk_254 = NULL;
+    Unk_ov61_0222E764.unk_254 = 0;
     Unk_ov61_0222E764.unk_25C = 0;
     Unk_ov61_0222E764.unk_260 = NULL;
     Unk_ov61_0222E764.unk_264 = 0;

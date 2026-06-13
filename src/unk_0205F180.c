@@ -471,7 +471,10 @@ static u32 sub_0205F644(PlayerAvatar *playerAvatar, int param1)
     return 0;
 }
 
-static const UnkStruct_020EDB84 Unk_020EDB84[] = {
+#ifdef SDK_BUILD_ARM
+static 
+#endif
+const UnkStruct_020EDB84 Unk_020EDB84[] = {
     { TileBehavior_IsIce, 0x1 },
     { TileBehavior_IsBikeSlope, 0x2 },
     { TileBehavior_IsBikeRampEastward, 0x3 },

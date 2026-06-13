@@ -151,6 +151,9 @@ static const struct {
 
 extern const s32 Unk_ov117_02266FD8[];
 
+#ifndef SDK_BUILD_ARM
+static
+#endif
 inline void inline_ov117_02262EAC(int param0)
 {
     NNS_G3dGeNormal(Unk_ov117_02266B12[param0 * 3], Unk_ov117_02266B12[param0 * 3 + 1], Unk_ov117_02266B12[param0 * 3 + 2]);

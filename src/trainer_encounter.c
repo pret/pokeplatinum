@@ -694,7 +694,10 @@ static int ApproachingTrainerTask_Done(ApproachingTrainerData *data)
     return 0;
 }
 
-static int (*const sApproachingTrainerTask[])(ApproachingTrainerData *) = {
+#ifdef SDK_BUILD_ARM
+static 
+#endif
+int (*const sApproachingTrainerTask[])(ApproachingTrainerData *) = {
     [STATE_UNPAUSE_MOVEMENT] = ApproachingTrainerTask_UnpauseMovement,
     [STATE_TRY_FACE_DIRECTION] = ApproachingTrainerTask_TryFaceDirection,
     [STATE_CHECK_REVEAL_OR_FACE_DIRECTION] = ApproachingTrainerTask_CheckRevealOrFaceDirection,

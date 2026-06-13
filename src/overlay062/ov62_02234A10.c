@@ -30,8 +30,14 @@
 static void ov62_02234A10(UnkStruct_0208C06C *param0);
 static void ov62_02234A90(UnkStruct_0208C06C *param0);
 static BOOL ov62_02234AB4(UnkStruct_0208C06C *param0);
-static BOOL ov62_02234CDC(UnkStruct_0208C06C *param0);
-static BOOL ov62_02234EF8(UnkStruct_0208C06C *param0);
+#ifdef SDK_BUILD_ARM
+static
+#endif
+BOOL ov62_02234CDC(UnkStruct_0208C06C *param0);
+#ifdef SDK_BUILD_ARM
+static
+#endif
+BOOL ov62_02234EF8(UnkStruct_0208C06C *param0);
 static BOOL ov62_02234FCC(UnkStruct_0208C06C *param0);
 BOOL ov62_02235008(UnkStruct_0208C06C *param0);
 
@@ -147,7 +153,10 @@ static BOOL ov62_02234AB4(UnkStruct_0208C06C *param0)
     return 0;
 }
 
-static BOOL ov62_02234CDC(UnkStruct_0208C06C *param0)
+#ifdef SDK_BUILD_ARM
+static
+#endif
+BOOL ov62_02234CDC(UnkStruct_0208C06C *param0)
 {
     switch (param0->unk_08) {
     case 0:
@@ -221,7 +230,10 @@ static BOOL ov62_02234CDC(UnkStruct_0208C06C *param0)
     return 0;
 }
 
-static BOOL ov62_02234EF8(UnkStruct_0208C06C *param0)
+#ifdef SDK_BUILD_ARM
+static
+#endif
+BOOL ov62_02234EF8(UnkStruct_0208C06C *param0)
 {
     switch (param0->unk_08) {
     case 0:

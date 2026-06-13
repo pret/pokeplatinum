@@ -133,7 +133,10 @@ static int sub_02069C8C(MapObject *mapObj, UnkStruct_02069CA8 *param1)
     return 0;
 }
 
-static int (*const Unk_020EF8D4[])(MapObject *, UnkStruct_02069CA8 *) = {
+#ifdef SDK_BUILD_ARM
+static 
+#endif
+int (*const Unk_020EF8D4[])(MapObject *, UnkStruct_02069CA8 *) = {
     sub_02069C48,
     sub_02069C8C
 };
@@ -302,7 +305,10 @@ static int sub_02069E98(MapObject *mapObj, UnkStruct_02069F48 *param1)
     return 0;
 }
 
-static int (*const Unk_020EF8EC[])(MapObject *, UnkStruct_02069F48 *) = {
+#ifdef SDK_BUILD_ARM
+static 
+#endif
+int (*const Unk_020EF8EC[])(MapObject *, UnkStruct_02069F48 *) = {
     sub_02069E5C,
     sub_02069E98
 };
@@ -516,7 +522,10 @@ static int sub_0206A1DC(MapObject *mapObj, UnkStruct_0206A0BC *param1)
     return 0;
 }
 
-static int (*const Unk_020EF8DC[])(MapObject *, UnkStruct_0206A0BC *) = {
+#ifdef SDK_BUILD_ARM
+static 
+#endif
+int (*const Unk_020EF8DC[])(MapObject *, UnkStruct_0206A0BC *) = {
     sub_0206A1AC,
     sub_0206A1DC
 };

@@ -4,7 +4,7 @@
 
 // clang-format off
 static const int sSideEffectSubscripts[] = {
-    [MOVE_SUBSCRIPT_PTR_NONE]                             = NULL,
+    [MOVE_SUBSCRIPT_PTR_NONE]                             = 0,
     [MOVE_SUBSCRIPT_PTR_SLEEP]                            = subscript_fall_asleep,
     [MOVE_SUBSCRIPT_PTR_POISON]                           = subscript_poison,
     [MOVE_SUBSCRIPT_PTR_BURN]                             = subscript_burn,

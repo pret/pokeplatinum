@@ -562,7 +562,7 @@ static void BattleControllerPlayer_CommandSelectionInput(BattleSystem *battleSys
             if (BattleContext_IOBufferVal(battleCtx, i) == PLAYER_INPUT_CANCEL) {
                 battleCtx->curCommandState[i] = COMMAND_SELECTION_INIT;
             } else if (BattleContext_IOBufferVal(battleCtx, i)) {
-                u32 *data = &battleCtx->ioBuffer[i][0];
+                u32 *data = (u32*)&battleCtx->ioBuffer[i][0];
                 battleCtx->battlerActions[i][BATTLE_ACTION_TEMP_VALUE] = *data;
                 battleCtx->curCommandState[i] = COMMAND_SELECTION_WAIT;
             }
@@ -602,7 +602,7 @@ static void BattleControllerPlayer_CommandSelectionInput(BattleSystem *battleSys
         case COMMAND_SELECTION_RUN_SELECT_INIT:
             if (battleType & BATTLE_TYPE_FRONTIER) {
                 // "Would you like to forfeit the match and quit now?"
-                BattleController_EmitShowYesNoMenu(battleSys, battleCtx, i, 955, 0, NULL, NULL);
+                BattleController_EmitShowYesNoMenu(battleSys, battleCtx, i, 955, 0, 0, 0);
                 battleCtx->curCommandState[i] = COMMAND_SELECTION_RUN_SELECT;
             } else if ((battleType & BATTLE_TYPE_TRAINER) && (battleType & BATTLE_TYPE_LINK) == FALSE) {
                 if (BattleSystem_GetBattleStatusMask(battleSys) & BATTLE_STATUS_RECORDING) {

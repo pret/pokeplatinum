@@ -863,7 +863,7 @@ u8 BattleSystem_IsInitialized(BattleSystem *battleSys)
 u8 BattleSystem_GetSafariEscapeCount(BattleSystem *battleSys)
 {
     GF_ASSERT(battleSys->battleCtx != NULL);
-    return BattleContext_Get(battleSys, battleSys->battleCtx, BATTLECTX_SAFARI_ESCAPE_COUNT, NULL);
+    return BattleContext_Get(battleSys, battleSys->battleCtx, BATTLECTX_SAFARI_ESCAPE_COUNT, 0);
 }
 
 int BattleSystem_GetNumSafariBalls(BattleSystem *battleSys)

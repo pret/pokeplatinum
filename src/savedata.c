@@ -342,7 +342,7 @@ static BOOL SaveBlockFooter_Validate(SaveData *saveData, u32 bodyAddress, int bl
         return FALSE;
     }
 
-    if (footer->checksum != SaveData_CalculateFooterChecksum(saveData, startAddress, blockInfo->size)) {
+    if (footer->checksum != SaveData_CalculateFooterChecksum(saveData, (void*)startAddress, blockInfo->size)) {
         return FALSE;
     }
 
@@ -369,7 +369,7 @@ static void SaveBlockFooter_Set(SaveData *saveData, u32 bodyAddress, int blockID
     footer->size = blockInfo->size;
     footer->signature = SECTOR_SIGNATURE;
     footer->saveBlockID = blockID;
-    footer->checksum = SaveData_CalculateFooterChecksum(saveData, startAddress, blockInfo->size);
+    footer->checksum = SaveData_CalculateFooterChecksum(saveData, (void*)startAddress, blockInfo->size);
 }
 
 static int SaveCheckInfo_CompareCounters(u32 counter1, u32 counter2)

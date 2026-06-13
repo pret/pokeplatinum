@@ -1741,7 +1741,7 @@ static void StartMenu_EvolveInit(FieldTask *fieldTask)
     if (taskData->class == EVO_CLASS_BY_LEVEL) {
         evoData = Evolution_Begin(party, mon, taskData->targetSpecies, SaveData_GetOptions(fieldSystem->saveData), PokemonSummaryScreen_ShowContestData(fieldSystem->saveData), SaveData_GetPokedex(fieldSystem->saveData), SaveData_GetBag(fieldSystem->saveData), SaveData_GetGameRecords(fieldSystem->saveData), SaveData_GetPoketch(fieldSystem->saveData), taskData->method, 0x1, HEAP_ID_EVOLUTION);
     } else {
-        evoData = Evolution_Begin(party, mon, taskData->targetSpecies, SaveData_GetOptions(fieldSystem->saveData), PokemonSummaryScreen_ShowContestData(fieldSystem->saveData), SaveData_GetPokedex(fieldSystem->saveData), SaveData_GetBag(fieldSystem->saveData), SaveData_GetGameRecords(fieldSystem->saveData), SaveData_GetPoketch(fieldSystem->saveData), taskData->method, NULL, HEAP_ID_EVOLUTION);
+        evoData = Evolution_Begin(party, mon, taskData->targetSpecies, SaveData_GetOptions(fieldSystem->saveData), PokemonSummaryScreen_ShowContestData(fieldSystem->saveData), SaveData_GetPokedex(fieldSystem->saveData), SaveData_GetBag(fieldSystem->saveData), SaveData_GetGameRecords(fieldSystem->saveData), SaveData_GetPoketch(fieldSystem->saveData), taskData->method, 0, HEAP_ID_EVOLUTION);
     }
 
     u32 *slot = Heap_Alloc(HEAP_ID_FIELD2, sizeof(u32));

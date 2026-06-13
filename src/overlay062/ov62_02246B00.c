@@ -96,7 +96,7 @@ void ov62_02246BF4(UnkStruct_ov62_02246BF4 *param0)
 
     {
         int v1 = 0;
-        const v2[][3] = {
+        const int v2[][3] = {
             { 56, 20, 8 },
             { 56, 12, 0 },
         };

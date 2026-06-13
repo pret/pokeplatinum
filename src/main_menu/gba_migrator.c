@@ -227,7 +227,7 @@ static int sGBAHMMoves[] = {
 };
 
 static int sMigrateFromGBAGameMessageIDs[] = {
-    NULL,
+    0,
     [VERSION_SAPPHIRE] = MigrateFromGBA_Text_FromSapphire,
     [VERSION_RUBY] = MigrateFromGBA_Text_FromRuby,
     [VERSION_EMERALD] = MigrateFromGBA_Text_FromEmerald,
@@ -236,7 +236,7 @@ static int sMigrateFromGBAGameMessageIDs[] = {
 };
 
 static int sSavingOnGBAGameAndPlatinumMessageIDs[] = {
-    NULL,
+    0,
     [VERSION_SAPPHIRE] = MigrateFromGBA_Text_SavingOnSapphireAndPlatinum,
     [VERSION_RUBY] = MigrateFromGBA_Text_SavingOnRubyAndPlatinum,
     [VERSION_EMERALD] = MigrateFromGBA_Text_SavingOnEmeraldAndPlatinum,
@@ -254,7 +254,7 @@ static u8 sGBAGameRectPalettes[] = {
 };
 
 static int sCannotMigrateMessageIDs[] = {
-    [CAN_MIGRATE] = NULL,
+    [CAN_MIGRATE] = FALSE,
     [CANNOT_MIGRATE_GBA_PAK_READ_ERROR] = MigrateFromGBA_Text_ErrorReadingGBAPak,
     [CANNOT_MIGRATE_WAIT_FOR_FULL_DAY] = MigrateFromGBA_Text_FullDayHasntPassed,
     [CANNOT_MIGRATE_DIFFERENT_CONSOLE] = MigrateFromGBA_Text_DifferentDsOrInternalClockAltered,

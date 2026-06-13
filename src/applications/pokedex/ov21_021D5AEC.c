@@ -846,6 +846,10 @@ static void ov21_021D6744(UnkStruct_ov21_021D71A8 *param0, PokedexGraphicData *p
     Sprite_SetExplicitOAMMode(param0->unk_7C, GX_OAM_MODE_XLU);
 }
 
+#ifndef SDK_BUILD_ARM
+int PokedexSort_NumDisplayed(const PokedexSortData *param0);
+#endif
+
 static void ov21_021D67EC(UnkStruct_ov21_021D71A8 *param0, PokedexGraphicData *param1, const UnkStruct_ov21_021D5B68 *param2, int param3)
 {
     int v0;

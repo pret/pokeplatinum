@@ -181,7 +181,10 @@ static const OverworldAnimManagerFuncs Unk_ov5_02200588 = {
     ov5_021F3448
 };
 
-static const BillboardAnim Unk_ov5_0220059C[] = {
+#ifdef SDK_BUILD_ARM
+static
+#endif
+const BillboardAnim Unk_ov5_0220059C[] = {
     { 0x0, 0xC, 0x1 },
     { 0x0, 0x0, 0x2 }
 };

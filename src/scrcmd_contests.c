@@ -26,6 +26,10 @@
 #include "unk_020298BC.h"
 #include "vars_flags.h"
 
+#ifndef SDK_BUILD_ARM
+#include "chatot_cry.h"
+#endif
+
 static BOOL ResumeWhenContestSynced(ScriptContext *ctx);
 static BOOL IsContestCommTaskDone(ScriptContext *ctx);
 static BOOL IsContestCameraFlashTaskDone(ScriptContext *ctx);

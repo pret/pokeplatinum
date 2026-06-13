@@ -5,10 +5,14 @@
 
 #include "savedata.h"
 
+#ifndef SDK_BUILD_ARM
+#include <nitro/types.h>
+#endif
+
 #define POFFIN_NONE 0xFFFF
 #define MAX_POFFINS 100
 
-typedef struct {
+typedef struct _Poffin {
     union {
         struct PoffinInner {
             u8 type;
@@ -19,7 +23,7 @@ typedef struct {
             u8 sourness;
             u8 smoothness;
             u8 dummy;
-        };
+        } inner;
         u8 attributes[sizeof(struct PoffinInner)];
     };
 } Poffin;

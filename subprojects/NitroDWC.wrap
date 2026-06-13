@@ -1,6 +1,6 @@
 [wrap-git]
-url = https://github.com/ntrtwl/NitroDWC.git
-revision = ba548986500a6628ec37c0603bdb94245ff12a63
+url = https://github.com/cybervisi0n/NitroDWC.git
+revision = main
 depth = 1
 directory = NitroDWC-2.2.30008
 

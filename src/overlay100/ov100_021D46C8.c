@@ -283,7 +283,7 @@ void ov100_021D4C94(UnkStruct_ov100_021D46C8 *param0, int param1)
         4,
         4,
     };
-    const v2[][2] = {
+    const int v2[][2] = {
         { 0, 31 },
         { 0, 31 },
         { 0, 31 },

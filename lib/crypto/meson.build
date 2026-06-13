@@ -6,6 +6,7 @@ libcrypto_c_args = [
 
 libcrypto_public_includes = include_directories('include')
 
+if build_target == 'arm'
 libcrypto_static_srcs = files(
     'src/rc4_init.c',
     'asm/rc4_fast.s'
@@ -17,7 +18,19 @@ libcrypto_ov97_srcs = files(
     'src/bignum.c',
     'src/util.c'
 )
+else
+libcrypto_static_srcs = files(
+    'src/rc4_init.c'
+)
 
+libcrypto_ov97_srcs = files(
+    'src/sign.c',
+    'src/bignum.c',
+    'src/util.c'
+)
+endif
+
+if build_target == 'arm'
 libcrypto_static = static_library('crypto_static',
     sources: libcrypto_static_srcs,
     c_args: libcrypto_c_args,
@@ -33,3 +46,20 @@ libcrypto_ov97 = static_library('crypto_ov97',
     include_directories: libcrypto_public_includes,
     dependencies: nitrosdk_dep
 )
+else
+libcrypto_static = static_library('crypto_static',
+    sources: libcrypto_static_srcs,
+    pic: false,
+    include_directories: libcrypto_public_includes,
+    dependencies: nitrosdk_dep,
+    native: true
+)
+
+libcrypto_ov97 = static_library('crypto_ov97',
+    sources: libcrypto_ov97_srcs,
+    pic: false,
+    include_directories: libcrypto_public_includes,
+    dependencies: nitrosdk_dep,
+    native: true
+)
+endif

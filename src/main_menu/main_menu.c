@@ -279,7 +279,7 @@ static MainMenuOptionTemplate sOptions[NUM_MAIN_MENU_OPTIONS] = {
     [MAIN_MENU_OPTION_GBA_MIGRATION] = {
         .appToLoad = NEXT_APP_GBA_MIGRATION,
         .height = TEXT_LINES_TILES(1),
-        .textEntryID = NULL,
+        .textEntryID = 0,
         .renderFunc = RenderGBAMigrationOption,
     },
     [MAIN_MENU_OPTION_CONNECT_TO_WII] = {

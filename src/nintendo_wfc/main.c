@@ -671,7 +671,7 @@ static void ReceiveCallback(u8 aid, u8 *data, int size)
         return;
     }
 
-    void *buffer = NintendoWFCAlloc(NULL, size - 4, 4);
+    void *buffer = NintendoWFCAlloc(0, size - 4, 4);
     if (buffer == NULL) {
         return;
     }
@@ -688,7 +688,7 @@ static void ReceiveCallback(u8 aid, u8 *data, int size)
         }
     }
 
-    NintendoWFCFree(NULL, buffer, size - 4);
+    NintendoWFCFree(0, buffer, size - 4);
 }
 
 static void ConnectionClosedCallback(DWCError error, BOOL selfClosed, BOOL hostClosed, u8 aid, int closingFriendIdx, void *userParam)

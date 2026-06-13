@@ -596,7 +596,10 @@ static int sub_02064A58(MapObject *mapObj, UnkStruct_0206496C *param1)
     return 1;
 }
 
-static int (*const Unk_020EE900[])(MapObject *, UnkStruct_0206496C *) = {
+#ifdef SDK_BUILD_ARM
+static 
+#endif
+int (*const Unk_020EE900[])(MapObject *, UnkStruct_0206496C *) = {
     sub_020649CC,
     sub_02064A00,
     sub_02064A1C,
@@ -697,7 +700,10 @@ static int sub_02064B74(MapObject *mapObj, UnkStruct_0206496C *param1)
     return 1;
 }
 
-static int (*const Unk_020EE870[])(MapObject *, UnkStruct_0206496C *) = {
+#ifdef SDK_BUILD_ARM
+static 
+#endif
+int (*const Unk_020EE870[])(MapObject *, UnkStruct_0206496C *) = {
     sub_02064B20,
     sub_02064B40,
     sub_02064B5C,
@@ -811,7 +817,10 @@ static int sub_02064D68(MapObject *mapObj, UnkStruct_02064C28 *param1)
     return 0;
 }
 
-static int (*const Unk_020EE814[])(MapObject *, UnkStruct_02064C28 *) = {
+#ifdef SDK_BUILD_ARM
+static 
+#endif
+int (*const Unk_020EE814[])(MapObject *, UnkStruct_02064C28 *) = {
     sub_02064C6C,
     sub_02064CA8,
     sub_02064D68
@@ -1013,7 +1022,10 @@ static int sub_02064FFC(MapObject *mapObj, UnkStruct_02064D98 *param1)
     return 0;
 }
 
-static int (*const Unk_020EE7AC[])(MapObject *, UnkStruct_02064D98 *) = {
+#ifdef SDK_BUILD_ARM
+static 
+#endif
+int (*const Unk_020EE7AC[])(MapObject *, UnkStruct_02064D98 *) = {
     sub_02064EEC,
     sub_02064FFC
 };
@@ -1222,7 +1234,10 @@ static int sub_020652BC(MapObject *mapObj, UnkStruct_0206502C *param1)
     return 0;
 }
 
-static int (*const Unk_020EE820[])(MapObject *, UnkStruct_0206502C *) = {
+#ifdef SDK_BUILD_ARM
+static 
+#endif
+int (*const Unk_020EE820[])(MapObject *, UnkStruct_0206502C *) = {
     sub_02065124,
     sub_02065188,
     sub_020651A4,
@@ -1479,7 +1494,10 @@ static void sub_020655E4(MapObject *mapObj, UnkStruct_02065550 *param1)
     }
 }
 
-static const int Unk_020EEA88[] = {
+#ifdef SDK_BUILD_ARM
+static 
+#endif
+const int Unk_020EEA88[] = {
     0x10,
     0x20,
     0x30,
@@ -1487,7 +1505,10 @@ static const int Unk_020EEA88[] = {
     -1
 };
 
-static const int Unk_020EEA9C[] = {
+#ifdef SDK_BUILD_ARM
+static 
+#endif
+const int Unk_020EEA9C[] = {
     0x0,
     0x1,
     0x2,
@@ -1495,71 +1516,104 @@ static const int Unk_020EEA9C[] = {
     -1
 };
 
-static const int Unk_020EE7B4[] = {
+#ifdef SDK_BUILD_ARM
+static 
+#endif
+const int Unk_020EE7B4[] = {
     0x0,
     0x2,
     -1
 };
 
-static const int Unk_020EE7D8[] = {
+#ifdef SDK_BUILD_ARM
+static 
+#endif
+const int Unk_020EE7D8[] = {
     0x0,
     0x3,
     -1
 };
 
-static const int Unk_020EE7C0[] = {
+#ifdef SDK_BUILD_ARM
+static 
+#endif
+const int Unk_020EE7C0[] = {
     0x1,
     0x2,
     -1
 };
 
-static const int Unk_020EE7E4[] = {
+#ifdef SDK_BUILD_ARM
+static 
+#endif
+const int Unk_020EE7E4[] = {
     0x1,
     0x3,
     -1
 };
 
-static const int Unk_020EE9A0[] = {
+#ifdef SDK_BUILD_ARM
+static 
+#endif
+const int Unk_020EE9A0[] = {
     0x0,
     0x1,
     0x2,
     -1
 };
 
-static const int Unk_020EE960[] = {
+#ifdef SDK_BUILD_ARM
+static 
+#endif
+const int Unk_020EE960[] = {
     0x0,
     0x1,
     0x3,
     -1
 };
 
-static const int Unk_020EE970[] = {
+#ifdef SDK_BUILD_ARM
+static 
+#endif
+const int Unk_020EE970[] = {
     0x0,
     0x2,
     0x3,
     -1
 };
 
-static const int Unk_020EE990[] = {
+#ifdef SDK_BUILD_ARM
+static 
+#endif
+const int Unk_020EE990[] = {
     0x1,
     0x2,
     0x3,
     -1
 };
 
-static const int Unk_020EE808[] = {
+#ifdef SDK_BUILD_ARM
+static 
+#endif
+const int Unk_020EE808[] = {
     0x0,
     0x1,
     -1
 };
 
-static const int Unk_020EE7FC[] = {
+#ifdef SDK_BUILD_ARM
+static 
+#endif
+const int Unk_020EE7FC[] = {
     0x2,
     0x3,
     -1
 };
 
-static const int Unk_020EEA10[] = {
+#ifdef SDK_BUILD_ARM
+static 
+#endif
+const int Unk_020EEA10[] = {
     0x0,
     0x1,
     0x2,
@@ -1567,180 +1621,258 @@ static const int Unk_020EEA10[] = {
     -1
 };
 
-static const int Unk_020EE7F0[] = {
+#ifdef SDK_BUILD_ARM
+static 
+#endif
+const int Unk_020EE7F0[] = {
     0x0,
     0x1,
     -1
 };
 
-static const int Unk_020EE7CC[] = {
+#ifdef SDK_BUILD_ARM
+static 
+#endif
+const int Unk_020EE7CC[] = {
     0x2,
     0x3,
     -1
 };
 
-static const int Unk_020EE910[] = {
+#ifdef SDK_BUILD_ARM
+static 
+#endif
+const int Unk_020EE910[] = {
     0x0,
     0x3,
     0x2,
     0x1
 };
 
-static const int Unk_020EE8A0[] = {
+#ifdef SDK_BUILD_ARM
+static 
+#endif
+const int Unk_020EE8A0[] = {
     0x3,
     0x2,
     0x1,
     0x0
 };
 
-static const int Unk_020EE8E0[] = {
+#ifdef SDK_BUILD_ARM
+static 
+#endif
+const int Unk_020EE8E0[] = {
     0x1,
     0x0,
     0x3,
     0x2
 };
 
-static const int Unk_020EE8F0[] = {
+#ifdef SDK_BUILD_ARM
+static 
+#endif
+const int Unk_020EE8F0[] = {
     0x2,
     0x1,
     0x0,
     0x3
 };
 
-static const int Unk_020EE8D0[] = {
+#ifdef SDK_BUILD_ARM
+static 
+#endif
+const int Unk_020EE8D0[] = {
     0x2,
     0x3,
     0x1,
     0x0
 };
 
-static const int Unk_020EE8C0[] = {
+#ifdef SDK_BUILD_ARM
+static 
+#endif
+const int Unk_020EE8C0[] = {
     0x2,
     0x3,
     0x1,
     0x0
 };
 
-static const int Unk_020EE880[] = {
+#ifdef SDK_BUILD_ARM
+static 
+#endif
+const int Unk_020EE880[] = {
     0x1,
     0x0,
     0x2,
     0x3
 };
 
-static const int Unk_020EE9F0[] = {
+#ifdef SDK_BUILD_ARM
+static 
+#endif
+const int Unk_020EE9F0[] = {
     0x3,
     0x1,
     0x0,
     0x2
 };
 
-static const int Unk_020EE920[] = {
+#ifdef SDK_BUILD_ARM
+static 
+#endif
+const int Unk_020EE920[] = {
     0x2,
     0x0,
     0x1,
     0x3
 };
 
-static const int Unk_020EE930[] = {
+#ifdef SDK_BUILD_ARM
+static 
+#endif
+const int Unk_020EE930[] = {
     0x0,
     0x1,
     0x3,
     0x2
 };
 
-static const int Unk_020EE980[] = {
+#ifdef SDK_BUILD_ARM
+static 
+#endif
+const int Unk_020EE980[] = {
     0x3,
     0x2,
     0x0,
     0x1
 };
 
-static const int Unk_020EE9B0[] = {
+#ifdef SDK_BUILD_ARM
+static 
+#endif
+const int Unk_020EE9B0[] = {
     0x1,
     0x3,
     0x2,
     0x0
 };
 
-static const int Unk_020EE940[] = {
+#ifdef SDK_BUILD_ARM
+static 
+#endif
+const int Unk_020EE940[] = {
     0x3,
     0x0,
     0x1,
     0x2
 };
 
-static const int Unk_020EE840[] = {
+#ifdef SDK_BUILD_ARM
+static 
+#endif
+const int Unk_020EE840[] = {
     0x0,
     0x1,
     0x2,
     0x3
 };
 
-static const int Unk_020EE830[] = {
+#ifdef SDK_BUILD_ARM
+static 
+#endif
+const int Unk_020EE830[] = {
     0x2,
     0x3,
     0x0,
     0x1
 };
 
-static const int Unk_020EE9E0[] = {
+#ifdef SDK_BUILD_ARM
+static 
+#endif
+const int Unk_020EE9E0[] = {
     0x1,
     0x2,
     0x3,
     0x0
 };
 
-static const int Unk_020EE890[] = {
+#ifdef SDK_BUILD_ARM
+static 
+#endif
+const int Unk_020EE890[] = {
     0x0,
     0x2,
     0x1,
     0x3
 };
 
-static const int Unk_020EEA00[] = {
+#ifdef SDK_BUILD_ARM
+static 
+#endif
+const int Unk_020EEA00[] = {
     0x1,
     0x3,
     0x0,
     0x2
 };
 
-static const int Unk_020EE950[] = {
+#ifdef SDK_BUILD_ARM
+static 
+#endif
+const int Unk_020EE950[] = {
     0x2,
     0x1,
     0x3,
     0x0
 };
 
-static const int Unk_020EE9C0[] = {
+#ifdef SDK_BUILD_ARM
+static 
+#endif
+const int Unk_020EE9C0[] = {
     0x3,
     0x0,
     0x2,
     0x1
 };
 
-static const int Unk_020EE850[] = {
+#ifdef SDK_BUILD_ARM
+static 
+#endif
+const int Unk_020EE850[] = {
     0x0,
     0x3,
     0x1,
     0x2
 };
 
-static const int Unk_020EE860[] = {
+#ifdef SDK_BUILD_ARM
+static 
+#endif
+const int Unk_020EE860[] = {
     0x1,
     0x2,
     0x0,
     0x3
 };
 
-static const int Unk_020EE8B0[] = {
+#ifdef SDK_BUILD_ARM
+static 
+#endif
+const int Unk_020EE8B0[] = {
     0x2,
     0x0,
     0x3,
     0x1
 };
 
-static const int Unk_020EE9D0[] = {
+#ifdef SDK_BUILD_ARM
+static 
+#endif
+const int Unk_020EE9D0[] = {
     0x3,
     0x1,
     0x2,
@@ -1798,7 +1930,10 @@ static const UnkStruct_020EEB08 Unk_020EEB08[40] = {
     { 0x27, NULL }
 };
 
-static const int Unk_020EEAD0[] = {
+#ifdef SDK_BUILD_ARM
+static 
+#endif
+const int Unk_020EEAD0[] = {
     0x2,
     0x6,
     0x7,

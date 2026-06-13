@@ -58,7 +58,7 @@ void GreatMarshLookout_CreateMonSprite(GreatMarshLookoutSpriteManager *spriteMan
         }
     }
 
-    BuildPokemonSpriteTemplate(&spriteMan->spriteTemplate, species, gender, 2, 0, NULL, NULL);
+    BuildPokemonSpriteTemplate(&spriteMan->spriteTemplate, species, gender, 2, 0, 0, 0);
 
     spriteMan->spriteList = SpriteList_InitRendering(1, &spriteMan->g2dRenderer, HEAP_ID_FIELD1);
     NARC *narc = NARC_ctor(NARC_INDEX_DATA__FIELD_CUTIN, HEAP_ID_FIELD1);

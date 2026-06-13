@@ -14,6 +14,10 @@
 #include "text.h"
 #include "trainer_info.h"
 
+#ifndef SDK_BUILD_ARM
+#include "underground/manager.h"
+#endif
+
 enum EraseMessageBoxType {
     CLEAR_MESSAGE_BOX = 0,
     CLEAR_WINDOW,

@@ -1575,7 +1575,7 @@ void BattleDisplay_PrintLinkWaitMessage(BattleSystem *battleSys, BattlerData *ba
         battleMsg.id = BattleStrings_Text_CommunicatingPleaseStandBy;
         battleMsg.tags = TAG_NONE;
 
-        BattleMessage_Print(battleSys, msgLoader, &battleMsg, NULL);
+        BattleMessage_Print(battleSys, msgLoader, &battleMsg, 0);
         BattleSystem_SetWaitDial(battleSys, Window_AddWaitDial(BattleSystem_GetWindow(battleSys, 0), 1));
     }
 
@@ -1795,7 +1795,7 @@ static void Task_SetEncounter(SysTask *task, void *data)
                     monEncounterData->formNum,
                     BATTLE_SOUND_PAN_RIGHT,
                     SOUND_VOLUME_MAX,
-                    NULL,
+                    0,
                     HEAP_ID_BATTLE,
                     cryDelay);
 
@@ -1850,7 +1850,7 @@ static void Task_SetEncounter(SysTask *task, void *data)
                     monEncounterData->formNum,
                     BATTLE_SOUND_PAN_LEFT,
                     SOUND_VOLUME_MAX,
-                    NULL,
+                    0,
                     HEAP_ID_BATTLE,
                     cryDelay);
 
@@ -1868,7 +1868,7 @@ static void Task_SetEncounter(SysTask *task, void *data)
             if (monEncounterData->isShiny) {
                 MoveAnimation moveAnim;
 
-                BattleController_SetMoveAnimation(monEncounterData->battleSys, NULL, &moveAnim, 1, 11, monEncounterData->battler, monEncounterData->battler, NULL);
+                BattleController_SetMoveAnimation(monEncounterData->battleSys, NULL, &moveAnim, 1, 11, monEncounterData->battler, monEncounterData->battler, 0);
                 ov16_02264408(monEncounterData->battleSys, monEncounterData->battlerData, battleAnimSys, &moveAnim);
                 monEncounterData->state = 4;
             } else {
@@ -1945,7 +1945,7 @@ static void Task_SetGiratinaEncounter(SysTask *task, void *data)
                 monEncounterData->formNum,
                 BATTLE_SOUND_PAN_RIGHT,
                 SOUND_VOLUME_MAX,
-                NULL,
+                0,
                 HEAP_ID_BATTLE,
                 cryDelay);
 
@@ -1961,7 +1961,7 @@ static void Task_SetGiratinaEncounter(SysTask *task, void *data)
             if (monEncounterData->isShiny) {
                 MoveAnimation moveAnim;
 
-                BattleController_SetMoveAnimation(monEncounterData->battleSys, NULL, &moveAnim, 1, 11, monEncounterData->battler, monEncounterData->battler, NULL);
+                BattleController_SetMoveAnimation(monEncounterData->battleSys, NULL, &moveAnim, 1, 11, monEncounterData->battler, monEncounterData->battler, 0);
                 ov16_02264408(monEncounterData->battleSys, monEncounterData->battlerData, battleAnimSys, &moveAnim);
                 monEncounterData->state = 4;
             } else {
@@ -2101,7 +2101,7 @@ static void Task_ShowEncounter(SysTask *task, void *data)
                     monShowData->formNum,
                     BATTLE_SOUND_PAN_RIGHT,
                     SOUND_VOLUME_MAX,
-                    NULL,
+                    0,
                     HEAP_ID_BATTLE,
                     cryDelay);
             } else {
@@ -2116,7 +2116,7 @@ static void Task_ShowEncounter(SysTask *task, void *data)
                     monShowData->formNum,
                     BATTLE_SOUND_PAN_LEFT,
                     SOUND_VOLUME_MAX,
-                    NULL,
+                    0,
                     HEAP_ID_BATTLE,
                     cryDelay);
             }
@@ -2148,7 +2148,7 @@ static void Task_ShowEncounter(SysTask *task, void *data)
                     monShowData->formNum,
                     BATTLE_SOUND_PAN_RIGHT,
                     SOUND_VOLUME_MAX,
-                    NULL,
+                    0,
                     HEAP_ID_BATTLE,
                     cryDelay);
             } else {
@@ -2163,7 +2163,7 @@ static void Task_ShowEncounter(SysTask *task, void *data)
                     monShowData->formNum,
                     BATTLE_SOUND_PAN_LEFT,
                     SOUND_VOLUME_MAX,
-                    NULL,
+                    0,
                     HEAP_ID_BATTLE,
                     cryDelay);
             }
@@ -2200,7 +2200,7 @@ static void Task_ShowEncounter(SysTask *task, void *data)
                 MoveAnimation moveAnim;
 
                 monShowData->battleAnimSys = BattleAnimSystem_New(HEAP_ID_BATTLE);
-                BattleController_SetMoveAnimation(monShowData->battleSys, NULL, &moveAnim, 1, 11, monShowData->battler, monShowData->battler, NULL);
+                BattleController_SetMoveAnimation(monShowData->battleSys, NULL, &moveAnim, 1, 11, monShowData->battler, monShowData->battler, 0);
                 ov16_02264408(monShowData->battleSys, monShowData->battlerData, monShowData->battleAnimSys, &moveAnim);
                 monShowData->state = 7;
             } else {
@@ -2344,7 +2344,7 @@ static void Task_ShowPokemon(SysTask *task, void *data)
                     monShowData->formNum,
                     BATTLE_SOUND_PAN_RIGHT,
                     SOUND_VOLUME_MAX,
-                    NULL,
+                    0,
                     HEAP_ID_BATTLE,
                     cryDelay);
             } else {
@@ -2359,7 +2359,7 @@ static void Task_ShowPokemon(SysTask *task, void *data)
                     monShowData->formNum,
                     BATTLE_SOUND_PAN_LEFT,
                     SOUND_VOLUME_MAX,
-                    NULL,
+                    0,
                     HEAP_ID_BATTLE,
                     cryDelay);
             }
@@ -2390,7 +2390,7 @@ static void Task_ShowPokemon(SysTask *task, void *data)
                     monShowData->formNum,
                     BATTLE_SOUND_PAN_RIGHT,
                     SOUND_VOLUME_MAX,
-                    NULL,
+                    0,
                     HEAP_ID_BATTLE,
                     cryDelay);
             } else {
@@ -2405,7 +2405,7 @@ static void Task_ShowPokemon(SysTask *task, void *data)
                     monShowData->formNum,
                     BATTLE_SOUND_PAN_LEFT,
                     SOUND_VOLUME_MAX,
-                    NULL,
+                    0,
                     HEAP_ID_BATTLE,
                     cryDelay);
             }
@@ -2439,7 +2439,7 @@ static void Task_ShowPokemon(SysTask *task, void *data)
             if (monShowData->isShiny) {
                 MoveAnimation moveAnim;
 
-                BattleController_SetMoveAnimation(monShowData->battleSys, NULL, &moveAnim, 1, 11, monShowData->battler, monShowData->battler, NULL);
+                BattleController_SetMoveAnimation(monShowData->battleSys, NULL, &moveAnim, 1, 11, monShowData->battler, monShowData->battler, 0);
                 ov16_02264408(monShowData->battleSys, monShowData->battlerData, battleAnimSys, &moveAnim);
                 monShowData->state = 7;
             } else {
@@ -2461,7 +2461,7 @@ static void Task_ShowPokemon(SysTask *task, void *data)
         if (monShowData->isSubstitute) {
             MoveAnimation moveAnim;
 
-            BattleController_SetMoveAnimation(monShowData->battleSys, NULL, &moveAnim, 1, 15, monShowData->battler, monShowData->battler, NULL);
+            BattleController_SetMoveAnimation(monShowData->battleSys, NULL, &moveAnim, 1, 15, monShowData->battler, monShowData->battler, 0);
             ov16_02264408(monShowData->battleSys, monShowData->battlerData, battleAnimSys, &moveAnim);
             monShowData->state++;
         } else {
@@ -2474,7 +2474,7 @@ static void Task_ShowPokemon(SysTask *task, void *data)
 
         ov16_02264530(monShowData->battleSys, &monShowData->moveAnim, &v12, monShowData->battler);
         ov12_02238390(&v12, HEAP_ID_BATTLE);
-        BattleController_SetMoveAnimation(monShowData->battleSys, NULL, &moveAnim, 1, 16, monShowData->battler, monShowData->battler, NULL);
+        BattleController_SetMoveAnimation(monShowData->battleSys, NULL, &moveAnim, 1, 16, monShowData->battler, monShowData->battler, 0);
         ov16_02264408(monShowData->battleSys, monShowData->battlerData, battleAnimSys, &moveAnim);
 
         monShowData->battlerData->unk_19C = 1;
@@ -2498,7 +2498,7 @@ static void Task_ReturnPokemon(SysTask *task, void *data)
         if (monReturnData->isSubstitute) {
             MoveAnimation moveAnim;
 
-            BattleController_SetMoveAnimation(monReturnData->battleSys, NULL, &moveAnim, 1, 15, monReturnData->battler, monReturnData->battler, NULL);
+            BattleController_SetMoveAnimation(monReturnData->battleSys, NULL, &moveAnim, 1, 15, monReturnData->battler, monReturnData->battler, 0);
             ov16_02264408(monReturnData->battleSys, monReturnData->battlerData, battleAnimSys, &moveAnim);
             monReturnData->state++;
         } else {
@@ -2511,7 +2511,7 @@ static void Task_ReturnPokemon(SysTask *task, void *data)
 
         ov16_02264530(monReturnData->battleSys, &monReturnData->moveAnim, &v3, monReturnData->battler);
         ov12_022382BC(&v3, HEAP_ID_BATTLE);
-        BattleController_SetMoveAnimation(monReturnData->battleSys, NULL, &moveAnim, 1, 16, monReturnData->battler, monReturnData->battler, NULL);
+        BattleController_SetMoveAnimation(monReturnData->battleSys, NULL, &moveAnim, 1, 16, monReturnData->battler, monReturnData->battler, 0);
         ov16_02264408(monReturnData->battleSys, monReturnData->battlerData, battleAnimSys, &moveAnim);
         monReturnData->battlerData->unk_19C = 0;
         monReturnData->state++;
@@ -3624,7 +3624,7 @@ static void Task_TrainerShowMoveSelectMenu(SysTask *task, void *data)
 
         action = validMoves[BattleSystem_RandNext(moveSelectMenuData->battleSys) % validMovesCount];
 
-        BattleContext_Set(moveSelectMenuData->battleSys, battleCtx, 11, moveSelectMenuData->battler, BattleSystem_Defender(moveSelectMenuData->battleSys, battleCtx, moveSelectMenuData->battler, moveSelectMenuData->moves[action - 1], 1, NULL));
+        BattleContext_Set(moveSelectMenuData->battleSys, battleCtx, 11, moveSelectMenuData->battler, BattleSystem_Defender(moveSelectMenuData->battleSys, battleCtx, moveSelectMenuData->battler, moveSelectMenuData->moves[action - 1], 1, 0));
     }
 
     ov16_02265790(moveSelectMenuData->battleSys, moveSelectMenuData->battler, action);
@@ -4078,7 +4078,7 @@ static void Task_PlayerShowBagMenu(SysTask *task, void *data)
     case 11: {
         MoveAnimation moveAnim;
 
-        BattleController_SetMoveAnimation(bagMenuData->battleSys, NULL, &moveAnim, 1, 9, bagMenuData->battler, bagMenuData->battler, NULL);
+        BattleController_SetMoveAnimation(bagMenuData->battleSys, NULL, &moveAnim, 1, 9, bagMenuData->battler, bagMenuData->battler, 0);
         ov16_02264408(bagMenuData->battleSys, BattleSystem_GetBattlerData(bagMenuData->battleSys, bagMenuData->battler), BattleSystem_GetBattleAnimSystem(bagMenuData->battleSys), &moveAnim);
     }
         bagMenuData->state++;
@@ -4087,7 +4087,7 @@ static void Task_PlayerShowBagMenu(SysTask *task, void *data)
     case 25: {
         MoveAnimation moveAnim;
         int battler = bagMenuData->partyMenuData->battlePartyCtx->selectedPartyIndex * 2;
-        BattleController_SetMoveAnimation(bagMenuData->battleSys, NULL, &moveAnim, 1, 9, battler, battler, NULL);
+        BattleController_SetMoveAnimation(bagMenuData->battleSys, NULL, &moveAnim, 1, 9, battler, battler, 0);
         ov16_02264408(bagMenuData->battleSys, BattleSystem_GetBattlerData(bagMenuData->battleSys, battler), BattleSystem_GetBattleAnimSystem(bagMenuData->battleSys), &moveAnim);
     }
         bagMenuData->state++;
@@ -4096,13 +4096,13 @@ static void Task_PlayerShowBagMenu(SysTask *task, void *data)
         MoveAnimation moveAnim;
 
         if (bagMenuData->battleBagCtx->selectedBattleBagItem == ITEM_GUARD_SPEC) {
-            BattleController_SetMoveAnimation(bagMenuData->battleSys, NULL, &moveAnim, 0, NULL, bagMenuData->battler, bagMenuData->battler, 54);
+            BattleController_SetMoveAnimation(bagMenuData->battleSys, NULL, &moveAnim, 0, 0, bagMenuData->battler, bagMenuData->battler, 54);
             ov16_02264408(bagMenuData->battleSys, BattleSystem_GetBattlerData(bagMenuData->battleSys, bagMenuData->battler), BattleSystem_GetBattleAnimSystem(bagMenuData->battleSys), &moveAnim);
         } else if (bagMenuData->battleBagCtx->selectedBattleBagItem == ITEM_DIRE_HIT) {
-            BattleController_SetMoveAnimation(bagMenuData->battleSys, NULL, &moveAnim, 0, NULL, bagMenuData->battler, bagMenuData->battler, 116);
+            BattleController_SetMoveAnimation(bagMenuData->battleSys, NULL, &moveAnim, 0, 0, bagMenuData->battler, bagMenuData->battler, 116);
             ov16_02264408(bagMenuData->battleSys, BattleSystem_GetBattlerData(bagMenuData->battleSys, bagMenuData->battler), BattleSystem_GetBattleAnimSystem(bagMenuData->battleSys), &moveAnim);
         } else {
-            BattleController_SetMoveAnimation(bagMenuData->battleSys, NULL, &moveAnim, 1, 12, bagMenuData->battler, bagMenuData->battler, NULL);
+            BattleController_SetMoveAnimation(bagMenuData->battleSys, NULL, &moveAnim, 1, 12, bagMenuData->battler, bagMenuData->battler, 0);
             ov16_02264408(bagMenuData->battleSys, BattleSystem_GetBattlerData(bagMenuData->battleSys, bagMenuData->battler), BattleSystem_GetBattleAnimSystem(bagMenuData->battleSys), &moveAnim);
         }
 
@@ -4154,7 +4154,7 @@ static void Task_PlayerShowBagMenu(SysTask *task, void *data)
     case 27: {
         MoveAnimation moveAnim;
         int battler = bagMenuData->partyMenuData->battlePartyCtx->selectedPartyIndex * 2;
-        BattleController_SetMoveAnimation(bagMenuData->battleSys, NULL, &moveAnim, 1, 14, battler, battler, NULL);
+        BattleController_SetMoveAnimation(bagMenuData->battleSys, NULL, &moveAnim, 1, 14, battler, battler, 0);
         ov16_02264408(bagMenuData->battleSys, BattleSystem_GetBattlerData(bagMenuData->battleSys, battler), BattleSystem_GetBattleAnimSystem(bagMenuData->battleSys), &moveAnim);
     }
         bagMenuData->state++;
@@ -4186,7 +4186,7 @@ static void Task_PlayerShowBagMenu(SysTask *task, void *data)
         HealthBox *healthbox = BattleSystem_GetHealthBox(bagMenuData->battleSys, battler);
 
         if (Healthbox_DrawHPBar(healthbox) == -1) {
-            HealthBox_DrawInfo(healthbox, NULL, HEALTHBOX_INFO_STATUS);
+            HealthBox_DrawInfo(healthbox, 0, HEALTHBOX_INFO_STATUS);
             bagMenuData->state++;
         }
     } break;
@@ -4796,7 +4796,7 @@ static void Task_SetMoveAnimation(SysTask *task, void *data)
         if (setMoveAnimationData->moveAnim.isSubstitute && setMoveAnimationData->moveAnim.unk_4C == 0 && PokemonSprite_GetAttribute(setMoveAnimationData->monSprite, MON_SPRITE_HIDE) == FALSE) {
             MoveAnimation moveAnim;
 
-            BattleController_SetMoveAnimation(setMoveAnimationData->battleSys, NULL, &moveAnim, 1, 15, setMoveAnimationData->battler, setMoveAnimationData->battler, NULL);
+            BattleController_SetMoveAnimation(setMoveAnimationData->battleSys, NULL, &moveAnim, 1, 15, setMoveAnimationData->battler, setMoveAnimationData->battler, 0);
             ov16_02264408(setMoveAnimationData->battleSys, setMoveAnimationData->battlerData, setMoveAnimationData->battleAnimSys, &moveAnim);
             setMoveAnimationData->state = 1;
         } else {
@@ -4810,7 +4810,7 @@ static void Task_SetMoveAnimation(SysTask *task, void *data)
         ov16_02264530(setMoveAnimationData->battleSys, &setMoveAnimationData->moveAnim, &v2, setMoveAnimationData->battler);
         ov12_022382BC(&v2, HEAP_ID_BATTLE);
 
-        BattleController_SetMoveAnimation(setMoveAnimationData->battleSys, NULL, &moveAnim, 1, 16, setMoveAnimationData->battler, setMoveAnimationData->battler, NULL);
+        BattleController_SetMoveAnimation(setMoveAnimationData->battleSys, NULL, &moveAnim, 1, 16, setMoveAnimationData->battler, setMoveAnimationData->battler, 0);
         ov16_02264408(setMoveAnimationData->battleSys, setMoveAnimationData->battlerData, setMoveAnimationData->battleAnimSys, &moveAnim);
         setMoveAnimationData->battlerData->unk_19C = 0;
         setMoveAnimationData->state++;
@@ -4843,7 +4843,7 @@ static void Task_SetMoveAnimation(SysTask *task, void *data)
         if (setMoveAnimationData->moveAnim.isSubstitute && setMoveAnimationData->moveAnim.unk_4C == 0 && PokemonSprite_GetAttribute(setMoveAnimationData->monSprite, MON_SPRITE_HIDE) == FALSE) {
             MoveAnimation moveAnim;
 
-            BattleController_SetMoveAnimation(setMoveAnimationData->battleSys, NULL, &moveAnim, 1, 15, setMoveAnimationData->battler, setMoveAnimationData->battler, NULL);
+            BattleController_SetMoveAnimation(setMoveAnimationData->battleSys, NULL, &moveAnim, 1, 15, setMoveAnimationData->battler, setMoveAnimationData->battler, 0);
             ov16_02264408(setMoveAnimationData->battleSys, setMoveAnimationData->battlerData, setMoveAnimationData->battleAnimSys, &moveAnim);
             setMoveAnimationData->state = 7;
         } else {
@@ -4857,7 +4857,7 @@ static void Task_SetMoveAnimation(SysTask *task, void *data)
         ov16_02264530(setMoveAnimationData->battleSys, &setMoveAnimationData->moveAnim, &v5, setMoveAnimationData->battler);
         ov12_02238390(&v5, HEAP_ID_BATTLE);
 
-        BattleController_SetMoveAnimation(setMoveAnimationData->battleSys, NULL, &moveAnim, 1, 16, setMoveAnimationData->battler, setMoveAnimationData->battler, NULL);
+        BattleController_SetMoveAnimation(setMoveAnimationData->battleSys, NULL, &moveAnim, 1, 16, setMoveAnimationData->battler, setMoveAnimationData->battler, 0);
         ov16_02264408(setMoveAnimationData->battleSys, setMoveAnimationData->battlerData, setMoveAnimationData->battleAnimSys, &moveAnim);
         setMoveAnimationData->battlerData->unk_19C = 1;
     }
@@ -4986,7 +4986,7 @@ static void Task_PlayFaintingSequence(SysTask *task, void *data)
         if (faintingSequenceData->isSubstitute) {
             MoveAnimation moveAnim;
 
-            BattleController_SetMoveAnimation(faintingSequenceData->battleSys, NULL, &moveAnim, 1, 15, faintingSequenceData->battler, faintingSequenceData->battler, NULL);
+            BattleController_SetMoveAnimation(faintingSequenceData->battleSys, NULL, &moveAnim, 1, 15, faintingSequenceData->battler, faintingSequenceData->battler, 0);
             ov16_02264408(faintingSequenceData->battleSys, faintingSequenceData->battlerData, battleAnimSys, &moveAnim);
             faintingSequenceData->state++;
         } else {
@@ -5000,7 +5000,7 @@ static void Task_PlayFaintingSequence(SysTask *task, void *data)
         ov16_02264530(faintingSequenceData->battleSys, &faintingSequenceData->moveAnim, &v5, faintingSequenceData->battler);
         ov12_022382BC(&v5, HEAP_ID_BATTLE);
 
-        BattleController_SetMoveAnimation(faintingSequenceData->battleSys, NULL, &moveAnim, 1, 16, faintingSequenceData->battler, faintingSequenceData->battler, NULL);
+        BattleController_SetMoveAnimation(faintingSequenceData->battleSys, NULL, &moveAnim, 1, 16, faintingSequenceData->battler, faintingSequenceData->battler, 0);
         ov16_02264408(faintingSequenceData->battleSys, faintingSequenceData->battlerData, battleAnimSys, &moveAnim);
         faintingSequenceData->battlerData->unk_19C = 0;
         faintingSequenceData->state++;
@@ -5148,7 +5148,7 @@ static void Task_ToggleVanish(SysTask *task, void *data)
         if (toggleVanishData->isSubstitute && toggleVanishData->battlerData->unk_19C == 0) {
             MoveAnimation moveAnim;
 
-            BattleController_SetMoveAnimation(toggleVanishData->battleSys, NULL, &moveAnim, 1, 15, toggleVanishData->battler, toggleVanishData->battler, NULL);
+            BattleController_SetMoveAnimation(toggleVanishData->battleSys, NULL, &moveAnim, 1, 15, toggleVanishData->battler, toggleVanishData->battler, 0);
             ov16_02264408(toggleVanishData->battleSys, toggleVanishData->battlerData, battleAnimSys, &moveAnim);
             toggleVanishData->state++;
         } else {
@@ -5162,7 +5162,7 @@ static void Task_ToggleVanish(SysTask *task, void *data)
         ov16_02264530(toggleVanishData->battleSys, &toggleVanishData->moveAnim, &v3, toggleVanishData->battler);
         ov12_02238390(&v3, HEAP_ID_BATTLE);
 
-        BattleController_SetMoveAnimation(toggleVanishData->battleSys, NULL, &moveAnim, 1, 16, toggleVanishData->battler, toggleVanishData->battler, NULL);
+        BattleController_SetMoveAnimation(toggleVanishData->battleSys, NULL, &moveAnim, 1, 16, toggleVanishData->battler, toggleVanishData->battler, 0);
         ov16_02264408(toggleVanishData->battleSys, toggleVanishData->battlerData, battleAnimSys, &moveAnim);
         toggleVanishData->battlerData->unk_19C = 1;
         toggleVanishData->state++;

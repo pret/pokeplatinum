@@ -205,7 +205,11 @@ void sub_02005464(BOOL param0);
 
 static inline u16 Sound_GetCurrentBGM1(void *p)
 {
+    #ifdef SDK_BUILD_ARM
     return Sound_Impl_GetCurrentBGM(p);
+    #else
+    return Sound_Impl_GetCurrentBGM();
+    #endif
 }
 static inline u16 Sound_GetCurrentBGM(void)
 {

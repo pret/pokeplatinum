@@ -5,6 +5,7 @@ libdwcilobby_srcs = files(
     'asm/dwci_lobbydata.s'
 )
 
+if (build_target == 'arm')
 libdwcilobby = static_library('dwcilobby',
     sources: libdwcilobby_srcs,
     nasm_args: asm_args,
@@ -13,3 +14,4 @@ libdwcilobby = static_library('dwcilobby',
 )
 
 ppwlobby_libs += libdwcilobby
+endif

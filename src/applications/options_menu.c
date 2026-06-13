@@ -743,7 +743,7 @@ static const u8 sFirstChoicePerEntry[MAX_ENTRIES] = {
     OptionsMenu_Text_BattleStyleShift,
     OptionsMenu_Text_ButtonModeNormal,
     OptionsMenu_Text_MessageBoxStyle_01,
-    NULL,
+    0,
 };
 
 static void LoadAllEntryChoices(OptionsMenuData *menuData)

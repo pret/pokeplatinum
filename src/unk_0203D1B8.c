@@ -127,6 +127,9 @@
 #include "unk_0205B33C.h"
 #include "vars_flags.h"
 #include "wifi_history_save_data.h"
+#ifndef SDK_BUILD_ARM
+#include "wifi_list.h"
+#endif
 
 #include "constdata/const_020EA328.h"
 #include "constdata/const_020EA358.h"
@@ -1363,7 +1366,10 @@ void *sub_0203E1AC(FieldSystem *fieldSystem, int param1, int param2)
     return (void *)v0;
 }
 
-static const ApplicationManagerTemplate Unk_020EA328 = {
+#ifdef SDK_BUILD_ARM
+static 
+#endif
+const ApplicationManagerTemplate Unk_020EA328 = {
     ov92_021D0D80,
     ov92_021D0EB8,
     ov92_021D1478,

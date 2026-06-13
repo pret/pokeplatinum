@@ -40,6 +40,12 @@
 #include "unk_020711C8.h"
 #include "vars_flags.h"
 
+#ifndef SDK_BUILD_ARM
+#include "overlay006/hm_cut_in.h"
+#include "field_map_change.h"
+#include "spawn_locations.h"
+#endif
+
 #define FIELD_MOVE_FLAG(move) (1 << (move))
 
 enum FlyState {

@@ -320,7 +320,7 @@ static void Evolution_Main(EvolutionData *evolutionData)
             PokemonSprite_LoadAnim(evolutionData->narc, evolutionData->monAnimMan, evolutionData->monSprites[0], evolutionData->currentSpecies, 2, 0, 0);
             PokemonSprite_LoadAnimFrames(evolutionData->narc, &animFrames[0], evolutionData->currentSpecies, 1);
             PokemonSprite_SetAnimFrames(evolutionData->monSprites[0], &animFrames[0]);
-            PokemonSprite_InitAnim(evolutionData->monSprites[0], NULL);
+            PokemonSprite_InitAnim(evolutionData->monSprites[0], 0);
 
             Sound_PlayDelayedPokemonCry(evolutionData->currentSpecies, evolutionData->currentSpeciesCryDelay, evolutionData->form);
             StringTemplate_SetNickname(evolutionData->strTemplate, 0, Pokemon_GetBoxPokemon(evolutionData->mon));
@@ -424,7 +424,7 @@ static void Evolution_Main(EvolutionData *evolutionData)
             PokemonSprite_LoadAnim(evolutionData->narc, evolutionData->monAnimMan, evolutionData->monSprites[1], evolutionData->targetSpecies, FACE_FRONT, 0, 0);
             PokemonSprite_LoadAnimFrames(evolutionData->narc, &animFrames[0], evolutionData->targetSpecies, 1);
             PokemonSprite_SetAnimFrames(evolutionData->monSprites[1], &animFrames[0]);
-            PokemonSprite_InitAnim(evolutionData->monSprites[1], NULL);
+            PokemonSprite_InitAnim(evolutionData->monSprites[1], 0);
 
             Sound_PlayDelayedPokemonCry(evolutionData->targetSpecies, evolutionData->targetSpeciesCryDelay, evolutionData->form);
             evolutionData->state++;
@@ -684,7 +684,7 @@ static void Evolution_Main(EvolutionData *evolutionData)
             PokemonSprite_LoadAnim(evolutionData->narc, evolutionData->monAnimMan, evolutionData->monSprites[0], evolutionData->currentSpecies, FACE_FRONT, 0, 0);
             PokemonSprite_LoadAnimFrames(evolutionData->narc, &animFrames[0], evolutionData->currentSpecies, 1);
             PokemonSprite_SetAnimFrames(evolutionData->monSprites[0], &animFrames[0]);
-            PokemonSprite_InitAnim(evolutionData->monSprites[0], NULL);
+            PokemonSprite_InitAnim(evolutionData->monSprites[0], 0);
 
             Sound_PlayDelayedPokemonCry(evolutionData->currentSpecies, evolutionData->currentSpeciesCryDelay, evolutionData->form);
             evolutionData->state++;
@@ -913,8 +913,8 @@ static void Evolution_InitGraphics(EvolutionData *evolutionData, BgConfig *bgCon
 
     GX_SetVisibleWnd(GX_WNDMASK_W0);
     GXS_SetVisibleWnd(GX_WNDMASK_NONE);
-    G2_SetWnd0InsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, NULL);
-    G2_SetWndOutsidePlane(GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_OBJ, NULL);
+    G2_SetWnd0InsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, 0);
+    G2_SetWndOutsidePlane(GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_OBJ, 0);
 
     evolutionData->windowLeft = 0;
     evolutionData->windowTop = 0;

@@ -76,6 +76,9 @@ static void *DistributionCartridge_Alloc(u32 size)
     return Heap_Alloc(sHeapID, size);
 }
 
+#ifndef SDK_BUILD_ARM
+static
+#endif
 inline u32 FlipEndianness(u32 val)
 {
     return ((val >> 0) & 255) << 24 | ((val >> 8) & 255) << 16 | ((val >> 16) & 255) << 8 | ((val >> 24) & 255) << 0;

@@ -1,5 +1,8 @@
 project('libsyscall', ['c', 'nasm'])
 
+build_target = get_option('build_target')
+
+if(build_target == 'arm')
 asm_args = [
     '-proc', 'arm5TE',
     '-16',
@@ -17,3 +20,4 @@ libsyscall_dep = declare_dependency(
 )
 
 meson.override_dependency('libsyscall', libsyscall_dep)
+endif

@@ -1,3 +1,4 @@
 option('gdb_debugging', type : 'boolean', value : false)
 option('revision', type : 'combo', choices: ['0', '1'], value : '1')
 option('logging_enabled', type: 'boolean', value: false)
+option('build_target', type: 'combo', choices: ['arm', 'win64', 'linux'], value: 'arm', description: 'Target build platform')

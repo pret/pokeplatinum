@@ -289,7 +289,10 @@ static const OverworldAnimManagerFuncs Unk_ov5_022004EC = {
     ov5_021F308C
 };
 
-static const BillboardAnim Unk_ov5_02200540[] = {
+#ifdef SDK_BUILD_ARM
+static
+#endif
+const BillboardAnim Unk_ov5_02200540[] = {
     { 0x0, 0xC, 0x0 },
     { 0x0, 0x0, 0x2 }
 };
@@ -361,17 +364,26 @@ static const OverworldAnimManagerFuncs Unk_ov5_02200500 = {
 
 static const OverworldAnimManagerFuncs Unk_ov5_02200514;
 
-static const BillboardAnim Unk_ov5_02200558[] = {
+#ifdef SDK_BUILD_ARM
+static
+#endif
+const BillboardAnim Unk_ov5_02200558[] = {
     { 0x0, 0x28, 0x1 },
     { 0x0, 0x0, 0x2 }
 };
 
-static const BillboardAnim Unk_ov5_02200528[] = {
+#ifdef SDK_BUILD_ARM
+static
+#endif
+const BillboardAnim Unk_ov5_02200528[] = {
     { 0x0, 0x18, 0x1 },
     { 0x0, 0x0, 0x2 }
 };
 
-static const BillboardAnim Unk_ov5_02200570[] = {
+#ifdef SDK_BUILD_ARM
+static
+#endif
+const BillboardAnim Unk_ov5_02200570[] = {
     { 0x0, 0x28, 0x1 },
     { 0x0, 0x0, 0x2 }
 };

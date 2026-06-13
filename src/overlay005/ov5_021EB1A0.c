@@ -480,7 +480,10 @@ static void ov5_021EB69C(MapObject *mapObj, Billboard *param1, UnkStruct_ov5_021
     }
 }
 
-static void (*const Unk_ov5_021FF3D4[])(
+#ifdef SDK_BUILD_ARM
+static
+#endif
+void (*const Unk_ov5_021FF3D4[])(
     MapObject *, Billboard *, UnkStruct_ov5_021EB2EC *, int)
     = {
           ov5_021EB478,
@@ -548,7 +551,10 @@ static void ov5_021EB7D0(MapObject *mapObj, Billboard *param1, UnkStruct_ov5_021
     Billboard_AdvanceAnim(param1, (FX32_ONE));
 }
 
-static void (*const Unk_ov5_021FF420[])(MapObject *, Billboard *, UnkStruct_ov5_021EB2EC *, int) = {
+#ifdef SDK_BUILD_ARM
+static
+#endif
+void (*const Unk_ov5_021FF420[])(MapObject *, Billboard *, UnkStruct_ov5_021EB2EC *, int) = {
     ov5_021EB794,
     ov5_021EB4AC,
     ov5_021EB4AC,
@@ -1011,7 +1017,10 @@ static void ov5_021EBEFC(MapObject *mapObj, Billboard *param1, UnkStruct_ov5_021
     }
 }
 
-static void (*const Unk_ov5_021FF3F8[])(
+#ifdef SDK_BUILD_ARM
+static
+#endif
+void (*const Unk_ov5_021FF3F8[])(
     MapObject *, Billboard *, UnkStruct_ov5_021EBA0C *, int)
     = {
           ov5_021EBB44,
@@ -1296,7 +1305,10 @@ static void ov5_021EC374(MapObject *mapObj, Billboard *param1, int param2)
     MapObject_SetSpriteJumpOffset(mapObj, &v0);
 }
 
-static void (*const Unk_ov5_021FF31C[])(MapObject *, Billboard *, UnkStruct_ov5_021EBA0C *, int) = {
+#ifdef SDK_BUILD_ARM
+static
+#endif
+void (*const Unk_ov5_021FF31C[])(MapObject *, Billboard *, UnkStruct_ov5_021EBA0C *, int) = {
     ov5_021EC1D8,
     ov5_021EC228,
     ov5_021EC260,

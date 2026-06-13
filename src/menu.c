@@ -64,13 +64,21 @@ void Menu_Free(Menu *menu, u8 *outCursorPos)
     Heap_FreeExplicit(menu->heapID, menu);
 }
 
+#ifdef SDK_BUILD_ARM
 u32 Menu_ProcessInput(Menu *menu)
+#else
+u64 Menu_ProcessInput(Menu *menu)
+#endif
 {
     menu->lastAction = MENU_ACTION_NONE;
 
     if (JOY_NEW(PAD_BUTTON_A)) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);
+        #ifdef SDK_BUILD_ARM
         return menu->template.choices[menu->cursorPos].callbackFunction;
+        #else
+        return (u64)menu->template.choices[menu->cursorPos].callbackFunction;
+        #endif
     }
 
     if (JOY_NEW(menu->cancelKeys)) {

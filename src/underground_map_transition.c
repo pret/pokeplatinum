@@ -465,7 +465,10 @@ static void UndergroundMapTransition_EndTransitionTask(SysTask *sysTask, Undergr
     SysTask_FinishAndFreeParam(sysTask);
 }
 
-static void UndergroundMapTransition_InitSprites(UGMapTransitionSpriteData *spriteData, enum Gender playerGender, NNS_G2D_VRAM_TYPE vramType)
+#ifdef SDK_BUILD_ARM
+static 
+#endif
+void UndergroundMapTransition_InitSprites(UGMapTransitionSpriteData *spriteData, enum Gender playerGender, NNS_G2D_VRAM_TYPE vramType)
 {
     UGMapTransitionSpriteData_Init(spriteData);
     UndergroundMapTransition_LoadSpriteResources(spriteData, playerGender, vramType);

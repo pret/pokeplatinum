@@ -319,7 +319,7 @@ void EncounterEffect_Water_LowerLevel(SysTask *task, void *param)
         if (waterEffect->counter < 0) {
             encEffect->state++;
             waterEffect->counter = 12;
-            ScreenShakeEffect_Start(&waterEffect->screenShakeEfx, 0, 191, (0xffff / 192) * 2, FX32_CONST(12), 800, REG_BG0HOFS_ADDR, 0, 5 - 1);
+            ScreenShakeEffect_Start(&waterEffect->screenShakeEfx, 0, 191, (0xffff / 192) * 2, FX32_CONST(12), 800, (u32)REG_BG0HOFS_ADDR, 0, 5 - 1);
         }
         break;
     case 3:
@@ -377,7 +377,7 @@ void EncounterEffect_Water_HigherLevel(SysTask *task, void *param)
         if (waterEffect->counter < 0) {
             encEffect->state++;
             waterEffect->counter = 12;
-            ScreenShakeEffect_Start(&waterEffect->screenShakeEfx, 0, 191, (0xffff / 192) * 3, FX32_CONST(15), 800, REG_BG0HOFS_ADDR, 0, 5 - 1);
+            ScreenShakeEffect_Start(&waterEffect->screenShakeEfx, 0, 191, (0xffff / 192) * 3, FX32_CONST(15), 800, (u32)REG_BG0HOFS_ADDR, 0, 5 - 1);
         }
         break;
     case 3:
@@ -1016,7 +1016,7 @@ void EncounterEffect_Trainer_Water_LowerLevel(SysTask *param0, void *param1)
         v1->unk_248--;
 
         if (v1->unk_248 == 0) {
-            ScreenShakeEffect_Start(&v1->unk_40, 0, 191, (0xffff / 192) * 2, FX32_CONST(12), 800, REG_BG0HOFS_ADDR, 0, 5 - 1);
+            ScreenShakeEffect_Start(&v1->unk_40, 0, 191, (0xffff / 192) * 2, FX32_CONST(12), 800, (u32)REG_BG0HOFS_ADDR, 0, 5 - 1);
             v1->unk_4C = 1;
         }
 
@@ -1201,7 +1201,7 @@ void EncounterEffect_Trainer_Water_HigherLevel(SysTask *param0, void *param1)
         v1->unk_2A0--;
 
         if (v1->unk_2A0 == 0) {
-            ScreenShakeEffect_Start(&v1->unk_274, 0, 191, (0xffff / 192) * 2, FX32_CONST(12), 800, REG_BG0HOFS_ADDR, 0, 5 - 1);
+            ScreenShakeEffect_Start(&v1->unk_274, 0, 191, (0xffff / 192) * 2, FX32_CONST(12), 800, (u32)REG_BG0HOFS_ADDR, 0, 5 - 1);
             v1->unk_280 = 1;
         }
 

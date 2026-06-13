@@ -1129,7 +1129,7 @@ ListMenu *ov94_022427C0(GTSApplicationState *appState, StringList **stringList, 
     return ListMenu_New(&template, appState->unk_111C.unk_04[charpad], appState->unk_111C.unk_16[charpad], HEAP_ID_62);
 }
 
-static sGenderSelectionOptions[][2] = {
+static int sGenderSelectionOptions[][2] = {
     { GTS_Text_Either, 2 },
     { GTS_Text_MaleIcon, 0 },
     { GTS_Text_FemaleIcon, 1 },

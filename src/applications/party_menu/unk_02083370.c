@@ -83,8 +83,8 @@ static const PartyMenuAction sPartyMenuActions[32] = {
     PartyMenu_SelectMailRead,
     PartyMenu_SelectMailTake,
     PartyMenu_SelectBallSeal,
-    0xFFFFFFFE,
-    0xFFFFFFFE,
+    (void*)0xFFFFFFFE,
+    (void*)0xFFFFFFFE,
     sub_020844B0, // select pokemon?
     sub_020845E8, // select pokemon?
     sub_020846CC, // cancel?
@@ -105,12 +105,12 @@ static const PartyMenuAction sPartyMenuActions[32] = {
     PartyMenu_SelectChatter,
     PartyMenu_SelectMilkDrink,
     PartyMenu_SelectSoftboiled,
-    0xFFFFFFFE
+    (void*)0xFFFFFFFE
 };
 
 u32 PartyMenu_GetAction(u8 action) // table
 {
-    return sPartyMenuActions[action];
+    return (u32)sPartyMenuActions[action];
 }
 
 void PartyMenu_ClearContextWindow(PartyMenuApplication *application)

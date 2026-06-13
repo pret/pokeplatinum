@@ -242,7 +242,7 @@ void TextureResourceManager_RemoveTexture(TextureResourceManager *texMgr, Textur
 
     if (texResource->mode == TEX_RESOURCE_MODE_SEPARATED && (texResource->texDataDiscarded == 0)) {
         Heap_Free(texResource->textureData);
-        texResource->mode = NULL;
+        texResource->mode = 0;
     }
 
     if (texResource->resource) {

@@ -3993,7 +3993,13 @@ static void BoxAppMan_PutDownSelectedMons(BoxApplicationManager *boxAppMan, BoxA
     for (int i = 0; i < selection->selectedMonCount; i++) {
         posInBox = selectionTopLeftPos + (selection->selectedMonsOrigBoxPos[i] - origSelectionTopLeftPos);
         PCBoxes_TryStoreBoxMonAt(boxAppMan->pcBoxes, USE_CURRENT_BOX, posInBox, boxMon);
+        #ifdef SDK_BUILD_ARM
         (u8 *)boxMon += boxMonStructSize;
+        #else
+        u8 * tmp = (u8*)boxMon;
+        tmp += boxMonStructSize;
+        boxMon = (BoxPokemon *)tmp;
+        #endif
     }
 
     BoxApp_SetPreviewedBoxMon(boxApp, PCBoxes_GetBoxMonAt(boxAppMan->pcBoxes, USE_CURRENT_BOX, BoxApp_GetCursorBoxPosition(boxApp)));

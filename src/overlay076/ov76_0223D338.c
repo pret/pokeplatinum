@@ -217,11 +217,19 @@ static int ov76_0223D540(UnkStruct_ov76_0223DE00 *param0)
 }
 
 const UnkStruct_ov76_0223BF74 Unk_ov76_0223EF3C[] = {
+    #ifdef SDK_BUILD_ARM
     { 0, (const u32)ov76_0223D4FC },
     { 1, (const u32)ov76_0223D4C4 },
     { 2, (const u32)ov76_0223D50C },
     { 3, (const u32)ov76_0223D530 },
     { 4, (const u32)ov76_0223D540 },
+    #else
+    { 0, (const u64)ov76_0223D4FC },
+    { 1, (const u64)ov76_0223D4C4 },
+    { 2, (const u64)ov76_0223D50C },
+    { 3, (const u64)ov76_0223D530 },
+    { 4, (const u64)ov76_0223D540 },
+    #endif
 };
 
 static BOOL (*const Unk_ov76_0223EE04[])(UnkStruct_ov76_0223DE00 *cbmw) = {
@@ -701,7 +709,10 @@ void ov76_0223DD88(UnkStruct_ov76_0223DE00 *param0)
     param0->unk_D4.unk_D4 = PokemonSpriteManager_CreateSprite(param0->unk_D4.unk_D0, &v0, 256 - 64, 48 + v3, -0x280, 0, &v1[0], NULL);
 }
 
-static void ov76_0223DE00(UnkStruct_ov76_0223DE00 *param0)
+#ifdef SDK_BUILD_ARM
+static
+#endif
+void ov76_0223DE00(UnkStruct_ov76_0223DE00 *param0)
 {
     int v0;
     int v1;

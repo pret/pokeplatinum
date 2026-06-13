@@ -77,7 +77,10 @@ static G3DPipelineBuffers *ov99_021D19AC(enum HeapID heapID);
 static void ov99_021D19C8(void);
 static void ov99_021D1A4C(G3DPipelineBuffers *param0);
 static void ov99_021D16E4(UnkStruct_ov99_021D2CB0 *param0);
-static void ov99_021D1270(UnkStruct_ov99_021D2CB0 *param0);
+#ifdef SDK_BUILD_ARM
+static
+#endif
+void ov99_021D1270(UnkStruct_ov99_021D2CB0 *param0);
 static void ov99_021D1314(UnkStruct_ov99_021D2CB0 *param0);
 static void ov99_021D1580(BgConfig *param0);
 
@@ -297,7 +300,10 @@ static void ov99_021D1244(SysTask *param0, void *param1)
     SpriteSystem_UpdateTransfer();
 }
 
-static void ov99_021D1270(UnkStruct_ov99_021D2CB0 *param0)
+#ifdef SDK_BUILD_ARM
+static
+#endif
+void ov99_021D1270(UnkStruct_ov99_021D2CB0 *param0)
 {
     GF_ASSERT(param0->unk_1108 != NULL);
 

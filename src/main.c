@@ -133,10 +133,10 @@ void NitroMain(void)
             SysTaskManager_ExecuteTasks(gSystem.mainTaskMgr);
             SysTaskManager_ExecuteTasks(gSystem.printTaskMgr);
 
-            if (!gSystem.frameCounter) {
-                OS_WaitIrq(TRUE, OS_IE_V_BLANK);
-                gSystem.vblankCounter++;
-            }
+            //if (!gSystem.frameCounter) {
+            //    OS_WaitIrq(TRUE, OS_IE_V_BLANK);
+            //    gSystem.vblankCounter++;
+            //}
         }
 
         UpdateRTC();

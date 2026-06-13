@@ -289,7 +289,9 @@ void ov97_02233674(void *param0, void *param1, u32 param2, int param3, u32 param
     v0->unk_04.unk_00_16 = 0;
     v0->unk_08.unk_00_0 = (u8)param4;
     v0->unk_08.unk_00_8 = param3;
+    #ifdef SDK_BUILD_ARM
     v0->unk_08.unk_00_16 = SVC_GetCRC16(0, param1, param2);
+    #endif
     v0->unk_0C.unk_00_0 = (u8)ov97_02233614();
     v0->unk_0C.unk_00_8 = param2;
 
@@ -320,7 +322,11 @@ void ov97_022337A4(void *param0)
 BOOL ov97_022337D8(void *param0)
 {
     UnkStruct_ov97_02233674 *v0 = (UnkStruct_ov97_02233674 *)param0;
+    #ifdef SDK_BUILD_ARM
     u16 v1 = SVC_GetCRC16(0, ((u8 *)param0) + v0->unk_0C.unk_00_0, v0->unk_0C.unk_00_8);
+    #else
+    u16 v1 = 0;
+    #endif
 
     if (v0->unk_08.unk_00_16 == v1) {
         return 1;
