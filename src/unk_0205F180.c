@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "constants/field/dynamic_map_features.h"
+#include "constants/map_object.h"
 #include "generated/game_records.h"
 #include "generated/movement_actions.h"
 
@@ -27,12 +28,12 @@
 #include "terrain_collision_manager.h"
 #include "unk_020655F4.h"
 
-typedef BOOL (*UnkFuncPtr_020EDB84)(u8);
+typedef BOOL (*TileBehaviorFunc)(u8);
 
 typedef struct {
-    UnkFuncPtr_020EDB84 unk_00;
+    TileBehaviorFunc func;
     u32 unk_04;
-} UnkStruct_020EDB84;
+} TileBehaviorCheck;
 
 typedef struct {
     s16 unk_00;
@@ -41,16 +42,16 @@ typedef struct {
     s16 unk_06;
 } UnkStruct_020EDB04;
 
-static int PlayerAvatar_CheckStartMoveInternal(PlayerAvatar *playerAvatar, int dir);
+static BOOL PlayerAvatar_CheckStartMoveInternal(PlayerAvatar *playerAvatar, int dir);
 static void PlayerAvatar_StartMoveInit(PlayerAvatar *playerAvatar, int param1, u16 keyPad, u16 keyPress);
 static void sub_0205F378(PlayerAvatar *playerAvatar);
 static void PlayerAvatar_PlayWalkSE(PlayerAvatar *playerAvatar);
 static int sub_0205F62C(PlayerAvatar *playerAvatar, int param1);
-static u32 sub_0205F644(PlayerAvatar *playerAvatar, int param1);
+static u32 PlayerAvatar_GetTileMovement(PlayerAvatar *playerAvatar, int param1);
 static int sub_0205F6A4(PlayerAvatar *playerAvatar, u32 param1, int param2);
-static void sub_0205FA6C(PlayerAvatar *playerAvatar);
-static int sub_0205FAB0(PlayerAvatar *playerAvatar, int param1);
-static int sub_0205FB10(PlayerAvatar *playerAvatar, int param1);
+static void PlayerAvatar_ClearTileForcedMovement(PlayerAvatar *playerAvatar);
+static int PlayerAvatar_CheckIceHeightChange(PlayerAvatar *playerAvatar, int param1);
+static int PlayerAvatar_UpdateIceSpeedFromHeightChange(PlayerAvatar *playerAvatar, int param1);
 static void sub_0205FB40(PlayerAvatar *playerAvatar, int param1);
 static void inline_0205F180(PlayerAvatar *playerAvatar, const LandDataManager *param1, int param2, u16 param3, u16 param4);
 static void inline_0205F180_sub(PlayerAvatar *playerAvatar, MapObject *mapObj, const LandDataManager *param2, int param3, u16 param4, u16 param5);
@@ -58,7 +59,7 @@ static int sub_0205FC48(PlayerAvatar *playerAvatar, int param1);
 static int sub_0205FC64(int param0);
 static int sub_0205FC88(MapObject *mapObj, u8 param1, int param2);
 static int sub_0205FCBC(MapObject *mapObj, u8 param1, int param2);
-static int sub_0205FCC0(PlayerAvatar *playerAvatar, int param1);
+static int PlayerAvatar_UpdateMoveState(PlayerAvatar *playerAvatar, int param1);
 static void sub_0205FD20(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2, u16 param3, u16 param4);
 static void sub_0205FD40(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2, u16 param3, u16 param4);
 static void sub_0205FDC8(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2, u16 param3, u16 param4);
@@ -88,7 +89,7 @@ static void sub_020608BC(PlayerAvatar *playerAvatar, MapObject *mapObj, int para
 static void sub_020608E4(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2, u16 param3, u16 param4);
 static void sub_02060A60(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2, u16 param3, u16 param4);
 static void sub_02060AA0(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2, u16 param3, u16 param4);
-static u32 sub_02060C24(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2);
+static u32 PlayerAvtar_CheckMapObjCollision(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2);
 static int PlayerAvatar_WillJump(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction);
 static int sub_02060D98(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2);
 static int sub_02060E40(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2);
@@ -105,7 +106,7 @@ static enum FaceDirection PlayerAvatar_CalcFaceDirectionInternal(PlayerAvatar *p
 static BOOL IsMovementWalkOnSpotSlow(enum MovementAction pamovementActionram0);
 static void sub_020615C8(PlayerAvatar *playerAvatar);
 static int sub_020615E0(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2);
-static int sub_02061630(PlayerAvatar *playerAvatar, u32 tileBehavior, int param2);
+static int PlayerAvatar_IsOnCyclingRoadBridge(PlayerAvatar *playerAvatar, u32 tileBehavior, int param2);
 static void sub_02060B64(PlayerAvatar *playerAvatar, MapObject *mapObj, enum MovementAction movementAction, int param3);
 
 static const UnkStruct_020EDB04 Unk_020EDB04[4] = {
@@ -136,10 +137,13 @@ static const UnkStruct_020EDB04 Unk_020EDB64[4] = {
     { 0x1, 0x0, 0x0 }
 };
 
-const UnkStruct_020EDB84 Unk_020EDB84[];
-static int (*const Unk_020EDAEC[6])(PlayerAvatar *, int);
+const TileBehaviorCheck sTileBehaviorCheckTable[];
+static int (*const sTileMovementFunctions[6])(PlayerAvatar *, int);
 
-void PlayerAvatar_MoveControl(PlayerAvatar *playerAvatar, const LandDataManager *param1, int dir, u16 keyPad, u16 keyPress, BOOL param5)
+/**
+ * Main function that handles player movement, called by the field system when processing input.
+ */
+void PlayerAvatar_MoveMain(PlayerAvatar *playerAvatar, const LandDataManager *landManager, int dir, u16 keyPad, u16 keyPress, BOOL param5)
 {
     if (dir == -1) {
         dir = PlayerAvatar_CalcFaceDirectionInternal(playerAvatar, keyPad, keyPress);
@@ -169,33 +173,33 @@ void PlayerAvatar_MoveControl(PlayerAvatar *playerAvatar, const LandDataManager 
         }
     }
 
-    inline_0205F180(playerAvatar, param1, dir, keyPad, keyPress);
+    inline_0205F180(playerAvatar, landManager, dir, keyPad, keyPress);
 
     sub_0205F378(playerAvatar);
     PlayerAvatar_PlayWalkSE(playerAvatar);
 }
 
-int PlayerAvatar_CheckStartMove(PlayerAvatar *playerAvatar, int dir)
+BOOL PlayerAvatar_CheckStartMove(PlayerAvatar *playerAvatar, int dir)
 {
     return PlayerAvatar_CheckStartMoveInternal(playerAvatar, dir);
 }
 
-static int PlayerAvatar_CheckStartMoveInternal(PlayerAvatar *playerAvatar, int dir)
+static BOOL PlayerAvatar_CheckStartMoveInternal(PlayerAvatar *playerAvatar, int dir)
 {
-    int v0;
+    int movementAction;
     MapObject *mapObj = PlayerAvatar_GetMapObject(playerAvatar);
 
-    if (LocalMapObj_IsAnimationSet(mapObj) == 1) {
-        return 1;
+    if (LocalMapObj_IsAnimationSet(mapObj) == TRUE) {
+        return TRUE;
     }
 
     if (dir == DIR_NONE) {
-        return 0;
+        return FALSE;
     }
 
-    v0 = MapObject_GetMovementAction(mapObj);
+    movementAction = MapObject_GetMovementAction(mapObj);
 
-    if (IsMovementWalkOnSpotSlow(v0) == 1) {
+    if (IsMovementWalkOnSpotSlow(movementAction) == TRUE) {
         u32 v2;
 
         if (PlayerAvatar_DistortionGravityChanged(playerAvatar) == TRUE) {
@@ -231,13 +235,13 @@ static int PlayerAvatar_CheckStartMoveInternal(PlayerAvatar *playerAvatar, int d
         }
 
         if ((v2 == (1 << 5)) && (PlayerAvatar_GetPlayerState(playerAvatar) == 0x2)) {
-            return 1;
+            return TRUE;
         }
 
-        return 0;
+        return FALSE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 static void PlayerAvatar_StartMoveInit(PlayerAvatar *playerAvatar, int param1, u16 keyPad, u16 keyPress)
@@ -315,7 +319,7 @@ void sub_0205F490(PlayerAvatar *playerAvatar)
 
     PlayerAvatar_SetPlayerMoveState(playerAvatar, 0);
 
-    u32 v4 = sub_0205F644(playerAvatar, -1);
+    u32 v4 = PlayerAvatar_GetTileMovement(playerAvatar, -1);
 
     if ((v4 != 0) && (v4 != 5)) {
         PlayerAvatar_SetPlayerMoveState(playerAvatar, 2);
@@ -441,86 +445,85 @@ void sub_0205F5E4(PlayerAvatar *playerAvatar, int dir)
 
 static int sub_0205F62C(PlayerAvatar *playerAvatar, int param1)
 {
-    u32 v0 = sub_0205F644(playerAvatar, param1);
+    u32 tileMovement = PlayerAvatar_GetTileMovement(playerAvatar, param1);
 
-    v0 = sub_0205F6A4(playerAvatar, v0, param1);
-    return v0;
+    return sub_0205F6A4(playerAvatar, tileMovement, param1);
 }
 
-static u32 sub_0205F644(PlayerAvatar *playerAvatar, int param1)
+static u32 PlayerAvatar_GetTileMovement(PlayerAvatar *playerAvatar, int param1)
 {
-    int v0 = 0;
+    int i = 0;
     u32 tileBehavior = MapObject_GetCurrTileBehavior(PlayerAvatar_GetMapObject(playerAvatar));
 
-    if (sub_02061630(playerAvatar, tileBehavior, param1) == 1) {
-        return 5;
+    if (PlayerAvatar_IsOnCyclingRoadBridge(playerAvatar, tileBehavior, param1) == TRUE) {
+        return TILE_MOVE_CYCLING_ROAD_DOWN;
     }
 
-    if (PlayerAvatar_CheckIgnoreTileBehavior(playerAvatar) == 1) {
-        return 0;
+    if (PlayerAvatar_CheckIgnoreTileBehavior(playerAvatar) == TRUE) {
+        return TILE_MOVE_NONE;
     }
 
     do {
-        if (Unk_020EDB84[v0].unk_00(tileBehavior) == 1) {
-            return Unk_020EDB84[v0].unk_04;
+        if (sTileBehaviorCheckTable[i].func(tileBehavior) == TRUE) {
+            return sTileBehaviorCheckTable[i].unk_04;
         }
 
-        v0++;
-    } while (Unk_020EDB84[v0].unk_00 != NULL);
+        i++;
+    } while (sTileBehaviorCheckTable[i].func != NULL);
 
-    return 0;
+    return TILE_MOVE_NONE;
 }
 
-static const UnkStruct_020EDB84 Unk_020EDB84[] = {
-    { TileBehavior_IsIce, 0x1 },
-    { TileBehavior_IsBikeSlope, 0x2 },
-    { TileBehavior_IsBikeRampEastward, 0x3 },
-    { TileBehavior_IsBikeRampWestward, 0x4 },
-    { NULL, 0x6 }
+static const TileBehaviorCheck sTileBehaviorCheckTable[] = {
+    { TileBehavior_IsIce, TILE_MOVE_ICE },
+    { TileBehavior_IsBikeSlope, TILE_MOVE_BIKE_SLOPE },
+    { TileBehavior_IsBikeRampEastward, TILE_MOVE_BIKE_RAMP_EAST },
+    { TileBehavior_IsBikeRampWestward, TILE_MOVE_BIKE_RAMP_WEST },
+    { NULL, TILE_MOVE_MAX }
 };
 
 static int sub_0205F6A4(PlayerAvatar *playerAvatar, u32 param1, int param2)
 {
-    if (Unk_020EDAEC[param1](playerAvatar, param2) == 1) {
-        return 1;
+    if (sTileMovementFunctions[param1](playerAvatar, param2) == 1) {
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static int sub_0205F6C4(PlayerAvatar *playerAvatar, int param1)
+static int PlayerAvatar_TileMove_None(PlayerAvatar *playerAvatar, int param1)
 {
-    sub_0205FA6C(playerAvatar);
-    return 0;
+    PlayerAvatar_ClearTileForcedMovement(playerAvatar);
+    return FALSE;
 }
 
-static int sub_0205F6D0(PlayerAvatar *playerAvatar, int param1)
+static int PlayerAvatar_TileMove_Ice(PlayerAvatar *playerAvatar, int param1)
 {
     MapObject *mapObj = PlayerAvatar_GetMapObject(playerAvatar);
-    int v1 = MapObject_GetMovingDir(mapObj);
-    int v2 = sub_0205FAB0(playerAvatar, v1);
-    u32 v3 = sub_02060B7C(playerAvatar, mapObj, v1);
+    int dir = MapObject_GetMovingDir(mapObj);
+    int heightChange = PlayerAvatar_CheckIceHeightChange(playerAvatar, dir);
+    u32 v3 = sub_02060B7C(playerAvatar, mapObj, dir);
 
     PlayerAvatar_SetForceMovement(playerAvatar, TRUE);
 
     if (v3 != 0) {
-        sub_0205FA6C(playerAvatar);
+        PlayerAvatar_ClearTileForcedMovement(playerAvatar);
 
-        if (v2 != 1) {
+        if (heightChange != 1) {
             PlayerAvatar_SetIgnoreTileBehavior(playerAvatar, 1);
             PlayerAvatar_SetMoveState(playerAvatar, 0);
             return 0;
         }
 
-        v1 = Direction_GetOpposite(v1);
-        v3 = sub_02060B7C(playerAvatar, mapObj, v1);
+        dir = Direction_GetOpposite(dir);
+        v3 = sub_02060B7C(playerAvatar, mapObj, dir);
 
         if (v3 != 0) {
             return 0;
         }
 
         MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_LOCK_DIR | MAP_OBJ_STATUS_PAUSE_ANIMATION);
-        sub_02060B64(playerAvatar, mapObj, MovementAction_TurnActionTowardsDir(v1, MOVEMENT_ACTION_WALK_SLOW_NORTH), PLAYER_ACTION_SPEED_SLOW);
+        sub_02060B64(playerAvatar, mapObj, MovementAction_TurnActionTowardsDir(dir, MOVEMENT_ACTION_WALK_SLOW_NORTH), PLAYER_ACTION_SPEED_SLOW);
         PlayerAvatar_SetIgnoreTileBehavior(playerAvatar, 1);
         PlayerAvatar_SetForceMovement(playerAvatar, TRUE);
         PlayerAvatar_SetFaceDirection(playerAvatar, -1, -1);
@@ -529,24 +532,24 @@ static int sub_0205F6D0(PlayerAvatar *playerAvatar, int param1)
         return 1;
     }
 
-    if (sub_0205FB10(playerAvatar, v2) == 0) {
-        sub_0205FA6C(playerAvatar);
+    if (PlayerAvatar_UpdateIceSpeedFromHeightChange(playerAvatar, heightChange) == 0) {
+        PlayerAvatar_ClearTileForcedMovement(playerAvatar);
 
-        v1 = Direction_GetOpposite(v1);
-        v3 = sub_02060B7C(playerAvatar, mapObj, v1);
+        dir = Direction_GetOpposite(dir);
+        v3 = sub_02060B7C(playerAvatar, mapObj, dir);
 
         if (v3 != 0) {
             return 0;
         }
 
         MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_LOCK_DIR | MAP_OBJ_STATUS_PAUSE_ANIMATION);
-        sub_02060B64(playerAvatar, mapObj, MovementAction_TurnActionTowardsDir(v1, MOVEMENT_ACTION_WALK_SLOW_NORTH), PLAYER_ACTION_SPEED_SLOW);
+        sub_02060B64(playerAvatar, mapObj, MovementAction_TurnActionTowardsDir(dir, MOVEMENT_ACTION_WALK_SLOW_NORTH), PLAYER_ACTION_SPEED_SLOW);
         PlayerAvatar_SetIgnoreTileBehavior(playerAvatar, 1);
         PlayerAvatar_SetForceMovement(playerAvatar, TRUE);
         PlayerAvatar_SetFaceDirection(playerAvatar, -1, -1);
     } else {
         MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_LOCK_DIR | MAP_OBJ_STATUS_PAUSE_ANIMATION);
-        sub_0205FB40(playerAvatar, v1);
+        sub_0205FB40(playerAvatar, dir);
     }
 
     PlayerAvatar_SetMoveState(playerAvatar, 1);
@@ -613,7 +616,7 @@ static int sub_0205F808(PlayerAvatar *playerAvatar, int param1)
 static int sub_0205F95C(PlayerAvatar *playerAvatar, int param1)
 {
     MapObject *mapObj = PlayerAvatar_GetMapObject(playerAvatar);
-    int v1 = MapObject_GetMovingDir(mapObj);
+    int dir = MapObject_GetMovingDir(mapObj);
 
     if (PlayerAvatar_GetCyclingGear(playerAvatar) == 1) {
         Sound_PlayEffect(SEQ_SE_DP_DANSA4);
@@ -631,7 +634,7 @@ static int sub_0205F95C(PlayerAvatar *playerAvatar, int param1)
 static int sub_0205F9AC(PlayerAvatar *playerAvatar, int param1)
 {
     MapObject *mapObj = PlayerAvatar_GetMapObject(playerAvatar);
-    int v1 = MapObject_GetMovingDir(mapObj);
+    int dir = MapObject_GetMovingDir(mapObj);
 
     if (PlayerAvatar_GetCyclingGear(playerAvatar) == 1) {
         Sound_PlayEffect(SEQ_SE_DP_DANSA4);
@@ -668,76 +671,86 @@ static int sub_0205F9FC(PlayerAvatar *playerAvatar, int param1)
     return 1;
 }
 
-static int (*const Unk_020EDAEC[6])(PlayerAvatar *, int) = {
-    sub_0205F6C4,
-    sub_0205F6D0,
-    sub_0205F808,
-    sub_0205F95C,
-    sub_0205F9AC,
-    sub_0205F9FC
+static int (*const sTileMovementFunctions[6])(PlayerAvatar *, int) = {
+    [TILE_MOVE_NONE] = PlayerAvatar_TileMove_None,
+    [TILE_MOVE_ICE] = PlayerAvatar_TileMove_Ice,
+    [TILE_MOVE_BIKE_SLOPE] = sub_0205F808,
+    [TILE_MOVE_BIKE_RAMP_EAST] = sub_0205F95C,
+    [TILE_MOVE_BIKE_RAMP_WEST] = sub_0205F9AC,
+    [TILE_MOVE_CYCLING_ROAD_DOWN] = sub_0205F9FC
 };
 
-static void sub_0205FA6C(PlayerAvatar *playerAvatar)
+static void PlayerAvatar_ClearTileForcedMovement(PlayerAvatar *playerAvatar)
 {
     if (PlayerAvatar_CheckForcedMovement(playerAvatar) == 1) {
-        MapObject *v0 = PlayerAvatar_GetMapObject(playerAvatar);
+        MapObject *mapObj = PlayerAvatar_GetMapObject(playerAvatar);
 
-        MapObject_SetStatusFlagOff(v0, MAP_OBJ_STATUS_LOCK_DIR | MAP_OBJ_STATUS_PAUSE_ANIMATION);
+        MapObject_SetStatusFlagOff(mapObj, MAP_OBJ_STATUS_LOCK_DIR | MAP_OBJ_STATUS_PAUSE_ANIMATION);
 
-        if (PlayerAvatar_CheckForcedMovementRetainSpeed(playerAvatar) == 0) {
+        if (PlayerAvatar_CheckForcedMovementRetainSpeed(playerAvatar) == FALSE) {
             PlayerAvatar_ClearSpeed(playerAvatar);
         }
 
         PlayerAvatar_SetForceMovement(playerAvatar, FALSE);
-        PlayerAvatar_SetForceMovementRetainSpeed(playerAvatar, 0);
-        PlayerAvatar_SetMoveThroughMudFlag(playerAvatar, 0);
+        PlayerAvatar_SetForceMovementRetainSpeed(playerAvatar, FALSE);
+        PlayerAvatar_SetMoveThroughMudFlag(playerAvatar, FALSE);
     }
 }
 
-static int sub_0205FAB0(PlayerAvatar *playerAvatar, int param1)
+/**
+ * Checks if the player's height changes while moving on ice. Used for Snowpoint City gym
+ *
+ * @return 0 - height stays the same, 1 - height increases, 2 - height decreases
+ */
+static int PlayerAvatar_CheckIceHeightChange(PlayerAvatar *playerAvatar, int dir)
 {
-    int v0;
-    VecFx32 v1, v2;
+    int heightCheck;
+    VecFx32 cur, next;
     MapObject *mapObj = PlayerAvatar_GetMapObject(playerAvatar);
     FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
 
-    MapObject_GetPosPtr(mapObj, &v1);
-    v2 = v1;
+    MapObject_GetPosPtr(mapObj, &cur);
+    next = cur;
 
-    VecFx32_StepDirection(param1, &v2, ((16 * FX32_ONE) >> 1) / 2);
-    v0 = MapObject_RecalculatePositionHeight(fieldSystem, &v2);
+    VecFx32_StepDirection(dir, &next, ((16 * FX32_ONE) >> 1) / 2);
+    heightCheck = MapObject_RecalculatePositionHeight(fieldSystem, &next);
 
-    if ((v0 == 0) || (v1.y == v2.y)) {
+    if ((heightCheck == 0) || (cur.y == next.y)) {
         return 0;
     }
 
-    if (v1.y > v2.y) {
+    if (cur.y > next.y) {
         return 2;
     }
 
     return 1;
 }
 
-static int sub_0205FB10(PlayerAvatar *playerAvatar, int param1)
+/**
+ * Increasse the speed if the height change is lower and decreases the speed if the height change is higher. For use in the Snowpoint City gym.
+ *
+ * @return TRUE if the speed is updated or at max speed, FALSE if the speed attempted to decrease while at min speed.
+ */
+static int PlayerAvatar_UpdateIceSpeedFromHeightChange(PlayerAvatar *playerAvatar, int heightChange)
 {
-    int v0 = PlayerAvatar_GetSpeed(playerAvatar);
+    int speed = PlayerAvatar_GetSpeed(playerAvatar);
 
-    if (param1 == 1) {
-        v0--;
+    if (heightChange == 1) {
+        speed--;
 
-        if (v0 < 0) {
-            return 0;
+        if (speed < 0) {
+            return FALSE;
         }
-    } else if (param1 == 2) {
-        v0++;
+    } else if (heightChange == 2) {
+        speed++;
 
-        if (v0 > 3) {
-            v0 = 3;
+        if (speed > 3) {
+            speed = 3;
         }
     }
 
-    PlayerAvatar_SetSpeed(playerAvatar, v0);
-    return 1;
+    PlayerAvatar_SetSpeed(playerAvatar, speed);
+    return TRUE;
 }
 
 static void sub_0205FB40(PlayerAvatar *playerAvatar, int param1)
@@ -766,18 +779,18 @@ static void sub_0205FB40(PlayerAvatar *playerAvatar, int param1)
     sub_02060B64(playerAvatar, v0, v1, v3);
 }
 
-static void inline_0205F180(PlayerAvatar *playerAvatar, const LandDataManager *param1, int param2, u16 param3, u16 param4)
+static void inline_0205F180(PlayerAvatar *playerAvatar, const LandDataManager *landManager, int dir, u16 keyPad, u16 keyPress)
 {
-    int v0 = PlayerAvatar_GetPlayerState(playerAvatar);
+    int state = PlayerAvatar_GetPlayerState(playerAvatar);
     MapObject *mapObj = PlayerAvatar_GetMapObject(playerAvatar);
 
-    switch (v0) {
+    switch (state) {
     case PLAYER_AVATAR_WALKING:
     case PLAYER_AVATAR_SURFING:
-        inline_0205F180_sub(playerAvatar, mapObj, param1, param2, param3, param4);
+        inline_0205F180_sub(playerAvatar, mapObj, landManager, dir, keyPad, keyPress);
         break;
     case PLAYER_AVATAR_CYCLING:
-        sub_020602DC(playerAvatar, mapObj, param1, param2, param3, param4);
+        sub_020602DC(playerAvatar, mapObj, landManager, dir, keyPad, keyPress);
         break;
     default:
         GF_ASSERT(FALSE);
@@ -790,13 +803,13 @@ static void inline_0205F180_sub(PlayerAvatar *playerAvatar, MapObject *mapObj, c
     int v0 = sub_0205FC48(playerAvatar, param3);
 
     switch (v0) {
-    case 0:
+    case AVATAR_MOVE_STATE_NONE:
         sub_0205FD20(playerAvatar, mapObj, param3, param4, param5);
         break;
-    case 1:
+    case AVATAR_MOVE_STATE_MOVING:
         sub_0205FD40(playerAvatar, mapObj, param3, param4, param5);
         break;
-    case 2:
+    case AVATAR_MOVE_STATE_TURNING:
         sub_02060258(playerAvatar, mapObj, param3, param4, param5);
         break;
     }
@@ -804,7 +817,7 @@ static void inline_0205F180_sub(PlayerAvatar *playerAvatar, MapObject *mapObj, c
 
 static int sub_0205FC48(PlayerAvatar *playerAvatar, int param1)
 {
-    int v0 = sub_0205FCC0(playerAvatar, param1);
+    int v0 = PlayerAvatar_UpdateMoveState(playerAvatar, param1);
     int v1 = sub_0205FC64(v0);
 
     PlayerAvatar_SetMoveState(playerAvatar, v1);
@@ -814,16 +827,16 @@ static int sub_0205FC48(PlayerAvatar *playerAvatar, int param1)
 static int sub_0205FC64(int param0)
 {
     switch (param0) {
-    case 0:
-        return 0;
-    case 1:
-        return 1;
-    case 2:
-        return 2;
+    case AVATAR_MOVE_STATE_NONE:
+        return AVATAR_MOVE_STATE_NONE;
+    case AVATAR_MOVE_STATE_MOVING:
+        return AVATAR_MOVE_STATE_MOVING;
+    case AVATAR_MOVE_STATE_TURNING:
+        return AVATAR_MOVE_STATE_TURNING;
     }
 
     GF_ASSERT(FALSE);
-    return 0;
+    return AVATAR_MOVE_STATE_NONE;
 }
 
 static int sub_0205FC88(MapObject *mapObj, u8 param1, int param2)
@@ -848,32 +861,32 @@ static int sub_0205FCBC(MapObject *mapObj, u8 param1, int param2)
     return param2;
 }
 
-static int sub_0205FCC0(PlayerAvatar *playerAvatar, int param1)
+static int PlayerAvatar_UpdateMoveState(PlayerAvatar *playerAvatar, int nextDir)
 {
-    int v0;
+    int curDir;
 
-    if (param1 == -1) {
-        PlayerAvatar_SetMoveState(playerAvatar, 0);
-        return 0;
+    if (nextDir == -1) {
+        PlayerAvatar_SetMoveState(playerAvatar, AVATAR_MOVE_STATE_NONE);
+        return AVATAR_MOVE_STATE_NONE;
     }
 
-    v0 = PlayerAvatar_GetFacingDir(playerAvatar);
+    curDir = PlayerAvatar_GetFacingDir(playerAvatar);
 
     enum AvatarDistortionState distortionState = PlayerAvatar_MapDistortionState(playerAvatar);
 
     if (distortionState != AVATAR_DISTORTION_STATE_NONE
         && distortionState != AVATAR_DISTORTION_STATE_ACTIVE
         && distortionState != AVATAR_DISTORTION_STATE_FLOOR) {
-        v0 = PlayerAvatar_GetMovingDir(playerAvatar);
+        curDir = PlayerAvatar_GetMovingDir(playerAvatar);
     }
 
-    if ((v0 != param1) && (PlayerAvatar_GetMoveState(playerAvatar) != 1)) {
-        PlayerAvatar_SetMoveState(playerAvatar, 2);
-        return 2;
+    if ((curDir != nextDir) && (PlayerAvatar_GetMoveState(playerAvatar) != AVATAR_MOVE_STATE_MOVING)) {
+        PlayerAvatar_SetMoveState(playerAvatar, AVATAR_MOVE_STATE_TURNING);
+        return AVATAR_MOVE_STATE_TURNING;
     }
 
-    PlayerAvatar_SetMoveState(playerAvatar, 1);
-    return 1;
+    PlayerAvatar_SetMoveState(playerAvatar, AVATAR_MOVE_STATE_MOVING);
+    return AVATAR_MOVE_STATE_MOVING;
 }
 
 static void sub_0205FD20(PlayerAvatar *playerAvatar, MapObject *param1, int param2, u16 param3, u16 param4)
@@ -1674,7 +1687,7 @@ static void sub_02060B64(PlayerAvatar *playerAvatar, MapObject *mapObj, enum Mov
 u32 sub_02060B7C(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction)
 {
     u32 v0 = 0, v1;
-    v1 = sub_02060C24(playerAvatar, mapObj, direction);
+    v1 = PlayerAvtar_CheckMapObjCollision(playerAvatar, mapObj, direction);
 
     if (v1 & ((1 << 1) | (1 << 3))) {
         v0 |= (1 << 0);
@@ -1715,44 +1728,44 @@ u32 sub_02060B7C(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction)
     return v0;
 }
 
-static u32 sub_02060C24(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2)
+static u32 PlayerAvtar_CheckMapObjCollision(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2)
 {
     VecFx32 v0;
-    u32 v1, v2;
+    u32 collisionFlag;
     int x = MapObject_GetX(mapObj) + MapObject_GetDxFromDir(param2);
     int y = MapObject_GetY(mapObj);
     int z = MapObject_GetZ(mapObj) + MapObject_GetDzFromDir(param2);
 
     MapObject_GetPosPtr(mapObj, &v0);
 
-    v1 = 0;
+    collisionFlag = MAP_OBJ_COLLISION_NONE;
 
-    if (MapObject_IsOutOfRange(mapObj, x, y, z) == 1) {
-        v1 |= (1 << 0);
+    if (MapObject_IsOutOfRange(mapObj, x, y, z) == TRUE) {
+        collisionFlag |= MAP_OBJ_COLLISION_OUT_OF_RANGE;
     }
 
     {
-        s8 v6;
+        s8 verticalDirection;
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
 
-        if (TerrainCollisionManager_WillPlayerCollide(fieldSystem, &v0, x, z, &v6) == 1) {
-            v1 |= (1 << 1);
+        if (TerrainCollisionManager_WillPlayerCollide(fieldSystem, &v0, x, z, &verticalDirection) == 1) {
+            collisionFlag |= MAP_OBJ_COLLISION_WILL_COLLIDE;
 
-            if (v6 != 0) {
-                v1 |= (1 << 3);
+            if (verticalDirection != 0) {
+                collisionFlag |= MAP_OBJ_COLLISION_HEIGHT_CHANGE;
             }
         }
     }
 
     if (sub_02064004(mapObj, x, z, param2) == 1) {
-        v1 |= (1 << 1);
+        collisionFlag |= MAP_OBJ_COLLISION_WILL_COLLIDE;
     }
 
     if (sub_02063F00(mapObj, x, y, z) == 1) {
-        v1 |= (1 << 2);
+        collisionFlag |= MAP_OBJ_COLLISION_2;
     }
 
-    return v1;
+    return collisionFlag;
 }
 
 static int PlayerAvatar_WillJump(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction)
@@ -2219,7 +2232,7 @@ int sub_02061434(PlayerAvatar *playerAvatar, int param1)
     switch (state) {
     case PLAYER_AVATAR_WALKING:
     case PLAYER_AVATAR_SURFING:
-        v0 = sub_0205FCC0(playerAvatar, param1);
+        v0 = PlayerAvatar_UpdateMoveState(playerAvatar, param1);
         v1 = sub_0205FC64(v0);
         break;
     case PLAYER_AVATAR_CYCLING:
@@ -2341,11 +2354,11 @@ void PlayerAvatar_GetFacingTileCoords(PlayerAvatar *playerAvatar, int *x, int *z
 
 static void sub_020615C8(PlayerAvatar *playerAvatar)
 {
-    MapObject *v0 = PlayerAvatar_GetMapObject(playerAvatar);
-    FieldSystem *fieldSystem = MapObject_FieldSystem(v0);
-    GameRecords *v2 = SaveData_GetGameRecords(fieldSystem->saveData);
+    MapObject *mapObject = PlayerAvatar_GetMapObject(playerAvatar);
+    FieldSystem *fieldSystem = MapObject_FieldSystem(mapObject);
+    GameRecords *gameRecords = SaveData_GetGameRecords(fieldSystem->saveData);
 
-    GameRecords_IncrementRecordValue(v2, RECORD_STEPS);
+    GameRecords_IncrementRecordValue(gameRecords, RECORD_STEPS);
 }
 
 static int sub_020615E0(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2)
@@ -2373,9 +2386,14 @@ static int sub_020615E0(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
     return 0;
 }
 
-static int sub_02061630(PlayerAvatar *playerAvatar, u32 tileBehavior, int param2)
+/**
+ * Checks if the player is on a bridge tile on cycling road, so their movement can be forced down
+ *
+ * @return TRUE if the player is on a bicycle on cyling road while the current tile behavior is an elevated bridge
+ */
+static int PlayerAvatar_IsOnCyclingRoadBridge(PlayerAvatar *playerAvatar, u32 tileBehavior, int dir)
 {
-    if (param2 != -1) {
+    if (dir != -1) {
         return FALSE;
     }
 

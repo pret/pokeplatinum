@@ -64,4 +64,15 @@ enum PlayerMovementActionSpeed {
     PLAYER_ACTION_SPEED_FASTER
 };
 
+// Tiles that affect and override the default movement function
+enum PlayerTileMovement {
+    TILE_MOVE_NONE = 0,
+    TILE_MOVE_ICE,
+    TILE_MOVE_BIKE_SLOPE,
+    TILE_MOVE_BIKE_RAMP_EAST,
+    TILE_MOVE_BIKE_RAMP_WEST,
+    TILE_MOVE_CYCLING_ROAD_DOWN,
+    TILE_MOVE_MAX,
+};
+
 #endif // POKEPLATINUM_CONSTANTS_PLAYER_AVATAR_H

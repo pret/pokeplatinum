@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/map_object.h"
 #include "generated/movement_types.h"
 
 #include "struct_decls/map_object.h"
@@ -574,32 +575,32 @@ static void MapObject_EmptyFunction(MapObject *mapObj, u8 currTileBehavior, u8 p
 
 u32 sub_02063E18(const MapObject *mapObj, const VecFx32 *pos, int x, int y, int z, int dir)
 {
-    u32 v0 = 0;
+    u32 collisionFlag = MAP_OBJ_COLLISION_NONE;
 
     if (MapObject_IsOutOfRange(mapObj, x, y, z) == TRUE) {
-        v0 |= (1 << 0);
+        collisionFlag |= MAP_OBJ_COLLISION_OUT_OF_RANGE;
     }
 
     s8 v1;
     FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
 
     if (TerrainCollisionManager_WillMapObjectCollide(fieldSystem, pos, x, z, &v1) == TRUE) {
-        v0 |= (1 << 1);
+        collisionFlag |= MAP_OBJ_COLLISION_WILL_COLLIDE;
 
         if (v1 != 0) {
-            v0 |= (1 << 3);
+            collisionFlag |= MAP_OBJ_COLLISION_HEIGHT_CHANGE;
         }
     }
 
     if (sub_02064004(mapObj, x, z, dir) == TRUE) {
-        v0 |= (1 << 1);
+        collisionFlag |= MAP_OBJ_COLLISION_WILL_COLLIDE;
     }
 
     if (sub_02063F00(mapObj, x, y, z) == TRUE) {
-        v0 |= (1 << 2);
+        collisionFlag |= MAP_OBJ_COLLISION_2;
     }
 
-    return v0;
+    return collisionFlag;
 }
 
 u32 sub_02063E94(const MapObject *mapObj, int x, int y, int z, int dir)
