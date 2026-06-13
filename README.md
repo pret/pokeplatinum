@@ -1,12 +1,12 @@
-# Pokémon Platinum
+# Pokémon Platinum PC Port
 
-This is a WIP decompilation of Pokémon Platinum. For instructions on how to set up the repository, please read [`INSTALL.md`](INSTALL.md).
+This is a WIP PC port of Pokemon Platinum based on the [pret](https://github.com/pret/pokeplatinum) decompilation project.
 
-If you are interested in contributing, please read [`CONTRIBUTING.md`](/CONTRIBUTING.md).
+To build:
+* meson setup build
+* cd build
+* meson configure -Dbuild_target=linux
+* meson compile
 
-This repository builds the following ROMs:
+Target executable will be in ./build/pc directory. win64 is also a supported build target, however it is untested.
 
-* [**pokeplatinum.us.nds**](https://datomatic.no-intro.org/index.php?page=show_record&s=28&n=4997) (Rev 1): `sha1: 0862ec35b24de5c7e2dcb88c9eea0873110d755c`
-* [**pokeplatinum.us.nds**](https://datomatic.no-intro.org/index.php?page=show_record&s=28&n=3541) (Rev 0): `sha1: ce81046eda7d232513069519cb2085349896dec7`
-
-For contacts and other pret projects, see [pret.github.io](https://pret.github.io/).
