@@ -1465,12 +1465,16 @@ static BOOL FrontierScrCmd_BufferNumber(FrontierScriptContext *ctx)
     u8 templateArg = FrontierScriptContext_ReadByte(ctx);
     u16 number = FrontierScriptContext_GetVar(ctx);
 
+    #ifdef SDK_BUILD_ARM
+    StringTemplate_SetNumber(ctx->scriptMan->strTemplate, templateArg, number, GetNumberDigitCount(number), PADDING_MODE_SPACES, CHARSET_MODE_EN);
+    #else
     StringTemplate_SetNumber(ctx->scriptMan->strTemplate, templateArg, number, frscrcmd_GetNumberDigitCount(number), PADDING_MODE_SPACES, CHARSET_MODE_EN);
+    #endif
     return FALSE;
 }
 
 #ifdef SDK_BUILD_ARM
-static u16 GetNumberDigitCount(u32 number);
+static u16 GetNumberDigitCount(u32 number)
 #else
 static u16 frscrcmd_GetNumberDigitCount(u32 number)
 #endif
