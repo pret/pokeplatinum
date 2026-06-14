@@ -11,6 +11,7 @@
 #include "overlay104/struct_battle_hall.h"
 #include "overlay104/struct_ov104_02230BE4.h"
 
+#include "battle_hall_save.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "field_battle_data_transfer.h"
@@ -19,7 +20,6 @@
 #include "math_util.h"
 #include "party.h"
 #include "pokemon.h"
-#include "unk_02030108.h"
 
 typedef struct {
     u8 unk_00;
@@ -1587,7 +1587,7 @@ FieldBattleDTO *FieldBattleDTO_NewBattleHall(BattleHall *battleHall, UnkStruct_o
     mon = Pokemon_New(HEAP_ID_FIELD2);
 
     for (i = 0; i < playerPartySize; i++) {
-        Pokemon_Copy(Party_GetPokemonBySlotIndex(party, battleHall->unk_260[i]), mon);
+        Pokemon_Copy(Party_GetPokemonBySlotIndex(party, battleHall->partySlots[i]), mon);
         FieldBattleDTO_AddPokemonToBattler(battleDTO, mon, BATTLER_PLAYER_1);
     }
 
@@ -1598,7 +1598,7 @@ FieldBattleDTO *FieldBattleDTO_NewBattleHall(BattleHall *battleHall, UnkStruct_o
     FieldBattleDTO_InitFrontierTrainer(battleDTO, &trDataDTO, opponentPartySize, BATTLER_ENEMY_1, HEAP_ID_FIELD2);
     Party_InitWithCapacity(battleDTO->parties[BATTLER_ENEMY_1], opponentPartySize);
 
-    rank = BattleHall_GetRankOfType(battleHall->selectedTypeIdx, &battleHall->unk_704[battleHall->challengeType][0]);
+    rank = BattleHall_GetRankOfType(battleHall->selectedTypeIdx, &battleHall->typeRanks[battleHall->challengeType][0]);
 
     if (battleHall->challengeType == FRONTIER_CHALLENGE_MULTI) {
         rank = 9;
@@ -1784,7 +1784,7 @@ u8 ov104_0223B5C0(BattleHall *battleHall)
     u32 v0;
     int v1;
     Party *v2 = SaveData_GetParty(battleHall->saveData);
-    Pokemon *v3 = Party_GetPokemonBySlotIndex(v2, battleHall->unk_260[0]);
+    Pokemon *v3 = Party_GetPokemonBySlotIndex(v2, battleHall->partySlots[0]);
     v1 = Pokemon_GetValue(v3, MON_DATA_LEVEL, NULL);
 
     return v1 / 10;
@@ -1838,11 +1838,11 @@ static u16 ov104_0223B644(u8 param0)
 u16 BattleHall_GetHighestLevelInParty(BattleHall *battleHall)
 {
     Party *party = SaveData_GetParty(battleHall->saveData);
-    Pokemon *mon = Party_GetPokemonBySlotIndex(party, battleHall->unk_260[0]);
+    Pokemon *mon = Party_GetPokemonBySlotIndex(party, battleHall->partySlots[0]);
     u16 firstMonsLevel = Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL);
 
     if (BattleHall_GetPlayerPartySize(battleHall->challengeType) == 2) {
-        mon = Party_GetPokemonBySlotIndex(party, battleHall->unk_260[1]);
+        mon = Party_GetPokemonBySlotIndex(party, battleHall->partySlots[1]);
         u16 secondMonsLevel = Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL);
 
         if (firstMonsLevel > secondMonsLevel) {

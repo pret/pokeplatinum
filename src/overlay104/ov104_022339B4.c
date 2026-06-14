@@ -107,7 +107,7 @@ BattleFactory *ov104_022339B4(SaveData *saveData, u16 param1, u8 param2, u8 para
     v7->unk_0E = (u16)(v7->currentStreak / 7);
 
     if (BattleFactory_IsMultiplayerChallenge(v7->challengeType) == 1) {
-        ov104_0222E630(v7->saveData);
+        BattleFrontier_FlagGeonetLinkInfo(v7->saveData);
     }
 
     return v7;
