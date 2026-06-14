@@ -83,7 +83,7 @@ def from_script(v: str, double_battle_id: int) -> int:
         return int(v)   
 
 def from_map_header(s: str) -> int:
-    return map_headers.MapHeader[s].value
+    return map_headers.MapHeaderID[s].value
 
 def from_map(s: str) -> int:
     return maps.MapID[s].value

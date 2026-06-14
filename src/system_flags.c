@@ -227,7 +227,7 @@ BOOL SystemFlag_CheckUnlockedVsSeekerLevel(VarsFlags *varsFlags, int level)
     return result;
 }
 
-u16 SystemFlag_GetAltMusicForHeader(VarsFlags *varsFlags, enum MapHeader mapHeader)
+u16 SystemFlag_GetAltMusicForHeader(VarsFlags *varsFlags, enum MapHeaderID mapHeader)
 {
     u16 sdatID = 0;
     switch (mapHeader) {

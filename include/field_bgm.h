@@ -11,7 +11,7 @@ void FieldBGM_Stop(void);
 void FieldBGM_SetOverride(FieldSystem *fieldSystem, u16 bgmID);
 u16 FieldBGM_GetOverride(FieldSystem *fieldSystem);
 void FieldBGM_ClearOverride(FieldSystem *fieldSystem);
-u16 FieldBGM_GetEffective(FieldSystem *fieldSystem, enum MapHeader mapID);
+u16 FieldBGM_GetEffective(FieldSystem *fieldSystem, enum MapHeaderID mapID);
 u16 FieldBGM_GetForMapHeader(FieldSystem *fieldSystem, int mapID);
 BOOL FieldBGM_TryFadeOut(FieldSystem *fieldSystem, u16 bgmID, int mode);
 u16 FieldBGM_GetEyesMeetForTrainer(enum TrainerID trainerID);
