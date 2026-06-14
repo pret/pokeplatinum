@@ -32,7 +32,9 @@ NINJA ?= ninja
 GIT ?= git
 
 BUILD ?= build
+BUILD_LINUX ?= $(BUILD)_linux
 ROOT_INI := $(BUILD)/root.ini
+ROOT_INI_LINUX := $(BUILD_LINUX)/root.ini
 
 UNAME_R := $(shell uname -r)
 UNAME_S := $(shell uname -s)
@@ -111,6 +113,9 @@ format: $(BUILD)/build.ninja
 target: $(BUILD)/build.ninja
 	$(MESON) compile -C $(BUILD) $(MESON_TARGET)
 
+linux: $(BUILD_LINUX)/build.ninja
+	$(MESON) compile -C $(BUILD_LINUX)
+
 clean: $(BUILD)/build.ninja
 	$(MESON) compile -C $(BUILD) --clean
 	rm -rf $(BUILD)/res
@@ -136,8 +141,8 @@ setup_release: $(BUILD)/build.ninja
 setup_debug: $(BUILD)/build.ninja
 	$(MESON) configure $(BUILD) -Dgdb_debugging=true -Dlogging_enabled=true
 
-setup_linux: $(BUILD)/build.ninja
-	$(MESON) configure $(BUILD) -Dbuild_target=linux
+setup_linux: $(BUILD)_linux/build.ninja
+	$(MESON) configure $(BUILD)_linux -Dbuild_target=linux
 
 configure: $(BUILD)/build.ninja
 
@@ -151,12 +156,28 @@ $(BUILD)/build.ninja: $(ROOT_INI) | $(BUILD) $(SKREW_EXE) meson
 		--cross-file=$(ROOT_INI) \
 		-- $(BUILD)
 
+$(BUILD_LINUX)/build.ninja: $(ROOT_INI_LINUX) | $(BUILD_LINUX) $(SKREW_EXE) meson
+	$(MESON) setup \
+		-Dbuild_target=linux \
+		--native-file=meson/$(NATIVE) \
+		--native-file=$(ROOT_INI_LINUX) \
+		--cross-file=meson/cross_pcport_linux.ini \
+		--cross-file=$(ROOT_INI_LINUX) \
+		-- $(BUILD_LINUX)
+
 $(ROOT_INI): | $(BUILD)
+	echo "[constants]" > $@
+	echo "root = '$$PWD'" >> $@
+
+$(ROOT_INI_LINUX): | $(BUILD_LINUX)
 	echo "[constants]" > $@
 	echo "root = '$$PWD'" >> $@
 
 $(BUILD):
 	mkdir -p -- $(BUILD)
+
+$(BUILD_LINUX):
+	mkdir -p -- $(BUILD_LINUX)
 
 meson: ;
 ifeq ($(MESON),$(MESON_SUB))
