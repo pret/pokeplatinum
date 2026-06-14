@@ -147,7 +147,7 @@ BOOL MapHeader_IsTeleportAllowed(u32 headerID)
         return FALSE;
     }
 
-    return MapHeader_GetMapType(headerID) != 1;
+    return MapHeader_GetMapType(headerID) != MAP_TYPE_TOWN_CITY;
 }
 
 BOOL MapHeader_IsOnMainMatrix(u32 headerID)
@@ -157,22 +157,24 @@ BOOL MapHeader_IsOnMainMatrix(u32 headerID)
 
 BOOL MapHeader_IsPokemonCenter(u32 headerID)
 {
-    return MapHeader_GetMapType(headerID) == 5;
+    return MapHeader_GetMapType(headerID) == MAP_TYPE_POKECENTER;
 }
 
 BOOL MapHeader_IsCave(u32 headerID)
 {
-    return MapHeader_GetMapType(headerID) == 3;
+    return MapHeader_GetMapType(headerID) == MAP_TYPE_CAVE;
 }
 
 BOOL MapHeader_IsBuilding(u32 headerID)
 {
-    return (MapHeader_GetMapType(headerID) == 4) || (MapHeader_GetMapType(headerID) == 5);
+    return MapHeader_GetMapType(headerID) == MAP_TYPE_INDOORS
+        || MapHeader_GetMapType(headerID) == MAP_TYPE_POKECENTER;
 }
 
 BOOL MapHeader_IsOutdoors(u32 headerID)
 {
-    return (MapHeader_GetMapType(headerID) == 1) || (MapHeader_GetMapType(headerID) == 2);
+    return MapHeader_GetMapType(headerID) == MAP_TYPE_TOWN_CITY
+        || MapHeader_GetMapType(headerID) == MAP_TYPE_OUTDOORS;
 }
 
 BOOL MapHeader_IsPokemonCenter2(u32 headerID)
