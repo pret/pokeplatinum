@@ -3,9 +3,9 @@
 #include "res/field/events/events_victory_road_1f_room_2.h"
 
 
-    ScriptEntry VictoryRoad1FRoom2_TriggerStartFollowingMarley
-    ScriptEntry VictoryRoad1FRoom2_TriggerPlayerLeaveMarley
-    ScriptEntry VictoryRoad1FRoom2_TriggerMarleyLeavePlayer
+    ScriptEntry VictoryRoad1FRoom2_CoordEvent_StartFollowingMarley
+    ScriptEntry VictoryRoad1FRoom2_CoordEvent_PlayerLeaveMarley
+    ScriptEntry VictoryRoad1FRoom2_CoordEvent_MarleyLeavePlayer
     ScriptEntry VictoryRoad1FRoom2_OnTransition
     ScriptEntryEnd
 
@@ -17,7 +17,7 @@ VictoryRoad1FRoom2_ResetFollowerMarleyState:
     SetVar VAR_VICTORY_ROAD_1F_ROOM_2_FOLLOWER_MARLEY_STATE, 0
     End
 
-VictoryRoad1FRoom2_TriggerStartFollowingMarley:
+VictoryRoad1FRoom2_CoordEvent_StartFollowingMarley:
     LockAll
     SetPlayerBike FALSE
     ApplyMovement LOCALID_MARLEY, VictoryRoad1FRoom2_Movement_MarleyNoticePlayer
@@ -129,7 +129,7 @@ VictoryRoad1FRoom2_Movement_MarleyWalkToPlayerZ60:
     WalkNormalWest
     EndMovement
 
-VictoryRoad1FRoom2_TriggerPlayerLeaveMarley:
+VictoryRoad1FRoom2_CoordEvent_PlayerLeaveMarley:
     LockAll
     ApplyMovement LOCALID_PLAYER, VictoryRoad1FRoom2_Movement_PlayerWalkOnSpotEast
     ApplyMovement LOCALID_MARLEY, VictoryRoad1FRoom2_Movement_MarleyFaceWest
@@ -236,7 +236,7 @@ VictoryRoad1FRoom2_Movement_MarleyFaceWest:
     FaceWest
     EndMovement
 
-VictoryRoad1FRoom2_TriggerMarleyLeavePlayer:
+VictoryRoad1FRoom2_CoordEvent_MarleyLeavePlayer:
     LockAll
     ClearHasPartner
     SetMovementType LOCALID_MARLEY, MOVEMENT_TYPE_LOOK_NORTH

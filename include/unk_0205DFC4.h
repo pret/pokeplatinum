@@ -20,9 +20,9 @@ enum BattleFrontierStatsIndex BattleFrontierStats_GetFactoryLatestStreakIdx(u8 i
 enum BattleFrontierStatsIndex BattleFrontierStats_GetFactoryRecordStreakIdx(u8 isOpenLevel, u8 challengeType);
 enum BattleFrontierStatsIndex BattleFrontierStats_GetFactoryLatestTradeCountIndex(u8 isOpenLevel, u8 challengeType);
 enum BattleFrontierStatsIndex BattleFrontierStats_GetFactoryRecordTradeCountIndex(u8 isOpenLevel, u8 challengeType);
-enum BattleFrontierStatsIndex sub_0205E4E0(u8 param0, u8 param1);
+enum BattleFrontierStatsIndex BattleFrontierStats_GetHallCurrentTypeRanksIndex(u8 challengeType, u8 pokemonType);
 enum BattleFrontierStatsIndex BattleFrontierStats_GetHallLatestStreakIndex(u8 challengeType);
-enum BattleFrontierStatsIndex sub_0205E534(u8 param0);
+enum BattleFrontierStatsIndex BattleFrontierStats_GetHallCurrentStreakIndex(u8 challengeType);
 enum BattleFrontierStatsIndex BattleFrontierStats_GetHallLatestSpeciesIndex(u8 challengeType);
 enum BattleFrontierStatsIndex BattleFrontierStats_GetHallRecordStreakIndex(u8 challengeType);
 enum BattleFrontierStatsIndex BattleFrontierStats_GetCastleRankIndex(u8 challengeType, u8 rankType);

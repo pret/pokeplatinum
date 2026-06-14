@@ -599,10 +599,8 @@ enum ObjectEventGfx BattleFrontier_GetPlayerObjEventGfx(const TrainerInfo *playe
     }
 }
 
-void ov104_0222E630(SaveData *saveData)
+void BattleFrontier_FlagGeonetLinkInfo(SaveData *saveData)
 {
     WiFiHistory *wiFiHistory = SaveData_WiFiHistory(saveData);
-
     WiFiHistory_FlagGeonetLinkInfo(wiFiHistory);
-    return;
 }

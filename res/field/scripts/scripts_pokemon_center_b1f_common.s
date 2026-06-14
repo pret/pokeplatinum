@@ -3,15 +3,15 @@
 #include "res/text/bank/menu_entries.h"
 
 
-    ScriptEntry PokemonCenterB1FCommon_OnFrameReceivePalPad
+    ScriptEntry PokemonCenterB1FCommon_OnFrame_ReceivePalPad
     ScriptEntry PokemonCenterB1FCommon_AttendantInfo
     ScriptEntry PokemonCenterB1FCommon_AttendantWiFiClub
     ScriptEntry PokemonCenterB1FCommon_OnLoad
     ScriptEntry PokemonCenterB1FCommon_AttendantWifiPlaza
-    ScriptEntry PokemonCenterB1FCommon_OnFrameExitWiFiClub
+    ScriptEntry PokemonCenterB1FCommon_OnFrame_ExitWiFiClub
     ScriptEntryEnd
 
-PokemonCenterB1FCommon_OnFrameReceivePalPad:
+PokemonCenterB1FCommon_OnFrame_ReceivePalPad:
     LockAll
     Message PokemonCenterB1FCommon_Text_HelloRightThisWay
     CloseMessage
@@ -440,7 +440,7 @@ PokemonCenterB1FCommon_Unused:
     ReleaseAll
     End
 
-PokemonCenterB1FCommon_OnFrameExitWiFiClub:
+PokemonCenterB1FCommon_OnFrame_ExitWiFiClub:
     LockAll
     LoadDoorAnimation 0, 0, 5, 2, ANIMATION_TAG_DOOR_1
     Call PokemonCenterB1FCommon_DoorOpenAnimation

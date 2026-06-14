@@ -3,9 +3,9 @@
 
 
     ScriptEntry Route211East_AceTrainerM
-    ScriptEntry Route211East_ArrowSignMtCoronet
-    ScriptEntry Route211East_TrainerTips
-    ScriptEntry Route211East_ArrowSignCelesticTown
+    ScriptEntry Route211East_ArrowSignpostMtCoronet
+    ScriptEntry Route211East_TrainerTipsSignpost
+    ScriptEntry Route211East_ArrowSignpostCelesticTown
     ScriptEntryEnd
 
 Route211East_AceTrainerM:
@@ -44,15 +44,15 @@ Route211East_Movement_ExclamationMark:
     EmoteExclamationMark
     EndMovement
 
-Route211East_ArrowSignMtCoronet:
+Route211East_ArrowSignpostMtCoronet:
     ShowArrowSign Route211East_Text_SignMtCoronet
     End
 
-Route211East_TrainerTips:
+Route211East_TrainerTipsSignpost:
     ShowScrollingSign Route211East_Text_TrainerTipsCheckSupply
     End
 
-Route211East_ArrowSignCelesticTown:
+Route211East_ArrowSignpostCelesticTown:
     ShowArrowSign Route211East_Text_SignCelesticTown
     End
 

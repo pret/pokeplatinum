@@ -3,7 +3,7 @@
 
 
     ScriptEntry OldChateauDiningArea_OnTransition
-    ScriptEntry OldChateauDiningArea_OnFrameOldManLeave
+    ScriptEntry OldChateauDiningArea_OnFrame_OldManLeave
     ScriptEntryEnd
 
 OldChateauDiningArea_OnTransition:
@@ -17,7 +17,7 @@ OldChateauDiningArea_ShowOldMan:
     SetVar VAR_OLD_CHATEAU_DINING_AREA_OLD_MAN_STATE, 1
     End
 
-OldChateauDiningArea_OnFrameOldManLeave:
+OldChateauDiningArea_OnFrame_OldManLeave:
     LockAll
     ApplyMovement LOCALID_PLAYER, OldChateauDiningArea_Movement_PlayerWatchOldManLeave
     ApplyMovement LOCALID_OLD_MAN, OldChateauDiningArea_Movement_OldManLeave

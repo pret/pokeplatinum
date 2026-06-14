@@ -28,18 +28,18 @@
     ScriptEntry BattleFrontier_AttendantSouthwest
     ScriptEntry BattleFrontier_Unused24
     ScriptEntry BattleFrontier_AttendantSoutheast
-    ScriptEntry BattleFrontier_SignBattleTower
-    ScriptEntry BattleFrontier_SignBattleHall
-    ScriptEntry BattleFrontier_SignBattleCastle
-    ScriptEntry BattleFrontier_SignBattleArcade
-    ScriptEntry BattleFrontier_SignBattleFactory
+    ScriptEntry BattleFrontier_TrainerTipsSignpostBattleTower
+    ScriptEntry BattleFrontier_TrainerTipsSignpostBattleHall
+    ScriptEntry BattleFrontier_TrainerTipsSignpostBattleCastle
+    ScriptEntry BattleFrontier_TrainerTipsSignpostBattleArcade
+    ScriptEntry BattleFrontier_TrainerTipsSignpostBattleFactory
     ScriptEntry BattleFrontier_StatueWest
     ScriptEntry BattleFrontier_StatueEast
     ScriptEntry BattleFrontier_ScaleModel
-    ScriptEntry BattleFrontier_TriggerEnterBattleHall
-    ScriptEntry BattleFrontier_TriggerEnterBattleCastle
-    ScriptEntry BattleFrontier_TriggerEnterBattleArcade
-    ScriptEntry BattleFrontier_TriggerEnterBattleFactory
+    ScriptEntry BattleFrontier_CoordEvent_EnterBattleHall
+    ScriptEntry BattleFrontier_CoordEvent_EnterBattleCastle
+    ScriptEntry BattleFrontier_CoordEvent_EnterBattleArcade
+    ScriptEntry BattleFrontier_CoordEvent_EnterBattleFactory
     ScriptEntry BattleFrontier_OnTransition
     ScriptEntryEnd
 
@@ -175,23 +175,23 @@ BattleFrontier_AttendantSoutheast:
     ReleaseAll
     End
 
-BattleFrontier_SignBattleTower:
+BattleFrontier_TrainerTipsSignpostBattleTower:
     ShowLandmarkSign BattleFrontier_Text_SignBattleTower
     End
 
-BattleFrontier_SignBattleHall:
+BattleFrontier_TrainerTipsSignpostBattleHall:
     ShowLandmarkSign BattleFrontier_Text_SignBattleHall
     End
 
-BattleFrontier_SignBattleCastle:
+BattleFrontier_TrainerTipsSignpostBattleCastle:
     ShowLandmarkSign BattleFrontier_Text_SignBattleCastle
     End
 
-BattleFrontier_SignBattleArcade:
+BattleFrontier_TrainerTipsSignpostBattleArcade:
     ShowLandmarkSign BattleFrontier_Text_SignBattleArcade
     End
 
-BattleFrontier_SignBattleFactory:
+BattleFrontier_TrainerTipsSignpostBattleFactory:
     ShowLandmarkSign BattleFrontier_Text_SignBattleFactory
     End
 
@@ -207,7 +207,7 @@ BattleFrontier_ScaleModel:
     EventMessage BattleFrontier_Text_ScaleModelBattleFrontier
     End
 
-BattleFrontier_TriggerEnterBattleHall:
+BattleFrontier_CoordEvent_EnterBattleHall:
     LockAll
     ApplyMovement LOCALID_PLAYER, BattleFrontier_Movement_PlayerEnterBattleHall
     WaitMovement
@@ -224,7 +224,7 @@ BattleFrontier_Movement_PlayerEnterBattleHall:
     WalkFastWest 5
     EndMovement
 
-BattleFrontier_TriggerEnterBattleCastle:
+BattleFrontier_CoordEvent_EnterBattleCastle:
     LockAll
     ApplyMovement LOCALID_PLAYER, BattleFrontier_Movement_PlayerEnterBattleCastle
     WaitMovement
@@ -241,7 +241,7 @@ BattleFrontier_Movement_PlayerEnterBattleCastle:
     WalkFastWest 6
     EndMovement
 
-BattleFrontier_TriggerEnterBattleArcade:
+BattleFrontier_CoordEvent_EnterBattleArcade:
     LockAll
     ApplyMovement LOCALID_PLAYER, BattleFrontier_Movement_PlayerEnterBattleArcade
     WaitMovement
@@ -258,7 +258,7 @@ BattleFrontier_Movement_PlayerEnterBattleArcade:
     WalkFastEast 5
     EndMovement
 
-BattleFrontier_TriggerEnterBattleFactory:
+BattleFrontier_CoordEvent_EnterBattleFactory:
     LockAll
     ApplyMovement LOCALID_PLAYER, BattleFrontier_Movement_PlayerEnterBattleFactory
     WaitMovement

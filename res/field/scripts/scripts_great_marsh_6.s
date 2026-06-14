@@ -3,7 +3,7 @@
 
 
     ScriptEntry GreatMarsh6_AceTrainerM
-    ScriptEntry GreatMarsh6_SignArea6
+    ScriptEntry GreatMarsh6_SignboardArea6
     ScriptEntryEnd
 
 GreatMarsh6_AceTrainerM:
@@ -62,6 +62,6 @@ GreatMarsh6_BagIsFull:
     ReleaseAll
     End
 
-GreatMarsh6_SignArea6:
+GreatMarsh6_SignboardArea6:
     ShowLandmarkSign GreatMarsh6_Text_Area6
     End

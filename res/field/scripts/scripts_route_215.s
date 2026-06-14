@@ -9,7 +9,7 @@
     ScriptEntry Route215_JoggerScott
     ScriptEntry Route215_JoggerCraig
     ScriptEntry Route215_OnTransition
-    ScriptEntry Route215_TrainerTips
+    ScriptEntry Route215_TrainerTipsSignpost
     ScriptEntryEnd
 
 Route215_OnTransition:
@@ -70,7 +70,7 @@ Route215_ArrowSignpostVeilstoneCity:
     ShowArrowSign Route215_Text_SignRt215VeilstoneCity
     End
 
-Route215_TrainerTips:
+Route215_TrainerTipsSignpost:
     ShowScrollingSign Route215_Text_TrainerTipsPhysicalSpecial
     End
 

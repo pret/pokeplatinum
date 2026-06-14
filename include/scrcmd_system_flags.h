@@ -20,8 +20,8 @@ BOOL ScrCmd_SetStepFlag(ScriptContext *ctx);
 BOOL ScrCmd_ClearStepFlag(ScriptContext *ctx);
 BOOL ScrCmd_CheckGameCompleted(ScriptContext *ctx);
 BOOL ScrCmd_SetGameCompleted(ScriptContext *ctx);
-BOOL ScrCmd_Strength(ScriptContext *ctx);
-BOOL ScrCmd_Flash(ScriptContext *ctx);
-BOOL ScrCmd_Defog(ScriptContext *ctx);
+BOOL ScrCmd_DoStrengthFunc(ScriptContext *ctx);
+BOOL ScrCmd_DoFlashFunc(ScriptContext *ctx);
+BOOL ScrCmd_DoDefogFunc(ScriptContext *ctx);
 
 #endif // POKEPLATINUM_SCRCMD_SYSTEM_FLAGS_H

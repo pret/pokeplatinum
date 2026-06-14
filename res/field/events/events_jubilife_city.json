@@ -584,13 +584,13 @@
         {
             "x": 129,
             "z": 736,
-            "dest_header_id": "MAP_HEADER_JUBILIFE_CITY_UNKNOWN_HOUSE_3",
+            "dest_header_id": "MAP_HEADER_UNUSED_JUBILIFE_CITY_HOUSE_3",
             "dest_warp_id": 0
         },
         {
             "x": 128,
             "z": 736,
-            "dest_header_id": "MAP_HEADER_JUBILIFE_CITY_UNKNOWN_HOUSE_4",
+            "dest_header_id": "MAP_HEADER_UNUSED_JUBILIFE_CITY_HOUSE_4",
             "dest_warp_id": 0
         },
         {

@@ -3,13 +3,13 @@
 #include "res/field/events/events_route_227.h"
 
 
-    ScriptEntry Route227_TriggerWakeRival
+    ScriptEntry Route227_CoordEvent_WakeRival
     ScriptEntry Route227_ArrowSignpostStarkMountain
-    ScriptEntry Route227_TriggerBuck
+    ScriptEntry Route227_CoordEvent_Buck
     ScriptEntry Route227_Buck
     ScriptEntryEnd
 
-Route227_TriggerWakeRival:
+Route227_CoordEvent_WakeRival:
     LockAll
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     CallIfEq VAR_0x8004, 739, Route227_PlayerWalkWestOnSpotNorth
@@ -178,7 +178,7 @@ Route227_Buck:
     NPCMessage Route227_Text_YoureInCharge
     End
 
-Route227_TriggerBuck:
+Route227_CoordEvent_Buck:
     LockAll
     ApplyMovement LOCALID_BUCK, Route227_Movement_BuckNoticePlayer
     ApplyMovement LOCALID_PLAYER, Route227_Movement_PlayerFaceBuck

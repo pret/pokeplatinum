@@ -10,8 +10,8 @@
     ScriptEntry FloaromaTown_LassEast
     ScriptEntry FloaromaTown_Camper
     ScriptEntry FloaromaTown_MapSignpost
-    ScriptEntry FloaromaTown_LandmarkSignFlowerShop
-    ScriptEntry FloaromaTown_LandmarkSignFloaromaMeadow
+    ScriptEntry FloaromaTown_SignboardFlowerShop
+    ScriptEntry FloaromaTown_SignboardFloaromaMeadow
     ScriptEntry FloaromaTown_Beauty
     ScriptEntryEnd
 
@@ -90,11 +90,11 @@ FloaromaTown_MapSignpost:
     ShowMapSign FloaromaTown_Text_MapSign
     End
 
-FloaromaTown_LandmarkSignFlowerShop:
+FloaromaTown_SignboardFlowerShop:
     ShowLandmarkSign FloaromaTown_Text_PickAPeckOfColorsFlowerShopFreeBerriesAvailable
     End
 
-FloaromaTown_LandmarkSignFloaromaMeadow:
+FloaromaTown_SignboardFloaromaMeadow:
     ShowLandmarkSign FloaromaTown_Text_FloaromaMeadowAheadHoneyAvailable
     End
 

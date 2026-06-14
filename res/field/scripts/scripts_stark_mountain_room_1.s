@@ -4,7 +4,7 @@
 
 
     ScriptEntry StarkMountainOutside_OnTransition
-    ScriptEntry StarkMountainOutside_OnFrameTeamGalactic
+    ScriptEntry StarkMountainOutside_OnFrame_TeamGalactic
     ScriptEntryEnd
 
 StarkMountainOutside_OnTransition:
@@ -12,7 +12,7 @@ StarkMountainOutside_OnTransition:
     SetFlag FLAG_HIDE_ROUTE_227_BUCK
     End
 
-StarkMountainOutside_OnFrameTeamGalactic:
+StarkMountainOutside_OnFrame_TeamGalactic:
     LockAll
     ApplyMovement LOCALID_MARS, StarkMountainRoom1_Movement_MarsWalkOnSpotSouth
     WaitMovement

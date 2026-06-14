@@ -19,7 +19,7 @@
     ScriptEntry RotomsRoom_OnResume
     ScriptEntry RotomsRoom_ApplianceSpot
     ScriptEntry RotomsRoom_OldNotebook
-    ScriptEntry RotomsRoom_OnFrameProfRowan
+    ScriptEntry RotomsRoom_OnFrame_ProfRowan
     ScriptEntryEnd
 
 RotomsRoom_OnResume:
@@ -517,7 +517,7 @@ RotomsRoom_SetStateEnterProfRowan:
     GoTo RotomsRoom_WarpInPlace
     End
 
-RotomsRoom_OnFrameProfRowan:
+RotomsRoom_OnFrame_ProfRowan:
     LockAll
     ClearFlag FLAG_HIDE_ROTOMS_ROOM_PROF_ROWAN
     PlaySE SEQ_SE_DP_KAIDAN2

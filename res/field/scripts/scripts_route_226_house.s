@@ -5,7 +5,7 @@
 
     ScriptEntry Route226House_OnTransition
     ScriptEntry Route226House_Meister
-    ScriptEntry Route226House_Sign
+    ScriptEntry Route226House_BgSign
     ScriptEntryEnd
 
 Route226House_OnTransition:
@@ -77,6 +77,6 @@ Route226House_MakeFriendsAnywhere:
     ReleaseAll
     End
 
-Route226House_Sign:
+Route226House_BgSign:
     EventMessage Route226House_Text_VisitedOver150Countries
     End

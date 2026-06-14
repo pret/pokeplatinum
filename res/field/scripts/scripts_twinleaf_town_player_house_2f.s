@@ -6,13 +6,13 @@
     ScriptEntry TwinleafTownPlayerHouse2F_Wii
     ScriptEntry TwinleafTownPlayerHouse2F_PC
     ScriptEntry TwinleafTownPlayerHouse2F_OnFrame_ConcludeSpecialProgram
-    ScriptEntry TwinleafTownPlayerHouse2F_ScrollingSign
+    ScriptEntry TwinleafTownPlayerHouse2F_ScrollingSignpost
     ScriptEntry TwinleafTownPlayerHouse2F_OnTransition
     ScriptEntry TwinleafTownPlayerHouse2F_TV
-    ScriptEntry TwinleafTownPlayerHouse2F_RivalTriggerNorth
-    ScriptEntry TwinleafTownPlayerHouse2F_RivalTriggerWest
-    ScriptEntry TwinleafTownPlayerHouse2F_RivalTriggerEast
-    ScriptEntry TwinleafTownPlayerHouse2F_RivalTriggerSouth
+    ScriptEntry TwinleafTownPlayerHouse2F_CoordEvent_RivalNorth
+    ScriptEntry TwinleafTownPlayerHouse2F_CoordEvent_RivalWest
+    ScriptEntry TwinleafTownPlayerHouse2F_CoordEvent_RivalEast
+    ScriptEntry TwinleafTownPlayerHouse2F_CoordEvent_RivalSouth
     ScriptEntryEnd
 
 TwinleafTownPlayerHouse2F_OnTransition:
@@ -49,7 +49,7 @@ TwinleafTownPlayerHouse2F_PC:
     ReleaseAll
     End
 
-TwinleafTownPlayerHouse2F_ScrollingSign:
+TwinleafTownPlayerHouse2F_ScrollingSignpost:
     ShowScrollingSign TwinleafTownPlayerHouse2F_Text_TheXButtonOpensTheMenu
     End
 
@@ -57,22 +57,22 @@ TwinleafTownPlayerHouse2F_TV:
     EventMessage TwinleafTownPlayerHouse2F_Text_MomBoughThisTVAsAGift
     End
 
-TwinleafTownPlayerHouse2F_RivalTriggerNorth:
+TwinleafTownPlayerHouse2F_CoordEvent_RivalNorth:
     SetVar VAR_MAP_LOCAL_0, 0
     GoTo TwinleafTownPlayerHouse2F_Rival
     End
 
-TwinleafTownPlayerHouse2F_RivalTriggerWest:
+TwinleafTownPlayerHouse2F_CoordEvent_RivalWest:
     SetVar VAR_MAP_LOCAL_0, 1
     GoTo TwinleafTownPlayerHouse2F_Rival
     End
 
-TwinleafTownPlayerHouse2F_RivalTriggerEast:
+TwinleafTownPlayerHouse2F_CoordEvent_RivalEast:
     SetVar VAR_MAP_LOCAL_0, 2
     GoTo TwinleafTownPlayerHouse2F_Rival
     End
 
-TwinleafTownPlayerHouse2F_RivalTriggerSouth:
+TwinleafTownPlayerHouse2F_CoordEvent_RivalSouth:
     SetVar VAR_MAP_LOCAL_0, 3
     GoTo TwinleafTownPlayerHouse2F_Rival
     End

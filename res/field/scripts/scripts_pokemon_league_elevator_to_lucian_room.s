@@ -3,7 +3,7 @@
 
     ScriptEntry PokemonLeagueElevatorToLucianRoom_OnTransition
     ScriptEntry PokemonLeagueElevatorToLucianRoom_DisablePlatformLift
-    ScriptEntry PokemonLeagueElevatorToLucianRoom_TriggerPlatformLift
+    ScriptEntry PokemonLeagueElevatorToLucianRoom_CoordEvent_PlatformLift
     ScriptEntryEnd
 
 PokemonLeagueElevatorToLucianRoom_OnTransition:
@@ -17,7 +17,7 @@ PokemonLeagueElevatorToLucianRoom_DisablePlatformLift:
     SetVar VAR_MAP_LOCAL_0, 1
     End
 
-PokemonLeagueElevatorToLucianRoom_TriggerPlatformLift:
+PokemonLeagueElevatorToLucianRoom_CoordEvent_PlatformLift:
     TriggerPlatformLift
     SetVar VAR_MAP_LOCAL_0, 1
     End
