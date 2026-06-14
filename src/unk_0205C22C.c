@@ -249,8 +249,8 @@ static void sub_0205C51C(UnkStruct_0205C22C *param0, MapObjectManager *param1)
 
     GF_ASSERT(param0->playerAvatar != NULL);
 
-    v2 = Player_GetXPos(param0->playerAvatar);
-    v3 = Player_GetZPos(param0->playerAvatar);
+    v2 = PlayerAvatar_GetXPos(param0->playerAvatar);
+    v3 = PlayerAvatar_GetZPos(param0->playerAvatar);
 
     for (v1 = 0; v1 < 50; v1++) {
         v0 = MapObjMan_LocalMapObjByIndex(param1, v1 + 1);
@@ -321,7 +321,7 @@ static void sub_0205C51C(UnkStruct_0205C22C *param0, MapObjectManager *param1)
         }
     }
 
-    sub_0205C7BC(&param0->unk_0C[50], Player_MapObject(param0->playerAvatar));
+    sub_0205C7BC(&param0->unk_0C[50], PlayerAvatar_GetMapObject(param0->playerAvatar));
     sub_0205C6BC(&param0->unk_0C[50]);
 }
 

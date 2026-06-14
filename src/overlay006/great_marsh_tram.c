@@ -278,8 +278,8 @@ static BOOL CallTramToPlayer(FieldSystem *fieldSystem, GreatMarshTramMovementTas
 static BOOL RideTramToArea(FieldSystem *fieldSystem, GreatMarshTramMovementTask *task, const fx32 *destZ, VecFx32 *tramPosition)
 {
     VecFx32 playerPos;
-    MapObject *playerObj = Player_MapObject(fieldSystem->playerAvatar);
-    PlayerAvatar_PosVectorOut(fieldSystem->playerAvatar, &playerPos);
+    MapObject *playerObj = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
+    PlayerAvatar_GetPosPtr(fieldSystem->playerAvatar, &playerPos);
 
     tramPosition->z = playerPos.z + FX32_CONST(8);
 
@@ -289,13 +289,13 @@ static BOOL RideTramToArea(FieldSystem *fieldSystem, GreatMarshTramMovementTask 
         if (LocalMapObj_IsAnimationSet(playerObj) == TRUE) {
             LocalMapObj_SetAnimationCode(playerObj, sRidingTramNorthMovements[task->speedLevel]);
 
-            if (task->speedLevel < NELEMS(sRidingTramNorthMovements) - 1 && Player_GetZPos(fieldSystem->playerAvatar) > task->slowDownZ) {
+            if (task->speedLevel < NELEMS(sRidingTramNorthMovements) - 1 && PlayerAvatar_GetZPos(fieldSystem->playerAvatar) > task->slowDownZ) {
                 if (task->speedLevel == 0) {
                     Sound_PlayEffect(SEQ_SE_DP_TRAIN02);
                 }
 
                 task->speedLevel++;
-            } else if (Player_GetZPos(fieldSystem->playerAvatar) <= task->slowDownZ) {
+            } else if (PlayerAvatar_GetZPos(fieldSystem->playerAvatar) <= task->slowDownZ) {
                 if (task->speedLevel != 0) {
                     if (task->speedLevel == NELEMS(sRidingTramNorthMovements) - 1) {
                         Sound_PlayEffect(SEQ_SE_DP_TRAIN03);
@@ -308,13 +308,13 @@ static BOOL RideTramToArea(FieldSystem *fieldSystem, GreatMarshTramMovementTask 
     } else if (LocalMapObj_IsAnimationSet(playerObj) == TRUE) {
         LocalMapObj_SetAnimationCode(playerObj, sRidingTramSouthMovements[task->speedLevel]);
 
-        if (task->speedLevel < NELEMS(sRidingTramSouthMovements) - 1 && Player_GetZPos(fieldSystem->playerAvatar) < task->slowDownZ) {
+        if (task->speedLevel < NELEMS(sRidingTramSouthMovements) - 1 && PlayerAvatar_GetZPos(fieldSystem->playerAvatar) < task->slowDownZ) {
             if (task->speedLevel == 0) {
                 Sound_PlayEffect(SEQ_SE_DP_TRAIN02);
             }
 
             task->speedLevel++;
-        } else if (Player_GetZPos(fieldSystem->playerAvatar) >= task->slowDownZ) {
+        } else if (PlayerAvatar_GetZPos(fieldSystem->playerAvatar) >= task->slowDownZ) {
             if (task->speedLevel != 0) {
                 if (task->speedLevel == NELEMS(sRidingTramSouthMovements) - 1) {
                     Sound_PlayEffect(SEQ_SE_DP_TRAIN03);

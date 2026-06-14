@@ -1946,7 +1946,7 @@ static void Traps_StepBackFromTool(int dir)
 {
     int oppositeDir = CommPlayer_GetOppositeDir(dir);
 
-    Player_SetDir(trapsEnv->fieldSystem->playerAvatar, oppositeDir);
+    PlayerAvatar_TryFace(trapsEnv->fieldSystem->playerAvatar, oppositeDir);
 
     int x = trapsEnv->triggeredTraps[CommSys_CurNetId()].trap.x;
     int z = trapsEnv->triggeredTraps[CommSys_CurNetId()].trap.z;
@@ -1958,8 +1958,8 @@ static void Traps_StepBackFromTool(int dir)
 
 static BOOL Traps_CheckPlayerPosRelativeToTrap(int dir, enum TrapRelativePosition position)
 {
-    int playerX = Player_GetXPos(trapsEnv->fieldSystem->playerAvatar);
-    int playerZ = Player_GetZPos(trapsEnv->fieldSystem->playerAvatar);
+    int playerX = PlayerAvatar_GetXPos(trapsEnv->fieldSystem->playerAvatar);
+    int playerZ = PlayerAvatar_GetZPos(trapsEnv->fieldSystem->playerAvatar);
     int oppositeDir = CommPlayer_GetOppositeDir(dir);
     int trapX = trapsEnv->triggeredTraps[CommSys_CurNetId()].trap.x;
     int trapZ = trapsEnv->triggeredTraps[CommSys_CurNetId()].trap.z;
@@ -2139,8 +2139,8 @@ static void Traps_HurlTrapRightEffectClient(int netID, BOOL isTool, int toolInit
 
 static int Traps_NotifyTrapTriggered(void)
 {
-    int x = Player_GetXPos(trapsEnv->fieldSystem->playerAvatar);
-    int z = Player_GetZPos(trapsEnv->fieldSystem->playerAvatar);
+    int x = PlayerAvatar_GetXPos(trapsEnv->fieldSystem->playerAvatar);
+    int z = PlayerAvatar_GetZPos(trapsEnv->fieldSystem->playerAvatar);
 
     ov5_021F5634(trapsEnv->fieldSystem, x, 0, z);
     UndergroundTextPrinter_SetUndergroundTrapNameWithIndex(UndergroundMan_GetCommonTextPrinter(), 0, trapsEnv->triggeredTrapIDClient);
@@ -3045,8 +3045,8 @@ static void Traps_HoleTrapClientTask(SysTask *sysTask, void *data)
             UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetCommonTextPrinter());
 
             ctx->state = HOLE_TRAP_STATE_MAIN;
-            int x = Player_GetXPos(trapsEnv->fieldSystem->playerAvatar);
-            int z = Player_GetZPos(trapsEnv->fieldSystem->playerAvatar);
+            int x = PlayerAvatar_GetXPos(trapsEnv->fieldSystem->playerAvatar);
+            int z = PlayerAvatar_GetZPos(trapsEnv->fieldSystem->playerAvatar);
 
             if (!ctx->isPitTrap) {
                 ctx->holeTextureManager = ov5_DrawFloorTexture(trapsEnv->fieldSystem, x, z, 2, FLOOR_TEXTURE_BLACK_CIRCLE);
@@ -3058,7 +3058,7 @@ static void Traps_HoleTrapClientTask(SysTask *sysTask, void *data)
         }
         break;
     case HOLE_TRAP_STATE_MAIN:
-        int dir = PlayerAvatar_GetDir(trapsEnv->fieldSystem->playerAvatar);
+        int dir = PlayerAvatar_GetFacingDir(trapsEnv->fieldSystem->playerAvatar);
 
         if (ctx->lastDir != dir) {
             Sound_PlayEffect(SEQ_SE_DP_BOX02);
@@ -3126,7 +3126,7 @@ static void Traps_StartHoleTrapClientTask(BOOL isPitTrap, BOOL isTool, int toolI
     ctx->isPitTrap = isPitTrap;
     ctx->jumpOutOfHoleProgress = 0;
     ctx->isTool = isTool;
-    ctx->lastDir = PlayerAvatar_GetDir(trapsEnv->fieldSystem->playerAvatar);
+    ctx->lastDir = PlayerAvatar_GetFacingDir(trapsEnv->fieldSystem->playerAvatar);
     ctx->toolInitialDir = toolInitialDir;
 
     trapsEnv->currentTrapContext = ctx;
@@ -4044,8 +4044,8 @@ static BOOL Traps_ProcessBoulder(BgConfig *unused, RockTrapContext *ctx)
     switch (ctx->subState) {
     case ROCK_TRAP_SUBSTATE_DRAW_SHADOW:
         ctx->timer = 0;
-        int x = Player_GetXPos(trapsEnv->fieldSystem->playerAvatar);
-        int z = Player_GetZPos(trapsEnv->fieldSystem->playerAvatar);
+        int x = PlayerAvatar_GetXPos(trapsEnv->fieldSystem->playerAvatar);
+        int z = PlayerAvatar_GetZPos(trapsEnv->fieldSystem->playerAvatar);
         ctx->shadowManager = ov5_DrawGrowingFloorTexture(trapsEnv->fieldSystem, x, z, 5, FLOOR_TEXTURE_BLACK_CIRCLE);
         ctx->subState = ROCK_TRAP_SUBSTATE_INIT_BOULDER_FALL;
         Sound_PlayEffect(SEQ_SE_DP_FW466);

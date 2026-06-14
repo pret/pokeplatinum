@@ -203,7 +203,7 @@ static void UndergroundMapTransition_EnterStartTask(SysTask *sysTask, void *data
 
     switch (ctx->state) {
     case ENTER_START_STATE_INIT:
-        MapObject_SetPauseMovementOff(Player_MapObject(ctx->fieldSystem->playerAvatar));
+        MapObject_SetPauseMovementOff(PlayerAvatar_GetMapObject(ctx->fieldSystem->playerAvatar));
         PlayerAvatar_SetVisible(ctx->fieldSystem->playerAvatar, FALSE);
         ctx->state++;
         break;
