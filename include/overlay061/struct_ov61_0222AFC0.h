@@ -3,7 +3,7 @@
 
 #include "overlay062/struct_ov62_02239DA4_sub1.h"
 
-#include "sentence.h"
+#include "easy_chat_sentence.h"
 
 typedef struct {
     u16 unk_00[8];
@@ -21,7 +21,7 @@ typedef struct {
     u8 unk_1E;
     u8 unk_1F;
     union {
-        Sentence unk_20_val1;
+        EasyChatSentence unk_20_val1;
         u16 unk_20_val2[40];
     };
     u8 unk_70[12];

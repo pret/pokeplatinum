@@ -1634,7 +1634,7 @@ static int TVSegment_LoadMessage_BattleTowerCorner(FieldSystem *fieldSystem, Str
 
     StringTemplate_SetNumber(template, 0, battleTowerCorner->outcome.winStreak, 4, PADDING_MODE_NONE, CHARSET_MODE_EN);
     TVSegment_SetTemplateTrainerName(template, 1, episode);
-    StringTemplate_SetCustomMessageWord(template, 2, battleTowerCorner->customMessageWord);
+    StringTemplate_SetEasyChatWord(template, 2, battleTowerCorner->customMessageWord);
 
     if (battleTowerCorner->outcome.win == TRUE) {
         return TVProgramInterviews_Text_BattleTowerCorner_Win;
@@ -1669,13 +1669,13 @@ static int TVSegment_LoadMessage_YourPokemonCorner(FieldSystem *fieldSystem, Str
         TVSegment_SetTemplateTrainerName(template, 0, episode);
         TVSegment_SetTemplatePokemonSpecies(template, 1, yourPokemonCorner->species, yourPokemonCorner->gender, yourPokemonCorner->language, yourPokemonCorner->metGame);
         sub_0206CD94(template, 2, yourPokemonCorner->nickname, yourPokemonCorner->gender, yourPokemonCorner->language, 1);
-        StringTemplate_SetCustomMessageWord(template, 3, yourPokemonCorner->customMessageWord);
+        StringTemplate_SetEasyChatWord(template, 3, yourPokemonCorner->customMessageWord);
         return TVProgramInterviews_Text_YourPokemonCorner_Nickname;
     } else {
         TVSegment_SetTemplateTrainerName(template, 0, episode);
         TVSegment_SetTemplatePokemonSpecies(template, 1, yourPokemonCorner->species, yourPokemonCorner->gender, yourPokemonCorner->language, yourPokemonCorner->metGame);
 
-        StringTemplate_SetCustomMessageWord(template, 3, yourPokemonCorner->customMessageWord);
+        StringTemplate_SetEasyChatWord(template, 3, yourPokemonCorner->customMessageWord);
         return TVProgramInterviews_Text_YourPokemonCorner_NoNickname;
     }
 }
@@ -1704,7 +1704,7 @@ static int TVSegment_LoadMessage_ThePoketchWatch(FieldSystem *fieldSystem, Strin
 
     TVSegment_SetTemplateTrainerName(template, 0, episode);
     StringTemplate_SetPoketchAppName(template, 1, thePoketchWatch->appID);
-    StringTemplate_SetCustomMessageWord(template, 2, thePoketchWatch->customMessageWord);
+    StringTemplate_SetEasyChatWord(template, 2, thePoketchWatch->customMessageWord);
 
     return TVProgramInterviews_Text_ThePoketchWatch;
 }
@@ -1732,7 +1732,7 @@ static int TVSegment_LoadMessage_ContestHall(FieldSystem *fieldSystem, StringTem
     StringTemplate_SetContestRankName(template, 2, Contest_GetRankMessageID(contestHall->showcasedPokemon.contestRank));
     StringTemplate_SetNumber(template, 3, contestHall->showcasedPokemon.contestPlacement, 1, PADDING_MODE_NONE, CHARSET_MODE_EN);
     TVSegment_SetTemplateTrainerName(template, 4, episode);
-    StringTemplate_SetCustomMessageWord(template, 5, contestHall->customMessageWord);
+    StringTemplate_SetEasyChatWord(template, 5, contestHall->customMessageWord);
 
     if (contestHall->showcasedPokemon.contestPlacement == 1) {
         return TVProgramInterviews_Text_ContestHall_Win;
@@ -1768,7 +1768,7 @@ static int TVSegment_LoadMessage_RightOnPhotoCorner(FieldSystem *fieldSystem, St
 
     TVSegment_SetTemplateTrainerName(template, 0, episode);
     TVSegment_SetTemplateOwnPokemonSpecies(template, 1, rightOnPhotoCorner->species);
-    StringTemplate_SetCustomMessageWord(template, 2, rightOnPhotoCorner->customMessageWord);
+    StringTemplate_SetEasyChatWord(template, 2, rightOnPhotoCorner->customMessageWord);
 
     return TVProgramInterviews_Text_RightOnPhotoCorner;
 }
@@ -1817,7 +1817,7 @@ static int TVSegment_LoadMessage_ThreeCheersForPoffinCorner(FieldSystem *fieldSy
 
     TVSegment_SetTemplateTrainerName(template, 0, episode);
     StringTemplate_SetPoffinName(template, 1, poffin);
-    StringTemplate_SetCustomMessageWord(template, 2, threeCheersForPoffinCorner->customMessageWord);
+    StringTemplate_SetEasyChatWord(template, 2, threeCheersForPoffinCorner->customMessageWord);
 
     switch (poffin) {
     case POFFIN_TYPE_RICH:
@@ -1854,7 +1854,7 @@ static int TVSegment_LoadMessage_AmitySquareWatch(FieldSystem *fieldSystem, Stri
     TVSegment_SetTemplateTrainerName(template, 0, episode);
     TVSegment_SetTemplatePokemonSpecies(template, 1, amitySquareWatch->unk_00.unk_02, amitySquareWatch->unk_00.unk_04, amitySquareWatch->unk_00.language, amitySquareWatch->unk_00.unk_06);
     StringTemplate_SetNatureName(template, 2, amitySquareWatch->unk_00.unk_1E);
-    StringTemplate_SetCustomMessageWord(template, 5, amitySquareWatch->customWordMessage);
+    StringTemplate_SetEasyChatWord(template, 5, amitySquareWatch->customWordMessage);
 
     switch (amitySquareWatch->unk_00.unk_1F) {
     case 0:
@@ -1897,7 +1897,7 @@ static int TVSegment_LoadMessage_BattleFrontierFrontlineNews_Single(FieldSystem 
         TVSegment_SetTemplatePokemonSpecies(template, 2, battleFrontierFrontlineNewsSingle->unk_00.unk_02, battleFrontierFrontlineNewsSingle->unk_00.unk_04, battleFrontierFrontlineNewsSingle->unk_00.language, battleFrontierFrontlineNewsSingle->unk_00.unk_06);
     }
 
-    StringTemplate_SetCustomMessageWord(template, 3, battleFrontierFrontlineNewsSingle->customWordMessage);
+    StringTemplate_SetEasyChatWord(template, 3, battleFrontierFrontlineNewsSingle->customWordMessage);
     return TVProgramInterviews_Text_BattleFrontierFrontlineNews_Single;
 }
 
@@ -1920,7 +1920,7 @@ static int TVSegment_LoadMessage_InYourFaceInterview_Question1(FieldSystem *fiel
     TVSegment_InYourFaceInterview_Question *inYourFaceInterviewQuestion = TVEpisode_GetSegment(episode);
 
     TVSegment_SetTemplateTrainerName(template, 0, episode);
-    StringTemplate_SetCustomMessageWord(template, 1, inYourFaceInterviewQuestion->customWordMessage);
+    StringTemplate_SetEasyChatWord(template, 1, inYourFaceInterviewQuestion->customWordMessage);
 
     return TVProgramInterviews_Text_InYourFaceInterview_Question1;
 }
@@ -1939,7 +1939,7 @@ static int TVSegment_LoadMessage_InYourFaceInterview_Question2(FieldSystem *fiel
     TVSegment_InYourFaceInterview_Question *inYourFaceInterviewQuestion = TVEpisode_GetSegment(episode);
 
     TVSegment_SetTemplateTrainerName(template, 0, episode);
-    StringTemplate_SetCustomMessageWord(template, 1, inYourFaceInterviewQuestion->customWordMessage);
+    StringTemplate_SetEasyChatWord(template, 1, inYourFaceInterviewQuestion->customWordMessage);
 
     return TVProgramInterviews_Text_InYourFaceInterview_Question2;
 }
@@ -1958,7 +1958,7 @@ static int TVSegment_LoadMessage_InYourFaceInterview_Question3(FieldSystem *fiel
     TVSegment_InYourFaceInterview_Question *inYourFaceInterviewQuestion = TVEpisode_GetSegment(episode);
 
     TVSegment_SetTemplateTrainerName(template, 0, episode);
-    StringTemplate_SetCustomMessageWord(template, 1, inYourFaceInterviewQuestion->customWordMessage);
+    StringTemplate_SetEasyChatWord(template, 1, inYourFaceInterviewQuestion->customWordMessage);
 
     return TVProgramInterviews_Text_InYourFaceInterview_Question3;
 }
@@ -1977,7 +1977,7 @@ static int TVSegment_LoadMessage_InYourFaceInterview_Question4(FieldSystem *fiel
     TVSegment_InYourFaceInterview_Question *inYourFaceInterviewQuestion = TVEpisode_GetSegment(episode);
 
     TVSegment_SetTemplateTrainerName(template, 0, episode);
-    StringTemplate_SetCustomMessageWord(template, 1, inYourFaceInterviewQuestion->customWordMessage);
+    StringTemplate_SetEasyChatWord(template, 1, inYourFaceInterviewQuestion->customWordMessage);
 
     return TVProgramInterviews_Text_InYourFaceInterview_Question4;
 }
@@ -2006,7 +2006,7 @@ static int TVSegment_LoadMessage_BattleFrontierFrontlineNews_Multi(FieldSystem *
     String_CopyChars(v2, battleFrontierFrontlineNewsMulti->unk_00.unk_06);
     StringTemplate_SetString(template, 1, v2, battleFrontierFrontlineNewsMulti->unk_00.unk_02, 0, battleFrontierFrontlineNewsMulti->unk_00.language);
     String_Free(v2);
-    StringTemplate_SetCustomMessageWord(template, 2, battleFrontierFrontlineNewsMulti->customWordMessage);
+    StringTemplate_SetEasyChatWord(template, 2, battleFrontierFrontlineNewsMulti->customWordMessage);
 
     switch (battleFrontierFrontlineNewsMulti->unk_00.unk_01) {
     case 1:
@@ -2615,7 +2615,7 @@ static int TVSegment_LoadMessage_PokemonPhotoRating(FieldSystem *fieldSystem, St
     String_Free(trainerName);
 
     word = DressUpPhoto_GetTitleWord(photo);
-    StringTemplate_SetCustomMessageWord(template, 1, word);
+    StringTemplate_SetEasyChatWord(template, 1, word);
 
     return TVProgramSinnohNow_Text_PokemonPhotoRating;
 }

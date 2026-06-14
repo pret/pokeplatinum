@@ -33,6 +33,7 @@
 #include "comm_manager.h"
 #include "dexmode_checker.h"
 #include "easy_chat_args.h"
+#include "easy_chat_sentence.h"
 #include "evolution.h"
 #include "field_bgm.h"
 #include "field_move_tasks.h"
@@ -62,7 +63,6 @@
 #include "savedata.h"
 #include "screen_fade.h"
 #include "script_manager.h"
-#include "sentence.h"
 #include "sound.h"
 #include "sound_playback.h"
 #include "sprite.h"
@@ -1404,8 +1404,8 @@ static BOOL StartMenu_Chat(FieldTask *fieldTask)
 
     menu->taskData = EasyChatArgs_New(EASY_CHAT_TYPE_SENTENCE, EasyChat_Text_ChooseWordOrPhrase, fieldSystem->saveData, HEAP_ID_FIELD2);
 
-    Sentence sentence;
-    Sentence_InitWithType(&sentence, SENTENCE_TYPE_UNION_ROOM);
+    EasyChatSentence sentence;
+    EasyChatSentence_InitWithType(&sentence, EASY_CHAT_SENTENCE_TYPE_UNION_ROOM);
     EasyChatArgs_SetSentence(menu->taskData, &sentence);
     FieldSystem_OpenEasyChat(fieldSystem, (EasyChatArgs *)menu->taskData);
 
@@ -1420,7 +1420,7 @@ static BOOL StartMenu_ExitChat(FieldTask *fieldTask)
     StartMenu *menu = FieldTask_GetEnv(fieldTask);
 
     if (!EasyChatArgs_IsUnmodified(menu->taskData)) {
-        Sentence sentence;
+        EasyChatSentence sentence;
         EasyChatArgs_CopySentenceTo(menu->taskData, &sentence);
 
         if (CommServerClient_IsInitialized()) {

@@ -100,6 +100,7 @@
 #include "comm_player_manager.h"
 #include "communication_system.h"
 #include "daycare_save.h"
+#include "easy_chat_words.h"
 #include "encounter.h"
 #include "field_bgm.h"
 #include "field_comm_manager.h"
@@ -218,7 +219,6 @@
 #include "unk_0209C194.h"
 #include "vars_flags.h"
 #include "wifi_list.h"
-#include "words.h"
 
 #include "constdata/const_020F8BE0.h"
 #include "res/text/bank/mystery_gift_phrase.h"
@@ -3535,7 +3535,7 @@ static BOOL ScrCmd_BufferCustomMessageWord(ScriptContext *ctx)
     u16 idx = ScriptContext_GetVar(ctx);
     u16 customMessageWord = ScriptContext_GetVar(ctx);
 
-    StringTemplate_SetCustomMessageWord(*strTemplate, idx, customMessageWord);
+    StringTemplate_SetEasyChatWord(*strTemplate, idx, customMessageWord);
 
     return FALSE;
 }
@@ -4242,7 +4242,7 @@ static BOOL ScrCmd_DoUnionRoomGreeting(ScriptContext *ctx)
     StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u16 v2 = ScriptContext_ReadHalfWord(ctx);
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(ctx->fieldSystem));
-    UnlockedWords *unlockedWords = SaveData_GetUnlockedWords(FieldSystem_GetSaveData(ctx->fieldSystem));
+    UnlockedEasyChatWords *unlockedWords = SaveData_GetUnlockedEasyChatWords(FieldSystem_GetSaveData(ctx->fieldSystem));
     u16 v5;
 
     if (v2 == 0) {
@@ -6017,8 +6017,8 @@ static BOOL ScrCmd_TryBufferAndUnlockRandomToughWord(ScriptContext *ctx)
     u16 index = ScriptContext_GetVar(ctx);
     StringTemplate **template = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
 
-    UnlockedWords *unlockedWords = SaveData_GetUnlockedWords(ctx->fieldSystem->saveData);
-    u32 bankEntry = Words_TryUnlockRandomToughWord(unlockedWords);
+    UnlockedEasyChatWords *unlockedWords = SaveData_GetUnlockedEasyChatWords(ctx->fieldSystem->saveData);
+    u32 bankEntry = EasyChatWords_TryUnlockRandomToughWord(unlockedWords);
 
     if (bankEntry == TEXT_BANK_TOUGH_WORDS_ENTRY_COUNT) {
         *destVar = -1;
@@ -6027,8 +6027,8 @@ static BOOL ScrCmd_TryBufferAndUnlockRandomToughWord(ScriptContext *ctx)
         *destVar = bankEntry;
     }
 
-    u16 word = Words_GetToughWordFromBankEntry(bankEntry);
-    StringTemplate_SetCustomMessageWord(*template, index, word);
+    u16 word = EasyChatWords_GetToughWordFromBankEntry(bankEntry);
+    StringTemplate_SetEasyChatWord(*template, index, word);
 
     return FALSE;
 }
@@ -6037,9 +6037,9 @@ static BOOL ScrCmd_CheckAllToughWordsUnlocked(ScriptContext *ctx)
 {
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    UnlockedWords *unlockedWords = SaveData_GetUnlockedWords(ctx->fieldSystem->saveData);
+    UnlockedEasyChatWords *unlockedWords = SaveData_GetUnlockedEasyChatWords(ctx->fieldSystem->saveData);
 
-    if (Words_AreAllToughWordsUnlocked(unlockedWords) == TRUE) {
+    if (EasyChatWords_AreAllToughWordsUnlocked(unlockedWords) == TRUE) {
         *destVar = TRUE;
     } else {
         *destVar = FALSE;
@@ -6441,10 +6441,10 @@ static BOOL ScrCmd_CheckIsMysteryGiftPhrase(ScriptContext *ctx)
     StringTemplate *strTemplate = StringTemplate_Default(HEAP_ID_FIELD3);
     MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MYSTERY_GIFT_PHRASE, HEAP_ID_FIELD3);
 
-    StringTemplate_SetCustomMessageWord(strTemplate, 0, customMessageWord1);
-    StringTemplate_SetCustomMessageWord(strTemplate, 1, customMessageWord2);
-    StringTemplate_SetCustomMessageWord(strTemplate, 2, customMessageWord3);
-    StringTemplate_SetCustomMessageWord(strTemplate, 3, customMessageWord4);
+    StringTemplate_SetEasyChatWord(strTemplate, 0, customMessageWord1);
+    StringTemplate_SetEasyChatWord(strTemplate, 1, customMessageWord2);
+    StringTemplate_SetEasyChatWord(strTemplate, 2, customMessageWord3);
+    StringTemplate_SetEasyChatWord(strTemplate, 3, customMessageWord4);
 
     String *stringCustomMessageWords = MessageUtil_ExpandedString(strTemplate, msgLoader, MysteryGiftPhrase_CustomMessageWords, HEAP_ID_FIELD3);
     String *stringEveryoneHappyWiFiConnection = MessageLoader_GetNewString(msgLoader, MysteryGiftPhrase_EveryoneHappyWiFiConnection);

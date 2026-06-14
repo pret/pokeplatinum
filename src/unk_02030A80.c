@@ -11,19 +11,19 @@
 
 #include "appearance.h"
 #include "charcode_util.h"
+#include "easy_chat_sentence.h"
+#include "easy_chat_words.h"
 #include "heap.h"
 #include "pokemon.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "savedata_misc.h"
-#include "sentence.h"
 #include "species.h"
 #include "string_gf.h"
 #include "system_data.h"
 #include "trainer_info.h"
 #include "unk_020996D0.h"
 #include "wifi_history_save_data.h"
-#include "words.h"
 
 #include "res/text/bank/country_names.h"
 #include "res/text/bank/greetings.h"
@@ -146,7 +146,7 @@ int sub_02030C08(const UnkStruct_02030A80 *param0)
     return param0->region;
 }
 
-String *sub_02030C28(const UnkStruct_02030A80 *param0, Sentence *param1, enum HeapID heapID)
+String *sub_02030C28(const UnkStruct_02030A80 *param0, EasyChatSentence *param1, enum HeapID heapID)
 {
     int v0 = 0;
 
@@ -160,15 +160,15 @@ String *sub_02030C28(const UnkStruct_02030A80 *param0, Sentence *param1, enum He
         } else {
             u32 v1, v2;
 
-            if (((param1->words[0] != WORD_NONE) && (Word_GetLoaderIndexAndEntry(param1->words[0], &v1, &v2) == 0)) || ((param1->words[1] != WORD_NONE) && (Word_GetLoaderIndexAndEntry(param1->words[1], &v1, &v2) == 0))) {
+            if (((param1->words[0] != WORD_NONE) && (EasyChatWord_GetLoaderIndexAndEntry(param1->words[0], &v1, &v2) == 0)) || ((param1->words[1] != WORD_NONE) && (EasyChatWord_GetLoaderIndexAndEntry(param1->words[1], &v1, &v2) == 0))) {
                 v0++;
             }
         }
 
         if (v0 > 0) {
-            Sentence_InitWithType(param1, SENTENCE_TYPE_UNION_ROOM);
+            EasyChatSentence_InitWithType(param1, EASY_CHAT_SENTENCE_TYPE_UNION_ROOM);
             param1->id = UnionRoomSentences_Text_BlankHello;
-            param1->words[0] = Word_FromBankAndEntry(TEXT_BANK_GREETINGS, Greetings_Text_Regards);
+            param1->words[0] = EasyChatWord_FromBankAndEntry(TEXT_BANK_GREETINGS, Greetings_Text_Regards);
             param1->words[1] = WORD_NONE;
         }
 

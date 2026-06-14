@@ -15,6 +15,8 @@
 #include "comm_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
+#include "easy_chat_sentence.h"
+#include "easy_chat_words.h"
 #include "field_system.h"
 #include "field_task.h"
 #include "heap.h"
@@ -23,7 +25,6 @@
 #include "message.h"
 #include "save_player.h"
 #include "savedata.h"
-#include "sentence.h"
 #include "string_gf.h"
 #include "string_template.h"
 #include "sys_task.h"
@@ -33,7 +34,6 @@
 #include "unk_02033200.h"
 #include "unk_02095E98.h"
 #include "unk_02099500.h"
-#include "words.h"
 
 #include "constdata/const_020ED570.h"
 #include "res/text/bank/country_names.h"
@@ -80,7 +80,7 @@ struct UnkStruct_0205B43C_t {
     int unk_170;
     u16 unk_174;
     u8 unk_176[2];
-    Sentence unk_178;
+    EasyChatSentence unk_178;
     BOOL unk_180;
     TrainerCase *unk_184;
     TrainerCase *unk_188[2];
@@ -173,10 +173,10 @@ static UnkStruct_0205B43C *sub_0205B3A0(FieldSystem *fieldSystem)
 
 static void sub_0205B408(UnkStruct_0205B43C *param0)
 {
-    Sentence v0;
+    EasyChatSentence v0;
 
     if (CommServerClient_IsInitialized()) {
-        Sentence_InitWithEnteredUnionRoom(&v0);
+        EasyChatSentence_InitWithEnteredUnionRoom(&v0);
         sub_0205C12C(&v0);
         sub_0205C010(param0, &v0);
         sub_0205B5B4(param0, sub_0205B43C, 40);
@@ -1198,11 +1198,11 @@ int UnionRoom_GetTealaMessage(UnkStruct_0205B43C *param0, StringTemplate *strTem
         return UnionRoom_Text_HereComesSomeoneNow;
     }
 
-    if (!Sentence_IsValid(&param0->unk_178)) {
+    if (!EasyChatSentence_IsValid(&param0->unk_178)) {
         return UnionRoom_Text_BoringIfNoOneComes;
     }
 
-    if (Sentence_GetType(&param0->unk_178) != 4) {
+    if (EasyChatSentence_GetType(&param0->unk_178) != 4) {
         int appearance = TrainerInfo_Appearance(param0->unk_08);
         int gender = TrainerInfo_Gender(param0->unk_08);
 
@@ -1211,14 +1211,14 @@ int UnionRoom_GetTealaMessage(UnkStruct_0205B43C *param0, StringTemplate *strTem
         return UnionRoom_Text_MistakenForTrainerClass;
     }
 
-    int id = Sentence_GetID(&param0->unk_178);
+    int id = EasyChatSentence_GetID(&param0->unk_178);
 
     if (id >= 20) {
         id = 0;
     }
 
-    if ((v3 = Sentence_GetWord(&param0->unk_178, 0)) != 0xffff) {
-        StringTemplate_SetCustomMessageWord(strTemplate, 0, v3);
+    if ((v3 = EasyChatSentence_GetWord(&param0->unk_178, 0)) != WORD_NONE) {
+        StringTemplate_SetEasyChatWord(strTemplate, 0, v3);
     }
 
     return sTealaMessages[id];
@@ -1238,13 +1238,13 @@ static void sub_0205BFF0(UnkStruct_0205B4F8 *param0)
     }
 }
 
-void sub_0205C010(UnkStruct_0205B43C *param0, Sentence *param1)
+void sub_0205C010(UnkStruct_0205B43C *param0, EasyChatSentence *param1)
 {
-    Sentence_Copy(&param0->unk_178, param1);
+    EasyChatSentence_Copy(&param0->unk_178, param1);
     param0->unk_180 = 1;
 }
 
-Sentence *sub_0205C028(UnkStruct_0205B43C *param0)
+EasyChatSentence *sub_0205C028(UnkStruct_0205B43C *param0)
 {
     if (param0->unk_180 == 0) {
         return NULL;
@@ -1254,7 +1254,7 @@ Sentence *sub_0205C028(UnkStruct_0205B43C *param0)
     return &param0->unk_178;
 }
 
-void UnionRoom_DoGreeting(StringTemplate *strTemplate, int param1, int param2, TrainerInfo *playerTrainerInfo, UnlockedWords *unlockedWords)
+void UnionRoom_DoGreeting(StringTemplate *strTemplate, int param1, int param2, TrainerInfo *playerTrainerInfo, UnlockedEasyChatWords *unlockedWords)
 {
     TrainerInfo *commTrainerInfo;
     MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNION_ROOM, HEAP_ID_FIELD1);
@@ -1291,7 +1291,7 @@ void UnionRoom_DoGreeting(StringTemplate *strTemplate, int param1, int param2, T
         u16 index = language - 1;
 
         if (index < NELEMS(greetingBankEntries) && greetingBankEntries[index] >= 0) {
-            Words_UnlockGreeting(unlockedWords, greetingBankEntries[index]);
+            EasyChatWords_UnlockGreeting(unlockedWords, greetingBankEntries[index]);
         }
     }
 
@@ -1325,7 +1325,7 @@ void UnionRoom_DoGreeting(StringTemplate *strTemplate, int param1, int param2, T
     MessageLoader_Free(msgLoader);
 }
 
-void sub_0205C12C(Sentence *param0)
+void sub_0205C12C(EasyChatSentence *param0)
 {
     UnkStruct_0205B4F8 v0;
 

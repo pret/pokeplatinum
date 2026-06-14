@@ -7,6 +7,7 @@
 #include "applications/mail.h"
 
 #include "bg_window.h"
+#include "easy_chat_sentence.h"
 #include "enums.h"
 #include "font.h"
 #include "game_options.h"
@@ -23,7 +24,6 @@
 #include "render_text.h"
 #include "render_window.h"
 #include "screen_fade.h"
-#include "sentence.h"
 #include "sound_playback.h"
 #include "sprite_system.h"
 #include "string_gf.h"
@@ -188,7 +188,7 @@ BOOL MailViewer_Exit(ApplicationManager *appMan, int *state)
 static BOOL MailViewer_AreSentencesEmpty(MailViewerApp *mailViewerApp)
 {
     for (int i = 0; i < MAIL_MAX_SENTENCES; i++) {
-        if (Sentence_IsValid(&mailViewerApp->args->sentences[i])) {
+        if (EasyChatSentence_IsValid(&mailViewerApp->args->sentences[i])) {
             return FALSE;
         }
     }
@@ -815,11 +815,11 @@ static void MailViewer_RemoveWindows(MailViewerApp *mailViewerApp)
 static void MailViewer_PrintText(MailViewerApp *mailViewerApp)
 {
     for (int i = 0; i < MAIL_MAX_SENTENCES; i++) {
-        if (!Sentence_IsValid(&mailViewerApp->args->sentences[i])) {
+        if (!EasyChatSentence_IsValid(&mailViewerApp->args->sentences[i])) {
             continue;
         }
 
-        String *sentenceStr = Sentence_ToString(&mailViewerApp->args->sentences[i], mailViewerApp->heapID);
+        String *sentenceStr = EasyChatSentence_ToString(&mailViewerApp->args->sentences[i], mailViewerApp->heapID);
 
         Text_AddPrinterWithParamsAndColor(&mailViewerApp->windows[i], FONT_MESSAGE, sentenceStr, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
         String_Free(sentenceStr);

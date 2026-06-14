@@ -7,9 +7,9 @@
 #include "generated/text_banks.h"
 
 #include "berry_patches.h"
+#include "easy_chat_sentence.h"
+#include "easy_chat_words.h"
 #include "persisted_map_features.h"
-#include "sentence.h"
-#include "words.h"
 
 #include "res/text/bank/greetings.h"
 #include "res/text/bank/union_room_sentences.h"
@@ -29,10 +29,10 @@ void MiscSaveBlock_Init(MiscSaveBlock *miscSave)
     MI_CpuFill16(miscSave->rivalName, CHAR_EOS, TRAINER_NAME_LEN + 1);
     MI_CpuFill16(miscSave->tabletName, CHAR_EOS, TABLET_NAME_LEN + 1);
 
-    Sentence_InitWithType(&miscSave->introMsg, SENTENCE_TYPE_UNION_ROOM);
+    EasyChatSentence_InitWithType(&miscSave->introMsg, EASY_CHAT_SENTENCE_TYPE_UNION_ROOM);
 
     miscSave->introMsg.id = UnionRoomSentences_Text_BlankHello;
-    miscSave->introMsg.words[0] = Word_FromBankAndEntry(TEXT_BANK_GREETINGS, Greetings_Text_Regards);
+    miscSave->introMsg.words[0] = EasyChatWord_FromBankAndEntry(TEXT_BANK_GREETINGS, Greetings_Text_Regards);
     miscSave->introMsg.words[1] = WORD_NONE;
 
     for (int i = 0; i < EXTRA_SAVE_TABLE_ENTRY_MAX - 1; i++) {
@@ -107,12 +107,12 @@ void MiscSaveBlock_GetFavoriteMon(const MiscSaveBlock *miscSave, int *species, i
     *isEgg = miscSave->favoriteMonIsEgg;
 }
 
-void MiscSaveBlock_IntroMsg(const MiscSaveBlock *miscSave, Sentence *message)
+void MiscSaveBlock_IntroMsg(const MiscSaveBlock *miscSave, EasyChatSentence *message)
 {
     *message = miscSave->introMsg;
 }
 
-void MiscSaveBlock_SetIntroMsg(MiscSaveBlock *miscSave, const Sentence *message)
+void MiscSaveBlock_SetIntroMsg(MiscSaveBlock *miscSave, const EasyChatSentence *message)
 {
     miscSave->introMsg = *message;
 }

@@ -31,6 +31,7 @@
 #include "overlay062/struct_ov62_02248CDC.h"
 
 #include "bg_window.h"
+#include "easy_chat_sentence.h"
 #include "enums.h"
 #include "font.h"
 #include "game_records.h"
@@ -44,7 +45,6 @@
 #include "pokemon_icon.h"
 #include "pokemon_sprite.h"
 #include "savedata_misc.h"
-#include "sentence.h"
 #include "sound_playback.h"
 #include "sprite_system.h"
 #include "string_gf.h"
@@ -509,13 +509,13 @@ static void ov62_02231C78(UnkStruct_ov62_022323B8 *param0, UnkStruct_0208C06C *p
             String_Free(v8);
 
             {
-                Sentence v15;
+                EasyChatSentence v15;
 
                 v10 = &param0->unk_0C[7];
 
                 v8 = sub_02030C28(v11, &v15, HEAP_ID_102);
                 if (v8 == NULL) {
-                    v8 = Sentence_ToString(&v15, HEAP_ID_102);
+                    v8 = EasyChatSentence_ToString(&v15, HEAP_ID_102);
                 }
 
                 Window_FillTilemap(v10, 0x00);

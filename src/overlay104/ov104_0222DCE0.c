@@ -14,6 +14,7 @@
 #include "charcode_util.h"
 #include "communication_information.h"
 #include "communication_system.h"
+#include "easy_chat_sentence.h"
 #include "field_battle_data_transfer.h"
 #include "flags.h"
 #include "map_header.h"
@@ -25,7 +26,6 @@
 #include "pokemon_icon.h"
 #include "save_player.h"
 #include "savedata.h"
-#include "sentence.h"
 #include "sprite.h"
 #include "string_gf.h"
 #include "string_template.h"
@@ -413,17 +413,17 @@ void ov104_0222E278(FrontierDataDTO *param0, u16 param1, enum HeapID heapID, int
 
 void FieldBattleDTO_InitFrontierTrainer(FieldBattleDTO *battleDTO, FrontierTrainerDataDTO *trDataDTO, int unused, int battlerId, enum HeapID heapID)
 {
-    Sentence *sentence;
+    EasyChatSentence *sentence;
 
     battleDTO->trainerIDs[battlerId] = trDataDTO->trainerID;
     battleDTO->trainer[battlerId].header.trainerType = trDataDTO->trainerType;
 
     CharCode_Copy(&battleDTO->trainer[battlerId].name[0], &trDataDTO->trainerName[0]);
 
-    sentence = (Sentence *)&trDataDTO->winMsg[0];
+    sentence = (EasyChatSentence *)&trDataDTO->winMsg[0];
     battleDTO->trainer[battlerId].winMsg = *sentence;
 
-    sentence = (Sentence *)&trDataDTO->loseMsg[0];
+    sentence = (EasyChatSentence *)&trDataDTO->loseMsg[0];
     battleDTO->trainer[battlerId].loseMsg = *sentence;
 
     return;

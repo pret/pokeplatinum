@@ -8,13 +8,13 @@
 #include "generated/species.h"
 
 #include "charcode_util.h"
+#include "easy_chat_sentence.h"
 #include "heap.h"
 #include "party.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "save_player.h"
 #include "savedata.h"
-#include "sentence.h"
 #include "trainer_info.h"
 
 #include "res/pokemon/pl_poke_icon.naix"
@@ -58,7 +58,7 @@ void Mail_Reset(Mail *mail)
     mail->platExclusiveFormIcons = 0;
 
     for (int i = 0; i < MAIL_MAX_SENTENCES; i++) {
-        Sentence_Init(&mail->sentences[i]);
+        EasyChatSentence_Init(&mail->sentences[i]);
     }
 }
 
@@ -204,7 +204,7 @@ u16 Mail_GetPlatExclusiveFormIcons(const Mail *mail)
     return mail->platExclusiveFormIcons;
 }
 
-Sentence *Mail_GetSentence(Mail *mail, u8 index)
+EasyChatSentence *Mail_GetSentence(Mail *mail, u8 index)
 {
     if (index < MAIL_MAX_SENTENCES) {
         return &mail->sentences[index];
@@ -213,13 +213,13 @@ Sentence *Mail_GetSentence(Mail *mail, u8 index)
     }
 }
 
-void Mail_SetSentence(Mail *mail, Sentence *sentence, u8 index)
+void Mail_SetSentence(Mail *mail, EasyChatSentence *sentence, u8 index)
 {
     if (index >= MAIL_MAX_SENTENCES) {
         return;
     }
 
-    Sentence_Copy(&mail->sentences[index], sentence);
+    EasyChatSentence_Copy(&mail->sentences[index], sentence);
 }
 
 Mailbox *SaveData_GetMailbox(SaveData *saveData)

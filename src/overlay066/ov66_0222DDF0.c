@@ -39,6 +39,7 @@
 #include "overlay066/struct_ov66_022589B4.h"
 #include "overlay068/struct_ov68_0225DC74.h"
 
+#include "easy_chat_words.h"
 #include "enums.h"
 #include "font.h"
 #include "game_records.h"
@@ -59,7 +60,6 @@
 #include "unk_02030EA4.h"
 #include "unk_0207E060.h"
 #include "wifi_history_save_data.h"
-#include "words.h"
 
 typedef struct UnkStruct_ov66_0222E71C_t {
     s32 unk_00;

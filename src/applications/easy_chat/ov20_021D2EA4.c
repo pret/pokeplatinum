@@ -12,6 +12,7 @@
 #include "bg_window.h"
 #include "charcode.h"
 #include "colored_arrow.h"
+#include "easy_chat_words.h"
 #include "font.h"
 #include "graphics.h"
 #include "heap.h"
@@ -22,7 +23,6 @@
 #include "string_gf.h"
 #include "string_template.h"
 #include "text.h"
-#include "words.h"
 
 typedef struct {
     s16 unk_00;
@@ -406,7 +406,7 @@ static void ov20_021D351C(UnkStruct_ov20_021D30F8 *param0, Window *param1, const
         u32 v1;
 
         ov20_021D34CC(param2, &v0);
-        Word_ToString(param3, param0->unk_4C);
+        EasyChatWord_ToString(param3, param0->unk_4C);
 
         v1 = (v0.unk_00 + (96 / 2)) - (Font_CalcStringWidth(FONT_MESSAGE, param0->unk_4C, 0) / 2);
 

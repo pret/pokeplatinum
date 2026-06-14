@@ -9,6 +9,7 @@
 #include "bg_window.h"
 #include "colored_arrow.h"
 #include "easy_chat_args.h"
+#include "easy_chat_sentence.h"
 #include "field_message.h"
 #include "field_task.h"
 #include "heap.h"
@@ -16,7 +17,6 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "screen_fade.h"
-#include "sentence.h"
 #include "sound_playback.h"
 #include "string_gf.h"
 #include "string_template.h"
@@ -37,7 +37,7 @@ typedef struct {
     Window unk_18;
     Window unk_28;
     Window unk_38;
-    Sentence unk_48;
+    EasyChatSentence unk_48;
     EasyChatArgs *unk_50;
     int unk_54;
     int unk_58;
@@ -135,19 +135,19 @@ static BOOL sub_0209AE14(FieldTask *param0)
 
             switch (v0->unk_64) {
             case 0:
-                Sentence_Copy(&(v0->unk_48), sub_0202D498(v0->fieldSystem->saveData, 0));
+                EasyChatSentence_Copy(&(v0->unk_48), sub_0202D498(v0->fieldSystem->saveData, 0));
                 v0->unk_54 = 3;
                 break;
             case 1:
-                Sentence_Copy(&(v0->unk_48), sub_0202D498(v0->fieldSystem->saveData, 1));
+                EasyChatSentence_Copy(&(v0->unk_48), sub_0202D498(v0->fieldSystem->saveData, 1));
                 v0->unk_54 = 3;
                 break;
             case 2:
-                Sentence_Copy(&(v0->unk_48), sub_0202D498(v0->fieldSystem->saveData, 2));
+                EasyChatSentence_Copy(&(v0->unk_48), sub_0202D498(v0->fieldSystem->saveData, 2));
                 v0->unk_54 = 3;
                 break;
             case 3:
-                Sentence_Copy(&(v0->unk_48), sub_0202D498(v0->fieldSystem->saveData, 3));
+                EasyChatSentence_Copy(&(v0->unk_48), sub_0202D498(v0->fieldSystem->saveData, 3));
                 v0->unk_54 = 3;
                 break;
             case 4:
@@ -217,11 +217,11 @@ static BOOL sub_0209AE14(FieldTask *param0)
                 break;
             case 1:
             default: {
-                u16 v1 = Sentence_GetWord(&v0->unk_48, 0);
+                u16 v1 = EasyChatSentence_GetWord(&v0->unk_48, 0);
                 sub_0209B27C(v0);
 
-                if (v1 != 0xffff) {
-                    StringTemplate_SetCustomMessageWord(v0->unk_0C, 0, v1);
+                if (v1 != WORD_NONE) {
+                    StringTemplate_SetEasyChatWord(v0->unk_0C, 0, v1);
                     sub_0209B084(v0, 8, 1);
                 } else {
                     sub_0209B084(v0, 7, 0);

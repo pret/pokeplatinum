@@ -7,11 +7,11 @@
 
 #include "field/field_system_decl.h"
 
-#include "sentence.h"
+#include "easy_chat_sentence.h"
+#include "easy_chat_words.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
 #include "trainer_info.h"
-#include "words.h"
 
 UnkStruct_0205B43C *FieldSystem_InitCommUnionRoom(FieldSystem *fieldSystem);
 void sub_0205B388(FieldSystem *fieldSystem);
@@ -42,10 +42,10 @@ int UnionRoom_GetMessage(UnkStruct_0205B43C *param0, int param1, int msgType, St
 u8 UnionRoom_GetCommInfoGameCode(void);
 void sub_0205BEA8(int param0);
 int UnionRoom_GetTealaMessage(UnkStruct_0205B43C *param0, StringTemplate *strTemplate);
-void sub_0205C010(UnkStruct_0205B43C *param0, Sentence *param1);
-Sentence *sub_0205C028(UnkStruct_0205B43C *param0);
-void UnionRoom_DoGreeting(StringTemplate *strTemplate, int param1, int param2, TrainerInfo *playerTrainerInfo, UnlockedWords *unlockedWords);
-void sub_0205C12C(Sentence *param0);
+void sub_0205C010(UnkStruct_0205B43C *param0, EasyChatSentence *param1);
+EasyChatSentence *sub_0205C028(UnkStruct_0205B43C *param0);
+void UnionRoom_DoGreeting(StringTemplate *strTemplate, int param1, int param2, TrainerInfo *playerTrainerInfo, UnlockedEasyChatWords *unlockedWords);
+void sub_0205C12C(EasyChatSentence *param0);
 void sub_0205C154(UnkStruct_0205B43C *param0);
 void *UnionRoom_GetTrainerCase(UnkStruct_0205B43C *param0);
 void sub_0205C1F0(UnkStruct_0205B43C *param0);

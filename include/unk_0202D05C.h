@@ -15,8 +15,8 @@
 #include "overlay096/struct_ov96_0223B450_sub2.h"
 #include "overlay104/frontier_data_transfer.h"
 
+#include "easy_chat_sentence.h"
 #include "savedata.h"
-#include "sentence.h"
 
 #define BATTLE_POINTS_FUNC_NONE 0
 #define BATTLE_POINTS_FUNC_SET  1
@@ -46,8 +46,8 @@ u16 sub_0202D3FC(UnkStruct_0202D750 *param0, u16 param1, u16 param2);
 BOOL sub_0202D414(UnkStruct_0202D750 *param0, u16 param1, int param2);
 void sub_0202D470(UnkStruct_0202D750 *param0, u32 param1);
 u32 sub_0202D474(UnkStruct_0202D750 *param0);
-void sub_0202D478(SaveData *saveData, int param1, Sentence *param2);
-Sentence *sub_0202D498(SaveData *saveData, int param1);
+void sub_0202D478(SaveData *saveData, int param1, EasyChatSentence *param2);
+EasyChatSentence *sub_0202D498(SaveData *saveData, int param1);
 void sub_0202D4B0(UnkStruct_0202D764 *param0, u8 param1, u8 param2, RTCDate *param3);
 void sub_0202D514(UnkStruct_0202D764 *param0);
 BOOL sub_0202D558(UnkStruct_0202D764 *param0, u8 param1, u8 param2, RTCDate *param3);

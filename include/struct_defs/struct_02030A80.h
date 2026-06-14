@@ -3,7 +3,7 @@
 
 #include "struct_defs/struct_0202F298_sub1.h"
 
-#include "sentence.h"
+#include "easy_chat_sentence.h"
 
 typedef struct UnkStruct_02030A80_t {
     u16 unk_00[8];
@@ -21,7 +21,7 @@ typedef struct UnkStruct_02030A80_t {
     u8 unk_1E;
     u8 unk_1F;
     union {
-        Sentence unk_20_val1;
+        EasyChatSentence unk_20_val1;
         u16 unk_20_val2[40];
     };
     u8 unk_70[12];

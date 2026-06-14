@@ -23,6 +23,7 @@
 
 #include "bg_window.h"
 #include "character_sprite.h"
+#include "easy_chat_sentence.h"
 #include "font.h"
 #include "game_options.h"
 #include "heap.h"
@@ -38,7 +39,6 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "screen_fade.h"
-#include "sentence.h"
 #include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
@@ -164,15 +164,15 @@ static void ShowSentence(FrontierScriptManager *scriptMan, u8 renderDelay, u16 s
 
 static void GetStringFromSentence(String *msgBuf, u16 sentenceType, u16 sentenceID, u16 word1, u16 word2)
 {
-    Sentence sentence;
+    EasyChatSentence sentence;
     String *string;
 
-    Sentence_Init(&sentence);
-    Sentence_SetTypeAndID(&sentence, sentenceType, sentenceID);
-    Sentence_SetWord(&sentence, 0, word1);
-    Sentence_SetWord(&sentence, 1, word2);
+    EasyChatSentence_Init(&sentence);
+    EasyChatSentence_SetTypeAndID(&sentence, sentenceType, sentenceID);
+    EasyChatSentence_SetWord(&sentence, 0, word1);
+    EasyChatSentence_SetWord(&sentence, 1, word2);
 
-    string = Sentence_ToString(&sentence, HEAP_ID_FIELD3);
+    string = EasyChatSentence_ToString(&sentence, HEAP_ID_FIELD3);
     String_Copy(msgBuf, string);
     String_Free(string);
 }

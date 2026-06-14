@@ -3,8 +3,8 @@
 
 #include "struct_decls/struct_02030A80_decl.h"
 
+#include "easy_chat_sentence.h"
 #include "savedata.h"
-#include "sentence.h"
 #include "string_gf.h"
 
 UnkStruct_02030A80 *sub_02030A80(enum HeapID heapID);
@@ -17,7 +17,7 @@ int sub_02030BCC(const UnkStruct_02030A80 *param0);
 int sub_02030BEC(const UnkStruct_02030A80 *param0);
 int sub_02030BFC(const UnkStruct_02030A80 *param0);
 int sub_02030C08(const UnkStruct_02030A80 *param0);
-String *sub_02030C28(const UnkStruct_02030A80 *param0, Sentence *param1, enum HeapID heapID);
+String *sub_02030C28(const UnkStruct_02030A80 *param0, EasyChatSentence *param1, enum HeapID heapID);
 int sub_02030CCC(const UnkStruct_02030A80 *param0);
 int sub_02030CDC(const UnkStruct_02030A80 *param0);
 

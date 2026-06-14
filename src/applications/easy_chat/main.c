@@ -10,9 +10,10 @@
 #include "applications/easy_chat/struct_ov20_021D2128_decl.h"
 
 #include "easy_chat_args.h"
+#include "easy_chat_sentence.h"
+#include "easy_chat_words.h"
 #include "heap.h"
 #include "overlay_manager.h"
-#include "sentence.h"
 #include "sound.h"
 #include "sound_playback.h"
 #include "string_gf.h"
@@ -20,7 +21,6 @@
 #include "touch_screen.h"
 #include "touch_screen_actions.h"
 #include "unk_020998EC.h"
-#include "words.h"
 
 enum EasyChatTouchButton {
     TOUCH_BUTTON_GROUP_MODE = 0,
@@ -34,7 +34,7 @@ enum EasyChatTouchButton {
 #define EC_JOY_REPEAT(buttons) (easyChatApp->pressedKeysRepeatable & (buttons))
 
 static EasyChatApp *EasyChatApp_New(ApplicationManager *appMan);
-static void ov20_021D0F64(UnkStruct_ov20_021D0F64 *param0, Sentence *param1);
+static void ov20_021D0F64(UnkStruct_ov20_021D0F64 *param0, EasyChatSentence *param1);
 static void EasyChat_FreeAppData(EasyChatApp *easyChatApp, ApplicationManager *appMan);
 static int EasyChat_Main_Initial(EasyChatApp *easyChatApp, int *param1);
 static int EasyChat_Main_OneWord(EasyChatApp *easyChatApp, int *param1);
@@ -201,14 +201,14 @@ static EasyChatApp *EasyChatApp_New(ApplicationManager *appMan)
     return easyChatApp;
 }
 
-static void ov20_021D0F64(UnkStruct_ov20_021D0F64 *param0, Sentence *param1)
+static void ov20_021D0F64(UnkStruct_ov20_021D0F64 *param0, EasyChatSentence *param1)
 {
-    param0->unk_00 = Sentence_GetType(param1);
-    param0->unk_03 = Sentence_GetBankEntryCountForType(param0->unk_00);
-    param0->unk_02 = Sentence_GetID(param1);
+    param0->unk_00 = EasyChatSentence_GetType(param1);
+    param0->unk_03 = EasyChatSentence_GetBankEntryCountForType(param0->unk_00);
+    param0->unk_02 = EasyChatSentence_GetID(param1);
 }
 
-static void ov20_021D0F88(UnkStruct_ov20_021D0F64 *param0, Sentence *param1)
+static void ov20_021D0F88(UnkStruct_ov20_021D0F64 *param0, EasyChatSentence *param1)
 {
     param0->unk_02++;
 
@@ -220,13 +220,13 @@ static void ov20_021D0F88(UnkStruct_ov20_021D0F64 *param0, Sentence *param1)
             param0->unk_00 = 0;
         }
 
-        param0->unk_03 = Sentence_GetBankEntryCountForType(param0->unk_00);
+        param0->unk_03 = EasyChatSentence_GetBankEntryCountForType(param0->unk_00);
     }
 
-    Sentence_SetTypeAndID(param1, param0->unk_00, param0->unk_02);
+    EasyChatSentence_SetTypeAndID(param1, param0->unk_00, param0->unk_02);
 }
 
-static void ov20_021D0FCC(UnkStruct_ov20_021D0F64 *param0, Sentence *param1)
+static void ov20_021D0FCC(UnkStruct_ov20_021D0F64 *param0, EasyChatSentence *param1)
 {
     param0->unk_02--;
 
@@ -237,11 +237,11 @@ static void ov20_021D0FCC(UnkStruct_ov20_021D0F64 *param0, Sentence *param1)
             param0->unk_00 = (5 - 1);
         }
 
-        param0->unk_03 = Sentence_GetBankEntryCountForType(param0->unk_00);
+        param0->unk_03 = EasyChatSentence_GetBankEntryCountForType(param0->unk_00);
         param0->unk_02 = (param0->unk_03 - 1);
     }
 
-    Sentence_SetTypeAndID(param1, param0->unk_00, param0->unk_02);
+    EasyChatSentence_SetTypeAndID(param1, param0->unk_00, param0->unk_02);
 }
 
 static void EasyChat_FreeAppData(EasyChatApp *easyChatApp, ApplicationManager *appMan)
@@ -990,7 +990,7 @@ static BOOL ov20_021D1BB0(EasyChatApp *easyChatApp)
         easyChatApp->words[easyChatApp->currentWordSlot] = v1;
         break;
     case EASY_CHAT_TYPE_SENTENCE:
-        Sentence_SetWord(&easyChatApp->sentence, easyChatApp->currentWordSlot, v1);
+        EasyChatSentence_SetWord(&easyChatApp->sentence, easyChatApp->currentWordSlot, v1);
         break;
     }
 
@@ -1074,7 +1074,7 @@ static void ov20_021D1C90(EasyChatApp *easyChatApp, int *param1)
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
 
                 if (easyChatApp->type == EASY_CHAT_TYPE_SENTENCE) {
-                    Sentence_ClearUnusedWords(&easyChatApp->sentence);
+                    EasyChatSentence_ClearUnusedWords(&easyChatApp->sentence);
                 }
 
                 EasyChatArgs_UpdateContent(easyChatApp->args, easyChatApp->words, &easyChatApp->sentence);
@@ -1148,7 +1148,7 @@ static BOOL EasyChat_IsEntryComplete(EasyChatApp *easyChatApp)
     case EASY_CHAT_TYPE_TWO_WORDS:
         return easyChatApp->words[0] != WORD_NONE && easyChatApp->words[1] != WORD_NONE;
     case EASY_CHAT_TYPE_SENTENCE:
-        return Sentence_IsComplete(&easyChatApp->sentence);
+        return EasyChatSentence_IsComplete(&easyChatApp->sentence);
     }
 
     return FALSE;
@@ -1231,13 +1231,13 @@ u32 EasyChat_GetMode(const EasyChatApp *easyChatApp)
 
 u32 ov20_021D1F9C(const EasyChatApp *easyChatApp)
 {
-    return Sentence_GetType(&easyChatApp->sentence);
+    return EasyChatSentence_GetType(&easyChatApp->sentence);
 }
 
 u16 EasyChat_GetWordAtSlot(const EasyChatApp *easyChatApp, int slot)
 {
     if (easyChatApp->type == EASY_CHAT_TYPE_SENTENCE) {
-        return Sentence_GetWord(&easyChatApp->sentence, slot);
+        return EasyChatSentence_GetWord(&easyChatApp->sentence, slot);
     } else {
         return easyChatApp->words[slot];
     }
@@ -1245,7 +1245,7 @@ u16 EasyChat_GetWordAtSlot(const EasyChatApp *easyChatApp, int slot)
 
 String *ov20_021D1FC0(const EasyChatApp *easyChatApp, u32 param1)
 {
-    return Sentence_GetTemplateString(&easyChatApp->sentence, param1);
+    return EasyChatSentence_GetTemplateString(&easyChatApp->sentence, param1);
 }
 
 u32 EasyChat_GetCurrentWordSlot(const EasyChatApp *easyChatApp)

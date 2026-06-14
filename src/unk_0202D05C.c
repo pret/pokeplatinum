@@ -19,11 +19,11 @@
 #include "overlay096/struct_ov96_0223B450_sub1.h"
 #include "overlay096/struct_ov96_0223B450_sub2.h"
 
+#include "easy_chat_sentence.h"
 #include "heap.h"
 #include "inlines.h"
 #include "message.h"
 #include "savedata.h"
-#include "sentence.h"
 
 int sub_0202D05C(void)
 {
@@ -43,10 +43,10 @@ void sub_0202D06C(UnkStruct_0202D750 *param0)
 
 void sub_0202D080(UnkStruct_0202D080 *param0)
 {
-    Sentence_SetDefaultFrontierFields(&param0->unk_00[0], SENTENCE_TYPE_PRE_BATTLE);
-    Sentence_SetDefaultFrontierFields(&param0->unk_00[1], SENTENCE_TYPE_WIN);
-    Sentence_SetDefaultFrontierFields(&param0->unk_00[2], SENTENCE_TYPE_LOSS);
-    Sentence_SetDefaultFrontierFields(&param0->unk_00[3], FRONTIER_SENTENCE_TYPE_NO_1);
+    EasyChatSentence_SetDefaultFrontierFields(&param0->unk_00[0], EASY_CHAT_SENTENCE_TYPE_PRE_BATTLE);
+    EasyChatSentence_SetDefaultFrontierFields(&param0->unk_00[1], EASY_CHAT_SENTENCE_TYPE_WIN);
+    EasyChatSentence_SetDefaultFrontierFields(&param0->unk_00[2], EASY_CHAT_SENTENCE_TYPE_LOSS);
+    EasyChatSentence_SetDefaultFrontierFields(&param0->unk_00[3], FRONTIER_EASY_CHAT_SENTENCE_TYPE_NO_1);
 }
 
 void sub_0202D0AC(UnkStruct_0202D764 *param0)
@@ -370,13 +370,13 @@ u32 sub_0202D474(UnkStruct_0202D750 *param0)
     return param0->unk_04;
 }
 
-void sub_0202D478(SaveData *saveData, int param1, Sentence *param2)
+void sub_0202D478(SaveData *saveData, int param1, EasyChatSentence *param2)
 {
     BattleFrontier *frontier = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FRONTIER);
-    Sentence_Copy(&(frontier->unk_950.unk_168.unk_00[param1]), param2);
+    EasyChatSentence_Copy(&(frontier->unk_950.unk_168.unk_00[param1]), param2);
 }
 
-Sentence *sub_0202D498(SaveData *saveData, int param1)
+EasyChatSentence *sub_0202D498(SaveData *saveData, int param1)
 {
     BattleFrontier *frontier = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FRONTIER);
 

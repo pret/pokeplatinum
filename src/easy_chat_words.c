@@ -1,4 +1,4 @@
-#include "words.h"
+#include "easy_chat_words.h"
 
 #include <nitro.h>
 
@@ -138,11 +138,11 @@ void Dummy_020E5538(void)
     sDummy13[0];
 }
 
-WordLoader *WordLoader_New(enum HeapID heapID)
+EasyChatWordLoader *EasyChatWordLoader_New(enum HeapID heapID)
 {
-    WordLoader *wordLoader = Heap_Alloc(heapID, sizeof(WordLoader));
+    EasyChatWordLoader *wordLoader = Heap_Alloc(heapID, sizeof(EasyChatWordLoader));
 
-    for (int i = 0; i < WORD_TEXT_BANK_COUNT; i++) {
+    for (int i = 0; i < EASY_CHAT_WORD_TEXT_BANK_COUNT; i++) {
         wordLoader->heapID = heapID;
         wordLoader->loaders[i] = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, sTextBanks[i], heapID);
     }
@@ -150,29 +150,29 @@ WordLoader *WordLoader_New(enum HeapID heapID)
     return wordLoader;
 }
 
-void WordLoader_Free(WordLoader *wordLoader)
+void EasyChatWordLoader_Free(EasyChatWordLoader *wordLoader)
 {
-    for (int i = 0; i < WORD_TEXT_BANK_COUNT; i++) {
+    for (int i = 0; i < EASY_CHAT_WORD_TEXT_BANK_COUNT; i++) {
         MessageLoader_Free(wordLoader->loaders[i]);
     }
 
     Heap_Free(wordLoader);
 }
 
-void WordLoader_GetString(WordLoader *wordLoader, u16 word, String *out)
+void EasyChatWordLoader_GetString(EasyChatWordLoader *wordLoader, u16 word, String *out)
 {
     u32 loaderIndex, bankEntry;
 
-    Word_GetLoaderIndexAndEntry(word, &loaderIndex, &bankEntry);
+    EasyChatWord_GetLoaderIndexAndEntry(word, &loaderIndex, &bankEntry);
     MessageLoader_GetString(wordLoader->loaders[loaderIndex], bankEntry, out);
 }
 
-void Word_ToString(u16 word, String *out)
+void EasyChatWord_ToString(u16 word, String *out)
 {
     if (word != WORD_NONE) {
         u32 bankID, bankEntry;
 
-        Word_GetLoaderIndexAndEntry(word, &bankID, &bankEntry);
+        EasyChatWord_GetLoaderIndexAndEntry(word, &bankID, &bankEntry);
         bankID = sTextBanks[bankID];
         MessageBank_GetStringFromNARC(NARC_INDEX_MSGDATA__PL_MSG, bankID, bankEntry, 0, out);
     } else {
@@ -180,9 +180,9 @@ void Word_ToString(u16 word, String *out)
     }
 }
 
-u16 Word_FromBankAndEntry(u32 bankID, u32 bankEntry)
+u16 EasyChatWord_FromBankAndEntry(u32 bankID, u32 bankEntry)
 {
-    for (u32 i = 0; i < WORD_TEXT_BANK_COUNT; i++) {
+    for (u32 i = 0; i < EASY_CHAT_WORD_TEXT_BANK_COUNT; i++) {
         if (sTextBanks[i] == bankID) {
             u16 total, j;
 
@@ -197,14 +197,14 @@ u16 Word_FromBankAndEntry(u32 bankID, u32 bankEntry)
     return WORD_NONE;
 }
 
-BOOL Word_GetLoaderIndexAndEntry(u16 word, u32 *outLoaderIndex, u32 *outBankEntry)
+BOOL EasyChatWord_GetLoaderIndexAndEntry(u16 word, u32 *outLoaderIndex, u32 *outBankEntry)
 {
     u32 i, total;
 
     u32 clampedWord = word & 0xFFF; // why?
     total = 0;
 
-    for (i = 0; i < WORD_TEXT_BANK_COUNT; i++) {
+    for (i = 0; i < EASY_CHAT_WORD_TEXT_BANK_COUNT; i++) {
         total += sTextBankEntryCounts[i];
 
         if (clampedWord < total) {
@@ -217,12 +217,12 @@ BOOL Word_GetLoaderIndexAndEntry(u16 word, u32 *outLoaderIndex, u32 *outBankEntr
     return FALSE;
 }
 
-u32 UnlockedWords_SaveSize(void)
+u32 UnlockedEasyChatWords_SaveSize(void)
 {
-    return sizeof(UnlockedWords);
+    return sizeof(UnlockedEasyChatWords);
 }
 
-void UnlockedWords_Init(UnlockedWords *unlockedWords)
+void UnlockedEasyChatWords_Init(UnlockedEasyChatWords *unlockedWords)
 {
     static const struct {
         u8 language;
@@ -241,26 +241,26 @@ void UnlockedWords_Init(UnlockedWords *unlockedWords)
 
     for (int i = 0; i < NELEMS(greetingMapping); i++) {
         if (GAME_LANGUAGE == greetingMapping[i].language) {
-            Words_UnlockGreeting(unlockedWords, greetingMapping[i].bankEntry);
+            EasyChatWords_UnlockGreeting(unlockedWords, greetingMapping[i].bankEntry);
             break;
         }
     }
 
-    SaveData_SetChecksum(SAVE_TABLE_ENTRY_UNLOCKED_WORDS);
+    SaveData_SetChecksum(SAVE_TABLE_ENTRY_UNLOCKED_EASY_CHAT_WORDS);
 }
 
-UnlockedWords *SaveData_GetUnlockedWords(SaveData *saveData)
+UnlockedEasyChatWords *SaveData_GetUnlockedEasyChatWords(SaveData *saveData)
 {
-    SaveData_Checksum(SAVE_TABLE_ENTRY_UNLOCKED_WORDS);
-    return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_UNLOCKED_WORDS);
+    SaveData_Checksum(SAVE_TABLE_ENTRY_UNLOCKED_EASY_CHAT_WORDS);
+    return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_UNLOCKED_EASY_CHAT_WORDS);
 }
 
-BOOL Words_IsToughWordUnlocked(const UnlockedWords *unlockedWords, u32 bankEntry)
+BOOL EasyChatWords_IsToughWordUnlocked(const UnlockedEasyChatWords *unlockedWords, u32 bankEntry)
 {
     return (unlockedWords->unlockedToughWordBits >> bankEntry) & 1;
 }
 
-u32 Words_TryUnlockRandomToughWord(UnlockedWords *unlockedWords)
+u32 EasyChatWords_TryUnlockRandomToughWord(UnlockedEasyChatWords *unlockedWords)
 {
     u32 i, lockedCount;
 
@@ -278,7 +278,7 @@ u32 Words_TryUnlockRandomToughWord(UnlockedWords *unlockedWords)
                 if (counter == 0) {
                     unlockedWords->unlockedToughWordBits |= (1 << i);
 
-                    SaveData_SetChecksum(SAVE_TABLE_ENTRY_UNLOCKED_WORDS);
+                    SaveData_SetChecksum(SAVE_TABLE_ENTRY_UNLOCKED_EASY_CHAT_WORDS);
 
                     return i;
                 } else {
@@ -288,12 +288,12 @@ u32 Words_TryUnlockRandomToughWord(UnlockedWords *unlockedWords)
         }
     }
 
-    SaveData_SetChecksum(SAVE_TABLE_ENTRY_UNLOCKED_WORDS);
+    SaveData_SetChecksum(SAVE_TABLE_ENTRY_UNLOCKED_EASY_CHAT_WORDS);
 
     return TEXT_BANK_TOUGH_WORDS_ENTRY_COUNT;
 }
 
-BOOL Words_AreAllToughWordsUnlocked(UnlockedWords *unlockedWords)
+BOOL EasyChatWords_AreAllToughWordsUnlocked(UnlockedEasyChatWords *unlockedWords)
 {
     for (u32 i = 0; i < TEXT_BANK_TOUGH_WORDS_ENTRY_COUNT; i++) {
         if (((unlockedWords->unlockedToughWordBits >> i) & 1) == 0) {
@@ -304,28 +304,28 @@ BOOL Words_AreAllToughWordsUnlocked(UnlockedWords *unlockedWords)
     return TRUE;
 }
 
-u16 Words_GetToughWordFromBankEntry(u32 bankEntry)
+u16 EasyChatWords_GetToughWordFromBankEntry(u32 bankEntry)
 {
     int i;
     u16 wordID = 0;
 
-    for (i = 0; i < WORD_TEXT_BANK_TOUGH_WORDS; i++) {
+    for (i = 0; i < EASY_CHAT_WORD_TEXT_BANK_TOUGH_WORDS; i++) {
         wordID += sTextBankEntryCounts[i];
     }
 
     return wordID + bankEntry;
 }
 
-BOOL Words_IsGreetingUnlocked(const UnlockedWords *unlockedWords, int bankEntry)
+BOOL EasyChatWords_IsGreetingUnlocked(const UnlockedEasyChatWords *unlockedWords, int bankEntry)
 {
     return (unlockedWords->unlockedGreetingBits >> bankEntry) & 1;
 }
 
-void Words_UnlockGreeting(UnlockedWords *unlockedWords, int bankEntry)
+void EasyChatWords_UnlockGreeting(UnlockedEasyChatWords *unlockedWords, int bankEntry)
 {
     unlockedWords->unlockedGreetingBits |= (1 << bankEntry);
 
-    SaveData_SetChecksum(SAVE_TABLE_ENTRY_UNLOCKED_WORDS);
+    SaveData_SetChecksum(SAVE_TABLE_ENTRY_UNLOCKED_EASY_CHAT_WORDS);
 }
 
 UnkStruct_02014FB0 *sub_02014FB0(enum HeapID heapID)

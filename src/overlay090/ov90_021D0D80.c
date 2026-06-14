@@ -14,6 +14,7 @@
 
 #include "battle_frontier_stats.h"
 #include "bg_window.h"
+#include "easy_chat_sentence.h"
 #include "font.h"
 #include "game_options.h"
 #include "gx_layers.h"
@@ -25,7 +26,6 @@
 #include "render_oam.h"
 #include "save_player.h"
 #include "screen_fade.h"
-#include "sentence.h"
 #include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
@@ -59,7 +59,7 @@ typedef struct {
     u8 unk_05;
     u8 unk_06;
     u8 unk_07;
-    Sentence unk_08;
+    EasyChatSentence unk_08;
 } UnkStruct_ov90_021D17F8;
 
 typedef struct {
@@ -823,7 +823,7 @@ static void ov90_021D1A48(UnkStruct_ov90_021D0ECC *param0)
     String *v0;
     UnkStruct_ov90_021D17F8 *v1 = &(param0->unk_BC[param0->unk_0B * 3 + param0->unk_0C]);
 
-    v0 = Sentence_ToString(&v1->unk_08, param0->heapID);
+    v0 = EasyChatSentence_ToString(&v1->unk_08, param0->heapID);
 
     Window_FillTilemap(&param0->unk_6C[2], (0 << 4) | 0);
     Text_AddPrinterWithParamsAndColor(&param0->unk_6C[2], FONT_SYSTEM, v0, 0, 4, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);

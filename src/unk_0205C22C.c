@@ -21,6 +21,7 @@
 #include "overlay005/ov5_021F600C.h"
 
 #include "comm_manager.h"
+#include "easy_chat_sentence.h"
 #include "field_task.h"
 #include "heap.h"
 #include "map_object.h"
@@ -28,7 +29,6 @@
 #include "pal_pad.h"
 #include "player_avatar.h"
 #include "savedata.h"
-#include "sentence.h"
 #include "sound_playback.h"
 #include "string_gf.h"
 #include "sys_task.h"
@@ -492,7 +492,7 @@ static void sub_0205C8DC(UnkStruct_0205C924 *param0)
     param0->unk_04 = NULL;
     param0->unk_08 = NULL;
 
-    Sentence_InitWithType(&param0->unk_14, SENTENCE_TYPE_PRE_BATTLE);
+    EasyChatSentence_InitWithType(&param0->unk_14, EASY_CHAT_SENTENCE_TYPE_PRE_BATTLE);
 
     param0->unk_10 = 0;
     param0->unk_0C = 0;

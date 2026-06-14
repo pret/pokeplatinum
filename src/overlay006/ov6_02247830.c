@@ -3,8 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "easy_chat_words.h"
 #include "trainer_info.h"
-#include "words.h"
 
 static void ov6_02247830(u8 *param0, u8 param1, u8 param2)
 {

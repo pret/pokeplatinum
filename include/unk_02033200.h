@@ -5,7 +5,7 @@
 
 #include "struct_defs/struct_0203330C.h"
 
-#include "sentence.h"
+#include "easy_chat_sentence.h"
 #include "trainer_info.h"
 
 void CommServerClient_Init(TrainerInfo *param0, BOOL param1);
@@ -46,7 +46,7 @@ TrainerInfo *sub_02033FB0(int param0);
 void sub_02033FDC(u8 *param0, int param1);
 BOOL sub_0203406C(void);
 void sub_0203408C(void);
-void sub_020340A8(Sentence *param0);
+void sub_020340A8(EasyChatSentence *param0);
 void sub_020340C4(void *param0);
 void *sub_020340E8(void);
 void sub_020340FC(void);

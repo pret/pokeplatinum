@@ -38,6 +38,7 @@
 
 #include "bag.h"
 #include "bg_window.h"
+#include "easy_chat_sentence.h"
 #include "enums.h"
 #include "field_battle_data_transfer.h"
 #include "flags.h"
@@ -60,7 +61,6 @@
 #include "render_text.h"
 #include "render_window.h"
 #include "screen_fade.h"
-#include "sentence.h"
 #include "sound.h"
 #include "sound_playback.h"
 #include "sprite.h"
@@ -1602,9 +1602,9 @@ u8 BattleMessage_PrintTrainerMessage(BattleSystem *battleSys, int trainerID, int
             String *string;
 
             if (msgType == TRMSG_WIN) {
-                string = Sentence_ToString(&battleSys->trainers[battler].winMsg, HEAP_ID_BATTLE);
+                string = EasyChatSentence_ToString(&battleSys->trainers[battler].winMsg, HEAP_ID_BATTLE);
             } else {
-                string = Sentence_ToString(&battleSys->trainers[battler].loseMsg, HEAP_ID_BATTLE);
+                string = EasyChatSentence_ToString(&battleSys->trainers[battler].loseMsg, HEAP_ID_BATTLE);
             }
 
             Window_FillTilemap(window, 0xFF);
