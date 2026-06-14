@@ -77,41 +77,41 @@ FrontierRecords_BattleHallMenus:
     GoToIfEq VAR_0x8008, 3, FrontierRecords_CloseAndExit
     GoToIfEq VAR_0x8008, MENU_CANCEL, FrontierRecords_CloseAndExit
     ScrCmd_2CC 1, VAR_0x8001, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _0174
+    GoToIfEq VAR_RESULT, 0, FrontierRecords_WhichPokemon
     ScrCmd_2CC 2, VAR_0x8001, VAR_RESULT
     BufferSpeciesNameFromVar 0, VAR_RESULT, 0, 0
     Message BattleFrontierRecords_Text_OnChallengeNow
-    GoTo _017F
+    GoTo FrontierRecords_InitVarsSelectStartingLetters
     End
 
-_0174:
+FrontierRecords_WhichPokemon:
     Message BattleFrontierRecords_Text_WhichPokemon
-    GoTo _017F
+    GoTo FrontierRecords_InitVarsSelectStartingLetters
     End
 
-_017F:
+FrontierRecords_InitVarsSelectStartingLetters:
     SetVar VAR_0x8002, 0
     SetVar VAR_0x8004, 0
     SetVar VAR_0x8005, 0
-    GoTo _0199
+    GoTo FrontierRecords_SelectStartingLetters
     End
 
-_0199:
-    Call FrontierRecords_SelectStartingLetters
+FrontierRecords_SelectStartingLetters:
+    Call FrontierRecords_InitMenuStartingLetters
     GoToIfEq VAR_0x8002, 9, FrontierRecords_BattleHallMenus
     GoToIfEq VAR_0x8002, MENU_CANCEL, FrontierRecords_BattleHallMenus
     SetVar VAR_0x8003, 0
     SetVar VAR_0x8006, 0
     SetVar VAR_0x8007, 0
-    GoTo _01D3
+    GoTo FrontierRecords_SelectPokemonWithStartingLetter
     End
 
-_01D3:
+FrontierRecords_SelectPokemonWithStartingLetter:
     ShowBattleHallRecordMonSelectionMenu VAR_0x8001, VAR_0x8002, VAR_0x8003, VAR_0x8006, VAR_0x8007
-    GoToIfEq VAR_0x8003, MENU_CANCEL, _0199
+    GoToIfEq VAR_0x8003, MENU_CANCEL, FrontierRecords_SelectStartingLetters
     Call FrontierRecords_OpenRecordDisplay
     Message BattleFrontierRecords_Text_WhichPokemon
-    GoTo _01D3
+    GoTo FrontierRecords_SelectPokemonWithStartingLetter
     End
 
 FrontierRecords_BattleCastle:
@@ -162,7 +162,7 @@ FrontierRecords_SelectChallengeType:
     ShowMenu
     Return
 
-FrontierRecords_SelectStartingLetters:
+FrontierRecords_InitMenuStartingLetters:
     InitLocalTextListMenu 25, 1, 0, VAR_0x8002
     AddListMenuEntry BattleFrontierRecords_Text_ABC, 0
     AddListMenuEntry BattleFrontierRecords_Text_DEF, 1
