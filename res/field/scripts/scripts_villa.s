@@ -1488,7 +1488,7 @@ Villa_Movement_SchoolKidMFacePlayer:
     WalkOnSpotNormalEast
     EndMovement
 
-Villa_UnusedMovement:
+Villa_Movement_Unused:
     WalkNormalSouth 3
     WalkNormalEast
     WalkOnSpotNormalSouth

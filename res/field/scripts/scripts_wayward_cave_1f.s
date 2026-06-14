@@ -5,7 +5,7 @@
 
     ScriptEntry WaywardCave1F_OnTransition
     ScriptEntry WaywardCave1F_Mira
-    ScriptEntry WaywardCave1F_Unused
+    ScriptEntry WaywardCave1F_Dummy3
     ScriptEntry WaywardCave1F_CoordEvent_Exit
     ScriptEntryEnd
 
@@ -76,7 +76,7 @@ WaywardCave1F_IncreaseFollowerMiraTimesTalked:
     ReleaseAll
     End
 
-WaywardCave1F_Unused:
+WaywardCave1F_Dummy3:
     End
 
 WaywardCave1F_CoordEvent_Exit:
@@ -148,12 +148,12 @@ WaywardCave1F_Movement_PlayerWalkEastOnSpotWest:
     WalkOnSpotNormalWest
     EndMovement
 
-WaywardCave1F_UnusedMovement:
+WaywardCave1F_Movement_Unused:
     Delay8 5
     WalkNormalWest
     EndMovement
 
-WaywardCave1F_UnusedMovement2:
+WaywardCave1F_Movement_Unused2:
     Delay8 5
     WalkNormalNorth
     WalkOnSpotNormalWest

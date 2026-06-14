@@ -48,10 +48,10 @@ Underground_PutRoarkNextToPlayer:
 
 Underground_TrapsVendor_Unused:
     UndergroundNPCMessage UndergroundNPCs_Text_IllTradeYouSomething
-    GoTo Underground_TrapsVendorShopMenu_Dummy
+    GoTo Underground_TrapsVendorShopMenu_Unused
     End
 
-Underground_TrapsVendorShopMenu_Dummy:
+Underground_TrapsVendorShopMenu_Unused:
     Dummy19E 1, VAR_RESULT
     SetVar VAR_0x8004, VAR_RESULT
     SetVar VAR_0x8008, VAR_RESULT
@@ -85,7 +85,7 @@ Underground_VendorSeeYou_Unused:
 Underground_TrapsVendorNeedAnythingElse_Unused:
     WaitABPress
     UndergroundNPCMessage UndergroundNPCs_Text_DoYouNeedAnythingElse
-    GoTo Underground_TrapsVendorShopMenu_Dummy
+    GoTo Underground_TrapsVendorShopMenu_Unused
     End
 
 Underground_TrapsVendorWaitABPress_Unused:
@@ -100,10 +100,10 @@ Underground_VendorClose_Unused:
 
 Underground_GoodsVendor_Unused:
     UndergroundNPCMessage UndergroundNPCs_Text_IllTradeYouSomething
-    GoTo Underground_GoodsVendorShopMenu_Dummy
+    GoTo Underground_GoodsVendorShopMenu_Unused
     End
 
-Underground_GoodsVendorShopMenu_Dummy:
+Underground_GoodsVendorShopMenu_Unused:
     Dummy19E 0, VAR_RESULT
     SetVar VAR_0x8004, VAR_RESULT
     SetVar VAR_0x8008, VAR_RESULT
@@ -137,7 +137,7 @@ Underground_GoodsVendorWaitABPress_Unused:
 Underground_GoodsVendorNeedAnythingElse_Unused:
     WaitABPress
     UndergroundNPCMessage UndergroundNPCs_Text_DoYouNeedAnythingElse
-    GoTo Underground_GoodsVendorShopMenu_Dummy
+    GoTo Underground_GoodsVendorShopMenu_Unused
     End
 
 Underground_TreasuresVendor_Unused:
@@ -188,7 +188,7 @@ Underground_RoarkIntro:
     End
 
     .balign 4, 0
-Underground_UnusedMovement:
+Underground_Movement_Unused:
     Delay8
     WalkOnSpotNormalEast
     EndMovement

@@ -58,7 +58,7 @@ StarkMountainOutside_Movement_GruntM1WalkToEntrance:
     WalkNormalNorth
     EndMovement
 
-StarkMountainOutside_UnusedMovement:
+StarkMountainOutside_Movement_Unused:
     WalkOnSpotNormalWest
     EndMovement
 

@@ -4,7 +4,7 @@
 
 
     ScriptEntry BattlePark_CoordEvent_PalmerRival
-    ScriptEntry BattlePark_Unused2
+    ScriptEntry BattlePark_Rival_Unused
     ScriptEntry BattlePark_SignboardExchangeServiceCorner
     ScriptEntry BattlePark_SignboardBattleTower
     ScriptEntry BattlePark_Beauty
@@ -210,7 +210,7 @@ BattlePark_Movement_PalmerRivalLeaveEast:
     WalkFastNorth 8
     EndMovement
 
-BattlePark_Unused2:
+BattlePark_Rival_Unused:
     NPCMessage BattlePark_Text_MeasureUpForMyQuest
     End
 

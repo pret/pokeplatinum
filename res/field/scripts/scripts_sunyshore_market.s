@@ -8,10 +8,10 @@
     ScriptEntry SunyshoreMarket_Sailor
     ScriptEntry SunyshoreMarket_SealShop
     ScriptEntry SunyshoreMarket_PokefanM
-    ScriptEntry SunyshoreMarket_Dummy
+    ScriptEntry SunyshoreMarket_Dummy5
     ScriptEntry SunyshoreMarket_BattleGirl
 
-SunyshoreMarket_Dummy:
+SunyshoreMarket_Dummy5:
     End
 
 SunyshoreMarket_EffortRibbonWoman:

@@ -503,13 +503,13 @@ BattleArcade_OnFrame_ChallengeEnded:
     GoTo BattleArcade_EndChallenge
     End
 
-BattleArcade_UnusedMovement:
+BattleArcade_Movement_Unused:
     WalkNormalNorth 2
     Delay8
     WalkNormalNorth
     EndMovement
 
-BattleArcade_UnusedMovement2:
+BattleArcade_Movement_Unused2:
     WalkNormalNorth 2
     Delay8
     WalkNormalNorth

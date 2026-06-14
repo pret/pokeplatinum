@@ -5,10 +5,10 @@
 
     ScriptEntry FloaromaMeadow_OnTransition
     ScriptEntry FloaromaMeadow_CoordEvent_Grunts
-    ScriptEntry FloaromaMeadow_UnusedGrunt
-    ScriptEntry FloaromaMeadow_UnusedGrunt
+    ScriptEntry FloaromaMeadow_Grunt_Unused
+    ScriptEntry FloaromaMeadow_Grunt_Unused
     ScriptEntry FloaromaMeadow_PokefanM
-    ScriptEntry FloaromaMeadow_UnusedArrowSignpost
+    ScriptEntry FloaromaMeadow_Dummy6
     ScriptEntry FloaromaMeadow_ItemWorksKey
     ScriptEntryEnd
 
@@ -52,11 +52,11 @@ FloaromaMeadow_Movement_GruntWestWalkOnSpotSouth:
     WalkOnSpotNormalSouth
     EndMovement
 
-FloaromaMeadow_UnusedMovement:
+FloaromaMeadow_Movement_Unused:
     WalkNormalNorth 9
     EndMovement
 
-FloaromaMeadow_UnusedMovement2:
+FloaromaMeadow_Movement_Unused2:
     WalkNormalNorth 9
     EndMovement
 
@@ -151,7 +151,7 @@ FloaromaMeadow_Unused:
     ReleaseAll
     End
 
-FloaromaMeadow_UnusedGrunt:
+FloaromaMeadow_Grunt_Unused:
     End
 
 FloaromaMeadow_PokefanM:
@@ -228,7 +228,7 @@ FloaromaMeadow_OopsyYouDontHaveEnoughMoney:
     ReleaseAll
     End
 
-FloaromaMeadow_UnusedArrowSignpost:
+FloaromaMeadow_Dummy6:
     ShowArrowSign FloaromaMeadow_Text_Dummy18
     End
 

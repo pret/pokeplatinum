@@ -4,7 +4,7 @@
 
 
     ScriptEntry Route210South_Psyduck
-    ScriptEntry Route210South_Unused
+    ScriptEntry Route210South_Dummy2
     ScriptEntry Route210South_AceTrainerF
     ScriptEntry Route210South_SignboardCafeCabin
     ScriptEntry Route210South_ArrowSignpostSolaceonTown
@@ -202,21 +202,21 @@ Route210South_Movement_PlayerWalkOnSpotSouth:
     WalkOnSpotNormalSouth
     EndMovement
 
-Route210South_UnusedMovement:
+Route210South_Movement_Unused:
     Delay8
     WalkOnSpotNormalEast
     Delay8
     WalkOnSpotNormalNorth
     EndMovement
 
-Route210South_UnusedMovement2:
+Route210South_Movement_Unused2:
     Delay8
     WalkOnSpotNormalWest
     Delay8
     WalkOnSpotNormalNorth
     EndMovement
 
-Route210South_Unused:
+Route210South_Dummy2:
     NPCMessage Route210South_Text_Dummy6
     End
 

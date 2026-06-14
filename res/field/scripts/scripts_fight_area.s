@@ -219,7 +219,7 @@ FightArea_Movement_RivalNoticePlayer:
     EmoteExclamationMark
     EndMovement
 
-FightArea_UnusedMovement:
+FightArea_Movement_Unused:
     WalkNormalWest
     EndMovement
 
@@ -251,7 +251,7 @@ FightArea_Movement_RivalGetPushedBack:
     UnlockDir
     EndMovement
 
-FightArea_UnusedMovement2:
+FightArea_Movement_Unused2:
     EmoteExclamationMark
     EndMovement
 
@@ -331,7 +331,7 @@ FightArea_Movement_PlayerWatchRivalLeave:
     WalkOnSpotNormalSouth
     EndMovement
 
-FightArea_UnusedMovement3:
+FightArea_Movement_Unused3:
     Delay8
     WalkOnSpotNormalNorth
     EndMovement
@@ -383,11 +383,11 @@ FightArea_Movement_BuckLeave:
     WalkNormalSouth 8
     EndMovement
 
-FightArea_UnusedMovement4:
+FightArea_Movement_Unused4:
     WalkOnSpotNormalWest
     EndMovement
 
-FightArea_UnusedMovement5:
+FightArea_Movement_Unused5:
     WalkNormalEast 10
     EndMovement
 

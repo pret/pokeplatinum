@@ -498,13 +498,13 @@ BattleCastle_OnFrame_ChallengeEnded:
     GoTo BattleCastle_EndChallenge
     End
 
-BattleCastle_UnusedMovement:
+BattleCastle_Movement_Unused:
     WalkNormalNorth 2
     Delay8
     WalkNormalNorth
     EndMovement
 
-BattleCastle_UnusedMovement2:
+BattleCastle_Movement_Unused2:
     WalkNormalNorth 2
     Delay8
     WalkNormalNorth

@@ -1068,14 +1068,14 @@ JubilifeCity_Movement_PlayerWatchCounterpartAndProfRowanLeave:
     WalkOnSpotNormalSouth
     EndMovement
 
-JubilifeCity_UnusedMovement:
+JubilifeCity_Movement_Unused:
     Delay8
     WalkOnSpotNormalEast
     Delay8
     WalkOnSpotNormalSouth
     EndMovement
 
-JubilifeCity_UnusedMovement2:
+JubilifeCity_Movement_Unused2:
     Delay8
     WalkOnSpotNormalWest
     Delay8
@@ -1109,12 +1109,12 @@ JubilifeCity_Movement_CounterpartLeaveAfterGalacticBattle:
     WalkNormalSouth 9
     EndMovement
 
-JubilifeCity_UnusedMovement3:
+JubilifeCity_Movement_Unused3:
     WalkNormalEast
     WalkNormalSouth 9
     EndMovement
 
-JubilifeCity_UnusedMovement4:
+JubilifeCity_Movement_Unused4:
     WalkNormalWest
     WalkOnSpotNormalEast
     WalkNormalEast
@@ -1167,11 +1167,11 @@ JubilifeCity_Movement_ProfRowanLeave:
     WalkNormalSouth 9
     EndMovement
 
-JubilifeCity_UnusedMovement5:
+JubilifeCity_Movement_Unused5:
     WalkNormalSouth 9
     EndMovement
 
-JubilifeCity_UnusedMovement6:
+JubilifeCity_Movement_Unused6:
     WalkOnSpotNormalWest
     WalkNormalWest
     WalkNormalSouth 9
@@ -1187,23 +1187,23 @@ JubilifeCity_Movement_ProfRowanWalkOnSpotWest2:
     WalkOnSpotNormalWest
     EndMovement
 
-JubilifeCity_UnusedMovement7:
+JubilifeCity_Movement_Unused7:
     WalkOnSpotNormalWest
     EndMovement
 
-JubilifeCity_UnusedMovement8:
+JubilifeCity_Movement_Unused8:
     WalkOnSpotNormalWest
     EndMovement
 
-JubilifeCity_UnusedMovement9:
+JubilifeCity_Movement_Unused9:
     WalkOnSpotNormalWest
     EndMovement
 
-JubilifeCity_UnusedMovement10:
+JubilifeCity_Movement_Unused10:
     WalkOnSpotNormalWest
     EndMovement
 
-JubilifeCity_UnusedMovement11:
+JubilifeCity_Movement_Unused11:
     WalkOnSpotNormalWest
     EndMovement
 

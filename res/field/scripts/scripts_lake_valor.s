@@ -1,8 +1,8 @@
 #include "macros/scrcmd.inc"
 
 
-    ScriptEntry LakeValor_UnusedEntry1
+    ScriptEntry LakeValor_Dummy1
     ScriptEntryEnd
 
-LakeValor_UnusedEntry1:
+LakeValor_Dummy1:
     End

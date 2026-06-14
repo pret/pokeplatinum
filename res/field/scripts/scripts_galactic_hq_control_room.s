@@ -9,9 +9,9 @@
     ScriptEntry GalacticHQControlRoom_MachineUxie
     ScriptEntry GalacticHQControlRoom_MachineMesprit
     ScriptEntry GalacticHQControlRoom_MachineAzelf
-    ScriptEntry GalacticHQControlRoom_Unused7
-    ScriptEntry GalacticHQControlRoom_Unused8
-    ScriptEntry GalacticHQControlRoom_Unused9
+    ScriptEntry GalacticHQControlRoom_Dummy7
+    ScriptEntry GalacticHQControlRoom_Dummy8
+    ScriptEntry GalacticHQControlRoom_Dummy9
     ScriptEntry GalacticHQControlRoom_Button
     ScriptEntry GalacticHQControlRoom_Uxie
     ScriptEntry GalacticHQControlRoom_Mesprit
@@ -161,13 +161,13 @@ GalacticHQControlRoom_AzelfWasSealedInside:
     ReleaseAll
     End
 
-GalacticHQControlRoom_Unused7:
+GalacticHQControlRoom_Dummy7:
     End
 
-GalacticHQControlRoom_Unused8:
+GalacticHQControlRoom_Dummy8:
     End
 
-GalacticHQControlRoom_Unused9:
+GalacticHQControlRoom_Dummy9:
     End
 
 GalacticHQControlRoom_Button:

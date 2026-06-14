@@ -123,7 +123,7 @@ Route209GateToHearthomeCity_RivalLeaveZ9:
     Return
 
     .balign 4, 0
-Route209GateToHearthomeCity_UnusedMovement:
+Route209GateToHearthomeCity_Movement_Unused:
     WalkFastWest 4
     EmoteExclamationMark
     EndMovement

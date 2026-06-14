@@ -3,11 +3,11 @@
 #include "res/field/events/events_fullmoon_island_forest.h"
 
 
-    ScriptEntry FullmoonIslandForest_Unused
+    ScriptEntry FullmoonIslandForest_Dummy1
     ScriptEntry FullmoonIslandForest_Cresselia
     ScriptEntryEnd
 
-FullmoonIslandForest_Unused:
+FullmoonIslandForest_Dummy1:
     End
 
 FullmoonIslandForest_Cresselia:

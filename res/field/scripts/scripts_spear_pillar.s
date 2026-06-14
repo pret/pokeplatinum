@@ -326,20 +326,20 @@ SpearPillar_PlayerRivalFaceEachOtherX32:
     Return
 
 SpearPillar_Unused3:
-    ApplyMovement LOCALID_JUPITER, SpearPillar_UnusedMovement
-    ApplyMovement LOCALID_MARS, SpearPillar_UnusedMovement2
+    ApplyMovement LOCALID_JUPITER, SpearPillar_Movement_Unused
+    ApplyMovement LOCALID_MARS, SpearPillar_Movement_Unused2
     WaitMovement
     Return
 
     .balign 4, 0
-SpearPillar_UnusedMovement:
+SpearPillar_Movement_Unused:
     FaceEast
     LockDir
     WalkSlowWest
     UnlockDir
     EndMovement
 
-SpearPillar_UnusedMovement2:
+SpearPillar_Movement_Unused2:
     FaceWest
     LockDir
     WalkSlowEast

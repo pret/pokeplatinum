@@ -3,8 +3,8 @@
 
 
     ScriptEntry EternaForestOutside_OnTransition
-    ScriptEntry EternaForestOutside_Unused2
-    ScriptEntry EternaForestOutside_Unused3
+    ScriptEntry EternaForestOutside_Dummy2
+    ScriptEntry EternaForestOutside_Dummy3
     ScriptEntry EternaForestOutside_PokemonBreederF
     ScriptEntryEnd
 
@@ -34,10 +34,10 @@ EternaForestOutside_ICollectBerriesAndTradeThemForAccessoriesInFloaromaTown:
     ReleaseAll
     End
 
-EternaForestOutside_Unused2:
+EternaForestOutside_Dummy2:
     ShowLandmarkSign EternaForestOutside_Text_Dummy2
     End
 
-EternaForestOutside_Unused3:
+EternaForestOutside_Dummy3:
     ShowScrollingSign EternaForestOutside_Text_Dummy3
     End

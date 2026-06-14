@@ -256,12 +256,12 @@ PastoriaCityObservatoryGate1F_Movement_CowgirlWalkToPlayer:
     WalkOnSpotNormalNorth
     EndMovement
 
-PastoriaCityObservatoryGate1F_UnusedMovement:
+PastoriaCityObservatoryGate1F_Movement_Unused:
     WalkNormalWest
     WalkOnSpotNormalEast
     EndMovement
 
-PastoriaCityObservatoryGate1F_UnusedMovement2:
+PastoriaCityObservatoryGate1F_Movement_Unused2:
     WalkNormalEast
     WalkOnSpotNormalWest
     EndMovement

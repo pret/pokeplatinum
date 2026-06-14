@@ -4,8 +4,8 @@
 #include "constants/map_object.h"
 
 
-    ScriptEntry GlobalTerminal1F_Unused1
-    ScriptEntry GlobalTerminal1F_Unused2
+    ScriptEntry GlobalTerminal1F_Dummy1
+    ScriptEntry GlobalTerminal1F_Dummy2
     ScriptEntry GlobalTerminal1F_ReceptionistGTS
     ScriptEntry GlobalTerminal1F_Collector
     ScriptEntry GlobalTerminal1F_BugCatcher
@@ -72,7 +72,7 @@ GlobalTerminal1F_Movement_PlayerExitGTSRoom:
     WalkNormalSouth
     EndMovement
 
-GlobalTerminal1F_UnusedMovement:
+GlobalTerminal1F_Movement_Unused:
     WalkNormalSouth
     EndMovement
 
@@ -81,10 +81,10 @@ GlobalTerminal1F_Movement_PlayerWalkSouth:
     WalkNormalSouth 2
     EndMovement
 
-GlobalTerminal1F_Unused1:
+GlobalTerminal1F_Dummy1:
     End
 
-GlobalTerminal1F_Unused2:
+GlobalTerminal1F_Dummy2:
     End
 
 GlobalTerminal1F_ReceptionistGTS:

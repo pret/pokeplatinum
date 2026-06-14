@@ -2,18 +2,18 @@
 #include "res/text/bank/tv_reporter_interviews.h"
 
 
-    ScriptEntry TVReporterInterviews_UnusedEntry10150
+    ScriptEntry TVReporterInterviews_Interview1_Unused
     ScriptEntry TVReporterInterviews_BattleTower
-    ScriptEntry TVReporterInterviews_UnusedEntry10152
+    ScriptEntry TVReporterInterviews_Interview3_Unused
     ScriptEntry TVReporterInterviews_HearthomeCityPokemonFanClub
-    ScriptEntry TVReporterInterviews_UnusedEntry10154
+    ScriptEntry TVReporterInterviews_Interview5_Unused
     ScriptEntry TVReporterInterviews_PoketchCo1F
     ScriptEntry TVReporterInterviews_ContestHallLobby
-    ScriptEntry TVReporterInterviews_UnusedEntry10157
+    ScriptEntry TVReporterInterviews_Interview8_Unused
     ScriptEntry TVReporterInterviews_JubilifeTV2F
     ScriptEntry TVReporterInterviews_CanalaveCityWestHouse
     ScriptEntry TVReporterInterviews_PoffinHouse
-    ScriptEntry TVReporterInterviews_UnusedEntry10161
+    ScriptEntry TVReporterInterviews_Interview12_Unused
     ScriptEntry TVReporterInterviews_HearthomeCityGates
     ScriptEntry TVReporterInterviews_BattleHall
     ScriptEntry TVReporterInterviews_Route214GateToVeilstoneCity
@@ -23,7 +23,7 @@
     ScriptEntry TVReporterInterviews_BattleFrontier
     ScriptEntryEnd
 
-TVReporterInterviews_UnusedEntry10150:
+TVReporterInterviews_Interview1_Unused:
     SetVar VAR_0x8000, TV_PROGRAM_SEGMENT_INTERVIEW_UNUSED_01
     GoTo TVReporterInterviews_AskDoInterview
 
@@ -31,7 +31,7 @@ TVReporterInterviews_BattleTower:
     SetVar VAR_0x8000, TV_PROGRAM_SEGMENT_BATTLE_TOWER_CORNER
     GoTo TVReporterInterviews_AskDoInterview
 
-TVReporterInterviews_UnusedEntry10152:
+TVReporterInterviews_Interview3_Unused:
     SetVar VAR_0x8000, TV_PROGRAM_SEGMENT_INTERVIEW_UNUSED_03
     GoTo TVReporterInterviews_AskDoInterview
 
@@ -39,7 +39,7 @@ TVReporterInterviews_HearthomeCityPokemonFanClub:
     SetVar VAR_0x8000, TV_PROGRAM_SEGMENT_YOUR_POKEMON_CORNER
     GoTo TVReporterInterviews_AskDoInterview
 
-TVReporterInterviews_UnusedEntry10154:
+TVReporterInterviews_Interview5_Unused:
     SetVar VAR_0x8000, TV_PROGRAM_SEGMENT_INTERVIEW_UNUSED_05
     GoTo TVReporterInterviews_AskDoInterview
 
@@ -51,7 +51,7 @@ TVReporterInterviews_ContestHallLobby:
     SetVar VAR_0x8000, TV_PROGRAM_SEGMENT_CONTEST_HALL
     GoTo TVReporterInterviews_AskDoInterview
 
-TVReporterInterviews_UnusedEntry10157:
+TVReporterInterviews_Interview8_Unused:
     SetVar VAR_0x8000, TV_PROGRAM_SEGMENT_INTERVIEW_UNUSED_08
     GoTo TVReporterInterviews_AskDoInterview
 
@@ -67,7 +67,7 @@ TVReporterInterviews_PoffinHouse:
     SetVar VAR_0x8000, TV_PROGRAM_SEGMENT_THREE_CHEERS_FOR_POFFIN_CORNER
     GoTo TVReporterInterviews_AskDoInterview
 
-TVReporterInterviews_UnusedEntry10161:
+TVReporterInterviews_Interview12_Unused:
     SetVar VAR_0x8000, TV_PROGRAM_SEGMENT_INTERVIEW_UNUSED_12
     GoTo TVReporterInterviews_AskDoInterview
 

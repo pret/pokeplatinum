@@ -2,7 +2,7 @@
 #include "res/text/bank/route_215.h"
 
 
-    ScriptEntry Route215_Unused
+    ScriptEntry Route215_Dummy1
     ScriptEntry Route215_BlackBelt
     ScriptEntry Route215_ArrowSignpostWest
     ScriptEntry Route215_ArrowSignpostVeilstoneCity
@@ -32,7 +32,7 @@ Route215_SetJoggersNoBattle:
     SetFlag FLAG_HIDE_ROUTE_215_JOGGER_CRAIG
     End
 
-Route215_Unused:
+Route215_Dummy1:
     NPCMessage Route215_Text_Dummy0
     End
 

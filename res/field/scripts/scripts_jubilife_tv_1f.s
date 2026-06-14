@@ -2,13 +2,13 @@
 #include "res/text/bank/jubilife_tv_1f.h"
 
 
-    ScriptEntry JubilifeTV1F_Unused1
+    ScriptEntry JubilifeTV1F_Dummy1
     ScriptEntry JubilifeTV1F_GymGuide
-    ScriptEntry JubilifeTV1F_Unused2
+    ScriptEntry JubilifeTV1F_Dummy3
     ScriptEntry JubilifeTV1F_AceTrainerSnowF
     ScriptEntry JubilifeTV1F_Beauty
     ScriptEntry JubilifeTV1F_MiddleAgedMan
-    ScriptEntry JubilifeTV1F_Unused3
+    ScriptEntry JubilifeTV1F_Dummy7
     ScriptEntry JubilifeTV1F_OnTransition
     ScriptEntry JubilifeTV1F_AceTrainerM
     ScriptEntryEnd
@@ -16,14 +16,14 @@
 JubilifeTV1F_OnTransition:
     End
 
-JubilifeTV1F_Unused1:
+JubilifeTV1F_Dummy1:
     End
 
 JubilifeTV1F_GymGuide:
     NPCMessage JubilifeTV1F_Text_WhyDontYouTryDressingUpYourPokemonNow
     End
 
-JubilifeTV1F_Unused2:
+JubilifeTV1F_Dummy3:
     End
 
 JubilifeTV1F_AceTrainerSnowF:
@@ -185,7 +185,7 @@ JubilifeTV1F_MiddleAgedMan:
     NPCMessage JubilifeTV1F_Text_ImGoingToGetCommercialsShownOnTV
     End
 
-JubilifeTV1F_Unused3:
+JubilifeTV1F_Dummy7:
     End
 
 JubilifeTV1F_AceTrainerM:
