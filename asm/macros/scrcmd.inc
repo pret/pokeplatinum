@@ -1246,9 +1246,9 @@
     .short SCRCMD_0C4
     .endm
 
-    .macro ScrCmd_0C5 arg0
-    .short SCRCMD_0C5
-    .short \arg0
+    .macro PlayHMCutIn slot
+    .short SCRCMD_PLAYHMCUTIN
+    .short \slot
     .endm
 
     .macro ChangeIntoContestAttire
@@ -2674,26 +2674,26 @@
     .short SCRCMD_UNUSED_1CE
     .endm
 
-    .macro Strength mode, checkDestVarID=0
-    .short SCRCMD_STRENGTH
-    .byte \mode
-    .if \mode == 2
+    .macro DoStrengthFunc func, checkDestVarID=0
+    .short SCRCMD_DOSTRENGTHFUNC
+    .byte \func
+    .if \func == FIELD_MOVE_FUNC_CHECK_ACTIVE
         .short \checkDestVarID
     .endif
     .endm
 
-    .macro Flash mode, checkDestVarID=0
-    .short SCRCMD_FLASH
-    .byte \mode
-    .if \mode == 2
+    .macro DoFlashFunc func, checkDestVarID=0
+    .short SCRCMD_DOFLASHFUNC
+    .byte \func
+    .if \func == FIELD_MOVE_FUNC_CHECK_ACTIVE
         .short \checkDestVarID
     .endif
     .endm
 
-    .macro Defog mode, checkDestVarID=0
-    .short SCRCMD_DEFOG
-    .byte \mode
-    .if \mode == 2
+    .macro DoDefogFunc func, checkDestVarID=0
+    .short SCRCMD_DODEFOGFUNC
+    .byte \func
+    .if \func == FIELD_MOVE_FUNC_CHECK_ACTIVE
         .short \checkDestVarID
     .endif
     .endm
@@ -4005,10 +4005,10 @@
     .short \entryIndex
     .endm
 
-    .macro ScrCmd_29E arg0, arg1
-    .short SCRCMD_29E
-    .short \arg0
-    .short \arg1
+    .macro StartDestroyObstacleAnimation obstacle, destVar
+    .short SCRCMD_STARTDESTROYOBSTACLEANIMATION
+    .short \obstacle
+    .short \destVar
     .endm
 
     .macro ScrCmd_29F arg0
