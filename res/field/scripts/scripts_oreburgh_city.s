@@ -4,8 +4,8 @@
 
     ScriptEntry OreburghCity_Rival
     ScriptEntry OreburghCity_Youngster
-    ScriptEntry OreburghCity_TriggerYoungster
-    ScriptEntry OreburghCity_TriggerRival
+    ScriptEntry OreburghCity_CoordEvent_Youngster
+    ScriptEntry OreburghCity_CoordEvent_Rival
     ScriptEntry OreburghCity_Hiker
     ScriptEntry OreburghCity_Worker1
     ScriptEntry OreburghCity_Worker2
@@ -16,10 +16,10 @@
     ScriptEntry OreburghCity_Guitarist
     ScriptEntry OreburghCity_PokefanF
     ScriptEntry OreburghCity_Camper
-    ScriptEntry OreburghCity_MapSign
+    ScriptEntry OreburghCity_MapSignpost
     ScriptEntry OreburghCity_GymSignpost
-    ScriptEntry OreburghCity_ScrollingSignOreburghMiningMuseum
-    ScriptEntry OreburghCity_ScrollingSignOreburghMine
+    ScriptEntry OreburghCity_ScrollingSignpostOreburghMiningMuseum
+    ScriptEntry OreburghCity_ScrollingSignpostOreburghMine
     ScriptEntry OreburghCity_Machop1
     ScriptEntry OreburghCity_BattleGirl2
     ScriptEntry OreburghCity_Machop3
@@ -74,7 +74,7 @@ OreburghCity_TheGymLeadersWaitingForYou:
     ReleaseAll
     End
 
-OreburghCity_TriggerRival:
+OreburghCity_CoordEvent_Rival:
     LockAll
     ClearFlag FLAG_HIDE_OREBURGH_CITY_RIVAL
     SetObjectEventMovementType LOCALID_RIVAL, MOVEMENT_TYPE_LOOK_WEST
@@ -304,7 +304,7 @@ OreburghCity_Worker4:
     NPCMessage OreburghCity_Text_ChopChopMachopChopChopAwayOnRocks
     End
 
-OreburghCity_TriggerYoungster:
+OreburghCity_CoordEvent_Youngster:
     LockAll
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     GoToIfEq VAR_0x8005, 748, OreburghCity_YoungsterWalkToPlayerZ748
@@ -516,7 +516,7 @@ OreburghCity_Camper:
     NPCMessage OreburghCity_Text_WhenIRunAroundWithMyRunningShoesOnImTheCenterOfAttention
     End
 
-OreburghCity_MapSign:
+OreburghCity_MapSignpost:
     ShowMapSign OreburghCity_Text_MapSign
     End
 
@@ -524,11 +524,11 @@ OreburghCity_GymSignpost:
     ShowScrollingSign OreburghCity_Text_OreburgCityPokemonGymCallMeRoarkTheRock
     End
 
-OreburghCity_ScrollingSignOreburghMiningMuseum:
+OreburghCity_ScrollingSignpostOreburghMiningMuseum:
     ShowLandmarkSign OreburghCity_Text_OreburghMiningMuseumCoalMiningAndYou
     End
 
-OreburghCity_ScrollingSignOreburghMine:
+OreburghCity_ScrollingSignpostOreburghMine:
     ShowLandmarkSign OreburghCity_Text_OreburghMineBewareOfBusyPokemon
     End
 

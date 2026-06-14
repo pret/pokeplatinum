@@ -4,7 +4,7 @@
 
     ScriptEntry Route204South_Youngster
     ScriptEntry Route204South_ArrowSignpostJubilifeCity
-    ScriptEntry Route204South_LandmarkSignRavagedPath
+    ScriptEntry Route204South_SignboardRavagedPath
     ScriptEntryEnd
 
 Route204South_Youngster:
@@ -15,7 +15,7 @@ Route204South_ArrowSignpostJubilifeCity:
     ShowArrowSign Route204South_Text_Rt204JubilifeCity
     End
 
-Route204South_LandmarkSignRavagedPath:
+Route204South_SignboardRavagedPath:
     ShowLandmarkSign Route204South_Text_RavagedPath
     End
 

@@ -6,15 +6,15 @@
 #define LOCALID_MESPRIT 129
 
     ScriptEntry DistortionWorldB1F_OnTransition
-    ScriptEntry DistortionWorldB1F_OnFrameFirstEntry
-    ScriptEntry DistortionWorldB1F_TriggerMesprit
+    ScriptEntry DistortionWorldB1F_OnFrame_FirstEntry
+    ScriptEntry DistortionWorldB1F_CoordEvent_Mesprit
     ScriptEntryEnd
 
 DistortionWorldB1F_OnTransition:
     InitPersistedMapFeaturesForDistortionWorld
     End
 
-DistortionWorldB1F_OnFrameFirstEntry:
+DistortionWorldB1F_OnFrame_FirstEntry:
     LockAll
     ApplyMovement LOCALID_PLAYER, DistortionWorldB1F_Movement_PlayerWalkOnSpotNorth
     ApplyMovement LOCALID_CYNTHIA, DistortionWorldB1F_Movement_CynthiaWalkOnSpotSouth
@@ -29,7 +29,7 @@ DistortionWorldB1F_OnFrameFirstEntry:
     ReleaseAll
     End
 
-DistortionWorldB1F_TriggerMesprit:
+DistortionWorldB1F_CoordEvent_Mesprit:
     LockAll
     PlayCry SPECIES_MESPRIT
     Message DistortionWorldB1F_Text_MespritCry

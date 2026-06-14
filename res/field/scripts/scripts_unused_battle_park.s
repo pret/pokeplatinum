@@ -3,10 +3,10 @@
 #include "res/field/events/events_unused_battle_park.h"
 
 
-    ScriptEntry BattlePark_TriggerPalmerRival
+    ScriptEntry BattlePark_CoordEvent_PalmerRival
     ScriptEntry BattlePark_Unused2
-    ScriptEntry BattlePark_SignExchangeServiceCorner
-    ScriptEntry BattlePark_SignBattleTower
+    ScriptEntry BattlePark_SignboardExchangeServiceCorner
+    ScriptEntry BattlePark_SignboardBattleTower
     ScriptEntry BattlePark_Beauty
     ScriptEntry BattlePark_SchoolKidM
     ScriptEntry BattlePark_ExpertF
@@ -17,7 +17,7 @@
     ScriptEntry BattlePark_BlackBelt
     ScriptEntryEnd
 
-BattlePark_TriggerPalmerRival:
+BattlePark_CoordEvent_PalmerRival:
     LockAll
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     CallIfEq VAR_0x8004, 23, BattlePark_SetPalmerRivalPositionX23
@@ -246,11 +246,11 @@ BattlePark_BlackBelt:
     NPCMessage BattlePark_Text_HookUpWithBeauty
     End
 
-BattlePark_SignExchangeServiceCorner:
+BattlePark_SignboardExchangeServiceCorner:
     ShowLandmarkSign BattlePark_Text_SignExchangeServiceCorner
     End
 
-BattlePark_SignBattleTower:
+BattlePark_SignboardBattleTower:
     ShowLandmarkSign BattlePark_Text_SignBattleTower
     End
 

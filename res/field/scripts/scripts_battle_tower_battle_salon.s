@@ -12,8 +12,8 @@
     ScriptEntry BattleTowerBattleSalon_Buck
     ScriptEntry BattleTowerBattleSalon_OnTransition
     ScriptEntry BattleTowerBattleSalon_OnResume
-    ScriptEntry BattleTowerBattleSalon_OnFrameEnterBattleSalon
-    ScriptEntry BattleTowerBattleSalon_OnFrameEnterBattleRoom
+    ScriptEntry BattleTowerBattleSalon_OnFrame_EnterBattleSalon
+    ScriptEntry BattleTowerBattleSalon_OnFrame_EnterBattleRoom
     ScriptEntryEnd
 
 BattleTowerBattleSalon_OnTransition:
@@ -92,7 +92,7 @@ BattleTowerBattleSalon_SetAttendantPositionAtDoor:
     SetPosition LOCALID_TEALA, 8, 0, 3, DIR_SOUTH
     End
 
-BattleTowerBattleSalon_OnFrameEnterBattleSalon:
+BattleTowerBattleSalon_OnFrame_EnterBattleSalon:
     LockAll
     SetVar VAR_BATTLE_TOWER_BATTLE_SALON_STATE, 0
     Call BattleTowerBattleSalon_EnterBattleSalon
@@ -126,7 +126,7 @@ BattleTowerBattleSalon_Quit:
     WaitFadeScreen
     End
 
-BattleTowerBattleSalon_OnFrameEnterBattleRoom:
+BattleTowerBattleSalon_OnFrame_EnterBattleRoom:
     LockAll
     SetVar VAR_BATTLE_TOWER_BATTLE_SALON_STATE, 0
     Message BattleTowerBattleSalon_Text_ShowYouToMultiBattleRoom

@@ -8,8 +8,8 @@
     ScriptEntry Route205South_Youngster
     ScriptEntry Route205South_Grunts
     ScriptEntry Route205South_LittleGirl
-    ScriptEntry Route205South_TriggerLittleGirl
-    ScriptEntry Route205South_TriggerGrunts
+    ScriptEntry Route205South_CoordEvent_LittleGirl
+    ScriptEntry Route205South_CoordEvent_Grunts
     ScriptEntry Route205South_ArrowSignpostFloaromaTown
     ScriptEntry Route205South_ArrowSignpostEternaForest
     ScriptEntry Route205South_TrainerTipsSignpost
@@ -45,7 +45,7 @@ Route205South_Movement_GruntMEastWalkOnSpotSouth:
     WalkOnSpotNormalSouth
     EndMovement
 
-Route205South_TriggerGrunts:
+Route205South_CoordEvent_Grunts:
     LockAll
     ApplyMovement LOCALID_GRUNT_M_WEST, Route205South_Movement_GruntMWestWalkOnSpotEast
     WaitMovement
@@ -131,7 +131,7 @@ Route205South_HideFloaromaTownGrunts:
     SetVar VAR_VALLEY_WINDWORKS_STATE, 1
     Return
 
-Route205South_TriggerLittleGirl:
+Route205South_CoordEvent_LittleGirl:
     LockAll
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     GoToIfEq VAR_0x8005, 659, Route205South_LittleGirlNoticePlayerZ659

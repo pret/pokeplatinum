@@ -4,8 +4,8 @@
 
     ScriptEntry Route212North_Youngster
     ScriptEntry Route212North_ArrowSignpostHearthomeCity
-    ScriptEntry Route212North_SignPokemonMansion
-    ScriptEntry Route212North_TrainerTips
+    ScriptEntry Route212North_SignboardPokemonMansion
+    ScriptEntry Route212North_TrainerTipsSignpost
     ScriptEntry Route212North_Collector
     ScriptEntry Route212North_PolicemanBobby
     ScriptEntry Route212North_PolicemanAlex
@@ -50,11 +50,11 @@ Route212North_ArrowSignpostHearthomeCity:
     ShowArrowSign Route212North_Text_SignHearthomeCity
     End
 
-Route212North_SignPokemonMansion:
+Route212North_SignboardPokemonMansion:
     ShowLandmarkSign Route212North_Text_SignPokemonMansion
     End
 
-Route212North_TrainerTips:
+Route212North_TrainerTipsSignpost:
     ShowScrollingSign Route212North_Text_TrainerTipsReorganizeItems
     End
 

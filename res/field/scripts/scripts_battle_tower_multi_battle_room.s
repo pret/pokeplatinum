@@ -7,8 +7,8 @@
 
     ScriptEntry BattleTowerMultiBattleRoom_OnTransition
     ScriptEntry BattleTowerMultiBattleRoom_OnResume
-    ScriptEntry BattleTowerMultiBattleRoom_OnFrameEnter
-    ScriptEntry BattleTowerMultiBattleRoom_OnFrameContinueMultiChallenge
+    ScriptEntry BattleTowerMultiBattleRoom_OnFrame_Enter
+    ScriptEntry BattleTowerMultiBattleRoom_OnFrame_ContinueMultiChallenge
     ScriptEntryEnd
 
 BattleTowerMultiBattleRoom_OnTransition:
@@ -84,7 +84,7 @@ BattleTowerMultiBattleRoom_EndCommunicationWarpToLobby:
     ReleaseAll
     End
 
-BattleTowerMultiBattleRoom_OnFrameEnter:
+BattleTowerMultiBattleRoom_OnFrame_Enter:
     LockAll
     SetVar VAR_BATTLE_TOWER_MULTI_BATTLE_ROOM_LOAD_ACTION, 3
     Call BattleTowerMultiBattleRoom_PlayersEnter
@@ -93,7 +93,7 @@ BattleTowerMultiBattleRoom_OnFrameEnter:
     GoTo BattleTowerMultiBattleRoom_DoMultiBattle
     End
 
-BattleTowerMultiBattleRoom_OnFrameContinueMultiChallenge:
+BattleTowerMultiBattleRoom_OnFrame_ContinueMultiChallenge:
     LockAll
     SetVar VAR_BATTLE_TOWER_MULTI_BATTLE_ROOM_LOAD_ACTION, 3
     Call BattleTowerMultiBattleRoom_PlayersEnter

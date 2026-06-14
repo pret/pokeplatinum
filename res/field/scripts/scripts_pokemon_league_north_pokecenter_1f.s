@@ -6,7 +6,7 @@
     ScriptEntry PokemonLeagueNorthPokecenter1F_DoorGuard
     ScriptEntry PokemonLeagueNorthPokecenter1F_VendorCommon
     ScriptEntry PokemonLeagueNorthPokecenter1F_VendorSpecial
-    ScriptEntry PokemonLeagueNorthPokecenter1F_RivalTrigger
+    ScriptEntry PokemonLeagueNorthPokecenter1F_CoordEvent_Rival
     ScriptEntry PokemonLeagueNorthPokecenter1F_OnTransition
     ScriptEntry PokemonLeagueNorthPokecenter1F_AceTrainerF
     ScriptEntry PokemonLeagueNorthPokecenter1F_Guitarist
@@ -105,7 +105,7 @@ PokemonLeagueNorthPokecenter1F_VendorSpecial:
     PokeMartSpecialtiesWithGreeting MART_SPECIALTIES_ID_POKEMON_LEAGUE
     End
 
-PokemonLeagueNorthPokecenter1F_RivalTrigger:
+PokemonLeagueNorthPokecenter1F_CoordEvent_Rival:
     LockAll
     ClearFlag FLAG_HIDE_POKEMON_LEAGUE_NORTH_POKECENTER_1F_RIVAL
     AddObject LOCALID_LEAGUE_NORTH_RIVAL

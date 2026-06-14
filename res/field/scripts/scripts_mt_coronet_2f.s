@@ -4,7 +4,7 @@
 
 
     ScriptEntry MtCoronet2F_CavePainting
-    ScriptEntry MtCoronet2F_TriggerLooker
+    ScriptEntry MtCoronet2F_CoordEvent_Looker
     ScriptEntry MtCoronet2F_Looker
     ScriptEntry MtCoronet2F_CavePaintingShards
     ScriptEntryEnd
@@ -17,7 +17,7 @@ MtCoronet2F_CavePaintingShards:
     NPCMessage MtCoronet2F_Text_ShardsAreAllThatRemainOfTheAncientCavePainting
     End
 
-MtCoronet2F_TriggerLooker:
+MtCoronet2F_CoordEvent_Looker:
     LockAll
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     SetVar VAR_MT_CORONET_2F_STATE, 2

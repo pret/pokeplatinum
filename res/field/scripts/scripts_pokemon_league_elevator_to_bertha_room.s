@@ -3,7 +3,7 @@
 
     ScriptEntry PokemonLeagueElevatorToBerthaRoom_OnTransition
     ScriptEntry PokemonLeagueElevatorToBerthaRoom_DisablePlatformLift
-    ScriptEntry PokemonLeagueElevatorToBerthaRoom_TriggerPlatformLift
+    ScriptEntry PokemonLeagueElevatorToBerthaRoom_CoordEvent_PlatformLift
     ScriptEntryEnd
 
 PokemonLeagueElevatorToBerthaRoom_OnTransition:
@@ -17,7 +17,7 @@ PokemonLeagueElevatorToBerthaRoom_DisablePlatformLift:
     SetVar VAR_MAP_LOCAL_0, 1
     End
 
-PokemonLeagueElevatorToBerthaRoom_TriggerPlatformLift:
+PokemonLeagueElevatorToBerthaRoom_CoordEvent_PlatformLift:
     TriggerPlatformLift
     SetVar VAR_MAP_LOCAL_0, 1
     End

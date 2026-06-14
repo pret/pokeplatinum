@@ -6,7 +6,7 @@
     ScriptEntry Route210South_Psyduck
     ScriptEntry Route210South_Unused
     ScriptEntry Route210South_AceTrainerF
-    ScriptEntry Route210South_SignCafeCabin
+    ScriptEntry Route210South_SignboardCafeCabin
     ScriptEntry Route210South_ArrowSignpostSolaceonTown
     ScriptEntry Route210South_JoggerWyatt
     ScriptEntry Route210South_OnTransition
@@ -246,7 +246,7 @@ Route210South_BagIsFull:
     ReleaseAll
     End
 
-Route210South_SignCafeCabin:
+Route210South_SignboardCafeCabin:
     ShowLandmarkSign Route210South_Text_SignCafeCabin
     End
 
