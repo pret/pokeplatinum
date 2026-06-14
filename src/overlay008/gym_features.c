@@ -427,8 +427,8 @@ void PastoriaGym_PressButton(FieldSystem *fieldSystem)
         pastoria_gym_orange_button_nsbmd
     };
 
-    int playerX = Player_GetXPos(fieldSystem->playerAvatar);
-    int playerY = Player_GetZPos(fieldSystem->playerAvatar);
+    int playerX = PlayerAvatar_GetXPos(fieldSystem->playerAvatar);
+    int playerY = PlayerAvatar_GetZPos(fieldSystem->playerAvatar);
 
     TerrainCollisionHitbox_Init(playerX, playerY, 0, 0, 1, 1, &terrainCollision);
 
@@ -778,7 +778,7 @@ void HearthomeGym_MoveLift(FieldSystem *fieldSystem)
     HearthomeGymPersistedFeatureDP *features = PersistedMapFeatures_GetBuffer(mapFeatures, DYNAMIC_MAP_FEATURES_HEARTHOME_GYM);
 
     VecFx32 currentPosition;
-    PlayerAvatar_PosVectorOut(fieldSystem->playerAvatar, &currentPosition);
+    PlayerAvatar_GetPosPtr(fieldSystem->playerAvatar, &currentPosition);
 
     if (currentPosition.y == HEARTHOME_DP_LIFT_HEIGHT_DOWN) {
         FieldTask_InitCall(fieldSystem->task, HearthomeGymDP_RaiseLift, movementState);
@@ -1228,7 +1228,7 @@ static void CanalaveGym_UpdatePlatformsVisibility(const CanalaveGymSystem *gymSy
 static u8 CanalaveGym_GetPlaformPlayerIsOn(CanalaveGymSystem *gymSystem)
 {
     VecFx32 playerPos;
-    PlayerAvatar_PosVectorOut(gymSystem->fieldSystem->playerAvatar, &playerPos);
+    PlayerAvatar_GetPosPtr(gymSystem->fieldSystem->playerAvatar, &playerPos);
 
     u8 playerY = playerPos.y / MAP_OBJECT_TILE_SIZE;
     u8 playerX = playerPos.x / MAP_OBJECT_TILE_SIZE;
@@ -1393,7 +1393,7 @@ static BOOL FieldTask_CanalaveGym_MovePlatformEastWest(FieldTask *taskMan)
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     int *state = FieldTask_GetEnv(taskMan);
     CanalaveGymSystem *gymSystem = fieldSystem->unk_04->dynamicMapFeaturesData;
-    MapObject *playerObj = Player_MapObject(fieldSystem->playerAvatar);
+    MapObject *playerObj = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
 
     switch (*state) {
     case 0:
@@ -1410,7 +1410,7 @@ static BOOL FieldTask_CanalaveGym_MovePlatformEastWest(FieldTask *taskMan)
 
         VecFx32 platformPos, playerPos;
         platformPos = MapProp_GetPosition(platformProp);
-        PlayerAvatar_PosVectorOut(fieldSystem->playerAvatar, &playerPos);
+        PlayerAvatar_GetPosPtr(fieldSystem->playerAvatar, &playerPos);
         platformPos.x = playerPos.x;
 
         if (gymSystem->movementDir == CANALAVE_PLATFORM_MOVE_EAST) {
@@ -1466,7 +1466,7 @@ static BOOL FieldTask_CanalaveGym_MovePlatformNorthSouth(FieldTask *taskMan)
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     int *state = FieldTask_GetEnv(taskMan);
     CanalaveGymSystem *gymSystem = fieldSystem->unk_04->dynamicMapFeaturesData;
-    MapObject *playerObj = Player_MapObject(fieldSystem->playerAvatar);
+    MapObject *playerObj = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
 
     switch (*state) {
     case 0:
@@ -1483,7 +1483,7 @@ static BOOL FieldTask_CanalaveGym_MovePlatformNorthSouth(FieldTask *taskMan)
 
         VecFx32 platformPos, playerPos;
         platformPos = MapProp_GetPosition(platformProp);
-        PlayerAvatar_PosVectorOut(fieldSystem->playerAvatar, &playerPos);
+        PlayerAvatar_GetPosPtr(fieldSystem->playerAvatar, &playerPos);
         platformPos.z = playerPos.z;
 
         if (gymSystem->movementDir == CANALAVE_PLATFORM_MOVE_SOUTH) {
@@ -1521,7 +1521,7 @@ static BOOL FieldTask_CanalaveGym_MovePlatformNorthSouth(FieldTask *taskMan)
         }
         break;
     case 3: {
-        MapObject *playerObj = Player_MapObject(fieldSystem->playerAvatar);
+        MapObject *playerObj = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
 
         if (LocalMapObj_CheckAnimationFinished(playerObj) == TRUE) {
             sub_020656AC(playerObj);
@@ -1585,7 +1585,7 @@ void CanalaveGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
     }
 
     VecFx32 playerPos;
-    PlayerAvatar_PosVectorOut(fieldSystem->playerAvatar, &playerPos);
+    PlayerAvatar_GetPosPtr(fieldSystem->playerAvatar, &playerPos);
     CanalaveGym_UpdateVisibleProps(gymSystem, playerPos.y);
 
     Camera_SetClipping(FX32_CONST(100), FX32_CONST(1700), fieldSystem->camera);
@@ -2556,8 +2556,8 @@ BOOL EternaGym_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const 
 
 static void EternaGym_SetupCameraMoveAwayFromPlayer(FieldSystem *fieldSystem, EternaGymCameraManager *cameraMan, int destX, int destZ)
 {
-    int playerX = Player_GetXPos(fieldSystem->playerAvatar);
-    int playerZ = Player_GetZPos(fieldSystem->playerAvatar);
+    int playerX = PlayerAvatar_GetXPos(fieldSystem->playerAvatar);
+    int playerZ = PlayerAvatar_GetZPos(fieldSystem->playerAvatar);
 
     cameraMan->startX = playerX;
     cameraMan->startZ = playerZ;
@@ -2660,7 +2660,7 @@ static void EternaGym_SetupCameraMoveToNewPosition(EternaGymCameraManager *camer
 
 static void EternaGym_FreeCameraObject(FieldSystem *fieldSystem, EternaGymCameraManager *cameraMan)
 {
-    const VecFx32 *playerPos = PlayerAvatar_PosVector(fieldSystem->playerAvatar);
+    const VecFx32 *playerPos = PlayerAvatar_GetPos(fieldSystem->playerAvatar);
 
     LandDataManager_TrackTarget(playerPos, fieldSystem->landDataMan);
     Camera_TrackTarget(playerPos, fieldSystem->camera);
@@ -2881,8 +2881,8 @@ static BOOL FieldTask_EternaGym_AdvanceClockState(FieldTask *task)
         clockMan->state++;
     case 12:
         if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
-            int playerX = Player_GetXPos(fieldSystem->playerAvatar);
-            int playerY = Player_GetZPos(fieldSystem->playerAvatar);
+            int playerX = PlayerAvatar_GetXPos(fieldSystem->playerAvatar);
+            int playerY = PlayerAvatar_GetZPos(fieldSystem->playerAvatar);
 
             EternaGym_SetupCameraMoveFromLastPosition(&clockMan->cameraMan, playerX, playerY);
             Window_EraseMessageBox(clockMan->window, FALSE);
@@ -3253,7 +3253,7 @@ static BOOL FieldTask_VeilstoneGym_HitPunchingBagNoMovement(FieldTask *taskMan)
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     VeilstoneGym_BagAnimation *bagAnim = FieldTask_GetEnv(taskMan);
 
-    MapObject *playerObj = Player_MapObject(fieldSystem->playerAvatar);
+    MapObject *playerObj = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
 
     switch (bagAnim->state) {
     case 0:
@@ -3308,7 +3308,7 @@ static int VeilstoneGym_AnimationState_Init(VeilstoneGym_BagAnimation *bagAnim)
 
 static int VeilstoneGym_AnimationState_KickBag(VeilstoneGym_BagAnimation *bagAnim)
 {
-    MapObject *playerObj = Player_MapObject(bagAnim->gymSystem->fieldSystem->playerAvatar);
+    MapObject *playerObj = PlayerAvatar_GetMapObject(bagAnim->gymSystem->fieldSystem->playerAvatar);
 
     if (!LocalMapObj_IsAnimationSet(playerObj)) {
         return VEILSTONE_STATE_RESULT_ADVANCE_FRAME;
@@ -3480,7 +3480,7 @@ static int VeilstoneGym_AnimationState_FinishBagAnimation(VeilstoneGym_BagAnimat
 
 static int VeilstoneGym_AnimationState_WaitForAnimationFinished(VeilstoneGym_BagAnimation *bagAnim)
 {
-    MapObject *playerObj = Player_MapObject(bagAnim->gymSystem->fieldSystem->playerAvatar);
+    MapObject *playerObj = PlayerAvatar_GetMapObject(bagAnim->gymSystem->fieldSystem->playerAvatar);
 
     if (LocalMapObj_CheckAnimationFinished(playerObj) == TRUE) {
         sub_020656AC(playerObj);
@@ -3547,7 +3547,7 @@ BOOL VeilstoneGym_HitPunchingBag(FieldSystem *fieldSystem)
     }
 
     int x, z, bagTravelDistance;
-    int playerDir = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
+    int playerDir = PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar);
     VeilstoneGymSystem *gymSystem = fieldSystem->unk_04->dynamicMapFeaturesData;
 
     PlayerAvatar_MoveCoordsInDirection(fieldSystem->playerAvatar, playerDir, &x, &z);
@@ -3587,8 +3587,8 @@ static void VeilstoneGym_InitCameraManager(FieldSystem *fieldSystem, VeilstoneGy
     cameraMan->destX = x + MapObject_GetDxFromDir(direction) * cameraMan->distanceToTravel;
     cameraMan->destZ = z + MapObject_GetDzFromDir(direction) * cameraMan->distanceToTravel;
 
-    x = Player_GetXPos(fieldSystem->playerAvatar);
-    z = Player_GetZPos(fieldSystem->playerAvatar);
+    x = PlayerAvatar_GetXPos(fieldSystem->playerAvatar);
+    z = PlayerAvatar_GetZPos(fieldSystem->playerAvatar);
 
     cameraMan->playerX = x;
     cameraMan->playerZ = z;
@@ -3608,7 +3608,7 @@ static void VeilstoneGym_InitCameraManager(FieldSystem *fieldSystem, VeilstoneGy
 static void VeilStoneGym_ReturnCameraFocusToPlayer(VeilstoneGym_BagAnimation *bagAnim)
 {
     VeilstoneGymCameraManager *cameraMan = &bagAnim->cameraMan;
-    const VecFx32 *playerPos = PlayerAvatar_PosVector(cameraMan->fieldSystem->playerAvatar);
+    const VecFx32 *playerPos = PlayerAvatar_GetPos(cameraMan->fieldSystem->playerAvatar);
 
     LandDataManager_TrackTarget(playerPos, cameraMan->fieldSystem->landDataMan);
     Camera_TrackTarget(playerPos, cameraMan->fieldSystem->camera);
@@ -3786,9 +3786,9 @@ void HearthomeGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
 
     int graphicsID = OBJ_EVENT_GFX_PLAYER_M_HEARTHOME_GYM;
     PlayerAvatar *playerAvatar = fieldSystem->playerAvatar;
-    MapObject *playerObj = Player_MapObject(playerAvatar);
+    MapObject *playerObj = PlayerAvatar_GetMapObject(playerAvatar);
 
-    if (PlayerAvatar_Gender(fieldSystem->playerAvatar) == GENDER_FEMALE) {
+    if (PlayerAvatar_GetGender(fieldSystem->playerAvatar) == GENDER_FEMALE) {
         graphicsID = OBJ_EVENT_GFX_PLAYER_F_HEARTHOME_GYM;
     }
 
@@ -3963,7 +3963,7 @@ BOOL HearthomeGym_CheckIfPlayerSeesTrainer(FieldSystem *fieldSystem)
     MapObject *trainerObj = NULL;
     MapObjectManager *mapObjMan = fieldSystem->mapObjMan;
     PlayerAvatar *playerAvatar = fieldSystem->playerAvatar;
-    MapObject *playerObj = Player_MapObject(playerAvatar);
+    MapObject *playerObj = PlayerAvatar_GetMapObject(playerAvatar);
     playerDirOpposite = Direction_GetOpposite(MapObject_GetFacingDir(playerObj));
 
     while (MapObjectMan_FindObjectWithStatus(mapObjMan, &trainerObj, &objIndex, MAP_OBJ_STATUS_0)) {

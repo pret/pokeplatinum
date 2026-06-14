@@ -24,16 +24,16 @@
     ScriptEntry HearthomeCity_BabyInPram2
     ScriptEntry HearthomeCity_BlackBelt1
     ScriptEntry HearthomeCity_PokemonBreederF2
-    ScriptEntry HearthomeCity_TriggerBunearyAndKeira
+    ScriptEntry HearthomeCity_CoordEvent_BunearyAndKeira
     ScriptEntry HearthomeCity_MapSignpost
     ScriptEntry HearthomeCity_GymSignpost
-    ScriptEntry HearthomeCity_SignPokemonContestHall
-    ScriptEntry HearthomeCity_SignPokemonFanClub
+    ScriptEntry HearthomeCity_SignboardPokemonContestHall
+    ScriptEntry HearthomeCity_SignboardPokemonFanClub
     ScriptEntry HearthomeCity_ArrowSignpostWest
     ScriptEntry HearthomeCity_ArrowSignpostEast
-    ScriptEntry HearthomeCity_SignAmitySquareWestGate
-    ScriptEntry HearthomeCity_SignAmitySquareEastGate
-    ScriptEntry HearthomeCity_SignPoffinHouse
+    ScriptEntry HearthomeCity_SignboardAmitySquareWestGate
+    ScriptEntry HearthomeCity_SignboardAmitySquareEastGate
+    ScriptEntry HearthomeCity_SignboardPoffinHouse
     ScriptEntry HearthomeCity_GymGuide
     ScriptEntry HearthomeCity_BlackBelt2
     ScriptEntryEnd
@@ -440,7 +440,7 @@ HearthomeCity_PokemonBreederF2:
     NPCMessage HearthomeCity_Text_IdLikeToLiveInHearthome
     End
 
-HearthomeCity_TriggerBunearyAndKeira:
+HearthomeCity_CoordEvent_BunearyAndKeira:
     LockAll
     ApplyMovement LOCALID_PLAYER, HearthomeCity_Movement_PlayerExclamationMark
     WaitMovement
@@ -539,11 +539,11 @@ HearthomeCity_GymSignpost:
     ShowScrollingSign HearthomeCity_Text_SignHearthomeCityPokemonGym
     End
 
-HearthomeCity_SignPokemonContestHall:
+HearthomeCity_SignboardPokemonContestHall:
     ShowLandmarkSign HearthomeCity_Text_SignPokemonContestHall
     End
 
-HearthomeCity_SignPokemonFanClub:
+HearthomeCity_SignboardPokemonFanClub:
     ShowLandmarkSign HearthomeCity_Text_SignPokemonFanClub
     End
 
@@ -555,15 +555,15 @@ HearthomeCity_ArrowSignpostEast:
     ShowArrowSign HearthomeCity_Text_SignRt209SolaceonTown
     End
 
-HearthomeCity_SignAmitySquareWestGate:
+HearthomeCity_SignboardAmitySquareWestGate:
     ShowLandmarkSign HearthomeCity_Text_SignAmitySquareWestGate
     End
 
-HearthomeCity_SignAmitySquareEastGate:
+HearthomeCity_SignboardAmitySquareEastGate:
     ShowLandmarkSign HearthomeCity_Text_SignAmitySquareEastGate
     End
 
-HearthomeCity_SignPoffinHouse:
+HearthomeCity_SignboardPoffinHouse:
     ShowLandmarkSign HearthomeCity_Text_SignThePoffinHouse
     End
 

@@ -758,12 +758,12 @@
     .short \arg1
     .endm
 
-    .macro FrontierScrCmd_8B arg0, arg1, arg2, arg3
-    .short FRSCRCMD_8B
-    .short \arg0
-    .short \arg1
-    .short \arg2
-    .short \arg3
+    .macro InitBattleHall resumingFromSave, challengeType, partySlot1, partySlot2
+    .short FRSCRCMD_INITBATTLEHALL
+    .short \resumingFromSave
+    .short \challengeType
+    .short \partySlot1
+    .short \partySlot2
     .endm
 
     .macro FrontierScrCmd_8C arg0
@@ -771,8 +771,8 @@
     .short \arg0
     .endm
 
-    .macro FrontierScrCmd_8D
-    .short FRSCRCMD_8D
+    .macro FreeBattleHall
+    .short FRSCRCMD_FREEBATTLEHALL
     .endm
 
     .macro OpenBattleHallApp

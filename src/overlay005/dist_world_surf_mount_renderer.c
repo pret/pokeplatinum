@@ -102,7 +102,7 @@ OverworldAnimManager *DistWorldSurfMountRenderer_HandleSurfBegin(PlayerAvatar *p
 {
     VecFx32 mountPos = { 0, 0, 0 };
     DistWorldSurfMountUserData userData;
-    MapObject *playerMapObj = Player_MapObject(playerAvatar);
+    MapObject *playerMapObj = PlayerAvatar_GetMapObject(playerAvatar);
 
     userData.dir = dir;
     userData.avatarDistortionState = avatarDistortionState;

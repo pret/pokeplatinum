@@ -2,10 +2,10 @@
 #include "res/text/bank/fuego_ironworks_outside.h"
 
 
-    ScriptEntry FuegoIronworksOutside_Sign
+    ScriptEntry FuegoIronworksOutside_Signboard
     ScriptEntryEnd
 
-FuegoIronworksOutside_Sign:
+FuegoIronworksOutside_Signboard:
     ShowLandmarkSign FuegoIronworksOutside_Text_SignFuegoIronworks
     End
 

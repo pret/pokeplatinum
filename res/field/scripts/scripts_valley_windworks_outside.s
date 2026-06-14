@@ -7,10 +7,10 @@
     ScriptEntry ValleyWindworksOutside_OnLoad
     ScriptEntry ValleyWindworksOutside_GruntM
     ScriptEntry ValleyWindworksOutside_Door
-    ScriptEntry ValleyWindworksOutside_LandmarkSignValleyWindworks
+    ScriptEntry ValleyWindworksOutside_SignboardValleyWindworks
     ScriptEntry ValleyWindworksOutside_Drifloon
     ScriptEntry ValleyWindworksOutside_OnResume
-    ScriptEntry ValleyWindworksOutside_OnFrameLooker
+    ScriptEntry ValleyWindworksOutside_OnFrame_Looker
     ScriptEntryEnd
 
 ValleyWindworksOutside_OnResume:
@@ -130,7 +130,7 @@ ValleyWindworksOutside_AskOpenDoorEnd:
     ReleaseAll
     End
 
-ValleyWindworksOutside_LandmarkSignValleyWindworks:
+ValleyWindworksOutside_SignboardValleyWindworks:
     ShowLandmarkSign ValleyWindworksOutside_Text_ValleyWindworksEcologicalWindDrivenEnergy
     End
 
@@ -156,7 +156,7 @@ ValleyWindworksOutside_BlackOutDrifloon:
     ReleaseAll
     End
 
-ValleyWindworksOutside_OnFrameLooker:
+ValleyWindworksOutside_OnFrame_Looker:
     LockAll
     ApplyMovement LOCALID_LOOKER, ValleyWindworksOutside_Movement_LookerNoticeAndWalkToPlayer
     ApplyMovement LOCALID_PLAYER, ValleyWindworksOutside_Movement_PlayerFaceLookerWest

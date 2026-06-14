@@ -32,7 +32,7 @@ static void ov5_021E1350(void *param0);
 
 int ov5_021E1154(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, int param2)
 {
-    MapObject *v0 = Player_MapObject(playerAvatar);
+    MapObject *v0 = PlayerAvatar_GetMapObject(playerAvatar);
     u8 v1 = MapObject_GetCurrTileBehavior(v0);
     int v2;
 
@@ -83,7 +83,7 @@ static int ov5_021E11E0(int param0)
 static BOOL ov5_021E120C(FieldTask *param0)
 {
     UnkStruct_ov5_021E11B0 *v0 = FieldTask_GetEnv(param0);
-    MapObject *v1 = Player_MapObject(v0->playerAvatar);
+    MapObject *v1 = PlayerAvatar_GetMapObject(v0->playerAvatar);
     u8 v2 = MapObject_GetCurrTileBehavior(v1);
 
     switch (v0->unk_08) {
@@ -97,7 +97,7 @@ static BOOL ov5_021E120C(FieldTask *param0)
 
             v3 = MovementAction_TurnActionTowardsDir(v0->unk_00, v3);
             PlayerAvatar_SetAnimationCode(v0->playerAvatar, v3, 1);
-            Player_SetDir(v0->playerAvatar, v0->unk_00);
+            PlayerAvatar_TryFace(v0->playerAvatar, v0->unk_00);
             v0->unk_08++;
             v0->unk_04 = 7;
         }
@@ -108,7 +108,7 @@ static BOOL ov5_021E120C(FieldTask *param0)
         case 4:
         case 2:
             v0->unk_00 = ov5_021E11E0(v0->unk_00);
-            Player_SetDir(v0->playerAvatar, v0->unk_00);
+            PlayerAvatar_TryFace(v0->playerAvatar, v0->unk_00);
             break;
         default:
             break;
@@ -137,7 +137,7 @@ static BOOL ov5_021E120C(FieldTask *param0)
                 } else {
                     MapObject_SetStatusFlagOff(v1, MAP_OBJ_STATUS_LOCK_DIR);
                     MapObject_SetStatusFlagOff(v1, MAP_OBJ_STATUS_PAUSE_ANIMATION);
-                    Player_SetDir(v0->playerAvatar, v0->unk_00);
+                    PlayerAvatar_TryFace(v0->playerAvatar, v0->unk_00);
                     ov5_021E1350(v0);
                     Sound_StopEffect(1624, 0);
                     return 1;

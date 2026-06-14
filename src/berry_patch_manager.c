@@ -265,8 +265,8 @@ static const MapObjectAnimCmd BerryWatering_RightAnimation[] = {
 
 static BOOL BerryPatches_CheckCollision(FieldSystem *fieldSystem, BerryWateringTask *task, enum FaceDirection direction)
 {
-    int playerX = Player_GetXPos(fieldSystem->playerAvatar);
-    int playerZ = Player_GetZPos(fieldSystem->playerAvatar);
+    int playerX = PlayerAvatar_GetXPos(fieldSystem->playerAvatar);
+    int playerZ = PlayerAvatar_GetZPos(fieldSystem->playerAvatar);
 
     if (direction == FACE_LEFT) {
         playerX--;
@@ -289,8 +289,8 @@ static BOOL BerryPatches_CheckCollision(FieldSystem *fieldSystem, BerryWateringT
 
 static MapObject *BerryPatches_GetAdjacentObject(FieldSystem *fieldSystem, enum FaceDirection direction)
 {
-    int playerX = Player_GetXPos(fieldSystem->playerAvatar);
-    int playerZ = Player_GetZPos(fieldSystem->playerAvatar);
+    int playerX = PlayerAvatar_GetXPos(fieldSystem->playerAvatar);
+    int playerZ = PlayerAvatar_GetZPos(fieldSystem->playerAvatar);
     playerZ -= 1;
 
     if (direction == FACE_LEFT) {
@@ -304,8 +304,8 @@ static MapObject *BerryPatches_GetAdjacentObject(FieldSystem *fieldSystem, enum 
 
 static MapObject *BerryPatches_GetTargetPatch(FieldSystem *fieldSystem, BerryWateringTask *task)
 {
-    int playerX = Player_GetXPos(fieldSystem->playerAvatar);
-    int playerZ = Player_GetZPos(fieldSystem->playerAvatar);
+    int playerX = PlayerAvatar_GetXPos(fieldSystem->playerAvatar);
+    int playerZ = PlayerAvatar_GetZPos(fieldSystem->playerAvatar);
 
     if (task->direction == FACE_UP) {
         playerZ -= 1;
@@ -334,7 +334,7 @@ static void BerryPatches_WaterPatch(FieldSystem *fieldSystem, BerryWateringTask 
 
 static void BerryPatches_StartAnimation(FieldSystem *fieldSystem, BerryWateringTask *task, const MapObjectAnimCmd *animationCmd)
 {
-    MapObject *playerObject = Player_MapObject(fieldSystem->playerAvatar);
+    MapObject *playerObject = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
     task->animationTask = MapObject_StartAnimation(playerObject, animationCmd);
 }
 
@@ -347,7 +347,7 @@ static BOOL BerryPatches_TaskMain(FieldTask *taskManager)
     case BERRY_WATERING_STATE_INIT:
         PlayerAvatar_SetTransitionState(fieldSystem->playerAvatar, PLAYER_TRANSITION_WATER_BERRIES);
         PlayerAvatar_RequestChangeState(fieldSystem->playerAvatar);
-        MapObject_SetPauseMovementOff(Player_MapObject(fieldSystem->playerAvatar));
+        MapObject_SetPauseMovementOff(PlayerAvatar_GetMapObject(fieldSystem->playerAvatar));
         task->state = BERRY_WATERING_STATE_WATERING;
         break;
     case BERRY_WATERING_STATE_WATERING:
@@ -378,7 +378,7 @@ static BOOL BerryPatches_TaskMain(FieldTask *taskManager)
                 break;
             }
         } else if ((gSystem.heldKeys & PAD_KEY_UP) && (task->direction == FACE_DOWN)) {
-            Player_SetDir(fieldSystem->playerAvatar, FACE_UP);
+            PlayerAvatar_TryFace(fieldSystem->playerAvatar, FACE_UP);
             task->state = BERRY_WATERING_STATE_CLEANUP;
             break;
         } else if ((gSystem.heldKeys & PAD_KEY_DOWN) && (task->direction == FACE_UP)) {
@@ -389,7 +389,7 @@ static BOOL BerryPatches_TaskMain(FieldTask *taskManager)
         task->timer++;
 
         if (task->timer > 30 * 3) {
-            Player_SetDir(fieldSystem->playerAvatar, task->direction);
+            PlayerAvatar_TryFace(fieldSystem->playerAvatar, task->direction);
             task->state = BERRY_WATERING_STATE_CLEANUP;
         }
         break;
@@ -403,14 +403,14 @@ static BOOL BerryPatches_TaskMain(FieldTask *taskManager)
             if ((targetPatch != NULL) && BerryPatches_IsBerryPatch(targetPatch)) {
                 task->state = BERRY_WATERING_STATE_WATERING;
             } else {
-                Player_SetDir(fieldSystem->playerAvatar, task->direction);
+                PlayerAvatar_TryFace(fieldSystem->playerAvatar, task->direction);
                 task->state = BERRY_WATERING_STATE_CLEANUP;
             }
         }
         break;
     case BERRY_WATERING_STATE_CLEANUP:
-        Player_SetDir(fieldSystem->playerAvatar, task->direction);
-        MapObject_SetPauseMovementOn(Player_MapObject(fieldSystem->playerAvatar));
+        PlayerAvatar_TryFace(fieldSystem->playerAvatar, task->direction);
+        MapObject_SetPauseMovementOn(PlayerAvatar_GetMapObject(fieldSystem->playerAvatar));
         Heap_Free(task);
         return TRUE;
     }
@@ -424,7 +424,7 @@ void BerryPatches_StartWatering(FieldSystem *fieldSystem)
 
     task->state = BERRY_WATERING_STATE_INIT;
     task->animationTask = NULL;
-    task->direction = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
+    task->direction = PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar);
 
     FieldTask_InitCall(fieldSystem->task, BerryPatches_TaskMain, task);
 }

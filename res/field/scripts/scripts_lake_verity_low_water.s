@@ -5,7 +5,7 @@
 
     ScriptEntry LakeVerityLowWater_OnTransition
     ScriptEntry LakeVerityLowWater_OnLoad
-    ScriptEntry LakeVerityLowWater_OnFrameCyrus
+    ScriptEntry LakeVerityLowWater_OnFrame_Cyrus
     ScriptEntry LakeVerityLowWater_ProfRowan
     ScriptEntry LakeVerityLowWater_Counterpart
     ScriptEntry LakeVerityLowWater_UnusedEntry6
@@ -38,7 +38,7 @@ LakeVerityLowWater_HideStarly:
     End
     End
 
-LakeVerityLowWater_OnFrameCyrus:
+LakeVerityLowWater_OnFrame_Cyrus:
     LockAll
     ClearHasPartner
     ApplyMovement LOCALID_RIVAL, LakeVerityLowWater_Movement_RivalEnter

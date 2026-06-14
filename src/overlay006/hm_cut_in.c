@@ -1031,7 +1031,7 @@ static void FadeOut(void)
 
 static void HidePlayerMapObj(FieldSystem *fieldSystem, BOOL hidden)
 {
-    MapObject *playerMapObject = Player_MapObject(fieldSystem->playerAvatar);
+    MapObject *playerMapObject = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
     MapObject_SetHidden(playerMapObject, hidden);
 }
 
@@ -3049,7 +3049,7 @@ static void *FlyLanding_AllocFromHeapAtEnd(enum HeapID heapID, int size)
 
 static void HideAndStopPlayerMapObj(HMCutIn *cutIn, BOOL hidden)
 {
-    MapObject *playObj = Player_MapObject(cutIn->fieldSystem->playerAvatar);
+    MapObject *playObj = PlayerAvatar_GetMapObject(cutIn->fieldSystem->playerAvatar);
 
     MapObject_SetPauseMovementOff(playObj);
     MapObject_SetHidden(playObj, hidden);

@@ -4,11 +4,11 @@
 
 
     ScriptEntry FloaromaMeadow_OnTransition
-    ScriptEntry FloaromaMeadow_TriggerGrunts
+    ScriptEntry FloaromaMeadow_CoordEvent_Grunts
     ScriptEntry FloaromaMeadow_UnusedGrunt
     ScriptEntry FloaromaMeadow_UnusedGrunt
     ScriptEntry FloaromaMeadow_PokefanM
-    ScriptEntry FloaromaMeadow_UnusedArrowSign
+    ScriptEntry FloaromaMeadow_UnusedArrowSignpost
     ScriptEntry FloaromaMeadow_ItemWorksKey
     ScriptEntryEnd
 
@@ -16,7 +16,7 @@ FloaromaMeadow_OnTransition:
     SetFlag FLAG_FIRST_ARRIVAL_FLOAROMA_MEADOW
     End
 
-FloaromaMeadow_TriggerGrunts:
+FloaromaMeadow_CoordEvent_Grunts:
     LockAll
     Call FloaromaMeadow_GruntsNoticePlayer
     StartTrainerBattle TRAINER_GALACTIC_GRUNT_FLOAROMA_MEADOW_1
@@ -228,7 +228,7 @@ FloaromaMeadow_OopsyYouDontHaveEnoughMoney:
     ReleaseAll
     End
 
-FloaromaMeadow_UnusedArrowSign:
+FloaromaMeadow_UnusedArrowSignpost:
     ShowArrowSign FloaromaMeadow_Text_Dummy18
     End
 

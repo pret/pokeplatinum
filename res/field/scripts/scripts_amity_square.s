@@ -12,10 +12,10 @@
 
 
     ScriptEntry AmitySquare_OnTransition
-    ScriptEntry AmitySquare_Trigger_WestGate
-    ScriptEntry AmitySquare_Trigger_ExitAmitySquare
-    ScriptEntry AmitySquare_Trigger_EastGate
-    ScriptEntry AmitySquare_Trigger_ExitAmitySquare
+    ScriptEntry AmitySquare_CoordEvent_WestGate
+    ScriptEntry AmitySquare_CoordEvent_ExitAmitySquare
+    ScriptEntry AmitySquare_CoordEvent_EastGate
+    ScriptEntry AmitySquare_CoordEvent_ExitAmitySquare
     ScriptEntry AmitySquare_FollowerMon
     ScriptEntry AmitySquare_WestReceptionist
     ScriptEntry AmitySquare_EastReceptionist
@@ -85,7 +85,7 @@ AmitySquare_SetGiftManPosition3:
     SetObjectEventPos LOCALID_GIFT_MAN, 48, 41
     End
 
-AmitySquare_Trigger_WestGate:
+AmitySquare_CoordEvent_WestGate:
     LockAll
     SetVar VAR_0x8001, 1
     ApplyMovement LOCALID_PLAYER, AmitySquare_Movement_PlayerWalkOnSpotWest
@@ -93,7 +93,7 @@ AmitySquare_Trigger_WestGate:
     GoTo AmitySquare_CheckHasNationalDex
     End
 
-AmitySquare_Trigger_EastGate:
+AmitySquare_CoordEvent_EastGate:
     LockAll
     SetVar VAR_0x8001, 2
     ApplyMovement LOCALID_PLAYER, AmitySquare_Movement_PlayerWalkOnSpotEast
@@ -230,7 +230,7 @@ AmitySquare_Unused:
     ReleaseAll
     End
 
-AmitySquare_Trigger_ExitAmitySquare:
+AmitySquare_CoordEvent_ExitAmitySquare:
     LockAll
     FadeScreenOut
     WaitFadeScreen
@@ -240,10 +240,10 @@ AmitySquare_Trigger_ExitAmitySquare:
 
 AmitySquare_RemoveFollower:
     RemoveObject LOCALID_FOLLOWER_MON
-    GoTo AmitySquare_Trigger_ExitAmitySquare_End
+    GoTo AmitySquare_CoordEvent_ExitAmitySquare_End
     End
 
-AmitySquare_Trigger_ExitAmitySquare_End:
+AmitySquare_CoordEvent_ExitAmitySquare_End:
     FadeScreenIn
     WaitFadeScreen
     SetVar VAR_FOLLOWER_MON_ACTIVE, FALSE

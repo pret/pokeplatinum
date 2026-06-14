@@ -5,11 +5,11 @@
     ScriptEntry Route212South_SchoolKidM
     ScriptEntry Route212South_Lady
     ScriptEntry Route212South_Collector
-    ScriptEntry Route212South_ArrowSignPastoriaCity
-    ScriptEntry Route212South_SignShardsWanted
+    ScriptEntry Route212South_ArrowSignpostPastoriaCity
+    ScriptEntry Route212South_SignboardShardsWanted
     ScriptEntry Route212South_PolicemanDanny
     ScriptEntry Route212South_OnTransition
-    ScriptEntry Route212South_TrainerTips
+    ScriptEntry Route212South_TrainerTipsSignpost
     ScriptEntryEnd
 
 Route212South_OnTransition:
@@ -40,15 +40,15 @@ Route212South_Collector:
     NPCMessage Route212South_Text_HowAboutPokemonMansion
     End
 
-Route212South_ArrowSignPastoriaCity:
+Route212South_ArrowSignpostPastoriaCity:
     ShowArrowSign Route212South_Text_SignPastoriaCity
     End
 
-Route212South_SignShardsWanted:
+Route212South_SignboardShardsWanted:
     ShowLandmarkSign Route212South_Text_SignShardsWanted
     End
 
-Route212South_TrainerTips:
+Route212South_TrainerTipsSignpost:
     ShowScrollingSign Route212South_Text_TrainerTipsBog
     End
 

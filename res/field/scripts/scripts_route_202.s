@@ -8,7 +8,7 @@
     ScriptEntry Route202_ArrowSignpostSandgemTown
     ScriptEntry Route202_ArrowSignpostJubilifeCity
     ScriptEntry Route202_TrainerTipsSignpost
-    ScriptEntry Route202_TriggerCatchingTutorial
+    ScriptEntry Route202_CoordEvent_CatchingTutorial
     ScriptEntry Route202_Counterpart
     ScriptEntryEnd
 
@@ -49,7 +49,7 @@ Route202_TrainerTipsSignpost:
     ShowScrollingSign Route202_Text_TrainerTipsPokemonInvolvedInBattleEarnExpPoints
     End
 
-Route202_TriggerCatchingTutorial:
+Route202_CoordEvent_CatchingTutorial:
     LockAll
     ApplyMovement LOCALID_COUNTERPART, Route202_Movement_CounterpartNoticePlayer
     ApplyMovement LOCALID_PLAYER, Route202_Movement_PlayerDelay

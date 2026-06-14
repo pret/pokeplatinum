@@ -16,7 +16,7 @@
     ScriptEntry GalacticHQControlRoom_Uxie
     ScriptEntry GalacticHQControlRoom_Mesprit
     ScriptEntry GalacticHQControlRoom_Azelf
-    ScriptEntry GalacticHQControlRoom_TriggerSaturn
+    ScriptEntry GalacticHQControlRoom_CoordEvent_Saturn
     ScriptEntry GalacticHQControlRoom_Charon
     ScriptEntryEnd
 
@@ -304,7 +304,7 @@ GalacticHQControlRoom_Movement_PlayerWalkOnSpotSouth:
     WalkOnSpotNormalSouth
     EndMovement
 
-GalacticHQControlRoom_TriggerSaturn:
+GalacticHQControlRoom_CoordEvent_Saturn:
     LockAll
     ApplyMovement LOCALID_SATURN, GalacticHQControlRoom_Movement_SaturnWalkOnSpotSouth
     WaitMovement

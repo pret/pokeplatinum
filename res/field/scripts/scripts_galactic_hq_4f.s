@@ -4,13 +4,13 @@
 #include "res/field/events/events_galactic_hq_4f.h"
 
 
-    ScriptEntry GalacticHQ4F_TriggerCyrus
+    ScriptEntry GalacticHQ4F_CoordEvent_Cyrus
     ScriptEntry GalacticHQ4F_Door
-    ScriptEntry GalacticHQ4F_SignWarpPanels
+    ScriptEntry GalacticHQ4F_BgSignWarpPanels
     ScriptEntry GalacticHQ4F_Report
     ScriptEntryEnd
 
-GalacticHQ4F_TriggerCyrus:
+GalacticHQ4F_CoordEvent_Cyrus:
     LockAll
     ApplyMovement LOCALID_CYRUS, GalacticHQ4F_Movement_CyrusWalkOnSpotSouth
     WaitMovement
@@ -151,7 +151,7 @@ GalacticHQ4F_Movement_DoorEastMoveEast:
     WalkFastEast
     EndMovement
 
-GalacticHQ4F_SignWarpPanels:
+GalacticHQ4F_BgSignWarpPanels:
     EventMessage GalacticHQ4F_Text_TeamGalacticWarpPanels
     End
 

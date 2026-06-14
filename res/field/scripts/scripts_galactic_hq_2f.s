@@ -3,9 +3,9 @@
 
 
     ScriptEntry GalacticHQ2F_Bed
-    ScriptEntry GalacticHQ2F_SignNapRoom
-    ScriptEntry GalacticHQ2F_SignTVRoom
-    ScriptEntry GalacticHQ2F_SignCredo
+    ScriptEntry GalacticHQ2F_BgSignNapRoom
+    ScriptEntry GalacticHQ2F_BgSignTVRoom
+    ScriptEntry GalacticHQ2F_BgSignCredo
     ScriptEntry GalacticHQ2F_KitchenSink
     ScriptEntry GalacticHQ2F_Report
     ScriptEntry GalacticHQ2F_Refrigerator
@@ -42,15 +42,15 @@ GalacticHQ2F_BedEnd:
     ReleaseAll
     End
 
-GalacticHQ2F_SignNapRoom:
+GalacticHQ2F_BgSignNapRoom:
     EventMessage GalacticHQ2F_Text_TeamGalacticNapRoom
     End
 
-GalacticHQ2F_SignTVRoom:
+GalacticHQ2F_BgSignTVRoom:
     EventMessage GalacticHQ2F_Text_TeamGalacticTVRoom
     End
 
-GalacticHQ2F_SignCredo:
+GalacticHQ2F_BgSignCredo:
     EventMessage GalacticHQ2F_Text_TeamGalacticCredo
     End
 

@@ -1338,7 +1338,7 @@ static void UndergroundMenu_GoUpCallback(UndergroundMenu *menu)
 {
     UndergroundMenu_EraseCurrentMenu(menu);
 
-    if (UndergroundMan_AreCoordinatesInSecretBase(Player_GetXPos(menu->fieldSystem->playerAvatar), Player_GetZPos(menu->fieldSystem->playerAvatar))) {
+    if (UndergroundMan_AreCoordinatesInSecretBase(PlayerAvatar_GetXPos(menu->fieldSystem->playerAvatar), PlayerAvatar_GetZPos(menu->fieldSystem->playerAvatar))) {
         UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_CantReturnFromSecretBase, FALSE, NULL);
         menu->state = UNDERGROUND_MENU_STATE_CLOSE_AFTER_TEXT;
     } else {

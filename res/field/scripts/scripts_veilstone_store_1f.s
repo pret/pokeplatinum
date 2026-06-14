@@ -9,7 +9,7 @@
     ScriptEntry VeilstoneStore1F_Lady
     ScriptEntry VeilstoneStore1F_RightVendor
     ScriptEntry VeilstoneStore1F_LeftVendor
-    ScriptEntry VeilstoneStore1F_Sign
+    ScriptEntry VeilstoneStore1F_BgSign
     ScriptEntry VeilstoneStore1F_Directory
     ScriptEntry VeilstoneStore1F_Socialite
     ScriptEntryEnd
@@ -34,7 +34,7 @@ VeilstoneStore1F_LeftVendor:
     PokeMartSpecialtiesWithGreeting MART_SPECIALTIES_ID_VEILSTONE_1F_LEFT
     End
 
-VeilstoneStore1F_Sign:
+VeilstoneStore1F_BgSign:
     EventMessage VeilstoneStore1F_Text_DiscoverANewYou
     End
 

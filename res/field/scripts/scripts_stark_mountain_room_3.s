@@ -7,7 +7,7 @@
     ScriptEntry StarkMountainRoom3_OnLoad
     ScriptEntry StarkMountainRoom3_Unused
     ScriptEntry StarkMountainRoom3_Heatran
-    ScriptEntry StarkMountainRoom3_OnFrameCharon
+    ScriptEntry StarkMountainRoom3_OnFrame_Charon
     ScriptEntryEnd
 
 StarkMountainRoom3_OnTransition:
@@ -130,7 +130,7 @@ StarkMountainRoom3_UnusedMovement6:
     WalkOnSpotNormalSouth
     EndMovement
 
-StarkMountainRoom3_OnFrameCharon:
+StarkMountainRoom3_OnFrame_Charon:
     LockAll
     Message StarkMountainRoom3_Text_MagmaStoneWillBeMine
     CloseMessage

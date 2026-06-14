@@ -6,7 +6,7 @@
     ScriptEntry WaywardCave1F_OnTransition
     ScriptEntry WaywardCave1F_Mira
     ScriptEntry WaywardCave1F_Unused
-    ScriptEntry WaywardCave1F_TriggerExit
+    ScriptEntry WaywardCave1F_CoordEvent_Exit
     ScriptEntryEnd
 
 WaywardCave1F_OnTransition:
@@ -79,7 +79,7 @@ WaywardCave1F_IncreaseFollowerMiraTimesTalked:
 WaywardCave1F_Unused:
     End
 
-WaywardCave1F_TriggerExit:
+WaywardCave1F_CoordEvent_Exit:
     LockAll
     ClearHasPartner
     SetMovementType LOCALID_MIRA, MOVEMENT_TYPE_LOOK_WEST
