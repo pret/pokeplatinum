@@ -3,8 +3,23 @@
 
 #include "palette.h"
 #include "sprite_system.h"
+#include "sys_task.h"
 
-typedef struct Indicator Indicator;
+// This is the bouncing arrow sprite used in the catch tutorial
+typedef struct Indicator {
+    ManagedSprite *sprite;
+    SysTask *animTask;
+    int x;
+    int y;
+    int bounceAngle;
+    fx32 subscreenOffset;
+    s16 exitTimer;
+    u8 exitPending;
+    u8 hasDropped;
+    u8 isExiting;
+    u8 exitStep;
+    u8 exitFrameCount;
+} Indicator;
 
 void Indicator_LoadResources(SpriteSystem *spriteSys, SpriteManager *spriteMan, u32 heapID, PaletteData *plttData, u32 charResID, u32 plttResID, u32 cellResID, u32 animResID);
 void Indicator_UnloadResources(SpriteManager *spriteMan, u32 charResID, u32 plttResID, u32 cellResID, u32 animResID);

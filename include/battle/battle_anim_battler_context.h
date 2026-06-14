@@ -5,13 +5,21 @@
 
 #include "struct_defs/chatot_cry.h"
 
-#include "battle/battle_background_reference.h"
 #include "battle/pokemon_sprite_data.h"
 
 #include "bg_window.h"
 #include "palette.h"
 #include "pokemon_sprite.h"
 #include "sprite_system.h"
+
+typedef struct BattleBackgroundReference {
+    int narcID;
+    int tilesNarcMemberIdx;
+    int paletteNarcMemberIdx;
+    int tilemapNarcMemberIdx;
+    int paletteDestStart;
+    int paletteSrcSize;
+} BattleBackgroundReference;
 
 typedef struct BattleAnimBattlerContext {
     SpriteSystem *spriteSystem;

@@ -3,8 +3,12 @@
 
 #include "palette.h"
 #include "sprite_system.h"
+#include "sys_task.h"
 
-typedef struct CursorRenderer CursorRenderer;
+typedef struct CursorRenderer {
+    ManagedSprite *sprites[5];
+    SysTask *animTask;
+} CursorRenderer;
 
 void CursorRenderer_LoadResources(SpriteSystem *spriteSys, SpriteManager *spriteMan, PaletteData *plttData, enum HeapID heapID, u32 charResID, u32 plttResID, u32 cellResID, u32 animResID);
 void CursorRenderer_UnloadResources(SpriteManager *spriteMan, u32 charResID, u32 plttResID, u32 cellResID, u32 animResID);

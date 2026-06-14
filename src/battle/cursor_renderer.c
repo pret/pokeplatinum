@@ -7,13 +7,7 @@
 #include "narc.h"
 #include "palette.h"
 #include "sprite_system.h"
-#include "sys_task.h"
 #include "sys_task_manager.h"
-
-typedef struct CursorRenderer {
-    ManagedSprite *sprites[5];
-    SysTask *animTask;
-} CursorRenderer;
 
 static void SysTask_AnimateCursorSprites(SysTask *task, void *cursorRendererPtr);
 void CursorRenderer_UnloadResources(SpriteManager *spriteMan, u32 charResID, u32 plttResID, u32 cellResID, u32 animResID);

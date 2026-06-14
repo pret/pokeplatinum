@@ -16,45 +16,7 @@
 #include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
-#include "sys_task.h"
 #include "sys_task_manager.h"
-
-typedef struct {
-    ManagedSprite *managedSprite;
-    SysTask *task;
-    enum HideArrowType hideType;
-    enum PartyGaugeSide side;
-    enum PartyGaugePosition position;
-    s32 x;
-    s16 alpha;
-    u8 state;
-    u8 delay;
-} PartyGaugeArrow;
-
-typedef struct {
-    ManagedSprite *managedSprite;
-    SysTask *task;
-    enum PartyGaugeSide side;
-    enum PartyGaugePosition position;
-    enum HidePartyGaugeType hideType;
-    s8 *pokeballCount;
-    s16 *arrowAlpha;
-    s32 xStart;
-    s32 xEnd;
-    s32 xOverflow;
-    s16 delay;
-    u16 sdatID;
-    u8 state;
-    u8 ballSlot;
-    u8 flipAnimation;
-    u8 startDelay;
-} PartyGaugePokeballs;
-
-typedef struct PartyGauge {
-    PartyGaugeArrow arrow;
-    PartyGaugePokeballs pokeballs[MAX_PARTY_SIZE];
-    s8 pokeballCount;
-} PartyGauge;
 
 enum PartyGaugeAnimIndex {
     PGANM_POKEBALL_HEALTHY_THEIRS = 0,

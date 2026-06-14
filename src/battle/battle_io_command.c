@@ -10,9 +10,9 @@
 #include "struct_defs/battler_data.h"
 #include "struct_defs/move_animation.h"
 
+#include "battle/battle_context.h"
 #include "battle/battle_controller.h"
 #include "battle/battle_display.h"
-#include "battle/battle_message.h"
 #include "battle/battle_subscreen.h"
 #include "battle/battle_system.h"
 #include "battle/common.h"

@@ -15,7 +15,6 @@
 #include "struct_defs/move_animation.h"
 
 #include "battle/battle_anim_battler_context.h"
-#include "battle/battle_background_reference.h"
 #include "battle/battle_system.h"
 #include "battle/pokemon_sprite_data.h"
 #include "battle_anim/battle_anim_helpers.h"

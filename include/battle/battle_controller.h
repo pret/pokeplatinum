@@ -5,8 +5,7 @@
 #include "struct_defs/move_animation.h"
 
 #include "battle/battle_context.h"
-#include "battle/battle_item_use.h"
-#include "battle/battle_message.h"
+#include "battle/message_defs.h"
 
 void BattleController_TryRecvLocalMessage(BattleSystem *battleSys, int recipient);
 void BattleController_EmitSetupBattleUI(BattleSystem *battleSys, int battler);

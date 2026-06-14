@@ -10,7 +10,6 @@
 #include "struct_defs/trainer.h"
 
 #include "battle/battle_context.h"
-#include "battle/battle_message.h"
 #include "battle/battle_subscreen.h"
 #include "battle/party_gauge.h"
 #include "battle/pokemon_sprite_data.h"

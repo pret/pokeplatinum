@@ -8,7 +8,6 @@
 #include "struct_decls/font_oam.h"
 
 #include "battle/ai_context.h"
-#include "battle/battle_message.h"
 #include "battle/battle_mon.h"
 #include "battle_anim/struct_ball_rotation_decl.h"
 
@@ -16,6 +15,15 @@
 #include "sprite_system.h"
 
 typedef struct BattleContext BattleContext;
+
+typedef struct BattleMessage {
+    u8 commandCode;
+    u8 tags;
+    u16 id;
+    int params[6];
+    int digits;
+    int battler;
+} BattleMessage;
 
 typedef struct FieldConditions {
     u32 weatherTurns;

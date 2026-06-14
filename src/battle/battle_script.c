@@ -32,7 +32,6 @@
 #include "battle/battle_display.h"
 #include "battle/battle_lib.h"
 #include "battle/battle_main.h"
-#include "battle/battle_message.h"
 #include "battle/battle_mon.h"
 #include "battle/battle_system.h"
 #include "battle/btlcmd.h"

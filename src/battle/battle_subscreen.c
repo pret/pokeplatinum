@@ -1,7 +1,6 @@
 #include "battle/battle_subscreen.h"
 
 #include <nitro.h>
-#include <string.h>
 
 #include "constants/moves.h"
 #include "generated/genders.h"
@@ -10,20 +9,13 @@
 
 #include "struct_decls/battle_system.h"
 #include "struct_decls/font_oam.h"
-#include "struct_decls/struct_02012744_decl.h"
-#include "struct_decls/struct_02012B20_decl.h"
+#include "struct_defs/battler_data.h"
 #include "struct_defs/struct_020127E8.h"
 
-#include "battle/action_select_data.h"
 #include "battle/battle_display.h"
 #include "battle/battle_system.h"
 #include "battle/cursor_renderer.h"
-#include "battle/give_up_move_data.h"
 #include "battle/indicator.h"
-#include "battle/move_display_info.h"
-#include "battle/move_select_data.h"
-#include "battle/saved_cursor_position.h"
-#include "battle/targeting.h"
 #include "overlay011/move_palettes.h"
 
 #include "assert.h"
@@ -33,7 +25,6 @@
 #include "font.h"
 #include "graphics.h"
 #include "heap.h"
-#include "inlines.h"
 #include "math_util.h"
 #include "message.h"
 #include "message_util.h"
@@ -59,200 +50,6 @@
 #include "unk_0208C098.h"
 
 #include "res/text/bank/battle_strings.h"
-
-typedef struct SlideInPanelState {
-    BattleSubscreen *btlSubscreen;
-    SysTask *task;
-    s16 xShift;
-    s16 yShift;
-    s16 bgXOffset;
-    s16 bgYOffset;
-    s16 prevBgYOffset;
-    u8 direction;
-    u8 phase;
-} SlideInPanelState;
-
-typedef struct ScreenPos {
-    s16 x;
-    s16 y;
-} ScreenPos;
-
-typedef struct SubscreenTilemapRect {
-    u8 top;
-    u8 bottom;
-    u8 left;
-    u8 right;
-} SubscreenTilemapRect;
-
-typedef struct {
-    u16 unk_00;
-    u16 unk_02;
-    u16 unk_04;
-    u16 unk_06;
-    u16 unk_08;
-} UnusedStruct_ov16_0226A3F4;
-
-typedef struct {
-    SysTask *unk_00;
-    u8 *unk_04;
-    void *unk_08;
-    u8 *unk_0C;
-    UnusedStruct_ov16_0226A3F4 unk_10;
-    u16 unk_1C;
-} UnusedStruct_ov16_02268A14_sub3_sub1;
-
-typedef struct MenuButtonPressAnimState {
-    s16 phase;
-    s16 waitTimer;
-    union {
-        struct {
-            const s16 *keyframes;
-            const SubscreenTilemapRect *subscreenTilemapRect;
-            int selectedButton;
-            u8 srcBufIndex;
-            u8 fontOAMIdx;
-            u8 spriteIndex;
-            u8 unread;
-            u8 freeSprites;
-            ScreenPos screenPos;
-        } ButtonPressAnimationState;
-        struct {
-            UnusedStruct_ov16_02268A14_sub3_sub1 *unused_00[4];
-            UnusedStruct_ov16_02268A14_sub3_sub1 *unused_10;
-            NNSG2dCharacterData *unused_14;
-            void *unused_18;
-            int selectedTarget;
-        } TargetSelectAnimationState;
-    };
-} MenuButtonPressAnimState;
-
-typedef struct {
-    int unk_00;
-    s16 unk_04;
-    s16 unk_06;
-    u8 unk_08;
-    u8 unk_09;
-} UnusedStruct_ov16_02268A14_sub4;
-
-typedef struct {
-    const SubscreenTilemapRect *unk_00;
-    u8 unk_04;
-    s8 unk_05;
-} UnusedStruct_ov16_02268A14_sub1;
-
-typedef struct FontOAMEntry {
-    FontOAM *fontOAM;
-    CharTransferAllocation allocation;
-    u16 textWidth;
-} FontOAMEntry;
-
-typedef struct PartyBallAnimState {
-    s16 xOffset;
-    u8 expPercent;
-    u8 phase;
-    u8 unused_04;
-    u8 delay;
-    u8 frameCount;
-    u8 duration;
-    u8 bounceCount;
-} PartyBallAnimState;
-
-typedef struct MenuCursor {
-    u8 isActive;
-    s8 y;
-    s8 x;
-    u8 unused_03;
-} MenuCursor;
-
-typedef union {
-    ActionSelectData actionData;
-    MoveSelectData moveData;
-    TargetSelectData targetSelectData;
-    GiveUpMoveData giveUpMoveData;
-} ActiveMenuData;
-
-typedef struct TextWindowLayout {
-    Window window;
-    u16 width;
-    u16 height;
-} TextWindowLayout;
-
-typedef struct {
-    MoveDisplayInfo moveDisplayInfo;
-    u16 *moveIcons[4];
-    TextWindowLayout moveNameWindows[4];
-    TextWindowLayout ppCountWindows[4];
-    TextWindowLayout ppLabelWindows[4];
-} MoveDisplayData;
-
-typedef struct BattleSubscreen {
-    BattleSystem *battleSys;
-    u8 *suppressActivationSfxPtr;
-    SysTask *animatePartyBallsTask;
-    SysTask *menuTransitionTask;
-    SysTask *unused_10;
-    UnusedStruct_ov16_02268A14_sub1 unused_14;
-    ActiveMenuData activeMenuData;
-    u16 *tilemapBuffers[7];
-    u16 *subscreenPaletteBuf;
-    u16 *normalMovePalBuf;
-    u16 *speedUpMovePalBuf;
-    SysTask *speedUpPaletteTask;
-    MoveDisplayData moveDisplayData[4];
-    UnkStruct_02012744 *fontOAMManager;
-    FontOAMEntry fontOAMEntry[13];
-    UnkStruct_02012B20 *unused_5B8;
-    ManagedSprite *playerPartyBallSprites[6];
-    ManagedSprite *opponentPartyBallSprites[6];
-    ManagedSprite *moveSelectSprites[4];
-    ManagedSprite *categoryIconSprites[4];
-    ManagedSprite *targetSelectPokeIconSprites[4];
-    SysTask *pokeIconAnimTasks[4];
-    PartyBallAnimState partyBallAnimState[6];
-    SysTask *unused_664;
-    u8 unused_668;
-    u8 unused_669;
-    u8 battlerType;
-    s8 activeMenuConfigIndex;
-    u8 targetingLayout;
-    u8 trainerGender;
-    u8 isPanelSliding;
-    u8 hasCancelButton;
-    u8 unused_670;
-    s16 unused_672;
-    u8 pulseCursorDirection;
-    s16 pulseCursorBlendValue;
-    SysTask *pulseCursorTask;
-    MenuButtonPressAnimState menuButtonPressAnimState;
-    UnusedStruct_ov16_02268A14_sub4 unused_6A0;
-    s32 panelScrollPos;
-    s32 slideSpeed;
-    s32 targetOffset;
-    CursorRenderer *cursorRenderer;
-    MenuCursor cursor;
-    u8 suppressActivationSfx;
-    u8 isWaitingForPartner;
-    struct {
-        Indicator *indicator;
-        u8 step;
-        u8 phase;
-        u8 delay;
-    } catchTutorialState;
-} BattleSubscreen;
-
-typedef struct BattleMenuConfig {
-    u16 unused_00;
-    u16 unused_02;
-    u16 bgTilemapBufIndices[4];
-    u16 bgPriorities[4];
-    const TouchScreenRect *touchScreenRects;
-    const int *buttonResults;
-    const u8 *buttonSlots;
-    int (*handleCursorInput)(BattleSubscreen *btlSubscreen, int param1);
-    void (*saveCursorPos)(BattleSubscreen *btlSubscreen, int param1);
-    void (*drawMenu)(BattleSubscreen *btlSubscreen, int param1, int param2);
-    int (*processInput)(BattleSubscreen *btlSubscreen, int param1, int param2);
-} BattleMenuConfig;
 
 static void *BattleSubscreen_Alloc(void);
 static void BattleSubscreen_OpenActionMenu(BattleSubscreen *btlSubscreen, int unused1, int unused2);

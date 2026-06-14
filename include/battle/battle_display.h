@@ -5,12 +5,25 @@
 #include "struct_defs/battler_data.h"
 #include "struct_defs/move_animation.h"
 
-#include "battle/battle_message.h"
 #include "battle/healthbox.h"
 #include "battle/message_defs.h"
-#include "battle/saved_cursor_position.h"
 
 #include "pokemon_sprite.h"
+
+typedef struct UISetupTaskData {
+    BattleSystem *battleSys;
+    UnkStruct_ov12_02237F98 *animContext;
+    UnkStruct_ov12_02238004 *animObjects[3];
+    u8 step;
+    u8 frameCount;
+    u8 fadeStep;
+    u8 unused;
+} UISetupTaskData;
+
+typedef struct BallThrowFlashData {
+    int state;
+    int unread_04;
+} BallThrowFlashData;
 
 void BattleDisplay_InitTaskSetupUI(BattleSystem *battleSys, BattlerData *battlerData);
 void BattleDisplay_InitTaskSetEncounter(BattleSystem *battleSys, BattlerData *battlerData, MonEncounterMessage *message);

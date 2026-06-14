@@ -6,11 +6,17 @@
 #include "constants/pokemon.h"
 #include "constants/sound.h"
 
-#include "battle/battle_message.h"
+#include "battle/battle_context.h"
+#include "battle/battle_subscreen.h"
 #include "battle/party_gauge.h"
-#include "battle/targeting.h"
 
 #include "pokemon.h"
+
+typedef struct BattleItemUse {
+    u16 item;
+    u8 category;
+    u8 target;
+} BattleItemUse;
 
 typedef struct PartyGaugeData {
     u8 command;

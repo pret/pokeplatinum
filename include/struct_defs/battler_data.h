@@ -1,16 +1,30 @@
 #ifndef POKEPLATINUM_STRUCT_BATTLER_DATA_H
 #define POKEPLATINUM_STRUCT_BATTLER_DATA_H
 
+#include "struct_defs/battler_data.h"
+
 #include "battle/healthbox.h"
-#include "battle/saved_cursor_position.h"
 #include "battle_anim/struct_ball_rotation_decl.h"
 #include "battle_anim/struct_ov12_02223764.h"
+#include "battle_anim/struct_ov12_02237F98_decl.h"
+#include "battle_anim/struct_ov12_02238004_decl.h"
 
 #include "bg_window.h"
 #include "narc.h"
 #include "pokemon_sprite.h"
 #include "sprite.h"
 #include "sys_task_manager.h"
+
+typedef struct SavedCursorPosition {
+    s8 actionMenuX;
+    s8 actionMenuY;
+    s8 moveMenuX;
+    s8 moveMenuY;
+    s8 targetSelectX;
+    s8 targetSelectY;
+    s8 targetingLayout;
+    u8 padding;
+} SavedCursorPosition;
 
 typedef struct BattlerDataSysTaskFuncs {
     SysTaskFunc setCommandSelection;
