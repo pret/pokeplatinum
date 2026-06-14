@@ -15,19 +15,19 @@ u32 MapHeader_IDBoundsCheck(u32 headerID)
     return headerID;
 }
 
-const u16 MapHeader_GetAreaDataArchiveID(u32 headerID)
+u16 MapHeader_GetAreaDataArchiveID(u32 headerID)
 {
     headerID = MapHeader_IDBoundsCheck(headerID);
     return sMapHeaders[headerID].areaDataArchiveID;
 }
 
-const u16 sub_0203A04C(u32 headerID)
+u16 MapHeader_GetPreloadedMapObjectsArchiveID(u32 headerID)
 {
     headerID = MapHeader_IDBoundsCheck(headerID);
-    return sMapHeaders[headerID].unk_01;
+    return sMapHeaders[headerID].preloadedMapObjectsArchiveID;
 }
 
-const u16 MapHeader_GetMapMatrixID(u32 headerID)
+u16 MapHeader_GetMapMatrixID(u32 headerID)
 {
     headerID = MapHeader_IDBoundsCheck(headerID);
     u16 mapMatrixID = sMapHeaders[headerID].mapMatrixID;

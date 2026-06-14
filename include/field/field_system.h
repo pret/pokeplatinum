@@ -20,7 +20,6 @@
 #include "overlay005/model_attributes.h"
 #include "overlay005/ov5_021EAFA4.h"
 #include "overlay005/signpost.h"
-#include "overlay005/struct_ov5_021D1A68_decl.h"
 #include "overlay056/struct_ov56_02256468_decl.h"
 #include "overlay066/struct_ov66_0222DCE0_sub1.h"
 #include "underground/struct_underground_top_screen_context_decl.h"
@@ -66,6 +65,14 @@ typedef struct FieldProcessManager {
     BOOL kill;
 } FieldProcessManager;
 
+#define MAP_OBJECT_PRELOAD_SENTINEL 0xFFFF
+#define MAX_MAP_OBJECTS_TO_PRELOAD  24
+
+typedef struct MapObjectsToPreload {
+    u16 count;
+    int ids[MAX_MAP_OBJECTS_TO_PRELOAD];
+} MapObjectsToPreload;
+
 typedef struct FieldSystem_t {
     FieldProcessManager *processManager;
     FieldSystem_sub2 *unk_04;
@@ -80,7 +87,7 @@ typedef struct FieldSystem_t {
     LandDataManager *landDataMan;
     MapMatrix *mapMatrix;
     AreaDataManager *areaDataManager;
-    UnkStruct_ov5_021D1A68 *unk_34;
+    MapObjectsToPreload *mapObjectsToPreload;
     MapObjectManager *mapObjMan;
     PlayerAvatar *playerAvatar;
     FieldEffectManager *fieldEffMan;

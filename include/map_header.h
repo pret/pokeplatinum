@@ -6,9 +6,9 @@
 
 #define ENCOUNTERS_NONE 0xFFFF
 
-typedef struct {
+typedef struct MapHeader {
     u8 areaDataArchiveID;
-    u8 unk_01;
+    u8 preloadedMapObjectsArchiveID;
     u16 mapMatrixID;
     u16 scriptsArchiveID;
     u16 initScriptsArchiveID;
@@ -30,9 +30,9 @@ typedef struct {
 } MapHeader;
 
 u32 MapHeader_IDBoundsCheck(u32 headerID);
-const u16 MapHeader_GetAreaDataArchiveID(u32 headerID);
-const u16 sub_0203A04C(u32 headerID);
-const u16 MapHeader_GetMapMatrixID(u32 headerID);
+u16 MapHeader_GetAreaDataArchiveID(u32 headerID);
+u16 MapHeader_GetPreloadedMapObjectsArchiveID(u32 headerID);
+u16 MapHeader_GetMapMatrixID(u32 headerID);
 u32 MapHeader_GetMsgArchiveID(u32 headerID);
 u32 MapHeader_GetScriptsArchiveID(u32 headerID);
 u32 MapHeader_GetInitScriptsArchiveID(u32 headerID);
