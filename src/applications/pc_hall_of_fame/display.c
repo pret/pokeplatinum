@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/string_padding_mode.h"
+#include "constants/string.h"
 #include "generated/genders.h"
 
 #include "struct_defs/pc_hall_of_fame_screen_def.h"

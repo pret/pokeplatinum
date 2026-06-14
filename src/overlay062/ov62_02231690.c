@@ -5,7 +5,7 @@
 
 #include "constants/graphics.h"
 #include "constants/narc.h"
-#include "constants/string_padding_mode.h"
+#include "constants/string.h"
 
 #include "struct_decls/struct_0202F298_decl.h"
 #include "struct_decls/struct_0202F41C_decl.h"

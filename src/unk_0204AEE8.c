@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "constants/battle_tower.h"
-#include "constants/string_padding_mode.h"
+#include "constants/string.h"
 #include "generated/battle_tower_modes.h"
 #include "generated/frontier_trainers.h"
 #include "generated/object_events_gfx.h"

@@ -3,7 +3,7 @@
 #include "constants/graphics.h"
 #include "constants/heap.h"
 #include "constants/pokemon.h"
-#include "constants/string_padding_mode.h"
+#include "constants/string.h"
 #include "generated/genders.h"
 #include "generated/species.h"
 

@@ -2,7 +2,7 @@
 
 #include <string.h>
 
-#include "constants/string_padding_mode.h"
+#include "constants/string.h"
 #include "generated/items.h"
 #include "generated/text_banks.h"
 

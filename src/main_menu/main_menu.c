@@ -4,7 +4,7 @@
 #include "constants/communication/comm_available_connections.h"
 #include "constants/graphics.h"
 #include "constants/narc.h"
-#include "constants/string_padding_mode.h"
+#include "constants/string.h"
 #include "generated/genders.h"
 #include "generated/text_banks.h"
 

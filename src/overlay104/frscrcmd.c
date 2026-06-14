@@ -3,7 +3,7 @@
 #include <nitro.h>
 
 #include "constants/field_base_tiles.h"
-#include "constants/string_padding_mode.h"
+#include "constants/string.h"
 #include "generated/game_records.h"
 #include "generated/genders.h"
 #include "generated/object_events_gfx.h"

@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRING_H
 #define POKEPLATINUM_STRING_H
 
-#include "constants/string_padding_mode.h"
+#include "constants/string.h"
 
 #include "charcode.h"
 

@@ -54,7 +54,7 @@
 #include "constants/savedata/vars_flags.h"
 #include "constants/scrcmd.h"
 #include "constants/sound_volume.h"
-#include "constants/string_padding_mode.h"
+#include "constants/string.h"
 #include "constants/tv_broadcast.h"
 #include "constants/union_room_message_types.h"
 #include "constants/villa_visitors.h"
