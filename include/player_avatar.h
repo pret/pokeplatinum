@@ -66,6 +66,7 @@ int PlayerAvatar_ZPosPrev(PlayerAvatar *const playerAvatar);
 void PlayerAvatar_GetPosPtr(PlayerAvatar *const playerAvatar, VecFx32 *param1);
 const VecFx32 *PlayerAvatar_GetPos(PlayerAvatar *const playerAvatar);
 void PlayerAvatar_SetMoveState(PlayerAvatar *playerAvatar, int param1);
+int PlayerAvatar_GetMoveState(const PlayerAvatar *playerAvatar);
 int PlayerAvatar_GetPlayerMoveState(const PlayerAvatar *playerAvatar);
 void PlayerAvatar_SetPlayerMoveState(PlayerAvatar *playerAvatar, int param1);
 void PlayerAvatar_SetVisible(PlayerAvatar *playerAvatar, BOOL visible);
